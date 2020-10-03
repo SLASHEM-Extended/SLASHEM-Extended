@@ -4226,6 +4226,13 @@ secureidchoice:
 
 		break;
 
+		case WAN_STAT_REDUCTION:
+
+			statdebuff();
+			known = TRUE;
+
+		break;
+
 		case WAN_CORROSION:
 
 		{
@@ -8491,7 +8498,7 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 	case ZT_MAGIC_MISSILE:
 		if (resists_magm(mon)) {
 		    sho_shieldeff = TRUE;
-		    pline("%s is immune to the attack!", Monnam(mon));
+		    if (canseemon(mon)) pline("%s is immune to the attack!", Monnam(mon));
 		    break;
 		}
 		tmp = d(nd,6);
@@ -8501,7 +8508,7 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 	case ZT_FIRE:
 		if (resists_fire(mon)) {
 		    sho_shieldeff = TRUE;
-		    pline("%s is immune to the attack!", Monnam(mon));
+		    if (canseemon(mon)) pline("%s is immune to the attack!", Monnam(mon));
 		    break;
 		}
 		tmp = d(nd,6);
@@ -8516,7 +8523,7 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 	case ZT_COLD:
 		if (resists_cold(mon)) {
 		    sho_shieldeff = TRUE;
-		    pline("%s is immune to the attack!", Monnam(mon));
+		    if (canseemon(mon)) pline("%s is immune to the attack!", Monnam(mon));
 		    break;
 		}
 		tmp = d(nd,6);
@@ -8543,7 +8550,7 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 			    resists_death(mon) || mon->data->msound == MS_NEMESIS ||
 			    resists_magm(mon)) {	/* similar to player */
 			sho_shieldeff = TRUE;
-			pline("%s is immune to the attack!", Monnam(mon));
+			if (canseemon(mon)) pline("%s is immune to the attack!", Monnam(mon));
 			break;
 		    }
 		    type = -1; /* so they don't get saving throws */
@@ -8552,7 +8559,7 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 
 		    if (resists_disint(mon)) {
 			sho_shieldeff = TRUE;
-			pline("%s is immune to the attack!", Monnam(mon));
+			if (canseemon(mon)) pline("%s is immune to the attack!", Monnam(mon));
 		    } else if (mon->misc_worn_check & W_ARMS) {
 			/* destroy shield; victim survives */
 			*ootmp = which_armor(mon, W_ARMS);
@@ -8582,7 +8589,7 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 	case ZT_LIGHTNING:
 		if (resists_elec(mon)) {
 		    sho_shieldeff = TRUE;
-		    pline("%s is immune to the attack!", Monnam(mon));
+		    if (canseemon(mon)) pline("%s is immune to the attack!", Monnam(mon));
 		    tmp = 0;
 		    /* can still blind the monster */
 		} else
@@ -8606,7 +8613,7 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 	case ZT_POISON_GAS:
 		if (resists_poison(mon)) {
 		    sho_shieldeff = TRUE;
-		    pline("%s is immune to the attack!", Monnam(mon));
+		    if (canseemon(mon)) pline("%s is immune to the attack!", Monnam(mon));
 		    break;
 		}
 		tmp = d(nd,6);
@@ -8614,7 +8621,7 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 	case ZT_ACID:
 		if (resists_acid(mon)) {
 		    sho_shieldeff = TRUE;
-		    pline("%s is immune to the attack!", Monnam(mon));
+		    if (canseemon(mon)) pline("%s is immune to the attack!", Monnam(mon));
 		    break;
 		}
 		tmp = d(nd,6);
@@ -8624,12 +8631,12 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 	case ZT_LITE:
 		if (dmgtype(mon->data, AD_LITE) ) {
 		    sho_shieldeff = TRUE;
-		    pline("%s is immune to the attack!", Monnam(mon));
+		    if (canseemon(mon)) pline("%s is immune to the attack!", Monnam(mon));
 		    break;
 		}
 		if (mon->data->mlet == S_LIGHT || emits_light(mon->data) ) { /* suggested by maxlunar IIRC? */
 		    sho_shieldeff = TRUE;
-		    pline("%s is immune to the attack!", Monnam(mon));
+		    if (canseemon(mon)) pline("%s is immune to the attack!", Monnam(mon));
 		    break;
 		}
 
@@ -8664,7 +8671,7 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 	case ZT_SPC2:
 		if (dmgtype(mon->data, AD_SPC2) || dmgtype(mon->data, AD_INSA) || dmgtype(mon->data, AD_SANI) || mindless(mon->data) ) {
 		    sho_shieldeff = TRUE;
-		    pline("%s is immune to the attack!", Monnam(mon));
+		    if (canseemon(mon)) pline("%s is immune to the attack!", Monnam(mon));
 		    break;
 		}
 		tmp = d(nd,7);

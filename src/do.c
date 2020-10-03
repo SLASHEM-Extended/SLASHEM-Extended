@@ -889,8 +889,14 @@ register struct obj *obj;
 	case AMULET_VERSUS_STONE:
 		pline_The("toilet doesn't turn to stone.");
 		break;
+	case AMULET_OF_TIME:
+		pline_The("toilet suddenly displays the current time: %d:%d", getlt()->tm_hour, getlt()->tm_min);
+		break;
 	case AMULET_OF_DEPETRIFY:
 		pline_The("toilet is definitely made of porcelain. Not mineral.");
+		break;
+	case AMULET_OF_PET_VIEW:
+		pline("It seems as if one of your pets was being pulled down the toilet!");
 		break;
 	case AMULET_OF_MAGIC_RESISTANCE:
 		pline_The("toilet is surrounded by a magical shield!");

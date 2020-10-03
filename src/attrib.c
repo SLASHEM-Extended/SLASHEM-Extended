@@ -2660,6 +2660,8 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_OUU_EECH) tmp += 10;
 		if (uarmf && uarmf->oartifact == ART_TOTALLY_THE_SEXY_BITCH) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK) tmp += 5;
+		if (uarmu && uarmu->otyp == FISHNET) tmp += 2;
+		if (uamul && uamul->otyp == AMULET_OF_TIME) tmp += 5;
 
 		if (RngeCoquetry) tmp += 5;
 		if (FemtrapActiveSolvejg) tmp += 5;

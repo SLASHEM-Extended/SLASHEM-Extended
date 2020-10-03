@@ -2272,7 +2272,7 @@ static NEARDATA const int rwep[] =
 };
 
 static NEARDATA const int pwep[] =
-{	NASTYPOLE, GREAT_POLLAX, WOODEN_BAR, TRAFFIC_LIGHT, GIANT_SCYTHE,
+{	PETRIFYIUM_BAR, DISINTEGRATION_BAR, NASTYPOLE, GREAT_POLLAX, WOODEN_BAR, TRAFFIC_LIGHT, GIANT_SCYTHE,
 	THRESHER, YITH_TENTACLE, FORCE_PIKE, DROVEN_LANCE, HEAVY_GRINDER,
 	CRYPTIC_POLE, HELMET_BEARD, POKER_STICK, COURSE_LANCE, HALBERD, BARDICHE, BRICKLAYER_BAR,
 	INFERNAL_BARDICHE, INFERNAL_ANCUS, ZEBES_POLE,
@@ -2580,7 +2580,7 @@ static const NEARDATA short hwep[] = {
 	  SILK_SPEAR, SPEAR, ORCISH_SPEAR, CRAPPY_SPEAR, LOWER_ARM_BLADE, CAMO_QATAR,
 	  STAR_ROD, RUNED_ROD, WEIGHTED_FLAIL, FLAIL, FLOGGER, CHAIN_AND_SICKLE, BULLWHIP, ASBESTOS_JAVELIN, STACK_JAVELIN,
 	  FIRE_STICK, TROUTSTAFF, FLINDBAR, QUARTERSTAFF, RAIN_PIPE, SPECIAL_MOP, SILVER_KHAKKHARA, FOAMY_STAFF,
-	  INSECT_SQUASHER, SPIKED_CLUB, BRICK_PICK, BASEBALL_BAT, PAPER_SWORD, QATAR,
+	  MASSAGER, INSECT_SQUASHER, SPIKED_CLUB, BRICK_PICK, BASEBALL_BAT, PAPER_SWORD, QATAR,
 	  GREAT_DAGGER, JAVELIN, BLOW_AKLYS, AKLYS, POURED_CLUB, JAGGED_TOOTH_CLUB, TRASH_SWORD,
 	  NATURAL_STICK, BONE_CLUB, CLUB, ALLOY_CLUB, CIGARETTE, BUBBLETAR, CONUNDRUM_PICK,
 	  BRONZE_PICK, CONGLOMERATE_PICK, MYSTERY_PICK, PICK_AXE, VERMIN_SWATTER, FLY_SWATTER, TENNIS_RACKET,
@@ -9468,19 +9468,19 @@ int direction;
 				grindingdamage += 1;
 				break;
 			case P_SKILLED:
-				grindingdamage += 2;
+				grindingdamage += rnd(2);
 				break;
 			case P_EXPERT:
-				grindingdamage += 3;
+				grindingdamage += rnd(3);
 				break;
 			case P_MASTER:
-				grindingdamage += 4;
+				grindingdamage += rnd(4);
 				break;
 			case P_GRAND_MASTER:
-				grindingdamage += 5;
+				grindingdamage += rnd(5);
 				break;
 			case P_SUPREME_MASTER:
-				grindingdamage += 6;
+				grindingdamage += rnd(6);
 				break;
 		}
 		switch (P_SKILL(P_AXE)) {
@@ -9489,19 +9489,19 @@ int direction;
 				grindingdamage += 1;
 				break;
 			case P_SKILLED:
-				grindingdamage += 2;
+				grindingdamage += rnd(2);
 				break;
 			case P_EXPERT:
-				grindingdamage += 3;
+				grindingdamage += rnd(3);
 				break;
 			case P_MASTER:
-				grindingdamage += 4;
+				grindingdamage += rnd(4);
 				break;
 			case P_GRAND_MASTER:
-				grindingdamage += 5;
+				grindingdamage += rnd(5);
 				break;
 			case P_SUPREME_MASTER:
-				grindingdamage += 6;
+				grindingdamage += rnd(6);
 				break;
 		}
 	}

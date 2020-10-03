@@ -1133,6 +1133,23 @@ xchar x, y;
 		return(1);
 	}
 
+	if(kickobj->otyp == PETRIFYIUM_BAR && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !uarmf) {
+		pline("Kicking a petrifying weapon is a bad idea.");
+	    if (!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
+		
+		if (!Stoned) {
+
+			if (Hallucination && rn2(10)) pline("Good thing you are already stoned.");
+			else {
+				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				u.cnd_stoningcount++;
+				delayed_killer = "kicking a petrifyium bar";
+			}
+		}
+
+	    }
+	}
+
 	if(kickobj->otyp == CORPSE && touch_petrifies(&mons[kickobj->corpsenm])
 			&& (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !uarmf) {
 	    char kbuf[BUFSZ];

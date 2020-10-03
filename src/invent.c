@@ -5996,6 +5996,8 @@ register const char *let,*word;
 			|| otmp->otyp == STRIPED_SHIRT
 			|| otmp->otyp == PRINTED_SHIRT
 			|| otmp->otyp == FOAM_SHIRT
+			|| otmp->otyp == FLEECY_CORSET
+			|| otmp->otyp == FISHNET
 			|| otmp->otyp == BATH_TOWEL
 			|| otmp->otyp == PLUGSUIT
 			|| otmp->otyp == SWIMSUIT
@@ -7897,6 +7899,10 @@ boolean force_touch;
 		pline("Eek!");
 		badeffect();
 	}
+	if (uarmg && itemhasappearance(uarmg, APP_SHITTY_GLOVES) && (otmp->otyp == PETRIFYIUM_BAR) ) {
+		pline("Eek!");
+		badeffect();
+	}
 	if (uarmg && itemhasappearance(uarmg, APP_SHITTY_GLOVES) && (otmp->otyp == EGG && otmp->corpsenm != PM_PLAYERMON && touch_petrifies(&mons[otmp->corpsenm])) ) {
 		pline("Eek!");
 		badeffect();
@@ -7904,6 +7910,9 @@ boolean force_touch;
 
 	if ((Blind || force_touch) && (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
 		(otmp->otyp == CORPSE && touch_petrifies(&mons[otmp->corpsenm])))
+			return TRUE;
+	if ((Blind || force_touch) && (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
+		(otmp->otyp == PETRIFYIUM_BAR))
 			return TRUE;
 	if ((Blind || force_touch) && (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
 		(otmp->otyp == EGG && otmp->corpsenm != PM_PLAYERMON && touch_petrifies(&mons[otmp->corpsenm])))

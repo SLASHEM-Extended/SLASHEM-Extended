@@ -148,7 +148,7 @@ doread()
 	} else if (scroll->otyp == T_SHIRT || scroll->otyp == HAWAIIAN_SHIRT || scroll->otyp == BLACK_DRESS
 	|| scroll->otyp == STRIPED_SHIRT || scroll->otyp == BODYGLOVE || scroll->otyp == BAD_SHIRT || scroll->otyp == CHANTER_SHIRT || scroll->otyp == KYRT_SHIRT || scroll->otyp == WOOLEN_SHIRT || scroll->otyp == METAL_SHIRT || scroll->otyp == RED_STRING || scroll->otyp == YOGA_PANTS || scroll->otyp == GREEN_GOWN
 	|| scroll->otyp == BEAUTIFUL_SHIRT || scroll->otyp == PETA_COMPLIANT_SHIRT || scroll->otyp == TOILET_ROLL || scroll->otyp == RADIOACTIVE_UNDERGARMENT
-	|| scroll->otyp == PRINTED_SHIRT || scroll->otyp == FOAM_SHIRT || scroll->otyp == BATH_TOWEL
+	|| scroll->otyp == PRINTED_SHIRT || scroll->otyp == FOAM_SHIRT || scroll->otyp == FLEECY_CORSET || scroll->otyp == FISHNET || scroll->otyp == BATH_TOWEL
 	|| scroll->otyp == PLUGSUIT || scroll->otyp == SWIMSUIT || scroll->otyp == MEN_S_UNDERWEAR
 	|| scroll->otyp == VICTORIAN_UNDERWEAR || scroll->otyp == RUFFLED_SHIRT) {
 	    static const char *shirt_msgs[] = { /* Scott Bigham */
@@ -934,6 +934,7 @@ doread()
 			case SCR_GROWTH:
 			case SCR_ICE:
 			case SCR_ILLUSION:
+			case SCR_VISIBLE_ITEM:
 			case SCR_FEMINISM:
 			case SCR_EVIL_VARIANT:
 			case SCR_ENRAGE:
@@ -5696,6 +5697,19 @@ proofarmorchoice:
 		pline("Some monsters from the Illusory Castle are summoned!");
 
 		u.aggravation = 0;
+
+		break;
+
+	case SCR_VISIBLE_ITEM:
+
+		pline("You are surrounded by a translucent glow!");
+		{
+			register struct obj *objX, *objX2;
+			for (objX = invent; objX; objX = objX2) {
+				objX2 = objX->nobj;
+				if (!rn2(5)) objX->oinvis = objX->oinvisreal = FALSE;
+			}
+		}
 
 		break;
 

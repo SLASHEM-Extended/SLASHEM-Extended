@@ -4590,6 +4590,8 @@ struct monst *mtmp;
 #define MUSE_SCR_FEMINISM 159
 #define MUSE_WAN_BLEEDING 160
 #define MUSE_WAN_UNDRESSING 161
+#define MUSE_WAN_STAT_REDUCTION 162
+#define MUSE_SCR_VISIBLE_ITEM 163
 
 /* Select an offensive item/action for a monster.  Returns TRUE iff one is
  * found.
@@ -5240,6 +5242,11 @@ struct monst *mtmp;
 			m.offensive = obj;
 			m.has_offense = MUSE_SCR_ILLUSION;
 		}
+		nomore(MUSE_SCR_VISIBLE_ITEM);
+		if(obj->otyp == SCR_VISIBLE_ITEM) {
+			m.offensive = obj;
+			m.has_offense = MUSE_SCR_VISIBLE_ITEM;
+		}
 		nomore(MUSE_SCR_FEMINISM);
 		if(obj->otyp == SCR_FEMINISM) {
 			m.offensive = obj;
@@ -5339,6 +5346,11 @@ struct monst *mtmp;
 		if(obj->otyp == WAN_FLEECY_TERRAIN && obj->spe > 0) {
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_FLEECY_TERRAIN;
+		}
+		nomore(MUSE_WAN_STAT_REDUCTION);
+		if(obj->otyp == WAN_STAT_REDUCTION && obj->spe > 0) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_STAT_REDUCTION;
 		}
 		nomore(MUSE_WAN_CONTAMINATION);
 		if(obj->otyp == WAN_CONTAMINATION && obj->spe > 0) {
@@ -7002,6 +7014,24 @@ struct monst *mtmp;
 		pline("Some monsters from the Illusory Castle are summoned!");
 
 		u.aggravation = 0;
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		return 2;
+
+	case MUSE_SCR_VISIBLE_ITEM:
+
+		mreadmsg(mtmp, otmp);
+		makeknown(otmp->otyp);
+
+		pline("You are surrounded by a translucent glow!");
+		{
+			register struct obj *objX, *objX2;
+			for (objX = invent; objX; objX = objX2) {
+				objX2 = objX->nobj;
+				if (!rn2(5)) objX->oinvis = objX->oinvisreal = FALSE;
+			}
+		}
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
@@ -8976,6 +9006,18 @@ newboss:
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		return 2;
 
+	case MUSE_WAN_STAT_REDUCTION:
+
+		mzapmsg(mtmp, otmp, FALSE);
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
+
+		statdebuff();
+
+		if (oseen) makeknown(WAN_STAT_REDUCTION);
+
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		return 2;
+
 	case MUSE_WAN_DISENCHANTMENT:
 
 		mzapmsg(mtmp, otmp, FALSE);
@@ -9825,7 +9867,7 @@ struct monst *mtmp;
 			|| pm->mlet == S_GHOST
 			|| pm->mlet == S_KOP
 		) && issoviet) return 0;
-	switch (rn2(266)) {
+	switch (rn2(268)) {
 
 		case 0: return WAN_DEATH;
 		case 1: return WAN_SLEEP;
@@ -10093,6 +10135,8 @@ struct monst *mtmp;
 		case 263: return SCR_FEMINISM;
 		case 264: return WAN_BLEEDING;
 		case 265: return WAN_UNDRESSING;
+		case 266: return WAN_STAT_REDUCTION;
+		case 267: return SCR_VISIBLE_ITEM;
 
 	}
 	/*NOTREACHED*/
@@ -11541,6 +11585,7 @@ struct obj *obj;
 		    typ == WAN_CORROSION ||
 		    typ == WAN_CHAOS_TERRAIN ||
 		    typ == WAN_FLEECY_TERRAIN ||
+		    typ == WAN_STAT_REDUCTION ||
 		    typ == WAN_DISENCHANTMENT ||
 		    typ == WAN_CONTAMINATION ||
 		    typ == WAN_TREMBLING ||
@@ -11629,6 +11674,7 @@ struct obj *obj;
 		 typ == SCR_RUMOR ||
 		 typ == SCR_MESSAGE ||
 		 typ == SCR_ILLUSION ||
+		 typ == SCR_VISIBLE_ITEM ||
 		 typ == SCR_EVIL_VARIANT ||
 		 typ == SCR_FEMINISM ||
 		 typ == SCR_SIN ||

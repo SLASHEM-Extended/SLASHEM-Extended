@@ -1424,6 +1424,21 @@ boolean alwaysflag;	/* force the item to be picked up even if it burdens you --A
 	    if (flags.run) nomul(0, 0, FALSE);
 	    return 1;
 #endif
+	} else if (obj->otyp == PETRIFYIUM_BAR) {
+		if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !telekinesis) {
+		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
+		    display_nhwindow(WIN_MESSAGE, FALSE);
+		else {
+			char kbuf[BUFSZ];
+
+			strcpy(kbuf, "a petrifyium bar");
+			pline("Touching %s is a fatal mistake.", kbuf);
+			instapetrify(kbuf);
+		    return -1;
+
+		}
+		}
+
 	} else if (obj->otyp == CORPSE) {
 	    if ( (touch_petrifies(&mons[obj->corpsenm])) && (!uarmg || FingerlessGloves)
 				&& (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !telekinesis) {
@@ -2146,6 +2161,21 @@ boolean invobj;
 	    }
 	}
 
+	if (obj->otyp == PETRIFYIUM_BAR) {
+	    if ((!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) )) {
+		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
+		    display_nhwindow(WIN_MESSAGE, FALSE);
+		else {
+		    char kbuf[BUFSZ];
+
+		    strcpy(kbuf, "a petrifyium bar");
+		    pline("Touching %s is a fatal mistake.", kbuf);
+		    instapetrify(kbuf);
+		    return -1;
+		}
+	    }
+	}
+
 	if (obj->otyp == EGG) {
 	    if ( (touch_petrifies(&mons[obj->corpsenm])) && obj->corpsenm != PM_PLAYERMON && (!uarmg || FingerlessGloves)
 		 && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) )) {
@@ -2312,6 +2342,21 @@ register struct obj *obj;
 		    strcpy(kbuf, an(corpse_xname(obj, TRUE)));
 		    pline("Touching %s is a fatal mistake.", kbuf);
 		    strcpy(kbuf, an(killer_cxname(obj, TRUE)));
+		    instapetrify(kbuf);
+		    return -1;
+		}
+	    }
+	}
+
+	if (obj->otyp == PETRIFYIUM_BAR) {
+	    if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) )) {
+		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
+		    display_nhwindow(WIN_MESSAGE, FALSE);
+		else {
+		    char kbuf[BUFSZ];
+
+		    strcpy(kbuf, "a petrifyium bar");
+		    pline("Touching %s is a fatal mistake.", kbuf);
 		    instapetrify(kbuf);
 		    return -1;
 		}

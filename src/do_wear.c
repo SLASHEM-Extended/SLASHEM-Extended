@@ -155,6 +155,7 @@ Boots_on()
 	case BOOTS_OF_DISPLACEMENT:
 	case BOOTS_OF_SWIMMING:
 	case ANTI_CURSE_BOOTS:
+	case BOOTS_OF_SHOCK_RESISTANCE:
 	case SKY_HIGH_HEELS:
 	case PREHISTORIC_BOOTS:
 	case SYNTHETIC_SANDALS:
@@ -255,6 +256,24 @@ Boots_on()
 	case DUMMY_BOOTS_AA:
 	case DUMMY_BOOTS_AB:
 	case DUMMY_BOOTS_AC:
+	case DUMMY_BOOTS_AD:
+	case DUMMY_BOOTS_AE:
+	case DUMMY_BOOTS_AF:
+	case DUMMY_BOOTS_AG:
+	case DUMMY_BOOTS_AH:
+	case DUMMY_BOOTS_AI:
+	case DUMMY_BOOTS_AJ:
+	case DUMMY_BOOTS_AK:
+	case DUMMY_BOOTS_AL:
+	case DUMMY_BOOTS_AM:
+	case DUMMY_BOOTS_AN:
+	case DUMMY_BOOTS_AO:
+	case DUMMY_BOOTS_AP:
+	case DUMMY_BOOTS_AQ:
+	case DUMMY_BOOTS_AR:
+	case DUMMY_BOOTS_AS:
+	case DUMMY_BOOTS_AT:
+	case DUMMY_BOOTS_AU:
 		if (!uarmf->cursed) curse(uarmf);
 		break;
 
@@ -627,6 +646,24 @@ Boots_off()
 	case DUMMY_BOOTS_AA:
 	case DUMMY_BOOTS_AB:
 	case DUMMY_BOOTS_AC:
+	case DUMMY_BOOTS_AD:
+	case DUMMY_BOOTS_AE:
+	case DUMMY_BOOTS_AF:
+	case DUMMY_BOOTS_AG:
+	case DUMMY_BOOTS_AH:
+	case DUMMY_BOOTS_AI:
+	case DUMMY_BOOTS_AJ:
+	case DUMMY_BOOTS_AK:
+	case DUMMY_BOOTS_AL:
+	case DUMMY_BOOTS_AM:
+	case DUMMY_BOOTS_AN:
+	case DUMMY_BOOTS_AO:
+	case DUMMY_BOOTS_AP:
+	case DUMMY_BOOTS_AQ:
+	case DUMMY_BOOTS_AR:
+	case DUMMY_BOOTS_AS:
+	case DUMMY_BOOTS_AT:
+	case DUMMY_BOOTS_AU:
 	case DISCONNECTED_BOOTS:
 	case BOSS_BOOTS:
 	case SENTIENT_HIGH_HEELED_SHOES:
@@ -692,6 +729,7 @@ Boots_off()
 	case BOOTS_OF_DISPLACEMENT:
 	case BOOTS_OF_SWIMMING:
 	case ANTI_CURSE_BOOTS:
+	case BOOTS_OF_SHOCK_RESISTANCE:
 	case FREEZING_BOOTS:
 	case PASSTHROUGH_BOOTS:
 	case UNFAIR_STILETTOS:
@@ -753,6 +791,11 @@ Cloak_on()
 
 	if (uarmc && uarmc->oartifact == ART_DSCHLSCHLSCHLSCHLSCH) {
 		u.uprops[DEAC_ANTIMAGIC].intrinsic += 1;
+	}
+
+	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && uarmc && is_metallic(uarmc)) {
+		You("receive a little shock.");
+		losehp(rnd(2), "little electric shock", KILLED_BY_AN);
 	}
 
     switch(uarmc->otyp) {
@@ -1019,6 +1062,8 @@ Cloak_on()
 	case DUMMY_CLOAK_AR:
 	case DUMMY_CLOAK_AS:
 	case DUMMY_CLOAK_AT:
+	case DUMMY_CLOAK_AU:
+	case DUMMY_CLOAK_AV:
 
 		if (!uarmc->cursed) curse(uarmc);
 		break;
@@ -1484,6 +1529,8 @@ Cloak_off()
 	case DUMMY_CLOAK_AR:
 	case DUMMY_CLOAK_AS:
 	case DUMMY_CLOAK_AT:
+	case DUMMY_CLOAK_AU:
+	case DUMMY_CLOAK_AV:
 	case ANTI_DISQUIET_CLOAK:
 	case HUGGING_GOWN:
 	case COCLOAK:
@@ -1649,6 +1696,12 @@ int
 Helmet_on()
 {
     if (!uarmh) return 0; 
+
+	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && uarmh && is_metallic(uarmh)) {
+		You("receive a little shock.");
+		losehp(rnd(2), "little electric shock", KILLED_BY_AN);
+	}
+
     switch(uarmh->otyp) {
 	case FEDORA:
 		set_moreluck();
@@ -1696,6 +1749,7 @@ Helmet_on()
 	/* KMH, balance patch -- removed */ /* but re-inserted by Amy */
 	case FIRE_HELMET:
 	case HELM_OF_SPEED:
+	case SKILL_CAP:
 	case HELM_OF_TELEPORTATION:
 	case HELM_OF_TELEPORT_CONTROL:
 	case HELM_OF_OPAQUE_THOUGHTS:
@@ -1718,6 +1772,12 @@ Helmet_on()
 	case POINTED_HELMET:
 	case BOG_STANDARD_HELMET:
 		break;
+
+	case BOBBLE_HAT:
+		You_feel("%s.", (ACURR(A_INT) <= 6) ? "like sitting in a corner" : "giddy");
+		curse(uarmh);
+		break;
+
 	case HELM_OF_NO_DIGESTION:
 		if (!uarmh->prmcurse) {
 			pline("%s, and is blasted by a terrible black aura!", Tobjnam(uarmh, "vibrate"));
@@ -1905,6 +1965,7 @@ Helmet_on()
 	case DUMMY_HELMET_AB:
 	case DUMMY_HELMET_AC:
 	case DUMMY_HELMET_AD:
+	case DUMMY_HELMET_AE:
 		if (!uarmh->cursed) curse(uarmh);
 		break;
 	default: impossible(unknown_type_long, c_helmet, uarmh->otyp);
@@ -2144,9 +2205,12 @@ Helmet_off()
 	case DUMMY_HELMET_AB:
 	case DUMMY_HELMET_AC:
 	case DUMMY_HELMET_AD:
+	case DUMMY_HELMET_AE:
 	/* KMH, balance patch -- removed */ /* but re-inserted by Amy */
 	case FIRE_HELMET:
 	case HELM_OF_SPEED:
+	case SKILL_CAP:
+	case BOBBLE_HAT:
 	case HELM_OF_TELEPORTATION:
 	case HELM_OF_TELEPORT_CONTROL:
 	case HELM_OF_OPAQUE_THOUGHTS:
@@ -2221,6 +2285,11 @@ Gloves_on()
     long oldprop; 
     if (!uarmg) return 0; 
     oldprop = u.uprops[objects[uarmg->otyp].oc_oprop].extrinsic & ~WORN_GLOVES;
+
+	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && uarmg && is_metallic(uarmg)) {
+		You("receive a little shock.");
+		losehp(rnd(2), "little electric shock", KILLED_BY_AN);
+	}
 
     switch(uarmg->otyp) {
 	case PLASTEEL_GLOVES:
@@ -2652,6 +2721,16 @@ Gloves_off()
 	uwepgone();  /* life-saved still doesn't allow touching cockatrice */
     }
 
+    if (uwep && uwep->otyp == PETRIFYIUM_BAR) {
+	char kbuf[BUFSZ];
+
+	You("wield the bar in your bare %s.", makeplural(body_part(HAND)));
+	strcpy(kbuf, "petrifyium bar");
+	instapetrify(kbuf);
+	uwepgone();  /* life-saved still doesn't allow touching cockatrice */
+
+    }
+
     /* KMH -- ...or your secondary weapon when you're wielding it */
     if (u.twoweap && uswapwep && uswapwep->otyp == CORPSE &&
 	touch_petrifies(&mons[uswapwep->corpsenm])) {
@@ -2672,6 +2751,12 @@ int
 Shield_on()
 {
 /*
+
+	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && uarms && is_metallic(uarms)) {
+		You("receive a little shock.");
+		losehp(rnd(2), "little electric shock", KILLED_BY_AN);
+	}
+
     switch (uarms->otyp) {
 	case SMALL_SHIELD:
 	case ELVEN_SHIELD:
@@ -2952,6 +3037,11 @@ Shirt_on()
     }
 */
 
+	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && uarmu && is_metallic(uarmu)) {
+		You("receive a little shock.");
+		losehp(rnd(2), "little electric shock", KILLED_BY_AN);
+	}
+
 	/* Cursed underwear/shirt may lifesave a player. It is therefore a good idea to curse them. --Amy
 	   Nobles and activistors will be able to voluntarily make them cursed. */
 
@@ -3019,6 +3109,11 @@ Shirt_off()
 int
 Armor_on()
 {
+	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && uarm && is_metallic(uarm)) {
+		You("receive a little shock.");
+		losehp(rnd(2), "little electric shock", KILLED_BY_AN);
+	}
+
 	/* KMH -- certain armor is obvious when worn */
 	switch (uarm->otyp) {
 		case ROBE_OF_PROTECTION:
@@ -3170,6 +3265,11 @@ Amulet_on()
 	if (!uamul) return;
 	oldprop = u.uprops[objects[uamul->otyp].oc_oprop].extrinsic & ~WORN_AMUL;
 
+	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && uamul && is_metallic(uamul)) {
+		You("receive a little shock.");
+		losehp(rnd(2), "little electric shock", KILLED_BY_AN);
+	}
+
     if (uamul && uamul->oartifact == ART_TSCHOECK_KLOECK) { /* needs to be done here because it disintegrates when worn */
 		if (u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic < 2000000) {
 			u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1000000;
@@ -3217,6 +3317,10 @@ Amulet_on()
 	case AMULET_OF_SECOND_CHANCE:
 		break;
 	case AMULET_OF_UNDEAD_WARNING:
+		break;
+
+	case AMULET_OF_TIME:
+		pline("The time is: %d:%d", getlt()->tm_hour, getlt()->tm_min);
 		break;
 
 	case AMULET_OF_RMB_LOSS:
@@ -3512,6 +3616,11 @@ Implant_on()
 	if (!uimplant) return;
 	oldprop = u.uprops[objects[uimplant->otyp].oc_oprop].extrinsic & ~WORN_IMPLANT;
 
+	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && uimplant && is_metallic(uimplant)) {
+		You("receive a little shock.");
+		losehp(rnd(2), "little electric shock", KILLED_BY_AN);
+	}
+
     switch(uimplant->otyp) {
 
     }
@@ -3658,6 +3767,11 @@ register struct obj *obj;
     /* only mask out W_RING when we don't have both
        left and right rings of the same type */
     if ((oldprop & W_RING) != W_RING) oldprop &= ~W_RING;
+
+	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && obj && is_metallic(obj)) {
+		You("receive a little shock.");
+		losehp(rnd(2), "little electric shock", KILLED_BY_AN);
+	}
 
     switch(obj->otyp){
 	case RIN_TELEPORTATION:
@@ -4138,6 +4252,11 @@ register struct obj *otmp;
 	    setuqwep((struct obj *) 0);
 	setworn(otmp, W_TOOL);
 	on_msg(otmp);
+
+	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && otmp && is_metallic(otmp)) {
+		You("receive a little shock.");
+		losehp(rnd(2), "little electric shock", KILLED_BY_AN);
+	}
 
 	if (otmp && otmp->oartifact == ART_BLINDFOLD_OF_MISPELLING) {
 		if (!otmp->cursed) {

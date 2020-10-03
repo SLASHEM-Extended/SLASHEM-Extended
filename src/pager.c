@@ -534,6 +534,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uarmf && uarmf->oartifact == ART_SNAILHUNT && (mtmp->data->mlet == S_BLOB || mtmp->data->mlet == S_WORM) )
 		    ways_seen++;
+		if (uamul && uamul->otyp == AMULET_OF_PET_VIEW && mtmp->mtame)
+		    ways_seen++;
 		if (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mtmp->data->mlet == S_YETI || mtmp->data->mlet == S_ZOUTHERN) )
 		    ways_seen++;
 		if (uwep && uwep->oartifact == ART_EGRID_BUG && mtmp->data->mlet == S_XAN)
@@ -729,6 +731,10 @@ lookat(x, y, buf, monbuf)
 		    }
 		    if (uarmf && uarmf->oartifact == ART_SNAILHUNT && (mtmp->data->mlet == S_BLOB || mtmp->data->mlet == S_WORM) ) {
 			strcat(monbuf, "snailhunt");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (uamul && uamul->otyp == AMULET_OF_PET_VIEW && mtmp->mtame) {
+			strcat(monbuf, "pet view");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 		    if (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mtmp->data->mlet == S_YETI || mtmp->data->mlet == S_ZOUTHERN) ) {

@@ -6707,6 +6707,20 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 			if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {losehp(rnd(15), "eating radioactive food", KILLED_BY); ABASE(A_CHA) = ATTRMIN(A_CHA);}
 	    }
 
+	    if (otmp->otyp == PETRIFYIUM_BAR) {
+		if (!Stoned && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM)) ) {
+			if (Hallucination && rn2(10)) pline("Good thing you are already stoned.");
+			else {
+				You("start turning to stone.");
+				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				u.cnd_stoningcount++;
+				stop_occupation();
+				delayed_killer = "eating a petrifying weapon";
+			}
+		}
+
+	    }
+
 	    if (material == MT_INKA) {
 			pline("Urgh... your %s is turning as it's having difficulties digesting inka leather.", body_part(STOMACH));
 			nomul(-20, "trying to digest an inka object", TRUE);

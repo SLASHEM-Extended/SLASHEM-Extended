@@ -89,6 +89,7 @@ register struct obj *otmp;
 	case SCR_GROWTH:
 	case SCR_ICE:
 	case SCR_ILLUSION:
+	case SCR_VISIBLE_ITEM:
 	case SCR_FEMINISM:
 	case SCR_EVIL_VARIANT:
 	case SCR_ENRAGE:

@@ -1832,6 +1832,7 @@ doengrave()
 		    case WAN_CORROSION:
 		    case WAN_CHAOS_TERRAIN:
 		    case WAN_FLEECY_TERRAIN:
+		    case WAN_STAT_REDUCTION:
 		    case WAN_FUMBLING:
 		    case WAN_TIDAL_WAVE:
 		    case WAN_SUMMON_ELM:

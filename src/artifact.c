@@ -2038,6 +2038,13 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 				sprintf(kbuf, "stolen %s corpse", mons[otmp2->corpsenm].mname);
 				instapetrify(kbuf);
 			}
+			if (otmp2->otyp == PETRIFYIUM_BAR && (!uarmg || FingerlessGloves)) {
+				char kbuf[BUFSZ];
+
+				sprintf(kbuf, "stolen petrifyium bar");
+				instapetrify(kbuf);
+
+			}
 			/* more take-away handling, after theft message */
 			if (unwornmask & W_WEP) {		/* stole wielded weapon */
 				possibly_unwield(mdef, FALSE);

@@ -6173,6 +6173,59 @@ hitmu(mtmp, mattk)
 
 			}
 
+			if (otmp && otmp->otyp == PETRIFYIUM_BAR) {
+
+			    if ((!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
+				!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
+				if (!Stoned) {
+					if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
+					else {
+						Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+						u.cnd_stoningcount++;
+						pline("You start turning to stone!");
+					}
+				}
+				sprintf(killer_buf, "petrifyium bar");
+				delayed_killer = killer_buf;
+		
+			    }
+
+			}
+
+			if (otmp && otmp->otyp == DISINTEGRATION_BAR) {
+
+			if ((!Disint_resistance || !rn2(StrongDisint_resistance ? 1000 : 100) || (evilfriday && (uarms || uarmc || uarm || uarmu)) ) && !rn2(10)) {
+				You_feel("like you're falling apart!");
+	
+				if (uarms) {
+				    /* destroy shield; other possessions are safe */
+				    if (!(EDisint_resistance & W_ARMS)) (void) destroy_arm(uarms);
+				} else if (uarmc) {
+				    /* destroy cloak; other possessions are safe */
+				    if (!(EDisint_resistance & W_ARMC)) (void) destroy_arm(uarmc);
+				} else if (uarm) {
+				    /* destroy suit */
+				    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
+				} else if (uarmu) {
+				    /* destroy shirt */
+				    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
+				} else {
+					if (u.uhpmax > 20) {
+						u.uhpmax -= rnd(20);
+						if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+						losehp(rnz(100 + level_difficulty()), "click click click click click you died", KILLED_BY);
+
+					} else {
+						u.youaredead = 1;
+						done(DIED);
+						u.youaredead = 0;
+					}
+				}
+	
+			}
+
+			}
+
 			if (objects[otmp->otyp].oc_material == MT_SILVER &&
 				hates_silver(youmonst.data) || (uwep && uwep->oartifact == ART_PORKMAN_S_BALLS_OF_STEEL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PORKMAN_S_BALLS_OF_STEEL) ) {
 			    pline("The silver sears your flesh!");

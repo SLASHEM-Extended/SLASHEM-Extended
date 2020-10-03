@@ -3839,6 +3839,15 @@ struct obj *obj;
 #endif /* 0 */
 		    /* right into your inventory */
 		    You("snatch %s %s!", s_suffix(mon_nam(mtmp)), onambuf);
+
+		    if (otmp->otyp == PETRIFYIUM_BAR && (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
+			char kbuf[BUFSZ];
+			sprintf(kbuf, "a petrifyium bar");
+			pline("Snatching %s is a fatal mistake.", kbuf);
+			instapetrify(kbuf);
+
+		    }
+
 		    if (otmp->otyp == CORPSE &&
 			    touch_petrifies(&mons[otmp->corpsenm]) &&
 			    (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&

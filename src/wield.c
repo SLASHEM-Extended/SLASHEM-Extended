@@ -430,6 +430,13 @@ boolean put_away;
 		mons[wep->corpsenm].mname, makeplural(body_part(HAND)));
 	    sprintf(kbuf, "%s egg", an(mons[wep->corpsenm].mname));
 	    instapetrify(kbuf);
+	} else if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && wep->otyp == PETRIFYIUM_BAR) {
+	    /* Prevent wielding cockatrice when not wearing gloves --KAA */
+	    char kbuf[BUFSZ];
+
+	    You("wield the petrifyium bar in your bare %s.", makeplural(body_part(HAND)));
+	    sprintf(kbuf, "petrifyium bar");
+	    instapetrify(kbuf);
 	} else if (uarms && bimanual(wep))
 	    You("cannot wield a two-handed %s while wearing a shield.",
 		is_sword(wep) ? "sword" :
@@ -972,6 +979,13 @@ can_twoweapon()
 	    You("wield the %s egg with your bare %s.",
 		    mons[uswapwep->corpsenm].mname, body_part(HAND));
 	    sprintf(kbuf, "%s corpse", an(mons[uswapwep->corpsenm].mname));
+	    instapetrify(kbuf);
+        } 	else if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && 
+		(uswapwep && uswapwep->otyp == PETRIFYIUM_BAR)) {
+	    char kbuf[BUFSZ];
+
+	    You("wield the petrifyium bar with your bare %s.", body_part(HAND));
+	    sprintf(kbuf, "petrifyium bar");
 	    instapetrify(kbuf);
         } else if (uswapwep && (IsGlib || (uswapwep->cursed && (PlayerCannotUseSkills || (P_SKILL(P_TWO_WEAPON_COMBAT) < P_EXPERT) ) ) )) {
 	    if (!IsGlib)

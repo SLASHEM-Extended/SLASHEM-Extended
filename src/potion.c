@@ -210,6 +210,7 @@ struct obj *otmp;
 		case WAN_CORROSION:
 		case WAN_CHAOS_TERRAIN:
 		case WAN_FLEECY_TERRAIN:
+		case WAN_STAT_REDUCTION:
 		case WAN_DISENCHANTMENT:
 		case WAN_TREMBLING:
 		case WAN_CONTAMINATION:
@@ -258,6 +259,7 @@ struct obj *otmp;
 		case SCR_RUMOR:
 		case SCR_MESSAGE:
 		case SCR_ILLUSION:
+		case SCR_VISIBLE_ITEM:
 		case SCR_EVIL_VARIANT:
 		case SCR_FEMINISM:
 		case SCR_SIN:
@@ -436,6 +438,7 @@ int number;
 		case WAN_CORROSION:
 		case WAN_CHAOS_TERRAIN:
 		case WAN_FLEECY_TERRAIN:
+		case WAN_STAT_REDUCTION:
 		case WAN_STARVATION:
 		case WAN_CONFUSION:
 		case WAN_SLIMING:
@@ -481,6 +484,7 @@ int number;
 		case SCR_RUMOR:
 		case SCR_MESSAGE:
 		case SCR_ILLUSION:
+		case SCR_VISIBLE_ITEM:
 		case SCR_EVIL_VARIANT:
 		case SCR_FEMINISM:
 		case SCR_SIN:
@@ -3380,6 +3384,7 @@ newoffmon:
 		case 481:
 			if (u.enchantrecskill > 0) u.enchantrecskill--;
 			if (u.weapchantrecskill > 0) u.weapchantrecskill--;
+			if (u.bucskill > 0) u.bucskill--;
 			You_feel("less knowledgable about equipment.");
 			break;
 
@@ -4594,6 +4599,7 @@ newoffmonX:
 		case 118:
 			if (u.enchantrecskill > 0) u.enchantrecskill--;
 			if (u.weapchantrecskill > 0) u.weapchantrecskill--;
+			if (u.bucskill > 0) u.bucskill--;
 			You_feel("less knowledgable about equipment.");
 			break;
 
