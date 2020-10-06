@@ -242,6 +242,7 @@ static const char * const shktools[] = {
 	"Plug Itna", "Oirdna", "Etinatem", "Lyrebyerg", "Nossllep",
 	"Esulcer", "Anelam", "Tsaebknip", "Enamkcim", "Namkrop",
 	"Goomorcim", "Rolam", "Kelrem", "Nomedcisum",
+	"Ruohruetama", "Resuelibom", "Ieoa", "Aletaber",
 
     0
 };
