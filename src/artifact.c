@@ -264,6 +264,8 @@ hack_artifacts()
 	artilist[ART_CAUSE_I_M_A_CHEATER].otyp = randartspellbook();
 	artilist[ART_BATMAN_NIGHT].otyp = randartspellbook();
 	artilist[ART_NIKKENIKKENIK].otyp = randartspellbook();
+	artilist[ART_CORTEX_COPROCESSOR].otyp = randartimplant();
+	artilist[ART_AMULET_OF_SPLENDOR].otyp = randartamulet();
 
 	artilist[ART_JANA_S_GRAVE_WALL].otyp = randartcloakX();
 	artilist[ART_HENRIETTA_S_DOGSHIT_BOOTS].otyp = randartbootsX();
@@ -491,6 +493,28 @@ hack_artifacts()
 	artilist[ART_SNAILHUNT].otyp = find_garden_slippers();
 	artilist[ART_ANTJE_S_POWERSTRIDE].otyp = find_dyke_boots();
 	artilist[ART_NADINE_S_CUTENESS].otyp = find_ankle_strap_sandals();
+
+	artilist[ART_AMPERSAND_HAREM].otyp = find_demonologist_boots();
+	artilist[ART_DIP_DIVE].otyp = find_mud_boots();
+	artilist[ART_MANDY_S_RAIDWEAR].otyp = find_failed_shoes();
+	artilist[ART_PHANTO_S_RETARDEDNESS].otyp = find_opera_pumps();
+	artilist[ART_CLAUDIA_S_SELF_WILL].otyp = find_wooden_clogs();
+	artilist[ART_FASTER_THAN_ALL_OTHERS_INT].otyp = find_regular_sneakers();
+	artilist[ART_RUTH_S_UNDEAD_INLAY].otyp = find_elite_sneakers();
+	artilist[ART_KRAWASAKI_STEERER].otyp = find_biker_boots();
+	artilist[ART_UPWARD_HEELS].otyp = find_zero_drop_shoes();
+	artilist[ART_LUDGERA_S_SECRET_COURSE].otyp = find_hiking_boots();
+	artilist[ART_THERE_ARE_SEVERAL_OF_THEM].otyp = find_pope_hat();
+	artilist[ART_FOOTBALL_MASK].otyp = find_corona_mask();
+	artilist[ART_FFP___MASK].otyp = find_corona_mask();
+	artilist[ART_ACU_BECOME_HAVE].otyp = find_anachro_helmet();
+	artilist[ART_PRIESTEST_BLESS].otyp = find_ornamental_cope();
+	artilist[ART_SATAN_S_SUGGESTION].otyp = find_wetsuit();
+	artilist[ART_EGASSO_S_GIBBERISH].otyp = find_multilinguitis_gloves();
+	artilist[ART_SANDALS_OF_JESUS_CHRIST].otyp = find_throwaway_sandals();
+	artilist[ART_ARTHUR_S_HIGH_HEELED_PLATF].otyp = find_sharp_edged_sandals();
+	artilist[ART_GREEN_THUMB].otyp = find_nondescript_gloves();
+	artilist[ART_GEAVY_GREAVES].otyp = find_lead_boots();
 
 #if 0
 	/* Fix up the gifts */

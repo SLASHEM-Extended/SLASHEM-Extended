@@ -3679,6 +3679,286 @@ find_ankle_strap_sandals()
 
 }
 
+int
+find_demonologist_boots()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_DEMONOLOGIST_BOOTS)) return i;
+    }
+
+    impossible("demonologist boots not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_mud_boots()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_MUD_BOOTS)) return i;
+    }
+
+    impossible("mud boots not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_failed_shoes()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_FAILED_SHOES)) return i;
+    }
+
+    impossible("failed shoes not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_opera_pumps()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_OPERA_PUMPS)) return i;
+    }
+
+    impossible("opera pumps not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_wooden_clogs()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_WOODEN_CLOGS)) return i;
+    }
+
+    impossible("wooden clogs not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_regular_sneakers()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_REGULAR_SNEAKERS)) return i;
+    }
+
+    impossible("regular sneakers not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_elite_sneakers()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_ELITE_SNEAKERS)) return i;
+    }
+
+    impossible("elite sneakers not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_biker_boots()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_BIKER_BOOTS)) return i;
+    }
+
+    impossible("biker boots not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_zero_drop_shoes()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_ZERO_DROP_SHOES)) return i;
+    }
+
+    impossible("zero drop shoes not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_hiking_boots()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_HIKING_BOOTS)) return i;
+    }
+
+    impossible("hiking boots not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_pope_hat()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_POPE_HAT)) return i;
+    }
+
+    impossible("pope hat not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_corona_mask()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_CORONA_MASK)) return i;
+    }
+
+    impossible("corona mask not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_anachro_helmet()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_ANACHRO_HELMET)) return i;
+    }
+
+    impossible("anachronononononaut helmet not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_ornamental_cope()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_ORNAMENTAL_COPE)) return i;
+    }
+
+    impossible("ornamental cope not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_wetsuit()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_WETSUIT)) return i;
+    }
+
+    impossible("wetsuit not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_multilinguitis_gloves()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_MULTILINGUITIS_GLOVES)) return i;
+    }
+
+    impossible("multilinguitis gloves not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_throwaway_sandals()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_THROWAWAY_SANDALS)) return i;
+    }
+
+    impossible("throwaway sandals not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_sharp_edged_sandals()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_SHARP_EDGED_SANDALS)) return i;
+    }
+
+    impossible("sharp-edged sandals not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_nondescript_gloves()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_NONDESCRIPT_GLOVES)) return i;
+    }
+
+    impossible("nondescript gloves not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_lead_boots()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_LEAD_BOOTS)) return i;
+    }
+
+    impossible("lead boots not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
 void
 oinit()			/* level dependent initialization */
 {

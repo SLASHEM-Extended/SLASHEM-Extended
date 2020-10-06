@@ -2472,6 +2472,14 @@ randartamulet()
 }
 
 int
+randartimplant()
+{
+	int result;
+	result = rnd_class(IMPLANT_OF_ABSORPTION,IMPLANT_OF_ENFORCING);
+	return result;
+}
+
+int
 randartwand()
 {
 	int result;
@@ -2602,6 +2610,14 @@ randartamuletX()
 {
 	int result;
 	result = AMULET_OF_CHANGE + rn2((AMULET_OF_VULNERABILITY + 1) - AMULET_OF_CHANGE);
+	return result;
+}
+
+int
+randartimplantX()
+{
+	int result;
+	result = IMPLANT_OF_ABSORPTION + rn2((IMPLANT_OF_ENFORCING + 1) - IMPLANT_OF_ABSORPTION);
 	return result;
 }
 

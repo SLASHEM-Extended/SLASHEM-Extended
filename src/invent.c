@@ -20003,6 +20003,154 @@ boolean knoweverything;
 					pline("Artifact specs: +10 charisma but since walking with them is so difficult, you sometimes crash into the floor."); break;
 				case ART_ARABELLA_S_GIRL_KICK:
 					pline("Artifact specs: This awesome pair of boots makes you resistant to petrification, sleep and psi. It also grants free action, control magic, curse resistance, diminished bleeding and stealth when worn, and half physical and spell damage! To top it off, they even make you look super cute and sexy, which increases your charisma by 5. What could possibly go wrong? They certainly have no downsides."); break;
+				case ART_GRASSHOPPER_S_ANTIDOTE:
+					pline("Artifact specs: poison resistance and regeneration when worn."); break;
+				case ART_STROKING_COMBAT:
+					pline("Artifact specs: +2 kick damage when worn but if you use the search command, new traps may form on the current level."); break;
+				case ART_DOGGO_FRIENDSHIP:
+					pline("Artifact specs: displays all d-class monsters and they usually spawn peaceful, sometimes even tame."); break;
+				case ART_ASUKA_S_TORTURE_INSTRUMENT:
+					pline("Artifact specs: +2 to-hit and +10 damage."); break;
+				case ART_SWIMCHAMP:
+					pline("Artifact specs: protects your items from getting wet."); break;
+				case ART_SWEET_VICTORIA:
+					pline("Artifact specs: +3 charisma and +2 AC when worn."); break;
+				case ART_GIVE_ME_STROKE__JO_ANNA:
+					pline("Artifact specs: cold resistance when worn and improves the speed of training the high heels skill, adds a healing attack to sentient female monsters that works even while you're wearing this shirt."); break;
+				case ART_RESIST_AGAINST_ITS_DAMAGE:
+					pline("Artifact specs: petrification resistance when wielded. Unfortunately you won't be able to actually use that to equip it, so make sure you're wearing gloves."); break;
+				case ART_AIN_T_GONNA_DISINTEGRATE_N:
+					pline("Artifact specs: disintegration resistance when wielded."); break;
+				case ART_DEMOBLING:
+					pline("Artifact specs: resist fire and clairvoyance when worn."); break;
+				case ART_MAX_ONE_GRAY:
+					pline("Artifact specs: gray-colored monsters occasionally spawn tame while you're wearing it."); break;
+				case ART_AMPERSAND_HAREM:
+					pline("Artifact specs: poison and fire resistance when worn, and major demons are no longer highly resistant to taming attempts."); break;
+				case ART_DIP_DIVE:
+					pline("Artifact specs: allows you to pick up stuff from water and lava tiles."); break;
+				case ART_MANDY_S_RAIDWEAR:
+					pline("Artifact specs: resist fear, and you don't always lose alignment when you normally would. Chaotic."); break;
+				case ART_PHANTO_S_RETARDEDNESS:
+					pline("Artifact specs: wallwalking when worn and monsters require a +4 weapon to hit you effectively, but you constantly get affected by random nastytraps and it will sticky prime curse itself. Good luck getting it off again!"); break;
+				case ART_CLAUDIA_S_SELF_WILL:
+					pline("Artifact specs: autopilot, cold and poison resistance when worn, +5 charisma, allows you to usually resist perfume attacks and makes it so that you're always at least slightly contaminated."); break;
+				case ART_FASTER_THAN_ALL_OTHERS_INT:
+					pline("Artifact specs: very fast speed and causes heaps of shit to spawn over time when worn, lawful. Now you can step into dog shit very quickly indeed!"); break;
+				case ART_RUTH_S_UNDEAD_INLAY:
+					pline("Artifact specs: resist poison, cold and sleep when worn."); break;
+				case ART_KRAWASAKI_STEERER:
+					pline("Artifact specs: confusion resistance when worn."); break;
+				case ART_UPWARD_HEELS:
+					pline("Artifact specs: count as cone heels and slow you down a bit when worn but monsters are short-sighted and thus less likely to realize you're there."); break;
+				case ART_LUDGERA_S_SECRET_COURSE:
+					pline("Artifact specs: if you take a crap on a toilet while wearing them, you get a temporary speed boost. Neutral."); break;
+				case ART_THERE_ARE_SEVERAL_OF_THEM:
+					pline("Artifact specs: improved sight when worn and speeds up spirituality skill training."); break;
+				case ART_FOOTBALL_MASK:
+					pline("Artifact specs: +2 AC when worn but activates the footerers."); break;
+				case ART_FFP___MASK:
+					pline("Artifact specs: Unlike the regular corona mask, this thing actually protects you from covid-19 at least to some extent, but it's particularly ugly and therefore reduces your charisma by another 5 points."); break;
+				case ART_ACU_BECOME_HAVE:
+					pline("Artifact specs: while wearing it, 1 in 50000 chance per turn that a restricted skill will be unlocked. It will always be whichever restricted skill you had used the most. However, that effect only triggers if you have at least one million score, and when it does, it resets your score to zero regardless of how much you had."); break;
+				case ART_PRIESTEST_BLESS:
+					pline("Artifact specs: while wearing it, using the blessing technique gives a shorter timeout on average. This effect is useless if you don't actually know that technique."); break;
+				case ART_SATAN_S_SUGGESTION:
+					pline("Artifact specs: magical breathing when worn, and eels can no longer re-hide when they move over water."); break;
+				case ART_EGASSO_S_GIBBERISH:
+					pline("Artifact specs: makes you confused but also grants confusion resistance when worn, +5 charisma, improves your AC by 10%% and your magic cancellation is always at least 5."); break;
+				case ART_CORTEX_COPROCESSOR:
+					pline("Artifact specs: swaps directional input and improves intelligence and wisdom by 2."); break;
+				case ART_AMYSBANE:
+					pline("Artifact specs: +8 damage, disables magic resistance when wielded."); break;
+				case ART_SHOE_BRAND:
+					pline("Artifact specs: deals extra damage to monster shoes and can also sometimes tame them."); break;
+				case ART_SANDALS_OF_JESUS_CHRIST:
+					pline("Artifact specs: waterwalking when worn, lawful."); break;
+				case ART_AMULET_OF_SPLENDOR:
+					pline("Artifact specs: polymorphitis, polymorph control, magical breathing, poison resistance, ESP and reflection when worn, but you cannot eat and will fall asleep every once in a while."); break;
+				case ART_LUISA_S_FELLOW_FEELING:
+					pline("Artifact specs: while wearing it, monsters will no longer kick you in the nuts. This is of no use if your character doesn't have nuts anyway."); break;
+				case ART_PILL_THAT_KILLED_MICHAEL_J:
+					pline("Artifact specs: err, I wouldn't eat that if I were you..."); break;
+				case ART_BUG_BAZOOKA:
+					pline("Artifact specs: +12 damage but summons insects somewhere on the level whenever you fire."); break;
+				case ART_NOW_FOR_THE_DISCHARGE:
+					pline("Artifact specs: if you put it on while not knowing the sigil of discharge technique, you learn it and also get the discharge trap effect as an intrinsic."); break;
+				case ART_RING_OF_FAST_LIVING:
+					pline("Artifact specs: experience boost when worn but you also hunger much faster, double attacks and you take double damage. Live fast, die fast! :-)"); break;
+				case ART_MAREYOUNGWOMAN_ACTION:
+					pline("Artifact specs: if you're on a water or fountain square while wearing them, you are very fast."); break;
+				case ART_CRYSPEAR:
+					pline("Artifact specs: while wielding it, your HP regenerates more quickly than normal without the extra hunger that you'd get by regeneration."); break;
+				case ART_GAUGET_UNLOCKER:
+					pline("Artifact specs: unlocks whichever restricted skill you've used the most. This is in addition to the regular effect of this scroll. If you're an anachronounbinder, it unlocks three skills in the previously described fashion. This item cannot be wished for, so don't try that or you'll just waste your wish."); break;
+				case ART_HOSTILITAWN:
+					pline("Artifact specs: always generates a hostile monster when used."); break;
+				case ART_NEUTRALNESS_NEUTERED:
+					pline("Artifact specs: always generates a peaceful monster when used."); break;
+				case ART_PIERCE_DEVICE:
+					pline("Artifact specs: if you use it on a monster, that monster takes one point of damage."); break;
+				case ART_POLYFAST:
+					pline("Artifact specs: very fast speed when worn."); break;
+				case ART_WOBBLESTEADY:
+					pline("Artifact specs: stun resistance when worn."); break;
+				case ART_PSI_CHANGE:
+					pline("Artifact specs: if you zap it, you get 1000 turns of temporary confusion resistance."); break;
+				case ART_ARTHUR_S_HIGH_HEELED_PLATF:
+					pline("Artifact specs: +2 AC and kicking damage when worn."); break;
+				case ART_ANGEL_AND_THE_THIN_SECTION:
+					pline("Artifact specs: does nothing special."); break;
+				case ART_SINSWORD:
+					pline("Artifact specs: +5 damage and double damage to angels, and if your alignment record is very negative, you gain increased damage and accuracy proportional to how negative it is up to a maximum of +6. Chaotic."); break;
+				case ART_SCHWILILILILI_MORPH:
+					pline("Artifact specs: if you use the #youpoly command while wielding it, the amount of remaining uses is reduced by one with a 50%% chance only, instead of always."); break;
+				case ART_GREEN_THUMB:
+					pline("Artifact specs: allows you to walk through trees and regenerates your health faster while you're on a tree tile."); break;
+				case ART_NO_DAMAGE:
+					pline("Artifact specs: If your current steed has this saddle, attacks never get redirected to it but always hit you. This means that the steed generally won't participate in combat much, but at least it should be more likely to survive."); break;
+				case ART_BIKE_SADDLE:
+					pline("Artifact specs: increases movement speed if you're riding a steed that has this saddle."); break;
+				case ART_CLOWN_CAR:
+					pline("Artifact specs: Saddle your steed with this, mount it, and you'll be able to fly!"); break;
+				case ART_STEERING_WHEEL:
+					pline("Artifact specs: A steed that has this saddle will always recover from confusion instantly, which helps if your steed is fighting monsters with confusion attacks."); break;
+				case ART_BRIDGEBANE:
+					pline("Artifact specs: while wielding it, drawbridges cannot kill you. And what's more, if you apply it to hit a square that has a drawbridge, you'll destroy the drawbridge instantly so it can never harm you again."); break;
+				case ART_SYSTEM_OF_SEXUAL_PLEASURE:
+					pline("Artifact specs: allows sentient female monsters to use all kinds of high heels against you and slightly increases the speed at which you gain experience."); break;
+				case ART_KRONSCHER_BAR:
+					pline("Artifact specs: +10 to-hit and damage, platinum spells and hyperbluewalls, plus allows you to eat metal while you have it equipped."); break;
+				case ART_SIGIX_BROADSWORD:
+					pline("Artifact specs: -5 to-hit and +20 damage and AC. Whenever you hit something with it, there's a sizable chance that it loses a point of enchantment, and if that causes it to go below -20, it gets destroyed."); break;
+				case ART_GEAVY_GREAVES:
+					pline("Artifact specs: magic resistance when worn. 'Geavy' was originally a misspelling of 'heavy'."); break;
+				case ART_HEEL_OF_FORTUNE:
+					pline("Artifact specs: acts as a luckstone when wielded."); break;
+				case ART_WENDYHOLE:
+					pline("Artifact specs: This item doesn't do anything useful for you and the only reason why you're even looking at its description is probably because you're a giant and could therefore pick it up. But if it's on the floor and you try to push it, Wendy's female butt (which is built into the boulder) will fart at you. (No, I didn't invent that myself. This artifact was invented by amateurhour. Sincerely, Amy.)"); break;
+				case ART_SWISS_AMY_KNIFE:
+					pline("Artifact specs: +14 to-hit and +4 damage, displays all shoe monsters when wielded."); break;
+				case ART_MAGICBONE:
+					pline("Artifact specs: while wielding it, newly spawned canines and felines are peaceful 50%% of the time."); break;
+				case ART_ROBE_OF_RETRIBUTION:
+					pline("Artifact specs: sometimes deals damage to monsters that attack you in melee."); break;
+				case ART_ROBE_OF_INFESTATION:
+					pline("Artifact specs: will occasionally spawn a flock of hostile spiders or snakes somewhere on the level."); break;
+				case ART_BLADE_OF_GRASSHOPPER:
+					pline("Artifact specs: +10 to-hit and double damage to spiders."); break;
+				case ART_MYSTERIOUS_FORCE:
+					pline("Artifact specs: teleportitis and clairvoyance when wielded."); break;
+				case ART_STAFF_OF_LEIBNIZ:
+					pline("Artifact specs: +1 all stats when wielded."); break;
+				case ART_MOEBIUS_ARMOR:
+					pline("Artifact specs: magic resistance when worn and +10 AC as well as +10%% chance to block, but the entire map will display in fleecy colors."); break;
+				case ART_STINGSWANBUR:
+					pline("Artifact specs: +5 to-hit and double damage to orcs, warning, drain resistance, searching and hallucination resistance when wielded, chaotic."); break;
+				case ART_COPPERED_OFF_FROM_ME:
+					pline("Artifact specs: +8 damage, stealer trap effect, poison and shock resistance and increases digging speed."); break;
+				case ART_FLOTATION_DEVICE:
+					pline("Artifact specs: waterwalking and life saving when worn. If the latter triggers, this item is used up."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;
