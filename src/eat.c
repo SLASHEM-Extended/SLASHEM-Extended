@@ -222,6 +222,8 @@ register struct obj *obj;
 	/* Clockwork automatons can't eat anything at all, they need to use booze or oil --Amy */
 	if (Race_if(PM_CLOCKWORK_AUTOMATON) && !Upolyd) return 0;
 
+	if (uamul && uamul->oartifact == ART_AMULET_OF_SPLENDOR) return 0;
+
 	/* same for golems, except they also don't get hungry over time */
 	if (Race_if(PM_PLAYER_GOLEM) && !Upolyd) return 0;
 
@@ -4914,8 +4916,20 @@ struct obj *otmp;
 			}
 		}
 		break;
-	    case PILL:            
+	    case PILL:
 		You("swallow the little pink pill.");
+
+		if (otmp && otmp->oartifact == ART_PILL_THAT_KILLED_MICHAEL_J) {
+		      make_sick(rn1(25,25), "a poisonous pill", TRUE, SICK_VOMITABLE);
+			losehp(rn1(30, 30),"poisonous pill",KILLED_BY_AN);
+			(void) adjattrib(A_STR, -rnd(6), FALSE, TRUE);
+			(void) adjattrib(A_DEX, -rnd(6), FALSE, TRUE);
+			(void) adjattrib(A_CON, -rnd(6), FALSE, TRUE);
+			(void) adjattrib(A_INT, -rnd(6), FALSE, TRUE);
+			(void) adjattrib(A_WIS, -rnd(6), FALSE, TRUE);
+			(void) adjattrib(A_CHA, -rnd(6), FALSE, TRUE);
+		}
+
 		switch(rn2(7))
 		{
 		   case 0:

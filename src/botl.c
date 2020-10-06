@@ -761,6 +761,9 @@ struct monst *mon;
 	armor = (mon == &youmonst) ? 0 : which_armor(mon, W_SADDLE);
 	if (armor && armpro < objects[armor->otyp].a_can)
 	    armpro = objects[armor->otyp].a_can;
+
+	if (uarmg && uarmg->oartifact == ART_EGASSO_S_GIBBERISH && armpro < 5) armpro = 5;
+
 	if (MCReduction && mon == &youmonst) armpro -= (1 + (MCReduction / 5000));
 	if (u.magicshield) armpro++;
 	if (Race_if(PM_GERTEUT)) armpro++;

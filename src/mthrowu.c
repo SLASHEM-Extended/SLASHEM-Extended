@@ -55,6 +55,7 @@ const char *name;	/* if null, then format `obj' */
 
 	int shieldblockrate = 0;
 	int saberblockrate = 0;
+	int enchrequired = 0;
 
 	int extrachance = 1;
 
@@ -535,13 +536,14 @@ const char *name;	/* if null, then format `obj' */
 			}
 		}
 
+		if (uarmf && uarmf->oartifact == ART_STAR_SOLES) enchrequired = 1;
+		if (Race_if(PM_PLAYER_SKELETON)) enchrequired = 2;
+		if (uarmf && uarmf->oartifact == ART_PHANTO_S_RETARDEDNESS) enchrequired = 4;
 
 		if (is_acid && Acid_resistance && (StrongAcid_resistance || rn2(10)) ) {
 			pline("It doesn't seem to hurt you.");
 			if (Stoned) fix_petrification();
-		} else if (Race_if(PM_PLAYER_SKELETON) && rn2(3) && obj && obj->spe < 2) {
-			pline("The attack doesn't seem to harm you.");
-		} else if (uarmf && uarmf->oartifact == ART_STAR_SOLES && !Race_if(PM_PLAYER_SKELETON) && rn2(3) && obj && obj->spe < 1) {
+		} else if ((enchrequired > 0) && rn2(3) && obj && obj->spe < enchrequired) {
 			pline("The attack doesn't seem to harm you.");
 		}
 		else {

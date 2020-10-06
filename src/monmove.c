@@ -2037,6 +2037,8 @@ convertdone:
 
 		if (rn2(10) && uarmh && itemhasappearance(uarmh, APP_GAS_MASK) ) {
 			pline("But the gas mask protects you from the effects.");
+		} else if (rn2(5) && uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL) {
+			pline("But you actually enjoy the lovely scent.");
 		} else if (rn2(20) && uwep && uwep->oartifact == ART_HIGH_ORIENTAL_PRAISE) {
 			pline("But you actually enjoy the lovely scent.");
 		} else {
@@ -3081,7 +3083,7 @@ altarfound:
 	    chi = -1;
 	    nidist = dist2(nix,niy,gx,gy);
 	    /* allow monsters be shortsighted on some levels for balance */
-	    if(!mtmp->mpeaceful && (level.flags.shortsighted || (rn2(10) && RngeLightAbsorption) || (rn2(10) && uarmc && itemhasappearance(uarmc, APP_ABSORBING_CLOAK) ) ) &&
+	    if(!mtmp->mpeaceful && (level.flags.shortsighted || (uarmf && uarmf->oartifact == ART_UPWARD_HEELS) || (rn2(10) && RngeLightAbsorption) || (rn2(10) && uarmc && itemhasappearance(uarmc, APP_ABSORBING_CLOAK) ) ) &&
 	       nidist > (couldsee(nix,niy) ? 144 : 36) && appr == 1) appr = 0;
 
 		/* special coding for "homing" giant wasps from the hunger games --Amy */
@@ -3404,7 +3406,7 @@ postmov:
 		}
 	    }
 
-	    if(hides_under(ptr) || (ptr->mlet == S_EEL && !(ptr == &mons[PM_DEFORMED_FISH]) ) ) {
+	    if(hides_under(ptr) || (ptr->mlet == S_EEL && !(uarmc && uarmc->oartifact == ART_SATAN_S_SUGGESTION) && !(ptr == &mons[PM_DEFORMED_FISH]) ) ) {
 		/* Always set--or reset--mundetected if it's already hidden
 		   (just in case the object it was hiding under went away);
 		   usually set mundetected unless monster can't move.  */

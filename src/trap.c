@@ -17656,6 +17656,7 @@ register boolean force, here;
 		if ((obj->where != OBJ_FLOOR) && Race_if(PM_PLAYER_ATLANTEAN)) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_JANA_S_VAGINAL_FUN) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmu && uarmu->oartifact == ART_THERMAL_BATH) continue;
+		if ((obj->where != OBJ_FLOOR) && uarm && uarm->oartifact == ART_SWIMCHAMP) continue;
 		if ((obj->where != OBJ_FLOOR) && Race_if(PM_SEA_ELF)) continue;
 		if ((obj->where != OBJ_FLOOR) && tech_inuse(T_SILENT_OCEAN)) continue;
 

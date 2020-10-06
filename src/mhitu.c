@@ -257,7 +257,7 @@ on the first floor, especially when you're playing as something with drain resis
 				if (!rn2(20)) badeffect();
 			}
 
-			if ( ((!flags.female && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY)) || FemtrapActiveKarin) && (!issoviet || !rn2(5)) && !rn2(Role_if(PM_PROSTITUTE) ? 1 : Role_if(PM_KURWA) ? 1 : player_shades_of_grey() ? 3 : (u.ualign.type == A_LAWFUL) ? 50 : (u.ualign.type == A_NEUTRAL) ? 30 : 10) ) {
+			if ( ((!flags.female && !(uarmu && uarmu->oartifact == ART_LUISA_S_FELLOW_FEELING) && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY)) || FemtrapActiveKarin) && (!issoviet || !rn2(5)) && !rn2(Role_if(PM_PROSTITUTE) ? 1 : Role_if(PM_KURWA) ? 1 : player_shades_of_grey() ? 3 : (u.ualign.type == A_LAWFUL) ? 50 : (u.ualign.type == A_NEUTRAL) ? 30 : 10) ) {
 
 				if (uarmf && uarmf->oartifact == ART_HUGGING__GROPING_AND_STROK) {
 					pline("%s powerfully kicks you in the nuts, and you moan in lust because you love the pain.", Monnam(mtmp));
@@ -5047,6 +5047,26 @@ elena37:
 		}
 	}
 
+	if (uarmu && uarmu->oartifact == ART_GIVE_ME_STROKE__JO_ANNA && humanoid(mtmp->data) && is_female(mtmp->data) && !rn2(10) ) {
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_HEAL;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
 	if (Role_if(PM_FJORDE) && mtmp->data->mlet == S_EEL) {
 		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict || !touch_petrifies(youmonst.data))) {
 			if (foundyou && !rn2(5) && tmp > (j = rnd(20+i))) {
@@ -5874,6 +5894,8 @@ struct monst *mon;
 	armor = (mon == &youmonst) ? 0 : which_armor(mon, W_SADDLE);
 	if (armor && armpro < objects[armor->otyp].a_can)
 	    armpro = objects[armor->otyp].a_can;
+
+	if (uarmg && uarmg->oartifact == ART_EGASSO_S_GIBBERISH && armpro < 5) armpro = 5;
 
 	if (mon == &youmonst) {
 		if (MCReduction) armpro -= (1 + (MCReduction / 5000));
@@ -9302,7 +9324,7 @@ dopois:
 		    break;
 		}
 		if(!uwep
-		   && !uarmu
+		   && (!uarmu || (uarmu && uarmu->oartifact == ART_GIVE_ME_STROKE__JO_ANNA))
 		   && !uarm && !uarmh && !uarms && !uarmg && !uarmc && !uarmf) {
 		    boolean goaway = FALSE;
 		    pline("%s hits!  (I hope you don't mind.)", Monnam(mtmp));
@@ -10326,7 +10348,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		if (mtmp->mcan) {
 		    break;
 		}
-		if(!uwep && !uarmu && !uarm && !uarmh && !uarms && !uarmg && !uarmc && !uarmf) {
+		if(!uwep && (!uarmu || (uarmu && uarmu->oartifact == ART_GIVE_ME_STROKE__JO_ANNA)) && !uarm && !uarmh && !uarms && !uarmg && !uarmc && !uarmf) {
 		    boolean goaway = FALSE;
 		    pline("It hits!  (I hope you don't mind.)");
 		    reducesanity(1);
@@ -14286,7 +14308,7 @@ common:
 
 	    case AD_HEAL:
 		if(!uwep
-		   && !uarmu
+		   && (!uarmu || (uarmu && uarmu->oartifact == ART_GIVE_ME_STROKE__JO_ANNA))
 		   && !uarm && !uarmh && !uarms && !uarmg && !uarmc && !uarmf) {
 		    reducesanity(1);
 		    if (Upolyd) {
@@ -16000,7 +16022,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_HEAL:
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(5) ) ) {
 		pline("%s casts a healing spell!", Monnam(mtmp));
-		if(!uwep && !uarmu && !uarm && !uarmh && !uarms && !uarmg && !uarmc && !uarmf) {
+		if(!uwep && (!uarmu || (uarmu && uarmu->oartifact == ART_GIVE_ME_STROKE__JO_ANNA)) && !uarm && !uarmh && !uarms && !uarmg && !uarmc && !uarmf) {
 		    boolean goaway = FALSE;
 		    pline("You are healed.");
 		    reducesanity(1);
@@ -19452,6 +19474,7 @@ register struct monst *mtmp;
 register int n;
 {
 	int monsterdamagebonus;
+	int enchrequired = 0;
 
 	if (flags.iwbtg) {
 
@@ -19591,12 +19614,11 @@ register int n;
 		return;
 	}
 
-	if (Race_if(PM_PLAYER_SKELETON) && rn2(3) && !(hit_as_two(mtmp) || hit_as_three(mtmp) || hit_as_four(mtmp) || (MON_WEP(mtmp) && (MON_WEP(mtmp))->spe > 1) ) ) {
-		pline("The attack doesn't seem to harm you.");
-		n = 0;
-	}
+	if (uarmf && uarmf->oartifact == ART_STAR_SOLES) enchrequired = 1;
+	if (Race_if(PM_PLAYER_SKELETON)) enchrequired = 2;
+	if (uarmf && uarmf->oartifact == ART_PHANTO_S_RETARDEDNESS) enchrequired = 4;
 
-	if (uarmf && uarmf->oartifact == ART_STAR_SOLES && !Race_if(PM_PLAYER_SKELETON) && rn2(3) && !(hit_as_one(mtmp) || hit_as_two(mtmp) || hit_as_three(mtmp) || hit_as_four(mtmp) || (MON_WEP(mtmp) && (MON_WEP(mtmp))->spe > 0) ) ) {
+	if ((enchrequired > 0) && rn2(3) && !(hit_as_four(mtmp) || (hit_as_three(mtmp) && enchrequired < 4) || (hit_as_two(mtmp) && enchrequired < 3) || (hit_as_one(mtmp) && enchrequired < 2) || (MON_WEP(mtmp) && (MON_WEP(mtmp))->spe >= enchrequired) ) ) {
 		pline("The attack doesn't seem to harm you.");
 		n = 0;
 	}

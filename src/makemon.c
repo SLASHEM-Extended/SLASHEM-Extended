@@ -23348,6 +23348,16 @@ register int	mmflags;
 		return((struct monst *)0);
 	}
 
+	if (mtmp->mpeaceful && uarmh && uarmh->oartifact == ART_DOGGO_FRIENDSHIP && mtmp->data->mlet == S_DOG && !rn2(10)) {
+		(void) tamedog(mtmp, (struct obj *)0, FALSE);
+		return((struct monst *)0);
+	}
+
+	if (!rn2(10) && uamul && uamul->oartifact == ART_MAX_ONE_GRAY && mtmp->data->mcolor == CLR_GRAY) {
+		(void) tamedog(mtmp, (struct obj *)0, FALSE);
+		return((struct monst *)0);
+	}
+
 	if (!rn2(50) && ((mtmp->data->mcolor == CLR_GREEN) || ((mtmp->data->mcolor) == CLR_BRIGHT_GREEN)) && uarmc && itemhasappearance(uarmc, APP_GRASS_CLOAK) ) {
 		(void) tamedog(mtmp, (struct obj *)0, FALSE);
 		return((struct monst *)0);
@@ -27712,6 +27722,8 @@ register struct permonst *ptr;
 	if (!rn2(5) && ptr->mlet == S_BAD_FOOD && uarmg && itemhasappearance(uarmg, APP_FLOWER_GLOVES) ) return TRUE;
 
 	if (ptr->mlet == S_LICH && uarmg && uarmg->oartifact == ART_BLACKY_S_BACK_WITHOUT_L) return TRUE;
+
+	if (uarmh && uarmh->oartifact == ART_DOGGO_FRIENDSHIP && ptr->mlet == S_DOG && rn2(10)) return TRUE;
 
 	if (ptr->mlet == S_KOP && Race_if(PM_KOP) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_ANGEL && Race_if(PM_HUMANOID_ANGEL) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;

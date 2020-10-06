@@ -2735,6 +2735,15 @@ int dieroll;
 		if (wep && !thrown && !((is_launcher(wep) || is_missile(wep) || (is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) )) ) tmp += melee_dam_bonus(wep);	/* extra damage bonus added by Amy */
 		if (wep && thrown) tmp += ranged_dam_bonus(wep);	/* ditto */
 
+		if (obj && obj->oartifact == ART_SHOE_BRAND && mon->data->msound == MS_SHOE) {
+
+			if (!rn2(20)) {
+				pline("Shoe Brand tries to tame the shoe...");
+				(void) tamedog(mon, (struct obj *)0, FALSE);
+				return FALSE;
+			} else tmp += rnd(20);
+		}
+
 		if (thrown && obj && obj->oartifact == ART_MESHERABANE && is_elonamonster(mon->data)) {
 			tmp += rnd(40);
 		}
@@ -9791,7 +9800,7 @@ boolean ranged;
 		if (mon->mcan) {
 		    break;
 		}
-		if(!uwep && !uarmu && !uarm && !uarmh && !uarms && !uarmg && !uarmc && !uarmf) {
+		if(!uwep && (!uarmu || (uarmu && uarmu->oartifact == ART_GIVE_ME_STROKE__JO_ANNA)) && !uarm && !uarmh && !uarms && !uarmg && !uarmc && !uarmf) {
 		    boolean goaway = FALSE;
 		    pline("You are healed!");
 		    reducesanity(1);

@@ -2662,6 +2662,9 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK) tmp += 5;
 		if (uarmu && uarmu->otyp == FISHNET) tmp += 2;
 		if (uamul && uamul->otyp == AMULET_OF_TIME) tmp += 5;
+		if (uarmu && uarmu->oartifact == ART_SWEET_VICTORIA) tmp += 3;
+		if (uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL) tmp += 5;
+		if (uarmg && uarmg->oartifact == ART_EGASSO_S_GIBBERISH) tmp += 5;
 
 		if (RngeCoquetry) tmp += 5;
 		if (FemtrapActiveSolvejg) tmp += 5;
@@ -2720,6 +2723,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_CARMARK) tmp -= 5;
 		if (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) tmp -= 5;
 		if (uarmh && itemhasappearance(uarmh, APP_CORONA_MASK)) tmp -= 5;
+		if (uarmh && uarmh->oartifact == ART_FFP___MASK) tmp -= 5;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
 		if (u.tsloss_cha > 0) tmp -= u.tsloss_cha;
 
@@ -2746,6 +2750,7 @@ int x;
 		if (uarmh && uarmh->otyp == HELM_OF_BRILLIANCE) tmp += uarmh->spe;
 		if (uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) tmp += 1;
 		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
+		if (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) tmp += 2;
 
 		if (uarmh && uarmh->oartifact == ART_YOU_DON_T_KNOW_SHIT) tmp -= 3;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp -= 10;
@@ -2888,6 +2893,10 @@ void
 adjalign(n)
 register int n;
 {
+	if (uarmf && uarmf->oartifact == ART_MANDY_S_RAIDWEAR && !rn2(2) && (n < 0)) {
+		return;
+	}
+
 	if (Race_if(PM_SINNER) && n < 0) {
 		n *= 10;
 		u.ualign.sins += 1; 

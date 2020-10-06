@@ -1098,6 +1098,9 @@ moveloop()
 				if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
+				if (uarmf && uarmf->oartifact == ART_UPWARD_HEELS && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+
 				if (flags.female && uarmf && itemhasappearance(uarmf, APP_OPERA_PUMPS) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
@@ -1395,6 +1398,9 @@ moveloop()
 			}
 
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too are slower sometimes. */
+				moveamt /= 2;
+
+			if (uarmf && uarmf->oartifact == ART_UPWARD_HEELS && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
 
 			if (flags.female && uarmf && itemhasappearance(uarmf, APP_OPERA_PUMPS) && !rn2(8) && moveamt > 1)
@@ -3744,6 +3750,14 @@ controlagain:
 			if (mvitals[PM_STOOGE_CURLY].born == 0) makemon(&mons[PM_STOOGE_CURLY], 0, 0, NO_MM_FLAGS); /* makemon.c will spawn the other two */
 		}
 
+		if (uarmh && uarmh->oartifact == ART_FOOTBALL_MASK) {
+			if (!u.footererlevel) {
+				u.footererlevel = rnd(100);
+				while (u.footererlevel == depth(&u.uz)) u.footererlevel = rnd(100);
+				pline("The footerers are waiting for you on some level...");
+			}
+		}
+
 		if (u.footererlevel && u.footererlevel == depth(&u.uz)) {
 
 			pline("The footerers were waiting for you here, and will attack now.");
@@ -5237,6 +5251,45 @@ controlagain:
 			pline("Eww, your cigarettes stink ten miles against the wind!");
 		}
 
+		if (uarmh && uarmh->oartifact == ART_ACU_BECOME_HAVE && !rn2(50000) && (u.urexp >= 1000000)) {
+			u.urexp = 0;
+			pline("An unbinding ritual starts, and your skill potential is realized...");
+
+			int maxtrainingamount = 0;
+			int skillnumber = 0;
+			int actualskillselection = 0;
+			int amountofpossibleskills = 1;
+			int i;
+
+			for (i = 0; i < P_NUM_SKILLS; i++) {
+				if (P_SKILL(i) != P_ISRESTRICTED) continue;
+	
+				if (P_ADVANCE(i) > 0 && P_ADVANCE(i) >= maxtrainingamount) {
+					if (P_ADVANCE(i) > maxtrainingamount) {
+						amountofpossibleskills = 1;
+						skillnumber = i;
+						maxtrainingamount = P_ADVANCE(i);
+					} else if (!rn2(amountofpossibleskills + 1)) {
+						amountofpossibleskills++;
+						skillnumber = i;
+					} else {
+						amountofpossibleskills++;
+					}
+				}
+			}
+
+			if (skillnumber > 0 && maxtrainingamount > 0) {
+				unrestrict_weapon_skill(skillnumber);
+				P_MAX_SKILL(skillnumber) = (maxtrainingamount >= 5000 ? P_SUPREME_MASTER : maxtrainingamount >= 500 ? P_GRAND_MASTER : maxtrainingamount >= 50 ? P_MASTER : P_EXPERT);
+				pline("You can now learn the %s skill, with a new cap of %s.", wpskillname(skillnumber), maxtrainingamount >= 5000 ? "supreme master" : maxtrainingamount >= 500 ? "grand master" : maxtrainingamount >= 50 ? "master" : "expert");
+			} else {
+				pline("You've trained no unknown skills since the last checkpoint and therefore you unfortunately don't learn anything new.");
+			}
+
+		}
+
+		if (uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL && u.contamination < 10) u.contamination = 10;
+
 		if (FemtrapActiveJulietta && !rn2(2000)) {
 			pline("Julietta rolls the dice to randomly select a punishment for you...");
 			randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
@@ -6114,6 +6167,11 @@ newbossX:
 
 			}
 
+		}
+
+		if (uamul && uamul->oartifact == ART_AMULET_OF_SPLENDOR && !rn2(1000) && multi >= 0) {
+			You("fall asleep.");
+			fall_asleep(-(rnd(20)), TRUE);
 		}
 
 		if (is_shiftingsand(u.ux, u.uy) && !Flying && !Levitation) {

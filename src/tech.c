@@ -3902,6 +3902,7 @@ secureidchoice:
 			pline("The aura fades.");
 		}
 		t_timeout = rnz(7500);
+		if (uarmc && uarmc->oartifact == ART_PRIESTEST_BLESS) t_timeout = rnz(6000);
 		break;
 	    case T_E_FIST: 
 	    	blitz_e_fist();

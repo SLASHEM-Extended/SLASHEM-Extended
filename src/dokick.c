@@ -210,6 +210,7 @@ register boolean clumsy;
 
 	if (uarmf && uarmf->oartifact == ART_HUGGING__GROPING_AND_STROK) dmg += 5;
 	if (uarmf && uarmf->oartifact == ART_ELENETTES) dmg += 2;
+	if (uarmh && uarmh->oartifact == ART_STROKING_COMBAT) dmg += 2;
 
 	if (uarmf && itemhasappearance(uarmf, APP_WEAPON_LIGHT_BOOTS)) {
 		dmg += u.ulevel;

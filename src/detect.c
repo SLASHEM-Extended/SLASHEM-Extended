@@ -1829,7 +1829,7 @@ sokoban_detect()
 int
 dosearch()
 {
-	if ((TarmuStrokingNora || u.uprops[TARMU_STROKING_NORA].extrinsic || have_tarmustrokingnorastone()) && u.tarmustrokingturn < 1) {
+	if ((TarmuStrokingNora || u.uprops[TARMU_STROKING_NORA].extrinsic || (uarmh && uarmh->oartifact == ART_STROKING_COMBAT) || have_tarmustrokingnorastone()) && u.tarmustrokingturn < 1) {
 		u.tarmustrokingturn = rnd(100);
 
 		int tryct = 0;

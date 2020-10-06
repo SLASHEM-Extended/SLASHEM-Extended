@@ -403,6 +403,12 @@ Boots_on()
 		if (uarmf->spe > -10) uarmf->spe = -10;
     }
 
+    if (uarmf && uarmf->oartifact == ART_PHANTO_S_RETARDEDNESS) {
+		if (!uarmf->cursed) curse(uarmf);
+		uarmf->hvycurse = uarmf->prmcurse = uarmf->stckcurse = TRUE;
+		pline("Now you look like a total retard and can no longer take off these boots.");
+    }
+
     if (uarmf && uarmf->oartifact == ART_RNG_S_SEXINESS && uarmf->spe == 0) {
 		if (!rn2(2)) uarmf->spe = rnd(5);
 		else uarmf->spe = -(rnd(5));
@@ -5538,6 +5544,8 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_UBERGAGE) uac -= 4;
 	if (uarm && uarm->oartifact == ART_PEOPLE_COAT) uac -= 5;
 	if (uarms && uarms->oartifact == ART_NORSE_MITHRIL) uac -= 5;
+	if (uarmu && uarmu->oartifact == ART_SWEET_VICTORIA) uac -= 2;
+	if (uarmh && uarmh->oartifact == ART_FOOTBALL_MASK) uac -= 2;
 
 	if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 		if ((!uarm || is_metallic(uarm)) && (!uarmc || is_metallic(uarmc)) && (!uarmu || is_metallic(uarmu)) && (!uarms || is_metallic(uarms)) && (!uarmg || is_metallic(uarmg)) && (!uarmf || is_metallic(uarmf)) && (!uarmh || is_metallic(uarmh)) ) {
@@ -5698,6 +5706,13 @@ find_ac()
 	uac = (uac < UAC_MIN ? UAC_MIN : (uac > UAC_LIM ? UAC_LIM : uac));
 
 	if (Race_if(PM_ITAQUE)) {
+		int difference = (-(uac - 10));
+		difference = difference / 10;
+		if (difference > 0) uac -= difference;
+
+	}
+
+	if (uarmg && uarmg->oartifact == ART_EGASSO_S_GIBBERISH) {
 		int difference = (-(uac - 10));
 		difference = difference / 10;
 		if (difference > 0) uac -= difference;

@@ -150,6 +150,11 @@ dosit()
 				fineforpracticant(100, 0, 0);
 			}
 
+			if (uarmf && uarmf->oartifact == ART_LUDGERA_S_SECRET_COURSE) {
+				pline("That felt good.");
+				incr_itimeout(&HFast, rn1(250, 250));
+			}
+
 			/* Based on real life experience (urgh) this doesn't always instantly cure sickness. --Amy */
 			if (Sick && !rn2(3) ) make_sick(0L, (char *)0, TRUE, SICK_VOMITABLE);
 			else if (Sick && !rn2(10) ) make_sick(0L, (char *)0, TRUE, SICK_ALL);
@@ -200,6 +205,30 @@ dosit()
 
 	} else if(IS_WOODENTABLE(typ)) {
 		pline("Sitting on a table isn't very fruitful.");
+
+	} else if(IS_FARMLAND(typ)) {
+		pline("Your ass gets dirty from the earthy farmland.");
+
+	} else if(IS_MOUNTAIN(typ)) {
+		pline("You enjoy the romantic view from the mountaintop.");
+
+	} else if(IS_WELL(typ)) {
+		pline("You sit down beside the well.");
+
+	} else if(IS_SNOW(typ)) {
+		pline("You sit on the fluffy snow.");
+
+	} else if(IS_SAND(typ)) {
+		pline("You sit on the soft sand.");
+
+	} else if(IS_GRASSLAND(typ)) {
+		pline("You sit on the soft grass.");
+
+	} else if(IS_BUBBLES(typ)) {
+		pline("You sit on a fleecy bubble.");
+
+	} else if(IS_POISONEDWELL(typ)) {
+		pline("You sit down beside the poisoned well.");
 
 	} else if(IS_FOUNTAIN(typ)) {
 		if (youmonst.data->mlet == S_BAD_COINS) { /* by GoldenIvy */

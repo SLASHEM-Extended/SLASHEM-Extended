@@ -13509,7 +13509,7 @@ register char *cmd;
 	}
 
 	/* Autopilot means your char does random things depending on your contamination --Amy */
-	if (*cmd && (AutopilotEffect || u.uprops[AUTOPILOT_EFFECT].extrinsic || have_autopilotstone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK) || (uarmf && uarmf->oartifact == ART_PRADA_S_DEVIL_WEAR) ) ) {
+	if (*cmd && (AutopilotEffect || u.uprops[AUTOPILOT_EFFECT].extrinsic || (uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL) || have_autopilotstone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK) || (uarmf && uarmf->oartifact == ART_PRADA_S_DEVIL_WEAR) ) ) {
 		int autopilotchance = u.contamination;
 		if (isevilvariant && (autopilotchance > 900)) autopilotchance = 900;
 		else if (!isevilvariant && (autopilotchance > 500)) autopilotchance = 500;
@@ -13927,7 +13927,7 @@ char sym;
 	u.dy = ydir[dp-sdp];
 	u.dz = zdir[dp-sdp];
 
-	if (u.totter || u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() ) {
+	if (u.totter || u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) ) {
 
 		u.dx = -u.dx;
 		u.dy = -u.dy;
@@ -14221,7 +14221,7 @@ click_to_cmd(x, y, mod)
 	return cmd;
 	}
 
-	if (u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || u.totter || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone() || SpellColorPink) {
+	if (u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) || u.totter || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone() || SpellColorPink) {
 		pline("A sinister force prevents you from quicktraveling!");
 		if (FunnyHallu) pline("Could this be the work of Arabella?");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -14514,7 +14514,7 @@ dotravel()
 
 	}
 
-	if (u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || u.totter || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone() || SpellColorPink) {
+	if (u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) || u.totter || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone() || SpellColorPink) {
 		pline("A sinister force prevents you from quicktraveling!");
 		if (FunnyHallu) pline("Could this be the work of Arabella?");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
