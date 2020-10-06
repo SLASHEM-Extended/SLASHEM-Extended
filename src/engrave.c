@@ -5387,6 +5387,8 @@ static const char *epitaphs[] = {
 	"if u dont have double motivation ur game can suddenly end at any time", /* by amateurhour */
 	"Here lies Jaime Lannister's left hand, cut off by Locke. Because Locke is evil with a capital E.",
 	"Here lies Bran's ability to move his legs. While Cersei is an evil monster, one of her only good deeds was to push that loser out the window. He broke his legs so badly that he ended up handicapped for the rest of his pathetic life.",
+	"What, dipping a stack of potions into a pool doesn't always dilute it, this is unplayable and a hill I'm willing to die on",
+	"nasty traps last too long", /* hint: they don't :P --Amy */
 
 };
 

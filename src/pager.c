@@ -25531,6 +25531,11 @@ static NEARDATA const char * const fake_plines[] = {
 	"Why is Eddard Stark not called Edward? Why is Petyr Baelish not called Peter? And most of all, what's up with the name Joffrey, is that a cross between Jeffrey and Geoffrey?",
 	"if someone sits in one place and doesn't move for long enough that their muscle mass vanishes, they should say 'atrophy get'", /* by aosdict */
 	"You magically regain consciousness!",
+	"The way to winning SLEX does not involve pestering Amy to make changes that result in the game becoming easier, you have to adjust your playstyle to match SLEX's difficulty.",
+	"When suggesting changes for SLEX, 'but if you implement this change that makes the game easier, it'll still be hard enough!' is never a valid argument. I (Amy) detect such sneaky attempts to neutralize SLEX's intended difficulty.",
+	"You don't need to propose changes that reduce SLEX's difficulty. If you find the game too hard, well, bummer - you're not gonna be handed an easy win if you whine about things that work as intended, you have to put in some real work if you want to ascend and that means, git gud scrub! :-P",
+	"If you plan to complain about player-hostile features in slex, reconsider. You're not the first player who plays the game (probably), and even if you are, whatever it is that you're complaining about, many other players have complained about before. Unless it's a bona fide crash bug, it probably works as intended and won't get changed.",
+	"Do you hate the nasty traps in SLEX with a fiery passion? Of course you do, every player save for Amy does. Many of them have complained and wanted them either nerfed or removed, and Amy has never given in. Do you *really* think she'd give in now just because you are the one complaining?",
 
 };
 
