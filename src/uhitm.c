@@ -682,6 +682,8 @@ register struct monst *mtmp;
 	if (uarmc && uarmc->oartifact == ART_ENEMIES_SHALL_LAUGH_TOO) tmp += 10;
 	if (uimplant && uimplant->oartifact == ART_ACTUAL_PRECISION) tmp += 5;
 	if (uimplant && uimplant->oartifact == ART_RHEA_S_MISSING_EYESIGHT) tmp -= rnd(20);
+	if (uwep && uwep->oartifact == ART_SIGIX_BROADSWORD) tmp -= 5;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SIGIX_BROADSWORD) tmp -= 5;
 	if (uwep && uwep->oartifact == ART_BAD_HITTER_BOY) tmp -= rnd(20);
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_BAD_HITTER_BOY) tmp -= rnd(20);
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_ACTUAL_PRECISION) tmp += 5;
@@ -693,6 +695,12 @@ register struct monst *mtmp;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 	if (uarmg && uarmg->oartifact == ART_MAJOR_PRESENCE) tmp += 2;
 	if (uarmf && uarmf->oartifact == ART_CRASHING_YOUR_SISTER_S_WED) tmp -= 5;
+	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 0) tmp += 1;
+	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 49) tmp += 1;
+	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 99) tmp += 1;
+	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 149) tmp += 1;
+	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 199) tmp += 1;
+	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 249) tmp += 1;
 
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
 	if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
@@ -2673,6 +2681,12 @@ int dieroll;
 		if (uarmg && uarmg->oartifact == ART_MAJOR_PRESENCE) tmp += 2;
 		if (uarmf && uarmf->oartifact == ART_SNAILHUNT) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_CRASHING_YOUR_SISTER_S_WED) tmp += 2;
+		if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 0) tmp += 1;
+		if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 49) tmp += 1;
+		if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 99) tmp += 1;
+		if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 149) tmp += 1;
+		if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 199) tmp += 1;
+		if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 249) tmp += 1;
 
 		if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 
@@ -7696,6 +7710,15 @@ use_weapon:
 					uwep->spe--;
 					pline("Your weapon sustains damage.");
 				}
+				if (uwep && uwep->oartifact == ART_SIGIX_BROADSWORD && !rn2(20)) {
+					uwep->spe--;
+					pline("Your broadsword sustains damage.");
+					if (uwep->spe < -20) {
+						useupall(uwep);
+						pline("Your broadsword is destroyed.");
+						return FALSE;
+					}
+				}
 				if (uwep && uwep->oartifact == ART_NEED_ELITE_UPGRADE) {
 					int eliteupgradechance = 100;
 					if (uwep->spe > 1) eliteupgradechance = (uwep->spe * 100);
@@ -7801,6 +7824,16 @@ use_weapon:
 					uswapwep->spe--;
 					pline("Your weapon sustains damage.");
 				}
+				if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SIGIX_BROADSWORD && !rn2(20)) {
+					uswapwep->spe--;
+					pline("Your broadsword sustains damage.");
+					if (uswapwep->spe < -20) {
+						useupall(uswapwep);
+						pline("Your broadsword is destroyed.");
+						return FALSE;
+					}
+				}
+
 				if (u.twoweap && uswapwep && uswapwep->otyp == STEEL_CAPPED_SANDAL && !rn2(uswapwep->oartifact == ART_PATRICIA_S_FEMININITY ? 150 : 30)) {
 					uswapwep->spe--;
 					pline("Your steel-capped sandal degrades.");
@@ -10343,7 +10376,7 @@ boolean ranged;
 	      case AD_SSEX:
 			if (!malive) break;
 
-			if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) {
+			if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) {
 				You_feel("a tug on your backpack!");
 				buf[0] = '\0';
 				switch (steal(mon, buf, atttypC == AD_SEDU ? TRUE : FALSE, FALSE)) {

@@ -312,6 +312,7 @@ dig()
 	if (uarms && uarms->oartifact == ART_TEH_BASH_R) bonus += 2;
 	if (uarmh && uarmh->oartifact == ART_HELMET_OF_DIGGING) bonus += 5;
 	if (uarmg && itemhasappearance(uarmg, APP_DIGGER_GLOVES)) bonus += 5;
+	if (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) bonus += 5;
 	if (!PlayerCannotUseSkills) {
 		switch (P_SKILL(P_WEDI)) {
 

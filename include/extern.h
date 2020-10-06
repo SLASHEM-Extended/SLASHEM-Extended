@@ -2894,6 +2894,7 @@ E void place_monster(struct monst *,int,int);
 E boolean mayfalloffsteed(void);
 E boolean will_hit_steed(void);
 E boolean confsteeddir(void);
+E boolean flysaddle(void);
 
 /* ### tech.c ### */
 

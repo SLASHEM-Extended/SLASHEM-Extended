@@ -1187,6 +1187,7 @@ newsym(x,y)
 		(Burnopathy && Burned && infravision(mon->data) ) ||
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel) ||
 		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || mon->data->msound == MS_STENCH) ) ||
+		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mon->data->msound == MS_SHOE) ||
 		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || mon->data->msound == MS_SOUND || mon->data->msound == MS_SHRIEK || mon->data->msound == MS_FART_NORMAL || mon->data->msound == MS_FART_LOUD || mon->data->msound == MS_FART_QUIET ) ) ||
 		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
 		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
@@ -1285,6 +1286,7 @@ newsym(x,y)
 		(Burnopathy && Burned && infravision(mon->data) ) ||
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel) ||
 		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || mon->data->msound == MS_STENCH) ) ||
+		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mon->data->msound == MS_SHOE) ||
 		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || mon->data->msound == MS_SOUND || mon->data->msound == MS_SHRIEK || mon->data->msound == MS_FART_NORMAL || mon->data->msound == MS_FART_LOUD || mon->data->msound == MS_FART_QUIET ) ) ||
 		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
 		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
@@ -1539,6 +1541,7 @@ newsymX(x,y)
 		(Burnopathy && Burned && infravision(mon->data) ) ||
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel) ||
 		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || mon->data->msound == MS_STENCH) ) ||
+		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mon->data->msound == MS_SHOE) ||
 		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || mon->data->msound == MS_SOUND || mon->data->msound == MS_SHRIEK || mon->data->msound == MS_FART_NORMAL || mon->data->msound == MS_FART_LOUD || mon->data->msound == MS_FART_QUIET ) ) ||
 		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
 		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
@@ -1637,6 +1640,7 @@ newsymX(x,y)
 		(Burnopathy && Burned && infravision(mon->data) ) ||
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel) ||
 		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || mon->data->msound == MS_STENCH) ) ||
+		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mon->data->msound == MS_SHOE) ||
 		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || mon->data->msound == MS_SOUND || mon->data->msound == MS_SHRIEK || mon->data->msound == MS_FART_NORMAL || mon->data->msound == MS_FART_LOUD || mon->data->msound == MS_FART_QUIET ) ) ||
 		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
 		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
@@ -3539,6 +3543,7 @@ struct monst *mon;
 	if (Sickopathy && Sick && extra_nasty(mon->data) ) return TRUE;
 	if (Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE ) return TRUE;
 	if (ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || mon->data->msound == MS_STENCH) ) return TRUE;
+	if (uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mon->data->msound == MS_SHOE) return TRUE;
 	if (EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || mon->data->msound == MS_SOUND || mon->data->msound == MS_SHRIEK || mon->data->msound == MS_FART_NORMAL || mon->data->msound == MS_FART_LOUD || mon->data->msound == MS_FART_QUIET ) ) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) return TRUE;
 	if (Burnopathy && Burned && infravision(mon->data) ) return TRUE;

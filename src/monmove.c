@@ -265,6 +265,11 @@ boolean digest_meal;
 			      mon->mhp = mon->mhpmax;
 			else mon->mhp++;
 		}
+
+		if ((osaeddle = which_armor(u.usteed, W_SADDLE)) && osaeddle->oartifact == ART_STEERING_WHEEL) {
+			mon->mconf = FALSE;
+		}
+
 	}
 
 	/* good riding skill gives extra regeneration to ridden monster --Amy */

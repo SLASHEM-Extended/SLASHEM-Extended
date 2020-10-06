@@ -510,6 +510,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (ScentView && distu(mtmp->mx, mtmp->my) < 101 && mtmp->scentvisible && (is_animal(mtmp->data) || mtmp->data->msound == MS_STENCH) )
 		    ways_seen++;
+		if (uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mtmp->data->msound == MS_SHOE)
+		    ways_seen++;
 		if (EcholocationActive && distu(mtmp->mx, mtmp->my) < 626 && mtmp->echolocatevisible && (dmgtype(mtmp->data, AD_SOUN) || mtmp->data->msound == MS_SOUND || mtmp->data->msound == MS_SHRIEK || mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_LOUD || mtmp->data->msound == MS_FART_QUIET ) )
 		    ways_seen++;
 		if (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mtmp->data->mcolor == CLR_WHITE )
@@ -687,6 +689,10 @@ lookat(x, y, buf, monbuf)
 		    }
 		    if (ScentView && distu(mtmp->mx, mtmp->my) < 101 && mtmp->scentvisible && (is_animal(mtmp->data) || mtmp->data->msound == MS_STENCH) ) {
 			strcat(monbuf, "scent view");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		     if (uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mtmp->data->msound == MS_SHOE) {
+			strcat(monbuf, "Amy's shoevision");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 		    if (EcholocationActive && distu(mtmp->mx, mtmp->my) < 626 && mtmp->echolocatevisible && (dmgtype(mtmp->data, AD_SOUN) || mtmp->data->msound == MS_SOUND || mtmp->data->msound == MS_SHRIEK || mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_LOUD || mtmp->data->msound == MS_FART_QUIET ) ) {

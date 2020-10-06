@@ -41,6 +41,7 @@ register boolean clumsy;
 	if (uarmf && uarmf->oartifact == ART_AIRSHIP_DANCING) dmg += 2;
 	if (uarmf && uarmf->oartifact == ART_WILD_SEX_GAME) dmg += 2;
 	if (uarmf && uarmf->oartifact == ART_LITTLE_BITCH_IS_RUCTIOUS) dmg += 3;
+	if (uarmf && uarmf->oartifact == ART_ARTHUR_S_HIGH_HEELED_PLATF) dmg += 2;
 
 	if (uarmf && uarmf->otyp == KICKING_BOOTS)
 	    dmg += 5;

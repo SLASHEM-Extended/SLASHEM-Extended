@@ -27724,6 +27724,7 @@ register struct permonst *ptr;
 	if (ptr->mlet == S_LICH && uarmg && uarmg->oartifact == ART_BLACKY_S_BACK_WITHOUT_L) return TRUE;
 
 	if (uarmh && uarmh->oartifact == ART_DOGGO_FRIENDSHIP && ptr->mlet == S_DOG && rn2(10)) return TRUE;
+	if (uwep && uwep->oartifact == ART_MAGICBONE && (ptr->mlet == S_DOG || ptr->mlet == S_FELINE) && rn2(2)) return TRUE;
 
 	if (ptr->mlet == S_KOP && Race_if(PM_KOP) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_ANGEL && Race_if(PM_HUMANOID_ANGEL) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;

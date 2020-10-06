@@ -256,6 +256,8 @@ register struct obj *obj;
 	/* metallivores can eat metal; rustproofing makes it impossible now --Amy */
 	if (metallivorous(youmonst.data) && is_metallic(obj) && !obj->oerodeproof)
 		return TRUE;
+	if (uwep && uwep->oartifact == ART_KRONSCHER_BAR && is_metallic(obj) && !obj->oerodeproof)
+		return TRUE;
 
 	/* lithivores can eat stone; erosionproofing makes it impossible now --Amy */
 	if (lithivorous(youmonst.data) && is_lithic(obj) && !obj->oerodeproof )
@@ -7022,6 +7024,8 @@ gethungry()	/* as time goes by - called by moveloop() and domove() */
 	    if (Hunger && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
 	    if (StrongHunger && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
 		if (Race_if(PM_CLOCKWORK_AUTOMATON) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--; /* to prevent =oSD from being overpowered --Amy */
+	    if (uleft && uleft->oartifact == ART_RING_OF_FAST_LIVING && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) { u.uhunger--; u.uhunger--; u.uhunger--; }
+	    if (uright && uright->oartifact == ART_RING_OF_FAST_LIVING && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) { u.uhunger--; u.uhunger--; u.uhunger--; }
 	    /* Conflict uses up food too */
 		/* and a lot of it because conflict is so overpowered --Amy */
 	    if (Conflict && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) { u.uhunger--; u.uhunger--; u.uhunger--; u.uhunger--; u.uhunger--; }

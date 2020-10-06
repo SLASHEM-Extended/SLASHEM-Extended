@@ -557,6 +557,9 @@ use_stethoscope(obj)
 	if (u.stethocheat == moves) res = 1; /* just restored the game and trying to cheat? Nice try. --Amy */
 
 	if (u.usteed && u.dz > 0) {
+
+		if (obj->oartifact == ART_PIERCE_DEVICE && u.usteed->mhp > 1) u.usteed->mhp--;
+
 		if (interference) {
 			pline("%s interferes.", Monnam(u.ustuck));
 
@@ -577,6 +580,8 @@ use_stethoscope(obj)
 	} else
 	if (u.uswallow && (u.dx || u.dy || u.dz)) {
 
+		if (obj->oartifact == ART_PIERCE_DEVICE && u.ustuck->mhp > 1) u.ustuck->mhp--;
+
 		if ((obj->blessed || (obj->otyp == UNSTABLE_STETHOSCOPE && !rn2(5)) || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
 		mstatuslinebl(u.ustuck);
 		else
@@ -584,6 +589,8 @@ use_stethoscope(obj)
 		return res;
 	} else if (u.uswallow && interference) {
 		pline("%s interferes.", Monnam(u.ustuck));
+
+		if (obj->oartifact == ART_PIERCE_DEVICE && u.ustuck->mhp > 1) u.ustuck->mhp--;
 
 		if ((obj->blessed || (obj->otyp == UNSTABLE_STETHOSCOPE && !rn2(5)) || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
 		mstatuslinebl(u.ustuck);
@@ -642,6 +649,8 @@ use_stethoscope(obj)
 			erode_obj(obj, FALSE, FALSE);
 			return 0;
 		}
+
+		if (obj->oartifact == ART_PIERCE_DEVICE && mtmp->mhp > 1) mtmp->mhp--;
 
 		if ((obj->blessed || (obj->otyp == UNSTABLE_STETHOSCOPE && !rn2(5)) || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
 		mstatuslinebl(mtmp);
@@ -3997,6 +4006,10 @@ use_pole (obj)
 
 	if (u.mushroompoles) u.mushroompoleused = TRUE;
 
+	if (obj->oartifact == ART_BRIDGEBANE && find_drawbridge(&cc.x,&cc.y)) {
+		destroy_drawbridge(cc.x,cc.y);
+	}
+
 	/* What is there? */
 	mtmp = m_at(cc.x, cc.y);
 
@@ -4102,6 +4115,19 @@ use_pole (obj)
 			}
 		}
 		if (obj->oartifact == ART_DONNNNNNNNNNNNG && !rn2(3)) {
+			if (obj->spe > -20) {
+				obj->spe--;
+				pline("Your weapon sustains damage.");
+			} else {
+				uwepgone();              /* set unweapon */
+				pline(FunnyHallu ? "You lost your stick!" : "Your weapon shatters into pieces!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Pochemu u vas takoy malen'kiy polovogo chlena v lyubom sluchaye?" : "Krrrrrrrtsch!");
+				useup(obj);
+				return (1);
+
+			}
+		}
+		if (obj->oartifact == ART_SIGIX_BROADSWORD && !rn2(20)) {
 			if (obj->spe > -20) {
 				obj->spe--;
 				pline("Your weapon sustains damage.");

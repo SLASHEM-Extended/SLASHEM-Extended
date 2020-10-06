@@ -3962,6 +3962,12 @@ register struct obj *wand;
 		use_skill(P_DEVICES,1);
 		use_skill(P_DEVICES,1);
 	}
+
+	if (wand && wand->oartifact == ART_PSI_CHANGE) {
+		incr_itimeout(&HConf_resist, 1000);
+		You_feel("more resistant to confusion!");
+	}
+
 	if (objects[(wand)->otyp].oc_material == MT_INKA) use_skill(P_DEVICES,1);
 	if (objects[(wand)->otyp].oc_material == MT_ANTIDOTIUM) upnivel(TRUE);
 	if (objects[(wand)->otyp].oc_material == MT_ARCANIUM) {

@@ -1915,6 +1915,11 @@ boolean shopinit;
 		/*(otmp->otyp != BOULDER || !In_sokoban(&u.uz)) && */ !rn2(1250);
 	if (otmp->otyp == BOULDER && In_sokoban(&u.uz) && !((moves + u.monstertimefinish) % 1317) ) otmp->oinvis = 1;
 
+	/* 1 in 10000 random boulders are Wendyhole; use onameX to make sure it can generate several times --Amy */
+	if (otmp->otyp == BOULDER && !rn2(10000) && !otmp->oartifact) {
+		otmp = onameX(otmp, artiname(ART_WENDYHOLE));
+	}
+
 	if (otmp->oinvis && !rn2(!(u.monstertimefinish % 13333) ? 3 : !(u.monstertimefinish % 1333) ? 10 : !(u.monstertimefinish % 133) ? 30 : 100) ) otmp->oinvisreal = 1;
 
 	if (init && (let >= MAXOCLASSES)) {

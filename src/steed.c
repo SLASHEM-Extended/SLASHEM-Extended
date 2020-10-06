@@ -845,8 +845,28 @@ will_hit_steed()
 	/* if your steed is low on health, attacks should be redirected to it much less often, otherwise they die constantly */
 	if (u.usteed && (u.usteed->mhp < 5 || (u.usteed->mhp <= (u.usteed->mhpmax / 5) ) ) && rn2(5)) return FALSE;
 
+	if (u.usteed) {
+		struct obj *osaeddle = which_armor(u.usteed, W_SADDLE);
+
+		if ((osaeddle = which_armor(u.usteed, W_SADDLE)) && osaeddle->oartifact == ART_NO_DAMAGE) return FALSE;
+
+	}
+
 	if (rn2(100) < u.steedhitchance) return TRUE;
 	else return FALSE;
+}
+
+/* does your steed have the saddle that lets you fly? --Amy */
+boolean
+flysaddle()
+{
+	if (u.usteed) {
+		struct obj *osaeddle = which_armor(u.usteed, W_SADDLE);
+
+		if ((osaeddle = which_armor(u.usteed, W_SADDLE)) && osaeddle->oartifact == ART_CLOWN_CAR) return TRUE;
+
+	}
+	return FALSE;
 }
 
 /*steed.c*/

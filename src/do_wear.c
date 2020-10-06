@@ -3144,6 +3144,16 @@ Armor_on()
 		if (!uarm->cursed) curse(uarm);
 	}
 
+	if (uarm && uarm->oartifact == ART_NOW_FOR_THE_DISCHARGE) {
+
+		if (!tech_known(T_SIGIL_DISCHARGE)) {
+		      u.uprops[DISCHARGE_BUG].intrinsic |= FROMOUTSIDE;
+			learntech(T_SIGIL_DISCHARGE, FROMOUTSIDE, 1);
+		    	pline("Suddenly, you know how to use the sigil of discharge technique!");
+		}
+
+	}
+
 	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_SUPERESCAPE_MAIL) {
 		pline("BEEEEEEEP! Your armor is cursed!");
 		curse(uarm);
@@ -5546,6 +5556,9 @@ find_ac()
 	if (uarms && uarms->oartifact == ART_NORSE_MITHRIL) uac -= 5;
 	if (uarmu && uarmu->oartifact == ART_SWEET_VICTORIA) uac -= 2;
 	if (uarmh && uarmh->oartifact == ART_FOOTBALL_MASK) uac -= 2;
+	if (uarmf && uarmf->oartifact == ART_ARTHUR_S_HIGH_HEELED_PLATF) uac -= 2;
+	if (uwep && uwep->oartifact == ART_SIGIX_BROADSWORD) uac -= 20;
+	if (uarm && uarm->oartifact == ART_MOEBIUS_ARMOR) uac -= 10;
 
 	if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 		if ((!uarm || is_metallic(uarm)) && (!uarmc || is_metallic(uarmc)) && (!uarmu || is_metallic(uarmu)) && (!uarms || is_metallic(uarms)) && (!uarmg || is_metallic(uarmg)) && (!uarmf || is_metallic(uarmf)) && (!uarmh || is_metallic(uarmh)) ) {

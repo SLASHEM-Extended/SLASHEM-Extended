@@ -2562,6 +2562,7 @@ int x;
 		if (uarm && uarm->oartifact == ART_UBERGAGE) tmp += 3;
 		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) tmp += 10;
+		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (uarmg && uarmg->otyp == GAUNTLETS_OF_POWER) tmp += (uarmg->spe + 3);
@@ -2665,6 +2666,7 @@ int x;
 		if (uarmu && uarmu->oartifact == ART_SWEET_VICTORIA) tmp += 3;
 		if (uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL) tmp += 5;
 		if (uarmg && uarmg->oartifact == ART_EGASSO_S_GIBBERISH) tmp += 5;
+		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
 
 		if (RngeCoquetry) tmp += 5;
 		if (FemtrapActiveSolvejg) tmp += 5;
@@ -2751,6 +2753,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) tmp += 1;
 		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
 		if (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) tmp += 2;
+		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
 
 		if (uarmh && uarmh->oartifact == ART_YOU_DON_T_KNOW_SHIT) tmp -= 3;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp -= 10;
@@ -2793,6 +2796,7 @@ int x;
 		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_AMATEURSPORTS) tmp += 3;
 		if (uarmf && uarmf->oartifact == ART_EVERYWHERE_AT_ONCE) tmp += 3;
+		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (PlayerBleeds > 100) tmp -= 2;
@@ -2822,6 +2826,7 @@ int x;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp += 10;
 		if (uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) tmp += 1;
 		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
+		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
 
 		if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 			if (uarm && is_metallic(uarm)) tmp++;

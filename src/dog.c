@@ -224,8 +224,10 @@ boolean quietly, startpet;
 	if (otmp) { /* figurine; resulting monster might not become a pet */
 	    chance = rn2(5);	/* 0==tame, 1==peaceful, 2==hostile */
 	    if (chance > 2) chance = otmp->blessed ? 0 : !otmp->cursed ? 1 : 2;
-	    if (otmp && otmp->oartifact == ART_GUARANTEED_SPECIAL_PET) chance = 0;
 	    if ((rnd(30 - ACURR(A_CHA))) < 4) chance = 0;
+	    if (otmp && otmp->oartifact == ART_GUARANTEED_SPECIAL_PET) chance = 0;
+	    if (otmp && otmp->oartifact == ART_HOSTILITAWN) chance = 2;
+	    if (otmp && otmp->oartifact == ART_NEUTRALNESS_NEUTERED) chance = 1;
 	    /* 0,1,2:  b=60%,20,20; nc=20%,60,20; c=20%,20,60 */
 	    if (chance > 0) {
 		mtmp->mtame = 0;	/* not tame after all */

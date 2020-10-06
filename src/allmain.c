@@ -1320,6 +1320,15 @@ moveloop()
 					moveamt *= 2;
 				}
 
+				if (u.usteed) {
+					struct obj *osaeddle = which_armor(u.usteed, W_SADDLE);
+
+					if ((osaeddle = which_armor(u.usteed, W_SADDLE)) && osaeddle->oartifact == ART_BIKE_SADDLE) {
+						moveamt *= 3;
+						moveamt /= 2;
+					}
+				}
+
 			} /* chance to reduce speed end */
 			if (moveamt < 1) moveamt = 1; /* don't reduce it too much, no matter what happens --Amy */
 
@@ -4932,6 +4941,29 @@ controlagain:
 			u.heavyaggravation = 0;
 			pline("Several ghosts come out of a portal.");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		}
+
+		if (uarm && uarm->oartifact == ART_ROBE_OF_INFESTATION && !rn2(5000)) {
+			int aggroamount = rnd(12);
+			boolean infesttype = rn2(2) ? TRUE : FALSE;
+			if (isfriday) aggroamount *= 2;
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+			reset_rndmonst(NON_PM);
+		      cx = rn2(COLNO);
+		      cy = rn2(ROWNO);
+			while (aggroamount) {
+
+				aggroamount--;
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(mkclass(infesttype ? S_SNAKE : S_SPIDER,0), 0, 0, MM_ANGRY|MM_FRENZIED);
+				if (aggroamount < 0) aggroamount = 0;
+			}
+			u.aggravation = 0;
+
 		}
 
 		if (flags.female && PlayerInSexyFlats && !rn2(10000)) {
@@ -9679,6 +9711,19 @@ newboss:
 					if (Race_if(PM_PIERCER)) u.uhp++;
 					if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				}
+			}
+
+			if (uwep && uwep->oartifact == ART_CRYSPEAR) {
+				u.uhp += 1;
+				if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+				flags.botl = 1;
+
+			}
+			if (uarmg && uarmg->oartifact == ART_GREEN_THUMB && levl[u.ux][u.uy].typ == TREE) {
+				u.uhp += 1;
+				if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+				flags.botl = 1;
+
 			}
 
 			if (Race_if(PM_BACTERIA) && u.uhpmax > 4 && !Upolyd && u.uhp <= ((u.uhpmax / 5) + 1)) {

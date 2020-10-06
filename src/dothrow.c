@@ -442,6 +442,11 @@ int thrown;
 		(multishot == 1) ? singular(obj, xname) :  xname(obj));
 	}
 
+	if (obj && uwep && ammo_and_launcher(obj,uwep) && uwep->oartifact == ART_BUG_BAZOOKA) {
+		(void) makemon(mkclass(S_XAN,0), 0, 0, MM_ANGRY);
+		(void) makemon(mkclass(S_ANT,0), 0, 0, MM_ANGRY);
+	}
+
 	if (tech_inuse(T_BLADE_ANGER) && (objects[obj->otyp].oc_skill == -P_SHURIKEN || objects[obj->otyp].oc_skill == P_SHURIKEN ) ) {
 		struct obj *pseudo;
 		pseudo = mksobj(SPE_BLANK_PAPER, FALSE, 2, FALSE);
@@ -1274,14 +1279,20 @@ boolean hitsroof;
 	if (dmg > 0 && uarmc && uarmc->oartifact == ART_DUFFDUFFDUFF) dmg += 3;
 	if (dmg > 0 && uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) dmg += 5;
 	if (dmg > 0 && uarmg && uarmg->oartifact == ART_SI_OH_WEE) dmg += 2;
-	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_RHEA_S_MISSING_EYESIGHT) dmg += rnd(5);
+	if (dmg > 0 && powerfulimplants() && uimplant && uimplant->oartifact == ART_RHEA_S_MISSING_EYESIGHT) dmg += rnd(5);
 	if (dmg > 0 && powerfulimplants() && uimplant && uimplant->oartifact == ART_SOME_LITTLE_AID) dmg += 1;
 	if (dmg > 0 && Race_if(PM_VIKING)) dmg += 1;
 	if (dmg > 0 && Race_if(PM_SERB)) dmg += 1;
 	if (dmg > 0 && Race_if(PM_RUSMOT)) dmg += 2;
 	if (dmg > 0 && uarmg && uarmg->oartifact == ART_MAJOR_PRESENCE) dmg += 2;
 	if (dmg > 0 && uarmf && uarmf->oartifact == ART_SNAILHUNT) dmg += 1;
-	if (uarmf && uarmf->oartifact == ART_CRASHING_YOUR_SISTER_S_WED) dmg += 2;
+	if (dmg > 0 && uarmf && uarmf->oartifact == ART_CRASHING_YOUR_SISTER_S_WED) dmg += 2;
+	if (dmg > 0 && uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 0) dmg += 1;
+	if (dmg > 0 && uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 49) dmg += 1;
+	if (dmg > 0 && uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 99) dmg += 1;
+	if (dmg > 0 && uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 149) dmg += 1;
+	if (dmg > 0 && uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 199) dmg += 1;
+	if (dmg > 0 && uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 249) dmg += 1;
 
 	if (dmg > 0 && Race_if(PM_ITAQUE)) dmg -= 1;
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) dmg -= 5;
@@ -1963,6 +1974,8 @@ boolean polearming;
 	if (uarmc && uarmc->oartifact == ART_ENEMIES_SHALL_LAUGH_TOO) tmp += 10;
 	if (uimplant && uimplant->oartifact == ART_ACTUAL_PRECISION) tmp += 5;
 	if (uimplant && uimplant->oartifact == ART_RHEA_S_MISSING_EYESIGHT) tmp -= rnd(20);
+	if (uwep && uwep->oartifact == ART_SIGIX_BROADSWORD) tmp -= 5;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SIGIX_BROADSWORD) tmp -= 5;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_ACTUAL_PRECISION) tmp += 5;
 	if (uleft && uleft->oartifact == ART_BLIND_PILOT) tmp -= 10;
 	if (uright && uright->oartifact == ART_BLIND_PILOT) tmp -= 10;
@@ -1976,6 +1989,12 @@ boolean polearming;
 	if (uarmf && uarmf->oartifact == ART_CRASHING_YOUR_SISTER_S_WED) tmp -= 5;
 	if (Race_if(PM_SERB)) tmp += 1;
 	if (uarmg && uarmg->oartifact == ART_MAJOR_PRESENCE) tmp += 2;
+	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 0) tmp += 1;
+	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 49) tmp += 1;
+	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 99) tmp += 1;
+	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 149) tmp += 1;
+	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 199) tmp += 1;
+	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 249) tmp += 1;
 
 	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 

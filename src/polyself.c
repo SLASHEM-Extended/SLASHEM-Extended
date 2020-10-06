@@ -3216,7 +3216,7 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 		return 0;
 	    } else {
 
-		u.youpolyamount--;
+		if (!(uwep && uwep->oartifact == ART_SCHWILILILILI_MORPH && rn2(2))) u.youpolyamount--;
 		u.uen -= EN_DOPP;
 		if (multi >= 0) {
 		    if (occupation) stop_occupation();
