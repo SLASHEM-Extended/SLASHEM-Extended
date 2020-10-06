@@ -1965,6 +1965,10 @@ newtry:
 		direction = rnd(8);
 		pushwidth = rnd(2);
 		if (!rn2(2)) pushwidth += rnd(2);
+		if (uarmf && itemhasappearance(uarmf, APP_ZERO_DROP_SHOES)) {
+			pushwidth = rnd(3);
+			if (!rn2(2)) pushwidth += rnd(3);
+		}
 		ccc.x = u.ux;
 		ccc.y = u.uy;
 
@@ -2014,6 +2018,10 @@ newtry:
 		direction = rnd(8);
 		pushwidth = rnd(2);
 		if (!rn2(2)) pushwidth += rnd(2);
+		if (uarmf && itemhasappearance(uarmf, APP_ZERO_DROP_SHOES)) {
+			pushwidth = rnd(3);
+			if (!rn2(2)) pushwidth += rnd(3);
+		}
 		ccc.x = u.ux;
 		ccc.y = u.uy;
 

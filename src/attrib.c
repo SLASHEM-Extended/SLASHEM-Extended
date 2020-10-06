@@ -2719,6 +2719,7 @@ int x;
 		if (uarmf && itemhasappearance(uarmf, APP_UGLY_BOOTS)) tmp -= 2;
 		if (uarmf && uarmf->oartifact == ART_CARMARK) tmp -= 5;
 		if (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) tmp -= 5;
+		if (uarmh && itemhasappearance(uarmh, APP_CORONA_MASK)) tmp -= 5;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
 		if (u.tsloss_cha > 0) tmp -= u.tsloss_cha;
 

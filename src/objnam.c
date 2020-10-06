@@ -6245,6 +6245,24 @@ register int otyp;
 		actualn = Alternate_item_name(otyp,Soviet_items);
 	if (Race_if(PM_ANCIENT) && !issoviet && Alternate_item_name(otyp,Ancient_items))
 		actualn = Alternate_item_name(otyp,Ancient_items);
+
+	if (!(u.dungeongrowthhack) && uarmg && itemhasappearance(uarmg, APP_MULTILINGUITIS_GLOVES) && !rn2(5)) {
+		switch (rnd(4)) {
+			case 1:
+				if (Alternate_item_name(otyp,Ancient_items)) actualn = Alternate_item_name(otyp,Ancient_items);
+				break;
+			case 2:
+				if (Alternate_item_name(otyp,Japanese_items)) actualn = Alternate_item_name(otyp,Japanese_items);
+				break;
+			case 3:
+				if (Alternate_item_name(otyp,Pirate_items)) actualn = Alternate_item_name(otyp,Pirate_items);
+				break;
+			case 4:
+				if (Alternate_item_name(otyp,Soviet_items)) actualn = Alternate_item_name(otyp,Soviet_items);
+				break;
+		}
+	}
+
 	switch(ocl->oc_class) {
 	case COIN_CLASS:
 		strcpy(buf, "coin");
@@ -6430,6 +6448,23 @@ register struct obj *obj;
 		actualn = Alternate_item_name(typ,Soviet_items);
 	if (Race_if(PM_ANCIENT) && !issoviet && Alternate_item_name(typ,Ancient_items))
 		actualn = Alternate_item_name(typ,Ancient_items);
+
+	if (!(u.dungeongrowthhack) && uarmg && itemhasappearance(uarmg, APP_MULTILINGUITIS_GLOVES) && !rn2(5)) {
+		switch (rnd(4)) {
+			case 1:
+				if (Alternate_item_name(typ,Ancient_items)) actualn = Alternate_item_name(typ,Ancient_items);
+				break;
+			case 2:
+				if (Alternate_item_name(typ,Japanese_items)) actualn = Alternate_item_name(typ,Japanese_items);
+				break;
+			case 3:
+				if (Alternate_item_name(typ,Pirate_items)) actualn = Alternate_item_name(typ,Pirate_items);
+				break;
+			case 4:
+				if (Alternate_item_name(typ,Soviet_items)) actualn = Alternate_item_name(typ,Soviet_items);
+				break;
+		}
+	}
 
 	if (!dn && restoring) dn = "???";
 	buf[0] = '\0';

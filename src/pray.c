@@ -2744,6 +2744,13 @@ boolean praying;	/* false means no messages should be given */
     if (praying)
 	You("begin praying to %s.", align_gname(p_aligntyp));
 
+    if (uarmh && itemhasappearance(uarmh, APP_POPE_HAT)) {
+	adjalign(5);
+	change_luck(1);
+	u.ublesscnt -= rnd(300);
+	if (u.ublesscnt < 0) u.ublesscnt = 0; /* fail safe */
+    }
+
     if (u.ualign.type && u.ualign.type == -p_aligntyp)
 	alignment = -u.ualign.record;		/* Opposite alignment altar */
     else if (u.ualign.type != p_aligntyp)

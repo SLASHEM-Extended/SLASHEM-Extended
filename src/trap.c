@@ -15761,12 +15761,22 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			    } else
 				break;
 			}
-			/* Fall through */
-		case LEVEL_TELEP:
 			{
 			    int mlev_res;
 			    mlev_res = mlevel_tele_trap(mtmp, trap,
 							inescapable, in_sight);
+			    if (mlev_res) return(mlev_res);
+			}
+			break;
+			/* used to be a fallthrough but we don't want that anymore --Amy */
+		case LEVEL_TELEP:
+		case LEVEL_BEAMER:
+
+			if (mtmp->isshk || mtmp->ispriest) break; /* we don't want shks to become angry through no fault of your own, unless you have e.g. a wakeup call trap in effect --Amy */
+
+			{
+			    int mlev_res;
+			    mlev_res = mlevel_tele_trap(mtmp, trap, inescapable, in_sight);
 			    if (mlev_res) return(mlev_res);
 			}
 			break;
@@ -15782,19 +15792,11 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 
 			break;
 
-		case LEVEL_BEAMER:
-			{
-			    int mlev_res;
-			    mlev_res = mlevel_tele_trap(mtmp, trap,
-							inescapable, in_sight);
-			    if (mlev_res) return(mlev_res);
-			}
-			break;
-
 		case MAGIC_PORTAL: /* no longer allows players to simply get rid of them --Amy */
 		case RELOCATION_TRAP:
 
 			if (rn2(2)) break; /* don't trigger too often */
+			if (mtmp->isshk || mtmp->ispriest) break; /* we don't want shks to become angry through no fault of your own, unless you have e.g. a wakeup call trap in effect --Amy */
 			if (in_sight) {
 				pline("%s seems very disoriented!", mon_nam(mtmp));
 				seetrap(trap);
@@ -15804,10 +15806,10 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			break;
 
 		case TELEP_TRAP:
-			mtele_trap(mtmp, trap, in_sight);
-			break;
-
 		case BEAMER_TRAP:
+
+			if (mtmp->isshk || mtmp->ispriest) break; /* we don't want shks to become angry through no fault of your own, unless you have e.g. a wakeup call trap in effect --Amy */
+
 			mtele_trap(mtmp, trap, in_sight);
 			break;
 
@@ -16479,6 +16481,9 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			break;
 
 		case POLY_TRAP:
+
+			if (mtmp->isshk || mtmp->ispriest) break; /* I simply decided to make them immune, sue me :P --Amy */
+
 		    if (resists_magm(mtmp)) {
 			shieldeff(mtmp->mx, mtmp->my);
 		    } else if (!resist(mtmp, WAND_CLASS, 0, NOTELL)) {
@@ -17641,6 +17646,7 @@ register boolean force, here;
 		if (itemhasappearance(obj, APP_WITHERED_CLOAK) ) continue;
 
 		if ((obj->where != OBJ_FLOOR) && uarmh && itemhasappearance(uarmh, APP_SCUBA_HELMET) ) continue;
+		if ((obj->where != OBJ_FLOOR) && uarmc && itemhasappearance(uarmc, APP_WETSUIT)) continue;
 		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_FOAMONIA_WATER ) continue;
 		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_GARY_S_RIVALRY ) continue;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_NEWFOUND_AND_USEFUL) continue;
@@ -18527,6 +18533,11 @@ register int n;
 			n /= rnd(5);
 			if (n < 1) n = 1;
 		}
+	}
+
+	if (uarmf && itemhasappearance(uarmf, APP_CROSS_COUNTRY_BOOTS) && !rn2(5)) {
+		pline("Thanks to your cross country boots, you resist the mana drain.");
+		return;
 	}
 
 	if (!u.uenmax) return;

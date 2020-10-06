@@ -1098,6 +1098,9 @@ moveloop()
 				if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
+				if (flags.female && uarmf && itemhasappearance(uarmf, APP_OPERA_PUMPS) && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+
 				if (Race_if(PM_TONBERRY) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
@@ -1308,6 +1311,12 @@ moveloop()
 					moveamt /= 2;
 				}
 
+				/* speed boosts while riding go here */
+
+				if (uarmf && itemhasappearance(uarmf, APP_BIKER_BOOTS) && !rn2(10)) {
+					moveamt *= 2;
+				}
+
 			} /* chance to reduce speed end */
 			if (moveamt < 1) moveamt = 1; /* don't reduce it too much, no matter what happens --Amy */
 
@@ -1386,6 +1395,9 @@ moveloop()
 			}
 
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too are slower sometimes. */
+				moveamt /= 2;
+
+			if (flags.female && uarmf && itemhasappearance(uarmf, APP_OPERA_PUMPS) && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
 
 			if (Race_if(PM_TONBERRY) && !rn2(8) && moveamt > 1)
@@ -1697,6 +1709,11 @@ moveloop()
 				moveamt *= 2;
 			}
 
+			if (!flags.female && uarmf && itemhasappearance(uarmf, APP_OPERA_PUMPS)) {
+				moveamt *= 11;
+				moveamt /= 10;
+			}
+
 			if (is_highway(u.ux, u.uy)) {
 				moveamt *= 2;
 			}
@@ -1791,14 +1808,29 @@ moveloop()
 
 		    } /* end adjustment for when player is not riding */
 
-		    switch (wtcap) { /* tweaked so the player is slowed down less --Amy */
-			case UNENCUMBERED: break;
-			case SLT_ENCUMBER: moveamt -= (moveamt / 5); break;
-			case MOD_ENCUMBER: moveamt -= (moveamt / 3); break;
-			case HVY_ENCUMBER: moveamt -= (moveamt / 2); break;
-			case EXT_ENCUMBER: moveamt -= ((moveamt * 3) / 4); break;
-			default: break;
-		    }
+			if (uarmf && itemhasappearance(uarmf, APP_HIKING_BOOTS)) {
+
+				switch (wtcap) {
+					case UNENCUMBERED: break;
+					case SLT_ENCUMBER: moveamt -= (moveamt / 6); break;
+					case MOD_ENCUMBER: moveamt -= (moveamt / 5); break;
+					case HVY_ENCUMBER: moveamt -= (moveamt / 4); break;
+					case EXT_ENCUMBER: moveamt -= (moveamt / 2); break;
+					default: break;
+				}
+
+			} else {
+
+				switch (wtcap) { /* tweaked so the player is slowed down less --Amy */
+					case UNENCUMBERED: break;
+					case SLT_ENCUMBER: moveamt -= (moveamt / 5); break;
+					case MOD_ENCUMBER: moveamt -= (moveamt / 3); break;
+					case HVY_ENCUMBER: moveamt -= (moveamt / 2); break;
+					case EXT_ENCUMBER: moveamt -= ((moveamt * 3) / 4); break;
+					default: break;
+				}
+
+			}
 
 			/* being satiated makes you slower... --Amy */
 		    if (u.uhunger >= 3200) moveamt -= (moveamt / 6);
@@ -6930,7 +6962,7 @@ newbossB:
 
 		}
 
-		if (is_moorland(u.ux, u.uy) && !Flying && !Levitation && !Race_if(PM_BOVER)) {
+		if (is_moorland(u.ux, u.uy) && !(uarmf && itemhasappearance(uarmf, APP_MUD_BOOTS)) && !Flying && !Levitation && !Race_if(PM_BOVER)) {
 			Norep("Swimming in moorland causes continuous damage.");
 			losehp(rnd(5 + (level_difficulty() / 5)), "swimming in moorland", KILLED_BY);
 			stop_occupation();
@@ -9416,6 +9448,7 @@ newboss:
 		if (u.ublesscnt < 0) u.ublesscnt = 0; /* fail safe */
 
 		if (uarmg && u.ublesscnt && itemhasappearance(uarmg, APP_COMFORTABLE_GLOVES) ) u.ublesscnt--;
+		if (uarmc && u.ublesscnt && Role_if(PM_PRIEST) && itemhasappearance(uarmc, APP_ORNAMENTAL_COPE) ) u.ublesscnt--;
 
 		if (u.ublesscnt && RngePrayer) u.ublesscnt--;
 
@@ -10339,6 +10372,54 @@ newboss:
 
 			}
 cellarnope:
+			if (!rn2(25000) && uarmf && itemhasappearance(uarmf, APP_DEMONOLOGIST_BOOTS) ) {
+
+				if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+					goto demonolpast;
+				}
+
+				if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
+					goto demonolpast;
+				}
+
+				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+
+				u.cnd_banishmentcount++;
+				if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
+				else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
+
+				register int newlev = rnd(99);
+				d_level newlevel;
+				get_level(&newlevel, newlev);
+				goto_level(&newlevel, TRUE, FALSE, FALSE);
+				You("were banished!");
+
+			}
+demonolpast:
+
+			if (!rn2(25000) && uarmf && itemhasappearance(uarmf, APP_DEMONOLOGIST_BOOTS) ) {
+				if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+					goto demonolpast2;
+				}
+
+				if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
+					goto demonolpast2;
+				}
+
+				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+
+				(void) safe_teleds(FALSE);
+				goto_level(&medusa_level, TRUE, FALSE, FALSE);
+
+				register int newlevX = 1;
+				d_level newlevelX;
+				get_level(&newlevelX, newlevX);
+				goto_level(&newlevelX, TRUE, FALSE, FALSE);
+				pline("It's back to square one for you!");
+
+			}
+demonolpast2:
+
 			if (!rn2(10000) && uarmc && itemhasappearance(uarmc, APP_CHINESE_CLOAK) ) {
 
 				if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {

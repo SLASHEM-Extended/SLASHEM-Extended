@@ -1212,6 +1212,9 @@ playerwearshighheels()
 		if (itemhasappearance(uarmf, APP_RADIANT_HEELS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_SEXY_HEELS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_STROKING_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_GENERIC_HIGH_HEELS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_FAILED_SHOES)) return TRUE;
+		if (itemhasappearance(uarmf, APP_OPERA_PUMPS)) return TRUE;
 
 	}
 
@@ -1324,6 +1327,9 @@ struct obj *otmp;
 		if (itemhasappearance(otmp, APP_RADIANT_HEELS)) return TRUE;
 		if (itemhasappearance(otmp, APP_SEXY_HEELS)) return TRUE;
 		if (itemhasappearance(otmp, APP_STROKING_BOOTS)) return TRUE;
+		if (itemhasappearance(otmp, APP_GENERIC_HIGH_HEELS)) return TRUE;
+		if (itemhasappearance(otmp, APP_FAILED_SHOES)) return TRUE;
+		if (itemhasappearance(otmp, APP_OPERA_PUMPS)) return TRUE;
 
 	}
 
@@ -1375,6 +1381,9 @@ int number;
 		if (itemnumwithappearance(number, APP_RADIANT_HEELS)) return TRUE;
 		if (itemnumwithappearance(number, APP_SEXY_HEELS)) return TRUE;
 		if (itemnumwithappearance(number, APP_STROKING_BOOTS)) return TRUE;
+		if (itemnumwithappearance(number, APP_GENERIC_HIGH_HEELS)) return TRUE;
+		if (itemnumwithappearance(number, APP_FAILED_SHOES)) return TRUE;
+		if (itemnumwithappearance(number, APP_OPERA_PUMPS)) return TRUE;
 
 	}
 
@@ -1421,6 +1430,10 @@ playerwearssexyflats()
 		if (itemhasappearance(uarmf, APP_GENTLE_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_FLUFFY_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_UNISEX_PUMPS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_WOODEN_CLOGS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_REGULAR_SNEAKERS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_ELITE_SNEAKERS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_FUR_BOOTS)) return TRUE;
 
 	}
 
@@ -1447,6 +1460,7 @@ maybestilettoheels()
 		if (itemhasappearance(uarmf, APP_ANKLE_STRAP_SANDALS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_FILIGREE_STILETTOS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_WEAPON_LIGHT_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_FAILED_SHOES)) return TRUE;
 
 	}
 
@@ -1476,6 +1490,7 @@ maybeconeheels()
 		if (itemhasappearance(uarmf, APP_VELVET_PUMPS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_BONE_HEELS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_SEXY_HEELS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_OPERA_PUMPS)) return TRUE;
 
 	}
 

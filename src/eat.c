@@ -232,6 +232,8 @@ register struct obj *obj;
 	/* Spirits can't eat corpses --Amy */
 	if (Race_if(PM_SPIRIT) && obj->otyp == CORPSE && !Upolyd) return 0;
 
+	if (Role_if(PM_ANACHRONIST) && (uarmh && itemhasappearance(uarmh, APP_ANACHRO_HELMET))) return 0;
+
 	/* android can't either (anachrononononononist from dnethack who can only eat processed food) */
 	if (Race_if(PM_PLAYER_ANDROID) && obj->otyp == CORPSE && !Upolyd) return 0;
 
@@ -7070,6 +7072,11 @@ register int num;
 	if (Race_if(PM_GERTEUT)) {
 		num *= 4;
 		num /= 3;
+	}
+
+	if (Role_if(PM_ANACHRONIST) && (uarmh && itemhasappearance(uarmh, APP_ANACHRO_HELMET))) {
+		num *= 6;
+		num /= 5;
 	}
 
 	if (Race_if(PM_SERB)) {
