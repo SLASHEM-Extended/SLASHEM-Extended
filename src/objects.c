@@ -6884,6 +6884,7 @@ SCROLL((char *)0,               "LOCKE COMES AND DOES EVIL THINGS TO BRIENNE",  
 SCROLL((char *)0,               "OUI TRES BIEN MERCI BEAUCOUP",  P_NONE,     1,   0, 300, CLR_RED, 1),
 SCROLL((char *)0,               "HAENDE HOCH IHR BAMBINIS",  P_NONE,     1,   0, 300, CLR_YELLOW, 1),
 SCROLL((char *)0,               "SEND SOME ASSASSINS AFTER THE CERSEI MONSTER",  P_NONE,     1,   0, 300, CLR_GREEN, 1),
+SCROLL((char *)0,               "MORNING MAT MORNING SLAT",  P_NONE,     1,   0, 300, CLR_YELLOW, 1),
 
 
 #ifdef MAIL

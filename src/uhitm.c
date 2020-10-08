@@ -3896,7 +3896,7 @@ int dieroll;
 
 			else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && !rn2(5) && !thrown) {
 
-				switch (rnd(597)) {
+				switch (rnd(600)) {
 
 				case 1: pline("You crush %s's skull into jelly.", mon_nam(mon)); break;
 				case 2: pline("You decapitate %s with a backhand stroke.", mon_nam(mon)); break;
@@ -4495,6 +4495,9 @@ int dieroll;
 				case 595: pline("%s tries to push you into a wall of fire, but you dodge and thereby cause %s to fall in %sself.", Monnam(mon), mhim(mon), mhim(mon)); break;
 				case 596: pline("Suddenly the police comes and arrests %s for not adhering to the social distancing protocols.", mon_nam(mon)); break;
 				case 597: pline("%s accidentally falls into a pool of water, only to discover that the water is really acid, and ends up dissolving completely.", Monnam(mon)); break;
+				case 598: pline("You ruined %s's day.", mon_nam(mon)); break;
+				case 599: pline("You crush %s's hopes.", mon_nam(mon)); break;
+				case 600: pline("%s has triggered too many nasty traps and therefore decides to ragequit the game.", Monnam(mon)); break;
 
 
 				default: pline("You hit %s very hard!", mon_nam(mon)); break;
