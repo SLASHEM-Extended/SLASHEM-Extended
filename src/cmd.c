@@ -1497,6 +1497,10 @@ domonability()
 		if (split_mon(&youmonst, (struct monst *)0))
 		    dryup(u.ux, u.uy, TRUE);
 	    } else There("is no fountain here.");
+	} else if (splittinglavagremlin(youmonst.data) && yn("Do you want to replicate in lava?")=='y' ) {
+	    if(levl[u.ux][u.uy].typ == LAVAPOOL) {
+		(split_mon(&youmonst, (struct monst *)0));
+	    } else There("is no lava here.");
 	} else if ( (is_unicorn(youmonst.data) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT && uactivesymbiosis && is_unicorn(&mons[u.usymbiote.mnum])) || (Race_if(PM_PLAYER_UNICORN) && !Upolyd) ) && yn("Do you want to cure yourself with your horn?")=='y' ) {
 	    use_unicorn_horn((struct obj *)0);
 	    return 1;

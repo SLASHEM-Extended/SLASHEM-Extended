@@ -2802,7 +2802,15 @@ altarfound:
 
 	appr = mtmp->mflee ? -1 : 1;
 
+	if (monsndx(ptr) == PM_DEMON_SPOTTER && !mtmp->cham && !rn2(23) && !mtmp->mpeaceful && !mtmp->mtame) {
+		msummon(mtmp, FALSE);
+		pline("%s opens a gate!",Monnam(mtmp) );
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Sovetskaya nadeyetsya, chto demony zapolnyayut ves' uroven' i ubit' vas." : "Pitschaeff!");
+
+	}
+
 	if (monsndx(ptr) == PM_SLEEPING_GIANT && !rn2(10)) mtmp->msleeping = 1;
+	if (monsndx(ptr) == PM_APATHETIC_ASSHOLE && !rn2(10)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_SARSLEEPER && !rn2(10)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_SLEEPY_GIRL && !rn2(10)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_SLEEPY_WOMAN && !rn2(10)) mtmp->msleeping = 1;
@@ -2811,6 +2819,7 @@ altarfound:
 	if (monsndx(ptr) == PM_DIDDLY_DINGUS_DUDE && !rn2(20)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_BEER_BELLY) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_SLOOB) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_CRAMP_CART_TO_THE_WALL_DRIVER) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_SOBER_THE_DRUNK) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_LOONIE_BOSS) mtmp->mconf = 1;

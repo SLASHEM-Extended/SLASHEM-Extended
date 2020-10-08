@@ -1000,6 +1000,8 @@ int	mntmp;
 		pline(use_thec,monsterc,"spin a web");
 	    if (splittinggremlin(youmonst.data))
 		pline(use_thec,monsterc,"multiply in a fountain");
+	    if (splittinglavagremlin(youmonst.data))
+		pline(use_thec,monsterc,"multiply in a pool of lava");
 	    if (is_unicorn(youmonst.data))
 		pline(use_thec,monsterc,"use your horn");
 	    if (is_mind_flayer(youmonst.data))

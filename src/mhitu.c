@@ -2174,6 +2174,7 @@ mattacku(mtmp)
 
 /*	Special demon handling code */
 	if(!mtmp->cham && (is_demon(mdat) || mtmp->egotype_gator) && !range2
+	   && mtmp->data != &mons[PM_DEMON_SPOTTER] /* moved to monmove.c --Amy */
 	   && mtmp->data != &mons[PM_BALROG]
 	   && mtmp->data != &mons[PM_SUCCUBUS]
 	   && mtmp->data != &mons[PM_INCUBUS]
@@ -5122,7 +5123,7 @@ elena37:
 	}
 
 	/* ultra-mega laser cannon for some specific ubermonsters, including the elder priest */
-	if (mtmp->data == &mons[PM_DHWTY] || mtmp->data == &mons[PM_LAST_DANCER] || mtmp->data == &mons[PM_CURTAIN_CALL_LAST_DANCER] || mtmp->data == &mons[PM_GRAND_FINALE_LAST_DANCER] || mtmp->data == &mons[PM_PROVIDENCE_GAZE] || mtmp->data == &mons[PM_CHAOS_SERPENT] || mtmp->data == &mons[PM_CHAOTIC_SERPENT] || mtmp->data == &mons[PM_ARCHAYEEK_GUNNER] || mtmp->data == &mons[PM_SIN_GORILLA] || mtmp->data == &mons[PM_ELITE_GUARD] || mtmp->data == &mons[PM_BLUEBEAM_GOLEM] || mtmp->data == &mons[PM_AIRTIGHT_FEMMY] || mtmp->data == &mons[PM_DRICERADOPS] || mtmp->data == &mons[PM_SVEN] || mtmp->data == &mons[PM_GRANDMASTER_SVEN] || mtmp->data == &mons[PM_WORLD_PWNZOR] || mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || mtmp->data == &mons[PM_SANDRA_S_MINDDRILL_SANDAL] || mtmp->egotype_laserpwnzor) {
+	if (mtmp->data == &mons[PM_DHWTY] || mtmp->data == &mons[PM_PARTICLE_MAN] || mtmp->data == &mons[PM_LAST_DANCER] || mtmp->data == &mons[PM_CURTAIN_CALL_LAST_DANCER] || mtmp->data == &mons[PM_GRAND_FINALE_LAST_DANCER] || mtmp->data == &mons[PM_PROVIDENCE_GAZE] || mtmp->data == &mons[PM_CHAOS_SERPENT] || mtmp->data == &mons[PM_CHAOTIC_SERPENT] || mtmp->data == &mons[PM_ARCHAYEEK_GUNNER] || mtmp->data == &mons[PM_SIN_GORILLA] || mtmp->data == &mons[PM_ELITE_GUARD] || mtmp->data == &mons[PM_BLUEBEAM_GOLEM] || mtmp->data == &mons[PM_AIRTIGHT_FEMMY] || mtmp->data == &mons[PM_DRICERADOPS] || mtmp->data == &mons[PM_SVEN] || mtmp->data == &mons[PM_GRANDMASTER_SVEN] || mtmp->data == &mons[PM_WORLD_PWNZOR] || mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || mtmp->data == &mons[PM_SANDRA_S_MINDDRILL_SANDAL] || mtmp->egotype_laserpwnzor) {
 		if (range2 && lined_up(mtmp) && !blue_on_blue(mtmp) && (ZAP_POS(levl[u.ux][u.uy].typ) ) ) {
 			if (!mtmp->hominglazer && !rn2(20)) {
 				pline("ATTENTION: %s has started to load an ultra-mega-hyper-dyper laser cannon!", Monnam(mtmp));
@@ -7824,6 +7825,8 @@ dopois:
 			if (u.ulycn == PM_HUMAN_WEREPERMAMIMIC) u.ulycn = PM_WEREPERMAMIMIC;
 			if (u.ulycn == PM_HUMAN_WERECOW) u.ulycn = PM_WERECOW;
 			if (u.ulycn == PM_HUMAN_WEREBEAR) u.ulycn = PM_WEREBEAR;
+			if (u.ulycn == PM_HUMAN_WEREBRONZEGRAM) u.ulycn = PM_WEREBRONZEGRAM;
+			if (u.ulycn == PM_HUMAN_WERECHROMEGRAM) u.ulycn = PM_WERECHROMEGRAM;
 			if (u.ulycn == PM_HUMAN_WEREDEMON) u.ulycn = PM_WEREDEMON;
 			if (u.ulycn == PM_HUMAN_WEREPHANT) u.ulycn = PM_WEREPHANT;
 			if (u.ulycn == PM_HUMAN_WEREVORTEX) u.ulycn = PM_WEREVORTEX;

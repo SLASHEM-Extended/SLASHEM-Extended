@@ -2021,7 +2021,7 @@ dosacrifice()
 			pline("The gods have no use for trove corpses; you should probably eat them yourself.");
 		}
 		/* gremlins that can split should already be G_NOCORPSE, but just in case... --Amy */
-		if (splittinggremlin(ptr)) {
+		if (splittinggremlin(ptr) || splittinglavagremlin(ptr)) {
 			value = 0;
 			pline("The gods look with disdain at mortals who endlessly split monsters for farming purposes.");
 		}

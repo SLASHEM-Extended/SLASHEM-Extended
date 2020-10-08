@@ -85,6 +85,10 @@ int pm;
 	    case PM_HUMAN_WERECOW: return(PM_WERECOW);
 	    case PM_WEREBEAR:       return(PM_HUMAN_WEREBEAR);
 	    case PM_HUMAN_WEREBEAR: return(PM_WEREBEAR);
+	    case PM_WEREBRONZEGRAM:       return(PM_HUMAN_WEREBRONZEGRAM);
+	    case PM_HUMAN_WEREBRONZEGRAM: return(PM_WEREBRONZEGRAM);
+	    case PM_WERECHROMEGRAM:       return(PM_HUMAN_WERECHROMEGRAM);
+	    case PM_HUMAN_WERECHROMEGRAM: return(PM_WERECHROMEGRAM);
 	    case PM_WEREDEMON:       return(PM_HUMAN_WEREDEMON);
 	    case PM_HUMAN_WEREDEMON: return(PM_WEREDEMON);
 	    case PM_WEREPHANT:       return(PM_HUMAN_WEREPHANT);
@@ -366,6 +370,13 @@ boolean ownloc; /* TRUE = summon them at a random location, FALSE = summon them 
 		case PM_HUMAN_WEREBEAR:
 			typ = rn2(5) ? PM_BROWN_BEAR : PM_CAVE_BEAR ;
 			if (genbuf) strcpy(genbuf, "ursa major");
+			break;
+		case PM_WEREBRONZEGRAM:
+		case PM_HUMAN_WEREBRONZEGRAM:
+		case PM_WERECHROMEGRAM:
+		case PM_HUMAN_WERECHROMEGRAM:
+			typ = PM_JOURNEYMAN_ROLL_WALL ;
+			if (genbuf) strcpy(genbuf, "pentagram");
 			break;
 		case PM_WEREDEMON:
 		case PM_HUMAN_WEREDEMON:

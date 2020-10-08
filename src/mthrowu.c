@@ -1369,6 +1369,14 @@ m_throw(mon, x, y, dx, dy, range, obj)
 			default:
 			    dam = dmgval(singleobj, &youmonst);
 			    if (singleobj->otyp == BOULDER && !rn2(2)) dam += (2 * (mon->m_lev));
+
+			    if (singleobj->otyp == BOULDER && (mon->data == &mons[PM_BOULDER_FART] || mon->data == &mons[PM_FIRM_BOULDER_FART])) {
+				pline("%s produces %s farting noises with %s %s butt.", Monnam(mon), !rn2(2) ? "loud" : "disgusting", mhis(mon), mon->female ? "sexy" : "ugly");
+				u.cnd_fartingcount++;
+				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+				if (!extralongsqueak()) badeffect();
+			    }
+
 			    hitv = 3 - distmin(u.ux,u.uy, mon->mx,mon->my);
 			    if (hitv < -4) hitv = -4;
 			    if (is_elf(mon->data) &&

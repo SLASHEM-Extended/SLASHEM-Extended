@@ -276,6 +276,7 @@ int mndx;
 	case PM_SLUMBER_HULK:	mcham = CHAM_SLUMBER_HULK; break;
 	case PM_IVEL_WUXTINA:	mcham = CHAM_IVEL_WUXTINA; break;
 	case PM_EARLY_LEON:	mcham = CHAM_EARLY_LEON; break;
+	case PM_CHAMELON:	mcham = CHAM_CHAMELON; break;
 	case PM_CHANGELING:	mcham = CHAM_CHANGELING; break;
 	case PM_CHANGELING_ZOMBIE:	mcham = CHAM_CHANGELING_ZOMBIE; break;
 	case PM_CHANGELING_MUMMY:	mcham = CHAM_CHANGELING_MUMMY; break;
@@ -342,6 +343,7 @@ STATIC_VAR int cham_to_pm[] = {
 		PM_PURPLE_R,
 		PM_VAMPSHIFTER,
 		PM_UNGENOCIDABLE_VAMPSHIFTER,
+		PM_CHAMELON,
 		PM_GIANT_CHAMELEON,
 };
 
@@ -991,6 +993,10 @@ register struct monst *mtmp;
 	    case PM_MOLDY_COLONY:
 	    case PM_MUTATED_UNDEAD_POTATO:
 	    case PM_THOUL:
+	    case PM_YET_ANOTHER_GREATER_MUMMY:
+	    case PM_GREATER_MUMMY_PRIEST:
+	    case PM_GREATER_MUMMY_PHARAOH:
+	    case PM_GREATER_MUMMY_HIGH_PRIEST:
 		obj = mkcorpstat(CORPSE, (struct monst *)0, &mons[mndx], x, y, TRUE);
 		obj->age -= 100;                /* this is an *OLD* corpse */
 		break;
@@ -1771,6 +1777,9 @@ register struct monst *mtmp;
 	if (split_mon(mtmp, (struct monst *)0))
 	    dryup(mtmp->mx, mtmp->my, FALSE);
 	if (inpool) water_damage(mtmp->minvent, FALSE, FALSE);
+	return (0);
+    } else if (splittinglavagremlin(mtmp->data) && inlava && !rn2(5)) { /* lowered chance --Amy */
+	(split_mon(mtmp, (struct monst *)0));
 	return (0);
     } else if (mtmp->data == &mons[PM_IRON_GOLEM] && inpool && !rn2(5)) {
 	int dam = d(2,6);
@@ -4055,6 +4064,10 @@ register struct monst *mtmp;
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WERECOW], -1);
 	else if (mtmp->data == &mons[PM_WEREBEAR])
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREBEAR], -1);
+	else if (mtmp->data == &mons[PM_WEREBRONZEGRAM])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREBRONZEGRAM], -1);
+	else if (mtmp->data == &mons[PM_WERECHROMEGRAM])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WERECHROMEGRAM], -1);
 	else if (mtmp->data == &mons[PM_WEREDEMON])
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREDEMON], -1);
 	else if (mtmp->data == &mons[PM_WEREPHANT])
@@ -6216,7 +6229,7 @@ xkilled(mtmp, dest)
 		if (!rn2(500) && timebasedlowerchance() && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(usefulitem(), x, y, TRUE, FALSE, FALSE);
 
 		/* you should not be able to farm trolls, gremlins, long worms etc. --Amy */
-		if (!rn2( (Race_if(PM_DROW) ? 100 : Race_if(PM_DOPPELGANGER) ? 150 : 30) ) && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && !is_reviver(mdat) && !is_rider(mdat) && !is_deadlysin(mdat) && !splittinggremlin(mdat) && mdat != &mons[PM_DUMMY_MONSTER_NEEDED_FOR_VISUAL_INTERFACE] && mdat != &mons[PM_LONG_WORM] && mdat != &mons[PM_GHOST] && mdat != &mons[PM_TROLL_ZOMBIE] && mdat != &mons[PM_TROLL_MUMMY] && mdat != &mons[PM_TROLL_PERMAMIMIC_MUMMY] && mdat != &mons[PM_EGO_TROLL_MUMMY] && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) && !(issoviet && (mvitals[mndx].mvflags & G_NOCORPSE)) && !(issoviet && nohands(mdat))
+		if (!rn2( (Race_if(PM_DROW) ? 100 : Race_if(PM_DOPPELGANGER) ? 150 : 30) ) && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && !is_reviver(mdat) && !is_rider(mdat) && !is_deadlysin(mdat) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && mdat != &mons[PM_DUMMY_MONSTER_NEEDED_FOR_VISUAL_INTERFACE] && mdat != &mons[PM_LONG_WORM] && mdat != &mons[PM_GHOST] && mdat != &mons[PM_TROLL_ZOMBIE] && mdat != &mons[PM_TROLL_MUMMY] && mdat != &mons[PM_TROLL_PERMAMIMIC_MUMMY] && mdat != &mons[PM_EGO_TROLL_MUMMY] && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) && !(issoviet && (mvitals[mndx].mvflags & G_NOCORPSE)) && !(issoviet && nohands(mdat))
 	/* lowered overall chance, but see below for a chance to get extra items --Amy
 	 * Drow and especially Doppelgangers are super-powerful anyway, so I decided to nerf them a bit. */
 					&& (!issoviet || (mdat->mlet != S_KOP))
@@ -7352,6 +7365,7 @@ struct monst *mon;
 	case CHAM_PURPLE_R: chambaselvl = 12; break;
 	case CHAM_VAMPSHIFTER: chambaselvl = 12; break;
 	case CHAM_UNGENOCIDABLE_VAMPSHIFTER: chambaselvl = 12; break;
+	case CHAM_CHAMELON: chambaselvl = 16; break;
 	case CHAM_GIANT_CHAMELEON: chambaselvl = 10; break;
 	/* gah they made it so that regular polymorphs, e.g. via potion, also use this function! */
 	default:
@@ -7566,6 +7580,20 @@ ghostchoice:
 			if (uncommon10(pm) && rn2(5)) goto ghostchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto ghostchoice;
 			if (rn2(10000) && !(pm->mlet == S_GHOST) ) goto ghostchoice;
+		break;
+	    case CHAM_CHAMELON:
+chamelonchoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto chamelonchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto chamelonchoice;
+			if (uncommon2(pm) && !rn2(4)) goto chamelonchoice;
+			if (uncommon3(pm) && !rn2(3)) goto chamelonchoice;
+			if (uncommon5(pm) && !rn2(2)) goto chamelonchoice;
+			if (uncommon7(pm) && rn2(3)) goto chamelonchoice;
+			if (uncommon10(pm) && rn2(5)) goto chamelonchoice;
+			if (is_jonadabmonster(pm) && rn2(20)) goto chamelonchoice;
+			if (rn2(10000) && !(pm->mlet == S_BAD_FOOD) ) goto chamelonchoice;
 		break;
 	    case CHAM_SHOEMELEON:
 shoechoice:

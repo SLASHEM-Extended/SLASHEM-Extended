@@ -1925,6 +1925,7 @@ register int pm;
 	    case PM_ARCH_NEWT:
 	    case PM_REMORHAZ:
 	    case PM_DEMINEWT:
+	    case PM_DEMILOVATO_NEWT:
 	    case PM_MASTER_NEWT:
 	    case PM_EMPEROR_NEWT:
 	    case PM_LARGE_NEWT:
@@ -2621,6 +2622,14 @@ register int pm;
 		catch_lycanthropy = TRUE;
 		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREBEAR;
 		break;
+	    case PM_HUMAN_WEREBRONZEGRAM:
+		catch_lycanthropy = TRUE;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREBRONZEGRAM;
+		break;
+	    case PM_HUMAN_WERECHROMEGRAM:
+		catch_lycanthropy = TRUE;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERECHROMEGRAM;
+		break;
 	    case PM_HUMAN_WEREDEMON:
 		catch_lycanthropy = TRUE;
 		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREDEMON;
@@ -2968,6 +2977,7 @@ register int pm;
 	    case PM_MARTIIN:
 	    case PM_IVEL_WUXTINA:
 	    case PM_EARLY_LEON:
+	    case PM_CHAMELON:
 	    case PM_SLUMBER_HULK:
 	    case PM_OFFDIVER:
 	    case PM_CHANGELING:
@@ -3302,6 +3312,8 @@ register int pm;
 	    case PM_UBER_MIND_FLAYER:
 	    case PM_SNARE_FLAYER:
 	    case PM_SANITY_FLAYER:
+	    case PM_FISH_STICK:
+	    case PM_OMEGA___FISH_STICK:
 	    case PM_BEAMBEAM_FLAYER:
 		case PM_COCKATRICE:
 		case PM_DISENTITRICE:
