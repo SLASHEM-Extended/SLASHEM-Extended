@@ -5183,6 +5183,37 @@ obsidianprotection()
 	return FALSE;
 }
 
+/* by jonadab: psychic waves can h@xx0r the player's implant --Amy */
+void
+maybehackimplant()
+{
+	int hackchance = 10;
+	if (powerfulimplants()) hackchance *= 10;
+	if (!uimplant) return;
+
+	if (!(PlayerCannotUseSkills) && (powerfulimplants() || rn2(2)) ) {
+
+		switch (P_SKILL(P_IMPLANTS)) {
+			default: break;
+			case P_BASIC: hackchance *= 2; break;
+			case P_SKILLED: hackchance *= 3; break;
+			case P_EXPERT: hackchance *= 5; break;
+			case P_MASTER: hackchance *= 7; break;
+			case P_GRAND_MASTER: hackchance *= 10; break;
+			case P_SUPREME_MASTER: hackchance *= 15; break;
+		}
+	}
+
+	if (!rn2(hackchance)) {
+		pline("Oh no! Your implant was h@xx0red!");
+		badeffect(); /* could theoretically destroy or unequip uimplant */
+		if (uimplant && uimplant->blessed) unbless(uimplant);
+		else if (uimplant) curse(uimplant);
+		if (Blind_telepat || Unblind_telepat) deacrandomintrinsic(rnz(5000));
+	}
+
+}
+
 /* stat debuff attack: reduces a random stat, temporarily */
 void
 statdebuff()

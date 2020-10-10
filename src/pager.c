@@ -25556,6 +25556,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"Do you hate the nasty traps in SLEX with a fiery passion? Of course you do, every player save for Amy does. Many of them have complained and wanted them either nerfed or removed, and Amy has never given in. Do you *really* think she'd give in now just because you are the one complaining?",
 	"oh poor you! the dungeon has disappeared! I bet u did something naughty, teehee! Do you want your possessions identified?",
 	"You are playing the variant that adds the megacheat, where levels are regenerated whenever the level file goes missing for any reason. Find a way to enact that glitch on purpose and you can turn the castle into an infinity wishing engine.",
+	"Oh no! Your implant was h@xx0red!",
+	"Oh no! Your implant was h@xx0red! Now it's heavily cursed and you probably have to use a nymph to get rid of it.",
+	"Oh no! Your implant was h@xx0red! Now it no longer conveys telepathy, but instead shows faux monsters that aren't really there, just to confuse you.",
+	"Oh no! Your implant was h@xx0red! Now the CIA will know where you are, and they'll find you and your hidden porn stash.",
 
 };
 
