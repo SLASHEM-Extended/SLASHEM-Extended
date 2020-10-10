@@ -277,6 +277,7 @@ int mndx;
 	case PM_IVEL_WUXTINA:	mcham = CHAM_IVEL_WUXTINA; break;
 	case PM_EARLY_LEON:	mcham = CHAM_EARLY_LEON; break;
 	case PM_CHAMELON:	mcham = CHAM_CHAMELON; break;
+	case PM_COMMA_CHAMELEON:	mcham = CHAM_COMMA_CHAMELEON; break;
 	case PM_CHANGELING:	mcham = CHAM_CHANGELING; break;
 	case PM_CHANGELING_ZOMBIE:	mcham = CHAM_CHANGELING_ZOMBIE; break;
 	case PM_CHANGELING_MUMMY:	mcham = CHAM_CHANGELING_MUMMY; break;
@@ -344,6 +345,7 @@ STATIC_VAR int cham_to_pm[] = {
 		PM_VAMPSHIFTER,
 		PM_UNGENOCIDABLE_VAMPSHIFTER,
 		PM_CHAMELON,
+		PM_COMMA_CHAMELEON,
 		PM_GIANT_CHAMELEON,
 };
 
@@ -993,6 +995,7 @@ register struct monst *mtmp;
 	    case PM_MOLDY_COLONY:
 	    case PM_MUTATED_UNDEAD_POTATO:
 	    case PM_THOUL:
+	    case PM_UNDEAD_ZRUTY:
 	    case PM_YET_ANOTHER_GREATER_MUMMY:
 	    case PM_GREATER_MUMMY_PRIEST:
 	    case PM_GREATER_MUMMY_PHARAOH:
@@ -7366,6 +7369,7 @@ struct monst *mon;
 	case CHAM_VAMPSHIFTER: chambaselvl = 12; break;
 	case CHAM_UNGENOCIDABLE_VAMPSHIFTER: chambaselvl = 12; break;
 	case CHAM_CHAMELON: chambaselvl = 16; break;
+	case CHAM_COMMA_CHAMELEON: chambaselvl = 6; break;
 	case CHAM_GIANT_CHAMELEON: chambaselvl = 10; break;
 	/* gah they made it so that regular polymorphs, e.g. via potion, also use this function! */
 	default:
@@ -7874,6 +7878,7 @@ edotochoice:
 			if (rn2(10000) && !(pm->mlet == S_ARCHFIEND) ) goto jokechoice;
 		break;
 	    case CHAM_CHAMELEON:
+	    case CHAM_COMMA_CHAMELEON:
 	    case CHAM_CHAMECHAUN:
 	    case CHAM_GHELEON:
 	    case CHAM_COCKAMELEON:

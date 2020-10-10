@@ -130,7 +130,8 @@ struct monst {
 #define CHAM_VAMPSHIFTER		53	/* vampire */
 #define CHAM_UNGENOCIDABLE_VAMPSHIFTER		54	/* vampire */
 #define CHAM_CHAMELON		55	/* food monster */
-#define CHAM_GIANT_CHAMELEON		56	/* animal */
+#define CHAM_COMMA_CHAMELEON		56	/* food monster */
+#define CHAM_GIANT_CHAMELEON		57	/* animal */
 #define CHAM_MAX_INDX		CHAM_GIANT_CHAMELEON
 	Bitfield(mundetected,1);	/* not seen in present hiding place */
 				/* implies one of M1_CONCEAL or M1_HIDE,

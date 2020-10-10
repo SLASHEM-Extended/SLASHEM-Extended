@@ -2978,6 +2978,7 @@ register int pm;
 	    case PM_IVEL_WUXTINA:
 	    case PM_EARLY_LEON:
 	    case PM_CHAMELON:
+	    case PM_COMMA_CHAMELEON:
 	    case PM_SLUMBER_HULK:
 	    case PM_OFFDIVER:
 	    case PM_CHANGELING:
@@ -3325,6 +3326,7 @@ register int pm;
 		case PM_BRAIN_EATER:
 		case PM_BRAIN_OOZE:
 		case PM_BRAIN_MOLE:
+		case PM_MINDWITNESS:
 		case PM_BRAIN_GOLEM:
 		case PM_LOWER_BRAIN:
 		case PM_IDIOT_BRAIN:

@@ -11280,6 +11280,9 @@ loveheelover:
 		if (ptr == &mons[PM_ACTUAL_EVIL_PATCH]) {
 			(void) mongets(mtmp, SCR_EVIL_VARIANT);
 		}
+		if (ptr == &mons[PM_ANTI_HAND_FEMMY]) {
+			(void) mongets(mtmp, SOFT_SNEAKERS);
+		}
 		if (ptr == &mons[PM_TOILET_FEMMY]) {
 			(void) mongets(mtmp, HIGH_HEELED_SANDAL);
 		}
@@ -11735,6 +11738,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_PUBLIC_PERFORMER]) m_initthrow(mtmp, ROCK, 5);
 		if (mtmp->data == &mons[PM_ROVID]) (void) mongets(mtmp, TRIDENT);
 		if (mtmp->data == &mons[PM_JAPONSES_MONSTER]) (void) mongets(mtmp, OTAMA);
+		if (mtmp->data == &mons[PM_BOSS_FEMMY]) (void) mongets(mtmp, LEATHER_PEEP_TOES);
 		if(ptr == &mons[PM_ASIATIC_FEMMY]) {
 			(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
 			(void) mongets(mtmp, LEATHER_PEEP_TOES);
@@ -15362,10 +15366,17 @@ loveheelover:
 
 		if (ptr == &mons[PM_HIBERNAL_YETI]) (void) mongets(mtmp, SCR_SNOW);
 		if (ptr == &mons[PM_CHARLENE]) (void) mongets(mtmp, HIPPIE_HEELS);
+		if (ptr == &mons[PM_SLAVE_ZRUTY]) (void) mongets(mtmp, IRON_CHAIN);
+		if (ptr == &mons[PM_FASHION_MODEL_ZRUTY]) (void) mongets(mtmp, LEATHER_PEEP_TOES);
+		if (ptr == &mons[PM_SOKOZRUTY]) (void) mongets(mtmp, BOULDER);
 
 		if (ptr == &mons[PM_OOGABOOGAGOBILITGOOK_SEEKER_AREHETYPE_FUCKING_RETARD_ASS_SHIT_FLINGING_MONKEY_MONSTER]) {
 			(void) mongets(mtmp, WILDHILD_BOW);
 			 m_initthrow(mtmp, ODOR_SHOT, 50);
+		}
+		if (ptr == &mons[PM_PUNISHED_ZRUTY]) {
+			(void) mongets(mtmp, SCR_PUNISHMENT);
+			(void) mongets(mtmp, HEAVY_IRON_BALL);
 		}
 
 		if (ptr == &mons[PM_PRISON_ZRUTY]) {
@@ -15776,6 +15787,8 @@ loveheelover:
 		if (ptr == &mons[PM_GENDER_STAR_IST]) (void) mongets(mtmp, ASTERISK);
 		if (ptr == &mons[PM_POLE_GRUE]) (void) mongets(mtmp, DARK_BAR);
 		if (ptr == &mons[PM_PURE_VENOM_GRUE]) (void) mongets(mtmp, CHROME_HORN);
+		if (ptr == &mons[PM_COMMA_LADY]) (void) mongets(mtmp, BLOCK_HEELED_SANDAL);
+		if (ptr == &mons[PM_NASTY_FEMMY]) (void) mongets(mtmp, HUGGING_BOOT);
 
 		if (ptr == &mons[PM_ROXANNE]) {
 			(void) mongets(mtmp, FEMININE_PUMPS);
@@ -27245,6 +27258,7 @@ int type;
 		case PM_WATER_GOLEM: return 110;
 		case PM_BLADE_GOLEM: return 105;
 		case PM_ROLLER_GOLEM: return 110;
+		case PM_BOMB_CRAG: return 250;
 		case PM_DSCH_GOLEM: return 120;
 		case PM_NUT_GOLEM: return 125;
 		case PM_MOLTEN_GOLEM: return 130;
@@ -28246,6 +28260,11 @@ assign_sym:
 		s_sym = ROCK_CLASS;
 		ap_type = M_AP_OBJECT;
 		appear = BOULDER;
+	}
+	if (mtmp->data == &mons[PM_OIL_BEETLE]) {
+		s_sym = FOOD_CLASS;
+		ap_type = M_AP_OBJECT;
+		appear = CORPSE;
 	}
 	if (mtmp->data == &mons[PM_BELT_MOUNTAIN]) {
 		ap_type = M_AP_FURNITURE;
