@@ -2427,6 +2427,7 @@ dosummon()
 	if (u.ulycn == PM_WERELICH) somanymana = 100;
 	if (u.ulycn == PM_WEREDEMON) somanymana = 100;
 	if (u.ulycn == PM_WEREMINDFLAYER) somanymana = 150;
+	if (u.ulycn == PM_VORPAL_WERE_ALHOONTRICE_ZOMBIE) somanymana = 150;
 	if (u.ulycn == PM_WEREJABBERWOCK) somanymana = 200;
 	if (u.ulycn == PM_WEREWEDGESANDAL) somanymana = 80;
 	if (u.ulycn == PM_WEREHUGGINGBOOT) somanymana = 120;
@@ -2460,6 +2461,7 @@ dosummon()
 	if (u.umonnum == PM_WERELICH && somanymana < 100) somanymana = 100;
 	if (u.umonnum == PM_WEREDEMON && somanymana < 100) somanymana = 100;
 	if (u.umonnum == PM_WEREMINDFLAYER && somanymana < 150) somanymana = 150;
+	if (u.umonnum == PM_VORPAL_WERE_ALHOONTRICE_ZOMBIE && somanymana < 150) somanymana = 150;
 	if (u.umonnum == PM_WEREJABBERWOCK && somanymana < 200) somanymana = 200;
 	if (u.umonnum == PM_WEREWEDGESANDAL && somanymana < 80) somanymana = 80;
 	if (u.umonnum == PM_WEREHUGGINGBOOT && somanymana < 120) somanymana = 120;

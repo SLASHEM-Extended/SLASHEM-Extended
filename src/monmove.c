@@ -1161,6 +1161,10 @@ register struct monst *mtmp;
 		wakeup(mtmp);
 	}
 
+	if (mdat == &mons[PM_NINJA_SALESMAN] && mtmp->mpeaceful && !mtmp->mtame && !rn2(500)) {
+		wakeup(mtmp);
+	}
+
 	/* not frozen or sleeping: wipe out texts written in the dust */
 	wipe_engr_at(mtmp->mx, mtmp->my, 1);
 
@@ -2820,6 +2824,7 @@ altarfound:
 	if (monsndx(ptr) == PM_SLEEPING_ASIAN_GIRL && !rn2(10)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_DIDDLY_DINGUS_DUDE && !rn2(20)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_LOST_ITALIAN_PLUMBER) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_BEER_BELLY) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_SLOOB) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_CRAMP_CART_TO_THE_WALL_DRIVER) mtmp->mconf = 1;

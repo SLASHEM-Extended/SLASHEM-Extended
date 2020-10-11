@@ -7808,6 +7808,7 @@ dopois:
 			if (u.ulycn == PM_HUMAN_WERERAT) u.ulycn = PM_WERERAT;
 			if (u.ulycn == PM_HUMAN_WERERABBIT) u.ulycn = PM_WERERABBIT;
 			if (u.ulycn == PM_HUMAN_WEREBOAR) u.ulycn = PM_WEREBOAR;
+			if (u.ulycn == PM_HUMAN_VORPAL_WERE_ALHOONTRICE_ZOMBIE) u.ulycn = PM_VORPAL_WERE_ALHOONTRICE_ZOMBIE;
 			if (u.ulycn == PM_HUMAN_WERELOCUST) u.ulycn = PM_WERELOCUST;
 			if (u.ulycn == PM_HUMAN_WEREJACKAL) u.ulycn = PM_WEREJACKAL;
 			if (u.ulycn == PM_HUMAN_WEREWOLF) u.ulycn = PM_WEREWOLF;

@@ -281,6 +281,7 @@ int mndx;
 	case PM_CHANGELING:	mcham = CHAM_CHANGELING; break;
 	case PM_CHANGELING_ZOMBIE:	mcham = CHAM_CHANGELING_ZOMBIE; break;
 	case PM_CHANGELING_MUMMY:	mcham = CHAM_CHANGELING_MUMMY; break;
+	case PM_UNIQUE_SHIFTER:	mcham = CHAM_UNIQUE_SHIFTER; break;
 	case PM_GIANT_CHAMELEON:	mcham = CHAM_GIANT_CHAMELEON; break;
 	default: mcham = CHAM_ORDINARY; break;
 	}
@@ -346,6 +347,7 @@ STATIC_VAR int cham_to_pm[] = {
 		PM_UNGENOCIDABLE_VAMPSHIFTER,
 		PM_CHAMELON,
 		PM_COMMA_CHAMELEON,
+		PM_UNIQUE_SHIFTER,
 		PM_GIANT_CHAMELEON,
 };
 
@@ -4047,6 +4049,8 @@ register struct monst *mtmp;
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WERERABBIT], -1);
 	else if (mtmp->data == &mons[PM_WEREBOAR])
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREBOAR], -1);
+	else if (mtmp->data == &mons[PM_VORPAL_WERE_ALHOONTRICE_ZOMBIE])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_VORPAL_WERE_ALHOONTRICE_ZOMBIE], -1);
 	else if (mtmp->data == &mons[PM_WERELOCUST])
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WERELOCUST], -1);
 	else if (mtmp->data == &mons[PM_WEREPANTHER])
@@ -7370,6 +7374,7 @@ struct monst *mon;
 	case CHAM_UNGENOCIDABLE_VAMPSHIFTER: chambaselvl = 12; break;
 	case CHAM_CHAMELON: chambaselvl = 16; break;
 	case CHAM_COMMA_CHAMELEON: chambaselvl = 6; break;
+	case CHAM_UNIQUE_SHIFTER: chambaselvl = 25; break;
 	case CHAM_GIANT_CHAMELEON: chambaselvl = 10; break;
 	/* gah they made it so that regular polymorphs, e.g. via potion, also use this function! */
 	default:
@@ -7851,6 +7856,21 @@ metamorphchoice:
 			if (uncommon10(pm) && rn2(5)) goto metamorphchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto metamorphchoice;
 		break;
+	    case CHAM_UNIQUE_SHIFTER:
+uniqueshiftchoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto uniqueshiftchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto uniqueshiftchoice;
+			if (uncommon2(pm) && !rn2(4)) goto uniqueshiftchoice;
+			if (uncommon3(pm) && !rn2(3)) goto uniqueshiftchoice;
+			if (uncommon5(pm) && !rn2(2)) goto uniqueshiftchoice;
+			if (uncommon7(pm) && rn2(3)) goto uniqueshiftchoice;
+			if (uncommon10(pm) && rn2(5)) goto uniqueshiftchoice;
+			if (is_jonadabmonster(pm) && rn2(20)) goto uniqueshiftchoice;
+			if ((pm->geno & G_FREQ) < 1) goto uniqueshiftchoice;
+			if (rn2(10000) && !(pm->geno & G_UNIQ)) goto uniqueshiftchoice;
+		break;
 
 	    case CHAM_DOPPELGANGER:
 	    case CHAM_METAL_DOPPELGANGER:
@@ -7988,8 +8008,9 @@ boolean msg;
 		   select_newcham_form might deliberately pick a player
 		   character type, so we can't arbitrarily rule out all
 		   human forms any more
-		   Amy edit: oh my god they disallowed M2_HUMAN this is intolerable */
-		if (is_mplayer(mdat) || is_umplayer(mdat) || monpolyok(mdat))
+		   Amy edit: oh my god they disallowed M2_HUMAN this is intolerable
+		   also, unique shifters should be able to pick M2_NOPOLY forms, this is by design */
+		if (is_mplayer(mdat) || is_umplayer(mdat) || monpolyok(mdat) || (mtmp->cham == CHAM_UNIQUE_SHIFTER) )
 		    break;
 	    }
 	    if (tryct > 100) return 0;	/* Should never happen */

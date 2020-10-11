@@ -2558,6 +2558,20 @@ register int pm;
 		catch_lycanthropy = TRUE;
 		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREBOAR;
 		break;
+	    case PM_HUMAN_VORPAL_WERE_ALHOONTRICE_ZOMBIE:
+		catch_lycanthropy = TRUE;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_VORPAL_WERE_ALHOONTRICE_ZOMBIE;
+
+		Your("velocity suddenly seems very uncertain!");
+		if (HFast & INTRINSIC) {
+			HFast &= ~INTRINSIC;
+			You("seem slower.");
+		} else {
+			HFast |= FROMOUTSIDE;
+			You("seem faster.");
+		}
+
+		break;
 	    case PM_HUMAN_WEREJACKAL:
 		catch_lycanthropy = TRUE;
 		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREJACKAL;
@@ -2964,6 +2978,7 @@ register int pm;
 	    case PM_CHAMELEON:
 	    case PM_CHAMECHAUN:
 	    case PM_METAMORPHOSE:
+	    case PM_UNIQUE_SHIFTER:
 	    case PM_GHELEON:
 	    case PM_PURPLE_R:
 	    case PM_VAMPSHIFTER:
@@ -3098,6 +3113,13 @@ register int pm;
 		else {
 			pline(FunnyHallu ? "Eek, that tasted like rotten oversalted seaweed!" : "For some reason, that tasted bland.");
 		}
+
+		break;
+
+	    case PM_FOODSTUFFS_MIMIC:
+	    case PM_FOODSTUFFS_PERMAMIMIC:
+		CrapEffect += rnz(10000);
+		pline("Ugh-Ugh, your butt suddenly doesn't feel so good...");
 
 		break;
 

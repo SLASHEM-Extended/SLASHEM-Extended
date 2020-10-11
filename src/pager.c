@@ -25566,6 +25566,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel as if a stroke of good luck passed by. This means that you would have gotten a wish but due to some random reason that you'll only figure out by reading the source code, you actually didn't get one.",
 	"You startscummed for an eternity but none of the fountains gave a wish. Did Amy fix that strategy by any chance?",
 	"Don't waste your time startscumming healers for certain potion appearances. If your experience level isn't at least 5, they won't ever grant a wish. Play the game normally instead!",
+	"Ugh-Ugh, your butt suddenly doesn't feel so good...",
+	"Ugh-Ugh, your butt suddenly doesn't feel so good... maybe you shouldn't have eaten so much rotten food?",
 
 };
 

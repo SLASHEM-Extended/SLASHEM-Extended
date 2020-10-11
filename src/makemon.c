@@ -10068,6 +10068,13 @@ loveheelover:
 		if(ptr == &mons[PM_SMALL_GARDEN_SCYTHE]) (void) mongets(mtmp, SICKLE);
 		if(ptr == &mons[PM_GARDEN_SCYTHE]) (void) mongets(mtmp, SICKLE);
 		if(ptr == &mons[PM_ELFIN_SCYTHE]) (void) mongets(mtmp, ELVEN_SICKLE);
+		if(ptr == &mons[PM_PASTAFARIAN_ACOLYTE]) (void) mongets(mtmp, PASTA);
+		if(ptr == &mons[PM_PASTAFARIAN_PRIEST]) (void) mongets(mtmp, PASTA);
+		if(ptr == &mons[PM_PASTAFARIAN_HIGH_PRIEST]) {
+			(void) mongets(mtmp, PASTA);
+			(void) mongets(mtmp, PASTA);
+			(void) mongets(mtmp, PASTA);
+		}
 
 		if (ptr == &mons[PM_PUMPKIN]) {
 			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
@@ -14342,6 +14349,10 @@ loveheelover:
 			(void) mongets(mtmp, ORCISH_HELM);
 			 m_initthrow(mtmp, GRAPHITE, 20);
 		}
+		if (ptr == &mons[PM_POTION_HUMANOID_SINK_MONEY_FOOD_TRAP_DEMON_STONE_PORTAL]) {
+			(void) mongets(mtmp, SLING);
+			 m_initthrow(mtmp, CONUNDRUM_NUGGET, 40);
+		}
 		if (ptr == &mons[PM_VOLCANIC_VORTEX]) {
 			(void) mongets(mtmp, SLING);
 			(void) mongets(mtmp, CRYSTAL_PLATE_MAIL);
@@ -14963,6 +14974,9 @@ loveheelover:
 		if (monsndx(ptr) == PM_LILAC_FEMMY) {
 			(void) mongets(mtmp, HIGH_HEELED_SANDAL);
 		}
+		if (monsndx(ptr) == PM_ORBALL_ANGEL) {
+			(void) mongets(mtmp, EAGLE_BALL);
+		}
 		if (monsndx(ptr) == PM_BIMMER) {
 			(void) mongets(mtmp, RAIN_PIPE);
 		}
@@ -15444,6 +15458,7 @@ loveheelover:
 		if (ptr == &mons[PM_DWARF_SPEARFIGHTER]) (void) mongets(mtmp, DWARVISH_SPEAR);
 		if (ptr == &mons[PM_DWARF_SPEARLORD]) (void) mongets(mtmp, DWARVISH_SPEAR);
 		if (ptr == &mons[PM_MYSTERY_DWARF]) (void) mongets(mtmp, MYSTERY_PICK);
+		if (ptr == &mons[PM_ITALIAN_PASTAMANCER]) (void) mongets(mtmp, PASTA);
 
 		if (ptr == &mons[PM_CONTAGION_LASHER]) {
 			otmp = mksobj(BULLWHIP, FALSE, FALSE, FALSE);
@@ -28256,6 +28271,11 @@ assign_sym:
 		ap_type = M_AP_OBJECT;
 		appear = FEDORA;
 	}
+	if (mtmp->data == &mons[PM_FOODSTUFFS_MIMIC] || mtmp->data == &mons[PM_FOODSTUFFS_PERMAMIMIC]) {
+		s_sym = FOOD_CLASS;
+		ap_type = M_AP_OBJECT;
+		appear = FOOD_RATION;
+	}
 	if (mtmp->data == &mons[PM_ZOMBIE_BOULDER]) {
 		s_sym = ROCK_CLASS;
 		ap_type = M_AP_OBJECT;
@@ -28275,7 +28295,7 @@ assign_sym:
 		appear = S_rockwall;
 	}
 
-	if (mtmp->data == &mons[PM_POTION_MIMIC] || mtmp->data == &mons[PM_POTION_PERMAMIMIC]) {
+	if (mtmp->data == &mons[PM_POTION_MIMIC] || mtmp->data == &mons[PM_POTION_PERMAMIMIC] || mtmp->data == &mons[PM_POTION_HUMANOID_SINK_MONEY_FOOD_TRAP_DEMON_STONE_PORTAL]) {
 		s_sym = POTION_CLASS;
 		ap_type = M_AP_OBJECT;
 		appear = rnd_class(POT_BOOZE, POT_PAN_GALACTIC_GARGLE_BLASTE);
