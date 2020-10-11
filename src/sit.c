@@ -376,6 +376,11 @@ dosit()
 		    case 6:
 /* ------------===========STEPHEN WHITE'S NEW CODE============------------ */                                                
 
+			if (u.ulevel < 5) {
+				You_feel("as if a stroke of good luck passed by.");
+				break;
+			}
+
 			if (!rn2(4)) {
 
 				if(u.uluck < 7) {

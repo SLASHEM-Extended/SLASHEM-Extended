@@ -66,10 +66,16 @@ dowaterdemon() /* Water demon */
 	/* Give those on low levels a (slightly) better chance of survival */
 	/* 35% at level 1, 30% at level 2, 25% at level 3, etc... */            
 	if (rnd(100) > wishchance) {
-		pline("Grateful for %s release, %s grants you a boon!", mhis(mtmp), mhe(mtmp));
-		if (!rn2(4)) makewish(evilfriday ? FALSE : TRUE);
-		else othergreateffect();
-		mongone(mtmp);
+		if (u.ulevel < 7) {
+			verbalize("Muahahahaha puny mortal, you are too inexperienced to receive my boon! As a consolation, have a zorkmid, but don't spend it all at once! Ha ha ha!");
+			(void) mkgold(1, u.ux, u.uy);
+			mongone(mtmp);
+		} else {
+			pline("Grateful for %s release, %s grants you a boon!", mhis(mtmp), mhe(mtmp));
+			if (!rn2(4)) makewish(evilfriday ? FALSE : TRUE);
+			else othergreateffect();
+			mongone(mtmp);
+		}
 	} else if (t_at(mtmp->mx, mtmp->my))
 		(void) mintrap(mtmp);
 	} else if (issoviet) {

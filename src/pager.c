@@ -25560,6 +25560,12 @@ static NEARDATA const char * const fake_plines[] = {
 	"Oh no! Your implant was h@xx0red! Now it's heavily cursed and you probably have to use a nymph to get rid of it.",
 	"Oh no! Your implant was h@xx0red! Now it no longer conveys telepathy, but instead shows faux monsters that aren't really there, just to confuse you.",
 	"Oh no! Your implant was h@xx0red! Now the CIA will know where you are, and they'll find you and your hidden porn stash.",
+	"You eat the trope ration.  An anvil falls on your head and flattens you like a pancake.  Do you want your possessions identified?",
+	"The watch captain eats the trope ration.  The watch captain mentions that he's looking forward to retiring tomorrow.",
+	"You feel as if a stroke of good luck passed by.",
+	"You feel as if a stroke of good luck passed by. This means that you would have gotten a wish but due to some random reason that you'll only figure out by reading the source code, you actually didn't get one.",
+	"You startscummed for an eternity but none of the fountains gave a wish. Did Amy fix that strategy by any chance?",
+	"Don't waste your time startscumming healers for certain potion appearances. If your experience level isn't at least 5, they won't ever grant a wish. Play the game normally instead!",
 
 };
 

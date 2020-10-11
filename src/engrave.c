@@ -5389,6 +5389,8 @@ static const char *epitaphs[] = {
 	"Here lies Bran's ability to move his legs. While Cersei is an evil monster, one of her only good deeds was to push that loser out the window. He broke his legs so badly that he ended up handicapped for the rest of his pathetic life.",
 	"What, dipping a stack of potions into a pool doesn't always dilute it, this is unplayable and a hill I'm willing to die on",
 	"nasty traps last too long", /* hint: they don't :P --Amy */
+	"WHAAAAAT you made it so that I can't simply startscum healers for wishes anymore YOU SUUUUUUCK AMY! I certainly won't touch your shit variant again!",
+	"Is there still something in slex that players enjoy? You should implement the opposite of that.", /* by amateurhour (exact original wording might be slightly different) */
 
 };
 

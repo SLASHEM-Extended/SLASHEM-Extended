@@ -13062,10 +13062,17 @@ int kind;
 	/* 0,1,2,3,4:  b=80%,5,5,5,5; nc=20%,20,20,20,20; c=5%,5,5,5,80 */
 
 	switch (chance) {
-	case 0 : verbalize("I am in your debt.  I will grant a boon!");
-		if (!rn2(4)) makewish(evilfriday ? FALSE : TRUE);
-		else othergreateffect();
-		mongone(mtmp);
+	case 0 :
+		if (u.ulevel < 5) {
+			verbalize("I'm sorry, you seem too inexperienced to receive my boon. Please take this enchanted purse with a hundred gold pieces instead!");
+			(void) mkgold(100, u.ux, u.uy);
+			mongone(mtmp);
+		} else {
+			verbalize("I am in your debt.  I will grant a boon!");
+			if (!rn2(4)) makewish(evilfriday ? FALSE : TRUE);
+			else othergreateffect();
+			mongone(mtmp);
+		}
 		break;
 	case 1 : verbalize("Thank you for freeing me!");
 		(void) tamedog(mtmp, (struct obj *)0, FALSE);
