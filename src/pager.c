@@ -4444,6 +4444,7 @@ static NEARDATA const char * const longinglines[] = {
 "%s is beautifully thick and can crush male losers underneath the weight of her pretty body!",
 "%s is so musculous that she can actually pick up and throw boulders. Don't you agree that it makes her look very sexy?",
 "You want to watch %s torture some scrawny pipsqueak dude. And you especially hope that if the guy cries out in pain, she punishes him by torturing him some more.",
+"You absolutely want to get to know %s's fingernails, and especially the part where they make for very effective cutting tools. Present your unprotected skin to them!",
 };
 
 static NEARDATA const char * const soviettaunts[] = {
@@ -25568,6 +25569,18 @@ static NEARDATA const char * const fake_plines[] = {
 	"Don't waste your time startscumming healers for certain potion appearances. If your experience level isn't at least 5, they won't ever grant a wish. Play the game normally instead!",
 	"Ugh-Ugh, your butt suddenly doesn't feel so good...",
 	"Ugh-Ugh, your butt suddenly doesn't feel so good... maybe you shouldn't have eaten so much rotten food?",
+	"Why the hell is Lord Karstark called 'Rickard' with first name? Is that supposed to be a cross between Rick and Richard??? That's stupid. Apparently the names of GoT characters are just regular real-life names with one letter swapped for something else to sound more 'fantasy-like'.",
+	"Omg I watched the scene with Brienne and Jaime and I have to say... Brienne totally looks like a man. She even has a goddamn beard!!! I'm just so glad that I read that one fanfic first, where instead of that Brienne man-woman we have Julyne Stark, who has a long bundle :-)",
+	"There is no need to get emotionally invested in any Game of Thrones character, because they all get killed anyway, often for no reason other than some other schemer character hating them. In the end there's just a gigantic mass grave.",
+	"The Starks should actually be renamed to the Schwachs because they're such goddamn weaklings that all end up getting killed by the Lannisters without even fighting back. It should have been pretty obvious that the evil Cersei monster and her henchman Joffrey are EVIL with a capital E!",
+	"Cersei uses the most makeup of all Westeros women. What does she use to apply it to her face? A big fat putty, probably.",
+	"The monster Cersei and her henchmen Joffrey and Tywin are planning to genocide the entire House Stark. No one can stop them, and those who tried are dead now. All hope lies in Julyne Stark's valyrian dagger, which will hopefully find its way into Joffrey's throat.",
+	"Eddard Stark the Cunning is such a loser who not only doesn't anticipate that Cersei, the monster, is going to execute him, no, even when it becomes crystal clear that she'd do that, he's not cunning enough to simply devise a plan to stab her in the back or something and end her reign of terror. Sigh.",
+	"Bran broke his neck because he was so stupid to think it was a good idea to disturb Cersei and Jaime while they were playing a game of halma.",
+	"The real reason why Locke didn't r*pe Brienne in the TV show wasn't because Jaime lied to him about some ominous sapphires, but because he was turned off by the fact that Brienne looks like a guy. However, in the fanfic Julyne Stark was less lucky.",
+	"You encounter two cute little asian girls, but suddenly they grab your arms and twist them in a way that prevents your blood from circulating through them! And you can't fight back while the girls use their fleecy hands to do surprisingly painful things to you!",
+	"You encounter two cute little asian girls, but suddenly each of them grabs one of your arms and with their other, free hands they start clawing and pinching you with very sharp-edged fingernails which turn out to make for extremely effective cutting tools.",
+	"welcome to slex, works as intended :P  everything in slex works as intended! especially things that make the player go 'what the fuck are you serious Amy???'",
 
 };
 
