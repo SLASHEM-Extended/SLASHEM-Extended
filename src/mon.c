@@ -7026,18 +7026,6 @@ newkopcube:
 	}
 
 	if (Role_if(PM_PALADIN)) adjalign(-20);
-	if (Role_if(PM_PALADIN) && mtmp->isshk && !strncmpi(shkname(mtmp), "Izchak", 6) ) {
-
-	/* Attacking Izchak is grounds for immediate disintegration. */
-
-		adjalign(-200);
-
-		You_feel("the air around you grow charged...");
-		pline("Suddenly, you realize that %s has noticed you...", u_gname());
-		/* Throw everything we have at the player */
-		god_zaps_you(u.ualign.type);
-
-	}
 
 	if (couldsee(mtmp->mx, mtmp->my)) {
 		if (humanoid(mtmp->data) || mtmp->isshk || mtmp->isgd) {
