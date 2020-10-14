@@ -2137,6 +2137,10 @@ int howmuch;
 	forget_map(howmuch);
 	forget_traps();
 
+	if (!rn2(20) && u.enchantrecskill > 0) u.enchantrecskill--;
+	if (!rn2(20) && u.weapchantrecskill > 0) u.weapchantrecskill--;
+	if (!rn2(20) && u.bucskill > 0) u.bucskill--;
+
 	/* 1 in 3 chance of forgetting some levels */
 	if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));
 
