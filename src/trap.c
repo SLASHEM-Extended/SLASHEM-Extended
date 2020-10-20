@@ -65,105 +65,7 @@ STATIC_VAR const char * const blindgas[6] =
 #endif /* OVLB */
 
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0};
-
-#ifndef OVLB
-
-STATIC_DCL NEARDATA const short skill_names_indices[];
-STATIC_DCL NEARDATA const char *odd_skill_names[];
-
-#else	/* OVLB */
-
-/* KMH, balance patch -- updated */
-STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
-	0,                DAGGER,         KNIFE,        AXE,
-	PICK_AXE,         SHORT_SWORD,    BROADSWORD,   LONG_SWORD,
-	TWO_HANDED_SWORD, SCIMITAR,       PN_SABER,     CLUB,
-	PN_PADDLE,        MACE,           MORNING_STAR,   FLAIL,
-	PN_HAMMER,        QUARTERSTAFF,   PN_POLEARMS,  SPEAR,
-	JAVELIN,          TRIDENT,        LANCE,        BOW,
-	SLING,            PN_FIREARMS,    CROSSBOW,       DART,
-	SHURIKEN,         BOOMERANG,      PN_WHIP,      UNICORN_HORN,
-	PN_LIGHTSABER,
-	PN_ATTACK_SPELL,     PN_HEALING_SPELL,
-	PN_DIVINATION_SPELL, PN_ENCHANTMENT_SPELL,
-	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
-	PN_OCCULT_SPELL,
-	PN_ELEMENTAL_SPELL,
-	PN_CHAOS_SPELL,
-	PN_MATTER_SPELL,
-	PN_BARE_HANDED,	PN_HIGH_HEELS,
-	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
-	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
-	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
-	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_SEXY_FLATS,
-	PN_MEMORIZATION,	PN_GUN_CONTROL,	PN_SQUEAKING,	PN_SYMBIOSIS,
-	PN_SHII_CHO,	PN_MAKASHI,	PN_SORESU,
-	PN_ATARU,	PN_SHIEN,	PN_DJEM_SO,
-	PN_NIMAN,	PN_JUYO,	PN_VAAPAD,	PN_WEDI,
-	PN_MARTIAL_ARTS, 
-	PN_TWO_WEAPONS,
-	PN_RIDING,
-};
-
-
-STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
-    "no skill",
-    "polearms",
-    "saber",
-    "hammer",
-    "whip",
-    "paddle",
-    "firearms",
-    "attack spells",
-    "healing spells",
-    "divination spells",
-    "enchantment spells",
-    "protection spells",
-    "body spells",
-    "occult spells",
-    "elemental spells",
-    "chaos spells",
-    "matter spells",
-    "bare-handed combat",
-    "high heels",
-    "general combat",
-    "shield",
-    "body armor",
-    "two-handed weapons",
-    "polymorphing",
-    "devices",
-    "searching",
-    "spirituality",
-    "petkeeping",
-    "missile weapons",
-    "techniques",
-    "implants",
-    "sexy flats",
-    "memorization",
-    "gun control",
-    "squeaking",
-    "symbiosis",
-    "form I (Shii-Cho)",
-    "form II (Makashi)",
-    "form III (Soresu)",
-    "form IV (Ataru)",
-    "form V (Shien)",
-    "form V (Djem So)",
-    "form VI (Niman)",
-    "form VII (Juyo)",
-    "form VII (Vaapad)",
-    "form VIII (Wedi)",
-    "martial arts",
-    "riding",
-    "two-weapon combat",
-    "lightsaber"
-};
-
-#endif	/* OVLB */
-
-#define P_NAME(type) (skill_names_indices[type] > 0 ? \
-		      OBJ_NAME(objects[skill_names_indices[type]]) : \
-			odd_skill_names[-skill_names_indices[type]])
+static const char allnoncount[] = { ALL_CLASSES, 0};
 
 static const char * const farttrapnames[] = {
 /* always 5 names per line, because we'll need the index numbers later --Amy */
@@ -2318,20 +2220,22 @@ struct monst *victim;
 }
 
 void
-makerandomtrap_at(x,y)
+makerandomtrap_at(x,y,givehp)
 register int x, y;
+boolean givehp;
 {
 
 	int rtrap;
 	rtrap = randomtrap();
-	maketrap(x,y,rtrap,100);
+	maketrap(x,y,rtrap,100,givehp);
 	return;
 
 }
 
 struct trap *
-maketrap(x,y,typ,replacechance)
+maketrap(x,y,typ,replacechance,givehp)
 register int x, y, typ, replacechance;
+boolean givehp;
 {
 	register struct trap *ttmp;
 	register struct rm *lev;
@@ -2819,17 +2723,26 @@ register int x, y, typ, replacechance;
 	if (ttmp->ttyp == KOP_CUBE) ttmp->hiddentrap = 1;
 	if (ttmp->ttyp == BOSS_SPAWNER) ttmp->hiddentrap = 1;
 
+	/* can the trap give max HP when untrapped? make sure it's not farmable --Amy */
+	ttmp->giveshp = 0;
+	if (givehp && !rn2(3)) ttmp->giveshp = 1;
+
 	if (ttmp->ttyp == HOLE && !In_sokoban(&u.uz) && !ttmp->hiddentrap ) ttmp->tseen = 1;  /* You can't hide a hole */
 	else if (ttmp->ttyp == SUPERTHING_TRAP && !ttmp->hiddentrap ) ttmp->tseen = 1;
 	else if (ttmp->ttyp == ARABELLA_SPEAKER && !ttmp->hiddentrap ) ttmp->tseen = 1;
 	else ttmp->tseen = 0;
 	ttmp->once = 0;
+	ttmp->artionce = 0;
 	ttmp->tdetected = 0;
 	ttmp->trapdiff = 0; /* difficulty: higher values make it less likely for you to find it */
 	if (ttmp->ttyp != MAGIC_PORTAL) {
 		ttmp->trapdiff = level_difficulty();
 		if (u.trapxtradiff) ttmp->trapdiff += rnd(u.trapxtradiff);
-		if (u.xdifftrapchance > rn2(100)) ttmp->trapdiff += rnd(500);
+		if (u.xdifftrapchance > rn2(100)) {
+			if (rn2(10)) ttmp->trapdiff += rnd(100);
+			else if (rn2(5)) ttmp->trapdiff += rnd(200);
+			else ttmp->trapdiff += rnd(500);
+		}
 		/* we used to have a fail safe for this difficulty level, but I decided we don't need it :P
 		 * after all, most traps will reveal themselves when triggered, and if some nasty ones don't, oh well! --Amy */
 	}
@@ -2853,7 +2766,7 @@ boolean td;	/* td == TRUE : trap door or hole */
 	register int newlevel = dunlev(&u.uz);
 
 	/* KMH -- You can't escape the Sokoban level traps */
-	if(Blind && Levitation && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) && !In_sokoban(&u.uz)) return;
+	if(Blind && Levitation && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) && !In_sokoban(&u.uz)) return;
 
 	do {
 	    newlevel++;
@@ -2881,7 +2794,7 @@ boolean td;	/* td == TRUE : trap door or hole */
 	   || Flying || is_clinger(youmonst.data)
 	   || (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp >= BULLWHIP && uwep->otyp <= SECRET_WHIP && uwep->otyp != RUBBER_HOSE)
 	   || (Inhell && !u.uevent.invoked && newlevel == dunlevs_in_dungeon(&u.uz)))
-		&& !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) ) {
+		&& !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) {
 		if (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp >= BULLWHIP && uwep->otyp <= SECRET_WHIP && uwep->otyp != RUBBER_HOSE)            
 		pline("But thanks to your trusty whip ...");
 	    dont_fall = "don't fall in.";
@@ -2925,7 +2838,7 @@ boolean td;	/* td == TRUE : trap door or hole */
 	register int newlevel = dunlev(&u.uz);
 
 	/* KMH -- You can't escape the Sokoban level traps */
-	if(Blind && Levitation && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) && !In_sokoban(&u.uz)) return;
+	if(Blind && Levitation && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) && !In_sokoban(&u.uz)) return;
 
 	do {
 	    newlevel++;
@@ -2953,7 +2866,7 @@ boolean td;	/* td == TRUE : trap door or hole */
 	   || Flying || is_clinger(youmonst.data)
 	   || (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp >= BULLWHIP && uwep->otyp <= SECRET_WHIP && uwep->otyp != RUBBER_HOSE)
 	   || (Inhell && !u.uevent.invoked && newlevel == dunlevs_in_dungeon(&u.uz)))
-		&& !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) ) {
+		&& !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) {
 		if (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp >= BULLWHIP && uwep->otyp <= SECRET_WHIP && uwep->otyp != RUBBER_HOSE)
 		pline("But thanks to your trusty whip ...");
 	    dont_fall = "don't fall in.";
@@ -3333,7 +3246,7 @@ unsigned trflags;
 	    	defsyms[trap_to_defsym(ttype)].explanation);
 	    /* then proceed to normal trap effect */
 	} else if (already_seen) {
-	    if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) &&
+	    if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) &&
 		    (ttype == PIT || ttype == SPIKED_PIT || ttype == GIANT_CHASM || ttype == HOLE ||
 		    ttype == BEAR_TRAP)) {
 		You("%s over %s %s.",
@@ -3364,7 +3277,7 @@ unsigned trflags;
 		if (uwep->blessed && !rn2(4)) goup = 1;
 		if (uwep->cursed && !rn2(4)) goup = 0;
 
-		if (goup && uwep->spe < 10) uwep->spe++;
+		if (goup && trap && !(trap->artionce) && uwep->spe < 10) uwep->spe++;
 		if (!goup && uwep->spe > -20) uwep->spe--;
 
 		/* No message, because you're not supposed to know that you just triggered a trap. --Amy */
@@ -3375,7 +3288,7 @@ unsigned trflags;
 		if (uwep->blessed && !rn2(4)) goup = 1;
 		if (uwep->cursed && !rn2(4)) goup = 0;
 
-		if (goup && uwep->spe < 10) uwep->spe++;
+		if (goup && trap && !(trap->artionce) && uwep->spe < 10) uwep->spe++;
 		if (!goup && uwep->spe > -20) uwep->spe--;
 
 		/* No message, because you're not supposed to know that you just triggered a trap. --Amy */
@@ -3386,7 +3299,7 @@ unsigned trflags;
 		if (uwep->blessed && !rn2(4)) goup = 1;
 		if (uwep->cursed && !rn2(4)) goup = 0;
 
-		if (goup && uwep->spe < 10) uwep->spe++;
+		if (goup && trap && !(trap->artionce) && uwep->spe < 10) uwep->spe++;
 		if (!goup && uwep->spe > -20) uwep->spe--;
 
 		/* No message, because you're not supposed to know that you just triggered a trap. --Amy */
@@ -3400,6 +3313,8 @@ unsigned trflags;
 		done(DIED);
 		u.youaredead = 0;
 	}
+
+	if (trap) trap->artionce = TRUE;
 
 	switch(ttype) {
 	    case ARROW_TRAP:
@@ -3837,7 +3752,7 @@ unsigned trflags;
 		break;
 
 	    case SQKY_BOARD:	    /* stepped on a squeaky board */
-		if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) ) {
+		if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) {
 		    if (!Blind) {
 			seetrap(trap);
 			if (FunnyHallu)
@@ -3874,7 +3789,7 @@ unsigned trflags;
 		break;
 
 	    case BEAR_TRAP:
-		if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) ) break;
+		if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) break;
 		seetrap(trap);
 		if(amorphous(youmonst.data) || is_whirly(youmonst.data) ||
 						    unsolid(youmonst.data)) {
@@ -4036,7 +3951,7 @@ unsigned trflags;
 
 	    case ACID_POOL:
 
-		if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) ) break; /* this trap is ground-based */
+		if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) break; /* this trap is ground-based */
 
 		seetrap(trap);
 
@@ -4068,7 +3983,7 @@ unsigned trflags;
 
 	    case WATER_POOL:
 
-		if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) ) break; /* this trap is ground-based */
+		if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) break; /* this trap is ground-based */
 
 		seetrap(trap);
 
@@ -4577,6 +4492,7 @@ newegomon:
 			case 8:
 				{
 				int pm = rn2(5) ? dprince(rn2((int)A_LAWFUL+2) - 1) : dlord(rn2((int)A_LAWFUL+2) - 1);
+				if (pm >= PM_ORCUS && pm <= PM_DEMOGORGON) u.conclusiocount++;
 				if (pm && (pm != NON_PM)) {
 					(void) makemon(&mons[pm], u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 					pline("An angry demon climbs out of the fountain...");
@@ -4923,51 +4839,51 @@ newegomon:
 
 			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 				unrestrict_weapon_skill(skillimprove);
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
 				unrestrict_weapon_skill(skillimprove);
 				P_MAX_SKILL(skillimprove) = P_BASIC;
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
 				P_MAX_SKILL(skillimprove) = P_SKILLED;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
 				P_MAX_SKILL(skillimprove) = P_EXPERT;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
 				P_MAX_SKILL(skillimprove) = P_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else gainlevelmaybe();
 
 			if (Race_if(PM_RUSMOT)) {
 				if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 					unrestrict_weapon_skill(skillimprove);
-					pline("You can now learn the %s skill.", P_NAME(skillimprove));
+					pline("You can now learn the %s skill.", wpskillname(skillimprove));
 				} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
 					unrestrict_weapon_skill(skillimprove);
 					P_MAX_SKILL(skillimprove) = P_BASIC;
-					pline("You can now learn the %s skill.", P_NAME(skillimprove));
+					pline("You can now learn the %s skill.", wpskillname(skillimprove));
 				} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
 					P_MAX_SKILL(skillimprove) = P_SKILLED;
-					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 				} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
 					P_MAX_SKILL(skillimprove) = P_EXPERT;
-					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 				} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
 					P_MAX_SKILL(skillimprove) = P_MASTER;
-					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 				} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
 					P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
-					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 				} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 					P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
-					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 				}
 			}
 
@@ -5017,7 +4933,7 @@ newegomon:
 			pline("You may fully identify an object!");
 
 secureidchoice:
-			identotmp = getobj(all_count, "secure identify");
+			identotmp = getobj(allnoncount, "secure identify");
 
 			if (!identotmp) {
 				if (yn("Really exit with no object selected?") == 'y')
@@ -5537,7 +5453,7 @@ rerollX:
 
 		if (levl[u.ux][u.uy].typ == ROOM || levl[u.ux][u.uy].typ == CORR || levl[u.ux][u.uy].typ == ICE) {
 			levl[u.ux][u.uy].typ = POOL;
-			if (!Wwalking && !Race_if(PM_KORONST) && !Flying && !Levitation && !(uarmc && itemhasappearance(uarmc, APP_FLIER_CLOAK)) ) drown();
+			if (!Wwalking && !Race_if(PM_KORONST) && !Flying && !Levitation && !(uarmf && uarmf->oartifact == ART_RUBBER_LOVE) && !(uarmc && itemhasappearance(uarmc, APP_FLIER_CLOAK)) ) drown();
 		}
 		break;
 
@@ -5671,7 +5587,7 @@ rerollX:
 			if (rn2(3)) {
 				pline("Your mana increases.");
 				u.uenmax++;
-			} else switch (rnd(28)) {
+			} else switch (rnd(29)) {
 
 				case 1:
 					HTeleport_control += 2;
@@ -5806,7 +5722,7 @@ rerollX:
 					break;
 				case 12:
 					pline("Suddenly, you gain a new companion!");
-					(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE);
+					(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, FALSE);
 					break;
 				case 13:
 					{
@@ -6179,7 +6095,7 @@ rerollX:
 							}
 
 							P_MAX_SKILL(skillnumber) = maxcap;
-							pline("You can now learn the %s skill, with a new cap of %s.", P_NAME(skillnumber), maxcap == P_SUPREME_MASTER ? "supreme master" : maxcap == P_GRAND_MASTER ? "grand master" : maxcap == P_MASTER ? "master" : maxcap == P_EXPERT ? "expert" : maxcap == P_SKILLED ? "skilled" : "basic");
+							pline("You can now learn the %s skill, with a new cap of %s.", wpskillname(skillnumber), maxcap == P_SUPREME_MASTER ? "supreme master" : maxcap == P_GRAND_MASTER ? "grand master" : maxcap == P_MASTER ? "master" : maxcap == P_EXPERT ? "expert" : maxcap == P_SKILLED ? "skilled" : "basic");
 						} else {
 							pline("Nothing happens...");
 							if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -6265,7 +6181,7 @@ newbossPENT:
 						y = rn2(ROWNO);
 
 						if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-								ttmp = maketrap(x, y, randomtrap(), 0);
+								ttmp = maketrap(x, y, randomtrap(), 0, TRUE);
 							if (ttmp) {
 								ttmp->tseen = 0;
 								ttmp->hiddentrap = 1;
@@ -6294,6 +6210,24 @@ newbossPENT:
 				case 28:
 					decontaminate(100);
 					You_feel("decontaminated.");
+					break;
+				case 29:
+					pline("Wow!  This makes you feel good!");
+					{
+					int i, ii, lim;
+					i = rn2(A_MAX);
+					for (ii = 0; ii < A_MAX; ii++) {
+						lim = AMAX(i);
+						if (i == A_STR && u.uhs >= 3) --lim;	/* WEAK */
+						if (ABASE(i) < lim) {
+							ABASE(i) = lim;
+							flags.botl = 1;
+							break;
+						}
+						if(++i >= A_MAX) i = 0;
+					}
+
+					}
 					break;
 				default:
 					impossible("undefined pentagram effect");
@@ -6571,7 +6505,7 @@ newbossPENT:
 			seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Kati.");
-			pline("You feel like being kicked by sexy girls and cleaing their shoes.");
+			pline("You feel like being kicked by sexy girls and cleaning their shoes.");
 			u.cnd_feminismtrapamount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 			if (Role_if(PM_EMERA)) emerafrenzy();
@@ -6584,7 +6518,7 @@ newbossPENT:
 
 	    case QUICKSAND_TRAP:
 
-		if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) ) {
+		if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) {
 
 			if (rn2(10)) break;
 			else pline("You are pulled downwards...");
@@ -6971,6 +6905,7 @@ newbossPENT:
 	    case DESTROY_ARMOR_TRAP:
 
 		seetrap(trap);
+		if (!rn2(5)) deltrap(trap); /* CAUTION: "trap" might have been dereferenced now */
 		pline("CLICK! You have triggered a trap!");
 
 		{
@@ -7019,6 +6954,10 @@ newbossPENT:
 
 			case 1: /* gluttony */
 				u.negativeprotection++;
+				if (evilfriday && u.ublessed > 0) {
+					u.ublessed -= 1;
+					if (u.ublessed < 0) u.ublessed = 0;
+				}
 				You_feel("less protected!");
 				break;
 			case 2: /* wrath */
@@ -7677,7 +7616,7 @@ newbossPENT:
 
 	    case SHIT_TRAP:
 
-		if ((Levitation || Flying || (uarmf && itemhasappearance(uarmf, APP_YELLOW_SNEAKERS) ) ) && !(Role_if(PM_GANG_SCHOLAR)) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) && !SpellColorBrown && !FemaleTrapAnastasia && !(uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) && !(uarmf && itemhasappearance(uarmf, APP_SKI_HEELS)) && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS) && !(uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) && !(uarmf && (itemhasappearance(uarmf, APP_HUGGING_BOOTS) || itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) ) ) { /* ground-based trap, obviously */
+		if ((Levitation || Flying || (uarmf && itemhasappearance(uarmf, APP_YELLOW_SNEAKERS) ) ) && !(Role_if(PM_GANG_SCHOLAR)) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) && !SpellColorBrown && !FemaleTrapAnastasia && !(uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) && !(uarmf && itemhasappearance(uarmf, APP_SKI_HEELS)) && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS) && !(uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) && !(uarmf && (itemhasappearance(uarmf, APP_HUGGING_BOOTS) || itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) ) ) { /* ground-based trap, obviously */
 		    if (!already_seen && rn2(3)) break;
 		    seetrap(trap);
 		    pline("%s %s on the ground below you.",
@@ -7699,7 +7638,7 @@ newbossPENT:
 	    case ANOXIC_PIT:
 	    case ACID_PIT:
 		/* KMH -- You can't escape the Sokoban level traps */
-		if (!In_sokoban(&u.uz) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) && (Levitation || Flying)) break;
+		if (!In_sokoban(&u.uz) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) && (Levitation || Flying)) break;
 
 		if (ttype == SHIT_PIT && (uarmf && itemhasappearance(uarmf, APP_YELLOW_SNEAKERS))) break;
 
@@ -8629,7 +8568,7 @@ madnesseffect:
 	    case LANDMINE: {
 		unsigned steed_mid = 0;
 		struct obj *saddle = 0;
-		if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) ) {
+		if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) {
 		    if (!already_seen && rn2(3)) break;
 		    seetrap(trap);
 		    pline("%s %s in a pile of soil below you.",
@@ -8686,7 +8625,7 @@ madnesseffect:
 		    for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 				if (!isok(u.ux + i, u.uy + j)) continue;
 				if (levl[u.ux + i][u.uy + j].typ != ROOM && levl[u.ux + i][u.uy + j].typ != CORR) continue;					if (t_at(u.ux + i, u.uy + j)) continue;
-			maketrap(u.ux + i, u.uy + j, PIT, 0);
+			maketrap(u.ux + i, u.uy + j, PIT, 0, FALSE);
 		    }
 		if ((trap = t_at(u.ux, u.uy)) != 0) dotrap(trap, RECURSIVETRAP);
 
@@ -8765,10 +8704,10 @@ madnesseffect:
 		 case SPEAR_TRAP:
 		seetrap(trap);
 		pline("A spear stabs up from a hole in the ground at you!");
-		if (thick_skinned(youmonst.data) || (uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON) || (uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) || Race_if(PM_DUTHOL) ) {
+		if (thick_skinned(youmonst.data) || (uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON) || (uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) || (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) || (uarmf && uarmf->oartifact == ART_THICK_FARTING_GIRL) || Race_if(PM_DUTHOL) ) {
 			pline("But it breaks off against your body.");
 			deltrap(trap);
-		} else if (Levitation && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) ) {
+		} else if (Levitation && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) {
 			pline("The spear isn't long enough to reach you.");
 		} else if (unsolid(youmonst.data)) {
 			pline("It passes right through you!");
@@ -8815,7 +8754,7 @@ madnesseffect:
 		break;
 
 	    case TURN_TABLE:
-		if ( ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) ) || unsolid(youmonst.data)) break;
+		if ( ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) || unsolid(youmonst.data)) break;
 
 		i = rn2(15);
 		if (trap->once && i < 1) {
@@ -9516,14 +9455,17 @@ madnesseffect:
 
 		 case UNKNOWN_TRAP: /* randomly transforms into some other trap */
 
+			{
+			boolean cangivehp = trap->giveshp;
 			deltrap(trap);
 
 			int rtrap;
 		      rtrap = randomtrap();
 
-			(void) maketrap(u.ux, u.uy, rtrap, 100);
+			(void) maketrap(u.ux, u.uy, rtrap, 100, cangivehp);
 
 			if ((trap = t_at(u.ux, u.uy)) != 0) dotrap(trap, RECURSIVETRAP);
+			}
 
 		 break;
 
@@ -9539,7 +9481,7 @@ madnesseffect:
 
 			if (!rn2(10)) {
 			deltrap(trap);
-			(void) maketrap(u.ux, u.uy, ROCKTRAP, 0); /* no recursive trap here */
+			(void) maketrap(u.ux, u.uy, ROCKTRAP, 0, FALSE); /* no recursive trap here */
 			}
 
 		 break;
@@ -9623,7 +9565,7 @@ madnesseffect:
 			else {
 			u.cnd_nastytrapamount++;
 			deltrap(trap);
-			(void) maketrap(u.ux, u.uy, SUPERSCROLLER_TRAP, 0);
+			(void) maketrap(u.ux, u.uy, SUPERSCROLLER_TRAP, 0, FALSE);
 			/* no recursive trap - just give the nasty effect here */
 			Superscroller = rnz(nastytrapdur * (Role_if(PM_GRADUATE) ? 2 : Role_if(PM_GEEK) ? 5 : 10) * (monster_difficulty() + 1));
 			(void) makemon(&mons[PM_SCROLLER_MASTER], 0, 0, NO_MINVENT);
@@ -11920,6 +11862,162 @@ madnesseffect:
 
 		 break;
 
+		 case ARABELLA_TRAP:
+
+			if (FemaleTrapArabella) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Arabella.");
+			pline("Oh no, the master of nasty traps is laying out her snares to get you!");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapArabella = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapArabella += 100;
+			if (!rn2(3)) FemaleTrapArabella += rnz(500);
+
+		 break;
+
+		 case NELLY_TRAP:
+
+			if (FemaleTrapNelly) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Nelly.");
+			pline("You fear that the women are going to crush you with a hug.");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapNelly = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapNelly += 100;
+			if (!rn2(3)) FemaleTrapNelly += rnz(500);
+
+		 break;
+
+		 case EVELINE_TRAP:
+
+			if (FemaleTrapEveline) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Eveline.");
+			pline("It seems that the women are running faster.");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapEveline = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapEveline += 100;
+			if (!rn2(3)) FemaleTrapEveline += rnz(500);
+
+		 break;
+
+		 case KARIN_TRAP:
+
+			if (FemaleTrapKarin) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Karin.");
+			pline("All the women want to knee you in the delicate nuts now!");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapKarin = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapKarin += 100;
+			if (!rn2(3)) FemaleTrapKarin += rnz(500);
+
+		 break;
+
+		 case JUEN_TRAP:
+
+			if (FemaleTrapJuen) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Juen.");
+			pline("Oh no, your shins are almost broken!");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapJuen = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapJuen += 100;
+			if (!rn2(3)) FemaleTrapJuen += rnz(500);
+
+		 break;
+
+		 case KRISTINA_TRAP:
+
+			if (FemaleTrapKristina) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Kristina.");
+			pline("Urgh, you can already smell the stench of stinking cigarettes!");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapKristina = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapKristina += 100;
+			if (!rn2(3)) FemaleTrapKristina += rnz(500);
+
+		 break;
+
+		 case LOU_TRAP:
+
+			if (FemaleTrapLou) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Lou.");
+			pline("These damn people want to use your precious clothing to brush off their dirty shoes!");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapLou = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapLou += 100;
+			if (!rn2(3)) FemaleTrapLou += rnz(500);
+
+		 break;
+
+		 case ALMUT_TRAP:
+
+			if (FemaleTrapAlmut) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Almut.");
+			pline("The girls feel like kicking your hands bloodily with their sneakers!");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapAlmut = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapAlmut += 100;
+			if (!rn2(3)) FemaleTrapAlmut += rnz(500);
+
+		 break;
+
+		 case JULIETTA_TRAP:
+
+			if (FemaleTrapJulietta) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Julietta.");
+			pline("Now you'll be subjected to Julietta's torture, and she'll subject you to random punishments from time to time.");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapJulietta = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapJulietta += 100;
+			if (!rn2(3)) FemaleTrapJulietta += rnz(500);
+
+			pline("Julietta rolls the dice to randomly select a punishment for you...");
+			randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
+
+		 break;
+
 		 case ANASTASIA_TRAP:
 
 			if (FemaleTrapAnastasia) break;
@@ -12446,11 +12544,11 @@ madnesseffect:
 	
 				      rtrap = randomtrap();
 	
-					(void) maketrap(u.ux + i, u.uy + j, rtrap, 100);
+					(void) maketrap(u.ux + i, u.uy + j, rtrap, 100, FALSE);
 				}
 			}
 
-			makerandomtrap();
+			makerandomtrap(FALSE);
 
 			if (TrapCreationProblem) break;
 			u.cnd_nastytrapamount++;
@@ -13803,7 +13901,7 @@ madnesseffect:
 					fily = rn2(ROWNO);
 
 					if (filx && fily && isok(filx, fily) && (levl[filx][fily].typ > DBWALL) && !(t_at(filx, fily)) ) {
-						(void) maketrap(filx, fily, fillertraptype, 0);
+						(void) maketrap(filx, fily, fillertraptype, 0, FALSE);
 					}
 				}
 
@@ -15664,12 +15762,22 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			    } else
 				break;
 			}
-			/* Fall through */
-		case LEVEL_TELEP:
 			{
 			    int mlev_res;
 			    mlev_res = mlevel_tele_trap(mtmp, trap,
 							inescapable, in_sight);
+			    if (mlev_res) return(mlev_res);
+			}
+			break;
+			/* used to be a fallthrough but we don't want that anymore --Amy */
+		case LEVEL_TELEP:
+		case LEVEL_BEAMER:
+
+			if (mtmp->isshk || mtmp->ispriest) break; /* we don't want shks to become angry through no fault of your own, unless you have e.g. a wakeup call trap in effect --Amy */
+
+			{
+			    int mlev_res;
+			    mlev_res = mlevel_tele_trap(mtmp, trap, inescapable, in_sight);
 			    if (mlev_res) return(mlev_res);
 			}
 			break;
@@ -15685,19 +15793,11 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 
 			break;
 
-		case LEVEL_BEAMER:
-			{
-			    int mlev_res;
-			    mlev_res = mlevel_tele_trap(mtmp, trap,
-							inescapable, in_sight);
-			    if (mlev_res) return(mlev_res);
-			}
-			break;
-
 		case MAGIC_PORTAL: /* no longer allows players to simply get rid of them --Amy */
 		case RELOCATION_TRAP:
 
 			if (rn2(2)) break; /* don't trigger too often */
+			if (mtmp->isshk || mtmp->ispriest) break; /* we don't want shks to become angry through no fault of your own, unless you have e.g. a wakeup call trap in effect --Amy */
 			if (in_sight) {
 				pline("%s seems very disoriented!", mon_nam(mtmp));
 				seetrap(trap);
@@ -15707,10 +15807,10 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			break;
 
 		case TELEP_TRAP:
-			mtele_trap(mtmp, trap, in_sight);
-			break;
-
 		case BEAMER_TRAP:
+
+			if (mtmp->isshk || mtmp->ispriest) break; /* we don't want shks to become angry through no fault of your own, unless you have e.g. a wakeup call trap in effect --Amy */
+
 			mtele_trap(mtmp, trap, in_sight);
 			break;
 
@@ -16010,6 +16110,15 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case FEMMY_TRAP:
 		case MADELEINE_TRAP:
 		case MARLENA_TRAP:
+		case ARABELLA_TRAP:
+		case NELLY_TRAP:
+		case EVELINE_TRAP:
+		case KARIN_TRAP:
+		case JUEN_TRAP:
+		case KRISTINA_TRAP:
+		case ALMUT_TRAP:
+		case JULIETTA_TRAP:
+		case LOU_TRAP:
 		case ANASTASIA_TRAP:
 		case FILLER_TRAP:
 		case TOXIC_VENOM_TRAP:
@@ -16373,6 +16482,9 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			break;
 
 		case POLY_TRAP:
+
+			if (mtmp->isshk || mtmp->ispriest) break; /* I simply decided to make them immune, sue me :P --Amy */
+
 		    if (resists_magm(mtmp)) {
 			shieldeff(mtmp->mx, mtmp->my);
 		    } else if (!resist(mtmp, WAND_CLASS, 0, NOTELL)) {
@@ -16718,7 +16830,7 @@ long hmask, emask;     /* might cancel timeout */
 			vision_full_recalc = 1;	/* in case the hero moved. */
 	}
 	/* check for falling into pool - added by GAN 10/20/86 */
-	if(!Flying && !(uarmc && itemhasappearance(uarmc, APP_FLIER_CLOAK) ) ) {
+	if(!Flying && !(uarmf && uarmf->oartifact == ART_RUBBER_LOVE) && !(uarmc && itemhasappearance(uarmc, APP_FLIER_CLOAK) ) ) {
 		if (!u.uswallow && u.ustuck) {
 			if (sticks(youmonst.data))
 				You("aren't able to maintain your hold on %s.",
@@ -17535,6 +17647,9 @@ register boolean force, here;
 		if (itemhasappearance(obj, APP_WITHERED_CLOAK) ) continue;
 
 		if ((obj->where != OBJ_FLOOR) && uarmh && itemhasappearance(uarmh, APP_SCUBA_HELMET) ) continue;
+		if ((obj->where != OBJ_FLOOR) && uarmc && itemhasappearance(uarmc, APP_WETSUIT)) continue;
+		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_FOAMONIA_WATER ) continue;
+		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_GARY_S_RIVALRY ) continue;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_NEWFOUND_AND_USEFUL) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_JESUS_FOOTWEAR) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmc && uarmc->oartifact == ART_SCOOBA_COOBA) continue;
@@ -17542,6 +17657,7 @@ register boolean force, here;
 		if ((obj->where != OBJ_FLOOR) && Race_if(PM_PLAYER_ATLANTEAN)) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_JANA_S_VAGINAL_FUN) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmu && uarmu->oartifact == ART_THERMAL_BATH) continue;
+		if ((obj->where != OBJ_FLOOR) && uarm && uarm->oartifact == ART_SWIMCHAMP) continue;
 		if ((obj->where != OBJ_FLOOR) && Race_if(PM_SEA_ELF)) continue;
 		if ((obj->where != OBJ_FLOOR) && tech_inuse(T_SILENT_OCEAN)) continue;
 
@@ -17591,7 +17707,7 @@ register boolean force, here;
 
 		    switch (obj->oclass) {
 		    case SCROLL_CLASS:
-			if (obj->finalcancel) break;
+			if (finalcancelled(obj)) break;
 			if  (obj->otyp != SCR_HEALING && obj->otyp != SCR_EXTRA_HEALING && obj->otyp != SCR_HEAL_OTHER && obj->otyp != SCR_STANDARD_ID && obj->otyp != SCR_MANA && obj->otyp != SCR_GREATER_MANA_RESTORATION && obj->otyp != SCR_CURE && obj->otyp != SCR_PHASE_DOOR
 #ifdef MAIL
 		    && obj->otyp != SCR_MAIL
@@ -17612,14 +17728,14 @@ register boolean force, here;
 		    }
 			break;
 		    case SPBOOK_CLASS:
-			if (obj->finalcancel) break;
+			if (finalcancelled(obj)) break;
 			/* Spell books get blanked... */
 			if (obj->otyp == SPE_BOOK_OF_THE_DEAD)
 				pline("Steam rises from %s.", the(xname(obj)));
 			else obj->otyp = SPE_BLANK_PAPER;
 			break;
 		    case POTION_CLASS:
-			if (obj->finalcancel) break;
+			if (finalcancelled(obj)) break;
 			if (obj->otyp == POT_ACID) {
 				/* damage player/monster? */
 				pline("A potion explodes!");
@@ -17776,7 +17892,7 @@ register boolean force, here;
 
 		    switch (obj->oclass) {
 		    case SCROLL_CLASS:
-			if (obj->finalcancel) break;
+			if (finalcancelled(obj)) break;
 			if  (!rn2(10) && obj->otyp != SCR_HEALING && obj->otyp != SCR_HEAL_OTHER && obj->otyp != SCR_EXTRA_HEALING && obj->otyp != SCR_STANDARD_ID && obj->otyp != SCR_MANA && obj->otyp != SCR_GREATER_MANA_RESTORATION && obj->otyp != SCR_CURE && obj->otyp != SCR_PHASE_DOOR
 #ifdef MAIL
 		    && obj->otyp != SCR_MAIL
@@ -17795,7 +17911,7 @@ register boolean force, here;
 		    case SPBOOK_CLASS:
 			break;
 		    case POTION_CLASS:
-			if (obj->finalcancel) break;
+			if (finalcancelled(obj)) break;
 			if (obj->otyp == POT_WATER || !rn2(10)) {
 				obj->otyp = POT_AMNESIA;
 				obj->blessed = FALSE;
@@ -17959,6 +18075,8 @@ register boolean force, here;
 		if (Race_if(PM_CHIQUAI) && rn2(4)) continue;
 
 		if (rn2(10)) continue;
+
+		if (obj->oartifact == ART_WASTEFUL_PLAYER) continue; /* so it doesn't damage itself */
 
 		if (itemhasappearance(obj, APP_BRAND_NEW_GLOVES) && rn2(2) ) continue;
 
@@ -18419,6 +18537,11 @@ register int n;
 		}
 	}
 
+	if (uarmf && itemhasappearance(uarmf, APP_CROSS_COUNTRY_BOOTS) && !rn2(5)) {
+		pline("Thanks to your cross country boots, you resist the mana drain.");
+		return;
+	}
+
 	if (!u.uenmax) return;
 	You_feel("your magical energy drain away!");
 	u.uen -= n;
@@ -18625,7 +18748,7 @@ boolean force_failure;
 			    if ((mtmp->mhp -= rnd(4)) <= 0) killed(mtmp);
 			} else if (ttype == WEB || ttype == FARTING_WEB) {
 			    if (!webmaker(youmonst.data)) {
-				struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB, 0);
+				struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB, 0, FALSE);
 				if (ttmp2) {
 				    pline_The("webbing sticks to you. You're caught too!");
 				    dotrap(ttmp2, NOWEBMSG);
@@ -18710,7 +18833,7 @@ struct trap *ttmp;
 		}
 
 		if (!ttmp->madeby_u) {
-			more_experienced(5,0);
+			more_experienced(5 * (deepest_lev_reached(FALSE) + 1),0);
 			newexplevel();
 		}
 
@@ -18729,7 +18852,12 @@ struct trap *ttmp;
 	You("disarm %s land mine.", the_your[ttmp->madeby_u]);
 	if (!ttmp->madeby_u && u.ualign.type == A_LAWFUL) adjalign(1);
 	if (!ttmp->madeby_u) {
-		more_experienced(20,0);
+		more_experienced(20 * (deepest_lev_reached(FALSE) + 1),0);
+		if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
+			u.uhpmax += 3;
+			if (Upolyd) u.mhmax += 3;
+			flags.botl = TRUE;
+		}
 		newexplevel();
 	}
 	cnv_trap_obj(LAND_MINE, 1, ttmp);
@@ -18748,7 +18876,12 @@ struct trap *ttmp;
 	You("disarm the water trap!");
 	u.cnd_untrapamount++;
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
-	more_experienced(10,0);
+	more_experienced(10 * (deepest_lev_reached(FALSE) + 1),0);
+	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
+		u.uhpmax += 1;
+		if (Upolyd) u.mhmax += 1;
+		flags.botl = TRUE;
+	}
 	newexplevel();
 	deltrap(ttmp);
 	levl[trapx][trapy].typ = FOUNTAIN;
@@ -18764,12 +18897,25 @@ int exper;
 {
 	xchar trapx = ttmp->tx, trapy = ttmp->ty;
 	int fails = try_disarm(ttmp, FALSE);
+	int hpboost = 2;
 
 	if (fails < 2) return fails;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
-	more_experienced(exper,0);
-	newexplevel();
+	more_experienced(exper * (deepest_lev_reached(FALSE) + 1),0);
+	flags.botl = TRUE;
+	if (exper < 5) hpboost = 2;
+	else if (exper < 26) hpboost = 5;
+	else if (exper < 51) hpboost = 7;
+	else if (exper < 101) hpboost = 10;
+	else if (exper < 201) hpboost = 12;
+	else if (exper < 401) hpboost = 15;
+	else if (exper < 2402) hpboost = 20;
+	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
+		u.uhpmax += hpboost;
+		if (Upolyd) u.mhmax += hpboost;
+		newexplevel();
+	}
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	deltrap(ttmp);
 	newsym(trapx, trapy);
@@ -18786,7 +18932,12 @@ struct trap *ttmp;
 	if (fails < 2) return fails;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
-	more_experienced(3,0);
+	more_experienced(3 * (deepest_lev_reached(FALSE) + 1),0);
+	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
+		u.uhpmax += 2;
+		if (Upolyd) u.mhmax += 2;
+		flags.botl = TRUE;
+	}
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	deltrap(ttmp);
@@ -18804,7 +18955,12 @@ struct trap *ttmp;
 	if (fails < 2) return fails;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
-	more_experienced(3,0);
+	more_experienced(3 * (deepest_lev_reached(FALSE) + 1),0);
+	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
+		u.uhpmax += 2;
+		if (Upolyd) u.mhmax += 2;
+		flags.botl = TRUE;
+	}
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	cnv_trap_obj(MORNING_STAR, 1, ttmp);
@@ -18822,7 +18978,12 @@ struct trap *ttmp;
 	if (fails < 2) return fails;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
-	more_experienced(3,0);
+	more_experienced(3 * (deepest_lev_reached(FALSE) + 1),0);
+	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
+		u.uhpmax += 3;
+		if (Upolyd) u.mhmax += 3;
+		flags.botl = TRUE;
+	}
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	cnv_trap_obj(IRON_CHAIN, 1, ttmp);
@@ -18840,7 +19001,12 @@ struct trap *ttmp;
 	if (fails < 2) return fails;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
-	more_experienced(3,0);
+	more_experienced(3 * (deepest_lev_reached(FALSE) + 1),0);
+	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
+		u.uhpmax += 3;
+		if (Upolyd) u.mhmax += 3;
+		flags.botl = TRUE;
+	}
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	if (!rn2(5)) cnv_trap_obj(POT_ACID, rnd(2), ttmp);
@@ -18859,7 +19025,12 @@ struct trap *ttmp;
 	if (fails < 2) return fails;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
-	more_experienced(1,0);
+	more_experienced(1 * (deepest_lev_reached(FALSE) + 1),0);
+	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
+		u.uhpmax += 1;
+		if (Upolyd) u.mhmax += 1;
+		flags.botl = TRUE;
+	}
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	deltrap(ttmp);
@@ -18877,7 +19048,7 @@ struct trap *ttmp;
 	if (fails < 2) return fails;
 	You("removed the superscroller!");
 	u.cnd_untrapamount++;
-	more_experienced(1,0);
+	more_experienced(1 * (deepest_lev_reached(FALSE) + 1),0);
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	deltrap(ttmp);
@@ -18899,7 +19070,12 @@ struct trap *ttmp;
 	if (fails < 2) return fails;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
-	more_experienced(5,0);
+	more_experienced(5 * (deepest_lev_reached(FALSE) + 1),0);
+	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
+		u.uhpmax += 5;
+		if (Upolyd) u.mhmax += 5;
+		flags.botl = TRUE;
+	}
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 
@@ -18977,16 +19153,22 @@ struct trap *ttmp;
 			pline("%s's sexy butt looks like it's bleeding, but it instantly stops.", farttrapnames[ttmp->launch_otyp]);
 			return 1;
 		default: /* 20 or higher = disarmed */
+			{
+			boolean cangivehp = ttmp->giveshp;
 			pline("You hurt %s so badly that she retreats her sexy butt, and decides to set up her high heels as a trap instead!", farttrapnames[ttmp->launch_otyp]);
 			u.cnd_untrapamount++;
-			more_experienced(500,0);
+			more_experienced(500 * (deepest_lev_reached(FALSE) + 1),0);
+			/* always give boost because they're hard to disarm --Amy */
+			u.uhpmax += 25;
+			if (Upolyd) u.mhmax += 25;
+			flags.botl = TRUE;
 			newexplevel();
 			deltrap(ttmp);
-			ttmp = maketrap(trapx, trapy, HEEL_TRAP, 0);
+			ttmp = maketrap(trapx, trapy, HEEL_TRAP, 0, cangivehp);
 			if (ttmp && !ttmp->hiddentrap ) ttmp->tseen = 1;
 			newsym(trapx, trapy);
 			return 1;
-
+			}
 	}
 
 }
@@ -19001,7 +19183,12 @@ struct trap *ttmp;
 	if (fails < 2) return fails;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
-	more_experienced(3,0);
+	more_experienced(3 * (deepest_lev_reached(FALSE) + 1),0);
+	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
+		u.uhpmax += 2;
+		if (Upolyd) u.mhmax += 2;
+		flags.botl = TRUE;
+	}
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	if (!rn2(10)) cnv_trap_obj(POT_WATER, rnd(4), ttmp);
@@ -19020,7 +19207,12 @@ struct trap *ttmp;
 	if (fails < 2) return fails;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
-	more_experienced(20,0);
+	more_experienced(20 * (deepest_lev_reached(FALSE) + 1),0);
+	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
+		u.uhpmax += 10;
+		if (Upolyd) u.mhmax += 10;
+		flags.botl = TRUE;
+	}
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 
@@ -19085,7 +19277,12 @@ struct trap *ttmp;
 
 	if (!rn2(3)) cnv_trap_obj(POT_OIL, 4 - rnl(4), ttmp);
 	else deltrap(ttmp);
-	more_experienced(1, 5);
+	more_experienced(1 * (deepest_lev_reached(FALSE) + 1), 5);
+	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
+		u.uhpmax += 5;
+		if (Upolyd) u.mhmax += 5;
+		flags.botl = TRUE;
+	}
 	newexplevel();
 	return 1;
 }
@@ -19123,8 +19320,13 @@ struct trap *ttmp;
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	deltrap(ttmp);
 	newsym(trapx, trapy);
-	more_experienced(1, 5);
-		    newexplevel();
+	more_experienced(1 * (deepest_lev_reached(FALSE) + 1), 5);
+	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
+		u.uhpmax += 1;
+		if (Upolyd) u.mhmax += 1;
+		flags.botl = TRUE;
+	}
+	newexplevel();
 	return 1;
 }
 
@@ -19139,7 +19341,12 @@ int otyp;
 	if (fails < 2) return fails;
 	You("disarm %s trap.", the_your[ttmp->madeby_u]);
 	u.cnd_untrapamount++;
-	more_experienced(10, 0);
+	more_experienced(10 * (deepest_lev_reached(FALSE) + 1), 0);
+	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
+		u.uhpmax += 1;
+		if (Upolyd) u.mhmax += 1;
+		flags.botl = TRUE;
+	}
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	cnv_trap_obj(otyp, 50-rnl(50), ttmp);
@@ -19553,7 +19760,7 @@ boolean disarm;
 	if (!rn2(10) || evilfriday) {
 
 		if (isok(u.ux, u.uy) && !(t_at(u.ux, u.uy)) ) {
-			ttmp = maketrap(u.ux, u.uy, randomtrap(), 100);
+			ttmp = maketrap(u.ux, u.uy, randomtrap(), 100, FALSE);
 			if (ttmp) {
 				ttmp->tseen = 0;
 				ttmp->hiddentrap = 1;
@@ -19568,7 +19775,7 @@ boolean disarm;
 			y = rn2(ROWNO);
 
 			if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					ttmp = maketrap(x, y, randomtrap(), 0);
+					ttmp = maketrap(x, y, randomtrap(), 0, FALSE);
 				if (ttmp) {
 					ttmp->tseen = 0;
 					ttmp->hiddentrap = 1;
@@ -19908,7 +20115,7 @@ boulderdone:
 			if (levl[u.ux + i][u.uy + j].typ <= DBWALL) continue;
 			if (t_at(u.ux + i, u.uy + j)) continue;
 
-			ttmp = maketrap(u.ux + i, u.uy + j, randomtrap(), 100);
+			ttmp = maketrap(u.ux + i, u.uy + j, randomtrap(), 100, FALSE);
 			if (ttmp) {
 				ttmp->tseen = 0;
 				ttmp->hiddentrap = 1;
@@ -19923,7 +20130,7 @@ boulderdone:
 			y = rn2(ROWNO);
 
 			if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					ttmp = maketrap(x, y, randomtrap(), 100);
+					ttmp = maketrap(x, y, randomtrap(), 100, FALSE);
 				if (ttmp) {
 					ttmp->tseen = 0;
 					ttmp->hiddentrap = 1;

@@ -19,105 +19,6 @@
 
 #define CMD_TRAVEL (char)0x90
 
-#ifndef OVLB
-
-STATIC_DCL NEARDATA const short skill_names_indices[];
-STATIC_DCL NEARDATA const char *odd_skill_names[];
-
-#else	/* OVLB */
-
-/* KMH, balance patch -- updated */
-STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
-	0,                DAGGER,         KNIFE,        AXE,
-	PICK_AXE,         SHORT_SWORD,    BROADSWORD,   LONG_SWORD,
-	TWO_HANDED_SWORD, SCIMITAR,       PN_SABER,     CLUB,
-	PN_PADDLE,        MACE,           MORNING_STAR,   FLAIL,
-	PN_HAMMER,        QUARTERSTAFF,   PN_POLEARMS,  SPEAR,
-	JAVELIN,          TRIDENT,        LANCE,        BOW,
-	SLING,            PN_FIREARMS,    CROSSBOW,       DART,
-	SHURIKEN,         BOOMERANG,      PN_WHIP,      UNICORN_HORN,
-	PN_LIGHTSABER,
-	PN_ATTACK_SPELL,     PN_HEALING_SPELL,
-	PN_DIVINATION_SPELL, PN_ENCHANTMENT_SPELL,
-	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
-	PN_OCCULT_SPELL,
-	PN_ELEMENTAL_SPELL,
-	PN_CHAOS_SPELL,
-	PN_MATTER_SPELL,
-	PN_BARE_HANDED,	PN_HIGH_HEELS,
-	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
-	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
-	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
-	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_SEXY_FLATS,
-	PN_MEMORIZATION,	PN_GUN_CONTROL,	PN_SQUEAKING,	PN_SYMBIOSIS,
-	PN_SHII_CHO,	PN_MAKASHI,	PN_SORESU,
-	PN_ATARU,	PN_SHIEN,	PN_DJEM_SO,
-	PN_NIMAN,	PN_JUYO,	PN_VAAPAD,	PN_WEDI,
-	PN_MARTIAL_ARTS, 
-	PN_TWO_WEAPONS,
-	PN_RIDING,
-};
-
-
-STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
-    "no skill",
-    "polearms",
-    "saber",
-    "hammer",
-    "whip",
-    "paddle",
-    "firearms",
-    "attack spells",
-    "healing spells",
-    "divination spells",
-    "enchantment spells",
-    "protection spells",
-    "body spells",
-    "occult spells",
-    "elemental spells",
-    "chaos spells",
-    "matter spells",
-    "bare-handed combat",
-    "high heels",
-    "general combat",
-    "shield",
-    "body armor",
-    "two-handed weapons",
-    "polymorphing",
-    "devices",
-    "searching",
-    "spirituality",
-    "petkeeping",
-    "missile weapons",
-    "techniques",
-    "implants",
-    "sexy flats",
-    "memorization",
-    "gun control",
-    "squeaking",
-    "symbiosis",
-    "form I (Shii-Cho)",
-    "form II (Makashi)",
-    "form III (Soresu)",
-    "form IV (Ataru)",
-    "form V (Shien)",
-    "form V (Djem So)",
-    "form VI (Niman)",
-    "form VII (Juyo)",
-    "form VII (Vaapad)",
-    "form VIII (Wedi)",
-    "martial arts",
-    "riding",
-    "two-weapon combat",
-    "lightsaber"
-};
-
-#endif	/* OVLB */
-
-#define P_NAME(type) (skill_names_indices[type] > 0 ? \
-		      OBJ_NAME(objects[skill_names_indices[type]]) : \
-			odd_skill_names[-skill_names_indices[type]])
-
 #ifdef DEBUG
 /*
  * only one "wiz_debug_cmd" routine should be available (in whatever
@@ -292,9 +193,6 @@ static void add_debug_extended_commands(void);
 #ifdef OVLB
 STATIC_DCL void enlght_line(const char *,const char *,const char *);
 STATIC_DCL char *enlght_combatinc(const char *,int,int,char *);
-#ifdef UNIX
-static void end_of_input(void);
-#endif
 #endif /* OVLB */
 
 static const char* readchar_queue="";
@@ -305,6 +203,7 @@ STATIC_DCL boolean help_dir(CHAR_P,const char *);
 STATIC_PTR int domenusystem(void); /* WAC the menus*/
 
 STATIC_PTR int stefanjerepair(void);
+STATIC_PTR int deseamshoes(void);
 static NEARDATA schar delay;            /* moves left for stefanje repairs */
 
 #ifdef OVL1
@@ -1505,6 +1404,25 @@ domonability()
 			set_occupation(stefanjerepair, "repairing your 'Stefanje' sandals", 0);
 			return TRUE;
 		}
+	} else if (uarmf && uarmf->oartifact == ART_ENDLESS_DESEAMING && yn("Do you want to clean the dog shit from your Anastasia shoes?")=='y') {
+		if (!uarmf->oeroded && !uarmf->oeroded2) {
+			pline("Your shoes currently don't have any shit on their soles and therefore don't need cleaning.");
+			return TRUE;
+		} else {
+			delay = -(rn1(50, 50));
+			set_occupation(deseamshoes, "deseaming your Anastasia shoes", 0);
+			return TRUE;
+		}
+	} else if (uarmf && uarmf->oartifact == ART_THAT_S_SUPER_UNFAIR && yn("Do you want to clean the dog shit from your Kati shoes?")=='y') {
+		if (!uarmf->oeroded && !uarmf->oeroded2) {
+			pline("Your shoes currently don't have any shit on their soles and therefore don't need cleaning.");
+			return TRUE;
+		} else {
+			delay = -rn1(50, 50);
+			set_occupation(deseamshoes, "deseaming your Kati shoes", 0);
+			return TRUE;
+		}
+
 	} else if (issokosolver && !u.sokosolveboulder && yn("Do you want to create a boulder?")=='y' ) {
 		u.sokosolveboulder = rnz(1000);
 		if (!PlayerCannotUseSkills && u.sokosolveboulder >= 2) {
@@ -1579,6 +1497,10 @@ domonability()
 		if (split_mon(&youmonst, (struct monst *)0))
 		    dryup(u.ux, u.uy, TRUE);
 	    } else There("is no fountain here.");
+	} else if (splittinglavagremlin(youmonst.data) && yn("Do you want to replicate in lava?")=='y' ) {
+	    if(levl[u.ux][u.uy].typ == LAVAPOOL) {
+		(split_mon(&youmonst, (struct monst *)0));
+	    } else There("is no lava here.");
 	} else if ( (is_unicorn(youmonst.data) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT && uactivesymbiosis && is_unicorn(&mons[u.usymbiote.mnum])) || (Race_if(PM_PLAYER_UNICORN) && !Upolyd) ) && yn("Do you want to cure yourself with your horn?")=='y' ) {
 	    use_unicorn_horn((struct obj *)0);
 	    return 1;
@@ -1780,7 +1702,7 @@ domonability()
 
 		if (!(t_at(u.ux, u.uy))) {
 
-			shittrap = maketrap(u.ux, u.uy, SHIT_TRAP, 0);
+			shittrap = maketrap(u.ux, u.uy, SHIT_TRAP, 0, FALSE);
 			if (shittrap && !(shittrap->hiddentrap)) {
 				shittrap->tseen = 1;
 			}
@@ -1826,6 +1748,15 @@ domonability()
 	} else if (!PlayerCannotUseSkills && !u.juyofleeing && P_SKILL(P_JUYO) >= P_BASIC && yn("You have the Juyo skill, which allows you to make it more likely that monsters flee when you hit them. That feature is currently deactivated. Do you want to activate it?") == 'y') {
 		u.juyofleeing = 1;
 		pline("Monsters will now be more likely to flee from you when hit, with the chance depending on your Juyo skill!");
+		return 0;
+
+	} else if (!PlayerCannotUseSkills && u.controlmiguc && P_SKILL(P_PETKEEPING) >= P_BASIC && yn("Do you want to turn off the increased chance of your missiles passing through pets?") == 'y') {
+		u.controlmiguc = 0;
+		pline("Your missiles now have the regular chance of hitting your pets.");
+		return 0;
+	} else if (!PlayerCannotUseSkills && !u.controlmiguc && P_SKILL(P_PETKEEPING) >= P_BASIC && yn("You have the petkeeping skill, which allows you to make it more likely that your missiles pass through pets without harming them. That feature is currently deactivated. Do you want to activate it?") == 'y') {
+		u.controlmiguc = 1;
+		pline("Your missiles will now sometimes pass through pets, with the chance depending on your petkeeping skill!");
 		return 0;
 
 	} else if (Role_if(PM_JANITOR) && yn("Do you want to clean up the trash at your location?") == 'y') {
@@ -2782,8 +2713,10 @@ boolean guaranteed;
 	if (flags.elmstreet) you_are("playing in elm street mode");
 	if (flags.blindfox) you_are("playing in blindfox mode");
 	if (flags.hippie) you_are("playing in hippie mode");
+#ifdef GMMODE
 	if (flags.gmmode) you_are("playing in game master mode");
 	if (flags.supergmmode) you_are("playing in super game master mode");
+#endif
 
 	if ((guaranteed || !rn2(10)) && u.uevent.uhand_of_elbereth) {
 	    static const char * const hofe_titles[3] = {
@@ -2977,65 +2910,65 @@ boolean guaranteed;
 	}
 
 	if ((guaranteed || !rn2(10)) && u.untrainableskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
-		sprintf(buf, " %s", P_NAME(u.untrainableskill));
+		sprintf(buf, " %s", wpskillname(u.untrainableskill));
 		enl_msg("The following skill ", "cannot be trained at all:", "could not be trained at all:", buf);
 	}
 
 	if ((guaranteed || !rn2(10)) && u.halfspeedskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
-		sprintf(buf, " %s", P_NAME(u.halfspeedskill));
+		sprintf(buf, " %s", wpskillname(u.halfspeedskill));
 		enl_msg("The following skill ", "is trained at half the usual rate:", "was trained at half the usual rate:", buf);
 	}
 
 	if ((guaranteed || !rn2(10)) && u.fifthspeedskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
-		sprintf(buf, " %s", P_NAME(u.fifthspeedskill));
+		sprintf(buf, " %s", wpskillname(u.fifthspeedskill));
 		enl_msg("The following skill ", "is trained at one fifth the usual rate:", "was trained at one fifth the usual rate:", buf);
 	}
 
 	if ((guaranteed || !rn2(10)) && u.basiclimitskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
-		sprintf(buf, " %s", P_NAME(u.basiclimitskill));
+		sprintf(buf, " %s", wpskillname(u.basiclimitskill));
 		enl_msg("The following skill ", "is limited to basic proficiency:", "was limited to basic proficiency:", buf);
 	}
 
 	if ((guaranteed || !rn2(10)) && u.skilledlimitskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
-		sprintf(buf, " %s", P_NAME(u.skilledlimitskill));
+		sprintf(buf, " %s", wpskillname(u.skilledlimitskill));
 		enl_msg("The following skill ", "is limited to skilled proficiency:", "was limited to skilled proficiency:", buf);
 	}
 
 	if ((guaranteed || !rn2(10)) && u.expertlimitskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
-		sprintf(buf, " %s", P_NAME(u.expertlimitskill));
+		sprintf(buf, " %s", wpskillname(u.expertlimitskill));
 		enl_msg("The following skill ", "is limited to expert proficiency:", "was limited to expert proficiency:", buf);
 	}
 
 	if ((guaranteed || !rn2(10)) && u.earlytrainingskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
-		sprintf(buf, " %s (turn %d)", P_NAME(u.earlytrainingskill), u.earlytrainingtimer);
+		sprintf(buf, " %s (turn %d)", wpskillname(u.earlytrainingskill), u.earlytrainingtimer);
 		enl_msg("The following skill ", "becomes untrainable if you try to train it too early:", "became untrainable if you tried to train it too early:", buf);
 		if (u.earlytrainingblown) {
-			sprintf(buf, "blown your chance of training the %s skill", P_NAME(u.earlytrainingskill));
+			sprintf(buf, "blown your chance of training the %s skill", wpskillname(u.earlytrainingskill));
 			you_have(buf);
 		}
 	}
 
 	if ((guaranteed || !rn2(10)) && u.frtrainingskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
-		sprintf(buf, " %s (turn %d)", P_NAME(u.frtrainingskill), u.frtrainingtimer);
+		sprintf(buf, " %s (turn %d)", wpskillname(u.frtrainingskill), u.frtrainingtimer);
 		enl_msg("The following skill ", "becomes untrainable if you try to train it too early:", "became untrainable if you tried to train it too early:", buf);
 		if (u.frtrainingblown) {
-			sprintf(buf, "blown your chance of training the %s skill", P_NAME(u.frtrainingskill));
+			sprintf(buf, "blown your chance of training the %s skill", wpskillname(u.frtrainingskill));
 			you_have(buf);
 		}
 	}
 
 	if ((guaranteed || !rn2(10)) && u.latetrainingskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
-		sprintf(buf, " %s (turn %d)", P_NAME(u.latetrainingskill), u.latetrainingtimer);
+		sprintf(buf, " %s (turn %d)", wpskillname(u.latetrainingskill), u.latetrainingtimer);
 		enl_msg("The following skill ", "becomes untrainable after a while:", "became untrainable after a while:", buf);
 	}
 
 	if ((guaranteed || !rn2(10)) && u.lavtrainingskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
-		sprintf(buf, " %s (turn %d)", P_NAME(u.lavtrainingskill), u.lavtrainingtimer);
+		sprintf(buf, " %s (turn %d)", wpskillname(u.lavtrainingskill), u.lavtrainingtimer);
 		enl_msg("The following skill ", "can't be trained before a certain turn number is reached:", "couldn't be trained before a certain turn number is reached:", buf);
 	}
 
 	if ((guaranteed || !rn2(10)) && u.slowtrainingskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
-		sprintf(buf, " %s", P_NAME(u.slowtrainingskill));
+		sprintf(buf, " %s", wpskillname(u.slowtrainingskill));
 		enl_msg("The following skill ", "becomes harder to train at higher skill levels:", "became harder to train at higher skill levels:", buf);
 	}
 
@@ -3368,47 +3301,47 @@ boolean guaranteed;
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && u.unobtainable2 != -1 && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable2].oc_name, obj_descr[u.unobtainable2].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && u.unobtainable3 != -1 && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable3].oc_name, obj_descr[u.unobtainable3].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && u.unobtainable4 != -1 && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable4].oc_name, obj_descr[u.unobtainable4].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && u.unobtainable5 != -1 && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable5].oc_name, obj_descr[u.unobtainable5].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && u.unobtainable6 != -1 && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable6].oc_name, obj_descr[u.unobtainable6].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && u.unobtainable7 != -1 && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable7].oc_name, obj_descr[u.unobtainable7].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && u.unobtainable8 != -1 && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable8].oc_name, obj_descr[u.unobtainable8].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && u.unobtainable9 != -1 && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable9].oc_name, obj_descr[u.unobtainable9].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && u.unobtainable10 != -1 && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable10].oc_name, obj_descr[u.unobtainable10].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
@@ -3538,47 +3471,47 @@ boolean guaranteed;
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && (u.alwayscurseditem2 != -1) && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem2].oc_name, obj_descr[u.alwayscurseditem2].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && (u.alwayscurseditem3 != -1) && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem3].oc_name, obj_descr[u.alwayscurseditem3].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && (u.alwayscurseditem4 != -1) && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem4].oc_name, obj_descr[u.alwayscurseditem4].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && (u.alwayscurseditem5 != -1) && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem5].oc_name, obj_descr[u.alwayscurseditem5].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && (u.alwayscurseditem6 != -1) && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem6].oc_name, obj_descr[u.alwayscurseditem6].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && (u.alwayscurseditem7 != -1) && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem7].oc_name, obj_descr[u.alwayscurseditem7].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && (u.alwayscurseditem8 != -1) && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem8].oc_name, obj_descr[u.alwayscurseditem8].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && (u.alwayscurseditem9 != -1) && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem9].oc_name, obj_descr[u.alwayscurseditem9].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && (u.alwayscurseditem10 != -1) && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem10].oc_name, obj_descr[u.alwayscurseditem10].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
@@ -3594,17 +3527,17 @@ boolean guaranteed;
 	}
 
 	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) && u.spellbookbias1 != -1) {
-		sprintf(buf, "%s (freq bonus %d)", P_NAME(u.spellbookbias1), u.spellbookchance1);
+		sprintf(buf, "%s (freq bonus %d)", wpskillname(u.spellbookbias1), u.spellbookchance1);
 		enl_msg("The spell school whose books are more common ", "is ", "was ", buf );
 	}
 
 	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) && u.spellbookbias2 != -1) {
-		sprintf(buf, "%s (freq bonus %d)", P_NAME(u.spellbookbias2), u.spellbookchance2);
+		sprintf(buf, "%s (freq bonus %d)", wpskillname(u.spellbookbias2), u.spellbookchance2);
 		enl_msg("The spell school whose books are more common ", "is ", "was ", buf );
 	}
 
 	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) && u.spellbookbias3 != -1) {
-		sprintf(buf, "%s (freq bonus %d)", P_NAME(u.spellbookbias3), u.spellbookchance3);
+		sprintf(buf, "%s (freq bonus %d)", wpskillname(u.spellbookbias3), u.spellbookchance3);
 		enl_msg("The spell school whose books are more common ", "is ", "was ", buf );
 	}
 
@@ -5439,6 +5372,60 @@ boolean guaranteed;
 		you_are(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && FemtrapActiveNelly) {
+		sprintf(buf, "possessed by the ghost of Nelly.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapNelly);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveEveline) {
+		sprintf(buf, "possessed by the ghost of Eveline.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapEveline);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveKarin) {
+		sprintf(buf, "possessed by the ghost of Karin.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapKarin);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveJuen) {
+		sprintf(buf, "possessed by the ghost of Juen.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapJuen);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveKristina) {
+		sprintf(buf, "possessed by the ghost of Kristina.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapKristina);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveLou) {
+		sprintf(buf, "possessed by the ghost of Lou.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapLou);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveAlmut) {
+		sprintf(buf, "possessed by the ghost of Almut.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapAlmut);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveJulietta) {
+		sprintf(buf, "possessed by the ghost of Julietta.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapJulietta);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveArabella) {
+		sprintf(buf, "possessed by the ghost of Arabella.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapArabella);
+		you_are(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && Race_if(PM_PERVERT)) {
 		sprintf(buf, "had sex the last time this many turns ago:");
 		sprintf(eos(buf), " %d", u.pervertsex);
@@ -5448,6 +5435,19 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && Race_if(PM_PERVERT)) {
 		sprintf(buf, "prayed the last time this many turns ago:");
 		sprintf(eos(buf), " %d", u.pervertpray);
+		you_have(buf);
+	}
+
+	if (u.bucskill) {
+		sprintf(buf, "%d points of BUC expertise", u.bucskill);
+		you_have(buf);
+	}
+	if (u.enchantrecskill) {
+		sprintf(buf, "%d points of enchantment expertise", u.enchantrecskill);
+		you_have(buf);
+	}
+	if (u.weapchantrecskill) {
+		sprintf(buf, "%d points of weapon enchantment expertise", u.weapchantrecskill);
 		you_have(buf);
 	}
 
@@ -6067,6 +6067,18 @@ boolean guaranteed;
 		you_are(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && NoControlMagic && (final || u.uprops[DEAC_CONTROL_MAGIC].intrinsic) ) {
+		sprintf(buf, "prevented from having control magic");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", u.uprops[DEAC_CONTROL_MAGIC].intrinsic);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && NoExpBoost && (final || u.uprops[DEAC_EXP_BOOST].intrinsic) ) {
+		sprintf(buf, "prevented from having experience boost");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", u.uprops[DEAC_EXP_BOOST].intrinsic);
+		you_are(buf);
+	}
+
 	int shieldblockrate = 0;
 
 	if ((guaranteed || !rn2(10)) && uarms) {
@@ -6125,6 +6137,9 @@ boolean guaranteed;
 		case STEEL_SHIELD:
 			shieldblockrate = 30;
 			break;
+		case METEORIC_STEEL_SHIELD:
+			shieldblockrate = 32;
+			break;
 		case CRYSTAL_SHIELD:
 		case RAPIRAPI:
 		case HIDE_SHIELD:
@@ -6182,6 +6197,7 @@ boolean guaranteed;
 		case CANCEL_DRAGON_SCALE_SHIELD:
 		case NEGATIVE_DRAGON_SCALE_SHIELD:
 		case CORONA_DRAGON_SCALE_SHIELD:
+		case CONTRO_DRAGON_SCALE_SHIELD:
 		case HEROIC_DRAGON_SCALE_SHIELD:
 		case STONE_DRAGON_SCALE_SHIELD:
 		case CYAN_DRAGON_SCALE_SHIELD:
@@ -6219,6 +6235,7 @@ boolean guaranteed;
 		}
 
 		if (uarms->oartifact == ART_LURTZ_S_WALL) shieldblockrate += 20;
+		if (uarm && uarm->oartifact == ART_MOEBIUS_ARMOR) shieldblockrate += 10;
 		if (uarms->oartifact == ART_I_M_GETTING_HUNGRY) shieldblockrate += 20;
 		if (uarms->oartifact == ART_WHANG_CLINK_CLONK) shieldblockrate += 10;
 		if (uarms->oartifact == ART_LOOK_HOW_IT_BLOCKS) shieldblockrate += 20;
@@ -6509,6 +6526,8 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && Technicality) you_have(StrongTechnicality ? "greatly improved technique levels" : "improved technique levels");
 	if ((guaranteed || !rn2(10)) && (ScentView || EcholocationActive)) you_have(StrongScentView ? "scent view and echolocation" : (ScentView && EcholocationActive) ? "scent view and echolocation" : EcholocationActive ? "echolocation" : "scent view");
 	if ((guaranteed || !rn2(10)) && DiminishedBleeding) you_have(StrongDiminishedBleeding ? "greatly diminished bleeding" : "diminished bleeding");
+	if ((guaranteed || !rn2(10)) && ControlMagic) you_have(StrongControlMagic ? "strong magic control" : "magic control");
+	if ((guaranteed || !rn2(10)) && ExpBoost) you_have(StrongExpBoost ? "a strong experience boost" : "an experience boost");
 	if ((guaranteed || !rn2(10)) && Psi_resist) you_have(StrongPsi_resist ? "double psi resistance" : "psi resistance");
 	if ((guaranteed || !rn2(10)) && Extra_wpn_practice) enl_msg("You ", "can", "could", StrongExtra_wpn_practice ? " train skills and attributes much faster" : " train skills and attributes faster");
 	if ((guaranteed || !rn2(10)) && Death_resistance) you_have("resistance to death rays");
@@ -6767,8 +6786,10 @@ int final;
 	if (flags.elmstreet) dump(youwere, "playing in elm street mode");
 	if (flags.blindfox) dump(youwere, "playing in blindfox mode");
 	if (flags.hippie) dump(youwere, "playing in hippie mode");
+#ifdef GMMODE
 	if (flags.gmmode) dump(youwere, "playing in game master mode");
 	if (flags.supergmmode) dump(youwere, "playing in super game master mode");
+#endif
 
 	if (u.uevent.uhand_of_elbereth) {
 	    static const char * const hofe_titles[3] = {
@@ -6962,67 +6983,67 @@ int final;
 	}
 
 	if (u.untrainableskill) {
-		sprintf(buf, " %s", P_NAME(u.untrainableskill));
+		sprintf(buf, " %s", wpskillname(u.untrainableskill));
 		dump("  The following skill could not be trained at all:", buf);
 	}
 
 	if (u.halfspeedskill) {
-		sprintf(buf, " %s", P_NAME(u.halfspeedskill));
+		sprintf(buf, " %s", wpskillname(u.halfspeedskill));
 		dump("  The following skill was trained at half the usual rate:", buf);
 	}
 
 	if (u.fifthspeedskill) {
-		sprintf(buf, " %s", P_NAME(u.fifthspeedskill));
+		sprintf(buf, " %s", wpskillname(u.fifthspeedskill));
 		dump("  The following skill was trained at one fifth the usual rate:", buf);
 	}
 
 	if (u.basiclimitskill) {
-		sprintf(buf, " %s", P_NAME(u.basiclimitskill));
+		sprintf(buf, " %s", wpskillname(u.basiclimitskill));
 		dump("  The following skill was limited to basic proficiency:", buf);
 	}
 
 	if (u.skilledlimitskill) {
-		sprintf(buf, " %s", P_NAME(u.skilledlimitskill));
+		sprintf(buf, " %s", wpskillname(u.skilledlimitskill));
 		dump("  The following skill was limited to skilled proficiency:", buf);
 	}
 
 	if (u.expertlimitskill) {
-		sprintf(buf, " %s", P_NAME(u.expertlimitskill));
+		sprintf(buf, " %s", wpskillname(u.expertlimitskill));
 		dump("  The following skill was limited to expert proficiency:", buf);
 	}
 
 	if (u.earlytrainingskill) {
-		sprintf(buf, " %s (turn %d)", P_NAME(u.earlytrainingskill), u.earlytrainingtimer);
+		sprintf(buf, " %s (turn %d)", wpskillname(u.earlytrainingskill), u.earlytrainingtimer);
 		dump("  The following skill became untrainable if you tried to train it too early:", buf);
 	}
 
 	if (u.earlytrainingblown) {
-		sprintf(buf, "blown your chance of training the %s skill", P_NAME(u.earlytrainingskill));
+		sprintf(buf, "blown your chance of training the %s skill", wpskillname(u.earlytrainingskill));
 		dump(youhad, buf);
 	}
 
 	if (u.frtrainingskill) {
-		sprintf(buf, " %s (turn %d)", P_NAME(u.frtrainingskill), u.frtrainingtimer);
+		sprintf(buf, " %s (turn %d)", wpskillname(u.frtrainingskill), u.frtrainingtimer);
 		dump("  The following skill became untrainable if you tried to train it too early:", buf);
 	}
 
 	if (u.frtrainingblown) {
-		sprintf(buf, "blown your chance of training the %s skill", P_NAME(u.frtrainingskill));
+		sprintf(buf, "blown your chance of training the %s skill", wpskillname(u.frtrainingskill));
 		dump(youhad, buf);
 	}
 
 	if (u.latetrainingskill) {
-		sprintf(buf, " %s (turn %d)", P_NAME(u.latetrainingskill), u.latetrainingtimer);
+		sprintf(buf, " %s (turn %d)", wpskillname(u.latetrainingskill), u.latetrainingtimer);
 		dump("  The following skill became untrainable after a while:", buf);
 	}
 
 	if (u.lavtrainingskill) {
-		sprintf(buf, " %s (turn %d)", P_NAME(u.lavtrainingskill), u.lavtrainingtimer);
+		sprintf(buf, " %s (turn %d)", wpskillname(u.lavtrainingskill), u.lavtrainingtimer);
 		dump("  The following skill couldn't be trained before a certain turn number is reached:", buf);
 	}
 
 	if (u.slowtrainingskill) {
-		sprintf(buf, " %s", P_NAME(u.slowtrainingskill));
+		sprintf(buf, " %s", wpskillname(u.slowtrainingskill));
 		dump("  The following skill became harder to train at higher skill levels:", buf);
 	}
 
@@ -7288,32 +7309,50 @@ int final;
 	sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable].oc_name, obj_descr[u.unobtainable].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
 
+	if (u.unobtainable2 != -1) {
 	sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable2].oc_name, obj_descr[u.unobtainable2].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.unobtainable3 != -1) {
 	sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable3].oc_name, obj_descr[u.unobtainable3].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.unobtainable4 != -1) {
 	sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable4].oc_name, obj_descr[u.unobtainable4].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.unobtainable5 != -1) {
 	sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable5].oc_name, obj_descr[u.unobtainable5].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.unobtainable6 != -1) {
 	sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable6].oc_name, obj_descr[u.unobtainable6].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.unobtainable7 != -1) {
 	sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable7].oc_name, obj_descr[u.unobtainable7].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.unobtainable8 != -1) {
 	sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable8].oc_name, obj_descr[u.unobtainable8].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.unobtainable9 != -1) {
 	sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable9].oc_name, obj_descr[u.unobtainable9].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.unobtainable10 != -1) {
 	sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable10].oc_name, obj_descr[u.unobtainable10].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
 	if (u.unobtainablegeno != -1) {
 		sprintf(buf, "%s (%s)", obj_descr[u.unobtainablegeno].oc_name, obj_descr[u.unobtainablegeno].oc_descr);
@@ -7398,32 +7437,50 @@ int final;
 	sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem].oc_name, obj_descr[u.alwayscurseditem].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
 
+	if (u.alwayscurseditem2 != -1) {
 	sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem2].oc_name, obj_descr[u.alwayscurseditem2].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.alwayscurseditem3 != -1) {
 	sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem3].oc_name, obj_descr[u.alwayscurseditem3].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.alwayscurseditem4 != -1) {
 	sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem4].oc_name, obj_descr[u.alwayscurseditem4].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.alwayscurseditem5 != -1) {
 	sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem5].oc_name, obj_descr[u.alwayscurseditem5].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.alwayscurseditem6 != -1) {
 	sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem6].oc_name, obj_descr[u.alwayscurseditem6].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.alwayscurseditem7 != -1) {
 	sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem7].oc_name, obj_descr[u.alwayscurseditem7].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.alwayscurseditem8 != -1) {
 	sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem8].oc_name, obj_descr[u.alwayscurseditem8].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.alwayscurseditem9 != -1) {
 	sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem9].oc_name, obj_descr[u.alwayscurseditem9].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.alwayscurseditem10 != -1) {
 	sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem10].oc_name, obj_descr[u.alwayscurseditem10].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
 	sprintf(buf, "always invisible: %s", defsyms[trap_to_defsym(u.invisotrap)].explanation);
 	dump("  The RNG hath decreed that this trap was ", buf );
@@ -7432,17 +7489,17 @@ int final;
 	dump("  The RNG hath decreed that this trap was ", buf );
 
 	if (u.spellbookbias1 != -1) {
-		sprintf(buf, "%s (freq bonus %d)", P_NAME(u.spellbookbias1), u.spellbookchance1);
+		sprintf(buf, "%s (freq bonus %d)", wpskillname(u.spellbookbias1), u.spellbookchance1);
 		dump("  The spell school whose books are more common was ", buf );
 	}
 
 	if (u.spellbookbias2 != -1) {
-		sprintf(buf, "%s (freq bonus %d)", P_NAME(u.spellbookbias2), u.spellbookchance2);
+		sprintf(buf, "%s (freq bonus %d)", wpskillname(u.spellbookbias2), u.spellbookchance2);
 		dump("  The spell school whose books are more common was ", buf );
 	}
 
 	if (u.spellbookbias3 != -1) {
-		sprintf(buf, "%s (freq bonus %d)", P_NAME(u.spellbookbias3), u.spellbookchance3);
+		sprintf(buf, "%s (freq bonus %d)", wpskillname(u.spellbookbias3), u.spellbookchance3);
 		dump("  The spell school whose books are more common was ", buf );
 	}
 
@@ -9248,6 +9305,60 @@ int final;
 		dump(youwere, buf);
 	}
 
+	if (FemtrapActiveNelly) {
+		sprintf(buf, "possessed by the ghost of Nelly.");
+	      sprintf(eos(buf), " (%ld)", FemaleTrapNelly);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveEveline) {
+		sprintf(buf, "possessed by the ghost of Eveline.");
+	      sprintf(eos(buf), " (%ld)", FemaleTrapEveline);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveKarin) {
+		sprintf(buf, "possessed by the ghost of Karin.");
+	      sprintf(eos(buf), " (%ld)", FemaleTrapKarin);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveJuen) {
+		sprintf(buf, "possessed by the ghost of Juen.");
+	      sprintf(eos(buf), " (%ld)", FemaleTrapJuen);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveKristina) {
+		sprintf(buf, "possessed by the ghost of Kristina.");
+	      sprintf(eos(buf), " (%ld)", FemaleTrapKristina);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveLou) {
+		sprintf(buf, "possessed by the ghost of Lou.");
+	      sprintf(eos(buf), " (%ld)", FemaleTrapLou);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveAlmut) {
+		sprintf(buf, "possessed by the ghost of Almut.");
+	      sprintf(eos(buf), " (%ld)", FemaleTrapAlmut);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveJulietta) {
+		sprintf(buf, "possessed by the ghost of Julietta.");
+	      sprintf(eos(buf), " (%ld)", FemaleTrapJulietta);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveArabella) {
+		sprintf(buf, "possessed by the ghost of Arabella.");
+	      sprintf(eos(buf), " (%ld)", FemaleTrapArabella);
+		dump(youwere, buf);
+	}
+
 	if (Race_if(PM_PERVERT)) {
 		sprintf(buf, "had sex the last time this many turns ago:");
 		sprintf(eos(buf), " %d", u.pervertsex);
@@ -9257,6 +9368,19 @@ int final;
 	if (Race_if(PM_PERVERT)) {
 		sprintf(buf, "prayed the last time this many turns ago:");
 		sprintf(eos(buf), " %d", u.pervertpray);
+		dump(youhad, buf);
+	}
+
+	if (u.bucskill) {
+		sprintf(buf, "%d points of BUC expertise", u.bucskill);
+		dump(youhad, buf);
+	}
+	if (u.enchantrecskill) {
+		sprintf(buf, "%d points of enchantment expertise", u.enchantrecskill);
+		dump(youhad, buf);
+	}
+	if (u.weapchantrecskill) {
+		sprintf(buf, "%d points of weapon enchantment expertise", u.weapchantrecskill);
 		dump(youhad, buf);
 	}
 
@@ -9871,6 +9995,18 @@ int final;
 		dump(youwere, buf);
 	}
 
+	if (NoControlMagic) {
+		sprintf(buf, "prevented from having control magic");
+		sprintf(eos(buf), " (%ld)", u.uprops[DEAC_CONTROL_MAGIC].intrinsic);
+		dump(youwere, buf);
+	}
+
+	if (NoExpBoost) {
+		sprintf(buf, "prevented from having experience boost");
+		sprintf(eos(buf), " (%ld)", u.uprops[DEAC_EXP_BOOST].intrinsic);
+		dump(youwere, buf);
+	}
+
 	int shieldblockrate = 0;
 
 	if (uarms) {
@@ -9929,6 +10065,9 @@ int final;
 		case STEEL_SHIELD:
 			shieldblockrate = 30;
 			break;
+		case METEORIC_STEEL_SHIELD:
+			shieldblockrate = 32;
+			break;
 		case CRYSTAL_SHIELD:
 		case RAPIRAPI:
 		case HIDE_SHIELD:
@@ -9986,6 +10125,7 @@ int final;
 		case CANCEL_DRAGON_SCALE_SHIELD:
 		case NEGATIVE_DRAGON_SCALE_SHIELD:
 		case CORONA_DRAGON_SCALE_SHIELD:
+		case CONTRO_DRAGON_SCALE_SHIELD:
 		case HEROIC_DRAGON_SCALE_SHIELD:
 		case STONE_DRAGON_SCALE_SHIELD:
 		case CYAN_DRAGON_SCALE_SHIELD:
@@ -10023,6 +10163,7 @@ int final;
 		}
 
 		if (uarms->oartifact == ART_LURTZ_S_WALL) shieldblockrate += 20;
+		if (uarm && uarm->oartifact == ART_MOEBIUS_ARMOR) shieldblockrate += 10;
 		if (uarms->oartifact == ART_I_M_GETTING_HUNGRY) shieldblockrate += 20;
 		if (uarms->oartifact == ART_WHANG_CLINK_CLONK) shieldblockrate += 10;
 		if (uarms->oartifact == ART_LOOK_HOW_IT_BLOCKS) shieldblockrate += 20;
@@ -10277,6 +10418,8 @@ int final;
 	if (Technicality) dump(youhad, StrongTechnicality ? "greatly improved technique levels" : "improved technique levels");
 	if (ScentView || EcholocationActive) dump(youhad, StrongScentView ? "scent view and echolocation" : (ScentView && EcholocationActive) ? "scent view and echolocation" : EcholocationActive ? "echolocation" : "scent view");
 	if (DiminishedBleeding) dump(youhad, StrongDiminishedBleeding ? "greatly diminished bleeding" : "diminished bleeding");
+	if (ControlMagic) dump(youhad, StrongControlMagic ? "strong magic control" : "magic control");
+	if (ExpBoost) dump(youhad, StrongExpBoost ? "a strong experience boost" : "an experience boost");
 	if (Psi_resist) dump(youhad, StrongPsi_resist ? "double psi resistance" : "psi resistance");
 	if (Extra_wpn_practice) dump("  ", StrongExtra_wpn_practice ? "You could train skills and attributes much faster" : "You could train skills and attributes faster");
 	if (Death_resistance) dump(youhad, "resistance to death rays");
@@ -10506,6 +10649,7 @@ minimal_enlightenment()
 	if (flags.hybridstairseeker && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "stairseeker ");
 	if (flags.hybridmatrayser && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "matrayser ");
 	if (flags.hybridfeminizer && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "feminizer ");
+	if (flags.hybridchallenger && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "challenger ");
 	if (hybridcount >= 20) sprintf(eos(xtrabuf), "(%d hybrids) ", hybridcount);
 
 	if (!DisplayDoesNotGo) {
@@ -10514,12 +10658,16 @@ minimal_enlightenment()
 
 		sprintf(eos(statline), "You are %s, a %s %s %s%s %s.", playeraliasname, align_str(u.ualign.type), (flags.female ? "female" : "male"), xtrabuf, urace.adj, (flags.female && urole.name.f) ? urole.name.f : urole.name.m);
 
-		if (!Upolyd) sprintf(eos(statline), " HP: %d (max %d)", u.uhp, u.uhpmax);
-		else sprintf(eos(statline), " HP: %d (max %d)", u.mh, u.mhmax);
+		sprintf(eos(statline), " Level %d", u.ulevel);
+
+		if (!Upolyd) sprintf(eos(statline), " HP %d (max %d)", u.uhp, u.uhpmax);
+		else sprintf(eos(statline), " HP %d (max %d)", u.mh, u.mhmax);
 
 		sprintf(eos(statline), " Pw %d (max %d)", u.uen, u.uenmax);
 
 		sprintf(eos(statline), " AC %d", u.uac);
+
+		sprintf(eos(statline), " Score %ld", botl_score());
 
 		sprintf(eos(statline), " Current status effects: ");
 
@@ -11374,19 +11522,19 @@ int final;
 		enl_msg(You_, "have wrested wands ", "wrested wands ", buf);
 	}
 	if (u.cnd_firedestroy) {
-		sprintf(buf, "%d items to fire damage", u.cnd_firedestroy, plur(u.cnd_firedestroy));
+		sprintf(buf, "%d item%s to fire damage", u.cnd_firedestroy, plur(u.cnd_firedestroy));
 		enl_msg(You_, "lost ", "lost ", buf);
 	}
 	if (u.cnd_colddestroy) {
-		sprintf(buf, "%d items to cold damage", u.cnd_colddestroy, plur(u.cnd_colddestroy));
+		sprintf(buf, "%d item%s to cold damage", u.cnd_colddestroy, plur(u.cnd_colddestroy));
 		enl_msg(You_, "lost ", "lost ", buf);
 	}
 	if (u.cnd_shockdestroy) {
-		sprintf(buf, "%d items to shock damage", u.cnd_shockdestroy, plur(u.cnd_shockdestroy));
+		sprintf(buf, "%d item%s to shock damage", u.cnd_shockdestroy, plur(u.cnd_shockdestroy));
 		enl_msg(You_, "lost ", "lost ", buf);
 	}
 	if (u.cnd_poisondestroy) {
-		sprintf(buf, "%d items to poison damage", u.cnd_poisondestroy, plur(u.cnd_poisondestroy));
+		sprintf(buf, "%d item%s to poison damage", u.cnd_poisondestroy, plur(u.cnd_poisondestroy));
 		enl_msg(You_, "lost ", "lost ", buf);
 	}
 	if (u.cnd_diggingamount) {
@@ -11999,16 +12147,16 @@ int final;
 	sprintf(buf, "%d time%s", u.cnd_wandwresting, plur(u.cnd_wandwresting));
 	dump("  You wrested wands ", buf);
 
-	sprintf(buf, "%d items to fire damage", u.cnd_firedestroy, plur(u.cnd_firedestroy));
+	sprintf(buf, "%d item%s to fire damage", u.cnd_firedestroy, plur(u.cnd_firedestroy));
 	dump("  You lost ", buf);
 
-	sprintf(buf, "%d items to cold damage", u.cnd_colddestroy, plur(u.cnd_colddestroy));
+	sprintf(buf, "%d item%s to cold damage", u.cnd_colddestroy, plur(u.cnd_colddestroy));
 	dump("  You lost ", buf);
 
-	sprintf(buf, "%d items to shock damage", u.cnd_shockdestroy, plur(u.cnd_shockdestroy));
+	sprintf(buf, "%d item%s to shock damage", u.cnd_shockdestroy, plur(u.cnd_shockdestroy));
 	dump("  You lost ", buf);
 
-	sprintf(buf, "%d items to poison damage", u.cnd_poisondestroy, plur(u.cnd_poisondestroy));
+	sprintf(buf, "%d item%s to poison damage", u.cnd_poisondestroy, plur(u.cnd_poisondestroy));
 	dump("  You lost ", buf);
 
 	sprintf(buf, "%d time%s", u.cnd_diggingamount, plur(u.cnd_diggingamount));
@@ -13352,8 +13500,9 @@ register char *cmd;
 	boolean do_walk, do_rush, prefix_seen, bad_command,
 		firsttime = (cmd == 0);
 
-
 	iflags.menu_requested = FALSE;
+	if (program_state.done_hup)
+		end_of_input();
 	if (firsttime) {
 		flags.nopick = 0;
 		cmd = parse();
@@ -13366,7 +13515,7 @@ register char *cmd;
 	}
 
 	/* Autopilot means your char does random things depending on your contamination --Amy */
-	if (*cmd && (AutopilotEffect || u.uprops[AUTOPILOT_EFFECT].extrinsic || have_autopilotstone() || (uarmf && uarmf->oartifact == ART_PRADA_S_DEVIL_WEAR) ) ) {
+	if (*cmd && (AutopilotEffect || u.uprops[AUTOPILOT_EFFECT].extrinsic || (uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL) || have_autopilotstone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK) || (uarmf && uarmf->oartifact == ART_PRADA_S_DEVIL_WEAR) ) ) {
 		int autopilotchance = u.contamination;
 		if (isevilvariant && (autopilotchance > 900)) autopilotchance = 900;
 		else if (!isevilvariant && (autopilotchance > 500)) autopilotchance = 500;
@@ -13784,7 +13933,7 @@ char sym;
 	u.dy = ydir[dp-sdp];
 	u.dz = zdir[dp-sdp];
 
-	if (u.totter || u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() ) {
+	if (u.totter || u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) ) {
 
 		u.dx = -u.dx;
 		u.dy = -u.dy;
@@ -14078,7 +14227,7 @@ click_to_cmd(x, y, mod)
 	return cmd;
 	}
 
-	if (u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || u.totter || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone() || SpellColorPink) {
+	if (u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) || u.totter || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone() || SpellColorPink) {
 		pline("A sinister force prevents you from quicktraveling!");
 		if (FunnyHallu) pline("Could this be the work of Arabella?");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -14292,8 +14441,6 @@ parse()
 #endif /* OVL0 */
 #ifdef OVLB
 
-#ifdef UNIX
-static
 void
 end_of_input()
 {
@@ -14305,7 +14452,6 @@ end_of_input()
 	clearlocks();
 	terminate(EXIT_SUCCESS);
 }
-#endif
 
 #endif /* OVLB */
 #ifdef OVL0
@@ -14374,7 +14520,7 @@ dotravel()
 
 	}
 
-	if (u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || u.totter || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone() || SpellColorPink) {
+	if (u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) || u.totter || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone() || SpellColorPink) {
 		pline("A sinister force prevents you from quicktraveling!");
 		if (FunnyHallu) pline("Could this be the work of Arabella?");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -14502,7 +14648,12 @@ char def;
 STATIC_PTR int
 stefanjerepair()
 {
-	if (delay) {
+	if (delay > 0) {
+		impossible("stefanje repair delay greater than zero! (%d)", delay);
+		delay = 0;
+	}
+
+	if (delay < 0) {
 		delay++;
 		return(1);
 	} else {
@@ -14512,6 +14663,39 @@ stefanjerepair()
 		} else {
 			pline("Somehow, your 'Stefanje' sandals are no longer there...");
 		}
+		return(0);
+	}
+}
+
+STATIC_PTR int
+deseamshoes()
+{
+	if (delay > 0) {
+		impossible("deseamshoes delay greater than zero! (%d)", delay);
+		delay = 0;
+	}
+
+	if (delay < 0) {
+		delay++;
+		return(1);
+	} else {
+		if (!uarmf) {
+			pline("It seems that someone removed your shoes!");
+			return(0);
+		}
+		if (uarmf && !(uarmf->oartifact == ART_ENDLESS_DESEAMING) && !(uarmf->oartifact == ART_THAT_S_SUPER_UNFAIR)) {
+			pline("It seems that someone replaced your shoes with different ones!");
+			return(0);
+		}
+
+		if (uarmf && uarmf->oeroded) {
+			uarmf->oeroded--;
+			pline("You cleaned some of the dog shit from your shoes.");
+		} else if (uarmf && uarmf->oeroded2) {
+			uarmf->oeroded2--;
+			pline("You cleaned some of the dog shit from your shoes.");
+		}
+
 		return(0);
 	}
 }

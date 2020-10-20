@@ -591,6 +591,10 @@ typedef unsigned char	uchar;
 
 /* #define HANGUPPENALTY */
 
+/* game master mode allows watchers to summon monsters, but not all server admins want that...
+ * so it's disabled by default; if GMMODE is defined, it is enabled --Amy */
+/* #define GMMODE */
+
 #define DUMPMSGS 20
 
 /* Missingno initialization range, also used in u_init.c and some other places.

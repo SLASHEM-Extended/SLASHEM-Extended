@@ -13,105 +13,6 @@
 # endif
 #endif
 
-#ifndef OVLB
-
-STATIC_DCL NEARDATA const short skill_names_indices[];
-STATIC_DCL NEARDATA const char *odd_skill_names[];
-
-#else	/* OVLB */
-
-/* KMH, balance patch -- updated */
-STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
-	0,                DAGGER,         KNIFE,        AXE,
-	PICK_AXE,         SHORT_SWORD,    BROADSWORD,   LONG_SWORD,
-	TWO_HANDED_SWORD, SCIMITAR,       PN_SABER,     CLUB,
-	PN_PADDLE,        MACE,           MORNING_STAR,   FLAIL,
-	PN_HAMMER,        QUARTERSTAFF,   PN_POLEARMS,  SPEAR,
-	JAVELIN,          TRIDENT,        LANCE,        BOW,
-	SLING,            PN_FIREARMS,    CROSSBOW,       DART,
-	SHURIKEN,         BOOMERANG,      PN_WHIP,      UNICORN_HORN,
-	PN_LIGHTSABER,
-	PN_ATTACK_SPELL,     PN_HEALING_SPELL,
-	PN_DIVINATION_SPELL, PN_ENCHANTMENT_SPELL,
-	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
-	PN_OCCULT_SPELL,
-	PN_ELEMENTAL_SPELL,
-	PN_CHAOS_SPELL,
-	PN_MATTER_SPELL,
-	PN_BARE_HANDED,	PN_HIGH_HEELS,
-	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
-	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
-	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
-	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_SEXY_FLATS,
-	PN_MEMORIZATION,	PN_GUN_CONTROL,	PN_SQUEAKING,	PN_SYMBIOSIS,
-	PN_SHII_CHO,	PN_MAKASHI,	PN_SORESU,
-	PN_ATARU,	PN_SHIEN,	PN_DJEM_SO,
-	PN_NIMAN,	PN_JUYO,	PN_VAAPAD,	PN_WEDI,
-	PN_MARTIAL_ARTS, 
-	PN_TWO_WEAPONS,
-	PN_RIDING,
-};
-
-
-STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
-    "no skill",
-    "polearms",
-    "saber",
-    "hammer",
-    "whip",
-    "paddle",
-    "firearms",
-    "attack spells",
-    "healing spells",
-    "divination spells",
-    "enchantment spells",
-    "protection spells",
-    "body spells",
-    "occult spells",
-    "elemental spells",
-    "chaos spells",
-    "matter spells",
-    "bare-handed combat",
-    "high heels",
-    "general combat",
-    "shield",
-    "body armor",
-    "two-handed weapons",
-    "polymorphing",
-    "devices",
-    "searching",
-    "spirituality",
-    "petkeeping",
-    "missile weapons",
-    "techniques",
-    "implants",
-    "sexy flats",
-    "memorization",
-    "gun control",
-    "squeaking",
-    "symbiosis",
-    "form I (Shii-Cho)",
-    "form II (Makashi)",
-    "form III (Soresu)",
-    "form IV (Ataru)",
-    "form V (Shien)",
-    "form V (Djem So)",
-    "form VI (Niman)",
-    "form VII (Juyo)",
-    "form VII (Vaapad)",
-    "form VIII (Wedi)",
-    "martial arts",
-    "riding",
-    "two-weapon combat",
-    "lightsaber"
-};
-
-#endif	/* OVLB */
-
-#define P_NAME(type) (skill_names_indices[type] > 0 ? \
-		      OBJ_NAME(objects[skill_names_indices[type]]) : \
-			odd_skill_names[-skill_names_indices[type]])
-
 STATIC_PTR int eatmdone(void);
 STATIC_PTR int eatfood(void);
 STATIC_PTR void costly_tin(const char*);
@@ -321,14 +222,19 @@ register struct obj *obj;
 	/* Clockwork automatons can't eat anything at all, they need to use booze or oil --Amy */
 	if (Race_if(PM_CLOCKWORK_AUTOMATON) && !Upolyd) return 0;
 
+	if (uamul && uamul->oartifact == ART_AMULET_OF_SPLENDOR) return 0;
+
 	/* same for golems, except they also don't get hungry over time */
 	if (Race_if(PM_PLAYER_GOLEM) && !Upolyd) return 0;
 
 	/* and also Demo's etherealoid */
 	if (Race_if(PM_ETHEREALOID) && !Upolyd) return 0;
+	if (Race_if(PM_INCORPOREALOID) && !Upolyd) return 0;
 
 	/* Spirits can't eat corpses --Amy */
 	if (Race_if(PM_SPIRIT) && obj->otyp == CORPSE && !Upolyd) return 0;
+
+	if (Role_if(PM_ANACHRONIST) && (uarmh && itemhasappearance(uarmh, APP_ANACHRO_HELMET))) return 0;
 
 	/* android can't either (anachrononononononist from dnethack who can only eat processed food) */
 	if (Race_if(PM_PLAYER_ANDROID) && obj->otyp == CORPSE && !Upolyd) return 0;
@@ -349,6 +255,8 @@ register struct obj *obj;
 
 	/* metallivores can eat metal; rustproofing makes it impossible now --Amy */
 	if (metallivorous(youmonst.data) && is_metallic(obj) && !obj->oerodeproof)
+		return TRUE;
+	if (uwep && uwep->oartifact == ART_KRONSCHER_BAR && is_metallic(obj) && !obj->oerodeproof)
 		return TRUE;
 
 	/* lithivores can eat stone; erosionproofing makes it impossible now --Amy */
@@ -456,6 +364,10 @@ static const struct { const char *txt; int nut; } tintxts[] = {
 	{"delicious", 400},
 	{"gourmet", 350},
 	{"stale", 100},
+	{"dungeonmade", 60},
+	{"lairmade", 80},
+	{"planemade", 200},
+	{"maggot-infested", -200},
 	{"", 0}
 };
 #define TTSZ	SIZE(tintxts)
@@ -2017,6 +1929,7 @@ register int pm;
 	    case PM_ARCH_NEWT:
 	    case PM_REMORHAZ:
 	    case PM_DEMINEWT:
+	    case PM_DEMILOVATO_NEWT:
 	    case PM_MASTER_NEWT:
 	    case PM_EMPEROR_NEWT:
 	    case PM_LARGE_NEWT:
@@ -2649,6 +2562,20 @@ register int pm;
 		catch_lycanthropy = TRUE;
 		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREBOAR;
 		break;
+	    case PM_HUMAN_VORPAL_WERE_ALHOONTRICE_ZOMBIE:
+		catch_lycanthropy = TRUE;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_VORPAL_WERE_ALHOONTRICE_ZOMBIE;
+
+		Your("velocity suddenly seems very uncertain!");
+		if (HFast & INTRINSIC) {
+			HFast &= ~INTRINSIC;
+			You("seem slower.");
+		} else {
+			HFast |= FROMOUTSIDE;
+			You("seem faster.");
+		}
+
+		break;
 	    case PM_HUMAN_WEREJACKAL:
 		catch_lycanthropy = TRUE;
 		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREJACKAL;
@@ -2712,6 +2639,14 @@ register int pm;
 	    case PM_HUMAN_WEREBEAR:
 		catch_lycanthropy = TRUE;
 		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREBEAR;
+		break;
+	    case PM_HUMAN_WEREBRONZEGRAM:
+		catch_lycanthropy = TRUE;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREBRONZEGRAM;
+		break;
+	    case PM_HUMAN_WERECHROMEGRAM:
+		catch_lycanthropy = TRUE;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERECHROMEGRAM;
 		break;
 	    case PM_HUMAN_WEREDEMON:
 		catch_lycanthropy = TRUE;
@@ -2897,12 +2832,10 @@ register int pm;
 		/* fall into next case */
 	    case PM_YELLOW_LIGHT:
 		/* fall into next case */
-	    case PM_GIANT_BAT:
 	    case PM_CHICKATRICE:
 		make_stunned(HStun + 30,FALSE);
-		/* fall into next case */
-	    case PM_BAT:
-		make_stunned(HStun + 30,FALSE);
+
+		/* bats are generalized with is_bat now --Amy */
 		break;
 	    case PM_QUANTUM_MECHANIC:
 	    case PM_QUANTUM_CREATURE:
@@ -3049,6 +2982,7 @@ register int pm;
 	    case PM_CHAMELEON:
 	    case PM_CHAMECHAUN:
 	    case PM_METAMORPHOSE:
+	    case PM_UNIQUE_SHIFTER:
 	    case PM_GHELEON:
 	    case PM_PURPLE_R:
 	    case PM_VAMPSHIFTER:
@@ -3062,6 +2996,8 @@ register int pm;
 	    case PM_MARTIIN:
 	    case PM_IVEL_WUXTINA:
 	    case PM_EARLY_LEON:
+	    case PM_CHAMELON:
+	    case PM_COMMA_CHAMELEON:
 	    case PM_SLUMBER_HULK:
 	    case PM_OFFDIVER:
 	    case PM_CHANGELING:
@@ -3181,6 +3117,13 @@ register int pm;
 		else {
 			pline(FunnyHallu ? "Eek, that tasted like rotten oversalted seaweed!" : "For some reason, that tasted bland.");
 		}
+
+		break;
+
+	    case PM_FOODSTUFFS_MIMIC:
+	    case PM_FOODSTUFFS_PERMAMIMIC:
+		CrapEffect += rnz(10000);
+		pline("Ugh-Ugh, your butt suddenly doesn't feel so good...");
 
 		break;
 
@@ -3396,6 +3339,8 @@ register int pm;
 	    case PM_UBER_MIND_FLAYER:
 	    case PM_SNARE_FLAYER:
 	    case PM_SANITY_FLAYER:
+	    case PM_FISH_STICK:
+	    case PM_OMEGA___FISH_STICK:
 	    case PM_BEAMBEAM_FLAYER:
 		case PM_COCKATRICE:
 		case PM_DISENTITRICE:
@@ -3407,6 +3352,7 @@ register int pm;
 		case PM_BRAIN_EATER:
 		case PM_BRAIN_OOZE:
 		case PM_BRAIN_MOLE:
+		case PM_MINDWITNESS:
 		case PM_BRAIN_GOLEM:
 		case PM_LOWER_BRAIN:
 		case PM_IDIOT_BRAIN:
@@ -3492,6 +3438,39 @@ register int pm;
 		 * Elliott Kleinrock, October 5, 1990
 		 */
 
+	/* centaurs increase DEX occasionally --Amy */
+
+		if (ptr->mlet == S_CENTAUR) {
+		 if (ABASE(A_DEX) < ATTRMAX(A_DEX)) {
+			if (!rn2(10) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) ) {
+				You_feel("nimbler!");
+				(void) adjattrib(A_DEX, 1, FALSE, TRUE);
+			}
+		  }
+		}
+
+	/* high-level dragons increase CON occasionally --Amy */
+
+		if (ptr->mlet == S_DRAGON && ptr->mlevel >= 18) {
+		 if (ABASE(A_CON) < ATTRMAX(A_CON)) {
+			if (!rn2(10) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) ) {
+				You_feel("hardier!");
+				(void) adjattrib(A_CON, 1, FALSE, TRUE);
+			}
+		  }
+		}
+
+	/* very rarely, eating spellcasters increases WIS --Amy */
+
+		if (dmgtype(ptr, AD_SPEL) || dmgtype(ptr, AD_CLRC) || dmgtype(ptr, AD_CAST) ) {
+		 if (ABASE(A_WIS) < ATTRMAX(A_WIS)) {
+			if (!rn2(25) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) ) {
+				You_feel("wiser!");
+				(void) adjattrib(A_WIS, 1, FALSE, TRUE);
+			}
+		  }
+		}
+
 	/* Charisma is next to impossible to raise, so eating nymphs will help now. --Amy */
 
 		if (ptr->mlet == S_NYMPH) {
@@ -3561,51 +3540,51 @@ register int pm;
 
 			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 				unrestrict_weapon_skill(skillimprove);
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
 				unrestrict_weapon_skill(skillimprove);
 				P_MAX_SKILL(skillimprove) = P_BASIC;
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
 				P_MAX_SKILL(skillimprove) = P_SKILLED;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
 				P_MAX_SKILL(skillimprove) = P_EXPERT;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
 				P_MAX_SKILL(skillimprove) = P_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else gainlevelmaybe();
 
 			if (Race_if(PM_RUSMOT)) {
 				if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 					unrestrict_weapon_skill(skillimprove);
-					pline("You can now learn the %s skill.", P_NAME(skillimprove));
+					pline("You can now learn the %s skill.", wpskillname(skillimprove));
 				} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
 					unrestrict_weapon_skill(skillimprove);
 					P_MAX_SKILL(skillimprove) = P_BASIC;
-					pline("You can now learn the %s skill.", P_NAME(skillimprove));
+					pline("You can now learn the %s skill.", wpskillname(skillimprove));
 				} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
 					P_MAX_SKILL(skillimprove) = P_SKILLED;
-					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 				} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
 					P_MAX_SKILL(skillimprove) = P_EXPERT;
-					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 				} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
 					P_MAX_SKILL(skillimprove) = P_MASTER;
-					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 				} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
 					P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
-					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 				} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 					P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
-					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 				}
 			}
 
@@ -3654,6 +3633,16 @@ register int pm;
 		    pline("Suddenly you have a nightmare!");
 		    nomul(-5, "scared by a nightmare", TRUE);
 		    nomovemsg = 0;
+		}
+
+	/* AD_NIVE can reduce high HP/Pw maximums... but eating them can fix low maximums --Amy */
+		if (dmgtype(ptr, AD_NIVE)) {
+			pline("Wow, a corona antidote!");
+			upnivel(FALSE);
+		}
+
+		if (is_bat(ptr)) {
+			make_stunned(HStun + 30,FALSE);
 		}
 
 		if (evilfriday && dmgtype(ptr, AD_ENCH)) {
@@ -4513,6 +4502,7 @@ start_tin(otmp)		/* called when starting to open a tin */
 			break;
 		case PICK_AXE:
 		case CONGLOMERATE_PICK:
+		case CONUNDRUM_PICK:
 		case MYSTERY_PICK:
 		case BRONZE_PICK:
 		case BRICK_PICK:
@@ -4968,8 +4958,20 @@ struct obj *otmp;
 			}
 		}
 		break;
-	    case PILL:            
+	    case PILL:
 		You("swallow the little pink pill.");
+
+		if (otmp && otmp->oartifact == ART_PILL_THAT_KILLED_MICHAEL_J) {
+		      make_sick(rn1(25,25), "a poisonous pill", TRUE, SICK_VOMITABLE);
+			losehp(rn1(30, 30),"poisonous pill",KILLED_BY_AN);
+			(void) adjattrib(A_STR, -rnd(6), FALSE, TRUE);
+			(void) adjattrib(A_DEX, -rnd(6), FALSE, TRUE);
+			(void) adjattrib(A_CON, -rnd(6), FALSE, TRUE);
+			(void) adjattrib(A_INT, -rnd(6), FALSE, TRUE);
+			(void) adjattrib(A_WIS, -rnd(6), FALSE, TRUE);
+			(void) adjattrib(A_CHA, -rnd(6), FALSE, TRUE);
+		}
+
 		switch(rn2(7))
 		{
 		   case 0:
@@ -6082,7 +6084,9 @@ static const char *foodwords[] = {
 	"arcanium", "secretion", "poor food", "compost",
 	"eternium", "contamination", "brick wall", "sand",
 	"shadow material", "volcanic glass", "lead", "chrome",
-	"porcelain", "nanomachines",
+	"porcelain", "celestial cloth", "conundrum",
+	"bubbles", "meteoric steel", "antidote", "nanomachines",
+	"foam", "scrap metal", "alloy",
 };
 
 STATIC_OVL const char *
@@ -6443,6 +6447,13 @@ struct obj *otmp;
 		else return 2;
 	}
 
+	if (is_bat(&mons[mnum])) {
+		sprintf(buf, "%s like %s could make you batty! %s",
+			foodsmell, it_or_they, eat_it_anyway);
+		if (yn_function(buf,ynchars,'n')=='n') return 1;
+		else return 2;
+	}
+
 	if (dmgtype(&mons[mnum], AD_NAST)) {
 		sprintf(buf, "%s like %s could be rather nasty! %s",
 			foodsmell, it_or_they, eat_it_anyway);
@@ -6734,6 +6745,10 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 			pline("The contamination spreads through your body.");
 			contaminate(rnz((level_difficulty() + 40) * 5), TRUE);
 	    }
+	    if (material == MT_ANTIDOTIUM) {
+			pline("It was a covid-19 antidote!");
+			upnivel(TRUE);
+	    }
 	    if (material == MT_VIVA) {
 			pline("Eating radioactive metal is a bad idea.");
 			ABASE(A_STR)--;
@@ -6748,6 +6763,20 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 			if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {losehp(rnd(15), "eating radioactive food", KILLED_BY); ABASE(A_WIS) = ATTRMIN(A_WIS);}
 			if(ABASE(A_INT) < ATTRMIN(A_INT)) {losehp(rnd(15), "eating radioactive food", KILLED_BY); ABASE(A_INT) = ATTRMIN(A_INT);}
 			if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {losehp(rnd(15), "eating radioactive food", KILLED_BY); ABASE(A_CHA) = ATTRMIN(A_CHA);}
+	    }
+
+	    if (otmp->otyp == PETRIFYIUM_BAR) {
+		if (!Stoned && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM)) ) {
+			if (Hallucination && rn2(10)) pline("Good thing you are already stoned.");
+			else {
+				You("start turning to stone.");
+				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				u.cnd_stoningcount++;
+				stop_occupation();
+				delayed_killer = "eating a petrifying weapon";
+			}
+		}
+
 	    }
 
 	    if (material == MT_INKA) {
@@ -6998,10 +7027,24 @@ gethungry()	/* as time goes by - called by moveloop() and domove() */
 	/* ancipital's slow digestion is not supposed to be no digestion --Amy */
 	if (Race_if(PM_ANCIPITAL) && !rn2(20) && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
 
-	/* having a symbiote uses your nutrition to feed it, especially if it has HP regeneration --Amy */
+	/* having a symbiote uses your nutrition to feed it, especially if it has HP regeneration --Amy
+	 * regenerating ones sap more nutrition if you're less skilled */
 	if (uactivesymbiosis && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) {
 		if (carnivorous(&mons[u.usymbiote.mnum]) || herbivorous(&mons[u.usymbiote.mnum]) || metallivorous(&mons[u.usymbiote.mnum]) || organivorous(&mons[u.usymbiote.mnum]) || lithivorous(&mons[u.usymbiote.mnum])) u.uhunger--;
-		if (regenerates(&mons[u.usymbiote.mnum])) u.uhunger -= 5;
+		if (regenerates(&mons[u.usymbiote.mnum])) {
+
+			if ((u.uhunger >= 2500) || PlayerCannotUseSkills || (P_SKILL(P_SYMBIOSIS) == P_ISRESTRICTED)) {
+				u.uhunger -= 5;
+			} else switch (P_SKILL(P_SYMBIOSIS)) {
+		      	case P_BASIC:	u.uhunger -= (2 + rn2(2)); break;
+		      	case P_SKILLED:	u.uhunger -= 2; break;
+		      	case P_EXPERT:	u.uhunger -= rnd(2); break;
+		      	case P_MASTER:	u.uhunger--; break;
+		      	case P_GRAND_MASTER:	if (!rn2(2)) u.uhunger--; break;
+		      	case P_SUPREME_MASTER:	if (!rn2(3)) u.uhunger--; break;
+		      	default: u.uhunger -= 3; break;
+			}
+		}
 	}
 
 	if (!rn2(2)) {	/* used to be odd turns, but nasty traps that speed up turncount exist --Amy */
@@ -7021,6 +7064,8 @@ gethungry()	/* as time goes by - called by moveloop() and domove() */
 	    if (Hunger && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
 	    if (StrongHunger && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
 		if (Race_if(PM_CLOCKWORK_AUTOMATON) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--; /* to prevent =oSD from being overpowered --Amy */
+	    if (uleft && uleft->oartifact == ART_RING_OF_FAST_LIVING && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) { u.uhunger--; u.uhunger--; u.uhunger--; }
+	    if (uright && uright->oartifact == ART_RING_OF_FAST_LIVING && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) { u.uhunger--; u.uhunger--; u.uhunger--; }
 	    /* Conflict uses up food too */
 		/* and a lot of it because conflict is so overpowered --Amy */
 	    if (Conflict && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) { u.uhunger--; u.uhunger--; u.uhunger--; u.uhunger--; u.uhunger--; }
@@ -7085,6 +7130,11 @@ register int num;
 	if (Race_if(PM_GERTEUT)) {
 		num *= 4;
 		num /= 3;
+	}
+
+	if (Role_if(PM_ANACHRONIST) && (uarmh && itemhasappearance(uarmh, APP_ANACHRO_HELMET))) {
+		num *= 6;
+		num /= 5;
 	}
 
 	if (Race_if(PM_SERB)) {

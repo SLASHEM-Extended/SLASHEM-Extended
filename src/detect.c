@@ -421,8 +421,8 @@ int		class;		/* an object class, 0 for all */
 				    detector->oclass == SPBOOK_CLASS ||
 					detector->oartifact ) &&
 			detector->blessed);
-    int guaranteed = (detector && !(detector->otyp == SPE_DETECT_TREASURE) && !(detector->otyp == SPE_MAP_LEVEL) && !(detector->otyp == SPE_MAGIC_MAPPING));
-    boolean stupiddetect = (detector && (detector->otyp == SPE_DETECT_TREASURE || detector->otyp == SPE_MAGIC_MAPPING));
+    int guaranteed = (detector && !(detector->otyp == SPE_DETECT_TREASURE) && !(detector->otyp == SPE_RANDOM_DETECTION) && !(detector->otyp == SPE_MAP_LEVEL) && !(detector->otyp == SPE_MAGIC_MAPPING));
+    boolean stupiddetect = (detector && (detector->otyp == SPE_DETECT_TREASURE || detector->otyp == SPE_RANDOM_DETECTION || detector->otyp == SPE_MAGIC_MAPPING));
     int likely = (detector && (detector->otyp == SPE_MAP_LEVEL));
     int ct = 0, ctu = 0;
     register struct obj *obj, *otmp = (struct obj *)0;
@@ -1055,7 +1055,7 @@ struct obj *obj;
     }
     oops = (rnd(20) > ACURR(A_INT) || obj->cursed);
     if (oops && (obj->spe > 0)) {
-	switch (rnd(obj->oartifact ? 4 : 5)) {
+	switch (rnd((obj->oartifact && rn2(100)) ? 4 : 5)) {
 	case 1 : pline("%s too much to comprehend!", Tobjnam(obj, "are"));
 	    break;
 	case 2 : pline("%s you!", Tobjnam(obj, "confuse"));
@@ -1829,7 +1829,7 @@ sokoban_detect()
 int
 dosearch()
 {
-	if ((TarmuStrokingNora || u.uprops[TARMU_STROKING_NORA].extrinsic || have_tarmustrokingnorastone()) && u.tarmustrokingturn < 1) {
+	if ((TarmuStrokingNora || u.uprops[TARMU_STROKING_NORA].extrinsic || (uarmh && uarmh->oartifact == ART_STROKING_COMBAT) || have_tarmustrokingnorastone()) && u.tarmustrokingturn < 1) {
 		u.tarmustrokingturn = rnd(100);
 
 		int tryct = 0;
@@ -1840,7 +1840,7 @@ dosearch()
 			y = rn2(ROWNO);
 
 			if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-				(void) maketrap(x, y, randomtrap(), 100);
+				(void) maketrap(x, y, randomtrap(), 100, FALSE);
 				break;
 				}
 		}

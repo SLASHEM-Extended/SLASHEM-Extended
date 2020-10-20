@@ -41,6 +41,35 @@ register struct monst *mtmp;
 	}
 }
 
+/* do the player's missiles, beams etc. pass through a pet instead of hitting it? --Amy
+ * meant to depend on the player's petkeeping skill; control magic in/extrinsic affects it too */
+boolean
+control_magic_works()
+{
+
+	/* petkeeping skill - only if it's turned on (which it is by default, can change via #monster) */
+	if (!PlayerCannotUseSkills && u.controlmiguc) {
+		int contmagchance = 0;
+		switch (P_SKILL(P_PETKEEPING)) {
+	      	case P_BASIC:	contmagchance = 10; break;
+	      	case P_SKILLED:	contmagchance = 20; break;
+	      	case P_EXPERT:	contmagchance = 30; break;
+	      	case P_MASTER:	contmagchance = 40; break;
+	      	case P_GRAND_MASTER:	contmagchance = 50; break;
+	      	case P_SUPREME_MASTER:	contmagchance = 60; break;
+	      	default: break;
+		}
+
+		if (rn2(100) < contmagchance) return TRUE;
+	}
+
+	/* control magic trinsic cannot be "turned off"; if it annoys you, have to unequip the item or use a gremlin */
+	if (ControlMagic && rn2(5)) return TRUE;
+	if (StrongControlMagic && rn2(5)) return TRUE;
+
+	return FALSE; /* catchall */
+}
+
 STATIC_OVL int
 pet_type()
 {
@@ -142,10 +171,10 @@ pet_type()
 }
 
 struct monst *
-make_familiar(otmp,x,y,quietly)
+make_familiar(otmp,x,y,quietly,startpet)
 register struct obj *otmp;
 xchar x, y;
-boolean quietly;
+boolean quietly, startpet;
 {
 	struct permonst *pm;
 	struct monst *mtmp = 0;
@@ -166,7 +195,7 @@ boolean quietly;
 			pline(FunnyHallu ? "... into a pile of garbage. Even you know that that's of no use." : "... into a pile of dust.");
 		    break;	/* mtmp is null */
 		}
-	    } else if (!rn2(3)) {
+	    } else if (startpet || !rn2(3)) {
 		pm = &mons[pet_type()];
 	    } else {
 		pm = rndmonst();
@@ -195,8 +224,10 @@ boolean quietly;
 	if (otmp) { /* figurine; resulting monster might not become a pet */
 	    chance = rn2(5);	/* 0==tame, 1==peaceful, 2==hostile */
 	    if (chance > 2) chance = otmp->blessed ? 0 : !otmp->cursed ? 1 : 2;
-	    if (otmp && otmp->oartifact == ART_GUARANTEED_SPECIAL_PET) chance = 0;
 	    if ((rnd(30 - ACURR(A_CHA))) < 4) chance = 0;
+	    if (otmp && otmp->oartifact == ART_GUARANTEED_SPECIAL_PET) chance = 0;
+	    if (otmp && otmp->oartifact == ART_HOSTILITAWN) chance = 2;
+	    if (otmp && otmp->oartifact == ART_NEUTRALNESS_NEUTERED) chance = 1;
 	    /* 0,1,2:  b=60%,20,20; nc=20%,60,20; c=20%,20,60 */
 	    if (chance > 0) {
 		mtmp->mtame = 0;	/* not tame after all */
@@ -1281,7 +1312,7 @@ boolean guaranteed;
 		return((struct monst *)0);
 	}
 
-	if (u.uprops[HATE_TRAP_EFFECT].extrinsic || HateTrapEffect || (uarms && uarms->oartifact == ART_REAL_PSYCHOS_WEAR_PURPLE) || (uarms && uarms->oartifact == ART_REAL_MEN_WEAR_PSYCHOS) || have_hatestone() || (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) || Role_if(PM_GANG_SCHOLAR) ) {
+	if (u.uprops[HATE_TRAP_EFFECT].extrinsic || HateTrapEffect || (uarms && uarms->oartifact == ART_REAL_PSYCHOS_WEAR_PURPLE) || (uarms && uarms->oartifact == ART_REAL_MEN_WEAR_PSYCHOS) || (uarmf && uarmf->oartifact == ART_TOO_MUCH_BRAVERY) || have_hatestone() || (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) || Role_if(PM_GANG_SCHOLAR) ) {
         	pline("%s hates you too much!", Monnam(mtmp));
 		return((struct monst *)0);
 	}
@@ -1360,7 +1391,7 @@ boolean guaranteed;
 	    /* KMH -- Added gypsy */
 	    mtmp->isgyp ||
 	    (is_covetous(mtmp->data) && (issoviet || rn2(50) ) ) || (is_human(mtmp->data) && (issoviet || rn2(4) ) ) ||
-	    (is_demon(mtmp->data) && !is_demon(youmonst.data) && !Race_if(PM_HUMANOID_DEVIL) && !Race_if(PM_GAVIL) && !(Race_if(PM_PLAYER_SHEEP) && u.ulevel >= 20) && (issoviet || rn2(10) ) ) ||
+	    (is_demon(mtmp->data) && !is_demon(youmonst.data) && !(uarmf && uarmf->oartifact == ART_AMPERSAND_HAREM) && !Race_if(PM_HUMANOID_DEVIL) && !Race_if(PM_GAVIL) && !(Race_if(PM_PLAYER_SHEEP) && u.ulevel >= 20) && (issoviet || rn2(10) ) ) ||
 	    /* Mik -- New flag to indicate which things cannot be tamed... */
 	    cannot_be_tamed(mtmp->data) || mtmp->mfrenzied ||
 	    (obj && dogfood(mtmp, obj) >= MANFOOD && !(Race_if(PM_CELTIC) && mtmp->data->mlet == S_GOLEM) )) {

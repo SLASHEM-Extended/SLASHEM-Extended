@@ -667,7 +667,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 		if (Role_if(PM_BLEEDER)) damu = damu * 2; /* bleeders are harder than hard mode */
 		if (have_cursedmagicresstone()) damu = damu * 2;
 		if (Race_if(PM_METAL)) damu *= rnd(10);
-		if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone() || (uimplant && uimplant->oartifact == ART_IME_SPEW) ) damu = damu * 2;
+		if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone() || (uleft && uleft->oartifact == ART_RING_OF_FAST_LIVING) || (uright && uright->oartifact == ART_RING_OF_FAST_LIVING) || (uimplant && uimplant->oartifact == ART_IME_SPEW) ) damu = damu * 2;
 		if (uamul && uamul->otyp == AMULET_OF_VULNERABILITY) damu *= rnd(4);
 		if (RngeFrailness) damu = damu * 2;
 
@@ -912,6 +912,7 @@ struct obj *obj;			/* only scatter this obj        */
 	    } else if ((scflags & MAY_DESTROY) && (!rn2(10)
 			|| (objects[otmp->otyp].oc_material == MT_GLASS
 			|| objects[otmp->otyp].oc_material == MT_OBSIDIAN
+			|| is_vitric(otmp)
 			|| otmp->otyp == EGG))) {
 		if (breaks(otmp, (xchar)sx, (xchar)sy)) used_up = TRUE;
 	    }

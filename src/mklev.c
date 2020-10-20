@@ -1344,7 +1344,7 @@ int trap_type;
 		    if((trap_type == HOLE || trap_type == TRAPDOOR || trap_type == SHAFT_TRAP || trap_type == CURRENT_SHAFT)
 			&& !Can_fall_thru(&u.uz))
 			trap_type = ROCKTRAP;
-		    ttmp = maketrap(xx, yy+dy, trap_type, 100);
+		    ttmp = maketrap(xx, yy+dy, trap_type, 100, TRUE);
 		    if (ttmp) {
 			if (trap_type != ROCKTRAP) ttmp->once = 1;
 			if (trap_engravings[trap_type]) {
@@ -1446,12 +1446,12 @@ specdungeoninit()
 
 		if (isok(x,y) && (In_voiddungeon(&u.uz) && !rn2(10)) && (levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && !rn2(5)) {
 			levl[x][y].typ = NETHERMIST;
-			maketrap(x, y, GIANT_CHASM, 100);
+			maketrap(x, y, GIANT_CHASM, 100, TRUE);
 		}
 
 		if (isok(x,y) && In_netherrealm(&u.uz) && (levl[x][y].typ == ROOM || levl[x][y].typ == CORR || (IS_STWALL(levl[x][y].typ) && !rn2(5)) ) && !rn2(5)) {
 			levl[x][y].typ = NETHERMIST;
-			if (!rn2(5)) maketrap(x, y, GIANT_CHASM, 100);
+			if (!rn2(5)) maketrap(x, y, GIANT_CHASM, 100, TRUE);
 		}
 
 		if (isok(x,y) && In_angmar(&u.uz) && (IS_STWALL(levl[x][y].typ) && !rn2(5))) {
@@ -10806,18 +10806,18 @@ skip1:
 		    if (!ishomicider) { tmonst = makemon((struct permonst *) 0, x, y, MM_MAYSLEEP);
 		    if (tmonst && webmaker(tmonst->data) /*== &mons[PM_GIANT_SPIDER]*/ &&
 			    !occupied(x, y))
-			(void) maketrap(x, y, WEB, 25);
+			(void) maketrap(x, y, WEB, 25, TRUE);
 		    }
-		    if (ishomicider) (void) makerandomtrap_at(x, y);
+		    if (ishomicider) (void) makerandomtrap_at(x, y, TRUE);
 		}
 		if(ishaxor && ((u.uhave.amulet && !u.freeplaymode) || !rn2(3)) ) {
 		    x = somex(croom); y = somey(croom);
 		    if (!ishomicider) { tmonst = makemon((struct permonst *) 0, x, y, MM_MAYSLEEP);
 		    if (tmonst && webmaker(tmonst->data) /*== &mons[PM_GIANT_SPIDER]*/ &&
 			    !occupied(x, y))
-			(void) maketrap(x, y, WEB, 25);
+			(void) maketrap(x, y, WEB, 25, TRUE);
 		    }
-		    if (ishomicider) (void) makerandomtrap_at(x, y);
+		    if (ishomicider) (void) makerandomtrap_at(x, y, TRUE);
 		}
 		/* put traps and mimics inside */
 		goldseen = FALSE;
@@ -10827,11 +10827,11 @@ skip1:
 		/* less traps in the very early game --Amy */
 		if (!(depth(&u.uz) == 1 && In_dod(&u.uz) && rn2(3)) && !(depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2)) ) {
 			while (!rn2(x))
-				mktrap(0,0,croom,(coord*)0);
+				mktrap(0,0,croom,(coord*)0,TRUE);
 
 			if(ishaxor) {
 				while (!rn2(x))
-					mktrap(0,0,croom,(coord*)0);
+					mktrap(0,0,croom,(coord*)0,TRUE);
 			}
 		}
 
@@ -11846,27 +11846,27 @@ mineralize()
 		}
 
 		if ((levl[x][y].typ <= DBWALL && !rn2(100000)) && !t_at(x, y) ) {
-			maketrap(x, y, SUPERTHING_TRAP, 0);
+			maketrap(x, y, SUPERTHING_TRAP, 0, FALSE);
 		}
 
 		if ((levl[x][y].typ <= DBWALL && Role_if(PM_SPACEWARS_FIGHTER) && !rn2(10000)) && !t_at(x, y) ) {
-			maketrap(x, y, SUPERTHING_TRAP, 0);
+			maketrap(x, y, SUPERTHING_TRAP, 0, FALSE);
 		}
 
 		if ((levl[x][y].typ <= DBWALL && Role_if(PM_CAMPERSTRIKER) && !rn2(5000)) && !t_at(x, y) ) {
-			maketrap(x, y, SUPERTHING_TRAP, 0);
+			maketrap(x, y, SUPERTHING_TRAP, 0, FALSE);
 		}
 
 		if ((levl[x][y].typ <= DBWALL && !rn2(100000)) && !t_at(x, y) ) {
-			maketrap(x, y, ARABELLA_SPEAKER, 0);
+			maketrap(x, y, ARABELLA_SPEAKER, 0, FALSE);
 		}
 
 		if ((levl[x][y].typ <= DBWALL && Role_if(PM_SPACEWARS_FIGHTER) && !rn2(5000)) && !t_at(x, y) ) {
-			maketrap(x, y, ARABELLA_SPEAKER, 0);
+			maketrap(x, y, ARABELLA_SPEAKER, 0, FALSE);
 		}
 
 		if ((levl[x][y].typ <= DBWALL && Role_if(PM_CAMPERSTRIKER) && !rn2(2500)) && !t_at(x, y) ) {
-			maketrap(x, y, ARABELLA_SPEAKER, 0);
+			maketrap(x, y, ARABELLA_SPEAKER, 0, FALSE);
 		}
 
 		/* Since you can now pick up items from the bottom with swimming, let's reduce the amount of kelp --Amy */
@@ -11875,7 +11875,7 @@ mineralize()
 
 		/* locate level for camperstriker role should be filled end to end with traps on trees */
 		if (levl[x][y].typ == TREE && Role_if(PM_CAMPERSTRIKER) && !rn2(10) && Is_qlocate(&u.uz) )
-			makerandomtrap_at(x, y);
+			makerandomtrap_at(x, y, TRUE);
 
 		/* give a random, low, chance that any given square has a trap --Amy */
 
@@ -11884,11 +11884,11 @@ mineralize()
 			int reduceramount = (level_difficulty() / 5);
 			if (reduceramount < 1) reduceramount = 1;
 
-		    	if (!rn2(25000 / reduceramount)) makerandomtrap_at(x, y);
-		    	if (ishaxor && !rn2(25000 / reduceramount)) makerandomtrap_at(x, y);
+		    	if (!rn2(25000 / reduceramount)) makerandomtrap_at(x, y, TRUE);
+		    	if (ishaxor && !rn2(25000 / reduceramount)) makerandomtrap_at(x, y, TRUE);
 
-		    	if (ishomicider && !rn2(10000 / reduceramount)) makerandomtrap_at(x, y);
-		    	if (Role_if(PM_GANG_SCHOLAR) && !rn2(15000 / reduceramount)) makerandomtrap_at(x, y);
+		    	if (ishomicider && !rn2(10000 / reduceramount)) makerandomtrap_at(x, y, TRUE);
+		    	if (Role_if(PM_GANG_SCHOLAR) && !rn2(15000 / reduceramount)) makerandomtrap_at(x, y, TRUE);
 
 		}
 
@@ -12038,9 +12038,9 @@ mineralize()
 		if ((levl[x][y].typ == CRYPTFLOOR && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
 	    	    makemon(morguemonX(), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 		if ((levl[x][y].typ == CRYPTFLOOR && !rn2(50)) )
-			(void) maketrap(x, y, CURSED_GRAVE, 100);
+			(void) maketrap(x, y, CURSED_GRAVE, 100, FALSE);
 		if ((levl[x][y].typ == CRYPTFLOOR && !rn2(50)) )
-			(void) maketrap(x, y, randomtrap(), 100);
+			(void) maketrap(x, y, randomtrap(), 100, TRUE);
 		if ((levl[x][y].typ == BUBBLES && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
 	    	    makemon(specialtensmon(203), x, y, MM_ADJACENTOK|MM_MAYSLEEP); /* AD_STUN */
 		if ((levl[x][y].typ == RAINCLOUD && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
@@ -12071,170 +12071,170 @@ mineralize()
 
 		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50)) ||
 			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50)))
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == LAVAPOOL && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == ROOM && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
-			makerandomtrap_at(x, y);
+			makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == CORR && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
-			makerandomtrap_at(x, y);
+			makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == ICE && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
-			makerandomtrap_at(x, y);
+			makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == AIR && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
-			makerandomtrap_at(x, y);
+			makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == CLOUD && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
-			makerandomtrap_at(x, y);
+			makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == CORR && !rn2((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000)) )
-			makerandomtrap_at(x, y);
+			makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == CORR && !rn2((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000 )) )
-			makerandomtrap_at(x, y);
+			makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == TREE && !rn2((ishaxor && !issuxxor) ? 200 : (issuxxor && !ishaxor) ? 800 : 400)) )
-			makerandomtrap_at(x, y);
+			makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == FOUNTAIN && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == FOUNTAIN && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == FOUNTAIN && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == FOUNTAIN && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == FOUNTAIN && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 5000 : (issuxxor && !ishaxor) ? 20000 : 10000)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == SINK && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == SINK && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == SINK && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == SINK && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == SINK && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == FARMLAND && !rn2((ishaxor && !issuxxor) ? 400 : (issuxxor && !ishaxor) ? 1600 : 800)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 
 		if (levl[x][y].typ == WATERTUNNEL && In_swimmingpool(&u.uz) && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) && !rn2(15) )
 		    mkobj_at(!rn2(100) ? IMPLANT_CLASS : !rn2(4) ? AMULET_CLASS : RING_CLASS, x, y, FALSE, FALSE);
 
 		if ((levl[x][y].typ == MOUNTAIN && !rn2((ishaxor && !issuxxor) ? 250 : (issuxxor && !ishaxor) ? 1000 : 500)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == WATERTUNNEL && !rn2((ishaxor && !issuxxor) ? 12 : (issuxxor && !ishaxor) ? 50 : 25)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == CRYSTALWATER && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == MOORLAND && !rn2((ishaxor && !issuxxor) ? 250 : (issuxxor && !ishaxor) ? 1000 : 500)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == URINELAKE && !rn2((ishaxor && !issuxxor) ? 400 : (issuxxor && !ishaxor) ? 1600 : 800)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == SHIFTINGSAND && !rn2((ishaxor && !issuxxor) ? 125 : (issuxxor && !ishaxor) ? 500 : 250)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == STYXRIVER && !rn2((ishaxor && !issuxxor) ? 450 : (issuxxor && !ishaxor) ? 1800 : 900)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == STYXRIVER && !rn2((ishaxor && !issuxxor) ? 450 : (issuxxor && !ishaxor) ? 1800 : 900)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == PENTAGRAM && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == WELL && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == POISONEDWELL && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == WAGON && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == BURNINGWAGON && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == WOODENTABLE && !rn2((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == CARVEDBED && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == STRAWMATTRESS && !rn2((ishaxor && !issuxxor) ? 100 : (issuxxor && !ishaxor) ? 400 : 200)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == SNOW && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == ASH && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == SAND && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == PAVEDFLOOR && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == HIGHWAY && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == GRASSLAND && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == NETHERMIST && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == STALACTITE && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == CRYPTFLOOR && !rn2(50)) )
-			(void) maketrap(x, y, CURSED_GRAVE, 100);
+			(void) maketrap(x, y, CURSED_GRAVE, 100, FALSE);
 		if ((levl[x][y].typ == CRYPTFLOOR && !rn2(50)) )
-			(void) maketrap(x, y, randomtrap(), 100);
+			(void) maketrap(x, y, randomtrap(), 100, TRUE);
 		if ((levl[x][y].typ == CRYPTFLOOR && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == BUBBLES && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == RAINCLOUD && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == GRAVE && !rn2((ishaxor && !issuxxor) ? 5 : (issuxxor && !ishaxor) ? 20 : 10)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == ALTAR && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 10 : 5)) )
-			makerandomtrap_at(x, y);
+			makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == STONE && !rn2((ishaxor && !issuxxor) ? 5000 : (issuxxor && !ishaxor) ? 20000 : 10000)) )
-			makerandomtrap_at(x, y);
+			makerandomtrap_at(x, y, TRUE);
 
 		if (( (levl[x][y].typ == VWALL || levl[x][y].typ == ROCKWALL || levl[x][y].typ == GRAVEWALL || levl[x][y].typ == TUNNELWALL || levl[x][y].typ == HWALL || levl[x][y].typ == TLCORNER || levl[x][y].typ == TRCORNER || levl[x][y].typ == BLCORNER || levl[x][y].typ == BRCORNER || levl[x][y].typ == CROSSWALL || levl[x][y].typ == TUWALL || levl[x][y].typ == TDWALL || levl[x][y].typ == TRWALL || levl[x][y].typ == TLWALL || levl[x][y].typ == DBWALL ) && !rn2((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000)) )
-			makerandomtrap_at(x, y);
+			makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == SDOOR && !rn2((ishaxor && !issuxxor) ? 100 : (issuxxor && !ishaxor) ? 400 : 200)) )
-			makerandomtrap_at(x, y);
+			makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == SCORR && !rn2((ishaxor && !issuxxor) ? 200 : (issuxxor && !ishaxor) ? 800 : 400)) )
-			makerandomtrap_at(x, y);
+			makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == DOOR && !rn2((ishaxor && !issuxxor) ? 300 : (issuxxor && !ishaxor) ? 1200 : 600)) )
-			makerandomtrap_at(x, y);
+			makerandomtrap_at(x, y, TRUE);
 
 		} /* ishomicider check */
 
@@ -12660,10 +12660,11 @@ register xchar x, y;
 /* make a trap somewhere (in croom if mazeflag = 0 && !tm) */
 /* if tm != null, make trap at that location */
 void
-mktrap(num, mazeflag, croom, tm)
+mktrap(num, mazeflag, croom, tm, cangivehp)
 register int num, mazeflag;
 register struct mkroom *croom;
 coord *tm;
+boolean cangivehp;
 {
 	register int kind;
 	coord m;
@@ -12708,7 +12709,7 @@ selecttrap:
 		kind = rnd(TRAPNUM-1);
 
 		/* The trap distribution was, to put it blunt, bullshit. Make it more sane again. --Amy */
-		if (!Race_if(PM_DEVELOPER) && !rn2(issoviet ? 2 : 3)) kind = rnd(rn2(3) ? ANTI_MAGIC : POLY_TRAP);
+		if (!Race_if(PM_DEVELOPER) && !u.arabellahack && !rn2(issoviet ? 2 : 3)) kind = rnd(rn2(3) ? ANTI_MAGIC : POLY_TRAP);
 
 		/* reject "too hard" traps */
 		switch (kind) {
@@ -12746,41 +12747,41 @@ selecttrap:
 			if (In_sokoban(&u.uz) && rn2(10)) goto selecttrap;
 			break;
 		    case MENU_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 8)) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 8)) goto selecttrap;
 			break;
 		    case SPEED_TRAP: 
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40)) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40)) goto selecttrap;
 			break;
 		    case AUTOMATIC_SWITCHER:
-			if (!Role_if(PM_CAMPERSTRIKER) && rn2(ishaxor ? (Role_if(PM_GRADUATE) ? 125 : Role_if(PM_SPACEWARS_FIGHTER) ? 250 : Role_if(PM_GEEK) ? 250 : 500) : (Role_if(PM_GRADUATE) ? 250 : Role_if(PM_SPACEWARS_FIGHTER) ? 500 : Role_if(PM_GEEK) ? 500 : 1000) )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && rn2(ishaxor ? (Role_if(PM_GRADUATE) ? 125 : Role_if(PM_SPACEWARS_FIGHTER) ? 250 : Role_if(PM_GEEK) ? 250 : 500) : (Role_if(PM_GRADUATE) ? 250 : Role_if(PM_SPACEWARS_FIGHTER) ? 500 : Role_if(PM_GEEK) ? 500 : 1000) )) goto selecttrap;
 			break;
 
 		    case RMB_LOSS_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && !Role_if(PM_SPACEWARS_FIGHTER) && rn2(2)) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && !Role_if(PM_SPACEWARS_FIGHTER) && rn2(2)) goto selecttrap;
 			break;
 		    case DISPLAY_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 3)) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 3)) goto selecttrap;
 			break;
 		    case SPELL_LOSS_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 4)) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 4)) goto selecttrap;
 			break;
 		    case YELLOW_SPELL_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 5)) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 5)) goto selecttrap;
 			break;
 		    case AUTO_DESTRUCT_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10)) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10)) goto selecttrap;
 			break;
 		    case MEMORY_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20)) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20)) goto selecttrap;
 			break;
 		    case INVENTORY_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 50)) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 50)) goto selecttrap;
 			break;
 		    case BLACK_NG_WALL_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 50 : 100)) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 50 : 100)) goto selecttrap;
 			break;
 		    case SUPERSCROLLER_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 100 : 200)) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 100 : 200)) goto selecttrap;
 			break;
 		    case ACTIVE_SUPERSCROLLER_TRAP: goto selecttrap;
 			break;
@@ -12801,22 +12802,22 @@ selecttrap:
 			if (rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case FREE_HAND_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10 )) goto selecttrap;
 			break;
 		    case DISINTEGRATION_TRAP:
 			if (rn2(evilfriday ? 5 : 20) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case UNIDENTIFY_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
 			break;
 		    case THIRST_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 50 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 50 )) goto selecttrap;
 			break;
 		    case SHADES_OF_GREY_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) goto selecttrap;
 			break;
 		    case LUCK_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 30 : 60 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 30 : 60 )) goto selecttrap;
 			break;
 		    case DEATH_TRAP:
 			if (rn2(evilfriday ? 10 : 100) && !NastyTrapNation) goto selecttrap;
@@ -12825,736 +12826,736 @@ selecttrap:
 			if (rn2(evilfriday ? 10 : 100) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case FAINT_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 24 : 48 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 24 : 48 )) goto selecttrap;
 			break;
 		    case CURSE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 32 : 64 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 32 : 64 )) goto selecttrap;
 			break;
 		    case DIFFICULTY_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 12 : 24 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 12 : 24 )) goto selecttrap;
 			break;
 		    case SOUND_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 7 : 14 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 7 : 14 )) goto selecttrap;
 			break;
 		    case CASTER_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 12 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 12 )) goto selecttrap;
 			break;
 		    case WEAKNESS_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 6 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 6 )) goto selecttrap;
 			break;
 		    case ROT_THIRTEEN_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 15 : 30 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 15 : 30 )) goto selecttrap;
 			break;
 		    case BISHOP_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 28 : 56 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 28 : 56 )) goto selecttrap;
 			break;
 		    case CONFUSION_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 40 : 80 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 40 : 80 )) goto selecttrap;
 			break;
 		    case DROP_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 35 : 70 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 35 : 70 )) goto selecttrap;
 			break;
 		    case DSTW_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 8 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 8 )) goto selecttrap;
 			break;
 		    case STATUS_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 9 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 9 )) goto selecttrap;
 			break;
 		    case ALIGNMENT_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 7 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 7 )) goto selecttrap;
 			break;
 		    case STAIRS_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 11 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 11 )) goto selecttrap;
 			break;
 		    case UNINFORMATION_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 3 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 3 )) goto selecttrap;
 			break;
 		    case TIMERUN_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 15 : 30 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 15 : 30 )) goto selecttrap;
 			break;
 		    case SANITY_TREBLE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 51 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 51 )) goto selecttrap;
 			break;
 		    case STAT_DECREASE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
 			break;
 		    case SIMEOUT_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 50 : 100 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 50 : 100 )) goto selecttrap;
 			break;
 		    case BAD_PART_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
 			break;
 		    case COMPLETELY_BAD_PART_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 26 : 52 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 26 : 52 )) goto selecttrap;
 			break;
 		    case EVIL_VARIANT_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 500 : 1000 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 500 : 1000 )) goto selecttrap;
 			break;
 
 		    case INTRINSIC_LOSS_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 12 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 12 )) goto selecttrap;
 			break;
 		    case BLOOD_LOSS_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 9 : 18 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 9 : 18 )) goto selecttrap;
 			break;
 		    case BAD_EFFECT_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 3 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 3 )) goto selecttrap;
 			break;
 		    case MULTIPLY_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 8 : 17 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 8 : 17 )) goto selecttrap;
 			break;
 		    case AUTO_VULN_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10 )) goto selecttrap;
 			break;
 		    case TELE_ITEMS_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) goto selecttrap;
 			break;
 		    case NASTINESS_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 250 : 500 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 250 : 500 )) goto selecttrap;
 			break;
 		    case FARLOOK_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 17 : 34 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 17 : 34 )) goto selecttrap;
 			break;
 		    case RESPAWN_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
 			break;
 		    case CAPTCHA_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 5 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 5 )) goto selecttrap;
 			break;
 
 		    case RECURRING_AMNESIA_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 35 : 70 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 35 : 70 )) goto selecttrap;
 			break;
 		    case BIGSCRIPT_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 3 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 3 )) goto selecttrap;
 			break;
 		    case BANK_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 13 : 26 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 13 : 26 )) goto selecttrap;
 			break;
 		    case ONLY_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 30 : 60 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 30 : 60 )) goto selecttrap;
 			break;
 		    case MAP_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
 			break;
 		    case TECH_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) goto selecttrap;
 			break;
 		    case DISENCHANT_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 30 : 60 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 30 : 60 )) goto selecttrap;
 			break;
 		    case VERISIERT:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 50 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 50 )) goto selecttrap;
 			break;
 		    case CHAOS_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 17 : 33 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 17 : 33 )) goto selecttrap;
 			break;
 		    case MUTENESS_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 24 : 48 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 24 : 48 )) goto selecttrap;
 			break;
 		    case NTLL_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 22 : 44 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 22 : 44 )) goto selecttrap;
 			break;
 		    case ENGRAVING_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 9 : 17 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 9 : 17 )) goto selecttrap;
 			break;
 		    case MAGIC_DEVICE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 14 : 28 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 14 : 28 )) goto selecttrap;
 			break;
 		    case BOOK_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 19 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 19 )) goto selecttrap;
 			break;
 		    case LEVEL_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 8 : 15 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 8 : 15 )) goto selecttrap;
 			break;
 		    case QUIZ_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 11 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 11 )) goto selecttrap;
 			break;
 
 		    case METABOLIC_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
 			break;
 		    case TRAP_OF_NO_RETURN:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 15 : 30 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 15 : 30 )) goto selecttrap;
 			break;
 		    case EGOTRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 7 : 15 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 7 : 15 )) goto selecttrap;
 			break;
 		    case FAST_FORWARD_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) goto selecttrap;
 			break;
 		    case TRAP_OF_ROTTENNESS:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 8 : 17 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 8 : 17 )) goto selecttrap;
 			break;
 		    case UNSKILLED_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10 )) goto selecttrap;
 			break;
 		    case LOW_STATS_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 13 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 13 )) goto selecttrap;
 			break;
 		    case TRAINING_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 6 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 6 )) goto selecttrap;
 			break;
 		    case EXERCISE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 4 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 4 )) goto selecttrap;
 			break;
 		    case LIMITATION_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) goto selecttrap;
 			break;
 		    case WEAK_SIGHT_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 8 : 16 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 8 : 16 )) goto selecttrap;
 			break;
 		    case RANDOM_MESSAGE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 8 : 16 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 8 : 16 )) goto selecttrap;
 			break;
 
 		    case DESECRATION_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) goto selecttrap;
 			break;
 		    case STARVATION_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10 )) goto selecttrap;
 			break;
 		    case DROPLESS_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 50 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 50 )) goto selecttrap;
 			break;
 		    case LOW_EFFECT_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 7 : 14 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 7 : 14 )) goto selecttrap;
 			break;
 		    case INVISIBLE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 45 : 90 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 45 : 90 )) goto selecttrap;
 			break;
 		    case GHOST_WORLD_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 15 : 30 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 15 : 30 )) goto selecttrap;
 			break;
 		    case DEHYDRATION_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 8 : 15 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 8 : 15 )) goto selecttrap;
 			break;
 		    case HATE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10 )) goto selecttrap;
 			break;
 		    case TOTTER_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 150 : 300 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 150 : 300 )) goto selecttrap;
 			break;
 		    case NONINTRINSICAL_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 12 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 12 )) goto selecttrap;
 			break;
 		    case DROPCURSE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 14 : 28 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 14 : 28 )) goto selecttrap;
 			break;
 		    case NAKEDNESS_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 50 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 50 )) goto selecttrap;
 			break;
 		    case ANTILEVEL_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 75 : 150 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 75 : 150 )) goto selecttrap;
 			break;
 		    case STEALER_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 4 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 4 )) goto selecttrap;
 			break;
 		    case REBELLION_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 5 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 5 )) goto selecttrap;
 			break;
 		    case CRAP_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 13 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 13 )) goto selecttrap;
 			break;
 		    case MISFIRE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 7 : 13 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 7 : 13 )) goto selecttrap;
 			break;
 		    case TRAP_OF_WALLS:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 24 : 48 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 24 : 48 )) goto selecttrap;
 			break;
 
 		    case DISCONNECT_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
 			break;
 		    case INTERFACE_SCREW_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 80 : 160 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 80 : 160 )) goto selecttrap;
 			break;
 		    case BOSSFIGHT_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10 )) goto selecttrap;
 			break;
 		    case ENTIRE_LEVEL_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 8 : 17 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 8 : 17 )) goto selecttrap;
 		    case BONES_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 4 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 4 )) goto selecttrap;
 			break;
 		    case AUTOCURSE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 24 : 49 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 24 : 49 )) goto selecttrap;
 			break;
 		    case HIGHLEVEL_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 7 : 13 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 7 : 13 )) goto selecttrap;
 			break;
 		    case SPELL_FORGETTING_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 21 : 42 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 21 : 42 )) goto selecttrap;
 			break;
 		    case SOUND_EFFECT_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 7 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 7 )) goto selecttrap;
 			break;
 
 		    case LOOTCUT_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 9 : 18 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 9 : 18 )) goto selecttrap;
 			break;
 		    case MONSTER_SPEED_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) goto selecttrap;
 			break;
 		    case SCALING_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 15 : 30 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 15 : 30 )) goto selecttrap;
 			break;
 		    case ENMITY_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 7 : 15 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 7 : 15 )) goto selecttrap;
 			break;
 		    case WHITE_SPELL_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10 )) goto selecttrap;
 			break;
 		    case COMPLETE_GRAY_SPELL_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 12 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 12 )) goto selecttrap;
 			break;
 		    case QUASAR_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 100 : 200 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 100 : 200 )) goto selecttrap;
 			break;
 		    case MOMMA_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 8 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 8 )) goto selecttrap;
 			break;
 		    case HORROR_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 7 : 14 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 7 : 14 )) goto selecttrap;
 			break;
 		    case ARTIFICER_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 40 : 80 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 40 : 80 )) goto selecttrap;
 			break;
 		    case WEREFORM_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 50 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 50 )) goto selecttrap;
 			break;
 		    case NON_PRAYER_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
 			break;
 		    case EVIL_PATCH_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 500 : 1000 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 500 : 1000 )) goto selecttrap;
 			break;
 		    case HARD_MODE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 45 : 90 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 45 : 90 )) goto selecttrap;
 			break;
 		    case SECRET_ATTACK_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 15 : 30 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 15 : 30 )) goto selecttrap;
 			break;
 		    case EATER_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
 			break;
 		    case COVETOUSNESS_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 7 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 7 )) goto selecttrap;
 			break;
 		    case NOT_SEEN_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 7 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 7 )) goto selecttrap;
 			break;
 		    case DARK_MODE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 9 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 9 )) goto selecttrap;
 			break;
 		    case ANTISEARCH_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 12 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 12 )) goto selecttrap;
 			break;
 		    case HOMICIDE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 30 : 60 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 30 : 60 )) goto selecttrap;
 			break;
 		    case NASTY_NATION_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 70 : 140 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 70 : 140 )) goto selecttrap;
 			break;
 		    case WAKEUP_CALL_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) goto selecttrap;
 			break;
 		    case GRAYOUT_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 17 : 34 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 17 : 34 )) goto selecttrap;
 			break;
 		    case GRAY_CENTER_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 18 : 37 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 18 : 37 )) goto selecttrap;
 			break;
 		    case CHECKERBOARD_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) goto selecttrap;
 			break;
 		    case CLOCKWISE_SPIN_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 350 : 700 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 350 : 700 )) goto selecttrap;
 			break;
 		    case COUNTERCLOCKWISE_SPIN_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 250 : 500 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 250 : 500 )) goto selecttrap;
 			break;
 		    case LAG_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 90 : 180 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 90 : 180 )) goto selecttrap;
 			break;
 		    case BLESSCURSE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 11 : 22 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 11 : 22 )) goto selecttrap;
 			break;
 		    case DE_LIGHT_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 6 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 6 )) goto selecttrap;
 			break;
 		    case DISCHARGE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 5 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 5 )) goto selecttrap;
 			break;
 		    case TRASHING_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 14 : 28 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 14 : 28 )) goto selecttrap;
 			break;
 		    case FILTERING_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10 )) goto selecttrap;
 			break;
 		    case DEFORMATTING_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 6 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 6 )) goto selecttrap;
 			break;
 		    case FLICKER_STRIP_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 4 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 4 )) goto selecttrap;
 			break;
 		    case UNDRESSING_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 17 : 34 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 17 : 34 )) goto selecttrap;
 			break;
 		    case HYPERBLUEWALL_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 18 : 36 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 18 : 36 )) goto selecttrap;
 			break;
 		    case NOLITE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 12 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 12 )) goto selecttrap;
 			break;
 		    case PARANOIA_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 50 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 50 )) goto selecttrap;
 			break;
 		    case FLEECESCRIPT_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 7 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 7 )) goto selecttrap;
 			break;
 		    case INTERRUPT_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 12 : 25 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 12 : 25 )) goto selecttrap;
 			break;
 		    case DUSTBIN_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 13 : 26 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 13 : 26 )) goto selecttrap;
 			break;
 		    case MANA_BATTERY_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 9 : 19 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 9 : 19 )) goto selecttrap;
 			break;
 		    case MONSTERFINGERS_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 19 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 19 )) goto selecttrap;
 			break;
 		    case MISCAST_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 12 : 23 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 12 : 23 )) goto selecttrap;
 			break;
 		    case MESSAGE_SUPPRESSION_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 12 : 25 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 12 : 25 )) goto selecttrap;
 			break;
 		    case STUCK_ANNOUNCEMENT_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 7 : 15 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 7 : 15 )) goto selecttrap;
 			break;
 		    case BLOODTHIRSTY_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 18 : 35 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 18 : 35 )) goto selecttrap;
 			break;
 		    case MAXIMUM_DAMAGE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 16 : 32 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 16 : 32 )) goto selecttrap;
 			break;
 		    case LATENCY_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 30 : 60 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 30 : 60 )) goto selecttrap;
 			break;
 		    case STARLIT_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 35 : 70 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 35 : 70 )) goto selecttrap;
 			break;
 		    case KNOWLEDGE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 50 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 50 )) goto selecttrap;
 			break;
 		    case HIGHSCORE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 40 : 80 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 40 : 80 )) goto selecttrap;
 			break;
 		    case PINK_SPELL_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 24 : 48 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 24 : 48 )) goto selecttrap;
 			break;
 		    case GREEN_SPELL_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 13 : 26 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 13 : 26 )) goto selecttrap;
 			break;
 		    case EVC_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 8 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 8 )) goto selecttrap;
 			break;
 		    case UNDERLAYER_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 39 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 39 )) goto selecttrap;
 			break;
 		    case DAMAGE_METER_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 9 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 9 )) goto selecttrap;
 			break;
 		    case ARBITRARY_WEIGHT_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 8 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 8 )) goto selecttrap;
 			break;
 		    case FUCKED_INFO_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 12 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 12 )) goto selecttrap;
 			break;
 		    case BLACK_SPELL_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 16 : 32 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 16 : 32 )) goto selecttrap;
 			break;
 		    case CYAN_SPELL_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) goto selecttrap;
 			break;
 		    case HEAP_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 11 : 22 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 11 : 22 )) goto selecttrap;
 			break;
 		    case BLUE_SPELL_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 8 : 17 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 8 : 17 )) goto selecttrap;
 			break;
 		    case TRON_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 26 : 53 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 26 : 53 )) goto selecttrap;
 			break;
 		    case RED_SPELL_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 15 : 30 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 15 : 30 )) goto selecttrap;
 			break;
 		    case TOO_HEAVY_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 14 : 28 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 14 : 28 )) goto selecttrap;
 			break;
 		    case ELONGATION_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 51 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 51 )) goto selecttrap;
 			break;
 		    case WRAPOVER_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 36 : 72 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 36 : 72 )) goto selecttrap;
 			break;
 		    case DESTRUCTION_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 16 : 32 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 16 : 32 )) goto selecttrap;
 			break;
 		    case MELEE_PREFIX_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 40 : 80 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 40 : 80 )) goto selecttrap;
 			break;
 		    case AUTOMORE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
 			break;
 		    case UNFAIR_ATTACK_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 35 : 70 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 35 : 70 )) goto selecttrap;
 			break;
 
 		    case SPACEWARS_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && !Role_if(PM_SPACEWARS_FIGHTER) && rn2(15) ) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && !Role_if(PM_SPACEWARS_FIGHTER) && rn2(15) ) goto selecttrap;
 			break;
 
 		    case ORANGE_SPELL_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 16 : 31 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 16 : 31 )) goto selecttrap;
 			break;
 
 		    case VIOLET_SPELL_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 8 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 8 )) goto selecttrap;
 			break;
 
 		    case TRAP_OF_LONGING:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
 			break;
 
 		    case CURSED_PART_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 11 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 11 )) goto selecttrap;
 			break;
 
 		    case QUAVERSAL_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 100 : 200 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 100 : 200 )) goto selecttrap;
 			break;
 
 		    case APPEARANCE_SHUFFLING_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 50 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 50 )) goto selecttrap;
 			break;
 
 		    case BROWN_SPELL_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 11 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 11 )) goto selecttrap;
 			break;
 
 		    case CHOICELESS_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 16 : 32 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 16 : 32 )) goto selecttrap;
 			break;
 
 		    case GOLDSPELL_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) goto selecttrap;
 			break;
 
 		    case DEPROVEMENT_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 45 : 90 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 45 : 90 )) goto selecttrap;
 			break;
 
 		    case INITIALIZATION_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 50 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 50 )) goto selecttrap;
 			break;
 
 		    case GUSHLUSH_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 12 : 24 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 12 : 24 )) goto selecttrap;
 			break;
 
 		    case SOILTYPE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 7 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 7 )) goto selecttrap;
 			break;
 
 		    case DANGEROUS_TERRAIN_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 13 : 26 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 13 : 26 )) goto selecttrap;
 			break;
 
 		    case FALLOUT_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 24 : 48 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 24 : 48 )) goto selecttrap;
 			break;
 
 		    case MOJIBAKE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 14 : 28 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 14 : 28 )) goto selecttrap;
 			break;
 
 		    case GRAVATION_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 16 : 32 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 16 : 32 )) goto selecttrap;
 			break;
 
 		    case UNCALLED_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 9 : 17 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 9 : 17 )) goto selecttrap;
 			break;
 
 		    case EXPLODING_DICE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 22 : 44 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 22 : 44 )) goto selecttrap;
 			break;
 
 		    case PERMACURSE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 26 : 52 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 26 : 52 )) goto selecttrap;
 			break;
 
 		    case SHROUDED_IDENTITY_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 15 : 30 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 15 : 30 )) goto selecttrap;
 			break;
 
 		    case FEELER_GAUGES_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 12 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 12 )) goto selecttrap;
 			break;
 
 		    case LONG_SCREWUP_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 14 : 28 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 14 : 28 )) goto selecttrap;
 			break;
 
 		    case WING_YELLOW_CHANGER:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 33 : 66 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 33 : 66 )) goto selecttrap;
 			break;
 
 		    case LIFE_SAVING_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 27 : 54 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 27 : 54 )) goto selecttrap;
 			break;
 
 		    case CURSEUSE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 14 : 27 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 14 : 27 )) goto selecttrap;
 			break;
 
 		    case CUT_NUTRITION_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
 			break;
 
 		    case SKILL_LOSS_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 32 : 64 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 32 : 64 )) goto selecttrap;
 			break;
 
 		    case AUTOPILOT_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 100 : 200 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 100 : 200 )) goto selecttrap;
 			break;
 
 		    case FORCE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 24 : 48 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 24 : 48 )) goto selecttrap;
 			break;
 
 		    case MONSTER_GLYPH_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 13 : 26 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 13 : 26 )) goto selecttrap;
 			break;
 
 		    case CHANGING_DIRECTIVE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) goto selecttrap;
 			break;
 
 		    case CONTAINER_KABOOM_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 16 : 32 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 16 : 32 )) goto selecttrap;
 			break;
 
 		    case STEAL_DEGRADE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 19 : 38 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 19 : 38 )) goto selecttrap;
 			break;
 
 		    case LEFT_INVENTORY_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) goto selecttrap;
 			break;
 
 		    case FLUCTUATING_SPEED_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 50 : 100 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 50 : 100 )) goto selecttrap;
 			break;
 
 		    case TARMUSTROKINGNORA_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) goto selecttrap;
 			break;
 
 		    case FAILURE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
 			break;
 
 		    case BRIGHT_CYAN_SPELL_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 22 : 44 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 22 : 44 )) goto selecttrap;
 			break;
 
 		    case FREQUENTATION_SPAWN_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 7 : 14 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 7 : 14 )) goto selecttrap;
 			break;
 
 		    case PET_AI_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 22 : 44 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 22 : 44 )) goto selecttrap;
 			break;
 
 		    case SATAN_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10 )) goto selecttrap;
 			break;
 
 		    case REMEMBERANCE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 9 : 19 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 9 : 19 )) goto selecttrap;
 			break;
 
 		    case POKELIE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 4 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 4 )) goto selecttrap;
 			break;
 
 		    case AUTOPICKUP_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 9 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 9 )) goto selecttrap;
 			break;
 
 		    case DYWYPI_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 11 : 22 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 11 : 22 )) goto selecttrap;
 			break;
 
 		    case SILVER_SPELL_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 14 : 28 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 14 : 28 )) goto selecttrap;
 			break;
 
 		    case METAL_SPELL_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 14 : 27 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 14 : 27 )) goto selecttrap;
 			break;
 
 		    case PLATINUM_SPELL_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 15 : 29 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 15 : 29 )) goto selecttrap;
 			break;
 
 		    case MANLER_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 36 : 72 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 36 : 72 )) goto selecttrap;
 			break;
 
 		    case DOORNING_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 24 : 48 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 24 : 48 )) goto selecttrap;
 			break;
 
 		    case NOWNSIBLE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 45 : 90 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 45 : 90 )) goto selecttrap;
 			break;
 
 		    case ELM_STREET_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 13 : 26 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 13 : 26 )) goto selecttrap;
 			break;
 
 		    case MONNOISE_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 8 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 8 )) goto selecttrap;
 			break;
 
 		    case RANG_CALL_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 9 : 18 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 9 : 18 )) goto selecttrap;
 			break;
 
 		    case RECURRING_SPELL_LOSS_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
 			break;
 
 		    case ANTITRAINING_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
 			break;
 
 		    case TECHOUT_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
 			break;
 
 		    case STAT_DECAY_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 50 : 100 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 50 : 100 )) goto selecttrap;
 			break;
 
 		    case MOVEMORK_TRAP:
-			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 6 )) goto selecttrap;
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 6 )) goto selecttrap;
 			break;
 
 		    case FALLING_LOADSTONE_TRAP:
@@ -13686,6 +13687,9 @@ selecttrap:
 		    case MARLENA_TRAP:
 			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
+		    case ARABELLA_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(25) && !NastyTrapNation) goto selecttrap;
+			break;
 		    case SARAH_TRAP:
 			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
@@ -13751,6 +13755,30 @@ selecttrap:
 			break;
 		    case MELTEM_TRAP:
 			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case NELLY_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case EVELINE_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case KARIN_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case JUEN_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case KRISTINA_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case LOU_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(10) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case ALMUT_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case JULIETTA_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(10) && !NastyTrapNation) goto selecttrap;
 			break;
 
 		    case PREMATURE_DEATH_TRAP:
@@ -13848,7 +13876,7 @@ selecttrap:
 			(avoid_boulder && sobj_at(BOULDER, m.x, m.y)));
 	}
 
-	(void) maketrap(m.x, m.y, kind, isspecific ? ((u.monstertimefinish % 2) ? 5 : 10) : 100);
+	(void) maketrap(m.x, m.y, kind, isspecific ? ((u.monstertimefinish % 2) ? 5 : 10) : 100, cangivehp);
 	/* Webs can generate on dlvl1, where giant spiders would be totally out of depth. Let's make random spiders. --Amy */
 	if (kind == WEB) (void) makemon( /*&mons[PM_GIANT_SPIDER]*/ mkclass(S_SPIDER,0),
 						m.x, m.y, MM_MAYSLEEP);
@@ -15186,6 +15214,8 @@ register struct mkroom *croom;
 
 	/* Put a sink at m.x, m.y */
 	levl[m.x][m.y].typ = WELL;
+	/* occasionally it's a blessed one --Amy */
+	if(!rn2(10)) levl[m.x][m.y].blessedftn = 1;
 
 }
 
@@ -15535,7 +15565,7 @@ int dist;
     case 1: /* fire traps */
 	if (is_waterypool(x,y)) break;
 	lev->typ = ROOM;
-	ttmp = maketrap(x, y, FIRE_TRAP, 0);
+	ttmp = maketrap(x, y, FIRE_TRAP, 0, TRUE);
 	if (ttmp) ttmp->tseen = TRUE;
 	break;
     case 0: /* lit room locations */

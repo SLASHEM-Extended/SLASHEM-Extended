@@ -363,7 +363,7 @@ doaltarobj(obj)  /* obj is an object dropped on an altar */
 	}
 
 	/* evil patch idea by aosdict: Moloch's altars can occasionally curse the item. */
-	
+
 	if (!obj->cursed && !rn2(isfriday ? 100 : 500) && !obj->bknown && levl[u.ux][u.uy].altarmask == AM_NONE) curse(obj);
 	if (!rn2(5) && !obj->bknown && (u.uprops[DESECRATION].extrinsic || Desecration || have_nonsacredstone()) ) curse(obj);
 
@@ -376,6 +376,11 @@ doaltarobj(obj)  /* obj is an object dropped on an altar */
 			if (!obj->bknown && !objects[obj->otyp].oc_merge)
 				use_skill(P_SPIRITUALITY,3);
 			obj->bknown = 1;
+			/* the more items you test, the more likely you'll recognize BUC on future items --Amy */
+			if (u.bucskill < 2 || !rn2(u.bucskill)) {
+				u.bucskill++;
+				if (u.bucskill > 250) u.bucskill = 250;
+			}
 		}
 	} else {
 		pline("%s %s on the altar.", Doname2(obj),
@@ -383,6 +388,10 @@ doaltarobj(obj)  /* obj is an object dropped on an altar */
 		if (!obj->bknown && !objects[obj->otyp].oc_merge && !(LeftInventoryBug || u.uprops[LEFT_INVENTORY].extrinsic || have_leftinventorystone()) )
 			use_skill(P_SPIRITUALITY,3);
 		obj->bknown = 1;
+		if (u.bucskill < 2 || !rn2(u.bucskill)) {
+			u.bucskill++;
+			if (u.bucskill > 250) u.bucskill = 250;
+		}
 	}
 }
 
@@ -594,6 +603,9 @@ giveback:
 		    break;
 	      case RIN_JUMPING:
 		    pline("The sink jumps up and down!");
+		    break;
+	      case RIN_MAGIC_CONTROL:
+		    pline("The water flow seems controlled!");
 		    break;
 	      case RIN_ILLNESS:
 		    pline("The sink is overgrown with fungus.");
@@ -877,8 +889,14 @@ register struct obj *obj;
 	case AMULET_VERSUS_STONE:
 		pline_The("toilet doesn't turn to stone.");
 		break;
+	case AMULET_OF_TIME:
+		pline_The("toilet suddenly displays the current time: %d:%d", getlt()->tm_hour, getlt()->tm_min);
+		break;
 	case AMULET_OF_DEPETRIFY:
 		pline_The("toilet is definitely made of porcelain. Not mineral.");
+		break;
+	case AMULET_OF_PET_VIEW:
+		pline("It seems as if one of your pets was being pulled down the toilet!");
 		break;
 	case AMULET_OF_MAGIC_RESISTANCE:
 		pline_The("toilet is surrounded by a magical shield!");
@@ -961,6 +979,9 @@ register struct obj *obj;
 		break;
 	case AMULET_VERSUS_DEATH_SPELL:
 		pline_The("toilet no longer fears death.");
+		break;
+	case AMULET_OF_MAGIC_CONTROL:
+		pline_The("button seems very easy to control.");
 		break;
 	case AMULET_OF_QUICK_ATTACK:
 		pline_The("toilet flushes twice.");
@@ -2566,7 +2587,7 @@ rerollchaloc:
 
 					rtrap = randomtrap();
 
-					(void) maketrap(angbandx, angbandy, rtrap, 100);
+					(void) maketrap(angbandx, angbandy, rtrap, 100, TRUE);
 					}
 				}
 
@@ -2692,7 +2713,7 @@ rerollchaloc:
 
 					rtrap = randomtrap();
 
-					(void) maketrap(angbandx, angbandy, rtrap, 100);
+					(void) maketrap(angbandx, angbandy, rtrap, 100, TRUE);
 					}
 				}
 
@@ -2814,7 +2835,7 @@ rerollchaloc:
 
 					rtrap = randomtrap();
 
-					(void) maketrap(angbandx, angbandy, rtrap, 100);
+					(void) maketrap(angbandx, angbandy, rtrap, 100, TRUE);
 					}
 				}
 
@@ -2932,7 +2953,7 @@ rerollchaloc:
 
 					rtrap = randomtrap();
 
-					(void) maketrap(angbandx, angbandy, rtrap, 100);
+					(void) maketrap(angbandx, angbandy, rtrap, 100, TRUE);
 					}
 				}
 
@@ -3050,7 +3071,7 @@ rerollchaloc:
 
 					rtrap = randomtrap();
 
-					(void) maketrap(angbandx, angbandy, rtrap, 100);
+					(void) maketrap(angbandx, angbandy, rtrap, 100, TRUE);
 					}
 				}
 
@@ -3159,7 +3180,7 @@ rerollchaloc:
 						if (!rn2(150)) (void) mkobj_at(AMULET_CLASS, angbandx, angbandy, TRUE, FALSE);
 						if (!rn2(50)) (void) mkobj_at(TOOL_CLASS, angbandx, angbandy, TRUE, FALSE);
 
-						if (!rn2(1000)) (void) maketrap(angbandx, angbandy, AUTOMATIC_SWITCHER, 0);
+						if (!rn2(1000)) (void) maketrap(angbandx, angbandy, AUTOMATIC_SWITCHER, 0, FALSE);
 
 					}
 				}
@@ -3211,7 +3232,7 @@ rerollchaloc:
 					      if (!rn2(50)) (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, TRUE, FALSE);
 					      if (!rn2(100)) (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, TRUE, FALSE);
 
-						if (!rn2(500)) (void) maketrap(angbandx, angbandy, AUTOMATIC_SWITCHER, 0);
+						if (!rn2(500)) (void) maketrap(angbandx, angbandy, AUTOMATIC_SWITCHER, 0, FALSE);
 
 					}
 				}
@@ -4197,7 +4218,10 @@ rerollchaloc:
 	    register struct trap *ttrap;
 
 	    for (ttrap = ftrap; ttrap; ttrap = ttrap->ntrap)
-		if (ttrap->ttyp == MAGIC_PORTAL) break;
+            /* find the portal with the right destination level (thanks bhaak --Amy) */
+            if (ttrap->ttyp == MAGIC_PORTAL &&
+                u.uz0.dnum == ttrap->dst.dnum &&
+                u.uz0.dlevel == ttrap->dst.dlevel) break;
 
 	    if (!ttrap) panic("goto_level: no corresponding portal!");
 	    seetrap(ttrap);

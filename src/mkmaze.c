@@ -673,7 +673,7 @@ fixup_special()
 	    for(y = croom->ly; y <= croom->hy; y++) {
 		(void) mkgold((long) rn1(300, 600), x, y);
 		if (!rn2(3) && !is_waterypool(x,y))
-		    (void)maketrap(x, y, rn2(3) ? LANDMINE : SPIKED_PIT, 5);
+		    (void)maketrap(x, y, rn2(3) ? LANDMINE : SPIKED_PIT, 5, TRUE);
 	    }
     } else if (Role_if(PM_PRIEST) && In_quest(&u.uz)) {
 	/* less chance for undead corpses (lured from lower morgues) */
@@ -849,19 +849,19 @@ register const char *s;
 
 		/* spice this boring maze up - seven deadly sins :D --Amy */
 	    mtmp = makemon(&mons[PM_LUST], 0, 0, NO_MM_FLAGS);
-		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0);
+		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0, FALSE);
 	    mtmp = makemon(&mons[PM_GLUTTONY], 0, 0, NO_MM_FLAGS);
-		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0);
+		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0, FALSE);
 	    mtmp = makemon(&mons[PM_ENVY], 0, 0, NO_MM_FLAGS);
-		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0);
+		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0, FALSE);
 	    mtmp = makemon(&mons[PM_PRIDE], 0, 0, NO_MM_FLAGS);
-		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0);
+		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0, FALSE);
 	    mtmp = makemon(&mons[PM_GREED], 0, 0, NO_MM_FLAGS);
-		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0);
+		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0, FALSE);
 	    mtmp = makemon(&mons[PM_SLOTH], 0, 0, NO_MM_FLAGS);
-		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0);
+		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0, FALSE);
 	    mtmp = makemon(&mons[PM_WRATH], 0, 0, NO_MM_FLAGS);
-		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0);
+		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0, FALSE);
 
 
 #undef INVPOS_X_MARGIN
@@ -902,7 +902,7 @@ register const char *s;
 	for (x = rn2(3); x; x--) {
 		mazexy_all(&mm);
 		if (!ishomicider) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, MM_MAYSLEEP);
-		else makerandomtrap_at(mm.x, mm.y);
+		else makerandomtrap_at(mm.x, mm.y, TRUE);
 		}
 	}	 /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
 #ifdef BIGSLEX
@@ -912,7 +912,7 @@ register const char *s;
 #endif
 		mazexy_all(&mm);
 		if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, MM_MAYSLEEP);
-		else makerandomtrap_at(mm.x, mm.y);
+		else makerandomtrap_at(mm.x, mm.y, TRUE);
 	}
 	for(x = rn1(6,7); x; x--) {
 		mazexy_all(&mm);
@@ -924,7 +924,7 @@ register const char *s;
 	for(x = rn1(6,7); x; x--) {
 #endif
 		if (!(depth(&u.uz) == 1 && In_dod(&u.uz) && rn2(3)) && !(depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2)) ) {
-			mktrap(0,1,(struct mkroom *) 0, (coord*) 0);
+			mktrap(0,1,(struct mkroom *) 0, (coord*) 0, TRUE);
 		}
 	}
 
@@ -957,7 +957,7 @@ register const char *s;
 	for (x = rn2(3); x; x--) {
 		mazexy_all(&mm);
 		if (!ishomicider) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, MM_MAYSLEEP);
-		else makerandomtrap_at(mm.x, mm.y);
+		else makerandomtrap_at(mm.x, mm.y, TRUE);
 		}
 	}	 /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
 #ifdef BIGSLEX
@@ -967,7 +967,7 @@ register const char *s;
 #endif
 		mazexy_all(&mm);
 		if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, MM_MAYSLEEP);
-		else makerandomtrap_at(mm.x, mm.y);
+		else makerandomtrap_at(mm.x, mm.y, TRUE);
 	}
 	for(x = rn1(6,7); x; x--) {
 		mazexy_all(&mm);
@@ -979,7 +979,7 @@ register const char *s;
 	for(x = rn1(6,7); x; x--) {
 #endif
 		if (!(depth(&u.uz) == 1 && In_dod(&u.uz) && rn2(3)) && !(depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2)) ) {
-			mktrap(0,1,(struct mkroom *) 0, (coord*) 0);
+			mktrap(0,1,(struct mkroom *) 0, (coord*) 0, TRUE);
 		}
 
 	}
@@ -1614,6 +1614,13 @@ mazexy(cc)	/* find random point in generated corridors,
 			if ((levl[cc->x][cc->y].typ == ROOM) || (levl[cc->x][cc->y].typ == CORR) || (levl[cc->x][cc->y].typ == CLOUD) || (levl[cc->x][cc->y].typ == ICE) || (levl[cc->x][cc->y].typ == SNOW) || (levl[cc->x][cc->y].typ == ASH) || (levl[cc->x][cc->y].typ == SAND) || (levl[cc->x][cc->y].typ == PAVEDFLOOR) || (levl[cc->x][cc->y].typ == HIGHWAY) || (levl[cc->x][cc->y].typ == GRASSLAND) || (levl[cc->x][cc->y].typ == NETHERMIST) || (levl[cc->x][cc->y].typ == STALACTITE) || (levl[cc->x][cc->y].typ == CRYPTFLOOR) || (levl[cc->x][cc->y].typ == BUBBLES) || (levl[cc->x][cc->y].typ == RAINCLOUD)) return;
 		    }
 
+		for (x = 0; x < (x_maze_max) - 1; x++)
+		    for (y = 0; y < (y_maze_max) - 1; y++) {
+			cc->x = 3 + x;
+			cc->y = 3 + y;
+			if ((levl[cc->x][cc->y].typ >= ROCKWALL && levl[cc->x][cc->y].typ <= URINELAKE) || (levl[cc->x][cc->y].typ >= SHIFTINGSAND && levl[cc->x][cc->y].typ <= ROOM) || (levl[cc->x][cc->y].typ >= ICE && levl[cc->x][cc->y].typ <= CRYPTFLOOR) || (levl[cc->x][cc->y].typ >= AIR && levl[cc->x][cc->y].typ <= RAINCLOUD) ) return;
+		    }
+
 		panic("mazexy: can't find a place!");
 	}
 	return;
@@ -1657,6 +1664,13 @@ mazexy_all(cc)	/* mazexy() only returns "even-numbered" squares... --Amy */
 			cc->x = 3 + x;
 			cc->y = 3 + y;
 			if ((levl[cc->x][cc->y].typ == ROOM) || (levl[cc->x][cc->y].typ == CORR) || (levl[cc->x][cc->y].typ == CLOUD) || (levl[cc->x][cc->y].typ == ICE) || (levl[cc->x][cc->y].typ == SNOW) || (levl[cc->x][cc->y].typ == ASH) || (levl[cc->x][cc->y].typ == SAND) || (levl[cc->x][cc->y].typ == PAVEDFLOOR) || (levl[cc->x][cc->y].typ == HIGHWAY) || (levl[cc->x][cc->y].typ == GRASSLAND) || (levl[cc->x][cc->y].typ == NETHERMIST) || (levl[cc->x][cc->y].typ == STALACTITE) || (levl[cc->x][cc->y].typ == CRYPTFLOOR) || (levl[cc->x][cc->y].typ == BUBBLES) || (levl[cc->x][cc->y].typ == RAINCLOUD)) return;
+		    }
+
+		for (x = 0; x < (x_maze_max) - 1; x++)
+		    for (y = 0; y < (y_maze_max) - 1; y++) {
+			cc->x = 3 + x;
+			cc->y = 3 + y;
+			if ((levl[cc->x][cc->y].typ >= ROCKWALL && levl[cc->x][cc->y].typ <= URINELAKE) || (levl[cc->x][cc->y].typ >= SHIFTINGSAND && levl[cc->x][cc->y].typ <= ROOM) || (levl[cc->x][cc->y].typ >= ICE && levl[cc->x][cc->y].typ <= CRYPTFLOOR) || (levl[cc->x][cc->y].typ >= AIR && levl[cc->x][cc->y].typ <= RAINCLOUD) ) return;
 		    }
 
 		panic("mazexy_all: can't find a place!");
@@ -1765,7 +1779,7 @@ register xchar x, y, todnum, todlevel;
 {
 	/* a portal "trap" must be matched by a */
 	/* portal in the destination dungeon/dlevel */
-	register struct trap *ttmp = maketrap(x, y, MAGIC_PORTAL, 0);
+	register struct trap *ttmp = maketrap(x, y, MAGIC_PORTAL, 0, FALSE);
 
 	if (!ttmp) {
 		impossible("portal on top of portal??");

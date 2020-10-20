@@ -312,6 +312,7 @@ dig()
 	if (uarms && uarms->oartifact == ART_TEH_BASH_R) bonus += 2;
 	if (uarmh && uarmh->oartifact == ART_HELMET_OF_DIGGING) bonus += 5;
 	if (uarmg && itemhasappearance(uarmg, APP_DIGGER_GLOVES)) bonus += 5;
+	if (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) bonus += 5;
 	if (!PlayerCannotUseSkills) {
 		switch (P_SKILL(P_WEDI)) {
 
@@ -682,7 +683,7 @@ int ttyp;
 	    strcpy(surface_type, surface(x,y));
 	shopdoor = IS_DOOR(lev->typ) && *in_rooms(x, y, SHOPBASE);
 	oldobjs = level.objects[x][y];
-	ttmp = maketrap(x, y, ttyp, 0);
+	ttmp = maketrap(x, y, ttyp, 0, FALSE);
 	if (!ttmp) return;
 	newobjs = level.objects[x][y];
 	ttmp->tseen = ((madeby_u || cansee(x,y)) && !ttmp->hiddentrap);

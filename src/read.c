@@ -18,105 +18,6 @@
 	((mndx) == urace.malenum || \
 	 (urace.femalenum != NON_PM && (mndx) == urace.femalenum))
 
-#ifndef OVLB
-
-STATIC_DCL NEARDATA const short skill_names_indices[];
-STATIC_DCL NEARDATA const char *odd_skill_names[];
-
-#else	/* OVLB */
-
-/* KMH, balance patch -- updated */
-STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
-	0,                DAGGER,         KNIFE,        AXE,
-	PICK_AXE,         SHORT_SWORD,    BROADSWORD,   LONG_SWORD,
-	TWO_HANDED_SWORD, SCIMITAR,       PN_SABER,     CLUB,
-	PN_PADDLE,        MACE,           MORNING_STAR,   FLAIL,
-	PN_HAMMER,        QUARTERSTAFF,   PN_POLEARMS,  SPEAR,
-	JAVELIN,          TRIDENT,        LANCE,        BOW,
-	SLING,            PN_FIREARMS,    CROSSBOW,       DART,
-	SHURIKEN,         BOOMERANG,      PN_WHIP,      UNICORN_HORN,
-	PN_LIGHTSABER,
-	PN_ATTACK_SPELL,     PN_HEALING_SPELL,
-	PN_DIVINATION_SPELL, PN_ENCHANTMENT_SPELL,
-	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
-	PN_OCCULT_SPELL,
-	PN_ELEMENTAL_SPELL,
-	PN_CHAOS_SPELL,
-	PN_MATTER_SPELL,
-	PN_BARE_HANDED,	PN_HIGH_HEELS,
-	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
-	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
-	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
-	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_SEXY_FLATS,
-	PN_MEMORIZATION,	PN_GUN_CONTROL,	PN_SQUEAKING,	PN_SYMBIOSIS,
-	PN_SHII_CHO,	PN_MAKASHI,	PN_SORESU,
-	PN_ATARU,	PN_SHIEN,	PN_DJEM_SO,
-	PN_NIMAN,	PN_JUYO,	PN_VAAPAD,	PN_WEDI,
-	PN_MARTIAL_ARTS, 
-	PN_TWO_WEAPONS,
-	PN_RIDING,
-};
-
-
-STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
-    "no skill",
-    "polearms",
-    "saber",
-    "hammer",
-    "whip",
-    "paddle",
-    "firearms",
-    "attack spells",
-    "healing spells",
-    "divination spells",
-    "enchantment spells",
-    "protection spells",
-    "body spells",
-    "occult spells",
-    "elemental spells",
-    "chaos spells",
-    "matter spells",
-    "bare-handed combat",
-    "high heels",
-    "general combat",
-    "shield",
-    "body armor",
-    "two-handed weapons",
-    "polymorphing",
-    "devices",
-    "searching",
-    "spirituality",
-    "petkeeping",
-    "missile weapons",
-    "techniques",
-    "implants",
-    "sexy flats",
-    "memorization",
-    "gun control",
-    "squeaking",
-    "symbiosis",
-    "form I (Shii-Cho)",
-    "form II (Makashi)",
-    "form III (Soresu)",
-    "form IV (Ataru)",
-    "form V (Shien)",
-    "form V (Djem So)",
-    "form VI (Niman)",
-    "form VII (Juyo)",
-    "form VII (Vaapad)",
-    "form VIII (Wedi)",
-    "martial arts",
-    "riding",
-    "two-weapon combat",
-    "lightsaber"
-};
-
-#endif	/* OVLB */
-
-#define P_NAME(type) (skill_names_indices[type] > 0 ? \
-		      OBJ_NAME(objects[skill_names_indices[type]]) : \
-			odd_skill_names[-skill_names_indices[type]])
-
 #ifdef OVLB
 
 boolean	known;
@@ -124,6 +25,7 @@ boolean	known;
 static NEARDATA const char readable[] = {
 		   SCROLL_CLASS, SPBOOK_CLASS, RING_CLASS, 0 };
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
+static const char allnoncount[] = { ALL_CLASSES, 0 };
 
 
 #if 0
@@ -246,7 +148,7 @@ doread()
 	} else if (scroll->otyp == T_SHIRT || scroll->otyp == HAWAIIAN_SHIRT || scroll->otyp == BLACK_DRESS
 	|| scroll->otyp == STRIPED_SHIRT || scroll->otyp == BODYGLOVE || scroll->otyp == BAD_SHIRT || scroll->otyp == CHANTER_SHIRT || scroll->otyp == KYRT_SHIRT || scroll->otyp == WOOLEN_SHIRT || scroll->otyp == METAL_SHIRT || scroll->otyp == RED_STRING || scroll->otyp == YOGA_PANTS || scroll->otyp == GREEN_GOWN
 	|| scroll->otyp == BEAUTIFUL_SHIRT || scroll->otyp == PETA_COMPLIANT_SHIRT || scroll->otyp == TOILET_ROLL || scroll->otyp == RADIOACTIVE_UNDERGARMENT
-	|| scroll->otyp == PRINTED_SHIRT || scroll->otyp == BATH_TOWEL
+	|| scroll->otyp == PRINTED_SHIRT || scroll->otyp == FOAM_SHIRT || scroll->otyp == FLEECY_CORSET || scroll->otyp == FISHNET || scroll->otyp == BATH_TOWEL
 	|| scroll->otyp == PLUGSUIT || scroll->otyp == SWIMSUIT || scroll->otyp == MEN_S_UNDERWEAR
 	|| scroll->otyp == VICTORIAN_UNDERWEAR || scroll->otyp == RUFFLED_SHIRT) {
 	    static const char *shirt_msgs[] = { /* Scott Bigham */
@@ -837,6 +739,17 @@ doread()
 	"Zombies aren't so tough. I'm more scared of an archon apocalypse.",
 	"I only play SLEX, developed by Amy. Variants of SLEX developed by others are too easy, ascending those would mean nothing to me.",
 	"I used all 8 charges in the wand of wishing despite the developers pleading me to pretend it only had 3!",
+	"I can eat a slime mold", /* by mobileuser */
+	"slex - seeing bugs as features since 2017", /* by K2 */
+	"K2 and Hanh's ballerinas allowed me to fix a very aggravating bug that corrupted the topten file!",
+	"Because of a pair of asian block-heeled sandals, we have very scratched legs!",
+	"using a classic demo escape Manuela I haven't used in... fuck like 10+ years?", /* Demo, on a phone :P */
+	"super lotsa added sadism hack extended masochism", /* by Demo */
+	"that's the intended way to play slex though isn't it? 'quite high'?", /* by bubbles */
+	"gtfo scrubs goml hit #quit if ur bad sucka get rekt", /* by amateurhour */
+	"House Stark! We will push that evil monster Cersei off the throne and take it for ourselves!",
+	"This shirt is worn by some weirdo who isn't a big fan of House Stark and therefore the shirt shows a golden lion instead.",
+	"Today, the wolf managed to defeat the lion. House Lannister is going DOWN and the Starks will be victorious!",
 
 	    };
 	    char buf[BUFSZ];
@@ -1021,6 +934,7 @@ doread()
 			case SCR_GROWTH:
 			case SCR_ICE:
 			case SCR_ILLUSION:
+			case SCR_VISIBLE_ITEM:
 			case SCR_FEMINISM:
 			case SCR_EVIL_VARIANT:
 			case SCR_ENRAGE:
@@ -1099,6 +1013,7 @@ doread()
 			case SCR_GREATER_MANA_RESTORATION:
 			case SCR_NASTY_CURSE:
 			case SCR_TERRAFORMING:
+			case SCR_ALLY:
 				cartochance = 15;
 				if (!PlayerCannotUseSkills) switch (P_SKILL(P_DEVICES)) {
 					case P_BASIC: cartochance = 16; break;
@@ -1142,6 +1057,9 @@ doread()
 			case SCR_ALTER_REALITY:
 			case SCR_SECURE_IDENTIFY:
 			case SCR_HYBRIDIZATION:
+			case SCR_GREATER_ENCHANT_ARMOR:
+			case SCR_GREATER_ENCHANT_WEAPON:
+			case SCR_POWER_CHARGING:
 			case SCR_RAGNAROK:
 				cartochance = 5;
 				if (!PlayerCannotUseSkills) switch (P_SKILL(P_DEVICES)) {
@@ -1450,6 +1368,10 @@ int curse_bless;
 		u.cnd_chargingcount++;
 		if (obj->spe >= lim) p_glow2(obj, NH_BLUE);
 		else p_glow1(obj);
+		if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+			if (!obj->cursed) bless(obj);
+			else uncurse(obj, FALSE);
+		}
 	    }
 
 	} else if (obj->oclass == SPBOOK_CLASS) {
@@ -1508,6 +1430,10 @@ int curse_bless;
 		if (obj->spe >= 5) p_glow2(obj, NH_BLUE);
 		else p_glow1(obj);
 		u.cnd_chargingcount++;
+		if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+			if (!obj->cursed) bless(obj);
+			else uncurse(obj, FALSE);
+		}
 	    }
 
 	} else if (obj->oclass == RING_CLASS &&
@@ -1532,6 +1458,10 @@ int curse_bless;
 		if (is_on) Ring_off(obj);
 		obj->spe += s;	/* update the ring while it's off */
 		if (s > 0) u.cnd_chargingcount++;
+		if (s > 0 && obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+			if (!obj->cursed) bless(obj);
+			else uncurse(obj, FALSE);
+		}
 		if (is_on) setworn(obj, mask), Ring_on(obj);
 		/* oartifact: if a touch-sensitive artifact ring is
 		   ever created the above will need to be revised  */
@@ -1550,6 +1480,10 @@ int curse_bless;
 			Your("%s spins %sclockwise for a moment.", xname(obj), s < 0 ? "counter" : "");
 			obj->spe += s;	/* we don't need to take it off because it just affects AC and poly'd stuff */
 			if (s > 0) u.cnd_chargingcount++;
+			if (s > 0 && obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
 		} else {
 			Your("%s seems unchanged.", xname(obj));
 		}
@@ -1571,6 +1505,10 @@ int curse_bless;
 		else obj->spe += 10;
 		if (obj->spe > 100) obj->spe = 100;
 		if (!is_cursed) u.cnd_chargingcount++;
+		if (!is_cursed && obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+			if (!obj->cursed) bless(obj);
+			else uncurse(obj, FALSE);
+		}
 
 		break;
 	    case MAGIC_MARKER:
@@ -1616,6 +1554,10 @@ int curse_bless;
 
 			p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
 		} else {
 		    n = rnd(20);		/* 10..20 */
 		    if (rn2(2)) n += rnd(30);
@@ -1628,6 +1570,10 @@ int curse_bless;
 
 			p_glow2(obj, NH_WHITE);
 			u.cnd_chargingcount++;
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
 		}
 		break;
 	    case OIL_LAMP:
@@ -1649,6 +1595,10 @@ int curse_bless;
 		    else obj->age += 1500;
 		    p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
 		} else {
 		    obj->spe = 1;
 		    obj->age += 750;
@@ -1658,6 +1608,10 @@ int curse_bless;
 		    }
 		    p_glow1(obj);
 			u.cnd_chargingcount++;
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
 		}
 		break;
 	    case GREEN_LIGHTSABER:
@@ -1672,6 +1626,7 @@ int curse_bless;
 	    case LASER_SWATTER:
 	    case NANO_HAMMER:
 	    case LIGHTWHIP:
+	    case ELECTRIC_CIGARETTE:
 
 		if (is_cursed) {
 		    if (obj->lamplit) {
@@ -1689,6 +1644,10 @@ int curse_bless;
 		    else obj->age += 1500;
 		    p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
 		} else {
 		    obj->age += 750;
 		    if (issoviet && obj->age > 1500) {
@@ -1697,6 +1656,10 @@ int curse_bless;
 		    }
 		    p_glow1(obj);
 			u.cnd_chargingcount++;
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
 		}
 		break;
 	    case CRYSTAL_BALL:
@@ -1713,11 +1676,19 @@ int curse_bless;
 		    obj->spe = 6;
 		    p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
 		} else {
 		    if (obj->spe < 5) {
 			obj->spe++;
 			u.cnd_chargingcount++;
 			p_glow1(obj);
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
 		    } else {
 				pline("%s", nothing_happens);
 				if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -1744,11 +1715,19 @@ int curse_bless;
 			if (obj->spe > 100) obj->spe = 100;
 			p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
 		} else {
 			obj->spe += rnd(20);
 			if (obj->spe > 100) obj->spe = 100;
 			p_glow1(obj);
 			u.cnd_chargingcount++;
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
 		}
 		break;
 
@@ -1771,11 +1750,19 @@ int curse_bless;
 		    if (obj->spe > 117) obj->spe = 117;
 		    p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
 		} else {
 		    obj->spe += rnd(5);
 		    if (obj->spe > 117) obj->spe = 117;
 		    p_glow1(obj);
 			u.cnd_chargingcount++;
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
 		}
 		break;
 	    case MAGIC_FLUTE:
@@ -1802,11 +1789,19 @@ int curse_bless;
 		    if (obj->spe > 20) obj->spe = 20;
 		    p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
 		} else {
 		    obj->spe += rnd(4);
 		    if (obj->spe > 20) obj->spe = 20;
 		    p_glow1(obj);
 			u.cnd_chargingcount++;
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
 		}
 		break;
 	    default:
@@ -2141,6 +2136,10 @@ int howmuch;
 
 	forget_map(howmuch);
 	forget_traps();
+
+	if (!rn2(20) && u.enchantrecskill > 0) u.enchantrecskill--;
+	if (!rn2(20) && u.weapchantrecskill > 0) u.weapchantrecskill--;
+	if (!rn2(20) && u.bucskill > 0) u.bucskill--;
 
 	/* 1 in 3 chance of forgetting some levels */
 	if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));
@@ -4597,7 +4596,7 @@ register struct obj	*sobj;
 
 		pline("You may enchant a worn piece of armor.");
 enchantarmorchoice:
-		otmp = getobj(all_count, "magically enchant");
+		otmp = getobj(allnoncount, "magically enchant");
 		/*otmp = some_armor(&youmonst);*/
 
 		if(!otmp) {
@@ -4639,6 +4638,15 @@ enchantarmorchoice:
 				 xname(otmp),
 				 otense(otmp, Blind ? "feel" : "look"));
 			}
+
+			if (!(sobj->cursed)) {
+				if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+					if (!otmp->cursed) bless(otmp);
+					else uncurse(otmp, FALSE);
+				}
+
+			}
+
 			break;
 		}
 		/* elven armor vibrates warningly when enchanted beyond a limit */
@@ -4689,6 +4697,12 @@ enchantarmorchoice:
 			useup(otmp);
 			break;
 		}
+
+		if (!(sobj->cursed) && otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+			if (!otmp->cursed) bless(otmp);
+			else uncurse(otmp, FALSE);
+		}
+
 
 		/* KMH, balance patch -- Restore the NetHack success rate */
 		/* We'll introduce a disenchantment attack later */
@@ -4778,6 +4792,17 @@ enchantarmorchoice:
 			setworn(otmp, savewornmask);
 
 		}
+		/* and cursed enchant armor is a way to remove the magical enchantment --Amy */
+		if (otmp->enchantment && s < 0) {
+
+			long savewornmask;
+			savewornmask = otmp->owornmask;
+			setworn((struct obj *)0, otmp->owornmask);
+			otmp->enchantment = 0;
+			pline("Your %s lost its magical properties!", xname(otmp) );
+			setworn(otmp, savewornmask);
+
+		}
 
 		if ((otmp->spe > (is_droven_armor(otmp) ? 8 : special_armor ? 5 : 3)) &&
 		    (special_armor || !rn2(7)))
@@ -4793,11 +4818,222 @@ enchantarmorchoice:
 
 		break;
 	    }
+
+	case SCR_GREATER_ENCHANT_ARMOR:
+	    {
+		register schar s;
+		boolean special_armor;
+		boolean same_color;
+
+		pline("You may enchant a worn piece of armor.");
+enchantarmorchoiceX:
+		otmp = getobj(allnoncount, "magically enchant");
+		/*otmp = some_armor(&youmonst);*/
+
+		if(!otmp) {
+			if (yn("Really exit with no object selected?") == 'y')
+				pline("You just wasted the opportunity to enchant your armor.");
+			else goto enchantarmorchoiceX;
+			strange_feeling(sobj,
+					!Blind ? "Your skin glows then fades." :
+					"Your skin feels warm for a moment.");
+			exercise(A_CON, 1);
+			exercise(A_STR, 1);
+			return(1);
+		}
+		if (!(otmp->owornmask & W_ARMOR) ) {
+
+			strange_feeling(sobj, "You have a feeling of loss.");
+			return(1);
+		}
+
+		if(confused) {
+			otmp->oerodeproof = 1;
+			if(Blind) {
+			    otmp->rknown = FALSE;
+			    Your("%s %s warm for a moment.",
+				xname(otmp), otense(otmp, "feel"));
+			} else {
+			    otmp->rknown = TRUE;
+			    Your("%s %s covered by a %s %s %s!",
+				xname(otmp), otense(otmp, "are"),
+				"shimmering", hcolor(NH_GOLDEN), (is_shield(otmp) ? "layer" : "shield"));
+			}
+			if (otmp->oerodeproof &&
+			    (otmp->oeroded || otmp->oeroded2)) {
+			    otmp->oeroded = otmp->oeroded2 = 0;
+			    Your("%s %s as good as new!",
+				 xname(otmp),
+				 otense(otmp, Blind ? "feel" : "look"));
+			}
+
+			if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+				if (!otmp->cursed) bless(otmp);
+				else uncurse(otmp, FALSE);
+			}
+
+			break;
+		}
+		/* elven armor vibrates warningly when enchanted beyond a limit */
+		special_armor = is_elven_armor(otmp) || otmp->otyp == KYRT_SHIRT ||
+		  (Role_if(PM_WIZARD) && otmp->otyp == CORNUTHAUM) ||
+		  (Role_if(PM_VALKYRIE) && otmp->otyp == GAUNTLETS_OF_POWER);
+
+		    same_color =
+			(otmp->otyp == SILVER_DRAGON_SCALE_MAIL ||
+			 otmp->otyp == SILVER_DRAGON_SCALES ||
+			 otmp->otyp == SHIELD_OF_REFLECTION);
+		if (Blind) same_color = FALSE;
+
+		/* KMH -- catch underflow */
+		s = otmp->spe;
+
+		if (s > (is_droven_armor(otmp) ? 8 : special_armor ? 5 : 3) && rn2(s) && !rn2(3) )  {
+
+			if (otmp->oartifact) {
+				otmp->spe = 0;
+				Your("%s violently %s%s%s for a while, then %s.", xname(otmp),
+				otense(otmp, Blind ? "vibrate" : "glow"),
+			     (!Blind && !same_color) ? " " : nul,
+			     (Blind || same_color) ? nul : hcolor(NH_SILVER),
+				otense(otmp, "fade"));
+
+				break;
+			}
+
+		Your("%s violently %s%s%s for a while, then %s.",
+		     xname(otmp),
+		     otense(otmp, Blind ? "vibrate" : "glow"),
+		     (!Blind && !same_color) ? " " : nul,
+		     (Blind || same_color) ? nul :
+			hcolor(NH_SILVER),
+		     otense(otmp, "evaporate"));
+			if(is_cloak(otmp)) (void) Cloak_off();
+			if(is_boots(otmp)) (void) Boots_off();
+			if(is_helmet(otmp)) (void) Helmet_off();
+			if(is_gloves(otmp)) (void) Gloves_off();
+			if(is_shield(otmp)) (void) Shield_off();
+			if(otmp == uarm) (void) Armor_gone();
+			useup(otmp);
+			break;
+		}
+
+		if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+			if (!otmp->cursed) bless(otmp);
+			else uncurse(otmp, FALSE);
+		}
+
+
+		/* KMH, balance patch -- Restore the NetHack success rate */
+		/* We'll introduce a disenchantment attack later */
+		s = 
+		/* Come on, the evaporation chance is nasty enough. Let's allow enchanting stuff beyond +9. --Amy */
+		    otmp->spe >= 9 ? /*(rn2(otmp->spe) == 0)*/1 : rnd(3-otmp->spe/3);
+		if (s >= 0 && otmp->otyp >= GRAY_DRAGON_SCALES &&
+					otmp->otyp <= YELLOW_DRAGON_SCALES) {
+			/* dragon scales get turned into dragon scale mail */
+			Your("%s merges and hardens!", xname(otmp));
+			setworn((struct obj *)0, W_ARM);
+			/* assumes same order */
+			otmp->otyp = GRAY_DRAGON_SCALE_MAIL +
+						otmp->otyp - GRAY_DRAGON_SCALES;
+
+			if ((otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(100) ) {
+				otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+			}
+			else if (otmp->prmcurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(10) ) {
+				otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+			}
+			else if (!(otmp->prmcurse) && otmp->hvycurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(3) ) {
+				otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+			}
+			else if (!(otmp->prmcurse) && !(otmp->hvycurse) && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) ) otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+
+			otmp->spe++;
+			otmp->blessed = 1;
+			otmp->known = 1;
+			setworn(otmp, W_ARM);
+			break;
+		}
+		if (s >= 0 && otmp->otyp == LIZARD_SCALES) {
+			Your("%s merges and hardens!", xname(otmp));
+			setworn((struct obj *)0, W_ARM);
+			otmp->otyp = LIZARD_SCALE_MAIL;
+
+			if ((otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(100) ) {
+				otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+			}
+			else if (otmp->prmcurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(10) ) {
+				otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+			}
+			else if (!(otmp->prmcurse) && otmp->hvycurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(3) ) {
+				otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+			}
+			else if (!(otmp->prmcurse) && !(otmp->hvycurse) && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) ) otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+
+			otmp->spe++;
+			otmp->blessed = 1;
+			otmp->known = 1;
+			setworn(otmp, W_ARM);
+			break;
+		}
+
+		Your("%s %s%s%s%s for a %s.",
+			xname(otmp),
+		        s == 0 ? "violently " : nul,
+			otense(otmp, Blind ? "vibrate" : "glow"),
+			(!Blind && !same_color) ? " " : nul,
+			(Blind || same_color) ? nul : hcolor(NH_SILVER),
+			  (s*s>1) ? "while" : "moment");
+		otmp->cursed = ( ((otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && rn2(100)) || (otmp->prmcurse && rn2(10)) || (otmp->hvycurse && rn2(3)) ) ;
+		if (s) {
+			otmp->spe += s;
+			if (Race_if(PM_SPARD) && s > 0) otmp->spe++;
+			known = otmp->known;
+		}
+		/* sometimes, enchanting armor pieces may give them an actual magical enchantment --Amy */
+		if (!otmp->enchantment && !rn2(10) && s > 0) {
+
+			long savewornmask;
+			otmp->enchantment = randenchantment();
+			pline("Your %s seems to have gained special magical properties!", xname(otmp) );
+			savewornmask = otmp->owornmask;
+			setworn((struct obj *)0, otmp->owornmask);
+			setworn(otmp, savewornmask);
+
+		}
+		/* and cursed enchant armor is a way to remove the magical enchantment --Amy */
+		if (otmp->enchantment && s < 0) {
+
+			long savewornmask;
+			savewornmask = otmp->owornmask;
+			setworn((struct obj *)0, otmp->owornmask);
+			otmp->enchantment = 0;
+			pline("Your %s lost its magical properties!", xname(otmp) );
+			setworn(otmp, savewornmask);
+
+		}
+
+		if ((otmp->spe > (is_droven_armor(otmp) ? 8 : special_armor ? 5 : 3)) &&
+		    (special_armor || !rn2(7)))
+			Your("%s suddenly %s %s.",
+				xname(otmp), otense(otmp, "vibrate"),
+				Blind ? "again" : "unexpectedly");
+
+		if (practicantterror && otmp && otmp->spe >= 5 && !u.pract_enchantarmor) {
+			pline("%s rings out: 'I told you that you may not disguise as a tank! Just for that it costs 1000 zorkmids and 1000 stones now.'", noroelaname());
+			fineforpracticant(1000, 1000, 0);
+			u.pract_enchantarmor = TRUE;
+		}
+
+		break;
+	    }
+
 	case SCR_REPAIR_ITEM:
 	    {
 		pline("You may repair a damaged item.");
 repairitemchoice:
-		otmp = getobj(all_count, "magically repair");
+		otmp = getobj(allnoncount, "magically repair");
 		if (!otmp) {
 			if (yn("Really exit with no object selected?") == 'y')
 				pline("You just wasted the opportunity to repair your items.");
@@ -4819,6 +5055,10 @@ repairitemchoice:
 			}
 			if (otmp->oeroded > 0) { otmp->oeroded = 0; }
 			if (otmp->oeroded2 > 0) { otmp->oeroded2 = 0; }
+			if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+				if (!otmp->cursed) bless(otmp);
+				else uncurse(otmp, FALSE);
+			}
 
 		} else pline("Your %s is still as undamaged as ever.",xname(otmp));
 
@@ -4834,7 +5074,7 @@ repairitemchoice:
 		if (sobj && sobj->otyp == SCR_DESTROY_ARMOR && sobj->blessed) { /* idea by bhaak */
 			pline("You may enchant a worn piece of armor.");
 destroyarmorchoice:
-			otmp = getobj(all_count, "magically enchant");
+			otmp = getobj(allnoncount, "magically enchant");
 
 			if (otmp && !(otmp->owornmask & W_ARMOR)) {
 				if (yn("Really exit with no object selected?") == 'y')
@@ -4857,6 +5097,10 @@ destroyarmorchoice:
 			}
 			otmp->oerodeproof = sobj->cursed;
 			p_glow2(otmp, NH_PURPLE);
+			if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+				if (!otmp->cursed) bless(otmp);
+				else uncurse(otmp, FALSE);
+			}
 			break;
 		}
 		if(!sobj->cursed || !otmp || !otmp->cursed) {
@@ -4931,7 +5175,7 @@ destroyarmorchoice:
 	      {
 		pline("You may enchant a worn piece of armor.");
 proofarmorchoice:
-		otmp = getobj(all_count, "magically enchant");
+		otmp = getobj(allnoncount, "magically enchant");
 		/*otmp = some_armor(&youmonst);*/
 			if(!otmp) {
 				if (yn("Really exit with no object selected?") == 'y')
@@ -4951,6 +5195,10 @@ proofarmorchoice:
 			otmp->oerodeproof = 1;
 			if (!Blind) otmp->rknown = TRUE;
 			p_glow2(otmp, NH_PURPLE);
+			if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+				if (!otmp->cursed) bless(otmp);
+				else uncurse(otmp, FALSE);
+			}
 		}
 		break;
 	case SPE_CONFUSE_MONSTER:
@@ -5115,6 +5363,45 @@ proofarmorchoice:
 
 	case SCR_SKILL_UP:
 
+		if (sobj && sobj->oartifact == ART_GAUGET_UNLOCKER) {
+			int unlockmount = (Role_if(PM_ANACHRONOUNBINDER) ? 3 : 1);
+			int maxtrainingamount = 0;
+			int skillnumber = 0;
+			int actualskillselection = 0;
+			int amountofpossibleskills = 1;
+			int i;
+
+			while (unlockmount > 0) {
+				unlockmount--;
+
+				for (i = 0; i < P_NUM_SKILLS; i++) {
+					if (P_SKILL(i) != P_ISRESTRICTED) continue;
+	
+					if (P_ADVANCE(i) > 0 && P_ADVANCE(i) >= maxtrainingamount) {
+						if (P_ADVANCE(i) > maxtrainingamount) {
+							amountofpossibleskills = 1;
+							skillnumber = i;
+							maxtrainingamount = P_ADVANCE(i);
+						} else if (!rn2(amountofpossibleskills + 1)) {
+							amountofpossibleskills++;
+							skillnumber = i;
+						} else {
+							amountofpossibleskills++;
+						}
+					}
+				}
+
+				if (skillnumber > 0 && maxtrainingamount > 0) {
+					unrestrict_weapon_skill(skillnumber);
+					P_MAX_SKILL(skillnumber) = (maxtrainingamount >= 5000 ? P_SUPREME_MASTER : maxtrainingamount >= 500 ? P_GRAND_MASTER : maxtrainingamount >= 50 ? P_MASTER : P_EXPERT);
+					pline("You can now learn the %s skill, with a new cap of %s.", wpskillname(skillnumber), maxtrainingamount >= 5000 ? "supreme master" : maxtrainingamount >= 500 ? "grand master" : maxtrainingamount >= 50 ? "master" : "expert");
+				} else {
+					pline("You've trained no unknown skills since the last checkpoint and therefore you unfortunately don't learn anything new.");
+				}
+
+			}
+		}
+
 		if (sobj->cursed || (confused && rn2(2) ) ) {
 
 			You_feel("your abilities draining away...");
@@ -5128,51 +5415,51 @@ proofarmorchoice:
 
 			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 				unrestrict_weapon_skill(skillimprove);
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
 				unrestrict_weapon_skill(skillimprove);
 				P_MAX_SKILL(skillimprove) = P_BASIC;
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
 				P_MAX_SKILL(skillimprove) = P_SKILLED;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
 				P_MAX_SKILL(skillimprove) = P_EXPERT;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
 				P_MAX_SKILL(skillimprove) = P_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else pline("Unfortunately, you feel no different than before.");
 
 			if (Race_if(PM_RUSMOT)) {
 				if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 					unrestrict_weapon_skill(skillimprove);
-					pline("You can now learn the %s skill.", P_NAME(skillimprove));
+					pline("You can now learn the %s skill.", wpskillname(skillimprove));
 				} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
 					unrestrict_weapon_skill(skillimprove);
 					P_MAX_SKILL(skillimprove) = P_BASIC;
-					pline("You can now learn the %s skill.", P_NAME(skillimprove));
+					pline("You can now learn the %s skill.", wpskillname(skillimprove));
 				} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
 					P_MAX_SKILL(skillimprove) = P_SKILLED;
-					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 				} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
 					P_MAX_SKILL(skillimprove) = P_EXPERT;
-					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 				} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
 					P_MAX_SKILL(skillimprove) = P_MASTER;
-					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 				} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
 					P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
-					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 				} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 					P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
-					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 				} else pline("Unfortunately, you feel no different than before.");
 			}
 
@@ -5327,9 +5614,15 @@ proofarmorchoice:
 	case SCR_CREATE_FAMILIAR:
 		known = TRUE;
 		if (confused) create_critters(rn1(7,6), (struct permonst *)0);
-		else 		(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE);
+		else 		(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, FALSE);
 
-		if (sobj->oartifact == ART_FRIEND_CALL)  		(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE);
+		if (sobj->oartifact == ART_FRIEND_CALL)  		(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, FALSE);
+
+		break;
+
+	case SCR_ALLY:
+		known = TRUE;
+		(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, TRUE);
 
 		break;
 
@@ -5450,6 +5743,19 @@ proofarmorchoice:
 
 		break;
 
+	case SCR_VISIBLE_ITEM:
+
+		pline("You are surrounded by a translucent glow!");
+		{
+			register struct obj *objX, *objX2;
+			for (objX = invent; objX; objX = objX2) {
+				objX2 = objX->nobj;
+				if (!rn2(5)) objX->oinvis = objX->oinvisreal = FALSE;
+			}
+		}
+
+		break;
+
 	case SCR_EVIL_VARIANT:
 		known = TRUE;
 
@@ -5529,7 +5835,7 @@ proofarmorchoice:
 
 materialchoice1:
 		{
-			struct obj *otmpC = getobj(all_count, "change the material of");
+			struct obj *otmpC = getobj(allnoncount, "change the material of");
 			if (!otmpC) {
 				if (yn("Really exit with no object selected?") == 'y')
 					pline("You just wasted the opportunity to change an item's material.");
@@ -5541,7 +5847,7 @@ materialchoice1:
 				break;
 			} else {
 				int changematerial;
-				switch (rnd(14)) {
+				switch (rnd(17)) {
 					case 1: changematerial = MT_LIQUID; break;
 					case 2: changematerial = MT_WAX; break;
 					case 3: changematerial = MT_VEGGY; break;
@@ -5556,6 +5862,9 @@ materialchoice1:
 					case 12: changematerial = MT_POURPOOR; break;
 					case 13: changematerial = MT_SAND; break;
 					case 14: changematerial = MT_CERAMIC; break;
+					case 15: changematerial = MT_FOAM; break;
+					case 16: changematerial = MT_ALLOY; break;
+					case 17: changematerial = MT_SCRAP; break;
 					default: changematerial = MT_PAPER; break;
 				}
 				objects[otmpC->otyp].oc_material = changematerial;
@@ -5573,7 +5882,7 @@ materialchoice1:
 
 materialchoice2:
 		{
-			struct obj *otmpC = getobj(all_count, "change the material of");
+			struct obj *otmpC = getobj(allnoncount, "change the material of");
 			if (!otmpC) {
 				if (yn("Really exit with no object selected?") == 'y')
 					pline("You just wasted the opportunity to change an item's material.");
@@ -5618,7 +5927,7 @@ materialchoice2:
 
 materialchoice3:
 		{
-			struct obj *otmpC = getobj(all_count, "change the material of");
+			struct obj *otmpC = getobj(allnoncount, "change the material of");
 			if (!otmpC) {
 				if (yn("Really exit with no object selected?") == 'y')
 					pline("You just wasted the opportunity to change an item's material.");
@@ -5630,7 +5939,7 @@ materialchoice3:
 				break;
 			} else {
 				int changematerial;
-				switch (rnd(11)) {
+				switch (rnd(16)) {
 					case 1: changematerial = MT_DRAGON_HIDE; break;
 					case 2: changematerial = MT_SILVER; break;
 					case 3: changematerial = MT_GOLD; break;
@@ -5642,6 +5951,11 @@ materialchoice3:
 					case 9: changematerial = MT_ETERNIUM; break;
 					case 10: changematerial = MT_ETHER; break;
 					case 11: changematerial = MT_NANOMACHINE; break;
+					case 12: changematerial = MT_CELESTIUM; break;
+					case 13: changematerial = MT_CONUNDRUM; break;
+					case 14: changematerial = MT_PWN_BUBBLE; break;
+					case 15: changematerial = MT_METEOSTEEL; break;
+					case 16: changematerial = MT_ANTIDOTIUM; break;
 					default: changematerial = MT_MITHRIL; break;
 				}
 				objects[otmpC->otyp].oc_material = changematerial;
@@ -5663,6 +5977,10 @@ materialchoice3:
 
 			case 1: /* gluttony */
 				u.negativeprotection++;
+				if (evilfriday && u.ublessed > 0) {
+					u.ublessed -= 1;
+					if (u.ublessed < 0) u.ublessed = 0;
+				}
 				You_feel("less protected!");
 				break;
 			case 2: /* wrath */
@@ -6549,6 +6867,34 @@ newboss:
 				       uwep->spe >= 3 ? (rn2(uwep->spe) == 0) :
 				       sobj->blessed ? rnd(2) : 1);*/
 		break;
+	case SCR_GREATER_ENCHANT_WEAPON:
+		if (uwep && stack_too_big(uwep)) {
+			pline("The enchantment failed due to the stack being too big.");
+			break;
+		}
+
+		if(uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == GEM_CLASS || uwep->oclass == CHAIN_CLASS || is_weptool(uwep))
+			&& confused) {
+		/* oclass check added 10/25/86 GAN */
+			uwep->oerodeproof = 1;
+			if (Blind) {
+			    uwep->rknown = FALSE;
+			    Your("weapon feels warm for a moment.");
+			} else {
+			    uwep->rknown = TRUE;
+			    Your("%s covered by a %s %s %s!",
+				aobjnam(uwep, "are"), "shimmering", hcolor(NH_GOLDEN), "shield");
+			}
+			if (uwep->oerodeproof && (uwep->oeroded || uwep->oeroded2)) {
+			    uwep->oeroded = uwep->oeroded2 = 0;
+			    Your("%s as good as new!",
+				 aobjnam(uwep, Blind ? "feel" : "look"));
+			}
+		/* KMH, balance patch -- Restore the NetHack success rate */
+		} else return !chwepon(sobj, !uwep ? 1 :
+		/* Come on, the evaporation chance is nasty enough. Let's allow enchanting stuff beyond +9. --Amy */
+				       uwep->spe >= 9 ? /*(rn2(uwep->spe) == 0)*/1 : rnd(3-uwep->spe/3));
+		break;
 	case SCR_PROOF_WEAPON: /* scroll added by Amy */
 		if (uwep && stack_too_big(uwep)) {
 			pline("The enchantment failed due to the stack being too big.");
@@ -6558,6 +6904,10 @@ newboss:
 		if(uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == GEM_CLASS || uwep->oclass == CHAIN_CLASS || is_weptool(uwep)))
 	      {
 			uwep->oerodeproof = 1;
+			if (uwep && objects[(uwep)->otyp].oc_material == MT_CELESTIUM) {
+				if (!uwep->cursed) bless(uwep);
+				else uncurse(uwep, FALSE);
+			}
 			if (Blind) {
 			    uwep->rknown = FALSE;
 			    Your("weapon feels warm for a moment.");
@@ -6602,26 +6952,26 @@ newboss:
 
 			      rtrap = randomtrap();
 
-				(void) maketrap(u.ux + i, u.uy + j, rtrap, 100);
+				(void) maketrap(u.ux + i, u.uy + j, rtrap, 100, TRUE);
 			}
 		}
 
-		makerandomtrap();
-		if (!rn2(2)) makerandomtrap();
-		if (!rn2(4)) makerandomtrap();
-		if (!rn2(8)) makerandomtrap();
-		if (!rn2(16)) makerandomtrap();
-		if (!rn2(32)) makerandomtrap();
-		if (!rn2(64)) makerandomtrap();
-		if (!rn2(128)) makerandomtrap();
-		if (!rn2(256)) makerandomtrap();
+		makerandomtrap(TRUE);
+		if (!rn2(2)) makerandomtrap(TRUE);
+		if (!rn2(4)) makerandomtrap(TRUE);
+		if (!rn2(8)) makerandomtrap(TRUE);
+		if (!rn2(16)) makerandomtrap(TRUE);
+		if (!rn2(32)) makerandomtrap(TRUE);
+		if (!rn2(64)) makerandomtrap(TRUE);
+		if (!rn2(128)) makerandomtrap(TRUE);
+		if (!rn2(256)) makerandomtrap(TRUE);
 
 		break;
 
 	case SCR_CREATE_TRAP:
 
 		{
-		struct trap *ttmp2 = maketrap(u.ux, u.uy, randomtrap(), 100 );
+		struct trap *ttmp2 = maketrap(u.ux, u.uy, randomtrap(), 100, TRUE);
 		if (ttmp2) dotrap(ttmp2, 0);
 		}
 
@@ -6649,6 +6999,9 @@ newboss:
 				if ((ttmp = t_at(u.ux + i, u.uy + j)) != 0) {
 				    if (ttmp->ttyp == MAGIC_PORTAL) continue;
 					deltrap(ttmp);
+					u.uhpmax++;
+					if (Upolyd) u.mhmax++;
+					flags.botl = TRUE;
 				}
 
 			}
@@ -6678,7 +7031,7 @@ newboss:
 				if (!isok(u.ux + i, u.uy + j)) continue;
 				if (levl[u.ux + i][u.uy + j].typ <= DBWALL) continue;
 				if (t_at(u.ux + i, u.uy + j)) continue;
-			maketrap(u.ux + i, u.uy + j, rn2(5) ? SHIT_TRAP : SHIT_PIT, 0);
+			maketrap(u.ux + i, u.uy + j, rn2(5) ? SHIT_TRAP : SHIT_PIT, 0, TRUE);
 		    }
 
 		break;
@@ -8601,22 +8954,22 @@ retry:
 						if (frostmon->mhp > frostmon->mhpmax) frostmon->mhp = frostmon->mhpmax;
 						if (u.ualign.type == A_LAWFUL) adjalign(1);
 					}
-					if (u.usteed && frostmon == u.usteed) { /* double healing! */
-						frostmon->mfrozen = 0;
-						frostmon->msleeping = 0;
-						frostmon->masleep = 0;
-						frostmon->mcanmove = 1;
-						frostmon->mflee = 0;
-						frostmon->mcansee = 1;
-						frostmon->mblinded = 0;
-						frostmon->mstun = 0;
-						frostmon->mconf = 0;
-						pline("%s is cured.", Monnam(frostmon));
-						frostmon->mhp += (rnd(50) + 30 + rnz(u.ulevel * 3));
-						if (frostmon->mhp > frostmon->mhpmax) frostmon->mhp = frostmon->mhpmax;
-						if (u.ualign.type == A_LAWFUL) adjalign(1);
-					}
 				}
+			}
+			if (u.usteed) {
+				u.usteed->mfrozen = 0;
+				u.usteed->msleeping = 0;
+				u.usteed->masleep = 0;
+				u.usteed->mcanmove = 1;
+				u.usteed->mflee = 0;
+				u.usteed->mcansee = 1;
+				u.usteed->mblinded = 0;
+				u.usteed->mstun = 0;
+				u.usteed->mconf = 0;
+				pline("%s is cured.", Monnam(u.usteed));
+				u.usteed->mhp += (rnd(50) + 30 + rnz(u.ulevel * 3));
+				if (u.usteed->mhp > u.usteed->mhpmax) u.usteed->mhp = u.usteed->mhpmax;
+				if (u.ualign.type == A_LAWFUL) adjalign(1);
 			}
 
 		}
@@ -8663,6 +9016,7 @@ retry:
 		    make_frozen(0L,TRUE);
 		    make_burned(0L,TRUE);
 		    make_dimmed(0L,TRUE);
+		    Glib = 0;
 
 		break;
 	case SPE_CHARGING:
@@ -8680,7 +9034,7 @@ retry:
 		known = TRUE;
 		pline("You may charge an object."); /* "this is a scroll of charging" is inappropriate for the spell --Amy */
 chargingchoice:
-		otmp = getobj(all_count, "charge");
+		otmp = getobj(allnoncount, "charge");
 		if (!otmp) {
 			if (yn("Really exit with no object selected?") == 'y')
 				pline("You just wasted the opportunity to charge your items.");
@@ -8690,12 +9044,34 @@ chargingchoice:
 		recharge(otmp, sobj->cursed ? -1 : (sobj->blessed ? 1 : 0));
 		break;
 
+	case SCR_POWER_CHARGING:
+		if (confused) {
+		    You_feel("charged up!");
+		    if (u.uen < u.uenmax)
+			u.uen = rn2(20) ? u.uenmax : (u.uenmax += d(5,4));
+		    else
+			u.uen = (u.uenmax += d(5,4));
+		    flags.botl = 1;
+		    break;
+		}
+		known = TRUE;
+		pline("You may powerfully charge an object.");
+		otmp = getobj(allnoncount, "charge");
+		if (!otmp) {
+			if (yn("Really exit with no object selected?") == 'y')
+				pline("You just wasted the opportunity to charge your items.");
+			else goto chargingchoice;
+			break;
+		}
+		recharge(otmp, 1);
+		break;
+
 	case SCR_RANDOM_ENCHANTMENT:
 		known = TRUE;
 		pline("You may randomly enchant an object.");
 		if (confused) {
 confusedrandenchchoice:
-			otmp = getobj(all_count, "randomly enchant");
+			otmp = getobj(allnoncount, "randomly enchant");
 			if (!otmp) {
 				if (yn("Really exit with no object selected?") == 'y')
 					pline("You just wasted the opportunity to randomly enchant objects.");
@@ -8705,7 +9081,7 @@ confusedrandenchchoice:
 			randomenchant(otmp, sobj->cursed ? -1 : (sobj->blessed ? 1 : 0), 1);
 		} else {
 randenchchoice:
-			otmp = getobj(all_count, "randomly enchant");
+			otmp = getobj(allnoncount, "randomly enchant");
 			if (!otmp) {
 				if (yn("Really exit with no object selected?") == 'y')
 					pline("You just wasted the opportunity to randomly enchant objects.");
@@ -8713,6 +9089,10 @@ randenchchoice:
 				break;
 			}
 			randomenchant(otmp, sobj->cursed ? -1 : (sobj->blessed ? 1 : 0), 0);
+			if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+				if (!otmp->cursed) bless(otmp);
+				else uncurse(otmp, FALSE);
+			}
 		}
 		break;
 
@@ -9112,7 +9492,7 @@ randenchchoice:
 			pline("This is a secure identify scroll.");
 
 secureidchoice:
-			otmp = getobj(all_count, "secure identify");
+			otmp = getobj(allnoncount, "secure identify");
 
 			if (!otmp) {
 				if (yn("Really exit with no object selected?") == 'y')
@@ -9136,7 +9516,7 @@ secureidchoice:
 	case SCR_ARMOR_SPECIALIZATION:
 		pline("You may enchant a worn piece of armor.");
 armorspecchoice:
-		otmp = getobj(all_count, "magically enchant");
+		otmp = getobj(allnoncount, "magically enchant");
 		if(!otmp) {
 			if (yn("Really exit with no object selected?") == 'y')
 				pline("You just wasted the opportunity to enchant your armor.");
@@ -9178,6 +9558,10 @@ armorspecchoice:
 						p_glow2(otmp, NH_GOLDEN);
 					} else pline("A feeling of loss comes over you.");
 				}
+			}
+			if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+				if (!otmp->cursed) bless(otmp);
+				else uncurse(otmp, FALSE);
 			}
 		}
 
@@ -9775,7 +10159,7 @@ newoffmon:
 			pline("You found a scroll of secure curse removal.");
 			known = TRUE;
 secremchoice:
-			secrem = getobj(all_count, "uncurse");
+			secrem = getobj(allnoncount, "uncurse");
 			if (!secrem) {
 				if (yn("Really exit with no object selected?") == 'y')
 					pline("You just wasted the opportunity to remove curses from an item.");
@@ -11050,6 +11434,7 @@ create_particular()
 
 /* For GM mode (Game Master mode): this allows Amy to interfere with user's games that are played online.
  * She can then send mail to the player that causes a monster specificed by her to spawn somewhere on the level :D */
+#ifdef GMMODE
 void
 gmmode_genesis(specifictype)
 const char *specifictype;
@@ -11086,6 +11471,7 @@ okay:
 	}
 
 }
+#endif /* GMMODE */
 
 #endif /* OVLB */
 

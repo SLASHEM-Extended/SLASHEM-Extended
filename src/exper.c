@@ -7,105 +7,6 @@
 /*STATIC_DCL*/ long newuexp(int);
 STATIC_DCL int enermod(int);
 
-#ifndef OVLB
-
-STATIC_DCL NEARDATA const short skill_names_indices[];
-STATIC_DCL NEARDATA const char *odd_skill_names[];
-
-#else	/* OVLB */
-
-/* KMH, balance patch -- updated */
-STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
-	0,                DAGGER,         KNIFE,        AXE,
-	PICK_AXE,         SHORT_SWORD,    BROADSWORD,   LONG_SWORD,
-	TWO_HANDED_SWORD, SCIMITAR,       PN_SABER,     CLUB,
-	PN_PADDLE,        MACE,           MORNING_STAR,   FLAIL,
-	PN_HAMMER,        QUARTERSTAFF,   PN_POLEARMS,  SPEAR,
-	JAVELIN,          TRIDENT,        LANCE,        BOW,
-	SLING,            PN_FIREARMS,    CROSSBOW,       DART,
-	SHURIKEN,         BOOMERANG,      PN_WHIP,      UNICORN_HORN,
-	PN_LIGHTSABER,
-	PN_ATTACK_SPELL,     PN_HEALING_SPELL,
-	PN_DIVINATION_SPELL, PN_ENCHANTMENT_SPELL,
-	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
-	PN_OCCULT_SPELL,
-	PN_ELEMENTAL_SPELL,
-	PN_CHAOS_SPELL,
-	PN_MATTER_SPELL,
-	PN_BARE_HANDED,	PN_HIGH_HEELS,
-	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
-	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
-	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
-	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_SEXY_FLATS,
-	PN_MEMORIZATION,	PN_GUN_CONTROL,	PN_SQUEAKING,	PN_SYMBIOSIS,
-	PN_SHII_CHO,	PN_MAKASHI,	PN_SORESU,
-	PN_ATARU,	PN_SHIEN,	PN_DJEM_SO,
-	PN_NIMAN,	PN_JUYO,	PN_VAAPAD,	PN_WEDI,
-	PN_MARTIAL_ARTS, 
-	PN_TWO_WEAPONS,
-	PN_RIDING,
-};
-
-
-STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
-    "no skill",
-    "polearms",
-    "saber",
-    "hammer",
-    "whip",
-    "paddle",
-    "firearms",
-    "attack spells",
-    "healing spells",
-    "divination spells",
-    "enchantment spells",
-    "protection spells",
-    "body spells",
-    "occult spells",
-    "elemental spells",
-    "chaos spells",
-    "matter spells",
-    "bare-handed combat",
-    "high heels",
-    "general combat",
-    "shield",
-    "body armor",
-    "two-handed weapons",
-    "polymorphing",
-    "devices",
-    "searching",
-    "spirituality",
-    "petkeeping",
-    "missile weapons",
-    "techniques",
-    "implants",
-    "sexy flats",
-    "memorization",
-    "gun control",
-    "squeaking",
-    "symbiosis",
-    "form I (Shii-Cho)",
-    "form II (Makashi)",
-    "form III (Soresu)",
-    "form IV (Ataru)",
-    "form V (Shien)",
-    "form V (Djem So)",
-    "form VI (Niman)",
-    "form VII (Juyo)",
-    "form VII (Vaapad)",
-    "form VIII (Wedi)",
-    "martial arts",
-    "riding",
-    "two-weapon combat",
-    "lightsaber"
-};
-
-#endif	/* OVLB */
-
-#define P_NAME(type) (skill_names_indices[type] > 0 ? \
-		      OBJ_NAME(objects[skill_names_indices[type]]) : \
-			odd_skill_names[-skill_names_indices[type]])
-
 /*STATIC_OVL*/ long
 newuexp(lev)
 int lev;
@@ -279,13 +180,26 @@ experience(mtmp, nk)	/* return # of exp points for mtmp after nk killed */
 	if(mtmp->m_lev > 8) tmp += 50;
 	/* Amy edit: high experience levels require lots of XP, but high-level monsters don't give all that much more XP
 	 * than low-level ones? gotta fix that... */
+	if(mtmp->m_lev > 10) {
+		int hilvlmod = (mtmp->m_lev - 9);
+		tmp += (hilvlmod * hilvlmod);
+	}
 	if(mtmp->m_lev > 20) {
 		int hilvlmod = (mtmp->m_lev - 19);
-		tmp += (hilvlmod * hilvlmod);
+		tmp += (hilvlmod * hilvlmod * rnd(10));
+	}
+	if(mtmp->m_lev > 30) {
+		int hilvlmod = (mtmp->m_lev - 29);
+		tmp += (hilvlmod * hilvlmod * 10);
 	}
 	if(mtmp->m_lev > 40) {
 		int hilvlmod = (mtmp->m_lev - 39);
 		tmp += (hilvlmod * hilvlmod * 100);
+	}
+	/* Amy edit again: but it's still not enough... */
+	if (mtmp->m_lev > 0 && tmp > 0) {
+		tmp *= (100 + (mtmp->m_lev * 2));
+		tmp /= 100;
 	}
 
 #ifdef MAIL
@@ -304,8 +218,16 @@ more_experienced(exp, rexp)
 
 	if ((exp > 0) && Race_if(PM_YEEK)) exp *= 2;
 	if ((exp > 0) && uarmc && uarmc->oartifact == ART_TOO_MANY_AFFIXES) exp *= 2;
+	if (exp > 0) {
+		if (ExpBoost) exp *= (StrongExpBoost ? 3 : 2);
+		if (uarmf && uarmf->oartifact == ART_SYSTEM_OF_SEXUAL_PLEASURE) {
+			exp *= 11;
+			exp /= 10;
+		}
+	}
 	if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && (exp > 1)) exp /= 2;
 	if (Race_if(PM_ETHEREALOID) && (exp > 1)) exp /= 2;
+	if (Race_if(PM_INCORPOREALOID) && (exp > 1)) exp /= 2;
 
 	u.uexp += exp;
 	u.urexp += 4*exp + rexp;
@@ -1503,7 +1425,7 @@ exprecalc(void)
 
 		u.urmaxlvlM++;
 
-		if (!rn2(3)) { switch (rnd(178)) {
+		if (!rn2(3)) { switch (rnd(181)) {
 
 			case 1: 
 			case 2: 
@@ -1959,6 +1881,21 @@ exprecalc(void)
 			    	You("learn how to perform terrain cleanup!");
 				}
 				break;
+			case 174:
+				if (!tech_known(T_PREACHING)) {    	learntech(T_PREACHING, FROMOUTSIDE, 1);
+			    	You("learn how to perform preaching!");
+				}
+				break;
+			case 175:
+				if (!tech_known(T_ON_THE_SAME_TEAM)) {    	learntech(T_ON_THE_SAME_TEAM, FROMOUTSIDE, 1);
+			    	You("learn how to perform on the same team!");
+				}
+				break;
+			case 176:
+				if (!tech_known(T_PERMAMORPH)) {    	learntech(T_PERMAMORPH, FROMOUTSIDE, 1);
+			    	You("learn how to perform permamorph!");
+				}
+				break;
 
 			default:
 				break;
@@ -1976,26 +1913,26 @@ exprecalc(void)
 
 			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 				unrestrict_weapon_skill(skillimprove);
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
 				unrestrict_weapon_skill(skillimprove);
 				P_MAX_SKILL(skillimprove) = P_BASIC;
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
 				P_MAX_SKILL(skillimprove) = P_SKILLED;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
 				P_MAX_SKILL(skillimprove) = P_EXPERT;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
 				P_MAX_SKILL(skillimprove) = P_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else pline("Unfortunately, you feel no different than before.");
 
 		if (u.urmaxlvlC >= 10) {
@@ -2004,26 +1941,26 @@ exprecalc(void)
 
 			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 				unrestrict_weapon_skill(skillimprove);
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
 				unrestrict_weapon_skill(skillimprove);
 				P_MAX_SKILL(skillimprove) = P_BASIC;
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
 				P_MAX_SKILL(skillimprove) = P_SKILLED;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
 				P_MAX_SKILL(skillimprove) = P_EXPERT;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
 				P_MAX_SKILL(skillimprove) = P_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else pline("Unfortunately, you feel no different than before.");
 
 		}
@@ -2034,26 +1971,26 @@ exprecalc(void)
 
 			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 				unrestrict_weapon_skill(skillimprove);
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
 				unrestrict_weapon_skill(skillimprove);
 				P_MAX_SKILL(skillimprove) = P_BASIC;
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
 				P_MAX_SKILL(skillimprove) = P_SKILLED;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
 				P_MAX_SKILL(skillimprove) = P_EXPERT;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
 				P_MAX_SKILL(skillimprove) = P_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else pline("Unfortunately, you feel no different than before.");
 
 		}
@@ -2064,182 +2001,182 @@ exprecalc(void)
 
 			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 				unrestrict_weapon_skill(skillimprove);
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
 				unrestrict_weapon_skill(skillimprove);
 				P_MAX_SKILL(skillimprove) = P_BASIC;
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
 				P_MAX_SKILL(skillimprove) = P_SKILLED;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
 				P_MAX_SKILL(skillimprove) = P_EXPERT;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
 				P_MAX_SKILL(skillimprove) = P_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else pline("Unfortunately, you feel no different than before.");
 
 			skillimprove = randomgoodskill();
 
 			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 				unrestrict_weapon_skill(skillimprove);
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
 				unrestrict_weapon_skill(skillimprove);
 				P_MAX_SKILL(skillimprove) = P_BASIC;
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
 				P_MAX_SKILL(skillimprove) = P_SKILLED;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
 				P_MAX_SKILL(skillimprove) = P_EXPERT;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
 				P_MAX_SKILL(skillimprove) = P_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else pline("Unfortunately, you feel no different than before.");
 
 			skillimprove = randomgoodskill();
 
 			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 				unrestrict_weapon_skill(skillimprove);
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
 				unrestrict_weapon_skill(skillimprove);
 				P_MAX_SKILL(skillimprove) = P_BASIC;
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
 				P_MAX_SKILL(skillimprove) = P_SKILLED;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
 				P_MAX_SKILL(skillimprove) = P_EXPERT;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
 				P_MAX_SKILL(skillimprove) = P_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else pline("Unfortunately, you feel no different than before.");
 
 			skillimprove = randomgoodskill();
 
 			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 				unrestrict_weapon_skill(skillimprove);
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
 				unrestrict_weapon_skill(skillimprove);
 				P_MAX_SKILL(skillimprove) = P_BASIC;
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
 				P_MAX_SKILL(skillimprove) = P_SKILLED;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
 				P_MAX_SKILL(skillimprove) = P_EXPERT;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
 				P_MAX_SKILL(skillimprove) = P_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else pline("Unfortunately, you feel no different than before.");
 
 			skillimprove = randomgoodskill();
 
 			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 				unrestrict_weapon_skill(skillimprove);
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
 				unrestrict_weapon_skill(skillimprove);
 				P_MAX_SKILL(skillimprove) = P_BASIC;
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
 				P_MAX_SKILL(skillimprove) = P_SKILLED;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
 				P_MAX_SKILL(skillimprove) = P_EXPERT;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
 				P_MAX_SKILL(skillimprove) = P_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else pline("Unfortunately, you feel no different than before.");
 
 			skillimprove = randomgoodskill();
 
 			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 				unrestrict_weapon_skill(skillimprove);
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
 				unrestrict_weapon_skill(skillimprove);
 				P_MAX_SKILL(skillimprove) = P_BASIC;
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
 				P_MAX_SKILL(skillimprove) = P_SKILLED;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
 				P_MAX_SKILL(skillimprove) = P_EXPERT;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
 				P_MAX_SKILL(skillimprove) = P_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else pline("Unfortunately, you feel no different than before.");
 
 			skillimprove = randomgoodskill();
 
 			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 				unrestrict_weapon_skill(skillimprove);
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
 				unrestrict_weapon_skill(skillimprove);
 				P_MAX_SKILL(skillimprove) = P_BASIC;
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
 				P_MAX_SKILL(skillimprove) = P_SKILLED;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
 				P_MAX_SKILL(skillimprove) = P_EXPERT;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
 				P_MAX_SKILL(skillimprove) = P_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else pline("Unfortunately, you feel no different than before.");
 
 		}
@@ -2355,7 +2292,7 @@ exprecalc(void)
 
 		u.urmaxlvlB++;
 
-		if (!rn2(3)) { switch (rnd(178)) {
+		if (!rn2(3)) { switch (rnd(181)) {
 
 			case 1: 
 			case 2: 
@@ -2809,6 +2746,21 @@ exprecalc(void)
 			case 173: 
 				if (!tech_known(T_TERRAIN_CLEANUP)) {    	learntech(T_TERRAIN_CLEANUP, FROMOUTSIDE, 1);
 			    	You("learn how to perform terrain cleanup!");
+				}
+				break;
+			case 174:
+				if (!tech_known(T_PREACHING)) {    	learntech(T_PREACHING, FROMOUTSIDE, 1);
+			    	You("learn how to perform preaching!");
+				}
+				break;
+			case 175:
+				if (!tech_known(T_ON_THE_SAME_TEAM)) {    	learntech(T_ON_THE_SAME_TEAM, FROMOUTSIDE, 1);
+			    	You("learn how to perform on the same team!");
+				}
+				break;
+			case 176:
+				if (!tech_known(T_PERMAMORPH)) {    	learntech(T_PERMAMORPH, FROMOUTSIDE, 1);
+			    	You("learn how to perform permamorph!");
 				}
 				break;
 
@@ -2851,7 +2803,7 @@ exprecalc(void)
 		if (skillnumber > 0 && maxtrainingamount > 0) {
 			unrestrict_weapon_skill(skillnumber);
 			P_MAX_SKILL(skillnumber) = (maxtrainingamount >= 5000 ? P_SUPREME_MASTER : maxtrainingamount >= 500 ? P_GRAND_MASTER : maxtrainingamount >= 50 ? P_MASTER : P_EXPERT);
-			pline("You can now learn the %s skill, with a new cap of %s.", P_NAME(skillnumber), maxtrainingamount >= 5000 ? "supreme master" : maxtrainingamount >= 500 ? "grand master" : maxtrainingamount >= 50 ? "master" : "expert");
+			pline("You can now learn the %s skill, with a new cap of %s.", wpskillname(skillnumber), maxtrainingamount >= 5000 ? "supreme master" : maxtrainingamount >= 500 ? "grand master" : maxtrainingamount >= 50 ? "master" : "expert");
 		} else {
 			pline("You've trained no unknown skills since your last level up and therefore you unfortunately don't learn anything new.");
 		}
@@ -2862,7 +2814,7 @@ exprecalc(void)
 
 		u.urmaxlvlH++;
 
-		if (!rn2(3)) { switch (rnd(178)) {
+		if (!rn2(3)) { switch (rnd(181)) {
 
 			case 1: 
 			case 2: 
@@ -3316,6 +3268,21 @@ exprecalc(void)
 			case 173: 
 				if (!tech_known(T_TERRAIN_CLEANUP)) {    	learntech(T_TERRAIN_CLEANUP, FROMOUTSIDE, 1);
 			    	You("learn how to perform terrain cleanup!");
+				}
+				break;
+			case 174:
+				if (!tech_known(T_PREACHING)) {    	learntech(T_PREACHING, FROMOUTSIDE, 1);
+			    	You("learn how to perform preaching!");
+				}
+				break;
+			case 175:
+				if (!tech_known(T_ON_THE_SAME_TEAM)) {    	learntech(T_ON_THE_SAME_TEAM, FROMOUTSIDE, 1);
+			    	You("learn how to perform on the same team!");
+				}
+				break;
+			case 176:
+				if (!tech_known(T_PERMAMORPH)) {    	learntech(T_PERMAMORPH, FROMOUTSIDE, 1);
+			    	You("learn how to perform permamorph!");
 				}
 				break;
 
@@ -3333,7 +3300,7 @@ exprecalc(void)
 
 		u.urmaxlvlG++;
 
-		if (!rn2(5)) { switch (rnd(178)) {
+		if (!rn2(5)) { switch (rnd(181)) {
 
 			case 1: 
 			case 2: 
@@ -3787,6 +3754,21 @@ exprecalc(void)
 			case 173: 
 				if (!tech_known(T_TERRAIN_CLEANUP)) {    	learntech(T_TERRAIN_CLEANUP, FROMOUTSIDE, 1);
 			    	You("learn how to perform terrain cleanup!");
+				}
+				break;
+			case 174:
+				if (!tech_known(T_PREACHING)) {    	learntech(T_PREACHING, FROMOUTSIDE, 1);
+			    	You("learn how to perform preaching!");
+				}
+				break;
+			case 175:
+				if (!tech_known(T_ON_THE_SAME_TEAM)) {    	learntech(T_ON_THE_SAME_TEAM, FROMOUTSIDE, 1);
+			    	You("learn how to perform on the same team!");
+				}
+				break;
+			case 176:
+				if (!tech_known(T_PERMAMORPH)) {    	learntech(T_PERMAMORPH, FROMOUTSIDE, 1);
+			    	You("learn how to perform permamorph!");
 				}
 				break;
 
@@ -3812,7 +3794,7 @@ exprecalc(void)
 
 		u.urmaxlvlE++;
 
-		if (!rn2(2)) { switch (rnd(178)) {
+		if (!rn2(2)) { switch (rnd(181)) {
 
 			case 1: 
 			case 2: 
@@ -4266,6 +4248,21 @@ exprecalc(void)
 			case 173: 
 				if (!tech_known(T_TERRAIN_CLEANUP)) {    	learntech(T_TERRAIN_CLEANUP, FROMOUTSIDE, 1);
 			    	You("learn how to perform terrain cleanup!");
+				}
+				break;
+			case 174:
+				if (!tech_known(T_PREACHING)) {    	learntech(T_PREACHING, FROMOUTSIDE, 1);
+			    	You("learn how to perform preaching!");
+				}
+				break;
+			case 175:
+				if (!tech_known(T_ON_THE_SAME_TEAM)) {    	learntech(T_ON_THE_SAME_TEAM, FROMOUTSIDE, 1);
+			    	You("learn how to perform on the same team!");
+				}
+				break;
+			case 176:
+				if (!tech_known(T_PERMAMORPH)) {    	learntech(T_PERMAMORPH, FROMOUTSIDE, 1);
+			    	You("learn how to perform permamorph!");
 				}
 				break;
 

@@ -30,6 +30,7 @@ static NEARDATA struct obj *book;	/* last/current book being xscribed */
 static NEARDATA const char revivables[] = { ALLOW_FLOOROBJ, FOOD_CLASS, 0 };
 
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
+static const char allnoncount[] = { ALL_CLASSES, 0 };
 
 #define spellev(spell)		spl_book[spell].sp_lev
 #define spellid(spell)          spl_book[spell].sp_id
@@ -58,105 +59,6 @@ STATIC_DCL const char *spelltypemnemonic(int);
 static int spell_dash(void);
 STATIC_DCL void boostknow(int, int);
 STATIC_DCL void incrnknow(int, BOOLEAN_P);
-
-#ifndef OVLB
-
-STATIC_DCL NEARDATA const short skill_names_indices[];
-STATIC_DCL NEARDATA const char *odd_skill_names[];
-
-#else	/* OVLB */
-
-/* KMH, balance patch -- updated */
-STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
-	0,                DAGGER,         KNIFE,        AXE,
-	PICK_AXE,         SHORT_SWORD,    BROADSWORD,   LONG_SWORD,
-	TWO_HANDED_SWORD, SCIMITAR,       PN_SABER,     CLUB,
-	PN_PADDLE,        MACE,           MORNING_STAR,   FLAIL,
-	PN_HAMMER,        QUARTERSTAFF,   PN_POLEARMS,  SPEAR,
-	JAVELIN,          TRIDENT,        LANCE,        BOW,
-	SLING,            PN_FIREARMS,    CROSSBOW,       DART,
-	SHURIKEN,         BOOMERANG,      PN_WHIP,      UNICORN_HORN,
-	PN_LIGHTSABER,
-	PN_ATTACK_SPELL,     PN_HEALING_SPELL,
-	PN_DIVINATION_SPELL, PN_ENCHANTMENT_SPELL,
-	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
-	PN_OCCULT_SPELL,
-	PN_ELEMENTAL_SPELL,
-	PN_CHAOS_SPELL,
-	PN_MATTER_SPELL,
-	PN_BARE_HANDED,	PN_HIGH_HEELS,
-	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
-	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
-	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
-	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_SEXY_FLATS,
-	PN_MEMORIZATION,	PN_GUN_CONTROL,	PN_SQUEAKING,	PN_SYMBIOSIS,
-	PN_SHII_CHO,	PN_MAKASHI,	PN_SORESU,
-	PN_ATARU,	PN_SHIEN,	PN_DJEM_SO,
-	PN_NIMAN,	PN_JUYO,	PN_VAAPAD,	PN_WEDI,
-	PN_MARTIAL_ARTS, 
-	PN_TWO_WEAPONS,
-	PN_RIDING,
-};
-
-
-STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
-    "no skill",
-    "polearms",
-    "saber",
-    "hammer",
-    "whip",
-    "paddle",
-    "firearms",
-    "attack spells",
-    "healing spells",
-    "divination spells",
-    "enchantment spells",
-    "protection spells",
-    "body spells",
-    "occult spells",
-    "elemental spells",
-    "chaos spells",
-    "matter spells",
-    "bare-handed combat",
-    "high heels",
-    "general combat",
-    "shield",
-    "body armor",
-    "two-handed weapons",
-    "polymorphing",
-    "devices",
-    "searching",
-    "spirituality",
-    "petkeeping",
-    "missile weapons",
-    "techniques",
-    "implants",
-    "sexy flats",
-    "memorization",
-    "gun control",
-    "squeaking",
-    "symbiosis",
-    "form I (Shii-Cho)",
-    "form II (Makashi)",
-    "form III (Soresu)",
-    "form IV (Ataru)",
-    "form V (Shien)",
-    "form V (Djem So)",
-    "form VI (Niman)",
-    "form VII (Juyo)",
-    "form VII (Vaapad)",
-    "form VIII (Wedi)",
-    "martial arts",
-    "riding",
-    "two-weapon combat",
-    "lightsaber"
-};
-
-#endif	/* OVLB */
-
-#define P_NAME(type) (skill_names_indices[type] > 0 ? \
-		      OBJ_NAME(objects[skill_names_indices[type]]) : \
-			odd_skill_names[-skill_names_indices[type]])
 
 boolean
 spell_known(int sbook_id)
@@ -2256,6 +2158,7 @@ learn()
 			} else if (spellknow(i) <= MAX_CAN_STUDY) {
 			    Your("knowledge of that spell is keener.");
 			    use_skill(P_MEMORIZATION, spellev(i));
+			    if (!rn2(3)) u.uenmax++;
 			    u.cnd_spellbookcount++;
 			    incrnknow(i, FALSE);
 				if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i, FALSE);
@@ -2315,6 +2218,7 @@ learn()
 			spl_book[i].sp_lev = objects[booktype].oc_level;
 			spl_book[i].sp_memorize = TRUE;
 			use_skill(P_MEMORIZATION, spellev(i));
+			if (!rn2(3)) u.uenmax++;
 			u.cnd_spellbookcount++;
 			incrnknow(i, TRUE);
 			if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i, TRUE);
@@ -3259,12 +3163,14 @@ boolean atme;
 	if (spellid(spell) == SPE_DISINTEGRATION) energy *= 5;
 	if (spellid(spell) == SPE_DISINTEGRATION_BEAM) energy *= 5;
 	if (spellid(spell) == SPE_FIXING) energy *= 3;
+	if (spellid(spell) == SPE_CONVERGE_BREATH) energy *= 4;
 	if (spellid(spell) == SPE_CHROMATIC_BEAM) { energy *= 10; energy /= 7;}
 	if (spellid(spell) == SPE_FORCE_BOLT) { energy *= 3; energy /= 2;}
 	if (spellid(spell) == SPE_HEALING) { energy *= 3; energy /= 2;}
 	if (spellid(spell) == SPE_WATER_FLAME) { energy *= 3; energy /= 2;}
 	if (spellid(spell) == SPE_FIREBALL) energy *= 2;
 	if (spellid(spell) == SPE_SHINING_WAVE) energy *= 5;
+	if (spellid(spell) == SPE_RELOCATION) energy *= 5;
 	if (spellid(spell) == SPE_FIRE_BOLT) { energy *= 3; energy /= 2;}
 	if (spellid(spell) == SPE_CONE_OF_COLD) { energy *= 3; energy /= 2;}
 	if (spellid(spell) == SPE_MULTIBEAM) { energy *= 6; energy /= 5;}
@@ -3591,7 +3497,7 @@ castanyway:
 
 	if (SpellColorBrown && !(t_at(u.ux, u.uy)) ) {
 		register struct trap *shittrap;
-		shittrap = maketrap(u.ux, u.uy, SHIT_TRAP, 0);
+		shittrap = maketrap(u.ux, u.uy, SHIT_TRAP, 0, FALSE);
 		if (shittrap && !(shittrap->hiddentrap)) {
 			shittrap->tseen = 1;
 		}
@@ -3721,6 +3627,25 @@ castanyway:
 	if (u.umemorizationturns >= 100) {
 		u.umemorizationturns -= 100;
 		use_skill(P_MEMORIZATION, 1);
+	}
+
+	/* if your INT is low, have a very slight chance of increasing it --Amy */
+	if (ABASE(A_INT) < 10) {
+		int intellchance = 500;
+		switch (ABASE(A_INT)) {
+			case 4: intellchance = 600; break;
+			case 5: intellchance = 700; break;
+			case 6: intellchance = 800; break;
+			case 7: intellchance = 900; break;
+			case 8: intellchance = 1000; break;
+			case 9: intellchance = 1000; break;
+			default: {
+				if (ABASE(A_INT) < 4) intellchance = 500;
+				else intellchance = 1000;
+				break;
+			}
+		}
+		if (!rn2(intellchance)) (void) adjattrib(A_INT, 1, FALSE, TRUE);
 	}
 
 	if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
@@ -3869,6 +3794,7 @@ castanyway:
 	case SPE_DISINTEGRATION:
 	case SPE_DISINTEGRATION_BEAM:
 	case SPE_CHROMATIC_BEAM:
+	case SPE_CONVERGE_BREATH:
 	case SPE_ELEMENTAL_BEAM:
 	case SPE_NATURE_BEAM:
 	case SPE_PETRIFY:
@@ -3880,6 +3806,15 @@ castanyway:
 		if (pseudo->otyp == SPE_PARTICLE_CANNON) {
 			if (u.gaugetimer) {
 				You("need to wait %d more turns to refill your gauge. The particle cannon can be used again at turn %d.", u.gaugetimer, (moves + u.gaugetimer));
+				break;
+			} else {
+				u.gaugetimer = 50;
+			}
+		}
+
+		if (pseudo->otyp == SPE_CONVERGE_BREATH) {
+			if (u.gaugetimer) {
+				You("need to wait %d more turns to refill your gauge. Converge breath can be used again at turn %d.", u.gaugetimer, (moves + u.gaugetimer));
 				break;
 			} else {
 				u.gaugetimer = 50;
@@ -4289,7 +4224,7 @@ manloop:
 
 		pline("Choose an item for BUC identification.");
 bucchoice:
-		otmp = getobj(all_count, "know the BUC of");
+		otmp = getobj(allnoncount, "know the BUC of");
 		if (!otmp) {
 			if (yn("Really exit with no object selected?") == 'y')
 				pline("You just wasted the opportunity to determine an item's BUC.");
@@ -4298,6 +4233,11 @@ bucchoice:
 			break;
 		}
 		if (otmp) {
+			if (!otmp->bknown && (u.bucskill < 2 || !rn2(u.bucskill)) ) {
+				u.bucskill++;
+				if (u.bucskill > 250) u.bucskill = 250;
+			}
+
 			otmp->bknown = TRUE;
 			if (otmp->blessed || otmp->cursed) pline("Your %s flashes %s.", doname(otmp), hcolor(otmp->blessed ? NH_AMBER : NH_BLACK));
 		}
@@ -4363,11 +4303,37 @@ bucchoice:
 
 		break;
 
+	case SPE_RANDOM_DETECTION:
+
+		switch (rnd(4)) {
+			case 1:
+				trap_detectX((struct obj *)0);
+				break;
+			case 2:
+				You("fail to detect anything.");
+				break;
+			case 3:
+				object_detect(pseudo, 0);
+				break;
+			case 4:
+				monster_detect(pseudo, 0);
+				break;
+		}
+
+		exercise(A_WIS, TRUE);
+
+		if (!rn2(5)) {
+			pline("The spell backlashes!");
+			badeffect();
+		}
+
+		break;
+
 	case SPE_AULE_SMITHING:
 
 		pline("Choose an item for erosionproofing.");
 aulechoice:
-		otmp = getobj(all_count, "fooproof");
+		otmp = getobj(allnoncount, "fooproof");
 		if (!otmp) {
 			if (yn("Really exit with no object selected?") == 'y')
 				pline("You just wasted the opportunity to fooproof an item.");
@@ -4378,6 +4344,10 @@ aulechoice:
 		if (otmp) {
 			otmp->oerodeproof = TRUE;
 			pline("Success! Your item is erosionproof now.");
+			if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+				if (!otmp->cursed) bless(otmp);
+				else uncurse(otmp, FALSE);
+			}
 		}
 
 		break;
@@ -4461,6 +4431,93 @@ aulechoice:
 		ragnarok(TRUE);
 		if (evilfriday) evilragnarok(TRUE,level_difficulty());
 		u.ragnarokspelltimeout += 1000; /* can't use it again for a while */
+
+		break;
+
+	case SPE_IMPACT_GUNFIRE:
+
+		if (u.gaugetimer) {
+			You("need to wait %d more turns to refill your gauge. Impact Gunfire can be used again at turn %d.", u.gaugetimer, (moves + u.gaugetimer));
+			break;
+		} else {
+			u.gaugetimer = 50;
+		}
+
+		{
+			register struct obj *opbullet;
+			int opbonus = 0;
+			int opdamage = 0;
+			int ctx, cty;
+			int i;
+			ctx = u.ux, cty = u.uy;
+
+			coord cc;
+			struct monst *psychmonst;
+
+			opbullet = carrying(BULLET);
+			if (!opbullet) opbullet = carrying(SILVER_BULLET);
+			if (!opbullet) opbullet = carrying(LEAD_BULLET);
+			if (!opbullet) {
+				pline("There are no bullets, and therefore you can't shoot!");
+				break;
+			}
+
+			opdamage = d(8, 12) + (spell_damage_bonus(spellid(spell)) * 6);
+
+			if (opbullet) {
+				if (opbullet->spe > 0) opbonus = opbullet->spe;
+
+				if (opbullet->quan > 1) {
+					opbullet->quan--;
+					opbullet->owt = weight(opbullet);
+				}
+				else useup(opbullet);
+
+			}
+
+			if (opdamage > 1) opdamage = rnd(opdamage);
+			opdamage += (opbonus * rnd(25));
+
+		    	if (!getdir((char *)0)) return(0);
+			if (!u.dx && !u.dy) {
+				You("can't direct that at yourself.");
+				break;
+			}
+
+			for(i = 0; i < 8; i++) {
+				if (!isok(ctx + u.dx, cty + u.dy)) break;
+				if (levl[ctx + u.dx][cty + u.dy].typ < POOL) break;
+
+				ctx += u.dx;
+				cty += u.dy;
+
+				psychmonst = m_at(ctx, cty);
+
+				if (psychmonst) {
+					pline("Pouchschieau! Your projectile blasts %s!", mon_nam(psychmonst));
+					if (noncorporeal(psychmonst->data)) { /* ghosts are hard to hit... */
+						if (opdamage > 1) opdamage /= 2;
+						pline("%s resists the attack!", Monnam(psychmonst));
+						/* but isn't immune --Amy */
+					}
+					psychmonst->mhp -= opdamage;
+					if (psychmonst->mhp < 1) {
+						pline("%s is blown to bits.", Monnam(psychmonst));
+						xkilled(psychmonst,0);
+					} else {
+						wakeup(psychmonst); /* make them hostile */
+						if (psychmonst->mcanmove) {
+							psychmonst->mcanmove = 0;
+							psychmonst->mfrozen = 2;
+							pline("%s is paralyzed.", Monnam(psychmonst));
+						}
+					}
+					break;
+				}
+
+			}
+
+		}
 
 		break;
 
@@ -5070,7 +5127,7 @@ addspmagain:
 			if (rn2(3)) {
 				pline("Your mana increases.");
 				u.uenmax++;
-			} else switch (rnd(28)) {
+			} else switch (rnd(29)) {
 
 				case 1:
 					HTeleport_control += 2;
@@ -5204,7 +5261,7 @@ addspmagain:
 					break;
 				case 12:
 					pline("Suddenly, you gain a new companion!");
-					(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE);
+					(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, FALSE);
 					break;
 				case 13:
 					{
@@ -5577,7 +5634,7 @@ addspmagain:
 							}
 
 							P_MAX_SKILL(skillnumber) = maxcap;
-							pline("You can now learn the %s skill, with a new cap of %s.", P_NAME(skillnumber), maxcap == P_SUPREME_MASTER ? "supreme master" : maxcap == P_GRAND_MASTER ? "grand master" : maxcap == P_MASTER ? "master" : maxcap == P_EXPERT ? "expert" : maxcap == P_SKILLED ? "skilled" : "basic");
+							pline("You can now learn the %s skill, with a new cap of %s.", wpskillname(skillnumber), maxcap == P_SUPREME_MASTER ? "supreme master" : maxcap == P_GRAND_MASTER ? "grand master" : maxcap == P_MASTER ? "master" : maxcap == P_EXPERT ? "expert" : maxcap == P_SKILLED ? "skilled" : "basic");
 						} else {
 							pline("Nothing happens...");
 							if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -5663,7 +5720,7 @@ newbossPENT:
 						y = rn2(ROWNO);
 
 						if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-								ttmp = maketrap(x, y, randomtrap(), 0);
+								ttmp = maketrap(x, y, randomtrap(), 0, TRUE);
 							if (ttmp) {
 								ttmp->tseen = 0;
 								ttmp->hiddentrap = 1;
@@ -5692,6 +5749,24 @@ newbossPENT:
 				case 28:
 					decontaminate(100);
 					You_feel("decontaminated.");
+					break;
+				case 29:
+					pline("Wow!  This makes you feel good!");
+					{
+					int i, ii, lim;
+					i = rn2(A_MAX);
+					for (ii = 0; ii < A_MAX; ii++) {
+						lim = AMAX(i);
+						if (i == A_STR && u.uhs >= 3) --lim;	/* WEAK */
+						if (ABASE(i) < lim) {
+							ABASE(i) = lim;
+							flags.botl = 1;
+							break;
+						}
+						if(++i >= A_MAX) i = 0;
+					}
+
+					}
 					break;
 				default:
 					impossible("undefined pentagram effect");
@@ -5842,51 +5917,51 @@ newbossPENT:
 
 			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 				unrestrict_weapon_skill(skillimprove);
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
 				unrestrict_weapon_skill(skillimprove);
 				P_MAX_SKILL(skillimprove) = P_BASIC;
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
 				P_MAX_SKILL(skillimprove) = P_SKILLED;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
 				P_MAX_SKILL(skillimprove) = P_EXPERT;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
 				P_MAX_SKILL(skillimprove) = P_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else gainlevelmaybe();
 
 			if (Race_if(PM_RUSMOT)) {
 				if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 					unrestrict_weapon_skill(skillimprove);
-					pline("You can now learn the %s skill.", P_NAME(skillimprove));
+					pline("You can now learn the %s skill.", wpskillname(skillimprove));
 				} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
 					unrestrict_weapon_skill(skillimprove);
 					P_MAX_SKILL(skillimprove) = P_BASIC;
-					pline("You can now learn the %s skill.", P_NAME(skillimprove));
+					pline("You can now learn the %s skill.", wpskillname(skillimprove));
 				} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
 					P_MAX_SKILL(skillimprove) = P_SKILLED;
-					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 				} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
 					P_MAX_SKILL(skillimprove) = P_EXPERT;
-					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 				} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
 					P_MAX_SKILL(skillimprove) = P_MASTER;
-					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 				} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
 					P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
-					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 				} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 					P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
-					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 				}
 			}
 
@@ -5936,7 +6011,7 @@ newbossPENT:
 			register struct obj *idobj;
 
 secureidchoice:
-			idobj = getobj(all_count, "secure identify");
+			idobj = getobj(allnoncount, "secure identify");
 
 			if (!idobj) {
 				if (yn("Really exit with no object selected?") == 'y')
@@ -6480,6 +6555,20 @@ secureidchoice:
 				frostmon->mconf = 0;
 				pline("%s is cured.", Monnam(frostmon));
 			}
+
+			if (u.usteed && rn2(2)) {
+				u.usteed->mfrozen = 0;
+				u.usteed->msleeping = 0;
+				u.usteed->masleep = 0;
+				u.usteed->mcanmove = 1;
+				u.usteed->mflee = 0;
+				u.usteed->mcansee = 1;
+				u.usteed->mblinded = 0;
+				u.usteed->mstun = 0;
+				u.usteed->mconf = 0;
+				pline("%s is cured.", Monnam(u.usteed));
+			}
+
 		}
 
 		break;
@@ -6762,7 +6851,7 @@ secureidchoice:
 		if (!rn2(5)) identify_pack(0, 0, 0);
 whisperchoice:
 		{
-			otmp = getobj(all_count, "secure identify");
+			otmp = getobj(allnoncount, "secure identify");
 
 			if (!otmp) {
 				if (yn("Really exit with no object selected?") == 'y')
@@ -6869,6 +6958,29 @@ whisperchoice:
 			pline("The spell backlashes!");
 			badeffect();
 		}
+
+		break;
+
+	case SPE_RELOCATION:
+		if (u.uhave.amulet && !u.freeplaymode && u.amuletcompletelyimbued) {
+			pline("The amulet prevents you from using that spell.");
+			break;
+		}
+		if (In_endgame(&u.uz)) {
+			pline("That sort of magic doesn't work on the Planes.");
+			break;
+		}
+
+		badeffect();
+		badeffect();
+		badeffect();
+		badeffect();
+		badeffect();
+		u.uenmax -= 5;
+		if (u.uenmax < 0) u.uenmax = 0;
+		if (u.uen > u.uenmax) u.uen = u.uenmax;
+
+	      (void) safe_teleds(FALSE);
 
 		break;
 
@@ -8052,21 +8164,21 @@ whisperchoice:
 
 			      rtrap = randomtrap();
 
-				ttmp = maketrap(u.ux + i, u.uy + j, rtrap, 100);
+				ttmp = maketrap(u.ux + i, u.uy + j, rtrap, 100, FALSE);
 				if (ttmp && !rn2(10)) ttmp->hiddentrap = TRUE;
 			}
 		}
 
 		if (rn2(10)) {
-			makerandomtrap();
-			if (!rn2(2)) makerandomtrap();
-			if (!rn2(4)) makerandomtrap();
-			if (!rn2(8)) makerandomtrap();
-			if (!rn2(16)) makerandomtrap();
-			if (!rn2(32)) makerandomtrap();
-			if (!rn2(64)) makerandomtrap();
-			if (!rn2(128)) makerandomtrap();
-			if (!rn2(256)) makerandomtrap();
+			makerandomtrap(FALSE);
+			if (!rn2(2)) makerandomtrap(FALSE);
+			if (!rn2(4)) makerandomtrap(FALSE);
+			if (!rn2(8)) makerandomtrap(FALSE);
+			if (!rn2(16)) makerandomtrap(FALSE);
+			if (!rn2(32)) makerandomtrap(FALSE);
+			if (!rn2(64)) makerandomtrap(FALSE);
+			if (!rn2(128)) makerandomtrap(FALSE);
+			if (!rn2(256)) makerandomtrap(FALSE);
 		} else {
 			makeinvisotrap();
 			if (!rn2(2)) makeinvisotrap();
@@ -8858,7 +8970,7 @@ totemsummonchoice:
 	case SPE_AVALANCHE:
 		{
 			register struct trap *avaltrap;
-			avaltrap = maketrap(u.ux, u.uy, COLLAPSE_TRAP, 0);
+			avaltrap = maketrap(u.ux, u.uy, COLLAPSE_TRAP, 0, FALSE);
 			if (!avaltrap) pline("For some reason, the avalanche does not go off!");
 
 			if (avaltrap && avaltrap->ttyp == COLLAPSE_TRAP) {
@@ -9139,7 +9251,7 @@ controlagain:
 		break;
 
 	case SPE_CREATE_FAMILIAR:
-		if (!rn2(5)) (void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE);
+		if (!rn2(5)) (void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, FALSE);
 		else if (!rn2(2)) {
 			pline("The summoned monster does not seem to be friendly!");
 			(void) makemon((struct permonst *)0, u.ux, u.uy, MM_NOSPECIALS);
@@ -9325,6 +9437,41 @@ controlagain:
 				badeffect();
 			}
 		}
+		break;
+	case SPE_COAGULATION:
+		if(!(HDiminishedBleeding & INTRINSIC)) {
+			pline("Your %s is boiling!", body_part(BLOOD));
+			incr_itimeout(&HDiminishedBleeding, HDiminishedBleeding ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+		} else {
+			pline("%s", nothing_happens);	/* Already have as intrinsic */
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		}
+		break;
+	case SPE_CURE_PARALYSIS:
+		if (multi < 0) {
+			multi = -1;
+			You("magically regain consciousness!");
+		} else You("weren't paralyzed to begin with, so there was nothing to cure.");
+		break;
+	case SPE_SMELL_MONSTER:
+		if(!(HScentView & INTRINSIC)) {
+			pline("Your %s is suddenly very sensitive!", body_part(NOSE));
+			incr_itimeout(&HScentView, HScentView ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+		} else {
+			pline("%s", nothing_happens);	/* Already have as intrinsic */
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		}
+		break;
+	case SPE_ECHOLOCATION:
+		pline("Your ears are suddenly very sensitive!");
+		if (u.echolocationspell) u.echolocationspell += (rnd(5) + spell_damage_bonus(spellid(spell)));
+		else u.echolocationspell += (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10);
 		break;
 	case SPE_BOTOX_RESIST:
 		if(!(HSick_resistance & INTRINSIC)) {
@@ -9932,7 +10079,7 @@ controlagain:
 	case SPE_REPAIR_ARMOR:
 		/* removes one level of erosion (both types) for a random piece of armor */
 repairarmorchoice:
-		otmp = getobj(all_count, "magically enchant");
+		otmp = getobj(allnoncount, "magically enchant");
 		/*otmp = some_armor(&youmonst);*/
 		if (otmp) {
 			if (!(otmp->owornmask & W_ARMOR) ) { /* bug discovered by Heliokopis - did Sporkhack never fix this? */
@@ -9944,6 +10091,10 @@ repairarmorchoice:
 				}
 				if (otmp->oeroded > 0) { otmp->oeroded--; }
 				if (otmp->oeroded2 > 0) { otmp->oeroded2--; }
+				if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+					if (!otmp->cursed) bless(otmp);
+					else uncurse(otmp, FALSE);
+				}
 			} else {
 				if (!Blind) {
 					pline("Your %s glows briefly, but looks as new as ever.",xname(otmp));
@@ -9962,7 +10113,7 @@ repairarmorchoice:
 
 		pline("You may choose an artifact in your inventory to reroll. It may not be a worn one though.");
 rerollartifactchoice:
-		otmp = getobj(all_count, "reroll");
+		otmp = getobj(allnoncount, "reroll");
 		if (!otmp) {
 			if (yn("Really exit with no object selected?") == 'y')
 				pline("You just wasted the opportunity to reroll an artifact.");
@@ -10203,6 +10354,13 @@ rerollX:
 
 	}
 
+	if (pseudo && (pseudo->otyp == SPE_RELOCATION) && !rn2(role_skill == P_SUPREME_MASTER ? 9 : role_skill == P_GRAND_MASTER ? 8 : role_skill == P_MASTER ? 7 : role_skill == P_EXPERT ? 6 : role_skill == P_SKILLED ? 5 : 4) ) {
+
+		boostknow(spell, -(rnd(10000)));
+		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
+
+	}
+
 	if (pseudo && pseudo->otyp == SPE_ADD_SPELL_MEMORY) {
 
 		boostknow(spell, -500);
@@ -10293,6 +10451,12 @@ rerollX:
 	 * so I decided that it just takes 50 turns to reload --Amy */
 	if (pseudo && (pseudo->otyp == SPE_PARTICLE_CANNON)) {
 		pline("The particle cannon can be used again at turn %d.", (moves + u.gaugetimer));
+	}
+	if (pseudo && (pseudo->otyp == SPE_CONVERGE_BREATH)) {
+		pline("Converge Breath can be used again at turn %d.", (moves + u.gaugetimer));
+	}
+	if (pseudo && (pseudo->otyp == SPE_IMPACT_GUNFIRE)) {
+		pline("Impact Gunfire can be used again at turn %d.", (moves + u.gaugetimer));
 	}
 	if (pseudo && (pseudo->otyp == SPE_ONE_POINT_SHOOT)) {
 		pline("One Point Shoot can be used again at turn %d.", (moves + u.gaugetimer));
@@ -10962,7 +11126,7 @@ int spell;
 	    splcaster += (issoviet ? 2 : 1);
 
 	/* Robes are body armour in SLASH'EM */
-	if (uarm && !SpellColorMetal && is_metallic(uarm) && !is_etheritem(uarm)) {
+	if (uarm && !SpellColorMetal && is_metallic(uarm) && !is_etheritem(uarm) && !is_meteosteelitem(uarm)) {
 
 		/* Amy grepping target: "materialeffect" */
 		switch (objects[(uarm)->otyp].oc_material) {
@@ -10972,6 +11136,7 @@ int spell;
 			case MT_SILVER: armorpenalties *= 17; armorpenalties /= 15; break;
 			case MT_GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
 			case MT_PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
+			case MT_ALLOY: armorpenalties *= 18; armorpenalties /= 15; break;
 			case MT_MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
 			case MT_VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
 			case MT_POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
@@ -10980,20 +11145,20 @@ int spell;
 		}
 		if (Race_if(PM_BOVER)) armorpenalties *= 3;
 
-		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF || weapon_type(uwep) == P_ORB)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
 		}
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
-		if (uarm->blessed && !issoviet) armorpenalties /= 2;
+		if (uarm && uarm->blessed && !issoviet) armorpenalties /= 2;
 
 		splcaster += (urole.spelarmr * armorpenalties / (issoviet ? 12 : 30));
 	}
 	if (SpellColorMetal && (!uarm || !is_metallic(uarm))) {
 
-		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF || weapon_type(uwep) == P_ORB)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
 		}
@@ -11005,7 +11170,7 @@ int spell;
 		splcaster += (urole.spelarmr * armorpenalties / (issoviet ? 12 : 30));
 	}
 
-	if (uarmc && !SpellColorMetal && is_metallic(uarmc) && !is_etheritem(uarmc)) {
+	if (uarmc && !SpellColorMetal && is_metallic(uarmc) && !is_etheritem(uarmc) && !is_meteosteelitem(uarmc)) {
 
 		switch (objects[(uarmc)->otyp].oc_material) {
 			default: break;
@@ -11014,6 +11179,7 @@ int spell;
 			case MT_SILVER: armorpenalties *= 17; armorpenalties /= 15; break;
 			case MT_GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
 			case MT_PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
+			case MT_ALLOY: armorpenalties *= 18; armorpenalties /= 15; break;
 			case MT_MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
 			case MT_VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
 			case MT_POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
@@ -11022,20 +11188,20 @@ int spell;
 		}
 		if (Race_if(PM_BOVER)) armorpenalties *= 3;
 
-		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF || weapon_type(uwep) == P_ORB)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
 		}
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
-		if (uarmc->blessed && !issoviet) armorpenalties /= 2;
+		if (uarmc && uarmc->blessed && !issoviet) armorpenalties /= 2;
 
 		splcaster += (urole.spelarmr * armorpenalties / (issoviet ? 36 : 50));
 	}
 	if (SpellColorMetal && (!uarmc || !is_metallic(uarmc))) {
 
-		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF || weapon_type(uwep) == P_ORB)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
 		}
@@ -11048,7 +11214,7 @@ int spell;
 
 	}
 
-	if (uarmu && !SpellColorMetal && is_metallic(uarmu) && !is_etheritem(uarmu)) {
+	if (uarmu && !SpellColorMetal && is_metallic(uarmu) && !is_etheritem(uarmu) && !is_meteosteelitem(uarmu)) {
 
 		switch (objects[(uarmu)->otyp].oc_material) {
 			default: break;
@@ -11057,6 +11223,7 @@ int spell;
 			case MT_SILVER: armorpenalties *= 17; armorpenalties /= 15; break;
 			case MT_GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
 			case MT_PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
+			case MT_ALLOY: armorpenalties *= 18; armorpenalties /= 15; break;
 			case MT_MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
 			case MT_VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
 			case MT_POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
@@ -11065,20 +11232,20 @@ int spell;
 		}
 		if (Race_if(PM_BOVER)) armorpenalties *= 3;
 
-		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF || weapon_type(uwep) == P_ORB)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
 		}
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
-		if (uarmu->blessed && !issoviet) armorpenalties /= 2;
+		if (uarmu && uarmu->blessed && !issoviet) armorpenalties /= 2;
 
 		splcaster += (urole.spelarmr * armorpenalties / (issoviet ? 72 : 100));
 	}
 	if (SpellColorMetal && (!uarmu || !is_metallic(uarmu))) {
 
-		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF || weapon_type(uwep) == P_ORB)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
 		}
@@ -11092,7 +11259,7 @@ int spell;
 	}
 
 	if (uarms && !SpellColorMetal) {
-		if (!is_metallic(uarms) || is_etheritem(uarms)) shieldpenalties /= 3;
+		if (!is_metallic(uarms) || is_etheritem(uarms) || is_meteosteelitem(uarms)) shieldpenalties /= 3;
 
 		switch (objects[(uarms)->otyp].oc_material) {
 			default: break;
@@ -11101,6 +11268,7 @@ int spell;
 			case MT_SILVER: shieldpenalties *= 17; shieldpenalties /= 15; break;
 			case MT_GOLD: shieldpenalties *= 8; shieldpenalties /= 15; break;
 			case MT_PLATINUM: shieldpenalties *= 18; shieldpenalties /= 15; break;
+			case MT_ALLOY: shieldpenalties *= 18; shieldpenalties /= 15; break;
 			case MT_MITHRIL: shieldpenalties *= 13; shieldpenalties /= 15; break;
 			case MT_VIVA: shieldpenalties *= 12; shieldpenalties /= 15; break;
 			case MT_POURPOOR: shieldpenalties *= 20; shieldpenalties /= 15; break;
@@ -11109,20 +11277,20 @@ int spell;
 		}
 		if (Race_if(PM_BOVER)) shieldpenalties *= 3;
 
-		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF || weapon_type(uwep) == P_ORB)) {
 			shieldpenalties *= 4;
 			shieldpenalties /= 5;
 		}
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) shieldpenalties /= 2;
 
-		if (uarms->blessed && !issoviet) armorpenalties /= 2;
+		if (uarms && uarms->blessed && !issoviet) armorpenalties /= 2;
 
 		splcaster += (urole.spelshld * shieldpenalties / (issoviet ? 12 : 30));
 	}
 	if (SpellColorMetal && (!uarms || !is_metallic(uarms))) {
 
-		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF || weapon_type(uwep) == P_ORB)) {
 			shieldpenalties *= 4;
 			shieldpenalties /= 5;
 		}
@@ -11135,7 +11303,7 @@ int spell;
 
 	}
 
-	if (uarmh && !SpellColorMetal && is_metallic(uarmh) && !is_etheritem(uarmh) && uarmh->otyp != HELM_OF_BRILLIANCE) {
+	if (uarmh && !SpellColorMetal && is_metallic(uarmh) && !is_etheritem(uarmh) && !is_meteosteelitem(uarmh) && uarmh->otyp != HELM_OF_BRILLIANCE) {
 
 		switch (objects[(uarmh)->otyp].oc_material) {
 			default: break;
@@ -11144,6 +11312,7 @@ int spell;
 			case MT_SILVER: armorpenalties *= 17; armorpenalties /= 15; break;
 			case MT_GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
 			case MT_PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
+			case MT_ALLOY: armorpenalties *= 18; armorpenalties /= 15; break;
 			case MT_MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
 			case MT_VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
 			case MT_POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
@@ -11152,20 +11321,20 @@ int spell;
 		}
 		if (Race_if(PM_BOVER)) armorpenalties *= 3;
 
-		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF || weapon_type(uwep) == P_ORB)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
 		}
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
-		if (uarmh->blessed && !issoviet) armorpenalties /= 2;
+		if (uarmh && uarmh->blessed && !issoviet) armorpenalties /= 2;
 
 		splcaster += (uarmhbon * armorpenalties / (issoviet ? 10 : 20));
 	}
 	if (SpellColorMetal && (!uarmh || !is_metallic(uarmh))) {
 
-		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF || weapon_type(uwep) == P_ORB)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
 		}
@@ -11178,7 +11347,7 @@ int spell;
 
 	}
 
-	if (uarmg && !SpellColorMetal && is_metallic(uarmg) && !is_etheritem(uarmg)) {
+	if (uarmg && !SpellColorMetal && is_metallic(uarmg) && !is_etheritem(uarmg) && !is_meteosteelitem(uarmg)) {
 
 		switch (objects[(uarmg)->otyp].oc_material) {
 			default: break;
@@ -11187,6 +11356,7 @@ int spell;
 			case MT_SILVER: armorpenalties *= 17; armorpenalties /= 15; break;
 			case MT_GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
 			case MT_PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
+			case MT_ALLOY: armorpenalties *= 18; armorpenalties /= 15; break;
 			case MT_MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
 			case MT_VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
 			case MT_POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
@@ -11195,20 +11365,20 @@ int spell;
 		}
 		if (Race_if(PM_BOVER)) armorpenalties *= 3;
 
-		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF || weapon_type(uwep) == P_ORB)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
 		}
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
-		if (uarmg->blessed && !issoviet) armorpenalties /= 2;
+		if (uarmg && uarmg->blessed && !issoviet) armorpenalties /= 2;
 
 		splcaster += (uarmgbon * armorpenalties / (issoviet ? 10 : 20));
 	}
 	if (SpellColorMetal && (!uarmg || !is_metallic(uarmg))) {
 
-		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF || weapon_type(uwep) == P_ORB)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
 		}
@@ -11221,7 +11391,7 @@ int spell;
 
 	}
 
-	if (uarmf && !SpellColorMetal && is_metallic(uarmf) && !is_etheritem(uarmf)) {
+	if (uarmf && !SpellColorMetal && is_metallic(uarmf) && !is_etheritem(uarmf) && !is_meteosteelitem(uarmf)) {
 
 		switch (objects[(uarmf)->otyp].oc_material) {
 			default: break;
@@ -11230,6 +11400,7 @@ int spell;
 			case MT_SILVER: armorpenalties *= 17; armorpenalties /= 15; break;
 			case MT_GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
 			case MT_PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
+			case MT_ALLOY: armorpenalties *= 18; armorpenalties /= 15; break;
 			case MT_MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
 			case MT_VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
 			case MT_POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
@@ -11238,21 +11409,21 @@ int spell;
 		}
 		if (Race_if(PM_BOVER)) armorpenalties *= 3;
 
-		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF || weapon_type(uwep) == P_ORB)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
 		}
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
-		if (uarmf->blessed && !issoviet) armorpenalties /= 2;
+		if (uarmf && uarmf->blessed && !issoviet) armorpenalties /= 2;
 
 		splcaster += (uarmfbon * armorpenalties / (issoviet ? 10 : 20));
 	}
 
 	if (SpellColorMetal && (!uarmf || !is_metallic(uarmf))) {
 
-		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF || weapon_type(uwep) == P_ORB)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
 		}
@@ -11535,10 +11706,38 @@ int spell;
 	if (uarmh && itemhasappearance(uarmh, APP_KNOWLEDGEABLE_HELMET) ) chance += 10;
 	if (uarmc && itemhasappearance(uarmc, APP_SCIENCE_CLOAK) ) chance += 10;
 	if (u.tiksrvzllatdown) chance += 10;
+	if (uarmf && uarmf->oartifact == ART_JONADAB_S_EVERYDAY_WEAR) chance += 5;
+	if (uarmf && uarmf->oartifact == ART_DON_T_FALL_INTO_THE_ABYSS) chance += 10;
+
+	/* higher spell skill should do SOMEthing --Amy */
+	skill = P_SKILL(spell_skilltype(spellid(spell)));
+	if (PlayerCannotUseSkills) skill = P_ISRESTRICTED;
+	if (skill >= P_BASIC) chance++;
+	if (skill >= P_SKILLED) chance++;
+	if (skill >= P_EXPERT) chance++;
+	if (skill >= P_MASTER) chance += 5;
+	if (skill >= P_GRAND_MASTER) chance += 5;
+	if (skill >= P_SUPREME_MASTER) chance += 5;
+
+	if (uarm && objects[(uarm)->otyp].oc_material == MT_CELESTIUM) chance += 2;
+	if (uarmu && objects[(uarmu)->otyp].oc_material == MT_CELESTIUM) chance += 2;
+	if (uarmc && objects[(uarmc)->otyp].oc_material == MT_CELESTIUM) chance += 2;
+	if (uarmf && objects[(uarmf)->otyp].oc_material == MT_CELESTIUM) chance += 2;
+	if (uarmg && objects[(uarmg)->otyp].oc_material == MT_CELESTIUM) chance += 2;
+	if (uarmh && objects[(uarmh)->otyp].oc_material == MT_CELESTIUM) chance += 2;
+	if (uarms && objects[(uarms)->otyp].oc_material == MT_CELESTIUM) chance += 2;
+	if (uwep && objects[(uwep)->otyp].oc_material == MT_CELESTIUM) chance += 2;
+	if (u.twoweap && uswapwep && objects[(uswapwep)->otyp].oc_material == MT_CELESTIUM) chance += 2;
+	if (uamul && objects[(uamul)->otyp].oc_material == MT_CELESTIUM) chance += 2;
+	if (uleft && objects[(uleft)->otyp].oc_material == MT_CELESTIUM) chance += 2;
+	if (uright && objects[(uright)->otyp].oc_material == MT_CELESTIUM) chance += 2;
+	if (uimplant && objects[(uimplant)->otyp].oc_material == MT_CELESTIUM) chance += 2;
+	if (ublindf && objects[(ublindf)->otyp].oc_material == MT_CELESTIUM) chance += 2;
+
 	if (Race_if(PM_PLAYER_FAIRY)) {
 		chance += 33;
 
-		if (uwep && is_metallic(uwep) && !is_etheritem(uwep)) {
+		if (uwep && is_metallic(uwep) && !is_etheritem(uwep) && !is_meteosteelitem(uwep)) {
 
 			switch (objects[(uwep)->otyp].oc_material) {
 				default: chance -= 20; break;
@@ -11547,6 +11746,7 @@ int spell;
 				case MT_SILVER: chance -= 24; break;
 				case MT_GOLD: chance -= 10; break;
 				case MT_PLATINUM: chance -= 26; break;
+				case MT_ALLOY: chance -= 26; break;
 				case MT_MITHRIL: chance -= 18; break;
 				case MT_VIVA: chance -= 16; break;
 				case MT_POURPOOR: chance -= 30; break;
@@ -11555,7 +11755,7 @@ int spell;
 			}
 		}
 
-		if (u.twoweap && uswapwep && is_metallic(uswapwep) && !is_etheritem(uswapwep)) {
+		if (u.twoweap && uswapwep && is_metallic(uswapwep) && !is_etheritem(uswapwep) && !is_meteosteelitem(uswapwep)) {
 
 			switch (objects[(uswapwep)->otyp].oc_material) {
 				default: chance -= 20; break;
@@ -11564,6 +11764,7 @@ int spell;
 				case MT_SILVER: chance -= 24; break;
 				case MT_GOLD: chance -= 10; break;
 				case MT_PLATINUM: chance -= 26; break;
+				case MT_ALLOY: chance -= 26; break;
 				case MT_MITHRIL: chance -= 18; break;
 				case MT_VIVA: chance -= 16; break;
 				case MT_POURPOOR: chance -= 30; break;
@@ -11572,7 +11773,7 @@ int spell;
 			}
 		}
 
-		if (uarm && is_metallic(uarm) && !is_etheritem(uarm)) {
+		if (uarm && is_metallic(uarm) && !is_etheritem(uarm) && !is_meteosteelitem(uarm)) {
 
 			switch (objects[(uarm)->otyp].oc_material) {
 				default: chance -= 20; break;
@@ -11581,6 +11782,7 @@ int spell;
 				case MT_SILVER: chance -= 24; break;
 				case MT_GOLD: chance -= 10; break;
 				case MT_PLATINUM: chance -= 26; break;
+				case MT_ALLOY: chance -= 26; break;
 				case MT_MITHRIL: chance -= 18; break;
 				case MT_VIVA: chance -= 16; break;
 				case MT_POURPOOR: chance -= 30; break;
@@ -11589,7 +11791,7 @@ int spell;
 			}
 		}
 
-		if (uarmc && is_metallic(uarmc) && !is_etheritem(uarmc)) {
+		if (uarmc && is_metallic(uarmc) && !is_etheritem(uarmc) && !is_meteosteelitem(uarmc)) {
 
 			switch (objects[(uarmc)->otyp].oc_material) {
 				default: chance -= 20; break;
@@ -11598,6 +11800,7 @@ int spell;
 				case MT_SILVER: chance -= 24; break;
 				case MT_GOLD: chance -= 10; break;
 				case MT_PLATINUM: chance -= 26; break;
+				case MT_ALLOY: chance -= 26; break;
 				case MT_MITHRIL: chance -= 18; break;
 				case MT_VIVA: chance -= 16; break;
 				case MT_POURPOOR: chance -= 30; break;
@@ -11606,7 +11809,7 @@ int spell;
 			}
 		}
 
-		if (uarmh && is_metallic(uarmh) && !is_etheritem(uarmh)) {
+		if (uarmh && is_metallic(uarmh) && !is_etheritem(uarmh) && !is_meteosteelitem(uarmh)) {
 
 			switch (objects[(uarmh)->otyp].oc_material) {
 				default: chance -= 20; break;
@@ -11615,6 +11818,7 @@ int spell;
 				case MT_SILVER: chance -= 24; break;
 				case MT_GOLD: chance -= 10; break;
 				case MT_PLATINUM: chance -= 26; break;
+				case MT_ALLOY: chance -= 26; break;
 				case MT_MITHRIL: chance -= 18; break;
 				case MT_VIVA: chance -= 16; break;
 				case MT_POURPOOR: chance -= 30; break;
@@ -11623,7 +11827,7 @@ int spell;
 			}
 		}
 
-		if (uarms && is_metallic(uarms) && !is_etheritem(uarms)) {
+		if (uarms && is_metallic(uarms) && !is_etheritem(uarms) && !is_meteosteelitem(uarms)) {
 
 			switch (objects[(uarms)->otyp].oc_material) {
 				default: chance -= 20; break;
@@ -11632,6 +11836,7 @@ int spell;
 				case MT_SILVER: chance -= 24; break;
 				case MT_GOLD: chance -= 10; break;
 				case MT_PLATINUM: chance -= 26; break;
+				case MT_ALLOY: chance -= 26; break;
 				case MT_MITHRIL: chance -= 18; break;
 				case MT_VIVA: chance -= 16; break;
 				case MT_POURPOOR: chance -= 30; break;
@@ -11640,7 +11845,7 @@ int spell;
 			}
 		}
 
-		if (uarmg && is_metallic(uarmg) && !is_etheritem(uarmg)) {
+		if (uarmg && is_metallic(uarmg) && !is_etheritem(uarmg) && !is_meteosteelitem(uarmg)) {
 
 			switch (objects[(uarmg)->otyp].oc_material) {
 				default: chance -= 20; break;
@@ -11649,6 +11854,7 @@ int spell;
 				case MT_SILVER: chance -= 24; break;
 				case MT_GOLD: chance -= 10; break;
 				case MT_PLATINUM: chance -= 26; break;
+				case MT_ALLOY: chance -= 26; break;
 				case MT_MITHRIL: chance -= 18; break;
 				case MT_VIVA: chance -= 16; break;
 				case MT_POURPOOR: chance -= 30; break;
@@ -11657,7 +11863,7 @@ int spell;
 			}
 		}
 
-		if (uarmf && is_metallic(uarmf) && !is_etheritem(uarmf)) {
+		if (uarmf && is_metallic(uarmf) && !is_etheritem(uarmf) && !is_meteosteelitem(uarmf)) {
 
 			switch (objects[(uarmf)->otyp].oc_material) {
 				default: chance -= 20; break;
@@ -11666,6 +11872,7 @@ int spell;
 				case MT_SILVER: chance -= 24; break;
 				case MT_GOLD: chance -= 10; break;
 				case MT_PLATINUM: chance -= 26; break;
+				case MT_ALLOY: chance -= 26; break;
 				case MT_MITHRIL: chance -= 18; break;
 				case MT_VIVA: chance -= 16; break;
 				case MT_POURPOOR: chance -= 30; break;
@@ -11674,7 +11881,7 @@ int spell;
 			}
 		}
 
-		if (uarmu && is_metallic(uarmu) && !is_etheritem(uarmu)) {
+		if (uarmu && is_metallic(uarmu) && !is_etheritem(uarmu) && !is_meteosteelitem(uarmu)) {
 
 			switch (objects[(uarmu)->otyp].oc_material) {
 				default: chance -= 20; break;
@@ -11683,6 +11890,7 @@ int spell;
 				case MT_SILVER: chance -= 24; break;
 				case MT_GOLD: chance -= 10; break;
 				case MT_PLATINUM: chance -= 26; break;
+				case MT_ALLOY: chance -= 26; break;
 				case MT_MITHRIL: chance -= 18; break;
 				case MT_VIVA: chance -= 16; break;
 				case MT_POURPOOR: chance -= 30; break;
@@ -11691,7 +11899,7 @@ int spell;
 			}
 		}
 
-		if (uamul && is_metallic(uamul) && !is_etheritem(uamul)) {
+		if (uamul && is_metallic(uamul) && !is_etheritem(uamul) && !is_meteosteelitem(uamul)) {
 
 			switch (objects[(uamul)->otyp].oc_material) {
 				default: chance -= 20; break;
@@ -11700,6 +11908,7 @@ int spell;
 				case MT_SILVER: chance -= 24; break;
 				case MT_GOLD: chance -= 10; break;
 				case MT_PLATINUM: chance -= 26; break;
+				case MT_ALLOY: chance -= 26; break;
 				case MT_MITHRIL: chance -= 18; break;
 				case MT_VIVA: chance -= 16; break;
 				case MT_POURPOOR: chance -= 30; break;
@@ -11708,7 +11917,7 @@ int spell;
 			}
 		}
 
-		if (uimplant && is_metallic(uimplant) && !is_etheritem(uimplant)) {
+		if (uimplant && is_metallic(uimplant) && !is_etheritem(uimplant) && !is_meteosteelitem(uimplant)) {
 
 			switch (objects[(uimplant)->otyp].oc_material) {
 				default: chance -= 20; break;
@@ -11717,6 +11926,7 @@ int spell;
 				case MT_SILVER: chance -= 24; break;
 				case MT_GOLD: chance -= 10; break;
 				case MT_PLATINUM: chance -= 26; break;
+				case MT_ALLOY: chance -= 26; break;
 				case MT_MITHRIL: chance -= 18; break;
 				case MT_VIVA: chance -= 16; break;
 				case MT_POURPOOR: chance -= 30; break;
@@ -11725,7 +11935,7 @@ int spell;
 			}
 		}
 
-		if (uleft && is_metallic(uleft) && !is_etheritem(uleft)) {
+		if (uleft && is_metallic(uleft) && !is_etheritem(uleft) && !is_meteosteelitem(uleft)) {
 
 			switch (objects[(uleft)->otyp].oc_material) {
 				default: chance -= 20; break;
@@ -11734,6 +11944,7 @@ int spell;
 				case MT_SILVER: chance -= 24; break;
 				case MT_GOLD: chance -= 10; break;
 				case MT_PLATINUM: chance -= 26; break;
+				case MT_ALLOY: chance -= 26; break;
 				case MT_MITHRIL: chance -= 18; break;
 				case MT_VIVA: chance -= 16; break;
 				case MT_POURPOOR: chance -= 30; break;
@@ -11742,7 +11953,7 @@ int spell;
 			}
 		}
 
-		if (uright && is_metallic(uright) && !is_etheritem(uright)) {
+		if (uright && is_metallic(uright) && !is_etheritem(uright) && !is_meteosteelitem(uright)) {
 
 			switch (objects[(uright)->otyp].oc_material) {
 				default: chance -= 20; break;
@@ -11751,6 +11962,7 @@ int spell;
 				case MT_SILVER: chance -= 24; break;
 				case MT_GOLD: chance -= 10; break;
 				case MT_PLATINUM: chance -= 26; break;
+				case MT_ALLOY: chance -= 26; break;
 				case MT_MITHRIL: chance -= 18; break;
 				case MT_VIVA: chance -= 16; break;
 				case MT_POURPOOR: chance -= 30; break;
@@ -11759,7 +11971,7 @@ int spell;
 			}
 		}
 
-		if (ublindf && is_metallic(ublindf) && !is_etheritem(ublindf)) {
+		if (ublindf && is_metallic(ublindf) && !is_etheritem(ublindf) && !is_meteosteelitem(ublindf)) {
 
 			switch (objects[(ublindf)->otyp].oc_material) {
 				default: chance -= 20; break;
@@ -11768,6 +11980,7 @@ int spell;
 				case MT_SILVER: chance -= 24; break;
 				case MT_GOLD: chance -= 10; break;
 				case MT_PLATINUM: chance -= 26; break;
+				case MT_ALLOY: chance -= 26; break;
 				case MT_MITHRIL: chance -= 18; break;
 				case MT_VIVA: chance -= 16; break;
 				case MT_POURPOOR: chance -= 30; break;
@@ -11846,7 +12059,7 @@ int spell;
 
 	if (uarmc && itemhasappearance(uarmc, APP_SHELL_CLOAK) ) chance -= 20;
 
-	if (is_grassland(u.ux, u.uy)) chance -= 10;
+	if (is_grassland(u.ux, u.uy) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) chance -= 10;
 	if (Numbed) chance -= 10;
 
 	if (Role_if(PM_FAILED_EXISTENCE)) chance /= 2; /* at least 50% fail for all spells */
@@ -12135,6 +12348,46 @@ addsomespellmemory()
 			}
 			pline("Your knowledge of the %s spell increases.", spellname(spell_no));
 			boostknow(spell_no, 500);
+			return (TRUE);
+		} else {
+			You("decided to not add memory to any spell after all.");
+			return (FALSE);
+		}
+
+	}
+	return (FALSE);
+}
+
+void
+extramemory()
+{
+	if (spellid(0) == NO_SPELL) {
+		You("don't know any spells, and therefore you cannot add spell memory to them either.");
+		return;
+	}
+
+	pline("Choose a spell to add spell memory.");
+addxtragain:
+	if (!addsomespellmemoryX()) {
+		if (yn("Really exit with no spell selected?") == 'y')
+			pline("You just wasted the opportunity to add memory to a spell.");
+		else goto addxtragain;
+	}
+}
+
+boolean
+addsomespellmemoryX()
+{
+	int spell_no;
+
+	if (getspell(&spell_no, FALSE)) {
+		if (spellid(spell_no) != NO_SPELL) {
+			if (rn2(20) && spellknow(spell_no) <= 0) {
+				pline("Your attempt to regain knowledge of that forgotten spell fails.");
+				return (TRUE);
+			}
+			pline("Your knowledge of the %s spell increases.", spellname(spell_no));
+			boostknow(spell_no, rnd(5000));
 			return (TRUE);
 		} else {
 			You("decided to not add memory to any spell after all.");

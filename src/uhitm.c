@@ -315,6 +315,18 @@ void
 check_caitiff(mtmp)
 struct monst *mtmp;
 {
+	if (Role_if(PM_PALADIN) && mtmp->mpeaceful && mtmp->isshk && !strncmpi(shkname(mtmp), "Izchak", 6) ) {
+	/* Attacking Izchak is grounds for immediate disintegration. */
+
+		adjalign(-200);
+
+		You_feel("the air around you grow charged...");
+		pline("Suddenly, you realize that %s has noticed you...", u_gname());
+		/* Throw everything we have at the player */
+		god_zaps_you(u.ualign.type);
+
+	}
+
 	if (Role_if(PM_KNIGHT) && u.ualign.type == A_LAWFUL &&
 	    (!mtmp->mcanmove || mtmp->msleeping ||
 	     (mtmp->mflee && !mtmp->mavenge)) ) {
@@ -547,6 +559,10 @@ register struct monst *mtmp;
 		tmp += 5;
 	}
 
+	if (uwep && objects[uwep->otyp].oc_material == MT_METEOSTEEL) {
+		tmp++;
+	}
+
 	/* In Soviet Russia, convicts are treated with disdain and indifference. They are intentionally chained to
 	 * special "unwieldy" balls and chains, which don't make good weapons and are therefore less likely to be used
 	 * by the convicts in an attempt to break out of prison and/or kill the guards. Or, in other words, the convict
@@ -678,6 +694,8 @@ register struct monst *mtmp;
 	if (uarmc && uarmc->oartifact == ART_ENEMIES_SHALL_LAUGH_TOO) tmp += 10;
 	if (uimplant && uimplant->oartifact == ART_ACTUAL_PRECISION) tmp += 5;
 	if (uimplant && uimplant->oartifact == ART_RHEA_S_MISSING_EYESIGHT) tmp -= rnd(20);
+	if (uwep && uwep->oartifact == ART_SIGIX_BROADSWORD) tmp -= 5;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SIGIX_BROADSWORD) tmp -= 5;
 	if (uwep && uwep->oartifact == ART_BAD_HITTER_BOY) tmp -= rnd(20);
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_BAD_HITTER_BOY) tmp -= rnd(20);
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_ACTUAL_PRECISION) tmp += 5;
@@ -688,6 +706,13 @@ register struct monst *mtmp;
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 	if (uarmg && uarmg->oartifact == ART_MAJOR_PRESENCE) tmp += 2;
+	if (uarmf && uarmf->oartifact == ART_CRASHING_YOUR_SISTER_S_WED) tmp -= 5;
+	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 0) tmp += 1;
+	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 49) tmp += 1;
+	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 99) tmp += 1;
+	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 149) tmp += 1;
+	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 199) tmp += 1;
+	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 249) tmp += 1;
 
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
 	if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
@@ -717,7 +742,7 @@ register struct monst *mtmp;
 
 	if (is_table(u.ux, u.uy)) tmp += 3;
 
-	if (is_grassland(u.ux, u.uy)) tmp -= rnd(5);
+	if (is_grassland(u.ux, u.uy) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) tmp -= rnd(5);
 	if (Race_if(PM_VIETIS)) tmp -= rnd(10);
 
 	if (humanoid(mtmp->data) && is_female(mtmp->data) && FemtrapActiveWendy) tmp -= rnd(20);
@@ -838,7 +863,23 @@ register struct monst *mtmp;
 		 * there's also a chance of displacing a "frozen" monster.
 		 * sleeping monsters might magically walk in their sleep.
 		 */
-		boolean foo = (Punished || !rn2(7) || is_longworm(mtmp->data)),
+
+		/* the stuuuuuuuuuupid pet should be less likely to fail displacing if your skill is high --Amy */
+		int petdisplacechance = 7;
+		if (!PlayerCannotUseSkills) {
+			switch (P_SKILL(P_PETKEEPING)) {
+		      	case P_BASIC:	petdisplacechance = 8; break;
+		      	case P_SKILLED:	petdisplacechance = 9; break;
+		      	case P_EXPERT:	petdisplacechance = 10; break;
+		      	case P_MASTER:	petdisplacechance = 12; break;
+		      	case P_GRAND_MASTER:	petdisplacechance = 15; break;
+		      	case P_SUPREME_MASTER:	petdisplacechance = 20; break;
+		      	default: break;
+			}
+
+		}
+
+		boolean foo = (Punished || !rn2(petdisplacechance) || is_longworm(mtmp->data)),
 			inshop = FALSE;
 		char *p;
 
@@ -1304,6 +1345,7 @@ int dieroll;
 	boolean pieks = 0;
 	if (thrown == 1 && objects[obj->otyp].oc_skill == P_POLEARMS) pieks = 1;
 	if (thrown == 1 && objects[obj->otyp].oc_skill == P_LANCE) pieks = 1;
+	if (thrown == 1 && objects[obj->otyp].oc_skill == P_GRINDER) pieks = 1;
 	if (thrown == 1 && obj->otyp == GRAPPLING_HOOK) pieks = 1;
 
 	if (thrown == 1) launcher = uwep;
@@ -1568,7 +1610,7 @@ int dieroll;
 		    /* or strike with a missile in your hand... */
 		    (!thrown && (is_missile(obj) || is_ammo(obj))) ||
 		    /* or use a pole at short range and not mounted... */
-		    (!thrown && !u.usteed && is_pole(obj)) ||
+		    (!thrown && !u.usteed && !(tech_inuse(T_POLE_MELEE)) && is_pole(obj)) ||
 		    /* lightsaber that isn't lit ;) */
 		    (is_lightsaber(obj) && !obj->lamplit) ||
 		    /* or throw a missile without the proper bow... */
@@ -1588,7 +1630,7 @@ int dieroll;
 
 		/* Bashing with bows, darts, ranseurs or inactive lightsabers might not be completely useless... --Amy */
 
-		    if ((is_launcher(obj) || is_missile(obj) || (is_pole(obj) && !u.usteed) || (is_lightsaber(obj) && !obj->lamplit) ) && !thrown)		{
+		    if ((is_launcher(obj) || is_missile(obj) || (is_pole(obj) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(obj) && !obj->lamplit) ) && !thrown) {
 
 			if (!(PlayerCannotUseSkills) && !rn2(2)) {
 
@@ -1893,6 +1935,10 @@ int dieroll;
 
 			}
 
+			if (obj && objects[obj->otyp].oc_skill == P_CLAW) {
+				if (mon->mflee || !(mon->mcanmove)) tmp += rnd(10);
+			}
+
 			/* empath can feel the monster's psyche sometimes --Amy */
 			if (Role_if(PM_EMPATH) && !rn2(20)) {
 				You("probe %s!", mon_nam(mon));
@@ -1959,7 +2005,7 @@ int dieroll;
 			odorobj = TRUE;
 		    }
 		    if (u.usteed && !thrown && tmp > 0 &&
-			    weapon_type(obj) == P_LANCE && mon != u.ustuck) {
+			    weapon_type(obj) == (tech_inuse(T_GRAP_SWAP) ? P_GRINDER : P_LANCE) && mon != u.ustuck) {
 			jousting = joust(mon, obj);
 			/* exercise skill even for minimal damage hits */
 			if (jousting) valid_weapon_attack = TRUE;
@@ -2113,6 +2159,16 @@ int dieroll;
 		    case HEAVY_LEAD_BALL:
 		    case IMPOSSIBLY_HEAVY_ETHER_BALL:
 		    case HEAVY_WAX_BALL:
+		    case HEAVY_ALLOY_BALL:
+		    case HEAVY_SCRAP_BALL:
+		    case HEAVY_ANTIDOTE_BALL:
+		    case HEAVY_METEORIC_BALL:
+		    case IMPOSSIBLY_HEAVY_ALLOY_BALL:
+		    case HEAVY_BUBBLE_BALL:
+		    case HEAVY_FOAM_BALL:
+		    case HEAVY_CELESTIAL_BALL:
+		    case HEAVY_ZEBETITE_BALL:
+		    case IMPOSSIBLY_HEAVY_FOAM_BALL:
 		    case HEAVY_WOOD_BALL:
 		    case HEAVY_COPPER_BALL:
 		    case HEAVY_SILVER_BALL:
@@ -2139,6 +2195,16 @@ int dieroll;
 		    case LEAD_NUNCHIAKU:
 		    case ETHER_HOSTAGE_CHAIN:
 		    case WAX_CHAIN:
+		    case ALLOY_CHAIN:
+		    case SCRAP_CHAIN:
+		    case ANTIDOTE_SCOURGE:
+		    case METEORIC_NUNCHIAKU:
+		    case ALLOY_HOSTAGE_CHAIN:
+		    case BUBBLE_CHAIN:
+		    case FOAM_CHAIN:
+		    case CELESTIAL_SCOURGE:
+		    case ZEBETITE_NUNCHIAKU:
+		    case FOAM_HOSTAGE_CHAIN:
 		    case WOOD_CHAIN:
 		    case COPPER_SCOURGE:
 		    case SILVER_NUNCHIAKU:
@@ -2598,6 +2664,7 @@ int dieroll;
 
 		if (uarmc && uarmc->oartifact == ART_INA_S_SORROW && u.uhunger < 0) tmp += 3;
 		if (uwep && uwep->oartifact == ART_SPAMBAIT_FIRE) tmp += 2;
+		if (uwep && uwep->oartifact == ART_GARY_S_RIVALRY) tmp += 2;
 		if (uarmf && uarmf->oartifact == ART_KATI_S_IRRESISTIBLE_STILET) tmp += 2;
 		if (uwep && uwep->oartifact == ART_THOR_S_STRIKE && ACURR(A_STR) >= STR19(25)) tmp += 5;
 		if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
@@ -2624,6 +2691,14 @@ int dieroll;
 		if (Race_if(PM_MONGUNG)) tmp += 3;
 		if (Race_if(PM_RUSMOT)) tmp += 2;
 		if (uarmg && uarmg->oartifact == ART_MAJOR_PRESENCE) tmp += 2;
+		if (uarmf && uarmf->oartifact == ART_SNAILHUNT) tmp += 1;
+		if (uarmf && uarmf->oartifact == ART_CRASHING_YOUR_SISTER_S_WED) tmp += 2;
+		if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 0) tmp += 1;
+		if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 49) tmp += 1;
+		if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 99) tmp += 1;
+		if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 149) tmp += 1;
+		if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 199) tmp += 1;
+		if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 249) tmp += 1;
 
 		if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 
@@ -2681,10 +2756,19 @@ int dieroll;
 	    wep = PROJECTILE(obj) ? launcher : obj;
 
 		/* bashing with launchers or other "bad" weapons shouldn't give insane bonuses --Amy */
-		if (wep && !((is_launcher(wep) || is_missile(wep) || (is_pole(wep) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) ) && !thrown)) tmp += weapon_dam_bonus(wep);
+		if (wep && !((is_launcher(wep) || is_missile(wep) || (is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) ) && !thrown)) tmp += weapon_dam_bonus(wep);
 
-		if (wep && !thrown && !((is_launcher(wep) || is_missile(wep) || (is_pole(wep) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) )) ) tmp += melee_dam_bonus(wep);	/* extra damage bonus added by Amy */
+		if (wep && !thrown && !((is_launcher(wep) || is_missile(wep) || (is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) )) ) tmp += melee_dam_bonus(wep);	/* extra damage bonus added by Amy */
 		if (wep && thrown) tmp += ranged_dam_bonus(wep);	/* ditto */
+
+		if (obj && obj->oartifact == ART_SHOE_BRAND && mon->data->msound == MS_SHOE) {
+
+			if (!rn2(20)) {
+				pline("Shoe Brand tries to tame the shoe...");
+				(void) tamedog(mon, (struct obj *)0, FALSE);
+				return FALSE;
+			} else tmp += rnd(20);
+		}
 
 		if (thrown && obj && obj->oartifact == ART_MESHERABANE && is_elonamonster(mon->data)) {
 			tmp += rnd(40);
@@ -2879,7 +2963,7 @@ int dieroll;
 				}
 
 				/* For some reason, "wep" isn't always defined, yet the checks above don't crash... --Amy */
-				if (wep && !is_missile(wep) && !is_ammo(wep) && !is_launcher(wep) && !(is_pole(wep) && !u.usteed) && bimanual(wep)) {
+				if (wep && !is_missile(wep) && !is_ammo(wep) && !is_launcher(wep) && !(is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) && bimanual(wep)) {
 					u.utwohandedcombatturns++;
 					if (u.utwohandedcombatturns >= 3) {
 						u.utwohandedcombatturns = 0;
@@ -2949,8 +3033,9 @@ int dieroll;
 		You_feel("like an evil coward for using a poisoned weapon.");
 		adjalign(-5);
 	    }
-	    if (obj && obj->opoisoned && !rn2(nopoison) && !stack_too_big(obj) ) {
+	    if (obj && obj->opoisoned && !rn2(nopoison) && (!obj->superpoison || !rn2(10)) && !stack_too_big(obj) ) {
 		obj->opoisoned = FALSE;
+		obj->superpoison = FALSE;
 		Your("%s %s no longer poisoned.", xname(obj),
 		     otense(obj, "are"));
 	    }
@@ -3284,7 +3369,7 @@ int dieroll;
 
 		else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || sanitymessage) && !rn2(5)) {
 
-			switch (rnd(422)) {
+			switch (rnd(423)) {
 	
 			case 1: pline("%s staggers from your furious assault.", Monnam(mon)); break;
 			case 2: pline("Your cut barely scratches %s's scales.", mon_nam(mon)); break;
@@ -3708,6 +3793,7 @@ int dieroll;
 			case 420: pline("I've not expected you to be able to hit %s at all, but apparently you can do it!", mon_nam(mon)); break;
 			case 421: pline("Your sister combat boots with very pretty black block heels stomp %s's %s.", mon_nam(mon), makeplural(mbodypart(mon, TOE))); break;
 			case 422: pline("You land a very lovely little-girl kick against %s's shin with your black calf-leather sandals!", mon_nam(mon)); break;
+			case 423: pline("You slam shut and %s lost lines.", mon_nam(mon)); break;
 
 			default: pline("You hit %s!", mon_nam(mon)); break;
 	
@@ -3822,7 +3908,7 @@ int dieroll;
 
 			else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && !rn2(5) && !thrown) {
 
-				switch (rnd(597)) {
+				switch (rnd(600)) {
 
 				case 1: pline("You crush %s's skull into jelly.", mon_nam(mon)); break;
 				case 2: pline("You decapitate %s with a backhand stroke.", mon_nam(mon)); break;
@@ -4421,6 +4507,9 @@ int dieroll;
 				case 595: pline("%s tries to push you into a wall of fire, but you dodge and thereby cause %s to fall in %sself.", Monnam(mon), mhim(mon), mhim(mon)); break;
 				case 596: pline("Suddenly the police comes and arrests %s for not adhering to the social distancing protocols.", mon_nam(mon)); break;
 				case 597: pline("%s accidentally falls into a pool of water, only to discover that the water is really acid, and ends up dissolving completely.", Monnam(mon)); break;
+				case 598: pline("You ruined %s's day.", mon_nam(mon)); break;
+				case 599: pline("You crush %s's hopes.", mon_nam(mon)); break;
+				case 600: pline("%s has triggered too many nasty traps and therefore decides to ragequit the game.", Monnam(mon)); break;
 
 
 				default: pline("You hit %s very hard!", mon_nam(mon)); break;
@@ -4581,6 +4670,7 @@ demonpet()
 	if ((dtmp = makemon(pm, u.ux, u.uy, MM_NOSPECIALS)) != 0)
 	    (void)tamedog(dtmp, (struct obj *)0, FALSE);
 	exercise(A_WIS, TRUE);
+	use_skill(P_SQUEAKING, 1);
 }
 
 /*
@@ -5335,14 +5425,14 @@ register struct attack *mattk;
 		break;
 
 	    case AD_WEBS:
-		(void) maketrap(mdef->mx, mdef->my, WEB, 0);
-		if (!rn2(issoviet ? 2 : 8)) makerandomtrap();
+		(void) maketrap(mdef->mx, mdef->my, WEB, 0, FALSE);
+		if (!rn2(issoviet ? 2 : 8)) makerandomtrap(FALSE);
 
 		break;
 
 	    case AD_TRAP:
-		if (t_at(mdef->mx, mdef->my) == 0) (void) maketrap(mdef->mx, mdef->my, randomtrap(), 0);
-		else makerandomtrap();
+		if (t_at(mdef->mx, mdef->my) == 0) (void) maketrap(mdef->mx, mdef->my, randomtrap(), 0, FALSE);
+		else makerandomtrap(FALSE);
 
 		break;
 
@@ -5509,17 +5599,25 @@ register struct attack *mattk;
 		} else tmp = 0;
 		break;
 	    case AD_PLYS:
-		if (!negated && mdef->mcanmove && !(dmgtype(mdef->data, AD_PLYS)) && !rn2(3) && tmp < mdef->mhp) {
+		if (!negated && mdef->mcanmove && !(mdef->m_lev > 1 && (rnd(mdef->m_lev) > u.ulevel)) && !(dmgtype(mdef->data, AD_PLYS)) && !rn2(3) && tmp < mdef->mhp) {
 		    if (!Blind) pline("%s is frozen by you!", Monnam(mdef));
+		    int parlyzdur = rnd(4);
+		    if (tmp > 4 && !rn2(3)) parlyzdur = rnd(tmp);
+		    if (parlyzdur > 1) parlyzdur = rnd(parlyzdur);
+		    if (parlyzdur > 127) parlyzdur = 127;
 		    mdef->mcanmove = 0;
-		    mdef->mfrozen = rnd(10);
+		    mdef->mfrozen = parlyzdur;
 		}
 		break;
 	    case AD_TCKL:
-		if (!negated && mdef->mcanmove && !(dmgtype(mdef->data, AD_PLYS)) && !rn2(3) && tmp < mdef->mhp) {
+		if (!negated && mdef->mcanmove && !(mdef->m_lev > 1 && (rnd(mdef->m_lev) > u.ulevel)) && !(dmgtype(mdef->data, AD_PLYS)) && !rn2(5) && tmp < mdef->mhp) {
 		    if (!Blind) You("mercilessly tickle %s!", mon_nam(mdef));
+		    int parlyzdur = rnd(3);
+		    if (tmp > 3 && !rn2(5)) parlyzdur = rnd(tmp);
+		    if (parlyzdur > 1) parlyzdur = rnd(parlyzdur);
+		    if (parlyzdur > 127) parlyzdur = 127;
 		    mdef->mcanmove = 0;
-		    mdef->mfrozen = rnd(10);
+		    mdef->mfrozen = parlyzdur;
 		}
 		break;
 	    case AD_BLEE:
@@ -5548,15 +5646,23 @@ register struct attack *mattk;
 		    }
 		}
 
-		if (rn2(2) && !negated && !mdef->msleeping && /* drow nerf --Amy */
-			(mattk->aatyp != AT_WEAP || barehanded_hit) &&
-			sleep_monst(mdef, rnd(10), -1)) {
+		{
+		int parlyzdur = rnd(5);
+		if (tmp > 5 && !rn2(3)) parlyzdur = rnd(tmp);
+		if (parlyzdur > 1) parlyzdur = rnd(parlyzdur);
+		if (parlyzdur > 127) parlyzdur = 127;
+
+		if (rn2(2) && !(mdef->m_lev > 1 && (rnd(mdef->m_lev) > u.ulevel)) && !negated && !mdef->msleeping && /* drow nerf --Amy */
+			(mattk->aatyp != AT_WEAP || barehanded_hit) && sleep_monst(mdef, parlyzdur, -1)) {
 		    if (!Blind)
 			pline("%s is put to sleep by you!", Monnam(mdef));
 		    slept_monst(mdef);
 		}
 		else
 		    tmp = 0;
+
+		}
+
 		break;
 	    case AD_SLIM: /* no easy sliming Death or Famine --Amy */
 	    case AD_LITT:
@@ -5590,10 +5696,16 @@ register struct attack *mattk;
 		    if (mdef->mspeed != oldspeed && canseemon(mdef))
 			pline("%s slows down.", Monnam(mdef));
 		}
-		if (!negated && mdef->mcanmove && !(dmgtype(mdef->data, AD_PLYS)) && !rn2(3) && tmp < mdef->mhp) {
+		if (!negated && mdef->mcanmove && !(mdef->m_lev > 1 && (rnd(mdef->m_lev) > u.ulevel)) && !(dmgtype(mdef->data, AD_PLYS)) && !rn2(10) && tmp < mdef->mhp) {
+
+		    int parlyzdur = rnd(4);
+		    if (tmp > 4 && !rn2(3)) parlyzdur = rnd(tmp);
+		    if (parlyzdur > 1) parlyzdur = rnd(parlyzdur);
+		    if (parlyzdur > 127) parlyzdur = 127;
+
 		    if (!Blind) pline("%s is frozen by you!", Monnam(mdef));
 		    mdef->mcanmove = 0;
-		    mdef->mfrozen = rnd(10);
+		    mdef->mfrozen = parlyzdur;
 		}
 		break;
 	    case AD_NUMB:
@@ -6207,13 +6319,13 @@ register struct attack *mattk;
 		}
 		goto common;
 	    case AD_WEBS:
-		(void) maketrap(mdef->mx, mdef->my, WEB, 0);
-		if (!rn2(issoviet ? 2 : 8)) makerandomtrap();
+		(void) maketrap(mdef->mx, mdef->my, WEB, 0, FALSE);
+		if (!rn2(issoviet ? 2 : 8)) makerandomtrap(FALSE);
 		goto common;
 
 	    case AD_TRAP:
-		if (t_at(mdef->mx, mdef->my) == 0) (void) maketrap(mdef->mx, mdef->my, randomtrap(), 0);
-		else makerandomtrap();
+		if (t_at(mdef->mx, mdef->my) == 0) (void) maketrap(mdef->mx, mdef->my, randomtrap(), 0, FALSE);
+		else makerandomtrap(FALSE);
 		goto common;
 		break;
 
@@ -7594,6 +7706,17 @@ use_weapon:
 					pline("Your weapon repairs itself a bit!");
 				}
 
+				if (uwep && uwep->oartifact == ART_ELVIN_S_PRESS && !u.twoweap && !rn2(100)) {
+					TimeStopped += rnd(3);
+					pline((Role_if(PM_SAMURAI) || Role_if(PM_NINJA)) ? "Jikan ga teishi shimashita." : "Time has stopped.");
+
+				}
+
+				if (uwep && uwep->oartifact == ART_SHARPENING_SLAT && !rn2(100) && uwep->spe < 0) {
+					uwep->spe++;
+					pline("Your weapon repairs itself a bit!");
+				}
+
 				if (uwep && uwep->oartifact == ART_DESTRUCTION_BALL && !rn2(3) && uwep->spe > -20) {
 					uwep->spe--;
 					pline("Your ball sustains damage.");
@@ -7602,12 +7725,80 @@ use_weapon:
 					uwep->spe--;
 					pline("Your weapon sustains damage.");
 				}
+				if (uwep && uwep->oartifact == ART_SIGIX_BROADSWORD && !rn2(20)) {
+					uwep->spe--;
+					pline("Your broadsword sustains damage.");
+					if (uwep->spe < -20) {
+						useupall(uwep);
+						pline("Your broadsword is destroyed.");
+						return FALSE;
+					}
+				}
 				if (uwep && uwep->oartifact == ART_NEED_ELITE_UPGRADE) {
 					int eliteupgradechance = 100;
 					if (uwep->spe > 1) eliteupgradechance = (uwep->spe * 100);
 					if (uwep->spe < 12 && !rn2(eliteupgradechance)) {
 						uwep->spe++;
 						pline("Your weapon seems more effective.");
+					}
+				}
+
+				if (uwep && objects[uwep->otyp].oc_skill == (tech_inuse(T_GRAP_SWAP) ? P_LANCE : P_GRINDER)) {
+					int grindirection = 0;
+					if (u.dx > 0 && u.dy == 0) grindirection = 1; /* east */
+					if (u.dx > 0 && u.dy > 0) grindirection = 2; /* southeast */
+					if (u.dx == 0 && u.dy < 0) grindirection = 3; /* north */
+					if (u.dx < 0 && u.dy < 0) grindirection = 4; /* northwest */
+					if (u.dx < 0 && u.dy == 0) grindirection = 5; /* west */
+					if (u.dx < 0 && u.dy > 0) grindirection = 6; /* southwest */
+					if (u.dx == 0 && u.dy > 0) grindirection = 7; /* south */
+					if (u.dx > 0 && u.dy < 0) grindirection = 8; /* northeast */
+					grinderattack(grindirection);
+					if (!mon) return FALSE;
+					if (DEADMONSTER(mon)) return FALSE;
+
+				}
+
+				if (uwep && objects[uwep->otyp].oc_skill == P_ORB) {
+					int suckingchance = 12;
+					if (uwep && uwep->otyp == JARED_STONE) suckingchance = 11;
+					if (uwep && uwep->otyp == CIGARETTE) suckingchance = 11;
+					if (uwep && uwep->otyp == ELECTRIC_CIGARETTE) suckingchance = 10;
+					if (uwep && uwep->otyp == LIGHTBULB) suckingchance = 10;
+					if (uwep && uwep->otyp == HEATH_BALL) suckingchance = 9;
+					if (uwep && uwep->otyp == CIGARETTE && !rn2(250)) {
+						You("inhale some cancerogenous smoke!");
+						if (FunnyHallu) pline("Why are you such an idiot and smoke, anyway?");
+						badeffect();
+					}
+					if (uwep && uwep->otyp == ELECTRIC_CIGARETTE && !rn2(250)) {
+						pline("Kaboom! Your cigarette suddenly causes an explosion.");
+						struct obj *dynamite;
+						dynamite = mksobj(STICK_OF_DYNAMITE, TRUE, FALSE, FALSE);
+						if (dynamite) {
+							if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
+							else {
+								dynamite->quan = 1;
+								dynamite->owt = weight(dynamite);
+								dropy(dynamite);
+								attach_bomb_blow_timeout(dynamite, 0, 0);
+							}
+							if (!rn2(10)) {
+								You("inhale some cancerogenous smoke!");
+								if (FunnyHallu) pline("Why are you such an idiot and smoke, anyway?");
+								badeffect();
+							}
+						}
+					}
+					if (!rn2(suckingchance)) {
+						You("suck some health from the target.");
+						healup(rnd(objects[uwep->otyp].oc_wldam), 0, FALSE, FALSE);
+						flags.botl = TRUE;
+					} else if (!rn2(suckingchance)) {
+						You("suck some mana from the target.");
+						u.uen += rnd(objects[uwep->otyp].oc_wldam);
+						if (u.uen > u.uenmax) u.uen = u.uenmax;
+						flags.botl = TRUE;
 					}
 				}
 				if (uwep && uwep->otyp == STEEL_CAPPED_SANDAL && !rn2(uwep->oartifact == ART_PATRICIA_S_FEMININITY ? 150 : 30)) {
@@ -7648,6 +7839,16 @@ use_weapon:
 					uswapwep->spe--;
 					pline("Your weapon sustains damage.");
 				}
+				if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SIGIX_BROADSWORD && !rn2(20)) {
+					uswapwep->spe--;
+					pline("Your broadsword sustains damage.");
+					if (uswapwep->spe < -20) {
+						useupall(uswapwep);
+						pline("Your broadsword is destroyed.");
+						return FALSE;
+					}
+				}
+
 				if (u.twoweap && uswapwep && uswapwep->otyp == STEEL_CAPPED_SANDAL && !rn2(uswapwep->oartifact == ART_PATRICIA_S_FEMININITY ? 150 : 30)) {
 					uswapwep->spe--;
 					pline("Your steel-capped sandal degrades.");
@@ -7920,7 +8121,7 @@ use_weapon:
 		if (!noattacks(&mons[u.usymbiote.mnum])) {
 			Your("%s symbiote attacks!", mons[u.usymbiote.mnum].mname);
 			u.usymbiosisfastturns++;
-			if (u.usymbiosisfastturns >= 10) {
+			if (u.usymbiosisfastturns >= 4) {
 				u.usymbiosisfastturns = 0;
 				use_skill(P_SYMBIOSIS, 1);
 			}
@@ -9406,7 +9607,7 @@ boolean ranged;
 		break;
 	  case AD_LUCK:
 
-		pline("It feels like hurting this monster in melee was a bad idea.");
+		pline("It feels like hurting this monster with that type of attack was a bad idea.");
 		change_luck(-1);
 		/* Yes I know it's different from ADOM, but NetHack is way better than ADOM anyway, so who cares? --Amy */
 
@@ -9647,7 +9848,7 @@ boolean ranged;
 		if (mon->mcan) {
 		    break;
 		}
-		if(!uwep && !uarmu && !uarm && !uarmh && !uarms && !uarmg && !uarmc && !uarmf) {
+		if(!uwep && (!uarmu || (uarmu && uarmu->oartifact == ART_GIVE_ME_STROKE__JO_ANNA)) && !uarm && !uarmh && !uarms && !uarmg && !uarmc && !uarmf) {
 		    boolean goaway = FALSE;
 		    pline("You are healed!");
 		    reducesanity(1);
@@ -9787,7 +9988,7 @@ boolean ranged;
 
 	  case AD_WEBS: 
 		{
-			struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB, 0);
+			struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB, 0, FALSE);
 			if (ttmp2) {
 				pline("You're caught in a web!");
 				dotrap(ttmp2, NOWEBMSG);
@@ -9798,12 +9999,12 @@ boolean ranged;
 			}
 		}
 		/* Amy addition: sometimes, also make a random trap somewhere on the level :D */
-		if (!rn2(issoviet ? 2 : 8)) makerandomtrap();
+		if (!rn2(issoviet ? 2 : 8)) makerandomtrap(FALSE);
 		break;
 
 	  case AD_TRAP:
-		if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0);
-		else makerandomtrap();
+		if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0, FALSE);
+		else makerandomtrap(FALSE);
 
 	  break;
 
@@ -9875,6 +10076,10 @@ boolean ranged;
 	    case AD_NPRO:
 		if (!rn2(3)) {
 			u.negativeprotection++;
+			if (evilfriday && u.ublessed > 0) {
+				u.ublessed -= 1;
+				if (u.ublessed < 0) u.ublessed = 0;
+			}
 			You_feel("less protected!");
 		}
 		break;
@@ -10186,7 +10391,7 @@ boolean ranged;
 	      case AD_SSEX:
 			if (!malive) break;
 
-			if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) {
+			if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) {
 				You_feel("a tug on your backpack!");
 				buf[0] = '\0';
 				switch (steal(mon, buf, atttypC == AD_SEDU ? TRUE : FALSE, FALSE)) {

@@ -85,13 +85,22 @@ struct objclass {
 #define MT_LEAD		36	/* metallic, protects against contamination and extra bad effects */
 #define MT_CHROME		37	/* metallic, protects against poison */
 #define MT_CERAMIC		38	/* lithic, from dnethack */
-#define MT_NANOMACHINE		39	/* inedible, repairs itself */
-#define LASTMATERIAL	MT_NANOMACHINE
+#define MT_CELESTIUM		39	/* organic, improves spellcasting, easier to uncurse */
+#define MT_CONUNDRUM		40	/* lithic, can protect destructible consumables */
+#define MT_PWN_BUBBLE		41	/* inedible, acts as if it was finalized */
+#define MT_METEOSTEEL		42	/* metallic, better dmg/AC, doesn't hinder spellcasting */
+#define MT_ANTIDOTIUM		43	/* inedible, helps against corona */
+#define MT_NANOMACHINE		44	/* inedible, repairs itself */
+#define MT_FOAM		45	/* inedible */
+#define MT_SCRAP		46	/* metallic */
+#define MT_ALLOY		47	/* metallic */
+#define LASTMATERIAL	MT_ALLOY
+/* grep for "materialeffect" to see all the places that need changing if we add new ones --Amy */
 
-#define is_organic(otmp)	(objects[(otmp)->otyp].oc_material <= MT_WOOD || objects[(otmp)->otyp].oc_material == MT_DRAGON_HIDE || objects[(otmp)->otyp].oc_material == MT_INKA || objects[(otmp)->otyp].oc_material == MT_SILK || objects[(otmp)->otyp].oc_material == MT_SECREE || objects[(otmp)->otyp].oc_material == MT_COMPOST)
+#define is_organic(otmp)	(objects[(otmp)->otyp].oc_material <= MT_WOOD || objects[(otmp)->otyp].oc_material == MT_DRAGON_HIDE || objects[(otmp)->otyp].oc_material == MT_CELESTIUM || objects[(otmp)->otyp].oc_material == MT_INKA || objects[(otmp)->otyp].oc_material == MT_SILK || objects[(otmp)->otyp].oc_material == MT_SECREE || objects[(otmp)->otyp].oc_material == MT_COMPOST)
 #define is_metallic(otmp)	((objects[(otmp)->otyp].oc_material >= MT_IRON && \
-				 objects[(otmp)->otyp].oc_material <= MT_MITHRIL) || objects[(otmp)->otyp].oc_material == MT_VIVA || objects[(otmp)->otyp].oc_material == MT_ETHER || objects[(otmp)->otyp].oc_material == MT_POURPOOR || objects[(otmp)->otyp].oc_material == MT_LEAD || objects[(otmp)->otyp].oc_material == MT_CHROME)
-#define is_lithic(otmp)		(objects[(otmp)->otyp].oc_material == MT_BONE || objects[(otmp)->otyp].oc_material == MT_GLASS || objects[(otmp)->otyp].oc_material == MT_GEMSTONE || objects[(otmp)->otyp].oc_material == MT_MINERAL || objects[(otmp)->otyp].oc_material == MT_SAND || objects[(otmp)->otyp].oc_material == MT_OBSIDIAN || objects[(otmp)->otyp].oc_material == MT_CERAMIC || objects[(otmp)->otyp].oc_material == MT_TAR || objects[(otmp)->otyp].oc_material == MT_BRICK)
+				 objects[(otmp)->otyp].oc_material <= MT_MITHRIL) || objects[(otmp)->otyp].oc_material == MT_VIVA || objects[(otmp)->otyp].oc_material == MT_ETHER || objects[(otmp)->otyp].oc_material == MT_METEOSTEEL || objects[(otmp)->otyp].oc_material == MT_POURPOOR || objects[(otmp)->otyp].oc_material == MT_LEAD || objects[(otmp)->otyp].oc_material == MT_CHROME)
+#define is_lithic(otmp)		(objects[(otmp)->otyp].oc_material == MT_BONE || objects[(otmp)->otyp].oc_material == MT_GLASS || objects[(otmp)->otyp].oc_material == MT_GEMSTONE || objects[(otmp)->otyp].oc_material == MT_MINERAL || objects[(otmp)->otyp].oc_material == MT_SAND || objects[(otmp)->otyp].oc_material == MT_OBSIDIAN || objects[(otmp)->otyp].oc_material == MT_CONUNDRUM || objects[(otmp)->otyp].oc_material == MT_CERAMIC || objects[(otmp)->otyp].oc_material == MT_TAR || objects[(otmp)->otyp].oc_material == MT_BRICK)
 
 /* primary damage: fire/rust/--- */
 /* secondary damage: rot/acid/acid */
@@ -100,6 +109,7 @@ struct objclass {
 #define is_unwitherable(otmp)	(objects[otmp->otyp].oc_material == MT_BRICK)
 #define hard_to_destruct(otmp)	(objects[otmp->otyp].oc_material == MT_ETERNIUM || otmp->stckcurse || (uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) || (otmp->oartifact && otmp->cursed && (spec_ability(otmp, SPFX_EVIL)) ) )
 #define is_etheritem(otmp)	(objects[otmp->otyp].oc_material == MT_ETHER)
+#define is_meteosteelitem(otmp)	(objects[otmp->otyp].oc_material == MT_METEOSTEEL)
 
 #define is_damageable(otmp) (is_rustprone(otmp) || is_flammable(otmp) || \
 				is_rottable(otmp) || is_corrodeable(otmp))

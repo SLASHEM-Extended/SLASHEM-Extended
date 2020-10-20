@@ -70,7 +70,8 @@ pick_move:
 	for(i=0; i<cnt; i++) {
 		nx = poss[i].x;
 		ny = poss[i].y;
-		if(levl[nx][ny].typ == ROOM ||
+		if(levl[nx][ny].typ == ROOM || (ACCESSIBLE(levl[nx][ny].typ) && levl[nx][ny].typ != DOOR) ||
+			(levl[nx][ny].typ >= POOL && levl[nx][ny].typ <= STYXRIVER && is_flyer(mtmp->data)) ||
 			(mtmp->ispriest &&
 			    levl[nx][ny].typ == ALTAR) ||
 			(mtmp->isshk &&

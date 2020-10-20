@@ -5,106 +5,8 @@
 #include "hack.h"
 #include "artifact.h"
 
-#ifndef OVLB
-
-STATIC_DCL NEARDATA const short skill_names_indices[];
-STATIC_DCL NEARDATA const char *odd_skill_names[];
-
-#else	/* OVLB */
-
-/* KMH, balance patch -- updated */
-STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
-	0,                DAGGER,         KNIFE,        AXE,
-	PICK_AXE,         SHORT_SWORD,    BROADSWORD,   LONG_SWORD,
-	TWO_HANDED_SWORD, SCIMITAR,       PN_SABER,     CLUB,
-	PN_PADDLE,        MACE,           MORNING_STAR,   FLAIL,
-	PN_HAMMER,        QUARTERSTAFF,   PN_POLEARMS,  SPEAR,
-	JAVELIN,          TRIDENT,        LANCE,        BOW,
-	SLING,            PN_FIREARMS,    CROSSBOW,       DART,
-	SHURIKEN,         BOOMERANG,      PN_WHIP,      UNICORN_HORN,
-	PN_LIGHTSABER,
-	PN_ATTACK_SPELL,     PN_HEALING_SPELL,
-	PN_DIVINATION_SPELL, PN_ENCHANTMENT_SPELL,
-	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
-	PN_OCCULT_SPELL,
-	PN_ELEMENTAL_SPELL,
-	PN_CHAOS_SPELL,
-	PN_MATTER_SPELL,
-	PN_BARE_HANDED,	PN_HIGH_HEELS,
-	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
-	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
-	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
-	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_SEXY_FLATS,
-	PN_MEMORIZATION,	PN_GUN_CONTROL,	PN_SQUEAKING,	PN_SYMBIOSIS,
-	PN_SHII_CHO,	PN_MAKASHI,	PN_SORESU,
-	PN_ATARU,	PN_SHIEN,	PN_DJEM_SO,
-	PN_NIMAN,	PN_JUYO,	PN_VAAPAD,	PN_WEDI,
-	PN_MARTIAL_ARTS, 
-	PN_TWO_WEAPONS,
-	PN_RIDING,
-};
-
-
-STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
-    "no skill",
-    "polearms",
-    "saber",
-    "hammer",
-    "whip",
-    "paddle",
-    "firearms",
-    "attack spells",
-    "healing spells",
-    "divination spells",
-    "enchantment spells",
-    "protection spells",
-    "body spells",
-    "occult spells",
-    "elemental spells",
-    "chaos spells",
-    "matter spells",
-    "bare-handed combat",
-    "high heels",
-    "general combat",
-    "shield",
-    "body armor",
-    "two-handed weapons",
-    "polymorphing",
-    "devices",
-    "searching",
-    "spirituality",
-    "petkeeping",
-    "missile weapons",
-    "techniques",
-    "implants",
-    "sexy flats",
-    "memorization",
-    "gun control",
-    "squeaking",
-    "symbiosis",
-    "form I (Shii-Cho)",
-    "form II (Makashi)",
-    "form III (Soresu)",
-    "form IV (Ataru)",
-    "form V (Shien)",
-    "form V (Djem So)",
-    "form VI (Niman)",
-    "form VII (Juyo)",
-    "form VII (Vaapad)",
-    "form VIII (Wedi)",
-    "martial arts",
-    "riding",
-    "two-weapon combat",
-    "lightsaber"
-};
-
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0};
-
-#endif	/* OVLB */
-
-#define P_NAME(type) (skill_names_indices[type] > 0 ? \
-		      OBJ_NAME(objects[skill_names_indices[type]]) : \
-			odd_skill_names[-skill_names_indices[type]])
+static const char allnoncount[] = { ALL_CLASSES, 0};
 
 void
 take_gold()
@@ -248,6 +150,11 @@ dosit()
 				fineforpracticant(100, 0, 0);
 			}
 
+			if (uarmf && uarmf->oartifact == ART_LUDGERA_S_SECRET_COURSE) {
+				pline("That felt good.");
+				incr_itimeout(&HFast, rn1(250, 250));
+			}
+
 			/* Based on real life experience (urgh) this doesn't always instantly cure sickness. --Amy */
 			if (Sick && !rn2(3) ) make_sick(0L, (char *)0, TRUE, SICK_VOMITABLE);
 			else if (Sick && !rn2(10) ) make_sick(0L, (char *)0, TRUE, SICK_ALL);
@@ -299,6 +206,30 @@ dosit()
 	} else if(IS_WOODENTABLE(typ)) {
 		pline("Sitting on a table isn't very fruitful.");
 
+	} else if(IS_FARMLAND(typ)) {
+		pline("Your ass gets dirty from the earthy farmland.");
+
+	} else if(IS_MOUNTAIN(typ)) {
+		pline("You enjoy the romantic view from the mountaintop.");
+
+	} else if(IS_WELL(typ)) {
+		pline("You sit down beside the well.");
+
+	} else if(IS_SNOW(typ)) {
+		pline("You sit on the fluffy snow.");
+
+	} else if(IS_SAND(typ)) {
+		pline("You sit on the soft sand.");
+
+	} else if(IS_GRASSLAND(typ)) {
+		pline("You sit on the soft grass.");
+
+	} else if(IS_BUBBLES(typ)) {
+		pline("You sit on a fleecy bubble.");
+
+	} else if(IS_POISONEDWELL(typ)) {
+		pline("You sit down beside the poisoned well.");
+
 	} else if(IS_FOUNTAIN(typ)) {
 		if (youmonst.data->mlet == S_BAD_COINS) { /* by GoldenIvy */
 			You("toss yourself into the fountain.");
@@ -334,9 +265,24 @@ dosit()
 			u.bedsleeping = moves + 100;
 			You("go to bed.");
 			if (FunnyHallu) pline("Sleep-bundle-wing!");
-			more_experienced(u.ulevel * 5, 0);
-			newexplevel();
 			fall_asleep(-rnd(20), TRUE);
+			more_experienced(u.ulevel * 5 * (deepest_lev_reached(FALSE) + 1), 0);
+			newexplevel();
+			upnivel(FALSE);
+			if (!rn2(5)) {
+				int i, ii, lim;
+				i = rn2(A_MAX);
+				for (ii = 0; ii < A_MAX; ii++) {
+					lim = AMAX(i);
+					if (i == A_STR && u.uhs >= 3) --lim;	/* WEAK */
+					if (ABASE(i) < lim) {
+						ABASE(i) = lim;
+						flags.botl = 1;
+						break;
+					}
+					if(++i >= A_MAX) i = 0;
+				}
+			}
 
 			if (uarmf && uarmf->oartifact == ART_LARISSA_S_GENTLE_SLEEP) {
 				pline((Role_if(PM_SAMURAI) || Role_if(PM_NINJA)) ? "Jikan ga teishi shimashita." : "Time has stopped.");
@@ -429,6 +375,11 @@ dosit()
 			break;
 		    case 6:
 /* ------------===========STEPHEN WHITE'S NEW CODE============------------ */                                                
+
+			if (u.ulevel < 5) {
+				You_feel("as if a stroke of good luck passed by.");
+				break;
+			}
 
 			if (!rn2(4)) {
 
@@ -540,51 +491,51 @@ dosit()
 
 			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 				unrestrict_weapon_skill(skillimprove);
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
 				unrestrict_weapon_skill(skillimprove);
 				P_MAX_SKILL(skillimprove) = P_BASIC;
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
 				P_MAX_SKILL(skillimprove) = P_SKILLED;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
 				P_MAX_SKILL(skillimprove) = P_EXPERT;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
 				P_MAX_SKILL(skillimprove) = P_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else gainlevelmaybe();
 
 			if (Race_if(PM_RUSMOT)) {
 				if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 					unrestrict_weapon_skill(skillimprove);
-					pline("You can now learn the %s skill.", P_NAME(skillimprove));
+					pline("You can now learn the %s skill.", wpskillname(skillimprove));
 				} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
 					unrestrict_weapon_skill(skillimprove);
 					P_MAX_SKILL(skillimprove) = P_BASIC;
-					pline("You can now learn the %s skill.", P_NAME(skillimprove));
+					pline("You can now learn the %s skill.", wpskillname(skillimprove));
 				} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
 					P_MAX_SKILL(skillimprove) = P_SKILLED;
-					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 				} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
 					P_MAX_SKILL(skillimprove) = P_EXPERT;
-					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 				} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
 					P_MAX_SKILL(skillimprove) = P_MASTER;
-					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 				} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
 					P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
-					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 				} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 					P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
-					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 				}
 			}
 
@@ -633,7 +584,7 @@ dosit()
 			pline("You may fully identify an object!");
 
 secureidchoice:
-			otmp = getobj(all_count, "secure identify");
+			otmp = getobj(allnoncount, "secure identify");
 
 			if (!otmp) {
 				if (yn("Really exit with no object selected?") == 'y')
@@ -866,22 +817,22 @@ skillcaploss()
 
 	if (P_MAX_SKILL(skilltoreduce) == P_BASIC) {
 		P_MAX_SKILL(skilltoreduce) = P_UNSKILLED;
-		pline("You lose all knowledge of the %s skill!", P_NAME(skilltoreduce));
+		pline("You lose all knowledge of the %s skill!", wpskillname(skilltoreduce));
 	} else if (!rn2(2) && P_MAX_SKILL(skilltoreduce) == P_SKILLED) {
 		P_MAX_SKILL(skilltoreduce) = P_BASIC;
-		pline("You lose some knowledge of the %s skill!", P_NAME(skilltoreduce));
+		pline("You lose some knowledge of the %s skill!", wpskillname(skilltoreduce));
 	} else if (!rn2(4) && P_MAX_SKILL(skilltoreduce) == P_EXPERT) {
 		P_MAX_SKILL(skilltoreduce) = P_SKILLED;
-		pline("You lose some knowledge of the %s skill!", P_NAME(skilltoreduce));
+		pline("You lose some knowledge of the %s skill!", wpskillname(skilltoreduce));
 	} else if (!rn2(10) && P_MAX_SKILL(skilltoreduce) == P_MASTER) {
 		P_MAX_SKILL(skilltoreduce) = P_EXPERT;
-		pline("You lose some knowledge of the %s skill!", P_NAME(skilltoreduce));
+		pline("You lose some knowledge of the %s skill!", wpskillname(skilltoreduce));
 	} else if (!rn2(100) && P_MAX_SKILL(skilltoreduce) == P_GRAND_MASTER) {
 		P_MAX_SKILL(skilltoreduce) = P_MASTER;
-		pline("You lose some knowledge of the %s skill!", P_NAME(skilltoreduce));
+		pline("You lose some knowledge of the %s skill!", wpskillname(skilltoreduce));
 	} else if (!rn2(200) && P_MAX_SKILL(skilltoreduce) == P_SUPREME_MASTER) {
 		P_MAX_SKILL(skilltoreduce) = P_GRAND_MASTER;
-		pline("You lose some knowledge of the %s skill!", P_NAME(skilltoreduce));
+		pline("You lose some knowledge of the %s skill!", wpskillname(skilltoreduce));
 	}
 
 	tryct = 2000;
@@ -1158,7 +1109,7 @@ rndcurse()			/* curse a few inventory items at random! */
 void
 attrcurse()			/* remove a random INTRINSIC ability */
 {
-	switch(rnd(216)) {
+	switch(rnd(218)) {
 	case 1 : 
 	case 2 : 
 	case 3 : 
@@ -2209,6 +2160,29 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			You_feel("your %s coagulants failing!", body_part(BLOOD));
 			u.cnd_intrinsiclosscount++;
 		}
+		break;
+	case 216: if (HControlMagic & INTRINSIC) {
+			HControlMagic &= ~INTRINSIC;
+			You_feel("unable to control your magic!");
+			u.cnd_intrinsiclosscount++;
+		}
+		if (HControlMagic & TIMEOUT) {
+			HControlMagic &= ~TIMEOUT;
+			You_feel("unable to control your magic!");
+			u.cnd_intrinsiclosscount++;
+		}
+		break;
+	case 217: if (HExpBoost & INTRINSIC) {
+			HExpBoost &= ~INTRINSIC;
+			You_feel("a loss of experience!");
+			u.cnd_intrinsiclosscount++;
+		}
+		if (HExpBoost & TIMEOUT) {
+			HExpBoost &= ~TIMEOUT;
+			You_feel("a loss of experience!");
+			u.cnd_intrinsiclosscount++;
+		}
+
 		break;
 	default: break;
 	}

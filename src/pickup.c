@@ -1424,6 +1424,21 @@ boolean alwaysflag;	/* force the item to be picked up even if it burdens you --A
 	    if (flags.run) nomul(0, 0, FALSE);
 	    return 1;
 #endif
+	} else if (obj->otyp == PETRIFYIUM_BAR) {
+		if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !telekinesis) {
+		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
+		    display_nhwindow(WIN_MESSAGE, FALSE);
+		else {
+			char kbuf[BUFSZ];
+
+			strcpy(kbuf, "a petrifyium bar");
+			pline("Touching %s is a fatal mistake.", kbuf);
+			instapetrify(kbuf);
+		    return -1;
+
+		}
+		}
+
 	} else if (obj->otyp == CORPSE) {
 	    if ( (touch_petrifies(&mons[obj->corpsenm])) && (!uarmg || FingerlessGloves)
 				&& (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !telekinesis) {
@@ -2146,6 +2161,21 @@ boolean invobj;
 	    }
 	}
 
+	if (obj->otyp == PETRIFYIUM_BAR) {
+	    if ((!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) )) {
+		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
+		    display_nhwindow(WIN_MESSAGE, FALSE);
+		else {
+		    char kbuf[BUFSZ];
+
+		    strcpy(kbuf, "a petrifyium bar");
+		    pline("Touching %s is a fatal mistake.", kbuf);
+		    instapetrify(kbuf);
+		    return -1;
+		}
+	    }
+	}
+
 	if (obj->otyp == EGG) {
 	    if ( (touch_petrifies(&mons[obj->corpsenm])) && obj->corpsenm != PM_PLAYERMON && (!uarmg || FingerlessGloves)
 		 && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) )) {
@@ -2312,6 +2342,21 @@ register struct obj *obj;
 		    strcpy(kbuf, an(corpse_xname(obj, TRUE)));
 		    pline("Touching %s is a fatal mistake.", kbuf);
 		    strcpy(kbuf, an(killer_cxname(obj, TRUE)));
+		    instapetrify(kbuf);
+		    return -1;
+		}
+	    }
+	}
+
+	if (obj->otyp == PETRIFYIUM_BAR) {
+	    if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) )) {
+		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
+		    display_nhwindow(WIN_MESSAGE, FALSE);
+		else {
+		    char kbuf[BUFSZ];
+
+		    strcpy(kbuf, "a petrifyium bar");
+		    pline("Touching %s is a fatal mistake.", kbuf);
 		    instapetrify(kbuf);
 		    return -1;
 		}
@@ -2561,7 +2606,7 @@ int held;
 #endif
 	struct monst *shkp;
 	boolean one_by_one, allflag, quantum_cat = FALSE,
-		loot_out = FALSE, loot_in = FALSE;
+		loot_out = FALSE, loot_in = FALSE, loot_reverse = FALSE;
 	char select[MAXOCLASSES+1];
 	char qbuf[BUFSZ], emptymsg[BUFSZ], pbuf[QBUFSZ];
 	long loss = 0L;
@@ -2739,10 +2784,14 @@ int held;
 		    }
 		    loot_out = (t & 0x01) != 0;
 		    loot_in  = (t & 0x02) != 0;
+		    loot_reverse = 0;
+		    if (t & 0x04) {
+			loot_out = loot_in = loot_reverse = 1;
+		    }
 		} else {	/* MENU_COMBINATION or MENU_PARTIAL */
 		    loot_out = (yn_function(qbuf, "ynq", 'n') == 'y');
 		}
-		if (loot_out) {
+		if (loot_out && !loot_reverse) {
 		    add_valid_menu_class(0);	/* reset */
 		    used |= menu_loot(0, current_container, FALSE) > 0;
 		}
@@ -2866,6 +2915,10 @@ ask_again2:
 		}
 	    }
 	}
+	if (loot_out && loot_reverse) {
+	    add_valid_menu_class(0);	/* reset */
+	    used |= menu_loot(0, current_container, FALSE) > 0;
+	}
 
 #ifndef GOLDOBJ
 	if (u_gold && invent && invent->oclass == COIN_CLASS) {
@@ -2972,7 +3025,7 @@ boolean outokay, inokay;
     menu_item *pick_list;
     char buf[BUFSZ];
     int n;
-    const char *menuselector = iflags.lootabc ? "abc" : "oib";
+    const char *menuselector = iflags.lootabc ? "abcd" : "oibr";
 
     any.a_void = 0;
     win = create_nhwindow(NHW_MENU);
@@ -2993,7 +3046,13 @@ boolean outokay, inokay;
     if (outokay && inokay) {
 	any.a_int = 3;
 	add_menu(win, NO_GLYPH, &any, *menuselector, 0, ATR_NONE,
-			"Both of the above", MENU_UNSELECTED);
+			"Both of the above, out first", MENU_UNSELECTED);
+    }
+    menuselector++;
+    if (outokay && inokay) {
+	any.a_int = 4;
+	add_menu(win, NO_GLYPH, &any, *menuselector, 0, ATR_NONE,
+			"Both of the above, in first", MENU_UNSELECTED);
     }
     end_menu(win, prompt);
     n = select_menu(win, PICK_ONE, &pick_list);

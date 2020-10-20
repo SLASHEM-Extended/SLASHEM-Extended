@@ -346,6 +346,18 @@ nh_timeout()
 		if (PlayerBleeds < 0) PlayerBleeds = 0; /* fail safe */
 	}
 
+	if (u.echolocationspell) {
+		u.echolocationspell--;
+		if (!u.echolocationspell) You("no longer have echolocation.");
+		if (u.echolocationspell < 0) u.echolocationspell = 0; /* fail safe */
+	}
+
+	if (u.gaugetimer) {
+		u.gaugetimer--;
+		if (!u.gaugetimer) Your("gauge is full again.");
+		if (u.gaugetimer < 0) u.gaugetimer = 0; /* fail safe */
+	}
+
 	if (u.garbagetrucktime) {
 		u.garbagetrucktime--;
 		if (u.garbagetrucktime < 0) u.garbagetrucktime = 0; /* fail safe */
@@ -378,6 +390,11 @@ nh_timeout()
 		u.antitelespelltimeout--;
 		if (!u.antitelespelltimeout) pline("The anti-teleportation field dissipates.");
 		if (u.antitelespelltimeout < 0) u.antitelespelltimeout = 0; /* fail safe */
+	}
+
+	if (u.persiantimer) {
+		u.persiantimer--;
+		if (u.persiantimer < 0) u.persiantimer = 0; /* fail safe */
 	}
 
 	if (u.horsehopturns) {
@@ -748,6 +765,24 @@ nh_timeout()
 
 	}
 
+	if (u.umoved && uarmf && uarmf->oartifact == ART_OUU_EECH && !rn2(100) && multi >= 0) {
+		You("slip with your stiletto heels and crash into the floor. Ouch!");
+		nomul(-(rnd(10) ), "prone from wiping out with their stilettos", TRUE);
+		nomovemsg = "Perhaps you should... I dunno, don some shoes with which it's actually possible to walk?";
+
+		if (!rn2(uarmh ? 50 : 10) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+
+			if (rn2(50)) {
+				adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
+				if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
+			} else {
+				You_feel("dizzy!");
+				forget(1 + rn2(5));
+			}
+		}
+
+	}
+
 	/* if you wear high heels without having the skill at all, bad stuff can happen --Amy */
 	if (u.umoved && PlayerInHighHeels && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED)) {
 
@@ -964,12 +999,18 @@ nh_timeout()
 
 	}
 
-	if (uarmf && itemhasappearance(uarmf, APP_PERSIAN_BOOTS) && !rn2(1000) ) {
+	if (!u.persiantimer && uarmf && itemhasappearance(uarmf, APP_PERSIAN_BOOTS) && !rn2(1000) ) {
 
 		pline("Your persian boots demand a sacrifice for allowing you to wear them.");
 		pline("You allow them to scratch over the full length of your shins with their zippers.");
-		if (Upolyd) losehp( (u.mhmax / 2) + 2, "persian zipper boots", KILLED_BY);
-		else losehp( (u.uhpmax / 2) + 2, "persian zipper boots", KILLED_BY);
+		if (Upolyd) {
+			losehp( (u.mhmax / 2) + 2, "persian zipper boots", KILLED_BY);
+			u.persiantimer = (u.mhmax / 2) + 2;
+		}
+		else {
+			losehp( (u.uhpmax / 2) + 2, "persian zipper boots", KILLED_BY);
+			u.persiantimer = (u.uhpmax / 2) + 2;
+		}
 		pline("Your %s are covered with deep wounds and you lose lots of %s!", makeplural(body_part(LEG)), body_part(BLOOD) );
 		if (!rn2(5)) {
 			u.uhpmax++;
@@ -1043,78 +1084,92 @@ nh_timeout()
 
 	if (!rn2(200) && u.uprops[AUTOMATIC_TRAP_CREATION].extrinsic) {
 
-		makerandomtrap();
+		makerandomtrap(FALSE);
 
 	}
 
 	if (!rn2(200) && TrapCreationProblem) {
 
-		makerandomtrap();
+		makerandomtrap(FALSE);
 
 	}
 
 	if (!rn2(200) && uarmu && uarmu->oartifact == ART_TIE_DYE_SHIRT_OF_SHAMBHALA) {
 
-		makerandomtrap();
+		makerandomtrap(FALSE);
 
 	}
 
 	if (!rn2(200) && uarmu && uarmu->oartifact == ART_TRAP_DUNGEON_OF_SHAMBHALA) {
 
-		makerandomtrap();
+		makerandomtrap(FALSE);
 
 	}
 
 	if (!rn2(200) && have_trapcreationstone() ) {
 
-		makerandomtrap();
+		makerandomtrap(FALSE);
 
 	}
 
 	if (!rn2(200) && uleft && uleft->oartifact == ART_HENRIETTA_S_MAGICAL_AID ) {
 
-		makerandomtrap();
+		makerandomtrap(FALSE);
 
 	}
 
 	if (!rn2(200) && uright && uright->oartifact == ART_HENRIETTA_S_MAGICAL_AID ) {
 
-		makerandomtrap();
+		makerandomtrap(FALSE);
 
 	}
 
 	if (!rn2(2000) && u.uprops[AUTOMATIC_TRAP_CREATION].extrinsic) {
 
-		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
-		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
 
 	}
 
 	if (!rn2(2000) && TrapCreationProblem) {
 
-		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
-		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
+
+	}
+
+	if (!rn2(2000) && uarmu && uarmu->oartifact == ART_TIE_DYE_SHIRT_OF_SHAMBHALA) {
+
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
+
+	}
+
+	if (!rn2(2000) && uarmu && uarmu->oartifact == ART_TRAP_DUNGEON_OF_SHAMBHALA) {
+
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
 
 	}
 
 	if (!rn2(2000) && have_trapcreationstone() ) {
 
-		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
-		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
 
 	}
 
 	if (!rn2(2000) && uleft && uleft->oartifact == ART_HENRIETTA_S_MAGICAL_AID ) {
 
-		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
-		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
 
 	}
 
 	if (!rn2(2000) && uright && uright->oartifact == ART_HENRIETTA_S_MAGICAL_AID ) {
 
-		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
-		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
 
 	}
 
@@ -1740,6 +1795,18 @@ nh_timeout()
 		if (!blackngdur ) blackngdur = 500; /* fail safe */
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
+
+		randomnastytrapeffect(rnz(nastytrapdur * (monster_difficulty() + 1)), blackngdur - (monster_difficulty() * 3));
+
+	}
+
+	if (!rn2(100) && uarmf && uarmf->oartifact == ART_PHANTO_S_RETARDEDNESS) {
+		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
+		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
+		blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
+		if (!blackngdur ) blackngdur = 500; /* fail safe */
+
+		/* no warning message */
 
 		randomnastytrapeffect(rnz(nastytrapdur * (monster_difficulty() + 1)), blackngdur - (monster_difficulty() * 3));
 
@@ -2375,6 +2442,12 @@ nh_timeout()
 
 		 break;
 
+		 case FEMTRAP_ARABELLA:
+
+			pline("You're relieved to have gotten over the nastiness. Beware, there may still be some traps around.");
+
+		 break;
+
 		 case FEMTRAP_SARAH:
 
 			pline("Apparently the farting gas is depleted.");
@@ -2486,6 +2559,54 @@ nh_timeout()
 		 case FEMTRAP_MELTEM:
 
 			pline("The girls exhausted their farting gas.");
+
+		 break;
+
+		 case FEMTRAP_NELLY:
+
+			pline("Good thing you survived the dangerous female hug attacks.");
+
+		 break;
+
+		 case FEMTRAP_EVELINE:
+
+			pline("Apparently the women stopped running.");
+
+		 break;
+
+		 case FEMTRAP_KARIN:
+
+			pline("Your nuts no longer have to fear getting kicked by female knees constantly.");
+
+		 break;
+
+		 case FEMTRAP_JUEN:
+
+			pline("You finally took a trick from your emergency bag of tricks to heal your almost broken shins.");
+
+		 break;
+
+		 case FEMTRAP_KRISTINA:
+
+			pline("Finally the damn cigarettes got extinguished.");
+
+		 break;
+
+		 case FEMTRAP_LOU:
+
+			pline("You swear that you'll kill the next asshole who brushes your cloak with their dirty shoes.");
+
+		 break;
+
+		 case FEMTRAP_ALMUT:
+
+			pline("Apparently you managed to save yourself from the bloodthirsty girl turn shoes.");
+
+		 break;
+
+		 case FEMTRAP_JULIETTA:
+
+			pline("It seems that Julietta finally got bored and decides to annoy other people instead of you.");
 
 		 break;
 
@@ -2607,6 +2728,10 @@ nh_timeout()
 		case TELEPORT_CONTROL:
 			if (!Teleport_control)
 				You_feel("a little less in control of yourself.");
+			break;
+		case POLYMORPH:
+			if (!Polymorph)
+				You_feel("a little less unstable.");
 			break;
 		case POLYMORPH_CONTROL:
 			if (!Polymorph_control)
@@ -2779,6 +2904,14 @@ nh_timeout()
 		case DIMINISHED_BLEEDING:
 			if (!DiminishedBleeding)
 				pline("Your %s coagulation factor is no longer active.", body_part(BLOOD));
+			break;
+		case CONTROL_MAGIC:
+			if (!ControlMagic)
+				pline("You're no longer controlling your magic.");
+			break;
+		case EXP_BOOST:
+			if (!ExpBoost)
+				pline("Your experience shrine effect has ended.");
 			break;
 		case PLAYERBLEEDING:
 			if (!PlayerBleeds)
@@ -3042,6 +3175,12 @@ nh_timeout()
 			break;
 		case DEAC_DIMINISHED_BLEEDING:
 			pline("You are no longer prevented from having diminished bleeding.");
+			break;
+		case DEAC_CONTROL_MAGIC:
+			pline("You are no longer prevented from having control magic.");
+			break;
+		case DEAC_EXP_BOOST:
+			pline("You are no longer prevented from having EXP boost.");
 			break;
 
 		}
@@ -4132,6 +4271,7 @@ long timeout;
 	    case LASER_SWATTER:
 	    case NANO_HAMMER:
 	    case LIGHTWHIP:
+	    case ELECTRIC_CIGARETTE:
 	        /* Callback is checked every 5 turns - 
 	        	lightsaber automatically deactivates if not wielded */
 	        if ((obj->cursed && !rn2(50)) ||
@@ -4295,6 +4435,7 @@ begin_burn(obj, already_lit)
 	    case LASER_SWATTER:
 	    case NANO_HAMMER:
 	    case LIGHTWHIP:
+	    case ELECTRIC_CIGARETTE:
 	    case BLUE_LIGHTSABER:
 	    case MYSTERY_LIGHTSABER:
 	    case VIOLET_LIGHTSABER:

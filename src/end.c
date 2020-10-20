@@ -1151,10 +1151,29 @@ detectmonstersdone:
 persiadone:
 
 	/* Troll characters have a chance of reviving. --Amy */
-	if (Race_if(PM_TROLLOR) && how < GENOCIDED && u.ulevel > 2 && rn2(4) ) {
+	if (Race_if(PM_TROLLOR) && u.uhpmax > 10 && how < GENOCIDED && u.ulevel > 2 && rn2(4) ) {
 		pline("But wait...");
 		losexp("failed troll revival", TRUE, FALSE);
+		if (u.uhpmax < 11) {
+			int statxx;
+			for (statxx = 0; statxx < A_MAX; statxx++) {
+				ABASE(statxx) -= 1;
+				AMAX(statxx) -= 1;
+			}
+			u.uenmax -= rnz(50);
+			if (u.uenmax < 0) u.uenmax = 0;
+			if (u.uen > u.uenmax) u.uen = u.uenmax;
+			skillcaploss();
+			skillcaploss();
+			skillcaploss();
+			skillcaploss();
+			skillcaploss();
+			evilspellforget();
+			eviltechincrease();
+			evilskilldecrease();
+		}
 		losexp("failed troll revival", TRUE, FALSE);
+		badeffect();
 		pline("You come back to life!");
 
 		if (wanttodie) {
@@ -1178,11 +1197,31 @@ persiadone:
 trolldone:
 
 	/* Felids have 9 lives --Amy */
-	if (Race_if(PM_FELID) && how < GENOCIDED && u.ulevel > 2 && (u.felidlives > 1) ) {
+	if (Race_if(PM_FELID) && u.uhpmax > 10 && how < GENOCIDED && u.ulevel > 2 && (u.felidlives > 1) ) {
 		u.felidlives--;
 		pline("But wait...");
 		losexp("failed felid revival", TRUE, FALSE);
+		if (u.uhpmax < 11) {
+			int statxx;
+			for (statxx = 0; statxx < A_MAX; statxx++) {
+				ABASE(statxx) -= 1;
+				AMAX(statxx) -= 1;
+			}
+			u.uenmax -= rnz(50);
+			if (u.uenmax < 0) u.uenmax = 0;
+			if (u.uen > u.uenmax) u.uen = u.uenmax;
+			skillcaploss();
+			skillcaploss();
+			skillcaploss();
+			skillcaploss();
+			skillcaploss();
+			evilspellforget();
+			eviltechincrease();
+			evilskilldecrease();
+		}
 		losexp("failed felid revival", TRUE, FALSE);
+		badeffect();
+		if (!rn2(5)) reallybadeffect();
 		pline("Thanks to being a felid, you only used up one of your lives, and have %d left!", u.felidlives);
 
 		if (wanttodie) {
@@ -1239,22 +1278,16 @@ oneupdone:
 		if (how == CHOKING) You("vomit ...");
 		You_feel("much better!");
 		pline_The("medallion crumbles to dust!");
-		/* KMH -- Bullet-proofing */
-		/*if (uamul)*/
-			/*useup(uamul);*/
+		useup(uamul);
 
 		if (wanttodie) {
 			pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
-			useup(uamul);
 			goto lsdone;
 		}
 
 		(void) adjattrib(A_CON, -1, TRUE, TRUE);
 		if(u.uhpmax <= 0) u.uhpmax = 10;	/* arbitrary */
 		savelife(how);
-/* useup() had to be moved for savelife() to distingush between Lifesaved */
-/* and Second_chance */
-		useup(uamul);
 		if (how == GENOCIDED)
 			pline("Unfortunately you are still genocided...");
 		else {
@@ -1270,6 +1303,38 @@ oneupdone:
 		}
 	}
 lsdone:
+
+	if ((ublindf && ublindf->oartifact == ART_FLOTATION_DEVICE) && how <= GENOCIDED) {
+		pline("But wait...");
+		Your("pair of lenses %s!", !Blind ? "begins to glow" : "feels warm");
+		if (how == CHOKING) You("vomit ...");
+		You_feel("much better!");
+		pline_The("lenses crumble to dust!");
+		useup(ublindf);
+
+		if (wanttodie) {
+			pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+			goto flotationdone;
+		}
+
+		(void) adjattrib(A_CON, -1, TRUE, TRUE);
+		if(u.uhpmax <= 0) u.uhpmax = 10;	/* arbitrary */
+		savelife(how);
+		if (how == GENOCIDED)
+			pline("Unfortunately you are still genocided...");
+		else {
+
+			killer = 0;
+			killer_format = 0;
+#ifdef LIVELOGFILE
+			livelog_avert_death();
+#endif
+			u.youaredead = 0;
+
+			return;
+		}
+	}
+flotationdone:
 
 	if (uimplant && uimplant->oartifact == ART_DECAPITATION_UP && how <= GENOCIDED) {
 		pline("But wait...");
@@ -1374,7 +1439,7 @@ implantdone:
 	}
 menunosedone:
 
-	if (Race_if(PM_RODNEYAN) && how < GENOCIDED) {
+	if (Race_if(PM_RODNEYAN) && u.uhpmax > 10 && how < GENOCIDED) {
 		pline("But you're Rodney, so your death isn't permanent!");
 
 		if (yn_function("Revive?", ynchars, 'y') == 'y' ) {
@@ -1386,6 +1451,24 @@ menunosedone:
 
 			if (u.ulevel > 2) {
 			    losexp("Rodneyan resurrection", TRUE, FALSE);
+				if (u.uhpmax < 11) {
+					int statxx;
+					for (statxx = 0; statxx < A_MAX; statxx++) {
+						ABASE(statxx) -= 1;
+						AMAX(statxx) -= 1;
+					}
+					u.uenmax -= rnz(50);
+					if (u.uenmax < 0) u.uenmax = 0;
+					if (u.uen > u.uenmax) u.uen = u.uenmax;
+					skillcaploss();
+					skillcaploss();
+					skillcaploss();
+					skillcaploss();
+					skillcaploss();
+					evilspellforget();
+					eviltechincrease();
+					evilskilldecrease();
+				}
 			    losexp("Rodneyan resurrection", TRUE, FALSE);
 			    pline("You reappear in good health!");
 			    if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
@@ -1657,6 +1740,7 @@ die:
 	} else	taken = FALSE;	/* lint; assert( !bones_ok ); */
 
 	if (!goexplore && !gofreeplay) {
+		delete_savefile(); /* dying during recovery (allmain.c) happens before the savegame file got erased --Amy */
 		clearlocks();
 
 		if (have_windows) display_nhwindow(WIN_MESSAGE, FALSE);

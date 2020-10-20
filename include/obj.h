@@ -103,6 +103,7 @@ struct obj {
 #define odrained olocked	/* drained corpse */
 	Bitfield(obroken,1);	/* lock has been broken */
 	Bitfield(otrapped,1);	/* container is trapped */
+	Bitfield(superpoison,1);	/* for poisoned weapons: stronger poison (less likely to wear off) */
 				/* or accidental tripped rolling boulder trap */
 #define opoisoned otrapped	/* object (weapon) is coated with poison */
 
@@ -156,6 +157,8 @@ struct obj {
 #define newobj(xl)	(struct obj *)alloc((unsigned)(xl) + sizeof(struct obj))
 #define ONAME(otmp)	(((char *)(otmp)->oextra) + (otmp)->oxlth)
 
+#define finalcancelled(otmp)	(otmp->finalcancel || (objects[(otmp)->otyp].oc_material == MT_PWN_BUBBLE))
+
 /* All objects */
 #define is_hazy(otmp)	((otmp)->oldtyp != STRANGE_OBJECT)
 /* [ALI] None of the objects listed here can be picked up by normal monsters.
@@ -198,10 +201,11 @@ struct obj {
 #define is_pole(otmp)	(((otmp)->oclass == WEAPON_CLASS || \
 			(otmp)->oclass == TOOL_CLASS) && \
 			 (objects[(otmp)->otyp].oc_skill == P_POLEARMS || \
-			 objects[(otmp)->otyp].oc_skill == P_LANCE))
+			 objects[(otmp)->otyp].oc_skill == (tech_inuse(T_GRAP_SWAP) ? P_GRINDER : P_LANCE) ))
 #define is_applypole(otmp)	(((otmp)->oclass == WEAPON_CLASS || \
 			(otmp)->oclass == TOOL_CLASS) && \
 			 (objects[(otmp)->otyp].oc_skill == P_POLEARMS || \
+			 objects[(otmp)->otyp].oc_skill == P_GRINDER || \
 			 (otmp)->otyp == AKLYS || \
 			 (otmp)->otyp == BLOW_AKLYS || \
 			 (otmp)->otyp == SPINED_BALL || \
@@ -234,15 +238,15 @@ struct obj {
 			 (is_bullet(otmp) || (otmp)->otyp == STICK_OF_DYNAMITE)
 #define is_poisonable(otmp)	((otmp)->oclass == WEAPON_CLASS && \
 			 (objects[(otmp)->otyp].oc_skill <= P_SABER || \
-			 (objects[(otmp)->otyp].oc_skill >= P_POLEARMS && \
+			 (objects[(otmp)->otyp].oc_skill >= P_CLAW && \
 			 objects[(otmp)->otyp].oc_skill <= P_LANCE)) && \
 			 !is_unpoisonable_firearm_ammo(otmp))
 #define uslinging()	(uwep && objects[uwep->otyp].oc_skill == P_SLING)
 #define is_weptool(o)	((o)->oclass == TOOL_CLASS && \
-			 objects[(o)->otyp].oc_skill != P_NONE)
+			 (objects[(o)->otyp].oc_skill != P_NONE || ((o)->otyp == TIN_OPENER) || ((o)->otyp == BUDO_NO_SASU) ) )
 
 #define is_weptoolbase(o)	(objects[o].oc_class == TOOL_CLASS && \
-			 objects[o].oc_skill != P_NONE)
+			 (objects[o].oc_skill != P_NONE || (o == TIN_OPENER) || (o == BUDO_NO_SASU) ) )
 
 #define is_pick(otmp)	(((otmp)->oclass == WEAPON_CLASS || \
 			 (otmp)->oclass == TOOL_CLASS) && \
@@ -257,7 +261,7 @@ struct obj {
 			  (otmp)->oclass == CHAIN_CLASS || (otmp)->oclass == TOOL_CLASS) && \
 			 objects[(otmp)->otyp].oc_bimanual)
 
-#define is_lightsaber(otmp) (objects[(otmp)->otyp].oc_skill == P_LIGHTSABER || (otmp)->otyp == LASER_SWATTER || (otmp)->otyp == NANO_HAMMER || (otmp)->otyp == LIGHTWHIP)
+#define is_lightsaber(otmp) (objects[(otmp)->otyp].oc_skill == P_LIGHTSABER || (otmp)->otyp == LASER_SWATTER || (otmp)->otyp == NANO_HAMMER || (otmp)->otyp == LIGHTWHIP || (otmp)->otyp == ELECTRIC_CIGARETTE)
 
 #define is_firearm(otmp) \
 			((otmp)->oclass == WEAPON_CLASS && \
@@ -416,6 +420,23 @@ struct obj {
 /* Gnomish gear */
 #define is_gnomish_obj(otmp)	(is_gnomish_armor(otmp))
 
+/* items that break when thrown even if you change their material to something else --Amy */
+#define is_vitric(otmp) ((otmp)->otyp == CRYSTAL_SWORD\
+				|| (otmp)->otyp == DIAMOND_SMASHER\
+				|| (otmp)->otyp == LIGHTBULB\
+				|| (otmp)->otyp == DROVEN_BOW\
+				|| (otmp)->otyp == DROVEN_CROSSBOW\
+				|| (otmp)->otyp == BULLETPROOF_CHAINWHIP\
+				|| (otmp)->otyp == DROVEN_DAGGER\
+				|| (otmp)->otyp == OBSIDIAN_AXE\
+				|| (otmp)->otyp == DROVEN_SHORT_SWORD\
+				|| (otmp)->otyp == VOLCANIC_BROADSWORD\
+				|| (otmp)->otyp == DROVEN_GREATSWORD\
+				|| (otmp)->otyp == DROVEN_SPEAR\
+				|| (otmp)->otyp == DROVEN_LANCE\
+				|| (otmp)->otyp == DROVEN_ARROW\
+				|| (otmp)->otyp == DROVEN_BOLT)
+
 /* Light sources */
 #define Is_candle(otmp)	((otmp)->otyp == TALLOW_CANDLE || \
 			 (otmp)->otyp == WAX_CANDLE || \
@@ -484,6 +505,7 @@ struct obj {
 				 (obj)->otyp == MANASTONE || \
 				 (obj)->otyp == SMALL_PIECE_OF_UNREFINED_MITHR || \
 				 (obj)->otyp == SILVER_SLINGSTONE || \
+				 (obj)->otyp == CONUNDRUM_NUGGET || \
 				 (obj)->otyp == STONE_OF_MAGIC_RESISTANCE || \
 				 (obj)->otyp == LOADBOULDER || \
 				 (obj)->otyp == STARLIGHTSTONE || \
@@ -493,7 +515,7 @@ struct obj {
 #define is_heavyweapon(obj)	(bimanual(obj) && objects[(obj)->otyp].oc_skill >= P_DAGGER && objects[(obj)->otyp].oc_skill <= P_WHIP && objects[(obj)->otyp].oc_skill != P_POLEARMS && objects[(obj)->otyp].oc_skill != P_QUARTERSTAFF && !(objects[(obj)->otyp].oc_skill >= P_LANCE && objects[(obj)->otyp].oc_skill <= P_BOOMERANG) )
 
 /* misc */
-#define is_flimsy(otmp)		(objects[(otmp)->otyp].oc_material <= MT_LEATHER || objects[(otmp)->otyp].oc_material == MT_INKA || objects[(otmp)->otyp].oc_material == MT_SILK || \
+#define is_flimsy(otmp)		(objects[(otmp)->otyp].oc_material <= MT_LEATHER || objects[(otmp)->otyp].oc_material == MT_INKA || objects[(otmp)->otyp].oc_material == MT_SILK || objects[(otmp)->otyp].oc_material == MT_FOAM || \
 				 (otmp)->otyp == RUBBER_HOSE)
 /* note by Amy: it is intentional that secree and compost don't appear here */
 

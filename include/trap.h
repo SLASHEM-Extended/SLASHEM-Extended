@@ -21,7 +21,9 @@ struct trap {
 	int trapdiff; /* difficulty - this affects your chance of finding it via search command */
 	Bitfield(tseen,1);
 	Bitfield(hiddentrap,1); /* invisible, and I mean really invisible, even if you have see invis --Amy */
+	Bitfield(giveshp,1); /* untrapping it may give +maxHP --Amy */
 	Bitfield(once,1);
+	Bitfield(artionce,1); /* so that you cannot exploit artifacts like Ka-Blammo --Amy */
 	Bitfield(tdetected,1); /* so things like map amnesia don't allow you to farm searching skill --Amy */
 	Bitfield(madeby_u,1); /* So monsters may take offence when you trap
 				 them.	Recognizing who made the trap isn't
@@ -589,8 +591,19 @@ extern struct trap *ftrap;
 #define SIMEOUT_TRAP 510
 #define S_PRESSING_TRAP 511
 
-#define TIMERUN_TRAP	512
+#define NELLY_TRAP 512
+#define EVELINE_TRAP 513
+#define KARIN_TRAP 514
+#define JUEN_TRAP 515
+#define KRISTINA_TRAP 516
+#define LOU_TRAP 517
 
-#define TRAPNUM 513
+#define ALMUT_TRAP 518
+#define JULIETTA_TRAP 519
+#define ARABELLA_TRAP 520
+
+#define TIMERUN_TRAP	521
+
+#define TRAPNUM 522
 
 #endif /* TRAP_H */

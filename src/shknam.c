@@ -242,6 +242,7 @@ static const char * const shktools[] = {
 	"Plug Itna", "Oirdna", "Etinatem", "Lyrebyerg", "Nossllep",
 	"Esulcer", "Anelam", "Tsaebknip", "Enamkcim", "Namkrop",
 	"Goomorcim", "Rolam", "Kelrem", "Nomedcisum",
+	"Ruohruetama", "Resuelibom", "Ieoa", "Aletaber",
 
     0
 };
@@ -1528,7 +1529,7 @@ struct monst *shk;
 	 */
 	if (Is_blackmarket(&u.uz)) {
 		ESHK(shk)->services = 
-		    SHK_ID_BASIC|SHK_ID_PREMIUM|SHK_UNCURSE|SHK_APPRAISE|
+		    SHK_ID_BASIC|SHK_ID_PREMIUM|SHK_UNCURSE|SHK_BLESS|SHK_APPRAISE|
 		    SHK_SPECIAL_A|SHK_SPECIAL_B|SHK_SPECIAL_C|SHK_CREDITSRV;
 		return;
 	}
@@ -1543,6 +1544,7 @@ struct monst *shk;
 	else if (!rn2(10)) ESHK(shk)->services |= SHK_ID_PREMIUM;
 
 	if (!rn2(10)) ESHK(shk)->services |= SHK_UNCURSE;
+	if (!rn2(20)) ESHK(shk)->services |= SHK_BLESS;
 
 	if (!rn2(2) && shk_class_match(WEAPON_CLASS, shk))
 		ESHK(shk)->services |= SHK_APPRAISE;

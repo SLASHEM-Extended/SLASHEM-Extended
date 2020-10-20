@@ -111,7 +111,9 @@ static struct Bool_Opt
 #else
 	{"DECgraphics", (boolean *)0, FALSE, SET_IN_FILE},
 #endif
+	{"eatingboulders", &flags.eatingboulders, TRUE, SET_IN_GAME},
 	{"eatingconfirm", &flags.eatingconfirm, FALSE, SET_IN_GAME},
+	{"eatingdoors", &flags.eatingdoors, TRUE, SET_IN_GAME},
 	{"eatingwalls", &flags.eatingwalls, TRUE, SET_IN_GAME},
 	{"eight_bit_tty", &iflags.wc_eight_bit_input, FALSE, SET_IN_GAME},	/*WC*/
 #if defined(TTY_GRAPHICS) || defined(CURSES_GRAPIHCS)
@@ -326,8 +328,10 @@ static struct Bool_Opt
 	{"elmstreet", &flags.elmstreet, FALSE, DISP_IN_GAME}, 
 	{"lostsoul", &flags.lostsoul, FALSE, DISP_IN_GAME}, 
 	{"uberlostsoul", &flags.uberlostsoul, FALSE, DISP_IN_GAME}, 
+#ifdef GMMODE
 	{"gmmode", &flags.gmmode, FALSE, DISP_IN_GAME}, 
 	{"supergmmode", &flags.supergmmode, FALSE, DISP_IN_GAME}, 
+#endif
 	{"wonderland", &flags.wonderland, FALSE, DISP_IN_GAME}, 
 	{"zapem", &flags.zapem, FALSE, DISP_IN_GAME}, 
 
@@ -375,6 +379,7 @@ static struct Bool_Opt
 	{"hybridstairseeker", &flags.hybridstairseeker, FALSE, SET_IN_FILE}, 
 	{"hybridmatrayser", &flags.hybridmatrayser, FALSE, SET_IN_FILE}, 
 	{"hybridfeminizer", &flags.hybridfeminizer, FALSE, SET_IN_FILE}, 
+	{"hybridchallenger", &flags.hybridchallenger, FALSE, SET_IN_FILE}, 
 
 	{"randomhybrids", &flags.randomhybrids, TRUE, DISP_IN_GAME},
 
@@ -1742,6 +1747,9 @@ boolean tinitial, tfrom_file;
 		flags.hybridization++;
 	}
 	if (match_optname(opts, "hybridfeminizer", 15, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridchallenger", 16, FALSE)) {
 		flags.hybridization++;
 	}
 

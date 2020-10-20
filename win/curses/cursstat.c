@@ -86,6 +86,7 @@ static const struct statcolor default_colors[] = {
     {"Overtaxed", CLR_ORANGE},
     {"Overloaded", CLR_BRIGHT_MAGENTA},
     {"Burn", CLR_ORANGE},
+    {"XBurn", CLR_ORANGE},
     {"Glib", CLR_ORANGE},
     {"Legs", CLR_ORANGE},
     {"Choke", CLR_ORANGE},
@@ -94,20 +95,29 @@ static const struct statcolor default_colors[] = {
     {"Held", CLR_BRIGHT_CYAN},
     {"Elbereth", CLR_BRIGHT_GREEN},
     {"Conf", CLR_BRIGHT_BLUE},
+    {"XConf", CLR_BRIGHT_BLUE},
     {"Numb", CLR_BRIGHT_BLUE},
+    {"XNumb", CLR_BRIGHT_BLUE},
     {"Paralyzed", CLR_ORANGE},
     {"Vibration", CLR_ORANGE},
     {"Freeze", CLR_BRIGHT_BLUE},
+    {"XFreeze", CLR_BRIGHT_BLUE},
     {"Blind", CLR_BRIGHT_BLUE},
+    {"XBlind", CLR_BRIGHT_BLUE},
     {"Stun", CLR_BRIGHT_BLUE},
+    {"XStun", CLR_BRIGHT_BLUE},
     {"Hallu", CLR_BRIGHT_BLUE},
+    {"XHallu", CLR_BRIGHT_BLUE},
     {"Ill", CLR_BRIGHT_MAGENTA},
     {"FoodPois", CLR_BRIGHT_MAGENTA},
     {"Slime", CLR_BRIGHT_MAGENTA},
     {"Stoned", CLR_BRIGHT_MAGENTA},
     {"Fear", CLR_BRIGHT_MAGENTA},
+    {"XFear", CLR_BRIGHT_MAGENTA},
     {"Triggered", CLR_BRIGHT_MAGENTA},
+    {"XTriggered", CLR_BRIGHT_MAGENTA},
     {"Dim", CLR_BRIGHT_MAGENTA},
+    {"XDim", CLR_BRIGHT_MAGENTA},
     {NULL, NO_COLOR},
 };
 
@@ -639,9 +649,17 @@ linetwo:
     wprintw(win, "%s", buf);
 
 #ifndef GOLDOBJ
-    print_statdiff(flags.supergmmode ? "S" : flags.gmmode ? "G" : "$", &prevau, u.ugold, STAT_GOLD);
+    print_statdiff(
+#ifdef GMMODE
+	flags.supergmmode ? "S" : flags.gmmode ? "G" : 
+#endif
+	"$", &prevau, u.ugold, STAT_GOLD);
 #else
-    print_statdiff(flags.supergmmode ? "S" : flags.gmmode ? "G" : "$", &prevau, money_cnt(invent), STAT_GOLD);
+    print_statdiff(
+#ifdef GMMODE
+	flags.supergmmode ? "S" : flags.gmmode ? "G" :
+#endif
+	"$", &prevau, money_cnt(invent), STAT_GOLD);
 #endif
 
     /* HP/Pw use special coloring rules */
@@ -1049,10 +1067,14 @@ curses_add_statuses(WINDOW *win, boolean align_right,
     statprob(hu_stat[u.uhs], u.uhs != 1); /* 1 is NOT_HUNGRY (not defined here) */
 
     /* General troubles */
-    statprob("Conf",     Confusion);
-    statprob("Blind",    Blind);
-    statprob("Stun",     Stunned);
-    statprob("Hallu",    Hallucination);
+    statprob("Conf",     Confusion && !HeavyConfusion);
+    statprob("XConf",     Confusion && HeavyConfusion);
+    statprob("Blind",    Blind && !HeavyBlind);
+    statprob("XBlind",    Blind && HeavyBlind);
+    statprob("Stun",     Stunned && !HeavyStunned);
+    statprob("XStun",     Stunned && HeavyStunned);
+    statprob("Hallu",    Hallucination && !HeavyHallu);
+    statprob("XHallu",    Hallucination && HeavyHallu);
     statprob("Ill",      (u.usick_type & SICK_NONVOMITABLE));
     statprob("FoodPois", (u.usick_type & SICK_VOMITABLE));
     statprob("Slime",    Slimed);
@@ -1063,14 +1085,20 @@ curses_add_statuses(WINDOW *win, boolean align_right,
     statprob("Bleed",    PlayerBleeds);
     statprob("Vomit",    Vomiting);
     statprob("Elbereth",    sengr_at("Elbereth", u.ux, u.uy));
-    statprob("Fear",    Feared && !Race_if(PM_TUMBLRER) && !Role_if(PM_SOCIAL_JUSTICE_WARRIOR));
-    statprob("Triggered",    Feared && (Race_if(PM_TUMBLRER) || Role_if(PM_SOCIAL_JUSTICE_WARRIOR)));
-    statprob("Numb",    Numbed);
+    statprob("Fear",    Feared && !HeavyFeared && !Race_if(PM_TUMBLRER) && !Role_if(PM_SOCIAL_JUSTICE_WARRIOR));
+    statprob("XFear",    Feared && HeavyFeared && !Race_if(PM_TUMBLRER) && !Role_if(PM_SOCIAL_JUSTICE_WARRIOR));
+    statprob("Triggered",    Feared && !HeavyFeared && (Race_if(PM_TUMBLRER) || Role_if(PM_SOCIAL_JUSTICE_WARRIOR)));
+    statprob("XTriggered",    Feared && HeavyFeared && (Race_if(PM_TUMBLRER) || Role_if(PM_SOCIAL_JUSTICE_WARRIOR)));
+    statprob("Numb",    Numbed && !HeavyNumbed);
+    statprob("XNumb",    Numbed && HeavyNumbed);
     statprob("Paralyzed",    multi < 0);
     statprob("Vibration",    (isok(u.ux, u.uy) && invocation_pos(u.ux, u.uy)));
-    statprob("Freeze",    Frozen);
-    statprob("Burn",    Burned);
-    statprob("Dim",    Dimmed);
+    statprob("Freeze",    Frozen && !HeavyFrozen);
+    statprob("XFreeze",    Frozen && HeavyFrozen);
+    statprob("Burn",    Burned && !HeavyBurned);
+    statprob("XBurn",    Burned && HeavyBurned);
+    statprob("Dim",    Dimmed && !HeavyDimmed);
+    statprob("XDim",    Dimmed && HeavyDimmed);
     statprob("Stone",    Stoned);
     statprob("Held",    u.ustuck && !u.uswallow && youmonst.data && !sticks(youmonst.data));
 

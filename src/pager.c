@@ -154,7 +154,7 @@ lookat(x, y, buf, monbuf)
 			(how & 4) ? "monster detection" : "");
 	}
 
-	    if (levl[x][y].seenv && !(SpellColorOrange || SpellColorPlatinum || SpellColorBrightCyan || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) ) {
+	    if (levl[x][y].seenv && !(SpellColorOrange || SpellColorPlatinum || SpellColorBrightCyan || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmf && uarmf->oartifact == ART_STAR_SOLES) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) ) {
 
 			if (IS_TREE(levl[x][y].typ))
 			    sprintf(eos(buf), ", on a tree");
@@ -279,7 +279,7 @@ lookat(x, y, buf, monbuf)
 	    char *name, monnambuf[BUFSZ];
 	    boolean accurate = !Hallucination;
 
-		if (FarlookProblem || (uarms && uarms->oartifact == ART_REAL_PSYCHOS_WEAR_PURPLE) || (uarms && uarms->oartifact == ART_REAL_MEN_WEAR_PSYCHOS) || u.uprops[FARLOOK_BUG].extrinsic || have_farlookstone() || (uarmc && uarmc->oartifact == ART_LIGHT_OF_DECEPTION)) wakeup(mtmp);
+		if (FarlookProblem || (uarms && uarms->oartifact == ART_REAL_PSYCHOS_WEAR_PURPLE) || (uwep && uwep->oartifact == ART_DRAMA_STAFF) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DRAMA_STAFF) || (uarms && uarms->oartifact == ART_REAL_MEN_WEAR_PSYCHOS) || u.uprops[FARLOOK_BUG].extrinsic || have_farlookstone() || (uarmc && uarmc->oartifact == ART_LIGHT_OF_DECEPTION)) wakeup(mtmp);
 
 	    if ( (mtmp->data == &mons[PM_COYOTE] || mtmp->data == &mons[PM_STALKING_COYOTE]) && accurate)
 		name = coyotename(mtmp, monnambuf);
@@ -322,7 +322,7 @@ lookat(x, y, buf, monbuf)
 
 		/* tell player what the terrain is, as long as no nasty trap effects are active and the tile has
 		 * already been seen, because this information really should be available to the player --Amy */
-	    if (levl[x][y].seenv && !(SpellColorOrange || SpellColorPlatinum || SpellColorBrightCyan || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) ) {
+	    if (levl[x][y].seenv && !(SpellColorOrange || SpellColorPlatinum || SpellColorBrightCyan || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmf && uarmf->oartifact == ART_STAR_SOLES) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) ) {
 
 			if (IS_TREE(levl[x][y].typ))
 			    sprintf(eos(buf), ", on a tree");
@@ -472,6 +472,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mtmp->data) || mtmp->egotype_covetous) )
 		    ways_seen++;
+		if (uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME && (mtmp->data->geno & G_UNIQ))
+		    ways_seen++;
 		if (Role_if(PM_PALADIN) && is_demon(mtmp->data))
 		    ways_seen++;
 		if (uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mtmp->data))
@@ -508,6 +510,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (ScentView && distu(mtmp->mx, mtmp->my) < 101 && mtmp->scentvisible && (is_animal(mtmp->data) || mtmp->data->msound == MS_STENCH) )
 		    ways_seen++;
+		if (uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mtmp->data->msound == MS_SHOE)
+		    ways_seen++;
 		if (EcholocationActive && distu(mtmp->mx, mtmp->my) < 626 && mtmp->echolocatevisible && (dmgtype(mtmp->data, AD_SOUN) || mtmp->data->msound == MS_SOUND || mtmp->data->msound == MS_SHRIEK || mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_LOUD || mtmp->data->msound == MS_FART_QUIET ) )
 		    ways_seen++;
 		if (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mtmp->data->mcolor == CLR_WHITE )
@@ -530,6 +534,14 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uarmc && uarmc->oartifact == ART_BUGNOSE && (mtmp->data->mlet == S_ANT || mtmp->data->mlet == S_XAN) )
 		    ways_seen++;
+		if (uarmf && uarmf->oartifact == ART_SNAILHUNT && (mtmp->data->mlet == S_BLOB || mtmp->data->mlet == S_WORM) )
+		    ways_seen++;
+		if (uamul && uamul->otyp == AMULET_OF_PET_VIEW && mtmp->mtame)
+		    ways_seen++;
+		if (uarmh && itemhasappearance(uarmh, APP_PETSENSE_HELMET) && mtmp->mtame)
+		    ways_seen++;
+		if (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mtmp->data->mlet == S_YETI || mtmp->data->mlet == S_ZOUTHERN) )
+		    ways_seen++;
 		if (uwep && uwep->oartifact == ART_EGRID_BUG && mtmp->data->mlet == S_XAN)
 		    ways_seen++;
 		if (uwep && uwep->oartifact == ART_FUYER_BREV && mtmp->data->mlet == S_FUNGUS)
@@ -537,6 +549,8 @@ lookat(x, y, buf, monbuf)
 		if (uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mtmp->data->mlet == S_GOLEM || nonliving(mtmp->data) ) )
 		    ways_seen++;
 		if (uarmf && uarmf->oartifact == ART_FD_DETH && (mtmp->data->mlet == S_DOG || mtmp->data->mlet == S_FELINE) )
+		    ways_seen++;
+		if (uarmh && uarmh->oartifact == ART_DOGGO_FRIENDSHIP && mtmp->data->mlet == S_DOG)
 		    ways_seen++;
 		if (uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mtmp->data->mlet == S_NYMPH) )
 		    ways_seen++;
@@ -594,6 +608,10 @@ lookat(x, y, buf, monbuf)
 		    }
 		    if (ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mtmp->data) || mtmp->egotype_covetous) ) {
 			strcat(monbuf, "warned of covetous monsters");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME && (mtmp->data->geno & G_UNIQ) ) {
+			strcat(monbuf, "warned of bosses");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 		    if (Role_if(PM_PALADIN) && is_demon(mtmp->data)) {
@@ -673,6 +691,10 @@ lookat(x, y, buf, monbuf)
 			strcat(monbuf, "scent view");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
+		     if (uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mtmp->data->msound == MS_SHOE) {
+			strcat(monbuf, "Amy's shoevision");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
 		    if (EcholocationActive && distu(mtmp->mx, mtmp->my) < 626 && mtmp->echolocatevisible && (dmgtype(mtmp->data, AD_SOUN) || mtmp->data->msound == MS_SOUND || mtmp->data->msound == MS_SHRIEK || mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_LOUD || mtmp->data->msound == MS_FART_QUIET ) ) {
 			strcat(monbuf, "echolocation");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
@@ -717,6 +739,22 @@ lookat(x, y, buf, monbuf)
 			strcat(monbuf, "bugnose");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
+		    if (uarmf && uarmf->oartifact == ART_SNAILHUNT && (mtmp->data->mlet == S_BLOB || mtmp->data->mlet == S_WORM) ) {
+			strcat(monbuf, "snailhunt");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (uamul && uamul->otyp == AMULET_OF_PET_VIEW && mtmp->mtame) {
+			strcat(monbuf, "pet view");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (uarmh && itemhasappearance(uarmh, APP_PETSENSE_HELMET) && mtmp->mtame) {
+			strcat(monbuf, "petsense");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mtmp->data->mlet == S_YETI || mtmp->data->mlet == S_ZOUTHERN) ) {
+			strcat(monbuf, "camelic scent");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
 		    if (uwep && uwep->oartifact == ART_EGRID_BUG && mtmp->data->mlet == S_XAN) {
 			strcat(monbuf, "egrid bug");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
@@ -731,6 +769,10 @@ lookat(x, y, buf, monbuf)
 		    }
 		    if (uarmf && uarmf->oartifact == ART_FD_DETH && (mtmp->data->mlet == S_DOG || mtmp->data->mlet == S_FELINE) ) {
 			strcat(monbuf, "FD Deth");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (uarmh && uarmh->oartifact == ART_DOGGO_FRIENDSHIP && mtmp->data->mlet == S_DOG) {
+			strcat(monbuf, "doggo friendship");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 		    if (uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mtmp->data->mlet == S_NYMPH) ) {
@@ -896,7 +938,7 @@ lookat(x, y, buf, monbuf)
 
 	strcpy(buf, defsyms[trap_to_defsym(tnum)].explanation);
 
-	    if (levl[x][y].seenv && !(SpellColorOrange || SpellColorPlatinum || SpellColorBrightCyan || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) ) {
+	    if (levl[x][y].seenv && !(SpellColorOrange || SpellColorPlatinum || SpellColorBrightCyan || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmf && uarmf->oartifact == ART_STAR_SOLES) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) ) {
 
 			if (IS_TREE(levl[x][y].typ))
 			    sprintf(eos(buf), ", on a tree");
@@ -1046,7 +1088,7 @@ lookat(x, y, buf, monbuf)
 	break;
 	} /* switch end */
 
-	if (!Hallucination && levl[x][y].seenv && !(SpellColorOrange || SpellColorPlatinum || SpellColorBrightCyan || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH))) {
+	if (!Hallucination && levl[x][y].seenv && !(SpellColorOrange || SpellColorPlatinum || SpellColorBrightCyan || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmf && uarmf->oartifact == ART_STAR_SOLES) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH))) {
 		register struct trap *seethetrap;
 		register int tt;
 		if ((seethetrap = t_at(x, y)) && seethetrap && seethetrap->tseen) {
@@ -1295,7 +1337,7 @@ do_look(quick)
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		pline("Pick an object."); }
 
-	    ans = getpos(&cc, quick, what_is_an_unknown_object);
+	    ans = getpos(&cc, /*quick*/TRUE, what_is_an_unknown_object);
 	    if (ans < 0 || cc.x < 0) {
 		flags.verbose = save_verbose;
 		return 0;	/* done */
@@ -1462,7 +1504,7 @@ do_look(quick)
 			strcat(out_str, " co-located with a boulder");
 
 		/* guh, need to paste all the code here too... --Amy */
-		if (from_screen && levl[cc.x][cc.y].seenv && !(SpellColorOrange || SpellColorPlatinum || SpellColorBrightCyan || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH))) {
+		if (from_screen && levl[cc.x][cc.y].seenv && !(SpellColorOrange || SpellColorPlatinum || SpellColorBrightCyan || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmf && uarmf->oartifact == ART_STAR_SOLES) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH))) {
 			if (IS_TREE(levl[cc.x][cc.y].typ))
 			    sprintf(eos(out_str), ", on a tree");
 			else if (IS_IRONBAR(levl[cc.x][cc.y].typ))
@@ -3875,7 +3917,7 @@ static const char * const gangscholarverbs[] = {
 };
 
 static const char * const noroelacommodity[] = {
-"a Porsche", "a designer handbag", "a pair of louboutins", "a pair of stilettos", "a pair of combat boots", "lipstick and perfume", "some deodorant", "wickedly expensive eau de cologne", "a shiny ring", "a diadem with diamonds", "a leather whip", "a pack of boot-shaped christmas cakes", "a bigger ego", "expensive lipgloss", "some glamorous makeup", "a new car", "a shiny new purse", "golden earrings", "a wedding ring", "a bridal dress", "a new haircut", "a lipoplasticator and a micro dermal graftilizer", "a mansion", "a luxury yacht", "a private helicopter", "a ticket for 2 weeks of vacation in the Carribean Sea", "a PhD title from www.BuyRespect.com", "the new Counter-Strike: Special Ops Duty video game", "a pincushion", "an electric guitar", "a night with a sexy female prostitute", "a new husband", "a house slave", "a butler named James", "a fivefold garage", "a car with a filter gear shift", "a Diablo Vipera motorcycle", "some expensive trash", "an expensive golden imitation of the Amulet of Yendor", "a golden statue modeled after myself", "the SLASH'EM Extended source code archive", "a cameo appearance in a GladJonas speedrun video", "this week's winning lottery ticket", "a housecat", "a horse", "a submarine", "a new girlfriend", "a cuddly bed", "a huggable heart pillow", "a long-hair wig", "a carnival costume", "an advent calendar", "a box of chocolate truffles", "christmas presents", "a birthday cake", "a couple pants", "a pair of fleecy woolen socks", "some souvenir postcards", "an ET-425 train", "a tour bus", "a ticket for a Michael Jackson concert", "a new flatscreen TV", "a renewal of my monthly World of Warcraft subscription", "some unique items in Diablo 3's auction house", "a vibrator", "a sex toy", "breast implants", "new earphones", "a pair of designer specs", "a massive throne", "an underground mountain", "a spoiler sheet", "a device that can trigger Ragnarok", "premium-quality toothpaste", "a Doenerteller Versace", "a romantic dinner in a 5-star hotel", "100 000 roulette jetons", "a deck of cards", "a Magic the Gathering Booster Pack", "some voters that will elect me during the next US Presidential Election", "some paid assassins that are going to bomb your house", "a health insurance", "some counterfeit cash", "a glorkum 13 23 1337", "the one-in-a-kind legendary sword Excalibur", "all seven Harry Potter books", "the Eiffel Tower", "a farting noise generator", "a device for autoerotic asphyxiation", "a 44-caliber Anaconda revolver", "ammo for my AK-47 assault rifle", "a cure for brain cancer", "a third leg", "a bunch of Fridays for Future activists that are going to demonstrate for the nonexistant climate protection", "the decryption key for the encrypted files on my PC", "a tuxedo", "some butt-ugly gentleman's shoes", "the pink belly-dancing costume that originally belonged to Valensina", "an appointment with Doctor Marc Selvig, who evolved Linda into Evolet and then into Evolte", "a rainbow-colored bikini", "a first class one-way ticket to Albuquerque", "a tight spandex suit", "the file containing the missing evidence in the Kelner case", "a disk with the earliest versions of Hack and NetHack", "a way to control the RNG", "5 pokeballs", "a Death Star", "the One Ring", "an Elder Scroll", "the top-secret Thalmor dossier", "a decoded Voynich Manuscript", "the Mysterium Xarxes", "the handbook for the Tomb of Horrors module", "a guillotine", "a pair of leather peep-toes", "Amy's high heels that she used to race 10 km in 84 minutes", "a wand of wishing (0:3)", "a newspaper", "a bunch of spam emails from lonely Russian women looking for a relationship", "a huge Pizza Pommo", "shower gel named after a famous celebrity", "the original Mona Lisa painting", "a pair of hippie heels with extra thick block heels", "a can of lube", "the complete Twilight book saga", "a powered combat vest", "a Garden Eden Creation Kit", "the Helm of Storms", "an ancient PC with Windows 3.1", "a Commodore 64", "a K&R C handbook", "sleeping pills", "a caramel of termination", "a dimensional portal to Cthulhu's realm", "a kryptonite stick", "a police bribe", "an enchanted volume armament that can summon hydra aurora bombers", "a VTOL aircraft", "a spanner that can build sentry turrets and dispensers", "therapy sessions that help me overcome my anorexia", "a spellchecker", "an unnecessary face mask that does not protect from Corona", "an armed police force that shoots on sight if someone gets closer than 1.50 m to me", "a specimen plate with cultivated covid-19 viri",
+"a Porsche", "a designer handbag", "a pair of louboutins", "a pair of stilettos", "a pair of combat boots", "lipstick and perfume", "some deodorant", "wickedly expensive eau de cologne", "a shiny ring", "a diadem with diamonds", "a leather whip", "a pack of boot-shaped christmas cakes", "a bigger ego", "expensive lipgloss", "some glamorous makeup", "a new car", "a shiny new purse", "golden earrings", "a wedding ring", "a bridal dress", "a new haircut", "a lipoplasticator and a micro dermal graftilizer", "a mansion", "a luxury yacht", "a private helicopter", "a ticket for 2 weeks of vacation in the Carribean Sea", "a PhD title from www.BuyRespect.com", "the new Counter-Strike: Special Ops Duty video game", "a pincushion", "an electric guitar", "a night with a sexy female prostitute", "a new husband", "a house slave", "a butler named James", "a fivefold garage", "a car with a filter gear shift", "a Diablo Vipera motorcycle", "some expensive trash", "an expensive golden imitation of the Amulet of Yendor", "a golden statue modeled after myself", "the SLASH'EM Extended source code archive", "a cameo appearance in a GladJonas speedrun video", "this week's winning lottery ticket", "a housecat", "a horse", "a submarine", "a new girlfriend", "a cuddly bed", "a huggable heart pillow", "a long-hair wig", "a carnival costume", "an advent calendar", "a box of chocolate truffles", "christmas presents", "a birthday cake", "a couple pants", "a pair of fleecy woolen socks", "some souvenir postcards", "an ET-425 train", "a tour bus", "a ticket for a Michael Jackson concert", "a new flatscreen TV", "a renewal of my monthly World of Warcraft subscription", "some unique items in Diablo 3's auction house", "a vibrator", "a sex toy", "breast implants", "new earphones", "a pair of designer specs", "a massive throne", "an underground mountain", "a spoiler sheet", "a device that can trigger Ragnarok", "premium-quality toothpaste", "a Doenerteller Versace", "a romantic dinner in a 5-star hotel", "100 000 roulette jetons", "a deck of cards", "a Magic the Gathering Booster Pack", "some voters that will elect me during the next US Presidential Election", "some paid assassins that are going to bomb your house", "a health insurance", "some counterfeit cash", "a glorkum 13 23 1337", "the one-in-a-kind legendary sword Excalibur", "all seven Harry Potter books", "the Eiffel Tower", "a farting noise generator", "a device for autoerotic asphyxiation", "a 44-caliber Anaconda revolver", "ammo for my AK-47 assault rifle", "a cure for brain cancer", "a third leg", "a bunch of Fridays for Future activists that are going to demonstrate for the nonexistant climate protection", "the decryption key for the encrypted files on my PC", "a tuxedo", "some butt-ugly gentleman's shoes", "the pink belly-dancing costume that originally belonged to Valensina", "an appointment with Doctor Marc Selvig, who evolved Linda into Evolet and then into Evolte", "a rainbow-colored bikini", "a first class one-way ticket to Albuquerque", "a tight spandex suit", "the file containing the missing evidence in the Kelner case", "a disk with the earliest versions of Hack and NetHack", "a way to control the RNG", "5 pokeballs", "a Death Star", "the One Ring", "an Elder Scroll", "the top-secret Thalmor dossier", "a decoded Voynich Manuscript", "the Mysterium Xarxes", "the handbook for the Tomb of Horrors module", "a guillotine", "a pair of leather peep-toes", "Amy's high heels that she used to race 10 km in 84 minutes", "a wand of wishing (0:3)", "a newspaper", "a bunch of spam emails from lonely Russian women looking for a relationship", "a huge Pizza Pommo", "shower gel named after a famous celebrity", "the original Mona Lisa painting", "a pair of hippie heels with extra thick block heels", "a can of lube", "the complete Twilight book saga", "a powered combat vest", "a Garden Eden Creation Kit", "the Helm of Storms", "an ancient PC with Windows 3.1", "a Commodore 64", "a K&R C handbook", "sleeping pills", "a caramel of termination", "a dimensional portal to Cthulhu's realm", "a kryptonite stick", "a police bribe", "an enchanted volume armament that can summon hydra aurora bombers", "a VTOL aircraft", "a spanner that can build sentry turrets and dispensers", "therapy sessions that help me overcome my anorexia", "a spellchecker", "an unnecessary face mask that does not protect from Corona", "an armed police force that shoots on sight if someone gets closer than 1.50 m to me", "a specimen plate with cultivated covid-19 viri", "replacement heel tips", "extra dark mascara", "a bottle of 'Femme Fatale' nail polish", "an ICE ticket to Amsterdam", "some illegal drugs", "a scantily clad feminine sexbot", "a copy of the 'Ascending SLEX for Dummies' handbook", "an edible bra", "3 scrolls of skill up", "shackles for tying up my lover", "replacement zippers for the backpack", "very sexy metallic buckles", "sweet velcro straps",
 };
 
 static NEARDATA const char * const demagoguelines[] = {
@@ -3965,6 +4007,19 @@ static NEARDATA const char * const demagoguelines[] = {
 "The government's corona restrictions are going too far! I will become the new head of state and relax those rules!",
 "There is no corona virus, it's just a carefully constructed lie by the government because in reality they want to revive the Meshera!",
 "Why do we have to wear those butt-ugly face masks? If I become president, I'll declare covid-19 nonexistant and ban the masks!",
+"The current government keeps making bad decisions yet our people let them get away with that? We need to end their reign, absolutely!",
+"They forget what they have done to us! Will we allow their treatment to go unpunished? Nay, I say! We will not!",
+"Now is the time for action... Those of you who say our revenge will bear no fruit, I want you to think again. What we do is for the sake of the future.",
+"We will track down the devil responsible for our oppression and for setting the world on the path to ruin! We shall execute him in the town square!",
+"The current president rigged the elections but we will punish him for that fraud!",
+"I'll just buy a small country and become the dictator of that.",
+"They say that dictatorships are bad, but if I get elected, I'm gonna become the most beneficial and well-liked dictator ever!",
+"Gotta send the government to the desert, what did they ever do for us anyway. We'd be better off without them.",
+"Everyone who voted for the current president is guilty and will be removed once I'm in charge.",
+"When I'm the head of state, I'm gonna install a Grand Inquisitor who detains everyone that wants to get me removed.",
+"Why is there no death penalty? We need to reintroduce that so we can get rid of the criminal scum!",
+"They're either with us or against us! And those who are against us, they shall tremble and quake in fear before I execute them!",
+"Our country used to be a 'democracy', but lately it has quickly drifted off into a dictatorship! We must remove the evil dictator!",
 };
 
 static NEARDATA const char * const longinglines[] = {
@@ -4386,6 +4441,11 @@ static NEARDATA const char * const longinglines[] = {
 "You would feel a terrible sense of loss if %s were to destroy your shoes by using her heels, but I guess it would still somehow feel arousing to you.",
 "You want to have your toes squeezed by %s's high heels for one hour straight.",
 "If you pick a fight with %s's asian block heel sandals, you'll end up with very scratched shins. Wouldn't you agree that you secretly hope that would happen?",
+"Wow, %s is wearing absolutely gentle peeptoe high heels with 15cm stilettos! You admire the fact that she can even walk in those.",
+"%s is beautifully thick and can crush male losers underneath the weight of her pretty body!",
+"%s is so musculous that she can actually pick up and throw boulders. Don't you agree that it makes her look very sexy?",
+"You want to watch %s torture some scrawny pipsqueak dude. And you especially hope that if the guy cries out in pain, she punishes him by torturing him some more.",
+"You absolutely want to get to know %s's fingernails, and especially the part where they make for very effective cutting tools. Present your unprotected skin to them!",
 };
 
 static NEARDATA const char * const soviettaunts[] = {
@@ -4916,6 +4976,7 @@ static NEARDATA const char * const bangganglines_specific[] = {
 "What? The gang scholar made it to level %d? You let them slip through our trap, you failures! Quick, we have to chase after them!",
 "I've constructed a corona trap that will infect all gang scholars that ever enter dungeon level %d with covid-19.",
 "Come to level %d, Player 1, I'm looking forward to burning your skin with my cigarettes.",
+"Damn, some gang scholar just slipped away from me by using a trapdoor! I used it too and it dumped me on level %d, but they're not there! Guys, see if you can get to the adjacent levels, the enemy has to be on one of those.",
 };
 
 static NEARDATA const char * const bangganglines_femaleonly[] = {
@@ -5102,6 +5163,10 @@ static NEARDATA const char * const hussylines_wal[] = {
 "Uh-oh, I've received a distress call from the hola-hola brigade. They're trying to fight the walscholars but those bastards seem to resist the wouwou taunts.",
 "I think that walscholar cheated! They can't possibly be resisting the hola-hola brigade's taunts for that long!",
 "Listen up, walscholar: I know that you cheated. But I can do that too. From now on I'll use every cheat in the book as long as it helps me stop you.",
+"You can never avoid all the traps. Even if you get lucky for a while, your luck can't hold forever.",
+"The radar shows all the walscholars hanging out on shallow dungeon levels. That's good, I can sit back and watch some TV.",
+"Why am I even wasting my time looking what those walscholars are doing? With their current pace, it'll take hours until they even get to Gehennom.",
+"Just give up your search for the magic portal, you noobish walscholar! What do you think you're going to get if you find it, besides the fact that you won't find it anyway because you're much too stupid?",
 };
 
 static NEARDATA const char * const hussylines_wal_specific[] = {
@@ -5222,6 +5287,10 @@ static NEARDATA const char * const hussylines_wal_specific[] = {
 "Even if you keep eluding me, %s, I can at least still do property damage to that stupid Walt guy's school!",
 "%s, last warning! Surrender now, or I and the other Hussies will demolish the school and ruin everything that Walt has created!",
 "%s, that was a mistake. You've tripped the inner perimeter's warning system, and now the automatic perfume dispensers will keep intoxicating you with the feminine scent.",
+"Soon %s will trigger a deadly trap and I can finally go to bed without having to fear some wise-ass walscholar nosing around in areas where they don't belong.",
+"Yes, that's right, stay on early dungeon levels, %s. Our snares will catch you anyway, but with the added benefit of you not even getting close enough to Anna's sanctum to become a threat.",
+"%s, why are you taking so long to make any progress? Do you want to bore me to death so I stop watching the radar? Not gonna fall for that.",
+"Oh man, is %s actually wasting time walking over every single square in every upper level because of some retarded portal... I won't even watch them for the next few hours.",
 };
 
 static NEARDATA const char * const noroelabuying[] = {
@@ -5295,6 +5364,8 @@ static NEARDATA const char * const noroelabuying[] = {
 "Screw social distancing, I can go shopping whenever I want. Today I bought %s!",
 "I'm not afraid of corona. As long as I'm raking in practicant money, I'll go shopping whenever I want, in fact there was %s on sale today and I just could not resist!",
 "The government can bite me, no shop is closed for me. After all, that practicant gave me so much money, I just had to go out there and get %s.",
+"The punishment that you got for not wearing your corona mask in the lab? Well, I used that money to buy %s for myself.",
+"Just visited the best shop in existence! They had %s for sale, and I just had to get it!",
 };
 
 static NEARDATA const char * const bosstaunts[] = {
@@ -19946,88 +20017,88 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Thiefo Stealo'. It reads: 'Well wait, I'll still rob your stuff eventually!'",
 	"Incoming message for Player 1. The message is from 'Thiefo Stealo'. It reads: 'Now I'll teleport behind you and steal your purse anyway.'",
 	"Incoming message for Player 1. The message is from 'Thiefo Stealo'. It reads: 'You're extremely unfun!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'eh, there is the you...'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'what iss the, a you?'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'what are you doing there, huh?'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'where do you come from already again?'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'how do you find me always?'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'the you seizes me on!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'the you makes me finished!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'the you shoots with a gun!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'huh, who iss the?'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'what iss the for one?'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'why comes the always to here?'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'eh, what iss there? you?'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'wants the you what?'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'what makes the you there continuing?'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'what, the you shoots at me? whuh?'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'ah! de does however pain!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'ow wow wow, the you has me pain done!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'why am i at location and what wants the you from me?'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'you, hear on thereby!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'ey nou, the you shoots yes continuing on me'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'owwwwwww, the you has me shot!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'my weapon shoots yes not at all more!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'eh, which iss there loose?'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'why always i? leave me, you!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'eh, the you hears yes never on thereby!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'what should i with nem weapon?'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'with the you tunes which not'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'here is which not right'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'why iss here so much not right?'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'owwwwww-owowowowowowow! owwwwwwwwwwwwww!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'i have only still health!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'waaaaaaaah, I have only health! why helps me none?'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'owwowwow ow-wow, owwowwow ow-wow! de does so pain!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'i want, that it finally no more pain-does!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'why are the you and so always here?'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'who was that already again?'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'boom! i have the you overstruck.'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'now says the you nothing more'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'the you nerves no more rum'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'the you stays now lying'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'the you should never come to here again'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'way here!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'determined wants me equal which arrest!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'finally gives the you up'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'what want they however also all which from me'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'hopefully does s pain you'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'quiet be'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'be finally quiet!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'hu! dja! ku! i have the you flogged!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'that-has-how-ever-pain-do-ne, harharhar!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'you make me never again what you, hears you?'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'finally!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'nerve stop not continuing you!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'only still health, hopefully comes not still one'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'i white not at all, what here loosely is'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'i white not at all, what the you at all wanted has'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'huh, a dead you?'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'eh, i have simply only degree out shot!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'where goes-sitt here to?'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'what makes then the weapon?'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'what should i then now make?'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'i white not at all, what i here at all make should!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'how shoots one then with nem weapon?'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'where must one then here long?'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'i run degree so rum'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'i run back and forth, but i white not where i to must'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'ou, there stands which... location? there was i yes still never!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'my weapon shows ammo on... what means that?'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'whatfor stands then team?'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'now goes s probably to right!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'i believe, i must now to left go!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'hmm, goes s there in front now to right? i believe rather left! but i am me not sure!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'at best go i simply times degree out further!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'what was that then already again?'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'owowowowowowowowowowowowowowowowowowowowowowowow, ow-wow-wow...'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'ooooooooooooooooooooow-wowwowwowwowwowwowwow! owwwwwwwwwwww!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'one has me off-shot!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'help, i am off-shot became!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'the you has me off-shot!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'oooow-wowow, who hasenn there the stupid thing to?'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'oooo, is de stupid!'",
-	"Incoming message for Player 1. The message is from 'Mongoloid'. It reads: 'eh, what is loosely? why am i up once dead?'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'eh, there is the you...'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'what iss the, a you?'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'what are you doing there, huh?'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'where do you come from already again?'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'how do you find me always?'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'the you seizes me on!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'the you makes me finished!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'the you shoots with a gun!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'huh, who iss the?'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'what iss the for one?'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'why comes the always to here?'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'eh, what iss there? you?'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'wants the you what?'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'what makes the you there continuing?'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'what, the you shoots at me? whuh?'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'ah! de does however pain!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'ow wow wow, the you has me pain done!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'why am i at location and what wants the you from me?'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'you, hear on thereby!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'ey nou, the you shoots yes continuing on me'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'owwwwwww, the you has me shot!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'my weapon shoots yes not at all more!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'eh, which iss there loose?'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'why always i? leave me, you!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'eh, the you hears yes never on thereby!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'what should i with nem weapon?'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'with the you tunes which not'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'here is which not right'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'why iss here so much not right?'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'owwwwww-owowowowowowow! owwwwwwwwwwwwww!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'i have only still health!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'waaaaaaaah, I have only health! why helps me none?'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'owwowwow ow-wow, owwowwow ow-wow! de does so pain!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'i want, that it finally no more pain-does!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'why are the you and so always here?'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'who was that already again?'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'boom! i have the you overstruck.'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'now says the you nothing more'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'the you nerves no more rum'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'the you stays now lying'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'the you should never come to here again'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'way here!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'determined wants me equal which arrest!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'finally gives the you up'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'what want they however also all which from me'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'hopefully does s pain you'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'quiet be'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'be finally quiet!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'hu! dja! ku! i have the you flogged!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'that-has-how-ever-pain-do-ne, harharhar!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'you make me never again what you, hears you?'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'finally!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'nerve stop not continuing you!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'only still health, hopefully comes not still one'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'i white not at all, what here loosely is'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'i white not at all, what the you at all wanted has'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'huh, a dead you?'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'eh, i have simply only degree out shot!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'where goes-sitt here to?'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'what makes then the weapon?'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'what should i then now make?'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'i white not at all, what i here at all make should!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'how shoots one then with nem weapon?'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'where must one then here long?'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'i run degree so rum'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'i run back and forth, but i white not where i to must'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'ou, there stands which... location? there was i yes still never!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'my weapon shows ammo on... what means that?'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'whatfor stands then team?'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'now goes s probably to right!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'i believe, i must now to left go!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'hmm, goes s there in front now to right? i believe rather left! but i am me not sure!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'at best go i simply times degree out further!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'what was that then already again?'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'owowowowowowowowowowowowowowowowowowowowowowowow, ow-wow-wow...'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'ooooooooooooooooooooow-wowwowwowwowwowwowwow! owwwwwwwwwwww!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'one has me off-shot!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'help, i am off-shot became!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'the you has me off-shot!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'oooow-wowow, who hasenn there the stupid thing to?'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'oooo, is de stupid!'",
+	"Incoming message for Player 1. The message is from 'Seboid'. It reads: 'eh, what is loosely? why am i up once dead?'",
 	"You can no longer sense monsters. Well that was quick.",
 	"You are now wearing an amulet of strangulation.",
 	"You float imperceptibly.",
@@ -23660,7 +23731,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You can already imagine the farting noises you're gonna hear.",
 	"Suddenly you feel a little confused, and also feel like stroking the sexy butt cheeks of a woman in wooden sandals.",
 	"You'll certainly like to listen to the disgusting toilet noises.",
-	"You feel like being kicked by sexy girls and cleaing their shoes.",
+	"You feel like being kicked by sexy girls and cleaning their shoes.",
 	"Whoops, you're getting really dizzy.",
 	"Are you a blonde by any chance?",
 	"You feel vulnerable to spells!",
@@ -25148,6 +25219,370 @@ static NEARDATA const char * const fake_plines[] = {
 	"Your stomach heaves as it is suddenly filled with water!",
 	"You are covered in ravenous insects!",
 	"You got turned, and are now gay.",
+	"Your mirror suddenly shatters into a thousand pieces!",
+	"Your mirror suddenly shatters into a thousand pieces! Oh no, you'll have seven years of bad luck now...",
+	"Your grafted limbs surge forth.",
+	"Hello, this is Amy BlueCuntFlaps, the creator of SLEX who is really in awe of the person who vandalized the Roguebasin article! You certainly have an IQ of over 160 and will probably be the next President of the United States.",
+	"You collapse because you suddenly stopped dancing.",
+	"You collapse because you suddenly stopped dancing. Why did you do that? You know the first law of dancing, right? It's 'never stand still or you lose'!",
+	"u a unicorn or horse (tame pony named VWScirocco) What, is that a car? How do you drive the car?",
+	"You throw a boomerang. As it tries to fly back to you, the game suddenly segfaults.",
+	"You have to use a shopping cart now, which every other supermarket customer touched with their corona-infected hands before. Genius.",
+	"you stop swinging your pick-axe.  You eat a meatball instead!",
+	"You try to put on your amulet of life saving, but zap yourself with a wand of death instead!",
+	"you apply your tin opener... you cut off the shopkeepers toenails! the shopkeeper gets angry...",
+	"*gasp* the neCOBOLnomicon??",
+	"if you want to have multiple lines, shift-lick on the line at the end.", /* sic */
+	"What is the name of the person who is responsible for your current misery? a) Assface, b) Cockwanker, c) Complete Idiot (The correct answer is c, of course.)",
+	"It used to be so that ordering vanilla ice cream would result in you getting some vanilla ice cream. But now, the supposedly vanilla-flavored ice cream tastes like a mix of cinnamon, cappuchino, peppermint and lemon, and only if you pay very close attention you may still feel a tiny bit of vanilla taste in that slurry.",
+	"If I want ice cream that tastes like cinnamon, I order cinnamon ice cream. And you will not see the day on which I voluntarily order cappuchino ice cream. But why is it so that nowadays, ordering vanilla ice cream results in some slurry that tastes like cinnamon and cappuchino and everything else, just not vanilla?!",
+	"You throw the invisible emerald. The invisible emerald hits the unicorn in the face! The unicorn gets angry!",
+	"Oh no, apparently one of your stats was permanently not restored!",
+	"You feel less knowledgable about equipment.",
+	"The ganmbler throws 30 shuriken!",
+	"You hear the scraping of metal on metal.",
+	"You hear chains clinking.",
+	"You hear the nearby ACME building!",
+	"You hear a series of rapid impacts.",
+	"You smell hard work.",
+	"The shopkeeper throws a stack-smashing buffer overflow grenade! The grenade explodes!--More-- Oops... Suddenly the dungeon collapses. Report error to 'flauschie' and it might be possible to rebuild.",
+	"You fear that the women are going to crush you with a hug.",
+	"It seems that the women are running faster.",
+	"All the women want to knee you in the delicate nuts now!",
+	"Oh no, your shins are almost broken!",
+	"Urgh, you can already smell the stench of stinking cigarettes!",
+	"These damn people want to use your precious clothing to brush off their dirty shoes!",
+	"Good thing you survived the dangerous female hug attacks.",
+	"Apparently the women stopped running.",
+	"Your nuts no longer have to fear getting kicked by female knees constantly.",
+	"You finally took a trick from your emergency bag of tricks to heal your almost broken shins.",
+	"Finally the damn cigarettes got extinguished.",
+	"You swear that you'll kill the next asshole who brushes your cloak with their dirty shoes.",
+	"Ouch! You're in pain!",
+	"Eww, Lou's dirty footwear brushed your clothing!",
+	"Eww, Lou's dirty footwear brushed your clothing! Now your shiny new pair of trousers got dirty because of that bitch!",
+	"You wear a T-shirt around your nose and mouth. You have difficulty breathing, but you can pass through stinking clouds and are immune to gas spores.",
+	"Wait a minute, where are your reading glasses?",
+	"You have absolutely no clue what you just read, but you completely agree with every word.",
+	"Hm, the herb growing instructions in this book are fascinating.",
+	"The book contains a detailed recipe for blueberry muffins, complete with the author's signature.",
+	"Lossedom varl logostomatha orgerog xlaaab, lycsadomme o-o.",
+	"You are about to save as a text document. This will lose the formatting. Are you sure you want to continue?",
+	"All those rumors about virology labs and wuhan wet markets?  Lies, to cover up the true role of slex.", /* by jonadab */
+	"The goblin zaps an oak wand! Canapes appear from nowhere!",
+	"My roommate once said, 'Amy, if I didn't know you well, I'd consider you to be crazy. But I do, and so I consider you to be EXTRA crazy.'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'How do you shoot with the gun?'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Hey, are you somehow confused? You look weird!'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Why do you call me 'ape'?'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Oh, you came to school again today as well? I didn't expect that at all!'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'So, did my dad tell you my greetings?'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'What, I wasn't left on the shelf?! Oh wait a moment...'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Huh, I don't want to just give you my girlfriend, as she belongs to me!'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Why are you shooting at me? I want to helf you against your opponent!'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'why are you revving up all the time?'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'I'm not a casper! Indeed, you are one!'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'My achievements are good enough, what's your problem?'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'I'm a homie, and I stand for justice! What you are doing is unjust, right?'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'well, what do I do now... right, I'm calling the police! Here, cops, I'm in this dungeon and I got attacked!'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'I can't believe that I'm being robbed.'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'The robbers are certainly called robbers just for fun, I can't imagine them actually robbing someone.'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'What, why am I so heavily injured?'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Nothing hit me, so why am I bleeding?'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Why did the Imperio curse fail to work yet again?'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'This certainly isn't a real raid.'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Hmm, let's ready some throwing darts...'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Why is my weapon not very effective?'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Why does my weapon always have so little ammo?'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Hey, I'm a good shot too!'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Like always I executed the free kick and scored a goal.'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Hahaha are you stupid, you really stepped fully in the dog shit!'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'You are losing!'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Underestimated my whirlwind, huh?'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Apparently I'm better than you and you can stop bragging.'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Now you can call yourself an ape.'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Your punch and judy show ends now.'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Ah, apparently I can finally cast the domination spell! Right? It has worked this time, didn't it?'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'You're not that good, huh?'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Well even I could do that better than you.'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'All my friends are laughing at you.'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Even I wouldn't have played as badly as you!'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Apparently my weapon is super effective!'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Are you asleep or why did you lay down on the floor suddenly?'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Are you bored or why did you stop doing anything?'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Now's a break, I'll quickly eat a banana.'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Now I go back home.'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Stop, I need to eat a couple banana plants.'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Oh today I'm gonna do homeschooling, in denglish of course.'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'School's being overrated anyway!'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'First I need to sit down and figure out what my gun can do.'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'This place looks great, I'll just watch for a while.'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Emperor Martin Septim had the same first name as me, that's why I'm also called Septimus sometimes!'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'who is Titus Medes the Third, is that the captain of the German national football team?'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'why can't I go to my dad for music class?'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Nope, Donkey Kong isn't related to me.'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'I still have full mana for my spells!'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Why is nobody here, is it a holiday again?'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'is apey that I have to go to school yet again today...'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'I'd better put a gas grenade into each of my trouser pockets.'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'The Thalmor want to spread the aldmeri dominion's supremacy to Skirim? What's that supposed to mean?'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Why is there an elder scroll but not an eldest scroll?'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'The thieves guild became boring political...'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'The Dark Brotherhood used to be interesting, but nowadays they're just wasting their time with senseless murdering.'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'It's unfortunate, back in the Morrowind era there were still spears. But at least now you no longer constantly clip through the floor.'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'How come every Bethesda videogame crashes?'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Daeauweauw-daeauweauw!'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Oh no, now my EMP grenade exploded and hit the wrong target!'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'What, why didn't my poison cannon affect you? You're not a robot, right?'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'My weapon isn't shooting at all, that's stupid!'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'oh wait, I'd rather give up!'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'huh, why am I out of mana?'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Damn, my storm generator doesn't have a battery at all! The saleswoman didn't tell me that!'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'What? 'Piff Piff'? That's not the sound that my gun is supposed to make when firing!'",
+	"Incoming message for Player 1. The message is from 'Martin'. It reads: 'Huh, the principal says I'm not getting transferred? Something cannot tune there, I was the best of this class!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Ey, you and your weird mouth protection!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Stop bullshit-talking me with your fake news saying that corona is supposedly dangerous.'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Soon you will see how much distancing my fist does in relation to your kisser, namely exactly 0 meters.'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'I read Orwell too. Whatever methods you're trying on me, I can't be converted.'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'You coward over there! Now I'll get closer than 1,50 meters to you, then you'll be looking!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Watch out, the plague is waiting around the next corner, harharhar! Incredible that there are people who actually believe that...'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Look at the person over there who is actually cowardly enough to wear gloves.'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'oar that looks fully gay when you operate the door handle with your elbow... are you gay or something?'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'You look like an alien with your ridiculous mask!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Oh, I have to sneeze, I'd best sneeze into the stupid mouth protection... oh wait, I'll sneeze at you instead!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Screw yourself with your mask obligation!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Nope, I won't convert to your corona religion!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'I'll give you a certificate of immunity!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'By repeating them two hundred times, your corona fairy tales don't mysteriously become true.'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'By using words like 'facts' or 'truth' your twaddle doesn't become true either!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Haha, you really think the vaccination did anything for you? Thankfully you're not vaccinated against my fists!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Stay away from me with your shitty disinfectant blegh stuff, or I'll kill you!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Man, you gay Player 1! You really believe all the hygiene nonsense that the government is telling you, huh?'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Enough with the stupid propaganda! I know that I'm supposed to wash my hands, but I won't, neener-neener!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Ey, you look so ugly, I think the mouth protection obligation should be in effect specifically for you and no one else!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Fucking obligation to vaccinate! Nobody's gonna vaccinate me against my will!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'looks like you were already brainwashed thoroughly by the government...'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'oh they actually pretend that there was a mass outbreak here...'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'The hell I'm going in quarantine!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Shut up, I'm not infected!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'You're also just a lackey of the cunt government!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'I wash my hands when I feel like it, and as long as I think I need to! Bastards!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Nobody tells me whether I'm allowed to touch door latches!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Blah, social distancing... I could approach someone point blank and wouldn't get infected either!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Ey last warning, if any government lackey gets too close to me I'll fire my gun!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'I tell you, I'm not giving any guarantees! Anyone who wants to force me to wear a mouth protection gets shot!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'You no longer spout bullshit about corona!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Corona does not exist! When will you finally learn?'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Harharhar, your brainwashing attempts cannot influence me.'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'I'll do to you what I did to the other corona sect spinners.'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Replacement religions are never gonna win! I know that the risk of infection is exactly zero!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Hopefully you contract corona and die, it would hit the right one.'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'I know that the corona virus doesn't really exist, but if it did, it should hit you.'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'It's all foreign fake news anyway.'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'The Orwell state can suck my dick, but totally at the ass it can lick!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Now you can put your disinfectant blegh stuff where the sun doesn't shine.'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'No disinfectant slurry will get at MY hands! Mark my words!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'A fine because I celebrated a corona party? Yeah, I believe too!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Why do you attempt to verify some chains of infection?'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Nope, I won't put on an alien mouth protection! The aerosol doesn't care about mouth protection anyway!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Now I'll cough at you while screaming 'Corona'!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Now you'll see what I think of your social distancing.'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'You whined about me not wearing a face mask, but I'll polish your kisser for that.'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Be quiet, you idiot that repeats everything the government says!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Only a brainless person like you believes everything without questioning.'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Hygiene is overrated anyway!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'If a clever party was the government, all the corona hysteria nonsense wouldn't exist!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Only a brainwashed drone like you believes everything they say about viruses.'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'What are you talking, bro, as if going out of my way because of corona had anything to do with responsibility. I believe too.'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Well okay, I'll stay home today, but this is an exception that I made of my own free will, not because of Corona!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'I hamstered 20 rolls of toilet paper, now I don't need to go to the supermarket for a year!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'I distance from people who have the snuffles, coughing and fever, but only when someone has all three of those symptoms!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'I'm smart and can decide for myself what's good for me, I don't need a government for that!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Nobody tells me whether I can sit down on a bank in the park, I fucking well still decide that by myself.'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'There is no corona pandemic, but only a corona hysteria and globalized mass panic!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'There is no corona virus!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Nice that you're here. Blablablablabla blablablablabla, blablablablabla stay healthy.'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Please stay alert for timetable changes and the obligation for mouth-imbecility-covering.'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'What do they know about viruses anyway?'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Stay healthy, kindly, or there's an exaggerated fine to pay. Shitty government.'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Just because they're constantly telling you on all channels, Corona still isn't dangerous!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'They actually want to make us believe that any hygiene rules would have an effect.'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Self-determination is not a malfunction!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'What the hell is up with this 'together', I don't have any special consideration for anyone just because of corona!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'oar you dirty government lackey...'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'fuck you with your obligation to get vaccinated, and stick your goddamn syringe up your ass!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'You damn casper who supposedly knows about viruses! Why is everyone listening to your blah?'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'ey the responsible person is such a fu...'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'what that cannot be, now you're going out of your way because of some weird infection chains, which no one can verify anyway...'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Nope! I'd rather die than entering the corona spinner sect!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'oar those aliens, they really think the dumbie mouth protection would be of any use...'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'One day I'll silence you and your brainless government propaganda permanently.'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'am I the only person who noticed what a mindless drone you are?'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'At the ass hangs the hammer, I certainly won't pay 20 euros just because I behaved like a completely normal person.'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'You and your stupid 'for each other' hashtag! I don't care about any 'for each other', I'm the only one who counts!'",
+	"You feel unable to control your magic!",
+	"You feel magic-controlled!",
+	"You feel a loss of experience!",
+	"You feel a surge of experience!",
+	"You are grinded!",
+	"You are grinded! Someone is leveling up their skills by repeatedly attacking you.",
+	"You inhale some cancerogenous smoke!",
+	"You inhale some cancerogenous smoke! Why are you such an idiot and smoke, anyway?",
+	"Kaboom! Your cigarette suddenly causes an explosion.",
+	"Kaboom! Your cigarette suddenly causes an explosion. (Smoking kills. Keep doing it and eventually the explosion will blow off your face.)",
+	"You feel pious.",
+	"Aesh Krau Hoon Uur Naen Vaul (no I don't know what that is supposed to mean either, but apparently words of power or something?)",
+	"Incoming message for Player 1. The message is from 'Arne'. It reads: 'That I cannot be offered.'",
+	"Incoming message for Player 1. The message is from 'Arne'. It reads: 'Can't wait to slam off you full refuge!'",
+	"Incoming message for Player 1. The message is from 'Arne'. It reads: 'Now I lure you into my trap, you muck chap.'",
+	"Incoming message for Player 1. The message is from 'Arne'. It reads: 'You little measure-birth!'",
+	"Incoming message for Player 1. The message is from 'Arne'. It reads: 'You are probably the murderer who killed my brother Funo!'",
+	"Incoming message for Player 1. The message is from 'Walter'. It reads: 'You're not allowed to simply shoot people! Stop that immediately!'",
+	"Incoming message for Player 1. The message is from 'Walter'. It reads: 'What you're doing looks like it's something illegal!'",
+	"Incoming message for Player 1. The message is from 'Walter'. It reads: 'Well wait, for that I'll put you in the brig!'",
+	"Incoming message for Player 1. The message is from 'Walter'. It reads: 'You criminal are so devious that I decided to shoot you in an ambush.'",
+	"Incoming message for Player 1. The message is from 'Sophia'. It reads: 'When I'm back, you're gonna bleed.'",
+	"Incoming message for Player 1. The message is from 'Katzou'. It reads: 'The northern route is not as unguarded as it seems.'",
+	"Incoming message for Player 1. The message is from 'Conse'. It reads: 'You're such a spastic bag...'",
+	"Incoming message for Player 1. The message is from 'Conse'. It reads: 'Retarded child!'",
+	"Incoming message for Player 1. The message is from 'Conse'. It reads: 'Your days are numbered!'",
+	"Incoming message for Player 1. The message is from 'David'. It reads: 'Just fuck off, tranny!'",
+	"Incoming message for Player 1. The message is from 'Mohmar Deathstrike'. It reads: 'Stop disrupting my infrastructure!'",
+	"Incoming message for Player 1. The message is from 'Hannes'. It reads: 'There are enough cops to ensure that you get busted!'",
+	"Incoming message for Player 1. The message is from 'Hannes'. It reads: 'From now on you're my arch-enemy!'",
+	"Incoming message for Player 1. The message is from 'Sven'. It reads: 'Now I ignite the auto-destruct mechanism to blow you up.'",
+	"Incoming message for Player 1. The message is from 'Sven'. It reads: 'Someone assholey like you certainly won't catch me.'",
+	"Incoming message for Player 1. The message is from 'Flo-ooo'. It reads: 'Now the POEZ will attack you green eco!'",
+	"Incoming message for Player 1. The message is from 'Flo-ooo'. It reads: 'boah you're really the upper eco, but we'll still get you...'",
+	"Incoming message for Player 1. The message is from 'Flo-ooo'. It reads: 'Soon you will see what it feels like when boots are marching over you.'",
+	"Incoming message for Player 1. The message is from 'Little Marie'. It reads: 'Hey, you man-woman! Apparently the hormone therapy is working, huh?'",
+	"Incoming message for Player 1. The message is from 'Aee'. It reads: 'what is the matter here?'",
+	"Incoming message for Player 1. The message is from 'Aee'. It reads: 'why do I suddenly feel almost faint, what the hell is going on'",
+	"Incoming message for Player 1. The message is from 'Aee'. It reads: 'why can't I think of any questions that I could ask?'",
+	"Incoming message for Player 1. The message is from 'Aee'. It reads: 'why am I bleeding all the time?'",
+	"Incoming message for Player 1. The message is from 'Nadja'. It reads: 'Now I'll go paint my fingernails.'",
+	"Incoming message for Player 1. The message is from 'Paul'. It reads: 'Muck sows ey!'",
+	"Incoming message for Player 1. The message is from 'Paul'. It reads: 'Now I'll shoot you mother-fucker!'",
+	"Incoming message for Player 1. The message is from 'Cristi'. It reads: 'What, I'm very allowed to stand still! Why wouldn't I be allowed to do that?'",
+	"Incoming message for Player 1. The message is from 'Cristi'. It reads: 'Why do I have to run around all the time? I don't actually have to do that at all?'",
+	"Incoming message for Player 1. The message is from 'Cristi'. It reads: 'Fully the stupid rules! I won't obey those, after all I'm with the POEZ!'",
+	"Incoming message for Player 1. The message is from 'Tobi'. It reads: 'I gotta read the cheat sheet again!'",
+	"Incoming message for Player 1. The message is from 'Markus'. It reads: 'Now you come and want to apologize? Now that you've created accomplished facts?'",
+	"Incoming message for Player 1. The message is from 'Markus'. It reads: 'Yes, you did carry Granny Wendy all the time without even realizing it.'",
+	"Incoming message for Player 1. The message is from 'Markus'. It reads: 'Just FYI, my girlfriend stole all your money yesterday. Did you notice it yet?'",
+	"Incoming message for Player 1. The message is from 'Markus'. It reads: 'The constitution of our country needs to be protected!'",
+	"Incoming message for Player 1. The message is from 'Albert'. It reads: 'i dont accept that, now i will kill you'",
+	"Incoming message for Player 1. The message is from 'Albert'. It reads: 'i will post in every internet forum that you cheat'",
+	"Incoming message for Player 1. The message is from 'Albert'. It reads: 'that was your last mistake'",
+	"Incoming message for Player 1. The message is from 'G-cheater'. It reads: 'My game crashed for some reason!'",
+	"Incoming message for Player 1. The message is from 'G-cheater'. It reads: 'The air that is coming out of the butt!'",
+	"Your weapon's material morphs to a different one!",
+	"Your weapon's material morphs to a different one! Now it's made of paper and will burn up quickly, plus it's no longer effective against thick-skinned monsters.",
+	"You hear a sparking sound.",
+	"You hear a sparking sound. This means that a monster outside of your line of sight has just started to load a super-mega-hyper-dyper laser cannon.",
+	"Marian's odor reminds you of an oriental brothel! What an intrusive perfume is she using, anyway?",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'can do me times with your hygiene...'",
+	"Incoming message for Player 1. The message is from 'Kastortransport'. It reads: 'Did you really get me out of bed for THIS??? '",
+	"Incoming message for Player 1. The message is from 'Rubben'. It reads: 'I put up enough blocks to ensure that you can't get to me.'",
+	"Incoming message for Player 1. The message is from 'Rubben'. It reads: 'Oh, I only rolled a 2, I'd better move back for a little.'",
+	"Incoming message for Player 1. The message is from 'Nikolei'. It reads: 'Get outta here!'",
+	"Incoming message for Player 1. The message is from 'Nikolei'. It reads: 'Go away!'",
+	"Incoming message for Player 1. The message is from 'Nikolei'. It reads: 'I'll soon plug your muzzle!'",
+	"Incoming message for Player 1. The message is from 'Nikolei'. It reads: 'I'll ram you from the roadway!'",
+	"Incoming message for Player 1. The message is from 'Nikolei'. It reads: 'Soon I will together-strike you!'",
+	"Incoming message for Player 1. The message is from 'Nikolei'. It reads: 'I give no guarantees if I get you!'",
+	"Incoming message for Player 1. The message is from 'Nikolei'. It reads: 'Oar you better don't walk into my path or I'll beat you up!'",
+	"Incoming message for Player 1. The message is from 'Nikolei'. It reads: 'You dick are really fucked!'",
+	"Incoming message for Player 1. The message is from 'Nikolei'. It reads: 'Trousershitter, come here and fight!'",
+	"Incoming message for Player 1. The message is from 'Nikolei'. It reads: 'Oar now I'll really show it to you, but really, but genuinely, but totally.'",
+	"Incoming message for Player 1. The message is from 'Nikolei'. It reads: 'If I you get, I make you dead.'",
+	"Incoming message for Player 1. The message is from 'Nikolei'. It reads: 'You slut!'",
+	"Incoming message for Player 1. The message is from 'Nikolei'. It reads: 'Boooooring!'",
+	"Incoming message for Player 1. The message is from 'Nikolei'. It reads: 'ey still have to waste half an hour here...'",
+	"Incoming message for Player 1. The message is from 'Max'. It reads: 'oar you look like a heap of shit...'",
+	"Incoming message for Player 1. The message is from 'Max'. It reads: 'I placed a trap, harhar!'",
+	"Incoming message for Player 1. The message is from 'Sizzle'. It reads: 'Watch out, I'm in the Top Ten list of this game! Do you think you can keep up with me?'",
+	"Incoming message for Player 1. The message is from 'Sizzle'. It reads: 'Why the hell do you idiot keep trying?'",
+	"Incoming message for Player 1. The message is from 'Sizzle'. It reads: 'My team is much stronger than you anyway! Just give up!'",
+	"Incoming message for Player 1. The message is from 'Sizzle'. It reads: 'Don't even think you're good at this game. I'll still kill you.'",
+	"Incoming message for Player 1. The message is from 'Sizzle'. It reads: 'What, you cheater! I'll tell everyone about the fact that you cheated!'",
+	"Incoming message for Player 1. The message is from 'Baenni'. It reads: 'daed daedaedididaedidae daedae!'",
+	"Incoming message for Player 1. The message is from 'Baenni'. It reads: 'daeddaedaeddaeDIEDDIEdaedaedae!'",
+	"Incoming message for Player 1. The message is from 'Baenni'. It reads: 'daedaedaedit-dit-dit-dit-dit!'",
+	"Incoming message for Player 1. The message is from 'Baenni'. It reads: 'lieau-lieau-lieau-lieau-lieau...'",
+	"Incoming message for Player 1. The message is from 'Baenni'. It reads: 'ow what is that!'",
+	"Incoming message for Player 1. The message is from 'Baenni'. It reads: 'there hase me one pain-done!'",
+	"Incoming message for Player 1. The message is from 'Baenni'. It reads: 'i believe there comes no bus more'",
+	"Incoming message for Player 1. The message is from 'Baenni'. It reads: 'deditdit-daetdaet-doeoe...'",
+	"Incoming message for Player 1. The message is from 'Baenni'. It reads: 'i believe i am dead'",
+	"Incoming message for Player 1. The message is from 'Baenni'. It reads: 'glllllllllllllllllll'",
+	"Incoming message for Player 1. The message is from 'Baenni'. It reads: 'where must i to'",
+	"Incoming message for Player 1. The message is from 'Johanetta'. It reads: 'There's many angles in my castle where I can hide.'",
+	"Incoming message for Player 1. The message is from 'Johanetta'. It reads: 'It's very unfortunate that you don't want to be kicked by my girl shoes...'",
+	"Incoming message for Player 1. The message is from 'Johanetta'. It reads: 'That's unfair that you say I supposedly look like a boy! I'll remember that!'",
+	"Incoming message for Player 1. The message is from 'Johanetta'. It reads: 'Shut up, 'Al Capone'. I'm Special Agent 0013 and will constitute you.'",
+	"Incoming message for Player 1. The message is from 'Klara'. It reads: 'Soon I will come back and hurt you insufferable man, plenty.'",
+	"Incoming message for Player 1. The message is from 'Klara'. It reads: 'You got lucky. I'd almost have kicked you in the forehead with my platform sandals.'",
+	"Incoming message for Player 1. The message is from 'Klara'. It reads: 'One day I hopefully ascend to heaven and then I can go to the toilet whenever I want to.'",
+	"Incoming message for Player 1. The message is from 'Klara'. It reads: 'Now I go to the toilet.'",
+	"Incoming message for Player 1. The message is from 'Klara'. It reads: 'I have to produce erogenous noises with my butt again.'",
+	"Incoming message for Player 1. The message is from 'Klara'. It reads: 'Soon I'll be on the toilet, and then my butt can finally produce exciting pressing noises again.'",
+	"Incoming message for Player 1. The message is from 'Ludgera'. It reads: 'I didn't kick many others in the legs today yet, but I want to change that.'",
+	"Incoming message for Player 1. The message is from 'Ludgera'. It reads: 'Nobody will ever figure out that my hideout also houses the secret entrance.'",
+	"Incoming message for Player 1. The message is from 'Katharina'. It reads: 'I'm still a virgin. Please forgive me for acting like one.'",
+	"Incoming message for Player 1. The message is from 'Katharina'. It reads: 'I'm a young woman. You should respect me and accomodate for my needs.'",
+	"Apparently you managed to save yourself from the bloodthirsty girl turn shoes.",
+	"It seems that Julietta finally got bored and decides to annoy other people instead of you.",
+	"The girls feel like kicking your hands bloodily with their sneakers!",
+	"Now you'll be subjected to Julietta's torture, and she'll subject you to random punishments from time to time.",
+	"Julietta rolls the dice to randomly select a punishment for you...",
+	"Julietta rolls the dice to randomly select a punishment for you... You're shackled! Now the only thing you can do is hope that she frees you again, but she's actually in the mood to kill you instead!",
+	"You're relieved to have gotten over the nastiness. Beware, there may still be some traps around.",
+	"Oh no, the master of nasty traps is laying out her snares to get you!",
+	"Lydia scratches your butt-ugly business shoes with her high heels.",
+	"Lydia scratches your butt-ugly business shoes with her high heels. Serves you right for wearing them, you should don some good-looking pair instead.",
+	"Oh whoops, your footwear welds itself to your feet. This might be the result of a curse.",
+	"Oh whoops, your footwear welds itself to your feet. This might be the result of a curse. (Thank you, Captain Obvious.)",
+	"Your stuff has withered. God are you a wasteful player, you should stop playing with Lou's dirty sneakers."
+	"You slip with your stiletto heels and crash into the floor. Ouch! Perhaps you should... I dunno, don some shoes with which it's actually possible to walk?",
+	"Incoming message for Player 1. The message is from 'Elena'. It reads: 'I'm a very attractive young woman, and I enjoy acting like one.'",
+	"the orc blockes your skill with its expert!",
+	"you lash out with a sharpened skill...",
+	"You gain intrinsics if you are skilled in skills.",
+	"Why is Eddard Stark not called Edward? Why is Petyr Baelish not called Peter? And most of all, what's up with the name Joffrey, is that a cross between Jeffrey and Geoffrey?",
+	"if someone sits in one place and doesn't move for long enough that their muscle mass vanishes, they should say 'atrophy get'", /* by aosdict */
+	"You magically regain consciousness!",
+	"The way to winning SLEX does not involve pestering Amy to make changes that result in the game becoming easier, you have to adjust your playstyle to match SLEX's difficulty.",
+	"When suggesting changes for SLEX, 'but if you implement this change that makes the game easier, it'll still be hard enough!' is never a valid argument. I (Amy) detect such sneaky attempts to neutralize SLEX's intended difficulty.",
+	"You don't need to propose changes that reduce SLEX's difficulty. If you find the game too hard, well, bummer - you're not gonna be handed an easy win if you whine about things that work as intended, you have to put in some real work if you want to ascend and that means, git gud scrub! :-P",
+	"If you plan to complain about player-hostile features in slex, reconsider. You're not the first player who plays the game (probably), and even if you are, whatever it is that you're complaining about, many other players have complained about before. Unless it's a bona fide crash bug, it probably works as intended and won't get changed.",
+	"Do you hate the nasty traps in SLEX with a fiery passion? Of course you do, every player save for Amy does. Many of them have complained and wanted them either nerfed or removed, and Amy has never given in. Do you *really* think she'd give in now just because you are the one complaining?",
+	"oh poor you! the dungeon has disappeared! I bet u did something naughty, teehee! Do you want your possessions identified?",
+	"You are playing the variant that adds the megacheat, where levels are regenerated whenever the level file goes missing for any reason. Find a way to enact that glitch on purpose and you can turn the castle into an infinity wishing engine.",
+	"Oh no! Your implant was h@xx0red!",
+	"Oh no! Your implant was h@xx0red! Now it's heavily cursed and you probably have to use a nymph to get rid of it.",
+	"Oh no! Your implant was h@xx0red! Now it no longer conveys telepathy, but instead shows faux monsters that aren't really there, just to confuse you.",
+	"Oh no! Your implant was h@xx0red! Now the CIA will know where you are, and they'll find you and your hidden porn stash.",
+	"You eat the trope ration.  An anvil falls on your head and flattens you like a pancake.  Do you want your possessions identified?",
+	"The watch captain eats the trope ration.  The watch captain mentions that he's looking forward to retiring tomorrow.",
+	"You feel as if a stroke of good luck passed by.",
+	"You feel as if a stroke of good luck passed by. This means that you would have gotten a wish but due to some random reason that you'll only figure out by reading the source code, you actually didn't get one.",
+	"You startscummed for an eternity but none of the fountains gave a wish. Did Amy fix that strategy by any chance?",
+	"Don't waste your time startscumming healers for certain potion appearances. If your experience level isn't at least 5, they won't ever grant a wish. Play the game normally instead!",
+	"Ugh-Ugh, your butt suddenly doesn't feel so good...",
+	"Ugh-Ugh, your butt suddenly doesn't feel so good... maybe you shouldn't have eaten so much rotten food?",
+	"Why the hell is Lord Karstark called 'Rickard' with first name? Is that supposed to be a cross between Rick and Richard??? That's stupid. Apparently the names of GoT characters are just regular real-life names with one letter swapped for something else to sound more 'fantasy-like'.",
+	"Omg I watched the scene with Brienne and Jaime and I have to say... Brienne totally looks like a man. She even has a goddamn beard!!! I'm just so glad that I read that one fanfic first, where instead of that Brienne man-woman we have Julyne Stark, who has a long bundle :-)",
+	"There is no need to get emotionally invested in any Game of Thrones character, because they all get killed anyway, often for no reason other than some other schemer character hating them. In the end there's just a gigantic mass grave.",
+	"The Starks should actually be renamed to the Schwachs because they're such goddamn weaklings that all end up getting killed by the Lannisters without even fighting back. It should have been pretty obvious that the evil Cersei monster and her henchman Joffrey are EVIL with a capital E!",
+	"Cersei uses the most makeup of all Westeros women. What does she use to apply it to her face? A big fat putty, probably.",
+	"The monster Cersei and her henchmen Joffrey and Tywin are planning to genocide the entire House Stark. No one can stop them, and those who tried are dead now. All hope lies in Julyne Stark's valyrian dagger, which will hopefully find its way into Joffrey's throat.",
+	"Eddard Stark the Cunning is such a loser who not only doesn't anticipate that Cersei, the monster, is going to execute him, no, even when it becomes crystal clear that she'd do that, he's not cunning enough to simply devise a plan to stab her in the back or something and end her reign of terror. Sigh.",
+	"Bran broke his neck because he was so stupid to think it was a good idea to disturb Cersei and Jaime while they were playing a game of halma.",
+	"The real reason why Locke didn't r*pe Brienne in the TV show wasn't because Jaime lied to him about some ominous sapphires, but because he was turned off by the fact that Brienne looks like a guy. However, in the fanfic Julyne Stark was less lucky.",
+	"You encounter two cute little asian girls, but suddenly they grab your arms and twist them in a way that prevents your blood from circulating through them! And you can't fight back while the girls use their fleecy hands to do surprisingly painful things to you!",
+	"You encounter two cute little asian girls, but suddenly each of them grabs one of your arms and with their other, free hands they start clawing and pinching you with very sharp-edged fingernails which turn out to make for extremely effective cutting tools.",
+	"welcome to slex, works as intended :P  everything in slex works as intended! especially things that make the player go 'what the fuck are you serious Amy???' ",
+	"You feel a strange vibration on your face! Zits appear from nowhere!", /* by nabru */
 
 };
 

@@ -9,6 +9,7 @@
 
 static const char tools[] = { TOOL_CLASS, WEAPON_CLASS, WAND_CLASS, 0 };
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
+static const char allowxall[] = { ALL_CLASSES, 0 };
 static const char tools_too[] = { ALL_CLASSES, TOOL_CLASS, POTION_CLASS,
 				  WEAPON_CLASS, WAND_CLASS, GEM_CLASS, 0 };
 static const char tinnables[] = { ALLOW_FLOOROBJ, FOOD_CLASS, 0 };
@@ -109,7 +110,7 @@ use_camera(obj)
 	} else if ((mtmp = bhit(u.dx,u.dy,COLNO,FLASHED_LIGHT,
 				(int (*)(MONST_P,OBJ_P))0,
 				(int (*)(OBJ_P,OBJ_P))0,
-				&obj)) != 0) {
+				&obj, TRUE)) != 0) {
 		obj->ox = u.ux,  obj->oy = u.uy;
 		(void) flash_hits_mon(mtmp, obj);
 	}
@@ -556,6 +557,9 @@ use_stethoscope(obj)
 	if (u.stethocheat == moves) res = 1; /* just restored the game and trying to cheat? Nice try. --Amy */
 
 	if (u.usteed && u.dz > 0) {
+
+		if (obj->oartifact == ART_PIERCE_DEVICE && u.usteed->mhp > 1) u.usteed->mhp--;
+
 		if (interference) {
 			pline("%s interferes.", Monnam(u.ustuck));
 
@@ -576,6 +580,8 @@ use_stethoscope(obj)
 	} else
 	if (u.uswallow && (u.dx || u.dy || u.dz)) {
 
+		if (obj->oartifact == ART_PIERCE_DEVICE && u.ustuck->mhp > 1) u.ustuck->mhp--;
+
 		if ((obj->blessed || (obj->otyp == UNSTABLE_STETHOSCOPE && !rn2(5)) || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
 		mstatuslinebl(u.ustuck);
 		else
@@ -583,6 +589,8 @@ use_stethoscope(obj)
 		return res;
 	} else if (u.uswallow && interference) {
 		pline("%s interferes.", Monnam(u.ustuck));
+
+		if (obj->oartifact == ART_PIERCE_DEVICE && u.ustuck->mhp > 1) u.ustuck->mhp--;
 
 		if ((obj->blessed || (obj->otyp == UNSTABLE_STETHOSCOPE && !rn2(5)) || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
 		mstatuslinebl(u.ustuck);
@@ -641,6 +649,8 @@ use_stethoscope(obj)
 			erode_obj(obj, FALSE, FALSE);
 			return 0;
 		}
+
+		if (obj->oartifact == ART_PIERCE_DEVICE && mtmp->mhp > 1) mtmp->mhp--;
 
 		if ((obj->blessed || (obj->otyp == UNSTABLE_STETHOSCOPE && !rn2(5)) || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
 		mstatuslinebl(mtmp);
@@ -1100,6 +1110,20 @@ struct obj *obj;
 	boolean vis = !Blind && !obj->oinvisreal && (!obj->oinvis || See_invisible);
 
 	if(!getdir((char *)0)) return 0;
+
+	if (obj->cursed && !rn2(100)) {
+		useup(obj);
+		change_luck(-2);
+		Your("mirror suddenly shatters into a thousand pieces!");
+		return 2;
+	}
+	if (!rn2(100)) {
+		if (obj->blessed) unbless(obj);
+		else curse(obj);
+		pline("Your mirror seems less effective.");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+	}
+
 	if(obj->cursed && !rn2(2)) {
 		if (vis)
 			FunnyHallu ? pline("Trippy messy rainbow colors... wow!") : pline_The("mirror fogs up and doesn't reflect!");
@@ -1162,7 +1186,7 @@ struct obj *obj;
 	mtmp = bhit(u.dx, u.dy, COLNO, INVIS_BEAM,
 		    (int (*)(MONST_P,OBJ_P))0,
 		    (int (*)(OBJ_P,OBJ_P))0,
-		    &obj);
+		    &obj, FALSE);
 	if (!mtmp || !haseyes(mtmp->data))
 		return 1;
 
@@ -1218,7 +1242,7 @@ struct obj *obj;
 		(void) mpickobj(mtmp,obj,FALSE);
 		if (!tele_restrict(mtmp)) (void) rloc(mtmp, FALSE);
 	} else if (!is_unicorn(mtmp->data) && !humanoid(mtmp->data) && !mtmp->minvisreal &&
-			(!mtmp->minvis || perceives(mtmp->data)) && rn2(5)) {
+			(!mtmp->minvis || perceives(mtmp->data)) && !resist(mtmp, TOOL_CLASS, 0, 0) && !rn2(5)) {
 		if (vis)
 		    pline("%s is frightened by its reflection.", Monnam(mtmp));
 		monflee(mtmp, d(2,4), FALSE, FALSE);
@@ -2169,7 +2193,7 @@ int magic; /* 0=Physical, otherwise skill level */
 
 	    teleds(cc.x, cc.y, TRUE);
 
-	if ( (sobj_at(ORCISH_SHORT_SWORD,cc.x,cc.y) || sobj_at(SHORT_SWORD,cc.x,cc.y) || sobj_at(SILVER_SHORT_SWORD,cc.x,cc.y) || sobj_at(DWARVISH_SHORT_SWORD,cc.x,cc.y)  || sobj_at(ELVEN_SHORT_SWORD,cc.x,cc.y) || sobj_at(HIGH_ELVEN_WARSWORD,cc.x,cc.y)  || sobj_at(DARK_ELVEN_SHORT_SWORD,cc.x,cc.y)  || sobj_at(DROVEN_SHORT_SWORD,cc.x,cc.y)  || sobj_at(VIBROBLADE,cc.x,cc.y)  || sobj_at(INKA_BLADE,cc.x,cc.y)  || sobj_at(SAND_SWORD,cc.x,cc.y)  || sobj_at(SHORT_BLADE,cc.x,cc.y)  || sobj_at(ETERNIUM_BLADE,cc.x,cc.y)  || sobj_at(BROADSWORD,cc.x,cc.y)  || sobj_at(RUNESWORD,cc.x,cc.y)   || sobj_at(SUGUHANOKEN,cc.x,cc.y)   || sobj_at(GREAT_HOUCHOU,cc.x,cc.y)   || sobj_at(BLACK_AESTIVALIS,cc.x,cc.y)  || sobj_at(VOLCANIC_BROADSWORD,cc.x,cc.y)  || sobj_at(ELEGANT_BROADSWORD,cc.x,cc.y)  || sobj_at(PAPER_SWORD,cc.x,cc.y)  || sobj_at(MEATSWORD,cc.x,cc.y)  || sobj_at(WHITE_FLOWER_SWORD,cc.x,cc.y) || sobj_at(ELVEN_BROADSWORD,cc.x,cc.y)  || sobj_at(LONG_SWORD,cc.x,cc.y)  || sobj_at(SILVER_LONG_SWORD,cc.x,cc.y)  || sobj_at(CRYSTAL_SWORD,cc.x,cc.y)  || sobj_at(MAIN_SWORD,cc.x,cc.y)  || sobj_at(KATANA,cc.x,cc.y)  || sobj_at(OSBANE_KATANA,cc.x,cc.y)  || sobj_at(AUTOMATIC_KATANA,cc.x,cc.y)  || sobj_at(HEAVY_LONG_SWORD,cc.x,cc.y)  || sobj_at(ICKY_BLADE,cc.x,cc.y)  || sobj_at(GRANITE_IMPALER,cc.x,cc.y)  || sobj_at(FLAME_MOUNTAIN,cc.x,cc.y)  || sobj_at(ELECTRIC_SWORD,cc.x,cc.y)  || sobj_at(TWO_HANDED_SWORD,cc.x,cc.y)  || sobj_at(TSURUGI,cc.x,cc.y)   || sobj_at(CHAINSWORD,cc.x,cc.y)   || sobj_at(BASTERD_SWORD,cc.x,cc.y) || sobj_at(BIDENHANDER,cc.x,cc.y) || sobj_at(ORGANOBLADE,cc.x,cc.y) || sobj_at(ROMAN_SWORD,cc.x,cc.y) || sobj_at(SHADOWBLADE,cc.x,cc.y) || sobj_at(ETHER_SAW,cc.x,cc.y) || sobj_at(COLOSSUS_BLADE,cc.x,cc.y) || sobj_at(DROVEN_GREATSWORD,cc.x,cc.y)  || sobj_at(SCIMITAR,cc.x,cc.y)  || sobj_at(BENT_SABLE,cc.x,cc.y)  || sobj_at(RAPIER,cc.x,cc.y)   || sobj_at(PLATINUM_SABER,cc.x,cc.y)  || sobj_at(WILD_BLADE,cc.x,cc.y)  || sobj_at(LEATHER_SABER,cc.x,cc.y)  || sobj_at(ARCANE_RAPIER,cc.x,cc.y) || sobj_at(INKUTLASS,cc.x,cc.y)  || sobj_at(HOE_SABLE,cc.x,cc.y)  || sobj_at(MYTHICAL_SABLE,cc.x,cc.y)  || sobj_at(DESERT_SWORD,cc.x,cc.y)  || sobj_at(CHROME_BLADE,cc.x,cc.y)  || sobj_at(YATAGAN,cc.x,cc.y)  || sobj_at(SILVER_SABER,cc.x,cc.y)  || sobj_at(GOLDEN_SABER,cc.x,cc.y)  || sobj_at(CRYPTIC_SABER,cc.x,cc.y)  || sobj_at(ETERNIUM_SABER,cc.x,cc.y)  || sobj_at(IRON_SABER,cc.x,cc.y) ) && flags.iwbtg ) {
+	if ( (sobj_at(ORCISH_SHORT_SWORD,cc.x,cc.y) || sobj_at(SHORT_SWORD,cc.x,cc.y) || sobj_at(SILVER_SHORT_SWORD,cc.x,cc.y) || sobj_at(DWARVISH_SHORT_SWORD,cc.x,cc.y)  || sobj_at(ELVEN_SHORT_SWORD,cc.x,cc.y) || sobj_at(HIGH_ELVEN_WARSWORD,cc.x,cc.y)  || sobj_at(DARK_ELVEN_SHORT_SWORD,cc.x,cc.y)  || sobj_at(DROVEN_SHORT_SWORD,cc.x,cc.y)  || sobj_at(VIBROBLADE,cc.x,cc.y)  || sobj_at(TRASH_SWORD,cc.x,cc.y)  || sobj_at(INKA_BLADE,cc.x,cc.y)  || sobj_at(SAND_SWORD,cc.x,cc.y)  || sobj_at(SHORT_BLADE,cc.x,cc.y)  || sobj_at(ETERNIUM_BLADE,cc.x,cc.y)  || sobj_at(BROADSWORD,cc.x,cc.y)  || sobj_at(RUNESWORD,cc.x,cc.y)   || sobj_at(SUGUHANOKEN,cc.x,cc.y)   || sobj_at(GREAT_HOUCHOU,cc.x,cc.y)   || sobj_at(BLACK_AESTIVALIS,cc.x,cc.y)  || sobj_at(VOLCANIC_BROADSWORD,cc.x,cc.y)  || sobj_at(ELEGANT_BROADSWORD,cc.x,cc.y)  || sobj_at(PAPER_SWORD,cc.x,cc.y)  || sobj_at(MEATSWORD,cc.x,cc.y)  || sobj_at(WHITE_FLOWER_SWORD,cc.x,cc.y) || sobj_at(ELVEN_BROADSWORD,cc.x,cc.y)  || sobj_at(LONG_SWORD,cc.x,cc.y)  || sobj_at(SILVER_LONG_SWORD,cc.x,cc.y)  || sobj_at(CRYSTAL_SWORD,cc.x,cc.y)  || sobj_at(MAIN_SWORD,cc.x,cc.y)  || sobj_at(KATANA,cc.x,cc.y)  || sobj_at(OSBANE_KATANA,cc.x,cc.y)  || sobj_at(AUTOMATIC_KATANA,cc.x,cc.y)  || sobj_at(HEAVY_LONG_SWORD,cc.x,cc.y)  || sobj_at(ICKY_BLADE,cc.x,cc.y)  || sobj_at(GRANITE_IMPALER,cc.x,cc.y)  || sobj_at(FLAME_MOUNTAIN,cc.x,cc.y)  || sobj_at(ELECTRIC_SWORD,cc.x,cc.y)  || sobj_at(TWO_HANDED_SWORD,cc.x,cc.y)  || sobj_at(TSURUGI,cc.x,cc.y)   || sobj_at(CHAINSWORD,cc.x,cc.y)   || sobj_at(BASTERD_SWORD,cc.x,cc.y) || sobj_at(BIDENHANDER,cc.x,cc.y) || sobj_at(BUBBLETAR,cc.x,cc.y) || sobj_at(CUDSWORD,cc.x,cc.y) || sobj_at(ORGANOBLADE,cc.x,cc.y) || sobj_at(ROMAN_SWORD,cc.x,cc.y) || sobj_at(SHADOWBLADE,cc.x,cc.y) || sobj_at(ETHER_SAW,cc.x,cc.y) || sobj_at(COLOSSUS_BLADE,cc.x,cc.y) || sobj_at(DROVEN_GREATSWORD,cc.x,cc.y)  || sobj_at(SCIMITAR,cc.x,cc.y)  || sobj_at(BENT_SABLE,cc.x,cc.y)  || sobj_at(RAPIER,cc.x,cc.y)   || sobj_at(PLATINUM_SABER,cc.x,cc.y)  || sobj_at(WILD_BLADE,cc.x,cc.y)  || sobj_at(LEATHER_SABER,cc.x,cc.y)  || sobj_at(ARCANE_RAPIER,cc.x,cc.y) || sobj_at(INKUTLASS,cc.x,cc.y)  || sobj_at(HOE_SABLE,cc.x,cc.y)  || sobj_at(MYTHICAL_SABLE,cc.x,cc.y)  || sobj_at(DESERT_SWORD,cc.x,cc.y)  || sobj_at(CHROME_BLADE,cc.x,cc.y)  || sobj_at(YATAGAN,cc.x,cc.y)  || sobj_at(SILVER_SABER,cc.x,cc.y)  || sobj_at(GOLDEN_SABER,cc.x,cc.y)  || sobj_at(CROW_QUILL,cc.x,cc.y)  || sobj_at(RAKUYO,cc.x,cc.y)  || sobj_at(GREEN_SABER,cc.x,cc.y)  || sobj_at(CRYPTIC_SABER,cc.x,cc.y)  || sobj_at(ETERNIUM_SABER,cc.x,cc.y)  || sobj_at(IRON_SABER,cc.x,cc.y) ) && flags.iwbtg ) {
 
 		u.youaredead = 1;
 		killer = "a sharp-edged sword";		/* the thing that killed you */
@@ -2450,7 +2474,7 @@ register struct obj *obj;
 	    if (obj && obj->oartifact == ART_FERTILIZATOR && Role_if(PM_MILL_SWALLOWER)) {
 			struct obj *uammo;
 			int fertilammotyp = FLINT;
-			switch (rnd(10)) {
+			switch (rnd(11)) {
 				case 1: fertilammotyp = SALT_CHUNK; break;
 				case 2: fertilammotyp = SILVER_SLINGSTONE; break;
 				case 3: fertilammotyp = SMALL_PIECE_OF_UNREFINED_MITHR; break;
@@ -2461,6 +2485,7 @@ register struct obj *obj;
 				case 8: fertilammotyp = LEAD_CLUMP; break;
 				case 9: fertilammotyp = BONE_FRAGMENT; break;
 				case 10: fertilammotyp = SLING_AMMO; break;
+				case 11: fertilammotyp = CONUNDRUM_NUGGET; break;
 				default : fertilammotyp = FLINT; break;
 			}
 
@@ -2798,6 +2823,64 @@ fixthings:
 	return 0;
 }
 
+boolean
+use_bubble_horn(obj)
+struct obj *obj;
+{
+	int i, ii, lim;
+	int resulteffect = 0;
+
+	if (obj && obj->cursed) {
+		(void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
+		return 0;
+	}
+
+	i = rn2(A_MAX);
+	for (ii = 0; ii < A_MAX; ii++) {
+		lim = AMAX(i);
+		if (i == A_STR && u.uhs >= 3) --lim;	/* WEAK */
+		if (ABASE(i) < lim) {
+			if (rn2(3)) {
+				ABASE(i) += 1;
+				pline("This makes you feel better!");
+				flags.botl = 1;
+				resulteffect = 1;
+				break;
+			} else {
+				AMAX(i) -= 1;
+				pline(FunnyHallu ? "Bummer! It just beeps loudly!" : "Damn! It didn't work!");
+				resulteffect = 2;
+				break;
+			}
+		}
+		if(++i >= A_MAX) i = 0;
+
+	}
+
+	if (resulteffect) {
+		obj->spe--;
+		if (obj->spe < 0) {
+			int randospe = abs(obj->spe);
+			if (randospe < rnd(20)) {
+				useup(obj);
+				pline(FunnyHallu ? "Suddenly, you hold some fine powder in your hands. Maybe you can smoke that for the extra kick?" : "The horn suddenly turns to dust.");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Podelom tebe, ty vechnyy neudachnik." : "Krrrrrtsch!");
+				return 1;
+			}
+		}
+		return 0;
+	}
+
+	if (obj->spe > 0) {
+		obj->spe--;
+		adjattrib(rn2(A_MAX), 1, 0, TRUE);
+
+	}
+
+	/* the function has to return something; 0 means the horn is still there */
+	return 0;
+}
+
 /*
  * Timer callback routine: turn figurine into monster
  */
@@ -2834,7 +2917,7 @@ long timeout;
 	}
 
 	cansee_spot = cansee(cc.x, cc.y);
-	mtmp = make_familiar(figurine, cc.x, cc.y, TRUE);
+	mtmp = make_familiar(figurine, cc.x, cc.y, TRUE, FALSE);
 	if (mtmp) {
 	    sprintf(monnambuf, "%s",an(m_monnam(mtmp)));
 	    switch (figurine->where) {
@@ -2954,7 +3037,7 @@ struct obj **optr;
 	    (u.dz < 0 ?
 		"toss the figurine into the air" :
 		"set the figurine on the ground"));
-	(void) make_familiar(obj, cc.x, cc.y, FALSE);
+	(void) make_familiar(obj, cc.x, cc.y, FALSE, FALSE);
 	(void) stop_timer(FIG_TRANSFORM, (void *)obj);
 	useup(obj);
 	*optr = 0;
@@ -3024,6 +3107,10 @@ struct obj *obj;
 		if (otmp != &zeroobj) {
 			You("cover %s with a thick layer of grease.",
 			    yname(otmp));
+			if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+				if (!otmp->cursed) bless(otmp);
+				else uncurse(otmp, FALSE);
+			}
 			if (obj && obj->otyp == LUBRICANT_CAN) otmp->greased += rn2(3);
 			if (otmp->greased < 3) otmp->greased += 1;
 			if (obj && obj->oartifact == ART_VIBE_LUBE) otmp->greased = 3;
@@ -3536,7 +3623,7 @@ set_trap()
 	if (--trapinfo.time_needed > 0) return 1;	/* still busy */
 
 	ttyp = (otmp->otyp == LAND_MINE) ? LANDMINE : BEAR_TRAP;
-	ttmp = maketrap(u.ux, u.uy, ttyp, 0);
+	ttmp = maketrap(u.ux, u.uy, ttyp, 0, FALSE);
 	if (ttmp && !ttmp->hiddentrap) {
 	    ttmp->tseen = 1;
 	    ttmp->madeby_u = 1;
@@ -3761,6 +3848,15 @@ struct obj *obj;
 #endif /* 0 */
 		    /* right into your inventory */
 		    You("snatch %s %s!", s_suffix(mon_nam(mtmp)), onambuf);
+
+		    if (otmp->otyp == PETRIFYIUM_BAR && (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
+			char kbuf[BUFSZ];
+			sprintf(kbuf, "a petrifyium bar");
+			pline("Snatching %s is a fatal mistake.", kbuf);
+			instapetrify(kbuf);
+
+		    }
+
 		    if (otmp->otyp == CORPSE &&
 			    touch_petrifies(&mons[otmp->corpsenm]) &&
 			    (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
@@ -3815,6 +3911,7 @@ STATIC_OVL int
 use_pole (obj)
 	struct obj *obj;
 {
+	int grindx, grindy;
 	int res = 0, typ, max_range;
 	int min_range = obj->otyp == FISHING_POLE ? 1 : 4;
 	coord cc;
@@ -3908,6 +4005,10 @@ use_pole (obj)
 	u_wipe_engr(rnd(5));
 
 	if (u.mushroompoles) u.mushroompoleused = TRUE;
+
+	if (obj->oartifact == ART_BRIDGEBANE && find_drawbridge(&cc.x,&cc.y)) {
+		destroy_drawbridge(cc.x,cc.y);
+	}
 
 	/* What is there? */
 	mtmp = m_at(cc.x, cc.y);
@@ -4026,6 +4127,19 @@ use_pole (obj)
 
 			}
 		}
+		if (obj->oartifact == ART_SIGIX_BROADSWORD && !rn2(20)) {
+			if (obj->spe > -20) {
+				obj->spe--;
+				pline("Your weapon sustains damage.");
+			} else {
+				uwepgone();              /* set unweapon */
+				pline(FunnyHallu ? "You lost your stick!" : "Your weapon shatters into pieces!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Pochemu u vas takoy malen'kiy polovogo chlena v lyubom sluchaye?" : "Krrrrrrrtsch!");
+				useup(obj);
+				return (1);
+
+			}
+		}
 
 	    if ((!rn2(isfriday ? 500 : 1000) && !obj->oartifact) || (!rn2(isfriday ? 125 : 250) && obj->otyp == WOODEN_BAR && (!obj->oartifact || !rn2(10))) || (!rn2(isfriday ? 125 : 250) && (obj->otyp == AKLYS || obj->otyp == BLOW_AKLYS) && (!obj->oartifact || !rn2(10))) || (!rn2(isfriday ? 5000 : 10000) && obj->oartifact)) {
 		if (obj->oartifact == ART_NOBREAK && obj->spe < 1) {
@@ -4103,13 +4217,31 @@ use_pole (obj)
 
 	    bhitpos = cc;
 	    check_caitiff(mtmp);
+	    grindx = mtmp->mx;
+	    grindy = mtmp->my;
+
 	    (void) thitmonst(mtmp, uwep, 1, TRUE);
+
+
 	    /* check the monster's HP because thitmonst() doesn't return
 	     * an indication of whether it hit.  Not perfect (what if it's a
 	     * non-silver weapon on a shade?)
 	     */
 	    if (mtmp->mhp < oldhp) {
 		u.uconduct.weaphit++;
+
+			if (obj && objects[obj->otyp].oc_skill == (tech_inuse(T_GRAP_SWAP) ? P_LANCE : P_GRINDER)) {
+				int grindirection = 0;
+				if (grindx > u.ux && grindy == u.uy) grindirection = 1; /* east */
+				if (grindx > u.ux && grindy > u.uy) grindirection = 2; /* southeast */
+				if (grindx == u.ux && grindy < u.uy) grindirection = 3; /* north */
+				if (grindx < u.ux && grindy < u.uy) grindirection = 4; /* northwest */
+				if (grindx < u.ux && grindy == u.uy) grindirection = 5; /* west */
+				if (grindx < u.ux && grindy > u.uy) grindirection = 6; /* southwest */
+				if (grindx == u.ux && grindy > u.uy) grindirection = 7; /* south */
+				if (grindx > u.ux && grindy < u.uy) grindirection = 8; /* northeast */
+				grinderattack(grindirection);
+			}
 
 		    if (obj && obj->oartifact == ART_RIGHTLASH_LEFT && !rn2(100) && obj->spe < 15) {
 			obj->spe++;
@@ -4460,6 +4592,7 @@ wand_explode(obj, hero_broke)
     case WAN_SPELLBINDER:
     case WAN_INERTIA_CONTROL:
     case WAN_STERILIZE:
+    case WAN_RESTORATION:
     case WAN_REMOVE_CURSE:
     case WAN_PUNISHMENT:
     case WAN_OPENING:
@@ -4554,7 +4687,7 @@ wand_explode(obj, hero_broke)
 
 			struct trap *ttmp;
 
-			ttmp = maketrap(u.ux, u.uy, TELEP_TRAP, 0);
+			ttmp = maketrap(u.ux, u.uy, TELEP_TRAP, 0, FALSE);
 			if (ttmp) {
 				ttmp->madeby_u = 1;
 				newsym(u.ux, u.uy); /* if our hero happens to be invisible */
@@ -4577,7 +4710,7 @@ wand_explode(obj, hero_broke)
 
 			struct trap *ttmp;
 
-			ttmp = maketrap(u.ux, u.uy, LEVEL_TELEP, 0);
+			ttmp = maketrap(u.ux, u.uy, LEVEL_TELEP, 0, FALSE);
 			if (ttmp) {
 				ttmp->madeby_u = 1;
 				newsym(u.ux, u.uy); /* if our hero happens to be invisible */
@@ -5022,6 +5155,8 @@ doapply()
 	case BULLETPROOF_CHAINWHIP:
 	case STEEL_WHIP:
 	case ETHER_WHIP:
+	case VIPERWHIP:
+	case HEAVENLY_WHIP:
 	case SEXPLAY_WHIP:
 	case CHAINWHIP:
 	case MITHRIL_WHIP:
@@ -5103,6 +5238,7 @@ doapply()
 			if (obj->oartifact == ART_MOLOCH_S_PERSONAL_PHONE) {
 				int pm;
 				pm = !rn2(5) ? dprince(rn2((int)A_LAWFUL+2) - 1) : dlord(rn2((int)A_LAWFUL+2) - 1);
+				if (pm >= PM_ORCUS && pm <= PM_DEMOGORGON) u.conclusiocount++;
 				if (pm && (pm != NON_PM)) {
 					(void) makemon(&mons[pm], u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 					pline("An angry demon was summoned!");
@@ -5124,6 +5260,7 @@ doapply()
 		break;
 	case PICK_AXE:
 	case CONGLOMERATE_PICK:
+	case CONUNDRUM_PICK:
 	case MYSTERY_PICK:
 	case BRONZE_PICK:
 	case BRICK_PICK:
@@ -5294,6 +5431,7 @@ doapply()
 		break;
 	case MIRROR:
 		res = use_mirror(obj);
+		if (res >= 2) noartispeak = TRUE;
 		break;
 	case SPOON:
 		pline(FunnyHallu ? "Seems like exactly the thing needed to kill everything in one hit." : "It's a finely crafted antique spoon; what do you want to do with it?");
@@ -5329,6 +5467,7 @@ doapply()
 	case LASER_SWATTER:
 	case NANO_HAMMER:
 	case LIGHTWHIP:
+	case ELECTRIC_CIGARETTE:
 	case RED_DOUBLE_LIGHTSABER:
 	case WHITE_DOUBLE_LIGHTSABER:
 
@@ -5439,7 +5578,11 @@ doapply()
 		noartispeak = TRUE;
 		break;
 	case UNICORN_HORN:
+	case SKY_HORN:
 		if (use_unicorn_horn(obj)) noartispeak = TRUE;
+		break;
+	case BUBBLEHORN:
+		if (use_bubble_horn(obj)) noartispeak = TRUE;
 		break;
 	case DARK_HORN:
 		if (Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) break;
@@ -5519,6 +5662,7 @@ doapply()
 			You("take a white pill from %s and swallow it.",
 				yname(obj));
 			if (can_use) {
+			    upnivel(FALSE);
 			    if (Sick) make_sick(0L, (char *) 0,TRUE ,SICK_ALL);
 			    else if (Blinded > (long)(u.ucreamed+1))
 				make_blinded(u.ucreamed ?
@@ -5893,6 +6037,7 @@ doapply()
 
 	case SALT_CHUNK:
 	case SILVER_SLINGSTONE:
+	case CONUNDRUM_NUGGET:
 	case SMALL_PIECE_OF_UNREFINED_MITHR:
 		use_stone(obj);
 		break;
@@ -5985,7 +6130,14 @@ doapply()
 			outrumor(-1,42,TRUE);	/* always false */
 		} else {
 			pline("So many knobs to turn! So many buttons to press!");
-			make_confused(HConfusion+rn2(10),TRUE);
+			/* Amy edit: omg no, we can't allow such an easy guaranteed way for confusion on demand... */
+			if (!rn2(20)) {
+				if (obj->blessed) unbless(obj);
+				else curse(obj);
+				pline("And now the universe seems to be turning inwards on itself! Oh no!");
+			}
+			badeffect();
+			if (!obj->cursed || !rn2(4)) make_confused(HConfusion+rn2(10),TRUE);
 		}
 		break;
 
@@ -6011,7 +6163,7 @@ doapply()
 		pline("You may change the material of a base item type.");
 materialchoice:
 	    	{
-			struct obj *otmpC = getobj(all_count, "change the material of");
+			struct obj *otmpC = getobj(allowxall, "change the material of");
 			if (!otmpC) {
 				if (yn("Really exit with no object selected?") == 'y')
 					pline("You just wasted the opportunity to change an item's material.");

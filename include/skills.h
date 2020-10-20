@@ -34,21 +34,24 @@
 #define P_FLAIL				15	/* Two pieces hinged or chained together */
 #define P_HAMMER			16	/* Bludgeon with a heavy head on the end */
 #define P_QUARTERSTAFF			17	/* Bludgeon with a long shaft */
-#define P_POLEARMS			18
-#define P_SPEAR				19
-#define P_JAVELIN			20
-#define P_TRIDENT			21
-#define P_LANCE				22
-#define P_BOW				23
-#define P_SLING				24
-#define P_FIREARM			25	/* KMH */
-#define P_CROSSBOW			26
-#define P_DART				27
-#define P_SHURIKEN			28
-#define P_BOOMERANG			29
-#define P_WHIP				30
-#define P_UNICORN_HORN			31	
-#define P_LIGHTSABER			32	/* last weapon */
+#define P_ORB			18
+#define P_CLAW			19
+#define P_GRINDER			20
+#define P_POLEARMS			21
+#define P_SPEAR				22
+#define P_JAVELIN			23
+#define P_TRIDENT			24
+#define P_LANCE				25
+#define P_BOW				26
+#define P_SLING				27
+#define P_FIREARM			28	/* KMH */
+#define P_CROSSBOW			29
+#define P_DART				30
+#define P_SHURIKEN			31
+#define P_BOOMERANG			32
+#define P_WHIP				33
+#define P_UNICORN_HORN			34	
+#define P_LIGHTSABER			35	/* last weapon */
 #define P_FIRST_WEAPON			P_DAGGER
 #define P_LAST_WEAPON			P_LIGHTSABER
 
@@ -156,6 +159,9 @@
 #define PN_RIDING		(-47)
 #define PN_TWO_WEAPONS		(-48)
 #define PN_LIGHTSABER		(-49)
+#define PN_ORB		(-50)
+#define PN_CLAW		(-51)
+#define PN_GRINDER		(-52)
 
 /*
  * These are the standard weapon skill levels.  It is important that

@@ -424,15 +424,16 @@ give_up:	/* Quit */
 			if (yn("Use the ones you set in your config file? (example: OPTIONS=hybridangbander)") == 'y') {
 
 				flags.hybridcancel = 1; /* don't give more than the player wanted */
+				flags.randomhybrids = 0;
 				/* every other option will first set all hybridization flags to zero --Amy */
 
 			} else if (yn("Randomized hybridization? (like selecting a random race, this has only a 10% chance of actually adding any hybridization)") == 'y') {
 
-				flags.hybridization = flags.hybridangbander = flags.hybridaquarian = flags.hybridcurser = flags.hybridhaxor = flags.hybridhomicider = flags.hybridsuxxor = flags.hybridwarper = flags.hybridrandomizer = flags.hybridnullrace = flags.hybridmazewalker = flags.hybridsoviet = flags.hybridxrace = flags.hybridheretic = flags.hybridsokosolver = flags.hybridspecialist = flags.hybridamerican = flags.hybridminimalist = flags.hybridnastinator = flags.hybridrougelike = flags.hybridsegfaulter = flags.hybridironman = flags.hybridamnesiac = flags.hybridproblematic = flags.hybridwindinhabitant = flags.hybridaggravator = flags.hybridevilvariant = flags.hybridlevelscaler = flags.hybriderosator = flags.hybridroommate = flags.hybridextravator = flags.hybridhallucinator = flags.hybridbossrusher = flags.hybriddorian = flags.hybridtechless = flags.hybridblait = flags.hybridgrouper = flags.hybridscriptor = flags.hybridunbalancor = flags.hybridbeacher = flags.hybridstairseeker = flags.hybridmatrayser = flags.hybridfeminizer = 0;
+				flags.hybridization = flags.hybridangbander = flags.hybridaquarian = flags.hybridcurser = flags.hybridhaxor = flags.hybridhomicider = flags.hybridsuxxor = flags.hybridwarper = flags.hybridrandomizer = flags.hybridnullrace = flags.hybridmazewalker = flags.hybridsoviet = flags.hybridxrace = flags.hybridheretic = flags.hybridsokosolver = flags.hybridspecialist = flags.hybridamerican = flags.hybridminimalist = flags.hybridnastinator = flags.hybridrougelike = flags.hybridsegfaulter = flags.hybridironman = flags.hybridamnesiac = flags.hybridproblematic = flags.hybridwindinhabitant = flags.hybridaggravator = flags.hybridevilvariant = flags.hybridlevelscaler = flags.hybriderosator = flags.hybridroommate = flags.hybridextravator = flags.hybridhallucinator = flags.hybridbossrusher = flags.hybriddorian = flags.hybridtechless = flags.hybridblait = flags.hybridgrouper = flags.hybridscriptor = flags.hybridunbalancor = flags.hybridbeacher = flags.hybridstairseeker = flags.hybridmatrayser = flags.hybridfeminizer = flags.hybridchallenger = 0;
 
 			    if (!rn2(10)) {
 
-				switch (rnd(42)) {
+				switch (rnd(43)) {
 
 					case 1:
 						if (!Race_if(PM_ANGBANDER)) {flags.hybridangbander = 1; flags.hybridization++;
@@ -602,11 +603,15 @@ give_up:	/* Quit */
 						if (!(flags.hybridfeminizer)) {flags.hybridfeminizer = 1; flags.hybridization++;
 						}
 						break;
+					case 43:
+						if (!(flags.hybridchallenger)) {flags.hybridchallenger = 1; flags.hybridization++;
+						}
+						break;
 				}
 
 				while ((rnd(7)) < 3) {
 
-					switch (rnd(42)) {
+					switch (rnd(43)) {
 	
 						case 1:
 							if (!(flags.hybridangbander)) {
@@ -818,18 +823,24 @@ give_up:	/* Quit */
 							flags.hybridfeminizer = 1; flags.hybridization++; break;
 							}
 							break;
+						case 43:
+							if (!(flags.hybridchallenger)) {
+							flags.hybridchallenger = 1; flags.hybridization++; break;
+							}
+							break;
 					}
 				}
 
 			    }
 
 			flags.hybridcancel = 1; /* don't give more than the player wanted */
+			flags.randomhybrids = 0;
 
 			} else if (yn("Randomized hybridization (but always add at least one hybrid race)?") == 'y') {
 
-				flags.hybridization = flags.hybridangbander = flags.hybridaquarian = flags.hybridcurser = flags.hybridhaxor = flags.hybridhomicider = flags.hybridsuxxor = flags.hybridwarper = flags.hybridrandomizer = flags.hybridnullrace = flags.hybridmazewalker = flags.hybridsoviet = flags.hybridxrace = flags.hybridheretic = flags.hybridsokosolver = flags.hybridspecialist = flags.hybridamerican = flags.hybridminimalist = flags.hybridnastinator = flags.hybridrougelike = flags.hybridsegfaulter = flags.hybridironman = flags.hybridamnesiac = flags.hybridproblematic = flags.hybridwindinhabitant = flags.hybridaggravator = flags.hybridevilvariant = flags.hybridlevelscaler = flags.hybriderosator = flags.hybridroommate = flags.hybridextravator = flags.hybridhallucinator = flags.hybridbossrusher = flags.hybriddorian = flags.hybridtechless = flags.hybridblait = flags.hybridgrouper = flags.hybridscriptor = flags.hybridunbalancor = flags.hybridbeacher = flags.hybridstairseeker = flags.hybridmatrayser = flags.hybridfeminizer = 0;
+				flags.hybridization = flags.hybridangbander = flags.hybridaquarian = flags.hybridcurser = flags.hybridhaxor = flags.hybridhomicider = flags.hybridsuxxor = flags.hybridwarper = flags.hybridrandomizer = flags.hybridnullrace = flags.hybridmazewalker = flags.hybridsoviet = flags.hybridxrace = flags.hybridheretic = flags.hybridsokosolver = flags.hybridspecialist = flags.hybridamerican = flags.hybridminimalist = flags.hybridnastinator = flags.hybridrougelike = flags.hybridsegfaulter = flags.hybridironman = flags.hybridamnesiac = flags.hybridproblematic = flags.hybridwindinhabitant = flags.hybridaggravator = flags.hybridevilvariant = flags.hybridlevelscaler = flags.hybriderosator = flags.hybridroommate = flags.hybridextravator = flags.hybridhallucinator = flags.hybridbossrusher = flags.hybriddorian = flags.hybridtechless = flags.hybridblait = flags.hybridgrouper = flags.hybridscriptor = flags.hybridunbalancor = flags.hybridbeacher = flags.hybridstairseeker = flags.hybridmatrayser = flags.hybridfeminizer = flags.hybridchallenger = 0;
 
-				switch (rnd(42)) {
+				switch (rnd(43)) {
 
 					case 1:
 						if (!Race_if(PM_ANGBANDER)) {
@@ -1021,12 +1032,16 @@ give_up:	/* Quit */
 						if (!Race_if(PM_FEMINIZER)) {flags.hybridfeminizer = 1; flags.hybridization++;
 						}
 						break;
+					case 43:
+						if (!Race_if(PM_CHALLENGER)) {flags.hybridchallenger = 1; flags.hybridization++;
+						}
+						break;
 
 				}
 
 				while ((rnd(7)) < 3) {
 
-					switch (rnd(42)) {
+					switch (rnd(43)) {
 	
 						case 1:
 							if (!(flags.hybridangbander)) {
@@ -1238,15 +1253,21 @@ give_up:	/* Quit */
 								flags.hybridfeminizer = 1; flags.hybridization++; break;
 							}
 							break;
+						case 43:
+							if (!(flags.hybridchallenger)) {
+								flags.hybridchallenger = 1; flags.hybridization++; break;
+							}
+							break;
 
 					}
 				}
 
 			flags.hybridcancel = 1; /* don't give more than the player wanted */
+			flags.randomhybrids = 0;
 
 			} else {
 
-				flags.hybridization = flags.hybridangbander = flags.hybridaquarian = flags.hybridcurser = flags.hybridhaxor = flags.hybridhomicider = flags.hybridsuxxor = flags.hybridwarper = flags.hybridrandomizer = flags.hybridnullrace = flags.hybridmazewalker = flags.hybridsoviet = flags.hybridxrace = flags.hybridheretic = flags.hybridsokosolver = flags.hybridspecialist = flags.hybridamerican = flags.hybridminimalist = flags.hybridnastinator = flags.hybridrougelike = flags.hybridsegfaulter = flags.hybridironman = flags.hybridamnesiac = flags.hybridproblematic = flags.hybridwindinhabitant = flags.hybridaggravator = flags.hybridevilvariant = flags.hybridlevelscaler = flags.hybriderosator = flags.hybridroommate = flags.hybridextravator = flags.hybridhallucinator = flags.hybridbossrusher = flags.hybriddorian = flags.hybridtechless = flags.hybridblait = flags.hybridgrouper = flags.hybridscriptor = flags.hybridunbalancor = flags.hybridbeacher = flags.hybridstairseeker = flags.hybridmatrayser = flags.hybridfeminizer = 0;
+				flags.hybridization = flags.hybridangbander = flags.hybridaquarian = flags.hybridcurser = flags.hybridhaxor = flags.hybridhomicider = flags.hybridsuxxor = flags.hybridwarper = flags.hybridrandomizer = flags.hybridnullrace = flags.hybridmazewalker = flags.hybridsoviet = flags.hybridxrace = flags.hybridheretic = flags.hybridsokosolver = flags.hybridspecialist = flags.hybridamerican = flags.hybridminimalist = flags.hybridnastinator = flags.hybridrougelike = flags.hybridsegfaulter = flags.hybridironman = flags.hybridamnesiac = flags.hybridproblematic = flags.hybridwindinhabitant = flags.hybridaggravator = flags.hybridevilvariant = flags.hybridlevelscaler = flags.hybriderosator = flags.hybridroommate = flags.hybridextravator = flags.hybridhallucinator = flags.hybridbossrusher = flags.hybriddorian = flags.hybridtechless = flags.hybridblait = flags.hybridgrouper = flags.hybridscriptor = flags.hybridunbalancor = flags.hybridbeacher = flags.hybridstairseeker = flags.hybridmatrayser = flags.hybridfeminizer = flags.hybridchallenger = 0;
 
 				if (!Race_if(PM_AGGRAVATOR)) {if (yn("Add the aggravator hybrid race to your character?") == 'y')
 					{flags.hybridaggravator = 1; flags.hybridization++;}
@@ -1271,6 +1292,9 @@ give_up:	/* Quit */
 				}
 				if (!Race_if(PM_BOSSRUSHER)) {if (yn("Add the bossrusher hybrid race to your character?") == 'y')
 					{flags.hybridbossrusher = 1; flags.hybridization++;}
+				}
+				if (!Race_if(PM_CHALLENGER)) {if (yn("Add the challenger hybrid race to your character?") == 'y')
+					{flags.hybridchallenger = 1; flags.hybridization++;}
 				}
 				if (!Race_if(PM_CURSER)) {if (yn("Add the curser hybrid race to your character?") == 'y')
 					{flags.hybridcurser = 1; flags.hybridization++;}
@@ -1377,6 +1401,7 @@ give_up:	/* Quit */
 				}
 
 			flags.hybridcancel = 1; /* don't give more than the player wanted */
+			flags.randomhybrids = 0;
 
 			}
 
@@ -1384,9 +1409,10 @@ give_up:	/* Quit */
 
 		else {
 
-			flags.hybridization = flags.hybridangbander = flags.hybridaquarian = flags.hybridcurser = flags.hybridhaxor = flags.hybridhomicider = flags.hybridsuxxor = flags.hybridwarper = flags.hybridrandomizer = flags.hybridnullrace = flags.hybridmazewalker = flags.hybridsoviet = flags.hybridxrace = flags.hybridheretic = flags.hybridsokosolver = flags.hybridspecialist = flags.hybridamerican = flags.hybridminimalist = flags.hybridnastinator = flags.hybridrougelike = flags.hybridsegfaulter = flags.hybridironman = flags.hybridamnesiac = flags.hybridproblematic = flags.hybridwindinhabitant = flags.hybridaggravator = flags.hybridevilvariant = flags.hybridlevelscaler = flags.hybriderosator = flags.hybridroommate = flags.hybridextravator = flags.hybridhallucinator = flags.hybridbossrusher = flags.hybriddorian = flags.hybridtechless = flags.hybridblait = flags.hybridgrouper = flags.hybridscriptor = flags.hybridunbalancor = flags.hybridbeacher = flags.hybridstairseeker = flags.hybridmatrayser = flags.hybridfeminizer = 0;
+			flags.hybridization = flags.hybridangbander = flags.hybridaquarian = flags.hybridcurser = flags.hybridhaxor = flags.hybridhomicider = flags.hybridsuxxor = flags.hybridwarper = flags.hybridrandomizer = flags.hybridnullrace = flags.hybridmazewalker = flags.hybridsoviet = flags.hybridxrace = flags.hybridheretic = flags.hybridsokosolver = flags.hybridspecialist = flags.hybridamerican = flags.hybridminimalist = flags.hybridnastinator = flags.hybridrougelike = flags.hybridsegfaulter = flags.hybridironman = flags.hybridamnesiac = flags.hybridproblematic = flags.hybridwindinhabitant = flags.hybridaggravator = flags.hybridevilvariant = flags.hybridlevelscaler = flags.hybriderosator = flags.hybridroommate = flags.hybridextravator = flags.hybridhallucinator = flags.hybridbossrusher = flags.hybriddorian = flags.hybridtechless = flags.hybridblait = flags.hybridgrouper = flags.hybridscriptor = flags.hybridunbalancor = flags.hybridbeacher = flags.hybridstairseeker = flags.hybridmatrayser = flags.hybridfeminizer = flags.hybridchallenger = 0;
 
 			flags.hybridcancel = 1; /* player answered no to the "do you want hybridization" prompt */
+			flags.randomhybrids = 0;
 		}
 	    }
 
@@ -1853,6 +1879,10 @@ tty_get_nh_event()
 STATIC_OVL void
 getret()
 {
+	if (program_state.done_hup) {
+		morc = '\033';
+		return;
+	}
 	xputs("\n");
 	if(flags.standout)
 		standoutbeg();
@@ -2086,6 +2116,11 @@ tty_clear_nhwindow(window)
 {
     register struct WinDesc *cw = 0;
 
+	if (program_state.done_hup) {
+		morc = '\033';
+		return;
+	}
+
     if(window == WIN_ERR || (cw = wins[window]) == (struct WinDesc *) 0)
 	panic(winpanicstr,  window);
     ttyDisplay->lastwin = window;
@@ -2131,6 +2166,11 @@ dmore(cw, s)
     const char *prompt = cw->morestr ? cw->morestr : defmorestr;
     int offset = (cw->type == NHW_TEXT) ? 1 : 2;
 
+	if (program_state.done_hup) {
+		morc = '\033';
+		return;
+	}
+
 	if (youmonst.data && !(cw->morestr) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover
 
 #if defined(WIN32)
@@ -2160,6 +2200,12 @@ set_item_state(window, lineno, item)
     tty_menu_item *item;
 {
     char ch = item->selected ? (item->count == -1L ? '+' : '#') : '-';
+
+	if (program_state.done_hup) {
+		morc = '\033';
+		return;
+	}
+
     tty_curs(window, 4, lineno);
     term_start_attr(item->attr);
     (void) putchar(ch);
@@ -2354,6 +2400,10 @@ struct WinDesc *cw;
 
     /* loop until finished */
     while (!finished) {
+	if (program_state.done_hup) {
+		morc = '\033';
+		return;
+	}
 	if (reset_count) {
 	    counting = FALSE;
 	    count = 0;
@@ -2677,6 +2727,10 @@ struct WinDesc *cw;
     register char *cp;
 
     for (n = 0, i = 0; i < cw->maxrow; i++) {
+	if (program_state.done_hup) {
+		morc = '\033';
+		return;
+	}
 	if (!cw->offx && (n + cw->offy == ttyDisplay->rows - 1)) {
 	    tty_curs(window, 1, n);
 	    cl_end();
@@ -2729,6 +2783,11 @@ tty_display_nhwindow(window, blocking)
     boolean blocking;	/* with ttys, all windows are blocking */
 {
     register struct WinDesc *cw = 0;
+
+	if (program_state.done_hup) {
+		morc = '\033';
+		return;
+	}
 
     if(window == WIN_ERR || (cw = wins[window]) == (struct WinDesc *) 0)
 	panic(winpanicstr,  window);
@@ -2797,6 +2856,11 @@ tty_dismiss_nhwindow(window)
 {
     register struct WinDesc *cw = 0;
 
+	if (program_state.done_hup) {
+		morc = '\033';
+		return;
+	}
+
     if(window == WIN_ERR || (cw = wins[window]) == (struct WinDesc *) 0)
 	panic(winpanicstr,  window);
 
@@ -2864,6 +2928,11 @@ register int x, y;	/* not xchar: perhaps xchar is unsigned and
     struct WinDesc *cw = 0;
     int cx = ttyDisplay->curx;
     int cy = ttyDisplay->cury;
+
+	if (program_state.done_hup) {
+		morc = '\033';
+		return;
+	}
 
     if(window == WIN_ERR || (cw = wins[window]) == (struct WinDesc *) 0)
 	panic(winpanicstr,  window);
@@ -2939,6 +3008,11 @@ tty_putsym(window, x, y, ch)
 {
     register struct WinDesc *cw = 0;
 
+	if (program_state.done_hup) {
+		morc = '\033';
+		return;
+	}
+
     if(window == WIN_ERR || (cw = wins[window]) == (struct WinDesc *) 0)
 	panic(winpanicstr,  window);
 
@@ -2994,6 +3068,11 @@ tty_putstr(window, attr, str)
     register const char *nb;
     register int i, j, n0;
     register int k;
+
+	if (program_state.done_hup) {
+		morc = '\033';
+		return;
+	}
 
     /* Assume there's a real problem if the window is missing --
      * probably a panic message
@@ -3301,6 +3380,11 @@ tty_add_menu(window, glyph, identifier, ch, gch, attr, str, preselected)
     register struct WinDesc *cw = 0;
     tty_menu_item *item;
 
+	if (program_state.done_hup) {
+		morc = '\033';
+		return;
+	}
+
     if (str == (const char*) 0)
 	return;
 
@@ -3500,6 +3584,11 @@ char let;
 int how;
 const char *mesg;
 {
+	if (program_state.done_hup) {
+		morc = '\033';
+		return 0;
+	}
+
     /* "menu" without selection; use ordinary pline, no more() */
     if (how == PICK_NONE) {
 	pline("%s", mesg);
@@ -3535,12 +3624,21 @@ tty_update_inventory()
 void
 tty_mark_synch()
 {
+	if (program_state.done_hup) {
+		morc = '\033';
+		return;
+	}
     (void) fflush(stdout);
 }
 
 void
 tty_wait_synch()
 {
+	if (program_state.done_hup) {
+		morc = '\033';
+		return;
+	}
+
     /* we just need to make sure all windows are synch'd */
     if(!ttyDisplay || ttyDisplay->rawprint) {
 	getret();
@@ -3580,6 +3678,11 @@ docorner(xmin, ymax)
     register int y;
     register struct WinDesc *cw = wins[WIN_MAP];
 
+	if (program_state.done_hup) {
+		morc = '\033';
+		return;
+	}
+
     if (u.uswallow) {	/* Can be done more efficiently */
 	swallowed(1);
 	return;
@@ -3617,6 +3720,12 @@ docorner(xmin, ymax)
 void
 end_glyphout()
 {
+
+	if (program_state.done_hup) {
+		morc = '\033';
+		return;
+	}
+
 #if defined(ASCIIGRAPH) && !defined(NO_TERMS)
     if (GFlag) {
 	GFlag = FALSE;
@@ -3637,6 +3746,11 @@ g_putch(in_ch)
 int in_ch;
 {
     register char ch = (char)in_ch;
+
+	if (program_state.done_hup) {
+		morc = '\033';
+		return;
+	}
 
 # if defined(ASCIIGRAPH) && !defined(NO_TERMS)
     if (iflags.IBMgraphics || iflags.eight_bit_tty) {
@@ -3681,6 +3795,11 @@ int x, y;
 {
 	extern boolean restoring;
 	int oldx = clipx, oldy = clipy;
+
+	if (program_state.done_hup) {
+		morc = '\033';
+		return;
+	}
 
 	if (!clipping) return;
 	if (x < clipx + 5) {
@@ -3727,6 +3846,11 @@ tty_print_glyph(window, x, y, glyph)
     int	    color;
     unsigned special;
     
+	if (program_state.done_hup) {
+		morc = '\033';
+		return;
+	}
+
 #ifdef CLIPPING
     if(clipping) {
 #if 0
@@ -3838,6 +3962,11 @@ void
 tty_raw_print(str)
     const char *str;
 {
+	if (program_state.done_hup) {
+		morc = '\033';
+		return;
+	}
+
     if(ttyDisplay) ttyDisplay->rawprint++;
 #if defined(MICRO) || defined(WIN32CON)
     msmsg("%s\n", str);
@@ -3850,6 +3979,11 @@ void
 tty_raw_print_bold(str)
     const char *str;
 {
+	if (program_state.done_hup) {
+		morc = '\033';
+		return;
+	}
+
     if(ttyDisplay) ttyDisplay->rawprint++;
     term_start_raw_bold();
 #if defined(MICRO) || defined(WIN32CON)
@@ -3879,6 +4013,10 @@ tty_nhgetch()
     static volatile int nesting = 0;
     char nestbuf;
 #endif
+
+    if (program_state.done_hup) {
+	return ('\033');
+    }
 
     (void) fflush(stdout);
     /* Note: if raw_print() and wait_synch() get called to report terminal
@@ -3921,6 +4059,11 @@ tty_nh_poskey(x, y, mod)
 #endif
 # if defined(WIN32CON)
     int i;
+
+    if (program_state.done_hup) {
+	return ('\033');
+    }
+
     (void) fflush(stdout);
     /* Note: if raw_print() and wait_synch() get called to report terminal
      * initialization problems, then wins[] and ttyDisplay might not be

@@ -70,6 +70,7 @@ static boolean rob_shop(struct monst *);
 static void shk_other_services(void);
 static void shk_identify(char *, struct monst *);
 static void shk_uncurse(char *, struct monst *);
+static void shk_bless(char *, struct monst *);
 static void shk_appraisal(char *, struct monst *);
 static void shk_weapon_works(char *, struct monst *);
 static void shk_armor_works(char *, struct monst *);
@@ -690,11 +691,12 @@ register char *enterstring;
 			 *pickD = carrying(BRICK_PICK),
 			 *pickE = carrying(NANO_PICK),
 			 *pickF = carrying(MYSTERY_PICK),
+			 *pickG = carrying(CONUNDRUM_PICK),
 		       *mattock = carrying(DWARVISH_MATTOCK),
 		       *mattockB = carrying(SOFT_MATTOCK),
 			 *mattockC = carrying(ETERNIUM_MATTOCK);
 
-	    if (pick || pickB || pickC || pickD || pickE || pickF || mattock || mattockB || mattockC) {
+	    if (pick || pickB || pickC || pickD || pickE || pickF || pickG || mattock || mattockB || mattockC) {
 		cnt = 1;
 		if (pick && mattock) {	/* carrying both types */
 		    tool = "digging tool";
@@ -724,6 +726,10 @@ register char *enterstring;
 		    tool = "mystery pick";
 		    while ((pickF = pickF->nobj) != 0)
 			if (pickF->otyp == MYSTERY_PICK) ++cnt;
+		} else if (pickG) {
+		    tool = "conundrum pick";
+		    while ((pickG = pickG->nobj) != 0)
+			if (pickG->otyp == CONUNDRUM_PICK) ++cnt;
 		} else if (mattock) {
 		    tool = "mattock";
 		    while ((mattock = mattock->nobj) != 0)
@@ -753,7 +759,7 @@ register char *enterstring;
 	    verbalize("I don't sell to your kind here.");
 		should_block = TRUE;
 	    } else {
-		should_block = (Fast && (sobj_at(PICK_AXE, u.ux, u.uy) || sobj_at(CONGLOMERATE_PICK, u.ux, u.uy) || sobj_at(MYSTERY_PICK, u.ux, u.uy) || sobj_at(BRONZE_PICK, u.ux, u.uy) || sobj_at(BRICK_PICK, u.ux, u.uy) || sobj_at(NANO_PICK, u.ux, u.uy) || sobj_at(SOFT_MATTOCK, u.ux, u.uy) || sobj_at(ETERNIUM_MATTOCK, u.ux, u.uy) ||
+		should_block = (Fast && (sobj_at(PICK_AXE, u.ux, u.uy) || sobj_at(CONGLOMERATE_PICK, u.ux, u.uy) || sobj_at(CONUNDRUM_PICK, u.ux, u.uy) || sobj_at(MYSTERY_PICK, u.ux, u.uy) || sobj_at(BRONZE_PICK, u.ux, u.uy) || sobj_at(BRICK_PICK, u.ux, u.uy) || sobj_at(NANO_PICK, u.ux, u.uy) || sobj_at(SOFT_MATTOCK, u.ux, u.uy) || sobj_at(ETERNIUM_MATTOCK, u.ux, u.uy) ||
 				      sobj_at(DWARVISH_MATTOCK, u.ux, u.uy)));
 	    }
 	    if (should_block) (void) dochug(shkp);  /* shk gets extra move */
@@ -1861,6 +1867,11 @@ shk_other_services()
 	     add_menu(tmpwin, NO_GLYPH, &any , 'e', 0, ATR_NONE,
 	         "Establish Credit", MENU_UNSELECTED);
 
+	any.a_int = 8;
+	if (ESHK(shkp)->services & (SHK_BLESS))
+	     add_menu(tmpwin, NO_GLYPH, &any , 'b', 0, ATR_NONE,
+	         "Blessing", MENU_UNSELECTED);
+
 	end_menu(tmpwin, "Services Available:");
 	n = select_menu(tmpwin, PICK_ONE, &selected);
 	destroy_nhwindow(tmpwin);
@@ -1893,6 +1904,10 @@ shk_other_services()
 	        case 7:
 	                shk_estcredit(slang, shkp);
 	                break;
+	        case 8:
+	                shk_bless(slang, shkp);
+	                break;
+
 	        default:
 	                pline ("Unknown Service");
 	                break;
@@ -2362,6 +2377,7 @@ register struct monst *shkp;	/* if angry, impose a surcharge */
 	if (Role_if(PM_ROGUE)) tmp *= 2L;
 	/* samurais are from out of town... */
 	if (Role_if(PM_SAMURAI)) tmp *= 2L;
+	if (uarmf && uarmf->oartifact == ART_CARMARK) tmp *= 2L;
 
 	/* anger surcharge should match rile_shk's */
 	if (shkp && ESHK(shkp)->surcharge) tmp += (tmp + 2L) / 3L;
@@ -2515,8 +2531,9 @@ register struct monst *shkp;
 	}
 	/* reduce player's ability to gain tons of money from selling common items --Amy */
 	if (tmp > 1) {
-	 	if (obj->otyp == IC && obj->cursed) tmp /= 20L;	
+	 	if (obj->otyp == IC && obj->cursed) tmp /= 20L;
 		if (obj->otyp == IC && !obj->cursed) tmp /= 10L;
+	 	if (obj->otyp == SPOON) tmp /= 100L; /* base price 5000??? ridiculous */
 		if (objects[obj->otyp].oc_skill == P_FIREARM) tmp /= 10L;
 		if (objects[obj->otyp].oc_skill == -P_FIREARM) tmp /= 3L;
 		if (tmp < 1) tmp = 1; /* fail safe */
@@ -2527,6 +2544,7 @@ register struct monst *shkp;
 		if (obj->oclass == SCROLL_CLASS) tmp /= 10L;
 		if (obj->oclass == SPBOOK_CLASS) tmp /= 10L;
 		if (obj->oclass == WAND_CLASS) tmp /= 10L;
+	 	if (obj->otyp >= LUCKSTONE && obj->otyp <= SLING_AMMO) tmp /= 10L;
 	}
 	/* after all, we nuked the thing that should not exist (price id) by making many item types always have the price
 	 * of the most expensive item in that type; if you can sell common scrolls, potions etc. for that price, it's way
@@ -4046,6 +4064,15 @@ boolean catchup;	/* restoring a level */
 				&& ttmp->ttyp != FEMMY_TRAP
 				&& ttmp->ttyp != MADELEINE_TRAP
 				&& ttmp->ttyp != MARLENA_TRAP
+				&& ttmp->ttyp != ARABELLA_TRAP
+				&& ttmp->ttyp != NELLY_TRAP
+				&& ttmp->ttyp != EVELINE_TRAP
+				&& ttmp->ttyp != KARIN_TRAP
+				&& ttmp->ttyp != JUEN_TRAP
+				&& ttmp->ttyp != KRISTINA_TRAP
+				&& ttmp->ttyp != ALMUT_TRAP
+				&& ttmp->ttyp != JULIETTA_TRAP
+				&& ttmp->ttyp != LOU_TRAP
 				&& ttmp->ttyp != ANASTASIA_TRAP
 				&& ttmp->ttyp != FILLER_TRAP
 				&& ttmp->ttyp != TOXIC_VENOM_TRAP
@@ -4331,9 +4358,9 @@ register struct monst *shkp;
 		} else {
 		    uondoor = (u.ux == eshkp->shd.x && u.uy == eshkp->shd.y);
 		    if(uondoor) {
-			badinv = (carrying(PICK_AXE) || carrying(CONGLOMERATE_PICK) || carrying(MYSTERY_PICK) || carrying(BRONZE_PICK) || carrying(BRICK_PICK) || carrying(NANO_PICK) || carrying(DWARVISH_MATTOCK) || carrying(SOFT_MATTOCK) || carrying(ETERNIUM_MATTOCK) ||
+			badinv = (carrying(PICK_AXE) || carrying(CONGLOMERATE_PICK) || carrying(CONUNDRUM_PICK) || carrying(MYSTERY_PICK) || carrying(BRONZE_PICK) || carrying(BRICK_PICK) || carrying(NANO_PICK) || carrying(DWARVISH_MATTOCK) || carrying(SOFT_MATTOCK) || carrying(ETERNIUM_MATTOCK) ||
             eshkp->pbanned ||
-				  (Fast && (sobj_at(PICK_AXE, u.ux, u.uy) || sobj_at(CONGLOMERATE_PICK, u.ux, u.uy) || sobj_at(MYSTERY_PICK, u.ux, u.uy) || sobj_at(BRONZE_PICK, u.ux, u.uy) || sobj_at(BRICK_PICK, u.ux, u.uy) || sobj_at(NANO_PICK, u.ux, u.uy) || sobj_at(SOFT_MATTOCK, u.ux, u.uy) || sobj_at(ETERNIUM_MATTOCK, u.ux, u.uy) ||
+				  (Fast && (sobj_at(PICK_AXE, u.ux, u.uy) || sobj_at(CONGLOMERATE_PICK, u.ux, u.uy) || sobj_at(CONUNDRUM_PICK, u.ux, u.uy) || sobj_at(MYSTERY_PICK, u.ux, u.uy) || sobj_at(BRONZE_PICK, u.ux, u.uy) || sobj_at(BRICK_PICK, u.ux, u.uy) || sobj_at(NANO_PICK, u.ux, u.uy) || sobj_at(SOFT_MATTOCK, u.ux, u.uy) || sobj_at(ETERNIUM_MATTOCK, u.ux, u.uy) ||
 				  sobj_at(DWARVISH_MATTOCK, u.ux, u.uy))));
 			if(satdoor && badinv)
 			    return(0);
@@ -4855,7 +4882,7 @@ coord *mm;
 				koy = rn2(ROWNO);
 
 				if (kox && koy && isok(kox, koy) && (levl[kox][koy].typ > DBWALL) && !(t_at(kox, koy)) ) {
-					(void) maketrap(kox, koy, KOP_CUBE, 0);
+					(void) maketrap(kox, koy, KOP_CUBE, 0, FALSE);
 					break;
 					}
 			}
@@ -5475,7 +5502,7 @@ register xchar x, y;
 	if(shkp->mx == sx && shkp->my == sy
 		&& shkp->mcanmove && !shkp->msleeping
 		&& (x == sx-1 || x == sx+1 || y == sy-1 || y == sy+1)
-		&& (Invis || carrying(PICK_AXE) || carrying(CONGLOMERATE_PICK) || carrying(MYSTERY_PICK) || carrying(BRONZE_PICK) || carrying(BRICK_PICK) || carrying(NANO_PICK) || carrying(DWARVISH_MATTOCK) || carrying(SOFT_MATTOCK) || carrying(ETERNIUM_MATTOCK) || u.usteed
+		&& (Invis || carrying(PICK_AXE) || carrying(CONGLOMERATE_PICK) || carrying(CONUNDRUM_PICK) || carrying(MYSTERY_PICK) || carrying(BRONZE_PICK) || carrying(BRICK_PICK) || carrying(NANO_PICK) || carrying(DWARVISH_MATTOCK) || carrying(SOFT_MATTOCK) || carrying(ETERNIUM_MATTOCK) || u.usteed
 	  )) {
 		pline("%s%s blocks your way!", shkname(shkp),
 				Invis ? " senses your motion and" : "");
@@ -5851,6 +5878,101 @@ shk_uncurse(slang, shkp)
 	}
 }
 
+/*
+** FUNCTION shk_bless
+**
+** Bless an item for the customer, by Amy, based on the uncurse code above
+*/
+static void
+shk_bless(slang, shkp)
+	char *slang;
+	struct monst *shkp;
+{
+	struct obj *obj;                /* The object picked            */
+	int charge;                     /* How much to uncurse          */
+	boolean guesswork;              /* Will shkp be guessing?       */
+
+	/* Pick object */
+	if ( !(obj = getobj(identify_types, "bless"))) return;
+
+	/* Will shk be guessing? */
+        if ((guesswork = !shk_obj_match(obj, shkp)))
+	{
+		verbalize("I don't handle that sort of item, but I could try...");
+	}
+
+	/* Charge is same as cost */
+	charge = get_cost(obj, shop_keeper(/* roomno= */*u.ushops));
+	charge *= 3; /* blessing shouldn't be possible for peanuts! --Amy */
+
+	/* Artifacts cost more to deal with */
+	/* KMH -- Avoid floating-point */
+	if (obj->oartifact) charge = charge * 3 / 2;
+
+	/* Smooth out the charge a bit */
+	shk_smooth_charge(&charge, 50, NOBOUND);
+
+	/* Go ahead? */
+	if (shk_offer_price(slang, charge, shkp) == FALSE) return;
+
+	if (!rn2(5)) {
+		ESHK(shkp)->services &= ~SHK_BLESS;
+	}
+
+	/* Shopkeeper responses */
+	/* KMH -- fixed bknown, curse(), bless(), uncurse() */
+	if (!obj->bknown && !Role_if(PM_PRIEST) && !Role_if(PM_NECROMANCER) && !Role_if(PM_CHEVALIER) &&
+	    !no_cheat)
+	{
+		/* Not identified! */
+		pline("%s snickers and says \"Look, I blessed your item!\"", mon_nam(shkp));
+		obj->bknown = FALSE;
+	}
+	else if (obj->cursed) { /* this is not a "super-uncurse" service - it only works on uncursed stuff --Amy */
+		verbalize("The blessing magic only works on items that aren't cursed! Get it uncursed first!");
+	}
+	else if (Confusion)
+	{
+		if (rn2(10)) {
+			You("accidentally point to the wrong item in your confusion.");
+		} else {
+			/* Curse the item! */
+			You("accidentally ask for the item to be cursed");
+			if (!stack_too_big(obj)) {
+				curse(obj);
+				if (obj->cursed && !rn2(3)) obj->hvycurse = TRUE;
+				if (obj->cursed && !rn2(20)) obj->stckcurse = TRUE;
+				if (obj->cursed && !rn2(100)) obj->prmcurse = TRUE;
+			}
+			else pline("But the stack was so big that the shopkeeper failed to curse it.");
+		}
+	}
+
+	/* no special effect if you hallucinate */
+
+	/* Is shopkeeper guessing? */
+	else if (guesswork) /* ported from identify function by Amy, because it makes no sense that they can bless everything */
+	{
+		/*
+		** Blessing successful 1 out of 5 times.  
+		*/
+		if (!rn2(5)) {
+			verbalize("Success!");
+			if (!stack_too_big(obj)) bless(obj);
+			else pline("Whoops, sorry, actually no success because the stack was too big!");
+		} else {
+			verbalize("Sorry.  I guess it's not your lucky day.");
+			return;
+		}
+	}
+	else
+	{
+		verbalize("All done - the gods themselves will watch over your item now!");
+		if (!stack_too_big(obj)) bless(obj);
+		else pline("But the stack was so big that the shopkeeper failed to bless it.");
+	}
+}
+
 
 /*
 ** FUNCTION shk_appraisal
@@ -5946,6 +6068,10 @@ shk_appraisal(slang, shkp)
 			verbalize(basic_damage, ascii_wsdam, ascii_wldam);
 			if (!issoviet) {
 				obj->known = TRUE;
+				if (u.weapchantrecskill < 1 || !rn2(u.weapchantrecskill)) {
+					u.weapchantrecskill++;
+					if (u.weapchantrecskill > 250) u.weapchantrecskill = 250;
+				}
 				verbalize("It is %s", doname(obj));
 			}
 			else pline("Sovetskiy khochet, chtoby vse bylo der'mo, dazhe izmeneniya, kotoryye, ochevidno, vygodny, schitayutsya im zlymi, potomu chto Emi sdelala ikh. Takim obrazom, plyus vashego oruzhiya ne oboznachen khar khar!");
@@ -5965,6 +6091,10 @@ shk_appraisal(slang, shkp)
 
 		if (!issoviet) {
 			obj->known = TRUE;
+			if (u.weapchantrecskill < 1 || !rn2(u.weapchantrecskill)) {
+				u.weapchantrecskill++;
+				if (u.weapchantrecskill > 250) u.weapchantrecskill = 250;
+			}
 			verbalize("It is %s", doname(obj));
 		}
 		else pline("Sovetskiy khochet, chtoby vse bylo der'mo, dazhe izmeneniya, kotoryye, ochevidno, vygodny, schitayutsya im zlymi, potomu chto Emi sdelala ikh. Takim obrazom, plyus vashego oruzhiya ne oboznachen khar khar!");
@@ -6578,6 +6708,25 @@ shk_offer_price(slang, charge, shkp)
 	/* here's us throwing a bone to lawful politicians or evilvariant characters --Amy */
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	u.cnd_shkserviceamount++;
+
+	/* rarely, purchasing a service with very low CHA can increase it --Amy */
+	if (ABASE(A_CHA) < 10) {
+		int chachance = 100;
+		switch (ABASE(A_CHA)) {
+			case 4: chachance = 150; break;
+			case 5: chachance = 200; break;
+			case 6: chachance = 250; break;
+			case 7: chachance = 300; break;
+			case 8: chachance = 350; break;
+			case 9: chachance = 400; break;
+			default: {
+				if (ABASE(A_CHA) < 4) chachance = 100;
+				else chachance = 500;
+				break;
+			}
+		}
+		if (!rn2(chachance)) (void) adjattrib(A_CHA, 1, FALSE, TRUE);
+	}
 
 	return(TRUE);
 }

@@ -1228,8 +1228,15 @@ curses_choose_character(void)
     n = curses_display_nhmenu(win, PICK_ONE, &selected, TRUE);
     destroy_nhwindow(win);
 
-    int result = selected[0].item.a_int;
-    free(selected);
+    int result = 1;
+    if (!selected) {
+		result = 1;
+    } else if (!(selected[0].item.a_int)) {
+		result = 1;
+    } else {
+		result = selected[0].item.a_int;
+    		free(selected);
+    }
     selected = 0;
     refresh();
 

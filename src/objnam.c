@@ -382,8 +382,14 @@ int prop;
 			return "polypiling";
 		case RNGE_SAP_GENERATION:
 			return "sap generation";
+		case RNGE_WEALTH:
+			return "wealth";
 		case DIMINISHED_BLEEDING:
 			return "diminished bleeding";
+		case CONTROL_MAGIC:
+			return "control magic";
+		case EXP_BOOST:
+			return "EXP boost";
 		case FEMTRAP_FEMMY:
 			return "Femmy's curse";
 		case FEMTRAP_MADELEINE:
@@ -428,6 +434,24 @@ int prop;
 			return "Ludgera's curse";
 		case FEMTRAP_KATI:
 			return "Kati's curse";
+		case FEMTRAP_NELLY:
+			return "Nelly's curse";
+		case FEMTRAP_EVELINE:
+			return "Eveline's curse";
+		case FEMTRAP_KARIN:
+			return "Karin's curse";
+		case FEMTRAP_JUEN:
+			return "Juen's curse";
+		case FEMTRAP_KRISTINA:
+			return "Kristina's curse";
+		case FEMTRAP_LOU:
+			return "Lou's curse";
+		case FEMTRAP_ALMUT:
+			return "Almut's curse";
+		case FEMTRAP_JULIETTA:
+			return "Julietta's curse";
+		case FEMTRAP_ARABELLA:
+			return "Arabella's curse";
 		case SCENT_VIEW:
 			return "scent view";
 
@@ -3230,8 +3254,160 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ CORONA_DRAGON_SCALE_MAIL, "korona drakon'yey cheshui" },
 	{ CORONA_DRAGON_SCALE_SHIELD, "korona shchit iz cheshui drakona" },
 
-	/* todo area */
+	{ METEORIC_STEEL_SHIELD, "meteoritnyy stal'noy shchit" },
+	{ OSFA_CHAIN_MAIL, "odin razmer podkhodit dlya vsekh kol'chug" },
+	{ AIR_PRESSURE_HAMMER, "pnevmaticheskiy molot" },
+	{ BUBBLEHORN, "puzyr' por" },
+	{ SCR_GREATER_ENCHANT_WEAPON, "bol'shoye oruzhiye char" },
+	{ SCR_GREATER_ENCHANT_ARMOR, "bol'shiye chary dlya dospekhov" },
+	{ SCR_POWER_CHARGING, "moshchnost' zaryadka" },
+	{ WAN_RESTORATION, "vosstanovleniye" },
+	{ SCR_ALLY, "soyuznik" },
+	{ BLUE_BOW, "siniy luk" },
 
+	{ EAGLE_BALL, "orel myach" },
+	{ JARED_STONE, "dzhared stoun" },
+	{ LIGHTBULB, "lampochka" },
+	{ HEATH_BALL, "pustosh' myach" },
+	{ CIGARETTE, "sigareta" },
+	{ ELECTRIC_CIGARETTE, "elektricheskaya sigareta" },
+	{ GRINDER, "shlifoval'nyy stanok" },
+	{ HEAVY_GRINDER, "tyazhelaya shlifoval'naya mashina" },
+	{ VARIED_GRINDER, "raznoobraznaya bolgarka" },
+	{ QATAR, "katar" },
+	{ LOWER_ARM_BLADE, "nizhniy otval" },
+	{ CESTUS, "tsestus" },
+	{ BELL_CLAWS, "kolokol'chiki" },
+	{ CAMO_QATAR, "kamuflyazh katar" },
+
+	{ FOAM_SHIRT, "pena rubashka" },
+	{ FIELD_PLATE, "polevaya plita" },
+	{ STRIPE_MAIL, "polosataya pochta" },
+	{ POISON_REPELLANT_ARMOR, "yadovitaya bronya" },
+	{ ROBE_OF_CONTROL, "khalat kontrolya" },
+	{ CONTRO_DRAGON_SCALE_MAIL, "kol'chuga iz cheshui drakona" },
+	{ CONTRO_DRAGON_SCALES, "bor'ba s cheshuyey drakona" },
+	{ CONTRO_DRAGON_SCALE_SHIELD, "kontrol' shchit iz cheshui drakona" },
+	{ CLOAK_OF_MAGIC_CONTROL, "plashch magicheskogo kontrolya" },
+	{ CLOAK_OF_EXPERIENCE, "plashch opyta" },
+	{ PASSTHROUGH_BOOTS, "skvoznyye sapogi" },
+	{ RIN_MAGIC_CONTROL, "magicheskiy kontrol'" },
+	{ AMULET_OF_MAGIC_CONTROL, "amulet of magicheskiy kontrol'" },
+	{ ROBE_OF_ANTI_CURSING, "khalat protiv proklyatiya" },
+	{ ROBE_OF_DRAIN_RESISTANCE, "khalat soprotivleniya sliva" },
+	{ ROBE_OF_DEATH_RESISTANCE, "mantiya soprotivleniya smerti" },
+	{ ROBE_OF_INFRAVISION, "khalat infravideniya" },
+	{ INFERNAL_AXE, "adskiy topor" },
+	{ INFERNAL_BARDICHE, "adskiy bardskiy" },
+	{ INFERNAL_ANCUS, "adskiy ankus" },
+	{ JAGGED_TOOTH_CLUB, "zubchataya dubinka" },
+	{ FLINDBAR, "kremnevyy sterzhen'" },
+	{ CROW_QUILL, "vorona pero" },
+	{ RAKUYO, "kakoy-to tip yaponskogo mecha" },
+	{ KAMEREL_VAJRA, "kamerel' vadzhra" },
+	{ VIPERWHIP, "gadyuka" },
+	{ BARNACLE_ARMOR, "rakushechnik" },
+	{ GIANT_SEA_ANEMONE, "gigantskiy morskoy anemon" },
+	{ VICTIM_KNIFE, "nozh zhertvy" },
+	{ QUALITY_AXE, "kachestvennyy topor" },
+	{ TRASH_SWORD, "musornyy mech" },
+	{ CUDSWORD, "zhvachka dubina" },
+	{ BUBBLETAR, "puzyr' zvezda" },
+	{ GREEN_SABER, "zelenaya sablya" },
+	{ ALLOY_CLUB, "splav klub" },
+	{ METAL_STAR, "metallicheskaya zvezda" },
+	{ STONE_STAR, "kamennaya zvezda" },
+	{ MARBLE_CHUNK, "mramornyy kusok" },
+	{ CONTRO_STAFF, "kontrol'nyy personal" },
+	{ FOAMY_STAFF, "penistyy posokh" },
+	{ CELESTIAL_POLE, "nebesnyy polyus" },
+	{ ZEBES_POLE, "chuzhaya planeta polyus" },
+	{ CRYPTIC_POLE, "zagadochnyy stolb" },
+	{ CRAPPY_SPEAR, "der'movoye kop'ye" },
+	{ SHOOMDENT, "zub iz penomateriala" },
+	{ INFERIOR_BOLT, "nizhniy zatvor" },
+	{ MYSTERY_SHURIKEN, "zagadochnyy syuriken" },
+	{ HEAVENLY_WHIP, "nebesnyy knut" },
+	{ CONUNDRUM_PICK, "golovolomka vybirat'" },
+	{ SKY_HORN, "nebesnyy rog" },
+	{ CONUNDRUM_NUGGET, "cunundrum samorodok" },
+	{ HEAVY_ALLOY_BALL, "shar iz tyazhelogo splava" },
+	{ HEAVY_SCRAP_BALL, "tyazhelyy lom" },
+	{ HEAVY_METEORIC_BALL, "tyazhelyy meteoritnyy shar" },
+	{ HEAVY_ANTIDOTE_BALL, "tyazhelyy myach-protivoyadiye" },
+	{ IMPOSSIBLY_HEAVY_ALLOY_BALL, "shar iz neveroyatno tyazhelogo splava" },
+	{ HEAVY_BUBBLE_BALL, "tyazhelyy puzyr'" },
+	{ HEAVY_FOAM_BALL, "tyazhelyy penoplast" },
+	{ HEAVY_CELESTIAL_BALL, "tyazhelyy nebesnyy shar" },
+	{ HEAVY_ZEBETITE_BALL, "tyazhelyy zebetitovyy shar" },
+	{ IMPOSSIBLY_HEAVY_FOAM_BALL, "neveroyatno tyazhelyy penoplast" },
+	{ ALLOY_CHAIN, "tsep' iz splava" },
+	{ SCRAP_CHAIN, "lom tsepi" },
+	{ ANTIDOTE_SCOURGE, "protivoyadiye ot bedstviya" },
+	{ METEORIC_NUNCHIAKU, "meteoritnyy yaponskaya tsep'" },
+	{ ALLOY_HOSTAGE_CHAIN, "tsep' zalozhnika splava" },
+	{ BUBBLE_CHAIN, "puzyr'kovaya tsepochka" },
+	{ FOAM_CHAIN, "pennaya tsep'" },
+	{ CELESTIAL_SCOURGE, "nebesnoye bedstviye" },
+	{ ZEBETITE_NUNCHIAKU, "zebetit yaponskaya tsep'" },
+	{ FOAM_HOSTAGE_CHAIN, "tsep' zalozhnika peny" },
+
+	{ FEMMY_STILETTO_BOOTS, "Femmy sapogi na shpil'ke" },
+	{ MADELEINE_PLATEAU_BOOTS, "Madeleine plato sapogi" },
+	{ MARLENA_HIKING_BOOTS, "Marlena turisticheskiye botinki" },
+	{ ANASTASIA_DANCING_SHOES, "Anastasia tantseval'naya obuv'" },
+	{ JESSICA_LADY_SHOES, "Jessica zhenskaya obuv'" },
+	{ SOLVEJG_MOCASSINS, "Solvejg mokasiny" },
+	{ WENDY_LEATHER_PUMPS, "Wendy kozhanyye tufli" },
+	{ KATHARINA_PLATFORM_BOOTS, "Katharina botinki na platforme" },
+	{ ELENA_COMBAT_BOOTS, "Elena boyevyye sapogi" },
+	{ THAI_COMBAT_BOOTS, "Thai boyevyye sapogi" },
+	{ ELIF_SNEAKERS, "Elif krossovki" },
+	{ NADJA_BUCKLED_LADY_SHOES, "Nadja zhenskiye tufli s pryazhkami" },
+	{ SANDRA_COMBAT_BOOTS, "Sandra boyevyye sapogi" },
+	{ NATALJE_BLOCK_HEEL_SANDALS, "Natalje bosonozhki na blochnom kabluke" },
+	{ JEANETTA_GIRL_BOOTS, "Jeanetta sapogi dlya devochek" },
+	{ YVONNE_GIRL_SNEAKERS, "Yvonne krossovki dlya devochek" },
+	{ MAURAH_HUGGING_BOOTS, "Maurah obnimayushchiye sapogi" },
+	{ MELTEM_COMBAT_BOOTS, "Meltem boyevyye sapogi" },
+	{ SARAH_HUGGING_BOOTS, "Sarah obnimayushchiye sapogi" },
+	{ CLAUDIA_WOODEN_SANDALS, "Claudia derevyannyye sandalii" },
+	{ LUDGERA_HIKING_BOOTS, "Ludgera turisticheskiye botinki" },
+	{ KATI_GIRL_BOOTS, "Kati sapogi dlya devochek" },
+	{ NELLY_LADY_PUMPS, "Nelly zhenskiye tufli-lodochki" },
+	{ EVELINE_WEDGE_SANDALS, "Eveline bosonozhki na tanketke" },
+	{ KARIN_LADY_SANDALS, "Karin zhenskiye sandalii" },
+	{ JUEN_PEEP_TOES, "Juen podglyadyvat'" },
+	{ KRISTINA_PLATFORM_SNEAKERS, "Kristina krossovki na platforme" },
+	{ LOU_SNEAKERS, "Lou krossovki" },
+	{ ALMUT_SNEAKERS, "Almut krossovki" },
+	{ JULIETTA_PEEP_TOES, "Julietta podglyadyvat'" },
+	{ ARABELLA_HUGGING_BOOTS, "Arabella obnimayushchiye sapogi" },
+
+	{ BOOTS_OF_SHOCK_RESISTANCE, "sapogi udaroprochnyye" },
+	{ SKILL_CAP, "predel navykov" },
+	{ BOBBLE_HAT, "boltat'sya shlyapa" },
+	{ MASSAGER, "massazher" },
+	{ FISH_SCALE_MAIL, "pochta ryb'yey cheshui" },
+	{ ROBE_OF_STASIS, "odeyaniye zastoya" },
+	{ FLEECY_CORSET, "vorsistyy korset" },
+	{ FISHNET, "setka" },
+	{ SPE_CONVERGE_BREATH, "skhodit'sya dykhaniye" },
+	{ SPE_RELOCATION, "pereyezd" },
+	{ SPE_IMPACT_GUNFIRE, "udarnaya strel'ba" },
+	{ SPE_COAGULATION, "koagulyatsiya" },
+	{ SPE_CURE_PARALYSIS, "vylechit' paralich" },
+	{ SPE_SMELL_MONSTER, "zapakh chudovishcha" },
+	{ SPE_ECHOLOCATION, "ekholokatsiya" },
+	{ SPE_RANDOM_DETECTION, "sluchaynoye obnaruzheniye" },
+	{ WAN_STAT_REDUCTION, "snizheniye kharakteristik" },
+	{ PETRIFYIUM_BAR, "slitok okamenelosti" },
+	{ DISINTEGRATION_BAR, "bar dezintegratsii" },
+	{ AMULET_OF_TIME, "amulet of vremya" },
+	{ AMULET_OF_PET_VIEW, "amulet of vid domashnikh zhivotnykh" },
+	{ SCR_VISIBLE_ITEM, "vidimyy element" },
+
+	/* todo area */
 
 	{0, "" }
 };
@@ -5850,8 +6026,160 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ CORONA_DRAGON_SCALE_MAIL, "quyosh toji miqyosidagi pochta" },
 	{ CORONA_DRAGON_SCALE_SHIELD, "quyosh toji shkalasi qalqoni" },
 
-	/* todo area */
+	{ METEORIC_STEEL_SHIELD, "meteorik po'lat qalqon" },
+	{ OSFA_CHAIN_MAIL, "bitta o'lcham barcha pochta xabarlariga mos keladi" },
+	{ AIR_PRESSURE_HAMMER, "havo bosimi bolg'asi" },
+	{ BUBBLEHORN, "qabariq shox" },
+	{ SCR_GREATER_ENCHANT_WEAPON, "katta sehrgar qurol" },
+	{ SCR_GREATER_ENCHANT_ARMOR, "katta sehrli zirh" },
+	{ SCR_POWER_CHARGING, "quvvatni zaryadlash" },
+	{ WAN_RESTORATION, "qayta tiklash" },
+	{ SCR_ALLY, "ittifoqchi" },
+	{ BLUE_BOW, "ko'k kamon" },
 
+	{ EAGLE_BALL, "burgut to'pi" },
+	{ JARED_STONE, "jarlangan tosh" },
+	{ LIGHTBULB, "lampochka" },
+	{ HEATH_BALL, "to'p to'pi" },
+	{ CIGARETTE, "sigaret" },
+	{ ELECTRIC_CIGARETTE, "elektr sigaret" },
+	{ GRINDER, "tegirmon" },
+	{ HEAVY_GRINDER, "og'ir tegirmon" },
+	{ VARIED_GRINDER, "turli xil tegirmon" },
+	{ QATAR, "katar" },
+	{ LOWER_ARM_BLADE, "pastki qo'l pichog'i" },
+	{ CESTUS, "sestus" },
+	{ BELL_CLAWS, "qo'ng'iroq tirnoqlari" },
+	{ CAMO_QATAR, "kamo katar" },
+
+	{ FOAM_SHIRT, "ko'pikli ko'ylak" },
+	{ FIELD_PLATE, "dala plitasi" },
+	{ STRIPE_MAIL, "chiziqli pochta" },
+	{ POISON_REPELLANT_ARMOR, "zaharli daf qilish zirh" },
+	{ ROBE_OF_CONTROL, "boshqaruv kiyimi" },
+	{ CONTRO_DRAGON_SCALE_MAIL, "boshqaruv ajdaho miqyosidagi pochta" },
+	{ CONTRO_DRAGON_SCALES, "boshqaruv ajdaho tarozilari" },
+	{ CONTRO_DRAGON_SCALE_SHIELD, "boshqaruv ajdaho shkalasi qalqoni" },
+	{ CLOAK_OF_MAGIC_CONTROL, "sehrli boshqaruvning plashi" },
+	{ CLOAK_OF_EXPERIENCE, "tajriba plashi" },
+	{ PASSTHROUGH_BOOTS, "o'tish botlari" },
+	{ RIN_MAGIC_CONTROL, "sehrli boshqarish" },
+	{ AMULET_OF_MAGIC_CONTROL, "amulet of sehrli boshqarish" },
+	{ ROBE_OF_ANTI_CURSING, "la'natga qarshi kiyim" },
+	{ ROBE_OF_DRAIN_RESISTANCE, "drenajga qarshilik kiyimi" },
+	{ ROBE_OF_DEATH_RESISTANCE, "o'limga qarshilik kiyimi" },
+	{ ROBE_OF_INFRAVISION, "nafislik libosi" },
+	{ INFERNAL_AXE, "do'zaxga oid bolta" },
+	{ INFERNAL_BARDICHE, "do'zaxga oid temir panjarasi bolta" },
+	{ INFERNAL_ANCUS, "do'zaxga oid langar" },
+	{ JAGGED_TOOTH_CLUB, "tishli tish klubi" },
+	{ FLINDBAR, "chaqmoq temir panjarasi" },
+	{ CROW_QUILL, "qarg'a kviling" },
+	{ RAKUYO, "hech kim bilmagan ba'zi yapon qurollari" },
+	{ KAMEREL_VAJRA, "o'qib bo'lmaydigan momaqaldiroq" },
+	{ VIPERWHIP, "ilon qamchi" },
+	{ BARNACLE_ARMOR, "zirhli zirh" },
+	{ GIANT_SEA_ANEMONE, "ulkan dengiz anemoni" },
+	{ VICTIM_KNIFE, "jabrlanuvchi pichoq" },
+	{ QUALITY_AXE, "sifatli bolta" },
+	{ TRASH_SWORD, "axlat qilichi" },
+	{ CUDSWORD, "so'z saqich" },
+	{ BUBBLETAR, "qabariq yulduz" },
+	{ GREEN_SABER, "yashil qichitqi" },
+	{ ALLOY_CLUB, "qotishma klubi" },
+	{ METAL_STAR, "metall yulduz" },
+	{ STONE_STAR, "tosh yulduz" },
+	{ MARBLE_CHUNK, "marmar bo'lagi" },
+	{ CONTRO_STAFF, "boshqaruv xodimlari" },
+	{ FOAMY_STAFF, "ko'pikli xodimlar" },
+	{ CELESTIAL_POLE, "samoviy qutb" },
+	{ ZEBES_POLE, "begona sayyora ustuni" },
+	{ CRYPTIC_POLE, "sirli qutb" },
+	{ CRAPPY_SPEAR, "yaramas nayza" },
+	{ SHOOMDENT, "ko'pikli tish" },
+	{ INFERIOR_BOLT, "pastki murvat" },
+	{ MYSTERY_SHURIKEN, "sir yulduz otish" },
+	{ HEAVENLY_WHIP, "samoviy qamchi" },
+	{ CONUNDRUM_PICK, "jumboqli tanlov" },
+	{ SKY_HORN, "osmon shoxi" },
+	{ CONUNDRUM_NUGGET, "jumboq sof holda topilgan metall" },
+	{ HEAVY_ALLOY_BALL, "og'ir qotishma to'pi" },
+	{ HEAVY_SCRAP_BALL, "og'ir hurda to'p" },
+	{ HEAVY_METEORIC_BALL, "og'ir meteorik to'p" },
+	{ HEAVY_ANTIDOTE_BALL, "og'ir antidot to'pi" },
+	{ IMPOSSIBLY_HEAVY_ALLOY_BALL, "mumkin bo'lmagan og'ir qotishma to'pi" },
+	{ HEAVY_BUBBLE_BALL, "og'ir pufakchali to'p" },
+	{ HEAVY_FOAM_BALL, "og'ir ko'pikli to'p" },
+	{ HEAVY_CELESTIAL_BALL, "og'ir samoviy to'p" },
+	{ HEAVY_ZEBETITE_BALL, "og'ir zebetit to'pi" },
+	{ IMPOSSIBLY_HEAVY_FOAM_BALL, "imkonsiz og'ir ko'pikli to'p" },
+	{ ALLOY_CHAIN, "qotishma zanjiri" },
+	{ SCRAP_CHAIN, "hurda zanjiri" },
+	{ ANTIDOTE_SCOURGE, "antidot balosi" },
+	{ METEORIC_NUNCHIAKU, "meteorik yapon zanjiri" },
+	{ ALLOY_HOSTAGE_CHAIN, "qotishma garov zanjiri" },
+	{ BUBBLE_CHAIN, "qabariq zanjiri" },
+	{ FOAM_CHAIN, "ko'pikli zanjir" },
+	{ CELESTIAL_SCOURGE, "samoviy ofat" },
+	{ ZEBETITE_NUNCHIAKU, "zebetit yapon zanjiri" },
+	{ FOAM_HOSTAGE_CHAIN, "ko'pik garov zanjiri" },
+
+	{ FEMMY_STILETTO_BOOTS, "Femmy stiletto etiklari" },
+	{ MADELEINE_PLATEAU_BOOTS, "Madeleine plato botinkalari" },
+	{ MARLENA_HIKING_BOOTS, "Marlena piyoda botinkalar" },
+	{ ANASTASIA_DANCING_SHOES, "Anastasia raqs poyafzallari" },
+	{ JESSICA_LADY_SHOES, "Jessica xonim poyabzal" },
+	{ SOLVEJG_MOCASSINS, "Solvejg mokassinlar" },
+	{ WENDY_LEATHER_PUMPS, "Wendy charm nasoslar" },
+	{ KATHARINA_PLATFORM_BOOTS, "Katharina platformali botinkalar" },
+	{ ELENA_COMBAT_BOOTS, "Elena jangovar botinkalar" },
+	{ THAI_COMBAT_BOOTS, "Thai jangovar botinkalar" },
+	{ ELIF_SNEAKERS, "Elif krossovkalar" },
+	{ NADJA_BUCKLED_LADY_SHOES, "Nadja buklangan ayol poyafzallari" },
+	{ SANDRA_COMBAT_BOOTS, "Sandra jangovar botinkalar" },
+	{ NATALJE_BLOCK_HEEL_SANDALS, "Natalje to'siq to'pi sandallari" },
+	{ JEANETTA_GIRL_BOOTS, "Jeanetta qiz etiklari" },
+	{ YVONNE_GIRL_SNEAKERS, "Yvonne qiz krossovkalar" },
+	{ MAURAH_HUGGING_BOOTS, "Maurah botinkalarni quchoqlash" },
+	{ MELTEM_COMBAT_BOOTS, "Meltem jangovar botinkalar" },
+	{ SARAH_HUGGING_BOOTS, "Sarah botinkalarni quchoqlash" },
+	{ CLAUDIA_WOODEN_SANDALS, "Claudia yog'och sandallar" },
+	{ LUDGERA_HIKING_BOOTS, "Ludgera piyoda botinkalar" },
+	{ KATI_GIRL_BOOTS, "Kati qiz etiklari" },
+	{ NELLY_LADY_PUMPS, "Nelly xonim nasoslar" },
+	{ EVELINE_WEDGE_SANDALS, "Eveline takozli sandallar" },
+	{ KARIN_LADY_SANDALS, "Karin xonim sandallar" },
+	{ JUEN_PEEP_TOES, "Juen oyoq barmoqlari" },
+	{ KRISTINA_PLATFORM_SNEAKERS, "Kristina platformadagi krossovkalar" },
+	{ LOU_SNEAKERS, "Lou krossovkalar" },
+	{ ALMUT_SNEAKERS, "Almut krossovkalar" },
+	{ JULIETTA_PEEP_TOES, "Julietta oyoq barmoqlari" },
+	{ ARABELLA_HUGGING_BOOTS, "Arabella botinkalarni quchoqlash" },
+
+	{ BOOTS_OF_SHOCK_RESISTANCE, "zarbaga chidamli botinkalar" },
+	{ SKILL_CAP, "mahorat qopqog'i" },
+	{ BOBBLE_HAT, "pog'onali harakat shapka" },
+	{ MASSAGER, "massajchi" },
+	{ FISH_SCALE_MAIL, "baliq miqyosidagi pochta" },
+	{ ROBE_OF_STASIS, "turg'unlik kiyimi" },
+	{ FLEECY_CORSET, "yumshoq korset" },
+	{ FISHNET, "baliq tarmog'i" },
+	{ SPE_CONVERGE_BREATH, "nafasni birlashtirish" },
+	{ SPE_RELOCATION, "ko'chirish" },
+	{ SPE_IMPACT_GUNFIRE, "zarbali otishma" },
+	{ SPE_COAGULATION, "qon ivishi" },
+	{ SPE_CURE_PARALYSIS, "falajni davolash" },
+	{ SPE_SMELL_MONSTER, "hayvonni hidlash" },
+	{ SPE_ECHOLOCATION, "echolokatsiya" },
+	{ SPE_RANDOM_DETECTION, "tasodifiy aniqlash" },
+	{ WAN_STAT_REDUCTION, "statistikani kamaytirish" },
+	{ PETRIFYIUM_BAR, "toshbo'ron qilish temir panjarasi" },
+	{ DISINTEGRATION_BAR, "parchalanish paneli" },
+	{ AMULET_OF_TIME, "amulet of vaqt" },
+	{ AMULET_OF_PET_VIEW, "amulet of uy hayvonlari ko'rinishi" },
+	{ SCR_VISIBLE_ITEM, "ko'rinadigan element" },
+
+	/* todo area */
 
 	{0, "" }
 };
@@ -5917,6 +6245,24 @@ register int otyp;
 		actualn = Alternate_item_name(otyp,Soviet_items);
 	if (Race_if(PM_ANCIENT) && !issoviet && Alternate_item_name(otyp,Ancient_items))
 		actualn = Alternate_item_name(otyp,Ancient_items);
+
+	if (!(u.dungeongrowthhack) && uarmg && itemhasappearance(uarmg, APP_MULTILINGUITIS_GLOVES) && !rn2(5)) {
+		switch (rnd(4)) {
+			case 1:
+				if (Alternate_item_name(otyp,Ancient_items)) actualn = Alternate_item_name(otyp,Ancient_items);
+				break;
+			case 2:
+				if (Alternate_item_name(otyp,Japanese_items)) actualn = Alternate_item_name(otyp,Japanese_items);
+				break;
+			case 3:
+				if (Alternate_item_name(otyp,Pirate_items)) actualn = Alternate_item_name(otyp,Pirate_items);
+				break;
+			case 4:
+				if (Alternate_item_name(otyp,Soviet_items)) actualn = Alternate_item_name(otyp,Soviet_items);
+				break;
+		}
+	}
+
 	switch(ocl->oc_class) {
 	case COIN_CLASS:
 		strcpy(buf, "coin");
@@ -5968,7 +6314,7 @@ register int otyp;
 		} else {
 			strcpy(buf, dn ? dn : actualn);
 			if(ocl->oc_class == GEM_CLASS)
-				strcat(buf, (ocl->oc_material == MT_MINERAL || otyp == SMALL_PIECE_OF_UNREFINED_MITHR || otyp == VOLCANIC_GLASS_FRAGMENT || otyp == LEAD_CLUMP || otyp == SLING_AMMO || otyp == BONE_FRAGMENT || otyp == SILVER_SLINGSTONE ) ?
+				strcat(buf, (ocl->oc_material == MT_MINERAL || otyp == SMALL_PIECE_OF_UNREFINED_MITHR || otyp == VOLCANIC_GLASS_FRAGMENT || otyp == LEAD_CLUMP || otyp == SLING_AMMO || otyp == BONE_FRAGMENT || otyp == SILVER_SLINGSTONE || otyp == CONUNDRUM_NUGGET ) ?
 						" stone" : " gem");
 			if(un)
 				sprintf(eos(buf), " called %s", un);
@@ -6103,6 +6449,23 @@ register struct obj *obj;
 	if (Race_if(PM_ANCIENT) && !issoviet && Alternate_item_name(typ,Ancient_items))
 		actualn = Alternate_item_name(typ,Ancient_items);
 
+	if (!(u.dungeongrowthhack) && uarmg && itemhasappearance(uarmg, APP_MULTILINGUITIS_GLOVES) && !rn2(5)) {
+		switch (rnd(4)) {
+			case 1:
+				if (Alternate_item_name(typ,Ancient_items)) actualn = Alternate_item_name(typ,Ancient_items);
+				break;
+			case 2:
+				if (Alternate_item_name(typ,Japanese_items)) actualn = Alternate_item_name(typ,Japanese_items);
+				break;
+			case 3:
+				if (Alternate_item_name(typ,Pirate_items)) actualn = Alternate_item_name(typ,Pirate_items);
+				break;
+			case 4:
+				if (Alternate_item_name(typ,Soviet_items)) actualn = Alternate_item_name(typ,Soviet_items);
+				break;
+		}
+	}
+
 	if (!dn && restoring) dn = "???";
 	buf[0] = '\0';
 	/*
@@ -6117,8 +6480,10 @@ register struct obj *obj;
 	if (Role_if(PM_PRIEST) || Role_if(PM_NECROMANCER) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA)) obj->bknown = TRUE;
 
 	/* We could put a switch(obj->oclass) here but currently only this one case exists */
-	if (obj->oclass == WEAPON_CLASS && obj->opoisoned)
-		strcpy(buf, flags.simpledescs ? "pois " : "poisoned ");
+	if (obj->oclass == WEAPON_CLASS && obj->opoisoned) {
+		if (obj->superpoison) strcpy(buf, flags.simpledescs ? "xpois " : "superpoisoned ");
+		else strcpy(buf, flags.simpledescs ? "pois " : "poisoned ");
+	}
 
 	/*if (obj_is_pname(obj))
 	    goto nameit;*/
@@ -6213,7 +6578,7 @@ register struct obj *obj;
 		}
 
 		if (typ >= GRAY_DRAGON_SCALES && typ <= YELLOW_DRAGON_SCALES) {
-			sprintf(buf, "set of %s", actualn);
+			sprintf(eos(buf), "set of %s", actualn);
 			break;
 		}
 		if(is_boots(obj) || is_gloves(obj)) strcat(buf,"pair of ");
@@ -6410,7 +6775,7 @@ register struct obj *obj;
 	case GEM_CLASS:
 	    {
 		const char *rock =
-			    (ocl->oc_material == MT_MINERAL || typ == SMALL_PIECE_OF_UNREFINED_MITHR || typ == VOLCANIC_GLASS_FRAGMENT || typ == LEAD_CLUMP || typ == SLING_AMMO || typ == BONE_FRAGMENT || typ == SILVER_SLINGSTONE) ? "stone" : "gem";
+			    (ocl->oc_material == MT_MINERAL || typ == SMALL_PIECE_OF_UNREFINED_MITHR || typ == VOLCANIC_GLASS_FRAGMENT || typ == LEAD_CLUMP || typ == SLING_AMMO || typ == BONE_FRAGMENT || typ == SILVER_SLINGSTONE || typ == CONUNDRUM_NUGGET) ? "stone" : "gem";
 		if (!obj->dknown || PlayerUninformation) {
 		    strcpy(buf, rock);
 		} else if (!nn) {
@@ -6525,17 +6890,17 @@ char *prefix;
 	 */
 	if (obj->oeroded && !iscrys) {
 		switch (obj->oeroded) {
-			case 2:	strcat(prefix, flags.simpledescs ? "2x " : "very "); break;
-			case 3:	strcat(prefix, flags.simpledescs ? "3x " : "thoroughly "); break;
+			case 2:	strcat(prefix, flags.simpledescs ? "2x" : "very "); break;
+			case 3:	strcat(prefix, flags.simpledescs ? "3x" : "thoroughly "); break;
 		}			
 		strcat(prefix, is_rustprone(obj) ? "rusty " : "burnt ");
 	}
 	if (obj->oeroded2 && !iscrys) {
 		switch (obj->oeroded2) {
-			case 2:	strcat(prefix, flags.simpledescs ? "2x " : "very "); break;
-			case 3:	strcat(prefix, flags.simpledescs ? "3x " : "thoroughly "); break;
+			case 2:	strcat(prefix, flags.simpledescs ? "2x" : "very "); break;
+			case 3:	strcat(prefix, flags.simpledescs ? "3x" : "thoroughly "); break;
 		}			
-		strcat(prefix, is_corrodeable(obj) ? (flags.simpledescs ? "etched " : "corroded ") : "rotted ");
+		strcat(prefix, is_corrodeable(obj) ? (flags.simpledescs ? "eroded " : "corroded ") : "rotted ");
 	}
 	if (obj->otyp == BELL_OF_OPENING) {
 		if (u.bellimbued) strcat(prefix, flags.simpledescs ? "imb " : "imbued ");
@@ -6577,7 +6942,12 @@ char *prefix;
 			(objects[(obj)->otyp].oc_material == MT_ETERNIUM) ? "everlasting " :
 			(objects[(obj)->otyp].oc_material == MT_ETHER) ? "windy " :
 			(objects[(obj)->otyp].oc_material == MT_NANOMACHINE) ? "laser-protected " :
+			(objects[(obj)->otyp].oc_material == MT_CELESTIUM) ? "heavenly " :
+			(objects[(obj)->otyp].oc_material == MT_CONUNDRUM) ? "unravelled " :
+			(objects[(obj)->otyp].oc_material == MT_PWN_BUBBLE) ? "pwning " :
+			(objects[(obj)->otyp].oc_material == MT_METEOSTEEL) ? "super-ammo " :
 			(objects[(obj)->otyp].oc_material == MT_BRICK) ? "rock-solid " :
+			(objects[(obj)->otyp].oc_material == MT_ANTIDOTIUM) ? "covid-repellant " :
 		       is_rustprone(obj) ? "rustproof " :
 		       is_corrodeable(obj) ? "corrodeproof " :	/* "stainless"? */
 		       is_flammable(obj) ? "fireproof " : "stainless "); /* Amy edit: let's use that :-) */
@@ -6588,6 +6958,7 @@ doname(obj)
 register struct obj *obj;
 {
 	boolean ispoisoned = FALSE;
+	boolean issuperpoisoned = FALSE;
 	char prefix[PREFIX];
 	char tmpbuf[PREFIX+1];
 	/* when we have to add something at the start of prefix instead of the
@@ -6607,6 +6978,11 @@ register struct obj *obj;
 	if (!strncmp(bp, "poisoned ", 9) && obj->opoisoned) {
 		bp += 9;
 		ispoisoned = TRUE;
+	}
+	if (!strncmp(bp, "superpoisoned ", 14) && obj->superpoison) {
+		bp += 14;
+		ispoisoned = TRUE;
+		issuperpoisoned = TRUE;
 	}
 
 	if(obj->quan != 1L)
@@ -6670,6 +7046,14 @@ register struct obj *obj;
 		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_CHROME) strcat(prefix,"8-");
 		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_CERAMIC) strcat(prefix,"7-");
 		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_NANOMACHINE) strcat(prefix,"N-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_CELESTIUM) strcat(prefix,"h-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_CONUNDRUM) strcat(prefix,"O-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_PWN_BUBBLE) strcat(prefix,"W-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_METEOSTEEL) strcat(prefix,"T-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_ANTIDOTIUM) strcat(prefix,"A-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_FOAM) strcat(prefix,"f-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_SCRAP) strcat(prefix,"r-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_ALLOY) strcat(prefix,"y-");
 	}
 
 	if ((!Hallucination || Role_if(PM_PRIEST) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA) || Role_if(PM_NECROMANCER)) &&
@@ -6744,8 +7128,10 @@ register struct obj *obj;
 
 		break;
 	case WEAPON_CLASS:
-		if(ispoisoned && !PlayerUninformation)
-			strcat(prefix, flags.simpledescs ? "pois " : "poisoned ");
+		if(ispoisoned && !PlayerUninformation) {
+			if (issuperpoisoned) strcat(prefix, flags.simpledescs ? "xpois " : "superpoisoned ");
+			else strcat(prefix, flags.simpledescs ? "pois " : "poisoned ");
+		}
 plus:
 		add_erosion_words(obj, prefix);
 		if (Hallucination)
@@ -6939,7 +7325,7 @@ ring:
 	}
 	if(obj->owornmask & W_SWAPWEP) {
 		if (u.twoweap)
-			sprintf(eos(bp), flags.simpledescs ? " (%s)" : " (wielded in other %s)", body_part(HAND));
+			sprintf(eos(bp), flags.simpledescs ? " (%s2)" : " (wielded in other %s)", body_part(HAND));
 		else
 			strcat(bp, flags.simpledescs ? " (swap)" : " (alternate weapon; not wielded)");
 	}
@@ -6976,7 +7362,7 @@ ring:
 	if ((obj->otyp != BOULDER) || !throws_rocks (youmonst.data))
 	  if ((obj->otyp <= ACID_VENOM) /* && (obj->otyp != CHEST) && (obj->otyp != LARGE_BOX) && */
 && (obj->otyp != LUCKSTONE) && (obj->otyp != HEALTHSTONE) && (obj->otyp != LOADSTONE) && (obj->otyp != TOUCHSTONE)
-&& (obj->otyp != WHETSTONE) && (obj->otyp != MANASTONE) && (obj->otyp != SLEEPSTONE) && (obj->otyp != LOADBOULDER) && (obj->otyp != STARLIGHTSTONE) && (obj->otyp != TALC) && (obj->otyp != GRAPHITE) && (obj->otyp != BONE_FRAGMENT) && (obj->otyp != LEAD_CLUMP) && (obj->otyp != SLING_AMMO) && (obj->otyp != VOLCANIC_GLASS_FRAGMENT) && (obj->otyp != STONE_OF_MAGIC_RESISTANCE) && (obj->otyp != FLINT) && (obj->otyp != SALT_CHUNK) && (obj->otyp != SILVER_SLINGSTONE) && (obj->otyp != SMALL_PIECE_OF_UNREFINED_MITHR) && (obj->otyp != AMULET_OF_YENDOR) && (obj->otyp != FAKE_AMULET_OF_YENDOR) && (!is_nastygraystone(obj))
+&& (obj->otyp != WHETSTONE) && (obj->otyp != MANASTONE) && (obj->otyp != SLEEPSTONE) && (obj->otyp != LOADBOULDER) && (obj->otyp != STARLIGHTSTONE) && (obj->otyp != TALC) && (obj->otyp != GRAPHITE) && (obj->otyp != BONE_FRAGMENT) && (obj->otyp != LEAD_CLUMP) && (obj->otyp != SLING_AMMO) && (obj->otyp != VOLCANIC_GLASS_FRAGMENT) && (obj->otyp != STONE_OF_MAGIC_RESISTANCE) && (obj->otyp != FLINT) && (obj->otyp != SALT_CHUNK) && (obj->otyp != SILVER_SLINGSTONE) && (obj->otyp != CONUNDRUM_NUGGET) && (obj->otyp != SMALL_PIECE_OF_UNREFINED_MITHR) && (obj->otyp != AMULET_OF_YENDOR) && (obj->otyp != FAKE_AMULET_OF_YENDOR) && (!is_nastygraystone(obj))
 	      /*(obj->otyp != ICE_BOX) */ && (!Hallucination && flags.invweight && !WeightDisplayIsArbitrary))
 		        sprintf (eos(bp), " {%d}", obj->owt);
 /* show the freaking weight of all items! --Amy */
@@ -8574,7 +8960,7 @@ boolean actualwish;
 		register int j = strlen(wrp[i]);
 		if(!strncmpi(bp, wrp[i], j)){
 			oclass = wrpsym[i];
-			if(oclass != AMULET_CLASS) {
+			if(oclass != AMULET_CLASS && oclass != IMPLANT_CLASS) {
 			    bp += j;
 			    if(!strncmpi(bp, " of ", 4)) actualn = bp+4;
 			    /* else if(*bp) ?? */
@@ -8771,7 +9157,7 @@ srch:
 				/* avoid stupid mistakes */
 				if((trap == TRAPDOOR || trap == HOLE || trap == SHAFT_TRAP || trap == CURRENT_SHAFT)
 				      && !Can_fall_thru(&u.uz) && !Is_stronghold(&u.uz) ) trap = ROCKTRAP;
-				(void) maketrap(u.ux, u.uy, trap, 0);
+				(void) maketrap(u.ux, u.uy, trap, 0, TRUE);
 				pline("%s.", An(tname));
 				return(&zeroobj);
 			}

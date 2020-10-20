@@ -791,7 +791,7 @@ aligntyp resp_god;
 				koy = rn2(ROWNO);
 
 				if (kox && koy && isok(kox, koy) && (levl[kox][koy].typ > DBWALL) && !(t_at(kox, koy)) ) {
-					(void) maketrap(kox, koy, KOP_CUBE, 0);
+					(void) maketrap(kox, koy, KOP_CUBE, 0, FALSE);
 					break;
 					}
 			}
@@ -1660,6 +1660,9 @@ water_prayer(bless_water)
     /* Praying on a coaligned altar will completely decontaminate you if it was safe to pray --Amy */
     if (bless_water && u.contamination) decontaminate(u.contamination);
 
+    /* and it can also take care of unnaturally low max HP or Pw --Amy */
+    if (bless_water) upnivel(FALSE);
+
     for(otmp = level.objects[u.ux][u.uy]; otmp; otmp = otmp->nexthere) {
 	/* turn water into (un)holy water */
 	if (otmp->otyp == POT_WATER && (bless_water ? !otmp->blessed : !otmp->cursed)) {
@@ -1927,7 +1930,8 @@ dosacrifice()
     struct monst *orac = NULL;
 
     /* KMH -- offerings to Oracle */
-    if (Is_oracle_level(&u.uz) && !u.uswallow) {
+    /* Amy edit: you stupid head, why did you make this take precedence over standing on an altar */
+    if (Is_oracle_level(&u.uz) && !on_altar() && !u.uswallow) {
 	for(orac = fmon; orac; orac = orac->nmon)
 	    if (orac->data == &mons[PM_ORACLE]) break;
 	if (!orac || distu(orac->mx, orac->my) > 2 || !mon_visible(orac)) {
@@ -2017,7 +2021,7 @@ dosacrifice()
 			pline("The gods have no use for trove corpses; you should probably eat them yourself.");
 		}
 		/* gremlins that can split should already be G_NOCORPSE, but just in case... --Amy */
-		if (splittinggremlin(ptr)) {
+		if (splittinggremlin(ptr) || splittinglavagremlin(ptr)) {
 			value = 0;
 			pline("The gods look with disdain at mortals who endlessly split monsters for farming purposes.");
 		}
@@ -2089,6 +2093,7 @@ dosacrifice()
 		    dmon->minvis = FALSE;
 		    if (dmon->minvisreal) dmon->minvis = TRUE;
 		    You("have summoned %s!", a_monnam(dmon));
+		    if (pm >= PM_ORCUS && pm <= PM_DEMOGORGON) u.conclusiocount++;
 		    if (sgn(u.ualign.type) == sgn(dmon->data->maligntyp)) {
 			dmon->mpeaceful = (rn2(2) ? TRUE : FALSE); /* making things a bit more dangerous for chaotics --Amy */
 			if (dmon && dmon->mpeaceful && !rn2(500) ) dmon = tamedog(dmon, (struct obj *) 0, TRUE);
@@ -2739,6 +2744,13 @@ boolean praying;	/* false means no messages should be given */
 
     if (praying)
 	You("begin praying to %s.", align_gname(p_aligntyp));
+
+    if (uarmh && itemhasappearance(uarmh, APP_POPE_HAT)) {
+	adjalign(5);
+	change_luck(1);
+	u.ublesscnt -= rnd(300);
+	if (u.ublesscnt < 0) u.ublesscnt = 0; /* fail safe */
+    }
 
     if (u.ualign.type && u.ualign.type == -p_aligntyp)
 	alignment = -u.ualign.record;		/* Opposite alignment altar */

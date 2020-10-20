@@ -166,6 +166,11 @@ int thrown;
 		sprintf(killer_buf, "%s corpse", an(mons[obj->corpsenm].mname));
 		instapetrify(killer_buf);
 	}
+	if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && (obj->otyp == PETRIFYIUM_BAR)) {
+		You("throw the bar with your bare %s.", body_part(HAND));
+		sprintf(killer_buf, "thrown petrifyium bar");
+		instapetrify(killer_buf);
+	}
 	if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && (obj->otyp == EGG &&
 		    touch_petrifies(&mons[obj->corpsenm]) && obj->corpsenm != PM_PLAYERMON)) {
 		You("throw the %s egg with your bare %s.",
@@ -435,6 +440,11 @@ int thrown;
 		m_shot.s ? "shoot" : "throw",
 		multishot,	/* (might be 1 if player gave shotlimit) */
 		(multishot == 1) ? singular(obj, xname) :  xname(obj));
+	}
+
+	if (obj && uwep && ammo_and_launcher(obj,uwep) && uwep->oartifact == ART_BUG_BAZOOKA) {
+		(void) makemon(mkclass(S_XAN,0), 0, 0, MM_ANGRY);
+		(void) makemon(mkclass(S_ANT,0), 0, 0, MM_ANGRY);
 	}
 
 	if (tech_inuse(T_BLADE_ANGER) && (objects[obj->otyp].oc_skill == -P_SHURIKEN || objects[obj->otyp].oc_skill == P_SHURIKEN ) ) {
@@ -1198,6 +1208,10 @@ boolean hitsroof;
 	breakobj(obj, u.ux, u.uy, TRUE, TRUE);
 	obj = 0;	/* it's now gone */
 	switch (otyp) {
+	case PETRIFYIUM_BAR:
+		if (!uarmh && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
+		    !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM)))
+		goto petrify;
 	case EGG:
 		if (touch_petrifies(&mons[ocorpsenm]) && ocorpsenm != PM_PLAYERMON &&
 		    !uarmh && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
@@ -1248,6 +1262,7 @@ boolean hitsroof;
 
 	if (dmg > 0 && uarmc && uarmc->oartifact == ART_INA_S_SORROW && u.uhunger < 0) dmg += 3;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_SPAMBAIT_FIRE) dmg += 2;
+	if (dmg > 0 && uwep && uwep->oartifact == ART_GARY_S_RIVALRY) dmg += 2;
 	if (dmg > 0 && uarmf && uarmf->oartifact == ART_KATI_S_IRRESISTIBLE_STILET) dmg += 2;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_THOR_S_STRIKE && ACURR(A_STR) >= STR19(25)) dmg += 5;
 	if (dmg > 0 && uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) dmg += 10;
@@ -1264,12 +1279,20 @@ boolean hitsroof;
 	if (dmg > 0 && uarmc && uarmc->oartifact == ART_DUFFDUFFDUFF) dmg += 3;
 	if (dmg > 0 && uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) dmg += 5;
 	if (dmg > 0 && uarmg && uarmg->oartifact == ART_SI_OH_WEE) dmg += 2;
-	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_RHEA_S_MISSING_EYESIGHT) dmg += rnd(5);
+	if (dmg > 0 && powerfulimplants() && uimplant && uimplant->oartifact == ART_RHEA_S_MISSING_EYESIGHT) dmg += rnd(5);
 	if (dmg > 0 && powerfulimplants() && uimplant && uimplant->oartifact == ART_SOME_LITTLE_AID) dmg += 1;
 	if (dmg > 0 && Race_if(PM_VIKING)) dmg += 1;
 	if (dmg > 0 && Race_if(PM_SERB)) dmg += 1;
 	if (dmg > 0 && Race_if(PM_RUSMOT)) dmg += 2;
 	if (dmg > 0 && uarmg && uarmg->oartifact == ART_MAJOR_PRESENCE) dmg += 2;
+	if (dmg > 0 && uarmf && uarmf->oartifact == ART_SNAILHUNT) dmg += 1;
+	if (dmg > 0 && uarmf && uarmf->oartifact == ART_CRASHING_YOUR_SISTER_S_WED) dmg += 2;
+	if (dmg > 0 && uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 0) dmg += 1;
+	if (dmg > 0 && uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 49) dmg += 1;
+	if (dmg > 0 && uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 99) dmg += 1;
+	if (dmg > 0 && uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 149) dmg += 1;
+	if (dmg > 0 && uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 199) dmg += 1;
+	if (dmg > 0 && uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 249) dmg += 1;
 
 	if (dmg > 0 && Race_if(PM_ITAQUE)) dmg -= 1;
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) dmg -= 5;
@@ -1372,7 +1395,7 @@ int thrown;
 	if (launcher && obj && ammo_and_launcher(obj, launcher) && obj->otyp == POISON_BOLT) obj->opoisoned = 1;
 
 	obj->was_thrown = 1;
-	if ((obj->cursed || (obj->otyp == FLIMSY_DART) || (obj->oartifact == ART_COMPLETELY_OFF) || is_grassland(u.ux, u.uy) || obj->greased || (uwep && uwep->oartifact == ART_FOEOEOEOEOEOEOE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FOEOEOEOEOEOEOE) || (Race_if(PM_PLAYER_SKELETON) && !rn2(3)) || (uarmg && itemhasappearance(uarmg, APP_CLUMSY_GLOVES) ) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() ) ) && (u.dx || u.dy) && (!rn2(7) || (obj->oartifact == ART_COMPLETELY_OFF) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() )) ) {
+	if ((obj->cursed || (obj->otyp == FLIMSY_DART) || (obj->oartifact == ART_COMPLETELY_OFF) || (is_grassland(u.ux, u.uy) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) || obj->greased || (uwep && uwep->oartifact == ART_FOEOEOEOEOEOEOE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FOEOEOEOEOEOEOE) || (Race_if(PM_PLAYER_SKELETON) && !rn2(3)) || (uarmg && itemhasappearance(uarmg, APP_CLUMSY_GLOVES) ) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() ) ) && (u.dx || u.dy) && (!rn2(7) || (obj->oartifact == ART_COMPLETELY_OFF) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() )) ) {
 	    boolean slipok = TRUE;
 	    if (ammo_and_launcher(obj, launcher))
 		pline("%s!", Tobjnam(obj, "misfire"));
@@ -1524,6 +1547,7 @@ int thrown;
 
 		if (uarmh && uarmh->oartifact == ART_VIRUS_ATTACK) range += 2;
 		if (launcher && ammo_and_launcher(obj, launcher) && launcher->otyp == SNIPESLING && obj) range += 5;
+		if (launcher && ammo_and_launcher(obj, launcher) && launcher->otyp == BLUE_BOW && obj) range += 1;
 		if (launcher && ammo_and_launcher(obj, launcher) && obj && obj->otyp == ETHER_BOLT) range += 2;
 
 		if (Race_if(PM_ENGCHIP) && launcher && objects[launcher->otyp].oc_skill == P_BOW) range += 2;
@@ -1561,7 +1585,7 @@ int thrown;
 		mon = bhit(u.dx,u.dy,range,THROWN_WEAPON,
 			   (int (*)(MONST_P,OBJ_P))0,
 			   (int (*)(OBJ_P,OBJ_P))0,
-			   &obj);
+			   &obj, TRUE);
 
 		/* have to do this after bhit() so u.ux & u.uy are correct */
 		if(Is_airlevel(&u.uz) || Levitation)
@@ -1638,24 +1662,65 @@ int thrown;
 		}
 	}
 
+	/* boomerang can come back, idea from dnethack, implementation by Amy (chance is less than 100%) */
+	int boomerangchance = 20;
+
+	if (!PlayerCannotUseSkills) {
+		switch (P_SKILL(P_BOOMERANG)) {
+
+			case P_BASIC:	boomerangchance = 30; break;
+			case P_SKILLED:	boomerangchance = 35; break;
+			case P_EXPERT:	boomerangchance = 40; break;
+			case P_MASTER:	boomerangchance = 50; break;
+			case P_GRAND_MASTER:	boomerangchance = 60; break;
+			case P_SUPREME_MASTER:	boomerangchance = 70; break;
+			default: boomerangchance = 20; break;
+		}
+
+		switch (P_SKILL(P_DJEM_SO)) {
+
+			case P_BASIC:	boomerangchance +=  2; break;
+			case P_SKILLED:	boomerangchance +=  4; break;
+			case P_EXPERT:	boomerangchance +=  6; break;
+			case P_MASTER:	boomerangchance +=  8; break;
+			case P_GRAND_MASTER:	boomerangchance +=  10; break;
+			case P_SUPREME_MASTER:	boomerangchance +=  12; break;
+			default: break;
+		}
+
+		if (boomerangchance > 90) boomerangchance = 90; /* shouldn't happen */
+
+		if (Race_if(PM_BATMAN)) { /* his batarang usually comes back --Amy */
+			boomerangchance += ((100 - boomerangchance) / 2);
+		}
+	}
+
 	if (u.uswallow) {
 		/* ball is not picked up by monster */
 		if (obj != uball) (void) mpickobj(u.ustuck,obj,FALSE);
 	} else {
 		/* the code following might become part of dropy() */
-		if ((obj->oartifact == ART_MJOLLNIR &&
-			Role_if(PM_VALKYRIE) && rn2(100)) ||
-		    (is_lightsaber(obj) && obj->lamplit && (rn2(2) || (djemsochance >= rnd(11)) ) && (Role_if(PM_JEDI) || !rn2(2) || (djemsochance >= rnd(11)) ) &&
-			!(PlayerCannotUseSkills) &&
-		     P_SKILL(weapon_type(obj)) >= P_SKILLED)){
+		if (
+			(obj->oartifact == ART_MJOLLNIR && Role_if(PM_VALKYRIE) && rn2(100)) ||
+
+			(is_lightsaber(obj) && obj->lamplit && (rn2(2) || (djemsochance >= rnd(11)) ) &&
+			( (Role_if(PM_JEDI) && P_SKILL(weapon_type(obj)) > P_SKILLED) || (!rn2(2) && P_SKILL(weapon_type(obj)) > P_SKILLED) || (djemsochance >= rnd(11)) ) ) ||
+
+			((objects[obj->otyp].oc_skill == P_BOOMERANG || objects[obj->otyp].oc_skill == -P_BOOMERANG) &&
+			((boomerangchance > rn2(100)) || (obj->oartifact && !rn2(3)) ) )
+
+			) {
+
+			boolean boomerfix = (objects[obj->otyp].oc_skill == P_BOOMERANG || objects[obj->otyp].oc_skill == -P_BOOMERANG);
+
 		    /* we must be wearing Gauntlets of Power to get here */
-		    /* or a Jedi with a lightsaber */
+		    /* or a Jedi with a lightsaber or a thrown boomerang */
 		    if (Role_if(PM_JEDI) && u.uen < 5){
 			You("don't have enough force to call %s. You need at least 5 points of mana!", the(xname(obj)));
 		    } else {
 		      if (Role_if(PM_JEDI))
 			u.uen -= 5;
-		    sho_obj_return_to_u(obj);	    /* display its flight */
+			if (!boomerfix) sho_obj_return_to_u(obj);	    /* display its flight */
 
 			/* djem so just trains so damn slowly... so here's an improvement --Amy */
 			if (is_lightsaber(obj)) use_skill(P_DJEM_SO, 1);
@@ -1664,8 +1729,12 @@ int thrown;
 			pline("%s to your hand!", Tobjnam(obj, "return"));
 			obj = addinv(obj);
 			(void) encumber_msg();
-			setuwep(obj, TRUE, TRUE);
-			u.twoweap = twoweap;
+			if (!boomerfix) {
+				setuwep(obj, TRUE, TRUE);
+				u.twoweap = twoweap;
+			} else {
+				setuqwep(obj);
+			}
 			if(cansee(bhitpos.x, bhitpos.y))
 			    newsym(bhitpos.x,bhitpos.y);
 		    } else {
@@ -1905,6 +1974,8 @@ boolean polearming;
 	if (uarmc && uarmc->oartifact == ART_ENEMIES_SHALL_LAUGH_TOO) tmp += 10;
 	if (uimplant && uimplant->oartifact == ART_ACTUAL_PRECISION) tmp += 5;
 	if (uimplant && uimplant->oartifact == ART_RHEA_S_MISSING_EYESIGHT) tmp -= rnd(20);
+	if (uwep && uwep->oartifact == ART_SIGIX_BROADSWORD) tmp -= 5;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SIGIX_BROADSWORD) tmp -= 5;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_ACTUAL_PRECISION) tmp += 5;
 	if (uleft && uleft->oartifact == ART_BLIND_PILOT) tmp -= 10;
 	if (uright && uright->oartifact == ART_BLIND_PILOT) tmp -= 10;
@@ -1915,12 +1986,19 @@ boolean polearming;
 	if (uimplant && uimplant->oartifact == ART_SOME_LITTLE_AID) tmp += 1;
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 	if (uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
+	if (uarmf && uarmf->oartifact == ART_CRASHING_YOUR_SISTER_S_WED) tmp -= 5;
 	if (Race_if(PM_SERB)) tmp += 1;
 	if (uarmg && uarmg->oartifact == ART_MAJOR_PRESENCE) tmp += 2;
+	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 0) tmp += 1;
+	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 49) tmp += 1;
+	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 99) tmp += 1;
+	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 149) tmp += 1;
+	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 199) tmp += 1;
+	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 249) tmp += 1;
 
 	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 
-	if (is_grassland(u.ux, u.uy)) tmp -= rnd(5);
+	if (is_grassland(u.ux, u.uy) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) tmp -= rnd(5);
 
 	if (ACURR(A_DEX) < 4) tmp -= 3;
 	else if (ACURR(A_DEX) < 6) tmp -= 2;
@@ -2128,6 +2206,21 @@ boolean polearming;
 		pline("%s swats the projectile away!", Monnam(mon));
 	}
 
+	if (mon->data == &mons[PM_MR__CONCLUSIO] && rn2(15) && tmp > -20) {
+		tmp = -100;
+		pline("%s swats the projectile away!", Monnam(mon));
+	}
+
+	if (mon->data == &mons[PM_YOUR_GAME_ENDS_NOW] && rn2(15) && tmp > -20) {
+		tmp = -100;
+		pline("%s swats the projectile away!", Monnam(mon));
+	}
+
+	if (mon->data == &mons[PM_ELITE_GENDAME] && rn2(15) && tmp > -20) {
+		tmp = -100;
+		pline("%s swats the projectile away!", Monnam(mon));
+	}
+
 	if (mon->data == &mons[PM_LILAC_FEMMY] && rn2(15) && tmp > -20) {
 		tmp = -100;
 		pline("%s swats the projectile away!", Monnam(mon));
@@ -2225,6 +2318,9 @@ boolean polearming;
 			case STEEL_SHIELD:
 				shieldblockrate = 40;
 				break;
+			case METEORIC_STEEL_SHIELD:
+				shieldblockrate = 42;
+				break;
 			case CRYSTAL_SHIELD:
 			case RAPIRAPI:
 			case HIDE_SHIELD:
@@ -2282,6 +2378,7 @@ boolean polearming;
 			case CANCEL_DRAGON_SCALE_SHIELD:
 			case NEGATIVE_DRAGON_SCALE_SHIELD:
 			case CORONA_DRAGON_SCALE_SHIELD:
+			case CONTRO_DRAGON_SCALE_SHIELD:
 			case HEROIC_DRAGON_SCALE_SHIELD:
 			case STONE_DRAGON_SCALE_SHIELD:
 			case CYAN_DRAGON_SCALE_SHIELD:
@@ -2626,8 +2723,8 @@ boolean polearming;
 		    if (otyp == DART_OF_DISINTEGRATION && rn2(10) ) broken = 1;
 
 			/* Due to segfaults and stuff when trying to make this work in other functions, I'm just deciding that
-			 * any thoroughly eroded stuff you throw will always be destroyed. --Amy */
-		    if ((obj->oeroded == MAX_ERODE || obj->oeroded2 == MAX_ERODE) && !hard_to_destruct(obj)) broken = 1;
+			 * any thoroughly eroded stuff you throw will generally be destroyed much more often. --Amy */
+		    if ((obj->oeroded == MAX_ERODE || obj->oeroded2 == MAX_ERODE) && !rn2(25) && !hard_to_destruct(obj)) broken = 1;
 
 		    if (broken) {
 			if (*u.ushops)
@@ -2993,13 +3090,14 @@ boolean from_invent;
 /*
  * Check to see if obj is going to break, but don't actually break it.
  * Return 0 if the object isn't going to break, 1 if it is.
+ * Amy edit: artifacts no longer completely immune, muahahahaha!
  */
 boolean
 breaktest(obj)
 struct obj *obj;
 {
 	if (obj_resists(obj, 1, 99)) return 0;
-	if ((objects[obj->otyp].oc_material == MT_GLASS || objects[obj->otyp].oc_material == MT_OBSIDIAN) && !obj->oartifact &&
+	if ((objects[obj->otyp].oc_material == MT_GLASS || objects[obj->otyp].oc_material == MT_OBSIDIAN || is_vitric(obj)) && (!obj->oartifact || !rn2(10)) &&
 		obj->oclass != GEM_CLASS)
 	    return 1;
 	switch (obj->oclass == POTION_CLASS ? POT_WATER : obj->otyp) {
@@ -3123,7 +3221,7 @@ struct obj *obj;
 			mon = bhit(u.dx, u.dy, range, THROWN_WEAPON,
 				   (int (*)(MONST_P,OBJ_P))0,
 				   (int (*)(OBJ_P,OBJ_P))0,
-				   &obj);
+				   &obj, FALSE);
 			if (!obj)
 			    return 1;
 			if(mon) {

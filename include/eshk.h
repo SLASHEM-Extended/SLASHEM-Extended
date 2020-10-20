@@ -47,6 +47,7 @@ struct eshk {
 #define SHK_SPECIAL_B   02000L
 #define SHK_SPECIAL_C   04000L
 #define SHK_CREDITSRV	010000L
+#define SHK_BLESS	020000L
 };
 
 #define ESHK(mon)	((struct eshk *)&(mon)->mextra[0])

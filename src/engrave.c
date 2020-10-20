@@ -978,6 +978,9 @@ static const char *random_mesg[] = {
 	"This space is definitely not infected with covid-19 yet.",
 	"know when to hold em, know when to fold em, know when to pork'em, know when to run", /* by porkman */
 	"The engraving you have just started reading is the engraving you have just finished reading.",
+	"SLEX is hereby presented to you by Amy Bluecuntwipeofdeath. Or it would be, according to a certain vandal on the roguebasin site.",
+	"fleecy bundle is an anagram of bully defence",
+	"Locke's men bind Julyne Stark to a tree, and then Locke pulls out his most devastating weapon which is roughly wand-shaped, using it to rob Julyne of something that she can't ever get back.",
 
 };
 
@@ -1810,6 +1813,7 @@ doengrave()
 		    case WAN_SPELLBINDER:
 		    case WAN_INERTIA_CONTROL:
 		    case WAN_STERILIZE:
+		    case WAN_RESTORATION:
 		    case WAN_REMOVE_CURSE:
 		    case WAN_PUNISHMENT:
 		    case WAN_WISHING:
@@ -1828,6 +1832,7 @@ doengrave()
 		    case WAN_CORROSION:
 		    case WAN_CHAOS_TERRAIN:
 		    case WAN_FLEECY_TERRAIN:
+		    case WAN_STAT_REDUCTION:
 		    case WAN_FUMBLING:
 		    case WAN_TIDAL_WAVE:
 		    case WAN_SUMMON_ELM:
@@ -5336,6 +5341,56 @@ static const char *epitaphs[] = {
 	"Huh. Didn't think the random backfires from the map level spell could be that bad.",
 	"RIP tender yellow-blonde practicant lass, crushed under the weight of Noroela's cruel dictatorship when she ultimately ran out of money with which to pay the fines.",
 	"Amy, even a fresh slex compile has this problem!!!",
+	"How can this be? My char basically steamrollered hordes of ubermonsters and then that lone monster came along and completely obliterated me.",
+	"What? I've been fighting monsters like that one before. How the hell can it be that this particular one hit way harder than the previous ones?",
+	"The stupid confusion just would not end, so I was unable to cast any healing spells!",
+	"Fuck hallucination, I don't have the slot of my wand of teleportation memorized. And when I tried to zap the monsters with one of my wands, of course I ended up picking the wand of healing instead.",
+	"Of course it is only a 1 in 8 chance that confusion makes my spell go in the wrong direction. Of course the RNG still decided that it would do so in this critical situation.",
+	"Noooooo! Something caused me to auto-equip an amulet of strangulation and I had no holy water left!",
+	"Gah, why did my prayer fail? I had specifically used enlightenment 20 turns ago and it said it was safe to pray!",
+	"Whoever put a timer on meteor and frozen orb deserves to have their sexual activity in real life put on a timer.",
+	"The lying character screen told me that Bremm's conviction aura reduced my resistances by 5 percent, so I just ignored it... only to find out that each spark was doing 120 or so damage and before I could react, he had already killed me. BULLSHIT!",
+	"Baal shot me with his orange missile ten times in a row, and then he teleported on top of me to do it!",
+	"Nihlathak, that son of a barbarian whore, was exploding corpse after corpse after corpse all well out of range, but then I suddenly realized that I was standing on a harpy corpse and before I could teleport away, it detonated.",
+	"I did dodge the archer boss's arrow. I really did. But it was an extra strong multiple shots might aura enchanted archer boss and the outside arrow clipped me and I DIED. Geeze-o-man.",
+	"I walked up to the next teleporter and clicked on it. Why? I had no idea. Anyway, I ended up in the middle of a pack of goat demons, they went chop chop, and a few seconds later I was staring at a red screen.",
+	"To my dismay, Duriel completely ignored my hired mercenary meatshield and came directly at me, and instakilled me with his charge.",
+	"That stuuuuupid Lister the Tormentor, why the everloving fuck did they design it so that there is loading lag while his boss pack is spawned? When the lag ended, I was already dead!",
+	"lol warum? weteeff",
+	"NOOOOOOOOO! I SOFTLOCKED THE GAME!!!",
+	"Well this part is dangerous, there is a slight chance that the game crashes. Hopefully it won't happen to m-",
+	"Oh my god. If you ever encounter a shoe monster in SLEX, run. Don't try to kill it, you'll get your butt kicked.",
+	"Gah, did the shopkeeper really have to call that many kops just because I accidentally stole a 10zm item???",
+	"WTF, how long does it take for my character to digest a baluchitherium when polymorphed into a purple worm? My polymorphed form got killed halfway through the digestion process but my char didn't stop digesting, meaning I was helpless and got killed before I got to move again!",
+	"Oh wait, so having autodig on is actually dangerous if you happen to press > while standing next to lava? I never knew!",
+	"Damn you Amy, you made shops way too deadly. I had uncontrolled teleportitis, and when I walked over a potion, my autopickup caused me to pick it up and at the same time I got teleported out! What's that you say? I'm supposed to turn autopickup off? FUCK YOU, I'm not gonna do that! Fix your shit game instead!",
+	"Why is it so special to die to a fire enchanted Bartuc? There's lots of other bosses that could also spawn fire enchanted...",
+	"Wrong variant, 'udemy certified metasploit framework professional' sounds like a slex monster, not a dnethack one. Learn to tag your post properly next time bro :P",
+	"you don't want a cursed luckstone, because you'll likely not be able to pray and your wand of wishing will also not work correctly, but behave more like the virgin on her wedding night: can't find the hole!",
+	"they did that on purpose because they want to maximally piss off me (specifically, they don't care about pissing off anyone else, just me), and nope I'm not paranoid, they're really after me",
+	"The only reason to play SLEX I can imagine is that your supply of acid ran out.", /* by Mandevil */
+	"Oh, you didn't know about slex being the actual cause of COVID.", /* by jonadab */
+	"this game is a fever dream", /* by amateurhour */
+	"the sokosolver floors being bass ackwards is also a pita", /* ditto */
+	"the f in slex stands for fun", /* ditto */
+	"no theories involve you surviving a run of slex all the way through",
+	"dude this game, it's like a fever dream. That trap gave me a feminism curse which meant any feminine creatures made me fart, and the mummy kept stroking me twice per turn unleashing every possible fart effect so I'm just there farting myself to sleep over and over as they're stroking me to death", /* by amateurhour */
+	"Amy a tiny asian girl paralysed me and kicked my shins over and over for ages till I died", /* ditto */
+	"Oh no, I only have one energiud remaining!",
+	"Here lies Eddard Stark the Cunning. Apparently he wasn't cunning enough to predict that the evil monster Cersei would try to kill him.",
+	"Here lies Robb Stark, King of the North. THE Theon took over his kingdom and killed Robb in the process.",
+	"Here lies Julyne Stark's virginity, killed by Locke's penis.",
+	"Here lies King Joffrey the Mad. Julyne Stark slit his throat and the entire kingdom rejoiced.",
+	"Here lies Brienne Stark, who doesn't even exist. Who is that supposed to be? She's not a character from the show. Now Julyne Stark, *she* is a canon character. But Brienne? Never heard of her.",
+	"Here lies Catelyn Stark. The evil Lannister assholes wanted her to die even though she hadn't harmed anyone.",
+	"This is the Game of Thrones mass grave, because everyone dies in the end anyway so we just shoveled all the corpses into one single tomb.",
+	"if u dont have double motivation ur game can suddenly end at any time", /* by amateurhour */
+	"Here lies Jaime Lannister's left hand, cut off by Locke. Because Locke is evil with a capital E.",
+	"Here lies Bran's ability to move his legs. While Cersei is an evil monster, one of her only good deeds was to push that loser out the window. He broke his legs so badly that he ended up handicapped for the rest of his pathetic life.",
+	"What, dipping a stack of potions into a pool doesn't always dilute it, this is unplayable and a hill I'm willing to die on",
+	"nasty traps last too long", /* hint: they don't :P --Amy */
+	"WHAAAAAT you made it so that I can't simply startscum healers for wishes anymore YOU SUUUUUUCK AMY! I certainly won't touch your shit variant again!",
+	"Is there still something in slex that players enjoy? You should implement the opposite of that.", /* by amateurhour (exact original wording might be slightly different) */
 
 };
 

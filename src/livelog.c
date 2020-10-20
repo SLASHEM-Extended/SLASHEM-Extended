@@ -208,7 +208,7 @@ livelog_report_trophy(string)
 char *string;
 {
 	snprintf(strbuf, STRBUF_LEN,
-		"player=%s%s%s%s:role=%s:race=%s:gender=%s:align=%s:hybrid=%s:turns=%ld:trophy=%s\n",
+		"player=%s%s%s%s:role=%s:race=%s:gender=%s:align=%s:hybrid=%s:turns=%ld:message=%s\n",
 		plalias[0] ? plalias : plname,
 		plalias[0] ? " (" : "",
 		plalias[0] ? plname : "",

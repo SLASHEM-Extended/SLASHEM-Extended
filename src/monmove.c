@@ -265,6 +265,11 @@ boolean digest_meal;
 			      mon->mhp = mon->mhpmax;
 			else mon->mhp++;
 		}
+
+		if ((osaeddle = which_armor(u.usteed, W_SADDLE)) && osaeddle->oartifact == ART_STEERING_WHEEL) {
+			mon->mconf = FALSE;
+		}
+
 	}
 
 	/* good riding skill gives extra regeneration to ridden monster --Amy */
@@ -1093,7 +1098,7 @@ register struct monst *mtmp;
 	if (mdat == &mons[PM_DEVIOUS_TRAP_INSTALLER] && !rn2(5)) {
 		if (isok(mtmp->mx, mtmp->my) && (!In_sokoban(&u.uz) || !rn2(25))) {
 			if (!(t_at(mtmp->mx, mtmp->my))) {
-				(void) maketrap(mtmp->mx, mtmp->my, randomtrap(), 100 );
+				(void) maketrap(mtmp->mx, mtmp->my, randomtrap(), 100, FALSE);
 			}
 		}
 	}
@@ -1101,7 +1106,7 @@ register struct monst *mtmp;
 	if (mdat == &mons[PM_LITTLE_HIDDEN_BOX]) {
 		if (isok(mtmp->mx, mtmp->my) && (!In_sokoban(&u.uz) || !rn2(25))) {
 			if (!(t_at(mtmp->mx, mtmp->my))) {
-				(void) maketrap(mtmp->mx, mtmp->my, randomtrap(), 100 );
+				(void) maketrap(mtmp->mx, mtmp->my, randomtrap(), 100, FALSE);
 			}
 		}
 	}
@@ -1109,7 +1114,7 @@ register struct monst *mtmp;
 	if (mdat == &mons[PM_XTRA_WEBBER] && !rn2(3)) {
 		if (isok(mtmp->mx, mtmp->my) && (!In_sokoban(&u.uz) || !rn2(25))) {
 			if (!(t_at(mtmp->mx, mtmp->my))) {
-				(void) maketrap(mtmp->mx, mtmp->my, randomtrap(), 100 );
+				(void) maketrap(mtmp->mx, mtmp->my, randomtrap(), 100, FALSE);
 			}
 		}
 	}
@@ -1117,7 +1122,7 @@ register struct monst *mtmp;
 	if (mdat == &mons[PM_SUPERREGENEBOROS]) {
 		if (isok(mtmp->mx, mtmp->my) && (!In_sokoban(&u.uz) || !rn2(25))) {
 			if (!(t_at(mtmp->mx, mtmp->my))) {
-				(void) maketrap(mtmp->mx, mtmp->my, randomtrap(), 100 );
+				(void) maketrap(mtmp->mx, mtmp->my, randomtrap(), 100, FALSE);
 			}
 		}
 	}
@@ -1152,7 +1157,11 @@ register struct monst *mtmp;
 
 	}
 
-	if ((WakeupCallBug || u.uprops[WAKEUP_CALL_BUG].extrinsic || have_wakeupcallstone() || Race_if(PM_SERB)) && mtmp->mpeaceful && !mtmp->mtame && !rn2(10000)) {
+	if ((WakeupCallBug || u.uprops[WAKEUP_CALL_BUG].extrinsic || have_wakeupcallstone() || (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT) || (uwep && uwep->oartifact == ART_DRAMA_STAFF) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DRAMA_STAFF) || Race_if(PM_SERB)) && mtmp->mpeaceful && !mtmp->mtame && !rn2(10000)) {
+		wakeup(mtmp);
+	}
+
+	if (mdat == &mons[PM_NINJA_SALESMAN] && mtmp->mpeaceful && !mtmp->mtame && !rn2(500)) {
 		wakeup(mtmp);
 	}
 
@@ -1273,7 +1282,10 @@ register struct monst *mtmp;
 	if (mtmp->hominglazer) {
 		mtmp->hominglazer++;
 		/* it can only be charged for so long, and then the monster needs to charge it again */
-		if (mtmp->hominglazer > 200) mtmp->hominglazer = 0;
+		if (mtmp->hominglazer > 200) {
+			mtmp->hominglazer = 0;
+			You_hear("a sparking sound.");
+		}
 	}
 
 	/* monsters whose butts were bashed by you will slowly recover --Amy */
@@ -1507,7 +1519,7 @@ register struct monst *mtmp;
 
 	if (monsndx(mdat) == PM_SINGPIR && !rn2(20)) {
 		if (!(t_at(mtmp->mx, mtmp->my))) {
-			maketrap(mtmp->mx, mtmp->my, SHIT_TRAP, 0);
+			maketrap(mtmp->mx, mtmp->my, SHIT_TRAP, 0, FALSE);
 		}
 	}
 
@@ -1977,6 +1989,10 @@ convertdone:
 		pline("Urrrrrgh, some really stinky person seems to be nearby! You pass out from the vile stench.");
 		nomul(-(rnd(5)), "unconscious from the stink homer's stench", TRUE);
 	}
+	if (mdat == &mons[PM_HUEPPOGREIFSCH] && multi >= 0 && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(10)) {
+		pline("Oh, damn hueppogreifsch...");
+		nomul(-(rnd(5)), "unconscious from the hueppogreifsch", TRUE);
+	}
 
 	if (mdat == &mons[PM_NOISY_ANNOYANCE] && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(20)) {
 		demagogueparole();
@@ -1991,7 +2007,7 @@ convertdone:
 	}
 
 	if ((mdat->msound == MS_STENCH || mtmp->egotype_perfumespreader) && !Role_if(PM_HUSSY) && !(youmonst.data->msound == MS_STENCH) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2((mdat == &mons[PM_NICE_AUNTIE_HILDA]) ? 5 : (mdat == &mons[PM_AUNT_ANITA]) ? 5 : 20)) {
-		switch (rnd(9)) {
+		switch (rnd(10)) {
 
 			case 1:
 				pline("Urgh! You inhale the vile stench that emanates from %s!", mon_nam(mtmp));
@@ -2020,6 +2036,9 @@ convertdone:
 			case 9:
 				pline("%s's perfume is so scentful that %s reminds you of what your aunt smells like when she comes for a visit on Christmas! Ugh!", Monnam(mtmp), mhe(mtmp));
 				break;
+			case 10:
+				pline("%s's odor reminds you of an oriental brothel! What an intrusive perfume is %s using, anyway?", Monnam(mtmp), mhe(mtmp));
+				break;
 
 		}
 		u.cnd_perfumecount++;
@@ -2027,6 +2046,10 @@ convertdone:
 
 		if (rn2(10) && uarmh && itemhasappearance(uarmh, APP_GAS_MASK) ) {
 			pline("But the gas mask protects you from the effects.");
+		} else if (rn2(5) && uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL) {
+			pline("But you actually enjoy the lovely scent.");
+		} else if (rn2(20) && uwep && uwep->oartifact == ART_HIGH_ORIENTAL_PRAISE) {
+			pline("But you actually enjoy the lovely scent.");
 		} else {
 
 			badeffect();
@@ -2074,6 +2097,7 @@ convertdone:
 			pline("%s concentrates.", Monnam(mtmp));
 		if (distu(mtmp->mx, mtmp->my) > BOLT_LIM * BOLT_LIM) {
 			You(FunnyHallu ? "sense a fantastic wave of psychic energy." : "sense a faint wave of psychic energy.");
+			if (!mtmp->mpeaceful && !rn2(5)) maybehackimplant();
 			goto toofar;
 		}
 		pline("A wave of psychic energy pours over you!");
@@ -2081,6 +2105,7 @@ convertdone:
 		    (!Conflict || resist(mtmp, RING_CLASS, 0, 0)))
 			pline("It feels quite soothing.");
 		else {
+			if (!mtmp->mpeaceful) maybehackimplant();
 			register boolean m_sen = sensemon(mtmp);
 
 			if (m_sen || (Blind_telepat && rn2(2)) || !rn2(10)) {
@@ -2783,7 +2808,15 @@ altarfound:
 
 	appr = mtmp->mflee ? -1 : 1;
 
+	if (monsndx(ptr) == PM_DEMON_SPOTTER && !mtmp->cham && !rn2(23) && !mtmp->mpeaceful && !mtmp->mtame) {
+		msummon(mtmp, FALSE);
+		pline("%s opens a gate!",Monnam(mtmp) );
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Sovetskaya nadeyetsya, chto demony zapolnyayut ves' uroven' i ubit' vas." : "Pitschaeff!");
+
+	}
+
 	if (monsndx(ptr) == PM_SLEEPING_GIANT && !rn2(10)) mtmp->msleeping = 1;
+	if (monsndx(ptr) == PM_APATHETIC_ASSHOLE && !rn2(10)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_SARSLEEPER && !rn2(10)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_SLEEPY_GIRL && !rn2(10)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_SLEEPY_WOMAN && !rn2(10)) mtmp->msleeping = 1;
@@ -2791,7 +2824,11 @@ altarfound:
 	if (monsndx(ptr) == PM_SLEEPING_ASIAN_GIRL && !rn2(10)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_DIDDLY_DINGUS_DUDE && !rn2(20)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_DIM_GIRL) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_LASSY_GIRL) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_LOST_ITALIAN_PLUMBER) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_BEER_BELLY) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_SLOOB) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_CRAMP_CART_TO_THE_WALL_DRIVER) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_SOBER_THE_DRUNK) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_LOONIE_BOSS) mtmp->mconf = 1;
@@ -3069,7 +3106,7 @@ altarfound:
 	    chi = -1;
 	    nidist = dist2(nix,niy,gx,gy);
 	    /* allow monsters be shortsighted on some levels for balance */
-	    if(!mtmp->mpeaceful && (level.flags.shortsighted || (rn2(10) && RngeLightAbsorption) || (rn2(10) && uarmc && itemhasappearance(uarmc, APP_ABSORBING_CLOAK) ) ) &&
+	    if(!mtmp->mpeaceful && (level.flags.shortsighted || (uarmf && uarmf->oartifact == ART_UPWARD_HEELS) || (rn2(10) && RngeLightAbsorption) || (rn2(10) && uarmc && itemhasappearance(uarmc, APP_ABSORBING_CLOAK) ) ) &&
 	       nidist > (couldsee(nix,niy) ? 144 : 36) && appr == 1) appr = 0;
 
 		/* special coding for "homing" giant wasps from the hunger games --Amy */
@@ -3098,6 +3135,7 @@ altarfound:
 		ny = poss[i].y;
 
 		if (FeelerGauges || u.uprops[FEELER_GAUGES].extrinsic || have_feelergaugesstone() ) appr = 1;
+		if (Race_if(PM_BULDOZGAR) && !mtmp->mpeaceful && !mtmp->mtame) appr = 1;
 
 		if (appr != 0) {
 		    mtrk = &mtmp->mtrack[0];
@@ -3392,7 +3430,7 @@ postmov:
 		}
 	    }
 
-	    if(hides_under(ptr) || (ptr->mlet == S_EEL && !(ptr == &mons[PM_DEFORMED_FISH]) ) ) {
+	    if(hides_under(ptr) || (ptr->mlet == S_EEL && !(uarmc && uarmc->oartifact == ART_SATAN_S_SUGGESTION) && !(ptr == &mons[PM_DEFORMED_FISH]) ) ) {
 		/* Always set--or reset--mundetected if it's already hidden
 		   (just in case the object it was hiding under went away);
 		   usually set mundetected unless monster can't move.  */

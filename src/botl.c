@@ -539,6 +539,7 @@ bot1()
 		if (flags.hybridstairseeker) sprintf(nb = eos(nb), "i");
 		if (flags.hybridmatrayser) sprintf(nb = eos(nb), "m");
 		if (flags.hybridfeminizer) sprintf(nb = eos(nb), "f");
+		if (flags.hybridchallenger) sprintf(nb = eos(nb), "n");
 	}
 
 	if (flags.showscore)
@@ -760,6 +761,9 @@ struct monst *mon;
 	armor = (mon == &youmonst) ? 0 : which_armor(mon, W_SADDLE);
 	if (armor && armpro < objects[armor->otyp].a_can)
 	    armpro = objects[armor->otyp].a_can;
+
+	if (uarmg && uarmg->oartifact == ART_EGASSO_S_GIBBERISH && armpro < 5) armpro = 5;
+
 	if (MCReduction && mon == &youmonst) armpro -= (1 + (MCReduction / 5000));
 	if (u.magicshield) armpro++;
 	if (Race_if(PM_GERTEUT)) armpro++;
@@ -767,6 +771,7 @@ struct monst *mon;
 	if (uarm && uarm->oartifact == ART_FREE_EXTRA_CANCEL) armpro++;
 	if (uarm && uarm->oartifact == ART_IMPRACTICAL_COMBAT_WEAR) armpro++;
 	if (uarmc && uarmc->oartifact == ART_RESISTANT_PUNCHING_BAG) armpro++;
+	if (uarmc && Role_if(PM_PRIEST) && itemhasappearance(uarmc, APP_ORNAMENTAL_COPE) ) armpro++;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) armpro++;
 	if (Race_if(PM_INKA)) armpro++;
 	if (ACURR(A_CHA) >= 18) armpro++;
@@ -864,7 +869,10 @@ bot2str(char *newbot2)
 		newbot2[0] = '\0';
 	if (bot2_abbrev < 1)
 		sprintf(nb = eos(newbot2), "%c%ld ",
-		  flags.supergmmode ? monsyms[S_SNAKE] : flags.gmmode ? monsyms[S_GNOME] : oc_syms[COIN_CLASS],
+#ifdef GMMODE
+		  flags.supergmmode ? monsyms[S_SNAKE] : flags.gmmode ? monsyms[S_GNOME] : 
+#endif
+		  oc_syms[COIN_CLASS],
 #ifndef GOLDOBJ
 		u.ugold
 #else

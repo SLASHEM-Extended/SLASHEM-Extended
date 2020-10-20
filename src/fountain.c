@@ -66,10 +66,16 @@ dowaterdemon() /* Water demon */
 	/* Give those on low levels a (slightly) better chance of survival */
 	/* 35% at level 1, 30% at level 2, 25% at level 3, etc... */            
 	if (rnd(100) > wishchance) {
-		pline("Grateful for %s release, %s grants you a boon!", mhis(mtmp), mhe(mtmp));
-		if (!rn2(4)) makewish(evilfriday ? FALSE : TRUE);
-		else othergreateffect();
-		mongone(mtmp);
+		if (u.ulevel < 7) {
+			verbalize("Muahahahaha puny mortal, you are too inexperienced to receive my boon! As a consolation, have a zorkmid, but don't spend it all at once! Ha ha ha!");
+			(void) mkgold(1, u.ux, u.uy);
+			mongone(mtmp);
+		} else {
+			pline("Grateful for %s release, %s grants you a boon!", mhis(mtmp), mhe(mtmp));
+			if (!rn2(4)) makewish(evilfriday ? FALSE : TRUE);
+			else othergreateffect();
+			mongone(mtmp);
+		}
 	} else if (t_at(mtmp->mx, mtmp->my))
 		(void) mintrap(mtmp);
 	} else if (issoviet) {
@@ -320,6 +326,7 @@ drinkfountain()
 
 		case 16:
 			pm = rn2(5) ? dprince(rn2((int)A_LAWFUL+2) - 1) : dlord(rn2((int)A_LAWFUL+2) - 1);
+			if (pm >= PM_ORCUS && pm <= PM_DEMOGORGON) u.conclusiocount++;
 			if (pm && (pm != NON_PM)) {
 				(void) makemon(&mons[pm], u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 				pline("An angry demon climbs out of the fountain...");
@@ -677,6 +684,7 @@ register struct obj *obj;
 		 * I made it so that if you're foolish enough to QUAFF from them instead, it happens much more often --Amy */
 			if (!rn2(50)) {
 				pm = rn2(5) ? dprince(rn2((int)A_LAWFUL+2) - 1) : dlord(rn2((int)A_LAWFUL+2) - 1);
+				if (pm >= PM_ORCUS && pm <= PM_DEMOGORGON) u.conclusiocount++;
 				if (pm && (pm != NON_PM)) {
 					(void) makemon(&mons[pm], u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 					pline("An angry demon climbs out of the fountain...");

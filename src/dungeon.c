@@ -1236,22 +1236,22 @@ boolean	at_stairs;
 		}
 
 		if (!rn2(ishaxor ? 2500 : 5000)) {
-			makerandomtrap();
-			if (!rn2(2)) makerandomtrap();
-			if (!rn2(3)) makerandomtrap();
-			if (!rn2(4)) makerandomtrap();
-			if (!rn2(6)) makerandomtrap();
-			if (!rn2(8)) makerandomtrap();
-			if (!rn2(12)) makerandomtrap();
-			if (!rn2(16)) makerandomtrap();
-			if (!rn2(24)) makerandomtrap();
-			if (!rn2(32)) makerandomtrap();
-			if (!rn2(48)) makerandomtrap();
-			if (!rn2(64)) makerandomtrap();
-			if (!rn2(96)) makerandomtrap();
-			if (!rn2(128)) makerandomtrap();
-			if (!rn2(192)) makerandomtrap();
-			if (!rn2(256)) makerandomtrap();
+			makerandomtrap(FALSE);
+			if (!rn2(2)) makerandomtrap(FALSE);
+			if (!rn2(3)) makerandomtrap(FALSE);
+			if (!rn2(4)) makerandomtrap(FALSE);
+			if (!rn2(6)) makerandomtrap(FALSE);
+			if (!rn2(8)) makerandomtrap(FALSE);
+			if (!rn2(12)) makerandomtrap(FALSE);
+			if (!rn2(16)) makerandomtrap(FALSE);
+			if (!rn2(24)) makerandomtrap(FALSE);
+			if (!rn2(32)) makerandomtrap(FALSE);
+			if (!rn2(48)) makerandomtrap(FALSE);
+			if (!rn2(64)) makerandomtrap(FALSE);
+			if (!rn2(96)) makerandomtrap(FALSE);
+			if (!rn2(128)) makerandomtrap(FALSE);
+			if (!rn2(192)) makerandomtrap(FALSE);
+			if (!rn2(256)) makerandomtrap(FALSE);
 
 		}
 		if (!rn2(10)) pushplayer(TRUE);
@@ -1277,22 +1277,22 @@ boolean	at_stairs;
 		}
 
 		if (!rn2(ishaxor ? 2500 : 5000)) {
-			makerandomtrap();
-			if (!rn2(2)) makerandomtrap();
-			if (!rn2(3)) makerandomtrap();
-			if (!rn2(4)) makerandomtrap();
-			if (!rn2(6)) makerandomtrap();
-			if (!rn2(8)) makerandomtrap();
-			if (!rn2(12)) makerandomtrap();
-			if (!rn2(16)) makerandomtrap();
-			if (!rn2(24)) makerandomtrap();
-			if (!rn2(32)) makerandomtrap();
-			if (!rn2(48)) makerandomtrap();
-			if (!rn2(64)) makerandomtrap();
-			if (!rn2(96)) makerandomtrap();
-			if (!rn2(128)) makerandomtrap();
-			if (!rn2(192)) makerandomtrap();
-			if (!rn2(256)) makerandomtrap();
+			makerandomtrap(FALSE);
+			if (!rn2(2)) makerandomtrap(FALSE);
+			if (!rn2(3)) makerandomtrap(FALSE);
+			if (!rn2(4)) makerandomtrap(FALSE);
+			if (!rn2(6)) makerandomtrap(FALSE);
+			if (!rn2(8)) makerandomtrap(FALSE);
+			if (!rn2(12)) makerandomtrap(FALSE);
+			if (!rn2(16)) makerandomtrap(FALSE);
+			if (!rn2(24)) makerandomtrap(FALSE);
+			if (!rn2(32)) makerandomtrap(FALSE);
+			if (!rn2(48)) makerandomtrap(FALSE);
+			if (!rn2(64)) makerandomtrap(FALSE);
+			if (!rn2(96)) makerandomtrap(FALSE);
+			if (!rn2(128)) makerandomtrap(FALSE);
+			if (!rn2(192)) makerandomtrap(FALSE);
+			if (!rn2(256)) makerandomtrap(FALSE);
 
 		}
 		if (!rn2(10)) pushplayer(TRUE);
@@ -1326,22 +1326,22 @@ boolean	at_stairs;
 			}
 
 			if (!rn2(ishaxor ? 2500 : 5000)) {
-				makerandomtrap();
-				if (!rn2(2)) makerandomtrap();
-				if (!rn2(3)) makerandomtrap();
-				if (!rn2(4)) makerandomtrap();
-				if (!rn2(6)) makerandomtrap();
-				if (!rn2(8)) makerandomtrap();
-				if (!rn2(12)) makerandomtrap();
-				if (!rn2(16)) makerandomtrap();
-				if (!rn2(24)) makerandomtrap();
-				if (!rn2(32)) makerandomtrap();
-				if (!rn2(48)) makerandomtrap();
-				if (!rn2(64)) makerandomtrap();
-				if (!rn2(96)) makerandomtrap();
-				if (!rn2(128)) makerandomtrap();
-				if (!rn2(192)) makerandomtrap();
-				if (!rn2(256)) makerandomtrap();
+				makerandomtrap(FALSE);
+				if (!rn2(2)) makerandomtrap(FALSE);
+				if (!rn2(3)) makerandomtrap(FALSE);
+				if (!rn2(4)) makerandomtrap(FALSE);
+				if (!rn2(6)) makerandomtrap(FALSE);
+				if (!rn2(8)) makerandomtrap(FALSE);
+				if (!rn2(12)) makerandomtrap(FALSE);
+				if (!rn2(16)) makerandomtrap(FALSE);
+				if (!rn2(24)) makerandomtrap(FALSE);
+				if (!rn2(32)) makerandomtrap(FALSE);
+				if (!rn2(48)) makerandomtrap(FALSE);
+				if (!rn2(64)) makerandomtrap(FALSE);
+				if (!rn2(96)) makerandomtrap(FALSE);
+				if (!rn2(128)) makerandomtrap(FALSE);
+				if (!rn2(192)) makerandomtrap(FALSE);
+				if (!rn2(256)) makerandomtrap(FALSE);
 	
 			}
 
@@ -1366,22 +1366,22 @@ boolean	at_stairs;
 		}
 
 			if (!rn2(ishaxor ? 2500 : 5000)) {
-				makerandomtrap();
-				if (!rn2(2)) makerandomtrap();
-				if (!rn2(3)) makerandomtrap();
-				if (!rn2(4)) makerandomtrap();
-				if (!rn2(6)) makerandomtrap();
-				if (!rn2(8)) makerandomtrap();
-				if (!rn2(12)) makerandomtrap();
-				if (!rn2(16)) makerandomtrap();
-				if (!rn2(24)) makerandomtrap();
-				if (!rn2(32)) makerandomtrap();
-				if (!rn2(48)) makerandomtrap();
-				if (!rn2(64)) makerandomtrap();
-				if (!rn2(96)) makerandomtrap();
-				if (!rn2(128)) makerandomtrap();
-				if (!rn2(192)) makerandomtrap();
-				if (!rn2(256)) makerandomtrap();
+				makerandomtrap(FALSE);
+				if (!rn2(2)) makerandomtrap(FALSE);
+				if (!rn2(3)) makerandomtrap(FALSE);
+				if (!rn2(4)) makerandomtrap(FALSE);
+				if (!rn2(6)) makerandomtrap(FALSE);
+				if (!rn2(8)) makerandomtrap(FALSE);
+				if (!rn2(12)) makerandomtrap(FALSE);
+				if (!rn2(16)) makerandomtrap(FALSE);
+				if (!rn2(24)) makerandomtrap(FALSE);
+				if (!rn2(32)) makerandomtrap(FALSE);
+				if (!rn2(48)) makerandomtrap(FALSE);
+				if (!rn2(64)) makerandomtrap(FALSE);
+				if (!rn2(96)) makerandomtrap(FALSE);
+				if (!rn2(128)) makerandomtrap(FALSE);
+				if (!rn2(192)) makerandomtrap(FALSE);
+				if (!rn2(256)) makerandomtrap(FALSE);
 	
 			}
 		if (!rn2(10)) pushplayer(TRUE);
@@ -1993,6 +1993,15 @@ level_difficulty()
 		deepestuz = deepest_lev_reached(TRUE);
 	}
 
+	/* since the dungeon in SLEX is pretty deep, let's make the difficulty increase more gentle... --Amy */
+	if (depthuz >= 12) {
+		depthuz *= 4;
+		depthuz /= 5;
+	} else if (depthuz == 7) depthuz = 6;
+	else if (depthuz == 8) depthuz = 7;
+	else if (depthuz == 9) depthuz = 7;
+	else if (depthuz == 10) depthuz = 8;
+	else if (depthuz == 11) depthuz = 8;
 
 	if (In_endgame(&u.uz))
 		retvalue = (110 + (u.ulevel/2) );
@@ -2082,10 +2091,21 @@ level_difficulty()
 	if (!rn2(20)) retvalue += rno(3);
 
 	/* some variation - it's annoying if you always get max difficulty monsters --Amy */
-	if ((retvalue > 1) && ((!u.aggravation && !isaggravator && !isextravator && !GravationAggravation ) || !rn2((ExtAggravate_monster || isextravator || GravationAggravation) ? 3 : 2)) && !u.outtadepthtrap && !rn2(issoviet ? 3 : 2)) retvalue /= 2;
-	if ((retvalue > 1) && ((!u.aggravation && !isaggravator && !isextravator && !GravationAggravation ) || !rn2((ExtAggravate_monster || isextravator || GravationAggravation) ? 5 : 3)) && !u.outtadepthtrap && !rn2(issoviet ? 15 : 5)) retvalue /= 3;
-	if ((retvalue > 1) && ((!u.aggravation && !isaggravator && !isextravator && !GravationAggravation ) || !rn2((ExtAggravate_monster || isextravator || GravationAggravation) ? 10 : 5)) && !u.outtadepthtrap && !rn2(issoviet ? 200 : 50)) retvalue /= 5;
-	if ((retvalue > 1) && ((!u.aggravation && !isaggravator && !isextravator && !GravationAggravation ) || !rn2((ExtAggravate_monster || isextravator || GravationAggravation) ? 20 : 10)) && !u.outtadepthtrap && !rn2(issoviet ? 1250 : 250)) retvalue /= 10;
+	if ((retvalue > 1) && ((!u.aggravation && !isaggravator && !isextravator && !GravationAggravation ) || !rn2((ExtAggravate_monster || isextravator || GravationAggravation) ? 3 : 2)) && !u.outtadepthtrap && !rn2(issoviet ? 3 : 2)) {
+		retvalue *= 4;
+		retvalue /= 5;
+	}
+	if ((retvalue > 1) && ((!u.aggravation && !isaggravator && !isextravator && !GravationAggravation ) || !rn2((ExtAggravate_monster || isextravator || GravationAggravation) ? 5 : 3)) && !u.outtadepthtrap && !rn2(issoviet ? 15 : 5)) {
+		retvalue *= 3;
+		retvalue /= 5;
+	}
+	if ((retvalue > 1) && ((!u.aggravation && !isaggravator && !isextravator && !GravationAggravation ) || !rn2((ExtAggravate_monster || isextravator || GravationAggravation) ? 10 : 5)) && !u.outtadepthtrap && !rn2(issoviet ? 200 : 50)) {
+		retvalue *= 2;
+		retvalue /= 5;
+	}
+	if ((retvalue > 1) && ((!u.aggravation && !isaggravator && !isextravator && !GravationAggravation ) || !rn2((ExtAggravate_monster || isextravator || GravationAggravation) ? 20 : 10)) && !u.outtadepthtrap && !rn2(issoviet ? 1250 : 250)) {
+		retvalue /= 5;
+	}
 
 	if (retvalue < 1) retvalue = 1;
 
@@ -2093,6 +2113,7 @@ level_difficulty()
 	if (Role_if(PM_PSION) && u.ulevel >= 7) retvalue += rnd(retvalue);
 
 	if (DifficultyIncreased || u.uprops[DIFFICULTY_INCREASED].extrinsic || have_difficultystone() || Race_if(PM_PLAYER_DYNAMO) || (uwep && uwep->oartifact == ART_ARABELLA_S_BLACK_PRONG) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ARABELLA_S_BLACK_PRONG) || (uwep && uwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (uwep && uwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) ) retvalue += 10;
+	if (Race_if(PM_BULDOZGAR) && !rn2(10)) retvalue += 10;
 	if (Race_if(PM_PHANTOM_GHOST)) retvalue++;
 
 	if (uarmg && uarmg->oartifact == ART_DIFFICULTY__) retvalue += (6 + u.ulevel);
@@ -2139,16 +2160,18 @@ level_difficulty()
 
 	/* skew generation to make very high-level monsters much more unlikely --Amy */
 
-	if (retvalue > 20) retvalue = (19 + rnd(retvalue - 19));
+	if ((retvalue > 20) && rn2(3)) retvalue = (19 + rnd(retvalue - 19));
 
 	/* now skew it even more towards low-level stuff */
 
-	if (retvalue > 1 && retvalue <= 6) retvalue = rnd(retvalue);
-	else if (retvalue > 6 && retvalue <= 11) retvalue = ((retvalue - 5) + rnd(5));
-	else if (retvalue > 11) retvalue = (5 + rnd(retvalue - 5));
+	if (retvalue > 1 && retvalue <= 6 && !rn2(5)) retvalue = rnd(retvalue);
+	else if (retvalue > 6 && retvalue <= 11 && !rn2(4)) retvalue = ((retvalue - 5) + rnd(5));
+	else if (retvalue > 11 && !rn2(3)) retvalue = (5 + rnd(retvalue - 5));
 
 	if (retvalue > 126) retvalue = 126; /* fail safe */
 	if (retvalue < 1) retvalue = 1;
+
+	/*pline("%d diff", retvalue);*/
 
 	return((xchar) retvalue);
 }
@@ -2174,6 +2197,9 @@ monster_difficulty()
 
 	if (tempval < 1) tempval = 1;
 	if (tempval > 125) tempval = 125; /* to be on the safe side */
+
+	/*pline("%d mondiff", tempval);*/
+
 	return((xchar) tempval);
 
 }
@@ -2693,9 +2719,9 @@ boolean wantdump;
 	if (printdun) {
 		/* Sokoban lies about dunlev_ureached and we should
 		 * suppress the negative numbers in the endgame.
+		 * Amy edit: fuck that, the branch lengths are always the same anyway so might as well see it
 		 */
-		if (dungeons[mptr->lev.dnum].dunlev_ureached == 1 ||
-			mptr->lev.dnum == sokoban_dnum || In_endgame(&mptr->lev))
+		if (dungeons[mptr->lev.dnum].dunlev_ureached == 1 || In_endgame(&mptr->lev))
 			sprintf(buf, "%s:", dungeons[mptr->lev.dnum].dname);
 		else
 			sprintf(buf, "%s: levels %d to %d", 

@@ -17,105 +17,6 @@ STATIC_DCL struct artifact artilist[];
  */
 
 
-#ifndef OVLB
-
-STATIC_DCL NEARDATA const short skill_names_indices[];
-STATIC_DCL NEARDATA const char *odd_skill_names[];
-
-#else	/* OVLB */
-
-/* KMH, balance patch -- updated */
-STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
-	0,                DAGGER,         KNIFE,        AXE,
-	PICK_AXE,         SHORT_SWORD,    BROADSWORD,   LONG_SWORD,
-	TWO_HANDED_SWORD, SCIMITAR,       PN_SABER,     CLUB,
-	PN_PADDLE,        MACE,           MORNING_STAR,   FLAIL,
-	PN_HAMMER,        QUARTERSTAFF,   PN_POLEARMS,  SPEAR,
-	JAVELIN,          TRIDENT,        LANCE,        BOW,
-	SLING,            PN_FIREARMS,    CROSSBOW,       DART,
-	SHURIKEN,         BOOMERANG,      PN_WHIP,      UNICORN_HORN,
-	PN_LIGHTSABER,
-	PN_ATTACK_SPELL,     PN_HEALING_SPELL,
-	PN_DIVINATION_SPELL, PN_ENCHANTMENT_SPELL,
-	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
-	PN_OCCULT_SPELL,
-	PN_ELEMENTAL_SPELL,
-	PN_CHAOS_SPELL,
-	PN_MATTER_SPELL,
-	PN_BARE_HANDED,	PN_HIGH_HEELS,
-	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
-	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
-	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
-	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_SEXY_FLATS,
-	PN_MEMORIZATION,	PN_GUN_CONTROL,	PN_SQUEAKING,	PN_SYMBIOSIS,
-	PN_SHII_CHO,	PN_MAKASHI,	PN_SORESU,
-	PN_ATARU,	PN_SHIEN,	PN_DJEM_SO,
-	PN_NIMAN,	PN_JUYO,	PN_VAAPAD,	PN_WEDI,
-	PN_MARTIAL_ARTS, 
-	PN_TWO_WEAPONS,
-	PN_RIDING,
-};
-
-
-STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
-    "no skill",
-    "polearms",
-    "saber",
-    "hammer",
-    "whip",
-    "paddle",
-    "firearms",
-    "attack spells",
-    "healing spells",
-    "divination spells",
-    "enchantment spells",
-    "protection spells",
-    "body spells",
-    "occult spells",
-    "elemental spells",
-    "chaos spells",
-    "matter spells",
-    "bare-handed combat",
-    "high heels",
-    "general combat",
-    "shield",
-    "body armor",
-    "two-handed weapons",
-    "polymorphing",
-    "devices",
-    "searching",
-    "spirituality",
-    "petkeeping",
-    "missile weapons",
-    "techniques",
-    "implants",
-    "sexy flats",
-    "memorization",
-    "gun control",
-    "squeaking",
-    "symbiosis",
-    "form I (Shii-Cho)",
-    "form II (Makashi)",
-    "form III (Soresu)",
-    "form IV (Ataru)",
-    "form V (Shien)",
-    "form V (Djem So)",
-    "form VI (Niman)",
-    "form VII (Juyo)",
-    "form VII (Vaapad)",
-    "form VIII (Wedi)",
-    "martial arts",
-    "riding",
-    "two-weapon combat",
-    "lightsaber"
-};
-
-#endif	/* OVLB */
-
-#define P_NAME(type) (skill_names_indices[type] > 0 ? \
-		      OBJ_NAME(objects[skill_names_indices[type]]) : \
-			odd_skill_names[-skill_names_indices[type]])
-
 extern boolean notonhead;	/* for long worms */
 
 #define get_artifact(o) \
@@ -363,6 +264,8 @@ hack_artifacts()
 	artilist[ART_CAUSE_I_M_A_CHEATER].otyp = randartspellbook();
 	artilist[ART_BATMAN_NIGHT].otyp = randartspellbook();
 	artilist[ART_NIKKENIKKENIK].otyp = randartspellbook();
+	artilist[ART_CORTEX_COPROCESSOR].otyp = randartimplant();
+	artilist[ART_AMULET_OF_SPLENDOR].otyp = randartamulet();
 
 	artilist[ART_JANA_S_GRAVE_WALL].otyp = randartcloakX();
 	artilist[ART_HENRIETTA_S_DOGSHIT_BOOTS].otyp = randartbootsX();
@@ -582,6 +485,37 @@ hack_artifacts()
 	artilist[ART_USE_THE_NORMALNESS_TURNS].otyp = find_fungal_sandals();
 	artilist[ART_UNFELLABLE_TREE].otyp = find_standing_footwear();
 
+	artilist[ART_CARMARK].otyp = find_business_shoes();
+	artilist[ART_ANITA_S_RASHLUST].otyp = find_filigree_stilettos();
+	artilist[ART_JONADAB_S_EVERYDAY_WEAR].otyp = find_ugly_boots();
+	artilist[ART_AMATEURSPORTS].otyp = find_unisex_pumps();
+	artilist[ART_RONJA_S_FEMALE_PUSHING].otyp = find_cuddle_cloth_boots();
+	artilist[ART_SNAILHUNT].otyp = find_garden_slippers();
+	artilist[ART_ANTJE_S_POWERSTRIDE].otyp = find_dyke_boots();
+	artilist[ART_NADINE_S_CUTENESS].otyp = find_ankle_strap_sandals();
+
+	artilist[ART_AMPERSAND_HAREM].otyp = find_demonologist_boots();
+	artilist[ART_DIP_DIVE].otyp = find_mud_boots();
+	artilist[ART_MANDY_S_RAIDWEAR].otyp = find_failed_shoes();
+	artilist[ART_PHANTO_S_RETARDEDNESS].otyp = find_opera_pumps();
+	artilist[ART_CLAUDIA_S_SELF_WILL].otyp = find_wooden_clogs();
+	artilist[ART_FASTER_THAN_ALL_OTHERS_INT].otyp = find_regular_sneakers();
+	artilist[ART_RUTH_S_UNDEAD_INLAY].otyp = find_elite_sneakers();
+	artilist[ART_KRAWASAKI_STEERER].otyp = find_biker_boots();
+	artilist[ART_UPWARD_HEELS].otyp = find_zero_drop_shoes();
+	artilist[ART_LUDGERA_S_SECRET_COURSE].otyp = find_hiking_boots();
+	artilist[ART_THERE_ARE_SEVERAL_OF_THEM].otyp = find_pope_hat();
+	artilist[ART_FOOTBALL_MASK].otyp = find_corona_mask();
+	artilist[ART_FFP___MASK].otyp = find_corona_mask();
+	artilist[ART_ACU_BECOME_HAVE].otyp = find_anachro_helmet();
+	artilist[ART_PRIESTEST_BLESS].otyp = find_ornamental_cope();
+	artilist[ART_SATAN_S_SUGGESTION].otyp = find_wetsuit();
+	artilist[ART_EGASSO_S_GIBBERISH].otyp = find_multilinguitis_gloves();
+	artilist[ART_SANDALS_OF_JESUS_CHRIST].otyp = find_throwaway_sandals();
+	artilist[ART_ARTHUR_S_HIGH_HEELED_PLATF].otyp = find_sharp_edged_sandals();
+	artilist[ART_GREEN_THUMB].otyp = find_nondescript_gloves();
+	artilist[ART_GEAVY_GREAVES].otyp = find_lead_boots();
+
 #if 0
 	/* Fix up the gifts */
 	if (urole.gift1arti) {
@@ -775,7 +709,7 @@ bad_artifact()
 
 	/* gather eligible artifacts */
 	for (n = 0, a = artilist+1, m = 1; a->otyp; a++, m++)
-	    if (!(a->spfx & SPFX_NOGEN) && (a->spfx & SPFX_EVIL) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && (!(artiexist[m] && (a->spfx & SPFX_ONLYONE)) ) ) {
+	    if (!(a->spfx & SPFX_NOGEN) && (a->spfx & SPFX_EVIL) && !(a->otyp == AMULET_OF_STRANGULATION) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && (!(artiexist[m] && (a->spfx & SPFX_ONLYONE)) ) ) {
 
 		    eligible[n++] = m;
 	    }
@@ -920,7 +854,7 @@ bad_artifact_xtra()
 
 	/* gather eligible artifacts */
 	for (n = 0, a = artilist+1, m = 1; a->otyp; a++, m++)
-	    if (!(a->spfx & SPFX_NOGEN) && (a->spfx & SPFX_EVIL) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && (!(artiexist[m] && (a->spfx & SPFX_ONLYONE)) ) ) {
+	    if (!(a->spfx & SPFX_NOGEN) && (a->spfx & SPFX_EVIL) && !(a->otyp == AMULET_OF_STRANGULATION) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && (!(artiexist[m] && (a->spfx & SPFX_ONLYONE)) ) ) {
 
 		    eligible[n++] = m;
 	    }
@@ -1153,7 +1087,7 @@ register boolean mod;
 			 * Holy Spear of Light on creation.
 			 */
 			if (!artiexist[m] && artifact_light(otmp) &&
-			  otmp->oartifact != ART_SUNSWORD)
+			  otmp->oartifact != ART_SUNSWORD && otmp->oartifact != ART_SUNSCREEN && otmp->oartifact != ART_SUNTINOPENER && otmp->oartifact != ART_SUNRUBBERHOSE)
 			    begin_burn(otmp, FALSE);
 			/*otmp->quan = 1;*/ /* guarantee only one of this artifact */ /* Amy edit: artifact ammo should not suck... */
 /* Artifacts are immune to unpolypile --ALI */
@@ -2128,6 +2062,13 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 				sprintf(kbuf, "stolen %s corpse", mons[otmp2->corpsenm].mname);
 				instapetrify(kbuf);
 			}
+			if (otmp2->otyp == PETRIFYIUM_BAR && (!uarmg || FingerlessGloves)) {
+				char kbuf[BUFSZ];
+
+				sprintf(kbuf, "stolen petrifyium bar");
+				instapetrify(kbuf);
+
+			}
 			/* more take-away handling, after theft message */
 			if (unwornmask & W_WEP) {		/* stole wielded weapon */
 				possibly_unwield(mdef, FALSE);
@@ -2188,7 +2129,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	}
 
 	/* STEPHEN WHITE'S NEW CODE */
-	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
+	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
 	    otmp->dknown = TRUE;
 	    pline_The("twisted weapon poisons %s!",
 		    youdefend ? "you" : mon_nam(mdef));
@@ -2517,7 +2458,7 @@ doinvoke()
 			if (rn2(3)) {
 				pline("Your mana increases.");
 				u.uenmax++;
-			} else switch (rnd(28)) {
+			} else switch (rnd(29)) {
 
 				case 1:
 					HTeleport_control += 2;
@@ -2647,7 +2588,7 @@ doinvoke()
 					break;
 				case 12:
 					pline("Suddenly, you gain a new companion!");
-					(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE);
+					(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, FALSE);
 					break;
 				case 13:
 					{
@@ -3027,7 +2968,7 @@ doinvoke()
 							}
 
 							P_MAX_SKILL(skillnumber) = maxcap;
-							pline("You can now learn the %s skill, with a new cap of %s.", P_NAME(skillnumber), maxcap == P_SUPREME_MASTER ? "supreme master" : maxcap == P_GRAND_MASTER ? "grand master" : maxcap == P_MASTER ? "master" : maxcap == P_EXPERT ? "expert" : maxcap == P_SKILLED ? "skilled" : "basic");
+							pline("You can now learn the %s skill, with a new cap of %s.", wpskillname(skillnumber), maxcap == P_SUPREME_MASTER ? "supreme master" : maxcap == P_GRAND_MASTER ? "grand master" : maxcap == P_MASTER ? "master" : maxcap == P_EXPERT ? "expert" : maxcap == P_SKILLED ? "skilled" : "basic");
 						} else {
 							pline("Nothing happens...");
 							if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -3113,7 +3054,7 @@ newboss:
 						y = rn2(ROWNO);
 
 						if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-								ttmp = maketrap(x, y, randomtrap(), 0);
+								ttmp = maketrap(x, y, randomtrap(), 0, TRUE);
 							if (ttmp) {
 								ttmp->tseen = 0;
 								ttmp->hiddentrap = 1;
@@ -3142,6 +3083,24 @@ newboss:
 				case 28:
 					decontaminate(100);
 					You_feel("decontaminated.");
+					break;
+				case 29:
+					pline("Wow!  This makes you feel good!");
+					{
+					int i, ii, lim;
+					i = rn2(A_MAX);
+					for (ii = 0; ii < A_MAX; ii++) {
+						lim = AMAX(i);
+						if (i == A_STR && u.uhs >= 3) --lim;	/* WEAK */
+						if (ABASE(i) < lim) {
+							ABASE(i) = lim;
+							flags.botl = 1;
+							break;
+						}
+						if(++i >= A_MAX) i = 0;
+					}
+
+					}
 					break;
 				default:
 					impossible("undefined pentagram effect");
@@ -3380,7 +3339,7 @@ chargingchoice:
 		/* The eye is never blind ... */
 		if (couldsee(mtmp->mx, mtmp->my) && !is_undead(mtmp->data)) {
 		    pline("%s screams in agony!", Monnam(mtmp));
-		    mtmp->mhp /= 3;
+		    mtmp->mhp -= (mtmp->mhp / 3); /* nerf by Amy :P */
 		    if (mtmp->mhp < 1) mtmp->mhp = 1;
 		}
 	    }
@@ -3732,6 +3691,9 @@ artifact_light(obj)
 {
     return get_artifact(obj) && (obj->oartifact == ART_SUNSWORD ||
 	    obj->oartifact == ART_HOLY_SPEAR_OF_LIGHT ||
+	    obj->oartifact == ART_SUNSCREEN ||
+	    obj->oartifact == ART_SUNTINOPENER ||
+	    obj->oartifact == ART_SUNRUBBERHOSE ||
 	    obj->oartifact == ART_CANDLE_OF_ETERNAL_FLAME);
 }
 
@@ -4475,7 +4437,7 @@ retrytrinsic:
 				break;
 
 		}
-	} else switch (rnd(43)) { /* ones that require eating jewelry or other weird actions */
+	} else switch (rnd(45)) { /* ones that require eating jewelry or other weird actions */
 
 			case 1:
 				if (intloss) {
@@ -5384,6 +5346,46 @@ retrytrinsic:
 					if(!(HDiminishedBleeding & FROMOUTSIDE)) {
 						You_feel("a %s coagulation factor being injected into your body!", body_part(BLOOD));
 						HDiminishedBleeding |= FROMOUTSIDE;
+						hasmadeachange = 1;
+					}
+				}
+				break;
+			case 44:
+				if (intloss) {
+					if (HControlMagic & INTRINSIC) {
+						HControlMagic &= ~INTRINSIC;
+						You_feel("unable to control your magic!");
+						hasmadeachange = 1;
+					}
+					if (HControlMagic & TIMEOUT) {
+						HControlMagic &= ~TIMEOUT;
+						You_feel("unable to control your magic!");
+						hasmadeachange = 1;
+					}
+				} else {
+					if(!(HControlMagic & FROMOUTSIDE)) {
+						You_feel("magic-controlled!");
+						HControlMagic |= FROMOUTSIDE;
+						hasmadeachange = 1;
+					}
+				}
+				break;
+			case 45:
+				if (intloss) {
+					if (HExpBoost & INTRINSIC) {
+						HExpBoost &= ~INTRINSIC;
+						You_feel("a loss of experience!");
+						hasmadeachange = 1;
+					}
+					if (HExpBoost & TIMEOUT) {
+						HExpBoost &= ~TIMEOUT;
+						You_feel("a loss of experience!");
+						hasmadeachange = 1;
+					}
+				} else {
+					if(!(HExpBoost & FROMOUTSIDE)) {
+						You_feel("a surge of experience!");
+						HExpBoost |= FROMOUTSIDE;
 						hasmadeachange = 1;
 					}
 				}

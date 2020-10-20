@@ -37,6 +37,11 @@ register boolean clumsy;
 	boolean trapkilled = FALSE;
 
 	if (uarmf && uarmf->oartifact == ART_LARISSA_S_ANGER) dmg += 5;
+	if (uarmf && uarmf->oartifact == ART_SHIN_KICKING_GAME) dmg += 5;
+	if (uarmf && uarmf->oartifact == ART_AIRSHIP_DANCING) dmg += 2;
+	if (uarmf && uarmf->oartifact == ART_WILD_SEX_GAME) dmg += 2;
+	if (uarmf && uarmf->oartifact == ART_LITTLE_BITCH_IS_RUCTIOUS) dmg += 3;
+	if (uarmf && uarmf->oartifact == ART_ARTHUR_S_HIGH_HEELED_PLATF) dmg += 2;
 
 	if (uarmf && uarmf->otyp == KICKING_BOOTS)
 	    dmg += 5;
@@ -169,6 +174,8 @@ register boolean clumsy;
 
 	if (Race_if(PM_DUTHOL) && PlayerInBlockHeels) dmg += 2;
 
+	if (uwep && uwep->oartifact == ART_PEEPLUE) dmg += 2;
+
 	if (uarmf && uarmf->otyp == FEMININE_PUMPS && uarmf->spe >= 1)
 		dmg += uarmf->spe;
 
@@ -204,6 +211,7 @@ register boolean clumsy;
 
 	if (uarmf && uarmf->oartifact == ART_HUGGING__GROPING_AND_STROK) dmg += 5;
 	if (uarmf && uarmf->oartifact == ART_ELENETTES) dmg += 2;
+	if (uarmh && uarmh->oartifact == ART_STROKING_COMBAT) dmg += 2;
 
 	if (uarmf && itemhasappearance(uarmf, APP_WEAPON_LIGHT_BOOTS)) {
 		dmg += u.ulevel;
@@ -389,6 +397,24 @@ register boolean clumsy;
 		}
 	}
 
+	if (uarmf && uarmf->oartifact == ART_RONJA_S_FEMALE_PUSHING && !rn2(10)) {
+		/* see if the monster has a place to move into */
+		mdx = mon->mx + u.dx;
+		mdy = mon->my + u.dy;
+		if(goodpos(mdx, mdy, mon, 0)) {
+			pline("%s is pushed back by your fleecy block heels.", Monnam(mon));
+			if (m_in_out_region(mon, mdx, mdy)) {
+			    remove_monster(mon->mx, mon->my);
+			    newsym(mon->mx, mon->my);
+			    place_monster(mon, mdx, mdy);
+			    newsym(mon->mx, mon->my);
+			    set_apparxy(mon);
+			    if (mintrap(mon) == 2) trapkilled = TRUE;
+			}
+		}
+
+	}
+
 	if (uarmf && (itemhasappearance(uarmf, APP_PLATFORM_BOOTS) || itemhasappearance(uarmf, APP_PLATEAU_BOOTS)) && !rn2(3) ) {
 		if (!mon->mstun) 	{
 			if (rn2(3)) pline("%s is stunned by your strong kick!", Monnam(mon));
@@ -481,6 +507,14 @@ register boolean clumsy;
 		mon->mstun = TRUE;
 		mon->mcanmove = 0;
 		mon->mfrozen = rnd(10);
+		mon->mstrategy &= ~STRAT_WAITFORU;
+
+	}
+
+	if (uarmf && uarmf->oartifact == ART_FINAL_CHALLENGE && !rn2(5) && !(mon->female) && !is_neuter(mon->data) && mon->mcanmove) {
+		pline("Your sexy block heels fully kick %s in the nuts.", mon_nam(mon));
+		mon->mcanmove = 0;
+		mon->mfrozen = rnd(5);
 		mon->mstrategy &= ~STRAT_WAITFORU;
 
 	}
@@ -841,6 +875,7 @@ register struct monst *mtmp;
 register struct obj *gold;
 {
 	boolean msg_given = FALSE;
+	boolean willdelete = FALSE;
 
 	if(!likes_gold(mtmp->data) && !mtmp->isshk && !mtmp->ispriest
 			&& !is_mercenary(mtmp->data)) {
@@ -864,7 +899,8 @@ register struct obj *gold;
 		if (cansee(mtmp->mx, mtmp->my))
 		    pline("%s catches the gold.", Monnam(mtmp));
 #ifndef GOLDOBJ
-		if (!mtmp->isshk || rn2(2)) mtmp->mgold += gold->quan;
+		if (mtmp->isshk && rn2(2)) mtmp->mgold += gold->quan;
+		else willdelete = TRUE;
 #endif
 		if (mtmp->isshk) {
 			long robbed = ESHK(mtmp)->robbed;
@@ -990,6 +1026,7 @@ register struct obj *gold;
 		     else verbalize("That's not enough, coward!");
 		}
 
+
 #ifndef GOLDOBJ
 		dealloc_obj(gold);
 #else
@@ -1026,7 +1063,7 @@ struct obj *obj;
 	    const char *result = (char *)0;
 
 	    otmp2 = otmp->nobj;
-	    if ((objects[otmp->otyp].oc_material == MT_GLASS || objects[otmp->otyp].oc_material == MT_OBSIDIAN) &&
+	    if ((objects[otmp->otyp].oc_material == MT_GLASS || objects[otmp->otyp].oc_material == MT_OBSIDIAN || is_vitric(otmp)) &&
 		otmp->oclass != GEM_CLASS && !obj_resists(otmp, 33, 100) && !stack_too_big(otmp)) {
 		result = "shatter";
 	    } else if (otmp->otyp == EGG && !rn2(3) && !stack_too_big(otmp)) {
@@ -1096,6 +1133,23 @@ xchar x, y;
 	if(Fumbling && !rn2(3)) {
 		Your("clumsy kick missed.");
 		return(1);
+	}
+
+	if(kickobj->otyp == PETRIFYIUM_BAR && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !uarmf) {
+		pline("Kicking a petrifying weapon is a bad idea.");
+	    if (!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
+		
+		if (!Stoned) {
+
+			if (Hallucination && rn2(10)) pline("Good thing you are already stoned.");
+			else {
+				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				u.cnd_stoningcount++;
+				delayed_killer = "kicking a petrifyium bar";
+			}
+		}
+
+	    }
 	}
 
 	if(kickobj->otyp == CORPSE && touch_petrifies(&mons[kickobj->corpsenm])
@@ -1242,7 +1296,7 @@ xchar x, y;
 	mon = bhit(u.dx, u.dy, range, KICKED_WEAPON,
 		   (int (*)(MONST_P,OBJ_P))0,
 		   (int (*)(OBJ_P,OBJ_P))0,
-		   &kickobj);
+		   &kickobj, TRUE);
 	if (!kickobj)
 	    return 1;		/* object broken (and charged for if costly) */ 
 	if(mon) {
@@ -2158,9 +2212,8 @@ boolean shop_floor_obj;
 	if (breaktest(otmp)) {
 	    const char *result;
 
-	    if (objects[otmp->otyp].oc_material == MT_GLASS || objects[otmp->otyp].oc_material == MT_OBSIDIAN
-		|| otmp->otyp == EXPENSIVE_CAMERA
-		) {
+	    if (objects[otmp->otyp].oc_material == MT_GLASS || objects[otmp->otyp].oc_material == MT_OBSIDIAN || is_vitric(otmp) || otmp->otyp == EXPENSIVE_CAMERA )
+	    {
 		if (otmp->otyp == MIRROR)
 		    change_luck(-2);
 		result = "crash";

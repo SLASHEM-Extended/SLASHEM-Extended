@@ -191,7 +191,7 @@ on the first floor, especially when you're playing as something with drain resis
 			break;
 		case AT_KICK:
 			pline("%s kicks you%c", Monnam(mtmp),
-				    thick_skinned(youmonst.data) ? '.' : (uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON) ? '.' : Race_if(PM_DUTHOL) ? '.' : (uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) ? '.' : '!');
+				    thick_skinned(youmonst.data) ? '.' : (uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON) ? '.' : (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) ? '.' : (uarmf && uarmf->oartifact == ART_THICK_FARTING_GIRL) ? '.' : Race_if(PM_DUTHOL) ? '.' : (uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) ? '.' : '!');
 
 			if (humanoid(mtmp->data) && is_female(mtmp->data) && FemtrapActiveJeanetta) {
 				pline("%s uses her cute little boots to scrape a bit of skin off your %s!", Monnam(mtmp), body_part(LEG));
@@ -217,6 +217,31 @@ on the first floor, especially when you're playing as something with drain resis
 				}
 			}
 
+			if (FemtrapActiveLou && !rn2(10)) {
+				pline("Eww, %s's dirty footwear brushed your clothing!", mon_nam(mtmp));
+				register struct obj *objX, *objX2;
+				for (objX = invent; objX; objX = objX2) {
+					objX2 = objX->nobj;
+					if (!rn2(20)) wither_dmg(objX, xname(objX), rn2(4), TRUE, &youmonst);
+				}
+			}
+
+			if (FemtrapActiveJuen && humanoid(mtmp->data) && is_female(mtmp->data) && (multi < 0) && !rn2(3)) {
+
+				pline("Ouch! You're in pain!");
+				if (uarmf && uarmf->oartifact == ART_SHIN_KICKING_GAME) nomul(-3, "having aching legs", TRUE);
+				else nomul(-2, "having aching legs", TRUE);
+
+			}
+
+			if (FemtrapActiveJuen && humanoid(mtmp->data) && is_female(mtmp->data) && (multi >= 0) && rn2(2)) {
+
+				pline("Ouch! You're in pain!");
+				if (uarmf && uarmf->oartifact == ART_SHIN_KICKING_GAME) nomul(-3, "having aching legs", TRUE);
+				else nomul(-2, "having aching legs", TRUE);
+
+			}
+
 			if (uarmf && !rn2(3) && itemhasappearance(uarmf, APP_PLOF_HEELS) ) {
 				pline("*plof*");
 				if (uarmf->spe > ((uarmf->oartifact == ART_STEFANJE_S_PROBLEM) ? -50 : -21)) uarmf->spe--;
@@ -232,7 +257,7 @@ on the first floor, especially when you're playing as something with drain resis
 				if (!rn2(20)) badeffect();
 			}
 
-			if (!flags.female && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && (!issoviet || !rn2(5)) && !rn2(Role_if(PM_PROSTITUTE) ? 1 : Role_if(PM_KURWA) ? 1 : player_shades_of_grey() ? 3 : (u.ualign.type == A_LAWFUL) ? 50 : (u.ualign.type == A_NEUTRAL) ? 30 : 10) ) {
+			if ( ((!flags.female && !(uarmu && uarmu->oartifact == ART_LUISA_S_FELLOW_FEELING) && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY)) || FemtrapActiveKarin) && (!issoviet || !rn2(5)) && !rn2(Role_if(PM_PROSTITUTE) ? 1 : Role_if(PM_KURWA) ? 1 : player_shades_of_grey() ? 3 : (u.ualign.type == A_LAWFUL) ? 50 : (u.ualign.type == A_NEUTRAL) ? 30 : 10) ) {
 
 				if (uarmf && uarmf->oartifact == ART_HUGGING__GROPING_AND_STROK) {
 					pline("%s powerfully kicks you in the nuts, and you moan in lust because you love the pain.", Monnam(mtmp));
@@ -250,12 +275,45 @@ on the first floor, especially when you're playing as something with drain resis
 					if (monsterlev <= 0) monsterlev = 1;
 
 					losehp(d(2,monsterlev), "kick in the nuts", KILLED_BY_AN);
+
+					if (FemtrapActiveKarin && humanoid(mtmp->data) && is_female(mtmp->data) && rn2(3)) {
+						int karincount = 0;
+karinrepeat:
+						if (karincount < (4 + rn2(7)) ) {
+							pline("%s quickly knees you in the nuts again!", Monnam(mtmp));
+							u.cnd_nutkickamount++;
+							if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+							monsterlev = ((mtmp->m_lev) + 1);
+							if (monsterlev <= 0) monsterlev = 1;
+							losehp(d(2,monsterlev), "getting his nuts squashed by a female knee", KILLED_BY);
+							if (!rn2(20)) verbalize("Do you like my sexy knee?");
+						} else {
+							pline("%s massages your aching nuts with her fleecy hands!", Monnam(mtmp));
+							healup(mtmp->m_lev, 0, FALSE, FALSE);
+							if (!rn2(20)) verbalize("I'm sorry for hurting you so much. Here, does that make it feel better?");
+						}
+						karincount++;
+						if (karincount > (6 + rn3(7)) ) karincount = 0;
+						if (rn2(3)) goto karinrepeat;
+					}
+
 				}
 
 			}
 
 			struct obj *footwear = which_armor(mtmp, W_ARMF);
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == WEDGE_SANDALS) || mtmp->data == &mons[PM_ANIMATED_WEDGE_SANDAL] || mtmp->data == &mons[PM_WEREWEDGESANDAL] || mtmp->data == &mons[PM_HUMAN_WEREWEDGESANDAL]) ) {
+
+			if (uarmf && itemhasappearance(uarmf, APP_BUSINESS_SHOES) && humanoid(mtmp->data) && is_female(mtmp->data) && footwear && ishighheeled(footwear)) {
+				pline("%s scratches your butt-ugly business shoes with her high heels.", Monnam(mtmp));
+				if (FunnyHallu) pline("Serves you right for wearing them, you should don some good-looking pair instead.");
+				if (uarmf) wither_obj(uarmf, TRUE, FALSE);
+
+			}
+
+			int randomsexyheels = 0;
+			if (uarmf && uarmf->oartifact == ART_SYSTEM_OF_SEXUAL_PLEASURE && humanoid(mtmp->data) && is_female(mtmp->data)) randomsexyheels = rnd(27);
+
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == WEDGE_SANDALS) || mtmp->data == &mons[PM_ANIMATED_WEDGE_SANDAL] || (randomsexyheels == 1) || mtmp->data == &mons[PM_WEREWEDGESANDAL] || mtmp->data == &mons[PM_HUMAN_WEREWEDGESANDAL]) ) {
 elenaWDG:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -270,7 +328,7 @@ elenaWDG:
 			}
 
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == ATSUZOKO_BOOTS) || mtmp->data == &mons[PM_ANIMATED_ATSUZOKO_BOOT] || mtmp->data == &mons[PM_PLATEAU_GIRL] || mtmp->data == &mons[PM_VERY_THICK_GIRL] || mtmp->data == &mons[PM_KATI_S_PLATEAU_BOOT] || mtmp->data == &mons[PM_VERENA_S_PLATEAU_BOOT] || mtmp->data == &mons[PM_SUPER_STRONG_GIRL] || mtmp->data == &mons[PM_BUFFALO_HC_GIRL] || mtmp->data == &mons[PM_SUE_LYN_S_PLATEAU_BOOT]) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == ATSUZOKO_BOOTS) || mtmp->data == &mons[PM_ANIMATED_ATSUZOKO_BOOT] || mtmp->data == &mons[PM_PLATEAU_GIRL] || mtmp->data == &mons[PM_VERY_THICK_GIRL] || mtmp->data == &mons[PM_KATI_S_PLATEAU_BOOT] || mtmp->data == &mons[PM_VERENA_S_PLATEAU_BOOT] || mtmp->data == &mons[PM_SUPER_STRONG_GIRL] || (randomsexyheels == 2) || mtmp->data == &mons[PM_BUFFALO_HC_GIRL] || mtmp->data == &mons[PM_SUE_LYN_S_PLATEAU_BOOT]) ) {
 elena1:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -285,7 +343,7 @@ elena1:
 				}
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == HIGH_STILETTOS) || mtmp->data == &mons[PM_ANIMATED_STILETTO_SANDAL] || mtmp->data == &mons[PM_WERESTILETTOSANDAL] || mtmp->data == &mons[PM_HUMAN_WERESTILETTOSANDAL] || mtmp->data == &mons[PM_SUPER_STRONG_GIRL] || mtmp->data == &mons[PM_SANDRA_S_EVIL_SANDAL] || mtmp->data == &mons[PM_SANDRA_S_MINDDRILL_SANDAL] || mtmp->data == &mons[PM_NADINE_S_ANKLE_STRAP_SANDAL]) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == HIGH_STILETTOS) || mtmp->data == &mons[PM_ANIMATED_STILETTO_SANDAL] || mtmp->data == &mons[PM_WERESTILETTOSANDAL] || mtmp->data == &mons[PM_HUMAN_WERESTILETTOSANDAL] || (randomsexyheels == 3) || mtmp->data == &mons[PM_SUPER_STRONG_GIRL] || mtmp->data == &mons[PM_SANDRA_S_EVIL_SANDAL] || mtmp->data == &mons[PM_SANDRA_S_MINDDRILL_SANDAL] || mtmp->data == &mons[PM_NADINE_S_ANKLE_STRAP_SANDAL]) ) {
 elena2:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -311,7 +369,7 @@ elena2:
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == UNFAIR_STILETTOS) || mtmp->data == &mons[PM_ANIMATED_UNFAIR_STILETTO] || mtmp->data == &mons[PM_WEREUNFAIRSTILETTO] || mtmp->data == &mons[PM_HUMAN_WEREUNFAIRSTILETTO]) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == UNFAIR_STILETTOS) || (randomsexyheels == 4) || mtmp->data == &mons[PM_ANIMATED_UNFAIR_STILETTO] || mtmp->data == &mons[PM_WEREUNFAIRSTILETTO] || mtmp->data == &mons[PM_HUMAN_WEREUNFAIRSTILETTO]) ) {
 elena3:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -328,7 +386,7 @@ elena3:
 				}
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == SKY_HIGH_HEELS) || mtmp->data == &mons[PM_ANIMATED_SKY_HIGH_HEEL]) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == SKY_HIGH_HEELS) || (randomsexyheels == 5) || mtmp->data == &mons[PM_ANIMATED_SKY_HIGH_HEEL]) ) {
 elena4:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -350,7 +408,7 @@ elena4:
 				}
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == SYNTHETIC_SANDALS) || mtmp->data == &mons[PM_ANIMATED_SYNTHETIC_SANDAL]) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == SYNTHETIC_SANDALS) || (randomsexyheels == 6) || mtmp->data == &mons[PM_ANIMATED_SYNTHETIC_SANDAL]) ) {
 elena5:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -457,7 +515,7 @@ elena5:
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == ROLLER_BLADE) || mtmp->data == &mons[PM_ANIMATED_ROLLER_BLADE] || mtmp->data == &mons[PM_HUGGING_BOOT_GIRL_WITH_A_BMW] || mtmp->data == &mons[PM_JUEN_S_ROLLER_BLADE]) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == ROLLER_BLADE) || (randomsexyheels == 7) || mtmp->data == &mons[PM_ANIMATED_ROLLER_BLADE] || mtmp->data == &mons[PM_HUGGING_BOOT_GIRL_WITH_A_BMW] || mtmp->data == &mons[PM_JUEN_S_ROLLER_BLADE]) ) {
 elena6:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -471,7 +529,7 @@ elena6:
 				}
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && (footwear && footwear->otyp == PET_STOMPING_PLATFORM_BOOTS) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == PET_STOMPING_PLATFORM_BOOTS) || (randomsexyheels == 8) ) ) {
 elena7:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -489,7 +547,7 @@ elena7:
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == ASS_KICKER_BOOTS)) || mtmp->data == &mons[PM_SUPER_STRONG_GIRL] || mtmp->data == &mons[PM_FOURFOLD_SHOE_ENEMY] || mtmp->data == &mons[PM_DANIELLE_S_COMBAT_BOOT] ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == ASS_KICKER_BOOTS)) || (randomsexyheels == 9) || mtmp->data == &mons[PM_SUPER_STRONG_GIRL] || mtmp->data == &mons[PM_FOURFOLD_SHOE_ENEMY] || mtmp->data == &mons[PM_DANIELLE_S_COMBAT_BOOT] ) {
 elena8:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -506,7 +564,7 @@ elena8:
 			}
 
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && (footwear && footwear->otyp == DANCING_SHOES) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == DANCING_SHOES) || (randomsexyheels == 10) ) ) {
 elena9:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -521,7 +579,7 @@ elena9:
 				}
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && (footwear && footwear->otyp == SWEET_MOCASSINS) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == SWEET_MOCASSINS) || (randomsexyheels == 11) ) ) {
 elena10:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -535,7 +593,7 @@ elena10:
 				}
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == SOFT_SNEAKERS) || mtmp->data == &mons[PM_SUPER_STRONG_GIRL] || mtmp->data == &mons[PM_GIRL_WHO_LOOKS_LIKE_HER_NAME_WAS_FANNY] || mtmp->data == &mons[PM_RITA_S_HIGH_HEELED_SNEAKER]) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == SOFT_SNEAKERS) || mtmp->data == &mons[PM_SUPER_STRONG_GIRL] || (randomsexyheels == 12) || mtmp->data == &mons[PM_GIRL_WHO_LOOKS_LIKE_HER_NAME_WAS_FANNY] || mtmp->data == &mons[PM_RITA_S_HIGH_HEELED_SNEAKER]) ) {
 elena11:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -550,7 +608,7 @@ elena11:
 				}
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == HIPPIE_HEELS) || mtmp->data == &mons[PM_ANIMATED_PROSTITUTE_SHOE] || mtmp->data == &mons[PM_WEREPROSTITUTESHOE] || mtmp->data == &mons[PM_HUMAN_WEREPROSTITUTESHOE] || mtmp->data == &mons[PM_SPIDER_FAGUS]) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == HIPPIE_HEELS) || mtmp->data == &mons[PM_ANIMATED_PROSTITUTE_SHOE] || (randomsexyheels == 13) || mtmp->data == &mons[PM_WEREPROSTITUTESHOE] || mtmp->data == &mons[PM_HUMAN_WEREPROSTITUTESHOE] || mtmp->data == &mons[PM_SPIDER_FAGUS]) ) {
 elena12:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -675,7 +733,7 @@ elena12:
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == LEATHER_PEEP_TOES) || mtmp->data == &mons[PM_ANIMATED_LEATHER_PEEP_TOE] || mtmp->data == &mons[PM_WEREPEEPTOE] || mtmp->data == &mons[PM_HUMAN_WEREPEEPTOE] || mtmp->data == &mons[PM_NORTHERN_SHIN_SMASHER]) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == LEATHER_PEEP_TOES) || (randomsexyheels == 14) || mtmp->data == &mons[PM_ANIMATED_LEATHER_PEEP_TOE] || mtmp->data == &mons[PM_WEREPEEPTOE] || mtmp->data == &mons[PM_HUMAN_WEREPEEPTOE] || mtmp->data == &mons[PM_NORTHERN_SHIN_SMASHER]) ) {
 elena13:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -705,7 +763,7 @@ elena13:
 				}
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == FEMININE_PUMPS) || mtmp->data == &mons[PM_FOURFOLD_SHOE_ENEMY] || mtmp->data == &mons[PM_ANIMATED_SEXY_LEATHER_PUMP] || mtmp->data == &mons[PM_WERESEXYLEATHERPUMP] || mtmp->data == &mons[PM_HUMAN_WERESEXYLEATHERPUMP] || mtmp->data == &mons[PM_ARVOGENIC_TOPMODEL] || mtmp->data == &mons[PM_ANIMATED_BEAUTIFUL_FUNNEL_HEELED_PUMP] || mtmp->data == &mons[PM_WEREBEAUTIFULFUNNELHEELEDPUMP] || mtmp->data == &mons[PM_HUMAN_WEREBEAUTIFULFUNNELHEELEDPUMP] || mtmp->data == &mons[PM_BLOODY_BEAUTIES] || mtmp->data == &mons[PM_DISINTERESTED_OLDER_WOMAN] || mtmp->data == &mons[PM_JOY_PORN_STAR]) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == FEMININE_PUMPS) || mtmp->data == &mons[PM_FOURFOLD_SHOE_ENEMY] || mtmp->data == &mons[PM_ANIMATED_SEXY_LEATHER_PUMP] || mtmp->data == &mons[PM_WERESEXYLEATHERPUMP] || mtmp->data == &mons[PM_HUMAN_WERESEXYLEATHERPUMP] || mtmp->data == &mons[PM_ARVOGENIC_TOPMODEL] || (randomsexyheels == 15) || mtmp->data == &mons[PM_ANIMATED_BEAUTIFUL_FUNNEL_HEELED_PUMP] || mtmp->data == &mons[PM_WEREBEAUTIFULFUNNELHEELEDPUMP] || mtmp->data == &mons[PM_HUMAN_WEREBEAUTIFULFUNNELHEELEDPUMP] || mtmp->data == &mons[PM_BLOODY_BEAUTIES] || mtmp->data == &mons[PM_DISINTERESTED_OLDER_WOMAN] || mtmp->data == &mons[PM_JOY_PORN_STAR]) ) {
 elena14:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -742,7 +800,7 @@ elena14:
 				}
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == LADY_BOOTS) || mtmp->data == &mons[PM_FOURFOLD_SHOE_ENEMY] || mtmp->data == &mons[PM_SUPER_STRONG_GIRL] || mtmp->data == &mons[PM_ANIMATED_LADY_BOOT] ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == LADY_BOOTS) || (randomsexyheels == 16) || mtmp->data == &mons[PM_FOURFOLD_SHOE_ENEMY] || mtmp->data == &mons[PM_SUPER_STRONG_GIRL] || mtmp->data == &mons[PM_ANIMATED_LADY_BOOT] ) ) {
 elenalady:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -758,7 +816,7 @@ elenalady:
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == ITALIAN_HEELS)) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == ITALIAN_HEELS) || (randomsexyheels == 17)) ) {
 elenaitaly:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -775,7 +833,7 @@ elenaitaly:
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == STILETTO_SANDALS) || mtmp->data == &mons[PM_ANIMATED_PRETTY_SANDAL]) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == STILETTO_SANDALS) || (randomsexyheels == 18) || mtmp->data == &mons[PM_ANIMATED_PRETTY_SANDAL]) ) {
 elenass:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -792,7 +850,7 @@ elenass:
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == COMBAT_STILETTOS) || mtmp->data == &mons[PM_ANIMATED_COMBAT_STILETTO] || mtmp->data == &mons[PM_WERECOMBATSTILETTO] || mtmp->data == &mons[PM_HUMAN_WERECOMBATSTILETTO]) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == COMBAT_STILETTOS) || (randomsexyheels == 19) || mtmp->data == &mons[PM_ANIMATED_COMBAT_STILETTO] || mtmp->data == &mons[PM_WERECOMBATSTILETTO] || mtmp->data == &mons[PM_HUMAN_WERECOMBATSTILETTO]) ) {
 elena15:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -806,7 +864,7 @@ elena15:
 				}
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_BEAUTIFUL_HEELS) ) || mtmp->data == &mons[PM_ANIMATED_BEAUTIFUL_SANDAL] || mtmp->data == &mons[PM_PLOF_ANJE] || mtmp->data == &mons[PM_STEFANJE] || mtmp->data == &mons[PM_OFFICER_HANH] ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_BEAUTIFUL_HEELS) ) || (randomsexyheels == 20) || mtmp->data == &mons[PM_ANIMATED_BEAUTIFUL_SANDAL] || mtmp->data == &mons[PM_PLOF_ANJE] || mtmp->data == &mons[PM_STEFANJE] || mtmp->data == &mons[PM_OFFICER_HANH] ) ) {
 elena16:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -841,7 +899,7 @@ elena16:
 				}
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_IRREGULAR_BOOTS) ) || mtmp->data == &mons[PM_ANIMATED_IRREGULAR_HEEL] || mtmp->data == &mons[PM_MANGA_GIRL] || mtmp->data == &mons[PM_MANGA_WOMAN] || mtmp->data == &mons[PM_MANGA_LADY] || mtmp->data == &mons[PM_SANDRA_S_DISGUISED_BOOT] || mtmp->data == &mons[PM_RITA_S_HIGH_HEELED_SNEAKER] ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_IRREGULAR_BOOTS) ) || (randomsexyheels == 21) || mtmp->data == &mons[PM_ANIMATED_IRREGULAR_HEEL] || mtmp->data == &mons[PM_MANGA_GIRL] || mtmp->data == &mons[PM_MANGA_WOMAN] || mtmp->data == &mons[PM_MANGA_LADY] || mtmp->data == &mons[PM_SANDRA_S_DISGUISED_BOOT] || mtmp->data == &mons[PM_RITA_S_HIGH_HEELED_SNEAKER] ) ) {
 elena17:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -858,7 +916,7 @@ elena17:
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_WEDGE_BOOTS) ) || mtmp->data == &mons[PM_TOPLESS_NURSE] || mtmp->data == &mons[PM_NORDIC_LADY] || mtmp->data == &mons[PM_ANN_KATHRIN_S_CUDDLY_BOOT] || mtmp->data == &mons[PM_LISA_S_CUDDLY_BOOT] ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_WEDGE_BOOTS) ) || (randomsexyheels == 22) || mtmp->data == &mons[PM_TOPLESS_NURSE] || mtmp->data == &mons[PM_NORDIC_LADY] || mtmp->data == &mons[PM_ANN_KATHRIN_S_CUDDLY_BOOT] || mtmp->data == &mons[PM_LISA_S_CUDDLY_BOOT] ) ) {
 elena18:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -881,7 +939,7 @@ elena18:
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_HUGGING_BOOTS) ) || mtmp->data == &mons[PM_ANIMATED_HUGGING_BOOT] || mtmp->data == &mons[PM_SLEEPY_LADY] || mtmp->data == &mons[PM_WEREHUGGINGBOOT] || mtmp->data == &mons[PM_HUMAN_WEREHUGGINGBOOT] || mtmp->data == &mons[PM_THE_EXTRA_FLEECY_BUNDLE_HER_HUGGING_BOOT] || mtmp->data == &mons[PM_LUISA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_REBECCA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_BITCHY_LARA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_MARLEEN_S_HUGGING_BOOT] || mtmp->data == &mons[PM_VILEA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_LISELOTTE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_OVERSLEPT_GIRL] || mtmp->data == &mons[PM_AMELJE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_MELANIE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_HUGGING_BOOT_GIRL_WITH_A_BMW] || mtmp->data == &mons[PM_BUNDLE_NADJA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_MARIE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_SUPER_STRONG_GIRL] || mtmp->data == &mons[PM_KRISTIN_S_HUGGING_BOOT] || mtmp->data == &mons[PM_ARABELLA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_SHY_ASIAN_GIRL] || mtmp->data == &mons[PM_MARIAN_S_PERSIAN_BOOT] || mtmp->data == &mons[PM_LAURA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_LITTLE_MARIE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_CHARLOTTE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_STUPID_BLONDE_GIRL] || mtmp->data == &mons[PM_FRIEDERIKE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_SOPHIA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_HEIKE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_INDIAN_QUEEN] || mtmp->data == &mons[PM_GLITTER_FLAX] || mtmp->data == &mons[PM_DORA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_THE_HUGGING_TOPMODEL_HER_HUGGING_BOOT] || mtmp->data == &mons[PM_BUNDLE_NADJA] || mtmp->data == &mons[PM_JOHANETTA_S_WINTER_BOOT] || mtmp->data == &mons[PM_SADISTIC_ASIAN_GIRL] || mtmp->data == &mons[PM_ANJA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_LOVING_ASIAN_GIRL] || mtmp->data == &mons[PM_STARLET_BUNDLE] || mtmp->data == &mons[PM_ABSOLUTELY_CUDDLY_GIRL] || mtmp->data == &mons[PM_ALIDA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_GRENEUVENIC_TOPMODEL] || mtmp->data == &mons[PM_OVERSLEPT_TROLL] || mtmp->data == &mons[PM_FANNY_S_LOVELY_WINTER_BOOT] || mtmp->data == &mons[PM_OFFICER_INA] || mtmp->data == &mons[PM_HUGGER_DRAGON] || mtmp->data == &mons[PM_TAIL_GUTTER] ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_HUGGING_BOOTS) ) || mtmp->data == &mons[PM_ANIMATED_HUGGING_BOOT] || mtmp->data == &mons[PM_NASTY_FEMMY] || mtmp->data == &mons[PM_SLEEPY_LADY] || mtmp->data == &mons[PM_WEREHUGGINGBOOT] || mtmp->data == &mons[PM_HUMAN_WEREHUGGINGBOOT] || mtmp->data == &mons[PM_THE_EXTRA_FLEECY_BUNDLE_HER_HUGGING_BOOT] || mtmp->data == &mons[PM_LUISA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_REBECCA_S_HUGGING_BOOT] || (randomsexyheels == 23) || mtmp->data == &mons[PM_BITCHY_LARA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_MARLEEN_S_HUGGING_BOOT] || mtmp->data == &mons[PM_VILEA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_LISELOTTE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_OVERSLEPT_GIRL] || mtmp->data == &mons[PM_AMELJE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_MELANIE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_HUGGING_BOOT_GIRL_WITH_A_BMW] || mtmp->data == &mons[PM_BUNDLE_NADJA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_MARIE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_SUPER_STRONG_GIRL] || mtmp->data == &mons[PM_KRISTIN_S_HUGGING_BOOT] || mtmp->data == &mons[PM_ARABELLA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_SHY_ASIAN_GIRL] || mtmp->data == &mons[PM_MARIAN_S_PERSIAN_BOOT] || mtmp->data == &mons[PM_LAURA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_LITTLE_MARIE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_CHARLOTTE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_STUPID_BLONDE_GIRL] || mtmp->data == &mons[PM_FRIEDERIKE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_SOPHIA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_HEIKE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_INDIAN_QUEEN] || mtmp->data == &mons[PM_GLITTER_FLAX] || mtmp->data == &mons[PM_DORA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_THE_HUGGING_TOPMODEL_HER_HUGGING_BOOT] || mtmp->data == &mons[PM_BUNDLE_NADJA] || mtmp->data == &mons[PM_JOHANETTA_S_WINTER_BOOT] || mtmp->data == &mons[PM_SADISTIC_ASIAN_GIRL] || mtmp->data == &mons[PM_ANJA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_LOVING_ASIAN_GIRL] || mtmp->data == &mons[PM_STARLET_BUNDLE] || mtmp->data == &mons[PM_ABSOLUTELY_CUDDLY_GIRL] || mtmp->data == &mons[PM_ALIDA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_GRENEUVENIC_TOPMODEL] || mtmp->data == &mons[PM_OVERSLEPT_TROLL] || mtmp->data == &mons[PM_FANNY_S_LOVELY_WINTER_BOOT] || mtmp->data == &mons[PM_OFFICER_INA] || mtmp->data == &mons[PM_HUGGER_DRAGON] || mtmp->data == &mons[PM_TAIL_GUTTER] ) ) {
 elena19:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -925,7 +983,7 @@ elena19:
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_WINTER_STILETTOS) ) || mtmp->data == &mons[PM_ANIMATED_WINTER_STILETTO] || mtmp->data == &mons[PM_WEREWINTERSTILETTO] || mtmp->data == &mons[PM_HUMAN_WEREWINTERSTILETTO] || mtmp->data == &mons[PM_STILETTO_LOVER] || mtmp->data == &mons[PM_SABRINA_S_CONE_HEELED_COMBAT_BOOT] || (FemtrapActiveSandra && humanoid(mtmp->data) && is_female(mtmp->data) ) || mtmp->data == &mons[PM_BOOT_GIRL] ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_WINTER_STILETTOS) ) || mtmp->data == &mons[PM_ANIMATED_WINTER_STILETTO] || mtmp->data == &mons[PM_WEREWINTERSTILETTO] || (randomsexyheels == 24) || mtmp->data == &mons[PM_HUMAN_WEREWINTERSTILETTO] || mtmp->data == &mons[PM_STILETTO_LOVER] || mtmp->data == &mons[PM_SABRINA_S_CONE_HEELED_COMBAT_BOOT] || (FemtrapActiveSandra && humanoid(mtmp->data) && is_female(mtmp->data) ) || mtmp->data == &mons[PM_BOOT_GIRL] ) ) {
 elena20:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -1008,7 +1066,7 @@ elena20:
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_CLUNKY_HEELS) ) || mtmp->data == &mons[PM_THE_HIGH_HEEL_LOVING_ASIAN_GIRL_HER_HEELS] || mtmp->data == &mons[PM_ALMUTH_S_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_HENRIETTA_S_THICK_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_KRISTIN_S_SUPER_HIGH_LADY_SHOE] || mtmp->data == &mons[PM_KRISTIN_S_BLOCK_HEELED_SANDAL] || mtmp->data == &mons[PM_THICK_BEAUTY] || mtmp->data == &mons[PM_NINA_S_CLUNKY_HEEL_BOOT] ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_CLUNKY_HEELS) ) || (randomsexyheels == 25) || mtmp->data == &mons[PM_THE_HIGH_HEEL_LOVING_ASIAN_GIRL_HER_HEELS] || mtmp->data == &mons[PM_ALMUTH_S_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_HENRIETTA_S_THICK_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_KRISTIN_S_SUPER_HIGH_LADY_SHOE] || mtmp->data == &mons[PM_COMMA_LADY] || mtmp->data == &mons[PM_KRISTIN_S_BLOCK_HEELED_SANDAL] || mtmp->data == &mons[PM_THICK_BEAUTY] || mtmp->data == &mons[PM_NINA_S_CLUNKY_HEEL_BOOT] ) ) {
 elena21:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -1024,7 +1082,7 @@ elena21:
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_ANKLE_BOOTS) ) || mtmp->data == &mons[PM_EMMA_S_ANKLE_BOOT] || mtmp->data == &mons[PM_MADELEINE_S_ANKLE_BOOT] || mtmp->data == &mons[PM_BETTINA_S_COMBAT_BOOT] || mtmp->data == &mons[PM_JANINA_S_COMBAT_BOOT] || mtmp->data == &mons[PM_ARABELLA_S_HIGH_HEELED_LADY_SHOE] || mtmp->data == &mons[PM_HC_HIGHHEEL_HUSSY] ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_ANKLE_BOOTS) ) || mtmp->data == &mons[PM_EMMA_S_ANKLE_BOOT] || mtmp->data == &mons[PM_MADELEINE_S_ANKLE_BOOT] || (randomsexyheels == 26) || mtmp->data == &mons[PM_BETTINA_S_COMBAT_BOOT] || mtmp->data == &mons[PM_JANINA_S_COMBAT_BOOT] || mtmp->data == &mons[PM_ARABELLA_S_HIGH_HEELED_LADY_SHOE] || mtmp->data == &mons[PM_HC_HIGHHEEL_HUSSY] ) ) {
 elena22:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -1075,7 +1133,7 @@ elena22:
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_BLOCK_HEELED_BOOTS) ) || mtmp->data == &mons[PM_ANIMATED_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_SLAP_HEELED_SANDAL_BOOT] || mtmp->data == &mons[PM_WEREBLOCKHEELEDCOMBATBOOT] || mtmp->data == &mons[PM_HUMAN_WEREBLOCKHEELEDCOMBATBOOT] || mtmp->data == &mons[PM_SHY_LAURA_S_LOVELY_COMBAT_BOOT] || mtmp->data == &mons[PM_LILLY_S_FLEECY_COMBAT_BOOT] || mtmp->data == &mons[PM_HANNAH_S_COMBAT_BOOT] || mtmp->data == &mons[PM_SABINE_S_ZIPPER_BOOT] || mtmp->data == &mons[PM_LARISSA_S_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_NICOLE_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_ANTJE_S_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_LISA_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_FOURFOLD_SHOE_ENEMY] || mtmp->data == &mons[PM_KRISTIN_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_RUEA_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_JUEN_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_RUTH_S_BLOCK_HEELED_LADY_BOOT] || mtmp->data == &mons[PM_PATRICIA_S_COMBAT_BOOT] || mtmp->data == &mons[PM_DESIREE_S_COMBAT_BOOT] || mtmp->data == &mons[PM_INGE_S_COMBAT_BOOT] || mtmp->data == &mons[PM_CORINA_S_SPECIAL_COMBAT_BOOT] || mtmp->data == &mons[PM_KATRIN_S_COMBAT_BOOT] || mtmp->data == &mons[PM_BIRGIT_S_LADY_BOOT] || mtmp->data == &mons[PM_BLOCK_HEELED_GIRL] || mtmp->data == &mons[PM_LAURA_S__SISTER__COMBAT_BOOT] || mtmp->data == &mons[PM_POWERFUL_BLONDE_GIRL] || mtmp->data == &mons[PM_MARLEEN_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_CZECH_WENCH] || mtmp->data == &mons[PM_UNFORTUNATE_FOREST] || mtmp->data == &mons[PM_BITCHY_LARA_S_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_PERSONA_NON_GRATA] || mtmp->data == &mons[PM_BLOCK_HEELED_PUSSY] ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_BLOCK_HEELED_BOOTS) ) || mtmp->data == &mons[PM_ANIMATED_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_SLAP_HEELED_SANDAL_BOOT] || mtmp->data == &mons[PM_WEREBLOCKHEELEDCOMBATBOOT] || mtmp->data == &mons[PM_HUMAN_WEREBLOCKHEELEDCOMBATBOOT] || mtmp->data == &mons[PM_SHY_LAURA_S_LOVELY_COMBAT_BOOT] || mtmp->data == &mons[PM_LILLY_S_FLEECY_COMBAT_BOOT] || (randomsexyheels == 27) || mtmp->data == &mons[PM_HANNAH_S_COMBAT_BOOT] || mtmp->data == &mons[PM_SABINE_S_ZIPPER_BOOT] || mtmp->data == &mons[PM_LARISSA_S_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_NICOLE_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_ANTJE_S_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_LISA_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_FOURFOLD_SHOE_ENEMY] || mtmp->data == &mons[PM_KRISTIN_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_RUEA_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_JUEN_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_RUTH_S_BLOCK_HEELED_LADY_BOOT] || mtmp->data == &mons[PM_PATRICIA_S_COMBAT_BOOT] || mtmp->data == &mons[PM_DESIREE_S_COMBAT_BOOT] || mtmp->data == &mons[PM_INGE_S_COMBAT_BOOT] || mtmp->data == &mons[PM_CORINA_S_SPECIAL_COMBAT_BOOT] || mtmp->data == &mons[PM_KATRIN_S_COMBAT_BOOT] || mtmp->data == &mons[PM_BIRGIT_S_LADY_BOOT] || mtmp->data == &mons[PM_BLOCK_HEELED_GIRL] || mtmp->data == &mons[PM_LAURA_S__SISTER__COMBAT_BOOT] || mtmp->data == &mons[PM_POWERFUL_BLONDE_GIRL] || mtmp->data == &mons[PM_MARLEEN_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_CZECH_WENCH] || mtmp->data == &mons[PM_UNFORTUNATE_FOREST] || mtmp->data == &mons[PM_BITCHY_LARA_S_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_PERSONA_NON_GRATA] || mtmp->data == &mons[PM_BLOCK_HEELED_PUSSY] ) ) {
 elena23:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -2085,6 +2143,8 @@ mattacku(mtmp)
 
 	if (uimplant && uimplant->oartifact == ART_GYMNASTIC_LOVE && !rn2(5)) tmp -= 100;
 
+	if (u.twoweap && uwep && uswapwep && tech_inuse(T_WEAPON_BLOCKER)) tmp -= rnd(20);
+
 	if ((uarmf && itemhasappearance(uarmf, APP_VELCRO_SANDALS)) && attacktype(mtmp->data, AT_CLAW)) tmp += 100;
 
 	if (Conflict) tmp += rnd(1 + mlevfortohit);
@@ -2114,6 +2174,7 @@ mattacku(mtmp)
 
 /*	Special demon handling code */
 	if(!mtmp->cham && (is_demon(mdat) || mtmp->egotype_gator) && !range2
+	   && mtmp->data != &mons[PM_DEMON_SPOTTER] /* moved to monmove.c --Amy */
 	   && mtmp->data != &mons[PM_BALROG]
 	   && mtmp->data != &mons[PM_SUCCUBUS]
 	   && mtmp->data != &mons[PM_INCUBUS]
@@ -2251,7 +2312,7 @@ mattacku(mtmp)
 			    if (foundyou) {
 				if ((tmp > (j = rnd(20+i))) || (uarmf && itemhasappearance(uarmf, APP_KOREAN_SANDALS) && !rn2(3) ) ) {
 				    if ( (mattk->aatyp != AT_KICK || !rn2(5)) ||
-					    (!thick_skinned(youmonst.data) && !(uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON) && !Race_if(PM_DUTHOL) && !(uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) ) )
+					    (!thick_skinned(youmonst.data) && !(uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON) && !Race_if(PM_DUTHOL) && !(uarmf && uarmf->oartifact == ART_THICK_FARTING_GIRL) && !(uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) && !(uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) ) )
 					sum[i] = hitmu(mtmp, mattk);
 				} else
 				    missmu(mtmp, tmp, j, mattk);
@@ -4430,6 +4491,69 @@ elena37:
 
 	}
 
+	if (FemtrapActiveNelly && humanoid(mtmp->data) && is_female(mtmp->data)) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_HUGS;
+		a->adtyp = AD_PHYS;
+		a->damn = 2;
+		a->damd = (1 + (mtmp->m_lev));
+
+		if((!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+					!touch_petrifies(youmonst.data))) || (!rn2(20) && ((dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM)) || (elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) ) ) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (FemtrapActiveKristina && humanoid(mtmp->data) && is_female(mtmp->data)) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_BURN;
+		a->damn = 2;
+		a->damd = (1 + (mtmp->m_lev));
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (FemtrapActiveAlmut && humanoid(mtmp->data) && is_female(mtmp->data)) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_KICK;
+		a->adtyp = AD_GLIB;
+		a->damn = 1;
+		a->damd = 1;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
 	if (mtmp->egotype_radiator) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
@@ -4926,6 +5050,26 @@ elena37:
 		}
 	}
 
+	if (uarmu && uarmu->oartifact == ART_GIVE_ME_STROKE__JO_ANNA && humanoid(mtmp->data) && is_female(mtmp->data) && !rn2(10) ) {
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_HEAL;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
 	if (Role_if(PM_FJORDE) && mtmp->data->mlet == S_EEL) {
 		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict || !touch_petrifies(youmonst.data))) {
 			if (foundyou && !rn2(5) && tmp > (j = rnd(20+i))) {
@@ -4966,6 +5110,18 @@ elena37:
 			datadeleteattack();
 		}
 	}
+	if (mtmp->data == &mons[PM_MR__CONCLUSIO] && isevilvariant) {
+		if(!range2 && foundyou && (tmp > (j = rnd(20+i)))) {
+			u.datadeletedefer = 1;
+			datadeleteattack();
+		}
+	}
+	if (mtmp->data == &mons[PM_YOUR_GAME_ENDS_NOW] && isevilvariant) {
+		if(!range2 && foundyou && (tmp > (j = rnd(20+i)))) {
+			u.datadeletedefer = 1;
+			datadeleteattack();
+		}
+	}
 	if (mtmp->data == &mons[PM_LEFTOGORGON] && isevilvariant) {
 		if(!range2 && foundyou && (tmp > (j = rnd(20+i)))) {
 			u.datadeletedefer = 1;
@@ -4979,7 +5135,7 @@ elena37:
 	}
 
 	/* ultra-mega laser cannon for some specific ubermonsters, including the elder priest */
-	if (mtmp->data == &mons[PM_DHWTY] || mtmp->data == &mons[PM_LAST_DANCER] || mtmp->data == &mons[PM_CURTAIN_CALL_LAST_DANCER] || mtmp->data == &mons[PM_GRAND_FINALE_LAST_DANCER] || mtmp->data == &mons[PM_PROVIDENCE_GAZE] || mtmp->data == &mons[PM_CHAOS_SERPENT] || mtmp->data == &mons[PM_CHAOTIC_SERPENT] || mtmp->data == &mons[PM_ARCHAYEEK_GUNNER] || mtmp->data == &mons[PM_SIN_GORILLA] || mtmp->data == &mons[PM_ELITE_GUARD] || mtmp->data == &mons[PM_BLUEBEAM_GOLEM] || mtmp->data == &mons[PM_AIRTIGHT_FEMMY] || mtmp->data == &mons[PM_DRICERADOPS] || mtmp->data == &mons[PM_SVEN] || mtmp->data == &mons[PM_GRANDMASTER_SVEN] || mtmp->data == &mons[PM_WORLD_PWNZOR] || mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || mtmp->data == &mons[PM_SANDRA_S_MINDDRILL_SANDAL] || mtmp->egotype_laserpwnzor) {
+	if (mtmp->data == &mons[PM_DHWTY] || mtmp->data == &mons[PM_PARTICLE_MAN] || mtmp->data == &mons[PM_LAST_DANCER] || mtmp->data == &mons[PM_CURTAIN_CALL_LAST_DANCER] || mtmp->data == &mons[PM_GRAND_FINALE_LAST_DANCER] || mtmp->data == &mons[PM_PROVIDENCE_GAZE] || mtmp->data == &mons[PM_CHAOS_SERPENT] || mtmp->data == &mons[PM_CHAOTIC_SERPENT] || mtmp->data == &mons[PM_ARCHAYEEK_GUNNER] || mtmp->data == &mons[PM_SIN_GORILLA] || mtmp->data == &mons[PM_ELITE_GUARD] || mtmp->data == &mons[PM_BLUEBEAM_GOLEM] || mtmp->data == &mons[PM_AIRTIGHT_FEMMY] || mtmp->data == &mons[PM_DRICERADOPS] || mtmp->data == &mons[PM_SVEN] || mtmp->data == &mons[PM_GRANDMASTER_SVEN] || mtmp->data == &mons[PM_WORLD_PWNZOR] || mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || mtmp->data == &mons[PM_SANDRA_S_MINDDRILL_SANDAL] || mtmp->egotype_laserpwnzor) {
 		if (range2 && lined_up(mtmp) && !blue_on_blue(mtmp) && (ZAP_POS(levl[u.ux][u.uy].typ) ) ) {
 			if (!mtmp->hominglazer && !rn2(20)) {
 				pline("ATTENTION: %s has started to load an ultra-mega-hyper-dyper laser cannon!", Monnam(mtmp));
@@ -5754,6 +5910,8 @@ struct monst *mon;
 	if (armor && armpro < objects[armor->otyp].a_can)
 	    armpro = objects[armor->otyp].a_can;
 
+	if (uarmg && uarmg->oartifact == ART_EGASSO_S_GIBBERISH && armpro < 5) armpro = 5;
+
 	if (mon == &youmonst) {
 		if (MCReduction) armpro -= (1 + (MCReduction / 5000));
 		if (u.magicshield) armpro += 1;
@@ -5762,6 +5920,7 @@ struct monst *mon;
 		if (uarm && uarm->oartifact == ART_FREE_EXTRA_CANCEL) armpro++;
 		if (uarm && uarm->oartifact == ART_IMPRACTICAL_COMBAT_WEAR) armpro++;
 		if (uarmc && uarmc->oartifact == ART_RESISTANT_PUNCHING_BAG) armpro++;
+		if (uarmc && Role_if(PM_PRIEST) && itemhasappearance(uarmc, APP_ORNAMENTAL_COPE) ) armpro++;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) armpro++;
 		if (Race_if(PM_INKA)) armpro++;
 		if (ACURR(A_CHA) >= 18) armpro++;
@@ -6052,6 +6211,59 @@ hitmu(mtmp, mattk)
 
 			}
 
+			if (otmp && otmp->otyp == PETRIFYIUM_BAR) {
+
+			    if ((!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
+				!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
+				if (!Stoned) {
+					if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
+					else {
+						Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+						u.cnd_stoningcount++;
+						pline("You start turning to stone!");
+					}
+				}
+				sprintf(killer_buf, "petrifyium bar");
+				delayed_killer = killer_buf;
+		
+			    }
+
+			}
+
+			if (otmp && otmp->otyp == DISINTEGRATION_BAR) {
+
+			if ((!Disint_resistance || !rn2(StrongDisint_resistance ? 1000 : 100) || (evilfriday && (uarms || uarmc || uarm || uarmu)) ) && !rn2(10)) {
+				You_feel("like you're falling apart!");
+	
+				if (uarms) {
+				    /* destroy shield; other possessions are safe */
+				    if (!(EDisint_resistance & W_ARMS)) (void) destroy_arm(uarms);
+				} else if (uarmc) {
+				    /* destroy cloak; other possessions are safe */
+				    if (!(EDisint_resistance & W_ARMC)) (void) destroy_arm(uarmc);
+				} else if (uarm) {
+				    /* destroy suit */
+				    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
+				} else if (uarmu) {
+				    /* destroy shirt */
+				    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
+				} else {
+					if (u.uhpmax > 20) {
+						u.uhpmax -= rnd(20);
+						if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+						losehp(rnz(100 + level_difficulty()), "click click click click click you died", KILLED_BY);
+
+					} else {
+						u.youaredead = 1;
+						done(DIED);
+						u.youaredead = 0;
+					}
+				}
+	
+			}
+
+			}
+
 			if (objects[otmp->otyp].oc_material == MT_SILVER &&
 				hates_silver(youmonst.data) || (uwep && uwep->oartifact == ART_PORKMAN_S_BALLS_OF_STEEL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PORKMAN_S_BALLS_OF_STEEL) ) {
 			    pline("The silver sears your flesh!");
@@ -6109,8 +6321,9 @@ hitmu(mtmp, mattk)
 			    poisoned(simple_typename(otmp->otyp), A_STR,
 				    killer_xname(otmp), 10);
 			    if (nopoison < 2) nopoison = 2;
-			    if (!rn2(nopoison)) {
+			    if (!rn2(nopoison) && (!otmp->superpoison || !rn2(10)) ) {
 				otmp->opoisoned = FALSE;
+				otmp->superpoison = FALSE;
 				pline("%s %s no longer poisoned.",
 				       s_suffix(Monnam(mtmp)),
 				       aobjnam(otmp, "are"));
@@ -6999,7 +7212,7 @@ dopois:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
 		{
-			struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB, 0);
+			struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB, 0, FALSE);
 			if (ttmp2) {
 				pline_The("webbing sticks to you. You're caught!");
 				dotrap(ttmp2, NOWEBMSG);
@@ -7010,15 +7223,15 @@ dopois:
 			}
 		}
 		/* Amy addition: sometimes, also make a random trap somewhere on the level :D */
-		if (!rn2(issoviet ? 2 : 8)) makerandomtrap();
+		if (!rn2(issoviet ? 2 : 8)) makerandomtrap(FALSE);
 		break;
 
 	    case AD_TRAP: 
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
 
-		if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0);
-		else makerandomtrap();
+		if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0, FALSE);
+		else makerandomtrap(FALSE);
 
 		break;
 
@@ -7392,7 +7605,7 @@ dopois:
 
 	    case AD_STCK:
 		hitmsg(mtmp, mattk);
-		if (uncancelled && !u.ustuck && !sticks(youmonst.data)) {
+		if (uncancelled && !u.ustuck && !(uwep && uwep->oartifact == ART_FOAMONIA_WATER) && !sticks(youmonst.data)) {
 			setustuck(mtmp);
 			pline("%s grabs you!", Monnam(mtmp));
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
@@ -7607,6 +7820,7 @@ dopois:
 			if (u.ulycn == PM_HUMAN_WERERAT) u.ulycn = PM_WERERAT;
 			if (u.ulycn == PM_HUMAN_WERERABBIT) u.ulycn = PM_WERERABBIT;
 			if (u.ulycn == PM_HUMAN_WEREBOAR) u.ulycn = PM_WEREBOAR;
+			if (u.ulycn == PM_HUMAN_VORPAL_WERE_ALHOONTRICE_ZOMBIE) u.ulycn = PM_VORPAL_WERE_ALHOONTRICE_ZOMBIE;
 			if (u.ulycn == PM_HUMAN_WERELOCUST) u.ulycn = PM_WERELOCUST;
 			if (u.ulycn == PM_HUMAN_WEREJACKAL) u.ulycn = PM_WEREJACKAL;
 			if (u.ulycn == PM_HUMAN_WEREWOLF) u.ulycn = PM_WEREWOLF;
@@ -7624,6 +7838,8 @@ dopois:
 			if (u.ulycn == PM_HUMAN_WEREPERMAMIMIC) u.ulycn = PM_WEREPERMAMIMIC;
 			if (u.ulycn == PM_HUMAN_WERECOW) u.ulycn = PM_WERECOW;
 			if (u.ulycn == PM_HUMAN_WEREBEAR) u.ulycn = PM_WEREBEAR;
+			if (u.ulycn == PM_HUMAN_WEREBRONZEGRAM) u.ulycn = PM_WEREBRONZEGRAM;
+			if (u.ulycn == PM_HUMAN_WERECHROMEGRAM) u.ulycn = PM_WERECHROMEGRAM;
 			if (u.ulycn == PM_HUMAN_WEREDEMON) u.ulycn = PM_WEREDEMON;
 			if (u.ulycn == PM_HUMAN_WEREPHANT) u.ulycn = PM_WEREPHANT;
 			if (u.ulycn == PM_HUMAN_WEREVORTEX) u.ulycn = PM_WEREVORTEX;
@@ -7715,7 +7931,7 @@ dopois:
 			hitmsg(mtmp, mattk);
 			if (mtmp->mcan) break;
 			/* Continue below */
-		} else if (rn2(5) && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) && (dmgtype(youmonst.data, AD_SEDU) || (uarmg && uarmg->oartifact == ART_LORSKEL_S_SPECIAL_PROTECTI)
+		} else if (rn2(5) && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_COPPERED_OFF_FROM_ME) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) && (dmgtype(youmonst.data, AD_SEDU) || (uarmg && uarmg->oartifact == ART_LORSKEL_S_SPECIAL_PROTECTI)
 			|| dmgtype(youmonst.data, AD_SSEX)
 						) ) {
 			pline("%s %s.", Monnam(mtmp), mtmp->minvent ?
@@ -7744,7 +7960,7 @@ dopois:
 		    break;
 		}
 
-		if (!rn2(3) && atttyp != AD_SEDU && !issoviet && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) ) {
+		if (!rn2(3) && atttyp != AD_SEDU && !issoviet && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) ) {
 			You_feel("a tug on your knapsack"); break;
 		}
 
@@ -7768,7 +7984,7 @@ dopois:
 
 		buf[0] = '\0';
 
-		if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) {
+		if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_COPPERED_OFF_FROM_ME) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) {
 			switch (steal(mtmp, buf, atttyp == AD_SEDU ? TRUE : FALSE, FALSE)) {
 		  case -1:
 			return 2;
@@ -7935,6 +8151,10 @@ dopois:
 		if (mtmp->mcan) break;
 		if (!rn2(3)) {
 			u.negativeprotection++;
+			if (evilfriday && u.ublessed > 0) {
+				u.ublessed -= 1;
+				if (u.ublessed < 0) u.ublessed = 0;
+			}
 			You_feel("less protected!");
 		}
 		break;
@@ -9122,7 +9342,7 @@ dopois:
 		    break;
 		}
 		if(!uwep
-		   && !uarmu
+		   && (!uarmu || (uarmu && uarmu->oartifact == ART_GIVE_ME_STROKE__JO_ANNA))
 		   && !uarm && !uarmh && !uarms && !uarmg && !uarmc && !uarmf) {
 		    boolean goaway = FALSE;
 		    pline("%s hits!  (I hope you don't mind.)", Monnam(mtmp));
@@ -9820,8 +10040,9 @@ dopois:
 			    poisoned(obj_typename(otmp->otyp), A_STR,
 				    killer_xname(otmp), 10);
 			    if (nopoison < 2) nopoison = 2;
-			    if (!rn2(nopoison)) {
+			    if (!rn2(nopoison) && (!otmp->superpoison || !rn2(10)) ) {
 				otmp->opoisoned = FALSE;
+				otmp->superpoison = FALSE;
 				pline("%s %s no longer poisoned.",
 				       s_suffix(Monnam(mtmp)),
 				       aobjnam(otmp, "are"));
@@ -10009,6 +10230,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 	if (!u.uswallow) {	/* swallows you */
 		if (youmonst.data->msize >= MZ_HUGE && mtmp->data->msize < MZ_HUGE) return(0);
+		if (uwep && uwep->oartifact == ART_PEEPLUE) return(0);
 		if ((t && ((t->ttyp == PIT) || (t->ttyp == SPIKED_PIT) || (t->ttyp == GIANT_CHASM) || (t->ttyp == SHIT_PIT) || (t->ttyp == MANA_PIT) || (t->ttyp == ANOXIC_PIT) || (t->ttyp == ACID_PIT) )) &&
 		    sobj_at(BOULDER, u.ux, u.uy))
 			return(0);
@@ -10144,7 +10366,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		if (mtmp->mcan) {
 		    break;
 		}
-		if(!uwep && !uarmu && !uarm && !uarmh && !uarms && !uarmg && !uarmc && !uarmf) {
+		if(!uwep && (!uarmu || (uarmu && uarmu->oartifact == ART_GIVE_ME_STROKE__JO_ANNA)) && !uarm && !uarmh && !uarms && !uarmg && !uarmc && !uarmf) {
 		    boolean goaway = FALSE;
 		    pline("It hits!  (I hope you don't mind.)");
 		    reducesanity(1);
@@ -10566,6 +10788,10 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 				You_feel("unsafe in here...");
 			if (!rn2(10)) {
 				u.negativeprotection++;
+				if (evilfriday && u.ublessed > 0) {
+					u.ublessed -= 1;
+					if (u.ublessed < 0) u.ublessed = 0;
+				}
 				You_feel("less protected!");
 			}
 			break;
@@ -11313,14 +11539,14 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			break;
 
 	      case AD_WEBS: /* No message. Because you can't see the web while engulfed. */
-			(void) maketrap(u.ux, u.uy, WEB, 0);
+			(void) maketrap(u.ux, u.uy, WEB, 0, FALSE);
 			/* Amy addition: sometimes, also make a random trap somewhere on the level :D */
-			if (!rn2(8)) makerandomtrap();
+			if (!rn2(8)) makerandomtrap(FALSE);
 			break;
 
 	      case AD_TRAP:
-			if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0);
-			else makerandomtrap();
+			if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0, FALSE);
+			else makerandomtrap(FALSE);
 
 			break;
 
@@ -11676,7 +11902,7 @@ do_stone2:
 		break;
 	    case AD_STCK:
 	    pline("You are covered with some sticky substance!");
-		if (!u.ustuck && !sticks(youmonst.data)) {
+		if (!u.ustuck && !(uwep && uwep->oartifact == ART_FOAMONIA_WATER) && !sticks(youmonst.data)) {
 			setustuck(mtmp);
 			pline("%s grabs you!", Monnam(mtmp));
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
@@ -11700,13 +11926,13 @@ do_stone2:
 	    case AD_SSEX:
 		pline("It thrusts you!");
 
-		if (!rn2(3) && atttypA != AD_SEDU && !issoviet && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) ) {
+		if (!rn2(3) && atttypA != AD_SEDU && !issoviet && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) ) {
 			You_feel("a tug on your knapsack"); break;
 		}
 
 			buf[0] = '\0';
 
-		if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) {
+		if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) {
 			switch (steal(mtmp, buf, atttypA == AD_SEDU ? TRUE : FALSE, FALSE)) {
 		  case -1:
 			return 2;
@@ -13794,7 +14020,7 @@ common:
 	    case AD_WEBS: 
 
 		{
-			struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB, 0);
+			struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB, 0, FALSE);
 			if (ttmp2) {
 				pline_The("webbing sticks to you. You're caught!");
 				dotrap(ttmp2, NOWEBMSG);
@@ -13805,15 +14031,15 @@ common:
 			}
 		}
 		/* Amy addition: sometimes, also make a random trap somewhere on the level :D */
-		if (issoviet || !rn2(2)) makerandomtrap();
+		if (issoviet || !rn2(2)) makerandomtrap(FALSE);
 
 		mdamageu(mtmp, tmp);
 
 		break;
 
 	    case AD_TRAP:
-		if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0);
-		else makerandomtrap();
+		if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0, FALSE);
+		else makerandomtrap(FALSE);
 
 		mdamageu(mtmp, tmp);
 
@@ -14100,7 +14326,7 @@ common:
 
 	    case AD_HEAL:
 		if(!uwep
-		   && !uarmu
+		   && (!uarmu || (uarmu && uarmu->oartifact == ART_GIVE_ME_STROKE__JO_ANNA))
 		   && !uarm && !uarmh && !uarms && !uarmg && !uarmc && !uarmf) {
 		    reducesanity(1);
 		    if (Upolyd) {
@@ -14233,6 +14459,10 @@ common:
 
 	    case AD_NPRO:
 		u.negativeprotection++;
+		if (evilfriday && u.ublessed > 0) {
+			u.ublessed -= 1;
+			if (u.ublessed < 0) u.ublessed = 0;
+		}
 		You_feel("less protected!");
 		mdamageu(mtmp, tmp);
 		break;
@@ -15810,7 +16040,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_HEAL:
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(5) ) ) {
 		pline("%s casts a healing spell!", Monnam(mtmp));
-		if(!uwep && !uarmu && !uarm && !uarmh && !uarms && !uarmg && !uarmc && !uarmf) {
+		if(!uwep && (!uarmu || (uarmu && uarmu->oartifact == ART_GIVE_ME_STROKE__JO_ANNA)) && !uarm && !uarmh && !uarms && !uarmg && !uarmc && !uarmf) {
 		    boolean goaway = FALSE;
 		    pline("You are healed.");
 		    reducesanity(1);
@@ -16266,7 +16496,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_STCK:
 		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || rn2(5)) )
 		{ 
-			if (!u.ustuck && !sticks(youmonst.data)) {
+			if (!u.ustuck && !(uwep && uwep->oartifact == ART_FOAMONIA_WATER) && !sticks(youmonst.data)) {
 				setustuck(mtmp);
 				pline("%s gazes to hold you in place!", Monnam(mtmp));
 				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -16280,7 +16510,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			pline("%s asks 'How do I shot web?' and spits at you.", Monnam(mtmp));
 		    stop_occupation();
 		{
-			struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB, 0);
+			struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB, 0, FALSE);
 			if (ttmp2) {
 				pline_The("webbing sticks to you. You're caught!");
 				dotrap(ttmp2, NOWEBMSG);
@@ -16291,7 +16521,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			}
 		}
 		/* Amy addition: sometimes, also make a random trap somewhere on the level :D */
-		if (!rn2(issoviet ? 2 : 8)) makerandomtrap();
+		if (!rn2(issoviet ? 2 : 8)) makerandomtrap(FALSE);
 
 		}
 		break;
@@ -16301,8 +16531,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
  		{
 			pline("%s cackles fiendishly.", Monnam(mtmp));
 			stop_occupation();
-			if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0);
-			else makerandomtrap();
+			if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0, FALSE);
+			else makerandomtrap(FALSE);
 		}
 		break;
 
@@ -16935,9 +17165,9 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_SITM:	/* for now these are the same */
 	    case AD_SEDU:
 	    case AD_SSEX:
-		if (!rn2(3) && !issoviet && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) && canseemon(mtmp) && mtmp->mcansee ) break; /* no message, we don't want too much spam --Amy */
+		if (!rn2(3) && !issoviet && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) && canseemon(mtmp) && mtmp->mcansee ) break; /* no message, we don't want too much spam --Amy */
 
-		if ((u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) && !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee) {
+		if ((u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) && !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee) {
 		pline("%s gazes at you with its demanding eyes!", Monnam(mtmp));
 		    stop_occupation();
 		buf[0] = '\0';
@@ -19074,6 +19304,10 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
                 pline("%s gives you an excruciating look!", Monnam(mtmp));
 		    stop_occupation();
 			u.negativeprotection++;
+			if (evilfriday && u.ublessed > 0) {
+				u.ublessed -= 1;
+				if (u.ublessed < 0) u.ublessed = 0;
+			}
 		}
 		break;
 
@@ -19258,6 +19492,7 @@ register struct monst *mtmp;
 register int n;
 {
 	int monsterdamagebonus;
+	int enchrequired = 0;
 
 	if (flags.iwbtg) {
 
@@ -19376,7 +19611,7 @@ register int n;
 	if (Role_if(PM_BLEEDER)) n = n * 2; /* bleeders are harder than hard mode */
 	if (have_cursedmagicresstone()) n = n * 2;
 	if (Race_if(PM_METAL)) n *= rnd(10);
-	if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone() || (uimplant && uimplant->oartifact == ART_IME_SPEW)) n = n * 2;
+	if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone() || (uleft && uleft->oartifact == ART_RING_OF_FAST_LIVING) || (uright && uright->oartifact == ART_RING_OF_FAST_LIVING) || (uimplant && uimplant->oartifact == ART_IME_SPEW)) n = n * 2;
 	if (uamul && uamul->otyp == AMULET_OF_VULNERABILITY) n *= rnd(4);
 	if (RngeFrailness) n = n * 2;
 
@@ -19397,7 +19632,11 @@ register int n;
 		return;
 	}
 
-	if (Race_if(PM_PLAYER_SKELETON) && rn2(3) && !(hit_as_two(mtmp) || hit_as_three(mtmp) || hit_as_four(mtmp) || (MON_WEP(mtmp) && (MON_WEP(mtmp))->spe > 1) ) ) {
+	if (uarmf && uarmf->oartifact == ART_STAR_SOLES) enchrequired = 1;
+	if (Race_if(PM_PLAYER_SKELETON)) enchrequired = 2;
+	if (uarmf && uarmf->oartifact == ART_PHANTO_S_RETARDEDNESS) enchrequired = 4;
+
+	if ((enchrequired > 0) && rn2(3) && !(hit_as_four(mtmp) || (hit_as_three(mtmp) && enchrequired < 4) || (hit_as_two(mtmp) && enchrequired < 3) || (hit_as_one(mtmp) && enchrequired < 2) || (MON_WEP(mtmp) && (MON_WEP(mtmp))->spe >= enchrequired) ) ) {
 		pline("The attack doesn't seem to harm you.");
 		n = 0;
 	}
@@ -20176,6 +20415,8 @@ enjoyable:
 		u.uprops[DEAC_TECHNICALITY].intrinsic += rnz( (monster_difficulty() * 100) + 1);
 		u.uprops[DEAC_SCENT_VIEW].intrinsic += rnz( (monster_difficulty() * 100) + 1);
 		u.uprops[DEAC_DIMINISHED_BLEEDING].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_CONTROL_MAGIC].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_EXP_BOOST].intrinsic += rnz( (monster_difficulty() * 100) + 1);
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
         
@@ -20802,7 +21043,7 @@ const char *str;
 
 	if (!obj || !obj->owornmask) return;
 
-	if (((rn2(120) < ACURR(A_CHA)) || (uarmf && uarmf->oartifact == ART_RARE_ASIAN_LADY)) && !Race_if(PM_BOVER) && !(uarmc && uarmc->oartifact == ART_KING_OF_PORN) ) { /*much lower chance for the player to resist --Amy*/
+	if (((rn2(120) < ACURR(A_CHA)) || (uarmf && uarmf->oartifact == ART_FINAL_CHALLENGE && flags.female) || (uarmf && uarmf->oartifact == ART_RARE_ASIAN_LADY)) && !Race_if(PM_BOVER) && !(uarmc && uarmc->oartifact == ART_KING_OF_PORN) ) { /*much lower chance for the player to resist --Amy*/
 
 		sprintf(qbuf,"\"Shall I remove your %s, %s?\" [yes/no]",
 			str, (!rn2(2) ? "lover" : !rn2(2) ? "dear" : "sweetheart"));
@@ -20929,6 +21170,29 @@ register struct attack *mattk;
 		}
 	}
 
+	if (uarm && uarm->oartifact == ART_AWAY_HAMM_ARMOR && !rn2(1000)) {
+		pline("Your armor suddenly bites %s!", mon_nam(mtmp));
+		if((mtmp->mhp -= rnd(100)) <= 0) {
+			pline("%s is instakilled!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+	}
+
+	if (uarm && uarm->oartifact == ART_ROBE_OF_RETRIBUTION && !rn2(3)) {
+		pline("%s is hurt by retribution!", Monnam(mtmp));
+		int retrdamage = u.ulevel / 3;
+		if (retrdamage < 1) retrdamage = 1;
+		if((mtmp->mhp -= rnd(retrdamage)) <= 0) {
+			pline("%s dies!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+
+	}
+
 	if (uarmf && uarmf->oartifact == ART_RHEA_S_COMBAT_PUMPS && !resists_poison(mtmp)) {
 		pline("%s is poisoned by your black leather pumps!", Monnam(mtmp));
 		if((mtmp->mhp -= rnd(10) ) <= 0) {
@@ -20984,7 +21248,7 @@ register struct attack *mattk;
 				olduasmon = &mons[u.usymbiote.mnum];
 				Your("%s symbiote retaliates!", mons[u.usymbiote.mnum].mname);
 				u.usymbiosisfastturns++;
-				if (u.usymbiosisfastturns >= 10) {
+				if (u.usymbiosisfastturns >= 4) {
 					u.usymbiosisfastturns = 0;
 					use_skill(P_SYMBIOSIS, 1);
 				}
@@ -21079,27 +21343,44 @@ dothepassive:
 	    case AD_PLYS: /* Floating eye */
 
 		if (dmgtype(mtmp->data, AD_PLYS)) return 1;
+		if (mtmp->m_lev > 1 && (rnd(mtmp->m_lev) > u.ulevel)) return 1;
 
 		if (tmp > 127) tmp = 127;
 		if (u.umonnum == PM_FLOATING_EYE) {
 		    /*if (!rn2(4)) tmp = 127;*/
-		    if (mtmp->mcansee && haseyes(mtmp->data) && rn2(3) &&
+		    if (mtmp->mcansee && haseyes(mtmp->data) && !rn2(3) &&
 				(perceives(mtmp->data) || !Invis)) {
 			if (Blind)
 			    pline("As a blind %s, you cannot defend yourself.", youmonst.data->mname);
 		        else {
+				int parlyzdur = tmp;
+				if (parlyzdur > 3) {
+					parlyzdur = rnd(parlyzdur);
+					if (parlyzdur < 3) parlyzdur = 3;
+				}
+				if (parlyzdur > 1) parlyzdur = rnd(parlyzdur);
+				if (parlyzdur > 127) parlyzdur = 127;
+
 			    if (mon_reflects(mtmp, "Your gaze is reflected by %s %s."))
 				return 1;
 			    pline("%s is frozen by your gaze!", Monnam(mtmp));
 			    mtmp->mcanmove = 0;
-			    mtmp->mfrozen = tmp;
+			    mtmp->mfrozen = parlyzdur;
 			    return 3;
 			}
 		    }
-		} else { /* gelatinous cube */
+		} else if (!rn2(3)) { /* gelatinous cube */
+			int parlyzdur = tmp;
+			if (parlyzdur > 3) {
+				parlyzdur = rnd(parlyzdur);
+				if (parlyzdur < 3) parlyzdur = 3;
+			}
+			if (parlyzdur > 1) parlyzdur = rnd(parlyzdur);
+			if (parlyzdur > 127) parlyzdur = 127;
+
 		    pline("%s is frozen by you.", Monnam(mtmp));
 		    mtmp->mcanmove = 0;
-		    mtmp->mfrozen = tmp;
+		    mtmp->mfrozen = parlyzdur;
 		    return 3;
 		}
 		return 1;
@@ -21165,10 +21446,21 @@ dothepassive:
 		break;
 
 	    case AD_SLEE:
-		if (!mtmp->msleeping && sleep_monst(mtmp, rnd(10), -1)) {
+		{
+		int parlyzdur = tmp;
+		if (parlyzdur > 3) {
+			parlyzdur = rnd(parlyzdur);
+			if (parlyzdur < 3) parlyzdur = 3;
+		}
+		if (parlyzdur > 1) parlyzdur = rnd(parlyzdur);
+		if (parlyzdur > 127) parlyzdur = 127;
+
+		if (!mtmp->msleeping && !rn2(3) && !(mtmp->m_lev > 1 && (rnd(mtmp->m_lev) > u.ulevel)) && sleep_monst(mtmp, parlyzdur, -1)) {
 		    pline("%s is put to sleep.", Monnam(mtmp));
 		    mtmp->mstrategy &= ~STRAT_WAITFORU;
 		    slept_monst(mtmp);
+		}
+
 		}
 		break;
 
@@ -21194,10 +21486,18 @@ dothepassive:
 		    if (mtmp->mspeed != oldspeed)
 			pline("%s slows down.", Monnam(mtmp));
 		}
-		if(!rn2(3) && mtmp->mcanmove && !(dmgtype(mtmp->data, AD_PLYS))) {
+		if(!rn2(10) && !(mtmp->m_lev > 1 && (rnd(mtmp->m_lev) > u.ulevel)) && mtmp->mcanmove && !(dmgtype(mtmp->data, AD_PLYS))) {
+			int parlyzdur = tmp;
+			if (parlyzdur > 3) {
+				parlyzdur = rnd(parlyzdur);
+				if (parlyzdur < 3) parlyzdur = 3;
+			}
+			if (parlyzdur > 1) parlyzdur = rnd(parlyzdur);
+			if (parlyzdur > 127) parlyzdur = 127;
+
 		    pline("%s is paralyzed.", Monnam(mtmp));
 		    mtmp->mcanmove = 0;
-		    mtmp->mfrozen = rnd(10);
+		    mtmp->mfrozen = parlyzdur;
 		    mtmp->mstrategy &= ~STRAT_WAITFORU;
 		}
 		break;
@@ -21377,12 +21677,12 @@ dothepassive:
 		}
 		break;
 	    case AD_WEBS:
-		(void) maketrap(mtmp->mx, mtmp->my, WEB, 0);
-		if (!rn2(issoviet ? 2 : 8)) makerandomtrap();
+		(void) maketrap(mtmp->mx, mtmp->my, WEB, 0, FALSE);
+		if (!rn2(issoviet ? 2 : 8)) makerandomtrap(FALSE);
 		break;
 	    case AD_TRAP:
-		if (t_at(mtmp->mx, mtmp->my) == 0) (void) maketrap(mtmp->mx, mtmp->my, randomtrap(), 0);
-		else makerandomtrap();
+		if (t_at(mtmp->mx, mtmp->my) == 0) (void) maketrap(mtmp->mx, mtmp->my, randomtrap(), 0, FALSE);
+		else makerandomtrap(FALSE);
 
 		break;
 	    case AD_CNCL:

@@ -54,6 +54,7 @@ E boolean snuff_candle(struct obj *);
 E boolean snuff_lit(struct obj *);
 E boolean catch_lit(struct obj *);
 E boolean use_unicorn_horn(struct obj *);
+E boolean use_bubble_horn(struct obj *);
 E boolean tinnable(struct obj *);
 E void reset_trapset(void);
 E void fig_transform(void *, long);
@@ -220,6 +221,7 @@ E void show_conduct(int);
 #ifdef DUMP_LOG
 E void dump_enlightenment(int);
 E void dump_conduct(int);
+E void end_of_input(void);
 #endif
 E int xytod(SCHAR_P,SCHAR_P);
 E void dtoxy(coord *,int);
@@ -520,7 +522,7 @@ E int dowear2(const char *, const char *);
 /* ### dog.c ### */
 
 E void initedog(struct monst *);
-E struct monst *make_familiar(struct obj *,XCHAR_P,XCHAR_P,BOOLEAN_P);
+E struct monst *make_familiar(struct obj *,XCHAR_P,XCHAR_P,BOOLEAN_P,BOOLEAN_P);
 E struct monst *make_helper(int,XCHAR_P,XCHAR_P);
 E struct monst *makedog(void);
 E void update_mlstmv(void);
@@ -536,6 +538,7 @@ E void abuse_dog(struct monst *);
 E void wary_dog(struct monst *, BOOLEAN_P);
 E void makedoghungry(struct monst *, int);
 E boolean befriend_with_obj(struct permonst *, struct obj *);
+E boolean control_magic_works(void);
 
 /* ### dogmove.c ### */
 
@@ -1284,6 +1287,15 @@ E boolean have_femtrapsarah(void);
 E boolean have_femtrapclaudia(void);
 E boolean have_femtrapludgera(void);
 E boolean have_femtrapkati(void);
+E boolean have_femtrapnelly(void);
+E boolean have_femtrapeveline(void);
+E boolean have_femtrapkarin(void);
+E boolean have_femtrapjuen(void);
+E boolean have_femtrapkristina(void);
+E boolean have_femtraplou(void);
+E boolean have_femtrapalmut(void);
+E boolean have_femtrapjulietta(void);
+E boolean have_femtraparabella(void);
 
 E boolean have_primecurse(void);
 
@@ -1552,7 +1564,7 @@ E boolean occupied(XCHAR_P,XCHAR_P);
 E boolean reallyoccupied(XCHAR_P,XCHAR_P);
 E int okdoor(XCHAR_P,XCHAR_P);
 E void dodoor(int,int,struct mkroom *);
-E void mktrap(int,int,struct mkroom *,coord*);
+E void mktrap(int,int,struct mkroom *,coord*,BOOLEAN_P);
 E void mkstairs(XCHAR_P,XCHAR_P,CHAR_P,struct mkroom *);
 E void mkinvokearea(void);
 E void mkrivers(void);
@@ -2032,7 +2044,34 @@ E int find_marji_shoes(void);
 E int find_mary_janes(void);
 E int find_visored_helmet(void);
 E int find_orange_visored_helmet(void);
-
+E int find_business_shoes(void);
+E int find_filigree_stilettos(void);
+E int find_ugly_boots(void);
+E int find_unisex_pumps(void);
+E int find_cuddle_cloth_boots(void);
+E int find_garden_slippers(void);
+E int find_dyke_boots(void);
+E int find_ankle_strap_sandals(void);
+E int find_demonologist_boots(void);
+E int find_mud_boots(void);
+E int find_failed_shoes(void);
+E int find_opera_pumps(void);
+E int find_wooden_clogs(void);
+E int find_regular_sneakers(void);
+E int find_elite_sneakers(void);
+E int find_biker_boots(void);
+E int find_zero_drop_shoes(void);
+E int find_hiking_boots(void);
+E int find_pope_hat(void);
+E int find_corona_mask(void);
+E int find_anachro_helmet(void);
+E int find_ornamental_cope(void);
+E int find_wetsuit(void);
+E int find_multilinguitis_gloves(void);
+E int find_throwaway_sandals(void);
+E int find_sharp_edged_sandals(void);
+E int find_nondescript_gloves(void);
+E int find_lead_boots(void);
 E void oinit(void);
 E void savenames(int,int);
 E void restnames(int);
@@ -2327,6 +2366,7 @@ E const char *bottlename(void);
 E void bad_equipment(int);
 E void bad_equipment_heel(void);
 E void increasesanity(int);
+E boolean conundrumbreak(void);
 E void statdrain(void);
 E void nastytrapcurse(void);
 E void shank_player(void);
@@ -2336,6 +2376,8 @@ E void heraldgift(void);
 E void sjwtrigger(void);
 E void emerafrenzy(void);
 E boolean have_anorexia(void);
+E void uncurseoneitem(void);
+E void maybehackimplant(void);
 
 E boolean sandprotection(void);
 E boolean shadowprotection(void);
@@ -2344,6 +2386,7 @@ E boolean chromeprotection(void);
 E int angelshadowstuff(void);
 E void statdebuff(void);
 E void nivellate(void);
+E void upnivel(BOOLEAN_P);
 E void nexus_swap(void);
 
 E boolean hybridragontype(int);
@@ -2363,6 +2406,12 @@ E boolean maybeblockheels(void);
 E boolean maybewedgeheels(void);
 E boolean playerextrinsicaggravatemon(void);
 E boolean automore_active(void);
+
+E boolean playerextrinsicfireres(void);
+E boolean playerextrinsiccoldres(void);
+E boolean playerextrinsicshockres(void);
+E boolean playerextrinsicpoisonres(void);
+E boolean playerextrinsicspeed(void);
 
 E boolean itemhasappearance(struct obj *, int);
 E boolean itemnumwithappearance(int, int);
@@ -2474,7 +2523,9 @@ E boolean cant_create(int *, BOOLEAN_P);
 #ifdef WIZARD
 E struct monst *create_particular(void);
 #endif
+#ifdef GMMODE
 E void gmmode_genesis(const char *);
+#endif
 E void forget_single_object(int);
 E void wandofchaosterrain(void);
 E void wandoffleecyterrain(void);
@@ -2551,6 +2602,7 @@ E int randartshield(void);
 E int randartboots(void);
 E int randartring(void);
 E int randartamulet(void);
+E int randartimplant(void);
 E int randartwand(void);
 E int randartspellbook(void);
 E int randartmeleeweaponX(void);
@@ -2565,6 +2617,7 @@ E int randartshieldX(void);
 E int randartbootsX(void);
 E int randartringX(void);
 E int randartamuletX(void);
+E int randartimplantX(void);
 E int randartwandX(void);
 E int randartspellbookX(void);
 E void deacrandomintrinsic(int);
@@ -2752,6 +2805,7 @@ E int dotalk(void);
 E int add_sound_mapping(const char *);
 E void play_sound_for_message(const char *);
 #endif
+E void maybegaincha(void);
 
 /* ### sys/msdos/sound.c ### */
 
@@ -2768,7 +2822,7 @@ E boolean dig_corridor(coord *,coord *,BOOLEAN_P,SCHAR_P,SCHAR_P);
 E void fill_room(struct mkroom *,BOOLEAN_P);
 E boolean load_special(const char *);
 E int randomtrap(void);
-E void makerandomtrap(void);
+E void makerandomtrap(BOOLEAN_P);
 E void makeinvisotrap(void);
 E void makegirlytrap(void);
 E void makespacewarstrap(void);
@@ -2794,6 +2848,7 @@ E boolean studyspell(void);
 E boolean inertiacontrolspell(void);
 E boolean dememorizespell(void);
 E boolean addsomespellmemory(void);
+E boolean addsomespellmemoryX(void);
 E void initialspell(struct obj *);
 E void castinertiaspell(void);
 E void wonderspell(void);
@@ -2802,6 +2857,7 @@ E boolean mastermindsave(void);
 E void removeforgottenspell(void);
 E void evilspellforget(void);
 E int dodeletespell(void);
+E void extramemory(void);
 
 /* ### steal.c ### */
 
@@ -2839,6 +2895,7 @@ E void place_monster(struct monst *,int,int);
 E boolean mayfalloffsteed(void);
 E boolean will_hit_steed(void);
 E boolean confsteeddir(void);
+E boolean flysaddle(void);
 
 /* ### tech.c ### */
 
@@ -2862,6 +2919,7 @@ E void techcapincrease(int);
 E void eviltechincrease(void);
 E int get_tech_no(int);
 E int techlevX(int);
+E void hurtmon(struct monst *,int);
 
 /* ### teleport.c ### */
 
@@ -2975,8 +3033,8 @@ E boolean wither_dmg(struct obj *,const char *,int,BOOLEAN_P,struct monst *);
 E void dofiretrap(struct obj *);
 
 E void grease_protect(struct obj *,const char *,struct monst *);
-E struct trap *maketrap(int,int,int,int);
-E void makerandomtrap_at(int,int);
+E struct trap *maketrap(int,int,int,int,BOOLEAN_P);
+E void makerandomtrap_at(int,int,BOOLEAN_P);
 E void fall_through(BOOLEAN_P);
 E void fall_throughX(BOOLEAN_P);
 E struct monst *animate_statue(struct obj *,XCHAR_P,XCHAR_P,int,int *);
@@ -3266,6 +3324,8 @@ E void dataskilldecrease(void);
 E void doubleskilltraining(void);
 E void additionalskilltraining(void);
 E void unrestrictskillchoice(void);
+E const char *wpskillname(int);
+E void grinderattack(int);
 
 /* ### were.c ### */
 
@@ -3294,6 +3354,7 @@ E void uswapwepgone(void);
 E void uqwepgone(void);
 E void untwoweapon(void);
 E void erode_obj(struct obj *,BOOLEAN_P,BOOLEAN_P);
+E void wither_obj(struct obj *,BOOLEAN_P,BOOLEAN_P);
 E int chwepon(struct obj *,int);
 E int welded(struct obj *);
 E void weldmsg(struct obj *);
@@ -3395,7 +3456,7 @@ E int spell_damage_bonus(int);
 E const char *exclam(int force);
 E void hit(const char *,struct monst *,const char *);
 E void miss(const char *,struct monst *);
-E struct monst *bhit(int,int,int,int,int (*)(MONST_P,OBJ_P), int (*)(OBJ_P,OBJ_P),struct obj **);
+E struct monst *bhit(int,int,int,int,int (*)(MONST_P,OBJ_P), int (*)(OBJ_P,OBJ_P),struct obj **, BOOLEAN_P);
 E struct monst *boomhit(int,int);
 E int burn_floor_paper(int,int,BOOLEAN_P,BOOLEAN_P);
 E void buzz(int,int,XCHAR_P,XCHAR_P,int,int);

@@ -26,7 +26,7 @@ static long final_fpos;
 
 #define newttentry() (struct toptenentry *) alloc(sizeof(struct toptenentry))
 #define dealloc_ttentry(ttent) free((void *) (ttent))
-#define NAMSZ	10	/* DO NOT change this unless you want to break the topten list, several places in this code depend on it being 10 --Amy */
+#define NAMSZ	10	/* several parts of this code depend on this, don't just change this value! --Amy */
 #define DTHSZ	1000
 #define ROLESZ   3
 #define PERSMAX	 10000		/* entries per name/uid per char. allowed */
@@ -1585,12 +1585,18 @@ gamemode_strcode()
 	if (flags.blindfox) sprintf(eos(string), "blindfox");
 	if (flags.uberlostsoul) sprintf(eos(string), "uberlostsoul");
 	if (flags.lostsoul && !(flags.uberlostsoul)) sprintf(eos(string), "lostsoul");
+#ifdef GMMODE
 	if (flags.gmmode) sprintf(eos(string), "gmmode");
 	if (flags.supergmmode) sprintf(eos(string), "supergmmode");
+#endif
 	if (flags.wonderland) sprintf(eos(string), "wonderland");
 	if (flags.zapem) sprintf(eos(string), "zapm");
 
-	if (!u.freeplaymode && !(flags.gehenna) && !(flags.dudley) && !(flags.gmmode) && !(flags.supergmmode) && !(flags.iwbtg) && !(flags.elmstreet) && !(flags.hippie) && !(flags.blindfox) && !(flags.uberlostsoul) && !(flags.lostsoul) && !(flags.wonderland) && !(flags.zapem)) sprintf(eos(string), "none");
+	if (!u.freeplaymode && !(flags.gehenna) && !(flags.dudley)
+#ifdef GMMODE
+	&& !(flags.gmmode) && !(flags.supergmmode)
+#endif
+	&& !(flags.iwbtg) && !(flags.elmstreet) && !(flags.hippie) && !(flags.blindfox) && !(flags.uberlostsoul) && !(flags.lostsoul) && !(flags.wonderland) && !(flags.zapem)) sprintf(eos(string), "none");
 
     return (string);
 }

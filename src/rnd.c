@@ -1058,7 +1058,7 @@ int
 randenchantment()
 {
 
-	switch (rnd(172)) {
+	switch (rnd(174)) {
 
 		case 1:
 		case 2:
@@ -1523,7 +1523,7 @@ randenchantment()
 		case 151:
 		case 152:
 		case 153:
-			switch (rnd(102)) {
+			switch (rnd(103)) {
 			case 1: return HALLU_PARTY;
 			case 2: return DRUNKEN_BOXING;
 			case 3: return STUNNOPATHY;
@@ -1626,6 +1626,7 @@ randenchantment()
 			case 100: return RNGE_FUNNY_HALLU;
 			case 101: return RNGE_POLYPILING;
 			case 102: return RNGE_SAP_GENERATION;
+			case 103: return RNGE_WEALTH;
 			default: return POISON_RES;
 			}
 		case 154:
@@ -1656,7 +1657,7 @@ randenchantment()
 		case 170:
 		case 171:
 		case 172:
-			switch (rnd(22)) {
+			switch (rnd(31)) {
 			case 1: return FEMTRAP_FEMMY;
 			case 2: return FEMTRAP_MADELEINE;
 			case 3: return FEMTRAP_MARLENA;
@@ -1679,8 +1680,21 @@ randenchantment()
 			case 20: return FEMTRAP_CLAUDIA;
 			case 21: return FEMTRAP_LUDGERA;
 			case 22: return FEMTRAP_KATI;
+			case 23: return FEMTRAP_NELLY;
+			case 24: return FEMTRAP_EVELINE;
+			case 25: return FEMTRAP_KARIN;
+			case 26: return FEMTRAP_JUEN;
+			case 27: return FEMTRAP_KRISTINA;
+			case 28: return FEMTRAP_LOU;
+			case 29: return FEMTRAP_ALMUT;
+			case 30: return FEMTRAP_JULIETTA;
+			case 31: return FEMTRAP_ARABELLA;
 			default: return POISON_RES;
 			}
+		case 173:
+			return CONTROL_MAGIC;
+		case 174:
+			return EXP_BOOST;
 
 		default:
 			return POISON_RES;
@@ -1941,7 +1955,7 @@ randnastyenchantment()
 int
 randomdisableproperty()
 {
-	switch (rnd(66)) {
+	switch (rnd(68)) {
 
 		case 1:
 			return FIRE_RES;
@@ -2075,6 +2089,10 @@ randomdisableproperty()
 			return SCENT_VIEW;
 		case 66:
 			return DIMINISHED_BLEEDING;
+		case 67:
+			return CONTROL_MAGIC;
+		case 68:
+			return EXP_BOOST;
 		default:
 			return POISON_RES;
 	}
@@ -2454,6 +2472,14 @@ randartamulet()
 }
 
 int
+randartimplant()
+{
+	int result;
+	result = rnd_class(IMPLANT_OF_ABSORPTION,IMPLANT_OF_ENFORCING);
+	return result;
+}
+
+int
 randartwand()
 {
 	int result;
@@ -2588,6 +2614,14 @@ randartamuletX()
 }
 
 int
+randartimplantX()
+{
+	int result;
+	result = IMPLANT_OF_ABSORPTION + rn2((IMPLANT_OF_ENFORCING + 1) - IMPLANT_OF_ABSORPTION);
+	return result;
+}
+
+int
 randartwandX()
 {
 	int result;
@@ -2608,7 +2642,7 @@ deacrandomintrinsic(amount)
 register int amount;
 {
 
-	switch (rnd(129)) {
+	switch (rnd(131)) {
 
 		case 1:
 		case 2:
@@ -2937,6 +2971,14 @@ register int amount;
 			u.uprops[DEAC_DIMINISHED_BLEEDING].intrinsic += amount;
 			pline("You are prevented from having diminished bleeding!");
 			break;
+		case 130:
+			u.uprops[DEAC_CONTROL_MAGIC].intrinsic += amount;
+			pline("You are prevented from having control magic!");
+			break;
+		case 131:
+			u.uprops[DEAC_EXP_BOOST].intrinsic += amount;
+			pline("You are prevented from having EXP boost!");
+			break;
 	}
 
 }
@@ -2945,7 +2987,7 @@ int
 goodimplanteffect(obj)
 struct obj *obj;
 {
-	switch (obj->shirtmessage % 53) {
+	switch (obj->shirtmessage % 55) {
 
 		case 0:
 			return DTBEEM_RES;
@@ -3053,6 +3095,10 @@ struct obj *obj;
 			return SCENT_VIEW;
 		case 52:
 			return DIMINISHED_BLEEDING;
+		case 53:
+			return CONTROL_MAGIC;
+		case 54:
+			return EXP_BOOST;
 		default:
 			return POISON_RES;
 
@@ -3545,7 +3591,7 @@ void
 randomfeminismtrap(duration)
 int duration;
 {
-	switch (rnd(22)) {
+	switch (rnd(31)) {
 		case 1:
 			pline("You can already imagine the farting noises you're gonna hear.");
 			FemaleTrapSarah += duration;
@@ -3559,7 +3605,7 @@ int duration;
 			FemaleTrapLudgera += duration;
 			break;
 		case 4:
-			pline("You feel like being kicked by sexy girls and cleaing their shoes.");
+			pline("You feel like being kicked by sexy girls and cleaning their shoes.");
 			FemaleTrapKati += duration;
 			break;
 		case 5:
@@ -3633,6 +3679,42 @@ int duration;
 		case 22:
 			pline("Your sexy butt signals that it wants to produce beautiful farting noises!");
 			FemaleTrapMaurah += duration;
+			break;
+		case 23:
+			pline("You fear that the women are going to crush you with a hug.");
+			FemaleTrapNelly += duration;
+			break;
+		case 24:
+			pline("It seems that the women are running faster.");
+			FemaleTrapEveline += duration;
+			break;
+		case 25:
+			pline("All the women want to knee you in the delicate nuts now!");
+			FemaleTrapKarin += duration;
+			break;
+		case 26:
+			pline("Oh no, your shins are almost broken!");
+			FemaleTrapJuen += duration;
+			break;
+		case 27:
+			pline("Urgh, you can already smell the stench of stinking cigarettes!");
+			FemaleTrapKristina += duration;
+			break;
+		case 28:
+			pline("These damn people want to use your precious clothing to brush off their dirty shoes!");
+			FemaleTrapLou += duration;
+			break;
+		case 29:
+			pline("The girls feel like kicking your hands bloodily with their sneakers!");
+			FemaleTrapAlmut += duration;
+			break;
+		case 30:
+			pline("Now you'll be subjected to Julietta's torture, and she'll subject you to random punishments from time to time.");
+			FemaleTrapJulietta += duration;
+			break;
+		case 31:
+			pline("Oh no, the master of nasty traps is laying out her snares to get you!");
+			FemaleTrapArabella += duration;
 			break;
 	}
 }

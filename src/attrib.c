@@ -36,6 +36,7 @@ const struct innate {
 		     {   7, &(HFast), "quick", "slow", TRUE },  
 		     {	15, &(HWarning), "precognitive", "noncognitive", TRUE },  
 		     {	15, &(HCont_resist), "protected from contamination", "vulnerable to contamination", TRUE },  
+		     {	25, &(HExpBoost), "a surge of experience", "a loss of experience", TRUE },  
 		     {	 0, 0, 0, 0, 0 } },  
 
 	eme_abil[] = { {	 5, &(SanityTrebleEffect), "", "", FALSE },
@@ -170,6 +171,7 @@ const struct innate {
 			{	8, &(HDiscount_action), "resistant to paralysis", "less resistant to paralysis", TRUE },
 			 {	 10, &(HDeath_resistance), "un-dead", "dead", TRUE },
 			 {	 12, &(HHunger), "very hungry", "less hungry", FALSE },
+		     {	13, &(HExpBoost), "a surge of experience", "a loss of experience", TRUE },  
 		     {   14, &(HAcid_resistance), "warded", "endangered", TRUE },
 		     {   16, &(HDrain_resistance), "more resistant to drain life", "less resistant to drain life", TRUE },
 		    { 22,  &(HInfravision), "perceptive", "half blind", TRUE },
@@ -305,6 +307,7 @@ const struct innate {
 			{	12, &(FreeHandLoss), "", "", FALSE },
 		     {  14, &(HDiminishedBleeding), "your wounds closing faster", "your blood pumping", TRUE },
 			{	15, &(HSleep_resistance), "awake", "tired", TRUE },
+		     {	16, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 			{	17, &(DifficultyIncreased), "", "", FALSE },
 		       {   18, &(HPolymorph_control), "your choices improve", "choiceless", TRUE },
 			{	20, &(HSick_resistance), "immune to diseases", "no longer immune to diseases", TRUE },
@@ -321,11 +324,15 @@ const struct innate {
 	cel_abil[] = { {   1, &(BlueSpells), "", "", FALSE },
 			{	5, &(DamageMeterBug), "", "", FALSE },
 			{	9, &(RangCallEffect), "", "", FALSE },
+		     {	10, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 			{	14, &(CrapEffect), "", "", FALSE },
 			{	18, &(PokelieEffect), "", "", FALSE },
 			{	22, &(ExplodingDiceEffect), "", "", FALSE },
 			{	26, &(AutopilotEffect), "", "", FALSE },
 			{	30, &(InterfaceScrewed), "", "", FALSE },
+		     {   0, 0, 0, 0, 0 } },
+
+	dea_abil[] = { {	18, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	blo_abil[] = { {   1, &(HWarning), "", "", TRUE },
@@ -386,6 +393,7 @@ const struct innate {
 		     {	4, &(HWarning), "sensitive", "careless", TRUE },
 		     {  6, &(HSearching), "perceptive", "unaware", TRUE },
 			{	7, &(HSleep_resistance), "awake", "tired", TRUE },
+		     {	8, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 			{	12, &(HSick_resistance), "immune to diseases", "no longer immune to diseases", TRUE },
 			{   15, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
 		       {   18, &(HPolymorph_control), "your choices improve", "choiceless", TRUE },
@@ -433,6 +441,10 @@ const struct innate {
 			{ 0, 0, 0, 0 } },
 
 	drm_abil[] = { { 7, &(HFast), "quick", "slow" },
+		     {	20, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
+			{ 0, 0, 0, 0 } },
+
+	drd_abil[] = { {	15, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 			{ 0, 0, 0, 0 } },
 
 	fjo_abil[] = { { 1, &(HSwimming), "", "" },
@@ -476,6 +488,7 @@ const struct innate {
 		     {   1, &(HTechnicality), "", "", TRUE },
 			{   3, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
 		     {	12, &(HWarning), "sensitive", "careless", TRUE },
+		     {	20, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	fir_abil[] = { {   1, &(HFire_resistance), "", "", TRUE },
@@ -516,6 +529,7 @@ const struct innate {
 		     {   0, 0, 0, 0, 0 } },
 
 	hea_abil[] = { {	 1, &(HPoison_resistance), "", "", TRUE },
+		     {	1, &(HControlMagic), "", "", TRUE },
 		     {	15, &(HWarning), "sensitive", "careless", TRUE },
 			{   20, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
@@ -542,12 +556,14 @@ const struct innate {
 	psn_abil[] = { {   1, &(HPoison_resistance), "", "", TRUE },
 		     {   1, &(HFull_nutrient), "", "", TRUE },
 			{   5, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
+		     {	25, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	occ_abil[] = { {   10, &(HInfravision), "perceptive", "half blind", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
-	emn_abil[] = { {   15, &(HPsi_resist), "psionic", "less psionic", TRUE },
+	emn_abil[] = { {	10, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
+			{   15, &(HPsi_resist), "psionic", "less psionic", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	cha_abil[] = { {   20, &(HEnergy_regeneration), "charged with mana", "a loss of mana", TRUE },
@@ -616,6 +632,7 @@ const struct innate {
 	nec_abil[] = { {   1, &(HDrain_resistance), "", "", TRUE },
 		     {   1, &(HSick_resistance), "", "", TRUE },
 		     {   3, &(HUndead_warning), "sensitive", "careless", TRUE },
+		     {	5, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 			{   15, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
@@ -739,6 +756,7 @@ const struct innate {
 			{	10, &(HWarning), "sensitive", "careless", TRUE },
 			{   10, &(HSee_invisible), "your vision sharpen", "your vision blurring", TRUE },
 			{   15, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
+		     {	15, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 			{  20, &(HTeleport_control), "controlled","uncontrolled", TRUE },
 		       {   20, &(HPolymorph_control), "your choices improve", "choiceless", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
@@ -753,11 +771,13 @@ const struct innate {
 		     {   0, 0, 0, 0, 0 } },
 
 	wiz_abil[] = { {   1, &(HManaleech), "", "", TRUE },
+		     {	4, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 			 {	15, &(HWarning), "sensitive", "careless", TRUE },
 		     {  17, &(HTeleport_control), "controlled","uncontrolled", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
-	alt_abil[] = { {   3, &(HUndead_warning), "sensitive", "careless", TRUE },
+	alt_abil[] = { {   1, &(HControlMagic), "", "", TRUE },
+			 {   3, &(HUndead_warning), "sensitive", "careless", TRUE },
 			{	7, &(HWarning), "sensitive", "careless", TRUE },
 			{  15, &(HTeleport_control), "controlled","uncontrolled", TRUE },
 		       {   25, &(HPolymorph_control), "your choices improve", "choiceless", TRUE },
@@ -791,7 +811,8 @@ const struct innate {
 	nib_abil[] = { { 1, &(HSearching), "", "", TRUE },
 			{   0, 0, 0, 0, 0 } },
 
-	dra_abil[] = { { 10, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
+	dra_abil[] = { {	8, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
+			 { 10, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
 			{   0, 0, 0, 0, 0 } },
 
 	hyb_abil[] = { { 10, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
@@ -880,6 +901,11 @@ const struct innate {
 
 	gre_abil[] = { {	1, &(HFire_resistance), "", "", TRUE },
 			{   15, &(HFast), "quick", "slow", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	bga_abil[] = { {	10, &(HAggravate_monster), "noisy", "quiet", FALSE },
+		     {	15, &(HFear_resistance), "unafraid", "afraid", TRUE },
+			 {	 20, &(HHunger), "very hungry", "less hungry", FALSE },
 		     {	 0, 0, 0, 0, 0 } },
 
 	clk_abil[] = { {	1, &(HPoison_resistance), "", "", TRUE },
@@ -1065,6 +1091,7 @@ const struct innate {
 
 	grd_abil[] = { {	 1, &(HPoison_resistance), "", "", TRUE },
 		     {	 1, &(HShock_resistance), "", "", TRUE },
+		     {	 1, &(HControlMagic), "", "", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
 	bat_abil[] = { {  1, &(HFlying), "", "", TRUE },
@@ -1089,6 +1116,7 @@ const struct innate {
 		     {  1, &(HStone_resistance), "", "", TRUE },
 		     {  1, &(HDeath_resistance), "", "", TRUE },
 		     {  1, &(HPsi_resist), "", "", TRUE },
+		     {  1, &(HControlMagic), "", "", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	umb_abil[] = { {  1, &(HConf_resist), "", "", TRUE },
@@ -1098,6 +1126,7 @@ const struct innate {
 		     {   0, 0, 0, 0, 0 } },
 
 	dvp_abil[] = { {  1, &(HTechnicality), "", "", TRUE },
+		     {	15, &(HExpBoost), "a surge of experience", "a loss of experience", TRUE },  
 		     {   0, 0, 0, 0, 0 } },
 
 	tur_abil[] = { {  1, &(HFull_nutrient), "", "", TRUE },
@@ -1307,7 +1336,8 @@ const struct innate {
 	cup_abil[] = { { 20, &(HFlying), "weightless", "grounded", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
-	bac_abil[] = { {	10, &(HSick_resistance), "immune to diseases", "no longer immune to diseases", TRUE },
+	bac_abil[] = { {	1, &(HControlMagic), "", "", TRUE },
+			 {	10, &(HSick_resistance), "immune to diseases", "no longer immune to diseases", TRUE },
 		     {	20, &(HCont_resist), "protected from contamination", "vulnerable to contamination", TRUE },  
 		     {   0, 0, 0, 0, 0 } },
 
@@ -1317,16 +1347,22 @@ const struct innate {
 		     {  20, &(HSwimming), "ready to swim","afraid of the water", TRUE },
 			{   20, &(HSee_invisible), "your vision sharpen", "your vision blurring", TRUE },
 		    { 20,  &(HInfravision), "perceptive", "half blind", TRUE },
+		     {	20, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	cer_abil[] = { { 1, &(HFire_resistance), "", "", TRUE },
 		     {  1, &(HScentView), "", "", TRUE },
+		     {	12, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	hou_abil[] = { {  1, &(HScentView), "", "", TRUE },
+		     {	3, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	woo_abil[] = { {  1, &(HScentView), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	wis_abil[] = { {  1, &(HControlMagic), "", "", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	exp_abil[] = { {	 1, &(HPsi_resist), "", "", TRUE },
@@ -1354,6 +1390,10 @@ const struct innate {
 		     {   1, &(HDisint_resistance), "", "", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
+	ico_abil[] = { {  1, &(HStone_resistance), "", "", TRUE },
+		     {   1, &(HDisint_resistance), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
 	lyc_abil[] = { {   1, &(HPoison_resistance), "", "", TRUE },
 		     {   1, &(HRegeneration), "", "", TRUE },
 		     {   1, &(HScentView), "", "", TRUE },
@@ -1365,6 +1405,7 @@ const struct innate {
 
 	sat_abil[] = { {   1, &(HTechnicality), "", "", TRUE },
 		     {   1, &(HScentView), "", "", TRUE },
+		     {   1, &(HControlMagic), "", "", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	sho_abil[] = { {   1, &(HDiscount_action), "", "", TRUE },
@@ -2111,6 +2152,7 @@ int oldlevel, newlevel;
 	case PM_DQ_SLIME:      abil = sli_abil;	break;
 	case PM_ERDRICK:      abil = erd_abil;	break;
 	case PM_CELLAR_CHILD:      abil = cel_abil;	break;
+	case PM_DEATH_EATER:      abil = dea_abil;	break;
 	case PM_SLAVE_MASTER:      abil = sla_abil;	break;
 	case PM_SUPERMARKET_CASHIER:      abil = sup_abil;	break;
 	case PM_BARD:           abil = brd_abil;	break;
@@ -2201,6 +2243,7 @@ int oldlevel, newlevel;
 	case PM_JUSTICE_KEEPER:		abil = jus_abil;	break;
 	case PM_CARTOMANCER:		abil = car_abil;	break;
 	case PM_DRAGONMASTER:		abil = drm_abil;	break;
+	case PM_DRUID:		abil = drd_abil;	break;
 	case PM_FJORDE:		abil = fjo_abil;	break;
 	case PM_AKLYST:		abil = akl_abil;	break;
 	case PM_MILL_SWALLOWER:		abil = mil_abil;	break;
@@ -2268,6 +2311,7 @@ int oldlevel, newlevel;
 	case PM_LICH_WARRIOR:            rabil = lic_abil;	break;
 	case PM_SPIRIT:            rabil = esp_abil;	break;
 	case PM_ETHEREALOID:            rabil = eth_abil;	break;
+	case PM_INCORPOREALOID:            rabil = ico_abil;	break;
 	case PM_SHOE:            rabil = sho_abil;	break;
 	case PM_PLAYER_GOLEM:            rabil = glm_abil;	break;
 	case PM_SATRE:            rabil = sat_abil;	break;
@@ -2282,6 +2326,7 @@ int oldlevel, newlevel;
 	case PM_PLAYER_CERBERUS:            rabil = cer_abil;	break;
 	case PM_PLAYER_HOUND:            rabil = hou_abil;	break;
 	case PM_WOOKIE:            rabil = woo_abil;	break;
+	case PM_WISP:            rabil = wis_abil;	break;
 	case PM_EXPERT:            rabil = exp_abil;	break;
 	case PM_GIGANT:            rabil = gig_abil;	break;
 	case PM_NYMPH:            rabil = nym_abil;	break;
@@ -2309,6 +2354,7 @@ int oldlevel, newlevel;
 	case PM_SEA_ELF:	rabil = sea_abil;	break;
 	case PM_DEEP_ELF:	rabil = dee_abil;	break;
 	case PM_SYLPH:	rabil = syl_abil;	break;
+	case PM_BULDOZGAR:	rabil = bga_abil;	break;
 	case PM_SPRIGGAN:	rabil = spr_abil;	break;
 	case PM_PLAYER_FAIRY:	rabil = fay_abil;	break;
 	case PM_ALCHEMIST:           rabil = alc_abil;	break;
@@ -2519,10 +2565,15 @@ int x;
 		if (uamul && uamul->oartifact == ART_DO_NOT_FORGET_GRACE) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) tmp += 1;
+		if (uarm && uarm->oartifact == ART_UBERGAGE) tmp += 3;
+		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
+		if (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) tmp += 10;
+		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (uarmg && uarmg->otyp == GAUNTLETS_OF_POWER) tmp += (uarmg->spe + 3);
 		if (uarm && uarm->otyp == ROBE_OF_WEAKNESS) tmp -= 3;
+		if (uarmf && uarmf->oartifact == ART_FAR_EAST_RELATION) tmp -= 3;
 
 		if (PlayerBleeds > 50) tmp--;
 		if (PlayerBleeds > 100) tmp -= 2;
@@ -2531,6 +2582,7 @@ int x;
 		if (uwep && uwep->oartifact == ART_JAPANESE_WOMEN && tmp > 14) tmp = 14;
 		if (uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN && tmp > 14) tmp = 14;
 		if (AllStatsAreLower) tmp -= 10;
+		if (uarmf && uarmf->oartifact == ART_STAR_SOLES) tmp -= 2;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
@@ -2605,10 +2657,27 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK) tmp += 10;
 		if (uwep && uwep->oartifact == ART_MISTY_S_MELEE_PLEASURE) tmp += 5;
 		if (Race_if(PM_CUPID)) tmp += 5;
+		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
+		if (uwep && uwep->oartifact == ART_HIGH_ORIENTAL_PRAISE) tmp += 3;
+		if (uarmf && itemhasappearance(uarmf, APP_BEAUTIFUL_HEELS)) tmp += 5;
+		if (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT) tmp += 7;
+		if (uarmf && uarmf->oartifact == ART_AIRSHIP_DANCING) tmp += 5;
+		if (uarmf && uarmf->oartifact == ART_DEEP_SIGH) tmp += 5;
+		if (uarmf && uarmf->oartifact == ART_FINAL_CHALLENGE) tmp += 10;
+		if (uarmf && uarmf->oartifact == ART_OUU_EECH) tmp += 10;
+		if (uarmf && uarmf->oartifact == ART_TOTALLY_THE_SEXY_BITCH) tmp += 5;
+		if (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK) tmp += 5;
+		if (uarmu && uarmu->otyp == FISHNET) tmp += 2;
+		if (uamul && uamul->otyp == AMULET_OF_TIME) tmp += 5;
+		if (uarmu && uarmu->oartifact == ART_SWEET_VICTORIA) tmp += 3;
+		if (uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL) tmp += 5;
+		if (uarmg && uarmg->oartifact == ART_EGASSO_S_GIBBERISH) tmp += 5;
+		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
 
 		if (RngeCoquetry) tmp += 5;
 		if (FemtrapActiveSolvejg) tmp += 5;
 		if (FemtrapActiveNatalje) tmp += 10;
+		if (Race_if(PM_BULDOZGAR)) tmp += 2;
 
 		if (PlayerInHighHeels && !(PlayerCannotUseSkills)) {
 
@@ -2652,12 +2721,18 @@ int x;
 
 		}
 
-		if (uarmf && itemhasappearance(uarmf, APP_BEAUTIFUL_HEELS)) tmp += 5;
-
 		if (AllStatsAreLower) tmp -= 10;
+		if (uarmf && uarmf->oartifact == ART_STAR_SOLES) tmp -= 2;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
 		if (uarmf && itemhasappearance(uarmf, APP_VELCRO_SANDALS)) tmp -= 5;
+		if (uarmf && itemhasappearance(uarmf, APP_BUSINESS_SHOES)) tmp -= 5;
+		if (uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS)) tmp -= 5;
+		if (uarmf && itemhasappearance(uarmf, APP_UGLY_BOOTS)) tmp -= 2;
+		if (uarmf && uarmf->oartifact == ART_CARMARK) tmp -= 5;
+		if (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) tmp -= 5;
+		if (uarmh && itemhasappearance(uarmh, APP_CORONA_MASK)) tmp -= 5;
+		if (uarmh && uarmh->oartifact == ART_FFP___MASK) tmp -= 5;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
 		if (u.tsloss_cha > 0) tmp -= u.tsloss_cha;
 
@@ -2683,6 +2758,9 @@ int x;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_THAI_S_EROTIC_BITCH_FU) tmp += 5;
 		if (uarmh && uarmh->otyp == HELM_OF_BRILLIANCE) tmp += uarmh->spe;
 		if (uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) tmp += 1;
+		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
+		if (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) tmp += 2;
+		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
 
 		if (uarmh && uarmh->oartifact == ART_YOU_DON_T_KNOW_SHIT) tmp -= 3;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp -= 10;
@@ -2691,6 +2769,7 @@ int x;
 		if (x == A_INT && Race_if(PM_HUMAN_MONKEY) && tmp > 9) tmp = 9;
 		if (uarmh && uarmh->oartifact == ART_DUNCE_POUNCE && tmp > 6) tmp = 6;
 		if (AllStatsAreLower) tmp -= 10;
+		if (uarmf && uarmf->oartifact == ART_STAR_SOLES) tmp -= 2;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
 		if (PlayerBleeds > 100) tmp -= 2;
@@ -2721,12 +2800,17 @@ int x;
 		if (uamul && uamul->oartifact == ART_DO_NOT_FORGET_GRACE) tmp += 10;
 		if (uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) tmp += 1;
+		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
+		if (uarmf && uarmf->oartifact == ART_AMATEURSPORTS) tmp += 3;
+		if (uarmf && uarmf->oartifact == ART_EVERYWHERE_AT_ONCE) tmp += 3;
+		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (PlayerBleeds > 100) tmp -= 2;
 		if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT && tmp > 12) tmp = 12;
 		if (uarmg && uarmg->otyp == GAUNTLETS_OF_DEXTERITY) tmp += uarmg->spe;
 		if (AllStatsAreLower) tmp -= 10;
+		if (uarmf && uarmf->oartifact == ART_STAR_SOLES) tmp -= 2;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
@@ -2748,6 +2832,9 @@ int x;
 		if (uarmc && uarmc->oartifact == ART_TOO_MANY_AFFIXES) tmp += 3;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp += 10;
 		if (uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) tmp += 1;
+		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
+		if (Race_if(PM_BULDOZGAR)) tmp += 2;
+		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
 
 		if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 			if (uarm && is_metallic(uarm)) tmp++;
@@ -2759,6 +2846,8 @@ int x;
 			if (uarmg && is_metallic(uarmg)) tmp++;
 		}
 
+		if (uarmf && uarmf->oartifact == ART_FAR_EAST_RELATION) tmp -= 3;
+
 		if (uwep && uwep->oartifact == ART_JAPANESE_WOMEN && tmp > 14) tmp = 14;
 		if (uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN && tmp > 14) tmp = 14;
 
@@ -2767,6 +2856,7 @@ int x;
 		if (PlayerBleeds > 100) tmp -= 2;
 
 		if (AllStatsAreLower) tmp -= 10;
+		if (uarmf && uarmf->oartifact == ART_STAR_SOLES) tmp -= 2;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
@@ -2816,6 +2906,10 @@ void
 adjalign(n)
 register int n;
 {
+	if (uarmf && uarmf->oartifact == ART_MANDY_S_RAIDWEAR && !rn2(2) && (n < 0)) {
+		return;
+	}
+
 	if (Race_if(PM_SINNER) && n < 0) {
 		n *= 10;
 		u.ualign.sins += 1; 

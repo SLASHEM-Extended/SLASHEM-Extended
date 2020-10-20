@@ -1604,6 +1604,10 @@ const char * const random_your_mother[] = {
 	"Yo' Momma is so stupid she stared at the orange juice container for a half hour because it said concentrate.",
 	"They used to call it a jumpoline before your Momma got on it.",
 	"Yo mama's so dumb, she couldn't even think up a proper ending to this yo mama joke!",
+	"Your momma is the cheapest whore at the local brothel.",
+	"Your momma is a notorious self-harmer!",
+	"After your momma gave birth to you, when she saw how ugly you were she started cutting for the first time!",
+
 };
 
 /* Insult or intimidate the player */

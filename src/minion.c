@@ -37,11 +37,11 @@ boolean ownloc; /* TRUE = summon wherever I am (REQUIRES A MONSTER TO EXIST!!!),
 	    cnt = (!rn2(4) && is_ndemon(&mons[dtype])) ? 2 : 1;
 	} else if (is_ndemon(ptr) || mon->egotype_gator) {
 	    dtype = (!rn2(250)) ? dprince(atyp) : (!rn2(20)) ? dlord(atyp) :
-				 (!rn2(6)) ? ndemon(atyp) : monsndx(ptr);
+				 (!rn2(6) || mon->data == &mons[PM_DEMON_SPOTTER]) ? ndemon(atyp) : monsndx(ptr);
 	    cnt = 1;
 	} else if (is_lminion(mon)) {
 	    dtype = (is_lord(ptr) && !rn2(20)) ? llord() :
-		     (is_lord(ptr) || !rn2(6)) ? lminion() : monsndx(ptr);
+		     (is_lord(ptr) || !rn2(6) || mon->data == &mons[PM_DEMON_SPOTTER]) ? lminion() : monsndx(ptr);
 	    cnt = (!rn2(4) && !is_lord(&mons[dtype])) ? 2 : 1;
 	} else if (ptr == &mons[PM_ANGEL]) {
 	    /* non-lawful angels can also summon */
@@ -74,6 +74,13 @@ boolean ownloc; /* TRUE = summon wherever I am (REQUIRES A MONSTER TO EXIST!!!),
 	    if (dtype == NON_PM) return;
 	}
 
+	/* Mr. Conclusio can only be summoned if a sizable amount of demon princes have been summoned --Amy
+	 * the counter goes down over time so unless you're obviously farming, he should be impossible to spawn */
+	if (dtype == PM_MR__CONCLUSIO && u.conclusiocount < 10) {
+	    dtype = ndemon(atyp);
+	    if (dtype == NON_PM) return;
+	}
+
 	while (cnt > 0) {
 	    if (ownloc) mtmp = makemon(&mons[dtype], mon->mx, mon->my, MM_ADJACENTOK);
 	    else mtmp = makemon(&mons[dtype], u.ux, u.uy, NO_MM_FLAGS);
@@ -85,7 +92,10 @@ boolean ownloc; /* TRUE = summon wherever I am (REQUIRES A MONSTER TO EXIST!!!),
 
 	    u.cnd_demongates++;
 	    if (dtype >= PM_JUIBLEX && dtype <= PM_YEENOGHU) u.cnd_demonlordgates++;
-	    if (dtype >= PM_ORCUS && dtype <= PM_DEMOGORGON) u.cnd_demonprincegates++;
+	    if (dtype >= PM_ORCUS && dtype <= PM_DEMOGORGON) {
+			u.cnd_demonprincegates++;
+			u.conclusiocount++;
+	    }
 	}
 }
 
@@ -380,6 +390,10 @@ aligntyp atyp;
 
 	for (tryct = 0; tryct < 20; tryct++) {
 	    pm = rn1(PM_DEMOGORGON + 1 - PM_ORCUS, PM_ORCUS);
+
+	    /* make sure Mr. Conclusio doesn't spawn early... --Amy */
+	    if (pm == PM_MR__CONCLUSIO && u.conclusiocount < 10) return(dlord(atyp));
+
 	    if (!(mvitals[pm].mvflags & G_GONE) &&
 		    (atyp == A_NONE || sgn(mons[pm].maligntyp) == sgn(atyp)))
 		return(pm);

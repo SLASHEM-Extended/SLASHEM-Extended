@@ -773,7 +773,7 @@ doforce()		/* try to force a chest with your weapon */
 	   (uwep->oclass != WEAPON_CLASS && !is_weptool(uwep) &&
 	    uwep->oclass != ROCK_CLASS && uwep->oclass != BALL_CLASS && uwep->oclass != CHAIN_CLASS) ||
 	   (objects[uwep->otyp].oc_skill < P_DAGGER) ||
-	   (objects[uwep->otyp].oc_skill > P_LANCE) ||
+	   (objects[uwep->otyp].oc_skill > P_LANCE && uwep->otyp != STEEL_WHIP) ||
 	   uwep->otyp == FLAIL || uwep->otyp == AKLYS
 	   || uwep->otyp == RUBBER_HOSE
 	  ) {
@@ -1069,7 +1069,7 @@ doforce()		/* try to force a chest with your weapon */
 					levl[x][y].typ = CORR;
 					newsym(x,y);
 					blockorunblock_point(x,y);
-					more_experienced(25, 0);
+					more_experienced(25 * (deepest_lev_reached(FALSE) + 1), 0);
 					newexplevel();
 				}
 				return(1);
@@ -1773,6 +1773,8 @@ struct obj *otmp;
 	case MT_VEGGY:	disposition = "is pulped";
 		break;
 	case MT_FLESH:	disposition = "is mashed";
+		break;
+	case MT_FOAM:	disposition = "is mashed";
 		break;
 	case MT_TAR:	disposition = "breaks apart";
 		break;

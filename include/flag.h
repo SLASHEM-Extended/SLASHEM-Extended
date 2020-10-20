@@ -41,7 +41,9 @@ struct flag {
 	boolean  confirm;	/* confirm before hitting tame monsters */
 	boolean  debug;		/* in debugging mode */
 #define wizard	 flags.debug
+	boolean  eatingboulders; /* being a scurrier or similar will eat boulders by moving into them */
 	boolean  eatingconfirm;	/* confirm when eating non-comestibles */
+	boolean  eatingdoors; /* being a scurrier or similar will eat doors by moving into them */
 	boolean  eatingwalls; /* being a scurrier or similar will eat walls by moving into them */
 	boolean  end_own;	/* list all own scores */
 	boolean  explore;	/* in exploration mode */
@@ -143,8 +145,10 @@ struct flag {
 	boolean blindfox; 
 	boolean lostsoul; 
 	boolean uberlostsoul; 
+#ifdef GMMODE
 	boolean gmmode;
 	boolean supergmmode;
+#endif
 	boolean wonderland;
 	boolean elmstreet;
 	boolean zapem;
@@ -241,6 +245,7 @@ struct flag {
 	boolean hybridstairseeker;
 	boolean hybridmatrayser;
 	boolean hybridfeminizer;
+	boolean hybridchallenger;
 
 	boolean hybridcancel;	/* to make sure players don't get hybrid races if they explicitly don't want any */
 	boolean randomhybrids;	/* turn it off if you don't want random hybrid races */

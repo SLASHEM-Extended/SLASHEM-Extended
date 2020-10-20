@@ -149,11 +149,13 @@ Boots_on()
 	case BOOTS_OF_SAFEGUARD:
 	case BOOTS_OF_FREEDOM:
 	case FREEZING_BOOTS:
+	case PASSTHROUGH_BOOTS:
 	case HIGH_STILETTOS:
 	case BOOTS_OF_TOTAL_STABILITY:
 	case BOOTS_OF_DISPLACEMENT:
 	case BOOTS_OF_SWIMMING:
 	case ANTI_CURSE_BOOTS:
+	case BOOTS_OF_SHOCK_RESISTANCE:
 	case SKY_HIGH_HEELS:
 	case PREHISTORIC_BOOTS:
 	case SYNTHETIC_SANDALS:
@@ -254,7 +256,63 @@ Boots_on()
 	case DUMMY_BOOTS_AA:
 	case DUMMY_BOOTS_AB:
 	case DUMMY_BOOTS_AC:
+	case DUMMY_BOOTS_AD:
+	case DUMMY_BOOTS_AE:
+	case DUMMY_BOOTS_AF:
+	case DUMMY_BOOTS_AG:
+	case DUMMY_BOOTS_AH:
+	case DUMMY_BOOTS_AI:
+	case DUMMY_BOOTS_AJ:
+	case DUMMY_BOOTS_AK:
+	case DUMMY_BOOTS_AL:
+	case DUMMY_BOOTS_AM:
+	case DUMMY_BOOTS_AN:
+	case DUMMY_BOOTS_AO:
+	case DUMMY_BOOTS_AP:
+	case DUMMY_BOOTS_AQ:
+	case DUMMY_BOOTS_AR:
+	case DUMMY_BOOTS_AS:
+	case DUMMY_BOOTS_AT:
+	case DUMMY_BOOTS_AU:
 		if (!uarmf->cursed) curse(uarmf);
+		break;
+
+	case FEMMY_STILETTO_BOOTS:
+	case MADELEINE_PLATEAU_BOOTS:
+	case MARLENA_HIKING_BOOTS:
+	case ANASTASIA_DANCING_SHOES:
+	case JESSICA_LADY_SHOES:
+	case SOLVEJG_MOCASSINS:
+	case WENDY_LEATHER_PUMPS:
+	case KATHARINA_PLATFORM_BOOTS:
+	case ELENA_COMBAT_BOOTS:
+	case THAI_COMBAT_BOOTS:
+	case ELIF_SNEAKERS:
+	case NADJA_BUCKLED_LADY_SHOES:
+	case SANDRA_COMBAT_BOOTS:
+	case NATALJE_BLOCK_HEEL_SANDALS:
+	case JEANETTA_GIRL_BOOTS:
+	case YVONNE_GIRL_SNEAKERS:
+	case MAURAH_HUGGING_BOOTS:
+	case MELTEM_COMBAT_BOOTS:
+	case SARAH_HUGGING_BOOTS:
+	case CLAUDIA_WOODEN_SANDALS:
+	case LUDGERA_HIKING_BOOTS:
+	case KATI_GIRL_BOOTS:
+	case NELLY_LADY_PUMPS:
+	case EVELINE_WEDGE_SANDALS:
+	case KARIN_LADY_SANDALS:
+	case JUEN_PEEP_TOES:
+	case KRISTINA_PLATFORM_SNEAKERS:
+	case LOU_SNEAKERS:
+	case ALMUT_SNEAKERS:
+	case JULIETTA_PEEP_TOES:
+	case ARABELLA_HUGGING_BOOTS:
+
+		if (!uarmf->cursed) {
+			pline("Oh whoops, your footwear welds itself to your %s. This might be the result of a curse.%s", makeplural(body_part(FOOT)), FunnyHallu ? " (Thank you, Captain Obvious.)" : "" );
+			curse(uarmf);
+		}		
 		break;
 
 	case WATER_WALKING_BOOTS:
@@ -343,6 +401,12 @@ Boots_on()
     if (uarmf && uarmf->oartifact == ART_RITA_S_TENDER_STILETTOS) {
 		if (!uarmf->cursed) curse(uarmf);
 		if (uarmf->spe > -10) uarmf->spe = -10;
+    }
+
+    if (uarmf && uarmf->oartifact == ART_PHANTO_S_RETARDEDNESS) {
+		if (!uarmf->cursed) curse(uarmf);
+		uarmf->hvycurse = uarmf->prmcurse = uarmf->stckcurse = TRUE;
+		pline("Now you look like a total retard and can no longer take off these boots.");
     }
 
     if (uarmf && uarmf->oartifact == ART_RNG_S_SEXINESS && uarmf->spe == 0) {
@@ -588,6 +652,24 @@ Boots_off()
 	case DUMMY_BOOTS_AA:
 	case DUMMY_BOOTS_AB:
 	case DUMMY_BOOTS_AC:
+	case DUMMY_BOOTS_AD:
+	case DUMMY_BOOTS_AE:
+	case DUMMY_BOOTS_AF:
+	case DUMMY_BOOTS_AG:
+	case DUMMY_BOOTS_AH:
+	case DUMMY_BOOTS_AI:
+	case DUMMY_BOOTS_AJ:
+	case DUMMY_BOOTS_AK:
+	case DUMMY_BOOTS_AL:
+	case DUMMY_BOOTS_AM:
+	case DUMMY_BOOTS_AN:
+	case DUMMY_BOOTS_AO:
+	case DUMMY_BOOTS_AP:
+	case DUMMY_BOOTS_AQ:
+	case DUMMY_BOOTS_AR:
+	case DUMMY_BOOTS_AS:
+	case DUMMY_BOOTS_AT:
+	case DUMMY_BOOTS_AU:
 	case DISCONNECTED_BOOTS:
 	case BOSS_BOOTS:
 	case SENTIENT_HIGH_HEELED_SHOES:
@@ -653,12 +735,46 @@ Boots_off()
 	case BOOTS_OF_DISPLACEMENT:
 	case BOOTS_OF_SWIMMING:
 	case ANTI_CURSE_BOOTS:
+	case BOOTS_OF_SHOCK_RESISTANCE:
 	case FREEZING_BOOTS:
+	case PASSTHROUGH_BOOTS:
 	case UNFAIR_STILETTOS:
 	case SKY_HIGH_HEELS:
 	case PREHISTORIC_BOOTS:
 	case SYNTHETIC_SANDALS:
 	case PLASTEEL_BOOTS:
+
+	case FEMMY_STILETTO_BOOTS:
+	case MADELEINE_PLATEAU_BOOTS:
+	case MARLENA_HIKING_BOOTS:
+	case ANASTASIA_DANCING_SHOES:
+	case JESSICA_LADY_SHOES:
+	case SOLVEJG_MOCASSINS:
+	case WENDY_LEATHER_PUMPS:
+	case KATHARINA_PLATFORM_BOOTS:
+	case ELENA_COMBAT_BOOTS:
+	case THAI_COMBAT_BOOTS:
+	case ELIF_SNEAKERS:
+	case NADJA_BUCKLED_LADY_SHOES:
+	case SANDRA_COMBAT_BOOTS:
+	case NATALJE_BLOCK_HEEL_SANDALS:
+	case JEANETTA_GIRL_BOOTS:
+	case YVONNE_GIRL_SNEAKERS:
+	case MAURAH_HUGGING_BOOTS:
+	case MELTEM_COMBAT_BOOTS:
+	case SARAH_HUGGING_BOOTS:
+	case CLAUDIA_WOODEN_SANDALS:
+	case LUDGERA_HIKING_BOOTS:
+	case KATI_GIRL_BOOTS:
+	case NELLY_LADY_PUMPS:
+	case EVELINE_WEDGE_SANDALS:
+	case KARIN_LADY_SANDALS:
+	case JUEN_PEEP_TOES:
+	case KRISTINA_PLATFORM_SNEAKERS:
+	case LOU_SNEAKERS:
+	case ALMUT_SNEAKERS:
+	case JULIETTA_PEEP_TOES:
+	case ARABELLA_HUGGING_BOOTS:
 		break;
 	case HIPPIE_HEELS:
 
@@ -681,6 +797,11 @@ Cloak_on()
 
 	if (uarmc && uarmc->oartifact == ART_DSCHLSCHLSCHLSCHLSCH) {
 		u.uprops[DEAC_ANTIMAGIC].intrinsic += 1;
+	}
+
+	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && uarmc && is_metallic(uarmc)) {
+		You("receive a little shock.");
+		losehp(rnd(2), "little electric shock", KILLED_BY_AN);
 	}
 
     switch(uarmc->otyp) {
@@ -772,6 +893,8 @@ Cloak_on()
 	case PSIONIC_CLOAK:
 	case SECOND_SKIN:
 	case CLOAK_OF_FLIGHT:
+	case CLOAK_OF_MAGIC_CONTROL:
+	case CLOAK_OF_EXPERIENCE:
 	case CLOAK_OF_MAP_AMNESIA:
 	case CLOAK_OF_TRANSFORMATION:
 	case CLOAK_OF_DISCOUNT_ACTION:
@@ -937,6 +1060,16 @@ Cloak_on()
 	case DUMMY_CLOAK_AJ:
 	case DUMMY_CLOAK_AK:
 	case DUMMY_CLOAK_AL:
+	case DUMMY_CLOAK_AM:
+	case DUMMY_CLOAK_AN:
+	case DUMMY_CLOAK_AO:
+	case DUMMY_CLOAK_AP:
+	case DUMMY_CLOAK_AQ:
+	case DUMMY_CLOAK_AR:
+	case DUMMY_CLOAK_AS:
+	case DUMMY_CLOAK_AT:
+	case DUMMY_CLOAK_AU:
+	case DUMMY_CLOAK_AV:
 
 		if (!uarmc->cursed) curse(uarmc);
 		break;
@@ -1180,6 +1313,10 @@ Cloak_on()
 
 	if (uarmc && uarmc->oartifact == ART_FILTHY_MORTALS_WILL_DIE) {
 		u.negativeprotection += 10;
+		if (evilfriday && u.ublessed > 0) {
+			u.ublessed -= 10;
+			if (u.ublessed < 0) u.ublessed = 0;
+		}
 		pline("You become more vulnerable, and realize that putting this cloak on was a very bad idea.");
 	}
 
@@ -1390,6 +1527,16 @@ Cloak_off()
 	case DUMMY_CLOAK_AJ:
 	case DUMMY_CLOAK_AK:
 	case DUMMY_CLOAK_AL:
+	case DUMMY_CLOAK_AM:
+	case DUMMY_CLOAK_AN:
+	case DUMMY_CLOAK_AO:
+	case DUMMY_CLOAK_AP:
+	case DUMMY_CLOAK_AQ:
+	case DUMMY_CLOAK_AR:
+	case DUMMY_CLOAK_AS:
+	case DUMMY_CLOAK_AT:
+	case DUMMY_CLOAK_AU:
+	case DUMMY_CLOAK_AV:
 	case ANTI_DISQUIET_CLOAK:
 	case HUGGING_GOWN:
 	case COCLOAK:
@@ -1501,6 +1648,8 @@ Cloak_off()
 	case WINGS_OF_ANGEL:
 	case DUMMY_WINGS:
 	case FUR:
+	case CLOAK_OF_MAGIC_CONTROL:
+	case CLOAK_OF_EXPERIENCE:
 	case HIDE:
 	case CLOAK_OF_PEACE:
 	case CLOAK_OF_DIMNESS:
@@ -1553,6 +1702,12 @@ int
 Helmet_on()
 {
     if (!uarmh) return 0; 
+
+	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && uarmh && is_metallic(uarmh)) {
+		You("receive a little shock.");
+		losehp(rnd(2), "little electric shock", KILLED_BY_AN);
+	}
+
     switch(uarmh->otyp) {
 	case FEDORA:
 		set_moreluck();
@@ -1600,6 +1755,7 @@ Helmet_on()
 	/* KMH, balance patch -- removed */ /* but re-inserted by Amy */
 	case FIRE_HELMET:
 	case HELM_OF_SPEED:
+	case SKILL_CAP:
 	case HELM_OF_TELEPORTATION:
 	case HELM_OF_TELEPORT_CONTROL:
 	case HELM_OF_OPAQUE_THOUGHTS:
@@ -1622,6 +1778,12 @@ Helmet_on()
 	case POINTED_HELMET:
 	case BOG_STANDARD_HELMET:
 		break;
+
+	case BOBBLE_HAT:
+		You_feel("%s.", (ACURR(A_INT) <= 6) ? "like sitting in a corner" : "giddy");
+		curse(uarmh);
+		break;
+
 	case HELM_OF_NO_DIGESTION:
 		if (!uarmh->prmcurse) {
 			pline("%s, and is blasted by a terrible black aura!", Tobjnam(uarmh, "vibrate"));
@@ -1800,6 +1962,16 @@ Helmet_on()
 	case DUMMY_HELMET_S:
 	case DUMMY_HELMET_T:
 	case DUMMY_HELMET_U:
+	case DUMMY_HELMET_V:
+	case DUMMY_HELMET_W:
+	case DUMMY_HELMET_X:
+	case DUMMY_HELMET_Y:
+	case DUMMY_HELMET_Z:
+	case DUMMY_HELMET_AA:
+	case DUMMY_HELMET_AB:
+	case DUMMY_HELMET_AC:
+	case DUMMY_HELMET_AD:
+	case DUMMY_HELMET_AE:
 		if (!uarmh->cursed) curse(uarmh);
 		break;
 	default: impossible(unknown_type_long, c_helmet, uarmh->otyp);
@@ -2030,9 +2202,21 @@ Helmet_off()
 	case DUMMY_HELMET_S:
 	case DUMMY_HELMET_T:
 	case DUMMY_HELMET_U:
+	case DUMMY_HELMET_V:
+	case DUMMY_HELMET_W:
+	case DUMMY_HELMET_X:
+	case DUMMY_HELMET_Y:
+	case DUMMY_HELMET_Z:
+	case DUMMY_HELMET_AA:
+	case DUMMY_HELMET_AB:
+	case DUMMY_HELMET_AC:
+	case DUMMY_HELMET_AD:
+	case DUMMY_HELMET_AE:
 	/* KMH, balance patch -- removed */ /* but re-inserted by Amy */
 	case FIRE_HELMET:
 	case HELM_OF_SPEED:
+	case SKILL_CAP:
+	case BOBBLE_HAT:
 	case HELM_OF_TELEPORTATION:
 	case HELM_OF_TELEPORT_CONTROL:
 	case HELM_OF_OPAQUE_THOUGHTS:
@@ -2107,6 +2291,11 @@ Gloves_on()
     long oldprop; 
     if (!uarmg) return 0; 
     oldprop = u.uprops[objects[uarmg->otyp].oc_oprop].extrinsic & ~WORN_GLOVES;
+
+	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && uarmg && is_metallic(uarmg)) {
+		You("receive a little shock.");
+		losehp(rnd(2), "little electric shock", KILLED_BY_AN);
+	}
 
     switch(uarmg->otyp) {
 	case PLASTEEL_GLOVES:
@@ -2193,6 +2382,27 @@ Gloves_on()
 	case DUMMY_GLOVES_J:
 	case DUMMY_GLOVES_K:
 	case DUMMY_GLOVES_L:
+	case DUMMY_GLOVES_M:
+	case DUMMY_GLOVES_N:
+	case DUMMY_GLOVES_O:
+	case DUMMY_GLOVES_P:
+	case DUMMY_GLOVES_Q:
+	case DUMMY_GLOVES_R:
+	case DUMMY_GLOVES_S:
+	case DUMMY_GLOVES_T:
+	case DUMMY_GLOVES_U:
+	case DUMMY_GLOVES_V:
+	case DUMMY_GLOVES_W:
+	case DUMMY_GLOVES_X:
+	case DUMMY_GLOVES_Y:
+	case DUMMY_GLOVES_Z:
+	case DUMMY_GLOVES_AA:
+	case DUMMY_GLOVES_AB:
+	case DUMMY_GLOVES_AC:
+	case DUMMY_GLOVES_AD:
+	case DUMMY_GLOVES_AE:
+	case DUMMY_GLOVES_AF:
+	case DUMMY_GLOVES_AG:
 		if (!uarmg->cursed) curse(uarmg);
 		break;
 
@@ -2443,6 +2653,27 @@ Gloves_off()
 	case DUMMY_GLOVES_J:
 	case DUMMY_GLOVES_K:
 	case DUMMY_GLOVES_L:
+	case DUMMY_GLOVES_M:
+	case DUMMY_GLOVES_N:
+	case DUMMY_GLOVES_O:
+	case DUMMY_GLOVES_P:
+	case DUMMY_GLOVES_Q:
+	case DUMMY_GLOVES_R:
+	case DUMMY_GLOVES_S:
+	case DUMMY_GLOVES_T:
+	case DUMMY_GLOVES_U:
+	case DUMMY_GLOVES_V:
+	case DUMMY_GLOVES_W:
+	case DUMMY_GLOVES_X:
+	case DUMMY_GLOVES_Y:
+	case DUMMY_GLOVES_Z:
+	case DUMMY_GLOVES_AA:
+	case DUMMY_GLOVES_AB:
+	case DUMMY_GLOVES_AC:
+	case DUMMY_GLOVES_AD:
+	case DUMMY_GLOVES_AE:
+	case DUMMY_GLOVES_AF:
+	case DUMMY_GLOVES_AG:
 	case GAUNTLETS:
 	case ELVEN_GAUNTLETS:
 	case UNKNOWN_GAUNTLETS:
@@ -2496,6 +2727,16 @@ Gloves_off()
 	uwepgone();  /* life-saved still doesn't allow touching cockatrice */
     }
 
+    if (uwep && uwep->otyp == PETRIFYIUM_BAR) {
+	char kbuf[BUFSZ];
+
+	You("wield the bar in your bare %s.", makeplural(body_part(HAND)));
+	strcpy(kbuf, "petrifyium bar");
+	instapetrify(kbuf);
+	uwepgone();  /* life-saved still doesn't allow touching cockatrice */
+
+    }
+
     /* KMH -- ...or your secondary weapon when you're wielding it */
     if (u.twoweap && uswapwep && uswapwep->otyp == CORPSE &&
 	touch_petrifies(&mons[uswapwep->corpsenm])) {
@@ -2516,6 +2757,12 @@ int
 Shield_on()
 {
 /*
+
+	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && uarms && is_metallic(uarms)) {
+		You("receive a little shock.");
+		losehp(rnd(2), "little electric shock", KILLED_BY_AN);
+	}
+
     switch (uarms->otyp) {
 	case SMALL_SHIELD:
 	case ELVEN_SHIELD:
@@ -2524,6 +2771,7 @@ Shield_on()
 	case DWARVISH_ROUNDSHIELD:
 	case LARGE_SHIELD:
 	case STEEL_SHIELD:
+	case METEORIC_STEEL_SHIELD:
 	case CRYSTAL_SHIELD:
 	case SHIELD_OF_REFLECTION:
 	case FLAME_SHIELD:
@@ -2576,6 +2824,7 @@ Shield_on()
 	case CANCEL_DRAGON_SCALE_SHIELD:
 	case NEGATIVE_DRAGON_SCALE_SHIELD:
 	case CORONA_DRAGON_SCALE_SHIELD:
+	case CONTRO_DRAGON_SCALE_SHIELD:
 	case HEROIC_DRAGON_SCALE_SHIELD:
 	case STONE_DRAGON_SCALE_SHIELD:
 	case CYAN_DRAGON_SCALE_SHIELD:
@@ -2708,6 +2957,7 @@ Shield_off()
 	case DWARVISH_ROUNDSHIELD:
 	case LARGE_SHIELD:
 	case STEEL_SHIELD:
+	case METEORIC_STEEL_SHIELD:
 	case CRYSTAL_SHIELD:
 	case SHIELD_OF_REFLECTION:
 	case FLAME_SHIELD:
@@ -2760,6 +3010,7 @@ Shield_off()
 	case CANCEL_DRAGON_SCALE_SHIELD:
 	case NEGATIVE_DRAGON_SCALE_SHIELD:
 	case CORONA_DRAGON_SCALE_SHIELD:
+	case CONTRO_DRAGON_SCALE_SHIELD:
 	case HEROIC_DRAGON_SCALE_SHIELD:
 	case STONE_DRAGON_SCALE_SHIELD:
 	case CYAN_DRAGON_SCALE_SHIELD:
@@ -2791,6 +3042,11 @@ Shirt_on()
 	default: impossible(unknown_type, c_shirt, uarmu->otyp);
     }
 */
+
+	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && uarmu && is_metallic(uarmu)) {
+		You("receive a little shock.");
+		losehp(rnd(2), "little electric shock", KILLED_BY_AN);
+	}
 
 	/* Cursed underwear/shirt may lifesave a player. It is therefore a good idea to curse them. --Amy
 	   Nobles and activistors will be able to voluntarily make them cursed. */
@@ -2859,6 +3115,11 @@ Shirt_off()
 int
 Armor_on()
 {
+	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && uarm && is_metallic(uarm)) {
+		You("receive a little shock.");
+		losehp(rnd(2), "little electric shock", KILLED_BY_AN);
+	}
+
 	/* KMH -- certain armor is obvious when worn */
 	switch (uarm->otyp) {
 		case ROBE_OF_PROTECTION:
@@ -2881,6 +3142,16 @@ Armor_on()
 	}
 	if (uarm && uarm->otyp == EVIL_LEATHER_ARMOR) {
 		if (!uarm->cursed) curse(uarm);
+	}
+
+	if (uarm && uarm->oartifact == ART_NOW_FOR_THE_DISCHARGE) {
+
+		if (!tech_known(T_SIGIL_DISCHARGE)) {
+		      u.uprops[DISCHARGE_BUG].intrinsic |= FROMOUTSIDE;
+			learntech(T_SIGIL_DISCHARGE, FROMOUTSIDE, 1);
+		    	pline("Suddenly, you know how to use the sigil of discharge technique!");
+		}
+
 	}
 
 	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_SUPERESCAPE_MAIL) {
@@ -2907,6 +3178,20 @@ Armor_on()
 		pline("Your armor is surrounded by an evil black aura.");
 		curse(uarm);
 		uarm->hvycurse = 1;
+	}
+	if (uarm && !(uarm->hvycurse) && uarm->oartifact == ART_WRONG_TURN) {
+
+		int mntmp;
+
+		curse(uarm);
+		uarm->hvycurse = 1;
+
+		do {
+			mntmp = rn2(NUMMONS);
+		} while(( (notake(&mons[mntmp]) && rn2(4) ) || !polyok(&mons[mntmp]) || (!(is_undead(&mons[mntmp])) ) || ((mons[mntmp].mmove == 1) && rn2(4) ) || ((mons[mntmp].mmove == 2) && rn2(3) ) || ((mons[mntmp].mmove == 3) && rn2(2) ) || ((mons[mntmp].mmove == 4) && !rn2(3) ) || ( (mons[mntmp].mlevel < 10) && ((mons[mntmp].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[mntmp]) && rn2(2) ) || ( is_nonmoving(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5) ) || ( is_nonmoving(&mons[mntmp]) && rn2(20) ) || (is_jonadabmonster(&mons[mntmp]) && rn2(20)) || ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(20) ) ) );
+
+		u.wormpolymorph = mntmp;
+		polyself(FALSE);
 	}
 
 	if (uarm && uarm->oartifact == ART_RNG_S_FUN && uarm->spe == 0) {
@@ -2996,6 +3281,11 @@ Amulet_on()
 	if (!uamul) return;
 	oldprop = u.uprops[objects[uamul->otyp].oc_oprop].extrinsic & ~WORN_AMUL;
 
+	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && uamul && is_metallic(uamul)) {
+		You("receive a little shock.");
+		losehp(rnd(2), "little electric shock", KILLED_BY_AN);
+	}
+
     if (uamul && uamul->oartifact == ART_TSCHOECK_KLOECK) { /* needs to be done here because it disintegrates when worn */
 		if (u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic < 2000000) {
 			u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1000000;
@@ -3043,6 +3333,10 @@ Amulet_on()
 	case AMULET_OF_SECOND_CHANCE:
 		break;
 	case AMULET_OF_UNDEAD_WARNING:
+		break;
+
+	case AMULET_OF_TIME:
+		pline("The time is: %d:%d", getlt()->tm_hour, getlt()->tm_min);
 		break;
 
 	case AMULET_OF_RMB_LOSS:
@@ -3338,6 +3632,11 @@ Implant_on()
 	if (!uimplant) return;
 	oldprop = u.uprops[objects[uimplant->otyp].oc_oprop].extrinsic & ~WORN_IMPLANT;
 
+	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && uimplant && is_metallic(uimplant)) {
+		You("receive a little shock.");
+		losehp(rnd(2), "little electric shock", KILLED_BY_AN);
+	}
+
     switch(uimplant->otyp) {
 
     }
@@ -3484,6 +3783,11 @@ register struct obj *obj;
     /* only mask out W_RING when we don't have both
        left and right rings of the same type */
     if ((oldprop & W_RING) != W_RING) oldprop &= ~W_RING;
+
+	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && obj && is_metallic(obj)) {
+		You("receive a little shock.");
+		losehp(rnd(2), "little electric shock", KILLED_BY_AN);
+	}
 
     switch(obj->otyp){
 	case RIN_TELEPORTATION:
@@ -3965,6 +4269,11 @@ register struct obj *otmp;
 	setworn(otmp, W_TOOL);
 	on_msg(otmp);
 
+	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && otmp && is_metallic(otmp)) {
+		You("receive a little shock.");
+		losehp(rnd(2), "little electric shock", KILLED_BY_AN);
+	}
+
 	if (otmp && otmp->oartifact == ART_BLINDFOLD_OF_MISPELLING) {
 		if (!otmp->cursed) {
 			curse(otmp);
@@ -4384,6 +4693,12 @@ boolean noisy;
 		return 0;
 	}
 
+	if (Race_if(PM_INCORPOREALOID) && !Upolyd && (is_boots(otmp) || is_gloves(otmp) || is_shield(otmp) || is_cloak(otmp) || is_helmet(otmp) || is_suit(otmp) || is_shirt(otmp))) {
+		if (noisy) pline("Too bad! As an incorporealoid, you cannot wear armor.");
+		/* and since you cannot polymorph, well... --Amy */
+		return 0;
+	}
+
 	if (!is_cloak(otmp) && !is_boots(otmp) && !(otmp->oartifact == ART_ELONA_S_SNAIL_TRAIL) && Race_if(PM_ELONA_SNAIL) && !Upolyd) {
 		if (noisy) pline("As a snail, the only types of armor you can wear are cloaks and boots.");
 		return 0;
@@ -4437,7 +4752,7 @@ boolean noisy;
 		if (yn("The uncommon size of your dufflepud feet means that wearing boots of any kind will be awkward, causing you to move at half speed. Really wear them?") != 'y') return 0;
 	}
 
-    if (which && (cantweararm(youmonst.data) || (Race_if(PM_CHIROPTERAN) && !Upolyd) || (Race_if(PM_PLAYER_MUSHROOM) && !Upolyd) ) && !Race_if(PM_TRANSFORMER)  &&
+    if (which && (cantweararm(youmonst.data) || (Race_if(PM_CHIROPTERAN) && !Upolyd) || (Race_if(PM_PLAYER_MUSHROOM) && !Upolyd) ) && !Race_if(PM_TRANSFORMER)  && (otmp->otyp != OSFA_CHAIN_MAIL) &&
 	    /* same exception for cloaks as used in m_dowear() */
 	    (which != c_cloak || youmonst.data->msize != MZ_SMALL) &&
 	    (racial_exception(&youmonst, otmp) < 1)) {
@@ -4943,6 +5258,7 @@ find_ac()
 
 	if (Race_if(PM_HUMAN_WRAITH)) uac -= u.ulevel;
 	if (Race_if(PM_ETHEREALOID)) uac -= u.ulevel;
+	if (Race_if(PM_INCORPOREALOID)) uac -= u.ulevel;
 	if (Race_if(PM_TURTLE)) uac -= u.ulevel;
 	if (Race_if(PM_LOWER_ENT)) uac -= u.ulevel;
 	if (Race_if(PM_KUTAR)) uac -= (u.ulevel / 3);
@@ -5235,6 +5551,14 @@ find_ac()
 	if (uarmf && uarmf->oartifact == ART_UNFELLABLE_TREE && u.burrowed) uac -= 20;
 	if (Race_if(PM_DUTHOL) && PlayerInBlockHeels) uac -= 5;
 	if (Race_if(PM_HYPOTHERMIC) && uarmc) uac -= 3;
+	if (uarm && uarm->oartifact == ART_UBERGAGE) uac -= 4;
+	if (uarm && uarm->oartifact == ART_PEOPLE_COAT) uac -= 5;
+	if (uarms && uarms->oartifact == ART_NORSE_MITHRIL) uac -= 5;
+	if (uarmu && uarmu->oartifact == ART_SWEET_VICTORIA) uac -= 2;
+	if (uarmh && uarmh->oartifact == ART_FOOTBALL_MASK) uac -= 2;
+	if (uarmf && uarmf->oartifact == ART_ARTHUR_S_HIGH_HEELED_PLATF) uac -= 2;
+	if (uwep && uwep->oartifact == ART_SIGIX_BROADSWORD) uac -= 20;
+	if (uarm && uarm->oartifact == ART_MOEBIUS_ARMOR) uac -= 10;
 
 	if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 		if ((!uarm || is_metallic(uarm)) && (!uarmc || is_metallic(uarmc)) && (!uarmu || is_metallic(uarmu)) && (!uarms || is_metallic(uarms)) && (!uarmg || is_metallic(uarmg)) && (!uarmf || is_metallic(uarmf)) && (!uarmh || is_metallic(uarmh)) ) {
@@ -5343,6 +5667,27 @@ find_ac()
 	if (uarmg && objects[(uarmg)->otyp].oc_material == MT_CERAMIC) {
 		uac -= 2;
 	}
+	if (uarmc && objects[(uarmc)->otyp].oc_material == MT_METEOSTEEL) {
+		uac -= 1;
+	}
+	if (uarm && objects[(uarm)->otyp].oc_material == MT_METEOSTEEL) {
+		uac -= 1;
+	}
+	if (uarmu && objects[(uarmu)->otyp].oc_material == MT_METEOSTEEL) {
+		uac -= 1;
+	}
+	if (uarms && objects[(uarms)->otyp].oc_material == MT_METEOSTEEL) {
+		uac -= 1;
+	}
+	if (uarmh && objects[(uarmh)->otyp].oc_material == MT_METEOSTEEL) {
+		uac -= 1;
+	}
+	if (uarmf && objects[(uarmf)->otyp].oc_material == MT_METEOSTEEL) {
+		uac -= 1;
+	}
+	if (uarmg && objects[(uarmg)->otyp].oc_material == MT_METEOSTEEL) {
+		uac -= 1;
+	}
 
 	if (u.negativeprotection) uac += u.negativeprotection;
 
@@ -5374,6 +5719,13 @@ find_ac()
 	uac = (uac < UAC_MIN ? UAC_MIN : (uac > UAC_LIM ? UAC_LIM : uac));
 
 	if (Race_if(PM_ITAQUE)) {
+		int difference = (-(uac - 10));
+		difference = difference / 10;
+		if (difference > 0) uac -= difference;
+
+	}
+
+	if (uarmg && uarmg->oartifact == ART_EGASSO_S_GIBBERISH) {
 		int difference = (-(uac - 10));
 		difference = difference / 10;
 		if (difference > 0) uac -= difference;
@@ -5416,8 +5768,8 @@ find_ac()
 	 * don't suffer from low to-hit like dual-wielded one-handed weapons do. These are basically all two-handers that
 	 * are meant to be used in melee, so e.g. bows are unaffected but also polearms because those are already balanced
 	 * by the fact that their damage is only mediocre and they're not effective without riding.
-	 * Additionally, quarterstaff and unicorn horn are exempt because they don't get big damage bonuses and shouldn't
-	 * be made completely pointless just because I'm trying to balance the heavy hitters.
+	 * Additionally, quarterstaff, grinder and unicorn horn are exempt because they don't get big damage bonuses and
+	 * shouldn't be made completely pointless just because I'm trying to balance the heavy hitters.
 	 * And double lightsabers are exempt because it's already enough of a hassle to manage power for them. --Amy */
 	if (uwep && is_heavyweapon(uwep)) {
 

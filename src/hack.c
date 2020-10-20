@@ -707,6 +707,13 @@ moverock()
 		    pline("%s moves %s.",
 			  upstart(y_monnam(u.usteed)), the(xname(otmp)));
 		lastmovetime = moves;
+
+		if (otmp && otmp->oartifact == ART_WENDYHOLE) {
+			pline("Wendy produces %s farting noises with her sexy butt.", !rn2(3) ? "loud" : !rn2(2) ? "disgusting" : "erogenous");
+			u.cnd_fartingcount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (!extralongsqueak()) badeffect();
+		}
 	    }
 
 	    /* Move the boulder *after* the message. */
@@ -1060,7 +1067,7 @@ int mode;
 	if (tmpr->typ == IRONBARS || (SpellColorPlatinum && (glyph_to_cmap(glyph_at(x,y)) == S_bars) ) ) {
 	    if (!(Passes_walls || passes_bars(youmonst.data) || (powerfulimplants() && uimplant && uimplant && uimplant->oartifact == ART_SIGNIFICANT_RNG_JITTER) )) {
 		if (mode == DO_MOVE) {
-			if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) ) {
+			if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uwep && uwep->oartifact == ART_KRONSCHER_BAR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KRONSCHER_BAR) || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || (uarms && uarms->oartifact == ART_BLUE_SHIRT_OF_DEATH) ) {
 				You("crash into a set of iron bars! Ouch!");
 
 				losehp(rnd(10), "walking into iron bars", KILLED_BY);
@@ -1087,6 +1094,10 @@ int mode;
 	    ;	/* do nothing */
 	} else if (Race_if(PM_HUMANOID_DRYAD) && tmpr->typ == TREE) {
 	    ;	/* dryad can walk thru trees --Amy */
+	} else if (uarmg && uarmg->oartifact == ART_GREEN_THUMB) {
+	    ;
+	} else if (uarmf && uarmf->oartifact == ART_EVERYTHING_IS_GREEN && tmpr->typ == TREE) {
+	    ;	/* special effect of that artifact --Amy */
 
 	} else if (tmpr->typ == WOODENTABLE) {
 
@@ -1116,11 +1127,11 @@ int mode;
 		}
 
 	} else if (tmpr->typ == FARMLAND) {
-		if (mode != DO_MOVE && !Levitation && !Flying && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED)) return FALSE;
+		if (mode != DO_MOVE && !Levitation && !Flying && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED)) return FALSE;
 
-		if (mode == DO_MOVE && !Levitation && !Flying && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED) && !(powerfulimplants() && uimplant && uimplant && uimplant->oartifact == ART_SIGNIFICANT_RNG_JITTER) ) {
+		if (mode == DO_MOVE && !Levitation && !Flying && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED) && !(powerfulimplants() && uimplant && uimplant && uimplant->oartifact == ART_SIGNIFICANT_RNG_JITTER) ) {
 
-			if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY)) {
+			if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uwep && uwep->oartifact == ART_KRONSCHER_BAR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KRONSCHER_BAR) || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || (uarms && uarms->oartifact == ART_BLUE_SHIRT_OF_DEATH) ) {
 				You("crash into a farmland! Ouch!");
 
 				losehp(rnd(10), "walking into a farmland", KILLED_BY);
@@ -1146,7 +1157,7 @@ int mode;
 		if (mode != DO_MOVE && !Passes_walls && (Flying || Levitation)) return FALSE;
 		if (mode == DO_MOVE && !Passes_walls && (Flying || Levitation)) {
 
-			if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY)) {
+			if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uwep && uwep->oartifact == ART_KRONSCHER_BAR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KRONSCHER_BAR) || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || (uarms && uarms->oartifact == ART_BLUE_SHIRT_OF_DEATH) ) {
 				You("crash into a tunnel! Ouch!");
 
 				losehp(rnd(10), "walking into a tunnel", KILLED_BY);
@@ -1197,7 +1208,7 @@ int mode;
 			tmpr->typ = CORR;
 			blockorunblock_point(ux+dx,uy+dy);
 			if (!rn2(20) && isok(ux+dx, uy+dy)) {
-				maketrap(ux+dx, uy+dy, randomtrap(), 100 );
+				maketrap(ux+dx, uy+dy, randomtrap(), 100, TRUE);
 			} else if (!rn2(20) && isok(ux+dx, uy+dy)) {
 				pline("There was a monster hidden underneath the wall!");
 				makemon((struct permonst *)0, ux+dx, uy+dy, MM_ADJACENTOK);
@@ -1238,7 +1249,7 @@ walscholardone:
 		/* if you just ate it, you shouldn't crash into a no-longer-existing rock part above the tunnel */
 		if (mode == DO_MOVE && !Passes_walls && (Flying || Levitation) && (levl[x][y].typ == WATERTUNNEL) ) {
 
-			if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY)) {
+			if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uwep && uwep->oartifact == ART_KRONSCHER_BAR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KRONSCHER_BAR) || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || (uarms && uarms->oartifact == ART_BLUE_SHIRT_OF_DEATH) ) {
 				You("crash into a water tunnel! Ouch!");
 
 				losehp(rnd(10), "walking into a water tunnel", KILLED_BY);
@@ -1266,7 +1277,7 @@ walscholardone:
 
 	/* autodig: note by Amy, this needs to interact with all nasty traps that would fire when you apply something.
 	 * For simplicity of coding, I decided to make autodig do nothing if you have such a trap active :P */
-	} else if (flags.autodig && !(u.powerfailure || CurseAsYouUse || InterruptEffect || u.uprops[INTERRUPT_EFFECT].extrinsic || have_interruptionstone() || (isselfhybrid && (moves % 3 == 0 && moves % 11 != 0) ) ) && !(Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY)) && !flags.run && !flags.nopick &&
+	} else if (flags.autodig && !(u.powerfailure || CurseAsYouUse || InterruptEffect || u.uprops[INTERRUPT_EFFECT].extrinsic || have_interruptionstone() || (isselfhybrid && (moves % 3 == 0 && moves % 11 != 0) ) ) && !(Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uwep && uwep->oartifact == ART_KRONSCHER_BAR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KRONSCHER_BAR) || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || (uarms && uarms->oartifact == ART_BLUE_SHIRT_OF_DEATH) ) && !flags.run && !flags.nopick &&
 		   uwep && is_pick(uwep)) {
 	/* MRKR: Automatic digging when wielding the appropriate tool */
 	    if (mode == DO_MOVE) {
@@ -1284,7 +1295,7 @@ walscholardone:
 		if (!(Is_stronghold(&u.uz) && is_db_wall(x,y)) && !(Passes_walls && !may_passwall(x,y) && In_sokoban(&u.uz))) {
 			if (tmpr->typ == TREE && mode == DO_MOVE) {
 
-				if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY)) {
+				if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uwep && uwep->oartifact == ART_KRONSCHER_BAR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KRONSCHER_BAR) || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || (uarms && uarms->oartifact == ART_BLUE_SHIRT_OF_DEATH) ) {
 					You("crash into a tree! Ouch!");
 
 					losehp(rnd(10), "walking into a tree", KILLED_BY);
@@ -1301,7 +1312,7 @@ walscholardone:
 
 			} else if (mode == DO_MOVE) {
 
-				if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY)) {
+				if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uwep && uwep->oartifact == ART_KRONSCHER_BAR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KRONSCHER_BAR) || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || (uarms && uarms->oartifact == ART_BLUE_SHIRT_OF_DEATH) ) {
 					You("crash into a wall! Ouch!");
 
 					losehp(rnd(10), "walking into a wall", KILLED_BY);
@@ -1343,20 +1354,20 @@ walscholardone:
 		;	/* do nothing */
 	    else if (can_ooze(&youmonst)) {
 		if (mode == DO_MOVE) You("ooze under the door.");
-	    } else if (((tunnels(youmonst.data) && !needspick(youmonst.data)) || (uarmf && uarmf->oartifact == ART_STONEWALL_CHECKERBOARD_DIS) || (Race_if(PM_SCURRIER) && !Upolyd)) && flags.eatingwalls ) {
+	    } else if (((tunnels(youmonst.data) && !needspick(youmonst.data)) || (uarmf && uarmf->oartifact == ART_STONEWALL_CHECKERBOARD_DIS) || (Race_if(PM_SCURRIER) && !Upolyd)) && flags.eatingdoors ) {
 		/* Eat the door. */
 		if (mode == DO_MOVE && still_chewing(x,y)) return FALSE;
 	    } else {
 		if (mode == DO_MOVE) {
 		    if (amorphous(youmonst.data))
 			You("try to ooze under the door, but can't squeeze your possessions through.");
-		    else if (iflags.autoopen && !Confusion && !Stunned && !Fumbling && levl[ux][uy].seenv && !(RMBLoss || u.uprops[RMB_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) || (uamul && uamul->oartifact == ART_BUEING) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || (uamul && uamul->oartifact == ART_YOU_HAVE_UGH_MEMORY) || have_rmbstone() || u.totter || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) ) ) {
+		    else if (iflags.autoopen && !Confusion && !Stunned && !Fumbling && levl[ux][uy].seenv && !(RMBLoss || u.uprops[RMB_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) || (uamul && uamul->oartifact == ART_BUEING) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || (uamul && uamul->oartifact == ART_YOU_HAVE_UGH_MEMORY) || have_rmbstone() || u.totter || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || (uarms && uarms->oartifact == ART_BLUE_SHIRT_OF_DEATH) || u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uwep && uwep->oartifact == ART_KRONSCHER_BAR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KRONSCHER_BAR) || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || (uarms && uarms->oartifact == ART_BLUE_SHIRT_OF_DEATH) ) ) {
 			    door_opened = flags.move = doopen_indir(x, y);
 			    opentry = 1;
 		    }
 		    else if (x == ux || y == uy) {
 
-			if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY)) {
+			if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uwep && uwep->oartifact == ART_KRONSCHER_BAR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KRONSCHER_BAR) || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || (uarms && uarms->oartifact == ART_BLUE_SHIRT_OF_DEATH) ) {
 				You("crash into a door! Ouch!");
 
 				losehp(rnd(10), "walking into a door", KILLED_BY);
@@ -1389,7 +1400,7 @@ walscholardone:
 		} else if (mode == TEST_TRAV) goto testdiag;
 		if (mode == DO_MOVE) {
 
-				if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY)) {
+				if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uwep && uwep->oartifact == ART_KRONSCHER_BAR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KRONSCHER_BAR) || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || (uarms && uarms->oartifact == ART_BLUE_SHIRT_OF_DEATH) ) {
 					You("crash into a door! Ouch!");
 
 					losehp(rnd(10), "walking into a door", KILLED_BY);
@@ -1442,7 +1453,7 @@ walscholardone:
 		You("cannot pass that way.");
 	    return FALSE;
 	}
-	if ( (bigmonst(youmonst.data) && !Race_if(PM_TRANSFORMER) ) || (!Upolyd && Race_if(PM_HUMANOID_CENTAUR) ) || (!Upolyd && Race_if(PM_ETHEREALOID) ) || (!Upolyd && Race_if(PM_PLAYER_CERBERUS) ) || (!Upolyd && Race_if(PM_CHIROPTERAN) ) || (!Upolyd && Race_if(PM_THUNDERLORD) ) || (!Upolyd && Race_if(PM_PLAYER_JABBERWOCK) ) ) {
+	if ( (bigmonst(youmonst.data) && !Race_if(PM_TRANSFORMER) ) || (!Upolyd && Race_if(PM_HUMANOID_CENTAUR) ) || (!Upolyd && Race_if(PM_ETHEREALOID) ) || (!Upolyd && Race_if(PM_INCORPOREALOID) ) || (!Upolyd && Race_if(PM_PLAYER_CERBERUS) ) || (!Upolyd && Race_if(PM_CHIROPTERAN) ) || (!Upolyd && Race_if(PM_THUNDERLORD) ) || (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) || (!Upolyd && Race_if(PM_PLAYER_JABBERWOCK) ) ) {
 	    if (mode == DO_MOVE)
 		Your("body is too large to fit through.");
 	    return FALSE;
@@ -1488,7 +1499,7 @@ walscholardone:
 	if (mode == DO_MOVE) {
 	    /* tunneling monsters will chew before pushing */
 	    if ( (( (tunnels(youmonst.data) && !needspick(youmonst.data)) || (uarmf && uarmf->oartifact == ART_STONEWALL_CHECKERBOARD_DIS) || (Race_if(PM_SCURRIER) && !Upolyd) || u.geolysis) &&
-		!In_sokoban(&u.uz)) && flags.eatingwalls ) {
+		!In_sokoban(&u.uz)) && flags.eatingboulders ) {
 		if (still_chewing(x,y)) return FALSE;
 	    } else
 		if (moverock() < 0) return FALSE;
@@ -1501,7 +1512,7 @@ walscholardone:
 		    !(tunnels(youmonst.data) && !needspick(youmonst.data)) &&
 		    !(Race_if(PM_SCURRIER) && !Upolyd) &&
 		    !(uarmf && uarmf->oartifact == ART_STONEWALL_CHECKERBOARD_DIS) &&
-		    !carrying(PICK_AXE) && !carrying(CONGLOMERATE_PICK) && !carrying(MYSTERY_PICK) &&
+		    !carrying(PICK_AXE) && !carrying(CONGLOMERATE_PICK) && !carrying(CONUNDRUM_PICK) && !carrying(MYSTERY_PICK) &&
 		    !carrying(BRONZE_PICK) && !carrying(NANO_PICK) && !carrying(BRICK_PICK) && !carrying(DWARVISH_MATTOCK) &&
 		    !((obj = carrying(WAN_DIGGING)) &&
 		      !objects[obj->otyp].oc_name_known))
@@ -1920,6 +1931,7 @@ domove()
 	const char *predicament;
 	boolean displacer = FALSE;	/* defender attempts to displace you */
 	boolean peacedisplacer = FALSE;
+	boolean canexistonsquare = TRUE;
 
 	u_wipe_engr(rnd(5));
 
@@ -2206,6 +2218,37 @@ domove()
 		}
 	    }
 	}
+
+	/* fucked up bug where we can reach here even when engulfed and waste a turn... --Amy
+	 * This could crash the game if the player is punished, which we'll prevent by just aborting the player's move */
+	if(u.uswallow) {
+		pline("Caution: You seem to have encountered the bug where moving into an engulfer wastes a turn. In order to attack the monster, prefix your movement with F (shift-f), please. Sorry for the inconvenience. --Amy");
+		return;
+	}
+
+	/* Amy feature: safety question when displacing pets into liquids, impossible to do it to non-pets (too cheesy) */
+	if (mtmp && (displacer || peacedisplacer || mtmp->mtame)) {
+		boolean inpool, inlava;
+
+		inpool = (is_waterypool(u.ux, u.uy) || is_watertunnel(u.ux, u.uy)) && !is_flyer(mtmp->data) && !(is_urinelake(u.ux, u.uy)) && !(is_moorland(u.ux, u.uy)) && !(is_crystalwater(u.ux, u.uy)) && (!mtmp->egotype_flying) && !is_floater(mtmp->data);
+		inlava = is_lava(u.ux, u.uy) && !is_flyer(mtmp->data) && (!mtmp->egotype_flying) && !is_floater(mtmp->data);
+
+		if (inpool || inlava) canexistonsquare = FALSE;
+	}
+
+	if (!canexistonsquare) {
+		if (mtmp && !mtmp->mtame) {
+			You("cannot displace that monster into a harmful liquid!");
+			return;
+		} else if (mtmp && mtmp->mtame) {
+			if (!(ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone())) {
+				if (yn("Really displace the pet into a harmful liquid?") != 'y') {
+					return;
+				}
+			}
+		}
+	}
+
 	/* specifying 'F' with no monster wastes a turn */
 	if (flags.forcefight ||
 	    /* remembered an 'I' && didn't use a move command */
@@ -2701,6 +2744,7 @@ peacedisplace:
 
  	/* now move the hero */
 	mtmp = m_at(x, y);
+
 	u.ux += u.dx;
 	u.uy += u.dy;
 
@@ -3071,6 +3115,8 @@ boolean pick;
 			You("fly out of the water.");
 		else if (uarmc && itemhasappearance(uarmc, APP_FLIER_CLOAK) && !is_crystalwater(u.ux,u.uy))
 			You("fly out of the water.");
+		else if (uarmf && uarmf->oartifact == ART_RUBBER_LOVE && !is_crystalwater(u.ux,u.uy))
+			You("float on top of the water.");
 		else if ((Wwalking || Race_if(PM_KORONST)) && !is_crystalwater(u.ux,u.uy))
 			You("slowly rise above the surface.");
 /*              else if (Swimming)
@@ -3085,7 +3131,7 @@ boolean pick;
 		}
 	}
 stillinwater:;
-	if (!Levitation && !u.ustuck && !Flying && !(uarmc && itemhasappearance(uarmc, APP_FLIER_CLOAK)) ) {
+	if (!Levitation && !u.ustuck && !Flying && !(uarmf && uarmf->oartifact == ART_RUBBER_LOVE) && !(uarmc && itemhasappearance(uarmc, APP_FLIER_CLOAK)) ) {
 	    /* limit recursive calls through teleds() */
 	    if ((is_drowningpool(u.ux, u.uy) && !(is_crystalwater(u.ux,u.uy))) || is_lava(u.ux, u.uy)) {
 		if (u.usteed && !is_flyer(u.usteed->data) && (!u.usteed->egotype_flying) &&
@@ -4033,10 +4079,10 @@ dopickup()
 	}
 	if((is_waterypool(u.ux, u.uy) || is_watertunnel(u.ux, u.uy) || is_moorland(u.ux, u.uy) || is_urinelake(u.ux, u.uy)) && !(is_crystalwater(u.ux, u.uy)) ) {
 	    if (Wwalking || Race_if(PM_KORONST) || is_floater(youmonst.data) || is_clinger(youmonst.data)
-			|| (Flying && !StrongFlying && !Breathless && !Swimming)) {
+			|| (Flying && !(uarmf && uarmf->oartifact == ART_DIP_DIVE) && !StrongFlying && !Breathless && !Swimming)) {
 		You("cannot dive into the water to pick things up.");
 		return(0);
-	    } else if (!Underwater && !Swimming && !StrongFlying) {
+	    } else if (!Underwater && !(uarmf && uarmf->oartifact == ART_DIP_DIVE) && !Swimming && !StrongFlying) {
 		You_cant("even see the bottom, let alone pick up %s.",
 				something);
 		return(0);
@@ -4044,10 +4090,10 @@ dopickup()
 	}
 	if (is_lava(u.ux, u.uy)) {
 	    if (Wwalking || Race_if(PM_KORONST) || is_floater(youmonst.data) || is_clinger(youmonst.data)
-			|| (Flying && !StrongFlying && !Breathless)) {
+			|| (Flying && !(uarmf && uarmf->oartifact == ART_DIP_DIVE) && !StrongFlying && !Breathless)) {
 		You_cant("reach the bottom to pick things up.");
 		return(0);
-	    } else if (!likes_lava(youmonst.data) && !Race_if(PM_HYPOTHERMIC) && !(uarmf && itemhasappearance(uarmf, APP_HOT_BOOTS) ) && !(uwep && uwep->oartifact == ART_EVERYTHING_MUST_BURN) && !(uamul && uamul->otyp == AMULET_OF_D_TYPE_EQUIPMENT) && !Race_if(PM_PLAYER_SALAMANDER) && !(uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_RUBBER_SHOALS) && !(uarm && uarm->oartifact == ART_LAURA_CROFT_S_BATTLEWEAR) && !(uarmc && uarmc->oartifact == ART_SCOOBA_COOBA) && !(uarm && uarm->oartifact == ART_D_TYPE_EQUIPMENT) && !(uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) ) {
+	    } else if (!likes_lava(youmonst.data) && !Race_if(PM_HYPOTHERMIC) && !(uarmf && itemhasappearance(uarmf, APP_HOT_BOOTS) ) && !(uwep && uwep->oartifact == ART_EVERYTHING_MUST_BURN) && !(uamul && uamul->otyp == AMULET_OF_D_TYPE_EQUIPMENT) && !(uarmf && uarmf->oartifact == ART_DIP_DIVE) && !Race_if(PM_PLAYER_SALAMANDER) && !(uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_RUBBER_SHOALS) && !(uarm && uarm->oartifact == ART_LAURA_CROFT_S_BATTLEWEAR) && !(uarmc && uarmc->oartifact == ART_SCOOBA_COOBA) && !(uarm && uarm->oartifact == ART_D_TYPE_EQUIPMENT) && !(uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) ) {
 		You("would burn to a crisp trying to pick things up.");
 		return(0);
 	    }
@@ -4724,7 +4770,7 @@ int k_format; /* WAC k_format is an int */
 	if (Role_if(PM_BLEEDER)) n = n * 2; /* bleeders are harder than hard mode */
 	if (have_cursedmagicresstone()) n = n * 2;
 	if (Race_if(PM_METAL)) n *= rnd(10);
-	if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone() || (uimplant && uimplant->oartifact == ART_IME_SPEW)) n = n * 2;
+	if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone() || (uleft && uleft->oartifact == ART_RING_OF_FAST_LIVING) || (uright && uright->oartifact == ART_RING_OF_FAST_LIVING) || (uimplant && uimplant->oartifact == ART_IME_SPEW)) n = n * 2;
 	if (uamul && uamul->otyp == AMULET_OF_VULNERABILITY) n *= rnd(4);
 	if (RngeFrailness) n = n * 2;
 
@@ -4934,6 +4980,17 @@ weight_cap()
 		}
 		if (carrcap < 0) carrcap = 0;
 	}
+	if (Upolyd && !PlayerCannotUseSkills) {
+		switch (P_SKILL(P_POLYMORPHING)) {
+			case P_BASIC: carrcap *= 6; carrcap /= 5; break;
+			case P_SKILLED: carrcap *= 7; carrcap /= 5; break;
+			case P_EXPERT: carrcap *= 8; carrcap /= 5; break;
+			case P_MASTER: carrcap *= 9; carrcap /= 5; break;
+			case P_GRAND_MASTER: carrcap *= 10; carrcap /= 5; break;
+			case P_SUPREME_MASTER: carrcap *= 11; carrcap /= 5; break;
+		}
+	}
+
 	if (uarmf && uarmf->oartifact == ART_A_SPOONFUL_OF_FO_U_RK) return 5000;
 
 	return((int) carrcap);
@@ -4956,7 +5013,7 @@ inv_weight()
 	   mustn't add its weight in twice under that circumstance */
 	/* tried to make gold lighter --Amy */
 	wt = (otmp && otmp->oclass == COIN_CLASS) ? 0 :
-		(int)((u.ugold + 50L) / /*100L*/10000L);
+		(int)((u.ugold + 50L) / /*100L*/1000000L);
 #endif
 	while (otmp) {
 #ifndef GOLDOBJ

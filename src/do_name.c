@@ -34,6 +34,8 @@ const char *goal;
     putstr(tmpwin, 0, sbuf);
     if (!force)
 	putstr(tmpwin, 0, "Type Space or Escape when you're done.");
+    else
+	putstr(tmpwin, 0, "Press Escape when you're done.");
     putstr(tmpwin, 0, "");
     display_nhwindow(tmpwin, TRUE);
     destroy_nhwindow(tmpwin);
@@ -167,7 +169,7 @@ const char *goal;
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		} /* k => matching */
 	    } /* !quitchars */
-	    if (force) goto nxtc;
+	    if (force && !(c == 32) ) goto nxtc;
 	    pline("Done.");
 	    msg_given = FALSE;	/* suppress clear */
 	    cx = -1;
@@ -601,7 +603,7 @@ static const char * const ghostnames[] = {
 	"PeterQ", "PavelB", "FlamingGuacamole", "Dracopent", "AntiGulp",
 	"Metanite", "Andrio", "Greyberyl", "Pellsson", "Recluse", "Malena",
 	"Pinkbeast", "Mickmane", "Porkman", "Micromoog", "Malor", "Merlek",
-	"Musicdemon",
+	"Musicdemon", "Amateurhour", "Mobileuser", "Aoei", "Rebatela",
 
 };
 
@@ -726,7 +728,7 @@ stupidsegfault:
 	/* priests and minions: don't even use this function */
 	if (mtmp->ispriest || mtmp->isminion) {
 
-	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) || MonsterGlyphHallu) {
+	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmf && uarmf->oartifact == ART_STAR_SOLES) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) || MonsterGlyphHallu) {
 		strcat(buf, "monster");
 		return buf;
 	    }
@@ -771,7 +773,7 @@ stupidsegfault:
 	    strcat(buf, " the ");
 	    if (do_invis)
 		strcat(buf, "invisible ");
-	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) || MonsterGlyphHallu) strcat(buf, "monster");
+	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmf && uarmf->oartifact == ART_STAR_SOLES) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) || MonsterGlyphHallu) strcat(buf, "monster");
 	    else strcat(buf, mdat->mname);
 	    return buf;
 	}
@@ -800,7 +802,7 @@ stupidsegfault:
 	} else if (mtmp->mnamelth) {
 	    char *name = NAME(mtmp);
 
-	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) || MonsterGlyphHallu) {
+	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmf && uarmf->oartifact == ART_STAR_SOLES) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) || MonsterGlyphHallu) {
 		strcat(buf, "monster");
 		name_at_start = TRUE;
 	    } else {
@@ -838,14 +840,14 @@ stupidsegfault:
 
 	} else if (is_mplayer(mdat) /*&& !In_endgame(&u.uz)*/) {
 	    char pbuf[BUFSZ];
-	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) || MonsterGlyphHallu) strcat(buf, "monster");
+	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmf && uarmf->oartifact == ART_STAR_SOLES) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) || MonsterGlyphHallu) strcat(buf, "monster");
 	    else {
 		    strcpy(pbuf, rank_of((int)mtmp->m_lev, monsndx(mdat), (boolean)mtmp->female));
 		    strcat(buf, lcase(pbuf));
 	    }
 	    name_at_start = FALSE;
 	} else {
-	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) || MonsterGlyphHallu) strcat(buf, "monster");
+	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmf && uarmf->oartifact == ART_STAR_SOLES) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) || MonsterGlyphHallu) strcat(buf, "monster");
 	    else strcat(buf, mdat->mname);
 	    name_at_start = (boolean)type_is_pname(mdat);
 	}
@@ -5450,6 +5452,7 @@ static const char * const bogusmons[] = {
 	"Almost Supreme Master",
 	"Combat Boss",
 	"Arev", "U.GUR", "Khaldi", /* armenian */
+	"a stylized eye formed from the letters V, F, and D",
 
 };
 

@@ -55,8 +55,13 @@ const char *name;	/* if null, then format `obj' */
 
 	int shieldblockrate = 0;
 	int saberblockrate = 0;
+	int enchrequired = 0;
 
 	int extrachance = 1;
+
+	if (u.twoweap && uwep && uswapwep && tech_inuse(T_WEAPON_BLOCKER)) {
+		shieldblockrate = 25;
+	}
 
 	if (uarms) {
 
@@ -112,6 +117,9 @@ const char *name;	/* if null, then format `obj' */
 			break;
 		case STEEL_SHIELD:
 			shieldblockrate = 30;
+			break;
+		case METEORIC_STEEL_SHIELD:
+			shieldblockrate = 32;
 			break;
 		case CRYSTAL_SHIELD:
 		case RAPIRAPI:
@@ -169,6 +177,7 @@ const char *name;	/* if null, then format `obj' */
 		case CANCEL_DRAGON_SCALE_SHIELD:
 		case NEGATIVE_DRAGON_SCALE_SHIELD:
 		case CORONA_DRAGON_SCALE_SHIELD:
+		case CONTRO_DRAGON_SCALE_SHIELD:
 		case HEROIC_DRAGON_SCALE_SHIELD:
 		case STONE_DRAGON_SCALE_SHIELD:
 		case CYAN_DRAGON_SCALE_SHIELD:
@@ -206,6 +215,7 @@ const char *name;	/* if null, then format `obj' */
 		}
 
 		if (uarms->oartifact == ART_LURTZ_S_WALL) shieldblockrate += 20;
+		if (uarm && uarm->oartifact == ART_MOEBIUS_ARMOR) shieldblockrate += 10;
 		if (uarms->oartifact == ART_I_M_GETTING_HUNGRY) shieldblockrate += 20;
 		if (uarms->oartifact == ART_WHANG_CLINK_CLONK) shieldblockrate += 10;
 		if (uarms->oartifact == ART_LOOK_HOW_IT_BLOCKS) shieldblockrate += 20;
@@ -274,7 +284,7 @@ const char *name;	/* if null, then format `obj' */
 	is_acid = (obj && obj->otyp == ACID_VENOM);
 	is_tailspike = (obj && obj->otyp == TAIL_SPIKES);
 	is_egg = (obj && obj->otyp == EGG);
-	is_polearm = (obj && (objects[obj->otyp].oc_skill == P_POLEARMS || objects[obj->otyp].oc_skill == P_LANCE || obj->otyp == AKLYS || obj->otyp == BLOW_AKLYS || obj->otyp == SPINED_BALL || obj->otyp == CHAIN_AND_SICKLE));
+	is_polearm = (obj && (objects[obj->otyp].oc_skill == P_POLEARMS || objects[obj->otyp].oc_skill == P_LANCE || objects[obj->otyp].oc_skill == P_GRINDER || obj->otyp == AKLYS || obj->otyp == BLOW_AKLYS || obj->otyp == SPINED_BALL || obj->otyp == CHAIN_AND_SICKLE));
 	is_thrown_weapon = (obj && (objects[obj->otyp].oc_skill == P_DART || objects[obj->otyp].oc_skill == P_SHURIKEN) );
 	is_bulletammo = (obj && obj->otyp >= BULLET && obj->otyp <= GAS_GRENADE);
 
@@ -331,15 +341,25 @@ const char *name;	/* if null, then format `obj' */
 
 	} else if (!rn2(extrachance) && (rnd(100) < shieldblockrate) ) {
 
-			/* a good shield allows you to block projectiles --Amy */
-			if(Blind || !flags.verbose) pline("You block a projectile with your shield.");
-			else You("block %s with your shield.", onm);
-			use_skill(P_SHIELD, 1);
+			if (u.twoweap && uwep && uswapwep && tech_inuse(T_WEAPON_BLOCKER)) {
 
-			u.ubodyarmorturns++;
-			if (u.ubodyarmorturns >= 5) {
-				u.ubodyarmorturns = 0;
-				use_skill(P_BODY_ARMOR, 1);
+				Your("weapons block a projectile.");
+				if (evilfriday && multi >= 0) nomul(-2, "blocking with both weapons", TRUE);
+				use_skill(P_TWO_WEAPON_COMBAT, 1);
+
+			} else {
+
+				/* a good shield allows you to block projectiles --Amy */
+				if(Blind || !flags.verbose) pline("You block a projectile with your shield.");
+				else You("block %s with your shield.", onm);
+				use_skill(P_SHIELD, 1);
+
+				u.ubodyarmorturns++;
+				if (u.ubodyarmorturns >= 5) {
+					u.ubodyarmorturns = 0;
+					use_skill(P_BODY_ARMOR, 1);
+				}
+
 			}
 
 			return(0);
@@ -412,6 +432,57 @@ const char *name;	/* if null, then format `obj' */
 			badeffect();
 		}
 
+		if (obj && obj->otyp == PETRIFYIUM_BAR) {
+			    if ((!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
+				!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
+				if (!Stoned) {
+					if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
+					else {
+						Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+						u.cnd_stoningcount++;
+						pline("You start turning to stone!");
+					}
+				}
+				sprintf(killer_buf, "petrifyium bar");
+				delayed_killer = killer_buf;
+		
+			    }
+		}
+
+		if (obj && obj->otyp == DISINTEGRATION_BAR) {
+
+			if ((!Disint_resistance || !rn2(StrongDisint_resistance ? 1000 : 100) || (evilfriday && (uarms || uarmc || uarm || uarmu)) ) && !rn2(10)) {
+				You_feel("like you're falling apart!");
+	
+				if (uarms) {
+				    /* destroy shield; other possessions are safe */
+				    if (!(EDisint_resistance & W_ARMS)) (void) destroy_arm(uarms);
+				} else if (uarmc) {
+				    /* destroy cloak; other possessions are safe */
+				    if (!(EDisint_resistance & W_ARMC)) (void) destroy_arm(uarmc);
+				} else if (uarm) {
+				    /* destroy suit */
+				    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
+				} else if (uarmu) {
+				    /* destroy shirt */
+				    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
+				} else {
+					if (u.uhpmax > 20) {
+						u.uhpmax -= rnd(20);
+						if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+						losehp(rnz(100 + level_difficulty()), "click click click click click you died", KILLED_BY);
+
+					} else {
+						u.youaredead = 1;
+						done(DIED);
+						u.youaredead = 0;
+					}
+				}
+	
+			}
+
+		}
+
 		if (obj && objects[obj->otyp].oc_material == MT_SILVER && (hates_silver(youmonst.data) || (uwep && uwep->oartifact == ART_PORKMAN_S_BALLS_OF_STEEL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PORKMAN_S_BALLS_OF_STEEL) ) ) {
 			dam += rnd(20);
 			pline_The("silver sears your flesh!");
@@ -466,11 +537,14 @@ const char *name;	/* if null, then format `obj' */
 			}
 		}
 
+		if (uarmf && uarmf->oartifact == ART_STAR_SOLES) enchrequired = 1;
+		if (Race_if(PM_PLAYER_SKELETON)) enchrequired = 2;
+		if (uarmf && uarmf->oartifact == ART_PHANTO_S_RETARDEDNESS) enchrequired = 4;
 
 		if (is_acid && Acid_resistance && (StrongAcid_resistance || rn2(10)) ) {
 			pline("It doesn't seem to hurt you.");
 			if (Stoned) fix_petrification();
-		} else if (Race_if(PM_PLAYER_SKELETON) && rn2(3) && obj && obj->spe < 2) {
+		} else if ((enchrequired > 0) && rn2(3) && obj && obj->spe < enchrequired) {
 			pline("The attack doesn't seem to harm you.");
 		}
 		else {
@@ -573,6 +647,11 @@ const char *name;	/* if null, then format `obj' */
 				}
 	
 			}
+		}
+
+		if (obj && objects[obj->otyp].oc_skill == P_GRINDER) {
+			You("are grinded!");
+			losehp(rnd(10), "grinding", KILLED_BY);
 		}
 
 		return(1);
@@ -850,7 +929,7 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 		(void) drop_throw(mon, otmp, 0, mtmp->mx, mtmp->my);
 		return 1;
 	    }
-	} else if (mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || mtmp->data == &mons[PM_ATHLEANNIE] || mtmp->data == &mons[PM_LILAC_FEMMY] || mtmp->data == &mons[PM_GREEN]) { /* will never be hit by monsters' ranged attacks */
+	} else if (mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || mtmp->data == &mons[PM_ATHLEANNIE] || mtmp->data == &mons[PM_MR__CONCLUSIO] || mtmp->data == &mons[PM_YOUR_GAME_ENDS_NOW]|| mtmp->data == &mons[PM_ELITE_GENDAME] || mtmp->data == &mons[PM_LILAC_FEMMY] || mtmp->data == &mons[PM_GREEN]) { /* will never be hit by monsters' ranged attacks */
 	    if (!ismimic) {
 		pline("%s swats a projectile away.", Monnam(mtmp));
 	    }
@@ -913,6 +992,9 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 			case STEEL_SHIELD:
 				shieldblockrate = 40;
 				break;
+			case METEORIC_STEEL_SHIELD:
+				shieldblockrate = 42;
+				break;
 			case CRYSTAL_SHIELD:
 			case RAPIRAPI:
 			case HIDE_SHIELD:
@@ -970,6 +1052,7 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 			case CANCEL_DRAGON_SCALE_SHIELD:
 			case NEGATIVE_DRAGON_SCALE_SHIELD:
 			case CORONA_DRAGON_SCALE_SHIELD:
+			case CONTRO_DRAGON_SCALE_SHIELD:
 			case HEROIC_DRAGON_SCALE_SHIELD:
 			case STONE_DRAGON_SCALE_SHIELD:
 			case CYAN_DRAGON_SCALE_SHIELD:
@@ -1035,6 +1118,11 @@ blockingdone:
 	    if (mtmp->mtame && mon) {
 		if (mon->m_lev >= 5) damage += ((mon->m_lev - 4) / 2);
 		if (otmp->otyp == TAIL_SPIKES) damage += rnd((mon->m_lev * 2) + 30);
+		if (otmp->otyp == DART_OF_DISINTEGRATION) damage += rnd(50);
+		if (otmp->otyp == DISINTEGRATION_BAR) damage += rnd(50);
+		if (otmp->otyp == NASTYPOLE) damage += rnd(10);
+		if (otmp->otyp == PETRIFYIUM_BAR && !rn2(4)) damage += rnd(200);
+		if (otmp && objects[otmp->otyp].oc_skill == P_GRINDER) damage + rnd(10);
 	    }
             if (otmp->otyp == SPOON) {
             pline("The spoon flashes brightly as it hits %s.",
@@ -1281,6 +1369,14 @@ m_throw(mon, x, y, dx, dy, range, obj)
 			default:
 			    dam = dmgval(singleobj, &youmonst);
 			    if (singleobj->otyp == BOULDER && !rn2(2)) dam += (2 * (mon->m_lev));
+
+			    if (singleobj->otyp == BOULDER && (mon->data == &mons[PM_BOULDER_FART] || mon->data == &mons[PM_FIRM_BOULDER_FART])) {
+				pline("%s produces %s farting noises with %s %s butt.", Monnam(mon), !rn2(2) ? "loud" : "disgusting", mhis(mon), mon->female ? "sexy" : "ugly");
+				u.cnd_fartingcount++;
+				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+				if (!extralongsqueak()) badeffect();
+			    }
+
 			    hitv = 3 - distmin(u.ux,u.uy, mon->mx,mon->my);
 			    if (hitv < -4) hitv = -4;
 			    if (is_elf(mon->data) &&
@@ -1346,6 +1442,53 @@ m_throw(mon, x, y, dx, dy, range, obj)
 		    }
 		    if (hitu && singleobj->otyp == NASTYPOLE && !rn2(10)) {
 				badeffect();
+		    }
+		    if (hitu && singleobj->otyp == DISINTEGRATION_BAR) {
+			if ((!Disint_resistance || !rn2(StrongDisint_resistance ? 1000 : 100) || (evilfriday && (uarms || uarmc || uarm || uarmu)) ) && !rn2(10)) {
+				You_feel("like you're falling apart!");
+	
+				if (uarms) {
+				    /* destroy shield; other possessions are safe */
+				    if (!(EDisint_resistance & W_ARMS)) (void) destroy_arm(uarms);
+				} else if (uarmc) {
+				    /* destroy cloak; other possessions are safe */
+				    if (!(EDisint_resistance & W_ARMC)) (void) destroy_arm(uarmc);
+				} else if (uarm) {
+				    /* destroy suit */
+				    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
+				} else if (uarmu) {
+				    /* destroy shirt */
+				    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
+				} else {
+					if (u.uhpmax > 20) {
+						u.uhpmax -= rnd(20);
+						if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+						losehp(rnz(100 + level_difficulty()), "click click click click click you died", KILLED_BY);
+
+					} else {
+						u.youaredead = 1;
+						done(DIED);
+						u.youaredead = 0;
+					}
+				}
+	
+			}
+		    }
+		    if (hitu && singleobj->otyp == PETRIFYIUM_BAR) {
+			    if ((!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
+				!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
+				if (!Stoned) {
+					if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
+					else {
+						Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+						u.cnd_stoningcount++;
+						pline("You start turning to stone!");
+					}
+				}
+				sprintf(killer_buf, "petrifyium bar");
+				delayed_killer = killer_buf;
+		
+			    }
 		    }
 
 		    if (hitu && singleobj->otyp == EGG) {
@@ -1568,6 +1711,9 @@ struct monst *mtmp;
 	    case PM_SPARD:
 	    case PM_IBERIAN_SOLDIER:
 		    multishot += 3;
+		    break;
+	    case PM_BLUE_ARCHER:
+		    multishot += 2;
 		    break;
 	    case PM_RANGER:
 	    case PM_ROCKER:
@@ -1857,7 +2003,7 @@ boolean special; /* for monsters that can shoot from infinite distance --Amy */
         do {
             /* <bx,by> is guaranteed to eventually converge with <ax,ay> */
             bx += dx, by += dy;
-            if (IS_ROCK(levl[bx][by].typ) || closed_door(bx, by))
+            if (IS_ROCK(levl[bx][by].typ) || IS_WATERTUNNEL(levl[bx][by].typ) || closed_door(bx, by))
                 return FALSE;
         } while (bx != ax || by != ay);
         /* reached target position without encountering obstacle */
@@ -1894,7 +2040,7 @@ register xchar ax, ay, bx, by;
         do {
             /* <bx,by> is guaranteed to eventually converge with <ax,ay> */
             bx += dx, by += dy;
-            if (IS_ROCK(levl[bx][by].typ) || closed_door(bx, by))
+            if (IS_ROCK(levl[bx][by].typ) || IS_WATERTUNNEL(levl[bx][by].typ) || closed_door(bx, by))
                 return FALSE;
         } while (bx != ax || by != ay);
         /* reached target position without encountering obstacle */

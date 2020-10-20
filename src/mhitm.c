@@ -461,6 +461,9 @@ mattackm(magr, mdef)
 	mattk = getmattk(pa, i, res, &alt_attk);
 	otmp = (struct obj *)0;
 	attk = 1;
+	if (DEADMONSTER(mdef) || DEADMONSTER(magr)) { /* ANOTHER catchall by Amy because it keeps malfunctioning! */
+		break;
+	}
 
 	switch (mattk->aatyp) {
 	    case AT_BREA:
@@ -2830,6 +2833,44 @@ meleeattack:
 
 	}
 
+	if (magr->data == &mons[PM_YOUR_GAME_ENDS_NOW] && isevilvariant) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_PHYS;
+		a->damn = 200;
+		a->damd = 200;
+
+		if(monnear(magr, mdef->mx, mdef->my)) {
+			dieroll = rnd(20 + i);
+			strike = (tmp > dieroll);
+			if (strike) res[i] = hitmm(magr, mdef, a);
+		}
+		if (res[i] & MM_AGR_DIED) return res[i];
+		if (res[i] & MM_DEF_DIED) return res[i];
+
+	}
+
+	if (magr->data == &mons[PM_MR__CONCLUSIO] && isevilvariant) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_PHYS;
+		a->damn = 200;
+		a->damd = 200;
+
+		if(monnear(magr, mdef->mx, mdef->my)) {
+			dieroll = rnd(20 + i);
+			strike = (tmp > dieroll);
+			if (strike) res[i] = hitmm(magr, mdef, a);
+		}
+		if (res[i] & MM_AGR_DIED) return res[i];
+		if (res[i] & MM_DEF_DIED) return res[i];
+
+	}
+
 	if (magr->data == &mons[PM_LEFTOGORGON] && isevilvariant) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
@@ -3007,7 +3048,7 @@ meleeattack:
 		badpeteffect(mdef);
 	}
 
-	if ((magr->data == &mons[PM_DHWTY] || magr->data == &mons[PM_LAST_DANCER] || magr->data == &mons[PM_CURTAIN_CALL_LAST_DANCER] || magr->data == &mons[PM_GRAND_FINALE_LAST_DANCER] || magr->data == &mons[PM_PROVIDENCE_GAZE] || magr->data == &mons[PM_CHAOS_SERPENT] || magr->data == &mons[PM_CHAOTIC_SERPENT] || magr->data == &mons[PM_ARCHAYEEK_GUNNER] || magr->data == &mons[PM_SIN_GORILLA] || magr->data == &mons[PM_ELITE_GUARD] || magr->data == &mons[PM_BLUEBEAM_GOLEM] || magr->data == &mons[PM_AIRTIGHT_FEMMY] || magr->data == &mons[PM_DRICERADOPS] || magr->data == &mons[PM_SVEN] || magr->data == &mons[PM_GRANDMASTER_SVEN] || magr->data == &mons[PM_WORLD_PWNZOR] || magr->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || magr->data == &mons[PM_SANDRA_S_MINDDRILL_SANDAL] || magr->egotype_laserpwnzor) && monnear(magr, mdef->mx, mdef->my)) {
+	if ((magr->data == &mons[PM_DHWTY] || magr->data == &mons[PM_PARTICLE_MAN] || magr->data == &mons[PM_LAST_DANCER] || magr->data == &mons[PM_CURTAIN_CALL_LAST_DANCER] || magr->data == &mons[PM_GRAND_FINALE_LAST_DANCER] || magr->data == &mons[PM_PROVIDENCE_GAZE] || magr->data == &mons[PM_CHAOS_SERPENT] || magr->data == &mons[PM_CHAOTIC_SERPENT] || magr->data == &mons[PM_ARCHAYEEK_GUNNER] || magr->data == &mons[PM_SIN_GORILLA] || magr->data == &mons[PM_ELITE_GUARD] || magr->data == &mons[PM_BLUEBEAM_GOLEM] || magr->data == &mons[PM_AIRTIGHT_FEMMY] || magr->data == &mons[PM_DRICERADOPS] || magr->data == &mons[PM_SVEN] || magr->data == &mons[PM_GRANDMASTER_SVEN] || magr->data == &mons[PM_WORLD_PWNZOR] || magr->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || magr->data == &mons[PM_SANDRA_S_MINDDRILL_SANDAL] || magr->egotype_laserpwnzor) && monnear(magr, mdef->mx, mdef->my)) {
 		if (!magr->hominglazer && !rn2(20)) {
 			pline("ATTENTION: Something has started to load an ultra-mega-hyper-dyper laser cannon!");
 			magr->hominglazer = 1;
@@ -3300,6 +3341,9 @@ struct monst *magr, *mdef;
 	case PM_SPARD:
 	case PM_IBERIAN_SOLDIER:
 		multishot += 3;
+		break;
+	case PM_BLUE_ARCHER:
+		multishot += 2;
 		break;
 	case PM_RANGER:
 	case PM_ROCKER:
@@ -4520,14 +4564,28 @@ physical:
 		    break;
 		}
 
-		if (!cancelled && !mdef->msleeping &&
-			sleep_monst(mdef, rnd(10), -1)) {
+		{
+		int parlyzdur = rnd(magr->mtame ? 4 : 10);
+		if (!rn2(4)) parlyzdur = tmp;
+		if (magr->mtame) {
+			if (parlyzdur > 3) {
+				parlyzdur = rnd(parlyzdur);
+				if (parlyzdur < 3) parlyzdur = 2;
+			}
+			if (parlyzdur > 1) parlyzdur = rnd(parlyzdur);
+		}
+		if (parlyzdur > 127) parlyzdur = 127;
+
+		if (!cancelled && !mdef->msleeping && (!rn2(5) || !(magr->mtame)) &&
+			sleep_monst(mdef, parlyzdur, -1)) {
 		    if (vis) {
 			strcpy(buf, Monnam(mdef));
 			pline("%s is put to sleep by %s.", buf, mon_nam(magr));
 		    }
 		    mdef->mstrategy &= ~STRAT_WAITFORU;
 		    slept_monst(mdef);
+		}
+
 		}
 		break;
 	    /* WAC DEATH (gaze) */
@@ -4569,24 +4627,48 @@ physical:
 		break;
 	    case AD_PLYS:
 		if (nohit) break;
-		if(!cancelled && mdef->mcanmove && !(dmgtype(mdef->data, AD_PLYS))) {
+		if(!cancelled && mdef->mcanmove && (!rn2(4) || !(magr->mtame)) && !(dmgtype(mdef->data, AD_PLYS))) {
+
+			int parlyzdur = rnd(magr->mtame ? 4 : 10);
+			if (!rn2(4)) parlyzdur = tmp;
+			if (magr->mtame) {
+				if (parlyzdur > 3) {
+					parlyzdur = rnd(parlyzdur);
+					if (parlyzdur < 3) parlyzdur = 3;
+				}
+				if (parlyzdur > 1) parlyzdur = rnd(parlyzdur);
+			}
+			if (parlyzdur > 127) parlyzdur = 127;
+
 		    if (vis) {
 			strcpy(buf, Monnam(mdef));
 			pline("%s is frozen by %s.", buf, mon_nam(magr));
 		    }
 		    mdef->mcanmove = 0;
-		    mdef->mfrozen = rnd(10);
+		    mdef->mfrozen = parlyzdur;
 		    mdef->mstrategy &= ~STRAT_WAITFORU;
 		}
 		break;
 	    case AD_TCKL:
-		if(!cancelled && mdef->mcanmove && !(dmgtype(mdef->data, AD_PLYS))) {
+		if(!cancelled && mdef->mcanmove && (!rn2(8) || !(magr->mtame)) && !(dmgtype(mdef->data, AD_PLYS))) {
+
+			int parlyzdur = rnd(magr->mtame ? 3 : 10);
+			if (!rn2(5)) parlyzdur = tmp;
+			if (magr->mtame) {
+				if (parlyzdur > 2) {
+					parlyzdur = rnd(parlyzdur);
+					if (parlyzdur < 2) parlyzdur = 2;
+				}
+				if (parlyzdur > 1) parlyzdur = rnd(parlyzdur);
+			}
+			if (parlyzdur > 127) parlyzdur = 127;
+
 		    if (vis) {
 			strcpy(buf, Monnam(magr));
 			pline("%s mercilessly tickles %s.", buf, mon_nam(mdef));
 		    }
 		    mdef->mcanmove = 0;
-		    mdef->mfrozen = rnd(10);
+		    mdef->mfrozen = parlyzdur;
 		    mdef->mstrategy &= ~STRAT_WAITFORU;
   		}
 		break;
@@ -4645,13 +4727,25 @@ physical:
 		    if (mdef->mspeed != oldspeed && vis)
 			pline("%s slows down.", Monnam(mdef));
 		}
-		if(!cancelled && !rn2(3) && mdef->mcanmove && !(dmgtype(mdef->data, AD_PLYS))) {
+		if(!cancelled && !rn2(3) && (!rn2(4) || !(magr->mtame)) && mdef->mcanmove && !(dmgtype(mdef->data, AD_PLYS))) {
+
+			int parlyzdur = rnd(magr->mtame ? 4 : 10);
+			if (!rn2(4)) parlyzdur = tmp;
+			if (magr->mtame) {
+				if (parlyzdur > 3) {
+					parlyzdur = rnd(parlyzdur);
+					if (parlyzdur < 3) parlyzdur = 3;
+				}
+				if (parlyzdur > 1) parlyzdur = rnd(parlyzdur);
+			}
+			if (parlyzdur > 127) parlyzdur = 127;
+
 		    if (vis) {
 			strcpy(buf, Monnam(mdef));
 			pline("%s is frozen by %s.", buf, mon_nam(magr));
 		    }
 		    mdef->mcanmove = 0;
-		    mdef->mfrozen = rnd(10);
+		    mdef->mfrozen = parlyzdur;
 		    mdef->mstrategy &= ~STRAT_WAITFORU;
 		}
 		if (mdef->mtame) {
@@ -5079,14 +5173,14 @@ physical:
 		break;
 
 	    case AD_WEBS:
-		(void) maketrap(mdef->mx, mdef->my, WEB, 0);
-		if (!rn2(issoviet ? 2 : 8)) makerandomtrap();
+		(void) maketrap(mdef->mx, mdef->my, WEB, 0, FALSE);
+		if (!rn2(issoviet ? 2 : 8)) makerandomtrap(FALSE);
 
 		break;
 
 	    case AD_TRAP:
-		if (t_at(mdef->mx, mdef->my) == 0) (void) maketrap(mdef->mx, mdef->my, randomtrap(), 0);
-		else makerandomtrap();
+		if (t_at(mdef->mx, mdef->my) == 0) (void) maketrap(mdef->mx, mdef->my, randomtrap(), 0, FALSE);
+		else makerandomtrap(FALSE);
 
 		break;
 
@@ -6232,6 +6326,7 @@ int amt, how;
 {
 	if (resists_sleep(mon) ||
 		(how >= 0 && resist(mon, (char)how, 0, NOTELL))) {
+	    if (resists_sleep(mon) && canseemon(mon)) pline("%s is immune to sleep!", Monnam(mon));
 	    shieldeff(mon->mx, mon->my);
 	} else if (mon->mcanmove) {
 	    amt += (int) mon->mfrozen;
@@ -6484,12 +6579,24 @@ int attnumber;
 	if (rn2(3)) switch(atttypB) {
 	    case AD_PLYS: /* Floating eye */
 
+		{
+		int parlyzdur = rnd(magr->mtame ? 4 : 10);
+		if (!rn2(4)) parlyzdur = tmp;
+		if (magr->mtame) {
+			if (parlyzdur > 3) {
+				parlyzdur = rnd(parlyzdur);
+				if (parlyzdur < 3) parlyzdur = 3;
+			}
+			if (parlyzdur > 1) parlyzdur = rnd(parlyzdur);
+		}
+		if (parlyzdur > 127) parlyzdur = 127;
+
 		if (dmgtype(magr->data, AD_PLYS)) return 1;
 
 		if (tmp > 127) tmp = 127;
 		if (mddat == &mons[PM_FLOATING_EYE]) {
 		    /*if (!rn2(4)) tmp = 127;*/
-		    if (magr->mcansee && haseyes(madat) && mdef->mcansee && !mdef->minvisreal &&
+		    if (magr->mcansee && (!rn2(4) || !(mdef->mtame)) && haseyes(madat) && mdef->mcansee && !mdef->minvisreal &&
 			(perceives(madat) || !mdef->minvis)) {
 			sprintf(buf, "%s gaze is reflected by %%s %%s.",
 				s_suffix(mon_nam(mdef)));
@@ -6501,16 +6608,18 @@ int attnumber;
 			    pline("%s is frozen by %s gaze!",
 				  buf, s_suffix(mon_nam(mdef)));
 			magr->mcanmove = 0;
-			magr->mfrozen = tmp;
+			magr->mfrozen = parlyzdur;
 			return (mdead|mhit);
 		    }
-		} else { /* gelatinous cube */
+		} else if (!rn2(4) || !(mdef->mtame)) { /* gelatinous cube */
 		    strcpy(buf, Monnam(magr));
 		    if(canseemon(magr))
 			pline("%s is frozen by %s.", buf, mon_nam(mdef));
 		    magr->mcanmove = 0;
-		    magr->mfrozen = tmp;
+		    magr->mfrozen = parlyzdur;
 		    return (mdead|mhit);
+		}
+
 		}
 		return 1;
 	    case AD_COLD:
@@ -6727,12 +6836,26 @@ int attnumber;
 		if (magr->mtame) badpeteffect(magr);
 		break;
 	    case AD_SLEE:
-		if (!magr->msleeping && sleep_monst(magr, rnd(10), -1)) {
+		{
+		int parlyzdur = rnd(mdef->mtame ? 3 : 10);
+		if (!rn2(5)) parlyzdur = tmp;
+		if (mdef->mtame) {
+			if (parlyzdur > 2) {
+				parlyzdur = rnd(parlyzdur);
+				if (parlyzdur < 2) parlyzdur = 2;
+			}
+			if (parlyzdur > 1) parlyzdur = rnd(parlyzdur);
+		}
+		if (parlyzdur > 127) parlyzdur = 127;
+
+		if (!magr->msleeping && (!rn2(5) || !(mdef->mtame)) && sleep_monst(magr, parlyzdur, -1)) {
 		    if (canseemon(magr)) {
 			pline("%s is put to sleep.", Monnam(magr));
 		    }
 		    magr->mstrategy &= ~STRAT_WAITFORU;
 		    slept_monst(magr);
+		}
+
 		}
 		break;
 
@@ -6789,12 +6912,24 @@ int attnumber;
 		    if (magr->mspeed != oldspeed && canseemon(magr))
 			pline("%s slows down.", Monnam(magr));
 		}
-		if(!rn2(3) && magr->mcanmove && !(dmgtype(magr->data, AD_PLYS))) {
+		if(!rn2(3) && (!rn2(4) || !(mdef->mtame)) && magr->mcanmove && !(dmgtype(magr->data, AD_PLYS))) {
+
+			int parlyzdur = rnd(magr->mtame ? 4 : 10);
+			if (!rn2(4)) parlyzdur = tmp;
+			if (magr->mtame) {
+				if (parlyzdur > 3) {
+					parlyzdur = rnd(parlyzdur);
+					if (parlyzdur < 3) parlyzdur = 3;
+				}
+				if (parlyzdur > 1) parlyzdur = rnd(parlyzdur);
+			}
+			if (parlyzdur > 127) parlyzdur = 127;
+
 		    if (canseemon(magr)) {
 			pline("%s is paralyzed.", Monnam(magr));
 		    }
 		    magr->mcanmove = 0;
-		    magr->mfrozen = rnd(10);
+		    magr->mfrozen = parlyzdur;
 		    magr->mstrategy &= ~STRAT_WAITFORU;
 		}
 		if (magr->mtame) {
@@ -7108,12 +7243,12 @@ int attnumber;
 		}
 		break;
 	    case AD_WEBS:
-		(void) maketrap(magr->mx, magr->my, WEB, 0);
-		if (!rn2(issoviet ? 2 : 8)) makerandomtrap();
+		(void) maketrap(magr->mx, magr->my, WEB, 0, FALSE);
+		if (!rn2(issoviet ? 2 : 8)) makerandomtrap(FALSE);
 		break;
 	    case AD_TRAP:
-		if (t_at(magr->mx, magr->my) == 0) (void) maketrap(magr->mx, magr->my, randomtrap(), 0);
-		else makerandomtrap();
+		if (t_at(magr->mx, magr->my) == 0) (void) maketrap(magr->mx, magr->my, randomtrap(), 0, FALSE);
+		else makerandomtrap(FALSE);
 
 		break;
 
@@ -7184,7 +7319,10 @@ int attnumber;
 		if (magr->mtame && !rn2(2)) badpeteffect(magr);
 		break;
 	    case AD_SANI:
+
 		if (!rn2(10)) {
+
+
 			magr->mconf = 1;
 			switch (rnd(4)) {
 

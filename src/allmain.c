@@ -28,6 +28,7 @@ STATIC_PTR void do_fjordefloodingf(int, int, void *);
 #define spellname(spell)	OBJ_NAME(objects[spellid(spell)])
 
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
+static const char allowall[] = { ALL_CLASSES, 0 };
 
 static void p_glow2(struct obj *,const char *);
 
@@ -130,7 +131,11 @@ moveloop()
 
 	if (getmonth() == 5) {
 #ifdef PUBLIC_SERVER
-		if (flags.uberlostsoul || flags.lostsoul || flags.gmmode || flags.supergmmode || flags.wonderland || flags.zapem) {
+		if (flags.uberlostsoul || flags.lostsoul
+#ifdef GMMODE
+ || flags.gmmode || flags.supergmmode
+#endif
+		|| flags.wonderland || flags.zapem) {
 			pline("WARNING (PLEASE READ): Junethack is running - but you're using a playing mode that is incompatible with the tournament! The following modes are prohibited: lostsoul, uberlostsoul, gmmode, zapem and wonderland. If you want your games to count, quit this one now, disable all the forbidden options, and start a new game. Please refer to junethack.net for more information. Good luck!");
 		} else {
 			pline("Junethack is running! Please refer to junethack.net for more information. Give it your best shot, and try to score as many trophies as you can! Good luck!");
@@ -162,6 +167,8 @@ moveloop()
     youmonst.movement = NORMAL_SPEED;	/* give the hero some movement points */
 
     for(;;) {
+	if (program_state.done_hup)
+            end_of_input();
 	get_nh_event();
 #ifdef POSITIONBAR
 	do_positionbar();
@@ -288,7 +295,7 @@ moveloop()
 				}
 			}
 
-			if (!rn2(monclock) && ishomicider ) makerandomtrap();
+			if (!rn2(monclock) && ishomicider ) makerandomtrap(FALSE);
 
 			xtraclock = 200000;
 			if ((u.uevent.udemigod && !u.freeplaymode && u.amuletcompletelyimbued) || u.uprops[STORM_HELM].extrinsic) {
@@ -717,7 +724,7 @@ moveloop()
 					y = rn2(ROWNO);
 
 					if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-						(void) maketrap(x, y, KOP_CUBE, 0);
+						(void) maketrap(x, y, KOP_CUBE, 0, FALSE);
 						break;
 						}
 				}
@@ -1016,7 +1023,7 @@ moveloop()
 		    if(!rn2( ((u.uevent.udemigod && !u.freeplaymode && u.amuletcompletelyimbued) || u.uprops[STORM_HELM].extrinsic) ? 250 :
 			    (depth(&u.uz) > depth(&stronghold_level)) ? 450 : 500)) {
 			if (!ishomicider) (void) makemon((struct permonst *)0, 0, 0, MM_MAYSLEEP);
-			else makerandomtrap();
+			else makerandomtrap(FALSE);
 			}
 
 	/* still keeping the old monstermaking routine up, but drastically reducing their spawn rate. --Amy */
@@ -1091,6 +1098,12 @@ moveloop()
 				if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
+				if (uarmf && uarmf->oartifact == ART_UPWARD_HEELS && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+
+				if (flags.female && uarmf && itemhasappearance(uarmf, APP_OPERA_PUMPS) && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+
 				if (Race_if(PM_TONBERRY) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
@@ -1146,7 +1159,7 @@ moveloop()
 				if (uarm && uarm->otyp == EVIL_LEATHER_ARMOR && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
-				if (is_sand(u.ux,u.uy) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !Race_if(PM_DUTHOL) && !sandprotection() && !Flying && !Levitation && !rn2(4) && moveamt > 1)
+				if (is_sand(u.ux,u.uy) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmf && itemhasappearance(uarmf, APP_DYKE_BOOTS)) && !(uarmf && uarmf->oartifact == ART_EVERYWHERE_AT_ONCE) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !Race_if(PM_DUTHOL) && !sandprotection() && !Flying && !Levitation && !rn2(4) && moveamt > 1)
 					moveamt /= 2;
 
 				if (uarmc && uarmc->oartifact == ART_WEB_OF_THE_CHOSEN && !rn2(8) && moveamt > 1)
@@ -1301,6 +1314,21 @@ moveloop()
 					moveamt /= 2;
 				}
 
+				/* speed boosts while riding go here */
+
+				if (uarmf && itemhasappearance(uarmf, APP_BIKER_BOOTS) && !rn2(10)) {
+					moveamt *= 2;
+				}
+
+				if (u.usteed) {
+					struct obj *osaeddle = which_armor(u.usteed, W_SADDLE);
+
+					if ((osaeddle = which_armor(u.usteed, W_SADDLE)) && osaeddle->oartifact == ART_BIKE_SADDLE) {
+						moveamt *= 3;
+						moveamt /= 2;
+					}
+				}
+
 			} /* chance to reduce speed end */
 			if (moveamt < 1) moveamt = 1; /* don't reduce it too much, no matter what happens --Amy */
 
@@ -1381,6 +1409,12 @@ moveloop()
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too are slower sometimes. */
 				moveamt /= 2;
 
+			if (uarmf && uarmf->oartifact == ART_UPWARD_HEELS && !rn2(8) && moveamt > 1)
+				moveamt /= 2;
+
+			if (flags.female && uarmf && itemhasappearance(uarmf, APP_OPERA_PUMPS) && !rn2(8) && moveamt > 1)
+				moveamt /= 2;
+
 			if (Race_if(PM_TONBERRY) && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
 
@@ -1449,7 +1483,7 @@ moveloop()
 			if (uarm && uarm->otyp == EVIL_LEATHER_ARMOR && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
 
-			if (is_sand(u.ux,u.uy) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !Race_if(PM_DUTHOL) && !sandprotection() && !Flying && !Levitation && !rn2(4) && moveamt > 1)
+			if (is_sand(u.ux,u.uy) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmf && itemhasappearance(uarmf, APP_DYKE_BOOTS)) && !(uarmf && uarmf->oartifact == ART_EVERYWHERE_AT_ONCE) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !Race_if(PM_DUTHOL) && !sandprotection() && !Flying && !Levitation && !rn2(4) && moveamt > 1)
 				moveamt /= 2;
 
 			if (uarmc && uarmc->oartifact == ART_WEB_OF_THE_CHOSEN && !rn2(8) && moveamt > 1)
@@ -1690,6 +1724,11 @@ moveloop()
 				moveamt *= 2;
 			}
 
+			if (!flags.female && uarmf && itemhasappearance(uarmf, APP_OPERA_PUMPS)) {
+				moveamt *= 11;
+				moveamt /= 10;
+			}
+
 			if (is_highway(u.ux, u.uy)) {
 				moveamt *= 2;
 			}
@@ -1721,6 +1760,7 @@ moveloop()
 			if (uwep && uwep->oartifact == ART_LULWY_S_TRICK && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmf && (uarmf->oartifact == ART_VRRRRRRRRRRRR) && !rn2(5)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmh && (uarmh->oartifact == ART_LORSKEL_S_SPEED) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uarmh && (uarmh->oartifact == ART_FIRST_PLACE_GUARANTEED) && !rn2(5)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmf && (uarmf->oartifact == ART_HIGHEST_FEELING) && !rn2(2)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmc && (uarmc->oartifact == ART_WINDS_OF_CHANGE) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarm && (uarm->oartifact == ART_FORMULA_ONE_SUIT) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
@@ -1783,14 +1823,29 @@ moveloop()
 
 		    } /* end adjustment for when player is not riding */
 
-		    switch (wtcap) { /* tweaked so the player is slowed down less --Amy */
-			case UNENCUMBERED: break;
-			case SLT_ENCUMBER: moveamt -= (moveamt / 5); break;
-			case MOD_ENCUMBER: moveamt -= (moveamt / 3); break;
-			case HVY_ENCUMBER: moveamt -= (moveamt / 2); break;
-			case EXT_ENCUMBER: moveamt -= ((moveamt * 3) / 4); break;
-			default: break;
-		    }
+			if (uarmf && itemhasappearance(uarmf, APP_HIKING_BOOTS)) {
+
+				switch (wtcap) {
+					case UNENCUMBERED: break;
+					case SLT_ENCUMBER: moveamt -= (moveamt / 6); break;
+					case MOD_ENCUMBER: moveamt -= (moveamt / 5); break;
+					case HVY_ENCUMBER: moveamt -= (moveamt / 4); break;
+					case EXT_ENCUMBER: moveamt -= (moveamt / 2); break;
+					default: break;
+				}
+
+			} else {
+
+				switch (wtcap) { /* tweaked so the player is slowed down less --Amy */
+					case UNENCUMBERED: break;
+					case SLT_ENCUMBER: moveamt -= (moveamt / 5); break;
+					case MOD_ENCUMBER: moveamt -= (moveamt / 3); break;
+					case HVY_ENCUMBER: moveamt -= (moveamt / 2); break;
+					case EXT_ENCUMBER: moveamt -= ((moveamt * 3) / 4); break;
+					default: break;
+				}
+
+			}
 
 			/* being satiated makes you slower... --Amy */
 		    if (u.uhunger >= 3200) moveamt -= (moveamt / 6);
@@ -1934,6 +1989,81 @@ moveloop()
 			turn_allmonsters();
 		}
 
+		if (tech_inuse(T_AFTERBURNER) && u.umoved) {
+			buzz(21, 2 + (GushLevel / 10), u.ux, u.uy, -u.dx, -u.dy);
+		}
+		if (tech_inuse(T_BUGGARD)) {
+		    int i, j, bd = 2;
+		    struct monst *mtmp;
+		    int buggardchance = 20;
+
+		    for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0) {
+				if (mtmp->data->msize >= MZ_HUGE) buggardchance = 2;
+				else if (!rathersmall(mtmp->data)) buggardchance = 4;
+				else if (!verysmall(mtmp->data)) buggardchance = 8;
+				else buggardchance = 20;
+				if (!rn2(buggardchance)) {
+					pline("%s is hit by an icicle!", Monnam(mtmp));
+					wakeup(mtmp); /* monster becomes hostile */
+					if (resists_cold(mtmp)) continue;
+					if (!rn2(5) && !resist(mtmp, SPBOOK_CLASS, 0, NOTELL) ) {
+						mon_adjust_speed(mtmp, -1, (struct obj *)0);
+						m_dowear(mtmp, FALSE); /* might want speed boots */
+					}
+					hurtmon(mtmp, rnd(15 + GushLevel));
+				}
+			}
+
+		    }
+
+		}
+
+		if (tech_inuse(T_THUNDERSTORM) && !rn2(10)) {
+		    int i, j, bd = 3;
+		    struct monst *mtmp, *targetmon;
+		    int amountoftargets = 0;
+
+		    for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0) {
+				amountoftargets++;
+				if (amountoftargets < 2 || !rn2(amountoftargets)) {
+					targetmon = mtmp;
+				}
+			}
+
+		    }
+
+		    if (amountoftargets && targetmon) {
+				pline("%s is hit by lightning!", Monnam(targetmon));
+				wakeup(targetmon); /* monster becomes hostile */
+				if (resists_elec(targetmon)) continue;
+				hurtmon(targetmon, rnd(50 + (GushLevel * 2)));
+
+		    }
+
+		}
+
+		if (tech_inuse(T_BLADE_SHIELD) && !rn2(10)) {
+		    int i, j, bd = 1;
+		    struct monst *mtmp;
+		    int amountoftargets = 0;
+
+		    for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0) {
+				pline("%s is slit by the blade!", Monnam(mtmp));
+				hurtmon(mtmp, rnd(5 + (GushLevel / 6)));
+
+			}
+
+		    }
+
+			if (evilfriday && multi >= 0) nomul(-2, "having blade shield active", TRUE);
+		}
+
 		if (!u.uinwater) u.udrowning = FALSE;
 		if (u.udrowning) {
 			if (isok(u.ux, u.uy) && is_crystalwater(u.ux, u.uy)) crystaldrown();
@@ -2061,6 +2191,8 @@ moveloop()
 		if (u.uprops[CURSED_PARTS].extrinsic && !rn2(500)) bad_equipment(0);
 
 		if (have_cursedpartstone() && !rn2(500)) bad_equipment(0);
+
+		if (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK && !rn2(500)) bad_equipment(0);
 
 		if (uwep && uwep->oartifact == ART_EGRID_BUG && !rn2(500)) bad_equipment(0);
 
@@ -2242,7 +2374,7 @@ moveloop()
 					y = rn2(ROWNO);
 
 					if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-						(void) maketrap(x, y, KOP_CUBE, 0);
+						(void) maketrap(x, y, KOP_CUBE, 0, FALSE);
 						break;
 						}
 				}
@@ -2286,7 +2418,7 @@ moveloop()
 					y = rn2(ROWNO);
 
 					if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-						(void) maketrap(x, y, KOP_CUBE, 0);
+						(void) maketrap(x, y, KOP_CUBE, 0, FALSE);
 						break;
 						}
 				}
@@ -2615,11 +2747,11 @@ newbossS:
 			}
 
 			if (ttmp && ttmp->ttyp == SPREADING_TRAP && !rn2(500)) {
-				makerandomtrap();
+				makerandomtrap(FALSE);
 			}
 
 			if (ttmp && ttmp->ttyp == ADJACENT_TRAP && !(t_at(u.ux, u.uy)) && (distu(ttmp->tx, ttmp->ty) < 4 ) ) {
-				maketrap(u.ux, u.uy, randomtrap(), 100 );
+				maketrap(u.ux, u.uy, randomtrap(), 100, FALSE);
 			}
 
 			if (ttmp && ttmp->ttyp == SUPERTHING_TRAP && (multi >= 0) && (distu(ttmp->tx, ttmp->ty) < 4 ) ) {
@@ -2721,6 +2853,42 @@ trapsdone:
 				tamedog(blonde, (struct obj *) 0, FALSE);
 				pline("Suddenly, a sweet blonde appears!");
 			}
+		}
+
+		if (uarmf && uarmf->oartifact == ART_BEAUTYQUEAK && !rn2(10000)) {
+			register struct monst *blonde;
+
+			struct permonst *pm = 0;
+			int attempts = 0;
+
+newbossBQ:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_FART_NORMAL))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossBQ;
+			}
+			if (pm && !(pm->msound == MS_FART_NORMAL) && rn2(50) ) {
+				attempts = 0;
+				goto newbossBQ;
+			}
+
+			if (pm) (blonde = makemon(pm, u.ux, u.uy, NO_MM_FLAGS));
+
+			if (blonde) {
+				tamedog(blonde, (struct obj *) 0, TRUE);
+				pline("Suddenly, you gain a new sexy pet!");
+			}
+		}
+
+		if (u.conclusiocount && !rn2(20000)) {
+			u.conclusiocount--;
+			if (u.conclusiocount < 0) u.conclusiocount = 0; /* fail safe */
 		}
 
 		if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE && !rn2(1000)) {
@@ -3031,7 +3199,7 @@ trapsdone:
 					if (levl[u.ux + i][u.uy + j].typ <= DBWALL) continue;
 					if (t_at(u.ux + i, u.uy + j)) continue;
 
-					ttmp = maketrap(u.ux + i, u.uy + j, randomtrap(), 100);
+					ttmp = maketrap(u.ux + i, u.uy + j, randomtrap(), 100, FALSE);
 					if (ttmp) {
 						ttmp->tseen = 0;
 						ttmp->hiddentrap = 1;
@@ -3046,7 +3214,7 @@ trapsdone:
 					y = rn2(ROWNO);
 
 					if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-							ttmp = maketrap(x, y, randomtrap(), 100);
+							ttmp = maketrap(x, y, randomtrap(), 100, FALSE);
 						if (ttmp) {
 							ttmp->tseen = 0;
 							ttmp->hiddentrap = 1;
@@ -3488,7 +3656,7 @@ trapsdone:
 			register struct obj *steeling;
 			pline("You may rustproof an iron object.");
 steelingchoice:
-			steeling = getobj(all_count, "rustproof");
+			steeling = getobj(allowall, "rustproof");
 			if (!steeling) {
 				if (yn("Really exit with no object selected?") == 'y')
 					pline("You just wasted the opportunity to rustproof an item.");
@@ -3500,6 +3668,10 @@ steelingchoice:
 				} else if (!stack_too_big(steeling)) {
 					steeling->oerodeproof = 1;
 					p_glow2(steeling, NH_PURPLE);
+					if (steeling && objects[(steeling)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(steeling)) {
+						if (!steeling->cursed) bless(steeling);
+						else uncurse(steeling, FALSE);
+					}
 				} else pline("The stack was too big and therefore nothing happens...");
 			}
 		}
@@ -3509,7 +3681,7 @@ steelingchoice:
 			register struct obj *steeling;
 			pline("You may erodeproof a nonerodable object.");
 protectwhatchoice:
-			steeling = getobj(all_count, "erosionproof");
+			steeling = getobj(allowall, "erosionproof");
 			if (!steeling) {
 				if (yn("Really exit with no object selected?") == 'y')
 					pline("You just wasted the opportunity to erosionproof an item.");
@@ -3526,20 +3698,24 @@ protectwhatchoice:
 					pline("That is erodable, and therefore it doesn't work!");
 				else if (objects[(steeling)->otyp].oc_material >= MT_VIVA && objects[(steeling)->otyp].oc_material <= MT_SAND) 
 					pline("That is erodable, and therefore it doesn't work!");
-				else if (objects[(steeling)->otyp].oc_material >= MT_CHROME && objects[(steeling)->otyp].oc_material <= MT_NANOMACHINE) 
+				else if (objects[(steeling)->otyp].oc_material >= MT_CHROME && objects[(steeling)->otyp].oc_material <= MT_ALLOY) 
 					pline("That is erodable, and therefore it doesn't work!");
 				else if (!stack_too_big(steeling)) {
 					steeling->oerodeproof = 1;
 					p_glow2(steeling, NH_PURPLE);
+					if (steeling && objects[(steeling)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(steeling)) {
+						if (!steeling->cursed) bless(steeling);
+						else uncurse(steeling, FALSE);
+					}
 				} else pline("The stack was too big and therefore nothing happens...");
 			}
 		}
 
 		if (uimplant && uimplant->oartifact == ART_FUKROSION && !rn2(2500) ) {
 			register struct obj *steeling;
-			pline("You may repair a nonerodable object. If you're in a form without hands, the object you pick will also become erosionproof.");
+			pline("You may repair an eroded object. If you're in a form without hands, the object you pick will also become erosionproof.");
 fukrosionchoice:
-			steeling = getobj(all_count, "repair");
+			steeling = getobj(allowall, "repair");
 			if (!steeling) {
 				if (yn("Really exit with no object selected?") == 'y')
 					pline("You just wasted the opportunity to repair/erosionproof an item.");
@@ -3549,6 +3725,10 @@ fukrosionchoice:
 				steeling->oeroded = steeling->oeroded2 = 0;
 				if (powerfulimplants()) steeling->oerodeproof = 1;
 				p_glow2(steeling, NH_PURPLE);
+				if (steeling && objects[(steeling)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(steeling)) {
+					if (!steeling->cursed) bless(steeling);
+					else uncurse(steeling, FALSE);
+				}
 			} else pline("The stack was too big and therefore nothing happens...");
 
 		}
@@ -3582,6 +3762,14 @@ controlagain:
 		if (u.stoogedepth && u.stoogedepth == depth(&u.uz)) {
 			u.stoogedepth = 0;
 			if (mvitals[PM_STOOGE_CURLY].born == 0) makemon(&mons[PM_STOOGE_CURLY], 0, 0, NO_MM_FLAGS); /* makemon.c will spawn the other two */
+		}
+
+		if (uarmh && uarmh->oartifact == ART_FOOTBALL_MASK) {
+			if (!u.footererlevel) {
+				u.footererlevel = rnd(100);
+				while (u.footererlevel == depth(&u.uz)) u.footererlevel = rnd(100);
+				pline("The footerers are waiting for you on some level...");
+			}
 		}
 
 		if (u.footererlevel && u.footererlevel == depth(&u.uz)) {
@@ -4760,6 +4948,29 @@ controlagain:
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		}
 
+		if (uarm && uarm->oartifact == ART_ROBE_OF_INFESTATION && !rn2(5000)) {
+			int aggroamount = rnd(12);
+			boolean infesttype = rn2(2) ? TRUE : FALSE;
+			if (isfriday) aggroamount *= 2;
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+			reset_rndmonst(NON_PM);
+		      cx = rn2(COLNO);
+		      cy = rn2(ROWNO);
+			while (aggroamount) {
+
+				aggroamount--;
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(mkclass(infesttype ? S_SNAKE : S_SPIDER,0), 0, 0, MM_ANGRY|MM_FRENZIED);
+				if (aggroamount < 0) aggroamount = 0;
+			}
+			u.aggravation = 0;
+
+		}
+
 		if (flags.female && PlayerInSexyFlats && !rn2(10000)) {
 			int aggroamount = rnd(6);
 			if (isfriday) aggroamount *= 2;
@@ -5068,6 +5279,61 @@ controlagain:
 
 		}
 
+		if (uwep && uwep->oartifact == ART_REDWOOD_STINKER && isok(u.ux, u.uy) && !rn2(1000)) {
+			(void) create_gas_cloud(u.ux, u.uy, 3, 8);
+			pline("Eww, your cigarettes stink ten miles against the wind!");
+		}
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_REDWOOD_STINKER && isok(u.ux, u.uy) && !rn2(1000)) {
+			(void) create_gas_cloud(u.ux, u.uy, 3, 8);
+			pline("Eww, your cigarettes stink ten miles against the wind!");
+		}
+
+		if (uarmh && uarmh->oartifact == ART_ACU_BECOME_HAVE && !rn2(50000) && (u.urexp >= 1000000)) {
+			u.urexp = 0;
+			pline("An unbinding ritual starts, and your skill potential is realized...");
+
+			int maxtrainingamount = 0;
+			int skillnumber = 0;
+			int actualskillselection = 0;
+			int amountofpossibleskills = 1;
+			int i;
+
+			for (i = 0; i < P_NUM_SKILLS; i++) {
+				if (P_SKILL(i) != P_ISRESTRICTED) continue;
+	
+				if (P_ADVANCE(i) > 0 && P_ADVANCE(i) >= maxtrainingamount) {
+					if (P_ADVANCE(i) > maxtrainingamount) {
+						amountofpossibleskills = 1;
+						skillnumber = i;
+						maxtrainingamount = P_ADVANCE(i);
+					} else if (!rn2(amountofpossibleskills + 1)) {
+						amountofpossibleskills++;
+						skillnumber = i;
+					} else {
+						amountofpossibleskills++;
+					}
+				}
+			}
+
+			if (skillnumber > 0 && maxtrainingamount > 0) {
+				unrestrict_weapon_skill(skillnumber);
+				P_MAX_SKILL(skillnumber) = (maxtrainingamount >= 5000 ? P_SUPREME_MASTER : maxtrainingamount >= 500 ? P_GRAND_MASTER : maxtrainingamount >= 50 ? P_MASTER : P_EXPERT);
+				pline("You can now learn the %s skill, with a new cap of %s.", wpskillname(skillnumber), maxtrainingamount >= 5000 ? "supreme master" : maxtrainingamount >= 500 ? "grand master" : maxtrainingamount >= 50 ? "master" : "expert");
+			} else {
+				pline("You've trained no unknown skills since the last checkpoint and therefore you unfortunately don't learn anything new.");
+			}
+
+		}
+
+		if (uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL && u.contamination < 10) u.contamination = 10;
+
+		if (FemtrapActiveJulietta && !rn2(2000)) {
+			pline("Julietta rolls the dice to randomly select a punishment for you...");
+			randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
+		}
+
+		if (Race_if(PM_BULDOZGAR) && !rn2(100)) wake_nearby();
+
 		if (Role_if(PM_FEMINIST) && u.ualign.record < 0 && !rn2(StrongStealth ? 100000 : Stealth ? 50000 : 5000)) {
 		/* feminist aggravation idea by bugsniper */
 
@@ -5098,13 +5364,77 @@ newbossF:
 				goto newbossF;
 			}
 
-			if (pm) (void) makemon(pm, u.ux, u.uy, NO_MM_FLAGS);
+			if (pm) (void) makemon(pm, u.ux, u.uy, MM_ANGRY);
 			u.cnd_aggravateamount++;
 
 			} /* while (aggroamount) */
 
 			pline("Several angry females come out of a portal.");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
+		}
+
+		if (uleft && uleft->oartifact == ART_REAL_LIFE_EFFECTOR && !rn2(2000)) {
+
+			int attempts = 0;
+			struct permonst *pm = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_SUPERMAN ))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossF;
+			}
+			if (pm && !(pm->msound == MS_SUPERMAN) && rn2(50) ) {
+				attempts = 0;
+				goto newbossF;
+			}
+
+			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
+
+			u.aggravation = 0;
+
+		}
+
+		if (uright && uright->oartifact == ART_REAL_LIFE_EFFECTOR && !rn2(2000)) {
+
+			int attempts = 0;
+			struct permonst *pm = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_SUPERMAN ))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossF;
+			}
+			if (pm && !(pm->msound == MS_SUPERMAN) && rn2(50) ) {
+				attempts = 0;
+				goto newbossF;
+			}
+
+			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
+
+			u.aggravation = 0;
 
 		}
 
@@ -5160,7 +5490,7 @@ newbossF:
 		}
 
 		/* for feminizer hybrid race: re-randomize feminism effect that is active --Amy */
-		if (!rn2(5000)) u.feminizeffect = rnd(22); /* amount of feminism trap effects; keyword: "marlena" */
+		if (!rn2(5000)) u.feminizeffect = rnd(31); /* amount of feminism trap effects; keyword: "marlena" */
 
 		if (isfeminizer && !rn2(5000)) randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
 
@@ -5636,7 +5966,7 @@ newbossO:
 
 		if (uactivesymbiosis) {
 			u.usymbiosisslowturns++;
-			if (u.usymbiosisslowturns >= 100) {
+			if (u.usymbiosisslowturns >= 50) {
 				u.usymbiosisslowturns = 0;
 				use_skill(P_SYMBIOSIS, 1);
 			}
@@ -5876,6 +6206,11 @@ newbossX:
 
 			}
 
+		}
+
+		if (uamul && uamul->oartifact == ART_AMULET_OF_SPLENDOR && !rn2(1000) && multi >= 0) {
+			You("fall asleep.");
+			fall_asleep(-(rnd(20)), TRUE);
 		}
 
 		if (is_shiftingsand(u.ux, u.uy) && !Flying && !Levitation) {
@@ -6274,7 +6609,17 @@ newbossL:
 
 		/* the automatic relocation on certain dungeons can make the game almost unwinnable if you end up in a place
 		 * surrounded by undiggable walls... so those places give relocatitis now :P --Amy */
-		if ((In_bellcaves(&u.uz) || In_deadground(&u.uz) || In_ordered(&u.uz) || In_forging(&u.uz) || (In_netherrealm(&u.uz) && !u.netherrealmcomplete && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz))) ) && !rn2(1000)) {
+		if ((In_bellcaves(&u.uz) || In_deadground(&u.uz) || In_ordered(&u.uz) || In_forging(&u.uz) || (In_netherrealm(&u.uz) && !u.netherrealmcomplete && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz))) ) && !rn2(1111)) {
+
+			pline("Suddenly, a void jumpgate appears.");
+			getlin ("Do you want to enter the jumpgate and be teleported to a random location on this level? [y/yes/no]",buf);
+			(void) lcase (buf);
+			if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y"))) {
+				pline("Brrrr... it's deathly cold.");
+			      (void) safe_teleds(FALSE);
+			}
+		}
+		if ((In_bellcaves(&u.uz) || In_deadground(&u.uz) || In_ordered(&u.uz) || In_forging(&u.uz) || (In_netherrealm(&u.uz) && !u.netherrealmcomplete && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz))) ) && !rn2(10000)) {
 
 			pline("Suddenly, a void jumpgate appears and transports you away!");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -6386,7 +6731,7 @@ newbossB:
 				if (!isok(u.ux + oi, u.uy + oj)) continue;
 				if (levl[u.ux + oi][u.uy + oj].typ <= DBWALL) continue;
 				if (t_at(u.ux + oi, u.uy + oj)) continue;
-			maketrap(u.ux + oi, u.uy + oj, SIN_TRAP, 0);
+			maketrap(u.ux + oi, u.uy + oj, SIN_TRAP, 0, FALSE);
 		    }
 
 		}
@@ -6714,7 +7059,7 @@ newbossB:
 
 		}
 
-		if (is_moorland(u.ux, u.uy) && !Flying && !Levitation && !Race_if(PM_BOVER)) {
+		if (is_moorland(u.ux, u.uy) && !(uarmf && itemhasappearance(uarmf, APP_MUD_BOOTS)) && !Flying && !Levitation && !Race_if(PM_BOVER)) {
 			Norep("Swimming in moorland causes continuous damage.");
 			losehp(rnd(5 + (level_difficulty() / 5)), "swimming in moorland", KILLED_BY);
 			stop_occupation();
@@ -6795,7 +7140,7 @@ newbossB:
 			stop_occupation();
 		}
 
-		if (u.umoved && is_pavedfloor(u.ux, u.uy) && !Flying && !Levitation) {
+		if (u.umoved && is_pavedfloor(u.ux, u.uy) && !(uarmf && uarmf->oartifact == ART_EVERYWHERE_AT_ONCE) && !(uarmf && itemhasappearance(uarmf, APP_DYKE_BOOTS)) && !Flying && !Levitation) {
 			Norep("Walking on paved floor makes lots of noise.");
 			wake_nearby();
 
@@ -6809,10 +7154,32 @@ newbossB:
 		}
 
 		if (uwep && uwep->oartifact == ART_OVERHEATER && !rn2(1000) && !(t_at(u.ux, u.uy) ) ) {
-			(void) maketrap(u.ux, u.uy, FIRE_TRAP, 0);
+			(void) maketrap(u.ux, u.uy, FIRE_TRAP, 0, FALSE);
 		}
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_OVERHEATER && !rn2(1000) && !(t_at(u.ux, u.uy) ) ) {
-			(void) maketrap(u.ux, u.uy, FIRE_TRAP, 0);
+			(void) maketrap(u.ux, u.uy, FIRE_TRAP, 0, FALSE);
+		}
+
+		u.arabellahack = 0; /* fail safe */
+		if (FemtrapActiveArabella && !rn2(100)) {
+			u.arabellahack = 1;
+
+			int x, y;
+
+			x = rn1(COLNO-3,2);
+			y = rn2(ROWNO);
+
+			if (x && y && isok(x, y) && !(t_at(x, y)) ) {
+				(void) maketrap(x, y, randomtrap(), 0, FALSE);
+				break;
+				}
+			u.arabellahack = 0;
+
+		}
+
+		if (uarmf && uarmf->oartifact == ART_WASTEFUL_PLAYER && !rn2(1000)) {
+			antimatter_damage(invent, FALSE, FALSE);
+			Your("stuff has withered. God are you a wasteful player, you should stop playing with Lou's dirty sneakers.");
 		}
 
 		if (uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS && !rn2(1000) ) {
@@ -6824,7 +7191,7 @@ newbossB:
 				y = rn2(ROWNO);
 
 				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					(void) maketrap(x, y, SHIT_TRAP, 0);
+					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
 			}
@@ -6839,7 +7206,7 @@ newbossB:
 				y = rn2(ROWNO);
 
 				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					(void) maketrap(x, y, SHIT_TRAP, 0);
+					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
 			}
@@ -6855,7 +7222,7 @@ newbossB:
 				y = rn2(ROWNO);
 
 				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					shittrap = maketrap(x, y, SHIT_TRAP, 0);
+					shittrap = maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					if (shittrap && !(shittrap->hiddentrap)) {
 						shittrap->tseen = 1;
 					}
@@ -6896,7 +7263,7 @@ newbossB:
 					if (hussytraptype == ACTIVE_SUPERSCROLLER_TRAP) hussytraptype = SUPERSCROLLER_TRAP;
 					if (hussytraptype == AUTOMATIC_SWITCHER) hussytraptype = UNKNOWN_TRAP;
 
-					(void) maketrap(x, y, hussytraptype, 100);
+					(void) maketrap(x, y, hussytraptype, 100, FALSE);
 					break;
 					}
 			}
@@ -6912,7 +7279,7 @@ newbossB:
 				y = rn2(ROWNO);
 
 				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					(void) maketrap(x, y, SHIT_TRAP, 0);
+					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
 			}
@@ -7041,7 +7408,7 @@ newbossB:
 				y = rn2(ROWNO);
 
 				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					(void) maketrap(x, y, SHIT_TRAP, 0);
+					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
 			}
@@ -7056,7 +7423,7 @@ newbossB:
 				y = rn2(ROWNO);
 
 				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					(void) maketrap(x, y, NATALJE_TRAP, 0);
+					(void) maketrap(x, y, NATALJE_TRAP, 0, FALSE);
 					break;
 					}
 			}
@@ -7072,7 +7439,7 @@ newbossB:
 				y = rn2(ROWNO);
 
 				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					(void) maketrap(x, y, FART_TRAP, 0);
+					(void) maketrap(x, y, FART_TRAP, 0, TRUE);
 					break;
 					}
 			}
@@ -7089,7 +7456,7 @@ newbossB:
 				y = rn2(ROWNO);
 
 				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					(void) maketrap(x, y, FART_TRAP, 0);
+					(void) maketrap(x, y, FART_TRAP, 0, TRUE);
 					break;
 					}
 			}
@@ -7106,7 +7473,7 @@ newbossB:
 				y = rn2(ROWNO);
 
 				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					(void) maketrap(x, y, FART_TRAP, 0);
+					(void) maketrap(x, y, FART_TRAP, 0, TRUE);
 					break;
 					}
 			}
@@ -7123,7 +7490,7 @@ newbossB:
 				y = rn2(ROWNO);
 
 				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					(void) maketrap(x, y, HEEL_TRAP, 0);
+					(void) maketrap(x, y, HEEL_TRAP, 0, FALSE);
 					break;
 					}
 			}
@@ -7139,7 +7506,7 @@ newbossB:
 				y = rn2(ROWNO);
 
 				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					(void) maketrap(x, y, SHIT_TRAP, 0);
+					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
 			}
@@ -7154,7 +7521,7 @@ newbossB:
 				y = rn2(ROWNO);
 
 				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					(void) maketrap(x, y, SHIT_TRAP, 0);
+					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
 			}
@@ -7169,7 +7536,7 @@ newbossB:
 				y = rn2(ROWNO);
 
 				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					(void) maketrap(x, y, SHIT_TRAP, 0);
+					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
 			}
@@ -7184,13 +7551,13 @@ newbossB:
 
 		if (Conflict && !rn2(500)) { /* bullshit downside --Amy :P */
 
-			makerandomtrap();
+			makerandomtrap(FALSE);
 
 		}
 
 		if (StrongConflict && !rn2(500)) { /* bullshit downside --Amy :P */
 
-			makerandomtrap();
+			makerandomtrap(FALSE);
 
 		}
 
@@ -7220,7 +7587,7 @@ newbossB:
 				y = rn2(ROWNO);
 
 				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					(void) maketrap(x, y, SHIT_TRAP, 0);
+					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
 			}
@@ -7632,7 +7999,7 @@ newboss:
 					newsym(chaosx,chaosy);
 					blockorunblock_point(chaosx,chaosy);
 
-					if (!rn2(40) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100);
+					if (!rn2(40) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100, FALSE);
 				}
 
 			}
@@ -7661,7 +8028,7 @@ newboss:
 					newsym(chaosx,chaosy);
 					blockorunblock_point(chaosx,chaosy);
 
-					if (!rn2(40) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100);
+					if (!rn2(40) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100, FALSE);
 				}
 
 			}
@@ -7690,7 +8057,36 @@ newboss:
 					newsym(chaosx,chaosy);
 					blockorunblock_point(chaosx,chaosy);
 
-					if (!rn2(40) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100);
+					if (!rn2(40) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100, FALSE);
+				}
+
+			}
+
+		}
+
+		if (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK && !rn2(20) && (!In_sokoban(&u.uz) || !rn2(5) ) ) {
+			int chaosx, chaosy;
+			chaosx = rn1(COLNO-3,2);
+			chaosy = rn2(ROWNO);
+
+			if (chaosx && chaosy && isok(chaosx, chaosy) && levl[chaosx][chaosy].typ <= ROCKWALL && ((levl[chaosx][chaosy].wall_info & W_NONDIGGABLE) == 0) ) {
+
+				boolean neighborbad = 0;
+				int bpx, bpy;
+
+				for (bpx= -1; bpx<=1; bpx++) for(bpy= -1; bpy<=1; bpy++) {
+					if (!bpx && !bpy) continue;
+					if (!isok(chaosx+bpx, chaosy+bpy)) continue;
+					if (levl[chaosx+bpx][chaosy+bpy].typ == DOOR || levl[chaosx+bpx][chaosy+bpy].typ == CORR || levl[chaosx+bpx][chaosy+bpy].typ == ROOM || levl[chaosx+bpx][chaosy+bpy].typ == STAIRS || levl[chaosx+bpx][chaosy+bpy].typ == LADDER) neighborbad = 1;
+				}
+
+				if (!neighborbad) {
+					levl[chaosx][chaosy].typ = randomwalltype();
+					del_engr_at(chaosx,chaosy);
+					newsym(chaosx,chaosy);
+					blockorunblock_point(chaosx,chaosy);
+
+					if (!rn2(40) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100, FALSE);
 				}
 
 			}
@@ -7709,7 +8105,7 @@ newboss:
 				newsym(chaosx,chaosy);
 				blockorunblock_point(chaosx,chaosy);
 
-				if (!rn2(15) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100);
+				if (!rn2(15) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100, FALSE);
 
 			}
 
@@ -7727,7 +8123,7 @@ newboss:
 				newsym(chaosx,chaosy);
 				blockorunblock_point(chaosx,chaosy);
 
-				if (!rn2(15) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100);
+				if (!rn2(15) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100, FALSE);
 
 			}
 
@@ -7745,7 +8141,7 @@ newboss:
 				newsym(chaosx,chaosy);
 				blockorunblock_point(chaosx,chaosy);
 
-				if (!rn2(15) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100);
+				if (!rn2(15) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100, FALSE);
 
 			}
 
@@ -8708,7 +9104,7 @@ newboss:
 		}
 
 		if (!rn2(2000) && uarmc && itemhasappearance(uarmc, APP_HOMICIDAL_CLOAK) ) {
-			makerandomtrap();
+			makerandomtrap(FALSE);
 		}
 
 		if (!rn2(2000) && uarmc && itemhasappearance(uarmc, APP_GRAVITY_CLOAK) ) {
@@ -9142,13 +9538,14 @@ newboss:
 		    dgn_growths(TRUE, TRUE, TRUE);
 #endif
 
-		    if (u.ublesscnt) {
-				if (NonprayerBug || u.uprops[NON_PRAYER_BUG].extrinsic || have_antiprayerstone()) u.ublesscnt++;
-				else u.ublesscnt--;
-			}
-		    if (u.ublesscnt < 0) u.ublesscnt = 0; /* fail safe */
+		if (NonprayerBug || u.uprops[NON_PRAYER_BUG].extrinsic || have_antiprayerstone()) u.ublesscnt++;
+		else if (u.ublesscnt) {
+			u.ublesscnt--;
+		}
+		if (u.ublesscnt < 0) u.ublesscnt = 0; /* fail safe */
 
 		if (uarmg && u.ublesscnt && itemhasappearance(uarmg, APP_COMFORTABLE_GLOVES) ) u.ublesscnt--;
+		if (uarmc && u.ublesscnt && Role_if(PM_PRIEST) && itemhasappearance(uarmc, APP_ORNAMENTAL_COPE) ) u.ublesscnt--;
 
 		if (u.ublesscnt && RngePrayer) u.ublesscnt--;
 
@@ -9219,12 +9616,12 @@ newboss:
 			else if (Regeneration ||
 				    (wtcap < MOD_ENCUMBER && !(moves%/*20*/regenrate))) {
 			    flags.botl = 1;
-				if (!Burned && !Race_if(PM_ETHEREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) {
+				if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) {
 					u.mh++;
 					if (Race_if(PM_PIERCER)) u.mh++;
 					if (u.mh > u.mhmax) u.mh = u.mhmax;
 				}
-				if (StrongRegeneration && !Burned && !Race_if(PM_ETHEREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) {
+				if (StrongRegeneration && !Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) {
 					u.mh++;
 					if (Race_if(PM_PIERCER)) u.mh++;
 					if (u.mh > u.mhmax) u.mh = u.mhmax;
@@ -9302,7 +9699,7 @@ newboss:
   				if (heal > efflev-9) heal = efflev-9;
 			    }
 			    flags.botl = 1;
-			    if (!Burned && !Race_if(PM_ETHEREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) {
+			    if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) {
 					u.uhp += heal;
 					if (Race_if(PM_PIERCER)) u.uhp += heal;
 					if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
@@ -9311,16 +9708,29 @@ newboss:
 			     (efflev <= 9 &&
 			      !(moves % ((MAXULEV+12) / (GushLevel+2) + 1)))) {
 			    flags.botl = 1;
-			    if (!Burned && !Race_if(PM_ETHEREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) {
+			    if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) {
 					u.uhp++;
 					if (Race_if(PM_PIERCER)) u.uhp++;
 					if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				}
-			    if (StrongRegeneration && !Burned && !Race_if(PM_ETHEREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) {
+			    if (StrongRegeneration && !Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) {
 					u.uhp++;
 					if (Race_if(PM_PIERCER)) u.uhp++;
 					if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				}
+			}
+
+			if (uwep && uwep->oartifact == ART_CRYSPEAR) {
+				u.uhp += 1;
+				if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+				flags.botl = 1;
+
+			}
+			if (uarmg && uarmg->oartifact == ART_GREEN_THUMB && levl[u.ux][u.uy].typ == TREE) {
+				u.uhp += 1;
+				if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+				flags.botl = 1;
+
 			}
 
 			if (Race_if(PM_BACTERIA) && u.uhpmax > 4 && !Upolyd && u.uhp <= ((u.uhpmax / 5) + 1)) {
@@ -9332,25 +9742,25 @@ newboss:
 
 		    }
 
-			if (!Burned && !Race_if(PM_ETHEREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && Race_if(PM_HAXOR) && !rn2(20) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
+			if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && Race_if(PM_HAXOR) && !rn2(20) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
 				u.uhp += rnd(5 + (GushLevel / 5));
 				if (Race_if(PM_PIERCER)) u.uhp += rnd(5 + (GushLevel / 5));
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				flags.botl = 1;
 			}
-			if (!Burned && !Race_if(PM_ETHEREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && Race_if(PM_HAXOR) && Upolyd && !rn2(20) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
+			if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && Race_if(PM_HAXOR) && Upolyd && !rn2(20) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
 				u.mh += rnd(5 + (GushLevel / 5));
 				if (Race_if(PM_PIERCER)) u.mh += rnd(5 + (GushLevel / 5));
 				if (u.mh > u.mhmax) u.mh = u.mhmax;
 				flags.botl = 1;
 			}
-			if (!Burned && !Race_if(PM_ETHEREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(60 / GushLevel) ) {
+			if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(60 / GushLevel) ) {
 				u.uhp++;
 				if (Race_if(PM_PIERCER)) u.uhp++;
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				flags.botl = 1;
 			}
-			if (!Burned && !Race_if(PM_ETHEREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(60 / GushLevel) && Upolyd ) {
+			if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(60 / GushLevel) && Upolyd ) {
 				u.mh++;
 				if (Race_if(PM_PIERCER)) u.mh++;
 				if (u.mh > u.mhmax) u.mh = u.mhmax;
@@ -9358,13 +9768,13 @@ newboss:
 			}
 
 			/* nice patch addition by Amy - sometimes regenerate more */
-			if (!Burned && !Race_if(PM_ETHEREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(150) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
+			if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(150) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
 				u.uhp += rnz(2 + GushLevel);
 				if (Race_if(PM_PIERCER)) u.uhp += rnz(2 + GushLevel);
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				flags.botl = 1;
 			}
-			if (!Burned && !Race_if(PM_ETHEREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(150) && Upolyd && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
+			if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(150) && Upolyd && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
 				u.mh += rnz(2 + GushLevel);
 				if (Race_if(PM_PIERCER)) u.mh += rnz(2 + GushLevel);
 				if (u.mh > u.mhmax) u.mh = u.mhmax;
@@ -10072,6 +10482,54 @@ newboss:
 
 			}
 cellarnope:
+			if (!rn2(25000) && uarmf && itemhasappearance(uarmf, APP_DEMONOLOGIST_BOOTS) ) {
+
+				if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+					goto demonolpast;
+				}
+
+				if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
+					goto demonolpast;
+				}
+
+				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+
+				u.cnd_banishmentcount++;
+				if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
+				else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
+
+				register int newlev = rnd(99);
+				d_level newlevel;
+				get_level(&newlevel, newlev);
+				goto_level(&newlevel, TRUE, FALSE, FALSE);
+				You("were banished!");
+
+			}
+demonolpast:
+
+			if (!rn2(25000) && uarmf && itemhasappearance(uarmf, APP_DEMONOLOGIST_BOOTS) ) {
+				if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+					goto demonolpast2;
+				}
+
+				if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
+					goto demonolpast2;
+				}
+
+				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+
+				(void) safe_teleds(FALSE);
+				goto_level(&medusa_level, TRUE, FALSE, FALSE);
+
+				register int newlevX = 1;
+				d_level newlevelX;
+				get_level(&newlevelX, newlevX);
+				goto_level(&newlevelX, TRUE, FALSE, FALSE);
+				pline("It's back to square one for you!");
+
+			}
+demonolpast2:
+
 			if (!rn2(10000) && uarmc && itemhasappearance(uarmc, APP_CHINESE_CLOAK) ) {
 
 				if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
@@ -10223,6 +10681,14 @@ past3:
 			/* the uberquasit REALLY doesn't want you to ride it --Amy */
 			if (u.usteed && u.usteed->mnum == PM_ULTRA_EVIL_QUASIT) {
 				dismount_steed(DISMOUNT_FELL);
+			}
+
+			if (uarmf && uarmf->oartifact == ART_STRONG_GETAWAY_DESIRE && !rn2(5000)) {
+				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+				pline("A mysterious force surrounds you...");
+			      if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz)) ) level_tele();
+				else You_feel("very disoriented but decide to move on.");
+
 			}
 
 			if (u.usteed && !rn2(5000) ) {
@@ -10434,12 +10900,23 @@ past3:
 
 	/* etherealoid should have xray vision; doesn't stack with artifacts */
 	if (Race_if(PM_ETHEREALOID)) u.xray_range = 3;
+	if (Race_if(PM_INCORPOREALOID)) u.xray_range = 3;
 
 	if (Upolyd && youmonst.data == &mons[PM_SLITHER]) { /* laaaaaaaaaag! :D --Amy */
 		int lagamount = rno(10);
 		while (lagamount > 0) {
 			delay_output();
 			lagamount--;
+		}
+	}
+
+	/* depending on the player's speed, you may go back and forth and still end up on the same square when the next
+	 * check on the natalje trap effect happens; make sure to catch those moves and reset the timer --Amy */
+	if (FemtrapActiveNatalje) {
+		if ((u.ux != u.nataljetrapx) || (u.uy != u.nataljetrapy)) {
+			u.nataljetrapturns = moves;
+			u.nataljetrapx = u.ux;
+			u.nataljetrapy = u.uy;
 		}
 	}
 
@@ -11132,9 +11609,15 @@ aliasagain:
 		}
 
 		if (eliasbuf[0] && aliaslength < 31) { /* We do NOT want a buffer overflow. --Amy */
+			if (eliasbuf && !(strncmpi(eliasbuf, "Glorious Dead", 14) ) ) strcpy(eliasbuf, "Cheator");
 			strcpy(plalias, eliasbuf);
 			(void) strncpy(u.aliasname, eliasbuf, sizeof(u.aliasname));
 		}
+	}
+
+	if (!strncmpi(plname, "Glorious Dead", 14)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
 	}
 
 	init_dungeons();	/* must be before u_init() to avoid rndmonst()
@@ -11364,6 +11847,7 @@ boolean new_game;	/* false => restoring an old game */
 	if (flags.hybridstairseeker && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "stairseeker ");
 	if (flags.hybridmatrayser && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "matrayser ");
 	if (flags.hybridfeminizer && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "feminizer ");
+	if (flags.hybridchallenger && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "challenger ");
 	if (hybridcount >= 20) sprintf(eos(xtrabuf), "(%d hybrids) ", hybridcount);
 
 	if (new_game) { /* for recursion trap */
@@ -11405,7 +11889,7 @@ boolean new_game;	/* false => restoring an old game */
 #ifdef BIGSLEX
 	pline("Attention: You're playing BIGslex, where the dungeon levels are bigger than normal. Recommended terminal size is 125x45. Also, savebreaks will happen without warning in this version. If you have a far-progressed savegame that you want to finish, contact me on the IRC. If your savegame seems to be gone, contact me on the IRC too. Have fun!");
 #endif /* BIGSLEX */
-	if (new_game) pline("Message of the day: This is a bleeding-edge development version of SLEX. Playtesters are welcome. You can help me in particular by playing the new roles and races that have been added lately. If you encounter any bugs or weirdness while playing, please notify me, the best way of contacting me is via the #em.slashem.me IRC channel (Freenode). --Amy");
+	if (new_game) pline("Message of the day: There are three new weapon types that were added recently. They are orb, claw and grinder. Not many roles can learn them, but if you do play one that can, feel free to tell me what you think of them! --Amy");
 #endif /* PHANTOM_CRASH_BUG */
 
 #endif /* PUBLIC_SERVER */
@@ -11741,8 +12225,17 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_GIANT_FOOT].oc_name = "gigantskaya noga";
 	obj_descr[SPE_ANTI_TELEPORTATION].oc_name = "anti-teleportatsiya";
 	obj_descr[SPE_SYMHEAL].oc_name = "sim lechit'";
+	obj_descr[SPE_CONVERGE_BREATH].oc_name = "skhodit'sya dykhaniye";
+	obj_descr[SPE_RELOCATION].oc_name = "pereyezd";
+	obj_descr[SPE_IMPACT_GUNFIRE].oc_name = "udarnaya strel'ba";
+	obj_descr[SPE_COAGULATION].oc_name = "koagulyatsiya";
+	obj_descr[SPE_CURE_PARALYSIS].oc_name = "vylechit' paralich";
+	obj_descr[SPE_SMELL_MONSTER].oc_name = "zapakh chudovishcha";
+	obj_descr[SPE_ECHOLOCATION].oc_name = "ekholokatsiya";
+	obj_descr[SPE_RANDOM_DETECTION].oc_name = "sluchaynoye obnaruzheniye";
 
 	/* todo area */
+
 
 	{
 
@@ -12468,9 +12961,114 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "standing footwear")) OBJ_DESCR(objects[i]) = "stoyachaya obuv'";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cancel dragonhide shield")) OBJ_DESCR(objects[i]) = "otmenit' shchit iz drakon'yey shkury";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "corona dragonhide shield")) OBJ_DESCR(objects[i]) = "korona iz drakon'yey shkury";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "heretic robe")) OBJ_DESCR(objects[i]) = "odezhda yeretika";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "contro dragonhide shield")) OBJ_DESCR(objects[i]) = "upravleniye shchit iz drakon'yey shkury";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "celestial cloak")) OBJ_DESCR(objects[i]) = "bozhestvennyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "conundrum cloak")) OBJ_DESCR(objects[i]) = "zagadochnyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "heavenly boots")) OBJ_DESCR(objects[i]) = "nebesnyye sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "shining robe")) OBJ_DESCR(objects[i]) = "siyayushchiy khalat";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ornamental robe")) OBJ_DESCR(objects[i]) = "ornamental'nyy khalat";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cotton robe")) OBJ_DESCR(objects[i]) = "khlopkovyy khalat";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "star-patterned robe")) OBJ_DESCR(objects[i]) = "khalat so zvezdami";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "black poleaxe")) OBJ_DESCR(objects[i]) = "chernyy sekira";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ornamental polearm")) OBJ_DESCR(objects[i]) = "dekorativnoye drevkovoye oruzhiye";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "feather-etched rapier")) OBJ_DESCR(objects[i]) = "rapira s per'yami";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "latch-pommeled saber")) OBJ_DESCR(objects[i]) = "sablya s rukoyat'yu";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fleshy boots")) OBJ_DESCR(objects[i]) = "myasistyye sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "paper shoes")) OBJ_DESCR(objects[i]) = "bumazhnaya obuv'";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bone trotteurs")) OBJ_DESCR(objects[i]) = "kostnyye trottery";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bronze shoes")) OBJ_DESCR(objects[i]) = "bronzovyye tufli";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "glass shoes")) OBJ_DESCR(objects[i]) = "steklyannaya obuv'";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ornamental shoes")) OBJ_DESCR(objects[i]) = "dekorativnaya obuv'";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "conundrum boots")) OBJ_DESCR(objects[i]) = "golovolomka sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "extraterrestrial boots")) OBJ_DESCR(objects[i]) = "vnezemnyye sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "meteoric steel boots")) OBJ_DESCR(objects[i]) = "sapogi iz meteoritnoy stali";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "corona boots")) OBJ_DESCR(objects[i]) = "korona sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fluffy boots")) OBJ_DESCR(objects[i]) = "pushistyye sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "junk shoes")) OBJ_DESCR(objects[i]) = "musornaya obuv'";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "melded boots")) OBJ_DESCR(objects[i]) = "plavlenyye sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "golden delicately filigreed stilettos")) OBJ_DESCR(objects[i]) = "zolotyye tufli na shpil'ke s tonkoy filigran'yu";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ugly boots")) OBJ_DESCR(objects[i]) = "urodlivyye sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "unfashionable boots")) OBJ_DESCR(objects[i]) = "nemodnyye sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "garish boots")) OBJ_DESCR(objects[i]) = "yarkiye sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "unsexy boots")) OBJ_DESCR(objects[i]) = "neseksual'nyye sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "unisex pumps")) OBJ_DESCR(objects[i]) = "tufli-lodochki uniseks";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "moon boots")) OBJ_DESCR(objects[i]) = "lunnyye sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cuddle cloth boots")) OBJ_DESCR(objects[i]) = "myagkiye tkanevyye sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "garden slippers")) OBJ_DESCR(objects[i]) = "sadovyye tapochki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dyke boots")) OBJ_DESCR(objects[i]) = "damskiye sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ankle strap sandals")) OBJ_DESCR(objects[i]) = "sandalii s remeshkom na shchikolotke";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gentleman shoes")) OBJ_DESCR(objects[i]) = "dzhentl'menskiye tufli";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "old brogues")) OBJ_DESCR(objects[i]) = "staryye brogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "opankes")) OBJ_DESCR(objects[i]) = "obuv' bez kabluka";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "business shoes")) OBJ_DESCR(objects[i]) = "delovaya obuv'";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "comfortable sneakers")) OBJ_DESCR(objects[i]) = "udobnyye krossovki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "unisex sneakers")) OBJ_DESCR(objects[i]) = "krossovki uniseks";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "copper cloak")) OBJ_DESCR(objects[i]) = "mednyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "plastic cloak")) OBJ_DESCR(objects[i]) = "plastikovyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bubble cloak")) OBJ_DESCR(objects[i]) = "plashch iz puzyrey";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "meteosteel cloak")) OBJ_DESCR(objects[i]) = "plashch iz meteostali";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "antidotium cloak")) OBJ_DESCR(objects[i]) = "plashch protivoyadiya";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "meat helmet")) OBJ_DESCR(objects[i]) = "myasnoy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "order helmet")) OBJ_DESCR(objects[i]) = "zakazat' shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "very hard helmet")) OBJ_DESCR(objects[i]) = "ochen' zhestkiy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "zebes helmet")) OBJ_DESCR(objects[i]) = "chuzhaya planeta shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "meteosteel helmet")) OBJ_DESCR(objects[i]) = "shlem iz meteostali";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "flashy helmet")) OBJ_DESCR(objects[i]) = "yarkiy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "foaming helmet")) OBJ_DESCR(objects[i]) = "penyashchiysya shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "scrappy helmet")) OBJ_DESCR(objects[i]) = "loskutnyy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "metal plate helmet")) OBJ_DESCR(objects[i]) = "metallicheskiy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "foamcloth cloak")) OBJ_DESCR(objects[i]) = "plashch iz porolona";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "trash cloak")) OBJ_DESCR(objects[i]) = "plashch dlya musora";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "factory cloak")) OBJ_DESCR(objects[i]) = "fabrichnyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "mysterious gloves")) OBJ_DESCR(objects[i]) = "tainstvennyye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "waxy gloves")) OBJ_DESCR(objects[i]) = "voskovyye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "delicious gloves")) OBJ_DESCR(objects[i]) = "vkusnyye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "lithified gloves")) OBJ_DESCR(objects[i]) = "litifitsirovannyye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "copper gloves")) OBJ_DESCR(objects[i]) = "mednyye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "platinum gloves")) OBJ_DESCR(objects[i]) = "platinovyye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "vitric gloves")) OBJ_DESCR(objects[i]) = "vitrik perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gemmed gloves")) OBJ_DESCR(objects[i]) = "ukrashennyye dragotsennymi kamnyami perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "elean gloves")) OBJ_DESCR(objects[i]) = "yaponskiy el'f perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "christian gloves")) OBJ_DESCR(objects[i]) = "khristianskiye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "volcanic gloves")) OBJ_DESCR(objects[i]) = "vulkanicheskiye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "grome gloves")) OBJ_DESCR(objects[i]) = "khromovyye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "excavated gloves")) OBJ_DESCR(objects[i]) = "raskopannyye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "heavenly gloves")) OBJ_DESCR(objects[i]) = "nebesnyye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "conundrum gloves")) OBJ_DESCR(objects[i]) = "golovolomnyye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "funny-colored gloves")) OBJ_DESCR(objects[i]) = "raznotsvetnyye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "meteosteel gloves")) OBJ_DESCR(objects[i]) = "perchatki iz meteostali";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "antidotium gloves")) OBJ_DESCR(objects[i]) = "antidotnyye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "foam gloves")) OBJ_DESCR(objects[i]) = "porolonovyye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "scrap gloves")) OBJ_DESCR(objects[i]) = "lom perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "alloy gloves")) OBJ_DESCR(objects[i]) = "perchatki iz splava";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "demonologist boots")) OBJ_DESCR(objects[i]) = "sapogi demonologa";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "generic high heels")) OBJ_DESCR(objects[i]) = "obychnyye vysokiye kabluki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "failed shoes")) OBJ_DESCR(objects[i]) = "neudachnaya obuv'";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "opera pumps")) OBJ_DESCR(objects[i]) = "opernoye iskusstvo nasosy";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "house slippers")) OBJ_DESCR(objects[i]) = "domashniye tapki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "indoor shoes")) OBJ_DESCR(objects[i]) = "domashnyaya obuv'";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wooden clogs")) OBJ_DESCR(objects[i]) = "derevyannyye sabo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "plastic sandals")) OBJ_DESCR(objects[i]) = "plastikovyye sandalii";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "flat-soled shoes")) OBJ_DESCR(objects[i]) = "tufli na ploskoy podoshve";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "regular sneakers")) OBJ_DESCR(objects[i]) = "obychnyye krossovki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "exceptional sneakers")) OBJ_DESCR(objects[i]) = "isklyuchitel'nyye krossovki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "elite sneakers")) OBJ_DESCR(objects[i]) = "elitnyye krossovki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fur boots")) OBJ_DESCR(objects[i]) = "mekhovyye sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cross-country boots")) OBJ_DESCR(objects[i]) = "begovyye botinki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "biker boots")) OBJ_DESCR(objects[i]) = "baykerskiye botinki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "throwaway sandals")) OBJ_DESCR(objects[i]) = "odnorazovyye sandalii";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cheap shoes")) OBJ_DESCR(objects[i]) = "deshevaya obuv'";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "golden shoes")) OBJ_DESCR(objects[i]) = "zolotyye tufli";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "zero-drop shoes")) OBJ_DESCR(objects[i]) = "obuv' s nulevym padeniyem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "pope hat")) OBJ_DESCR(objects[i]) = "papa shlyapa";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "corona mask")) OBJ_DESCR(objects[i]) = "korona maska";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "petsense helmet")) OBJ_DESCR(objects[i]) = "chuvstvo lyubimtsa shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wetsuit")) OBJ_DESCR(objects[i]) = "gidrokostyum";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "funeral shroud")) OBJ_DESCR(objects[i]) = "pogrebal'nyy savan";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bleached robe")) OBJ_DESCR(objects[i]) = "belenyy khalat";
 
 		/* todo area */
-
 
 	}
 	}
@@ -12809,8 +13407,17 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_GIANT_FOOT].oc_name = "ulkan oyoq";
 	obj_descr[SPE_ANTI_TELEPORTATION].oc_name = "qarshi teleportatsiya";
 	obj_descr[SPE_SYMHEAL].oc_name = "simbiot shifo";
+	obj_descr[SPE_CONVERGE_BREATH].oc_name = "nafasni birlashtirish";
+	obj_descr[SPE_RELOCATION].oc_name = "ko'chirish";
+	obj_descr[SPE_IMPACT_GUNFIRE].oc_name = "zarbali otishma";
+	obj_descr[SPE_COAGULATION].oc_name = "qon ivishi";
+	obj_descr[SPE_CURE_PARALYSIS].oc_name = "falajni davolash";
+	obj_descr[SPE_SMELL_MONSTER].oc_name = "hayvonni hidlash";
+	obj_descr[SPE_ECHOLOCATION].oc_name = "echolokatsiya";
+	obj_descr[SPE_RANDOM_DETECTION].oc_name = "tasodifiy aniqlash";
 
 	/* todo area */
+
 
 	{
 
@@ -13536,9 +14143,114 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "standing footwear")) OBJ_DESCR(objects[i]) = "tik turgan poyafzal";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cancel dragonhide shield")) OBJ_DESCR(objects[i]) = "ajdarhid qalqonini bekor qiling";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "corona dragonhide shield")) OBJ_DESCR(objects[i]) = "ajdaho qalqoni";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "heretic robe")) OBJ_DESCR(objects[i]) = "bid'at xalat";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "contro dragonhide shield")) OBJ_DESCR(objects[i]) = "ajdarni yashirishni boshqarish qalqoni";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "celestial cloak")) OBJ_DESCR(objects[i]) = "osmondan plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "conundrum cloak")) OBJ_DESCR(objects[i]) = "jumboqli plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "heavenly boots")) OBJ_DESCR(objects[i]) = "samoviy etiklar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "shining robe")) OBJ_DESCR(objects[i]) = "yaltiroq xalat";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ornamental robe")) OBJ_DESCR(objects[i]) = "dekorativ xalat";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cotton robe")) OBJ_DESCR(objects[i]) = "paxta xalati";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "star-patterned robe")) OBJ_DESCR(objects[i]) = "yulduzcha naqshli xalat";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "black poleaxe")) OBJ_DESCR(objects[i]) = "qora qutb";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ornamental polearm")) OBJ_DESCR(objects[i]) = "manzarali qutb";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "feather-etched rapier")) OBJ_DESCR(objects[i]) = "tuklar bilan o'ralgan nuqta qilich";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "latch-pommeled saber")) OBJ_DESCR(objects[i]) = "mandal-pameled shamshir";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fleshy boots")) OBJ_DESCR(objects[i]) = "go'shtli botinkalar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "paper shoes")) OBJ_DESCR(objects[i]) = "qog'oz poyabzal";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bone trotteurs")) OBJ_DESCR(objects[i]) = "suyak trotterlari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bronze shoes")) OBJ_DESCR(objects[i]) = "bronza poyabzal";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "glass shoes")) OBJ_DESCR(objects[i]) = "shisha poyabzal";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ornamental shoes")) OBJ_DESCR(objects[i]) = "bezak poyafzallari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "conundrum boots")) OBJ_DESCR(objects[i]) = "jumboqli botinkalar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "extraterrestrial boots")) OBJ_DESCR(objects[i]) = "g'ayritabiiy botinkalar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "meteoric steel boots")) OBJ_DESCR(objects[i]) = "meteorik po'lat botinkalar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "corona boots")) OBJ_DESCR(objects[i]) = "toj kiyimi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fluffy boots")) OBJ_DESCR(objects[i]) = "paxmoq etiklar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "junk shoes")) OBJ_DESCR(objects[i]) = "keraksiz poyabzal";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "melded boots")) OBJ_DESCR(objects[i]) = "eritilgan etiklar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "golden delicately filigreed stilettos")) OBJ_DESCR(objects[i]) = "zarif nozik filetrli stilettoslar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ugly boots")) OBJ_DESCR(objects[i]) = "chirkin etiklar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "unfashionable boots")) OBJ_DESCR(objects[i]) = "zamonaviy botinkalar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "garish boots")) OBJ_DESCR(objects[i]) = "chiroyli botinkalar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "unsexy boots")) OBJ_DESCR(objects[i]) = "yoqimsiz etiklar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "unisex pumps")) OBJ_DESCR(objects[i]) = "bir jinsli nasoslar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "moon boots")) OBJ_DESCR(objects[i]) = "oy botinkalari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cuddle cloth boots")) OBJ_DESCR(objects[i]) = "mato etiklari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "garden slippers")) OBJ_DESCR(objects[i]) = "bog 'terliklari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dyke boots")) OBJ_DESCR(objects[i]) = "dayk botinkalari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ankle strap sandals")) OBJ_DESCR(objects[i]) = "oyoq bilagi zo'r sandallar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gentleman shoes")) OBJ_DESCR(objects[i]) = "janob poyabzal";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "old brogues")) OBJ_DESCR(objects[i]) = "eski broglar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "opankes")) OBJ_DESCR(objects[i]) = "poshnasiz poyafzal";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "business shoes")) OBJ_DESCR(objects[i]) = "biznes poyafzallari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "comfortable sneakers")) OBJ_DESCR(objects[i]) = "qulay krossovkalar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "unisex sneakers")) OBJ_DESCR(objects[i]) = "bir jinsli krossovkalar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "copper cloak")) OBJ_DESCR(objects[i]) = "mis plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "plastic cloak")) OBJ_DESCR(objects[i]) = "sun'iy mato plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bubble cloak")) OBJ_DESCR(objects[i]) = "ko'pikli plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "meteosteel cloak")) OBJ_DESCR(objects[i]) = "meteorik po'latdir plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "antidotium cloak")) OBJ_DESCR(objects[i]) = "zaharga qarshi dori plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "meat helmet")) OBJ_DESCR(objects[i]) = "go'sht dubulg'asi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "order helmet")) OBJ_DESCR(objects[i]) = "buyurtma dubulg'asi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "very hard helmet")) OBJ_DESCR(objects[i]) = "juda qattiq dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "zebes helmet")) OBJ_DESCR(objects[i]) = "begona sayyora dubulg'asi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "meteosteel helmet")) OBJ_DESCR(objects[i]) = "meteorik po'latdir dubulg'asi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "flashy helmet")) OBJ_DESCR(objects[i]) = "fonarcha dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "foaming helmet")) OBJ_DESCR(objects[i]) = "ko'pikli dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "scrappy helmet")) OBJ_DESCR(objects[i]) = "qirilib ketgan dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "metal plate helmet")) OBJ_DESCR(objects[i]) = "metall plastinka zarbdan";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "foamcloth cloak")) OBJ_DESCR(objects[i]) = "ko'pikli mato plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "trash cloak")) OBJ_DESCR(objects[i]) = "axlat plashi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "factory cloak")) OBJ_DESCR(objects[i]) = "fabrika plashi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "mysterious gloves")) OBJ_DESCR(objects[i]) = "sirli qo'lqop";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "waxy gloves")) OBJ_DESCR(objects[i]) = "mumsimon qo'lqoplar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "delicious gloves")) OBJ_DESCR(objects[i]) = "mazali qo'lqoplar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "lithified gloves")) OBJ_DESCR(objects[i]) = "litlashtirilgan qo'lqoplar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "copper gloves")) OBJ_DESCR(objects[i]) = "mis qo'lqop";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "platinum gloves")) OBJ_DESCR(objects[i]) = "platina qo'lqop";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "vitric gloves")) OBJ_DESCR(objects[i]) = "vitrik qo'lqoplar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gemmed gloves")) OBJ_DESCR(objects[i]) = "marvaridli qo'lqoplar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "elean gloves")) OBJ_DESCR(objects[i]) = "yapon elf qo'lqop";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "christian gloves")) OBJ_DESCR(objects[i]) = "nasroniy qo'lqoplari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "volcanic gloves")) OBJ_DESCR(objects[i]) = "vulkanik qo'lqoplar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "grome gloves")) OBJ_DESCR(objects[i]) = "ajoyib qo'lqoplar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "excavated gloves")) OBJ_DESCR(objects[i]) = "qazilgan qo'lqoplar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "heavenly gloves")) OBJ_DESCR(objects[i]) = "samoviy qo'lqoplar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "conundrum gloves")) OBJ_DESCR(objects[i]) = "jumboqli qo'lqoplar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "funny-colored gloves")) OBJ_DESCR(objects[i]) = "kulgili rangli qo'lqoplar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "meteosteel gloves")) OBJ_DESCR(objects[i]) = "meteostil qo'lqoplar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "antidotium gloves")) OBJ_DESCR(objects[i]) = "zaharga qarshi dori qo'lqoplari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "foam gloves")) OBJ_DESCR(objects[i]) = "ko'pikli qo'lqoplar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "scrap gloves")) OBJ_DESCR(objects[i]) = "hurda qo'lqop";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "alloy gloves")) OBJ_DESCR(objects[i]) = "qotishma qo'lqoplari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "demonologist boots")) OBJ_DESCR(objects[i]) = "demonolog etiklari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "generic high heels")) OBJ_DESCR(objects[i]) = "umumiy baland poshnalar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "failed shoes")) OBJ_DESCR(objects[i]) = "muvaffaqiyatsiz poyabzal";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "opera pumps")) OBJ_DESCR(objects[i]) = "opera nasoslari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "house slippers")) OBJ_DESCR(objects[i]) = "uy terliklari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "indoor shoes")) OBJ_DESCR(objects[i]) = "yopiq poyabzal";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wooden clogs")) OBJ_DESCR(objects[i]) = "yog'och tiqilib qoladi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "plastic sandals")) OBJ_DESCR(objects[i]) = "plastik sandallar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "flat-soled shoes")) OBJ_DESCR(objects[i]) = "yassi poyabzal";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "regular sneakers")) OBJ_DESCR(objects[i]) = "muntazam krossovkalar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "exceptional sneakers")) OBJ_DESCR(objects[i]) = "ajoyib krossovkalar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "elite sneakers")) OBJ_DESCR(objects[i]) = "elita krossovkalar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fur boots")) OBJ_DESCR(objects[i]) = "mo'ynali etiklar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cross-country boots")) OBJ_DESCR(objects[i]) = "kesib o'tuvchi joy; yo'lsizlik krossovkalar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "biker boots")) OBJ_DESCR(objects[i]) = "velosiped etiklari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "throwaway sandals")) OBJ_DESCR(objects[i]) = "tashlangan sandallar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cheap shoes")) OBJ_DESCR(objects[i]) = "arzon poyabzal";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "golden shoes")) OBJ_DESCR(objects[i]) = "oltin poyabzal";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "zero-drop shoes")) OBJ_DESCR(objects[i]) = "nol tomchi poyabzal";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "pope hat")) OBJ_DESCR(objects[i]) = "papa shapkasi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "corona mask")) OBJ_DESCR(objects[i]) = "korona niqobi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "petsense helmet")) OBJ_DESCR(objects[i]) = "uy hayvonlari hissi dubulg'asi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wetsuit")) OBJ_DESCR(objects[i]) = "suv kiyimi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "funeral shroud")) OBJ_DESCR(objects[i]) = "dafn kafan";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bleached robe")) OBJ_DESCR(objects[i]) = "oqartirilgan xalat";
 
 		/* todo area */
-
 
 	}
 	}
@@ -13793,6 +14505,16 @@ boolean new_game;	/* false => restoring an old game */
 	}
 #endif
 
+	if (!new_game && (u.uhp <= 0 && (!Upolyd || u.mh <= 0))) {
+
+		u.youaredead = 1;
+		You("were not healthy enough to survive restoration.");
+		killer_format = NO_KILLER_PREFIX;
+		killer = "restored the game while having no hit points left";
+		done(DIED);
+		u.youaredead = 0;
+	}
+
 	if (!new_game && issoviet) {
 
 		/* In Soviet Russia, modders simply assume that everything the Amy does is bullshit. They do not actually
@@ -13959,8 +14681,7 @@ boolean new_game;	/* false => restoring an old game */
 		u.hangupcheat = 0;
 		u.hangupparalysis = 0;
 #else
-		pline("You hanged up during your last session! As an anti-cheat measure, you're paralyzed for a few turns, and your act of hanging up is being tracked. Your dumplog file will show how many times you've hanged up and if your ascension dumplog shows 200 hangups, everyone will know what you've been up to... But as long as you didn't actually try to cheat, there will be no other consequences because I give you the benefit of the doubt (after all, your internet connection might just have died, and it would be unfair to penalize you for that).");
-		pline("But if I discover, by watching your ttyrec, that you were actually cheating, I can also recompile the game with the HANGUPPENALTY flag defined, and then you'll actually start getting severe penalties for every hangup. In really severe cases I might even put your username on a blacklist, meaning that specifically you would get penalties while others would not. So, better be a honest player and then I don't have to take such measures. Anyway, have fun playing!  --Amy");
+		pline("You hanged up during your last session! As an anti-cheat measure, you're paralyzed for a few turns, and your act of hanging up is being tracked. Your dumplog file will show how many times you've hanged up. --Amy");
 		if (multi >= 0) nomul(-(2 + u.hangupparalysis), "paralyzed by trying to hangup cheat", FALSE);
 		u.hangupcheat = 0;
 		u.hangupparalysis = 0;

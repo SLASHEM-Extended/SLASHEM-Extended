@@ -668,7 +668,7 @@ display_monster(x, y, mon, sightflags, worm_tail)
     if (!mon_mimic || sensed) {
 	int num;
 
-	if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) ) {
+	if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmf && uarmf->oartifact == ART_STAR_SOLES) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) ) {
 		show_glyph(x,y,cmap_to_glyph(S_grayglyph));
 		return;
 	}
@@ -765,7 +765,7 @@ display_monsterX(x, y, mon, sightflags, worm_tail)
     if (!mon_mimic || sensed) {
 	int num;
 
-	if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) ) {
+	if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmf && uarmf->oartifact == ART_STAR_SOLES) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) ) {
 		show_glyph(x,y,cmap_to_glyph(S_grayglyph));
 		return;
 	}
@@ -1040,6 +1040,9 @@ newsym(x,y)
 
     if (in_mklev) return;
 
+    if (program_state.done_hup)
+	return;
+
 	if (ManlerIsChasing && x == u.manlerx && y == u.manlery) {
 	show_glyph(x, y, GLYPH_MON_OFF + rn2(NUMMONS));
 	return;
@@ -1172,6 +1175,7 @@ newsym(x,y)
 		(Race_if(PM_CORTEX) && nolimbs(mon->data) ) ||
 		(uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
+		(uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME && (mon->data->geno & G_UNIQ)) ||
 		(Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible) ||
 		( (uarmh && itemhasappearance(uarmh, APP_INTERNET_HELMET) ) && mon->internetvisible) ||
 		(RngeInternetAccess && mon->internetvisible) ||
@@ -1183,6 +1187,7 @@ newsym(x,y)
 		(Burnopathy && Burned && infravision(mon->data) ) ||
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel) ||
 		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || mon->data->msound == MS_STENCH) ) ||
+		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mon->data->msound == MS_SHOE) ||
 		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || mon->data->msound == MS_SOUND || mon->data->msound == MS_SHRIEK || mon->data->msound == MS_FART_NORMAL || mon->data->msound == MS_FART_LOUD || mon->data->msound == MS_FART_QUIET ) ) ||
 		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
 		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
@@ -1194,10 +1199,15 @@ newsym(x,y)
 		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
 		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) ||
+		(uamul && uamul->otyp == AMULET_OF_PET_VIEW && mon->mtame) ||
+		(uarmh && itemhasappearance(uarmh, APP_PETSENSE_HELMET) && mon->mtame) ||
+		(uarmf && uarmf->oartifact == ART_SNAILHUNT && (mon->data->mlet == S_BLOB || mon->data->mlet == S_WORM) ) ||
+		(uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mon->data->mlet == S_ZOUTHERN || mon->data->mlet == S_YETI) ) ||
 		(uwep && uwep->oartifact == ART_EGRID_BUG && mon->data->mlet == S_XAN) ||
 		(uwep && uwep->oartifact == ART_FUYER_BREV && mon->data->mlet == S_FUNGUS) ||
 		(uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) ||
 		(uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) ||
+		(uarmh && uarmh->oartifact == ART_DOGGO_FRIENDSHIP && mon->data->mlet == S_DOG) ||
 		(uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mon->data->mlet == S_NYMPH) ) ||
 		(uwep && uwep->oartifact == ART_FISHING_GRANDPA && mon->data->mlet == S_EEL) ||
 		(uwep && uwep->oartifact == ART_PEOPLE_EATING_TRIDENT && mon->data->mlet == S_HUMAN) ||
@@ -1263,6 +1273,7 @@ newsym(x,y)
 		(Race_if(PM_CORTEX) && unsolid(mon->data) ) ||
 		(Race_if(PM_CORTEX) && nolimbs(mon->data) ) ||
 		(ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
+		(uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME && (mon->data->geno & G_UNIQ)) ||
 		(uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible) ||
 		( (uarmh && itemhasappearance(uarmh, APP_INTERNET_HELMET) ) && mon->internetvisible) ||
@@ -1275,6 +1286,7 @@ newsym(x,y)
 		(Burnopathy && Burned && infravision(mon->data) ) ||
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel) ||
 		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || mon->data->msound == MS_STENCH) ) ||
+		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mon->data->msound == MS_SHOE) ||
 		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || mon->data->msound == MS_SOUND || mon->data->msound == MS_SHRIEK || mon->data->msound == MS_FART_NORMAL || mon->data->msound == MS_FART_LOUD || mon->data->msound == MS_FART_QUIET ) ) ||
 		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
 		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
@@ -1286,10 +1298,15 @@ newsym(x,y)
 		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
 		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) ||
+		(uamul && uamul->otyp == AMULET_OF_PET_VIEW && mon->mtame) ||
+		(uarmh && itemhasappearance(uarmh, APP_PETSENSE_HELMET) && mon->mtame) ||
+		(uarmf && uarmf->oartifact == ART_SNAILHUNT && (mon->data->mlet == S_BLOB || mon->data->mlet == S_WORM) ) ||
+		(uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mon->data->mlet == S_ZOUTHERN || mon->data->mlet == S_YETI) ) ||
 		(uwep && uwep->oartifact == ART_EGRID_BUG && mon->data->mlet == S_XAN) ||
 		(uwep && uwep->oartifact == ART_FUYER_BREV && mon->data->mlet == S_FUNGUS) ||
 		(uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) ||
 		(uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) ||
+		(uarmh && uarmh->oartifact == ART_DOGGO_FRIENDSHIP && mon->data->mlet == S_DOG) ||
 		(uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mon->data->mlet == S_NYMPH) ) ||
 		(uwep && uwep->oartifact == ART_FISHING_GRANDPA && mon->data->mlet == S_EEL) ||
 		(uwep && uwep->oartifact == ART_PEOPLE_EATING_TRIDENT && mon->data->mlet == S_HUMAN) ||
@@ -1376,6 +1393,9 @@ newsymX(x,y)
     register xchar worm_tail;
 
     if (in_mklev) return;
+
+    if (program_state.done_hup)
+	return;
 
 	if (ManlerIsChasing && x == u.manlerx && y == u.manlery) {
 	show_glyph(x, y, GLYPH_MON_OFF + rn2(NUMMONS));
@@ -1509,6 +1529,7 @@ newsymX(x,y)
 		(Race_if(PM_CORTEX) && nolimbs(mon->data) ) ||
 		(uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
+		(uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME && (mon->data->geno & G_UNIQ)) ||
 		(Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible) ||
 		( (uarmh && itemhasappearance(uarmh, APP_INTERNET_HELMET) ) && mon->internetvisible) ||
 		(RngeInternetAccess && mon->internetvisible) ||
@@ -1520,6 +1541,7 @@ newsymX(x,y)
 		(Burnopathy && Burned && infravision(mon->data) ) ||
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel) ||
 		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || mon->data->msound == MS_STENCH) ) ||
+		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mon->data->msound == MS_SHOE) ||
 		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || mon->data->msound == MS_SOUND || mon->data->msound == MS_SHRIEK || mon->data->msound == MS_FART_NORMAL || mon->data->msound == MS_FART_LOUD || mon->data->msound == MS_FART_QUIET ) ) ||
 		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
 		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
@@ -1531,10 +1553,15 @@ newsymX(x,y)
 		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
 		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) ||
+		(uamul && uamul->otyp == AMULET_OF_PET_VIEW && mon->mtame) ||
+		(uarmh && itemhasappearance(uarmh, APP_PETSENSE_HELMET) && mon->mtame) ||
+		(uarmf && uarmf->oartifact == ART_SNAILHUNT && (mon->data->mlet == S_BLOB || mon->data->mlet == S_WORM) ) ||
+		(uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mon->data->mlet == S_ZOUTHERN || mon->data->mlet == S_YETI) ) ||
 		(uwep && uwep->oartifact == ART_EGRID_BUG && mon->data->mlet == S_XAN) ||
 		(uwep && uwep->oartifact == ART_FUYER_BREV && mon->data->mlet == S_FUNGUS) ||
 		(uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) ||
 		(uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) ||
+		(uarmh && uarmh->oartifact == ART_DOGGO_FRIENDSHIP && mon->data->mlet == S_DOG) ||
 		(uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mon->data->mlet == S_NYMPH) ) ||
 		(uwep && uwep->oartifact == ART_FISHING_GRANDPA && mon->data->mlet == S_EEL) ||
 		(uwep && uwep->oartifact == ART_PEOPLE_EATING_TRIDENT && mon->data->mlet == S_HUMAN) ||
@@ -1600,6 +1627,7 @@ newsymX(x,y)
 		(Race_if(PM_CORTEX) && unsolid(mon->data) ) ||
 		(Race_if(PM_CORTEX) && nolimbs(mon->data) ) ||
 		(ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
+		(uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME && (mon->data->geno & G_UNIQ)) ||
 		(uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible) ||
 		( (uarmh && itemhasappearance(uarmh, APP_INTERNET_HELMET) ) && mon->internetvisible) ||
@@ -1612,6 +1640,7 @@ newsymX(x,y)
 		(Burnopathy && Burned && infravision(mon->data) ) ||
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel) ||
 		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || mon->data->msound == MS_STENCH) ) ||
+		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mon->data->msound == MS_SHOE) ||
 		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || mon->data->msound == MS_SOUND || mon->data->msound == MS_SHRIEK || mon->data->msound == MS_FART_NORMAL || mon->data->msound == MS_FART_LOUD || mon->data->msound == MS_FART_QUIET ) ) ||
 		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
 		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
@@ -1623,10 +1652,15 @@ newsymX(x,y)
 		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
 		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) ||
+		(uamul && uamul->otyp == AMULET_OF_PET_VIEW && mon->mtame) ||
+		(uarmh && itemhasappearance(uarmh, APP_PETSENSE_HELMET) && mon->mtame) ||
+		(uarmf && uarmf->oartifact == ART_SNAILHUNT && (mon->data->mlet == S_BLOB || mon->data->mlet == S_WORM) ) ||
+		(uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mon->data->mlet == S_ZOUTHERN || mon->data->mlet == S_YETI) ) ||
 		(uwep && uwep->oartifact == ART_EGRID_BUG && mon->data->mlet == S_XAN) ||
 		(uwep && uwep->oartifact == ART_FUYER_BREV && mon->data->mlet == S_FUNGUS) ||
 		(uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) ||
 		(uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) ||
+		(uarmh && uarmh->oartifact == ART_DOGGO_FRIENDSHIP && mon->data->mlet == S_DOG) ||
 		(uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mon->data->mlet == S_NYMPH) ) ||
 		(uwep && uwep->oartifact == ART_FISHING_GRANDPA && mon->data->mlet == S_EEL) ||
 		(uwep && uwep->oartifact == ART_PEOPLE_EATING_TRIDENT && mon->data->mlet == S_HUMAN) ||
@@ -2568,6 +2602,8 @@ flush_screen(cursor_on_u)
     if (delay_flushing) return;
     if (flushing) return;	/* if already flushing then return */
     flushing = 1;
+    if (program_state.done_hup)
+	return;
 
     for (y = 0; y < ROWNO; y++) {
 	register gbuf_entry *gptr = &gbuf[y][x = gbuf_start[y]];
@@ -3498,6 +3534,7 @@ struct monst *mon;
 	if (uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) return TRUE;
 	if (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) return TRUE;
 	if (ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) return TRUE;
+	if (uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME && (mon->data->geno & G_UNIQ)) return TRUE;
 	if ((uarmh && itemhasappearance(uarmh, APP_INTERNET_HELMET) ) && mon->internetvisible) return TRUE;
 	if (RngeInternetAccess && mon->internetvisible) return TRUE;
 	if (uarmh && uarmh->oartifact == ART_WEB_RADIO && mon->internetvisible) return TRUE;
@@ -3506,6 +3543,7 @@ struct monst *mon;
 	if (Sickopathy && Sick && extra_nasty(mon->data) ) return TRUE;
 	if (Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE ) return TRUE;
 	if (ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || mon->data->msound == MS_STENCH) ) return TRUE;
+	if (uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mon->data->msound == MS_SHOE) return TRUE;
 	if (EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || mon->data->msound == MS_SOUND || mon->data->msound == MS_SHRIEK || mon->data->msound == MS_FART_NORMAL || mon->data->msound == MS_FART_LOUD || mon->data->msound == MS_FART_QUIET ) ) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) return TRUE;
 	if (Burnopathy && Burned && infravision(mon->data) ) return TRUE;
@@ -3521,9 +3559,14 @@ struct monst *mon;
 	if (uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) return TRUE;
 	if (uwep && uwep->oartifact == ART_EGRID_BUG && mon->data->mlet == S_XAN) return TRUE;
 	if (uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) return TRUE;
+	if (uamul && uamul->otyp == AMULET_OF_PET_VIEW && mon->mtame) return TRUE;
+	if (uarmh && itemhasappearance(uarmh, APP_PETSENSE_HELMET) && mon->mtame) return TRUE;
+	if (uarmf && uarmf->oartifact == ART_SNAILHUNT && (mon->data->mlet == S_BLOB || mon->data->mlet == S_WORM) ) return TRUE;
+	if (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mon->data->mlet == S_ZOUTHERN || mon->data->mlet == S_YETI) ) return TRUE;
 	if (uwep && uwep->oartifact == ART_FUYER_BREV && mon->data->mlet == S_FUNGUS) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) return TRUE;
+	if (uarmh && uarmh->oartifact == ART_DOGGO_FRIENDSHIP && mon->data->mlet == S_DOG) return TRUE;
 	if (uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mon->data->mlet == S_NYMPH) ) return TRUE;
 	if (uwep && uwep->oartifact == ART_FISHING_GRANDPA && mon->data->mlet == S_EEL) return TRUE;
 	if (uwep && uwep->oartifact == ART_PEOPLE_EATING_TRIDENT && mon->data->mlet == S_HUMAN) return TRUE;

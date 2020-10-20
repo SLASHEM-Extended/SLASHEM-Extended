@@ -55,6 +55,7 @@ int rmtyp;
 #endif
 
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
+static const char allnoncount[] = { ALL_CLASSES, 0 };
 
 void
 dosounds()
@@ -605,6 +606,8 @@ dosounds()
 			"hear water dripping onto metal.",
 			"hear a loud crunching sound.",
 			"hear a ceiling tile fall.",
+			"the scraping of metal on metal.",
+			"chains clinking.",
 			"smell a lot of rust.",
 			"hear a gun clank.",
 			"hear iron oxidize.",
@@ -613,8 +616,9 @@ dosounds()
 			"hear the sound of a toilet latch.",
 			"wonder why the hell this set of messages is called 'library_msg' in the game's source.",
 			"feel that parts of the floor have been washed away.",
+			"the nearby ACME building!",
 		};
-		You("%s", library_msg[rn2(5)+hallu*6]);
+		You("%s", library_msg[rn2(7)+hallu*7]);
 		return;
 	    }
 
@@ -1772,7 +1776,7 @@ register struct monst *mtmp;
     else if (mtmp->data->msound >= MS_HUMANOID) {
 	if (!canspotmon(mtmp))
 	    map_invisible(mtmp->mx, mtmp->my);
-	verbalize("I'm hungry.");
+	(void) domonnoise(mtmp); /* "I'm hungry" for MS_HUMANOID but different for others --Amy */
 }
 }
 
@@ -2484,6 +2488,10 @@ register struct monst *mtmp;
 
 					if (rn2(10) && uarmh && itemhasappearance(uarmh, APP_GAS_MASK) ) {
 						pline("But the gas mask protects you from the effects.");
+					} else if (rn2(5) && uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL) {
+						pline("But you actually enjoy the lovely scent.");
+					} else if (rn2(20) && uwep && uwep->oartifact == ART_HIGH_ORIENTAL_PRAISE) {
+						pline("But you actually enjoy the lovely scent.");
 					} else {
 						badeffect();
 						if (rn2(2)) increasesanity(rnz(20 + mtmp->m_lev));
@@ -2521,6 +2529,10 @@ register struct monst *mtmp;
 
 			if (rn2(10) && uarmh && itemhasappearance(uarmh, APP_GAS_MASK) ) {
 				pline("But the gas mask protects you from the effects.");
+			} else if (rn2(5) && uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL) {
+				pline("But you actually enjoy the lovely scent.");
+			} else if (rn2(20) && uwep && uwep->oartifact == ART_HIGH_ORIENTAL_PRAISE) {
+				pline("But you actually enjoy the lovely scent.");
 			} else {
 				badeffect();
 				if (rn2(2)) increasesanity(rnz(20 + mtmp->m_lev));
@@ -3072,7 +3084,7 @@ register struct monst *mtmp;
 			menu_item *selected;
 			int n;
 
-			if (!mtmp->nurse_extrahealth && !mtmp->nurse_decontaminate && !mtmp->nurse_healing && !mtmp->nurse_curesickness && !mtmp->nurse_curesliming && !mtmp->nurse_curesanity && !mtmp->nurse_medicalsupplies && !mtmp->nurse_purchasedrugs && !mtmp->nurse_obtainsymbiote && !mtmp->nurse_fixsymbiote && !mtmp->nurse_shutdownsymbiote) {
+			if (!mtmp->nurse_extrahealth && !mtmp->nurse_decontaminate && !mtmp->nurse_healing && !mtmp->nurse_curesickness && !mtmp->nurse_curesliming && !mtmp->nurse_curesanity && !mtmp->nurse_medicalsupplies && !mtmp->nurse_purchasedrugs && !mtmp->nurse_obtainsymbiote && !mtmp->nurse_fixsymbiote && !mtmp->nurse_shutdownsymbiote && !mtmp->nurse_restoration) {
 				verbalize("Sorry. I'm all out of services.");
 				goto noservices;
 			}
@@ -3102,6 +3114,8 @@ register struct monst *mtmp;
 			if (mtmp->nurse_fixsymbiote) add_menu(tmpwin, NO_GLYPH, &any , 'f', 0, ATR_NONE, "Fix Symbiote", MENU_UNSELECTED);
 			any.a_int = 11;
 			if (mtmp->nurse_shutdownsymbiote) add_menu(tmpwin, NO_GLYPH, &any , 's', 0, ATR_NONE, "Shutdown Symbiote", MENU_UNSELECTED);
+			any.a_int = 12;
+			if (mtmp->nurse_restoration) add_menu(tmpwin, NO_GLYPH, &any , 'r', 0, ATR_NONE, "Restoration", MENU_UNSELECTED);
 
 			end_menu(tmpwin, "Services Available:");
 			n = select_menu(tmpwin, PICK_ONE, &selected);
@@ -3118,6 +3132,7 @@ register struct monst *mtmp;
 								u.ugold -= nursehpcost;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
+								maybegaincha();
 								if (!Upolyd) u.uhpmax++;
 								else u.mhmax++;
 								use_skill(P_SQUEAKING, 1);
@@ -3141,6 +3156,7 @@ register struct monst *mtmp;
 								u.ugold -= nursedecontcost;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
+								maybegaincha();
 								decontaminate(u.contamination);
 								pline("Now you don't have the %d gold pieces any longer.", nursedecontcost);
 								if (FunnyHallu) pline("You offer a 'thank you' to Captain Obvious.");
@@ -3166,6 +3182,7 @@ register struct monst *mtmp;
 								u.ugold -= 500;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
+								maybegaincha();
 								u.uhp += 50;
 								if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 								if (Upolyd) {
@@ -3190,6 +3207,7 @@ register struct monst *mtmp;
 								u.ugold -= 5000;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
+								maybegaincha();
 								You_feel("better.");
 								make_sick(0L, (char *) 0, FALSE, SICK_ALL);
 								break;
@@ -3210,6 +3228,7 @@ register struct monst *mtmp;
 								u.ugold -= 10000;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
+								maybegaincha();
 								FunnyHallu ? pline("The rancid goo is gone! Yay!") : pline_The("slime disappears.");
 								Slimed = 0;
 								flags.botl = 1;
@@ -3228,6 +3247,7 @@ register struct monst *mtmp;
 								u.ugold -= nursesanitycost;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
+								maybegaincha();
 								reducesanity(u.usanity);
 								break;
 							}
@@ -3243,6 +3263,7 @@ register struct monst *mtmp;
 								if (!rn2(10)) mtmp->nurse_medicalsupplies = 0;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
+								maybegaincha();
 								struct obj *medkit;
 								medkit = mksobj(MEDICAL_KIT, TRUE, FALSE, FALSE);
 								verbalize(medkit ? "A pleasure doing business with you. The medical kit is waiting on the ground below you." : "Whoops. It seems that I don't have supplies for you right now, but for technical reasons I can't give you a refund. Sorry.");
@@ -3265,6 +3286,7 @@ register struct monst *mtmp;
 								if (!rn2(20)) mtmp->nurse_purchasedrugs = 0;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
+								maybegaincha();
 								struct obj *medkit;
 								medkit = mksobj(rn2(2) ? MUSHROOM : PILL, TRUE, FALSE, FALSE);
 								verbalize(medkit ? "Here, your stuff is on the ground. Have fun, but remember: if you call the cops, I'll send my assassins after you!" : "Oh, sorry, I don't have anything for you... but thanks for the money, sucker!");
@@ -3300,6 +3322,7 @@ register struct monst *mtmp;
 								u.ugold -= nursesymbiotecost;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
+								maybegaincha();
 								getrandomsymbiote(FALSE);
 
 								u.nursesymbiotecost += 5000;
@@ -3339,6 +3362,7 @@ register struct monst *mtmp;
 								u.ugold -= symhealcost;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
+								maybegaincha();
 								uncursesymbiote(TRUE);
 								u.usymbiote.mhp = u.usymbiote.mhpmax;
 								if (flags.showsymbiotehp) flags.botl = TRUE;
@@ -3371,6 +3395,7 @@ register struct monst *mtmp;
 								u.ugold -= nurseshutdowncost;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
+								maybegaincha();
 								use_skill(P_SQUEAKING, 3);
 								u.shutdowntime = 1000;
 
@@ -3378,6 +3403,33 @@ register struct monst *mtmp;
 								if (u.nurseshutdowncost < 1000) u.nurseshutdowncost = 1000; /* fail safe */
 								if (flags.showsymbiotehp) flags.botl = TRUE;
 								break;
+							}
+						}
+
+						break;
+					case 12:
+						if (u.ugold < 2500) {
+							verbalize("Sorry, restoration costs 2500 dollars.");
+							break;
+						}
+						if (u.ulevel < 4) {
+							verbalize("Sorry. You are too frail and inexperienced, and would probably not survive this procedure. Come back when you have gained a few experience levels.");
+							break;
+						}
+						if (issoviet) {
+							verbalize("Otvali! V Sovetskoy Rossli zdorov'ye istoshchayet VAS!");
+							break;
+						}
+						if (u.ugold >= 2500) {
+							verbalize("Restoration is used to fix low HP and Pw maximum values. Generally, this is the case if your maximum is less than ten times your experience level, although for some roles and races the ceiling values may be different. If you give me 2500 dollars, I can give it a try but be warned: if your maximum values are too high, you won't get your money back.");
+							if (yn("Accept the offer?") == 'y') {
+								verbalize("Okay, hold still while I puncture you with this long, pointy needle...");
+								u.ugold -= 2500;
+								if (!rn2(10)) mtmp->nurse_restoration = 0;
+								if (u.ualign.type == A_NEUTRAL) adjalign(1);
+								u.cnd_nurseserviceamount++;
+								maybegaincha();
+								upnivel(TRUE); /* guaranteed */
 							}
 						}
 
@@ -3759,6 +3811,26 @@ noservices:
 		}
 		break;
 
+	case MS_BOSS:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "What? It's impossible that they are beating me, I'm the boss of this game after all!";
+			if (Sick) verbl_msg = "I might be running low on health, but unlike you, at least my nose isn't running all the time!";
+			break;
+		}
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/5) {
+			verbl_msg = "Argh, my spaceship is falling apart! Quick, someone needs to repair it!";
+			break;
+		}
+		if (mtmp->mtame && !mtmp->isminion && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Dude, get me something to eat! Now! You have 50 turns or you're fired.";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Yes, my pet, we're in this together. I'm the boss, you just need to follow my lead and we'll finish off our enemies.";
+			break;
+		}
+		break;
+
 	case MS_SMITH:
 		/* this assumes that it's Duri, however actually there's also other monsters using this... --Amy
 		 * you can only request services at his forge, but other monsters can bring you the artifacts */
@@ -3870,7 +3942,7 @@ noservices:
 							break;
 						}
 						struct obj *repairobj;
-						repairobj = getobj(all_count, "repair");
+						repairobj = getobj(allnoncount, "repair");
 						if (!repairobj) break;
 						if (repairobj) {
 							if (!(repairobj->oeroded) && !(repairobj->oeroded2)) {
@@ -3894,7 +3966,7 @@ noservices:
 							break;
 						}
 						struct obj *proofobj;
-						proofobj = getobj(all_count, "erosionproof");
+						proofobj = getobj(allnoncount, "erosionproof");
 						if (!proofobj) break;
 						if (proofobj) {
 							if (proofobj->oerodeproof) {
@@ -4459,6 +4531,28 @@ const char* msg;
 }
 
 #endif /* USER_SOUNDS */
+
+void
+maybegaincha()
+{
+	if (ABASE(A_CHA) < 10) {
+		int chachance = 100;
+		switch (ABASE(A_CHA)) {
+			case 4: chachance = 150; break;
+			case 5: chachance = 200; break;
+			case 6: chachance = 250; break;
+			case 7: chachance = 300; break;
+			case 8: chachance = 350; break;
+			case 9: chachance = 400; break;
+			default: {
+				if (ABASE(A_CHA) < 4) chachance = 100;
+				else chachance = 500;
+				break;
+			}
+		}
+		if (!rn2(chachance)) (void) adjattrib(A_CHA, 1, FALSE, TRUE);
+	}
+}
 
 #endif /* OVLB */
 

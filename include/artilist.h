@@ -6815,6 +6815,246 @@ A("Common Shotter",				SLING_AMMO,
 	(SPFX_RESTR), 0, 0,
 	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
 
+A("Jarmen Cheatertype Kell",				BLUE_BOW, /* invis when wielded */
+	(SPFX_RESTR|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 6000L ),
+
+A("Elvin's Press",				AIR_PRESSURE_HAMMER, /* 1 in 100 chance when hitting something with it that you trigger d3 turns of time stop */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Tubhackor",				BUBBLEHORN,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Sorc Tendency",				EAGLE_BALL,
+	(SPFX_RESTR|SPFX_EREGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Poison Burst",				QATAR, /* always poisoned, resist poison when wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Acceleration Claw",				LOWER_ARM_BLADE, /* speed when wielded */
+	(SPFX_RESTR), 0, 0,
+	PHYS(8, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Ironbox",				CESTUS,
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Camohameha",				CAMO_QATAR, /* double damage and +5 range for kamehameha tech when wielded */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Ubergage",				FIELD_PLATE, /* +4 AC and +3 STR */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Garyx",				CONTRO_DRAGON_SCALE_MAIL, /* +1 all stats when worn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Hitec Neo",				CLOAK_OF_EXPERIENCE, /* technicality */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Floatover",				PASSTHROUGH_BOOTS, /* flying */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("People Coat",				GIANT_SEA_ANEMONE, /* +5 AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Away-Hamm Armor",				BARNACLE_ARMOR, /* 1 in 1000 chance that a monster attacking you in melee takes d100 damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Susanne's Headsmasher",				MARBLE_CHUNK,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Iron Ball of Ball Ironing",				HEAVY_IRON_BALL,
+	(SPFX_RESTR|SPFX_DFLAG2), 0, M2_MALE,
+	FIRE(5, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Gary's Rivalry",				CONTRO_STAFF, /* player can walk over farmland, magical breathing, items don't get wet, +2 increase damage when wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 8000L ),
+
+A("Sunscreen",				LONG_SWORD, /* blindness resistance, emits light */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Real Life Effector",				RIN_MOOD, /* 1 in 2000 chance to spawn a MS_SUPERMAN somewhere on the level */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Avada Porkavra",				WAN_DEATH, /* fires death rays in all directions but also loses d8 charges every time */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Blue Shirt of Death",				FOAM_SHIRT, /* hyperbluewalls, death ray resistance */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Redwood Stinker",				CIGARETTE, /* 1 in 1000 chance of creating a stinking cloud */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20L ),
+
+A("Peeplue",				ELECTRIC_CIGARETTE, /* +2 kick damage and player cannot be engulfed; if under the effect of a juen trap, free action */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Natalia's Mark",				BELL_CLAWS, /* very fast speed */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(20, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 12000L ),
+
+A("Suntinopener",				TIN_OPENER, /* emits light */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Sunrubberhose",				RUBBER_HOSE, /* emits light */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Neutron Star",				BUBBLETAR,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("The Staff of Necromancy",				FOAMY_STAFF, /* curse resistance when wielded */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+	DRLI(0, 0), DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Nude And Free",				PETA_COMPLIANT_SHIRT, /* free action if you're not wearing a suit */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Ziratha's Iron Sights",				SNIPER_RIFLE, /* increased vision, infravision */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Piece of Sky",				EAGLE_BALL,
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Drama Staff",				JARED_STONE, /* conflict, farlook bug, hostility, wakeup call */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Save Your Run",				LIGHTBULB,
+	(SPFX_RESTR|SPFX_REGEN|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("What You Really Needed",				LIGHTBULB,
+	(SPFX_RESTR|SPFX_EREGEN), 0, 0,
+	PHYS(2, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Frozen Orb",				HEATH_BALL,
+	(SPFX_RESTR|SPFX_DEFN|SPFX_ATTK), 0, 0,
+	COLD(0, 16), DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Clever Cleaver",				GRINDER,
+	(SPFX_RESTR), 0, 0,
+	PHYS(3,6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Jinada",				LOWER_ARM_BLADE,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Counterstrike Cestus",				CESTUS, /* resist shock, control magic, discount action */
+	(SPFX_RESTR), 0, 0,
+	PHYS(10, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Norse Mithril",				METEORIC_STEEL_SHIELD, /* +5 AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Compliant Armor",				OSFA_CHAIN_MAIL,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Rishrash Saw",				VARIED_GRINDER,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Wrong Turn",				ROBE_OF_DEATH_RESISTANCE, /* heavily autocurses, putting it on turns you into an undead creature and it doesn't fall off if you become something too big */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Hellpit Flame",				INFERNAL_AXE,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Straight Outta Coding Hell",				INFERNAL_BARDICHE,
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Weight Anchor",				INFERNAL_ANCUS, /* +200 weight */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Sharpening Slat",				FLINDBAR, /* if you hit something and it's negatively enchanted, 1 in 100 chance of repairing one point of enchantment */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Dolores's Sadism",				CROW_QUILL, /* diminished bleeding */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DRLI), 0, 0,
+	DRLI(0, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Covetor Saber",				RAKUYO, /* teleportitis */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Greenlings Lash",				VIPERWHIP, /* deals poison damage like dirge */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Valensina's Blade",				VICTIM_KNIFE,
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Meager Curd",				CUDSWORD,
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Big Smoke's Murder Car",				GREEN_SABER, /* very fast speed */
+	(SPFX_RESTR|SPFX_BEHEAD), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Brass Cup",				METAL_STAR,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	PHYS(0, 4), DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Shrinekeeper",				CELESTIAL_POLE,
+	(SPFX_RESTR|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1600L ),
+
+A("War Declaration",				ZEBES_POLE, /* deals poison damage like dirge */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Why Always Conundrum",				CRYPTIC_POLE, /* wielding it sets it to a random material if it was conundrum */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Foamonia Water",				SHOOMDENT, /* magical breathing, swimming, items don't get wet */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Falling Perseis",				HEAVY_METEORIC_BALL,
+	(SPFX_RESTR|SPFX_LUCK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Latchstack",				HEAVY_BUBBLE_BALL, /* player cannot be grabbed by AD_STCK and similar */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("High Oriental Praise",				FOAM_CHAIN, /* 95% chance to resist MS_STENCH, unbreathing, +3 CHA */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
 A("Bowser's Fun Arena",				ORCISH_CLOAK, /* initialized to always be volcanic cloak, protects your items from fire */
 	(SPFX_RESTR|SPFX_DEFN), 0, 0,
 	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
@@ -6914,6 +7154,458 @@ A("Porkman's Balls of Steel",				HEAVY_SILVER_BALL, /* silver spells, you take e
 A("Overrated Face Protection",				CORONA_DRAGON_SCALE_MAIL, /* resist fear, weak sight */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
+
+A("Carmark",				LOW_BOOTS, /* initialized to always be business shoes, -5 CHA, very fast speed, shopkeepers charge you double the price */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Anita's Rashlust",				LOW_BOOTS, /* initialized to always be filigree stilettos, resist disintegration and death rays, diminished bleeding */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Jonadab's Everyday Wear",				LOW_BOOTS, /* initialized to always be ugly boots, 5% better spellcasting chances */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Amateursports",				LOW_BOOTS, /* initialized to always be unisex pumps, very fast speed, +3 DEX */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Ronja's Female Pushing",				LOW_BOOTS, /* initialized to always be cuddle cloth boots, death resistance, kick should push monsters back more often */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Snailhunt",				LOW_BOOTS, /* initialized to always be garden slippers, displays all 'b' and 'w', +1 increase damage, swimming */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Antje's Powerstride",				LOW_BOOTS, /* initialized to always be dyke boots, resist cold, death and disintegration, +10 STR, -5 CHA, makes you thick-skinned and too big to fit through diagonal passages */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Nadine's Cuteness",				LOW_BOOTS, /* initialized to always be ankle strap sandals, discount action, death resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Beautyqueak",				FEMMY_STILETTO_BOOTS, /* 1 in 10000 per turn to spawn a tame MS_FART_NORMAL, full nutrients */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Little But Robust",				MADELEINE_PLATEAU_BOOTS, /* disintegration resistance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Everything Is Green",				MARLENA_HIKING_BOOTS, /* poison and acid resistance, can walk through trees */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Endless Deseaming",				ANASTASIA_DANCING_SHOES, /* can #monster to repair them, resist cold, fire and shock, stun resistance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Far East Relation",				JESSICA_LADY_SHOES, /* resist cold, swimming, unbreathing, -3 STR and CON, fear factor */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Camelic Scent",				SOLVEJG_MOCASSINS, /* scent view, displays all 'z' and 'Y', +7 CHA, wakeup call effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Airship Dancing",				WENDY_LEATHER_PUMPS, /* resist psi, jumping, +5 CHA, +2 kicking damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Deep Sigh",				KATHARINA_PLATFORM_BOOTS, /* resist cold and disintegration, +5 CHA */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Final Challenge",				ELENA_COMBAT_BOOTS, /* resist disintegration and death, +10 CHA, kicking a male monster has 1 in 5 chance to paralyze it for 1d5 turns, can always resist taking off stuff when seduced by a male AD_SSEX */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Little Bitch is ructious",				THAI_COMBAT_BOOTS, /* resist death and fear, +3 kicking damage */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Hit Their Hands",				ELIF_SNEAKERS, /* glib combat, resist cold, manaleech */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Totally The Sexy Bitch",				NADJA_BUCKLED_LADY_SHOES, /* resist sleep, +5 CHA, monsters always spawn hostile, free action */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Thick Farting Girl",				SANDRA_COMBAT_BOOTS, /* resist sleep, petrification and acid, makes you thick-skinned, you have to fart every once in a while */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Crashing Your Sister's Wedding",				NATALJE_BLOCK_HEEL_SANDALS, /* resist psi and confusion, discount action, +2 increase damage, -5 increase accuracy, control magic */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 15000L ),
+
+A("Star Soles",				JEANETTA_GIRL_BOOTS, /* starlight sky trap effect, wonderlegs, monsters need a +1 weapon to hit you effectively, -2 all stats */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("What A Cuddly Color",				YVONNE_GIRL_SNEAKERS, /* resist cold, petrification and shock */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Strong Getaway Desire",				MAURAH_HUGGING_BOOTS, /* levelteleportitis, monsters with AD_WEEP have +20 spawn freq, resist petrification */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Wild Sex Game",				MELTEM_COMBAT_BOOTS, /* resist disintegration, disables half physical damage, +2 kicking damage, drunken boxing */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("First Place Guaranteed",				SARAH_HUGGING_BOOTS, /* very fast speed plus extra speed on top of that, resist shock */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Rubber Love",				CLAUDIA_WOODEN_SANDALS, /* you don't fall into water or lava, resist stun */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Find The Secret Course",				LUDGERA_HIKING_BOOTS, /* magic resistance */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_SEEK|SPFX_SEARCH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("That's Super Unfair",				KATI_GIRL_BOOTS, /* resist petrification, replicates anastasia trap effect, can #monster to repair them */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Final Exam Time",				NELLY_LADY_PUMPS, /* resist disintegration and cold, displays all G_UNIQ, dimness and dimmopathy */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Everywhere At Once",				EVELINE_WEDGE_SANDALS, /* no slowness from walking on sand, no noise on paved floor, resist petrification and acid, +3 DEX, aggravate monster */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_TCTRL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Too Much Bravery",				KARIN_LADY_SANDALS, /* resist fear, cold and petrification, disables stealth, pethate trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Shin Kicking Game",				JUEN_PEEP_TOES, /* +5 kicking damage, but if a female monster kicks you, you're paralyzed for one more turn; death resistance */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Bitchsmoke",				KRISTINA_PLATFORM_SNEAKERS, /* resist fire, burnopathy, aggravate monster */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Wasteful Player",				LOU_SNEAKERS, /* 1 in 1000 chance per turn that your items are randomly withered, but the shoes themselves cannot be hit by that effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Don't Fall Into The Abyss",				ALMUT_SNEAKERS, /* flying, glib combat, resist cold, 10% improved spellcasting chances, disables resist fear and gives fear status */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Ouu-eech",				JULIETTA_PEEP_TOES, /* you sometimes crash into the floor regardless of skill, +10 CHA */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Arabella's Girl Kick",				ARABELLA_HUGGING_BOOTS, /* resist petrification, sleep and psi, free action, control magic, versus curses, diminished bleeding, +5 CHA, bad part, cursed parts, brown spells, soiltype effect, autopilot */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM|SPFX_HSPDAM|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Grasshopper's Antidote",				BOOTS_OF_SHOCK_RESISTANCE, /* poison resistance */
+	(SPFX_RESTR|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Stroking Combat",				SKILL_CAP, /* searching can create traps, +2 kick damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Doggo Friendship",				BOBBLE_HAT, /* displays all 'd' and they have 90% chance of spawning peaceful, 10% of peacefully generated ones spawn tame */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Asuka's Torture Instrument",				MASSAGER,
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Swimchamp",				FISH_SCALE_MAIL, /* prevents items from getting wet */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Sweet Victoria",				FLEECY_CORSET, /* +3 CHA, +2 AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Give Me Stroke, Jo'Anna",				FISHNET, /* resist cold, high heels skill trains 2x as fast, sentient monsters have an AD_HEAL touch sometimes that works even while you're wearing these */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Resist Against Its Damage",				PETRIFYIUM_BAR, /* petrification resistance when wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Ain't Gonna Disintegrate Nothing",				DISINTEGRATION_BAR, /* disintegration resistance when wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Demobling",				AMULET_OF_TIME, /* resist fire, clairvoyance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Max One Gray",				AMULET_OF_PET_VIEW, /* gray monsters have 10% chance of spawning tame */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Ampersand Harem",				LOW_BOOTS, /* initialized to always be demonologist boots; can tame demons reliably while wearing them, resist fire and poison */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Dip-Dive",				LOW_BOOTS, /* initialized to always be mud boots; can pick up stuff from the bottom of pools and lava */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Mandy's Raidwear",				LOW_BOOTS, /* initialized to always be failed shoes; resist fear, 50% chance of not losing alignment by adjalign() */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 3000L ),
+
+A("Phanto's Retardedness",				LOW_BOOTS, /* initialized to always be opera pumps; wallwalking, monsters need a +4 weapon to hit you reliably, 1 in 100 chance per turn to get hit by a random nastytrap effect, sticky prime curses itself */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Claudia's Self-Will",				LOW_BOOTS, /* initialized to always be wooden clogs; autopilot, resist cold and poison, 75% chance to avoid perfume, you always have at least 10 contamination, +5 CHA */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Faster Than All Others Into Shit",				LOW_BOOTS, /* initialized to always be regular sneakers; anastasia trap effect, very fast speed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 2500L ),
+
+A("Ruth's Undead Inlay",				LOW_BOOTS, /* initialized to always be elite sneakers; resist poison, sleep and cold */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Krawasaki Steerer",				LOW_BOOTS, /* initialized to always be biker boots; confusion resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Upward Heels",				LOW_BOOTS, /* initialized to always be zero drop shoes; count as cone heels and slow you down like a spirit, but monsters act as if they were short-sighted */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Ludgera's Secret Course",				LOW_BOOTS, /* initialized to always be hiking boots; if you take a crap while wearing them (but only via a toilet), you get temporary speed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 1000L ),
+
+A("There Are Several Of Them",				HELMET, /* initialized to always be pope hat; improved light radius, spirituality skill trains twice as fast */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Football Mask",				HELMET, /* initialized to always be corona mask; footerer effect, +2 AC */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("FFP-3 Mask",				HELMET, /* initialized to always be corona mask; 80% chance to resist corona and another -5 CHA */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Acu Become Have",				HELMET, /* initialized to always be anachronononono helmet; 1 in 50000 chance per turn to unlock skills like an acu, but you need to have at least a million score and it resets your score to zero whenever it triggers. */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Priestest Bless",				ORCISH_CLOAK, /* initialized to always be ornamental cope; blessing technique times out slightly faster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Satan's Suggestion",				ORCISH_CLOAK, /* initialized to always be wetsuit; magical breathing, S_EEL don't become undetected again when they move */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Egasso's Gibberish",				LEATHER_GLOVES, /* initialized to always be multilinguitis gloves, confusion + confusion resistance, your MC is always at least 5, improves AC by 10%, +5 CHA */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Cortex Coprocessor",				IMPLANT_OF_MEMORY, /* randart, totter, +2 INT and WIS */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Amysbane",				BLOCK_HEELED_SANDAL, /* disables magic resistance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Shoe Brand",				UNKNOWN_KNIFE, /* supposed to deal extra damage to MS_SHOE and sometimes tame them */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Sandals of Jesus Christ",				LOW_BOOTS, /* initialized to always be throwaway sandals; waterwalking */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 2000L ),
+
+A("Amulet of Splendor",				AMULET_OF_STRANGULATION, /* randart, polymorphitis, poly control, magical breathing, poison res, ESP, reflection, cannot eat food while wearing it, player falls asleep every once in a while */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Luisa's Fellow Feeling",				BEAUTIFUL_SHIRT, /* player is no longer kicked in the nuts by AT_KICK */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("The Pill That Killed Michael Jackson",				PILL, /* food poisoning, damages all stats and deals severe HP damage when eaten */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Bug Bazooka",				ROCKET_LAUNCHER, /* summons random 'a' and 'x' when firing */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Now For The Discharge",				CAMOUFLAGED_CLOTHES, /* teaches sigil of discharge when put on but also gives intrinsic discharge trap effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Ring of Fast Living",				RIN_REGENERATION, /* EXP boost, lose 3 extra nutrition per turn, double attacks but you take double damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Mareyoungwoman Action",				WATER_WALKING_BOOTS, /* very fast speed while you're on water or a fountain */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("CrySpear",				CERAMIC_SPEAR, /* regenerate one extra hit point per turn without extra hunger */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Gauget Unlocker",				SCR_SKILL_UP, /* prior to processing its own effect, unlocks a skill like acu level up, or three if you actually are an acu; this item cannot be wished for */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Hostilitawn",				FIGURINE, /* always becomes hostile */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Neutralness Neutered",				FIGURINE, /* always becomes peaceful */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Pierce Device",				STETHOSCOPE, /* deals 1 point of damage to the target */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("PolyFast",				RIN_POLYMORPH, /* very fast speed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Wobblesteady",				AMULET_OF_POLYMORPH, /* stun resistance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Psi-Change",				WAN_POLYMORPH, /* zapping it gives 1000 turns of temporary confusion resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Arthur's high-heeled platform sandals",				LOW_BOOTS, /* initialized to always be sharp-edged sandals, +2 AC and kicking damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("The Angel And The Thin Sections",				SPE_ORE_MINING, /* no special effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Sinsword",				TWO_HANDED_SWORD, /* increase accuracy and damage if your alignment is negative, +1 up to a maximum of +6 for every -50 alignment */
+	(SPFX_RESTR|SPFX_DCLAS), 0, (S_ANGEL),
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 10000L ),
+
+A("Schwilililili Morph",				TIN_OPENER, /* using #youpoly has only 50% chance of taking off an use */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Green Thumb",				LEATHER_GLOVES, /* initialized to always be nondescript gloves; can walk through trees and you regain an extra HP per turn when being on a tree square */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("No-Damage",				LEATHER_SADDLE, /* attacks never get redirected to your steed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Bike Saddle",				LEATHER_SADDLE, /* +50% movement speed when riding */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Clown Car",				LEATHER_SADDLE, /* flying */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Steering Wheel",				LEATHER_SADDLE, /* steed always heals confusion in one turn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Bridgebane",				BARDICHE, /* immunity to drawbridges; applying it at a drawbridge destroys it */
+	(SPFX_RESTR), 0, 0,
+	PHYS(4, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("System of Sexual Pleasure",				SENTIENT_HIGH_HEELS, /* intelligent female enemies can randomly act as if they had random heels, you gain 10% bonus experience */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Kronscher Bar",				LEADBAR, /* platinum spells, hyperbluewalls, you can eat metal while wielding it */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(10, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Sigix Broadsword",				BROADSWORD, /* -5 to-hit, +20 AC, 1 in 20 chance per hit that it loses enchantment and gets destroyed if it goes below -20 */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Geavy Greaves",				LOW_BOOTS, /* initialized to always be lead boots */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Heel of Fortune",				STEEL_CAPPED_SANDAL,
+	(SPFX_RESTR|SPFX_LUCK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */
+	(SPFX_NOGEN|SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),
+
+A("Swiss Amy Knife",				SURVIVAL_KNIFE, /* displays all MS_SHOE */
+	(SPFX_RESTR), 0, 0,
+	PHYS(14, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Magicbone",				UNICORN_HORN, /* all 'f' and 'd' have 50% chance of spawning peaceful */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Robe of Retribution",				ROBE_OF_FAST_CASTING, /* deals 1d(one third of your level) damage to attacking monsters, 33% of the time */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Robe of Infestation",				ROBE_OF_NASTINESS, /* occasionally spawns a flock of hostile S or s somewhere on the level */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("The Blade of Grasshopper",				TRASH_SWORD,
+	(SPFX_RESTR|SPFX_DCLAS), 0, (S_SPIDER),
+	PHYS(10, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("The Mysterious Force",				WORM_TOOTH, /* teleportitis, clairvoyance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("The Staff of Leibniz",				IMPACT_STAFF, /* +1 all stats */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Moebius Armor",				SPECIAL_LEATHER_ARMOR, /* everything is in fleecy colors, +10 AC, +10% chance to block */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Stingswanbur",				WONDER_DAGGER,
+	(SPFX_RESTR|SPFX_WARN|SPFX_DFLAG2|SPFX_HALRES|SPFX_SEARCH|SPFX_DEFN), 0, (M2_ORC),
+	PHYS(5, 0), DRLI(0, 0), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 6000L ),
+
+A("Coppered Off From Me",				BRONZE_PICK, /* stealer trap effect, resist poison and shock, extra digging speed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Flotation Device",				LENSES, /* waterwalking, life saving */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
 
 /*

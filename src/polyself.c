@@ -283,6 +283,7 @@ dead: /* we come directly here if their experience level went to 0 or less */
 		(flags.female && urace.individual.f) ? urace.individual.f :
 		(urace.individual.m) ? urace.individual.m : urace.noun);
 	u.cnd_newmancount++;
+	use_skill(P_POLYMORPHING, rnd(5));
 	if (!Upolyd) u.polyformed = 0;
 	if (Slimed) {
 		Your("body transforms, but there is still slime on you.");
@@ -312,6 +313,9 @@ boolean forcecontrol;
 
 	if (Race_if(PM_PLAYER_SLIME)) { /* cannot polymorph at all - punishment for being slimed --Amy */
 		newman();
+		return;
+	}
+	if (Race_if(PM_INCORPOREALOID)) { /* cannot polymorph at all, because amateurhour wants it so --Amy */
 		return;
 	}
 	/* and you should be grateful, because in vanilla the game would just have ended... */
@@ -813,7 +817,7 @@ int	mntmp;
 	}
 
 	u.umonnum = mntmp;
-	use_skill(P_POLYMORPHING, mons[mntmp].mlevel + 1);
+	use_skill(P_POLYMORPHING, mons[mntmp].mlevel + 1 + rnd(5));
 
 	set_uasmon();
 
@@ -996,6 +1000,8 @@ int	mntmp;
 		pline(use_thec,monsterc,"spin a web");
 	    if (splittinggremlin(youmonst.data))
 		pline(use_thec,monsterc,"multiply in a fountain");
+	    if (splittinglavagremlin(youmonst.data))
+		pline(use_thec,monsterc,"multiply in a pool of lava");
 	    if (is_unicorn(youmonst.data))
 		pline(use_thec,monsterc,"use your horn");
 	    if (is_mind_flayer(youmonst.data))
@@ -1121,7 +1127,7 @@ break_armor()
 	if (uarmu && uarmu->stckcurse) shirtkeep = 1;
 
     if (breakarm(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
-	if (((otmp = uarm) != 0) && !armorkeep) {
+	if (((otmp = uarm) != 0) && !(uarm && uarm->oartifact == ART_WRONG_TURN) && !armorkeep) {
 	    if(otmp->oartifact || (uarmf && uarmf->oartifact == ART_MALENA_S_LADYNESS) || (otmp->fakeartifact && rn2(2)) ) {
 		if (donning(otmp)) cancel_don();
 		Your("armor falls off!");
@@ -1192,7 +1198,7 @@ break_armor()
 		useup(uarmu);
 	    }
 	}
-    } else if (sliparm(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
+    } else if (sliparm(youmonst.data) && !(uarm && uarm->oartifact == ART_WRONG_TURN) && !Race_if(PM_TRANSFORMER) ) {
 	if (((otmp = uarm) != 0) && !armorkeep && (racial_exception(&youmonst, otmp) < 1)) {
 		if (donning(otmp)) cancel_don();
 		Your("armor falls around you!");
@@ -1996,6 +2002,15 @@ dospinweb()
 		case FEMMY_TRAP:
 		case MADELEINE_TRAP:
 		case MARLENA_TRAP:
+		case ARABELLA_TRAP:
+		case NELLY_TRAP:
+		case EVELINE_TRAP:
+		case KARIN_TRAP:
+		case JUEN_TRAP:
+		case KRISTINA_TRAP:
+		case ALMUT_TRAP:
+		case JULIETTA_TRAP:
+		case LOU_TRAP:
 		case ANASTASIA_TRAP:
 		case FILLER_TRAP:
 		case TOXIC_VENOM_TRAP:
@@ -2375,7 +2390,7 @@ dospinweb()
 	    return(1);
 		 
 	}
-	ttmp = maketrap(u.ux, u.uy, WEB, 0);
+	ttmp = maketrap(u.ux, u.uy, WEB, 0, FALSE);
 	if (ttmp && !ttmp->hiddentrap) {
 		ttmp->tseen = 1;
 		ttmp->madeby_u = 1;
@@ -2412,6 +2427,7 @@ dosummon()
 	if (u.ulycn == PM_WERELICH) somanymana = 100;
 	if (u.ulycn == PM_WEREDEMON) somanymana = 100;
 	if (u.ulycn == PM_WEREMINDFLAYER) somanymana = 150;
+	if (u.ulycn == PM_VORPAL_WERE_ALHOONTRICE_ZOMBIE) somanymana = 150;
 	if (u.ulycn == PM_WEREJABBERWOCK) somanymana = 200;
 	if (u.ulycn == PM_WEREWEDGESANDAL) somanymana = 80;
 	if (u.ulycn == PM_WEREHUGGINGBOOT) somanymana = 120;
@@ -2445,6 +2461,7 @@ dosummon()
 	if (u.umonnum == PM_WERELICH && somanymana < 100) somanymana = 100;
 	if (u.umonnum == PM_WEREDEMON && somanymana < 100) somanymana = 100;
 	if (u.umonnum == PM_WEREMINDFLAYER && somanymana < 150) somanymana = 150;
+	if (u.umonnum == PM_VORPAL_WERE_ALHOONTRICE_ZOMBIE && somanymana < 150) somanymana = 150;
 	if (u.umonnum == PM_WEREJABBERWOCK && somanymana < 200) somanymana = 200;
 	if (u.umonnum == PM_WEREWEDGESANDAL && somanymana < 80) somanymana = 80;
 	if (u.umonnum == PM_WEREHUGGINGBOOT && somanymana < 120) somanymana = 120;
@@ -3005,6 +3022,9 @@ int atyp;
 	    case CORONA_DRAGON_SCALE_MAIL:
 	    case CORONA_DRAGON_SCALES:
 		return PM_CORONA_DRAGON;
+	    case CONTRO_DRAGON_SCALE_MAIL:
+	    case CONTRO_DRAGON_SCALES:
+		return PM_CONTRO_DRAGON;
 	    case HEROIC_DRAGON_SCALE_MAIL:
 	    case HEROIC_DRAGON_SCALES:
 		return PM_HEROIC_DRAGON;
@@ -3200,7 +3220,7 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 		return 0;
 	    } else {
 
-		u.youpolyamount--;
+		if (!(uwep && uwep->oartifact == ART_SCHWILILILILI_MORPH && rn2(2))) u.youpolyamount--;
 		u.uen -= EN_DOPP;
 		if (multi >= 0) {
 		    if (occupation) stop_occupation();

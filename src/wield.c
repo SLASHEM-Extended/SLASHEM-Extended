@@ -51,6 +51,7 @@
 
 /*STATIC_DCL int ready_weapon(struct obj *, BOOLEAN_P);*/
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
+static const char allnoncount[] = { ALL_CLASSES, 0 };
 
 /* used by will_weld() */
 /* probably should be renamed */
@@ -98,7 +99,7 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 	 * *whenever* Sunsword is unwielded, from whatever cause.
 	 */
 	setworn(obj, W_WEP);
-	if (uwep == obj && olduwep && olduwep->oartifact == ART_SUNSWORD &&
+	if (uwep == obj && olduwep && (olduwep->oartifact == ART_SUNSWORD || olduwep->oartifact == ART_SUNSCREEN || olduwep->oartifact == ART_SUNTINOPENER || olduwep->oartifact == ART_SUNRUBBERHOSE) &&
 		olduwep->lamplit) {
 	    end_burn(olduwep, FALSE);
 	    if (!Blind) pline("%s glowing.", Tobjnam(olduwep, "stop"));
@@ -122,6 +123,11 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		uwep->spe += rne(2);
 		pline_The("trident glows in your %s for a moment.", body_part(HAND));
 		if (uwep->spe > 120) uwep->spe = 120; /* fail safe */
+	}
+
+	if (uwep && uwep->oartifact == ART_WHY_ALWAYS_CONUNDRUM && objects[uwep->otyp].oc_material == MT_CONUNDRUM) {
+		objects[uwep->otyp].oc_material = rn2(LASTMATERIAL + 1);
+		Your("weapon's material morphs to a different one!");
 	}
 
 	if (uwep && uwep->oartifact == ART_ALASSEA_TELEMNAR && !uwep->hvycurse) {
@@ -249,7 +255,7 @@ swaptech()
 	struct obj *oldswapwep = uswapwep;
 
 swapweaponchoice:
-	otmp = getobj(all_count, "put into your swap weapon slot");
+	otmp = getobj(allnoncount, "put into your swap weapon slot");
 	if (!otmp) {
 		if (yn("Really exit with no object selected?") == 'y')
 			pline("You just wasted the opportunity to put something into your swap weapon slot.");
@@ -424,6 +430,13 @@ boolean put_away;
 		mons[wep->corpsenm].mname, makeplural(body_part(HAND)));
 	    sprintf(kbuf, "%s egg", an(mons[wep->corpsenm].mname));
 	    instapetrify(kbuf);
+	} else if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && wep->otyp == PETRIFYIUM_BAR) {
+	    /* Prevent wielding cockatrice when not wearing gloves --KAA */
+	    char kbuf[BUFSZ];
+
+	    You("wield the petrifyium bar in your bare %s.", makeplural(body_part(HAND)));
+	    sprintf(kbuf, "petrifyium bar");
+	    instapetrify(kbuf);
 	} else if (uarms && bimanual(wep))
 	    You("cannot wield a two-handed %s while wearing a shield.",
 		is_sword(wep) ? "sword" :
@@ -476,7 +489,7 @@ boolean put_away;
 	    /* KMH -- Talking artifacts are finally implemented */
 	    arti_speak(wep);
 
-	    if (wep->oartifact == ART_SUNSWORD && !wep->lamplit) {
+	    if ((wep->oartifact == ART_SUNSWORD || wep->oartifact == ART_SUNSCREEN || wep->oartifact == ART_SUNTINOPENER || wep->oartifact == ART_SUNRUBBERHOSE) && !wep->lamplit) {
 		begin_burn(wep, FALSE);
 		if (!Blind)
 		    pline("%s to glow brilliantly!", Tobjnam(wep, "begin"));
@@ -967,6 +980,13 @@ can_twoweapon()
 		    mons[uswapwep->corpsenm].mname, body_part(HAND));
 	    sprintf(kbuf, "%s corpse", an(mons[uswapwep->corpsenm].mname));
 	    instapetrify(kbuf);
+        } 	else if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && 
+		(uswapwep && uswapwep->otyp == PETRIFYIUM_BAR)) {
+	    char kbuf[BUFSZ];
+
+	    You("wield the petrifyium bar with your bare %s.", body_part(HAND));
+	    sprintf(kbuf, "petrifyium bar");
+	    instapetrify(kbuf);
         } else if (uswapwep && (IsGlib || (uswapwep->cursed && (PlayerCannotUseSkills || (P_SKILL(P_TWO_WEAPON_COMBAT) < P_EXPERT) ) ) )) {
 	    if (!IsGlib)
 		uswapwep->bknown = TRUE;
@@ -1215,6 +1235,103 @@ boolean fade_scrolls;
 	}
 }
 
+void
+wither_obj(target, acid_dmg, fade_scrolls)
+struct obj *target;
+boolean acid_dmg;
+boolean fade_scrolls;
+{
+	int erosion;
+	struct monst *victim;
+	boolean vismon;
+	boolean visobj;
+
+	if (!target)
+	    return;
+	victim = carried(target) ? &youmonst :
+	    mcarried(target) ? target->ocarry : (struct monst *)0;
+	vismon = victim && (victim != &youmonst) && canseemon(victim);
+	visobj = !victim && cansee(bhitpos.x, bhitpos.y); /* assume thrown */
+
+	erosion = (rn2(2) ? target->oeroded2 : target->oeroded);
+
+	if (stack_too_big(target)) return;
+
+	if (target->oartifact && rn2(4)) return;
+
+	if (itemhasappearance(target, APP_BRAND_NEW_GLOVES) && rn2(4) ) return;
+
+	if (itemhasappearance(target, APP_IMAGINARY_HEELS) ) return;
+
+	if (itemhasappearance(target, APP_WITHERED_CLOAK) ) return;
+
+	if (uarmf && !rn2(2) && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) return;
+
+	if (target->greased && (!issoviet || !rn2(2)) ) {
+	    grease_protect(target,(char *)0,victim);
+	} else if (target->oclass == SCROLL_CLASS) {
+	    if(fade_scrolls && target->otyp != SCR_BLANK_PAPER && !target->oartifact && target->otyp != SCR_HEALING && target->otyp != SCR_EXTRA_HEALING && target->otyp != SCR_STANDARD_ID && target->otyp != SCR_HEAL_OTHER && target->otyp != SCR_MANA && target->otyp != SCR_GREATER_MANA_RESTORATION && target->otyp != SCR_CURE && target->otyp != SCR_PHASE_DOOR
+#ifdef MAIL
+	    && target->otyp != SCR_MAIL
+#endif
+					)
+	    {
+		if (!Blind) {
+		    if (victim == &youmonst)
+			Your("%s.", aobjnam(target, "fade"));
+		    else if (vismon)
+			pline("%s's %s.", Monnam(victim),
+			      aobjnam(target, "fade"));
+		    else if (visobj)
+			pline_The("%s.", aobjnam(target, "fade"));
+		}
+		target->otyp = SCR_BLANK_PAPER;
+		target->spe = 0;
+	    }
+	} else if (is_unwitherable(target) || (Race_if(PM_CHIQUAI) && rn2(4)) ) {
+	    if (flags.verbose || !(target->oerodeproof && target->rknown)) {
+		if (victim == &youmonst)
+		    Your("%s not affected.", aobjnam(target, "are"));
+		else if (vismon)
+		    pline("%s's %s not affected.", Monnam(victim),
+			aobjnam(target, "are"));
+		/* no message if not carried */
+	    }
+	    if (target->oerodeproof) target->rknown = TRUE;
+	} else if (erosion < MAX_ERODE) {
+	    if (victim == &youmonst) {
+		Your("%s%s!", aobjnam(target, acid_dmg ? "corrode" : "rust"),
+		    erosion+1 == MAX_ERODE ? " completely" :
+		    erosion ? " further" : "");
+		if (issoviet && target->greased) pline("Sovetskiy khochet vash detal' byt' povrezhden, nesmotrya na smazku, potomu chto on takoy mudak!");
+	    } else if (vismon)
+		pline("%s's %s%s!", Monnam(victim),
+		    aobjnam(target, acid_dmg ? "corrode" : "rust"),
+		    erosion+1 == MAX_ERODE ? " completely" :
+		    erosion ? " further" : "");
+	    else if (visobj)
+		pline_The("%s%s!",
+		    aobjnam(target, acid_dmg ? "corrode" : "rust"),
+		    erosion+1 == MAX_ERODE ? " completely" :
+		    erosion ? " further" : "");
+	    if (acid_dmg)
+		target->oeroded2++;
+	    else
+		target->oeroded++;
+	} else {
+
+		    if (victim == &youmonst && !hard_to_destruct(target) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) ) {
+			pline("One of your items got vaporized!"),
+			remove_worn_item(target, FALSE);
+			if (target == uball) unpunish();
+			useupall(target);
+			uwepgone();
+			update_inventory();
+		    }
+
+	}
+}
+
 int
 chwepon(otmp, amount)
 register struct obj *otmp;
@@ -1302,6 +1419,11 @@ register int amount;
 	if (uwep && uwep->oartifact == ART_BOARDED_SHELF && amount > 0 && uwep->spe < 22) uwep->spe += 4;
 	if (Race_if(PM_SPARD) && amount > 0) uwep->spe++;
 	if(amount > 0) {
+
+		if (uwep && objects[(uwep)->otyp].oc_material == MT_CELESTIUM) {
+			if (!uwep->cursed) bless(uwep);
+			else uncurse(uwep, FALSE);
+		}
 
 		if ((uwep->morgcurse || uwep->evilcurse || uwep->bbrcurse) && !rn2(100) ) {
 			uwep->prmcurse = uwep->hvycurse = uwep->cursed = uwep->morgcurse = uwep->evilcurse = uwep->bbrcurse = uwep->stckcurse = 0;

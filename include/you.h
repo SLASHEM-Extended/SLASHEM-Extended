@@ -1261,6 +1261,8 @@ struct you {
 
 	char	aliasname[PL_NSIZ];
 
+	int echolocationspell;	/* timeout when you cast echolocation */
+
 	int graundweight;		/* increased encumbrance that times out very slowly */
 
 	int randomquestlevels;	/* chance to get quest levels instead of random ones */
@@ -1517,6 +1519,10 @@ struct you {
 
 	int steedhitchance;	/* default 25%, can be changed via directive */
 
+	int bucskill;	/* how likely you are to recognize an item's BUC at a glance */
+	int enchantrecskill;	/* ditto for the item's + (all except weapons) */
+	int weapchantrecskill;	/* ditto for the item's + (weapons only) */
+
 	int footererlevel;
 
 	int ragnaroktimer;
@@ -1543,6 +1549,7 @@ struct you {
 	boolean polyprotected;
 
 	boolean wingyellowhack;
+	boolean arabellahack;
 
 	boolean captchahack;
 
@@ -1586,6 +1593,7 @@ struct you {
 
 	boolean youhavememorized;	/* one-time message for memorization skill */
 	boolean juyofleeing;	/* control whether your juyo skill increases the odds that a monster flees */
+	boolean controlmiguc;	/* does the petkeeping skill make it less likely for you to hit your pets? */
 
 	int garbagecleaned;	/* for janitor role */
 	int garbagetrucktime;	/* ditto */
@@ -1624,6 +1632,10 @@ struct you {
 	boolean fungalsandals;
 
 	int gaugetimer;	/* one point shoot and particle cannon require 50 turns to reload */
+
+	int conclusiocount;	/* to check whether Mr. Conclusio can spawn */
+
+	int persiantimer;	/* for persian boots */
 
 	int stoogedepth;	/* occasionally the three stooges will spawn */
 

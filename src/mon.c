@@ -18,105 +18,6 @@
 
 #include <ctype.h>
 
-#ifndef OVLB
-
-STATIC_DCL NEARDATA const short skill_names_indices[];
-STATIC_DCL NEARDATA const char *odd_skill_names[];
-
-#else	/* OVLB */
-
-/* KMH, balance patch -- updated */
-STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
-	0,                DAGGER,         KNIFE,        AXE,
-	PICK_AXE,         SHORT_SWORD,    BROADSWORD,   LONG_SWORD,
-	TWO_HANDED_SWORD, SCIMITAR,       PN_SABER,     CLUB,
-	PN_PADDLE,        MACE,           MORNING_STAR,   FLAIL,
-	PN_HAMMER,        QUARTERSTAFF,   PN_POLEARMS,  SPEAR,
-	JAVELIN,          TRIDENT,        LANCE,        BOW,
-	SLING,            PN_FIREARMS,    CROSSBOW,       DART,
-	SHURIKEN,         BOOMERANG,      PN_WHIP,      UNICORN_HORN,
-	PN_LIGHTSABER,
-	PN_ATTACK_SPELL,     PN_HEALING_SPELL,
-	PN_DIVINATION_SPELL, PN_ENCHANTMENT_SPELL,
-	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
-	PN_OCCULT_SPELL,
-	PN_ELEMENTAL_SPELL,
-	PN_CHAOS_SPELL,
-	PN_MATTER_SPELL,
-	PN_BARE_HANDED,	PN_HIGH_HEELS,
-	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
-	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
-	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
-	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_SEXY_FLATS,
-	PN_MEMORIZATION,	PN_GUN_CONTROL,	PN_SQUEAKING,	PN_SYMBIOSIS,
-	PN_SHII_CHO,	PN_MAKASHI,	PN_SORESU,
-	PN_ATARU,	PN_SHIEN,	PN_DJEM_SO,
-	PN_NIMAN,	PN_JUYO,	PN_VAAPAD,	PN_WEDI,
-	PN_MARTIAL_ARTS,
-	PN_TWO_WEAPONS,
-	PN_RIDING,
-};
-
-
-STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
-    "no skill",
-    "polearms",
-    "saber",
-    "hammer",
-    "whip",
-    "paddle",
-    "firearms",
-    "attack spells",
-    "healing spells",
-    "divination spells",
-    "enchantment spells",
-    "protection spells",
-    "body spells",
-    "occult spells",
-    "elemental spells",
-    "chaos spells",
-    "matter spells",
-    "bare-handed combat",
-    "high heels",
-    "general combat",
-    "shield",
-    "body armor",
-    "two-handed weapons",
-    "polymorphing",
-    "devices",
-    "searching",
-    "spirituality",
-    "petkeeping",
-    "missile weapons",
-    "techniques",
-    "implants",
-    "sexy flats",
-    "memorization",
-    "gun control",
-    "squeaking",
-    "symbiosis",
-    "form I (Shii-Cho)",
-    "form II (Makashi)",
-    "form III (Soresu)",
-    "form IV (Ataru)",
-    "form V (Shien)",
-    "form V (Djem So)",
-    "form VI (Niman)",
-    "form VII (Juyo)",
-    "form VII (Vaapad)",
-    "form VIII (Wedi)",
-    "martial arts",
-    "riding",
-    "two-weapon combat",
-    "lightsaber"
-};
-
-#endif	/* OVLB */
-
-#define P_NAME(type) (skill_names_indices[type] > 0 ? \
-		      OBJ_NAME(objects[skill_names_indices[type]]) : \
-			odd_skill_names[-skill_names_indices[type]])
-
 void display_monster(XCHAR_P,XCHAR_P,struct monst *,int,XCHAR_P);
 
 STATIC_DCL boolean restrap(struct monst *);
@@ -375,9 +276,12 @@ int mndx;
 	case PM_SLUMBER_HULK:	mcham = CHAM_SLUMBER_HULK; break;
 	case PM_IVEL_WUXTINA:	mcham = CHAM_IVEL_WUXTINA; break;
 	case PM_EARLY_LEON:	mcham = CHAM_EARLY_LEON; break;
+	case PM_CHAMELON:	mcham = CHAM_CHAMELON; break;
+	case PM_COMMA_CHAMELEON:	mcham = CHAM_COMMA_CHAMELEON; break;
 	case PM_CHANGELING:	mcham = CHAM_CHANGELING; break;
 	case PM_CHANGELING_ZOMBIE:	mcham = CHAM_CHANGELING_ZOMBIE; break;
 	case PM_CHANGELING_MUMMY:	mcham = CHAM_CHANGELING_MUMMY; break;
+	case PM_UNIQUE_SHIFTER:	mcham = CHAM_UNIQUE_SHIFTER; break;
 	case PM_GIANT_CHAMELEON:	mcham = CHAM_GIANT_CHAMELEON; break;
 	default: mcham = CHAM_ORDINARY; break;
 	}
@@ -441,6 +345,9 @@ STATIC_VAR int cham_to_pm[] = {
 		PM_PURPLE_R,
 		PM_VAMPSHIFTER,
 		PM_UNGENOCIDABLE_VAMPSHIFTER,
+		PM_CHAMELON,
+		PM_COMMA_CHAMELEON,
+		PM_UNIQUE_SHIFTER,
 		PM_GIANT_CHAMELEON,
 };
 
@@ -497,6 +404,7 @@ register struct monst *mtmp;
 	    case PM_CANCEL_DRAGON:
 	    case PM_NEGATIVE_DRAGON:
 	    case PM_CORONA_DRAGON:
+	    case PM_CONTRO_DRAGON:
 	    case PM_HEROIC_DRAGON:
 	    case PM_STONE_DRAGON:
 	    case PM_CYAN_DRAGON:
@@ -544,6 +452,8 @@ register struct monst *mtmp;
 	    case PM_FEMINISM_DRAGOM:
 	    case PM_CANCEL_DRAGOM:
 	    case PM_NEGATIVE_DRAGOM:
+	    case PM_CORONA_DRAGOM:
+	    case PM_CONTRO_DRAGOM:
 	    case PM_HEROIC_DRAGOM:
 	    case PM_STONE_DRAGOM:
 	    case PM_CYAN_DRAGOM:
@@ -672,6 +582,24 @@ register struct monst *mtmp;
 				s_suffix(Monnam(mtmp)));
 		} else
 			(void) mksobj_at(ARCANE_HORN, x, y, TRUE, FALSE, FALSE);
+		goto default_1;
+	    case PM_BUBBLY_UNICORN:
+	    case PM_ALIEN_UNICORN:
+	    case PM_SLATE_UNICORN:
+		if (mtmp->mrevived && rn2(20)) {
+			if (canseemon(mtmp))
+			   pline("%s recently regrown horn crumbles to dust.",
+				s_suffix(Monnam(mtmp)));
+		} else
+			(void) mksobj_at(BUBBLEHORN, x, y, TRUE, FALSE, FALSE);
+		goto default_1;
+	    case PM_SKY_UNICORN:
+		if (mtmp->mrevived && rn2(20)) {
+			if (canseemon(mtmp))
+			   pline("%s recently regrown horn crumbles to dust.",
+				s_suffix(Monnam(mtmp)));
+		} else
+			(void) mksobj_at(SKY_HORN, x, y, TRUE, FALSE, FALSE);
 		goto default_1;
 	    case PM_COLLUDE_UNICORN:
 		if (mtmp->mrevived && rn2(20)) {
@@ -1087,6 +1015,11 @@ register struct monst *mtmp;
 	    case PM_MOLDY_COLONY:
 	    case PM_MUTATED_UNDEAD_POTATO:
 	    case PM_THOUL:
+	    case PM_UNDEAD_ZRUTY:
+	    case PM_YET_ANOTHER_GREATER_MUMMY:
+	    case PM_GREATER_MUMMY_PRIEST:
+	    case PM_GREATER_MUMMY_PHARAOH:
+	    case PM_GREATER_MUMMY_HIGH_PRIEST:
 		obj = mkcorpstat(CORPSE, (struct monst *)0, &mons[mndx], x, y, TRUE);
 		obj->age -= 100;                /* this is an *OLD* corpse */
 		break;
@@ -1868,6 +1801,9 @@ register struct monst *mtmp;
 	    dryup(mtmp->mx, mtmp->my, FALSE);
 	if (inpool) water_damage(mtmp->minvent, FALSE, FALSE);
 	return (0);
+    } else if (splittinglavagremlin(mtmp->data) && inlava && !rn2(5)) { /* lowered chance --Amy */
+	(split_mon(mtmp, (struct monst *)0));
+	return (0);
     } else if (mtmp->data == &mons[PM_IRON_GOLEM] && inpool && !rn2(5)) {
 	int dam = d(2,6);
 	if (cansee(mtmp->mx,mtmp->my))
@@ -2002,6 +1938,11 @@ struct monst *mon;
 	if (is_highway(mon->mx, mon->my)) mmove += rnd(mmove);
 
 	if ((MonsterSpeedBug || u.uprops[MONSTER_SPEED_BUG].extrinsic || have_monsterspeedstone()) && !rn2(2) && (mmove > 0)) {
+		mmove *= 3;
+		if (mmove == 3) mmove = 4;
+		mmove /= 2;
+	}
+	if (FemtrapActiveEveline && humanoid(mon->data) && is_female(mon->data) && (mmove > 0)) {
 		mmove *= 3;
 		if (mmove == 3) mmove = 4;
 		mmove /= 2;
@@ -2892,14 +2833,14 @@ mfndpos(mon, poss, info, flag)
 		       mon->weapon_check == NO_WEAPON_WANTED) {
 		rockok = is_pick(mw_tmp);
 	    } else {
-		rockok = (m_carrying(mon, PICK_AXE) || m_carrying(mon, CONGLOMERATE_PICK) || m_carrying(mon, MYSTERY_PICK) || m_carrying(mon, BRONZE_PICK) || m_carrying(mon, BRICK_PICK) || m_carrying(mon, NANO_PICK) ||
+		rockok = (m_carrying(mon, PICK_AXE) || m_carrying(mon, CONGLOMERATE_PICK) || m_carrying(mon, CONUNDRUM_PICK) || m_carrying(mon, MYSTERY_PICK) || m_carrying(mon, BRONZE_PICK) || m_carrying(mon, BRICK_PICK) || m_carrying(mon, NANO_PICK) ||
 			  (m_carrying(mon, DWARVISH_MATTOCK) &&
 			   !which_armor(mon, W_ARMS)) ||
 			  (m_carrying(mon, SOFT_MATTOCK) &&
 			   !which_armor(mon, W_ARMS)) ||
 			  (m_carrying(mon, ETERNIUM_MATTOCK) &&
 			   !which_armor(mon, W_ARMS)) );
-		treeok = (m_carrying(mon, AXE) || m_carrying(mon, OBSIDIAN_AXE) || m_carrying(mon, SPIRIT_AXE) || m_carrying(mon, SHARP_AXE) || m_carrying(mon, NANO_AXE) || m_carrying(mon, TUBING_PLIERS) ||
+		treeok = (m_carrying(mon, AXE) || m_carrying(mon, OBSIDIAN_AXE) || m_carrying(mon, SPIRIT_AXE) || m_carrying(mon, SHARP_AXE) || m_carrying(mon, QUALITY_AXE) || m_carrying(mon, INFERNAL_AXE) || m_carrying(mon, NANO_AXE) || m_carrying(mon, TUBING_PLIERS) ||
 			  (m_carrying(mon, BATTLE_AXE) &&
 			   !which_armor(mon, W_ARMS)) ||
 			  (m_carrying(mon, MOON_AXE) &&
@@ -2985,7 +2926,7 @@ nexttry:	/* eels prefer the water, but if there is no water nearby,
 		 ((is_moorland(nx,ny)) || (is_urinelake(nx,ny)) && rn2(2)) ||
 		 (is_shiftingsand(nx,ny) && wantpool) ||
 		 (is_lava(nx,ny) && wantlava) || (is_styxriver(nx,ny) && wantlava) || poolok) &&
-	       (lavaok || wantlava || (!is_lava(nx,ny) && !is_styxriver(nx,ny)) )) {
+	       (lavaok || wantlava || (!is_lava(nx,ny) ) )) {
 		int dispx, dispy;
 		boolean monseeu = (mon->mcansee && (!Invis || perceives(mdat) || (!StrongInvis && rn2(3)) ));
 		boolean checkobj = OBJ_AT(nx,ny);
@@ -3487,6 +3428,15 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != FEMMY_TRAP
 				&& ttmp->ttyp != MADELEINE_TRAP
 				&& ttmp->ttyp != MARLENA_TRAP
+				&& ttmp->ttyp != ARABELLA_TRAP
+				&& ttmp->ttyp != NELLY_TRAP
+				&& ttmp->ttyp != EVELINE_TRAP
+				&& ttmp->ttyp != KARIN_TRAP
+				&& ttmp->ttyp != JUEN_TRAP
+				&& ttmp->ttyp != ALMUT_TRAP
+				&& ttmp->ttyp != JULIETTA_TRAP
+				&& ttmp->ttyp != KRISTINA_TRAP
+				&& ttmp->ttyp != LOU_TRAP
 				&& ttmp->ttyp != ANASTASIA_TRAP
 				&& ttmp->ttyp != FILLER_TRAP
 				&& ttmp->ttyp != TOXIC_VENOM_TRAP
@@ -4117,6 +4067,8 @@ register struct monst *mtmp;
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WERERABBIT], -1);
 	else if (mtmp->data == &mons[PM_WEREBOAR])
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREBOAR], -1);
+	else if (mtmp->data == &mons[PM_VORPAL_WERE_ALHOONTRICE_ZOMBIE])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_VORPAL_WERE_ALHOONTRICE_ZOMBIE], -1);
 	else if (mtmp->data == &mons[PM_WERELOCUST])
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WERELOCUST], -1);
 	else if (mtmp->data == &mons[PM_WEREPANTHER])
@@ -4137,6 +4089,10 @@ register struct monst *mtmp;
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WERECOW], -1);
 	else if (mtmp->data == &mons[PM_WEREBEAR])
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREBEAR], -1);
+	else if (mtmp->data == &mons[PM_WEREBRONZEGRAM])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREBRONZEGRAM], -1);
+	else if (mtmp->data == &mons[PM_WERECHROMEGRAM])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WERECHROMEGRAM], -1);
 	else if (mtmp->data == &mons[PM_WEREDEMON])
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREDEMON], -1);
 	else if (mtmp->data == &mons[PM_WEREPHANT])
@@ -4344,7 +4300,7 @@ register struct monst *mtmp;
 					if (rtrap == ACTIVE_SUPERSCROLLER_TRAP) rtrap = SUPERSCROLLER_TRAP;
 					if (rtrap == AUTOMATIC_SWITCHER) rtrap = UNKNOWN_TRAP;
 
-					(void) maketrap(x, y, rtrap, 100);
+					(void) maketrap(x, y, rtrap, 100, FALSE);
 					break;
 					}
 
@@ -4492,7 +4448,7 @@ register struct monst *mtmp;
 					koy = rn2(ROWNO);
 
 					if (kox && koy && isok(kox, koy) && (levl[kox][koy].typ > DBWALL) && !(t_at(kox, koy)) ) {
-						(void) maketrap(kox, koy, KOP_CUBE, 0);
+						(void) maketrap(kox, koy, KOP_CUBE, 0, FALSE);
 						break;
 						}
 				}
@@ -4601,78 +4557,78 @@ register struct monst *mtmp;
 
 		if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 			unrestrict_weapon_skill(skillimprove);
-			pline("You can now learn the %s skill.", P_NAME(skillimprove));
+			pline("You can now learn the %s skill.", wpskillname(skillimprove));
 		} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
 			unrestrict_weapon_skill(skillimprove);
 			P_MAX_SKILL(skillimprove) = P_BASIC;
-			pline("You can now learn the %s skill.", P_NAME(skillimprove));
+			pline("You can now learn the %s skill.", wpskillname(skillimprove));
 		} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
 			P_MAX_SKILL(skillimprove) = P_SKILLED;
-			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 		} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
 			P_MAX_SKILL(skillimprove) = P_EXPERT;
-			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 		} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
 			P_MAX_SKILL(skillimprove) = P_MASTER;
-			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 		} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
 			P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
-			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 		} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 			P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
-			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 		}
 
 		skillimprove = randomgoodskill();
 
 		if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 			unrestrict_weapon_skill(skillimprove);
-			pline("You can now learn the %s skill.", P_NAME(skillimprove));
+			pline("You can now learn the %s skill.", wpskillname(skillimprove));
 		} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
 			unrestrict_weapon_skill(skillimprove);
 			P_MAX_SKILL(skillimprove) = P_BASIC;
-			pline("You can now learn the %s skill.", P_NAME(skillimprove));
+			pline("You can now learn the %s skill.", wpskillname(skillimprove));
 		} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
 			P_MAX_SKILL(skillimprove) = P_SKILLED;
-			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 		} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
 			P_MAX_SKILL(skillimprove) = P_EXPERT;
-			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 		} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
 			P_MAX_SKILL(skillimprove) = P_MASTER;
-			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 		} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
 			P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
-			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 		} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 			P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
-			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 		}
 
 		skillimprove = randomgoodskill();
 
 		if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 			unrestrict_weapon_skill(skillimprove);
-			pline("You can now learn the %s skill.", P_NAME(skillimprove));
+			pline("You can now learn the %s skill.", wpskillname(skillimprove));
 		} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
 			unrestrict_weapon_skill(skillimprove);
 			P_MAX_SKILL(skillimprove) = P_BASIC;
-			pline("You can now learn the %s skill.", P_NAME(skillimprove));
+			pline("You can now learn the %s skill.", wpskillname(skillimprove));
 		} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
 			P_MAX_SKILL(skillimprove) = P_SKILLED;
-			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 		} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
 			P_MAX_SKILL(skillimprove) = P_EXPERT;
-			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 		} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
 			P_MAX_SKILL(skillimprove) = P_MASTER;
-			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 		} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
 			P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
-			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 		} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 			P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
-			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 		}
 
 		if (Race_if(PM_RUSMOT)) {
@@ -4680,78 +4636,78 @@ register struct monst *mtmp;
 
 			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 				unrestrict_weapon_skill(skillimprove);
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
 				unrestrict_weapon_skill(skillimprove);
 				P_MAX_SKILL(skillimprove) = P_BASIC;
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
 				P_MAX_SKILL(skillimprove) = P_SKILLED;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
 				P_MAX_SKILL(skillimprove) = P_EXPERT;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
 				P_MAX_SKILL(skillimprove) = P_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			}
 
 			skillimprove = randomgoodskill();
 
 			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 				unrestrict_weapon_skill(skillimprove);
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
 				unrestrict_weapon_skill(skillimprove);
 				P_MAX_SKILL(skillimprove) = P_BASIC;
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
 				P_MAX_SKILL(skillimprove) = P_SKILLED;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
 				P_MAX_SKILL(skillimprove) = P_EXPERT;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
 				P_MAX_SKILL(skillimprove) = P_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			}
 
 			skillimprove = randomgoodskill();
 
 			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 				unrestrict_weapon_skill(skillimprove);
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
 				unrestrict_weapon_skill(skillimprove);
 				P_MAX_SKILL(skillimprove) = P_BASIC;
-				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
 			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
 				P_MAX_SKILL(skillimprove) = P_SKILLED;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
 				P_MAX_SKILL(skillimprove) = P_EXPERT;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
 				P_MAX_SKILL(skillimprove) = P_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
-				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
 			}
 
 		}
@@ -5421,6 +5377,7 @@ boolean was_swallowed;			/* digestion */
 	struct permonst *mdat = mon->data;
 	int i, tmp;
 	boolean trolling = 0;
+	boolean hasexploded = 0;
 
 	int monsx, monsy;
 	boolean terrainok = FALSE;
@@ -5505,7 +5462,8 @@ boolean was_swallowed;			/* digestion */
 	    	killer_format = KILLED_BY_AN;
 	    	explode(mon->mx, mon->my, -1, tmp, MON_EXPLODE, EXPL_NOXIOUS);
 	    	if (!trolling) return (FALSE);
-	    } else if (mon->egotype_exploder) {
+	    } else if (mon->egotype_exploder && !hasexploded) {
+		hasexploded = TRUE;
 		tmp = d(2, 1 + (mon->m_lev * 5) );
 		if (was_swallowed && magr) {
 		    if (magr == &youmonst) {
@@ -5891,6 +5849,7 @@ xkilled(mtmp, dest)
 
 	if (Role_if(PM_BLOODSEEKER)) healup(mtmp->m_lev, 0, FALSE, FALSE); /* special ability called "Stygwyr's Thirst" */
 	if (Race_if(PM_ETHEREALOID) && !rn2(2)) healup(mtmp->m_lev, 0, FALSE, FALSE);
+	if (Race_if(PM_INCORPOREALOID) && !rn2(2)) healup(mtmp->m_lev, 0, FALSE, FALSE);
 	/* Demo wants a complicated calculation for how many HP the etherealoid gains from a kill... I took the easy way out */
 
 	if (uwep && uwep->oartifact == ART_GOLDIFICATION && mtmp->m_lev > 0) {
@@ -6295,7 +6254,7 @@ xkilled(mtmp, dest)
 		if (!rn2(500) && timebasedlowerchance() && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(usefulitem(), x, y, TRUE, FALSE, FALSE);
 
 		/* you should not be able to farm trolls, gremlins, long worms etc. --Amy */
-		if (!rn2( (Race_if(PM_DROW) ? 100 : Race_if(PM_DOPPELGANGER) ? 150 : 30) ) && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && !is_reviver(mdat) && !is_rider(mdat) && !is_deadlysin(mdat) && !splittinggremlin(mdat) && mdat != &mons[PM_DUMMY_MONSTER_NEEDED_FOR_VISUAL_INTERFACE] && mdat != &mons[PM_LONG_WORM] && mdat != &mons[PM_GHOST] && mdat != &mons[PM_TROLL_ZOMBIE] && mdat != &mons[PM_TROLL_MUMMY] && mdat != &mons[PM_TROLL_PERMAMIMIC_MUMMY] && mdat != &mons[PM_EGO_TROLL_MUMMY] && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) && !(issoviet && (mvitals[mndx].mvflags & G_NOCORPSE)) && !(issoviet && nohands(mdat))
+		if (!rn2( (Race_if(PM_DROW) ? 100 : Race_if(PM_DOPPELGANGER) ? 150 : 30) ) && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && !is_reviver(mdat) && !is_rider(mdat) && !is_deadlysin(mdat) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && mdat != &mons[PM_DUMMY_MONSTER_NEEDED_FOR_VISUAL_INTERFACE] && mdat != &mons[PM_LONG_WORM] && mdat != &mons[PM_GHOST] && mdat != &mons[PM_TROLL_ZOMBIE] && mdat != &mons[PM_TROLL_MUMMY] && mdat != &mons[PM_TROLL_PERMAMIMIC_MUMMY] && mdat != &mons[PM_EGO_TROLL_MUMMY] && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) && !(issoviet && (mvitals[mndx].mvflags & G_NOCORPSE)) && !(issoviet && nohands(mdat))
 	/* lowered overall chance, but see below for a chance to get extra items --Amy
 	 * Drow and especially Doppelgangers are super-powerful anyway, so I decided to nerf them a bit. */
 					&& (!issoviet || (mdat->mlet != S_KOP))
@@ -7063,7 +7022,7 @@ newkopcube:
 			koy = rn2(ROWNO);
 
 			if (kox && koy && isok(kox, koy) && (levl[kox][koy].typ > DBWALL) && !(t_at(kox, koy)) ) {
-				(void) maketrap(kox, koy, KOP_CUBE, 0);
+				(void) maketrap(kox, koy, KOP_CUBE, 0, FALSE);
 				break;
 				}
 		}
@@ -7085,18 +7044,6 @@ newkopcube:
 	}
 
 	if (Role_if(PM_PALADIN)) adjalign(-20);
-	if (Role_if(PM_PALADIN) && mtmp->isshk && !strncmpi(shkname(mtmp), "Izchak", 6) ) {
-
-	/* Attacking Izchak is grounds for immediate disintegration. */
-
-		adjalign(-200);
-
-		You_feel("the air around you grow charged...");
-		pline("Suddenly, you realize that %s has noticed you...", u_gname());
-		/* Throw everything we have at the player */
-		god_zaps_you(u.ualign.type);
-
-	}
 
 	if (couldsee(mtmp->mx, mtmp->my)) {
 		if (humanoid(mtmp->data) || mtmp->isshk || mtmp->isgd) {
@@ -7431,6 +7378,9 @@ struct monst *mon;
 	case CHAM_PURPLE_R: chambaselvl = 12; break;
 	case CHAM_VAMPSHIFTER: chambaselvl = 12; break;
 	case CHAM_UNGENOCIDABLE_VAMPSHIFTER: chambaselvl = 12; break;
+	case CHAM_CHAMELON: chambaselvl = 16; break;
+	case CHAM_COMMA_CHAMELEON: chambaselvl = 6; break;
+	case CHAM_UNIQUE_SHIFTER: chambaselvl = 25; break;
 	case CHAM_GIANT_CHAMELEON: chambaselvl = 10; break;
 	/* gah they made it so that regular polymorphs, e.g. via potion, also use this function! */
 	default:
@@ -7645,6 +7595,20 @@ ghostchoice:
 			if (uncommon10(pm) && rn2(5)) goto ghostchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto ghostchoice;
 			if (rn2(10000) && !(pm->mlet == S_GHOST) ) goto ghostchoice;
+		break;
+	    case CHAM_CHAMELON:
+chamelonchoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto chamelonchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto chamelonchoice;
+			if (uncommon2(pm) && !rn2(4)) goto chamelonchoice;
+			if (uncommon3(pm) && !rn2(3)) goto chamelonchoice;
+			if (uncommon5(pm) && !rn2(2)) goto chamelonchoice;
+			if (uncommon7(pm) && rn2(3)) goto chamelonchoice;
+			if (uncommon10(pm) && rn2(5)) goto chamelonchoice;
+			if (is_jonadabmonster(pm) && rn2(20)) goto chamelonchoice;
+			if (rn2(10000) && !(pm->mlet == S_BAD_FOOD) ) goto chamelonchoice;
 		break;
 	    case CHAM_SHOEMELEON:
 shoechoice:
@@ -7898,6 +7862,21 @@ metamorphchoice:
 			if (uncommon10(pm) && rn2(5)) goto metamorphchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto metamorphchoice;
 		break;
+	    case CHAM_UNIQUE_SHIFTER:
+uniqueshiftchoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto uniqueshiftchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto uniqueshiftchoice;
+			if (uncommon2(pm) && !rn2(4)) goto uniqueshiftchoice;
+			if (uncommon3(pm) && !rn2(3)) goto uniqueshiftchoice;
+			if (uncommon5(pm) && !rn2(2)) goto uniqueshiftchoice;
+			if (uncommon7(pm) && rn2(3)) goto uniqueshiftchoice;
+			if (uncommon10(pm) && rn2(5)) goto uniqueshiftchoice;
+			if (is_jonadabmonster(pm) && rn2(20)) goto uniqueshiftchoice;
+			if ((pm->geno & G_FREQ) < 1) goto uniqueshiftchoice;
+			if (rn2(10000) && !(pm->geno & G_UNIQ)) goto uniqueshiftchoice;
+		break;
 
 	    case CHAM_DOPPELGANGER:
 	    case CHAM_METAL_DOPPELGANGER:
@@ -7925,6 +7904,7 @@ edotochoice:
 			if (rn2(10000) && !(pm->mlet == S_ARCHFIEND) ) goto jokechoice;
 		break;
 	    case CHAM_CHAMELEON:
+	    case CHAM_COMMA_CHAMELEON:
 	    case CHAM_CHAMECHAUN:
 	    case CHAM_GHELEON:
 	    case CHAM_COCKAMELEON:
@@ -8034,8 +8014,9 @@ boolean msg;
 		   select_newcham_form might deliberately pick a player
 		   character type, so we can't arbitrarily rule out all
 		   human forms any more
-		   Amy edit: oh my god they disallowed M2_HUMAN this is intolerable */
-		if (is_mplayer(mdat) || is_umplayer(mdat) || monpolyok(mdat))
+		   Amy edit: oh my god they disallowed M2_HUMAN this is intolerable
+		   also, unique shifters should be able to pick M2_NOPOLY forms, this is by design */
+		if (is_mplayer(mdat) || is_umplayer(mdat) || monpolyok(mdat) || (mtmp->cham == CHAM_UNIQUE_SHIFTER && (mdat->geno & G_FREQ > 0) && (mdat->geno & G_UNIQ) ) )
 		    break;
 	    }
 	    if (tryct > 100) return 0;	/* Should never happen */
@@ -8497,7 +8478,7 @@ register boolean silent;
 					koy = rn2(ROWNO);
 
 					if (kox && koy && isok(kox, koy) && (levl[kox][koy].typ > DBWALL) && !(t_at(kox, koy)) ) {
-						(void) maketrap(kox, koy, KOP_CUBE, 0);
+						(void) maketrap(kox, koy, KOP_CUBE, 0, FALSE);
 						break;
 						}
 				}

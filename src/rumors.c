@@ -361,14 +361,14 @@ register struct monst *oracl;
 	if (u_pay == minor_cost) {
 		outrumor(1, BY_ORACLE, TRUE);
 		if (!u.uevent.minor_oracle)
-		    add_xpts = u_pay / (u.uevent.major_oracle ? 25 : 10);
+		    add_xpts = u_pay / (u.uevent.major_oracle ? 2 : 10);
 		    /* 5 pts if very 1st, or 2 pts if major already done */
 		u.uevent.minor_oracle = TRUE;
 	} else {
 		boolean cheapskate = u_pay < major_cost;
 		outoracle(cheapskate, TRUE);
 		if (!cheapskate && !u.uevent.major_oracle) {
-		    add_xpts = u_pay / (u.uevent.minor_oracle ? 25 : 10);
+		    add_xpts = u_pay / (u.uevent.minor_oracle ? 2 : 10);
 
 			u.uevent.major_oracle = TRUE; /* so you can't hangup cheat */
 			You_feel("very enlightened!"); /* idea by hothraxxa: +1 INT; I (Amy) decided to give +1 WIS too */
