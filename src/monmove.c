@@ -2824,6 +2824,8 @@ altarfound:
 	if (monsndx(ptr) == PM_SLEEPING_ASIAN_GIRL && !rn2(10)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_DIDDLY_DINGUS_DUDE && !rn2(20)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_DIM_GIRL) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_LASSY_GIRL) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_LOST_ITALIAN_PLUMBER) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_BEER_BELLY) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_SLOOB) mtmp->mconf = 1;
