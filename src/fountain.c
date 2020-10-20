@@ -326,6 +326,7 @@ drinkfountain()
 
 		case 16:
 			pm = rn2(5) ? dprince(rn2((int)A_LAWFUL+2) - 1) : dlord(rn2((int)A_LAWFUL+2) - 1);
+			if (pm >= PM_ORCUS && pm <= PM_DEMOGORGON) u.conclusiocount++;
 			if (pm && (pm != NON_PM)) {
 				(void) makemon(&mons[pm], u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 				pline("An angry demon climbs out of the fountain...");
@@ -683,6 +684,7 @@ register struct obj *obj;
 		 * I made it so that if you're foolish enough to QUAFF from them instead, it happens much more often --Amy */
 			if (!rn2(50)) {
 				pm = rn2(5) ? dprince(rn2((int)A_LAWFUL+2) - 1) : dlord(rn2((int)A_LAWFUL+2) - 1);
+				if (pm >= PM_ORCUS && pm <= PM_DEMOGORGON) u.conclusiocount++;
 				if (pm && (pm != NON_PM)) {
 					(void) makemon(&mons[pm], u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 					pline("An angry demon climbs out of the fountain...");
