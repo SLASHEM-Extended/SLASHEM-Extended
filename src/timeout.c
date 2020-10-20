@@ -2729,6 +2729,10 @@ nh_timeout()
 			if (!Teleport_control)
 				You_feel("a little less in control of yourself.");
 			break;
+		case POLYMORPH:
+			if (!Polymorph)
+				You_feel("a little less unstable.");
+			break;
 		case POLYMORPH_CONTROL:
 			if (!Polymorph_control)
 				You_feel("a little less in control of your form.");
