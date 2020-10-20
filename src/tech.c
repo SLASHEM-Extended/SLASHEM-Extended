@@ -1139,6 +1139,14 @@ static const struct innate_tech
 		       {   8, T_ON_THE_SAME_TEAM, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
+	bga_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   15, T_CONCENTRATING, 1},
+		       {   20, T_TERRAIN_CLEANUP, 1},
+		       {   0, 0, 0} },
 	dvp_tech[] = { {   1, T_APPRAISAL, 1},
 		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
@@ -9648,6 +9656,7 @@ race_tech()
 		case PM_DEEP_ELF:		return (dee_tech);
 		case PM_DEVELOPER:		return (dvp_tech);
 		case PM_SHOE:		return (sho_tech);
+		case PM_BULDOZGAR:		return (bga_tech);
 		case PM_PLAYER_ANDROID:		return (and_tech);
 		case PM_FAWN:		return (faw_tech);
 		case PM_PLAYER_GREMLIN:		return (gre_tech);

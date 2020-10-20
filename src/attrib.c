@@ -903,6 +903,11 @@ const struct innate {
 			{   15, &(HFast), "quick", "slow", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
+	bga_abil[] = { {	10, &(HAggravate_monster), "noisy", "quiet", FALSE },
+		     {	15, &(HFear_resistance), "unafraid", "afraid", TRUE },
+			 {	 20, &(HHunger), "very hungry", "less hungry", FALSE },
+		     {	 0, 0, 0, 0, 0 } },
+
 	clk_abil[] = { {	1, &(HPoison_resistance), "", "", TRUE },
 		     {	 1, &(HSick_resistance), "", "", TRUE },
 		     {	 1, &(HStone_resistance), "", "", TRUE },
@@ -2349,6 +2354,7 @@ int oldlevel, newlevel;
 	case PM_SEA_ELF:	rabil = sea_abil;	break;
 	case PM_DEEP_ELF:	rabil = dee_abil;	break;
 	case PM_SYLPH:	rabil = syl_abil;	break;
+	case PM_BULDOZGAR:	rabil = bga_abil;	break;
 	case PM_SPRIGGAN:	rabil = spr_abil;	break;
 	case PM_PLAYER_FAIRY:	rabil = fay_abil;	break;
 	case PM_ALCHEMIST:           rabil = alc_abil;	break;
@@ -2671,6 +2677,7 @@ int x;
 		if (RngeCoquetry) tmp += 5;
 		if (FemtrapActiveSolvejg) tmp += 5;
 		if (FemtrapActiveNatalje) tmp += 10;
+		if (Race_if(PM_BULDOZGAR)) tmp += 2;
 
 		if (PlayerInHighHeels && !(PlayerCannotUseSkills)) {
 
@@ -2826,6 +2833,7 @@ int x;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp += 10;
 		if (uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) tmp += 1;
 		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
+		if (Race_if(PM_BULDOZGAR)) tmp += 2;
 		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
 
 		if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {

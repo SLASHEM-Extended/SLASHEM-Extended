@@ -5327,6 +5327,8 @@ controlagain:
 			randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
 		}
 
+		if (Race_if(PM_BULDOZGAR) && !rn2(100)) wake_nearby();
+
 		if (Role_if(PM_FEMINIST) && u.ualign.record < 0 && !rn2(StrongStealth ? 100000 : Stealth ? 50000 : 5000)) {
 		/* feminist aggravation idea by bugsniper */
 

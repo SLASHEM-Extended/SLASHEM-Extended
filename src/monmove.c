@@ -3133,6 +3133,7 @@ altarfound:
 		ny = poss[i].y;
 
 		if (FeelerGauges || u.uprops[FEELER_GAUGES].extrinsic || have_feelergaugesstone() ) appr = 1;
+		if (Race_if(PM_BULDOZGAR) && !mtmp->mpeaceful && !mtmp->mtame) appr = 1;
 
 		if (appr != 0) {
 		    mtrk = &mtmp->mtrack[0];

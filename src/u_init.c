@@ -18166,6 +18166,7 @@ u_init()
 	case PM_PLAYER_CERBERUS: racebounus = rnz(16); break;
 	case PM_PLAYER_GOLEM: racebounus = rnz(11); break;
 	case PM_PLAYER_MECHANIC: racebounus = rnz(12); break;
+	case PM_BULDOZGAR: racebounus = rnz(12); break;
 	default:	racebounus = rnz(10); break;
 
 	}
