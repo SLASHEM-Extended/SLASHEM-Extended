@@ -1,6 +1,27 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.6.8 - May 2020
+- Added a missing message when temporary polymorphitis ends.
+- Izchak should no longer disintegrate paladin player characters through no fault of the player.
+- Djinni, water demons and thrones can no longer give wishes to very low-level player characters.
+- Mind flayers can hack the player's implant now, cursing it and causing random bad effects.
+- Paralysis attacks are less powerful when used on hostile monsters now.
+- Changed trophy livelogging to be in line with what Beholder (the bot for the #hardfought IRC channel) expects.
+- Weapons that are normally made of glass or obsidian will still break when thrown now even if their base material is changed to something else.
+- If the player encounters the (known, but as of yet unfixed) bug where bumping into an engulfing monster wastes a turn instead of attacking, there is now a message telling the player about it.
+- Monsters can walk in styx rivers now. Also, shopkeepers and temple priests should no longer be stupid when there is nonstandard terrain in their rooms.
+- Displacement can no longer be used to drown hostile monsters, and there is a yes/no prompt when it would displace a pet into a harmful liquid.
+- When a monster with homing lazer attacks takes too long to fire its laser cannon, there is now a (vague) message.
+- Artifacts that do stuff when triggering a trap will now only do so if that particular trap hasn't been triggered by the player yet.
+- The Ctrl-X command will now also tell the player's score.
+- The death gaze invoke effect on certain artifacts is weaker now.
+- Fixed a crash bug when using the cutthroat technique.
+- Fixed a missing staircase on the assassin quest.
+- Using a cursed scroll of enchant armor on an armor piece with a special magical property will now remove that property.
+- There is now a message if a monster is hit by an elemental attack that it is immune to.
+- Tin openers can have enchantment values now and count as weapon-tools.
+- Fixed a bug introduced by the feature where stacks can resist manipulation, which could result in a game crash upon kicking a melon into a hole.
+- Fixed a bug where a certain special level would have a stair on a water square.
 - Spoons sell for much less (but still cost the same if the player wants to buy one).
 - Added options "eatingdoors" and "eatingboulders" which player characters with wall-eating capabilities may use to control what they eat by moving into it.
 - Fixed the bug where a monster with the exploder egotype may explode six times in a row.
