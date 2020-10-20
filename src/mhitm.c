@@ -2833,6 +2833,44 @@ meleeattack:
 
 	}
 
+	if (magr->data == &mons[PM_YOUR_GAME_ENDS_NOW] && isevilvariant) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_PHYS;
+		a->damn = 200;
+		a->damd = 200;
+
+		if(monnear(magr, mdef->mx, mdef->my)) {
+			dieroll = rnd(20 + i);
+			strike = (tmp > dieroll);
+			if (strike) res[i] = hitmm(magr, mdef, a);
+		}
+		if (res[i] & MM_AGR_DIED) return res[i];
+		if (res[i] & MM_DEF_DIED) return res[i];
+
+	}
+
+	if (magr->data == &mons[PM_MR__CONCLUSIO] && isevilvariant) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_PHYS;
+		a->damn = 200;
+		a->damd = 200;
+
+		if(monnear(magr, mdef->mx, mdef->my)) {
+			dieroll = rnd(20 + i);
+			strike = (tmp > dieroll);
+			if (strike) res[i] = hitmm(magr, mdef, a);
+		}
+		if (res[i] & MM_AGR_DIED) return res[i];
+		if (res[i] & MM_DEF_DIED) return res[i];
+
+	}
+
 	if (magr->data == &mons[PM_LEFTOGORGON] && isevilvariant) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
@@ -3303,6 +3341,9 @@ struct monst *magr, *mdef;
 	case PM_SPARD:
 	case PM_IBERIAN_SOLDIER:
 		multishot += 3;
+		break;
+	case PM_BLUE_ARCHER:
+		multishot += 2;
 		break;
 	case PM_RANGER:
 	case PM_ROCKER:

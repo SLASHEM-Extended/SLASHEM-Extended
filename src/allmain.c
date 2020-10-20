@@ -2886,6 +2886,11 @@ newbossBQ:
 			}
 		}
 
+		if (u.conclusiocount && !rn2(20000)) {
+			u.conclusiocount--;
+			if (u.conclusiocount < 0) u.conclusiocount = 0; /* fail safe */
+		}
+
 		if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE && !rn2(1000)) {
 			acqo = mkobj_at(WEAPON_CLASS, u.ux, u.uy, FALSE, FALSE);
 			if (acqo) pline("Someting appeared on the ground beneath you!");

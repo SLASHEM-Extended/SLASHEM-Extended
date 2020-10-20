@@ -1633,6 +1633,8 @@ struct you {
 
 	int gaugetimer;	/* one point shoot and particle cannon require 50 turns to reload */
 
+	int conclusiocount;	/* to check whether Mr. Conclusio can spawn */
+
 	int persiantimer;	/* for persian boots */
 
 	int stoogedepth;	/* occasionally the three stooges will spawn */

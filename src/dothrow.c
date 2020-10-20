@@ -2206,6 +2206,21 @@ boolean polearming;
 		pline("%s swats the projectile away!", Monnam(mon));
 	}
 
+	if (mon->data == &mons[PM_MR__CONCLUSIO] && rn2(15) && tmp > -20) {
+		tmp = -100;
+		pline("%s swats the projectile away!", Monnam(mon));
+	}
+
+	if (mon->data == &mons[PM_YOUR_GAME_ENDS_NOW] && rn2(15) && tmp > -20) {
+		tmp = -100;
+		pline("%s swats the projectile away!", Monnam(mon));
+	}
+
+	if (mon->data == &mons[PM_ELITE_GENDAME] && rn2(15) && tmp > -20) {
+		tmp = -100;
+		pline("%s swats the projectile away!", Monnam(mon));
+	}
+
 	if (mon->data == &mons[PM_LILAC_FEMMY] && rn2(15) && tmp > -20) {
 		tmp = -100;
 		pline("%s swats the projectile away!", Monnam(mon));

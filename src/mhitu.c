@@ -5110,6 +5110,18 @@ elena37:
 			datadeleteattack();
 		}
 	}
+	if (mtmp->data == &mons[PM_MR__CONCLUSIO] && isevilvariant) {
+		if(!range2 && foundyou && (tmp > (j = rnd(20+i)))) {
+			u.datadeletedefer = 1;
+			datadeleteattack();
+		}
+	}
+	if (mtmp->data == &mons[PM_YOUR_GAME_ENDS_NOW] && isevilvariant) {
+		if(!range2 && foundyou && (tmp > (j = rnd(20+i)))) {
+			u.datadeletedefer = 1;
+			datadeleteattack();
+		}
+	}
 	if (mtmp->data == &mons[PM_LEFTOGORGON] && isevilvariant) {
 		if(!range2 && foundyou && (tmp > (j = rnd(20+i)))) {
 			u.datadeletedefer = 1;

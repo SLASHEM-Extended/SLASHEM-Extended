@@ -2093,6 +2093,7 @@ dosacrifice()
 		    dmon->minvis = FALSE;
 		    if (dmon->minvisreal) dmon->minvis = TRUE;
 		    You("have summoned %s!", a_monnam(dmon));
+		    if (pm >= PM_ORCUS && pm <= PM_DEMOGORGON) u.conclusiocount++;
 		    if (sgn(u.ualign.type) == sgn(dmon->data->maligntyp)) {
 			dmon->mpeaceful = (rn2(2) ? TRUE : FALSE); /* making things a bit more dangerous for chaotics --Amy */
 			if (dmon && dmon->mpeaceful && !rn2(500) ) dmon = tamedog(dmon, (struct obj *) 0, TRUE);
