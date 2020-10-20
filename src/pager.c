@@ -4019,6 +4019,7 @@ static NEARDATA const char * const demagoguelines[] = {
 "When I'm the head of state, I'm gonna install a Grand Inquisitor who detains everyone that wants to get me removed.",
 "Why is there no death penalty? We need to reintroduce that so we can get rid of the criminal scum!",
 "They're either with us or against us! And those who are against us, they shall tremble and quake in fear before I execute them!",
+"Our country used to be a 'democracy', but lately it has quickly drifted off into a dictatorship! We must remove the evil dictator!",
 };
 
 static NEARDATA const char * const longinglines[] = {
@@ -25580,7 +25581,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"The real reason why Locke didn't r*pe Brienne in the TV show wasn't because Jaime lied to him about some ominous sapphires, but because he was turned off by the fact that Brienne looks like a guy. However, in the fanfic Julyne Stark was less lucky.",
 	"You encounter two cute little asian girls, but suddenly they grab your arms and twist them in a way that prevents your blood from circulating through them! And you can't fight back while the girls use their fleecy hands to do surprisingly painful things to you!",
 	"You encounter two cute little asian girls, but suddenly each of them grabs one of your arms and with their other, free hands they start clawing and pinching you with very sharp-edged fingernails which turn out to make for extremely effective cutting tools.",
-	"welcome to slex, works as intended :P  everything in slex works as intended! especially things that make the player go 'what the fuck are you serious Amy???'",
+	"welcome to slex, works as intended :P  everything in slex works as intended! especially things that make the player go 'what the fuck are you serious Amy???' ",
+	"You feel a strange vibration on your face! Zits appear from nowhere!", /* by nabru */
 
 };
 
