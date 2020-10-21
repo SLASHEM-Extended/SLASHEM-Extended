@@ -5391,6 +5391,7 @@ static const char *epitaphs[] = {
 	"nasty traps last too long", /* hint: they don't :P --Amy */
 	"WHAAAAAT you made it so that I can't simply startscum healers for wishes anymore YOU SUUUUUUCK AMY! I certainly won't touch your shit variant again!",
 	"Is there still something in slex that players enjoy? You should implement the opposite of that.", /* by amateurhour (exact original wording might be slightly different) */
+	"magic traps lead to tragic maps", /* by amateurhour */
 
 };
 
