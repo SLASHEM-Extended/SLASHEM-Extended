@@ -25581,8 +25581,22 @@ static NEARDATA const char * const fake_plines[] = {
 	"The real reason why Locke didn't r*pe Brienne in the TV show wasn't because Jaime lied to him about some ominous sapphires, but because he was turned off by the fact that Brienne looks like a guy. However, in the fanfic Julyne Stark was less lucky.",
 	"You encounter two cute little asian girls, but suddenly they grab your arms and twist them in a way that prevents your blood from circulating through them! And you can't fight back while the girls use their fleecy hands to do surprisingly painful things to you!",
 	"You encounter two cute little asian girls, but suddenly each of them grabs one of your arms and with their other, free hands they start clawing and pinching you with very sharp-edged fingernails which turn out to make for extremely effective cutting tools.",
-	"welcome to slex, works as intended :P  everything in slex works as intended! especially things that make the player go 'what the fuck are you serious Amy???' ",
+	"welcome to slex, works as intended :P  everything in slex works as intended! especially things that make the player go 'what the fuck are you serious Amy??? '",
 	"You feel a strange vibration on your face! Zits appear from nowhere!", /* by nabru */
+	"Incoming message for Player 1. The message is from 'Marc'. It reads: 'Function fire!'",
+	"Incoming message for Player 1. The message is from 'Marc'. It reads: 'Oh, there's an item, and it's even in the golden status! You guessed correctly: it's a function!'",
+	"Incoming message for Player 1. The message is from 'Marc'. It reads: 'Whenever you try to shoot me, I simply duck so you can't hit me.'",
+	"Incoming message for Player 1. The message is from 'Marc'. It reads: 'The game is programmed badly, all the enemies still see me even though I threw a smoke grenade! The only thing that changed is that it's lagging on my end because of the smoke animation!'",
+	"Incoming message for Player 1. The message is from 'Marc'. It reads: 'Bots are behaving in completely unrealistic ways, it's obvious that they're no humans.'",
+	"Incoming message for Player 1. The message is from 'Nadja'. It reads: 'I play Counter-Strike for a couple hours each day.'",
+	"Incoming message for Player 1. The message is from 'Nadja'. It reads: 'I'm pretty good at Counter-Strike. Wanna bet that I'd beat you in a match?'",
+	"Incoming message for Player 1. The message is from 'Nadja'. It reads: 'My butt is producing erotic Nadja noises for you now.'",
+	"Incoming message for Player 1. The message is from 'Jessica'. It reads: 'Do you like it if my butt produces very tender air current noises?'",
+	"Incoming message for Player 1. The message is from 'Jessica'. It reads: 'Now you have to inhale my farting gas until you fall down unconscious.'",
+	"Incoming message for Player 1. The message is from 'Jessica'. It reads: 'It's a lot of fun applying pressure with my butt and blowing the stinking gas into your face.'",
+	"Incoming message for Player 1. The message is from 'Jessica'. It reads: 'Why are you complaining about my asian butt? I'm producing the farting noises specially for you!'",
+	"Incoming message for Player 1. The message is from 'Sue Lyn'. It reads: 'Do you enjoy my squeaky farting noises?'",
+	"Incoming message for Player 1. The message is from 'Sue Lyn'. It reads: 'My butt can squeak out a lot of farting gas, and you'll definitely be sexually aroused by it.'",
 
 };
 
