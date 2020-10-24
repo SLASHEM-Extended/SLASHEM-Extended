@@ -25597,6 +25597,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Jessica'. It reads: 'Why are you complaining about my asian butt? I'm producing the farting noises specially for you!'",
 	"Incoming message for Player 1. The message is from 'Sue Lyn'. It reads: 'Do you enjoy my squeaky farting noises?'",
 	"Incoming message for Player 1. The message is from 'Sue Lyn'. It reads: 'My butt can squeak out a lot of farting gas, and you'll definitely be sexually aroused by it.'",
+	"You were about to read the novel, but the content has been taken down.",
+	"You were about to read the novel, but the content has been taken down. It probably contained all of one single boring vanilla sex scene and some prudes complained so much that there was a DMCA notice.",
 
 };
 

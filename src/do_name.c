@@ -5524,7 +5524,10 @@ static NEARDATA const char * const hcolors[] = {
 	"dancing", "singing", "loving",
 	"electric", "welsh onion", "your colored",
 	"loudy", "noisy", "clattery", "silent",
-	"romantic", "incandescent", "multicolored"
+	"romantic", "incandescent", "multicolored",
+	"apocyan", "cosmogone", "gant", "infra-pink",
+	"irrigo", "opalescent", "peligin", "razzmatazz",
+	"violant", "viric",
 };
 
 const char *
