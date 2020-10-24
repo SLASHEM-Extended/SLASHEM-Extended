@@ -1303,7 +1303,7 @@ m_throw(mon, x, y, dx, dy, range, obj)
 	  the random chance for small objects hitting bars is
 	  skipped when reaching them at point blank range */
 	if (!isok(bhitpos.x+dx,bhitpos.y+dy)
-	    || IS_ROCK(levl[bhitpos.x+dx][bhitpos.y+dy].typ)
+	    || (IS_ROCK(levl[bhitpos.x+dx][bhitpos.y+dy].typ) && !IS_FARMLAND(levl[bhitpos.x+dx][bhitpos.y+dy].typ) )
 	    || IS_WATERTUNNEL(levl[bhitpos.x+dx][bhitpos.y+dy].typ)
 	    || closed_door(bhitpos.x+dx, bhitpos.y+dy)
 	    || (levl[bhitpos.x + dx][bhitpos.y + dy].typ == IRONBARS &&
