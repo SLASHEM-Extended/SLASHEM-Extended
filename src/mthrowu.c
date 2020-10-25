@@ -1323,6 +1323,12 @@ m_throw(mon, x, y, dx, dy, range, obj)
 	while(range-- > 0) { /* Actually the loop is always exited by break */
 		bhitpos.x += dx;
 		bhitpos.y += dy;
+
+		if (!singleobj) { /* destroyed by hits_bars, bug discovered by amateurhour --Amy */
+			pline("Some thin air brushes you!");
+			break;
+		}
+
 		if ((mtmp = m_at(bhitpos.x, bhitpos.y)) != 0) {
 		    if (ohitmon(mon, mtmp, singleobj, range, TRUE))
 			break;
