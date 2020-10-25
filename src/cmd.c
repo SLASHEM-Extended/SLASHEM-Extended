@@ -5206,7 +5206,7 @@ boolean guaranteed;
 
 	if ((guaranteed || !rn2(10)) && u.graundweight) {
 		sprintf(buf, "burdened by some dead weight.");
-	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", u.graundweight);
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", u.graundweight);
 		you_are(buf);
 	}
 
@@ -6284,7 +6284,7 @@ boolean guaranteed;
 
 	if ((guaranteed || !rn2(10)) && Fumbling) {
 		sprintf(buf, "fumbling");
-	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", u.fumbleduration);
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", u.fumbleduration);
 		you_are(buf);
 	}
 	if ((guaranteed || !rn2(10)) && (Wounded_legs && !u.usteed)) {
@@ -9139,7 +9139,7 @@ int final;
 
 	if (u.graundweight) {
 		sprintf(buf, "burdened by some dead weight.");
-		sprintf(eos(buf), " (%ld)", u.graundweight);
+		sprintf(eos(buf), " (%d)", u.graundweight);
 		dump(youwere, buf);
 	}
 
@@ -10214,7 +10214,7 @@ int final;
 
 	if (Fumbling) {
 		sprintf(buf, "fumbling");
-		sprintf(eos(buf), " (%ld)", u.fumbleduration);
+		sprintf(eos(buf), " (%d)", u.fumbleduration);
 		dump(youwere, buf);
 	}
 

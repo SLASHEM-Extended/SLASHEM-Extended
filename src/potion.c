@@ -1147,7 +1147,7 @@ boolean talk;
 	}
 
 	if (xtime < 0) {
-		impossible("make_blinded called with negative blindness counter %d", xtime);
+		impossible("make_blinded called with negative blindness counter %ld", xtime);
 		xtime = 0;
 	}
 

@@ -3805,7 +3805,7 @@ castanyway:
 
 		if (pseudo->otyp == SPE_PARTICLE_CANNON) {
 			if (u.gaugetimer) {
-				You("need to wait %d more turns to refill your gauge. The particle cannon can be used again at turn %d.", u.gaugetimer, (moves + u.gaugetimer));
+				You("need to wait %d more turns to refill your gauge. The particle cannon can be used again at turn %ld.", u.gaugetimer, (moves + u.gaugetimer));
 				break;
 			} else {
 				u.gaugetimer = 50;
@@ -3814,7 +3814,7 @@ castanyway:
 
 		if (pseudo->otyp == SPE_CONVERGE_BREATH) {
 			if (u.gaugetimer) {
-				You("need to wait %d more turns to refill your gauge. Converge breath can be used again at turn %d.", u.gaugetimer, (moves + u.gaugetimer));
+				You("need to wait %d more turns to refill your gauge. Converge breath can be used again at turn %ld.", u.gaugetimer, (moves + u.gaugetimer));
 				break;
 			} else {
 				u.gaugetimer = 50;
@@ -4437,7 +4437,7 @@ aulechoice:
 	case SPE_IMPACT_GUNFIRE:
 
 		if (u.gaugetimer) {
-			You("need to wait %d more turns to refill your gauge. Impact Gunfire can be used again at turn %d.", u.gaugetimer, (moves + u.gaugetimer));
+			You("need to wait %d more turns to refill your gauge. Impact Gunfire can be used again at turn %ld.", u.gaugetimer, (moves + u.gaugetimer));
 			break;
 		} else {
 			u.gaugetimer = 50;
@@ -4524,7 +4524,7 @@ aulechoice:
 	case SPE_ONE_POINT_SHOOT:
 
 		if (u.gaugetimer) {
-			You("need to wait %d more turns to refill your gauge. One Point Shoot can be used again at turn %d.", u.gaugetimer, (moves + u.gaugetimer));
+			You("need to wait %d more turns to refill your gauge. One Point Shoot can be used again at turn %ld.", u.gaugetimer, (moves + u.gaugetimer));
 			break;
 		} else {
 			u.gaugetimer = 50;
@@ -10450,16 +10450,16 @@ rerollX:
 	/* particle cannon and one point shoot need "gauge"; since this isn't Elona, we don't have an actual gauge meter,
 	 * so I decided that it just takes 50 turns to reload --Amy */
 	if (pseudo && (pseudo->otyp == SPE_PARTICLE_CANNON)) {
-		pline("The particle cannon can be used again at turn %d.", (moves + u.gaugetimer));
+		pline("The particle cannon can be used again at turn %ld.", (moves + u.gaugetimer));
 	}
 	if (pseudo && (pseudo->otyp == SPE_CONVERGE_BREATH)) {
-		pline("Converge Breath can be used again at turn %d.", (moves + u.gaugetimer));
+		pline("Converge Breath can be used again at turn %ld.", (moves + u.gaugetimer));
 	}
 	if (pseudo && (pseudo->otyp == SPE_IMPACT_GUNFIRE)) {
-		pline("Impact Gunfire can be used again at turn %d.", (moves + u.gaugetimer));
+		pline("Impact Gunfire can be used again at turn %ld.", (moves + u.gaugetimer));
 	}
 	if (pseudo && (pseudo->otyp == SPE_ONE_POINT_SHOOT)) {
-		pline("One Point Shoot can be used again at turn %d.", (moves + u.gaugetimer));
+		pline("One Point Shoot can be used again at turn %ld.", (moves + u.gaugetimer));
 	}
 
 	obfree(pseudo, (struct obj *)0);	/* now, get rid of it */

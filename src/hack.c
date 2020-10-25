@@ -334,6 +334,7 @@ void
 dgn_growths(showmsg, update, treesnstuff)
 boolean showmsg; /* show messages */
 boolean update;  /* do newsym() */
+boolean treesnstuff;
 {
 	int herbnum = rn2(SIZE(herb_info));
 	int randomx, randomy;

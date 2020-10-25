@@ -1458,48 +1458,56 @@ have_femtrapkati()
 	return(FALSE);
 }
 
+boolean
 have_femtrapnelly()
 {
 	if (feminizecheck(23)) return TRUE;
 	return(FALSE);
 }
 
+boolean
 have_femtrapeveline()
 {
 	if (feminizecheck(24)) return TRUE;
 	return(FALSE);
 }
 
+boolean
 have_femtrapkarin()
 {
 	if (feminizecheck(25)) return TRUE;
 	return(FALSE);
 }
 
+boolean
 have_femtrapjuen()
 {
 	if (feminizecheck(26)) return TRUE;
 	return(FALSE);
 }
 
+boolean
 have_femtrapkristina()
 {
 	if (feminizecheck(27)) return TRUE;
 	return(FALSE);
 }
 
+boolean
 have_femtraplou()
 {
 	if (feminizecheck(28)) return TRUE;
 	return(FALSE);
 }
 
+boolean
 have_femtrapalmut()
 {
 	if (feminizecheck(29)) return TRUE;
 	return(FALSE);
 }
 
+boolean
 have_femtrapjulietta()
 {
 	if (feminizecheck(30)) return TRUE;

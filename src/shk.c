@@ -6631,12 +6631,12 @@ shk_estcredit(slang, shkp)
 		if ((eshkp->totalcredit + offer) > eshkp->creditlimit) {
 			offer = (eshkp->creditlimit - eshkp->totalcredit);
 			ESHK(shkp)->services &= ~SHK_CREDITSRV;
-			verbalize("That would exceed your credit limit! I'll only accept %d zorkmids.", offer);
+			verbalize("That would exceed your credit limit! I'll only accept %ld zorkmids.", offer);
 		}
 		u.ugold -= offer;
 		eshkp->totalcredit += offer;
 		eshkp->credit += offer;
-		verbalize("Your total credit amounts to %d zorkmids now. Thank you!", eshkp->credit);
+		verbalize("Your total credit amounts to %ld zorkmids now. Thank you!", eshkp->credit);
 	}
 }
 
