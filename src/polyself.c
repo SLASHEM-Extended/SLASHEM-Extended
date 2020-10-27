@@ -696,6 +696,14 @@ int	mntmp;
 	boolean could_pass_walls = Passes_walls;
 	int mlvl;
 
+	if (Race_if(PM_PLAYER_SLIME)) { /* cannot polymorph at all - punishment for being slimed --Amy */
+		newman();
+		return 0;
+	}
+	if (Race_if(PM_INCORPOREALOID)) { /* cannot polymorph at all, because amateurhour wants it so --Amy */
+		return 0;
+	}
+
 	if (mntmp < LOW_PM) { /* for some reason, this seems to happen sometimes. Dunno why. --Amy */
 
 		pline("Uh-oh... that polymorph didn't seem to work.");
