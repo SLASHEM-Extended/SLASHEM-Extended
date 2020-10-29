@@ -3575,10 +3575,11 @@ struct obj *obj, *otmp;
 	case SPE_TIME:
 	case WAN_TIME:
 	case WAN_REDUCE_MAX_HITPOINTS:
-		(void) drain_item(obj);
+		/* amateurhour found yet another long-standing SLASH'EM bug; I decided to kludge a fix :P --Amy */
+		if (!flags.mon_moving) (void) drain_item(obj);
 		break;
 	case WAN_INCREASE_MAX_HITPOINTS:
-		(void) drain_item_negative(obj);
+		if (!flags.mon_moving) (void) drain_item_negative(obj);
 		break;
 	case WAN_TELEPORTATION:
 	case WAN_BANISHMENT:
