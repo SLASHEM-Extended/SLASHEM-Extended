@@ -5319,7 +5319,7 @@ void
 nivellate()
 {
 	boolean type = rn2(2); /* 0 = HP, 1 = Pw */
-	boolean nivellevel = u.ulevel;
+	int nivellevel = u.ulevel;
 	int lowerceiling = 1;
 	int upperceiling = 1;
 	int reduceamount = 1;
@@ -5727,7 +5727,7 @@ boolean guaranteed;
 	if (evilfriday && !guaranteed && rn2(3)) return; /* tough luck */
 	if (u.ulevel < 4) return; /* not available yet */
 
-	boolean nivellevel = u.ulevel;
+	int nivellevel = u.ulevel;
 	int ceiling = 1;
 	int increaseamount = 1;
 
