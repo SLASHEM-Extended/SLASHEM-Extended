@@ -2234,7 +2234,11 @@ boolean weakeffect;
 		 obj->otyp != MAGIC_LAMP &&
 		 obj->otyp != MAGIC_CANDLE &&
 		 obj->otyp != CANDELABRUM_OF_INVOCATION) {
-		costly_cancel(obj);
+		if (!flags.mon_moving) costly_cancel(obj);
+		else if (issoviet) {
+			costly_cancel(obj);
+			pline("Monstr otmenil predmet, i teper' prodavets serditsya na vas, neudacha. Khar khar khe khe.");
+		}
 		if (!willresist) {
 			if (obj->spe < 0 && !(obj->oclass == WAND_CLASS) ) obj->spe++;
 			else obj->spe = (obj->oclass == WAND_CLASS) ? -1 : 0;
@@ -2247,14 +2251,22 @@ boolean weakeffect;
 obj->otyp == SCR_MAIL || 
 #endif
 obj->otyp == SCR_CURE || obj->otyp == SCR_MANA || obj->otyp == SCR_GREATER_MANA_RESTORATION || obj->otyp == SCR_STANDARD_ID || obj->otyp == SCR_PHASE_DOOR) break;
-		costly_cancel(obj);
+		if (!flags.mon_moving) costly_cancel(obj);
+		else if (issoviet) {
+			costly_cancel(obj);
+			pline("Monstr otmenil predmet, i teper' prodavets serditsya na vas, neudacha. Khar khar khe khe.");
+		}
 		obj->otyp = SCR_BLANK_PAPER;
 		obj->spe = 0;
 		break;
 	      case SPBOOK_CLASS:
 		if (obj->otyp != SPE_CANCELLATION &&
 			obj->otyp != SPE_BOOK_OF_THE_DEAD) {
-		    costly_cancel(obj);
+		    if (!flags.mon_moving) costly_cancel(obj);
+		    else if (issoviet) {
+			costly_cancel(obj);
+			pline("Monstr otmenil predmet, i teper' prodavets serditsya na vas, neudacha. Khar khar khe khe.");
+		    }
 		    obj->otyp = SPE_BLANK_PAPER;
 		}
 		break;
@@ -2262,7 +2274,11 @@ obj->otyp == SCR_CURE || obj->otyp == SCR_MANA || obj->otyp == SCR_GREATER_MANA_
 		/* Potions of amnesia are uncancelable. */
 		if (obj->otyp == POT_AMNESIA) break;
 
-		costly_cancel(obj);
+		if (!flags.mon_moving) costly_cancel(obj);
+		else if (issoviet) {
+			costly_cancel(obj);
+			pline("Monstr otmenil predmet, i teper' prodavets serditsya na vas, neudacha. Khar khar khe khe.");
+		}
 		if (obj->otyp == POT_SICKNESS || obj->otyp == POT_POISON ||
 		    obj->otyp == POT_SEE_INVISIBLE) {
 	    /* sickness is "biologically contaminated" fruit juice; cancel it
@@ -2277,7 +2293,11 @@ obj->otyp == SCR_CURE || obj->otyp == SCR_MANA || obj->otyp == SCR_GREATER_MANA_
 		break;
 	    }
 	}
-	if (holy) costly_cancel(obj);
+	if (holy && (!flags.mon_moving)) costly_cancel(obj);
+	else if (holy && issoviet) {
+		costly_cancel(obj);
+		pline("Monstr otmenil predmet, i teper' prodavets serditsya na vas, neudacha. Khar khar khe khe.");
+	}
 	unbless(obj);
 	if (obj->oclass == WAND_CLASS || obj->spe >= 0) uncurse(obj, FALSE);
 	if (obj->oinvis) obj->oinvis = 0;
@@ -2315,7 +2335,11 @@ register struct obj *obj;
 	if (stack_too_big(obj)) return (FALSE);
 
 	/* Charge for the cost of the object */
-	costly_cancel(obj);	/* The term "cancel" is okay for now */
+	if (!flags.mon_moving) costly_cancel(obj);	/* The term "cancel" is okay for now */
+	else if (issoviet) {
+		costly_cancel(obj);
+		pline("Monstr osushil predmet, i teper' lavochnik serditsya na tebya, neudachnik. Va-kha-kha-kha.");
+	}
 
 	/* Drain the object and any implied effects */
 	obj->spe--;
@@ -2383,7 +2407,11 @@ register struct obj *obj;
 	if (stack_too_big(obj)) return (FALSE);
 
 	/* Charge for the cost of the object */
-	costly_cancel(obj);	/* The term "cancel" is okay for now */
+	if (!flags.mon_moving) costly_cancel(obj);	/* The term "cancel" is okay for now */
+	else if (issoviet) {
+		costly_cancel(obj);
+		pline("Monstr osushil predmet, i teper' lavochnik serditsya na tebya, neudachnik. Va-kha-kha-kha.");
+	}
 
 	/* Drain the object and any implied effects */
 	save_spe = obj->spe;
@@ -2455,7 +2483,11 @@ register struct obj *obj;
 	if (stack_too_big(obj)) return (FALSE);
 
 	/* Charge for the cost of the object */
-	costly_cancel(obj);	/* The term "cancel" is okay for now */
+	if (!flags.mon_moving) costly_cancel(obj);	/* The term "cancel" is okay for now */
+	else if (issoviet) {
+		costly_cancel(obj);
+		pline("Monstr osushil predmet, i teper' lavochnik serditsya na tebya, neudachnik. Va-kha-kha-kha.");
+	}
 
 	/* Drain the object and any implied effects */
 	obj->spe--;
@@ -3575,11 +3607,10 @@ struct obj *obj, *otmp;
 	case SPE_TIME:
 	case WAN_TIME:
 	case WAN_REDUCE_MAX_HITPOINTS:
-		/* amateurhour found yet another long-standing SLASH'EM bug; I decided to kludge a fix :P --Amy */
-		if (!flags.mon_moving) (void) drain_item(obj);
+		(void) drain_item(obj);
 		break;
 	case WAN_INCREASE_MAX_HITPOINTS:
-		if (!flags.mon_moving) (void) drain_item_negative(obj);
+		(void) drain_item_negative(obj);
 		break;
 	case WAN_TELEPORTATION:
 	case WAN_BANISHMENT:

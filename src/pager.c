@@ -4640,6 +4640,7 @@ static NEARDATA const char * const soviettaunts[] = {
 "V Sovetskoy Rossii ne mozhet byt' nikakikh izmeneniy, kotoryye delayet Emi, nezavisimo ot togo, oblegchayet li ona igru ili delayet yeye slozhneye. I poetomu umen'shennyye shtrafy za ispol'zovaniye zaklinaniy takzhe byli otmeneny, potomu chto 'Sovetskaya pyaterka' yavlyayetsya LUCHSHIM razrabotchikom variantov za vse vremya.",
 "Vy mozhete snova napolnit' svoy ledyanoy yashchik polnymi legkikh trupov i pozhertvovat' imi, potomu chto Sovetskiy Soyuz ne imeyet predstavleniya ob igrovom balanse.",
 "Yesli vy nastol'ko tupy i igrayete v etot rezhim, vy zasluzhivayete togo, chtoby vash shlem razocharovyvalsya kazhdyy raz, kogda monstr brosayet v vas igristoye vino. MUA KHA KHA!",
+"Yesli monstr istoshchayet predmet s pomoshch'yu palochki, prodavets rasserditsya na vas, potomu chto Emi ne razresheno ispravlyat' oshibki. Gryaznaya bludnitsa, kem ona sebya schitayet???",
 };
 
 static NEARDATA const char * const practicantlines[] = {
