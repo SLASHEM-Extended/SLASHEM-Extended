@@ -1349,7 +1349,7 @@ domonability()
 			You("can't. It's cursed.");
 			return TRUE;
 		}
-		getlin("Do you really want to murder your symbiote? [yes/no]?",buf);
+		getlin("Attention: This action causes an alignment and luck penalty; if you want to replace your symbiote with a different one, just use your preferred method of obtaining a new symbiote instead. Do you really want to murder your symbiote? [yes/no]?",buf);
 		(void) lcase (buf);
 		if (!(strcmp (buf, "yes"))) {
 
