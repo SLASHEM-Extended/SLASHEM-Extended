@@ -750,6 +750,7 @@ doread()
 	"House Stark! We will push that evil monster Cersei off the throne and take it for ourselves!",
 	"This shirt is worn by some weirdo who isn't a big fan of House Stark and therefore the shirt shows a golden lion instead.",
 	"Today, the wolf managed to defeat the lion. House Lannister is going DOWN and the Starks will be victorious!",
+	"With this train (which can ram other cars away), I'll be much faster in Leipzig or meadow brook than if I walk home.",
 
 	    };
 	    char buf[BUFSZ];
