@@ -2709,6 +2709,10 @@ nh_timeout()
 			if (!Half_physical_damage)
 				You_feel("less resistant to damage.");
 			break;
+		case HUNGER:
+			if (!Hunger)
+				You_feel("less hungry.");
+			break;
 		case HALF_SPDAM:
 			if (!Half_spell_damage)
 				You_feel("less resistant to spells.");

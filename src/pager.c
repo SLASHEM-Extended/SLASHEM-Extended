@@ -25893,6 +25893,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Eveline'. It reads: 'Oh no, my beautiful blue dress! Now it's ruined!'",
 	"Incoming message for Player 1. The message is from 'Eveline'. It reads: 'No! You mean robber stole my expensive dress and now you'll probably sell it to some shady vendor for a few zorkmids!'",
 	"Incoming message for Player 1. The message is from 'Eveline'. It reads: 'Well that last rulebreak of yours was particularly brazen, even for you.'",
+	"You feel less hungry.",
+	"You feel less hungry. This is probably because you just ate something.",
+	"You feel less hungry, but in reality you're about to starve. Quick! Eat something or you'll die with no warning because you have a rare disease that reverses your hunger feelings!",
 
 };
 
