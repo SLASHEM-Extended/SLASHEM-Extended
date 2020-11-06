@@ -4422,6 +4422,12 @@ use_grapple (obj)
 	    break;
 	case 1:	/* Object */
 	    if ((otmp = level.objects[cc.x][cc.y]) != 0) {
+
+		if (costly_spot(cc.x, cc.y)) {
+			pline("This item is magically protected from such theft attempts.");
+			return(1);
+		}
+
 		You("snag an object from the %s!", surface(cc.x, cc.y));
 		(void) pickup_object(otmp, Race_if(PM_LEVITATOR) ? otmp->quan : 1L, FALSE, FALSE);
 		/* If pickup fails, leave it alone */
