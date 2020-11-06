@@ -2207,7 +2207,7 @@ register struct monst *mtmp;
 				verbl_msg = "Please don't let me die!";
 				break;
 			} else if (mtmp->mtame && !mtmp->isminion && hastoeat && moves > EDOG(mtmp)->hungrytime) {
-				pline_msg = "I haven't eaten in a while. Please bring me some chicken meat garnished with pepperoni.";
+				verbl_msg = "I haven't eaten in a while. Please bring me some chicken meat garnished with pepperoni.";
 				break;
 			} else {
 				pline("%s seems to love you even more than before.", Monnam(mtmp) );
