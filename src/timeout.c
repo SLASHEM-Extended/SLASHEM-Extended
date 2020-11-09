@@ -244,6 +244,17 @@ nh_timeout()
 	if (u.tremblingamount && !rn2(1000)) u.tremblingamount--;
 	if (u.tremblingamount < 0) u.tremblingamount = 0; /* fail safe */
 
+	if (u.badfcursed) {
+		u.badfcursed--;
+		if (u.badfcursed < 0) u.badfcursed = 0; /* fail safe */
+		if (!u.badfcursed) You("are no longer doing a journey on the path to nowhere.");
+	}
+	if (u.badfdoomed) {
+		u.badfdoomed--;
+		if (u.badfdoomed < 0) u.badfdoomed = 0; /* fail safe */
+		if (!u.badfdoomed) You("are on the way back from the journey on the path to nowhere.");
+	}
+
 	if (SimeoutBug || u.uprops[SIMEOUT_BUG].extrinsic || have_simeoutstone()) {
 		if (!rn2(2500)) {
 			u.usanity += (YouGetLotsOfSanity ? rnd(20) : 1);

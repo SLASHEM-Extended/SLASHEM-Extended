@@ -6079,6 +6079,18 @@ boolean guaranteed;
 		you_are(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && u.badfcursed) {
+		sprintf(buf, "cursed");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", u.badfcursed);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.badfdoomed) {
+		sprintf(buf, "DOOMED");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", u.badfdoomed);
+		you_are(buf);
+	}
+
 	int shieldblockrate = 0;
 
 	if ((guaranteed || !rn2(10)) && uarms) {
@@ -10004,6 +10016,18 @@ int final;
 	if (NoExpBoost) {
 		sprintf(buf, "prevented from having experience boost");
 		sprintf(eos(buf), " (%ld)", u.uprops[DEAC_EXP_BOOST].intrinsic);
+		dump(youwere, buf);
+	}
+
+	if (u.badfcursed) {
+		sprintf(buf, "cursed");
+		sprintf(eos(buf), " (%d)", u.badfcursed);
+		dump(youwere, buf);
+	}
+
+	if (u.badfdoomed) {
+		sprintf(buf, "DOOMED");
+		sprintf(eos(buf), " (%d)", u.badfdoomed);
 		dump(youwere, buf);
 	}
 

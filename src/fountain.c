@@ -290,6 +290,29 @@ drinkfountain()
 	} else {
 	    switch (fate) {
 
+		case 11:
+
+			if (!rn2(10)) {
+				if (!u.badfcursed) {
+					u.badfcursed = rnz(10000);
+					You("start a trip on the road to nowhere.");
+				} else {
+					u.badfcursed += rnz(10000);
+					u.badfdoomed += rnz(10000);
+					if (u.badfcursed < u.badfdoomed) u.badfcursed += rnz(10000);
+					if (u.badfcursed < u.badfdoomed) u.badfcursed = (u.badfdoomed * 2);
+					You("continue a trip on the road to nowhere...");
+				}
+				break;
+			}
+
+			pline("This tepid water is tasteless.");
+
+			u.uhunger += rnd(5); /* don't choke on water */
+			newuhs(FALSE);
+
+			break;
+
 		case 12:
 			if (!Unchanging) { /* Serves you right for quaffing from fountains. --Amy */
 				You_feel("a change coming over you.");

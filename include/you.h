@@ -1650,6 +1650,9 @@ struct you {
 	boolean freeplaytransit;	/* set to 1 if you're supposed to be transported back to dlvl1 and hang up or so */
 	boolean freeplayplanes;	/* set to 1 once you visit the sanctum and thereby re-enable the ability to visit the planes */
 
+	int badfcursed;	/* another long-lasting punishment for fountain quaffers */
+	int badfdoomed;
+
 	boolean keythief;	/* did the player use certain keys on Vlad's? if yes, give a reward once */
 	boolean keynocturn;
 	boolean keyaccess;

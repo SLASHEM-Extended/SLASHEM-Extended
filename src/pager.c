@@ -25897,7 +25897,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel less hungry.",
 	"You feel less hungry. This is probably because you just ate something.",
 	"You feel less hungry, but in reality you're about to starve. Quick! Eat something or you'll die with no warning because you have a rare disease that reverses your hunger feelings!",
-
+	"You start a trip on the road to nowhere.",
+	"You continue a trip on the road to nowhere...",
 };
 
 const char *
