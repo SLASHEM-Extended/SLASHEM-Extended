@@ -994,8 +994,8 @@ gcrownu()
 			livelog_report_trophy(reportbuf);
 #endif
 		    u.ugifts++;
-		    u.ublesscnt = rnz(300 + (50 * nartifact_exist() ));
-			if (ishaxor) u.ublesscnt /= 2;
+		    if (!ishaxor) u.ublesscnt += rnz(300 + (50 * nartifact_exist() ));
+		    else u.ublesscnt += rnz(150 + (25 * nartifact_exist() ));
 		    exercise(A_WIS, TRUE);
 		    /* make sure we can use this weapon */
 			if (P_MAX_SKILL(get_obj_skill(obj, TRUE)) == P_ISRESTRICTED) {
@@ -1634,7 +1634,7 @@ pleased(g_align)
 	}
 
 setprayertimeout:
-	if (!((uarmc && itemhasappearance(uarmc, APP_STORM_COAT)) && !rn2(2))) u.ublesscnt = rnz(ishaxor ? 175 : 350);
+	if (!((uarmc && itemhasappearance(uarmc, APP_STORM_COAT)) && !rn2(2))) u.ublesscnt += rnz(ishaxor ? 175 : 350);
 	kick_on_butt = (u.uevent.udemigod && !u.freeplaymode && u.amuletcompletelyimbued) ? 1 : 0;
 	if (u.uevent.uhand_of_elbereth) kick_on_butt++;
 	if (kick_on_butt) u.ublesscnt += kick_on_butt * rnz(ishaxor ? 500 : 1000);
@@ -2436,7 +2436,8 @@ dosacrifice()
 				pline("Orctown woes!");
 		    }
 
-		    u.ublesscnt = 0;  /* WAC You deserve this ... */
+		    u.ublesscnt -= 1000;  /* WAC You deserve this ... */
+		    if (u.ublesscnt < 0) u.ublesscnt = 0; /* fixed by Amy - don't make it baby easy... */
 		    exercise(A_WIS, TRUE);
 #ifdef NOARTIFACTWISH
 		    u.usacrifice += 5;
@@ -2632,8 +2633,8 @@ dosacrifice()
 			livelog_report_trophy(reportbuf);
 #endif
 		    u.ugifts++;
-		    u.ublesscnt = rnz(300 + (50 * nartifacts));
-			if (ishaxor) u.ublesscnt /= 2;
+		    if (!ishaxor) u.ublesscnt += rnz(300 + (50 * nartifacts));
+		    else u.ublesscnt += rnz(150 + (25 * nartifacts));
 		    exercise(A_WIS, TRUE);
 		    /* make sure we can use this weapon */
 
