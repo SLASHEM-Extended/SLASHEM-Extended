@@ -3001,6 +3001,7 @@ register int pm;
 	    case PM_SLUMBER_HULK:
 	    case PM_OFFDIVER:
 	    case PM_CHANGELING:
+	    case PM_PLAYER_CHANGELING:
 	    case PM_CHANGELING_ZOMBIE:
 	    case PM_CHANGELING_MUMMY:
 	    case PM_ELEROTIC_DREAM_WOMAN:

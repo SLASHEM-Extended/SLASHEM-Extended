@@ -282,13 +282,14 @@ int mndx;
 	case PM_CHANGELING_ZOMBIE:	mcham = CHAM_CHANGELING_ZOMBIE; break;
 	case PM_CHANGELING_MUMMY:	mcham = CHAM_CHANGELING_MUMMY; break;
 	case PM_UNIQUE_SHIFTER:	mcham = CHAM_UNIQUE_SHIFTER; break;
+	case PM_PLAYER_CHANGELING:	mcham = CHAM_PLAYER_CHANGELING; break;
 	case PM_GIANT_CHAMELEON:	mcham = CHAM_GIANT_CHAMELEON; break;
 	default: mcham = CHAM_ORDINARY; break;
 	}
 	return mcham;
 }
 
-/* convert chameleon index to monster index */
+/* convert chameleon index to monster index - these must be in the same order as monst.h */
 STATIC_VAR int cham_to_pm[] = {
 		NON_PM,		/* placeholder for CHAM_ORDINARY */
 		PM_CHAMELEON,
@@ -348,6 +349,7 @@ STATIC_VAR int cham_to_pm[] = {
 		PM_CHAMELON,
 		PM_COMMA_CHAMELEON,
 		PM_UNIQUE_SHIFTER,
+		PM_PLAYER_CHANGELING,
 		PM_GIANT_CHAMELEON,
 };
 
@@ -7381,6 +7383,7 @@ struct monst *mon;
 	case CHAM_CHAMELON: chambaselvl = 16; break;
 	case CHAM_COMMA_CHAMELEON: chambaselvl = 6; break;
 	case CHAM_UNIQUE_SHIFTER: chambaselvl = 25; break;
+	case CHAM_PLAYER_CHANGELING: chambaselvl = 8; break;
 	case CHAM_GIANT_CHAMELEON: chambaselvl = 10; break;
 	/* gah they made it so that regular polymorphs, e.g. via potion, also use this function! */
 	default:
@@ -7909,6 +7912,7 @@ edotochoice:
 	    case CHAM_GHELEON:
 	    case CHAM_COCKAMELEON:
 	    case CHAM_CHANGELING:
+	    case CHAM_PLAYER_CHANGELING:
 	    case CHAM_CHANGELING_ZOMBIE:
 	    case CHAM_CHANGELING_MUMMY:
 	    case CHAM_KARMA_CHAMELEON:
