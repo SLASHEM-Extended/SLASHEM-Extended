@@ -339,6 +339,7 @@ boolean treesnstuff;
 	int herbnum = rn2(SIZE(herb_info));
 	int randomx, randomy;
 	int i, j, count, randchance=0;
+	boolean secretcorr = TRUE;
 	/*register struct monst *mtmp;*/
 
 	/* note by Amy: disabled herb growth and water currents. GDB says that the dreaded savegame error is happening
@@ -435,8 +436,14 @@ trap_of_walls:
 				if (!(levl[randomx][randomy].wall_info & W_EASYGROWTH)) levl[randomx][randomy].wall_info |= W_HARDGROWTH;
 			}
 			else if ((levl[randomx][randomy].wall_info & W_NONDIGGABLE) == 0) {
-				if (levl[randomx][randomy].typ != DOOR) levl[randomx][randomy].typ = STONE;
-				else levl[randomx][randomy].typ = CROSSWALL;
+				if (levl[randomx][randomy].typ != DOOR) {
+					if (secretcorr && !rn2(10)) levl[randomx][randomy].typ = SCORR;
+					else levl[randomx][randomy].typ = STONE;
+				}
+				else {
+					if (secretcorr && !rn2(10)) levl[randomx][randomy].typ = SDOOR;
+					else levl[randomx][randomy].typ = CROSSWALL;
+				}
 				if (!(levl[randomx][randomy].wall_info & W_EASYGROWTH)) levl[randomx][randomy].wall_info |= W_HARDGROWTH;
 				blockorunblock_point(randomx,randomy);
 				del_engr_at(randomx, randomy);
@@ -462,7 +469,10 @@ trap_of_walls:
 
 	if (update) {
 
-		if ((u.uprops[WALL_TRAP_EFFECT].extrinsic || WallTrapping || have_wallstone() || (uarmg && uarmg->oartifact == ART_STOUT_IMMURRING) || (uarmc && uarmc->oartifact == ART_MOST_CHARISMATIC_PRESIDENT) || (uwep && uwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (uwep && uwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) ) && rn2(100)) goto trap_of_walls;
+		if ((u.uprops[WALL_TRAP_EFFECT].extrinsic || WallTrapping || have_wallstone() || (uarmg && uarmg->oartifact == ART_STOUT_IMMURRING) || (uarmc && uarmc->oartifact == ART_MOST_CHARISMATIC_PRESIDENT) || (uwep && uwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (uwep && uwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) ) && rn2(100)) {
+			secretcorr = FALSE;
+			goto trap_of_walls;
+		}
 
 	}
 
