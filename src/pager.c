@@ -25899,6 +25899,11 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel less hungry, but in reality you're about to starve. Quick! Eat something or you'll die with no warning because you have a rare disease that reverses your hunger feelings!",
 	"You start a trip on the road to nowhere.",
 	"You continue a trip on the road to nowhere...",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Fuck the lockdown, no one needs that!'",
+	"Incoming message for Player 1. The message is from 'corona christmas child'. It reads: 'we immediately need a global lockdown in this country!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'I'm advocating the immediate abolishment of all corona restrictions because they're completely useless anyway!'",
+	"Incoming message for Player 1. The message is from 'corona christmas child'. It reads: 'if the current restrictions arent helping, we need even more of them!'",
+
 };
 
 const char *

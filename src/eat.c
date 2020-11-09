@@ -1938,6 +1938,7 @@ register int pm;
 	    case PM_SENSEI_NEWT:
 	    case PM_GRANDMASTER_NEWT:
 	    case PM_ASPHYNX:
+	    case PM_SHOCKATRICE:
 	    case PM_RUBBER_CHICKEN:
 	    case PM_NASTY_CHICKEN:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
