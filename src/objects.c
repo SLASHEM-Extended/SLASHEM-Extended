@@ -6886,6 +6886,13 @@ SCROLL((char *)0,               "HAENDE HOCH IHR BAMBINIS",  P_NONE,     1,   0,
 SCROLL((char *)0,               "SEND SOME ASSASSINS AFTER THE CERSEI MONSTER",  P_NONE,     1,   0, 300, CLR_GREEN, 1),
 SCROLL((char *)0,               "MORNING MAT MORNING SLAT",  P_NONE,     1,   0, 300, CLR_YELLOW, 1),
 SCROLL((char *)0,               "UPPERN CASTLE ELSE FIELD",  P_NONE,     1,   0, 300, CLR_BLACK, 1),
+SCROLL((char *)0,               "JENN TASQUE SELECTS A SONG FOR DJ DIE",  P_NONE,     1,   0, 300, CLR_YELLOW, 1),
+SCROLL((char *)0,               "JOHNNY FE CARGO AND THEN YOU JUST STYLES",  P_NONE,     1,   0, 300, CLR_BRIGHT_GREEN, 1),
+SCROLL((char *)0,               "PANDEMIE ODER PANIKHYSTERIE",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
+SCROLL((char *)0,               "PANDEM ON IC",  P_NONE,     1,   0, 300, CLR_BLACK, 1),
+SCROLL((char *)0,               "THE COURSE SETS TOO SMALL COURSES",  P_NONE,     1,   0, 300, CLR_RED, 1),
+SCROLL((char *)0,               "SUCH LOVELY SOFT ANASTASIA SHOES",  P_NONE,     1,   0, 300, CLR_CYAN, 1),
+SCROLL((char *)0,               "DO YOU WANT TO FEEL UP MY EROTIC GREEN PANTS",  P_NONE,     1,   0, 300, CLR_GREEN, 1),
 
 
 #ifdef MAIL
