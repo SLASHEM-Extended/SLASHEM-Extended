@@ -4020,6 +4020,7 @@ static NEARDATA const char * const demagoguelines[] = {
 "Why is there no death penalty? We need to reintroduce that so we can get rid of the criminal scum!",
 "They're either with us or against us! And those who are against us, they shall tremble and quake in fear before I execute them!",
 "Our country used to be a 'democracy', but lately it has quickly drifted off into a dictatorship! We must remove the evil dictator!",
+"I will not forgive the government for erecting a dictatorship!",
 };
 
 static NEARDATA const char * const longinglines[] = {
@@ -4446,6 +4447,14 @@ static NEARDATA const char * const longinglines[] = {
 "%s is so musculous that she can actually pick up and throw boulders. Don't you agree that it makes her look very sexy?",
 "You want to watch %s torture some scrawny pipsqueak dude. And you especially hope that if the guy cries out in pain, she punishes him by torturing him some more.",
 "You absolutely want to get to know %s's fingernails, and especially the part where they make for very effective cutting tools. Present your unprotected skin to them!",
+"%s's sexy wedge heels are so beautifully massive!",
+"Do you agree that %s's massive black block heels are incredibly fleecy? They probably feel very soft to the touch!",
+"%s's lady boots have block heels made of massive cuddle cloth!",
+"The heels of %s's sneakers are hidden, but they do in fact exist, because they're wedge sneakers!",
+"%s's lady shoes have fluffy pompoms that absolutely want to be felt up!",
+"%s's heel sandals have lovely feminine ornaments and sweethearts and mickey mouses and hello kitties and everything!",
+"Everything about %s is fleecy! This includes not only all the clothing she wears, but also her soft skin.",
+"You absolutely want %s to cause bloody wounds to you with her heels. If she does, you have to protect the pretty wounds so that they don't disappear, because you have to keep them.",
 };
 
 static NEARDATA const char * const soviettaunts[] = {
@@ -5168,6 +5177,7 @@ static NEARDATA const char * const hussylines_wal[] = {
 "The radar shows all the walscholars hanging out on shallow dungeon levels. That's good, I can sit back and watch some TV.",
 "Why am I even wasting my time looking what those walscholars are doing? With their current pace, it'll take hours until they even get to Gehennom.",
 "Just give up your search for the magic portal, you noobish walscholar! What do you think you're going to get if you find it, besides the fact that you won't find it anyway because you're much too stupid?",
+"How did the walscholars manage to reach the deeper sectors? That shouldn't have happened!",
 };
 
 static NEARDATA const char * const hussylines_wal_specific[] = {
@@ -5292,6 +5302,7 @@ static NEARDATA const char * const hussylines_wal_specific[] = {
 "Yes, that's right, stay on early dungeon levels, %s. Our snares will catch you anyway, but with the added benefit of you not even getting close enough to Anna's sanctum to become a threat.",
 "%s, why are you taking so long to make any progress? Do you want to bore me to death so I stop watching the radar? Not gonna fall for that.",
 "Oh man, is %s actually wasting time walking over every single square in every upper level because of some retarded portal... I won't even watch them for the next few hours.",
+"There's some walscholar in an off-limits area! It seems that this particular one is called %s, but we'll remove them!",
 };
 
 static NEARDATA const char * const noroelabuying[] = {

@@ -6893,6 +6893,13 @@ SCROLL((char *)0,               "PANDEM ON IC",  P_NONE,     1,   0, 300, CLR_BL
 SCROLL((char *)0,               "THE COURSE SETS TOO SMALL COURSES",  P_NONE,     1,   0, 300, CLR_RED, 1),
 SCROLL((char *)0,               "SUCH LOVELY SOFT ANASTASIA SHOES",  P_NONE,     1,   0, 300, CLR_CYAN, 1),
 SCROLL((char *)0,               "DO YOU WANT TO FEEL UP MY EROTIC GREEN PANTS",  P_NONE,     1,   0, 300, CLR_GREEN, 1),
+SCROLL((char *)0,               "LOCKDOWN COCKDOWN",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
+SCROLL((char *)0,               "THEY GIVE US AN INVISIBLE BRIDGE",  P_NONE,     1,   0, 300, CLR_WHITE, 1),
+SCROLL((char *)0,               "DIE DEUTSCHE JUGENDSPRACHE IST DAS LOSTESTE WO GIBT",  P_NONE,     1,   0, 300, CLR_RED, 1),
+SCROLL((char *)0,               "BREAKMILLBROOK BADOW",  P_NONE,     1,   0, 300, CLR_CYAN, 1),
+SCROLL((char *)0,               "ITS EROTI CLAMP NOT EROTIC LAMP",  P_NONE,     1,   0, 300, CLR_YELLOW, 1),
+SCROLL((char *)0,               "FROM THE TREE FLAX FALLS A DREAM FLAX",  P_NONE,     1,   0, 300, CLR_GREEN, 1),
+SCROLL((char *)0,               "MY WOMAN AGREED WITH THE NUT MOTHER",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
 
 
 #ifdef MAIL
