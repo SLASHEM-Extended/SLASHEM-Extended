@@ -1993,6 +1993,15 @@ struct monst *mon;
 	    if (otmp->otyp == SURVIVAL_KNIFE && is_animal(ptr)) bonus += rnd(2);
 
 		if (!(PlayerCannotUseSkills)) {
+			if (Race_if(PM_SWIKNI) && objects[otmp->otyp].oc_skill == P_KNIFE && (P_SKILL(P_KNIFE) == P_SKILLED)) bonus += rnd(2);
+			if (Race_if(PM_SWIKNI) && objects[otmp->otyp].oc_skill == P_KNIFE && (P_SKILL(P_KNIFE) == P_EXPERT)) bonus += rnd(4);
+			if (Race_if(PM_SWIKNI) && objects[otmp->otyp].oc_skill == P_KNIFE && (P_SKILL(P_KNIFE) == P_MASTER)) bonus += rnd(5);
+			if (Race_if(PM_SWIKNI) && objects[otmp->otyp].oc_skill == P_KNIFE && (P_SKILL(P_KNIFE) == P_GRAND_MASTER)) bonus += rnd(7);
+			if (Race_if(PM_SWIKNI) && objects[otmp->otyp].oc_skill == P_KNIFE && (P_SKILL(P_KNIFE) == P_SUPREME_MASTER)) bonus += rnd(8);
+
+		}
+
+		if (!(PlayerCannotUseSkills)) {
 
 	    if (objects[otmp->otyp].oc_skill == P_LANCE && is_animal(ptr) && (P_SKILL(P_LANCE) == P_SKILLED)) bonus += rnd(2);
 	    if (objects[otmp->otyp].oc_skill == P_LANCE && is_animal(ptr) && (P_SKILL(P_LANCE) == P_EXPERT)) bonus += rnd(3);
@@ -2140,12 +2149,23 @@ struct monst *mon;
 		if (tmp < 1) tmp = 1;
 	}
 
-	if ((!rn2(100 - (Luck*2))) && !(uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT)) { /* nice patch - critical hits --Amy */
+	if (Race_if(PM_SWIKNI) && otmp && objects[otmp->otyp].oc_skill == P_KNIFE) { /* not -P_KNIFE --Amy */
+		if ((!rn2(30 - (Luck*2))) && !(uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT)) { /* nice patch - critical hits --Amy */
 
-		pline("Critical hit!");
-		u.cnd_criticalcount++;
-		tmp *= 2;
+			pline("Critical hit!");
+			u.cnd_criticalcount++;
+			tmp *= 2;
 
+		}
+
+	} else {
+		if ((!rn2(100 - (Luck*2))) && !(uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT)) { /* nice patch - critical hits --Amy */
+
+			pline("Critical hit!");
+			u.cnd_criticalcount++;
+			tmp *= 2;
+
+		}
 	}
 
 	if (Race_if(PM_JAPURA) && (is_angbandmonster(mon->data) || is_cowmonster(mon->data) || is_animemonster(mon->data) || is_steammonster(mon->data) || is_dlordsmonster(mon->data) || is_dnethackmonster(mon->data) || is_jokemonster(mon->data) || is_diablomonster(mon->data) || is_jonadabmonster(mon->data) || is_evilpatchmonster(mon->data) || is_elonamonster(mon->data) ) ) {
@@ -7792,6 +7812,25 @@ rerollthree:
 			P_SKILL(P_RIDING) = P_UNSKILLED;
 			P_ADVANCE(P_RIDING) = 0;
 			P_MAX_SKILL(P_RIDING) = P_BASIC;
+		}
+
+	}
+
+	if (Race_if(PM_SWIKNI)) {
+		if (P_RESTRICTED(P_KNIFE)) {
+			P_SKILL(P_KNIFE) = P_BASIC;
+			P_ADVANCE(P_KNIFE) = 20;
+			P_MAX_SKILL(P_KNIFE) = P_MASTER;
+		} else {
+			P_SKILL(P_KNIFE) = P_BASIC;
+			if (P_MAX_SKILL(P_KNIFE) == P_EXPERT) P_MAX_SKILL(P_KNIFE) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_KNIFE) = P_SUPREME_MASTER;
+		}
+
+		if (P_RESTRICTED(P_FIREARM)) {
+			P_SKILL(P_FIREARM) = P_UNSKILLED;
+			P_ADVANCE(P_FIREARM) = 0;
+			P_MAX_SKILL(P_FIREARM) = P_SKILLED;
 		}
 
 	}

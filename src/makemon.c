@@ -7375,6 +7375,7 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_ELVEN_CANCERFAG]) (void) mongets(mtmp, CIGARETTE);
 		if (ptr == &mons[PM_WOOD_ELVEN_ASSAILANT]) (void) mongets(mtmp, CESTUS);
 		if (ptr == &mons[PM_FEMININE_ASSASSIN]) (void) mongets(mtmp, BELL_CLAWS);
+		if (ptr == &mons[PM_SWIKNI]) (void) mongets(mtmp, SURVIVAL_KNIFE);
 
 		if (ptr == &mons[PM_GRAVITY_STRIKER]) {
 			(void) mongets(mtmp, HAND_BLASTER);

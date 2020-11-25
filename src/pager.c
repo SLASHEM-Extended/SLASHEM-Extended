@@ -25914,6 +25914,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'corona christmas child'. It reads: 'we immediately need a global lockdown in this country!'",
 	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'I'm advocating the immediate abolishment of all corona restrictions because they're completely useless anyway!'",
 	"Incoming message for Player 1. The message is from 'corona christmas child'. It reads: 'if the current restrictions arent helping, we need even more of them!'",
+	"Eep! This chaos triggers your OCD.",
+	"Eep! This chaos triggers your OCD. Who the hell left so much trash here?!",
 
 };
 

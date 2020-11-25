@@ -2248,7 +2248,7 @@ toofar:
 	   mtmp->mconf || mtmp->mstun || (mtmp->minvis && !rn2(3)) ||
 	   (mdat->mlet == S_LEPRECHAUN && !ygold && (lepgold || rn2(2))) ||
 #endif
-	   (is_wanderer(mdat) && !rn2(4)) || (Conflict && mtmp->mcansee && haseyes(mtmp->data) && (!resist(mtmp, RING_CLASS, 0, 0) || (StrongConflict && !resist(mtmp, RING_CLASS, 0, 0)) ) && !mtmp->iswiz
+	   (is_wanderer(mdat) && !rn2(4)) || (Race_if(PM_SWIKNI) && mtmp->isshk == 0 && mtmp->ispriest == 0 && mtmp->isgd == 0 && (!resist(mtmp, RING_CLASS, 0, 0) )) || (Conflict && mtmp->mcansee && haseyes(mtmp->data) && (!resist(mtmp, RING_CLASS, 0, 0) || (StrongConflict && !resist(mtmp, RING_CLASS, 0, 0)) ) && !mtmp->iswiz
 	   && !Is_blackmarket(&u.uz)
 	   ) ||
 	   (!mtmp->mcansee && !rn2(iswarper ? 2 : 8)) || mtmp->mpeaceful) {
@@ -2330,7 +2330,7 @@ toofar:
 
 /*	Now, attack the player if possible - one attack set per monst	*/
 
-	if (!mtmp->mpeaceful || (mtmp->mnum == PM_FRENZY_KANGAROO) || ((Conflict && !resist(mtmp, RING_CLASS, 0, 0)) || (StrongConflict && !resist(mtmp, RING_CLASS, 0, 0)) && !Is_blackmarket(&u.uz)) ) {
+	if (!mtmp->mpeaceful || (mtmp->mnum == PM_FRENZY_KANGAROO) || (Race_if(PM_SWIKNI) && mtmp->isshk == 0 && mtmp->ispriest == 0 && mtmp->isgd == 0 && (!resist(mtmp, RING_CLASS, 0, 0) ) ) || ((Conflict && !resist(mtmp, RING_CLASS, 0, 0)) || (StrongConflict && !resist(mtmp, RING_CLASS, 0, 0)) && !Is_blackmarket(&u.uz)) ) {
 
 		/* FIQ found out that self-genocide while polymorphed can make monsters stop attacking entirely. Fixed. */
 

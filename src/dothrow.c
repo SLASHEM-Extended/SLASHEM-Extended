@@ -2060,6 +2060,14 @@ boolean polearming;
 		if (!rn2(3)) tmp -= rnd(10);
 	}
 
+	if (Race_if(PM_SWIKNI)) {
+		if (obj) {
+			if (obj->oeroded) tmp -= ((obj->oeroded) * 2);
+			if (obj->oeroded2) tmp -= ((obj->oeroded2) * 2);
+		}
+
+	}
+
 	/* quarterback is highly skilled at shooting small round objects --Amy */
 	if (Role_if(PM_QUARTERBACK) && objects[obj->otyp].oc_skill == -P_SLING) tmp += rn1(5, 5);
 	if (Role_if(PM_QUARTERBACK) && objects[obj->otyp].oc_skill == P_SLING) tmp += rn1(5, 5);

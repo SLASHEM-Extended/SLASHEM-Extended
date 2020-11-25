@@ -2217,6 +2217,11 @@ static struct trobj LevitatorItemE[] = {
 	{ 0, 0, 0, 0, 0 }
 };
 
+static struct trobj SwikniItem[] = {
+	{ SURVIVAL_KNIFE, 1, WEAPON_CLASS, 1, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
 static struct trobj KoboltItem[] = {
 	{ DART, 0, WEAPON_CLASS, 15, 0 },
 	{ 0, 0, 0, 0, 0 }
@@ -17857,6 +17862,9 @@ u_init()
           ini_inv(KoboltItemC);		
 		HSleeping = 5;
 		break;
+	case PM_SWIKNI:
+          ini_inv(SwikniItem);		
+		break;
 	case PM_LEVITATOR:
           ini_inv(LevitatorItem);		
           ini_inv(LevitatorItemB);		
@@ -18168,6 +18176,7 @@ u_init()
 	case PM_PLAYER_GOLEM: racebounus = rnz(11); break;
 	case PM_PLAYER_MECHANIC: racebounus = rnz(12); break;
 	case PM_BULDOZGAR: racebounus = rnz(12); break;
+	case PM_SWIKNI: racebounus = rnz(13); break;
 	default:	racebounus = rnz(10); break;
 
 	}

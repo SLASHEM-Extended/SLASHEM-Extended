@@ -595,6 +595,17 @@ register struct monst *mtmp;
 		}
 	}
 
+	if (Race_if(PM_SWIKNI)) {
+		if (uwep) {
+			if (uwep->oeroded) tmp -= ((uwep->oeroded) * 2);
+			if (uwep->oeroded2) tmp -= ((uwep->oeroded2) * 2);
+		}
+		if (u.twoweap && uswapwep) {
+			if (uswapwep->oeroded) tmp -= ((uswapwep->oeroded) * 2);
+			if (uswapwep->oeroded2) tmp -= ((uswapwep->oeroded2) * 2);
+		}
+	}
+
 	if (Role_if(PM_GUNNER)) {
 
 		if (uwep && uwep_skill_type() != P_DAGGER && uwep_skill_type() != P_KNIFE && uwep_skill_type() != P_FIREARM) {

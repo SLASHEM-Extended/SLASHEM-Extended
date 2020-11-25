@@ -5593,6 +5593,37 @@ find_ac()
 		if (uarms) uac -= 5;
 	}
 
+	if (Race_if(PM_SWIKNI)) {
+		if (uarmc) {
+			uac += (uarmc->oeroded * 2);
+			uac += (uarmc->oeroded2 * 2);
+		}
+		if (uarm) {
+			uac += (uarm->oeroded * 2);
+			uac += (uarm->oeroded2 * 2);
+		}
+		if (uarmu) {
+			uac += (uarmu->oeroded * 2);
+			uac += (uarmu->oeroded2 * 2);
+		}
+		if (uarms) {
+			uac += (uarms->oeroded * 2);
+			uac += (uarms->oeroded2 * 2);
+		}
+		if (uarmh) {
+			uac += (uarmh->oeroded * 2);
+			uac += (uarmh->oeroded2 * 2);
+		}
+		if (uarmf) {
+			uac += (uarmf->oeroded * 2);
+			uac += (uarmf->oeroded2 * 2);
+		}
+		if (uarmg) {
+			uac += (uarmg->oeroded * 2);
+			uac += (uarmg->oeroded2 * 2);
+		}
+	}
+
 	if (uarmc && objects[(uarmc)->otyp].oc_material == MT_VIVA) {
 		uac -= (uarmc->oeroded * 2);
 		uac -= (uarmc->oeroded2 * 2);

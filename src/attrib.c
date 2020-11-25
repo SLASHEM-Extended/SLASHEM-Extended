@@ -1185,6 +1185,10 @@ const struct innate {
 	kob_abil[] = { {  1, &(HPoison_resistance), "", "", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
+	swi_abil[] = { {  1, &(HFear_resistance), "", "", TRUE },
+			{     15, &(HPeacevision), "able to recognize peaceful creatures", "unable to tell friend from enemy", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
 	coc_abil[] = { {  1, &(HPoison_resistance), "", "", TRUE },
 		     {   1, &(HStone_resistance), "", "", TRUE },
 		     {   0, 0, 0, 0, 0 } },
@@ -2282,6 +2286,7 @@ int oldlevel, newlevel;
 	case PM_PLAYER_GREMLIN:            rabil = gre_abil;	break;
 	case PM_CLOCKWORK_AUTOMATON:            rabil = clk_abil;	break;
 	case PM_KOBOLT:            rabil = kob_abil;	break;
+	case PM_SWIKNI:            rabil = swi_abil;	break;
 	case PM_BRETON:            rabil = bre_abil;	break;
 	case PM_ELEMENTAL:            rabil = elm_abil;	break;
 	case PM_REDGUARD:            rabil = red_abil;	break;

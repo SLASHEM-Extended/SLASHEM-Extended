@@ -7849,6 +7849,11 @@ boolean picked_some;
 	}
 	/* we know there is something here */
 
+	if (Race_if(PM_SWIKNI) && obj_cnt >= 10) {
+		pline("Eep! This chaos triggers your OCD.");
+		badeffect();
+	}
+
 	if (skip_objects) {
 	    if (dfeature) pline("%s", fbuf);
 	    sense_engr_at(u.ux, u.uy, FALSE); /* Eric Backus */
