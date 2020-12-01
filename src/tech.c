@@ -2890,7 +2890,7 @@ dotech()
 			break;
 
 		case T_PRAYING_SUCCESS:
-			pline("This very helpful technique allows you to pray when it would normally not be safe to pray. Please be aware of the fact that your deity is still inaccessible in Gehennom; the gods won't get angry if you use this technique in Gehennom, but they won't be able to help you anyway.");
+			pline("This very helpful technique allows you to pray when it would normally not be safe to pray. Please be aware of the fact that your deity is still inaccessible in Gehennom; the gods won't get angry if you use this technique in Gehennom, but they won't be able to help you anyway. Also, there's limits as to what it can do; if your alignment is extremely low or you have a huge prayer timeout, it might still fail, and it won't necessarily work when your god is extremely angry.");
 			break;
 
 		case T_OVER_RAY:

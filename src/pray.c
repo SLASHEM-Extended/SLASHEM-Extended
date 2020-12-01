@@ -2878,10 +2878,15 @@ dopray()
 #endif
 
     if (tech_inuse(T_PRAYING_SUCCESS)) {
-	    u.ublesscnt = 0;
+	    if (u.ublesscnt > 10000) u.ublesscnt -= 10000;
+	    else u.ublesscnt = 0;
 	    if (u.uluck < 0) u.uluck = 0;
-	    if (u.ualign.record <= 0) u.ualign.record = 1;
-	    u.ugangr = 0;
+	    if (u.ualign.record <= 0) {
+		if (u.ualign.record > -200) u.ualign.record = 1;
+		else u.ualign.record += 200;
+	    }
+	    if (u.ugangr > 10) u.ugangr -= 10;
+	    else u.ugangr = 0;
 	    if(p_type < 2) p_type = 3;
     }
 
