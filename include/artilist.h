@@ -7607,6 +7607,14 @@ A("Flotation Device",				LENSES, /* waterwalking, life saving */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
+A("Fastplant",				IMPLANT_OF_MEMORY, /* randart, implants skill trains twice as fast; if you're in a form without hands, also extra skill training */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Gimmie Dat Skill",				SYMBIOTE, /* trains symbiosis skill by 50 when used */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
 
 /*
  *	Stormbringer only has a 2 because it can drain a level,

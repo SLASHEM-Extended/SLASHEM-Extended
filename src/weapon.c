@@ -5607,6 +5607,7 @@ int degree;
 	if (uarmc && uarmc->oartifact == ART_FINDING_THYSELF && skill == P_SPIRITUALITY) degree *= 5;
 	if (uarmu && uarmu->oartifact == ART_GIVE_ME_STROKE__JO_ANNA && skill == P_HIGH_HEELS) degree *= 2;
 	if (uarmh && uarmh->oartifact == ART_THERE_ARE_SEVERAL_OF_THEM && skill == P_SPIRITUALITY) degree *= 2;
+	if (uimplant && uimplant->oartifact == ART_FASTPLANT && skill == P_IMPLANTS) degree *= 2;
 
 	if (skill == 0) goto screwupsdone; /* just me covering my butt in case the game somehow thinks you had used
 	* some skill that doesn't do anything and thinks it now has to set a blown timer --Amy */

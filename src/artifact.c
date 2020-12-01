@@ -266,6 +266,7 @@ hack_artifacts()
 	artilist[ART_NIKKENIKKENIK].otyp = randartspellbook();
 	artilist[ART_CORTEX_COPROCESSOR].otyp = randartimplant();
 	artilist[ART_AMULET_OF_SPLENDOR].otyp = randartamulet();
+	artilist[ART_FASTPLANT].otyp = randartimplant();
 
 	artilist[ART_JANA_S_GRAVE_WALL].otyp = randartcloakX();
 	artilist[ART_HENRIETTA_S_DOGSHIT_BOOTS].otyp = randartbootsX();

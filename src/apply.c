@@ -429,6 +429,8 @@ use_symbiote(obj)
 
 			turnmonintosymbiote(mtmp, (obj->oartifact == ART_HOLDEN_MIDDLE_POST));
 
+			if (obj->oartifact == ART_GIMMIE_DAT_SKILL) use_skill(P_SYMBIOSIS, 50);
+
 			if (uinsymbiosis) {
 				if (obj->cursed) u.usymbiote.cursed = TRUE;
 				if (obj->hvycurse) u.usymbiote.hvycurse = TRUE;

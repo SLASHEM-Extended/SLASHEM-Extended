@@ -20164,6 +20164,10 @@ boolean knoweverything;
 					pline("Artifact specs: +8 damage, stealer trap effect, poison and shock resistance and increases digging speed."); break;
 				case ART_FLOTATION_DEVICE:
 					pline("Artifact specs: waterwalking and life saving when worn. If the latter triggers, this item is used up."); break;
+				case ART_FASTPLANT:
+					pline("Artifact specs: implants skill trains faster while wearing it; if you're in a form without hands, it also grants extra skill training. This stacks, so it will make your implants skill train really fast."); break;
+				case ART_GIMMIE_DAT_SKILL:
+					pline("Artifact specs: trains the symbiosis skill by 50 points if you successfully use it. Take note that this doesn't unrestrict the symbiosis skill, nor will it increase your cap, so it's probably not really useful unless you haven't maxxed out the skill yet."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;
