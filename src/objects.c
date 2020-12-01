@@ -6900,6 +6900,9 @@ SCROLL((char *)0,               "BREAKMILLBROOK BADOW",  P_NONE,     1,   0, 300
 SCROLL((char *)0,               "ITS EROTI CLAMP NOT EROTIC LAMP",  P_NONE,     1,   0, 300, CLR_YELLOW, 1),
 SCROLL((char *)0,               "FROM THE TREE FLAX FALLS A DREAM FLAX",  P_NONE,     1,   0, 300, CLR_GREEN, 1),
 SCROLL((char *)0,               "MY WOMAN AGREED WITH THE NUT MOTHER",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
+SCROLL((char *)0,               "IT FREEZES STONE AND BONE",  P_NONE,     1,   0, 300, CLR_BRIGHT_CYAN, 1),
+SCROLL((char *)0,               "IIIINGEN",  P_NONE,     1,   0, 300, CLR_YELLOW, 1),
+SCROLL((char *)0,               "E N",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
 
 
 #ifdef MAIL
