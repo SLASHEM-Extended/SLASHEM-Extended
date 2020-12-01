@@ -60,8 +60,15 @@ const char *goal;
 	pline("(For instructions type a ?)");
 	msg_given = TRUE;
     }
+
     cx = cc->x;
     cy = cc->y;
+
+    if (!isok(cx, cy) && isok(u.ux, u.uy)) {
+	cx = u.ux;
+	cy = u.uy;
+    }
+
 #ifdef CLIPPING
     cliparound(cx, cy);
 #endif

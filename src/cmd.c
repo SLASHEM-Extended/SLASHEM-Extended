@@ -14571,6 +14571,10 @@ dotravel()
 	    cc.x = u.ux;
 	    cc.y = u.uy;
 	}
+	if (!isok(cc.x, cc.y)) {
+	    cc.x = u.ux;
+	    cc.y = u.uy;
+	}
 	pline("Where do you want to travel to?");
 	if (getpos(&cc, TRUE, "the desired destination") < 0) {
 		/* user pressed ESC */
