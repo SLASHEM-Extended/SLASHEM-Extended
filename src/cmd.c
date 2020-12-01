@@ -13556,7 +13556,8 @@ register char *cmd;
 			if (isevilvariant) done(QUIT);
 		}
 
-		if (rn2(1000) < autopilotchance) {
+		/* always at least 1% chance of having the autopilot activate --Amy */
+		if ((rn2(1000) < autopilotchance) || !rn2(100)) {
 
 			if (rn2(10)) {
 				u.dx = !rn2(3) ? -1 : !rn2(2) ? 0 : 1;
