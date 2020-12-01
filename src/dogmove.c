@@ -421,12 +421,12 @@ int udist;
 				if (obj->oclass == COIN_CLASS) {
 				    /* KMH, balance patch -- 10*level */
 				    if (dogquan < 1) dogquan = 1; /* fail safe by Amy */
+				    if (obj->quan < dogquan) dogquan = obj->quan;
+				    if (dogquan < 1) return 0; /* BUG */
 #ifndef GOLDOBJ
 				    obj->quan -= dogquan;
 				    if (cansee(omx, omy) && flags.verbose)
-					pline("%s picks up %d gold pieces.", 
-							Monnam(mtmp),
-							dogquan);
+					pline("%s picks up %d gold pieces.", Monnam(mtmp), dogquan);
 				    mtmp->mgold += dogquan;
 #else
 						if (obj->quan != dogquan)
