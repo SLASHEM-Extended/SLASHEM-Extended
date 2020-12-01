@@ -3414,6 +3414,12 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ SPE_MAGIC_CONTROL, "todo" },
 	{ AMULET_OF_CLIMBING, "todo" },
 	{ CLIMBING_SET, "todo" },
+	{ LASER_POLE, "todo" },
+	{ LASER_SWORD, "todo" },
+	{ LASERDENT, "todo" },
+	{ SITH_STAFF, "todo" },
+	{ REACH_TRIDENT, "todo" },
+	{ CLIMBING_STICK, "todo" },
 
 	{0, "" }
 };
@@ -6192,6 +6198,12 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ SPE_MAGIC_CONTROL, "todo" },
 	{ AMULET_OF_CLIMBING, "todo" },
 	{ CLIMBING_SET, "todo" },
+	{ LASER_POLE, "todo" },
+	{ LASER_SWORD, "todo" },
+	{ LASERDENT, "todo" },
+	{ SITH_STAFF, "todo" },
+	{ REACH_TRIDENT, "todo" },
+	{ CLIMBING_STICK, "todo" },
 
 	{0, "" }
 };
@@ -7161,7 +7173,7 @@ plus:
 			is_lightsaber(obj) ||
 			obj->otyp == STICK_OF_DYNAMITE) {
 		    if (obj->lamplit) {
-			if ((obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER) && obj->altmode) strcat(bp, " (2xlit)");
+			if ((obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == SITH_STAFF || obj->otyp == LASER_POLE || obj->otyp == WHITE_DOUBLE_LIGHTSABER) && obj->altmode) strcat(bp, " (2xlit)");
 			else strcat(bp, " (lit)");
 		    }
 #  ifdef DEBUG

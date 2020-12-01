@@ -1215,6 +1215,13 @@ doopen_indir(x, y)		/* try to open a door in direction u.dx/u.dy */
 	    return(0);
 	}
 
+	if (uwep && uwep->oartifact == ART_DUURVOID && (door->doormask & D_TRAPPED) && !rn2(5)) {
+		pline("There seems to be a trap on this door!");
+		if (yn("Stop handling the door?") == 'y') {
+			return(0);
+		}
+	}
+
 	/* door is known to be CLOSED */
 	if (rnl(20) < (ACURRSTR+ACURR(A_DEX)+ACURR(A_CON))/3) {
 	    pline_The("door opens.");

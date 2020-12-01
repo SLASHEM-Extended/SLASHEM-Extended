@@ -384,6 +384,10 @@ struct monst *mon;
 	   if (is_waterypool(mon->mx, mon->my)) tmp += 4;
 	   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) tmp += 2;
 	}
+	if (otmp->otyp == REACH_TRIDENT && is_swimmer(ptr)) {
+	   if (is_waterypool(mon->mx, mon->my)) tmp += 4;
+	   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) tmp += 2;
+	}
 
 	if (otmp->otyp == SHOOMDENT && is_swimmer(ptr)) {
 	   if (is_waterypool(mon->mx, mon->my)) tmp += 4;
@@ -573,12 +577,25 @@ struct monst *mon;
 
 		case GREEN_LIGHTSABER:  tmp += rnd(13); break;
 		case BLUE_LIGHTSABER:   tmp += rnd(12); break;
+		case LASER_SWORD:   tmp += rnd(12); break;
 		case MYSTERY_LIGHTSABER:   tmp += rnd(12); break;
 		case VIOLET_LIGHTSABER:	tmp += rnd(8); break;
 		case YELLOW_LIGHTSABER:	tmp += rnd(12); break;
 		case LIGHTWHIP:	tmp += rnd(8); break;
 		case ELECTRIC_CIGARETTE:	tmp += rnd(10); break;
 		case NANO_HAMMER:	tmp += rnd(8); break;
+
+		case LASER_POLE: 
+					if (otmp->altmode) tmp += rnd(8);
+					tmp += rnd(8); break;
+
+		case LASERDENT: 
+					if (otmp->altmode) tmp += rnd(12);
+					tmp += rnd(11); break;
+
+		case SITH_STAFF:
+					if (otmp->altmode) tmp += rnd(9);
+					tmp += rnd(9); break;
 
 		case WHITE_DOUBLE_LIGHTSABER: 
 					if (otmp->altmode) tmp += rnd(12);
@@ -645,6 +662,7 @@ struct monst *mon;
 
 		case GREEN_LIGHTSABER:  tmp += rnd(9); break;
 		case BLUE_LIGHTSABER:   tmp += rnd(8); break;
+		case LASER_SWORD:   tmp += rnd(8); break;
 		case MYSTERY_LIGHTSABER:   tmp += rnd(8); break;
 		case VIOLET_LIGHTSABER:	tmp += rnd(6); break;
 		case YELLOW_LIGHTSABER:	tmp += rnd(10); break;
@@ -652,6 +670,17 @@ struct monst *mon;
 		case ELECTRIC_CIGARETTE:	tmp += rnd(10); break;
 		case NANO_HAMMER:	tmp += rnd(8); break;
 
+		case LASER_POLE:
+					if (otmp->altmode) tmp += rnd(8);
+					tmp += rnd(8); break;
+
+		case LASERDENT:
+					if (otmp->altmode) tmp += rnd(13);
+					tmp += rnd(12); break;
+
+		case SITH_STAFF:
+					if (otmp->altmode) tmp += rnd(9);
+					tmp += rnd(9); break;
 		case WHITE_DOUBLE_LIGHTSABER:
 					if (otmp->altmode) tmp += rnd(15);
 					/* fallthrough */
@@ -837,6 +866,11 @@ struct monst *mon;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
 		   if (Race_if(PM_NEMESIS)) bonus += 20;
 	    }
+	    if (otmp->otyp == REACH_TRIDENT && is_swimmer(ptr)) {
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
+		   if (Race_if(PM_NEMESIS)) bonus += 20;
+	    }
 
 	    if (otmp->otyp == SHOOMDENT && is_swimmer(ptr)) {
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
@@ -1014,12 +1048,25 @@ struct monst *mon;
 
 		case GREEN_LIGHTSABER:  tmp += rnd(13); break;
 		case BLUE_LIGHTSABER:   tmp += rnd(12); break;
+		case LASER_SWORD:   tmp += rnd(12); break;
 		case MYSTERY_LIGHTSABER:   tmp += rnd(12); break;
 		case VIOLET_LIGHTSABER:	tmp += rnd(8); break;
 		case YELLOW_LIGHTSABER:	tmp += rnd(12); break;
 		case LIGHTWHIP:	tmp += rnd(8); break;
 		case ELECTRIC_CIGARETTE:	tmp += rnd(10); break;
 		case NANO_HAMMER:	tmp += rnd(8); break;
+
+		case LASER_POLE: 
+					if (otmp->altmode) tmp += rnd(8);
+					tmp += rnd(8); break;
+
+		case LASERDENT: 
+					if (otmp->altmode) tmp += rnd(12);
+					tmp += rnd(11); break;
+
+		case SITH_STAFF:
+					if (otmp->altmode) tmp += rnd(9);
+					tmp += rnd(9); break;
 
 		case WHITE_DOUBLE_LIGHTSABER: 
 					if (otmp->altmode) tmp += rnd(12);
@@ -1087,12 +1134,25 @@ struct monst *mon;
 
 		case GREEN_LIGHTSABER:  tmp += rnd(9); break;
 		case BLUE_LIGHTSABER:   tmp += rnd(8); break;
+		case LASER_SWORD:   tmp += rnd(8); break;
 		case MYSTERY_LIGHTSABER:   tmp += rnd(8); break;
 		case VIOLET_LIGHTSABER:	tmp += rnd(6); break;
 		case YELLOW_LIGHTSABER:	tmp += rnd(10); break;
 		case LIGHTWHIP:	tmp += rnd(8); break;
 		case ELECTRIC_CIGARETTE:	tmp += rnd(10); break;
 		case NANO_HAMMER:	tmp += rnd(8); break;
+
+		case LASER_POLE: 
+					if (otmp->altmode) tmp += rnd(8);
+					tmp += rnd(8); break;
+
+		case LASERDENT: 
+					if (otmp->altmode) tmp += rnd(13);
+					tmp += rnd(12); break;
+
+		case SITH_STAFF:
+					if (otmp->altmode) tmp += rnd(9);
+					tmp += rnd(9); break;
 
 		case WHITE_DOUBLE_LIGHTSABER:
 					if (otmp->altmode) tmp += rnd(15);
@@ -1650,6 +1710,11 @@ struct monst *mon;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
 		   if (Race_if(PM_NEMESIS)) bonus += 20;
 	    }
+	    if (otmp->otyp == REACH_TRIDENT && is_swimmer(ptr)) {
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
+		   if (Race_if(PM_NEMESIS)) bonus += 20;
+	    }
 
 	    if (otmp->otyp == SHOOMDENT && is_swimmer(ptr)) {
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
@@ -1704,6 +1769,10 @@ struct monst *mon;
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 2;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 1;
 	    }
+	    if (otmp->otyp == REACH_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SKILLED) ) {
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 2;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 1;
+	    }
 
 	    if (otmp->otyp == SHOOMDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SKILLED) ) {
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 2;
@@ -1746,6 +1815,10 @@ struct monst *mon;
 	    }
 
 	    if (otmp->otyp == FOURDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_EXPERT) ) {
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
+	    }
+	    if (otmp->otyp == REACH_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_EXPERT) ) {
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
 	    }
@@ -1794,6 +1867,10 @@ struct monst *mon;
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 8;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 4;
 	    }
+	    if (otmp->otyp == REACH_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_MASTER) ) {
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 8;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 4;
+	    }
 
 	    if (otmp->otyp == SHOOMDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_MASTER) ) {
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 8;
@@ -1839,6 +1916,10 @@ struct monst *mon;
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 16;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 8;
 	    }
+	    if (otmp->otyp == REACH_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_GRAND_MASTER) ) {
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 16;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 8;
+	    }
 
 	    if (otmp->otyp == SHOOMDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_GRAND_MASTER) ) {
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 16;
@@ -1881,6 +1962,10 @@ struct monst *mon;
 	    }
 
 	    if (otmp->otyp == FOURDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SUPREME_MASTER) ) {
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 20;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 10;
+	    }
+	    if (otmp->otyp == REACH_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SUPREME_MASTER) ) {
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 20;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 10;
 	    }
@@ -2293,7 +2378,7 @@ static NEARDATA const int rwep[] =
 
 static NEARDATA const int pwep[] =
 {	PETRIFYIUM_BAR, DISINTEGRATION_BAR, NASTYPOLE, GREAT_POLLAX, WOODEN_BAR, TRAFFIC_LIGHT, GIANT_SCYTHE,
-	THRESHER, YITH_TENTACLE, FORCE_PIKE, DROVEN_LANCE, HEAVY_GRINDER,
+	THRESHER, YITH_TENTACLE, FORCE_PIKE, DROVEN_LANCE, HEAVY_GRINDER, LASER_POLE,
 	CRYPTIC_POLE, HELMET_BEARD, POKER_STICK, COURSE_LANCE, HALBERD, BARDICHE, BRICKLAYER_BAR,
 	INFERNAL_BARDICHE, INFERNAL_ANCUS, ZEBES_POLE,
 	PHYSICIAN_BAR, DARK_BAR, POLE_LANTERN, SPETUM, BILL_GUISARME, CELESTIAL_POLE,
@@ -2301,7 +2386,7 @@ static NEARDATA const int pwep[] =
 	BLACK_HALBERD, GARDEN_FORK, PITCHFORK, STICKSHOE, GRINDER,
 	GLAIVE, LUCERN_HAMMER, BEC_DE_CORBIN, FAUCHARD, ETERNAL_POLE, LONG_POLE, SHARP_POLE, PENIS_POLE, PIKE,
 	PARTISAN, ELVEN_LANCE, SCYTHE, ELVEN_SICKLE, SICKLE, SPEC_LANCE, BRONZE_LANCE, LANCE,
-	NOOB_POLLAX, PARASOL, UMBRELLA, CHAIN_AND_SICKLE, SPINED_BALL, BLOW_AKLYS, AKLYS
+	NOOB_POLLAX, PARASOL, UMBRELLA, CHAIN_AND_SICKLE, SPINED_BALL, REACH_TRIDENT, BLOW_AKLYS, AKLYS
 };
 
 
@@ -2556,8 +2641,8 @@ static const NEARDATA short hwep[] = {
 	  DWARVISH_MATTOCK, SOFT_MATTOCK, YATAGAN, CHROME_BLADE, AIR_PRESSURE_HAMMER,
 	  BENT_SABLE, HOE_SABLE, MYTHICAL_SABLE, INKA_BOOT, SOFT_LADY_SHOE, MARBLE_CHUNK,
 	  BLOCK_HEELED_SANDAL, PROSTITUTE_SHOE, LIGHTWHIP, ELECTRIC_CIGARETTE, NANO_HAMMER, LASER_SWATTER,
-	  RED_DOUBLE_LIGHTSABER, WHITE_DOUBLE_LIGHTSABER, RED_LIGHTSABER,
-	  MYSTERY_LIGHTSABER, BLUE_LIGHTSABER, VIOLET_LIGHTSABER, WHITE_LIGHTSABER, YELLOW_LIGHTSABER,
+	  RED_DOUBLE_LIGHTSABER, WHITE_DOUBLE_LIGHTSABER, LASERDENT, SITH_STAFF, LASER_POLE, RED_LIGHTSABER,
+	  MYSTERY_LIGHTSABER, BLUE_LIGHTSABER, LASER_SWORD, VIOLET_LIGHTSABER, WHITE_LIGHTSABER, YELLOW_LIGHTSABER,
 	  GREEN_LIGHTSABER, PIANO, DESERT_SWORD,
 	  WEDGED_LITTLE_GIRL_SANDAL, SOFT_GIRL_SNEAKER, STURDY_PLATEAU_BOOT_FOR_GIRLS, HUGGING_BOOT,
 	  BLOCK_HEELED_COMBAT_BOOT, ORGANOBLADE, GUITAR, DARK_HORN, SHADOWBLADE, ROMAN_SWORD, ETHER_SAW, SKY_HORN,
@@ -2566,7 +2651,7 @@ static const NEARDATA short hwep[] = {
 	  MASSIVE_STAFF, BATTLE_STAFF, BACKHAND_MACE, OLDEST_STAFF,
 	  REINFORCED_MACE, OSBANE_KATANA, GRANITE_IMPALER, FLAME_MOUNTAIN, LEAD_FILLED_MACE,
 	  AUTOMATIC_KATANA, KATANA, ARCANE_HORN, UNICORN_HORN, CRYSKNIFE, ELECTRIC_SWORD,
-	  DIFFICULT_TRIDENT, SHOOMDENT, FOURDENT, TRIDENT, CRYSTAL_SWORD, HEAVY_GRINDER,
+	  DIFFICULT_TRIDENT, SHOOMDENT, FOURDENT, REACH_TRIDENT, TRIDENT, CRYSTAL_SWORD, HEAVY_GRINDER,
 	  ICKY_BLADE, WILD_BLADE, HEAVY_LONG_SWORD, MAIN_SWORD, BRICK_MISSILE, VARIED_GRINDER,
 	  LONG_SWORD, OBSID, COURSE_JAVELIN, SPIRIT_THROWER, IMPACT_STAFF, BO_STAFF, WALKING_STICK, SPIKERACK, CUDSWORD,
 	  DROVEN_SPEAR, MEATSWORD, BIDENHANDER, DIAMOND_SMASHER, GRINDER,
@@ -2600,7 +2685,7 @@ static const NEARDATA short hwep[] = {
 	  SILK_SPEAR, SPEAR, ORCISH_SPEAR, CRAPPY_SPEAR, LOWER_ARM_BLADE, CAMO_QATAR,
 	  STAR_ROD, RUNED_ROD, WEIGHTED_FLAIL, FLAIL, FLOGGER, CHAIN_AND_SICKLE, BULLWHIP, ASBESTOS_JAVELIN, STACK_JAVELIN,
 	  FIRE_STICK, TROUTSTAFF, FLINDBAR, QUARTERSTAFF, RAIN_PIPE, SPECIAL_MOP, SILVER_KHAKKHARA, FOAMY_STAFF,
-	  MASSAGER, INSECT_SQUASHER, SPIKED_CLUB, BRICK_PICK, BASEBALL_BAT, PAPER_SWORD, QATAR,
+	  MASSAGER, INSECT_SQUASHER, SPIKED_CLUB, BRICK_PICK, BASEBALL_BAT, PAPER_SWORD, QATAR, CLIMBING_STICK,
 	  GREAT_DAGGER, JAVELIN, BLOW_AKLYS, AKLYS, POURED_CLUB, JAGGED_TOOTH_CLUB, TRASH_SWORD,
 	  NATURAL_STICK, BONE_CLUB, CLUB, ALLOY_CLUB, CIGARETTE, BUBBLETAR, CONUNDRUM_PICK,
 	  BRONZE_PICK, CONGLOMERATE_PICK, MYSTERY_PICK, PICK_AXE, VERMIN_SWATTER, FLY_SWATTER, TENNIS_RACKET,
@@ -2904,10 +2989,11 @@ struct monst * mon;
 				an(xname(obj)));
 		}	    	
 		begin_burn(obj, FALSE);
+		if (obj->otyp == LASER_POLE) obj->altmode = TRUE; /* to be consistent with player using it --Amy */
 	    }
 	} else {
 		/* Double Lightsaber in single mode? Ignite second blade */
-		if ((obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER) && !obj->altmode) {
+		if ((obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASER_POLE || obj->otyp == SITH_STAFF || obj->otyp == WHITE_DOUBLE_LIGHTSABER) && !obj->altmode) {
 		    /* Do we want to activate dual bladed mode? */
 		    if (!obj->altmode && (!obj->cursed || rn2(4))) {
 			if (canseemon(mon)) pline("%s ignites the second blade of %s.", 

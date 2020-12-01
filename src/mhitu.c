@@ -19528,7 +19528,7 @@ register int n;
 		if (!rn2(500)) antimatter_damage(invent, FALSE, FALSE);
 	}
 
-	if (ExplodingDiceEffect || u.uprops[EXPLODING_DICE].extrinsic || have_explodingdicestone()) {
+	if (ExplodingDiceEffect || u.uprops[EXPLODING_DICE].extrinsic || have_explodingdicestone() || (uwep && uwep->oartifact == ART_FOOK_THE_OBSTACLES) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FOOK_THE_OBSTACLES)) {
 		int basedamage = n;
 		while (!rn2(6)) n += basedamage;
 	}

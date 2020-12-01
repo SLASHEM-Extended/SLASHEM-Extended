@@ -1126,6 +1126,7 @@ int mode;
 			int climbingchance = 100;
 			if (uamul && uamul->otyp == AMULET_OF_CLIMBING) climbingchance = ((levl[u.ux][u.uy].typ == MOUNTAIN) ? 3 : 10);
 			if (ublindf && ublindf->otyp == CLIMBING_SET) climbingchance = ((levl[u.ux][u.uy].typ == MOUNTAIN) ? 3 : 10);
+			if (uwep && uwep->otyp == CLIMBING_STICK) climbingchance = ((levl[u.ux][u.uy].typ == MOUNTAIN) ? 3 : 10);
 
 			if (!(u.usteed) && rn2(climbingchance)) {
 				TimerunBug += 1; /* ugly hack --Amy */

@@ -1642,6 +1642,10 @@ int curse_bless;
 	    case LASER_SWATTER:
 	    case NANO_HAMMER:
 	    case LIGHTWHIP:
+	    case LASERDENT:
+	    case LASER_POLE:
+	    case LASER_SWORD:
+	    case SITH_STAFF:
 	    case ELECTRIC_CIGARETTE:
 
 		if (is_cursed) {

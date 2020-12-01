@@ -208,6 +208,7 @@ struct obj {
 			 objects[(otmp)->otyp].oc_skill == P_GRINDER || \
 			 (otmp)->otyp == AKLYS || \
 			 (otmp)->otyp == BLOW_AKLYS || \
+			 (otmp)->otyp == REACH_TRIDENT || \
 			 (otmp)->otyp == SPINED_BALL || \
 			 (otmp)->otyp == CHAIN_AND_SICKLE || \
 			 objects[(otmp)->otyp].oc_skill == P_LANCE))
@@ -261,7 +262,7 @@ struct obj {
 			  (otmp)->oclass == CHAIN_CLASS || (otmp)->oclass == TOOL_CLASS) && \
 			 objects[(otmp)->otyp].oc_bimanual)
 
-#define is_lightsaber(otmp) (objects[(otmp)->otyp].oc_skill == P_LIGHTSABER || (otmp)->otyp == LASER_SWATTER || (otmp)->otyp == NANO_HAMMER || (otmp)->otyp == LIGHTWHIP || (otmp)->otyp == ELECTRIC_CIGARETTE)
+#define is_lightsaber(otmp) (objects[(otmp)->otyp].oc_skill == P_LIGHTSABER || (otmp)->otyp == LASER_SWATTER || (otmp)->otyp == NANO_HAMMER || (otmp)->otyp == LIGHTWHIP || (otmp)->otyp == LASERDENT || (otmp)->otyp == LASER_POLE || (otmp)->otyp == LASER_SWORD || (otmp)->otyp == SITH_STAFF || (otmp)->otyp == ELECTRIC_CIGARETTE)
 
 #define is_firearm(otmp) \
 			((otmp)->oclass == WEAPON_CLASS && \

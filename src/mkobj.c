@@ -2260,8 +2260,12 @@ boolean shopinit;
 					blessorcurse_on_creation(otmp, 2);
 					break;
 		case RED_DOUBLE_LIGHTSABER:
+		case LASERDENT:
+		case SITH_STAFF:
+		case LASER_POLE:
 		case WHITE_DOUBLE_LIGHTSABER:
 					otmp->altmode = FALSE;
+		case LASER_SWORD:
 		case GREEN_LIGHTSABER:
 		case BLUE_LIGHTSABER:
 		case MYSTERY_LIGHTSABER:

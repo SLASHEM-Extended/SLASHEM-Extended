@@ -612,11 +612,13 @@ WEAPON("prostitute shoe", (char *)0,
 
 /* Quarterstaves */
 WEAPON("quarterstaff", "staff",
-	0, 0, 1, 40, 16,  5,  9,  9, 0, B,   P_QUARTERSTAFF, MT_WOOD, HI_WOOD, 1),
+	0, 0, 1, 38, 16,  5,  9,  9, 0, B,   P_QUARTERSTAFF, MT_WOOD, HI_WOOD, 1),
 WEAPON("troutstaff", (char *)0,
 	1, 0, 1, 10, 16,  5,  9,  9, 0, B,   P_QUARTERSTAFF, MT_CLOTH, CLR_WHITE, 1),
 WEAPON("contro staff", (char *)0, /* control magic when wielded */
 	1, 0, 1, 2, 80,  10,  12,  9, 0, B,   P_QUARTERSTAFF, MT_PWN_BUBBLE, CLR_RED, 12),
+WEAPON("climbing stick", (char *)0,
+	1, 0, 1, 2, 5, 25,  8,  8, 0, B,   P_QUARTERSTAFF, MT_PLASTIC, CLR_GRAY, 12),
 WEAPON("foamy staff", (char *)0,
 	1, 0, 1, 6, 16,  5,  8,  8, 0, B,   P_QUARTERSTAFF, MT_FOAM, CLR_WHITE, 1),
 WEAPON("rain pipe", (char *)0,
@@ -835,12 +837,14 @@ WEAPON("stack javelin", (char *)0,
 
 /* Tridents */
 WEAPON("trident", (char *)0,
-	1, 0, 0, 64, 10,  5,  6,  4, 1, P,   P_TRIDENT, MT_IRON, HI_METAL, 1),
+	1, 0, 0, 59, 10,  5,  6,  4, 1, P,   P_TRIDENT, MT_IRON, HI_METAL, 1),
 	/* +1 small, +2d4 large */
 WEAPON("fourdent", (char *)0,
 	1, 0, 0, 12, 10,  5,  6,  4, 3, P,   P_TRIDENT, MT_BONE, CLR_WHITE, 3),
 WEAPON("shoomdent", (char *)0,
 	1, 0, 0,  5,  4,  5,  7, 12, 0, P,   P_TRIDENT, MT_FOAM, HI_METAL, 1),
+WEAPON("reach trident", (char *)0,
+	1, 0, 0, 5, 10,  5,  6,  4, 1, P,   P_TRIDENT, MT_IRON, HI_METAL, 5),
 
 WEAPON("two-handed trident", (char *)0,
 	1, 0, 1,  2, 10, 400,  15, 12, 1, P, P_TRIDENT, MT_MITHRIL, CLR_RED, 24),
@@ -4207,7 +4211,7 @@ TOOL("magic lamp", "lamp",      0, 0, 1, 0,  100, 0,100, MT_COPPER, CLR_YELLOW, 
 
 /* Instruments */
 /* KMH -- made less common */
-TOOL("tin whistle", "whistle",  0, 0, 0, 0, 395,  0,  10, MT_METAL, HI_METAL, 1),
+TOOL("tin whistle", "whistle",  0, 0, 0, 0, 390,  0,  10, MT_METAL, HI_METAL, 1),
 TOOL("grass whistle", "whistle",  0, 0, 0, 0, 60,  0,  10, MT_WOOD, HI_METAL, 1),
 TOOL("magic whistle", "whistle",0, 0, 1, 0, 240,  0,  10, MT_METAL, HI_METAL, 10),
 TOOL("dark magic whistle", "whistle",0, 0, 1, 0, 10,  0,  10, MT_METAL, HI_METAL, 20),
@@ -4308,6 +4312,15 @@ WEPTOOL("lightwhip",  (char *)0,
 WEPTOOL("electric cigarette",  (char *)0,
 	1, 0, 1, 0,  10, 2, 500, 2,  2, 0, WHACK, P_ORB, MT_ETHER, CLR_BRIGHT_BLUE, 10),
 
+WEPTOOL("laserdent",  (char *)0,
+	1, 0, 1, 1,  5, 30, 1000, 13, 18, 0, SLASH, P_TRIDENT, MT_METAL, CLR_GRAY, 25),
+WEPTOOL("sith staff",  (char *)0,
+	1, 0, 1, 1, 10, 12, 1000, 12, 16, 0, SLASH, P_QUARTERSTAFF, MT_METEOSTEEL, CLR_GRAY, 15),
+WEPTOOL("laser pole",  (char *)0,
+	1, 0, 1, 1, 10, 24, 1000, 13, 13, 0, SLASH, P_POLEARMS, MT_ALLOY, CLR_ORANGE, 25),
+WEPTOOL("laser sword",  (char *)0, /* stats like blue lightsaber */
+	1, 0, 1, 0, 10, 24, 500, 5,  7, 0, SLASH, P_BROAD_SWORD, MT_MITHRIL, CLR_WHITE, 9),
+
 WEPTOOL("yellow lightsaber",  "lightsaber",
 	0, 0, 1, 0,  10, 24, 500, 6,  6, 0, SLASH, P_LIGHTSABER, MT_PLATINUM, HI_METAL, 5),
 WEPTOOL("violet lightsaber",  "lightsaber",
@@ -4339,7 +4352,7 @@ TOOL("orb of destruction", "glass orb",
 TOOL("lenses", (char *)0,	1, 0, 0, 0,   50,  0,  80, MT_GLASS, HI_GLASS, 1),
 TOOL("radioglasses", (char *)0, 1, 0, 0, 0, 30,  0,  200, MT_VIVA, CLR_ORANGE, 1),
 TOOL("boss visor", (char *)0, 1, 0, 0, 0, 30,  0,  200, MT_ARCANIUM, CLR_BRIGHT_MAGENTA, 10),
-TOOL("blindfold", (char *)0,    1, 0, 0, 0, 320,  0,  20, MT_CLOTH, CLR_BLACK, 1),
+TOOL("blindfold", (char *)0,    1, 0, 0, 0, 300,  0,  20, MT_CLOTH, CLR_BLACK, 1),
 TOOL("eyecloser", (char *)0, 1, 0, 0, 0, 30,  0,  20, MT_INKA, CLR_BROWN, 1),
 TOOL("dragon eyepatch", (char *)0, 1, 0, 0, 0, 30,  0,  20, MT_DRAGON_HIDE, CLR_BRIGHT_BLUE, 10),
 TOOL("towel", (char *)0,        1, 0, 0, 0, 170,  0,  50, MT_CLOTH, CLR_MAGENTA, 1),
@@ -4364,7 +4377,7 @@ WEPTOOL("budo no sasu",  (char *)0,
 
 TOOL("can of grease", (char *)0,1, 0, 0, 1,  140, 0,  20, MT_IRON, HI_METAL, 1),
 TOOL("lubricant can", (char *)0,1, 0, 0, 1,  10, 0,  20, MT_PLASTIC, CLR_BROWN, 1),
-TOOL("figurine", (char *)0,     1, 0, 1, 0, 550, 0,  80, MT_MINERAL, HI_MINERAL, 1),
+TOOL("figurine", (char *)0,     1, 0, 1, 0, 540, 0,  80, MT_MINERAL, HI_MINERAL, 1),
 TOOL("magic marker", (char *)0, 1, 0, 1, 1, 50,  0,  50, MT_PLASTIC, CLR_RED, 25),
 TOOL("felt-tip marker", (char *)0, 1, 0, 1, 1, 10,  0,  50, MT_PLASTIC, CLR_RED, 1),
 

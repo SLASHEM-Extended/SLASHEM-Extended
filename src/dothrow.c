@@ -2625,6 +2625,14 @@ boolean polearming;
 		}
 		exercise(A_DEX, TRUE);
 
+		if (obj && obj->otyp == LASER_POLE) {
+			u.uvaapadturns++;
+			if (u.uvaapadturns >= 4) {
+				u.uvaapadturns = 0;
+				use_skill(P_VAAPAD, 1);
+			}
+		}
+
 		/* Detonate bolts shot by Hellfire */
 		if (ammo_and_launcher(obj, launcher) &&
 			(launcher->oartifact == ART_HELLFIRE)) {

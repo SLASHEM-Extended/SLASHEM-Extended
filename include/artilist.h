@@ -7615,6 +7615,18 @@ A("Gimmie Dat Skill",				SYMBIOTE, /* trains symbiosis skill by 50 when used */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
+A("Fook The Obstacles",				REACH_TRIDENT, /* can attack through walls, choicelessness, exploding dice, cyan spells */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Pogo Stick",				CLIMBING_STICK, /* very fast speed and teleportitis when wielded */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Duurvoid",				CLIMBING_STICK, /* occasionally warns you when a door is trapped */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
 
 /*
  *	Stormbringer only has a 2 because it can drain a level,

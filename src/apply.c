@@ -1698,7 +1698,7 @@ struct obj *obj;
 				obj->otyp == BRASS_LANTERN) {
 		    pline("%s lamp is now off.", Shk_Your(buf, obj));
 		} else if(is_lightsaber(obj)) {
-		    if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER) {
+		    if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == SITH_STAFF) {
 
 			/* Do we want to activate dual bladed mode? */
 			if (vaapadcheck) {
@@ -1798,7 +1798,7 @@ struct obj *obj;
 		    if (!Blind) makeknown(obj->otyp);
 		    You("ignite %s.", yname(obj));
 
-			if ((obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER) && vaapadcheck) {
+			if ((obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == SITH_STAFF) && vaapadcheck) {
 				if (yn("Use only one of the two blades? (If you say no, you ignite both)") != 'n') {
 					; /* do nothing */
 				} else {
@@ -4002,11 +4002,11 @@ use_pole (obj)
 	} else if (distu(cc.x, cc.y) < min_range) {
 	    pline(FunnyHallu ? "Your stick's too long, it seems!" : "Too close!");
 	    return (res);
-	} else if (!cansee(cc.x, cc.y) && obj->otyp != DARK_BAR &&
+	} else if (!cansee(cc.x, cc.y) && !(obj->oartifact == ART_FOOK_THE_OBSTACLES) && obj->otyp != DARK_BAR &&
 		   ((mtmp = m_at(cc.x, cc.y)) == (struct monst *)0 || !canseemon(mtmp))) {
 	    You(cant_see_spot);
 	    return (res);
-	} else if (!couldsee(cc.x, cc.y) && !(obj->oartifact == ART_WEAKITE_THRUST) ) { /* Eyes of the Overworld */
+	} else if (!couldsee(cc.x, cc.y) && !(obj->oartifact == ART_WEAKITE_THRUST) && !(obj->oartifact == ART_FOOK_THE_OBSTACLES) ) { /* Eyes of the Overworld */
 	    You(cant_reach);
 	    return res;
 	}
@@ -5488,6 +5488,9 @@ doapply()
 	case ELECTRIC_CIGARETTE:
 	case RED_DOUBLE_LIGHTSABER:
 	case WHITE_DOUBLE_LIGHTSABER:
+	case LASERDENT:
+	case LASER_SWORD:
+	case SITH_STAFF:
 
 		if (obj && obj->oartifact == ART_COLONEL_PROUDSTER && !obj->lamplit && obj->age == 0 && u.ugold >= 10000) {
 			if (yn("Recharge the lightsaber for 10000 zorkmids?") == 'y') {
@@ -5505,6 +5508,27 @@ doapply()
 	case BRASS_LANTERN:
 		use_lamp(obj);
 		break;
+
+	case LASER_POLE:
+
+		if (obj && obj->oartifact == ART_COLONEL_PROUDSTER && !obj->lamplit && obj->age == 0 && u.ugold >= 10000) {
+			if (yn("Recharge the lightsaber for 10000 zorkmids?") == 'y') {
+				u.ugold -= 10000;
+				obj->age += 750;
+				Your("lightsaber was recharged.");
+			}
+		}
+
+		if (uwep && uwep == obj && uwep->lamplit && uwep->altmode) {
+			res = use_pole(obj);
+			break;
+		}
+
+		if (!(uswapwep == obj && u.twoweap))
+		  if (uwep != obj && !wield_tool(obj, (const char *)0)) break;
+		use_lamp(obj);
+		break;
+
 	case TORCH:
 	        res = use_torch(obj);
 		break;

@@ -4271,6 +4271,9 @@ long timeout;
 
 	    case RED_DOUBLE_LIGHTSABER:
 	    case WHITE_DOUBLE_LIGHTSABER:
+	    case LASER_POLE:
+	    case LASERDENT:
+	    case SITH_STAFF:
 	    	if (obj->altmode && obj->cursed && !rn2(25)) {
 		    obj->altmode = FALSE;
 		    pline("%s %s reverts to single blade mode!",
@@ -4278,6 +4281,7 @@ long timeout;
 	    	}
 	    case GREEN_LIGHTSABER: 
 	    case BLUE_LIGHTSABER:
+	    case LASER_SWORD:
 	    case MYSTERY_LIGHTSABER:
 	    case VIOLET_LIGHTSABER:
 	    case WHITE_LIGHTSABER:
@@ -4369,7 +4373,7 @@ lightsaber_deactivate (obj, timer_attached)
 		You("hear a lightsaber deactivate.");
 	    }
 	}
-	if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER) obj->altmode = FALSE;
+	if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASER_POLE || obj->otyp == SITH_STAFF || obj->otyp == WHITE_DOUBLE_LIGHTSABER) obj->altmode = FALSE;
 	if ((obj == uwep) || (u.twoweap && obj != uswapwep)) unweapon = TRUE;
 	end_burn(obj, timer_attached);
 }
@@ -4430,7 +4434,32 @@ begin_burn(obj, already_lit)
 		do_timer = FALSE;
 		if (obj->otyp == MAGIC_CANDLE) obj->age = 300L;
 		break;
+	    case LASER_POLE:
+		lightsaberchance = 0;
+		obj->altmode = TRUE;
+	    	if (obj->altmode && obj->age > 1) {
+			if (!PlayerCannotUseSkills && tech_inuse(T_ENERGY_CONSERVATION)) {
+				switch (P_SKILL(P_MAKASHI)) {
+					case P_BASIC: lightsaberchance = 1; break;
+					case P_SKILLED: lightsaberchance = 3; break;
+					case P_EXPERT: lightsaberchance = 4; break;
+					case P_MASTER: lightsaberchance = 5; break;
+					case P_GRAND_MASTER: lightsaberchance = 7; break;
+					case P_SUPREME_MASTER: lightsaberchance = 8; break;
+				}
+			}
+			if (rnd(10) > lightsaberchance) obj->age--; /* Double power usage */
+		}
+	    	turns = 1;
+    	    	radius = 1;
+		if (obj->oartifact == ART_LIGHTSABER_PROTOTYPE){
+			do_timer = FALSE;
+			obj->lamplit = 1;
+		}
+		break;
 	    case RED_DOUBLE_LIGHTSABER:
+	    case LASERDENT:
+	    case SITH_STAFF:
 	    case WHITE_DOUBLE_LIGHTSABER:
 		lightsaberchance = 0;
 	    	if (obj->altmode && obj->age > 1) {
@@ -4448,6 +4477,7 @@ begin_burn(obj, already_lit)
 		}
 	    case RED_LIGHTSABER:
 	    case LASER_SWATTER:
+	    case LASER_SWORD:
 	    case NANO_HAMMER:
 	    case LIGHTWHIP:
 	    case ELECTRIC_CIGARETTE:
@@ -4528,6 +4558,7 @@ begin_burn(obj, already_lit)
 	    if (start_timer(turns, TIMER_OBJECT,
 					BURN_OBJECT, (void *)obj)) {
 		obj->lamplit = 1;
+		if (obj->otyp == LASER_POLE) obj->altmode = 1;
 		lightsaberchance = 0;
 		if (!PlayerCannotUseSkills && tech_inuse(T_ENERGY_CONSERVATION) && obj && is_lightsaber(obj)) {
 			switch (P_SKILL(P_MAKASHI)) {
@@ -4547,7 +4578,7 @@ begin_burn(obj, already_lit)
 	    } else {
 		obj->lamplit = 0;
 		/* double lightsaber should have its second blade turned off too! --Amy */
-		if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER) {
+		if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASER_POLE || obj->otyp == SITH_STAFF || obj->otyp == WHITE_DOUBLE_LIGHTSABER) {
 			obj->altmode = FALSE;
 		}
 	    }
@@ -4590,7 +4621,7 @@ end_burn(obj, timer_attached)
 	    del_light_source(LS_OBJECT, (void *)obj);
 	    obj->lamplit = 0;
 	    /* caller doesn't always make sure that double lightsabers are turned off properly; do so here */
-	    if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER) {
+	    if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASER_POLE || obj->otyp == SITH_STAFF || obj->otyp == WHITE_DOUBLE_LIGHTSABER) {
 			obj->altmode = FALSE;
 		}
 	    if (obj->where == OBJ_INVENT)
@@ -4622,7 +4653,7 @@ cleanup_burn(arg, expire_time)
     obj->age += expire_time - monstermoves;
 
     obj->lamplit = 0;
-    if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER) {
+    if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASER_POLE || obj->otyp == SITH_STAFF || obj->otyp == WHITE_DOUBLE_LIGHTSABER) {
 	obj->altmode = FALSE;
     }
 

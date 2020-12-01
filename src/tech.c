@@ -8840,10 +8840,30 @@ extrachargechoice:
 						    madechoice = 1; sabertype = 5; }
 					else if (yn("Do you want to switch to an electric cigarette?")=='y') {
 						    madechoice = 1; sabertype = 6; }
+					else if (yn("Do you want to switch to a laserdent?")=='y') {
+						    madechoice = 1; sabertype = 7; }
+					else if (yn("Do you want to switch to a laser sword?")=='y') {
+						    madechoice = 1; sabertype = 8; }
+					else if (yn("Do you want to switch to a sith staff?")=='y') {
+						    madechoice = 1; sabertype = 9; }
+					else if (yn("Do you want to switch to a laser pole?")=='y') {
+						    madechoice = 1; sabertype = 10; }
 
 				}
 
 				if (sabertype == 2 && (uarms || u.twoweap)) {
+					pline("Something is blocking your second %s!", body_part(HAND));
+					break;
+				}
+				if (sabertype == 7 && (uarms || u.twoweap)) {
+					pline("Something is blocking your second %s!", body_part(HAND));
+					break;
+				}
+				if (sabertype == 9 && (uarms || u.twoweap)) {
+					pline("Something is blocking your second %s!", body_part(HAND));
+					break;
+				}
+				if (sabertype == 10 && (uarms || u.twoweap)) {
 					pline("Something is blocking your second %s!", body_part(HAND));
 					break;
 				}
@@ -8864,10 +8884,18 @@ extrachargechoice:
 					uwep->otyp = LASER_SWATTER;
 				} else if (sabertype == 4) {
 					uwep->otyp = NANO_HAMMER;
-				} else if (sabertype == 5) { /* sabertype == 5 */
+				} else if (sabertype == 5) {
 					uwep->otyp = LIGHTWHIP;
-				} else /* sabertype == 6 */
+				} else if (sabertype == 6) {
 					uwep->otyp = ELECTRIC_CIGARETTE;
+				} else if (sabertype == 7) {
+					uwep->otyp = LASERDENT;
+				} else if (sabertype == 8) {
+					uwep->otyp = LASER_SWORD;
+				} else if (sabertype == 9) {
+					uwep->otyp = SITH_STAFF;
+				} else /* sabertype == 10 */
+					uwep->otyp = LASER_POLE;
 
 				pline("Your lightsaber warps, and changes into a different one!");
 				/* known problem: you can pick the form that your lightsaber already has */

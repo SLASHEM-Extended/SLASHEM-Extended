@@ -9113,6 +9113,8 @@ boolean knoweverything;
 				pline("This iron quarterstaff does usable damage but it's not great either."); break;
 			case FOAMY_STAFF:
 				pline("A particularly crappy, flimsy quarterstaff."); break;
+			case CLIMBING_STICK:
+				pline("This two-handed quarterstaff deals quite crappy damage, but while wielding it, you can climb mountains more easily."); break;
 			case FLINDBAR:
 				pline("A rather scrappy two-handed quarterstaff."); break;
 			case PLATINUM_FIRE_HOOK:
@@ -9395,6 +9397,8 @@ boolean knoweverything;
 				pline("This javelin weighs a lot, but does respectable damage. It can be thrown."); break;
 			case FOURDENT:
 				pline("Tridents usually suck, but this one in particular sucks bad."); break;
+			case REACH_TRIDENT:
+				pline("This trident deals sucky damage but has the benefit of being able to hit things at a distance of two squares. In order to do so, you need to apply it."); break;
 			case PLOW:
 				pline("It's a relatively useful trident with good to-hit."); break;
 			case SPEC_LANCE:
@@ -13188,16 +13192,24 @@ boolean knoweverything;
 				pline("This lightsaber does solid damage, but it needs to be turned on in order to work. An activated lightsaber is good for engraving."); break;
 			case BLUE_LIGHTSABER: 
 				pline("This lightsaber does good damage, but it needs to be turned on in order to work. An activated lightsaber is good for engraving."); break;
-			case RED_LIGHTSABER: 
+			case RED_LIGHTSABER:
 				pline("This lightsaber does random damage, but it needs to be turned on in order to work. An activated lightsaber is good for engraving."); break;
-			case RED_DOUBLE_LIGHTSABER: 
+			case RED_DOUBLE_LIGHTSABER:
 				pline("A two-handed lightsaber that can be set to double mode in order to do even more damage. It needs to be turned on in order to work, and while activated it is also useful for engraving. It's especially effective against large monsters."); break;
-			case YELLOW_LIGHTSABER: 
+			case YELLOW_LIGHTSABER:
 				pline("This lightsaber does randomized damage, but it needs to be turned on in order to work. An activated lightsaber is good for engraving."); break;
-			case VIOLET_LIGHTSABER: 
+			case VIOLET_LIGHTSABER:
 				pline("This lightsaber does steady damage, but it needs to be turned on in order to work. An activated lightsaber is good for engraving."); break;
-			case WHITE_LIGHTSABER: 
+			case WHITE_LIGHTSABER:
 				pline("This lightsaber does RNG-determined damage, but it needs to be turned on in order to work. An activated lightsaber is good for engraving."); break;
+			case LASERDENT:
+				pline("A two-handed lightsaber that uses the trident skill and can be set to double mode, increasing its damage. If it's not turned on, it does pitiful damage."); break;
+			case SITH_STAFF:
+				pline("This is a quarterstaff that uses lightsaber power; you need to turn it on first or it won't be effective. It requires two hands, and if you apply it twice, you can activate double blade mode, further increasing its damage output."); break;
+			case LASER_POLE:
+				pline("A polearm-lightsaber! Applying it will turn it on, and then you can apply it again to hit things at two squares distance. Using it in melee is only effective while riding, and using it while it's not turned on isn't effective at all."); break;
+			case LASER_SWORD:
+				pline("This lightsaber does good damage, but it needs to be turned on in order to work. It uses the broadsword skill."); break;
 			case WHITE_DOUBLE_LIGHTSABER: 
 				pline("A two-handed lightsaber that can be set to double mode in order to do even more damage. It needs to be turned on in order to work, and while activated it is also useful for engraving. It's especially effective against small monsters."); break;
 			case MYSTERY_LIGHTSABER:
@@ -20186,6 +20198,12 @@ boolean knoweverything;
 					pline("Artifact specs: implants skill trains faster while wearing it; if you're in a form without hands, it also grants extra skill training. This stacks, so it will make your implants skill train really fast."); break;
 				case ART_GIMMIE_DAT_SKILL:
 					pline("Artifact specs: trains the symbiosis skill by 50 points if you successfully use it. Take note that this doesn't unrestrict the symbiosis skill, nor will it increase your cap, so it's probably not really useful unless you haven't maxxed out the skill yet."); break;
+				case ART_FOOK_THE_OBSTACLES:
+					pline("Artifact specs: can hit monsters through walls with the reach attack, choicelessness, exploding dice and cyan spells when wielded."); break;
+				case ART_POGO_STICK:
+					pline("Artifact specs: very fast speed and teleportitis when wielded."); break;
+				case ART_DUURVOID:
+					pline("Artifact specs: while wielded, occasionally warns you when you're trying to open a trapped door."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;
