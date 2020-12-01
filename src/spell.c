@@ -11723,6 +11723,7 @@ int spell;
 	if (u.tiksrvzllatdown) chance += 10;
 	if (uarmf && uarmf->oartifact == ART_JONADAB_S_EVERYDAY_WEAR) chance += 5;
 	if (uarmf && uarmf->oartifact == ART_DON_T_FALL_INTO_THE_ABYSS) chance += 10;
+	if (uwep && uwep->oartifact == ART_BAOBHAN_MOUNTAIN) chance += 10;
 
 	/* higher spell skill should do SOMEthing --Amy */
 	skill = P_SKILL(spell_skilltype(spellid(spell)));

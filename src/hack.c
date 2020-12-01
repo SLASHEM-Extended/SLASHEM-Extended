@@ -747,7 +747,7 @@ moverock()
 		 if (Blind) feel_location(sx,sy);
 	cannot_push:
 	    if (throws_rocks(youmonst.data)) {
-		if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
+		if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
 		    You("aren't skilled enough to %s %s from %s.",
 			(flags.pickup && !In_sokoban(&u.uz))
 			    ? "pick up" : "push aside",
@@ -1144,9 +1144,9 @@ int mode;
 		}
 
 	} else if (tmpr->typ == FARMLAND) {
-		if (mode != DO_MOVE && !Levitation && !Flying && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED)) return FALSE;
+		if (mode != DO_MOVE && !Levitation && !Flying && !(ublindf && ublindf->oartifact == ART_FREEBOUND) && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED)) return FALSE;
 
-		if (mode == DO_MOVE && !Levitation && !Flying && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED) && !(powerfulimplants() && uimplant && uimplant && uimplant->oartifact == ART_SIGNIFICANT_RNG_JITTER) ) {
+		if (mode == DO_MOVE && !Levitation && !Flying && !(ublindf && ublindf->oartifact == ART_FREEBOUND) && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED) && !(powerfulimplants() && uimplant && uimplant && uimplant->oartifact == ART_SIGNIFICANT_RNG_JITTER) ) {
 
 			if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uwep && uwep->oartifact == ART_KRONSCHER_BAR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KRONSCHER_BAR) || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || (uarms && uarms->oartifact == ART_BLUE_SHIRT_OF_DEATH) ) {
 				You("crash into a farmland! Ouch!");
@@ -4120,7 +4120,7 @@ dopickup()
 		return(0);
 	}
 	if (!can_reach_floor()) {
-		if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) )
+		if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) )
 		    You("aren't skilled enough to reach from %s.",
 			y_monnam(u.usteed));
 		else

@@ -258,15 +258,14 @@ boolean digest_meal;
 	}
 
 	if (u.usteed && mon == u.usteed) {
-		struct obj *osaeddle = which_armor(u.usteed, W_SADDLE);
 
-		if ((osaeddle = which_armor(u.usteed, W_SADDLE)) && osaeddle->oartifact == ART_CURE_HASSIA_COURSE) {
+		if (bmwride(ART_CURE_HASSIA_COURSE)) {
 			if (mon->mhp + 1 >= mon->mhpmax)
 			      mon->mhp = mon->mhpmax;
 			else mon->mhp++;
 		}
 
-		if ((osaeddle = which_armor(u.usteed, W_SADDLE)) && osaeddle->oartifact == ART_STEERING_WHEEL) {
+		if (bmwride(ART_STEERING_WHEEL)) {
 			mon->mconf = FALSE;
 		}
 

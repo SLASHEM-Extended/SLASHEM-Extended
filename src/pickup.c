@@ -1677,7 +1677,7 @@ able_to_loot(x, y)
 int x, y;
 {
 	if (!can_reach_floor()) {
-		if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) )
+		if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) )
 			rider_cant_reach(); /* not skilled enough to reach */
 		else
 			You("cannot reach the %s.", surface(x, y));

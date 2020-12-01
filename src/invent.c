@@ -20204,6 +20204,26 @@ boolean knoweverything;
 					pline("Artifact specs: very fast speed and teleportitis when wielded."); break;
 				case ART_DUURVOID:
 					pline("Artifact specs: while wielded, occasionally warns you when you're trying to open a trapped door."); break;
+				case ART_IT_BECOME_LIGHT:
+					pline("Artifact specs: +2 sight range when wielded."); break;
+				case ART_SPEEDO_CAR:
+					pline("Artifact specs: you are slightly faster while riding."); break;
+				case ART_DEEPER_LAID_BMW:
+					pline("Artifact specs: allows you to always reach the ground while riding, even when your riding skill is lower than Basic."); break;
+				case ART_FREEBOUND:
+					pline("Artifact specs: flying when worn and allows you to move over farmland."); break;
+				case ART_MACAN_STRETCH:
+					pline("Artifact specs: MC3 while riding."); break;
+				case ART_OWESOME_BRO:
+					pline("Artifact specs: petrification resistance when worn. Since you become resistant during the act of putting it on, it won't actually turn you to stone! Isn't that great?"); break;
+				case ART_NUSE_LE_GRAND:
+					pline("Artifact specs: +20 damage."); break;
+				case ART_LUKE_S_BLUELIGHT:
+					pline("Artifact specs: +8 to-hit and +8 damage, lawful."); break;
+				case ART_ENTURN_SWASH:
+					pline("Artifact specs: +10 to-hit and +8 damage to shock-susceptible monsters, protection when wielded."); break;
+				case ART_BAOBHAN_MOUNTAIN:
+					pline("Artifact specs: +6 to-hit and +6 damage, half spell damage, 10%% better spellcasting chances and manler effect when wielded."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

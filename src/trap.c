@@ -18749,7 +18749,7 @@ boolean force_failure;
 	}
 	/* untrappable traps are located on the ground. */
 	if (!can_reach_floor()) {
-		if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) )
+		if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) )
 			You("aren't skilled enough to reach from %s.",
 				mon_nam(u.usteed));
 		else
@@ -19645,7 +19645,7 @@ boolean force;
 			case 'q': return(0);
 			case 'n': continue;
 		    }
-		    if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
+		    if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
 			You("aren't skilled enough to reach from %s.",
 				mon_nam(u.usteed));
 			return(0);

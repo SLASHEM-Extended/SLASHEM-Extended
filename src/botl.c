@@ -762,6 +762,7 @@ struct monst *mon;
 	if (armor && armpro < objects[armor->otyp].a_can)
 	    armpro = objects[armor->otyp].a_can;
 
+	if (bmwride(ART_MACAN_STRETCH) && armpro < 3) armpro = 3;
 	if (uarmg && uarmg->oartifact == ART_EGASSO_S_GIBBERISH && armpro < 5) armpro = 5;
 
 	if (MCReduction && mon == &youmonst) armpro -= (1 + (MCReduction / 5000));

@@ -7627,6 +7627,46 @@ A("Duurvoid",				CLIMBING_STICK, /* occasionally warns you when a door is trappe
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
+A("It Become Light",				LIGHTBULB, /* increases sight by 2 squares */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Speedo-Car",				LEATHER_SADDLE, /* you move 20% faster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Deeper-Laid BMW",				LEATHER_SADDLE, /* can always reach the ground while riding, even when unskilled */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Freebound",				CLIMBING_SET, /* flying when worn and allows you to move over farmland */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Macan-Stretch",				INKA_SADDLE, /* MC3 while riding */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Owesome Bro",				PETRIFYIUM_BRA, /* petrification resistance when worn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Nuse Le Grand",				LASERDENT,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Luke's Bluelight",				LASER_SWORD,
+	(SPFX_RESTR), 0, 0,
+	PHYS(8, 8), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 5000L ),
+
+A("Enturn Swash",				LASER_POLE,
+	(SPFX_RESTR|SPFX_PROTEC), 0, 0,
+	ELEC(10, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6500L ),
+
+A("Baobhan Mountain",				SITH_STAFF, /* manler effect, 10% better spellcasting */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HSPDAM), 0, 0,
+	PHYS(6, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
 
 /*
  *	Stormbringer only has a 2 because it can drain a level,

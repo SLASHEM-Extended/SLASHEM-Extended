@@ -1321,12 +1321,17 @@ moveloop()
 				}
 
 				if (u.usteed) {
-					struct obj *osaeddle = which_armor(u.usteed, W_SADDLE);
 
-					if ((osaeddle = which_armor(u.usteed, W_SADDLE)) && osaeddle->oartifact == ART_BIKE_SADDLE) {
+					if (bmwride(ART_BIKE_SADDLE)) {
 						moveamt *= 3;
 						moveamt /= 2;
 					}
+
+					if (bmwride(ART_SPEEDO_CAR)) {
+						moveamt *= 6;
+						moveamt /= 5;
+					}
+
 				}
 
 			} /* chance to reduce speed end */
@@ -1703,6 +1708,15 @@ moveloop()
 
 			if (Fear_factor && Feared) {
 			    if (rn2(3) != 0) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			}
+
+			if (u.usteed) {
+
+				if (bmwride(ART_SPEEDO_CAR)) {
+					moveamt *= 6;
+					moveamt /= 5;
+				}
+
 			}
 
 			if (Wonderlegs && Wounded_legs) {
@@ -2984,6 +2998,14 @@ newbossBQ:
 
 		/* the manler chases after the player; he often moves randomly but not always */
 		if (ManlerIsChasing && (u.manlerx >= 0 && u.manlery >= 0) ) {
+
+			/* artifacts that can simply be taken off could be abused to make the manler disappear, and
+			 * reappear at the other end of the map... we need to prevent that :P --Amy */
+			if (uwep && uwep->oartifact == ART_BAOBHAN_MOUNTAIN && ManlerEffect < 1000) ManlerEffect = 1000;
+			if (u.twoweap && uswapwep && uswapwep->oartifact == ART_BAOBHAN_MOUNTAIN && ManlerEffect < 1000) ManlerEffect = 1000;
+			if (uwep && uwep->oartifact == ART_DIZZY_METAL_STORM && ManlerEffect < 1000) ManlerEffect = 1000;
+			if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DIZZY_METAL_STORM && ManlerEffect < 1000) ManlerEffect = 1000;
+
 			if (u.manlerx == u.ux && u.manlery == u.uy) {
 				pline("Daedeldidaet! The manler caught you...");
 				u.cnd_manlergetcount++;
@@ -9673,9 +9695,8 @@ newboss:
 			} /* player cannot use skills */
 
 			if (u.usteed) {
-				struct obj *osaeddle = which_armor(u.usteed, W_SADDLE);
 
-				if ((osaeddle = which_armor(u.usteed, W_SADDLE)) && osaeddle->oartifact == ART_CURE_HASSIA_COURSE) {
+				if (bmwride(ART_CURE_HASSIA_COURSE)) {
 					effcon += 5;
 					efflev += 5;
 				}
@@ -10693,9 +10714,7 @@ past3:
 
 			if (u.usteed && !rn2(5000) ) {
 
-				struct obj *osaeddle = which_armor(u.usteed, W_SADDLE);
-
-				if ((osaeddle = which_armor(u.usteed, W_SADDLE)) && osaeddle->oartifact == ART_WESTERN_FRANKISH_COURSE) {
+				if (bmwride(ART_WESTERN_FRANKISH_COURSE)) {
 					pline("A mysterious force surrounds you...");
 					HTeleport_control++;
 				      if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) level_tele();
@@ -10706,9 +10725,7 @@ past3:
 
 			if (u.usteed && !rn2(200) ) {
 
-				struct obj *osaeddle = which_armor(u.usteed, W_SADDLE);
-
-				if ((osaeddle = which_armor(u.usteed, W_SADDLE)) && osaeddle->oartifact == ART_WESTERN_FRANKISH_COURSE) {
+				if (bmwride(ART_WESTERN_FRANKISH_COURSE)) {
 					xchar old_ux = u.ux, old_uy = u.uy;
 					You(FunnyHallu ? "open a warp gate!" : "suddenly get teleported!");
 					HTeleport_control++;

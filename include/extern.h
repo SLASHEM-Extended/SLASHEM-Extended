@@ -2909,6 +2909,7 @@ E boolean mayfalloffsteed(void);
 E boolean will_hit_steed(void);
 E boolean confsteeddir(void);
 E boolean flysaddle(void);
+E boolean bmwride(int);
 
 /* ### tech.c ### */
 
