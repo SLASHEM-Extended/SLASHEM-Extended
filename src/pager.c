@@ -25933,6 +25933,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"Eep - you gazed at the image of Medusa that is drawn on the front side of your bra! You start turning to stone. (Who the hell would put such an image on a bra, anyway??? )",
 	"You feel more capable of controlling your magic!",
 	"You feel more capable of controlling your magic! Sadly, this feeling is just a deception, because you're still as bad at spellcasting as ever.",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Protect yourself and others! Protect yourself! Protect! Protect! Pro-Pro-Pro-Pppppppppppppppppppp...'",
+	"Incoming message for Player 1. The message is from 'corona christmas child'. It reads: 'protect yourself and others! always wear a mouth-face-covering and keep the minimum distance!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Protect yourself, you underage adult! You can't make your own decisions from now on! Bullshit!'",
+	"Incoming message for Player 1. The message is from 'corona christmas child'. It reads: 'protect yourself, thats the only measure that you can use to prevent contracting corona!'",
 
 };
 
