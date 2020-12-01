@@ -826,9 +826,10 @@ const char * const *nlp;
 			shk->isegotype = 1;
 			shk->egotype_maecke = TRUE;
 		}
-		/* Izchak always has the laserpwnzor egotype --Amy */
+		/* Izchak always has the laserpwnzor and datadeleter egotypes --Amy */
 		shk->isegotype = 1;
 		shk->egotype_laserpwnzor = TRUE;
+		shk->egotype_datadeleter = TRUE;
 
 	} else if (nlp == shkblack) {
 	    /* special-case black marketeer */
@@ -1025,6 +1026,10 @@ const char * const *nlp;
 		if (!rn2(10)) {
 			shk->isegotype = 1;
 			shk->egotype_destructor = TRUE;
+		}
+		if (!rn2(1000)) {
+			shk->isegotype = 1;
+			shk->egotype_datadeleter = TRUE;
 		}
 		if (!rn2(10)) {
 			shk->isegotype = 1;

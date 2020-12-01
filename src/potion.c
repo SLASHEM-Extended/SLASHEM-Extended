@@ -6925,7 +6925,8 @@ register struct monst *mtmp;
 		case 174: mtmp->egotype_contaminator = 1; break;
 		case 175: mtmp->egotype_trembler = 1; break;
 		case 176:
-			if (rn2(100)) mtmp->egotype_destructor = 1;
+			if (!rn2(1000000)) mtmp->egotype_datadeleter = 1;
+			else if (rn2(100)) mtmp->egotype_destructor = 1;
 			else mtmp->egotype_worldender = 1;
 			break;
 		case 177: mtmp->egotype_damager = 1; break;

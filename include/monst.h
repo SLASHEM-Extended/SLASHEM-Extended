@@ -377,6 +377,8 @@ struct monst {
 	Bitfield(egotype_maecke,1); /* AD_MAGC */
 	Bitfield(egotype_flamer,1); /* AD_FLAM */
 
+	Bitfield(egotype_datadeleter,1); /* AD_DATA */
+
 	Bitfield(nurse_extrahealth,1); /* to control which services a nurse will offer */
 	Bitfield(nurse_decontaminate,1);
 	Bitfield(nurse_healing,1);

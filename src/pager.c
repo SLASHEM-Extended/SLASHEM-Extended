@@ -25930,7 +25930,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You smell burnt toast.",
 	"You smell burnt toast. What does this have to do with sexy high heels?",
 	"Eep - you gazed at the image of Medusa that is drawn on the front side of your bra! You start turning to stone.",
-	"Eep - you gazed at the image of Medusa that is drawn on the front side of your bra! You start turning to stone. (Who the hell would put such an image on a bra, anyway???)",
+	"Eep - you gazed at the image of Medusa that is drawn on the front side of your bra! You start turning to stone. (Who the hell would put such an image on a bra, anyway??? )",
 	"You feel more capable of controlling your magic!",
 	"You feel more capable of controlling your magic! Sadly, this feeling is just a deception, because you're still as bad at spellcasting as ever.",
 
