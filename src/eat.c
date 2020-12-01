@@ -6202,6 +6202,13 @@ register struct obj *otmp;
 		make_stunned(0L, TRUE);
 		break;
 
+	    case CHERRY:
+		if (PlayerBleeds) {
+			PlayerBleeds = 0;
+			Your("bleeding stops.");
+		}
+		break;
+
 	    case ASIAN_PEAR:
 		make_confused(0L, TRUE);
 		make_stunned(0L, TRUE);
@@ -6776,6 +6783,20 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 				u.cnd_stoningcount++;
 				stop_occupation();
 				delayed_killer = "eating a petrifying weapon";
+			}
+		}
+
+	    }
+
+	    if (otmp->otyp == PETRIFYIUM_BRA) {
+		if (!Stoned && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM)) ) {
+			if (Hallucination && rn2(10)) pline("Good thing you are already stoned.");
+			else {
+				You("start turning to stone.");
+				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				u.cnd_stoningcount++;
+				stop_occupation();
+				delayed_killer = "eating a petrifying bra";
 			}
 		}
 

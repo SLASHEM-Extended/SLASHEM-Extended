@@ -1123,11 +1123,16 @@ int mode;
 	} else if (tmpr->typ == MOUNTAIN) {
 		if (mode != DO_MOVE) return FALSE;
 		if (mode == DO_MOVE && !Passes_walls && !(powerfulimplants() && uimplant && uimplant && uimplant->oartifact == ART_SIGNIFICANT_RNG_JITTER)) {
-			if (!(u.usteed) && rn2(100)) {
+			int climbingchance = 100;
+			if (uamul && uamul->otyp == AMULET_OF_CLIMBING) climbingchance = ((levl[u.ux][u.uy].typ == MOUNTAIN) ? 3 : 10);
+			if (ublindf && ublindf->otyp == CLIMBING_SET) climbingchance = ((levl[u.ux][u.uy].typ == MOUNTAIN) ? 3 : 10);
+
+			if (!(u.usteed) && rn2(climbingchance)) {
 				TimerunBug += 1; /* ugly hack --Amy */
 				Norep("You try to scale the mountain. This may take many attempts to succeed.");
 				/* Note that it is not a bug that you cannot easily walk over the next mountain tile
-				 * even if you're already on one, since they're considered to have different heights :D --Amy */
+				 * even if you're already on one, since they're considered to have different heights :D --Amy
+				 * however, with climbing gear it will indeed help */
 				return(FALSE);
 			}
 			/* success! */

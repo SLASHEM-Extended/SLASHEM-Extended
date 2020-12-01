@@ -2076,6 +2076,7 @@ boolean shopinit;
 	    case APPLE:
 	    case CARROT:
 	    case PEAR:
+	    case CHERRY:
 	    case ASIAN_PEAR:
 	    case BANANA:
 	    case LEMON:
@@ -2086,9 +2087,6 @@ boolean shopinit;
 		blessorcurse_on_creation(otmp, 10);
 		break;
 	    }
-	    /*if (otmp->otyp == CORPSE || otmp->otyp == MEAT_RING || otmp->otyp == APPLE || otmp->otyp == CARROT ||
-		otmp->otyp == KELP_FROND || otmp->otyp == PEAR || otmp->otyp == ASIAN_PEAR || otmp->otyp == BANANA
-	|| otmp->otyp == ORANGE || otmp->otyp == MELON || otmp->otyp == SLIME_MOLD)*/
 		blessorcurse_on_creation(otmp, 10);
 		if (!rn2(4000)) otmp->oerodeproof = 1;
 		if (!rn2(4000)) {
@@ -3378,8 +3376,8 @@ register struct obj *obj;
 	return(wt ? wt*(int)obj->quan : ((int)obj->quan + 1)>>5);
 }
 
-static int treefruits[] = {APPLE,ORANGE,PEAR,BANANA,EUCALYPTUS_LEAF};
-static int treefruitsX[] = {APPLE,ORANGE,PEAR,BANANA,EUCALYPTUS_LEAF,ASIAN_PEAR,LEMON,MELON,SLIME_MOLD,LUMP_OF_ROYAL_JELLY,WATERMELON,WHITE_PEACH,MAGIC_BANANA};
+static int treefruits[] = {APPLE,ORANGE,PEAR,BANANA,EUCALYPTUS_LEAF,LEMON,CHERRY};
+static int treefruitsX[] = {APPLE,ORANGE,PEAR,BANANA,EUCALYPTUS_LEAF,CHERRY,ASIAN_PEAR,LEMON,MELON,SLIME_MOLD,LUMP_OF_ROYAL_JELLY,WATERMELON,WHITE_PEACH,MAGIC_BANANA};
 /* rare fruits added by Amy, of course they don't grow in Soviet Russia, it's too cold there because the type of ice block
  * brings winter - he's like "Väterchen Frost" :-P */
 

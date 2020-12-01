@@ -148,9 +148,24 @@ doread()
 	} else if (scroll->otyp == T_SHIRT || scroll->otyp == HAWAIIAN_SHIRT || scroll->otyp == BLACK_DRESS
 	|| scroll->otyp == STRIPED_SHIRT || scroll->otyp == BODYGLOVE || scroll->otyp == BAD_SHIRT || scroll->otyp == CHANTER_SHIRT || scroll->otyp == KYRT_SHIRT || scroll->otyp == WOOLEN_SHIRT || scroll->otyp == METAL_SHIRT || scroll->otyp == RED_STRING || scroll->otyp == YOGA_PANTS || scroll->otyp == GREEN_GOWN
 	|| scroll->otyp == BEAUTIFUL_SHIRT || scroll->otyp == PETA_COMPLIANT_SHIRT || scroll->otyp == TOILET_ROLL || scroll->otyp == RADIOACTIVE_UNDERGARMENT
-	|| scroll->otyp == PRINTED_SHIRT || scroll->otyp == FOAM_SHIRT || scroll->otyp == FLEECY_CORSET || scroll->otyp == FISHNET || scroll->otyp == BATH_TOWEL
+	|| scroll->otyp == PRINTED_SHIRT || scroll->otyp == FOAM_SHIRT || scroll->otyp == PETRIFYIUM_BRA || scroll->otyp == FLEECY_CORSET || scroll->otyp == FISHNET || scroll->otyp == BATH_TOWEL
 	|| scroll->otyp == PLUGSUIT || scroll->otyp == SWIMSUIT || scroll->otyp == MEN_S_UNDERWEAR
 	|| scroll->otyp == VICTORIAN_UNDERWEAR || scroll->otyp == RUFFLED_SHIRT) {
+
+	    if (scroll->otyp == PETRIFYIUM_BRA && (!Stone_resistance || (!IntStone_resistance && !rn2(20))) && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM)) ) {
+		if (!Stoned) {
+			if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
+			else {
+				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				u.cnd_stoningcount++;
+				pline("Eep - you gazed at the image of Medusa that is drawn on the front side of your bra! You start turning to stone.");
+			}
+		}
+		sprintf(killer_buf, "wearing a petrifyium bra");
+		delayed_killer = killer_buf;
+
+	    }
+
 	    static const char *shirt_msgs[] = { /* Scott Bigham */
     "I explored the Dungeons of Doom and all I got was this lousy T-shirt!",
     "Is that Mjollnir in your pocket or are you just happy to see me?",

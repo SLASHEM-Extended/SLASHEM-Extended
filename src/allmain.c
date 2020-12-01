@@ -12236,6 +12236,7 @@ boolean new_game;	/* false => restoring an old game */
 
 	/* todo area */
 
+	obj_descr[SPE_MAGIC_CONTROL].oc_name = "todo";
 
 	{
 
@@ -13418,6 +13419,7 @@ boolean new_game;	/* false => restoring an old game */
 
 	/* todo area */
 
+	obj_descr[SPE_MAGIC_CONTROL].oc_name = "todo";
 
 	{
 

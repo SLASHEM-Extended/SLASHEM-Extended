@@ -1439,6 +1439,21 @@ boolean alwaysflag;	/* force the item to be picked up even if it burdens you --A
 		}
 		}
 
+	} else if (obj->otyp == PETRIFYIUM_BRA) {
+		if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !telekinesis) {
+		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
+		    display_nhwindow(WIN_MESSAGE, FALSE);
+		else {
+			char kbuf[BUFSZ];
+
+			strcpy(kbuf, "a petrifyium bra");
+			pline("Touching %s is a fatal mistake.", kbuf);
+			instapetrify(kbuf);
+		    return -1;
+
+		}
+		}
+
 	} else if (obj->otyp == CORPSE) {
 	    if ( (touch_petrifies(&mons[obj->corpsenm])) && (!uarmg || FingerlessGloves)
 				&& (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !telekinesis) {
@@ -2176,6 +2191,21 @@ boolean invobj;
 	    }
 	}
 
+	if (obj->otyp == PETRIFYIUM_BRA) {
+	    if ((!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) )) {
+		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
+		    display_nhwindow(WIN_MESSAGE, FALSE);
+		else {
+		    char kbuf[BUFSZ];
+
+		    strcpy(kbuf, "a petrifyium bra");
+		    pline("Touching %s is a fatal mistake.", kbuf);
+		    instapetrify(kbuf);
+		    return -1;
+		}
+	    }
+	}
+
 	if (obj->otyp == EGG) {
 	    if ( (touch_petrifies(&mons[obj->corpsenm])) && obj->corpsenm != PM_PLAYERMON && (!uarmg || FingerlessGloves)
 		 && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) )) {
@@ -2356,6 +2386,21 @@ register struct obj *obj;
 		    char kbuf[BUFSZ];
 
 		    strcpy(kbuf, "a petrifyium bar");
+		    pline("Touching %s is a fatal mistake.", kbuf);
+		    instapetrify(kbuf);
+		    return -1;
+		}
+	    }
+	}
+
+	if (obj->otyp == PETRIFYIUM_BRA) {
+	    if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) )) {
+		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
+		    display_nhwindow(WIN_MESSAGE, FALSE);
+		else {
+		    char kbuf[BUFSZ];
+
+		    strcpy(kbuf, "a petrifyium bra");
 		    pline("Touching %s is a fatal mistake.", kbuf);
 		    instapetrify(kbuf);
 		    return -1;

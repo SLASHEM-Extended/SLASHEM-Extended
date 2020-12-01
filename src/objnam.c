@@ -3409,6 +3409,12 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 
 	/* todo area */
 
+	{ PETRIFYIUM_BRA, "todo" },
+	{ CHERRY, "todo" },
+	{ SPE_MAGIC_CONTROL, "todo" },
+	{ AMULET_OF_CLIMBING, "todo" },
+	{ CLIMBING_SET, "todo" },
+
 	{0, "" }
 };
 
@@ -6180,6 +6186,12 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ SCR_VISIBLE_ITEM, "ko'rinadigan element" },
 
 	/* todo area */
+
+	{ PETRIFYIUM_BRA, "todo" },
+	{ CHERRY, "todo" },
+	{ SPE_MAGIC_CONTROL, "todo" },
+	{ AMULET_OF_CLIMBING, "todo" },
+	{ CLIMBING_SET, "todo" },
 
 	{0, "" }
 };

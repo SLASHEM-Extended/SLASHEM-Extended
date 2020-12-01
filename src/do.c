@@ -992,6 +992,9 @@ register struct obj *obj;
 	case AMULET_OF_NECK_BRACE:
 		pline("A sword tries to smash the upper part of the toilet, but somehow misses wildly!");
 		break;
+	case AMULET_OF_CLIMBING:
+		pline_The("toilet seems to be moving slowly but steadily towards the ceiling!");
+		break;
 	case AMULET_OF_TECHNICALITY:
 		pline_The("toilet momentarily looks like a space station.");
 		break;

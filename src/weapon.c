@@ -6963,6 +6963,7 @@ boolean extraskills;
 		if (obj->otyp == SOFT_CHASTITY_BELT) skill = P_TWO_WEAPON_COMBAT;
 		if (obj->otyp == MAGIC_MARKER) skill = P_TECHNIQUES;
 		if (obj->otyp == FELT_TIP_MARKER) skill = P_TECHNIQUES;
+		if (obj->otyp == CLIMBING_SET) skill = P_TECHNIQUES;
 		if (obj->otyp == MATERIAL_KIT) skill = P_MISSILE_WEAPONS;
 		if (obj->otyp == BLINDFOLD) skill = P_SHII_CHO;
 		if (obj->otyp == EYECLOSER) skill = P_MAKASHI;

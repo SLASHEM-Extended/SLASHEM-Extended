@@ -5779,7 +5779,7 @@ struct obj *otmp;
                 else if ((putting_on(word) &&
 		    ((otmp->oclass == FOOD_CLASS && otmp->otyp != MEAT_RING) ||
 		    (otmp->oclass == TOOL_CLASS &&
-		     otyp != BLINDFOLD && otyp != EYECLOSER && otyp != DRAGON_EYEPATCH && otyp != CONDOME && otyp != SOFT_CHASTITY_BELT && otyp != TOWEL && otyp != LENSES && otyp != RADIOGLASSES && otyp != BOSS_VISOR)))
+		     otyp != BLINDFOLD && otyp != EYECLOSER && otyp != DRAGON_EYEPATCH && otyp != CONDOME && otyp != SOFT_CHASTITY_BELT && otyp != TOWEL && otyp != CLIMBING_SET && otyp != LENSES && otyp != RADIOGLASSES && otyp != BOSS_VISOR)))
 /*add check for improving*/
                 || ( (!strcmp(word, "wield") || !strcmp(word, "improve")) &&
 		    (otmp->oclass == TOOL_CLASS && !is_weptool(otmp)))
@@ -6004,6 +6004,7 @@ register const char *let,*word;
 			|| otmp->otyp == STRIPED_SHIRT
 			|| otmp->otyp == PRINTED_SHIRT
 			|| otmp->otyp == FOAM_SHIRT
+			|| otmp->otyp == PETRIFYIUM_BRA
 			|| otmp->otyp == FLEECY_CORSET
 			|| otmp->otyp == FISHNET
 			|| otmp->otyp == BATH_TOWEL
@@ -6317,7 +6318,7 @@ struct obj *otmp;
 		s1 = "T", s2 = "take", s3 = " off";
 	} else if ((ocls == RING_CLASS || otyp == MEAT_RING) ||
 		ocls == AMULET_CLASS || ocls == IMPLANT_CLASS ||
-		(otyp == BLINDFOLD || otyp == EYECLOSER || otyp == DRAGON_EYEPATCH || otyp == CONDOME || otyp == SOFT_CHASTITY_BELT || otyp == TOWEL || otyp == LENSES || otyp == RADIOGLASSES || otyp == BOSS_VISOR)) {
+		(otyp == BLINDFOLD || otyp == EYECLOSER || otyp == DRAGON_EYEPATCH || otyp == CONDOME || otyp == SOFT_CHASTITY_BELT || otyp == TOWEL || otyp == CLIMBING_SET || otyp == LENSES || otyp == RADIOGLASSES || otyp == BOSS_VISOR)) {
 	    if (!strcmp(word, "wear"))
 		s1 = "P", s2 = "put", s3 = " on";
 	    else if (!strcmp(word, "take off"))
@@ -7916,6 +7917,10 @@ boolean force_touch;
 		pline("Eek!");
 		badeffect();
 	}
+	if (uarmg && itemhasappearance(uarmg, APP_SHITTY_GLOVES) && (otmp->otyp == PETRIFYIUM_BRA) ) {
+		pline("Eek!");
+		badeffect();
+	}
 	if (uarmg && itemhasappearance(uarmg, APP_SHITTY_GLOVES) && (otmp->otyp == EGG && otmp->corpsenm != PM_PLAYERMON && touch_petrifies(&mons[otmp->corpsenm])) ) {
 		pline("Eek!");
 		badeffect();
@@ -7926,6 +7931,9 @@ boolean force_touch;
 			return TRUE;
 	if ((Blind || force_touch) && (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
 		(otmp->otyp == PETRIFYIUM_BAR))
+			return TRUE;
+	if ((Blind || force_touch) && (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
+		(otmp->otyp == PETRIFYIUM_BRA))
 			return TRUE;
 	if ((Blind || force_touch) && (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
 		(otmp->otyp == EGG && otmp->corpsenm != PM_PLAYERMON && touch_petrifies(&mons[otmp->corpsenm])))
@@ -10248,6 +10256,8 @@ boolean knoweverything;
 				pline("It's an extra piece of armor that goes in the shirt slot. It can be read."); break;
 			case FOAM_SHIRT: 
 				pline("A very cuddly shirt. It can be read."); break;
+			case PETRIFYIUM_BRA: 
+				pline("Careful: This shirt is made of cockatrice skin, meaning that touching it will turn you to stone! It can be read, but beware, that will turn you to stone too."); break;
 			case METAL_SHIRT:
 				pline("This shirt grants poison resistance when worn. It can be read."); break;
 			case RED_STRING:
@@ -12856,6 +12866,8 @@ boolean knoweverything;
 				pline("You will fall asleep if you wear this amulet. It is usually generated cursed."); break;
 			case AMULET_OF_NECK_BRACE:
 				pline("Wearing this amulet protects you from Vorpal Blade and other decapitating artifacts."); break;
+			case AMULET_OF_CLIMBING:
+				pline("This amulet is actually a climbing set, which increases the chance of successfully climbing a mountain."); break;
 			case AMULET_OF_BLINDNESS:
 				pline("Wearing this amulet prevents you from seeing. It is usually generated cursed."); break;
 			case AMULET_OF_STRANGULATION:
@@ -13052,6 +13064,8 @@ boolean knoweverything;
 				pline("A blindfold that grants reflection when worn. Put it on to blind yourself, and take it off to stop the blindness."); break;
 			case SOFT_CHASTITY_BELT:
 				pline("This condome keeps your penis or other sexual organ safe while having a sexual encounter. It also reduces the amount of physical damage you take."); break;
+			case CLIMBING_SET:
+				pline("A tool that can be equipped to improve your chances of climbing a mountain. The idea for this tool was from ToME, and just like the original implementation, it prevents you from equipping a different type of tool at the same time."); break;
 			case BINNING_KIT:
 				pline("If this tool has charges, you can apply it to dispose of corpses. Into the trash it goes! :D"); break;
 			case BUDO_NO_SASU:
@@ -13361,6 +13375,8 @@ boolean knoweverything;
 				pline("A vegetarian type of food that cures stunning."); break;
 			case ASIAN_PEAR: 
 				pline("A vegetarian type of food that cures stunning and confusion."); break;
+			case CHERRY: 
+				pline("A vegetarian type of food that cures bleeding."); break;
 			case LEMON: 
 				pline("A vegetarian type of food that cures fear."); break;
 			case BANANA: 
@@ -14224,6 +14240,8 @@ boolean knoweverything;
 				pline("A spell that lets you use your menstruation as a weapon, shooting a stream of blood in a direction that can hit several enemies. However, you take damage equal to up to 20%% of your maximum HP. The damage it deals is higher the less health you have remaining after that loss, and if you're female it deals even more damage."); break;
 			case SPE_SHINING_WAVE:
 				pline("This is a rather expensive spell that requires five times as much mana as you'd expect. It shoots a beam in a direction of your choice that deals great damage. Monsters that resist magic or are sound-based are immune if you're female, resistant if you're male."); break;
+			case SPE_MAGIC_CONTROL:
+				pline("Casting this spell grants you the control magic intrinsic for a while, which allows your spells and missiles to pass through pets."); break;
 			case SPE_GROUND_STOMP:
 				pline("Stomps the ground if cast, greatly damaging adjacent monsters. However, you'll also be heavily confused for a while and be unable to have confusion resistance. If you somehow manage to successfully cast this spell while confused, it will have no effect."); break;
 			case SPE_DIRECTIVE:

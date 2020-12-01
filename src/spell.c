@@ -4296,6 +4296,21 @@ bucchoice:
 
 		break;
 
+	case SPE_MAGIC_CONTROL:
+
+		if(!(HControlMagic & INTRINSIC)) {
+			You("feel more capable of controlling your magic!");
+			incr_itimeout(&HControlMagic, HControlMagic ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+		} else {
+			pline("%s", nothing_happens);	/* Already have as intrinsic */
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		}
+
+		break;
+
 	case SPE_CONTINGENCY:
 
 		u.contingencyturns = 50 + (spell_damage_bonus(spellid(spell)) * 3);

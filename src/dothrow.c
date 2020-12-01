@@ -171,6 +171,11 @@ int thrown;
 		sprintf(killer_buf, "thrown petrifyium bar");
 		instapetrify(killer_buf);
 	}
+	if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && (obj->otyp == PETRIFYIUM_BRA)) {
+		You("throw the bra with your bare %s.", body_part(HAND));
+		sprintf(killer_buf, "thrown petrifyium bra");
+		instapetrify(killer_buf);
+	}
 	if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && (obj->otyp == EGG &&
 		    touch_petrifies(&mons[obj->corpsenm]) && obj->corpsenm != PM_PLAYERMON)) {
 		You("throw the %s egg with your bare %s.",
@@ -1209,6 +1214,10 @@ boolean hitsroof;
 	obj = 0;	/* it's now gone */
 	switch (otyp) {
 	case PETRIFYIUM_BAR:
+		if (!uarmh && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
+		    !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM)))
+		goto petrify;
+	case PETRIFYIUM_BRA:
 		if (!uarmh && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
 		    !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM)))
 		goto petrify;

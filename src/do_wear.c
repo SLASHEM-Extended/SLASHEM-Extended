@@ -2737,6 +2737,16 @@ Gloves_off()
 
     }
 
+    if (uwep && uwep->otyp == PETRIFYIUM_BRA) {
+	char kbuf[BUFSZ];
+
+	You("wield the bra in your bare %s.", body_part(HAND));
+	strcpy(kbuf, "petrifyium bra");
+	instapetrify(kbuf);
+	uwepgone();  /* life-saved still doesn't allow touching cockatrice */
+
+    }
+
     /* KMH -- ...or your secondary weapon when you're wielding it */
     if (u.twoweap && uswapwep && uswapwep->otyp == CORPSE &&
 	touch_petrifies(&mons[uswapwep->corpsenm])) {
@@ -3068,6 +3078,20 @@ Shirt_on()
 			pline("Your shirt tickles comfortably on your smooth skin!");
 			}
 		}
+
+	}
+
+	if (uarmu->otyp == PETRIFYIUM_BRA && (!Stone_resistance || (!IntStone_resistance && !rn2(20))) && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM)) ) {
+		if (!Stoned) {
+			if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
+			else {
+				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				u.cnd_stoningcount++;
+				pline("You start turning to stone!");
+			}
+		}
+		sprintf(killer_buf, "wearing a petrifyium bra");
+		delayed_killer = killer_buf;
 
 	}
 
@@ -5160,6 +5184,8 @@ doputon()
 					already_wearing("a condome");
 			else if (ublindf->otyp == SOFT_CHASTITY_BELT)
 					already_wearing("a condome");
+			else if (ublindf->otyp == CLIMBING_SET)
+					already_wearing("a climbing set");
 			else if (ublindf->otyp == BLINDFOLD || ublindf->otyp == EYECLOSER || ublindf->otyp == DRAGON_EYEPATCH) {
 				if (otmp->otyp == LENSES || otmp->otyp == RADIOGLASSES || otmp->otyp == BOSS_VISOR)
 					already_wearing2("lenses", "a blindfold");

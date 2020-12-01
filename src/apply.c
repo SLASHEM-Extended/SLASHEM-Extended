@@ -3859,6 +3859,14 @@ struct obj *obj;
 
 		    }
 
+		    if (otmp->otyp == PETRIFYIUM_BRA && (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
+			char kbuf[BUFSZ];
+			sprintf(kbuf, "a petrifyium bra");
+			pline("Snatching %s is a fatal mistake.", kbuf);
+			instapetrify(kbuf);
+
+		    }
+
 		    if (otmp->otyp == CORPSE &&
 			    touch_petrifies(&mons[otmp->corpsenm]) &&
 			    (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
@@ -5141,6 +5149,7 @@ doapply()
 	case RADIOGLASSES:
 	case BOSS_VISOR:
 	case CONDOME:
+	case CLIMBING_SET:
 	case SOFT_CHASTITY_BELT:
 		if (obj == ublindf) {
 		    if (!cursed(obj)) Blindf_off(obj);
@@ -5153,6 +5162,7 @@ doapply()
 			ublindf->otyp == DRAGON_EYEPATCH ? "wearing a blindfold" :
 			ublindf->otyp == CONDOME ? "wearing a condome" :
 			ublindf->otyp == SOFT_CHASTITY_BELT ? "wearing a condome" :
+			ublindf->otyp == CLIMBING_SET ? "using a climbing set" :
 						     "wearing lenses");
 		break;
 	case CREAM_PIE:
