@@ -4021,6 +4021,15 @@ combatreroll:
 	return result;
 }
 
+int
+randomgoodmclass(withtroves)
+boolean withtroves;
+{
+	int monclassresult = rnd(S_WORM_TAIL);
+	while (monclassresult == 35 || (!withtroves && monclassresult == S_TROVE)) monclassresult = rnd(S_WORM_TAIL);
+	return monclassresult;
+}
+
 #endif /* OVLB */
 
 /*rnd.c*/

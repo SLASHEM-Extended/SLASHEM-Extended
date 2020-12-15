@@ -8881,18 +8881,18 @@ u_init()
 
 	u.shaperoomchance = (rnd(15) + 3);	/* chance of irregular rooms */
 
-	u.ungenocidable = rnd(S_WORM_TAIL);
+	u.ungenocidable = randomgoodmclass(TRUE);
 
-	if (!rn2(3)) u.speedymonster = rnd(S_WORM_TAIL);
-	if (!rn2(20)) u.musemonster = rnd(S_WORM_TAIL);
+	if (!rn2(3)) u.speedymonster = randomgoodmclass(TRUE);
+	if (!rn2(20)) u.musemonster = randomgoodmclass(TRUE);
 
 	u.alwaysinvisible = 0;
-	if (!rn2(20)) u.alwaysinvisible = rnd(S_WORM_TAIL);
+	if (!rn2(20)) u.alwaysinvisible = randomgoodmclass(TRUE);
 	u.alwayshidden = 0;
-	if (!rn2(500)) u.alwayshidden = rnd(S_WORM_TAIL);
+	if (!rn2(500)) u.alwayshidden = randomgoodmclass(TRUE);
 
 	if (!rn2(2)) {
-		u.frequentmonster = rnd(S_WORM_TAIL - 1);
+		u.frequentmonster = randomgoodmclass(FALSE);
 		u.freqmonsterbonus = rne(4);
 		if (!rn2(5)) u.freqmonsterbonus += rne(3);
 		if (!rn2(3)) u.freqmonsterbonus *= 2;
@@ -30955,23 +30955,23 @@ int realityflag;
 
 	u.shaperoomchance = (rnd(15) + 3);	/* chance of irregular rooms */
 
-	u.ungenocidable = rnd(S_WORM_TAIL);
+	u.ungenocidable = randomgoodmclass(TRUE);
 	u.speedymonster = 0;
 	u.musemonster = 0;
 
-	if (!rn2(3)) u.speedymonster = rnd(S_WORM_TAIL);
-	if (!rn2(20)) u.musemonster = rnd(S_WORM_TAIL);
+	if (!rn2(3)) u.speedymonster = randomgoodmclass(TRUE);
+	if (!rn2(20)) u.musemonster = randomgoodmclass(TRUE);
 
 	u.alwaysinvisible = 0;
-	if (!rn2(20)) u.alwaysinvisible = rnd(S_WORM_TAIL);
+	if (!rn2(20)) u.alwaysinvisible = randomgoodmclass(TRUE);
 	u.alwayshidden = 0;
-	if (!rn2(500)) u.alwayshidden = rnd(S_WORM_TAIL);
+	if (!rn2(500)) u.alwayshidden = randomgoodmclass(TRUE);
 
 	u.frequentmonster = 0;
 	u.freqmonsterbonus = 0;
 
 	if (!rn2(2)) {
-		u.frequentmonster = rnd(S_WORM_TAIL - 1);
+		u.frequentmonster = randomgoodmclass(FALSE);
 		u.freqmonsterbonus = rne(4);
 		if (!rn2(5)) u.freqmonsterbonus += rne(3);
 		if (!rn2(3)) u.freqmonsterbonus *= 2;

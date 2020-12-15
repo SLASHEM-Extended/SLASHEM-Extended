@@ -2639,6 +2639,7 @@ E int goodimplanteffect(struct obj *);
 E void randomnastytrapeffect(int, int);
 E int randomgoodskill(void);
 E int randomgoodcombatskill(void);
+E int randomgoodmclass(BOOLEAN_P);
 E void getnastytrapintrinsic(void);
 E void randomfeminismtrap(int);
 
