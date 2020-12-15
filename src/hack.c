@@ -3739,6 +3739,10 @@ register boolean newlev;
                 pline(FunnyHallu ? "It's where the government is researching weaponized uranium! If you can steal their technology, you can nuke the entire dungeon and ascend prematurely!" : "You encounter a nuclear power plant!");
 		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
+	      case PLAYERCENTRAL:
+                pline(FunnyHallu ? "Are the people in here celebrating a corona party? Call the police! They're spreading the virus!" : "Apparently a rival gang of adventurers has set up camp here!");
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
+                break;
 	      case LEVELSEVENTYROOM: /* no message but still wake_nearby --Amy */
                 if (wizard) You("enter a level 70 room!");
 		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
@@ -3974,6 +3978,9 @@ register boolean newlev;
                         break;
                       case LEVELSEVENTYROOM:
                         level.flags.has_levelseventyroom = 0;
+                        break;
+                      case PLAYERCENTRAL:
+                        level.flags.has_playercentral = 0;
                         break;
                       case VARIANTROOM:
                         level.flags.has_variantroom = 0;

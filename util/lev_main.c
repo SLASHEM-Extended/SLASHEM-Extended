@@ -760,6 +760,7 @@ static struct {
 	{ "illusionroom", ILLUSIONROOM },
 
 	{ "variantroom",  VARIANTROOM },
+	{ "playercentral", PLAYERCENTRAL },
 	{ "randomroom",  RANDOMROOM },
 	{ "shop",	 SHOPBASE },
 	{ "armor shop",	 ARMORSHOP },

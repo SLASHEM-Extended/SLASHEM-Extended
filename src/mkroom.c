@@ -194,6 +194,7 @@ int	roomtype;
 	case PRISONCHAMBER: mkzoo(PRISONCHAMBER); break;
 	case NUCLEARCHAMBER: mkzoo(NUCLEARCHAMBER); break;
 	case LEVELSEVENTYROOM: mkzoo(LEVELSEVENTYROOM); break;
+	case PLAYERCENTRAL: mkzoo(PLAYERCENTRAL); break;
 	case VARIANTROOM: mkzoo(VARIANTROOM); break;
 
 	case EVILROOM: mkzoo(EVILROOM); break;
@@ -218,7 +219,7 @@ int	roomtype;
 	case RANDOMROOM: {
 
 retryrandtype:
-		switch (rnd(82)) {
+		switch (rnd(83)) {
 
 			case 1: mkzoo(COURT); break;
 			case 2: mkswamp(); break;
@@ -306,6 +307,7 @@ retryrandtype:
 			case 80: mkzoo(ILLUSIONROOM); break;
 			case 81: mkzoo(ROBBERCAVE); break;
 			case 82: mkzoo(SANITATIONCENTRAL); break;
+			case 83: mkzoo(PLAYERCENTRAL); break;
 
 		}
 		break;
@@ -667,6 +669,7 @@ struct mkroom *sroom;
 	if (type == RUINEDCHURCH) moreorless /= 5;
 	if (type == GREENCROSSROOM) moreorless /= 10;
 	if (type == MIRASPA) moreorless /= 5;
+	if (type == PLAYERCENTRAL) moreorless /= 5;
 	if (type == LEVELSEVENTYROOM) moreorless /= 2;
 	if (type == NUCLEARCHAMBER) moreorless /= 2;
 	if (type == HAMLETROOM && moreorless > 5) moreorless = 5;
@@ -780,6 +783,7 @@ struct mkroom *sroom;
 			(type == CRYPTROOM) ? specialtensmon(95) /* M2_UNDEAD */ :
 			(type == NUCLEARCHAMBER) ? specialtensmon(337) /* AD_CONT */ :
 			(type == LEVELSEVENTYROOM) ? specialtensmon(0) /* any random monster */ :
+			(type == PLAYERCENTRAL) ? (&mons[PM_ARCHEOLOGIST + rn2(PM_WIZARD - PM_ARCHEOLOGIST + 1)]) :
 			(type == COINHALL) ? mkclass(S_BAD_COINS,0) :
 			(type == GRUEROOM) ? mkclass(S_GRUE,0) :
 		    (type == MORGUE) ? morguemon() :
@@ -1550,6 +1554,9 @@ struct mkroom *sroom;
 		break;
 	    case LEVELSEVENTYROOM:
 		level.flags.has_levelseventyroom = 1;
+		break;
+	    case PLAYERCENTRAL:
+		level.flags.has_playercentral = 1;
 		break;
 	    case VARIANTROOM:
 		level.flags.has_variantroom = 1;

@@ -151,7 +151,7 @@ STATIC_OVL int
 findrandtype()
 {
 retryrandtype:
-	switch (rnd(82)) {
+	switch (rnd(83)) {
 		case 1: return COURT;
 		case 2: return SWAMP;
 		case 3: return BEEHIVE;
@@ -237,6 +237,7 @@ retryrandtype:
 		case 80: return ILLUSIONROOM;
 		case 81: return ROBBERCAVE;
 		case 82: return SANITATIONCENTRAL;
+		case 83: return PLAYERCENTRAL;
 	}
 
 	return EMPTYNEST;
@@ -562,6 +563,7 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
 	if (/*!special && */rtype == PRISONCHAMBER) croom->colouur = CLR_WHITE;
 	if (/*!special && */rtype == NUCLEARCHAMBER) croom->colouur = CLR_ORANGE;
 	if (/*!special && */rtype == LEVELSEVENTYROOM) croom->colouur = CLR_BLACK;
+	if (/*!special && */rtype == PLAYERCENTRAL) croom->colouur = CLR_MAGENTA;
 	if (/*!special && */rtype == VARIANTROOM) croom->colouur = 20;
 	if (/*!special && */rtype == EVILROOM) croom->colouur = 21; /* magenta or bright magenta */
 	if (/*!special && */rtype == RELIGIONCENTER) croom->colouur = CLR_BLACK;
@@ -2016,6 +2018,7 @@ clear_level_structures()
 	level.flags.has_prisonchamber = 0;
 	level.flags.has_nuclearchamber = 0;
 	level.flags.has_levelseventyroom = 0;
+	level.flags.has_playercentral = 0;
 	level.flags.has_variantroom = 0;
 
 	level.flags.has_evilroom = 0;
@@ -10700,9 +10703,10 @@ gehennomxtra:
 	else if (u_depth > (issoviet ? 12 : 3) && (ishaxor ? !rn2(25) : !rn2(50))) mkroom(GOLEMHALL);
 	else if (u_depth > (issoviet ? 16 : 3) && (ishaxor ? !rn2(40) : !rn2(80))) mkroom(MACHINEROOM);
 	else if (u_depth > (issoviet ? 26 : 8) && (ishaxor ? !rn2(20) : !rn2(40))) mkroom(VOIDROOM);
+	else if (u_depth > (issoviet ? 20 : 10) && (ishaxor ? !rn2(40) : !rn2(80))) mkroom(PLAYERCENTRAL);
 	else if (u_depth > (issoviet ? 8 : 1) && (ishaxor ? !rn2(35) : !rn2(70))) mkroom(GRUEROOM);
 	else if (u_depth > (issoviet ? 19 : 4) && (ishaxor ? !rn2(35) : !rn2(70))) mkroom(CHAOSROOM);
-	else if (u_depth > (issoviet ? 20 : 4) && (ishaxor ? !rn2(24) : !rn2(48))) mkroom(FEMINISMROOM);
+	else if (u_depth > (issoviet ? 20 : 4) && (ishaxor ? !rn2(36) : !rn2(64))) mkroom(FEMINISMROOM);
 	    else if (u_depth > (issoviet ? 5 : 1) && (ishaxor ? !rn2(100) : !rn2(200))) mkroom(NASTYCENTRAL);
 	else if (u_depth > (issoviet ? 8 : 1) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(TENSHALL);
 	else if (u_depth > (issoviet ? 25 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);

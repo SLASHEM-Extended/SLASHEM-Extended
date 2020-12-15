@@ -686,6 +686,14 @@ unsigned *ospecial;
 				color = CLR_BLACK;
 			}
 			else cmap_color(offset);
+		} else if(*in_rooms(x,y,PLAYERCENTRAL)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = CLR_MAGENTA;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = CLR_MAGENTA;
+			}
+			else cmap_color(offset);
 		} else if(*in_rooms(x,y,COINHALL)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_YELLOW;

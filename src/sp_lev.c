@@ -3810,7 +3810,7 @@ boolean prefilled;
 	if (croom && croom->rtype == OROOM && !rn2( ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && (depth(&u.uz) > 1 && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) ) ? 1 : ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) ) {
 
 retryrandtype:
-		switch (rnd(102)) {
+		switch (rnd(103)) {
 
 			case 1: croom->rtype = COURT; break;
 			case 2: croom->rtype = SWAMP; break;
@@ -3918,6 +3918,7 @@ retryrandtype:
 			case 100: croom->rtype = ILLUSIONROOM; break;
 			case 101: croom->rtype = ROBBERCAVE; break;
 			case 102: croom->rtype = SANITATIONCENTRAL; break;
+			case 103: croom->rtype = PLAYERCENTRAL; break;
 
 		}
 
@@ -4057,7 +4058,7 @@ retryrandtype:
 
 	if (croom->rtype == RANDOMROOM) {
 
-		switch (rnd(82)) {
+		switch (rnd(83)) {
 
 			case 1: croom->rtype = COURT; break;
 			case 2: croom->rtype = SWAMP; break;
@@ -4141,6 +4142,7 @@ retryrandtype:
 			case 80: croom->rtype = ILLUSIONROOM; break;
 			case 81: croom->rtype = ROBBERCAVE; break;
 			case 82: croom->rtype = SANITATIONCENTRAL; break;
+			case 83: croom->rtype = PLAYERCENTRAL; break;
 
 		}
 
@@ -4261,6 +4263,7 @@ retryrandtype:
 	    case PRISONCHAMBER:
 	    case NUCLEARCHAMBER:
 	    case LEVELSEVENTYROOM:
+	    case PLAYERCENTRAL:
 	    case VARIANTROOM:
 
 	case EVILROOM:
@@ -4750,6 +4753,9 @@ retryrandtype:
 		break;
 	    case LEVELSEVENTYROOM:
 		level.flags.has_levelseventyroom = TRUE;
+		break;
+	    case PLAYERCENTRAL:
+		level.flags.has_playercentral = TRUE;
 		break;
 	    case VARIANTROOM:
 		level.flags.has_variantroom = TRUE;

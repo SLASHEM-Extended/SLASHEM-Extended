@@ -25946,6 +25946,17 @@ static NEARDATA const char * const fake_plines[] = {
 	"* jonadab contemplates creating a fork of xnethack, called Extended Xnethack.  And then adding a couple of features and calling it Loaded Extended Xnethack.  And then adding one more feature and calling it Super Loaded Extended Xnethack.",
 	"you see here an eleven cloak. yes, that's right, eleven. it's not a typo it's a thick fleecy coat made of eleven cloaks in different fleecy colours and textures",
 	"Next station: Hall Break. Exit in the schwueluelueluelueing direction of travel.",
+	"You overhear some hectic talk.",
+	"You catch earshot of your fellow adventurers.",
+	"You feel that they're coming for you.",
+	"You don't think you're alone here...",
+	"You are highly alert for some reason.",
+	"You are afraid that everyone on this dungeon level is infected with covid-19!",
+	"You just know that there's someone around who should be quarantined, but isn't!",
+	"You hear someone sneezing constantly! Why isn't that corona-infected fucker staying at home?!",
+	"You overhear a loudspeaker announcement: 'Protect yourself and others! Keep your distance to other people and wear your face mask at all times. Help us stop the spread of coronavirus and stay healthy.'",
+	"You think you just saw a bunch of cops passing you by! Good thing they didn't realize that you weren't wearing your mask properly!",
+
 
 };
 

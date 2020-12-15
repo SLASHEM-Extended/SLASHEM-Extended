@@ -543,6 +543,23 @@ dosounds()
 		return;
 	    }
 
+	    if (level.flags.has_playercentral && !rn2(200)) {
+		static const char *playercentral_msg[] = {
+			"overhear some hectic talk.",
+			"catch earshot of your fellow adventurers.",
+			"feel that they're coming for you.",
+			"don't think you're alone here...",
+			"are highly alert for some reason.",
+			"are afraid that everyone on this dungeon level is infected with covid-19!",
+			"just know that there's someone around who should be quarantined, but isn't!",
+			"hear someone sneezing constantly! Why isn't that corona-infected fucker staying at home?!",
+			"overhear a loudspeaker announcement: 'Protect yourself and others! Keep your distance to other people and wear your face mask at all times. Help us stop the spread of coronavirus and stay healthy.'",
+			"think you just saw a bunch of cops passing you by! Good thing they didn't realize that you weren't wearing your mask properly!",
+		};
+		You("%s", playercentral_msg[rn2(5+hallu*5)]);
+		return;
+	    }
+
 	    if (level.flags.has_meadowroom && !rn2(200)) {
 		static const char *meadowroom_msg[] = {
 			"feel a slight breeze.",
