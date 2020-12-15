@@ -1903,6 +1903,7 @@ boolean shopinit;
 	otmp->ident_bkn = rn2(3);
 	otmp->ident_rkn = rn2(3);
 
+	otmp->stackmarked = FALSE;
 	otmp->shirtmessage = rnd(1000000);
 	/* for use in read.c (shirts only) - since items can be polymorphed, set it for everything, including non-shirts */
 

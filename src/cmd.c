@@ -12458,6 +12458,7 @@ struct ext_func_tab extcmdlist[] = {
 	{"overview", "show an overview of the dungeon", dooverview, TRUE, AUTOCOMPLETE},
 	{"pray", "pray to the gods for help", dopray, IFBURIED, AUTOCOMPLETE},
 	{"quit", "exit without saving current game", done2, IFBURIED, AUTOCOMPLETE},
+	{"stackmark", "mark an item to not merge", dostackmark, TRUE, AUTOCOMPLETE},
 
 	{"apply", "apply (use) a tool (pick-axe, key, lamp...)", doapply, !IFBURIED},
 	{"removeimarkers", "remove all \"I\"s, remembered, unseen creatures from the level", doremoveimarkers, IFBURIED},

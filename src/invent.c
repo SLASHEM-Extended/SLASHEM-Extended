@@ -7508,6 +7508,32 @@ dounpaid()
     destroy_nhwindow(win);
 }
 
+/* stackmark command by Amy: allows you to split stacks more easily */
+void
+dostackmark()
+{
+	if (yn("Do you want to mark an item to prevent it from stacking with identical objects?") == 'y') {
+		register struct obj *stackmarkitem;
+		stackmarkitem = getobj(allnoncount, "mark");
+		if (!stackmarkitem) {
+			if (flags.verbose) pline("%s", Never_mind);
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually I do mind...");
+				badeffect();
+			}
+			return;
+		}
+		stackmarkitem->stackmarked = TRUE;
+		pline_The("item was marked and will not stack any longer.");
+
+	} else if (yn("Do you want to unmark all items in your inventory so that they can stack again?") == 'y') {
+		register struct obj *stackmarkitem;
+		for(stackmarkitem = invent; stackmarkitem ; stackmarkitem = stackmarkitem->nobj) stackmarkitem->stackmarked = FALSE;
+		pline("All of your items can stack again.");
+
+	}
+}
+
 
 /* query objlist callback: return TRUE if obj type matches "this_type" */
 static int this_type;
@@ -7986,6 +8012,8 @@ mergable(otmp, obj)	/* returns TRUE if obj  & otmp can be merged */
 	if (obj == uball) return FALSE;
 	if (otmp == uchain) return FALSE;
 	if (otmp == uball) return FALSE;
+
+	if (obj->stackmarked || otmp->stackmarked) return FALSE; /* by Amy */
 
 	if (obj->otyp != otmp->otyp) return FALSE;
 #ifdef GOLDOBJ

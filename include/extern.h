@@ -1013,6 +1013,8 @@ E boolean feminizecheck(int);
 E int itemactions(struct obj *,BOOLEAN_P);
 E boolean have_hungerhealer(void);
 
+E void dostackmark(void);
+
 E int numberofetheritems(void);
 E int numberofwornetheritems(void);
 
