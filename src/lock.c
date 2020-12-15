@@ -997,6 +997,12 @@ doforce()		/* try to force a chest with your weapon */
 
 				if (mtmp->mhp > 0 && (mtmp->data->msound == MS_FART_QUIET || (!rn2(5) && mtmp->egotype_farter) ) ) {
 					pline("You bash %s's %s butt using %s %s.", mon_nam(mtmp), mtmp->female ? "sexy" : "ugly", !rn2(3) ? "both your left and right" : rn2(2) ? "your left" : "your right", body_part(HAND) );
+					if (practicantterror) {
+						pline("%s thunders: 'Bashing other people's butts is not permitted! 100 zorkmids!'", noroelaname());
+						fineforpracticant(100, 0, 0);
+
+					}
+					u.cnd_forcebuttcount++;
 					if (mtmp->butthurt < 20 && (!rn2(3) || Role_if(PM_EMERA)) ) {
 						mtmp->butthurt += rnd(5);
 						if (mtmp->butthurt < 5) pline("%s's %s butt is getting %s red bruises.", Monnam(mtmp), mtmp->female ? "sexy" : "ugly", mtmp->female ? "beautiful" : "intense");
@@ -1012,6 +1018,12 @@ doforce()		/* try to force a chest with your weapon */
 				}
 				if (mtmp->mhp > 0 && (mtmp->data->msound == MS_FART_NORMAL || (!rn2(5) && mtmp->egotype_farter) ) ) {
 					pline("You bash %s's %s butt using %s %s.", mon_nam(mtmp), mtmp->female ? "sexy" : "ugly", !rn2(3) ? "both your left and right" : rn2(2) ? "your left" : "your right", body_part(HAND) );
+					if (practicantterror) {
+						pline("%s thunders: 'Bashing other people's butts is not permitted! 100 zorkmids!'", noroelaname());
+						fineforpracticant(100, 0, 0);
+
+					}
+					u.cnd_forcebuttcount++;
 					if (mtmp->butthurt < 20 && (!rn2(3) || Role_if(PM_EMERA)) ) {
 						mtmp->butthurt += rnd(3);
 						if (mtmp->butthurt < 5) pline("%s's %s butt is getting %s red bruises.", Monnam(mtmp), mtmp->female ? "sexy" : "ugly", mtmp->female ? "beautiful" : "intense");
@@ -1029,6 +1041,12 @@ doforce()		/* try to force a chest with your weapon */
 				}
 				if (mtmp->mhp > 0 && (mtmp->data->msound == MS_FART_LOUD || (!rn2(5) && mtmp->egotype_farter) ) ) {
 					pline("You bash %s's %s butt using %s %s.", mon_nam(mtmp), mtmp->female ? "sexy" : "ugly", !rn2(3) ? "both your left and right" : rn2(2) ? "your left" : "your right", body_part(HAND) );
+					if (practicantterror) {
+						pline("%s thunders: 'Bashing other people's butts is not permitted! 100 zorkmids!'", noroelaname());
+						fineforpracticant(100, 0, 0);
+
+					}
+					u.cnd_forcebuttcount++;
 					if (mtmp->butthurt < 20 && (!rn2(3) || Role_if(PM_EMERA)) ) {
 						mtmp->butthurt += 1;
 						if (mtmp->butthurt < 5) pline("%s's %s butt is getting %s red bruises.", Monnam(mtmp), mtmp->female ? "sexy" : "ugly", mtmp->female ? "beautiful" : "intense");

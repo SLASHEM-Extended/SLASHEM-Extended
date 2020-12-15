@@ -11529,6 +11529,10 @@ int final;
 		sprintf(buf, "%d time%s", u.cnd_forcecount, plur(u.cnd_forcecount));
 		enl_msg(You_, "have used the force against an enemy ", "used the force against an enemy ", buf);
 	}
+	if (u.cnd_forcebuttcount) {
+		sprintf(buf, "%d time%s", u.cnd_forcebuttcount, plur(u.cnd_forcebuttcount));
+		enl_msg(You_, "have bashed hostile butt cheeks ", "bashed hostile butt cheeks ", buf);
+	}
 	if (u.cnd_kickmonstercount) {
 		sprintf(buf, "%d time%s", u.cnd_kickmonstercount, plur(u.cnd_kickmonstercount));
 		enl_msg(You_, "have kicked monsters ", "kicked monsters ", buf);
@@ -12158,6 +12162,9 @@ int final;
 
 	sprintf(buf, "%d time%s", u.cnd_forcecount, plur(u.cnd_forcecount));
 	dump("  You used the force against an enemy ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_forcebuttcount, plur(u.cnd_forcebuttcount));
+	dump("  You bashed hostile butt cheeks ", buf);
 
 	sprintf(buf, "%d time%s", u.cnd_kickmonstercount, plur(u.cnd_kickmonstercount));
 	dump("  You kicked monsters ", buf);

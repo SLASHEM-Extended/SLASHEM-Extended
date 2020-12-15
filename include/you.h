@@ -1728,6 +1728,7 @@ struct you {
 	int cnd_chargingcount;	/* how often you recharged items */
 	int cnd_offercount;	/* how many corpses you offered to the gods */
 	int cnd_forcecount;	/* how many times you used #force on a monster */
+	int cnd_forcebuttcount;	/* how often you forced a farting monster */
 	int cnd_kickmonstercount;	/* how often you kicked a monster */
 	int cnd_kicklockcount;	/* how often you kicked doors, containers etc. */
 	int cnd_fumbled;	/* how many times you fumbled */
