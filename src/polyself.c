@@ -2010,6 +2010,19 @@ dospinweb()
 		case FEMMY_TRAP:
 		case MADELEINE_TRAP:
 		case MARLENA_TRAP:
+		case KRISTIN_TRAP:
+		case ANNA_TRAP:
+		case RUEA_TRAP:
+		case DORA_TRAP:
+		case MARIKE_TRAP:
+		case JETTE_TRAP:
+		case INA_TRAP:
+		case SING_TRAP:
+		case VICTORIA_TRAP:
+		case MELISSA_TRAP:
+		case ANITA_TRAP:
+		case HENRIETTA_TRAP:
+		case VERENA_TRAP:
 		case ARABELLA_TRAP:
 		case NELLY_TRAP:
 		case EVELINE_TRAP:

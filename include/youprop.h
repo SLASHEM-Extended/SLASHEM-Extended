@@ -629,6 +629,19 @@
 #define FemaleTrapAlmut	u.uprops[FEMTRAP_ALMUT].intrinsic
 #define FemaleTrapJulietta	u.uprops[FEMTRAP_JULIETTA].intrinsic
 #define FemaleTrapArabella	u.uprops[FEMTRAP_ARABELLA].intrinsic
+#define FemaleTrapKristin	u.uprops[FEMTRAP_KRISTIN].intrinsic
+#define FemaleTrapAnna	u.uprops[FEMTRAP_ANNA].intrinsic
+#define FemaleTrapRuea	u.uprops[FEMTRAP_RUEA].intrinsic
+#define FemaleTrapDora	u.uprops[FEMTRAP_DORA].intrinsic
+#define FemaleTrapMarike	u.uprops[FEMTRAP_MARIKE].intrinsic
+#define FemaleTrapJette	u.uprops[FEMTRAP_JETTE].intrinsic
+#define FemaleTrapIna	u.uprops[FEMTRAP_INA].intrinsic
+#define FemaleTrapSing	u.uprops[FEMTRAP_SING].intrinsic
+#define FemaleTrapVictoria	u.uprops[FEMTRAP_VICTORIA].intrinsic
+#define FemaleTrapMelissa	u.uprops[FEMTRAP_MELISSA].intrinsic
+#define FemaleTrapAnita	u.uprops[FEMTRAP_ANITA].intrinsic
+#define FemaleTrapHenrietta	u.uprops[FEMTRAP_HENRIETTA].intrinsic
+#define FemaleTrapVerena	u.uprops[FEMTRAP_VERENA].intrinsic
 
 #define FemtrapActiveFemmy	(FemaleTrapFemmy || u.uprops[FEMTRAP_FEMMY].extrinsic || have_femtrapfemmy())
 #define FemtrapActiveMadeleine	(FemaleTrapMadeleine || u.uprops[FEMTRAP_MADELEINE].extrinsic || have_femtrapmadeleine())
@@ -661,6 +674,19 @@
 #define FemtrapActiveAlmut	(FemaleTrapAlmut || u.uprops[FEMTRAP_ALMUT].extrinsic || have_femtrapalmut())
 #define FemtrapActiveJulietta	(FemaleTrapJulietta || u.uprops[FEMTRAP_JULIETTA].extrinsic || have_femtrapjulietta())
 #define FemtrapActiveArabella	(FemaleTrapArabella || u.uprops[FEMTRAP_ARABELLA].extrinsic || have_femtraparabella())
+#define FemtrapActiveKristin	(FemaleTrapKristin || u.uprops[FEMTRAP_KRISTIN].extrinsic || have_femtrapkristin())
+#define FemtrapActiveAnna	(FemaleTrapAnna || u.uprops[FEMTRAP_ANNA].extrinsic || have_femtrapanna())
+#define FemtrapActiveRuea	(FemaleTrapRuea || u.uprops[FEMTRAP_RUEA].extrinsic || have_femtrapruea())
+#define FemtrapActiveDora	(FemaleTrapDora || u.uprops[FEMTRAP_DORA].extrinsic || have_femtrapdora())
+#define FemtrapActiveMarike	(FemaleTrapMarike || u.uprops[FEMTRAP_MARIKE].extrinsic || have_femtrapmarike())
+#define FemtrapActiveJette	(FemaleTrapJette || u.uprops[FEMTRAP_JETTE].extrinsic || have_femtrapjette())
+#define FemtrapActiveIna	(FemaleTrapIna || u.uprops[FEMTRAP_INA].extrinsic || have_femtrapina())
+#define FemtrapActiveSing	(FemaleTrapSing || u.uprops[FEMTRAP_SING].extrinsic || have_femtrapsing())
+#define FemtrapActiveVictoria	(FemaleTrapVictoria || u.uprops[FEMTRAP_VICTORIA].extrinsic || have_femtrapvictoria())
+#define FemtrapActiveMelissa	(FemaleTrapMelissa || u.uprops[FEMTRAP_MELISSA].extrinsic || have_femtrapmelissa())
+#define FemtrapActiveAnita	(FemaleTrapAnita || u.uprops[FEMTRAP_ANITA].extrinsic || have_femtrapanita())
+#define FemtrapActiveHenrietta	(FemaleTrapHenrietta || u.uprops[FEMTRAP_HENRIETTA].extrinsic || have_femtraphenrietta())
+#define FemtrapActiveVerena	(FemaleTrapVerena || u.uprops[FEMTRAP_VERENA].extrinsic || have_femtrapverena())
 
 #define RngeIrregularity		(u.uprops[RNGE_IRREGULARITY].intrinsic || u.uprops[RNGE_IRREGULARITY].extrinsic)
 #define RngeInternetAccess		(u.uprops[RNGE_INTERNET_ACCESS].intrinsic || u.uprops[RNGE_INTERNET_ACCESS].extrinsic)

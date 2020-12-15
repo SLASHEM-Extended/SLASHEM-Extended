@@ -1306,7 +1306,7 @@ randenchantment()
 
 	} else if (!rn2(15)) {
 
-		switch (rnd(31)) {
+		switch (rnd(44)) {
 			case 1: return FEMTRAP_FEMMY;
 			case 2: return FEMTRAP_MADELEINE;
 			case 3: return FEMTRAP_MARLENA;
@@ -1338,6 +1338,19 @@ randenchantment()
 			case 29: return FEMTRAP_ALMUT;
 			case 30: return FEMTRAP_JULIETTA;
 			case 31: return FEMTRAP_ARABELLA;
+			case 32: return FEMTRAP_KRISTIN;
+			case 33: return FEMTRAP_ANNA;
+			case 34: return FEMTRAP_RUEA;
+			case 35: return FEMTRAP_DORA;
+			case 36: return FEMTRAP_MARIKE;
+			case 37: return FEMTRAP_JETTE;
+			case 38: return FEMTRAP_INA;
+			case 39: return FEMTRAP_SING;
+			case 40: return FEMTRAP_VICTORIA;
+			case 41: return FEMTRAP_MELISSA;
+			case 42: return FEMTRAP_ANITA;
+			case 43: return FEMTRAP_HENRIETTA;
+			case 44: return FEMTRAP_VERENA;
 			default: return POISON_RES;
 		}
 
@@ -3579,7 +3592,7 @@ void
 randomfeminismtrap(duration)
 int duration;
 {
-	switch (rnd(31)) {
+	switch (rnd(44)) {
 		case 1:
 			pline("You can already imagine the farting noises you're gonna hear.");
 			FemaleTrapSarah += duration;
@@ -3703,6 +3716,58 @@ int duration;
 		case 31:
 			pline("Oh no, the master of nasty traps is laying out her snares to get you!");
 			FemaleTrapArabella += duration;
+			break;
+		case 32:
+			pline("You feel that there are women around who really like various high heels.");
+			FemaleTrapKristin += duration;
+			break;
+		case 33:
+			pline("Oh, it seems that the hussies are on the loose!");
+			FemaleTrapAnna += duration;
+			break;
+		case 34:
+			pline("You get the feeling that some women are trying to convert you.");
+			FemaleTrapRuea += duration;
+			break;
+		case 35:
+			pline("Ack! There's birds on the loose, and they want to eat your shoes!");
+			FemaleTrapDora += duration;
+			break;
+		case 36:
+			pline("You want to endlessly listen to squeaking farting noises.");
+			FemaleTrapMarike += duration;
+			break;
+		case 37:
+			pline("The power of feminism compels you.");
+			FemaleTrapJette += duration;
+			break;
+		case 38:
+			pline("Oh my god, you are now afflicted with the life-threatening disease known as anorexia!");
+			FemaleTrapIna += duration;
+			break;
+		case 39:
+			pline("A heinously evil woman plans to force you to clean the shit from all kinds of female shoes...");
+			FemaleTrapSing += duration;
+			break;
+		case 40:
+			pline("There's some karate women who want to demonstrate their combat capabilities to you.");
+			FemaleTrapVictoria += duration;
+			break;
+		case 41:
+			pline("You suddenly feel that the women in this dungeon are quite attractive...");
+			FemaleTrapMelissa += duration;
+			break;
+		case 42:
+			pline("The women want to slit your legs with razor-sharp high heels! Be afraid of them!");
+			FemaleTrapAnita += duration;
+			break;
+		case 43:
+			pline("You feel that someone is going to open the zippers of your boots, making you fumble into a heap of dog shit.");
+			FemaleTrapHenrietta += duration;
+			break;
+		case 44:
+			pline("Oh no, some annoying blonde girl starts to follow you around. Sigh. Why can't you get a clever companion instead?!");
+			FemaleTrapVerena += duration;
 			break;
 	}
 }

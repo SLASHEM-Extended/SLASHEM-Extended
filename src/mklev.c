@@ -13739,6 +13739,45 @@ selecttrap:
 		    case MARLENA_TRAP:
 			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
+		    case KRISTIN_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case ANNA_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(20) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case RUEA_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(10) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case DORA_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case MARIKE_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(25) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case JETTE_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(20) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case INA_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case SING_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(20) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case VICTORIA_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(10) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case MELISSA_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(10) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case ANITA_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case HENRIETTA_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(20) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case VERENA_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
 		    case ARABELLA_TRAP:
 			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(25) && !NastyTrapNation) goto selecttrap;
 			break;

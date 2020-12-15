@@ -2453,6 +2453,84 @@ nh_timeout()
 
 		 break;
 
+		 case FEMTRAP_KRISTIN:
+
+			pline("The women got bored of the multitude of high heels.");
+
+		 break;
+
+		 case FEMTRAP_ANNA:
+
+			pline("There's an announcement saying that the hussies no longer consider you a target. Phew.");
+
+		 break;
+
+		 case FEMTRAP_RUEA:
+
+			pline("The women gave up their attempts to convert you.");
+
+		 break;
+
+		 case FEMTRAP_DORA:
+
+			pline("There's a loud flapping noise indicating that the evil shoe-hating birds are leaving the dungeon.");
+
+		 break;
+
+		 case FEMTRAP_MARIKE:
+
+			pline("Aww, apparently you no longer want to listen to squeaking farting noises. But why? You didn't even come yet...");
+
+		 break;
+
+		 case FEMTRAP_JETTE:
+
+			pline("The power of feminism seems to be decreasing. Don't feel safe just yet, though.");
+
+		 break;
+
+		 case FEMTRAP_INA:
+
+			pline("Since you didn't vomit for a week, your anorexia condition disappears. But here's a newsflash: you could have instantly healed the condition by simply dying (don't try that at home).");
+
+		 break;
+
+		 case FEMTRAP_SING:
+
+			pline("You got enough and decide to end the evil woman's slavery reign by bashing her face with a platform boot that has cow dung on the soles. After striking her down, you flee from your prison and don't look back.");
+
+		 break;
+
+		 case FEMTRAP_VICTORIA:
+
+			pline("You finished playing with the karate women.");
+
+		 break;
+
+		 case FEMTRAP_MELISSA:
+
+			pline("It dawns on you that being seduced by women isn't a good thing, because they might steal your stuff.");
+
+		 break;
+
+		 case FEMTRAP_ANITA:
+
+			pline("You survived the dangerous high heels... for now.");
+
+		 break;
+
+		 case FEMTRAP_HENRIETTA:
+
+			pline("At last, you wised up and decided to switch to a pair of boots without zippers.");
+
+		 break;
+
+		 case FEMTRAP_VERENA:
+
+			pline("Now you're so annoyed that you slap that annoying blonde girl right in the face, knocking her out. Maybe now she'll leave you alone, she already caused enough annoyance anyway.");
+
+		 break;
+
 		 case FEMTRAP_ARABELLA:
 
 			pline("You're relieved to have gotten over the nastiness. Beware, there may still be some traps around.");

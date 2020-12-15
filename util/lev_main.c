@@ -663,6 +663,20 @@ static struct {
 	{ "julietta", JULIETTA_TRAP },
 	{ "arabella", ARABELLA_TRAP },
 
+	{ "kristin", KRISTIN_TRAP },
+	{ "anna", ANNA_TRAP },
+	{ "ruea", RUEA_TRAP },
+	{ "dora", DORA_TRAP },
+	{ "marike", MARIKE_TRAP },
+	{ "jette", JETTE_TRAP },
+	{ "ina", INA_TRAP },
+	{ "sing", SING_TRAP },
+	{ "victoria", VICTORIA_TRAP },
+	{ "melissa", MELISSA_TRAP },
+	{ "anita", ANITA_TRAP },
+	{ "henrietta", HENRIETTA_TRAP },
+	{ "verena", VERENA_TRAP },
+
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }
 };

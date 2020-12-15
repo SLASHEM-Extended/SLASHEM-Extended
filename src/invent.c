@@ -1522,6 +1522,97 @@ have_femtraparabella()
 }
 
 boolean
+have_femtrapkristin()
+{
+	if (feminizecheck(32)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapanna()
+{
+	if (feminizecheck(33)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapruea()
+{
+	if (feminizecheck(34)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapdora()
+{
+	if (feminizecheck(35)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapmarike()
+{
+	if (feminizecheck(36)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapjette()
+{
+	if (feminizecheck(37)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapina()
+{
+	if (feminizecheck(38)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapsing()
+{
+	if (feminizecheck(39)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapvictoria()
+{
+	if (feminizecheck(40)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapmelissa()
+{
+	if (feminizecheck(41)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapanita()
+{
+	if (feminizecheck(42)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtraphenrietta()
+{
+	if (feminizecheck(43)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapverena()
+{
+	if (feminizecheck(44)) return TRUE;
+	return(FALSE);
+}
+
+boolean
 have_primecurse()
 {
 	register struct obj *otmp;

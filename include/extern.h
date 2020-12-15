@@ -1304,6 +1304,19 @@ E boolean have_femtraplou(void);
 E boolean have_femtrapalmut(void);
 E boolean have_femtrapjulietta(void);
 E boolean have_femtraparabella(void);
+E boolean have_femtrapkristin(void);
+E boolean have_femtrapanna(void);
+E boolean have_femtrapruea(void);
+E boolean have_femtrapdora(void);
+E boolean have_femtrapmarike(void);
+E boolean have_femtrapjette(void);
+E boolean have_femtrapina(void);
+E boolean have_femtrapsing(void);
+E boolean have_femtrapvictoria(void);
+E boolean have_femtrapmelissa(void);
+E boolean have_femtrapanita(void);
+E boolean have_femtraphenrietta(void);
+E boolean have_femtrapverena(void);
 
 E boolean have_primecurse(void);
 

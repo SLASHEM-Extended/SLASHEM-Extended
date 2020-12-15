@@ -602,8 +602,22 @@ extern struct trap *ftrap;
 #define JULIETTA_TRAP 519
 #define ARABELLA_TRAP 520
 
-#define TIMERUN_TRAP	521
+#define KRISTIN_TRAP 521
+#define ANNA_TRAP 522
+#define RUEA_TRAP 523
+#define DORA_TRAP 524
+#define MARIKE_TRAP 525
+#define JETTE_TRAP 526
+#define INA_TRAP 527
+#define SING_TRAP 528
+#define VICTORIA_TRAP 529
+#define MELISSA_TRAP 530
+#define ANITA_TRAP 531
+#define HENRIETTA_TRAP 532
+#define VERENA_TRAP 533
 
-#define TRAPNUM 522
+#define TIMERUN_TRAP	534
+
+#define TRAPNUM 535
 
 #endif /* TRAP_H */

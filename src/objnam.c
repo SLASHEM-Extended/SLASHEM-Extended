@@ -464,6 +464,32 @@ int prop;
 			return "echolocation";
 		case RNGE_STACKMESSAGING:
 			return "stack messaging";
+		case FEMTRAP_KRISTIN:
+			return "Kristin's curse";
+		case FEMTRAP_ANNA:
+			return "Anna's curse";
+		case FEMTRAP_RUEA:
+			return "Ruea's curse";
+		case FEMTRAP_DORA:
+			return "Dora's curse";
+		case FEMTRAP_MARIKE:
+			return "Marike's curse";
+		case FEMTRAP_JETTE:
+			return "Jette's curse";
+		case FEMTRAP_INA:
+			return "Ina's curse";
+		case FEMTRAP_SING:
+			return "Sing's curse";
+		case FEMTRAP_VICTORIA:
+			return "Victoria's curse";
+		case FEMTRAP_MELISSA:
+			return "Melissa's curse";
+		case FEMTRAP_ANITA:
+			return "Anita's curse";
+		case FEMTRAP_HENRIETTA:
+			return "Henrietta's curse";
+		case FEMTRAP_VERENA:
+			return "Verena's curse";
 
 		default:
 			return "Team Nastytrap";
