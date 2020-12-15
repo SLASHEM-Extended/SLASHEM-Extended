@@ -1383,6 +1383,7 @@ int curse_bless;
 		    return;
 		}*/
 		u.cnd_chargingcount++;
+		use_skill(P_DEVICES, rnd(10));
 		if (obj->spe >= lim) p_glow2(obj, NH_BLUE);
 		else p_glow1(obj);
 		if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
@@ -1447,6 +1448,7 @@ int curse_bless;
 		if (obj->spe >= 5) p_glow2(obj, NH_BLUE);
 		else p_glow1(obj);
 		u.cnd_chargingcount++;
+		use_skill(P_DEVICES, rnd(10));
 		if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 			if (!obj->cursed) bless(obj);
 			else uncurse(obj, FALSE);
@@ -1474,7 +1476,10 @@ int curse_bless;
 		/* cause attributes and/or properties to be updated */
 		if (is_on) Ring_off(obj);
 		obj->spe += s;	/* update the ring while it's off */
-		if (s > 0) u.cnd_chargingcount++;
+		if (s > 0) {
+			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
+		}
 		if (s > 0 && obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 			if (!obj->cursed) bless(obj);
 			else uncurse(obj, FALSE);
@@ -1496,7 +1501,10 @@ int curse_bless;
 		if (((obj->spe + s) < 8) || !rn2(3)) { /* make it hard to reach ultra-high enchantment values --Amy */
 			Your("%s spins %sclockwise for a moment.", xname(obj), s < 0 ? "counter" : "");
 			obj->spe += s;	/* we don't need to take it off because it just affects AC and poly'd stuff */
-			if (s > 0) u.cnd_chargingcount++;
+			if (s > 0) {
+				u.cnd_chargingcount++;
+				use_skill(P_DEVICES, rnd(10));
+			}
 			if (s > 0 && obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 				if (!obj->cursed) bless(obj);
 				else uncurse(obj, FALSE);
@@ -1521,7 +1529,10 @@ int curse_bless;
 		else if (is_blessed) obj->spe += rnd(30);
 		else obj->spe += 10;
 		if (obj->spe > 100) obj->spe = 100;
-		if (!is_cursed) u.cnd_chargingcount++;
+		if (!is_cursed) {
+			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
+		}
 		if (!is_cursed && obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 			if (!obj->cursed) bless(obj);
 			else uncurse(obj, FALSE);
@@ -1571,6 +1582,7 @@ int curse_bless;
 
 			p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
 			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 				if (!obj->cursed) bless(obj);
 				else uncurse(obj, FALSE);
@@ -1587,6 +1599,7 @@ int curse_bless;
 
 			p_glow2(obj, NH_WHITE);
 			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
 			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 				if (!obj->cursed) bless(obj);
 				else uncurse(obj, FALSE);
@@ -1612,6 +1625,7 @@ int curse_bless;
 		    else obj->age += 1500;
 		    p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
 			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 				if (!obj->cursed) bless(obj);
 				else uncurse(obj, FALSE);
@@ -1625,6 +1639,7 @@ int curse_bless;
 		    }
 		    p_glow1(obj);
 			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
 			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 				if (!obj->cursed) bless(obj);
 				else uncurse(obj, FALSE);
@@ -1665,6 +1680,7 @@ int curse_bless;
 		    else obj->age += 1500;
 		    p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
 			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 				if (!obj->cursed) bless(obj);
 				else uncurse(obj, FALSE);
@@ -1677,6 +1693,7 @@ int curse_bless;
 		    }
 		    p_glow1(obj);
 			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
 			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 				if (!obj->cursed) bless(obj);
 				else uncurse(obj, FALSE);
@@ -1697,6 +1714,7 @@ int curse_bless;
 		    obj->spe = 6;
 		    p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
 			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 				if (!obj->cursed) bless(obj);
 				else uncurse(obj, FALSE);
@@ -1705,6 +1723,7 @@ int curse_bless;
 		    if (obj->spe < 5) {
 			obj->spe++;
 			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
 			p_glow1(obj);
 			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 				if (!obj->cursed) bless(obj);
@@ -1736,6 +1755,7 @@ int curse_bless;
 			if (obj->spe > 100) obj->spe = 100;
 			p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
 			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 				if (!obj->cursed) bless(obj);
 				else uncurse(obj, FALSE);
@@ -1745,6 +1765,7 @@ int curse_bless;
 			if (obj->spe > 100) obj->spe = 100;
 			p_glow1(obj);
 			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
 			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 				if (!obj->cursed) bless(obj);
 				else uncurse(obj, FALSE);
@@ -1771,6 +1792,7 @@ int curse_bless;
 		    if (obj->spe > 117) obj->spe = 117;
 		    p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
 			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 				if (!obj->cursed) bless(obj);
 				else uncurse(obj, FALSE);
@@ -1780,6 +1802,7 @@ int curse_bless;
 		    if (obj->spe > 117) obj->spe = 117;
 		    p_glow1(obj);
 			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
 			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 				if (!obj->cursed) bless(obj);
 				else uncurse(obj, FALSE);
@@ -1810,6 +1833,7 @@ int curse_bless;
 		    if (obj->spe > 20) obj->spe = 20;
 		    p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
 			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 				if (!obj->cursed) bless(obj);
 				else uncurse(obj, FALSE);
@@ -1819,6 +1843,7 @@ int curse_bless;
 		    if (obj->spe > 20) obj->spe = 20;
 		    p_glow1(obj);
 			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
 			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 				if (!obj->cursed) bless(obj);
 				else uncurse(obj, FALSE);

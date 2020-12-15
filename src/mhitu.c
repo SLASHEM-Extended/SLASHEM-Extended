@@ -1519,7 +1519,10 @@ register struct attack *mattk;
 			s_suffix(mon_nam(mtmp)));
 		if (uarms && (blocker == uarms)) use_skill(P_SHIELD, 1);
 		if (uimplant && (blocker == uimplant)) use_skill(P_IMPLANTS, 1);
-		if (uarm && (blocker == uarm) && uwep && is_lightsaber(uwep) && uwep->lamplit && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS) ) use_skill(P_SORESU, 1);
+		if (uarm && (blocker == uarm) && uwep && is_lightsaber(uwep) && uwep->lamplit && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS) ) { /* has to train quickly, otherwise it's too much of a PITA because of low robe AC --Amy */
+			use_skill(P_SORESU, rnd(2));
+			if (!rn2(5)) use_skill(P_SORESU, rnd(2));
+		}
 		u.ubodyarmorturns++;
 		if (u.ubodyarmorturns >= 5) {
 			u.ubodyarmorturns = 0;

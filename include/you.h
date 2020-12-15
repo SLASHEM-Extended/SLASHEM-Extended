@@ -1346,6 +1346,7 @@ struct you {
 	int umissileweaponturns;
 	int uimplantturns;
 	int ushiichoturns;
+	int usoresuturns;
 	int umakashiturns;
 	int uataruturns;
 	int unimanturns;
