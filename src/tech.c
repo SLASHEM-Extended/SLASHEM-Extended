@@ -2042,7 +2042,7 @@ void * roomcnt;
 {
 	if (levl[x][y].typ < STONE || levl[x][y].typ > ROCKWALL)
 		return;
-	if ((levl[x][y].wall_info & W_NONDIGGABLE) != 0)
+	if (((levl[x][y].wall_info & W_NONDIGGABLE) != 0) && levl[x][y].typ != ROCKWALL)
 		return;
 
 	if (*in_rooms(x,y,SHOPBASE)) return;
