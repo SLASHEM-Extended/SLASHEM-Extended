@@ -3516,6 +3516,10 @@ Amulet_on()
 	case AMULET_OF_DATA_STORAGE:
 		You_feel("full of knowledge.");
 		break;
+	case AMULET_OF_CLIMBING:
+		You_feel("ready for climbing.");
+		makeknown(AMULET_OF_CLIMBING);
+		break;
 	case AMULET_OF_YENDOR:
 		break;
 	/* KMH, balance patch -- added */
