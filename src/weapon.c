@@ -384,6 +384,10 @@ struct monst *mon;
 	   if (is_waterypool(mon->mx, mon->my)) tmp += 4;
 	   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) tmp += 2;
 	}
+	if (otmp->otyp == LASERDENT && is_swimmer(ptr)) {
+	   if (is_waterypool(mon->mx, mon->my)) tmp += 4;
+	   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) tmp += 2;
+	}
 	if (otmp->otyp == REACH_TRIDENT && is_swimmer(ptr)) {
 	   if (is_waterypool(mon->mx, mon->my)) tmp += 4;
 	   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) tmp += 2;
@@ -862,6 +866,11 @@ struct monst *mon;
 	    }
 
 	    if (otmp->otyp == FOURDENT && is_swimmer(ptr)) {
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
+		   if (Race_if(PM_NEMESIS)) bonus += 20;
+	    }
+	    if (otmp->otyp == LASERDENT && is_swimmer(ptr)) {
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
 		   if (Race_if(PM_NEMESIS)) bonus += 20;
@@ -1710,6 +1719,11 @@ struct monst *mon;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
 		   if (Race_if(PM_NEMESIS)) bonus += 20;
 	    }
+	    if (otmp->otyp == LASERDENT && is_swimmer(ptr)) {
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
+		   if (Race_if(PM_NEMESIS)) bonus += 20;
+	    }
 	    if (otmp->otyp == REACH_TRIDENT && is_swimmer(ptr)) {
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
@@ -1769,6 +1783,10 @@ struct monst *mon;
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 2;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 1;
 	    }
+	    if (otmp->otyp == LASERDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SKILLED) ) {
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 2;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 1;
+	    }
 	    if (otmp->otyp == REACH_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SKILLED) ) {
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 2;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 1;
@@ -1815,6 +1833,10 @@ struct monst *mon;
 	    }
 
 	    if (otmp->otyp == FOURDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_EXPERT) ) {
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
+	    }
+	    if (otmp->otyp == LASERDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_EXPERT) ) {
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
 	    }
@@ -1867,6 +1889,10 @@ struct monst *mon;
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 8;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 4;
 	    }
+	    if (otmp->otyp == LASERDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_MASTER) ) {
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 8;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 4;
+	    }
 	    if (otmp->otyp == REACH_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_MASTER) ) {
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 8;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 4;
@@ -1916,6 +1942,10 @@ struct monst *mon;
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 16;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 8;
 	    }
+	    if (otmp->otyp == LASERDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_GRAND_MASTER) ) {
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 16;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 8;
+	    }
 	    if (otmp->otyp == REACH_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_GRAND_MASTER) ) {
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 16;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 8;
@@ -1962,6 +1992,10 @@ struct monst *mon;
 	    }
 
 	    if (otmp->otyp == FOURDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SUPREME_MASTER) ) {
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 20;
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 10;
+	    }
+	    if (otmp->otyp == LASERDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SUPREME_MASTER) ) {
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 20;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 10;
 	    }

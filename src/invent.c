@@ -10351,7 +10351,7 @@ boolean knoweverything;
 			case STRIPE_MAIL:
 				pline("This relatively good armor is equivalent to a banded mail."); break;
 			case POISON_REPELLANT_ARMOR:
-				pline("Only offers 3 AC and 1 MC (equivalent to a splint mail), but also poison resistance."); break;
+				pline("Only offers 3 AC and 1 MC (equivalent to a studded leather armor), but also poison resistance."); break;
 			case HEAVY_MAIL:
 				pline("This suit of armor weighs a hell of a lot and offers only three points of armor class."); break;
 			case CLOAK_OF_PEACE:
