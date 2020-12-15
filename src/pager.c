@@ -4021,6 +4021,7 @@ static NEARDATA const char * const demagoguelines[] = {
 "They're either with us or against us! And those who are against us, they shall tremble and quake in fear before I execute them!",
 "Our country used to be a 'democracy', but lately it has quickly drifted off into a dictatorship! We must remove the evil dictator!",
 "I will not forgive the government for erecting a dictatorship!",
+"This banana republic goes before the dogs!",
 };
 
 static NEARDATA const char * const longinglines[] = {
@@ -25937,6 +25938,14 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'corona christmas child'. It reads: 'protect yourself and others! always wear a mouth-face-covering and keep the minimum distance!'",
 	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Protect yourself, you underage adult! You can't make your own decisions from now on! Bullshit!'",
 	"Incoming message for Player 1. The message is from 'corona christmas child'. It reads: 'protect yourself, thats the only measure that you can use to prevent contracting corona!'",
+	"Santa hacks you with the tinsel longsword! Santa hacks you with the tinsel longsword! Santa gives you a gift.... it explodes!! you are caught in the explosion! Your potion of eggnog boils and explodes! You die.... but wait!! your nose glows red!", /* by Neko-chan */
+	"Sometimes it gives completely beautiful bangies!",
+	"The teacher inside woman is such a christmas child!",
+	"You feel ready for climbing.",
+	"Your finger turns to dust and vanishes!  Your ceramic ring is unharmed.",
+	"* jonadab contemplates creating a fork of xnethack, called Extended Xnethack.  And then adding a couple of features and calling it Loaded Extended Xnethack.  And then adding one more feature and calling it Super Loaded Extended Xnethack.",
+	"you see here an eleven cloak. yes, that's right, eleven. it's not a typo it's a thick fleecy coat made of eleven cloaks in different fleecy colours and textures",
+	"Next station: Hall Break. Exit in the schwueluelueluelueing direction of travel.",
 
 };
 
