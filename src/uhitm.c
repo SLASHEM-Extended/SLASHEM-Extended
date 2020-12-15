@@ -2137,7 +2137,7 @@ int dieroll;
 		mdat = mon->data;
 		tmp = (is_shade(mdat) || mon->egotype_shader) ? 0 : 1;
 	    } else {
-		if (flags.bash_reminder && !rn2(10)) pline("A helpful reminder: you attack with a non-weapon!");
+		if (flags.bash_reminder && obj->otyp != BOULDER && obj->oclass != VENOM_CLASS && !rn2(10)) pline("A helpful reminder: you attack with a non-weapon!");
 		if ((is_shade(mdat) || mon->egotype_shader) && !shade_aware(obj)) {
 		    tmp = 0;
 		    strcpy(unconventional, cxname(obj));
