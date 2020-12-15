@@ -619,6 +619,12 @@ struct you {
 	int sewerplantcomplete;
 	int gammacavescomplete;
 	int bofhremoved;
+	int poolchallengecomplete;
+	int digdugchallengecomplete;
+	int pacmanchallengecomplete;
+	int joustchallengecomplete;
+	int gruechallengecomplete;
+	int devnullcomplete;
 
 	int musableremovechance;	/* extra chance for musable items to get removed */
 	int equipmentremovechance;

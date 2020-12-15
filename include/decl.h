@@ -112,6 +112,11 @@ E struct dgn_topology {		/* special dungeon levels for speed */
     xchar   d_sewerplant_dnum;
     xchar   d_gammacaves_dnum;
     xchar   d_mainframe_dnum;
+    xchar   d_joustchallenge_dnum;
+    xchar   d_pacmanchallenge_dnum;
+    xchar   d_digdugchallenge_dnum;
+    xchar   d_gruechallenge_dnum;
+    xchar   d_poolchallenge_dnum;
     xchar   d_restingzone_ga_dnum;
     xchar   d_restingzone_gb_dnum;
     xchar   d_restingzone_gc_dnum;
@@ -198,6 +203,11 @@ E struct dgn_topology {		/* special dungeon levels for speed */
 #define sewerplant_dnum		(dungeon_topology.d_sewerplant_dnum)
 #define gammacaves_dnum		(dungeon_topology.d_gammacaves_dnum)
 #define mainframe_dnum		(dungeon_topology.d_mainframe_dnum)
+#define joustchallenge_dnum	(dungeon_topology.d_joustchallenge_dnum)
+#define pacmanchallenge_dnum	(dungeon_topology.d_pacmanchallenge_dnum)
+#define digdugchallenge_dnum	(dungeon_topology.d_digdugchallenge_dnum)
+#define gruechallenge_dnum	(dungeon_topology.d_gruechallenge_dnum)
+#define poolchallenge_dnum	(dungeon_topology.d_poolchallenge_dnum)
 #define subquest_dnum		(dungeon_topology.d_subquest_dnum)
 #define bellcaves_dnum		(dungeon_topology.d_bellcaves_dnum)
 #define dod_dnum			(dungeon_topology.d_dod_dnum)
@@ -676,6 +686,7 @@ struct u_achieveX {
 	  Bitfield(killed_katia,1);	/* You killed Erogenous Katia */
 	  Bitfield(killed_witchking,1);	/* You killed the Witch King of Angmar */
 	  Bitfield(get_magresstone,1);	/* You obtained the stone of magic resistance from the Deep Mines */
+	  Bitfield(devnull_complete,1);	/* You visited all DevNull dungeon branches */
 
 };
 

@@ -6316,6 +6316,86 @@ newbossX:
 			}
 		}
 
+		if (In_Devnull(&u.uz) && !u.devnullcomplete) {
+			if (!u.poolchallengecomplete && In_poolchallenge(&u.uz)) {
+				u.poolchallengecomplete = 1;
+				You("entered the Pool challenge.");
+			}
+			if (!u.joustchallengecomplete && In_joustchallenge(&u.uz)) {
+				u.joustchallengecomplete = 1;
+				You("entered the Joust challenge.");
+			}
+			if (!u.digdugchallengecomplete && In_digdugchallenge(&u.uz)) {
+				u.digdugchallengecomplete = 1;
+				You("entered the Digdug challenge.");
+			}
+			if (!u.gruechallengecomplete && In_gruechallenge(&u.uz)) {
+				u.gruechallengecomplete = 1;
+				You("entered the Grue challenge.");
+			}
+			if (!u.pacmanchallengecomplete && In_pacmanchallenge(&u.uz)) {
+				u.pacmanchallengecomplete = 1;
+				You("entered the Pacman challenge.");
+			}
+
+			if (u.poolchallengecomplete && u.digdugchallengecomplete && u.pacmanchallengecomplete && u.joustchallengecomplete && u.gruechallengecomplete) {
+				u.devnullcomplete = TRUE;
+				pline("Congratulations! You visited all the DevNull challenge areas. As a reward, one of your stats is increased!");
+				int attrcrease = rn2(A_MAX);
+				if (ABASE(attrcrease) >= ATTRMAX(attrcrease)) pline("But unfortunately the attribute that was picked happens to be maxxed out already!");
+				else {
+					ABASE(attrcrease)++;
+					flags.botl = TRUE;
+					switch (attrcrease) {
+						case A_STR:
+							pline("Strength +1!");
+							break;
+						case A_DEX:
+							pline("Dexterity +1!");
+							break;
+						case A_CON:
+							pline("Constitution +1!");
+							break;
+						case A_CHA:
+							pline("Charisma +1!");
+							break;
+						case A_INT:
+							pline("Intelligence +1!");
+							break;
+						case A_WIS:
+							pline("Wisdom +1!");
+							break;
+					}
+				}
+				/* note by Amy: it's not a bug that this bypasses sustain ability and soft cap checks */
+
+#ifdef RECORD_ACHIEVE
+
+				if (!achieveX.devnull_complete) {
+
+					achieveX.devnull_complete = TRUE;
+					if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
+					if (RngeTeamSplat) pline("TROPHY GET!");
+					if (Race_if(PM_INHERITOR)) giftartifact();
+					if (Race_if(PM_HERALD)) heraldgift();
+
+					if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+						u.uhpmax += 10;
+						u.uenmax += 10;
+						if (Upolyd) u.mhmax += 10;
+						pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+					}
+				}
+
+#ifdef LIVELOGFILE
+				livelog_achieve_update();
+				livelog_report_trophy("visited all DevNull challenge dungeons");
+#endif
+#endif
+			}
+
+		}
+
 		if (In_gammacaves(&u.uz) && !u.gammacavescomplete && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) {
 			u.gammacavescomplete = 1;
 		      (void) safe_teleds(FALSE);

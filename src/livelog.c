@@ -105,6 +105,7 @@ encodeachieveX(void)
   if(achieveX.killed_katia)         r |= 1L << 5;
   if(achieveX.killed_witchking)     r |= 1L << 6;
   if(achieveX.get_magresstone)      r |= 1L << 7;
+  if(achieveX.devnull_complete)     r |= 1L << 8;
 
   return r;
 }

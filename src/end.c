@@ -2523,6 +2523,21 @@ mk_dgl_extrainfo()
         } else if (In_mainframe(&u.uz)) {
             sprintf(tmpdng, "%i|Mai%i", sortval, depth(&u.uz));
 		sortval = 1100 + depth(&u.uz);
+        } else if (In_poolchallenge(&u.uz)) {
+            sprintf(tmpdng, "%i|Poo%i", sortval, depth(&u.uz));
+		sortval = 1100 + depth(&u.uz);
+        } else if (In_gruechallenge(&u.uz)) {
+            sprintf(tmpdng, "%i|Gre%i", sortval, depth(&u.uz));
+		sortval = 1100 + depth(&u.uz);
+        } else if (In_digdugchallenge(&u.uz)) {
+            sprintf(tmpdng, "%i|Dig%i", sortval, depth(&u.uz));
+		sortval = 1100 + depth(&u.uz);
+        } else if (In_joustchallenge(&u.uz)) {
+            sprintf(tmpdng, "%i|Jou%i", sortval, depth(&u.uz));
+		sortval = 1100 + depth(&u.uz);
+        } else if (In_pacmanchallenge(&u.uz)) {
+            sprintf(tmpdng, "%i|Pac%i", sortval, depth(&u.uz));
+		sortval = 1100 + depth(&u.uz);
         } else if (In_subquest(&u.uz)) {
             sprintf(tmpdng, "%i|Sub%i", sortval, depth(&u.uz));
 		sortval = 1800 + depth(&u.uz);

@@ -8712,10 +8712,10 @@ madnesseffect:
 		 * is reigned in by my stairs trap code) is cheating in any way, no, for them it's completely legal to
 		 * lure out the Ludios soldiers one by one. Sigh. --Amy */
 
-		if (!rn2(10) && !issoviet && (Is_blackmarket(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || !strcmp(dungeons[u.uz.dnum].dname, "Lawful Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Neutral Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Chaotic Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "The Subquest") || In_quest(&u.uz)) ) {
+		if (!rn2(10) && !issoviet && (In_Devnull(&u.uz) || Is_blackmarket(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || !strcmp(dungeons[u.uz.dnum].dname, "Lawful Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Neutral Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Chaotic Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "The Subquest") || In_quest(&u.uz)) ) {
 			pline("You trigger a magic portal, but it malfunctions!");
 			pushplayer(TRUE);
-		} else if (rn2(3) && !issoviet && (Is_blackmarket(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || !strcmp(dungeons[u.uz.dnum].dname, "Lawful Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Neutral Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Chaotic Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "The Subquest") || In_quest(&u.uz)) ) {
+		} else if (rn2(3) && !issoviet && (In_Devnull(&u.uz) || Is_blackmarket(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || !strcmp(dungeons[u.uz.dnum].dname, "Lawful Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Neutral Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Chaotic Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "The Subquest") || In_quest(&u.uz)) ) {
 			pline("You trigger a magic portal, but it doesn't seem to work!");
 		} else
 		domagicportal(trap);

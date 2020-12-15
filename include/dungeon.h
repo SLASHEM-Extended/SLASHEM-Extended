@@ -152,6 +152,7 @@ typedef struct branch {
 #define Inhell			In_hell(&u.uz)	/* now gehennom */
 #define In_endgame(x)		((x)->dnum == astral_level.dnum)
 #define InZAPM			In_ZAPM(&u.uz)	/* space base, sewer plant, gamma caves, mainframe */
+#define InDevnull			In_Devnull(&u.uz)	/* grue, joust, digdug, pacman, pool */
 
 #define within_bounded_area(X,Y,LX,LY,HX,HY) \
 		((X) >= (LX) && (X) <= (HX) && (Y) >= (LY) && (Y) <= (HY))

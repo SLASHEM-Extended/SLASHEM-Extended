@@ -1013,6 +1013,11 @@ init_dungeons()
 	sewerplant_dnum = dname_to_dnum("Sewer Plant");
 	gammacaves_dnum = dname_to_dnum("Gamma Caves");
 	mainframe_dnum = dname_to_dnum("Mainframe");
+	joustchallenge_dnum = dname_to_dnum("Joust Challenge");
+	pacmanchallenge_dnum = dname_to_dnum("Pacman Challenge");
+	digdugchallenge_dnum = dname_to_dnum("Digdug Challenge");
+	gruechallenge_dnum = dname_to_dnum("Grue Challenge");
+	poolchallenge_dnum = dname_to_dnum("Pool Challenge");
 	restingzone_ga_dnum = dname_to_dnum("Resting Zone GA");
 	restingzone_gb_dnum = dname_to_dnum("Resting Zone GB");
 	restingzone_gc_dnum = dname_to_dnum("Resting Zone GC");
@@ -1724,6 +1729,41 @@ d_level	*lev;
 }
 
 boolean
+In_poolchallenge(lev)
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == poolchallenge_dnum));
+}
+
+boolean
+In_digdugchallenge(lev)
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == digdugchallenge_dnum));
+}
+
+boolean
+In_pacmanchallenge(lev)
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == pacmanchallenge_dnum));
+}
+
+boolean
+In_gruechallenge(lev)
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == gruechallenge_dnum));
+}
+
+boolean
+In_joustchallenge(lev)
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == joustchallenge_dnum));
+}
+
+boolean
 In_dod(lev)	/* are you in the dungeons of doom? */
 d_level	*lev;
 {
@@ -1798,6 +1838,13 @@ In_ZAPM(lev)	/* are you in one of the ZAPM levels? */
 d_level	*lev;
 {
 	return((boolean)(lev->dnum == spacebase_dnum || lev->dnum == sewerplant_dnum || lev->dnum == gammacaves_dnum || lev->dnum == mainframe_dnum));
+}
+
+boolean
+In_Devnull(lev)	/* are you in one of the devnull challenge levels? */
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == poolchallenge_dnum || lev->dnum == digdugchallenge_dnum || lev->dnum == pacmanchallenge_dnum || lev->dnum == gruechallenge_dnum || lev->dnum == joustchallenge_dnum));
 }
 
 /*

@@ -266,6 +266,8 @@ xchar dnum;
 		strcpy(buf, "DEA");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Deep Mines"))
 		strcpy(buf, "DEE");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Digdug Challenge"))
+		strcpy(buf, "DIG");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Dungeons of Doom"))
 		strcpy(buf, "DOO");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber"))
@@ -278,10 +280,14 @@ xchar dnum;
 		strcpy(buf, "GIA");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Gnomish Mines"))
 		strcpy(buf, "GNO");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Grue Challenge"))
+		strcpy(buf, "GRE");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold"))
 		strcpy(buf, "GRU");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Illusory Castle"))
 		strcpy(buf, "ILL");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Joust Challenge"))
+		strcpy(buf, "JOU");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios"))
 		strcpy(buf, "KNX");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab"))
@@ -294,6 +300,10 @@ xchar dnum;
 		strcpy(buf, "NET");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos"))
 		strcpy(buf, "ORD");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Pacman Challenge"))
+		strcpy(buf, "PAC");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Pool Challenge"))
+		strcpy(buf, "POO");
 	else if (In_quest(&u.uz))
 		strcpy(buf, "QUE");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone A"))

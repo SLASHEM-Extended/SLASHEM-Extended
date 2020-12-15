@@ -1172,6 +1172,7 @@ char* encodeachieveX(void)
    *  5   killed Erogenous Katia
    *  6   killed the Witch King of Angmar
    *  7   obtained the stone of magic resistance from the Deep Mines
+   *  8   visited all five DevNull challenge dungeons
    * but this isn't a bitfield, it's a string...
    */
 
@@ -1185,6 +1186,7 @@ char* encodeachieveX(void)
   if(achieveX.killed_katia)         sprintf(eos(encoded_achievements), "%s,", "killed_katia");
   if(achieveX.killed_witchking)     sprintf(eos(encoded_achievements), "%s,", "killed_witchking");
   if(achieveX.get_magresstone)      sprintf(eos(encoded_achievements), "%s,", "get_magresstone");
+  if(achieveX.devnull_complete)     sprintf(eos(encoded_achievements), "%s,", "devnull_complete");
 
   int len;
   if ((len=strlen(encoded_achievements))) { encoded_achievements[len-1] = '\0'; }

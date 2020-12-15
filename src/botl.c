@@ -650,6 +650,16 @@ int verbose;
 		sprintf(buf, flags.showlongstats ? "Gamma Caves:%d " : "Gam:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Mainframe"))
 		sprintf(buf, flags.showlongstats ? "Mainframe:%d " : "Mai:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Pool Challenge"))
+		sprintf(buf, flags.showlongstats ? "Pool:%d " : "Poo:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Digdug Challenge"))
+		sprintf(buf, flags.showlongstats ? "Digdug:%d " : "Dig:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Pacman Challenge"))
+		sprintf(buf, flags.showlongstats ? "Pacman:%d " : "Pac:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Joust Challenge"))
+		sprintf(buf, flags.showlongstats ? "Joust:%d " : "Jou:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Grue Challenge"))
+		sprintf(buf, flags.showlongstats ? "Grue:%d " : "Gre:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Void"))
 		sprintf(buf, flags.showlongstats ? "The Void:%d " : "Voi:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Nether Realm"))

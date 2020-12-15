@@ -39,6 +39,8 @@ RNDLEVEL:		"medus" "none" @ (36, 4) 12
 RNDLEVEL:		"cowla" "A" @ (13, 0) 5
 LEVEL:		"cowlb" "A" @ (31, 0)
 
+BRANCH:		"Pool Challenge" @ (2, 48) up -1
+
 #
 #   New mall is on levels 5 to 6, 75% chance.
 #   There shouldn't be any other special levels down to the Oracle.
@@ -53,6 +55,7 @@ LEVEL:		"oracle" "O" @ (2, 48)
 LEVALIGN:	neutral
 BRANCH:	"Sokoban" @ (5, 45) up -1
 BRANCH:	"Town" @ (6, 44) up -1
+BRANCH:	"Pacman Challenge" @ (2, 48) portal
 
 
 # Levels between the Oracle and the Quest.
@@ -244,6 +247,8 @@ RNDLEVEL:	"mintn" "T" @ (3, 2) 21
 LEVELDESC:	town
 RNDLEVEL:	"mnend" "E" @ (-2, 0) 10
 RNDLEVEL:		"mking" "M" @ (-1, 0) 18
+BRANCH:		"Digdug Challenge" @ (1, 8) portal
+BRANCH:		"Grue Challenge" @ (1, 8) portal
 
 
 ### The Quest Dungeon ###
@@ -299,6 +304,7 @@ RNDLEVEL:		"soko1" "A" @ (1, 0) 52
 RNDLEVEL:		"soko2" "B" @ (2, 0) 45
 RNDLEVEL:		"soko3" "C" @ (3, 0) 29
 RNDLEVEL:		"soko4" "D" @ (4, 0) 28
+BRANCH:     "Joust Challenge" @ (1, 0)
 
 #
 #   The city of Angband
@@ -361,6 +367,21 @@ DUNGEON:        "The Temple of Moloch" "W" (1, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
 LEVEL:          "mtemple" "T" @ (1, 0)
+
+DUNGEON:        "Grue Challenge" "E" (1, 0)
+LEVEL:	    "gruelair" "D" @ (1, 0)
+
+DUNGEON:        "Joust Challenge" "E" (1, 0)
+LEVEL:	    "joust" "D" @ (1, 0)
+
+DUNGEON:        "Pacman Challenge" "E" (1, 0)
+LEVEL:	    "pmaze" "D" @ (1, 0)
+
+DUNGEON:        "Pool Challenge" "E" (1, 0)
+LEVEL:	    "poolhall" "D" @ (1, 0)
+
+DUNGEON:        "Digdug Challenge" "E" (1, 0)
+LEVEL:	    "dmaze" "D" @ (1, 0)
 
 DUNGEON:        "Illusory Castle" "S" (30, 0)
 ALIGNMENT:      neutral
