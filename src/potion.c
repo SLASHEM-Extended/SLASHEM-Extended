@@ -6042,7 +6042,7 @@ datadeleteattack()
 	Your("data is deleted!");
 	stop_occupation();
 
-	switch (rnd(21)) {
+	switch (rnd(22)) {
 
 
 		case 1: /* very strong amnesia effect - let that poor sap forget a whole lot of stuff */
@@ -6493,6 +6493,12 @@ datadeleteattack()
 		case 21: /* set all skills back to Unskilled and 0 points of training to ruin all the player's training effort */
 			dataskilldecrease();
 			pline("You lose all training in all skills!");
+			break;
+
+		case 22: /* lose 20 skill points forever, undoing any enhancements that you did with those points - you won't get them back, sucker :-P */
+			lose_weapon_skill(20);
+			pline("You lose your skill slots forever!");
+
 			break;
 
 	}

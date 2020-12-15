@@ -25957,7 +25957,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"You hear someone sneezing constantly! Why isn't that corona-infected fucker staying at home?!",
 	"You overhear a loudspeaker announcement: 'Protect yourself and others! Keep your distance to other people and wear your face mask at all times. Help us stop the spread of coronavirus and stay healthy.'",
 	"You think you just saw a bunch of cops passing you by! Good thing they didn't realize that you weren't wearing your mask properly!",
-
+	"You lose 20 skill points forever, undoing any enhancements that you did with those points - you won't get them back, sucker :-P",
+	"You lose 20 skill points forever, undoing any enhancements that you did with those points - you won't get them back, sucker. Because the # of skill slots you gain from leveling up is predetermined. Now you're still XL15, but have much fewer slots than you'd normally have, meaning your char is permanently screwed. Too bad.",
+	"You lose your skill slots forever!",
+	"You lose your skill slots forever! Well, in theory you can gain slots too by e.g. fountain quaffing, but that's a VERY small chance. It's more likely that you simply get instakilled when you quaff a fountain.",
 
 };
 

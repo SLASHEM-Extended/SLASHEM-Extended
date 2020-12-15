@@ -5865,12 +5865,16 @@ int n;	/* number of slots to lose; normally one */
 		maybe_loose_disarm = TRUE;
 	    P_SKILL(skill)--;	/* drop skill one level */
 	    /* Lost skill might have taken more than one slot; refund rest. */
-	    if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
-	    else u.weapon_slots = slots_required(skill) - 1;
+	    if (evilfriday) {
+		u.weapon_slots--;
+		pline("This is the evil variant. Your skill point is lost forever.");
+	    }
+	    else u.weapon_slots += (slots_required(skill) - 1); /* normally zero --Amy */
 	    /* It might now be possible to advance some other pending
 	       skill by using the refunded slots, but giving a message
 	       to that effect would seem pretty confusing.... */
-	}
+	} else /* none advanced but still going to lose some (e.g. data delete), so the total # can become negative --Amy */
+		u.weapon_slots--;
     }
 
     if (maybe_loose_disarm && tech_known(T_DISARM)) {
