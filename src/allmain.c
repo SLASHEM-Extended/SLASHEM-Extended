@@ -5396,6 +5396,103 @@ newbossF:
 
 		}
 
+		if (RngeWhoring && !rn2(2000)) {
+
+			int attempts = 0;
+			struct permonst *pm = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+newbossWHOR:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_WHORE ))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossWHOR;
+			}
+			if (pm && !(pm->msound == MS_WHORE) && rn2(50) ) {
+				attempts = 0;
+				goto newbossWHOR;
+			}
+
+			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
+
+			u.aggravation = 0;
+
+		}
+
+		if (RngeStench && !rn2(2000)) {
+
+			int attempts = 0;
+			struct permonst *pm = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+newbossSTEN:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_STENCH ))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossSTEN;
+			}
+			if (pm && !(pm->msound == MS_STENCH) && rn2(50) ) {
+				attempts = 0;
+				goto newbossSTEN;
+			}
+
+			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
+
+			u.aggravation = 0;
+
+		}
+
+		if (RngeBossing && !rn2(5000)) {
+
+			int attempts = 0;
+			struct permonst *pm = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+newbossBOSS:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->geno & G_UNIQ))) && attempts < 50000);
+
+			if (pm && pm->geno & G_UNIQ) {
+				if (wizard) pline("monster generation: %s", pm->mname);
+				(void) makemon(pm, 0, 0, MM_ANGRY);
+			}
+			else if (rn2(50)) {
+				attempts = 0;
+				goto newbossBOSS;
+			}
+
+			u.aggravation = 0;
+
+		}
+
 		if (uleft && uleft->oartifact == ART_REAL_LIFE_EFFECTOR && !rn2(2000)) {
 
 			int attempts = 0;
@@ -5406,6 +5503,7 @@ newbossF:
 				reset_rndmonst(NON_PM);
 			}
 
+newbossRLL:
 			do {
 				pm = rndmonst();
 				attempts++;
@@ -5415,11 +5513,11 @@ newbossF:
 
 			if (!pm && rn2(50) ) {
 				attempts = 0;
-				goto newbossF;
+				goto newbossRLL;
 			}
 			if (pm && !(pm->msound == MS_SUPERMAN) && rn2(50) ) {
 				attempts = 0;
-				goto newbossF;
+				goto newbossRLL;
 			}
 
 			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
@@ -5438,6 +5536,7 @@ newbossF:
 				reset_rndmonst(NON_PM);
 			}
 
+newbossRLR:
 			do {
 				pm = rndmonst();
 				attempts++;
@@ -5447,11 +5546,11 @@ newbossF:
 
 			if (!pm && rn2(50) ) {
 				attempts = 0;
-				goto newbossF;
+				goto newbossRLR;
 			}
 			if (pm && !(pm->msound == MS_SUPERMAN) && rn2(50) ) {
 				attempts = 0;
-				goto newbossF;
+				goto newbossRLR;
 			}
 
 			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);

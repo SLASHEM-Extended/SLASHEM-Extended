@@ -8143,11 +8143,21 @@ register struct obj *otmp;
 
 	if (!objects[otmp->otyp].oc_merge) return 0;
 
-	if ( ( (objects[otmp->otyp].oc_skill == P_DAGGER) || (objects[otmp->otyp].oc_skill == P_KNIFE) || (objects[otmp->otyp].oc_skill == P_SPEAR) || (objects[otmp->otyp].oc_skill == P_JAVELIN) || (objects[otmp->otyp].oc_skill == P_BOOMERANG) || (objects[otmp->otyp].oc_skill == -P_BOOMERANG) || (otmp->otyp == WAX_CANDLE) || (otmp->otyp == JAPAN_WAX_CANDLE) || (otmp->otyp == OIL_CANDLE) || (otmp->otyp == UNAFFECTED_CANDLE) || (otmp->otyp == SPECIFIC_CANDLE) || (otmp->otyp == __CANDLE) || (otmp->otyp == GENERAL_CANDLE) || (otmp->otyp == NATURAL_CANDLE) || (otmp->otyp == UNSPECIFIED_CANDLE) || (otmp->otyp == TALLOW_CANDLE) || (otmp->otyp == MAGIC_CANDLE) || (otmp->otyp == TORCH) ) && (rnd(otmp->quan) > 10 ) ) return 1;
+	if ( ( (objects[otmp->otyp].oc_skill == P_DAGGER) || (objects[otmp->otyp].oc_skill == P_KNIFE) || (objects[otmp->otyp].oc_skill == P_SPEAR) || (objects[otmp->otyp].oc_skill == P_JAVELIN) || (objects[otmp->otyp].oc_skill == P_BOOMERANG) || (objects[otmp->otyp].oc_skill == -P_BOOMERANG) || (otmp->otyp == WAX_CANDLE) || (otmp->otyp == JAPAN_WAX_CANDLE) || (otmp->otyp == OIL_CANDLE) || (otmp->otyp == UNAFFECTED_CANDLE) || (otmp->otyp == SPECIFIC_CANDLE) || (otmp->otyp == __CANDLE) || (otmp->otyp == GENERAL_CANDLE) || (otmp->otyp == NATURAL_CANDLE) || (otmp->otyp == UNSPECIFIED_CANDLE) || (otmp->otyp == TALLOW_CANDLE) || (otmp->otyp == MAGIC_CANDLE) || (otmp->otyp == TORCH) ) && (rnd(otmp->quan) > 10 ) ) {
+		if (RngeStackMessaging) pline("The stack of %s was too large to be affected.", xname(otmp));
+		return 1;
+	}
 
-	if ( ( (objects[otmp->otyp].oc_skill == P_DART) || (objects[otmp->otyp].oc_skill == P_SHURIKEN) || (objects[otmp->otyp].oc_skill == -P_DART) || (objects[otmp->otyp].oc_skill == -P_SHURIKEN) || (objects[otmp->otyp].oc_skill == -P_BOW) || (objects[otmp->otyp].oc_skill == -P_SLING) || (objects[otmp->otyp].oc_skill == -P_CROSSBOW) || (objects[otmp->otyp].oc_skill == -P_FIREARM) || (otmp->otyp == SPOON) || (objects[otmp->otyp].oc_class == VENOM_CLASS) ) && (rnd(otmp->quan) > 25 ) ) return 1;
 
-	if ( ( (objects[otmp->otyp].oc_class == SCROLL_CLASS) || (objects[otmp->otyp].oc_class == POTION_CLASS) || (objects[otmp->otyp].oc_class == FOOD_CLASS)) && (rnd(otmp->quan) > 1 ) ) return 1;
+	if ( ( (objects[otmp->otyp].oc_skill == P_DART) || (objects[otmp->otyp].oc_skill == P_SHURIKEN) || (objects[otmp->otyp].oc_skill == -P_DART) || (objects[otmp->otyp].oc_skill == -P_SHURIKEN) || (objects[otmp->otyp].oc_skill == -P_BOW) || (objects[otmp->otyp].oc_skill == -P_SLING) || (objects[otmp->otyp].oc_skill == -P_CROSSBOW) || (objects[otmp->otyp].oc_skill == -P_FIREARM) || (otmp->otyp == SPOON) || (objects[otmp->otyp].oc_class == VENOM_CLASS) ) && (rnd(otmp->quan) > 25 ) ) {
+		if (RngeStackMessaging) pline("The stack of %s was too large to be affected.", xname(otmp));
+		return 1;
+	}
+
+	if ( ( (objects[otmp->otyp].oc_class == SCROLL_CLASS) || (objects[otmp->otyp].oc_class == POTION_CLASS) || (objects[otmp->otyp].oc_class == FOOD_CLASS)) && (rnd(otmp->quan) > 1 ) ) {
+		if (RngeStackMessaging) pline("The stack of %s was too large to be affected.", xname(otmp));
+		return 1;
+	}
 
 
 	else return 0;

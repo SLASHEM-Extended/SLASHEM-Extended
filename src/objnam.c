@@ -454,6 +454,16 @@ int prop;
 			return "Arabella's curse";
 		case SCENT_VIEW:
 			return "scent view";
+		case RNGE_WHORING:
+			return "whoring";
+		case RNGE_BOSSING:
+			return "bossing";
+		case RNGE_STENCH:
+			return "stench";
+		case RNGE_ECHOLOCATION:
+			return "echolocation";
+		case RNGE_STACKMESSAGING:
+			return "stack messaging";
 
 		default:
 			return "Team Nastytrap";
