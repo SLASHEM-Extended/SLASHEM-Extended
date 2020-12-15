@@ -4251,11 +4251,11 @@ ghnhom2:
 
 	    case 114:
 		switch (rnd(5)) {
-			case 1: makemaz("gruelair"); return;
-			case 2: makemaz("joust"); return;
-			case 3: makemaz("pmaze"); return;
-			case 4: makemaz("poolhall"); return;
-			case 5: makemaz("dmaze"); return;
+			case 1: makemaz("gruelaiX"); return;
+			case 2: makemaz("joustX"); return;
+			case 3: makemaz("pmazeX"); return;
+			case 4: makemaz("poolhalX"); return;
+			case 5: makemaz("dmazeX"); return;
 
 		}
 
@@ -6182,11 +6182,11 @@ ghnhom2:
 
 	    case 114:
 		switch (rnd(5)) {
-			case 1: makemaz("gruelair"); return;
-			case 2: makemaz("joust"); return;
-			case 3: makemaz("pmaze"); return;
-			case 4: makemaz("poolhall"); return;
-			case 5: makemaz("dmaze"); return;
+			case 1: makemaz("gruelaiX"); return;
+			case 2: makemaz("joustX"); return;
+			case 3: makemaz("pmazeX"); return;
+			case 4: makemaz("poolhalX"); return;
+			case 5: makemaz("dmazeX"); return;
 
 		}
 
@@ -8535,11 +8535,11 @@ ghnhom4:
 
 	    case 114:
 		switch (rnd(5)) {
-			case 1: makemaz("gruelair"); return;
-			case 2: makemaz("joust"); return;
-			case 3: makemaz("pmaze"); return;
-			case 4: makemaz("poolhall"); return;
-			case 5: makemaz("dmaze"); return;
+			case 1: makemaz("gruelaiX"); return;
+			case 2: makemaz("joustX"); return;
+			case 3: makemaz("pmazeX"); return;
+			case 4: makemaz("poolhalX"); return;
+			case 5: makemaz("dmazeX"); return;
 
 		}
 
@@ -10462,11 +10462,11 @@ ghnhom4:
 
 	    case 114:
 		switch (rnd(5)) {
-			case 1: makemaz("gruelair"); return;
-			case 2: makemaz("joust"); return;
-			case 3: makemaz("pmaze"); return;
-			case 4: makemaz("poolhall"); return;
-			case 5: makemaz("dmaze"); return;
+			case 1: makemaz("gruelaiX"); return;
+			case 2: makemaz("joustX"); return;
+			case 3: makemaz("pmazeX"); return;
+			case 4: makemaz("poolhalX"); return;
+			case 5: makemaz("dmazeX"); return;
 
 		}
 
