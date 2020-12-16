@@ -2906,6 +2906,9 @@ register struct monst *mtmp;
 		case PM_EMERA:
 		    verbl_msg = "HATE! HATE! HATE!";
 		    break;
+		case PM_UNLUCKY_GIRL:
+		    verbl_msg = "Damn those people who constantly make me slip into dog shit with my zipper boots!";
+		    break;
 		case PM_FJORDE:
 		    verbl_msg = "I can't help it, I really consider fish to be the most beautiful creatures in existence.";
 		    break;
