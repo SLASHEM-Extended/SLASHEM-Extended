@@ -12624,7 +12624,7 @@ struct ext_func_tab extcmdlist[] = {
 	{"stackmark", "mark an item to not merge", dostackmark, TRUE, AUTOCOMPLETE},
 
 	{"apply", "apply (use) a tool (pick-axe, key, lamp...)", doapply, !IFBURIED},
-	{"removeimarkers", "remove all \"I\"s, remembered, unseen creatures from the level", doremoveimarkers, IFBURIED},
+	{"removeimarkers", "remove all \"I\"s, remembered, unseen creatures from the level", doremoveimarkers, IFBURIED, AUTOCOMPLETE},
 	{"spelldelete", "delete lowest spell in the list (must be forgotten)", dodeletespell, IFBURIED, AUTOCOMPLETE},
 	{"attributes", "show your attributes (intrinsic ones included in debug or explore mode)", doattributes, IFBURIED},
 	{"close", "close a door", doclose, !IFBURIED},
