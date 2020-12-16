@@ -1589,6 +1589,7 @@ struct you {
 	boolean dungeongrowthhack;	/* to circumvent goddamn savegame errors */
 
 	boolean katitrapocc;	/* checking whether you have the occupation */
+	boolean singtrapocc;
 
 	boolean howtoenhanceskills;	/* the first time you can enhance a skill, the game tells you how */
 

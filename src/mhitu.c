@@ -106,6 +106,42 @@ on the first floor, especially when you're playing as something with drain resis
 
 			}
 
+			if (FemtrapActiveDora && uarmf && (mtmp->data->msound == MS_SQEEK)) {
+				if (PlayerInHighHeels && !rn2(15)) {
+					pline("The asshole claws damage your pretty high heels!");
+					if (!rn2(2)) {
+						if (uarmf->oeroded < MAX_ERODE) uarmf->oeroded++;
+						else {
+							useup(uarmf);
+							pline("With a loud crack, your high heels shatter into a thousand fragments. Now you're really angry and bitter.");
+							if (!u.berserktime) u.berserktime = 25;
+						}
+					} else {
+						if (uarmf->oeroded2 < MAX_ERODE) uarmf->oeroded2++;
+						else {
+							useup(uarmf);
+							pline("With a loud crack, your high heels shatter into a thousand fragments. Now you're really angry and bitter.");
+							if (!u.berserktime) u.berserktime = 25;
+						}
+					}
+				} else if (!PlayerInHighHeels && !rn2(100)) {
+					pline("The claws damage your footwear!");
+					if (!rn2(2)) {
+						if (uarmf->oeroded < MAX_ERODE) uarmf->oeroded++;
+						else {
+							useup(uarmf);
+							pline("Now your shoes are broken. Great.");
+						}
+					} else {
+						if (uarmf->oeroded2 < MAX_ERODE) uarmf->oeroded2++;
+						else {
+							useup(uarmf);
+							pline("Now your shoes are broken. Great.");
+						}
+					}
+				}
+			}
+
 			if ((flags.female && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && (!issoviet || !rn2(5)) && !rn2(player_shades_of_grey() ? 3 : (u.ualign.type == A_LAWFUL) ? 50 : (u.ualign.type == A_NEUTRAL) ? 30 : 10)) || (uarmf && itemhasappearance(uarmf, APP_FETISH_HEELS)) ) { 
 
 				if (uarmf && uarmf->oartifact == ART_HUGGING__GROPING_AND_STROK) {
@@ -217,6 +253,39 @@ on the first floor, especially when you're playing as something with drain resis
 				}
 			}
 
+			if (FemtrapActiveSing && mtmp->singannoyance) {
+				boolean extraannoying = !rn2(5);
+				pline("Sing announces that %s stepped into %s, and asks you to clean them.", Monnam(mtmp), extraannoying ? "cow dung" : "dog shit");
+				if (yn("Do you want to clean them?") == 'y') {
+						delay = (extraannoying ? -200 : -40);
+						u.singtrapocc = TRUE;
+						if (extraannoying) set_occupation(katicleaning, "cleaning cow dung from female shoes", 0);
+						else set_occupation(katicleaning, "cleaning dog shit from female shoes", 0);
+						mtmp->mpeaceful = TRUE;
+						mtmp->singannoyance = FALSE;
+						pline("You start cleaning the shit from %s...", Monnam(mtmp));
+
+				} else {
+					pline("Sing ushers all the girls to attack you relentlessly...");
+					nomul(-5, "being bound by Sing", TRUE);
+					mtmp->mtame = mtmp->mpeaceful = FALSE;
+					mtmp->mfrenzied = TRUE;
+					mtmp->singannoyance = FALSE;
+
+				      register struct monst *mtmp2;
+
+					for (mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
+
+						if (!mtmp2->mtame) {
+							mtmp2->mpeaceful = 0;
+							mtmp2->mfrenzied = 1;
+							mtmp2->mhp = mtmp2->mhpmax;
+						}
+					}
+
+				}
+			}
+
 			if (FemtrapActiveLou && !rn2(10)) {
 				pline("Eww, %s's dirty footwear brushed your clothing!", mon_nam(mtmp));
 				register struct obj *objX, *objX2;
@@ -312,6 +381,7 @@ karinrepeat:
 
 			int randomsexyheels = 0;
 			if (uarmf && uarmf->oartifact == ART_SYSTEM_OF_SEXUAL_PLEASURE && humanoid(mtmp->data) && is_female(mtmp->data)) randomsexyheels = rnd(27);
+			if (FemtrapActiveKristin && !rn2(10) && humanoid(mtmp->data) && is_female(mtmp->data)) randomsexyheels = rnd(27);
 
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == WEDGE_SANDALS) || mtmp->data == &mons[PM_ANIMATED_WEDGE_SANDAL] || (randomsexyheels == 1) || mtmp->data == &mons[PM_WEREWEDGESANDAL] || mtmp->data == &mons[PM_HUMAN_WEREWEDGESANDAL]) ) {
 elenaWDG:
@@ -4544,6 +4614,48 @@ elena37:
 		a->adtyp = AD_BURN;
 		a->damn = 2;
 		a->damd = (1 + (mtmp->m_lev));
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (FemtrapActiveAnita && humanoid(mtmp->data) && is_female(mtmp->data)) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_KICK;
+		a->adtyp = AD_BLEE;
+		a->damn = 2;
+		a->damd = (1 + (mtmp->m_lev));
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (FemtrapActiveMelissa && mtmp->female && humanoid(mtmp->data)) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = (is_female(mtmp->data) ? AD_SEDU : AD_SITM);
+		a->damn = 0;
+		a->damd = 0;
 
 		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
 				!touch_petrifies(youmonst.data))) {

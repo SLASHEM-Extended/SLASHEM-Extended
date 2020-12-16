@@ -1522,6 +1522,12 @@ register struct monst *mtmp;
 		}
 	}
 
+	if (FemaleTrapAnna && !rn2(1000) && humanoid(mtmp->data) && is_female(mtmp->data) && (mdat->msound == MS_STENCH)) {
+		if (!(t_at(mtmp->mx, mtmp->my))) {
+			maketrap(mtmp->mx, mtmp->my, SHIT_TRAP, 0, FALSE);
+		}
+	}
+
 	/* monster noise trap: some of these noises have effects, might add others in future --Amy */
 	if ((MonnoiseEffect || u.uprops[MONNOISE_EFFECT].extrinsic || have_monnoisestone()) && !rn2(250) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) ) {
 		switch (mdat->msound) {
@@ -2932,6 +2938,7 @@ altarfound:
 	if (ptr == &mons[PM_LITTLE_WALL_FLOWER]) appr = -1;
 
 	if (u.katitrapocc && !mtmp->mpeaceful) appr = -1; /* they're supposed to let you perform your occupation in peace */
+	if (u.singtrapocc && !mtmp->mpeaceful) appr = -1;
 
 	if ((!mtmp->mpeaceful || !rn2(10))
 #ifdef REINCARNATION

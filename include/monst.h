@@ -167,6 +167,7 @@ struct monst {
 	Bitfield(mleashed,1);	/* monster is on a leash */
 	Bitfield(isspell,1);	/* is a temporary spell being */
 	Bitfield(uexp,1);		/* you get experience for its kills */
+	Bitfield(singannoyance,1);	/* for sing trap */
 
 	Bitfield(mtraitor,1);	/* Former pet that turned traitor */
 	Bitfield(isshk,1);	/* is shopkeeper */

@@ -10730,6 +10730,7 @@ u_init()
 	u.dungeongrowthhack = 0;
 
 	u.katitrapocc = 0;
+	u.singtrapocc = 0;
 
 	u.cellargravate = 0;
 

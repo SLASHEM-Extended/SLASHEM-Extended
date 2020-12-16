@@ -21845,6 +21845,7 @@ register int	mmflags;
 	mtmp->bleedout = 0;
 	mtmp->healblock = 0;
 	mtmp->inertia = 0;
+	mtmp->singannoyance = FALSE;
 	if (!rn2(2)) mtmp->warningvisible = (rn2(2) ? 2 : 1);
 	mtmp->telepatvisible = 0;
 	if (!rn2(3)) mtmp->telepatvisible = (rn2(2) ? 2 : 1);
@@ -24509,6 +24510,7 @@ loopback:
 		if (ct > 0 && (Role_if(PM_KURWA) && (ptr->msound == MS_SHOE))) ct += 5;
 		if (ct > 0 && (Role_if(PM_PROSTITUTE) && attacktype(ptr, AT_CLAW) && (ptr->msound == MS_SQEEK))) ct += 30;
 		if (ct > 0 && (Role_if(PM_KURWA) && attacktype(ptr, AT_CLAW) && (ptr->msound == MS_SQEEK))) ct += 30;
+		if (ct > 0 && (FemtrapActiveDora && attacktype(ptr, AT_CLAW) && (ptr->msound == MS_SQEEK))) ct += 30;
 		if (ct > 0 && (uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION && attacktype(ptr, AT_CLAW) && (ptr->msound == MS_SQEEK))) ct += 30;
 		if (ct > 0 && (Role_if(PM_PROSTITUTE) && dmgtype(ptr, AD_SSEX))) ct += 20;
 		if (ct > 0 && (Role_if(PM_KURWA) && dmgtype(ptr, AD_SSEX))) ct += 20;
@@ -25092,6 +25094,9 @@ loopback:
 		if (ct > 0 && (uarmf && uarmf->oartifact == ART_STRONG_GETAWAY_DESIRE && dmgtype(ptr, AD_WEEP) )) ct += 20;
 
 		if (ct > 0 && (uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (ptr->msound == MS_STENCH))) ct += 10;
+		if (ct > 0 && (FemtrapActiveAnna && (ptr->msound == MS_STENCH))) ct += 50;
+		if (ct > 0 && (FemtrapActiveMarike && (ptr->msound == MS_FART_NORMAL))) ct += 10;
+		if (ct > 0 && (FemtrapActiveVictoria && is_female(ptr) && attacktype(ptr, AT_KICK) )) ct += 20;
 
 		if (ct > 0 && RngeExtinction && mvitals[mndx].born) ct += mvitals[mndx].born;
 
@@ -25705,6 +25710,7 @@ int     spc;
 		if ((Role_if(PM_KURWA) && (mons[last].msound == MS_SHOE))) num += 5;
 		if ((Role_if(PM_PROSTITUTE) && attacktype(&mons[last], AT_CLAW) && (mons[last].msound == MS_SQEEK))) num += 30;
 		if ((Role_if(PM_KURWA) && attacktype(&mons[last], AT_CLAW) && (mons[last].msound == MS_SQEEK))) num += 30;
+		if ((FemtrapActiveDora && attacktype(&mons[last], AT_CLAW) && (mons[last].msound == MS_SQEEK))) num += 30;
 		if ((uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION && attacktype(&mons[last], AT_CLAW) && (mons[last].msound == MS_SQEEK))) num += 30;
 		if ((Role_if(PM_PROSTITUTE) && dmgtype(&mons[last], AD_SSEX))) num += 20;
 		if ((Role_if(PM_KURWA) && dmgtype(&mons[last], AD_SSEX))) num += 20;
@@ -26279,6 +26285,9 @@ int     spc;
 		if ((uarmf && uarmf->oartifact == ART_STRONG_GETAWAY_DESIRE && dmgtype(&mons[last], AD_WEEP) )) num += 20;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[last].msound == MS_STENCH))) num += 10;
+		if ((FemtrapActiveAnna && (mons[last].msound == MS_STENCH))) num += 50;
+		if ((FemtrapActiveMarike && (mons[last].msound == MS_FART_NORMAL))) num += 10;
+		if ((FemtrapActiveVictoria && is_female(&mons[last]) && attacktype(&mons[last], AT_KICK) )) num += 20;
 
 		if (monster_with_trait(&mons[last], u.frequenttrait1)) num += u.freqtraitbonus1;
 		if (u.frequenttrait2 && monster_with_trait(&mons[last], u.frequenttrait2)) num += u.freqtraitbonus2;
@@ -26567,6 +26576,7 @@ int     spc;
 		if ((Role_if(PM_KURWA) && (mons[first].msound == MS_SHOE))) num -= 5;
 		if ((Role_if(PM_PROSTITUTE) && attacktype(&mons[first], AT_CLAW) && (mons[first].msound == MS_SQEEK))) num -= 30;
 		if ((Role_if(PM_KURWA) && attacktype(&mons[first], AT_CLAW) && (mons[first].msound == MS_SQEEK))) num -= 30;
+		if ((FemtrapActiveDora && attacktype(&mons[first], AT_CLAW) && (mons[first].msound == MS_SQEEK))) num -= 30;
 		if ((uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION && attacktype(&mons[first], AT_CLAW) && (mons[first].msound == MS_SQEEK))) num -= 30;
 		if ((Role_if(PM_PROSTITUTE) && dmgtype(&mons[first], AD_SSEX))) num -= 20;
 		if ((Role_if(PM_KURWA) && dmgtype(&mons[first], AD_SSEX))) num -= 20;
@@ -27141,6 +27151,9 @@ int     spc;
 		if ((uarmf && uarmf->oartifact == ART_STRONG_GETAWAY_DESIRE && dmgtype(&mons[first], AD_WEEP) )) num -= 20;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[first].msound == MS_STENCH))) num -= 10;
+		if ((FemtrapActiveAnna && (mons[first].msound == MS_STENCH))) num -= 50;
+		if ((FemtrapActiveMarike && (mons[first].msound == MS_FART_NORMAL))) num -= 10;
+		if ((FemtrapActiveVictoria && is_female(&mons[first]) && attacktype(&mons[first], AT_KICK) )) num -= 20;
 
 		if (monster_with_trait(&mons[first], u.frequenttrait1)) num -= u.freqtraitbonus1;
 		if (u.frequenttrait2 && monster_with_trait(&mons[first], u.frequenttrait2)) num -= u.freqtraitbonus2;

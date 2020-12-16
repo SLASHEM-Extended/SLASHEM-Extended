@@ -4927,6 +4927,7 @@ uncurseagain:
 boolean
 have_anorexia()
 {
+	if (FemtrapActiveIna) return TRUE;
 	if (RngeAnorexia) return TRUE;
 	if (Role_if(PM_TOPMODEL)) return TRUE;
 	if (uarmc && uarmc->oartifact == ART_INA_S_SORROW) return TRUE;

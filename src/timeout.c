@@ -875,6 +875,46 @@ nh_timeout()
 
 	}
 
+	if (u.umoved && FemtrapActiveHenrietta && !rn2(1000)) {
+
+				if (!(t_at(u.ux, u.uy)) ) {
+					register struct trap *shittrap;
+					shittrap = maketrap(u.ux, u.uy, SHIT_TRAP, 0, FALSE);
+					if (shittrap && !(shittrap->hiddentrap)) {
+						shittrap->tseen = 1;
+					}
+					if (shittrap) {
+						pline("Oh no, someone opened the zippers of your boots again, causing you to slip...");
+						dotrap(shittrap, RECURSIVETRAP);
+					}
+				}
+
+			    slip_or_trip();
+
+			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+
+				if (rn2(50)) {
+					adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
+					if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
+				} else {
+					You_feel("dizzy!");
+					forget(1 + rn2(5));
+				}
+			    }
+
+			    nomul(-2, "fumbling", TRUE);
+			    nomovemsg = "";
+			    /* The more you are carrying the more likely you
+			     * are to make noise when you fumble.  Adjustments
+			     * to this number must be thoroughly play tested.
+			     */
+			    if ((inv_weight() > -500)) {
+				You("make a lot of noise!");
+				wake_nearby();
+			    }
+
+	}
+
 	if (u.umoved && (uarmf && itemhasappearance(uarmf, APP_IRREGULAR_BOOTS) ) && !rn2(100) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
 			    slip_or_trip();
 

@@ -4370,6 +4370,24 @@ nomul(nval, txt, discountpossible)
 		} else return;
 
 	}
+	if (u.singtrapocc && nval == 0) {
+		pline("Something tries to interrupt your attempt to clean the female shoes! If you stop now, the sexy girl will hate you!");
+		if (yn("Really stop cleaning them?") == 'y') {
+		      register struct monst *mtmp2;
+
+			for (mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
+
+				if (!mtmp2->mtame) {
+					mtmp2->mpeaceful = 0;
+					mtmp2->mfrenzied = 1;
+					mtmp2->mhp = mtmp2->mhpmax;
+				}
+			}
+			pline("The beautiful girl in the sexy female shoes is very sad that you didn't finish cleaning her lovely footwear, and urges everyone in her vicinity to bludgeon you.");
+
+		} else return;
+
+	}
 
 	if(multi < nval) return;	/* This is a bug fix by ab@unido */
 	u.uinvulnerable = FALSE;	/* Kludge to avoid ctrl-C bug -dlc */

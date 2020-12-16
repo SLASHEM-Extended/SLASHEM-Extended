@@ -2109,6 +2109,7 @@ moveloop()
 		if (u.riderhack) u.riderhack = FALSE;
 
 		if (!occupation) u.katitrapocc = FALSE;
+		if (!occupation) u.singtrapocc = FALSE;
 
 		if (!rn2(100)) u.statuetrapname = rn2(NUMMONS);
 
@@ -3529,6 +3530,41 @@ newbossBQ:
 			if (FunnyHallu) pline("Are you a blonde by any chance?");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
+		}
+
+		if (FemtrapActiveVerena && !rn2(1000) && (u.uhp > (u.uhpmax / 2)) ) {
+			switch (rnd(5)) {
+				case 1:
+					pline("Verena thunders her black stiletto heel on your head incredibly painfully.");
+					losehp(monster_difficulty() * 5, "extremely painful impact from Verena's stiletto sandals", KILLED_BY_AN);
+					break;
+				case 2:
+					pline("Verena slams her black stiletto heel on your head, and you see lots of little asterisks.");
+					losehp(monster_difficulty(), "hard impact from Verena's stiletto sandals", KILLED_BY_AN);
+					make_confused(HConfusion + rnz(50) + rnz(monster_difficulty() * 10), FALSE);
+					break;
+				case 3:
+					pline("Verena slams her black stiletto heel on your head so painfully that you're knocked down.");
+					losehp(monster_difficulty(), "crushing impact from Verena's stiletto sandals", KILLED_BY_AN);
+					nomul(-rnd(10), "knocked out by Verena's stiletto sandals", TRUE);
+					break;
+				case 4:
+					pline("Verena slams her black stiletto heel on your head, damaging your optical nerve.");
+					losehp(monster_difficulty(), "unfair impact from Verena's stiletto sandals", KILLED_BY_AN);
+					make_blinded(Blinded + rnz(100) + rnz(monster_difficulty() * 20), FALSE);
+					break;
+				case 5:
+					pline("Verena scratches her black stiletto heel over your leg, opening extremely sharp-edged bleeding wounds.");
+					losehp(monster_difficulty(), "leg scratches from Verena's stiletto sandals", KILLED_BY);
+					playerbleed(rnd(2 + (level_difficulty() * 10)));
+					break;
+
+			}
+		}
+
+		if (FemtrapActiveVerena && !rn2(100) && (u.uhp <= (u.uhpmax / 5)) ) {
+			pline("Verena announces: 'Oh no, you're badly hurt! Here, let me caress you a bit, does that make it feel better?'");
+			healup( ( (level_difficulty() * 3) + 5), 0, FALSE, FALSE);
 		}
 
 		if (FemtrapActiveElif && !rn2(100)) {
@@ -5454,6 +5490,117 @@ newbossSTEN:
 			if (pm && !(pm->msound == MS_STENCH) && rn2(50) ) {
 				attempts = 0;
 				goto newbossSTEN;
+			}
+
+			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
+
+			u.aggravation = 0;
+
+		}
+
+		if (FemtrapActiveRuea && !rn2(1000)) {
+
+			int attempts = 0;
+			struct permonst *pm = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+newbossCONV:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_CONVERT ))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossCONV;
+			}
+			if (pm && !(pm->msound == MS_CONVERT) && rn2(50) ) {
+				attempts = 0;
+				goto newbossCONV;
+			}
+
+			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
+
+			u.aggravation = 0;
+
+		}
+
+		if (FemtrapActiveSing && !rn2(1000)) {
+
+			int attempts = 0;
+			struct permonst *pm = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+newbossSING:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_SHOE )) || (pm && !(type_is_pname(pm))) ) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossSING;
+			}
+			if (pm && !(pm->msound == MS_SHOE) && rn2(50) ) {
+				attempts = 0;
+				goto newbossSING;
+			}
+			if (pm && !(type_is_pname(pm)) && rn2(50) ) {
+				attempts = 0;
+				goto newbossSING;
+			}
+
+			if (pm) {
+				struct monst *singbitch;
+				singbitch = makemon(pm, 0, 0, MM_ANGRY); /* not frenzied --Amy */
+				if (singbitch) singbitch->singannoyance = TRUE;
+			}
+
+			u.aggravation = 0;
+
+		}
+
+		if (FemtrapActiveVictoria && !rn2(5000)) {
+
+			int attempts = 0;
+			struct permonst *pm = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+newbossATHL:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(is_female(pm))) || (pm && !(attacktype(pm, AT_KICK))) ) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossATHL;
+			}
+			if (pm && !(attacktype(pm, AT_KICK)) && rn2(50) ) {
+				attempts = 0;
+				goto newbossATHL;
+			}
+			if (pm && !(is_female(pm)) && rn2(50) ) {
+				attempts = 0;
+				goto newbossATHL;
 			}
 
 			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
@@ -11711,10 +11858,30 @@ stop_occupation()
 			} else return;
 		}
 
+		if (u.singtrapocc) {
+			pline("Something tries to interrupt your attempt to clean the female shoes! If you stop now, the sexy girl will hate you!");
+			if (yn("Really stop cleaning them?") == 'y') {
+
+			      register struct monst *mtmp2;
+
+				for (mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
+
+					if (!mtmp2->mtame) {
+						mtmp2->mpeaceful = 0;
+						mtmp2->mfrenzied = 1;
+						mtmp2->mhp = mtmp2->mhpmax;
+					}
+				}
+				pline("The beautiful girl in the sexy female shoes is very sad that you didn't finish cleaning her lovely footwear, and urges everyone in her vicinity to bludgeon you.");
+
+			} else return;
+		}
+
 		if (!maybe_finished_meal(TRUE))
 		    You("stop %s.", occtxt);
 		occupation = 0;
 		u.katitrapocc = FALSE;
+		u.singtrapocc = FALSE;
 		flags.botl = 1; /* in case u.uhs changed */
 /* fainting stops your occupation, there's no reason to sync.
 		sync_hunger();
