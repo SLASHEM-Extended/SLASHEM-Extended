@@ -3665,23 +3665,24 @@ schar ftyp, btyp;
 			crm->typ = ftyp;
 			crm->fleecycolor = randomcolouur;
 
-			if(/*nxcor && */!rn2(ishaxor ? 38 : 75))
+			if(!rn2(ishaxor ? 38 : 75))
 				(void) mksobj_at(BOULDER, xx, yy, TRUE, FALSE, FALSE);
-			else if(/*nxcor &&*/ !rn2(ishaxor ? 20 : 40) && timebasedlowerchance())
+			else if(!rn2(ishaxor ? 20 : 40) && timebasedlowerchance())
 				(void) mkobj_at(0, xx, yy, TRUE, FALSE);
-			else if(/*nxcor &&*/ !rn2(ishaxor ? 50 : 100)){ 
+			else if(moves == 1 && !rn2(60)) /* some earlygame help... --Amy */
+				(void) mkobj_at(0, xx, yy, TRUE, FALSE);
+			else if(!rn2(ishaxor ? 50 : 100)){ 
 			    char buf[BUFSZ];
 				const char *mesg = random_engraving(buf);
 			    make_engr_at(xx, yy, mesg, 0L, (xchar)0);
 			}
-			/* else (mktrap(0,1,(struct mkroom *) 0, (coord*) 0) ) ;*/
-		    else if(/*nxcor &&*/ !rn2(ishaxor ? 150 : 300) && !(depth(&u.uz) == 1 && In_dod(&u.uz) && rn2(3)) && !(depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2)) ) 
+		    else if(!rn2(ishaxor ? 150 : 300) && !(depth(&u.uz) == 1 && In_dod(&u.uz) && rn2(3)) && !(depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2)) ) 
 				(void) maketrap(xx, yy, rndtrap(), 100, TRUE);
-		    else if(/*nxcor &&*/ !rn2(ishaxor ? 100 : 200)) {
+		    else if(!rn2(ishaxor ? 100 : 200)) {
 				if (!ishomicider) (void) makemon((struct permonst *)0, xx, yy, MM_MAYSLEEP);
 				else makerandomtrap_at(xx, yy, TRUE);
 				}
-		    else if(/*nxcor &&*/ !rn2(ishaxor ? 10 : 20)) 
+		    else if(!rn2(ishaxor ? 10 : 20)) 
 				(void) mkfeature(xx, yy);
 		} else {
 			crm->typ = SCORR;
@@ -6056,6 +6057,20 @@ dlb *fd;
 		    (void) mkobj_at(!rn2(5) ? GEM_CLASS : RANDOM_CLASS, mm.x, mm.y, TRUE, FALSE);
 		}
 	    }
+
+	if (moves == 1 && !rn2(2)) { /* some earlygame help... --Amy */
+#ifdef BIGSLEX
+	    for(x = rnd((int) ((rn2(4) ? 30 : 60) * mapfact) / 100); x; x--) {
+#else
+	    for(x = rnd((int) ((rn2(4) ? 20 : 40) * mapfact) / 100); x; x--) {
+#endif
+		if (timebasedlowerchance()) {
+		    maze1xy(&mm, DRY);
+		    (void) mkobj_at(!rn2(5) ? GEM_CLASS : RANDOM_CLASS, mm.x, mm.y, TRUE, FALSE);
+		}
+	    }
+	}
+
 	    for(x = rnd((int) (12 * mapfact) / 100); x; x--) {
 		    maze1xy(&mm, DRY);
 		    (void) mksobj_at(BOULDER, mm.x, mm.y, TRUE, FALSE, FALSE);

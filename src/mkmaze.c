@@ -884,6 +884,20 @@ register const char *s;
 			(void) mkobj_at(!rn2(10) ? GEM_CLASS : 0, mm.x, mm.y, TRUE, FALSE);
 		}
 	}
+
+	if (moves == 1 && !rn2(2)) { /* some earlygame help... --Amy */
+#ifdef BIGSLEX
+		for(x = (rn2(4) ? rn1(12,24) : rn1(24, 48)); x; x--) {
+#else
+		for(x = (rn2(4) ? rn1(8,16) : rn1(16, 32)); x; x--) {
+#endif
+			if (timebasedlowerchance()) {
+				mazexy_all(&mm);
+				(void) mkobj_at(!rn2(10) ? GEM_CLASS : 0, mm.x, mm.y, TRUE, FALSE);
+			}
+		}
+	}
+
 #ifdef BIGSLEX
 	for (x = rn1(4,20); x; x--) {
 #else

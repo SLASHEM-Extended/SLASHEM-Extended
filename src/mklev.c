@@ -11665,6 +11665,19 @@ skip1:
 		    }
 		}
 
+		/* some earlygame help... --Amy */
+		if (moves == 1 && timebasedlowerchance() && !rn2(2)) {
+		    (void) mkobj_at(0, somex(croom), somey(croom), TRUE, FALSE);
+		    tryct = 0;
+		    while(!rn2(3)) {
+			if(++tryct > 100) {
+			    impossible("tryct overflow4");
+			    break;
+			}
+			(void) mkobj_at(0, somex(croom), somey(croom), TRUE, FALSE);
+		    }
+		}
+
 	}
 
    }
