@@ -10874,6 +10874,8 @@ skip1:
 		/* put traps and mimics inside */
 		goldseen = FALSE;
 		x = 15 - (level_difficulty()/10);
+		if ((depth(&u.uz) > 2 || !In_dod(&u.uz)) && !rn2(3)) x /= 2;
+		if ((depth(&u.uz) > 2 || !In_dod(&u.uz)) && !rn2(10)) x /= 5;
 		if (x <= 1) x = 2;
 
 		/* less traps in the very early game --Amy */
@@ -11639,7 +11641,7 @@ skip1:
 #endif
 
 /* STEPHEN WHITE'S NEW CODE */
-		if(!rn2(4) && timebasedlowerchance()) {
+		if(!rn2(3) && timebasedlowerchance()) {
 		    (void) mkobj_at(0, somex(croom), somey(croom), TRUE, FALSE);
 		    tryct = 0;
 		    while(!rn2(3)) {
@@ -11651,7 +11653,7 @@ skip1:
 		    }
 		}
 
-		if(ishaxor && timebasedlowerchance() && !rn2(4)) {
+		if(ishaxor && timebasedlowerchance() && !rn2(3)) {
 		    (void) mkobj_at(0, somex(croom), somey(croom), TRUE, FALSE);
 		    tryct = 0;
 		    while(!rn2(3)) {

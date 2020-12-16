@@ -6047,13 +6047,13 @@ dlb *fd;
     if (nwalk_sav && (mapcount > (int) (mapcountmax / 10))) {
 	    mapfact = (int) ((mapcount * 100L) / mapcountmax);
 #ifdef BIGSLEX
-	    for(x = rnd((int) (30 * mapfact) / 100); x; x--) {
+	    for(x = rnd((int) ((rn2(4) ? 30 : 60) * mapfact) / 100); x; x--) {
 #else
-	    for(x = rnd((int) (20 * mapfact) / 100); x; x--) {
+	    for(x = rnd((int) ((rn2(4) ? 20 : 40) * mapfact) / 100); x; x--) {
 #endif
 		if (timebasedlowerchance()) {
 		    maze1xy(&mm, DRY);
-		    (void) mkobj_at(rn2(2) ? GEM_CLASS : RANDOM_CLASS, mm.x, mm.y, TRUE, FALSE);
+		    (void) mkobj_at(!rn2(5) ? GEM_CLASS : RANDOM_CLASS, mm.x, mm.y, TRUE, FALSE);
 		}
 	    }
 	    for(x = rnd((int) (12 * mapfact) / 100); x; x--) {
@@ -6077,9 +6077,9 @@ dlb *fd;
 		} /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
 	    }
 #ifdef BIGSLEX
-	    for(x = rnd((int) (24 * mapfact) / 100); x; x--) {
+	    for(x = rnd((int) ((rn2(4) ? 24 : 48) * mapfact) / 100); x; x--) {
 #else
-	    for(x = rnd((int) (12 * mapfact) / 100); x; x--) {
+	    for(x = rnd((int) ((rn2(4) ? 12 : 24) * mapfact) / 100); x; x--) {
 #endif
 		    maze1xy(&mm, WET|DRY);
 		    if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, MM_MAYSLEEP);
@@ -6090,9 +6090,9 @@ dlb *fd;
 		    (void) mkgold(0L,mm.x,mm.y);
 	    }
 #ifdef BIGSLEX
-	    for(x = rn2((int) (30 * mapfact) / 100); x; x--) {
+	    for(x = rn2((int) ((rn2(4) ? 30 : 60) * mapfact) / 100); x; x--) {
 #else
-	    for(x = rn2((int) (15 * mapfact) / 100); x; x--) {
+	    for(x = rn2((int) ((rn2(4) ? 15 : 30) * mapfact) / 100); x; x--) {
 #endif
 		    int trytrap;
 
@@ -6107,13 +6107,13 @@ dlb *fd;
 
 		if (ishaxor) {
 #ifdef BIGSLEX
-	    for(x = rnd((int) (30 * mapfact) / 100); x; x--) {
+	    for(x = rnd((int) ((rn2(4) ? 30 : 60) * mapfact) / 100); x; x--) {
 #else
-	    for(x = rnd((int) (20 * mapfact) / 100); x; x--) {
+	    for(x = rnd((int) ((rn2(4) ? 20 : 40) * mapfact) / 100); x; x--) {
 #endif
 		if (timebasedlowerchance()) {
 		    maze1xy(&mm, DRY);
-		    (void) mkobj_at(rn2(2) ? GEM_CLASS : RANDOM_CLASS, mm.x, mm.y, TRUE, FALSE);
+		    (void) mkobj_at(!rn2(5) ? GEM_CLASS : RANDOM_CLASS, mm.x, mm.y, TRUE, FALSE);
 		}
 	    }
 	    for(x = rnd((int) (12 * mapfact) / 100); x; x--) {
@@ -6137,9 +6137,9 @@ dlb *fd;
 		} /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
 	    }
 #ifdef BIGSLEX
-	    for(x = rnd((int) (24 * mapfact) / 100); x; x--) {
+	    for(x = rnd((int) ((rn2(4) ? 24 : 48) * mapfact) / 100); x; x--) {
 #else
-	    for(x = rnd((int) (12 * mapfact) / 100); x; x--) {
+	    for(x = rnd((int) ((rn2(4) ? 12 : 24) * mapfact) / 100); x; x--) {
 #endif
 		    maze1xy(&mm, WET|DRY);
 		    if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, MM_MAYSLEEP);
@@ -6150,9 +6150,9 @@ dlb *fd;
 		    (void) mkgold(0L,mm.x,mm.y);
 	    }
 #ifdef BIGSLEX
-	    for(x = rn2((int) (30 * mapfact) / 100); x; x--) {
+	    for(x = rn2((int) ((rn2(4) ? 30 : 60) * mapfact) / 100); x; x--) {
 #else
-	    for(x = rn2((int) (15 * mapfact) / 100); x; x--) {
+	    for(x = rn2((int) ((rn2(4) ? 15 : 30) * mapfact) / 100); x; x--) {
 #endif
 		    int trytrap;
 
