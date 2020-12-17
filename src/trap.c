@@ -1984,6 +1984,8 @@ burnagain:
 
 	if (itemhasappearance(otmp, APP_IMAGINARY_HEELS) ) vulnerable = FALSE;
 
+	if (otmp->oartifact == ART_RATCH_CLOSURE_SCRATCHING && rn2(4) ) vulnerable = FALSE;
+
 	if (itemhasappearance(otmp, APP_WITHERED_CLOAK) ) vulnerable = FALSE;
 
 	if (Race_if(PM_CHIQUAI) && rn2(4)) vulnerable = FALSE;
@@ -2105,6 +2107,8 @@ struct monst *victim;
 	if (itemhasappearance(otmp, APP_BRAND_NEW_GLOVES) && rn2(4) ) vulnerable = FALSE;
 
 	if (itemhasappearance(otmp, APP_IMAGINARY_HEELS) ) vulnerable = FALSE;
+
+	if (otmp->oartifact == ART_RATCH_CLOSURE_SCRATCHING && rn2(4) ) vulnerable = FALSE;
 
 	if (itemhasappearance(otmp, APP_WITHERED_CLOAK) ) vulnerable = FALSE;
 
@@ -17898,6 +17902,8 @@ register boolean force, here;
 
 		if (itemhasappearance(obj, APP_IMAGINARY_HEELS) ) continue;
 
+		if (obj->oartifact == ART_RATCH_CLOSURE_SCRATCHING && rn2(4) ) continue;
+
 		if (itemhasappearance(obj, APP_WITHERED_CLOAK) ) continue;
 
 		if ((obj->where != OBJ_FLOOR) && uarmh && itemhasappearance(uarmh, APP_SCUBA_HELMET) ) continue;
@@ -17914,6 +17920,7 @@ register boolean force, here;
 		if ((obj->where != OBJ_FLOOR) && uarm && uarm->oartifact == ART_SWIMCHAMP) continue;
 		if ((obj->where != OBJ_FLOOR) && Race_if(PM_SEA_ELF)) continue;
 		if ((obj->where != OBJ_FLOOR) && tech_inuse(T_SILENT_OCEAN)) continue;
+		if ((obj->where != OBJ_FLOOR) && (uarmf && uarmf->oartifact == ART_STEERBOAT)) continue;
 
 		if ((obj->where != OBJ_FLOOR) && Race_if(PM_VIKING) && (rn2(50) < u.ulevel) ) continue;
 
@@ -18273,6 +18280,8 @@ register boolean force, here;
 
 		if (itemhasappearance(obj, APP_IMAGINARY_HEELS) ) continue;
 
+		if (obj->oartifact == ART_RATCH_CLOSURE_SCRATCHING && rn2(4) ) continue;
+
 		if (itemhasappearance(obj, APP_WITHERED_CLOAK) ) continue;
 
 		/* important quest items are immune */
@@ -18335,6 +18344,8 @@ register boolean force, here;
 		if (itemhasappearance(obj, APP_BRAND_NEW_GLOVES) && rn2(2) ) continue;
 
 		if (itemhasappearance(obj, APP_IMAGINARY_HEELS) ) continue;
+
+		if (obj->oartifact == ART_RATCH_CLOSURE_SCRATCHING && rn2(4) ) continue;
 
 		if (itemhasappearance(obj, APP_WITHERED_CLOAK) ) continue;
 

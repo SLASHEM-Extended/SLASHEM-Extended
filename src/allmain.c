@@ -1101,6 +1101,9 @@ moveloop()
 				if (uarmf && uarmf->oartifact == ART_UPWARD_HEELS && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
+				if (uarmf && uarmf->oartifact == ART_GIVE_THE_ART_A_HOME && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+
 				if (flags.female && uarmf && itemhasappearance(uarmf, APP_OPERA_PUMPS) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
@@ -1415,6 +1418,9 @@ moveloop()
 				moveamt /= 2;
 
 			if (uarmf && uarmf->oartifact == ART_UPWARD_HEELS && !rn2(8) && moveamt > 1)
+				moveamt /= 2;
+
+			if (uarmf && uarmf->oartifact == ART_GIVE_THE_ART_A_HOME && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
 
 			if (flags.female && uarmf && itemhasappearance(uarmf, APP_OPERA_PUMPS) && !rn2(8) && moveamt > 1)
@@ -2001,6 +2007,30 @@ moveloop()
 			pline("UGH - you inhaled too much of your own repulsive body odor, and can no longer think straight!");
 			make_confused(HConfusion + d(10,10), TRUE);
 			turn_allmonsters();
+		}
+
+		if (uarmf && uarmf->oartifact == ART_WHINY_TEACHER_INSIDE_WOMAN && !rn2(100)) {
+			register struct monst *whinymon;
+
+			for(whinymon = fmon; whinymon; whinymon = whinymon->nmon) {
+				if (DEADMONSTER(whinymon)) continue;
+				if (!monnear(whinymon, u.ux, u.uy)) continue;
+				if(cansee(whinymon->mx,whinymon->my)) {
+					if (!resist(whinymon, SCROLL_CLASS, 0, NOTELL)) monflee(whinymon, rnd(10), FALSE, FALSE);
+			}
+		}
+
+		}
+
+		if (uarmf && uarmf->oartifact == ART_RATCH_CLOSURE_SCRATCHING) {
+			if (Upolyd && u.mh >= u.mhmax) {
+				playerbleed(rnd(2 + (level_difficulty() * 10)));
+				pline_The("sharp-edged female zippers slit your %s.", body_part(LEG));
+			}
+			if (!Upolyd && u.uhp >= u.uhpmax) {
+				playerbleed(rnd(2 + (level_difficulty() * 10)));
+				pline_The("sharp-edged female zippers slit your %s.", body_part(LEG));
+			}
 		}
 
 		if (tech_inuse(T_AFTERBURNER) && u.umoved) {
@@ -8155,7 +8185,7 @@ newboss:
 			}
 		}
 
-		if ( (have_blackbreathcurse() || (uinsymbiosis && u.usymbiote.bbcurse) || (uamul && uamul->oartifact == ART_SURTERSTAFF && !(uwep && (weapon_type(uwep) == P_QUARTERSTAFF))) ) && !rn2( (Race_if(PM_HOBBIT) || Role_if(PM_RINGSEEKER) ) ? 500 : 200) ) {
+		if ( (have_blackbreathcurse() || (uarmf && uarmf->oartifact == ART_SORROW_AND_DESPAIR) || (uinsymbiosis && u.usymbiote.bbcurse) || (uamul && uamul->oartifact == ART_SURTERSTAFF && !(uwep && (weapon_type(uwep) == P_QUARTERSTAFF))) ) && !rn2( (Race_if(PM_HOBBIT) || Role_if(PM_RINGSEEKER) ) ? 500 : 200) ) {
 			/* was 1 in 20 in ToME, or 1 in 50 if you were a hobbit */
 			if (!rn2(5)) { /* level drain */
 				if(!Drain_resistance || !rn2(StrongDrain_resistance ? 15 : 4) )
@@ -8166,7 +8196,7 @@ newboss:
 			}
 		}
 
-		if ( (have_blackbreathcurse() || (uinsymbiosis && u.usymbiote.bbcurse) || (uamul && uamul->oartifact == ART_SURTERSTAFF && !(uwep && (weapon_type(uwep) == P_QUARTERSTAFF))) ) && isfriday && !rn2( (Race_if(PM_HOBBIT) || Role_if(PM_RINGSEEKER) ) ? 500 : 200) ) {
+		if ( (have_blackbreathcurse() || (uarmf && uarmf->oartifact == ART_SORROW_AND_DESPAIR) || (uinsymbiosis && u.usymbiote.bbcurse) || (uamul && uamul->oartifact == ART_SURTERSTAFF && !(uwep && (weapon_type(uwep) == P_QUARTERSTAFF))) ) && isfriday && !rn2( (Race_if(PM_HOBBIT) || Role_if(PM_RINGSEEKER) ) ? 500 : 200) ) {
 			if (!rn2(5)) { /* level drain */
 				if(!Drain_resistance || !rn2(StrongDrain_resistance ? 15 : 4) )
 				    losexp("black breath drainage", FALSE, TRUE);
@@ -11636,7 +11666,7 @@ past3:
 		}
 	}
 
-	if ((BankTrapEffect || (uarmf && uarmf->oartifact == ART_SONJA_S_TORN_SOUL) || (uleft && uleft->oartifact == ART_ARABELLA_S_RESIST_COLD) || (uright && uright->oartifact == ART_ARABELLA_S_RESIST_COLD) || (uamul && uamul->oartifact == ART_LOW_ZERO_NUMBER) || (uamul && uamul->oartifact == ART_ARABELLA_S_PRECIOUS_GADGET) || u.uprops[BANKBUG].extrinsic || have_bankstone()) && u.ugold) {
+	if ((BankTrapEffect || (uarmf && uarmf->oartifact == ART_SONJA_S_TORN_SOUL) || (uleft && uleft->oartifact == ART_ARABELLA_S_RESIST_COLD) || (uright && uright->oartifact == ART_ARABELLA_S_RESIST_COLD) || (uamul && uamul->oartifact == ART_LOW_ZERO_NUMBER) || (uarmf && uarmf->oartifact == ART_NOW_YOU_LOOK_LIKE_A_BEGGAR) || (uamul && uamul->oartifact == ART_ARABELLA_S_PRECIOUS_GADGET) || u.uprops[BANKBUG].extrinsic || have_bankstone()) && u.ugold) {
 
 		if (!u.bankcashlimit) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
 

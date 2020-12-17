@@ -4290,7 +4290,7 @@ opentin()		/* called during each move whilst opening a tin */
 			if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
 			if (!issoviet) lesshungry(tintxts[r].nut);
 		}
-	    else lesshungry(tintxts[r].nut);
+	    else lesshungry((uarmf && uarmf->oartifact == ART_U_BE_CURRY) ? ((tintxts[r].nut) * 3) : tintxts[r].nut);
 
 		if (Race_if(PM_WORM_THAT_WALKS)) { /* chance to polymorph into the tinned monster --Amy */
 			if (rn2(5) ) {

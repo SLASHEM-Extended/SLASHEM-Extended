@@ -176,6 +176,8 @@ register boolean clumsy;
 
 	if (uwep && uwep->oartifact == ART_PEEPLUE) dmg += 2;
 
+	if (uarmf && uarmf->oartifact == ART_EROTICLAMP && u.ustuck && !u.uswallow && !sticks(youmonst.data)) dmg += 2;
+
 	if (uarmf && uarmf->otyp == FEMININE_PUMPS && uarmf->spe >= 1)
 		dmg += uarmf->spe;
 
@@ -527,7 +529,20 @@ register boolean clumsy;
 
 	}
 
+	if (uarmf && uarmf->oartifact == ART_DO_NOT_PEE && !rn2(5) && !(mon->female) && !is_neuter(mon->data) && !uarmf->oeroded && !uarmf->oeroded2) {
+		pline("%s is paralyzed by your powerful kick!", Monnam(mon));
+		mon->mcanmove = 0;
+		if (!mon->mfrozen) mon->mfrozen = rnd(10);
+		else if (mon->mfrozen < 127) mon->mfrozen++;
+		mon->mstrategy &= ~STRAT_WAITFORU;
+	}
+
 	if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) {
+		mon->bleedout += rnd(10);
+		pline("Your very pretty block heels scratch %sy wounds on %s's %s!", mbodypart(mon, BLOOD), mon_nam(mon), makeplural(mbodypart(mon, LEG)) );
+	}
+
+	if (uarmf && uarmf->oartifact == ART_SCRATCHE_HUSSY) {
 		mon->bleedout += rnd(10);
 		pline("Your very pretty block heels scratch %sy wounds on %s's %s!", mbodypart(mon, BLOOD), mon_nam(mon), makeplural(mbodypart(mon, LEG)) );
 	}

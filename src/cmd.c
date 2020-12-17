@@ -1654,7 +1654,7 @@ domonability()
 
 			return 1;
 		}
-	} else if (Role_if(PM_HUSSY) && !u.hussyperfume && ((!Upolyd && flags.female) || (Upolyd && youmonst.data->msound == MS_STENCH)) && yn("Do you want to spread your scentful perfume?") == 'y') {
+	} else if ( ( (Role_if(PM_HUSSY) && (!Upolyd && flags.female)) || (uarmf && uarmf->oartifact == ART_ANJA_S_WIDE_FIELD) || (uarmf && uarmf->oartifact == ART_SCRATCHE_HUSSY) || (Upolyd && youmonst.data->msound == MS_STENCH) ) && !u.hussyperfume && yn("Do you want to spread your scentful perfume?") == 'y') {
 		You("spread the lovely feminine drum stint reluctance brand perfume to intoxicate monsters around you!");
 		int mondistance = 0;
 		struct monst *mtmp3;

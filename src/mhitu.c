@@ -9,6 +9,7 @@
 
 STATIC_VAR NEARDATA struct obj *otmp;
 STATIC_PTR int katicleaning(void);
+STATIC_PTR int singcleaning(void);
 static NEARDATA schar delay;            /* moves left for kati cleaning */
 
 STATIC_DCL void urustm(struct monst *, struct obj *);
@@ -249,6 +250,7 @@ on the first floor, especially when you're playing as something with drain resis
 						set_occupation(katicleaning, "cleaning the sexy Kati shoes", 0);
 						mtmp->mpeaceful = TRUE;
 						pline("You start cleaning the shit from the profiled girl boots...");
+						return; /* monster stops attacking */
 					}
 				}
 			}
@@ -259,11 +261,12 @@ on the first floor, especially when you're playing as something with drain resis
 				if (yn("Do you want to clean them?") == 'y') {
 						delay = (extraannoying ? -200 : -40);
 						u.singtrapocc = TRUE;
-						if (extraannoying) set_occupation(katicleaning, "cleaning cow dung from female shoes", 0);
-						else set_occupation(katicleaning, "cleaning dog shit from female shoes", 0);
+						if (extraannoying) set_occupation(singcleaning, "cleaning cow dung from female shoes", 0);
+						else set_occupation(singcleaning, "cleaning dog shit from female shoes", 0);
 						mtmp->mpeaceful = TRUE;
 						mtmp->singannoyance = FALSE;
 						pline("You start cleaning the shit from %s...", Monnam(mtmp));
+						return; /* monster stops attacking */
 
 				} else {
 					pline("Sing ushers all the girls to attack you relentlessly...");
@@ -4690,6 +4693,25 @@ elena37:
 
 	}
 
+	if (uarmf && uarmf->oartifact == ART_DO_NOT_PEE && !range2 && foundyou && (tmp > (j = rnd(20+i))) && humanoid(mtmp->data) && is_male(mtmp->data)) {
+
+		if (!rn2(3)) {
+			pline("%s pees at your boots!", Monnam(mtmp));
+			if (rn2(100)) pline("But thankfully you manage to dodge.");
+			else {
+				if (rn2(2)) {
+					if (uarmf && uarmf->oeroded < MAX_ERODE) uarmf->oeroded++;
+					pline("Nooooooo! Your pretty boots have been defiled!");
+				} else {
+					if (uarmf && uarmf->oeroded2 < MAX_ERODE) uarmf->oeroded2++;
+					pline("Nooooooo! Your pretty boots have been defiled!");
+				}
+			}
+
+		}
+
+	}
+
 	if (mtmp->egotype_radiator) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
@@ -5075,7 +5097,7 @@ elena37:
 		gazemu(mtmp, a);
 	}
 
-	if (uarmf && itemhasappearance(uarmf, APP_CHRISTMAS_CHILD_MODE_BOOTS) && dmgtype(mtmp, AD_NIVE)) {
+	if (uarmf && itemhasappearance(uarmf, APP_CHRISTMAS_CHILD_MODE_BOOTS) && dmgtype(mtmp->data, AD_NIVE)) {
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
 		a->aatyp = AT_GAZE;
@@ -22005,6 +22027,18 @@ katicleaning()
 		return(1);
 	} else {
 		pline("Finally, you cleaned all the dog shit from the sexy Kati shoes!");
+		return(0);
+	}
+}
+
+STATIC_PTR int
+singcleaning()
+{
+	if (delay) {
+		delay++;
+		return(1);
+	} else {
+		pline("Finally, you cleaned all the shit from the sexy female shoes!");
 		return(0);
 	}
 }

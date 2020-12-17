@@ -902,8 +902,13 @@ nh_timeout()
 				}
 			    }
 
-			    nomul(-2, "fumbling", TRUE);
-			    nomovemsg = "";
+			    if (uarmf && uarmf->oartifact == ART_SUCH_A_SIGHER) {
+					nomul(-10, "cleaning the dog shit from their shoes", TRUE);
+					nomovemsg = "You finally cleaned the dog shit from your treaded soles.";
+			    } else {
+					nomul(-2, "fumbling", TRUE);
+					nomovemsg = "";
+			    }
 			    /* The more you are carrying the more likely you
 			     * are to make noise when you fumble.  Adjustments
 			     * to this number must be thoroughly play tested.

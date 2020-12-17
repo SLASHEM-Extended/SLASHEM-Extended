@@ -1471,6 +1471,8 @@ doengrave()
 	multi = 0;		/* moves consumed */
 	nomovemsg = (char *)0;	/* occupation end message */
 
+	boolean canengravefast = (Role_if(PM_ARTIST) || (uarmf && uarmf->oartifact == ART_GIVE_THE_ART_A_HOME));
+
 	buf[0] = (char)0;
 	ebuf[0] = (char)0;
 	post_engr_text[0] = (char)0;
@@ -2591,16 +2593,16 @@ doengrave()
 	 */
 	switch(type){
 	    default:
-		multi = -(len/(Role_if(PM_ARTIST) ? 20 : 10) );
+		multi = -(len/(canengravefast ? 20 : 10) );
 		if (multi) nomovemsg = "You finish your weird engraving.";
 		break;
 	    case DUST:
-		multi = -(len/(Role_if(PM_ARTIST) ? 20 : 10) );
+		multi = -(len/(canengravefast ? 20 : 10) );
 		if (multi) nomovemsg = "You finish writing in the dust.";
 		break;
 	    case HEADSTONE:
 	    case ENGRAVE:
-		multi = -(len/(Role_if(PM_ARTIST) ? 20 : 10) );
+		multi = -(len/(canengravefast ? 20 : 10) );
 		if (otmp->otyp == WAN_DIGGING) multi /= 5; /* otherwise engraving with them would be useless --Amy */
 		if ((otmp->oclass == WEAPON_CLASS) && !stack_too_big(otmp) &&
 		    ( ((otmp->otyp != ATHAME) && (otmp->otyp != MERCURIAL_ATHAME) && (!is_lightsaber(otmp))) || otmp->cursed)) {
@@ -2633,14 +2635,14 @@ doengrave()
 		if (multi) nomovemsg = "You finish engraving.";
 		break;
 	    case BURN:
-		multi = -(len/(Role_if(PM_ARTIST) ? 20 : 10) );
+		multi = -(len/(canengravefast ? 20 : 10) );
 		if (multi)
 		    nomovemsg = is_ice(u.ux,u.uy) ?
 			"You finish melting your message into the ice.":
 			"You finish burning your message into the floor.";
 		break;
 	    case MARK:
-		multi = -(len/(Role_if(PM_ARTIST) ? 20 : 10) );
+		multi = -(len/(canengravefast ? 20 : 10) );
 		if ((otmp->oclass == TOOL_CLASS) &&
 		    (otmp->otyp == MAGIC_MARKER || otmp->otyp == FELT_TIP_MARKER)) {
 		    maxelen = (otmp->spe) * /*2*/8; /* one charge / 2 letters */ /* Amy edit - one charge per 8 letters */
@@ -2655,7 +2657,7 @@ doengrave()
 		if (multi) nomovemsg = "You finish defacing the dungeon.";
 		break;
 	    case ENGR_BLOOD:
-		multi = -(len/(Role_if(PM_ARTIST) ? 20 : 10) );
+		multi = -(len/(canengravefast ? 20 : 10) );
 		if (multi) nomovemsg = "You finish scrawling.";
 		break;
 	}

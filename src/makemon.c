@@ -28071,6 +28071,7 @@ register struct permonst *ptr;
 	if (uarmf && uarmf->oartifact == ART_HADES_THE_MEANIE) return FALSE;
 	if (uarmf && uarmf->oartifact == ART_HENRIETTA_S_DOGSHIT_BOOTS) return FALSE;
 	if (uarmf && uarmf->oartifact == ART_TOTALLY_THE_SEXY_BITCH) return FALSE;
+	if (uarmf && uarmf->oartifact == ART_NOW_YOU_ARE_HOWEVER_TO) return FALSE;
 	if (ptr->msound == MS_NEMESIS)	return FALSE;
 	if (u.kyliemode) return FALSE;
 	if (RngeUnlikability) return FALSE;

@@ -6243,6 +6243,8 @@ struct obj *weapon;
 		if (u.ulevel >= 30) bonus += 1;
 	}
 
+	if (uarmf && uarmf->oartifact == ART_GIVE_THE_ART_A_HOME && weapon && weapon_type(weapon) == P_HAMMER) bonus += 2;
+
 	if (Race_if(PM_INKA) && weapon && objects[weapon->otyp].oc_material == MT_INKA) {
 		bonus += 5;
 	}

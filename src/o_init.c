@@ -3959,6 +3959,76 @@ find_lead_boots()
 
 }
 
+int
+find_machinery_boots()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_MACHINERY_BOOTS)) return i;
+    }
+
+    impossible("machinery boots not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_christmas_child_mode_boots()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_CHRISTMAS_CHILD_MODE_BOOTS)) return i;
+    }
+
+    impossible("christmas child mode boots not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_sandals_with_socks()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_SANDALS_WITH_SOCKS)) return i;
+    }
+
+    impossible("sandals with socks not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_wedge_sneakers()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_WEDGE_SNEAKERS)) return i;
+    }
+
+    impossible("wedge sneakers not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_barefoot_shoes()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_BAREFOOT_SHOES)) return i;
+    }
+
+    impossible("barefoot shoes not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
 void
 oinit()			/* level dependent initialization */
 {

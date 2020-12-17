@@ -4385,6 +4385,47 @@ register struct monst *mtmp;
 	    }
 	}
 
+	if (uarmf && uarmf->oartifact == ART_DESEAMING_GAME && !rn2(50) && tmp != PM_UNFORTUNATE_VICTIM && tmp != PM_SCROLLER_MASTER && tmp != PM_BOULDER_MASTER && tmp != PM_ITEM_MASTER && tmp != PM_GOOD_ITEM_MASTER && tmp != PM_BAD_ITEM_MASTER && tmp != PM_HOLE_MASTER && tmp != PM_TRAP_MASTER && !(mtmp->data->geno & G_UNIQ) ) {
+
+		int attempts = 0;
+		struct permonst *pm = 0;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+newbossSING:
+		do {
+			pm = rndmonst();
+			attempts++;
+			if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+		} while ( (!pm || (pm && !(pm->msound == MS_SHOE )) || (pm && !(type_is_pname(pm))) ) && attempts < 50000);
+
+		if (!pm && rn2(50) ) {
+			attempts = 0;
+			goto newbossSING;
+		}
+		if (pm && !(pm->msound == MS_SHOE) && rn2(50) ) {
+			attempts = 0;
+			goto newbossSING;
+		}
+		if (pm && !(type_is_pname(pm)) && rn2(50) ) {
+			attempts = 0;
+			goto newbossSING;
+		}
+
+		if (pm) {
+			struct monst *singbitch;
+			singbitch = makemon(pm, 0, 0, MM_ANGRY); /* not frenzied --Amy */
+			if (singbitch) singbitch->singannoyance = TRUE;
+		}
+
+		u.aggravation = 0;
+
+	}
+
 	/* Respawn trap effect by Amy. Gotta limit it somehow, to ensure that the game doesn't become completely impossible
 	 * for characters who have the effect intrinsically. It used to be that the # of newly spawned monsters was
 	 * on average exactly the amount that you killed, which is very problematic for trolls and other revivers.

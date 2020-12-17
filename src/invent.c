@@ -20393,6 +20393,42 @@ boolean knoweverything;
 					pline("Artifact specs: +10 to-hit and +8 damage to shock-susceptible monsters, protection when wielded."); break;
 				case ART_BAOBHAN_MOUNTAIN:
 					pline("Artifact specs: +6 to-hit and +6 damage, half spell damage, 10%% better spellcasting chances and manler effect when wielded."); break;
+				case ART_UNFAIR_FIGHTING:
+					pline("Artifact specs: free action when worn, as well as a low chance of lifesaving if you die."); break;
+				case ART_EROTICLAMP:
+					pline("Artifact specs: resist disintegration and death when worn; if you're being held by a monster, your melee and kick attacks also deal +2 damage. It's called 'Eroti-Clamp', not whatever other spelling you expected. Because having your toes clamped by female hugging boots is erotic. :-)"); break;
+				case ART_RATCH_CLOSURE_SCRATCHING:
+					pline("Artifact specs: wearing them with full health causes them to scratch your legs with their zippers, causing you to bleed. If you put them on while their enchantment value is low, it increases by one. They also resist erosion."); break;
+				case ART_SCRATCHE_HUSSY:
+					pline("Artifact specs: +3 charisma when worn and kicking a monster causes it to bleed. While wearing them, you can also #monster to spread scentful perfume."); break;
+				case ART_FINGERNAIL_FRONT:
+					pline("Artifact specs: if you're fighting unarmed and your fingers aren't covered by gloves, your unarmed strikes deal +3 damage."); break;
+				case ART_GIVE_THE_ART_A_HOME:
+					pline("Artifact specs: +2 damage with hammer-class weapons and you can engrave twice as many characters per turn, but they slow you down a little bit."); break;
+				case ART_SORROW_AND_DESPAIR:
+					pline("Artifact specs: half physical damage, sickness resistance and aggravate monster when worn. They fill you with the black breath."); break;
+				case ART_DESEAMING_GAME:
+					pline("Artifact specs: fire and disintegration resistance when worn, full nutrients, +3 strength and constitution, but whenever you kill a monster, there's a slight chance that a hostile shoe monster is spawned somewhere on the level and wants you to clean the shit off its soles. This is Sing's deseaming game and I'm pretty sure you don't want to play it :-P"); break;
+				case ART_DO_NOT_PEE:
+					pline("Artifact specs: as long as they're not eroded, they convey petrification resistance and kicking a male monster with them may paralyze it. However, male monsters will try to pee at your boots, which has a chance of damaging them. The bastards!"); break;
+				case ART_PRACTICLASSY:
+					pline("Artifact specs: reflection, disintegration and death resistance when worn, and all randomly generated gold is doubled, but if you put them on while your quest nemesis isn't dead yet, you automatically gain the beacher hybrid race, which causes the nemesis to terrorize you!"); break;
+				case ART_NOW_YOU_ARE_HOWEVER_TO:
+					pline("Artifact specs: aggravate monster and magic resistance when worn, causes all newly generated monsters to spawn hostile."); break;
+				case ART_SUCH_A_SIGHER:
+					pline("Artifact specs: resist petrification and sleep when worn, but whenever you fumble, you need to spend 10 turns to clean the shit from them."); break;
+				case ART_STEERBOAT:
+					pline("Artifact specs: swimming when worn and protects items from being damaged in water."); break;
+				case ART_PERMINANT_INCREASE:
+					pline("Artifact specs: if you enter a machinery room while wearing them, and your intrinsic protection is lower than 4, it's immediately set to 4. Might save you some donation money."); break;
+				case ART_WHINY_TEACHER_INSIDE_WOMAN:
+					pline("Artifact specs: aggravate monster when worn, and nearby monsters will occasionally turn to flee."); break;
+				case ART_NOW_YOU_LOOK_LIKE_A_BEGGAR:
+					pline("Artifact specs: resist poison, cold and sickness when worn, but any money you earn is immediately stolen from you because a beggar isn't allowed to have cash on their person."); break;
+				case ART_ANJA_S_WIDE_FIELD:
+					pline("Artifact specs: death resistance when worn and allows you to spread the feminine perfume with the #monster command."); break;
+				case ART_U_BE_CURRY:
+					pline("Artifact specs: full nutrients when worn, and eating a tin gives three times the usual amount of nutrition."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

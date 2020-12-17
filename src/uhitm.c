@@ -1492,6 +1492,8 @@ int dieroll;
 			}
 		}
 
+		if (uarmf && uarmf->oartifact == ART_FINGERNAIL_FRONT && (!uarmg || FingerlessGloves) ) tmp += 3;
+
 	    valid_weapon_attack = (tmp > 0);
 
 	    /* blessed gloves give bonuses when fighting 'bare-handed' */
@@ -2710,6 +2712,7 @@ int dieroll;
 		if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 149) tmp += 1;
 		if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 199) tmp += 1;
 		if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 249) tmp += 1;
+		if (uarmf && uarmf->oartifact == ART_EROTICLAMP && u.ustuck && !u.uswallow && !sticks(youmonst.data)) tmp += 2;
 
 		if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 

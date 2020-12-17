@@ -2574,6 +2574,7 @@ int x;
 		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) tmp += 10;
 		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
+		if (uarmf && uarmf->oartifact == ART_DESEAMING_GAME) tmp += 3;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (uarmg && uarmg->otyp == GAUNTLETS_OF_POWER) tmp += (uarmg->spe + 3);
@@ -2679,6 +2680,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL) tmp += 5;
 		if (uarmg && uarmg->oartifact == ART_EGASSO_S_GIBBERISH) tmp += 5;
 		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
+		if (uarmf && uarmf->oartifact == ART_SCRATCHE_HUSSY) tmp += 3;
 
 		if (RngeCoquetry) tmp += 5;
 		if (FemtrapActiveSolvejg) tmp += 5;
@@ -2843,6 +2845,7 @@ int x;
 		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
 		if (Race_if(PM_BULDOZGAR)) tmp += 2;
 		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
+		if (uarmf && uarmf->oartifact == ART_DESEAMING_GAME) tmp += 3;
 
 		if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 			if (uarm && is_metallic(uarm)) tmp++;

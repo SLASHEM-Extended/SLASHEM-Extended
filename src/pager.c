@@ -26013,6 +26013,12 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel strangely protected. Could be due to your boots.",
 	"You feel strangely protected. Could be due to your boots. Or it could just be your imagination.",
 	"You feel at home here, thanks to your machinery boots!",
+	"The ugly-looking asshole pees at your boots!",
+	"The ugly-looking asshole pees at your boots! But thankfully you manage to dodge.",
+	"The ugly-looking asshole pees at your boots, and defiles them even though they were very pretty block-heeled 'sister' combat boots!!",
+	"Nooooooo! Your pretty boots have been defiled!",
+	"Nooooooo! Your pretty boots have been defiled! Now they're unusable, even though they were incredibly lovely with the massive black block heels!",
+	"A holy aura of protection surrounds you!",
 
 };
 

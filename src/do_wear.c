@@ -397,6 +397,13 @@ Boots_on()
 		}
     }
 
+    if (uarmf && uarmf->oartifact == ART_PRACTICLASSY && !flags.hybridbeacher && !(quest_status.killed_nemesis)) {
+		flags.hybridbeacher = TRUE;
+		flags.hybridization++;
+		pline("%s thunders: 'Alright %s you little practicant maggot, get ready for another hard day of work! You're late by 5 minutes but that's your loss! If you do your work properly this time you'll not get any problems with me, but if you step out of line you'll pay zorkmids for each of your offenses!'", noroelaname(), playeraliasname);
+
+    }
+
     if (uarmf && uarmf->oartifact == ART_MEPHISTO_S_BROGUES) {
 		if (!uarmf->cursed) {
 			curse(uarmf);
@@ -538,6 +545,8 @@ Boots_on()
 			pline("Congratulations, you can now walk around in a pair of boots that won't come off, and whose previous owner fully stepped into a heap of dog shit.");
 		}
     }
+
+    if (uarmf && uarmf->oartifact == ART_RATCH_CLOSURE_SCRATCHING && uarmf->spe < 1) uarmf->spe++;
 
 	if (uarmf && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uarmf);
 

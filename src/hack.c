@@ -3824,6 +3824,13 @@ register boolean newlev;
 				flags.botl = TRUE;
 				You_feel("at home here, thanks to your machinery boots!");
 			}
+			if (uarmf && uarmf->oartifact == ART_PERMINANT_INCREASE && u.ublessed < 4) {
+				if (!(HProtection & INTRINSIC)) HProtection |= FROMOUTSIDE;
+				u.ublessed = 4;
+				find_ac();
+				flags.botl = TRUE;
+				pline("A holy aura of protection surrounds you!");
+			}
 		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case SHOWERROOM:

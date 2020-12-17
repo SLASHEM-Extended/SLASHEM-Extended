@@ -7667,6 +7667,78 @@ A("Baobhan Mountain",				SITH_STAFF, /* manler effect, 10% better spellcasting *
 	(SPFX_RESTR|SPFX_EVIL|SPFX_HSPDAM), 0, 0,
 	PHYS(6, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
+A("Unfair Fighting",				KRISTIN_COMBAT_BOOTS, /* free action, and you have 25% chance of lifesaving */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Eroticlamp",				ANNA_HUGGING_BOOTS, /* resist disintegration and death; if you're being held by a monster, +2 melee and kick damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Ratch Closure Scratching",				RUEA_COMBAT_BOOTS, /* if your HP is at the current maximum, you start bleeding; resistant to erosion like withered gloves, putting them on increases enchantment value if it's lower than +1 */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Scratche Hussy",				DORA_COMBAT_BOOTS, /* +3 charisma, kicking a monster causes it to bleed, allows you to spread scentful perfume */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Fingernail Front",				MARIKE_SNEAKERS, /* +3 unarmed damage if you're not wearing finger-covering gloves */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Give The Art A Home",				JETTE_COMBAT_BOOTS, /* +2 damage with hammer-class weapons, you can engrave more characters per turn, slows you down like spirit */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Sorrow and Despair",				INA_HUGGING_BOOTS, /* sickness resistance, aggravate monster and black breath */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Deseaming Game",				SING_PLATFORM_BOOTS, /* resist fire and disintegration, full nutrients, +3 STR and CON, killing a monster has 1 in 50 chance of spawning a hostile shoe monster somewhere on the level */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Do Not Pee",				VICTORIA_COMBAT_BOOTS, /* if they're not damaged at all, petrification resistance and kicking a male monster has 1 in 5 chance of paralyzing it; male monsters have 1 in 3 chance of attacking the boots */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("PractiClassy",				MELISSA_WEDGE_BOOTS, /* if you put them on while the nemesis isn't dead yet, you automatically gain the beacher race; resist disintegration and death, randomly generated gold is doubled */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Now You Are However To",				ANITA_LADY_PUMPS, /* aggravate monster, all monsters spawn hostile, magic resistance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Such A Sigher",				HENRIETTA_COMBAT_BOOTS, /* when you fumble, you're paralyzed for 10 turns; resist petrification and sleep */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Steerboat",				VERENA_STILETTO_SANDALS, /* swimming, items don't get wet in water */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Perminant Increase",				LOW_BOOTS, /* initialized to always be machinery boots; entering a machinery room sets your intrinsic protection to 4 if it was lower */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Whiny Teacher Inside Woman",				LOW_BOOTS, /* initialized to always be christmas child mode boots, aggravate monster, 1 in 100 chance per turn that nearby monsters turn to flee like you had cast cause fear */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Now You Look Like A Beggar",				LOW_BOOTS, /* initialized to always be sandals with socks, banking effect, resist poison, cold and sickness */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Anja's Wide Field",				LOW_BOOTS, /* initialized to always be wedge sneakers, resist death, allows you to spread the perfume */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("U Be Curry",				LOW_BOOTS, /* initialized to always be barefoot shoes, full nutrients, eating a tin gives 3x nutrition */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
 
 /*
  *	Stormbringer only has a 2 because it can drain a level,

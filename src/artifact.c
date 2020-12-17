@@ -516,6 +516,11 @@ hack_artifacts()
 	artilist[ART_ARTHUR_S_HIGH_HEELED_PLATF].otyp = find_sharp_edged_sandals();
 	artilist[ART_GREEN_THUMB].otyp = find_nondescript_gloves();
 	artilist[ART_GEAVY_GREAVES].otyp = find_lead_boots();
+	artilist[ART_PERMINANT_INCREASE].otyp = find_machinery_boots();
+	artilist[ART_WHINY_TEACHER_INSIDE_WOMAN].otyp = find_christmas_child_mode_boots();
+	artilist[ART_NOW_YOU_LOOK_LIKE_A_BEGGAR].otyp = find_sandals_with_socks();
+	artilist[ART_ANJA_S_WIDE_FIELD].otyp = find_wedge_sneakers();
+	artilist[ART_U_BE_CURRY].otyp = find_barefoot_shoes();
 
 #if 0
 	/* Fix up the gifts */

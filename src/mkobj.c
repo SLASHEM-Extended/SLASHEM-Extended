@@ -3419,6 +3419,7 @@ int x, y;
 	}
 
 	if (RngeWealth) amount *= (1 + rnd(2)); /* 2.5 times as much gold on average --Amy */
+	if (uarmf && uarmf->oartifact == ART_PRACTICLASSY) amount *= 2;
 
     if (gold) {
 	gold->quan += amount;

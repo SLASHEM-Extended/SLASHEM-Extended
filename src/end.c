@@ -1101,6 +1101,30 @@ erudone:
 	}
 ruffledone:
 
+	if (uarmf && how < GENOCIDED && uarmf->oartifact == ART_UNFAIR_FIGHTING && !rn2(4) ) {
+		pline("But wait...");
+		pline("You simply refuse to die, even though you're supposed to have been defeated!");
+
+		if (wanttodie) {
+			pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+			goto kristindone;
+		}
+
+		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
+		savelife(how);
+		killer = 0;
+		killer_format = 0;
+
+#ifdef LIVELOGFILE
+		livelog_avert_death();
+#endif
+		u.youaredead = 0;
+
+		return;
+
+	}
+kristindone:
+
 	/* double detect monsters can let you lifesave too */
 	if (StrongDetect_monsters && how < GENOCIDED && !rn2(10) ) {
 		pline("But wait...");

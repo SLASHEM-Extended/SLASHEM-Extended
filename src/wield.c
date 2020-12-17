@@ -1154,6 +1154,8 @@ boolean fade_scrolls;
 
 	if (itemhasappearance(target, APP_IMAGINARY_HEELS) ) return;
 
+	if (target->oartifact == ART_RATCH_CLOSURE_SCRATCHING && rn2(4) ) return;
+
 	if (itemhasappearance(target, APP_WITHERED_CLOAK) ) return;
 
 	if (uarmf && !rn2(2) && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) return;
@@ -1276,6 +1278,8 @@ boolean fade_scrolls;
 	if (itemhasappearance(target, APP_BRAND_NEW_GLOVES) && rn2(4) ) return;
 
 	if (itemhasappearance(target, APP_IMAGINARY_HEELS) ) return;
+
+	if (target->oartifact == ART_RATCH_CLOSURE_SCRATCHING && rn2(4) ) return;
 
 	if (itemhasappearance(target, APP_WITHERED_CLOAK) ) return;
 
