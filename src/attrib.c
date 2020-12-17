@@ -2739,6 +2739,8 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) tmp -= 5;
 		if (uarmh && itemhasappearance(uarmh, APP_CORONA_MASK)) tmp -= 5;
 		if (uarmh && uarmh->oartifact == ART_FFP___MASK) tmp -= 5;
+		if (uarmf && itemhasappearance(uarmf, APP_BAREFOOT_SHOES)) tmp -= 1;
+		if (uarmf && itemhasappearance(uarmf, APP_SANDALS_WITH_SOCKS)) tmp -= 25;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
 		if (u.tsloss_cha > 0) tmp -= u.tsloss_cha;
 

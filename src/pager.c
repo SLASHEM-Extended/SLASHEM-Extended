@@ -26010,6 +26010,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"Oh no, someone opened the zippers of your boots again, causing you to slip...",
 	"Oh no, someone opened the zippers of your boots again, causing you to slip... Spflotch! Your boots landed into a heap of shit.",
 	"Oh no, someone opened the zippers of your boots again, causing you to slip... Spflotch! Your boots landed into a heap of shit. Great, now you can spend ages trying to clean them.",
+	"You feel strangely protected. Could be due to your boots.",
+	"You feel strangely protected. Could be due to your boots. Or it could just be your imagination.",
+	"You feel at home here, thanks to your machinery boots!",
 
 };
 

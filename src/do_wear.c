@@ -308,6 +308,19 @@ Boots_on()
 	case ALMUT_SNEAKERS:
 	case JULIETTA_PEEP_TOES:
 	case ARABELLA_HUGGING_BOOTS:
+	case KRISTIN_COMBAT_BOOTS:
+	case ANNA_HUGGING_BOOTS:
+	case RUEA_COMBAT_BOOTS:
+	case DORA_COMBAT_BOOTS:
+	case MARIKE_SNEAKERS:
+	case JETTE_COMBAT_BOOTS:
+	case INA_HUGGING_BOOTS:
+	case SING_PLATFORM_BOOTS:
+	case VICTORIA_COMBAT_BOOTS:
+	case MELISSA_WEDGE_BOOTS:
+	case ANITA_LADY_PUMPS:
+	case HENRIETTA_COMBAT_BOOTS:
+	case VERENA_STILETTO_SANDALS:
 
 		if (!uarmf->cursed) {
 			pline("Oh whoops, your footwear welds itself to your %s. This might be the result of a curse.%s", makeplural(body_part(FOOT)), FunnyHallu ? " (Thank you, Captain Obvious.)" : "" );
@@ -775,6 +788,19 @@ Boots_off()
 	case ALMUT_SNEAKERS:
 	case JULIETTA_PEEP_TOES:
 	case ARABELLA_HUGGING_BOOTS:
+	case KRISTIN_COMBAT_BOOTS:
+	case ANNA_HUGGING_BOOTS:
+	case RUEA_COMBAT_BOOTS:
+	case DORA_COMBAT_BOOTS:
+	case MARIKE_SNEAKERS:
+	case JETTE_COMBAT_BOOTS:
+	case INA_HUGGING_BOOTS:
+	case SING_PLATFORM_BOOTS:
+	case VICTORIA_COMBAT_BOOTS:
+	case MELISSA_WEDGE_BOOTS:
+	case ANITA_LADY_PUMPS:
+	case HENRIETTA_COMBAT_BOOTS:
+	case VERENA_STILETTO_SANDALS:
 		break;
 	case HIPPIE_HEELS:
 

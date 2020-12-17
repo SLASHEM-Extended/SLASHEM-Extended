@@ -1127,6 +1127,7 @@ int mode;
 			if (uamul && uamul->otyp == AMULET_OF_CLIMBING) climbingchance = ((levl[u.ux][u.uy].typ == MOUNTAIN) ? 3 : 10);
 			if (ublindf && ublindf->otyp == CLIMBING_SET) climbingchance = ((levl[u.ux][u.uy].typ == MOUNTAIN) ? 3 : 10);
 			if (uwep && uwep->otyp == CLIMBING_STICK) climbingchance = ((levl[u.ux][u.uy].typ == MOUNTAIN) ? 3 : 10);
+			if (uarmf && itemhasappearance(uarmf, APP_CLIMBING_BOOTS)) climbingchance = ((levl[u.ux][u.uy].typ == MOUNTAIN) ? 3 : 10);
 
 			if (!(u.usteed) && rn2(climbingchance)) {
 				TimerunBug += 1; /* ugly hack --Amy */
@@ -3816,6 +3817,13 @@ register boolean newlev;
 		    break;
 		case MACHINEROOM:
 			pline(FunnyHallu ? "It's the inside of the Space Shuttle!" : "You enter a machinery room.");
+			if (uarmf && itemhasappearance(uarmf, APP_MACHINERY_BOOTS) && !u.uspellprot) {
+				u.uspellprot = 4;
+				u.uspmtime = 10;
+				find_ac();
+				flags.botl = TRUE;
+				You_feel("at home here, thanks to your machinery boots!");
+			}
 		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case SHOWERROOM:

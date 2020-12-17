@@ -3456,6 +3456,19 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ SITH_STAFF, "todo" },
 	{ REACH_TRIDENT, "todo" },
 	{ CLIMBING_STICK, "todo" },
+	{ KRISTIN_COMBAT_BOOTS, "todo" },
+	{ ANNA_HUGGING_BOOTS, "todo" },
+	{ RUEA_COMBAT_BOOTS, "todo" },
+	{ DORA_COMBAT_BOOTS, "todo" },
+	{ MARIKE_SNEAKERS, "todo" },
+	{ JETTE_COMBAT_BOOTS, "todo" },
+	{ INA_HUGGING_BOOTS, "todo" },
+	{ SING_PLATFORM_BOOTS, "todo" },
+	{ VICTORIA_COMBAT_BOOTS, "todo" },
+	{ MELISSA_WEDGE_BOOTS, "todo" },
+	{ ANITA_LADY_PUMPS, "todo" },
+	{ HENRIETTA_COMBAT_BOOTS, "todo" },
+	{ VERENA_STILETTO_SANDALS, "todo" },
 
 	{0, "" }
 };
@@ -6240,6 +6253,19 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ SITH_STAFF, "todo" },
 	{ REACH_TRIDENT, "todo" },
 	{ CLIMBING_STICK, "todo" },
+	{ KRISTIN_COMBAT_BOOTS, "todo" },
+	{ ANNA_HUGGING_BOOTS, "todo" },
+	{ RUEA_COMBAT_BOOTS, "todo" },
+	{ DORA_COMBAT_BOOTS, "todo" },
+	{ MARIKE_SNEAKERS, "todo" },
+	{ JETTE_COMBAT_BOOTS, "todo" },
+	{ INA_HUGGING_BOOTS, "todo" },
+	{ SING_PLATFORM_BOOTS, "todo" },
+	{ VICTORIA_COMBAT_BOOTS, "todo" },
+	{ MELISSA_WEDGE_BOOTS, "todo" },
+	{ ANITA_LADY_PUMPS, "todo" },
+	{ HENRIETTA_COMBAT_BOOTS, "todo" },
+	{ VERENA_STILETTO_SANDALS, "todo" },
 
 	{0, "" }
 };

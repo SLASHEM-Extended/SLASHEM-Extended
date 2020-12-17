@@ -1071,6 +1071,13 @@ dosounds()
 			"suddenly wonder why there's so much traffic.",
 		};
 		You("%s", machineroom_msg[rn2(6+hallu*6)]);
+		if (uarmf && itemhasappearance(uarmf, APP_INDUSTRIAL_BOOTS) && !u.uspellprot) {
+			u.uspellprot = 4;
+			u.uspmtime = 10;
+			find_ac();
+			flags.botl = TRUE;
+			You_feel("strangely protected. Could be due to your boots.");
+		}
 		return;
 	    }
 	    if (level.flags.has_showerroom && !rn2(200)) {

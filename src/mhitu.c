@@ -5075,6 +5075,16 @@ elena37:
 		gazemu(mtmp, a);
 	}
 
+	if (uarmf && itemhasappearance(uarmf, APP_CHRISTMAS_CHILD_MODE_BOOTS) && dmgtype(mtmp, AD_NIVE)) {
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_GAZE;
+		a->adtyp = AD_FEAR;
+		a->damn = 2;
+		a->damd = 1 + (mtmp->m_lev / 2);
+		gazemu(mtmp, a);
+	}
+
 	if (mtmp->egotype_weeper) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];

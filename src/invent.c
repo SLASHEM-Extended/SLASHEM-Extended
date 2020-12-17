@@ -10369,6 +10369,20 @@ boolean knoweverything;
 			pline("A pretty useful cloak that grants swimming and protects your inventory from being wet, which is actually rather powerful for a randomized appearance.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_MULTILINGUITIS_GLOVES))
 			pline("Randomly causes item names to be displayed in other languages to confuse you :-)");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_MACHINERY_BOOTS))
+			pline("While wearing these boots, entering a machinery room gives temporary protection.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_INDUSTRIAL_BOOTS))
+			pline("These boots should be worn in the industrial district, where you'll feel protected from harm.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_CHRISTMAS_CHILD_MODE_BOOTS))
+			pline("If you're such a christmas child that is afraid of corona, you can wear these boots, but then everyone who spreads corona will strike fear into your heart. On the plus side, you'll be faster while under the effect of fear.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BAREFOOT_SHOES))
+			pline("Since these shoes aren't looking that great, they reduce your charisma by one when worn.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SANDALS_WITH_SOCKS))
+			pline("That look ain't working, man. If you REALLY insist on wearing sandals with socks, expect your charisma to be rock bottom.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_CLIMBING_BOOTS))
+			pline("These boots make it easier to climb mountain terrain.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_WEDGE_SNEAKERS))
+			pline("A special pair of shoes that counts as both wedge heels and sexy flats at the same time.");
 
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
@@ -11817,6 +11831,32 @@ boolean knoweverything;
 				pline("A pair of 15 cm stiletto heels. Can you actually walk in them? They carry Julietta's curse, and have 1 AC and 5 MC."); break;
 			case ARABELLA_HUGGING_BOOTS:
 				pline("A sexy pair of boots without heels (but with treaded soles), meaning they count as sexy flats. They carry Arabella's curse, and have 3 AC and 1 MC."); break;
+			case KRISTIN_COMBAT_BOOTS:
+				pline("These block-heeled combat boots cost only 20 euros at the Deichmann shop and are nonetheless pretty and fleecy. They carry Kristin's curse, and have 3 AC and 0 MC."); break;
+			case ANNA_HUGGING_BOOTS:
+				pline("A black pair of female boots with treaded soles, which count as (very) sexy flats. They carry Anna's curse, and have 4 AC and 1 MC."); break;
+			case RUEA_COMBAT_BOOTS:
+				pline("Look at this picture-pretty pair of female stiletto boots! They carry Ruea's curse, and have 3 AC and 3 MC."); break;
+			case DORA_COMBAT_BOOTS:
+				pline("A very erotic 'Dora-colored' pair of block-heeled lady boots. They carry Dora's curse, and have 2 AC and 3 MC."); break;
+			case MARIKE_SNEAKERS:
+				pline("This pair of sneakers is so plain that they don't even count as sexy flats. They carry Marike's curse, and have 1 AC and 0 MC."); break;
+			case JETTE_COMBAT_BOOTS:
+				pline("A basic pair of block-heeled combat boots. They carry Jette's curse, and have 2 AC and 2 MC."); break;
+			case INA_HUGGING_BOOTS:
+				pline("These girl boots look cute, but they're still quite robust. Due to their sexy look, they count as sexy flats. They carry Ina's curse, and have 3 AC and 0 MC."); break;
+			case SING_PLATFORM_BOOTS:
+				pline("This pair of platform boots has a red and black pattern. Since platform heels aren't an official type of heel in this game, they count as wedge heels instead. They carry Sing's curse, and have 4 AC and 2 MC."); break;
+			case VICTORIA_COMBAT_BOOTS:
+				pline("Wow, you absolutely love the black block heels of this brown pair of leather boots. They carry Victoria's curse, and have 4 AC and 1 MC."); break;
+			case MELISSA_WEDGE_BOOTS:
+				pline("You find that this pair of wedge heels looks quite attractive. They carry Melissa's curse, and have 3 AC and 3 MC."); break;
+			case ANITA_LADY_PUMPS:
+				pline("A pair of feminine pumps with very sharp-edged stiletto heels. They carry Anita's curse, and have 2 AC and 4 MC."); break;
+			case HENRIETTA_COMBAT_BOOTS:
+				pline("This pair of lady boots has very thick block heels. They carry Henrietta's curse, and have 4 AC and 0 MC."); break;
+			case VERENA_STILETTO_SANDALS:
+				pline("A delicate pair of sandals with lovely stiletto heels. They carry Verena's curse, and have 1 AC and 3 MC."); break;
 
 			case HIPPIE_HEELS:
 				pline("This pair of red leather plateau boots looks extraordinarily sexy. You get the feeling that they would love to be worn by you. Can you resist the temptation to put on these block-heeled beauties? :-)"); break;
