@@ -819,6 +819,7 @@ boolean pit_only;
 	boolean nohole = !Can_dig_down(&u.uz);
 
 	if ((ttmp && (ttmp->ttyp == MAGIC_PORTAL || ttmp->ttyp == HEEL_TRAP || ttmp->ttyp == LOUDSPEAKER || ttmp->ttyp == KOP_CUBE || ttmp->ttyp == BOSS_SPAWNER || ttmp->ttyp == ARABELLA_SPEAKER || ttmp->ttyp == FART_TRAP || nohole)) ||
+		In_minotaurmaze(&u.uz) ||
 	   /* ALI - artifact doors */
 	   IS_DOOR(levl[u.ux][u.uy].typ) && artifact_door(u.ux, u.uy) ||
 	   (IS_ROCK(lev->typ) && lev->typ != SDOOR &&

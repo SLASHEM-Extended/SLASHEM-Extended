@@ -615,6 +615,8 @@ struct you {
 	int tiksrvzllatdown;
 	int netherrealmcomplete;
 	int angmarcomplete;
+	int emynluincomplete;
+	int minotaurmazecomplete;
 	int katiaremoved;
 	int sewerplantcomplete;
 	int gammacavescomplete;

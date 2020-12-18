@@ -188,6 +188,7 @@ BRANCH:	"Void" @ (48, 0)
 # Dr. Frankenstein's Lab
 BRANCH:         "Frankenstein's Lab" @ (3, 42) up
 BRANCH:	"Angmar" @ (3, 42)
+BRANCH:	"Emyn Luin" @ (3, 42)
 BRANCH:	"Swimming Pool" @ (3, 42)
 BRANCH:	"Hell's Bathroom" @ (3, 42)
 BRANCH:	"Resting Zone GA" @ (2, 47) up
@@ -425,6 +426,12 @@ ALIGNMENT:      chaotic
 DESCRIPTION:    hellish
 BRANCH:	"Resting Zone A" @ (2, 13) up
 
+DUNGEON:        "Emyn Luin" "F" (20, 0)
+ALIGNMENT:      chaotic
+
+DUNGEON:        "Minotaur Maze" "F" (25, 0)
+ALIGNMENT:      lawful
+
 DUNGEON:        "Swimming Pool" "F" (15, 0)
 ALIGNMENT:      lawful
 DESCRIPTION:    hellish
@@ -435,9 +442,10 @@ ALIGNMENT:      chaotic
 DESCRIPTION:    hellish
 
 ### The Giant Caverns ###
-DUNGEON:        "The Giant Caverns" "W" (1, 0)
+DUNGEON:        "The Giant Caverns" "W" (2, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
+BRANCH:         "Minotaur Maze" @ (2, 0)
 LEVEL:          "cav2fill" "H" @ (1, 0) 10
 
 ### Dr Frankenstein's Lab ###

@@ -116,6 +116,8 @@
 
 #define GravationAggravation (GravationEffect || u.uprops[GRAVATION].extrinsic || have_gravationstone())
 
+#define WallsAreHyperBlue (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uwep && uwep->oartifact == ART_KRONSCHER_BAR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KRONSCHER_BAR) || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || (uarms && uarms->oartifact == ART_BLUE_SHIRT_OF_DEATH) || (In_emynluin(&u.uz) && !u.emynluincomplete) )
+
 #define GushieLushie	(GushlushEffect || u.uprops[GUSHLUSH].extrinsic || have_gushlushstone())
 #define GushLevel	(GushieLushie ? 1 : u.ulevel)
 
@@ -968,7 +970,7 @@
 
 #define HMap_amnesia	u.uprops[MAP_AMNESIA].intrinsic
 #define EMap_amnesia	u.uprops[MAP_AMNESIA].extrinsic
-#define Map_amnesia	(HMap_amnesia || EMap_amnesia || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz))
+#define Map_amnesia	(HMap_amnesia || EMap_amnesia || In_minotaurmaze(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz))
 
 #define HWarning		u.uprops[WARNING].intrinsic
 #define EWarning		u.uprops[WARNING].extrinsic

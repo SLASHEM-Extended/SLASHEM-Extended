@@ -666,6 +666,10 @@ int verbose;
 		sprintf(buf, flags.showlongstats ? "Nether Realm:%d " : "Net:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Angmar"))
 		sprintf(buf, flags.showlongstats ? "Angmar:%d " : "Ang:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Emyn Luin"))
+		sprintf(buf, flags.showlongstats ? "Emyn Luin:%d " : "Emy:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Minotaur Maze"))
+		sprintf(buf, flags.showlongstats ? "Minotaur:%d " : "Mit:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Swimming Pool"))
 		sprintf(buf, flags.showlongstats ? "Swimming Pool:%d " : "Swi:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Hell's Bathroom"))

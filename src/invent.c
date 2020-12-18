@@ -7600,7 +7600,7 @@ dounpaid()
 }
 
 /* stackmark command by Amy: allows you to split stacks more easily */
-void
+int
 dostackmark()
 {
 	if (yn("Do you want to mark an item to prevent it from stacking with identical objects?") == 'y') {
@@ -7623,6 +7623,7 @@ dostackmark()
 		pline("All of your items can stack again.");
 
 	}
+	return FALSE; /* doesn't take time */
 }
 
 
@@ -20429,6 +20430,8 @@ boolean knoweverything;
 					pline("Artifact specs: death resistance when worn and allows you to spread the feminine perfume with the #monster command."); break;
 				case ART_U_BE_CURRY:
 					pline("Artifact specs: full nutrients when worn, and eating a tin gives three times the usual amount of nutrition."); break;
+				case ART_KAL:
+					pline("Artifact specs: no specialties, this artifact starts out being in the possession of the Emyn Luin boss but it seems that you somehow got your greedy little hands on it."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

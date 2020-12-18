@@ -2133,6 +2133,14 @@ boolean at_stairs, falling, portal;
 			(void) makemon(&mons[PM_THE_WITCH_KING_OF_ANGMAR], 0, 0, NO_MM_FLAGS);
 		}
 
+		if (In_emynluin(&u.uz) && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) { /* kalwina */
+			(void) makemon(&mons[PM_KALWINA], 0, 0, MM_ANGRY);
+		}
+
+		if (In_minotaurmaze(&u.uz) && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) { /* minotaur */
+			(void) makemon(&mons[PM_THE_MINOTAUR_OF_THE_MAZE], 0, 0, MM_ANGRY);
+		}
+
 		if (In_swimmingpool(&u.uz) && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) { /* jewelry and stuff */
 			pline("Your %s tingles and you smell the presence of treasure hidden inside the water tunnels.", body_part(NOSE));
 

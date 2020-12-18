@@ -1173,6 +1173,8 @@ char* encodeachieveX(void)
    *  6   killed the Witch King of Angmar
    *  7   obtained the stone of magic resistance from the Deep Mines
    *  8   visited all five DevNull challenge dungeons
+   *  9   killed the Minotaur of the Maze
+   *  10  killed Kalwina
    * but this isn't a bitfield, it's a string...
    */
 
@@ -1187,6 +1189,8 @@ char* encodeachieveX(void)
   if(achieveX.killed_witchking)     sprintf(eos(encoded_achievements), "%s,", "killed_witchking");
   if(achieveX.get_magresstone)      sprintf(eos(encoded_achievements), "%s,", "get_magresstone");
   if(achieveX.devnull_complete)     sprintf(eos(encoded_achievements), "%s,", "devnull_complete");
+  if(achieveX.killed_minotaur)      sprintf(eos(encoded_achievements), "%s,", "killed_minotaur");
+  if(achieveX.killed_kalwina)       sprintf(eos(encoded_achievements), "%s,", "killed_kalwina");
 
   int len;
   if ((len=strlen(encoded_achievements))) { encoded_achievements[len-1] = '\0'; }

@@ -1335,8 +1335,8 @@ unsigned *ospecial;
 		}
 		if (SpellColorMetal && (offset >= S_vwall && offset <= S_hcdoor) && !(offset > S_rockwall && offset <= S_tunnelwall)) color = rn2(2) ? CLR_CYAN : CLR_BRIGHT_CYAN;
 		if (SpellColorMetal && (offset == S_dungwall)) color = rn2(2) ? CLR_CYAN : CLR_BRIGHT_CYAN;
-		if ((Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uwep && uwep->oartifact == ART_KRONSCHER_BAR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KRONSCHER_BAR) || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || (uarms && uarms->oartifact == ART_BLUE_SHIRT_OF_DEATH) ) && (offset >= S_vwall && offset <= S_hcdoor) && !(offset > S_rockwall && offset <= S_tunnelwall)) color = CLR_BRIGHT_BLUE;
-		if ((Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uwep && uwep->oartifact == ART_KRONSCHER_BAR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KRONSCHER_BAR) || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || (uarms && uarms->oartifact == ART_BLUE_SHIRT_OF_DEATH) ) && (offset == S_dungwall)) color = CLR_BRIGHT_BLUE;
+		if (WallsAreHyperBlue && (offset >= S_vwall && offset <= S_hcdoor) && !(offset > S_rockwall && offset <= S_tunnelwall)) color = CLR_BRIGHT_BLUE;
+		if (WallsAreHyperBlue && (offset == S_dungwall)) color = CLR_BRIGHT_BLUE;
 		if (SpellColorOrange && offset == S_grayglyph) color = CLR_ORANGE;
 		if (SpellColorBrightCyan && offset == S_grayglyph) color = CLR_BRIGHT_CYAN;
 		if ((KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone()) && (offset == S_grayglyph)) color = rnd(15);

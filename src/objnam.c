@@ -9883,6 +9883,7 @@ typfnd:
 	        otmp->oartifact == ART_EYE_OF_THE_BEHOLDER ||
 	        otmp->oartifact == ART_NIGHTHORN ||
 	        otmp->oartifact == ART_MOTHERFUCKER_TROPHY ||
+	        otmp->oartifact == ART_KAL ||
 	        otmp->oartifact == ART_HELM_OF_KNOWLEDGE ||
 	        otmp->oartifact == ART_BOOTS_OF_THE_MACHINE ||
 	        otmp->oartifact == ART_ARKENSTONE_OF_THRAIN ||

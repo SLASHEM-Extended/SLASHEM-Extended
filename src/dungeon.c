@@ -1007,6 +1007,8 @@ init_dungeons()
 	netherrealm_dnum = dname_to_dnum("Nether Realm");
 	deepmines_dnum = dname_to_dnum("Deep Mines");
 	angmar_dnum = dname_to_dnum("Angmar");
+	emynluin_dnum = dname_to_dnum("Emyn Luin");
+	minotaurmaze_dnum = dname_to_dnum("Minotaur Maze");
 	swimmingpool_dnum = dname_to_dnum("Swimming Pool");
 	hellbathroom_dnum = dname_to_dnum("Hell's Bathroom");
 	spacebase_dnum = dname_to_dnum("Space Base");
@@ -1684,6 +1686,20 @@ In_angmar(lev)	/* are you in the angmar dungeon? */
 d_level	*lev;
 {
 	return((boolean)(lev->dnum == angmar_dnum));
+}
+
+boolean
+In_emynluin(lev)	/* are you in the emyn luin dungeon? */
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == emynluin_dnum));
+}
+
+boolean
+In_minotaurmaze(lev)	/* are you in the minotaur maze dungeon? */
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == minotaurmaze_dnum));
 }
 
 boolean

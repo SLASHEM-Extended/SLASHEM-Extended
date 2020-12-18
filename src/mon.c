@@ -4573,6 +4573,119 @@ newbossSING:
 		u.weapon_slots += 5;
 	}
 
+      if(mtmp->data == &mons[PM_KALWINA] && !u.emynluincomplete) {
+		u.emynluincomplete = 1;
+		pline("Congratulations, you broke the curse of Emyn Luin! As a reward, you'll gain extra spell memory when learning a new spell, your techniques time out faster so they can be used more often, and your skills train slightly faster!");
+	}
+
+      if(mtmp->data == &mons[PM_THE_MINOTAUR_OF_THE_MAZE] && !u.minotaurmazecomplete) {
+		u.minotaurmazecomplete = 1;
+		pline("Congratulations, the minotaur is defeated! Your reward was dropped at your %s.", makeplural(body_part(FOOT)));
+
+		boolean havegifts = u.ugifts;
+
+		if (!havegifts) u.ugifts++;
+
+		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
+		if (trophy) {
+			dropy(trophy);
+			if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+			} else if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_UNSKILLED) {
+				unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_BASIC;
+			} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_BASIC) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SKILLED;
+			} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_SKILLED) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_EXPERT;
+			} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_EXPERT) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_MASTER;
+			} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_MASTER) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_GRAND_MASTER;
+			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_GRAND_MASTER) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SUPREME_MASTER;
+			}
+			if (Race_if(PM_RUSMOT)) {
+				if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_ISRESTRICTED) {
+					unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+				} else if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_UNSKILLED) {
+					unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_BASIC;
+				} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_BASIC) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SKILLED;
+				} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_SKILLED) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_EXPERT;
+				} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_EXPERT) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_MASTER;
+				} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_MASTER) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_GRAND_MASTER;
+				} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_GRAND_MASTER) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SUPREME_MASTER;
+				}
+			}
+			discover_artifact(trophy->oartifact);
+			if (!havegifts) u.ugifts--;
+		}
+
+		int skillimprove = randomgoodskill();
+
+		if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+			unrestrict_weapon_skill(skillimprove);
+			pline("You can now learn the %s skill.", wpskillname(skillimprove));
+		} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+			unrestrict_weapon_skill(skillimprove);
+			P_MAX_SKILL(skillimprove) = P_BASIC;
+			pline("You can now learn the %s skill.", wpskillname(skillimprove));
+		} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
+			P_MAX_SKILL(skillimprove) = P_SKILLED;
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+		} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+			P_MAX_SKILL(skillimprove) = P_EXPERT;
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+		} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+			P_MAX_SKILL(skillimprove) = P_MASTER;
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+		} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+			P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+		} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+			P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+		}
+
+		if (Race_if(PM_RUSMOT)) {
+			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(skillimprove);
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
+			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+				unrestrict_weapon_skill(skillimprove);
+				P_MAX_SKILL(skillimprove) = P_BASIC;
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
+			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
+				P_MAX_SKILL(skillimprove) = P_SKILLED;
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+				P_MAX_SKILL(skillimprove) = P_EXPERT;
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+				P_MAX_SKILL(skillimprove) = P_MASTER;
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+			}
+		}
+
+		if (!tech_known(T_CURE_AMNESIA)) {
+			learntech(T_CURE_AMNESIA, FROMOUTSIDE, 1);
+			You("learn how to perform cure amnesia!");
+		}
+
+	}
+
       if(mtmp->data == &mons[PM_EROGENOUS_KATIA] && !u.katiaremoved) {
 		u.katiaremoved = 1;
 		pline("Congratulations, Erogenous Katia is defeated! Your reward was dropped at your %s.", makeplural(body_part(FOOT)));
@@ -5440,6 +5553,51 @@ newbossSING:
 		}
 
 	}
+
+	if(mtmp->data == &mons[PM_KALWINA]) {
+
+		if (!achieveX.killed_kalwina) {
+
+	            achieveX.killed_kalwina = 1;
+
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
+			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
+
+			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+				u.uhpmax += 10;
+				u.uenmax += 10;
+				if (Upolyd) u.mhmax += 10;
+				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+			}
+
+		}
+
+	}
+
+	if(mtmp->data == &mons[PM_THE_MINOTAUR_OF_THE_MAZE]) {
+
+		if (!achieveX.killed_minotaur) {
+
+	            achieveX.killed_minotaur = 1;
+
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
+			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
+
+			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+				u.uhpmax += 10;
+				u.uenmax += 10;
+				if (Upolyd) u.mhmax += 10;
+				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+			}
+
+		}
+
+	}
+
 
 #ifdef LIVELOGFILE
 		livelog_achieve_update();

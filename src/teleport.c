@@ -1023,7 +1023,7 @@ level_tele()
 	    return;
 	}
 	/* Skipping the quest via teleport control is lame. --Amy */
-	if ((Teleport_control && !(In_quest(&u.uz)) && !Stunned && (!level.flags.has_insideroom || !rn2(5)) && rn2(StrongTeleport_control ? 10 : 3)) /* Teleport control might not always work. --Amy */
+	if ((Teleport_control && !(In_quest(&u.uz)) && !(In_minotaurmaze(&u.uz)) && !Stunned && (!level.flags.has_insideroom || !rn2(5)) && rn2(StrongTeleport_control ? 10 : 3)) /* Teleport control might not always work. --Amy */
 #ifdef WIZARD
 	   || (wizard && yn_function("Invoke wizard-mode teleport control?", ynchars, 'y') == 'y')
 #endif

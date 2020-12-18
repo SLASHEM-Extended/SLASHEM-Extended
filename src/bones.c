@@ -270,6 +270,8 @@ xchar dnum;
 		strcpy(buf, "DIG");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Dungeons of Doom"))
 		strcpy(buf, "DOO");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Emyn Luin"))
+		strcpy(buf, "EMY");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber"))
 		strcpy(buf, "FOR");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Gamma Caves"))
@@ -294,6 +296,8 @@ xchar dnum;
 		strcpy(buf, "LAB");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Mainframe"))
 		strcpy(buf, "MAI");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Minotaur Maze"))
+		strcpy(buf, "MIN");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch"))
 		strcpy(buf, "MOL");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Nether Realm"))

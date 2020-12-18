@@ -248,6 +248,7 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"extra memory",
 	"grap swap",
 	"diabolic minion",
+	"cure amnesia",
 	"jedi jump",
 	"charge saber",
 	"telekinesis",
@@ -3335,6 +3336,10 @@ dotech()
 
 		case T_DIABOLIC_MINION:
 			pline("If you use this technique, a random tame Diablo monster is summoned.");
+			break;
+
+		case T_CURE_AMNESIA:
+			pline("A useful technique that removes the 'map amnesia' intrinsic. Be aware that if you're e.g. playing the amnesiac race, you'll still have map amnesia. It's useful especially when you triggered a lasting amnesia trap.");
 			break;
 
 
@@ -7933,6 +7938,22 @@ repairitemchoice:
 			t_timeout = rnz(6000);
 			break;
 
+		case T_CURE_AMNESIA:
+
+			You("decide to cure your amnesia.");
+
+			if (HMap_amnesia & INTRINSIC) {
+				HMap_amnesia &= ~INTRINSIC;
+				You_feel("less forgetful!");
+			}
+			if (HMap_amnesia & TIMEOUT) {
+				HMap_amnesia &= ~TIMEOUT;
+				You_feel("less forgetful!");
+			}
+
+			t_timeout = rnz(50000);
+			break;
+
 		case T_PERMAMORPH:
 
 		    	if (!getdir((char *)0)) return 0;
@@ -9138,6 +9159,11 @@ extrachargechoice:
 	/* limit break can be used for endless exploits, so this fix was urgently necessary... --Amy */
 
 		if (ishaxor && techtout(tech_no) > 1) techtout(tech_no) /= 2;
+
+		if (u.emynluincomplete && techtout(tech_no) > 99) { /* 2% reduction --Amy */
+			techtout(tech_no) *= 49;
+			techtout(tech_no) /= 50;
+		}
 
 		if (uamul && uamul->oartifact == ART_TYRANITAR_S_QUEST && !rn2(2)) techtout(tech_no) = 0;
 

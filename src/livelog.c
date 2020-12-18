@@ -91,6 +91,9 @@ encodeachieveX(void)
    *  5   killed Erogenous Katia
    *  6   killed the Witch King of Angmar
    *  7   obtained the stone of magic resistance from the Deep Mines
+   *  8   completed all the DevNull dungeons
+   *  9   killed the Minotaur of the Maze
+   *  10  killed Kalwina
    */
 
   long r;
@@ -106,6 +109,8 @@ encodeachieveX(void)
   if(achieveX.killed_witchking)     r |= 1L << 6;
   if(achieveX.get_magresstone)      r |= 1L << 7;
   if(achieveX.devnull_complete)     r |= 1L << 8;
+  if(achieveX.killed_minotaur)      r |= 1L << 9;
+  if(achieveX.killed_kalwina)       r |= 1L << 10;
 
   return r;
 }

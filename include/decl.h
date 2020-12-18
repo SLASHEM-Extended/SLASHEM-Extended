@@ -106,6 +106,8 @@ E struct dgn_topology {		/* special dungeon levels for speed */
     xchar   d_netherrealm_dnum;
     xchar   d_deepmines_dnum;
     xchar   d_angmar_dnum;
+    xchar   d_emynluin_dnum;
+    xchar   d_minotaurmaze_dnum;
     xchar   d_swimmingpool_dnum;
     xchar   d_hellbathroom_dnum;
     xchar   d_spacebase_dnum;
@@ -197,6 +199,8 @@ E struct dgn_topology {		/* special dungeon levels for speed */
 #define netherrealm_dnum		(dungeon_topology.d_netherrealm_dnum)
 #define deepmines_dnum		(dungeon_topology.d_deepmines_dnum)
 #define angmar_dnum		(dungeon_topology.d_angmar_dnum)
+#define emynluin_dnum		(dungeon_topology.d_emynluin_dnum)
+#define minotaurmaze_dnum		(dungeon_topology.d_minotaurmaze_dnum)
 #define swimmingpool_dnum		(dungeon_topology.d_swimmingpool_dnum)
 #define hellbathroom_dnum		(dungeon_topology.d_hellbathroom_dnum)
 #define spacebase_dnum		(dungeon_topology.d_spacebase_dnum)
@@ -687,6 +691,8 @@ struct u_achieveX {
 	  Bitfield(killed_witchking,1);	/* You killed the Witch King of Angmar */
 	  Bitfield(get_magresstone,1);	/* You obtained the stone of magic resistance from the Deep Mines */
 	  Bitfield(devnull_complete,1);	/* You visited all DevNull dungeon branches */
+	  Bitfield(killed_minotaur,1);	/* You killed the Minotaur of the Maze */
+	  Bitfield(killed_kalwina,1);	/* You killed Kalwina */
 
 };
 

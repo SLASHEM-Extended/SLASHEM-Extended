@@ -2161,6 +2161,7 @@ learn()
 			    if (!rn2(3)) u.uenmax++;
 			    u.cnd_spellbookcount++;
 			    incrnknow(i, FALSE);
+			    if (u.emynluincomplete) boostknow(i, 1000);
 				if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i, FALSE);
 				if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i, FALSE);
 			    book->spestudied++;
@@ -2221,6 +2222,7 @@ learn()
 			if (!rn2(3)) u.uenmax++;
 			u.cnd_spellbookcount++;
 			incrnknow(i, TRUE);
+			if (u.emynluincomplete) boostknow(i, 1000);
 			if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i, TRUE);
 			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i, TRUE);
 			book->spestudied++;
@@ -12486,6 +12488,7 @@ wonderspell()
 			if (spellknow(i) <= MAX_CAN_STUDY) {
 				Your("knowledge of the %s spell is keener.", splname);
 				incrnknow(i, FALSE);
+				if (u.emynluincomplete) boostknow(i, 1000);
 				if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i, FALSE);
 				if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i, FALSE);
 
@@ -12532,6 +12535,7 @@ wonderspell()
 			spl_book[i].sp_lev = objects[randomspell].oc_level;
 			spl_book[i].sp_memorize = TRUE;
 			incrnknow(i, TRUE);
+			if (u.emynluincomplete) boostknow(i, 1000);
 			if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i, TRUE);
 			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i, TRUE);
 			You("gain knowledge of the %s spell.", splname);

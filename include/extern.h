@@ -633,6 +633,8 @@ E boolean In_voiddungeon(d_level *);
 E boolean In_netherrealm(d_level *);
 E boolean In_deepmines(d_level *);
 E boolean In_angmar(d_level *);
+E boolean In_emynluin(d_level *);
+E boolean In_minotaurmaze(d_level *);
 E boolean In_swimmingpool(d_level *);
 E boolean In_hellbathroom(d_level *);
 E boolean In_spacebase(d_level *);
@@ -1019,7 +1021,7 @@ E boolean feminizecheck(int);
 E int itemactions(struct obj *,BOOLEAN_P);
 E boolean have_hungerhealer(void);
 
-E void dostackmark(void);
+E int dostackmark(void);
 
 E int numberofetheritems(void);
 E int numberofwornetheritems(void);

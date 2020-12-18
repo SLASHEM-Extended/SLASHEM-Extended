@@ -2529,6 +2529,12 @@ mk_dgl_extrainfo()
         } else if (In_angmar(&u.uz)) {
             sprintf(tmpdng, "%i|Ang%i", sortval, depth(&u.uz));
 		sortval = 3200 + depth(&u.uz);
+        } else if (In_emynluin(&u.uz)) {
+            sprintf(tmpdng, "%i|Emy%i", sortval, depth(&u.uz));
+		sortval = 3200 + depth(&u.uz);
+        } else if (In_minotaurmaze(&u.uz)) {
+            sprintf(tmpdng, "%i|Mit%i", sortval, depth(&u.uz));
+		sortval = 3200 + depth(&u.uz);
         } else if (In_swimmingpool(&u.uz)) {
             sprintf(tmpdng, "%i|Swi%i", sortval, depth(&u.uz));
 		sortval = 3300 + depth(&u.uz);

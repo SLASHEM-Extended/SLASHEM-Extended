@@ -7863,6 +7863,11 @@ A("Motherfucker Trophy", ROBE, /* +5 increase damage and accuracy, 20% better sp
 	NO_ATTK,        DFNS(AD_MAGM),        NO_CARY,
 	0,      A_NONE, NON_PM, NON_PM, 50000L ),
 
+/* for Emyn Luin boss - no special effects, cannot be wished for */
+A("Kal",			KALASHNIKOV,
+	(SPFX_NOGEN|SPFX_RESTR), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 2500L ),
+
 /* reward for finishing the Illusory Castle */
 A("The Helm of Knowledge", HELM_OF_TELEPATHY,
 	(SPFX_NOGEN|SPFX_RESTR), 0, 0,

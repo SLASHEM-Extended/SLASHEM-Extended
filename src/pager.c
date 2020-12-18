@@ -26019,6 +26019,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"Nooooooo! Your pretty boots have been defiled!",
 	"Nooooooo! Your pretty boots have been defiled! Now they're unusable, even though they were incredibly lovely with the massive black block heels!",
 	"A holy aura of protection surrounds you!",
+	"You decide to cure your amnesia.",
+	"You decide to cure your amnesia. But you've forgotten how to do that, and actually made the condition worse.",
+	"You decide to cure your amnesia. Somehow it doesn't work though, you still can't remember what the scroll labeled LEV GEX VEN ZEA is and the map of dungeon level 11 remains obscured too.",
 
 };
 

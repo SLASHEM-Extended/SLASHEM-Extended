@@ -14140,6 +14140,24 @@ loveheelover:
 			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
 		}
 
+		if (ptr == &mons[PM_KALWINA]) {
+		    otmp = mksobj(KALASHNIKOV, FALSE, FALSE, FALSE);
+
+		    if (otmp) {
+
+			otmp = oname(otmp, artiname(ART_KAL));
+			(void) mpickobj(mtmp, otmp, TRUE);
+
+		    }
+
+			m_initthrow(mtmp, BULLET, 50);
+			m_initthrow(mtmp, BULLET, 50);
+			m_initthrow(mtmp, BULLET, 50);
+			m_initthrow(mtmp, BULLET, 50);
+			m_initthrow(mtmp, BULLET, 50);
+
+		}
+
 		if (monsndx(ptr) == PM_BJARNARHAVEN_FARMER) {
 			(void) mongets(mtmp, GRAIN_SCYTHE);
 			(void) mongets(mtmp, LOW_BOOTS);
@@ -24394,6 +24412,9 @@ loopback:
 		if (ct > 0 && (In_deepmines(&u.uz) && tunnels(ptr) )) ct += 4;
 		if (ct > 0 && (In_deepmines(&u.uz) && humanoid(ptr) )) ct += 2;
 		if (ct > 0 && (In_angmar(&u.uz) && (ptr->maligntyp < 0) )) ct += 15;
+		if (ct > 0 && (In_emynluin(&u.uz) && is_angbandmonster(ptr) )) ct += 10;
+		if (ct > 0 && (In_emynluin(&u.uz) && is_animemonster(ptr) )) ct += 2;
+		if (ct > 0 && (In_emynluin(&u.uz) && is_steammonster(ptr) )) ct += 5;
 		if (ct > 0 && (In_swimmingpool(&u.uz) && (ptr->mlet == S_EEL) )) ct += 20;
 		if (ct > 0 && (In_swimmingpool(&u.uz) && (ptr->mlet == S_FLYFISH) )) ct += 20;
 		if (ct > 0 && (In_swimmingpool(&u.uz) && dmgtype(ptr, AD_WRAP) )) ct += 10;
@@ -25602,6 +25623,9 @@ int     spc;
 		if ((In_deepmines(&u.uz) && tunnels(&mons[last]) )) num += 4;
 		if ((In_deepmines(&u.uz) && humanoid(&mons[last]) )) num += 2;
 		if ((In_angmar(&u.uz) && (mons[last].maligntyp < 0) )) num += 15;
+		if ((In_emynluin(&u.uz) && is_angbandmonster(&mons[last]) )) num += 10;
+		if ((In_emynluin(&u.uz) && is_animemonster(&mons[last]) )) num += 2;
+		if ((In_emynluin(&u.uz) && is_steammonster(&mons[last]) )) num += 5;
 		if ((In_swimmingpool(&u.uz) && dmgtype(&mons[last], AD_WRAP) )) num += 10;
 		if ((In_swimmingpool(&u.uz) && amphibious(&mons[last]) )) num += 10;
 		if ((In_swimmingpool(&u.uz) && is_swimmer(&mons[last]) )) num += 10;
@@ -26468,6 +26492,9 @@ int     spc;
 		if ((In_deepmines(&u.uz) && tunnels(&mons[first]) )) num -= 4;
 		if ((In_deepmines(&u.uz) && humanoid(&mons[first]) )) num -= 2;
 		if ((In_angmar(&u.uz) && (mons[first].maligntyp < 0) )) num -= 15;
+		if ((In_emynluin(&u.uz) && is_angbandmonster(&mons[first]) )) num -= 10;
+		if ((In_emynluin(&u.uz) && is_animemonster(&mons[first]) )) num -= 2;
+		if ((In_emynluin(&u.uz) && is_steammonster(&mons[first]) )) num -= 5;
 		if ((In_swimmingpool(&u.uz) && dmgtype(&mons[first], AD_WRAP) )) num -= 10;
 		if ((In_swimmingpool(&u.uz) && amphibious(&mons[first]) )) num -= 10;
 		if ((In_swimmingpool(&u.uz) && is_swimmer(&mons[first]) )) num -= 10;

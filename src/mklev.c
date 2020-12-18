@@ -2102,6 +2102,62 @@ makelevel()
 		    makemaz("");
 		    return;
 
+	    } else if (In_minotaurmaze(&u.uz)) { /* has only "interesting" mazes --Amy */
+
+			switch (rnd(49)) {
+
+			case 1: makemaz("mazes-1"); return;
+			case 2: makemaz("mazes-2"); return;
+			case 3: makemaz("mazes-3"); return;
+			case 4: makemaz("mazes-4"); return;
+			case 5: makemaz("mazes-5"); return;
+			case 6: makemaz("mazes-6"); return;
+			case 7: makemaz("mazes-7"); return;
+			case 8: makemaz("mazes-8"); return;
+			case 9: makemaz("mazes-9"); return;
+			case 10: makemaz("mazes-10"); return;
+			case 11: makemaz("mazes-11"); return;
+			case 12: makemaz("mazes-12"); return;
+			case 13: makemaz("mazes-13"); return;
+			case 14: makemaz("mazes-14"); return;
+			case 15: makemaz("mazes-15"); return;
+			case 16: makemaz("mazes-16"); return;
+			case 17: makemaz("mazes-17"); return;
+			case 18: makemaz("mazes-18"); return;
+			case 19: makemaz("mazes-19"); return;
+			case 20: makemaz("mazes-20"); return;
+			case 21: makemaz("mazes-21"); return;
+			case 22: makemaz("mazes-22"); return;
+			case 23: makemaz("mazes-23"); return;
+			case 24: makemaz("mazes-24"); return;
+			case 25: makemaz("mazes-25"); return;
+			case 26: makemaz("mazes-26"); return;
+			case 27: makemaz("mazes-27"); return;
+			case 28: makemaz("mazes-28"); return;
+			case 29: makemaz("mazes-29"); return;
+			case 30: makemaz("mazes-30"); return;
+			case 31: makemaz("mazes-31"); return;
+			case 32: makemaz("mazes-32"); return;
+			case 33: makemaz("mazes-33"); return;
+			case 34: makemaz("mazes-34"); return;
+			case 35: makemaz("mazes-35"); return;
+			case 36: makemaz("mazes-36"); return;
+			case 37: makemaz("mazes-37"); return;
+			case 38: makemaz("mazes-38"); return;
+			case 39: makemaz("mazes-39"); return;
+			case 40: makemaz("mazes-40"); return;
+			case 41: makemaz("mazes-41"); return;
+			case 42: makemaz("mazes-42"); return;
+			case 43: makemaz("mazes-43"); return;
+			case 44: makemaz("mazes-44"); return;
+			case 45: makemaz("mazes-45"); return;
+			case 46: makemaz("mazes-46"); return;
+			case 47: makemaz("mazes-47"); return;
+			case 48: makemaz("mazes-48"); return;
+			case 49: makemaz("mazes-49"); return;
+
+			}
+
 	    } else if ((!rn2(u.randomquestlevels) && !rn2(3))
 				&& !In_V_tower(&u.uz) && !Invocation_lev(&u.uz)
 				&& (!rn2(10) || depth(&u.uz) > 1)
@@ -2128,7 +2184,7 @@ ghnhom1:
 		    return;
 		}
 
-	    } else if ((!rn2(u.randomquestlevels) && !rn2(3)) && !In_V_tower(&u.uz) && !Invocation_lev(&u.uz) && (In_gehennom(&u.uz) || In_sheol(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz) || In_angmar(&u.uz) || In_swimmingpool(&u.uz) || In_hellbathroom(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab") ) ) {
+	    } else if ((!rn2(u.randomquestlevels) && !rn2(3)) && !In_V_tower(&u.uz) && !Invocation_lev(&u.uz) && (In_gehennom(&u.uz) || In_sheol(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz) || In_angmar(&u.uz) || In_emynluin(&u.uz) || In_swimmingpool(&u.uz) || In_hellbathroom(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab") ) ) {
 
 			if (rn2(3)) goto ghnhom1;
 
@@ -2150,7 +2206,7 @@ ghnhom1:
 		    makemaz(fillname);
 		    return;
 
-	    } else if (dungeons[u.uz.dnum].proto[0] && !In_V_tower(&u.uz) && !In_angmar(&u.uz) && !In_hellbathroom(&u.uz) && !Invocation_lev(&u.uz) && (rn2(2)) ) {
+	    } else if (dungeons[u.uz.dnum].proto[0] && !In_V_tower(&u.uz) && !In_angmar(&u.uz) && !In_emynluin(&u.uz) && !In_hellbathroom(&u.uz) && !Invocation_lev(&u.uz) && (rn2(2)) ) {
 
 		    if (rn2(3)) {
 
@@ -2223,6 +2279,8 @@ ghnhom1:
 			case 7: makemaz("minefilg"); break;
 		    }
 		    return;
+	    } else if (In_emynluin(&u.uz) && rn2(2)) {
+			makemaz("rndmazea"); return;
 	    } else if (In_deepmines(&u.uz) && rn2((iswarper ? 5 : 50) )) {
 		    switch (rnd(15)) {
 			case 1: makemaz("deepfila"); break;
@@ -2261,7 +2319,7 @@ ghnhom1:
 
 	/* "Revert change allowing Room/Corridors in Gehennom. Gehennom should only have mazes and the specified special levels again." In Soviet Russia, people actually like the endless boring mazes of the Gehennom for some inexplicable reason. Why don't they just turn Nethack into an 100-level dungeon that has only mazes??? --Amy */
 
-		 (In_hell(&u.uz) && !In_angmar(&u.uz) && !In_hellbathroom(&u.uz) && (!rn2(2) && (In_sheol(&u.uz) ? rn2(iswarper ? 2 : 5) : rn2(iswarper ? 3 : 10) ) )  ) || /* allowing random rooms-and-corridors in Gehennom --Amy */
+		 (In_hell(&u.uz) && !In_angmar(&u.uz) && !In_emynluin(&u.uz) && !In_hellbathroom(&u.uz) && (!rn2(2) && (In_sheol(&u.uz) ? rn2(iswarper ? 2 : 5) : rn2(iswarper ? 3 : 10) ) )  ) || /* allowing random rooms-and-corridors in Gehennom --Amy */
 		  (rn2(5) && u.uz.dnum == medusa_level.dnum
 			  && depth(&u.uz) > depth(&medusa_level)) || (In_mainframe(&u.uz) && rn2(10) ) ) {
 
@@ -4270,7 +4328,7 @@ ghnhom2:
 
 	if ( 
 		(In_dod(&u.uz) && (!rn2(100) || depth(&u.uz) > 1) && !rn2((iswarper ? 10000 : 100000)))
-		|| (In_mines(&u.uz) /* check moved upwards */ ) || (In_sokoban(&u.uz) && !issokosolver && rn2(iswarper ? 5000 : 2000)) || (In_towndungeon(&u.uz) && !rn2(iswarper ? 3000 : 20000)) ||  (In_deepmines(&u.uz)) || (In_illusorycastle(&u.uz) && !rn2(iswarper ? 3 : 20)) || (In_sewerplant(&u.uz) && !rn2(iswarper ? 20 : 50)) || (In_spacebase(&u.uz) && !rn2(iswarper ? 4 : 30)) || (In_gammacaves(&u.uz) && !rn2(iswarper ? 20 : 50)) || (In_mainframe(&u.uz) && !rn2(iswarper ? 3 : 20)) || (In_gehennom(&u.uz) && !rn2(iswarper ? 3 : 10)) || (In_voiddungeon(&u.uz) && !rn2(iswarper ? 3 : 10)) || (In_netherrealm(&u.uz) && !rn2(iswarper ? 3 : 10)) || (In_swimmingpool(&u.uz) && !rn2(iswarper ? 3 : 10)) || (In_hellbathroom(&u.uz) && !rn2(iswarper ? 20 : 50)) || (In_angmar(&u.uz) && !rn2(iswarper ? 5 : 20)) || (rn2(5) && !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab") ) || (!rn2(1000) && (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || In_Devnull(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || In_restingzone(&u.uz) ) ) || (In_sheol(&u.uz) && (!rn2(iswarper ? 2 : 5) ) ) ) {
+		|| (In_mines(&u.uz) /* check moved upwards */ ) || (In_sokoban(&u.uz) && !issokosolver && rn2(iswarper ? 5000 : 2000)) || (In_towndungeon(&u.uz) && !rn2(iswarper ? 3000 : 20000)) ||  (In_deepmines(&u.uz)) || (In_illusorycastle(&u.uz) && !rn2(iswarper ? 3 : 20)) || (In_sewerplant(&u.uz) && !rn2(iswarper ? 20 : 50)) || (In_spacebase(&u.uz) && !rn2(iswarper ? 4 : 30)) || (In_gammacaves(&u.uz) && !rn2(iswarper ? 20 : 50)) || (In_mainframe(&u.uz) && !rn2(iswarper ? 3 : 20)) || (In_gehennom(&u.uz) && !rn2(iswarper ? 3 : 10)) || (In_voiddungeon(&u.uz) && !rn2(iswarper ? 3 : 10)) || (In_netherrealm(&u.uz) && !rn2(iswarper ? 3 : 10)) || (In_swimmingpool(&u.uz) && !rn2(iswarper ? 3 : 10)) || (In_hellbathroom(&u.uz) && !rn2(iswarper ? 20 : 50)) || (In_angmar(&u.uz) && !rn2(iswarper ? 5 : 20)) || (In_emynluin(&u.uz) && !rn2(iswarper ? 20 : 50)) || (rn2(5) && !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab") ) || (!rn2(1000) && (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || In_Devnull(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || In_restingzone(&u.uz) ) ) || (In_sheol(&u.uz) && (!rn2(iswarper ? 2 : 5) ) ) ) {
 
 		if (rn2(3)) goto ghnhom2;
 
@@ -6444,7 +6502,7 @@ ghnhom3:
 
 		}
 
-		} else if (In_gehennom(&u.uz) || In_sheol(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz) || In_angmar(&u.uz) || In_swimmingpool(&u.uz) || In_hellbathroom(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab") ) {
+		} else if (In_gehennom(&u.uz) || In_sheol(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz) || In_angmar(&u.uz) || In_emynluin(&u.uz) || In_swimmingpool(&u.uz) || In_hellbathroom(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab") ) {
 
 			if (rn2(3)) goto ghnhom3;
 
@@ -8552,7 +8610,7 @@ ghnhom4:
 	
           }
 
-		} else if (In_gehennom(&u.uz) || In_sheol(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz) || In_angmar(&u.uz) || In_swimmingpool(&u.uz) || In_hellbathroom(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab")) {
+		} else if (In_gehennom(&u.uz) || In_sheol(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz) || In_angmar(&u.uz) || In_emynluin(&u.uz) || In_swimmingpool(&u.uz) || In_hellbathroom(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab")) {
 
 		if (rn2(3)) goto ghnhom4;
 

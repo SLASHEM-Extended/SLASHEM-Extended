@@ -1293,6 +1293,8 @@ Cloak_on()
 				incrnknow(i);
 				pline("You gain the power of Eru Illuvator!");
 
+				if (u.emynluincomplete) boostknow(i, 1000);
+
 				if (!PlayerCannotUseSkills && P_SKILL(P_MEMORIZATION) >= P_BASIC) {
 
 					char nervbuf[QBUFSZ];
