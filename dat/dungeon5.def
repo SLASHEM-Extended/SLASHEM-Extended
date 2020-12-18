@@ -60,7 +60,7 @@ BRANCH:	"Pacman Challenge" @ (8, 5) portal
 
 # Levels between the Oracle and the Quest.
 #   There's no guarantee that all will be created.
-RNDLEVEL:		"rats" "R" @ (10, 2) 3
+RNDLEVEL:		"rats" "R" @ (10, 2) 4
 RNDLEVEL:	"kobold" "K" @ (11, 2) 6
 BRANCH: 	"Grund's Stronghold" @ (12, 2)
 

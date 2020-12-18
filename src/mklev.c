@@ -2849,11 +2849,12 @@ ghnhom2:
 
 	    case 47:
 
-		switch (rnd(3)) {
+		switch (rnd(4)) {
 
 			case 1: makemaz("erats-1"); return;
 			case 2: makemaz("erats-2"); return;
 			case 3: makemaz("erats-3"); return;
+			case 4: makemaz("erats-4"); return;
 
 		}
 		break;
@@ -4783,11 +4784,12 @@ ghnhom2:
 
 	    case 47:
 
-		switch (rnd(3)) {
+		switch (rnd(4)) {
 
 			case 1: makemaz("hrats-1"); return;
 			case 2: makemaz("hrats-2"); return;
 			case 3: makemaz("hrats-3"); return;
+			case 4: makemaz("hrats-4"); return;
 
 		}
 		break;
@@ -7136,11 +7138,12 @@ ghnhom4:
 
 	    case 47:
 
-		switch (rnd(3)) {
+		switch (rnd(4)) {
 
 			case 1: makemaz("erats-1"); return;
 			case 2: makemaz("erats-2"); return;
 			case 3: makemaz("erats-3"); return;
+			case 4: makemaz("erats-4"); return;
 
 		}
 		break;
@@ -9063,11 +9066,12 @@ ghnhom4:
 
 	    case 47:
 
-		switch (rnd(3)) {
+		switch (rnd(4)) {
 
 			case 1: makemaz("hrats-1"); return;
 			case 2: makemaz("hrats-2"); return;
 			case 3: makemaz("hrats-3"); return;
+			case 4: makemaz("hrats-4"); return;
 
 		}
 		break;

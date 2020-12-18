@@ -292,6 +292,119 @@ MONSTER: 'r', random, random, hostile
 
 RANDOM_CORRIDORS
 
+#
+#	new rat king level by Soviet5lo, ported to SLEX by Amy
+#
+MAZE: "rats-4",' '
+GEOMETRY: center,center
+#0        1         2         3         4         5         6
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+
+                 ....                  .......         ........
+                 .}}.                  .}}}}}.         }}}}}}}.
+   ...............}......         ..........}.         }....}.........
+   .}}}}}}}}}}}}}}}..}}}.         .}}}}}}. .}.     }}}}}.   .}}}}}}}}.
+   .}.............}}}}.............}........}..    }......................
+  ..}.......  .}}}}......}}}}}}}}}}}}}}}}}}}}}.   }}. -----------     .}}.
+  .}}}}}}}}.  .}..}}}}}}}}.........}.........}.    }. |....\....|  ....}..
+  .......}..  .}...........  .}}}}}}.    ..}}}.    }. |.........| ..}}}}.
+       .}}.   .}.... ...     .}........  .}}.}}}}}}}. |.........| .}}..}.
+       .}..   .}}}}. .}.......}}}}}}}}.  .}..}.....}. ----+-+---- ... .}.
+       ........}.... .}}}}}}}}}......}.  .}..}.............}.     .....}.
+         .}}}}}}}.  .......}..}..}}}}}.  ....}}}}}}}}}}}}}}}.     .}}}}}.
+         .}..}....  .}}}}}}}}....}..... ..}....}.......}...........}...}.
+         ....}.     .}........}}}}}}.   .}}}}}}}}}.  .}}}}}}}}}}}}}}. ...
+            ...     .}.   .}}}}......   .}.......}.  ........}.......
+                    ...   .....         ...     ...         ...
+ENDMAP
+#RANDOM_PLACES:(19,1),(42,1),(61,1),(21,15),(41,15),(61,16)
+# only place[0] is currently used
+STAIR:(02,07),up
+STAIR:(61,16),down
+#BRANCH:(35,06,35,06),(0,0,0,0)
+DOOR: closed, (58,10)
+DOOR: closed, (60,10)
+# Potion of invulerability along with some other junk - it's a sewer after all.
+OBJECT: '!',"invulnerability",random
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+
+# The Rat King's Throne Room
+MONSTER: 'r', "the Rat King", (59,7), hostile
+OBJECT: ')',"long sword",(59,7)
+OBJECT: '/',random,(59,7)
+OBJECT: '!',random,(59,7)
+OBJECT: '%',"cheese",(59,7)
+OBJECT: '%',"cheese",(59,7)
+OBJECT: '[',"elven boots",(59,7)
+MONSTER: 'r', "pack rat", (55,7), hostile
+MONSTER: 'r', "pack rat", (56,7), hostile
+MONSTER: 'r', "pack rat", (57,7), hostile
+MONSTER: 'r', "pack rat", (58,7), hostile
+MONSTER: 'r', "black rat", (60,7), hostile
+MONSTER: 'r', "black rat", (61,7), hostile
+MONSTER: 'r', "black rat", (62,7), hostile
+MONSTER: 'r', "black rat", (63,7), hostile
+MONSTER: 'r', "black rat", (55,8), hostile
+MONSTER: 'r', "black rat", (56,8), hostile
+MONSTER: 'r', "black rat", (57,8), hostile
+MONSTER: 'r', "black rat", (58,8), hostile
+MONSTER: 'r', "giant rat", (59,8), hostile
+MONSTER: 'r', "giant rat", (60,8), hostile
+MONSTER: 'r', "giant rat", (61,8), hostile
+MONSTER: 'r', "giant rat", (62,8), hostile
+MONSTER: 'r', "giant rat", (63,8), hostile
+MONSTER: 'r', "sewer rat", (55,9), hostile
+MONSTER: 'r', "sewer rat", (56,9), hostile
+MONSTER: 'r', "sewer rat", (57,9), hostile
+MONSTER: 'r', "sewer rat", (58,9), hostile
+MONSTER: 'r', "sewer rat", (59,9), hostile
+MONSTER: 'r', "sewer rat", (60,9), hostile
+MONSTER: 'r', "sewer rat", (61,9), hostile
+MONSTER: 'r', "sewer rat", (62,9), hostile
+MONSTER: 'r', "rabid rat", (63,9), hostile
+# rats in the sewers...
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+# And of course one of these...
+MONSTER: 'P', "brown pudding", random, hostile
+
 LEVEL: "erats-1"
 RANDOM_MONSTERS: 'r'
 ROOM: "ordinary" , unlit, random, random, (16,8)
@@ -581,6 +694,119 @@ MONSTER: 'r', random, random, hostile
 MONSTER: 'r', random, random, hostile
 
 RANDOM_CORRIDORS
+
+#
+#	new rat king level by Soviet5lo, ported to SLEX by Amy
+#
+MAZE: "erats-4",' '
+GEOMETRY: center,center
+#0        1         2         3         4         5         6
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+
+                 ....                  .......         ........
+                 .}}.                  .}}}}}.         }}}}}}}.
+   ...............}......         ..........}.         }....}.........
+   .}}}}}}}}}}}}}}}..}}}.         .}}}}}}. .}.     }}}}}.   .}}}}}}}}.
+   .}.............}}}}.............}........}..    }......................
+  ..}.......  .}}}}......}}}}}}}}}}}}}}}}}}}}}.   }}. -----------     .}}.
+  .}}}}}}}}.  .}..}}}}}}}}.........}.........}.    }. |....\....|  ....}..
+  .......}..  .}...........  .}}}}}}.    ..}}}.    }. |.........| ..}}}}.
+       .}}.   .}.... ...     .}........  .}}.}}}}}}}. |.........| .}}..}.
+       .}..   .}}}}. .}.......}}}}}}}}.  .}..}.....}. ----+-+---- ... .}.
+       ........}.... .}}}}}}}}}......}.  .}..}.............}.     .....}.
+         .}}}}}}}.  .......}..}..}}}}}.  ....}}}}}}}}}}}}}}}.     .}}}}}.
+         .}..}....  .}}}}}}}}....}..... ..}....}.......}...........}...}.
+         ....}.     .}........}}}}}}.   .}}}}}}}}}.  .}}}}}}}}}}}}}}. ...
+            ...     .}.   .}}}}......   .}.......}.  ........}.......
+                    ...   .....         ...     ...         ...
+ENDMAP
+#RANDOM_PLACES:(19,1),(42,1),(61,1),(21,15),(41,15),(61,16)
+# only place[0] is currently used
+STAIR:(02,07),up
+STAIR:(61,16),down
+#BRANCH:(35,06,35,06),(0,0,0,0)
+DOOR: closed, (58,10)
+DOOR: closed, (60,10)
+# Potion of invulerability along with some other junk - it's a sewer after all.
+OBJECT: '!',"invulnerability",random
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+
+# The Rat King's Throne Room
+MONSTER: 'r', random, (59,7), hostile
+OBJECT: ')',"long sword",(59,7)
+OBJECT: '/',random,(59,7)
+OBJECT: '!',random,(59,7)
+OBJECT: '%',"cheese",(59,7)
+OBJECT: '%',"cheese",(59,7)
+OBJECT: '[',"elven boots",(59,7)
+MONSTER: 'r', "pack rat", (55,7), hostile
+MONSTER: 'r', "pack rat", (56,7), hostile
+MONSTER: 'r', "pack rat", (57,7), hostile
+MONSTER: 'r', "pack rat", (58,7), hostile
+MONSTER: 'r', "black rat", (60,7), hostile
+MONSTER: 'r', "black rat", (61,7), hostile
+MONSTER: 'r', "black rat", (62,7), hostile
+MONSTER: 'r', "black rat", (63,7), hostile
+MONSTER: 'r', "black rat", (55,8), hostile
+MONSTER: 'r', "black rat", (56,8), hostile
+MONSTER: 'r', "black rat", (57,8), hostile
+MONSTER: 'r', "black rat", (58,8), hostile
+MONSTER: 'r', "giant rat", (59,8), hostile
+MONSTER: 'r', "giant rat", (60,8), hostile
+MONSTER: 'r', "giant rat", (61,8), hostile
+MONSTER: 'r', "giant rat", (62,8), hostile
+MONSTER: 'r', "giant rat", (63,8), hostile
+MONSTER: 'r', "sewer rat", (55,9), hostile
+MONSTER: 'r', "sewer rat", (56,9), hostile
+MONSTER: 'r', "sewer rat", (57,9), hostile
+MONSTER: 'r', "sewer rat", (58,9), hostile
+MONSTER: 'r', "sewer rat", (59,9), hostile
+MONSTER: 'r', "sewer rat", (60,9), hostile
+MONSTER: 'r', "sewer rat", (61,9), hostile
+MONSTER: 'r', "sewer rat", (62,9), hostile
+MONSTER: 'r', "rabid rat", (63,9), hostile
+# rats in the sewers...
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+# And of course one of these...
+MONSTER: 'P', "brown pudding", random, hostile
 
 LEVEL: "hrats-1"
 RANDOM_MONSTERS: 'r'
@@ -872,4 +1098,115 @@ MONSTER: 'r', random, random, hostile
 
 RANDOM_CORRIDORS
 
+#
+#	new rat king level by Soviet5lo, ported to SLEX by Amy
+#
+MAZE: "hrats-4",' '
+GEOMETRY: center,center
+#0        1         2         3         4         5         6
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
 
+                 ....                  .......         ........
+                 .}}.                  .}}}}}.         }}}}}}}.
+   ...............}......         ..........}.         }....}.........
+   .}}}}}}}}}}}}}}}..}}}.         .}}}}}}. .}.     }}}}}.   .}}}}}}}}.
+   .}.............}}}}.............}........}..    }......................
+  ..}.......  .}}}}......}}}}}}}}}}}}}}}}}}}}}.   }}. -----------     .}}.
+  .}}}}}}}}.  .}..}}}}}}}}.........}.........}.    }. |....\....|  ....}..
+  .......}..  .}...........  .}}}}}}.    ..}}}.    }. |.........| ..}}}}.
+       .}}.   .}.... ...     .}........  .}}.}}}}}}}. |.........| .}}..}.
+       .}..   .}}}}. .}.......}}}}}}}}.  .}..}.....}. ----+-+---- ... .}.
+       ........}.... .}}}}}}}}}......}.  .}..}.............}.     .....}.
+         .}}}}}}}.  .......}..}..}}}}}.  ....}}}}}}}}}}}}}}}.     .}}}}}.
+         .}..}....  .}}}}}}}}....}..... ..}....}.......}...........}...}.
+         ....}.     .}........}}}}}}.   .}}}}}}}}}.  .}}}}}}}}}}}}}}. ...
+            ...     .}.   .}}}}......   .}.......}.  ........}.......
+                    ...   .....         ...     ...         ...
+ENDMAP
+#RANDOM_PLACES:(19,1),(42,1),(61,1),(21,15),(41,15),(61,16)
+# only place[0] is currently used
+STAIR:(02,07),up
+STAIR:(61,16),down
+#BRANCH:(35,06,35,06),(0,0,0,0)
+DOOR: closed, (58,10)
+DOOR: closed, (60,10)
+# Potion of invulerability along with some other junk - it's a sewer after all.
+OBJECT: '!',"invulnerability",random
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+GOLD: random,random
+
+# The Rat King's Throne Room
+MONSTER: 'r', random, (59,7), hostile
+OBJECT: ')',"long sword",(59,7)
+OBJECT: '/',random,(59,7)
+OBJECT: '!',random,(59,7)
+OBJECT: '%',"cheese",(59,7)
+OBJECT: '%',"cheese",(59,7)
+OBJECT: '[',"elven boots",(59,7)
+MONSTER: 'r', "pack rat", (55,7), hostile
+MONSTER: 'r', "pack rat", (56,7), hostile
+MONSTER: 'r', "pack rat", (57,7), hostile
+MONSTER: 'r', "pack rat", (58,7), hostile
+MONSTER: 'r', "black rat", (60,7), hostile
+MONSTER: 'r', "black rat", (61,7), hostile
+MONSTER: 'r', "black rat", (62,7), hostile
+MONSTER: 'r', "black rat", (63,7), hostile
+MONSTER: 'r', "black rat", (55,8), hostile
+MONSTER: 'r', "black rat", (56,8), hostile
+MONSTER: 'r', "black rat", (57,8), hostile
+MONSTER: 'r', "black rat", (58,8), hostile
+MONSTER: 'r', "giant rat", (59,8), hostile
+MONSTER: 'r', "giant rat", (60,8), hostile
+MONSTER: 'r', "giant rat", (61,8), hostile
+MONSTER: 'r', "giant rat", (62,8), hostile
+MONSTER: 'r', "giant rat", (63,8), hostile
+MONSTER: 'r', "sewer rat", (55,9), hostile
+MONSTER: 'r', "sewer rat", (56,9), hostile
+MONSTER: 'r', "sewer rat", (57,9), hostile
+MONSTER: 'r', "sewer rat", (58,9), hostile
+MONSTER: 'r', "sewer rat", (59,9), hostile
+MONSTER: 'r', "sewer rat", (60,9), hostile
+MONSTER: 'r', "sewer rat", (61,9), hostile
+MONSTER: 'r', "sewer rat", (62,9), hostile
+MONSTER: 'r', "rabid rat", (63,9), hostile
+# rats in the sewers...
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', "sewer rat", random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+# And of course one of these...
+MONSTER: 'P', "brown pudding", random, hostile
