@@ -7754,7 +7754,7 @@ A("Reaver",			SCIMITAR,
 	PHYS(5,8),	NO_DFNS,	NO_CARY,	0, A_CHAOTIC, PM_PIRATE, NON_PM, 6000L ),
 
 A("Thiefbane",                  LONG_SWORD,
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_BEHEAD|SPFX_DCLAS|SPFX_DRLI), 0, S_HUMAN,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_BEHEAD|SPFX_DCLAS|SPFX_DRLI|SPFX_NOWISH), 0, S_HUMAN,
 	DRLI(5,2),      NO_DFNS,        NO_CARY,        0, A_CHAOTIC, NON_PM, NON_PM, 1500L ),
 
 A("Deathsword",                   TWO_HANDED_SWORD,
@@ -7823,78 +7823,97 @@ A("Wallet of Perseus",       BAG_OF_HOLDING,
         0,      A_NONE, NON_PM, NON_PM, 10000L ),
 
 A("Nighthorn", UNICORN_HORN,
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_REFLECT), 0, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_REFLECT|SPFX_NOWISH), 0, 0,
 	NO_ATTK,        NO_DFNS,        NO_CARY,
 	0,      A_LAWFUL, NON_PM, NON_PM, 10000L ),
 
 A("The Key of Law", SKELETON_KEY,
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_NOWISH), 0, 0,
 	NO_ATTK,        NO_DFNS,        NO_CARY,
 	0,      A_LAWFUL, NON_PM, NON_PM, 1000L ),
 
 A("The Eye of the Beholder", EYEBALL,
-	(SPFX_NOGEN|SPFX_RESTR), 0, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK,        NO_DFNS,        NO_CARY,
 	DEATH_GAZE,     A_NEUTRAL, NON_PM, NON_PM, 500L ),
 
 A("The Key of Neutrality", SKELETON_KEY,
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_NOWISH), 0, 0,
 	NO_ATTK,        NO_DFNS,        NO_CARY,
 	0,      A_NEUTRAL, NON_PM, NON_PM, 1000L ),
 
 A("The Hand of Vecna",       SEVERED_HAND,
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_REGEN|SPFX_HPHDAM), 0, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_REGEN|SPFX_HPHDAM|SPFX_NOWISH), 0, 0,
 	NO_ATTK,        DRLI(0,0),      CARY(AD_COLD),
 	SUMMON_UNDEAD,          A_CHAOTIC, NON_PM, NON_PM, 700L ),
 
 A("The Key of Chaos", SKELETON_KEY,
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_NOWISH), 0, 0,
 	NO_ATTK,        NO_DFNS,        NO_CARY,
 	0,      A_CHAOTIC, NON_PM, NON_PM, 1000L ),
 
 A("The Gauntlet Key", SKELETON_KEY,
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_NOWISH), 0, 0,
 	NO_ATTK,        NO_DFNS,        NO_CARY,
 	0,      A_LAWFUL, NON_PM, NON_PM, 1000L ),
 
 /* reward for defeating the elder priest */
 A("Motherfucker Trophy", ROBE, /* +5 increase damage and accuracy, 20% better spellcasting chances, fast skill training */
-	(SPFX_NOGEN|SPFX_DEFN|SPFX_RESTR|SPFX_INTEL|SPFX_REFLECT), 0, 0,
+	(SPFX_NOGEN|SPFX_DEFN|SPFX_RESTR|SPFX_INTEL|SPFX_REFLECT|SPFX_NOWISH), 0, 0,
 	NO_ATTK,        DFNS(AD_MAGM),        NO_CARY,
 	0,      A_NONE, NON_PM, NON_PM, 50000L ),
 
 /* for Emyn Luin boss - no special effects, cannot be wished for */
 A("Kal",			KALASHNIKOV,
-	(SPFX_NOGEN|SPFX_RESTR), 0, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+/* for Green Cross boss - cannot be wished for */
+A("Stahngnir's Bashhunk", AIR_PRESSURE_HAMMER, /* petrification resistance when wielded */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	PHYS(5, 0),	NO_DFNS, NO_CARY,
+	0,	0, 0, NON_PM, 20000L ),
+
+/* three artifacts for elemental imbue technique, cannot be wished for */
+A("Fire Swing",			LONG_SWORD,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_NOWISH|SPFX_ATTK), 0, 0,
+	FIRE(0,8),	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Frost Swing",			LONG_SWORD,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_NOWISH|SPFX_ATTK), 0, 0,
+	COLD(0,8),	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Shock Swing",			LONG_SWORD,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_NOWISH|SPFX_ATTK), 0, 0,
+	ELEC(0,8),	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 2000L ),
 
 /* reward for finishing the Illusory Castle */
 A("The Helm of Knowledge", HELM_OF_TELEPATHY,
-	(SPFX_NOGEN|SPFX_RESTR), 0, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK,	NO_DFNS,	NO_CARY,
 	IDENTIFY,	A_NONE, NON_PM, NON_PM, 10000L),
 
 /* artifact on the special level in the Illusory Castle */
 A("Boots of the Machine", SPEED_BOOTS, /* aggravate monster, confusion resistance, displays all golems and unliving monsters */
-	(SPFX_NOGEN|SPFX_RESTR), 0, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK,	NO_DFNS,	NO_CARY,
 	0,	A_NONE, NON_PM, NON_PM, 10000L),
 
 /* artifact on the special level in the Deep Mines */
 A("The Arkenstone of Thrain", LUCKSTONE, /* invokes for perilous identify - curses the stone and gives 10 bad effects */
-	(SPFX_NOGEN|SPFX_RESTR), 0, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK,	NO_DFNS,	NO_CARY,
 	IDENTIFY,	A_NONE, NON_PM, NON_PM, 10000L),
 
 /* reward for finishing the Mainframe */
 A("Bizarro Orgasmatron", HITCHHIKER_S_GUIDE_TO_THE_GALA,
-	(SPFX_NOGEN|SPFX_RESTR), 0, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK,	NO_DFNS,	NO_CARY,
 	CREATE_PORTAL,	A_NONE, NON_PM, NON_PM, 10000L),
 
 /* reward for finishing Hell's Bathroom */
 A("Katia's Soft Cotton", BATH_TOWEL, /* if you take a crap while wearing it, you may gain charisma */
-	(SPFX_NOGEN|SPFX_RESTR), 0, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK,	NO_DFNS,	NO_CARY,
 	0,	A_NONE, NON_PM, NON_PM, 25000L),
 
@@ -8507,7 +8526,7 @@ A("Meteoric AC", HELM_OF_STEEL,
 	0,  A_LAWFUL, PM_GANG_SCHOLAR, NON_PM, 5000L ),
 
 A("Nuclear Spear", ORCISH_SPEAR,
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_ATTK), 0, 0,
 	FIRE(0, 14),        NO_DFNS,        NO_CARY,
 	DRAGON_BREATH,  A_CHAOTIC, PM_NUCLEAR_PHYSICIST, NON_PM, 5000L ),
 
@@ -8532,7 +8551,7 @@ A("The Elder Cerebral Fluid", ICKY_BLADE,
 	ENERGY_BOOST,	A_LAWFUL, PM_ANACHRONOUNBINDER, NON_PM, 2500L ),
 
 A("Cerulean Smash", HIGH_HEELED_SANDAL, /* +10 charisma when wielded, can dig through grave walls in one turn, wielding it as a non-hussy will set it to -10 and heavily curse it (in case you're a smartass and wish for it) */
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_ATTK), 0, 0,
 	COLD(10, 14),	NO_DFNS, NO_CARY,
 	PHASING,	A_CHAOTIC, PM_HUSSY, NON_PM, 8000L ),
 

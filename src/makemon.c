@@ -12662,6 +12662,24 @@ loveheelover:
 		    }
 		}
 
+		if (ptr == &mons[PM_STAHNGNIR__THE_STEEL_GIANT_LORD]) {
+		    otmp = mksobj(AIR_PRESSURE_HAMMER, FALSE, FALSE, FALSE);
+
+		    if (otmp) {
+
+			otmp = oname(otmp, artiname(ART_STAHNGNIR_S_BASHHUNK));
+			(void) mpickobj(mtmp, otmp, TRUE);
+
+		    }
+
+		    int stahngnirminions = rn1(10, 10);
+		    while (stahngnirminions > 0) {
+				(void) makemon(&mons[PM_STEEL_GIANT], mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				stahngnirminions--;
+		    }
+
+		}
+
 		if (ptr == &mons[PM_LAVA_SPAWN_GIANT]) (void)mongets(mtmp, GRINDER);
 		if (ptr == &mons[PM_STEELED_GIANT]) (void)mongets(mtmp, HEAVY_GRINDER);
 		if (ptr == &mons[PM_DOGSHIT_FEMMY]) (void)mongets(mtmp, DOGSHIT_BOOT);
@@ -14256,6 +14274,16 @@ loveheelover:
 			(void) mongets(mtmp, SLING);
 			(void) mongets(mtmp, ELVEN_MITHRIL_COAT);
 			 m_initthrow(mtmp, SMALL_PIECE_OF_UNREFINED_MITHR, 25);
+		}
+
+		if (ptr == &mons[PM_ARIANE__LADY_OF_THE_ELEMENTS]) {
+			(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+			(void) mongets(mtmp, HIPPIE_HEELS);
+			(void) mongets(mtmp, WAN_TELEPORTATION);
+			(void) mongets(mtmp, WAN_FULL_HEALING);
+			(void) mongets(mtmp, POT_FULL_HEALING);
+			(void) mongets(mtmp, POT_FULL_HEALING);
+			(void) mongets(mtmp, POT_FULL_HEALING);
 		}
 
 		if (ptr == &mons[PM_ARAB_GUARD]) {
@@ -24415,6 +24443,8 @@ loopback:
 		if (ct > 0 && (In_emynluin(&u.uz) && is_angbandmonster(ptr) )) ct += 10;
 		if (ct > 0 && (In_emynluin(&u.uz) && is_animemonster(ptr) )) ct += 2;
 		if (ct > 0 && (In_emynluin(&u.uz) && is_steammonster(ptr) )) ct += 5;
+		if (ct > 0 && (In_greencross(&u.uz) && is_cowmonster(ptr) )) ct += 50;
+		if (ct > 0 && (In_greencross(&u.uz) && is_jokemonster(ptr) )) ct += 5;
 		if (ct > 0 && (In_swimmingpool(&u.uz) && (ptr->mlet == S_EEL) )) ct += 20;
 		if (ct > 0 && (In_swimmingpool(&u.uz) && (ptr->mlet == S_FLYFISH) )) ct += 20;
 		if (ct > 0 && (In_swimmingpool(&u.uz) && dmgtype(ptr, AD_WRAP) )) ct += 10;
@@ -25626,6 +25656,8 @@ int     spc;
 		if ((In_emynluin(&u.uz) && is_angbandmonster(&mons[last]) )) num += 10;
 		if ((In_emynluin(&u.uz) && is_animemonster(&mons[last]) )) num += 2;
 		if ((In_emynluin(&u.uz) && is_steammonster(&mons[last]) )) num += 5;
+		if ((In_greencross(&u.uz) && is_cowmonster(&mons[last]) )) num += 50;
+		if ((In_greencross(&u.uz) && is_jokemonster(&mons[last]) )) num += 5;
 		if ((In_swimmingpool(&u.uz) && dmgtype(&mons[last], AD_WRAP) )) num += 10;
 		if ((In_swimmingpool(&u.uz) && amphibious(&mons[last]) )) num += 10;
 		if ((In_swimmingpool(&u.uz) && is_swimmer(&mons[last]) )) num += 10;
@@ -26495,6 +26527,8 @@ int     spc;
 		if ((In_emynluin(&u.uz) && is_angbandmonster(&mons[first]) )) num -= 10;
 		if ((In_emynluin(&u.uz) && is_animemonster(&mons[first]) )) num -= 2;
 		if ((In_emynluin(&u.uz) && is_steammonster(&mons[first]) )) num -= 5;
+		if ((In_greencross(&u.uz) && is_cowmonster(&mons[first]) )) num -= 50;
+		if ((In_greencross(&u.uz) && is_jokemonster(&mons[first]) )) num -= 5;
 		if ((In_swimmingpool(&u.uz) && dmgtype(&mons[first], AD_WRAP) )) num -= 10;
 		if ((In_swimmingpool(&u.uz) && amphibious(&mons[first]) )) num -= 10;
 		if ((In_swimmingpool(&u.uz) && is_swimmer(&mons[first]) )) num -= 10;

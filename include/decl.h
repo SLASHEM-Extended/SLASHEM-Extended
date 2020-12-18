@@ -107,6 +107,7 @@ E struct dgn_topology {		/* special dungeon levels for speed */
     xchar   d_deepmines_dnum;
     xchar   d_angmar_dnum;
     xchar   d_emynluin_dnum;
+    xchar   d_greencross_dnum;
     xchar   d_minotaurmaze_dnum;
     xchar   d_swimmingpool_dnum;
     xchar   d_hellbathroom_dnum;
@@ -200,6 +201,7 @@ E struct dgn_topology {		/* special dungeon levels for speed */
 #define deepmines_dnum		(dungeon_topology.d_deepmines_dnum)
 #define angmar_dnum		(dungeon_topology.d_angmar_dnum)
 #define emynluin_dnum		(dungeon_topology.d_emynluin_dnum)
+#define greencross_dnum		(dungeon_topology.d_greencross_dnum)
 #define minotaurmaze_dnum		(dungeon_topology.d_minotaurmaze_dnum)
 #define swimmingpool_dnum		(dungeon_topology.d_swimmingpool_dnum)
 #define hellbathroom_dnum		(dungeon_topology.d_hellbathroom_dnum)
@@ -693,6 +695,8 @@ struct u_achieveX {
 	  Bitfield(devnull_complete,1);	/* You visited all DevNull dungeon branches */
 	  Bitfield(killed_minotaur,1);	/* You killed the Minotaur of the Maze */
 	  Bitfield(killed_kalwina,1);	/* You killed Kalwina */
+	  Bitfield(killed_stahngnir,1);	/* You killed Stahngnir */
+	  Bitfield(killed_ariane,1);	/* You killed Ariane */
 
 };
 

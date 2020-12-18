@@ -121,6 +121,24 @@ void * poolcnt;
 
 }
 
+void
+elemental_imbue(elemtype)
+{
+	if (!uwep) return; /* bug */
+
+	switch (elemtype) {
+		case 1:
+			artilist[ART_FIRE_SWING].otyp = uwep->otyp;
+			break;
+		case 2:
+			artilist[ART_FROST_SWING].otyp = uwep->otyp;
+			break;
+		case 3:
+			artilist[ART_SHOCK_SWING].otyp = uwep->otyp;
+			break;
+	}
+}
+
 
 /* handle some special cases; must be called after role_init() */
 STATIC_OVL void
@@ -1140,6 +1158,14 @@ arti_is_evil(obj)
 struct obj *obj;
 {
     return (obj->oartifact && spec_ability(obj, SPFX_EVIL));
+}
+
+/* determine if a given artifact is nonwishable --Amy */
+boolean
+arti_nonwishable(obj)
+struct obj *obj;
+{
+    return (obj->oartifact && spec_ability(obj, SPFX_NOWISH));
 }
 
 /* used so that callers don't need to known about SPFX_ codes */

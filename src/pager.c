@@ -26022,6 +26022,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"You decide to cure your amnesia.",
 	"You decide to cure your amnesia. But you've forgotten how to do that, and actually made the condition worse.",
 	"You decide to cure your amnesia. Somehow it doesn't work though, you still can't remember what the scroll labeled LEV GEX VEN ZEA is and the map of dungeon level 11 remains obscured too.",
+	"Your weapon transforms, and is now imbued with elemental power!",
+	"Your weapon transforms, and is now imbued with elemental power! Have fun killing all the scrolls of teleportation when attacking with your flaming sword.",
+	"Your weapon transforms, and is now imbued with elemental power! Now your cold-branded axe will destroy every single potion of full healing that you would otherwise have gotten from enemies.",
+	"Your weapon transforms, and is now imbued with elemental power! I'm pretty sure you'll love seeing your shocking hmamer destroy wands of death and rings of levitation, because lol who needs loot anyway lol.",
 
 };
 

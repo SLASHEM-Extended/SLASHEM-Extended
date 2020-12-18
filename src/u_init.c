@@ -10584,6 +10584,10 @@ u_init()
 	else if (u.monstertimefinish % 3 == 0) u.eeveelution = PM_FLAREON;
 	else u.eeveelution = PM_VAPOREON;
 
+	u.greencrossopen = FALSE; /* initialized at game start only */
+
+	u.greencrosschance = rnd(20);
+
 	u.untrainableskill = 0;
 	u.halfspeedskill = 0;
 	u.fifthspeedskill = 0;
@@ -32635,6 +32639,8 @@ int realityflag;
 	else if (u.monstertimefinish % 7 == 0) u.eeveelution = PM_JOLTEON;
 	else if (u.monstertimefinish % 3 == 0) u.eeveelution = PM_FLAREON;
 	else u.eeveelution = PM_VAPOREON;
+
+	u.greencrosschance = rnd(20);
 
 	u.untrainableskill = 0;
 	u.halfspeedskill = 0;

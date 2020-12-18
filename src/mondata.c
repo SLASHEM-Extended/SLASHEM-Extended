@@ -350,6 +350,7 @@ immune_timestop(ptr)
 register struct permonst *ptr;
 {
 	if (ptr == &mons[PM_DNETHACK_ELDER_PRIEST_TM_]) return TRUE;
+	if (ptr == &mons[PM_ARIANE__LADY_OF_THE_ELEMENTS]) return TRUE;
 	if (ptr == &mons[PM_TIKSRVZLLAT]) return TRUE;
 	if (ptr == &mons[PM_MIKRAANESIS]) return TRUE;
 	if (ptr == &mons[PM_SVEN]) return TRUE;

@@ -615,6 +615,9 @@ struct you {
 	int tiksrvzllatdown;
 	int netherrealmcomplete;
 	int angmarcomplete;
+	int stahngnirdown;
+	int arianespawned;
+	int arianedown;
 	int emynluincomplete;
 	int minotaurmazecomplete;
 	int katiaremoved;
@@ -627,6 +630,9 @@ struct you {
 	int joustchallengecomplete;
 	int gruechallengecomplete;
 	int devnullcomplete;
+
+	int greencrosschance;
+	boolean greencrossopen;
 
 	int musableremovechance;	/* extra chance for musable items to get removed */
 	int equipmentremovechance;

@@ -282,6 +282,8 @@ xchar dnum;
 		strcpy(buf, "GIA");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Gnomish Mines"))
 		strcpy(buf, "GNO");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Green Cross"))
+		strcpy(buf, "GRC");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Grue Challenge"))
 		strcpy(buf, "GRE");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold"))

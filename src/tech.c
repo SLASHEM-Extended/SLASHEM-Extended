@@ -6,6 +6,7 @@
 /* All of the techs from cmd.c are ported here */
 
 #include "hack.h"
+#include "artilist.h"
 
 /* #define DEBUG */		/* turn on for diagnostics */
 
@@ -249,6 +250,7 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"grap swap",
 	"diabolic minion",
 	"cure amnesia",
+	"elemental imbue",
 	"jedi jump",
 	"charge saber",
 	"telekinesis",
@@ -3340,6 +3342,10 @@ dotech()
 
 		case T_CURE_AMNESIA:
 			pline("A useful technique that removes the 'map amnesia' intrinsic. Be aware that if you're e.g. playing the amnesiac race, you'll still have map amnesia. It's useful especially when you triggered a lasting amnesia trap.");
+			break;
+
+		case T_ELEMENTAL_IMBUE:
+			pline("This technique transforms your currently wielded weapon into an elemental-branded artifact. It works only if the weapon in question is neither a real nor fake artifact, and only if it's actually listed under 'weapons' in your inventory. Plus, it obviously doesn't work on a stack.");
 			break;
 
 
@@ -7953,6 +7959,59 @@ repairitemchoice:
 
 			t_timeout = rnz(50000);
 			break;
+
+		case T_ELEMENTAL_IMBUE:
+		{
+			int randomelement = rnd(3);
+
+			if (!uwep) {
+				pline("Without a weapon, this technique won't work!");
+				return 0;
+			}
+
+			if (uwep && (uwep->quan > 1)) {
+				pline("You're wielding a stack of weapons! Drop all but one!");
+				return 0;
+			}
+
+			if (uwep && (uwep->oartifact || uwep->fakeartifact)) {
+				pline("Transforming a weapon into an artifact doesn't work on weapons that are already artifacts.");
+				return 0;
+			}
+
+			if (uwep && (uwep->oclass != WEAPON_CLASS)) {
+				pline("That's not a proper weapon, and therefore cannot be transformed into an artifact!");
+				return 0;
+			}
+
+			if (uwep) {
+				switch (randomelement) {
+					case 1:
+						artilist[ART_FIRE_SWING].otyp = uwep->otyp;
+						elemental_imbue(1);
+						uwep = onameX(uwep, artiname(ART_FIRE_SWING));
+						break;
+					case 2:
+						artilist[ART_FROST_SWING].otyp = uwep->otyp;
+						elemental_imbue(2);
+						uwep = onameX(uwep, artiname(ART_FROST_SWING));
+						break;
+					case 3:
+						artilist[ART_SHOCK_SWING].otyp = uwep->otyp;
+						elemental_imbue(3);
+						uwep = onameX(uwep, artiname(ART_SHOCK_SWING));
+						break;
+				}
+
+				update_inventory();
+				Your("weapon transforms, and is now imbued with elemental power!");
+			}
+
+			t_timeout = rnz(20000);
+
+			break;
+
+		}
 
 		case T_PERMAMORPH:
 

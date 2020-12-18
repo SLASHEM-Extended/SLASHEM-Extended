@@ -4573,6 +4573,18 @@ newbossSING:
 		u.weapon_slots += 5;
 	}
 
+      if(mtmp->data == &mons[PM_STAHNGNIR__THE_STEEL_GIANT_LORD] && !u.stahngnirdown) {
+		u.stahngnirdown = 1;
+	}
+
+      if(mtmp->data == &mons[PM_ARIANE__LADY_OF_THE_ELEMENTS] && !u.arianedown) {
+		u.arianedown = 1;
+		if (!tech_known(T_ELEMENTAL_IMBUE)) {
+			learntech(T_ELEMENTAL_IMBUE, FROMOUTSIDE, 1);
+			You("learn how to perform elemental imbue!");
+		}
+	}
+
       if(mtmp->data == &mons[PM_KALWINA] && !u.emynluincomplete) {
 		u.emynluincomplete = 1;
 		pline("Congratulations, you broke the curse of Emyn Luin! As a reward, you'll gain extra spell memory when learning a new spell, your techniques time out faster so they can be used more often, and your skills train slightly faster!");
@@ -5537,6 +5549,50 @@ newbossSING:
 		if (!achieveX.killed_witchking) {
 
 	            achieveX.killed_witchking = 1;
+
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
+			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
+
+			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+				u.uhpmax += 10;
+				u.uenmax += 10;
+				if (Upolyd) u.mhmax += 10;
+				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+			}
+
+		}
+
+	}
+
+	if(mtmp->data == &mons[PM_STAHNGNIR__THE_STEEL_GIANT_LORD]) {
+
+		if (!achieveX.killed_stahngnir) {
+
+	            achieveX.killed_stahngnir = 1;
+
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
+			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
+
+			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+				u.uhpmax += 10;
+				u.uenmax += 10;
+				if (Upolyd) u.mhmax += 10;
+				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+			}
+
+		}
+
+	}
+
+	if(mtmp->data == &mons[PM_ARIANE__LADY_OF_THE_ELEMENTS]) {
+
+		if (!achieveX.killed_ariane) {
+
+	            achieveX.killed_ariane = 1;
 
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");

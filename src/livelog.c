@@ -94,6 +94,8 @@ encodeachieveX(void)
    *  8   completed all the DevNull dungeons
    *  9   killed the Minotaur of the Maze
    *  10  killed Kalwina
+   *  11  killed Stahngnir
+   *  12  killed Ariane
    */
 
   long r;
@@ -111,6 +113,8 @@ encodeachieveX(void)
   if(achieveX.devnull_complete)     r |= 1L << 8;
   if(achieveX.killed_minotaur)      r |= 1L << 9;
   if(achieveX.killed_kalwina)       r |= 1L << 10;
+  if(achieveX.killed_stahngnir)     r |= 1L << 11;
+  if(achieveX.killed_ariane)        r |= 1L << 12;
 
   return r;
 }

@@ -1007,6 +1007,7 @@ init_dungeons()
 	netherrealm_dnum = dname_to_dnum("Nether Realm");
 	deepmines_dnum = dname_to_dnum("Deep Mines");
 	angmar_dnum = dname_to_dnum("Angmar");
+	greencross_dnum = dname_to_dnum("Green Cross");
 	emynluin_dnum = dname_to_dnum("Emyn Luin");
 	minotaurmaze_dnum = dname_to_dnum("Minotaur Maze");
 	swimmingpool_dnum = dname_to_dnum("Swimming Pool");
@@ -1686,6 +1687,13 @@ In_angmar(lev)	/* are you in the angmar dungeon? */
 d_level	*lev;
 {
 	return((boolean)(lev->dnum == angmar_dnum));
+}
+
+boolean
+In_greencross(lev)	/* are you in the green cross dungeon? */
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == greencross_dnum));
 }
 
 boolean

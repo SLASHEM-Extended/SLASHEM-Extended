@@ -2529,6 +2529,9 @@ mk_dgl_extrainfo()
         } else if (In_angmar(&u.uz)) {
             sprintf(tmpdng, "%i|Ang%i", sortval, depth(&u.uz));
 		sortval = 3200 + depth(&u.uz);
+        } else if (In_greencross(&u.uz)) {
+            sprintf(tmpdng, "%i|Grc%i", sortval, depth(&u.uz));
+		sortval = 3200 + depth(&u.uz);
         } else if (In_emynluin(&u.uz)) {
             sprintf(tmpdng, "%i|Emy%i", sortval, depth(&u.uz));
 		sortval = 3200 + depth(&u.uz);

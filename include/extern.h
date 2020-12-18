@@ -64,6 +64,7 @@ E boolean cyanspellok(int, int);
 
 /* ### artifact.c ### */
 
+E void elemental_imbue(int);
 E void init_artifacts(void);
 E void init_artifacts1(void);
 E void save_artifacts(int);
@@ -78,6 +79,7 @@ E void artifact_exists(struct obj *,const char *,BOOLEAN_P);
 E int nartifact_exist(void);
 E boolean spec_ability(struct obj *,unsigned long);
 E boolean arti_is_evil(struct obj *);
+E boolean arti_nonwishable(struct obj *);
 E boolean confers_luck(struct obj *);
 E boolean arti_reflects(struct obj *);
 E boolean restrict_name(struct obj *,const char *);
@@ -633,6 +635,7 @@ E boolean In_voiddungeon(d_level *);
 E boolean In_netherrealm(d_level *);
 E boolean In_deepmines(d_level *);
 E boolean In_angmar(d_level *);
+E boolean In_greencross(d_level *);
 E boolean In_emynluin(d_level *);
 E boolean In_minotaurmaze(d_level *);
 E boolean In_swimmingpool(d_level *);

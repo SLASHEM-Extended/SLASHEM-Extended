@@ -482,6 +482,15 @@ struct obj *obj;
 	
 	}
 
+	if (obj->oartifact == ART_STAHNGNIR_S_BASHHUNK && !u.arianespawned) {
+
+		(void) makemon(&mons[PM_ARIANE__LADY_OF_THE_ELEMENTS], 0, 0, MM_ANGRY);
+		u.arianespawned = TRUE;
+		verbalize("Mortal, I am Ariane, Lady of the Elements. Your abilities are quite impressive, but I hereby challenge you to a duel. Fear my magical powers, for I will buffet you with fire, frost and shock! Good luck, you'll need it!");
+
+	}
+
+
 #ifdef RECORD_ACHIEVE
         if(obj->otyp == LUCKSTONE && obj->record_achieve_special) {
 
@@ -585,6 +594,7 @@ struct obj *obj;
 		livelog_report_trophy("obtained the stone of magic resistance from the Deep Mines");
 #endif
         }
+
 #endif /* RECORD_ACHIEVE */
 
 }
@@ -20432,6 +20442,14 @@ boolean knoweverything;
 					pline("Artifact specs: full nutrients when worn, and eating a tin gives three times the usual amount of nutrition."); break;
 				case ART_KAL:
 					pline("Artifact specs: no specialties, this artifact starts out being in the possession of the Emyn Luin boss but it seems that you somehow got your greedy little hands on it."); break;
+				case ART_FIRE_SWING:
+					pline("Artifact specs: +8 damage to fire-susceptible creatures. This artifact cannot be generated normally, but is created by using the elemental imbue technique, which you apparently have. Good job, you defeated both bosses of the Green Cross subdungeon!"); break;
+				case ART_FROST_SWING:
+					pline("Artifact specs: +8 damage to frost-susceptible creatures. This artifact cannot be generated normally, but is created by using the elemental imbue technique, which you apparently have. Good job, you defeated both bosses of the Green Cross subdungeon!"); break;
+				case ART_SHOCK_SWING:
+					pline("Artifact specs: +8 damage to shock-susceptible creatures. This artifact cannot be generated normally, but is created by using the elemental imbue technique, which you apparently have. Good job, you defeated both bosses of the Green Cross subdungeon!"); break;
+				case ART_STAHNGNIR_S_BASHHUNK:
+					pline("Artifact specs: +5 to-hit and double damage, petrification resistance when wielded. This artifact is used by Stahngnir, The Steel Giant Lord, whom you apparently defeated - well done!"); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

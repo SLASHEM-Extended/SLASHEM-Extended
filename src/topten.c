@@ -1175,6 +1175,8 @@ char* encodeachieveX(void)
    *  8   visited all five DevNull challenge dungeons
    *  9   killed the Minotaur of the Maze
    *  10  killed Kalwina
+   *  11  killed Stahngnir
+   *  12  killed Ariane
    * but this isn't a bitfield, it's a string...
    */
 
@@ -1191,6 +1193,8 @@ char* encodeachieveX(void)
   if(achieveX.devnull_complete)     sprintf(eos(encoded_achievements), "%s,", "devnull_complete");
   if(achieveX.killed_minotaur)      sprintf(eos(encoded_achievements), "%s,", "killed_minotaur");
   if(achieveX.killed_kalwina)       sprintf(eos(encoded_achievements), "%s,", "killed_kalwina");
+  if(achieveX.killed_stahngnir)     sprintf(eos(encoded_achievements), "%s,", "killed_stahngnir");
+  if(achieveX.killed_ariane)        sprintf(eos(encoded_achievements), "%s,", "killed_ariane");
 
   int len;
   if ((len=strlen(encoded_achievements))) { encoded_achievements[len-1] = '\0'; }

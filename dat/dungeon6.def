@@ -77,6 +77,7 @@ BRANCH: 	"Grund's Stronghold" @ (2, 48)
 #   Put the branches with the least number of choices first
 
 BRANCH:	"Illusory Castle" @ (2, 48)
+BRANCH:	"Green Cross" @ (2, 48) portal
 BRANCH:	"Deep Mines" @ (2, 48)
 BRANCH: 	"The Temple of Moloch" @ (2, 48)
 BRANCH: 	"The Giant Caverns" @ (2, 48)
@@ -439,6 +440,8 @@ BRANCH:	"Resting Zone S" @ (2, 13) up
 DUNGEON:        "Hell's Bathroom" "F" (3, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    hellish
+
+DUNGEON:        "Green Cross" "F" (60, 0)
 
 ### The Giant Caverns ###
 DUNGEON:        "The Giant Caverns" "W" (2, 0)

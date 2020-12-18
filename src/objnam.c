@@ -9874,22 +9874,7 @@ typfnd:
 	/* and make them pay; charge them for the wish anyway! */
 	if ((is_quest_artifact(otmp) ||
 	    /* [ALI] Can't wish for artifacts which have a set location */
-	    (otmp->oartifact &&
-	       (otmp->oartifact == ART_KEY_OF_CHAOS ||
-	        otmp->oartifact == ART_KEY_OF_NEUTRALITY ||
-	        otmp->oartifact == ART_KEY_OF_LAW ||
-	        otmp->oartifact == ART_GAUNTLET_KEY ||
-	        otmp->oartifact == ART_HAND_OF_VECNA ||
-	        otmp->oartifact == ART_EYE_OF_THE_BEHOLDER ||
-	        otmp->oartifact == ART_NIGHTHORN ||
-	        otmp->oartifact == ART_MOTHERFUCKER_TROPHY ||
-	        otmp->oartifact == ART_KAL ||
-	        otmp->oartifact == ART_HELM_OF_KNOWLEDGE ||
-	        otmp->oartifact == ART_BOOTS_OF_THE_MACHINE ||
-	        otmp->oartifact == ART_ARKENSTONE_OF_THRAIN ||
-	        otmp->oartifact == ART_BIZARRO_ORGASMATRON ||
-	        otmp->oartifact == ART_KATIA_S_SOFT_COTTON ||
-	        otmp->oartifact == ART_THIEFBANE)) ||
+	    (otmp->oartifact && arti_nonwishable(otmp)) ||
 # ifdef NOARTIFACTWISH
 /* Wishing for a "weak" artifact is easier than for a stronger one */
 	(otmp->oartifact &&

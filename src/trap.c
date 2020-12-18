@@ -8670,6 +8670,10 @@ madnesseffect:
 		break;
 	    }
 	    case MAGIC_PORTAL:
+
+		{
+		boolean greencrossworks = TRUE;
+
 		seetrap(trap);
 
 		if (u.stairscumslowing && !(u.uhave.amulet && In_endgame(&u.uz))) {
@@ -8691,6 +8695,31 @@ madnesseffect:
 			goto_level(&newlevelX, TRUE, FALSE, FALSE);
 
 			u.wonderlandescape = 1;
+			break;
+		}
+
+		if (at_dgn_entrance("Green Cross") && !u.greencrossopen) {
+			switch (Role_switch) {
+				case PM_SPACEWARS_FIGHTER:
+				case PM_CAMPERSTRIKER:
+					break; /* always open for those two roles */
+				case PM_GANG_SCHOLAR:
+				case PM_WALSCHOLAR:
+					if (u.greencrosschance > 4) {
+						greencrossworks = FALSE;
+					}
+					break;
+				default:
+					if (u.greencrosschance > 1) {
+						greencrossworks = FALSE;
+					}
+					break;
+			}
+		}
+
+		if (!greencrossworks) {
+			pline("You trigger a magic portal.");
+			pline("But apparently, the secret entrance isn't open today. :(");
 			break;
 		}
 
@@ -8716,10 +8745,10 @@ madnesseffect:
 		 * is reigned in by my stairs trap code) is cheating in any way, no, for them it's completely legal to
 		 * lure out the Ludios soldiers one by one. Sigh. --Amy */
 
-		if (!rn2(10) && !issoviet && (In_Devnull(&u.uz) || Is_blackmarket(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || !strcmp(dungeons[u.uz.dnum].dname, "Lawful Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Neutral Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Chaotic Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "The Subquest") || In_quest(&u.uz)) ) {
+		if (!rn2(10) && !issoviet && (In_Devnull(&u.uz) || In_greencross(&u.uz) || Is_blackmarket(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || !strcmp(dungeons[u.uz.dnum].dname, "Lawful Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Neutral Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Chaotic Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "The Subquest") || In_quest(&u.uz)) ) {
 			pline("You trigger a magic portal, but it malfunctions!");
 			pushplayer(TRUE);
-		} else if (rn2(3) && !issoviet && (In_Devnull(&u.uz) || Is_blackmarket(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || !strcmp(dungeons[u.uz.dnum].dname, "Lawful Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Neutral Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Chaotic Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "The Subquest") || In_quest(&u.uz)) ) {
+		} else if (rn2(3) && !issoviet && (In_Devnull(&u.uz) || In_greencross(&u.uz) || Is_blackmarket(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || !strcmp(dungeons[u.uz.dnum].dname, "Lawful Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Neutral Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Chaotic Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "The Subquest") || In_quest(&u.uz)) ) {
 			pline("You trigger a magic portal, but it doesn't seem to work!");
 		} else
 		domagicportal(trap);
@@ -8740,6 +8769,8 @@ madnesseffect:
 			losehp(rnd(10)+ rnd(monster_difficulty() + 1),"sharpened bamboo stick",KILLED_BY_AN);
 		}
 		break;
+
+		}
 
 		 case SCYTHING_BLADE:
 		seetrap(trap);

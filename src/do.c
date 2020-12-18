@@ -2133,6 +2133,10 @@ boolean at_stairs, falling, portal;
 			(void) makemon(&mons[PM_THE_WITCH_KING_OF_ANGMAR], 0, 0, NO_MM_FLAGS);
 		}
 
+		if (In_greencross(&u.uz) && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) { /* stahngnir */
+			(void) makemon(&mons[PM_STAHNGNIR__THE_STEEL_GIANT_LORD], 0, 0, MM_ANGRY);
+		}
+
 		if (In_emynluin(&u.uz) && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) { /* kalwina */
 			(void) makemon(&mons[PM_KALWINA], 0, 0, MM_ANGRY);
 		}
@@ -4480,6 +4484,9 @@ rerollchaloc:
 			u.uevent.qcalled = TRUE;
 		}
 	}
+
+	/* once you enter Green Cross, it stays open even if the random number changes --Amy */
+	if (In_greencross(&u.uz) && !u.greencrossopen) u.greencrossopen = TRUE;
 
 	/* once Croesus is dead, his alarm doesn't work any more */
 	if (Is_knox(&u.uz) && (new || !mvitals[PM_CROESUS].died)) {

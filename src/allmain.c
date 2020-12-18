@@ -11279,7 +11279,11 @@ past3:
 	u.explodewandhack = 0;
 	u.symbiotedmghack = FALSE;
 
+	if (In_greencross(&u.uz) && !u.greencrossopen) u.greencrossopen = TRUE;
+
 	u.dungeongrowthhack = 0; /* should always be 0 except during saving and loading */
+
+	if (In_greencross(&u.uz) && !u.greencrossopen) u.greencrossopen = TRUE;
 
 	/* etherealoid should have xray vision; doesn't stack with artifacts */
 	if (Race_if(PM_ETHEREALOID)) u.xray_range = 3;
