@@ -11003,7 +11003,7 @@ skip1:
 		}
 		/* put traps and mimics inside */
 		goldseen = FALSE;
-		x = 15 - (level_difficulty()/10);
+		x = (rn1(5,10) - (level_difficulty()/10));
 		if ((depth(&u.uz) > 2 || !In_dod(&u.uz)) && !rn2(3)) x /= 2;
 		if ((depth(&u.uz) > 2 || !In_dod(&u.uz)) && !rn2(10)) x /= 5;
 		if (x <= 1) x = 2;
