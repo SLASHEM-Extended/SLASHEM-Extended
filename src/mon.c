@@ -4575,14 +4575,155 @@ newbossSING:
 
       if(mtmp->data == &mons[PM_STAHNGNIR__THE_STEEL_GIANT_LORD] && !u.stahngnirdown) {
 		u.stahngnirdown = 1;
+		pline("Congratulations, Lord Stahngnir is defeated! Your reward was dropped at your %s.", makeplural(body_part(FOOT)));
+
+		trophy = mksobj(MATERIAL_KIT, FALSE, FALSE, FALSE);
+		if (trophy) {
+		    dropy(trophy);
+		}
+
+		switch (rnd(10)) {
+
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+			case 6:
+				trophy = mksobj(SCR_INFERIOR_MATERIAL, FALSE, FALSE, FALSE);
+				if (trophy) {
+				    trophy->quan = 3;
+				    trophy->owt = weight(trophy);
+				    dropy(trophy);
+				}
+				break;
+			case 7:
+			case 8:
+			case 9:
+				trophy = mksobj(SCR_REGULAR_MATERIAL, FALSE, FALSE, FALSE);
+				if (trophy) {
+				    trophy->quan = 3;
+				    trophy->owt = weight(trophy);
+				    dropy(trophy);
+				}
+				break;
+			case 10:
+				trophy = mksobj(SCR_REGULAR_MATERIAL, FALSE, FALSE, FALSE);
+				if (trophy) {
+				    trophy->quan = 3;
+				    trophy->owt = weight(trophy);
+				    dropy(trophy);
+				}
+				break;
+		}
+
 	}
 
       if(mtmp->data == &mons[PM_ARIANE__LADY_OF_THE_ELEMENTS] && !u.arianedown) {
 		u.arianedown = 1;
+
+		if (practicantterror) {
+			pline("%s booms: 'Didn't I tell you that you're not allowed to harm your fellow practicants! Ariane was a promising scientist in this laboratory, unlike you little maggot! All you ever do is step out of line and cause trouble! For that, you'll pay 50000 zorkmids right now and hope that it'll be enough to cover for Ariane's resurrection costs.'", noroelaname());
+			fineforpracticant(50000, 0, 0);
+		}
+
+		pline("Congratulations, Ariane is defeated! Your reward was dropped at your %s.", makeplural(body_part(FOOT)));
+
 		if (!tech_known(T_ELEMENTAL_IMBUE)) {
 			learntech(T_ELEMENTAL_IMBUE, FROMOUTSIDE, 1);
 			You("learn how to perform elemental imbue!");
 		}
+
+		boolean havegifts = u.ugifts;
+
+		if (!havegifts) u.ugifts++;
+
+		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
+		if (trophy) {
+			dropy(trophy);
+			if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+			} else if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_UNSKILLED) {
+				unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_BASIC;
+			} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_BASIC) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SKILLED;
+			} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_SKILLED) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_EXPERT;
+			} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_EXPERT) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_MASTER;
+			} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_MASTER) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_GRAND_MASTER;
+			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_GRAND_MASTER) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SUPREME_MASTER;
+			}
+			if (Race_if(PM_RUSMOT)) {
+				if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_ISRESTRICTED) {
+					unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+				} else if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_UNSKILLED) {
+					unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_BASIC;
+				} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_BASIC) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SKILLED;
+				} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_SKILLED) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_EXPERT;
+				} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_EXPERT) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_MASTER;
+				} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_MASTER) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_GRAND_MASTER;
+				} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_GRAND_MASTER) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SUPREME_MASTER;
+				}
+			}
+			discover_artifact(trophy->oartifact);
+			if (!havegifts) u.ugifts--;
+		}
+
+		havegifts = u.ugifts;
+
+		if (!havegifts) u.ugifts++;
+
+		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
+		if (trophy) {
+			dropy(trophy);
+			if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+			} else if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_UNSKILLED) {
+				unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_BASIC;
+			} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_BASIC) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SKILLED;
+			} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_SKILLED) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_EXPERT;
+			} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_EXPERT) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_MASTER;
+			} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_MASTER) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_GRAND_MASTER;
+			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_GRAND_MASTER) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SUPREME_MASTER;
+			}
+			if (Race_if(PM_RUSMOT)) {
+				if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_ISRESTRICTED) {
+					unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+				} else if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_UNSKILLED) {
+					unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_BASIC;
+				} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_BASIC) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SKILLED;
+				} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_SKILLED) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_EXPERT;
+				} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_EXPERT) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_MASTER;
+				} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_MASTER) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_GRAND_MASTER;
+				} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_GRAND_MASTER) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SUPREME_MASTER;
+				}
+			}
+			discover_artifact(trophy->oartifact);
+			if (!havegifts) u.ugifts--;
+		}
+
 	}
 
       if(mtmp->data == &mons[PM_KALWINA] && !u.emynluincomplete) {

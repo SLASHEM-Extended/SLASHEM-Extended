@@ -443,6 +443,14 @@ ALIGNMENT:      chaotic
 DESCRIPTION:    hellish
 
 DUNGEON:        "Green Cross" "F" (60, 0)
+LEVEL:          "grcrf" "F" @ (1, 59)
+LEVEL:          "grcrb" "B" @ (1, 59)
+LEVEL:          "grcre" "E" @ (1, 59)
+LEVEL:          "grcrh" "H" @ (1, 59)
+LEVEL:          "grcrc" "C" @ (1, 59)
+LEVEL:          "grcra" "A" @ (1, 59)
+LEVEL:          "grcrd" "D" @ (1, 59)
+LEVEL:          "grcrg" "G" @ (1, 59)
 
 ### The Giant Caverns ###
 DUNGEON:        "The Giant Caverns" "W" (2, 0)

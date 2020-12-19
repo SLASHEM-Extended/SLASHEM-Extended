@@ -1542,3 +1542,494 @@ MONSTER:'p',"Challenge Pooka",(34,13),hostile
 MONSTER:'D',"Fygar",(29,12),hostile
 
 
+MAZE: "grcra",' '
+FLAGS: hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+ggMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM| |.....|.....|  |.....|   
+gggMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM| |.....+.....+..+.....|   
+ggggMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMiiiMMMMMMMMMMMM| |.....|.....|  |.....|   
+gggggMMMMMMMMMMMMMMMMMMMMMMMMMMMMiiMiiMMMMMMMMMMM| ---------+---  ---S---   
+ggggggMMMMMMMMMMMMMMMMMMMMMMMMMMiiMMMiiMMMMMMMMMM|          .     |--.---|  
+gggggggMMMMMMMMMMMMMMMMMMMMMMMMiiMMMMMiiMMMMMMMMM|      ----+---- |......|  
+ggggggggMMMMMMMMMMMMMMMMMMMMMMiiMMMMMMMiiMMMMMMMM|      |nnnnnnn| |......|  
+gggggggggMMMMMMMMMMMMMMMMMMMMiiMMMMMMMMMiiMMMMMMM|      |nnnnnnn| |......|  
+ggggggggggMMMMMMMMMMMMMMMMMMiiMMMMMMMMMMMiiMMMMMM|      |nnnnnnn| |......|  
+.iiiiiiiiiiiiiMMMMMMMMMMMMMiiMMMMMMMMMMMMMiiiiiii+.......nnnnnnnS........|  
+gggggggggggMMiiMMMMMMMMMMMiiMMMMMMMMMMMMMMMMMMMMM|      |nnnnnnn| |......|  
+ggggggggggMMMMiiMMMMMMMMMiiMMMMMMMMMMMMMMMMMMMMMM|      |nnnnnnn| |......|  
+gggggggggMMMMMMiiMMMMMMMiiMMMMMMMMMMMMMMMMMMMMMMM|      |nnnnnnn| |......|  
+ggggggggMMMMMMMMiiMMMMMiiMMMMMMMMMMMMMMMMMMMMMMMM|      ----+---- |......|  
+gggggggMMMMMMMMMMiiMMMiiMMMMMMMMMMMMMMMMMMMMMMMMM|          .     |--.---|  
+ggggggMMMMMMMMMMMMiiMiiMMMMMMMMMMMMMMMMMMMMMMMMMM| ---------+---  ---S---   
+gggggMMMMMMMMMMMMMMiiiMMMMMMMMMMMMMMMMMMMMMMMMMMM| |.....|.....|  |.....|   
+ggggMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM| |.....+.....+..+.....|   
+gggMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM| |.....|.....|  |.....|   
+ggMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM| -------------  -------   
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+STAIR:(00,09),up
+STAIR:(72,09),down
+
+REGION:(00,00,75,19),lit,"ordinary"
+
+NON_DIGGABLE:(00,00,75,19)
+
+DOOR:closed,(57,01)
+DOOR:closed,(63,01)
+DOOR:closed,(66,01)
+DOOR:closed,(60,03)
+DOOR:closed,(60,05)
+DOOR:closed,(60,13)
+DOOR:closed,(60,15)
+DOOR:closed,(57,17)
+DOOR:closed,(63,17)
+DOOR:closed,(66,17)
+DOOR:locked,(49,09)
+
+TRAP:"falling rock",(20,16)
+TRAP:"pit",(35,02)
+
+MONSTER:'o',"goblin fighter",(54,01),hostile
+MONSTER:'o',"goblin fighter",(69,01),hostile
+MONSTER:'@',"bandit",(60,17),hostile
+
+MAZE: "grcrb",' '
+FLAGS:hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7         
+#123456789012345678901234567890123456789012345678901234567890123456789012345678
+MAP
+...............................................................................
+...............................................................................
+...............................................................................
+...............................................................................
+...............................................................................
+...............................................................................
+...............................................................................
+...............................................................................
+lllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
+lllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
+lllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
+...............................................................................
+...............................................................................
+...............................................................................
+...............................................................................
+...............................................................................
+...............................................................................
+...............................................................................
+...............................................................................
+...............................................................................
+...............................................................................
+ENDMAP
+
+STAIR:random,up
+STAIR:random,down
+
+REGION:(00,00,78,20),lit,"ordinary"
+
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "rmb loss", random
+TRAP: "rmb loss", random
+TRAP: "rmb loss", random
+TRAP: "rmb loss", random
+TRAP: "rmb loss", random
+TRAP: "rmb loss", random
+TRAP: "rmb loss", random
+TRAP: "rmb loss", random
+TRAP: "rmb loss", random
+TRAP: "rmb loss", random
+TRAP: "complete gray spell", random
+TRAP: "complete gray spell", random
+TRAP: "complete gray spell", random
+TRAP: "complete gray spell", random
+
+TRAP: "superthing", (00,09)
+TRAP: "superthing", (01,09)
+TRAP: "superthing", (02,09)
+TRAP: "superthing", (03,09)
+TRAP: "superthing", (04,09)
+TRAP: "superthing", (05,09)
+TRAP: "superthing", (06,09)
+TRAP: "superthing", (07,09)
+TRAP: "superthing", (08,09)
+TRAP: "superthing", (09,09)
+TRAP: "superthing", (10,09)
+TRAP: "superthing", (11,09)
+TRAP: "superthing", (12,09)
+TRAP: "superthing", (13,09)
+TRAP: "superthing", (14,09)
+TRAP: "superthing", (15,09)
+TRAP: "superthing", (16,09)
+TRAP: "superthing", (17,09)
+TRAP: "superthing", (18,09)
+TRAP: "superthing", (19,09)
+TRAP: "superthing", (20,09)
+TRAP: "superthing", (21,09)
+TRAP: "superthing", (22,09)
+TRAP: "superthing", (23,09)
+TRAP: "superthing", (24,09)
+TRAP: "superthing", (25,09)
+TRAP: "superthing", (26,09)
+TRAP: "superthing", (27,09)
+TRAP: "superthing", (28,09)
+TRAP: "superthing", (29,09)
+TRAP: "superthing", (30,09)
+TRAP: "superthing", (31,09)
+TRAP: "superthing", (32,09)
+TRAP: "superthing", (33,09)
+TRAP: "superthing", (34,09)
+TRAP: "superthing", (35,09)
+TRAP: "superthing", (36,09)
+TRAP: "superthing", (37,09)
+TRAP: "superthing", (38,09)
+TRAP: "superthing", (39,09)
+TRAP: "superthing", (40,09)
+TRAP: "superthing", (41,09)
+TRAP: "superthing", (42,09)
+TRAP: "superthing", (43,09)
+TRAP: "superthing", (44,09)
+TRAP: "superthing", (45,09)
+TRAP: "superthing", (46,09)
+TRAP: "superthing", (47,09)
+TRAP: "superthing", (48,09)
+TRAP: "superthing", (49,09)
+TRAP: "superthing", (50,09)
+TRAP: "superthing", (51,09)
+TRAP: "superthing", (52,09)
+TRAP: "superthing", (53,09)
+TRAP: "superthing", (54,09)
+TRAP: "superthing", (55,09)
+TRAP: "superthing", (56,09)
+TRAP: "superthing", (57,09)
+TRAP: "superthing", (58,09)
+TRAP: "superthing", (59,09)
+TRAP: "superthing", (60,09)
+TRAP: "superthing", (61,09)
+TRAP: "superthing", (62,09)
+TRAP: "superthing", (63,09)
+TRAP: "superthing", (64,09)
+TRAP: "superthing", (65,09)
+TRAP: "superthing", (66,09)
+TRAP: "superthing", (67,09)
+TRAP: "superthing", (68,09)
+TRAP: "superthing", (69,09)
+TRAP: "superthing", (70,09)
+TRAP: "superthing", (71,09)
+TRAP: "superthing", (72,09)
+TRAP: "superthing", (73,09)
+TRAP: "superthing", (74,09)
+TRAP: "superthing", (75,09)
+TRAP: "superthing", (76,09)
+TRAP: "superthing", (77,09)
+TRAP: "superthing", (78,09)
+
+MAZE: "grcrc",' '
+FLAGS: hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+JJJJJJggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggJJJJJJ
+JJJJJJggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggJJJJJJ
+JJJJJJggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggJJJJJJ
+JJJJJJggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggJJJJJJ
+JJJJJJggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggJJJJJJ
+iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
+.iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.
+iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
+JJJJJJggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggJJJJJJ
+JJJJJJggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggJJJJJJ
+JJJJJJggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggJJJJJJ
+JJJJJJggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggJJJJJJ
+JJJJJJggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggJJJJJJ
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+# Specifications for the whole level
+
+STAIR:(00,06),up
+STAIR:(75,06),down
+
+MAZE: "grcrd",' '
+FLAGS: hardfloor
+MESSAGE: "Apparently this level is a town!"
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+......vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv.....                     
+......vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv.....                     
+......vv........................................vv.....                     
+..{...vv....--------------------------------....vv..... .... .... .... .....
+......vv....|..............................|....vv.....|....|....|....|.....
+......vv....|..............................|....vv.....|....|....|....|.....
+......vv....|..............................|....vv.....|+---|+---|+---|+----
+......vv....|..............................+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+......vv....|..............................+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+......vv....|..............................|....vv.....|+---|+---|+---|+----
+......vv....|..............................|....vv.....|....|....|....|.....
+......vv....|..............................|....vv.....|....|....|....|.....
+..{...vv....--------------------------------....vv..... .... .... .... .....
+......vv........................................vv.....                     
+......vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv.....                     
+......vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv.....                     
+                                                                            
+............................................................................
+............................................................................
+............................................................................
+                                                                            
+ENDMAP
+
+NON_DIGGABLE:(12,03,43,12)
+
+STAIR:(00,00),up
+STAIR:levregion(01,17,75,19),(0,0,0,0),down
+
+REGION:(00,17,75,19),unlit,"insideroom",filled,true
+
+REGION:(56,03,59,05),unlit,"random shop"
+REGION:(61,03,64,05),unlit,"random shop"
+REGION:(66,03,69,05),unlit,"random shop"
+REGION:(71,03,75,05),unlit,"random shop"
+REGION:(56,10,59,12),unlit,"random shop"
+REGION:(61,10,64,12),unlit,"random shop"
+REGION:(66,10,69,12),unlit,"random shop"
+REGION:(71,10,75,12),unlit,"random shop"
+REGION:(13,04,42,11),unlit,"ordinary",filled,true
+
+DOOR:locked,(56,06)
+DOOR:locked,(56,09)
+DOOR:locked,(61,06)
+DOOR:locked,(61,09)
+DOOR:locked,(66,06)
+DOOR:locked,(66,09)
+DOOR:locked,(71,06)
+DOOR:locked,(71,09)
+
+DOOR:locked,(43,07)
+DOOR:locked,(43,08)
+
+# wall-covered level... teleportation or digging helps here, but you don't actually get those resources handed to you --Amy
+MAZE: "grcre",' '
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7         
+#1234567890123456789012345678901234567890123456789012345678901234567890123456789
+MAP
+.                                                                              
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+         ------------                ------------                ------------  
+         -..........-                -..........-                -..........-  
+         -..........-                -..........-                -..........-  
+         -..........-                -..........-                -..........-  
+         -..........-                -..........-                -..........-  
+         -..........-                -..........-                -..........-  
+         -..........-                -..........-                -..........-  
+         ------------                ------------                ------------  
+ENDMAP
+
+STAIR:(00,00),up
+STAIR:random,down
+
+MAZE: "grcrf",' '
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7     
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+--------------------     ----------                              -----------
+|..................|    .B........B..                            |.........|
+|..................B.....|........| .. |-------                  |.........|
+|..................|   . |........|  ..|......|                  |.........|
+|..................|   . |........|   .B......|       -------    |.........|
+--------------------   . |........|    |......|       |.....|    |.........|
+                       . |........|    |......|       |.....|    |.........|
+                 ....... ----------    |......|      .B.....|    |.........|
+                ..     .               |......|     ..|.....|    |.........|
+               ..      ..              |......|    .. |---.--    -----B----|
+   ------------B-----   ..             ----B---   ..    --B--        ..     
+   |................|    ..       ---------........     |...|       ..      
+   |................|     ..      |.......B.            |...|      ..       
+   |................|      ..     |.......|          ----...----  ..        
+   |................|       ..    |.......|          |.........| ..         
+   ------------------        ..   |.......|          |.........B..          
+             -----------------B-  |.......|          |.........|            
+             |.................|  |.......|          ----...----            
+             |.................|  |.......|             |...|               
+             |.................|  ---------             |...|               
+             |-----------------|                        -----               
+ENDMAP
+
+STAIR:random,up
+STAIR:random,down
+
+REGION:(01,01,18,04),lit,"ordinary",filled,true
+REGION:(04,11,19,14),lit,"ordinary",filled,true
+REGION:(14,17,30,19),lit,"ordinary",filled,true
+REGION:(26,01,33,06),lit,"ordinary",filled,true
+REGION:(40,04,45,10),lit,"ordinary",filled,true
+REGION:(55,06,59,09),lit,"ordinary",filled,true
+REGION:(66,01,74,09),lit,"ordinary",filled,true
+REGION:(35,13,41,18),lit,"ordinary",filled,true
+REGION:(58,15,58,15),lit,"ordinary",filled,true
+
+MAZE: "grcrg", ' '
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+ ...   ...   ...   ...   ...   ...   ...   ...   ...   ...   ...   ...   ... 
+ ...   ...   ...   ...   ...   ...   ...   ...   ...   ...   ...   ...   ... 
+-...---...---...---...---...---...---...---...---...---...---...---...---...-
+|...|-|...|-|...|-|...|-|...|-|...|-|...|-|...|-|...|-|...|-|...|-|...|-|...|
+|...|-|...|-|...|-|...|-|...|-|...|-|...|-|...|-|...|-|...|-|...|-|...|-|...|
+.............................................................................
+|...|-|...|-|...|-|...|-|...|-|...|-|...|-|...|-|...|-|...|-|...|-|...|-|...|
+|...|-|...|-|...|-|...|-|...|-|...|-|...|-|...|-|...|-|...|-|...|-|...|-|...|
+-...---...---...---...---...---...---...---...---...---...---...---...---...-
+ ...   ...   ...   ...   ...   ...   ...   ...   ...   ...   ...   ...   ... 
+ ...   ...   ...   ...   ...   ...   ...   ...   ...   ...   ...   ...   ... 
+ENDMAP
+
+STAIR:(00,05),up
+STAIR:(76,05),down
+
+TRAP:"statue", (02,05)
+MONSTER:'k',random,(02,05),hostile
+TRAP:"statue", (08,05)
+MONSTER:'k',random,(08,05),hostile
+TRAP:"statue", (14,05)
+MONSTER:'k',random,(14,05),hostile
+TRAP:"statue", (20,05)
+MONSTER:'k',random,(20,05),hostile
+TRAP:"statue", (26,05)
+MONSTER:'k',random,(26,05),hostile
+TRAP:"statue", (32,05)
+MONSTER:'k',random,(32,05),hostile
+TRAP:"statue", (38,05)
+MONSTER:'k',random,(38,05),hostile
+TRAP:"statue", (44,05)
+MONSTER:'k',random,(44,05),hostile
+TRAP:"statue", (50,05)
+MONSTER:'k',random,(50,05),hostile
+TRAP:"statue", (56,05)
+MONSTER:'k',random,(56,05),hostile
+TRAP:"statue", (62,05)
+MONSTER:'k',random,(62,05),hostile
+TRAP:"statue", (68,05)
+MONSTER:'k',random,(68,05),hostile
+TRAP:"statue", (74,05)
+MONSTER:'k',random,(74,05),hostile
+
+MONSTER[10%]:'D',random,(02,00),asleep,hostile
+MONSTER[10%]:'D',random,(02,10),asleep,hostile
+
+MONSTER[10%]:'D',random,(08,00),asleep,hostile
+MONSTER[10%]:'D',random,(08,10),asleep,hostile
+
+MONSTER[10%]:'D',random,(14,00),asleep,hostile
+MONSTER[10%]:'D',random,(14,10),asleep,hostile
+
+MONSTER[10%]:'D',random,(20,00),asleep,hostile
+MONSTER[10%]:'D',random,(20,10),asleep,hostile
+
+MONSTER[10%]:'D',random,(26,00),asleep,hostile
+MONSTER[10%]:'D',random,(26,10),asleep,hostile
+
+MONSTER[10%]:'D',random,(32,00),asleep,hostile
+MONSTER[10%]:'D',random,(32,10),asleep,hostile
+
+MONSTER[10%]:'D',random,(38,00),asleep,hostile
+MONSTER[10%]:'D',random,(38,10),asleep,hostile
+
+MONSTER[10%]:'D',random,(44,00),asleep,hostile
+MONSTER[10%]:'D',random,(44,10),asleep,hostile
+
+MONSTER[10%]:'D',random,(50,00),asleep,hostile
+MONSTER[10%]:'D',random,(50,10),asleep,hostile
+
+MONSTER[10%]:'D',random,(56,00),asleep,hostile
+MONSTER[10%]:'D',random,(56,10),asleep,hostile
+
+MONSTER[10%]:'D',random,(62,00),asleep,hostile
+MONSTER[10%]:'D',random,(62,10),asleep,hostile
+
+MONSTER[10%]:'D',random,(68,00),asleep,hostile
+MONSTER[10%]:'D',random,(68,10),asleep,hostile
+
+MONSTER[10%]:'D',random,(74,00),asleep,hostile
+MONSTER[10%]:'D',random,(74,10),asleep,hostile
+
+MAZE: "grcrh",' '
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7         
+#1234567890123456789012345678901234567890123456789012345678901234567890123456789
+MAP
+                                                                               
+         ------------                ------------                ------------  
+         -..........-                -..........-                -..........-  
+         -..........-                -..........-                -..........-  
+         -..........-                -..........-                -..........-  
+         -..........-                -..........-                -..........-  
+         -..........-                -..........-                -..........-  
+         -..........-                -..........-                -..........-  
+         ------------                ------------                ------------  
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+         ------------                ------------                ------------  
+         -..........-                -..........-                -..........-  
+         -..........-                -..........-                -..........-  
+         -..........-                -..........-                -..........-  
+         -..........-                -..........-                -..........-  
+         -..........-                -..........-                -..........-  
+         -..........-                -..........-                -..........-  
+         ------------                ------------                ------------  
+ENDMAP
+
+RANDOM_PLACES: (14,16), (42,16), (70,16), (42,05), (70,05)
+
+STAIR:(14,05),up
+STAIR:place[0],down
+
+REGION:(10,14,19,19),lit,"randomroom"
+REGION:(38,14,47,19),lit,"randomroom"
+REGION:(66,14,75,19),lit,"randomroom"
+REGION:(38,02,47,07),lit,"randomroom"
+REGION:(66,02,75,07),lit,"randomroom"
+

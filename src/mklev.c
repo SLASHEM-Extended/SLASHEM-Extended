@@ -2161,7 +2161,7 @@ makelevel()
 	    } else if ((!rn2(u.randomquestlevels) && !rn2(3))
 				&& !In_V_tower(&u.uz) && !Invocation_lev(&u.uz)
 				&& (!rn2(10) || depth(&u.uz) > 1)
-				&& (In_dod(&u.uz) || In_mines(&u.uz) || In_Devnull(&u.uz) || In_illusorycastle(&u.uz) || In_deepmines(&u.uz) || In_ZAPM(&u.uz) || In_sokoban(&u.uz) || In_towndungeon(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || In_restingzone(&u.uz) ) ) {
+				&& (In_dod(&u.uz) || In_mines(&u.uz) || In_Devnull(&u.uz) || In_greencross(&u.uz) || In_illusorycastle(&u.uz) || In_deepmines(&u.uz) || In_ZAPM(&u.uz) || In_sokoban(&u.uz) || In_towndungeon(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || In_restingzone(&u.uz) ) ) {
 
 ghnhom1:
 		{
@@ -2389,10 +2389,10 @@ ghnhom1:
 
 	if ( 
 		(In_dod(&u.uz) && (!rn2(100) || depth(&u.uz) > 1) && !rn2(iswarper ? 10 : 100))
-		|| (In_mines(&u.uz) && rn2(1000) /* check moved upwards */ ) || (In_sokoban(&u.uz) && !issokosolver && rn2(iswarper ? 5 : 2)) || (In_towndungeon(&u.uz) && !rn2(iswarper ? 3 : 20)) || (In_deepmines(&u.uz) && rn2(2)) || (In_illusorycastle(&u.uz) && !rn2(iswarper ? 3 : 20)) || (In_sewerplant(&u.uz) && !rn2(iswarper ? 20 : 50)) || (In_spacebase(&u.uz) && !rn2(iswarper ? 4 : 30)) || (In_gammacaves(&u.uz) && !rn2(iswarper ? 20 : 50)) || (In_mainframe(&u.uz) && !rn2(iswarper ? 3 : 20)) || (rn2(5) && (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || In_Devnull(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || In_restingzone(&u.uz) ) ) ) {
+		|| (In_mines(&u.uz) && rn2(1000) /* check moved upwards */ ) || (In_sokoban(&u.uz) && !issokosolver && rn2(iswarper ? 5 : 2)) || (In_towndungeon(&u.uz) && !rn2(iswarper ? 3 : 20)) || (In_deepmines(&u.uz) && rn2(2)) || (In_illusorycastle(&u.uz) && !rn2(iswarper ? 3 : 20)) || (In_sewerplant(&u.uz) && !rn2(iswarper ? 20 : 50)) || (In_spacebase(&u.uz) && !rn2(iswarper ? 4 : 30)) || (In_gammacaves(&u.uz) && !rn2(iswarper ? 20 : 50)) || (In_greencross(&u.uz) && !rn2(iswarper ? 10 : 100)) || (In_mainframe(&u.uz) && !rn2(iswarper ? 3 : 20)) || (rn2(5) && (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || In_Devnull(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || In_restingzone(&u.uz) ) ) ) {
 
 ghnhom2:
-	    switch (rnd(114)) {
+	    switch (rnd(116)) {
 
 	    case 1:
 	    case 2:
@@ -4320,6 +4320,23 @@ ghnhom2:
 
 		break;
 
+	    case 115:
+	    case 116:
+
+		switch (rnd(8)) {
+
+			case 1: makemaz("grcra"); return;
+			case 2: makemaz("grcrb"); return;
+			case 3: makemaz("grcrc"); return;
+			case 4: makemaz("grcrd"); return;
+			case 5: makemaz("grcre"); return;
+			case 6: makemaz("grcrf"); return;
+			case 7: makemaz("grcrg"); return;
+			case 8: makemaz("grcrh"); return;
+
+		}
+		break;
+
 		break;
 
           }
@@ -4328,11 +4345,11 @@ ghnhom2:
 
 	if ( 
 		(In_dod(&u.uz) && (!rn2(100) || depth(&u.uz) > 1) && !rn2((iswarper ? 10000 : 100000)))
-		|| (In_mines(&u.uz) /* check moved upwards */ ) || (In_sokoban(&u.uz) && !issokosolver && rn2(iswarper ? 5000 : 2000)) || (In_towndungeon(&u.uz) && !rn2(iswarper ? 3000 : 20000)) ||  (In_deepmines(&u.uz)) || (In_illusorycastle(&u.uz) && !rn2(iswarper ? 3 : 20)) || (In_sewerplant(&u.uz) && !rn2(iswarper ? 20 : 50)) || (In_spacebase(&u.uz) && !rn2(iswarper ? 4 : 30)) || (In_gammacaves(&u.uz) && !rn2(iswarper ? 20 : 50)) || (In_mainframe(&u.uz) && !rn2(iswarper ? 3 : 20)) || (In_gehennom(&u.uz) && !rn2(iswarper ? 3 : 10)) || (In_voiddungeon(&u.uz) && !rn2(iswarper ? 3 : 10)) || (In_netherrealm(&u.uz) && !rn2(iswarper ? 3 : 10)) || (In_swimmingpool(&u.uz) && !rn2(iswarper ? 3 : 10)) || (In_hellbathroom(&u.uz) && !rn2(iswarper ? 20 : 50)) || (In_angmar(&u.uz) && !rn2(iswarper ? 5 : 20)) || (In_emynluin(&u.uz) && !rn2(iswarper ? 20 : 50)) || (rn2(5) && !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab") ) || (!rn2(1000) && (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || In_Devnull(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || In_restingzone(&u.uz) ) ) || (In_sheol(&u.uz) && (!rn2(iswarper ? 2 : 5) ) ) ) {
+		|| (In_mines(&u.uz) /* check moved upwards */ ) || (In_sokoban(&u.uz) && !issokosolver && rn2(iswarper ? 5000 : 2000)) || (In_towndungeon(&u.uz) && !rn2(iswarper ? 3000 : 20000)) ||  (In_deepmines(&u.uz)) || (In_illusorycastle(&u.uz) && !rn2(iswarper ? 3 : 20)) || (In_sewerplant(&u.uz) && !rn2(iswarper ? 20 : 50)) || (In_spacebase(&u.uz) && !rn2(iswarper ? 4 : 30)) || (In_gammacaves(&u.uz) && !rn2(iswarper ? 20 : 50)) || (In_mainframe(&u.uz) && !rn2(iswarper ? 3 : 20)) || (In_gehennom(&u.uz) && !rn2(iswarper ? 3 : 10)) || (In_voiddungeon(&u.uz) && !rn2(iswarper ? 3 : 10)) || (In_netherrealm(&u.uz) && !rn2(iswarper ? 3 : 10)) || (In_swimmingpool(&u.uz) && !rn2(iswarper ? 3 : 10)) || (In_hellbathroom(&u.uz) && !rn2(iswarper ? 20 : 50)) || (In_angmar(&u.uz) && !rn2(iswarper ? 5 : 20)) || (In_emynluin(&u.uz) && !rn2(iswarper ? 20 : 50)) || (rn2(5) && !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab") ) || (!rn2(1000) && (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || In_Devnull(&u.uz) || In_greencross(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || In_restingzone(&u.uz) ) ) || (In_sheol(&u.uz) && (!rn2(iswarper ? 2 : 5) ) ) ) {
 
 		if (rn2(3)) goto ghnhom2;
 
-	    switch (rnd(114)) {
+	    switch (rnd(116)) {
 
 	    case 1:
 	    case 2:
@@ -6252,6 +6269,23 @@ ghnhom2:
 
 		break;
 
+	    case 115:
+	    case 116:
+
+		switch (rnd(8)) {
+
+			case 1: makemaz("grcra"); return;
+			case 2: makemaz("grcrb"); return;
+			case 3: makemaz("grcrc"); return;
+			case 4: makemaz("grcrd"); return;
+			case 5: makemaz("grcre"); return;
+			case 6: makemaz("grcrf"); return;
+			case 7: makemaz("grcrg"); return;
+			case 8: makemaz("grcrh"); return;
+
+		}
+		break;
+
 		break;
 
           }
@@ -6335,7 +6369,7 @@ ghnhom2:
 
 	if ((specialraceflag == 2) && (!rn2(100) || depth(&u.uz) > 1) ) { /* sokosolver */
 
-		if (In_dod(&u.uz) || In_mines(&u.uz) || In_sokoban(&u.uz) || In_towndungeon(&u.uz) || In_illusorycastle(&u.uz) || In_deepmines(&u.uz) || In_ZAPM(&u.uz) || In_Devnull(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || In_restingzone(&u.uz) ) {
+		if (In_dod(&u.uz) || In_mines(&u.uz) || In_sokoban(&u.uz) || In_towndungeon(&u.uz) || In_illusorycastle(&u.uz) || In_deepmines(&u.uz) || In_ZAPM(&u.uz) || In_Devnull(&u.uz) || In_greencross(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || In_restingzone(&u.uz) ) {
 
 ghnhom3:
 		switch (rnd(154)) {
@@ -6678,10 +6712,10 @@ ghnhom3:
 
 	if ((specialraceflag == 3) && (!rn2(100) || depth(&u.uz) > 1) ) { /* specialist */
 
-		if (In_dod(&u.uz) || In_mines(&u.uz) || In_sokoban(&u.uz) || In_towndungeon(&u.uz) || In_illusorycastle(&u.uz) || In_deepmines(&u.uz) || In_ZAPM(&u.uz) || In_Devnull(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || In_restingzone(&u.uz)) {
+		if (In_dod(&u.uz) || In_mines(&u.uz) || In_sokoban(&u.uz) || In_towndungeon(&u.uz) || In_illusorycastle(&u.uz) || In_deepmines(&u.uz) || In_ZAPM(&u.uz) || In_Devnull(&u.uz) || In_greencross(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || In_restingzone(&u.uz)) {
 
 ghnhom4:
-	    switch (rnd(114)) {
+	    switch (rnd(116)) {
 
 	    case 1:
 	    case 2:
@@ -8606,6 +8640,23 @@ ghnhom4:
 
 		break;
 
+	    case 115:
+	    case 116:
+
+		switch (rnd(8)) {
+
+			case 1: makemaz("grcra"); return;
+			case 2: makemaz("grcrb"); return;
+			case 3: makemaz("grcrc"); return;
+			case 4: makemaz("grcrd"); return;
+			case 5: makemaz("grcre"); return;
+			case 6: makemaz("grcrf"); return;
+			case 7: makemaz("grcrg"); return;
+			case 8: makemaz("grcrh"); return;
+
+		}
+		break;
+
 		break;
 	
           }
@@ -8614,7 +8665,7 @@ ghnhom4:
 
 		if (rn2(3)) goto ghnhom4;
 
-	    switch (rnd(114)) {
+	    switch (rnd(116)) {
 
 	    case 1:
 	    case 2:
@@ -10532,6 +10583,23 @@ ghnhom4:
 
 		}
 
+		break;
+
+	    case 115:
+	    case 116:
+
+		switch (rnd(8)) {
+
+			case 1: makemaz("grcra"); return;
+			case 2: makemaz("grcrb"); return;
+			case 3: makemaz("grcrc"); return;
+			case 4: makemaz("grcrd"); return;
+			case 5: makemaz("grcre"); return;
+			case 6: makemaz("grcrf"); return;
+			case 7: makemaz("grcrg"); return;
+			case 8: makemaz("grcrh"); return;
+
+		}
 		break;
 
 		break;
