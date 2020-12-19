@@ -4413,6 +4413,7 @@ long timeout;
 	    case LASER_SWATTER:
 	    case NANO_HAMMER:
 	    case LIGHTWHIP:
+	    case STARWARS_MACE:
 	    case ELECTRIC_CIGARETTE:
 	        /* Callback is checked every 5 turns - 
 	        	lightsaber automatically deactivates if not wielded */
@@ -4602,6 +4603,7 @@ begin_burn(obj, already_lit)
 	    case LASER_SWATTER:
 	    case LASER_SWORD:
 	    case NANO_HAMMER:
+	    case STARWARS_MACE:
 	    case LIGHTWHIP:
 	    case ELECTRIC_CIGARETTE:
 	    case BLUE_LIGHTSABER:

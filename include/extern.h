@@ -1631,6 +1631,7 @@ E int rndmonnum(void);
 E int usefulitem(void);
 E int nastymusableitem(void);
 E int makegreatitem(void);
+E int makemusableitem(void);
 E struct obj *splitobj(struct obj *,long);
 E void replace_object(struct obj *,struct obj *);
 E void bill_dummy_object(struct obj *);

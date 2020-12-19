@@ -588,6 +588,7 @@ struct monst *mon;
 		case LIGHTWHIP:	tmp += rnd(8); break;
 		case ELECTRIC_CIGARETTE:	tmp += rnd(10); break;
 		case NANO_HAMMER:	tmp += rnd(8); break;
+		case STARWARS_MACE:	tmp += rnd(9); break;
 
 		case LASER_POLE: 
 					if (otmp->altmode) tmp += rnd(8);
@@ -673,6 +674,7 @@ struct monst *mon;
 		case LIGHTWHIP:	tmp += rnd(8); break;
 		case ELECTRIC_CIGARETTE:	tmp += rnd(10); break;
 		case NANO_HAMMER:	tmp += rnd(8); break;
+		case STARWARS_MACE:	tmp += rnd(9); break;
 
 		case LASER_POLE:
 					if (otmp->altmode) tmp += rnd(8);
@@ -1064,6 +1066,7 @@ struct monst *mon;
 		case LIGHTWHIP:	tmp += rnd(8); break;
 		case ELECTRIC_CIGARETTE:	tmp += rnd(10); break;
 		case NANO_HAMMER:	tmp += rnd(8); break;
+		case STARWARS_MACE:	tmp += rnd(9); break;
 
 		case LASER_POLE: 
 					if (otmp->altmode) tmp += rnd(8);
@@ -1150,6 +1153,7 @@ struct monst *mon;
 		case LIGHTWHIP:	tmp += rnd(8); break;
 		case ELECTRIC_CIGARETTE:	tmp += rnd(10); break;
 		case NANO_HAMMER:	tmp += rnd(8); break;
+		case STARWARS_MACE:	tmp += rnd(9); break;
 
 		case LASER_POLE: 
 					if (otmp->altmode) tmp += rnd(8);
@@ -2674,7 +2678,7 @@ static const NEARDATA short hwep[] = {
 	  WOODEN_GETA, LACQUERED_DANCING_SHOE, HIGH_HEELED_SANDAL, SEXY_LEATHER_PUMP, SPIKED_BATTLE_BOOT, HOMING_TORPEDO,
 	  DWARVISH_MATTOCK, SOFT_MATTOCK, YATAGAN, CHROME_BLADE, AIR_PRESSURE_HAMMER,
 	  BENT_SABLE, HOE_SABLE, MYTHICAL_SABLE, INKA_BOOT, SOFT_LADY_SHOE, MARBLE_CHUNK,
-	  BLOCK_HEELED_SANDAL, PROSTITUTE_SHOE, LIGHTWHIP, ELECTRIC_CIGARETTE, NANO_HAMMER, LASER_SWATTER,
+	  BLOCK_HEELED_SANDAL, PROSTITUTE_SHOE, LIGHTWHIP, ELECTRIC_CIGARETTE, NANO_HAMMER, LASER_SWATTER, STARWARS_MACE,
 	  RED_DOUBLE_LIGHTSABER, WHITE_DOUBLE_LIGHTSABER, LASERDENT, SITH_STAFF, LASER_POLE, RED_LIGHTSABER,
 	  MYSTERY_LIGHTSABER, BLUE_LIGHTSABER, LASER_SWORD, VIOLET_LIGHTSABER, WHITE_LIGHTSABER, YELLOW_LIGHTSABER,
 	  GREEN_LIGHTSABER, PIANO, DESERT_SWORD,

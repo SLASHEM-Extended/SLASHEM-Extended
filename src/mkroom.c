@@ -1282,6 +1282,11 @@ struct mkroom *sroom;
 		  }
 	      case REALZOO:
 		  level.flags.has_zoo = 1;
+		  if (!rn2(10)) {
+			if (somexy(sroom, &mm)) {
+				(void) mksobj_at(SACK, mm.x, mm.y, TRUE, FALSE, FALSE);
+			}
+		  }
 		  break;
 	      case MORGUE:
 		  if (!rn2(50)) {
@@ -1298,6 +1303,11 @@ struct mkroom *sroom;
 		  level.flags.has_beehive = 1;
 		  break;
 	      case DOUGROOM:
+		  if (!rn2(5)) {
+			if (somexy(sroom, &mm)) {
+				(void) mksobj_at(SACK, mm.x, mm.y, TRUE, FALSE, FALSE);
+			}
+		  }
 		  level.flags.has_zoo = 1;
 		  break;
 	      case LEMUREPIT:
@@ -1357,12 +1367,22 @@ struct mkroom *sroom;
               level.flags.has_evilroom = 1;
               break;
             case RELIGIONCENTER:
+		  if (!rn2(10)) {
+			if (somexy(sroom, &mm)) {
+				(void) mksobj_at(SACK, mm.x, mm.y, TRUE, FALSE, FALSE);
+			}
+		  }
               level.flags.has_religioncenter = 1;
               break;
             case CURSEDMUMMYROOM:
               level.flags.has_cursedmummyroom = 1;
               break;
             case ARDUOUSMOUNTAIN:
+		  if (!rn2(50)) {
+			if (somexy(sroom, &mm)) {
+				(void) mksobj_at(SACK, mm.x, mm.y, TRUE, FALSE, FALSE);
+			}
+		  }
 		  if (!rn2(3)) {
 			  if (somexy(sroom, &mm))
 				  (void) (void) mkobj_at(IMPLANT_CLASS, mm.x, mm.y, FALSE, FALSE);
@@ -1373,6 +1393,11 @@ struct mkroom *sroom;
               level.flags.has_levelffroom = 1;
               break;
             case VERMINROOM:
+		  if (!rn2(20)) {
+			if (somexy(sroom, &mm)) {
+				(void) mksobj_at(SACK, mm.x, mm.y, TRUE, FALSE, FALSE);
+			}
+		  }
               level.flags.has_verminroom = 1;
               break;
             case MIRASPA:
@@ -1392,6 +1417,11 @@ struct mkroom *sroom;
               level.flags.has_greencrossroom = 1;
               break;
             case GAMECORNER:
+		  if (!rn2(10)) {
+			if (somexy(sroom, &mm)) {
+				(void) mksobj_at(SACK, mm.x, mm.y, TRUE, FALSE, FALSE);
+			}
+		  }
               level.flags.has_gamecorner = 1;
               break;
             case ILLUSIONROOM:
@@ -1497,6 +1527,11 @@ struct mkroom *sroom;
 		level.flags.has_voidroom = 1;
 		break;
 	    case HAMLETROOM:
+		  if (!rn2(10)) {
+			if (somexy(sroom, &mm)) {
+				(void) mksobj_at(SACK, mm.x, mm.y, TRUE, FALSE, FALSE);
+			}
+		  }
 		level.flags.has_hamletroom = 1;
 		break;
 	    case KOPSTATION:
@@ -1509,12 +1544,22 @@ struct mkroom *sroom;
 		level.flags.has_rngcenter = 1;
 		break;
 	    case WIZARDSDORM:
+		  if (!rn2(10)) {
+			if (somexy(sroom, &mm)) {
+				(void) mksobj_at(SACK, mm.x, mm.y, TRUE, FALSE, FALSE);
+			}
+		  }
 		level.flags.has_wizardsdorm = 1;
 		break;
 	    case DOOMEDBARRACKS:
 		level.flags.has_doomedbarracks = 1;
 		break;
 	    case SLEEPINGROOM:
+		  if (!rn2(30)) {
+			if (somexy(sroom, &mm)) {
+				(void) mksobj_at(SACK, mm.x, mm.y, TRUE, FALSE, FALSE);
+			}
+		  }
 		level.flags.has_sleepingroom = 1;
 		break;
 	    case DIVERPARADISE:
@@ -1541,9 +1586,19 @@ struct mkroom *sroom;
 		level.flags.has_exhibitroom = 1;
 		break;
 	    case PRISONCHAMBER:
+		  if (!rn2(20)) {
+			if (somexy(sroom, &mm)) {
+				(void) mksobj_at(SACK, mm.x, mm.y, TRUE, FALSE, FALSE);
+			}
+		  }
 		level.flags.has_prisonchamber = 1;
 		break;
 	    case ROBBERCAVE:
+		  if (!rn2(20)) {
+			if (somexy(sroom, &mm)) {
+				(void) mksobj_at(SACK, mm.x, mm.y, TRUE, FALSE, FALSE);
+			}
+		  }
 		level.flags.has_robbercave = 1;
 		break;
 	    case SANITATIONCENTRAL:

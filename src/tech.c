@@ -8928,6 +8928,8 @@ extrachargechoice:
 						    madechoice = 1; sabertype = 9; }
 					else if (yn("Do you want to switch to a laser pole?")=='y') {
 						    madechoice = 1; sabertype = 10; }
+					else if (yn("Do you want to switch to a starwars mace?")=='y') {
+						    madechoice = 1; sabertype = 11; }
 
 				}
 
@@ -8974,8 +8976,10 @@ extrachargechoice:
 					uwep->otyp = LASER_SWORD;
 				} else if (sabertype == 9) {
 					uwep->otyp = SITH_STAFF;
-				} else /* sabertype == 10 */
+				} else if (sabertype == 10) {
 					uwep->otyp = LASER_POLE;
+				} else /* sabertype == 11 */
+					uwep->otyp = STARWARS_MACE;
 
 				pline("Your lightsaber warps, and changes into a different one!");
 				/* known problem: you can pick the form that your lightsaber already has */

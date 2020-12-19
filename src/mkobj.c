@@ -533,6 +533,16 @@ struct obj *box;
 	box->cobj = (struct obj *) 0;
 
 	switch (box->otyp) {
+	case POTATO_BAG:
+
+		otmp = mksobj(makemusableitem(), TRUE, TRUE, FALSE);
+		if (otmp) {
+			otmp->owt = weight(otmp);
+			(void) add_to_container(box, otmp);
+		}
+
+		n = (ishaxor ? rnd(2) : rn2(2)); break;
+		break;
 	case MEDICAL_KIT:	n = (ishaxor ? 120 : 60);
 				/* Initial inventory, no empty medical kits */
 				if (moves <= 1 && !in_mklev) minn = 1;
@@ -1268,10 +1278,342 @@ nastymusableitem() /* select the ID number of an item that the monsters may use 
 }
 
 int
+makemusableitem() /* select the ID number of a musable item --Amy */
+{
+	switch (rnd(319)) {
+
+		case 1: return WAN_SLEEP;
+		case 2: return WAN_FIREBALL;
+		case 3: return WAN_FIRE;
+		case 4: return WAN_COLD;
+		case 5: return WAN_LIGHTNING;
+		case 6: return WAN_MAGIC_MISSILE;
+		case 7: return WAN_STRIKING;
+		case 8: return SCR_FIRE;
+		case 9: return POT_PARALYSIS;
+		case 10: return POT_BLINDNESS;
+		case 11: return POT_CONFUSION;
+		case 12: return POT_SLEEPING;
+		case 13: return POT_ACID;
+		case 14: return FROST_HORN;
+		case 15: return FIRE_HORN;
+		case 16: return WAN_DRAINING;
+		case 17: return SCR_EARTH;
+		case 18: return POT_AMNESIA;
+		case 19: return WAN_CANCELLATION;
+		case 20: return POT_CYANIDE;
+		case 21: return POT_RADIUM;
+		case 22: return WAN_ACID;
+		case 23: return SCR_TRAP_CREATION;
+		case 24: return WAN_TRAP_CREATION;
+		case 25: return SCR_FLOOD;
+		case 26: return SCR_LAVA;
+		case 27: return SCR_GROWTH;
+		case 28: return SCR_ICE;
+		case 29: return SCR_CLOUDS;
+		case 30: return SCR_BARRHING;
+		case 31: return WAN_SOLAR_BEAM;
+		case 32: return SCR_LOCKOUT;
+		case 33: return WAN_BANISHMENT;
+		case 34: return POT_HALLUCINATION;
+		case 35: return POT_NUMBNESS;
+		case 36: return POT_ICE;
+		case 37: return POT_STUNNING;
+		case 38: return SCR_BAD_EFFECT;
+		case 39: return WAN_BAD_EFFECT;
+		case 40: return POT_FIRE;
+		case 41: return WAN_SLOW_MONSTER;
+		case 42: return WAN_FEAR;
+		case 43: return POT_FEAR;
+		case 44: return SCR_DESTROY_ARMOR;
+		case 45: return SCR_STONING;
+		case 46: return POT_URINE;
+		case 47: return POT_SLIME;
+		case 48: return POT_CANCELLATION;
+		case 49: return WAN_STONING;
+		case 50: return WAN_DISINTEGRATION;
+		case 51: return WAN_PARALYSIS;
+		case 52: return WAN_CURSE_ITEMS;
+		case 53: return WAN_AMNESIA;
+		case 54: return WAN_BAD_LUCK;
+		case 55: return WAN_REMOVE_RESISTANCE;
+		case 56: return WAN_CORROSION;
+		case 57: return WAN_FUMBLING;
+		case 58: return WAN_STARVATION;
+		case 59: return WAN_PUNISHMENT;
+		case 60: return SCR_PUNISHMENT;
+		case 61: return WAN_MAKE_VISIBLE;
+		case 62: return WAN_REDUCE_MAX_HITPOINTS;
+		case 63: return WAN_CONFUSION;
+		case 64: return WAN_SLIMING;
+		case 65: return WAN_LYCANTHROPY;
+		case 66: return SCR_CHAOS_TERRAIN;
+		case 67: return SCR_WOUNDS;
+		case 68: return SCR_BULLSHIT;
+		case 69: return SCR_AMNESIA;
+		case 70: return WAN_SUMMON_SEXY_GIRL;
+		case 71: return SCR_DEMONOLOGY;
+		case 72: return SCR_NASTINESS;
+		case 73: return SCR_GIRLINESS;
+		case 74: return SCR_ELEMENTALISM;
+		case 75: return TEMPEST_HORN;
+		case 76: return WAN_POISON;
+		case 77: return SCR_DESTROY_WEAPON;
+		case 78: return WAN_DISINTEGRATION_BEAM;
+		case 79: return WAN_CHROMATIC_BEAM;
+		case 80: return WAN_STUN_MONSTER;
+		case 81: return SCR_MEGALOAD;
+		case 82: return SCR_ENRAGE;
+		case 83: return WAN_TIDAL_WAVE;
+		case 84: return SCR_ANTIMATTER;
+		case 85: return WAN_DRAIN_MANA;
+		case 86: return WAN_FINGER_BENDING;
+		case 87: return SCR_IMMOBILITY;
+		case 88: return WAN_IMMOBILITY;
+		case 89: return SCR_FLOODING;
+		case 90: return SCR_EGOISM;
+		case 91: return WAN_EGOISM;
+		case 92: return SCR_RUMOR;
+		case 93: return SCR_MESSAGE;
+		case 94: return SCR_SIN;
+		case 95: return WAN_SIN;
+		case 96: return WAN_INERTIA;
+		case 97: return WAN_TIME;
+		case 98: return WAN_LEVITATION;
+		case 99: return WAN_PSYBEAM;
+		case 100: return WAN_HYPER_BEAM;
+		case 101: return WAN_STRIKING;
+		case 102: return POT_ACID;
+		case 103: return POT_CONFUSION;
+		case 104: return POT_BLINDNESS;
+		case 105: return POT_SLEEPING;
+		case 106: return POT_PARALYSIS;
+		case 107: return WAN_MAGIC_MISSILE;
+		case 108: return WAN_SLEEP;
+		case 109: return WAN_FIRE;
+		case 110: return WAN_COLD;
+		case 111: return WAN_STRIKING;
+		case 112: return POT_ACID;
+		case 113: return POT_CONFUSION;
+		case 114: return POT_BLINDNESS;
+		case 115: return POT_SLEEPING;
+		case 116: return POT_PARALYSIS;
+		case 117: return WAN_MAGIC_MISSILE;
+		case 118: return WAN_SLEEP;
+		case 119: return WAN_FIRE;
+		case 120: return WAN_COLD;
+		case 121: return WAN_STRIKING;
+		case 122: return POT_ACID;
+		case 123: return POT_CONFUSION;
+		case 124: return POT_BLINDNESS;
+		case 125: return POT_SLEEPING;
+		case 126: return POT_PARALYSIS;
+		case 127: return WAN_MAGIC_MISSILE;
+		case 128: return WAN_SLEEP;
+		case 129: return WAN_FIRE;
+		case 130: return WAN_COLD;
+		case 131: return WAN_STRIKING;
+		case 132: return POT_ACID;
+		case 133: return POT_CONFUSION;
+		case 134: return POT_BLINDNESS;
+		case 135: return POT_SLEEPING;
+		case 136: return POT_PARALYSIS;
+		case 137: return WAN_MAGIC_MISSILE;
+		case 138: return WAN_SLEEP;
+		case 139: return WAN_FIRE;
+		case 140: return WAN_COLD;
+		case 141: return WAN_STRIKING;
+		case 142: return POT_ACID;
+		case 143: return POT_CONFUSION;
+		case 144: return POT_BLINDNESS;
+		case 145: return POT_SLEEPING;
+		case 146: return POT_PARALYSIS;
+		case 147: return WAN_MAGIC_MISSILE;
+		case 148: return WAN_SLEEP;
+		case 149: return WAN_FIRE;
+		case 150: return WAN_COLD;
+		case 151: return WAN_LIGHTNING;
+		case 152: return WAN_LIGHTNING;
+		case 153: return WAN_LIGHTNING;
+		case 154: return WAN_LIGHTNING;
+		case 155: return WAN_LIGHTNING;
+		case 156: return POT_HALLUCINATION;
+		case 157: return POT_NUMBNESS;
+		case 158: return POT_ICE;
+		case 159: return POT_STUNNING;
+		case 160: return SCR_BAD_EFFECT;
+		case 161: return POT_FIRE;
+		case 162: return POT_FEAR;
+		case 163: return POT_HALLUCINATION;
+		case 164: return POT_NUMBNESS;
+		case 165: return POT_ICE;
+		case 166: return POT_STUNNING;
+		case 167: return SCR_BAD_EFFECT;
+		case 168: return POT_FIRE;
+		case 169: return POT_FEAR;
+		case 170: return POT_HALLUCINATION;
+		case 171: return POT_NUMBNESS;
+		case 172: return POT_ICE;
+		case 173: return POT_STUNNING;
+		case 174: return SCR_BAD_EFFECT;
+		case 175: return POT_FIRE;
+		case 176: return POT_FEAR;
+		case 177: return POT_HALLUCINATION;
+		case 178: return POT_NUMBNESS;
+		case 179: return POT_ICE;
+		case 180: return POT_STUNNING;
+		case 181: return SCR_BAD_EFFECT;
+		case 182: return POT_FIRE;
+		case 183: return POT_FEAR;
+		case 184: return POT_HALLUCINATION;
+		case 185: return POT_NUMBNESS;
+		case 186: return POT_ICE;
+		case 187: return POT_STUNNING;
+		case 188: return SCR_BAD_EFFECT;
+		case 189: return POT_FIRE;
+		case 190: return POT_FEAR;
+		case 191: return WAN_STRIKING;
+		case 192: return POT_ACID;
+		case 193: return POT_CONFUSION;
+		case 194: return POT_BLINDNESS;
+		case 195: return POT_SLEEPING;
+		case 196: return POT_PARALYSIS;
+		case 197: return WAN_MAGIC_MISSILE;
+		case 198: return WAN_SLEEP;
+		case 199: return WAN_FIRE;
+		case 200: return WAN_COLD;
+		case 201: return WAN_LIGHTNING;
+		case 202: return WAN_INFERNO;
+		case 203: return WAN_ICE_BEAM;
+		case 204: return WAN_THUNDER;
+		case 205: return WAN_SLUDGE;
+		case 206: return WAN_TOXIC;
+		case 207: return WAN_NETHER_BEAM;
+		case 208: return WAN_AURORA_BEAM;
+		case 209: return WAN_GRAVITY_BEAM;
+		case 210: return WAN_CHLOROFORM;
+		case 211: return WAN_DREAM_EATER;
+		case 212: return WAN_BUBBLEBEAM;
+		case 213: return WAN_GOOD_NIGHT;
+		case 214: return SCR_VILENESS;
+		case 215: return POT_DIMNESS;
+		case 216: return POT_DIMNESS;
+		case 217: return POT_DIMNESS;
+		case 218: return POT_DIMNESS;
+		case 219: return POT_DIMNESS;
+		case 220: return POT_DIMNESS;
+		case 221: return POT_DIMNESS;
+		case 222: return SCR_OFFLEVEL_ITEM;
+		case 223: return POT_SANITY;
+		case 224: return POT_SANITY;
+		case 225: return POT_SANITY;
+		case 226: return POT_SANITY;
+		case 227: return SCR_BAD_EQUIPMENT;
+		case 228: return WAN_INSANITY;
+		case 229: return WAN_BAD_EQUIPMENT;
+		case 230: return SCR_NASTY_CURSE;
+		case 231: return SCR_HYBRIDIZATION;
+		case 232: return WAN_DISENCHANTMENT;
+		case 233: return WAN_TREMBLING;
+		case 234: return WAN_CONTAMINATION;
+		case 235: return SCR_GRAVE;
+		case 236: return SCR_TUNNELS;
+		case 237: return SCR_FARMING;
+		case 238: return SCR_MOUNTAINS;
+		case 239: return SCR_DIVING;
+		case 240: return SCR_CRYSTALLIZATION;
+		case 241: return SCR_MOORLAND;
+		case 242: return SCR_URINE;
+		case 243: return SCR_QUICKSAND;
+		case 244: return SCR_STYX;
+		case 245: return SCR_SNOW;
+		case 246: return SCR_ASH;
+		case 247: return SCR_SAND;
+		case 248: return SCR_PAVING;
+		case 249: return SCR_HIGHWAY;
+		case 250: return SCR_GRASSLAND;
+		case 251: return SCR_NETHER;
+		case 252: return SCR_STALACTITE;
+		case 253: return SCR_CRYPT;
+		case 254: return SCR_BUBBLE_BOBBLE;
+		case 255: return SCR_RAIN;
+		case 256: return WAN_CHAOS_TERRAIN;
+		case 257: return WAN_FLEECY_TERRAIN;
+		case 258: return ETHER_HORN;
+		case 259: return SHADOW_HORN;
+		case 260: return CHROME_HORN;
+		case 261: return SCR_ILLUSION;
+		case 262: return SCR_EVIL_VARIANT;
+		case 263: return SCR_FEMINISM;
+		case 264: return WAN_BLEEDING;
+		case 265: return WAN_UNDRESSING;
+		case 266: return WAN_STAT_REDUCTION;
+		case 267: return SCR_VISIBLE_ITEM;
+		case 268: return WAN_DEATH;
+		case 269: return SCR_TELEPORTATION;
+		case 270: return POT_HEALING;
+		case 271: return POT_EXTRA_HEALING;
+		case 272: return WAN_DIGGING;
+		case 273: return WAN_CREATE_MONSTER;
+		case 274: return SCR_CREATE_MONSTER;
+		case 275: return WAN_TELEPORTATION;
+		case 276: return BUGLE;
+		case 277: return UNICORN_HORN;
+		case 278: return POT_FULL_HEALING;
+		case 279: return SCR_SUMMON_UNDEAD;
+		case 280: return WAN_HEALING;
+		case 281: return WAN_EXTRA_HEALING;
+		case 282: return WAN_CREATE_HORDE;
+		case 283: return POT_VAMPIRE_BLOOD;
+		case 284: return WAN_FULL_HEALING;
+		case 285: return SCR_TELE_LEVEL;
+		case 286: return SCR_ROOT_PASSWORD_DETECTION;
+		case 287: return RIN_TIMELY_BACKUP;
+		case 288: return WAN_SUMMON_UNDEAD;
+		case 289: return SCR_HEALING;
+		case 290: return SCR_WARPING;
+		case 291: return BAG_OF_TRICKS;
+		case 292: return WAN_TELE_LEVEL;
+		case 293: return SCR_SUMMON_BOSS;
+		case 294: return POT_CURE_WOUNDS;
+		case 295: return POT_CURE_SERIOUS_WOUNDS;
+		case 296: return POT_CURE_CRITICAL_WOUNDS;
+		case 297: return SCR_POWER_HEALING;
+		case 298: return SCR_CREATE_VICTIM;
+		case 299: return SCR_GROUP_SUMMONING;
+		case 300: return SCR_SUMMON_GHOST;
+		case 301: return SCR_SUMMON_ELM;
+		case 302: return WAN_SUMMON_ELM;
+		case 303: return SCR_RELOCATION;
+		case 304: return SCR_EXTRA_HEALING;
+		case 305: return POT_BLOOD;
+		case 306: return POT_GAIN_LEVEL;
+		case 307: return WAN_MAKE_INVISIBLE;
+		case 308: return POT_INVISIBILITY;
+		case 309: return WAN_POLYMORPH;
+		case 310: return POT_SPEED;
+		case 311: return WAN_SPEED_MONSTER;
+		case 312: return BULLWHIP;
+		case 313: return POT_POLYMORPH;
+		case 314: return WAN_CLONE_MONSTER;
+		case 315: return WAN_HASTE_MONSTER;
+		case 316: return POT_MUTATION;
+		case 317: return WAN_MUTATION;
+		case 318: return WAN_GAIN_LEVEL;
+		case 319: return WAN_INCREASE_MAX_HITPOINTS;
+		default: return WAN_MAGIC_MISSILE;
+
+	}
+
+	return WAN_MAGIC_MISSILE; /* to appease the compiler */
+
+}
+
+int
 makegreatitem() /* select the ID number of an item that might be very useful for you --Amy */
 {
 
-	switch (rnd(174)) {
+	switch (rnd(175)) {
 		case 1:
 			return TOOTH_OF_AN_ALGOLIAN_SUNTIGER;
 		case 2:
@@ -1620,6 +1962,8 @@ makegreatitem() /* select the ID number of an item that might be very useful for
 			return SCR_GREATER_ENCHANT_ARMOR;
 		case 174:
 			return SCR_POWER_CHARGING;
+		case 175:
+			return BITCHER;
 		default: /* fail safe */
 			return SCR_IDENTIFY;
 
@@ -2266,6 +2610,7 @@ boolean shopinit;
 		case LASER_POLE:
 		case WHITE_DOUBLE_LIGHTSABER:
 					otmp->altmode = FALSE;
+		case STARWARS_MACE:
 		case LASER_SWORD:
 		case GREEN_LIGHTSABER:
 		case BLUE_LIGHTSABER:
@@ -2314,6 +2659,7 @@ boolean shopinit;
 		case ICE_BOX_OF_WATERPROOFING:
 		case SACK:
 		case OILSKIN_SACK:
+		case POTATO_BAG:
 		case BAG_OF_HOLDING:
 		case MEDICAL_KIT:
 			if (artif != 2) mkbox_cnts(otmp);
@@ -3417,6 +3763,9 @@ int x, y;
 		if (!rn2(5000)) amount *= 50;
 		if (!rn2(25000)) amount *= 100;
 	}
+
+	if (uarmh && uarmh->oartifact == ART_GOLD_STANDARD) amount *= 2;
+	if (uarmg && uarmg->oartifact == ART_ROBBERY_GONE_RIGHT) amount *= 3;
 
 	if (RngeWealth) amount *= (1 + rnd(2)); /* 2.5 times as much gold on average --Amy */
 	if (uarmf && uarmf->oartifact == ART_PRACTICLASSY) amount *= 2;

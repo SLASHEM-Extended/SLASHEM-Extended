@@ -3469,6 +3469,9 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ ANITA_LADY_PUMPS, "todo" },
 	{ HENRIETTA_COMBAT_BOOTS, "todo" },
 	{ VERENA_STILETTO_SANDALS, "todo" },
+	{ STARWARS_MACE, "todo" },
+	{ POTATO_BAG, "todo" },
+	{ BITCHER, "todo" },
 
 	{0, "" }
 };
@@ -6266,6 +6269,9 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ ANITA_LADY_PUMPS, "todo" },
 	{ HENRIETTA_COMBAT_BOOTS, "todo" },
 	{ VERENA_STILETTO_SANDALS, "todo" },
+	{ STARWARS_MACE, "todo" },
+	{ POTATO_BAG, "todo" },
+	{ BITCHER, "todo" },
 
 	{0, "" }
 };

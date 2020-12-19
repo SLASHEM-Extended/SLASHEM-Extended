@@ -5205,6 +5205,7 @@ doapply()
 	case SACK:
 	case BAG_OF_HOLDING:
 	case OILSKIN_SACK:
+	case POTATO_BAG:
 	case BAG_OF_DIGESTION:
 		res = use_container(&obj, 1);
 		break;
@@ -5489,6 +5490,7 @@ doapply()
 	case RED_DOUBLE_LIGHTSABER:
 	case WHITE_DOUBLE_LIGHTSABER:
 	case LASERDENT:
+	case STARWARS_MACE:
 	case LASER_SWORD:
 	case SITH_STAFF:
 
@@ -6378,6 +6380,99 @@ chargingchoice:
 		}
 
 		break;
+
+	case BITCHER:
+	{
+		boolean wildcunt = (obj->oartifact == ART_BITCHER____THE_WILD_CUNT);
+
+		You_hear("bitching noises.");
+		pline("The bitcher dissolves in your hands...");
+
+		if (obj->unpaid) {
+			struct monst *shkp = shop_keeper(*u.ushops);
+			if (shkp) {
+				You("use it, you pay for it!");
+				bill_dummy_object(obj);
+			}
+		}
+
+		if (obj->cursed && rn2(2)) {
+
+			delobj(obj);
+			noartispeak = TRUE;
+			pline("Somehow you feel that the bitches are making fun of you.");
+			break; /* do not call delobj twice or the game will destabilize! */
+
+		}
+
+		delobj(obj);
+		noartispeak = TRUE;
+
+		use_skill(P_DEVICES,10);
+		if (Race_if(PM_FAWN)) {
+			use_skill(P_DEVICES,10);
+		}
+		if (Race_if(PM_SATRE)) {
+			use_skill(P_DEVICES,10);
+			use_skill(P_DEVICES,10);
+		}
+		if (Role_if(PM_SPACEWARS_FIGHTER)) {
+			use_skill(P_DEVICES,10);
+		}
+		if (Role_if(PM_CAMPERSTRIKER)) {
+			use_skill(P_DEVICES,10);
+			use_skill(P_DEVICES,10);
+		}
+
+		FemaleTrapFemmy = 0L;
+		FemaleTrapMadeleine = 0L;
+		FemaleTrapMarlena = 0L;
+		FemaleTrapAnastasia = 0L;
+		FemaleTrapJessica = 0L;
+		FemaleTrapSolvejg = 0L;
+		FemaleTrapWendy = 0L;
+		FemaleTrapKatharina = 0L;
+		FemaleTrapElena = 0L;
+		FemaleTrapThai = 0L;
+		FemaleTrapElif = 0L;
+		FemaleTrapNadja = 0L;
+		FemaleTrapSandra = 0L;
+		FemaleTrapNatalje = 0L;
+		FemaleTrapJeanetta = 0L;
+		FemaleTrapYvonne = 0L;
+		FemaleTrapMaurah = 0L;
+		FemaleTrapMeltem = 0L;
+		FemaleTrapSarah = 0L;
+		FemaleTrapClaudia = 0L;
+		FemaleTrapLudgera = 0L;
+		FemaleTrapKati = 0L;
+		FemaleTrapNelly = 0L;
+		FemaleTrapEveline = 0L;
+		FemaleTrapKarin = 0L;
+		FemaleTrapJuen = 0L;
+		FemaleTrapKristina = 0L;
+		FemaleTrapLou = 0L;
+		FemaleTrapAlmut = 0L;
+		FemaleTrapJulietta = 0L;
+		FemaleTrapArabella = 0L;
+		FemaleTrapKristin = 0L;
+		FemaleTrapAnna = 0L;
+		FemaleTrapRuea = 0L;
+		FemaleTrapDora = 0L;
+		FemaleTrapMarike = 0L;
+		FemaleTrapJette = 0L;
+		FemaleTrapIna = 0L;
+		FemaleTrapSing = 0L;
+		FemaleTrapVictoria = 0L;
+		FemaleTrapMelissa = 0L;
+		FemaleTrapAnita = 0L;
+		FemaleTrapHenrietta = 0L;
+		FemaleTrapVerena = 0L;
+
+		if (wildcunt) randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
+
+		break;
+	}
 
 	case SWITCHER:
 

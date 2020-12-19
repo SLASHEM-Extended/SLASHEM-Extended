@@ -2654,6 +2654,8 @@ mpickstuff(mtmp, str)
 		 * also they shouldn't pick up certain items from special rooms */
 		if (otmp->otyp == STATUE) continue;
 		if (otmp->otyp == SWITCHER) continue;
+		if (otmp->otyp == BITCHER) continue;
+		if (otmp->otyp == POTATO_BAG) continue;
 		if (otmp->otyp == CHARGER) continue;
 		if (otmp->otyp == SYMBIOTE) continue;
 		if (otmp->otyp == UGH_MEMORY_TO_CREATE_INVENTORY) continue;

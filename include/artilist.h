@@ -7472,7 +7472,7 @@ A("CrySpear",				CERAMIC_SPEAR, /* regenerate one extra hit point per turn witho
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
 
 A("Gauget Unlocker",				SCR_SKILL_UP, /* prior to processing its own effect, unlocks a skill like acu level up, or three if you actually are an acu; this item cannot be wished for */
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
 A("Hostilitawn",				FIGURINE, /* always becomes hostile */
@@ -7738,6 +7738,18 @@ A("Anja's Wide Field",				LOW_BOOTS, /* initialized to always be wedge sneakers,
 A("U Be Curry",				LOW_BOOTS, /* initialized to always be barefoot shoes, full nutrients, eating a tin gives 3x nutrition */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Brightmace",				STARWARS_MACE, /* doesn't get deactivated by darkness */
+	(SPFX_RESTR), 0, 0,
+	PHYS(4,4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Delightsaber",				STARWARS_MACE, /* doesn't get deactivated by darkness, de-light trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(10,10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Bitcher 3: The Wild Cunt",				BITCHER, /* gives a new random feminism effect when used */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
 
 /*

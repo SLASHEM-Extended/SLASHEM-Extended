@@ -3032,6 +3032,8 @@ altarfound:
 				otmp->otyp != CHARGER && 
 				otmp->otyp != SYMBIOTE && 
 				otmp->otyp != SWITCHER && 
+				otmp->otyp != BITCHER && 
+				otmp->otyp != POTATO_BAG && 
 				otmp->otyp != UGH_MEMORY_TO_CREATE_INVENTORY && 
 			   (throws_rocks(ptr) ||
 				!sobj_at(BOULDER,xx,yy)) &&

@@ -13260,6 +13260,8 @@ boolean knoweverything;
 				pline("This is a basic container that can be used to store items."); break;
 			case OILSKIN_SACK:
 				pline("A useful container that protects its contents from water."); break;
+			case POTATO_BAG:
+				pline("The 'Kartoffelsack' is just a regular sack, but it usually spawns with a musable item inside."); break;
 			case BAG_OF_HOLDING: 
 				pline("Items that are in this container have an altered weight. Be careful - nesting bags of holding will cause them to explode, and there are certain items that may not be put in either."); break;
 			case BAG_OF_DIGESTION: 
@@ -13384,6 +13386,8 @@ boolean knoweverything;
 				pline("This lightsaber does RNG-determined damage, but it needs to be turned on in order to work. An activated lightsaber is good for engraving."); break;
 			case LASERDENT:
 				pline("A two-handed lightsaber that uses the trident skill and can be set to double mode, increasing its damage. If it's not turned on, it does pitiful damage."); break;
+			case STARWARS_MACE:
+				pline("It's a mace-lightsaber, which needs to be turned on in order to work, and then it deals solid melee damage."); break;
 			case SITH_STAFF:
 				pline("This is a quarterstaff that uses lightsaber power; you need to turn it on first or it won't be effective. It requires two hands, and if you apply it twice, you can activate double blade mode, further increasing its damage output."); break;
 			case LASER_POLE:
@@ -13474,6 +13478,8 @@ boolean knoweverything;
 				pline("A marker that is useful for writing graffiti on the floor."); break;
 			case SWITCHER:
 				pline("This metal box has a switch that can be pulled. What may happen if you do so?"); break;
+			case BITCHER:
+				pline("A bitchy tool that can be used to make the bitches shut up (hopefully)."); break;
 			case SYMBIOTE:
 				pline("An item that allows you to go in symbiosis with a monster, which is done by applying it at a stationary monster. If successful, the monster in question will become your symbiote, allowing you to benefit from its attacks and abilities in a limited fashion. Using it while you already have a symbiote will replace your previous one (which will be removed permanently) with the new one. A successful use of this item will use it up, but if you fail, you can try again (unless the monster gets frenzied, which can happen sometimes)."); break;
 			case INTELLIGENCE_PACK:
@@ -18197,6 +18203,8 @@ boolean knoweverything;
 					pline("Artifact specs: engraving with it will only consume charges 1 out of 10 turns."); break;
 				case ART_I_THE_SAGE:
 					pline("Artifact specs: Well, it's a switcher like every other one..."); break;
+				case ART_BITCHER____THE_WILD_CUNT:
+					pline("Artifact specs: The newest version of the bitcher, created by Demo, who wants you to suffer from endless bitching! :-)"); break;
 				case ART_F_PROT:
 					pline("Artifact specs: Who knows what the contents of these disks is?"); break;
 				case ART_PANIC_IN_GOTHAM_FOREST:
@@ -20450,6 +20458,10 @@ boolean knoweverything;
 					pline("Artifact specs: +8 damage to shock-susceptible creatures. This artifact cannot be generated normally, but is created by using the elemental imbue technique, which you apparently have. Good job, you defeated both bosses of the Green Cross subdungeon!"); break;
 				case ART_STAHNGNIR_S_BASHHUNK:
 					pline("Artifact specs: +5 to-hit and double damage, petrification resistance when wielded. This artifact is used by Stahngnir, The Steel Giant Lord, whom you apparently defeated - well done!"); break;
+				case ART_BRIGHTMACE:
+					pline("Artifact specs: +4 to-hit and +4 damage, doesn't get deactivated by darkness effects."); break;
+				case ART_DELIGHTSABER:
+					pline("Artifact specs: +10 to-hit and +10 damage, doesn't get deactivated by darkness effects, de-light effect when wielded."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;
