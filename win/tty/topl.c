@@ -360,6 +360,7 @@ topl_putsym(c)
 	ttyDisplay->cury++;
 	cw->cury = ttyDisplay->cury;
 #ifdef WIN32CON
+
     (void) putchar(c);
 #endif
 	break;
@@ -382,8 +383,31 @@ void
 putsyms(str)
     const char *str;
 {
+    int fleececolor;
+
+    if (FALSE) {
+	fleececolor = rn2(CLR_MAX);
+	while (fleececolor == NO_COLOR) fleececolor = rn2(CLR_MAX);
+    }
+
+    if (FunnyHallu) {
+	while(*str) {
+		fleececolor = rn2(CLR_MAX);
+		if (FALSE) term_start_color(fleececolor);
+		topl_putsym(*str++);
+		if (FALSE) term_end_color();
+	}
+
+    } else {
+	if (FALSE) term_start_color(fleececolor);
+
     while(*str)
 	topl_putsym(*str++);
+
+	if (FALSE) term_end_color();
+
+    }
+
 }
 
 STATIC_OVL void
