@@ -96,6 +96,7 @@ encodeachieveX(void)
    *  10  killed Kalwina
    *  11  killed Stahngnir
    *  12  killed Ariane
+   *  13  completed the Rival Quest
    */
 
   long r;
@@ -115,6 +116,7 @@ encodeachieveX(void)
   if(achieveX.killed_kalwina)       r |= 1L << 10;
   if(achieveX.killed_stahngnir)     r |= 1L << 11;
   if(achieveX.killed_ariane)        r |= 1L << 12;
+  if(achieveX.completed_rivalquest) r |= 1L << 13;
 
   return r;
 }

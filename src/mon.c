@@ -5729,6 +5729,28 @@ newbossSING:
 
 	}
 
+	if(mtmp->data == &mons[u.rivalneminum]) {
+
+		if (!achieveX.completed_rivalquest) {
+
+	            achieveX.completed_rivalquest = 1;
+
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
+			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
+
+			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+				u.uhpmax += 10;
+				u.uenmax += 10;
+				if (Upolyd) u.mhmax += 10;
+				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+			}
+
+		}
+
+	}
+
 	if(mtmp->data == &mons[PM_ARIANE__LADY_OF_THE_ELEMENTS]) {
 
 		if (!achieveX.killed_ariane) {

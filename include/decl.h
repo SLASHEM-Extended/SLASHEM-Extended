@@ -100,6 +100,7 @@ E struct dgn_topology {		/* special dungeon levels for speed */
     xchar   d_orderedchaos_dnum;
     xchar   d_deadgrounds_dnum;
     xchar   d_subquest_dnum;
+    xchar   d_rivalquest_dnum;
     xchar   d_bellcaves_dnum;
     xchar   d_illusorycastle_dnum;
     xchar   d_voiddungeon_dnum;
@@ -144,6 +145,7 @@ E struct dgn_topology {		/* special dungeon levels for speed */
 
     d_level d_qxone_level, d_qxtwo_level,  d_qxthree_level,  d_qxfour_level,  d_qxfive_level;
     d_level d_qxsix_level, d_qxseven_level,  d_qxeight_level,  d_qxnine_level,  d_qxten_level;
+    d_level d_qya_level, d_qyb_level, d_qyc_level, d_qyd_level, d_qye_level;
     d_level	d_knox_level;
     d_level     d_blackmarket_level;
 #ifdef RECORD_ACHIEVE
@@ -215,6 +217,7 @@ E struct dgn_topology {		/* special dungeon levels for speed */
 #define gruechallenge_dnum	(dungeon_topology.d_gruechallenge_dnum)
 #define poolchallenge_dnum	(dungeon_topology.d_poolchallenge_dnum)
 #define subquest_dnum		(dungeon_topology.d_subquest_dnum)
+#define rivalquest_dnum		(dungeon_topology.d_rivalquest_dnum)
 #define bellcaves_dnum		(dungeon_topology.d_bellcaves_dnum)
 #define dod_dnum			(dungeon_topology.d_dod_dnum)
 #define town_dnum			(dungeon_topology.d_town_dnum)
@@ -233,6 +236,11 @@ E struct dgn_topology {		/* special dungeon levels for speed */
 #define qxeight_level		(dungeon_topology.d_qxeight_level)
 #define qxnine_level		(dungeon_topology.d_qxnine_level)
 #define qxten_level		(dungeon_topology.d_qxten_level)
+#define qya_level		(dungeon_topology.d_qya_level)
+#define qyb_level		(dungeon_topology.d_qyb_level)
+#define qyc_level		(dungeon_topology.d_qyc_level)
+#define qyd_level		(dungeon_topology.d_qyd_level)
+#define qye_level		(dungeon_topology.d_qye_level)
 #define knox_level		(dungeon_topology.d_knox_level)
 #define spiders_dnum		(dungeon_topology.d_spiders_dnum)
 #define grund_dnum		(dungeon_topology.d_grund_dnum)
@@ -697,6 +705,7 @@ struct u_achieveX {
 	  Bitfield(killed_kalwina,1);	/* You killed Kalwina */
 	  Bitfield(killed_stahngnir,1);	/* You killed Stahngnir */
 	  Bitfield(killed_ariane,1);	/* You killed Ariane */
+	  Bitfield(completed_rivalquest,1);	/* You killed the nemesis on the rival quest */
 
 };
 

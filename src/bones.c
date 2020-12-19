@@ -324,6 +324,8 @@ xchar dnum;
 		strcpy(buf, "RGD");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone GE"))
 		strcpy(buf, "RGE");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Rival Quest"))
+		strcpy(buf, "RIV");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone S"))
 		strcpy(buf, "RSZ");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone TA"))

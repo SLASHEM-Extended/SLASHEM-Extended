@@ -650,6 +650,7 @@ E boolean In_digdugchallenge(d_level *);
 E boolean In_gruechallenge(d_level *);
 E boolean In_pacmanchallenge(d_level *);
 E boolean In_subquest(d_level *);
+E boolean In_rivalquest(d_level *);
 E boolean In_bellcaves(d_level *);
 E boolean In_dod(d_level *);
 E boolean In_gehennom(d_level *);
@@ -2528,6 +2529,7 @@ E boolean is_quest_artifact(struct obj*);
 E void com_pager(int);
 E void qt_pager(int);
 E struct permonst *qt_montype(void);
+E struct permonst *qt_rival_montype(void);
 E const char *neminame(void);
 
 /* ### random.c ### */
@@ -2708,6 +2710,8 @@ E void greenslimetransformation(void);
 E void bindertransformation(void);
 E void changehybridization(int);
 E void demagoguerecursioneffect(void);
+E void rivalroleinit(void);
+E void rivalrolerestore(void);
 
 /* ### rumors.c ### */
 

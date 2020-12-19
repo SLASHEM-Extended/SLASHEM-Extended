@@ -201,6 +201,8 @@ struct flag {
 	int	 randomall;	/* randomly assign everything not specified */
 	int	 pantheon;	/* deity selection for priest character */
 
+	int rivalsavenum;
+
 	int hybridization;	/* number of the player's hybrid races */
 	/* this needs to be set outside of you.h, since otherwise u_init would overwrite stuff! */
 	boolean hybridangbander;

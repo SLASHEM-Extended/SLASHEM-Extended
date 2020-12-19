@@ -8884,6 +8884,32 @@ randrole()
 	return (rn2(SIZE(roles)-1));
 }
 
+void
+rivalroleinit()
+{
+	int rivalrolenum = randrole();
+	flags.rivalsavenum = rivalrolenum;
+
+	u.rivalcode = roles[rivalrolenum].filecode;
+	u.rivalneminum = roles[rivalrolenum].neminum;
+	u.rivalenemy1num = roles[rivalrolenum].enemy1num;
+	u.rivalenemy2num = roles[rivalrolenum].enemy2num;
+	u.rivalenemy1sym = roles[rivalrolenum].enemy1sym;
+	u.rivalenemy2sym = roles[rivalrolenum].enemy2sym;
+}
+
+void
+rivalrolerestore()
+{
+	int rivalrolenum = flags.rivalsavenum;
+
+	u.rivalcode = roles[rivalrolenum].filecode;
+	u.rivalneminum = roles[rivalrolenum].neminum;
+	u.rivalenemy1num = roles[rivalrolenum].enemy1num;
+	u.rivalenemy2num = roles[rivalrolenum].enemy2num;
+	u.rivalenemy1sym = roles[rivalrolenum].enemy1sym;
+	u.rivalenemy2sym = roles[rivalrolenum].enemy2sym;
+}
 
 int
 str2role(str)

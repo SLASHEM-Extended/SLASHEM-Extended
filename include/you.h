@@ -365,6 +365,13 @@ struct you {
 	uchar	usptime;		/* #moves until uspellprot-- */
 	uchar	uspmtime;		/* #moves between uspellprot-- */
 
+	const char *rivalcode;	/* "filecode" for rival quest, abbreviation for use in file names */
+	int rivalneminum;
+	int rivalenemy1num;
+	int rivalenemy2num;
+	char rivalenemy1sym;
+	char rivalenemy2sym;
+
 	int     uhp, uhpmax,uhplast;
 	int	uen, uenmax;		/* magical energy - M. Stephenson */
 	int ugangr;			/* if the gods are angry at you */

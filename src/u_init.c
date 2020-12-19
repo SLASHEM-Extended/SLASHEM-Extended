@@ -10733,6 +10733,8 @@ u_init()
 
 	u.dungeongrowthhack = 0;
 
+	rivalrolerestore();
+
 	u.katitrapocc = 0;
 	u.singtrapocc = 0;
 

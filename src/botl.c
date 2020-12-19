@@ -636,6 +636,8 @@ int verbose;
 		sprintf(buf, flags.showlongstats ? "Deadground:%d " : "Ded:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Subquest"))
 		sprintf(buf, flags.showlongstats ? "Subquest:%d " : "Sub:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Rival Quest"))
+		sprintf(buf, flags.showlongstats ? "Rival Quest:%d " : "Riv:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Bell Caves"))
 		sprintf(buf, flags.showlongstats ? "Bell Caves:%d " : "Bel:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Illusory Castle"))

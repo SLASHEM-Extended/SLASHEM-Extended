@@ -31,6 +31,11 @@
 #define X_XTEIGHT		"x-8"
 #define X_XTNINE		"x-9"
 #define X_XTTEN		"x-0"
+#define Y_YTSIX		"y-6"
+#define Y_FILA		"y-fila"
+#define Y_LOCA		"y-loca"
+#define Y_FILB		"y-filb"
+#define Y_GOAL		"y-goal"
 
 struct proto_dungeon {
 	struct	tmpdungeon tmpdungeon[MAXDUNGEON];
@@ -705,6 +710,13 @@ struct level_map {
 	{ X_XTEIGHT,	&qxeight_level },
 	{ X_XTNINE,	&qxnine_level },
 	{ X_XTTEN,	&qxten_level },
+
+	{ Y_YTSIX,	&qya_level },
+	{ Y_FILA,	&qyb_level },
+	{ Y_LOCA,	&qyc_level },
+	{ Y_FILB,	&qyd_level },
+	{ Y_GOAL,	&qye_level },
+
 	{ "",		(d_level *)0 }
 };
 
@@ -960,6 +972,8 @@ init_dungeons()
 				 * levels of the quest dungeon occur.
 				 */
 				sprintf(x->proto, "%s%s", urole.filecode, &lev_map->lev_name[1]);
+			} else if (!strncmp(lev_map->lev_name, "y-", 2)) { /* rival quest by Amy */
+				sprintf(x->proto, "%s%s", u.rivalcode, &lev_map->lev_name[1]);
 			} else if (lev_map->lev_spec == &knox_level) {
 				branch *br;
 				/*
@@ -989,6 +1003,7 @@ init_dungeons()
 	orderedchaos_dnum = dname_to_dnum("Ordered Chaos");
 	deadgrounds_dnum = dname_to_dnum("Dead Grounds");
 	subquest_dnum = dname_to_dnum("The Subquest");
+	rivalquest_dnum = dname_to_dnum("Rival Quest");
 	bellcaves_dnum = dname_to_dnum("Bell Caves");
 	spiders_dnum = dname_to_dnum("The Spider Caves");        
 	grund_dnum = dname_to_dnum("Grund's Stronghold");        
@@ -1631,6 +1646,13 @@ In_subquest(lev)	/* are you in the subquest dungeon? */
 d_level	*lev;
 {
 	return((boolean)(lev->dnum == subquest_dnum));
+}
+
+boolean
+In_rivalquest(lev)	/* are you in the rival quest dungeon? */
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == rivalquest_dnum));
 }
 
 boolean

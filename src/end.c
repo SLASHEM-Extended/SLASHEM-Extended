@@ -2574,6 +2574,9 @@ mk_dgl_extrainfo()
         } else if (In_subquest(&u.uz)) {
             sprintf(tmpdng, "%i|Sub%i", sortval, depth(&u.uz));
 		sortval = 1800 + depth(&u.uz);
+        } else if (In_rivalquest(&u.uz)) {
+            sprintf(tmpdng, "%i|Riv%i", sortval, depth(&u.uz));
+		sortval = 1800 + depth(&u.uz);
         } else if (In_bellcaves(&u.uz)) {
             sprintf(tmpdng, "%i|%s", sortval, "Bel");
 		sortval = 1900 + depth(&u.uz);

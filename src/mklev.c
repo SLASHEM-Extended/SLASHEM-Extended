@@ -2300,6 +2300,7 @@ ghnhom1:
 			case 15: makemaz("deepfilo"); break;
 		    }
 		    return;
+
 	    } else if (In_quest(&u.uz)) {
 		    char        fillname[16];
 		    s_level	*loc_lev;

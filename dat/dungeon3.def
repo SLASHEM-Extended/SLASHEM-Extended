@@ -189,6 +189,7 @@ BRANCH:	"Void" @ (48, 0)
 # Dr. Frankenstein's Lab
 BRANCH:         "Frankenstein's Lab" @ (3, 42) up
 BRANCH:	"Angmar" @ (3, 42)
+BRANCH:	"Rival Quest" @ (3, 42) portal
 BRANCH:	"Emyn Luin" @ (3, 42)
 BRANCH:	"Swimming Pool" @ (3, 42)
 BRANCH:	"Hell's Bathroom" @ (3, 42)
@@ -280,6 +281,13 @@ LEVEL:  	"x-0" "J" @ (10, 0)
 BRANCH:     "Bell Caves" @ (6, 5)
 
 DUNGEON:    "Bell Caves" "N" (1, 0)
+
+DUNGEON:    "Rival Quest" "R" (5, 0)
+LEVEL:  	"y-6" "F" @ (1, 0)
+LEVEL:  	"y-fila" "L" @ (2, 0)
+LEVEL:  	"y-loca" "O" @ (3, 0)
+LEVEL:  	"y-filb" "B" @ (4, 0)
+LEVEL:  	"y-goal" "none" @ (5, 0)
 
 ### The aligned key quests ###
 DUNGEON:		"Lawful Quest" "none" (1, 0)

@@ -23552,7 +23552,7 @@ register int	mmflags;
 		mitem = CANDELABRUM_OF_INVOCATION;
 	} else if (mndx == PM_CROESUS) {
 		mitem = TWO_HANDED_SWORD;
-	} else if (ptr->msound == MS_NEMESIS && mndx >= PM_LORD_CARNARVON && mndx <= PM_UPPER_BULL) {
+	} else if (ptr->msound == MS_NEMESIS && mndx >= PM_LORD_CARNARVON && mndx <= PM_UPPER_BULL && !(In_rivalquest(&u.uz)) ) {
 		mitem = BELL_OF_OPENING; /* prevent new random nemesis monsters from dropping the bell --Amy */
 	} else if (mndx == PM_PESTILENCE) {
 		mitem = POT_SICKNESS;
@@ -24238,6 +24238,9 @@ rndmonst()
 	    return ptr; 
 
       if (u.uz.dnum == subquest_dnum && (!rn2(20)) && (ptr = qt_montype()) != 0)
+	    return ptr; 
+
+      if (u.uz.dnum == rivalquest_dnum && (!rn2(20)) && (ptr = qt_rival_montype()) != 0)
 	    return ptr; 
 
 	if (rndmonst_state.choice_count < 0) {	/* need to recalculate */
