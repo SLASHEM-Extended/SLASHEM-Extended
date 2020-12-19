@@ -7622,7 +7622,7 @@ dostackmark()
 				pline("Oh wait, actually I do mind...");
 				badeffect();
 			}
-			return;
+			return FALSE;
 		}
 		stackmarkitem->stackmarked = TRUE;
 		pline_The("item was marked and will not stack any longer.");
