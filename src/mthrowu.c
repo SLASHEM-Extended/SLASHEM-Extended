@@ -1519,7 +1519,7 @@ m_throw(mon, x, y, dx, dy, range, obj)
 			/* missile hits edge of screen */
 			|| !isok(bhitpos.x+dx,bhitpos.y+dy)
 			/* missile hits the wall */
-			|| IS_ROCK(levl[bhitpos.x+dx][bhitpos.y+dy].typ)
+			|| (IS_ROCK(levl[bhitpos.x+dx][bhitpos.y+dy].typ) && !IS_FARMLAND(levl[bhitpos.x+dx][bhitpos.y+dy].typ))
 			/* missile hit closed door */
 			|| closed_door(bhitpos.x+dx, bhitpos.y+dy)
 			/* missile might hit bars */
@@ -2009,7 +2009,7 @@ boolean special; /* for monsters that can shoot from infinite distance --Amy */
         do {
             /* <bx,by> is guaranteed to eventually converge with <ax,ay> */
             bx += dx, by += dy;
-            if (IS_ROCK(levl[bx][by].typ) || IS_WATERTUNNEL(levl[bx][by].typ) || closed_door(bx, by))
+            if ((IS_ROCK(levl[bx][by].typ) && !IS_FARMLAND(levl[bx][by].typ)) || IS_WATERTUNNEL(levl[bx][by].typ) || closed_door(bx, by))
                 return FALSE;
         } while (bx != ax || by != ay);
         /* reached target position without encountering obstacle */
@@ -2046,7 +2046,7 @@ register xchar ax, ay, bx, by;
         do {
             /* <bx,by> is guaranteed to eventually converge with <ax,ay> */
             bx += dx, by += dy;
-            if (IS_ROCK(levl[bx][by].typ) || IS_WATERTUNNEL(levl[bx][by].typ) || closed_door(bx, by))
+            if ((IS_ROCK(levl[bx][by].typ) && !IS_FARMLAND(levl[bx][by].typ)) || IS_WATERTUNNEL(levl[bx][by].typ) || closed_door(bx, by))
                 return FALSE;
         } while (bx != ax || by != ay);
         /* reached target position without encountering obstacle */
