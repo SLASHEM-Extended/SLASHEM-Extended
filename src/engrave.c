@@ -5394,6 +5394,20 @@ static const char *epitaphs[] = {
 	"WHAAAAAT you made it so that I can't simply startscum healers for wishes anymore YOU SUUUUUUCK AMY! I certainly won't touch your shit variant again!",
 	"Is there still something in slex that players enjoy? You should implement the opposite of that.", /* by amateurhour (exact original wording might be slightly different) */
 	"magic traps lead to tragic maps", /* by amateurhour */
+	"maybe slex would be winnable if, instead of ascension, it had other ways to win. like collect/consort with every kind of shoe in the game", /* by spicycat */
+	"God, the Minotaur Maze subdungeon is really capable of driving a player insane. #quit",
+	"Amy the reward for killing the Minotaur of the Maze sucks!!!!!!! I refuse to play the game again until you make it better!",
+	"Yet again the Green Cross subdungeon wasn't open even though I based my strategy around the 1 in 20 chance that it is, so I had to quit again. Great.",
+	"Omg how overpowered is that Lord Stahngnir boss at the lowest level of Green Cross???",
+	"WHAT? Amy, are you fucking serious right now? I steamrollered Stahngnir, the Steel Giant Lord, and then planned to whoop the extra boss you put there, but your 'Ariane, Lady of the Elements' should be renamed to 'Ariane, Lady of Cheating' because she can't be defeated at all!!!",
+	"Okay Amy I'm calling you out now, you bitch. I assembled five ascension kits with 20 artifact weapons and had to use all of that to kill your 'Ariane' boss at the bottom of Green Cross and all I got was two random artifacts and the ability to generate weak elemental artifacts, all of which are a lot weaker than what I actually used to defeat her???",
+	"What, rival quest in Gehennom? Sounds easy, there sure won't be anything dangeroWAIT WHAT WHOSE QUEST NEMESIS IS THAT AND WHY DID HE JUST ONESHOT ME???",
+	"Blah, the devnull challenge areas in this game suck, most of the time they don't exist at all and even if they do, you can't actually play pool or digdug! Amy I'll play the actual devnull instead! Screw you!",
+	"Wut? I kept running into walls in the Emyn Luin branch and somehow lost all of my intelligence and then a mind flayer came and instakilled me!",
+	"It's really unfair that the boss of Emyn Luin can wipe you out so quickly with that stupid assault rifle. None of the other enemies in there could even dent me.",
+	"Hell's Bathroom is a stuuuuupid, unfairly designed dungeon branch.",
+	"Amy I told you that the Witch King of Angmar is OP! Just to prove my case, he just offed my character that was otherwise ready for ascension!",
+	"Yeah you can't defeat Tiksrvzllat. Don't know why I even bothered trying.",
 
 };
 

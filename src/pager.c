@@ -26028,6 +26028,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Your weapon transforms, and is now imbued with elemental power! I'm pretty sure you'll love seeing your shocking hmamer destroy wands of death and rings of levitation, because lol who needs loot anyway lol.",
 	"You hear bitching noises.",
 	"Somehow you feel that the bitches are making fun of you.",
+	"i guess it's weird that you can't actually go fuck yourself in slex", /* by spicycat */
 
 };
 
