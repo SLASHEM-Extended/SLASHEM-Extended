@@ -1194,6 +1194,9 @@ moveloop()
 					moveamt /= 2;
 				}
 
+				if (Race_if(PM_PIECE) && u.dx && u.dy && !rn2(4) && moveamt > 1)
+					moveamt /= 2;
+
 				if (is_snow(u.ux, u.uy) && (u.umoved || !rn2(4)) && !Flying && !Levitation) {
 						static boolean canwalkonsnow = 0;
 					    static int skates = 0;
@@ -1320,6 +1323,10 @@ moveloop()
 				/* speed boosts while riding go here */
 
 				if (uarmf && itemhasappearance(uarmf, APP_BIKER_BOOTS) && !rn2(10)) {
+					moveamt *= 2;
+				}
+
+				if (Race_if(PM_PIECE) && ((u.dx && !u.dy) || (!u.dx && u.dy)) && !rn2(4)) {
 					moveamt *= 2;
 				}
 
@@ -1516,6 +1523,9 @@ moveloop()
 				moveamt /= 2;
 
 			if (Race_if(PM_CORTEX) && !Upolyd && !rn2(4) && moveamt > 1)
+				moveamt /= 2;
+
+			if (Race_if(PM_PIECE) && u.dx && u.dy && !rn2(4) && moveamt > 1)
 				moveamt /= 2;
 
 		/* The new numbed and frozen properties seem to dislike rn2 calls for some reason.
@@ -1741,6 +1751,10 @@ moveloop()
 			}
 
 			if (numberofwornetheritems() > rn2(20)) {
+				moveamt *= 2;
+			}
+
+			if (Race_if(PM_PIECE) && ((u.dx && !u.dy) || (!u.dx && u.dy)) && !rn2(4)) {
 				moveamt *= 2;
 			}
 

@@ -1974,6 +1974,14 @@ static const struct innate_tech
 		       {   18, T_BOOZE, 1},
 		       {   0, 0, 0} },
 
+	pic_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   20, T_TERRAIN_CLEANUP, 1},
+		       {   0, 0, 0} },
+
 	def_tech[] = { {   1, T_APPRAISAL, 1}, /* everyone is supposed to get this --Amy */
 		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
@@ -9795,6 +9803,7 @@ race_tech()
 		case PM_SATRE:		return (sat_tech);
 		case PM_KORONST:		return (kst_tech);
 		case PM_RUSMOT:		return (rus_tech);
+		case PM_PIECE:		return (pic_tech);
 		case PM_CARTHAGE:		return (crt_tech);
 		case PM_MACTHEIST:		return (mac_tech);
 		case PM_BOVER:		return (bov_tech);
