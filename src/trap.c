@@ -18859,6 +18859,9 @@ register int n;
 		if(u.uenmax < 0) u.uenmax = 0;
 		u.uen = 0;
 	}
+	if (u.uen < 0) u.uen = 0;
+	if (u.uen > u.uenmax) u.uen = u.uenmax;
+
 	flags.botl = 1;
 }
 
