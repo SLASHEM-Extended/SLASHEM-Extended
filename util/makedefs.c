@@ -2208,13 +2208,16 @@ do_objs()
 			}
 			break;
 		    case GEM_CLASS:
-			/* avoid trouble with stupid C preprocessors */
+			/* avoid trouble with stupid C preprocessors
+			 * Amy edit: are those really still being used nowadays??? */
+#if 0
 			if(objects[i].oc_material == MT_GLASS) {
 			    fprintf(ofp,"/* #define\t%s\t%d */\n",
 							objnam, i);
 			    prefix = -1;
 			    break;
 			}
+#endif
 		    default:
 			fprintf(ofp,"%s","#define\t");
 		}

@@ -1552,7 +1552,7 @@ boolean alwaysflag;	/* force the item to be picked up even if it burdens you --A
         /* Whats left of the special case for gold :-) */
 	if (obj->oclass == COIN_CLASS) flags.botl = 1;
 #endif
-	if (obj->quan != count && obj->otyp != LOADSTONE && obj->otyp != LUCKSTONE && obj->otyp != HEALTHSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) )
+	if (obj->quan != count && obj->otyp != LOADSTONE && obj->otyp != LUCKSTONE && obj->otyp != HEALTHSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) && !is_feminismstone(obj) )
 	    obj = splitobj(obj, count);
 
 	if (TooHeavyEffect || u.uprops[TOO_HEAVY_EFFECT].extrinsic || have_tooheavystone()) {
@@ -1563,6 +1563,10 @@ boolean alwaysflag;	/* force the item to be picked up even if it burdens you --A
 
 	/* evil patch addition: Nasty gray stones aren't usually generated cursed, but they autocurse if you pick them up. BUC testing won't save you! --Amy */
 	if (is_nastygraystone(obj)) curse(obj);
+	if (is_feminismstone(obj)) {
+		curse(obj);
+		pline("Oh no, apparently there is some sort of curse on this gem. It won't leave your inventory as long as it's still cursed.");
+	}
 
 	if (uwep && uwep == obj) mrg_to_wielded = TRUE;
 	nearload = near_capacity();
@@ -2124,6 +2128,10 @@ boolean invobj;
 		obj->bknown = 1;
 	      pline_The("stone%s won't leave your person.", plur(obj->quan));
 		return 0;
+	} else if (is_feminismstone(obj) && obj->cursed) {
+		obj->bknown = 1;
+		pline_The("gem%s will not leave your inventory as long as they're cursed.", plur(obj->quan));
+		return 0;
 	} else if (obj->otyp == AMULET_OF_YENDOR || obj->otyp == FAKE_AMULET_OF_YENDOR ||
 		   obj->otyp == CANDELABRUM_OF_INVOCATION ||
 		   obj->otyp == BELL_OF_OPENING ||
@@ -2429,7 +2437,7 @@ register struct obj *obj;
 	if ((res = lift_object(obj, current_container, &count, FALSE, FALSE)) <= 0)
 	    return res;
 
-	if (obj->quan != count && obj->otyp != LOADSTONE && obj->otyp != LUCKSTONE && obj->otyp != HEALTHSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) )
+	if (obj->quan != count && obj->otyp != LOADSTONE && obj->otyp != LUCKSTONE && obj->otyp != HEALTHSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) && !is_feminismstone(obj) )
 	    obj = splitobj(obj, count);
 
 	/* Remove the object from the list. */

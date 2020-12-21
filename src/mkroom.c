@@ -1515,6 +1515,11 @@ struct mkroom *sroom;
 		if (somexy(sroom, &mm)) {
 			(void) mksobj_at(SACK, mm.x, mm.y, TRUE, FALSE, FALSE);
 		}
+		if (!rn2(10)) {
+			if (somexy(sroom, &mm)) {
+				(void) mksobj_at(rnd_class(ELIF_S_JEWEL, DORA_S_JEWEL), mm.x, mm.y, TRUE, FALSE, FALSE);
+			}
+		}
 
 		break;
 	    case MEADOWROOM:

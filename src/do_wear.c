@@ -5975,7 +5975,7 @@ glibr()
 			makeplural(body_part(HAND)));
 		setuswapwep((struct obj *)0, FALSE);
 		xfl++;
-		if ( (otmp->otyp != LOADSTONE && otmp->otyp != HEALTHSTONE && otmp->otyp != LUCKSTONE && otmp->otyp != MANASTONE && otmp->otyp != SLEEPSTONE && otmp->otyp != LOADBOULDER && otmp->otyp != STARLIGHTSTONE && otmp->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(otmp) ) || !otmp->cursed)
+		if ( (otmp->otyp != LOADSTONE && otmp->otyp != HEALTHSTONE && otmp->otyp != LUCKSTONE && otmp->otyp != MANASTONE && otmp->otyp != SLEEPSTONE && otmp->otyp != LOADBOULDER && otmp->otyp != STARLIGHTSTONE && otmp->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(otmp) && !is_feminismstone(otmp) ) || !otmp->cursed)
 			dropx(otmp);
 	}
 	otmp = uwep;
@@ -5993,7 +5993,7 @@ glibr()
 			xfl ? "also " : "",
 			makeplural(body_part(HAND)));
 		setuwep((struct obj *)0, FALSE, TRUE);
-		if ( (otmp->otyp != LOADSTONE && otmp->otyp != HEALTHSTONE && otmp->otyp != LUCKSTONE && otmp->otyp != MANASTONE && otmp->otyp != SLEEPSTONE && otmp->otyp != LOADBOULDER && otmp->otyp != STARLIGHTSTONE && otmp->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(otmp) ) || !otmp->cursed)
+		if ( (otmp->otyp != LOADSTONE && otmp->otyp != HEALTHSTONE && otmp->otyp != LUCKSTONE && otmp->otyp != MANASTONE && otmp->otyp != SLEEPSTONE && otmp->otyp != LOADBOULDER && otmp->otyp != STARLIGHTSTONE && otmp->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(otmp) && !is_feminismstone(otmp) ) || !otmp->cursed)
 			dropx(otmp);
 	}
 }

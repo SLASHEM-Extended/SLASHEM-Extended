@@ -5541,6 +5541,103 @@ eatspecial() /* called after eating non-food */
 		IncreasedGravity += otmp->owt;
 	}
 
+	if (otmp->otyp >= ELIF_S_JEWEL && otmp->otyp <= DORA_S_JEWEL) {
+		pline("The feminine curse spreads through your body...");
+
+		switch (otmp->otyp) {
+
+			case ELIF_S_JEWEL:
+				FemaleTrapElif |= FROMOUTSIDE; break;
+			case MADELEINE_S_JEWEL:
+				FemaleTrapMadeleine |= FROMOUTSIDE; break;
+			case SANDRA_S_JEWEL:
+				FemaleTrapSandra |= FROMOUTSIDE; break;
+			case NADJA_S_JEWEL:
+				FemaleTrapNadja |= FROMOUTSIDE; break;
+			case SOLVEJG_S_JEWEL:
+				FemaleTrapSolvejg |= FROMOUTSIDE; break;
+			case THAI_S_JEWEL:
+				FemaleTrapThai |= FROMOUTSIDE; break;
+			case ELENA_S_JEWEL:
+				FemaleTrapElena |= FROMOUTSIDE; break;
+			case WENDY_S_JEWEL:
+				FemaleTrapWendy |= FROMOUTSIDE; break;
+			case ANASTASIA_S_JEWEL:
+				FemaleTrapAnastasia |= FROMOUTSIDE; break;
+			case JESSICA_S_JEWEL:
+				FemaleTrapJessica |= FROMOUTSIDE; break;
+			case MARLENA_S_JEWEL:
+				FemaleTrapMarlena |= FROMOUTSIDE; break;
+			case FEMMY_S_JEWEL:
+				FemaleTrapFemmy |= FROMOUTSIDE; break;
+			case NATALJE_S_JEWEL:
+				FemaleTrapNatalje |= FROMOUTSIDE; break;
+			case KARIN_S_JEWEL:
+				FemaleTrapKarin |= FROMOUTSIDE; break;
+			case JEANETTA_S_JEWEL:
+				FemaleTrapJeanetta |= FROMOUTSIDE; break;
+			case KATI_S_JEWEL:
+				FemaleTrapKati |= FROMOUTSIDE; break;
+			case CLAUDIA_S_JEWEL:
+				FemaleTrapClaudia |= FROMOUTSIDE; break;
+			case VICTORIA_S_JEWEL:
+				FemaleTrapVictoria |= FROMOUTSIDE; break;
+			case MAURAH_S_JEWEL:
+				FemaleTrapMaurah |= FROMOUTSIDE; break;
+			case JUEN_S_JEWEL:
+				FemaleTrapJuen |= FROMOUTSIDE; break;
+			case KRISTINA_S_JEWEL:
+				FemaleTrapKristina |= FROMOUTSIDE; break;
+			case SARAH_S_JEWEL:
+				FemaleTrapSarah |= FROMOUTSIDE; break;
+			case KATHARINA_S_JEWEL:
+				FemaleTrapKatharina |= FROMOUTSIDE; break;
+			case JULIETTA_S_JEWEL:
+				FemaleTrapJulietta |= FROMOUTSIDE; break;
+			case MELTEM_S_JEWEL:
+				FemaleTrapMeltem |= FROMOUTSIDE; break;
+			case MELISSA_S_JEWEL:
+				FemaleTrapMelissa |= FROMOUTSIDE; break;
+			case LUDGERA_S_JEWEL:
+				FemaleTrapLudgera |= FROMOUTSIDE; break;
+			case YVONNE_S_JEWEL:
+				FemaleTrapYvonne |= FROMOUTSIDE; break;
+			case EVELINE_S_JEWEL:
+				FemaleTrapEveline |= FROMOUTSIDE; break;
+			case NELLY_S_JEWEL:
+				FemaleTrapNelly |= FROMOUTSIDE; break;
+			case ARABELLA_S_JEWEL:
+				FemaleTrapArabella |= FROMOUTSIDE; break;
+			case RUEA_S_JEWEL:
+				FemaleTrapRuea |= FROMOUTSIDE; break;
+			case JETTE_S_JEWEL:
+				FemaleTrapJette |= FROMOUTSIDE; break;
+			case VERENA_S_JEWEL:
+				FemaleTrapVerena |= FROMOUTSIDE; break;
+			case LOU_S_JEWEL:
+				FemaleTrapLou |= FROMOUTSIDE; break;
+			case ANITA_S_JEWEL:
+				FemaleTrapAnita |= FROMOUTSIDE; break;
+			case MARIKE_S_JEWEL:
+				FemaleTrapMarike |= FROMOUTSIDE; break;
+			case KRISTIN_S_JEWEL:
+				FemaleTrapKristin |= FROMOUTSIDE; break;
+			case HENRIETTA_S_JEWEL:
+				FemaleTrapHenrietta |= FROMOUTSIDE; break;
+			case ALMUT_S_JEWEL:
+				FemaleTrapAlmut |= FROMOUTSIDE; break;
+			case ANNA_S_JEWEL:
+				FemaleTrapAnna |= FROMOUTSIDE; break;
+			case SING_S_JEWEL:
+				FemaleTrapSing |= FROMOUTSIDE; break;
+			case INA_S_JEWEL:
+				FemaleTrapIna |= FROMOUTSIDE; break;
+			case DORA_S_JEWEL:
+				FemaleTrapDora |= FROMOUTSIDE; break;
+
+		}
+	}
+
 	if (otmp->otyp >= RIGHT_MOUSE_BUTTON_STONE && otmp->otyp <= NASTY_STONE) {
 		/* you were stupid and ate a nasty gray stone, so now you have its effect intrinsically. No message. --Amy */
 

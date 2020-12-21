@@ -26029,6 +26029,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You hear bitching noises.",
 	"Somehow you feel that the bitches are making fun of you.",
 	"i guess it's weird that you can't actually go fuck yourself in slex", /* by spicycat */
+	"The feminine curse spreads through your body...",
 
 };
 

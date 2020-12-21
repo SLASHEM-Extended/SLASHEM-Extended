@@ -772,7 +772,7 @@ const char *drop_fmt, *drop_arg, *hold_msg;
 
 	    obj = addinv(obj);
 	    if ((inv_cnt() > 52 && flags.knapsacklimit)
-		    || (( (obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) ) || (!obj->cursed && !is_nastygraystone(obj)) )
+		    || (( (obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) && !is_feminismstone(obj) ) || (!obj->cursed && !is_nastygraystone(obj) && !is_feminismstone(obj)) )
 			&& near_capacity() > prev_encumbr)) {
 		if (drop_fmt) pline(drop_fmt, drop_arg);
 		/* undo any merge which took place */
@@ -860,7 +860,7 @@ const char *drop_fmt, *drop_arg, *hold_msg;
 		}
 
 	    if ( (inv_cnt() > 52 && flags.knapsacklimit)
-		    || (( (obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) ) || (!obj->cursed && !is_nastygraystone(obj)) )
+		    || (( (obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) && !is_feminismstone(obj) ) || (!obj->cursed && !is_nastygraystone(obj) && !is_feminismstone(obj)) )
 			&& near_capacity() > prev_encumbr)) {
 		if (drop_fmt) pline(drop_fmt, drop_arg);
 		/* undo any merge which took place */
@@ -970,6 +970,9 @@ struct obj *obj;
 
 	if (obj->otyp == LOADSTONE || obj->otyp == SLEEPSTONE || obj->otyp == LOADBOULDER || obj->otyp == STARLIGHTSTONE || is_nastygraystone(obj) ) {
 		curse(obj);
+	} else if (is_feminismstone(obj)) {
+		curse(obj);
+		You_feel("relieved, but something tells you that it would be better not to pick this gem back up.");
 	} else if (confers_luck(obj)) {
 		set_moreluck();
 		flags.botl = 1;
@@ -1317,6 +1320,12 @@ have_invisoloadstone()
 boolean
 have_femtrapfemmy()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == FEMMY_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(1)) return TRUE;
 	return(FALSE);
 }
@@ -1324,6 +1333,12 @@ have_femtrapfemmy()
 boolean
 have_femtrapmadeleine()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == MADELEINE_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(2)) return TRUE;
 	return(FALSE);
 }
@@ -1331,6 +1346,12 @@ have_femtrapmadeleine()
 boolean
 have_femtrapmarlena()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == MARLENA_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(3)) return TRUE;
 	return(FALSE);
 }
@@ -1338,6 +1359,12 @@ have_femtrapmarlena()
 boolean
 have_femtrapanastasia()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == ANASTASIA_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(4)) return TRUE;
 	return(FALSE);
 }
@@ -1345,6 +1372,12 @@ have_femtrapanastasia()
 boolean
 have_femtrapjessica()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == JESSICA_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(5)) return TRUE;
 	return(FALSE);
 }
@@ -1352,6 +1385,12 @@ have_femtrapjessica()
 boolean
 have_femtrapsolvejg()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == SOLVEJG_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(6)) return TRUE;
 	return(FALSE);
 }
@@ -1359,6 +1398,12 @@ have_femtrapsolvejg()
 boolean
 have_femtrapwendy()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == WENDY_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(7)) return TRUE;
 	return(FALSE);
 }
@@ -1366,6 +1411,12 @@ have_femtrapwendy()
 boolean
 have_femtrapkatharina()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == KATHARINA_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(8)) return TRUE;
 	return(FALSE);
 }
@@ -1373,6 +1424,12 @@ have_femtrapkatharina()
 boolean
 have_femtrapelena()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == ELENA_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(9)) return TRUE;
 	return(FALSE);
 }
@@ -1380,6 +1437,12 @@ have_femtrapelena()
 boolean
 have_femtrapthai()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == THAI_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(10)) return TRUE;
 	return(FALSE);
 }
@@ -1387,6 +1450,12 @@ have_femtrapthai()
 boolean
 have_femtrapelif()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == ELIF_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(11)) return TRUE;
 	return(FALSE);
 }
@@ -1394,6 +1463,12 @@ have_femtrapelif()
 boolean
 have_femtrapnadja()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == NADJA_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(12)) return TRUE;
 	return(FALSE);
 }
@@ -1401,6 +1476,12 @@ have_femtrapnadja()
 boolean
 have_femtrapsandra()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == SANDRA_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(13)) return TRUE;
 	return(FALSE);
 }
@@ -1408,6 +1489,12 @@ have_femtrapsandra()
 boolean
 have_femtrapnatalje()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == NATALJE_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(14)) return TRUE;
 	return(FALSE);
 }
@@ -1415,6 +1502,12 @@ have_femtrapnatalje()
 boolean
 have_femtrapjeanetta()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == JEANETTA_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(15)) return TRUE;
 	return(FALSE);
 }
@@ -1422,6 +1515,12 @@ have_femtrapjeanetta()
 boolean
 have_femtrapyvonne()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == YVONNE_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(16)) return TRUE;
 	return(FALSE);
 }
@@ -1429,6 +1528,12 @@ have_femtrapyvonne()
 boolean
 have_femtrapmaurah()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == MAURAH_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(17)) return TRUE;
 	return(FALSE);
 }
@@ -1436,6 +1541,12 @@ have_femtrapmaurah()
 boolean
 have_femtrapmeltem()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == MELTEM_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(18)) return TRUE;
 	return(FALSE);
 }
@@ -1443,6 +1554,12 @@ have_femtrapmeltem()
 boolean
 have_femtrapsarah()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == SARAH_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(19)) return TRUE;
 	return(FALSE);
 }
@@ -1450,6 +1567,12 @@ have_femtrapsarah()
 boolean
 have_femtrapclaudia()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == CLAUDIA_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(20)) return TRUE;
 	return(FALSE);
 }
@@ -1457,6 +1580,12 @@ have_femtrapclaudia()
 boolean
 have_femtrapludgera()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == LUDGERA_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(21)) return TRUE;
 	return(FALSE);
 }
@@ -1464,6 +1593,12 @@ have_femtrapludgera()
 boolean
 have_femtrapkati()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == KATI_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(22)) return TRUE;
 	return(FALSE);
 }
@@ -1471,6 +1606,12 @@ have_femtrapkati()
 boolean
 have_femtrapnelly()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == NELLY_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(23)) return TRUE;
 	return(FALSE);
 }
@@ -1478,6 +1619,12 @@ have_femtrapnelly()
 boolean
 have_femtrapeveline()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == EVELINE_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(24)) return TRUE;
 	return(FALSE);
 }
@@ -1485,6 +1632,12 @@ have_femtrapeveline()
 boolean
 have_femtrapkarin()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == KARIN_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(25)) return TRUE;
 	return(FALSE);
 }
@@ -1492,6 +1645,12 @@ have_femtrapkarin()
 boolean
 have_femtrapjuen()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == JUEN_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(26)) return TRUE;
 	return(FALSE);
 }
@@ -1499,6 +1658,12 @@ have_femtrapjuen()
 boolean
 have_femtrapkristina()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == KRISTINA_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(27)) return TRUE;
 	return(FALSE);
 }
@@ -1506,6 +1671,12 @@ have_femtrapkristina()
 boolean
 have_femtraplou()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == LOU_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(28)) return TRUE;
 	return(FALSE);
 }
@@ -1513,6 +1684,12 @@ have_femtraplou()
 boolean
 have_femtrapalmut()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == ALMUT_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(29)) return TRUE;
 	return(FALSE);
 }
@@ -1520,6 +1697,12 @@ have_femtrapalmut()
 boolean
 have_femtrapjulietta()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == JULIETTA_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(30)) return TRUE;
 	return(FALSE);
 }
@@ -1527,6 +1710,12 @@ have_femtrapjulietta()
 boolean
 have_femtraparabella()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == ARABELLA_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(31)) return TRUE;
 	return(FALSE);
 }
@@ -1534,6 +1723,12 @@ have_femtraparabella()
 boolean
 have_femtrapkristin()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == KRISTIN_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(32)) return TRUE;
 	return(FALSE);
 }
@@ -1541,6 +1736,12 @@ have_femtrapkristin()
 boolean
 have_femtrapanna()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == ANNA_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(33)) return TRUE;
 	return(FALSE);
 }
@@ -1548,6 +1749,12 @@ have_femtrapanna()
 boolean
 have_femtrapruea()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == RUEA_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(34)) return TRUE;
 	return(FALSE);
 }
@@ -1555,6 +1762,12 @@ have_femtrapruea()
 boolean
 have_femtrapdora()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == DORA_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(35)) return TRUE;
 	return(FALSE);
 }
@@ -1562,6 +1775,12 @@ have_femtrapdora()
 boolean
 have_femtrapmarike()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == MARIKE_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(36)) return TRUE;
 	return(FALSE);
 }
@@ -1569,6 +1788,12 @@ have_femtrapmarike()
 boolean
 have_femtrapjette()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == JETTE_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(37)) return TRUE;
 	return(FALSE);
 }
@@ -1576,6 +1801,12 @@ have_femtrapjette()
 boolean
 have_femtrapina()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == INA_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(38)) return TRUE;
 	return(FALSE);
 }
@@ -1583,6 +1814,12 @@ have_femtrapina()
 boolean
 have_femtrapsing()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == SING_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(39)) return TRUE;
 	return(FALSE);
 }
@@ -1590,6 +1827,12 @@ have_femtrapsing()
 boolean
 have_femtrapvictoria()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == VICTORIA_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(40)) return TRUE;
 	return(FALSE);
 }
@@ -1597,6 +1840,12 @@ have_femtrapvictoria()
 boolean
 have_femtrapmelissa()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == MELISSA_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(41)) return TRUE;
 	return(FALSE);
 }
@@ -1604,6 +1853,12 @@ have_femtrapmelissa()
 boolean
 have_femtrapanita()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == ANITA_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(42)) return TRUE;
 	return(FALSE);
 }
@@ -1611,6 +1866,12 @@ have_femtrapanita()
 boolean
 have_femtraphenrietta()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == HENRIETTA_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(43)) return TRUE;
 	return(FALSE);
 }
@@ -1618,6 +1879,12 @@ have_femtraphenrietta()
 boolean
 have_femtrapverena()
 {
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == VERENA_S_JEWEL)
+			return(TRUE);
+		}
 	if (feminizecheck(44)) return TRUE;
 	return(FALSE);
 }
@@ -6391,7 +6658,7 @@ register const char *let,*word;
 	    if(cnt == 0) return (struct obj *)0;
 	    if(cnt != otmp->quan) {
 		/* don't split a stack of cursed loadstones */
-		if ( (otmp->otyp == LOADSTONE || otmp->otyp == HEALTHSTONE || otmp->otyp == LUCKSTONE || otmp->otyp == MANASTONE || otmp->otyp == SLEEPSTONE || otmp->otyp == LOADBOULDER || otmp->otyp == STARLIGHTSTONE || otmp->otyp == STONE_OF_MAGIC_RESISTANCE || is_nastygraystone(otmp) ) && otmp->cursed)
+		if ( (otmp->otyp == LOADSTONE || otmp->otyp == HEALTHSTONE || otmp->otyp == LUCKSTONE || otmp->otyp == MANASTONE || otmp->otyp == SLEEPSTONE || otmp->otyp == LOADBOULDER || otmp->otyp == STARLIGHTSTONE || otmp->otyp == STONE_OF_MAGIC_RESISTANCE || is_nastygraystone(otmp) || is_feminismstone(otmp) ) && otmp->cursed)
 		    /* kludge for canletgo()'s can't-drop-this message */
 		    otmp->corpsenm = (int) cnt;
 		else
@@ -6740,7 +7007,7 @@ nextclass:
 		    else {
 			sym = 'y';
 			if (yn_number < otmp->quan && !welded(otmp) &&
-			    (!otmp->cursed || (otmp->otyp != LOADSTONE && otmp->otyp != LUCKSTONE && otmp->otyp != HEALTHSTONE && otmp->otyp != MANASTONE && otmp->otyp != SLEEPSTONE && otmp->otyp != LOADBOULDER && otmp->otyp != STARLIGHTSTONE && otmp->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(otmp) ) )) {
+			    (!otmp->cursed || (otmp->otyp != LOADSTONE && otmp->otyp != LUCKSTONE && otmp->otyp != HEALTHSTONE && otmp->otyp != MANASTONE && otmp->otyp != SLEEPSTONE && otmp->otyp != LOADBOULDER && otmp->otyp != STARLIGHTSTONE && otmp->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(otmp) && !is_feminismstone(otmp) ) )) {
 			    otmp = splitobj(otmp, yn_number);
 			}
 		    }
@@ -15507,6 +15774,96 @@ boolean knoweverything;
 				pline("Flint stones are good sling ammunition, but ones made of silver are even better as long as the opponent is a silver-hating monster (certain undead and demons qualify)."); break;
 			case ROCK:
 				pline("This is a basic rock that can be thrown, but firing it with a sling does more damage."); break;
+
+			case ELIF_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Elif's curse. It autocurses and cannot be dropped while cursed."); break;
+			case MADELEINE_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Madeleine's curse. It autocurses and cannot be dropped while cursed."); break;
+			case SANDRA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Sandra's curse. It autocurses and cannot be dropped while cursed."); break;
+			case NADJA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Nadja's curse. It autocurses and cannot be dropped while cursed."); break;
+			case SOLVEJG_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Solvejg's curse. It autocurses and cannot be dropped while cursed."); break;
+			case THAI_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Thai's curse. It autocurses and cannot be dropped while cursed."); break;
+			case ELENA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Elena's curse. It autocurses and cannot be dropped while cursed."); break;
+			case WENDY_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Wendy's curse. It autocurses and cannot be dropped while cursed."); break;
+			case ANASTASIA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Anastasia's curse. It autocurses and cannot be dropped while cursed."); break;
+			case JESSICA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Jessica's curse. It autocurses and cannot be dropped while cursed."); break;
+			case MARLENA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Marlena's curse. It autocurses and cannot be dropped while cursed."); break;
+			case FEMMY_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Femmy's curse. It autocurses and cannot be dropped while cursed."); break;
+			case NATALJE_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Natalje's curse. It autocurses and cannot be dropped while cursed."); break;
+			case KARIN_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Karin's curse. It autocurses and cannot be dropped while cursed."); break;
+			case JEANETTA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Jeanetta's curse. It autocurses and cannot be dropped while cursed."); break;
+			case KATI_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Kati's curse. It autocurses and cannot be dropped while cursed."); break;
+			case CLAUDIA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Claudia's curse. It autocurses and cannot be dropped while cursed."); break;
+			case VICTORIA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Victoria's curse. It autocurses and cannot be dropped while cursed."); break;
+			case MAURAH_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Maurah's curse. It autocurses and cannot be dropped while cursed."); break;
+			case JUEN_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Juen's curse. It autocurses and cannot be dropped while cursed."); break;
+			case KRISTINA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Kristina's curse. It autocurses and cannot be dropped while cursed."); break;
+			case SARAH_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Sarah's curse. It autocurses and cannot be dropped while cursed."); break;
+			case KATHARINA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Katharina's curse. It autocurses and cannot be dropped while cursed."); break;
+			case JULIETTA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Julietta's curse. It autocurses and cannot be dropped while cursed."); break;
+			case MELTEM_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Meltem's curse. It autocurses and cannot be dropped while cursed."); break;
+			case MELISSA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Melissa's curse. It autocurses and cannot be dropped while cursed."); break;
+			case LUDGERA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Ludgera's curse. It autocurses and cannot be dropped while cursed."); break;
+			case YVONNE_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Yvonne's curse. It autocurses and cannot be dropped while cursed."); break;
+			case EVELINE_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Eveline's curse. It autocurses and cannot be dropped while cursed."); break;
+			case NELLY_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Nelly's curse. It autocurses and cannot be dropped while cursed."); break;
+			case ARABELLA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Arabella's curse. It autocurses and cannot be dropped while cursed."); break;
+			case RUEA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Ruea's curse. It autocurses and cannot be dropped while cursed."); break;
+			case JETTE_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Jette's curse. It autocurses and cannot be dropped while cursed."); break;
+			case VERENA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Verena's curse. It autocurses and cannot be dropped while cursed."); break;
+			case LOU_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Lou's curse. It autocurses and cannot be dropped while cursed."); break;
+			case ANITA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Anita's curse. It autocurses and cannot be dropped while cursed."); break;
+			case MARIKE_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Marike's curse. It autocurses and cannot be dropped while cursed."); break;
+			case KRISTIN_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Kristin's curse. It autocurses and cannot be dropped while cursed."); break;
+			case HENRIETTA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Henrietta's curse. It autocurses and cannot be dropped while cursed."); break;
+			case ALMUT_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Almut's curse. It autocurses and cannot be dropped while cursed."); break;
+			case ANNA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Anna's curse. It autocurses and cannot be dropped while cursed."); break;
+			case SING_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Sing's curse. It autocurses and cannot be dropped while cursed."); break;
+			case INA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Ina's curse. It autocurses and cannot be dropped while cursed."); break;
+			case DORA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Dora's curse. It autocurses and cannot be dropped while cursed."); break;
+
 			case RIGHT_MOUSE_BUTTON_STONE:
 				pline("A stone that curses itself and causes the right mouse button to stop working."); break;
 		 	case DISPLAY_LOSS_STONE:

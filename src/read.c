@@ -5587,6 +5587,7 @@ proofarmorchoice:
 			     obj->otyp == SLEEPSTONE ||
 			     obj->otyp == STONE_OF_MAGIC_RESISTANCE ||
 			     is_nastygraystone(obj) ||
+			     is_feminismstone(obj) ||
 			     (obj->otyp == LEATHER_LEASH && obj->leashmon) || (obj->otyp == INKA_LEASH && obj->leashmon) ) && !stack_too_big(obj) ) {
 			    if(confused) blessorcurse(obj, 2);
 			    else if (!(sobj->otyp == SPE_REMOVE_CURSE) || !rn2(5) ) uncurse(obj, FALSE);

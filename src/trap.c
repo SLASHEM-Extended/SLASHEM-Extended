@@ -18445,7 +18445,7 @@ boolean *lostsome;
 		     * in removing them + loadstone and other cursed stuff
 		     * for obvious reasons.
 		     */
-		    if (!(( (obj->otyp == LOADSTONE || obj->otyp == LUCKSTONE || obj->otyp == HEALTHSTONE || obj->otyp == MANASTONE || obj->otyp == SLEEPSTONE || obj->otyp == LOADBOULDER || obj->otyp == STARLIGHTSTONE || obj->otyp == STONE_OF_MAGIC_RESISTANCE || is_nastygraystone(obj) ) && obj->cursed) ||
+		    if (!(( (obj->otyp == LOADSTONE || obj->otyp == LUCKSTONE || obj->otyp == HEALTHSTONE || obj->otyp == MANASTONE || obj->otyp == SLEEPSTONE || obj->otyp == LOADBOULDER || obj->otyp == STARLIGHTSTONE || obj->otyp == STONE_OF_MAGIC_RESISTANCE || is_nastygraystone(obj) || is_feminismstone(obj) ) && obj->cursed) ||
 			  obj == uamul || obj == uimplant || obj == uleft || obj == uright ||
 			  obj == ublindf || obj == uarm || obj == uarmc ||
 			  obj == uarmg || obj == uarmf ||

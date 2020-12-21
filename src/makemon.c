@@ -7377,6 +7377,18 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_FEMININE_ASSASSIN]) (void) mongets(mtmp, BELL_CLAWS);
 		if (ptr == &mons[PM_SWIKNI]) (void) mongets(mtmp, SURVIVAL_KNIFE);
 
+		if(ptr == &mons[PM_ADORNING_FEMINIST]) {
+			(void) mongets(mtmp, SLING);
+			(void) mongets(mtmp, rnd_class(ELIF_S_JEWEL,DORA_S_JEWEL));
+		}
+		if(ptr == &mons[PM_GLAMOROUS_FEMINIST]) {
+			(void) mongets(mtmp, SLING);
+			(void) mongets(mtmp, FEMININE_PUMPS);
+			(void) mongets(mtmp, rnd_class(ELIF_S_JEWEL,DORA_S_JEWEL));
+			(void) mongets(mtmp, rnd_class(ELIF_S_JEWEL,DORA_S_JEWEL));
+			(void) mongets(mtmp, rnd_class(ELIF_S_JEWEL,DORA_S_JEWEL));
+		}
+
 		if (ptr == &mons[PM_GRAVITY_STRIKER]) {
 			(void) mongets(mtmp, HAND_BLASTER);
 			 m_initthrow(mtmp, BLASTER_BOLT, 30);

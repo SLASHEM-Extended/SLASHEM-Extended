@@ -1179,6 +1179,19 @@ register const char *word;
 		obj->bknown = 1;
 		return(FALSE);
 	}
+	if (is_feminismstone(obj) && obj->cursed) {
+		if (*word) {
+			/* getobj() ignores a count for throwing since that is
+			   implicitly forced to be 1; replicate its kludge... */
+			if (!strcmp(word, "throw") && obj->quan > 1L)
+			    obj->corpsenm = 1;
+			pline("There must be a curse on the gem%s. You fail to %s%s them.",
+			      plur(obj->quan), word, obj->corpsenm ? " any of" : "");
+		}
+		obj->corpsenm = 0;		/* reset */
+		obj->bknown = 1;
+		return(FALSE);
+	}
 	if (obj->otyp == LEATHER_LEASH && obj->leashmon != 0) {
 		if (*word)
 			pline_The("leash is tied around your %s.",
@@ -1493,7 +1506,7 @@ int retry;
 		if (cnt < otmp->quan) {
 		    if (welded(otmp)) {
 			;	/* don't split */
-		    } else if ( (otmp->otyp == LOADSTONE || otmp->otyp == LUCKSTONE || otmp->otyp == HEALTHSTONE || otmp->otyp == MANASTONE || otmp->otyp == SLEEPSTONE || otmp->otyp == LOADBOULDER || otmp->otyp == STARLIGHTSTONE || otmp->otyp == STONE_OF_MAGIC_RESISTANCE || is_nastygraystone(otmp) ) && otmp->cursed) {
+		    } else if ( (otmp->otyp == LOADSTONE || otmp->otyp == LUCKSTONE || otmp->otyp == HEALTHSTONE || otmp->otyp == MANASTONE || otmp->otyp == SLEEPSTONE || otmp->otyp == LOADBOULDER || otmp->otyp == STARLIGHTSTONE || otmp->otyp == STONE_OF_MAGIC_RESISTANCE || is_nastygraystone(otmp) || is_feminismstone(otmp) ) && otmp->cursed) {
 			/* same kludge as getobj(), for canletgo()'s use */
 			otmp->corpsenm = (int) cnt;	/* don't split */
 		    } else {

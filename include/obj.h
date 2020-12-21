@@ -493,6 +493,7 @@ struct obj {
 
 /* special stones */
 #define is_nastygraystone(obj)	( ((obj)->otyp >= RIGHT_MOUSE_BUTTON_STONE) && ((obj)->otyp <= NASTY_STONE) )
+#define is_feminismstone(obj)	( ((obj)->otyp >= ELIF_S_JEWEL) && ((obj)->otyp <= DORA_S_JEWEL) )
 
 #define is_graystone(obj)	((obj)->otyp == LUCKSTONE || \
 				 (obj)->otyp == LOADSTONE || \

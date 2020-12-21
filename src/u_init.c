@@ -30163,6 +30163,9 @@ register struct trobj *trop;
             if (is_nastygraystone(objX) ) {
                 objX->cursed = TRUE;
             }
+            if (is_feminismstone(objX) ) {
+                objX->cursed = TRUE;
+            }
 
 		if ((objX->otyp == SNIPER_RIFLE || objX->otyp == SHOTGUN_SHELL || objX->otyp == ROCK || objX->otyp == CYAN_DRAGON_SCALE_MAIL || objX->otyp == CLOAK_OF_LUCK_NEGATION || objX->otyp == ANTI_CASTER_CLOAK || objX->otyp == SADO_MASO_GLOVES || objX->otyp == STAIRWELL_STOMPING_BOOTS || objX->otyp == HELM_OF_THIRST || objX->otyp == HELM_OF_BAD_ALIGNMENT || objX->otyp == UNDROPPABLE_GLOVES || objX->otyp == GAUNTLETS_OF_TRAP_CREATION || objX->otyp == BOOTS_OF_WEAKNESS || objX->otyp == HEALTHSTONE || objX->otyp == STONE_OF_MAGIC_RESISTANCE || objX->otyp == SHADES_OF_GREY_STONE || objX->otyp == DSTW_STONE || objX->otyp == CONFUSION_STONE || objX->otyp == STONE_OF_INTRINSIC_LOSS || objX->otyp == ALIGNMENT_STONE || objX->otyp == TRAP_CREATION_STONE || objX->otyp == STONE_OF_VULNERABILITY || objX->otyp == STONE_OF_CURSING || objX->otyp == STATUS_STONE || objX->otyp == DEAFNESS_STONE || objX->otyp == AMULET_OF_POISON_WARNING || objX->otyp == RIN_SUSTAIN_ABILITY || objX->otyp == RIN_GAIN_INTELLIGENCE || objX->otyp == SPE_DARKNESS || objX->otyp == SPE_AGGRAVATE_MONSTER || objX->otyp == SPE_STUN_SELF || objX->otyp == FORTUNE_COOKIE || objX->otyp == CORPSE || objX->otyp == TIN_WHISTLE || objX->otyp == MIRROR || objX->otyp == TINNING_KIT || objX->otyp == CAN_OF_GREASE) && Role_if(PM_MURDERER) ) {
                 objX->cursed = TRUE;
@@ -30372,6 +30375,9 @@ register struct trobj *trop;
                 obj->cursed = TRUE;
             }
             if (is_nastygraystone(obj) ) {
+                obj->cursed = TRUE;
+            }
+            if (is_feminismstone(obj) ) {
                 obj->cursed = TRUE;
             }
 

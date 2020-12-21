@@ -828,6 +828,9 @@ int x,y;
 			    if (obj && x == u.ux && y == u.uy && is_nastygraystone(obj)) {
 			      pline("%s lands in your knapsack!", Doname2(obj));
 				(void) pickup_object(obj, obj->quan, TRUE, TRUE);
+			    } else if (obj && x == u.ux && y == u.uy && is_feminismstone(obj)) {
+			      pline("%s stays in your inventory, and you get a bad feeling about it.", Doname2(obj));
+				(void) pickup_object(obj, obj->quan, TRUE, TRUE);
 			    } else stackobj(obj);
 			    retvalu = 0;
 

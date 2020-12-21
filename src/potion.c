@@ -1901,7 +1901,7 @@ badeffect()
 
 	u.cnd_badeffectcount++;
 
-	switch (rnd(481)) {
+	switch (rnd(482)) {
 
 		case 1:
 		case 2:
@@ -3416,6 +3416,19 @@ newoffmon:
 			You_feel("less knowledgable about equipment.");
 			break;
 
+		case 482:
+			otmp = mksobj_at(rnd_class(ELIF_S_JEWEL,DORA_S_JEWEL), u.ux, u.uy, TRUE, FALSE, FALSE);
+			if (otmp) {
+				otmp->quan = 1L;
+				otmp->owt = weight(otmp);
+				if (!Blind) otmp->dknown = 1;
+				if (otmp) {
+					pline("%s stays in your inventory, and you get a bad feeling about it.", Doname2(otmp));
+					(void) pickup_object(otmp, 1L, TRUE, TRUE);
+				}
+			}
+			break;
+
 		default:
 			break;
 	}
@@ -3481,7 +3494,7 @@ reallybadeffect()
 
 	u.cnd_reallybadeffectcount++;
 
-	switch (rnd(118)) {
+	switch (rnd(119)) {
 
 		case 1:
 		if (FunnyHallu) You_feel("rather trippy.");
@@ -4629,6 +4642,19 @@ newoffmonX:
 			if (u.weapchantrecskill > 0) u.weapchantrecskill--;
 			if (u.bucskill > 0) u.bucskill--;
 			You_feel("less knowledgable about equipment.");
+			break;
+
+		case 119:
+			otmp = mksobj_at(rnd_class(ELIF_S_JEWEL,DORA_S_JEWEL), u.ux, u.uy, TRUE, FALSE, FALSE);
+			if (otmp) {
+				otmp->quan = 1L;
+				otmp->owt = weight(otmp);
+				if (!Blind) otmp->dknown = 1;
+				if (otmp) {
+					pline("%s stays in your inventory, and you get a bad feeling about it.", Doname2(otmp));
+					(void) pickup_object(otmp, 1L, TRUE, TRUE);
+				}
+			}
 			break;
 
 		default:
