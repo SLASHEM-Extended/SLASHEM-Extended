@@ -2971,6 +2971,9 @@ E void eviltechincrease(void);
 E int get_tech_no(int);
 E int techlevX(int);
 E void hurtmon(struct monst *,int);
+E void techdrain(void);
+E void techdrainsevere(void);
+E void techlevelup(void);
 
 /* ### teleport.c ### */
 

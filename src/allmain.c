@@ -2017,9 +2017,8 @@ moveloop()
 				if (!monnear(whinymon, u.ux, u.uy)) continue;
 				if(cansee(whinymon->mx,whinymon->my)) {
 					if (!resist(whinymon, SCROLL_CLASS, 0, NOTELL)) monflee(whinymon, rnd(10), FALSE, FALSE);
+				}
 			}
-		}
-
 		}
 
 		if (uarmf && uarmf->oartifact == ART_RATCH_CLOSURE_SCRATCHING) {

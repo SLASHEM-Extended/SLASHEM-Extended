@@ -10695,6 +10695,109 @@ int increaseamount;
 
 }
 
+void
+techdrain()
+{
+
+	int i, thisone, choicenumber, attempts;
+
+	thisone = -1;
+	choicenumber = 0;
+	attempts = 0;
+
+techdrainnew:
+	for (i = 0; i < MAXTECH; i++) {
+
+		if (tech_list[i].t_id == NO_TECH) break;
+
+		if (!choicenumber || (!rn2(choicenumber + 1))) {
+			thisone = i;
+		}
+		choicenumber++;
+
+	}
+
+	if (choicenumber > 0 && thisone >= 0 && attempts < 1000) {
+		if (tech_list[thisone].t_lev < 130) {
+			tech_list[thisone].t_lev += 1;
+			pline("Your %s technique's level is drained to %d!", techname(thisone), techlev(thisone));
+		} else {
+			attempts++;
+			goto techdrainnew;
+		}
+	}
+
+}
+
+void
+techdrainsevere()
+{
+
+	int i, thisone, choicenumber, attempts;
+
+	thisone = -1;
+	choicenumber = 0;
+	attempts = 0;
+
+techdrainnewS:
+	for (i = 0; i < MAXTECH; i++) {
+
+		if (tech_list[i].t_id == NO_TECH) break;
+
+		if (!choicenumber || (!rn2(choicenumber + 1))) {
+			thisone = i;
+		}
+		choicenumber++;
+
+	}
+
+	if (choicenumber > 0 && thisone >= 0 && attempts < 1000) {
+		if (tech_list[thisone].t_lev < 120) {
+			tech_list[thisone].t_lev = 130;
+			pline("Your %s technique becomes permanently unusable!", techname(thisone));
+		} else {
+			attempts++;
+			goto techdrainnewS;
+		}
+	}
+
+}
+
+void
+techlevelup()
+{
+
+	int i, thisone, choicenumber, attempts;
+
+	thisone = -1;
+	choicenumber = 0;
+	attempts = 0;
+
+techlvlupnew:
+	for (i = 0; i < MAXTECH; i++) {
+
+		if (tech_list[i].t_id == NO_TECH) break;
+
+		if (!choicenumber || (!rn2(choicenumber + 1))) {
+			thisone = i;
+		}
+		choicenumber++;
+
+	}
+
+	if (choicenumber > 0 && thisone >= 0 && attempts < 1000) {
+		if (tech_list[thisone].t_lev > 0) {
+			tech_list[thisone].t_lev -= 1;
+			pline("Your %s technique leveled up to level %d!", techname(thisone), techlev(thisone));
+		} else {
+			attempts++;
+			goto techlvlupnew;
+		}
+	}
+
+
+}
+
 #ifdef DEBUG
 void
 wiz_debug_cmd() /* in this case, allow controlled loss of techniques */

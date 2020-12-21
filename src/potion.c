@@ -6076,7 +6076,7 @@ datadeleteattack()
 	Your("data is deleted!");
 	stop_occupation();
 
-	switch (rnd(22)) {
+	switch (rnd(23)) {
 
 
 		case 1: /* very strong amnesia effect - let that poor sap forget a whole lot of stuff */
@@ -6533,6 +6533,10 @@ datadeleteattack()
 			lose_weapon_skill(20);
 			pline("You lose your skill slots forever!");
 
+			break;
+
+		case 23: /* set the level of a random technique to -100 so you can't ever use it again, muahahahaha */
+			techdrainsevere();
 			break;
 
 	}

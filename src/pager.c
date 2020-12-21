@@ -26030,6 +26030,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Somehow you feel that the bitches are making fun of you.",
 	"i guess it's weird that you can't actually go fuck yourself in slex", /* by spicycat */
 	"The feminine curse spreads through your body...",
+	"We set the level of a random technique to -100 so you can't ever use it again, muahahahaha.",
+	"Your arms are no longer able to hit.",
 
 };
 

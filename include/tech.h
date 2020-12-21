@@ -12,7 +12,7 @@ struct tech {
 					    * 	Unique number for the tech
 					    *	see the #defines below
 					    */
-	xchar       t_lev;                 /* power level 
+	int       t_lev;                 /* power level 
 					    *   This is the level 
 					    *   you were when you got the tech
 				            */
