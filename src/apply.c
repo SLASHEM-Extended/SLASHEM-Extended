@@ -4935,6 +4935,7 @@ potion_charge_cost(struct obj *pot)
 	case POT_CYANIDE: cost += 2; break;
 	case POT_RANDOM_INTRINSIC: cost += 2; break;
 	case POT_BENEFICIAL_EFFECT: cost += 2; break;
+	case POT_TECH_LEVEL_UP: cost += 5; break;
 	case POT_INVULNERABILITY: cost += 8; break;
 	case POT_TRAINING: cost += 8; break;
 	case POT_EXTREME_POWER: cost += 2; break;

@@ -14083,6 +14083,8 @@ boolean knoweverything;
 				pline("This very rare potion allows you to pick a skill and double the amount of training in it. It can even allow you to bypass the RNG-decreed limits, but it won't take you over the actual max of your skill (seen in the #enhance screen)."); break;
 			case POT_BENEFICIAL_EFFECT:
 				pline("Quaffing this potion gives a random good effect that can also be gotten from eating a corpse."); break;
+			case POT_TECH_LEVEL_UP:
+				pline("This valuable potion can increase the level of a randomly selected technique! However, the technique's level cannot be increased beyond your current character level, so you shouldn't quaff it unless you have at least one technique whose level is below your XL."); break;
 			case POT_RANDOM_INTRINSIC:
 				pline("If you quaff this potion, you will either gain or lose a random intrinsic, and the intrinsic in question can be good or bad. Unlike FIQhack's potion of wonder, this potion works the same regardless of bless/curse status, so you don't need to waste holy water on it."); break;
 			case POT_SEE_INVISIBLE:

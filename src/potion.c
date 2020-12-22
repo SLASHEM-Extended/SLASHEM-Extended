@@ -8396,18 +8396,20 @@ register struct obj *otmp;
 	    You("have a %s feeling for a moment, then it passes.",
 		  FunnyHallu ? "normal" : "peculiar");
 	}
-	if(otmp->dknown && !objects[otmp->otyp].oc_name_known) {
+	if(otmp && otmp->dknown && !objects[otmp->otyp].oc_name_known) {
 		if(!unkn) {
 			makeknown(otmp->otyp);
 			more_experienced(0,10);
 		} else if(!objects[otmp->otyp].oc_uname)
 			docall(otmp);
 	}
-	if (carried(otmp)) {useup(otmp);
-		make_bottle(FALSE);}
-	else if (mcarried(otmp)) m_useup(otmp->ocarry, otmp);
-	else if (otmp->where == OBJ_FLOOR) useupf(otmp, 1L);
-	else dealloc_obj(otmp);		/* Dummy potion */
+	if (otmp && carried(otmp)) {
+		useup(otmp);
+		make_bottle(FALSE);
+	}
+	else if (otmp && mcarried(otmp)) m_useup(otmp->ocarry, otmp);
+	else if (otmp && otmp->where == OBJ_FLOOR) useupf(otmp, 1L);
+	else if (otmp) dealloc_obj(otmp);		/* Dummy potion */
 
 	if (uarmc && itemhasappearance(uarmc, APP_LEVUNTATION_CLOAK)) badeffect();
 
@@ -9092,6 +9094,21 @@ peffects(otmp)
 	case POT_TRAINING:
 
 		doubleskilltraining();
+		break;
+
+	case POT_TECH_LEVEL_UP:
+		if(otmp->cursed) {
+			unkn++;
+			You("have a tummy ache...");
+			if (evilfriday) {
+				techdrain();
+			}
+		} else {
+			You_feel("very good!");
+			techlevelup();
+	            makeknown(POT_TECH_LEVEL_UP);
+		}
+
 		break;
 
 	case POT_BENEFICIAL_EFFECT:

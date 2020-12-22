@@ -1625,7 +1625,7 @@ int
 makegreatitem() /* select the ID number of an item that might be very useful for you --Amy */
 {
 
-	switch (rnd(175)) {
+	switch (rnd(176)) {
 		case 1:
 			return TOOTH_OF_AN_ALGOLIAN_SUNTIGER;
 		case 2:
@@ -1976,6 +1976,8 @@ makegreatitem() /* select the ID number of an item that might be very useful for
 			return SCR_POWER_CHARGING;
 		case 175:
 			return BITCHER;
+		case 176:
+			return POT_TECH_LEVEL_UP;
 		default: /* fail safe */
 			return SCR_IDENTIFY;
 

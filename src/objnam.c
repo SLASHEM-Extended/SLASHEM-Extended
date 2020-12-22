@@ -3518,6 +3518,8 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ INA_S_JEWEL, "todo" },
 	{ DORA_S_JEWEL, "todo" },
 
+	{ POT_TECH_LEVEL_UP, "todo" },
+
 	{0, "" }
 };
 
@@ -6362,6 +6364,8 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ SING_S_JEWEL, "todo" },
 	{ INA_S_JEWEL, "todo" },
 	{ DORA_S_JEWEL, "todo" },
+
+	{ POT_TECH_LEVEL_UP, "todo" },
 
 	{0, "" }
 };

@@ -26038,6 +26038,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"The feminine curse spreads through your body...",
 	"We set the level of a random technique to -100 so you can't ever use it again, muahahahaha.",
 	"Your arms are no longer able to hit.",
+	"You have a tummy ache!",
+	"You have a tummy ache! Maybe eating so many different meals one after the other, and over such a short time span no less, wasn't actually the brightest idea.",
 
 };
 
