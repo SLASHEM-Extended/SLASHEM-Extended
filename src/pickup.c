@@ -1277,10 +1277,10 @@ boolean alwaysflag;
  * If you REALLY want the limit to come back for some weird reason, enable the knapsacklimit option */
 
 #ifndef GOLDOBJ
-    } else if (flags.knapsacklimit && obj->oclass != COIN_CLASS && inv_cnt() >= 52 &&
+    } else if (flags.knapsacklimit && obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) && !is_feminismstone(obj) && obj->oclass != COIN_CLASS && inv_cnt() >= 52 &&
 		!merge_choice(invent, obj)) {
 #else
-    } else if (flags.knapsacklimit && inv_cnt() >= 52 && !merge_choice(invent, obj)) {
+    } else if (flags.knapsacklimit && obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) && !is_feminismstone(obj) && inv_cnt() >= 52 && !merge_choice(invent, obj)) {
 #endif
 	Your("knapsack cannot accommodate any more items.");
 	result = -1;	/* nothing lifted */
@@ -2128,6 +2128,9 @@ boolean invobj;
 		obj->bknown = 1;
 	      pline_The("stone%s won't leave your person.", plur(obj->quan));
 		return 0;
+	} else if (obj->otyp == LUCKSTONE && isevilvariant && !obj->cursed && !obj->blessed && Luck < 0) {
+		pline("Har har har, an evil presence prevents you from getting rid of that!");
+		return(FALSE);
 	} else if (is_feminismstone(obj) && obj->cursed) {
 		obj->bknown = 1;
 		pline_The("gem%s will not leave your inventory as long as they're cursed.", plur(obj->quan));

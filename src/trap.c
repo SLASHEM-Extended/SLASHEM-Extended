@@ -18450,6 +18450,7 @@ boolean *lostsome;
 			  obj == ublindf || obj == uarm || obj == uarmc ||
 			  obj == uarmg || obj == uarmf ||
 			  obj == uarmu ||
+			  (obj->otyp == LUCKSTONE && isevilvariant && !obj->cursed && !obj->blessed && Luck < 0) ||
 			  (obj->cursed && (obj == uarmh || obj == uarms)) ||
 			  welded(obj)))
 			otmp = obj;

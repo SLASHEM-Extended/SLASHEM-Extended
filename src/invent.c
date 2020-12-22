@@ -771,9 +771,9 @@ const char *drop_fmt, *drop_arg, *hold_msg;
 	    if (drop_arg) drop_arg = strcpy(buf, drop_arg);
 
 	    obj = addinv(obj);
-	    if ((inv_cnt() > 52 && flags.knapsacklimit)
-		    || (( (obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) && !is_feminismstone(obj) ) || (!obj->cursed && !is_nastygraystone(obj) && !is_feminismstone(obj)) )
-			&& near_capacity() > prev_encumbr)) {
+	    if ( ( (inv_cnt() > 52 && flags.knapsacklimit) || (near_capacity() > prev_encumbr))
+		    && obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) && !is_feminismstone(obj)
+		) {
 		if (drop_fmt) pline(drop_fmt, drop_arg);
 		/* undo any merge which took place */
 		if (obj->quan > oquan) obj = splitobj(obj, oquan);
@@ -859,9 +859,9 @@ const char *drop_fmt, *drop_arg, *hold_msg;
 		return obj;
 		}
 
-	    if ( (inv_cnt() > 52 && flags.knapsacklimit)
-		    || (( (obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) && !is_feminismstone(obj) ) || (!obj->cursed && !is_nastygraystone(obj) && !is_feminismstone(obj)) )
-			&& near_capacity() > prev_encumbr)) {
+	    if ( ( (inv_cnt() > 52 && flags.knapsacklimit) || (near_capacity() > prev_encumbr))
+		    && obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) && !is_feminismstone(obj)
+		) {
 		if (drop_fmt) pline(drop_fmt, drop_arg);
 		/* undo any merge which took place */
 		if (obj->quan > oquan) obj = splitobj(obj, oquan);
@@ -6658,10 +6658,12 @@ register const char *let,*word;
 	    if(cnt == 0) return (struct obj *)0;
 	    if(cnt != otmp->quan) {
 		/* don't split a stack of cursed loadstones */
-		if ( (otmp->otyp == LOADSTONE || otmp->otyp == HEALTHSTONE || otmp->otyp == LUCKSTONE || otmp->otyp == MANASTONE || otmp->otyp == SLEEPSTONE || otmp->otyp == LOADBOULDER || otmp->otyp == STARLIGHTSTONE || otmp->otyp == STONE_OF_MAGIC_RESISTANCE || is_nastygraystone(otmp) || is_feminismstone(otmp) ) && otmp->cursed)
+		if ( (otmp->otyp == LOADSTONE || otmp->otyp == HEALTHSTONE || otmp->otyp == LUCKSTONE || otmp->otyp == MANASTONE || otmp->otyp == SLEEPSTONE || otmp->otyp == LOADBOULDER || otmp->otyp == STARLIGHTSTONE || otmp->otyp == STONE_OF_MAGIC_RESISTANCE || is_nastygraystone(otmp) || is_feminismstone(otmp) ) && otmp->cursed) {
 		    /* kludge for canletgo()'s can't-drop-this message */
 		    otmp->corpsenm = (int) cnt;
-		else
+		} else if (otmp->otyp == LUCKSTONE && isevilvariant && !otmp->cursed && !otmp->blessed && Luck < 0) {
+		    otmp->corpsenm = (int) cnt;
+		} else
 		    otmp = splitobj(otmp, cnt);
 	    }
 	}
@@ -7007,7 +7009,7 @@ nextclass:
 		    else {
 			sym = 'y';
 			if (yn_number < otmp->quan && !welded(otmp) &&
-			    (!otmp->cursed || (otmp->otyp != LOADSTONE && otmp->otyp != LUCKSTONE && otmp->otyp != HEALTHSTONE && otmp->otyp != MANASTONE && otmp->otyp != SLEEPSTONE && otmp->otyp != LOADBOULDER && otmp->otyp != STARLIGHTSTONE && otmp->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(otmp) && !is_feminismstone(otmp) ) )) {
+			    ((!otmp->cursed || (otmp->otyp != LOADSTONE && otmp->otyp != LUCKSTONE && otmp->otyp != HEALTHSTONE && otmp->otyp != MANASTONE && otmp->otyp != SLEEPSTONE && otmp->otyp != LOADBOULDER && otmp->otyp != STARLIGHTSTONE && otmp->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(otmp) && !is_feminismstone(otmp) ) ) && !(otmp->otyp == LUCKSTONE && isevilvariant && !otmp->cursed && !otmp->blessed && Luck < 0)) ) {
 			    otmp = splitobj(otmp, yn_number);
 			}
 		    }

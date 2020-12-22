@@ -10125,11 +10125,16 @@ fracture_rock(obj)	/* fractured by pick-axe or wand of striking */
 register struct obj *obj;		   /* no texts here! */
 {
 	/* A little Sokoban guilt... */
-	if (obj->otyp == BOULDER && In_sokoban(&u.uz) && !flags.mon_moving)
-		{change_luck(-1);
+	if (obj->otyp == BOULDER && In_sokoban(&u.uz) && !flags.mon_moving) {
+		change_luck(-1);
 		pline("You cheater!");
 		if (evilfriday) u.ugangr++;
-		}
+	}
+
+	if (obj->otyp == BOULDER && In_sokoban(&u.uz) && flags.mon_moving && evilfriday) {
+		change_luck(-1);
+		pline("Harharhar, this is the evil variant, so YOU are being penalized for a monster cheating the sokoban puzzle.");
+	}
 
 	obj->otyp = ROCK;
 	obj->quan = (long) rn1(60, 7);

@@ -1179,6 +1179,10 @@ register const char *word;
 		obj->bknown = 1;
 		return(FALSE);
 	}
+	if (obj->otyp == LUCKSTONE && isevilvariant && !obj->cursed && !obj->blessed && Luck < 0) {
+		pline("Har har har, an evil presence prevents you from dropping that!");
+		return(FALSE);
+	}
 	if (is_feminismstone(obj) && obj->cursed) {
 		if (*word) {
 			/* getobj() ignores a count for throwing since that is
@@ -1508,6 +1512,8 @@ int retry;
 			;	/* don't split */
 		    } else if ( (otmp->otyp == LOADSTONE || otmp->otyp == LUCKSTONE || otmp->otyp == HEALTHSTONE || otmp->otyp == MANASTONE || otmp->otyp == SLEEPSTONE || otmp->otyp == LOADBOULDER || otmp->otyp == STARLIGHTSTONE || otmp->otyp == STONE_OF_MAGIC_RESISTANCE || is_nastygraystone(otmp) || is_feminismstone(otmp) ) && otmp->cursed) {
 			/* same kludge as getobj(), for canletgo()'s use */
+			otmp->corpsenm = (int) cnt;	/* don't split */
+		    } else if (otmp->otyp == LUCKSTONE && isevilvariant && !otmp->cursed && !otmp->blessed && Luck < 0) {
 			otmp->corpsenm = (int) cnt;	/* don't split */
 		    } else {
 #ifndef GOLDOBJ

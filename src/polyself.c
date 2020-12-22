@@ -1384,14 +1384,14 @@ int alone;
 		}
 	    uwepgone();
 
-	    if (!wep->cursed || (wep->otyp != LOADSTONE && wep->otyp != LUCKSTONE && wep->otyp != HEALTHSTONE && wep->otyp != MANASTONE && wep->otyp != SLEEPSTONE && wep->otyp != LOADBOULDER && wep->otyp != STARLIGHTSTONE && wep->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(wep) && !is_feminismstone(wep) ) )
+	    if ((!wep->cursed || (wep->otyp != LOADSTONE && wep->otyp != LUCKSTONE && wep->otyp != HEALTHSTONE && wep->otyp != MANASTONE && wep->otyp != SLEEPSTONE && wep->otyp != LOADBOULDER && wep->otyp != STARLIGHTSTONE && wep->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(wep) && !is_feminismstone(wep) ) ) && !(wep->otyp == LUCKSTONE && isevilvariant && !wep->cursed && !wep->blessed && Luck < 0))
 		dropx(otmp);
 
 weapondone:
 
 	    if (otmp2 != 0) {
 		uswapwepgone();
-		if (!otmp2->cursed || (otmp2->otyp != LOADSTONE && otmp2->otyp != LUCKSTONE && otmp2->otyp != HEALTHSTONE && otmp2->otyp != MANASTONE && otmp2->otyp != SLEEPSTONE && otmp2->otyp != LOADBOULDER && otmp2->otyp != STARLIGHTSTONE && otmp2->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(otmp2) && !is_feminismstone(otmp2) ) )
+		if ((!otmp2->cursed || (otmp2->otyp != LOADSTONE && otmp2->otyp != LUCKSTONE && otmp2->otyp != HEALTHSTONE && otmp2->otyp != MANASTONE && otmp2->otyp != SLEEPSTONE && otmp2->otyp != LOADBOULDER && otmp2->otyp != STARLIGHTSTONE && otmp2->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(otmp2) && !is_feminismstone(otmp2) ) ) && !(otmp2->otyp == LUCKSTONE && isevilvariant && !otmp2->cursed && !otmp2->blessed && Luck < 0))
 		    dropx(otmp2);
 	    }
 	    untwoweapon();
