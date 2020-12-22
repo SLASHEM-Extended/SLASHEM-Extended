@@ -6792,7 +6792,7 @@ add_monster_egotype(mtmp)
 register struct monst *mtmp;
 {
 	mtmp->isegotype = 1;
-	switch (rnd(221)) {
+	switch (rnd(222)) {
 		case 1:
 		case 2:
 		case 3: mtmp->egotype_thief = 1; break;
@@ -7024,6 +7024,7 @@ register struct monst *mtmp;
 		case 219: mtmp->egotype_maecke = 1; break;
 		case 220:
 		case 221: mtmp->egotype_flamer = 1; break;
+		case 222: mtmp->egotype_blasphemer = 1; break;
 
 	}
 
@@ -7563,7 +7564,7 @@ terrainterror()
 
 		else {
 
-			monstercolor = rnd(376);
+			monstercolor = rnd(378);
 
 			for (i = 0; i < randsp; i++) {
 

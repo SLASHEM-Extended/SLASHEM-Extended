@@ -262,7 +262,10 @@ extern char *attk_dname(Attk);
 #define AD_UNPR		139	/* unproofing - remove erosionproofing from items */
 #define AD_NIVE		140	/* nivellation - can reduce max HP or Pw, but only if they're high enough */
 
-#define AD_ENDS		141	/* placeholder */
+#define AD_TDRA		141	/* tech drain - can drain technique levels */
+#define AD_BLAS		142	/* blasphemy - chance to increase divine anger by one */
+
+#define AD_ENDS		143	/* placeholder */
 
 #define AD_ILLU		229	/* illusion attack - random effect also seen in illusion rooms */
 #define AD_PART		230	/* specific regular attack (rolled at game start) */

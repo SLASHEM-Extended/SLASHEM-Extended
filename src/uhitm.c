@@ -9464,6 +9464,17 @@ boolean ranged;
 		if (!rn2(10)) skillcaploss();
 		break;
 
+	    case AD_TDRA:
+		if (!rn2(10)) techdrain();
+		break;
+
+	    case AD_BLAS:
+		if (!rn2(25)) {
+			u.ugangr++;
+		      You("get the feeling that %s is angry...", u_gname());
+		}
+		break;
+
 	  case AD_NGRA:
 
 		      if (ep && sengr_at("Elbereth", u.ux, u.uy) ) {

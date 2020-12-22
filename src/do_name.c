@@ -1034,6 +1034,7 @@ stupidsegfault:
 	    if (mtmp->egotype_maecke && (++egotypeamount < 21) ) sprintf(eos(buf), " Maecke");
 	    if (mtmp->egotype_flamer && (++egotypeamount < 21) ) sprintf(eos(buf), " Flamer");
 	    if (mtmp->egotype_datadeleter && (++egotypeamount < 21) ) sprintf(eos(buf), " DataDeleter");
+	    if (mtmp->egotype_blasphemer && (++egotypeamount < 21) ) sprintf(eos(buf), " Blasphemer");
 	    if (egotypeamount > 20) sprintf(eos(buf), " (%d egotypes)", egotypeamount);
 
 	}

@@ -3124,6 +3124,27 @@ elena37:
 
 	}
 
+	if (mtmp->egotype_blasphemer ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_BLAS;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
 	if (mtmp->egotype_wither ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
@@ -9375,6 +9396,23 @@ dopois:
 		if (!rn2(10)) skillcaploss();
 		break;
 
+	    case AD_TDRA:
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+		if (mtmp->mcan) break;
+		if (!rn2(10)) techdrain();
+		break;
+
+	    case AD_BLAS:
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+		if (mtmp->mcan) break;
+		if (!rn2(25)) {
+			u.ugangr++;
+		      You("get the feeling that %s is angry...", u_gname());
+		}
+		break;
+
 	    case AD_HALU:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
@@ -12475,6 +12513,19 @@ do_stone2:
 		if (!rn2(10)) skillcaploss();
 		break;
 
+	    case AD_TDRA:
+		if (mtmp->mcan) break;
+		if (!rn2(10)) techdrain();
+		break;
+
+	    case AD_BLAS:
+		if (mtmp->mcan) break;
+		if (!rn2(25)) {
+			u.ugangr++;
+		      You("get the feeling that %s is angry...", u_gname());
+		}
+		break;
+
 	    case AD_WTHR:
 		pline("You are covered with some aggressive substance!");
 		if (evilfriday || rn2(3)) witherarmor();
@@ -14399,6 +14450,17 @@ common:
 		break;
 	    case AD_SKIL:
 		skillcaploss();
+		mdamageu(mtmp, tmp);
+		break;
+
+	    case AD_TDRA:
+		techdrain();
+		mdamageu(mtmp, tmp);
+		break;
+
+	    case AD_BLAS:
+		u.ugangr++;
+	      You("get the feeling that %s is angry...", u_gname());
 		mdamageu(mtmp, tmp);
 		break;
 
@@ -18009,6 +18071,27 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    pline("%s tries to drain your skills with its gaze!", Monnam(mtmp));
 		    stop_occupation();
 		    skillcaploss();
+		}
+		break;
+
+	    case AD_TDRA:
+		if (!mtmp->mcan && canseemon(mtmp) && couldsee(mtmp->mx, mtmp->my) &&
+		  mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(10))) {
+		    pline("%s tries to drain your techniques with its gaze!", Monnam(mtmp));
+		    stop_occupation();
+		    techdrain();
+		}
+		break;
+
+	    case AD_BLAS:
+		if (!mtmp->mcan && canseemon(mtmp) && couldsee(mtmp->mx, mtmp->my) &&
+		  mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(10))) {
+		    pline("%s tries to rile up the gods against you!", Monnam(mtmp));
+		    stop_occupation();
+			if (!rn2(25)) {
+				u.ugangr++;
+			      You("get the feeling that %s is angry...", u_gname());
+			}
 		}
 		break;
 

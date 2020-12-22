@@ -992,6 +992,10 @@ int traitno;
 			return "monsters whose attacks un-erosionproof your gear";
 		case 376:
 			return "monsters who nivellate your HP and Pw";
+		case 377:
+			return "monsters whose attacks drain your technique levels";
+		case 378:
+			return "monsters with blasphemy attacks";
 
 		default:
 			impossible("bad trait no %d, please update montraitname() in cmd.c", traitno);

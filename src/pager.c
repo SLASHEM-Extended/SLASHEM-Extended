@@ -3325,8 +3325,12 @@ get_description_of_damage_type(uchar id)
 			damageid = 157; break;
 		case AD_NIVE:
 			damageid = 158; break;
-		case AD_ENDS:
+		case AD_TDRA:
 			damageid = 159; break;
+		case AD_BLAS:
+			damageid = 160; break;
+		case AD_ENDS:
+			damageid = 161; break;
 		default:
 		if (!missingnoprotect) {
 		impossible("bug in get_description_of_damage_type(%d)", id); return "<MISSING DESCRIPTION, THIS IS A BUG>";
@@ -3336,7 +3340,7 @@ get_description_of_damage_type(uchar id)
 
 	if (PokelieEffect || u.uprops[POKELIE_EFFECT].extrinsic || have_pokeliestone()) {
 		damageid += u.pokeliedamagetype;
-		if (damageid > 159) damageid -= 159;
+		if (damageid > 161) damageid -= 161;
 	}
 
 	switch(damageid){
@@ -3506,8 +3510,10 @@ get_description_of_damage_type(uchar id)
 		case 156: return "debuff";
 		case 157: return "unproofing";
 		case 158: return "nivellation";
+		case 159: return "tech drain";
+		case 160: return "blasphemy";
 
-		case 159: return "placeholder attack";
+		case 161: return "placeholder attack";
 		default:
 		if (!missingnoprotect) {
 		impossible("bug in get_description_of_damage_type(%d)", id); return "<MISSING DESCRIPTION, THIS IS A BUG>";

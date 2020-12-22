@@ -2839,6 +2839,7 @@ register int pm;
 		/* bats are generalized with is_bat now --Amy */
 		break;
 	    case PM_QUANTUM_MECHANIC:
+	    case PM_SCREWER_MECHANIC:
 	    case PM_QUANTUM_CREATURE:
 	    case PM_ECO_MECHANIC:
 	    case PM_COMO_MECHANIC:
@@ -3531,6 +3532,12 @@ register int pm;
 		if (dmgtype(ptr, AD_SANI)) {
 			pline("It tasted really, really strange.");
 			increasesanity(rnz(100));
+		}
+
+	/* tech drain monsters have a small chance of increasing the level of a random tech --Amy */
+		if (dmgtype(ptr, AD_TDRA) && (ptr->mlevel > rn2(Race_if(PM_ILLITHID) ? 210 : 70) && rn2(2) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() )  ) ) {
+			You_feel("very good!");
+			techlevelup();
 		}
 
 	/* skill cap reducing monsters very rarely grant something good too --Amy */

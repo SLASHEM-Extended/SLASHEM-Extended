@@ -5408,6 +5408,8 @@ static const char *epitaphs[] = {
 	"Hell's Bathroom is a stuuuuupid, unfairly designed dungeon branch.",
 	"Amy I told you that the Witch King of Angmar is OP! Just to prove my case, he just offed my character that was otherwise ready for ascension!",
 	"Yeah you can't defeat Tiksrvzllat. Don't know why I even bothered trying.",
+	"WHAT??? Script-generated monsters shouldn't exist! They add nothing to the game! Fuck you Amy for having them in the first place!",
+	"I swear, script-generated monsters were a very bad addition to the game as their balance is completely out of whack. Amy should remove them.", /* but she never will :-P */
 
 };
 

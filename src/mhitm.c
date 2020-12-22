@@ -927,6 +927,25 @@ meleeattack:
 
 	}
 
+	if (magr->egotype_blasphemer ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_BLAS;
+		a->damn = 1;
+		a->damd = 1;
+
+		if(monnear(magr, mdef->mx, mdef->my)) {
+			dieroll = rnd(20 + i);
+			strike = (tmp > dieroll);
+			if (strike) res[i] = hitmm(magr, mdef, a);
+		}
+		if (res[i] & MM_AGR_DIED) return res[i];
+		if (res[i] & MM_DEF_DIED) return res[i];
+
+	}
+
 	if (magr->egotype_wither ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
@@ -5947,6 +5966,12 @@ physical:
 	    case AD_SKIL:
 		if (mdef->mtame && !rn2(4)) badpeteffect(mdef);
 		break;
+	    case AD_TDRA:
+		if (mdef->mtame && !rn2(4)) badpeteffect(mdef);
+		break;
+	    case AD_BLAS:
+		if (mdef->mtame && !rn2(5)) badpeteffect(mdef);
+		break;
 	    case AD_SUCK:
 		if (mdef->mtame) {
 			if (vis) pline("%s is sucked by a vacuum cleaner!", Monnam(mdef));
@@ -7580,6 +7605,12 @@ int attnumber;
 		break;
 	    case AD_SKIL:
 		if (magr->mtame && !rn2(4)) badpeteffect(magr);
+		break;
+	    case AD_TDRA:
+		if (magr->mtame && !rn2(4)) badpeteffect(magr);
+		break;
+	    case AD_BLAS:
+		if (magr->mtame && !rn2(5)) badpeteffect(magr);
 		break;
 	    case AD_SUCK:
 		if (magr->mtame) {
