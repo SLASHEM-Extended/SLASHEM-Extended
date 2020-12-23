@@ -5862,6 +5862,14 @@ find_ac()
 		
 	}
 
+	if (Role_if(PM_DANCER)) { /* glass cannon */
+		int difference = (-(uac - 10));
+		difference = difference / 2;
+		if (difference > 0) uac = 10 - difference;
+		else uac = 10;
+		
+	}
+
 	/* heavy two-handed weapons should have a disadvantage to make up for the fact that they deal great damage and
 	 * don't suffer from low to-hit like dual-wielded one-handed weapons do. These are basically all two-handers that
 	 * are meant to be used in melee, so e.g. bows are unaffected but also polearms because those are already balanced

@@ -1499,7 +1499,7 @@ int dieroll;
 	    /* blessed gloves give bonuses when fighting 'bare-handed' */
 	    if (uarmg && uarmg->blessed && (is_undead(mdat) || is_demon(mdat)))
 		tmp += rnd(4);
-	    
+
 	    if (uarmg && uarmg->spe) tmp += uarmg->spe; /* WAC plusses from gloves */
 
 	    /* So do silver rings.  Note: rings are worn under gloves, so you
@@ -1517,6 +1517,7 @@ int dieroll;
 	    }
 
 	    /* WAC - Hand-to-Hand Combat Techniques */
+
 
 	    if ((tech_inuse(T_CHI_STRIKE))  && (u.uen > 0)) {
 		You_feel("a surge of force.");
@@ -2627,6 +2628,23 @@ int dieroll;
 		}
 	    }
 	}
+
+	/* dancer has a combo system, inspired by splicehack, but here I used my own implementation --Amy */
+
+	if (Role_if(PM_DANCER) && !thrown && !pieks) {
+		tmp += u.dancercombostrike;
+		if (u.dancercombostrike > 0) {
+			You("continue dancing.");
+			pline("+%d bonus!", u.dancercombostrike);
+			u.dancercombostrike++;
+			u.dancercomboactive = TRUE;
+		} else {
+			You("start dancing.");
+			u.dancercombostrike++;
+			u.dancercomboactive = TRUE;
+		}
+	}
+
 
 	/****** NOTE: perhaps obj is undefined!! (if !thrown && BOOMERANG)
 	 *      *OR* if attacking bare-handed!! */

@@ -3553,7 +3553,7 @@ static const struct def_skill Skill_Dan[] = {
     { P_ENCHANTMENT_SPELL, P_EXPERT },	    { P_ATTACK_SPELL, P_EXPERT },
     { P_BODY_SPELL, P_EXPERT },	    { P_MATTER_SPELL, P_EXPERT },
     { P_PADDLE, P_MASTER },		{ P_FIREARM, P_EXPERT },
-    { P_LIGHTSABER, P_MASTER },		{ P_CHAOS, P_MASTER },
+    { P_LIGHTSABER, P_MASTER },		{ P_CHAOS_SPELL, P_MASTER },
     { P_HIGH_HEELS, P_GRAND_MASTER },		{ P_GENERAL_COMBAT, P_MASTER },
     { P_BODY_ARMOR, P_EXPERT },		{ P_POLYMORPHING, P_GRAND_MASTER },
     { P_DEVICES, P_MASTER },		{ P_PETKEEPING, P_EXPERT },
@@ -11036,6 +11036,9 @@ u_init()
 	u.combostrike = 0;
 	u.bizarrotries = 0;
 	u.comboactive = 0;
+
+	u.dancercombostrike = 0;
+	u.dancercomboactive = 0;
 
 	u.steedhitchance = 25;
 	u.symbioteaggressivity = 25;

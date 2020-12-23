@@ -6316,6 +6316,12 @@ xkilled(mtmp, dest)
 	/* KMH, conduct */
 	u.uconduct.killer++;
 
+	if (Role_if(PM_DANCER) && u.dancercombostrike) {
+		u.dancercombostrike = 0;
+		u.dancercomboactive = FALSE;
+		You("finish dancing.");
+	}
+
 	if (Role_if(PM_BLOODSEEKER)) healup(mtmp->m_lev, 0, FALSE, FALSE); /* special ability called "Stygwyr's Thirst" */
 	if (Race_if(PM_ETHEREALOID) && !rn2(2)) healup(mtmp->m_lev, 0, FALSE, FALSE);
 	if (Race_if(PM_INCORPOREALOID) && !rn2(2)) healup(mtmp->m_lev, 0, FALSE, FALSE);

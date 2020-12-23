@@ -258,6 +258,8 @@ const char *name;	/* if null, then format `obj' */
 			shieldblockrate /= 3;
 		}
 
+		if (Role_if(PM_DANCER)) shieldblockrate /= 2;
+
 		if (shieldblockrate < 0) shieldblockrate = 0;
 
 		/* If you're berserk, you cannot block at all. We will still show your actual chance to block in enlightenment,

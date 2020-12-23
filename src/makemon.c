@@ -5154,7 +5154,7 @@ register struct monst *mtmp;
 
 			(void)mongets(mtmp, HUGGING_BOOT);
 			(void)mongets(mtmp, SPEED_BOOTS);
-			(void)mongets(mtmp, WAN_BANISHMENT);
+			if (!Role_if(PM_SHOE_FETISHIST)) (void)mongets(mtmp, WAN_BANISHMENT);
 
 		} else if (mm == PM_ANASTASIA){
 
@@ -8875,6 +8875,9 @@ loveheelover:
 		}
 		if (mtmp->data == &mons[PM_DESERT_PERSIAN]) {
 			 (void) mongets(mtmp, YATAGAN);
+		}
+		if (mtmp->data == &mons[PM_CATCALL_SELINA]) {
+			 (void) mongets(mtmp, ETHER_WHIP);
 		}
 		if (mtmp->data == &mons[PM_SARS_SLINGER]) {
 			 m_initthrow(mtmp, ASBESTOS_JAVELIN, 5);
@@ -13222,6 +13225,10 @@ loveheelover:
 		if (ptr == &mons[PM_THICKFISH]) (void)mongets(mtmp, FISH_SCALE_MAIL);
 		if (ptr == &mons[PM_STEALTH_FISH]) (void)mongets(mtmp, CAMO_QATAR);
 
+		if (ptr == &mons[PM_REVOLUTINO_MARI]) {
+			(void)mongets(mtmp, BASTERD_SWORD);
+			(void)mongets(mtmp, COMBAT_STILETTOS);
+		}
 		if (ptr == &mons[PM_BONING_EEL]) {
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, BONE_FRAGMENT, 30);
@@ -22227,6 +22234,11 @@ register int	mmflags;
 		mtmp->isegotype = 1;
 		mtmp->egotype_farter = 1;
 	}
+	if (ptr == &mons[PM_BEN_ARGIMUNT]) {
+		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
+		mtmp->isegotype = 1;
+		mtmp->egotype_farter = 1;
+	}
 
 	/* slex shopkeepers don't fuck around - if you engage them, they may hit you with a variety of nasty stuff --Amy */
 	if (ptr == &mons[PM_SHOPKEEPER] || ptr == &mons[PM_MASTER_SHOPKEEPER] || ptr == &mons[PM_ELITE_SHOPKEEPER] || ptr == &mons[PM_BLACK_MARKETEER] || ptr == &mons[PM_GUARD] || ptr == &mons[PM_MASTER_GUARD] || ptr == &mons[PM_ELITE_GUARD]) {
@@ -25283,7 +25295,7 @@ loopback:
 		if (ct > 0 && (Role_if(PM_SHOE_FETISHIST) && (ptr->msound == MS_FART_QUIET) )) ct += 100;
 		if (ct > 0 && (Role_if(PM_SECRET_ADVICE_MEMBER) && (ptr->msound == MS_ARREST) )) ct += 4;
 		if (ct > 0 && (Role_if(PM_SECRET_ADVICE_MEMBER) && (ptr->msound == MS_SOLDIER) )) ct += 2;
-		if (ct > 0 && (Role_if(PM_SECRET_ADVICE_MEMBER) && is_strongmonst(ptr) )) ct += 2;
+		if (ct > 0 && (Role_if(PM_SECRET_ADVICE_MEMBER) && strongmonst(ptr) )) ct += 2;
 		if (ct > 0 && (Role_if(PM_SECRET_ADVICE_MEMBER) && extra_nasty(ptr) )) ct += 3;
 		if (ct > 0 && (Role_if(PM_SECRET_ADVICE_MEMBER) && dmgtype(ptr, AD_TDRA) )) ct += 5;
 		if (ct > 0 && (Role_if(PM_SECRET_ADVICE_MEMBER) && dmgtype(ptr, AD_TECH) )) ct += 5;
@@ -26510,7 +26522,7 @@ int     spc;
 		if ((Role_if(PM_SHOE_FETISHIST) && (mons[last].msound == MS_FART_QUIET) )) num += 100;
 		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && (mons[last].msound == MS_ARREST) )) num += 4;
 		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && (mons[last].msound == MS_SOLDIER) )) num += 2;
-		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && is_strongmonst(&mons[last]) )) num += 2;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && strongmonst(&mons[last]) )) num += 2;
 		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && extra_nasty(&mons[last]) )) num += 3;
 		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && dmgtype(&mons[last], AD_TDRA) )) num += 5;
 		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && dmgtype(&mons[last], AD_TECH) )) num += 5;
@@ -27412,7 +27424,7 @@ int     spc;
 		if ((Role_if(PM_SHOE_FETISHIST) && (mons[first].msound == MS_FART_QUIET) )) num -= 100;
 		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && (mons[first].msound == MS_ARREST) )) num -= 4;
 		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && (mons[first].msound == MS_SOLDIER) )) num -= 2;
-		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && is_strongmonst(&mons[first]) )) num -= 2;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && strongmonst(&mons[first]) )) num -= 2;
 		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && extra_nasty(&mons[first]) )) num -= 3;
 		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && dmgtype(&mons[first], AD_TDRA) )) num -= 5;
 		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && dmgtype(&mons[first], AD_TECH) )) num -= 5;

@@ -393,8 +393,8 @@ maeney:
 	if (pettype == PM_JENNIFER) petname = "Jennifer";
 	if (pettype == PM_JESSICA) petname = "Jessica";
 
-	if (pettype == PM_BUST_SUPERSECRET_ADVICE_RIFLING_UNVERIFIED_BOSOMING) petname == "Boris";
-	if (pettype == PM_KATI_S_STRIPED_SNEAKER) petname == "Sweet Kati";
+	if (pettype == PM_BUST_SUPERSECRET_ADVICE_RIFLING_UNVERIFIED_BOSOMING) petname = "Boris";
+	if (pettype == PM_KATI_S_STRIPED_SNEAKER) petname = "Sweet Kati";
 
 	if (pettype == PM_KICKBOXING_GIRL) petname = "Marija";
 

@@ -3318,7 +3318,7 @@ unsigned trflags;
 		u.youaredead = 0;
 	}
 
-	if (uarmf && uarmf->oartifact == ART_SOFTSTEP && ttype == HEAP_OF_SHIT && !(trap->artionce)) {
+	if (uarmf && uarmf->oartifact == ART_SOFTSTEP && ttype == SHIT_TRAP && !(trap->artionce)) {
 		pline("Spflotch! Your dancing shoes fully stepped into a heap of dog shit.");
 		adjattrib(A_CHA, 1, 0, TRUE);
 	}
@@ -8722,6 +8722,12 @@ madnesseffect:
 					}
 					break;
 			}
+		}
+
+		if (u.preversionmode && !(u.preversionescape) && In_greencross(&u.uz) && (dunlev(&u.uz) == 1)) {
+			pline("You trigger a magic portal.");
+			pline("This exit portal is closed until you've been to the very bottom of the Green Cross dungeon. Finish the pre-alpha version of this game first before you can play the full game!");
+			break;
 		}
 
 		if (!greencrossworks) {

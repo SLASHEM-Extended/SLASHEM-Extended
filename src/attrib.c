@@ -149,7 +149,7 @@ const struct innate {
 		     {  15, &(HStealth), "stealthy", "noisy", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
-	dia_abil[] = {	24, &(HFast), "quick", "slow", TRUE },
+	dia_abil[] = { {	24, &(HFast), "quick", "slow", TRUE },
 		     {  30, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 		     {  30, &(HPoison_resistance), "healthy", "less healthy", TRUE },
 		     {  30, &(HCold_resistance), "warm", "cooler", TRUE },

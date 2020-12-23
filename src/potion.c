@@ -5435,7 +5435,7 @@ nivellate()
 	if (u.ulevel < 3) nivellevel = 3;
 	if (u.ulevel == 3) nivellevel = 4;
 
-	if (type == 0) {
+	if (type == 0) { /* HP */
 
 		if (Race_if(PM_SUSTAINER)) return;
 
@@ -5480,6 +5480,10 @@ nivellate()
 		if (Role_if(PM_UNBELIEVER)) {
 			lowerceiling *= 2;
 			upperceiling *= 2;
+		}
+		if (Role_if(PM_DANCER)) {
+			lowerceiling /= 2;
+			upperceiling /= 2;
 		}
 		if (Role_if(PM_WARRIOR)) {
 			lowerceiling *= 3;
@@ -5610,7 +5614,7 @@ nivellate()
 
 		}
 
-	} else {
+	} else { /* Pw */
 
 		if (Race_if(PM_SUSTAINER)) return;
 
@@ -5808,6 +5812,9 @@ boolean guaranteed;
 			ceiling *= 2;
 		}
 		if (Role_if(PM_DRUID)) {
+			ceiling /= 2;
+		}
+		if (Role_if(PM_DANCER)) {
 			ceiling /= 2;
 		}
 		if (Role_if(PM_ORDINATOR)) {

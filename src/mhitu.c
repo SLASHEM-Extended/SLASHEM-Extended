@@ -19897,6 +19897,7 @@ register int n;
 	if (n && Race_if(PM_YUKI_PLAYA)) n += rnd(5);
 	if (Role_if(PM_BLEEDER)) n = n * 2; /* bleeders are harder than hard mode */
 	if (have_cursedmagicresstone()) n = n * 2;
+	if (Role_if(PM_DANCER) && !rn2(3)) n = n * 2;
 	if (Race_if(PM_METAL)) n *= rnd(10);
 	if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone() || (uleft && uleft->oartifact == ART_RING_OF_FAST_LIVING) || (uright && uright->oartifact == ART_RING_OF_FAST_LIVING) || (uimplant && uimplant->oartifact == ART_IME_SPEW)) n = n * 2;
 	if (uamul && uamul->otyp == AMULET_OF_VULNERABILITY) n *= rnd(4);

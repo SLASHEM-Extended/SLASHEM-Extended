@@ -1542,6 +1542,9 @@ struct you {
 	int combostrike;	/* for technique */
 	boolean comboactive;
 
+	int dancercombostrike;
+	boolean dancercomboactive;
+
 	int steedhitchance;	/* default 25%, can be changed via directive */
 
 	int bucskill;	/* how likely you are to recognize an item's BUC at a glance */

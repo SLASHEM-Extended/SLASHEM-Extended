@@ -6370,6 +6370,8 @@ boolean guaranteed;
 			shieldblockrate /= 3;
 		}
 
+		if (Role_if(PM_DANCER)) shieldblockrate /= 2;
+
 		if (shieldblockrate < 0) shieldblockrate = 0;
 
 		sprintf(buf, "%d%%", shieldblockrate);
@@ -10387,6 +10389,8 @@ int final;
 			shieldblockrate *= 2;
 			shieldblockrate /= 3;
 		}
+
+		if (Role_if(PM_DANCER)) shieldblockrate /= 2;
 
 		if (shieldblockrate < 0) shieldblockrate = 0;
 

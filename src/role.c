@@ -1044,7 +1044,7 @@ const struct Role roles[] = {
 	10, 10, 0, 0,  8, A_INT, SPE_DEFOG,      -4, 25
 },
 
-{	{"Dancer", 0},
+{	{"Dancer", 0}, {
 	{"Swing Student", 0},
 	{"Toe Stepper", 0},
 	{"Spinner", 0},

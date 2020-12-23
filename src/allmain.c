@@ -195,6 +195,17 @@ moveloop()
 			u.comboactive = u.combostrike = 0;
 		}
 
+		if (Role_if(PM_DANCER)) {
+			if (u.dancercomboactive) u.dancercomboactive = FALSE;
+			else if (u.dancercombostrike > 0) {
+				u.dancercombostrike--;
+				if (!u.dancercombostrike) {
+					pline("Oh no! You touched the ground and can't move for a while.");
+					nomul(-5, "getting back up from dancing", TRUE);
+				}
+			}
+		}
+
 		u.polyprotected = 0;
 		u.aggravation = 0;
 		u.heavyaggravation = 0;
@@ -14949,7 +14960,7 @@ boolean new_game;	/* false => restoring an old game */
 
 	}
 
-	if (Role_if_PM_PREVERSIONER && !flags.wonderland && !flags.uberlostsoul) {
+	if (Role_if(PM_PREVERSIONER) && !flags.wonderland && !flags.uberlostsoul) {
 
 		u.preversionmode = TRUE;
 

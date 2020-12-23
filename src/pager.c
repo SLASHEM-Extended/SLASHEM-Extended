@@ -26047,6 +26047,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You start to really fear the dangerous shoe because you're such a little wimp.",
 	"You start to really fear the dangerous shoe because you're such a little wimp. Dude, it's a little-girl shoe made of soft leather. Why are you mortally scared of that???",
 	"You're shaken, and start trembling. Dude you're really a wussie, reacting like that just because a soft shoe kicked you.",
+	"You cannot wear something that would inhibit your ability to dance so!.", /* sic from the nethackwiki page for spliechack's dancer class */
 
 };
 
