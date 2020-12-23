@@ -5128,7 +5128,7 @@ buttpetmarker:
 				attempts++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
-			} while ( (!pm || (pm && !(pm->msound == MS_FART_NORMAL) && !(pm->msound == MS_FART_LOUD) && !(pm->msound == MS_FART_QUOET))) && attempts < 50000);
+			} while ( (!pm || (pm && !(pm->msound == MS_FART_NORMAL) && !(pm->msound == MS_FART_LOUD) && !(pm->msound == MS_FART_QUIET))) && attempts < 50000);
 
 			if (!pm && rn2(50) ) {
 				attempts = 0;
