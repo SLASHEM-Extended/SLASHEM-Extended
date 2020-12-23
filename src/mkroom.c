@@ -531,6 +531,17 @@ struct mkroom *sroom;
 		depthuz = (1 + depth(&u.uz) - zapemdepth);
 		if (depthuz < 1) depthuz = 1; /* fail safe */
 
+	} else if (u.preversionmode && !u.preversionescape && In_greencross(&u.uz)) {
+
+		d_level preverlevel;
+		int preverdepth;
+		preverlevel.dnum = dname_to_dnum("Green Cross");
+		preverlevel.dlevel = dungeons[preverlevel.dnum].entry_lev;
+		preverdepth = depth(&preverlevel);
+
+		depthuz = (1 + depth(&u.uz) - preverdepth);
+		if (depthuz < 1) depthuz = 1; /* fail safe */
+
 	} else {
 		depthuz = depth(&u.uz);
 	}
@@ -2290,6 +2301,16 @@ douglas_adams_mon()
 		depthuz = (1 + depth(&u.uz) - zapemdepth);
 		if (depthuz < 1) depthuz = 1; /* fail safe */
 
+	} else if (u.preversionmode && !u.preversionescape && In_greencross(&u.uz)) {
+
+		d_level preverlevel;
+		int preverdepth;
+		preverlevel.dnum = dname_to_dnum("Green Cross");
+		preverlevel.dlevel = dungeons[preverlevel.dnum].entry_lev;
+		preverdepth = depth(&preverlevel);
+
+		depthuz = (1 + depth(&u.uz) - preverdepth);
+		if (depthuz < 1) depthuz = 1; /* fail safe */
 	} else {
 		depthuz = depth(&u.uz);
 	}
@@ -2357,6 +2378,16 @@ migohivemon()
 		depthuz = (1 + depth(&u.uz) - zapemdepth);
 		if (depthuz < 1) depthuz = 1; /* fail safe */
 
+	} else if (u.preversionmode && !u.preversionescape && In_greencross(&u.uz)) {
+
+		d_level preverlevel;
+		int preverdepth;
+		preverlevel.dnum = dname_to_dnum("Green Cross");
+		preverlevel.dlevel = dungeons[preverlevel.dnum].entry_lev;
+		preverdepth = depth(&preverlevel);
+
+		depthuz = (1 + depth(&u.uz) - preverdepth);
+		if (depthuz < 1) depthuz = 1; /* fail safe */
 	} else {
 		depthuz = depth(&u.uz);
 	}
@@ -2423,6 +2454,16 @@ realzoomon()
 		depthuz = (1 + depth(&u.uz) - zapemdepth);
 		if (depthuz < 1) depthuz = 1; /* fail safe */
 
+	} else if (u.preversionmode && !u.preversionescape && In_greencross(&u.uz)) {
+
+		d_level preverlevel;
+		int preverdepth;
+		preverlevel.dnum = dname_to_dnum("Green Cross");
+		preverlevel.dlevel = dungeons[preverlevel.dnum].entry_lev;
+		preverdepth = depth(&preverlevel);
+
+		depthuz = (1 + depth(&u.uz) - preverdepth);
+		if (depthuz < 1) depthuz = 1; /* fail safe */
 	} else {
 		depthuz = depth(&u.uz);
 	}
@@ -2483,6 +2524,16 @@ squadmon()		/* return soldier types. */
 		depthuz = (1 + depth(&u.uz) - zapemdepth);
 		if (depthuz < 1) depthuz = 1; /* fail safe */
 
+	} else if (u.preversionmode && !u.preversionescape && In_greencross(&u.uz)) {
+
+		d_level preverlevel;
+		int preverdepth;
+		preverlevel.dnum = dname_to_dnum("Green Cross");
+		preverlevel.dlevel = dungeons[preverlevel.dnum].entry_lev;
+		preverdepth = depth(&preverlevel);
+
+		depthuz = (1 + depth(&u.uz) - preverdepth);
+		if (depthuz < 1) depthuz = 1; /* fail safe */
 	} else {
 		depthuz = depth(&u.uz);
 	}
@@ -2572,6 +2623,16 @@ doomsquadmon()
 		depthuz = (1 + depth(&u.uz) - zapemdepth);
 		if (depthuz < 1) depthuz = 1; /* fail safe */
 
+	} else if (u.preversionmode && !u.preversionescape && In_greencross(&u.uz)) {
+
+		d_level preverlevel;
+		int preverdepth;
+		preverlevel.dnum = dname_to_dnum("Green Cross");
+		preverlevel.dlevel = dungeons[preverlevel.dnum].entry_lev;
+		preverdepth = depth(&preverlevel);
+
+		depthuz = (1 + depth(&u.uz) - preverdepth);
+		if (depthuz < 1) depthuz = 1; /* fail safe */
 	} else {
 		depthuz = depth(&u.uz);
 	}

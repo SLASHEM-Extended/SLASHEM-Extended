@@ -26040,6 +26040,13 @@ static NEARDATA const char * const fake_plines[] = {
 	"Your arms are no longer able to hit.",
 	"You have a tummy ache!",
 	"You have a tummy ache! Maybe eating so many different meals one after the other, and over such a short time span no less, wasn't actually the brightest idea.",
+	"Spflotch! Your dancing shoes fully stepped into a heap of dog shit.",
+	"Spflotch! Your dancing shoes fully stepped into a heap of dog shit. Now you can spend an eternity cleaning them again.",
+	"You feel humiliated!",
+	"The shoe clamps your arm!",
+	"You start to really fear the dangerous shoe because you're such a little wimp.",
+	"You start to really fear the dangerous shoe because you're such a little wimp. Dude, it's a little-girl shoe made of soft leather. Why are you mortally scared of that???",
+	"You're shaken, and start trembling. Dude you're really a wussie, reacting like that just because a soft shoe kicked you.",
 
 };
 

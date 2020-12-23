@@ -1224,6 +1224,17 @@ playerwearshighheels()
 }
 
 void
+buttlovertrigger()
+{
+	u.negativeprotection++;
+	if (evilfriday && u.ublessed > 0) {
+		u.ublessed -= 1;
+		if (u.ublessed < 0) u.ublessed = 0;
+	}
+	You_feel("humiliated!");
+}
+
+void
 sjwtrigger()
 {
 	int fearduration = rnz(30 + (monster_difficulty() * 3));
@@ -10476,7 +10487,7 @@ boolean your_fault;
 			if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
 				pline("You shudder for a moment.");
 				(void) safe_teleds(FALSE);
-			} else if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_rivalquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
+			} else if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || (u.preversionmode && !u.preversionescape) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_rivalquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
 				pline("Somehow, the hall exclusion doesn't do anything.");
 				break;
 			} else {

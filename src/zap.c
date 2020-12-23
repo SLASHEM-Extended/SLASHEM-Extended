@@ -1229,6 +1229,13 @@ armorsmashdone:
 		reveal_invis = !u_teleport_mon(mtmp, TRUE);
 		break;
 	case WAN_BANISHMENT:
+
+		if (Role_if(PM_SECRET_ADVICE_MEMBER) && !rn2(10) && obj->oartifact == ART_ASS_DEAF_AUGER && !(mtmp->data->geno & G_UNIQ)) {
+			pline("%s is sucked away by your vacuum cleaner!", Monnam(mtmp));
+			mongone(mtmp);
+			break;
+		}
+
 		if (u.uevent.udemigod && !u.freeplaymode) {
 			reveal_invis = !u_teleport_mon(mtmp, TRUE);
 			break;
@@ -4107,6 +4114,7 @@ register struct obj *obj;
 	    {	coord cc;
 		struct permonst *pm = 0;
 		int attempts = 0;
+		register struct monst *sexygirl;
 
 newboss:
 		do {
@@ -4124,7 +4132,10 @@ newboss:
 			goto newboss;
 		}
 
-		if (pm) (void) makemon(pm, u.ux, u.uy, NO_MM_FLAGS);
+		if (pm) sexygirl = makemon(pm, u.ux, u.uy, NO_MM_FLAGS);
+		if (Role_if(PM_BUTT_LOVER) && sexygirl && !rn2(2)) {
+			tamedog(sexygirl, (struct obj *) 0, TRUE);
+		}
 	    }
 
 		u.aggravation = 0;
@@ -4951,7 +4962,7 @@ secureidchoice:
 			break;
 			}
 		case WAN_TELE_LEVEL:
-		      if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_rivalquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) level_tele();
+		      if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.preversionmode && !u.preversionescape) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_rivalquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) level_tele();
 			else pline("Hmm... that level teleport wand didn't do anything.");
 			known = TRUE;
 			break;
@@ -6975,7 +6986,7 @@ boolean ordinary;
 		case WAN_BANISHMENT:
 			makeknown(obj->otyp);
 			if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
-			if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_rivalquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) {
+			if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || (u.preversionmode && !u.preversionescape) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_rivalquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) {
 			 pline("For some reason you resist the banishment!"); break;}
 
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
@@ -7196,7 +7207,7 @@ struct obj *obj;	/* wand or spell */
 		case WAN_BANISHMENT:
 			makeknown(obj->otyp);
 			if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); break;}
-			if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_rivalquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) {
+			if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || (u.preversionmode && !u.preversionescape) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_rivalquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) {
 			pline("For some reason you resist the banishment!"); break;}
 
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */

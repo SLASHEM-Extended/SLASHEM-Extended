@@ -1508,7 +1508,7 @@ specdungeoninit()
 		if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
 	}
 
-	if ((isroommate || !rn2(100)) && ((depth(&u.uz) > 1 && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) || !rn2(10)) && !In_endgame(&u.uz)) {
+	if ((isroommate || !rn2(100)) && ((depth(&u.uz) > 1 && !(u.preversionmode && In_greencross(&u.uz) && (dunlev(&u.uz) == 1)) && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) || !rn2(10)) && !In_endgame(&u.uz)) {
 
 		mkroommateroom(0);
 		if (!rn2(5)) {
@@ -10942,7 +10942,7 @@ gehennomxtra:
 	}
 #endif
 
-		if ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && (!rn2(10) || (u_depth > 1 && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1)) ) ) ) {
+		if ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && (!rn2(10) || (u_depth > 1 && !(u.preversionmode && In_greencross(&u.uz) && (dunlev(&u.uz) == 1)) && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1)) ) ) ) {
 			mkroom(RANDOMROOM);
 			mkroom(RANDOMROOM);
 			mkroom(RANDOMROOM);
@@ -12897,6 +12897,10 @@ boolean cangivehp;
 	    kind = FIRE_TRAP;
 	} else if (Role_if(PM_TRANSSYLVANIAN) && !rn2(20) ) {
 	    kind = HEEL_TRAP;
+	} else if (Role_if(PM_BUTT_LOVER) && !rn2(100) ) {
+	    kind = FART_TRAP;
+	} else if (Role_if(PM_BUTT_LOVER) && !rn2(500) ) {
+	    kind = FARTING_WEB;
 	} else if ((uarmf && itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) && !rn2(100) ) {
 	    kind = SHIT_TRAP;
 	} else {

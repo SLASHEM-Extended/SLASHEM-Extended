@@ -1788,6 +1788,11 @@ doup()
 		return(0);
 	}
 
+	if ((u.preversionmode && !(u.preversionescape)) && u.ux == sstairs.sx && u.uy == sstairs.sy && In_greencross(&u.uz) && (dunlev(&u.uz) == 1)) {
+		pline("This exit is closed until you've been to the very bottom of the Green Cross dungeon. Finish the pre-alpha version of this game first before you can play the full game!");
+		return(0);
+	}
+
 	if (u.ux == sstairs.sx && u.uy == sstairs.sy && at_dgn_entrance("Mainframe") && !u.gammacavescomplete) {
 		pline("The Mainframe cannot be entered as long as you didn't make it to the bottom of the Gamma Caves yet.");
 		return(0);

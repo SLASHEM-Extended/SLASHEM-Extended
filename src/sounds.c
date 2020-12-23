@@ -1844,6 +1844,15 @@ register struct monst *mtmp;
 			pline("%s is charmed by your stroking units.", Monnam(mtmp) );
 			mtmp->mpeaceful = 1;
 		}
+		else if (uarmg && uarmg->oartifact == ART_GROPESTROKER && !mtmp->mfrenzied && !rn2(20)) {
+			if (rn2(6)) {
+				pline("%s is charmed by your stroking units.", Monnam(mtmp) );
+				mtmp->mpeaceful = 1;
+			} else {
+				pline("%s is really angry and calls you a sexual predator.", Monnam(mtmp) );
+				mtmp->mfrenzied = 1;
+			}
+		}
 		else {
 			pline("%s seems to be even more angry at you than before.", Monnam(mtmp) );
 		}
@@ -2245,6 +2254,15 @@ register struct monst *mtmp;
 			pline("%s is charmed by your stroking units.", Monnam(mtmp) );
 			mtmp->mpeaceful = 1;
 		}
+		else if (uarmg && uarmg->oartifact == ART_GROPESTROKER && !mtmp->mfrenzied && !rn2(20)) {
+			if (rn2(6)) {
+				pline("%s is charmed by your stroking units.", Monnam(mtmp) );
+				mtmp->mpeaceful = 1;
+			} else {
+				pline("%s is really angry and calls you a sexual predator.", Monnam(mtmp) );
+				mtmp->mfrenzied = 1;
+			}
+		}
 		else {
 			pline("%s seems to be even more angry at you than before.", Monnam(mtmp) );
 		}
@@ -2527,7 +2545,7 @@ register struct monst *mtmp;
 				mtmp->mcan = TRUE;
 
 				if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed)) ) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
-				if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_rivalquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) {
+				if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || (u.preversionmode && !u.preversionescape) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_rivalquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) {
 				pline("For some reason you resist the banishment!"); break;}
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
@@ -2921,6 +2939,18 @@ register struct monst *mtmp;
 		    break;
 		case PM_PRACTICANT:
 		    verbl_msg = "I'm gonna introduce all those bastard assistants to my battering ram.";
+		    break;
+		case PM_BUTT_LOVER:
+		    verbl_msg = "Mmmmmmmmmmm... lovely, soft butt cheeks...";
+		    break;
+		case PM_SHOE_FETISHIST:
+		    verbl_msg = "I absolutely looooooooove high heels!";
+		    break;
+		case PM_SECRET_ADVICE_MEMBER:
+		    verbl_msg = "Careful. I'm a member of the Secret Advice.";
+		    break;
+		case PM_PREVERSIONER:
+		    verbl_msg = "Who the hell would design a game with a reset button that has no confirmation and simply erases your current game without giving you a chance to save???";
 		    break;
 		case PM_GENDERSTARIST:
 		    verbl_msg = !rn2(3) ? "Sehr geehrte Buergerinnen und Buerger, die Schuelerinnen und Schueler sind unter dem gesetzlich geforderten Niveau..." : !rn2(2) ? "Sehr geehrte Buergerlnnen, die Schuelerlnnen fallen beim Pisa-Test zu oft durch..." : "Sehr geehrte Buerger*innen, die Schueler*innen weigern sich, den Gender*stern* zu* benutz*en*/*in*...*";

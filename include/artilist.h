@@ -8716,6 +8716,30 @@ A("Major Presence",				GAUNTLETS, /* +2 to-hit and damage */
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, PM_COMBATANT, NON_PM, 4000L ),
 
+A("Gropestroker",				SADO_MASO_GLOVES, /* stroking a farting monster has 1 in 20 of pacifying it and 1 in 100 of frenzying it */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, PM_BUTT_LOVER, NON_PM, 3000L ),
+
+A("Softstep",				ANASTASIA_DANCING_SHOES, /* cannot be destroyed by erosion, stepping into a heap of shit that wasn't yet detected gives +1 CHA */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_ELEC), NO_CARY, 0, A_LAWFUL, PM_DANCER, NON_PM, 10000L ),
+
+A("Hammer of Hellforge",				MALLET,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_ATTK|SPFX_DEFN|SPFX_PROTEC), 0, 0,
+	FIRE(0, 10), DFNS(AD_FIRE), NO_CARY, 0, A_CHAOTIC, PM_DIABLIST, NON_PM, 8000L ),
+
+A("Downsize Glass",				MIRROR, /* boss nuke works only for preversioner */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), (SPFX_LUCK), 0,
+	NO_ATTK, NO_DFNS, NO_CARY, BOSS_NUKE, A_NEUTRAL, PM_PREVERSIONER, NON_PM, 6000L ),
+
+A("Ass Deaf Auger",				WAN_BANISHMENT, /* doesn't get zapped by monsters; if a secret advice member zaps it, 10% chance to delete the monster unless it's a unique */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, PM_SECRET_ADVICE_MEMBER, NON_PM, 8000L ),
+
+A("Katharina's Loveliness",				KATHARINA_PLATFORM_BOOTS, /* +10 kick damage, +10 CHA, maurah trap effect */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_CHAOTIC, PM_SHOE_FETISHIST, NON_PM, 16000L ),
+
 /* Amy note: DO NOT add non-quest artifacts beyond this point!!! foreignartifactcount() in invent.c depends on it */
 
 /*

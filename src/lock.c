@@ -1002,6 +1002,11 @@ doforce()		/* try to force a chest with your weapon */
 						fineforpracticant(100, 0, 0);
 
 					}
+					if (Role_if(PM_BUTT_LOVER)) {
+						You_feel("bad for hurting one of your beloved butts!");
+						adjalign(-5);
+						if (u.negativeprotection > 0 && !rn2(5)) u.negativeprotection--;
+					}
 					u.cnd_forcebuttcount++;
 					if (mtmp->butthurt < 20 && (!rn2(3) || Role_if(PM_EMERA)) ) {
 						mtmp->butthurt += rnd(5);
@@ -1022,6 +1027,11 @@ doforce()		/* try to force a chest with your weapon */
 						pline("%s thunders: 'Bashing other people's butts is not permitted! 100 zorkmids!'", noroelaname());
 						fineforpracticant(100, 0, 0);
 
+					}
+					if (Role_if(PM_BUTT_LOVER)) {
+						You_feel("bad for hurting one of your beloved butts!");
+						adjalign(-5);
+						if (u.negativeprotection > 0 && !rn2(5)) u.negativeprotection--;
 					}
 					u.cnd_forcebuttcount++;
 					if (mtmp->butthurt < 20 && (!rn2(3) || Role_if(PM_EMERA)) ) {
@@ -1045,6 +1055,11 @@ doforce()		/* try to force a chest with your weapon */
 						pline("%s thunders: 'Bashing other people's butts is not permitted! 100 zorkmids!'", noroelaname());
 						fineforpracticant(100, 0, 0);
 
+					}
+					if (Role_if(PM_BUTT_LOVER)) {
+						You_feel("bad for hurting one of your beloved butts!");
+						adjalign(-5);
+						if (u.negativeprotection > 0 && !rn2(5)) u.negativeprotection--;
 					}
 					u.cnd_forcebuttcount++;
 					if (mtmp->butthurt < 20 && (!rn2(3) || Role_if(PM_EMERA)) ) {

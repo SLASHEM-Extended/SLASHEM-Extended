@@ -373,6 +373,8 @@ maeney:
 	if (pettype == PM_GRAY_UNICORN_FOAL) petname = "Balance of Neutrality";
 	if (pettype == PM_BLACK_UNICORN_FOAL) petname = "Orderly Chaos";
 
+	if (pettype == PM_ROGUE_HIRELING) petname = "Aliza";
+
 	if (pettype == PM_AGGRESSIVE_LICHEN) petname = "Sessilium";
 	if (pettype == PM_PILE_OF_COPPER_COINS) petname = "Counterfeit";
 	if (pettype == PM_BLOCK_HEELED_GIRL) petname = "Dora";
@@ -389,6 +391,10 @@ maeney:
 	if (pettype == PM_MARTTI_IHRASAARI) petname = "Martti Ihrasaari";
 	if (pettype == PM_ELIF) petname = "Elif";
 	if (pettype == PM_JENNIFER) petname = "Jennifer";
+	if (pettype == PM_JESSICA) petname = "Jessica";
+
+	if (pettype == PM_BUST_SUPERSECRET_ADVICE_RIFLING_UNVERIFIED_BOSOMING) petname == "Boris";
+	if (pettype == PM_KATI_S_STRIPED_SNEAKER) petname == "Sweet Kati";
 
 	if (pettype == PM_KICKBOXING_GIRL) petname = "Marija";
 

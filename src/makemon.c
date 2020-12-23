@@ -2993,6 +2993,78 @@ register struct monst *mtmp;
 
 			break;
 
+		   case PM_BUTT_LOVER:
+		   case PM_UNDEAD_BUTT_LOVER:
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+
+			break;
+
+		   case PM_DANCER:
+		   case PM_UNDEAD_DANCER:
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+			(void) mongets(mtmp, DANCING_SHOES);
+
+			break;
+
+		   case PM_DIABLIST:
+		   case PM_UNDEAD_DIABLIST:
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+			(void) mongets(mtmp, !rn2(3) ? QATAR : !rn2(2) ? EAGLE_BALL : GRINDER);
+			(void) mongets(mtmp, LEATHER_ARMOR);
+			(void) mongets(mtmp, POT_HEALING);
+
+			break;
+
+		   case PM_PREVERSIONER:
+		   case PM_UNDEAD_PREVERSIONER:
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+			(void) mongets(mtmp, DAGGER);
+
+			break;
+
+		   case PM_SECRET_ADVICE_MEMBER:
+		   case PM_UNDEAD_SECRET_ADVICE_MEMBER:
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+			if (!rn2(10)) (void) mongets(mtmp, WAN_BANISHMENT);
+			(void) mongets(mtmp, ASSAULT_RIFLE);
+			 m_initthrow(mtmp, BULLET, 50);
+			 m_initthrow(mtmp, BULLET, 50);
+
+			break;
+
+		   case PM_SHOE_FETISHIST:
+		   case PM_UNDEAD_SHOE_FETISHIST:
+			(void) mongets(mtmp, HIPPIE_HEELS);
+
+			break;
+
 		   case PM_COURIER:
 		   case PM_UNDEAD_COURIER:
 		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
@@ -25202,6 +25274,21 @@ loopback:
 		if (ct > 0 && (Race_if(PM_IMPERIAL) && dmgtype(ptr, AD_BLAS) )) ct += 5;
 		if (ct > 0 && (Race_if(PM_SINNER) && dmgtype(ptr, AD_BLAS) )) ct += 1;
 		if (ct > 0 && (Race_if(PM_SPIRIT) && dmgtype(ptr, AD_TDRA) )) ct += 3;
+		if (ct > 0 && (Role_if(PM_BUTT_LOVER) && (ptr->msound == MS_FART_NORMAL) )) ct += 50;
+		if (ct > 0 && (Role_if(PM_BUTT_LOVER) && (ptr->msound == MS_FART_LOUD) )) ct += 50;
+		if (ct > 0 && (Role_if(PM_BUTT_LOVER) && (ptr->msound == MS_FART_QUIET) )) ct += 50;
+		if (ct > 0 && (Role_if(PM_DIABLIST) && is_diablomonster(ptr))) ct += 20;
+		if (ct > 0 && (Role_if(PM_PREVERSIONER) && is_cowmonster(ptr) )) ct += 50;
+		if (ct > 0 && (Role_if(PM_PREVERSIONER) && is_jokemonster(ptr) )) ct += 5;
+		if (ct > 0 && (Role_if(PM_SHOE_FETISHIST) && (ptr->msound == MS_FART_QUIET) )) ct += 100;
+		if (ct > 0 && (Role_if(PM_SECRET_ADVICE_MEMBER) && (ptr->msound == MS_ARREST) )) ct += 4;
+		if (ct > 0 && (Role_if(PM_SECRET_ADVICE_MEMBER) && (ptr->msound == MS_SOLDIER) )) ct += 2;
+		if (ct > 0 && (Role_if(PM_SECRET_ADVICE_MEMBER) && is_strongmonst(ptr) )) ct += 2;
+		if (ct > 0 && (Role_if(PM_SECRET_ADVICE_MEMBER) && extra_nasty(ptr) )) ct += 3;
+		if (ct > 0 && (Role_if(PM_SECRET_ADVICE_MEMBER) && dmgtype(ptr, AD_TDRA) )) ct += 5;
+		if (ct > 0 && (Role_if(PM_SECRET_ADVICE_MEMBER) && dmgtype(ptr, AD_TECH) )) ct += 5;
+		if (ct > 0 && (Role_if(PM_SECRET_ADVICE_MEMBER) && is_cowmonster(ptr) )) ct += 5;
+		if (ct > 0 && (Role_if(PM_SECRET_ADVICE_MEMBER) && is_jokemonster(ptr) )) ct += 2;
 
 		if (ct > 0 && (uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (ptr->msound == MS_STENCH))) ct += 10;
 		if (ct > 0 && (FemtrapActiveAnna && (ptr->msound == MS_STENCH))) ct += 50;
@@ -26414,6 +26501,21 @@ int     spc;
 		if ((Race_if(PM_IMPERIAL) && dmgtype(&mons[last], AD_BLAS) )) num += 5;
 		if ((Race_if(PM_SINNER) && dmgtype(&mons[last], AD_BLAS) )) num += 1;
 		if ((Race_if(PM_SPIRIT) && dmgtype(&mons[last], AD_TDRA) )) num += 3;
+		if ((Role_if(PM_BUTT_LOVER) && (mons[last].msound == MS_FART_NORMAL) )) num += 50;
+		if ((Role_if(PM_BUTT_LOVER) && (mons[last].msound == MS_FART_LOUD) )) num += 50;
+		if ((Role_if(PM_BUTT_LOVER) && (mons[last].msound == MS_FART_QUIET) )) num += 50;
+		if ((Role_if(PM_DIABLIST) && is_diablomonster(&mons[last]))) num += 20;
+		if ((Role_if(PM_PREVERSIONER) && is_cowmonster(&mons[last]) )) num += 50;
+		if ((Role_if(PM_PREVERSIONER) && is_jokemonster(&mons[last]) )) num += 5;
+		if ((Role_if(PM_SHOE_FETISHIST) && (mons[last].msound == MS_FART_QUIET) )) num += 100;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && (mons[last].msound == MS_ARREST) )) num += 4;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && (mons[last].msound == MS_SOLDIER) )) num += 2;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && is_strongmonst(&mons[last]) )) num += 2;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && extra_nasty(&mons[last]) )) num += 3;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && dmgtype(&mons[last], AD_TDRA) )) num += 5;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && dmgtype(&mons[last], AD_TECH) )) num += 5;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && is_cowmonster(&mons[last]) )) num += 5;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && is_jokemonster(&mons[last]) )) num += 2;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[last].msound == MS_STENCH))) num += 10;
 		if ((FemtrapActiveAnna && (mons[last].msound == MS_STENCH))) num += 50;
@@ -27301,6 +27403,21 @@ int     spc;
 		if ((Race_if(PM_IMPERIAL) && dmgtype(&mons[first], AD_BLAS) )) num -= 5;
 		if ((Race_if(PM_SINNER) && dmgtype(&mons[first], AD_BLAS) )) num -= 1;
 		if ((Race_if(PM_SPIRIT) && dmgtype(&mons[first], AD_TDRA) )) num -= 3;
+		if ((Role_if(PM_BUTT_LOVER) && (mons[first].msound == MS_FART_NORMAL) )) num -= 50;
+		if ((Role_if(PM_BUTT_LOVER) && (mons[first].msound == MS_FART_LOUD) )) num -= 50;
+		if ((Role_if(PM_BUTT_LOVER) && (mons[first].msound == MS_FART_QUIET) )) num -= 50;
+		if ((Role_if(PM_DIABLIST) && is_diablomonster(&mons[first]))) num -= 20;
+		if ((Role_if(PM_PREVERSIONER) && is_cowmonster(&mons[first]) )) num -= 50;
+		if ((Role_if(PM_PREVERSIONER) && is_jokemonster(&mons[first]) )) num -= 5;
+		if ((Role_if(PM_SHOE_FETISHIST) && (mons[first].msound == MS_FART_QUIET) )) num -= 100;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && (mons[first].msound == MS_ARREST) )) num -= 4;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && (mons[first].msound == MS_SOLDIER) )) num -= 2;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && is_strongmonst(&mons[first]) )) num -= 2;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && extra_nasty(&mons[first]) )) num -= 3;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && dmgtype(&mons[first], AD_TDRA) )) num -= 5;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && dmgtype(&mons[first], AD_TECH) )) num -= 5;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && is_cowmonster(&mons[first]) )) num -= 5;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && is_jokemonster(&mons[first]) )) num -= 2;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[first].msound == MS_STENCH))) num -= 10;
 		if ((FemtrapActiveAnna && (mons[first].msound == MS_STENCH))) num -= 50;

@@ -722,6 +722,7 @@ moverock()
 		if (otmp && otmp->oartifact == ART_WENDYHOLE) {
 			pline("Wendy produces %s farting noises with her sexy butt.", !rn2(3) ? "loud" : !rn2(2) ? "disgusting" : "erogenous");
 			u.cnd_fartingcount++;
+			if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 			if (!extralongsqueak()) badeffect();
 		}

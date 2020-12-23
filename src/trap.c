@@ -3318,6 +3318,11 @@ unsigned trflags;
 		u.youaredead = 0;
 	}
 
+	if (uarmf && uarmf->oartifact == ART_SOFTSTEP && ttype == HEAP_OF_SHIT && !(trap->artionce)) {
+		pline("Spflotch! Your dancing shoes fully stepped into a heap of dog shit.");
+		adjattrib(A_CHA, 1, 0, TRUE);
+	}
+
 	if (trap) trap->artionce = TRUE;
 
 	switch(ttype) {
@@ -3467,6 +3472,7 @@ unsigned trflags;
 		else if (trap->launch_otyp < 33) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rn2(2) ? "beautiful" : "squeaky");
 		else pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rn2(2) ? "disgusting" : "loud");
 		u.cnd_fartingcount++;
+		if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
 		if (trap->launch_otyp < 12 && uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) {
@@ -7792,7 +7798,7 @@ newbossPENT:
 
 		if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 
-		if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_rivalquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
+		if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || (u.preversionmode && !u.preversionescape) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_rivalquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
 			pline("For some reason you resist the banishment!"); break;}
 
 		make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
@@ -7814,7 +7820,7 @@ newbossPENT:
 
 		if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 
-		if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_rivalquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
+		if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || (u.preversionmode && !u.preversionescape) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_rivalquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
 			pline("For some reason you resist the banishment!"); break;}
 
 		make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
@@ -8700,9 +8706,10 @@ madnesseffect:
 
 		if (at_dgn_entrance("Green Cross") && !u.greencrossopen) {
 			switch (Role_switch) {
+				case PM_PREVERSIONER:
 				case PM_SPACEWARS_FIGHTER:
 				case PM_CAMPERSTRIKER:
-					break; /* always open for those two roles */
+					break; /* always open for those roles */
 				case PM_GANG_SCHOLAR:
 				case PM_WALSCHOLAR:
 					if (u.greencrosschance > 4) {
@@ -9436,7 +9443,7 @@ madnesseffect:
 				break;
 			case 6:
 
-				if ((!u.uevent.udemigod || u.freeplaymode) && !(flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_rivalquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) ) {
+				if ((!u.uevent.udemigod || u.freeplaymode) && !(flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || (u.preversionmode && !u.preversionescape) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_rivalquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) ) {
 					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
 					if (!u.levelporting) {
@@ -19410,6 +19417,12 @@ struct trap *ttmp;
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	diceroll = rnd(30);
 
+	if (Role_if(PM_BUTT_LOVER)) {
+		You_feel("bad for hurting one of your beloved butts!");
+		adjalign(-5);
+		if (u.negativeprotection > 0) u.negativeprotection--;
+	}
+
 	if (ttmp->launch_otyp == 2) diceroll -= rnd(20);
 	if (ttmp->launch_otyp == 5) diceroll -= rnd(10);
 	if (ttmp->launch_otyp == 12) diceroll -= rnd(10);
@@ -19473,6 +19486,64 @@ struct trap *ttmp;
 			ttmp = maketrap(trapx, trapy, HEEL_TRAP, 0, cangivehp);
 			if (ttmp && !ttmp->hiddentrap ) ttmp->tseen = 1;
 			newsym(trapx, trapy);
+
+			if (Role_if(PM_BUTT_LOVER)) {
+				You_feel("like someone has touched your forehead...");
+
+				int skillimprove = randomgoodskill();
+
+				if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+					unrestrict_weapon_skill(skillimprove);
+					pline("You can now learn the %s skill.", wpskillname(skillimprove));
+				} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+					unrestrict_weapon_skill(skillimprove);
+					P_MAX_SKILL(skillimprove) = P_BASIC;
+					pline("You can now learn the %s skill.", wpskillname(skillimprove));
+				} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
+					P_MAX_SKILL(skillimprove) = P_SKILLED;
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+				} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+					P_MAX_SKILL(skillimprove) = P_EXPERT;
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+				} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+					P_MAX_SKILL(skillimprove) = P_MASTER;
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+				} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+					P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+				} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+					P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+				} else pline("Unfortunately, you feel no different than before.");
+
+				if (Race_if(PM_RUSMOT)) {
+					if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+						unrestrict_weapon_skill(skillimprove);
+						pline("You can now learn the %s skill.", wpskillname(skillimprove));
+					} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+						unrestrict_weapon_skill(skillimprove);
+						P_MAX_SKILL(skillimprove) = P_BASIC;
+						pline("You can now learn the %s skill.", wpskillname(skillimprove));
+					} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
+						P_MAX_SKILL(skillimprove) = P_SKILLED;
+						pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+					} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+						P_MAX_SKILL(skillimprove) = P_EXPERT;
+						pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+					} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+						P_MAX_SKILL(skillimprove) = P_MASTER;
+						pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+					} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+						P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+						pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+					} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+						P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+						pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+					} else pline("Unfortunately, you feel no different than before.");
+				}
+
+			}
+
 			return 1;
 			}
 	}
@@ -20522,6 +20593,7 @@ fartingweb()
 	else if (ttmp->launch_otyp < 33) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[ttmp->launch_otyp], rn2(2) ? "beautiful" : "squeaky");
 	else pline("%s produces %s farting noises with her sexy butt.", farttrapnames[ttmp->launch_otyp], rn2(2) ? "disgusting" : "loud");
 	u.cnd_fartingcount++;
+	if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 	if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
 	if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {

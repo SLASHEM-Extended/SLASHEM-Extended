@@ -855,6 +855,12 @@ register struct monst *mtmp;
 	    case PM_UNDEAD_AKLYST:
 	    case PM_UNDEAD_MILL_SWALLOWER:
 	    case PM_UNDEAD_SYMBIANT:
+	    case PM_UNDEAD_BUTT_LOVER:
+	    case PM_UNDEAD_DANCER:
+	    case PM_UNDEAD_DIABLIST:
+	    case PM_UNDEAD_PREVERSIONER:
+	    case PM_UNDEAD_SECRET_ADVICE_MEMBER:
+	    case PM_UNDEAD_SHOE_FETISHIST:
 	    case PM_UNDEAD_GENDERSTARIST:
 	    case PM_UNDEAD_COMBATANT:
 	    case PM_UNDEAD_ZYBORG:
@@ -7237,6 +7243,7 @@ register struct monst *mtmp;
     if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_QUIET) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "tender" : "soft", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		u.cnd_fartingcount++;
+		if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
 		if (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) {
@@ -7282,6 +7289,7 @@ sarahdone:
     if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_NORMAL) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		u.cnd_fartingcount++;
+		if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 		if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
 			pline("The farting gas destroys your footwear instantly.");
@@ -7319,6 +7327,7 @@ sarahdone:
     if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_LOUD) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "disgusting" : "loud", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		u.cnd_fartingcount++;
+		if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 		if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
 			pline("The farting gas destroys your footwear instantly.");
@@ -7355,6 +7364,7 @@ sarahdone:
     if (mtmp->egotype_farter) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), !rn2(6) ? "disgusting" : !rn2(5) ? "loud" : !rn2(4) ? "tender" : !rn2(3) ? "soft" : !rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		u.cnd_fartingcount++;
+		if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 		if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
 			pline("The farting gas destroys your footwear instantly.");

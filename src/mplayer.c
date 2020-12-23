@@ -769,6 +769,30 @@ register boolean special;
 		case PM_UNDEAD_GENDERSTARIST:
 		    weapon = TELEPHONE;
 		    break;
+		case PM_BUTT_LOVER:
+		case PM_UNDEAD_BUTT_LOVER:
+		    weapon = SEXPLAY_WHIP;
+		    break;
+		case PM_DANCER:
+		case PM_UNDEAD_DANCER:
+		    weapon = MOP;
+		    break;
+		case PM_DIABLIST:
+		case PM_UNDEAD_DIABLIST:
+		    weapon = !rn2(3) ? CAMO_QATAR : !rn2(2) ? VARIED_GRINDER : CIGARETTE;
+		    break;
+		case PM_PREVERSIONER:
+		case PM_UNDEAD_PREVERSIONER:
+		    weapon = GREAT_DAGGER;
+		    break;
+		case PM_SECRET_ADVICE_MEMBER:
+		case PM_UNDEAD_SECRET_ADVICE_MEMBER:
+		    weapon = SHADOWBLADE;
+		    break;
+		case PM_SHOE_FETISHIST:
+		case PM_UNDEAD_SHOE_FETISHIST:
+		    weapon = PROSTITUTE_SHOE;
+		    break;
 		case PM_PRIEST:
 		case PM_PRIESTESS:
 		case PM_UNDEAD_PRIEST:

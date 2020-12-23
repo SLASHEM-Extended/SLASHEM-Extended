@@ -708,7 +708,63 @@ static const struct innate_tech
 	sym_tech[] = { {   12, T_TERRAIN_CLEANUP, 1},
 		       {   0, 0, 0} },
 
+	but_tech[] = { {   15, T_SUMMON_PET, 1},
+			 {   20, T_ATTIRE_CHARM, 1},
+		       {   0, 0, 0} },
+
+	dan_tech[] = { {   1, T_BLITZ, 1},
+			 {   1, T_E_FIST, 1},
+			 {   3, T_IRON_SKIN, 1},
+			 {   5, T_DASH, 1},
+			 {   7, T_SHIELD_BASH, 1},
+			 {   9, T_DIAMOND_BARRIER, 1},
+			 {   11, T_SIGIL_DISCHARGE, 1},
+			 {   13, T_SPIRIT_BOMB, 1},
+			 {   15, T_PUMMEL, 1},
+			 {   18, T_G_SLAM, 1},
+			 {   20, T_ATTIRE_CHARM, 1},
+			 {   22, T_TERRAIN_CLEANUP, 1},
+			 {   25, T_CHI_STRIKE, 1},
+			 {   27, T_JEDI_JUMP, 1},
+			 {   30, T_CHI_HEALING, 1},
+		       {   0, 0, 0} },
+
 	kor_tech[] = { {   1, T_DOUBLE_THROWNAGE, 1},
+		       {   0, 0, 0} },
+
+	pre_tech[] = { {   1, T_TERRAIN_CLEANUP, 1},
+		       {   0, 0, 0} },
+
+	sec_tech[] = { {   1, T_RECHARGE, 1},
+			 {   8, T_VANISH, 1},
+			 {   10, T_CHARGE_SABER, 1},
+			 {   12, T_REINFORCE, 1},
+			 {   20, T_RESEARCH, 1},
+			 {   20, T_BOOZE, 1},
+			 {   24, T_CREATE_AMMO, 1},
+			 {   25, T_SURGERY, 1},
+			 {   28, T_POLYFORM, 1},
+			 {   30, T_BLOOD_RITUAL, 1},
+		       {   0, 0, 0} },
+
+	dia_tech[] = { {   1, T_REINFORCE, 1},
+			 {   1, T_CRIT_STRIKE, 1},
+			 {   1, T_SHIELD_BASH, 1},
+			 {   6, T_WARD_FIRE, 1},
+			 {   6, T_TELEKINESIS, 1},
+			 {   10, T_PRACTICE, 1},
+			 {   12, T_WARD_COLD, 1},
+			 {   12, T_DOUBLE_THROWNAGE, 1},
+			 {   18, T_FLURRY, 1},
+			 {   18, T_WARD_ELEC, 1},
+			 {   18, T_VANISH, 1},
+			 {   18, T_IRON_SKIN, 1},
+			 {   18, T_CONCENTRATING, 1},
+			 {   24, T_TURN_UNDEAD, 1},
+			 {   30, T_BERSERK, 1},
+			 {   30, T_PRIMAL_ROAR, 1},
+			 {   30, T_REVIVE, 1},
+			 {   30, T_EDDY_WIND, 1},
 		       {   0, 0, 0} },
 
 	occ_tech[] = { {   1, T_SIGIL_DISCHARGE, 1},
@@ -5059,7 +5115,40 @@ secureidchoice:
 
 	    case T_SUMMON_PET:
 		pline("You summon a pet.");
-		(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, FALSE);
+
+		if (Role_if(PM_BUTT_LOVER)) {
+			register struct monst *buttpet;
+
+			struct permonst *pm = 0;
+			int attempts = 0;
+
+buttpetmarker:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_FART_NORMAL) && !(pm->msound == MS_FART_LOUD) && !(pm->msound == MS_FART_QUOET))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto buttpetmarker;
+			}
+			if (pm && !(pm->msound == MS_FART_NORMAL) && !(pm->msound == MS_FART_LOUD) && !(pm->msound == MS_FART_QUIET) && rn2(50) ) {
+				attempts = 0;
+				goto buttpetmarker;
+			}
+
+			if (pm) (buttpet = makemon(pm, u.ux, u.uy, NO_MM_FLAGS));
+
+			if (buttpet) {
+				tamedog(buttpet, (struct obj *) 0, TRUE);
+				pline("Suddenly, you gain a new sexy pet!");
+			}
+
+		} else {
+			(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, FALSE);
+		}
 
 	      t_timeout = rnz(10000);
 	      break;
@@ -9675,6 +9764,11 @@ role_tech()
 		case PM_JEDI:		return (jed_tech);
 		case PM_KNIGHT:		return (kni_tech);
 		case PM_KORSAIR:		return (kor_tech);
+		case PM_SECRET_ADVICE_MEMBER:		return (sec_tech);
+		case PM_PREVERSIONER:		return (pre_tech);
+		case PM_DANCER:		return (dan_tech);
+		case PM_DIABLIST:		return (dia_tech);
+		case PM_BUTT_LOVER:		return (but_tech);
 		case PM_JUSTICE_KEEPER:		return (jus_tech);
 		case PM_MONK: 		return (mon_tech);
 		case PM_OCCULT_MASTER: 		return (occ_tech);

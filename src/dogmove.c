@@ -677,6 +677,9 @@ register struct monst *mtmp;
 	/* dragonmaster can of course wear DSM (sorry AntiGulp) and it prevents dragons from rebelling --Amy */
 	if (Role_if(PM_DRAGONMASTER) && mtmp->data->mlet == S_DRAGON && uarm && Is_dragon_armor(uarm) ) return FALSE;
 
+	/* secret advice member starting pet never rebels --Amy */
+	if (Role_if(PM_SECRET_ADVICE_MEMBER) && mtmp->data == &mons[PM_BUST_SUPERSECRET_ADVICE_RIFLING_UNVERIFIED_BOSOMING]) return FALSE;
+
 	/* changed the way this works: first see whether the monster can betray you at all, then whether it actually does
 	 * if the latter is the case, "hasbeenbetrayed" is set to 2 and the actual betrayal code runs where we roll against
 	 * tameness, charisma and abuse --Amy */
@@ -769,7 +772,7 @@ register int after;	/* this is extra fast monster movement */
 		if (u.usteed && u.usteed == mtmp) {
 			if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed)) ) { pline("You shudder for a moment.");
 			}
-			if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_rivalquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) {
+			if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || (u.preversionmode && !u.preversionescape) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_rivalquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) {
 			pline("For some reason you resist the banishment!");
 			}
 

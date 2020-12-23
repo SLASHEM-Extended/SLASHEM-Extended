@@ -1506,6 +1506,9 @@ struct you {
 	boolean wonderlandescape;	/* wonderland mode player made it to the portal */
 	boolean zapemescape;	/* zapm mode player made it to the portal */
 
+	boolean preversionmode;	/* decided at game start: true if you're a preversioner */
+	boolean preversionescape;	/* preversion mode made it to deepest green cross level */
+
 	int felidlives;	/* set to 9 at game start even if you're not a felid, because recursion is a thing */
 
 	int homosexual;	/* starts at 0 = undefined; 1 = hetero, 2 = homo, defined when you have intercourse with a foocubus */

@@ -912,7 +912,7 @@ register const char *s;
 		mazexy_all(&mm);
 		(void) mksobj_at(BOULDER, mm.x, mm.y, TRUE, FALSE, FALSE);
 	}
-	if (!(iszapem && !(u.zapemescape)) && (depth(&u.uz) > depth(&medusa_level))) {
+	if (!(iszapem && !(u.zapemescape)) && !(u.preversionmode && !u.preversionescape) && (depth(&u.uz) > depth(&medusa_level))) {
 	for (x = rn2(3); x; x--) {
 		mazexy_all(&mm);
 		if (!ishomicider) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, MM_MAYSLEEP);
@@ -967,7 +967,7 @@ register const char *s;
 		mazexy_all(&mm);
 		(void) mksobj_at(BOULDER, mm.x, mm.y, TRUE, FALSE, FALSE);
 	}
-	if (!(iszapem && !(u.zapemescape)) && (depth(&u.uz) > depth(&medusa_level))) {
+	if (!(iszapem && !(u.zapemescape)) && !(u.preversionmode && !u.preversionescape) && (depth(&u.uz) > depth(&medusa_level))) {
 	for (x = rn2(3); x; x--) {
 		mazexy_all(&mm);
 		if (!ishomicider) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, MM_MAYSLEEP);

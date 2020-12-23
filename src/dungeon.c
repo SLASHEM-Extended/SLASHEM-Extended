@@ -2081,6 +2081,20 @@ level_difficulty()
 		deepestuz = (1 + deepest_lev_reached(TRUE) - zapemdepth);
 		if (deepestuz < 1) deepestuz = 1; /* fail safe */
 
+	} else if (u.preversionmode && !u.preversionescape && In_greencross(&u.uz)) {
+
+		d_level preverlevel;
+		int preverdepth;
+		preverlevel.dnum = dname_to_dnum("Green Cross");
+		preverlevel.dlevel = dungeons[preverlevel.dnum].entry_lev;
+		preverdepth = depth(&preverlevel);
+
+		depthuz = (1 + depth(&u.uz) - preverdepth);
+		if (depthuz < 1) depthuz = 1; /* fail safe */
+
+		deepestuz = (1 + deepest_lev_reached(TRUE) - preverdepth);
+		if (deepestuz < 1) deepestuz = 1; /* fail safe */
+
 	} else {
 		depthuz = depth(&u.uz);
 		deepestuz = deepest_lev_reached(TRUE);

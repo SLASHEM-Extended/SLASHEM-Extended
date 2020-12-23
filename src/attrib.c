@@ -121,6 +121,24 @@ const struct innate {
 		     {  30, &(SatanEffect), "", "", FALSE },
 		     {	 0, 0, 0, 0, 0 } },
 
+	dan_abil[] = { {	1, &(HStealth), "", "", TRUE },
+                 {  3, &(HFast), "fleet of foot", "lead-footed", TRUE },
+                 {  10, &(HSearching), "perceptive", "distractable", TRUE },
+		     {  20, &(HTechnicality), "technically knowledgable", "your techniques becoming weaker", TRUE },
+			{	 25, &(HStun_resist), "steady", "less steady", TRUE },
+                 {	0, 0, 0, 0 } },
+
+	but_abil[] = { {	20, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
+                 {	0, 0, 0, 0 } },
+
+	sec_abil[] = { {	10, &(HMagical_breathing), "aquatic", "hydrophobic", TRUE },
+		     {  15, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
+		     {  18, &(HPsi_resist), "psionic", "less psionic", TRUE },
+		     {  20, &(HDiscount_action), "resistant to paralysis", "less resistant to paralysis", TRUE },
+		     {  25, &(HSwimming), "ready to swim","afraid of the water", TRUE },
+		     {  30, &(HKeen_memory), "able to memorize everything", "unable to memorize anything", TRUE },
+                 {	0, 0, 0, 0 } },
+
 	sma_abil[] = { {	 12, &(HFast), "quick", "slow", TRUE },
 		     {  15, &(HExtra_wpn_practice), "skillful", "unskilled", TRUE },
 		     {  20, &(HJumping), "able to jump around", "unable to jump around", TRUE },
@@ -129,6 +147,14 @@ const struct innate {
 	bar_abil[] = { {	 1, &(HPoison_resistance), "", "", TRUE },
 		     {   7, &(HFast), "quick", "slow", TRUE },
 		     {  15, &(HStealth), "stealthy", "noisy", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	dia_abil[] = {	24, &(HFast), "quick", "slow", TRUE },
+		     {  30, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
+		     {  30, &(HPoison_resistance), "healthy", "less healthy", TRUE },
+		     {  30, &(HCold_resistance), "warm", "cooler", TRUE },
+		     {  30, &(HFire_resistance), "cool", "warmer", TRUE },
+		     {  30, &(HShock_resistance), "insulated", "conductive", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
 	hus_abil[] = { {	 1, &(HScentView), "", "", TRUE },
@@ -2135,6 +2161,10 @@ int oldlevel, newlevel;
 	case PM_SPACE_MARINE:   abil = sma_abil;	break;
 	case PM_JANITOR:   abil = jan_abil;	break;
 	case PM_ANACHRONIST:    abil = ana_abil;	break;  
+	case PM_DIABLIST:    abil = dia_abil;	break;  
+	case PM_DANCER:    abil = dan_abil;	break;  
+	case PM_BUTT_LOVER:    abil = but_abil;	break;  
+	case PM_SECRET_ADVICE_MEMBER:    abil = sec_abil;	break;  
 	case PM_EMERA:    abil = eme_abil;	break;  
 	case PM_XELNAGA:    abil = xel_abil;	break;  
 	case PM_BARBARIAN:      abil = bar_abil;	break;
@@ -2681,6 +2711,7 @@ int x;
 		if (uarmg && uarmg->oartifact == ART_EGASSO_S_GIBBERISH) tmp += 5;
 		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_SCRATCHE_HUSSY) tmp += 3;
+		if (uarmf && uarmf->oartifact == ART_KATHARINA_S_LOVELINESS) tmp += 10;
 
 		if (RngeCoquetry) tmp += 5;
 		if (FemtrapActiveSolvejg) tmp += 5;

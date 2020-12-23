@@ -20823,6 +20823,18 @@ boolean knoweverything;
 					pline("Artifact specs: +4 to-hit and +4 damage, doesn't get deactivated by darkness effects."); break;
 				case ART_DELIGHTSABER:
 					pline("Artifact specs: +10 to-hit and +10 damage, doesn't get deactivated by darkness effects, de-light effect when wielded."); break;
+				case ART_GROPESTROKER:
+					pline("Artifact specs: half physical damage when worn, chatting to a hostile farting monster has a chance of pacifying it, neutral, butt lover quest artifact."); break;
+				case ART_SOFTSTEP:
+					pline("Artifact specs: cannot be destroyed by erosion, stepping into a heap of shit can increase your charisma, shock resistance when worn, lawful, dancer quest artifact."); break;
+				case ART_HAMMER_OF_HELLFORGE:
+					pline("Artifact specs: +10 damage to fire-susceptible monsters, fire resistance and grants protection when wielded, chaotic, diablist quest artifact."); break;
+				case ART_DOWNSIZE_GLASS:
+					pline("Artifact specs: acts as a luckstone when carried, can be invoked for boss nuke, neutral, preversioner quest artifact."); break;
+				case ART_ASS_DEAF_AUGER:
+					pline("Artifact specs: zapping a monster with it has 10%% chance of sucking the monster away, lawful, secret advice member quest artifact."); break;
+				case ART_KATHARINA_S_LOVELINESS:
+					pline("Artifact specs: cold resistance when worn, +10 kick damage, +10 charisma, makes you fart every once in a while, chaotic, shoe fetishist quest artifact."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

@@ -1304,6 +1304,7 @@ register struct monst *mtmp;
 	if (FemtrapActiveMeltem && mtmp->female && humanoid(mdat) && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && !um_dist(mtmp->mx, mtmp->my, fartdistance) && !mtmp->mpeaceful) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		u.cnd_fartingcount++;
+		if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 		if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
 			pline("The farting gas destroys your footwear instantly.");
@@ -1342,6 +1343,7 @@ register struct monst *mtmp;
 			pline("You long for more!");
 			pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 			u.cnd_fartingcount++;
+			if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 			if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
 				pline("The farting gas destroys your footwear instantly.");
