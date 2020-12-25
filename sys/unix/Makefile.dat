@@ -351,7 +351,8 @@ spec_levs: ../util/lev_comp \
 	Stormboy.des Empath.des Psyker.des Software.des Quarter.des \
 	Mastermi.des Tosser.des Symbia.des Pract.des Millsw.des \
 	Gender.des Fjorde.des Emera.des Combat.des Aklyst.des \
-	Drag.des Carto.des
+	Drag.des Carto.des Dancer.des Shoefe.des Secret.des \
+	Prever.des Diabl.des Butt.des
 
 	../util/lev_comp Abuser.des
 	../util/lev_comp Acid.des
@@ -499,6 +500,12 @@ spec_levs: ../util/lev_comp \
 	../util/lev_comp Supermar.des
 	../util/lev_comp Thalmor.des
 	../util/lev_comp Top.des
+	../util/lev_comp Dancer.des
+	../util/lev_comp Shoefe.des
+	../util/lev_comp Secret.des
+	../util/lev_comp Prever.des
+	../util/lev_comp Diabl.des
+	../util/lev_comp Butt.des
 	@if egrep -s tourists options > /dev/null ; then \
 	echo ../util/lev_comp Tourist.des ; ../util/lev_comp Tourist.des ; \
 	else rm -f Tou-goal.lev Tou-fil?.lev Tou-loca.lev Tou-strt.lev ; fi

@@ -17953,7 +17953,7 @@ You're back in the jungle. Diablo's sanctuary is somewhere in the distance,
 but eventually you'll reach it.
 %E
 %Cc Dia 00040
-This is it. %l. Diablo's innermost sanctum.
+This is it. %i. Diablo's innermost sanctum.
 You prepare to crack those seals, which will release him.
 %E
 %Cp Dia 00041
@@ -18002,7 +18002,7 @@ You still need to battle %n and win.
 "I'll cast my ultra fire scorching spell that will burn you up instantly!"
 %E
 %Cc Dia 00070
-Oh, %n dropped a unique item: %n! You quickly collect it,
+Oh, %n dropped a unique item: %o! You quickly collect it,
 ignoring the seven other players in your party accusing you of being a
 drop-stealer.
 %E

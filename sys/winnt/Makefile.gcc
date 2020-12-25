@@ -1496,13 +1496,13 @@ sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\gradu.des $(DAT)\
 		$(DAT)\bard.des $(DAT)\amazon.des $(DAT)\goff.des $(DAT)\kwests.des $(DAT)\mazes.des \
 		$(DAT)\justice.des $(DAT)\fighter.des $(DAT)\fencer.des $(DAT)\sexy.des $(DAT)\suser.des \
 		$(DAT)\levgn.des	$(DAT)\levgx.des	$(DAT)\emptbgr.des \
-		$(DAT)\acu.des	$(DAT)\hussy.des	$(DAT)\mason.des \
+		$(DAT)\acu.des	$(DAT)\hussy.des	$(DAT)\mason.des	$(DAT)\diabl.des	$(DAT)\butt.des \
 		$(DAT)\slime.des $(DAT)\erdrick.des $(DAT)\druid.des  $(DAT)\marine.des  $(DAT)\medium.des \
 		$(DAT)\demago.des $(DAT)\cellar.des $(DAT)\grenad.des  $(DAT)\social.des  $(DAT)\walsch.des \
 		$(DAT)\cyber.des $(DAT)\dissi.des $(DAT)\astro.des  $(DAT)\crack.des  $(DAT)\janit.des \
 		$(DAT)\tosser.des $(DAT)\symbia.des $(DAT)\pract.des  $(DAT)\millsw.des  $(DAT)\gender.des \
 		$(DAT)\fjorde.des $(DAT)\emera.des $(DAT)\combat.des  $(DAT)\aklyst.des  $(DAT)\drag.des \
-		$(DAT)\carto.des \
+		$(DAT)\carto.des $(DAT)\dancer.des $(DAT)\shoefe.des $(DAT)\secret.des $(DAT)\prever.des \
 		$(DAT)\smarin.des $(DAT)\yautja.des $(DAT)\xelnaga.des  $(DAT)\weirdboy.des  $(DAT)\stormboy.des \
 		$(DAT)\empath.des $(DAT)\psyker.des $(DAT)\software.des  $(DAT)\quarter.des  $(DAT)\mastermi.des
 
@@ -1547,6 +1547,12 @@ sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\gradu.des $(DAT)\
 	lev_comp $(DDAT)/mahou.des
 	lev_comp $(DDAT)/kwests.des
 	lev_comp $(DDAT)/mazes.des
+	lev_comp $(DDAT)/dancer.des
+	lev_comp $(DDAT)/shoefe.des
+	lev_comp $(DDAT)/prever.des
+	lev_comp $(DDAT)/diabl.des
+	lev_comp $(DDAT)/secret.des
+	lev_comp $(DDAT)/butt.des
 
 	lev_comp $(DDAT)/cyber.des
 	lev_comp $(DDAT)/dissi.des

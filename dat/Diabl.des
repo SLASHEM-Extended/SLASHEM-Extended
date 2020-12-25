@@ -1,0 +1,300 @@
+#	SCCS Id: @(#)Arch.des	3.2	91/12/13
+#	Copyright (c) 1989 by Jean-Christophe Collet
+#	Copyright (c) 1991 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+#	The "start" level for the quest.
+#
+MAZE: "Dia-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+....................................|  |....................................
+....................................|  |....................................
+....................................|  |....................................
+....................................|  |....................................
+....................................|  |....................................
+....................................|  |....................................
+....................................|---....................................
+............................................................................
+............................................................................
+............................................................................
+....................................---|....................................
+....................................|  |....................................
+....................................|  |....................................
+....................................|  |....................................
+....................................|  |....................................
+....................................|  |............................----+---
+....................................|  |............................|.......
+....................................|  |............................|.......
+....................................|  |............................|.......
+....................................|  |............................|.......
+ENDMAP
+# Dungeon Description
+REGION:(00,00,75,19),lit,"ordinary"
+# Stairs
+STAIR:(74,18),down
+# Portal arrival zone
+BRANCH:(02,02,10,10),(0,0,0,0)
+# Doors
+DOOR:closed,(72,15)
+# Leader
+MONSTER:'A',"Tyrael",(72,18)
+# roshi guards for the audience chamber
+MONSTER:'@',"super warrior",(71,17)
+MONSTER:'@',"super warrior",(71,18)
+MONSTER:'@',"super warrior",(71,19)
+MONSTER:'@',"super warrior",(73,17)
+MONSTER:'@',"super warrior",(73,18)
+MONSTER:'@',"super warrior",(73,19)
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+
+MONSTER:'@',"bad hunter",random
+MONSTER:'@',"bad hunter",random
+MONSTER:'k',"carver shaman",random
+MONSTER:'Y',"brute",random
+MONSTER:'r',"spike fiend",random
+MONSTER:'Z',"stinking ghoul",random
+MONSTER:'z',"afflicted creature",random
+
+#
+#	The "locate" level for the quest.
+#
+#	Here you have to invade the Shogun's Castle to go
+#	further towards your assigned quest.
+#
+
+MAZE: "Dia-loca",' '
+FLAGS:hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+...................T                                      T.............OOO 
+...................T                                      T.............OOO 
+}}}}}}}}}}}}}}}}}..T                                      T..}}}}}}}}}..OOO 
+                }..T  TTTTTTTTTTTTTTTTTTTTTTT      TTTTTTTT..}OOOOOOO}..OOO 
+                }..T  T.....................T      T.........}OOOOOOO}..OOO 
+}}}}}}}}}}}}}}}}}..TTTT.....................TTTTTTTT.........}OOOOOOO}..OOO 
+.........................}}}}}}}}}}}}}}}}}............TTTTT..}OOOOOOO}..OOO 
+.........................}}}}}}}}}}}}}}}}}............T   T..}}}}}}}}}..OOO 
+..TTTTTTTTTTTTTTTTTTTTT.....................TTTTTTTTTTT   T.............OOO 
+..T                   T.....................T      }}}}   T.............OOO 
+..T                   TTTTTTTTTTTTTTTTTTTTTTT      }}}}   TTTTTTTTTTTT..OOO 
+..TTTTTTTTTTTTTTTTTTTT        TTTTTTTTTTTTTTT      }}}}              T..OOO 
+.....................T        T.............T      }..}              T..OOO 
+.....................T        T.............T      }..}              T..OOO 
+..}}}}}}}}}}}}}}}}}..TTTTTTTTTT..}}}}}}}}}..T      }..}   TTTTTTTTTTTT..OOO 
+..}               }..............}       }..T      }..}   T.............OOO 
+..}               }..............}       }..T      }..}   T.............OOO 
+..}}}}}}}}}}}}}}}}}..}}}}}}}}}}}}}       }..TTTTTTTT..TTTTT..}}}}}}}}}}}OOO 
+.....................}                   }...................}OOOOOOOOOOOOO 
+.....................}                   }...................}OOOOOOOOOOOOO 
+ENDMAP
+# Dungeon Description
+REGION:(00,00,75,19),lit,"ordinary"
+# Stairs
+STAIR:random,up
+STAIR:random,down
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+#
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+MONSTER:'h',"fetish shaman",random
+MONSTER:'h',"fetish shaman",random
+MONSTER:'B',"unhandled exception",random
+MONSTER:'M',"received dead potato",random
+MONSTER:'s',"poison spinner",random
+MONSTER:'s',"flame spider",random
+MONSTER:'S',"trap snake",random
+MONSTER:'&',"councillor",random
+MONSTER:'h',"zakarumite",random
+MONSTER:'h',"roller coaster",random
+
+#
+#	The "goal" level for the quest.
+#
+#	Here you meet Takauji, your nemesis monster.  You have to
+#	defeat him in combat to gain the artifact you have been
+#	assigned to retrieve.
+#
+
+MAZE: "Dia-goal", ' '
+FLAGS: hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL ...... LLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL ...... LLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLF..     LLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL ..     LLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL ......FLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLL   F   F   F   F   F   F   F   F ......   F   F   F LL F  LLLLLLLLLL
+LLLLLLLL .................................................. LL .. LLLLLLLLLL
+LLLLLLLL .................................................. LL .. LLLLLLLLLL
+   F   F ....  F  F  ....  F  F  ..........  ........ F  ..FLLF..FLLLLLLLLLL
+............. LLLLLL .... LLLLLL .............  .....   F.. LL .. LLLLLLLLLL
+............. LLLLLL .... LLLLLL ........  ..........    .. LL .. LLLLLLLLLL
+   F   F ....  F  F  ....  F  F  .............  .....F   ..    ..FLLLLLLLLLL
+LLLLLLLL ..................................  ........   F........ LLLLLLLLLL
+LLLLLLLL ............................................    ........ LLLLLLLLLL
+LLLLLLLL   F   F   F   F   F   F   F   F ...... F  F      F  F  F LLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL ...... LLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL     .. LLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL     .. LLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLF......FLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL ...... LLLLLLLLLLLLLLLLLLLLLLLLLLLL
+ENDMAP
+# Dungeon Description
+REGION:(00,00,75,19),lit,"ordinary"
+# Stairs
+STAIR:(02,09),up
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+# Objects
+OBJECT:')',"mallet",(44,10),blessed,5,"Hammer of Hellforge"
+MONSTER: '&', "The Thicknesses", (44,10), hostile
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+
+MONSTER:'8',"storm caller",random
+MONSTER:'d',"thick potato",random
+MONSTER:'&',"poison prince",random
+MONSTER:'@',"knight of the forgetting",random
+MONSTER:'w',"world killer",random
+
+#
+#	The "fill" levels for the quest.
+#
+#	These levels are used to fill out any levels not occupied by specific
+#	levels as defined above. "filla" is the upper filler, between the
+#	start and locate levels, and "fillb" the lower between the locate
+#	and goal levels.
+#
+
+MAZE: "Dia-fila", ' '
+FLAGS: hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+ddddddddddddddddddddddddddddddddddddddddddd    ddddddddddddddddddddddddddddd
+ddddddddddddddddddddddddddddddddddddddddddd    ddddddddddddddddddddddddddddd
+ddddddddddddddddddddddddddddddddddddddddddd    ddddddddddddddddddddddddddddd
+ddddddddddddddddddddddddddddddddddddddddddd    ddddddddddddddddddddddddddddd
+dddddddddddddd    ddddddddddddddddddddddddd    ddddddddd|d---ddddddddddddddd
+dddddddddddd        ddddddddddddddddddddddd    ddddddddd|ddddd|ddddddddddddd
+ddddddddddd          dddddddddddddddddddddd    ddddddddd|dd--ddddddddddddddd
+dddddddddd   dddddd   ddddddddddddddddddddd    ddddddddd|ddddddddddddddddddd
+ddddddddd   dddddddd   dddddddddddddddddddd    ddddddddddddddd|ddddddddddddd
+dddddddd   dddddddddd   ddddddddddddddddddd    ddddddddd|ddddd|ddddddddddddd
+dddddddd   dddddddddd   dddddddddddddddddddddddddddddddddddddddddddddddddddd
+dddddddd   dddddddddd   dddddddddddddddddddddddddddddddddddddddddddddddddddd
+dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+ddddddddddddddddddddddddddddddddddddddddddd    dddddddddddddddddddssdddddddd
+ddddddddddddddddddddddddddddddddddddddddddd    ddddddddddddddddddssssddddddd
+dddddddddddddddddddddddddddddddddddddddddds    ddddddddddddddddddssssddddddd
+dddddddddddddddddddddddddddddddddddddddddss    dddddddddddddddddddssdddddddd
+ddddddddddddddddddddddddddddddddddddddddsss    ddddddddddddddddddddddddddddd
+dddddddddddddddddddddddddddddddddddddddssss    ddddddddddddddddddddddddddddd
+ddddddddddddddddddddddddddddddddddddddsssss    ddddddddddddddddddddddddddddd
+ENDMAP
+
+STAIR:random,down
+STAIR:random,up
+
+# Dungeon Description
+REGION:(00,00,75,19),lit,"ordinary"
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+MONSTER:'a',"dung soldier",random
+MONSTER:'f',"slinger",random
+MONSTER:'f',"huntress",random
+MONSTER:'B',"carrion bird",random
+MONSTER:'B',"desert wing",random
+MONSTER:'w',"sand maggot",random
+MONSTER:'x',"error",random
+MONSTER:'t',"horn springy",random
+
+MAZE: "Dia-filb", ' '
+FLAGS:hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+nnnnnnnnnnnnnnnnnn    nnnnnnnnnnnnnnnnnnn  nnnnnnnnnnnnn  nnnnnn nnnnnnnnnnn
+nnnnnnnnnnnnnnnnnn    nnnnnnnnn  nnnnnnnn  nnnnnnnnnnnnnnnnnnnnn nn nnnnnnnn
+nnnnnnnnnnnnnnnnnn    nnnnnnnnn  nnnnnnnn  nnnnnnnnnnnnnn nnnnnnnnn nnnnnIIn
+nnnnnnnnnnnnnnnnnn    nnnnnnnnn  nnnnnnnn  nnnnnnnnnnnnnnnnnnnnnnnn nnnnIIII
+nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn  nnnnnnnn  nnnnnnnnnnnnnn nnn   n nnnnnnIIII
+nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn  nnnnnnnnnnnnnnnnnnnnnnnn nnnnnnn nnnnnnnIIn
+nnnnnnnnnnnnnnnnnIIIIIIIInnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nn    n nnnnnnnnnn
+nnnnnnnnnnnnnnIIIIIIIIIIIIIInnnnnnnnnnnnnnn  nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnIIIIIIIIIIIIIIn  nnnnnnnnnnnn  nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnnnIIIIIIIInnnn  nnnnnnnnnnnn  nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnnnnnnnnnnnnnnn  nnnnnnnnnnnn  nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnnnnnnnnnnnnnnn  nnnnnnnnnnnn  nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnnnnnnnnnnnnnnn  nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn     .      
+nnnnnnnnn n n nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn  nnnnnnnnnnnnnnnnn     .      
+nnnnnnnnnnnnnnnnnnnnnnnnnnnn  nnnnnnnnnnnnnnn  nnnnnnnnnnnnnnnnn  ..........
+nnnnnnnnn n n nnnnnnnnnnnnnn  nnnnnnnIInnnnnn  nnnnnnnnnnnnnnnnn  ..........
+nnnnnnnnnnnnnnnnnnnnnnnnnnnn  nnnnnnnIInnnnnn  nnnnnnnnnnnnnnnnn  ..........
+nnnnnnnnn n n nnnnnInnnnnnnn  nnnnnnnnnnnnnnn  nnnnnnnnnnnnnnnnn  ..........
+nnnnnnnnnnnnnnnnnnIIInnnnnnn  nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn  ..........
+ENDMAP
+REGION:(00,00,75,19),lit,"ordinary"
+NON_DIGGABLE:(00,00,75,19)
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+MONSTER:'h',"overseer",random
+MONSTER:'Z',"rot converter",random
+MONSTER:'J',"rancid defiler",random
+MONSTER:'&',"stygian harlot",random
+MONSTER:'&',"death impacter",random
+MONSTER:'i',"demon sprite",random

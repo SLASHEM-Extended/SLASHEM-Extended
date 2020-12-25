@@ -1230,7 +1230,7 @@ armorsmashdone:
 		break;
 	case WAN_BANISHMENT:
 
-		if (Role_if(PM_SECRET_ADVICE_MEMBER) && !rn2(10) && obj->oartifact == ART_ASS_DEAF_AUGER && !(mtmp->data->geno & G_UNIQ)) {
+		if (Role_if(PM_SECRET_ADVICE_MEMBER) && !rn2(10) && otmp->oartifact == ART_ASS_DEAF_AUGER && !(mtmp->data->geno & G_UNIQ)) {
 			pline("%s is sucked away by your vacuum cleaner!", Monnam(mtmp));
 			mongone(mtmp);
 			break;

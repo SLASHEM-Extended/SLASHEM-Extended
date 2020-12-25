@@ -1,0 +1,251 @@
+# oh my god dancer quest from splicehack I hate this fucking format so much --Amy
+# converting it to the one true des format takes soooooooo endlessly long :/
+
+MAZE: "Dan-strt",' '
+FLAGS:noteleport,hardfloor
+GEOMETRY:center,center
+MAP
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+ENDMAP
+
+REGION:(00,00,75,19),lit,"ordinary"
+BRANCH:(01,00,75,19),(0,0,0,0)
+STAIR:random,down
+ALTAR:(37,10),law,altar
+MONSTER:'@',"Troupe Leader",(37,10)
+MONSTER:'@',"backup dancer",random
+MONSTER:'@',"backup dancer",random
+MONSTER:'@',"backup dancer",random
+MONSTER:'@',"backup dancer",random
+MONSTER:'@',"backup dancer",random
+MONSTER:'@',"backup dancer",random
+MONSTER:'@',"backup dancer",random
+MONSTER:'@',"backup dancer",random
+MONSTER:'@',"backup dancer",random
+MONSTER:'@',"backup dancer",random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'r',"woodchuck",random,hostile
+
+MAZE: "Dan-fila",' '
+INIT_MAP: '.' , ' ' , true , true , random , true
+NOMAP
+
+STAIR:random,up
+STAIR:random,down
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'g',"gremlin",random,hostile
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+MAZE: "Dan-loca",' '
+INIT_MAP: '.' , ' ' , true , true , random , true
+NOMAP
+
+STAIR:random,up
+STAIR:random,down
+
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+MAZE: "Dan-filb",' '
+INIT_MAP: '.' , ' ' , true , true , random , true
+NOMAP
+
+STAIR:random,up
+STAIR:random,down
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'g',"gremlin",random,hostile
+MONSTER:'g',"gremlin",random,hostile
+MONSTER:'g',"gremlin",random,hostile
+MONSTER:'g',"gremlin",random,hostile
+MONSTER:'g',"gremlin",random,hostile
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+MAZE: "Dan-goal",' '
+FLAGS:noteleport,hardfloor
+GEOMETRY:center,center
+MAP
+hhhhh................L|--------------------------------|L..............hhhhh
+hhhhh................L|................................|L..............hhhhh
+hhhhh................L|................................|L..............hhhhh
+hhhhh................L|................................|L..............hhhhh
+hhhhh................L|................................|L..............hhhhh
+hhhhh................L|................................|L..............hhhhh
+hhhhh................L|------------..----..------------|L..............hhhhh
+hhhhh................L|..............IIII..............|L..............hhhhh
+hhhhh................L|..............IIII..............|L..............hhhhh
+hhhhh................L|..............IIII..............|L..............hhhhh
+hhhhhh...............L--..............II..............--L.............hhhhhh
+hhhhhhh...............L|..............II..............|L.............hhhhhhh
+hhhhhhhh..............L-----..........II..........-----L............hhhhhhhh
+hhhhhhh...............LLLLL|..........II..........|LLLLL.............hhhhhhh
+hhhhh.....................L-----------II-----------L...................hhhhh
+..........................LLLLLLLLLLLL..LLLLLLLLLLLL........................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+ENDMAP
+REGION:(00,00,75,19),lit,"ordinary"
+STAIR:(6,6),up
+OBJECT:'`',"statue",(34,11),"water elemental",1
+OBJECT:'`',"statue",(44,11),"water elemental",1
+OBJECT:'`',"statue",(34,8),"fire elemental",1
+OBJECT:'`',"statue",(44,8),"fire elemental",1
+OBJECT:'`',"statue",(34,5),"air elemental",1
+OBJECT:'`',"statue",(44,5),"air elemental",1
+OBJECT:'`',"statue",(34,3),"earth elemental",1
+OBJECT:'`',"statue",(44,3),"earth elemental",1
+
+MONSTER:'E',"Boss Time Elemental",(38,3)
+OBJECT:'[',"Anastasia dancing shoes",(38,03),blessed,2,"Softstep"
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+MONSTER:'E',random,random,hostile
+
