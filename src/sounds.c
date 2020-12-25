@@ -2737,6 +2737,22 @@ register struct monst *mtmp;
 				"Ceviri makinesi kirli kafirler tarafindan isletiliyor, cuenkue tanri adina varsayilan ceviriyi degistirdiler!",
 				"Benim konusmalarimi zaten anlamiyorsunuz, bu yuezden irkinizin tamamen ortadan kaldirilmasi icin cagri yapabilirim, sizi allahimiza inanmayan insafsizsiniz.",
 				"Temizlik Allah'in guenue buetuen kafirler cezalandirmak ve ilk bu sapkin kadin olacak!",
+				"Sen inanmayan basoertueguemue indiremezsin!",
+				"Savas botlarim kaninizi kutsal Allah'a feda edecek, sizi kafir!",
+				"Kafirler gelmeden tuvalete gitmem gerekiyor!",
+				"Belki kafirleri erojen seslerle cezbedebilirim!",
+				"Kafirlere arkadan saldirdigimizda Allah razi olur.",
+				"Allah'in gazabindan hicbir kafir kacamaz.",
+				"Allah'imiz, tuem kafirleri yok edecek.",
+				"Geri cekilmek! Kafirlerin bizi yakalamasina izin vermeyin!",
+				"Basoertueguemue caldin! Bunun icin bu kafir doerde boeluenmeli!",
+				"Eger benim gibi bir Muesluemana kuefuer edersen, Allah onu yildirimla oeldueruer!",
+				"Kutsal Allah'a kurban olacaginiz sunak hazir!",
+				"Hicbir kafir Islam'i durduramaz!",
+				"Yuece Allah, yardim et ve beni kafirlerden koru!",
+				"Kafirler korku icinde titreyip Allah'in kutsal gazabina huekmedilsin.",
+				"Basoertuesue takmayan tuem inancsiz kadinlar din degistirilmelidir!",
+				"Evlilik oencesi cinsel iliski, yalnizca inanmayanlarin isledigi oeluemcuel bir guenahtir! Bunun icin Allah onlari oelduerecek!",
 			};
 			verbalize("%s", conversion_msgs[rn2(SIZE(conversion_msgs))]);
 			u.cnd_conversioncount++;
