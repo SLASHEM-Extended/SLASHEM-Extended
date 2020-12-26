@@ -11998,6 +11998,14 @@ int final;
 		sprintf(buf, "%d time%s", u.cnd_vomitingcount, plur(u.cnd_vomitingcount));
 		enl_msg(You_, "have vomited ", "vomited ", buf);
 	}
+	if (u.cnd_cwnannwncount) {
+		sprintf(buf, "%d time%s", u.cnd_cwnannwncount, plur(u.cnd_cwnannwncount));
+		enl_msg(You_, "were low on health ", "were low on health ", buf);
+	}
+	if (u.cnd_bansheecount) {
+		sprintf(buf, "%d time%s", u.cnd_bansheecount, plur(u.cnd_bansheecount));
+		enl_msg(You_, "were down to your last hit point ", "were down to your last hit point ", buf);
+	}
 
 	/* Pop up the window and wait for a key */
 	display_nhwindow(en_win, TRUE);
@@ -12555,6 +12563,12 @@ int final;
 
 	sprintf(buf, "%d time%s", u.cnd_vomitingcount, plur(u.cnd_vomitingcount));
 	dump("  You vomited ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_cwnannwncount, plur(u.cnd_cwnannwncount));
+	dump("  You were low on health ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_bansheecount, plur(u.cnd_bansheecount));
+	dump("  You were down to your last hit point ", buf);
 
 	dump("", "");
 }

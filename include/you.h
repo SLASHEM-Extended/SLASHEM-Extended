@@ -1832,6 +1832,8 @@ struct you {
 	int cnd_potionthrowmoncount;	/* how many potions have been thrown by monsters */
 	int cnd_overlevelcount;	/* how many times you leveled past XL30 */
 	int cnd_vomitingcount;	/* how many times you vomited */
+	int cnd_cwnannwncount;	/* how many times you were low on health */
+	int cnd_bansheecount;	/* how many times you were down to your last hit point */
 
 	struct symbiotemon usymbiote;	/* for the symbiosis skill */
 	int symbioteaggressivity;	/* how often your symbiote attacks or takes damage */

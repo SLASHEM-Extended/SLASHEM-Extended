@@ -4356,6 +4356,9 @@ maybe_wail()
 	if (u.uhp == 1 && (PlayerHearsSoundEffects)) pline(issoviet ? "Da! Umri, pozhaluysta! Ya nenavizhu tebya! Nadeyus', vy nastol'ko glupy, chtoby pozvolit' vse, chto chudovishche privelo vas k blizkoy smerti, chtoby snova udarit' tebya, a potom eto igra zakonchena GA GA GA!" : "SKRIIIIE-IIIIE-IIIIE-IIIIE-IIIIE!");
 	else if (PlayerHearsSoundEffects) pline(issoviet ? "Nadeyus', vy prodolzhat' deystvovat' tak glupo, potomu chto togda vy budete umirat' i pridetsya svernut' novyy kharakter. Eto budet sluzhit' vam pravil'no, vy plokhoy igrok!" : "Wueueueue-oooooooh!");
     }
+
+    if (u.uhp == 1) u.cnd_bansheecount++;
+    else u.cnd_cwnannwncount++;
 }
 
 void
