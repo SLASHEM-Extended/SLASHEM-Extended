@@ -26206,7 +26206,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Dino'. It reads: 'Hey, here's some free advice: put your weapon on single shot mode or you'll lose automatically!'",
 	"Incoming message for Player 1. The message is from 'Dino'. It reads: 'Nobody escapes my sniper bullets.'",
 	"Incoming message for Player 1. The message is from 'Dino'. It reads: 'Before you realize where I am, I'll long have sniped you.'",
-
+	"You have a coughing fit!",
+	"You have a coughing fit! Shouldn't be surprised either when you're so weird and smoke cigars.",
 
 };
 

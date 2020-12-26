@@ -7751,6 +7751,10 @@ A("Bitcher 3: The Wild Cunt",				BITCHER, /* gives a new random feminism effect 
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
+A("Havana Nero",				CIGAR, /* disintegration resistance when wielded, cut nutrition effect */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_EVIL), 0, 0,
+	FIRE(4,12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
 
 /*
  *	Stormbringer only has a 2 because it can drain a level,

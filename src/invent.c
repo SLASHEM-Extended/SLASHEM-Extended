@@ -9408,6 +9408,8 @@ boolean knoweverything;
 				pline("For an orb, this thing does relatively good damage, but it's still a rather weak weapon. It may come in handy by draining HP or mana from enemies."); break;
 			case CIGARETTE:
 				pline("Smoking kills. But if you insist, you can use this orb-class weapon to whack enemies and deal d5 damage as well as potentially drain HP or mana from the opponent."); break;
+			case CIGAR:
+				pline("This orb can be applied to hit things standing two squares away. Bashing things in melee is effective only while you're riding. Also, be aware that it's unhealthy to smoke. Still, if you actually hit an enemy, you may drain HP or mana from him."); break;
 			case GRINDER:
 				pline("This is a heavy two-handed weapon that uses the grinder skill and can hit several targets in melee. You can also apply it at a monster standing two squares away, which likewise causes it to possibly hit several targets at once."); break;
 			case HEAVY_GRINDER:
@@ -20835,6 +20837,8 @@ boolean knoweverything;
 					pline("Artifact specs: zapping a monster with it has 10%% chance of sucking the monster away, lawful, secret advice member quest artifact."); break;
 				case ART_KATHARINA_S_LOVELINESS:
 					pline("Artifact specs: cold resistance when worn, +10 kick damage, +10 charisma, makes you fart every once in a while, chaotic, shoe fetishist quest artifact."); break;
+				case ART_HAVANA_NERO:
+					pline("Artifact specs: +4 to-hit and +12 damage against fire-susceptible monsters, disintegration resistance and cut nutrition when wielded. Any similarities to a potential real-life cigar brand are purely coincidental."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

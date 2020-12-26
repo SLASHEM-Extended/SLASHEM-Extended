@@ -427,7 +427,7 @@ WEAPON("telephone", (char *)0, /* applying a positively enchanted one disenchant
 	1, 0, 0,  5, 2, 50, 6, 6, 2, B,   P_PADDLE, MT_PAPER, CLR_BRIGHT_BLUE, 5),
 
 WEAPON("eagle ball", (char *)0,
-	1, 0, 0, 64, 2, 5,  2, 2, 0, B,   P_ORB, MT_PLASTIC, CLR_ORANGE, 1),
+	1, 0, 0, 62, 2, 5,  2, 2, 0, B,   P_ORB, MT_PLASTIC, CLR_ORANGE, 1),
 WEAPON("jared stone", (char *)0,
 	1, 0, 0, 20, 2, 20, 4, 4, 0, B,   P_ORB, MT_DRAGON_HIDE, CLR_BRIGHT_BLUE, 10),
 WEAPON("lightbulb", (char *)0,
@@ -436,6 +436,9 @@ WEAPON("heath ball", (char *)0,
 	1, 0, 0,  1, 2, 200, 7, 7, 0, B,   P_ORB, MT_CELESTIUM, CLR_GRAY, 50),
 WEAPON("cigarette", (char *)0,
 	1, 0, 0, 10, 2, 20, 5, 5, 0, B,   P_ORB, MT_IRON, CLR_WHITE, 8),
+
+WEAPON("cigar", (char *)0, /* polearm-type */
+	1, 0, 0,  2, 2, 100, 6, 6, 1, B,   P_ORB, MT_COMPOST, CLR_BROWN, 24),
 
 WEAPON("grinder", (char *)0,
 	1, 0, 1, 70, 100, 20, 6, 6, 0, P,   P_GRINDER, MT_IRON, CLR_BLACK, 1),

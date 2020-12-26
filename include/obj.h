@@ -201,12 +201,13 @@ struct obj {
 			 objects[(otmp)->otyp].oc_skill <= P_SABER)
 #define is_pole(otmp)	(((otmp)->oclass == WEAPON_CLASS || \
 			(otmp)->oclass == TOOL_CLASS) && \
-			 (objects[(otmp)->otyp].oc_skill == P_POLEARMS || \
+			 ((otmp)->otyp == CIGAR || objects[(otmp)->otyp].oc_skill == P_POLEARMS || \
 			 objects[(otmp)->otyp].oc_skill == (tech_inuse(T_GRAP_SWAP) ? P_GRINDER : P_LANCE) ))
 #define is_applypole(otmp)	(((otmp)->oclass == WEAPON_CLASS || \
 			(otmp)->oclass == TOOL_CLASS) && \
 			 (objects[(otmp)->otyp].oc_skill == P_POLEARMS || \
 			 objects[(otmp)->otyp].oc_skill == P_GRINDER || \
+			 (otmp)->otyp == CIGAR || \
 			 (otmp)->otyp == AKLYS || \
 			 (otmp)->otyp == BLOW_AKLYS || \
 			 (otmp)->otyp == REACH_TRIDENT || \

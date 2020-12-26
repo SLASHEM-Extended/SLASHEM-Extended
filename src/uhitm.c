@@ -7797,12 +7797,32 @@ use_weapon:
 					if (uwep && uwep->otyp == JARED_STONE) suckingchance = 11;
 					if (uwep && uwep->otyp == CIGARETTE) suckingchance = 11;
 					if (uwep && uwep->otyp == ELECTRIC_CIGARETTE) suckingchance = 10;
+					if (uwep && uwep->otyp == CIGAR) suckingchance = 10;
 					if (uwep && uwep->otyp == LIGHTBULB) suckingchance = 10;
 					if (uwep && uwep->otyp == HEATH_BALL) suckingchance = 9;
 					if (uwep && uwep->otyp == CIGARETTE && !rn2(250)) {
 						You("inhale some cancerogenous smoke!");
 						if (FunnyHallu) pline("Why are you such an idiot and smoke, anyway?");
 						badeffect();
+					}
+					if (uwep && uwep->otyp == CIGAR && !rn2(100)) {
+						switch (rnd(3)) {
+							case 1:
+								pline_The("smoke prevents you from seeing!");
+								make_blinded(Blinded + rnz(500), FALSE);
+								break;
+							case 2:
+								You("have a coughing fit!");
+								make_numbed(HNumbed + rnz(500), FALSE);
+								break;
+							case 3:
+								pline("The world spins and goes dark.");
+								flags.soundok = 0;
+								nomul(-rnd(10), "unconscious from smoking a cigar", TRUE);
+								nomovemsg = "You are conscious again.";
+								afternmv = Hear_again;
+								break;
+						}
 					}
 					if (uwep && uwep->otyp == ELECTRIC_CIGARETTE && !rn2(250)) {
 						pline("Kaboom! Your cigarette suddenly causes an explosion.");
