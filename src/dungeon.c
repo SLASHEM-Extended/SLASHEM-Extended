@@ -1893,6 +1893,15 @@ d_level	*lev;
 	return((boolean)(lev->dnum == poolchallenge_dnum || lev->dnum == digdugchallenge_dnum || lev->dnum == pacmanchallenge_dnum || lev->dnum == gruechallenge_dnum || lev->dnum == joustchallenge_dnum));
 }
 
+boolean
+In_lategame(lev)	/* are you in Gehennom or a branch that comes after it? */
+d_level	*lev;
+{
+	if (In_yendorian(lev) || In_forging(lev) || In_ordered(lev) || In_deadground(lev) || In_voiddungeon(lev) || In_restingzone(lev) || In_netherrealm(lev) || In_angmar(lev) || In_emynluin(lev) || In_swimmingpool(lev) || In_hellbathroom(lev) || In_rivalquest(lev) || In_gehennom(lev) || In_frnkn(lev) || In_sheol(lev) || In_V_tower(lev) || In_endgame(lev) ) return TRUE;
+
+	return FALSE;
+}
+
 /*
  * Return the branch for the given dungeon.
  *

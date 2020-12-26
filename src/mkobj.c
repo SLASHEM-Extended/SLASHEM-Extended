@@ -2356,6 +2356,13 @@ boolean shopinit;
 			otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 		} else	blessorcurse_on_creation(otmp, 10);
 
+		/* lategame (Gehennom and beyond) should spawn highly enchanted gear slightly more often --Amy
+		 * idea from Nethack Fourk but implementation is my own */
+		if (otmp->spe && !rn2(6) && In_lategame(&u.uz)) {
+			if (otmp->spe > 0) otmp->spe += rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe -= rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
+
 		if ((Race_if(PM_LISTENER) || RngeListening) && !Hallucination && (rnd(30) > ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
 
 		if (is_poisonable(otmp) && !rn2(100)) {
@@ -2550,6 +2557,11 @@ boolean shopinit;
 			otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 		} else	blessorcurse_on_creation(otmp, 10);
 
+		if (otmp->spe && !rn2(6) && In_lategame(&u.uz)) {
+			if (otmp->spe > 0) otmp->spe += rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe -= rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
+
 		if (!rn2(1000)) otmp->oerodeproof = 1;
 		if (!rn2(1000)) {
 			if (!rn2(3)) otmp->oeroded = rnd(3);
@@ -2652,6 +2664,11 @@ boolean shopinit;
 				 else	blessorcurse_on_creation(otmp, 3);
 				otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 			} else	blessorcurse_on_creation(otmp, 10);
+
+			if (otmp->spe && !rn2(6) && In_lategame(&u.uz)) {
+				if (otmp->spe > 0) otmp->spe += rne(Race_if(PM_LISTENER) ? 3 : 2);
+				else otmp->spe -= rne(Race_if(PM_LISTENER) ? 3 : 2);
+			}
 
 			if ((Race_if(PM_LISTENER) || RngeListening) && !Hallucination && (rnd(30) > ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
 
@@ -2793,6 +2810,11 @@ boolean shopinit;
 			otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 		} else	blessorcurse_on_creation(otmp, 10);
 
+		if (otmp->spe && !rn2(6) && In_lategame(&u.uz)) {
+			if (otmp->spe > 0) otmp->spe += rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe -= rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
+
 		if ((Race_if(PM_LISTENER) || RngeListening) && !Hallucination && (rnd(30) > ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
 
 		break;
@@ -2918,6 +2940,11 @@ boolean shopinit;
 			otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 		} else	blessorcurse_on_creation(otmp, 10);
 
+		if (otmp->spe && !rn2(6) && In_lategame(&u.uz)) {
+			if (otmp->spe > 0) otmp->spe += rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe -= rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
+
 		if (issoviet) otmp->spe = 0;
 
 		if ((Race_if(PM_LISTENER) || RngeListening) && !Hallucination && (rnd(30) > ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
@@ -3041,6 +3068,11 @@ boolean shopinit;
 			 else	blessorcurse_on_creation(otmp, 3);
 			otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 		} else	blessorcurse_on_creation(otmp, 10);
+
+		if (otmp->spe && !rn2(6) && In_lategame(&u.uz)) {
+			if (otmp->spe > 0) otmp->spe += rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe -= rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
 
 		if ((Race_if(PM_LISTENER) || RngeListening) && !Hallucination && (rnd(30) > ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
 

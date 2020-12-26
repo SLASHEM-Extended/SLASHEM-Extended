@@ -669,6 +669,7 @@ E boolean at_dgn_entrance(const char *);
 E boolean In_hell(d_level *);
 E boolean In_ZAPM(d_level *);
 E boolean In_Devnull(d_level *);
+E boolean In_lategame(d_level *);
 E boolean In_V_tower(d_level *);
 E boolean On_W_tower_level(d_level *);
 E boolean In_W_tower(int,int,d_level *);
