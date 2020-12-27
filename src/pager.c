@@ -26208,6 +26208,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Dino'. It reads: 'Before you realize where I am, I'll long have sniped you.'",
 	"You have a coughing fit!",
 	"You have a coughing fit! Shouldn't be surprised either when you're so weird and smoke cigars.",
+	"You exit the portal. You smell even worse than when you entered it. The portal feels incredibly sick. The portal vanishes!", /* by spicycat */
+	"the altar beneath you reshapres itself into an altar", /* sic from the IRC, forgot the author though */
 
 };
 
