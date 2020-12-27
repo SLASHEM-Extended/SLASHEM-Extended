@@ -12747,10 +12747,10 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_SMELL_MONSTER].oc_name = "zapakh chudovishcha";
 	obj_descr[SPE_ECHOLOCATION].oc_name = "ekholokatsiya";
 	obj_descr[SPE_RANDOM_DETECTION].oc_name = "sluchaynoye obnaruzheniye";
+	obj_descr[SPE_MAGIC_CONTROL].oc_name = "magicheskiy kontrol'";
 
 	/* todo area */
 
-	obj_descr[SPE_MAGIC_CONTROL].oc_name = "todo";
 
 	{
 
@@ -13582,22 +13582,21 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wetsuit")) OBJ_DESCR(objects[i]) = "gidrokostyum";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "funeral shroud")) OBJ_DESCR(objects[i]) = "pogrebal'nyy savan";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bleached robe")) OBJ_DESCR(objects[i]) = "belenyy khalat";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "machinery boots")) OBJ_DESCR(objects[i]) = "sapogi dlya mashin";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "industrial boots")) OBJ_DESCR(objects[i]) = "promyshlennyye botinki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "christmas child mode boots")) OBJ_DESCR(objects[i]) = "rozhdestvenskiye botinki dlya detey";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "barefoot shoes")) OBJ_DESCR(objects[i]) = "bosikom";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "sandals with socks")) OBJ_DESCR(objects[i]) = "sandalii s noskami";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "climbing boots")) OBJ_DESCR(objects[i]) = "al'pinistskiye botinki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wedge sneakers")) OBJ_DESCR(objects[i]) = "krossovki na tanketke";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "clink boots")) OBJ_DESCR(objects[i]) = "choknut'sya sapogami";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "volcanic boots")) OBJ_DESCR(objects[i]) = "vulkanicheskiye sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "nail-new boots")) OBJ_DESCR(objects[i]) = "gvozdi novyye sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "iron boots")) OBJ_DESCR(objects[i]) = "zheleznyye sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "alloy boots")) OBJ_DESCR(objects[i]) = "sapogi iz splava";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "distancing boots")) OBJ_DESCR(objects[i]) = "distantsionnyye sapogi";
 
 		/* todo area */
-
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "machinery boots")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "industrial boots")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "christmas child mode boots")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "barefoot shoes")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "sandals with socks")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "climbing boots")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wedge sneakers")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "clink boots")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "volcanic boots")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "nail-new boots")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "iron boots")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "alloy boots")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "distancing boots")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -13944,10 +13943,9 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_SMELL_MONSTER].oc_name = "hayvonni hidlash";
 	obj_descr[SPE_ECHOLOCATION].oc_name = "echolokatsiya";
 	obj_descr[SPE_RANDOM_DETECTION].oc_name = "tasodifiy aniqlash";
+	obj_descr[SPE_MAGIC_CONTROL].oc_name = "sehrli boshqarish";
 
 	/* todo area */
-
-	obj_descr[SPE_MAGIC_CONTROL].oc_name = "todo";
 
 	{
 
@@ -14779,22 +14777,21 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wetsuit")) OBJ_DESCR(objects[i]) = "suv kiyimi";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "funeral shroud")) OBJ_DESCR(objects[i]) = "dafn kafan";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bleached robe")) OBJ_DESCR(objects[i]) = "oqartirilgan xalat";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "machinery boots")) OBJ_DESCR(objects[i]) = "mashina etiklari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "industrial boots")) OBJ_DESCR(objects[i]) = "sanoat etiklari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "christmas child mode boots")) OBJ_DESCR(objects[i]) = "rojdestvo bolalar rejimida chizilmasin";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "barefoot shoes")) OBJ_DESCR(objects[i]) = "yalangoyoq poyabzal";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "sandals with socks")) OBJ_DESCR(objects[i]) = "paypoq bilan poyabzal";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "climbing boots")) OBJ_DESCR(objects[i]) = "toqqa chiqish botinkalari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wedge sneakers")) OBJ_DESCR(objects[i]) = "takozli krossovkalar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "clink boots")) OBJ_DESCR(objects[i]) = "klinker etiklar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "volcanic boots")) OBJ_DESCR(objects[i]) = "vulqon botinkalari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "nail-new boots")) OBJ_DESCR(objects[i]) = "yangi tirnoq";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "iron boots")) OBJ_DESCR(objects[i]) = "temir etik";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "alloy boots")) OBJ_DESCR(objects[i]) = "qotishma botinkalari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "distancing boots")) OBJ_DESCR(objects[i]) = "masofadan turib chizilmasin";
 
 		/* todo area */
-
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "machinery boots")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "industrial boots")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "christmas child mode boots")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "barefoot shoes")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "sandals with socks")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "climbing boots")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wedge sneakers")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "clink boots")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "volcanic boots")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "nail-new boots")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "iron boots")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "alloy boots")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "distancing boots")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}

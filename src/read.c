@@ -767,6 +767,7 @@ doread()
 	"Today, the wolf managed to defeat the lion. House Lannister is going DOWN and the Starks will be victorious!",
 	"With this train (which can ram other cars away), I'll be much faster in Leipzig or meadow brook than if I walk home.",
 	"Hello and welcome to Boyabali's used armor dealership! Please be aware that in order to enter our store, you not only need to be wearing a face mask, you also must have a pokemon with you.",
+	"Kick you, itchy money", /* by Pinkbeast, pun on Kiku-ichimonji */
 
 	    };
 	    char buf[BUFSZ];
