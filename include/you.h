@@ -1916,6 +1916,8 @@ struct you {
 	boolean pract_void;	/* entered the void = 5 turns to leave, otherwise kops and demon lords can spawn */
 	int pract_voidtimer;	/* turn at which you may no longer be in the void */
 	boolean pract_voidinitial;	/* whether the initial spawn of badguys for the above has happened */
+	int pract_smokingtimer;	/* whenever you use a cigarette or similar, timer for being penalized */
+	boolean pract_cwnannwn;	/* if you hear the cwnannwn or banshee too often, every additional time results in fines */
 
 	/* killing the nemesis would result in another fine but she's dead at that point so you no longer care :P */
 

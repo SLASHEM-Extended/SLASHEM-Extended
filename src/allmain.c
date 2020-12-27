@@ -11542,6 +11542,17 @@ past3:
 			fineforpracticant(1000, 1000, 0);
 			u.pract_heavymg = TRUE;
 		}
+		if (uwep && (uwep->otyp == CIGARETTE || uwep->otyp == ELECTRIC_CIGARETTE || uwep->otyp == CIGAR) && !u.pract_smokingtimer) {
+			u.pract_smokingtimer = 100;
+			pline("%s thunders: 'Smoking is strictly forbidden in the lab! You irresponsible little practicant maggot, don't you know that all the organic solvents and other chemicals could go BOOM from that! 5000 zorkmids, and if you don't put the thing away right away, your fine is doubled.'", noroelaname());
+			fineforpracticant(5000, 0, 0);
+		}
+		if (uwep && (uwep->otyp == CIGARETTE || uwep->otyp == ELECTRIC_CIGARETTE || uwep->otyp == CIGAR) && (u.pract_smokingtimer >= 10 && u.pract_smokingtimer <= 95)) {
+			u.pract_smokingtimer = 100;
+			pline("%s thunders: 'You fucking maggot! I *TOLD* you that smoking is strictly prohibited! Just for that, your fine is doubled now and you have to pay an additional 5000 zorkmids.'", noroelaname());
+			if (u.practicantpenalty > 0 && u.practicantpenalty < 9999999) u.practicantpenalty *= 2; /* don't let it overflow! 10 million zorkmids should be high enough that no normal char can ever collect enough to actually pay, anyway --Amy */
+			fineforpracticant(5000, 0, 0);
+		}
 		if (u.contamination >= 1000 && !u.pract_fatalcontamination) {
 			pline("%s booms: 'That's a violation of radiation safety protocols right there if I've ever seen one! You there, little practicant maggot! For this transgression you will pay 10000 zorkmids to me, and your lab coat won't protect you from poison for a week. Keep your hands off of radioactive materials, you hear?'", noroelaname());
 			fineforpracticant(10000, 0, 0);

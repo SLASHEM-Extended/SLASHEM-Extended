@@ -255,6 +255,11 @@ nh_timeout()
 		if (!u.badfdoomed) You("are on the way back from the journey on the path to nowhere.");
 	}
 
+	if (u.pract_smokingtimer) {
+		u.pract_smokingtimer--;
+		if (u.pract_smokingtimer < 0) u.pract_smokingtimer = 0; /* fail safe */
+	}
+
 	if (SimeoutBug || u.uprops[SIMEOUT_BUG].extrinsic || have_simeoutstone()) {
 		if (!rn2(2500)) {
 			u.usanity += (YouGetLotsOfSanity ? rnd(20) : 1);

@@ -4359,6 +4359,19 @@ maybe_wail()
 
     if (u.uhp == 1) u.cnd_bansheecount++;
     else u.cnd_cwnannwncount++;
+
+    if (practicantterror && ((u.cnd_bansheecount + u.cnd_cwnannwncount) >= 5)) {
+	if (!u.pract_cwnannwn) {
+		u.pract_cwnannwn = TRUE;
+		pline("%s rings out: 'It seems that you have a habit of getting into trouble. This is not how things run in this lab, maggot. Stop it or there'll be sanctions.'", noroelaname());
+	} else {
+		int cwnannwnfine = (u.cnd_bansheecount + u.cnd_cwnannwncount) * 100;
+		pline("%s thunders: 'I told you to stay away from trouble! That costs %d zorkmids.'", noroelaname(), cwnannwnfine);
+		fineforpracticant(cwnannwnfine, 0, 0);
+
+	}
+    }
+
 }
 
 void
