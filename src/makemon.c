@@ -7491,7 +7491,7 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, CESTUS);
 			(void) mongets(mtmp, FLEECY_CORSET);
 			(void) mongets(mtmp, LADY_BOOTS);
-			 m_initthrow(mtmp, BUBBLETAR, 50);
+			(void) mongets(mtmp, BUBBLETAR);
 		}
 		if (ptr == &mons[PM_FULLPOWER_JEDI]) {
 			(void) mongets(mtmp, NANO_HAMMER);
@@ -12494,7 +12494,7 @@ loveheelover:
 		}
 		if (mtmp->data == &mons[PM_BUBBLE_BANGER]) {
 			(void) mongets(mtmp, BUBBLEHORN);
-			m_initthrow(mtmp, BUBBLETAR, 60);
+			(void) mongets(mtmp, BUBBLETAR);
 		}
 		if (mtmp->data == &mons[PM_DARK_BANGER]) {
 			(void) mongets(mtmp, DARK_HORN);
