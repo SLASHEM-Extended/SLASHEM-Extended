@@ -596,7 +596,7 @@ register struct monst *mtmp;
 	    return(0);	/* other frozen monsters can't do anything */
 	}
 
-	if ((mdat == &mons[PM_BUGBEAM_CUBE] || mdat == &mons[PM_TORSTINA] || mdat == &mons[PM_MARINERV] || mdat == &mons[PM_MARISTIN] || mdat == &mons[PM_MARIVERT] || mdat == &mons[PM_MARISISTER] || mdat == &mons[PM_FUNNY_ITALIAN] || mdat == &mons[PM_EAR_FIG_MACHINE] || mdat == &mons[PM_POLEPOKER] || mdat == &mons[PM_DISTURBMENT_HEAD]) && !rn2(4)) return 0; /* can sometimes not move; this is by design */
+	if ((mdat == &mons[PM_BUGBEAM_CUBE] || mdat == &mons[PM_METH_HEAD] || mdat == &mons[PM_TORSTINA] || mdat == &mons[PM_MARINERV] || mdat == &mons[PM_MARISTIN] || mdat == &mons[PM_MARIVERT] || mdat == &mons[PM_MARISISTER] || mdat == &mons[PM_FUNNY_ITALIAN] || mdat == &mons[PM_EAR_FIG_MACHINE] || mdat == &mons[PM_POLEPOKER] || mdat == &mons[PM_DISTURBMENT_HEAD]) && !rn2(4)) return 0; /* can sometimes not move; this is by design */
 
 	if (mdat == &mons[PM_BLOTREE] && !rn2(2)) return 0;
 
@@ -2847,7 +2847,10 @@ altarfound:
 	if (monsndx(ptr) == PM_SLEEPING_ASIAN_GIRL && !rn2(10)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_DIDDLY_DINGUS_DUDE && !rn2(20)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_METH_HEAD) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_DEBILITATED_DANNY) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_DIM_GIRL) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_GRAWLIX) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_BLONDE_FEMMY) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_LASSY_GIRL) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_LOST_ITALIAN_PLUMBER) mtmp->mconf = 1;
@@ -2955,6 +2958,7 @@ altarfound:
 	if (ptr == &mons[PM_POOL_EDGE_SWIMMER]) appr = -1;
 	if (ptr == &mons[PM_SOCIAL_DISORDER]) appr = -1;
 	if (ptr == &mons[PM_LITTLE_WALL_FLOWER]) appr = -1;
+	if (ptr == &mons[PM_DEBILITATED_DANNY]) appr = -1;
 
 	if (u.katitrapocc && !mtmp->mpeaceful) appr = -1; /* they're supposed to let you perform your occupation in peace */
 	if (u.singtrapocc && !mtmp->mpeaceful) appr = -1;

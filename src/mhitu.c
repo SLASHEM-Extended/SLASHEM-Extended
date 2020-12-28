@@ -6590,7 +6590,7 @@ hitmu(mtmp, mattk)
 			if (!dmg) break;
 			if (u.mh > 1 && u.mh > ((u.uac>0) ? dmg : dmg+u.uac) &&
 				   objects[otmp->otyp].oc_material == MT_IRON &&
-					(u.umonnum==PM_SHOCK_PUDDING || u.umonnum==PM_VOLT_PUDDING || u.umonnum==PM_BLACK_PUDDING || u.umonnum==PM_GREY_PUDDING || u.umonnum==PM_STICKY_PUDDING || u.umonnum==PM_DRUDDING || u.umonnum==PM_BLACK_DRUDDING || u.umonnum==PM_BLACKSTEEL_PUDDING || u.umonnum==PM_BLOOD_PUDDING || u.umonnum==PM_MORAL_HAZARD || u.umonnum==PM_MORAL_EVENT_HORIZON
+					(u.umonnum==PM_SHOCK_PUDDING || u.umonnum==PM_VOLT_PUDDING || u.umonnum==PM_BLACK_PUDDING || u.umonnum==PM_GEMINICROTTA || u.umonnum==PM_GREY_PUDDING || u.umonnum==PM_STICKY_PUDDING || u.umonnum==PM_DRUDDING || u.umonnum==PM_BLACK_DRUDDING || u.umonnum==PM_BLACKSTEEL_PUDDING || u.umonnum==PM_BLOOD_PUDDING || u.umonnum==PM_MORAL_HAZARD || u.umonnum==PM_MORAL_EVENT_HORIZON
 					|| u.umonnum==PM_BROWN_PUDDING || u.umonnum==PM_BLACK_PIERCER)) {
 			    /* This redundancy necessary because you have to
 			     * take the damage _before_ being cloned.
@@ -10325,7 +10325,7 @@ dopois:
 
 			if (u.mh > 1 && u.mh > ((u.uac>0) ? dmg : dmg+u.uac) &&
 				   objects[otmp->otyp].oc_material == MT_IRON &&
-					(u.umonnum==PM_SHOCK_PUDDING || u.umonnum==PM_VOLT_PUDDING || u.umonnum==PM_BLACK_PUDDING || u.umonnum==PM_GREY_PUDDING || u.umonnum==PM_STICKY_PUDDING || u.umonnum==PM_DRUDDING || u.umonnum==PM_BLACK_DRUDDING || u.umonnum==PM_BLACKSTEEL_PUDDING || u.umonnum==PM_BLOOD_PUDDING || u.umonnum==PM_MORAL_HAZARD || u.umonnum==PM_MORAL_EVENT_HORIZON
+					(u.umonnum==PM_SHOCK_PUDDING || u.umonnum==PM_VOLT_PUDDING || u.umonnum==PM_BLACK_PUDDING || u.umonnum==PM_GEMINICROTTA || u.umonnum==PM_GREY_PUDDING || u.umonnum==PM_STICKY_PUDDING || u.umonnum==PM_DRUDDING || u.umonnum==PM_BLACK_DRUDDING || u.umonnum==PM_BLACKSTEEL_PUDDING || u.umonnum==PM_BLOOD_PUDDING || u.umonnum==PM_MORAL_HAZARD || u.umonnum==PM_MORAL_EVENT_HORIZON
 					|| u.umonnum==PM_BROWN_PUDDING || u.umonnum==PM_BLACK_PIERCER)) {
 			    /* This redundancy necessary because you have to
 			     * take the damage _before_ being cloned.
@@ -12792,12 +12792,18 @@ do_stone2:
 		}
 		break;
 	    case AD_FAMN:
-		pline("You are being eaten!");
+		pline("You are being %s!", (mtmp->data == &mons[PM_LEAD_SUGAR]) ? "stuffed with bitter sugar" : "eaten");
 		exercise(A_CON, FALSE);
-		if (!is_fainted()) morehungry(rnz(40));
-		if (!is_fainted()) morehungry(rnz(40));
-		morehungry(tmp);
-		morehungry(tmp);
+
+		if (mtmp->data == &mons[PM_LEAD_SUGAR]) {
+			lesshungry(rnz(80) + (tmp * 2));
+		} else {
+			if (!is_fainted()) morehungry(rnz(40));
+			if (!is_fainted()) morehungry(rnz(40));
+			morehungry(tmp);
+			morehungry(tmp);
+		}
+
 		/* plus the normal damage */
 		break;
 	    case AD_SLIM:    

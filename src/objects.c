@@ -7653,6 +7653,7 @@ SPELL((char *)0,         "weeping-eyed",  P_NONE, 0, 0, 0, 1, 0, CLR_BRIGHT_GREE
 SPELL((char *)0,         "thrice-sealed",  P_NONE, 0, 0, 0, 1, 0, CLR_RED, 1),
 SPELL((char *)0,         "six-sworn",  P_NONE, 0, 0, 0, 1, 0, CLR_MAGENTA, 1),
 SPELL((char *)0,         "sword-crossed",  P_NONE, 0, 0, 0, 1, 0, CLR_GRAY, 1),
+SPELL((char *)0,         "purple velvet-bound",  P_NONE, 0, 0, 0, 1, 0, CLR_MAGENTA, 1),
 SPELL("blank paper",	 "plain",		P_NONE, 150,  0, 0, 0, 0, HI_PAPER, 1),
 	/* ...Blank spellbook must come last because it retains its description */
 OBJECT(OBJ("Book of the Dead", "papyrus"),

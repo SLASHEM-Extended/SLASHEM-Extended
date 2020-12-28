@@ -966,6 +966,15 @@ register int pm;
 
 		}
 		break;
+	    case PM_ROCK_HARD_COCKATRICE:
+		if (u.ublessed < 20) {
+			if (!(HProtection & INTRINSIC)) HProtection |= FROMOUTSIDE;
+			u.ublessed++;
+			find_ac();
+			flags.botl = TRUE;
+			pline("A holy aura of protection surrounds you!");
+		}
+		break;
 	    case PM_LIZARD:
 	    case PM_LIZZY:
 	    case PM_LIZARD_PRINCE:
@@ -1006,6 +1015,8 @@ register int pm;
 	    case PM_ICE_LIZARD:
 	    case PM_GIANT_LIZARD:
 	    case PM_LIZARD_EEL:
+	    case PM_INNOCLIZARD:
+	    case PM_FAT_LIZARD:
 	    case PM_EEL_LIZARD:
 	    case PM_GRASS_LIZARD:
 	    case PM_RUNE_LIZARD:
@@ -1152,6 +1163,8 @@ struct monst *mon;
       case PM_WILL_RATCH_LIZARD:
       case PM_LICHZARD:
       case PM_SKELLIZARD:
+      case PM_INNOCLIZARD:
+      case PM_FAT_LIZARD:
 	case PM_BABY_CAVE_LIZARD:
 	case PM_NIGHT_LIZARD:
 	case PM_LIZARD_MAN:
@@ -2905,6 +2918,8 @@ register int pm;
 			lesshungry(180); /* fall thru */
 	    case PM_LIZARD:
 	    case PM_LIZZY:
+	    case PM_INNOCLIZARD:
+	    case PM_FAT_LIZARD:
 	    case PM_LIZARD_PRINCE:
 	    case PM_WILL_STONE_LIZARD:
 	    case PM_WILL_RATCH_LIZARD:
@@ -3335,6 +3350,7 @@ register int pm;
 	    case PM_NASTY_MASTER_MIND_FLAYER:
 	    case PM_UNSEXY_MASTER_MIND_FLAYER:
 	    case PM_ILLITHID:
+	    case PM_MIND_GIVER:
 	    case PM_FLAYMIND_CAT:
 	    case PM_DEADLY_GAZER:
 	    case PM_MIND_BEAMER:
@@ -3355,6 +3371,10 @@ register int pm;
 		case PM_BRAIN_EATER:
 		case PM_BRAIN_OOZE:
 		case PM_BRAIN_MOLE:
+		case PM_MINDFLAYER_AMOEBA:
+		case PM_MASTER_MINDFLAYER_AMOEBA:
+		case PM_MINDFLAYER_AMOEBA_SWARM:
+		case PM_FLOATING_BRAIN:
 		case PM_MINDWITNESS:
 		case PM_BRAIN_GOLEM:
 		case PM_LOWER_BRAIN:
