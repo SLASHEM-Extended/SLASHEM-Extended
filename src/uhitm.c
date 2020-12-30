@@ -277,6 +277,10 @@ boolean barehanded;
 			return retval;
 		}
 		if (canspotmon(mtmp)) {
+
+			/* from the variant that calls itself NetHack 3.70: sometimes, silently scare the priest --Amy */
+			if (isevilvariant && mtmp->ispriest && !rn2(7)) monflee(mtmp, rnd(6), FALSE, FALSE);
+
 			sprintf(qbuf, "Really attack %s?", mon_nam(mtmp));
 			if (yn(qbuf) != 'y') {
 				/* Stormbringer is not tricked so easily */
