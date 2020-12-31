@@ -20843,6 +20843,8 @@ boolean knoweverything;
 					pline("Artifact specs: cold resistance when worn, +10 kick damage, +10 charisma, makes you fart every once in a while, chaotic, shoe fetishist quest artifact."); break;
 				case ART_HAVANA_NERO:
 					pline("Artifact specs: +4 to-hit and +12 damage against fire-susceptible monsters, disintegration resistance and cut nutrition when wielded. Any similarities to a potential real-life cigar brand are purely coincidental."); break;
+				case ART_LUCKY_MELEE_ATTACKS:
+					pline("Artifact specs: +10 melee to-hit and acts as a luckstone when wielded. No product placement. Demo originally suggested a certain other name for this artifact but nope, we're not having that."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;
