@@ -7537,7 +7537,7 @@ cardtrickchoice:
 
 				}
 			}
-			use_skill(P_SQUEAKING, rnd(5));
+			use_skill(P_SQUEAKING, rnd(20));
 
 			t_timeout = rnz(2000);
 			break;
@@ -7567,7 +7567,7 @@ cardtrickchoice:
 
 			}
 
-			use_skill(P_SQUEAKING, rnd(10));
+			use_skill(P_SQUEAKING, rnd(50));
 			t_timeout = rnz(5000);
 			break;
 
@@ -7614,7 +7614,7 @@ cardtrickchoice:
 				fineforpracticant(50, 0, 0);
 			}
 
-			use_skill(P_SQUEAKING, rnd(10));
+			use_skill(P_SQUEAKING, rnd(50));
 			t_timeout = rnz(5000);
 			break;
 
@@ -7623,7 +7623,7 @@ cardtrickchoice:
 			num = 20 + techlevX(tech_no);
 		    	techt_inuse(tech_no) = num + 1;
 			pline("Your butt starts squeaking.");
-			use_skill(P_SQUEAKING, rnd(25));
+			use_skill(P_SQUEAKING, rnd(50));
 			t_timeout = rnz(5000);
 			break;
 
@@ -7796,7 +7796,7 @@ repairitemchoice:
 
 				} else pline("For some unknown reason, the attempt failed.");
 			}
-			use_skill(P_SQUEAKING, rnd(20));
+			use_skill(P_SQUEAKING, rnd(80));
 			t_timeout = rnz(8000);
 			break;
 

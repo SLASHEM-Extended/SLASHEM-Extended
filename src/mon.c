@@ -9252,7 +9252,7 @@ boolean holdeneffect;
 	pline("%s becomes your new symbiote!", noit_Monnam(mtmp));
 	pline("Use #monster to manage your symbiote.");
 	if (flags.showsymbiotehp) flags.botl = TRUE;
-	use_skill(P_SYMBIOSIS, 1);
+	use_skill(P_SYMBIOSIS, rnd(5));
 
 	if (!holdeneffect) mongone(mtmp);
 }
@@ -9359,7 +9359,7 @@ boolean extrahealth;
 	pline("%s becomes your new symbiote!", mons[u.usymbiote.mnum].mname);
 	pline("Use #monster to manage your symbiote.");
 	if (flags.showsymbiotehp) flags.botl = TRUE;
-	use_skill(P_SYMBIOSIS, 1);
+	use_skill(P_SYMBIOSIS, rnd(5));
 
 }
 
