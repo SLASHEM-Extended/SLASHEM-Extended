@@ -243,6 +243,7 @@ register struct obj *obj;
 	if (itemhasappearance(obj, APP_POTION_CHEWABLE)) return 1;
 
 	if (Race_if(PM_OCTOPODE) && obj->oclass == RING_CLASS) return 1;
+	if (uarmh && uarmh->oartifact == ART_VORE_OF_THE_RINGS && obj->oclass == RING_CLASS) return 1;
 
 	/* Incantifier only eats stone and metal --Amy */
 	if (Race_if(PM_INCANTIFIER) && !Upolyd) return (boolean) (is_metallic(obj) || is_lithic(obj));

@@ -23,6 +23,8 @@ STATIC_DCL boolean shade_aware(struct obj *);
 
 static int martial_dmg(void);
 
+static const char allnoncount[] = { ALL_CLASSES, 0 };
+
 STATIC_PTR void set_lit(int,int,void *);
 
 extern boolean notonhead;	/* for long worms */
@@ -272,7 +274,7 @@ boolean barehanded;
 	    && !(Confusion && !Conf_resist) && !Hallucination && !(Stunned && !Stun_resist) ) {
 		/* Intelligent chaotic weapons (Stormbringer) want blood */
 		if (!barehanded &&
-		  uwep && (uwep->oartifact == ART_STORMBRINGER || (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) || uwep->oartifact == ART_STROMBRINGER || uwep->oartifact == ART_PATRICIA_S_FEMININITY || uwep->oartifact == ART_ALASSEA_TELEMNAR || uwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uwep->oartifact == ART_HEAVY_THUNDERSTORM || uwep->oartifact == ART_WAND_OF_ORCUS || uwep->oartifact == ART_GENOCIDE || uwep->oartifact == ART_SLAVE_TO_ARMOK || uwep->oartifact == ART_KILLING_EDGE) ) {
+		  uwep && (uwep->oartifact == ART_STORMBRINGER || (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) || uwep->oartifact == ART_STROMBRINGER || uwep->oartifact == ART_PATRICIA_S_FEMININITY || uwep->oartifact == ART_ALASSEA_TELEMNAR || uwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uwep->oartifact == ART_HEAVY_THUNDERSTORM || uwep->oartifact == ART_WAND_OF_ORCUS || uwep->oartifact == ART_GENOCIDE || uwep->oartifact == ART_THIRST_FOR_BLOOD || uwep->oartifact == ART_SLAVE_TO_ARMOK || uwep->oartifact == ART_KILLING_EDGE) ) {
 			override_confirmation = HIT_UWEP;
 			return retval;
 		}
@@ -285,7 +287,7 @@ boolean barehanded;
 			if (yn(qbuf) != 'y') {
 				/* Stormbringer is not tricked so easily */
 				if (!barehanded && u.twoweap && uswapwep &&
-				  (uswapwep->oartifact == ART_STORMBRINGER || (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) || uswapwep->oartifact == ART_STROMBRINGER || uswapwep->oartifact == ART_PATRICIA_S_FEMININITY || uswapwep->oartifact == ART_ALASSEA_TELEMNAR || uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uswapwep->oartifact == ART_HEAVY_THUNDERSTORM || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
+				  (uswapwep->oartifact == ART_STORMBRINGER || (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) || uswapwep->oartifact == ART_STROMBRINGER || uswapwep->oartifact == ART_PATRICIA_S_FEMININITY || uswapwep->oartifact == ART_ALASSEA_TELEMNAR || uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uswapwep->oartifact == ART_HEAVY_THUNDERSTORM || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_THIRST_FOR_BLOOD || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
 					override_confirmation = HIT_USWAPWEP;
 					/* Lose primary attack */
 					return HIT_USWAPWEP;
@@ -298,7 +300,7 @@ boolean barehanded;
 			if (strcmp (bufX, "yes")) {
 				/* Stormbringer is not tricked so easily */
 				if (!barehanded && u.twoweap && uswapwep &&
-				  (uswapwep->oartifact == ART_STORMBRINGER || (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) || uswapwep->oartifact == ART_STROMBRINGER || uswapwep->oartifact == ART_PATRICIA_S_FEMININITY || uswapwep->oartifact == ART_ALASSEA_TELEMNAR || uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uswapwep->oartifact == ART_HEAVY_THUNDERSTORM || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
+				  (uswapwep->oartifact == ART_STORMBRINGER || (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) || uswapwep->oartifact == ART_STROMBRINGER || uswapwep->oartifact == ART_PATRICIA_S_FEMININITY || uswapwep->oartifact == ART_ALASSEA_TELEMNAR || uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uswapwep->oartifact == ART_HEAVY_THUNDERSTORM || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_THIRST_FOR_BLOOD || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
 					override_confirmation = HIT_USWAPWEP;
 					/* Lose primary attack */
 					return HIT_USWAPWEP;
@@ -869,9 +871,9 @@ register struct monst *mtmp;
 	 */
 	/* Intelligent chaotic weapons (Stormbringer) want blood */
 	if (is_safepet(mtmp) && !flags.forcefight) {
-	    if (( (!uwep && !(BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone())) || (uwep->oartifact != ART_STORMBRINGER && !(BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) && uwep->oartifact != ART_STROMBRINGER && uwep->oartifact != ART_PATRICIA_S_FEMININITY && uwep->oartifact != ART_ALASSEA_TELEMNAR && uwep->oartifact != ART_THRANDUIL_LOSSEHELIN && uwep->oartifact != ART_HEAVY_THUNDERSTORM && uwep->oartifact != ART_WAND_OF_ORCUS && uwep->oartifact != ART_GENOCIDE && uwep->oartifact != ART_SLAVE_TO_ARMOK && uwep->oartifact != ART_KILLING_EDGE) ) 
+	    if (( (!uwep && !(BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone())) || (uwep->oartifact != ART_STORMBRINGER && !(BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) && uwep->oartifact != ART_STROMBRINGER && uwep->oartifact != ART_PATRICIA_S_FEMININITY && uwep->oartifact != ART_ALASSEA_TELEMNAR && uwep->oartifact != ART_THRANDUIL_LOSSEHELIN && uwep->oartifact != ART_HEAVY_THUNDERSTORM && uwep->oartifact != ART_WAND_OF_ORCUS && uwep->oartifact != ART_GENOCIDE && uwep->oartifact != ART_THIRST_FOR_BLOOD && uwep->oartifact != ART_SLAVE_TO_ARMOK && uwep->oartifact != ART_KILLING_EDGE) ) 
 		&& (!u.twoweap || !uswapwep 
-		   || (uswapwep->oartifact != ART_STORMBRINGER && !(BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) && uswapwep->oartifact != ART_STROMBRINGER && uswapwep->oartifact != ART_PATRICIA_S_FEMININITY && uswapwep->oartifact != ART_ALASSEA_TELEMNAR && uswapwep->oartifact != ART_THRANDUIL_LOSSEHELIN && uswapwep->oartifact != ART_HEAVY_THUNDERSTORM && uswapwep->oartifact != ART_WAND_OF_ORCUS && uswapwep->oartifact != ART_GENOCIDE && uswapwep->oartifact != ART_SLAVE_TO_ARMOK && uswapwep->oartifact != ART_KILLING_EDGE) )){
+		   || (uswapwep->oartifact != ART_STORMBRINGER && !(BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) && uswapwep->oartifact != ART_STROMBRINGER && uswapwep->oartifact != ART_PATRICIA_S_FEMININITY && uswapwep->oartifact != ART_ALASSEA_TELEMNAR && uswapwep->oartifact != ART_THRANDUIL_LOSSEHELIN && uswapwep->oartifact != ART_HEAVY_THUNDERSTORM && uswapwep->oartifact != ART_WAND_OF_ORCUS && uswapwep->oartifact != ART_GENOCIDE && uswapwep->oartifact != ART_THIRST_FOR_BLOOD && uswapwep->oartifact != ART_SLAVE_TO_ARMOK && uswapwep->oartifact != ART_KILLING_EDGE) )){
 		/* there are some additional considerations: this won't work
 		 * if in a shop or Punished or you miss a random roll or
 		 * if you can walk thru walls and your pet cannot (KAA) or
@@ -2916,6 +2918,39 @@ int dieroll;
 		if (wep && wep->oartifact == ART_SVEN_S_GARBAGE_BOOSTER) {
 			mon->bleedout += rnd(10);
 			pline("%s is bleeding!", Monnam(mon));
+		}
+
+		if (wep && wep->oartifact == ART_BOHEM_FUELKANAL && !rn2(100)) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) mon_adjust_speed(mon, -1, (struct obj *)0);
+		}
+
+		if (wep && wep->oartifact == ART_MELATED_METAL && !thrown && wep->spe > -20 && !rn2(1000)) {
+			register struct obj *melating;
+			pline("You may change the material of a worn armor piece to copper.");
+melatechoice:
+			melating = getobj(allnoncount, "magically enchant");
+			if(!melating) {
+				if (yn("Really exit with no object selected? Doing so will disenchant your weapon!") == 'y') {
+					if (wep && wep->spe > -20) wep->spe--;
+					pline("Well, your fault, now your weapon was disenchanted.");
+				}
+				else goto melatechoice;
+			} else if (melating && !(melating->owornmask & W_ARMOR) ) {
+				if (wep && wep->spe > -20) wep->spe--;
+				pline("You didn't select a worn armor piece, and therefore your weapon was disenchanted.");
+			} else if (melating && objects[(melating)->otyp].oc_material == MT_COPPER) {
+				if (wep && wep->spe > -20) wep->spe--;
+				pline("You selected an armor piece that was already made of copper, and therefore your weapon was disenchanted.");
+			} else if (melating) {
+				objects[(melating)->otyp].oc_material = MT_COPPER;
+				pline_The("armor piece is made of copper now.");
+			}
+
+		}
+
+		if (wep && wep->oartifact == ART_ENCHANTEASY && !rn2(1000) && wep->spe < 7) {
+			wep->spe++;
+			Your("weapon was enchanted!");
 		}
 
 		if (wep && wep->oartifact == ART_MARTHA_S_FOREIGN_GOER) {
@@ -7763,6 +7798,10 @@ use_weapon:
 					uwep->spe--;
 					pline("Your weapon sustains damage.");
 				}
+				if (uwep && uwep->oartifact == ART_CHA_SHATTER && !rn2(3) && uwep->spe > -20) {
+					uwep->spe--;
+					pline("Your weapon sustains damage.");
+				}
 				if (uwep && uwep->oartifact == ART_SIGIX_BROADSWORD && !rn2(20)) {
 					uwep->spe--;
 					pline("Your broadsword sustains damage.");
@@ -7894,6 +7933,10 @@ use_weapon:
 					pline("Your ball sustains damage.");
 				}
 				if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DONNNNNNNNNNNNG && !rn2(3) && uswapwep->spe > -20) {
+					uswapwep->spe--;
+					pline("Your weapon sustains damage.");
+				}
+				if (u.twoweap && uswapwep && uswapwep->oartifact == ART_CHA_SHATTER && !rn2(3) && uswapwep->spe > -20) {
 					uswapwep->spe--;
 					pline("Your weapon sustains damage.");
 				}

@@ -232,6 +232,9 @@ forcelock()	/* try to force a locked chest */
 	if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
 		use_skill(P_WEDI, 1);
 	}
+	if (uwep && uwep->oartifact == ART_DIGSRU) {
+		use_skill(P_WEDI, 1);
+	}
 
 	xlock.box->olocked = 0;
 	xlock.box->obroken = 1;
@@ -938,6 +941,13 @@ doforce()		/* try to force a chest with your weapon */
 				setmangry(mtmp);
 
 				if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+					u.uwediturns++;
+					if (u.uwediturns >= 2) {
+						u.uwediturns = 0;
+						use_skill(P_WEDI, 1);
+					}
+				}
+				if (uwep && uwep->oartifact == ART_DIGSRU) {
 					u.uwediturns++;
 					if (u.uwediturns >= 2) {
 						u.uwediturns = 0;

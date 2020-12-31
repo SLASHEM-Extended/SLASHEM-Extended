@@ -198,12 +198,13 @@ struct monst *mtmp;
 
 	resist_percentage = (int)(mtmp->m_lev * 3 / 2);
 	scresist_percentage = (int)(mtmp->m_lev / 2);
+	if (uwep && uwep->oartifact == ART_OMGHAXERETH) resist_percentage = (int)(mtmp->m_lev / 2);
 
 	mresists = rn2(100) < resist_percentage;
 	scmresists = rn2(100) < resist_percentage;
 
 	return (boolean)((sobj_at(SCR_SCARE_MONSTER, x, y) && !(Conflict && rn2(StrongConflict ? 5 : 2)) && !scmresists)
-			 || (sengr_at("Elbereth", x, y) && !mresists && !(Conflict && rn2(StrongConflict ? 5 : 2)) && !(EngravingDoesntWork || u.uprops[ENGRAVINGBUG].extrinsic || have_engravingstone() || (uarmf && uarmf->oartifact == ART_VARIANTISH_DESIGN) ) )
+			 || (sengr_at("Elbereth", x, y) && !mresists && !(Conflict && rn2(StrongConflict ? 5 : 2)) && !(EngravingDoesntWork || u.uprops[ENGRAVINGBUG].extrinsic || have_engravingstone() || (uwep && uwep->oartifact == ART_ELBERGOFUKYOURSELF) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ELBERGOFUKYOURSELF) || (uarmf && uarmf->oartifact == ART_VARIANTISH_DESIGN) ) )
 			 || (is_vampire(mtmp->data)
 			     && IS_ALTAR(levl[x][y].typ)));
 }
@@ -1886,6 +1887,7 @@ register struct monst *mtmp;
 		if ((rn2(3) >= armpro) || ((rnd(100) > armprolimit) && ((armpro < 4) || (rnd(armpro) < 4) ) ) ) {
 
 			if (uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION && rn2(20)) goto convertdone;
+			if (uwep && uwep->oartifact == ART_CRONVERT && rn2(10)) goto convertdone;
 
 			You_feel("less faithful!");
 

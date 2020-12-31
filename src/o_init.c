@@ -3764,6 +3764,20 @@ find_regular_sneakers()
 }
 
 int
+find_exceptional_sneakers()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_EXCEPTIONAL_SNEAKERS)) return i;
+    }
+
+    impossible("exceptional sneakers not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
 find_elite_sneakers()
 {
     register int i;

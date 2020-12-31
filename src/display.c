@@ -428,7 +428,7 @@ unmap_object(x, y)
 	show_glyph(x, y, (GLYPH_MON_OFF + rn2(NUMMONS)));	\
 	return;	\
 	}	\
-	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone()) && isok(u.ux, u.uy) && !isimportantlocation(x, y) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {	\
+	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (uwep && uwep->oartifact == ART_OMGHAXERETH) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_OMGHAXERETH) ) && isok(u.ux, u.uy) && !isimportantlocation(x, y) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {	\
 	show_glyph(x, y, cmap_to_glyph(S_stone));	\
 	return;	\
 	}	\
@@ -508,7 +508,7 @@ int memory_glyph(x, y)
 	return (GLYPH_MON_OFF + rn2(NUMMONS));
 	}
 
-	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone()) && isok(u.ux, u.uy) && !isimportantlocation(x, y) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {
+	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (uwep && uwep->oartifact == ART_OMGHAXERETH) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_OMGHAXERETH) ) && isok(u.ux, u.uy) && !isimportantlocation(x, y) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {
 	return cmap_to_glyph(S_stone);
 	}
 
@@ -1048,7 +1048,7 @@ newsym(x,y)
 	return;
 	}
 
-	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone()) && isok(u.ux, u.uy) && !isimportantlocation(x, y) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {
+	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (uwep && uwep->oartifact == ART_OMGHAXERETH) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_OMGHAXERETH) ) && isok(u.ux, u.uy) && !isimportantlocation(x, y) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {
 	show_glyph(x, y, cmap_to_glyph(S_stone));
 	return;
 	}
@@ -1402,7 +1402,7 @@ newsymX(x,y)
 	return;
 	}
 
-	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone()) && isok(u.ux, u.uy) && !isimportantlocation(x, y) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {
+	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (uwep && uwep->oartifact == ART_OMGHAXERETH) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_OMGHAXERETH) ) && isok(u.ux, u.uy) && !isimportantlocation(x, y) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {
 	show_glyph(x, y, cmap_to_glyph(S_stone));
 	return;
 	}

@@ -86,8 +86,11 @@ int thrown;
 	if (uarmh && uarmh->oartifact == ART_SURFACE_TO_AIR_SITE) multishot += 1;
 	if (uwep && uwep->oartifact == ART_LASER_PALADIN) multishot += 1;
 	if (uarmg && uarmg->oartifact == ART_WHINY_MARY) multishot += rnd(5);
+	if (uwep && uwep->oartifact == ART_GUNS_IN_MY_HEAD) multishot += 1;
+
 	if (Double_attack || (uwep && uwep->oartifact == ART_MELISSA_S_PEACEBRINGER && !u.twoweap) || (uwep && uwep->oartifact == ART_CRUSHING_IMPACT && !u.twoweap) ) multishot += rn2(multishot + 1);
 	if (Quad_attack) multishot += rn2(multishot * 3 + 1);
+
 	if ((long)multishot > obj->quan && (long)multishot > 1) multishot = (int)obj->quan;
 
 	    if ((shotlimit > 0) && (multishot > shotlimit)) multishot = shotlimit;
@@ -368,6 +371,10 @@ int thrown;
 		if (((shotlimit <= 0) || (shotlimit >= multishot)) && 
 			(obj->quan >= multishot))
 		    You("let fly a volley of %s!", xname(obj));
+	    }
+
+	    if ( (objects[obj->otyp].oc_skill == -P_DAGGER || objects[obj->otyp].oc_skill == P_DAGGER || objects[obj->otyp].oc_skill == -P_DART || objects[obj->otyp].oc_skill == P_DART || objects[obj->otyp].oc_skill == -P_SHURIKEN || objects[obj->otyp].oc_skill == P_SHURIKEN || objects[obj->otyp].oc_skill == -P_BOOMERANG || objects[obj->otyp].oc_skill == P_BOOMERANG || objects[obj->otyp].oc_skill == -P_KNIFE || objects[obj->otyp].oc_skill == P_KNIFE || objects[obj->otyp].oc_skill == -P_SPEAR || objects[obj->otyp].oc_skill == P_SPEAR || objects[obj->otyp].oc_skill == -P_JAVELIN || objects[obj->otyp].oc_skill == P_JAVELIN) && uarmf && uarmf->oartifact == ART_H__S_GANGSTER_KICKS) {
+		multishot += 1;
 	    }
 
 	    if ( (objects[obj->otyp].oc_skill == -P_DAGGER || objects[obj->otyp].oc_skill == P_DAGGER || objects[obj->otyp].oc_skill == -P_DART || objects[obj->otyp].oc_skill == P_DART || objects[obj->otyp].oc_skill == -P_SHURIKEN || objects[obj->otyp].oc_skill == P_SHURIKEN || objects[obj->otyp].oc_skill == -P_BOOMERANG || objects[obj->otyp].oc_skill == P_BOOMERANG || objects[obj->otyp].oc_skill == -P_KNIFE || objects[obj->otyp].oc_skill == P_KNIFE || objects[obj->otyp].oc_skill == -P_SPEAR || objects[obj->otyp].oc_skill == P_SPEAR || objects[obj->otyp].oc_skill == -P_JAVELIN || objects[obj->otyp].oc_skill == P_JAVELIN) && tech_inuse(T_DOUBLE_THROWNAGE)) {
@@ -2780,6 +2787,11 @@ boolean polearming;
 		if (obj && objects[obj->otyp].oc_material == MT_CERAMIC && !rn2(10) && obj->spe > -10) {
 			obj->spe--;
 		}
+
+		if (obj && obj->oartifact == ART_CHA_SHATTER && !rn2(3) && obj->spe > -20) {
+			obj->spe--;
+		}
+
 		passive_obj(mon, obj, (struct attack *)0);
 	    } else {
 		tmiss(obj, mon);

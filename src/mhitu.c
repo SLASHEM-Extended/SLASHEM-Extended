@@ -1352,6 +1352,78 @@ elena23:
 			break;
 		case AT_STNG:
 			pline("%s stings you!", Monnam(mtmp));
+
+			if (uwep && uwep->oartifact == ART_DROP_EVERYTHING_AND_KILL_T) {
+
+				pline("Arrgh! You get really angry at %s.", mon_nam(mtmp));
+				if (u.berserktime) {
+					if (!obsidianprotection()) switch (rn2(11)) {
+					case 0:
+						make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON),20), "mosquito sickness", TRUE, SICK_NONVOMITABLE);
+						break;
+					case 1: make_blinded(Blinded + 25, TRUE);
+						break;
+					case 2: if (!Confusion)
+						You("suddenly feel %s.", FunnyHallu ? "trippy" : "confused");
+						make_confused(HConfusion + 25, TRUE);
+						break;
+					case 3: make_stunned(HStun + 25, TRUE);
+						break;
+					case 4: make_numbed(HNumbed + 25, TRUE);
+						break;
+					case 5: make_frozen(HFrozen + 25, TRUE);
+						break;
+					case 6: make_burned(HBurned + 25, TRUE);
+						break;
+					case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
+						break;
+					case 8: (void) make_hallucinated(HHallucination + 25, TRUE, 0L);
+						break;
+					case 9: make_feared(HFeared + 25, TRUE);
+						break;
+					case 10: make_dimmed(HDimmed + 25, TRUE);
+						break;
+					}
+
+				} else u.berserktime = 25;
+
+			}
+			if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DROP_EVERYTHING_AND_KILL_T) {
+
+				pline("Arrgh! You get really angry at %s.", mon_nam(mtmp));
+				if (u.berserktime) {
+					if (!obsidianprotection()) switch (rn2(11)) {
+					case 0:
+						make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON),20), "mosquito sickness", TRUE, SICK_NONVOMITABLE);
+						break;
+					case 1: make_blinded(Blinded + 25, TRUE);
+						break;
+					case 2: if (!Confusion)
+						You("suddenly feel %s.", FunnyHallu ? "trippy" : "confused");
+						make_confused(HConfusion + 25, TRUE);
+						break;
+					case 3: make_stunned(HStun + 25, TRUE);
+						break;
+					case 4: make_numbed(HNumbed + 25, TRUE);
+						break;
+					case 5: make_frozen(HFrozen + 25, TRUE);
+						break;
+					case 6: make_burned(HBurned + 25, TRUE);
+						break;
+					case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
+						break;
+					case 8: (void) make_hallucinated(HHallucination + 25, TRUE, 0L);
+						break;
+					case 9: make_feared(HFeared + 25, TRUE);
+						break;
+					case 10: make_dimmed(HDimmed + 25, TRUE);
+						break;
+					}
+
+				} else u.berserktime = 25;
+
+			}
+
 			if ((!rn2(player_shades_of_grey() ? 200 : (u.ualign.type == A_LAWFUL) ? 1000 : (u.ualign.type == A_NEUTRAL) ? 500 : 1000)) && (!issoviet || !rn2(5)) ) {
 			pline("You are bleeding out from your stinging injury!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Ne prosto poteryayet odnu maksimal'nuyu khitpoint. Poteryat' ikh vsekh, i nadeyus', chto yeshche odnu glupuyu smert' vse ravno nichego ne poluchite vy." : "Ffffffffschhhhhhhhhh!");
@@ -6146,6 +6218,7 @@ struct monst *mon;
 		if (uarm && uarm->oartifact == ART_IMPRACTICAL_COMBAT_WEAR) armpro++;
 		if (uarmc && uarmc->oartifact == ART_RESISTANT_PUNCHING_BAG) armpro++;
 		if (uarmc && Role_if(PM_PRIEST) && itemhasappearance(uarmc, APP_ORNAMENTAL_COPE) ) armpro++;
+		if (uwep && uwep->oartifact == ART_DAINTY_SLOAD) armpro++;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) armpro++;
 		if (Race_if(PM_INKA)) armpro++;
 		if (ACURR(A_CHA) >= 18) armpro++;
@@ -8156,7 +8229,7 @@ dopois:
 			hitmsg(mtmp, mattk);
 			if (mtmp->mcan) break;
 			/* Continue below */
-		} else if (rn2(5) && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_COPPERED_OFF_FROM_ME) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) && (dmgtype(youmonst.data, AD_SEDU) || (uarmg && uarmg->oartifact == ART_LORSKEL_S_SPECIAL_PROTECTI)
+		} else if (rn2(5) && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_COPPERED_OFF_FROM_ME) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) && (dmgtype(youmonst.data, AD_SEDU) || (uarmg && uarmg->oartifact == ART_LORSKEL_S_SPECIAL_PROTECTI) || (uwep && uwep->oartifact == ART_ONE_HUNDRED_STARS)
 			|| dmgtype(youmonst.data, AD_SSEX)
 						) ) {
 			pline("%s %s.", Monnam(mtmp), mtmp->minvent ?

@@ -1105,6 +1105,10 @@ nh_timeout()
 
 	if (!rn2(200) && have_badeffectstone() ) badeffect();
 
+	if (!rn2(200) && uwep && uwep->oartifact == ART_WHAW_WHAW) badeffect();
+
+	if (!rn2(200) && u.twoweap && uswapwep && uswapwep->oartifact == ART_WHAW_WHAW) badeffect();
+
 	if (!rn2(200) && uarmf && uarmf->oartifact == ART_ELENA_S_CHALLENGE ) badeffect();
 
 	if (!rn2(100) && u.uprops[RANDOM_RUMORS].extrinsic) {

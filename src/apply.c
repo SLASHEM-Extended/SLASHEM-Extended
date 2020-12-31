@@ -5250,7 +5250,7 @@ doapply()
 		(void) pick_lock(&obj);
 		break;
 	case TELEPHONE:
-		if (obj && obj->spe > 0) {
+		if (obj && obj->spe > ((obj->oartifact == ART_BUNDLEABRUM_OF_INVOCATION) ? -10 : 0)) {
 			obj->spe--;
 			You("dial a number...");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vy nabrali nepravil'nyy nomer, slabak!" : "BeepbeepBeepbeepbeepbeepBeepbeepbeep!");

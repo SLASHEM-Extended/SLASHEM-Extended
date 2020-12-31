@@ -2712,6 +2712,7 @@ int x;
 		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_SCRATCHE_HUSSY) tmp += 3;
 		if (uarmf && uarmf->oartifact == ART_KATHARINA_S_LOVELINESS) tmp += 10;
+		if (uwep && uwep->oartifact == ART_DAINTY_SLOAD) tmp += 3;
 
 		if (RngeCoquetry) tmp += 5;
 		if (FemtrapActiveSolvejg) tmp += 5;
@@ -2845,6 +2846,8 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_AMATEURSPORTS) tmp += 3;
 		if (uarmf && uarmf->oartifact == ART_EVERYWHERE_AT_ONCE) tmp += 3;
 		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
+		if (uwep && uwep->oartifact == ART_LONGBONE_OF_BANANA) tmp += 3;
+		if (uwep && uwep->oartifact == ART_LONGBOW_OF_BANANA) tmp += 3;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (PlayerBleeds > 100) tmp -= 2;

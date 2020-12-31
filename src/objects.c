@@ -3044,7 +3044,7 @@ BOOTS("dummy boots AK", "flat-soled shoes",
 BOOTS("dummy boots AL", "regular sneakers", /* sexy flats */
 		0, 1,  0,  0, 2, 8, 50,  9, 1, MT_LEATHER, CLR_CYAN, 1, APP_REGULAR_SNEAKERS),
 BOOTS("dummy boots AM", "exceptional sneakers",
-		0, 1,  0,  0, 2, 8, 50,  9, 1, MT_SHADOWSTUFF, CLR_BRIGHT_BLUE, 1, 0),
+		0, 1,  0,  0, 2, 8, 50,  9, 1, MT_SHADOWSTUFF, CLR_BRIGHT_BLUE, 1, APP_EXCEPTIONAL_SNEAKERS),
 BOOTS("dummy boots AN", "elite sneakers",
 		0, 1,  0,  0, 2, 8, 50,  9, 1, MT_LEATHER, CLR_WHITE, 1, APP_ELITE_SNEAKERS),
 BOOTS("dummy boots AO", "fur boots", /* sexy flats */

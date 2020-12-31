@@ -7756,8 +7756,454 @@ A("Havana Nero",				CIGAR, /* disintegration resistance when wielded, cut nutrit
 	FIRE(4,12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
 A("Lucky Melee Attacks",				CIGARETTE, /* +10 melee to-hit when wielded */
-	(SPFX_RESTR|SPFX_LUCK), 0, 0,
+	(SPFX_RESTR|SPFX_LUCK|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("The Eighth Badge",				COMMANDER_SUIT, /* pokemon never betray you while worn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Elbergofukyourself",				CRAPPY_SPEAR, /* monsters ignore Elbereth */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(2, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Omghaxereth",				PLASTIC_MACE, /* E is as powerful as scare monster scrolls, quaversal effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("The Vore of the Rings",				HELM_OF_HUNGER, /* you can eat all rings */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Political Correctness for Game Design 101",				SPE_HEALING, /* randart, wielding it mimics SJW nasty trap effects */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("H.'s Gangster Kicks",				LOW_BOOTS, /* initialized to always be exceptional sneakers, knives do +2 melee damage and throwing weapons have +1 multishot */
+	(SPFX_RESTR|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 6000L ),
+
+A("The Longbone of Banana",				BONE_CLUB, /* +3 DEX when wielded */
+	(SPFX_RESTR|SPFX_HALRES), 0, 0,
+	PHYS(0, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("The Longbow of Banana",				YUMI, /* +3 DEX when wielded */
+	(SPFX_RESTR|SPFX_HALRES), 0, 0,
+	PHYS(0, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Fleecyswandir",				SEXPLAY_WHIP,
+	(SPFX_RESTR|SPFX_HALRES), 0, 0,
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Hallucolorswandir",				PROSTITUTE_SHOE, /* everything displays in fleecy colors */
+	(SPFX_RESTR|SPFX_HALRES|SPFX_EVIL), 0, 0,
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Veryverydarkgreyswandir",				ARCANE_RAPIER,
+	(SPFX_RESTR|SPFX_HALRES), 0, 0,
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 6000L ),
+
+A("Blackswandir",				LOWER_ARM_BLADE, /* hallu res, stealth and invisibility if you're the batman race */
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Darkerthanblackswandir",				DARK_BAR,
+	(SPFX_RESTR|SPFX_HALRES), 0, 0,
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 7000L ),
+
+A("Wtfswandir",				DROVEN_BOW,
+	(SPFX_RESTR|SPFX_HALRES), 0, 0,
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 6000L ),
+
+A("Brighterthanwhiteswandir",				PAPER_SWORD,
+	(SPFX_RESTR|SPFX_HALRES), 0, 0,
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 4000L ),
+
+A("Ultravioletswandir",				YITH_TENTACLE,
+	(SPFX_RESTR|SPFX_HALRES|SPFX_EVIL), 0, 0,
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Hooloovooswandir",				MYSTERY_PICK,
+	(SPFX_RESTR|SPFX_HALRES|SPFX_INTEL), 0, 0,
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 5000L ),
+
+A("Octarineswandir",				RADIOACTIVE_DAGGER, /* etherwind when wielded */
+	(SPFX_RESTR|SPFX_HALRES|SPFX_REFLECT|SPFX_EVIL), 0, 0,
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 9000L ),
+
+A("#F183D5swandir",				PARASOL,
+	(SPFX_RESTR|SPFX_HALRES), 0, 0,
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Agswandir",				DAGGER,
+	(SPFX_RESTR|SPFX_HALRES), 0, 0,
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Constructionworkeryellowswandir",				SHARP_AXE,
+	(SPFX_RESTR|SPFX_HALRES), 0, 0,
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Schoolbusyellowswandir",				BROOM,
+	(SPFX_RESTR|SPFX_HALRES), 0, 0,
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Aquamarineswandir",				BULLETPROOF_CHAINWHIP,
+	(SPFX_RESTR|SPFX_HALRES), 0, 0,
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Wizardswandir",				CONTRO_STAFF,
+	(SPFX_RESTR|SPFX_HALRES), 0, 0,
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Clayswandir",				MILL_PAIL,
+	(SPFX_RESTR|SPFX_HALRES), 0, 0,
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Yayswandir",				SPECIAL_MOP,
+	(SPFX_RESTR|SPFX_HALRES|SPFX_LUCK), 0, 0,
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Bundleswandir",				SILK_SPEAR,
+	(SPFX_RESTR|SPFX_HALRES), 0, 0,
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Excalibundle",					SILK_SPEAR,
+	(SPFX_RESTR|SPFX_SEEK|SPFX_DEFN|SPFX_INTEL|SPFX_SEARCH), 0, 0,
+	PHYS(5,10),	DRLI(0,0), NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 4000L ),
+
+A("Fleecybrand",				SILK_SPEAR,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	STUN(5, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Ogrebundle",		SHOOMDENT,
+	(SPFX_RESTR|SPFX_DCLAS), 0, S_OGRE,
+	PHYS(5,0),	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Trollsbundle",                 CARDBOARD_FAN,
+	(SPFX_RESTR|SPFX_DCLAS), 0, S_TROLL,
+	PHYS(5,0),	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Stormbundler",               SOFT_LADY_SHOE,
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_INTEL|SPFX_DRLI), 0, 0,
+	DRLI(5,2),	DRLI(0,0),	NO_CARY,	0, A_CHAOTIC, NON_PM, NON_PM, 8000L ),
+
+A("The Longbundle of Diana", ICKY_BLADE,
+	(SPFX_RESTR|SPFX_INTEL|SPFX_REFLECT|SPFX_ESP), 0, 0,
+	PHYS(5,0),	NO_DFNS,	NO_CARY,
+	0, A_CHAOTIC, 0, NON_PM, 4000L ),
+
+A("Quiver of Fleecy Arrows",				PAPER_ARROW,
+	(SPFX_RESTR), 0, 0,
+	PHYS(10, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("The Orb of Fleece",	CRYSTAL_BALL, /* invisibility and magic resistance when wielded */
+	(SPFX_RESTR|SPFX_INTEL|SPFX_ESP|SPFX_HSPDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 2500L ),
+
+A("The Eye of the FleecyBundle",	AMULET_OF_NECK_BRACE,
+	(SPFX_RESTR|SPFX_INTEL|SPFX_EREGEN|SPFX_HSPDAM), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,
+	0, A_NEUTRAL, NON_PM, NON_PM, 4000L ),
+
+A("Fear Brand",                 LONG_SWORD, /* resist fear when wielded */
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 6),	NO_ATTK,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Faith Brand",                 HEAVY_LONG_SWORD, /* alignment record recovers by one with 1 in 200 chance per turn */
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 6),	NO_ATTK,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Fleece Brand",				LONG_SWORD,
+	(SPFX_RESTR|SPFX_HPHDAM), 0, 0,
+	PHYS(5, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Bundlebundlebundle Brand",				MAGICAL_PAINTBRUSH,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	STUN(5, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Brand Brand",				ASTERISK, /* mutters 'sponsored by nuka-cola' all the time */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(5, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Bundle of Opening",				WAN_OPENING,
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Candelebundle",				NATURAL_CANDLE,
+	(SPFX_RESTR|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Bundleabrum of Invocation",				TELEPHONE, /* can be applied successfully as long as it's better than -10 */
+	(SPFX_RESTR|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("The Book of the Fleecy Bundlebundlebundle",				SPE_APPLY_NAIL_POLISH,
+	(SPFX_RESTR|SPFX_HPHDAM|SPFX_HSPDAM|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Enchanteasy",				DROVEN_DAGGER, /* hitting something with it while it's less than +7 has 1 in 1000 chance of adding +1 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Elven Dooh",				DARK_ELVEN_DAGGER,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 16), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 8000L ),
+
+A("True Masterpiece",				QUALITY_AXE, /* discount action when wielded */
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Autosmash",				NANO_AXE,
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Guns In My Head",				SPIRIT_AXE, /* +1 multishot with ranged weapons while you wield it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Everything Else Too",				ETERNIUM_MATTOCK, /* disintegration resistance when wielded */
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Blackgash",				ETERNIUM_BLADE, /* disintegration and death resistance when wielded */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Double Me!",				AUTOMATIC_KATANA, /* double attacks */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Censerhero",				OSBANE_KATANA,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	PHYS(5, 6), DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("True Aim",				ETERNIUM_SABER,
+	(SPFX_RESTR), 0, 0,
+	PHYS(16, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Whaw Whaw",				WILD_BLADE, /* random bad effects and horror trap effect while wielded */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(20, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Bong-Gong",				ALLOY_CLUB,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Sharptooth Sayer",				JAGGED_TOOTH_CLUB, /* very fast speed while wielded */
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Doors Are No Obstacles",				HUGE_CLUB, /* can ooze through doors while wielded */
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Makeshift Bridge",				LOG, /* waterwalking when wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Go Away You Stupid Bee",				FLY_SWATTER,
+	(SPFX_RESTR|SPFX_DCLAS), 0, S_ANT,
+	PHYS(5, 26), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Exterminate The Bugs",				FLY_SWATTER,
+	(SPFX_RESTR|SPFX_DCLAS|SPFX_SEEK), 0, S_XAN,
+	PHYS(10, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Drop Everything And Kill The Mosquito",				INSECT_SQUASHER, /* if something stings you, you go berserk */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(6, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Dainty Sload",				BOAT_OAR, /* +3 CHA and improves MC by one when wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 600L ),
+
+A("Thirst For Blood",				HEAVY_GRINDER, /* bloodthirsty */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(6, 4), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 4000L ),
+
+A("Discharger",				SILVER_MACE,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	ELEC(8, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Melated Metal",				BRONZE_MACE, /* if you hit something, 1 in 1000 that you can change the material of a worn armor piece to copper, but if you choose nothing or an item that's already made of bronze, the mace disenchants itself up to -20 */
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Sneakeritis",				ELVEN_MACE,
+	(SPFX_RESTR|SPFX_STLTH), 0, 0,
+	PHYS(2, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Wanderzapper",				KAMEREL_VAJRA, /* zapping a wand trains devices skill twice as fast */
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Death To All Who Oppose Us",				BACKHAND_MACE,
+	(SPFX_RESTR|SPFX_BEHEAD), 0, 0,
+	PHYS(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Wonderlight",				SHINY_STAR, /* extra poison damage, +2 light radius */
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 9000L ),
+
+A("Shred Them!",				STONE_STAR, /* diminished bleeding, petrification resistance */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Timeshifter",				YESTERDAY_STAR, /* 1 in 10 chance per turn that the turn counter doesn't increase, inertia times out twice as fast */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Charsi's Throwaway Tool",				NOVICE_HAMMER, /* no specialties */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
+
+A("Orgruk's Training",				NOVICE_HAMMER,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Psi-Tec",				NOVICE_HAMMER, /* psi resistance and technicality when wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Nursing The Flame",				FIRE_STICK, /* +1 light radius */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_ATTK), 0, 0,
+	FIRE(10, 10), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Real Walking",				WALKING_STICK, /* anastasia trap effect, resist poison, can walk over farmland */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(6, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7500L ),
+
+A("Wizmelee",				MASSIVE_STAFF,
+	(SPFX_RESTR), 0, 0,
+	PHYS(12, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("At Last You Found It",				BATTLE_STAFF,
+	(SPFX_RESTR|SPFX_SEARCH), 0, 0,
+	PHYS(8, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Not Quite A Noob",				NOOB_POLLAX,
+	(SPFX_RESTR), 0, 0,
+	PHYS(4, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("One Hundred Stars",				ETERNAL_POLE, /* you resist item theft like a nymph, flying */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Bohem Fuelkanal",				BOHEMIAN_EAR_SPOON, /* 1 in 100 chance to attempt to slow down the target, but it can also resist */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Cha-Shatter",				BRITTLE_SPEAR, /* degrades upon hitting something, including when thrown */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(2, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Lightning Stroke",				DROVEN_SPEAR,
+	(SPFX_RESTR|SPFX_BEHEAD), 0, 0,
+	PHYS(2, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Dumpsterman",				RANDOSPEAR, /* full nutrients */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Searsharp",				SILVER_SPEAR, /* undead warning */
+	(SPFX_RESTR), 0, 0,
+	PHYS(8, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Gift To Nature",				INKA_SPEAR, /* you can walk through trees */
+	(SPFX_RESTR|SPFX_DFLAG1), 0, M1_ANIMAL,
+	PHYS(10, 16), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 3000L ),
+
+A("The Stake of Khazad-Dum",				DWARVISH_SPEAR,
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Selfbane",				DRAGON_SPEAR,
+	(SPFX_RESTR|SPFX_DCLAS|SPFX_REFLECT), 0, S_DRAGON,
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Danger Sign",				ASBESTOS_JAVELIN, /* poison and contamination resistance when wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Hoe BlackPro",				FOURDENT,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	PHYS(2, 4), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1600L ),
+
+A("Edergrade",				PLOW, /* full nutrients */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Cosomonono",				ELVEN_LANCE,
+	(SPFX_RESTR), 0, 0,
+	PHYS(4, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Hal Scope",				SNIPESLING, /* infravision when wielded */
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("M1 Garand",				HUNTING_RIFLE,
+	(SPFX_RESTR), 0, 0,
+	PHYS(10, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Sig-SG 552",				ASSAULT_RIFLE,
+	(SPFX_RESTR|SPFX_WARN), 0, 0,
+	PHYS(4, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Cronvert",				HEAVENLY_WHIP, /* 90% chance to resist MS_CONVERT taunts */
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Double Mystery",				CONUNDRUM_PICK, /* EXP boost, gives asgardian level-up intrinsics when you do level up while having it wielded */
+	(SPFX_RESTR), 0, 0,
+	PHYS(4, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Digsru",				NANO_PICK, /* can train wedi skill by digging or forcing with it */
+	(SPFX_RESTR), 0, 0,
+	PHYS(3, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Irmgar's Non-Inventory",				FISHING_POLE, /* no specialties */
+	(SPFX_RESTR|SPFX_INTEL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 2000L ),
+
+A("Wowzer Spike",				DARK_HORN,
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Allelujah",				SKY_HORN,
+	(SPFX_RESTR|SPFX_PROTEC), 0, 0,
+	PHYS(6, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Doubleburn",				TORCH,
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Flamescorch",				TORCH,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(0, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Thunk Thunk",				TORCH,
+	(SPFX_RESTR), 0, 0,
+	PHYS(4, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Darklite",				TORCH, /* +2 light radius while wielding a lit one */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Astraltor-tschh",				TORCH, /* astral vision while it's lit */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Alora's Practice",				BLUE_LIGHTSABER,
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Rosh Trainor",				RED_DOUBLE_LIGHTSABER, /* all lightsaber forms train twice as fast */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 2), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 5000L ),
+
+A("Great Antilles",				YELLOW_LIGHTSABER, /* swimming when wielded */
+	(SPFX_RESTR), 0, 0,
+	PHYS(10, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
 /*
  *	Stormbringer only has a 2 because it can drain a level,

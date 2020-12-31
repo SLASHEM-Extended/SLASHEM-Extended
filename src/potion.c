@@ -1565,6 +1565,22 @@ maybewedgeheels()
 
 }
 
+/* does everything display in fleecy colors? (for mapglyph.c) --Amy */
+boolean
+everythingfleecy()
+{
+	if (uwep && uwep->oartifact == ART_ALASSEA_TELEMNAR) return TRUE;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ALASSEA_TELEMNAR) return TRUE;
+	if (uwep && uwep->oartifact == ART_THRANDUIL_LOSSEHELIN) return TRUE;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN) return TRUE;
+	if (uwep && uwep->oartifact == ART_HALLUCOLORSWANDIR) return TRUE;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_HALLUCOLORSWANDIR) return TRUE;
+	if (uarm && uarm->oartifact == ART_MOEBIUS_ARMOR) return TRUE;
+
+	return FALSE;
+
+}
+
 boolean
 playerextrinsicaggravatemon()
 {
@@ -1675,6 +1691,7 @@ playerextrinsicpoisonres()
 	if ((uarmh && uarmh->oartifact == ART_TARI_FEFALAS) || (uarmg && uarmg->oartifact == ART_SPECTRATOR && (moves % 5 == 0) ) || (uarmf && uarmf->oartifact == ART_LEATHER_PUMPS_OF_HORROR) || (uarmf && uarmf->oartifact == ART_RHEA_S_COMBAT_PUMPS) || (uamul && uamul->oartifact == ART_WARNED_AND_PROTECTED)) return TRUE;
 	if ((uarmh && uarmh->oartifact == ART_GREEN_STATUS) || (uamul && uamul->oartifact == ART_GOOD_BEE) || (uamul && uamul->oartifact == ART_BUEING) || (uwep && uwep->oartifact == ART_ERU_ILUVATAR_S_BIBLE) || (uarmh && uarmh->oartifact == ART_WAR_MASK_OF_DURIN) || (uwep && uwep->oartifact == ART_SERPENT_S_TOOTH)) return TRUE;
 	if ((uarmf && uarmf->oartifact == ART_GRASSHOPPER_S_ANTIDOTE) || (uarmf && uarmf->oartifact == ART_AMPERSAND_HAREM) || (uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL) || (uarmf && uarmf->oartifact == ART_RUTH_S_UNDEAD_INLAY) || (uamul && uamul->oartifact == ART_AMULET_OF_SPLENDOR) || (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (uarmf && uarmf->oartifact == ART_NOW_YOU_LOOK_LIKE_A_BEGGAR)) return TRUE;
+	if ((uwep && uwep->oartifact == ART_REAL_WALKING) || (uwep && uwep->oartifact == ART_DANGER_SIGN)) return TRUE;
 
 	return FALSE;
 }
@@ -1695,7 +1712,7 @@ playerextrinsicspeed()
 	if ((uwep && uwep->oartifact == ART_GARNET_ROD) || (uwep && uwep->oartifact == ART_THREE_HEADED_FLAIL) || (uwep && uwep->oartifact == ART_POGO_STICK) || u.uprops[MULTISHOES].extrinsic) return TRUE;
 	if ((Role_if(PM_TRANSVESTITE) && PlayerInHighHeels) || (Role_if(PM_TOPMODEL) && PlayerInHighHeels) ) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_MAREYOUNGWOMAN_ACTION && (is_pool(u.ux, u.uy) || (levl[u.ux][u.uy].typ == FOUNTAIN)) ) return TRUE;
-	if ((uarmf && uarmf->oartifact == ART_FASTER_THAN_ALL_OTHERS_INT) || (uleft && uleft->oartifact == ART_POLYFAST) || (uright && uright->oartifact == ART_POLYFAST)) return TRUE;
+	if ((uarmf && uarmf->oartifact == ART_FASTER_THAN_ALL_OTHERS_INT) || (uleft && uleft->oartifact == ART_POLYFAST) || (uright && uright->oartifact == ART_POLYFAST) || (uwep && uwep->oartifact == ART_SHARPTOOTH_SAYER)) return TRUE;
 
 	return FALSE;
 }

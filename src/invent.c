@@ -2029,7 +2029,7 @@ sjwcheck(nastynumber)
 int nastynumber;
 {
 	int sjwlevel;
-	if (!Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && !isdorian) return FALSE;
+	if (!Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && !(uwep && uwep->oartifact == ART_POLITICAL_CORRECTNESS_FOR_) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_POLITICAL_CORRECTNESS_FOR_) && !isdorian) return FALSE;
 
 	sjwlevel = u.ulevel + u.xtralevelmult - 1; /* because u.xtralevelmult starts at 1, not 0 */
 
@@ -2045,7 +2045,7 @@ int nastynumber;
 		if (u.ulevel >= 28 && u.dorian28 == nastynumber) return TRUE;
 	}
 
-	if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) {
+	if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR) || (uwep && uwep->oartifact == ART_POLITICAL_CORRECTNESS_FOR_) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_POLITICAL_CORRECTNESS_FOR_) ) {
 	switch (u.ulevel) {
 
 		case 1:
@@ -20845,6 +20845,228 @@ boolean knoweverything;
 					pline("Artifact specs: +4 to-hit and +12 damage against fire-susceptible monsters, disintegration resistance and cut nutrition when wielded. Any similarities to a potential real-life cigar brand are purely coincidental."); break;
 				case ART_LUCKY_MELEE_ATTACKS:
 					pline("Artifact specs: +10 melee to-hit and acts as a luckstone when wielded. No product placement. Demo originally suggested a certain other name for this artifact but nope, we're not having that."); break;
+				case ART_EIGHTH_BADGE:
+					pline("Artifact specs: pokemon never betray you while wearing it."); break;
+				case ART_ELBERGOFUKYOURSELF:
+					pline("Artifact specs: +2 to-hit and +12 damage, monsters ignore Elbereth engravings while you're wielding it."); break;
+				case ART_OMGHAXERETH:
+					pline("Artifact specs: makes Elbereth much more powerful, quaversal effect while wielded."); break;
+				case ART_VORE_OF_THE_RINGS:
+					pline("Artifact specs: while wearing it, you can eat all rings for a chance to get their effects intrinsically."); break;
+				case ART_POLITICAL_CORRECTNESS_FOR_:
+					pline("Artifact specs: wielding it mimics SJW nasty trap effects, so you probably shouldn't do that."); break;
+				case ART_H__S_GANGSTER_KICKS:
+					pline("Artifact specs: stealth while worn, improves your knives' melee damage by 2 and your throwing weapons have +1 multishot, lawful."); break;
+				case ART_LONGBONE_OF_BANANA:
+					pline("Artifact specs: +4 damage, +3 dexterity and hallucination resistance when wielded."); break;
+				case ART_LONGBOW_OF_BANANA:
+					pline("Artifact specs: +4 damage, +3 dexterity and hallucination resistance when wielded."); break;
+				case ART_FLEECYSWANDIR:
+					pline("Artifact specs: double damage and hallucination resistance when wielded."); break;
+				case ART_HALLUCOLORSWANDIR:
+					pline("Artifact specs: double damage and hallucination resistance when wielded, causes all glyphs to be fleecy-colored."); break;
+				case ART_VERYVERYDARKGREYSWANDIR:
+					pline("Artifact specs: double damage and hallucination resistance when wielded, lawful."); break;
+				case ART_BLACKSWANDIR:
+					pline("Artifact specs: double damage. If you're of the batman race, wielding it also grants hallucination resistance, stealth and invisibility."); break;
+				case ART_DARKERTHANBLACKSWANDIR:
+					pline("Artifact specs: double damage and hallucination resistance when wielded, chaotic."); break;
+				case ART_WTFSWANDIR:
+					pline("Artifact specs: double damage and hallucination resistance when wielded, chaotic."); break;
+				case ART_BRIGHTERTHANWHITESWANDIR:
+					pline("Artifact specs: double damage and hallucination resistance when wielded, lawful."); break;
+				case ART_ULTRAVIOLETSWANDIR:
+					pline("Artifact specs: double damage and hallucination resistance when wielded."); break;
+				case ART_HOOLOOVOOSWANDIR:
+					pline("Artifact specs: double damage and hallucination resistance when wielded, neutral."); break;
+				case ART_OCTARINESWANDIR:
+					pline("Artifact specs: double damage, hallucination resistance, reflection and etherwind when wielded."); break;
+				case ART__F___D_SWANDIR:
+					pline("Artifact specs: double damage and hallucination resistance when wielded."); break;
+				case ART_AGSWANDIR:
+					pline("Artifact specs: double damage and hallucination resistance when wielded."); break;
+				case ART_CONSTRUCTIONWORKERYELLOWSW:
+					pline("Artifact specs: double damage and hallucination resistance when wielded."); break;
+				case ART_SCHOOLBUSYELLOWSWANDIR:
+					pline("Artifact specs: double damage and hallucination resistance when wielded."); break;
+				case ART_AQUAMARINESWANDIR:
+					pline("Artifact specs: double damage and hallucination resistance when wielded."); break;
+				case ART_WIZARDSWANDIR:
+					pline("Artifact specs: double damage and hallucination resistance when wielded."); break;
+				case ART_CLAYSWANDIR:
+					pline("Artifact specs: double damage and hallucination resistance when wielded."); break;
+				case ART_YAYSWANDIR:
+					pline("Artifact specs: double damage, acts as a luckstone and hallucination resistance when wielded."); break;
+				case ART_BUNDLESWANDIR:
+					pline("Artifact specs: double damage and hallucination resistance when wielded."); break;
+				case ART_EXCALIBUNDLE:
+					pline("Artifact specs: +5 to-hit and +10 damage, searching and drain resistance when wielded, lawful."); break;
+				case ART_FLEECYBRAND:
+					pline("Artifact specs: +5 to-hit and double stun damage."); break;
+				case ART_OGREBUNDLE:
+					pline("Artifact specs: +5 to-hit and double damage to ogres."); break;
+				case ART_TROLLSBUNDLE:
+					pline("Artifact specs: +5 to-hit and double damage to trolls."); break;
+				case ART_STORMBUNDLER:
+					pline("Artifact specs: +5 to-hit and +2 drain life damage, can drain life from targets, drain resistance when wielded, chaotic. Unlike Stormbringer, this weapon isn't bloodthirsty."); break;
+				case ART_LONGBUNDLE_OF_DIANA:
+					pline("Artifact specs: +5 to-hit and double damage, reflection and ESP when wielded, chaotic."); break;
+				case ART_QUIVER_OF_FLEECY_ARROWS:
+					pline("Artifact specs: +10 to-hit and +2 damage."); break;
+				case ART_ORB_OF_FLEECE:
+					pline("Artifact specs: ESP, half spell damage, invisibility and magic resistance when wielded, lawful."); break;
+				case ART_EYE_OF_THE_FLEECYBUNDLE:
+					pline("Artifact specs: energy regeneration and half spell damage when worn, neutral."); break;
+				case ART_FEAR_BRAND:
+					pline("Artifact specs: +5 to-hit and +6 damage, resist fear when wielded."); break;
+				case ART_FAITH_BRAND:
+					pline("Artifact specs: +5 to-hit and +6 damage, your alignment record slowly goes up while wielding it (but not above the current maximum)."); break;
+				case ART_FLEECE_BRAND:
+					pline("Artifact specs: +5 to-hit and +6 damage, half physical damage when wielded."); break;
+				case ART_BUNDLEBUNDLEBUNDLE_BRAND:
+					pline("Artifact specs: +5 to-hit and +6 stun damage."); break;
+				case ART_BRAND_BRAND:
+					pline("Artifact specs: +5 to-hit and +6 damage, spouts commercials when wielded."); break;
+				case ART_BUNDLE_OF_OPENING:
+					pline("Artifact specs: no specialties."); break;
+				case ART_CANDELEBUNDLE:
+					pline("Artifact specs: half physical damage when wielded. The name is not a misspelling."); break;
+				case ART_BUNDLEABRUM_OF_INVOCATION:
+					pline("Artifact specs: half physical damage when wielded, applying it will call demons as long as the enchantment value is better than -10."); break;
+				case ART_BOOK_OF_THE_FLEECY_BUNDLEB:
+					pline("Artifact specs: half physical and spell damage as well as reflection while wielded."); break;
+				case ART_ENCHANTEASY:
+					pline("Artifact specs: if you hit something with it while its enchantment is below +7, 1 in 1000 chance of gaining a point of enchantment."); break;
+				case ART_ELVEN_DOOH:
+					pline("Artifact specs: +16 damage, chaotic."); break;
+				case ART_TRUE_MASTERPIECE:
+					pline("Artifact specs: +5 to-hit and +6 damage, discount action when wielded."); break;
+				case ART_AUTOSMASH:
+					pline("Artifact specs: +5 to-hit and +8 damage."); break;
+				case ART_GUNS_IN_MY_HEAD:
+					pline("Artifact specs: while wielding it, your ranged attacks have +1 multishot."); break;
+				case ART_EVERYTHING_ELSE_TOO:
+					pline("Artifact specs: +6 to-hit and +4 damage, disintegration resistance when wielded."); break;
+				case ART_BLACKGASH:
+					pline("Artifact specs: +2 to-hit and +10 damage, disintegration and death resistance when wielded."); break;
+				case ART_DOUBLE_ME_:
+					pline("Artifact specs: double attacks when wielded."); break;
+				case ART_CENSERHERO:
+					pline("Artifact specs: +5 to-hit and +6 damage, drain resistance when wielded."); break;
+				case ART_TRUE_AIM:
+					pline("Artifact specs: +16 to-hit and +2 damage."); break;
+				case ART_WHAW_WHAW:
+					pline("Artifact specs: +20 to-hit and +20 damage, random bad effects and horror trap effect when wielded."); break;
+				case ART_BONG_GONG:
+					pline("Artifact specs: +6 damage."); break;
+				case ART_SHARPTOOTH_SAYER:
+					pline("Artifact specs: +5 to-hit and +6 damage, very fast speed when wielded."); break;
+				case ART_DOORS_ARE_NO_OBSTACLES:
+					pline("Artifact specs: +5 to-hit and +4 damage, allows you to walk through doors while wielded."); break;
+				case ART_MAKESHIFT_BRIDGE:
+					pline("Artifact specs: waterwalking when wielded."); break;
+				case ART_GO_AWAY_YOU_STUPID_BEE:
+					pline("Artifact specs: +5 to-hit and +26 damage versus Team Ant."); break;
+				case ART_EXTERMINATE_THE_BUGS:
+					pline("Artifact specs: +10 to-hit and +20 damage versus team x, searching when wielded."); break;
+				case ART_DROP_EVERYTHING_AND_KILL_T:
+					pline("Artifact specs: +6 to-hit and +6 damage; if something stings you while you wield it, you go berserk."); break;
+				case ART_DAINTY_SLOAD:
+					pline("Artifact specs: +3 charisma and +1 magic cancellation when wielded."); break;
+				case ART_THIRST_FOR_BLOOD:
+					pline("Artifact specs: +6 to-hit and +4 damage, bloodthirsty, chaotic."); break;
+				case ART_DISCHARGER:
+					pline("Artifact specs: +8 to-hit and +10 damage to shock-susceptible monsters."); break;
+				case ART_MELATED_METAL:
+					pline("Artifact specs: +6 to-hit and +6 damage. If you hit something with it, there's a 1 in 1000 chance that you can change the material of a worn armor piece to copper, but if you pick no item or one that is already made of copper, the mace disenchants itself."); break;
+				case ART_SNEAKERITIS:
+					pline("Artifact specs: +2 to-hit and +4 damage, stealth when wielded."); break;
+				case ART_WANDERZAPPER:
+					pline("Artifact specs: +6 to-hit and +6 damage, zapping a wand while wielding it trains the device skill twice as fast."); break;
+				case ART_DEATH_TO_ALL_WHO_OPPOSE_US:
+					pline("Artifact specs: +2 to-hit and +2 damage, beheads targets."); break;
+				case ART_WONDERLIGHT:
+					pline("Artifact specs: +6 to-hit and +2 damage, deals extra poison damage and increases your light radius by two squares."); break;
+				case ART_SHRED_THEM_:
+					pline("Artifact specs: +10 damage, diminished bleeding and petrification resistance when wielded."); break;
+				case ART_TIMESHIFTER:
+					pline("Artifact specs: +2 to-hit and +2 damage, time passes slightly more slowly, inertia times out faster while wielding it."); break;
+				case ART_CHARSI_S_THROWAWAY_TOOL:
+					pline("Artifact specs: no specialties."); break;
+				case ART_ORGRUK_S_TRAINING:
+					pline("Artifact specs: +4 damage."); break;
+				case ART_PSI_TEC:
+					pline("Artifact specs: psi resistance and technicality when wielded."); break;
+				case ART_NURSING_THE_FLAME:
+					pline("Artifact specs: +10 to-hit and +10 damage to fire-susceptible targets, fire resistance when wielded, increases your light radius by one."); break;
+				case ART_REAL_WALKING:
+					pline("Artifact specs: +6 to-hit and +8 damage, resist poison and can walk over farmland while wielded but heaps of shit will spawn that you'll trigger even if you fly."); break;
+				case ART_WIZMELEE:
+					pline("Artifact specs: +12 to-hit and +10 damage."); break;
+				case ART_AT_LAST_YOU_FOUND_IT:
+					pline("Artifact specs: +8 to-hit and +6 damage, searching when wielded."); break;
+				case ART_NOT_QUITE_A_NOOB:
+					pline("Artifact specs: +4 to-hit and +8 damage."); break;
+				case ART_ONE_HUNDRED_STARS:
+					pline("Artifact specs: flying and you become resistant to item theft while wielding it."); break;
+				case ART_BOHEM_FUELKANAL:
+					pline("Artifact specs: +2 to-hit and +4 damage, occasionally tries to slow targets if you apply it at range."); break;
+				case ART_CHA_SHATTER:
+					pline("Artifact specs: +2 to-hit and +20 damage, but can degrade upon hitting something."); break;
+				case ART_LIGHTNING_STROKE:
+					pline("Artifact specs: +2 to-hit and +8 damage, bisects targets."); break;
+				case ART_DUMPSTERMAN:
+					pline("Artifact specs: +2 to-hit and +8 damage, full nutrients when wielded."); break;
+				case ART_SEARSHARP:
+					pline("Artifact specs: +8 to-hit and +8 damage, undead warning when wielded."); break;
+				case ART_GIFT_TO_NATURE:
+					pline("Artifact specs: +10 to-hit and +16 damage to animals, allows you to walk through trees, lawful."); break;
+				case ART_STAKE_OF_KHAZAD_DUM:
+					pline("Artifact specs: +6 to-hit and +8 damage."); break;
+				case ART_SELFBANE:
+					pline("Artifact specs: +5 to-hit and double damage to dragons, reflection when wielded."); break;
+				case ART_DANGER_SIGN:
+					pline("Artifact specs: poison and contamination resistance when wielded."); break;
+				case ART_HOE_BLACKPRO:
+					pline("Artifact specs: +2 to-hit and +4 damage, fire resistance when wielded."); break;
+				case ART_EDERGRADE:
+					pline("Artifact specs: +2 to-hit and +6 damage, full nutrients when wielded."); break;
+				case ART_COSOMONONO:
+					pline("Artifact specs: +4 to-hit and +4 damage."); break;
+				case ART_HAL_SCOPE:
+					pline("Artifact specs: +6 to-hit and +2 damage, infravision when wielded."); break;
+				case ART_M__GARAND:
+					pline("Artifact specs: +10 to-hit and +10 damage."); break;
+				case ART_SIG_SG____:
+					pline("Artifact specs: +4 to-hit and +2 damage, warning when wielded."); break;
+				case ART_CRONVERT:
+					pline("Artifact specs: +6 to-hit and +8 damage, makes you resistant to conversion sermon."); break;
+				case ART_DOUBLE_MYSTERY:
+					pline("Artifact specs: +4 to-hit and +4 damage, experience boost while wielded. If you actually level up while wielding it, you may gain a random intrinsic that can be good or bad."); break;
+				case ART_DIGSRU:
+					pline("Artifact specs: +3 to-hit and +4 damage. If you dig or use the force with it, you can train the form VIII (Wedi) skill."); break;
+				case ART_IRMGAR_S_NON_INVENTORY:
+					pline("Artifact specs: no specialties, lawful. This is an intelligent artifact that exists as a trap for all characters who are not lawful. :-P"); break;
+				case ART_WOWZER_SPIKE:
+					pline("Artifact specs: +2 to-hit and +10 damage."); break;
+				case ART_ALLELUJAH:
+					pline("Artifact specs: +6 to-hit and +2 damage, protection when wielded."); break;
+				case ART_DOUBLEBURN:
+					pline("Artifact specs: +5 to-hit and double damage."); break;
+				case ART_FLAMESCORCH:
+					pline("Artifact specs: +12 damage to fire-susceptible targets."); break;
+				case ART_THUNK_THUNK:
+					pline("Artifact specs: +4 to-hit and +8 damage."); break;
+				case ART_DARKLITE:
+					pline("Artifact specs: while it's lit and wielded by you, it increases your light radius by two points."); break;
+				case ART_ASTRALTOR_TSCHH:
+					pline("Artifact specs: while it's lit and wielded by you, it grants astral vision."); break;
+				case ART_ALORA_S_PRACTICE:
+					pline("Artifact specs: +5 to-hit and +8 damage."); break;
+				case ART_ROSH_TRAINOR:
+					pline("Artifact specs: +2 to-hit and +2 damage, allows you to train lightsaber forms twice as fast, chaotic. Yes, Rosh's last name is Penin, but this sword is what he uses to train :-P"); break;
+				case ART_GREAT_ANTILLES:
+					pline("Artifact specs: +10 to-hit and +10 damage, swimming when wielded."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

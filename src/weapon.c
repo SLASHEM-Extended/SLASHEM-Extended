@@ -5724,6 +5724,8 @@ int degree;
 
 	if (Race_if(PM_ELONA_SNAIL)) degree *= (1 + rnd(2)); /* snail trains skills 2.5 times as fast --Amy */
 
+	if (uwep && uwep->oartifact == ART_ROSH_TRAINOR && skill >= P_SHII_CHO && skill <= P_WEDI) degree *= 2;
+
 	if (Race_if(PM_PERVERT) && skill == P_SPIRITUALITY) degree *= 2;
 	if (Race_if(PM_MAYMES) && (skill == P_FIREARM || skill == P_BOW || skill == P_CROSSBOW)) degree *= 2;
 	if (Race_if(PM_AZTPOK) && skill == P_SPIRITUALITY) {
@@ -6232,6 +6234,8 @@ struct obj *weapon;
 
 	/* quarterback is very good with baseball bats --Amy */
 	if (Role_if(PM_QUARTERBACK) && weapon && weapon_type(weapon) == P_CLUB) bonus += 2;
+
+	if (uarmf && uarmf->oartifact == ART_H__S_GANGSTER_KICKS && weapon && weapon_type(weapon) == P_KNIFE) bonus += 2;
 
 	/* Navi are highly proficient with spears --Amy */
 	if (Race_if(PM_NAVI) && weapon && weapon_type(weapon) == P_SPEAR){

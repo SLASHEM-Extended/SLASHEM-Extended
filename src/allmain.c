@@ -1943,7 +1943,7 @@ moveloop()
 		    if (youmonst.movement < 0) youmonst.movement = 0;
 		    settrack();
 
-		    if (!rn2(2) || !(uarmf && itemhasappearance(uarmf, APP_IRREGULAR_BOOTS) ) ) {
+		    if ((!rn2(2) || !(uarmf && itemhasappearance(uarmf, APP_IRREGULAR_BOOTS) ) ) && (rn2(10) || !(uwep && uwep->oartifact == ART_TIMESHIFTER) ) ) {
 
 			if (!rn2(2) || !((uleft && uleft->oartifact == ART_GOOD_THINGS_WILL_HAPPEN_EV) || (uright && uright->oartifact == ART_GOOD_THINGS_WILL_HAPPEN_EV)) ) {
 				if (!rn2(2) || !RngeIrregularity) {
@@ -2138,6 +2138,11 @@ moveloop()
 			else drown();
 			stop_occupation();
 		}
+
+		if (uwep && uwep->oartifact == ART_FAITH_BRAND && !rn2(200)) adjalign(1);
+
+		if (uwep && uwep->oartifact == ART_BRAND_BRAND && !rn2(5)) verbalize("Sponsored by Nuka-Cola!");
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_BRAND_BRAND && !rn2(5)) verbalize("Sponsored by Nuka-Cola!");
 
 		if (u.shutdowntime) {
 			u.shutdowntime--;
@@ -3306,6 +3311,14 @@ newbossBQ:
 		}
 
 		if (have_falloutstone() && !rn2(100)) {
+			contaminate(rnd(10), FALSE);
+		}
+
+		if (uwep && uwep->oartifact == ART_OCTARINESWANDIR && !rn2(100)) {
+			contaminate(rnd(10), FALSE);
+		}
+
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_OCTARINESWANDIR && !rn2(100)) {
 			contaminate(rnd(10), FALSE);
 		}
 
@@ -6276,6 +6289,74 @@ newbossO:
 		}
 
 		if (!rn2(200) && u.uprops[HORROR_BUG].extrinsic) {
+
+			int lcount = rnd(monster_difficulty() ) + 1;
+
+		    if (!obsidianprotection()) switch (rn2(11)) {
+		    case 0: make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON),20),
+				"horrible sickness", TRUE, SICK_NONVOMITABLE);
+			    break;
+		    case 1: make_blinded(Blinded + lcount, TRUE);
+			    break;
+		    case 2: if (!Confusion)
+				You("suddenly feel %s.", FunnyHallu ? "trippy" : "confused");
+			    make_confused(HConfusion + lcount, TRUE);
+			    break;
+		    case 3: make_stunned(HStun + lcount, TRUE);
+			    break;
+		    case 4: make_numbed(HNumbed + lcount, TRUE);
+			    break;
+		    case 5: make_frozen(HFrozen + lcount, TRUE);
+			    break;
+		    case 6: make_burned(HBurned + lcount, TRUE);
+			    break;
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
+			    break;
+		    case 8: (void) make_hallucinated(HHallucination + lcount, TRUE, 0L);
+			    break;
+		    case 9: make_feared(HFeared + lcount, TRUE);
+			    break;
+		    case 10: make_dimmed(HDimmed + lcount, TRUE);
+			    break;
+		    }
+
+		}
+
+		if (!rn2(200) && uwep && uwep->oartifact == ART_WHAW_WHAW) {
+
+			int lcount = rnd(monster_difficulty() ) + 1;
+
+		    if (!obsidianprotection()) switch (rn2(11)) {
+		    case 0: make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON),20),
+				"horrible sickness", TRUE, SICK_NONVOMITABLE);
+			    break;
+		    case 1: make_blinded(Blinded + lcount, TRUE);
+			    break;
+		    case 2: if (!Confusion)
+				You("suddenly feel %s.", FunnyHallu ? "trippy" : "confused");
+			    make_confused(HConfusion + lcount, TRUE);
+			    break;
+		    case 3: make_stunned(HStun + lcount, TRUE);
+			    break;
+		    case 4: make_numbed(HNumbed + lcount, TRUE);
+			    break;
+		    case 5: make_frozen(HFrozen + lcount, TRUE);
+			    break;
+		    case 6: make_burned(HBurned + lcount, TRUE);
+			    break;
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
+			    break;
+		    case 8: (void) make_hallucinated(HHallucination + lcount, TRUE, 0L);
+			    break;
+		    case 9: make_feared(HFeared + lcount, TRUE);
+			    break;
+		    case 10: make_dimmed(HDimmed + lcount, TRUE);
+			    break;
+		    }
+
+		}
+
+		if (!rn2(200) && u.twoweap && uswapwep && uswapwep->oartifact == ART_WHAW_WHAW) {
 
 			int lcount = rnd(monster_difficulty() ) + 1;
 
@@ -9779,6 +9860,8 @@ newboss:
 				u.inertia--;
 			}
 
+			if (uwep && uwep->oartifact == ART_TIMESHIFTER) u.inertia--;
+
 			if (u.inertia < 0) u.inertia = 0; /* fail safe */
 
 		}
@@ -10005,7 +10088,7 @@ newboss:
 
 		}
 
-		    if (!rn2(2) || !(uarmf && itemhasappearance(uarmf, APP_IRREGULAR_BOOTS) ) ) {
+		    if ((!rn2(2) || !(uarmf && itemhasappearance(uarmf, APP_IRREGULAR_BOOTS) ) ) && (rn2(10) || !(uwep && uwep->oartifact == ART_TIMESHIFTER) ) ) {
 
 			if (!rn2(2) || !((uleft && uleft->oartifact == ART_GOOD_THINGS_WILL_HAPPEN_EV) || (uright && uright->oartifact == ART_GOOD_THINGS_WILL_HAPPEN_EV)) ) {
 				if (!rn2(2) || !RngeIrregularity) {
@@ -11382,6 +11465,7 @@ past3:
 	/* etherealoid should have xray vision; doesn't stack with artifacts */
 	if (Race_if(PM_ETHEREALOID)) u.xray_range = 3;
 	if (Race_if(PM_INCORPOREALOID)) u.xray_range = 3;
+	if (uwep && uwep->oartifact == ART_ASTRALTOR_TSCHH && uwep->lamplit) u.xray_range = 3;
 
 	if (Upolyd && youmonst.data == &mons[PM_SLITHER]) { /* laaaaaaaaaag! :D --Amy */
 		int lagamount = rno(10);

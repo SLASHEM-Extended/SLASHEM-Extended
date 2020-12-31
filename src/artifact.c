@@ -282,6 +282,7 @@ hack_artifacts()
 	artilist[ART_CAUSE_I_M_A_CHEATER].otyp = randartspellbook();
 	artilist[ART_BATMAN_NIGHT].otyp = randartspellbook();
 	artilist[ART_NIKKENIKKENIK].otyp = randartspellbook();
+	artilist[ART_POLITICAL_CORRECTNESS_FOR_].otyp = randartspellbook();
 	artilist[ART_CORTEX_COPROCESSOR].otyp = randartimplant();
 	artilist[ART_AMULET_OF_SPLENDOR].otyp = randartamulet();
 	artilist[ART_FASTPLANT].otyp = randartimplant();
@@ -539,6 +540,7 @@ hack_artifacts()
 	artilist[ART_NOW_YOU_LOOK_LIKE_A_BEGGAR].otyp = find_sandals_with_socks();
 	artilist[ART_ANJA_S_WIDE_FIELD].otyp = find_wedge_sneakers();
 	artilist[ART_U_BE_CURRY].otyp = find_barefoot_shoes();
+	artilist[ART_H__S_GANGSTER_KICKS].otyp = find_exceptional_sneakers();
 
 #if 0
 	/* Fix up the gifts */
@@ -2168,7 +2170,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	}
 
 	/* STEPHEN WHITE'S NEW CODE */
-	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
+	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_WONDERLIGHT || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
 	    otmp->dknown = TRUE;
 	    pline_The("twisted weapon poisons %s!",
 		    youdefend ? "you" : mon_nam(mdef));
@@ -2246,7 +2248,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	/* We really want "on a natural 20" but Nethack does it in */
 	/* reverse from AD&D. */
 	if (spec_ability(otmp, SPFX_BEHEAD)) {
-	    if ( (otmp->oartifact == ART_TSURUGI_OF_MURAMASA || otmp->oartifact == ART_GAYSECT || otmp->oartifact == ART_DRAGONCLAN_SWORD || otmp->oartifact == ART_KILLING_EDGE) && dieroll < 2) {
+	    if ( (otmp->oartifact == ART_TSURUGI_OF_MURAMASA || otmp->oartifact == ART_GAYSECT || otmp->oartifact == ART_LIGHTNING_STROKE || otmp->oartifact == ART_DRAGONCLAN_SWORD || otmp->oartifact == ART_KILLING_EDGE) && dieroll < 2) {
 		wepdesc = "The razor-sharp blade";
 		/* not really beheading, but so close, why add another SPFX */
 		if (youattack && u.uswallow && mdef == u.ustuck) {

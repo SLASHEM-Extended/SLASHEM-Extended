@@ -1214,7 +1214,7 @@ exprecalc(void)
 
 	}
 
-	while (Race_if(PM_ASGARDIAN) && u.ulevel > u.urmaxlvlL) {
+	while ( (Race_if(PM_ASGARDIAN) || (uwep && uwep->oartifact == ART_DOUBLE_MYSTERY)) && u.ulevel > u.urmaxlvlL) {
 
 		u.urmaxlvlL++;
 

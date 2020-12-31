@@ -2087,6 +2087,7 @@ E int find_failed_shoes(void);
 E int find_opera_pumps(void);
 E int find_wooden_clogs(void);
 E int find_regular_sneakers(void);
+E int find_exceptional_sneakers(void);
 E int find_elite_sneakers(void);
 E int find_biker_boots(void);
 E int find_zero_drop_shoes(void);
@@ -2425,6 +2426,7 @@ E void emerafrenzy(void);
 E boolean have_anorexia(void);
 E void uncurseoneitem(void);
 E void maybehackimplant(void);
+E boolean everythingfleecy(void);
 
 E boolean sandprotection(void);
 E boolean shadowprotection(void);

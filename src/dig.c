@@ -375,6 +375,9 @@ dig()
 				if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
 					use_skill(P_WEDI, 1);
 				}
+				if (uwep && uwep->oartifact == ART_DIGSRU) {
+					use_skill(P_WEDI, 1);
+				}
 			} else
 				/* it was a statue trap; break_statue()
 				 * printed a message and updated the screen
@@ -391,6 +394,9 @@ dig()
 			}
 			digtxt = "The boulder falls apart.";
 			if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+				use_skill(P_WEDI, 1);
+			}
+			if (uwep && uwep->oartifact == ART_DIGSRU) {
 				use_skill(P_WEDI, 1);
 			}
 		} else if (lev->typ == STONE || lev->typ == WATERTUNNEL || lev->typ == SCORR || IS_IRONBAR(lev->typ) ||
@@ -414,11 +420,17 @@ dig()
 				if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
 					use_skill(P_WEDI, 1);
 				}
+				if (uwep && uwep->oartifact == ART_DIGSRU) {
+					use_skill(P_WEDI, 1);
+				}
 			} else if (IS_WATERTUNNEL(lev->typ)) {
 			    digtxt = "You smash the solid part of the tunnel apart.  Now it's a moat!";
 			    u.cnd_diggingamount++;
 			    lev->typ = MOAT;
 				if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+					use_skill(P_WEDI, 1);
+				}
+				if (uwep && uwep->oartifact == ART_DIGSRU) {
 					use_skill(P_WEDI, 1);
 				}
 			} else if (uwep && IS_IRONBAR(lev->typ) && is_antibar(uwep) ) {
@@ -464,6 +476,9 @@ dig()
 				if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
 					use_skill(P_WEDI, 1);
 				}
+				if (uwep && uwep->oartifact == ART_DIGSRU) {
+					use_skill(P_WEDI, 1);
+				}
 			}
 		} else if(IS_WALL(lev->typ)) {
 			if(shopedge) {
@@ -489,6 +504,9 @@ dig()
 			if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
 				use_skill(P_WEDI, 1);
 			}
+			if (uwep && uwep->oartifact == ART_DIGSRU) {
+				use_skill(P_WEDI, 1);
+			}
 
 		} else if(lev->typ == SDOOR) {
 			cvt_sdoor_to_door(lev);	/* ->typ = DOOR */
@@ -496,11 +514,17 @@ dig()
 			if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
 				use_skill(P_WEDI, 1);
 			}
+			if (uwep && uwep->oartifact == ART_DIGSRU) {
+				use_skill(P_WEDI, 1);
+			}
 			if(!(lev->doormask & D_TRAPPED))
 				lev->doormask = D_BROKEN;
 		} else if(closed_door(dpx, dpy)) {
 			digtxt = "You break through the door.";
 			if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+				use_skill(P_WEDI, 1);
+			}
+			if (uwep && uwep->oartifact == ART_DIGSRU) {
 				use_skill(P_WEDI, 1);
 			}
 			if(shopedge) {

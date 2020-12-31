@@ -1110,6 +1110,8 @@ int mode;
 	    ;
 	} else if (uarmf && uarmf->oartifact == ART_EVERYTHING_IS_GREEN && tmpr->typ == TREE) {
 	    ;	/* special effect of that artifact --Amy */
+	} else if (uwep && uwep->oartifact == ART_GIFT_TO_NATURE && tmpr->typ == TREE) {
+	    ;	/* special effect of that artifact --Amy */
 
 	} else if (tmpr->typ == WOODENTABLE) {
 
@@ -1146,9 +1148,9 @@ int mode;
 		}
 
 	} else if (tmpr->typ == FARMLAND) {
-		if (mode != DO_MOVE && !Levitation && !Flying && !(ublindf && ublindf->oartifact == ART_FREEBOUND) && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED)) return FALSE;
+		if (mode != DO_MOVE && !Levitation && !Flying && !(ublindf && ublindf->oartifact == ART_FREEBOUND) && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(uwep && uwep->oartifact == ART_REAL_WALKING) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED)) return FALSE;
 
-		if (mode == DO_MOVE && !Levitation && !Flying && !(ublindf && ublindf->oartifact == ART_FREEBOUND) && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED) && !(powerfulimplants() && uimplant && uimplant && uimplant->oartifact == ART_SIGNIFICANT_RNG_JITTER) ) {
+		if (mode == DO_MOVE && !Levitation && !Flying && !(ublindf && ublindf->oartifact == ART_FREEBOUND) && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(uwep && uwep->oartifact == ART_REAL_WALKING) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED) && !(powerfulimplants() && uimplant && uimplant && uimplant->oartifact == ART_SIGNIFICANT_RNG_JITTER) ) {
 
 			if (WallsAreHyperBlue) {
 				You("crash into a farmland! Ouch!");
@@ -1371,7 +1373,7 @@ walscholardone:
 	    } else
 	    if (Passes_walls)
 		;	/* do nothing */
-	    else if (can_ooze(&youmonst)) {
+	    else if (can_ooze(&youmonst) || (uwep && uwep->oartifact == ART_DOORS_ARE_NO_OBSTACLES)) {
 		if (mode == DO_MOVE) You("ooze under the door.");
 	    } else if (((tunnels(youmonst.data) && !needspick(youmonst.data)) || (uarmf && uarmf->oartifact == ART_STONEWALL_CHECKERBOARD_DIS) || (Race_if(PM_SCURRIER) && !Upolyd)) && flags.eatingdoors ) {
 		/* Eat the door. */
@@ -1380,7 +1382,7 @@ walscholardone:
 		if (mode == DO_MOVE) {
 		    if (amorphous(youmonst.data))
 			You("try to ooze under the door, but can't squeeze your possessions through.");
-		    else if (iflags.autoopen && !Confusion && !Stunned && !Fumbling && levl[ux][uy].seenv && !(RMBLoss || u.uprops[RMB_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) || (uamul && uamul->oartifact == ART_BUEING) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || (uamul && uamul->oartifact == ART_YOU_HAVE_UGH_MEMORY) || have_rmbstone() || u.totter || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || (uarms && uarms->oartifact == ART_BLUE_SHIRT_OF_DEATH) || u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || WallsAreHyperBlue ) ) {
+		    else if (iflags.autoopen && !Confusion && !Stunned && !Fumbling && levl[ux][uy].seenv && !(RMBLoss || u.uprops[RMB_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) || (uamul && uamul->oartifact == ART_BUEING) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || (uamul && uamul->oartifact == ART_YOU_HAVE_UGH_MEMORY) || have_rmbstone() || u.totter || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || (uarms && uarms->oartifact == ART_BLUE_SHIRT_OF_DEATH) || u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (uwep && uwep->oartifact == ART_OMGHAXERETH) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_OMGHAXERETH) || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || WallsAreHyperBlue ) ) {
 			    door_opened = flags.move = doopen_indir(x, y);
 			    opentry = 1;
 		    }
@@ -1455,7 +1457,7 @@ walscholardone:
 #ifdef REINCARNATION
 		    || Is_rogue_level(&u.uz)
 #endif
-		    || block_door(x,y))) && !can_ooze(&youmonst)) {
+		    || block_door(x,y))) && !can_ooze(&youmonst) && !(uwep && uwep->oartifact == ART_DOORS_ARE_NO_OBSTACLES)) {
 		/* Diagonal moves into a door are not allowed. */
 		if (Blind && mode == DO_MOVE)
 		    feel_location(x,y);
@@ -1500,7 +1502,7 @@ walscholardone:
     ust = &levl[ux][uy];
 
     /* Now see if other things block our way . . */
-    if (dx && dy && !Passes_walls && !can_ooze(&youmonst)
+    if (dx && dy && !Passes_walls && !can_ooze(&youmonst) && !(uwep && uwep->oartifact == ART_DOORS_ARE_NO_OBSTACLES)
 		     && (IS_DOOR(ust->typ) && ((ust->doormask & ~D_BROKEN)
 #ifdef REINCARNATION
 			     || Is_rogue_level(&u.uz)
@@ -1608,7 +1610,7 @@ boolean guess;
 		    int ny = y+ydir[ordered[dir]];
 
 		    if (!isok(nx, ny)) continue;
-		    if ((!Passes_walls && !can_ooze(&youmonst) &&
+		    if ((!Passes_walls && !can_ooze(&youmonst) && !(uwep && uwep->oartifact == ART_DOORS_ARE_NO_OBSTACLES) &&
 			closed_door(x, y)) || sobj_at(BOULDER, x, y)) {
 			/* closed doors and boulders usually
 			 * cause a delay, so prefer another path */

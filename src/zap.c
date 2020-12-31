@@ -3988,6 +3988,7 @@ register struct obj *wand;
 
 	u.cnd_zapcount++;
 	use_skill(P_DEVICES,1);
+	if (uwep && uwep->oartifact == ART_WANDERZAPPER) use_skill(P_DEVICES,1);
 	if (Race_if(PM_STICKER)) {
 		use_skill(P_DEVICES,1);
 		use_skill(P_DEVICES,1);

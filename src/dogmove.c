@@ -673,6 +673,8 @@ register struct monst *mtmp;
 
 	if (Role_if(PM_SLAVE_MASTER) && rn2(10)) return FALSE; /* can keep monsters tame more easily --Amy */
 	if (Race_if(PM_CELTIC) && mtmp->data->mlet == S_GOLEM) return FALSE; /* everything else betrays you more often */
+	if (Role_if(PM_POKEMON) && is_pokemon(mtmp->data) && rn2(10)) return FALSE;
+	if (uarmu && uarmu->oartifact == ART_EIGHTH_BADGE && is_pokemon(mtmp->data)) return FALSE;
 
 	/* dragonmaster can of course wear DSM (sorry AntiGulp) and it prevents dragons from rebelling --Amy */
 	if (Role_if(PM_DRAGONMASTER) && mtmp->data->mlet == S_DRAGON && uarm && Is_dragon_armor(uarm) ) return FALSE;
