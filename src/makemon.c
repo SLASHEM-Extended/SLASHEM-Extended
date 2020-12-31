@@ -14380,6 +14380,10 @@ loveheelover:
 		if (monsndx(ptr) == PM_ELITE_MORNING_STAR_FIGHTER) (void) mongets(mtmp, STONE_STAR);
 		if (monsndx(ptr) == PM_REACHES_MUMMY) (void) mongets(mtmp, REACH_TRIDENT);
 
+		if (ptr == &mons[PM_MAUREEN]) {
+			(void) mongets(mtmp, CIGARETTE);
+			(void) mongets(mtmp, VICTORIAN_UNDERWEAR);
+		}
 		if (ptr == &mons[PM_ALABASTER_MUMMY]) {
 			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
 		}
@@ -14845,6 +14849,10 @@ loveheelover:
 		if (ptr == &mons[PM_VIOLETTA]) {
 			(void) mongets(mtmp, FEMININE_PUMPS);
 			(void) mongets(mtmp, WAN_DEATH);
+		}
+		if (ptr == &mons[PM_CHLOE]) {
+			(void) mongets(mtmp, CIGARETTE);
+			(void) mongets(mtmp, VICTORIAN_UNDERWEAR);
 		}
 
 		if (ptr == &mons[PM_CUTE_FEMMY]) {
@@ -21910,7 +21918,7 @@ register int	mmflags;
 	   mtmp->m_lev = (1 + rn2(base_you) + rn2(base_lev) / 2)+1;
 	}
 
-	if (ptr == &mons[PM_BLACKY] || ptr == &mons[PM_EROTICLOUDY] || ptr == &mons[PM_WOODICLOUDY] || ptr == &mons[PM_SCENTICLOUDY] || ptr == &mons[PM_WHITLEVEL_KOP] || ptr == &mons[PM_BLAKLEVEL_KOP] || ptr == &mons[PM_GREYLEVEL_KOP] || ptr == &mons[PM_RNGED_KOP] || ptr == &mons[PM_EXMINATOR_KOP]) {
+	if (ptr == &mons[PM_BLACKY] || ptr == &mons[PM_BLUEY] || ptr == &mons[PM_LAMER_TYPE] || ptr == &mons[PM_EROTICLOUDY] || ptr == &mons[PM_WOODICLOUDY] || ptr == &mons[PM_SCENTICLOUDY] || ptr == &mons[PM_WHITLEVEL_KOP] || ptr == &mons[PM_BLAKLEVEL_KOP] || ptr == &mons[PM_GREYLEVEL_KOP] || ptr == &mons[PM_RNGED_KOP] || ptr == &mons[PM_EXMINATOR_KOP]) {
 	   /* blacky too --Amy */
 	   /* and specific kop types */
 	   /* and the claudia trap monsters */
