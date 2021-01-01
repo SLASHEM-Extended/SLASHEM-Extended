@@ -1123,7 +1123,7 @@ register boolean mod;
 			}
 		    }
 		    /* the age field is used both for lightsaber power and the invoke timer... ugh --Amy */
-		    if (!is_lightsaber(otmp) || otmp->oartifact == ART_LIGHTSABER_PROTOTYPE) otmp->age = 0;
+		    if (a->inv_prop || otmp->oartifact == ART_LIGHTSABER_PROTOTYPE) otmp->age = 0;
 		    if ((mod == FALSE) || rn2(100)) artiexist[m] = mod;
 		    break;
 		}
@@ -1408,10 +1408,9 @@ long wp_mask;
 	    }
 	}
 	if (spfx & SPFX_XRAY) {
-	    /* this assumes that no one else is using xray_range */
-	    if (on) u.xray_range = 3;
-	    else u.xray_range = -1;
-	    vision_full_recalc = 1;
+	    if (on) EAstral_vision |= wp_mask;
+	    else EAstral_vision &= ~wp_mask;
+	    /* xray_range is now modified in allmain.c --Amy */
 	}
 	/* KMH -- Reflection when wielded */
 	if ((spfx & SPFX_REFLECT)) { /* fix by Chris_ANG - why the heck was this on being wielded only??? */

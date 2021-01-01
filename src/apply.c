@@ -1765,7 +1765,7 @@ struct obj *obj;
 			)
 			Your("%s has run out of power.", xname(obj));
 		else if (obj->otyp == TORCH) {
-		        Your("torch has burnt out and cannot be relit.");
+		        Your("torch has burnt out and needs to be recharged.");
 		}
 		else pline("This %s has no oil.", xname(obj));
 		return;

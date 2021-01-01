@@ -322,12 +322,21 @@
 #define EBlinded			u.uprops[BLINDED].extrinsic
 #define Blindfolded		(ublindf && ublindf->otyp != LENSES && ublindf->otyp != RADIOGLASSES && ublindf->otyp != BOSS_VISOR && ublindf->otyp != CONDOME && ublindf->otyp != SOFT_CHASTITY_BELT && ublindf->otyp != CLIMBING_SET)
 		/* ...means blind because of a cover */
-#define Blind	((Blinded || EBlinded || Blindfolded || HeavyBlind || u.uprops[SENSORY_DEPRIVATION].extrinsic || flags.blindfox || (!haseyes(youmonst.data) && !Race_if(PM_TRANSFORMER) ) ) && \
-		 !(ublindf && ublindf->oartifact == ART_EYES_OF_THE_OVERWORLD && !flags.blindfox ) && !(Race_if(PM_PLAYER_DOLGSMAN) && !flags.blindfox) && !(uwep && uwep->oartifact == ART_DUMBOAK_S_HEW && !flags.blindfox ) && !(uwep && uwep->oartifact == ART_DIMOAK_S_HEW && !flags.blindfox ) && !(uwep && uwep->oartifact == ART_SWORD_OF_ERATHAOL && !flags.blindfox ) && !(uwep && uwep->oartifact == ART_SUNSCREEN && !flags.blindfox ) && !(uwep && uwep->oartifact == ART_SABER_OF_SABAOTH && !flags.blindfox ) && !(uwep && uwep->oartifact == ART_SWORD_OF_ONOEL && !flags.blindfox ) && !(uwep && uwep->oartifact == ART_GLAIVE_OF_SHAMSIEL && !flags.blindfox ) && !(uwep && uwep->oartifact == ART_LANCE_OF_URIEL && !flags.blindfox ) && !(uwep && uwep->oartifact == ART_HAMMER_OF_BARQUIEL && !flags.blindfox ) && !(uwep && uwep->oartifact == ART_SAMENESS_OF_CHRIS && !flags.blindfox ) && !(uwep && uwep->oartifact == ART_MUB_PUH_MUB_DIT_DIT && !flags.blindfox ) && !(tech_inuse(T_STAT_RESIST) && !flags.blindfox ) && !(uarmh && uarmh->oartifact == ART_BLINDING_FOG && !flags.blindfox ) && !(uarmh && uarmh->oartifact == ART_DARKSIGHT_HELM && !flags.blindfox ) && !(uarms && uarms->oartifact == ART_SHADOWDISK && !flags.blindfox ) )
+#define Blind	((Blinded || EBlinded || Blindfolded || HeavyBlind || u.uprops[SENSORY_DEPRIVATION].extrinsic || flags.blindfox || (!haseyes(youmonst.data) && !Race_if(PM_TRANSFORMER) ) ) && !(Blind_resistance && !flags.blindfox) )
 		/* ...the Eyes operate even when you really are blind
 		    or don't have any eyes */
 /* added possibility of playing the entire game blind --Amy*/
 #define HeavyBlind		u.uprops[HEAVY_BLIND].intrinsic
+
+#define EBlind_resistance	u.uprops[BLIND_RES].extrinsic
+#define HBlind_resistance	u.uprops[BLIND_RES].intrinsic
+#define ExtBlind_resistance	(EBlind_resistance || (ublindf && ublindf->oartifact == ART_EYES_OF_THE_OVERWORLD) || (uwep && uwep->oartifact == ART_DUMBOAK_S_HEW) || (uwep && uwep->oartifact == ART_DIMOAK_S_HEW) || (uwep && uwep->oartifact == ART_SWORD_OF_ERATHAOL) || (uwep && uwep->oartifact == ART_SUNSCREEN) || (uwep && uwep->oartifact == ART_SABER_OF_SABAOTH) || (uwep && uwep->oartifact == ART_SWORD_OF_ONOEL) || (uwep && uwep->oartifact == ART_GLAIVE_OF_SHAMSIEL) || (uwep && uwep->oartifact == ART_LANCE_OF_URIEL) || (uwep && uwep->oartifact == ART_HAMMER_OF_BARQUIEL) || (uwep && uwep->oartifact == ART_SAMENESS_OF_CHRIS) || (uwep && uwep->oartifact == ART_MUB_PUH_MUB_DIT_DIT) || (uarmh && uarmh->oartifact == ART_BLINDING_FOG) || (uarmh && uarmh->oartifact == ART_DARKSIGHT_HELM) || (uarms && uarms->oartifact == ART_SHADOWDISK) )
+#define IntBlind_resistance	(HBlind_resistance || Race_if(PM_PLAYER_DOLGSMAN) || tech_inuse(T_STAT_RESIST))
+
+#define Blind_resistance	( ( (ExtBlind_resistance && u.nonextrinsicproperty != BLIND_RES) || (IntBlind_resistance && u.nonintrinsicproperty != BLIND_RES) ) && !NoBlind_resistance)
+#define StrongBlind_resistance	(IntBlind_resistance && ExtBlind_resistance && Blind_resistance && u.nondoubleproperty != BLIND_RES)
+
+#define NoBlind_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_BLIND_RES].intrinsic || RngeAids || (u.impossibleproperty == BLIND_RES) || flags.blindfox || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define PlayerBleeds			u.uprops[PLAYERBLEEDING].intrinsic
 #define Sick			u.uprops[SICK].intrinsic
@@ -786,14 +795,19 @@
 #define RngeEcholocation		(u.uprops[RNGE_ECHOLOCATION].intrinsic || u.uprops[RNGE_ECHOLOCATION].extrinsic)
 #define RngeStackMessaging		(u.uprops[RNGE_STACKMESSAGING].intrinsic || u.uprops[RNGE_STACKMESSAGING].extrinsic)
 
-/* Hallucination is solely a timeout; its resistance is extrinsic */
+/* Hallucination is solely a timeout; its resistance is extrinsic; Amy edit: now also an intrinsic */
 #define HHallucination		u.uprops[HALLUC].intrinsic
 #define EHallucination		u.uprops[HALLUC].extrinsic
 
 #define EHalluc_resistance	u.uprops[HALLUC_RES].extrinsic
+#define HHalluc_resistance	u.uprops[HALLUC_RES].intrinsic
 #define ExtHalluc_resistance	(EHalluc_resistance || (Race_if(PM_BATMAN) && uwep && uwep->oartifact == ART_BLACKSWANDIR))
-#define Halluc_resistance	((ExtHalluc_resistance || \
-				 (Upolyd && dmgtype(youmonst.data, AD_HALU)) || Race_if(PM_EROSATOR) || tech_inuse(T_STAT_RESIST) || (Role_if(PM_TRANSSYLVANIAN) && uwep && (uwep->otyp == WEDGED_LITTLE_GIRL_SANDAL || uwep->otyp == SOFT_GIRL_SNEAKER || uwep->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || uwep->otyp == HUGGING_BOOT || uwep->otyp == BLOCK_HEELED_COMBAT_BOOT || uwep->otyp == WOODEN_GETA || uwep->otyp == LACQUERED_DANCING_SHOE || uwep->otyp == HIGH_HEELED_SANDAL || uwep->otyp == SEXY_LEATHER_PUMP || uwep->otyp == STICKSHOE || uwep->otyp == SPIKED_BATTLE_BOOT || uwep->otyp == INKA_BOOT || uwep->otyp == SOFT_LADY_SHOE || uwep->otyp == STEEL_CAPPED_SANDAL || uwep->otyp == BLOCK_HEELED_SANDAL || uwep->otyp == PROSTITUTE_SHOE || uwep->otyp == DOGSHIT_BOOT) ) ) && !u.halresdeactivated)
+#define IntHalluc_resistance	(HHalluc_resistance || (Upolyd && dmgtype(youmonst.data, AD_HALU)) || Race_if(PM_EROSATOR) || tech_inuse(T_STAT_RESIST) || (Role_if(PM_TRANSSYLVANIAN) && uwep && (uwep->otyp == WEDGED_LITTLE_GIRL_SANDAL || uwep->otyp == SOFT_GIRL_SNEAKER || uwep->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || uwep->otyp == HUGGING_BOOT || uwep->otyp == BLOCK_HEELED_COMBAT_BOOT || uwep->otyp == WOODEN_GETA || uwep->otyp == LACQUERED_DANCING_SHOE || uwep->otyp == HIGH_HEELED_SANDAL || uwep->otyp == SEXY_LEATHER_PUMP || uwep->otyp == STICKSHOE || uwep->otyp == SPIKED_BATTLE_BOOT || uwep->otyp == INKA_BOOT || uwep->otyp == SOFT_LADY_SHOE || uwep->otyp == STEEL_CAPPED_SANDAL || uwep->otyp == BLOCK_HEELED_SANDAL || uwep->otyp == PROSTITUTE_SHOE || uwep->otyp == DOGSHIT_BOOT) ) )
+
+#define Halluc_resistance	( ( (ExtHalluc_resistance && u.nonextrinsicproperty != HALLUC_RES) || (IntHalluc_resistance && u.nonintrinsicproperty != HALLUC_RES) ) && !u.halresdeactivated && !NoHalluc_resistance)
+#define StrongHalluc_resistance	(IntHalluc_resistance && ExtHalluc_resistance && Halluc_resistance && u.nondoubleproperty != HALLUC_RES)
+
+#define NoHalluc_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_HALLUC_RES].intrinsic || RngeAids || (u.impossibleproperty == HALLUC_RES) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define Hallucination		((HHallucination && !Halluc_resistance) || (u.uprops[MULTISHOES].extrinsic && !Halluc_resistance) || (uwep && uwep->oartifact == ART_LANCE_OF_LONGINUS) || (uwep && uwep->oartifact == ART_FADED_USELESSNESS) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FADED_USELESSNESS) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_LANCE_OF_LONGINUS) || (uwep && uwep->oartifact == ART_SCHWANZUS_LANGUS) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SCHWANZUS_LANGUS) || (HeavyHallu && !Halluc_resistance) || (EHallucination && !Halluc_resistance) || u.uprops[SENSORY_DEPRIVATION].extrinsic || flags.hippie || ( (u.uprops[DEHYDRATION].extrinsic || Dehydration || have_dehydratingstone()) && ((u.dehydrationtime - moves) < 1) )  )
 #define FunnyHallu		(Role_if(PM_GOFF) || RngeFunnyHallu || ishallucinator || HHallucination || u.uprops[MULTISHOES].extrinsic || (uwep && uwep->oartifact == ART_LANCE_OF_LONGINUS) || (uwep && uwep->oartifact == ART_FADED_USELESSNESS) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FADED_USELESSNESS) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_LANCE_OF_LONGINUS) || (uwep && uwep->oartifact == ART_SCHWANZUS_LANGUS) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SCHWANZUS_LANGUS) || HeavyHallu || EHallucination || u.uprops[SENSORY_DEPRIVATION].extrinsic || (u.funnyhalluroll != 9999999 && u.usanity > u.funnyhalluroll) || flags.hippie || ( (u.uprops[DEHYDRATION].extrinsic || Dehydration || have_dehydratingstone()) && ((u.dehydrationtime - moves) < 1) )  )
@@ -1238,6 +1252,16 @@
 #define StrongHalf_physical_damage	(IntHalf_physical_damage && ExtHalf_physical_damage && Half_physical_damage && u.nondoubleproperty != HALF_PHDAM)
 
 #define NoHalf_physical_damage	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_HALF_PHDAM].intrinsic || RngeAids || (uarmf && uarmf->oartifact == ART_WILD_SEX_GAME) || (u.impossibleproperty == HALF_PHDAM) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+
+#define HAstral_vision	u.uprops[ASTRAL_VISION].intrinsic
+#define EAstral_vision	u.uprops[ASTRAL_VISION].extrinsic
+#define IntAstral_vision	(HAstral_vision || Race_if(PM_ETHEREALOID) || Race_if(PM_INCORPOREALOID))
+#define ExtAstral_vision	(EAstral_vision || (uwep && uwep->oartifact == ART_ASTRALTOR_TSCHH && uwep->lamplit) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == ASTRAL_VISION) ) )
+
+#define Astral_vision	(((IntAstral_vision && u.nonintrinsicproperty != ASTRAL_VISION) || (ExtAstral_vision && u.nonextrinsicproperty != ASTRAL_VISION)) && !NoAstral_vision)
+#define StrongAstral_vision	(IntAstral_vision && ExtAstral_vision && Astral_vision && u.nondoubleproperty != ASTRAL_VISION)
+
+#define NoAstral_vision	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_ASTRAL_VISION].intrinsic || RngeAids || (u.impossibleproperty == ASTRAL_VISION) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define Second_chance		u.uprops[SECOND_CHANCE].extrinsic
 

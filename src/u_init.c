@@ -11135,9 +11135,7 @@ u_init()
 	 *  out with a night vision range of 1 and their xray range disabled.
 	 */
 	u.nv_range   =  1;
-	u.xray_range = -1;
-	if (Race_if(PM_ETHEREALOID)) u.xray_range = 3;
-	if (Race_if(PM_INCORPOREALOID)) u.xray_range = 3;
+	u.xray_range = -1; /* set in allmain.c if applicable --Amy */
 	u.artifactprotection = 0;
 	u.fumbleduration = 0;
 	u.antimagicshell = 0;

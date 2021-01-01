@@ -6556,6 +6556,9 @@ datadeleteattack()
 			u.uprops[DEAC_DIMINISHED_BLEEDING].intrinsic += (rn2(10) ? 10000 : 100000);
 			u.uprops[DEAC_CONTROL_MAGIC].intrinsic += (rn2(10) ? 10000 : 100000);
 			u.uprops[DEAC_EXP_BOOST].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_HALLUC_RES].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_BLIND_RES].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_ASTRAL_VISION].intrinsic += (rn2(10) ? 10000 : 100000);
 			pline("All your in- and extrinsics are deactivated!");
 			break;
 

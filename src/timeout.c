@@ -2852,6 +2852,18 @@ nh_timeout()
 			if (!Half_physical_damage)
 				You_feel("less resistant to damage.");
 			break;
+		case ASTRAL_VISION:
+			if (!Astral_vision)
+				You_feel("unable to keep using your x-ray vision.");
+			break;
+		case BLIND_RES:
+			if (!Blind_resistance)
+				You_feel("less resistant to blindness.");
+			break;
+		case HALLUC_RES:
+			if (!Halluc_resistance)
+				You_feel("less resistant to hallucinations.");
+			break;
 		case HUNGER:
 			if (!Hunger)
 				You_feel("less hungry.");
@@ -3328,6 +3340,15 @@ nh_timeout()
 			break;
 		case DEAC_EXP_BOOST:
 			pline("You are no longer prevented from having EXP boost.");
+			break;
+		case DEAC_ASTRAL_VISION:
+			pline("You are no longer prevented from having astral vision.");
+			break;
+		case DEAC_BLIND_RES:
+			pline("You are no longer prevented from having blindness resistance.");
+			break;
+		case DEAC_HALLUC_RES:
+			pline("You are no longer prevented from having hallucination resistance.");
 			break;
 
 		}

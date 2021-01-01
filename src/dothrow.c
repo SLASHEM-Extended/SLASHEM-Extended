@@ -2011,6 +2011,7 @@ boolean polearming;
 	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 149) tmp += 1;
 	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 199) tmp += 1;
 	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 249) tmp += 1;
+	if (StrongBlind_resistance) tmp += rn1(5, 5);
 
 	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 

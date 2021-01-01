@@ -1299,7 +1299,7 @@ struct obj *obj;
 			(obj->known || objects[obj->otyp].oc_uname));
 	if (is_lightsaber(obj))
 	    return TRUE;
-	if (obj->otyp == OIL_LAMP || obj->otyp == MAGIC_LAMP || obj->otyp == BRASS_LANTERN) return TRUE;
+	if (obj->otyp == OIL_LAMP || obj->otyp == MAGIC_LAMP || obj->otyp == BRASS_LANTERN || obj->otyp == TORCH) return TRUE;
 	if (is_weptool(obj))	/* specific check before general tools */
 	    return FALSE;
 	if (obj->oclass == TOOL_CLASS)
@@ -1609,6 +1609,7 @@ int curse_bless;
 		break;
 	    case OIL_LAMP:
 	    case BRASS_LANTERN:
+	    case TORCH:
 
 		if (is_cursed) {
 		    stripspe(obj);

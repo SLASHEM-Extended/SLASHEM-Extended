@@ -731,6 +731,7 @@ register struct monst *mtmp;
 	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 199) tmp += 1;
 	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 249) tmp += 1;
 	if (uwep && uwep->oartifact == ART_LUCKY_MELEE_ATTACKS) tmp += 10;
+	if (StrongBlind_resistance) tmp += rn1(5, 5);
 
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
 	if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;

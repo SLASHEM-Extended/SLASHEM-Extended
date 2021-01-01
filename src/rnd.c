@@ -1478,7 +1478,7 @@ randenchantment()
 
 	} else {
 
-	switch (rnd(144)) {
+	switch (rnd(146)) {
 
 		case 1:
 		case 2:
@@ -1702,6 +1702,10 @@ randenchantment()
 			return CONTROL_MAGIC;
 		case 144:
 			return EXP_BOOST;
+		case 145:
+			return (rn2(1000) ? BLIND_RES : ASTRAL_VISION);
+		case 146:
+			return HALLUC_RES;
 
 		default:
 			return POISON_RES;
@@ -1964,7 +1968,7 @@ randnastyenchantment()
 int
 randomdisableproperty()
 {
-	switch (rnd(68)) {
+	switch (rnd(71)) {
 
 		case 1:
 			return FIRE_RES;
@@ -2102,6 +2106,12 @@ randomdisableproperty()
 			return CONTROL_MAGIC;
 		case 68:
 			return EXP_BOOST;
+		case 69:
+			return ASTRAL_VISION;
+		case 70:
+			return BLIND_RES;
+		case 71:
+			return HALLUC_RES;
 		default:
 			return POISON_RES;
 	}
@@ -2651,7 +2661,7 @@ deacrandomintrinsic(amount)
 register int amount;
 {
 
-	switch (rnd(131)) {
+	switch (rnd(134)) {
 
 		case 1:
 		case 2:
@@ -2988,6 +2998,18 @@ register int amount;
 			u.uprops[DEAC_EXP_BOOST].intrinsic += amount;
 			pline("You are prevented from having EXP boost!");
 			break;
+		case 132:
+			u.uprops[DEAC_ASTRAL_VISION].intrinsic += amount;
+			pline("You are prevented from having astral vision!");
+			break;
+		case 133:
+			u.uprops[DEAC_BLIND_RES].intrinsic += amount;
+			pline("You are prevented from having blindness resistance!");
+			break;
+		case 134:
+			u.uprops[DEAC_HALLUC_RES].intrinsic += amount;
+			pline("You are prevented from having hallucination resistance!");
+			break;
 	}
 
 }
@@ -2996,7 +3018,7 @@ int
 goodimplanteffect(obj)
 struct obj *obj;
 {
-	switch (obj->shirtmessage % 55) {
+	switch (obj->shirtmessage % 57) { /* remember to not randomize them!!! each number has to map to exactly one property --Amy */
 
 		case 0:
 			return DTBEEM_RES;
@@ -3108,6 +3130,10 @@ struct obj *obj;
 			return CONTROL_MAGIC;
 		case 54:
 			return EXP_BOOST;
+		case 55:
+			return BLIND_RES;
+		case 56:
+			return HALLUC_RES;
 		default:
 			return POISON_RES;
 

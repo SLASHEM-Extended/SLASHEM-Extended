@@ -3649,6 +3649,8 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && Fear_resistance) you_are(StrongFear_resistance ? "highly resistant to fear" : "resistant to fear");
 	if ((guaranteed || !rn2(10)) && Stone_resistance)
 		you_are(StrongStone_resistance ? "completely immune to petrification" : IntStone_resistance ? "immune to petrification" : "petrification resistant");
+	if ((guaranteed || !rn2(10)) && Astral_vision)
+		you_have(StrongAstral_vision ? "super-x-ray vision" : "x-ray vision");
 	if ((guaranteed || !rn2(10)) && Invulnerable) {
 		sprintf(buf, "invulnerable");
 	    if (wizard || (!rn2(10)) || final >= 1  ) sprintf(eos(buf), " (%ld)", Invulnerable);
@@ -3670,8 +3672,14 @@ boolean guaranteed;
 		you_are(buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && Halluc_resistance)
-		enl_msg("You resist", "", "ed", " hallucinations");
+	if ((guaranteed || !rn2(10)) && Halluc_resistance) {
+		if (StrongHalluc_resistance) enl_msg("You strongly resist", "", "ed", " hallucinations");
+		else enl_msg("You resist", "", "ed", " hallucinations");
+	}
+	if ((guaranteed || !rn2(10)) && Blind_resistance) {
+		if (StrongBlind_resistance) enl_msg("You strongly resist", "", "ed", " blindness");
+		else enl_msg("You resist", "", "ed", " blindness");
+	}
 	/*if (final) { */
 	if ((guaranteed || !rn2(10)) && Hallucination) {
 		if (HeavyHallu) sprintf(buf, "badly hallucinating");
@@ -6161,6 +6169,24 @@ boolean guaranteed;
 		you_are(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && NoAstral_vision && (final || u.uprops[DEAC_ASTRAL_VISION].intrinsic) ) {
+		sprintf(buf, "prevented from having astral vision");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", u.uprops[DEAC_ASTRAL_VISION].intrinsic);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && NoBlind_resistance && (final || u.uprops[DEAC_BLIND_RES].intrinsic) ) {
+		sprintf(buf, "prevented from having blindness resistance");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", u.uprops[DEAC_BLIND_RES].intrinsic);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && NoHalluc_resistance && (final || u.uprops[DEAC_HALLUC_RES].intrinsic) ) {
+		sprintf(buf, "prevented from having hallucination resistance");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", u.uprops[DEAC_HALLUC_RES].intrinsic);
+		you_are(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && u.badfcursed) {
 		sprintf(buf, "cursed");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", u.badfcursed);
@@ -7693,6 +7719,7 @@ int final;
 	if (Acid_resistance) dump(youwere, StrongAcid_resistance ? "doubly acid resistant" : "acid resistant");
 	if (Fear_resistance) dump(youwere, StrongFear_resistance ? "highly resistant to fear" : "resistant to fear");
 	if (Stone_resistance) dump(youwere, StrongStone_resistance ? "completely immune to petrification" : IntStone_resistance ? "immune to petrification" : "petrification resistant");
+	if (Astral_vision) dump(youhad, StrongAstral_vision ? "super-x-ray vision" : "x-ray vision");
 	if (Invulnerable) dump(youwere, "invulnerable");
 	if (u.urealedibility) {
 		sprintf(buf, "recognize detrimental food");
@@ -7708,7 +7735,14 @@ int final;
 		dump(youwere, buf);
 	}
 
-	if (Halluc_resistance) 	dump("  ", "You resisted hallucinations");
+	if (Halluc_resistance) {
+		if (StrongHalluc_resistance) dump("  ", "You strongly resisted hallucinations");
+		else dump("  ", "You resisted hallucinations");
+	}
+	if (Blind_resistance) {
+		if (StrongBlind_resistance) dump("  ", "You strongly resisted blindness");
+		else dump("  ", "You resisted blindness");
+	}
 	if (Hallucination) {
 		if (HeavyHallu) sprintf(buf, "badly hallucinating");
 		else sprintf(buf, "hallucinating");
@@ -10178,6 +10212,24 @@ int final;
 	if (NoExpBoost) {
 		sprintf(buf, "prevented from having experience boost");
 		sprintf(eos(buf), " (%ld)", u.uprops[DEAC_EXP_BOOST].intrinsic);
+		dump(youwere, buf);
+	}
+
+	if (NoAstral_vision) {
+		sprintf(buf, "prevented from having astral vision");
+		sprintf(eos(buf), " (%ld)", u.uprops[DEAC_ASTRAL_VISION].intrinsic);
+		dump(youwere, buf);
+	}
+
+	if (NoBlind_resistance) {
+		sprintf(buf, "prevented from having blindness resistance");
+		sprintf(eos(buf), " (%ld)", u.uprops[DEAC_BLIND_RES].intrinsic);
+		dump(youwere, buf);
+	}
+
+	if (NoHalluc_resistance) {
+		sprintf(buf, "prevented from having hallucination resistance");
+		sprintf(eos(buf), " (%ld)", u.uprops[DEAC_HALLUC_RES].intrinsic);
 		dump(youwere, buf);
 	}
 

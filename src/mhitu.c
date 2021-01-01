@@ -20784,6 +20784,9 @@ enjoyable:
 		u.uprops[DEAC_DIMINISHED_BLEEDING].intrinsic += rnz( (monster_difficulty() * 100) + 1);
 		u.uprops[DEAC_CONTROL_MAGIC].intrinsic += rnz( (monster_difficulty() * 100) + 1);
 		u.uprops[DEAC_EXP_BOOST].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_ASTRAL_VISION].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_BLIND_RES].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_HALLUC_RES].intrinsic += rnz( (monster_difficulty() * 100) + 1);
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
         

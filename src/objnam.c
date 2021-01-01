@@ -490,6 +490,12 @@ int prop;
 			return "Henrietta's curse";
 		case FEMTRAP_VERENA:
 			return "Verena's curse";
+		case HALLUC_RES:
+			return "hallucination resistance";
+		case BLIND_RES:
+			return "blindness resistance";
+		case ASTRAL_VISION:
+			return "astral vision";
 
 		default:
 			return "Team Nastytrap";

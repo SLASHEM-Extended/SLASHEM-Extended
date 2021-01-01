@@ -6581,6 +6581,11 @@ newbossO:
 			}
 		}
 
+		if (Hallucination && StrongHalluc_resistance) {
+			if (HHallucination > 5) HHallucination--;
+
+		}
+
 		if ((uarmc && itemhasappearance(uarmc, APP_ROADMAP_CLOAK)) && !rn2(10000)) {
 			if (!HConfusion) HConfusion = 1;
 			do_mappingX();
@@ -11462,17 +11467,29 @@ past3:
 
 	if (In_greencross(&u.uz) && !u.greencrossopen) u.greencrossopen = TRUE;
 
-	/* etherealoid should have xray vision; doesn't stack with artifacts */
-	if (Race_if(PM_ETHEREALOID)) u.xray_range = 3;
-	if (Race_if(PM_INCORPOREALOID)) u.xray_range = 3;
-	if (uwep && uwep->oartifact == ART_ASTRALTOR_TSCHH && uwep->lamplit) u.xray_range = 3;
-
 	if (Upolyd && youmonst.data == &mons[PM_SLITHER]) { /* laaaaaaaaaag! :D --Amy */
 		int lagamount = rno(10);
 		while (lagamount > 0) {
 			delay_output();
 			lagamount--;
 		}
+	}
+
+	/* check the player's current astral vision (if applicable) --Amy */
+	{
+		int astralstate = u.xray_range;
+		if (StrongAstral_vision) {
+			u.xray_range = 4;
+		} else if (Astral_vision) {
+			u.xray_range = 3;
+		} else {
+			u.xray_range = -1;
+		}
+
+		if (astralstate != u.xray_range) {
+			vision_full_recalc = 1;
+		}
+
 	}
 
 	/* depending on the player's speed, you may go back and forth and still end up on the same square when the next

@@ -2394,6 +2394,11 @@ register struct obj *spellbook;
 
 		}
 
+		if (StrongBlind_resistance && delay < -1) {
+			delay /= 2;
+			if (delay > -1) delay = -1; /* fail safe */
+		}
+
 		/* Books are often wiser than their readers (Rus.) */
 		spellbook->in_use = TRUE;
 		if (!spellbook->blessed &&
