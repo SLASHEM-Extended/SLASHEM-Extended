@@ -7862,6 +7862,7 @@ int snamount;
 	if (Upolyd && dmgtype(youmonst.data, AD_INSA) && rn2(100)) return;
 	if (Upolyd && dmgtype(youmonst.data, AD_SANI) && rn2(100)) return;
 	if (Race_if(PM_PLAYER_FAIRY) && rn2(2)) return;
+	if (StrongHalluc_resistance && snamount < 3 && rn2(3)) return;
 
 	/* Mineral is supposed to be a material that shields you against sanity --Amy */
 	if (uwep && objects[uwep->otyp].oc_material == MT_MINERAL && !rn2(20)) {
@@ -8016,6 +8017,8 @@ int snamount;
 		}
 		if (sanityprotection > rn2(100)) return;
 	}
+
+	if (StrongHalluc_resistance && snamount > 2) snamount /= 3;
 
 	if (Race_if(PM_HUMANOID_ANGEL) || youmonst.data->mlet == S_ANGEL) snamount *= 2;
 
