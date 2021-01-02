@@ -2776,6 +2776,8 @@ boolean td;	/* td == TRUE : trap door or hole */
 	    newlevel++;
 	} while(!rn2(4) && newlevel < dunlevs_in_dungeon(&u.uz));
 
+	if (wizard && !Can_fall_thru(&u.uz) && (yn("Go down here?") == 'y')) newlevel++;
+
 	if(td) {
 	    struct trap *t=t_at(u.ux,u.uy);
 	    seetrap(t);
@@ -2794,7 +2796,7 @@ boolean td;	/* td == TRUE : trap door or hole */
 
 	if (In_sokoban(&u.uz) && Can_fall_thru(&u.uz))
 	    ;	/* KMH -- You can't escape the Sokoban level traps */
-	else if((Levitation || u.ustuck || !Can_fall_thru(&u.uz)
+	else if((Levitation || u.ustuck || (!Can_fall_thru(&u.uz) && !wizard)
 	   || Flying || is_clinger(youmonst.data)
 	   || (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp >= BULLWHIP && uwep->otyp <= SECRET_WHIP && uwep->otyp != RUBBER_HOSE)
 	   || (Inhell && !u.uevent.invoked && newlevel == dunlevs_in_dungeon(&u.uz)))
@@ -2825,6 +2827,57 @@ boolean td;	/* td == TRUE : trap door or hole */
 	    dtmp.dnum = u.uz.dnum;
 	    dtmp.dlevel = newlevel;
 	}
+
+	if (wizard && !Can_fall_thru(&u.uz)) {
+		extern int n_dgns; /* from dungeon.c */
+		int duncounter, num_ok_dungeons, last_ok_dungeon = 0;
+		int randomnumber;
+
+		for (duncounter = num_ok_dungeons = 0; duncounter < n_dgns; duncounter++) {
+			if (!dungeons[duncounter].dunlev_ureached) continue;
+			if (flags.wonderland && !achieve.perform_invocation) {
+				if (!strcmp(dungeons[duncounter].dname, "Yendorian Tower")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Forging Chamber")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Dead Grounds")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Ordered Chaos")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TA")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TB")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TC")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TD")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TE")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TF")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TG")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TH")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TI")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TJ")) continue;
+			} 
+			num_ok_dungeons++;
+			last_ok_dungeon = duncounter;
+
+		}
+		if (num_ok_dungeons > 1) randomnumber = rnd(num_ok_dungeons);
+		else randomnumber = 1;
+
+		dtmp.dnum = u.uz.dnum;
+
+		while (randomnumber > 0) {
+
+			randomnumber--;
+
+			dtmp.dnum++;
+			if (dtmp.dnum >= n_dgns) dtmp.dnum = 0;
+
+			while (!dungeons[dtmp.dnum].dunlev_ureached || (flags.wonderland && !achieve.perform_invocation && ( !strcmp(dungeons[dtmp.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[dtmp.dnum].dname, "Forging Chamber") || !strcmp(dungeons[dtmp.dnum].dname, "Dead Grounds") || !strcmp(dungeons[dtmp.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TA") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TB") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TC") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TD") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TE") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TF") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TG") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TH") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TI") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TJ") ) ) ) {
+
+				dtmp.dnum++;
+				if (dtmp.dnum >= n_dgns) dtmp.dnum = 0;
+			}
+		}
+
+		dtmp.dlevel = 1;
+		if (dungeons[dtmp.dnum].dunlev_ureached > 1) dtmp.dlevel = rnd(dungeons[dtmp.dnum].dunlev_ureached);
+	}
+
 	if (!td)
 	    sprintf(msgbuf, "The hole in the %s above you closes up.",
 		    ceiling(u.ux,u.uy));
@@ -2848,6 +2901,8 @@ boolean td;	/* td == TRUE : trap door or hole */
 	    newlevel++;
 	} while(rn2(4) && newlevel < dunlevs_in_dungeon(&u.uz));
 
+	if (wizard && !Can_fall_thru(&u.uz) && (yn("Go down here?") == 'y')) newlevel++;
+
 	if(td) {
 	    struct trap *t=t_at(u.ux,u.uy);
 	    seetrap(t);
@@ -2866,7 +2921,7 @@ boolean td;	/* td == TRUE : trap door or hole */
 
 	if (In_sokoban(&u.uz) && Can_fall_thru(&u.uz))
 	    ;	/* KMH -- You can't escape the Sokoban level traps */
-	else if((Levitation || u.ustuck || !Can_fall_thru(&u.uz)
+	else if((Levitation || u.ustuck || (!Can_fall_thru(&u.uz) && !wizard)
 	   || Flying || is_clinger(youmonst.data)
 	   || (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp >= BULLWHIP && uwep->otyp <= SECRET_WHIP && uwep->otyp != RUBBER_HOSE)
 	   || (Inhell && !u.uevent.invoked && newlevel == dunlevs_in_dungeon(&u.uz)))
@@ -2897,6 +2952,57 @@ boolean td;	/* td == TRUE : trap door or hole */
 	    dtmp.dnum = u.uz.dnum;
 	    dtmp.dlevel = newlevel;
 	}
+
+	if (wizard && !Can_fall_thru(&u.uz)) {
+		extern int n_dgns; /* from dungeon.c */
+		int duncounter, num_ok_dungeons, last_ok_dungeon = 0;
+		int randomnumber;
+
+		for (duncounter = num_ok_dungeons = 0; duncounter < n_dgns; duncounter++) {
+			if (!dungeons[duncounter].dunlev_ureached) continue;
+			if (flags.wonderland && !achieve.perform_invocation) {
+				if (!strcmp(dungeons[duncounter].dname, "Yendorian Tower")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Forging Chamber")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Dead Grounds")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Ordered Chaos")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TA")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TB")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TC")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TD")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TE")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TF")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TG")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TH")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TI")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TJ")) continue;
+			} 
+			num_ok_dungeons++;
+			last_ok_dungeon = duncounter;
+
+		}
+		if (num_ok_dungeons > 1) randomnumber = rnd(num_ok_dungeons);
+		else randomnumber = 1;
+
+		dtmp.dnum = u.uz.dnum;
+
+		while (randomnumber > 0) {
+
+			randomnumber--;
+
+			dtmp.dnum++;
+			if (dtmp.dnum >= n_dgns) dtmp.dnum = 0;
+
+			while (!dungeons[dtmp.dnum].dunlev_ureached || (flags.wonderland && !achieve.perform_invocation && ( !strcmp(dungeons[dtmp.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[dtmp.dnum].dname, "Forging Chamber") || !strcmp(dungeons[dtmp.dnum].dname, "Dead Grounds") || !strcmp(dungeons[dtmp.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TA") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TB") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TC") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TD") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TE") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TF") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TG") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TH") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TI") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TJ") ) ) ) {
+
+				dtmp.dnum++;
+				if (dtmp.dnum >= n_dgns) dtmp.dnum = 0;
+			}
+		}
+
+		dtmp.dlevel = 1;
+		if (dungeons[dtmp.dnum].dunlev_ureached > 1) dtmp.dlevel = rnd(dungeons[dtmp.dnum].dunlev_ureached);
+	}
+
 	if (!td)
 	    sprintf(msgbuf, "The hole in the %s above you closes up.",
 		    ceiling(u.ux,u.uy));
@@ -2918,6 +3024,8 @@ boolean td;	/* td == TRUE : trap door or hole */
 	    newlevel++;
 	} while(rn2(4) && newlevel < dunlevs_in_dungeon(&u.uz));
 
+	if (wizard && !Can_fall_thru(&u.uz) && (yn("Go down here?") == 'y')) newlevel++;
+
 	if(td) {
 	    struct trap *t=t_at(u.ux,u.uy);
 	    seetrap(t);
@@ -2936,7 +3044,7 @@ boolean td;	/* td == TRUE : trap door or hole */
 
 	if (In_sokoban(&u.uz) && Can_fall_thru(&u.uz))
 	    ;	/* KMH -- You can't escape the Sokoban level traps */
-	else if(u.ustuck || !Can_fall_thru(&u.uz)
+	else if(u.ustuck || (!Can_fall_thru(&u.uz) && !wizard)
 	   || (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp >= BULLWHIP && uwep->otyp <= SECRET_WHIP && uwep->otyp != RUBBER_HOSE)
 	   || (Inhell && !u.uevent.invoked && newlevel == dunlevs_in_dungeon(&u.uz))
 		) {
@@ -2966,6 +3074,57 @@ boolean td;	/* td == TRUE : trap door or hole */
 	    dtmp.dnum = u.uz.dnum;
 	    dtmp.dlevel = newlevel;
 	}
+
+	if (wizard && !Can_fall_thru(&u.uz)) {
+		extern int n_dgns; /* from dungeon.c */
+		int duncounter, num_ok_dungeons, last_ok_dungeon = 0;
+		int randomnumber;
+
+		for (duncounter = num_ok_dungeons = 0; duncounter < n_dgns; duncounter++) {
+			if (!dungeons[duncounter].dunlev_ureached) continue;
+			if (flags.wonderland && !achieve.perform_invocation) {
+				if (!strcmp(dungeons[duncounter].dname, "Yendorian Tower")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Forging Chamber")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Dead Grounds")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Ordered Chaos")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TA")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TB")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TC")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TD")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TE")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TF")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TG")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TH")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TI")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TJ")) continue;
+			} 
+			num_ok_dungeons++;
+			last_ok_dungeon = duncounter;
+
+		}
+		if (num_ok_dungeons > 1) randomnumber = rnd(num_ok_dungeons);
+		else randomnumber = 1;
+
+		dtmp.dnum = u.uz.dnum;
+
+		while (randomnumber > 0) {
+
+			randomnumber--;
+
+			dtmp.dnum++;
+			if (dtmp.dnum >= n_dgns) dtmp.dnum = 0;
+
+			while (!dungeons[dtmp.dnum].dunlev_ureached || (flags.wonderland && !achieve.perform_invocation && ( !strcmp(dungeons[dtmp.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[dtmp.dnum].dname, "Forging Chamber") || !strcmp(dungeons[dtmp.dnum].dname, "Dead Grounds") || !strcmp(dungeons[dtmp.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TA") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TB") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TC") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TD") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TE") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TF") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TG") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TH") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TI") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TJ") ) ) ) {
+
+				dtmp.dnum++;
+				if (dtmp.dnum >= n_dgns) dtmp.dnum = 0;
+			}
+		}
+
+		dtmp.dlevel = 1;
+		if (dungeons[dtmp.dnum].dunlev_ureached > 1) dtmp.dlevel = rnd(dungeons[dtmp.dnum].dunlev_ureached);
+	}
+
 	if (!td)
 	    sprintf(msgbuf, "The hole in the %s above you closes up.",
 		    ceiling(u.ux,u.uy));
@@ -7765,10 +7924,16 @@ newbossPENT:
 	    case SHAFT_TRAP:
 	    case CURRENT_SHAFT:
 		if (!Can_fall_thru(&u.uz)) {
-		    seetrap(trap);	/* normally done in fall_through */
-		    impossible("dotrap: %ss cannot exist on this level.",
-			       defsyms[trap_to_defsym(ttype)].explanation);
-		    break;		/* don't activate it after all */
+
+		    if (wizard && yn("Trigger the trap that shouldn't exist here?") == 'y') {
+			; /* do nothing, for testing purposes --Amy */
+		    } else {
+
+			    seetrap(trap);	/* normally done in fall_through */
+			    impossible("dotrap: %ss cannot exist on this level.",
+				       defsyms[trap_to_defsym(ttype)].explanation);
+			    break;		/* don't activate it after all */
+		    }
 		}
 		if (ttype != SHAFT_TRAP && ttype != CURRENT_SHAFT) fall_through(TRUE);
 		else if (ttype != CURRENT_SHAFT) fall_throughX(TRUE);

@@ -2756,7 +2756,7 @@ dooverview()
 	for (mptr = mapseenchn; mptr; mptr = mptr->next) {
 
 		/* only print out info for a level or a dungeon if interest */
-		if (interest_mapseen(mptr)) {
+		if (/*interest_mapseen(mptr)*/TRUE) {
 			printdun = (first || lastdun != mptr->lev.dnum);
 			/* if (!first) putstr(win, 0, ""); */
 			print_mapseen(win, mptr, printdun, FALSE);
