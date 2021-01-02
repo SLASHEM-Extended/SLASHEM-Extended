@@ -279,6 +279,14 @@ fnd:
 	stop_occupation();		/* if occupied, stop it *now* */
 	if (multi > 0) { nomul(0, 0, FALSE); unmul((char *)0); }
 	trycount = 5;
+
+	if (Role_if(PM_BUTT_LOVER) && rn2(3)) {
+		verbalize("Hello stranger, who are you?");
+		pline("Since you cannot lie, you tell your name to the vault guard.");
+		strncpy(buf, plname, sizeof(buf));
+		goto gaveidentity;
+	}
+
 	do {
 	    getlin("\"Hello stranger, who are you?\" -", buf);
 	    (void) mungspaces(buf);
@@ -288,6 +296,13 @@ fnd:
 	    /* ignore trailing text, in case player includes character's rank */
 	    strncmpi(buf, plname, (int) strlen(plname)) != 0 && (!plalias[0] || strncmpi(buf, plalias, (int) strlen(plalias)) != 0) ) {
 		adjalign(-1);		/* Liar! */
+	}
+
+	if (Role_if(PM_BUTT_LOVER) && (strncmpi(buf, plname, (int) strlen(plname)) != 0 && (!plalias[0] || strncmpi(buf, plalias, (int) strlen(plalias)) != 0)) ) {
+		You("accidentally drop your pack, and bend over to pick it up...");
+		verbalize("Liar! You really thought that'd work on me, punk?");
+		setmangry(guard);
+		return;
 	}
 
 	if (!rn2(10) || (strncmpi(buf, plname, (int) strlen(plname)) != 0 && (!plalias[0] || strncmpi(buf, plalias, (int) strlen(plalias)) != 0)) ) {
@@ -321,6 +336,8 @@ fnd:
 
 	}
 
+gaveidentity:
+
 	if (!strcmpi(buf, "Croesus") || !strcmpi(buf, "Kroisos")
 		|| !strcmpi(buf, "Creosote")
 	    ) {
@@ -338,6 +355,7 @@ fnd:
 	    }
 	    return;
 	}
+
 	verbalize("I don't know you.");
 #ifndef GOLDOBJ
 	if (!u.ugold && !hidden_gold())
