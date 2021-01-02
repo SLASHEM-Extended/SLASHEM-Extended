@@ -7066,6 +7066,11 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 	    } else fprefx(otmp);
 	}
 
+	if (practicantterror && (otmp->otyp == SLICE_OF_PIZZA || otmp->otyp == PIZZA)) {
+		pline("%s booms: 'You're not allowed to eat pizza in my lab! That makes 50 zorkmids, maggot.'", noroelaname());
+		fineforpracticant(50, 0, 0);
+	}
+
 	/* re-calc the nutrition */
 	if (otmp->otyp == CORPSE) basenutrit = mons[otmp->corpsenm].cnutrit;
 	else basenutrit = objects[otmp->otyp].oc_nutrition;
