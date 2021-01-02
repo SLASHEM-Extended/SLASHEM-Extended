@@ -21067,6 +21067,40 @@ boolean knoweverything;
 					pline("Artifact specs: +2 to-hit and +2 damage, allows you to train lightsaber forms twice as fast, chaotic. Yes, Rosh's last name is Penin, but this sword is what he uses to train :-P"); break;
 				case ART_GREAT_ANTILLES:
 					pline("Artifact specs: +10 to-hit and +10 damage, swimming when wielded."); break;
+				case ART_SORESURE:
+					pline("Artifact specs: allows you to train the form III (Soresu) skill while wearing it, even if you don't use a lightsaber."); break;
+				case ART_NEVERMAN:
+					pline("Artifact specs: allows you to train the form VI (Niman) skill while wielding it."); break;
+				case ART_ATARU_ONE:
+					pline("Artifact specs: if you dual-wield it together with Ataru Two, you can train the form IV (Ataru) skill. Invoking this artifact will create Ataru Two if it doesn't exist yet."); break;
+				case ART_ATARU_TWO:
+					pline("Artifact specs: if you dual-wield it together with Ataru One, you can train the form IV (Ataru) skill. Invoking this artifact will create Ataru One if it doesn't exist yet."); break;
+				case ART_OUTJUYOING:
+					pline("Artifact specs: smashing an enemy's weapon with it trains the form VII (Juyo) skill."); break;
+				case ART_THIS_IS_VAAPAD:
+					pline("Artifact specs: allows you to train the form VII (Vaapad) skill while wielding it."); break;
+				case ART_CONCENTRATOR:
+					pline("Artifact specs: +2 damage, allows you to train the form I (Shii-Cho) skill while wielding it."); break;
+				case ART_MA_STRIKE:
+					pline("Artifact specs: allows you to train the form II (Makashi) skill while wielding it."); break;
+				case ART_RUSMA_SRO:
+					pline("Artifact specs: throwing it at a monster can train the form V (Djem So) skill."); break;
+				case ART_SHIENSIDE:
+					pline("Artifact specs: blocking a projectile with it trains the form V (Shien) skill."); break;
+				case ART_CONTROL_HELP:
+					pline("Artifact specs: +5 to-hit and +4 damage, energy regeneration and control magic when wielded."); break;
+				case ART_WOEBLADE:
+					pline("Artifact specs: +10 damage, occasionally deals extra damage, chaotic."); break;
+				case ART_ELEMENTS_TIME_THREE:
+					pline("Artifact specs: +8 to-hit and +6 damage to fire-susceptible monsters, cold resistance when wielded, applying it at something has 1 in 100 chance of firing a lightning bolt in a random direction. Beware, the lightning bolt can reflect back at you."); break;
+				case ART_BELLELDOUBLE:
+					pline("Artifact specs: double attacks when wielded."); break;
+				case ART_TECHCTION:
+					pline("Artifact specs: technicality and free action when wielded."); break;
+				case ART_DAMN_SKI_WEDGE:
+					pline("Artifact specs: if you're wearing shoes, they'll count as wedge heels and can walk on slow, but if you're barefoot, you're instead affected by the curses of Anastasia and Julietta!"); break;
+				case ART_TELEPORTITS:
+					pline("Artifact specs: teleportitis when worn. It teleports your entire body, not just your tits. :D"); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

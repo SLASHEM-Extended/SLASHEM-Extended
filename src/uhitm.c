@@ -1819,10 +1819,10 @@ int dieroll;
 			tmp += issoviet ? GushLevel : rno(GushLevel); /* nerf by Amy */
 			hittxt = TRUE;
 		    } else if ((dieroll == 2 || (juyohelpchance >= rnd(100))) && obj == uwep &&
-			  !u.twoweap && obj->oclass == WEAPON_CLASS && (bimanual(obj) ||
+			  !u.twoweap && obj->oclass == WEAPON_CLASS && (bimanual(obj) || obj->oartifact == ART_OUTJUYOING ||
 			    (Role_if(PM_SAMURAI) && obj->otyp == KATANA && !uarms)) &&
-			  ((wtype = uwep_skill_type()) != P_NONE && !(PlayerCannotUseSkills) &&
-			    P_SKILL(wtype) >= P_SKILLED) && ((monwep = MON_WEP(mon)) != 0 && monwep &&
+			  (((wtype = uwep_skill_type()) != P_NONE && !(PlayerCannotUseSkills) && P_SKILL(wtype) >= P_SKILLED) || (obj->oartifact == ART_OUTJUYOING) ) && 
+			  ((monwep = MON_WEP(mon)) != 0 && monwep &&
 			   !is_flimsy(monwep) && !stack_too_big(monwep) &&
 			   !obj_resists(monwep, 50 + 15 * greatest_erosionX(obj), 100))) {
 			/*
@@ -1852,6 +1852,8 @@ int dieroll;
 				if (rn2(4)) {
 				    monflee(mon, d(2,3), TRUE, TRUE);
 				}
+				if (obj && obj->oartifact == ART_OUTJUYOING) use_skill(P_JUYO, rnd(4));
+
 				hittxt = TRUE;
 			}
 
@@ -2999,6 +3001,48 @@ melatechoice:
 					use_skill(P_GENERAL_COMBAT, 1);
 				}
 
+				if (uwep && uwep->oartifact == ART_ATARU_ONE && u.twoweap && uswapwep && uswapwep->oartifact == ART_ATARU_TWO) {
+					u.uataruturns++;
+					if (u.uataruturns >= 4) {
+						u.uataruturns = 0;
+						use_skill(P_ATARU, 1);
+					}
+				}
+
+				if (uwep && uwep->oartifact == ART_ATARU_TWO && u.twoweap && uswapwep && uswapwep->oartifact == ART_ATARU_ONE) {
+					u.uataruturns++;
+					if (u.uataruturns >= 4) {
+						u.uataruturns = 0;
+						use_skill(P_ATARU, 1);
+					}
+				}
+
+				if (uwep && uwep->oartifact == ART_THIS_IS_VAAPAD) {
+						u.uvaapadturns++;
+						if (u.uvaapadturns >= 4) {
+							u.uvaapadturns = 0;
+							use_skill(P_VAAPAD, 1);
+						}
+				}
+
+				if (uwep && uwep->oartifact == ART_CONCENTRATOR) {
+					if (!u.twoweap || !rn2(2)) {
+						u.ushiichoturns++;
+						if (u.ushiichoturns >= 5) {
+							u.ushiichoturns = 0;
+							use_skill(P_SHII_CHO, 1);
+						}
+					}
+				}
+
+				if (!uarms && !u.twoweap && uwep && uwep->oartifact == ART_MA_STRIKE) {
+					u.umakashiturns++;
+					if (u.umakashiturns >= 4) {
+						u.umakashiturns = 0;
+						use_skill(P_MAKASHI, 1);
+					}
+				}
+
 				if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
 
 					if (!u.twoweap || !rn2(2)) {
@@ -3033,7 +3077,7 @@ melatechoice:
 						}
 					}
 
-				}
+				} /* end lightsaber-specific code */
 
 				/* For some reason, "wep" isn't always defined, yet the checks above don't crash... --Amy */
 				if (wep && !is_missile(wep) && !is_ammo(wep) && !is_launcher(wep) && !(is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) && bimanual(wep)) {
@@ -3069,6 +3113,10 @@ melatechoice:
 				}
 				/* djem so was also training ultra slowly, so here's a multiplier */
 				if (wep && is_lightsaber(wep) && wep->lamplit) {
+					use_skill(P_DJEM_SO, rnd(4));
+				}
+
+				if (wep && wep->oartifact == ART_RUSMA_SRO) {
 					use_skill(P_DJEM_SO, rnd(4));
 				}
 

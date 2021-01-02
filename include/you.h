@@ -1333,6 +1333,8 @@ struct you {
 
 	boolean totter;	/* scroll of symmetry toggles this */
 
+	boolean ataruinvoked;
+
 	int nurseextracost;	/* for chat-to-nurses functionality */
 	int nursedecontamcost;	/* ditto */
 	int nursesymbiotecost;

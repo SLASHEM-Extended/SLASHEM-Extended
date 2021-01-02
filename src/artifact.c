@@ -2220,6 +2220,19 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	    *dmgptr += rnd(4) * 5;
 	    willreturntrue = 1;
        }
+
+       if (otmp->oartifact == ART_WOEBLADE && dieroll < 6) {
+	    if (youattack)
+		You("plunge the Woeblade deeply into %s!",
+			mon_nam(mdef));
+	    else
+		pline("%s plunges the Woeblade deeply into %s!",
+			Monnam(magr), hittee);
+		if (youattack && (PlayerHearsSoundEffects)) pline(issoviet ? "Tak chto vy dumayete, vy mozhete bit' igru tol'ko potomu, chto vy nashli artefakt. Bednyy zabluzhdayutsya dusha." : "Doaaaaaai!");
+	    *dmgptr += rnd(4) * 5;
+	    willreturntrue = 1;
+       }
+
       /* END OF STEPHEN WHITE'S NEW CODE */
 
 #if 0
@@ -3194,6 +3207,34 @@ arti_invoke(obj)
 		}
 	}
 	if (artitimeout < 1) artitimeout = 1; /* fail safe */
+
+	if (obj->oartifact == ART_ATARU_ONE) {
+		if (!u.ataruinvoked && !exist_artifact(ETERNIUM_BLADE, artiname(ART_ATARU_TWO))) {
+			register struct obj *trophy;
+			u.ataruinvoked = TRUE;
+			trophy = mksobj(ETERNIUM_BLADE, FALSE, FALSE, FALSE);
+			if (trophy) {
+				trophy = oname(trophy, artiname(ART_ATARU_TWO));
+				dropy(trophy);
+			}
+			pline("Ataru Two was dropped on the floor.");
+		} else pline("It seems that Ataru Two has been generated already.");
+		return 1;
+	}
+
+	if (obj->oartifact == ART_ATARU_TWO) {
+		if (!u.ataruinvoked && !exist_artifact(CRYSTAL_SWORD, artiname(ART_ATARU_ONE))) {
+			register struct obj *trophy;
+			u.ataruinvoked = TRUE;
+			trophy = mksobj(CRYSTAL_SWORD, FALSE, FALSE, FALSE);
+			if (trophy) {
+				trophy = oname(trophy, artiname(ART_ATARU_ONE));
+				dropy(trophy);
+			}
+			pline("Ataru One was dropped on the floor.");
+		} else pline("It seems that Ataru One has been generated already.");
+		return 1;
+	}
 
     if(!oart || !oart->inv_prop) {
 	if(obj->otyp == CRYSTAL_BALL)

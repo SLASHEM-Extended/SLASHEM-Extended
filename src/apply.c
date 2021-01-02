@@ -4258,6 +4258,38 @@ use_pole (obj)
 			pline("Your weapon seems sharper!");
 		    }
 
+		    if (obj && obj->oartifact == ART_ELEMENTS_TIME_THREE && isok(u.ux, u.uy) && !rn2(100)) {
+			int melteestrength = 5 + (GushLevel / 4);
+
+			switch (rnd(8)) {
+				case 1:
+					buzz(15, melteestrength, u.ux, u.uy, -1, 0);
+					break;
+				case 2:
+					buzz(15, melteestrength, u.ux, u.uy, 1, 0);
+					break;
+				case 3:
+					buzz(15, melteestrength, u.ux, u.uy, -1, 1);
+					break;
+				case 4:
+					buzz(15, melteestrength, u.ux, u.uy, 1, 1);
+					break;
+				case 5:
+					buzz(15, melteestrength, u.ux, u.uy, 0, 1);
+					break;
+				case 6:
+					buzz(15, melteestrength, u.ux, u.uy, -1, -1);
+					break;
+				case 7:
+					buzz(15, melteestrength, u.ux, u.uy, 1, -1);
+					break;
+				case 8:
+					buzz(15, melteestrength, u.ux, u.uy, 0, -1);
+					break;
+			}
+
+		    }
+
 		    if (obj && obj->oartifact == ART_ROYAL_CASINO_BETS) {
 
 			if (!rn2(1000) && obj->spe < 5) {

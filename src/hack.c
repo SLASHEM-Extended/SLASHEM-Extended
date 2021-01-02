@@ -2030,6 +2030,7 @@ domove()
 			    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
 			    || (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE)
 			    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
+			    || (uwep && uwep->oartifact == ART_DAMN_SKI_WEDGE && uarmf)
 			    || resists_cold(&youmonst) || Flying
 			    || is_floater(youmonst.data) || is_clinger(youmonst.data)
 			    || is_whirly(youmonst.data))

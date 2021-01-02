@@ -8205,6 +8205,74 @@ A("Great Antilles",				YELLOW_LIGHTSABER, /* swimming when wielded */
 	(SPFX_RESTR), 0, 0,
 	PHYS(10, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
+A("Soresure",                ROBE_OF_WEAKNESS, /* can train soresu while wearing it */
+    (SPFX_RESTR|SPFX_EVIL), 0, 0,
+    NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Neverman",                OLDEST_STAFF, /* can train niman while wielding it */
+    (SPFX_RESTR), 0, 0,
+    NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Ataru One",                CRYSTAL_SWORD, /* can train ataru while dual-wielding it with ataru two */
+    (SPFX_RESTR), 0, 0,
+    NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Ataru Two",                ETERNIUM_BLADE, /* invoking one of these ataru artifacts generates the other */
+    (SPFX_RESTR), 0, 0,
+    NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Outjuyoing",                PIKE, /* can train juyo by using it to smash enemy weapons */
+    (SPFX_RESTR), 0, 0,
+    NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("This Is Vaapad",                TWO_HANDED_TRIDENT, /* can train vaapad while wielding it */
+    (SPFX_RESTR), 0, 0,
+    NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Concentrator",                OTAMA, /* can train shii-cho while wielding it */
+    (SPFX_RESTR), 0, 0,
+    PHYS(0, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Ma-Strike",                BRONZE_MORNING_STAR, /* can train makashi while wielding it */
+    (SPFX_RESTR), 0, 0,
+    NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Rusma-Sro",                BRIDGE_MUZZLE, /* can train djem so by throwing it */
+    (SPFX_RESTR), 0, 0,
+    NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Shienside",                CRYSTAL_SHIELD, /* can train shien by blocking with it */
+    (SPFX_RESTR), 0, 0,
+    NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Control Help",				OLDEST_STAFF, /* control magic when wielded */
+	(SPFX_RESTR|SPFX_EREGEN), 0, 0,
+	PHYS(5, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Woeblade",				ETERNIUM_BLADE, /* deals extra damage like doomblade */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 2000L ),
+
+A("Elements Time Three",				PIKE, /* cold resistance when wielded, applying it at something has 1 in 100 chance to shoot lightning in a random direction */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(8, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("BellelDouble",				TWO_HANDED_TRIDENT, /* double attacks */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Techction",				BRONZE_MORNING_STAR, /* technicality and free action when wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Damn Ski Wedge",				BRIDGE_MUZZLE, /* your footwear counts as wedge heels and can walk on snow, but if you don't wear shoes, the anastasia and julietta traps are in effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Teleportits",				FLEECY_CORSET, /* inspired by nabru, teleportitis when worn */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

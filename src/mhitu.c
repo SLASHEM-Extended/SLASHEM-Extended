@@ -1703,6 +1703,10 @@ register struct attack *mattk;
 			use_skill(P_SORESU, rnd(2));
 			if (!rn2(5)) use_skill(P_SORESU, rnd(2));
 		}
+		if (uarm && (blocker == uarm) && uarm->oartifact == ART_SORESURE) {
+			use_skill(P_SORESU, rnd(2));
+			if (!rn2(5)) use_skill(P_SORESU, rnd(2));
+		}
 		u.ubodyarmorturns++;
 		if (u.ubodyarmorturns >= 5) {
 			u.ubodyarmorturns = 0;

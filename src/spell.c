@@ -3668,6 +3668,13 @@ castanyway:
 		}
 
 	}
+	if (uwep && uwep->oartifact == ART_NEVERMAN) {
+		u.unimanturns++;
+		if (u.unimanturns >= 3) {
+			u.unimanturns = 0;
+			use_skill(P_NIMAN, 1);
+		}
+	}
 
 	if (Role_if(PM_MAHOU_SHOUJO)) { /* Casting any sort of magic causes all monsters on a level to 
       become alert of your location, due to mahou shoujo always announcing their attacks. */

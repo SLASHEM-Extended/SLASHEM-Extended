@@ -355,6 +355,7 @@ const char *name;	/* if null, then format `obj' */
 				if(Blind || !flags.verbose) pline("You block a projectile with your shield.");
 				else You("block %s with your shield.", onm);
 				use_skill(P_SHIELD, 1);
+				if (uarms && uarms->oartifact == ART_SHIENSIDE) use_skill(P_SHIEN, 1);
 
 				u.ubodyarmorturns++;
 				if (u.ubodyarmorturns >= 5) {

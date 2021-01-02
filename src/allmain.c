@@ -1225,6 +1225,7 @@ moveloop()
 						    || (uwep && uwep->oartifact == ART_GLACIERDALE)
 						    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
 						    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
+						    || (uwep && uwep->oartifact == ART_DAMN_SKI_WEDGE && uarmf)
 						    || (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE)) canwalkonsnow = 1;
 
 					if (powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) canwalkonsnow = 1;
@@ -1573,6 +1574,7 @@ moveloop()
 					    || (uwep && uwep->oartifact == ART_GLACIERDALE)
 					    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
 					    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
+					    || (uwep && uwep->oartifact == ART_DAMN_SKI_WEDGE && uarmf)
 					    || (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE)) canwalkonsnow = 1;
 
 				if (powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) canwalkonsnow = 1;
@@ -6434,6 +6436,15 @@ newbossO:
 
 		/* soresu form trains passively if you have both a lit lightsaber and a robe, but very slowly --Amy */
 		if (uarm && uwep && is_lightsaber(uwep) && uwep->lamplit && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS) ) {
+			u.usoresuturns++;
+			if (u.usoresuturns >= 100) {
+				u.usoresuturns = 0;
+				use_skill(P_SORESU, 1);
+			}
+
+		}
+
+		if (uarm && uarm->oartifact == ART_SORESURE) {
 			u.usoresuturns++;
 			if (u.usoresuturns >= 100) {
 				u.usoresuturns = 0;
