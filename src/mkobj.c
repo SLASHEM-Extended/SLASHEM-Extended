@@ -3279,7 +3279,7 @@ boolean shopinit;
 		return (struct obj *)0;
 	}
 
-	if (iserosator) {
+	if (iserosator && otmp && otmp->oclass != COIN_CLASS) {
 		if (!rn2(3)) otmp->oeroded = rnd(3);
 		else if (!rn2(2)) otmp->oeroded2 = rnd(3);
 		else {
@@ -3292,19 +3292,19 @@ boolean shopinit;
 
 	/* nice patch idea by Amy - sometimes have items start out with partial identification */
 
-	if (otmp && !rn2(1000 - (u.ulevel * (ishaxor ? 20 : 10) ) )) otmp->rknown = TRUE;
-	if (otmp && !rn2(1000 - (u.ulevel * (ishaxor ? 20 : 10) ) )) otmp->known = TRUE;
-	if (otmp && !rn2(1000 - (u.ulevel * (ishaxor ? 20 : 10) ) )) otmp->dknown = TRUE;
-	if (otmp && !rn2(1000 - (u.ulevel * (ishaxor ? 20 : 10) ) )) otmp->bknown = TRUE;
-	if (otmp && (u.bucskill > rn2(300)) ) otmp->bknown = TRUE;
-	if (otmp && weapon_type(otmp) == P_NONE && (u.enchantrecskill > rn2(300)) ) otmp->known = TRUE;
-	if (otmp && weapon_type(otmp) != P_NONE && (u.weapchantrecskill > rn2(300)) ) otmp->known = TRUE;
+	if (otmp && otmp->oclass != COIN_CLASS && !rn2(1000 - (u.ulevel * (ishaxor ? 20 : 10) ) )) otmp->rknown = TRUE;
+	if (otmp && otmp->oclass != COIN_CLASS && !rn2(1000 - (u.ulevel * (ishaxor ? 20 : 10) ) )) otmp->known = TRUE;
+	if (otmp && otmp->oclass != COIN_CLASS && !rn2(1000 - (u.ulevel * (ishaxor ? 20 : 10) ) )) otmp->dknown = TRUE;
+	if (otmp && otmp->oclass != COIN_CLASS && !rn2(1000 - (u.ulevel * (ishaxor ? 20 : 10) ) )) otmp->bknown = TRUE;
+	if (otmp && otmp->oclass != COIN_CLASS && (u.bucskill > rn2(300)) ) otmp->bknown = TRUE;
+	if (otmp && otmp->oclass != COIN_CLASS && weapon_type(otmp) == P_NONE && (u.enchantrecskill > rn2(300)) ) otmp->known = TRUE;
+	if (otmp && otmp->oclass != COIN_CLASS && weapon_type(otmp) != P_NONE && (u.weapchantrecskill > rn2(300)) ) otmp->known = TRUE;
 
-	if (otmp && (otmp->otyp == TIN || otmp->otyp == EGG) && !rn2(100 - (u.ulevel * (ishaxor ? 2 : 1) ) )) otmp->known = TRUE;
+	if (otmp && otmp->oclass != COIN_CLASS && (otmp->otyp == TIN || otmp->otyp == EGG) && !rn2(100 - (u.ulevel * (ishaxor ? 2 : 1) ) )) otmp->known = TRUE;
 
 	/* For a curser, every item has an 80% chance of being cursed if it would have been noncursed. --Amy */
-	if (iscurser && rn2(5)) curse_on_creation(otmp);
-	if (u.genericcursechance && (u.genericcursechance >= rnd(100)) ) curse_on_creation(otmp);
+	if (iscurser && otmp && otmp->oclass != COIN_CLASS && rn2(5)) curse_on_creation(otmp);
+	if (u.genericcursechance && otmp && otmp->oclass != COIN_CLASS && (u.genericcursechance >= rnd(100)) ) curse_on_creation(otmp);
 
 	if (otyp == u.alwayscurseditem) curse_on_creation(otmp);
 	if (otyp == u.alwayscurseditem2) curse_on_creation(otmp);
