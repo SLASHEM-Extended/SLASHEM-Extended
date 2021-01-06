@@ -338,14 +338,15 @@ struct obj *obj;
 			}
 			com_pager(196);
 
+#ifdef LIVELOGFILE
+			livelog_achieve_update();
+			livelog_report_trophy("obtained the Amulet of Yendor");
+#endif
+
 		}
 
-                achieve.get_amulet = 1;
+		achieve.get_amulet = 1;
 
-#ifdef LIVELOGFILE
-		livelog_achieve_update();
-		livelog_report_trophy("obtained the Amulet of Yendor");
-#endif
 #endif
 	} else if (obj->otyp == CANDELABRUM_OF_INVOCATION) {
 		if (u.uhave.menorah) impossible("already have candelabrum?");
@@ -360,6 +361,8 @@ struct obj *obj;
 
 		if (!achieve.get_candelabrum) {
 
+			achieve.get_candelabrum = 1;
+
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 			if (Race_if(PM_INHERITOR)) giftartifact();
@@ -373,13 +376,14 @@ struct obj *obj;
 			}
 			qt_pager(QT_VLAD);
 
+#ifdef LIVELOGFILE
+			livelog_achieve_update();
+			livelog_report_trophy("obtained the Candelabrum of Invocation");
+#endif
+
 		}
 
-                achieve.get_candelabrum = 1;
-#ifdef LIVELOGFILE
-		livelog_achieve_update();
-		livelog_report_trophy("obtained the Candelabrum of Invocation");
-#endif
+		achieve.get_candelabrum = 1;
 #endif
 	} else if (obj->otyp == BELL_OF_OPENING) {
 		if (u.uhave.bell) impossible("already have silver bell?");
@@ -395,6 +399,8 @@ struct obj *obj;
 
 		if (!achieve.get_bell) {
 
+			achieve.get_bell = 1;
+
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 			if (Race_if(PM_INHERITOR)) giftartifact();
@@ -407,13 +413,14 @@ struct obj *obj;
 				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
 			}
 
+#ifdef LIVELOGFILE
+			livelog_achieve_update();
+			livelog_report_trophy("obtained the Bell of Opening");
+#endif
+
 		}
 
-                achieve.get_bell = 1;
-#ifdef LIVELOGFILE
-		livelog_achieve_update();
-		livelog_report_trophy("obtained the Bell of Opening");
-#endif
+		achieve.get_bell = 1;
 #endif
 	} else if (obj->otyp == SPE_BOOK_OF_THE_DEAD) {
 		if (u.uhave.book) impossible("already have the book?");
@@ -428,6 +435,8 @@ struct obj *obj;
 
 		if (!achieve.get_book) {
 
+			achieve.get_book = 1;
+
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 			if (Race_if(PM_INHERITOR)) giftartifact();
@@ -441,13 +450,14 @@ struct obj *obj;
 			}
 			qt_pager(QT_RODNEY);
 
+#ifdef LIVELOGFILE
+			livelog_achieve_update();
+			livelog_report_trophy("obtained the Book of the Dead");
+#endif
+
 		}
 
-                achieve.get_book = 1;
-#ifdef LIVELOGFILE
-		livelog_achieve_update();
-		livelog_report_trophy("obtained the Book of the Dead");
-#endif
+		achieve.get_book = 1;
 #endif
 	} else if (obj->oartifact) {
 		if (is_quest_artifact(obj)) {
@@ -510,15 +520,15 @@ struct obj *obj;
 
 		}
 
-                achieve.get_luckstone = 1;
-			qt_pager(QT_LUCKSTONE);
-                obj->record_achieve_special = 0;
-		    if (!u.luckstoneget) {
+		achieve.get_luckstone = 1;
+		qt_pager(QT_LUCKSTONE);
+		obj->record_achieve_special = 0;
+		if (!u.luckstoneget) {
 			u.luckstoneget = 1;
 			u.uhpmax += rnd(2);
 			u.uenmax += rnd(2);
 			if (Upolyd) u.mhmax += rnd(2);
-		    }
+		}
 #ifdef LIVELOGFILE
 		livelog_achieve_update();
 		livelog_report_trophy("obtained the luckstone from Mines End");
@@ -543,15 +553,15 @@ struct obj *obj;
 
 		}
 
-                achieve.finish_sokoban = 1;
-			qt_pager(QT_SOKOBAN);
-                obj->record_achieve_special = 0;
-		    if (!u.sokobanfinished) {
+		achieve.finish_sokoban = 1;
+		qt_pager(QT_SOKOBAN);
+		obj->record_achieve_special = 0;
+		if (!u.sokobanfinished) {
 			u.sokobanfinished = 1;
 			u.uhpmax += rnd(2);
 			u.uenmax += rnd(2);
 			if (Upolyd) u.mhmax += rnd(2);
-		    }
+		}
 #ifdef LIVELOGFILE
 		livelog_achieve_update();
 		livelog_report_trophy("obtained the Sokoban prize");
