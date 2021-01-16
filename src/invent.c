@@ -21108,7 +21108,7 @@ boolean knoweverything;
 				case ART_TECHCTION:
 					pline("Artifact specs: technicality and free action when wielded."); break;
 				case ART_DAMN_SKI_WEDGE:
-					pline("Artifact specs: if you're wearing shoes, they'll count as wedge heels and can walk on slow, but if you're barefoot, you're instead affected by the curses of Anastasia and Julietta!"); break;
+					pline("Artifact specs: if you're wearing shoes, they'll count as wedge heels and can walk on snow, but if you're barefoot, you're instead affected by the curses of Anastasia and Julietta!"); break;
 				case ART_TELEPORTITS:
 					pline("Artifact specs: teleportitis when worn. It teleports your entire body, not just your tits. :D"); break;
 
