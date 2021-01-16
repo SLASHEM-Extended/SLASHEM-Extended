@@ -31,7 +31,7 @@ STATIC_DCL void kill_eggs(struct obj *);
 /* make wraith luring unnecessary --Amy */
 
 #define STARVATION_SPECIFIC_NOCORPSE(mdat) \
-	 (!is_reviver(mdat) && !(mdat == &mons[PM_TROLL_ZOMBIE]) && !(mdat == &mons[PM_EGO_TROLL_MUMMY]) && !(mdat == &mons[PM_TROLL_PERMAMIMIC_MUMMY]) && !(mdat == &mons[PM_TROLL_MUMMY]))
+	 (!is_reviver(mdat) && !(mdat == &mons[PM_TROLL_ZOMBIE]) && !(mdat == &mons[PM_EGO_TROLL_MUMMY]) && !(mdat == &mons[PM_EVIL_TROLL_MUMMY]) && !(mdat == &mons[PM_TROLL_PERMAMIMIC_MUMMY]) && !(mdat == &mons[PM_TROLL_MUMMY]))
 
 #define Qstatf(x)	(quest_status.x)
 
@@ -63,7 +63,7 @@ struct permonst *mdat;
 #ifdef REINCARNATION
 	if (Is_rogue_level(&u.uz) && rn2(2)) return TRUE;
 #endif
-	if ((level.flags.graveyard || mdat == &mons[PM_WRAITH] || mdat == &mons[PM_HUDDLED_WRAITH] || mdat == &mons[PM_HITTABLE_WRAITH] || mdat == &mons[PM_BIG_WRAITH] || mdat == &mons[PM_CREVICE_WRAITH] || mdat == &mons[PM_HUGE_WRAITH] || mdat == &mons[PM_GIGANTIC_WRAITH] || mdat == &mons[PM_WAFER_THIN_MINT] || mdat == &mons[PM_WRAITH_SHAMAN] || mdat == &mons[PM_NASTY_WRAITH] || mdat == &mons[PM_CREEPING___] ) && is_undead(mdat) && !is_reviver(mdat) && mdat != &mons[PM_TROLL_ZOMBIE] && mdat != &mons[PM_EGO_TROLL_MUMMY] && mdat != &mons[PM_TROLL_PERMAMIMIC_MUMMY] && mdat != &mons[PM_TROLL_MUMMY] && mdat != &mons[PM_VECNA] && rn2(3)) return TRUE;
+	if ((level.flags.graveyard || mdat == &mons[PM_WRAITH] || mdat == &mons[PM_HUDDLED_WRAITH] || mdat == &mons[PM_HITTABLE_WRAITH] || mdat == &mons[PM_BIG_WRAITH] || mdat == &mons[PM_CREVICE_WRAITH] || mdat == &mons[PM_HUGE_WRAITH] || mdat == &mons[PM_GIGANTIC_WRAITH] || mdat == &mons[PM_WAFER_THIN_MINT] || mdat == &mons[PM_WRAITH_SHAMAN] || mdat == &mons[PM_NASTY_WRAITH] || mdat == &mons[PM_CREEPING___] ) && is_undead(mdat) && !is_reviver(mdat) && mdat != &mons[PM_TROLL_ZOMBIE] && mdat != &mons[PM_EGO_TROLL_MUMMY] && mdat != &mons[PM_EVIL_TROLL_MUMMY] && mdat != &mons[PM_TROLL_PERMAMIMIC_MUMMY] && mdat != &mons[PM_TROLL_MUMMY] && mdat != &mons[PM_VECNA] && rn2(3)) return TRUE;
 
 	return FALSE;
 }
@@ -700,6 +700,7 @@ register struct monst *mtmp;
 	    case PM_CALLS_ITSELF_ETTIN_MUMMY:
 	    case PM_TROLL_MUMMY:
 	    case PM_EGO_TROLL_MUMMY:
+	    case PM_EVIL_TROLL_MUMMY:
 	    case PM_TROLL_PERMAMIMIC_MUMMY:
 	    case PM_TROLL_ZOMBIE:
 	    case PM_KOBOLD_ZOMBIE:
@@ -6189,12 +6190,12 @@ boolean was_swallowed;			/* digestion */
 		return FALSE;
 
 	/* generally lower chance to leave corpses for balancing reasons, but only if the player is advanced enough --Amy */
-	if (!rn2(3) && !((u.urexp < 10000) && (moves < 10000)) && !mon->egotype_troll && !(is_reviver(mdat) && !(mdat->mlet == S_FUNGUS) ) && !(mdat == &mons[PM_TROLL_ZOMBIE]) && !(mdat == &mons[PM_VECNA]) && !(mdat == &mons[PM_NIGHTMARE]) && !(mdat == &mons[PM_BEHOLDER]) && !(mdat == &mons[PM_MEDUSA]) && !(mdat == &mons[PM_EGO_TROLL_MUMMY]) && !(mdat == &mons[PM_TROLL_PERMAMIMIC_MUMMY]) && !(mdat == &mons[PM_TROLL_MUMMY]) && !mon->mtame)
+	if (!rn2(3) && !((u.urexp < 10000) && (moves < 10000)) && !mon->egotype_troll && !(is_reviver(mdat) && !(mdat->mlet == S_FUNGUS) ) && !(mdat == &mons[PM_TROLL_ZOMBIE]) && !(mdat == &mons[PM_VECNA]) && !(mdat == &mons[PM_NIGHTMARE]) && !(mdat == &mons[PM_BEHOLDER]) && !(mdat == &mons[PM_MEDUSA]) && !(mdat == &mons[PM_EGO_TROLL_MUMMY]) && !(mdat == &mons[PM_EVIL_TROLL_MUMMY]) && !(mdat == &mons[PM_TROLL_PERMAMIMIC_MUMMY]) && !(mdat == &mons[PM_TROLL_MUMMY]) && !mon->mtame)
 		return FALSE;
 
 	/* make it even less likely later in the game, because monsters are spawning more often anyway
 	 * floor value (rn2(8)) because we don't want phantom race player characters to have no chance at all */
-	if (!timebasedlowerchance() && !timebasedlowerchance() && rn2(8) && !is_reviver(mdat) && !mon->egotype_troll && !(mdat == &mons[PM_TROLL_ZOMBIE]) && !(mdat == &mons[PM_VECNA]) && !(mdat == &mons[PM_NIGHTMARE]) && !(mdat == &mons[PM_BEHOLDER]) && !(mdat == &mons[PM_MEDUSA]) && !(mdat == &mons[PM_EGO_TROLL_MUMMY]) && !(mdat == &mons[PM_TROLL_PERMAMIMIC_MUMMY]) && !(mdat == &mons[PM_TROLL_MUMMY]) && !mon->mtame)
+	if (!timebasedlowerchance() && !timebasedlowerchance() && rn2(8) && !is_reviver(mdat) && !mon->egotype_troll && !(mdat == &mons[PM_TROLL_ZOMBIE]) && !(mdat == &mons[PM_VECNA]) && !(mdat == &mons[PM_NIGHTMARE]) && !(mdat == &mons[PM_BEHOLDER]) && !(mdat == &mons[PM_MEDUSA]) && !(mdat == &mons[PM_EGO_TROLL_MUMMY]) && !(mdat == &mons[PM_EVIL_TROLL_MUMMY]) && !(mdat == &mons[PM_TROLL_PERMAMIMIC_MUMMY]) && !(mdat == &mons[PM_TROLL_MUMMY]) && !mon->mtame)
 		return FALSE;
 
 	if (mon->egotype_troll || (is_reviver(mdat) && !(mdat->mlet == S_FUNGUS) ) || bigmonst(mdat) || mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_CHAOTIC_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_INNOCLIZARD] || mdat == &mons[PM_FAT_LIZARD] || mdat == &mons[PM_BLUE_LIZARD] || mdat == &mons[PM_GRASS_LIZARD] || mdat == &mons[PM_RUNE_LIZARD] || mdat == &mons[PM_SPECTRAL_LIZARD] || mdat == &mons[PM_SWAMP_LIZARD] || mdat == &mons[PM_SPITTING_LIZARD] || mdat == &mons[PM_ROCK_LIZARD] || mdat == &mons[PM_WILL_STONE_LIZARD] || mdat == &mons[PM_WILL_RATCH_LIZARD] || mdat == &mons[PM_LICHZARD] || mdat == &mons[PM_SKELLIZARD] || mdat == &mons[PM_BABY_CAVE_LIZARD] || mdat == &mons[PM_NIGHT_LIZARD] || mdat == &mons[PM_LIZARD_MAN] || mdat == &mons[PM_LIZARD_KING] || mdat == &mons[PM_LIZARD_OF_YENDOR] || mdat == &mons[PM_ANTI_STONE_LIZARD]  || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_PREHISTORIC_CAVE_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_GREEN_LIZARD] || mdat == &mons[PM_SCORZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_CLOCKBACK_LIZARD] || mdat == &mons[PM_LIZARD_MAGE] || mdat == &mons[PM_BLACK_LIZARDMAN] || mdat == &mons[PM_ASSASSIN_LIZARD] || mdat == &mons[PM_BLIZZARD_LIZARD] || mdat == &mons[PM_HELTH_LIZARD] || mdat == &mons[PM_NORMAL_LIZARD] || mdat == &mons[PM_ADULT_LIZARD] || mdat == &mons[PM_LIZZY] || mdat == &mons[PM_LIZARD_PRINCE] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_BLACK_LIZARD] || mdat == &mons[PM_KATNISS]
@@ -6922,7 +6923,7 @@ xkilled(mtmp, dest)
 		if (!rn2(500) && timebasedlowerchance() && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(usefulitem(), x, y, TRUE, FALSE, FALSE);
 
 		/* you should not be able to farm trolls, gremlins, long worms etc. --Amy */
-		if (!rn2( (Race_if(PM_DROW) ? 100 : Race_if(PM_DOPPELGANGER) ? 150 : 30) ) && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && !is_reviver(mdat) && !is_rider(mdat) && !is_deadlysin(mdat) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && mdat != &mons[PM_DUMMY_MONSTER_NEEDED_FOR_VISUAL_INTERFACE] && mdat != &mons[PM_LONG_WORM] && mdat != &mons[PM_GHOST] && mdat != &mons[PM_TROLL_ZOMBIE] && mdat != &mons[PM_TROLL_MUMMY] && mdat != &mons[PM_TROLL_PERMAMIMIC_MUMMY] && mdat != &mons[PM_EGO_TROLL_MUMMY] && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) && !(issoviet && (mvitals[mndx].mvflags & G_NOCORPSE)) && !(issoviet && nohands(mdat))
+		if (!rn2( (Race_if(PM_DROW) ? 100 : Race_if(PM_DOPPELGANGER) ? 150 : 30) ) && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && !is_reviver(mdat) && !is_rider(mdat) && !is_deadlysin(mdat) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && mdat != &mons[PM_DUMMY_MONSTER_NEEDED_FOR_VISUAL_INTERFACE] && mdat != &mons[PM_LONG_WORM] && mdat != &mons[PM_GHOST] && mdat != &mons[PM_TROLL_ZOMBIE] && mdat != &mons[PM_TROLL_MUMMY] && mdat != &mons[PM_EVIL_TROLL_MUMMY] && mdat != &mons[PM_TROLL_PERMAMIMIC_MUMMY] && mdat != &mons[PM_EGO_TROLL_MUMMY] && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) && !(issoviet && (mvitals[mndx].mvflags & G_NOCORPSE)) && !(issoviet && nohands(mdat))
 	/* lowered overall chance, but see below for a chance to get extra items --Amy
 	 * Drow and especially Doppelgangers are super-powerful anyway, so I decided to nerf them a bit. */
 					&& (!issoviet || (mdat->mlet != S_KOP))
