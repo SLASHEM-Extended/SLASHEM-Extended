@@ -744,6 +744,7 @@ register xchar x, y;
 		    break;	/* skip any additional kicks */
 		} else if (tmp > (roll = rnd(20))) {
 		    You("kick %s.", mon_nam(mon));
+		    wakeup(mon);
 		    sum = damageum(mon, uattk);
 		    (void)passive(mon, (boolean)(sum > 0), (sum != 2), AT_KICK, FALSE);
 		    if (sum == 2)
@@ -847,6 +848,7 @@ register xchar x, y;
 
 doit:
 	You("kick %s.", mon_nam(mon));
+	wakeup(mon);
 	if(!rn2(clumsy ? 3 : 4) && (clumsy || !bigmonst(mon->data)) &&
 	   mon->mcansee && !mon->mtrapped && !thick_skinned(mon->data) &&
 	   mon->data->mlet != S_EEL && haseyes(mon->data) && mon->mcanmove &&
@@ -1531,7 +1533,8 @@ dokick()
 		}
 	}
 
-	wake_nearby();
+	/* make noise only if the boots are metallic --Amy */
+	if (uarmf && is_metallic(uarmf)) wake_nearby();
 	u_wipe_engr(2);
 
 	maploc = &levl[x][y];
