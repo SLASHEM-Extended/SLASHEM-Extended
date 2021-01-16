@@ -4835,6 +4835,7 @@ physical:
 			if (!cancelled && rn2(2) && !resists_drli(mdef)) {
 				if (vis) pline("%s suddenly seems weaker!", Monnam(mdef));
 				mdef->mhpmax -= d(2,6);
+				if (mdef->mhpmax < 1) mdef->mhpmax = 1;
 				if (mdef->m_lev == 0) tmp = mdef->mhp;
 				else mdef->m_lev--;
 				/* Automatic kill if drained past level 0 */
@@ -5615,6 +5616,7 @@ physical:
 		if (!cancelled && rn2(2) && !resists_drli(mdef)) {
 			if (vis) pline("%s suddenly seems weaker!", Monnam(mdef));
 			mdef->mhpmax -= d(2,6);
+			if (mdef->mhpmax < 1) mdef->mhpmax = 1;
 			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
 			if (mdef->m_lev == 0) tmp = mdef->mhp;
 			else mdef->m_lev--;
@@ -5632,6 +5634,7 @@ physical:
 		if (!cancelled && rn2(2) && (!resists_drli(mdef) || mdef->mtame) ) {
 			if (vis) pline("%s suddenly seems weaker!", Monnam(mdef));
 			mdef->mhpmax -= d(2,6);
+			if (mdef->mhpmax < 1) mdef->mhpmax = 1;
 			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
 			if (mdef->m_lev == 0) tmp = mdef->mhp;
 			else mdef->m_lev--;
@@ -5650,6 +5653,7 @@ physical:
 		if (!cancelled && rn2(2) && !resists_drli(mdef)) {
 			if (vis) pline("%s suddenly seems weaker!", Monnam(mdef));
 			mdef->mhpmax -= d(2,6);
+			if (mdef->mhpmax < 1) mdef->mhpmax = 1;
 			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
 			if (mdef->m_lev == 0) tmp = mdef->mhp;
 			else mdef->m_lev--;
@@ -5673,6 +5677,7 @@ physical:
 		if (!cancelled && rn2(2) && !resists_drli(mdef)) {
 			if (vis) pline("%s suddenly seems weaker!", Monnam(mdef));
 			mdef->mhpmax -= d(2,6);
+			if (mdef->mhpmax < 1) mdef->mhpmax = 1;
 			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
 			if (mdef->m_lev == 0) tmp = mdef->mhp;
 			else mdef->m_lev--;
@@ -5691,6 +5696,7 @@ physical:
 		if ((!cancelled || mdef->mtame) && (rn2(2) || mdef->mtame) && !resists_drli(mdef)) {
 			if (vis) pline("%s suddenly seems weaker!", Monnam(mdef));
 			mdef->mhpmax -= d(2,6);
+			if (mdef->mhpmax < 1) mdef->mhpmax = 1;
 			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
 			if (mdef->m_lev == 0) tmp = mdef->mhp;
 			else mdef->m_lev--;
@@ -6108,10 +6114,12 @@ physical:
 				int reduction = rnd(mdef->mhpmax / 10);
 				if (reduction < 1) reduction = 1; /* shouldn't happen */
 				mdef->mhpmax -= reduction;
+				if (mdef->mhpmax < 1) mdef->mhpmax = 1;
 				if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
 				if (vis) pline("%s is in pain!", Monnam(mdef));
 			} else if (mdef->mhpmax > (Role_if(PM_ZOOKEEPER) ? 320 : 160)) {
 				mdef->mhpmax--;
+				if (mdef->mhpmax < 1) mdef->mhpmax = 1;
 				if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
 				if (vis) pline("%s seems to be hurt!", Monnam(mdef));
 			}
@@ -6590,10 +6598,12 @@ int attnumber;
 				int reduction = rnd(magr->mhpmax / 10);
 				if (reduction < 1) reduction = 1; /* shouldn't happen */
 				magr->mhpmax -= reduction;
+				if (magr->mhpmax < 1) magr->mhpmax = 1;
 				if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
 				if (canseemon(magr)) pline("%s is in pain!", Monnam(magr));
 			} else if (magr->mhpmax > (Role_if(PM_ZOOKEEPER) ? 320 : 160)) {
 				magr->mhpmax--;
+				if (magr->mhpmax < 1) magr->mhpmax = 1;
 				if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
 				if (canseemon(magr)) pline("%s seems to be hurt!", Monnam(magr));
 			}
@@ -7030,6 +7040,7 @@ int attnumber;
 			if (rn2(2) && !resists_drli(magr)) {
 				if (canseemon(magr)) pline("%s suddenly seems weaker!", Monnam(magr));
 				magr->mhpmax -= d(2,6);
+				if (magr->mhpmax < 1) magr->mhpmax = 1;
 				if (magr->m_lev == 0) tmp = magr->mhp;
 				else magr->m_lev--;
 				/* Automatic kill if drained past level 0 */
