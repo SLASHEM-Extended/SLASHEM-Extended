@@ -1219,6 +1219,8 @@ playerwearshighheels()
 
 	}
 
+	if (uwep && uwep->oartifact == ART_DAMN_SKI_WEDGE && uarmf) return TRUE;
+
 	return FALSE;
 
 }
