@@ -496,6 +496,8 @@ int prop;
 			return "blindness resistance";
 		case ASTRAL_VISION:
 			return "astral vision";
+		case RNGE_OVERVIEW_IMPROVEMENT:
+			return "overview improvement";
 
 		default:
 			return "Team Nastytrap";

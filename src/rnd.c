@@ -1364,7 +1364,7 @@ randenchantment()
 
 	} else if (!rn2(10)) {
 
-		switch (rnd(108)) {
+		switch (rnd(109)) {
 			case 1: return HALLU_PARTY;
 			case 2: return DRUNKEN_BOXING;
 			case 3: return STUNNOPATHY;
@@ -1473,6 +1473,7 @@ randenchantment()
 			case 106: return RNGE_STENCH;
 			case 107: return RNGE_ECHOLOCATION;
 			case 108: return RNGE_STACKMESSAGING;
+			case 109: return RNGE_OVERVIEW_IMPROVEMENT;
 			default: return POISON_RES;
 		}
 

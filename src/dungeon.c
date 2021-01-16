@@ -2838,7 +2838,7 @@ boolean wantdump;
 		 * Amy edit: fuck that, the branch lengths are always the same anyway so might as well see it
 		 */
 		if (dungeons[mptr->lev.dnum].dunlev_ureached == 1 || In_endgame(&mptr->lev))
-			sprintf(buf, "%s:", dungeons[mptr->lev.dnum].dname);
+			sprintf(buf, "%s: level %d", dungeons[mptr->lev.dnum].dname, depthstart);
 		else
 			sprintf(buf, "%s: levels %d to %d", 
 				dungeons[mptr->lev.dnum].dname,
@@ -2870,8 +2870,9 @@ boolean wantdump;
 		sprintf(buf, "Level %d:", i);
 	
 #ifdef WIZARD
-	/* wizmode prints out proto dungeon names for clarity */
-	if (wizard) {
+	/* wizmode prints out proto dungeon names for clarity
+	 * Amy edit: and so does the dumplog, for that matter */
+	if (wizard || wantdump || RngeOverviewImprovement) {
 		s_level *slev;
 		if (slev = Is_special(&mptr->lev))
 			sprintf(eos(buf), " [%s]", slev->proto);

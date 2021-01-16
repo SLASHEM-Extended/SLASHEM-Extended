@@ -794,6 +794,7 @@
 #define RngeStench		(u.uprops[RNGE_STENCH].intrinsic || u.uprops[RNGE_STENCH].extrinsic)
 #define RngeEcholocation		(u.uprops[RNGE_ECHOLOCATION].intrinsic || u.uprops[RNGE_ECHOLOCATION].extrinsic)
 #define RngeStackMessaging		(u.uprops[RNGE_STACKMESSAGING].intrinsic || u.uprops[RNGE_STACKMESSAGING].extrinsic)
+#define RngeOverviewImprovement		(u.uprops[RNGE_OVERVIEW_IMPROVEMENT].intrinsic || u.uprops[RNGE_OVERVIEW_IMPROVEMENT].extrinsic)
 
 /* Hallucination is solely a timeout; its resistance is extrinsic; Amy edit: now also an intrinsic */
 #define HHallucination		u.uprops[HALLUC].intrinsic
