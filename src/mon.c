@@ -4609,6 +4609,12 @@ newbossSING:
 		u.weapon_slots += 5;
 	}
 
+	if(mtmp->data == &mons[u.rivalneminum] && !u.rivalquestcomplete) {
+		u.rivalquestcomplete = 1;
+		pline("Congratulations, your rival nemesis is defeated! As a reward, you gain 5 extra skill slots!");
+		u.weapon_slots += 5;
+	}
+
       if(mtmp->data == &mons[PM_STAHNGNIR__THE_STEEL_GIANT_LORD] && !u.stahngnirdown) {
 		u.stahngnirdown = 1;
 		pline("Congratulations, Lord Stahngnir is defeated! Your reward was dropped at your %s.", makeplural(body_part(FOOT)));

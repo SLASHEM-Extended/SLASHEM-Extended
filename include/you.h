@@ -622,6 +622,7 @@ struct you {
 	int tiksrvzllatdown;
 	int netherrealmcomplete;
 	int angmarcomplete;
+	int rivalquestcomplete;
 	int stahngnirdown;
 	int arianespawned;
 	int arianedown;
