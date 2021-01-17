@@ -26493,6 +26493,14 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'controllers baddie'. It reads: 'No, you leave the train now! You have no ticket and therefore you're not travelling here!'",
 	"Incoming message for Player 1. The message is from 'controllers baddie'. It reads: 'I don't care if this is the last train and you have to stay overnight at bluefielden station! GET OUT OF HERE!'",
 	"Incoming message for Player 1. The message is from 'controllers baddie'. It reads: 'Now it costs 60 euros. Your ticket isn't valid for first class and on top of that you're bitching at me.'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'You vaccinated asshole! I'll show you who's boss!'",
+	"Incoming message for Player 1. The message is from 'corona christmas child'. It reads: 'you are not vaccinated! you may not be in public anymore!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Shitty vaccinated people! I won't allow them to be viewed as better citizens than me!'",
+	"Incoming message for Player 1. The message is from 'corona christmas child'. It reads: 'those who arent vaccinated have no rights! and its well like that!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Fuck you with your shitty vaccine! I'm not allowing anyone to forcefully vaccinate me!'",
+	"Incoming message for Player 1. The message is from 'corona christmas child'. It reads: 'forced vaccinations are the one true way! you have to see that too!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Can put your stupid vaccine where the sun doesn't shine now.'",
+	"Incoming message for Player 1. The message is from 'corona christmas child'. It reads: 'now you really have to get vaccinated!'",
 
 };
 
