@@ -97,6 +97,7 @@ encodeachieveX(void)
    *  11  killed Stahngnir
    *  12  killed Ariane
    *  13  completed the Rival Quest
+   *  14  completed Minus World
    */
 
   long r;
@@ -117,6 +118,7 @@ encodeachieveX(void)
   if(achieveX.killed_stahngnir)     r |= 1L << 11;
   if(achieveX.killed_ariane)        r |= 1L << 12;
   if(achieveX.completed_rivalquest) r |= 1L << 13;
+  if(achieveX.completed_minusworld) r |= 1L << 14;
 
   return r;
 }

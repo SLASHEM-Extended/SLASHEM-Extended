@@ -2544,6 +2544,9 @@ mk_dgl_extrainfo()
         } else if (In_hellbathroom(&u.uz)) {
             sprintf(tmpdng, "%i|Bat%i", sortval, depth(&u.uz));
 		sortval = 3100 + depth(&u.uz);
+        } else if (In_minusworld(&u.uz)) {
+            sprintf(tmpdng, "%i|Miw%i", sortval, depth(&u.uz));
+		sortval = 3100 + depth(&u.uz);
         } else if (In_spacebase(&u.uz)) {
             sprintf(tmpdng, "%i|Spa%i", sortval, depth(&u.uz));
 		sortval = 500 + depth(&u.uz);

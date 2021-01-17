@@ -640,6 +640,7 @@ E boolean In_emynluin(d_level *);
 E boolean In_minotaurmaze(d_level *);
 E boolean In_swimmingpool(d_level *);
 E boolean In_hellbathroom(d_level *);
+E boolean In_minusworld(d_level *);
 E boolean In_spacebase(d_level *);
 E boolean In_sewerplant(d_level *);
 E boolean In_gammacaves(d_level *);

@@ -347,6 +347,7 @@ DUNGEON:        "The Wyrm Caves" "W" (1, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
 LEVEL:          "dragons" "D" @ (1, 0) 30
+BRANCH:	    "Minus World" @ (1, 0)
 
 ### The Black Market ###
 DUNGEON:        "One-eyed Sam's Market" "X" (1, 0)
@@ -449,6 +450,13 @@ BRANCH:	"Resting Zone S" @ (2, 13) up
 DUNGEON:        "Hell's Bathroom" "F" (3, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    hellish
+
+DUNGEON:        "Minus World" "F" (5, 0)
+LEVEL:          "minusw" "F" @ (1, 0)
+LEVEL:          "minusw" "F" @ (2, 0)
+LEVEL:          "minusw" "F" @ (3, 0)
+LEVEL:          "minusw" "F" @ (4, 0)
+LEVEL:          "minusw" "F" @ (5, 0)
 
 DUNGEON:        "Green Cross" "F" (60, 0)
 LEVEL:          "grcrf" "F" @ (30, 30) 90

@@ -2483,7 +2483,7 @@ ghnhom2:
 	    case 19:
 	    case 20:
 
-		switch (rnd(96)) {
+		switch (rnd(97)) {
 
 			case 1: makemaz("unhck-1"); return;
 			case 2: makemaz("unhck-2"); return;
@@ -2581,6 +2581,7 @@ ghnhom2:
 			case 94: makemaz("unhck-94"); return;
 			case 95: makemaz("unhck-95"); return;
 			case 96: makemaz("unhck-96"); return;
+			case 97: makemaz("minusw"); return;
 
 		}
 		break;
@@ -4470,7 +4471,7 @@ ghnhom2:
 	    case 19:
 	    case 20:
 
-		switch (rnd(96)) {
+		switch (rnd(97)) {
 
 			case 1: makemaz("heck-1"); return;
 			case 2: makemaz("heck-2"); return;
@@ -4568,6 +4569,7 @@ ghnhom2:
 			case 94: makemaz("heck-94"); return;
 			case 95: makemaz("heck-95"); return;
 			case 96: makemaz("heck-96"); return;
+			case 97: makemaz("minusw"); return;
 
 		}
 		break;
@@ -6866,7 +6868,7 @@ ghnhom4:
 	    case 19:
 	    case 20:
 
-		switch (rnd(96)) {
+		switch (rnd(97)) {
 
 			case 1: makemaz("unhck-1"); return;
 			case 2: makemaz("unhck-2"); return;
@@ -6964,6 +6966,7 @@ ghnhom4:
 			case 94: makemaz("unhck-94"); return;
 			case 95: makemaz("unhck-95"); return;
 			case 96: makemaz("unhck-96"); return;
+			case 97: makemaz("minusw"); return;
 
 		}
 		break;
@@ -8846,7 +8849,7 @@ ghnhom4:
 	    case 19:
 	    case 20:
 
-		switch (rnd(96)) {
+		switch (rnd(97)) {
 
 			case 1: makemaz("heck-1"); return;
 			case 2: makemaz("heck-2"); return;
@@ -8944,6 +8947,7 @@ ghnhom4:
 			case 94: makemaz("heck-94"); return;
 			case 95: makemaz("heck-95"); return;
 			case 96: makemaz("heck-96"); return;
+			case 97: makemaz("minusw"); return;
 
 		}
 		break;

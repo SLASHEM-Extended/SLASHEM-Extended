@@ -112,6 +112,7 @@ E struct dgn_topology {		/* special dungeon levels for speed */
     xchar   d_minotaurmaze_dnum;
     xchar   d_swimmingpool_dnum;
     xchar   d_hellbathroom_dnum;
+    xchar   d_minusworld_dnum;
     xchar   d_spacebase_dnum;
     xchar   d_sewerplant_dnum;
     xchar   d_gammacaves_dnum;
@@ -207,6 +208,7 @@ E struct dgn_topology {		/* special dungeon levels for speed */
 #define minotaurmaze_dnum		(dungeon_topology.d_minotaurmaze_dnum)
 #define swimmingpool_dnum		(dungeon_topology.d_swimmingpool_dnum)
 #define hellbathroom_dnum		(dungeon_topology.d_hellbathroom_dnum)
+#define minusworld_dnum		(dungeon_topology.d_minusworld_dnum)
 #define spacebase_dnum		(dungeon_topology.d_spacebase_dnum)
 #define sewerplant_dnum		(dungeon_topology.d_sewerplant_dnum)
 #define gammacaves_dnum		(dungeon_topology.d_gammacaves_dnum)
@@ -706,6 +708,7 @@ struct u_achieveX {
 	  Bitfield(killed_stahngnir,1);	/* You killed Stahngnir */
 	  Bitfield(killed_ariane,1);	/* You killed Ariane */
 	  Bitfield(completed_rivalquest,1);	/* You killed the nemesis on the rival quest */
+	  Bitfield(completed_minusworld,1); /* You completed the Minus World */
 
 };
 

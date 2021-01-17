@@ -300,6 +300,8 @@ xchar dnum;
 		strcpy(buf, "MAI");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Minotaur Maze"))
 		strcpy(buf, "MIN");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Minus World"))
+		strcpy(buf, "MIW");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch"))
 		strcpy(buf, "MOL");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Nether Realm"))

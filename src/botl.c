@@ -678,6 +678,8 @@ int verbose;
 		sprintf(buf, flags.showlongstats ? "Swimming Pool:%d " : "Swi:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Hell's Bathroom"))
 		sprintf(buf, flags.showlongstats ? "Hell's Bathroom:%d " : "Bat:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Minus World"))
+		sprintf(buf, flags.showlongstats ? "Minus World:%d " : "Miw:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone GA"))
 		sprintf(buf, flags.showlongstats ? "Resting Zone GA:%d " : "RGA:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone GB"))

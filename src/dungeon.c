@@ -1027,6 +1027,7 @@ init_dungeons()
 	minotaurmaze_dnum = dname_to_dnum("Minotaur Maze");
 	swimmingpool_dnum = dname_to_dnum("Swimming Pool");
 	hellbathroom_dnum = dname_to_dnum("Hell's Bathroom");
+	minusworld_dnum = dname_to_dnum("Minus World");
 	spacebase_dnum = dname_to_dnum("Space Base");
 	sewerplant_dnum = dname_to_dnum("Sewer Plant");
 	gammacaves_dnum = dname_to_dnum("Gamma Caves");
@@ -1744,6 +1745,13 @@ In_hellbathroom(lev)	/* are you in the hell's bathroom dungeon? */
 d_level	*lev;
 {
 	return((boolean)(lev->dnum == hellbathroom_dnum));
+}
+
+boolean
+In_minusworld(lev)	/* are you in the minus world? */
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == minusworld_dnum));
 }
 
 boolean
