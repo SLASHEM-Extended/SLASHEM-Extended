@@ -4088,6 +4088,10 @@ jediskip:
 	    	learntech(T_GREEN_WEAPON, FROMOUTSIDE, 1);
 	    	You("learn how to perform green weapon!");
 	}
+	if (skill == u.hiddenpowerskill && P_SKILL(skill) == P_MASTER && !tech_known(T_HIDDEN_POWER)) {
+	    	learntech(T_HIDDEN_POWER, FROMOUTSIDE, 1);
+	    	You("learn how to perform hidden power!");
+	}
 	if (skill == P_GRINDER && P_SKILL(skill) == P_BASIC && !tech_known(T_BALLSLIFF)) {
 	    	learntech(T_BALLSLIFF, FROMOUTSIDE, 1);
 	    	You("learn how to perform ballsliff!");
@@ -5651,6 +5655,10 @@ int degree;
 			if (skill == P_CLAW && !tech_known(T_GREEN_WEAPON)) {
 			    	learntech(T_GREEN_WEAPON, FROMOUTSIDE, 1);
 			    	You("learn how to perform green weapon!");
+			}
+			if (skill == u.hiddenpowerskill && !tech_known(T_HIDDEN_POWER)) {
+			    	learntech(T_HIDDEN_POWER, FROMOUTSIDE, 1);
+			    	You("learn how to perform hidden power!");
 			}
 			if (skill == P_GRINDER && !tech_known(T_BALLSLIFF)) {
 			    	learntech(T_BALLSLIFF, FROMOUTSIDE, 1);
@@ -8886,6 +8894,9 @@ rerollthree:
 	}
 	if (P_SKILL(P_CLAW) >= P_GRAND_MASTER && !tech_known(T_GREEN_WEAPON)) {
 	    	learntech(T_GREEN_WEAPON, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(u.hiddenpowerskill) >= P_MASTER && !tech_known(T_HIDDEN_POWER)) {
+	    	learntech(T_HIDDEN_POWER, FROMOUTSIDE, 1);
 	}
 	if (P_SKILL(P_GRINDER) >= P_BASIC && !tech_known(T_BALLSLIFF)) {
 	    	learntech(T_BALLSLIFF, FROMOUTSIDE, 1);

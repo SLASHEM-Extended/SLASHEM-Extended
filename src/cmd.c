@@ -2913,6 +2913,11 @@ boolean guaranteed;
 		enl_msg("Monster death drops ", "spawn with only", "spawned with only", buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && u.hiddenpowerskill && (wizard || (!rn2(100)) || final >= 1 ) ) {
+		sprintf(buf, " %s", wpskillname(u.hiddenpowerskill));
+		enl_msg("Mastering the following skill ", "teaches you the hidden power:", "taught you the hidden power:", buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && u.untrainableskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
 		sprintf(buf, " %s", wpskillname(u.untrainableskill));
 		enl_msg("The following skill ", "cannot be trained at all:", "could not be trained at all:", buf);
@@ -7102,6 +7107,11 @@ int final;
 	if (u.usefulitemchance) {
 		sprintf(buf, " %d%% chance", 100 - u.usefulitemchance);
 		dump("  Monster death drops spawned with only", buf);
+	}
+
+	if (u.hiddenpowerskill) {
+		sprintf(buf, " %s", wpskillname(u.hiddenpowerskill));
+		dump("  Mastering the following skill taught you the hidden power:", buf);
 	}
 
 	if (u.untrainableskill) {

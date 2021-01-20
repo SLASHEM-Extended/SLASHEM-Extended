@@ -10832,6 +10832,8 @@ u_init()
 	u.lavtrainingtimer = 0;
 	u.slowtrainingskill = 0;
 
+	u.hiddenpowerskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
+
 	if (!rn2(2)) u.untrainableskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
 	if (!rn2(2)) u.halfspeedskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
 	if (!rn2(2)) u.fifthspeedskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
@@ -33004,6 +33006,8 @@ int realityflag;
 	u.lavtrainingskill = 0;
 	u.lavtrainingtimer = 0;
 	u.slowtrainingskill = 0;
+
+	u.hiddenpowerskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
 
 	if (!rn2(2)) u.untrainableskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
 	if (!rn2(2)) u.halfspeedskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();

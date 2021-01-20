@@ -276,10 +276,12 @@ struct blitz_tab {
 #define T_CURE_AMNESIA	205
 #define T_ELEMENTAL_IMBUE	206
 
-#define T_JEDI_JUMP	207
-#define T_CHARGE_SABER	208
-#define T_TELEKINESIS	209
+#define T_HIDDEN_POWER	207
+
+#define T_JEDI_JUMP	208
+#define T_CHARGE_SABER	209
+#define T_TELEKINESIS	210
  
-#define MAXTECH 210
+#define MAXTECH 211
 
 #endif /* TECH_H */

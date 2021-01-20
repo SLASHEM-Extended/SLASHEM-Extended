@@ -251,6 +251,7 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"diabolic minion",
 	"cure amnesia",
 	"elemental imbue",
+	"hidden power",
 	"jedi jump",
 	"charge saber",
 	"telekinesis",
@@ -3410,6 +3411,10 @@ dotech()
 
 		case T_ELEMENTAL_IMBUE:
 			pline("This technique transforms your currently wielded weapon into an elemental-branded artifact. It works only if the weapon in question is neither a real nor fake artifact, and only if it's actually listed under 'weapons' in your inventory. Plus, it obviously doesn't work on a stack.");
+			break;
+
+		case T_HIDDEN_POWER:
+			pline("Using this technique creates a specific item, the identity of which depends on the skill you used for unlocking the technique.");
 			break;
 
 
@@ -8460,6 +8465,187 @@ repairitemchoice:
 			Your("claw became green.");
 
 		      t_timeout = rnz(10000);
+			break;
+
+		case T_HIDDEN_POWER:
+
+			{
+				struct obj *hiddenpwitem;
+				int hiddenpowertype;
+
+				hiddenpowertype = POT_HEALING; /* fail safe */
+
+				switch (u.hiddenpowerskill) {
+					case P_DAGGER:
+						hiddenpowertype = WAN_INERTIA; break;
+					case P_KNIFE:
+						hiddenpowertype = WAN_STONING; break;
+					case P_AXE:
+						hiddenpowertype = SCR_TAMING; break;
+					case P_PICK_AXE:
+						hiddenpowertype = WAN_DISINTEGRATION; break;
+					case P_SHORT_SWORD:
+						hiddenpowertype = POT_BENEFICIAL_EFFECT; break;
+					case P_BROAD_SWORD:
+						hiddenpowertype = POT_GAIN_LEVEL; break;
+					case P_LONG_SWORD:
+						hiddenpowertype = WAN_THUNDER; break;
+					case P_TWO_HANDED_SWORD:
+						hiddenpowertype = MAGIC_HARP; break;
+					case P_SCIMITAR:
+						hiddenpowertype = WAN_INCREASE_MAX_HITPOINTS; break;
+					case P_SABER:
+						hiddenpowertype = WAN_REMOVE_CURSE; break;
+					case P_CLUB:
+						hiddenpowertype = POT_HEROISM; break;
+					case P_PADDLE:
+						hiddenpowertype = WAN_TIME; break;
+					case P_MACE:
+						hiddenpowertype = WAN_NETHER_BEAM; break;
+					case P_MORNING_STAR:
+						hiddenpowertype = POT_RESTORE_ABILITY; break;
+					case P_FLAIL:
+						hiddenpowertype = WAN_INFERNO; break;
+					case P_HAMMER:
+						hiddenpowertype = WAN_GRAVITY_BEAM; break;
+					case P_QUARTERSTAFF:
+						hiddenpowertype = SCR_POWER_CHARGING; break;
+					case P_ORB:
+						hiddenpowertype = POT_RECOVERY; break;
+					case P_CLAW:
+						hiddenpowertype = WAN_TRAP_DISARMING; break;
+					case P_GRINDER:
+						hiddenpowertype = SCR_REPAIR_ITEM; break;
+					case P_POLEARMS:
+						hiddenpowertype = WAN_PARALYSIS; break;
+					case P_SPEAR:
+						hiddenpowertype = WAN_ICE_BEAM; break;
+					case P_JAVELIN:
+						hiddenpowertype = POT_WATER; break;
+					case P_TRIDENT:
+						hiddenpowertype = WAN_DISINTEGRATION_BEAM; break;
+					case P_LANCE:
+						hiddenpowertype = POT_GAIN_HEALTH; break;
+					case P_BOW:
+						hiddenpowertype = SCR_RANDOM_ENCHANTMENT; break;
+					case P_SLING:
+						hiddenpowertype = SCR_REGULAR_MATERIAL; break;
+					case P_FIREARM:
+						hiddenpowertype = SCR_TRAP_DISARMING; break;
+					case P_CROSSBOW:
+						hiddenpowertype = SCR_GREATER_ENCHANT_WEAPON; break;
+					case P_DART:
+						hiddenpowertype = EXPENSIVE_CAMERA; break;
+					case P_SHURIKEN:
+						hiddenpowertype = WAN_CHROMATIC_BEAM; break;
+					case P_BOOMERANG:
+						hiddenpowertype = SCR_CREATE_FAMILIAR; break;
+					case P_WHIP:
+						hiddenpowertype = SCR_CURE; break;
+					case P_UNICORN_HORN:
+						hiddenpowertype = SCR_TERRAFORMING; break;
+					case P_LIGHTSABER:
+						hiddenpowertype = SCR_SECURE_CURSE_REMOVAL; break;
+					case P_ATTACK_SPELL:
+						hiddenpowertype = WAN_VENOM_SCATTERING; break;
+					case P_HEALING_SPELL:
+						hiddenpowertype = POT_FULL_HEALING; break;
+					case P_DIVINATION_SPELL:
+						hiddenpowertype = SCR_SECURE_IDENTIFY; break;
+					case P_ENCHANTMENT_SPELL:
+						hiddenpowertype = WAN_HYPER_BEAM; break;
+					case P_PROTECTION_SPELL:
+						hiddenpowertype = SCR_EBB_TIDE; break;
+					case P_BODY_SPELL:
+						hiddenpowertype = WAN_TOXIC; break;
+					case P_OCCULT_SPELL:
+						hiddenpowertype = WAN_IDENTIFY; break;
+					case P_ELEMENTAL_SPELL:
+						hiddenpowertype = SCR_SUPERIOR_MATERIAL; break;
+					case P_CHAOS_SPELL:
+						hiddenpowertype = TINNING_KIT; break;
+					case P_MATTER_SPELL:
+						hiddenpowertype = WAN_SLUDGE; break;
+					case P_BARE_HANDED_COMBAT:
+						hiddenpowertype = SCR_SKILL_UP; break;
+					case P_HIGH_HEELS:
+						hiddenpowertype = TWELVE_COURSE_DINNER; break;
+					case P_GENERAL_COMBAT:
+						hiddenpowertype = CRYSTAL_BALL; break;
+					case P_SHIELD:
+						hiddenpowertype = SCR_REVERSE_IDENTIFY; break;
+					case P_BODY_ARMOR:
+						hiddenpowertype = SCR_GREATER_ENCHANT_ARMOR; break;
+					case P_TWO_HANDED_WEAPON:
+						hiddenpowertype = CAN_OF_GREASE; break;
+					case P_POLYMORPHING:
+						hiddenpowertype = SCR_HYBRIDIZATION; break;
+					case P_DEVICES:
+						hiddenpowertype = SCR_INVENTORY_ID; break;
+					case P_SEARCHING:
+						hiddenpowertype = STETHOSCOPE; break;
+					case P_SPIRITUALITY:
+						hiddenpowertype = SCR_CONSECRATION; break;
+					case P_PETKEEPING:
+						hiddenpowertype = DARK_MAGIC_WHISTLE; break;
+					case P_MISSILE_WEAPONS:
+						hiddenpowertype = WAN_ENTRAPPING; break;
+					case P_TECHNIQUES:
+						hiddenpowertype = HUGE_CHUNK_OF_MEAT; break;
+					case P_IMPLANTS:
+						hiddenpowertype = SCR_ARMOR_SPECIALIZATION; break;
+					case P_SEXY_FLATS:
+						hiddenpowertype = POT_TRAINING; break;
+					case P_MEMORIZATION:
+						hiddenpowertype = SCR_GAIN_MANA; break;
+					case P_GUN_CONTROL:
+						hiddenpowertype = WAN_DEATH; break;
+					case P_SQUEAKING:
+						hiddenpowertype = SHADOW_HORN; break;
+					case P_SYMBIOSIS:
+						hiddenpowertype = SCR_SYMBIOSIS; break;
+					case P_SHII_CHO:
+						hiddenpowertype = POT_RANDOM_INTRINSIC; break;
+					case P_MAKASHI:
+						hiddenpowertype = CHOCOLATE; break;
+					case P_SORESU:
+						hiddenpowertype = WAN_AURORA_BEAM; break;
+					case P_ATARU:
+						hiddenpowertype = WAN_BANISHMENT; break;
+					case P_SHIEN:
+						hiddenpowertype = WAN_TIME_STOP; break;
+					case P_DJEM_SO:
+						hiddenpowertype = POT_CURE_INSANITY; break;
+					case P_NIMAN:
+						hiddenpowertype = POT_DOWN_LEVEL; break;
+					case P_JUYO:
+						hiddenpowertype = SCR_ERASURE; break;
+					case P_VAAPAD:
+						hiddenpowertype = SCR_ARTIFACT_CREATION; break;
+					case P_WEDI:
+						hiddenpowertype = WAN_CLONE_MONSTER; break;
+					case P_MARTIAL_ARTS:
+						hiddenpowertype = WAN_CHARGING; break;
+					case P_TWO_WEAPON_COMBAT:
+						hiddenpowertype = POT_TECH_LEVEL_UP; break;
+					case P_RIDING:
+						hiddenpowertype = WAN_FULL_HEALING; break;
+				}
+
+				pline("A hidden item is created!");
+				hiddenpwitem = mksobj(hiddenpowertype, TRUE, FALSE, FALSE);
+				if (hiddenpwitem) {
+					hiddenpwitem->quan = 1;
+					hiddenpwitem->known = hiddenpwitem->dknown = hiddenpwitem->bknown = hiddenpwitem->rknown = 1;
+					hiddenpwitem->owt = weight(hiddenpwitem);
+					dropy(hiddenpwitem);
+					stackobj(hiddenpwitem);
+				}
+
+			}
+
+
+		      t_timeout = rnz(50000);
 			break;
 
 		case T_BALLSLIFF:

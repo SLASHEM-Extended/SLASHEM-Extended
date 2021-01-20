@@ -1685,6 +1685,8 @@ struct you {
 	int badfcursed;	/* another long-lasting punishment for fountain quaffers */
 	int badfdoomed;
 
+	int hiddenpowerskill;	/* reaching master in this particular skill unlocks hidden power */
+
 	boolean keythief;	/* did the player use certain keys on Vlad's? if yes, give a reward once */
 	boolean keynocturn;
 	boolean keyaccess;
