@@ -600,7 +600,7 @@ register struct obj *obj;
 
 	if (obj->otyp == LONG_SWORD && obj->quan == 1L
 		/* it's supposed to be rare to get the thing if you're not a knight --Amy */
-	    && u.ulevel > 4 && (!isfriday || !rn2(3)) && !rn2(Role_if(PM_KNIGHT) ? 8 : 50) && !obj->oartifact
+	    && u.ulevel > 4 && (!isfriday || !rn2(3)) && !rn2(Role_if(PM_KNIGHT) ? 8 : 50) && !obj->oartifact && !obj->fakeartifact
 	    && !exist_artifact(LONG_SWORD, u.ualign.type == A_CHAOTIC ? artiname(ART_DIRGE) : artiname(ART_EXCALIBUR))) {
 
 		if (u.ualign.type == A_NEUTRAL || (u.ualign.type == A_CHAOTIC && !Role_if(PM_KNIGHT)) ) {

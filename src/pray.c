@@ -1928,6 +1928,7 @@ dosacrifice()
     int pm;
     aligntyp altaralign = a_align(u.ux,u.uy);
     struct monst *orac = NULL;
+    boolean cangetdirge = FALSE;
 
     /* KMH -- offerings to Oracle */
     /* Amy edit: you stupid head, why did you make this take precedence over standing on an altar */
@@ -2044,6 +2045,9 @@ dosacrifice()
 		value = eaten_stat(value, otmp);
 
 	/* fix for new races since they're MH_HUMAN but not actually supposed to count as same race --Amy */
+
+	if (your_race(ptr)) cangetdirge = TRUE;
+	else cangetdirge = FALSE;
 
 	if (your_race(ptr) && !canofferownrace()) {
 	    if (is_demon(youmonst.data) || Race_if(PM_HUMAN_WEREWOLF) || Race_if(PM_AK_THIEF_IS_DEAD_) || Role_if(PM_LUNATIC)) {
@@ -2226,6 +2230,23 @@ dosacrifice()
 		} else value += 3;
 	}
     } /* corpse */
+
+	if (cangetdirge && u.ualign.type == A_CHAOTIC && Role_if(PM_KNIGHT) && !u.ugangr && u.ualign.record > 0 && uwep && uwep->otyp == LONG_SWORD && !uwep->oartifact && !uwep->fakeartifact && !exist_artifact(LONG_SWORD, artiname(ART_DIRGE))) {
+
+		uwep = oname(uwep, artiname(ART_DIRGE));
+		if (uwep) { /* you can never be safe... --Amy */
+			curse(uwep);
+			if (uwep->spe < 10) uwep->spe++;
+			uwep->oeroded = uwep->oeroded2 = 0;
+			uwep->oerodeproof = TRUE;
+			discover_artifact(ART_DIRGE);
+			exercise(A_WIS,TRUE);
+			pline("Your sword slithers in your hand and seems to change!");
+#ifdef LIVELOGFILE
+			livelog_report_trophy("had Dirge gifted to them by the grace of a chaotic deity");
+#endif
+		}
+	}
 
     if (otmp->otyp == AMULET_OF_YENDOR) {
 	if (u.freeplaymode) {
