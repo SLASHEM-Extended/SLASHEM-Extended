@@ -110,6 +110,7 @@ static int p_type; /* (-1)-3: (-1)=really naughty, 3=really good */
 #define TROUBLE_DIMMED		(-16)
 #define TROUBLE_BLEEDING		(-17)
 #define TROUBLE_LOW_ENERGY		(-18)
+#define TROUBLE_LOW_SYMBIOTE		(-19)
 
 /* We could force rehumanize of polyselfed people, but we can't tell
    unintentional shape changes from the other kind. Oh well.
@@ -232,6 +233,8 @@ in_trouble()
 	if(HFeared) return (TROUBLE_FEARED);
         if((u.uen <= 5 || u.uen*7 <= u.uenmax) && (u.uen < u.uenmax))
         	return(TROUBLE_LOW_ENERGY);
+	if (uinsymbiosis && u.usymbiote.mhpmax < 50) return (TROUBLE_LOW_SYMBIOTE);
+	if (uinsymbiosis && (u.usymbiote.mhp <= 5 || (u.usymbiote.mhp*7 <= u.usymbiote.mhpmax))) return (TROUBLE_LOW_SYMBIOTE);
 	return(0);
 }
 
@@ -600,6 +603,20 @@ decurse:
 	    case TROUBLE_LOW_ENERGY:
 		    You_feel("revitalised.");
 		    u.uen = u.uenmax;
+		    flags.botl = 1;
+		    break;
+	    case TROUBLE_LOW_SYMBIOTE:
+		    if (!uinsymbiosis) break; /* maybe it died during prayer... */
+		    if (uinsymbiosis && u.usymbiote.mhpmax < 50) {
+			u.usymbiote.mhpmax += 8;
+			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500; /* shouldn't happen */
+			Your("symbiote seems hardier!");
+		    }
+		    if (uinsymbiosis && (u.usymbiote.mhp <= 5 || (u.usymbiote.mhp*7 <= u.usymbiote.mhpmax))) {
+			u.usymbiote.mhp = u.usymbiote.mhpmax;
+			Your("symbiote seems healthy again.");
+		    }
+
 		    flags.botl = 1;
 		    break;
 	    case TROUBLE_SADDLE:
