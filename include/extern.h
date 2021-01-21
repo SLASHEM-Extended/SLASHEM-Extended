@@ -665,6 +665,7 @@ E boolean In_gcavern(d_level *);
 E boolean In_frnkn(d_level *);
 E boolean In_mtemple(d_level *);
 E boolean In_restingzone(d_level *);
+E boolean playerlevelportdisabled(void);
 E branch *dungeon_branch(const char *);
 E boolean at_dgn_entrance(const char *);
 E boolean In_hell(d_level *);

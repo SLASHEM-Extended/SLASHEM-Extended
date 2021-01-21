@@ -789,7 +789,7 @@ register int after;	/* this is extra fast monster movement */
 		if (u.usteed && u.usteed == mtmp) {
 			if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed)) ) { pline("You shudder for a moment.");
 			}
-			if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || (u.preversionmode && !u.preversionescape) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_rivalquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) {
+			if (playerlevelportdisabled()) {
 			pline("For some reason you resist the banishment!");
 			}
 

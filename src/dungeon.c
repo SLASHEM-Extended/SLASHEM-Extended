@@ -1910,6 +1910,20 @@ d_level	*lev;
 	return FALSE;
 }
 
+/* can the player levelport, branchport, be banished etc. here? --Amy */
+boolean
+playerlevelportdisabled()
+{
+	if (flags.lostsoul || flags.uberlostsoul) return TRUE;
+	if (flags.wonderland && !(u.wonderlandescape)) return TRUE;
+	if (iszapem && !(u.zapemescape)) return TRUE;
+	if (u.preversionmode && !u.preversionescape) return TRUE;
+	if (u.uprops[STORM_HELM].extrinsic) return TRUE;
+	if (In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_rivalquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz) || In_minusworld(&u.uz)) return TRUE;
+
+	return FALSE;
+}
+
 /*
  * Return the branch for the given dungeon.
  *

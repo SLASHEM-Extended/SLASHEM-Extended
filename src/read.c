@@ -8779,7 +8779,7 @@ retry:
 	case SCR_TELEPORTATION:
 		if(confused || sobj->cursed) 
 			{
-		      if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.preversionmode && !u.preversionescape) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_rivalquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) level_tele();
+		      if (!playerlevelportdisabled()) level_tele();
 			else pline("You try to teleport, but fail!");
 			}
 		else {
@@ -8814,7 +8814,7 @@ retry:
 		}
 		break;
 	case SCR_TELE_LEVEL:
-	      if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.preversionmode && !u.preversionescape) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_rivalquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) level_tele();
+	      if (!playerlevelportdisabled()) level_tele();
 		else pline("Hmm... that level teleport scroll didn't do anything.");
 		known = TRUE;
 		break;
@@ -8822,7 +8822,7 @@ retry:
 		known = TRUE;
 		if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 
-		if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || (u.preversionmode && !u.preversionescape) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_rivalquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
+		if (playerlevelportdisabled()) { 
 			pline("You're unable to warp!"); break;}
 
 		/* restore the "no cyanide rule"... this is a simple y/n prompt because if you're read-identifying unknown

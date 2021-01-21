@@ -11014,7 +11014,7 @@ newboss:
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
-			      if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.preversionmode && !u.preversionescape) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_rivalquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz)) ) level_tele();
+			      if (!playerlevelportdisabled() ) level_tele();
 				else You_feel("very disoriented but decide to move on.");
 
 			}
@@ -11037,7 +11037,7 @@ newboss:
 					goto cellarnope;
 				}
 
-				if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || (u.preversionmode && !u.preversionescape) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_rivalquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
+				if (playerlevelportdisabled()) { 
 					goto cellarnope;
 				}
 
@@ -11068,7 +11068,7 @@ cellarnope:
 					goto demonolpast;
 				}
 
-				if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || (u.preversionmode && !u.preversionescape) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_rivalquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
+				if (playerlevelportdisabled()) { 
 					goto demonolpast;
 				}
 
@@ -11092,7 +11092,7 @@ demonolpast:
 					goto demonolpast2;
 				}
 
-				if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || (u.preversionmode && !u.preversionescape) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_rivalquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
+				if (playerlevelportdisabled()) { 
 					goto demonolpast2;
 				}
 
@@ -11118,7 +11118,7 @@ demonolpast2:
 					goto past1;
 				}
 
-				if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || (u.preversionmode && !u.preversionescape) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_rivalquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
+				if (playerlevelportdisabled()) { 
 					NastinessProblem += rnd(1000);
 					You("can hear Arabella announce: 'Sorry, but the time of your demise is drawing near.'");
 					goto past1;
@@ -11146,7 +11146,7 @@ past1:
 					goto past2;
 				}
 
-				if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || (u.preversionmode && !u.preversionescape) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_rivalquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
+				if (playerlevelportdisabled()) { 
 					NastinessProblem += rnd(1000);
 					You("can hear Arabella announce: 'Sorry, but the time of your demise is drawing near.'");
 					goto past2;
@@ -11174,7 +11174,7 @@ past2:
 					goto past3;
 				}
 
-				if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || (u.preversionmode && !u.preversionescape) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_rivalquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
+				if (playerlevelportdisabled()) { 
 					NastinessProblem += rnd(1000);
 					You("can hear Arabella announce: 'Sorry, but the time of your demise is drawing near.'");
 					goto past3;
@@ -11226,7 +11226,7 @@ past3:
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
-			      if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.preversionmode && !u.preversionescape) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_rivalquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) level_tele();
+			      if (!playerlevelportdisabled()) level_tele();
 				else You_feel("very disoriented but decide to move on.");
 
 			}
@@ -11235,7 +11235,7 @@ past3:
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
-			      if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.preversionmode && !u.preversionescape) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_rivalquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) level_tele();
+			      if (!playerlevelportdisabled()) level_tele();
 				else You_feel("very disoriented but decide to move on.");
 
 			}
@@ -11244,7 +11244,7 @@ past3:
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
-			      if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.preversionmode && !u.preversionescape) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_rivalquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) level_tele();
+			      if (!playerlevelportdisabled()) level_tele();
 				else You_feel("very disoriented but decide to move on.");
 
 			}
@@ -11253,7 +11253,7 @@ past3:
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
-			      if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.preversionmode && !u.preversionescape) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_rivalquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) level_tele();
+			      if (!playerlevelportdisabled()) level_tele();
 				else You_feel("very disoriented but decide to move on.");
 
 			}
@@ -11266,7 +11266,7 @@ past3:
 			if (uarmf && uarmf->oartifact == ART_STRONG_GETAWAY_DESIRE && !rn2(5000)) {
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
-			      if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.preversionmode && !u.preversionescape) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_rivalquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz)) ) level_tele();
+			      if (!playerlevelportdisabled()) level_tele();
 				else You_feel("very disoriented but decide to move on.");
 
 			}
@@ -11276,7 +11276,7 @@ past3:
 				if (bmwride(ART_WESTERN_FRANKISH_COURSE)) {
 					pline("A mysterious force surrounds you...");
 					HTeleport_control++;
-				      if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.preversionmode && !u.preversionescape) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_rivalquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) level_tele();
+				      if (!playerlevelportdisabled()) level_tele();
 					else You_feel("very disoriented but decide to move on.");
 				}
 
@@ -11312,7 +11312,7 @@ past3:
 					u.datadeletedefer = 1;
 					datadeleteattack();
 				}
-				else if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.preversionmode && !u.preversionescape) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_rivalquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) {
+				else if (!playerlevelportdisabled()) {
 
 					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
@@ -11343,7 +11343,7 @@ past3:
 					u.datadeletedefer = 1;
 					datadeleteattack();
 				}
-				else if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.preversionmode && !u.preversionescape) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_rivalquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) {
+				else if (!playerlevelportdisabled()) {
 
 					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
@@ -11471,6 +11471,9 @@ past3:
 	u.mushroompoleused = 0;
 	u.explodewandhack = 0;
 	u.symbiotedmghack = FALSE;
+
+	/* fail safe for banishment in case the player would somehow get a turn --Amy */
+	if (u.banishmentbeam && multi >= 0) nomul(-2, "being banished", FALSE);
 
 	if (In_greencross(&u.uz) && !u.greencrossopen) u.greencrossopen = TRUE;
 
@@ -12047,7 +12050,7 @@ past3:
 			You("shudder for a moment."); (void) safe_teleds(FALSE); u.banishmentbeam = 0; break;
 		}
 
-		if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || (u.preversionmode && !u.preversionescape) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_rivalquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
+		if (playerlevelportdisabled()) { 
 			pline("Somehow, the banishment beam doesn't do anything."); u.banishmentbeam = 0; break;
 		}
 
@@ -12064,7 +12067,7 @@ past3:
 
 	if (u.levelporting) { /* something attacked you with nexus or weeping */
 
-		if ((!u.uevent.udemigod || u.freeplaymode) && !(flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || (u.preversionmode && !u.preversionescape) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_rivalquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) ) {
+		if ((!u.uevent.udemigod || u.freeplaymode) && !playerlevelportdisabled() ) {
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 			level_tele(); /* will take care of u.uhave.amulet and similar stuff --Amy */
 		}

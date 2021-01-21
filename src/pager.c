@@ -26501,6 +26501,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'corona christmas child'. It reads: 'forced vaccinations are the one true way! you have to see that too!'",
 	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Can put your stupid vaccine where the sun doesn't shine now.'",
 	"Incoming message for Player 1. The message is from 'corona christmas child'. It reads: 'now you really have to get vaccinated!'",
+	"You can't branchport!",
+	"You can't branchport! Doing so would make the game too easy!",
 
 };
 
