@@ -558,6 +558,18 @@ register struct obj *food;
 			morehungry(100);	/* remove a bit of nutrition so you don't choke again instantly --Amy */
 			nomul(-2, "vomiting", TRUE);
 			u_wipe_engr(100);
+
+			u.cnd_vomitingcount++;
+			if (u.inasuppression) {
+
+				FemaleTrapIna += u.inasuppression;
+				FemaleTrapIna += rnz(20 * (monster_difficulty() + 1));
+				if (rn2(3)) FemaleTrapIna += 100;
+				if (!rn2(3)) FemaleTrapIna += rnz(500);
+				u.inasuppression = 0;
+				pline("Oh my god, you are now afflicted with the life-threatening disease known as anorexia!");
+			}
+
 			return;
 		}
 		You(FunnyHallu ? "vomit all over the place. Shit, now your clothes are a huge mess!" : "stuff yourself and then vomit voluminously.");
@@ -7602,6 +7614,15 @@ void
 vomit()		/* A good idea from David Neves */
 {
 	u.cnd_vomitingcount++;
+	if (u.inasuppression) {
+
+		FemaleTrapIna += u.inasuppression;
+		FemaleTrapIna += rnz(20 * (monster_difficulty() + 1));
+		if (rn2(3)) FemaleTrapIna += 100;
+		if (!rn2(3)) FemaleTrapIna += rnz(500);
+		u.inasuppression = 0;
+		pline("Oh my god, you are now afflicted with the life-threatening disease known as anorexia!");
+	}
 	make_sick(0L, (char *) 0, TRUE, SICK_VOMITABLE);
 	nomul(-2, "vomiting", TRUE);
 	u_wipe_engr(100);

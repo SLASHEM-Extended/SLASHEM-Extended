@@ -244,6 +244,11 @@ nh_timeout()
 	if (u.tremblingamount && !rn2(1000)) u.tremblingamount--;
 	if (u.tremblingamount < 0) u.tremblingamount = 0; /* fail safe */
 
+	if (u.inasuppression) {
+		u.inasuppression--;
+		if (u.inasuppression < 0) u.inasuppression = 0; /* fail safe */
+	}
+
 	if (u.badfcursed) {
 		u.badfcursed--;
 		if (u.badfcursed < 0) u.badfcursed = 0; /* fail safe */

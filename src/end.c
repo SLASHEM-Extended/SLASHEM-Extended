@@ -718,6 +718,15 @@ int how;
 	u.ugrave_arise = NON_PM;
 	HUnchanging = 0L;
 	curs_on_u();
+
+	/* inspired by Elona: anorexia ends if you die, but there is no message --Amy */
+	if (FemaleTrapIna & TIMEOUT) {
+		u.inasuppression = FemaleTrapIna;
+		if (u.inasuppression >= 67108864) u.inasuppression -= 67108864;
+		if (u.inasuppression >= 33554432) u.inasuppression -= 33554432;
+		if (u.inasuppression >= 16777216) u.inasuppression -= 16777216;
+		FemaleTrapIna &= ~TIMEOUT;
+	}
 }
 
 /*
