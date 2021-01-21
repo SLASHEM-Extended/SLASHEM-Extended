@@ -3485,6 +3485,7 @@ int tech_no;
 	char allowall[2];
 	int i, j, t_timeout = 0;
 
+	boolean maybeleveltech = FALSE;
 
 	/* check timeout */
 	if (tech_inuse(techid(tech_no))) {
@@ -9463,6 +9464,11 @@ extrachargechoice:
 		}
 		if (timeoutamount >= 1 && (timeoutamount > rn2(1000))) use_skill(P_TECHNIQUES, 1);
 		u.cnd_techcount++;
+
+		if (rn2(4) && (t_timeout > rnd(50000)) ) {
+			maybeleveltech = TRUE;
+		}
+
 	  }
 
 	  if (!PlayerCannotUseSkills) {
@@ -9577,6 +9583,13 @@ extrachargechoice:
 			}
 
 		}
+
+	if (maybeleveltech) {
+		if (tech_list[tech_no].t_lev > 0) {
+			tech_list[tech_no].t_lev -= 1;
+			pline("Your %s technique leveled up to level %d!", techname(tech_no), techlev(tech_no));
+		}
+	}
 
 	/*By default,  action should take a turn*/
 	if (techid(tech_no) == T_DIRECTIVE) return 0;
