@@ -26503,6 +26503,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'corona christmas child'. It reads: 'now you really have to get vaccinated!'",
 	"You can't branchport!",
 	"You can't branchport! Doing so would make the game too easy!",
+	"You feel that your large dog is in dire need of food.",
+	"You feel that your large dog is in dire need of food. Feed him, NOW! He's about to die of starvation!",
+	"You feel that your warhorse is about to starve.",
+	"You feel that your warhorse is about to starve. Sadly, you have no vegetable food and horses are generally incapable of eating meat, so it's gonna die. :-(",
 
 };
 

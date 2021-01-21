@@ -333,6 +333,13 @@ register struct edog *edog;
 		edog->abouttostarve = 5;
 	    } else if (edog->abouttostarve > 1) {
 		edog->abouttostarve--;
+		if (edog->abouttostarve == 4) { /* give several warnings that the pet is going to starve --Amy */
+			if (couldsee(mtmp->mx, mtmp->my)) {
+			    beg(mtmp);
+			    You_feel("that %s is in dire need of food.", y_monnam(mtmp));
+			} else
+			    You_feel("that %s is about to starve.", y_monnam(mtmp));
+		}
 		if (edog->abouttostarve == 1) {
 			if (couldsee(mtmp->mx, mtmp->my)) {
 			    beg(mtmp);
