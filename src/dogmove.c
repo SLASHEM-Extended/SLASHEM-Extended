@@ -207,6 +207,7 @@ boolean devour;
 	    mtmp->mhpmax += edog->mhpmax_penalty;
 	    edog->mhpmax_penalty = 0;
 	}
+	if (edog->abouttostarve) edog->abouttostarve = 0;
 	if (mtmp->mflee && mtmp->mfleetim > 1) mtmp->mfleetim /= 2;
 	if (mtmp->mtame < 20) mtmp->mtame++;
 	if (x != mtmp->mx || y != mtmp->my) {	/* moved & ate on same turn */
@@ -306,6 +307,8 @@ dog_hunger(mtmp, edog)
 register struct monst *mtmp;
 register struct edog *edog;
 {
+	if (monstermoves <= (edog->hungrytime + 500)) edog->abouttostarve = FALSE;
+
 	if (monstermoves > edog->hungrytime + 500) {
 	    if (!carnivorous(mtmp->data) && !herbivorous(mtmp->data) && !metallivorous(mtmp->data) && !mtmp->egotype_lithivore && !mtmp->egotype_metallivore && !mtmp->egotype_allivore && !lithivorous(mtmp->data)) {
 		edog->hungrytime = monstermoves + 500;
@@ -326,6 +329,17 @@ register struct edog *edog;
 		else
 		    You_feel("worried about %s.", y_monnam(mtmp));
 		stop_occupation();
+	    } else if (!edog->abouttostarve) {
+		edog->abouttostarve = 5;
+	    } else if (edog->abouttostarve > 1) {
+		edog->abouttostarve--;
+		if (edog->abouttostarve == 1) {
+			if (couldsee(mtmp->mx, mtmp->my)) {
+			    beg(mtmp);
+			    You_feel("that %s is in dire need of food.", y_monnam(mtmp));
+			} else
+			    You_feel("that %s is about to starve.", y_monnam(mtmp));
+		}
 	    } else if (monstermoves > edog->hungrytime + 750 || mtmp->mhp < 1) {
  dog_died:
 		if (mtmp->mleashed && mtmp != u.usteed)
@@ -338,6 +352,7 @@ register struct edog *edog;
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Tipichnyy igrok. Vy dazhe ne sposobny kormit' vashego pitomtsa." : "Tschwieaeaeh!");
 
 		}
+		edog->abouttostarve = FALSE;
 		mondied(mtmp);
 		return(TRUE);
 	    }

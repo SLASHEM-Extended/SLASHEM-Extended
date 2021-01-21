@@ -26,6 +26,7 @@ struct edog {
 	int abuse;			/* track abuses to this pet */
 	int revivals;			/* count pet deaths */
 	int mhpmax_penalty;		/* while starving, points reduced */
+	int abouttostarve;		/* a few turns to live (and for you to throw food at it) --Amy */
 	Bitfield(killed_by_u, 1);	/* you attempted to kill him */
 };
 #define EDOG(mon)	((struct edog *)&(mon)->mextra[0])

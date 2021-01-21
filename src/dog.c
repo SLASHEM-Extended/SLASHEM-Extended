@@ -32,6 +32,7 @@ register struct monst *mtmp;
 	EDOG(mtmp)->abuse = 0;
 	EDOG(mtmp)->revivals = 0;
 	EDOG(mtmp)->mhpmax_penalty = 0;
+	EDOG(mtmp)->abouttostarve = 0;
 	EDOG(mtmp)->killed_by_u = 0;
 
 	/* if the pet has a weapon, we want it to wield, not drop it! --Amy */
@@ -1359,10 +1360,12 @@ boolean guaranteed;
 	if (mtmp->mtame && obj) {
 	    int tasty;
 
-	    if (mtmp->mcanmove && !mtmp->mconf && !mtmp->meating &&
+	    if (mtmp->mcanmove && (!mtmp->mconf || (EDOG(mtmp)->hungrytime <= monstermoves)) && !mtmp->meating &&
 		((tasty = dogfood(mtmp, obj)) == DOGFOOD ||
 		 (tasty <= ACCFOOD && EDOG(mtmp)->hungrytime <= monstermoves))) {
-		/* pet will "catch" and eat this thrown food */
+		/* pet will "catch" and eat this thrown food
+		 * Amy edit: since pets that are about to starve get confused, but they might have gotten very hungry due
+		 * to a hunger-inducing attack, they have to be able to catch the food anyway */
 		if (canseemon(mtmp)) {
 		    boolean big_corpse = (obj->otyp == CORPSE &&
 					  obj->corpsenm >= LOW_PM &&
@@ -1506,6 +1509,7 @@ boolean was_dead;
 	mtmp->mhp += edog->mhpmax_penalty;	/* heal it */
 	edog->mhpmax_penalty = 0;
     }
+    if (edog && edog->abouttostarve) edog->abouttostarve = 0;
 
     if (edog && (edog->killed_by_u == 1 || edog->abuse > 2)) {
 	mtmp->mpeaceful = mtmp->mtame = 0;
