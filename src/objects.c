@@ -6962,6 +6962,9 @@ SCROLL((char *)0,               "I GUMPTION YOU THE CONDEMNED COCK OFF",  P_NONE
 SCROLL((char *)0,               "HARLILOWN",  P_NONE,     1,   0, 300, CLR_ORANGE, 1),
 SCROLL((char *)0,               "WANT TO CONTRACT SELECTIVE AMNESIA",  P_NONE,     1,   0, 300, CLR_CYAN, 1),
 SCROLL((char *)0,               "UEBER RE A GIERUNG",  P_NONE,     1,   0, 300, CLR_BLACK, 1),
+SCROLL((char *)0,               "STEAK LOVE EMERGENT SEA",  P_NONE,     1,   0, 300, CLR_RED, 1),
+SCROLL((char *)0,               "MILK GIRL CALCULATION",  P_NONE,     1,   0, 300, CLR_WHITE, 1),
+SCROLL((char *)0,               "AMY YOUR FANFIC IS SEXIST",  P_NONE,     1,   0, 300, CLR_YELLOW, 1),
 
 
 #ifdef MAIL
