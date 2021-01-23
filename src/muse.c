@@ -9904,7 +9904,7 @@ struct monst *mtmp;
 		case 30: return SCR_BARRHING;
 		case 31: return WAN_SOLAR_BEAM;
 		case 32: return SCR_LOCKOUT;
-		case 33: return WAN_BANISHMENT;
+		case 33: return (rn2(10) ? WAN_TELEPORTATION : WAN_BANISHMENT);
 		case 34: return POT_HALLUCINATION;
 		case 35: return POT_NUMBNESS;
 		case 36: return POT_ICE;

@@ -2423,8 +2423,7 @@ register boolean unpaid_only;
 			!otmp->unpaid && otmp->oclass != BALL_CLASS &&
 			!is_hazy(otmp) &&
 			!(otmp->oclass == FOOD_CLASS && otmp->oeaten) &&
-			!(Is_candle(otmp) && otmp->age <
-				20L * (long)objects[otmp->otyp].oc_cost))
+			!(Is_candle(otmp) && otmp->age < 2000L) )
 		    price += set_cost(otmp, shkp);
 	    } else if (!otmp->no_charge &&
 		      (!unpaid_only || (unpaid_only && otmp->unpaid))) {
@@ -3195,8 +3194,7 @@ move_on:
 	   || obj->oclass == CHAIN_CLASS || offer == 0L
 	   || is_hazy(obj)
 	   || (obj->oclass == FOOD_CLASS && obj->oeaten)
-	   || (Is_candle(obj) &&
-		   obj->age < 20L * (long)objects[obj->otyp].oc_cost)) {
+	   || (Is_candle(obj) && obj->age < 2000L) ) {
 		pline("%s seems uninterested%s.", Monnam(shkp),
 			cgold ? " in the rest" : "");
 		if (container)
@@ -3433,8 +3431,7 @@ boolean shk_buying;
 		if (is_grenade(obj) && obj->oarmed) tmp = 0L;
 		break;
 	case TOOL_CLASS:
-		if (Is_candle(obj) &&
-			obj->age < 20L * (long)objects[obj->otyp].oc_cost)
+		if (Is_candle(obj) && obj->age < 2000L)
 		    tmp /= 2L;
 		else if (obj->otyp == TORCH) {
 		  if (obj->age == 0) {

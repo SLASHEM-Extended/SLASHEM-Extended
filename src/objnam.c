@@ -7392,9 +7392,10 @@ plus:
 			obj->otyp == BRASS_LANTERN || obj->otyp == TORCH ||
 			   Is_candle(obj)) {
 			if (Is_candle(obj) &&
-			    /* WAC - magic candles are never "partly used" */
+			    /* WAC - magic candles are never "partly used"
+			     * Amy edit: once again, have it not depend on cost */
 			    obj->otyp != MAGIC_CANDLE &&
-			    obj->age < 20L * (long)objects[obj->otyp].oc_cost)
+			    obj->age < 2000L)
 				strcat(prefix, "partly used ");
 			if(obj->lamplit)
 				strcat(bp, " (lit)");
