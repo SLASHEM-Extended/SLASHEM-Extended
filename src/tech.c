@@ -9465,7 +9465,7 @@ extrachargechoice:
 		if (timeoutamount >= 1 && (timeoutamount > rn2(1000))) use_skill(P_TECHNIQUES, 1);
 		u.cnd_techcount++;
 
-		if (rn2(4) && (t_timeout > rnd(50000)) ) {
+		if (rn2(4) && (t_timeout > rnd(StrongExtra_wpn_practice ? 15000 : Extra_wpn_practice ? 25000 : 50000)) ) {
 			maybeleveltech = TRUE;
 		}
 
