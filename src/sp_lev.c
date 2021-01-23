@@ -3860,6 +3860,8 @@ boolean prefilled;
 	register int tryct = 0;
 	register struct obj *otmp;
 
+	if (croom && croom->rtype == OROOM && at_dgn_entrance("Green Cross") && !(level.flags.has_greencrossroom)) croom->rtype = GREENCROSSROOM;
+
 	if (croom && croom->rtype == OROOM && !rn2( ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && (depth(&u.uz) > 1 && !(u.preversionmode && In_greencross(&u.uz) && (dunlev(&u.uz) == 1)) && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) ) ? 1 : ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) ) {
 
 retryrandtype:
@@ -5045,7 +5047,7 @@ room *r, *pr;
 		 * DLC - this can fail if corridors are added to this room
 		 * at a later point.  Currently no good way to fix this.
 		 */
-		if( (aroom->rtype != OROOM || !rn2( ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && (depth(&u.uz) > 1 && !(u.preversionmode && In_greencross(&u.uz) && (dunlev(&u.uz) == 1)) && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) ) ? 1 : ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) ) && r->filled) fill_room(aroom, FALSE);
+		if( (aroom->rtype != OROOM || (at_dgn_entrance("Green Cross") && !(level.flags.has_greencrossroom)) || !rn2( ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && (depth(&u.uz) > 1 && !(u.preversionmode && In_greencross(&u.uz) && (dunlev(&u.uz) == 1)) && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) ) ? 1 : ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) ) && r->filled) fill_room(aroom, FALSE);
 	}
 }
 
@@ -5738,7 +5740,7 @@ dlb *fd;
 		troom = &rooms[nroom];
 
 		/* mark rooms that must be filled, but do it later */
-		if (tmpregion.rtype != OROOM || !rn2( ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && (depth(&u.uz) > 1 && !(u.preversionmode && In_greencross(&u.uz) && (dunlev(&u.uz) == 1)) && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) ) ? 1 : ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) )
+		if (tmpregion.rtype != OROOM || (at_dgn_entrance("Green Cross") && !(level.flags.has_greencrossroom)) || !rn2( ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && (depth(&u.uz) > 1 && !(u.preversionmode && In_greencross(&u.uz) && (dunlev(&u.uz) == 1)) && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) ) ? 1 : ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) )
 		    mustfill[nroom] = (prefilled ? 2 : 1);
 
 		if(tmpregion.rirreg) {

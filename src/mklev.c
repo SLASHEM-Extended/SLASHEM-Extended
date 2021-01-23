@@ -10879,6 +10879,8 @@ skip0:
 	   one of each major type */
 	/*else {*/
 
+	if (at_dgn_entrance("Green Cross")) mkroom(GREENCROSSROOM);
+
 	/* "Make special rooms show up later. Reverted existant special room chances to their original values, new rooms have values that I believe work.  If not, they will be adjusted accordingly." The existing values do work, too; some players just don't seem to know what to do if there's a room filled with trolls on dlvl2: stay FAR away from there until you can handle it! But sure, in Soviet Russia they start appearing later. All the other races will have to contend with my intended values though. --Amy */
 
 gehennomxtra:
@@ -12775,6 +12777,13 @@ find_branch_room(mp)
 		croom = &rooms[rn2(nroom)];
 	    while((croom == dnstairs_room || croom == upstairs_room ||
 		  croom->rtype != OROOM) && (++tryct < 100));
+
+	    if (at_dgn_entrance("Green Cross")) {
+		    do
+			croom = &rooms[rn2(nroom)];
+		    while((croom->rtype != GREENCROSSROOM) && (++tryct < 100));
+	    }
+
 	} else
 	    croom = &rooms[rn2(nroom)];
 
@@ -12846,7 +12855,7 @@ xchar x, y;	/* location */
 	    }
 
 		/* stairseeker changes stuff here */
-		if (br && (evilfriday || isstairseeker || !(at_dgn_entrance("The Subquest") || at_dgn_entrance("The Quest") || at_dgn_entrance("Lawful Quest") || at_dgn_entrance("Neutral Quest") || at_dgn_entrance("Chaotic Quest") || at_dgn_entrance("The Elemental Planes") || at_dgn_entrance("Sheol") || at_dgn_entrance("Bell Caves") || at_dgn_entrance("Vlad's Tower") || at_dgn_entrance("Forging Chamber") || at_dgn_entrance("Dead Grounds") || at_dgn_entrance("Ordered Chaos")) )) {
+		if (br && (evilfriday || isstairseeker || !(at_dgn_entrance("Green Cross") || at_dgn_entrance("The Subquest") || at_dgn_entrance("The Quest") || at_dgn_entrance("Lawful Quest") || at_dgn_entrance("Neutral Quest") || at_dgn_entrance("Chaotic Quest") || at_dgn_entrance("The Elemental Planes") || at_dgn_entrance("Sheol") || at_dgn_entrance("Bell Caves") || at_dgn_entrance("Vlad's Tower") || at_dgn_entrance("Forging Chamber") || at_dgn_entrance("Dead Grounds") || at_dgn_entrance("Ordered Chaos")) )) {
 
 			int steetries = 0;
 			while (steetries < 50000) {
