@@ -6965,6 +6965,7 @@ SCROLL((char *)0,               "UEBER RE A GIERUNG",  P_NONE,     1,   0, 100, 
 SCROLL((char *)0,               "STEAK LOVE EMERGENT SEA",  P_NONE,     1,   0, 100, CLR_RED, 1),
 SCROLL((char *)0,               "MILK GIRL CALCULATION",  P_NONE,     1,   0, 100, CLR_WHITE, 1),
 SCROLL((char *)0,               "AMY YOUR FANFIC IS SEXIST",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
+SCROLL((char *)0,               "SWOONEL THE GIRL AFTERWARDS",  P_NONE,     1,   0, 100, CLR_RED, 1),
 
 
 #ifdef MAIL
