@@ -601,6 +601,11 @@ register struct monst *mtmp;
 		}
 	}
 
+	if(Role_if(PM_HALF_BAKED) && uarm && ((uarm->otyp < ROBE) || (uarm->otyp > ROBE_OF_WEAKNESS)) ) {
+		pline("Your armor is rather cumbersome...");
+		tmp -= 20;
+	}
+
 	if (Race_if(PM_SWIKNI)) {
 		if (uwep) {
 			if (uwep->oeroded) tmp -= ((uwep->oeroded) * 2);
@@ -959,7 +964,7 @@ register struct monst *mtmp;
 		    if (!(PlayerCannotUseSkills) && P_SKILL(P_MARTIAL_ARTS) >= P_EXPERT)
 			You("assume a martial arts stance.");
 		    else You("begin %sing monsters with your %s %s.",
-			Role_if(PM_MONK) ? "strik" : "bash",
+			(Role_if(PM_MONK) || Role_if(PM_HALF_BAKED)) ? "strik" : "bash",
 			uarmg ? "gloved" : "bare",	/* Del Lamb */
 			makeplural(body_part(HAND)));
 	    }
@@ -1221,7 +1226,14 @@ martial_dmg()
                              5 if Basic  (1d4)
          */
 
-        if ((Role_if(PM_MONK) && !Upolyd && !(PlayerCannotUseSkills) )
+	  if (Role_if(PM_HALF_BAKED) && !Upolyd) {
+		damage = rnd(2);
+		if (!(PlayerCannotUseSkills) && (P_SKILL(P_MARTIAL_ARTS) >= P_BASIC)) {
+			damage += rnd(P_SKILL(P_MARTIAL_ARTS) - P_UNSKILLED);
+			if (!rn2(2)) damage += rnd(P_SKILL(P_MARTIAL_ARTS) - P_UNSKILLED);
+		}
+
+        } else if ((Role_if(PM_MONK) && !Upolyd && !(PlayerCannotUseSkills) )
                 && (P_SKILL(P_MARTIAL_ARTS) >= P_GRAND_MASTER)
                 && (u.ulevel > 16)) damage = d(6,2) + (P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER ? rnd(10) : 0) ;                                
         else if (!(PlayerCannotUseSkills) && (P_SKILL(P_MARTIAL_ARTS) >= P_BASIC) && u.ulevel > (2*(P_SKILL(P_MARTIAL_ARTS) - P_BASIC) + 5))
@@ -3366,7 +3378,7 @@ melatechoice:
         }
 
 	/* Special monk strikes */
-	if (Role_if(PM_MONK) && !Upolyd && !thrown && no_obj &&
+	if ((Role_if(PM_MONK) || Role_if(PM_HALF_BAKED)) && !Upolyd && !thrown && no_obj &&
 		(!uarm || (uarm && uarm->otyp >= ROBE &&
 		 uarm->otyp <= ROBE_OF_WEAKNESS)) && !uarms &&
 		 distu(mon->mx, mon->my) <= 2) {

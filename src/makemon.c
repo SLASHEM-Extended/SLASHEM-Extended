@@ -4040,6 +4040,8 @@ register struct monst *mtmp;
 
 		   case PM_MONK:
 		   case PM_UNDEAD_MONK:
+		   case PM_HALF_BAKED:
+		   case PM_UNDEAD_HALF_BAKED:
 		   case PM_SAIYAN:
 		   case PM_UNDEAD_SAIYAN:
 		   case PM_PSION:
@@ -24779,6 +24781,7 @@ loopback:
 		if (ct > 0 && (Role_if(PM_MEDIUM) && dmgtype(ptr, AD_SPC2))) ct += 2;
 		if (ct > 0 && (Role_if(PM_MEDIUM) && is_mind_flayer(ptr))) ct += 1;
 		if (ct > 0 && (Role_if(PM_MONK) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_HALF_BAKED) && is_vanillamonster(ptr))) ct += 5;
 		if (ct > 0 && (Role_if(PM_MURDERER) && (ptr->msound == MS_ARREST))) ct += 5;
 		if (ct > 0 && (Role_if(PM_NECROMANCER) && is_vanillamonster(ptr))) ct += 1;
 		if (ct > 0 && (Role_if(PM_NECROMANCER) && is_diablomonster(ptr))) ct += 1;
@@ -26016,6 +26019,7 @@ int     spc;
 		if ((Role_if(PM_MEDIUM) && dmgtype(&mons[last], AD_SPC2))) num += 2;
 		if ((Role_if(PM_MEDIUM) && is_mind_flayer(&mons[last]))) num += 1;
 		if ((Role_if(PM_MONK) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Role_if(PM_HALF_BAKED) && is_vanillamonster(&mons[last]))) num += 5;
 		if ((Role_if(PM_MURDERER) && (mons[last].msound == MS_ARREST))) num += 5;
 		if ((Role_if(PM_NECROMANCER) && is_vanillamonster(&mons[last]))) num += 1;
 		if ((Role_if(PM_NECROMANCER) && is_diablomonster(&mons[last]))) num += 1;
@@ -26919,6 +26923,7 @@ int     spc;
 		if ((Role_if(PM_MEDIUM) && dmgtype(&mons[first], AD_SPC2))) num -= 2;
 		if ((Role_if(PM_MEDIUM) && is_mind_flayer(&mons[first]))) num -= 1;
 		if ((Role_if(PM_MONK) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Role_if(PM_HALF_BAKED) && is_vanillamonster(&mons[first]))) num -= 5;
 		if ((Role_if(PM_MURDERER) && (mons[first].msound == MS_ARREST))) num -= 5;
 		if ((Role_if(PM_NECROMANCER) && is_vanillamonster(&mons[first]))) num -= 1;
 		if ((Role_if(PM_NECROMANCER) && is_diablomonster(&mons[first]))) num -= 1;

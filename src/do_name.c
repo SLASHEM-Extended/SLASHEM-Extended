@@ -5522,6 +5522,16 @@ static const char * const bogusmons[] = {
 	"Toilet Puzzler",
 	"Winner At Last",
 	"Birkenstock", "Tamaris", "Peter Kaiser", /* German shoe brands */
+	"Half Baker",
+	"Bloody Novice",
+	"No-Hoper",
+	"Pupil of Gravel",
+	"Pupil of Fluids",
+	"Pupil of Trash",
+	"Pupil of Blows",
+	"Pupil of Heat",
+	"Self-Appointed Master",
+	"Nuwa", "Pangu", "Fuxi", /* Chinese */
 
 };
 

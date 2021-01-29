@@ -9939,9 +9939,9 @@ peffects(otmp)
 		       doesn't use violated_vegetarian() to prevent
 		       duplicated "you feel guilty" messages */
 		    u.uconduct.unvegetarian++;
-		    if (u.ualign.type == A_LAWFUL || Role_if(PM_MONK)) {
+		    if (u.ualign.type == A_LAWFUL || Role_if(PM_MONK) || Role_if(PM_HALF_BAKED)) {
 			You_feel("%sguilty about drinking such a vile liquid.",
-				Role_if(PM_MONK) ? "especially " : "");
+				(Role_if(PM_MONK) || Role_if(PM_HALF_BAKED)) ? "especially " : "");
 			u.ugangr++;
 			adjalign(-50);
 		    } else if (u.ualign.type == A_NEUTRAL)

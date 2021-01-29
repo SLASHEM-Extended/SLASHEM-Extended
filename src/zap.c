@@ -3878,7 +3878,7 @@ makecorpse:			if (mons[obj->corpsenm].geno &
 smell:
 			if (herbivorous(youmonst.data) &&
 			    (!carnivorous(youmonst.data) ||
-			     Role_if(PM_MONK) || !u.uconduct.unvegetarian))
+			     Role_if(PM_MONK) || Role_if(PM_HALF_BAKED) || !u.uconduct.unvegetarian))
 			    Norep("You smell the odor of meat.");
 			else
 			    Norep("You smell a delicious smell.");

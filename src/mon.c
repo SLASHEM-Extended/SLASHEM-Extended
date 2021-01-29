@@ -899,6 +899,7 @@ register struct monst *mtmp;
 	    case PM_UNDEAD_KNIGHT:
 	    case PM_UNDEAD_WARRIOR:
 	    case PM_UNDEAD_MONK:
+	    case PM_UNDEAD_HALF_BAKED:
 	    case PM_UNDEAD_PROSTITUTE:
 	    case PM_UNDEAD_KURWA:
 	    case PM_UNDEAD_PSION:

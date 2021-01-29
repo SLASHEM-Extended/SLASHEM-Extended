@@ -4079,7 +4079,7 @@ void
 violated_vegetarian()
 {
     u.uconduct.unvegetarian++;
-    if (Role_if(PM_MONK) || have_anorexia() || Role_if(PM_FAILED_EXISTENCE) || Race_if(PM_SYLPH) ) {
+    if (Role_if(PM_MONK) || Role_if(PM_HALF_BAKED) || have_anorexia() || Role_if(PM_FAILED_EXISTENCE) || Race_if(PM_SYLPH) ) {
 	You_feel("guilty.");
 	adjalign(-5);
     }
@@ -6636,7 +6636,7 @@ struct obj *otmp;
 		else return 2;
 	}
 	if (cadaver && !vegetarian(&mons[mnum]) &&
-	    !u.uconduct.unvegetarian && (Role_if(PM_MONK) || have_anorexia() || Role_if(PM_FAILED_EXISTENCE) || Race_if(PM_SYLPH) ) ) {
+	    !u.uconduct.unvegetarian && (Role_if(PM_MONK) || Role_if(PM_HALF_BAKED) || have_anorexia() || Role_if(PM_FAILED_EXISTENCE) || Race_if(PM_SYLPH) ) ) {
 		sprintf(buf, "%s unhealthy. %s",
 			foodsmell, eat_it_anyway);
 		if (yn_function(buf,ynchars,'n')=='n') return 1;

@@ -636,6 +636,16 @@ const struct innate {
 		     {  17, &(HTeleport_control), "controlled","uncontrolled", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
+	hba_abil[] = { {   1, &(HFast), "", "", TRUE },
+		     {   1, &(HSleep_resistance), "", "", TRUE },
+		     {   1, &(HSee_invisible), "", "", TRUE },
+		     {   3, &(HPoison_resistance), "healthy", "less healthy", TRUE },
+		     {   5, &(HStealth), "stealthy", "noisy", TRUE },
+		     {   7, &(HWarning), "sensitive", "careless", TRUE },
+		     {   9, &(HSearching), "perceptive", "unaware", TRUE },
+		     {  17, &(HTeleport_control), "controlled","uncontrolled", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
 	psi_abil[] = { {   1, &(HTelepat), "", "", TRUE },
 		     {   1, &(HClairvoyant), "","", TRUE },
 		     {   3, &(HSee_invisible), "your vision sharpen", "your vision blur", TRUE },
@@ -1810,7 +1820,7 @@ exerper()
 					if ((u.uhunger > 4500) || (u.uhunger > 4000 && rn2(4)) || (u.uhunger <= 4000 && u.uhunger > 3500 && rn2(2)) || (u.uhunger <= 3500 && u.uhunger > 3000 && !rn2(5)) || (u.uhunger <= 3000 && !rn2(20)) ) {
 
 					exercise(A_DEX, FALSE);
-					if (Role_if(PM_MONK))
+					if (Role_if(PM_MONK) || Role_if(PM_HALF_BAKED))
 					    exercise(A_WIS, FALSE);
 
 					}
@@ -1821,7 +1831,7 @@ exerper()
 		    case HUNGRY:	if (have_anorexia() || Role_if(PM_FAILED_EXISTENCE)) exercise(A_WIS, TRUE); break;
 		    case WEAK:
 					if (!have_anorexia() && !rn2(10) && !Role_if(PM_FAILED_EXISTENCE) ) exercise(A_STR, FALSE);
-					if (Role_if(PM_MONK))	/* fasting */
+					if (Role_if(PM_MONK) || Role_if(PM_HALF_BAKED))	/* fasting */
 					    exercise(A_WIS, TRUE);
 					if (have_anorexia() || Role_if(PM_FAILED_EXISTENCE)) {
 					    exercise(A_WIS, TRUE); exercise(A_STR, TRUE);
@@ -2234,6 +2244,7 @@ int oldlevel, newlevel;
 	case PM_DOOM_MARINE:         abil = mar_abil;	break;
 	case PM_SAGE:         abil = sag_abil;	break;
 	case PM_MONK:           abil = mon_abil;	break;
+	case PM_HALF_BAKED:           abil = hba_abil;	break;
 	case PM_MUSICIAN:           abil = mus_abil;	break;
 	case PM_PSION:           abil = psi_abil;	break;
 	case PM_SCIENTIST:           abil = sci_abil;	break;

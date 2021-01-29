@@ -352,7 +352,7 @@ spec_levs: ../util/lev_comp \
 	Mastermi.des Tosser.des Symbia.des Pract.des Millsw.des \
 	Gender.des Fjorde.des Emera.des Combat.des Aklyst.des \
 	Drag.des Carto.des Dancer.des Shoefe.des Secret.des \
-	Prever.des Diabl.des Butt.des
+	Prever.des Diabl.des Butt.des Halfba.des
 
 	../util/lev_comp Abuser.des
 	../util/lev_comp Acid.des
@@ -502,6 +502,7 @@ spec_levs: ../util/lev_comp \
 	../util/lev_comp Top.des
 	../util/lev_comp Dancer.des
 	../util/lev_comp Shoefe.des
+	../util/lev_comp Halfba.des
 	../util/lev_comp Secret.des
 	../util/lev_comp Prever.des
 	../util/lev_comp Diabl.des

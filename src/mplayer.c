@@ -680,6 +680,12 @@ register boolean special;
 		    cloak = ROBE;
 		    if (rn2(2)) shield = STRANGE_OBJECT;
 		    break;
+		case PM_HALF_BAKED:
+		case PM_UNDEAD_HALF_BAKED:
+		    weapon = STRANGE_OBJECT;
+		    armor = STRANGE_OBJECT;
+		    if (rn2(2)) shield = STRANGE_OBJECT;
+		    break;
 		case PM_CHEVALIER:
 		case PM_UNDEAD_CHEVALIER:
 		    weapon = TRIDENT;

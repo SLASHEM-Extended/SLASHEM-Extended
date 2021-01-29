@@ -2272,6 +2272,39 @@ const struct Role roles[] = {
 	-10, 5, 0, 2, 10, A_INT, SPE_ANTI_DISINTEGRATION,   -4, 10
 },
 
+{	{"Half Baked", 0}, {
+	{"Half Baker",         0},
+	{"Bloody Novice",            0},
+	{"No-Hoper",          0},
+	{"Pupil of Gravel", 0},
+	{"Pupil of Fluids", 0},
+	{"Pupil of Trash", 0},
+	{"Pupil of Blows",  0},
+	{"Pupil of Heat",   0},
+	{"Self-Appointed Master",            0} },
+	"_Nuwa", "Pangu", "Fuxi", /* Chinese */
+	"Hal", "the Monastery of Chan-Sune", "the Monastery of the Earth-Lord",
+	PM_HALF_BAKED, NON_PM, PM_UNDEAD_HALF_BAKED, NON_PM, NON_PM,
+	PM_GRAND_MASTER, PM_ABBOT, PM_MASTER_KAEN, PM_KASTER_MAEN,
+	PM_EARTH_ELEMENTAL, PM_XORN, S_ELEMENTAL, S_XORN,
+#if 0
+	ART_GAUNTLETS_OF_DEFENSE, ART_WHISPERFEET,
+#endif
+	ART_EYES_OF_THE_HALF_BAKED_WOR,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  10,  7,  8,  8,  7,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  25, 10, 20, 20, 15, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 14, 20, 18, 14, 18 },
+	/* Init   Lower  Higher */
+	{ 17, 0,  0, 8,  1, 0 },	/* Hit points */
+	{  8, 2,  0, 2,  0, 2 },10,	/* Energy */
+	10, 8,-2, 2, 20, A_WIS, SPE_RESTORE_ABILITY, -4, 50
+},
+
 
 {	{"Healer", 0}, {
 	{"Rhizotomist",    0},

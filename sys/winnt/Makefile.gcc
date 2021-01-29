@@ -1504,7 +1504,8 @@ sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\gradu.des $(DAT)\
 		$(DAT)\fjorde.des $(DAT)\emera.des $(DAT)\combat.des  $(DAT)\aklyst.des  $(DAT)\drag.des \
 		$(DAT)\carto.des $(DAT)\dancer.des $(DAT)\shoefe.des $(DAT)\secret.des $(DAT)\prever.des \
 		$(DAT)\smarin.des $(DAT)\yautja.des $(DAT)\xelnaga.des  $(DAT)\weirdboy.des  $(DAT)\stormboy.des \
-		$(DAT)\empath.des $(DAT)\psyker.des $(DAT)\software.des  $(DAT)\quarter.des  $(DAT)\mastermi.des
+		$(DAT)\empath.des $(DAT)\psyker.des $(DAT)\software.des  $(DAT)\quarter.des  $(DAT)\mastermi.des \
+		$(DAT)\halfba.des
 
 	lev_comp $(DDAT)/abuser.des
 	lev_comp $(DDAT)/saiyan.des
@@ -1549,6 +1550,7 @@ sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\gradu.des $(DAT)\
 	lev_comp $(DDAT)/mazes.des
 	lev_comp $(DDAT)/dancer.des
 	lev_comp $(DDAT)/shoefe.des
+	lev_comp $(DDAT)/halfba.des
 	lev_comp $(DDAT)/prever.des
 	lev_comp $(DDAT)/diabl.des
 	lev_comp $(DDAT)/secret.des

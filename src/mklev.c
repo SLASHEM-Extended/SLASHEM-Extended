@@ -3259,7 +3259,7 @@ ghnhom2:
 	    case 92:
 	    case 93:
 
-		switch (rnd(815)) {
+		switch (rnd(820)) {
 
 			case 1: makemaz("Aci-1"); return;
 			case 2: makemaz("Aci-2"); return;
@@ -4076,6 +4076,11 @@ ghnhom2:
 			case 813: makemaz("Sho-3"); return;
 			case 814: makemaz("Sho-4"); return;
 			case 815: makemaz("Sho-5"); return;
+			case 816: makemaz("Hal-1"); return;
+			case 817: makemaz("Hal-2"); return;
+			case 818: makemaz("Hal-3"); return;
+			case 819: makemaz("Hal-4"); return;
+			case 820: makemaz("Hal-5"); return;
 
 		}
 		break;
@@ -5241,7 +5246,7 @@ ghnhom2:
 	    case 92:
 	    case 93:
 
-		switch (rnd(815)) {
+		switch (rnd(820)) {
 
 			case 1: makemaz("Aci-6"); return;
 			case 2: makemaz("Aci-7"); return;
@@ -6058,6 +6063,11 @@ ghnhom2:
 			case 813: makemaz("Sho-8"); return;
 			case 814: makemaz("Sho-9"); return;
 			case 815: makemaz("Sho-0"); return;
+			case 816: makemaz("Hal-6"); return;
+			case 817: makemaz("Hal-7"); return;
+			case 818: makemaz("Hal-8"); return;
+			case 819: makemaz("Hal-9"); return;
+			case 820: makemaz("Hal-0"); return;
 		}
 		break;
 
@@ -7643,7 +7653,7 @@ ghnhom4:
 	    case 92:
 	    case 93:
 
-		switch (rnd(815)) {
+		switch (rnd(820)) {
 
 			case 1: makemaz("Aci-1"); return;
 			case 2: makemaz("Aci-2"); return;
@@ -8460,6 +8470,11 @@ ghnhom4:
 			case 813: makemaz("Sho-3"); return;
 			case 814: makemaz("Sho-4"); return;
 			case 815: makemaz("Sho-5"); return;
+			case 816: makemaz("Hal-1"); return;
+			case 817: makemaz("Hal-2"); return;
+			case 818: makemaz("Hal-3"); return;
+			case 819: makemaz("Hal-4"); return;
+			case 820: makemaz("Hal-5"); return;
 		}
 		break;
 
@@ -9619,7 +9634,7 @@ ghnhom4:
 	    case 92:
 	    case 93:
 
-		switch (rnd(815)) {
+		switch (rnd(820)) {
 
 			case 1: makemaz("Aci-6"); return;
 			case 2: makemaz("Aci-7"); return;
@@ -10436,6 +10451,11 @@ ghnhom4:
 			case 813: makemaz("Sho-8"); return;
 			case 814: makemaz("Sho-9"); return;
 			case 815: makemaz("Sho-0"); return;
+			case 816: makemaz("Hal-6"); return;
+			case 817: makemaz("Hal-7"); return;
+			case 818: makemaz("Hal-8"); return;
+			case 819: makemaz("Hal-9"); return;
+			case 820: makemaz("Hal-0"); return;
 		}
 		break;
 
