@@ -1719,6 +1719,47 @@ int dieroll;
 				else if (tmp >= 6) tmp /= 2;
 			}
 
+			/* bashing demons with silver arrows did NOTHING??? what a bug... --Amy */
+
+			if (objects[obj->otyp].oc_material == MT_SILVER && hates_silver(mdat)) {
+				tmp += rnd(20);
+				silvermsg = TRUE; silverobj = TRUE;
+			}
+			if (objects[obj->otyp].oc_material == MT_VIVA && hates_viva(mdat)) {
+				tmp += 20;
+				vivaobj = TRUE;
+			}
+			if (objects[obj->otyp].oc_material == MT_COPPER && hates_copper(mdat)) {
+				tmp += 20;
+				copperobj = TRUE;
+			}
+			if (objects[obj->otyp].oc_material == MT_PLATINUM && hates_platinum(mdat)) {
+				tmp += 20;
+				platinumobj = TRUE;
+			}
+			if (obj->cursed && hates_cursed(mdat)) {
+				tmp += 4;
+				if (obj->hvycurse) tmp += 4;
+				if (obj->prmcurse) tmp += 7;
+				if (obj->bbrcurse) tmp += 15;
+				if (obj->evilcurse) tmp += 15;
+				if (obj->morgcurse) tmp += 15;
+				cursedobj = 1;
+				if (obj->hvycurse) cursedobj++;
+				if (obj->prmcurse) cursedobj++;
+				if (obj->bbrcurse) cursedobj++;
+				if (obj->evilcurse) cursedobj++;
+				if (obj->morgcurse) cursedobj++;
+			}
+			if (objects[obj->otyp].oc_material == MT_INKA && hates_inka(mdat)) {
+				tmp += 5;
+				inkaobj = TRUE;
+			}
+			if (obj->otyp == ODOR_SHOT && hates_odor(mdat)) {
+				tmp += rnd(10);
+				odorobj = TRUE;
+			}
+
 		} else {
 		    tmp = dmgvalX(obj, mon);
 		    /* a minimal hit doesn't exercise proficiency */
