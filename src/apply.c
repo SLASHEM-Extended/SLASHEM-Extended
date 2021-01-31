@@ -5228,19 +5228,25 @@ doapply()
 		break;
 	case LARGE_BOX:
 	case TREASURE_CHEST:
-	case LARGE_BOX_OF_DIGESTION:
 	case CHEST:
 	case CHEST_OF_HOLDING:
 	case ICE_BOX:
 	case ICE_BOX_OF_HOLDING:
-	case ICE_BOX_OF_DIGESTION:
 	case ICE_BOX_OF_WATERPROOFING:
 	case SACK:
 	case BAG_OF_HOLDING:
 	case OILSKIN_SACK:
 	case POTATO_BAG:
-	case BAG_OF_DIGESTION:
 		res = use_container(&obj, 1);
+		noartispeak = TRUE; /* because it could explode! */
+		break;
+	case BAG_OF_DIGESTION:
+	case LARGE_BOX_OF_DIGESTION:
+	case ICE_BOX_OF_DIGESTION:
+		use_container(&obj, 1);
+		/* always uses up a turn now, which makes it trivial to ID I guess but that's okay, because
+		 * at least it means you can no longer easily get rid of troll corpses and stuff :-P --Amy */
+		noartispeak = TRUE; /* because it could explode! */
 		break;
 	case BAG_OF_TRICKS:
 		bagotricks(obj);
