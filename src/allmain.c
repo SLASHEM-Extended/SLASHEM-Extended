@@ -15083,7 +15083,7 @@ boolean new_game;	/* false => restoring an old game */
 
 	}
 
-	if (Role_if(PM_PREVERSIONER) && !flags.wonderland && !flags.uberlostsoul) {
+	if (Role_if(PM_PREVERSIONER) && !flags.wonderland && !flags.uberlostsoul && new_game) {
 
 		u.preversionmode = TRUE;
 
