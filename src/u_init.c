@@ -1339,7 +1339,7 @@ static struct trobj Monk[] = {
 };
 
 static struct trobj HalfBaked[] = {
-#define HBA_BOOK		2
+#define HBA_BOOK		1
 	{ LEATHER_GLOVES, 2, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },
 	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
