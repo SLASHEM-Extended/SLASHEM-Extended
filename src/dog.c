@@ -300,7 +300,7 @@ makedog()
 	static int petname_used = 0;
 
 	/* some roles should be forced to start with a pet because they get a detrimental one :P --Amy */
-	if (!Role_if(PM_KURWA) && !Role_if(PM_JANITOR) && !Role_if(PM_YAUTJA) && !Role_if(PM_GRENADONIN) && !Role_if(PM_PSYKER) && !Role_if(PM_MILL_SWALLOWER) && !Role_if(PM_CHAOS_SORCEROR) && (preferred_pet == 'n')) return((struct monst *) 0);
+	if (!Role_if(PM_KURWA) && !Role_if(PM_SHOE_FETISHIST) && !Role_if(PM_JANITOR) && !Role_if(PM_YAUTJA) && !Role_if(PM_GRENADONIN) && !Role_if(PM_PSYKER) && !Role_if(PM_MILL_SWALLOWER) && !Role_if(PM_CHAOS_SORCEROR) && (preferred_pet == 'n')) return((struct monst *) 0);
 
 	/* Gang scholars are supposed to start without a pet. However, every once in a blue moon they do get one --Amy */
 	if (Role_if(PM_GANG_SCHOLAR) && rn2(100)) return((struct monst *) 0);
