@@ -2599,7 +2599,7 @@ boolean shopinit;
 		case UNAFFECTED_CANDLE:
 		case GENERAL_CANDLE:
 			otmp->spe = 1;
-					otmp->age = 20L * rn1(200,200); /* used to depend on cost but that's BS --Amy */
+					otmp->age = 20L * rn1(100,100); /* used to depend on cost but that's BS --Amy */
 					if (ishaxor) otmp->age *= 2;
 					otmp->lamplit = 0;
 					otmp->quan = 1L +
