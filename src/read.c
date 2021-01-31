@@ -768,6 +768,7 @@ doread()
 	"With this train (which can ram other cars away), I'll be much faster in Leipzig or meadow brook than if I walk home.",
 	"Hello and welcome to Boyabali's used armor dealership! Please be aware that in order to enter our store, you not only need to be wearing a face mask, you also must have a pokemon with you.",
 	"Kick you, itchy money", /* by Pinkbeast, pun on Kiku-ichimonji */
+	"play slexbwos, the type of ice block's new variant. slex, but without shoes!", /* by Demo */
 
 	    };
 	    char buf[BUFSZ];
