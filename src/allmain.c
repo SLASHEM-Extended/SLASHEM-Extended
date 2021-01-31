@@ -11477,6 +11477,12 @@ past3:
 
 	if (In_greencross(&u.uz) && !u.greencrossopen) u.greencrossopen = TRUE;
 
+	if (u.ugold < 0) { /* bug! */
+		BankTrapEffect += 10000; /* to hopefully thwart stupid exploits :-P --Amy */
+		u.ugold = 0;
+		pline("Looks like you tried to use antigold cheats, which is not permitted. Your antigold was deleted.");
+	}
+
 	u.dungeongrowthhack = 0; /* should always be 0 except during saving and loading */
 
 	if (In_greencross(&u.uz) && !u.greencrossopen) u.greencrossopen = TRUE;
