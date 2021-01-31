@@ -81,7 +81,7 @@ mapseen *mapseenchn = (struct mapseen *)0;
 STATIC_DCL mapseen *load_mapseen(int);
 STATIC_DCL void save_mapseen(int, mapseen *);
 STATIC_DCL mapseen *find_mapseen(d_level *);
-STATIC_DCL void print_mapseen(winid,mapseen *,boolean,boolean);
+STATIC_DCL void print_mapseen(winid,mapseen *,boolean,boolean,boolean);
 STATIC_DCL boolean interest_mapseen(mapseen *);
 
 #if defined(DEBUG) || defined(DEBUG_420942)
@@ -2781,7 +2781,9 @@ dooverview()
 		if (/*interest_mapseen(mptr)*/TRUE) {
 			printdun = (first || lastdun != mptr->lev.dnum);
 			/* if (!first) putstr(win, 0, ""); */
-			print_mapseen(win, mptr, printdun, FALSE);
+			if (/*interest_mapseen(mptr)*/TRUE) {
+				print_mapseen(win, mptr, printdun, FALSE, FALSE);
+			}
 
 			if (printdun) {
 				first = FALSE;
@@ -2811,7 +2813,7 @@ dump_overview()
 	for (mptr = mapseenchn; mptr; mptr = mptr->next) {
 
 		/* only print out info for a level or a dungeon if interest */
-		if (interest_mapseen(mptr)) {
+		if (/*interest_mapseen(mptr)*/TRUE) {
 			printdun = (first || lastdun != mptr->lev.dnum);
 
 			if (first) {
@@ -2819,7 +2821,7 @@ dump_overview()
 				 * be the output of the current level */
 				dump("", "Dungeon overview");
 			}
-			print_mapseen(win, mptr, printdun, TRUE);
+			print_mapseen(win, mptr, printdun, TRUE, TRUE);
 
 			if (printdun) {
 				first = FALSE;
@@ -2836,11 +2838,12 @@ dump_overview()
 #endif
 
 STATIC_OVL void
-print_mapseen(win, mptr, printdun, wantdump)
+print_mapseen(win, mptr, printdun, wantdump, alwaysdisplay)
 winid win;
 mapseen *mptr;
 boolean printdun;
 boolean wantdump;
+boolean alwaysdisplay;
 {
 	char buf[BUFSZ];
 	int i, depthstart;
@@ -2874,6 +2877,10 @@ boolean wantdump;
 #endif
 		}
 	}
+
+	/* in-game, we don't need it to display every single level... but in the dumplog we want to see everything --Amy */
+	if (!alwaysdisplay && !wantdump && !(RngeOverviewImprovement && Is_special(&mptr->lev)) && !(wizard && Is_special(&mptr->lev)) && !(mptr->custom) && !(on_level(&u.uz, &mptr->lev)) )
+		return;
 
 	/* calculate level number */
 	i = depthstart + mptr->lev.dlevel - 1;
