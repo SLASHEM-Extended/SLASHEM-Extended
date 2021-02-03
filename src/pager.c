@@ -26507,6 +26507,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel that your large dog is in dire need of food. Feed him, NOW! He's about to die of starvation!",
 	"You feel that your warhorse is about to starve.",
 	"You feel that your warhorse is about to starve. Sadly, you have no vegetable food and horses are generally incapable of eating meat, so it's gonna die. :-(",
+	"Dear friend in Tyr, I am MRS CROESUS, widow of the late King Croesus, who left me Zm 2,000,000 (TWO MILLION YENDORIAN ZORKMIDS) ...",
 
 };
 
