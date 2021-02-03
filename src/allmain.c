@@ -11072,16 +11072,7 @@ cellarnope:
 					goto demonolpast;
 				}
 
-				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
-
-				u.cnd_banishmentcount++;
-				if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
-				else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
-
-				register int newlev = rnd(99);
-				d_level newlevel;
-				get_level(&newlevel, newlev);
-				goto_level(&newlevel, TRUE, FALSE, FALSE);
+				banishplayer();
 				You("were banished!");
 
 			}
@@ -11124,16 +11115,7 @@ demonolpast2:
 					goto past1;
 				}
 
-				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
-
-				u.cnd_banishmentcount++;
-				if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
-				else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
-
-				register int newlev = rnd(99);
-				d_level newlevel;
-				get_level(&newlevel, newlev);
-				goto_level(&newlevel, TRUE, FALSE, FALSE);
+				banishplayer();
 				You("were banished!");
 
 			}
@@ -11152,16 +11134,7 @@ past1:
 					goto past2;
 				}
 
-				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
-
-				u.cnd_banishmentcount++;
-				if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
-				else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
-
-				register int newlev = rnd(99);
-				d_level newlevel;
-				get_level(&newlevel, newlev);
-				goto_level(&newlevel, TRUE, FALSE, FALSE);
+				banishplayer();
 				You("were banished!");
 
 			}
@@ -11180,16 +11153,7 @@ past2:
 					goto past3;
 				}
 
-				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
-
-				u.cnd_banishmentcount++;
-				if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
-				else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
-
-				register int newlev = rnd(99);
-				d_level newlevel;
-				get_level(&newlevel, newlev);
-				goto_level(&newlevel, TRUE, FALSE, FALSE);
+				banishplayer();
 				You("were banished!");
 
 			}
@@ -11305,7 +11269,6 @@ past3:
 
 			if (uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && !rn2(2000) ) {
 
-				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
 
 				if ((((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || In_endgame(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz)) || (u.usteed && mon_has_amulet(u.usteed)) ) ) {
@@ -11314,16 +11277,7 @@ past3:
 				}
 				else if (!playerlevelportdisabled()) {
 
-					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
-
-					u.cnd_banishmentcount++;
-					if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
-					else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
-
-					register int newlev = rnd(99);
-					d_level newlevel;
-					get_level(&newlevel, newlev);
-					goto_level(&newlevel, TRUE, FALSE, FALSE);
+					banishplayer();
 					You("were banished!");
 
 				}
@@ -11336,7 +11290,6 @@ past3:
 
 			if (uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && !rn2(2000) ) {
 
-				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
 
 				if ((((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || In_endgame(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz)) || (u.usteed && mon_has_amulet(u.usteed)) ) ) {
@@ -11345,16 +11298,7 @@ past3:
 				}
 				else if (!playerlevelportdisabled()) {
 
-					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
-
-					u.cnd_banishmentcount++;
-					if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
-					else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
-
-					register int newlev = rnd(99);
-					d_level newlevel;
-					get_level(&newlevel, newlev);
-					goto_level(&newlevel, TRUE, FALSE, FALSE);
+					banishplayer();
 					You("were banished!");
 
 				}
@@ -12049,8 +11993,6 @@ past3:
 	if (u.banishmentbeam) { /* uh-oh... something zapped you with a wand of banishment */
 		/* this replaces the code in muse.c that always caused segfaults --Amy */
 
-		make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
-
 		/* failsafes in case the player somehow manages to quickly snatch the amulet or something... */
 		if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
 			You("shudder for a moment."); (void) safe_teleds(FALSE); u.banishmentbeam = 0; break;
@@ -12060,15 +12002,10 @@ past3:
 			pline("Somehow, the banishment beam doesn't do anything."); u.banishmentbeam = 0; break;
 		}
 
-		u.cnd_banishmentcount++;
-		if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
-		else { (void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
+		(void) safe_teleds(FALSE); /* so that M2_STALK monsters near you won't follow all the time --Amy */
+		banishplayer();
 		u.banishmentbeam = 0; /* player got warped, now clear the flag even if it crashes afterwards */
 
-		register int newlev = rnd(99);
-		d_level newlevel;
-		get_level(&newlevel, newlev);
-		goto_level(&newlevel, TRUE, FALSE, FALSE);
 	}
 
 	if (u.levelporting) { /* something attacked you with nexus or weeping */

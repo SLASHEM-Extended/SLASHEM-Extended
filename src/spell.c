@@ -8173,16 +8173,7 @@ whisperchoice:
 			break;
 		}
 
-		make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
-
-		u.cnd_banishmentcount++;
-		if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
-		else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
-
-		register int newlev = rnd(99);
-		d_level newlevel;
-		get_level(&newlevel, newlev);
-		goto_level(&newlevel, TRUE, FALSE, FALSE);
+		banishplayer();
 
 		if (rn2(2)) {
 			pline("From your strain of casting such a powerful spell, the magical energy backlashes on you.");

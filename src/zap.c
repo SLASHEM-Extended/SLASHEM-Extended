@@ -6998,19 +6998,7 @@ boolean ordinary;
 				break;
 			}
 
-			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
-
-		u.cnd_banishmentcount++;
-		if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
-		else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
-
-			/*(void) safe_teleds(FALSE);
-
-			goto_level((&medusa_level), TRUE, FALSE, FALSE);*/
-			register int newlev = rnd(99);
-			d_level newlevel;
-			get_level(&newlevel, newlev);
-			goto_level(&newlevel, TRUE, FALSE, FALSE);
+			banishplayer();
 
 		    break;
 		case WAN_DEATH:
@@ -7221,16 +7209,7 @@ struct obj *obj;	/* wand or spell */
 				break;
 			}
 
-			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
-
-			u.cnd_banishmentcount++;
-			if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
-			else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
-
-			register int newlev = rnd(99);
-			d_level newlevel;
-			get_level(&newlevel, newlev);
-			goto_level(&newlevel, TRUE, FALSE, FALSE);
+			banishplayer();
 
 			break;
 

@@ -3010,6 +3010,7 @@ E int mlevel_tele_trap(struct monst *, struct trap *,BOOLEAN_P,int);
 E void rloco(struct obj *);
 E int random_teleport_level(void);
 E int random_banish_level(void);
+E void banishplayer(void);
 E void teleX(void);
 E boolean u_teleport_mon(struct monst *,BOOLEAN_P);
 E boolean u_teleport_monB(struct monst *,BOOLEAN_P);
