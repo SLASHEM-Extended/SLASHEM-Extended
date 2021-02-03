@@ -7664,6 +7664,11 @@ OBJECT(OBJ("Book of the Dead", "papyrus"),
 	BITS(0,0,1,0,1,0,1,1,0,0,0,0,MT_PAPER), 0,
 	SPBOOK_CLASS, 0, 0,20, 10000, 0, 0, 0, 7, 20, HI_PAPER, 1, 0),
 	/* ...A special, one of a kind, spellbook */
+
+/* placeholders for certain techniques - should be impossible to obtain in a real game! --Amy */
+SPELL("blade anger",	 "THIS IS A BUG.",		P_ATTACK_SPELL, 0,  0, 0, 0, 0, HI_PAPER, 1),
+SPELL("beamsword",	 "THIS IS ALSO A BUG.",		P_ATTACK_SPELL, 0,  0, 0, 0, 0, HI_PAPER, 1),
+
 #undef SPELL
 
 /* wands ... */

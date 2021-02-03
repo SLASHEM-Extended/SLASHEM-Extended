@@ -641,16 +641,7 @@ armorsmashdone:
 		(void) resist(mtmp, otmp->oclass, dmg, NOTELL);
 		break;
 
-	case SPE_BLANK_PAPER: /* placeholder for blade anger and beamsword; sadly you can't be using both at the same time */
-
-		if (tech_inuse(T_BLADE_ANGER)) {
-			dmg = bigmonst(mtmp->data) ? 6 : 8;
-			dmg += otmp->spe;
-			if (dmg < 1) dmg = 1; /* fail safe for cursed ones */
-			if (canseemon(mtmp)) pline("%s is slit by your shuriken!", Monnam(mtmp));
-			else pline("It is slit by your shuriken!");
-			(void) resist(mtmp, WEAPON_CLASS, dmg, NOTELL);
-		}
+	case SPE_BEAMSWORD: /* placeholder for beamsword */
 
 		if (tech_inuse(T_BEAMSWORD)) {
 			dmg = rnd(20);
@@ -670,6 +661,19 @@ armorsmashdone:
 
 			if (canseemon(mtmp)) pline("%s is hit by your lightsaber beam!", Monnam(mtmp));
 			else pline("It is hit by your lightsaber beam!");
+			(void) resist(mtmp, WEAPON_CLASS, dmg, NOTELL);
+		}
+
+		break;
+
+	case SPE_BLADE_ANGER: /* placeholder for blade anger */
+
+		if (tech_inuse(T_BLADE_ANGER)) {
+			dmg = bigmonst(mtmp->data) ? 6 : 8;
+			dmg += otmp->spe;
+			if (dmg < 1) dmg = 1; /* fail safe for cursed ones */
+			if (canseemon(mtmp)) pline("%s is slit by your shuriken!", Monnam(mtmp));
+			else pline("It is slit by your shuriken!");
 			(void) resist(mtmp, WEAPON_CLASS, dmg, NOTELL);
 		}
 
@@ -3899,7 +3903,9 @@ smell:
 		newsym(refresh_x,refresh_y);
 		makeknown(otmp->otyp);
 		break;
-	case SPE_BLANK_PAPER: /* placeholder for T_BLADE_ANGER */
+	case SPE_BLADE_ANGER: /* placeholder for T_BLADE_ANGER */
+		break;
+	case SPE_BEAMSWORD: /* placeholder for T_BEAMSWORD */
 		break;
 	default:
 		impossible("What an interesting effect (%ld)", otmp->otyp);
@@ -7698,15 +7704,15 @@ struct obj *obj;
 			beamrange *= 3;
 			beamrange /= 2;
 		}
-		if (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLANK_PAPER) beamrange += rnd(6);
-		if (tech_inuse(T_BEAMSWORD) && obj->otyp == SPE_BLANK_PAPER) beamrange += rnd(6);
+		if (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLADE_ANGER) beamrange += rnd(6);
+		if (tech_inuse(T_BEAMSWORD) && obj->otyp == SPE_BEAMSWORD) beamrange += rnd(6);
 
 		(void) bhit(u.dx,u.dy, obj->otyp == SPE_PARTICLE_CANNON ? 200 : obj->otyp == SPE_SNIPER_BEAM ? 70 : beamrange, ZAPPED_WAND, bhitm, bhito, &obj, TRUE);
 	    }
 
 	}
 
-	if (objects[otyp].oc_dir == IMMEDIATE || (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLANK_PAPER) || (tech_inuse(T_BEAMSWORD) && obj->otyp == SPE_BLANK_PAPER) ) {
+	if (objects[otyp].oc_dir == IMMEDIATE || (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLADE_ANGER) || (tech_inuse(T_BEAMSWORD) && obj->otyp == SPE_BEAMSWORD) ) {
 	    obj_zapped = FALSE;
 
 		if (obj->otyp == WAN_WIND) {
@@ -7732,8 +7738,8 @@ struct obj *obj;
 			beamrange /= 2;
 		}
 
-		if (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLANK_PAPER) beamrange += rnd(6);
-		if (tech_inuse(T_BEAMSWORD) && obj->otyp == SPE_BLANK_PAPER) beamrange += rnd(6);
+		if (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLADE_ANGER) beamrange += rnd(6);
+		if (tech_inuse(T_BEAMSWORD) && obj->otyp == SPE_BEAMSWORD) beamrange += rnd(6);
 
 		(void) bhit(u.dx,u.dy, obj->otyp == SPE_PARTICLE_CANNON ? 200 : obj->otyp == SPE_SNIPER_BEAM ? 70 : beamrange, ZAPPED_WAND,
 			    bhitm, bhito, &obj, TRUE);
@@ -8296,8 +8302,8 @@ boolean cancontrol;	/* does control magic work on this? --Amy */
 			if (weapon != INVIS_BEAM) {
 			    (*fhitm)(mtmp, obj);
 				if (uarmg && itemhasappearance(uarmg, APP_RAYDUCTNAY_GLOVES) ) range -= 0;
-			    else if (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLANK_PAPER) range -= 1;
-			    else if (tech_inuse(T_BEAMSWORD) && obj->otyp == SPE_BLANK_PAPER) range -= 1;
+			    else if (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLADE_ANGER) range -= 1;
+			    else if (tech_inuse(T_BEAMSWORD) && obj->otyp == SPE_BEAMSWORD) range -= 1;
 			    else range -= 3;
 			}
 		} else {

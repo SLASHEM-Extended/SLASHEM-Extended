@@ -2147,6 +2147,15 @@ learn()
 	    return(0);
 	}
 
+	if(booktype == SPE_BLADE_ANGER) {
+		impossible("player trying to read spellbook of blade anger");
+		return 0;
+	}
+	if(booktype == SPE_BEAMSWORD) {
+		impossible("player trying to read spellbook of beamsword");
+		return 0;
+	}
+
 	sprintf(splname, objects[booktype].oc_name_known ?
 			"\"%s\"" : "the \"%s\" spell",
 		OBJ_NAME(objects[booktype]) );

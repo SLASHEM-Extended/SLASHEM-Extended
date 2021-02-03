@@ -461,9 +461,9 @@ int thrown;
 
 	if (tech_inuse(T_BLADE_ANGER) && (objects[obj->otyp].oc_skill == -P_SHURIKEN || objects[obj->otyp].oc_skill == P_SHURIKEN ) ) {
 		struct obj *pseudo;
-		pseudo = mksobj(SPE_BLANK_PAPER, FALSE, 2, FALSE);
+		pseudo = mksobj(SPE_BLADE_ANGER, FALSE, 2, FALSE);
 		if (!pseudo) goto bladeangerdone;
-		if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = SPE_BLANK_PAPER; /* minimalist fix */
+		if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = SPE_BLADE_ANGER; /* minimalist fix */
 		pseudo->blessed = pseudo->cursed = 0;
 		pseudo->quan = 20L;			/* do not let useup get it */
 		pseudo->spe = obj->spe;
@@ -505,9 +505,9 @@ int thrown;
 
 	if (tech_inuse(T_BEAMSWORD) && objects[obj->otyp].oc_skill == P_LIGHTSABER && obj->lamplit ) {
 		struct obj *pseudo;
-		pseudo = mksobj(SPE_BLANK_PAPER, FALSE, 2, FALSE);
+		pseudo = mksobj(SPE_BEAMSWORD, FALSE, 2, FALSE);
 		if (!pseudo) goto bladeangerdone;
-		if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = SPE_BLANK_PAPER; /* minimalist fix */
+		if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = SPE_BEAMSWORD; /* minimalist fix */
 		pseudo->blessed = pseudo->cursed = 0;
 		pseudo->quan = 20L;			/* do not let useup get it */
 		pseudo->spe = obj->spe;

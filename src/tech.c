@@ -6319,8 +6319,6 @@ incarnationfinish:
 		    	techt_inuse(tech_no) = num + 1;
 			pline("Your shuriken can fire beams now!");
 
-			aborttech(T_BEAMSWORD);
-
 			t_timeout = rnz(3000);
 			break;
 
@@ -7124,8 +7122,6 @@ revid_end:
 			num = 100 + (techlevX(tech_no) * 3);
 		    	techt_inuse(tech_no) = num + 1;
 			pline("Your lightsaber can fire beams now!");
-
-			aborttech(T_BLADE_ANGER);
 
 			t_timeout = rnz(2500);
 			break;
