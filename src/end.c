@@ -2601,6 +2601,9 @@ mk_dgl_extrainfo()
         } else if (In_grund(&u.uz)) {
             sprintf(tmpdng, "%i|%s", sortval, "Gru");
 		sortval = 1200 + depth(&u.uz);
+        } else if (In_icequeen(&u.uz)) {
+            sprintf(tmpdng, "%i|%s", sortval, "Ice");
+		sortval = 1300 + depth(&u.uz);
         } else if (In_wyrm(&u.uz)) {
             sprintf(tmpdng, "%i|%s", sortval, "Wyr");
 		sortval = 1600 + depth(&u.uz);

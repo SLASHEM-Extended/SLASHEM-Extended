@@ -1179,6 +1179,8 @@ char* encodeachieveX(void)
    *  12  killed Ariane
    *  13  completed the Rival Quest
    *  14  completed Minus World
+   *  15  killed Vera
+   *  16  killed Elaine
    * but this isn't a bitfield, it's a string...
    */
 
@@ -1199,6 +1201,8 @@ char* encodeachieveX(void)
   if(achieveX.killed_ariane)        sprintf(eos(encoded_achievements), "%s,", "killed_ariane");
   if(achieveX.completed_rivalquest) sprintf(eos(encoded_achievements), "%s,", "completed_rivalquest");
   if(achieveX.completed_minusworld) sprintf(eos(encoded_achievements), "%s,", "completed_minusworld");
+  if(achieveX.killed_vera)          sprintf(eos(encoded_achievements), "%s,", "killed_vera");
+  if(achieveX.killed_elaine)        sprintf(eos(encoded_achievements), "%s,", "killed_elaine");
 
   int len;
   if ((len=strlen(encoded_achievements))) { encoded_achievements[len-1] = '\0'; }

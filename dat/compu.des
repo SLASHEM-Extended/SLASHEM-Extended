@@ -2033,3 +2033,985 @@ REGION:(66,14,75,19),lit,"randomroom"
 REGION:(38,02,47,07),lit,"randomroom"
 REGION:(66,02,75,07),lit,"randomroom"
 
+# NetHack 3.6  icequeen.des  $NHDT-Date: 1585495923 2020/03/29 15:32:03 $  $NHDT-Branch: master $:$NHDT-Revision: 1.9 $
+#	Copyright (c) 2020 by Keith Simpson
+# NetHack may be freely redistributed.  See license for details.
+#
+#	The start level for this branch - the player must traverse
+#	this icy wasteland to find their way to the Ice Queen.
+#
+MAZE: "iceqa",' '
+FLAGS: noteleport,hardfloor,shortsighted
+
+GEOMETRY:left,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+nnnnnnnnnnnnn.....nnnnn......nnnnnnnT...nnnnnnnn......nnnnnnnnnnnnnnnnn..nTn
+nnI.Innnnn..........nn.........nnnnn.....nnn.....nn......nnn..nn...nn.....nn
+nIIIIInnn..nnn..T..n.....nn......................IIIII..........nn.........n
+nnIIIInnn...nn.......n.n.......nnn..nnn.......IIIIIIIIII..nn....n.....nnn..n
+nnnIIInnn........nn.............nn.........IIIIIIIIIIIIII..........T.......n
+nTnnnnnn..n........n....n..............nnIIIIIIIIIIIIIIIII.n...nn....n.....n
+nnnIInnn...n...nn.....n....T...nn.....IIIIIIII.......IIIIIn..............nnn
+nnnIInnnnn...n....nn.......nn.......nIIIIII.....nnn...IIIII..n......nnn....n
+IIIIIIIIII............nnnn..nnn...IIIIIIIn.....nnTnn...IIII.n..nnn.........n
+IIIIIIIIIIIn..nn..IIIIIIIIIIIIIIIIIIIIIIn.......nnn....IIII...........T....n
+nnnIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII.................III.n...nnnnn.....nn
+nT..nn..IIIIIIIIIIIIIIII....nn.............nnnn....n....IIIIIIIIIIIIII..nnnn
+n........nn.....nnnn.............nn...nn....nnnnn........IIIIIIIIIIIIIIIIIII
+n.nnn........n.................nnnn....n...........nn....n....nn..IIIIIIIIII
+n.......nn...........n......................n......................nnnn....I
+n...nnn..nnn.....nn.....nnnnn...........nT...nn.......nnnnn.............nT.n
+n............n...nn......nnnnn................nnn.....nnn.........nn.......n
+n........Tn.........................nnn...............................T....n
+nn...nnnn.......nnn........nnnnn..nn.....nnnn....nnnnn....nnn......nnn....Tn
+nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+ENDMAP
+TELEPORT_REGION:(70,16,74,18),(00,00,00,00)
+REGION:(00,00,75,19),lit,"ordinary"
+# Portal arrival point
+BRANCH:(72,18,72,18),(0,0,0,0)
+# Stairs
+STAIR:(03,02),down
+# Hint
+OBJECT:'+',random,(69,16)
+OBJECT:'[',"fedora",(69,16)
+OBJECT:'%',"corpse",(69,16)
+
+# Objects
+OBJECT:')',"axe",random
+OBJECT:')',"battle-axe",random
+OBJECT:'(',"chest",random
+
+# Random traps
+TRAP:"bear",random
+TRAP:"bear",random
+TRAP:"bear",random
+TRAP:"bear",random
+TRAP:"bear",random
+TRAP:"spear",random
+TRAP:"spear",random
+TRAP:"spear",random
+
+# Frost salamanders patrol the frozen river
+MONSTER:':',"frost salamander",(03,10)
+MONSTER:':',"frost salamander",(26,11)
+MONSTER:':',"frost salamander",(51,04)
+MONSTER:':',"frost salamander",(67,13)
+
+# Goblin outrider patrol
+MONSTER:'o',"goblin outrider",(09,04),hostile
+MONSTER:'o',"goblin outrider",(10,03),hostile
+MONSTER:'o',"goblin outrider",(10,04),hostile
+MONSTER:'o',"goblin-captain",(09,03),hostile
+
+# Guards the stairs
+MONSTER:'\'',"snow golem",(03,03)
+
+# Random monsters
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+# None shall pass
+NON_DIGGABLE:(00,00,75,19)
+NON_PASSWALL:(00,00,75,19)
+
+
+#
+#	The middle level for this branch.
+#
+#	The player exits the dead forest and
+#	finds themselves overlooking a vast icy
+#	landscape. A gorge runs through the middle
+#	of the map, with only one way across.
+#	The way across is defended...
+#
+
+MAZE: "iceqb", ' '
+FLAGS: noteleport,hardfloor,shortsighted
+GEOMETRY:left,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+IIIIIIIIIIIIIIIIIIII                               IIIIIIIIII..nnnnnnnnnnnnn
+IInIIIIIIIIIInIIIIIII                          IIIIIIIIIIIIII....nnnnnn...nn
+IIIIIIInnIIIIIIIIIIIII                      IIIIIIIIIIIIIIIII......nnnnnn.nn
+IIIIIIIIIIIIIIIIIIIIIIII                  nIIIIIIIIIIIIIIIIIII........nnn..n
+IIIInnIIIIIIIIIIIIIIIIIIIII             IIIIIIIIIIIIIIIIIIIIII.n.......nn..n
+IIIIIIIIIIIIIIIIIIIInIIIIIIII          IInIIIIIIIIIIIIIIIIIIII...nn....nn..n
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIII      nIIInnIIIIIIIIIIIIIIIIIII.........nn..n
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII    nnIIInnIIIIIIIIIIIIIIIII.........nnnn.nn
+IIIIIIIInnnIIIIIIIIIIIIIIIIIIIIIIIIIIIIIInIIIIIIIIIIIIIIIIII........nnnn...n
+IInIIIIIInIIIIIIIIIIIIIIIIIIIIII     nnIInIIIIIIIIIIIIIIIIIII........nnn...n
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIII        nIIIIIIIIIIIIIIIIIIIIII........nn...n
+IIIIInIIIIIIIIIIIIIIIIIIIIIIII           IIIIIIIIIIIIIIIIIIIII........nnn..n
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII            IIIIIIIIIIIIIIIIIIII........nnn..n
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII            nIIIIIIIIIIIIIIIIII........nnn...n
+IIIIIInIIIIInnIIIIIIIIIIIIII                IIIIIIIIIIIIIIII....n....nnnnn.n
+IInIIInnIIIIIIIIIIIIIIIIIII                  IIIIIIIIIIIIIII...nn.....nnn..n
+IInnnInIInIIIIIIIIIIIIIIIII                    IIIIIIIIIIIIII.............nn
+IIIIIIIIInIIIIInIIIIIIII                       IIIIIIIIIIIIII..........nn..n
+II.IIInIIIIIIIIIIIIIII                            IIIIIIIIII..n.......nnn..n
+IIIIInnnIIIIIIIIIIIII                              IIIIIIIIII......nnnnnn..n
+nIIIIIIIIIIIIIIIIIII                                IIIIIIIII...nnnnnnnnnnnn
+ENDMAP
+RANDOM_PLACES:(02,07),(07,08),(21,12),(22,05),(46,03),(47,12),(64,06),(65,16)
+TELEPORT_REGION:(72,08,74,10),(00,00,00,00)
+REGION:(00,00,75,19),lit,"ordinary"
+# Stairs
+STAIR:(71,01),up
+STAIR:(02,18),down
+
+# Traps
+TRAP:"spear",(32,08)
+TRAP:"spiked pit",(33,08)
+TRAP:"bear",(73,07)
+
+# Another dead adventurer
+OBJECT:'[',"cornuthaum",(73,19)
+OBJECT:'+',random,(73,19)
+OBJECT:'%',"corpse",(73,19)
+
+# Monsters
+MONSTER:'Y',"abominable snowman",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+
+MONSTER:'Z',"revenant",(73,05)
+MONSTER:'Z',"revenant",(73,06)
+MONSTER:'Z',"revenant",(74,06)
+MONSTER:':',"frost salamander",(10,03)
+MONSTER:':',"frost salamander",(10,15)
+MONSTER:':',"frost salamander",(50,03)
+MONSTER:':',"frost salamander",(50,15)
+MONSTER:'q',"mastodon",(02,17)
+MONSTER:'H',"frost giant",(03,17)
+MONSTER:'f',"saber-toothed tiger",(74,19)
+
+# Random monsters
+MONSTER:random,random,place[0]
+MONSTER:random,random,place[1]
+MONSTER:random,random,place[2]
+MONSTER:random,random,place[3]
+MONSTER:random,random,place[4]
+MONSTER:random,random,place[5]
+MONSTER:random,random,place[6]
+MONSTER:random,random,place[7]
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+# None shall pass
+NON_DIGGABLE:(00,00,75,19)
+NON_PASSWALL:(00,00,75,19)
+
+
+#
+#       The final level for this branch.
+#
+#       The player discovers the ice castle of
+#       Vera the Ice Queen. Can they defeat her
+#       before winter permanently sets in?
+#
+
+MAZE: "iceqc", ' '
+FLAGS: noteleport,hardfloor,shortsighted
+GEOMETRY:left,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIII                                                      II
+IIIIIIIIIIIIIIIIIIII -----------  -------   ------   -------  ----------- II
+IIIIIIIIIIIIIIIIIIIII|..|......|  |.....|  -|....|-  |.....|  |.........| II
+IIIIIIIIIIIIIIIIIIIIIF..|---...----.....---|......|---.....----...---...| II
+IIIIIIIIIIIIIIIIIIIIIF..S..................+......+.....................| II
+IIIIIIIIIIIIIIIIIIIIIF..|---...------------|......|------------...---...| II
+IIIIIIIIIIIIIIIIIIIII|..|......|...........-|....|-...........|.........| II
+IIIIIIIIIIIIIIIIIIII ----...----............|----|............|......---- II
+IIIIIIIIIIIIIIIIIIIIIIII+...|..F............S....+............+......|    II
+IIIIIIIIIIIIIIIIIIIIIIII+...|..F............S....+............+......|    II
+IIIIIIIIIIIIIIIIIIII ----...----............|----|............|......---- II
+IIIIIIIIIIIIIIIIIIIII|..|......|...........-|....|-...........|.........| II
+IIIIIIIIIIIIIIIIIIIIIF..|---...------------|......|------------...---...| II
+IIIIIIIIIIIIIIIIIIIIIF..S..................+......+.....................| II
+IIIIIIIIIIIIIIIIIIIIIF..|---...----.....---|......|---.....----...---...| II
+IIIIIIIIIIIIIIIIIIIII|..|......|  |.....|  -|....|-  |.....|  |.........| II
+IIIIIIIIIIIIIIIIIIII -----------  -------   ------   -------  ----------- II
+II.IIIIIIIIIIIIIIIII                                                      II
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ENDMAP
+RANDOM_PLACES:(29,05),(29,14),(37,04),(37,15),(56,04),(56,15),(64,05),(64,14)
+REGION:(00,00,75,19),lit,"ordinary"
+REGION:(45,03,48,07),unlit,"zoo"
+REGION:(45,12,48,16),unlit,"zoo"
+REGION:(51,07,61,12),unlit,"zoo"
+# Stairs
+STAIR:(02,18),up
+
+# Castle entrance
+DOOR:locked,(24,09)
+DOOR:locked,(24,10)
+
+# Doors
+DOOR:locked,(43,05)
+DOOR:locked,(43,14)
+DOOR:locked,(44,09)
+DOOR:locked,(44,10)
+DOOR:locked,(49,09)
+DOOR:locked,(49,10)
+DOOR:locked,(50,05)
+DOOR:locked,(50,14)
+DOOR:locked,(62,09)
+DOOR:locked,(62,10)
+
+# Traps
+TRAP:"spear",(23,09)
+TRAP:"spear",(23,10)
+
+# Objects and terrain
+OBJECT:'$',random,(29,09)
+OBJECT:'$',random,(29,10)
+OBJECT:'$',random,(30,09)
+OBJECT:'$',random,(30,10)
+OBJECT:'(',"chest",(32,07)
+OBJECT:'(',"chest",(32,12)
+OBJECT:'(',"chest",(42,07)
+CONTAINER:'(',"chest",(42,12)
+OBJECT:'%',"apple",contained
+OBJECT:'%',"carrot",contained
+OBJECT:'(',"leather saddle",contained
+OBJECT:'!',"acid",contained
+FOUNTAIN:(37,08)
+FOUNTAIN:(37,11)
+
+# Random monsters
+MONSTER:random,random,place[0]
+MONSTER:random,random,place[1]
+MONSTER:random,random,place[2]
+MONSTER:random,random,place[3]
+MONSTER:random,random,place[4]
+MONSTER:random,random,place[5]
+MONSTER:random,random,place[6]
+MONSTER:random,random,place[7]
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+# Out front
+MONSTER:'q',"woolly mammoth",(18,09)
+MONSTER:'H',"frost giant",(18,10)
+MONSTER:'f',"saber-toothed tiger",(19,09)
+
+# Watch towers
+MONSTER:'T',"ice troll",(22,05)
+OBJECT:')',"orcish bow",(22,05)
+OBJECT:')',"orcish arrow",(22,05)
+MONSTER:'T',"ice troll",(22,14)
+OBJECT:')',"orcish bow",(22,14)
+OBJECT:')',"orcish arrow",(22,14)
+
+# Outside the main zoo
+MONSTER:'&',"ice devil",(66,09)
+MONSTER:'&',"ice devil",(66,10)
+
+# Main zoo augment
+MONSTER:'q',"mastodon",(50,08)
+MONSTER:'T',"ice troll",(50,09)
+MONSTER:'T',"ice troll",(50,10)
+MONSTER:'q',"woolly mammoth",(50,11)
+
+# Mini-foyer
+MONSTER:'\'',"snow golem",(47,09)
+MONSTER:'\'',"snow golem",(47,10)
+
+# The Ice Queen and her pets
+MONSTER:'@',"Vera the Ice Queen",(34,09),hostile
+MONSTER:'d',"Boa-Moa",(37,09),hostile
+MONSTER:'d',"Osbourne",(37,10),hostile
+
+# The prize
+MONSTER:'u',"gnogasus",(29,10),peaceful,asleep
+
+# None shall pass
+NON_DIGGABLE:(00,00,75,19)
+NON_PASSWALL:(00,00,75,19)
+
+# NetHack 3.6  icequeen.des  $NHDT-Date: 1585495923 2020/03/29 15:32:03 $  $NHDT-Branch: master $:$NHDT-Revision: 1.9 $
+#	Copyright (c) 2020 by Keith Simpson
+# NetHack may be freely redistributed.  See license for details.
+#
+#	The start level for this branch - the player must traverse
+#	this icy wasteland to find their way to the Ice Queen.
+#
+MAZE: "eiceqa",' '
+FLAGS: noteleport,hardfloor,shortsighted
+
+GEOMETRY:left,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+nnnnnnnnnnnnn.....nnnnn......nnnnnnnT...nnnnnnnn......nnnnnnnnnnnnnnnnn..nTn
+nnI.Innnnn..........nn.........nnnnn.....nnn.....nn......nnn..nn...nn.....nn
+nIIIIInnn..nnn..T..n.....nn......................IIIII..........nn.........n
+nnIIIInnn...nn.......n.n.......nnn..nnn.......IIIIIIIIII..nn....n.....nnn..n
+nnnIIInnn........nn.............nn.........IIIIIIIIIIIIII..........T.......n
+nTnnnnnn..n........n....n..............nnIIIIIIIIIIIIIIIII.n...nn....n.....n
+nnnIInnn...n...nn.....n....T...nn.....IIIIIIII.......IIIIIn..............nnn
+nnnIInnnnn...n....nn.......nn.......nIIIIII.....nnn...IIIII..n......nnn....n
+IIIIIIIIII............nnnn..nnn...IIIIIIIn.....nnTnn...IIII.n..nnn.........n
+IIIIIIIIIIIn..nn..IIIIIIIIIIIIIIIIIIIIIIn.......nnn....IIII...........T....n
+nnnIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII.................III.n...nnnnn.....nn
+nT..nn..IIIIIIIIIIIIIIII....nn.............nnnn....n....IIIIIIIIIIIIII..nnnn
+n........nn.....nnnn.............nn...nn....nnnnn........IIIIIIIIIIIIIIIIIII
+n.nnn........n.................nnnn....n...........nn....n....nn..IIIIIIIIII
+n.......nn...........n......................n......................nnnn....I
+n...nnn..nnn.....nn.....nnnnn...........nT...nn.......nnnnn.............nT.n
+n............n...nn......nnnnn................nnn.....nnn.........nn.......n
+n........Tn.........................nnn...............................T....n
+nn...nnnn.......nnn........nnnnn..nn.....nnnn....nnnnn....nnn......nnn....Tn
+nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+ENDMAP
+TELEPORT_REGION:(70,16,74,18),(00,00,00,00)
+REGION:(00,00,75,19),lit,"ordinary"
+# Portal arrival point
+BRANCH:(72,18,72,18),(0,0,0,0)
+# Stairs
+STAIR:(72,18),up
+STAIR:(03,02),down
+# Hint
+OBJECT:'+',random,(69,16)
+OBJECT:'[',"fedora",(69,16)
+OBJECT:'%',"corpse",(69,16)
+
+# Objects
+OBJECT:')',"axe",random
+OBJECT:')',"battle-axe",random
+OBJECT:'(',"chest",random
+
+# Random traps
+TRAP:"bear",random
+TRAP:"bear",random
+TRAP:"bear",random
+TRAP:"bear",random
+TRAP:"bear",random
+TRAP:"spear",random
+TRAP:"spear",random
+TRAP:"spear",random
+
+# Frost salamanders patrol the frozen river
+MONSTER:':',random,(03,10)
+MONSTER:':',random,(26,11)
+MONSTER:':',random,(51,04)
+MONSTER:':',random,(67,13)
+
+# Goblin outrider patrol
+MONSTER:'o',"goblin outrider",(09,04),hostile
+MONSTER:'o',"goblin outrider",(10,03),hostile
+MONSTER:'o',"goblin outrider",(10,04),hostile
+MONSTER:'o',"goblin-captain",(09,03),hostile
+
+# Guards the stairs
+MONSTER:'\'',random,(03,03)
+
+# Random monsters
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+# None shall pass
+NON_DIGGABLE:(00,00,75,19)
+NON_PASSWALL:(00,00,75,19)
+
+
+#
+#	The middle level for this branch.
+#
+#	The player exits the dead forest and
+#	finds themselves overlooking a vast icy
+#	landscape. A gorge runs through the middle
+#	of the map, with only one way across.
+#	The way across is defended...
+#
+
+MAZE: "eiceqb", ' '
+FLAGS: noteleport,hardfloor,shortsighted
+GEOMETRY:left,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+IIIIIIIIIIIIIIIIIIII                               IIIIIIIIII..nnnnnnnnnnnnn
+IInIIIIIIIIIInIIIIIII                          IIIIIIIIIIIIII....nnnnnn...nn
+IIIIIIInnIIIIIIIIIIIII                      IIIIIIIIIIIIIIIII......nnnnnn.nn
+IIIIIIIIIIIIIIIIIIIIIIII                  nIIIIIIIIIIIIIIIIIII........nnn..n
+IIIInnIIIIIIIIIIIIIIIIIIIII             IIIIIIIIIIIIIIIIIIIIII.n.......nn..n
+IIIIIIIIIIIIIIIIIIIInIIIIIIII          IInIIIIIIIIIIIIIIIIIIII...nn....nn..n
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIII      nIIInnIIIIIIIIIIIIIIIIIII.........nn..n
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII    nnIIInnIIIIIIIIIIIIIIIII.........nnnn.nn
+IIIIIIIInnnIIIIIIIIIIIIIIIIIIIIIIIIIIIIIInIIIIIIIIIIIIIIIIII........nnnn...n
+IInIIIIIInIIIIIIIIIIIIIIIIIIIIII     nnIInIIIIIIIIIIIIIIIIIII........nnn...n
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIII        nIIIIIIIIIIIIIIIIIIIIII........nn...n
+IIIIInIIIIIIIIIIIIIIIIIIIIIIII           IIIIIIIIIIIIIIIIIIIII........nnn..n
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII            IIIIIIIIIIIIIIIIIIII........nnn..n
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII            nIIIIIIIIIIIIIIIIII........nnn...n
+IIIIIInIIIIInnIIIIIIIIIIIIII                IIIIIIIIIIIIIIII....n....nnnnn.n
+IInIIInnIIIIIIIIIIIIIIIIIII                  IIIIIIIIIIIIIII...nn.....nnn..n
+IInnnInIInIIIIIIIIIIIIIIIII                    IIIIIIIIIIIIII.............nn
+IIIIIIIIInIIIIInIIIIIIII                       IIIIIIIIIIIIII..........nn..n
+II.IIInIIIIIIIIIIIIIII                            IIIIIIIIII..n.......nnn..n
+IIIIInnnIIIIIIIIIIIII                              IIIIIIIIII......nnnnnn..n
+nIIIIIIIIIIIIIIIIIII                                IIIIIIIII...nnnnnnnnnnnn
+ENDMAP
+RANDOM_PLACES:(02,07),(07,08),(21,12),(22,05),(46,03),(47,12),(64,06),(65,16)
+TELEPORT_REGION:(72,08,74,10),(00,00,00,00)
+REGION:(00,00,75,19),lit,"ordinary"
+# Stairs
+STAIR:(71,01),up
+STAIR:(02,18),down
+
+# Traps
+TRAP:"spear",(32,08)
+TRAP:"spiked pit",(33,08)
+TRAP:"bear",(73,07)
+
+# Another dead adventurer
+OBJECT:'[',"cornuthaum",(73,19)
+OBJECT:'+',random,(73,19)
+OBJECT:'%',"corpse",(73,19)
+
+# Monsters
+MONSTER:'Y',random,(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+
+MONSTER:'Z',random,(73,05)
+MONSTER:'Z',random,(73,06)
+MONSTER:'Z',random,(74,06)
+MONSTER:':',random,(10,03)
+MONSTER:':',random,(10,15)
+MONSTER:':',random,(50,03)
+MONSTER:':',random,(50,15)
+MONSTER:'q',random,(02,17)
+MONSTER:'H',"frost giant",(03,17)
+MONSTER:'f',random,(74,19)
+
+# Random monsters
+MONSTER:random,random,place[0]
+MONSTER:random,random,place[1]
+MONSTER:random,random,place[2]
+MONSTER:random,random,place[3]
+MONSTER:random,random,place[4]
+MONSTER:random,random,place[5]
+MONSTER:random,random,place[6]
+MONSTER:random,random,place[7]
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+# None shall pass
+NON_DIGGABLE:(00,00,75,19)
+NON_PASSWALL:(00,00,75,19)
+
+
+#
+#       The final level for this branch.
+#
+#       The player discovers the ice castle of
+#       Vera the Ice Queen. Can they defeat her
+#       before winter permanently sets in?
+#
+
+MAZE: "eiceqc", ' '
+FLAGS: noteleport,hardfloor,shortsighted
+GEOMETRY:left,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIII                                                      II
+IIIIIIIIIIIIIIIIIIII -----------  -------   ------   -------  ----------- II
+IIIIIIIIIIIIIIIIIIIII|..|......|  |.....|  -|....|-  |.....|  |.........| II
+IIIIIIIIIIIIIIIIIIIIIF..|---...----.....---|......|---.....----...---...| II
+IIIIIIIIIIIIIIIIIIIIIF..S..................+......+.....................| II
+IIIIIIIIIIIIIIIIIIIIIF..|---...------------|......|------------...---...| II
+IIIIIIIIIIIIIIIIIIIII|..|......|...........-|....|-...........|.........| II
+IIIIIIIIIIIIIIIIIIII ----...----............|----|............|......---- II
+IIIIIIIIIIIIIIIIIIIIIIII+...|..F............S....+............+......|    II
+IIIIIIIIIIIIIIIIIIIIIIII+...|..F............S....+............+......|    II
+IIIIIIIIIIIIIIIIIIII ----...----............|----|............|......---- II
+IIIIIIIIIIIIIIIIIIIII|..|......|...........-|....|-...........|.........| II
+IIIIIIIIIIIIIIIIIIIIIF..|---...------------|......|------------...---...| II
+IIIIIIIIIIIIIIIIIIIIIF..S..................+......+.....................| II
+IIIIIIIIIIIIIIIIIIIIIF..|---...----.....---|......|---.....----...---...| II
+IIIIIIIIIIIIIIIIIIIII|..|......|  |.....|  -|....|-  |.....|  |.........| II
+IIIIIIIIIIIIIIIIIIII -----------  -------   ------   -------  ----------- II
+II.IIIIIIIIIIIIIIIII                                                      II
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ENDMAP
+RANDOM_PLACES:(29,05),(29,14),(37,04),(37,15),(56,04),(56,15),(64,05),(64,14)
+REGION:(00,00,75,19),lit,"ordinary"
+REGION:(45,03,48,07),unlit,"zoo"
+REGION:(45,12,48,16),unlit,"zoo"
+REGION:(51,07,61,12),unlit,"zoo"
+# Stairs
+STAIR:(02,18),up
+STAIR:random,down
+
+# Castle entrance
+DOOR:locked,(24,09)
+DOOR:locked,(24,10)
+
+# Doors
+DOOR:locked,(43,05)
+DOOR:locked,(43,14)
+DOOR:locked,(44,09)
+DOOR:locked,(44,10)
+DOOR:locked,(49,09)
+DOOR:locked,(49,10)
+DOOR:locked,(50,05)
+DOOR:locked,(50,14)
+DOOR:locked,(62,09)
+DOOR:locked,(62,10)
+
+# Traps
+TRAP:"spear",(23,09)
+TRAP:"spear",(23,10)
+
+# Objects and terrain
+OBJECT:'$',random,(29,09)
+OBJECT:'$',random,(29,10)
+OBJECT:'$',random,(30,09)
+OBJECT:'$',random,(30,10)
+OBJECT:'(',"chest",(32,07)
+OBJECT:'(',"chest",(32,12)
+OBJECT:'(',"chest",(42,07)
+CONTAINER:'(',"chest",(42,12)
+OBJECT:'%',"apple",contained
+OBJECT:'%',"carrot",contained
+OBJECT:'(',"leather saddle",contained
+OBJECT:'!',"acid",contained
+FOUNTAIN:(37,08)
+FOUNTAIN:(37,11)
+
+# Random monsters
+MONSTER:random,random,place[0]
+MONSTER:random,random,place[1]
+MONSTER:random,random,place[2]
+MONSTER:random,random,place[3]
+MONSTER:random,random,place[4]
+MONSTER:random,random,place[5]
+MONSTER:random,random,place[6]
+MONSTER:random,random,place[7]
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+# Out front
+MONSTER:'q',random,(18,09)
+MONSTER:'H',"frost giant",(18,10)
+MONSTER:'f',random,(19,09)
+
+# Watch towers
+MONSTER:'T',random,(22,05)
+OBJECT:')',"orcish bow",(22,05)
+OBJECT:')',"orcish arrow",(22,05)
+MONSTER:'T',random,(22,14)
+OBJECT:')',"orcish bow",(22,14)
+OBJECT:')',"orcish arrow",(22,14)
+
+# Outside the main zoo
+MONSTER:'&',random,(66,09)
+MONSTER:'&',random,(66,10)
+
+# Main zoo augment
+MONSTER:'q',random,(50,08)
+MONSTER:'T',random,(50,09)
+MONSTER:'T',random,(50,10)
+MONSTER:'q',random,(50,11)
+
+# Mini-foyer
+MONSTER:'\'',random,(47,09)
+MONSTER:'\'',random,(47,10)
+
+# The Ice Queen and her pets
+MONSTER:'@',random,(34,09),hostile
+MONSTER:'d',random,(37,09),hostile
+MONSTER:'d',random,(37,10),hostile
+
+# The prize
+MONSTER:'u',"gnogasus",(29,10),peaceful,asleep
+
+# None shall pass
+NON_DIGGABLE:(00,00,75,19)
+NON_PASSWALL:(00,00,75,19)
+
+# NetHack 3.6  icequeen.des  $NHDT-Date: 1585495923 2020/03/29 15:32:03 $  $NHDT-Branch: master $:$NHDT-Revision: 1.9 $
+#	Copyright (c) 2020 by Keith Simpson
+# NetHack may be freely redistributed.  See license for details.
+#
+#	The start level for this branch - the player must traverse
+#	this icy wasteland to find their way to the Ice Queen.
+#
+MAZE: "hiceqa",' '
+FLAGS: noteleport,hardfloor,shortsighted
+
+GEOMETRY:left,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+nnnnnnnnnnnnn.....nnnnn......nnnnnnnT...nnnnnnnn......nnnnnnnnnnnnnnnnn..nTn
+nnI.Innnnn..........nn.........nnnnn.....nnn.....nn......nnn..nn...nn.....nn
+nIIIIInnn..nnn..T..n.....nn......................IIIII..........nn.........n
+nnIIIInnn...nn.......n.n.......nnn..nnn.......IIIIIIIIII..nn....n.....nnn..n
+nnnIIInnn........nn.............nn.........IIIIIIIIIIIIII..........T.......n
+nTnnnnnn..n........n....n..............nnIIIIIIIIIIIIIIIII.n...nn....n.....n
+nnnIInnn...n...nn.....n....T...nn.....IIIIIIII.......IIIIIn..............nnn
+nnnIInnnnn...n....nn.......nn.......nIIIIII.....nnn...IIIII..n......nnn....n
+IIIIIIIIII............nnnn..nnn...IIIIIIIn.....nnTnn...IIII.n..nnn.........n
+IIIIIIIIIIIn..nn..IIIIIIIIIIIIIIIIIIIIIIn.......nnn....IIII...........T....n
+nnnIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII.................III.n...nnnnn.....nn
+nT..nn..IIIIIIIIIIIIIIII....nn.............nnnn....n....IIIIIIIIIIIIII..nnnn
+n........nn.....nnnn.............nn...nn....nnnnn........IIIIIIIIIIIIIIIIIII
+n.nnn........n.................nnnn....n...........nn....n....nn..IIIIIIIIII
+n.......nn...........n......................n......................nnnn....I
+n...nnn..nnn.....nn.....nnnnn...........nT...nn.......nnnnn.............nT.n
+n............n...nn......nnnnn................nnn.....nnn.........nn.......n
+n........Tn.........................nnn...............................T....n
+nn...nnnn.......nnn........nnnnn..nn.....nnnn....nnnnn....nnn......nnn....Tn
+nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+ENDMAP
+TELEPORT_REGION:(70,16,74,18),(00,00,00,00)
+REGION:(00,00,75,19),lit,"ordinary"
+# Portal arrival point
+BRANCH:(72,18,72,18),(0,0,0,0)
+# Stairs
+STAIR:(72,18),up
+STAIR:(03,02),down
+# Hint
+OBJECT:'+',random,(69,16)
+OBJECT:'[',"fedora",(69,16)
+OBJECT:'%',"corpse",(69,16)
+
+# Objects
+OBJECT:')',"axe",random
+OBJECT:')',"battle-axe",random
+OBJECT:'(',"chest",random
+
+# Random traps
+TRAP:"bear",random
+TRAP:"bear",random
+TRAP:"bear",random
+TRAP:"bear",random
+TRAP:"bear",random
+TRAP:"spear",random
+TRAP:"spear",random
+TRAP:"spear",random
+
+# Frost salamanders patrol the frozen river
+MONSTER:':',"frost salamander",(03,10)
+MONSTER:':',"frost salamander",(26,11)
+MONSTER:':',"frost salamander",(51,04)
+MONSTER:':',"frost salamander",(67,13)
+
+# Goblin outrider patrol
+MONSTER:'o',"goblin outrider",(09,04),hostile
+MONSTER:'o',"goblin outrider",(10,03),hostile
+MONSTER:'o',"goblin outrider",(10,04),hostile
+MONSTER:'o',"goblin-captain",(09,03),hostile
+
+# Guards the stairs
+MONSTER:'\'',"snow golem",(03,03)
+
+# Random monsters
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+# None shall pass
+NON_DIGGABLE:(00,00,75,19)
+NON_PASSWALL:(00,00,75,19)
+
+
+#
+#	The middle level for this branch.
+#
+#	The player exits the dead forest and
+#	finds themselves overlooking a vast icy
+#	landscape. A gorge runs through the middle
+#	of the map, with only one way across.
+#	The way across is defended...
+#
+
+MAZE: "hiceqb", ' '
+FLAGS: noteleport,hardfloor,shortsighted
+GEOMETRY:left,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+IIIIIIIIIIIIIIIIIIII                               IIIIIIIIII..nnnnnnnnnnnnn
+IInIIIIIIIIIInIIIIIII                          IIIIIIIIIIIIII....nnnnnn...nn
+IIIIIIInnIIIIIIIIIIIII                      IIIIIIIIIIIIIIIII......nnnnnn.nn
+IIIIIIIIIIIIIIIIIIIIIIII                  nIIIIIIIIIIIIIIIIIII........nnn..n
+IIIInnIIIIIIIIIIIIIIIIIIIII             IIIIIIIIIIIIIIIIIIIIII.n.......nn..n
+IIIIIIIIIIIIIIIIIIIInIIIIIIII          IInIIIIIIIIIIIIIIIIIIII...nn....nn..n
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIII      nIIInnIIIIIIIIIIIIIIIIIII.........nn..n
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII    nnIIInnIIIIIIIIIIIIIIIII.........nnnn.nn
+IIIIIIIInnnIIIIIIIIIIIIIIIIIIIIIIIIIIIIIInIIIIIIIIIIIIIIIIII........nnnn...n
+IInIIIIIInIIIIIIIIIIIIIIIIIIIIII     nnIInIIIIIIIIIIIIIIIIIII........nnn...n
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIII        nIIIIIIIIIIIIIIIIIIIIII........nn...n
+IIIIInIIIIIIIIIIIIIIIIIIIIIIII           IIIIIIIIIIIIIIIIIIIII........nnn..n
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII            IIIIIIIIIIIIIIIIIIII........nnn..n
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII            nIIIIIIIIIIIIIIIIII........nnn...n
+IIIIIInIIIIInnIIIIIIIIIIIIII                IIIIIIIIIIIIIIII....n....nnnnn.n
+IInIIInnIIIIIIIIIIIIIIIIIII                  IIIIIIIIIIIIIII...nn.....nnn..n
+IInnnInIInIIIIIIIIIIIIIIIII                    IIIIIIIIIIIIII.............nn
+IIIIIIIIInIIIIInIIIIIIII                       IIIIIIIIIIIIII..........nn..n
+II.IIInIIIIIIIIIIIIIII                            IIIIIIIIII..n.......nnn..n
+IIIIInnnIIIIIIIIIIIII                              IIIIIIIIII......nnnnnn..n
+nIIIIIIIIIIIIIIIIIII                                IIIIIIIII...nnnnnnnnnnnn
+ENDMAP
+RANDOM_PLACES:(02,07),(07,08),(21,12),(22,05),(46,03),(47,12),(64,06),(65,16)
+TELEPORT_REGION:(72,08,74,10),(00,00,00,00)
+REGION:(00,00,75,19),lit,"ordinary"
+# Stairs
+STAIR:(71,01),up
+STAIR:(02,18),down
+
+# Traps
+TRAP:"spear",(32,08)
+TRAP:"spiked pit",(33,08)
+TRAP:"bear",(73,07)
+
+# Another dead adventurer
+OBJECT:'[',"cornuthaum",(73,19)
+OBJECT:'+',random,(73,19)
+OBJECT:'%',"corpse",(73,19)
+
+# Monsters
+MONSTER:'Y',"abominable snowman",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+OBJECT:'`',"boulder",(34,08)
+
+MONSTER:'Z',"revenant",(73,05)
+MONSTER:'Z',"revenant",(73,06)
+MONSTER:'Z',"revenant",(74,06)
+MONSTER:':',"frost salamander",(10,03)
+MONSTER:':',"frost salamander",(10,15)
+MONSTER:':',"frost salamander",(50,03)
+MONSTER:':',"frost salamander",(50,15)
+MONSTER:'q',"mastodon",(02,17)
+MONSTER:'H',"frost giant",(03,17)
+MONSTER:'f',"saber-toothed tiger",(74,19)
+
+# Random monsters
+MONSTER:random,random,place[0]
+MONSTER:random,random,place[1]
+MONSTER:random,random,place[2]
+MONSTER:random,random,place[3]
+MONSTER:random,random,place[4]
+MONSTER:random,random,place[5]
+MONSTER:random,random,place[6]
+MONSTER:random,random,place[7]
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+# None shall pass
+NON_DIGGABLE:(00,00,75,19)
+NON_PASSWALL:(00,00,75,19)
+
+
+#
+#       The final level for this branch.
+#
+#       The player discovers the ice castle of
+#       Vera the Ice Queen. Can they defeat her
+#       before winter permanently sets in?
+#
+
+MAZE: "hiceqc", ' '
+FLAGS: noteleport,hardfloor,shortsighted
+GEOMETRY:left,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIII                                                      II
+IIIIIIIIIIIIIIIIIIII -----------  -------   ------   -------  ----------- II
+IIIIIIIIIIIIIIIIIIIII|..|......|  |.....|  -|....|-  |.....|  |.........| II
+IIIIIIIIIIIIIIIIIIIIIF..|---...----.....---|......|---.....----...---...| II
+IIIIIIIIIIIIIIIIIIIIIF..S..................+......+.....................| II
+IIIIIIIIIIIIIIIIIIIIIF..|---...------------|......|------------...---...| II
+IIIIIIIIIIIIIIIIIIIII|..|......|...........-|....|-...........|.........| II
+IIIIIIIIIIIIIIIIIIII ----...----............|----|............|......---- II
+IIIIIIIIIIIIIIIIIIIIIIII+...|..F............S....+............+......|    II
+IIIIIIIIIIIIIIIIIIIIIIII+...|..F............S....+............+......|    II
+IIIIIIIIIIIIIIIIIIII ----...----............|----|............|......---- II
+IIIIIIIIIIIIIIIIIIIII|..|......|...........-|....|-...........|.........| II
+IIIIIIIIIIIIIIIIIIIIIF..|---...------------|......|------------...---...| II
+IIIIIIIIIIIIIIIIIIIIIF..S..................+......+.....................| II
+IIIIIIIIIIIIIIIIIIIIIF..|---...----.....---|......|---.....----...---...| II
+IIIIIIIIIIIIIIIIIIIII|..|......|  |.....|  -|....|-  |.....|  |.........| II
+IIIIIIIIIIIIIIIIIIII -----------  -------   ------   -------  ----------- II
+II.IIIIIIIIIIIIIIIII                                                      II
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ENDMAP
+RANDOM_PLACES:(29,05),(29,14),(37,04),(37,15),(56,04),(56,15),(64,05),(64,14)
+REGION:(00,00,75,19),lit,"ordinary"
+REGION:(45,03,48,07),unlit,"zoo"
+REGION:(45,12,48,16),unlit,"zoo"
+REGION:(51,07,61,12),unlit,"zoo"
+# Stairs
+STAIR:(02,18),up
+STAIR:random,down
+
+# Castle entrance
+DOOR:locked,(24,09)
+DOOR:locked,(24,10)
+
+# Doors
+DOOR:locked,(43,05)
+DOOR:locked,(43,14)
+DOOR:locked,(44,09)
+DOOR:locked,(44,10)
+DOOR:locked,(49,09)
+DOOR:locked,(49,10)
+DOOR:locked,(50,05)
+DOOR:locked,(50,14)
+DOOR:locked,(62,09)
+DOOR:locked,(62,10)
+
+# Traps
+TRAP:"spear",(23,09)
+TRAP:"spear",(23,10)
+
+# Objects and terrain
+OBJECT:'$',random,(29,09)
+OBJECT:'$',random,(29,10)
+OBJECT:'$',random,(30,09)
+OBJECT:'$',random,(30,10)
+OBJECT:'(',"chest",(32,07)
+OBJECT:'(',"chest",(32,12)
+OBJECT:'(',"chest",(42,07)
+CONTAINER:'(',"chest",(42,12)
+OBJECT:'%',"apple",contained
+OBJECT:'%',"carrot",contained
+OBJECT:'(',"leather saddle",contained
+OBJECT:'!',"acid",contained
+FOUNTAIN:(37,08)
+FOUNTAIN:(37,11)
+
+# Random monsters
+MONSTER:random,random,place[0]
+MONSTER:random,random,place[1]
+MONSTER:random,random,place[2]
+MONSTER:random,random,place[3]
+MONSTER:random,random,place[4]
+MONSTER:random,random,place[5]
+MONSTER:random,random,place[6]
+MONSTER:random,random,place[7]
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+# Out front
+MONSTER:'q',"woolly mammoth",(18,09)
+MONSTER:'H',"frost giant",(18,10)
+MONSTER:'f',"saber-toothed tiger",(19,09)
+
+# Watch towers
+MONSTER:'T',"ice troll",(22,05)
+OBJECT:')',"orcish bow",(22,05)
+OBJECT:')',"orcish arrow",(22,05)
+MONSTER:'T',"ice troll",(22,14)
+OBJECT:')',"orcish bow",(22,14)
+OBJECT:')',"orcish arrow",(22,14)
+
+# Outside the main zoo
+MONSTER:'&',"ice devil",(66,09)
+MONSTER:'&',"ice devil",(66,10)
+
+# Main zoo augment
+MONSTER:'q',"mastodon",(50,08)
+MONSTER:'T',"ice troll",(50,09)
+MONSTER:'T',"ice troll",(50,10)
+MONSTER:'q',"woolly mammoth",(50,11)
+
+# Mini-foyer
+MONSTER:'\'',"snow golem",(47,09)
+MONSTER:'\'',"snow golem",(47,10)
+
+# The Ice Queen and her pets
+MONSTER:'@',random,(34,09),hostile
+MONSTER:'d',random,(37,09),hostile
+MONSTER:'d',random,(37,10),hostile
+
+# The prize
+MONSTER:'u',"gnogasus",(29,10),peaceful,asleep
+
+# None shall pass
+NON_DIGGABLE:(00,00,75,19)
+NON_PASSWALL:(00,00,75,19)
+

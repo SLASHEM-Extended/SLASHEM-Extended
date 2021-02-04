@@ -342,11 +342,20 @@ ALIGNMENT:      unaligned
 RNDLEVEL:          "knox" "K" @ (-1, 0) 3
 
 ### The Wyrm Caves ###
-DUNGEON:        "The Wyrm Caves" "W" (1, 0)
+DUNGEON:        "The Wyrm Caves" "W" (2, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
 LEVEL:          "dragons" "D" @ (1, 0)
 BRANCH:	    "Minus World" @ (1, 0)
+BRANCH:	    "The Ice Queen's Realm" @ (2, 0)
+
+### The Ice Queen's Realm ###
+DUNGEON:        "The Ice Queen's Realm" "I" (3, 0)
+DESCRIPTION:    mazelike
+ALIGNMENT:      unaligned
+LEVEL:          "iceqa" "none" @ (1, 0)
+LEVEL:          "iceqb" "none" @ (2, 0)
+LEVEL:          "iceqc" "none" @ (3, 0)
 
 ### The Black Market ###
 DUNGEON:        "One-eyed Sam's Market" "X" (1, 0)

@@ -98,6 +98,8 @@ encodeachieveX(void)
    *  12  killed Ariane
    *  13  completed the Rival Quest
    *  14  completed Minus World
+   *  15  killed Vera
+   *  16  killed Elaine
    */
 
   long r;
@@ -119,6 +121,8 @@ encodeachieveX(void)
   if(achieveX.killed_ariane)        r |= 1L << 12;
   if(achieveX.completed_rivalquest) r |= 1L << 13;
   if(achieveX.completed_minusworld) r |= 1L << 14;
+  if(achieveX.killed_vera)          r |= 1L << 15;
+  if(achieveX.killed_elaine)        r |= 1L << 16;
 
   return r;
 }

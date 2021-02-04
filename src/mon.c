@@ -4617,6 +4617,56 @@ newbossSING:
 		u.weapon_slots += 5;
 	}
 
+      if(mtmp->data == &mons[PM_VERA_THE_ICE_QUEEN] && !u.veradown) {
+
+		int rndskill = P_DAGGER;
+
+		(void) makemon(&mons[PM_ELAINE_THE_ENCHANTRESS], u.ux, u.uy, MM_ANGRY|MM_ADJACENTOK);
+
+		u.veradown = 1;
+		pline("Congratulations, Vera is defeated! All of your skills are trained by one point!");
+
+		for (rndskill = P_DAGGER; rndskill < P_NUM_SKILLS; rndskill++) {
+			P_ADVANCE(rndskill)++;
+		}
+
+		verbalize("What? Why did you have to do that to Vera??? She... she was my rival, but I kind of liked her anyway... why did you have to kill her, you evil monster? Well, I guess now I have to avenge her death by bludgeoning you...");
+
+	}
+
+      if(mtmp->data == &mons[PM_ELAINE_THE_ENCHANTRESS] && !u.elainedown) {
+
+		u.elainedown = 1;
+		pline("Congratulations, Elaine is defeated! Your reward was dropped at your %s.", makeplural(body_part(FOOT)));
+
+		trophy = mksobj(POT_TECH_LEVEL_UP, FALSE, FALSE, FALSE);
+		if (trophy) {
+		    trophy->prmcurse = trophy->hvycurse = trophy->cursed = trophy->morgcurse = trophy->evilcurse = trophy->bbrcurse = trophy->stckcurse = 0;
+		    dropy(trophy);
+		}
+		trophy = mksobj(POT_TECH_LEVEL_UP, FALSE, FALSE, FALSE);
+		if (trophy) {
+		    trophy->prmcurse = trophy->hvycurse = trophy->cursed = trophy->morgcurse = trophy->evilcurse = trophy->bbrcurse = trophy->stckcurse = 0;
+		    dropy(trophy);
+		}
+		trophy = mksobj(POT_TECH_LEVEL_UP, FALSE, FALSE, FALSE);
+		if (trophy) {
+		    trophy->prmcurse = trophy->hvycurse = trophy->cursed = trophy->morgcurse = trophy->evilcurse = trophy->bbrcurse = trophy->stckcurse = 0;
+		    dropy(trophy);
+		}
+		trophy = mksobj(POT_TECH_LEVEL_UP, FALSE, FALSE, FALSE);
+		if (trophy) {
+		    trophy->prmcurse = trophy->hvycurse = trophy->cursed = trophy->morgcurse = trophy->evilcurse = trophy->bbrcurse = trophy->stckcurse = 0;
+		    dropy(trophy);
+		}
+		trophy = mksobj(POT_TECH_LEVEL_UP, FALSE, FALSE, FALSE);
+		if (trophy) {
+		    trophy->prmcurse = trophy->hvycurse = trophy->cursed = trophy->morgcurse = trophy->evilcurse = trophy->bbrcurse = trophy->stckcurse = 0;
+		    dropy(trophy);
+		}
+
+	}
+
       if(mtmp->data == &mons[PM_STAHNGNIR__THE_STEEL_GIANT_LORD] && !u.stahngnirdown) {
 		u.stahngnirdown = 1;
 		pline("Congratulations, Lord Stahngnir is defeated! Your reward was dropped at your %s.", makeplural(body_part(FOOT)));
@@ -5617,6 +5667,49 @@ newbossSING:
 
             achieve.killed_grund = 1;
 	}
+
+        if(mtmp->data == &mons[PM_VERA_THE_ICE_QUEEN]) {
+
+		if (!achieveX.killed_vera) {
+
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
+			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
+
+			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+				u.uhpmax += 10;
+				u.uenmax += 10;
+				if (Upolyd) u.mhmax += 10;
+				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+			}
+
+		}
+
+            achieveX.killed_vera = 1;
+	}
+
+        if(mtmp->data == &mons[PM_ELAINE_THE_ENCHANTRESS]) {
+
+		if (!achieveX.killed_elaine) {
+
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
+			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
+
+			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+				u.uhpmax += 10;
+				u.uenmax += 10;
+				if (Upolyd) u.mhmax += 10;
+				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+			}
+
+		}
+
+            achieveX.killed_elaine = 1;
+	}
+
         if(mtmp->data == &mons[PM_THE_LARGEST_GIANT]) {
 
 		if (!achieve.killed_largestgiant) {

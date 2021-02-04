@@ -624,6 +624,8 @@ struct you {
 	int angmarcomplete;
 	int rivalquestcomplete;
 	int stahngnirdown;
+	int veradown;
+	int elainedown;
 	int arianespawned;
 	int arianedown;
 	int emynluincomplete;

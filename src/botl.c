@@ -600,6 +600,8 @@ int verbose;
 		sprintf(buf, flags.showlongstats ? "Town:%d " : "Tow:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold"))
 		sprintf(buf, flags.showlongstats ? "Stronghold:%d " : "Str:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Ice Queen's Realm"))
+		sprintf(buf, flags.showlongstats ? "Icequeen:%d " : "Ice:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Lawful Quest"))
 		sprintf(buf, flags.showlongstats ? "Nightmare:%d " : "Nig:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Neutral Quest"))

@@ -7452,6 +7452,18 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_SWIKNI]) (void) mongets(mtmp, SURVIVAL_KNIFE);
 		if (mtmp->data == &mons[PM_MASK_MAN]) (void) mongets(mtmp, find_corona_mask());
 
+		if (ptr == &mons[PM_VERA_THE_ICE_QUEEN]) {
+			if ((find_cyan_sneakers()) != -1) (void)mongets(mtmp, find_cyan_sneakers());
+			(void) mongets(mtmp, ATHAME);
+			(void) mongets(mtmp, GAUNTLETS);
+			(void) mongets(mtmp, AMULET_OF_REFLECTION);
+			(void) mongets(mtmp, HIGH_BOOTS);
+			(void) mongets(mtmp, CLOAK_OF_MAGIC_RESISTANCE);
+		}
+		if (ptr == &mons[PM_ELAINE_THE_ENCHANTRESS]) {
+			if ((find_yellow_sneakers()) != -1) (void)mongets(mtmp, find_yellow_sneakers());
+		}
+
 		if(ptr == &mons[PM_ADORNING_FEMINIST]) {
 			(void) mongets(mtmp, SLING);
 			(void) mongets(mtmp, rnd_class(ELIF_S_JEWEL,DORA_S_JEWEL));
@@ -24610,6 +24622,10 @@ loopback:
 		if (ct > 0 && (In_sheol(&u.uz) && dmgtype(ptr, AD_COLD) )) ct += 5;
 		if (ct > 0 && (In_sheol(&u.uz) && dmgtype(ptr, AD_FRZE) )) ct += 5;
 		if (ct > 0 && (In_sheol(&u.uz) && dmgtype(ptr, AD_ICEB) )) ct += 2;
+		if (ct > 0 && (In_icequeen(&u.uz) && is_cold_resistant(ptr) )) ct += 5;
+		if (ct > 0 && (In_icequeen(&u.uz) && dmgtype(ptr, AD_COLD) )) ct += 5;
+		if (ct > 0 && (In_icequeen(&u.uz) && dmgtype(ptr, AD_FRZE) )) ct += 5;
+		if (ct > 0 && (In_icequeen(&u.uz) && dmgtype(ptr, AD_ICEB) )) ct += 5;
 		if (ct > 0 && (In_towndungeon(&u.uz) && is_angbandmonster(ptr) )) ct += 5;
 		if (ct > 0 && (In_towndungeon(&u.uz) && is_steammonster(ptr) )) ct += 1;
 		if (ct > 0 && (In_towndungeon(&u.uz) && is_animemonster(ptr) )) ct += 1;
@@ -25878,6 +25894,10 @@ int     spc;
 		if ((In_sheol(&u.uz) && dmgtype(&mons[last], AD_COLD) )) num += 5;
 		if ((In_sheol(&u.uz) && dmgtype(&mons[last], AD_FRZE) )) num += 5;
 		if ((In_sheol(&u.uz) && dmgtype(&mons[last], AD_ICEB) )) num += 2;
+		if ((In_icequeen(&u.uz) && is_cold_resistant(&mons[last]) )) num += 5;
+		if ((In_icequeen(&u.uz) && dmgtype(&mons[last], AD_COLD) )) num += 5;
+		if ((In_icequeen(&u.uz) && dmgtype(&mons[last], AD_FRZE) )) num += 5;
+		if ((In_icequeen(&u.uz) && dmgtype(&mons[last], AD_ICEB) )) num += 5;
 		if ((In_towndungeon(&u.uz) && is_angbandmonster(&mons[last]) )) num += 5;
 		if ((In_towndungeon(&u.uz) && is_steammonster(&mons[last]) )) num += 1;
 		if ((In_towndungeon(&u.uz) && is_animemonster(&mons[last]) )) num += 1;
@@ -26782,6 +26802,10 @@ int     spc;
 		if ((In_sheol(&u.uz) && dmgtype(&mons[first], AD_COLD) )) num -= 5;
 		if ((In_sheol(&u.uz) && dmgtype(&mons[first], AD_FRZE) )) num -= 5;
 		if ((In_sheol(&u.uz) && dmgtype(&mons[first], AD_ICEB) )) num -= 2;
+		if ((In_icequeen(&u.uz) && is_cold_resistant(&mons[first]) )) num -= 5;
+		if ((In_icequeen(&u.uz) && dmgtype(&mons[first], AD_COLD) )) num -= 5;
+		if ((In_icequeen(&u.uz) && dmgtype(&mons[first], AD_FRZE) )) num -= 5;
+		if ((In_icequeen(&u.uz) && dmgtype(&mons[first], AD_ICEB) )) num -= 5;
 		if ((In_towndungeon(&u.uz) && is_angbandmonster(&mons[first]) )) num -= 5;
 		if ((In_towndungeon(&u.uz) && is_steammonster(&mons[first]) )) num -= 1;
 		if ((In_towndungeon(&u.uz) && is_animemonster(&mons[first]) )) num -= 1;

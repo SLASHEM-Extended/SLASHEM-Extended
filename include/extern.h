@@ -658,6 +658,7 @@ E boolean In_gehennom(d_level *);
 E boolean In_towndungeon(d_level *);
 E boolean In_spiders(d_level *);
 E boolean In_grund(d_level *);
+E boolean In_icequeen(d_level *);
 E boolean In_wyrm(d_level *);
 E boolean In_tomb(d_level *);
 E boolean In_slsea(d_level *);

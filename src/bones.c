@@ -294,6 +294,8 @@ xchar dnum;
 		strcpy(buf, "GRE");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold"))
 		strcpy(buf, "GRU");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Ice Queen's Realm"))
+		strcpy(buf, "ICE");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Illusory Castle"))
 		strcpy(buf, "ILL");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Joust Challenge"))

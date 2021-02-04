@@ -86,6 +86,7 @@ E struct dgn_topology {		/* special dungeon levels for speed */
     xchar	d_sheol_dnum;
     xchar   d_spiders_dnum;
     xchar   d_grund_dnum;
+    xchar   d_icequeen_dnum;
     xchar   d_wyrm_dnum;
     xchar   d_frnkn_dnum;
     xchar   d_gcavern_dnum;
@@ -246,6 +247,7 @@ E struct dgn_topology {		/* special dungeon levels for speed */
 #define knox_level		(dungeon_topology.d_knox_level)
 #define spiders_dnum		(dungeon_topology.d_spiders_dnum)
 #define grund_dnum		(dungeon_topology.d_grund_dnum)
+#define icequeen_dnum		(dungeon_topology.d_icequeen_dnum)
 #define wyrm_dnum		(dungeon_topology.d_wyrm_dnum)
 #define frnkn_dnum		(dungeon_topology.d_frnkn_dnum)
 #define gcavern_dnum		(dungeon_topology.d_gcavern_dnum)
@@ -709,6 +711,8 @@ struct u_achieveX {
 	  Bitfield(killed_ariane,1);	/* You killed Ariane */
 	  Bitfield(completed_rivalquest,1);	/* You killed the nemesis on the rival quest */
 	  Bitfield(completed_minusworld,1); /* You completed the Minus World */
+	  Bitfield(killed_vera,1);	/* You killed Vera */
+	  Bitfield(killed_elaine,1);	/* You killed Elaine */
 
 };
 

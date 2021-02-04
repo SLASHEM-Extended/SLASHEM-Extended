@@ -1007,6 +1007,7 @@ init_dungeons()
 	bellcaves_dnum = dname_to_dnum("Bell Caves");
 	spiders_dnum = dname_to_dnum("The Spider Caves");        
 	grund_dnum = dname_to_dnum("Grund's Stronghold");        
+	icequeen_dnum = dname_to_dnum("The Ice Queen's Realm");        
 	wyrm_dnum = dname_to_dnum("The Wyrm Caves");        
 	frnkn_dnum = dname_to_dnum("Frankenstein's Lab");        
 	gcavern_dnum = dname_to_dnum("The Giant Caverns");        
@@ -1836,6 +1837,13 @@ In_grund(lev) /* are you in grund's stronghold? */
 d_level *lev;
 {
 	return((boolean)(lev->dnum == grund_dnum));
+}
+
+boolean
+In_icequeen(lev) /* are you in the Ice Queen's realm? */
+d_level *lev;
+{
+	return((boolean)(lev->dnum == icequeen_dnum));
 }
 
 boolean

@@ -1894,7 +1894,7 @@ banishplayer()
 		dtmp.dnum = dname_to_dnum("Gehennom");
 	} else if (rn2(4)) {
 upperdungeonagain:
-		switch (rnd(31)) {
+		switch (rnd(32)) {
 			case 1:
 				dtmp.dnum = dname_to_dnum("The Gnomish Mines");
 				break;
@@ -1990,6 +1990,9 @@ upperdungeonagain:
 				break;
 			case 31:
 				dtmp.dnum = dname_to_dnum("The Giant Caverns");
+				break;
+			case 32:
+				dtmp.dnum = dname_to_dnum("The Ice Queen's Realm");
 				break;
 		}
 	} else {
