@@ -8277,6 +8277,50 @@ A("Vera's Icecube Smash",				LOW_BOOTS, /* initialized to always be cyan sneaker
 	(SPFX_RESTR|SPFX_DEFN), 0, 0,
 	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 2500L ),
 
+A("Keystrusite",				CLOAK_OF_BLINDNESS_RESISTANCE,
+	(SPFX_RESTR|SPFX_XRAY), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Be Hi Without Drugs",				CLOAK_OF_HALLUCINATION_RESISTA, /* funny hallu messages */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Runez Scazmatar",				HOE_SABLE,
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("ScjWillX5",				BLUE_LIGHTSABER, /* makes you slower like spirit, +5 wisdom */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(5, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Serialsaber",				GREEN_LIGHTSABER, /* drains less energy the higher your makashi skill is */
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Pessivetroin",				BEAMSWORD, /* your training amount in lightsaber forms randomly goes up or down */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Link's Master Sword",				BEAMSWORD, /* fires a beam if thrown */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Actual Beamer",				BEAMSWORD, /* teleportitis */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(2, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Schwillschwillschwillschwillschwill",				BEAMSWORD, /* fires a beam if you attack in melee, monsters spawn doubly invisible, you take maximum damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Djarwethereyet",				LASERXBOW, /* hitting things with crossbow bolts trains djem so */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Multishottemso",				LASERXBOW, /* +1 multishot per djem so skill point */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

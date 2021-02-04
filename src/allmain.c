@@ -1112,6 +1112,12 @@ moveloop()
 				if (uarmf && uarmf->oartifact == ART_UPWARD_HEELS && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
+				if (uwep && uwep->oartifact == ART_SCJWILLX_ && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+
+				if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SCJWILLX_ && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+
 				if (uarmf && uarmf->oartifact == ART_GIVE_THE_ART_A_HOME && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
@@ -1437,6 +1443,12 @@ moveloop()
 			}
 
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too are slower sometimes. */
+				moveamt /= 2;
+
+			if (uwep && uwep->oartifact == ART_SCJWILLX_ && !rn2(8) && moveamt > 1)
+				moveamt /= 2;
+
+			if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SCJWILLX_ && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
 
 			if (uarmf && uarmf->oartifact == ART_UPWARD_HEELS && !rn2(8) && moveamt > 1)
@@ -2187,6 +2199,49 @@ moveloop()
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && Feared && !rn2(100)) {
 			pline("holy shit this is offensive");
 			badeffect();
+		}
+
+		if (uwep && uwep->oartifact == ART_PESSIVETROIN && !rn2(100)) {
+			int tryct, tryct2;
+			int ltsaberform = P_SHII_CHO + rn2(10);
+			int ltsaberamount = rnd(10);
+			boolean ltsaberup = rn2(2);
+			if (!rn2(20)) ltsaberamount += rnd(100);
+			if (ltsaberform < P_SHII_CHO || ltsaberform > P_WEDI) impossible("buggy lightsaber form %d for pessivetroin artifact", ltsaberform);
+			else {
+				if (ltsaberup) { /* skill goes up */
+					P_ADVANCE(ltsaberform) += ltsaberamount;
+				} else { /* skill goes down */
+					if ((P_ADVANCE(ltsaberform)) < ltsaberamount) P_ADVANCE(ltsaberform) = 0;
+					else P_ADVANCE(ltsaberform) -= ltsaberamount;
+
+					tryct = 2000;
+					tryct2 = 10;
+					i = 0;
+
+					while (u.skills_advanced && tryct && (P_ADVANCE(ltsaberform) < practice_needed_to_advance_nonmax(P_SKILL(ltsaberform) - 1, ltsaberform) ) ) {
+						lose_last_spent_skill();
+						i++;
+						tryct--;
+					}
+
+					while (i) {
+						if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
+						else u.weapon_slots++;  /* because every skill up costs one slot --Amy */
+						i--;
+					}
+
+					/* still higher than the cap? that probably means you started with some knowledge of the skill... */
+					while (tryct2 && P_ADVANCE(ltsaberform) < practice_needed_to_advance_nonmax(P_SKILL(ltsaberform) - 1, ltsaberform) ) {
+						P_SKILL(ltsaberform)--;
+						if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
+						else u.weapon_slots++;
+						tryct2--;
+					}
+
+				}
+			}
+
 		}
 
 		if (PlayerInBlockHeels) {
@@ -11421,6 +11476,7 @@ past3:
 	u.mushroompoleused = 0;
 	u.explodewandhack = 0;
 	u.symbiotedmghack = FALSE;
+	u.linkmasterswordhack = 0;
 
 	/* fail safe for banishment in case the player would somehow get a turn --Amy */
 	if (u.banishmentbeam && multi >= 0) nomul(-2, "being banished", FALSE);

@@ -3175,12 +3175,17 @@ melatechoice:
 					}
 				}
 				/* djem so was also training ultra slowly, so here's a multiplier */
-				if (wep && is_lightsaber(wep) && wep->lamplit) {
+				if (wep && is_lightsaber(wep) && wep->lamplit && obj && (wep == obj)) {
 					use_skill(P_DJEM_SO, rnd(4));
 				}
 
-				if (wep && wep->oartifact == ART_RUSMA_SRO) {
+				if (wep && wep->oartifact == ART_RUSMA_SRO && obj && (wep == obj)) {
 					use_skill(P_DJEM_SO, rnd(4));
+				}
+
+				if (uwep && uwep->oartifact == ART_DJARWETHEREYET && uwep->lamplit && obj && objects[obj->otyp].oc_skill == -P_CROSSBOW) {
+					use_skill(P_DJEM_SO, 1);
+					if (uwep->altmode) use_skill(P_DJEM_SO, 1);
 				}
 
 			}
@@ -7932,6 +7937,22 @@ use_weapon:
 					}
 				}
 
+				if (uwep && uwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI && uwep->lamplit && (u.dx || u.dy) && !u.dz) {
+					u.linkmasterswordhack = 1;
+					struct obj *pseudo;
+					pseudo = mksobj(SPE_BEAMSWORD, FALSE, 2, FALSE);
+					if (!pseudo) goto bladeangerdone;
+					if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = SPE_BEAMSWORD; /* minimalist fix */
+					pseudo->blessed = pseudo->cursed = 0;
+					pseudo->quan = 20L;			/* do not let useup get it */
+					pseudo->spe = uwep->spe;
+					weffects(pseudo);
+					if (pseudo) obfree(pseudo, (struct obj *)0);	/* now, get rid of it */
+					if (!mon) return FALSE;
+					if (DEADMONSTER(mon)) return FALSE;
+
+				}
+bladeangerdone:
 				if (uwep && objects[uwep->otyp].oc_skill == (tech_inuse(T_GRAP_SWAP) ? P_LANCE : P_GRINDER)) {
 					int grindirection = 0;
 					if (u.dx > 0 && u.dy == 0) grindirection = 1; /* east */
@@ -8421,7 +8442,7 @@ boolean ranged;
 	else
 	    tmp = 0;
 
-	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone()) {
+	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || (uwep && uwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI)) {
 		if (ptr->mattk[i].damn)
 		    tmp = (int)ptr->mattk[i].damn * (int)ptr->mattk[i].damd;
 		else if(ptr->mattk[i].damd)

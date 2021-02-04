@@ -1583,6 +1583,7 @@ struct you {
 
 	boolean wingyellowhack;
 	boolean arabellahack;
+	boolean linkmasterswordhack;
 
 	boolean captchahack;
 

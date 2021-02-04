@@ -2814,6 +2814,7 @@ int x;
 		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
 		if (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) tmp += 2;
 		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
+		if (x == A_WIS && uwep && uwep->oartifact == ART_SCJWILLX_) tmp += 5;
 
 		if (uarmh && uarmh->oartifact == ART_YOU_DON_T_KNOW_SHIT) tmp -= 3;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp -= 10;

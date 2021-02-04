@@ -643,7 +643,7 @@ armorsmashdone:
 
 	case SPE_BEAMSWORD: /* placeholder for beamsword */
 
-		if (tech_inuse(T_BEAMSWORD)) {
+		if (tech_inuse(T_BEAMSWORD) || u.linkmasterswordhack) {
 			dmg = rnd(20);
 
 			/* djem so skill will most probably be pretty high, but just in case it isn't, reduce damage --Amy */
@@ -7684,14 +7684,14 @@ struct obj *obj;
 			beamrange /= 2;
 		}
 		if (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLADE_ANGER) beamrange += rnd(6);
-		if (tech_inuse(T_BEAMSWORD) && obj->otyp == SPE_BEAMSWORD) beamrange += rnd(6);
+		if ((tech_inuse(T_BEAMSWORD) || u.linkmasterswordhack) && obj->otyp == SPE_BEAMSWORD) beamrange += rnd(6);
 
 		(void) bhit(u.dx,u.dy, obj->otyp == SPE_PARTICLE_CANNON ? 200 : obj->otyp == SPE_SNIPER_BEAM ? 70 : beamrange, ZAPPED_WAND, bhitm, bhito, &obj, TRUE);
 	    }
 
 	}
 
-	if (objects[otyp].oc_dir == IMMEDIATE || (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLADE_ANGER) || (tech_inuse(T_BEAMSWORD) && obj->otyp == SPE_BEAMSWORD) ) {
+	if (objects[otyp].oc_dir == IMMEDIATE || (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLADE_ANGER) || ( (tech_inuse(T_BEAMSWORD) || u.linkmasterswordhack) && obj->otyp == SPE_BEAMSWORD) ) {
 	    obj_zapped = FALSE;
 
 		if (obj->otyp == WAN_WIND) {
@@ -7718,7 +7718,7 @@ struct obj *obj;
 		}
 
 		if (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLADE_ANGER) beamrange += rnd(6);
-		if (tech_inuse(T_BEAMSWORD) && obj->otyp == SPE_BEAMSWORD) beamrange += rnd(6);
+		if ((tech_inuse(T_BEAMSWORD) || u.linkmasterswordhack) && obj->otyp == SPE_BEAMSWORD) beamrange += rnd(6);
 
 		(void) bhit(u.dx,u.dy, obj->otyp == SPE_PARTICLE_CANNON ? 200 : obj->otyp == SPE_SNIPER_BEAM ? 70 : beamrange, ZAPPED_WAND,
 			    bhitm, bhito, &obj, TRUE);
@@ -8282,7 +8282,7 @@ boolean cancontrol;	/* does control magic work on this? --Amy */
 			    (*fhitm)(mtmp, obj);
 				if (uarmg && itemhasappearance(uarmg, APP_RAYDUCTNAY_GLOVES) ) range -= 0;
 			    else if (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLADE_ANGER) range -= 1;
-			    else if (tech_inuse(T_BEAMSWORD) && obj->otyp == SPE_BEAMSWORD) range -= 1;
+			    else if ( (tech_inuse(T_BEAMSWORD) || u.linkmasterswordhack) && obj->otyp == SPE_BEAMSWORD) range -= 1;
 			    else range -= 3;
 			}
 		} else {

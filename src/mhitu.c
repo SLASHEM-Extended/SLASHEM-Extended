@@ -6246,7 +6246,7 @@ hitmu(mtmp, mattk)
 {
 	register struct permonst *mdat = mtmp->data;
 	register int tmp = d((int)mattk->damn, (int)mattk->damd*10);
-	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone()) tmp = (int)mattk->damn * (int)mattk->damd * 10;
+	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || (uwep && uwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI)) tmp = (int)mattk->damn * (int)mattk->damd * 10;
 	register boolean not_affected = defends((int)mattk->adtyp, uwep);
 	register int uncancelled, ptmp;
 	register boolean statsavingthrow = 0;
@@ -6314,7 +6314,7 @@ hitmu(mtmp, mattk)
 	if( (is_undead(mdat) || mtmp->egotype_undead) && midnight())
 		dmg += d((int)mattk->damn, (int)mattk->damd); /* extra damage */
 
-	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone()) {
+	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || (uwep && uwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI)) {
 		dmg = (int)mattk->damn * (int)mattk->damd;
 		if( (is_undead(mdat) || mtmp->egotype_undead) && midnight())
 			dmg *= 2;
@@ -10539,7 +10539,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 	char	 buf[BUFSZ];
 	struct trap *t = t_at(u.ux, u.uy);
 	int	tmp = d((int)mattk->damn, (int)mattk->damd);
-	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone()) tmp = (int)mattk->damn * (int)mattk->damd;
+	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || (uwep && uwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI)) tmp = (int)mattk->damn * (int)mattk->damd;
 	int	tim_tmp;
 	register struct obj *otmp2;
 	int	i;
@@ -13517,7 +13517,7 @@ boolean ufound;
 	}
     else {
 	register int tmp = d((int)mattk->damn, (int)mattk->damd);
-	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone()) tmp = (int)mattk->damn * (int)mattk->damd;
+	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || (uwep && uwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI)) tmp = (int)mattk->damn * (int)mattk->damd;
 	register boolean not_affected = defends((int)mattk->adtyp, uwep);
 
 	hitmsg(mtmp, mattk);
@@ -16271,7 +16271,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	if (rnd(100) < ACURR(A_CHA)) return 0; /* no message because it would get too spammy */
 
 	dmgplus = d((int)mattk->damn, (int)mattk->damd);	/* why the heck did gaze attacks have fixed damage??? --Amy */
-	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone()) dmgplus = (int)mattk->damn * (int)mattk->damd;
+	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || (uwep && uwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI)) dmgplus = (int)mattk->damn * (int)mattk->damd;
 
 	switch(atttypB) {
 	    case AD_STON:
@@ -17917,7 +17917,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if (!mtmp->mcan && canseemon(mtmp) && !resists_blnd(&youmonst)
 			&& distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM && (issoviet || !rn2(6)) ) {
 		    int blnd = d((int)mattk->damn, (int)mattk->damd);
-		    if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone()) blnd = (int)mattk->damn * (int)mattk->damd;
+		    if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || (uwep && uwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI)) blnd = (int)mattk->damn * (int)mattk->damd;
 
 		    if (FunnyHallu) pline("The power of %s aurora overwhelms you!", s_suffix(mon_nam(mtmp)));
 		    else You("are blinded by %s radiance!", s_suffix(mon_nam(mtmp)));

@@ -3203,7 +3203,6 @@ mon_tele:
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 		how = SCR_BRANCH_TELEPORT;
 
-			int nlev;
 			d_level flev;
 
 			if (mon_has_amulet(mtmp) || In_endgame(&u.uz)) {
@@ -3214,8 +3213,7 @@ mon_tele:
 				}
 			    return 2;
 			}
-			nlev = random_branchport_level();
-			get_level(&flev, nlev);
+			flev = random_branchport_level();
 			migrate_to_level(mtmp, ledger_no(&flev), MIGR_RANDOM, (coord *)0);
 			if (oseen) makeknown(SCR_BRANCH_TELEPORT);
 

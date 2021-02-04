@@ -23851,7 +23851,7 @@ register int	mmflags;
 		mtmp->mpeaceful = mtmp->mtame = FALSE;
 	}
 
-	if (u.uprops[GHOST_WORLD].extrinsic || (uarmc && uarmc->oartifact == ART_HAUNTNIGHT) || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || GhostWorld || have_ghostlystone() ) {
+	if (u.uprops[GHOST_WORLD].extrinsic || (uarmc && uarmc->oartifact == ART_HAUNTNIGHT) || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || GhostWorld || have_ghostlystone() || (uwep && uwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI) ) {
 		mtmp->minvis = mtmp->perminvis = mtmp->minvisreal = 1;
 	}
 

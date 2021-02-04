@@ -218,6 +218,19 @@ int thrown;
 	    if (launcher && launcher->otyp == ELVEN_BOW &&
 	      !launcher->cursed && !rn2(3))
 		multishot++;
+
+	    if (launcher && launcher->oartifact == ART_MULTISHOTTEMSO && launcher->lamplit && !(PlayerCannotUseSkills)) {
+		switch (P_SKILL(P_DJEM_SO)) {
+			default:	break; /* No bonus */
+			case P_BASIC:	multishot++; break;
+			case P_SKILLED:	multishot += 2; break;
+			case P_EXPERT:	multishot += 3; break;
+			case P_MASTER:	multishot += 4; break;
+			case P_GRAND_MASTER:	multishot += 5; break;
+			case P_SUPREME_MASTER:	multishot += 6; break;
+		}
+	    }
+
 	    if (launcher && launcher->otyp == WILDHILD_BOW && obj->otyp == ODOR_SHOT) multishot++;
 	    if (launcher && launcher->otyp == COMPOST_BOW && obj->otyp == FORBIDDEN_ARROW) multishot++;
 
@@ -503,7 +516,8 @@ int thrown;
 
 	}
 
-	if (tech_inuse(T_BEAMSWORD) && objects[obj->otyp].oc_skill == P_LIGHTSABER && obj->lamplit ) {
+	if ((tech_inuse(T_BEAMSWORD) || (obj && obj->oartifact == ART_LINK_S_MASTER_SWORD)) && is_lightsaber(obj) && obj->lamplit ) {
+		if (obj && obj->oartifact == ART_LINK_S_MASTER_SWORD) u.linkmasterswordhack = 1;
 		struct obj *pseudo;
 		pseudo = mksobj(SPE_BEAMSWORD, FALSE, 2, FALSE);
 		if (!pseudo) goto bladeangerdone;

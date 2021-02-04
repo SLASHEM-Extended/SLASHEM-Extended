@@ -21141,6 +21141,28 @@ boolean knoweverything;
 					pline("Artifact specs: teleportitis when worn. It teleports your entire body, not just your tits. :D"); break;
 				case ART_VERA_S_ICECUBE_SMASH:
 					pline("Artifact specs: kicking a monster with them can slow it down, cold resistance while worn. Lawful."); break;
+				case ART_KEYSTRUSITE:
+					pline("Artifact specs: x-ray vision when worn."); break;
+				case ART_BE_HI_WITHOUT_DRUGS:
+					pline("Artifact specs: shows funny hallucination messages when worn."); break;
+				case ART_RUNEZ_SCAZMATAR:
+					pline("Artifact specs: +2 to-hit and +4 damage."); break;
+				case ART_SCJWILLX_:
+					pline("Artifact specs: +5 to-hit and +10 damage, makes you move a bit slower, +5 wisdom when wielded."); break;
+				case ART_SERIALSABER:
+					pline("Artifact specs: +5 to-hit and +8 damage, drains energy less quickly the higher your form II (Makashi) skill is."); break;
+				case ART_PESSIVETROIN:
+					pline("Artifact specs: while you're wielding it, your amount of training in lightsaber forms can randomly go up or down. This can cause you to lose skill levels if they get drained enough."); break;
+				case ART_LINK_S_MASTER_SWORD:
+					pline("Artifact specs: +8 damage, throwing it at a monster while it's lit shoots a beam that can hit several enemies."); break;
+				case ART_ACTUAL_BEAMER:
+					pline("Artifact specs: +2 to-hit and +6 damage, teleportitis when wielded."); break;
+				case ART_SCHWILLSCHWILLSCHWILLSCHWI:
+					pline("Artifact specs: +8 damage, fires a beam at enemies if you use it in melee, monsters always spawn doubly invisible and always deal maximum damage with their attacks."); break;
+				case ART_DJARWETHEREYET:
+					pline("Artifact specs: if you shoot monsters with it, your form V (Djem So) skill is trained. The training speed is doubled if both blades of this weapon are lit."); break;
+				case ART_MULTISHOTTEMSO:
+					pline("Artifact specs: +1 multishot for every form V (Djem So) skill point."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;
