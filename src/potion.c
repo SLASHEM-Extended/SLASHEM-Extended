@@ -1449,6 +1449,7 @@ playerwearssexyflats()
 		if (itemhasappearance(uarmf, APP_FLUFFY_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_UNISEX_PUMPS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_WOODEN_CLOGS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_CYAN_SNEAKERS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_REGULAR_SNEAKERS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_ELITE_SNEAKERS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_FUR_BOOTS)) return TRUE;

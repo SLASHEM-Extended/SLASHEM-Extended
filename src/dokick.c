@@ -669,6 +669,14 @@ register boolean clumsy;
 		}
 	}
 
+	if (uarmf && uarmf->oartifact == ART_VERA_S_ICECUBE_SMASH && !resists_cold(mon)) {
+		pline("Your very lovely female 'Vera' sneakers clamp %s's %s!", mon_nam(mon), makeplural(mbodypart(mon,TOE)) );
+		if (!resist(mon, RING_CLASS, 0, NOTELL)) {
+			mon_adjust_speed(mon, -1, (struct obj *)0 );
+			m_dowear(mon, FALSE); /* might want speed boots */
+		}
+	}
+
 	if (uarmf && uarmf->oartifact == ART_SHIT_KICKERS) {
 		if (!resist(mon, WEAPON_CLASS, 0, NOTELL) && !mon->mconf) {
 			mon->mconf = TRUE;

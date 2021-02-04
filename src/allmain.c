@@ -1218,10 +1218,13 @@ moveloop()
 					    if (!skates3) skates3 = find_skates3();
 					    static int skates4 = 0;
 					    if (!skates4) skates4 = find_skates4();
+					    static int skates5 = 0;
+					    if (!skates5) skates5 = find_cyan_sneakers();
 					    if ((uarmf && uarmf->otyp == skates)
 						    || (uarmf && uarmf->otyp == skates2)
 						    || (uarmf && uarmf->otyp == skates3)
 						    || (uarmf && uarmf->otyp == skates4)
+						    || (uarmf && uarmf->otyp == skates5)
 						    || (uwep && uwep->oartifact == ART_GLACIERDALE)
 						    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
 						    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
@@ -1567,10 +1570,13 @@ moveloop()
 				    if (!skates3) skates3 = find_skates3();
 				    static int skates4 = 0;
 				    if (!skates4) skates4 = find_skates4();
+				    static int skates5 = 0;
+				    if (!skates5) skates5 = find_cyan_sneakers();
 				    if ((uarmf && uarmf->otyp == skates)
 					    || (uarmf && uarmf->otyp == skates2)
 					    || (uarmf && uarmf->otyp == skates3)
 					    || (uarmf && uarmf->otyp == skates4)
+					    || (uarmf && uarmf->otyp == skates5)
 					    || (uwep && uwep->oartifact == ART_GLACIERDALE)
 					    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
 					    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
@@ -13656,6 +13662,8 @@ boolean new_game;	/* false => restoring an old game */
 
 		/* todo area */
 
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cyan sneakers")) OBJ_DESCR(objects[i]) = "todo";
+
 	}
 	}
 
@@ -14850,6 +14858,8 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "distancing boots")) OBJ_DESCR(objects[i]) = "masofadan turib chizilmasin";
 
 		/* todo area */
+
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cyan sneakers")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}

@@ -10275,6 +10275,11 @@ register int osym, dmgtyp;
 				break;
 			}
 
+		    if (uarmf && itemhasappearance(uarmf, APP_CYAN_SNEAKERS) ) {
+				skip++;
+				break;
+			}
+
 		    if (uwep && uwep->oartifact == ART_GLACIERDALE ) {
 				skip++;
 				break;

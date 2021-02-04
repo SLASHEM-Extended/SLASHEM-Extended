@@ -10639,6 +10639,8 @@ boolean knoweverything;
 			pline("These sandals count as sexy flats because they look cute.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_REGULAR_SNEAKERS))
 			pline("A pair of sexy flat sneakers.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_CYAN_SNEAKERS))
+			pline("These incredibly cuuuuuuute cyan girl sneakers look wonderfully soft, and therefore absolutely count as sexy flats. They can also walk on ice and snow without slipping, and what's more, wearing them prevents your potions from being destroyed by cold!");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ELITE_SNEAKERS))
 			pline("Due to looking so cuddly-gentle, these sneakers count as sexy flats.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FUR_BOOTS))
@@ -12581,6 +12583,8 @@ boolean knoweverything;
 				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_AT].oc_oprop), objects[DUMMY_BOOTS_AT].a_ac, objects[DUMMY_BOOTS_AT].a_can ); break;
 			case DUMMY_BOOTS_AU:
 				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_AU].oc_oprop), objects[DUMMY_BOOTS_AU].a_ac, objects[DUMMY_BOOTS_AU].a_can ); break;
+			case DUMMY_BOOTS_AV:
+				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_AV].oc_oprop), objects[DUMMY_BOOTS_AV].a_ac, objects[DUMMY_BOOTS_AV].a_can ); break;
 
 			case EVIL_DRAGON_SCALE_MAIL:
 				pline("An extremely sturdy armor that can deflect a heck of a lot of attacks. It also does something very nasty when worn, though..."); break;
@@ -21115,6 +21119,8 @@ boolean knoweverything;
 					pline("Artifact specs: if you're wearing shoes, they'll count as wedge heels and can walk on snow, but if you're barefoot, you're instead affected by the curses of Anastasia and Julietta!"); break;
 				case ART_TELEPORTITS:
 					pline("Artifact specs: teleportitis when worn. It teleports your entire body, not just your tits. :D"); break;
+				case ART_VERA_S_ICECUBE_SMASH:
+					pline("Artifact specs: kicking a monster with them can slow it down, cold resistance while worn. Lawful."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

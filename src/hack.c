@@ -2021,11 +2021,14 @@ domove()
 		    if (!skates3) skates3 = find_skates3();
 		    static int skates4 = 0;
 		    if (!skates4) skates4 = find_skates4();
+		    static int skates5 = 0;
+		    if (!skates5) skates5 = find_cyan_sneakers();
 		    if ((uarmf && uarmf->otyp == skates)
 			    || (powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME)
 			    || (uarmf && uarmf->otyp == skates2)
 			    || (uarmf && uarmf->otyp == skates3)
 			    || (uarmf && uarmf->otyp == skates4)
+			    || (uarmf && uarmf->otyp == skates5)
 			    || (uwep && uwep->oartifact == ART_GLACIERDALE)
 			    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
 			    || (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE)

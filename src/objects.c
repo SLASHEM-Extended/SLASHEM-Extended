@@ -3061,6 +3061,8 @@ BOOTS("dummy boots AT", "golden shoes",
 		0, 1,  0,  0, 2, 8, 50,  9, 1, MT_GOLD, CLR_YELLOW, 1, 0),
 BOOTS("dummy boots AU", "zero-drop shoes", /* you can be pushed back farther */
 		0, 1,  0,  0, 2, 8, 50,  9, 1, MT_WAX, CLR_BLACK, 1, APP_ZERO_DROP_SHOES),
+BOOTS("dummy boots AV", "cyan sneakers",
+		0, 1,  0,  0, 2, 8, 50,  9, 1, MT_LEATHER, CLR_BRIGHT_CYAN, 1, APP_CYAN_SNEAKERS),
 
 BOOTS("levitation boots", "snow boots",
 		0, 1,  LEVITATION,120, 2, 8, 50,  9, 0, MT_LEATHER, HI_LEATHER, 5, APP_SNOW_BOOTS),

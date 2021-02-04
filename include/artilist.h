@@ -8273,6 +8273,10 @@ A("Teleportits",				FLEECY_CORSET, /* inspired by nabru, teleportitis when worn 
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
+A("Vera's Icecube Smash",				LOW_BOOTS, /* initialized to always be cyan sneakers, kicking a monster slows it down unless it's immune to cold or makes a saving throw */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 2500L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

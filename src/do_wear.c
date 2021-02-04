@@ -274,6 +274,7 @@ Boots_on()
 	case DUMMY_BOOTS_AS:
 	case DUMMY_BOOTS_AT:
 	case DUMMY_BOOTS_AU:
+	case DUMMY_BOOTS_AV:
 		if (!uarmf->cursed) curse(uarmf);
 		break;
 
@@ -692,6 +693,7 @@ Boots_off()
 	case DUMMY_BOOTS_AS:
 	case DUMMY_BOOTS_AT:
 	case DUMMY_BOOTS_AU:
+	case DUMMY_BOOTS_AV:
 	case DISCONNECTED_BOOTS:
 	case BOSS_BOOTS:
 	case SENTIENT_HIGH_HEELED_SHOES:
