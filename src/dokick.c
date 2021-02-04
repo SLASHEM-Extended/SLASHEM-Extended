@@ -1261,6 +1261,7 @@ xchar x, y;
 		pline("%s %s loose.",
 		      The(distant_name(kickobj, xname)),
 		      otense(kickobj, "come"));
+	    if (kickobj && is_metallic(kickobj)) wake_nearby(); /* metallic objects make noise --Amy */
 	    obj_extract_self(kickobj);
 	    newsym(x, y);
 	    if (costly && (!costly_spot(u.ux, u.uy) ||
@@ -1604,6 +1605,7 @@ dokick()
 				 unless it also happens to be trapped */
 			(maploc->doormask & (D_LOCKED|D_TRAPPED)) == D_LOCKED ?
 			      "Your kick uncovers" : "You kick open");
+			wake_nearby();
 			exercise(A_DEX, TRUE);
 			if(maploc->doormask & D_TRAPPED) {
 			    maploc->doormask = D_NODOOR;
@@ -1624,6 +1626,7 @@ dokick()
 		if(maploc->typ == SCORR) {
 		    if(!Levitation && ((rn2(25) < avrg_attrib ) || !rn2(5) ) ) {
 			pline("Crash!  You kick open a secret passage!");
+			wake_nearby();
 			exercise(A_DEX, TRUE);
 			maploc->typ = CORR;
 			if (Blind)
@@ -1647,6 +1650,7 @@ dokick()
 			    pline("CRASH!  You destroy the throne.");
 			    newsym(x, y);
 			}
+			wake_nearby();
 			exercise(A_DEX, TRUE);
 			return(1);
 		    } else if(Luck > 0 && !rn2(3) && !maploc->looted) {
@@ -1801,6 +1805,7 @@ dokick()
 		if(IS_TOILET(maploc->typ)) {
 		   if(Levitation) goto dumb;
 		   pline("Klunk!");
+		   if (!rn2(5)) wake_nearby();
 		   if (!rn2(4)) breaktoilet(x,y);
 		   return(1);
 		}
@@ -1829,6 +1834,7 @@ dokick()
 				if(flags.soundok)
 					pline("Klunk!  The pipes vibrate noisily.");
 				else pline("Klunk!");
+				if (!rn2(5)) wake_nearby();
 				exercise(A_DEX, TRUE);
 				return(1);
 			} else if(!(maploc->looted & S_LPUDDING) && !rn2(3) && !((specpudding == 1) && (mvitals[PM_BLACK_PUDDING].mvflags & G_GONE))) {
@@ -1878,6 +1884,7 @@ ouch:
 
 			if (uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && !rn2(3) && IS_STWALL(maploc->typ) && !(levl[x][y].wall_info & W_NONDIGGABLE)) {
 				pline("Crash! Your kick razed the wall!");
+				wake_nearby();
 				maploc->typ = CORR;
 				newsym(x,y);
 				return(1);
@@ -1940,6 +1947,7 @@ dumb:
 		boolean shopdoor = *in_rooms(x, y, SHOPBASE) ? TRUE : FALSE;
 		/* break the door */
 		u.cnd_kicklockcount++;
+		wake_nearby();
 		if(maploc->doormask & D_TRAPPED) {
 		    if (flags.verbose) You("kick the door.");
 		    exercise(A_STR, FALSE);
@@ -1983,6 +1991,7 @@ dumb:
 	    if (Blind) feel_location(x,y);	/* we know we hit it */
 	    exercise(A_STR, TRUE);
 	    pline("WHAMMM!!!");
+	    wake_nearby();
 	    if (in_town(x, y))
 		for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
 		    if (DEADMONSTER(mtmp)) continue;
