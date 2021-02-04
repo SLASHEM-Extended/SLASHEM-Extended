@@ -3529,6 +3529,17 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 
 	/* todo area */
 
+	{ SCR_SKILL_GROWTH, "todo" },
+	{ BEAMSWORD, "todo" },
+	{ LASERXBOW, "todo" },
+	{ CLOAK_OF_BLINDNESS_RESISTANCE, "todo" },
+	{ CLOAK_OF_HALLUCINATION_RESISTA, "todo" },
+	{ AMULET_OF_CLEAR_VIEW, "todo" },
+	{ SPE_ASTRAL_VIEW, "todo" },
+	{ SPE_CAROTINE_INJECTION, "todo" },
+	{ SPE_DOWNER_TRIP, "todo" },
+	{ SCR_BRANCH_TELEPORT, "todo" },
+
 	{0, "" }
 };
 
@@ -6377,6 +6388,17 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 
 	/* todo area */
 
+	{ SCR_SKILL_GROWTH, "todo" },
+	{ BEAMSWORD, "todo" },
+	{ LASERXBOW, "todo" },
+	{ CLOAK_OF_BLINDNESS_RESISTANCE, "todo" },
+	{ CLOAK_OF_HALLUCINATION_RESISTA, "todo" },
+	{ AMULET_OF_CLEAR_VIEW, "todo" },
+	{ SPE_ASTRAL_VIEW, "todo" },
+	{ SPE_CAROTINE_INJECTION, "todo" },
+	{ SPE_DOWNER_TRIP, "todo" },
+	{ SCR_BRANCH_TELEPORT, "todo" },
+
 	{0, "" }
 };
 
@@ -7345,7 +7367,7 @@ plus:
 			is_lightsaber(obj) ||
 			obj->otyp == STICK_OF_DYNAMITE) {
 		    if (obj->lamplit) {
-			if ((obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == SITH_STAFF || obj->otyp == LASER_POLE || obj->otyp == WHITE_DOUBLE_LIGHTSABER) && obj->altmode) strcat(bp, " (2xlit)");
+			if ((obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASERXBOW || obj->otyp == SITH_STAFF || obj->otyp == LASER_POLE || obj->otyp == WHITE_DOUBLE_LIGHTSABER) && obj->altmode) strcat(bp, " (2xlit)");
 			else strcat(bp, " (lit)");
 		    }
 #  ifdef DEBUG

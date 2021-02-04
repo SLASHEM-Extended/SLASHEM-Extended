@@ -12815,6 +12815,9 @@ boolean new_game;	/* false => restoring an old game */
 
 	/* todo area */
 
+	obj_descr[SPE_ASTRAL_VIEW].oc_name = "todo";
+	obj_descr[SPE_CAROTINE_INJECTION].oc_name = "todo";
+	obj_descr[SPE_DOWNER_TRIP].oc_name = "todo";
 
 	{
 
@@ -13663,6 +13666,8 @@ boolean new_game;	/* false => restoring an old game */
 		/* todo area */
 
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cyan sneakers")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "coppered cloak")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "vivarium cloak")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -14012,6 +14017,10 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_MAGIC_CONTROL].oc_name = "sehrli boshqarish";
 
 	/* todo area */
+
+	obj_descr[SPE_ASTRAL_VIEW].oc_name = "todo";
+	obj_descr[SPE_CAROTINE_INJECTION].oc_name = "todo";
+	obj_descr[SPE_DOWNER_TRIP].oc_name = "todo";
 
 	{
 
@@ -14860,6 +14869,8 @@ boolean new_game;	/* false => restoring an old game */
 		/* todo area */
 
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cyan sneakers")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "coppered cloak")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "vivarium cloak")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}

@@ -582,6 +582,7 @@ struct monst *mon;
 		case GREEN_LIGHTSABER:  tmp += rnd(13); break;
 		case BLUE_LIGHTSABER:   tmp += rnd(12); break;
 		case LASER_SWORD:   tmp += rnd(12); break;
+		case BEAMSWORD:   tmp += rnd(10); break;
 		case MYSTERY_LIGHTSABER:   tmp += rnd(12); break;
 		case VIOLET_LIGHTSABER:	tmp += rnd(8); break;
 		case YELLOW_LIGHTSABER:	tmp += rnd(12); break;
@@ -597,6 +598,10 @@ struct monst *mon;
 		case LASERDENT: 
 					if (otmp->altmode) tmp += rnd(12);
 					tmp += rnd(11); break;
+
+		case LASERXBOW: 
+					if (otmp->altmode) tmp += rnd(16);
+					tmp += rnd(16); break;
 
 		case SITH_STAFF:
 					if (otmp->altmode) tmp += rnd(9);
@@ -668,6 +673,7 @@ struct monst *mon;
 		case GREEN_LIGHTSABER:  tmp += rnd(9); break;
 		case BLUE_LIGHTSABER:   tmp += rnd(8); break;
 		case LASER_SWORD:   tmp += rnd(8); break;
+		case BEAMSWORD:   tmp += rnd(10); break;
 		case MYSTERY_LIGHTSABER:   tmp += rnd(8); break;
 		case VIOLET_LIGHTSABER:	tmp += rnd(6); break;
 		case YELLOW_LIGHTSABER:	tmp += rnd(10); break;
@@ -683,6 +689,10 @@ struct monst *mon;
 		case LASERDENT:
 					if (otmp->altmode) tmp += rnd(13);
 					tmp += rnd(12); break;
+
+		case LASERXBOW: 
+					if (otmp->altmode) tmp += rnd(10);
+					tmp += rnd(10); break;
 
 		case SITH_STAFF:
 					if (otmp->altmode) tmp += rnd(9);
@@ -1060,6 +1070,7 @@ struct monst *mon;
 		case GREEN_LIGHTSABER:  tmp += rnd(13); break;
 		case BLUE_LIGHTSABER:   tmp += rnd(12); break;
 		case LASER_SWORD:   tmp += rnd(12); break;
+		case BEAMSWORD:   tmp += rnd(10); break;
 		case MYSTERY_LIGHTSABER:   tmp += rnd(12); break;
 		case VIOLET_LIGHTSABER:	tmp += rnd(8); break;
 		case YELLOW_LIGHTSABER:	tmp += rnd(12); break;
@@ -1075,6 +1086,10 @@ struct monst *mon;
 		case LASERDENT: 
 					if (otmp->altmode) tmp += rnd(12);
 					tmp += rnd(11); break;
+
+		case LASERXBOW: 
+					if (otmp->altmode) tmp += rnd(16);
+					tmp += rnd(16); break;
 
 		case SITH_STAFF:
 					if (otmp->altmode) tmp += rnd(9);
@@ -1147,6 +1162,7 @@ struct monst *mon;
 		case GREEN_LIGHTSABER:  tmp += rnd(9); break;
 		case BLUE_LIGHTSABER:   tmp += rnd(8); break;
 		case LASER_SWORD:   tmp += rnd(8); break;
+		case BEAMSWORD:   tmp += rnd(10); break;
 		case MYSTERY_LIGHTSABER:   tmp += rnd(8); break;
 		case VIOLET_LIGHTSABER:	tmp += rnd(6); break;
 		case YELLOW_LIGHTSABER:	tmp += rnd(10); break;
@@ -1162,6 +1178,10 @@ struct monst *mon;
 		case LASERDENT: 
 					if (otmp->altmode) tmp += rnd(13);
 					tmp += rnd(12); break;
+
+		case LASERXBOW: 
+					if (otmp->altmode) tmp += rnd(10);
+					tmp += rnd(10); break;
 
 		case SITH_STAFF:
 					if (otmp->altmode) tmp += rnd(9);
@@ -2557,6 +2577,7 @@ boolean polespecial; /* may use polearm for monster-versus-monster combat */
 		  break;
 		case P_CROSSBOW:
 		  propellor = (oselect(mtmp, DEMON_CROSSBOW));
+		  if (!propellor) propellor = (oselect(mtmp, LASERXBOW));
 		  if (!propellor) propellor = (oselect(mtmp, ZOOM_SHOT_CROSSBOW));
 		  if (!propellor) propellor = (oselect(mtmp, BALLISTA));
 		  if (!propellor) propellor = (oselect(mtmp, HELO_CROSSBOW));
@@ -2685,11 +2706,11 @@ static const NEARDATA short hwep[] = {
 	  BLACK_AESTIVALIS, RUNESWORD, MALLET, HEAVY_HAMMER, BRIDGE_MUZZLE,
 	  WOODEN_GETA, LACQUERED_DANCING_SHOE, HIGH_HEELED_SANDAL, SEXY_LEATHER_PUMP, SPIKED_BATTLE_BOOT, HOMING_TORPEDO,
 	  DWARVISH_MATTOCK, SOFT_MATTOCK, YATAGAN, CHROME_BLADE, AIR_PRESSURE_HAMMER,
-	  BENT_SABLE, HOE_SABLE, MYTHICAL_SABLE, INKA_BOOT, SOFT_LADY_SHOE, MARBLE_CHUNK,
+	  BENT_SABLE, HOE_SABLE, MYTHICAL_SABLE, INKA_BOOT, SOFT_LADY_SHOE, MARBLE_CHUNK, LASERXBOW,
 	  BLOCK_HEELED_SANDAL, PROSTITUTE_SHOE, LIGHTWHIP, ELECTRIC_CIGARETTE, NANO_HAMMER, LASER_SWATTER, STARWARS_MACE,
 	  RED_DOUBLE_LIGHTSABER, WHITE_DOUBLE_LIGHTSABER, LASERDENT, SITH_STAFF, LASER_POLE, RED_LIGHTSABER,
 	  MYSTERY_LIGHTSABER, BLUE_LIGHTSABER, LASER_SWORD, VIOLET_LIGHTSABER, WHITE_LIGHTSABER, YELLOW_LIGHTSABER,
-	  GREEN_LIGHTSABER, PIANO, DESERT_SWORD,
+	  BEAMSWORD, GREEN_LIGHTSABER, PIANO, DESERT_SWORD,
 	  WEDGED_LITTLE_GIRL_SANDAL, SOFT_GIRL_SNEAKER, STURDY_PLATEAU_BOOT_FOR_GIRLS, HUGGING_BOOT,
 	  BLOCK_HEELED_COMBAT_BOOT, ORGANOBLADE, GUITAR, DARK_HORN, SHADOWBLADE, ROMAN_SWORD, ETHER_SAW, SKY_HORN,
 	  TWO_HANDED_SWORD, YESTERDAY_STAR, DEVIL_STAR, BATTLE_AXE, HUGE_CLUB, CHEMISTRY_SPACE_AXE, PLATINUM_SABER,
@@ -3039,7 +3060,7 @@ struct monst * mon;
 	    }
 	} else {
 		/* Double Lightsaber in single mode? Ignite second blade */
-		if ((obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASER_POLE || obj->otyp == SITH_STAFF || obj->otyp == WHITE_DOUBLE_LIGHTSABER) && !obj->altmode) {
+		if ((obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASERXBOW || obj->otyp == LASER_POLE || obj->otyp == SITH_STAFF || obj->otyp == WHITE_DOUBLE_LIGHTSABER) && !obj->altmode) {
 		    /* Do we want to activate dual bladed mode? */
 		    if (!obj->altmode && (!obj->cursed || rn2(4))) {
 			if (canseemon(mon)) pline("%s ignites the second blade of %s.", 

@@ -26850,6 +26850,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Depressed Player'. It reads: 'Ey fuck you! What is that?'",
 	"Incoming message for Player 1. The message is from 'Depressed Player'. It reads: 'Nooooou, now it's apparently bugged of course, and doesn't work anymore!'",
 	"Incoming message for Player 1. The message is from 'Depressed Player'. It reads: 'eeeeeeeeeeey... greeeat... oh fuck... then that was it now. Because I'm not going to repeat the last half hour of play that led up to the crash.'",
+	"You can see through walls!",
+	"You feel like you're on a bad trip that lacks fleecy colors!",
 
 };
 

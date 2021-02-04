@@ -11318,6 +11318,10 @@ boolean knoweverything;
 				pline("Provides regeneration and MC3."); break;
 			case CLOAK_OF_DISCOVERY:
 				pline("This cloak grants autosearching as well as MC3."); break;
+			case CLOAK_OF_BLINDNESS_RESISTANCE:
+				pline("While you wear this cloak, the blindness status effect is suppressed. It also grants MC3."); break;
+			case CLOAK_OF_HALLUCINATION_RESISTA:
+				pline("Grants hallucination resistance and 3 points of magic cancellation."); break;
 			case BIONIC_CLOAK:
 				pline("You can see invisible things while wearing this cloak, and will also have 3 points of magic cancellation."); break;
 			case CLOAK_OF_PORTATION:
@@ -13437,6 +13441,8 @@ boolean knoweverything;
 				pline("This amulet grants disintegration resistance while worn."); break;
 			case AMULET_OF_ACID_RESISTANCE:
 				pline("Wearing this amulet causes you to be resistant to acid. This resistance doesn't protect your inventory from acid damage though."); break;
+			case AMULET_OF_CLEAR_VIEW:
+				pline("An amulet that grants blindness resistance. While wearing it, blindness effects do continue running in the background, but you'll retain your ability to see."); break;
 			case AMULET_OF_REGENERATION:
 				pline("An amulet that increases your hit point regeneration when worn. It increases your food consumption rate."); break;
 			case AMULET_OF_CONFLICT:
@@ -13675,6 +13681,8 @@ boolean knoweverything;
 				pline("This lightsaber does RNG-determined damage, but it needs to be turned on in order to work. An activated lightsaber is good for engraving."); break;
 			case LASERDENT:
 				pline("A two-handed lightsaber that uses the trident skill and can be set to double mode, increasing its damage. If it's not turned on, it does pitiful damage."); break;
+			case LASERXBOW:
+				pline("This special crossbow is laser-based, you have to apply it to turn it on. It can also be set to double mode, increasing its strength. You can both whack things with it and fire crossbow bolts from it, but unless it's lit, it doesn't work. So make sure to turn it on first! When used properly, it also has a to-hit bonus."); break;
 			case STARWARS_MACE:
 				pline("It's a mace-lightsaber, which needs to be turned on in order to work, and then it deals solid melee damage."); break;
 			case SITH_STAFF:
@@ -13683,6 +13691,8 @@ boolean knoweverything;
 				pline("A polearm-lightsaber! Applying it will turn it on, and then you can apply it again to hit things at two squares distance. Using it in melee is only effective while riding, and using it while it's not turned on isn't effective at all."); break;
 			case LASER_SWORD:
 				pline("This lightsaber does good damage, but it needs to be turned on in order to work. It uses the broadsword skill."); break;
+			case BEAMSWORD:
+				pline("This lightsaber does good damage, but it needs to be turned on in order to work. It uses the saber skill."); break;
 			case WHITE_DOUBLE_LIGHTSABER: 
 				pline("A two-handed lightsaber that can be set to double mode in order to do even more damage. It needs to be turned on in order to work, and while activated it is also useful for engraving. It's especially effective against small monsters."); break;
 			case MYSTERY_LIGHTSABER:
@@ -14334,6 +14344,8 @@ boolean knoweverything;
 				pline("A scroll meant to be used in emergency situations that teleports you to a random empty location on the current dungeon level. Beware, some special levels inhibit teleportation!"); break;
 			case SCR_TELE_LEVEL:
 				pline("This scroll will get you out of most sticky situations by warping you to another dungeon level."); break;
+			case SCR_BRANCH_TELEPORT:
+				pline("Teleports you to a random dungeon branch when read. It only selects ones you've already visited in this game, so you can't use it to shortcut to areas you've never been to."); break;
 			case SCR_WARPING:
 				pline("You will warp to any random dungeon level if you read this scroll. It may deposit you at some fairly dangerous place, too."); break;
 			case SCR_FIRE:
@@ -14370,6 +14382,8 @@ boolean knoweverything;
 				pline("You will become temporarily resistant to physical damage when reading this scroll."); break;
 			case SCR_WARDING:
 				pline("You will become temporarily resistant to spell damage when reading this scroll."); break;
+			case SCR_SKILL_GROWTH:
+				pline("A scroll that trains each of your skills by one point."); break;
 			case SCR_WONDER:
 				pline("Reading this scroll teaches a random spell. If it rolls one that you already know, its spell memory is increased."); break;
 			case SCR_HEALING:
@@ -14709,6 +14723,12 @@ boolean knoweverything;
 				pline("A spell that may let you avert death, but it only lasts for a certain amount of time and the chance to be revived on death is not 100%%."); break;
 			case SPE_AULE_SMITHING:
 				pline("This very powerful spell lets you erosionproof an item of your choice when cast."); break;
+			case SPE_ASTRAL_VIEW:
+				pline("A spell that lets you see through walls for a few turns."); break;
+			case SPE_CAROTINE_INJECTION:
+				pline("Deals a few points of damage, but then you have blindness resistance for a period of time."); break;
+			case SPE_DOWNER_TRIP:
+				pline("If you cast this spell, you're afflicted with fear and can't have fear resistance for a while, but you do gain temporary hallucination resistance."); break;
 			case SPE_HORSE_HOP:
 				pline("Cast this spell and you'll temporarily be able to jump, but only while riding."); break;
 			case SPE_LINE_LOSS:

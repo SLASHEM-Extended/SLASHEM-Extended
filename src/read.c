@@ -1033,6 +1033,7 @@ doread()
 			case SCR_NASTY_CURSE:
 			case SCR_TERRAFORMING:
 			case SCR_ALLY:
+			case SCR_SKILL_GROWTH:
 				cartochance = 15;
 				if (!PlayerCannotUseSkills) switch (P_SKILL(P_DEVICES)) {
 					case P_BASIC: cartochance = 16; break;
@@ -1056,6 +1057,7 @@ doread()
 			case SCR_POWER_HEALING:
 			case SCR_REVERSE_IDENTIFY:
 			case SCR_SUPERIOR_MATERIAL:
+			case SCR_BRANCH_TELEPORT:
 				cartochance = 10;
 				if (!PlayerCannotUseSkills) switch (P_SKILL(P_DEVICES)) {
 					case P_BASIC: cartochance = 11; break;
@@ -1173,7 +1175,7 @@ doread()
 	 * care needs to be taken so that the scroll is used up before
 	 * a potential level teleport occurs.
 	 */
-	if (scroll->otyp == SCR_TELEPORTATION || scroll->otyp == SCR_ANTIMATTER || scroll->otyp == SCR_BAD_EFFECT || scroll->otyp == SCR_SIN || scroll->otyp == SCR_TELE_LEVEL || scroll->otyp == SCR_WARPING) {
+	if (scroll->otyp == SCR_TELEPORTATION || scroll->otyp == SCR_ANTIMATTER || scroll->otyp == SCR_BAD_EFFECT || scroll->otyp == SCR_SIN || scroll->otyp == SCR_TELE_LEVEL || scroll->otyp == SCR_BRANCH_TELEPORT || scroll->otyp == SCR_WARPING) {
 	    otemp = *scroll;
 	    otemp.where = OBJ_FREE;
 	    otemp.nobj = (struct obj *)0;
@@ -1227,7 +1229,7 @@ doread()
 				(scroll->blessed ? 2 : 1));
 		}
 		if(!cartokeep && scroll->otyp != SCR_BLANK_PAPER && scroll->oartifact != ART_MARAUDER_S_MAP &&
-		  scroll->otyp != SCR_TELEPORTATION && scroll->otyp != SCR_ANTIMATTER && scroll->otyp != SCR_BAD_EFFECT && scroll->otyp != SCR_SIN && scroll->otyp != SCR_TELE_LEVEL && scroll->otyp != SCR_WARPING) {
+		  scroll->otyp != SCR_TELEPORTATION && scroll->otyp != SCR_ANTIMATTER && scroll->otyp != SCR_BAD_EFFECT && scroll->otyp != SCR_SIN && scroll->otyp != SCR_TELE_LEVEL && scroll->otyp != SCR_BRANCH_TELEPORT && scroll->otyp != SCR_WARPING) {
 		    if (carried(scroll)) useup(scroll);
 		    else if (mcarried(scroll)) m_useup(scroll->ocarry, scroll);
 		    else useupf(scroll, 1L);
@@ -1663,8 +1665,10 @@ int curse_bless;
 	    case STARWARS_MACE:
 	    case LIGHTWHIP:
 	    case LASERDENT:
+	    case LASERXBOW:
 	    case LASER_POLE:
 	    case LASER_SWORD:
+	    case BEAMSWORD:
 	    case SITH_STAFF:
 	    case ELECTRIC_CIGARETTE:
 
@@ -8819,6 +8823,11 @@ retry:
 		else pline("Hmm... that level teleport scroll didn't do anything.");
 		known = TRUE;
 		break;
+	case SCR_BRANCH_TELEPORT:
+	      if (!playerlevelportdisabled()) randombranchtele();
+		else pline("Hmm... that branch teleport scroll didn't do anything.");
+		known = TRUE;
+		break;
 	case SCR_WARPING:
 		known = TRUE;
 		if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
@@ -9165,6 +9174,28 @@ randenchchoice:
 				if (sobj->blessed) incr_itimeout(&HHalf_physical_damage, rnd(500));
 			}
 		}
+		break;
+
+	case SCR_SKILL_GROWTH:
+
+		if (confused) {
+			skilltrainingdecrease(level_difficulty() + 1);
+			if (sobj->cursed) skilltrainingdecrease(level_difficulty() + 1);
+			pline("Must have been a skill-trashing scroll.");
+		} else {
+			if (evilfriday && sobj->cursed) {
+				skilltrainingdecrease(level_difficulty() + 1);
+				pline("Must have been a skill-trashing scroll.");
+			} else {
+				int rndskill = P_DAGGER;
+				for (rndskill = P_DAGGER; rndskill < P_NUM_SKILLS; rndskill++) {
+					P_ADVANCE(rndskill)++;
+				}
+				pline("All of your skills are trained by one point!");
+				known = TRUE;
+			}
+		}
+
 		break;
 
 	case SCR_WARDING: /* half spell damage for a period of time */

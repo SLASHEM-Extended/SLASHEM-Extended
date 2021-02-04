@@ -9210,6 +9210,10 @@ extrachargechoice:
 						    madechoice = 1; sabertype = 10; }
 					else if (yn("Do you want to switch to a starwars mace?")=='y') {
 						    madechoice = 1; sabertype = 11; }
+					else if (yn("Do you want to switch to a beamsword?")=='y') {
+						    madechoice = 1; sabertype = 12; }
+					else if (yn("Do you want to switch to a laserxbow?")=='y') {
+						    madechoice = 1; sabertype = 13; }
 
 				}
 
@@ -9226,6 +9230,10 @@ extrachargechoice:
 					break;
 				}
 				if (sabertype == 10 && (uarms || u.twoweap)) {
+					pline("Something is blocking your second %s!", body_part(HAND));
+					break;
+				}
+				if (sabertype == 13 && (uarms || u.twoweap)) {
 					pline("Something is blocking your second %s!", body_part(HAND));
 					break;
 				}
@@ -9258,8 +9266,12 @@ extrachargechoice:
 					uwep->otyp = SITH_STAFF;
 				} else if (sabertype == 10) {
 					uwep->otyp = LASER_POLE;
-				} else /* sabertype == 11 */
+				} else if (sabertype == 11) {
 					uwep->otyp = STARWARS_MACE;
+				} else if (sabertype == 12) {
+					uwep->otyp = BEAMSWORD;
+				} else /* sabertype == 13 */
+					uwep->otyp = LASERXBOW;
 
 				pline("Your lightsaber warps, and changes into a different one!");
 				/* known problem: you can pick the form that your lightsaber already has */

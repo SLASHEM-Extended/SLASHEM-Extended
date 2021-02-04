@@ -92,6 +92,7 @@ struct obj *otmp;
 		case POT_BLOOD:
 		case WAN_FULL_HEALING:
 		case SCR_TELE_LEVEL:
+		case SCR_BRANCH_TELEPORT:
 		case WAN_TELE_LEVEL:
 		case SCR_ROOT_PASSWORD_DETECTION:
 		case RIN_TIMELY_BACKUP:
@@ -317,6 +318,7 @@ int number;
 		case POT_BLOOD:
 		case WAN_FULL_HEALING:
 		case SCR_TELE_LEVEL:
+		case SCR_BRANCH_TELEPORT:
 		case WAN_TELE_LEVEL:
 		case SCR_ROOT_PASSWORD_DETECTION:
 		case RIN_TIMELY_BACKUP:

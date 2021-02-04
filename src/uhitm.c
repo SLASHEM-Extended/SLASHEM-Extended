@@ -1640,7 +1640,7 @@ int dieroll;
 		/* is it not a melee weapon? */
 		/* KMH, balance patch -- new macros */
 		if (/* if you strike with a bow... */
-		    is_launcher(obj) ||
+		    (is_launcher(obj) && !(obj->otyp == LASERXBOW && obj->lamplit)) ||
 		    /* or strike with a missile in your hand... */
 		    (!thrown && (is_missile(obj) || is_ammo(obj))) ||
 		    /* or use a pole at short range and not mounted... */
@@ -1648,12 +1648,14 @@ int dieroll;
 		    /* lightsaber that isn't lit ;) */
 		    (is_lightsaber(obj) && !obj->lamplit) ||
 		    /* or throw a missile without the proper bow... */
+		    (thrown == 1 && is_ammo(obj) && launcher && launcher->otyp == LASERXBOW && !launcher->lamplit) ||
 		    (thrown == 1 && is_ammo(obj) && 
 		    	!ammo_and_launcher(obj, launcher)) || 
 		    /* This case isn't actually needed so far since 
 		     * you can only throw in two-weapon mode when both
 		     * launchers take the same ammo
 		     */
+		    (thrown == 2 && is_ammo(obj) && launcher && launcher->otyp == LASERXBOW && !launcher->lamplit) ||
 		    (thrown == 2 && is_ammo(obj) && 
 		    	!ammo_and_launcher(obj, launcher))) {
 		    /* then do only 1-2 points of damage */
@@ -1664,7 +1666,7 @@ int dieroll;
 
 		/* Bashing with bows, darts, ranseurs or inactive lightsabers might not be completely useless... --Amy */
 
-		    if ((is_launcher(obj) || is_missile(obj) || (is_pole(obj) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(obj) && !obj->lamplit) ) && !thrown) {
+		    if (( (is_launcher(obj) && !(obj->otyp == LASERXBOW && obj->lamplit)) || is_missile(obj) || (is_pole(obj) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(obj) && !obj->lamplit) ) && !thrown) {
 
 			if (!(PlayerCannotUseSkills) && !rn2(2)) {
 
@@ -2097,6 +2099,10 @@ int dieroll;
 
 			    if (obj->otyp == ANTIMATTER_BULLET) {
 					tmp += 20;
+			    }
+
+			    if (launcher && launcher->otyp == LASERXBOW && launcher->lamplit && launcher->altmode) {
+					tmp += 5;
 			    }
 
 			    if (launcher->oartifact)
@@ -2736,6 +2742,10 @@ int dieroll;
 		if (flags.bash_reminder && !rn2(10)) You("can't fire that weapon effectively while engulfed...");
 	}
 
+	if (thrown && obj && is_ammo(obj) && launcher && launcher->otyp == LASERXBOW && !launcher->lamplit) {
+		if (flags.bash_reminder && !rn2(5)) pline("The laser-based crossbow is ineffective while it's not lit! You need to turn it on or it won't deal meaningful damage!");
+	}
+
 	if (thrown && obj && is_ammo(obj) && launcher && !ammo_and_launcher(obj, launcher)) {
 		if (flags.bash_reminder && !rn2(10)) You("are throwing projectiles that are meant to be fired, which isn't very effective! Better wield an appropriate launcher in your main hand!");
 	}
@@ -2851,9 +2861,9 @@ int dieroll;
 	    wep = PROJECTILE(obj) ? launcher : obj;
 
 		/* bashing with launchers or other "bad" weapons shouldn't give insane bonuses --Amy */
-		if (wep && !((is_launcher(wep) || is_missile(wep) || (is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) ) && !thrown)) tmp += weapon_dam_bonus(wep);
+		if (wep && !(( (is_launcher(wep) && !(wep->otyp == LASERXBOW && wep->lamplit)) || is_missile(wep) || (is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) ) && !thrown)) tmp += weapon_dam_bonus(wep);
 
-		if (wep && !thrown && !((is_launcher(wep) || is_missile(wep) || (is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) )) ) tmp += melee_dam_bonus(wep);	/* extra damage bonus added by Amy */
+		if (wep && !thrown && !(( (is_launcher(wep) && !(wep->otyp == LASERXBOW && wep->lamplit)) || is_missile(wep) || (is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) )) ) tmp += melee_dam_bonus(wep);	/* extra damage bonus added by Amy */
 		if (wep && thrown) tmp += ranged_dam_bonus(wep);	/* ditto */
 
 		if (obj && obj->oartifact == ART_SHOE_BRAND && mon->data->msound == MS_SHOE) {
@@ -3133,7 +3143,7 @@ melatechoice:
 				} /* end lightsaber-specific code */
 
 				/* For some reason, "wep" isn't always defined, yet the checks above don't crash... --Amy */
-				if (wep && !is_missile(wep) && !is_ammo(wep) && !is_launcher(wep) && !(is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) && bimanual(wep)) {
+				if (wep && !is_missile(wep) && !is_ammo(wep) && !(is_launcher(wep) && !(wep->otyp == LASERXBOW && wep->lamplit)) && !(is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) && bimanual(wep)) {
 					u.utwohandedcombatturns++;
 					if (u.utwohandedcombatturns >= 3) {
 						u.utwohandedcombatturns = 0;

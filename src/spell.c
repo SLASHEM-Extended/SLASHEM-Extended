@@ -4334,6 +4334,66 @@ bucchoice:
 
 		break;
 
+	case SPE_ASTRAL_VIEW:
+
+		if(!(HAstral_vision & INTRINSIC)) {
+			You("can see through walls!");
+			incr_itimeout(&HAstral_vision, HAstral_vision ? 1 : (5 + spell_damage_bonus(spellid(spell)) ) );
+		} else {
+			pline("%s", nothing_happens);	/* Already have as intrinsic */
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		}
+
+		break;
+
+	case SPE_CAROTINE_INJECTION:
+
+		if (u.uhp < 6) {
+			You("don't have enough health to cast this!");
+			break;
+		}
+		if (Upolyd && u.mh < 6) {
+			You("don't have enough health to cast this!");
+			break;
+		}
+
+		pline("Ow!");
+		losehp(5, "carotine injection", KILLED_BY);
+
+		if(!(HBlind_resistance & INTRINSIC)) {
+			You("feel able to see freely!");
+			incr_itimeout(&HBlind_resistance, HBlind_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rnd(100) + spell_damage_bonus(spellid(spell))*20));
+		} else {
+			pline("%s", nothing_happens);	/* Already have as intrinsic */
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		}
+
+		break;
+
+	case SPE_DOWNER_TRIP:
+
+		u.uprops[DEAC_FEAR_RES].intrinsic += rnz(250);
+		make_feared(HFeared + rnz(250), TRUE);
+
+		if(!(HHalluc_resistance & INTRINSIC)) {
+			You("feel like you're on a bad trip that lacks fleecy colors!");
+			incr_itimeout(&HHalluc_resistance, HHalluc_resistance ? (rnd(100) + spell_damage_bonus(spellid(spell))) : (rnd(200) + spell_damage_bonus(spellid(spell))*50));
+		} else {
+			pline("%s", nothing_happens);	/* Already have as intrinsic */
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		}
+
+		break;
+
 	case SPE_CONTINGENCY:
 
 		u.contingencyturns = 50 + (spell_damage_bonus(spellid(spell)) * 3);

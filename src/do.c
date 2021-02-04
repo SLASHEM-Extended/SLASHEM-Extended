@@ -913,6 +913,9 @@ register struct obj *obj;
 	case AMULET_OF_ACID_RESISTANCE:
 		pline_The("toilet seems resistant to cleaning vinegar solutions.");
 		break;
+	case AMULET_OF_CLEAR_VIEW:
+		pline_The("toilet is very obviously visible.");
+		break;
 	case AMULET_OF_REGENERATION:
 		pline_The("toilet seems to be self-repairing.");
 		break;

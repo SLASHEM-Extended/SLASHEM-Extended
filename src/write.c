@@ -150,6 +150,7 @@ register struct obj *otmp;
 	case SCR_NASTY_CURSE:
 	case SCR_TERRAFORMING:
 	case SCR_ALLY:
+	case SCR_SKILL_GROWTH:
 		return(30);
 	case SCR_GAIN_MANA:
 	case SCR_LOCKOUT:
@@ -163,6 +164,7 @@ register struct obj *otmp;
 	case SCR_POWER_HEALING:
 	case SCR_REVERSE_IDENTIFY:
 	case SCR_SUPERIOR_MATERIAL:
+	case SCR_BRANCH_TELEPORT:
 		return(40);
 	case SCR_CONSECRATION:
 	case SCR_BOSS_COMPANION:

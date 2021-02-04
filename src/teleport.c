@@ -1834,6 +1834,87 @@ random_teleport_level()
 	return nlev;
 }
 
+/* teleport player to a random branch --Amy */
+void
+randombranchtele()
+{
+
+	d_level dtmp;
+
+	/* make sure you can't be branchported if you're supposed to be immune --Amy */
+	if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+		return;
+	}
+
+	if (playerlevelportdisabled()) {
+		return;
+	}
+
+	dtmp = random_branchport_level();
+
+	schedule_goto(&dtmp, FALSE, FALSE, 0, (char *)0, (char *)0);
+	u.cnd_branchportcount++;
+
+}
+
+/* Random branchport level decision */
+d_level
+random_branchport_level()
+{
+
+	d_level dtmp;
+	extern int n_dgns; /* from dungeon.c */
+	int duncounter, num_ok_dungeons, last_ok_dungeon = 0;
+	int randomnumber;
+
+	for (duncounter = num_ok_dungeons = 0; duncounter < n_dgns; duncounter++) {
+		if (!dungeons[duncounter].dunlev_ureached) continue;
+		if (flags.wonderland && !achieve.perform_invocation) {
+			if (!strcmp(dungeons[duncounter].dname, "Yendorian Tower")) continue;
+			if (!strcmp(dungeons[duncounter].dname, "Forging Chamber")) continue;
+			if (!strcmp(dungeons[duncounter].dname, "Dead Grounds")) continue;
+			if (!strcmp(dungeons[duncounter].dname, "Ordered Chaos")) continue;
+			if (!strcmp(dungeons[duncounter].dname, "Resting Zone TA")) continue;
+			if (!strcmp(dungeons[duncounter].dname, "Resting Zone TB")) continue;
+			if (!strcmp(dungeons[duncounter].dname, "Resting Zone TC")) continue;
+			if (!strcmp(dungeons[duncounter].dname, "Resting Zone TD")) continue;
+			if (!strcmp(dungeons[duncounter].dname, "Resting Zone TE")) continue;
+			if (!strcmp(dungeons[duncounter].dname, "Resting Zone TF")) continue;
+			if (!strcmp(dungeons[duncounter].dname, "Resting Zone TG")) continue;
+			if (!strcmp(dungeons[duncounter].dname, "Resting Zone TH")) continue;
+			if (!strcmp(dungeons[duncounter].dname, "Resting Zone TI")) continue;
+			if (!strcmp(dungeons[duncounter].dname, "Resting Zone TJ")) continue;
+		} 
+		num_ok_dungeons++;
+		last_ok_dungeon = duncounter;
+
+	}
+	if (num_ok_dungeons > 1) randomnumber = rnd(num_ok_dungeons);
+	else randomnumber = 1;
+
+	dtmp.dnum = u.uz.dnum;
+
+	while (randomnumber > 0) {
+
+		randomnumber--;
+
+		dtmp.dnum++;
+		if (dtmp.dnum >= n_dgns) dtmp.dnum = 0;
+
+		while (!dungeons[dtmp.dnum].dunlev_ureached || (flags.wonderland && !achieve.perform_invocation && ( !strcmp(dungeons[dtmp.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[dtmp.dnum].dname, "Forging Chamber") || !strcmp(dungeons[dtmp.dnum].dname, "Dead Grounds") || !strcmp(dungeons[dtmp.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TA") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TB") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TC") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TD") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TE") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TF") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TG") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TH") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TI") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TJ") ) ) ) {
+
+			dtmp.dnum++;
+			if (dtmp.dnum >= n_dgns) dtmp.dnum = 0;
+		}
+	}
+
+	dtmp.dlevel = 1;
+	if (dungeons[dtmp.dnum].dunlev_ureached > 1) dtmp.dlevel = rnd(dungeons[dtmp.dnum].dunlev_ureached);
+
+	return dtmp;
+
+}
+
 /* Banishment level decision */
 int
 random_banish_level()

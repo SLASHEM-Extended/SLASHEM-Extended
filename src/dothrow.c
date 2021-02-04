@@ -194,7 +194,7 @@ int thrown;
 	/* Multishot calculations
 	 */
 	skill = objects[obj->otyp].oc_skill;
-	if ((ammo_and_launcher(obj, uwep) || skill == P_DAGGER || skill == P_KNIFE || skill == P_BOOMERANG || skill == -P_BOOMERANG ||
+	if (( (ammo_and_launcher(obj, uwep) && !(uwep && uwep->otyp == LASERXBOW && !uwep->lamplit) ) || skill == P_DAGGER || skill == P_KNIFE || skill == P_BOOMERANG || skill == -P_BOOMERANG ||
 			skill == -P_DART || skill == -P_SHURIKEN || skill == P_SPEAR || skill == P_JAVELIN) &&
 		!( (Confusion && !Conf_resist) || (Stunned && !Stun_resist) )) {
 	    /* Bonus if the player is proficient in this weapon... */
@@ -443,7 +443,7 @@ int thrown;
 
 	if (multishot > 1 && isfriday && !rn2(3)) multishot = rnd(multishot);
 
-	m_shot.s = ammo_and_launcher(obj,uwep) ? TRUE : FALSE;
+	m_shot.s = (ammo_and_launcher(obj, uwep) && !(uwep && uwep->otyp == LASERXBOW && !uwep->lamplit) ) ? TRUE : FALSE;
 	/* give a message if shooting more than one, or if player
 	   attempted to specify a count */
 	if (multishot > 1 || shotlimit > 0) {
@@ -1551,7 +1551,7 @@ int thrown;
 
 		/* KMH, balance patch -- new macros */
 		if (is_ammo(obj)) {
-		    if (ammo_and_launcher(obj, launcher)) {
+		    if ( (ammo_and_launcher(obj, launcher) && !(launcher && launcher->otyp == LASERXBOW && !launcher->lamplit) ) ) {
 			if (is_launcher(launcher) && 
 					objects[(launcher->otyp)].oc_range) 
 				range = objects[(launcher->otyp)].oc_range;
@@ -1564,7 +1564,7 @@ int thrown;
 		if (uarmh && uarmh->oartifact == ART_VIRUS_ATTACK) range += 2;
 		if (launcher && ammo_and_launcher(obj, launcher) && launcher->otyp == SNIPESLING && obj) range += 5;
 		if (launcher && ammo_and_launcher(obj, launcher) && launcher->otyp == BLUE_BOW && obj) range += 1;
-		if (launcher && ammo_and_launcher(obj, launcher) && obj && obj->otyp == ETHER_BOLT) range += 2;
+		if (launcher && (ammo_and_launcher(obj, launcher) && !(launcher && launcher->otyp == LASERXBOW && !launcher->lamplit) ) && obj && obj->otyp == ETHER_BOLT) range += 2;
 
 		if (Race_if(PM_ENGCHIP) && launcher && objects[launcher->otyp].oc_skill == P_BOW) range += 2;
 		if (Race_if(PM_ENGCHIP) && launcher && objects[launcher->otyp].oc_skill == P_CROSSBOW) range += 2;
@@ -2523,6 +2523,8 @@ boolean polearming;
 		break;
 	    }
 	}
+
+	if (obj && launcher && ammo_and_launcher(obj, launcher) && launcher->otyp == LASERXBOW && launcher->lamplit && launcher->altmode) tmp += 5;
 
 /*	with a lot of luggage, your agility diminishes */
 	if (near_capacity()) tmp -= rnd(near_capacity() * 5);

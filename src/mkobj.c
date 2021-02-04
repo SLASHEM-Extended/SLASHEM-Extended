@@ -1625,7 +1625,7 @@ int
 makegreatitem() /* select the ID number of an item that might be very useful for you --Amy */
 {
 
-	switch (rnd(176)) {
+	switch (rnd(177)) {
 		case 1:
 			return TOOTH_OF_AN_ALGOLIAN_SUNTIGER;
 		case 2:
@@ -1978,6 +1978,8 @@ makegreatitem() /* select the ID number of an item that might be very useful for
 			return BITCHER;
 		case 176:
 			return POT_TECH_LEVEL_UP;
+		case 177:
+			return SCR_BRANCH_TELEPORT;
 		default: /* fail safe */
 			return SCR_IDENTIFY;
 
@@ -2631,12 +2633,14 @@ boolean shopinit;
 					break;
 		case RED_DOUBLE_LIGHTSABER:
 		case LASERDENT:
+		case LASERXBOW:
 		case SITH_STAFF:
 		case LASER_POLE:
 		case WHITE_DOUBLE_LIGHTSABER:
 					otmp->altmode = FALSE;
 		case STARWARS_MACE:
 		case LASER_SWORD:
+		case BEAMSWORD:
 		case GREEN_LIGHTSABER:
 		case BLUE_LIGHTSABER:
 		case MYSTERY_LIGHTSABER:
