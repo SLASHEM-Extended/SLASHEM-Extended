@@ -2915,6 +2915,17 @@ ask_again2:
 		}
 	    }
 	}
+
+#ifndef GOLDOBJ
+	if (u_gold && invent && invent->oclass == COIN_CLASS) {
+	    /* didn't stash [all of] it */
+	    u_gold = invent;
+	    invent = u_gold->nobj;
+	    u_gold->in_use = FALSE;
+	    dealloc_obj(u_gold);
+	}
+#endif
+
 	if (loot_out && loot_reverse) {
 	    add_valid_menu_class(0);	/* reset */
 	    used |= menu_loot(0, current_container, FALSE) > 0;
