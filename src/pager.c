@@ -26852,6 +26852,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Depressed Player'. It reads: 'eeeeeeeeeeey... greeeat... oh fuck... then that was it now. Because I'm not going to repeat the last half hour of play that led up to the crash.'",
 	"You can see through walls!",
 	"You feel like you're on a bad trip that lacks fleecy colors!",
+	"You won't find it so wisible when I thstwike you down with cewestiaw wightning, bouquet",
+	"Thee what thongworthy deedth you can purthue with thith wustpwoof dagger",
 
 };
 
