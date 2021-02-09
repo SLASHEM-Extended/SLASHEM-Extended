@@ -3400,7 +3400,7 @@ int x, y;
 {
     register struct obj *gold = g_at(x,y);
 
-    if (amount <= 0L)
+    if (amount <= 0L) {
 	amount = (long)(1 + rnd(level_difficulty()+2) * rnd(10));
 	if (!rn2(2)) amount += (long)(1 + rnd(level_difficulty()+2) * rnd(10));
 
@@ -3416,6 +3416,8 @@ int x, y;
 	}
 
 	if (RngeWealth) amount *= (1 + rnd(2)); /* 2.5 times as much gold on average --Amy */
+
+    }
 
     if (gold) {
 	gold->quan += amount;
