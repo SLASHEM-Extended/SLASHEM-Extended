@@ -1024,6 +1024,18 @@ int	mntmp;
 		pline(use_thec,monsterc,"fart");
 	    if (lays_eggs(youmonst.data) && flags.female)
 		pline(use_thec,"sit","lay an egg");
+	    if (youmonst.data->msound == MS_STENCH)
+		pline(use_thec,monsterc,"spread the perfume");
+	    if (youmonst.data->msound == MS_CONVERT)
+		pline(use_thec,monsterc,"preach");
+	    if (youmonst.data->msound == MS_HCALIEN)
+		pline(use_thec,monsterc,"chant");
+	    if (youmonst.data->msound == MS_WHORE)
+		pline(use_thec,monsterc,"talk sexily");
+	    if (youmonst.data->msound == MS_SUPERMAN)
+		pline(use_thec,monsterc,"make superman taunts");
+	    if (youmonst.data->msound == MS_BONES)
+		pline(use_thec,monsterc,"rattle");
 	}
 	/* you now know what an egg of your type looks like */
 	if (lays_eggs(youmonst.data)) {

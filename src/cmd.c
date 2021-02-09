@@ -1508,6 +1508,16 @@ domonability()
 	} else if ( (is_unicorn(youmonst.data) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT && uactivesymbiosis && is_unicorn(&mons[u.usymbiote.mnum])) || (Race_if(PM_PLAYER_UNICORN) && !Upolyd) ) && yn("Do you want to cure yourself with your horn?")=='y' ) {
 	    use_unicorn_horn((struct obj *)0);
 	    return 1;
+	} else if ( (youmonst.data->msound == MS_CONVERT || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_CONVERT )) && yn("Do you want to preach conversion sermon?")=='y' ) {
+		playermsconvert();
+	} else if ((youmonst.data->msound == MS_HCALIEN || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_HCALIEN )) && yn("Do you want to chant a wouwou taunt?")=='y' ) {
+		playerwouwoutaunt();
+	} else if ((youmonst.data->msound == MS_WHORE || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_WHORE )) && yn("Do you want to use your sexiness against the monsters?")=='y' ) {
+		playerwhoretalk();
+	} else if ((youmonst.data->msound == MS_SUPERMAN || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_GRAND_MASTER && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_SUPERMAN )) && yn("Do you want to make a superman taunt?")=='y' ) {
+		playersupermantaunt();
+	} else if ((youmonst.data->msound == MS_BONES || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_BONES )) && yn("Do you want to rattle?")=='y' ) {
+		playerrattlebones();
 	} else if ((youmonst.data->msound == MS_SHRIEK || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_SHRIEK )) && yn("Do you want to shriek?")=='y' ) {
 	    You("shriek.");
 	    if(u.uburied)
@@ -1658,7 +1668,7 @@ domonability()
 
 			return 1;
 		}
-	} else if ( ( (Role_if(PM_HUSSY) && (!Upolyd && flags.female)) || (uarmf && uarmf->oartifact == ART_ANJA_S_WIDE_FIELD) || (uarmf && uarmf->oartifact == ART_SCRATCHE_HUSSY) || (Upolyd && youmonst.data->msound == MS_STENCH) ) && !u.hussyperfume && yn("Do you want to spread your scentful perfume?") == 'y') {
+	} else if ( ( (Role_if(PM_HUSSY) && (!Upolyd && flags.female)) || (uarmf && uarmf->oartifact == ART_ANJA_S_WIDE_FIELD) || (uarmf && uarmf->oartifact == ART_SCRATCHE_HUSSY) || (PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_STENCH) || (Upolyd && youmonst.data->msound == MS_STENCH) ) && !u.hussyperfume && yn("Do you want to spread your scentful perfume?") == 'y') {
 		You("spread the lovely feminine drum stint reluctance brand perfume to intoxicate monsters around you!");
 		int mondistance = 0;
 		struct monst *mtmp3;

@@ -2864,6 +2864,14 @@ E int add_sound_mapping(const char *);
 E void play_sound_for_message(const char *);
 #endif
 E void maybegaincha(void);
+E void playermsconvert(void);
+E void playerwouwoutaunt(void);
+E void playerwhoretalk(void);
+E void playersupermantaunt(void);
+E void playerrattlebones(void);
+E void conversionsermon(void);
+E void wouwoutaunt(void);
+E void supermantaunt(void);
 
 /* ### sys/msdos/sound.c ### */
 

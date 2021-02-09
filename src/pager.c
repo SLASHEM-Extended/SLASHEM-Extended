@@ -4743,6 +4743,7 @@ static NEARDATA const char * const practicantlines[] = {
 "If the other practicants decide to fart at you, be aware of the fact that you may not punish them by bashing their butts. Only I am allowed to do such a thing! If you don't obey this rule, there's a hall punishment for you!",
 "You certainly saw the big NO SMOKING sign at the entrance door. This rule is valid in the laboratory AT ALL TIMES. And I guarantee you that I WILL catch you if you break it - there are automatic smoke alarms everywhere!",
 "Eating pizza isn't permitted in my lab, because not only does it annoy the other practicants, it's also a safety risk due to all the chemical apparatuses and substances! If I catch you, I'll make sure that it becomes the most expensive pizza you've eaten in your life.",
+"You're allowed to talk in the laboratory, but if you suddenly scream around like a mad person, you'll pay. Disturbing the other practicants is not allowed!",
 };
 
 static NEARDATA const char * const hussylines[] = {
