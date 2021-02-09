@@ -915,7 +915,7 @@ can_twoweapon()
 	struct obj *otmp;
 
 #define NOT_WEAPON(obj) (obj && !is_weptool(obj) && obj->oclass != WEAPON_CLASS && obj->oclass != BALL_CLASS && obj->oclass != GEM_CLASS && obj->oclass != CHAIN_CLASS)
-	if (!could_twoweap(youmonst.data) && (uwep || uswapwep)) {
+	if (!could_twoweap(youmonst.data) && !(uactivesymbiosis && mons[u.usymbiote.mnum].mattk[1].aatyp == AT_WEAP ) && (uwep || uswapwep)) {
 	    what = uwep && uswapwep ? "two weapons" : "more than one weapon";
 	    if (cantwield(youmonst.data) && !Race_if(PM_TRANSFORMER) )
 		pline("Don't be ridiculous! Your current form has enough trouble wielding ONE weapon!");
@@ -939,7 +939,8 @@ can_twoweapon()
 	} else if (cantwield(youmonst.data) && !Race_if(PM_TRANSFORMER) )
 	    pline("Don't be ridiculous! Your current form has enough trouble wielding ONE weapon!");
 	else if (youmonst.data->mattk[1].aatyp != AT_WEAP &&
-		youmonst.data->mattk[1].aatyp != AT_CLAW) {
+		youmonst.data->mattk[1].aatyp != AT_CLAW &&
+		!(uactivesymbiosis && mons[u.usymbiote.mnum].mattk[1].aatyp == AT_WEAP ) ) {
 	    if (Upolyd)
 		You_cant("fight with two %s in your current form.",
 			makeplural(body_part(HAND)));
