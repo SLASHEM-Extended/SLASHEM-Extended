@@ -12947,6 +12947,11 @@ dodip()
 		makeknown(potion->otyp);
 	    } else {
 		pline("%s looks a little dull.", Yname2(obj));
+		if (evilfriday) {
+			if (obj->spe > -20) obj->spe--;
+			rust_dmg(obj, xname(obj), 3, TRUE, &youmonst); /* DANGER: obj may have disappeared now --Amy */
+			pline("In fact, it looks not just a little dull...");
+		}
 		if (!objects[potion->otyp].oc_name_known &&
 			!objects[potion->otyp].oc_uname)
 		    docall(potion);
