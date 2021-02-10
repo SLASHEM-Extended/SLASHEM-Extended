@@ -26855,6 +26855,12 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel like you're on a bad trip that lacks fleecy colors!",
 	"You won't find it so wisible when I thstwike you down with cewestiaw wightning, bouquet",
 	"Thee what thongworthy deedth you can purthue with thith wustpwoof dagger",
+	"Incoming message for Player 1. The message is from 'Juen'. It reads: 'Do you like my platform fleecies? They're very soft and even have velcro lashes, which look adorably feminine!'",
+	"Incoming message for Player 1. The message is from 'Juen'. It reads: 'Now my high wedge sandals will lovingly crush your body parts.'",
+	"Incoming message for Player 1. The message is from 'Juen'. It reads: 'I'm curious to see whether you can bear the powerful girl kicks of my cute bathing sandals.'",
+	"Incoming message for Player 1. The message is from 'Juen'. It reads: 'It's fun to roll over your body with my roller blades, don't you agree?'",
+	"Incoming message for Player 1. The message is from 'Juen'. It reads: 'My ebony sandals will continuously kick your shins now.'",
+	"Incoming message for Player 1. The message is from 'Juen'. It reads: 'I'm sorry, but I have to scratch you with Mother Celine's lacquered shoes now.'",
 
 };
 
