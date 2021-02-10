@@ -1286,7 +1286,7 @@ xchar x, y;
 	/* a box gets a chance of breaking open here */
 	if(Is_box(kickobj)) {
 		boolean otrp = kickobj->otrapped;
-
+		wake_nearby(); /* box always makes noise, presumably because of the metallic lock */
 		if(range < 2) pline("THUD!");
 
 		container_impact_dmg(kickobj);
@@ -1310,6 +1310,8 @@ xchar x, y;
 		if(range < 2) return(1);
 		/* else let it fall through to the next cases... */
 	}
+
+	if (kickobj && is_metallic(kickobj)) wake_nearby(); /* metallic objects make noise --Amy */
 
 	/* fragile objects should not be kicked */
 	if (hero_breaks(kickobj, kickobj->ox, kickobj->oy, FALSE)) return 1;
