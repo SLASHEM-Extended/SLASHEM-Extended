@@ -2271,6 +2271,11 @@ moveloop()
 
 		}
 
+		if ((u.inertia > 1) && uamul && uamul->oartifact == ART_VARIANT_GUARD) {
+			u.inertia /= 2;
+			if (u.inertia < 0) u.inertia = 0; /* fail safe */
+		}
+
 		if (uimplant && uimplant->oartifact == ART_ETERNAL_SORENESS && u.inertia < 5) u.inertia = 15;
 
 		if (uarmf && uarmf->oartifact == ART_KRISTIN_S_NOBILITY) {

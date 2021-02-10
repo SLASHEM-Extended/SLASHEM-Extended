@@ -3534,13 +3534,14 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ LASERXBOW, "todo" },
 	{ CLOAK_OF_BLINDNESS_RESISTANCE, "todo" },
 	{ CLOAK_OF_HALLUCINATION_RESISTA, "todo" },
-	{ AMULET_OF_CLEAR_VIEW, "todo" },
+	{ AMULET_OF_CLEAR_VIEW, "amulet of todo" },
 	{ SPE_ASTRAL_VIEW, "todo" },
 	{ SPE_CAROTINE_INJECTION, "todo" },
 	{ SPE_DOWNER_TRIP, "todo" },
 	{ SCR_BRANCH_TELEPORT, "todo" },
 	{ RIN_THREE_POINT_SEVEN_PROTECTI, "todo" },
 	{ WEAPON_SIGN, "todo" },
+	{ AMULET_OF_GUARDING, "amulet of todo" },
 
 	{0, "" }
 };
@@ -6395,13 +6396,14 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ LASERXBOW, "todo" },
 	{ CLOAK_OF_BLINDNESS_RESISTANCE, "todo" },
 	{ CLOAK_OF_HALLUCINATION_RESISTA, "todo" },
-	{ AMULET_OF_CLEAR_VIEW, "todo" },
+	{ AMULET_OF_CLEAR_VIEW, "amulet of todo" },
 	{ SPE_ASTRAL_VIEW, "todo" },
 	{ SPE_CAROTINE_INJECTION, "todo" },
 	{ SPE_DOWNER_TRIP, "todo" },
 	{ SCR_BRANCH_TELEPORT, "todo" },
 	{ RIN_THREE_POINT_SEVEN_PROTECTI, "todo" },
 	{ WEAPON_SIGN, "todo" },
+	{ AMULET_OF_GUARDING, "amulet of todo" },
 
 	{0, "" }
 };

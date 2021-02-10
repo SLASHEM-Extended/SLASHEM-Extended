@@ -8329,6 +8329,11 @@ A("Now It's I-Vel",				RIN_THREE_POINT_SEVEN_PROTECTI, /* evilvariant mode when 
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
+A("Variant Guard",				AMULET_OF_GUARDING, /* protection from shape changers, inertia times out very quickly */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

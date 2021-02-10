@@ -961,6 +961,9 @@ register struct obj *obj;
 	case AMULET_OF_SCENT:
 		pline_The("toilet suddenly smells like roses!");
 		break;
+	case AMULET_OF_GUARDING:
+		pline_The("toilet is definitely not a feature from the variant that calls itself 3.7!");
+		break;
 	case AMULET_OF_THE_RNG:
 	case AMULET_OF_INFINITY:
 		pline("Something strange is happening to the toilet.");

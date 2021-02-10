@@ -13469,6 +13469,8 @@ boolean knoweverything;
 				pline("Considering that this amulet conveys sleep resistance (which is rather mundane), it's quite rare."); break;
 			case AMULET_OF_SCENT:
 				pline("While wearing this amulet, you're magically capable of smelling nearby animals and scent-based monsters."); break;
+			case AMULET_OF_GUARDING:
+				pline("This amulet is from the variant that calls itself 3.7 and was added just for the sake of having it in SLEX too. But I guess if you don't have any other amulet, you might wear it for the +1 to magic cancellation it provides, although most other amulets give better effects."); break;
 			case AMULET_OF_MENTAL_STABILITY:
 				pline("Put on this amulet to get confusion resistance."); break;
 			case AMULET_OF_CONTAMINATION_RESIST:
@@ -21171,6 +21173,8 @@ boolean knoweverything;
 					pline("Artifact specs: resist cold, fire, shock and poison when wielded or worn. If you have the shield bash technique active, it deals an additional d10 damage."); break;
 				case ART_NOW_IT_S_I_VEL:
 					pline("Artifact specs: evilvariant mode when worn."); break;
+				case ART_VARIANT_GUARD:
+					pline("Artifact specs: protection from shape changers when worn and makes inertia time out very quickly."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

@@ -1296,7 +1296,7 @@
 				u.uprops[PROT_FROM_SHAPE_CHANGERS].extrinsic
 #define Protection_from_shape_changers \
 				(HProtection_from_shape_changers || \
-				 EProtection_from_shape_changers)
+				 EProtection_from_shape_changers || (uamul && uamul->oartifact == ART_VARIANT_GUARD) )
 
 #define HPolymorph		u.uprops[POLYMORPH].intrinsic
 #define EPolymorph		u.uprops[POLYMORPH].extrinsic
