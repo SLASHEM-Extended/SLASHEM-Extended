@@ -1508,9 +1508,9 @@ domonability()
 	} else if ( (is_unicorn(youmonst.data) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT && uactivesymbiosis && is_unicorn(&mons[u.usymbiote.mnum])) || (Race_if(PM_PLAYER_UNICORN) && !Upolyd) ) && yn("Do you want to cure yourself with your horn?")=='y' ) {
 	    use_unicorn_horn((struct obj *)0);
 	    return 1;
-	} else if ( (youmonst.data->msound == MS_CONVERT || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_CONVERT )) && yn("Do you want to preach conversion sermon?")=='y' ) {
+	} else if ( (youmonst.data->msound == MS_CONVERT || (Race_if(PM_TURMENE) && !Upolyd) || (Race_if(PM_EGYMID) && !Upolyd) || (Race_if(PM_PERVERT) && !Upolyd) || (Race_if(PM_IRAHA) && !Upolyd) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_CONVERT )) && yn("Do you want to preach conversion sermon?")=='y' ) {
 		playermsconvert();
-	} else if ((youmonst.data->msound == MS_HCALIEN || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_HCALIEN )) && yn("Do you want to chant a wouwou taunt?")=='y' ) {
+	} else if ((youmonst.data->msound == MS_HCALIEN || (Race_if(PM_HC_ALIEN) && !Upolyd) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_HCALIEN )) && yn("Do you want to chant a wouwou taunt?")=='y' ) {
 		playerwouwoutaunt();
 	} else if ((youmonst.data->msound == MS_WHORE || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_WHORE )) && yn("Do you want to use your sexiness against the monsters?")=='y' ) {
 		playerwhoretalk();
