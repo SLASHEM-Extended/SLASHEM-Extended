@@ -2325,6 +2325,7 @@ boolean polearming;
 			case TROLL_SHIELD:
 			case MAGICAL_SHIELD:
 			case SPECIAL_SHIELD:
+			case WEAPON_SIGN:
 				shieldblockrate = 30;
 				break;
 			case TARRIER:

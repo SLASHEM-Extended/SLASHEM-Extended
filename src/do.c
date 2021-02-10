@@ -749,6 +749,9 @@ giveback:
 		case RIN_PROTECTION_FROM_SHAPE_CHAN:
 		    pline_The("sink looks nothing like a fountain.");
 		    break;
+		case RIN_THREE_POINT_SEVEN_PROTECTI:
+		    pline_The("sink looks like a feature from a different NetHack variant.");
+		    break;
 		case RIN_PROTECTION:
 		    pline_The("sink glows %s for a moment.",
 			    hcolor((obj->spe<0) ? NH_BLACK : NH_SILVER));

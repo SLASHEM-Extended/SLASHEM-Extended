@@ -2389,6 +2389,7 @@ register struct obj *obj;
 	    }
 	    break;
 	case RIN_PROTECTION:
+	case RIN_THREE_POINT_SEVEN_PROTECTI:
 	    flags.botl = 1;
 	    break;
 	}
@@ -2462,6 +2463,7 @@ register struct obj *obj;
 	    }
 	    break;
 	case RIN_PROTECTION:
+	case RIN_THREE_POINT_SEVEN_PROTECTI:
 	    flags.botl = 1;
 	    break;
 	}
@@ -2538,6 +2540,7 @@ register struct obj *obj;
 	    }
 	    break;
 	case RIN_PROTECTION:
+	case RIN_THREE_POINT_SEVEN_PROTECTI:
 	    flags.botl = 1;
 	    break;
 	}
@@ -2602,6 +2605,7 @@ register struct obj *obj;
 	    }
 	    break;
 	case RIN_PROTECTION:
+	case RIN_THREE_POINT_SEVEN_PROTECTI:
 	    flags.botl = 1;
 	    break;
 	}

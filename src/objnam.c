@@ -3539,6 +3539,8 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ SPE_CAROTINE_INJECTION, "todo" },
 	{ SPE_DOWNER_TRIP, "todo" },
 	{ SCR_BRANCH_TELEPORT, "todo" },
+	{ RIN_THREE_POINT_SEVEN_PROTECTI, "todo" },
+	{ WEAPON_SIGN, "todo" },
 
 	{0, "" }
 };
@@ -6398,6 +6400,8 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ SPE_CAROTINE_INJECTION, "todo" },
 	{ SPE_DOWNER_TRIP, "todo" },
 	{ SCR_BRANCH_TELEPORT, "todo" },
+	{ RIN_THREE_POINT_SEVEN_PROTECTI, "todo" },
+	{ WEAPON_SIGN, "todo" },
 
 	{0, "" }
 };
@@ -9168,6 +9172,7 @@ boolean actualwish;
 	   strncmpi(bp, "studded leather arm", 19) &&
 	   strncmpi(bp, "leather arm", 11) &&
 	   strncmpi(bp, "tooled horn", 11) &&
+	   strncmpi(bp, "weapon sign", 11) &&
        strncmpi(bp, "graywand", 8) &&
        strncmpi(bp, "staff of withering", 18) &&
        strncmpi(bp, "one ring", 8) &&

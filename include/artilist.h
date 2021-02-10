@@ -3584,7 +3584,7 @@ A("You're The Best",				ROBE_OF_SPECIALTY,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
 A("Anastasia's Soft Clothes",				ROBE_OF_NASTINESS, /* +10 AC */
-	(SPFX_RESTR|SPFX_HPHDAM), 0, 0,
+	(SPFX_RESTR|SPFX_HPHDAM|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
 
 A("Plentyhorn of Famine",				HORN_OF_PLENTY, /* causes hunger when applied */
@@ -8320,6 +8320,14 @@ A("Djarwethereyet",				LASERXBOW, /* hitting things with crossbow bolts trains d
 A("Multishottemso",				LASERXBOW, /* +1 multishot per djem so skill point */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Spectrate Etteckor",				WEAPON_SIGN, /* resist cold, fire, shock and poison, +10 damage when using shield bash, double bonuses if you're a paladin */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Now It's I-Vel",				RIN_THREE_POINT_SEVEN_PROTECTI, /* evilvariant mode when worn */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
 /*
  *	Stormbringer only has a 2 because it can drain a level,

@@ -10779,6 +10779,8 @@ boolean knoweverything;
 				pline("A shield that only grants low armor class and weighs a lot."); break;
 			case BARRIER_SHIELD:
 				pline("This shield offers good armor class and a high chance to block."); break;
+			case WEAPON_SIGN:
+				pline("A shield with moderate AC and chance to block. Unlike other shields, you can also wield it as a weapon, where it does d10 damage and gains boosts from your shield skill."); break;
 			case TROLL_SHIELD:
 				pline("A shield that doesn't give all that much protection, but wearing it increases your health regeneration rate."); break;
 			case TARRIER:
@@ -12724,6 +12726,8 @@ boolean knoweverything;
 				pline("A fairly useless ring that requires you to put it on, then read it to reveal a not-very-enlightening message."); break;
 			case RIN_PROTECTION:
 				pline("If it is enchanted, this ring will increase your armor class when worn."); break;
+			case RIN_THREE_POINT_SEVEN_PROTECTI:
+				pline("If it is enchanted, this ring will increase your armor class when worn. And because it's a ring of protection from the variant that calls itself 3.7, it also increases your MC by one. No, unfortunately it doesn't protect you from the variant that calls itself 3.7."); break;
 			case RIN_PROTECTION_FROM_SHAPE_CHAN:
 				pline("Most shapeshifters are forced back into their natural form if you wear this ring, and they are prevented from changing form too."); break;
 			case RIN_SLEEPING:
@@ -21163,6 +21167,10 @@ boolean knoweverything;
 					pline("Artifact specs: if you shoot monsters with it, your form V (Djem So) skill is trained. The training speed is doubled if both blades of this weapon are lit."); break;
 				case ART_MULTISHOTTEMSO:
 					pline("Artifact specs: +1 multishot for every form V (Djem So) skill point."); break;
+				case ART_SPECTRATE_ETTECKOR:
+					pline("Artifact specs: resist cold, fire, shock and poison when wielded or worn. If you have the shield bash technique active, it deals an additional d10 damage."); break;
+				case ART_NOW_IT_S_I_VEL:
+					pline("Artifact specs: evilvariant mode when worn."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

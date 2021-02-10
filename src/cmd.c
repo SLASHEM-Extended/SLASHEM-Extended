@@ -6239,6 +6239,7 @@ boolean guaranteed;
 		case TROLL_SHIELD:
 		case MAGICAL_SHIELD:
 		case SPECIAL_SHIELD:
+		case WEAPON_SIGN:
 			shieldblockrate = 20;
 			break;
 		case TARRIER:
@@ -6679,7 +6680,9 @@ boolean guaranteed;
 	    int prot = 0;
 
 	    if(uleft && uleft->otyp == RIN_PROTECTION) prot += uleft->spe;
+	    if(uleft && uleft->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) prot += uleft->spe;
 	    if(uright && uright->otyp == RIN_PROTECTION) prot += uright->spe;
+	    if(uright && uright->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) prot += uright->spe;
 	    if (HProtection & INTRINSIC) prot += u.ublessed;
 	    prot += u.uspellprot;
 
@@ -10290,6 +10293,7 @@ int final;
 		case TROLL_SHIELD:
 		case MAGICAL_SHIELD:
 		case SPECIAL_SHIELD:
+		case WEAPON_SIGN:
 			shieldblockrate = 20;
 			break;
 		case TARRIER:
@@ -10695,7 +10699,9 @@ int final;
 	    int prot = 0;
 
 	    if(uleft && uleft->otyp == RIN_PROTECTION) prot += uleft->spe;
+	    if(uleft && uleft->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) prot += uleft->spe;
 	    if(uright && uright->otyp == RIN_PROTECTION) prot += uright->spe;
+	    if(uright && uright->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) prot += uright->spe;
 	    if (HProtection & INTRINSIC) prot += u.ublessed;
 	    prot += u.uspellprot;
 	    

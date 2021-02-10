@@ -86,6 +86,7 @@ const char *name;	/* if null, then format `obj' */
 		case TROLL_SHIELD:
 		case MAGICAL_SHIELD:
 		case SPECIAL_SHIELD:
+		case WEAPON_SIGN:
 			shieldblockrate = 20;
 			break;
 		case TARRIER:
@@ -966,6 +967,7 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 			case TROLL_SHIELD:
 			case MAGICAL_SHIELD:
 			case SPECIAL_SHIELD:
+			case WEAPON_SIGN:
 				shieldblockrate = 30;
 				break;
 			case TARRIER:

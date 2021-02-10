@@ -2839,6 +2839,7 @@ Shield_on()
 	case ICKY_SHIELD:
 	case HEAVY_SHIELD:
 	case BARRIER_SHIELD:
+	case WEAPON_SIGN:
 	case TROLL_SHIELD:
 	case TARRIER:
 	case CHROME_SHIELD:
@@ -3025,6 +3026,7 @@ Shield_off()
 	case ICKY_SHIELD:
 	case HEAVY_SHIELD:
 	case BARRIER_SHIELD:
+	case WEAPON_SIGN:
 	case TROLL_SHIELD:
 	case CHROME_SHIELD:
 	case ANTISHADOW_SHIELD:
@@ -4061,6 +4063,14 @@ register struct obj *obj;
 		    update_inventory();
 		}
 		break;
+	case RIN_THREE_POINT_SEVEN_PROTECTI:
+		if (obj->spe || objects[RIN_THREE_POINT_SEVEN_PROTECTI].oc_name_known) {
+		    flags.botl = 1;
+		    makeknown(RIN_THREE_POINT_SEVEN_PROTECTI);
+		    obj->known = 1;
+		    update_inventory();
+		}
+		break;
     }
 
     if (obj->oartifact == ART_RING_OF_WOE) {
@@ -4299,6 +4309,14 @@ boolean gone;
 		if (obj->spe) {
 		    flags.botl = 1;
 		    makeknown(RIN_PROTECTION);
+		    obj->known = 1;
+		    update_inventory();
+		}
+	case RIN_THREE_POINT_SEVEN_PROTECTI:
+		/* might have forgotten it due to amnesia */
+		if (obj->spe) {
+		    flags.botl = 1;
+		    makeknown(RIN_THREE_POINT_SEVEN_PROTECTI);
 		    obj->known = 1;
 		    update_inventory();
 		}
@@ -5298,6 +5316,8 @@ find_ac()
 
 	if(uleft && uleft->otyp == RIN_PROTECTION) uac -= uleft->spe;
 	if(uright && uright->otyp == RIN_PROTECTION) uac -= uright->spe;
+	if(uleft && uleft->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) uac -= uleft->spe;
+	if(uright && uright->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) uac -= uright->spe;
 	if (HProtection & INTRINSIC) uac -= u.ublessed;
 	uac -= u.uspellprot;
 
@@ -5391,6 +5411,8 @@ find_ac()
 	if (Race_if(PM_MAYMES) && uarm && uarm->otyp == ROBE_OF_PROTECTION) uac -= 2;
 	if (Race_if(PM_MAYMES) && uleft && uleft->otyp == RIN_PROTECTION) uac -= 2;
 	if (Race_if(PM_MAYMES) && uright && uright->otyp == RIN_PROTECTION) uac -= 2;
+	if (Race_if(PM_MAYMES) && uleft && uleft->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) uac -= 2;
+	if (Race_if(PM_MAYMES) && uright && uright->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) uac -= 2;
 	if (Race_if(PM_FRO)) uac -= 2;
 
 	if (Race_if(PM_BOVER)) {

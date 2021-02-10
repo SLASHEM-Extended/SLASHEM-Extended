@@ -5358,6 +5358,7 @@ struct obj *otmp;
 		u.udamincxtra += otmp->spe;
 		break;
 	    case RIN_PROTECTION:
+	    case RIN_THREE_POINT_SEVEN_PROTECTI:
 		accessory_has_effect(otmp);
 		HProtection |= FROMOUTSIDE;
 		u.ublessed += otmp->spe;

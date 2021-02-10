@@ -1666,7 +1666,7 @@ int dieroll;
 
 		/* Bashing with bows, darts, ranseurs or inactive lightsabers might not be completely useless... --Amy */
 
-		    if (( (is_launcher(obj) && !(obj->otyp == LASERXBOW && obj->lamplit)) || is_missile(obj) || (is_pole(obj) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(obj) && !obj->lamplit) ) && !thrown) {
+		    if (( (is_launcher(obj) && obj->otyp != WEAPON_SIGN && !(obj->otyp == LASERXBOW && obj->lamplit)) || is_missile(obj) || (is_pole(obj) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(obj) && !obj->lamplit) ) && !thrown) {
 
 			if (!(PlayerCannotUseSkills) && !rn2(2)) {
 
@@ -2029,6 +2029,110 @@ int dieroll;
 				pline("%s is shaken out of %s frenzy by your attack!", Monnam(mon), mhis(mon));
 			}
 
+			/* tin opener special-casing */
+			if (obj && obj->oartifact == ART_TIN_FU) tmp += 20;
+			if (obj->oartifact == ART_SUPERMARKET_FU) {
+				tmp += rnd(10);
+				if (Role_if(PM_SUPERMARKET_CASHIER)) tmp += rnd(10);
+			}
+
+			if (obj && (obj->otyp == TIN_OPENER || obj->otyp == BUDO_NO_SASU) && Role_if(PM_SUPERMARKET_CASHIER)) {
+				if (obj->otyp == BUDO_NO_SASU) tmp += 5;
+				tmp += 2;
+				if (u.ulevel >= 18) tmp += rnd(10);
+				if (u.ulevel >= 24) tmp += rnd(4);
+				if (u.ulevel >= 27) tmp += rnd(2);
+				if (u.ulevel >= 30) tmp += 1;
+
+				if (!(PlayerCannotUseSkills)) {
+					switch (P_SKILL(P_MARTIAL_ARTS)) {
+						case P_BASIC: tmp += 2; break;
+						case P_SKILLED: tmp += 4; break;
+						case P_EXPERT: tmp += 6; break;
+						case P_MASTER: tmp += 8; break;
+						case P_GRAND_MASTER: tmp += 10; break;
+						case P_SUPREME_MASTER: tmp += 12; break;
+					}
+				}
+
+			    if ((tech_inuse(T_CHI_STRIKE))  && (u.uen > 0)) {
+				You_feel("a surge of force.");
+				tmp += (u.uen > (10 + (u.ulevel / 5)) ? 
+					 (10 + (u.ulevel / 5)) : u.uen);
+				u.uen -= (10 + (u.ulevel / 5));
+				if (u.uen < 0) u.uen = 0;
+			    }
+
+			    if (tech_inuse(T_E_FIST)) {
+			    	int dmgbonus = 0;
+				hittxt = TRUE;
+				dmgbonus = d(2,4);
+				switch (rn2(4)) {
+				    case 0: /* Fire */
+					if (!Blind) pline("%s is on fire!", Monnam(mon));
+					if (!rn2(33)) dmgbonus += destroy_mitem(mon, SCROLL_CLASS, AD_FIRE);
+					if (!rn2(33)) dmgbonus += destroy_mitem(mon, SPBOOK_CLASS, AD_FIRE);
+					if (noeffect || resists_fire(mon)) {
+					    if (!noeffect)
+						shieldeff(mon->mx, mon->my);
+					    if (!Blind) 
+						pline_The("fire doesn't heat %s!", mon_nam(mon));
+					    golemeffects(mon, AD_FIRE, dmgbonus);
+					    if (!noeffect)
+						dmgbonus = 0;
+					    else
+						noeffect = 0;
+					}
+					/* only potions damage resistant players in destroy_item */
+					if (!rn2(33)) dmgbonus += destroy_mitem(mon, POTION_CLASS, AD_FIRE);
+					break;
+				    case 1: /* Cold */
+				    	if (!Blind) pline("%s is covered in frost!", Monnam(mon));
+					if (noeffect || resists_cold(mon)) {
+					    if (!noeffect)
+						shieldeff(mon->mx, mon->my);
+					    if (!Blind) 
+						pline_The("frost doesn't chill %s!", mon_nam(mon));
+					    golemeffects(mon, AD_COLD, dmgbonus);
+					    dmgbonus = 0;
+					    noeffect = 0;
+					}
+					if (!rn2(33)) dmgbonus += destroy_mitem(mon, POTION_CLASS, AD_COLD);
+					break;
+				    case 2: /* Elec */
+					if (!Blind) pline("%s is zapped!", Monnam(mon));
+					if (!rn2(33)) dmgbonus += destroy_mitem(mon, WAND_CLASS, AD_ELEC);
+					if (noeffect || resists_elec(mon)) {
+					    if (!noeffect)
+						shieldeff(mon->mx, mon->my);
+					    if (!Blind)
+						pline_The("zap doesn't shock %s!", mon_nam(mon));
+					    golemeffects(mon, AD_ELEC, dmgbonus);
+					    if (!noeffect)
+						dmgbonus = 0;
+					    else
+						noeffect = 0;
+					}
+					/* only rings damage resistant players in destroy_item */
+					if (!rn2(33)) dmgbonus += destroy_mitem(mon, RING_CLASS, AD_ELEC);
+					break;
+				    case 3: /* Acid */
+					if (!Blind)
+					    pline("%s is covered in acid!", Monnam(mon));
+					if (noeffect || resists_acid(mon)) {
+					    if (!Blind)
+						pline_The("acid doesn't burn %s!", Monnam(mon));
+					    dmgbonus = 0;
+					    noeffect = 0;
+					}
+					break;
+				}
+				if (dmgbonus > 0)
+				    tmp += dmgbonus;
+			    } /* Techinuse Elemental Fist */	
+
+			}
+
 			/* software engineer can occasionally instakill bugs */
 			if (Role_if(PM_SOFTWARE_ENGINEER) && !mon->mtame && !mon->mpeaceful && mon->data->mlet == S_XAN && !rn2(100)) {
 				/* can't have all the ZAPM stuff in the game without using the word "derezzed" at least once! */
@@ -2209,7 +2313,7 @@ int dieroll;
 		mdat = mon->data;
 		tmp = (is_shade(mdat) || mon->egotype_shader) ? 0 : 1;
 	    } else {
-		if (flags.bash_reminder && obj->otyp != BOULDER && obj->oclass != VENOM_CLASS && !rn2(10)) pline("A helpful reminder: you attack with a non-weapon!");
+		if (flags.bash_reminder && obj->otyp != BOULDER && obj->otyp != WEAPON_SIGN && obj->oclass != VENOM_CLASS && !rn2(10)) pline("A helpful reminder: you attack with a non-weapon!");
 		if ((is_shade(mdat) || mon->egotype_shader) && !shade_aware(obj)) {
 		    tmp = 0;
 		    strcpy(unconventional, cxname(obj));
@@ -2517,108 +2621,38 @@ int dieroll;
 			else tmp = rnd(tmp);
 			if(tmp > 10) tmp = 10; /* slight increase --Amy */
 
-			if (obj && obj->oartifact == ART_TIN_FU) tmp += 20;
-
-			if (obj->oartifact == ART_SUPERMARKET_FU) {
-				tmp += rnd(10);
-				if (Role_if(PM_SUPERMARKET_CASHIER)) tmp += rnd(10);
-			}
-
-			if (obj && (obj->otyp == TIN_OPENER || obj->otyp == BUDO_NO_SASU) && Role_if(PM_SUPERMARKET_CASHIER)) {
-				if (obj->otyp == BUDO_NO_SASU) tmp += 5;
-				tmp += 2;
-				if (u.ulevel >= 18) tmp += rnd(10);
-				if (u.ulevel >= 24) tmp += rnd(4);
-				if (u.ulevel >= 27) tmp += rnd(2);
-				if (u.ulevel >= 30) tmp += 1;
+			if (obj && obj->otyp == WEAPON_SIGN) {
+				int weaponsign = 10;
+				if (obj->spe > 0) weaponsign += obj->spe;
 
 				if (!(PlayerCannotUseSkills)) {
-					switch (P_SKILL(P_MARTIAL_ARTS)) {
-						case P_BASIC: tmp += 2; break;
-						case P_SKILLED: tmp += 4; break;
-						case P_EXPERT: tmp += 6; break;
-						case P_MASTER: tmp += 8; break;
-						case P_GRAND_MASTER: tmp += 10; break;
-						case P_SUPREME_MASTER: tmp += 12; break;
+					switch (P_SKILL(P_SHIELD)) {
+						case P_BASIC: weaponsign += 2; break;
+						case P_SKILLED: weaponsign += 4; break;
+						case P_EXPERT: weaponsign += 6; break;
+						case P_MASTER: weaponsign += 8; break;
+						case P_GRAND_MASTER: weaponsign += 10; break;
+						case P_SUPREME_MASTER: weaponsign += 12; break;
 					}
 				}
 
-			    if ((tech_inuse(T_CHI_STRIKE))  && (u.uen > 0)) {
-				You_feel("a surge of force.");
-				tmp += (u.uen > (10 + (u.ulevel / 5)) ? 
-					 (10 + (u.ulevel / 5)) : u.uen);
-				u.uen -= (10 + (u.ulevel / 5));
-				if (u.uen < 0) u.uen = 0;
-			    }
-
-			    if (tech_inuse(T_E_FIST)) {
-			    	int dmgbonus = 0;
-				hittxt = TRUE;
-				dmgbonus = d(2,4);
-				switch (rn2(4)) {
-				    case 0: /* Fire */
-					if (!Blind) pline("%s is on fire!", Monnam(mon));
-					if (!rn2(33)) dmgbonus += destroy_mitem(mon, SCROLL_CLASS, AD_FIRE);
-					if (!rn2(33)) dmgbonus += destroy_mitem(mon, SPBOOK_CLASS, AD_FIRE);
-					if (noeffect || resists_fire(mon)) {
-					    if (!noeffect)
-						shieldeff(mon->mx, mon->my);
-					    if (!Blind) 
-						pline_The("fire doesn't heat %s!", mon_nam(mon));
-					    golemeffects(mon, AD_FIRE, dmgbonus);
-					    if (!noeffect)
-						dmgbonus = 0;
-					    else
-						noeffect = 0;
+				if (tech_inuse(T_SHIELD_BASH)) {
+					weaponsign += (3 + obj->spe);
+					if (!(PlayerCannotUseSkills)) {
+						switch (P_SKILL(P_SHIELD)) {
+							case P_BASIC: weaponsign += 1; break;
+							case P_SKILLED: weaponsign += 2; break;
+							case P_EXPERT: weaponsign += 3; break;
+							case P_MASTER: weaponsign += 4; break;
+							case P_GRAND_MASTER: weaponsign += 5; break;
+							case P_SUPREME_MASTER: weaponsign += 6; break;
+						}
 					}
-					/* only potions damage resistant players in destroy_item */
-					if (!rn2(33)) dmgbonus += destroy_mitem(mon, POTION_CLASS, AD_FIRE);
-					break;
-				    case 1: /* Cold */
-				    	if (!Blind) pline("%s is covered in frost!", Monnam(mon));
-					if (noeffect || resists_cold(mon)) {
-					    if (!noeffect)
-						shieldeff(mon->mx, mon->my);
-					    if (!Blind) 
-						pline_The("frost doesn't chill %s!", mon_nam(mon));
-					    golemeffects(mon, AD_COLD, dmgbonus);
-					    dmgbonus = 0;
-					    noeffect = 0;
-					}
-					if (!rn2(33)) dmgbonus += destroy_mitem(mon, POTION_CLASS, AD_COLD);
-					break;
-				    case 2: /* Elec */
-					if (!Blind) pline("%s is zapped!", Monnam(mon));
-					if (!rn2(33)) dmgbonus += destroy_mitem(mon, WAND_CLASS, AD_ELEC);
-					if (noeffect || resists_elec(mon)) {
-					    if (!noeffect)
-						shieldeff(mon->mx, mon->my);
-					    if (!Blind)
-						pline_The("zap doesn't shock %s!", mon_nam(mon));
-					    golemeffects(mon, AD_ELEC, dmgbonus);
-					    if (!noeffect)
-						dmgbonus = 0;
-					    else
-						noeffect = 0;
-					}
-					/* only rings damage resistant players in destroy_item */
-					if (!rn2(33)) dmgbonus += destroy_mitem(mon, RING_CLASS, AD_ELEC);
-					break;
-				    case 3: /* Acid */
-					if (!Blind)
-					    pline("%s is covered in acid!", Monnam(mon));
-					if (noeffect || resists_acid(mon)) {
-					    if (!Blind)
-						pline_The("acid doesn't burn %s!", Monnam(mon));
-					    dmgbonus = 0;
-					    noeffect = 0;
-					}
-					break;
+					if (obj->oartifact == ART_SPECTRATE_ETTECKOR) weaponsign += 10;
 				}
-				if (dmgbonus > 0)
-				    tmp += dmgbonus;
-			    } /* Techinuse Elemental Fist */	
+				if (Role_if(PM_PALADIN) && weaponsign > 0) weaponsign *= 2;
 
+				if (weaponsign > 0) tmp += rnd(weaponsign);
 			}
 
 			if (obj && obj->oclass == SPBOOK_CLASS && obj->oartifact) {
@@ -2818,6 +2852,7 @@ int dieroll;
 	if (!thrown && (!Upolyd || !no_obj) && tech_inuse(T_SHIELD_BASH) && uarms && (uarms->spe > -4)) {
 		pline("Schrack!");
 		tmp += (3 + uarms->spe);
+		if (uarms->oartifact == ART_SPECTRATE_ETTECKOR) tmp += rnd(10);
 		if (!(PlayerCannotUseSkills)) {
 			switch (P_SKILL(P_SHIELD)) {
 				case P_BASIC: tmp += 1; break;
