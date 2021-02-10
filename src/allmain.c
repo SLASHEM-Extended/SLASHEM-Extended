@@ -1207,7 +1207,7 @@ moveloop()
 					if (!rn2(10))
 					moveamt = 0;
 				}
-				if (Frozen && (!(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) || !rn2(3)) && moveamt > 1) {
+				if (Frozen && (!((uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) || (uarmf && itemhasappearance(uarmf, APP_CYAN_SNEAKERS)) ) || !rn2(3)) && moveamt > 1) {
 					moveamt /= 2;
 				}
 
@@ -1239,8 +1239,11 @@ moveloop()
 
 					if (powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) canwalkonsnow = 1;
 
-					if (!canwalkonsnow)
-					moveamt /= 4;
+					if (!canwalkonsnow) {
+						if (StrongCold_resistance) moveamt /= 2;
+						else if (Cold_resistance) moveamt /= 3;
+						else moveamt /= 4;
+					}
 
 				}
 
@@ -1562,7 +1565,7 @@ moveloop()
 				if ( (youmonst.data->mmove > 1 || !rn2(2)) && !rn2(10))
 				moveamt = 0; /* numbed characters sometimes miss turns --Amy */
 			}
-			if (Frozen && (!(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) || !rn2(3)) && moveamt > 1) {
+			if (Frozen && (!((uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) || (uarmf && itemhasappearance(uarmf, APP_CYAN_SNEAKERS)) ) || !rn2(3)) && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2; /* frozen characters move at half speed --Amy */
 			}
@@ -1597,8 +1600,11 @@ moveloop()
 
 				if (powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) canwalkonsnow = 1;
 
-				if ((youmonst.data->mmove > 1 || !rn2(2)) && !canwalkonsnow)
-				moveamt /= 4;
+				if ((youmonst.data->mmove > 1 || !rn2(2)) && !canwalkonsnow) {
+					if (StrongCold_resistance) moveamt /= 2;
+					else if (Cold_resistance) moveamt /= 3;
+					else moveamt /= 4;
+				}
 
 				if (canwalkonsnow && ((uarmf && uarmf->otyp == skates4) || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) || (uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD)) && !rn2(2)) {
 					moveamt *= 2;
@@ -7660,13 +7666,13 @@ newbossB:
 
 		}
 
-		if (is_snow(u.ux, u.uy) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) && !rn2(isfriday ? 10 : 20) && (Flying || Levitation)) {
+		if (is_snow(u.ux, u.uy) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) && !(Cold_resistance && rn2(StrongCold_resistance ? 10 : 3)) && !rn2(isfriday ? 10 : 20) && (Flying || Levitation)) {
 			You("are caught in a snowstorm!");
 			make_stunned(Stunned + rnd(5),FALSE);
 			stop_occupation();
 		}
 
-		if (is_snow(u.ux, u.uy) && !(powerfulimplants() && uimplant && (uimplant->oartifact == ART_WHITE_WHALE_HATH_COME || uimplant->oartifact == ART_DUBAI_TOWER_BREAK)) && !(uarmf && itemhasappearance(uarmf, APP_FLEECY_BOOTS) ) && !(uwep && uwep->oartifact == ART_GLACIERDALE) && !(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) && !(uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) && !(uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) && !rn2(StrongCold_resistance ? 500 : Cold_resistance ? 200 : 50) ) {
+		if (is_snow(u.ux, u.uy) && !(powerfulimplants() && uimplant && (uimplant->oartifact == ART_WHITE_WHALE_HATH_COME || uimplant->oartifact == ART_DUBAI_TOWER_BREAK)) && !(uarmf && itemhasappearance(uarmf, APP_FLEECY_BOOTS) ) && !(uarmf && itemhasappearance(uarmf, APP_CYAN_SNEAKERS) ) && !(uwep && uwep->oartifact == ART_GLACIERDALE) && !(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) && !(uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) && !(uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) && !rn2(StrongCold_resistance ? 500 : Cold_resistance ? 200 : 50) ) {
 			You("freeze!");
 			make_frozen(HFrozen + rnz(50),FALSE);
 			stop_occupation();
