@@ -3256,6 +3256,27 @@ elena37:
 
 	}
 
+	if (mtmp->egotype_dropper ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_DROP;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
 	if (mtmp->egotype_wither ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
@@ -9520,6 +9541,13 @@ dopois:
 		if (!rn2(10)) techdrain();
 		break;
 
+	    case AD_DROP:
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+		if (mtmp->mcan) break;
+		dropitemattack();
+		break;
+
 	    case AD_BLAS:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
@@ -12635,6 +12663,11 @@ do_stone2:
 		if (!rn2(10)) techdrain();
 		break;
 
+	    case AD_DROP:
+		if (mtmp->mcan) break;
+		dropitemattack();
+		break;
+
 	    case AD_BLAS:
 		if (mtmp->mcan) break;
 		if (!rn2(25)) {
@@ -14582,6 +14615,11 @@ common:
 
 	    case AD_TDRA:
 		techdrain();
+		mdamageu(mtmp, tmp);
+		break;
+
+	    case AD_DROP:
+		dropitemattack();
 		mdamageu(mtmp, tmp);
 		break;
 
@@ -18212,6 +18250,15 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		}
 		break;
 
+	    case AD_DROP:
+		if (!mtmp->mcan && canseemon(mtmp) && couldsee(mtmp->mx, mtmp->my) &&
+		  mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(25))) {
+		    pline("%s tries to make you trip!", Monnam(mtmp));
+		    dropitemattack();
+		    techdrain();
+		}
+		break;
+
 	    case AD_BLAS:
 		if (!mtmp->mcan && canseemon(mtmp) && couldsee(mtmp->mx, mtmp->my) &&
 		  mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(10))) {
@@ -21788,6 +21835,7 @@ dothepassive:
 	    case AD_STUN: /* Yellow mold */
 		tmp = 0; /* fall through */
 	    case AD_FUMB:
+	    case AD_DROP:
 	    case AD_TREM:
 	    case AD_SOUN:
 		if (!mtmp->mstun) {

@@ -572,6 +572,10 @@ const char * const *nlp;
 		}
 		if (!rn2(20)) {
 			shk->isegotype = 1;
+			shk->egotype_dropper = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
 			shk->egotype_wither = TRUE;
 		}
 		if (!rn2(20)) {
@@ -870,6 +874,10 @@ const char * const *nlp;
 		if (!rn2(10)) {
 			shk->isegotype = 1;
 			shk->egotype_blasphemer = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_dropper = TRUE;
 		}
 		if (!rn2(10)) {
 			shk->isegotype = 1;

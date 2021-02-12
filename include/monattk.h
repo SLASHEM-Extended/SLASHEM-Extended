@@ -209,7 +209,9 @@
 #define AD_TDRA		141	/* tech drain - can drain technique levels */
 #define AD_BLAS		142	/* blasphemy - chance to increase divine anger by one */
 
-#define AD_ENDS		143	/* placeholder */
+#define AD_DROP		143	/* make player drop random items */
+
+#define AD_ENDS		144	/* placeholder */
 
 #define AD_ILLU		229	/* illusion attack - random effect also seen in illusion rooms */
 #define AD_PART		230	/* specific regular attack (rolled at game start) */

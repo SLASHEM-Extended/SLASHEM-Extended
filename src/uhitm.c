@@ -5153,6 +5153,7 @@ register struct attack *mattk;
 	switch(mattk->adtyp) {
 	    case AD_STUN:
 	    case AD_FUMB:
+	    case AD_DROP:
 	    case AD_TREM:
 	    case AD_SOUN:
 		if(!Blind && !rn2(3))
@@ -6179,6 +6180,7 @@ register struct attack *mattk;
 		break;
 	    case AD_STUN:
 	    case AD_FUMB:
+	    case AD_DROP:
 	    case AD_TREM:
 		if (haseyes(mdef->data) && mdef->mcansee) {
 		    pline("%s is stunned by your flash of light!", Monnam(mdef));
@@ -9720,6 +9722,10 @@ boolean ranged;
 
 	    case AD_TDRA:
 		if (!rn2(10)) techdrain();
+		break;
+
+	    case AD_DROP:
+		dropitemattack();
 		break;
 
 	    case AD_BLAS:

@@ -251,7 +251,7 @@ int
 randattack()
 {
 
-	switch (rnd(353)) {
+	switch (rnd(354)) {
 
 		case 1:
 		case 2:
@@ -745,6 +745,8 @@ randattack()
 			return AD_TDRA;
 		case 353:
 			return AD_BLAS;
+		case 354:
+			return AD_DROP;
 		default:
 			return AD_PHYS;
 
@@ -818,7 +820,7 @@ randomdamageattack()
 int
 randomthievingattack()
 {
-	switch (rnd(28)) {
+	switch (rnd(29)) {
 		case 1:
 			return AD_SLOW;
 		case 2:
@@ -875,6 +877,8 @@ randomthievingattack()
 			return AD_NIVE;
 		case 28:
 			return AD_TDRA;
+		case 29:
+			return AD_DROP;
 		default:
 			return AD_PHYS;
 	}

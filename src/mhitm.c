@@ -946,6 +946,25 @@ meleeattack:
 
 	}
 
+	if (magr->egotype_dropper ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_DROP;
+		a->damn = 1;
+		a->damd = 1;
+
+		if(monnear(magr, mdef->mx, mdef->my)) {
+			dieroll = rnd(20 + i);
+			strike = (tmp > dieroll);
+			if (strike) res[i] = hitmm(magr, mdef, a);
+		}
+		if (res[i] & MM_AGR_DIED) return res[i];
+		if (res[i] & MM_DEF_DIED) return res[i];
+
+	}
+
 	if (magr->egotype_wither ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
@@ -4048,6 +4067,7 @@ mdamagem(magr, mdef, mattk)
 		}
 		goto physical;
 	    case AD_FUMB:
+	    case AD_DROP:
 		if (magr->mcan) break;
 		if (canseemon(mdef))
 		    pline("%s %s for a moment.", Monnam(mdef), makeplural(stagger(mdef->data, "stagger")));
@@ -6798,6 +6818,7 @@ int attnumber;
 		}
 		break;
 	    case AD_FUMB:
+	    case AD_DROP:
 		if (!magr->mstun) {
 		    magr->mstun = 1;
 		    if (canseemon(magr))

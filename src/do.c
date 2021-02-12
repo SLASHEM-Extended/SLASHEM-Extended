@@ -3942,7 +3942,7 @@ rerollchaloc:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(378);
+			monstercolor = rnd(379);
 
 			if (wizard || !rn2(10)) pline(FunnyHallu ? "Err... is someone here? Hello-o, please show yourself!" : "Seems like someone made their home on this dungeon level.");
 
@@ -3961,7 +3961,7 @@ rerollchaloc:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(378);
+			monstercolor = rnd(379);
 
 		      cx = rn2(COLNO);
 		      cy = rn2(ROWNO);
@@ -4206,7 +4206,7 @@ rerollchaloc:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(378);
+			monstercolor = rnd(379);
 			if (rn2(2)) {
 			      cx = rn2(COLNO);
 			      cy = rn2(ROWNO);

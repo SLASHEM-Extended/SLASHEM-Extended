@@ -378,6 +378,7 @@ struct monst {
 	Bitfield(egotype_maecke,1); /* AD_MAGC */
 	Bitfield(egotype_flamer,1); /* AD_FLAM */
 	Bitfield(egotype_blasphemer,1); /* AD_BLAS */
+	Bitfield(egotype_dropper,1); /* AD_DROP */
 
 	Bitfield(egotype_datadeleter,1); /* AD_DATA */
 

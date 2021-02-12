@@ -1936,7 +1936,7 @@ badeffect()
 
 	u.cnd_badeffectcount++;
 
-	switch (rnd(482)) {
+	switch (rnd(483)) {
 
 		case 1:
 		case 2:
@@ -3464,6 +3464,10 @@ newoffmon:
 			}
 			break;
 
+		case 483:
+			dropitemattack();
+			break;
+
 		default:
 			break;
 	}
@@ -3529,7 +3533,7 @@ reallybadeffect()
 
 	u.cnd_reallybadeffectcount++;
 
-	switch (rnd(119)) {
+	switch (rnd(120)) {
 
 		case 1:
 		if (FunnyHallu) You_feel("rather trippy.");
@@ -4692,6 +4696,10 @@ newoffmonX:
 			}
 			break;
 
+		case 120:
+			dropitemattack();
+			break;
+
 		default:
 		break;
 	}
@@ -5378,6 +5386,60 @@ newswap:
 	AMAX(firststat) = ABASE(firststat);
 	pline("Your stats got scrambled!");
 
+
+}
+
+/* AD_DROP: forces player to drop random items, but no equipped ones --Amy */
+void
+dropitemattack()
+{
+	register struct obj *otmpi, *otmpii;
+	register int numdroppeditems = 0;
+
+	for (otmpi = invent; otmpi; otmpi = otmpii) {
+
+		otmpii = otmpi->nobj;
+
+		if (!rn2(50) && !stack_too_big(otmpi) ) {
+
+			if (otmpi->owornmask & W_ARMOR) continue;
+			else if (otmpi->owornmask & W_AMUL) {
+				if (otmpi->cursed) continue;
+				else Amulet_off();
+			} else if (otmpi->owornmask & W_IMPLANT) {
+				continue;
+			} else if (otmpi->owornmask & W_RING) {
+				if (otmpi->cursed) continue;
+				Ring_gone(otmpi);
+			} else if (otmpi->owornmask & W_TOOL) continue;
+			else if (otmpi->owornmask & (W_WEP|W_SWAPWEP|W_QUIVER)) {
+			    if (otmpi == uwep)
+				uwepgone();
+			    if (otmpi == uswapwep)
+				uswapwepgone();
+			    if (otmpi == uquiver)
+				uqwepgone();
+			}
+
+			if ( (otmpi->otyp == LOADSTONE || otmpi->otyp == LOADBOULDER || otmpi->otyp == STARLIGHTSTONE || otmpi->otyp == LUCKSTONE || otmpi->otyp == HEALTHSTONE || otmpi->otyp == MANASTONE || otmpi->otyp == SLEEPSTONE || otmpi->otyp == STONE_OF_MAGIC_RESISTANCE || is_nastygraystone(otmpi) || is_feminismstone(otmpi)) && otmpi->cursed ) continue;
+
+			if (otmpi->owornmask & (W_BALL|W_CHAIN)) continue;
+			else if (otmpi->owornmask) {
+			/* catchall */
+			    setnotworn(otmpi);
+			}
+
+			dropx(otmpi);
+			numdroppeditems++;
+		}
+	    }
+	    pline("Uh-oh, you suddenly trip over your own %s%s", makeplural(body_part(FOOT)), numdroppeditems ? " and some of your possessions fall out of your knapsack!" : "! But you barely manage to avoid dropping your possessions.");
+	    if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
+	    if (numdroppeditems) {
+			if (Levitation) scatter(u.ux,u.uy,10,VIS_EFFECTS|MAY_DESTROY,0);
+			else scatter(u.ux,u.uy,10,VIS_EFFECTS,0); /* don't destroy fragile stuff (unless levitating) */
+	    }
 
 }
 
@@ -6837,7 +6899,7 @@ add_monster_egotype(mtmp)
 register struct monst *mtmp;
 {
 	mtmp->isegotype = 1;
-	switch (rnd(222)) {
+	switch (rnd(223)) {
 		case 1:
 		case 2:
 		case 3: mtmp->egotype_thief = 1; break;
@@ -7070,6 +7132,7 @@ register struct monst *mtmp;
 		case 220:
 		case 221: mtmp->egotype_flamer = 1; break;
 		case 222: mtmp->egotype_blasphemer = 1; break;
+		case 223: mtmp->egotype_dropper = 1; break;
 
 	}
 
@@ -7609,7 +7672,7 @@ terrainterror()
 
 		else {
 
-			monstercolor = rnd(378);
+			monstercolor = rnd(379);
 
 			for (i = 0; i < randsp; i++) {
 
