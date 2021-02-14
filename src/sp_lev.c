@@ -2591,7 +2591,7 @@ boolean anywhere;
 
 	/* is light state random ? */
 	if (rlit == -1)
-	    rlit = (rnd(1+abs(depth(&u.uz))) < 11 && rn2(77)) ? TRUE : FALSE;
+	    rlit = (rnd(1+abs(depth(&u.uz))) < 25 && rn2(77)) ? TRUE : FALSE;
 
 	/*
 	 * Here we will try to create a room. If some parameters are
