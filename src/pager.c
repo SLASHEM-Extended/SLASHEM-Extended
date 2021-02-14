@@ -26864,6 +26864,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Juen'. It reads: 'It's fun to roll over your body with my roller blades, don't you agree?'",
 	"Incoming message for Player 1. The message is from 'Juen'. It reads: 'My ebony sandals will continuously kick your shins now.'",
 	"Incoming message for Player 1. The message is from 'Juen'. It reads: 'I'm sorry, but I have to scratch you with Mother Celine's lacquered shoes now.'",
+	"You are crushed by the stack of paperwork. You die...",
+	"Incoming message for Player 1. The message is from 'Elif'. It reads: 'My fingernails are very effective cutting tools.'",
+	"Incoming message for Player 1. The message is from 'Elif'. It reads: 'How does it feel when my sharp fingernails cut your skin?'",
 
 };
 
