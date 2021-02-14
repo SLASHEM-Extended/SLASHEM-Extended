@@ -3565,6 +3565,9 @@ Amulet_on()
 		You_feel("ready for climbing.");
 		makeknown(AMULET_OF_CLIMBING);
 		break;
+	case AMULET_OF_GUARDING:
+		makeknown(AMULET_OF_GUARDING);
+		break;
 	case AMULET_OF_YENDOR:
 		break;
 	/* KMH, balance patch -- added */
