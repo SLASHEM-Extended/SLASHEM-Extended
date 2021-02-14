@@ -962,7 +962,7 @@ bot2str(char *newbot2)
 #endif
 		if (u.usymbiote.cursed) {
 			sprintf(nb = eos(nb), "%s", u.usymbiote.stckcurse ? "S" : "C");
-			sprintf(nb = eos(nb), "%d", (u.usymbiote.evilcurse || u.usymbiote.bbcurse || u.usymbiote.morgcurse) ? 4 : u.usymbiote.prmcurse ? 3 : u.usymbiote.hvycurse ? 2 : 1);
+			sprintf(nb = eos(nb), "%s", (u.usymbiote.evilcurse || u.usymbiote.bbcurse || u.usymbiote.morgcurse) ? "XXX" : u.usymbiote.prmcurse ? "XX" : u.usymbiote.hvycurse ? "X" : "");
 		}
 		if (u.shutdowntime) sprintf(nb = eos(nb), "sd");
 	}

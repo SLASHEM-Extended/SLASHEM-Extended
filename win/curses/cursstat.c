@@ -709,7 +709,7 @@ linetwo:
 	  wprintw(win, " SH:%d(%d)", u.usymbiote.mhp, u.usymbiote.mhpmax);
 	  if (u.usymbiote.cursed) {
 		wprintw(win, "%s", u.usymbiote.stckcurse ? "S" : "C");
-		wprintw(win, "%d", (u.usymbiote.evilcurse || u.usymbiote.bbcurse || u.usymbiote.morgcurse) ? 4 : u.usymbiote.prmcurse ? 3 : u.usymbiote.hvycurse ? 2 : 1);
+		wprintw(win, "%s", (u.usymbiote.evilcurse || u.usymbiote.bbcurse || u.usymbiote.morgcurse) ? "XXX" : u.usymbiote.prmcurse ? "XX" : u.usymbiote.hvycurse ? "X" : "");
 		if (u.shutdowntime) wprintw(win, "sd");
 	  }
     }
