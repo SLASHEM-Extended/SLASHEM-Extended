@@ -1414,6 +1414,10 @@ dopay()
 		     return(0);
 		}
 		mtmp = m_at(cx, cy);
+		if (!cansee(cx, cy) && (!mtmp || !canspotmon(mtmp))) { /* bugfix from 3.7 - yeah I'm a filthy heretic :P --Amy */
+		     You("can't see that location from here!");
+		     return(0);
+		}
 		if(!mtmp) {
 		     There("is no one there to receive your payment.");
 		     return(0);
