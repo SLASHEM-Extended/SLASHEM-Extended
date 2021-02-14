@@ -675,6 +675,8 @@ register struct monst *mtmp;
 			"Fat and round and firmly packed, It was hanging on the rack, Someone stole the kishka, When I turned my back!",
 		};
 		verbalize("%s", polka_msgs[rn2(SIZE(polka_msgs))]);
+
+		if (!rn2(5) && !um_dist(mtmp->mx, mtmp->my, 7) ) increasesanity(rnz(20));
 	}
 
 	if (mdat == &mons[PM_DARKNESS_ELEMENTAL] || mdat == &mons[PM_PERMADARKNESS_ELEMENTAL]) {
