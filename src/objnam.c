@@ -6780,8 +6780,8 @@ register struct obj *obj;
 			index(vowels,*(mons[obj->corpsenm].mname)) ? "n" : "",
 			mons[obj->corpsenm].mname);
 
-		if (is_lightsaber(obj) && nn && obj->known) sprintf(eos(buf), " (%ld)", obj->age);
-		if (age_is_relative(obj) && nn && obj->known) sprintf(eos(buf), " (%ld)", obj->age);
+		if (is_lightsaber(obj) && nn && obj->known && obj->dknown) sprintf(eos(buf), " (%ld)", obj->age);
+		if (age_is_relative(obj) && typ != MAGIC_CANDLE && typ != MAGIC_LAMP && nn && obj->known && obj->dknown) sprintf(eos(buf), " (%ld)", obj->age);
 
 		break;
 	    case ARMOR_CLASS:
