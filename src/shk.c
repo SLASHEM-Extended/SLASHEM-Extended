@@ -2426,8 +2426,7 @@ register boolean unpaid_only;
 		if (saleable(shkp, otmp) &&
 			!otmp->unpaid && otmp->oclass != BALL_CLASS &&
 			!is_hazy(otmp) &&
-			!(otmp->oclass == FOOD_CLASS && otmp->oeaten) &&
-			!(Is_candle(otmp) && otmp->age < 2000L) )
+			!(otmp->oclass == FOOD_CLASS && otmp->oeaten) )
 		    price += set_cost(otmp, shkp);
 	    } else if (!otmp->no_charge &&
 		      (!unpaid_only || (unpaid_only && otmp->unpaid))) {
@@ -3197,8 +3196,7 @@ move_on:
 	   || obj->objwassold
 	   || obj->oclass == CHAIN_CLASS || offer == 0L
 	   || is_hazy(obj)
-	   || (obj->oclass == FOOD_CLASS && obj->oeaten)
-	   || (Is_candle(obj) && obj->age < 2000L) ) {
+	   || (obj->oclass == FOOD_CLASS && obj->oeaten) ) {
 		pline("%s seems uninterested%s.", Monnam(shkp),
 			cgold ? " in the rest" : "");
 		if (container)
@@ -3434,21 +3432,9 @@ boolean shk_buying;
 		/* Don't buy activated explosives! */
 		if (is_grenade(obj) && obj->oarmed) tmp = 0L;
 		break;
-	case TOOL_CLASS:
-		if (Is_candle(obj) && obj->age < 2000L)
-		    tmp /= 2L;
-		else if (obj->otyp == TORCH) {
-		  if (obj->age == 0) {
-		    tmp = 0L;
-		  }
-		  else if (obj->age < 25) {
-		    tmp /= 4L;
-		  }
-		  else if (obj->age < 50) {
-		    tmp /= 2L;
-		  }
-		}
-		break;
+
+	/* used to be that partly used light sources made it cheaper here... FUCK PRICE ID :P --Amy */
+
 	}
 	return tmp;
 }
