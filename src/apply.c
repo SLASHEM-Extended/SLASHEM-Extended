@@ -582,7 +582,13 @@ use_stethoscope(obj)
 	} else
 	if (u.uswallow && (u.dx || u.dy || u.dz)) {
 
-		if (obj->oartifact == ART_PIERCE_DEVICE && u.ustuck->mhp > 1) u.ustuck->mhp--;
+		if (obj->oartifact == ART_PIERCE_DEVICE && u.ustuck->mhp > 1) {
+			u.ustuck->mhp--;
+			if (u.ustuck->mpeaceful && !u.ustuck->mtame) { /* exploit discovered by amateurhour --Amy */
+				u.ustuck->mpeaceful = FALSE; /* no easy shopkeeper cheesing! */
+				pline("%s is no longer peaceful.", Monnam(u.ustuck));
+			}
+		}
 
 		if ((obj->blessed || (obj->otyp == UNSTABLE_STETHOSCOPE && !rn2(5)) || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
 		mstatuslinebl(u.ustuck);
@@ -592,7 +598,13 @@ use_stethoscope(obj)
 	} else if (u.uswallow && interference) {
 		pline("%s interferes.", Monnam(u.ustuck));
 
-		if (obj->oartifact == ART_PIERCE_DEVICE && u.ustuck->mhp > 1) u.ustuck->mhp--;
+		if (obj->oartifact == ART_PIERCE_DEVICE && u.ustuck->mhp > 1) {
+			u.ustuck->mhp--;
+			if (u.ustuck->mpeaceful && !u.ustuck->mtame) { /* exploit discovered by amateurhour --Amy */
+				u.ustuck->mpeaceful = FALSE; /* no easy shopkeeper cheesing! */
+				pline("%s is no longer peaceful.", Monnam(u.ustuck));
+			}
+		}
 
 		if ((obj->blessed || (obj->otyp == UNSTABLE_STETHOSCOPE && !rn2(5)) || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
 		mstatuslinebl(u.ustuck);
@@ -652,7 +664,13 @@ use_stethoscope(obj)
 			return 0;
 		}
 
-		if (obj->oartifact == ART_PIERCE_DEVICE && mtmp->mhp > 1) mtmp->mhp--;
+		if (obj->oartifact == ART_PIERCE_DEVICE && mtmp->mhp > 1) {
+			mtmp->mhp--;
+			if (mtmp->mpeaceful && !mtmp->mtame) { /* exploit discovered by amateurhour --Amy */
+				mtmp->mpeaceful = FALSE; /* no easy shopkeeper cheesing! */
+				pline("%s is no longer peaceful.", Monnam(mtmp));
+			}
+		}
 
 		if ((obj->blessed || (obj->otyp == UNSTABLE_STETHOSCOPE && !rn2(5)) || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
 		mstatuslinebl(mtmp);
