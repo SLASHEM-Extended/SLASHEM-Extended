@@ -286,6 +286,13 @@ hack_artifacts()
 	artilist[ART_CORTEX_COPROCESSOR].otyp = randartimplant();
 	artilist[ART_AMULET_OF_SPLENDOR].otyp = randartamulet();
 	artilist[ART_FASTPLANT].otyp = randartimplant();
+	artilist[ART_UPSIDE_DOWN_PLAYING_CARD].otyp = randartscroll();
+	artilist[ART_BERRYBREW].otyp = randartpotion();
+	artilist[ART_CURSED_WITH_THE_WORST].otyp = randartbadgraystone();
+	artilist[ART_FEMITY_SOLVE].otyp = randartfeminismjewel();
+	artilist[ART_VAPER_BAPER].otyp = randartball();
+	artilist[ART_TSCHEND_FOR_ETERNITY].otyp = randartchain();
+	artilist[ART_MACHINE_THAT_GOES_PLING].otyp = randartgem();
 
 	artilist[ART_JANA_S_GRAVE_WALL].otyp = randartcloakX();
 	artilist[ART_HENRIETTA_S_DOGSHIT_BOOTS].otyp = randartbootsX();
@@ -389,6 +396,11 @@ hack_artifacts()
 	artilist[ART_FLEECY_GREEN].otyp = randartamuletX();
 	artilist[ART_PEEK].otyp = randartmeleeweaponX();
 	artilist[ART_TAILCUTTER].otyp = randartmeleeweaponX();
+	artilist[ART_WONDER_WATERING_PLACE].otyp = randartpotionX();
+	artilist[ART_SECRET_RECIPE].otyp = randartscrollX();
+	artilist[ART_HEAVY_HEAVY_BABE].otyp = randartballX();
+	artilist[ART_HAMSTRUNG_FOUR_SURE].otyp = randartchainX();
+	artilist[ART_PAWNERMASTER].otyp = randartgemX();
 
 	artilist[ART_ELLI_S_PSEUDOBAND_OF_POS].otyp = randartmeleeweaponX();
 	artilist[ART_HIGHEST_FEELING].otyp = find_fetish_heels();

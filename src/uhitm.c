@@ -3021,6 +3021,13 @@ int dieroll;
 			pline("%s is bleeding!", Monnam(mon));
 		}
 
+		if (wep && wep->oartifact == ART_HAMSTRUNG_FOUR_SURE && mon->mcanmove) {
+			mon->mfrozen = 2;
+			mon->mcanmove = 0;
+			mon->mstrategy &= ~STRAT_WAITFORU;
+			pline("%s is unable to move!", Monnam(mon));
+		}
+
 		if (wep && wep->oartifact == ART_BOHEM_FUELKANAL && !rn2(100)) {
 			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) mon_adjust_speed(mon, -1, (struct obj *)0);
 		}

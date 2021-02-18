@@ -26867,6 +26867,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You are crushed by the stack of paperwork. You die...",
 	"Incoming message for Player 1. The message is from 'Elif'. It reads: 'My fingernails are very effective cutting tools.'",
 	"Incoming message for Player 1. The message is from 'Elif'. It reads: 'How does it feel when my sharp fingernails cut your skin?'",
+	"You vaped for a bit, and have increased your maximum health.",
+	"You vaped for a bit, and have increased your maximum health. Which makes no sense at all, because realistically you should just have increased your chances of developing lung cancer.",
 
 };
 

@@ -2520,6 +2520,62 @@ randartspellbook()
 }
 
 int
+randartpotion()
+{
+	int result;
+	result = rnd_class(POT_BOOZE,POT_PAN_GALACTIC_GARGLE_BLASTE);
+	return result;
+}
+
+int
+randartscroll()
+{
+	int result;
+	result = rnd_class(SCR_CREATE_MONSTER,SCR_GIRLINESS);
+	return result;
+}
+
+int
+randartball()
+{
+	int result;
+	result = rnd_class(HEAVY_IRON_BALL,LIQUID_BALL);
+	return result;
+}
+
+int
+randartchain()
+{
+	int result;
+	result = rnd_class(IRON_CHAIN,LIQUID_CHAIN);
+	return result;
+}
+
+int
+randartgem()
+{
+	int result;
+	result = rnd_class(DILITHIUM_CRYSTAL,ROCK);
+	return result;
+}
+
+int
+randartbadgraystone()
+{
+	int result;
+	result = rnd_class(RIGHT_MOUSE_BUTTON_STONE,NASTY_STONE);
+	return result;
+}
+
+int
+randartfeminismjewel()
+{
+	int result;
+	result = rnd_class(ELIF_S_JEWEL,DORA_S_JEWEL);
+	return result;
+}
+
+int
 randartmeleeweaponX()
 {
 	int result;
@@ -2658,6 +2714,46 @@ randartspellbookX()
 {
 	int result;
 	result = SPE_FORCE_BOLT + rn2((SPE_PSYBEAM + 1) - SPE_FORCE_BOLT);
+	return result;
+}
+
+int
+randartpotionX()
+{
+	int result;
+	result = POT_BOOZE + rn2((POT_PAN_GALACTIC_GARGLE_BLASTE + 1) - POT_BOOZE);
+	return result;
+}
+
+int
+randartscrollX()
+{
+	int result;
+	result = SCR_CREATE_MONSTER + rn2((SCR_GIRLINESS + 1) - SCR_CREATE_MONSTER);
+	return result;
+}
+
+int
+randartballX()
+{
+	int result;
+	result = HEAVY_IRON_BALL + rn2((LIQUID_BALL + 1) - HEAVY_IRON_BALL);
+	return result;
+}
+
+int
+randartchainX()
+{
+	int result;
+	result = IRON_CHAIN + rn2((LIQUID_CHAIN + 1) - IRON_CHAIN);
+	return result;
+}
+
+int
+randartgemX()
+{
+	int result;
+	result = DILITHIUM_CRYSTAL + rn2((ROCK + 1) - DILITHIUM_CRYSTAL);
 	return result;
 }
 

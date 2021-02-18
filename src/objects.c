@@ -8650,6 +8650,7 @@ OBJECT(OBJ("boulder",(char *)0), BITS(1,0,0,0,0,0,0,0,1,0,0,P_NONE,MT_MINERAL), 
 OBJECT(OBJ("statue", (char *)0), BITS(1,0,0,1,0,0,0,0,0,0,0,P_NONE,MT_MINERAL), 0,
 		ROCK_CLASS,  9000, 0, 2500,  0, 20, 20, 0, 0, 200, CLR_WHITE, 1, 0),
 
+/* heavy iron ball must be first */
 OBJECT(OBJ("heavy iron ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_IRON), 0,
 		BALL_CLASS,  3360, 0,  2400, 10, 25, 25, 0, 0,  200, HI_METAL, 1, 0),
 						/* +d4 when "very heavy" */
@@ -8772,7 +8773,9 @@ OBJECT(OBJ("null ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_MY
 		BALL_CLASS,  100, 0,  3600, 10, 35, 35, 0, 0,  200, CLR_BLACK, 10, 0),
 OBJECT(OBJ("liquid ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_LIQUID), 0,
 		BALL_CLASS,  100, 0,  3600, 10, 35, 35, 0, 0,  200, CLR_BRIGHT_GREEN, 10, 0),
+/* liquid ball must be last */
 
+/* iron chain must be first */
 OBJECT(OBJ("iron chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_IRON), 0,
 		CHAIN_CLASS, 3580, 0,  240,  0,  4,  4, 0, 0,  200, HI_METAL, 1, 0),
 						/* +1 both l & s */
@@ -8897,6 +8900,7 @@ OBJECT(OBJ("null chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_M
 		CHAIN_CLASS, 100, 0,  720,  0,  12,  12, 0, 0,  200, CLR_BLACK, 10, 0),
 OBJECT(OBJ("liquid chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_LIQUID), 0,
 		CHAIN_CLASS, 100, 0,  720,  0,  12,  12, 0, 0,  200, CLR_BRIGHT_GREEN, 10, 0),
+/* liquid chain must be last */
 
 /* extra balls and chains for convict mainly (he can advance flail skill by swinging them) --Amy
  * that said, all other roles can too, as long as they have the flail skill :P */

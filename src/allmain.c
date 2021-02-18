@@ -2114,6 +2114,34 @@ moveloop()
 
 		}
 
+		if (uwep && uwep->oartifact == ART_VAPER_BAPER && !PlayerCannotUseSkills && !rn2(1000) && P_SKILL(P_VAAPAD) >= P_BASIC) {
+			int vaperceiling = (u.ulevel * 10);
+			boolean madechange;
+			switch (P_SKILL(P_VAAPAD)) {
+				case P_BASIC: vaperceiling = (u.ulevel * 10); break;
+				case P_SKILLED: vaperceiling = (u.ulevel * 12); break;
+				case P_EXPERT: vaperceiling = (u.ulevel * 15); break;
+				case P_MASTER: vaperceiling = (u.ulevel * 18); break;
+				case P_GRAND_MASTER: vaperceiling = (u.ulevel * 20); break;
+				case P_SUPREME_MASTER: vaperceiling = (u.ulevel * 25); break;
+			}
+
+			if (u.uhpmax < vaperceiling) {
+				u.uhpmax++;
+				madechange = TRUE;
+				flags.botl = TRUE;
+			}
+			if (Upolyd && (u.mhmax < vaperceiling)) {
+				u.mhmax++;
+				madechange = TRUE;
+				flags.botl = TRUE;
+			}
+			if (madechange) You("vaped for a bit, and have increased your maximum health.");
+		}
+
+		if (uwep && uwep->oartifact == ART_TSCHEND_FOR_ETERNITY && !rn2(1000) && !Punished) punish((struct obj *)0);
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_TSCHEND_FOR_ETERNITY && !rn2(1000) && !Punished) punish((struct obj *)0);
+
 		if (tech_inuse(T_THUNDERSTORM) && !rn2(10)) {
 		    int i, j, bd = 3;
 		    struct monst *mtmp, *targetmon;

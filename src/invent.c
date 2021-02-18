@@ -1332,6 +1332,18 @@ have_invisoloadstone()
 }
 
 boolean
+have_femityjewel()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->oartifact == ART_FEMITY_SOLVE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
 have_femtrapfemmy()
 {
 	register struct obj *otmp;
@@ -21175,6 +21187,30 @@ boolean knoweverything;
 					pline("Artifact specs: evilvariant mode when worn."); break;
 				case ART_VARIANT_GUARD:
 					pline("Artifact specs: protection from shape changers when worn and makes inertia time out very quickly."); break;
+				case ART_WONDER_WATERING_PLACE:
+					pline("Artifact specs: quaffing it can cure your covid-19 symptoms."); break;
+				case ART_SECRET_RECIPE:
+					pline("Artifact specs: teaches you the hidden power when read... or actually, it teaches you how you can learn the hidden power, but you still have to learn it yourself :-P"); break;
+				case ART_UPSIDE_DOWN_PLAYING_CARD:
+					pline("Artifact specs: has a chance of being preserved when read, allowing you to potentially read it multiple times. The chance depends on your devices skill."); break;
+				case ART_BERRYBREW:
+					pline("Artifact specs: always gives you an additional bottle when quaffed (in addition to the random chance of getting one)."); break;
+				case ART_CURSED_WITH_THE_WORST:
+					pline("Artifact specs: +20 damage, acts as a luckstone when carried."); break;
+				case ART_FEMITY_SOLVE:
+					pline("Artifact specs: while carrying it, you can #monster to spread perfume, but doing so will also spawn a hostile perfume-spreading monster somewhere on the level."); break;
+				case ART_HEAVY_HEAVY_BABE:
+					pline("Artifact specs: +20 damage."); break;
+				case ART_HAMSTRUNG_FOUR_SURE:
+					pline("Artifact specs: free action when wielded, hitting a monster with it paralyzes it for one turn."); break;
+				case ART_VAPER_BAPER:
+					pline("Artifact specs: while wielding it, as long as your form VII (Vaapad) skill is high enough, your maximum HP may slowly go up. The ceiling value that your max HP can reach that way is dependant on how much skill you have."); break;
+				case ART_TSCHEND_FOR_ETERNITY:
+					pline("Artifact specs: while wielding it, you'll randomly get punished. If this thing is actually chained to you, it grants reflection and magic resistance instead, but that's obviously not the case right now because otherwise you wouldn't be reading this message :-)"); break;
+				case ART_PAWNERMASTER:
+					pline("Artifact specs: eating it summons a gypsy. This requires you to be able to eat gems in the first place, obviously."); break;
+				case ART_MACHINE_THAT_GOES_PLING:
+					pline("Artifact specs: +20 damage. It wasn't meant to do this in the first place."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

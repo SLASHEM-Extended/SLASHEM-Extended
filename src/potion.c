@@ -8514,6 +8514,9 @@ register struct obj *otmp;
 		} else if(!objects[otmp->otyp].oc_uname)
 			docall(otmp);
 	}
+	if (otmp && otmp->oartifact == ART_BERRYBREW) {
+		make_bottle(TRUE);
+	}
 	if (otmp && carried(otmp)) {
 		useup(otmp);
 		make_bottle(FALSE);
@@ -8565,6 +8568,14 @@ peffects(otmp)
 	}
 
 	if (RngeLevuntation) badeffect();
+
+	if (otmp->oartifact == ART_WONDER_WATERING_PLACE) {
+		int coronatries = rnd(10);
+		while (coronatries > 0) {
+			coronatries--;
+			upnivel(FALSE);
+		}
+	}
 
 	if (otmp->otyp == POT_WONDER || otmp->otyp == POT_TERCES_DLU) {
 

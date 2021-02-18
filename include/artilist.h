@@ -8333,6 +8333,54 @@ A("Variant Guard",				AMULET_OF_GUARDING, /* protection from shape changers, ine
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
+A("Wonder Watering Place",				POT_BOOZE, /* randart2, quaffing gives d10 anti-corona effects */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Secret Recipe",				SCR_CREATE_MONSTER, /* randart2, tells you the hidden power skill */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Upside Down Playing Card",				SCR_CREATE_MONSTER, /* randart, has a chance to be preserved when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Berrybrew",				POT_BOOZE, /* randart, quaffing it gives you an additional bottle */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Cursed With The Worst",				RIGHT_MOUSE_BUTTON_STONE, /* randart bad gray stone */
+	(SPFX_RESTR|SPFX_EVIL), (SPFX_LUCK), 0,
+	PHYS(0, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Femity Solve",				ELIF_S_JEWEL, /* randart feminism jewel, allows you to #monster to spread the perfume but doing so spawns a perfume monster */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Heavy-Heavy-Babe",				HEAVY_IRON_BALL, /* randart2 */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Hamstrung Four Sure",				IRON_CHAIN, /* randart2, free action when wielded, hitting a monster paralyzes it for one turn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Vaper-Baper",				HEAVY_IRON_BALL, /* randart, wielding it may improve your max HP over time if your vaapad skill is high enough */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Tschend For Eternity",				IRON_CHAIN, /* randart, if you're chained to it you have reflection and MR, but if you wield it, 1 in 1000 chance per turn to be punished as long as you aren't already */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
+
+A("Pawnermaster",				DIAMOND, /* randart2 gem, eating it summons a gypsy */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Machine That Goes Pling",				DIAMOND, /* randart gem */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
 
 /*
  *	Stormbringer only has a 2 because it can drain a level,

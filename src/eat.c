@@ -5229,10 +5229,6 @@ struct obj *otmp;
 		      ? (FunnyHallu ? "enjoyable." : "bland.") :
 		      FunnyHallu ? "gnarly!" : "delicious!");
 		}
-		if (otmp->otyp == EGG && otmp->oartifact == ART_EGG_OF_SPLAT) {
-		    pline("Ulch - that was a contaminated egg!");
-		    make_sick(rn1(25,25), "Team Splat egg (Go Team Hardcore Autism!)", TRUE, SICK_VOMITABLE);
-		}
 
 		break;
 	}
@@ -6848,6 +6844,10 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 			if (basenutrit < 3) {basenutrit = 3;}
 		}
 
+		if (otmp->oartifact == ART_PAWNERMASTER) {
+			makemon(&mons[PM_GYPSY], u.ux, u.uy, MM_ADJACENTOK);
+		}
+
 	    victual.nmod = basenutrit;
 	    victual.eating = TRUE; /* needed for lesshungry() */
 
@@ -6952,6 +6952,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 	    }
 
 	    eatspecial();
+
 	    return 1;
 	}
 
@@ -7077,6 +7078,11 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 		} else
 		consume_oeaten(otmp, 1);	/* oeaten >>= 1 */
 	    } else fprefx(otmp);
+	}
+
+	if (otmp->otyp == EGG && otmp->oartifact == ART_EGG_OF_SPLAT) {
+	    pline("Ulch - that was a contaminated egg!");
+	    make_sick(rn1(25,25), "Team Splat egg (Go Team Hardcore Autism!)", TRUE, SICK_VOMITABLE);
 	}
 
 	if (practicantterror && (otmp->otyp == SLICE_OF_PIZZA || otmp->otyp == PIZZA)) {

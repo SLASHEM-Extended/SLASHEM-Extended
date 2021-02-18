@@ -840,7 +840,7 @@ doread()
 	}
 	scroll->in_use = TRUE;	/* scroll, not spellbook, now being read */
 
-	if (Role_if(PM_CARTOMANCER) && scroll) {
+	if ((Role_if(PM_CARTOMANCER) && scroll) || (scroll && scroll->oartifact == ART_UPSIDE_DOWN_PLAYING_CARD)) {
 		cartochance = 0;
 
 		switch (scroll->otyp) { /* values depend on how much they cost to write, see write.c --Amy */
@@ -1131,8 +1131,13 @@ doread()
 		}
 
 		if (cartochance > 0 && (rn2(100) < cartochance) ) cartokeep = TRUE;
+		if (Role_if(PM_CARTOMANCER) && scroll->oartifact == ART_UPSIDE_DOWN_PLAYING_CARD && (rn2(100) < cartochance) ) cartokeep = TRUE; /* gotta make sure the effects stack, after all :-) --Amy */
 
 	} /* cartomancer dupe chance check */
+
+	if(scroll->oartifact == ART_SECRET_RECIPE) {
+		pline("Mastering the %s skill will teach you the hidden power.", wpskillname(u.hiddenpowerskill));
+	}
 
 	if(scroll->oartifact == ART_MARAUDER_S_MAP) {
 		if(Blind) {
