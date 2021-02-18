@@ -21202,7 +21202,7 @@ boolean knoweverything;
 				case ART_HEAVY_HEAVY_BABE:
 					pline("Artifact specs: +20 damage."); break;
 				case ART_HAMSTRUNG_FOUR_SURE:
-					pline("Artifact specs: free action when wielded, hitting a monster with it paralyzes it for one turn."); break;
+					pline("Artifact specs: free action when wielded, hitting a monster with it occasionally paralyzes it for one turn."); break;
 				case ART_VAPER_BAPER:
 					pline("Artifact specs: while wielding it, as long as your form VII (Vaapad) skill is high enough, your maximum HP may slowly go up. The ceiling value that your max HP can reach that way is dependant on how much skill you have."); break;
 				case ART_TSCHEND_FOR_ETERNITY:

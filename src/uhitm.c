@@ -3021,7 +3021,7 @@ int dieroll;
 			pline("%s is bleeding!", Monnam(mon));
 		}
 
-		if (wep && wep->oartifact == ART_HAMSTRUNG_FOUR_SURE && mon->mcanmove) {
+		if (wep && wep->oartifact == ART_HAMSTRUNG_FOUR_SURE && mon->mcanmove && !rn2(3)) {
 			mon->mfrozen = 2;
 			mon->mcanmove = 0;
 			mon->mstrategy &= ~STRAT_WAITFORU;
