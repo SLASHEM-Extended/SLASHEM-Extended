@@ -182,6 +182,7 @@ const char *goal;
 	    cx = -1;
 	    cy = 0;
 	    result = 0;	/* not -1 */
+	    if (c == 32) result = -1;
 	    break;
 	}
     nxtc:	;
@@ -197,7 +198,9 @@ const char *goal;
     if (msg_given) clear_nhwindow(WIN_MESSAGE);
     cc->x = cx;
     cc->y = cy;
+
     return result;
+
 }
 
 struct monst *
