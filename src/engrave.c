@@ -5410,6 +5410,8 @@ static const char *epitaphs[] = {
 	"Yeah you can't defeat Tiksrvzllat. Don't know why I even bothered trying.",
 	"WHAT??? Script-generated monsters shouldn't exist! They add nothing to the game! Fuck you Amy for having them in the first place!",
 	"I swear, script-generated monsters were a very bad addition to the game as their balance is completely out of whack. Amy should remove them.", /* but she never will :-P */
+	"SLEX is not a game but a C compiler testsuite", /* by bhaak */
+	"no mouth, one leg, you can use #monster to roll around on the ground, you start with an inka hat and randomized skills and intrinsics", /* by spicycat (original wording was slightly different) */
 
 };
 

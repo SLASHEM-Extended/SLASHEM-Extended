@@ -1007,7 +1007,7 @@ gcrownu()
 		    godvoice(u.ualign.type, "Use my gift wisely!");
 #ifdef LIVELOGFILE
 			char	 reportbuf[BUFSZ];
-			sprintf (reportbuf, "received %s by %s", ONAME(obj), u_gname());
+			sprintf (reportbuf, "received %s from %s", ONAME(obj), u_gname());
 			livelog_report_trophy(reportbuf);
 #endif
 		    u.ugifts++;
@@ -1105,7 +1105,7 @@ gcrownu()
 				dropy(obj);
 #ifdef LIVELOGFILE
 				char	 reportbuf[BUFSZ];
-				sprintf (reportbuf, "received %s by %s", ONAME(obj), u_gname());
+				sprintf (reportbuf, "received %s from %s", ONAME(obj), u_gname());
 				livelog_report_trophy(reportbuf);
 #endif
 				u.ugifts++;
@@ -1216,7 +1216,7 @@ gcrownu()
 		    dropy(obj);
 #ifdef LIVELOGFILE
 			char	 reportbuf[BUFSZ];
-			sprintf (reportbuf, "received %s by %s", ONAME(obj), u_gname());
+			sprintf (reportbuf, "received %s from %s", ONAME(obj), u_gname());
 			livelog_report_trophy(reportbuf);
 #endif
 		    u.ugifts++;
@@ -1281,7 +1281,7 @@ gcrownu()
 		    dropy(obj);
 #ifdef LIVELOGFILE
 			char	 reportbuf[BUFSZ];
-			sprintf (reportbuf, "received %s by %s", ONAME(obj), u_gname());
+			sprintf (reportbuf, "received %s from %s", ONAME(obj), u_gname());
 			livelog_report_trophy(reportbuf);
 #endif
 		    u.ugifts++;
@@ -2667,7 +2667,7 @@ dosacrifice()
 		    godvoice(u.ualign.type, "Use my gift wisely!");
 #ifdef LIVELOGFILE
 			char	 reportbuf[BUFSZ];
-			sprintf (reportbuf, "received %s by %s", ONAME(otmp), u_gname());
+			sprintf (reportbuf, "received %s from %s", ONAME(otmp), u_gname());
 			livelog_report_trophy(reportbuf);
 #endif
 		    u.ugifts++;

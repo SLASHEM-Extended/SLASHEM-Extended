@@ -4465,6 +4465,9 @@ static NEARDATA const char * const longinglines[] = {
 "%s's heel sandals have lovely feminine ornaments and sweethearts and mickey mouses and hello kitties and everything!",
 "Everything about %s is fleecy! This includes not only all the clothing she wears, but also her soft skin.",
 "You absolutely want %s to cause bloody wounds to you with her heels. If she does, you have to protect the pretty wounds so that they don't disappear, because you have to keep them.",
+"%s's sneakers look like they absolutely want to kick you in the nuts! And you look like you'd enjoy that very much :-)",
+"Do you agree that %s's female sneakers look totally cuddly-gentle? Being kicked in the nuts by them would feel soooooo lovely!",
+"%s's beautiful column-shaped heels can probably do very erotic things to you, like squashing your testicles or stomping your fingers.",
 };
 
 static NEARDATA const char * const soviettaunts[] = {
