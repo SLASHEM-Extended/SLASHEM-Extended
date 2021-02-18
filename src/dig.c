@@ -1218,6 +1218,10 @@ struct obj *obj;
 			    wake_nearby();
 			} else if (IS_TREE(lev->typ))
 			    You("need an axe to cut down a tree.");
+			else if (IS_FARMLAND(lev->typ))
+			    You("need to use the force to remove farmland.");
+			else if (IS_MOUNTAIN(lev->typ))
+			    You("cannot dig out an entire mountain.");
 			else if (IS_ROCK(lev->typ))
 			    You("need a pick to dig rock.");
 			else if (!ispick && (sobj_at(STATUE, rx, ry) ||
