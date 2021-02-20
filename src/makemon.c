@@ -1888,6 +1888,8 @@ register struct monst *mtmp;
 
 		   case PM_BARBARIAN:
 		   case PM_UNDEAD_BARBARIAN:
+		   case PM_NOOB_MODE_BARB:
+		   case PM_UNDEAD_NOOB_MODE_BARB:
 		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
 		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
 		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
@@ -24761,6 +24763,7 @@ loopback:
 		if (ct > 0 && (Role_if(PM_ARTIST) && attacktype(ptr, AT_GAZE))) ct += 2;
 		if (ct > 0 && (Role_if(PM_ASSASSIN) && is_diablomonster(ptr))) ct += 5;
 		if (ct > 0 && (Role_if(PM_BARBARIAN) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_NOOB_MODE_BARB) && is_vanillamonster(ptr))) ct += 5;
 		if (ct > 0 && (Role_if(PM_BARBARIAN) && is_diablomonster(ptr))) ct += 1;
 		if (ct > 0 && (Role_if(PM_BINDER) && is_dnethackmonster(ptr))) ct += 10;
 		if (ct > 0 && (Role_if(PM_ANACHRONOUNBINDER) && is_dnethackmonster(ptr))) ct += 10;
@@ -26019,6 +26022,7 @@ int     spc;
 		if ((Role_if(PM_ARTIST) && attacktype(&mons[last], AT_GAZE))) num += 2;
 		if ((Role_if(PM_ASSASSIN) && is_diablomonster(&mons[last]))) num += 5;
 		if ((Role_if(PM_BARBARIAN) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Role_if(PM_NOOB_MODE_BARB) && is_vanillamonster(&mons[last]))) num += 5;
 		if ((Role_if(PM_BARBARIAN) && is_diablomonster(&mons[last]))) num += 1;
 		if ((Role_if(PM_BINDER) && is_dnethackmonster(&mons[last]))) num += 10;
 		if ((Role_if(PM_ANACHRONOUNBINDER) && is_dnethackmonster(&mons[last]))) num += 10;
@@ -26943,6 +26947,7 @@ int     spc;
 		if ((Role_if(PM_ARTIST) && attacktype(&mons[first], AT_GAZE))) num -= 2;
 		if ((Role_if(PM_ASSASSIN) && is_diablomonster(&mons[first]))) num -= 5;
 		if ((Role_if(PM_BARBARIAN) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Role_if(PM_NOOB_MODE_BARB) && is_vanillamonster(&mons[first]))) num -= 5;
 		if ((Role_if(PM_BARBARIAN) && is_diablomonster(&mons[first]))) num -= 1;
 		if ((Role_if(PM_BINDER) && is_dnethackmonster(&mons[first]))) num -= 10;
 		if ((Role_if(PM_ANACHRONOUNBINDER) && is_dnethackmonster(&mons[first]))) num -= 10;

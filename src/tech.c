@@ -463,6 +463,12 @@ static const struct innate_tech
 		       {   10, T_IRON_SKIN, 1},
 		       {   20, T_EDDY_WIND, 1},
 		       {   0, 0, 0} },
+	noo_tech[] = { {   1, T_BERSERK, 1},
+		       {   8, T_DOUBLE_THROWNAGE, 1},
+		       {   10, T_CONCENTRATING, 1},
+		       {   10, T_IRON_SKIN, 1},
+		       {   20, T_EDDY_WIND, 1},
+		       {   0, 0, 0} },
 	blo_tech[] = { {   1, T_EDDY_WIND, 1},
 		       {   10, T_BLOOD_RITUAL, 1},
 		       {   0, 0, 0} },
@@ -9959,6 +9965,7 @@ role_tech()
 		case PM_THALMOR:	return (tha_tech);
 		case PM_DRUNK:	return (dru_tech);
 		case PM_BARBARIAN:	return (bar_tech);
+		case PM_NOOB_MODE_BARB:	return (noo_tech);
 		case PM_BLOODSEEKER:	return (blo_tech);
 		case PM_BLEEDER:	return (ble_tech);
 		case PM_CAVEMAN:	return (cav_tech);

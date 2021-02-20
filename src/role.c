@@ -3172,6 +3172,36 @@ const struct Role roles[] = {
 	10, 4,-4, 4, 8, A_INT, SPE_PROTECTION, -24, 40
 },
 
+{	{"Noob Mode Barb", 0}, {
+	{"Complete Scrub",   0},
+	{"Skill Agnostic",    0},
+	{"Whippersnapper",      0},
+	{"Whiny Lamer",     0},
+	{"Terrible Rookie",      0},
+	{"Bad Player",      0},
+	{"Mindless Mower",      0},
+	{"Filthy Cheater",   0},
+	{"Biggest Noob Ever",   0} },
+	"P-Point", "I Have To Reload", "Upper Failure Kornop",
+	"Noo", "the Camp of the Duali Tribe", "the Duali Oasis",
+	PM_NOOB_MODE_BARB, NON_PM, PM_UNDEAD_NOOB_MODE_BARB, NON_PM, NON_PM,
+	PM_PELIAS, PM_CHIEFTAIN, PM_THOTH_AMON, PM_THOTH_AMUN,
+	PM_OGRE, PM_TROLL, S_OGRE, S_TROLL,
+	ART_HEART_OF_OTHER_AHRIMAN,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  16,  7,  7, 15, 16,  6 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  30,  6,  7, 20, 30,  7 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(20), 6, 8, 6, 20, 6 },
+	/* Init   Lower  Higher */
+	{ 80, 0,  0,20,  4, 0 },	/* Hit points */
+	{  0, 0,  0, 0,  0, 0 },10,	/* Energy */
+	10, 50, 20, 20,  50, A_INT, SPE_HASTE_SELF,      -4, 5
+},
+
 {	{"Nuclear Physicist", 0}, {
 	{"Safety Officer",    0},
 	{"Burning Stick Controller",    0},

@@ -18020,6 +18020,8 @@ boolean knoweverything;
 					pline("Artifact specs: ESP, half spell damage and magic resistance while carried, can be invoked to light areas, blindness resistance when wielded, lawful, erdrick quest artifact."); break;
 				case ART_HEART_OF_AHRIMAN:
 					pline("Artifact specs: stealth while carried, +5 to-hit and double damage, can be invoked for levitation, neutral, barbarian quest artifact."); break;
+				case ART_HEART_OF_OTHER_AHRIMAN:
+					pline("Artifact specs: stealth while carried, +5 to-hit and double damage, can be invoked for levitation, neutral, noob mode barb quest artifact."); break;
 				case ART_ARKENSTONE:
 					pline("Artifact specs: ESP while carried, can be invoked for healing, lawful, midget quest artifact."); break;
 				case ART_SCEPTRE_OF_MIGHT:

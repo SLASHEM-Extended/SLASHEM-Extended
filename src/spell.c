@@ -11731,6 +11731,7 @@ int spell;
 	}
 
 	if (issoviet) chance -= 30;
+	if (Role_if(PM_NOOB_MODE_BARB)) chance -= 50;
 
 	if (Race_if(PM_PLAYER_SKELETON)) chance -= 50;
 

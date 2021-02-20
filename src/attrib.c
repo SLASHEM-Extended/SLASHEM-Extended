@@ -149,6 +149,10 @@ const struct innate {
 		     {  15, &(HStealth), "stealthy", "noisy", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
+	noo_abil[] = { {	 1, &(HPoison_resistance), "", "", TRUE },
+		     {   7, &(HFast), "quick", "slow", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
 	dia_abil[] = { {	24, &(HFast), "quick", "slow", TRUE },
 		     {  30, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 		     {  30, &(HPoison_resistance), "healthy", "less healthy", TRUE },
@@ -2178,6 +2182,7 @@ int oldlevel, newlevel;
 	case PM_EMERA:    abil = eme_abil;	break;  
 	case PM_XELNAGA:    abil = xel_abil;	break;  
 	case PM_BARBARIAN:      abil = bar_abil;	break;
+	case PM_NOOB_MODE_BARB:      abil = noo_abil;	break;
 	case PM_COURIER:      abil = cou_abil;	break;
 	case PM_WEIRDBOY:      abil = wei_abil;	break;
 	case PM_MAHOU_SHOUJO:      abil = mah_abil;	break;

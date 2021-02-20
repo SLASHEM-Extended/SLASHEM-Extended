@@ -121,6 +121,8 @@ int en;
 	case PM_BARBARIAN:
 	case PM_VALKYRIE:
 	    return((3 * en) / 4);
+	case PM_NOOB_MODE_BARB:
+	    return(en / 2);
 	default:
 	    return (en);
 	}

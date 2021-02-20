@@ -2377,6 +2377,7 @@ register struct monst *shkp;	/* if angry, impose a surcharge */
 	/* character classes who are discriminated against... */
 	/* barbarians are gullible... */
 	if (Role_if(PM_BARBARIAN)) tmp *= 3L;
+	if (Role_if(PM_NOOB_MODE_BARB)) tmp *= 5L;
 	/* rogues are untrustworthy... */
 	if (Role_if(PM_ROGUE)) tmp *= 2L;
 	/* samurais are from out of town... */

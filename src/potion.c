@@ -5740,6 +5740,10 @@ nivellate()
 			lowerceiling /= 5;
 			upperceiling /= 5;
 		}
+		if (Role_if(PM_NOOB_MODE_BARB)) {
+			lowerceiling /= 2;
+			upperceiling /= 2;
+		}
 		if (Race_if(PM_YEEK)) {
 			lowerceiling /= 2;
 			upperceiling /= 2;
@@ -6036,6 +6040,9 @@ boolean guaranteed;
 		}
 		if (Role_if(PM_UNBELIEVER)) {
 			ceiling /= 5;
+		}
+		if (Role_if(PM_NOOB_MODE_BARB)) {
+			ceiling /= 2;
 		}
 		if (Race_if(PM_YEEK)) {
 			ceiling /= 2;
@@ -8591,7 +8598,7 @@ peffects(otmp)
 	/* KMH, balance patch -- this is too cruel for novices */
 	/* sometimes your constitution can be a little _too_ high! */
 	/* edit: evil variant by Amy: nothing is too cruel :P */
-	if (evilfriday && (Role_if(PM_BARBARIAN) || ACURR(A_CON) > 15) && !rn2(5)) {
+	if ( ((evilfriday && (Role_if(PM_BARBARIAN) || ACURR(A_CON) > 15)) || Role_if(PM_NOOB_MODE_BARB)) && !rn2(5)) {
 		pline("Strange ...");
 		nothing++;
 		return(-1);

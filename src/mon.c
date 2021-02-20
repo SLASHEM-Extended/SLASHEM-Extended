@@ -850,6 +850,7 @@ register struct monst *mtmp;
 	    case PM_UNDEAD_YETI:
 	    case PM_UNDEAD_ARCHEOLOGIST:
 	    case PM_UNDEAD_BARBARIAN:
+	    case PM_UNDEAD_NOOB_MODE_BARB:
 	    case PM_UNDEAD_BINDER:
 	    case PM_UNDEAD_BLEEDER:
 	    case PM_UNDEAD_BARD:

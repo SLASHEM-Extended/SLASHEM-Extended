@@ -142,12 +142,16 @@ dosit()
 				You("produce very erotic noises.");
 				if (!rn2(10)) adjattrib(rn2(A_CHA), 1, -1, TRUE);
 			}
-			else if (Role_if(PM_BARBARIAN) || Role_if(PM_CAVEMAN)) You("miss...");
+			else if (Role_if(PM_BARBARIAN) || Role_if(PM_NOOB_MODE_BARB) || Role_if(PM_CAVEMAN)) You("miss...");
 			else You("grunt.");
 
 			if (practicantterror) {
 				pline("%s booms: 'There's a fee of 100 zorkmids for using the toilet.'", noroelaname());
 				fineforpracticant(100, 0, 0);
+				if (Role_if(PM_BARBARIAN) || Role_if(PM_NOOB_MODE_BARB) || Role_if(PM_CAVEMAN)) {
+					pline("%s thunders: 'People like you are the reason for that usage fee! You pay 5000 zorkmids extra for smutching the toilet!'", noroelaname());
+					fineforpracticant(5000, 0, 0);
+				}
 			}
 
 			if (uarmf && uarmf->oartifact == ART_LUDGERA_S_SECRET_COURSE) {

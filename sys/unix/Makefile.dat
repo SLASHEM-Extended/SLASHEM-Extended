@@ -352,7 +352,7 @@ spec_levs: ../util/lev_comp \
 	Mastermi.des Tosser.des Symbia.des Pract.des Millsw.des \
 	Gender.des Fjorde.des Emera.des Combat.des Aklyst.des \
 	Drag.des Carto.des Dancer.des Shoefe.des Secret.des \
-	Prever.des Diabl.des Butt.des Halfba.des
+	Prever.des Diabl.des Butt.des Halfba.des Noob.des
 
 	../util/lev_comp Abuser.des
 	../util/lev_comp Acid.des
@@ -371,6 +371,7 @@ spec_levs: ../util/lev_comp \
 	../util/lev_comp Hobbit.des
 	../util/lev_comp Gnome.des
 	../util/lev_comp Barb.des
+	../util/lev_comp Noob.des
 	../util/lev_comp Demago.des
 	../util/lev_comp Cellar.des
 	../util/lev_comp Grenad.des

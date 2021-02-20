@@ -5536,6 +5536,16 @@ static const char * const bogusmons[] = {
 	"Pupil of Heat",
 	"Self-Appointed Master",
 	"Nuwa", "Pangu", "Fuxi", /* Chinese */
+	"Complete Scrub",
+	"Skill Agnostic",
+	"Whippersnapper",
+	"Whiny Lamer",
+	"Terrible Rookie",
+	"Bad Player",
+	"Mindless Mower",
+	"Filthy Cheater",
+	"Biggest Noob Ever",
+	"P-Point", "I Have To Reload", "Upper Failure Kornop",
 
 };
 

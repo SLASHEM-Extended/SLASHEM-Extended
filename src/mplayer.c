@@ -293,6 +293,8 @@ register boolean special;
 		    break;
 		case PM_BARBARIAN:
 		case PM_UNDEAD_BARBARIAN:
+		case PM_NOOB_MODE_BARB:
+		case PM_UNDEAD_NOOB_MODE_BARB:
 		    if (rn2(2)) {
 		    	weapon = rn2(2) ? TWO_HANDED_SWORD : BATTLE_AXE;
 		    	shield = STRANGE_OBJECT;

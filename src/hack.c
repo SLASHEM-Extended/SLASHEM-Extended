@@ -4510,6 +4510,7 @@ showdmg(n)
 	int lev;
 
 	if (DamageMeterBug || u.uprops[DAMAGE_METER_BUG].extrinsic || have_damagemeterstone()) return;
+	if (Role_if(PM_NOOB_MODE_BARB)) return; /* sorry --Amy */
 
 	if (flags.showdmg && n > 1) {
 		switch (Role_switch) {

@@ -11792,6 +11792,10 @@ past3:
 		skillcaploss_specific(P_RIDING);
 	}
 
+	if (Role_if(PM_NOOB_MODE_BARB) && P_MAX_SKILL(P_MEMORIZATION) >= P_BASIC) {
+		skillcaploss_specific(P_MEMORIZATION);
+	}
+
 	if (HardcoreAlienMode && P_MAX_SKILL(P_HIGH_HEELS) >= P_BASIC) {
 		skillcaploss_specific(P_HIGH_HEELS);
 	}
