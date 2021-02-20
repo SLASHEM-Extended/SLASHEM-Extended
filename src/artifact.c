@@ -3549,6 +3549,7 @@ chargingchoice:
 	    any.a_void = 0;	/* set all bits to zero */
 	    if (Is_blackmarket(&u.uz) && *u.ushops) {
 		You_feel("very disoriented for a moment.");
+		destroy_nhwindow(tmpwin);
 		break;
 	    }
 	    start_menu(tmpwin);
