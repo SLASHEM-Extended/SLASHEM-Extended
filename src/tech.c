@@ -2183,6 +2183,22 @@ int tech;
 	}
 }
 
+void
+learntech_or_leveltech(tech, mask, tlevel)
+	short tech;
+	long mask;
+	int tlevel;
+{
+	int i;
+	i = get_tech_no(tech);
+	if (tech_list[i].t_intrinsic & mask) {
+		techlevelspecific(tech_list[i].t_id);
+	} else {
+		learntech(tech, mask, tlevel);
+	}
+
+}
+
 /* Called to teach a new tech.  Level is starting tech level */
 void
 learntech(tech, mask, tlevel)
@@ -11103,6 +11119,460 @@ techlvlupnew:
 			attempts++;
 			goto techlvlupnew;
 		}
+	}
+
+}
+
+void
+techlevelspecific(technumber)
+int technumber;
+{
+
+	int i, thisone, choicenumber, attempts;
+
+techlvlupnew:
+
+	thisone = -1;
+	attempts = 0;
+	boolean foundtech = FALSE;
+
+	for (i = 0; i < MAXTECH; i++) {
+
+		if (tech_list[i].t_id == NO_TECH) break;
+		if (tech_list[i].t_id == technumber) {
+			thisone = i;
+			foundtech = TRUE;
+		}
+
+	}
+
+	if (foundtech && thisone >= 0) {
+		if (tech_list[thisone].t_lev > 0) {
+			tech_list[thisone].t_lev -= 1;
+			pline("Your %s technique leveled up to level %d!", techname(thisone), techlev(thisone));
+		} else {
+			pline("Your %s technique has reached the maximum level already.", techname(thisone));
+		}
+	}
+
+}
+
+/* player learns a random "regular" tech, i.e. one not taught by leveling up skills or some such --Amy */
+void
+learnrandomregulartech()
+{
+	switch (rnd(181)) {
+
+		case 1: 
+		case 2: 
+		case 3: 
+			learntech_or_leveltech(T_BERSERK, FROMOUTSIDE, 1);
+		    	You("learn how to perform berserk!");
+			break;
+		case 4: 
+		case 5: 
+		case 6: 
+			learntech_or_leveltech(T_KIII, FROMOUTSIDE, 1);
+		    	You("learn how to perform kiii!");
+			break;
+		case 7: 
+		case 8: 
+		case 9: 
+			learntech_or_leveltech(T_RESEARCH, FROMOUTSIDE, 1);
+		    	You("learn how to perform research!");
+			break;
+		case 10: 
+		case 11: 
+		case 12: 
+			learntech_or_leveltech(T_SURGERY, FROMOUTSIDE, 1);
+		    	You("learn how to perform surgery!");
+			break;
+		case 13: 
+		case 14: 
+		case 15: 
+			learntech_or_leveltech(T_REINFORCE, FROMOUTSIDE, 1);
+		    	You("learn how to perform reinforce memory!");
+			break;
+		case 16: 
+		case 17:
+		case 18: 
+			learntech_or_leveltech(T_FLURRY, FROMOUTSIDE, 1);
+		    	You("learn how to perform missile flurry!");
+			break;
+		case 19: 
+		case 20: 
+		case 21: 
+			learntech_or_leveltech(T_PRACTICE, FROMOUTSIDE, 1);
+		    	You("learn how to perform weapon practice!");
+			break;
+		case 22: 
+		case 23: 
+		case 24: 
+			learntech_or_leveltech(T_EVISCERATE, FROMOUTSIDE, 1);
+		    	You("learn how to perform eviscerate!");
+			break;
+		case 25: 
+		case 26: 
+		case 27: 
+			learntech_or_leveltech(T_HEAL_HANDS, FROMOUTSIDE, 1);
+		    	You("learn how to perform healing hands!");
+			break;
+		case 28: 
+		case 29: 
+		case 30: 
+			learntech_or_leveltech(T_CALM_STEED, FROMOUTSIDE, 1);
+		    	You("learn how to perform calm steed!");
+			break;
+		case 31: 
+		case 32: 
+		case 33: 
+			learntech_or_leveltech(T_TURN_UNDEAD, FROMOUTSIDE, 1);
+		    	You("learn how to perform turn undead!");
+			break;
+		case 34: 
+		case 35: 
+		case 36: 
+			learntech_or_leveltech(T_VANISH, FROMOUTSIDE, 1);
+		    	You("learn how to perform vanish!");
+			break;
+		case 37: 
+		case 38: 
+		case 39: 
+			learntech_or_leveltech(T_CUTTHROAT, FROMOUTSIDE, 1);
+		    	You("learn how to perform cutthroat!");
+			break;
+		case 40: 
+		case 41: 
+			learntech_or_leveltech(T_BLESSING, FROMOUTSIDE, 1);
+		    	You("learn how to perform blessing!");
+			break;
+		case 42: 
+		case 43: 
+		case 44: 
+			learntech_or_leveltech(T_E_FIST, FROMOUTSIDE, 1);
+		    	You("learn how to perform elemental fist!");
+			break;
+		case 45: 
+		case 46: 
+		case 47: 
+			learntech_or_leveltech(T_PRIMAL_ROAR, FROMOUTSIDE, 1);
+		    	You("learn how to perform primal roar!");
+			break;
+		case 48: 
+		case 49: 
+			learntech_or_leveltech(T_LIQUID_LEAP, FROMOUTSIDE, 1);
+		    	You("learn how to perform liquid leap!");
+			break;
+		case 50: 
+		case 51: 
+		case 52: 
+			learntech_or_leveltech(T_CRIT_STRIKE, FROMOUTSIDE, 1);
+		    	You("learn how to perform critical strike!");
+			break;
+		case 53: 
+		case 54: 
+		case 55: 
+			learntech_or_leveltech(T_SIGIL_CONTROL, FROMOUTSIDE, 1);
+		    	You("learn how to perform sigil of control!");
+			break;
+		case 56: 
+		case 57: 
+		case 58: 
+			learntech_or_leveltech(T_SIGIL_TEMPEST, FROMOUTSIDE, 1);
+		    	You("learn how to perform sigil of tempest!");
+			break;
+		case 59: 
+		case 60: 
+		case 61: 
+			learntech_or_leveltech(T_SIGIL_DISCHARGE, FROMOUTSIDE, 1);
+		    	You("learn how to perform sigil of discharge!");
+			break;
+		case 62: 
+		case 63: 
+		case 64: 
+			learntech_or_leveltech(T_RAISE_ZOMBIES, FROMOUTSIDE, 1);
+		    	You("learn how to perform raise zombies!");
+			break;
+		case 65: 
+			learntech_or_leveltech(T_REVIVE, FROMOUTSIDE, 1);
+		    	You("learn how to perform revivification!");
+			break;
+		case 66: 
+		case 67: 
+		case 68: 
+			learntech_or_leveltech(T_WARD_FIRE, FROMOUTSIDE, 1);
+		    	You("learn how to perform ward against fire!");
+			break;
+		case 69: 
+		case 70: 
+		case 71: 
+			learntech_or_leveltech(T_WARD_COLD, FROMOUTSIDE, 1);
+		    	You("learn how to perform ward against cold!");
+			break;
+		case 72: 
+		case 73: 
+		case 74: 
+			learntech_or_leveltech(T_WARD_ELEC, FROMOUTSIDE, 1);
+		    	You("learn how to perform ward against electricity!");
+			break;
+		case 75: 
+		case 76: 
+		case 77: 
+			learntech_or_leveltech(T_TINKER, FROMOUTSIDE, 1);
+		    	You("learn how to perform tinker!");
+			break;
+		case 78: 
+		case 79: 
+		case 80: 
+			learntech_or_leveltech(T_RAGE, FROMOUTSIDE, 1);
+		    	You("learn how to perform rage eruption!");
+			break;
+		case 81: 
+		case 82: 
+		case 83: 
+			learntech_or_leveltech(T_BLINK, FROMOUTSIDE, 1);
+		    	You("learn how to perform blink!");
+			break;
+		case 84: 
+		case 85: 
+		case 86: 
+			learntech_or_leveltech(T_CHI_STRIKE, FROMOUTSIDE, 1);
+		    	You("learn how to perform chi strike!");
+			break;
+		case 87: 
+		case 88: 
+		case 89: 
+			learntech_or_leveltech(T_DRAW_ENERGY, FROMOUTSIDE, 1);
+		    	You("learn how to perform draw energy!");
+			break;
+		case 90: 
+		case 91: 
+		case 92: 
+			learntech_or_leveltech(T_CHI_HEALING, FROMOUTSIDE, 1);
+		    	You("learn how to perform chi healing!");
+			break;
+		case 93: 
+		case 94: 
+		case 95: 
+			learntech_or_leveltech(T_DAZZLE, FROMOUTSIDE, 1);
+		    	You("learn how to perform dazzle!");
+			break;
+		case 96: 
+		case 97: 
+		case 98: 
+			learntech_or_leveltech(T_BLITZ, FROMOUTSIDE, 1);
+		    	You("learn how to perform chained blitz!");
+			break;
+		case 99: 
+		case 100: 
+		case 101: 
+			learntech_or_leveltech(T_PUMMEL, FROMOUTSIDE, 1);
+		    	You("learn how to perform pummel!");
+			break;
+		case 102: 
+		case 103: 
+		case 104: 
+			learntech_or_leveltech(T_G_SLAM, FROMOUTSIDE, 1);
+		    	You("learn how to perform ground slam!");
+			break;
+		case 105: 
+		case 106: 
+		case 107: 
+			learntech_or_leveltech(T_DASH, FROMOUTSIDE, 1);
+		    	You("learn how to perform air dash!");
+			break;
+		case 108: 
+		case 109: 
+		case 110: 
+			learntech_or_leveltech(T_POWER_SURGE, FROMOUTSIDE, 1);
+		    	You("learn how to perform power surge!");
+			break;
+		case 111: 
+		case 112: 
+		case 113: 
+			learntech_or_leveltech(T_SPIRIT_BOMB, FROMOUTSIDE, 1);
+		    	You("learn how to perform spirit bomb!");
+			break;
+		case 114: 
+		case 115: 
+		case 116: 
+			learntech_or_leveltech(T_DRAW_BLOOD, FROMOUTSIDE, 1);
+		    	You("learn how to perform draw blood!");
+			break;
+		case 117: 
+			learntech_or_leveltech(T_WORLD_FALL, FROMOUTSIDE, 1);
+		    	You("learn how to perform world fall!");
+			break;
+		case 118: 
+		case 119: 
+		case 120: 
+			learntech_or_leveltech(T_CREATE_AMMO, FROMOUTSIDE, 1);
+		    	You("learn how to perform create ammo!");
+			break;
+		case 121: 
+		case 122: 
+		case 123: 
+			learntech_or_leveltech(T_POKE_BALL, FROMOUTSIDE, 1);
+		    	You("learn how to perform poke ball!");
+			break;
+		case 124: 
+		case 125: 
+		case 126: 
+			learntech_or_leveltech(T_ATTIRE_CHARM, FROMOUTSIDE, 1);
+		    	You("learn how to perform attire charm!");
+			break;
+		case 127: 
+		case 128: 
+		case 129: 
+			learntech_or_leveltech(T_SUMMON_TEAM_ANT, FROMOUTSIDE, 1);
+		    	You("learn how to perform summon team ant!");
+			break;
+		case 130: 
+		case 131: 
+		case 132: 
+			learntech_or_leveltech(T_JEDI_JUMP, FROMOUTSIDE, 1);
+		    	You("learn how to perform jedi jump!");
+			break;
+		case 133: 
+		case 134: 
+		case 135: 
+			learntech_or_leveltech(T_CHARGE_SABER, FROMOUTSIDE, 1);
+		    	You("learn how to perform charge saber!");
+			break;
+		case 136: 
+		case 137: 
+		case 138: 
+			learntech_or_leveltech(T_TELEKINESIS, FROMOUTSIDE, 1);
+		    	You("learn how to perform telekinesis!");
+			break;
+		case 139: 
+			learntech_or_leveltech(T_EGG_BOMB, FROMOUTSIDE, 1);
+		    	You("learn how to perform egg bomb!");
+			break;
+		case 140: 
+		case 141: 
+		case 142: 
+			learntech_or_leveltech(T_BOOZE, FROMOUTSIDE, 1);
+		    	You("learn how to perform booze!");
+			break;
+		case 143: 
+		case 144: 
+		case 145: 
+			learntech_or_leveltech(T_IRON_SKIN, FROMOUTSIDE, 1);
+		    	You("learn how to perform iron skin!");
+			break;
+		case 146: 
+			learntech_or_leveltech(T_POLYFORM, FROMOUTSIDE, 1);
+		    	You("learn how to perform polyform!");
+			break;
+		case 147: 
+		case 148: 
+		case 149: 
+			learntech_or_leveltech(T_CONCENTRATING, FROMOUTSIDE, 1);
+		    	You("learn how to perform concentrating!");
+			break;
+		case 150: 
+			learntech_or_leveltech(T_SUMMON_PET, FROMOUTSIDE, 1);
+		    	You("learn how to perform summon pet!");
+			break;
+		case 151: 
+		case 152: 
+			learntech_or_leveltech(T_DOUBLE_THROWNAGE, FROMOUTSIDE, 1);
+		    	You("learn how to perform double thrownage!");
+			break;
+		case 153: 
+		case 154: 
+		case 155: 
+			learntech_or_leveltech(T_SHIELD_BASH, FROMOUTSIDE, 1);
+		    	You("learn how to perform shield bash!");
+			break;
+		case 156: 
+		case 157: 
+			learntech_or_leveltech(T_RECHARGE, FROMOUTSIDE, 1);
+		    	You("learn how to perform recharge!");
+			break;
+		case 158: 
+		case 159: 
+		case 160: 
+			learntech_or_leveltech(T_SPIRITUALITY_CHECK, FROMOUTSIDE, 1);
+		    	You("learn how to perform spirituality check!");
+			break;
+		case 161: 
+			learntech_or_leveltech(T_EDDY_WIND, FROMOUTSIDE, 1);
+		    	You("learn how to perform eddy wind!");
+			break;
+		case 162: 
+			learntech_or_leveltech(T_BLOOD_RITUAL, FROMOUTSIDE, 1);
+		    	You("learn how to perform blood ritual!");
+			break;
+		case 163: 
+			learntech_or_leveltech(T_ENT_S_POTION, FROMOUTSIDE, 1);
+		    	You("learn how to perform ent's potion!");
+			break;
+		case 164: 
+		case 165: 
+			learntech_or_leveltech(T_LUCKY_GAMBLE, FROMOUTSIDE, 1);
+		    	You("learn how to perform lucky gamble!");
+			break;
+		case 166: 
+			learntech_or_leveltech(T_DECONTAMINATE, FROMOUTSIDE, 1);
+		    	You("learn how to perform decontaminate!");
+			break;
+		case 167:
+			learntech_or_leveltech(T_WONDERSPELL, FROMOUTSIDE, 1);
+		    	You("learn how to perform wonderspell!");
+			break;
+		case 168:
+			learntech_or_leveltech(T_RESET_TECHNIQUE, FROMOUTSIDE, 1);
+		    	You("learn how to perform reset technique!");
+			break;
+		case 169:
+		case 170:
+			learntech_or_leveltech(T_DIAMOND_BARRIER, FROMOUTSIDE, 1);
+		    	You("learn how to perform diamond barrier!");
+			break;
+		case 171:
+		case 172:
+		case 173:
+			learntech_or_leveltech(T_ZAP_EM, FROMOUTSIDE, 1);
+		    	You("learn how to perform zap em!");
+			break;
+		case 174:
+		case 175:
+		case 176:
+			learntech_or_leveltech(T_CARD_TRICK, FROMOUTSIDE, 1);
+		    	You("learn how to perform card trick!");
+			break;
+		case 177:
+			learntech_or_leveltech(T_SKILLOMORPH, FROMOUTSIDE, 1);
+		    	You("learn how to perform skillomorph!");
+			break;
+		case 178:
+		case 179:
+		case 180:
+			learntech_or_leveltech(T_TERRAIN_CLEANUP, FROMOUTSIDE, 1);
+		    	You("learn how to perform terrain cleanup!");
+			break;
+		case 181:
+		case 182:
+		case 183:
+			learntech_or_leveltech(T_PREACHING, FROMOUTSIDE, 1);
+		    	You("learn how to perform preaching!");
+			break;
+		case 184:
+		case 185:
+		case 186:
+			learntech_or_leveltech(T_ON_THE_SAME_TEAM, FROMOUTSIDE, 1);
+		    	You("learn how to perform on the same team!");
+			break;
+		case 187:
+			learntech_or_leveltech(T_PERMAMORPH, FROMOUTSIDE, 1);
+		    	You("learn how to perform permamorph!");
+			break;
+
+		default:
+			break;
+
 	}
 
 }

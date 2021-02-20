@@ -4597,11 +4597,8 @@ newbossSING:
 		    dropy(trophy);
 		}
 
-		if (!tech_known(T_SECURE_IDENTIFY)) {
-		    	learntech(T_SECURE_IDENTIFY, FROMOUTSIDE, 1);
-		    	You("also learn the secure identify technique, and it can be used twice as often for the remaining game.");
-		} else pline("Also, the secure identify technique can now be used twice as often for the remaining game.");
-
+	    	learntech_or_leveltech(T_SECURE_IDENTIFY, FROMOUTSIDE, 1);
+	    	You("also learn the secure identify technique, and it can be used twice as often for the remaining game.");
 
 	}
 
@@ -4723,10 +4720,8 @@ newbossSING:
 
 		pline("Congratulations, Ariane is defeated! Your reward was dropped at your %s.", makeplural(body_part(FOOT)));
 
-		if (!tech_known(T_ELEMENTAL_IMBUE)) {
-			learntech(T_ELEMENTAL_IMBUE, FROMOUTSIDE, 1);
-			You("learn how to perform elemental imbue!");
-		}
+		learntech_or_leveltech(T_ELEMENTAL_IMBUE, FROMOUTSIDE, 1);
+		You("learn how to perform elemental imbue!");
 
 		boolean havegifts = u.ugifts;
 
@@ -5085,10 +5080,8 @@ newbossSING:
 			}
 		}
 
-		if (!tech_known(T_CURE_AMNESIA)) {
-			learntech(T_CURE_AMNESIA, FROMOUTSIDE, 1);
-			You("learn how to perform cure amnesia!");
-		}
+		learntech_or_leveltech(T_CURE_AMNESIA, FROMOUTSIDE, 1);
+		You("learn how to perform cure amnesia!");
 
 	}
 

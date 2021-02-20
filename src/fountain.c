@@ -378,10 +378,8 @@ drinkfountain()
 			}
 			if (!rn2(50)) {
 				int wondertech = rnd(MAXTECH-1);
-				if (!tech_known(wondertech)) {
-				    	learntech(wondertech, FROMOUTSIDE, 1);
-					You("learn how to perform a new technique!");
-				}
+			    	learntech_or_leveltech(wondertech, FROMOUTSIDE, 1);
+				You("learn how to perform a new technique!");
 			}
 
 			break;

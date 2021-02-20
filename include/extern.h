@@ -2991,6 +2991,7 @@ E void stopsingletechnique(int);
 E int tech_inuse(int);
 E void tech_timeout(void);
 E boolean tech_known(SHORT_P);
+E void learntech_or_leveltech(SHORT_P,long,int);
 E void learntech(SHORT_P,long,int);
 E int disarm_holdingtrap(struct trap *);
 E int disarm_rust_trap(struct trap *);
@@ -3006,6 +3007,8 @@ E void hurtmon(struct monst *,int);
 E void techdrain(void);
 E void techdrainsevere(void);
 E void techlevelup(void);
+E void techlevelspecific(int);
+E void learnrandomregulartech(void);
 
 /* ### teleport.c ### */
 

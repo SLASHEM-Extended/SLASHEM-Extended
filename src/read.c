@@ -9284,10 +9284,8 @@ randenchchoice:
 		if (sobj->oartifact == ART_ANASTASIA_S_PERILOUS_GAMBL) {
 		      u.uprops[EVIL_PATCH_EFFECT].intrinsic |= FROMOUTSIDE;
 			int wondertech = rnd(MAXTECH-1);
-			if (!tech_known(wondertech)) {
-			    	learntech(wondertech, FROMOUTSIDE, 1);
-				You("learn how to perform a new technique! But you also gained the intrinsic evilpatch effect...");
-			}
+		    	learntech_or_leveltech(wondertech, FROMOUTSIDE, 1);
+			You("learn how to perform a new technique! But you also gained the intrinsic evilpatch effect...");
 		}
 
 		if (sobj->cursed) {

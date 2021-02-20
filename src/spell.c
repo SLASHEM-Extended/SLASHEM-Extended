@@ -5211,10 +5211,8 @@ addspmagain:
 
 		{
 			int wondertech = rnd(MAXTECH-1);
-			if (!tech_known(wondertech)) {
-			    	learntech(wondertech, FROMOUTSIDE, 1);
-				You("learn how to perform a new technique!");
-			} else pline("Tough luck! The technique that you would have learned happens to be one you already know.");
+		    	learntech_or_leveltech(wondertech, FROMOUTSIDE, 1);
+			You("learn how to perform a new technique!");
 
 		}
 
