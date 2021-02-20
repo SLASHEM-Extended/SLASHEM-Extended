@@ -673,7 +673,7 @@ boolean existingagain;	/* if TRUE, existing ones can be generated again */
 	    if ((!by_align ? a->otyp == o_typ :
 		    (a->alignment == alignment ||
 			(a->alignment == A_NONE && u.ugifts > 0))) &&
-		(!(a->spfx & SPFX_NOGEN) || unique) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && (!artiexist[m] || (existingagain && !(a->spfx & SPFX_ONLYONE) ) )) {
+		(!(a->spfx & SPFX_NOGEN) || unique) && !(a->otyp == ROCK && artiexist[m]) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && (!artiexist[m] || (existingagain && !(a->spfx & SPFX_ONLYONE) ) )) {
 		/*
 		 * [ALI] The determination of whether an artifact is
 		 * hostile to the player is a little more complex in
@@ -747,7 +747,7 @@ bad_artifact()
 
 	/* gather eligible artifacts */
 	for (n = 0, a = artilist+1, m = 1; a->otyp; a++, m++)
-	    if (!(a->spfx & SPFX_NOGEN) && (a->spfx & SPFX_EVIL) && !(a->otyp == AMULET_OF_STRANGULATION) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && (!(artiexist[m] && (a->spfx & SPFX_ONLYONE)) ) ) {
+	    if (!(a->spfx & SPFX_NOGEN) && (a->spfx & SPFX_EVIL) && !(a->otyp == AMULET_OF_STRANGULATION) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && !(a->otyp == ROCK && artiexist[m]) && (!(artiexist[m] && (a->spfx & SPFX_ONLYONE)) ) ) {
 
 		    eligible[n++] = m;
 	    }
@@ -892,7 +892,7 @@ bad_artifact_xtra()
 
 	/* gather eligible artifacts */
 	for (n = 0, a = artilist+1, m = 1; a->otyp; a++, m++)
-	    if (!(a->spfx & SPFX_NOGEN) && (a->spfx & SPFX_EVIL) && !(a->otyp == AMULET_OF_STRANGULATION) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && (!(artiexist[m] && (a->spfx & SPFX_ONLYONE)) ) ) {
+	    if (!(a->spfx & SPFX_NOGEN) && (a->spfx & SPFX_EVIL) && !(a->otyp == AMULET_OF_STRANGULATION) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && !(a->otyp == ROCK && artiexist[m]) && (!(artiexist[m] && (a->spfx & SPFX_ONLYONE)) ) ) {
 
 		    eligible[n++] = m;
 	    }
