@@ -3873,6 +3873,46 @@ jediskip:
 	    	You("learn how to perform form choice!");
 	}
 
+	if (skill == P_SHORT_SWORD && P_SKILL(skill) == P_EXPERT && P_SKILL(P_LONG_SWORD) >= P_EXPERT && P_SKILL(P_BROAD_SWORD) >= P_EXPERT && P_SKILL(P_TWO_HANDED_SWORD) >= P_EXPERT && !tech_known(T_SWORD_ART)) {
+	    	learntech(T_SWORD_ART, FROMOUTSIDE, 1);
+	    	You("learn how to perform sword art!");
+	}
+
+	if (skill == P_BROAD_SWORD && P_SKILL(skill) == P_EXPERT && P_SKILL(P_LONG_SWORD) >= P_EXPERT && P_SKILL(P_SHORT_SWORD) >= P_EXPERT && P_SKILL(P_TWO_HANDED_SWORD) >= P_EXPERT && !tech_known(T_SWORD_ART)) {
+	    	learntech(T_SWORD_ART, FROMOUTSIDE, 1);
+	    	You("learn how to perform sword art!");
+	}
+
+	if (skill == P_LONG_SWORD && P_SKILL(skill) == P_EXPERT && P_SKILL(P_SHORT_SWORD) >= P_EXPERT && P_SKILL(P_BROAD_SWORD) >= P_EXPERT && P_SKILL(P_TWO_HANDED_SWORD) >= P_EXPERT && !tech_known(T_SWORD_ART)) {
+	    	learntech(T_SWORD_ART, FROMOUTSIDE, 1);
+	    	You("learn how to perform sword art!");
+	}
+
+	if (skill == P_TWO_HANDED_SWORD && P_SKILL(skill) == P_EXPERT && P_SKILL(P_LONG_SWORD) >= P_EXPERT && P_SKILL(P_BROAD_SWORD) >= P_EXPERT && P_SKILL(P_SHORT_SWORD) >= P_EXPERT && !tech_known(T_SWORD_ART)) {
+	    	learntech(T_SWORD_ART, FROMOUTSIDE, 1);
+	    	You("learn how to perform sword art!");
+	}
+
+	if (skill == P_CLUB && P_SKILL(skill) == P_EXPERT && P_SKILL(P_MACE) >= P_EXPERT && P_SKILL(P_HAMMER) >= P_EXPERT && P_SKILL(P_FLAIL) >= P_EXPERT && !tech_known(T_FIRM_CUDGEL)) {
+	    	learntech(T_FIRM_CUDGEL, FROMOUTSIDE, 1);
+	    	You("learn how to perform firm cudgel!");
+	}
+
+	if (skill == P_HAMMER && P_SKILL(skill) == P_EXPERT && P_SKILL(P_MACE) >= P_EXPERT && P_SKILL(P_CLUB) >= P_EXPERT && P_SKILL(P_FLAIL) >= P_EXPERT && !tech_known(T_FIRM_CUDGEL)) {
+	    	learntech(T_FIRM_CUDGEL, FROMOUTSIDE, 1);
+	    	You("learn how to perform firm cudgel!");
+	}
+
+	if (skill == P_MACE && P_SKILL(skill) == P_EXPERT && P_SKILL(P_CLUB) >= P_EXPERT && P_SKILL(P_HAMMER) >= P_EXPERT && P_SKILL(P_FLAIL) >= P_EXPERT && !tech_known(T_FIRM_CUDGEL)) {
+	    	learntech(T_FIRM_CUDGEL, FROMOUTSIDE, 1);
+	    	You("learn how to perform firm cudgel!");
+	}
+
+	if (skill == P_FLAIL && P_SKILL(skill) == P_EXPERT && P_SKILL(P_MACE) >= P_EXPERT && P_SKILL(P_HAMMER) >= P_EXPERT && P_SKILL(P_CLUB) >= P_EXPERT && !tech_known(T_FIRM_CUDGEL)) {
+	    	learntech(T_FIRM_CUDGEL, FROMOUTSIDE, 1);
+	    	You("learn how to perform firm cudgel!");
+	}
+
 	if (skill == P_GUN_CONTROL && P_SKILL(skill) == P_BASIC && !tech_known(T_SHOTTY_BLAST)) {
 	    	learntech(T_SHOTTY_BLAST, FROMOUTSIDE, 1);
 	    	You("learn how to perform shotty blast!");
@@ -5549,6 +5589,46 @@ int degree;
 			if (skill == P_ATARU && P_ADVANCE(P_VAAPAD) == 0 && P_ADVANCE(P_MAKASHI) == 0 && !tech_known(T_FORM_CHOICE)) {
 				learntech(T_FORM_CHOICE, FROMOUTSIDE, 1);
 				You("learn how to perform form choice!");
+			}
+
+			if (skill == P_SHORT_SWORD && P_ADVANCE(P_LONG_SWORD) == 0 && P_ADVANCE(P_BROAD_SWORD) == 0 && P_ADVANCE(P_TWO_HANDED_SWORD) == 0 && !tech_known(T_SWORD_ART)) {
+			    	learntech(T_SWORD_ART, FROMOUTSIDE, 1);
+			    	You("learn how to perform sword art!");
+			}
+
+			if (skill == P_BROAD_SWORD && P_ADVANCE(P_LONG_SWORD) == 0 && P_ADVANCE(P_SHORT_SWORD) == 0 && P_ADVANCE(P_TWO_HANDED_SWORD) == 0 && !tech_known(T_SWORD_ART)) {
+			    	learntech(T_SWORD_ART, FROMOUTSIDE, 1);
+			    	You("learn how to perform sword art!");
+			}
+
+			if (skill == P_LONG_SWORD && P_ADVANCE(P_SHORT_SWORD) == 0 && P_ADVANCE(P_BROAD_SWORD) == 0 && P_ADVANCE(P_TWO_HANDED_SWORD) == 0 && !tech_known(T_SWORD_ART)) {
+			    	learntech(T_SWORD_ART, FROMOUTSIDE, 1);
+			    	You("learn how to perform sword art!");
+			}
+
+			if (skill == P_TWO_HANDED_SWORD && P_ADVANCE(P_LONG_SWORD) == 0 && P_ADVANCE(P_BROAD_SWORD) == 0 && P_ADVANCE(P_SHORT_SWORD) == 0 && !tech_known(T_SWORD_ART)) {
+			    	learntech(T_SWORD_ART, FROMOUTSIDE, 1);
+			    	You("learn how to perform sword art!");
+			}
+
+			if (skill == P_CLUB && P_ADVANCE(P_MACE) == 0 && P_ADVANCE(P_HAMMER) == 0 && P_ADVANCE(P_FLAIL) == 0 && !tech_known(T_FIRM_CUDGEL)) {
+			    	learntech(T_FIRM_CUDGEL, FROMOUTSIDE, 1);
+			    	You("learn how to perform firm cudgel!");
+			}
+
+			if (skill == P_MACE && P_ADVANCE(P_CLUB) == 0 && P_ADVANCE(P_HAMMER) == 0 && P_ADVANCE(P_FLAIL) == 0 && !tech_known(T_FIRM_CUDGEL)) {
+			    	learntech(T_FIRM_CUDGEL, FROMOUTSIDE, 1);
+			    	You("learn how to perform firm cudgel!");
+			}
+
+			if (skill == P_HAMMER && P_ADVANCE(P_MACE) == 0 && P_ADVANCE(P_CLUB) == 0 && P_ADVANCE(P_FLAIL) == 0 && !tech_known(T_FIRM_CUDGEL)) {
+			    	learntech(T_FIRM_CUDGEL, FROMOUTSIDE, 1);
+			    	You("learn how to perform firm cudgel!");
+			}
+
+			if (skill == P_FLAIL && P_ADVANCE(P_MACE) == 0 && P_ADVANCE(P_HAMMER) == 0 && P_ADVANCE(P_CLUB) == 0 && !tech_known(T_FIRM_CUDGEL)) {
+			    	learntech(T_FIRM_CUDGEL, FROMOUTSIDE, 1);
+			    	You("learn how to perform firm cudgel!");
 			}
 
 			if (skill == P_WEDI && !tech_known(T_STAR_DIGGING)) {
@@ -8827,6 +8907,14 @@ rerollthree:
 
 	if (P_SKILL(P_MAKASHI) >= P_EXPERT && P_SKILL(P_ATARU) >= P_EXPERT && P_SKILL(P_VAAPAD) >= P_EXPERT && !tech_known(T_FORM_CHOICE)) {
 	    	learntech(T_FORM_CHOICE, FROMOUTSIDE, 1);
+	}
+
+	if (P_SKILL(P_SHORT_SWORD) >= P_EXPERT && P_SKILL(P_BROAD_SWORD) >= P_EXPERT && P_SKILL(P_LONG_SWORD) >= P_EXPERT && P_SKILL(P_TWO_HANDED_SWORD) >= P_EXPERT && !tech_known(T_SWORD_ART)) {
+	    	learntech(T_SWORD_ART, FROMOUTSIDE, 1);
+	}
+
+	if (P_SKILL(P_CLUB) >= P_EXPERT && P_SKILL(P_MACE) >= P_EXPERT && P_SKILL(P_HAMMER) >= P_EXPERT && P_SKILL(P_FLAIL) >= P_EXPERT && !tech_known(T_FIRM_CUDGEL)) {
+	    	learntech(T_FIRM_CUDGEL, FROMOUTSIDE, 1);
 	}
 
 	if (P_SKILL(P_WEDI) >= P_EXPERT && !tech_known(T_STAR_DIGGING)) {

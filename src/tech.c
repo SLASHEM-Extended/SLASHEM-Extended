@@ -252,6 +252,8 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"cure amnesia",
 	"elemental imbue",
 	"hidden power",
+	"sword art",
+	"firm cudgel",
 	"jedi jump",
 	"charge saber",
 	"telekinesis",
@@ -3437,6 +3439,14 @@ dotech()
 
 		case T_HIDDEN_POWER:
 			pline("Using this technique creates a specific item, the identity of which depends on the skill you used for unlocking the technique.");
+			break;
+
+		case T_SWORD_ART:
+			pline("Requires you to wield a weapon that uses one of the following skills: short sword, broad sword, long sword or two-handed sword. The weapon in question will gain one level of enchantment, but not beyond +7.");
+			break;
+
+		case T_FIRM_CUDGEL:
+			pline("Requires you to wield a weapon that uses one of the following skills: mace, flail, club or hammer. The weapon in question will be erosionproofed and all erosion damage is repaired.");
 			break;
 
 
@@ -8373,6 +8383,48 @@ repairitemchoice:
 			}
 
 		      t_timeout = rnz(10000);
+			break;
+
+		case T_SWORD_ART:
+			if (!uwep) {
+				pline("That requires you to wield a weapon!");
+				return 0;
+
+			}
+
+			if (uwep && weapon_type(uwep) != P_SHORT_SWORD && weapon_type(uwep) != P_BROAD_SWORD && weapon_type(uwep) != P_LONG_SWORD && weapon_type(uwep) != P_TWO_HANDED_SWORD) {
+				pline("That only works if your wielded weapon is a short, broad, long or two-handed sword, and currently it's not!");
+				return 0;
+			}
+
+			if (uwep && uwep->spe < 7) {
+				uwep->spe++;
+                   		pline("Your weapon glows %s.", hcolor(NH_LIGHT_BLUE));
+			} else pline("Your currently wielded weapon can't be enchanted any further with this technique, and therefore nothing happens.");
+
+		      t_timeout = rnz(20000);
+			break;
+
+		case T_FIRM_CUDGEL:
+
+			if (!uwep) {
+				pline("That requires you to wield a weapon!");
+				return 0;
+
+			}
+
+			if (uwep && weapon_type(uwep) != P_MACE && weapon_type(uwep) != P_FLAIL && weapon_type(uwep) != P_CLUB && weapon_type(uwep) != P_HAMMER) {
+				pline("That only works if your wielded weapon is a mace, flail, club or hammer, and currently it's not!");
+				return 0;
+			}
+
+			if (uwep) {
+				uwep->oerodeproof = uwep->rknown = TRUE;
+				uwep->oeroded = uwep->oeroded2 = 0;
+				Your("weapon is surrounded by a shimmering shield!");
+			}
+
+		      t_timeout = rnz(30000);
 			break;
 
 		case T_KAMEHAMEHA:
