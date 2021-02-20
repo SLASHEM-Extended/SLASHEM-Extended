@@ -15103,6 +15103,7 @@ loveheelover:
 		if(ptr == &mons[PM_FINGERNAIL_DEMON]) (void) mongets(mtmp, QATAR);
 		if(ptr == &mons[PM_KARATE_FEMMY]) (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
 		if(ptr == &mons[PM_LASERVENGER]) (void) mongets(mtmp, LASERDENT);
+		if(ptr == &mons[PM_LILITU_QUEEN]) (void) mongets(mtmp, FEMININE_PUMPS);
 
 		if (ptr == &mons[PM_SWORD_DANCER]) {
 			(void) mongets(mtmp, SAND_SWORD);
