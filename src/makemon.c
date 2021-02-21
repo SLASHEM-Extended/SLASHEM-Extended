@@ -7453,6 +7453,8 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_FEMININE_ASSASSIN]) (void) mongets(mtmp, BELL_CLAWS);
 		if (ptr == &mons[PM_SWIKNI]) (void) mongets(mtmp, SURVIVAL_KNIFE);
 		if (mtmp->data == &mons[PM_MASK_MAN]) (void) mongets(mtmp, find_corona_mask());
+		if (ptr == &mons[PM_REGULAR_JEDI]) (void) mongets(mtmp, BEAMSWORD);
+		if (ptr == &mons[PM_LIGHTSABER_ART_JEDI]) (void) mongets(mtmp, BEAMSWORD);
 
 		if (ptr == &mons[PM_VERA_THE_ICE_QUEEN]) {
 			if ((find_cyan_sneakers()) != -1) (void)mongets(mtmp, find_cyan_sneakers());
@@ -9693,6 +9695,10 @@ loveheelover:
 		if (ptr == &mons[PM_PILE_OF_FRAGMENTATION_COINS]) {
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, BONE_FRAGMENT, 25);
+		}
+		if (ptr == &mons[PM_RARE_GOLD_PIECE]) {
+			(void) mongets(mtmp, LASERXBOW);
+			 m_initthrow(mtmp, PIN_BOLT, 70);
 		}
 		if (ptr == &mons[PM_PILE_OF_UNKNOWN_COINS]) {
 			(void) mongets(mtmp, SLING);
@@ -14938,6 +14944,9 @@ loveheelover:
 		if (ptr == &mons[PM_TARBALL]) {
 			(void) mongets(mtmp, BITUKNIFE);
 		}
+		if (ptr == &mons[PM_COOLINK]) {
+			(void) mongets(mtmp, BEAMSWORD);
+		}
 		if (ptr == &mons[PM_FACKLING_TORCHBLAZE]) {
 			(void) mongets(mtmp, TORCH);
 			(void) mongets(mtmp, TORCH);
@@ -15526,6 +15535,7 @@ loveheelover:
 		if(ptr == &mons[PM_GOOD_JARED]) (void) mongets(mtmp, JARED_STONE);
 		if(ptr == &mons[PM_YOUR_UPLIGHTER]) (void) mongets(mtmp, LIGHTBULB);
 		if(ptr == &mons[PM_LASARCHON]) (void) mongets(mtmp, LASER_SWORD);
+		if(ptr == &mons[PM_BEALADRIN]) (void) mongets(mtmp, BEAMSWORD);
 
 		if (monsndx(ptr) == PM_DOUGLAS_ADAMS) {
 			(void) mongets(mtmp,HITCHHIKER_S_GUIDE_TO_THE_GALA);
@@ -16039,6 +16049,10 @@ loveheelover:
 		}
 		if (ptr == &mons[PM_TSAR_CULTIST]) (void) mongets(mtmp, ROBE);
 		if (mtmp->data == &mons[PM_WEAPGAFF]) m_initweap_normal(mtmp);
+		if (ptr == &mons[PM_SCHWILL_TWERP]) {
+			(void) mongets(mtmp, BEAMSWORD);
+			(void) mongets(mtmp, LARGE_SHIELD);
+		}
 
 		if (ptr == &mons[PM_TRICK_OR_TREAT_CHILDREN]) (void) mongets(mtmp, rnd_offensive_potion(mtmp));
 		if (ptr == &mons[PM_BOO_CHILDREN]) (void) mongets(mtmp, rnd_offensive_potion(mtmp));

@@ -12911,12 +12911,11 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_ECHOLOCATION].oc_name = "ekholokatsiya";
 	obj_descr[SPE_RANDOM_DETECTION].oc_name = "sluchaynoye obnaruzheniye";
 	obj_descr[SPE_MAGIC_CONTROL].oc_name = "magicheskiy kontrol'";
+	obj_descr[SPE_ASTRAL_VIEW].oc_name = "astral'nyy vzglyad";
+	obj_descr[SPE_CAROTINE_INJECTION].oc_name = "karotin dlya in''yektsiy";
+	obj_descr[SPE_DOWNER_TRIP].oc_name = "poyezdka vniz";
 
 	/* todo area */
-
-	obj_descr[SPE_ASTRAL_VIEW].oc_name = "todo";
-	obj_descr[SPE_CAROTINE_INJECTION].oc_name = "todo";
-	obj_descr[SPE_DOWNER_TRIP].oc_name = "todo";
 
 	{
 
@@ -13761,12 +13760,11 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "iron boots")) OBJ_DESCR(objects[i]) = "zheleznyye sapogi";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "alloy boots")) OBJ_DESCR(objects[i]) = "sapogi iz splava";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "distancing boots")) OBJ_DESCR(objects[i]) = "distantsionnyye sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cyan sneakers")) OBJ_DESCR(objects[i]) = "golubyye krossovki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "coppered cloak")) OBJ_DESCR(objects[i]) = "plashch s mednym pokrytiyem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "vivarium cloak")) OBJ_DESCR(objects[i]) = "plashch vivariya";
 
 		/* todo area */
-
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cyan sneakers")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "coppered cloak")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "vivarium cloak")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -14114,12 +14112,11 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_ECHOLOCATION].oc_name = "echolokatsiya";
 	obj_descr[SPE_RANDOM_DETECTION].oc_name = "tasodifiy aniqlash";
 	obj_descr[SPE_MAGIC_CONTROL].oc_name = "sehrli boshqarish";
+	obj_descr[SPE_ASTRAL_VIEW].oc_name = "astral ko'rinish";
+	obj_descr[SPE_CAROTINE_INJECTION].oc_name = "karotin in'ektsiyasi";
+	obj_descr[SPE_DOWNER_TRIP].oc_name = "pastga safar";
 
 	/* todo area */
-
-	obj_descr[SPE_ASTRAL_VIEW].oc_name = "todo";
-	obj_descr[SPE_CAROTINE_INJECTION].oc_name = "todo";
-	obj_descr[SPE_DOWNER_TRIP].oc_name = "todo";
 
 	{
 
@@ -14964,12 +14961,11 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "iron boots")) OBJ_DESCR(objects[i]) = "temir etik";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "alloy boots")) OBJ_DESCR(objects[i]) = "qotishma botinkalari";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "distancing boots")) OBJ_DESCR(objects[i]) = "masofadan turib chizilmasin";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cyan sneakers")) OBJ_DESCR(objects[i]) = "moviy krossovkalar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "coppered cloak")) OBJ_DESCR(objects[i]) = "mis bilan qoplangan plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "vivarium cloak")) OBJ_DESCR(objects[i]) = "yashash maydoni plashi ";
 
 		/* todo area */
-
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cyan sneakers")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "coppered cloak")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "vivarium cloak")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}

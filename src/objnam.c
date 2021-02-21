@@ -3526,22 +3526,21 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 
 	{ POT_TECH_LEVEL_UP, "tekhnicheskiy uroven' vverkh" },
 	{ CIGAR, "sigara" },
+	{ SCR_SKILL_GROWTH, "rost navykov" },
+	{ BEAMSWORD, "luch mech" },
+	{ LASERXBOW, "lazernyy luk" },
+	{ CLOAK_OF_BLINDNESS_RESISTANCE, "plashch soprotivleniya slepote" },
+	{ CLOAK_OF_HALLUCINATION_RESISTA, "plashch soprotivleniya gallyutsinatsiyam" },
+	{ AMULET_OF_CLEAR_VIEW, "amulet of yasnyy vid" },
+	{ SPE_ASTRAL_VIEW, "astral'nyy vzglyad" },
+	{ SPE_CAROTINE_INJECTION, "karotin dlya in''yektsiy" },
+	{ SPE_DOWNER_TRIP, "poyezdka vniz" },
+	{ SCR_BRANCH_TELEPORT, "teleport otdeleniya" },
+	{ RIN_THREE_POINT_SEVEN_PROTECTI, "tri tselykh sem' punkta zashchity" },
+	{ WEAPON_SIGN, "znak oruzhiya" },
+	{ AMULET_OF_GUARDING, "amulet of okhrana" },
 
 	/* todo area */
-
-	{ SCR_SKILL_GROWTH, "todo" },
-	{ BEAMSWORD, "todo" },
-	{ LASERXBOW, "todo" },
-	{ CLOAK_OF_BLINDNESS_RESISTANCE, "todo" },
-	{ CLOAK_OF_HALLUCINATION_RESISTA, "todo" },
-	{ AMULET_OF_CLEAR_VIEW, "amulet of todo" },
-	{ SPE_ASTRAL_VIEW, "todo" },
-	{ SPE_CAROTINE_INJECTION, "todo" },
-	{ SPE_DOWNER_TRIP, "todo" },
-	{ SCR_BRANCH_TELEPORT, "todo" },
-	{ RIN_THREE_POINT_SEVEN_PROTECTI, "todo" },
-	{ WEAPON_SIGN, "todo" },
-	{ AMULET_OF_GUARDING, "amulet of todo" },
 
 	{0, "" }
 };
@@ -6388,22 +6387,21 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 
 	{ POT_TECH_LEVEL_UP, "texnologiya darajasi" },
 	{ CIGAR, "puro" },
+	{ SCR_SKILL_GROWTH, "mahoratning o'sishi" },
+	{ BEAMSWORD, "nurli qilich" },
+	{ LASERXBOW, "lazerxbow" },
+	{ CLOAK_OF_BLINDNESS_RESISTANCE, "ko'r-ko'rona qarshilik plashi" },
+	{ CLOAK_OF_HALLUCINATION_RESISTA, "gallyutsinatsiyaga qarshilik plashi" },
+	{ AMULET_OF_CLEAR_VIEW, "amulet of aniq ko'rinish" },
+	{ SPE_ASTRAL_VIEW, "astral ko'rinish" },
+	{ SPE_CAROTINE_INJECTION, "karotin in'ektsiyasi" },
+	{ SPE_DOWNER_TRIP, "pastga safar" },
+	{ SCR_BRANCH_TELEPORT, "filial teleporti" },
+	{ RIN_THREE_POINT_SEVEN_PROTECTI, "uchta nuqta etti himoyasi" },
+	{ WEAPON_SIGN, "qurol belgisi" },
+	{ AMULET_OF_GUARDING, "amulet of qo'riqlash" },
 
 	/* todo area */
-
-	{ SCR_SKILL_GROWTH, "todo" },
-	{ BEAMSWORD, "todo" },
-	{ LASERXBOW, "todo" },
-	{ CLOAK_OF_BLINDNESS_RESISTANCE, "todo" },
-	{ CLOAK_OF_HALLUCINATION_RESISTA, "todo" },
-	{ AMULET_OF_CLEAR_VIEW, "amulet of todo" },
-	{ SPE_ASTRAL_VIEW, "todo" },
-	{ SPE_CAROTINE_INJECTION, "todo" },
-	{ SPE_DOWNER_TRIP, "todo" },
-	{ SCR_BRANCH_TELEPORT, "todo" },
-	{ RIN_THREE_POINT_SEVEN_PROTECTI, "todo" },
-	{ WEAPON_SIGN, "todo" },
-	{ AMULET_OF_GUARDING, "amulet of todo" },
 
 	{0, "" }
 };
