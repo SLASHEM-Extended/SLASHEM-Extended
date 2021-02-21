@@ -15649,6 +15649,7 @@ timebasedlowerchance()
 	}
 
 	if (chance < 10) chance = 10; /* always at least a 10% chance of getting it --Amy */
+	/* edit: actually 9%, i.e. the rnd below is not a typo */
 
 	if (chance > rnd(100)) return(TRUE); /* the effect will happen despite the lower chance */
 	else return(FALSE);
