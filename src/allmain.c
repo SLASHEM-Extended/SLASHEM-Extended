@@ -12566,7 +12566,7 @@ boolean new_game;	/* false => restoring an old game */
 #ifdef BIGSLEX
 	pline("Attention: You're playing BIGslex, where the dungeon levels are bigger than normal. Recommended terminal size is 125x45. Also, savebreaks will happen without warning in this version. If you have a far-progressed savegame that you want to finish, contact me on the IRC. If your savegame seems to be gone, contact me on the IRC too. Have fun!");
 #endif /* BIGSLEX */
-	if (new_game) pline("Message of the day: There are three new weapon types that were added recently. They are orb, claw and grinder. Not many roles can learn them, but if you do play one that can, feel free to tell me what you think of them! --Amy");
+	if (new_game) pline("Message of the day: Version 2.70 of this game added a bunch of new playable roles. In particular, the Diablist and Secret Advice Member roles are designed to be quite powerful. Feel free to playtest and tell me what you think! --Amy");
 #endif /* PHANTOM_CRASH_BUG */
 
 #endif /* PUBLIC_SERVER */
