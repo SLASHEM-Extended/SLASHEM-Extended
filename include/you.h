@@ -1456,6 +1456,8 @@ struct you {
 
 	int stairscumslowing;
 
+	boolean dirtifiedexcalibur;
+
 	int nataljetrapturns;
 	int nataljetrapx, nataljetrapy;
 

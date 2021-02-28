@@ -2519,7 +2519,7 @@ foreignartifactcount()
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 
-		if (otmp->oartifact && otmp->oartifact >= ART_ORB_OF_DETECTION && !is_quest_artifact(otmp)) {
+		if (otmp->oartifact && ((otmp->oartifact >= ART_ORB_OF_DETECTION && !is_quest_artifact(otmp) ) || (u.dirtifiedexcalibur && otmp->oartifact == ART_EXCALIBUR) ) ) {
 			if (otmp->oclass == WEAPON_CLASS || is_weptool(otmp)) {
 				if (uwep && uwep == otmp) facount += 4;
 				else if (uswapwep && uswapwep == otmp && u.twoweap) facount += 4;

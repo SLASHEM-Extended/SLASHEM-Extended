@@ -632,6 +632,7 @@ register struct obj *obj;
 				exercise(A_WIS, FALSE);
 			} else {
 
+				if (!Role_if(PM_KNIGHT)) u.dirtifiedexcalibur = TRUE;
 				pline("As the hand retreats, the fountain disappears!");
 				obj = oname(obj, artiname(ART_EXCALIBUR));
 				discover_artifact(ART_EXCALIBUR);
@@ -639,6 +640,7 @@ register struct obj *obj;
 				obj->oeroded = obj->oeroded2 = 0;
 				obj->oerodeproof = TRUE;
 				exercise(A_WIS, TRUE);
+				if (!Role_if(PM_KNIGHT)) pline("Something seems amiss about that sword though.");
 #ifdef LIVELOGFILE
 				livelog_report_trophy("had Excalibur thrown to them by some watery tart");
 #endif
