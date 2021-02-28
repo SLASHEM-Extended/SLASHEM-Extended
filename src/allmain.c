@@ -11519,6 +11519,7 @@ past3:
 
 	/* fail safe for banishment in case the player would somehow get a turn --Amy */
 	if (u.banishmentbeam && multi >= 0) nomul(-2, "being banished", FALSE);
+	if (u.levelporting && multi >= 0) nomul(-2, "being levelported", FALSE);
 
 	if (In_greencross(&u.uz) && !u.greencrossopen) u.greencrossopen = TRUE;
 
