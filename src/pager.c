@@ -26872,6 +26872,20 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Elif'. It reads: 'How does it feel when my sharp fingernails cut your skin?'",
 	"You vaped for a bit, and have increased your maximum health.",
 	"You vaped for a bit, and have increased your maximum health. Which makes no sense at all, because realistically you should just have increased your chances of developing lung cancer.",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Vaccinate someone else! Someone who's shitting themselves out of fear of the oh so dangerous corona virus!'",
+	"Incoming message for Player 1. The message is from 'corona christmas child'. It reads: 'ill vaccinate you now! that is the only way to make sure youre really protected!'",
+	"Incoming message for Player 1. The message is from 'Tommy'. It reads: 'err what are you doing there?'",
+	"Incoming message for Player 1. The message is from 'Tommy'. It reads: 'are you somehow retarded?'",
+	"Incoming message for Player 1. The message is from 'Tommy'. It reads: 'understand i not'",
+	"Incoming message for Player 1. The message is from 'Tommy'. It reads: 'harhar that is fully gay'",
+	"Incoming message for Player 1. The message is from 'Tommy'. It reads: 'hehe i am cool'",
+	"Incoming message for Player 1. The message is from 'Thorwald'. It reads: 'The game seems to be rather difficult!'",
+	"Incoming message for Player 1. The message is from 'Thorwald'. It reads: 'Hey! How am I supposed to do the room with the snakes?'",
+	"Incoming message for Player 1. The message is from 'Thorwald'. It reads: 'What, you're winning even though the mouse of your PC doesn't work?'",
+	"Incoming message for Player 1. The message is from 'Marius'. It reads: 'Now it's my turn, and I'll hit!'",
+	"Incoming message for Player 1. The message is from 'Marius'. It reads: 'I'm the boss here!'",
+	"Incoming message for Player 1. The message is from 'Marius'. It reads: 'I'll win this game because I'm the leader!'",
+	"Incoming message for Player 1. The message is from 'Marius'. It reads: 'Something's not right here! You're the first player who's winning this game!'",
 
 };
 
