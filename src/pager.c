@@ -26886,6 +26886,20 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Marius'. It reads: 'I'm the boss here!'",
 	"Incoming message for Player 1. The message is from 'Marius'. It reads: 'I'll win this game because I'm the leader!'",
 	"Incoming message for Player 1. The message is from 'Marius'. It reads: 'Something's not right here! You're the first player who's winning this game!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Kiss my ass, I'll certainly not wear a FFP mask!'",
+	"Incoming message for Player 1. The message is from 'corona christmas child'. It reads: 'you have to wear a ffp mask! community masks dont protect you well enough!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'We should burn all medical masks.'",
+	"Incoming message for Player 1. The message is from 'corona christmas child'. It reads: 'every citizen has to wear a medical mask! that is compulsory!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Good thing I'm not such a christmas child like you.'",
+	"Incoming message for Player 1. The message is from 'corona christmas child'. It reads: 'i am not fearful at all, i just dont want to get infected! you dont either, admit it!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Bah, what do you know about infection chains. I know that I won't get infected!'",
+	"Incoming message for Player 1. The message is from 'corona christmas child'. It reads: 'watch out, one infected person will pass the virus on to more than one other person! you have to be careful so you dont get infected!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Bah, you can't breathe with a FFP mask. They can't be serious that one should be obligated to wear such a thing.'",
+	"Incoming message for Player 1. The message is from 'corona christmas child'. It reads: 'i always wear my ffp mask! then im optimally protected! everyone else should have to wear one too!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'Oh so you want to whistle me to the police? Just because I didn't obey some wacky corona rule? Well newsflash, I never agreed to follow those bullshit rules!'",
+	"Incoming message for Player 1. The message is from 'corona christmas child'. It reads: 'you didnt obey the hygiene measures! now i call the police because that cannot be that you just spread the plague to everyone!'",
+	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'What? Curfew? To hell with that! I'm a free citizen, I can leave my house whenever I want to!'",
+	"Incoming message for Player 1. The message is from 'corona christmas child'. It reads: 'why are you still on your way during curfew? because of people like you the containment of corona isnt working!'",
 
 };
 

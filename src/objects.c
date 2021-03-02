@@ -6996,6 +6996,7 @@ SCROLL((char *)0,               "KATHRYN THE FLEECE BUNDLE GIRL",  P_NONE,     1
 SCROLL((char *)0,               "DEBIT ME QUITE ITS",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
 SCROLL((char *)0,               "WHAT THE HELL ARE STONKS SUPPOSED TO BE",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
 SCROLL((char *)0,               "THE POLITICIANS DO A DAMAGE HAVE",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
+SCROLL((char *)0,               "EI PRAECTISED DIS STOR",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
 
 
 #ifdef MAIL

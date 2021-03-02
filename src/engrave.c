@@ -5412,6 +5412,9 @@ static const char *epitaphs[] = {
 	"I swear, script-generated monsters were a very bad addition to the game as their balance is completely out of whack. Amy should remove them.", /* but she never will :-P */
 	"SLEX is not a game but a C compiler testsuite", /* by bhaak */
 	"no mouth, one leg, you can use #monster to roll around on the ground, you start with an inka hat and randomized skills and intrinsics", /* by spicycat (original wording was slightly different) */
+	"hey amy ur game is LAMY", /* by Demo */
+	"Amy you suuuuuuck! why did you make that fucking town with the blasted HORDE of angels that is plain IMPOSSIBLE to defeat you BIIIIIIITCH! omg do you even play your game? apparently not, because otherwise you'd notice how it's more of a mental asylum simulator than a video game!!!",
+	"slex is for slosers", /* by Demo */
 
 };
 

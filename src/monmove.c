@@ -1859,6 +1859,10 @@ convertdone:
 		pline("Urrrrrgh, there seems to be a stinking heap of shit nearby! You pass out from the vile stench.");
 		nomul(-(rnd(5)), "unconscious from smelling shit", TRUE);
 	}
+	if (mdat == &mons[PM_HEAP_OF_SHIT] && multi >= 0 && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(10)) {
+		pline("Urrrrrgh, there seems to be a stinking heap of shit nearby! You pass out from the vile stench.");
+		nomul(-(rnd(5)), "unconscious from smelling shit", TRUE);
+	}
 	if (mdat == &mons[PM_STINK_HOMER] && multi >= 0 && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(10)) {
 		pline("Urrrrrgh, some really stinky person seems to be nearby! You pass out from the vile stench.");
 		nomul(-(rnd(5)), "unconscious from the stink homer's stench", TRUE);
