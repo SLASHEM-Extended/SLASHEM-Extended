@@ -2830,6 +2830,9 @@ register struct monst *mtmp;
 		case PM_GEEK:
 		    verbl_msg = "Enematzu memalezu!";
 		    break;
+		case PM_ALGONQUIN_BUSINESSLADY:
+		    verbl_msg = "I'm very busy! Please don't disturb me!";
+		    break;
 		case PM_GOFF:
 		    verbl_msg = "britny is a prep!!!111";
 		    break;

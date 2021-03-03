@@ -20511,12 +20511,14 @@ register struct monst *mon;
 		else pline("Full of joy, %s strokes your soft breasts, kneading them very tenderly.", mon_nam(mon));
 	}
 
+	if (mon->data == &mons[PM_UTE] && !mon->mfrenzied && !mon->mpeaceful) mon->mpeaceful = TRUE;
+
 	/* "Remove a stupid line of dialogue. This is not an adult visual novel.  The rest of the dialogue scattered around the source files like this will be cleaned up in due time." In Soviet Russia, people are filthy heretics who don't fully appreciate the beauty of Slash'EM Extended, which causes them to pick the best features of the game and remove them. :( --Amy */
 
 	if (u.homosexual == 2 && (flags.female && mon->female)) goto skiptreason;
 	if (u.homosexual == 2 && (!flags.female && !(mon->female))) goto skiptreason;
 
-	if ((rnd(ACURR(A_CHA)) < ((u.homosexual == 2) ? 9 : 3) ) && (mon->data != &mons[PM_FEMME] || !rn2(3)) ) { /* random chance of being betrayed by your love interest... */
+	if ((rnd(ACURR(A_CHA)) < ((u.homosexual == 2) ? 9 : 3) ) && (mon->data != &mons[PM_UTE]) && (mon->data != &mons[PM_FEMME] || !rn2(3)) ) { /* random chance of being betrayed by your love interest... */
 
 		monsterlev = ((mon->m_lev) + 1);
 		if (monsterlev <= 0) monsterlev = 1;

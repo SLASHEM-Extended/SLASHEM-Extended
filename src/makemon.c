@@ -10349,6 +10349,7 @@ loveheelover:
 		if(ptr == &mons[PM_ELFIN_SCYTHE]) (void) mongets(mtmp, ELVEN_SICKLE);
 		if(ptr == &mons[PM_PASTAFARIAN_ACOLYTE]) (void) mongets(mtmp, PASTA);
 		if(ptr == &mons[PM_PASTAFARIAN_PRIEST]) (void) mongets(mtmp, PASTA);
+		if(ptr == &mons[PM_STUTTERING_HARLOT]) (void) mongets(mtmp, HIPPIE_HEELS);
 		if(ptr == &mons[PM_PASTAFARIAN_HIGH_PRIEST]) {
 			(void) mongets(mtmp, PASTA);
 			(void) mongets(mtmp, PASTA);
@@ -12457,6 +12458,9 @@ loveheelover:
 		}
 		if (ptr == &mons[PM_CHERRY_MOUSE]) {
 			(void) mongets(mtmp, CHERRY);
+		}
+		if (ptr == &mons[PM_SAN_FIERRO_LADY]) {
+			(void) mongets(mtmp, HIPPIE_HEELS);
 		}
 		if (ptr == &mons[PM_PRICK_BEARER]) {
 			(void) mongets(mtmp, BATLETH);
@@ -15125,6 +15129,10 @@ loveheelover:
 			(void) mongets(mtmp, SAND_SWORD);
 			 m_initthrow(mtmp, SAND_DART, 20);
 		}
+		if (ptr == &mons[PM_UTE]) {
+			(void) mongets(mtmp, LEATHER_PEEP_TOES);
+			(void) mongets(mtmp, HIGH_HEELED_SANDAL);
+		}
 		if (ptr == &mons[PM_HELLWALK_BARBARIAN]) {
 			(void) mongets(mtmp, RING_MAIL);
 			(void) mongets(mtmp, LOW_BOOTS);
@@ -15544,6 +15552,8 @@ loveheelover:
 		if(ptr == &mons[PM_LASARCHON]) (void) mongets(mtmp, LASER_SWORD);
 		if(ptr == &mons[PM_BEALADRIN]) (void) mongets(mtmp, BEAMSWORD);
 		if (mtmp->data == &mons[PM_HIGHHEEL_ANGEL]) (void) mongets(mtmp, FEMININE_PUMPS);
+		if(ptr == &mons[PM_ALGONQUIN_BUSINESSLADY]) (void) mongets(mtmp, LEATHER_PEEP_TOES);
+		if(ptr == &mons[PM_STAIR_GUARDING_QUEEN]) (void) mongets(mtmp, LEATHER_PEEP_TOES);
 
 		if (monsndx(ptr) == PM_DOUGLAS_ADAMS) {
 			(void) mongets(mtmp,HITCHHIKER_S_GUIDE_TO_THE_GALA);
