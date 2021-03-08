@@ -766,6 +766,11 @@ bad_artifact()
 		if (!otmp) return;
 
 	    otmp->oartifact = m;
+		if (otmp->otyp == LOADSTONE || otmp->otyp == STARLIGHTSTONE || otmp->otyp == LOADBOULDER) {
+			otmp->quan = 1;
+			otmp->owt = weight(otmp);
+		}
+
 	    if (rn2(100)) artiexist[m] = TRUE;
 	} else {
 		return; /* aww, there are no evil artifacts left... so don't make one. Bummer. */
@@ -911,6 +916,12 @@ bad_artifact_xtra()
 		if (!otmp) return;
 
 	    otmp->oartifact = m;
+
+		if (otmp->otyp == LOADSTONE || otmp->otyp == STARLIGHTSTONE || otmp->otyp == LOADBOULDER) {
+			otmp->quan = 1;
+			otmp->owt = weight(otmp);
+		}
+
 	    if (rn2(100)) artiexist[m] = TRUE;
 	} else {
 		return; /* aww, there are no evil artifacts left... so don't make one. Bummer. */

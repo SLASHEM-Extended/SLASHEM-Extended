@@ -27111,6 +27111,12 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Sing'. It reads: ''While those her boat was sinking'... that's not how this sentence structure goes!'",
 	"Incoming message for Player 1. The message is from 'Sing'. It reads: 'What? Your birthsign is virgo? I'd never have guessed...'",
 	"Incoming message for Player 1. The message is from 'Sing'. It reads: 'You stars up there! You deserted me!'",
+	"Incoming message for Player 1. The message is from 'Annie'. It reads: 'Je vais vous tirer mes pointes de foudre!'",
+	"Incoming message for Player 1. The message is from 'Annie'. It reads: 'Vous pouvez continuer a echapper a mes pointes de foudre, mais cela ne vous aidera pas a me vaincre!'",
+	"Incoming message for Player 1. The message is from 'Annie'. It reads: 'Ces petits ecureuils m'ennuient! Ils devraient enfin etre touches par mes pointes de foudre!'",
+	"Incoming message for Player 1. The message is from 'Annie'. It reads: 'Et maintenant a ete touche par mes pointes de foudre pour la troisieme fois et s'est evanoui. Au revoir.'",
+	"Incoming message for Player 1. The message is from 'Annie'. It reads: 'Je peux tirer des pointes de foudre, c'est ma capacite speciale.'",
+	"Incoming message for Player 1. The message is from 'Annie'. It reads: 'Oh non, m'a frappe avec le ballon pour la cinquieme fois et je suis vaincu!'",
 
 };
 

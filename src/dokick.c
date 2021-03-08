@@ -1321,7 +1321,10 @@ xchar x, y;
 	 * from its current position
 	 */
 	if(range < 2 || (isgold && kickobj->quan > 300L)) {
-	    if(!Is_box(kickobj)) pline("Thump!");
+	    if(!Is_box(kickobj)) {
+			pline("Thump!");
+			if (kickobj->oartifact == ART_DONALD_THUMP_) badeffect();
+	    }
 	    return(!rn2(3) || martial());
 	}
 

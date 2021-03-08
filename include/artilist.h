@@ -8381,6 +8381,26 @@ A("The Machine That Goes Pling",				DIAMOND, /* randart gem */
 	(SPFX_RESTR), 0, 0,
 	PHYS(0, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
 
+A("Jonadab's Death Ray Insurance",				LOADSTONE,
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, CARY(AD_MAGM), 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Jonadab's Reflectiosus",				LOADSTONE,
+	(SPFX_RESTR|SPFX_EVIL), (SPFX_REFLECT), 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Jonadab's Stalwartness",				LOADSTONE,
+	(SPFX_RESTR|SPFX_EVIL), (SPFX_HPHDAM), 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Donald Thump!",				LOADSTONE, /* by maxlunar, kicking it can cause bad effects */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 2000L ),
+
+A("Jonadab's Metal Guard",				GAUNTLETS_OF_FUMBLING, /* putting them on changes their material to IRON */
+	(SPFX_RESTR|SPFX_HSPDAM|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
 
 /*
  *	Stormbringer only has a 2 because it can drain a level,

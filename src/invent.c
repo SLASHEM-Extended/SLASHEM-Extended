@@ -21213,6 +21213,16 @@ boolean knoweverything;
 					pline("Artifact specs: eating it summons a gypsy. This requires you to be able to eat gems in the first place, obviously."); break;
 				case ART_MACHINE_THAT_GOES_PLING:
 					pline("Artifact specs: +20 damage. It wasn't meant to do this in the first place."); break;
+				case ART_JONADAB_S_DEATH_RAY_INSURA:
+					pline("Artifact specs: magic resistance while carried."); break;
+				case ART_JONADAB_S_REFLECTIOSUS:
+					pline("Artifact specs: reflection while carried."); break;
+				case ART_JONADAB_S_STALWARTNESS:
+					pline("Artifact specs: half physical damage while carried."); break;
+				case ART_DONALD_THUMP_:
+					pline("Artifact specs: +5 to-hit and double damage, chaotic. If you kick it while it's on the ground and it goes 'Thump!', something bad may happen."); break;
+				case ART_JONADAB_S_METAL_GUARD:
+					pline("Artifact specs: half spell damage when worn. Putting them on changes their material to iron if it's something else."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

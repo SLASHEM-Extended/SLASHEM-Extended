@@ -2473,6 +2473,11 @@ Gloves_on()
 	default: impossible(unknown_type_long, c_gloves, uarmg->otyp);
     }
 
+    if (uarmg && uarmg->oartifact == ART_JONADAB_S_METAL_GUARD && (objects[uarmg->otyp].oc_material != MT_IRON)) {
+		pline_The("pair of gloves turns into iron gauntlets!");
+		objects[uarmg->otyp].oc_material = MT_IRON;
+    }
+
     if (uarmg && itemhasappearance(uarmg, APP_SPANISH_GLOVES) ) {
 	      if (!uarmg->cursed) {
 			curse(uarmg);
