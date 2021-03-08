@@ -3820,8 +3820,6 @@ int x, y;
 	if (uarmf && uarmf->oartifact == ART_PRACTICLASSY) amount *= 2;
     }
 
-    }
-
     if (gold) {
 	gold->quan += amount;
     } else {
