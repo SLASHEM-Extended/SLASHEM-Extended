@@ -365,6 +365,13 @@ struct you {
 	uchar	usptime;		/* #moves until uspellprot-- */
 	uchar	uspmtime;		/* #moves between uspellprot-- */
 
+	const char *rivalcode;	/* "filecode" for rival quest, abbreviation for use in file names */
+	int rivalneminum;
+	int rivalenemy1num;
+	int rivalenemy2num;
+	char rivalenemy1sym;
+	char rivalenemy2sym;
+
 	int     uhp, uhpmax,uhplast;
 	int	uen, uenmax;		/* magical energy - M. Stephenson */
 	int ugangr;			/* if the gods are angry at you */
@@ -615,10 +622,27 @@ struct you {
 	int tiksrvzllatdown;
 	int netherrealmcomplete;
 	int angmarcomplete;
+	int rivalquestcomplete;
+	int stahngnirdown;
+	int veradown;
+	int elainedown;
+	int arianespawned;
+	int arianedown;
+	int emynluincomplete;
+	int minotaurmazecomplete;
 	int katiaremoved;
 	int sewerplantcomplete;
 	int gammacavescomplete;
 	int bofhremoved;
+	int poolchallengecomplete;
+	int digdugchallengecomplete;
+	int pacmanchallengecomplete;
+	int joustchallengecomplete;
+	int gruechallengecomplete;
+	int devnullcomplete;
+
+	int greencrosschance;
+	boolean greencrossopen;
 
 	int musableremovechance;	/* extra chance for musable items to get removed */
 	int equipmentremovechance;
@@ -1312,6 +1336,8 @@ struct you {
 
 	boolean totter;	/* scroll of symmetry toggles this */
 
+	boolean ataruinvoked;
+
 	int nurseextracost;	/* for chat-to-nurses functionality */
 	int nursedecontamcost;	/* ditto */
 	int nursesymbiotecost;
@@ -1346,6 +1372,7 @@ struct you {
 	int umissileweaponturns;
 	int uimplantturns;
 	int ushiichoturns;
+	int usoresuturns;
 	int umakashiturns;
 	int uataruturns;
 	int unimanturns;
@@ -1429,6 +1456,8 @@ struct you {
 
 	int stairscumslowing;
 
+	boolean dirtifiedexcalibur;
+
 	int nataljetrapturns;
 	int nataljetrapx, nataljetrapy;
 
@@ -1484,6 +1513,9 @@ struct you {
 	boolean wonderlandescape;	/* wonderland mode player made it to the portal */
 	boolean zapemescape;	/* zapm mode player made it to the portal */
 
+	boolean preversionmode;	/* decided at game start: true if you're a preversioner */
+	boolean preversionescape;	/* preversion mode made it to deepest green cross level */
+
 	int felidlives;	/* set to 9 at game start even if you're not a felid, because recursion is a thing */
 
 	int homosexual;	/* starts at 0 = undefined; 1 = hetero, 2 = homo, defined when you have intercourse with a foocubus */
@@ -1516,6 +1548,9 @@ struct you {
 
 	int combostrike;	/* for technique */
 	boolean comboactive;
+
+	int dancercombostrike;
+	boolean dancercomboactive;
 
 	int steedhitchance;	/* default 25%, can be changed via directive */
 
@@ -1550,6 +1585,7 @@ struct you {
 
 	boolean wingyellowhack;
 	boolean arabellahack;
+	boolean linkmasterswordhack;
 
 	boolean captchahack;
 
@@ -1582,6 +1618,7 @@ struct you {
 	boolean dungeongrowthhack;	/* to circumvent goddamn savegame errors */
 
 	boolean katitrapocc;	/* checking whether you have the occupation */
+	boolean singtrapocc;
 
 	boolean howtoenhanceskills;	/* the first time you can enhance a skill, the game tells you how */
 
@@ -1649,6 +1686,13 @@ struct you {
 	boolean freeplaymode;	/* set to 1 if you ascend and decide to go on playing */
 	boolean freeplaytransit;	/* set to 1 if you're supposed to be transported back to dlvl1 and hang up or so */
 	boolean freeplayplanes;	/* set to 1 once you visit the sanctum and thereby re-enable the ability to visit the planes */
+
+	int badfcursed;	/* another long-lasting punishment for fountain quaffers */
+	int badfdoomed;
+
+	int hiddenpowerskill;	/* reaching master in this particular skill unlocks hidden power */
+
+	int inasuppression;	/* dying and lifesaving while having the ina trap active will set this */
 
 	boolean keythief;	/* did the player use certain keys on Vlad's? if yes, give a reward once */
 	boolean keynocturn;
@@ -1724,6 +1768,7 @@ struct you {
 	int cnd_chargingcount;	/* how often you recharged items */
 	int cnd_offercount;	/* how many corpses you offered to the gods */
 	int cnd_forcecount;	/* how many times you used #force on a monster */
+	int cnd_forcebuttcount;	/* how often you forced a farting monster */
 	int cnd_kickmonstercount;	/* how often you kicked a monster */
 	int cnd_kicklockcount;	/* how often you kicked doors, containers etc. */
 	int cnd_fumbled;	/* how many times you fumbled */
@@ -1799,6 +1844,8 @@ struct you {
 	int cnd_potionthrowmoncount;	/* how many potions have been thrown by monsters */
 	int cnd_overlevelcount;	/* how many times you leveled past XL30 */
 	int cnd_vomitingcount;	/* how many times you vomited */
+	int cnd_cwnannwncount;	/* how many times you were low on health */
+	int cnd_bansheecount;	/* how many times you were down to your last hit point */
 
 	struct symbiotemon usymbiote;	/* for the symbiosis skill */
 	int symbioteaggressivity;	/* how often your symbiote attacks or takes damage */
@@ -1881,6 +1928,8 @@ struct you {
 	boolean pract_void;	/* entered the void = 5 turns to leave, otherwise kops and demon lords can spawn */
 	int pract_voidtimer;	/* turn at which you may no longer be in the void */
 	boolean pract_voidinitial;	/* whether the initial spawn of badguys for the above has happened */
+	int pract_smokingtimer;	/* whenever you use a cigarette or similar, timer for being penalized */
+	boolean pract_cwnannwn;	/* if you hear the cwnannwn or banshee too often, every additional time results in fines */
 
 	/* killing the nemesis would result in another fine but she's dead at that point so you no longer care :P */
 

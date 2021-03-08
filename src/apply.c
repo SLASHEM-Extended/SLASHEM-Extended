@@ -429,6 +429,8 @@ use_symbiote(obj)
 
 			turnmonintosymbiote(mtmp, (obj->oartifact == ART_HOLDEN_MIDDLE_POST));
 
+			if (obj->oartifact == ART_GIMMIE_DAT_SKILL) use_skill(P_SYMBIOSIS, 50);
+
 			if (uinsymbiosis) {
 				if (obj->cursed) u.usymbiote.cursed = TRUE;
 				if (obj->hvycurse) u.usymbiote.hvycurse = TRUE;
@@ -580,7 +582,13 @@ use_stethoscope(obj)
 	} else
 	if (u.uswallow && (u.dx || u.dy || u.dz)) {
 
-		if (obj->oartifact == ART_PIERCE_DEVICE && u.ustuck->mhp > 1) u.ustuck->mhp--;
+		if (obj->oartifact == ART_PIERCE_DEVICE && u.ustuck->mhp > 1) {
+			u.ustuck->mhp--;
+			if (u.ustuck->mpeaceful && !u.ustuck->mtame) { /* exploit discovered by amateurhour --Amy */
+				u.ustuck->mpeaceful = FALSE; /* no easy shopkeeper cheesing! */
+				pline("%s is no longer peaceful.", Monnam(u.ustuck));
+			}
+		}
 
 		if ((obj->blessed || (obj->otyp == UNSTABLE_STETHOSCOPE && !rn2(5)) || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
 		mstatuslinebl(u.ustuck);
@@ -590,7 +598,13 @@ use_stethoscope(obj)
 	} else if (u.uswallow && interference) {
 		pline("%s interferes.", Monnam(u.ustuck));
 
-		if (obj->oartifact == ART_PIERCE_DEVICE && u.ustuck->mhp > 1) u.ustuck->mhp--;
+		if (obj->oartifact == ART_PIERCE_DEVICE && u.ustuck->mhp > 1) {
+			u.ustuck->mhp--;
+			if (u.ustuck->mpeaceful && !u.ustuck->mtame) { /* exploit discovered by amateurhour --Amy */
+				u.ustuck->mpeaceful = FALSE; /* no easy shopkeeper cheesing! */
+				pline("%s is no longer peaceful.", Monnam(u.ustuck));
+			}
+		}
 
 		if ((obj->blessed || (obj->otyp == UNSTABLE_STETHOSCOPE && !rn2(5)) || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
 		mstatuslinebl(u.ustuck);
@@ -650,7 +664,13 @@ use_stethoscope(obj)
 			return 0;
 		}
 
-		if (obj->oartifact == ART_PIERCE_DEVICE && mtmp->mhp > 1) mtmp->mhp--;
+		if (obj->oartifact == ART_PIERCE_DEVICE && mtmp->mhp > 1) {
+			mtmp->mhp--;
+			if (mtmp->mpeaceful && !mtmp->mtame) { /* exploit discovered by amateurhour --Amy */
+				mtmp->mpeaceful = FALSE; /* no easy shopkeeper cheesing! */
+				pline("%s is no longer peaceful.", Monnam(mtmp));
+			}
+		}
 
 		if ((obj->blessed || (obj->otyp == UNSTABLE_STETHOSCOPE && !rn2(5)) || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
 		mstatuslinebl(mtmp);
@@ -1696,7 +1716,7 @@ struct obj *obj;
 				obj->otyp == BRASS_LANTERN) {
 		    pline("%s lamp is now off.", Shk_Your(buf, obj));
 		} else if(is_lightsaber(obj)) {
-		    if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER) {
+		    if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASERXBOW || obj->otyp == SITH_STAFF) {
 
 			/* Do we want to activate dual bladed mode? */
 			if (vaapadcheck) {
@@ -1763,7 +1783,7 @@ struct obj *obj;
 			)
 			Your("%s has run out of power.", xname(obj));
 		else if (obj->otyp == TORCH) {
-		        Your("torch has burnt out and cannot be relit.");
+		        Your("torch has burnt out and needs to be recharged.");
 		}
 		else pline("This %s has no oil.", xname(obj));
 		return;
@@ -1796,7 +1816,7 @@ struct obj *obj;
 		    if (!Blind) makeknown(obj->otyp);
 		    You("ignite %s.", yname(obj));
 
-			if ((obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER) && vaapadcheck) {
+			if ((obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASERXBOW || obj->otyp == SITH_STAFF) && vaapadcheck) {
 				if (yn("Use only one of the two blades? (If you say no, you ignite both)") != 'n') {
 					; /* do nothing */
 				} else {
@@ -3857,6 +3877,14 @@ struct obj *obj;
 
 		    }
 
+		    if (otmp->otyp == PETRIFYIUM_BRA && (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
+			char kbuf[BUFSZ];
+			sprintf(kbuf, "a petrifyium bra");
+			pline("Snatching %s is a fatal mistake.", kbuf);
+			instapetrify(kbuf);
+
+		    }
+
 		    if (otmp->otyp == CORPSE &&
 			    touch_petrifies(&mons[otmp->corpsenm]) &&
 			    (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
@@ -3992,11 +4020,11 @@ use_pole (obj)
 	} else if (distu(cc.x, cc.y) < min_range) {
 	    pline(FunnyHallu ? "Your stick's too long, it seems!" : "Too close!");
 	    return (res);
-	} else if (!cansee(cc.x, cc.y) && obj->otyp != DARK_BAR &&
+	} else if (!cansee(cc.x, cc.y) && !(obj->oartifact == ART_FOOK_THE_OBSTACLES) && obj->otyp != DARK_BAR &&
 		   ((mtmp = m_at(cc.x, cc.y)) == (struct monst *)0 || !canseemon(mtmp))) {
 	    You(cant_see_spot);
 	    return (res);
-	} else if (!couldsee(cc.x, cc.y) && !(obj->oartifact == ART_WEAKITE_THRUST) ) { /* Eyes of the Overworld */
+	} else if (!couldsee(cc.x, cc.y) && !(obj->oartifact == ART_WEAKITE_THRUST) && !(obj->oartifact == ART_FOOK_THE_OBSTACLES) ) { /* Eyes of the Overworld */
 	    You(cant_reach);
 	    return res;
 	}
@@ -4246,6 +4274,38 @@ use_pole (obj)
 		    if (obj && obj->oartifact == ART_RIGHTLASH_LEFT && !rn2(100) && obj->spe < 15) {
 			obj->spe++;
 			pline("Your weapon seems sharper!");
+		    }
+
+		    if (obj && obj->oartifact == ART_ELEMENTS_TIME_THREE && isok(u.ux, u.uy) && !rn2(100)) {
+			int melteestrength = 5 + (GushLevel / 4);
+
+			switch (rnd(8)) {
+				case 1:
+					buzz(15, melteestrength, u.ux, u.uy, -1, 0);
+					break;
+				case 2:
+					buzz(15, melteestrength, u.ux, u.uy, 1, 0);
+					break;
+				case 3:
+					buzz(15, melteestrength, u.ux, u.uy, -1, 1);
+					break;
+				case 4:
+					buzz(15, melteestrength, u.ux, u.uy, 1, 1);
+					break;
+				case 5:
+					buzz(15, melteestrength, u.ux, u.uy, 0, 1);
+					break;
+				case 6:
+					buzz(15, melteestrength, u.ux, u.uy, -1, -1);
+					break;
+				case 7:
+					buzz(15, melteestrength, u.ux, u.uy, 1, -1);
+					break;
+				case 8:
+					buzz(15, melteestrength, u.ux, u.uy, 0, -1);
+					break;
+			}
+
 		    }
 
 		    if (obj && obj->oartifact == ART_ROYAL_CASINO_BETS) {
@@ -4925,6 +4985,7 @@ potion_charge_cost(struct obj *pot)
 	case POT_CYANIDE: cost += 2; break;
 	case POT_RANDOM_INTRINSIC: cost += 2; break;
 	case POT_BENEFICIAL_EFFECT: cost += 2; break;
+	case POT_TECH_LEVEL_UP: cost += 5; break;
 	case POT_INVULNERABILITY: cost += 8; break;
 	case POT_TRAINING: cost += 8; break;
 	case POT_EXTREME_POWER: cost += 2; break;
@@ -5139,6 +5200,7 @@ doapply()
 	case RADIOGLASSES:
 	case BOSS_VISOR:
 	case CONDOME:
+	case CLIMBING_SET:
 	case SOFT_CHASTITY_BELT:
 		if (obj == ublindf) {
 		    if (!cursed(obj)) Blindf_off(obj);
@@ -5151,6 +5213,7 @@ doapply()
 			ublindf->otyp == DRAGON_EYEPATCH ? "wearing a blindfold" :
 			ublindf->otyp == CONDOME ? "wearing a condome" :
 			ublindf->otyp == SOFT_CHASTITY_BELT ? "wearing a condome" :
+			ublindf->otyp == CLIMBING_SET ? "using a climbing set" :
 						     "wearing lenses");
 		break;
 	case CREAM_PIE:
@@ -5183,18 +5246,25 @@ doapply()
 		break;
 	case LARGE_BOX:
 	case TREASURE_CHEST:
-	case LARGE_BOX_OF_DIGESTION:
 	case CHEST:
 	case CHEST_OF_HOLDING:
 	case ICE_BOX:
 	case ICE_BOX_OF_HOLDING:
-	case ICE_BOX_OF_DIGESTION:
 	case ICE_BOX_OF_WATERPROOFING:
 	case SACK:
 	case BAG_OF_HOLDING:
 	case OILSKIN_SACK:
-	case BAG_OF_DIGESTION:
+	case POTATO_BAG:
 		res = use_container(&obj, 1);
+		noartispeak = TRUE; /* because it could explode! */
+		break;
+	case BAG_OF_DIGESTION:
+	case LARGE_BOX_OF_DIGESTION:
+	case ICE_BOX_OF_DIGESTION:
+		use_container(&obj, 1);
+		/* always uses up a turn now, which makes it trivial to ID I guess but that's okay, because
+		 * at least it means you can no longer easily get rid of troll corpses and stuff :-P --Amy */
+		noartispeak = TRUE; /* because it could explode! */
 		break;
 	case BAG_OF_TRICKS:
 		bagotricks(obj);
@@ -5236,7 +5306,7 @@ doapply()
 		(void) pick_lock(&obj);
 		break;
 	case TELEPHONE:
-		if (obj && obj->spe > 0) {
+		if (obj && obj->spe > ((obj->oartifact == ART_BUNDLEABRUM_OF_INVOCATION) ? -10 : 0)) {
 			obj->spe--;
 			You("dial a number...");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vy nabrali nepravil'nyy nomer, slabak!" : "BeepbeepBeepbeepbeepbeepBeepbeepbeep!");
@@ -5476,6 +5546,12 @@ doapply()
 	case ELECTRIC_CIGARETTE:
 	case RED_DOUBLE_LIGHTSABER:
 	case WHITE_DOUBLE_LIGHTSABER:
+	case LASERDENT:
+	case LASERXBOW:
+	case STARWARS_MACE:
+	case LASER_SWORD:
+	case BEAMSWORD:
+	case SITH_STAFF:
 
 		if (obj && obj->oartifact == ART_COLONEL_PROUDSTER && !obj->lamplit && obj->age == 0 && u.ugold >= 10000) {
 			if (yn("Recharge the lightsaber for 10000 zorkmids?") == 'y') {
@@ -5493,6 +5569,27 @@ doapply()
 	case BRASS_LANTERN:
 		use_lamp(obj);
 		break;
+
+	case LASER_POLE:
+
+		if (obj && obj->oartifact == ART_COLONEL_PROUDSTER && !obj->lamplit && obj->age == 0 && u.ugold >= 10000) {
+			if (yn("Recharge the lightsaber for 10000 zorkmids?") == 'y') {
+				u.ugold -= 10000;
+				obj->age += 750;
+				Your("lightsaber was recharged.");
+			}
+		}
+
+		if (uwep && uwep == obj && uwep->lamplit && uwep->altmode) {
+			res = use_pole(obj);
+			break;
+		}
+
+		if (!(uswapwep == obj && u.twoweap))
+		  if (uwep != obj && !wield_tool(obj, (const char *)0)) break;
+		use_lamp(obj);
+		break;
+
 	case TORCH:
 	        res = use_torch(obj);
 		break;
@@ -5797,6 +5894,51 @@ doapply()
 	case STARLIGHTSTONE:
 	case STONE_OF_MAGIC_RESISTANCE:
 	case SLEEPSTONE:
+
+	case ELIF_S_JEWEL:
+	case MADELEINE_S_JEWEL:
+	case SANDRA_S_JEWEL:
+	case NADJA_S_JEWEL:
+	case SOLVEJG_S_JEWEL:
+	case THAI_S_JEWEL:
+	case ELENA_S_JEWEL:
+	case WENDY_S_JEWEL:
+	case ANASTASIA_S_JEWEL:
+	case JESSICA_S_JEWEL:
+	case MARLENA_S_JEWEL:
+	case FEMMY_S_JEWEL:
+	case NATALJE_S_JEWEL:
+	case KARIN_S_JEWEL:
+	case JEANETTA_S_JEWEL:
+	case KATI_S_JEWEL:
+	case CLAUDIA_S_JEWEL:
+	case VICTORIA_S_JEWEL:
+	case MAURAH_S_JEWEL:
+	case JUEN_S_JEWEL:
+	case KRISTINA_S_JEWEL:
+	case SARAH_S_JEWEL:
+	case KATHARINA_S_JEWEL:
+	case JULIETTA_S_JEWEL:
+	case MELTEM_S_JEWEL:
+	case MELISSA_S_JEWEL:
+	case LUDGERA_S_JEWEL:
+	case YVONNE_S_JEWEL:
+	case EVELINE_S_JEWEL:
+	case NELLY_S_JEWEL:
+	case ARABELLA_S_JEWEL:
+	case RUEA_S_JEWEL:
+	case JETTE_S_JEWEL:
+	case VERENA_S_JEWEL:
+	case LOU_S_JEWEL:
+	case ANITA_S_JEWEL:
+	case MARIKE_S_JEWEL:
+	case KRISTIN_S_JEWEL:
+	case HENRIETTA_S_JEWEL:
+	case ALMUT_S_JEWEL:
+	case ANNA_S_JEWEL:
+	case SING_S_JEWEL:
+	case INA_S_JEWEL:
+	case DORA_S_JEWEL:
 
 	case RIGHT_MOUSE_BUTTON_STONE:
  	case DISPLAY_LOSS_STONE:
@@ -6342,6 +6484,99 @@ chargingchoice:
 		}
 
 		break;
+
+	case BITCHER:
+	{
+		boolean wildcunt = (obj->oartifact == ART_BITCHER____THE_WILD_CUNT);
+
+		You_hear("bitching noises.");
+		pline("The bitcher dissolves in your hands...");
+
+		if (obj->unpaid) {
+			struct monst *shkp = shop_keeper(*u.ushops);
+			if (shkp) {
+				You("use it, you pay for it!");
+				bill_dummy_object(obj);
+			}
+		}
+
+		if (obj->cursed && rn2(2)) {
+
+			delobj(obj);
+			noartispeak = TRUE;
+			pline("Somehow you feel that the bitches are making fun of you.");
+			break; /* do not call delobj twice or the game will destabilize! */
+
+		}
+
+		delobj(obj);
+		noartispeak = TRUE;
+
+		use_skill(P_DEVICES,10);
+		if (Race_if(PM_FAWN)) {
+			use_skill(P_DEVICES,10);
+		}
+		if (Race_if(PM_SATRE)) {
+			use_skill(P_DEVICES,10);
+			use_skill(P_DEVICES,10);
+		}
+		if (Role_if(PM_SPACEWARS_FIGHTER)) {
+			use_skill(P_DEVICES,10);
+		}
+		if (Role_if(PM_CAMPERSTRIKER)) {
+			use_skill(P_DEVICES,10);
+			use_skill(P_DEVICES,10);
+		}
+
+		FemaleTrapFemmy = 0L;
+		FemaleTrapMadeleine = 0L;
+		FemaleTrapMarlena = 0L;
+		FemaleTrapAnastasia = 0L;
+		FemaleTrapJessica = 0L;
+		FemaleTrapSolvejg = 0L;
+		FemaleTrapWendy = 0L;
+		FemaleTrapKatharina = 0L;
+		FemaleTrapElena = 0L;
+		FemaleTrapThai = 0L;
+		FemaleTrapElif = 0L;
+		FemaleTrapNadja = 0L;
+		FemaleTrapSandra = 0L;
+		FemaleTrapNatalje = 0L;
+		FemaleTrapJeanetta = 0L;
+		FemaleTrapYvonne = 0L;
+		FemaleTrapMaurah = 0L;
+		FemaleTrapMeltem = 0L;
+		FemaleTrapSarah = 0L;
+		FemaleTrapClaudia = 0L;
+		FemaleTrapLudgera = 0L;
+		FemaleTrapKati = 0L;
+		FemaleTrapNelly = 0L;
+		FemaleTrapEveline = 0L;
+		FemaleTrapKarin = 0L;
+		FemaleTrapJuen = 0L;
+		FemaleTrapKristina = 0L;
+		FemaleTrapLou = 0L;
+		FemaleTrapAlmut = 0L;
+		FemaleTrapJulietta = 0L;
+		FemaleTrapArabella = 0L;
+		FemaleTrapKristin = 0L;
+		FemaleTrapAnna = 0L;
+		FemaleTrapRuea = 0L;
+		FemaleTrapDora = 0L;
+		FemaleTrapMarike = 0L;
+		FemaleTrapJette = 0L;
+		FemaleTrapIna = 0L;
+		FemaleTrapSing = 0L;
+		FemaleTrapVictoria = 0L;
+		FemaleTrapMelissa = 0L;
+		FemaleTrapAnita = 0L;
+		FemaleTrapHenrietta = 0L;
+		FemaleTrapVerena = 0L;
+
+		if (wildcunt) randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
+
+		break;
+	}
 
 	case SWITCHER:
 

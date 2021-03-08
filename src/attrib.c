@@ -121,6 +121,24 @@ const struct innate {
 		     {  30, &(SatanEffect), "", "", FALSE },
 		     {	 0, 0, 0, 0, 0 } },
 
+	dan_abil[] = { {	1, &(HStealth), "", "", TRUE },
+                 {  3, &(HFast), "fleet of foot", "lead-footed", TRUE },
+                 {  10, &(HSearching), "perceptive", "distractable", TRUE },
+		     {  20, &(HTechnicality), "technically knowledgable", "your techniques becoming weaker", TRUE },
+			{	 25, &(HStun_resist), "steady", "less steady", TRUE },
+                 {	0, 0, 0, 0 } },
+
+	but_abil[] = { {	20, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
+                 {	0, 0, 0, 0 } },
+
+	sec_abil[] = { {	10, &(HMagical_breathing), "aquatic", "hydrophobic", TRUE },
+		     {  15, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
+		     {  18, &(HPsi_resist), "psionic", "less psionic", TRUE },
+		     {  20, &(HDiscount_action), "resistant to paralysis", "less resistant to paralysis", TRUE },
+		     {  25, &(HSwimming), "ready to swim","afraid of the water", TRUE },
+		     {  30, &(HKeen_memory), "able to memorize everything", "unable to memorize anything", TRUE },
+                 {	0, 0, 0, 0 } },
+
 	sma_abil[] = { {	 12, &(HFast), "quick", "slow", TRUE },
 		     {  15, &(HExtra_wpn_practice), "skillful", "unskilled", TRUE },
 		     {  20, &(HJumping), "able to jump around", "unable to jump around", TRUE },
@@ -129,6 +147,18 @@ const struct innate {
 	bar_abil[] = { {	 1, &(HPoison_resistance), "", "", TRUE },
 		     {   7, &(HFast), "quick", "slow", TRUE },
 		     {  15, &(HStealth), "stealthy", "noisy", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	noo_abil[] = { {	 1, &(HPoison_resistance), "", "", TRUE },
+		     {   7, &(HFast), "quick", "slow", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	dia_abil[] = { {	24, &(HFast), "quick", "slow", TRUE },
+		     {  30, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
+		     {  30, &(HPoison_resistance), "healthy", "less healthy", TRUE },
+		     {  30, &(HCold_resistance), "warm", "cooler", TRUE },
+		     {  30, &(HFire_resistance), "cool", "warmer", TRUE },
+		     {  30, &(HShock_resistance), "insulated", "conductive", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
 	hus_abil[] = { {	 1, &(HScentView), "", "", TRUE },
@@ -607,6 +637,16 @@ const struct innate {
 		     {  15, &(HShock_resistance), "insulated", "conductive", TRUE },
 		     /* WAC -- made the above three attribs techs */
 #endif
+		     {  17, &(HTeleport_control), "controlled","uncontrolled", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	hba_abil[] = { {   1, &(HFast), "", "", TRUE },
+		     {   1, &(HSleep_resistance), "", "", TRUE },
+		     {   1, &(HSee_invisible), "", "", TRUE },
+		     {   3, &(HPoison_resistance), "healthy", "less healthy", TRUE },
+		     {   5, &(HStealth), "stealthy", "noisy", TRUE },
+		     {   7, &(HWarning), "sensitive", "careless", TRUE },
+		     {   9, &(HSearching), "perceptive", "unaware", TRUE },
 		     {  17, &(HTeleport_control), "controlled","uncontrolled", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
@@ -1183,6 +1223,10 @@ const struct innate {
 		     {   0, 0, 0, 0, 0 } },
 
 	kob_abil[] = { {  1, &(HPoison_resistance), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	swi_abil[] = { {  1, &(HFear_resistance), "", "", TRUE },
+			{     15, &(HPeacevision), "able to recognize peaceful creatures", "unable to tell friend from enemy", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	coc_abil[] = { {  1, &(HPoison_resistance), "", "", TRUE },
@@ -1780,7 +1824,7 @@ exerper()
 					if ((u.uhunger > 4500) || (u.uhunger > 4000 && rn2(4)) || (u.uhunger <= 4000 && u.uhunger > 3500 && rn2(2)) || (u.uhunger <= 3500 && u.uhunger > 3000 && !rn2(5)) || (u.uhunger <= 3000 && !rn2(20)) ) {
 
 					exercise(A_DEX, FALSE);
-					if (Role_if(PM_MONK))
+					if (Role_if(PM_MONK) || Role_if(PM_HALF_BAKED))
 					    exercise(A_WIS, FALSE);
 
 					}
@@ -1791,7 +1835,7 @@ exerper()
 		    case HUNGRY:	if (have_anorexia() || Role_if(PM_FAILED_EXISTENCE)) exercise(A_WIS, TRUE); break;
 		    case WEAK:
 					if (!have_anorexia() && !rn2(10) && !Role_if(PM_FAILED_EXISTENCE) ) exercise(A_STR, FALSE);
-					if (Role_if(PM_MONK))	/* fasting */
+					if (Role_if(PM_MONK) || Role_if(PM_HALF_BAKED))	/* fasting */
 					    exercise(A_WIS, TRUE);
 					if (have_anorexia() || Role_if(PM_FAILED_EXISTENCE)) {
 					    exercise(A_WIS, TRUE); exercise(A_STR, TRUE);
@@ -2131,9 +2175,14 @@ int oldlevel, newlevel;
 	case PM_SPACE_MARINE:   abil = sma_abil;	break;
 	case PM_JANITOR:   abil = jan_abil;	break;
 	case PM_ANACHRONIST:    abil = ana_abil;	break;  
+	case PM_DIABLIST:    abil = dia_abil;	break;  
+	case PM_DANCER:    abil = dan_abil;	break;  
+	case PM_BUTT_LOVER:    abil = but_abil;	break;  
+	case PM_SECRET_ADVICE_MEMBER:    abil = sec_abil;	break;  
 	case PM_EMERA:    abil = eme_abil;	break;  
 	case PM_XELNAGA:    abil = xel_abil;	break;  
 	case PM_BARBARIAN:      abil = bar_abil;	break;
+	case PM_NOOB_MODE_BARB:      abil = noo_abil;	break;
 	case PM_COURIER:      abil = cou_abil;	break;
 	case PM_WEIRDBOY:      abil = wei_abil;	break;
 	case PM_MAHOU_SHOUJO:      abil = mah_abil;	break;
@@ -2200,6 +2249,7 @@ int oldlevel, newlevel;
 	case PM_DOOM_MARINE:         abil = mar_abil;	break;
 	case PM_SAGE:         abil = sag_abil;	break;
 	case PM_MONK:           abil = mon_abil;	break;
+	case PM_HALF_BAKED:           abil = hba_abil;	break;
 	case PM_MUSICIAN:           abil = mus_abil;	break;
 	case PM_PSION:           abil = psi_abil;	break;
 	case PM_SCIENTIST:           abil = sci_abil;	break;
@@ -2282,6 +2332,7 @@ int oldlevel, newlevel;
 	case PM_PLAYER_GREMLIN:            rabil = gre_abil;	break;
 	case PM_CLOCKWORK_AUTOMATON:            rabil = clk_abil;	break;
 	case PM_KOBOLT:            rabil = kob_abil;	break;
+	case PM_SWIKNI:            rabil = swi_abil;	break;
 	case PM_BRETON:            rabil = bre_abil;	break;
 	case PM_ELEMENTAL:            rabil = elm_abil;	break;
 	case PM_REDGUARD:            rabil = red_abil;	break;
@@ -2569,6 +2620,7 @@ int x;
 		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) tmp += 10;
 		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
+		if (uarmf && uarmf->oartifact == ART_DESEAMING_GAME) tmp += 3;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (uarmg && uarmg->otyp == GAUNTLETS_OF_POWER) tmp += (uarmg->spe + 3);
@@ -2583,6 +2635,7 @@ int x;
 		if (uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN && tmp > 14) tmp = 14;
 		if (AllStatsAreLower) tmp -= 10;
 		if (uarmf && uarmf->oartifact == ART_STAR_SOLES) tmp -= 2;
+		if (FemtrapActiveIna) tmp -= 3;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
@@ -2673,6 +2726,9 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL) tmp += 5;
 		if (uarmg && uarmg->oartifact == ART_EGASSO_S_GIBBERISH) tmp += 5;
 		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
+		if (uarmf && uarmf->oartifact == ART_SCRATCHE_HUSSY) tmp += 3;
+		if (uarmf && uarmf->oartifact == ART_KATHARINA_S_LOVELINESS) tmp += 10;
+		if (uwep && uwep->oartifact == ART_DAINTY_SLOAD) tmp += 3;
 
 		if (RngeCoquetry) tmp += 5;
 		if (FemtrapActiveSolvejg) tmp += 5;
@@ -2733,6 +2789,8 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) tmp -= 5;
 		if (uarmh && itemhasappearance(uarmh, APP_CORONA_MASK)) tmp -= 5;
 		if (uarmh && uarmh->oartifact == ART_FFP___MASK) tmp -= 5;
+		if (uarmf && itemhasappearance(uarmf, APP_BAREFOOT_SHOES)) tmp -= 1;
+		if (uarmf && itemhasappearance(uarmf, APP_SANDALS_WITH_SOCKS)) tmp -= 25;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
 		if (u.tsloss_cha > 0) tmp -= u.tsloss_cha;
 
@@ -2761,6 +2819,7 @@ int x;
 		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
 		if (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) tmp += 2;
 		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
+		if (x == A_WIS && uwep && uwep->oartifact == ART_SCJWILLX_) tmp += 5;
 
 		if (uarmh && uarmh->oartifact == ART_YOU_DON_T_KNOW_SHIT) tmp -= 3;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp -= 10;
@@ -2804,6 +2863,8 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_AMATEURSPORTS) tmp += 3;
 		if (uarmf && uarmf->oartifact == ART_EVERYWHERE_AT_ONCE) tmp += 3;
 		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
+		if (uwep && uwep->oartifact == ART_LONGBONE_OF_BANANA) tmp += 3;
+		if (uwep && uwep->oartifact == ART_LONGBOW_OF_BANANA) tmp += 3;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (PlayerBleeds > 100) tmp -= 2;
@@ -2835,6 +2896,7 @@ int x;
 		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
 		if (Race_if(PM_BULDOZGAR)) tmp += 2;
 		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
+		if (uarmf && uarmf->oartifact == ART_DESEAMING_GAME) tmp += 3;
 
 		if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 			if (uarm && is_metallic(uarm)) tmp++;
@@ -2852,6 +2914,7 @@ int x;
 		if (uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN && tmp > 14) tmp = 14;
 
 		if (FemtrapActiveJessica) tmp -= 5;
+		if (FemtrapActiveIna) tmp -= 3;
 		if (PlayerBleeds > 50) tmp--;
 		if (PlayerBleeds > 100) tmp -= 2;
 

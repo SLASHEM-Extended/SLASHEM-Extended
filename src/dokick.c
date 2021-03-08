@@ -42,6 +42,7 @@ register boolean clumsy;
 	if (uarmf && uarmf->oartifact == ART_WILD_SEX_GAME) dmg += 2;
 	if (uarmf && uarmf->oartifact == ART_LITTLE_BITCH_IS_RUCTIOUS) dmg += 3;
 	if (uarmf && uarmf->oartifact == ART_ARTHUR_S_HIGH_HEELED_PLATF) dmg += 2;
+	if (uarmf && uarmf->oartifact == ART_KATHARINA_S_LOVELINESS) dmg += 10;
 
 	if (uarmf && uarmf->otyp == KICKING_BOOTS)
 	    dmg += 5;
@@ -175,6 +176,8 @@ register boolean clumsy;
 	if (Race_if(PM_DUTHOL) && PlayerInBlockHeels) dmg += 2;
 
 	if (uwep && uwep->oartifact == ART_PEEPLUE) dmg += 2;
+
+	if (uarmf && uarmf->oartifact == ART_EROTICLAMP && u.ustuck && !u.uswallow && !sticks(youmonst.data)) dmg += 2;
 
 	if (uarmf && uarmf->otyp == FEMININE_PUMPS && uarmf->spe >= 1)
 		dmg += uarmf->spe;
@@ -527,7 +530,20 @@ register boolean clumsy;
 
 	}
 
+	if (uarmf && uarmf->oartifact == ART_DO_NOT_PEE && !rn2(5) && !(mon->female) && !is_neuter(mon->data) && !uarmf->oeroded && !uarmf->oeroded2) {
+		pline("%s is paralyzed by your powerful kick!", Monnam(mon));
+		mon->mcanmove = 0;
+		if (!mon->mfrozen) mon->mfrozen = rnd(10);
+		else if (mon->mfrozen < 127) mon->mfrozen++;
+		mon->mstrategy &= ~STRAT_WAITFORU;
+	}
+
 	if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) {
+		mon->bleedout += rnd(10);
+		pline("Your very pretty block heels scratch %sy wounds on %s's %s!", mbodypart(mon, BLOOD), mon_nam(mon), makeplural(mbodypart(mon, LEG)) );
+	}
+
+	if (uarmf && uarmf->oartifact == ART_SCRATCHE_HUSSY) {
 		mon->bleedout += rnd(10);
 		pline("Your very pretty block heels scratch %sy wounds on %s's %s!", mbodypart(mon, BLOOD), mon_nam(mon), makeplural(mbodypart(mon, LEG)) );
 	}
@@ -653,6 +669,14 @@ register boolean clumsy;
 		}
 	}
 
+	if (uarmf && uarmf->oartifact == ART_VERA_S_ICECUBE_SMASH && !resists_cold(mon)) {
+		pline("Your very lovely female 'Vera' sneakers clamp %s's %s!", mon_nam(mon), makeplural(mbodypart(mon,TOE)) );
+		if (!resist(mon, RING_CLASS, 0, NOTELL)) {
+			mon_adjust_speed(mon, -1, (struct obj *)0 );
+			m_dowear(mon, FALSE); /* might want speed boots */
+		}
+	}
+
 	if (uarmf && uarmf->oartifact == ART_SHIT_KICKERS) {
 		if (!resist(mon, WEAPON_CLASS, 0, NOTELL) && !mon->mconf) {
 			mon->mconf = TRUE;
@@ -728,6 +752,7 @@ register xchar x, y;
 		    break;	/* skip any additional kicks */
 		} else if (tmp > (roll = rnd(20))) {
 		    You("kick %s.", mon_nam(mon));
+		    wakeup(mon);
 		    sum = damageum(mon, uattk);
 		    (void)passive(mon, (boolean)(sum > 0), (sum != 2), AT_KICK, FALSE);
 		    if (sum == 2)
@@ -783,7 +808,7 @@ register xchar x, y;
 		return;
 	}
 
-	if (mon->data == &mons[PM_LITTLE_POISON_IVY] || mon->data == &mons[PM_UNGENOCIDABLE_VAMPSHIFTER] || mon->data == &mons[PM_TERRIFYING_POISON_IVY] || mon->data == &mons[PM_GIRL_WITH_THE_MOST_BEAUTIFUL_SHOES_IN_THE_WORLD] || mon->data == &mons[PM_IMMOVABLE_OBSTACLE] || mon->data == &mons[PM_INVINCIBLE_HAEN] || mon->data == &mons[PM_CHAREY] || mon->data == &mons[PM_INVENTOR_OF_THE_SISTER_COMBAT_BOOTS] || mon->data == &mons[PM_SWEET_ASIAN_POISON_IVY] || mon->data == &mons[PM_FIRST_DUNVEGAN] || mon->data == &mons[PM_PERCENTI_HAS_LOST___] || mon->data == &mons[PM_PERCENTI_IS_IMMUNE_TO_THE_ATTACK_]) {
+	if (mon->data == &mons[PM_LITTLE_POISON_IVY] || mon->data == &mons[PM_AMBER_FEMMY] || mon->data == &mons[PM_UNGENOCIDABLE_VAMPSHIFTER] || mon->data == &mons[PM_TERRIFYING_POISON_IVY] || mon->data == &mons[PM_GIRL_WITH_THE_MOST_BEAUTIFUL_SHOES_IN_THE_WORLD] || mon->data == &mons[PM_IMMOVABLE_OBSTACLE] || mon->data == &mons[PM_INVINCIBLE_HAEN] || mon->data == &mons[PM_CHAREY] || mon->data == &mons[PM_INVENTOR_OF_THE_SISTER_COMBAT_BOOTS] || mon->data == &mons[PM_SWEET_ASIAN_POISON_IVY] || mon->data == &mons[PM_FIRST_DUNVEGAN] || mon->data == &mons[PM_PERCENTI_HAS_LOST___] || mon->data == &mons[PM_PERCENTI_IS_IMMUNE_TO_THE_ATTACK_]) {
 
 		pline("%s is IMMUNE to the attack!", Monnam(mon));
 		if (FunnyHallu) You("curse at Konami for designing it like that.");
@@ -831,6 +856,7 @@ register xchar x, y;
 
 doit:
 	You("kick %s.", mon_nam(mon));
+	wakeup(mon);
 	if(!rn2(clumsy ? 3 : 4) && (clumsy || !bigmonst(mon->data)) &&
 	   mon->mcansee && !mon->mtrapped && !thick_skinned(mon->data) &&
 	   mon->data->mlet != S_EEL && haseyes(mon->data) && mon->mcanmove &&
@@ -1152,6 +1178,23 @@ xchar x, y;
 	    }
 	}
 
+	if(kickobj->otyp == PETRIFYIUM_BRA && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !uarmf) {
+		pline("Kicking a petrifying bra is a bad idea.");
+	    if (!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
+		
+		if (!Stoned) {
+
+			if (Hallucination && rn2(10)) pline("Good thing you are already stoned.");
+			else {
+				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				u.cnd_stoningcount++;
+				delayed_killer = "kicking a petrifyium bra";
+			}
+		}
+
+	    }
+	}
+
 	if(kickobj->otyp == CORPSE && touch_petrifies(&mons[kickobj->corpsenm])
 			&& (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !uarmf) {
 	    char kbuf[BUFSZ];
@@ -1226,6 +1269,7 @@ xchar x, y;
 		pline("%s %s loose.",
 		      The(distant_name(kickobj, xname)),
 		      otense(kickobj, "come"));
+	    if (kickobj && is_metallic(kickobj)) wake_nearby(); /* metallic objects make noise --Amy */
 	    obj_extract_self(kickobj);
 	    newsym(x, y);
 	    if (costly && (!costly_spot(u.ux, u.uy) ||
@@ -1242,7 +1286,7 @@ xchar x, y;
 	/* a box gets a chance of breaking open here */
 	if(Is_box(kickobj)) {
 		boolean otrp = kickobj->otrapped;
-
+		wake_nearby(); /* box always makes noise, presumably because of the metallic lock */
 		if(range < 2) pline("THUD!");
 
 		container_impact_dmg(kickobj);
@@ -1267,6 +1311,8 @@ xchar x, y;
 		/* else let it fall through to the next cases... */
 	}
 
+	if (kickobj && is_metallic(kickobj)) wake_nearby(); /* metallic objects make noise --Amy */
+
 	/* fragile objects should not be kicked */
 	if (hero_breaks(kickobj, kickobj->ox, kickobj->oy, FALSE)) return 1;
 
@@ -1275,7 +1321,10 @@ xchar x, y;
 	 * from its current position
 	 */
 	if(range < 2 || (isgold && kickobj->quan > 300L)) {
-	    if(!Is_box(kickobj)) pline("Thump!");
+	    if(!Is_box(kickobj)) {
+			pline("Thump!");
+			if (kickobj->oartifact == ART_DONALD_THUMP_) badeffect();
+	    }
 	    return(!rn2(3) || martial());
 	}
 
@@ -1498,7 +1547,8 @@ dokick()
 		}
 	}
 
-	wake_nearby();
+	/* make noise only if the boots are metallic --Amy */
+	if (uarmf && is_metallic(uarmf)) wake_nearby();
 	u_wipe_engr(2);
 
 	maploc = &levl[x][y];
@@ -1568,6 +1618,7 @@ dokick()
 				 unless it also happens to be trapped */
 			(maploc->doormask & (D_LOCKED|D_TRAPPED)) == D_LOCKED ?
 			      "Your kick uncovers" : "You kick open");
+			wake_nearby();
 			exercise(A_DEX, TRUE);
 			if(maploc->doormask & D_TRAPPED) {
 			    maploc->doormask = D_NODOOR;
@@ -1588,6 +1639,7 @@ dokick()
 		if(maploc->typ == SCORR) {
 		    if(!Levitation && ((rn2(25) < avrg_attrib ) || !rn2(5) ) ) {
 			pline("Crash!  You kick open a secret passage!");
+			wake_nearby();
 			exercise(A_DEX, TRUE);
 			maploc->typ = CORR;
 			if (Blind)
@@ -1611,6 +1663,7 @@ dokick()
 			    pline("CRASH!  You destroy the throne.");
 			    newsym(x, y);
 			}
+			wake_nearby();
 			exercise(A_DEX, TRUE);
 			return(1);
 		    } else if(Luck > 0 && !rn2(3) && !maploc->looted) {
@@ -1765,6 +1818,7 @@ dokick()
 		if(IS_TOILET(maploc->typ)) {
 		   if(Levitation) goto dumb;
 		   pline("Klunk!");
+		   if (!rn2(5)) wake_nearby();
 		   if (!rn2(4)) breaktoilet(x,y);
 		   return(1);
 		}
@@ -1793,6 +1847,7 @@ dokick()
 				if(flags.soundok)
 					pline("Klunk!  The pipes vibrate noisily.");
 				else pline("Klunk!");
+				if (!rn2(5)) wake_nearby();
 				exercise(A_DEX, TRUE);
 				return(1);
 			} else if(!(maploc->looted & S_LPUDDING) && !rn2(3) && !((specpudding == 1) && (mvitals[PM_BLACK_PUDDING].mvflags & G_GONE))) {
@@ -1842,6 +1897,7 @@ ouch:
 
 			if (uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && !rn2(3) && IS_STWALL(maploc->typ) && !(levl[x][y].wall_info & W_NONDIGGABLE)) {
 				pline("Crash! Your kick razed the wall!");
+				wake_nearby();
 				maploc->typ = CORR;
 				newsym(x,y);
 				return(1);
@@ -1904,6 +1960,7 @@ dumb:
 		boolean shopdoor = *in_rooms(x, y, SHOPBASE) ? TRUE : FALSE;
 		/* break the door */
 		u.cnd_kicklockcount++;
+		wake_nearby();
 		if(maploc->doormask & D_TRAPPED) {
 		    if (flags.verbose) You("kick the door.");
 		    exercise(A_STR, FALSE);
@@ -1947,6 +2004,7 @@ dumb:
 	    if (Blind) feel_location(x,y);	/* we know we hit it */
 	    exercise(A_STR, TRUE);
 	    pline("WHAMMM!!!");
+	    wake_nearby();
 	    if (in_town(x, y))
 		for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
 		    if (DEADMONSTER(mtmp)) continue;

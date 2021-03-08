@@ -600,6 +600,8 @@ int verbose;
 		sprintf(buf, flags.showlongstats ? "Town:%d " : "Tow:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold"))
 		sprintf(buf, flags.showlongstats ? "Stronghold:%d " : "Str:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Ice Queen's Realm"))
+		sprintf(buf, flags.showlongstats ? "Icequeen:%d " : "Ice:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Lawful Quest"))
 		sprintf(buf, flags.showlongstats ? "Nightmare:%d " : "Nig:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Neutral Quest"))
@@ -636,6 +638,8 @@ int verbose;
 		sprintf(buf, flags.showlongstats ? "Deadground:%d " : "Ded:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Subquest"))
 		sprintf(buf, flags.showlongstats ? "Subquest:%d " : "Sub:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Rival Quest"))
+		sprintf(buf, flags.showlongstats ? "Rival Quest:%d " : "Riv:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Bell Caves"))
 		sprintf(buf, flags.showlongstats ? "Bell Caves:%d " : "Bel:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Illusory Castle"))
@@ -650,16 +654,34 @@ int verbose;
 		sprintf(buf, flags.showlongstats ? "Gamma Caves:%d " : "Gam:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Mainframe"))
 		sprintf(buf, flags.showlongstats ? "Mainframe:%d " : "Mai:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Pool Challenge"))
+		sprintf(buf, flags.showlongstats ? "Pool:%d " : "Poo:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Digdug Challenge"))
+		sprintf(buf, flags.showlongstats ? "Digdug:%d " : "Dig:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Pacman Challenge"))
+		sprintf(buf, flags.showlongstats ? "Pacman:%d " : "Pac:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Joust Challenge"))
+		sprintf(buf, flags.showlongstats ? "Joust:%d " : "Jou:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Grue Challenge"))
+		sprintf(buf, flags.showlongstats ? "Grue:%d " : "Gre:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Void"))
 		sprintf(buf, flags.showlongstats ? "The Void:%d " : "Voi:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Nether Realm"))
 		sprintf(buf, flags.showlongstats ? "Nether Realm:%d " : "Net:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Angmar"))
 		sprintf(buf, flags.showlongstats ? "Angmar:%d " : "Ang:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Green Cross"))
+		sprintf(buf, flags.showlongstats ? "Green Cross:%d " : "Grc:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Emyn Luin"))
+		sprintf(buf, flags.showlongstats ? "Emyn Luin:%d " : "Emy:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Minotaur Maze"))
+		sprintf(buf, flags.showlongstats ? "Minotaur:%d " : "Mit:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Swimming Pool"))
 		sprintf(buf, flags.showlongstats ? "Swimming Pool:%d " : "Swi:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Hell's Bathroom"))
 		sprintf(buf, flags.showlongstats ? "Hell's Bathroom:%d " : "Bat:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Minus World"))
+		sprintf(buf, flags.showlongstats ? "Minus World:%d " : "Miw:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone GA"))
 		sprintf(buf, flags.showlongstats ? "Resting Zone GA:%d " : "RGA:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone GB"))
@@ -762,6 +784,7 @@ struct monst *mon;
 	if (armor && armpro < objects[armor->otyp].a_can)
 	    armpro = objects[armor->otyp].a_can;
 
+	if (bmwride(ART_MACAN_STRETCH) && armpro < 3) armpro = 3;
 	if (uarmg && uarmg->oartifact == ART_EGASSO_S_GIBBERISH && armpro < 5) armpro = 5;
 
 	if (MCReduction && mon == &youmonst) armpro -= (1 + (MCReduction / 5000));
@@ -771,7 +794,11 @@ struct monst *mon;
 	if (uarm && uarm->oartifact == ART_FREE_EXTRA_CANCEL) armpro++;
 	if (uarm && uarm->oartifact == ART_IMPRACTICAL_COMBAT_WEAR) armpro++;
 	if (uarmc && uarmc->oartifact == ART_RESISTANT_PUNCHING_BAG) armpro++;
+	if (uleft && uleft->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) armpro++;
+	if (uright && uright->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) armpro++;
+	if (uamul && uamul->otyp == AMULET_OF_GUARDING) armpro++;
 	if (uarmc && Role_if(PM_PRIEST) && itemhasappearance(uarmc, APP_ORNAMENTAL_COPE) ) armpro++;
+	if (uwep && uwep->oartifact == ART_DAINTY_SLOAD) armpro++;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) armpro++;
 	if (Race_if(PM_INKA)) armpro++;
 	if (ACURR(A_CHA) >= 18) armpro++;
@@ -935,7 +962,7 @@ bot2str(char *newbot2)
 #endif
 		if (u.usymbiote.cursed) {
 			sprintf(nb = eos(nb), "%s", u.usymbiote.stckcurse ? "S" : "C");
-			sprintf(nb = eos(nb), "%d", (u.usymbiote.evilcurse || u.usymbiote.bbcurse || u.usymbiote.morgcurse) ? 4 : u.usymbiote.prmcurse ? 3 : u.usymbiote.hvycurse ? 2 : 1);
+			sprintf(nb = eos(nb), "%s", (u.usymbiote.evilcurse || u.usymbiote.bbcurse || u.usymbiote.morgcurse) ? "XXX" : u.usymbiote.prmcurse ? "XX" : u.usymbiote.hvycurse ? "X" : "");
 		}
 		if (u.shutdowntime) sprintf(nb = eos(nb), "sd");
 	}

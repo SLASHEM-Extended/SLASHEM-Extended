@@ -2476,6 +2476,7 @@ struct obj *otmp;
 #define MUSE_SCR_RELOCATION 44
 #define MUSE_SCR_EXTRA_HEALING 45
 #define MUSE_POT_BLOOD 46
+#define MUSE_SCR_BRANCH_TELEPORT 47
 /*
 #define MUSE_INNATE_TPT 9999
  * We cannot use this.  Since monsters get unlimited teleportation, if they
@@ -2821,6 +2822,14 @@ struct monst *mtmp;
 			    && !mtmp->isgd && !mtmp->ispriest)) {
 			m.defensive = obj;
 			m.has_defense = MUSE_SCR_TELE_LEVEL;
+		}
+
+		nomore(MUSE_SCR_BRANCH_TELEPORT);
+		if(obj->otyp == SCR_BRANCH_TELEPORT && evilfriday
+		   && (!(mtmp->isshk && inhishop(mtmp))
+			    && !mtmp->isgd && !mtmp->ispriest)) {
+			m.defensive = obj;
+			m.has_defense = MUSE_SCR_BRANCH_TELEPORT;
 		}
 
 		nomore(MUSE_WAN_TELE_LEVEL);
@@ -3185,6 +3194,32 @@ mon_tele:
 
 		return 2;
 	    }
+
+	case MUSE_SCR_BRANCH_TELEPORT:
+	    {
+		if (mtmp->isshk || mtmp->isgd || mtmp->ispriest) return 2;
+		m_flee(mtmp);
+		mreadmsg(mtmp, otmp);
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+		how = SCR_BRANCH_TELEPORT;
+
+			d_level flev;
+
+			if (mon_has_amulet(mtmp) || In_endgame(&u.uz)) {
+			    if (vismon) {
+				pline("%s seems very disoriented for a moment.",
+					Monnam(mtmp));
+				if (oseen) makeknown(SCR_BRANCH_TELEPORT);
+				}
+			    return 2;
+			}
+			flev = random_branchport_level();
+			migrate_to_level(mtmp, ledger_no(&flev), MIGR_RANDOM, (coord *)0);
+			if (oseen) makeknown(SCR_BRANCH_TELEPORT);
+
+		return 2;
+	    }
+
 	case MUSE_WAN_TELE_LEVEL:
 		if (mtmp->isshk || mtmp->isgd || mtmp->ispriest) return 2;
 		m_flee(mtmp);
@@ -3632,7 +3667,7 @@ mon_tele:
 			monstercolor = rnd(15);
 			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 		} else {
-			monstercolor = rnd(376);
+			monstercolor = rnd(379);
 		}
 
 		if (mtmp->mconf || otmp->cursed) cnt += rno(12);
@@ -4837,7 +4872,7 @@ struct monst *mtmp;
 			m.has_offense = MUSE_WAN_STRIKING;
 		}
 		nomore(MUSE_WAN_BANISHMENT);
-		if(obj->otyp == WAN_BANISHMENT && obj->spe > 0 && !u.banishmentbeam) {
+		if(obj->otyp == WAN_BANISHMENT && !(obj->oartifact == ART_ASS_DEAF_AUGER) && obj->spe > 0 && !u.banishmentbeam) {
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_BANISHMENT;
 		}
@@ -5561,8 +5596,10 @@ register struct obj *otmp;
 
 		if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE);  break; }
 
-		if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
-		pline("Somehow, the banishment beam doesn't do anything."); break;}
+		if (playerlevelportdisabled()) { 
+			pline("Somehow, the banishment beam doesn't do anything.");
+			break;
+		}
 
 		if (mtmp == &youmonst) {
 			u.banishmentbeam = 1;
@@ -9902,7 +9939,7 @@ struct monst *mtmp;
 		case 30: return SCR_BARRHING;
 		case 31: return WAN_SOLAR_BEAM;
 		case 32: return SCR_LOCKOUT;
-		case 33: return WAN_BANISHMENT;
+		case 33: return (rn2(10) ? WAN_TELEPORTATION : WAN_BANISHMENT);
 		case 34: return POT_HALLUCINATION;
 		case 35: return POT_NUMBNESS;
 		case 36: return POT_ICE;
@@ -11074,7 +11111,7 @@ newboss:
 			monstercolor = rnd(15);
 			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 		} else {
-			monstercolor = rnd(376);
+			monstercolor = rnd(379);
 		}
 
 		if (mtmp->mconf || otmp->cursed) cnt += rno(12);
@@ -11657,6 +11694,7 @@ struct obj *obj;
 		 typ == SCR_EXTRA_HEALING ||
 		 typ == SCR_POWER_HEALING ||
 		 typ == SCR_TELE_LEVEL ||
+		 typ == SCR_BRANCH_TELEPORT ||
 		 typ == SCR_WARPING ||
 		 typ == SCR_ROOT_PASSWORD_DETECTION ||
 		 typ == SCR_CREATE_MONSTER ||

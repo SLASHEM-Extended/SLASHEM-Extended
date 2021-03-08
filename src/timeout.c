@@ -244,6 +244,27 @@ nh_timeout()
 	if (u.tremblingamount && !rn2(1000)) u.tremblingamount--;
 	if (u.tremblingamount < 0) u.tremblingamount = 0; /* fail safe */
 
+	if (u.inasuppression) {
+		u.inasuppression--;
+		if (u.inasuppression < 0) u.inasuppression = 0; /* fail safe */
+	}
+
+	if (u.badfcursed) {
+		u.badfcursed--;
+		if (u.badfcursed < 0) u.badfcursed = 0; /* fail safe */
+		if (!u.badfcursed) You("are no longer doing a journey on the path to nowhere.");
+	}
+	if (u.badfdoomed) {
+		u.badfdoomed--;
+		if (u.badfdoomed < 0) u.badfdoomed = 0; /* fail safe */
+		if (!u.badfdoomed) You("are on the way back from the journey on the path to nowhere.");
+	}
+
+	if (u.pract_smokingtimer) {
+		u.pract_smokingtimer--;
+		if (u.pract_smokingtimer < 0) u.pract_smokingtimer = 0; /* fail safe */
+	}
+
 	if (SimeoutBug || u.uprops[SIMEOUT_BUG].extrinsic || have_simeoutstone()) {
 		if (!rn2(2500)) {
 			u.usanity += (YouGetLotsOfSanity ? rnd(20) : 1);
@@ -864,6 +885,51 @@ nh_timeout()
 
 	}
 
+	if (u.umoved && FemtrapActiveHenrietta && !rn2(1000)) {
+
+				if (!(t_at(u.ux, u.uy)) ) {
+					register struct trap *shittrap;
+					shittrap = maketrap(u.ux, u.uy, SHIT_TRAP, 0, FALSE);
+					if (shittrap && !(shittrap->hiddentrap)) {
+						shittrap->tseen = 1;
+					}
+					if (shittrap) {
+						pline("Oh no, someone opened the zippers of your boots again, causing you to slip...");
+						dotrap(shittrap, RECURSIVETRAP);
+					}
+				}
+
+			    slip_or_trip();
+
+			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+
+				if (rn2(50)) {
+					adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
+					if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
+				} else {
+					You_feel("dizzy!");
+					forget(1 + rn2(5));
+				}
+			    }
+
+			    if (uarmf && uarmf->oartifact == ART_SUCH_A_SIGHER) {
+					nomul(-10, "cleaning the dog shit from their shoes", TRUE);
+					nomovemsg = "You finally cleaned the dog shit from your treaded soles.";
+			    } else {
+					nomul(-2, "fumbling", TRUE);
+					nomovemsg = "";
+			    }
+			    /* The more you are carrying the more likely you
+			     * are to make noise when you fumble.  Adjustments
+			     * to this number must be thoroughly play tested.
+			     */
+			    if ((inv_weight() > -500)) {
+				You("make a lot of noise!");
+				wake_nearby();
+			    }
+
+	}
+
 	if (u.umoved && (uarmf && itemhasappearance(uarmf, APP_IRREGULAR_BOOTS) ) && !rn2(100) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
 			    slip_or_trip();
 
@@ -1043,6 +1109,10 @@ nh_timeout()
 	if (!rn2(200) && uarmu && uarmu->oartifact == ART_TRAP_DUNGEON_OF_SHAMBHALA) badeffect();
 
 	if (!rn2(200) && have_badeffectstone() ) badeffect();
+
+	if (!rn2(200) && uwep && uwep->oartifact == ART_WHAW_WHAW) badeffect();
+
+	if (!rn2(200) && u.twoweap && uswapwep && uswapwep->oartifact == ART_WHAW_WHAW) badeffect();
 
 	if (!rn2(200) && uarmf && uarmf->oartifact == ART_ELENA_S_CHALLENGE ) badeffect();
 
@@ -2442,6 +2512,84 @@ nh_timeout()
 
 		 break;
 
+		 case FEMTRAP_KRISTIN:
+
+			pline("The women got bored of the multitude of high heels.");
+
+		 break;
+
+		 case FEMTRAP_ANNA:
+
+			pline("There's an announcement saying that the hussies no longer consider you a target. Phew.");
+
+		 break;
+
+		 case FEMTRAP_RUEA:
+
+			pline("The women gave up their attempts to convert you.");
+
+		 break;
+
+		 case FEMTRAP_DORA:
+
+			pline("There's a loud flapping noise indicating that the evil shoe-hating birds are leaving the dungeon.");
+
+		 break;
+
+		 case FEMTRAP_MARIKE:
+
+			pline("Aww, apparently you no longer want to listen to squeaking farting noises. But why? You didn't even come yet...");
+
+		 break;
+
+		 case FEMTRAP_JETTE:
+
+			pline("The power of feminism seems to be decreasing. Don't feel safe just yet, though.");
+
+		 break;
+
+		 case FEMTRAP_INA:
+
+			pline("Since you didn't vomit for a week, your anorexia condition disappears. But here's a newsflash: you could have instantly healed the condition by simply dying (don't try that at home).");
+
+		 break;
+
+		 case FEMTRAP_SING:
+
+			pline("You got enough and decide to end the evil woman's slavery reign by bashing her face with a platform boot that has cow dung on the soles. After striking her down, you flee from your prison and don't look back.");
+
+		 break;
+
+		 case FEMTRAP_VICTORIA:
+
+			pline("You finished playing with the karate women.");
+
+		 break;
+
+		 case FEMTRAP_MELISSA:
+
+			pline("It dawns on you that being seduced by women isn't a good thing, because they might steal your stuff.");
+
+		 break;
+
+		 case FEMTRAP_ANITA:
+
+			pline("You survived the dangerous high heels... for now.");
+
+		 break;
+
+		 case FEMTRAP_HENRIETTA:
+
+			pline("At last, you wised up and decided to switch to a pair of boots without zippers.");
+
+		 break;
+
+		 case FEMTRAP_VERENA:
+
+			pline("Now you're so annoyed that you slap that annoying blonde girl right in the face, knocking her out. Maybe now she'll leave you alone, she already caused enough annoyance anyway.");
+
+		 break;
+
 		 case FEMTRAP_ARABELLA:
 
 			pline("You're relieved to have gotten over the nastiness. Beware, there may still be some traps around.");
@@ -2708,6 +2856,18 @@ nh_timeout()
 		case HALF_PHDAM:
 			if (!Half_physical_damage)
 				You_feel("less resistant to damage.");
+			break;
+		case ASTRAL_VISION:
+			if (!Astral_vision)
+				You_feel("unable to keep using your x-ray vision.");
+			break;
+		case BLIND_RES:
+			if (!Blind_resistance)
+				You_feel("less resistant to blindness.");
+			break;
+		case HALLUC_RES:
+			if (!Halluc_resistance)
+				You_feel("less resistant to hallucinations.");
 			break;
 		case HUNGER:
 			if (!Hunger)
@@ -3185,6 +3345,15 @@ nh_timeout()
 			break;
 		case DEAC_EXP_BOOST:
 			pline("You are no longer prevented from having EXP boost.");
+			break;
+		case DEAC_ASTRAL_VISION:
+			pline("You are no longer prevented from having astral vision.");
+			break;
+		case DEAC_BLIND_RES:
+			pline("You are no longer prevented from having blindness resistance.");
+			break;
+		case DEAC_HALLUC_RES:
+			pline("You are no longer prevented from having hallucination resistance.");
 			break;
 
 		}
@@ -3970,7 +4139,8 @@ long timeout;
 	boolean canseeit, many, menorah, need_newsym;
 	xchar x, y;
 	char whose[BUFSZ];
-	int lightsaberchance;
+	int lightsaberchance = 0;
+	int lightsaberchance2 = 0;
 
 	menorah = obj->otyp == CANDELABRUM_OF_INVOCATION;
 	many = menorah ? obj->spe > 1 : obj->quan > 1L;
@@ -3997,19 +4167,34 @@ long timeout;
 
 	    } else {
 
+		lightsaberchance = 0;
+		lightsaberchance2 = 0;
+
 		if (tech_inuse(T_PIRATE_BROTHERING) && uwep && is_lightsaber(uwep) && uswapwep && weapon_type(uswapwep) == P_SCIMITAR && u.twoweap) {
 			; /* do nothing */
-		} else if (!PlayerCannotUseSkills && tech_inuse(T_ENERGY_CONSERVATION) && obj && is_lightsaber(obj)) {
-			switch (P_SKILL(P_MAKASHI)) {
-				case P_BASIC: lightsaberchance = 1; break;
-				case P_SKILLED: lightsaberchance = 3; break;
-				case P_EXPERT: lightsaberchance = 4; break;
-				case P_MASTER: lightsaberchance = 5; break;
-				case P_GRAND_MASTER: lightsaberchance = 7; break;
-				case P_SUPREME_MASTER: lightsaberchance = 8; break;
+		} else {
+			if (!PlayerCannotUseSkills && tech_inuse(T_ENERGY_CONSERVATION) && obj && is_lightsaber(obj)) {
+				switch (P_SKILL(P_MAKASHI)) {
+					case P_BASIC: lightsaberchance = 1; break;
+					case P_SKILLED: lightsaberchance = 3; break;
+					case P_EXPERT: lightsaberchance = 4; break;
+					case P_MASTER: lightsaberchance = 5; break;
+					case P_GRAND_MASTER: lightsaberchance = 7; break;
+					case P_SUPREME_MASTER: lightsaberchance = 8; break;
+				}
 			}
-			if (rnd(10) > lightsaberchance) obj->age -= how_long;
-		} else obj->age -= how_long;
+			if (!PlayerCannotUseSkills && obj && obj->oartifact == ART_SERIALSABER) {
+				switch (P_SKILL(P_MAKASHI)) {
+					case P_BASIC: lightsaberchance2 = 1; break;
+					case P_SKILLED: lightsaberchance2 = 3; break;
+					case P_EXPERT: lightsaberchance2 = 4; break;
+					case P_MASTER: lightsaberchance2 = 5; break;
+					case P_GRAND_MASTER: lightsaberchance2 = 7; break;
+					case P_SUPREME_MASTER: lightsaberchance2 = 8; break;
+				}
+			}
+			if ((rnd(10) > lightsaberchance) && (rnd(10) > lightsaberchance2)) obj->age -= how_long;
+		}
 		begin_burn(obj, TRUE);
 	    }
 	    return;
@@ -4260,6 +4445,10 @@ long timeout;
 
 	    case RED_DOUBLE_LIGHTSABER:
 	    case WHITE_DOUBLE_LIGHTSABER:
+	    case LASER_POLE:
+	    case LASERDENT:
+	    case LASERXBOW:
+	    case SITH_STAFF:
 	    	if (obj->altmode && obj->cursed && !rn2(25)) {
 		    obj->altmode = FALSE;
 		    pline("%s %s reverts to single blade mode!",
@@ -4267,6 +4456,8 @@ long timeout;
 	    	}
 	    case GREEN_LIGHTSABER: 
 	    case BLUE_LIGHTSABER:
+	    case LASER_SWORD:
+	    case BEAMSWORD:
 	    case MYSTERY_LIGHTSABER:
 	    case VIOLET_LIGHTSABER:
 	    case WHITE_LIGHTSABER:
@@ -4275,6 +4466,7 @@ long timeout;
 	    case LASER_SWATTER:
 	    case NANO_HAMMER:
 	    case LIGHTWHIP:
+	    case STARWARS_MACE:
 	    case ELECTRIC_CIGARETTE:
 	        /* Callback is checked every 5 turns - 
 	        	lightsaber automatically deactivates if not wielded */
@@ -4358,7 +4550,7 @@ lightsaber_deactivate (obj, timer_attached)
 		You("hear a lightsaber deactivate.");
 	    }
 	}
-	if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER) obj->altmode = FALSE;
+	if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASERXBOW || obj->otyp == LASER_POLE || obj->otyp == SITH_STAFF || obj->otyp == WHITE_DOUBLE_LIGHTSABER) obj->altmode = FALSE;
 	if ((obj == uwep) || (u.twoweap && obj != uswapwep)) unweapon = TRUE;
 	end_burn(obj, timer_attached);
 }
@@ -4406,7 +4598,8 @@ begin_burn(obj, already_lit)
 	int radius = 3;
 	long turns = 0;
 	boolean do_timer = TRUE;
-	int lightsaberchance;
+	int lightsaberchance = 0;
+	int lightsaberchance2 = 0;
 
 	if (obj->age == 0 && obj->otyp != MAGIC_LAMP &&
 		obj->otyp != MAGIC_CANDLE && !artifact_light(obj))
@@ -4419,7 +4612,46 @@ begin_burn(obj, already_lit)
 		do_timer = FALSE;
 		if (obj->otyp == MAGIC_CANDLE) obj->age = 300L;
 		break;
+	    case LASER_POLE:
+		lightsaberchance = 0;
+		lightsaberchance2 = 0;
+		obj->altmode = TRUE;
+	    	if (obj->altmode && obj->age > 1) {
+
+			if (!PlayerCannotUseSkills && tech_inuse(T_ENERGY_CONSERVATION)) {
+				switch (P_SKILL(P_MAKASHI)) {
+					case P_BASIC: lightsaberchance = 1; break;
+					case P_SKILLED: lightsaberchance = 3; break;
+					case P_EXPERT: lightsaberchance = 4; break;
+					case P_MASTER: lightsaberchance = 5; break;
+					case P_GRAND_MASTER: lightsaberchance = 7; break;
+					case P_SUPREME_MASTER: lightsaberchance = 8; break;
+				}
+			}
+			if (!PlayerCannotUseSkills && obj && obj->oartifact == ART_SERIALSABER) {
+				switch (P_SKILL(P_MAKASHI)) {
+					case P_BASIC: lightsaberchance2 = 1; break;
+					case P_SKILLED: lightsaberchance2 = 3; break;
+					case P_EXPERT: lightsaberchance2 = 4; break;
+					case P_MASTER: lightsaberchance2 = 5; break;
+					case P_GRAND_MASTER: lightsaberchance2 = 7; break;
+					case P_SUPREME_MASTER: lightsaberchance2 = 8; break;
+				}
+			}
+			if ((rnd(10) > lightsaberchance) && (rnd(10) > lightsaberchance2)) obj->age--; /* Double power usage */
+
+		}
+	    	turns = 1;
+    	    	radius = 1;
+		if (obj->oartifact == ART_LIGHTSABER_PROTOTYPE){
+			do_timer = FALSE;
+			obj->lamplit = 1;
+		}
+		break;
 	    case RED_DOUBLE_LIGHTSABER:
+	    case LASERDENT:
+	    case LASERXBOW:
+	    case SITH_STAFF:
 	    case WHITE_DOUBLE_LIGHTSABER:
 		lightsaberchance = 0;
 	    	if (obj->altmode && obj->age > 1) {
@@ -4433,11 +4665,24 @@ begin_burn(obj, already_lit)
 					case P_SUPREME_MASTER: lightsaberchance = 8; break;
 				}
 			}
-			if (rnd(10) > lightsaberchance) obj->age--; /* Double power usage */
+			if (!PlayerCannotUseSkills && obj && obj->oartifact == ART_SERIALSABER) {
+				switch (P_SKILL(P_MAKASHI)) {
+					case P_BASIC: lightsaberchance2 = 1; break;
+					case P_SKILLED: lightsaberchance2 = 3; break;
+					case P_EXPERT: lightsaberchance2 = 4; break;
+					case P_MASTER: lightsaberchance2 = 5; break;
+					case P_GRAND_MASTER: lightsaberchance2 = 7; break;
+					case P_SUPREME_MASTER: lightsaberchance2 = 8; break;
+				}
+			}
+			if ((rnd(10) > lightsaberchance) && (rnd(10) > lightsaberchance2)) obj->age--; /* Double power usage */
 		}
 	    case RED_LIGHTSABER:
 	    case LASER_SWATTER:
+	    case LASER_SWORD:
+	    case BEAMSWORD:
 	    case NANO_HAMMER:
+	    case STARWARS_MACE:
 	    case LIGHTWHIP:
 	    case ELECTRIC_CIGARETTE:
 	    case BLUE_LIGHTSABER:
@@ -4517,6 +4762,7 @@ begin_burn(obj, already_lit)
 	    if (start_timer(turns, TIMER_OBJECT,
 					BURN_OBJECT, (void *)obj)) {
 		obj->lamplit = 1;
+		if (obj->otyp == LASER_POLE) obj->altmode = 1;
 		lightsaberchance = 0;
 		if (!PlayerCannotUseSkills && tech_inuse(T_ENERGY_CONSERVATION) && obj && is_lightsaber(obj)) {
 			switch (P_SKILL(P_MAKASHI)) {
@@ -4528,15 +4774,25 @@ begin_burn(obj, already_lit)
 				case P_SUPREME_MASTER: lightsaberchance = 8; break;
 			}
 		}
+		if (!PlayerCannotUseSkills && obj && obj->oartifact == ART_SERIALSABER) {
+			switch (P_SKILL(P_MAKASHI)) {
+				case P_BASIC: lightsaberchance2 = 1; break;
+				case P_SKILLED: lightsaberchance2 = 3; break;
+				case P_EXPERT: lightsaberchance2 = 4; break;
+				case P_MASTER: lightsaberchance2 = 5; break;
+				case P_GRAND_MASTER: lightsaberchance2 = 7; break;
+				case P_SUPREME_MASTER: lightsaberchance2 = 8; break;
+			}
+		}
 		if (tech_inuse(T_PIRATE_BROTHERING) && uwep && is_lightsaber(uwep) && uswapwep && weapon_type(uswapwep) == P_SCIMITAR && u.twoweap) lightsaberchance = 9999; /* don't lose lightsaber energy */
 
-		if (rnd(10) > lightsaberchance) obj->age -= turns;
+		if ((rnd(10) > lightsaberchance) && (rnd(10) > lightsaberchance2)) obj->age -= turns;
 		if (carried(obj) && !already_lit)
 		    update_inventory();
 	    } else {
 		obj->lamplit = 0;
 		/* double lightsaber should have its second blade turned off too! --Amy */
-		if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER) {
+		if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASERXBOW || obj->otyp == LASER_POLE || obj->otyp == SITH_STAFF || obj->otyp == WHITE_DOUBLE_LIGHTSABER) {
 			obj->altmode = FALSE;
 		}
 	    }
@@ -4579,7 +4835,7 @@ end_burn(obj, timer_attached)
 	    del_light_source(LS_OBJECT, (void *)obj);
 	    obj->lamplit = 0;
 	    /* caller doesn't always make sure that double lightsabers are turned off properly; do so here */
-	    if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER) {
+	    if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASERXBOW || obj->otyp == LASER_POLE || obj->otyp == SITH_STAFF || obj->otyp == WHITE_DOUBLE_LIGHTSABER) {
 			obj->altmode = FALSE;
 		}
 	    if (obj->where == OBJ_INVENT)
@@ -4611,7 +4867,7 @@ cleanup_burn(arg, expire_time)
     obj->age += expire_time - monstermoves;
 
     obj->lamplit = 0;
-    if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER) {
+    if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASERXBOW || obj->otyp == LASER_POLE || obj->otyp == SITH_STAFF || obj->otyp == WHITE_DOUBLE_LIGHTSABER) {
 	obj->altmode = FALSE;
     }
 

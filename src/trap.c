@@ -1984,6 +1984,8 @@ burnagain:
 
 	if (itemhasappearance(otmp, APP_IMAGINARY_HEELS) ) vulnerable = FALSE;
 
+	if (otmp->oartifact == ART_RATCH_CLOSURE_SCRATCHING && rn2(4) ) vulnerable = FALSE;
+
 	if (itemhasappearance(otmp, APP_WITHERED_CLOAK) ) vulnerable = FALSE;
 
 	if (Race_if(PM_CHIQUAI) && rn2(4)) vulnerable = FALSE;
@@ -2105,6 +2107,8 @@ struct monst *victim;
 	if (itemhasappearance(otmp, APP_BRAND_NEW_GLOVES) && rn2(4) ) vulnerable = FALSE;
 
 	if (itemhasappearance(otmp, APP_IMAGINARY_HEELS) ) vulnerable = FALSE;
+
+	if (otmp->oartifact == ART_RATCH_CLOSURE_SCRATCHING && rn2(4) ) vulnerable = FALSE;
 
 	if (itemhasappearance(otmp, APP_WITHERED_CLOAK) ) vulnerable = FALSE;
 
@@ -2772,6 +2776,8 @@ boolean td;	/* td == TRUE : trap door or hole */
 	    newlevel++;
 	} while(!rn2(4) && newlevel < dunlevs_in_dungeon(&u.uz));
 
+	if (wizard && !Can_fall_thru(&u.uz) && (yn("Go down here?") == 'y')) newlevel++;
+
 	if(td) {
 	    struct trap *t=t_at(u.ux,u.uy);
 	    seetrap(t);
@@ -2790,7 +2796,7 @@ boolean td;	/* td == TRUE : trap door or hole */
 
 	if (In_sokoban(&u.uz) && Can_fall_thru(&u.uz))
 	    ;	/* KMH -- You can't escape the Sokoban level traps */
-	else if((Levitation || u.ustuck || !Can_fall_thru(&u.uz)
+	else if((Levitation || u.ustuck || (!Can_fall_thru(&u.uz) && !wizard)
 	   || Flying || is_clinger(youmonst.data)
 	   || (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp >= BULLWHIP && uwep->otyp <= SECRET_WHIP && uwep->otyp != RUBBER_HOSE)
 	   || (Inhell && !u.uevent.invoked && newlevel == dunlevs_in_dungeon(&u.uz)))
@@ -2821,6 +2827,57 @@ boolean td;	/* td == TRUE : trap door or hole */
 	    dtmp.dnum = u.uz.dnum;
 	    dtmp.dlevel = newlevel;
 	}
+
+	if (wizard && !Can_fall_thru(&u.uz)) {
+		extern int n_dgns; /* from dungeon.c */
+		int duncounter, num_ok_dungeons, last_ok_dungeon = 0;
+		int randomnumber;
+
+		for (duncounter = num_ok_dungeons = 0; duncounter < n_dgns; duncounter++) {
+			if (!dungeons[duncounter].dunlev_ureached) continue;
+			if (flags.wonderland && !achieve.perform_invocation) {
+				if (!strcmp(dungeons[duncounter].dname, "Yendorian Tower")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Forging Chamber")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Dead Grounds")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Ordered Chaos")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TA")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TB")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TC")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TD")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TE")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TF")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TG")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TH")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TI")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TJ")) continue;
+			} 
+			num_ok_dungeons++;
+			last_ok_dungeon = duncounter;
+
+		}
+		if (num_ok_dungeons > 1) randomnumber = rnd(num_ok_dungeons);
+		else randomnumber = 1;
+
+		dtmp.dnum = u.uz.dnum;
+
+		while (randomnumber > 0) {
+
+			randomnumber--;
+
+			dtmp.dnum++;
+			if (dtmp.dnum >= n_dgns) dtmp.dnum = 0;
+
+			while (!dungeons[dtmp.dnum].dunlev_ureached || (flags.wonderland && !achieve.perform_invocation && ( !strcmp(dungeons[dtmp.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[dtmp.dnum].dname, "Forging Chamber") || !strcmp(dungeons[dtmp.dnum].dname, "Dead Grounds") || !strcmp(dungeons[dtmp.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TA") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TB") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TC") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TD") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TE") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TF") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TG") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TH") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TI") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TJ") ) ) ) {
+
+				dtmp.dnum++;
+				if (dtmp.dnum >= n_dgns) dtmp.dnum = 0;
+			}
+		}
+
+		dtmp.dlevel = 1;
+		if (dungeons[dtmp.dnum].dunlev_ureached > 1) dtmp.dlevel = rnd(dungeons[dtmp.dnum].dunlev_ureached);
+	}
+
 	if (!td)
 	    sprintf(msgbuf, "The hole in the %s above you closes up.",
 		    ceiling(u.ux,u.uy));
@@ -2844,6 +2901,8 @@ boolean td;	/* td == TRUE : trap door or hole */
 	    newlevel++;
 	} while(rn2(4) && newlevel < dunlevs_in_dungeon(&u.uz));
 
+	if (wizard && !Can_fall_thru(&u.uz) && (yn("Go down here?") == 'y')) newlevel++;
+
 	if(td) {
 	    struct trap *t=t_at(u.ux,u.uy);
 	    seetrap(t);
@@ -2862,7 +2921,7 @@ boolean td;	/* td == TRUE : trap door or hole */
 
 	if (In_sokoban(&u.uz) && Can_fall_thru(&u.uz))
 	    ;	/* KMH -- You can't escape the Sokoban level traps */
-	else if((Levitation || u.ustuck || !Can_fall_thru(&u.uz)
+	else if((Levitation || u.ustuck || (!Can_fall_thru(&u.uz) && !wizard)
 	   || Flying || is_clinger(youmonst.data)
 	   || (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp >= BULLWHIP && uwep->otyp <= SECRET_WHIP && uwep->otyp != RUBBER_HOSE)
 	   || (Inhell && !u.uevent.invoked && newlevel == dunlevs_in_dungeon(&u.uz)))
@@ -2893,6 +2952,57 @@ boolean td;	/* td == TRUE : trap door or hole */
 	    dtmp.dnum = u.uz.dnum;
 	    dtmp.dlevel = newlevel;
 	}
+
+	if (wizard && !Can_fall_thru(&u.uz)) {
+		extern int n_dgns; /* from dungeon.c */
+		int duncounter, num_ok_dungeons, last_ok_dungeon = 0;
+		int randomnumber;
+
+		for (duncounter = num_ok_dungeons = 0; duncounter < n_dgns; duncounter++) {
+			if (!dungeons[duncounter].dunlev_ureached) continue;
+			if (flags.wonderland && !achieve.perform_invocation) {
+				if (!strcmp(dungeons[duncounter].dname, "Yendorian Tower")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Forging Chamber")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Dead Grounds")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Ordered Chaos")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TA")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TB")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TC")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TD")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TE")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TF")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TG")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TH")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TI")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TJ")) continue;
+			} 
+			num_ok_dungeons++;
+			last_ok_dungeon = duncounter;
+
+		}
+		if (num_ok_dungeons > 1) randomnumber = rnd(num_ok_dungeons);
+		else randomnumber = 1;
+
+		dtmp.dnum = u.uz.dnum;
+
+		while (randomnumber > 0) {
+
+			randomnumber--;
+
+			dtmp.dnum++;
+			if (dtmp.dnum >= n_dgns) dtmp.dnum = 0;
+
+			while (!dungeons[dtmp.dnum].dunlev_ureached || (flags.wonderland && !achieve.perform_invocation && ( !strcmp(dungeons[dtmp.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[dtmp.dnum].dname, "Forging Chamber") || !strcmp(dungeons[dtmp.dnum].dname, "Dead Grounds") || !strcmp(dungeons[dtmp.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TA") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TB") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TC") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TD") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TE") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TF") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TG") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TH") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TI") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TJ") ) ) ) {
+
+				dtmp.dnum++;
+				if (dtmp.dnum >= n_dgns) dtmp.dnum = 0;
+			}
+		}
+
+		dtmp.dlevel = 1;
+		if (dungeons[dtmp.dnum].dunlev_ureached > 1) dtmp.dlevel = rnd(dungeons[dtmp.dnum].dunlev_ureached);
+	}
+
 	if (!td)
 	    sprintf(msgbuf, "The hole in the %s above you closes up.",
 		    ceiling(u.ux,u.uy));
@@ -2914,6 +3024,8 @@ boolean td;	/* td == TRUE : trap door or hole */
 	    newlevel++;
 	} while(rn2(4) && newlevel < dunlevs_in_dungeon(&u.uz));
 
+	if (wizard && !Can_fall_thru(&u.uz) && (yn("Go down here?") == 'y')) newlevel++;
+
 	if(td) {
 	    struct trap *t=t_at(u.ux,u.uy);
 	    seetrap(t);
@@ -2932,7 +3044,7 @@ boolean td;	/* td == TRUE : trap door or hole */
 
 	if (In_sokoban(&u.uz) && Can_fall_thru(&u.uz))
 	    ;	/* KMH -- You can't escape the Sokoban level traps */
-	else if(u.ustuck || !Can_fall_thru(&u.uz)
+	else if(u.ustuck || (!Can_fall_thru(&u.uz) && !wizard)
 	   || (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp >= BULLWHIP && uwep->otyp <= SECRET_WHIP && uwep->otyp != RUBBER_HOSE)
 	   || (Inhell && !u.uevent.invoked && newlevel == dunlevs_in_dungeon(&u.uz))
 		) {
@@ -2962,6 +3074,57 @@ boolean td;	/* td == TRUE : trap door or hole */
 	    dtmp.dnum = u.uz.dnum;
 	    dtmp.dlevel = newlevel;
 	}
+
+	if (wizard && !Can_fall_thru(&u.uz)) {
+		extern int n_dgns; /* from dungeon.c */
+		int duncounter, num_ok_dungeons, last_ok_dungeon = 0;
+		int randomnumber;
+
+		for (duncounter = num_ok_dungeons = 0; duncounter < n_dgns; duncounter++) {
+			if (!dungeons[duncounter].dunlev_ureached) continue;
+			if (flags.wonderland && !achieve.perform_invocation) {
+				if (!strcmp(dungeons[duncounter].dname, "Yendorian Tower")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Forging Chamber")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Dead Grounds")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Ordered Chaos")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TA")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TB")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TC")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TD")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TE")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TF")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TG")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TH")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TI")) continue;
+				if (!strcmp(dungeons[duncounter].dname, "Resting Zone TJ")) continue;
+			} 
+			num_ok_dungeons++;
+			last_ok_dungeon = duncounter;
+
+		}
+		if (num_ok_dungeons > 1) randomnumber = rnd(num_ok_dungeons);
+		else randomnumber = 1;
+
+		dtmp.dnum = u.uz.dnum;
+
+		while (randomnumber > 0) {
+
+			randomnumber--;
+
+			dtmp.dnum++;
+			if (dtmp.dnum >= n_dgns) dtmp.dnum = 0;
+
+			while (!dungeons[dtmp.dnum].dunlev_ureached || (flags.wonderland && !achieve.perform_invocation && ( !strcmp(dungeons[dtmp.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[dtmp.dnum].dname, "Forging Chamber") || !strcmp(dungeons[dtmp.dnum].dname, "Dead Grounds") || !strcmp(dungeons[dtmp.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TA") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TB") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TC") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TD") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TE") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TF") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TG") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TH") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TI") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TJ") ) ) ) {
+
+				dtmp.dnum++;
+				if (dtmp.dnum >= n_dgns) dtmp.dnum = 0;
+			}
+		}
+
+		dtmp.dlevel = 1;
+		if (dungeons[dtmp.dnum].dunlev_ureached > 1) dtmp.dlevel = rnd(dungeons[dtmp.dnum].dunlev_ureached);
+	}
+
 	if (!td)
 	    sprintf(msgbuf, "The hole in the %s above you closes up.",
 		    ceiling(u.ux,u.uy));
@@ -3314,6 +3477,11 @@ unsigned trflags;
 		u.youaredead = 0;
 	}
 
+	if (uarmf && uarmf->oartifact == ART_SOFTSTEP && ttype == SHIT_TRAP && !(trap->artionce)) {
+		pline("Spflotch! Your dancing shoes fully stepped into a heap of dog shit.");
+		adjattrib(A_CHA, 1, 0, TRUE);
+	}
+
 	if (trap) trap->artionce = TRUE;
 
 	switch(ttype) {
@@ -3463,6 +3631,7 @@ unsigned trflags;
 		else if (trap->launch_otyp < 33) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rn2(2) ? "beautiful" : "squeaky");
 		else pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rn2(2) ? "disgusting" : "loud");
 		u.cnd_fartingcount++;
+		if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
 		if (trap->launch_otyp < 12 && uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) {
@@ -4625,6 +4794,26 @@ newegomon:
 				break;
 
 			case 27:
+
+				if (!rn2(10)) {
+					if (!u.badfcursed) {
+						u.badfcursed = rnz(10000);
+						You("start a trip on the road to nowhere.");
+					} else {
+						u.badfcursed += rnz(10000);
+						u.badfdoomed += rnz(10000);
+						if (u.badfcursed < u.badfdoomed) u.badfcursed += rnz(10000);
+						if (u.badfcursed < u.badfdoomed) u.badfcursed = (u.badfdoomed * 2);
+						You("continue a trip on the road to nowhere...");
+					}
+					break;
+				}
+
+				pline("This tepid water is tasteless.");
+
+				u.uhunger += rnd(5); /* don't choke on water */
+				newuhs(FALSE);
+				break;
 			case 28:
 			case 29:
 			case 30:
@@ -5955,7 +6144,7 @@ rerollX:
 					if (!rn2(100)) randsp *= 3;
 					if (!rn2(1000)) randsp *= 5;
 					if (!rn2(10000)) randsp *= 10;
-					monstercolor = rnd(376);
+					monstercolor = rnd(379);
 
 					You_feel("that a group has arrived!");
 
@@ -7616,7 +7805,7 @@ newbossPENT:
 
 	    case SHIT_TRAP:
 
-		if ((Levitation || Flying || (uarmf && itemhasappearance(uarmf, APP_YELLOW_SNEAKERS) ) ) && !(Role_if(PM_GANG_SCHOLAR)) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) && !SpellColorBrown && !FemaleTrapAnastasia && !(uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) && !(uarmf && itemhasappearance(uarmf, APP_SKI_HEELS)) && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS) && !(uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) && !(uarmf && (itemhasappearance(uarmf, APP_HUGGING_BOOTS) || itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) ) ) { /* ground-based trap, obviously */
+		if ((Levitation || Flying || (uarmf && itemhasappearance(uarmf, APP_YELLOW_SNEAKERS) ) ) && !(Role_if(PM_GANG_SCHOLAR)) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) && !SpellColorBrown && !FemtrapActiveAnastasia && !FemtrapActiveHenrietta && !FemtrapActiveAnna && !(uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) && !(uarmf && itemhasappearance(uarmf, APP_SKI_HEELS)) && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS) && !(uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) && !(uarmf && (itemhasappearance(uarmf, APP_HUGGING_BOOTS) || itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) ) ) { /* ground-based trap, obviously */
 		    if (!already_seen && rn2(3)) break;
 		    seetrap(trap);
 		    pline("%s %s on the ground below you.",
@@ -7735,10 +7924,16 @@ newbossPENT:
 	    case SHAFT_TRAP:
 	    case CURRENT_SHAFT:
 		if (!Can_fall_thru(&u.uz)) {
-		    seetrap(trap);	/* normally done in fall_through */
-		    impossible("dotrap: %ss cannot exist on this level.",
-			       defsyms[trap_to_defsym(ttype)].explanation);
-		    break;		/* don't activate it after all */
+
+		    if (wizard && yn("Trigger the trap that shouldn't exist here?") == 'y') {
+			; /* do nothing, for testing purposes --Amy */
+		    } else {
+
+			    seetrap(trap);	/* normally done in fall_through */
+			    impossible("dotrap: %ss cannot exist on this level.",
+				       defsyms[trap_to_defsym(ttype)].explanation);
+			    break;		/* don't activate it after all */
+		    }
 		}
 		if (ttype != SHAFT_TRAP && ttype != CURRENT_SHAFT) fall_through(TRUE);
 		else if (ttype != CURRENT_SHAFT) fall_throughX(TRUE);
@@ -7768,19 +7963,12 @@ newbossPENT:
 
 		if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 
-		if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
-			pline("For some reason you resist the banishment!"); break;}
+		if (playerlevelportdisabled()) { 
+			pline("For some reason you resist the banishment!");
+			break;
+		}
 
-		make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
-
-		u.cnd_banishmentcount++;
-		if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
-		else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
-
-		register int newlev = rnd(99);
-		d_level newlevel;
-		get_level(&newlevel, newlev);
-		goto_level(&newlevel, TRUE, FALSE, FALSE);
+		banishplayer();
 		pline("Welcome to warp zone!");
 
 		break;
@@ -7790,8 +7978,10 @@ newbossPENT:
 
 		if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 
-		if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
-			pline("For some reason you resist the banishment!"); break;}
+		if (playerlevelportdisabled()) { 
+			pline("For some reason you resist the banishment!");
+			break;
+		}
 
 		make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
@@ -8646,6 +8836,10 @@ madnesseffect:
 		break;
 	    }
 	    case MAGIC_PORTAL:
+
+		{
+		boolean greencrossworks = TRUE;
+
 		seetrap(trap);
 
 		if (u.stairscumslowing && !(u.uhave.amulet && In_endgame(&u.uz))) {
@@ -8670,7 +8864,45 @@ madnesseffect:
 			break;
 		}
 
+		if (at_dgn_entrance("Green Cross") && !u.greencrossopen) {
+			switch (Role_switch) {
+				case PM_PREVERSIONER:
+				case PM_SPACEWARS_FIGHTER:
+				case PM_CAMPERSTRIKER:
+					break; /* always open for those roles */
+				case PM_GANG_SCHOLAR:
+				case PM_WALSCHOLAR:
+					if (u.greencrosschance > 4) {
+						greencrossworks = FALSE;
+					}
+					break;
+				default:
+					if (u.greencrosschance > 1) {
+						greencrossworks = FALSE;
+					}
+					break;
+			}
+		}
+
+		if (u.preversionmode && !(u.preversionescape) && In_greencross(&u.uz) && (dunlev(&u.uz) == 1)) {
+			pline("You trigger a magic portal.");
+			pline("This exit portal is closed until you've been to the very bottom of the Green Cross dungeon. Finish the pre-alpha version of this game first before you can play the full game!");
+			break;
+		}
+
+		if (!greencrossworks) {
+			pline("You trigger a magic portal.");
+			pline("But apparently, the secret entrance isn't open today. :(");
+			break;
+		}
+
 		if (at_dgn_entrance("The Subquest") && !u.silverbellget) {
+			pline("You trigger a magic portal.");
+			pline("The power of your nemesis is keeping this portal closed...");
+			break;
+		}
+
+		if (at_dgn_entrance("Rival Quest") && !u.silverbellget) {
 			pline("You trigger a magic portal.");
 			pline("The power of your nemesis is keeping this portal closed...");
 			break;
@@ -8692,10 +8924,10 @@ madnesseffect:
 		 * is reigned in by my stairs trap code) is cheating in any way, no, for them it's completely legal to
 		 * lure out the Ludios soldiers one by one. Sigh. --Amy */
 
-		if (!rn2(10) && !issoviet && (Is_blackmarket(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || !strcmp(dungeons[u.uz.dnum].dname, "Lawful Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Neutral Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Chaotic Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "The Subquest") || In_quest(&u.uz)) ) {
+		if (!rn2(10) && !issoviet && (In_Devnull(&u.uz) || In_greencross(&u.uz) || Is_blackmarket(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || !strcmp(dungeons[u.uz.dnum].dname, "Lawful Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Neutral Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Chaotic Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "The Subquest") || !strcmp(dungeons[u.uz.dnum].dname, "Rival Quest") || In_quest(&u.uz)) ) {
 			pline("You trigger a magic portal, but it malfunctions!");
 			pushplayer(TRUE);
-		} else if (rn2(3) && !issoviet && (Is_blackmarket(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || !strcmp(dungeons[u.uz.dnum].dname, "Lawful Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Neutral Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Chaotic Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "The Subquest") || In_quest(&u.uz)) ) {
+		} else if (rn2(3) && !issoviet && (In_Devnull(&u.uz) || In_greencross(&u.uz) || Is_blackmarket(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || !strcmp(dungeons[u.uz.dnum].dname, "Lawful Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Neutral Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Chaotic Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "The Subquest") || !strcmp(dungeons[u.uz.dnum].dname, "Rival Quest") || In_quest(&u.uz)) ) {
 			pline("You trigger a magic portal, but it doesn't seem to work!");
 		} else
 		domagicportal(trap);
@@ -8716,6 +8948,8 @@ madnesseffect:
 			losehp(rnd(10)+ rnd(monster_difficulty() + 1),"sharpened bamboo stick",KILLED_BY_AN);
 		}
 		break;
+
+		}
 
 		 case SCYTHING_BLADE:
 		seetrap(trap);
@@ -9375,7 +9609,7 @@ madnesseffect:
 				break;
 			case 6:
 
-				if ((!u.uevent.udemigod || u.freeplaymode) && !(flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) ) {
+				if ((!u.uevent.udemigod || u.freeplaymode) && !playerlevelportdisabled() ) {
 					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
 					if (!u.levelporting) {
@@ -11862,6 +12096,227 @@ madnesseffect:
 
 		 break;
 
+		 case KRISTIN_TRAP:
+
+			if (FemaleTrapKristin) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Kristin.");
+			pline("You feel that there are women around who really like various high heels.");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapKristin = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapKristin += 100;
+			if (!rn2(3)) FemaleTrapKristin += rnz(500);
+
+		 break;
+
+		 case ANNA_TRAP:
+
+			if (FemaleTrapAnna) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Anna.");
+			pline("Oh, it seems that the hussies are on the loose!");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapAnna = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapAnna += 100;
+			if (!rn2(3)) FemaleTrapAnna += rnz(500);
+
+		 break;
+
+		 case RUEA_TRAP:
+
+			if (FemaleTrapRuea) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Ruea.");
+			pline("You get the feeling that some women are trying to convert you.");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapRuea = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapRuea += 100;
+			if (!rn2(3)) FemaleTrapRuea += rnz(500);
+
+		 break;
+
+		 case DORA_TRAP:
+
+			if (FemaleTrapDora) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Dora.");
+			pline("Ack! There's birds on the loose, and they want to eat your shoes!");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapDora = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapDora += 100;
+			if (!rn2(3)) FemaleTrapDora += rnz(500);
+
+		 break;
+
+		 case MARIKE_TRAP:
+
+			if (FemaleTrapMarike) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Marike.");
+			pline("You want to endlessly listen to squeaking farting noises.");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapMarike = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapMarike += 100;
+			if (!rn2(3)) FemaleTrapMarike += rnz(500);
+
+		 break;
+
+		 case JETTE_TRAP:
+
+			if (FemaleTrapJette) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Jette.");
+			pline("The power of feminism compels you.");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapJette = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapJette += 100;
+			if (!rn2(3)) FemaleTrapJette += rnz(500);
+
+		 break;
+
+		 case INA_TRAP:
+
+			if (FemaleTrapIna) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Ina.");
+			pline("Oh my god, you are now afflicted with the life-threatening disease known as anorexia!");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapIna = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapIna += 100;
+			if (!rn2(3)) FemaleTrapIna += rnz(500);
+
+		 break;
+
+		 case SING_TRAP:
+
+			if (FemaleTrapSing) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Sing.");
+			pline("A heinously evil woman plans to force you to clean the shit from all kinds of female shoes...");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapSing = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapSing += 100;
+			if (!rn2(3)) FemaleTrapSing += rnz(500);
+
+		 break;
+
+		 case VICTORIA_TRAP:
+
+			if (FemaleTrapVictoria) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Victoria.");
+			pline("There's some karate women who want to demonstrate their combat capabilities to you.");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapVictoria = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapVictoria += 100;
+			if (!rn2(3)) FemaleTrapVictoria += rnz(500);
+
+		 break;
+
+		 case MELISSA_TRAP:
+
+			if (FemaleTrapMelissa) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Melissa.");
+			pline("You suddenly feel that the women in this dungeon are quite attractive...");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapMelissa = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapMelissa += 100;
+			if (!rn2(3)) FemaleTrapMelissa += rnz(500);
+
+		 break;
+
+		 case ANITA_TRAP:
+
+			if (FemaleTrapAnita) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Anita.");
+			pline("The women want to slit your legs with razor-sharp high heels! Be afraid of them!");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapAnita = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapAnita += 100;
+			if (!rn2(3)) FemaleTrapAnita += rnz(500);
+
+		 break;
+
+		 case HENRIETTA_TRAP:
+
+			if (FemaleTrapHenrietta) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Henrietta.");
+			pline("You feel that someone is going to open the zippers of your boots, making you fumble into a heap of dog shit.");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapHenrietta = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapHenrietta += 100;
+			if (!rn2(3)) FemaleTrapHenrietta += rnz(500);
+
+		 break;
+
+		 case VERENA_TRAP:
+
+			if (FemaleTrapVerena) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Verena.");
+			pline("Oh no, some annoying blonde girl starts to follow you around. Sigh. Why can't you get a clever companion instead?!");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapVerena = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapVerena += 100;
+			if (!rn2(3)) FemaleTrapVerena += rnz(500);
+
+		 break;
+
 		 case ARABELLA_TRAP:
 
 			if (FemaleTrapArabella) break;
@@ -13603,7 +14058,7 @@ madnesseffect:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(376);
+			monstercolor = rnd(379);
 
 			if (wizard || !rn2(10)) You_feel("that a group has arrived!");
 
@@ -13863,7 +14318,7 @@ madnesseffect:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(376);
+			monstercolor = rnd(379);
 
 			if (wizard || !rn2(10)) You_feel("that a group has arrived!");
 
@@ -14212,7 +14667,7 @@ madnesseffect:
 #else
 			randsp = 1680;
 #endif
-			monstercolor = rnd(376);
+			monstercolor = rnd(379);
 
 			pline("CLICK! The entire area is filled with monsters! And they have one thing in common: they want to make your life miserable!");
 
@@ -16110,6 +16565,19 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case FEMMY_TRAP:
 		case MADELEINE_TRAP:
 		case MARLENA_TRAP:
+		case KRISTIN_TRAP:
+		case ANNA_TRAP:
+		case RUEA_TRAP:
+		case DORA_TRAP:
+		case MARIKE_TRAP:
+		case JETTE_TRAP:
+		case INA_TRAP:
+		case SING_TRAP:
+		case VICTORIA_TRAP:
+		case MELISSA_TRAP:
+		case ANITA_TRAP:
+		case HENRIETTA_TRAP:
+		case VERENA_TRAP:
 		case ARABELLA_TRAP:
 		case NELLY_TRAP:
 		case EVELINE_TRAP:
@@ -17644,6 +18112,8 @@ register boolean force, here;
 
 		if (itemhasappearance(obj, APP_IMAGINARY_HEELS) ) continue;
 
+		if (obj->oartifact == ART_RATCH_CLOSURE_SCRATCHING && rn2(4) ) continue;
+
 		if (itemhasappearance(obj, APP_WITHERED_CLOAK) ) continue;
 
 		if ((obj->where != OBJ_FLOOR) && uarmh && itemhasappearance(uarmh, APP_SCUBA_HELMET) ) continue;
@@ -17660,6 +18130,7 @@ register boolean force, here;
 		if ((obj->where != OBJ_FLOOR) && uarm && uarm->oartifact == ART_SWIMCHAMP) continue;
 		if ((obj->where != OBJ_FLOOR) && Race_if(PM_SEA_ELF)) continue;
 		if ((obj->where != OBJ_FLOOR) && tech_inuse(T_SILENT_OCEAN)) continue;
+		if ((obj->where != OBJ_FLOOR) && (uarmf && uarmf->oartifact == ART_STEERBOAT)) continue;
 
 		if ((obj->where != OBJ_FLOOR) && Race_if(PM_VIKING) && (rn2(50) < u.ulevel) ) continue;
 
@@ -18019,6 +18490,8 @@ register boolean force, here;
 
 		if (itemhasappearance(obj, APP_IMAGINARY_HEELS) ) continue;
 
+		if (obj->oartifact == ART_RATCH_CLOSURE_SCRATCHING && rn2(4) ) continue;
+
 		if (itemhasappearance(obj, APP_WITHERED_CLOAK) ) continue;
 
 		/* important quest items are immune */
@@ -18082,6 +18555,8 @@ register boolean force, here;
 
 		if (itemhasappearance(obj, APP_IMAGINARY_HEELS) ) continue;
 
+		if (obj->oartifact == ART_RATCH_CLOSURE_SCRATCHING && rn2(4) ) continue;
+
 		if (itemhasappearance(obj, APP_WITHERED_CLOAK) ) continue;
 
 		/* important quest items are immune */
@@ -18143,11 +18618,12 @@ boolean *lostsome;
 		     * in removing them + loadstone and other cursed stuff
 		     * for obvious reasons.
 		     */
-		    if (!(( (obj->otyp == LOADSTONE || obj->otyp == LUCKSTONE || obj->otyp == HEALTHSTONE || obj->otyp == MANASTONE || obj->otyp == SLEEPSTONE || obj->otyp == LOADBOULDER || obj->otyp == STARLIGHTSTONE || obj->otyp == STONE_OF_MAGIC_RESISTANCE || is_nastygraystone(obj) ) && obj->cursed) ||
+		    if (!(( (obj->otyp == LOADSTONE || obj->otyp == LUCKSTONE || obj->otyp == HEALTHSTONE || obj->otyp == MANASTONE || obj->otyp == SLEEPSTONE || obj->otyp == LOADBOULDER || obj->otyp == STARLIGHTSTONE || obj->otyp == STONE_OF_MAGIC_RESISTANCE || is_nastygraystone(obj) || is_feminismstone(obj) ) && obj->cursed) ||
 			  obj == uamul || obj == uimplant || obj == uleft || obj == uright ||
 			  obj == ublindf || obj == uarm || obj == uarmc ||
 			  obj == uarmg || obj == uarmf ||
 			  obj == uarmu ||
+			  (obj->otyp == LUCKSTONE && isevilvariant && !obj->cursed && !obj->blessed && Luck < 0) ||
 			  (obj->cursed && (obj == uarmh || obj == uarms)) ||
 			  welded(obj)))
 			otmp = obj;
@@ -18557,6 +19033,9 @@ register int n;
 		if(u.uenmax < 0) u.uenmax = 0;
 		u.uen = 0;
 	}
+	if (u.uen < 0) u.uen = 0;
+	if (u.uen > u.uenmax) u.uen = u.uenmax;
+
 	flags.botl = 1;
 }
 
@@ -18729,7 +19208,7 @@ boolean force_failure;
 	}
 	/* untrappable traps are located on the ground. */
 	if (!can_reach_floor()) {
-		if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) )
+		if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) )
 			You("aren't skilled enough to reach from %s.",
 				mon_nam(u.usteed));
 		else
@@ -19104,6 +19583,12 @@ struct trap *ttmp;
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	diceroll = rnd(30);
 
+	if (Role_if(PM_BUTT_LOVER)) {
+		You_feel("bad for hurting one of your beloved butts!");
+		adjalign(-5);
+		if (u.negativeprotection > 0) u.negativeprotection--;
+	}
+
 	if (ttmp->launch_otyp == 2) diceroll -= rnd(20);
 	if (ttmp->launch_otyp == 5) diceroll -= rnd(10);
 	if (ttmp->launch_otyp == 12) diceroll -= rnd(10);
@@ -19167,6 +19652,64 @@ struct trap *ttmp;
 			ttmp = maketrap(trapx, trapy, HEEL_TRAP, 0, cangivehp);
 			if (ttmp && !ttmp->hiddentrap ) ttmp->tseen = 1;
 			newsym(trapx, trapy);
+
+			if (Role_if(PM_BUTT_LOVER)) {
+				You_feel("like someone has touched your forehead...");
+
+				int skillimprove = randomgoodskill();
+
+				if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+					unrestrict_weapon_skill(skillimprove);
+					pline("You can now learn the %s skill.", wpskillname(skillimprove));
+				} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+					unrestrict_weapon_skill(skillimprove);
+					P_MAX_SKILL(skillimprove) = P_BASIC;
+					pline("You can now learn the %s skill.", wpskillname(skillimprove));
+				} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
+					P_MAX_SKILL(skillimprove) = P_SKILLED;
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+				} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+					P_MAX_SKILL(skillimprove) = P_EXPERT;
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+				} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+					P_MAX_SKILL(skillimprove) = P_MASTER;
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+				} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+					P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+				} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+					P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+				} else pline("Unfortunately, you feel no different than before.");
+
+				if (Race_if(PM_RUSMOT)) {
+					if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+						unrestrict_weapon_skill(skillimprove);
+						pline("You can now learn the %s skill.", wpskillname(skillimprove));
+					} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+						unrestrict_weapon_skill(skillimprove);
+						P_MAX_SKILL(skillimprove) = P_BASIC;
+						pline("You can now learn the %s skill.", wpskillname(skillimprove));
+					} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
+						P_MAX_SKILL(skillimprove) = P_SKILLED;
+						pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+					} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+						P_MAX_SKILL(skillimprove) = P_EXPERT;
+						pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+					} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+						P_MAX_SKILL(skillimprove) = P_MASTER;
+						pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+					} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+						P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+						pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+					} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+						P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+						pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+					} else pline("Unfortunately, you feel no different than before.");
+				}
+
+			}
+
 			return 1;
 			}
 	}
@@ -19625,7 +20168,7 @@ boolean force;
 			case 'q': return(0);
 			case 'n': continue;
 		    }
-		    if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
+		    if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
 			You("aren't skilled enough to reach from %s.",
 				mon_nam(u.usteed));
 			return(0);
@@ -20216,6 +20759,7 @@ fartingweb()
 	else if (ttmp->launch_otyp < 33) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[ttmp->launch_otyp], rn2(2) ? "beautiful" : "squeaky");
 	else pline("%s produces %s farting noises with her sexy butt.", farttrapnames[ttmp->launch_otyp], rn2(2) ? "disgusting" : "loud");
 	u.cnd_fartingcount++;
+	if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 	if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
 	if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {

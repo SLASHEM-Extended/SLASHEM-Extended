@@ -92,6 +92,7 @@ struct obj *otmp;
 		case POT_BLOOD:
 		case WAN_FULL_HEALING:
 		case SCR_TELE_LEVEL:
+		case SCR_BRANCH_TELEPORT:
 		case WAN_TELE_LEVEL:
 		case SCR_ROOT_PASSWORD_DETECTION:
 		case RIN_TIMELY_BACKUP:
@@ -317,6 +318,7 @@ int number;
 		case POT_BLOOD:
 		case WAN_FULL_HEALING:
 		case SCR_TELE_LEVEL:
+		case SCR_BRANCH_TELEPORT:
 		case WAN_TELE_LEVEL:
 		case SCR_ROOT_PASSWORD_DETECTION:
 		case RIN_TIMELY_BACKUP:
@@ -1172,7 +1174,7 @@ playerwearshighheels()
 
 	if (!uarmf) return FALSE;
 	/* uarmf is definitely defined now */
-	if ((uarmf->otyp == WEDGE_SANDALS) || (uarmf->otyp == EVELINE_WEDGE_SANDALS) || (uarmf->otyp == BUM_BUM_BOOTS) || (uarmf->otyp == MADELEINE_PLATEAU_BOOTS) || (uarmf->otyp == KATHARINA_PLATFORM_BOOTS) || (uarmf->otyp == FEMININE_PUMPS) || (uarmf->otyp == LEATHER_PEEP_TOES) || (uarmf->otyp == WENDY_LEATHER_PUMPS) || (uarmf->otyp == NELLY_LADY_PUMPS) || (uarmf->otyp == SANDRA_COMBAT_BOOTS) || (uarmf->otyp == CLAUDIA_WOODEN_SANDALS) || (uarmf && RngeIrregularity) || (uarmf->otyp == HIPPIE_HEELS) || (uarmf->otyp == SELF_WILLED_HEELS) || (uarmf->oartifact == ART_UPWARD_HEELS) || (uarmf->oartifact == ART_ABSURD_HEELED_TILESET) || (uarmf->oartifact == ART_SWARM_SOFT_HIGH_HEELS) || (uarmf->oartifact == ART_KATIE_MELUA_S_FEMALE_WEAPO) || (uarmf->oartifact == ART_ARVOGENIA_S_HIGH_HEELSES) || (uarmf->oartifact == ART_MANUELA_S_UNKNOWN_HEELS) || (uarmf->oartifact == ART_RITA_S_TENDER_STILETTOS) || (uarmf->oartifact == ART_ELENETTES) || (uarmf->oartifact == ART_ANASTASIA_S_UNEXPECTED_ABI) || (uarmf->oartifact == ART_HIGH_HEELED_HUG) || (Role_if(PM_BINDER) && uarmf->oartifact == ART_BINDER_CRASH) || (uarmf->otyp == PET_STOMPING_PLATFORM_BOOTS) || (uarmf->otyp == SENTIENT_HIGH_HEELED_SHOES) || (uarmf->otyp == ATSUZOKO_BOOTS) || (uarmf->otyp == COMBAT_STILETTOS) || (uarmf->otyp == FEMMY_STILETTO_BOOTS) || (uarmf->otyp == JUEN_PEEP_TOES) || (uarmf->otyp == JULIETTA_PEEP_TOES) || (uarmf->otyp == ITALIAN_HEELS) || (uarmf->otyp == LADY_BOOTS) || (uarmf->otyp == NADJA_BUCKLED_LADY_SHOES) || (uarmf->otyp == ELENA_COMBAT_BOOTS) || (uarmf->otyp == THAI_COMBAT_BOOTS) || (uarmf->otyp == MELTEM_COMBAT_BOOTS) || (uarmf->otyp == STILETTO_SANDALS) || (uarmf->otyp == NATALJE_BLOCK_HEEL_SANDALS) || (uarmf->otyp == HIGH_STILETTOS) || (uarmf->otyp == HIGH_HEELED_SKIERS) || (uarmf->otyp == UNFAIR_STILETTOS) || (uarmf->otyp == COVETED_BOOTS) || (uarmf->otyp == SKY_HIGH_HEELS) || (uarmf->otyp == RED_SPELL_HEELS) || (uarmf->otyp == DESTRUCTIVE_HEELS) || (uarmf->otyp == LONG_POINTY_HEELS) || (uarmf->otyp == VIOLET_BEAUTY_HEELS) || (uarmf->otyp == AUTOSCOOTER_HEELS) || (uarmf->otyp == SINFUL_HEELS) || (uarmf->otyp == KILLER_HEELS) || (uarmf->otyp == HIGH_SCORING_HEELS)) return TRUE;
+	if ((uarmf->otyp == WEDGE_SANDALS) || (uarmf->otyp == EVELINE_WEDGE_SANDALS) || (uarmf->otyp == BUM_BUM_BOOTS) || (uarmf->otyp == MADELEINE_PLATEAU_BOOTS) || (uarmf->otyp == KATHARINA_PLATFORM_BOOTS) || (uarmf->otyp == FEMININE_PUMPS) || (uarmf->otyp == LEATHER_PEEP_TOES) || (uarmf->otyp == WENDY_LEATHER_PUMPS) || (uarmf->otyp == NELLY_LADY_PUMPS) || (uarmf->otyp == SANDRA_COMBAT_BOOTS) || (uarmf->otyp == CLAUDIA_WOODEN_SANDALS) || (uarmf && RngeIrregularity) || (uarmf->otyp == HIPPIE_HEELS) || (uarmf->otyp == SELF_WILLED_HEELS) || (uarmf->oartifact == ART_UPWARD_HEELS) || (uarmf->oartifact == ART_ABSURD_HEELED_TILESET) || (uarmf->oartifact == ART_SWARM_SOFT_HIGH_HEELS) || (uarmf->oartifact == ART_KATIE_MELUA_S_FEMALE_WEAPO) || (uarmf->oartifact == ART_ARVOGENIA_S_HIGH_HEELSES) || (uarmf->oartifact == ART_MANUELA_S_UNKNOWN_HEELS) || (uarmf->oartifact == ART_RITA_S_TENDER_STILETTOS) || (uarmf->oartifact == ART_ELENETTES) || (uarmf->oartifact == ART_ANASTASIA_S_UNEXPECTED_ABI) || (uarmf->oartifact == ART_HIGH_HEELED_HUG) || (Role_if(PM_BINDER) && uarmf->oartifact == ART_BINDER_CRASH) || (uarmf->otyp == PET_STOMPING_PLATFORM_BOOTS) || (uarmf->otyp == SENTIENT_HIGH_HEELED_SHOES) || (uarmf->otyp == ATSUZOKO_BOOTS) || (uarmf->otyp == COMBAT_STILETTOS) || (uarmf->otyp == FEMMY_STILETTO_BOOTS) || (uarmf->otyp == JUEN_PEEP_TOES) || (uarmf->otyp == JULIETTA_PEEP_TOES) || (uarmf->otyp == ITALIAN_HEELS) || (uarmf->otyp == LADY_BOOTS) || (uarmf->otyp == NADJA_BUCKLED_LADY_SHOES) || (uarmf->otyp == ELENA_COMBAT_BOOTS) || (uarmf->otyp == THAI_COMBAT_BOOTS) || (uarmf->otyp == MELTEM_COMBAT_BOOTS) || (uarmf->otyp == STILETTO_SANDALS) || (uarmf->otyp == NATALJE_BLOCK_HEEL_SANDALS) || (uarmf->otyp == HIGH_STILETTOS) || (uarmf->otyp == HIGH_HEELED_SKIERS) || (uarmf->otyp == UNFAIR_STILETTOS) || (uarmf->otyp == COVETED_BOOTS) || (uarmf->otyp == SKY_HIGH_HEELS) || (uarmf->otyp == RED_SPELL_HEELS) || (uarmf->otyp == DESTRUCTIVE_HEELS) || (uarmf->otyp == LONG_POINTY_HEELS) || (uarmf->otyp == VIOLET_BEAUTY_HEELS) || (uarmf->otyp == AUTOSCOOTER_HEELS) || (uarmf->otyp == SINFUL_HEELS) || (uarmf->otyp == KILLER_HEELS) || (uarmf->otyp == HIGH_SCORING_HEELS) || (uarmf->otyp == KRISTIN_COMBAT_BOOTS) || (uarmf->otyp == RUEA_COMBAT_BOOTS) || (uarmf->otyp == DORA_COMBAT_BOOTS) || (uarmf->otyp == JETTE_COMBAT_BOOTS) || (uarmf->otyp == SING_PLATFORM_BOOTS) || (uarmf->otyp == VICTORIA_COMBAT_BOOTS) || (uarmf->otyp == MELISSA_WEDGE_BOOTS) || (uarmf->otyp == ANITA_LADY_PUMPS) || (uarmf->otyp == HENRIETTA_COMBAT_BOOTS) || (uarmf->otyp == VERENA_STILETTO_SANDALS)) return TRUE;
 
 	if (OBJ_DESCR(objects[uarmf->otyp])) {
 
@@ -1210,6 +1212,7 @@ playerwearshighheels()
 		if (itemhasappearance(uarmf, APP_LOLITA_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_WEAPON_LIGHT_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_RADIANT_HEELS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_WEDGE_SNEAKERS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_SEXY_HEELS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_STROKING_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_GENERIC_HIGH_HEELS)) return TRUE;
@@ -1218,8 +1221,21 @@ playerwearshighheels()
 
 	}
 
+	if (uwep && uwep->oartifact == ART_DAMN_SKI_WEDGE && uarmf) return TRUE;
+
 	return FALSE;
 
+}
+
+void
+buttlovertrigger()
+{
+	u.negativeprotection++;
+	if (evilfriday && u.ublessed > 0) {
+		u.ublessed -= 1;
+		if (u.ublessed < 0) u.ublessed = 0;
+	}
+	You_feel("humiliated!");
 }
 
 void
@@ -1288,7 +1304,7 @@ struct obj *otmp;
 {
 	if (!otmp) return FALSE;
 
-	if ((otmp)->otyp == WEDGE_SANDALS || (otmp)->otyp == EVELINE_WEDGE_SANDALS || (otmp)->otyp == MADELEINE_PLATEAU_BOOTS || (otmp)->otyp == KATHARINA_PLATFORM_BOOTS || (otmp)->otyp == BUM_BUM_BOOTS || (otmp)->otyp == FEMININE_PUMPS || (otmp)->otyp == LEATHER_PEEP_TOES || (otmp)->otyp == WENDY_LEATHER_PUMPS || (otmp)->otyp == NELLY_LADY_PUMPS || (otmp)->otyp == CLAUDIA_WOODEN_SANDALS || (otmp)->otyp == SANDRA_COMBAT_BOOTS || (otmp)->otyp == HIPPIE_HEELS || (otmp)->otyp == SELF_WILLED_HEELS || (otmp)->otyp == PET_STOMPING_PLATFORM_BOOTS || (otmp)->otyp == SENTIENT_HIGH_HEELED_SHOES || (otmp)->otyp == ATSUZOKO_BOOTS || (otmp)->otyp == COMBAT_STILETTOS || (otmp)->otyp == JUEN_PEEP_TOES || (otmp)->otyp == JULIETTA_PEEP_TOES || (otmp)->otyp == FEMMY_STILETTO_BOOTS || (otmp)->otyp == LADY_BOOTS || (otmp)->otyp == ELENA_COMBAT_BOOTS || (otmp)->otyp == NADJA_BUCKLED_LADY_SHOES || (otmp)->otyp == THAI_COMBAT_BOOTS || (otmp)->otyp == MELTEM_COMBAT_BOOTS || (otmp)->otyp == NATALJE_BLOCK_HEEL_SANDALS || (otmp)->otyp == ITALIAN_HEELS || (otmp)->otyp == STILETTO_SANDALS || (otmp)->otyp == HIGH_STILETTOS || (otmp)->otyp == HIGH_HEELED_SKIERS || (otmp)->otyp == UNFAIR_STILETTOS || (otmp)->otyp == COVETED_BOOTS || (otmp)->otyp == SKY_HIGH_HEELS || (otmp)->otyp == RED_SPELL_HEELS || (otmp)->otyp == VIOLET_BEAUTY_HEELS || (otmp)->otyp == AUTOSCOOTER_HEELS || (otmp)->otyp == DESTRUCTIVE_HEELS || (otmp)->otyp == SINFUL_HEELS || (otmp)->otyp == LONG_POINTY_HEELS || (otmp)->otyp == KILLER_HEELS || (otmp)->otyp == HIGH_SCORING_HEELS) return TRUE;
+	if ((otmp)->otyp == WEDGE_SANDALS || (otmp)->otyp == EVELINE_WEDGE_SANDALS || (otmp)->otyp == MADELEINE_PLATEAU_BOOTS || (otmp)->otyp == KATHARINA_PLATFORM_BOOTS || (otmp)->otyp == BUM_BUM_BOOTS || (otmp)->otyp == FEMININE_PUMPS || (otmp)->otyp == LEATHER_PEEP_TOES || (otmp)->otyp == WENDY_LEATHER_PUMPS || (otmp)->otyp == NELLY_LADY_PUMPS || (otmp)->otyp == CLAUDIA_WOODEN_SANDALS || (otmp)->otyp == SANDRA_COMBAT_BOOTS || (otmp)->otyp == HIPPIE_HEELS || (otmp)->otyp == SELF_WILLED_HEELS || (otmp)->otyp == PET_STOMPING_PLATFORM_BOOTS || (otmp)->otyp == SENTIENT_HIGH_HEELED_SHOES || (otmp)->otyp == ATSUZOKO_BOOTS || (otmp)->otyp == COMBAT_STILETTOS || (otmp)->otyp == JUEN_PEEP_TOES || (otmp)->otyp == JULIETTA_PEEP_TOES || (otmp)->otyp == FEMMY_STILETTO_BOOTS || (otmp)->otyp == LADY_BOOTS || (otmp)->otyp == ELENA_COMBAT_BOOTS || (otmp)->otyp == NADJA_BUCKLED_LADY_SHOES || (otmp)->otyp == THAI_COMBAT_BOOTS || (otmp)->otyp == MELTEM_COMBAT_BOOTS || (otmp)->otyp == NATALJE_BLOCK_HEEL_SANDALS || (otmp)->otyp == ITALIAN_HEELS || (otmp)->otyp == STILETTO_SANDALS || (otmp)->otyp == HIGH_STILETTOS || (otmp)->otyp == HIGH_HEELED_SKIERS || (otmp)->otyp == UNFAIR_STILETTOS || (otmp)->otyp == COVETED_BOOTS || (otmp)->otyp == SKY_HIGH_HEELS || (otmp)->otyp == RED_SPELL_HEELS || (otmp)->otyp == VIOLET_BEAUTY_HEELS || (otmp)->otyp == AUTOSCOOTER_HEELS || (otmp)->otyp == DESTRUCTIVE_HEELS || (otmp)->otyp == SINFUL_HEELS || (otmp)->otyp == LONG_POINTY_HEELS || (otmp)->otyp == KILLER_HEELS || (otmp)->otyp == HIGH_SCORING_HEELS || (otmp)->otyp == KRISTIN_COMBAT_BOOTS || (otmp)->otyp == RUEA_COMBAT_BOOTS || (otmp)->otyp == DORA_COMBAT_BOOTS || (otmp)->otyp == JETTE_COMBAT_BOOTS || (otmp)->otyp == SING_PLATFORM_BOOTS || (otmp)->otyp == VICTORIA_COMBAT_BOOTS || (otmp)->otyp == MELISSA_WEDGE_BOOTS || (otmp)->otyp == ANITA_LADY_PUMPS || (otmp)->otyp == HENRIETTA_COMBAT_BOOTS || (otmp)->otyp == VERENA_STILETTO_SANDALS) return TRUE;
 
 	if (OBJ_DESCR(objects[otmp->otyp])) {
 		if (itemhasappearance(otmp, APP_IRREGULAR_BOOTS)) return TRUE;
@@ -1325,6 +1341,7 @@ struct obj *otmp;
 		if (itemhasappearance(otmp, APP_LOLITA_BOOTS)) return TRUE;
 		if (itemhasappearance(otmp, APP_WEAPON_LIGHT_BOOTS)) return TRUE;
 		if (itemhasappearance(otmp, APP_RADIANT_HEELS)) return TRUE;
+		if (itemhasappearance(otmp, APP_WEDGE_SNEAKERS)) return TRUE;
 		if (itemhasappearance(otmp, APP_SEXY_HEELS)) return TRUE;
 		if (itemhasappearance(otmp, APP_STROKING_BOOTS)) return TRUE;
 		if (itemhasappearance(otmp, APP_GENERIC_HIGH_HEELS)) return TRUE;
@@ -1341,7 +1358,7 @@ boolean
 ishighheeledb(number)
 int number;
 {
-	if (number == WEDGE_SANDALS || number == EVELINE_WEDGE_SANDALS || number == MADELEINE_PLATEAU_BOOTS || number == KATHARINA_PLATFORM_BOOTS || number == BUM_BUM_BOOTS || number == FEMININE_PUMPS || number == LEATHER_PEEP_TOES || number == WENDY_LEATHER_PUMPS || number == NELLY_LADY_PUMPS || number == CLAUDIA_WOODEN_SANDALS || number == SANDRA_COMBAT_BOOTS || number == HIPPIE_HEELS || number == SELF_WILLED_HEELS || number == PET_STOMPING_PLATFORM_BOOTS || number == SENTIENT_HIGH_HEELED_SHOES || number == ATSUZOKO_BOOTS || number == COMBAT_STILETTOS || number == JUEN_PEEP_TOES || number == JULIETTA_PEEP_TOES || number == FEMMY_STILETTO_BOOTS || number == ITALIAN_HEELS || number == LADY_BOOTS || number == ELENA_COMBAT_BOOTS || number == NADJA_BUCKLED_LADY_SHOES || number == THAI_COMBAT_BOOTS || number == MELTEM_COMBAT_BOOTS || number == NATALJE_BLOCK_HEEL_SANDALS || number == STILETTO_SANDALS || number == HIGH_STILETTOS || number == HIGH_HEELED_SKIERS || number == UNFAIR_STILETTOS || number == COVETED_BOOTS || number == SKY_HIGH_HEELS || number == RED_SPELL_HEELS || number == VIOLET_BEAUTY_HEELS || number == AUTOSCOOTER_HEELS || number == DESTRUCTIVE_HEELS || number == SINFUL_HEELS || number == LONG_POINTY_HEELS || number == KILLER_HEELS || number == HIGH_SCORING_HEELS) return TRUE;
+	if (number == WEDGE_SANDALS || number == EVELINE_WEDGE_SANDALS || number == MADELEINE_PLATEAU_BOOTS || number == KATHARINA_PLATFORM_BOOTS || number == BUM_BUM_BOOTS || number == FEMININE_PUMPS || number == LEATHER_PEEP_TOES || number == WENDY_LEATHER_PUMPS || number == NELLY_LADY_PUMPS || number == CLAUDIA_WOODEN_SANDALS || number == SANDRA_COMBAT_BOOTS || number == HIPPIE_HEELS || number == SELF_WILLED_HEELS || number == PET_STOMPING_PLATFORM_BOOTS || number == SENTIENT_HIGH_HEELED_SHOES || number == ATSUZOKO_BOOTS || number == COMBAT_STILETTOS || number == JUEN_PEEP_TOES || number == JULIETTA_PEEP_TOES || number == FEMMY_STILETTO_BOOTS || number == ITALIAN_HEELS || number == LADY_BOOTS || number == ELENA_COMBAT_BOOTS || number == NADJA_BUCKLED_LADY_SHOES || number == THAI_COMBAT_BOOTS || number == MELTEM_COMBAT_BOOTS || number == NATALJE_BLOCK_HEEL_SANDALS || number == STILETTO_SANDALS || number == HIGH_STILETTOS || number == HIGH_HEELED_SKIERS || number == UNFAIR_STILETTOS || number == COVETED_BOOTS || number == SKY_HIGH_HEELS || number == RED_SPELL_HEELS || number == VIOLET_BEAUTY_HEELS || number == AUTOSCOOTER_HEELS || number == DESTRUCTIVE_HEELS || number == SINFUL_HEELS || number == LONG_POINTY_HEELS || number == KILLER_HEELS || number == HIGH_SCORING_HEELS || number == KRISTIN_COMBAT_BOOTS || number == RUEA_COMBAT_BOOTS || number == DORA_COMBAT_BOOTS || number == JETTE_COMBAT_BOOTS || number == SING_PLATFORM_BOOTS || number == VICTORIA_COMBAT_BOOTS || number == MELISSA_WEDGE_BOOTS || number == ANITA_LADY_PUMPS || number == HENRIETTA_COMBAT_BOOTS || number == VERENA_STILETTO_SANDALS) return TRUE;
 
 	if (OBJ_DESCR(objects[number])) {
 
@@ -1379,6 +1396,7 @@ int number;
 		if (itemnumwithappearance(number, APP_LOLITA_BOOTS)) return TRUE;
 		if (itemnumwithappearance(number, APP_WEAPON_LIGHT_BOOTS)) return TRUE;
 		if (itemnumwithappearance(number, APP_RADIANT_HEELS)) return TRUE;
+		if (itemnumwithappearance(number, APP_WEDGE_SNEAKERS)) return TRUE;
 		if (itemnumwithappearance(number, APP_SEXY_HEELS)) return TRUE;
 		if (itemnumwithappearance(number, APP_STROKING_BOOTS)) return TRUE;
 		if (itemnumwithappearance(number, APP_GENERIC_HIGH_HEELS)) return TRUE;
@@ -1394,12 +1412,14 @@ int number;
 boolean
 playerwearssexyflats()
 {
+	/* wedge sneakers are a special case: if they count as wedge heels (i.e. their base type isn't some other heel type),
+	 * they count as sexy flats too, otherwise they don't --Amy */
 
-	if (PlayerInHighHeels && !(tech_inuse(T_HIGH_HEELED_SNEAKERS))) return FALSE;
+	if (PlayerInHighHeels && !(PlayerInWedgeHeels && uarmf && itemhasappearance(uarmf, APP_WEDGE_SNEAKERS)) && !(tech_inuse(T_HIGH_HEELED_SNEAKERS))) return FALSE;
 	if (!uarmf) return FALSE;
 	/* uarmf is definitely defined now */
 
-	if ((uarmf->otyp == RUBBER_BOOTS) || (uarmf->otyp == ANASTASIA_DANCING_SHOES) || (uarmf->otyp == YVONNE_GIRL_SNEAKERS) || (uarmf->otyp == ELIF_SNEAKERS) || (uarmf->otyp == LOU_SNEAKERS) || (uarmf->otyp == ALMUT_SNEAKERS) || (uarmf->otyp == KRISTINA_PLATFORM_SNEAKERS) || (uarmf->otyp == KARIN_LADY_SANDALS) || (uarmf->otyp == SNEAKERS) || (uarmf->otyp == MAURAH_HUGGING_BOOTS) || (uarmf->otyp == SARAH_HUGGING_BOOTS) || (uarmf->otyp == ARABELLA_HUGGING_BOOTS) || (uarmf->otyp == LUDGERA_HIKING_BOOTS) || (uarmf->otyp == BRIGHT_CYAN_BEAUTIES) || (uarmf->otyp == DANCING_SHOES) || (uarmf->otyp == JESSICA_LADY_SHOES) || (uarmf->otyp == SOLVEJG_MOCASSINS) || (uarmf->otyp == SWEET_MOCASSINS) || (uarmf->otyp == SOFT_SNEAKERS) || (uarmf->otyp == KATI_GIRL_BOOTS) || (uarmf->otyp == MARLENA_HIKING_BOOTS) || (uarmf->otyp == ROLLER_BLADE) || (uarmf->otyp == JEANETTA_GIRL_BOOTS) || (uarmf->otyp == DIFFICULT_BOOTS) || (uarmf->otyp == AIRSTEP_BOOTS) || (uarmf->otyp == SYNTHETIC_SANDALS)) return TRUE;
+	if ((uarmf->otyp == RUBBER_BOOTS) || (uarmf->otyp == ANASTASIA_DANCING_SHOES) || (uarmf->otyp == YVONNE_GIRL_SNEAKERS) || (uarmf->otyp == ELIF_SNEAKERS) || (uarmf->otyp == LOU_SNEAKERS) || (uarmf->otyp == ALMUT_SNEAKERS) || (uarmf->otyp == KRISTINA_PLATFORM_SNEAKERS) || (uarmf->otyp == KARIN_LADY_SANDALS) || (uarmf->otyp == SNEAKERS) || (uarmf->otyp == MAURAH_HUGGING_BOOTS) || (uarmf->otyp == SARAH_HUGGING_BOOTS) || (uarmf->otyp == ARABELLA_HUGGING_BOOTS) || (uarmf->otyp == LUDGERA_HIKING_BOOTS) || (uarmf->otyp == BRIGHT_CYAN_BEAUTIES) || (uarmf->otyp == DANCING_SHOES) || (uarmf->otyp == JESSICA_LADY_SHOES) || (uarmf->otyp == SOLVEJG_MOCASSINS) || (uarmf->otyp == SWEET_MOCASSINS) || (uarmf->otyp == SOFT_SNEAKERS) || (uarmf->otyp == KATI_GIRL_BOOTS) || (uarmf->otyp == MARLENA_HIKING_BOOTS) || (uarmf->otyp == ROLLER_BLADE) || (uarmf->otyp == JEANETTA_GIRL_BOOTS) || (uarmf->otyp == DIFFICULT_BOOTS) || (uarmf->otyp == AIRSTEP_BOOTS) || (uarmf->otyp == ANNA_HUGGING_BOOTS) || (uarmf->otyp == INA_HUGGING_BOOTS) || (uarmf->otyp == SYNTHETIC_SANDALS)) return TRUE;
 
 	if (OBJ_DESCR(objects[uarmf->otyp])) {
 
@@ -1431,9 +1451,11 @@ playerwearssexyflats()
 		if (itemhasappearance(uarmf, APP_FLUFFY_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_UNISEX_PUMPS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_WOODEN_CLOGS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_CYAN_SNEAKERS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_REGULAR_SNEAKERS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_ELITE_SNEAKERS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_FUR_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_WEDGE_SNEAKERS)) return TRUE;
 
 	}
 
@@ -1447,7 +1469,7 @@ maybestilettoheels()
 	if (!uarmf) return FALSE;
 	/* uarmf is definitely defined now */
 
-	if ((uarmf->otyp == LEATHER_PEEP_TOES) || (uarmf->oartifact == ART_ABSURD_HEELED_TILESET) || (uarmf->oartifact == ART_KATIE_MELUA_S_FEMALE_WEAPO) || (uarmf->oartifact == ART_RITA_S_TENDER_STILETTOS) || (Role_if(PM_BINDER) && uarmf->oartifact == ART_BINDER_CRASH) || (uarmf->otyp == SENTIENT_HIGH_HEELED_SHOES) || (uarmf->otyp == LONG_POINTY_HEELS) || (uarmf->otyp == ATSUZOKO_BOOTS) || (uarmf->otyp == COMBAT_STILETTOS) || (uarmf->otyp == JUEN_PEEP_TOES) || (uarmf->otyp == JULIETTA_PEEP_TOES) || (uarmf->otyp == FEMMY_STILETTO_BOOTS) || (uarmf->otyp == ITALIAN_HEELS) || (uarmf->otyp == STILETTO_SANDALS) || (uarmf->otyp == HIGH_STILETTOS) || (uarmf->otyp == UNFAIR_STILETTOS) || (uarmf->otyp == SKY_HIGH_HEELS) || (uarmf->otyp == RED_SPELL_HEELS) || (uarmf->otyp == KILLER_HEELS)) return TRUE;
+	if ((uarmf->otyp == LEATHER_PEEP_TOES) || (uarmf->oartifact == ART_ABSURD_HEELED_TILESET) || (uarmf->oartifact == ART_KATIE_MELUA_S_FEMALE_WEAPO) || (uarmf->oartifact == ART_RITA_S_TENDER_STILETTOS) || (Role_if(PM_BINDER) && uarmf->oartifact == ART_BINDER_CRASH) || (uarmf->otyp == SENTIENT_HIGH_HEELED_SHOES) || (uarmf->otyp == LONG_POINTY_HEELS) || (uarmf->otyp == ATSUZOKO_BOOTS) || (uarmf->otyp == COMBAT_STILETTOS) || (uarmf->otyp == JUEN_PEEP_TOES) || (uarmf->otyp == JULIETTA_PEEP_TOES) || (uarmf->otyp == FEMMY_STILETTO_BOOTS) || (uarmf->otyp == ITALIAN_HEELS) || (uarmf->otyp == STILETTO_SANDALS) || (uarmf->otyp == HIGH_STILETTOS) || (uarmf->otyp == UNFAIR_STILETTOS) || (uarmf->otyp == SKY_HIGH_HEELS) || (uarmf->otyp == RED_SPELL_HEELS) || (uarmf->otyp == KILLER_HEELS) || (uarmf->otyp == RUEA_COMBAT_BOOTS) || (uarmf->otyp == ANITA_LADY_PUMPS) || (uarmf->otyp == VERENA_STILETTO_SANDALS)) return TRUE;
 
 	if (OBJ_DESCR(objects[uarmf->otyp])) {
 
@@ -1504,7 +1526,7 @@ maybeblockheels()
 	if (!uarmf) return FALSE;
 	/* uarmf is definitely defined now */
 
-	if ((uarmf->otyp == HIPPIE_HEELS) || (uarmf->oartifact == ART_SWARM_SOFT_HIGH_HEELS) || (uarmf->otyp == SELF_WILLED_HEELS) || (uarmf->oartifact == ART_MANUELA_S_UNKNOWN_HEELS) || (uarmf->oartifact == ART_HIGH_HEELED_HUG) || (uarmf->otyp == COVETED_BOOTS) || (uarmf->otyp == SINFUL_HEELS) || (uarmf->otyp == LADY_BOOTS) || (uarmf->otyp == ELENA_COMBAT_BOOTS) || (uarmf->otyp == THAI_COMBAT_BOOTS) || (uarmf->otyp == MELTEM_COMBAT_BOOTS) || (uarmf->otyp == NATALJE_BLOCK_HEEL_SANDALS) || (uarmf->otyp == NADJA_BUCKLED_LADY_SHOES) || (uarmf->otyp == HIGH_SCORING_HEELS)) return TRUE;
+	if ((uarmf->otyp == HIPPIE_HEELS) || (uarmf->oartifact == ART_SWARM_SOFT_HIGH_HEELS) || (uarmf->otyp == SELF_WILLED_HEELS) || (uarmf->oartifact == ART_MANUELA_S_UNKNOWN_HEELS) || (uarmf->oartifact == ART_HIGH_HEELED_HUG) || (uarmf->otyp == COVETED_BOOTS) || (uarmf->otyp == SINFUL_HEELS) || (uarmf->otyp == LADY_BOOTS) || (uarmf->otyp == ELENA_COMBAT_BOOTS) || (uarmf->otyp == THAI_COMBAT_BOOTS) || (uarmf->otyp == MELTEM_COMBAT_BOOTS) || (uarmf->otyp == NATALJE_BLOCK_HEEL_SANDALS) || (uarmf->otyp == NADJA_BUCKLED_LADY_SHOES) || (uarmf->otyp == HIGH_SCORING_HEELS) || (uarmf->otyp == KRISTIN_COMBAT_BOOTS) || (uarmf->otyp == DORA_COMBAT_BOOTS) || (uarmf->otyp == JETTE_COMBAT_BOOTS) || (uarmf->otyp == VICTORIA_COMBAT_BOOTS) || (uarmf->otyp == HENRIETTA_COMBAT_BOOTS)) return TRUE;
 
 	if (OBJ_DESCR(objects[uarmf->otyp])) {
 
@@ -1530,7 +1552,7 @@ maybewedgeheels()
 	if (!uarmf) return FALSE;
 	/* uarmf is definitely defined now */
 
-	if ((uarmf->otyp == WEDGE_SANDALS) || (uarmf->otyp == EVELINE_WEDGE_SANDALS) || (uarmf->otyp == MADELEINE_PLATEAU_BOOTS) || (uarmf->otyp == KATHARINA_PLATFORM_BOOTS) || (uarmf->oartifact == ART_ELENETTES) || (uarmf->otyp == BUM_BUM_BOOTS) || (uarmf->otyp == PET_STOMPING_PLATFORM_BOOTS) || (uarmf->otyp == HIGH_HEELED_SKIERS)) return TRUE;
+	if ((uarmf->otyp == WEDGE_SANDALS) || (uarmf->otyp == EVELINE_WEDGE_SANDALS) || (uarmf->otyp == MADELEINE_PLATEAU_BOOTS) || (uarmf->otyp == KATHARINA_PLATFORM_BOOTS) || (uarmf->oartifact == ART_ELENETTES) || (uarmf->otyp == BUM_BUM_BOOTS) || (uarmf->otyp == PET_STOMPING_PLATFORM_BOOTS) || (uarmf->otyp == HIGH_HEELED_SKIERS) || (uarmf->otyp == SING_PLATFORM_BOOTS) || (uarmf->otyp == MELISSA_WEDGE_BOOTS)) return TRUE;
 
 	if (OBJ_DESCR(objects[uarmf->otyp])) {
 
@@ -1540,8 +1562,27 @@ maybewedgeheels()
 		if (itemhasappearance(uarmf, APP_SKI_HEELS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_RADIANT_HEELS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_WEDGE_SNEAKERS)) return TRUE;
 
 	}
+
+	if (uwep && uwep->oartifact == ART_DAMN_SKI_WEDGE && uarmf) return TRUE;
+
+	return FALSE;
+
+}
+
+/* does everything display in fleecy colors? (for mapglyph.c) --Amy */
+boolean
+everythingfleecy()
+{
+	if (uwep && uwep->oartifact == ART_ALASSEA_TELEMNAR) return TRUE;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ALASSEA_TELEMNAR) return TRUE;
+	if (uwep && uwep->oartifact == ART_THRANDUIL_LOSSEHELIN) return TRUE;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN) return TRUE;
+	if (uwep && uwep->oartifact == ART_HALLUCOLORSWANDIR) return TRUE;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_HALLUCOLORSWANDIR) return TRUE;
+	if (uarm && uarm->oartifact == ART_MOEBIUS_ARMOR) return TRUE;
 
 	return FALSE;
 
@@ -1581,7 +1622,7 @@ playerextrinsicaggravatemon()
 	if ((uwep && uwep->oartifact == ART_HARKENSTONE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_HARKENSTONE) || (uwep && uwep->oartifact == ART_KUSANAGI_NO_TSURUGI) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KUSANAGI_NO_TSURUGI)) return TRUE;
 	if ((uwep && uwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI)) return TRUE;
 	if ((uleft && uleft->oartifact == ART_TASTY_TAME_NASTY) || (uright && uright->oartifact == ART_TASTY_TAME_NASTY)) return TRUE;
-	if ((uarmf && uarmf->oartifact == ART_EVERYWHERE_AT_ONCE) || (uarmf && uarmf->oartifact == ART_BITCHSMOKE)) return TRUE;
+	if ((uarmf && uarmf->oartifact == ART_EVERYWHERE_AT_ONCE) || (uarmf && uarmf->oartifact == ART_BITCHSMOKE) || (uarmf && uarmf->oartifact == ART_SORROW_AND_DESPAIR) || (uarmf && uarmf->oartifact == ART_NOW_YOU_ARE_HOWEVER_TO) || (uarmf && uarmf->oartifact == ART_WHINY_TEACHER_INSIDE_WOMAN)) return TRUE;
 
 	return FALSE;
 
@@ -1601,7 +1642,7 @@ playerextrinsicfireres()
 	if ((uwep && uwep->oartifact == ART_STAFF_OF_THE_ARCHMAGI) || (uwep && uwep->oartifact == ART_WHAT_IT_SAYS_ON_THE_TIN) || (uarmg && uarmg->oartifact == ART_SPECTRATOR && (moves % 5 == 0) ) || (uarmh && uarmh->oartifact == ART_SECURE_BATHMASTER)) return TRUE;
 	if ((uwep && uwep->oartifact == ART_WRATH_OF_HEAVEN) || (uwep && uwep->oartifact == ART_COLD_SOUL) || u.uprops[STORM_HELM].extrinsic || u.uprops[ELEMENT_RES].extrinsic) return TRUE;
 	if ((uarmf && itemhasappearance(uarmf, APP_KOREAN_SANDALS) && (moves % 3 == 0) ) ) return TRUE;
-	if ((uamul && uamul->oartifact == ART_DEMOBLING) || (uarmf && uarmf->oartifact == ART_AMPERSAND_HAREM)) return TRUE;
+	if ((uamul && uamul->oartifact == ART_DEMOBLING) || (uarmf && uarmf->oartifact == ART_AMPERSAND_HAREM) || (uarmf && uarmf->oartifact == ART_DESEAMING_GAME) || (uarms && uarms->oartifact == ART_SPECTRATE_ETTECKOR) || (uwep && uwep->oartifact == ART_SPECTRATE_ETTECKOR) ) return TRUE;
 
 	return FALSE;
 }
@@ -1621,7 +1662,7 @@ playerextrinsiccoldres()
 	if ((uarmf && uarmf->oartifact == ART_YVONNE_S_MODEL_AMBITION) || (uarmf && uarmf->oartifact == ART_CORINA_S_UNFAIR_SCRATCHER) || (uarmf && uarmf->oartifact == ART_UNFELLABLE_TREE && u.burrowed) || (uarmh && uarmh->oartifact == ART_HAVE_ALL_YOU_NEED)) return TRUE;
 	if ((uarmc && uarmc->oartifact == ART_FIREBURN_COLDSHATTER) || (uarm && uarm->oartifact == ART_ARMOR_OF_EREBOR) || (uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT)) return TRUE;
 	if ((uwep && uwep->oartifact == ART_STAFF_OF_THE_ARCHMAGI) || (uwep && uwep->oartifact == ART_COLD_SOUL) || (uwep && uwep->oartifact == ART_RELEASE_FROM_CARE) || u.uprops[STORM_HELM].extrinsic || u.uprops[ELEMENT_RES].extrinsic) return TRUE;
-	if ((uarmu && uarmu->oartifact == ART_GIVE_ME_STROKE__JO_ANNA) || (uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL) || (uarmf && uarmf->oartifact == ART_RUTH_S_UNDEAD_INLAY)) return TRUE;
+	if ((uarmu && uarmu->oartifact == ART_GIVE_ME_STROKE__JO_ANNA) || (uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL) || (uarmf && uarmf->oartifact == ART_RUTH_S_UNDEAD_INLAY) || (uarmf && uarmf->oartifact == ART_NOW_YOU_LOOK_LIKE_A_BEGGAR) || (uwep && uwep->oartifact == ART_ELEMENTS_TIME_THREE) || (uarms && uarms->oartifact == ART_SPECTRATE_ETTECKOR) || (uwep && uwep->oartifact == ART_SPECTRATE_ETTECKOR) ) return TRUE;
 
 	return FALSE;
 }
@@ -1638,7 +1679,7 @@ playerextrinsicshockres()
 	if ((uwep && uwep->oartifact == ART_SAXS_BEAUTY) || (uarmf && uarmf->oartifact == ART_BLUEDE) || (uwep && uwep->oartifact == ART_RESISTOMATIC) || (uarmf && uarmf->oartifact == ART_CLICHE_WEAR) || (uarmg && uarmg->oartifact == ART_SPECTRATOR && (moves % 5 == 0) ) || (uarmc && uarmc->oartifact == ART_INA_S_SORROW && u.uhunger < 0)) return TRUE;
 	if ((uarmh && uarmh->oartifact == ART_HAVE_ALL_YOU_NEED) || (uarmf && uarmf->oartifact == ART_CORINA_S_UNFAIR_SCRATCHER) || (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) || (uarmh && uarmh->oartifact == ART_STORMHELM) || (uarmc && uarmc->oartifact == ART_WEB_OF_THE_CHOSEN)) return TRUE;
 	if ((uwep && uwep->oartifact == ART_STAFF_OF_THE_ARCHMAGI) || (uwep && uwep->oartifact == ART_FIRE_OF_HEAVEN) || (uwep && uwep->oartifact == ART_COLD_SOUL) || u.uprops[STORM_HELM].extrinsic || u.uprops[ELEMENT_RES].extrinsic) return TRUE;
-	if ((uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME)) return TRUE;
+	if ((uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (uarms && uarms->oartifact == ART_SPECTRATE_ETTECKOR) || (uwep && uwep->oartifact == ART_SPECTRATE_ETTECKOR) ) return TRUE;
 
 	return FALSE;
 }
@@ -1656,7 +1697,8 @@ playerextrinsicpoisonres()
 	if ((uarmc && uarmc->oartifact == ART_HEV_SUIT) || (uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) || (uarmf && uarmf->oartifact == ART_CLICHE_WEAR) || (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) || (uleft && uleft->oartifact == ART_GREEN_COLOR) || (uright && uright->oartifact == ART_GREEN_COLOR)) return TRUE;
 	if ((uarmh && uarmh->oartifact == ART_TARI_FEFALAS) || (uarmg && uarmg->oartifact == ART_SPECTRATOR && (moves % 5 == 0) ) || (uarmf && uarmf->oartifact == ART_LEATHER_PUMPS_OF_HORROR) || (uarmf && uarmf->oartifact == ART_RHEA_S_COMBAT_PUMPS) || (uamul && uamul->oartifact == ART_WARNED_AND_PROTECTED)) return TRUE;
 	if ((uarmh && uarmh->oartifact == ART_GREEN_STATUS) || (uamul && uamul->oartifact == ART_GOOD_BEE) || (uamul && uamul->oartifact == ART_BUEING) || (uwep && uwep->oartifact == ART_ERU_ILUVATAR_S_BIBLE) || (uarmh && uarmh->oartifact == ART_WAR_MASK_OF_DURIN) || (uwep && uwep->oartifact == ART_SERPENT_S_TOOTH)) return TRUE;
-	if ((uarmf && uarmf->oartifact == ART_GRASSHOPPER_S_ANTIDOTE) || (uarmf && uarmf->oartifact == ART_AMPERSAND_HAREM) || (uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL) || (uarmf && uarmf->oartifact == ART_RUTH_S_UNDEAD_INLAY) || (uamul && uamul->oartifact == ART_AMULET_OF_SPLENDOR) || (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME)) return TRUE;
+	if ((uarmf && uarmf->oartifact == ART_GRASSHOPPER_S_ANTIDOTE) || (uarmf && uarmf->oartifact == ART_AMPERSAND_HAREM) || (uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL) || (uarmf && uarmf->oartifact == ART_RUTH_S_UNDEAD_INLAY) || (uamul && uamul->oartifact == ART_AMULET_OF_SPLENDOR) || (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (uarmf && uarmf->oartifact == ART_NOW_YOU_LOOK_LIKE_A_BEGGAR)) return TRUE;
+	if ((uwep && uwep->oartifact == ART_REAL_WALKING) || (uwep && uwep->oartifact == ART_DANGER_SIGN) || (uarms && uarms->oartifact == ART_SPECTRATE_ETTECKOR) || (uwep && uwep->oartifact == ART_SPECTRATE_ETTECKOR)) return TRUE;
 
 	return FALSE;
 }
@@ -1674,10 +1716,10 @@ playerextrinsicspeed()
 	if ((uarmh && uarmh->oartifact == ART_DUE_DUE_DUE_DUE_BRMMMMMMM) || (uwep && uwep->oartifact == ART_NATALIA_S_MARK) || (uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) || (uwep && uwep->oartifact == ART_FEANARO_SINGOLLO) || (uarm && uarm->oartifact == ART_ROCKET_IMPULSE) || (uarmc && uarmc->oartifact == ART_LIGHTSPEED_TRAVEL)) return TRUE;
 	if ((uright && uright->oartifact == ART_REQUIRED_GLADNESS) || (uarmf && uarmf->oartifact == ART_HIGH_DESIRE_OF_FATALITY) || (uwep && uwep->oartifact == ART_SPEEDHACK) || (uarmc && uarmc->oartifact == ART_JANA_S_SECRET_CAR) || (uamul && uamul->oartifact == ART_ARABELLA_S_DICINATOR)) return TRUE;
 	if ((uarmc && uarmc->oartifact == ART_JANA_S_GRAVE_WALL) || (uleft && uleft->oartifact == ART_CRIMINAL_QUEEN) || (uright && uright->oartifact == ART_CRIMINAL_QUEEN) || (uwep && uwep->oartifact == ART_TENSA_ZANGETSU) || (uwep && uwep->oartifact == ART_TARMAC_CHAMPION) || (uwep && uwep->oartifact == ART_ZANKAI_HUNG_ZE_TUNG_DO_HAI)) return TRUE;
-	if ((uwep && uwep->oartifact == ART_GARNET_ROD) || (uwep && uwep->oartifact == ART_THREE_HEADED_FLAIL) || u.uprops[MULTISHOES].extrinsic) return TRUE;
+	if ((uwep && uwep->oartifact == ART_GARNET_ROD) || (uwep && uwep->oartifact == ART_THREE_HEADED_FLAIL) || (uwep && uwep->oartifact == ART_POGO_STICK) || u.uprops[MULTISHOES].extrinsic) return TRUE;
 	if ((Role_if(PM_TRANSVESTITE) && PlayerInHighHeels) || (Role_if(PM_TOPMODEL) && PlayerInHighHeels) ) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_MAREYOUNGWOMAN_ACTION && (is_pool(u.ux, u.uy) || (levl[u.ux][u.uy].typ == FOUNTAIN)) ) return TRUE;
-	if ((uarmf && uarmf->oartifact == ART_FASTER_THAN_ALL_OTHERS_INT) || (uleft && uleft->oartifact == ART_POLYFAST) || (uright && uright->oartifact == ART_POLYFAST)) return TRUE;
+	if ((uarmf && uarmf->oartifact == ART_FASTER_THAN_ALL_OTHERS_INT) || (uleft && uleft->oartifact == ART_POLYFAST) || (uright && uright->oartifact == ART_POLYFAST) || (uwep && uwep->oartifact == ART_SHARPTOOTH_SAYER)) return TRUE;
 
 	return FALSE;
 }
@@ -1894,7 +1936,7 @@ badeffect()
 
 	u.cnd_badeffectcount++;
 
-	switch (rnd(481)) {
+	switch (rnd(483)) {
 
 		case 1:
 		case 2:
@@ -3409,6 +3451,23 @@ newoffmon:
 			You_feel("less knowledgable about equipment.");
 			break;
 
+		case 482:
+			otmp = mksobj_at(rnd_class(ELIF_S_JEWEL,DORA_S_JEWEL), u.ux, u.uy, TRUE, FALSE, FALSE);
+			if (otmp) {
+				otmp->quan = 1L;
+				otmp->owt = weight(otmp);
+				if (!Blind) otmp->dknown = 1;
+				if (otmp) {
+					pline("%s stays in your inventory, and you get a bad feeling about it.", Doname2(otmp));
+					(void) pickup_object(otmp, 1L, TRUE, TRUE);
+				}
+			}
+			break;
+
+		case 483:
+			dropitemattack();
+			break;
+
 		default:
 			break;
 	}
@@ -3474,7 +3533,7 @@ reallybadeffect()
 
 	u.cnd_reallybadeffectcount++;
 
-	switch (rnd(118)) {
+	switch (rnd(120)) {
 
 		case 1:
 		if (FunnyHallu) You_feel("rather trippy.");
@@ -4624,6 +4683,23 @@ newoffmonX:
 			You_feel("less knowledgable about equipment.");
 			break;
 
+		case 119:
+			otmp = mksobj_at(rnd_class(ELIF_S_JEWEL,DORA_S_JEWEL), u.ux, u.uy, TRUE, FALSE, FALSE);
+			if (otmp) {
+				otmp->quan = 1L;
+				otmp->owt = weight(otmp);
+				if (!Blind) otmp->dknown = 1;
+				if (otmp) {
+					pline("%s stays in your inventory, and you get a bad feeling about it.", Doname2(otmp));
+					(void) pickup_object(otmp, 1L, TRUE, TRUE);
+				}
+			}
+			break;
+
+		case 120:
+			dropitemattack();
+			break;
+
 		default:
 		break;
 	}
@@ -4927,6 +5003,7 @@ uncurseagain:
 boolean
 have_anorexia()
 {
+	if (FemtrapActiveIna) return TRUE;
 	if (RngeAnorexia) return TRUE;
 	if (Role_if(PM_TOPMODEL)) return TRUE;
 	if (uarmc && uarmc->oartifact == ART_INA_S_SORROW) return TRUE;
@@ -5312,6 +5389,62 @@ newswap:
 
 }
 
+/* AD_DROP: forces player to drop random items, but no equipped ones --Amy */
+void
+dropitemattack()
+{
+	register struct obj *otmpi, *otmpii;
+	register int numdroppeditems = 0;
+
+	for (otmpi = invent; otmpi; otmpi = otmpii) {
+
+		otmpii = otmpi->nobj;
+
+		if (!rn2(50) && !stack_too_big(otmpi) ) {
+
+			if (otmpi->owornmask & W_ARMOR) continue;
+			else if (otmpi->owornmask & W_AMUL) {
+				if (otmpi->cursed) continue;
+				else Amulet_off();
+			} else if (otmpi->owornmask & W_IMPLANT) {
+				continue;
+			} else if (otmpi->owornmask & W_RING) {
+				if (otmpi->cursed) continue;
+				Ring_gone(otmpi);
+			} else if (otmpi->owornmask & W_TOOL) continue;
+			else if (otmpi->owornmask & (W_WEP|W_SWAPWEP|W_QUIVER)) {
+			    if (otmpi == uwep && otmpi->cursed) continue;
+
+			    if (otmpi == uwep)
+				uwepgone();
+			    if (otmpi == uswapwep)
+				uswapwepgone();
+			    if (otmpi == uquiver)
+				uqwepgone();
+			}
+
+			if ( (otmpi->otyp == LOADSTONE || otmpi->otyp == LOADBOULDER || otmpi->otyp == STARLIGHTSTONE || otmpi->otyp == LUCKSTONE || otmpi->otyp == HEALTHSTONE || otmpi->otyp == MANASTONE || otmpi->otyp == SLEEPSTONE || otmpi->otyp == STONE_OF_MAGIC_RESISTANCE || is_nastygraystone(otmpi) || is_feminismstone(otmpi)) && otmpi->cursed ) continue;
+
+			if (otmpi->owornmask & (W_BALL|W_CHAIN)) continue;
+			else if (otmpi->owornmask) {
+			/* catchall */
+			    setnotworn(otmpi);
+			}
+
+			dropx(otmpi);
+			numdroppeditems++;
+		}
+	    }
+	    pline("Uh-oh, you suddenly trip over your own %s%s", makeplural(body_part(FOOT)), numdroppeditems ? " and some of your possessions fall out of your knapsack!" : "! But you barely manage to avoid dropping your possessions.");
+	    if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
+	    if (numdroppeditems) {
+			if (Levitation) scatter(u.ux,u.uy,10,VIS_EFFECTS|MAY_DESTROY,0);
+			else scatter(u.ux,u.uy,10,VIS_EFFECTS,0); /* don't destroy fragile stuff (unless levitating) */
+	    }
+
+}
+
 /* nivellation: rather than doing what some other variants are doing (imposing a hard cap on max HP and Pw), I decided
  * that it's much more interesting to instead have an attack/trap/badeffect that can reduce the max depending on how high
  * it already is; this effect will do nothing if the player's max is below a certain threshold */
@@ -5390,7 +5523,7 @@ nivellate()
 	if (u.ulevel < 3) nivellevel = 3;
 	if (u.ulevel == 3) nivellevel = 4;
 
-	if (type == 0) {
+	if (type == 0) { /* HP */
 
 		if (Race_if(PM_SUSTAINER)) return;
 
@@ -5435,6 +5568,10 @@ nivellate()
 		if (Role_if(PM_UNBELIEVER)) {
 			lowerceiling *= 2;
 			upperceiling *= 2;
+		}
+		if (Role_if(PM_DANCER)) {
+			lowerceiling /= 2;
+			upperceiling /= 2;
 		}
 		if (Role_if(PM_WARRIOR)) {
 			lowerceiling *= 3;
@@ -5565,7 +5702,7 @@ nivellate()
 
 		}
 
-	} else {
+	} else { /* Pw */
 
 		if (Race_if(PM_SUSTAINER)) return;
 
@@ -5604,6 +5741,10 @@ nivellate()
 		if (Role_if(PM_UNBELIEVER)) {
 			lowerceiling /= 5;
 			upperceiling /= 5;
+		}
+		if (Role_if(PM_NOOB_MODE_BARB)) {
+			lowerceiling /= 2;
+			upperceiling /= 2;
 		}
 		if (Race_if(PM_YEEK)) {
 			lowerceiling /= 2;
@@ -5765,6 +5906,9 @@ boolean guaranteed;
 		if (Role_if(PM_DRUID)) {
 			ceiling /= 2;
 		}
+		if (Role_if(PM_DANCER)) {
+			ceiling /= 2;
+		}
 		if (Role_if(PM_ORDINATOR)) {
 			ceiling /= 2;
 		}
@@ -5898,6 +6042,9 @@ boolean guaranteed;
 		}
 		if (Role_if(PM_UNBELIEVER)) {
 			ceiling /= 5;
+		}
+		if (Role_if(PM_NOOB_MODE_BARB)) {
+			ceiling /= 2;
 		}
 		if (Race_if(PM_YEEK)) {
 			ceiling /= 2;
@@ -6042,7 +6189,7 @@ datadeleteattack()
 	Your("data is deleted!");
 	stop_occupation();
 
-	switch (rnd(21)) {
+	switch (rnd(23)) {
 
 
 		case 1: /* very strong amnesia effect - let that poor sap forget a whole lot of stuff */
@@ -6487,12 +6634,25 @@ datadeleteattack()
 			u.uprops[DEAC_DIMINISHED_BLEEDING].intrinsic += (rn2(10) ? 10000 : 100000);
 			u.uprops[DEAC_CONTROL_MAGIC].intrinsic += (rn2(10) ? 10000 : 100000);
 			u.uprops[DEAC_EXP_BOOST].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_HALLUC_RES].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_BLIND_RES].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_ASTRAL_VISION].intrinsic += (rn2(10) ? 10000 : 100000);
 			pline("All your in- and extrinsics are deactivated!");
 			break;
 
 		case 21: /* set all skills back to Unskilled and 0 points of training to ruin all the player's training effort */
 			dataskilldecrease();
 			pline("You lose all training in all skills!");
+			break;
+
+		case 22: /* lose 20 skill points forever, undoing any enhancements that you did with those points - you won't get them back, sucker :-P */
+			lose_weapon_skill(20);
+			pline("You lose your skill slots forever!");
+
+			break;
+
+		case 23: /* set the level of a random technique to -100 so you can't ever use it again, muahahahaha */
+			techdrainsevere();
 			break;
 
 	}
@@ -6748,7 +6908,7 @@ add_monster_egotype(mtmp)
 register struct monst *mtmp;
 {
 	mtmp->isegotype = 1;
-	switch (rnd(221)) {
+	switch (rnd(223)) {
 		case 1:
 		case 2:
 		case 3: mtmp->egotype_thief = 1; break;
@@ -6925,7 +7085,8 @@ register struct monst *mtmp;
 		case 174: mtmp->egotype_contaminator = 1; break;
 		case 175: mtmp->egotype_trembler = 1; break;
 		case 176:
-			if (rn2(100)) mtmp->egotype_destructor = 1;
+			if (!rn2(1000000)) mtmp->egotype_datadeleter = 1;
+			else if (rn2(100)) mtmp->egotype_destructor = 1;
 			else mtmp->egotype_worldender = 1;
 			break;
 		case 177: mtmp->egotype_damager = 1; break;
@@ -6979,6 +7140,8 @@ register struct monst *mtmp;
 		case 219: mtmp->egotype_maecke = 1; break;
 		case 220:
 		case 221: mtmp->egotype_flamer = 1; break;
+		case 222: mtmp->egotype_blasphemer = 1; break;
+		case 223: mtmp->egotype_dropper = 1; break;
 
 	}
 
@@ -7518,7 +7681,7 @@ terrainterror()
 
 		else {
 
-			monstercolor = rnd(376);
+			monstercolor = rnd(379);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -7778,6 +7941,7 @@ int snamount;
 	if (Upolyd && dmgtype(youmonst.data, AD_INSA) && rn2(100)) return;
 	if (Upolyd && dmgtype(youmonst.data, AD_SANI) && rn2(100)) return;
 	if (Race_if(PM_PLAYER_FAIRY) && rn2(2)) return;
+	if (StrongHalluc_resistance && snamount < 3 && rn2(3)) return;
 
 	/* Mineral is supposed to be a material that shields you against sanity --Amy */
 	if (uwep && objects[uwep->otyp].oc_material == MT_MINERAL && !rn2(20)) {
@@ -7932,6 +8096,8 @@ int snamount;
 		}
 		if (sanityprotection > rn2(100)) return;
 	}
+
+	if (StrongHalluc_resistance && snamount > 2) snamount /= 3;
 
 	if (Race_if(PM_HUMANOID_ANGEL) || youmonst.data->mlet == S_ANGEL) snamount *= 2;
 
@@ -8350,18 +8516,23 @@ register struct obj *otmp;
 	    You("have a %s feeling for a moment, then it passes.",
 		  FunnyHallu ? "normal" : "peculiar");
 	}
-	if(otmp->dknown && !objects[otmp->otyp].oc_name_known) {
+	if(otmp && otmp->dknown && !objects[otmp->otyp].oc_name_known) {
 		if(!unkn) {
 			makeknown(otmp->otyp);
 			more_experienced(0,10);
 		} else if(!objects[otmp->otyp].oc_uname)
 			docall(otmp);
 	}
-	if (carried(otmp)) {useup(otmp);
-		make_bottle(FALSE);}
-	else if (mcarried(otmp)) m_useup(otmp->ocarry, otmp);
-	else if (otmp->where == OBJ_FLOOR) useupf(otmp, 1L);
-	else dealloc_obj(otmp);		/* Dummy potion */
+	if (otmp && otmp->oartifact == ART_BERRYBREW) {
+		make_bottle(TRUE);
+	}
+	if (otmp && carried(otmp)) {
+		useup(otmp);
+		make_bottle(FALSE);
+	}
+	else if (otmp && mcarried(otmp)) m_useup(otmp->ocarry, otmp);
+	else if (otmp && otmp->where == OBJ_FLOOR) useupf(otmp, 1L);
+	else if (otmp) dealloc_obj(otmp);		/* Dummy potion */
 
 	if (uarmc && itemhasappearance(uarmc, APP_LEVUNTATION_CLOAK)) badeffect();
 
@@ -8407,6 +8578,14 @@ peffects(otmp)
 
 	if (RngeLevuntation) badeffect();
 
+	if (otmp->oartifact == ART_WONDER_WATERING_PLACE) {
+		int coronatries = rnd(10);
+		while (coronatries > 0) {
+			coronatries--;
+			upnivel(FALSE);
+		}
+	}
+
 	if (otmp->otyp == POT_WONDER || otmp->otyp == POT_TERCES_DLU) {
 
 		struct obj *wonderpot;
@@ -8421,7 +8600,7 @@ peffects(otmp)
 	/* KMH, balance patch -- this is too cruel for novices */
 	/* sometimes your constitution can be a little _too_ high! */
 	/* edit: evil variant by Amy: nothing is too cruel :P */
-	if (evilfriday && (Role_if(PM_BARBARIAN) || ACURR(A_CON) > 15) && !rn2(5)) {
+	if ( ((evilfriday && (Role_if(PM_BARBARIAN) || ACURR(A_CON) > 15)) || Role_if(PM_NOOB_MODE_BARB)) && !rn2(5)) {
 		pline("Strange ...");
 		nothing++;
 		return(-1);
@@ -9046,6 +9225,21 @@ peffects(otmp)
 	case POT_TRAINING:
 
 		doubleskilltraining();
+		break;
+
+	case POT_TECH_LEVEL_UP:
+		if(otmp->cursed) {
+			unkn++;
+			You("have a tummy ache...");
+			if (evilfriday) {
+				techdrain();
+			}
+		} else {
+			You_feel("very good!");
+			techlevelup();
+	            makeknown(POT_TECH_LEVEL_UP);
+		}
+
 		break;
 
 	case POT_BENEFICIAL_EFFECT:
@@ -9831,9 +10025,9 @@ peffects(otmp)
 		       doesn't use violated_vegetarian() to prevent
 		       duplicated "you feel guilty" messages */
 		    u.uconduct.unvegetarian++;
-		    if (u.ualign.type == A_LAWFUL || Role_if(PM_MONK)) {
+		    if (u.ualign.type == A_LAWFUL || Role_if(PM_MONK) || Role_if(PM_HALF_BAKED)) {
 			You_feel("%sguilty about drinking such a vile liquid.",
-				Role_if(PM_MONK) ? "especially " : "");
+				(Role_if(PM_MONK) || Role_if(PM_HALF_BAKED)) ? "especially " : "");
 			u.ugangr++;
 			adjalign(-50);
 		    } else if (u.ualign.type == A_NEUTRAL)
@@ -10413,7 +10607,7 @@ boolean your_fault;
 			if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
 				pline("You shudder for a moment.");
 				(void) safe_teleds(FALSE);
-			} else if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
+			} else if (playerlevelportdisabled()) { 
 				pline("Somehow, the hall exclusion doesn't do anything.");
 				break;
 			} else {
@@ -12258,7 +12452,7 @@ register struct obj *obj;
 		owornmask &= ~W_ARMF;
 	    if (owornmask & W_ARMU && !is_shirt(obj))
 		owornmask &= ~W_ARMU;
-	    if (owornmask & W_TOOL && obj->otyp != BLINDFOLD && obj->otyp != EYECLOSER && obj->otyp != DRAGON_EYEPATCH && obj->otyp != CONDOME && obj->otyp != SOFT_CHASTITY_BELT &&
+	    if (owornmask & W_TOOL && obj->otyp != BLINDFOLD && obj->otyp != CLIMBING_SET && obj->otyp != EYECLOSER && obj->otyp != DRAGON_EYEPATCH && obj->otyp != CONDOME && obj->otyp != SOFT_CHASTITY_BELT &&
 	      obj->otyp != TOWEL && obj->otyp != LENSES && obj->otyp != RADIOGLASSES && obj->otyp != BOSS_VISOR && obj->otyp != BOSS_VISOR)
 		owornmask &= ~W_TOOL;
 	    otyp2 = obj->otyp;
@@ -12328,7 +12522,7 @@ dodip()
 		if (yn(qbuf) == 'y') {
 		    if (Levitation) {
 			floating_above(tmp);
-		    } else if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !is_swimmer(u.usteed->data) && !u.usteed->egotype_watersplasher &&
+		    } else if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !(bmwride(ART_DEEPER_LAID_BMW)) && !is_swimmer(u.usteed->data) && !u.usteed->egotype_watersplasher &&
 			    (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
 			rider_cant_reach(); /* not skilled enough to reach */
 		    } else {
@@ -12354,7 +12548,7 @@ dodip()
 		if (yn(qbuf) == 'y') {
 		    if (Levitation) {
 			floating_above("lava");
-		    } else if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !is_swimmer(u.usteed->data) && !u.usteed->egotype_watersplasher &&
+		    } else if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !(bmwride(ART_DEEPER_LAID_BMW)) && !is_swimmer(u.usteed->data) && !u.usteed->egotype_watersplasher &&
 			    (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
 			rider_cant_reach(); /* not skilled enough to reach */
 		    } else {
@@ -12446,6 +12640,7 @@ dodip()
 					docall(potion);
 				useup(potion);
 				u.cnd_alchemycount++;
+				use_skill(P_DEVICES, 1);
 				return(1);
 			} else if(!obj->blessed) {
 				if (useeit) {
@@ -12526,6 +12721,7 @@ dodip()
 		update_inventory();
 		exercise(A_WIS, TRUE);
 		u.cnd_alchemycount++;
+		use_skill(P_DEVICES, 1);
 		return(1);
 	    }
 	    /* no return here, go for Interesting... message */
@@ -12569,6 +12765,7 @@ dodip()
 			useup(potion);
 			prinv((char *)0, obj, 0L);
 			u.cnd_alchemycount++;
+			use_skill(P_DEVICES, 1);
 			return 1;
 		} else {
 			pline("Nothing seems to happen.");
@@ -12587,6 +12784,7 @@ dodip()
 		if (!objects[potion->otyp].oc_name_known && !objects[potion->otyp].oc_uname) docall(potion);
 		useup(potion);
 		u.cnd_alchemycount++;
+		use_skill(P_DEVICES, 1);
 		return (1);
 	} else if(obj->oclass == POTION_CLASS && obj->otyp != potion->otyp) {
 		/* Mixing potions is dangerous... */
@@ -12609,6 +12807,7 @@ dodip()
 			losehp(StrongAcid_resistance ? 1 : Acid_resistance ? rnd(5) : rnd(10),
 			       "alchemic blast", KILLED_BY_AN);
 			u.cnd_alchemycount++;
+			use_skill(P_DEVICES, 1);
 			return(1);
 		}
 
@@ -12621,6 +12820,7 @@ dodip()
 			useup(obj);
 			useup(potion);
 			u.cnd_alchemycount++;
+			use_skill(P_DEVICES, 1);
 			return(1);
 		}
 		if (finalcancelled(potion) && !rn2(3)) {
@@ -12628,6 +12828,7 @@ dodip()
 			useup(obj);
 			useup(potion);
 			u.cnd_alchemycount++;
+			use_skill(P_DEVICES, 1);
 			return(1);
 		}
 
@@ -12656,6 +12857,7 @@ dodip()
 				useup(obj);
 				useup(potion);
 				u.cnd_alchemycount++;
+				use_skill(P_DEVICES, 1);
 				return(1);
 		    }
 		}
@@ -12672,6 +12874,7 @@ dodip()
 
 		useup(potion);
 		u.cnd_alchemycount++;
+		use_skill(P_DEVICES, 1);
 		return(1);
 	}
 	if (!always_visible(obj)) {
@@ -12794,6 +12997,7 @@ dodip()
 	    makeknown(potion->otyp);
 	    useup(potion);
 		u.cnd_alchemycount++;
+		use_skill(P_DEVICES, 1);
 	    return 1;
 	} else if (potion->otyp == POT_GAIN_LEVEL) {
 	    res = upgrade_obj(obj);
@@ -12810,6 +13014,7 @@ dodip()
 		update_inventory();
 		exercise(A_WIS, TRUE);
 		u.cnd_alchemycount++;
+		use_skill(P_DEVICES, 1);
 		return 1;
 	    }
 	    /* no return here, go for Interesting... message */
@@ -12825,6 +13030,11 @@ dodip()
 		makeknown(potion->otyp);
 	    } else {
 		pline("%s looks a little dull.", Yname2(obj));
+		if (evilfriday) {
+			if (obj->spe > -20) obj->spe--;
+			rust_dmg(obj, xname(obj), 3, TRUE, &youmonst); /* DANGER: obj may have disappeared now --Amy */
+			pline("In fact, it looks not just a little dull...");
+		}
 		if (!objects[potion->otyp].oc_name_known &&
 			!objects[potion->otyp].oc_uname)
 		    docall(potion);
@@ -12832,6 +13042,7 @@ dodip()
 	    exercise(A_WIS, FALSE);
   	    useup(potion);
 	    u.cnd_alchemycount++;
+	    use_skill(P_DEVICES, 1);
 	    return 1;
 	}
     more_dips:
@@ -12846,6 +13057,7 @@ dodip()
 		explode(u.ux, u.uy, ZT_SPELL(ZT_FIRE), d(6,6), 0, EXPL_FIERY);
 		exercise(A_WIS, FALSE);
 		u.cnd_alchemycount++;
+		use_skill(P_DEVICES, 1);
 		return 1;
 	    }
 	    /* Adding oil to an empty magic lamp renders it into an oil lamp */
@@ -12864,6 +13076,7 @@ dodip()
 		useup(potion);
 		exercise(A_WIS, TRUE);
 		u.cnd_alchemycount++;
+		use_skill(P_DEVICES, 1);
 	    }
 	    makeknown(POT_OIL);
 	    obj->spe = 1;
@@ -12892,6 +13105,7 @@ dodip()
 			losehp(StrongAcid_resistance ? 1 : Acid_resistance ? rnd(5) : rnd(10), "a cursed explosion", KILLED_BY);
 			return(1);
 			u.cnd_alchemycount++;
+			use_skill(P_DEVICES, 1);
 		}
 
 		oldbuf[0] = '\0';
@@ -12938,6 +13152,7 @@ dodip()
 			losehp(StrongAcid_resistance ? 1 : Acid_resistance ? rnd(5) : rnd(10), 
 			       "alchemic blast", KILLED_BY_AN);
 			u.cnd_alchemycount++;
+			use_skill(P_DEVICES, 1);
 			return(1);	  
 		    }
 
@@ -13009,6 +13224,7 @@ dodip()
 		}
 
 		u.cnd_alchemycount++;
+		use_skill(P_DEVICES, 1);
 		return(1);
 	}
 

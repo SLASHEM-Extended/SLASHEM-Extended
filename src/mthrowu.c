@@ -86,6 +86,7 @@ const char *name;	/* if null, then format `obj' */
 		case TROLL_SHIELD:
 		case MAGICAL_SHIELD:
 		case SPECIAL_SHIELD:
+		case WEAPON_SIGN:
 			shieldblockrate = 20;
 			break;
 		case TARRIER:
@@ -258,6 +259,8 @@ const char *name;	/* if null, then format `obj' */
 			shieldblockrate /= 3;
 		}
 
+		if (Role_if(PM_DANCER)) shieldblockrate /= 2;
+
 		if (shieldblockrate < 0) shieldblockrate = 0;
 
 		/* If you're berserk, you cannot block at all. We will still show your actual chance to block in enlightenment,
@@ -284,7 +287,7 @@ const char *name;	/* if null, then format `obj' */
 	is_acid = (obj && obj->otyp == ACID_VENOM);
 	is_tailspike = (obj && obj->otyp == TAIL_SPIKES);
 	is_egg = (obj && obj->otyp == EGG);
-	is_polearm = (obj && (objects[obj->otyp].oc_skill == P_POLEARMS || objects[obj->otyp].oc_skill == P_LANCE || objects[obj->otyp].oc_skill == P_GRINDER || obj->otyp == AKLYS || obj->otyp == BLOW_AKLYS || obj->otyp == SPINED_BALL || obj->otyp == CHAIN_AND_SICKLE));
+	is_polearm = (obj && (objects[obj->otyp].oc_skill == P_POLEARMS || objects[obj->otyp].oc_skill == P_LANCE || objects[obj->otyp].oc_skill == P_GRINDER || obj->otyp == AKLYS || obj->otyp == BLOW_AKLYS || obj->otyp == REACH_TRIDENT || obj->otyp == SPINED_BALL || obj->otyp == CHAIN_AND_SICKLE));
 	is_thrown_weapon = (obj && (objects[obj->otyp].oc_skill == P_DART || objects[obj->otyp].oc_skill == P_SHURIKEN) );
 	is_bulletammo = (obj && obj->otyp >= BULLET && obj->otyp <= GAS_GRENADE);
 
@@ -353,6 +356,7 @@ const char *name;	/* if null, then format `obj' */
 				if(Blind || !flags.verbose) pline("You block a projectile with your shield.");
 				else You("block %s with your shield.", onm);
 				use_skill(P_SHIELD, 1);
+				if (uarms && uarms->oartifact == ART_SHIENSIDE) use_skill(P_SHIEN, 1);
 
 				u.ubodyarmorturns++;
 				if (u.ubodyarmorturns >= 5) {
@@ -828,6 +832,9 @@ int x,y;
 			    if (obj && x == u.ux && y == u.uy && is_nastygraystone(obj)) {
 			      pline("%s lands in your knapsack!", Doname2(obj));
 				(void) pickup_object(obj, obj->quan, TRUE, TRUE);
+			    } else if (obj && x == u.ux && y == u.uy && is_feminismstone(obj)) {
+			      pline("%s stays in your inventory, and you get a bad feeling about it.", Doname2(obj));
+				(void) pickup_object(obj, obj->quan, TRUE, TRUE);
 			    } else stackobj(obj);
 			    retvalu = 0;
 
@@ -929,7 +936,7 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 		(void) drop_throw(mon, otmp, 0, mtmp->mx, mtmp->my);
 		return 1;
 	    }
-	} else if (mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || mtmp->data == &mons[PM_ATHLEANNIE] || mtmp->data == &mons[PM_MR__CONCLUSIO] || mtmp->data == &mons[PM_YOUR_GAME_ENDS_NOW]|| mtmp->data == &mons[PM_ELITE_GENDAME] || mtmp->data == &mons[PM_LILAC_FEMMY] || mtmp->data == &mons[PM_GREEN]) { /* will never be hit by monsters' ranged attacks */
+	} else if (mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || mtmp->data == &mons[PM_ATHLEANNIE] || mtmp->data == &mons[PM_LIGHTSABER_ART_JEDI] || mtmp->data == &mons[PM_MR__CONCLUSIO] || mtmp->data == &mons[PM_YOUR_GAME_ENDS_NOW]|| mtmp->data == &mons[PM_ELITE_GENDAME] || mtmp->data == &mons[PM_LILAC_FEMMY] || mtmp->data == &mons[PM_GREEN]) { /* will never be hit by monsters' ranged attacks */
 	    if (!ismimic) {
 		pline("%s swats a projectile away.", Monnam(mtmp));
 	    }
@@ -960,6 +967,7 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 			case TROLL_SHIELD:
 			case MAGICAL_SHIELD:
 			case SPECIAL_SHIELD:
+			case WEAPON_SIGN:
 				shieldblockrate = 30;
 				break;
 			case TARRIER:
@@ -1379,6 +1387,7 @@ m_throw(mon, x, y, dx, dy, range, obj)
 			    if (singleobj->otyp == BOULDER && (mon->data == &mons[PM_BOULDER_FART] || mon->data == &mons[PM_FIRM_BOULDER_FART])) {
 				pline("%s produces %s farting noises with %s %s butt.", Monnam(mon), !rn2(2) ? "loud" : "disgusting", mhis(mon), mon->female ? "sexy" : "ugly");
 				u.cnd_fartingcount++;
+				if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 				if (!extralongsqueak()) badeffect();
 			    }
@@ -1519,7 +1528,7 @@ m_throw(mon, x, y, dx, dy, range, obj)
 			/* missile hits edge of screen */
 			|| !isok(bhitpos.x+dx,bhitpos.y+dy)
 			/* missile hits the wall */
-			|| IS_ROCK(levl[bhitpos.x+dx][bhitpos.y+dy].typ)
+			|| (IS_ROCK(levl[bhitpos.x+dx][bhitpos.y+dy].typ) && !IS_FARMLAND(levl[bhitpos.x+dx][bhitpos.y+dy].typ))
 			/* missile hit closed door */
 			|| closed_door(bhitpos.x+dx, bhitpos.y+dy)
 			/* missile might hit bars */
@@ -2009,7 +2018,7 @@ boolean special; /* for monsters that can shoot from infinite distance --Amy */
         do {
             /* <bx,by> is guaranteed to eventually converge with <ax,ay> */
             bx += dx, by += dy;
-            if (IS_ROCK(levl[bx][by].typ) || IS_WATERTUNNEL(levl[bx][by].typ) || closed_door(bx, by))
+            if ((IS_ROCK(levl[bx][by].typ) && !IS_FARMLAND(levl[bx][by].typ)) || IS_WATERTUNNEL(levl[bx][by].typ) || closed_door(bx, by))
                 return FALSE;
         } while (bx != ax || by != ay);
         /* reached target position without encountering obstacle */
@@ -2046,7 +2055,7 @@ register xchar ax, ay, bx, by;
         do {
             /* <bx,by> is guaranteed to eventually converge with <ax,ay> */
             bx += dx, by += dy;
-            if (IS_ROCK(levl[bx][by].typ) || IS_WATERTUNNEL(levl[bx][by].typ) || closed_door(bx, by))
+            if ((IS_ROCK(levl[bx][by].typ) && !IS_FARMLAND(levl[bx][by].typ)) || IS_WATERTUNNEL(levl[bx][by].typ) || closed_door(bx, by))
                 return FALSE;
         } while (bx != ax || by != ay);
         /* reached target position without encountering obstacle */

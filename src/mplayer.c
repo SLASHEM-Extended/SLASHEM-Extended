@@ -293,6 +293,8 @@ register boolean special;
 		    break;
 		case PM_BARBARIAN:
 		case PM_UNDEAD_BARBARIAN:
+		case PM_NOOB_MODE_BARB:
+		case PM_UNDEAD_NOOB_MODE_BARB:
 		    if (rn2(2)) {
 		    	weapon = rn2(2) ? TWO_HANDED_SWORD : BATTLE_AXE;
 		    	shield = STRANGE_OBJECT;
@@ -680,6 +682,12 @@ register boolean special;
 		    cloak = ROBE;
 		    if (rn2(2)) shield = STRANGE_OBJECT;
 		    break;
+		case PM_HALF_BAKED:
+		case PM_UNDEAD_HALF_BAKED:
+		    weapon = STRANGE_OBJECT;
+		    armor = STRANGE_OBJECT;
+		    if (rn2(2)) shield = STRANGE_OBJECT;
+		    break;
 		case PM_CHEVALIER:
 		case PM_UNDEAD_CHEVALIER:
 		    weapon = TRIDENT;
@@ -768,6 +776,30 @@ register boolean special;
 		case PM_GENDERSTARIST:
 		case PM_UNDEAD_GENDERSTARIST:
 		    weapon = TELEPHONE;
+		    break;
+		case PM_BUTT_LOVER:
+		case PM_UNDEAD_BUTT_LOVER:
+		    weapon = SEXPLAY_WHIP;
+		    break;
+		case PM_DANCER:
+		case PM_UNDEAD_DANCER:
+		    weapon = MOP;
+		    break;
+		case PM_DIABLIST:
+		case PM_UNDEAD_DIABLIST:
+		    weapon = !rn2(3) ? CAMO_QATAR : !rn2(2) ? VARIED_GRINDER : CIGARETTE;
+		    break;
+		case PM_PREVERSIONER:
+		case PM_UNDEAD_PREVERSIONER:
+		    weapon = GREAT_DAGGER;
+		    break;
+		case PM_SECRET_ADVICE_MEMBER:
+		case PM_UNDEAD_SECRET_ADVICE_MEMBER:
+		    weapon = SHADOWBLADE;
+		    break;
+		case PM_SHOE_FETISHIST:
+		case PM_UNDEAD_SHOE_FETISHIST:
+		    weapon = PROSTITUTE_SHOE;
 		    break;
 		case PM_PRIEST:
 		case PM_PRIESTESS:

@@ -31,6 +31,11 @@
 #define X_XTEIGHT		"x-8"
 #define X_XTNINE		"x-9"
 #define X_XTTEN		"x-0"
+#define Y_YTSIX		"y-6"
+#define Y_FILA		"y-fila"
+#define Y_LOCA		"y-loca"
+#define Y_FILB		"y-filb"
+#define Y_GOAL		"y-goal"
 
 struct proto_dungeon {
 	struct	tmpdungeon tmpdungeon[MAXDUNGEON];
@@ -76,7 +81,7 @@ mapseen *mapseenchn = (struct mapseen *)0;
 STATIC_DCL mapseen *load_mapseen(int);
 STATIC_DCL void save_mapseen(int, mapseen *);
 STATIC_DCL mapseen *find_mapseen(d_level *);
-STATIC_DCL void print_mapseen(winid,mapseen *,boolean,boolean);
+STATIC_DCL void print_mapseen(winid,mapseen *,boolean,boolean,boolean);
 STATIC_DCL boolean interest_mapseen(mapseen *);
 
 #if defined(DEBUG) || defined(DEBUG_420942)
@@ -705,6 +710,13 @@ struct level_map {
 	{ X_XTEIGHT,	&qxeight_level },
 	{ X_XTNINE,	&qxnine_level },
 	{ X_XTTEN,	&qxten_level },
+
+	{ Y_YTSIX,	&qya_level },
+	{ Y_FILA,	&qyb_level },
+	{ Y_LOCA,	&qyc_level },
+	{ Y_FILB,	&qyd_level },
+	{ Y_GOAL,	&qye_level },
+
 	{ "",		(d_level *)0 }
 };
 
@@ -960,6 +972,8 @@ init_dungeons()
 				 * levels of the quest dungeon occur.
 				 */
 				sprintf(x->proto, "%s%s", urole.filecode, &lev_map->lev_name[1]);
+			} else if (!strncmp(lev_map->lev_name, "y-", 2)) { /* rival quest by Amy */
+				sprintf(x->proto, "%s%s", u.rivalcode, &lev_map->lev_name[1]);
 			} else if (lev_map->lev_spec == &knox_level) {
 				branch *br;
 				/*
@@ -989,9 +1003,11 @@ init_dungeons()
 	orderedchaos_dnum = dname_to_dnum("Ordered Chaos");
 	deadgrounds_dnum = dname_to_dnum("Dead Grounds");
 	subquest_dnum = dname_to_dnum("The Subquest");
+	rivalquest_dnum = dname_to_dnum("Rival Quest");
 	bellcaves_dnum = dname_to_dnum("Bell Caves");
 	spiders_dnum = dname_to_dnum("The Spider Caves");        
 	grund_dnum = dname_to_dnum("Grund's Stronghold");        
+	icequeen_dnum = dname_to_dnum("The Ice Queen's Realm");        
 	wyrm_dnum = dname_to_dnum("The Wyrm Caves");        
 	frnkn_dnum = dname_to_dnum("Frankenstein's Lab");        
 	gcavern_dnum = dname_to_dnum("The Giant Caverns");        
@@ -1007,12 +1023,21 @@ init_dungeons()
 	netherrealm_dnum = dname_to_dnum("Nether Realm");
 	deepmines_dnum = dname_to_dnum("Deep Mines");
 	angmar_dnum = dname_to_dnum("Angmar");
+	greencross_dnum = dname_to_dnum("Green Cross");
+	emynluin_dnum = dname_to_dnum("Emyn Luin");
+	minotaurmaze_dnum = dname_to_dnum("Minotaur Maze");
 	swimmingpool_dnum = dname_to_dnum("Swimming Pool");
 	hellbathroom_dnum = dname_to_dnum("Hell's Bathroom");
+	minusworld_dnum = dname_to_dnum("Minus World");
 	spacebase_dnum = dname_to_dnum("Space Base");
 	sewerplant_dnum = dname_to_dnum("Sewer Plant");
 	gammacaves_dnum = dname_to_dnum("Gamma Caves");
 	mainframe_dnum = dname_to_dnum("Mainframe");
+	joustchallenge_dnum = dname_to_dnum("Joust Challenge");
+	pacmanchallenge_dnum = dname_to_dnum("Pacman Challenge");
+	digdugchallenge_dnum = dname_to_dnum("Digdug Challenge");
+	gruechallenge_dnum = dname_to_dnum("Grue Challenge");
+	poolchallenge_dnum = dname_to_dnum("Pool Challenge");
 	restingzone_ga_dnum = dname_to_dnum("Resting Zone GA");
 	restingzone_gb_dnum = dname_to_dnum("Resting Zone GB");
 	restingzone_gc_dnum = dname_to_dnum("Resting Zone GC");
@@ -1626,6 +1651,13 @@ d_level	*lev;
 }
 
 boolean
+In_rivalquest(lev)	/* are you in the rival quest dungeon? */
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == rivalquest_dnum));
+}
+
+boolean
 In_bellcaves(lev)	/* are you in the bell caves dungeon? */
 d_level	*lev;
 {
@@ -1682,6 +1714,27 @@ d_level	*lev;
 }
 
 boolean
+In_greencross(lev)	/* are you in the green cross dungeon? */
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == greencross_dnum));
+}
+
+boolean
+In_emynluin(lev)	/* are you in the emyn luin dungeon? */
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == emynluin_dnum));
+}
+
+boolean
+In_minotaurmaze(lev)	/* are you in the minotaur maze dungeon? */
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == minotaurmaze_dnum));
+}
+
+boolean
 In_swimmingpool(lev)	/* are you in the swimming pool of hell dungeon? */
 d_level	*lev;
 {
@@ -1693,6 +1746,13 @@ In_hellbathroom(lev)	/* are you in the hell's bathroom dungeon? */
 d_level	*lev;
 {
 	return((boolean)(lev->dnum == hellbathroom_dnum));
+}
+
+boolean
+In_minusworld(lev)	/* are you in the minus world? */
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == minusworld_dnum));
 }
 
 boolean
@@ -1724,6 +1784,41 @@ d_level	*lev;
 }
 
 boolean
+In_poolchallenge(lev)
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == poolchallenge_dnum));
+}
+
+boolean
+In_digdugchallenge(lev)
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == digdugchallenge_dnum));
+}
+
+boolean
+In_pacmanchallenge(lev)
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == pacmanchallenge_dnum));
+}
+
+boolean
+In_gruechallenge(lev)
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == gruechallenge_dnum));
+}
+
+boolean
+In_joustchallenge(lev)
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == joustchallenge_dnum));
+}
+
+boolean
 In_dod(lev)	/* are you in the dungeons of doom? */
 d_level	*lev;
 {
@@ -1742,6 +1837,13 @@ In_grund(lev) /* are you in grund's stronghold? */
 d_level *lev;
 {
 	return((boolean)(lev->dnum == grund_dnum));
+}
+
+boolean
+In_icequeen(lev) /* are you in the Ice Queen's realm? */
+d_level *lev;
+{
+	return((boolean)(lev->dnum == icequeen_dnum));
 }
 
 boolean
@@ -1798,6 +1900,36 @@ In_ZAPM(lev)	/* are you in one of the ZAPM levels? */
 d_level	*lev;
 {
 	return((boolean)(lev->dnum == spacebase_dnum || lev->dnum == sewerplant_dnum || lev->dnum == gammacaves_dnum || lev->dnum == mainframe_dnum));
+}
+
+boolean
+In_Devnull(lev)	/* are you in one of the devnull challenge levels? */
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == poolchallenge_dnum || lev->dnum == digdugchallenge_dnum || lev->dnum == pacmanchallenge_dnum || lev->dnum == gruechallenge_dnum || lev->dnum == joustchallenge_dnum));
+}
+
+boolean
+In_lategame(lev)	/* are you in Gehennom or a branch that comes after it? */
+d_level	*lev;
+{
+	if (In_yendorian(lev) || In_forging(lev) || In_ordered(lev) || In_deadground(lev) || In_voiddungeon(lev) || In_restingzone(lev) || In_netherrealm(lev) || In_angmar(lev) || In_emynluin(lev) || In_swimmingpool(lev) || In_hellbathroom(lev) || In_rivalquest(lev) || In_gehennom(lev) || In_frnkn(lev) || In_sheol(lev) || In_V_tower(lev) || In_endgame(lev) ) return TRUE;
+
+	return FALSE;
+}
+
+/* can the player levelport, branchport, be banished etc. here? --Amy */
+boolean
+playerlevelportdisabled()
+{
+	if (flags.lostsoul || flags.uberlostsoul) return TRUE;
+	if (flags.wonderland && !(u.wonderlandescape)) return TRUE;
+	if (iszapem && !(u.zapemescape)) return TRUE;
+	if (u.preversionmode && !u.preversionescape) return TRUE;
+	if (u.uprops[STORM_HELM].extrinsic) return TRUE;
+	if (In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_rivalquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz) || In_minusworld(&u.uz)) return TRUE;
+
+	return FALSE;
 }
 
 /*
@@ -1986,6 +2118,20 @@ level_difficulty()
 		if (depthuz < 1) depthuz = 1; /* fail safe */
 
 		deepestuz = (1 + deepest_lev_reached(TRUE) - zapemdepth);
+		if (deepestuz < 1) deepestuz = 1; /* fail safe */
+
+	} else if (u.preversionmode && !u.preversionescape && In_greencross(&u.uz)) {
+
+		d_level preverlevel;
+		int preverdepth;
+		preverlevel.dnum = dname_to_dnum("Green Cross");
+		preverlevel.dlevel = dungeons[preverlevel.dnum].entry_lev;
+		preverdepth = depth(&preverlevel);
+
+		depthuz = (1 + depth(&u.uz) - preverdepth);
+		if (depthuz < 1) depthuz = 1; /* fail safe */
+
+		deepestuz = (1 + deepest_lev_reached(TRUE) - preverdepth);
 		if (deepestuz < 1) deepestuz = 1; /* fail safe */
 
 	} else {
@@ -2640,10 +2786,12 @@ dooverview()
 	for (mptr = mapseenchn; mptr; mptr = mptr->next) {
 
 		/* only print out info for a level or a dungeon if interest */
-		if (interest_mapseen(mptr)) {
+		if (/*interest_mapseen(mptr)*/TRUE) {
 			printdun = (first || lastdun != mptr->lev.dnum);
 			/* if (!first) putstr(win, 0, ""); */
-			print_mapseen(win, mptr, printdun, FALSE);
+			if (/*interest_mapseen(mptr)*/TRUE) {
+				print_mapseen(win, mptr, printdun, FALSE, FALSE);
+			}
 
 			if (printdun) {
 				first = FALSE;
@@ -2673,7 +2821,7 @@ dump_overview()
 	for (mptr = mapseenchn; mptr; mptr = mptr->next) {
 
 		/* only print out info for a level or a dungeon if interest */
-		if (interest_mapseen(mptr)) {
+		if (/*interest_mapseen(mptr)*/TRUE) {
 			printdun = (first || lastdun != mptr->lev.dnum);
 
 			if (first) {
@@ -2681,7 +2829,7 @@ dump_overview()
 				 * be the output of the current level */
 				dump("", "Dungeon overview");
 			}
-			print_mapseen(win, mptr, printdun, TRUE);
+			print_mapseen(win, mptr, printdun, TRUE, TRUE);
 
 			if (printdun) {
 				first = FALSE;
@@ -2698,11 +2846,12 @@ dump_overview()
 #endif
 
 STATIC_OVL void
-print_mapseen(win, mptr, printdun, wantdump)
+print_mapseen(win, mptr, printdun, wantdump, alwaysdisplay)
 winid win;
 mapseen *mptr;
 boolean printdun;
 boolean wantdump;
+boolean alwaysdisplay;
 {
 	char buf[BUFSZ];
 	int i, depthstart;
@@ -2722,7 +2871,7 @@ boolean wantdump;
 		 * Amy edit: fuck that, the branch lengths are always the same anyway so might as well see it
 		 */
 		if (dungeons[mptr->lev.dnum].dunlev_ureached == 1 || In_endgame(&mptr->lev))
-			sprintf(buf, "%s:", dungeons[mptr->lev.dnum].dname);
+			sprintf(buf, "%s: level %d", dungeons[mptr->lev.dnum].dname, depthstart);
 		else
 			sprintf(buf, "%s: levels %d to %d", 
 				dungeons[mptr->lev.dnum].dname,
@@ -2736,6 +2885,10 @@ boolean wantdump;
 #endif
 		}
 	}
+
+	/* in-game, we don't need it to display every single level... but in the dumplog we want to see everything --Amy */
+	if (!alwaysdisplay && !wantdump && !(RngeOverviewImprovement && Is_special(&mptr->lev)) && !(wizard && Is_special(&mptr->lev)) && !(mptr->custom) && !(on_level(&u.uz, &mptr->lev)) )
+		return;
 
 	/* calculate level number */
 	i = depthstart + mptr->lev.dlevel - 1;
@@ -2754,8 +2907,9 @@ boolean wantdump;
 		sprintf(buf, "Level %d:", i);
 	
 #ifdef WIZARD
-	/* wizmode prints out proto dungeon names for clarity */
-	if (wizard) {
+	/* wizmode prints out proto dungeon names for clarity
+	 * Amy edit: and so does the dumplog, for that matter */
+	if (wizard || wantdump || RngeOverviewImprovement) {
 		s_level *slev;
 		if (slev = Is_special(&mptr->lev))
 			sprintf(eos(buf), " [%s]", slev->proto);

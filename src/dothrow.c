@@ -86,8 +86,11 @@ int thrown;
 	if (uarmh && uarmh->oartifact == ART_SURFACE_TO_AIR_SITE) multishot += 1;
 	if (uwep && uwep->oartifact == ART_LASER_PALADIN) multishot += 1;
 	if (uarmg && uarmg->oartifact == ART_WHINY_MARY) multishot += rnd(5);
+	if (uwep && uwep->oartifact == ART_GUNS_IN_MY_HEAD) multishot += 1;
+
 	if (Double_attack || (uwep && uwep->oartifact == ART_MELISSA_S_PEACEBRINGER && !u.twoweap) || (uwep && uwep->oartifact == ART_CRUSHING_IMPACT && !u.twoweap) ) multishot += rn2(multishot + 1);
 	if (Quad_attack) multishot += rn2(multishot * 3 + 1);
+
 	if ((long)multishot > obj->quan && (long)multishot > 1) multishot = (int)obj->quan;
 
 	    if ((shotlimit > 0) && (multishot > shotlimit)) multishot = shotlimit;
@@ -171,6 +174,11 @@ int thrown;
 		sprintf(killer_buf, "thrown petrifyium bar");
 		instapetrify(killer_buf);
 	}
+	if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && (obj->otyp == PETRIFYIUM_BRA)) {
+		You("throw the bra with your bare %s.", body_part(HAND));
+		sprintf(killer_buf, "thrown petrifyium bra");
+		instapetrify(killer_buf);
+	}
 	if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && (obj->otyp == EGG &&
 		    touch_petrifies(&mons[obj->corpsenm]) && obj->corpsenm != PM_PLAYERMON)) {
 		You("throw the %s egg with your bare %s.",
@@ -186,7 +194,7 @@ int thrown;
 	/* Multishot calculations
 	 */
 	skill = objects[obj->otyp].oc_skill;
-	if ((ammo_and_launcher(obj, uwep) || skill == P_DAGGER || skill == P_KNIFE || skill == P_BOOMERANG || skill == -P_BOOMERANG ||
+	if (( (ammo_and_launcher(obj, uwep) && !(uwep && uwep->otyp == LASERXBOW && !uwep->lamplit) ) || skill == P_DAGGER || skill == P_KNIFE || skill == P_BOOMERANG || skill == -P_BOOMERANG ||
 			skill == -P_DART || skill == -P_SHURIKEN || skill == P_SPEAR || skill == P_JAVELIN) &&
 		!( (Confusion && !Conf_resist) || (Stunned && !Stun_resist) )) {
 	    /* Bonus if the player is proficient in this weapon... */
@@ -210,6 +218,19 @@ int thrown;
 	    if (launcher && launcher->otyp == ELVEN_BOW &&
 	      !launcher->cursed && !rn2(3))
 		multishot++;
+
+	    if (launcher && launcher->oartifact == ART_MULTISHOTTEMSO && launcher->lamplit && !(PlayerCannotUseSkills)) {
+		switch (P_SKILL(P_DJEM_SO)) {
+			default:	break; /* No bonus */
+			case P_BASIC:	multishot++; break;
+			case P_SKILLED:	multishot += 2; break;
+			case P_EXPERT:	multishot += 3; break;
+			case P_MASTER:	multishot += 4; break;
+			case P_GRAND_MASTER:	multishot += 5; break;
+			case P_SUPREME_MASTER:	multishot += 6; break;
+		}
+	    }
+
 	    if (launcher && launcher->otyp == WILDHILD_BOW && obj->otyp == ODOR_SHOT) multishot++;
 	    if (launcher && launcher->otyp == COMPOST_BOW && obj->otyp == FORBIDDEN_ARROW) multishot++;
 
@@ -365,6 +386,10 @@ int thrown;
 		    You("let fly a volley of %s!", xname(obj));
 	    }
 
+	    if ( (objects[obj->otyp].oc_skill == -P_DAGGER || objects[obj->otyp].oc_skill == P_DAGGER || objects[obj->otyp].oc_skill == -P_DART || objects[obj->otyp].oc_skill == P_DART || objects[obj->otyp].oc_skill == -P_SHURIKEN || objects[obj->otyp].oc_skill == P_SHURIKEN || objects[obj->otyp].oc_skill == -P_BOOMERANG || objects[obj->otyp].oc_skill == P_BOOMERANG || objects[obj->otyp].oc_skill == -P_KNIFE || objects[obj->otyp].oc_skill == P_KNIFE || objects[obj->otyp].oc_skill == -P_SPEAR || objects[obj->otyp].oc_skill == P_SPEAR || objects[obj->otyp].oc_skill == -P_JAVELIN || objects[obj->otyp].oc_skill == P_JAVELIN) && uarmf && uarmf->oartifact == ART_H__S_GANGSTER_KICKS) {
+		multishot += 1;
+	    }
+
 	    if ( (objects[obj->otyp].oc_skill == -P_DAGGER || objects[obj->otyp].oc_skill == P_DAGGER || objects[obj->otyp].oc_skill == -P_DART || objects[obj->otyp].oc_skill == P_DART || objects[obj->otyp].oc_skill == -P_SHURIKEN || objects[obj->otyp].oc_skill == P_SHURIKEN || objects[obj->otyp].oc_skill == -P_BOOMERANG || objects[obj->otyp].oc_skill == P_BOOMERANG || objects[obj->otyp].oc_skill == -P_KNIFE || objects[obj->otyp].oc_skill == P_KNIFE || objects[obj->otyp].oc_skill == -P_SPEAR || objects[obj->otyp].oc_skill == P_SPEAR || objects[obj->otyp].oc_skill == -P_JAVELIN || objects[obj->otyp].oc_skill == P_JAVELIN) && tech_inuse(T_DOUBLE_THROWNAGE)) {
 		multishot += 1; multishot += rnd(multishot); /* Let'em rip! Extra bonus added by Amy. */
 
@@ -431,7 +456,7 @@ int thrown;
 
 	if (multishot > 1 && isfriday && !rn2(3)) multishot = rnd(multishot);
 
-	m_shot.s = ammo_and_launcher(obj,uwep) ? TRUE : FALSE;
+	m_shot.s = (ammo_and_launcher(obj, uwep) && !(uwep && uwep->otyp == LASERXBOW && !uwep->lamplit) ) ? TRUE : FALSE;
 	/* give a message if shooting more than one, or if player
 	   attempted to specify a count */
 	if (multishot > 1 || shotlimit > 0) {
@@ -449,9 +474,9 @@ int thrown;
 
 	if (tech_inuse(T_BLADE_ANGER) && (objects[obj->otyp].oc_skill == -P_SHURIKEN || objects[obj->otyp].oc_skill == P_SHURIKEN ) ) {
 		struct obj *pseudo;
-		pseudo = mksobj(SPE_BLANK_PAPER, FALSE, 2, FALSE);
+		pseudo = mksobj(SPE_BLADE_ANGER, FALSE, 2, FALSE);
 		if (!pseudo) goto bladeangerdone;
-		if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = SPE_BLANK_PAPER; /* minimalist fix */
+		if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = SPE_BLADE_ANGER; /* minimalist fix */
 		pseudo->blessed = pseudo->cursed = 0;
 		pseudo->quan = 20L;			/* do not let useup get it */
 		pseudo->spe = obj->spe;
@@ -491,11 +516,12 @@ int thrown;
 
 	}
 
-	if (tech_inuse(T_BEAMSWORD) && objects[obj->otyp].oc_skill == P_LIGHTSABER && obj->lamplit ) {
+	if ((tech_inuse(T_BEAMSWORD) || (obj && obj->oartifact == ART_LINK_S_MASTER_SWORD)) && is_lightsaber(obj) && obj->lamplit ) {
+		if (obj && obj->oartifact == ART_LINK_S_MASTER_SWORD) u.linkmasterswordhack = 1;
 		struct obj *pseudo;
-		pseudo = mksobj(SPE_BLANK_PAPER, FALSE, 2, FALSE);
+		pseudo = mksobj(SPE_BEAMSWORD, FALSE, 2, FALSE);
 		if (!pseudo) goto bladeangerdone;
-		if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = SPE_BLANK_PAPER; /* minimalist fix */
+		if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = SPE_BEAMSWORD; /* minimalist fix */
 		pseudo->blessed = pseudo->cursed = 0;
 		pseudo->quan = 20L;			/* do not let useup get it */
 		pseudo->spe = obj->spe;
@@ -1212,6 +1238,10 @@ boolean hitsroof;
 		if (!uarmh && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
 		    !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM)))
 		goto petrify;
+	case PETRIFYIUM_BRA:
+		if (!uarmh && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
+		    !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM)))
+		goto petrify;
 	case EGG:
 		if (touch_petrifies(&mons[ocorpsenm]) && ocorpsenm != PM_PLAYERMON &&
 		    !uarmh && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
@@ -1535,7 +1565,7 @@ int thrown;
 
 		/* KMH, balance patch -- new macros */
 		if (is_ammo(obj)) {
-		    if (ammo_and_launcher(obj, launcher)) {
+		    if ( (ammo_and_launcher(obj, launcher) && !(launcher && launcher->otyp == LASERXBOW && !launcher->lamplit) ) ) {
 			if (is_launcher(launcher) && 
 					objects[(launcher->otyp)].oc_range) 
 				range = objects[(launcher->otyp)].oc_range;
@@ -1548,7 +1578,7 @@ int thrown;
 		if (uarmh && uarmh->oartifact == ART_VIRUS_ATTACK) range += 2;
 		if (launcher && ammo_and_launcher(obj, launcher) && launcher->otyp == SNIPESLING && obj) range += 5;
 		if (launcher && ammo_and_launcher(obj, launcher) && launcher->otyp == BLUE_BOW && obj) range += 1;
-		if (launcher && ammo_and_launcher(obj, launcher) && obj && obj->otyp == ETHER_BOLT) range += 2;
+		if (launcher && (ammo_and_launcher(obj, launcher) && !(launcher && launcher->otyp == LASERXBOW && !launcher->lamplit) ) && obj && obj->otyp == ETHER_BOLT) range += 2;
 
 		if (Race_if(PM_ENGCHIP) && launcher && objects[launcher->otyp].oc_skill == P_BOW) range += 2;
 		if (Race_if(PM_ENGCHIP) && launcher && objects[launcher->otyp].oc_skill == P_CROSSBOW) range += 2;
@@ -1995,6 +2025,7 @@ boolean polearming;
 	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 149) tmp += 1;
 	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 199) tmp += 1;
 	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 249) tmp += 1;
+	if (StrongBlind_resistance) tmp += rn1(5, 5);
 
 	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 
@@ -2058,6 +2089,14 @@ boolean polearming;
 		tmp -= rnd(20);
 		if (!rn2(2)) tmp -= rnd(10);
 		if (!rn2(3)) tmp -= rnd(10);
+	}
+
+	if (Race_if(PM_SWIKNI)) {
+		if (obj) {
+			if (obj->oeroded) tmp -= ((obj->oeroded) * 2);
+			if (obj->oeroded2) tmp -= ((obj->oeroded2) * 2);
+		}
+
 	}
 
 	/* quarterback is highly skilled at shooting small round objects --Amy */
@@ -2206,6 +2245,11 @@ boolean polearming;
 		pline("%s swats the projectile away!", Monnam(mon));
 	}
 
+	if (mon->data == &mons[PM_LIGHTSABER_ART_JEDI] && rn2(15) && tmp > -20) {
+		tmp = -100;
+		pline("%s swats the projectile away!", Monnam(mon));
+	}
+
 	if (mon->data == &mons[PM_MR__CONCLUSIO] && rn2(15) && tmp > -20) {
 		tmp = -100;
 		pline("%s swats the projectile away!", Monnam(mon));
@@ -2286,6 +2330,7 @@ boolean polearming;
 			case TROLL_SHIELD:
 			case MAGICAL_SHIELD:
 			case SPECIAL_SHIELD:
+			case WEAPON_SIGN:
 				shieldblockrate = 30;
 				break;
 			case TARRIER:
@@ -2499,6 +2544,8 @@ boolean polearming;
 	    }
 	}
 
+	if (obj && launcher && ammo_and_launcher(obj, launcher) && launcher->otyp == LASERXBOW && launcher->lamplit && launcher->altmode) tmp += 5;
+
 /*	with a lot of luggage, your agility diminishes */
 	if (near_capacity()) tmp -= rnd(near_capacity() * 5);
 	if (u.utrap) tmp -= 5;
@@ -2607,6 +2654,14 @@ boolean polearming;
 		    (void) cutworm(mon, bhitpos.x, bhitpos.y, obj);
 		}
 		exercise(A_DEX, TRUE);
+
+		if (obj && obj->otyp == LASER_POLE) {
+			u.uvaapadturns++;
+			if (u.uvaapadturns >= 4) {
+				u.uvaapadturns = 0;
+				use_skill(P_VAAPAD, 1);
+			}
+		}
 
 		/* Detonate bolts shot by Hellfire */
 		if (ammo_and_launcher(obj, launcher) &&
@@ -2755,6 +2810,11 @@ boolean polearming;
 		if (obj && objects[obj->otyp].oc_material == MT_CERAMIC && !rn2(10) && obj->spe > -10) {
 			obj->spe--;
 		}
+
+		if (obj && obj->oartifact == ART_CHA_SHATTER && !rn2(3) && obj->spe > -20) {
+			obj->spe--;
+		}
+
 		passive_obj(mon, obj, (struct attack *)0);
 	    } else {
 		tmiss(obj, mon);

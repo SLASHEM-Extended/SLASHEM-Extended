@@ -274,6 +274,7 @@ Boots_on()
 	case DUMMY_BOOTS_AS:
 	case DUMMY_BOOTS_AT:
 	case DUMMY_BOOTS_AU:
+	case DUMMY_BOOTS_AV:
 		if (!uarmf->cursed) curse(uarmf);
 		break;
 
@@ -308,6 +309,19 @@ Boots_on()
 	case ALMUT_SNEAKERS:
 	case JULIETTA_PEEP_TOES:
 	case ARABELLA_HUGGING_BOOTS:
+	case KRISTIN_COMBAT_BOOTS:
+	case ANNA_HUGGING_BOOTS:
+	case RUEA_COMBAT_BOOTS:
+	case DORA_COMBAT_BOOTS:
+	case MARIKE_SNEAKERS:
+	case JETTE_COMBAT_BOOTS:
+	case INA_HUGGING_BOOTS:
+	case SING_PLATFORM_BOOTS:
+	case VICTORIA_COMBAT_BOOTS:
+	case MELISSA_WEDGE_BOOTS:
+	case ANITA_LADY_PUMPS:
+	case HENRIETTA_COMBAT_BOOTS:
+	case VERENA_STILETTO_SANDALS:
 
 		if (!uarmf->cursed) {
 			pline("Oh whoops, your footwear welds itself to your %s. This might be the result of a curse.%s", makeplural(body_part(FOOT)), FunnyHallu ? " (Thank you, Captain Obvious.)" : "" );
@@ -382,6 +396,13 @@ Boots_on()
 			u.ugangr += 3;
 			pline("You hear a frightening crash in the distance...");
 		}
+    }
+
+    if (uarmf && uarmf->oartifact == ART_PRACTICLASSY && !flags.hybridbeacher && !(quest_status.killed_nemesis)) {
+		flags.hybridbeacher = TRUE;
+		flags.hybridization++;
+		pline("%s thunders: 'Alright %s you little practicant maggot, get ready for another hard day of work! You're late by 5 minutes but that's your loss! If you do your work properly this time you'll not get any problems with me, but if you step out of line you'll pay zorkmids for each of your offenses!'", noroelaname(), playeraliasname);
+
     }
 
     if (uarmf && uarmf->oartifact == ART_MEPHISTO_S_BROGUES) {
@@ -525,6 +546,8 @@ Boots_on()
 			pline("Congratulations, you can now walk around in a pair of boots that won't come off, and whose previous owner fully stepped into a heap of dog shit.");
 		}
     }
+
+    if (uarmf && uarmf->oartifact == ART_RATCH_CLOSURE_SCRATCHING && uarmf->spe < 1) uarmf->spe++;
 
 	if (uarmf && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uarmf);
 
@@ -670,6 +693,7 @@ Boots_off()
 	case DUMMY_BOOTS_AS:
 	case DUMMY_BOOTS_AT:
 	case DUMMY_BOOTS_AU:
+	case DUMMY_BOOTS_AV:
 	case DISCONNECTED_BOOTS:
 	case BOSS_BOOTS:
 	case SENTIENT_HIGH_HEELED_SHOES:
@@ -775,6 +799,19 @@ Boots_off()
 	case ALMUT_SNEAKERS:
 	case JULIETTA_PEEP_TOES:
 	case ARABELLA_HUGGING_BOOTS:
+	case KRISTIN_COMBAT_BOOTS:
+	case ANNA_HUGGING_BOOTS:
+	case RUEA_COMBAT_BOOTS:
+	case DORA_COMBAT_BOOTS:
+	case MARIKE_SNEAKERS:
+	case JETTE_COMBAT_BOOTS:
+	case INA_HUGGING_BOOTS:
+	case SING_PLATFORM_BOOTS:
+	case VICTORIA_COMBAT_BOOTS:
+	case MELISSA_WEDGE_BOOTS:
+	case ANITA_LADY_PUMPS:
+	case HENRIETTA_COMBAT_BOOTS:
+	case VERENA_STILETTO_SANDALS:
 		break;
 	case HIPPIE_HEELS:
 
@@ -863,6 +900,8 @@ Cloak_on()
 	case COCLOAK:
 	case CLOAK_OF_HEALTH:
 	case CLOAK_OF_DISCOVERY:
+	case CLOAK_OF_BLINDNESS_RESISTANCE:
+	case CLOAK_OF_HALLUCINATION_RESISTA:
 	case BIONIC_CLOAK:
 	case CLOAK_OF_PORTATION:
 	case CLOAK_OF_CONTROL:
@@ -1258,6 +1297,8 @@ Cloak_on()
 				incrnknow(i);
 				pline("You gain the power of Eru Illuvator!");
 
+				if (u.emynluincomplete) boostknow(i, 1000);
+
 				if (!PlayerCannotUseSkills && P_SKILL(P_MEMORIZATION) >= P_BASIC) {
 
 					char nervbuf[QBUFSZ];
@@ -1542,6 +1583,8 @@ Cloak_off()
 	case COCLOAK:
 	case CLOAK_OF_HEALTH:
 	case CLOAK_OF_DISCOVERY:
+	case CLOAK_OF_BLINDNESS_RESISTANCE:
+	case CLOAK_OF_HALLUCINATION_RESISTA:
 	case BIONIC_CLOAK:
 	case CLOAK_OF_PORTATION:
 	case CLOAK_OF_CONTROL:
@@ -2430,6 +2473,11 @@ Gloves_on()
 	default: impossible(unknown_type_long, c_gloves, uarmg->otyp);
     }
 
+    if (uarmg && uarmg->oartifact == ART_JONADAB_S_METAL_GUARD && (objects[uarmg->otyp].oc_material != MT_IRON)) {
+		pline_The("pair of gloves turns into iron gauntlets!");
+		objects[uarmg->otyp].oc_material = MT_IRON;
+    }
+
     if (uarmg && itemhasappearance(uarmg, APP_SPANISH_GLOVES) ) {
 	      if (!uarmg->cursed) {
 			curse(uarmg);
@@ -2737,6 +2785,16 @@ Gloves_off()
 
     }
 
+    if (uwep && uwep->otyp == PETRIFYIUM_BRA) {
+	char kbuf[BUFSZ];
+
+	You("wield the bra in your bare %s.", body_part(HAND));
+	strcpy(kbuf, "petrifyium bra");
+	instapetrify(kbuf);
+	uwepgone();  /* life-saved still doesn't allow touching cockatrice */
+
+    }
+
     /* KMH -- ...or your secondary weapon when you're wielding it */
     if (u.twoweap && uswapwep && uswapwep->otyp == CORPSE &&
 	touch_petrifies(&mons[uswapwep->corpsenm])) {
@@ -2786,6 +2844,7 @@ Shield_on()
 	case ICKY_SHIELD:
 	case HEAVY_SHIELD:
 	case BARRIER_SHIELD:
+	case WEAPON_SIGN:
 	case TROLL_SHIELD:
 	case TARRIER:
 	case CHROME_SHIELD:
@@ -2972,6 +3031,7 @@ Shield_off()
 	case ICKY_SHIELD:
 	case HEAVY_SHIELD:
 	case BARRIER_SHIELD:
+	case WEAPON_SIGN:
 	case TROLL_SHIELD:
 	case CHROME_SHIELD:
 	case ANTISHADOW_SHIELD:
@@ -3068,6 +3128,20 @@ Shirt_on()
 			pline("Your shirt tickles comfortably on your smooth skin!");
 			}
 		}
+
+	}
+
+	if (uarmu->otyp == PETRIFYIUM_BRA && (!Stone_resistance || (!IntStone_resistance && !rn2(20))) && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM)) ) {
+		if (!Stoned) {
+			if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
+			else {
+				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				u.cnd_stoningcount++;
+				pline("You start turning to stone!");
+			}
+		}
+		sprintf(killer_buf, "wearing a petrifyium bra");
+		delayed_killer = killer_buf;
 
 	}
 
@@ -3491,6 +3565,13 @@ Amulet_on()
 		break;
 	case AMULET_OF_DATA_STORAGE:
 		You_feel("full of knowledge.");
+		break;
+	case AMULET_OF_CLIMBING:
+		You_feel("ready for climbing.");
+		makeknown(AMULET_OF_CLIMBING);
+		break;
+	case AMULET_OF_GUARDING:
+		makeknown(AMULET_OF_GUARDING);
 		break;
 	case AMULET_OF_YENDOR:
 		break;
@@ -3990,6 +4071,14 @@ register struct obj *obj;
 		    update_inventory();
 		}
 		break;
+	case RIN_THREE_POINT_SEVEN_PROTECTI:
+		if (obj->spe || objects[RIN_THREE_POINT_SEVEN_PROTECTI].oc_name_known) {
+		    flags.botl = 1;
+		    makeknown(RIN_THREE_POINT_SEVEN_PROTECTI);
+		    obj->known = 1;
+		    update_inventory();
+		}
+		break;
     }
 
     if (obj->oartifact == ART_RING_OF_WOE) {
@@ -4228,6 +4317,14 @@ boolean gone;
 		if (obj->spe) {
 		    flags.botl = 1;
 		    makeknown(RIN_PROTECTION);
+		    obj->known = 1;
+		    update_inventory();
+		}
+	case RIN_THREE_POINT_SEVEN_PROTECTI:
+		/* might have forgotten it due to amnesia */
+		if (obj->spe) {
+		    flags.botl = 1;
+		    makeknown(RIN_THREE_POINT_SEVEN_PROTECTI);
 		    obj->known = 1;
 		    update_inventory();
 		}
@@ -5160,6 +5257,8 @@ doputon()
 					already_wearing("a condome");
 			else if (ublindf->otyp == SOFT_CHASTITY_BELT)
 					already_wearing("a condome");
+			else if (ublindf->otyp == CLIMBING_SET)
+					already_wearing("a climbing set");
 			else if (ublindf->otyp == BLINDFOLD || ublindf->otyp == EYECLOSER || ublindf->otyp == DRAGON_EYEPATCH) {
 				if (otmp->otyp == LENSES || otmp->otyp == RADIOGLASSES || otmp->otyp == BOSS_VISOR)
 					already_wearing2("lenses", "a blindfold");
@@ -5225,6 +5324,8 @@ find_ac()
 
 	if(uleft && uleft->otyp == RIN_PROTECTION) uac -= uleft->spe;
 	if(uright && uright->otyp == RIN_PROTECTION) uac -= uright->spe;
+	if(uleft && uleft->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) uac -= uleft->spe;
+	if(uright && uright->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) uac -= uright->spe;
 	if (HProtection & INTRINSIC) uac -= u.ublessed;
 	uac -= u.uspellprot;
 
@@ -5318,6 +5419,8 @@ find_ac()
 	if (Race_if(PM_MAYMES) && uarm && uarm->otyp == ROBE_OF_PROTECTION) uac -= 2;
 	if (Race_if(PM_MAYMES) && uleft && uleft->otyp == RIN_PROTECTION) uac -= 2;
 	if (Race_if(PM_MAYMES) && uright && uright->otyp == RIN_PROTECTION) uac -= 2;
+	if (Race_if(PM_MAYMES) && uleft && uleft->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) uac -= 2;
+	if (Race_if(PM_MAYMES) && uright && uright->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) uac -= 2;
 	if (Race_if(PM_FRO)) uac -= 2;
 
 	if (Race_if(PM_BOVER)) {
@@ -5593,6 +5696,37 @@ find_ac()
 		if (uarms) uac -= 5;
 	}
 
+	if (Race_if(PM_SWIKNI)) {
+		if (uarmc) {
+			uac += (uarmc->oeroded * 2);
+			uac += (uarmc->oeroded2 * 2);
+		}
+		if (uarm) {
+			uac += (uarm->oeroded * 2);
+			uac += (uarm->oeroded2 * 2);
+		}
+		if (uarmu) {
+			uac += (uarmu->oeroded * 2);
+			uac += (uarmu->oeroded2 * 2);
+		}
+		if (uarms) {
+			uac += (uarms->oeroded * 2);
+			uac += (uarms->oeroded2 * 2);
+		}
+		if (uarmh) {
+			uac += (uarmh->oeroded * 2);
+			uac += (uarmh->oeroded2 * 2);
+		}
+		if (uarmf) {
+			uac += (uarmf->oeroded * 2);
+			uac += (uarmf->oeroded2 * 2);
+		}
+		if (uarmg) {
+			uac += (uarmg->oeroded * 2);
+			uac += (uarmg->oeroded2 * 2);
+		}
+	}
+
 	if (uarmc && objects[(uarmc)->otyp].oc_material == MT_VIVA) {
 		uac -= (uarmc->oeroded * 2);
 		uac -= (uarmc->oeroded2 * 2);
@@ -5764,6 +5898,14 @@ find_ac()
 		
 	}
 
+	if (Role_if(PM_DANCER)) { /* glass cannon */
+		int difference = (-(uac - 10));
+		difference = difference / 2;
+		if (difference > 0) uac = 10 - difference;
+		else uac = 10;
+		
+	}
+
 	/* heavy two-handed weapons should have a disadvantage to make up for the fact that they deal great damage and
 	 * don't suffer from low to-hit like dual-wielded one-handed weapons do. These are basically all two-handers that
 	 * are meant to be used in melee, so e.g. bows are unaffected but also polearms because those are already balanced
@@ -5877,7 +6019,7 @@ glibr()
 			makeplural(body_part(HAND)));
 		setuswapwep((struct obj *)0, FALSE);
 		xfl++;
-		if ( (otmp->otyp != LOADSTONE && otmp->otyp != HEALTHSTONE && otmp->otyp != LUCKSTONE && otmp->otyp != MANASTONE && otmp->otyp != SLEEPSTONE && otmp->otyp != LOADBOULDER && otmp->otyp != STARLIGHTSTONE && otmp->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(otmp) ) || !otmp->cursed)
+		if (( (otmp->otyp != LOADSTONE && otmp->otyp != HEALTHSTONE && otmp->otyp != LUCKSTONE && otmp->otyp != MANASTONE && otmp->otyp != SLEEPSTONE && otmp->otyp != LOADBOULDER && otmp->otyp != STARLIGHTSTONE && otmp->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(otmp) && !is_feminismstone(otmp) ) || !otmp->cursed) && !(otmp->otyp == LUCKSTONE && isevilvariant && !otmp->cursed && !otmp->blessed && Luck < 0))
 			dropx(otmp);
 	}
 	otmp = uwep;
@@ -5895,7 +6037,7 @@ glibr()
 			xfl ? "also " : "",
 			makeplural(body_part(HAND)));
 		setuwep((struct obj *)0, FALSE, TRUE);
-		if ( (otmp->otyp != LOADSTONE && otmp->otyp != HEALTHSTONE && otmp->otyp != LUCKSTONE && otmp->otyp != MANASTONE && otmp->otyp != SLEEPSTONE && otmp->otyp != LOADBOULDER && otmp->otyp != STARLIGHTSTONE && otmp->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(otmp) ) || !otmp->cursed)
+		if (( (otmp->otyp != LOADSTONE && otmp->otyp != HEALTHSTONE && otmp->otyp != LUCKSTONE && otmp->otyp != MANASTONE && otmp->otyp != SLEEPSTONE && otmp->otyp != LOADBOULDER && otmp->otyp != STARLIGHTSTONE && otmp->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(otmp) && !is_feminismstone(otmp) ) || !otmp->cursed) && !(otmp->otyp == LUCKSTONE && isevilvariant && !otmp->cursed && !otmp->blessed && Luck < 0))
 			dropx(otmp);
 	}
 }

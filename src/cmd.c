@@ -992,6 +992,12 @@ int traitno;
 			return "monsters whose attacks un-erosionproof your gear";
 		case 376:
 			return "monsters who nivellate your HP and Pw";
+		case 377:
+			return "monsters whose attacks drain your technique levels";
+		case 378:
+			return "monsters with blasphemy attacks";
+		case 379:
+			return "monsters whose attack makes you trip and drop your items";
 
 		default:
 			impossible("bad trait no %d, please update montraitname() in cmd.c", traitno);
@@ -1504,6 +1510,16 @@ domonability()
 	} else if ( (is_unicorn(youmonst.data) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT && uactivesymbiosis && is_unicorn(&mons[u.usymbiote.mnum])) || (Race_if(PM_PLAYER_UNICORN) && !Upolyd) ) && yn("Do you want to cure yourself with your horn?")=='y' ) {
 	    use_unicorn_horn((struct obj *)0);
 	    return 1;
+	} else if ( (youmonst.data->msound == MS_CONVERT || (Race_if(PM_TURMENE) && !Upolyd) || (Race_if(PM_EGYMID) && !Upolyd) || (Race_if(PM_PERVERT) && !Upolyd) || (Race_if(PM_IRAHA) && !Upolyd) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_CONVERT )) && yn("Do you want to preach conversion sermon?")=='y' ) {
+		playermsconvert();
+	} else if ((youmonst.data->msound == MS_HCALIEN || (Race_if(PM_HC_ALIEN) && !Upolyd) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_HCALIEN )) && yn("Do you want to chant a wouwou taunt?")=='y' ) {
+		playerwouwoutaunt();
+	} else if ((youmonst.data->msound == MS_WHORE || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_WHORE )) && yn("Do you want to use your sexiness against the monsters?")=='y' ) {
+		playerwhoretalk();
+	} else if ((youmonst.data->msound == MS_SUPERMAN || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_GRAND_MASTER && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_SUPERMAN )) && yn("Do you want to make a superman taunt?")=='y' ) {
+		playersupermantaunt();
+	} else if ((youmonst.data->msound == MS_BONES || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_BONES )) && yn("Do you want to rattle?")=='y' ) {
+		playerrattlebones();
 	} else if ((youmonst.data->msound == MS_SHRIEK || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_SHRIEK )) && yn("Do you want to shriek?")=='y' ) {
 	    You("shriek.");
 	    if(u.uburied)
@@ -1654,8 +1670,43 @@ domonability()
 
 			return 1;
 		}
-	} else if (Role_if(PM_HUSSY) && !u.hussyperfume && ((!Upolyd && flags.female) || (Upolyd && youmonst.data->msound == MS_STENCH)) && yn("Do you want to spread your scentful perfume?") == 'y') {
+	} else if ( ( (Role_if(PM_HUSSY) && (!Upolyd && flags.female)) || (uarmf && uarmf->oartifact == ART_ANJA_S_WIDE_FIELD) || (uarmf && uarmf->oartifact == ART_SCRATCHE_HUSSY) || have_femityjewel() || (PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_STENCH) || (Upolyd && youmonst.data->msound == MS_STENCH) ) && !u.hussyperfume && yn("Do you want to spread your scentful perfume?") == 'y') {
 		You("spread the lovely feminine drum stint reluctance brand perfume to intoxicate monsters around you!");
+
+		if (have_femityjewel()) {
+			int attempts = 0;
+			struct permonst *pm = 0;
+
+			EntireLevelMode += 1; /* make sure that their M3_UNCOMMON5 doesn't get in the way --Amy */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+newbossSTEN:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_STENCH ))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossSTEN;
+			}
+			if (pm && !(pm->msound == MS_STENCH) && rn2(50) ) {
+				attempts = 0;
+				goto newbossSTEN;
+			}
+
+			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
+
+			u.aggravation = 0;
+
+		}
+
 		int mondistance = 0;
 		struct monst *mtmp3;
 		int k, l;
@@ -2909,6 +2960,11 @@ boolean guaranteed;
 		enl_msg("Monster death drops ", "spawn with only", "spawned with only", buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && u.hiddenpowerskill && (wizard || (!rn2(100)) || final >= 1 ) ) {
+		sprintf(buf, " %s", wpskillname(u.hiddenpowerskill));
+		enl_msg("Mastering the following skill ", "teaches you the hidden power:", "taught you the hidden power:", buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && u.untrainableskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
 		sprintf(buf, " %s", wpskillname(u.untrainableskill));
 		enl_msg("The following skill ", "cannot be trained at all:", "could not be trained at all:", buf);
@@ -3645,6 +3701,8 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && Fear_resistance) you_are(StrongFear_resistance ? "highly resistant to fear" : "resistant to fear");
 	if ((guaranteed || !rn2(10)) && Stone_resistance)
 		you_are(StrongStone_resistance ? "completely immune to petrification" : IntStone_resistance ? "immune to petrification" : "petrification resistant");
+	if ((guaranteed || !rn2(10)) && Astral_vision)
+		you_have(StrongAstral_vision ? "super-x-ray vision" : "x-ray vision");
 	if ((guaranteed || !rn2(10)) && Invulnerable) {
 		sprintf(buf, "invulnerable");
 	    if (wizard || (!rn2(10)) || final >= 1  ) sprintf(eos(buf), " (%ld)", Invulnerable);
@@ -3666,8 +3724,14 @@ boolean guaranteed;
 		you_are(buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && Halluc_resistance)
-		enl_msg("You resist", "", "ed", " hallucinations");
+	if ((guaranteed || !rn2(10)) && Halluc_resistance) {
+		if (StrongHalluc_resistance) enl_msg("You strongly resist", "", "ed", " hallucinations");
+		else enl_msg("You resist", "", "ed", " hallucinations");
+	}
+	if ((guaranteed || !rn2(10)) && Blind_resistance) {
+		if (StrongBlind_resistance) enl_msg("You strongly resist", "", "ed", " blindness");
+		else enl_msg("You resist", "", "ed", " blindness");
+	}
 	/*if (final) { */
 	if ((guaranteed || !rn2(10)) && Hallucination) {
 		if (HeavyHallu) sprintf(buf, "badly hallucinating");
@@ -5426,6 +5490,84 @@ boolean guaranteed;
 		you_are(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && FemtrapActiveKristin) {
+		sprintf(buf, "possessed by the ghost of Kristin.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapKristin);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveAnna) {
+		sprintf(buf, "possessed by the ghost of Anna.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapAnna);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveRuea) {
+		sprintf(buf, "possessed by the ghost of Ruea.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapRuea);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveDora) {
+		sprintf(buf, "possessed by the ghost of Dora.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapDora);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveMarike) {
+		sprintf(buf, "possessed by the ghost of Marike.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapMarike);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveJette) {
+		sprintf(buf, "possessed by the ghost of Jette.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapJette);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveIna) {
+		sprintf(buf, "possessed by the ghost of Ina.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapIna);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveSing) {
+		sprintf(buf, "possessed by the ghost of Sing.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapSing);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveVictoria) {
+		sprintf(buf, "possessed by the ghost of Victoria.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapVictoria);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveMelissa) {
+		sprintf(buf, "possessed by the ghost of Melissa.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapMelissa);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveAnita) {
+		sprintf(buf, "possessed by the ghost of Anita.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapAnita);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveHenrietta) {
+		sprintf(buf, "possessed by the ghost of Henrietta.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapHenrietta);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveVerena) {
+		sprintf(buf, "possessed by the ghost of Verena.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapVerena);
+		you_are(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && Race_if(PM_PERVERT)) {
 		sprintf(buf, "had sex the last time this many turns ago:");
 		sprintf(eos(buf), " %d", u.pervertsex);
@@ -6079,6 +6221,36 @@ boolean guaranteed;
 		you_are(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && NoAstral_vision && (final || u.uprops[DEAC_ASTRAL_VISION].intrinsic) ) {
+		sprintf(buf, "prevented from having astral vision");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", u.uprops[DEAC_ASTRAL_VISION].intrinsic);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && NoBlind_resistance && (final || u.uprops[DEAC_BLIND_RES].intrinsic) ) {
+		sprintf(buf, "prevented from having blindness resistance");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", u.uprops[DEAC_BLIND_RES].intrinsic);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && NoHalluc_resistance && (final || u.uprops[DEAC_HALLUC_RES].intrinsic) ) {
+		sprintf(buf, "prevented from having hallucination resistance");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", u.uprops[DEAC_HALLUC_RES].intrinsic);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.badfcursed) {
+		sprintf(buf, "cursed");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", u.badfcursed);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.badfdoomed) {
+		sprintf(buf, "DOOMED");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", u.badfdoomed);
+		you_are(buf);
+	}
+
 	int shieldblockrate = 0;
 
 	if ((guaranteed || !rn2(10)) && uarms) {
@@ -6104,6 +6276,7 @@ boolean guaranteed;
 		case TROLL_SHIELD:
 		case MAGICAL_SHIELD:
 		case SPECIAL_SHIELD:
+		case WEAPON_SIGN:
 			shieldblockrate = 20;
 			break;
 		case TARRIER:
@@ -6275,6 +6448,8 @@ boolean guaranteed;
 			shieldblockrate *= 2;
 			shieldblockrate /= 3;
 		}
+
+		if (Role_if(PM_DANCER)) shieldblockrate /= 2;
 
 		if (shieldblockrate < 0) shieldblockrate = 0;
 
@@ -6542,7 +6717,9 @@ boolean guaranteed;
 	    int prot = 0;
 
 	    if(uleft && uleft->otyp == RIN_PROTECTION) prot += uleft->spe;
+	    if(uleft && uleft->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) prot += uleft->spe;
 	    if(uright && uright->otyp == RIN_PROTECTION) prot += uright->spe;
+	    if(uright && uright->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) prot += uright->spe;
 	    if (HProtection & INTRINSIC) prot += u.ublessed;
 	    prot += u.uspellprot;
 
@@ -6980,6 +7157,11 @@ int final;
 	if (u.usefulitemchance) {
 		sprintf(buf, " %d%% chance", 100 - u.usefulitemchance);
 		dump("  Monster death drops spawned with only", buf);
+	}
+
+	if (u.hiddenpowerskill) {
+		sprintf(buf, " %s", wpskillname(u.hiddenpowerskill));
+		dump("  Mastering the following skill taught you the hidden power:", buf);
 	}
 
 	if (u.untrainableskill) {
@@ -7597,6 +7779,7 @@ int final;
 	if (Acid_resistance) dump(youwere, StrongAcid_resistance ? "doubly acid resistant" : "acid resistant");
 	if (Fear_resistance) dump(youwere, StrongFear_resistance ? "highly resistant to fear" : "resistant to fear");
 	if (Stone_resistance) dump(youwere, StrongStone_resistance ? "completely immune to petrification" : IntStone_resistance ? "immune to petrification" : "petrification resistant");
+	if (Astral_vision) dump(youhad, StrongAstral_vision ? "super-x-ray vision" : "x-ray vision");
 	if (Invulnerable) dump(youwere, "invulnerable");
 	if (u.urealedibility) {
 		sprintf(buf, "recognize detrimental food");
@@ -7612,7 +7795,14 @@ int final;
 		dump(youwere, buf);
 	}
 
-	if (Halluc_resistance) 	dump("  ", "You resisted hallucinations");
+	if (Halluc_resistance) {
+		if (StrongHalluc_resistance) dump("  ", "You strongly resisted hallucinations");
+		else dump("  ", "You resisted hallucinations");
+	}
+	if (Blind_resistance) {
+		if (StrongBlind_resistance) dump("  ", "You strongly resisted blindness");
+		else dump("  ", "You resisted blindness");
+	}
 	if (Hallucination) {
 		if (HeavyHallu) sprintf(buf, "badly hallucinating");
 		else sprintf(buf, "hallucinating");
@@ -9359,6 +9549,84 @@ int final;
 		dump(youwere, buf);
 	}
 
+	if (FemtrapActiveKristin) {
+		sprintf(buf, "possessed by the ghost of Kristin.");
+	      sprintf(eos(buf), " (%ld)", FemaleTrapKristin);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveAnna) {
+		sprintf(buf, "possessed by the ghost of Anna.");
+	      sprintf(eos(buf), " (%ld)", FemaleTrapAnna);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveRuea) {
+		sprintf(buf, "possessed by the ghost of Ruea.");
+	      sprintf(eos(buf), " (%ld)", FemaleTrapRuea);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveDora) {
+		sprintf(buf, "possessed by the ghost of Dora.");
+	      sprintf(eos(buf), " (%ld)", FemaleTrapDora);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveMarike) {
+		sprintf(buf, "possessed by the ghost of Marike.");
+	      sprintf(eos(buf), " (%ld)", FemaleTrapMarike);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveJette) {
+		sprintf(buf, "possessed by the ghost of Jette.");
+	      sprintf(eos(buf), " (%ld)", FemaleTrapJette);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveIna) {
+		sprintf(buf, "possessed by the ghost of Ina.");
+	      sprintf(eos(buf), " (%ld)", FemaleTrapIna);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveSing) {
+		sprintf(buf, "possessed by the ghost of Sing.");
+	      sprintf(eos(buf), " (%ld)", FemaleTrapSing);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveVictoria) {
+		sprintf(buf, "possessed by the ghost of Victoria.");
+	      sprintf(eos(buf), " (%ld)", FemaleTrapVictoria);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveMelissa) {
+		sprintf(buf, "possessed by the ghost of Melissa.");
+	      sprintf(eos(buf), " (%ld)", FemaleTrapMelissa);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveAnita) {
+		sprintf(buf, "possessed by the ghost of Anita.");
+	      sprintf(eos(buf), " (%ld)", FemaleTrapAnita);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveHenrietta) {
+		sprintf(buf, "possessed by the ghost of Henrietta.");
+	      sprintf(eos(buf), " (%ld)", FemaleTrapHenrietta);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveVerena) {
+		sprintf(buf, "possessed by the ghost of Verena.");
+	      sprintf(eos(buf), " (%ld)", FemaleTrapVerena);
+		dump(youwere, buf);
+	}
+
 	if (Race_if(PM_PERVERT)) {
 		sprintf(buf, "had sex the last time this many turns ago:");
 		sprintf(eos(buf), " %d", u.pervertsex);
@@ -10007,6 +10275,36 @@ int final;
 		dump(youwere, buf);
 	}
 
+	if (NoAstral_vision) {
+		sprintf(buf, "prevented from having astral vision");
+		sprintf(eos(buf), " (%ld)", u.uprops[DEAC_ASTRAL_VISION].intrinsic);
+		dump(youwere, buf);
+	}
+
+	if (NoBlind_resistance) {
+		sprintf(buf, "prevented from having blindness resistance");
+		sprintf(eos(buf), " (%ld)", u.uprops[DEAC_BLIND_RES].intrinsic);
+		dump(youwere, buf);
+	}
+
+	if (NoHalluc_resistance) {
+		sprintf(buf, "prevented from having hallucination resistance");
+		sprintf(eos(buf), " (%ld)", u.uprops[DEAC_HALLUC_RES].intrinsic);
+		dump(youwere, buf);
+	}
+
+	if (u.badfcursed) {
+		sprintf(buf, "cursed");
+		sprintf(eos(buf), " (%d)", u.badfcursed);
+		dump(youwere, buf);
+	}
+
+	if (u.badfdoomed) {
+		sprintf(buf, "DOOMED");
+		sprintf(eos(buf), " (%d)", u.badfdoomed);
+		dump(youwere, buf);
+	}
+
 	int shieldblockrate = 0;
 
 	if (uarms) {
@@ -10032,6 +10330,7 @@ int final;
 		case TROLL_SHIELD:
 		case MAGICAL_SHIELD:
 		case SPECIAL_SHIELD:
+		case WEAPON_SIGN:
 			shieldblockrate = 20;
 			break;
 		case TARRIER:
@@ -10203,6 +10502,8 @@ int final;
 			shieldblockrate *= 2;
 			shieldblockrate /= 3;
 		}
+
+		if (Role_if(PM_DANCER)) shieldblockrate /= 2;
 
 		if (shieldblockrate < 0) shieldblockrate = 0;
 
@@ -10435,7 +10736,9 @@ int final;
 	    int prot = 0;
 
 	    if(uleft && uleft->otyp == RIN_PROTECTION) prot += uleft->spe;
+	    if(uleft && uleft->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) prot += uleft->spe;
 	    if(uright && uright->otyp == RIN_PROTECTION) prot += uright->spe;
+	    if(uright && uright->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) prot += uright->spe;
 	    if (HProtection & INTRINSIC) prot += u.ublessed;
 	    prot += u.uspellprot;
 	    
@@ -11505,6 +11808,10 @@ int final;
 		sprintf(buf, "%d time%s", u.cnd_forcecount, plur(u.cnd_forcecount));
 		enl_msg(You_, "have used the force against an enemy ", "used the force against an enemy ", buf);
 	}
+	if (u.cnd_forcebuttcount) {
+		sprintf(buf, "%d time%s", u.cnd_forcebuttcount, plur(u.cnd_forcebuttcount));
+		enl_msg(You_, "have bashed hostile butt cheeks ", "bashed hostile butt cheeks ", buf);
+	}
 	if (u.cnd_kickmonstercount) {
 		sprintf(buf, "%d time%s", u.cnd_kickmonstercount, plur(u.cnd_kickmonstercount));
 		enl_msg(You_, "have kicked monsters ", "kicked monsters ", buf);
@@ -11805,6 +12112,14 @@ int final;
 	if (u.cnd_vomitingcount) {
 		sprintf(buf, "%d time%s", u.cnd_vomitingcount, plur(u.cnd_vomitingcount));
 		enl_msg(You_, "have vomited ", "vomited ", buf);
+	}
+	if (u.cnd_cwnannwncount) {
+		sprintf(buf, "%d time%s", u.cnd_cwnannwncount, plur(u.cnd_cwnannwncount));
+		enl_msg(You_, "were low on health ", "were low on health ", buf);
+	}
+	if (u.cnd_bansheecount) {
+		sprintf(buf, "%d time%s", u.cnd_bansheecount, plur(u.cnd_bansheecount));
+		enl_msg(You_, "were down to your last hit point ", "were down to your last hit point ", buf);
 	}
 
 	/* Pop up the window and wait for a key */
@@ -12135,6 +12450,9 @@ int final;
 	sprintf(buf, "%d time%s", u.cnd_forcecount, plur(u.cnd_forcecount));
 	dump("  You used the force against an enemy ", buf);
 
+	sprintf(buf, "%d time%s", u.cnd_forcebuttcount, plur(u.cnd_forcebuttcount));
+	dump("  You bashed hostile butt cheeks ", buf);
+
 	sprintf(buf, "%d time%s", u.cnd_kickmonstercount, plur(u.cnd_kickmonstercount));
 	dump("  You kicked monsters ", buf);
 
@@ -12361,6 +12679,12 @@ int final;
 	sprintf(buf, "%d time%s", u.cnd_vomitingcount, plur(u.cnd_vomitingcount));
 	dump("  You vomited ", buf);
 
+	sprintf(buf, "%d time%s", u.cnd_cwnannwncount, plur(u.cnd_cwnannwncount));
+	dump("  You were low on health ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_bansheecount, plur(u.cnd_bansheecount));
+	dump("  You were down to your last hit point ", buf);
+
 	dump("", "");
 }
 #endif /* DUMP_LOG */
@@ -12434,9 +12758,10 @@ struct ext_func_tab extcmdlist[] = {
 	{"overview", "show an overview of the dungeon", dooverview, TRUE, AUTOCOMPLETE},
 	{"pray", "pray to the gods for help", dopray, IFBURIED, AUTOCOMPLETE},
 	{"quit", "exit without saving current game", done2, IFBURIED, AUTOCOMPLETE},
+	{"stackmark", "mark an item to not merge", dostackmark, TRUE, AUTOCOMPLETE},
 
 	{"apply", "apply (use) a tool (pick-axe, key, lamp...)", doapply, !IFBURIED},
-	{"removeimarkers", "remove all \"I\"s, remembered, unseen creatures from the level", doremoveimarkers, IFBURIED},
+	{"removeimarkers", "remove all \"I\"s, remembered, unseen creatures from the level", doremoveimarkers, IFBURIED, AUTOCOMPLETE},
 	{"spelldelete", "delete lowest spell in the list (must be forgotten)", dodeletespell, IFBURIED, AUTOCOMPLETE},
 	{"attributes", "show your attributes (intrinsic ones included in debug or explore mode)", doattributes, IFBURIED},
 	{"close", "close a door", doclose, !IFBURIED},
@@ -13532,7 +13857,8 @@ register char *cmd;
 			if (isevilvariant) done(QUIT);
 		}
 
-		if (rn2(1000) < autopilotchance) {
+		/* always at least 1% chance of having the autopilot activate --Amy */
+		if ((rn2(1000) < autopilotchance) || !rn2(100)) {
 
 			if (rn2(10)) {
 				u.dx = !rn2(3) ? -1 : !rn2(2) ? 0 : 1;
@@ -14050,7 +14376,7 @@ const char *s;
 	char buf[BUFSZ];
 
 	/* choicelessness by Amy; it would be far too evil to unconditionally prevent you from choosing... */
-	if (Choicelessness || u.uprops[CHOICELESSNESS].extrinsic || have_choicelessstone()) {
+	if (Choicelessness || u.uprops[CHOICELESSNESS].extrinsic || have_choicelessstone() || (uwep && uwep->oartifact == ART_FOOK_THE_OBSTACLES) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FOOK_THE_OBSTACLES)) {
 		int choicelesschance;
 		choicelesschance = 20 + (u.uen * 80 / u.uenmax);
 		if (choicelesschance < 20) choicelesschance = 20;
@@ -14544,6 +14870,10 @@ dotravel()
 	cc.y = iflags.travelcc.y;
 	if (cc.x == -1 && cc.y == -1) {
 	    /* No cached destination, start attempt from current position */
+	    cc.x = u.ux;
+	    cc.y = u.uy;
+	}
+	if (!isok(cc.x, cc.y)) {
 	    cc.x = u.ux;
 	    cc.y = u.uy;
 	}

@@ -198,12 +198,13 @@ struct monst *mtmp;
 
 	resist_percentage = (int)(mtmp->m_lev * 3 / 2);
 	scresist_percentage = (int)(mtmp->m_lev / 2);
+	if (uwep && uwep->oartifact == ART_OMGHAXERETH) resist_percentage = (int)(mtmp->m_lev / 2);
 
 	mresists = rn2(100) < resist_percentage;
 	scmresists = rn2(100) < resist_percentage;
 
 	return (boolean)((sobj_at(SCR_SCARE_MONSTER, x, y) && !(Conflict && rn2(StrongConflict ? 5 : 2)) && !scmresists)
-			 || (sengr_at("Elbereth", x, y) && !mresists && !(Conflict && rn2(StrongConflict ? 5 : 2)) && !(EngravingDoesntWork || u.uprops[ENGRAVINGBUG].extrinsic || have_engravingstone() || (uarmf && uarmf->oartifact == ART_VARIANTISH_DESIGN) ) )
+			 || (sengr_at("Elbereth", x, y) && !mresists && !(Conflict && rn2(StrongConflict ? 5 : 2)) && !(EngravingDoesntWork || u.uprops[ENGRAVINGBUG].extrinsic || have_engravingstone() || (uwep && uwep->oartifact == ART_ELBERGOFUKYOURSELF) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ELBERGOFUKYOURSELF) || (uarmf && uarmf->oartifact == ART_VARIANTISH_DESIGN) ) )
 			 || (is_vampire(mtmp->data)
 			     && IS_ALTAR(levl[x][y].typ)));
 }
@@ -240,7 +241,7 @@ boolean digest_meal;
 	}
 
 	/* super regene */
-	if (mon->data == &mons[PM_MESHERA_ALPHA_DEFORMED_ANGEL] || mon->data == &mons[PM_TESTER] || mon->data == &mons[PM_TEA_HUSSY] || mon->data == &mons[PM_OUROBOROS] || mon->data == &mons[PM_UNITDEAD_QUEEN] || mon->data == &mons[PM_UNITDEAD_KING] || mon->data == &mons[PM_REGULUS_THE_ALTERED] || mon->data == &mons[PM_ZANAN_ENHANCED_SOLDIER] || mon->data == &mons[PM_VANESSA_ENHANCED_SOLDIER] || mon->data == &mons[PM_SUPERREGENEBOROS] || mon->data == &mons[PM_JUERE_DEMON_SOLDIER] || mon->data == &mons[PM_JENNIFER_DEMON_SOLDIER] || mon->data == &mons[PM_RENAI_OVER_MESHERA]) {
+	if (mon->data == &mons[PM_MESHERA_ALPHA_DEFORMED_ANGEL] || mon->data == &mons[PM_TESTER] || mon->data == &mons[PM_TEA_HUSSY] || mon->data == &mons[PM_OUROBOROS] || mon->data == &mons[PM_UNITDEAD_QUEEN] || mon->data == &mons[PM_UNITDEAD_KING] || mon->data == &mons[PM_REGULUS_THE_ALTERED] || mon->data == &mons[PM_ZANAN_ENHANCED_SOLDIER] || mon->data == &mons[PM_VANESSA_ENHANCED_SOLDIER] || mon->data == &mons[PM_SUPERREGENEBOROS] || mon->data == &mons[PM_JUERE_DEMON_SOLDIER] || mon->data == &mons[PM_JENNIFER_DEMON_SOLDIER] || mon->data == &mons[PM_ARIANE__LADY_OF_THE_ELEMENTS] || mon->data == &mons[PM_RENAI_OVER_MESHERA]) {
 		mon->mhp += 20;
 		if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
 	}
@@ -258,15 +259,14 @@ boolean digest_meal;
 	}
 
 	if (u.usteed && mon == u.usteed) {
-		struct obj *osaeddle = which_armor(u.usteed, W_SADDLE);
 
-		if ((osaeddle = which_armor(u.usteed, W_SADDLE)) && osaeddle->oartifact == ART_CURE_HASSIA_COURSE) {
+		if (bmwride(ART_CURE_HASSIA_COURSE)) {
 			if (mon->mhp + 1 >= mon->mhpmax)
 			      mon->mhp = mon->mhpmax;
 			else mon->mhp++;
 		}
 
-		if ((osaeddle = which_armor(u.usteed, W_SADDLE)) && osaeddle->oartifact == ART_STEERING_WHEEL) {
+		if (bmwride(ART_STEERING_WHEEL)) {
 			mon->mconf = FALSE;
 		}
 
@@ -597,7 +597,7 @@ register struct monst *mtmp;
 	    return(0);	/* other frozen monsters can't do anything */
 	}
 
-	if ((mdat == &mons[PM_BUGBEAM_CUBE] || mdat == &mons[PM_TORSTINA] || mdat == &mons[PM_MARINERV] || mdat == &mons[PM_MARISTIN] || mdat == &mons[PM_MARIVERT] || mdat == &mons[PM_MARISISTER] || mdat == &mons[PM_FUNNY_ITALIAN] || mdat == &mons[PM_EAR_FIG_MACHINE] || mdat == &mons[PM_POLEPOKER] || mdat == &mons[PM_DISTURBMENT_HEAD]) && !rn2(4)) return 0; /* can sometimes not move; this is by design */
+	if ((mdat == &mons[PM_BUGBEAM_CUBE] || mdat == &mons[PM_METH_HEAD] || mdat == &mons[PM_TORSTINA] || mdat == &mons[PM_MARINERV] || mdat == &mons[PM_MARISTIN] || mdat == &mons[PM_MARIVERT] || mdat == &mons[PM_MARISISTER] || mdat == &mons[PM_FUNNY_ITALIAN] || mdat == &mons[PM_EAR_FIG_MACHINE] || mdat == &mons[PM_POLEPOKER] || mdat == &mons[PM_DISTURBMENT_HEAD]) && !rn2(4)) return 0; /* can sometimes not move; this is by design */
 
 	if (mdat == &mons[PM_BLOTREE] && !rn2(2)) return 0;
 
@@ -675,6 +675,8 @@ register struct monst *mtmp;
 			"Fat and round and firmly packed, It was hanging on the rack, Someone stole the kishka, When I turned my back!",
 		};
 		verbalize("%s", polka_msgs[rn2(SIZE(polka_msgs))]);
+
+		if (!rn2(5) && !um_dist(mtmp->mx, mtmp->my, 7) ) increasesanity(rnz(20));
 	}
 
 	if (mdat == &mons[PM_DARKNESS_ELEMENTAL] || mdat == &mons[PM_PERMADARKNESS_ELEMENTAL]) {
@@ -1305,6 +1307,7 @@ register struct monst *mtmp;
 	if (FemtrapActiveMeltem && mtmp->female && humanoid(mdat) && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && !um_dist(mtmp->mx, mtmp->my, fartdistance) && !mtmp->mpeaceful) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		u.cnd_fartingcount++;
+		if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 		if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
 			pline("The farting gas destroys your footwear instantly.");
@@ -1343,6 +1346,7 @@ register struct monst *mtmp;
 			pline("You long for more!");
 			pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 			u.cnd_fartingcount++;
+			if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 			if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
 				pline("The farting gas destroys your footwear instantly.");
@@ -1518,6 +1522,12 @@ register struct monst *mtmp;
     }
 
 	if (monsndx(mdat) == PM_SINGPIR && !rn2(20)) {
+		if (!(t_at(mtmp->mx, mtmp->my))) {
+			maketrap(mtmp->mx, mtmp->my, SHIT_TRAP, 0, FALSE);
+		}
+	}
+
+	if (FemaleTrapAnna && !rn2(1000) && humanoid(mtmp->data) && is_female(mtmp->data) && (mdat->msound == MS_STENCH)) {
 		if (!(t_at(mtmp->mx, mtmp->my))) {
 			maketrap(mtmp->mx, mtmp->my, SHIT_TRAP, 0, FALSE);
 		}
@@ -1711,137 +1721,8 @@ register struct monst *mtmp;
 
 	if ((mdat->msound == MS_CONVERT || mtmp->egotype_converter) && !Race_if(PM_TURMENE) && !Race_if(PM_HC_ALIEN) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !(uarmh && uarmh->oartifact == ART_JAMILA_S_BELIEF) && !rn2(10)) {
 
-		static const char *conversion_msgs[] = {
-			"Kafir! Yuece Tanri sizi sevmez, ve sonra doenuestuermek yoksa cezalandirilacaktir!",
-			"Kafir, Allah'a doenuestuermek ya da oel!",
-			"Kafir, kutsal Tanri bu boelgede emanetler en kadirdir. Ve bunu degistirmek olmaz!",
-			"Kafir, sizin yollariniz sapkin vardir! Islam sizi doenuestuermek zamanidir.",
-			"Kafir, sen domuz pirzola yeme suc islemis! Allah sana cok kizgin!",
-			"Allahu Akbar! Allahu Akbar!",
-			"Kafir, Allah bueyuektuer ve seni yok eder!",
-			"Kafir! Kac kere zaten gavur dedin? Sen inanc degistirmek icin ya da Tanri ilahi ceza kesin olacak var!",
-			"Allah senin gibi kafirler sevmez ve cok zalim bir sekilde sizi cezalandiracaktir!",
-			"Bizim kutsal cami kafirler tarafindan yerle bir olma tehlikesiyle karsi karsiya! Bueyuek Tanri bize yardim ve ilahi asker goendermesi gerekir!",
-			"Kafir, Allah bueyuek ve gueclue oldugunu! Ona inanmaya baslarlar yoksa, aci olacak!",
-			"Allah onlari oelduererek ve kutsal ateste kendi cesetlerini yakarak buetuen kafirleri cezalandiracaktir.",
-			"Kafir, Allah beni tuvalete bok sesleri ueretmek icin izin! Eger o saygi yoksa sonsuza aci olacaktir!",
-			"Tek bir gercek dindir ve Tuerkiye cumhurbaskani, onu buetuen duenyaya yayacak bilge bir adamdir! Allah bueyuek!",
-			"Kafir! Kutsal topraklarda hicbir sey kaybetmedin! ABD'ye ya da nereye giderseniz gidin!",
-			"Inanilmaz olan, senin evin benim tarafimdan yere serilecek.",
-			"Inanilmaz, nihayet askerlerini uelkemden mi cekiyorsun yoksa sinirlenmek zorunda miyim?",
-			"Inanmasiz, silahim seni vurmak uezere! Sana daha iyi bakarim!",
-			"Haha, sen inandin, saldirmami kaldiramazsin!",
-			"Inanli olmayan, sana simdi pusu kurup seni uyariyorum. Yani beni yine de durdurma sansin yok.",
-			"Kafir! Hemen buradan cik, buguen camiye gitmem ve dua etmeliyim!",
-			"Kafir! seni ve iman eden askerlerinizi yok edecegiz!",
-			"Inanilmazsin, benden uzak dur yoksa bir talihsizlik olur!",
-			"Inkar edenler sadece korkaklar, asla kendinizi adil bir doevuese sokmazsiniz! Simdi sikici el bombalari kullanmaliyim!",
-			"Gercekten sadece buguen sinirlenmek istiyor musun, inandin mi? Sanirim simdi agir topcuyla gelecegim.",
-			"Inanilmaz olan, Islam'in tek gercek din oldugunu itiraf etme zamani.",
-			"Inancsiz, pes et! Islam'in kutsal askerleri simdi sehrinizi istila edecek!",
-			"Inanilmaz, yavas yavas oelmesi gerektigini duesuenmueyor musun? Vuecudun yine de degersiz!",
-			"Bu bir hacli seferi olacak mi, inandin mi? Kutsal Allah'in gazabini zorla cagirir misin?",
-			"Kafirlerin sizin talihsizlikleriniz icin yiyeceksiniz ve Allah sahsen sizi atesin uezerinde bas asagi kizdiracak!",
-			"Lanet olasi inanmayan koepekler, kutsal topraklardan disari cik! Hepiniz inkar ediyorsunuz ve Allah sizi sevmiyor, duyuyor musunuz?",
-			"Tamam, inandin. Yeterli olan yeter! Herkese, kafirleri hemen yok edin!",
-			"Ben cihad, kutsal savas icin cagiriyorum! Kafirler, oelueme savasiyoruz!",
-			"Hepinizi inatci koepekler yapacagiz!",
-			"Inanilmaz, ama simdi yeterli! Simdi Allah'in gazabi sana vuracak!",
-			"Inkar edenler iki seceneginiz var. Hemen Islam'a itiraf edin ya da yueksek savas botlarim ciddi yaralar acacak.",
-			"Oyuncu bir guevensiz! Onu Islam'a doenuestuerme zamani.",
-			"Inkar edenler yenilir. Derhal Islam'in tek gercek din oldugunu ya da kutsal Allah'in gazabini hissettirdigini itiraf edin!",
-			"Oyuncu ve adamlari... pah. Buetuen inanmayanlar. Sadece askerlerim kimin dine inanmalari gerektigini biliyor!",
-			"Hahahaha Hahahaha! Tuerk savas botlari bedeninizi yok etti, siz kafirler!",
-			"Nihayet uelkemi terk ediyor musun, inanmiyor musun?",
-			"Kafir! Ha ha! Simdi ya Islam'a ya da oeluersuen.",
-			"Kafirler, senin kokulu fabrikalarin simdi yikilacak!",
-			"Inanli olmayan, Allah size uecuencueluek eder ve sonra sizi tehlikede yakar.",
-			"Kafir! Simdi kac kere seni guevensiz aradim?",
-			"Sonunda inanclarinizi degistirmelisiniz, siz kafirler, aksi takdirde bir firtina olacak!",
-			"Gizli silahimi nerede sakladigimi hatirladim! Hehehe, simdi size goesteriyorum, siz kafirler.",
-			"Kutsal cami kafirlerin tehdidi altindadir! Allah, bize yardim et ve onlari yuvarlamalarini engelle!",
-			"Tuem erkekler ve kadinlar saldirmak icin! Kafirleri derhal uzaklastirin!",
-			"Buetuen kafirlere goere kutsal Islam, bu topraklarin kalintilarinin cogunda hakimdir.",
-			"Kafirler buguen emanetlerimizi tekrar yakalamayacaklar!",
-			"Yalanci medyanin fikri yok! Islam tek gercek din ve kafirler bunu degistirmeyecek!",
-			"Inkar edenler beni kandirdi, ama sizi Islam'in tek gercek din olduguna inandiricam.",
-			"Aaaaaaaaaaaah! Hayir! Kafirlerimiz camimizi gercekten yok etti! Simdi kim Islam'i yaymali?",
-			"Oh hayir, simdi vazgecebilirim, sadece bu kafirler yuezuenden...",
-			"Inkar edenler, engizisyonumdan kacamaz, itiraf edemez veya oelebilirler.",
-			"Allah seni yok edecek, inandin!",
-			"Neden oyuna daha fazla inanmayan asker getiriyorsun?",
-			"Siz kafirsiniz, dininiz bos ve gecersizdir!",
-			"Kafir, bas oertuesue baskinin bir sembolue degil! Onu kucaklamali ve bir tane de giymelisin yoksa Allah seni cezalandiracak!",
-			"Kafir, bir kadinin tuem kafasini kamuya goestermemesi gerektigini asla anlamayacaksiniz. Bueyuek Allah, bir bas oertuesue her zaman giyilmesi gerektigini oegretir.",
-			"Kafirlerin beni tuvalete kadar takip etmelerine izin vermeyecegim ve kicimin uerettigi erotik kirma seslerini dinleyemem. Yine de yaparsan, doevues botu topuklari bacaklarini kemige cizecek ve seni oelduerecek.",
-			"Benim siyah bayan sandaletler senin gibi bir kafir tarafindan asla hasar goermeyecek!",
-			"Senin yayla botlarimin altindaki kafirleri ezecegim!",
-			"Bir kafirle evlenmeyecegim, Allah'a iman eden birisini sececegim ve ic camasirlarimi, coraplarimi ve sandaletlerimle savasirken disi catlak seslerimi dinlemesine izin vererek onu memnun edecegim.",
-			"Cogu zaman tuvalette saatlerce catlak sesler ueretiyorum, ama sadece Allah'in inanclilari onlari dinleyebilir. Gizlice iceri girerlerse kafirler oelecek.",
-			"Hic kafir bir kadini cok guezel bulabilir! Her zaman kafa oertueleri giymeliyiz!",
-			"Allah kafa bezinin bize oezguerluek verdigini soeyler, cuenkue saf olmayan kafirlerin pis bakislarini uzak tutar!",
-			"Ben seksi yueksek topuklu botlar giyiyorum cuenkue ben bir harlotum, ama ben sadece aydinlanmis olanlar icin calisiyorum, bu yuezden de bir bas kumasina ihtiyacim var! Hic kafir beni beceremez!",
-			"Eger herhangi bir aldatmaca kafamin uestuenue cikarmaya calisirsa, onu oelduermek icin erkekleri ise alirim!",
-			"Bueyuek Allah, kadinlara basoertuesue takmayan firmalarin ateste oelecegini soeylueyor!",
-			"Tabii ki kuecuek okul kizlari da bir bas oertuesue giymelidir! Cok fazla kendilerini goesterirlerse, bazi iyi olmayan cocuklar da onlara bakar ve Allah her ne pahasina olursa olsun bunu engellemelidir!",
-			"Kendimizi kafir toplumlara entegre etmek zorunda degiliz, onlari Allah adina sollamak zorundayiz! Cuenkue bu heretiklerin Islam'a doenuesmesi gerekiyor!",
-			"Hic kimse kirli domuz eti yiyemez! Allah onu dizanteri ile yemeye cueret eden herkesi cezalandiracak.",
-			"Bir kafir adamin Mueslueman bir bayanla konusmasi tamamen duesuenuelemez. Bu, kafa bezine sahip olmamizin nedenlerinden biri, cuenkue Yuece Allah, bizi zarardan koruyor.",
-			"Biz, buezguelue ailelerin barok kalelerde yer bulduklari icin bez giyiyoruz, cuenkue kafir aileler ilk geldiler bile beklemek zorundalar. Bueyuek Allah, degersiz bir Alman azinligi bekler!",
-			"Biz bez harbots basimiza yueksek topuklularimizla asyali tekmeyi oegrendik, bu sayede kutsal Allah adina kafirlerin ezmelerini ve parcalarini kirabiliriz.",
-			"Cok fazla kafir adam var ve bu yuezden kafamizi hicbir zaman halka acik goesteremiyoruz. Ancak, sadece kadinlara yoenelik spor merkezine girersek, bas bezini cikaririz cuenkue Allah, kadinlarin asla tecavuez etmeyecegini bilir. Lezbiyenlik yoktur.",
-			"Allah, basoertuesue takmayan kafir Avrupali kadinlardan nefret eder. Muesluemanlarin ayri bir banyosunun yapilmasini istiyoruz cuenkue bizi o boktan fahiselerin tuvalete gitmesini istemiyoruz.",
-			"Kafamizi takmiyorken bizi goeren kafir adama vay canina. Yuece Allah, ona asiri oenyargi ile yaklasir.",
-			"Bazen inatci erkekleri kandirmak icin paragraf botlari giyerim. Benimle sevisebileceklerini duesuenuerlerse, kiralik suikastcilar onu Allah'in adiyla sessizce kaldiracaklar.",
-			"Domuz cocuk bahcesinde servis edilirse yanlistir! Buetuen bu kafir egitmenler yakinda Allah'a iman eden insanlarla degistirilecek.",
-			"Evet, kafirler bize yuezuemuezue oerten kiyafetler vermedikce yuezme ya da spora katilmak zorunda olmadigimiz dogrudur. Allah bize, inkarcilarin yaptigi kurallarin bizim kurallarimiz olmadigini ve takip edilmesine gerek olmadigini oegretir.",
-			"Aptal Alman uelkesi kendisini yok edecek ve bu kafirleri yavasca kaldirarak Allah'a yardim edecegiz. Daha sonra Berlin, Yeni Istanbul'a yeniden adlandirilacaktir.",
-			"Neden kizlari kizdirmaya calisiyorsun? Sizi durdurmak icin herkesi basoertuesue takmaya zorlayacagiz!",
-			"Ne, sen kafir, cinsel popoyu ihale popomun tuvalete yaptigi kadin sesine cekti mi? Delirmis olmalisin!",
-			"Ne, sen kafir kafami sadece beni kizdirmak mi istiyorsun? Allah, senin icin oeluem cezasi olacagini soeyler!",
-			"Sen kafir doenuestueruelecek, ve eger bir kadin iseniz de bir kafa bezi giymek zorunda kalacaksiniz!",
-			"Bueyuek Allah, bu kadar genisletilmis egrinin, en iyi varyant oldugunu kabul etmeyen herkesi cezalandiracak! Eger sporkun daha iyi oldugunu duesuenueyorsaniz, sen lanet bir kafirsin ve diri diri diri yakilacaksin!",
-			"Bu oyunun aptal bir versiyonunu oynuyorsun, seni kafir! Yuece Allah, benim icin bir oyuncu vur!",
-			"Kuefuer edersiniz, Isvecli adamin yapmasi gereken varyanti oynamalisiniz, cuenkue canavarlar soykirimin yazilarini okumalarina izin vererek cok daha dengeli!",
-			"Oynayabilecegin cok daha iyi bir cesit var, zindanlar ve ejderhalar hack, ama sen eski heretik bu boku oynamak zorunda. Allah size yildirim carpacaktir.",
-			"Neden hala salak oyun oynuyorsun? Doert kana gecin ya da cok gueclue Allah sizi parcalara ayirir!",
-			"Allah, varyantini yuezen goezbebeklerini calmayan her kafirin kisisel bilgisayarini kizdirir.",
-			"Onun varyanti seytan degildir, sen kafir! Simdi oyna ya da bu senin sonun!",
-			"Bana 2000 numara altin parca, yoksa oyunun coekmesine sebep olacaksin, seni kafir!",
-			"Sen seytani hain! Bu ne cueret? Intikam seni guevende, kafir!",
-			"Hicbir kafirin direnemeyecegi cok kadin tuvalet sesleri ueretebilirim.",
-			"Tuvalete yapabilecegim kadin sesler basmak ve sicramak. Korktun mu, sen kafir misin?",
-			"Ne, beni cekici buldugunu soeylueyorsun? Bu olamaz. Derhal bas borumu tekrar giyecegim.",
-			"Sert cekirdekli uzaylilar uzayli degil! Onlarin bedenlerini kafir erkek bakislarindan saklamak icin pecelerini giyiyorlar!",
-			"Kadinlara karsi kadinlari kuran feminist hakli, erkek kafirleri her zaman masum kadinlara bakiyor! Koruma icin basoertuesue ve pece giymeliyiz!",
-			"Ne, ben guezel oldugumu mu soeylueyorsun? Bu tahammuel edilemez. Hicbir kafir, bir Islam kadinini guezel olarak algilayamaz! Cildimi suya batiracak ve basoertuesue ve tam oertue giyecegim!",
-			"Benim guezel savas botlari bacaklarinizi tam uzunlukta kesecek ve oelueme kadar kanayacak, kafir cehennemden ortaya cikmayacak!",
-			"Bana ne diyorsun seytan kadin? Ben oeyle degilim! Ben Islam'in bueyuek sorusturmacisiyim ve kutsal Allah adina seni kafir edecegim!",
-			"Plato kiz botlarimin uezerinden gecmemelisin! Senin gibi bir kafir asla evlenmeyecegi icin adanmislikla diz coekmen gerekiyor!",
-			"Benim gri spor ayakkabim hicbir sekilde oezel degil, seksi bulursaniz sizi havaya ucurur. Beni cekici buldugum kafirler bas barimla bogulurlar.",
-			"Ben farkli degilim cuenkue bir bas oertuesue giyiyorum! Beni ayrimcilik yapmamalisin, kafir demek istiyorsun!",
-			"Siz kafirler bizi kabul etmeli ve dininize uygun olmali! Kapsayici olmak istiyorsaniz, oegretmenlerin ve polis kadinlarinin ve digerlerinin halka acik bir bez kullanmasina izin veriyorsunuz!",
-			"Beni 'basoertuesue kiz' sluruna duesuerme, seni lanet olasi kafir! Bu benim kimligimin bir parcasi ve bunu kabullenmek icin kanunla zorlanacaksin!",
-			"Kafa bezi bize fransiz sigaralari gibi oezguerluek veriyor! Siz kafirler asla anlayamayacaksiniz cuenkue Tanri'ya inanmiyorsunuz!",
-			"Yeme tabagim sacmalik degil! Sen pis kafir sadece domuz eti kirli oldugunu ve hic kimsenin tarafindan yenilmeyecegini anlamiyorum! Cuenkue yaparsan kansersin!",
-			"Imam, kafir kueltueruenuen hicbir seyin degersiz oldugunu soeylueyor. Bu nedenle aptal kurallariniza uymak zorunda degiliz ve okul da ise yaramiyor, cuenkue birkac yil icinde hepiniz asimile olacaksiniz.",
-			"Yuezmeye katilmak zorunda degilim! Kafir guecuen beni zorlamak istiyor ama kutsal Islam her zaman bir bas oertuesue giymem gerektigini soeylueyor ve bu da aptal yuezme derslerine uymuyor! Politikacilarina bogma tilsimindan bogulmalarini soeyle!",
-			"Acil bir durum varsa, oence Allah'ta muesluemanlar ve inananlar kurtarilmalidir! Kafirler daha bueyuek iyilik icin kurban edilebilir!",
-			"Inanilmaz lanet olasi guezel Islam'in duenyayi yoenetecegini anlamazsin.",
-			"Ne, Almanya'nin alternatifi mueslueman avlamak mi istiyor? Yuece Allah adina, bu kafirleri dogrudan cehenneme goenderecek, cocuklarini oelduerecek ve kadinlarini koele tueccarlarina satacagiz.",
-			"Kafa bezi sadece bir bez parcasi degildir! Onu takariz cuenkue bizi Allah'in kutsal mueminleri olarak tanimlar! Sadece kafirlerin anlamadigi icin hicbir anlam ifade etmez!",
-			"Bir Yahudi dini semboluenue giydigi icin saldiriya ugrarsa, kendi hatasidir. Biz mueslueman bir kafa bezi giymek icin bize saldiran kimseyi asla kabul etmeyecegiz, cuenkue biz kafir topuklularimizla bir asyali tekmelemizi dogrudan kafir somunlarina yerlestirecegiz.",
-			"Siz kafirsiniz, Allah'a doenmelisiniz cuenkue o zaman cennette doksan dokuz genc kadin var! Eger yapmazsan, cehennemin kirmizi seytanlari acimasizca iskence edecek!",
-			"Halkimizin kutsal topraklara seyahat etmesine izin verilmemesi bir hakaret! Bueyuek Tanri, bu karardan sorumlu olan buetuen kafirleri cezalandirir!",
-			"Kongremizdeki kadinlar suclu degil! Ancak baskan kirli bir kuefuer ve Tanri sahsen ona yildirim carpacak!",
-			"Bir bildirimin ardindan geri doendueguemuez icin neden uezuelmemiz gerektigini duesuenueyorsunuz? Siz heretik, istediginizi aldiniz, cuenkue yuece Tanrimiz affetmez!",
-			"Yasli ihtiyar bizim icadi olan doener kebabi yiyorsun, ama dinimiz hakkinda yalan soeylueyorsun! Tanrimiz seni mahvedecek!",
-			"Ceviri makinesi kirli kafirler tarafindan isletiliyor, cuenkue tanri adina varsayilan ceviriyi degistirdiler!",
-			"Benim konusmalarimi zaten anlamiyorsunuz, bu yuezden irkinizin tamamen ortadan kaldirilmasi icin cagri yapabilirim, sizi allahimiza inanmayan insafsizsiniz.",
-			"Temizlik Allah'in guenue buetuen kafirler cezalandirmak ve ilk bu sapkin kadin olacak!",
-			};
+		conversionsermon();
 
-		verbalize("%s", conversion_msgs[rn2(SIZE(conversion_msgs))]);
 		u.cnd_conversioncount++;
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
@@ -1863,6 +1744,7 @@ register struct monst *mtmp;
 		if ((rn2(3) >= armpro) || ((rnd(100) > armprolimit) && ((armpro < 4) || (rnd(armpro) < 4) ) ) ) {
 
 			if (uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION && rn2(20)) goto convertdone;
+			if (uwep && uwep->oartifact == ART_CRONVERT && rn2(10)) goto convertdone;
 
 			You_feel("less faithful!");
 
@@ -1908,15 +1790,7 @@ convertdone:
 
 	if ((mdat->msound == MS_HCALIEN || mtmp->egotype_wouwouer) && !Race_if(PM_TURMENE) && !Race_if(PM_HC_ALIEN) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !(uarmh && uarmh->oartifact == ART_JAMILA_S_BELIEF) && !rn2(15)) {
 
-		static const char *hcalien_msgs[] = {
-			"Wouwou.",
-			"Wouuu.",
-			"Www-wouwou.",
-			"Wwouwwouww.",
-			"Wowou.",
-			"Wwwouu.",
-		};
-		verbalize("%s", hcalien_msgs[rn2(SIZE(hcalien_msgs))]);
+		wouwoutaunt();
 		u.cnd_wouwoucount++;
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
@@ -1982,6 +1856,10 @@ convertdone:
 	}
 
 	if (mdat == &mons[PM_STINKING_HEAP_OF_SHIT] && multi >= 0 && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(10)) {
+		pline("Urrrrrgh, there seems to be a stinking heap of shit nearby! You pass out from the vile stench.");
+		nomul(-(rnd(5)), "unconscious from smelling shit", TRUE);
+	}
+	if (mdat == &mons[PM_HEAP_OF_SHIT] && multi >= 0 && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(10)) {
 		pline("Urrrrrgh, there seems to be a stinking heap of shit nearby! You pass out from the vile stench.");
 		nomul(-(rnd(5)), "unconscious from smelling shit", TRUE);
 	}
@@ -2248,7 +2126,7 @@ toofar:
 	   mtmp->mconf || mtmp->mstun || (mtmp->minvis && !rn2(3)) ||
 	   (mdat->mlet == S_LEPRECHAUN && !ygold && (lepgold || rn2(2))) ||
 #endif
-	   (is_wanderer(mdat) && !rn2(4)) || (Conflict && mtmp->mcansee && haseyes(mtmp->data) && (!resist(mtmp, RING_CLASS, 0, 0) || (StrongConflict && !resist(mtmp, RING_CLASS, 0, 0)) ) && !mtmp->iswiz
+	   (is_wanderer(mdat) && !rn2(4)) || (Race_if(PM_SWIKNI) && mtmp->isshk == 0 && mtmp->ispriest == 0 && mtmp->isgd == 0 && (!resist(mtmp, RING_CLASS, 0, 0) )) || (Conflict && mtmp->mcansee && haseyes(mtmp->data) && (!resist(mtmp, RING_CLASS, 0, 0) || (StrongConflict && !resist(mtmp, RING_CLASS, 0, 0)) ) && !mtmp->iswiz
 	   && !Is_blackmarket(&u.uz)
 	   ) ||
 	   (!mtmp->mcansee && !rn2(iswarper ? 2 : 8)) || mtmp->mpeaceful) {
@@ -2330,7 +2208,7 @@ toofar:
 
 /*	Now, attack the player if possible - one attack set per monst	*/
 
-	if (!mtmp->mpeaceful || (mtmp->mnum == PM_FRENZY_KANGAROO) || ((Conflict && !resist(mtmp, RING_CLASS, 0, 0)) || (StrongConflict && !resist(mtmp, RING_CLASS, 0, 0)) && !Is_blackmarket(&u.uz)) ) {
+	if (!mtmp->mpeaceful || (mtmp->mnum == PM_FRENZY_KANGAROO) || (Race_if(PM_SWIKNI) && mtmp->isshk == 0 && mtmp->ispriest == 0 && mtmp->isgd == 0 && (!resist(mtmp, RING_CLASS, 0, 0) ) ) || ((Conflict && !resist(mtmp, RING_CLASS, 0, 0)) || (StrongConflict && !resist(mtmp, RING_CLASS, 0, 0)) && !Is_blackmarket(&u.uz)) ) {
 
 		/* FIQ found out that self-genocide while polymorphed can make monsters stop attacking entirely. Fixed. */
 
@@ -2467,32 +2345,11 @@ toofar:
 	    if(inrange && mtmp->data->msound == MS_SUPERMAN && !mtmp->mpeaceful && !rn2(mtmp->mnum == PM_BARTOLI_RETARD ? 25 : 5))
 
 		{
-		static const char *superman_msgs[] = {
-			"FRONTAL ATTACK!!!",
-			"YOU DON'T STAND A CHANCE!",
-			"YOU WILL DIE A SLOW, SLOW, DEATH...",
-			"COME OUT! WE WILL HURT YOU!",
-			"GRRRRRRRRRAAAAAAAAAAHHH!",
-			"CHARRRRRRRRRGE!",
-			"FEAR ME!!!",
-			"DIE YOU SON OF A BITCH!", /* too lazy to check for female PC --Amy */
-			"I AM YOUR DOOM!",
-			"YOUR LIFE IS GONNA END NOW!",
-			"YOU WILL CEASE TO EXIST!",
-			"I'M GOING TO EAT YOU!",
-			"RAAAAAAAAAAAARGH!",
-			"ATTACK PATTERN ALPHA!",
-			"YOU CAN'T HIDE!",
-			"THERE'S NO ESCAPE!",
-			"BE AFRAID OF ME!",
-			"ATTAAAAAAAAAAAAACK!",
-		};
-
-		verbalize("%s", superman_msgs[rn2(SIZE(superman_msgs))]);
-		badeffect();
-		increasesanity(rnz(50 + (mtmp->m_lev * 5) ));
-		u.cnd_supermancount++;
-		stop_occupation();
+			supermantaunt();
+			badeffect();
+			increasesanity(rnz(50 + (mtmp->m_lev * 5) ));
+			u.cnd_supermancount++;
+			stop_occupation();
 		}
 
 	    if(inrange && mtmp->data->msound == MS_PRINCIPAL && !mtmp->mpeaceful &&
@@ -2824,7 +2681,11 @@ altarfound:
 	if (monsndx(ptr) == PM_SLEEPING_ASIAN_GIRL && !rn2(10)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_DIDDLY_DINGUS_DUDE && !rn2(20)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_METH_HEAD) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_DEBILITATED_DANNY) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_DIM_GIRL) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_GRAWLIX) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_BLONDE_FEMMY) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_LASSY_GIRL) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_LOST_ITALIAN_PLUMBER) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_BEER_BELLY) mtmp->mconf = 1;
@@ -2931,8 +2792,11 @@ altarfound:
 	if (ptr == &mons[PM_POOL_EDGE_SWIMMER]) appr = -1;
 	if (ptr == &mons[PM_SOCIAL_DISORDER]) appr = -1;
 	if (ptr == &mons[PM_LITTLE_WALL_FLOWER]) appr = -1;
+	if (ptr == &mons[PM_DEBILITATED_DANNY]) appr = -1;
+	if (ptr == &mons[PM_DECISION_WEAKSKI]) appr = (!rn2(3) ? -1 : rn2(2) ? 0 : 1);
 
 	if (u.katitrapocc && !mtmp->mpeaceful) appr = -1; /* they're supposed to let you perform your occupation in peace */
+	if (u.singtrapocc && !mtmp->mpeaceful) appr = -1;
 
 	if ((!mtmp->mpeaceful || !rn2(10))
 #ifdef REINCARNATION
@@ -3025,6 +2889,8 @@ altarfound:
 				otmp->otyp != CHARGER && 
 				otmp->otyp != SYMBIOTE && 
 				otmp->otyp != SWITCHER && 
+				otmp->otyp != BITCHER && 
+				otmp->otyp != POTATO_BAG && 
 				otmp->otyp != UGH_MEMORY_TO_CREATE_INVENTORY && 
 			   (throws_rocks(ptr) ||
 				!sobj_at(BOULDER,xx,yy)) &&

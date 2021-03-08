@@ -6,6 +6,7 @@
 /* All of the techs from cmd.c are ported here */
 
 #include "hack.h"
+#include "artilist.h"
 
 /* #define DEBUG */		/* turn on for diagnostics */
 
@@ -248,6 +249,11 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"extra memory",
 	"grap swap",
 	"diabolic minion",
+	"cure amnesia",
+	"elemental imbue",
+	"hidden power",
+	"sword art",
+	"firm cudgel",
 	"jedi jump",
 	"charge saber",
 	"telekinesis",
@@ -454,6 +460,12 @@ static const struct innate_tech
 			 {   10, T_IRON_SKIN, 1},
 		       {   0, 0, 0} },
 	bar_tech[] = { {   1, T_BERSERK, 1},
+		       {   8, T_DOUBLE_THROWNAGE, 1},
+		       {   10, T_CONCENTRATING, 1},
+		       {   10, T_IRON_SKIN, 1},
+		       {   20, T_EDDY_WIND, 1},
+		       {   0, 0, 0} },
+	noo_tech[] = { {   1, T_BERSERK, 1},
 		       {   8, T_DOUBLE_THROWNAGE, 1},
 		       {   10, T_CONCENTRATING, 1},
 		       {   10, T_IRON_SKIN, 1},
@@ -705,7 +717,63 @@ static const struct innate_tech
 	sym_tech[] = { {   12, T_TERRAIN_CLEANUP, 1},
 		       {   0, 0, 0} },
 
+	but_tech[] = { {   15, T_SUMMON_PET, 1},
+			 {   20, T_ATTIRE_CHARM, 1},
+		       {   0, 0, 0} },
+
+	dan_tech[] = { {   1, T_BLITZ, 1},
+			 {   1, T_E_FIST, 1},
+			 {   3, T_IRON_SKIN, 1},
+			 {   5, T_DASH, 1},
+			 {   7, T_SHIELD_BASH, 1},
+			 {   9, T_DIAMOND_BARRIER, 1},
+			 {   11, T_SIGIL_DISCHARGE, 1},
+			 {   13, T_SPIRIT_BOMB, 1},
+			 {   15, T_PUMMEL, 1},
+			 {   18, T_G_SLAM, 1},
+			 {   20, T_ATTIRE_CHARM, 1},
+			 {   22, T_TERRAIN_CLEANUP, 1},
+			 {   25, T_CHI_STRIKE, 1},
+			 {   27, T_JEDI_JUMP, 1},
+			 {   30, T_CHI_HEALING, 1},
+		       {   0, 0, 0} },
+
 	kor_tech[] = { {   1, T_DOUBLE_THROWNAGE, 1},
+		       {   0, 0, 0} },
+
+	pre_tech[] = { {   1, T_TERRAIN_CLEANUP, 1},
+		       {   0, 0, 0} },
+
+	sec_tech[] = { {   1, T_RECHARGE, 1},
+			 {   8, T_VANISH, 1},
+			 {   10, T_CHARGE_SABER, 1},
+			 {   12, T_REINFORCE, 1},
+			 {   20, T_RESEARCH, 1},
+			 {   20, T_BOOZE, 1},
+			 {   24, T_CREATE_AMMO, 1},
+			 {   25, T_SURGERY, 1},
+			 {   28, T_POLYFORM, 1},
+			 {   30, T_BLOOD_RITUAL, 1},
+		       {   0, 0, 0} },
+
+	dia_tech[] = { {   1, T_REINFORCE, 1},
+			 {   1, T_CRIT_STRIKE, 1},
+			 {   1, T_SHIELD_BASH, 1},
+			 {   6, T_WARD_FIRE, 1},
+			 {   6, T_TELEKINESIS, 1},
+			 {   10, T_PRACTICE, 1},
+			 {   12, T_WARD_COLD, 1},
+			 {   12, T_DOUBLE_THROWNAGE, 1},
+			 {   18, T_FLURRY, 1},
+			 {   18, T_WARD_ELEC, 1},
+			 {   18, T_VANISH, 1},
+			 {   18, T_IRON_SKIN, 1},
+			 {   18, T_CONCENTRATING, 1},
+			 {   24, T_TURN_UNDEAD, 1},
+			 {   30, T_BERSERK, 1},
+			 {   30, T_PRIMAL_ROAR, 1},
+			 {   30, T_REVIVE, 1},
+			 {   30, T_EDDY_WIND, 1},
 		       {   0, 0, 0} },
 
 	occ_tech[] = { {   1, T_SIGIL_DISCHARGE, 1},
@@ -1079,6 +1147,14 @@ static const struct innate_tech
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   10, T_PREACHING, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   0, 0, 0} },
+	swi_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_CREATE_AMMO, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   20, T_TINKER, 1},
 		       {   0, 0, 0} },
 	spd_tech[] = { {   1, T_APPRAISAL, 1},
 		       {   1, T_PANIC_DIGGING, 1},
@@ -1963,6 +2039,14 @@ static const struct innate_tech
 		       {   18, T_BOOZE, 1},
 		       {   0, 0, 0} },
 
+	pic_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   20, T_TERRAIN_CLEANUP, 1},
+		       {   0, 0, 0} },
+
 	def_tech[] = { {   1, T_APPRAISAL, 1}, /* everyone is supposed to get this --Amy */
 		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
@@ -2034,7 +2118,7 @@ void * roomcnt;
 {
 	if (levl[x][y].typ < STONE || levl[x][y].typ > ROCKWALL)
 		return;
-	if ((levl[x][y].wall_info & W_NONDIGGABLE) != 0)
+	if (((levl[x][y].wall_info & W_NONDIGGABLE) != 0) && levl[x][y].typ != ROCKWALL)
 		return;
 
 	if (*in_rooms(x,y,SHOPBASE)) return;
@@ -2105,6 +2189,22 @@ int tech;
 	    }
 	    tech_list[i].t_inuse = 0;
 	}
+}
+
+void
+learntech_or_leveltech(tech, mask, tlevel)
+	short tech;
+	long mask;
+	int tlevel;
+{
+	int i;
+	i = get_tech_no(tech);
+	if (tech_list[i].t_intrinsic & mask) {
+		techlevelspecific(tech_list[i].t_id);
+	} else {
+		learntech(tech, mask, tlevel);
+	}
+
 }
 
 /* Called to teach a new tech.  Level is starting tech level */
@@ -2882,7 +2982,7 @@ dotech()
 			break;
 
 		case T_PRAYING_SUCCESS:
-			pline("This very helpful technique allows you to pray when it would normally not be safe to pray. Please be aware of the fact that your deity is still inaccessible in Gehennom; the gods won't get angry if you use this technique in Gehennom, but they won't be able to help you anyway.");
+			pline("This very helpful technique allows you to pray when it would normally not be safe to pray. Please be aware of the fact that your deity is still inaccessible in Gehennom; the gods won't get angry if you use this technique in Gehennom, but they won't be able to help you anyway. Also, there's limits as to what it can do; if your alignment is extremely low or you have a huge prayer timeout, it might still fail, and it won't necessarily work when your god is extremely angry.");
 			break;
 
 		case T_OVER_RAY:
@@ -3329,6 +3429,26 @@ dotech()
 			pline("If you use this technique, a random tame Diablo monster is summoned.");
 			break;
 
+		case T_CURE_AMNESIA:
+			pline("A useful technique that removes the 'map amnesia' intrinsic. Be aware that if you're e.g. playing the amnesiac race, you'll still have map amnesia. It's useful especially when you triggered a lasting amnesia trap.");
+			break;
+
+		case T_ELEMENTAL_IMBUE:
+			pline("This technique transforms your currently wielded weapon into an elemental-branded artifact. It works only if the weapon in question is neither a real nor fake artifact, and only if it's actually listed under 'weapons' in your inventory. Plus, it obviously doesn't work on a stack.");
+			break;
+
+		case T_HIDDEN_POWER:
+			pline("Using this technique creates a specific item, the identity of which depends on the skill you used for unlocking the technique.");
+			break;
+
+		case T_SWORD_ART:
+			pline("Requires you to wield a weapon that uses one of the following skills: short sword, broad sword, long sword or two-handed sword. The weapon in question will gain one level of enchantment, but not beyond +7.");
+			break;
+
+		case T_FIRM_CUDGEL:
+			pline("Requires you to wield a weapon that uses one of the following skills: mace, flail, club or hammer. The weapon in question will be erosionproofed and all erosion damage is repaired.");
+			break;
+
 
 		default:
 			pline("This technique doesn't have a description yet, but it might get one in future. --Amy");
@@ -3397,6 +3517,7 @@ int tech_no;
 	char allowall[2];
 	int i, j, t_timeout = 0;
 
+	boolean maybeleveltech = FALSE;
 
 	/* check timeout */
 	if (tech_inuse(techid(tech_no))) {
@@ -5032,7 +5153,40 @@ secureidchoice:
 
 	    case T_SUMMON_PET:
 		pline("You summon a pet.");
-		(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, FALSE);
+
+		if (Role_if(PM_BUTT_LOVER)) {
+			register struct monst *buttpet;
+
+			struct permonst *pm = 0;
+			int attempts = 0;
+
+buttpetmarker:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_FART_NORMAL) && !(pm->msound == MS_FART_LOUD) && !(pm->msound == MS_FART_QUIET))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto buttpetmarker;
+			}
+			if (pm && !(pm->msound == MS_FART_NORMAL) && !(pm->msound == MS_FART_LOUD) && !(pm->msound == MS_FART_QUIET) && rn2(50) ) {
+				attempts = 0;
+				goto buttpetmarker;
+			}
+
+			if (pm) (buttpet = makemon(pm, u.ux, u.uy, NO_MM_FLAGS));
+
+			if (buttpet) {
+				tamedog(buttpet, (struct obj *) 0, TRUE);
+				pline("Suddenly, you gain a new sexy pet!");
+			}
+
+		} else {
+			(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, FALSE);
+		}
 
 	      t_timeout = rnz(10000);
 	      break;
@@ -6197,8 +6351,6 @@ incarnationfinish:
 		    	techt_inuse(tech_no) = num + 1;
 			pline("Your shuriken can fire beams now!");
 
-			aborttech(T_BEAMSWORD);
-
 			t_timeout = rnz(3000);
 			break;
 
@@ -7003,8 +7155,6 @@ revid_end:
 		    	techt_inuse(tech_no) = num + 1;
 			pline("Your lightsaber can fire beams now!");
 
-			aborttech(T_BLADE_ANGER);
-
 			t_timeout = rnz(2500);
 			break;
 
@@ -7421,7 +7571,7 @@ cardtrickchoice:
 
 				}
 			}
-			use_skill(P_SQUEAKING, rnd(5));
+			use_skill(P_SQUEAKING, rnd(20));
 
 			t_timeout = rnz(2000);
 			break;
@@ -7451,7 +7601,7 @@ cardtrickchoice:
 
 			}
 
-			use_skill(P_SQUEAKING, rnd(10));
+			use_skill(P_SQUEAKING, rnd(50));
 			t_timeout = rnz(5000);
 			break;
 
@@ -7498,7 +7648,7 @@ cardtrickchoice:
 				fineforpracticant(50, 0, 0);
 			}
 
-			use_skill(P_SQUEAKING, rnd(10));
+			use_skill(P_SQUEAKING, rnd(50));
 			t_timeout = rnz(5000);
 			break;
 
@@ -7507,7 +7657,7 @@ cardtrickchoice:
 			num = 20 + techlevX(tech_no);
 		    	techt_inuse(tech_no) = num + 1;
 			pline("Your butt starts squeaking.");
-			use_skill(P_SQUEAKING, rnd(25));
+			use_skill(P_SQUEAKING, rnd(50));
 			t_timeout = rnz(5000);
 			break;
 
@@ -7680,7 +7830,7 @@ repairitemchoice:
 
 				} else pline("For some unknown reason, the attempt failed.");
 			}
-			use_skill(P_SQUEAKING, rnd(20));
+			use_skill(P_SQUEAKING, rnd(80));
 			t_timeout = rnz(8000);
 			break;
 
@@ -7925,6 +8075,75 @@ repairitemchoice:
 			t_timeout = rnz(6000);
 			break;
 
+		case T_CURE_AMNESIA:
+
+			You("decide to cure your amnesia.");
+
+			if (HMap_amnesia & INTRINSIC) {
+				HMap_amnesia &= ~INTRINSIC;
+				You_feel("less forgetful!");
+			}
+			if (HMap_amnesia & TIMEOUT) {
+				HMap_amnesia &= ~TIMEOUT;
+				You_feel("less forgetful!");
+			}
+
+			t_timeout = rnz(50000);
+			break;
+
+		case T_ELEMENTAL_IMBUE:
+		{
+			int randomelement = rnd(3);
+
+			if (!uwep) {
+				pline("Without a weapon, this technique won't work!");
+				return 0;
+			}
+
+			if (uwep && (uwep->quan > 1)) {
+				pline("You're wielding a stack of weapons! Drop all but one!");
+				return 0;
+			}
+
+			if (uwep && (uwep->oartifact || uwep->fakeartifact)) {
+				pline("Transforming a weapon into an artifact doesn't work on weapons that are already artifacts.");
+				return 0;
+			}
+
+			if (uwep && (uwep->oclass != WEAPON_CLASS)) {
+				pline("That's not a proper weapon, and therefore cannot be transformed into an artifact!");
+				return 0;
+			}
+
+			if (uwep) {
+				switch (randomelement) {
+					case 1:
+						artilist[ART_FIRE_SWING].otyp = uwep->otyp;
+						elemental_imbue(1);
+						uwep = onameX(uwep, artiname(ART_FIRE_SWING));
+						break;
+					case 2:
+						artilist[ART_FROST_SWING].otyp = uwep->otyp;
+						elemental_imbue(2);
+						uwep = onameX(uwep, artiname(ART_FROST_SWING));
+						break;
+					case 3:
+						artilist[ART_SHOCK_SWING].otyp = uwep->otyp;
+						elemental_imbue(3);
+						uwep = onameX(uwep, artiname(ART_SHOCK_SWING));
+						break;
+				}
+
+				update_inventory();
+				Your("weapon transforms, and is now imbued with elemental power!");
+			}
+
+			t_timeout = rnz(20000);
+
+			break;
+
+		}
+
 		case T_PERMAMORPH:
 
 		    	if (!getdir((char *)0)) return 0;
@@ -8166,6 +8385,48 @@ repairitemchoice:
 		      t_timeout = rnz(10000);
 			break;
 
+		case T_SWORD_ART:
+			if (!uwep) {
+				pline("That requires you to wield a weapon!");
+				return 0;
+
+			}
+
+			if (uwep && weapon_type(uwep) != P_SHORT_SWORD && weapon_type(uwep) != P_BROAD_SWORD && weapon_type(uwep) != P_LONG_SWORD && weapon_type(uwep) != P_TWO_HANDED_SWORD) {
+				pline("That only works if your wielded weapon is a short, broad, long or two-handed sword, and currently it's not!");
+				return 0;
+			}
+
+			if (uwep && uwep->spe < 7) {
+				uwep->spe++;
+                   		pline("Your weapon glows %s.", hcolor(NH_LIGHT_BLUE));
+			} else pline("Your currently wielded weapon can't be enchanted any further with this technique, and therefore nothing happens.");
+
+		      t_timeout = rnz(20000);
+			break;
+
+		case T_FIRM_CUDGEL:
+
+			if (!uwep) {
+				pline("That requires you to wield a weapon!");
+				return 0;
+
+			}
+
+			if (uwep && weapon_type(uwep) != P_MACE && weapon_type(uwep) != P_FLAIL && weapon_type(uwep) != P_CLUB && weapon_type(uwep) != P_HAMMER) {
+				pline("That only works if your wielded weapon is a mace, flail, club or hammer, and currently it's not!");
+				return 0;
+			}
+
+			if (uwep) {
+				uwep->oerodeproof = uwep->rknown = TRUE;
+				uwep->oeroded = uwep->oeroded2 = 0;
+				Your("weapon is surrounded by a shimmering shield!");
+			}
+
+		      t_timeout = rnz(30000);
+			break;
+
 		case T_KAMEHAMEHA:
 
 			{
@@ -8275,6 +8536,187 @@ repairitemchoice:
 			Your("claw became green.");
 
 		      t_timeout = rnz(10000);
+			break;
+
+		case T_HIDDEN_POWER:
+
+			{
+				struct obj *hiddenpwitem;
+				int hiddenpowertype;
+
+				hiddenpowertype = POT_HEALING; /* fail safe */
+
+				switch (u.hiddenpowerskill) {
+					case P_DAGGER:
+						hiddenpowertype = WAN_INERTIA; break;
+					case P_KNIFE:
+						hiddenpowertype = WAN_STONING; break;
+					case P_AXE:
+						hiddenpowertype = SCR_TAMING; break;
+					case P_PICK_AXE:
+						hiddenpowertype = WAN_DISINTEGRATION; break;
+					case P_SHORT_SWORD:
+						hiddenpowertype = POT_BENEFICIAL_EFFECT; break;
+					case P_BROAD_SWORD:
+						hiddenpowertype = POT_GAIN_LEVEL; break;
+					case P_LONG_SWORD:
+						hiddenpowertype = WAN_THUNDER; break;
+					case P_TWO_HANDED_SWORD:
+						hiddenpowertype = MAGIC_HARP; break;
+					case P_SCIMITAR:
+						hiddenpowertype = WAN_INCREASE_MAX_HITPOINTS; break;
+					case P_SABER:
+						hiddenpowertype = WAN_REMOVE_CURSE; break;
+					case P_CLUB:
+						hiddenpowertype = POT_HEROISM; break;
+					case P_PADDLE:
+						hiddenpowertype = WAN_TIME; break;
+					case P_MACE:
+						hiddenpowertype = WAN_NETHER_BEAM; break;
+					case P_MORNING_STAR:
+						hiddenpowertype = POT_RESTORE_ABILITY; break;
+					case P_FLAIL:
+						hiddenpowertype = WAN_INFERNO; break;
+					case P_HAMMER:
+						hiddenpowertype = WAN_GRAVITY_BEAM; break;
+					case P_QUARTERSTAFF:
+						hiddenpowertype = SCR_POWER_CHARGING; break;
+					case P_ORB:
+						hiddenpowertype = POT_RECOVERY; break;
+					case P_CLAW:
+						hiddenpowertype = WAN_TRAP_DISARMING; break;
+					case P_GRINDER:
+						hiddenpowertype = SCR_REPAIR_ITEM; break;
+					case P_POLEARMS:
+						hiddenpowertype = WAN_PARALYSIS; break;
+					case P_SPEAR:
+						hiddenpowertype = WAN_ICE_BEAM; break;
+					case P_JAVELIN:
+						hiddenpowertype = POT_WATER; break;
+					case P_TRIDENT:
+						hiddenpowertype = WAN_DISINTEGRATION_BEAM; break;
+					case P_LANCE:
+						hiddenpowertype = POT_GAIN_HEALTH; break;
+					case P_BOW:
+						hiddenpowertype = SCR_RANDOM_ENCHANTMENT; break;
+					case P_SLING:
+						hiddenpowertype = SCR_REGULAR_MATERIAL; break;
+					case P_FIREARM:
+						hiddenpowertype = SCR_TRAP_DISARMING; break;
+					case P_CROSSBOW:
+						hiddenpowertype = SCR_GREATER_ENCHANT_WEAPON; break;
+					case P_DART:
+						hiddenpowertype = EXPENSIVE_CAMERA; break;
+					case P_SHURIKEN:
+						hiddenpowertype = WAN_CHROMATIC_BEAM; break;
+					case P_BOOMERANG:
+						hiddenpowertype = SCR_CREATE_FAMILIAR; break;
+					case P_WHIP:
+						hiddenpowertype = SCR_CURE; break;
+					case P_UNICORN_HORN:
+						hiddenpowertype = SCR_TERRAFORMING; break;
+					case P_LIGHTSABER:
+						hiddenpowertype = SCR_SECURE_CURSE_REMOVAL; break;
+					case P_ATTACK_SPELL:
+						hiddenpowertype = WAN_VENOM_SCATTERING; break;
+					case P_HEALING_SPELL:
+						hiddenpowertype = POT_FULL_HEALING; break;
+					case P_DIVINATION_SPELL:
+						hiddenpowertype = SCR_SECURE_IDENTIFY; break;
+					case P_ENCHANTMENT_SPELL:
+						hiddenpowertype = WAN_HYPER_BEAM; break;
+					case P_PROTECTION_SPELL:
+						hiddenpowertype = SCR_EBB_TIDE; break;
+					case P_BODY_SPELL:
+						hiddenpowertype = WAN_TOXIC; break;
+					case P_OCCULT_SPELL:
+						hiddenpowertype = WAN_IDENTIFY; break;
+					case P_ELEMENTAL_SPELL:
+						hiddenpowertype = SCR_SUPERIOR_MATERIAL; break;
+					case P_CHAOS_SPELL:
+						hiddenpowertype = TINNING_KIT; break;
+					case P_MATTER_SPELL:
+						hiddenpowertype = WAN_SLUDGE; break;
+					case P_BARE_HANDED_COMBAT:
+						hiddenpowertype = SCR_SKILL_UP; break;
+					case P_HIGH_HEELS:
+						hiddenpowertype = TWELVE_COURSE_DINNER; break;
+					case P_GENERAL_COMBAT:
+						hiddenpowertype = CRYSTAL_BALL; break;
+					case P_SHIELD:
+						hiddenpowertype = SCR_REVERSE_IDENTIFY; break;
+					case P_BODY_ARMOR:
+						hiddenpowertype = SCR_GREATER_ENCHANT_ARMOR; break;
+					case P_TWO_HANDED_WEAPON:
+						hiddenpowertype = CAN_OF_GREASE; break;
+					case P_POLYMORPHING:
+						hiddenpowertype = SCR_HYBRIDIZATION; break;
+					case P_DEVICES:
+						hiddenpowertype = SCR_INVENTORY_ID; break;
+					case P_SEARCHING:
+						hiddenpowertype = STETHOSCOPE; break;
+					case P_SPIRITUALITY:
+						hiddenpowertype = SCR_CONSECRATION; break;
+					case P_PETKEEPING:
+						hiddenpowertype = DARK_MAGIC_WHISTLE; break;
+					case P_MISSILE_WEAPONS:
+						hiddenpowertype = WAN_ENTRAPPING; break;
+					case P_TECHNIQUES:
+						hiddenpowertype = HUGE_CHUNK_OF_MEAT; break;
+					case P_IMPLANTS:
+						hiddenpowertype = SCR_ARMOR_SPECIALIZATION; break;
+					case P_SEXY_FLATS:
+						hiddenpowertype = POT_TRAINING; break;
+					case P_MEMORIZATION:
+						hiddenpowertype = SCR_GAIN_MANA; break;
+					case P_GUN_CONTROL:
+						hiddenpowertype = WAN_DEATH; break;
+					case P_SQUEAKING:
+						hiddenpowertype = SHADOW_HORN; break;
+					case P_SYMBIOSIS:
+						hiddenpowertype = SCR_SYMBIOSIS; break;
+					case P_SHII_CHO:
+						hiddenpowertype = POT_RANDOM_INTRINSIC; break;
+					case P_MAKASHI:
+						hiddenpowertype = CHOCOLATE; break;
+					case P_SORESU:
+						hiddenpowertype = WAN_AURORA_BEAM; break;
+					case P_ATARU:
+						hiddenpowertype = WAN_BANISHMENT; break;
+					case P_SHIEN:
+						hiddenpowertype = WAN_TIME_STOP; break;
+					case P_DJEM_SO:
+						hiddenpowertype = POT_CURE_INSANITY; break;
+					case P_NIMAN:
+						hiddenpowertype = POT_DOWN_LEVEL; break;
+					case P_JUYO:
+						hiddenpowertype = SCR_ERASURE; break;
+					case P_VAAPAD:
+						hiddenpowertype = SCR_ARTIFACT_CREATION; break;
+					case P_WEDI:
+						hiddenpowertype = WAN_CLONE_MONSTER; break;
+					case P_MARTIAL_ARTS:
+						hiddenpowertype = WAN_CHARGING; break;
+					case P_TWO_WEAPON_COMBAT:
+						hiddenpowertype = POT_TECH_LEVEL_UP; break;
+					case P_RIDING:
+						hiddenpowertype = WAN_FULL_HEALING; break;
+				}
+
+				pline("A hidden item is created!");
+				hiddenpwitem = mksobj(hiddenpowertype, TRUE, FALSE, FALSE);
+				if (hiddenpwitem) {
+					hiddenpwitem->quan = 1;
+					hiddenpwitem->known = hiddenpwitem->dknown = hiddenpwitem->bknown = hiddenpwitem->rknown = 1;
+					hiddenpwitem->owt = weight(hiddenpwitem);
+					dropy(hiddenpwitem);
+					stackobj(hiddenpwitem);
+				}
+
+			}
+
+
+		      t_timeout = rnz(50000);
 			break;
 
 		case T_BALLSLIFF:
@@ -8832,10 +9274,40 @@ extrachargechoice:
 						    madechoice = 1; sabertype = 5; }
 					else if (yn("Do you want to switch to an electric cigarette?")=='y') {
 						    madechoice = 1; sabertype = 6; }
+					else if (yn("Do you want to switch to a laserdent?")=='y') {
+						    madechoice = 1; sabertype = 7; }
+					else if (yn("Do you want to switch to a laser sword?")=='y') {
+						    madechoice = 1; sabertype = 8; }
+					else if (yn("Do you want to switch to a sith staff?")=='y') {
+						    madechoice = 1; sabertype = 9; }
+					else if (yn("Do you want to switch to a laser pole?")=='y') {
+						    madechoice = 1; sabertype = 10; }
+					else if (yn("Do you want to switch to a starwars mace?")=='y') {
+						    madechoice = 1; sabertype = 11; }
+					else if (yn("Do you want to switch to a beamsword?")=='y') {
+						    madechoice = 1; sabertype = 12; }
+					else if (yn("Do you want to switch to a laserxbow?")=='y') {
+						    madechoice = 1; sabertype = 13; }
 
 				}
 
 				if (sabertype == 2 && (uarms || u.twoweap)) {
+					pline("Something is blocking your second %s!", body_part(HAND));
+					break;
+				}
+				if (sabertype == 7 && (uarms || u.twoweap)) {
+					pline("Something is blocking your second %s!", body_part(HAND));
+					break;
+				}
+				if (sabertype == 9 && (uarms || u.twoweap)) {
+					pline("Something is blocking your second %s!", body_part(HAND));
+					break;
+				}
+				if (sabertype == 10 && (uarms || u.twoweap)) {
+					pline("Something is blocking your second %s!", body_part(HAND));
+					break;
+				}
+				if (sabertype == 13 && (uarms || u.twoweap)) {
 					pline("Something is blocking your second %s!", body_part(HAND));
 					break;
 				}
@@ -8856,10 +9328,24 @@ extrachargechoice:
 					uwep->otyp = LASER_SWATTER;
 				} else if (sabertype == 4) {
 					uwep->otyp = NANO_HAMMER;
-				} else if (sabertype == 5) { /* sabertype == 5 */
+				} else if (sabertype == 5) {
 					uwep->otyp = LIGHTWHIP;
-				} else /* sabertype == 6 */
+				} else if (sabertype == 6) {
 					uwep->otyp = ELECTRIC_CIGARETTE;
+				} else if (sabertype == 7) {
+					uwep->otyp = LASERDENT;
+				} else if (sabertype == 8) {
+					uwep->otyp = LASER_SWORD;
+				} else if (sabertype == 9) {
+					uwep->otyp = SITH_STAFF;
+				} else if (sabertype == 10) {
+					uwep->otyp = LASER_POLE;
+				} else if (sabertype == 11) {
+					uwep->otyp = STARWARS_MACE;
+				} else if (sabertype == 12) {
+					uwep->otyp = BEAMSWORD;
+				} else /* sabertype == 13 */
+					uwep->otyp = LASERXBOW;
 
 				pline("Your lightsaber warps, and changes into a different one!");
 				/* known problem: you can pick the form that your lightsaber already has */
@@ -9060,6 +9546,11 @@ extrachargechoice:
 		}
 		if (timeoutamount >= 1 && (timeoutamount > rn2(1000))) use_skill(P_TECHNIQUES, 1);
 		u.cnd_techcount++;
+
+		if (rn2(4) && (t_timeout > rnd(StrongExtra_wpn_practice ? 15000 : Extra_wpn_practice ? 25000 : 50000)) ) {
+			maybeleveltech = TRUE;
+		}
+
 	  }
 
 	  if (!PlayerCannotUseSkills) {
@@ -9102,6 +9593,11 @@ extrachargechoice:
 	/* limit break can be used for endless exploits, so this fix was urgently necessary... --Amy */
 
 		if (ishaxor && techtout(tech_no) > 1) techtout(tech_no) /= 2;
+
+		if (u.emynluincomplete && techtout(tech_no) > 99) { /* 2% reduction --Amy */
+			techtout(tech_no) *= 49;
+			techtout(tech_no) /= 50;
+		}
 
 		if (uamul && uamul->oartifact == ART_TYRANITAR_S_QUEST && !rn2(2)) techtout(tech_no) = 0;
 
@@ -9169,6 +9665,13 @@ extrachargechoice:
 			}
 
 		}
+
+	if (maybeleveltech) {
+		if (tech_list[tech_no].t_lev > 0) {
+			tech_list[tech_no].t_lev -= 1;
+			pline("Your %s technique leveled up to level %d!", techname(tech_no), techlev(tech_no));
+		}
+	}
 
 	/*By default,  action should take a turn*/
 	if (techid(tech_no) == T_DIRECTIVE) return 0;
@@ -9514,6 +10017,7 @@ role_tech()
 		case PM_THALMOR:	return (tha_tech);
 		case PM_DRUNK:	return (dru_tech);
 		case PM_BARBARIAN:	return (bar_tech);
+		case PM_NOOB_MODE_BARB:	return (noo_tech);
 		case PM_BLOODSEEKER:	return (blo_tech);
 		case PM_BLEEDER:	return (ble_tech);
 		case PM_CAVEMAN:	return (cav_tech);
@@ -9542,6 +10046,11 @@ role_tech()
 		case PM_JEDI:		return (jed_tech);
 		case PM_KNIGHT:		return (kni_tech);
 		case PM_KORSAIR:		return (kor_tech);
+		case PM_SECRET_ADVICE_MEMBER:		return (sec_tech);
+		case PM_PREVERSIONER:		return (pre_tech);
+		case PM_DANCER:		return (dan_tech);
+		case PM_DIABLIST:		return (dia_tech);
+		case PM_BUTT_LOVER:		return (but_tech);
 		case PM_JUSTICE_KEEPER:		return (jus_tech);
 		case PM_MONK: 		return (mon_tech);
 		case PM_OCCULT_MASTER: 		return (occ_tech);
@@ -9639,6 +10148,7 @@ race_tech()
 		case PM_DROW:		return (elf_tech);
 		case PM_CURSER:		return (cur_tech);
 		case PM_IMPERIAL:		return (imp_tech);
+		case PM_SWIKNI:		return (swi_tech);
 		case PM_CLOCKWORK_AUTOMATON:		return (clk_tech);
 
 		case PM_FENEK:		return (fen_tech);
@@ -9669,6 +10179,7 @@ race_tech()
 		case PM_SATRE:		return (sat_tech);
 		case PM_KORONST:		return (kst_tech);
 		case PM_RUSMOT:		return (rus_tech);
+		case PM_PIECE:		return (pic_tech);
 		case PM_CARTHAGE:		return (crt_tech);
 		case PM_MACTHEIST:		return (mac_tech);
 		case PM_BOVER:		return (bov_tech);
@@ -10565,6 +11076,562 @@ int increaseamount;
 	if (choicenumber > 0 && thisone >= 0) {
 		techtout(thisone) += increaseamount;
 		pline("Your %s technique's timeout increases!", techname(thisone));
+	}
+
+}
+
+void
+techdrain()
+{
+
+	int i, thisone, choicenumber, attempts;
+
+techdrainnew:
+	thisone = -1;
+	choicenumber = 0;
+	attempts = 0;
+
+	for (i = 0; i < MAXTECH; i++) {
+
+		if (tech_list[i].t_id == NO_TECH) break;
+
+		if (!choicenumber || (!rn2(choicenumber + 1))) {
+			thisone = i;
+		}
+		choicenumber++;
+
+	}
+
+	if (choicenumber > 0 && thisone >= 0 && attempts < 10000) {
+		if (tech_list[thisone].t_lev < 130) {
+			tech_list[thisone].t_lev += 1;
+			pline("Your %s technique's level is drained to %d!", techname(thisone), techlev(thisone));
+		} else {
+			attempts++;
+			goto techdrainnew;
+		}
+	}
+
+}
+
+void
+techdrainsevere()
+{
+
+	int i, thisone, choicenumber, attempts;
+
+techdrainnewS:
+	thisone = -1;
+	choicenumber = 0;
+	attempts = 0;
+
+	for (i = 0; i < MAXTECH; i++) {
+
+		if (tech_list[i].t_id == NO_TECH) break;
+
+		if (!choicenumber || (!rn2(choicenumber + 1))) {
+			thisone = i;
+		}
+		choicenumber++;
+
+	}
+
+	if (choicenumber > 0 && thisone >= 0 && attempts < 10000) {
+		if (tech_list[thisone].t_lev < 120) {
+			tech_list[thisone].t_lev = 130;
+			pline("Your %s technique becomes permanently unusable!", techname(thisone));
+		} else {
+			attempts++;
+			goto techdrainnewS;
+		}
+	}
+
+}
+
+void
+techlevelup()
+{
+
+	int i, thisone, choicenumber, attempts;
+
+techlvlupnew:
+	thisone = -1;
+	choicenumber = 0;
+	attempts = 0;
+
+	for (i = 0; i < MAXTECH; i++) {
+
+		if (tech_list[i].t_id == NO_TECH) break;
+
+		if (!choicenumber || (!rn2(choicenumber + 1))) {
+			thisone = i;
+		}
+		choicenumber++;
+
+	}
+
+	if (choicenumber > 0 && thisone >= 0 && attempts < 10000) {
+		if (tech_list[thisone].t_lev > 0) {
+			tech_list[thisone].t_lev -= 1;
+			pline("Your %s technique leveled up to level %d!", techname(thisone), techlev(thisone));
+		} else {
+			attempts++;
+			goto techlvlupnew;
+		}
+	}
+
+}
+
+void
+techlevelspecific(technumber)
+int technumber;
+{
+
+	int i, thisone, choicenumber, attempts;
+
+techlvlupnew:
+
+	thisone = -1;
+	attempts = 0;
+	boolean foundtech = FALSE;
+
+	for (i = 0; i < MAXTECH; i++) {
+
+		if (tech_list[i].t_id == NO_TECH) break;
+		if (tech_list[i].t_id == technumber) {
+			thisone = i;
+			foundtech = TRUE;
+		}
+
+	}
+
+	if (foundtech && thisone >= 0) {
+		if (tech_list[thisone].t_lev > 0) {
+			tech_list[thisone].t_lev -= 1;
+			pline("Your %s technique leveled up to level %d!", techname(thisone), techlev(thisone));
+		} else {
+			pline("Your %s technique has reached the maximum level already.", techname(thisone));
+		}
+	}
+
+}
+
+/* player learns a random "regular" tech, i.e. one not taught by leveling up skills or some such --Amy */
+void
+learnrandomregulartech()
+{
+	switch (rnd(181)) {
+
+		case 1: 
+		case 2: 
+		case 3: 
+			learntech_or_leveltech(T_BERSERK, FROMOUTSIDE, 1);
+		    	You("learn how to perform berserk!");
+			break;
+		case 4: 
+		case 5: 
+		case 6: 
+			learntech_or_leveltech(T_KIII, FROMOUTSIDE, 1);
+		    	You("learn how to perform kiii!");
+			break;
+		case 7: 
+		case 8: 
+		case 9: 
+			learntech_or_leveltech(T_RESEARCH, FROMOUTSIDE, 1);
+		    	You("learn how to perform research!");
+			break;
+		case 10: 
+		case 11: 
+		case 12: 
+			learntech_or_leveltech(T_SURGERY, FROMOUTSIDE, 1);
+		    	You("learn how to perform surgery!");
+			break;
+		case 13: 
+		case 14: 
+		case 15: 
+			learntech_or_leveltech(T_REINFORCE, FROMOUTSIDE, 1);
+		    	You("learn how to perform reinforce memory!");
+			break;
+		case 16: 
+		case 17:
+		case 18: 
+			learntech_or_leveltech(T_FLURRY, FROMOUTSIDE, 1);
+		    	You("learn how to perform missile flurry!");
+			break;
+		case 19: 
+		case 20: 
+		case 21: 
+			learntech_or_leveltech(T_PRACTICE, FROMOUTSIDE, 1);
+		    	You("learn how to perform weapon practice!");
+			break;
+		case 22: 
+		case 23: 
+		case 24: 
+			learntech_or_leveltech(T_EVISCERATE, FROMOUTSIDE, 1);
+		    	You("learn how to perform eviscerate!");
+			break;
+		case 25: 
+		case 26: 
+		case 27: 
+			learntech_or_leveltech(T_HEAL_HANDS, FROMOUTSIDE, 1);
+		    	You("learn how to perform healing hands!");
+			break;
+		case 28: 
+		case 29: 
+		case 30: 
+			learntech_or_leveltech(T_CALM_STEED, FROMOUTSIDE, 1);
+		    	You("learn how to perform calm steed!");
+			break;
+		case 31: 
+		case 32: 
+		case 33: 
+			learntech_or_leveltech(T_TURN_UNDEAD, FROMOUTSIDE, 1);
+		    	You("learn how to perform turn undead!");
+			break;
+		case 34: 
+		case 35: 
+		case 36: 
+			learntech_or_leveltech(T_VANISH, FROMOUTSIDE, 1);
+		    	You("learn how to perform vanish!");
+			break;
+		case 37: 
+		case 38: 
+		case 39: 
+			learntech_or_leveltech(T_CUTTHROAT, FROMOUTSIDE, 1);
+		    	You("learn how to perform cutthroat!");
+			break;
+		case 40: 
+		case 41: 
+			learntech_or_leveltech(T_BLESSING, FROMOUTSIDE, 1);
+		    	You("learn how to perform blessing!");
+			break;
+		case 42: 
+		case 43: 
+		case 44: 
+			learntech_or_leveltech(T_E_FIST, FROMOUTSIDE, 1);
+		    	You("learn how to perform elemental fist!");
+			break;
+		case 45: 
+		case 46: 
+		case 47: 
+			learntech_or_leveltech(T_PRIMAL_ROAR, FROMOUTSIDE, 1);
+		    	You("learn how to perform primal roar!");
+			break;
+		case 48: 
+		case 49: 
+			learntech_or_leveltech(T_LIQUID_LEAP, FROMOUTSIDE, 1);
+		    	You("learn how to perform liquid leap!");
+			break;
+		case 50: 
+		case 51: 
+		case 52: 
+			learntech_or_leveltech(T_CRIT_STRIKE, FROMOUTSIDE, 1);
+		    	You("learn how to perform critical strike!");
+			break;
+		case 53: 
+		case 54: 
+		case 55: 
+			learntech_or_leveltech(T_SIGIL_CONTROL, FROMOUTSIDE, 1);
+		    	You("learn how to perform sigil of control!");
+			break;
+		case 56: 
+		case 57: 
+		case 58: 
+			learntech_or_leveltech(T_SIGIL_TEMPEST, FROMOUTSIDE, 1);
+		    	You("learn how to perform sigil of tempest!");
+			break;
+		case 59: 
+		case 60: 
+		case 61: 
+			learntech_or_leveltech(T_SIGIL_DISCHARGE, FROMOUTSIDE, 1);
+		    	You("learn how to perform sigil of discharge!");
+			break;
+		case 62: 
+		case 63: 
+		case 64: 
+			learntech_or_leveltech(T_RAISE_ZOMBIES, FROMOUTSIDE, 1);
+		    	You("learn how to perform raise zombies!");
+			break;
+		case 65: 
+			learntech_or_leveltech(T_REVIVE, FROMOUTSIDE, 1);
+		    	You("learn how to perform revivification!");
+			break;
+		case 66: 
+		case 67: 
+		case 68: 
+			learntech_or_leveltech(T_WARD_FIRE, FROMOUTSIDE, 1);
+		    	You("learn how to perform ward against fire!");
+			break;
+		case 69: 
+		case 70: 
+		case 71: 
+			learntech_or_leveltech(T_WARD_COLD, FROMOUTSIDE, 1);
+		    	You("learn how to perform ward against cold!");
+			break;
+		case 72: 
+		case 73: 
+		case 74: 
+			learntech_or_leveltech(T_WARD_ELEC, FROMOUTSIDE, 1);
+		    	You("learn how to perform ward against electricity!");
+			break;
+		case 75: 
+		case 76: 
+		case 77: 
+			learntech_or_leveltech(T_TINKER, FROMOUTSIDE, 1);
+		    	You("learn how to perform tinker!");
+			break;
+		case 78: 
+		case 79: 
+		case 80: 
+			learntech_or_leveltech(T_RAGE, FROMOUTSIDE, 1);
+		    	You("learn how to perform rage eruption!");
+			break;
+		case 81: 
+		case 82: 
+		case 83: 
+			learntech_or_leveltech(T_BLINK, FROMOUTSIDE, 1);
+		    	You("learn how to perform blink!");
+			break;
+		case 84: 
+		case 85: 
+		case 86: 
+			learntech_or_leveltech(T_CHI_STRIKE, FROMOUTSIDE, 1);
+		    	You("learn how to perform chi strike!");
+			break;
+		case 87: 
+		case 88: 
+		case 89: 
+			learntech_or_leveltech(T_DRAW_ENERGY, FROMOUTSIDE, 1);
+		    	You("learn how to perform draw energy!");
+			break;
+		case 90: 
+		case 91: 
+		case 92: 
+			learntech_or_leveltech(T_CHI_HEALING, FROMOUTSIDE, 1);
+		    	You("learn how to perform chi healing!");
+			break;
+		case 93: 
+		case 94: 
+		case 95: 
+			learntech_or_leveltech(T_DAZZLE, FROMOUTSIDE, 1);
+		    	You("learn how to perform dazzle!");
+			break;
+		case 96: 
+		case 97: 
+		case 98: 
+			learntech_or_leveltech(T_BLITZ, FROMOUTSIDE, 1);
+		    	You("learn how to perform chained blitz!");
+			break;
+		case 99: 
+		case 100: 
+		case 101: 
+			learntech_or_leveltech(T_PUMMEL, FROMOUTSIDE, 1);
+		    	You("learn how to perform pummel!");
+			break;
+		case 102: 
+		case 103: 
+		case 104: 
+			learntech_or_leveltech(T_G_SLAM, FROMOUTSIDE, 1);
+		    	You("learn how to perform ground slam!");
+			break;
+		case 105: 
+		case 106: 
+		case 107: 
+			learntech_or_leveltech(T_DASH, FROMOUTSIDE, 1);
+		    	You("learn how to perform air dash!");
+			break;
+		case 108: 
+		case 109: 
+		case 110: 
+			learntech_or_leveltech(T_POWER_SURGE, FROMOUTSIDE, 1);
+		    	You("learn how to perform power surge!");
+			break;
+		case 111: 
+		case 112: 
+		case 113: 
+			learntech_or_leveltech(T_SPIRIT_BOMB, FROMOUTSIDE, 1);
+		    	You("learn how to perform spirit bomb!");
+			break;
+		case 114: 
+		case 115: 
+		case 116: 
+			learntech_or_leveltech(T_DRAW_BLOOD, FROMOUTSIDE, 1);
+		    	You("learn how to perform draw blood!");
+			break;
+		case 117: 
+			learntech_or_leveltech(T_WORLD_FALL, FROMOUTSIDE, 1);
+		    	You("learn how to perform world fall!");
+			break;
+		case 118: 
+		case 119: 
+		case 120: 
+			learntech_or_leveltech(T_CREATE_AMMO, FROMOUTSIDE, 1);
+		    	You("learn how to perform create ammo!");
+			break;
+		case 121: 
+		case 122: 
+		case 123: 
+			learntech_or_leveltech(T_POKE_BALL, FROMOUTSIDE, 1);
+		    	You("learn how to perform poke ball!");
+			break;
+		case 124: 
+		case 125: 
+		case 126: 
+			learntech_or_leveltech(T_ATTIRE_CHARM, FROMOUTSIDE, 1);
+		    	You("learn how to perform attire charm!");
+			break;
+		case 127: 
+		case 128: 
+		case 129: 
+			learntech_or_leveltech(T_SUMMON_TEAM_ANT, FROMOUTSIDE, 1);
+		    	You("learn how to perform summon team ant!");
+			break;
+		case 130: 
+		case 131: 
+		case 132: 
+			learntech_or_leveltech(T_JEDI_JUMP, FROMOUTSIDE, 1);
+		    	You("learn how to perform jedi jump!");
+			break;
+		case 133: 
+		case 134: 
+		case 135: 
+			learntech_or_leveltech(T_CHARGE_SABER, FROMOUTSIDE, 1);
+		    	You("learn how to perform charge saber!");
+			break;
+		case 136: 
+		case 137: 
+		case 138: 
+			learntech_or_leveltech(T_TELEKINESIS, FROMOUTSIDE, 1);
+		    	You("learn how to perform telekinesis!");
+			break;
+		case 139: 
+			learntech_or_leveltech(T_EGG_BOMB, FROMOUTSIDE, 1);
+		    	You("learn how to perform egg bomb!");
+			break;
+		case 140: 
+		case 141: 
+		case 142: 
+			learntech_or_leveltech(T_BOOZE, FROMOUTSIDE, 1);
+		    	You("learn how to perform booze!");
+			break;
+		case 143: 
+		case 144: 
+		case 145: 
+			learntech_or_leveltech(T_IRON_SKIN, FROMOUTSIDE, 1);
+		    	You("learn how to perform iron skin!");
+			break;
+		case 146: 
+			learntech_or_leveltech(T_POLYFORM, FROMOUTSIDE, 1);
+		    	You("learn how to perform polyform!");
+			break;
+		case 147: 
+		case 148: 
+		case 149: 
+			learntech_or_leveltech(T_CONCENTRATING, FROMOUTSIDE, 1);
+		    	You("learn how to perform concentrating!");
+			break;
+		case 150: 
+			learntech_or_leveltech(T_SUMMON_PET, FROMOUTSIDE, 1);
+		    	You("learn how to perform summon pet!");
+			break;
+		case 151: 
+		case 152: 
+			learntech_or_leveltech(T_DOUBLE_THROWNAGE, FROMOUTSIDE, 1);
+		    	You("learn how to perform double thrownage!");
+			break;
+		case 153: 
+		case 154: 
+		case 155: 
+			learntech_or_leveltech(T_SHIELD_BASH, FROMOUTSIDE, 1);
+		    	You("learn how to perform shield bash!");
+			break;
+		case 156: 
+		case 157: 
+			learntech_or_leveltech(T_RECHARGE, FROMOUTSIDE, 1);
+		    	You("learn how to perform recharge!");
+			break;
+		case 158: 
+		case 159: 
+		case 160: 
+			learntech_or_leveltech(T_SPIRITUALITY_CHECK, FROMOUTSIDE, 1);
+		    	You("learn how to perform spirituality check!");
+			break;
+		case 161: 
+			learntech_or_leveltech(T_EDDY_WIND, FROMOUTSIDE, 1);
+		    	You("learn how to perform eddy wind!");
+			break;
+		case 162: 
+			learntech_or_leveltech(T_BLOOD_RITUAL, FROMOUTSIDE, 1);
+		    	You("learn how to perform blood ritual!");
+			break;
+		case 163: 
+			learntech_or_leveltech(T_ENT_S_POTION, FROMOUTSIDE, 1);
+		    	You("learn how to perform ent's potion!");
+			break;
+		case 164: 
+		case 165: 
+			learntech_or_leveltech(T_LUCKY_GAMBLE, FROMOUTSIDE, 1);
+		    	You("learn how to perform lucky gamble!");
+			break;
+		case 166: 
+			learntech_or_leveltech(T_DECONTAMINATE, FROMOUTSIDE, 1);
+		    	You("learn how to perform decontaminate!");
+			break;
+		case 167:
+			learntech_or_leveltech(T_WONDERSPELL, FROMOUTSIDE, 1);
+		    	You("learn how to perform wonderspell!");
+			break;
+		case 168:
+			learntech_or_leveltech(T_RESET_TECHNIQUE, FROMOUTSIDE, 1);
+		    	You("learn how to perform reset technique!");
+			break;
+		case 169:
+		case 170:
+			learntech_or_leveltech(T_DIAMOND_BARRIER, FROMOUTSIDE, 1);
+		    	You("learn how to perform diamond barrier!");
+			break;
+		case 171:
+		case 172:
+		case 173:
+			learntech_or_leveltech(T_ZAP_EM, FROMOUTSIDE, 1);
+		    	You("learn how to perform zap em!");
+			break;
+		case 174:
+		case 175:
+		case 176:
+			learntech_or_leveltech(T_CARD_TRICK, FROMOUTSIDE, 1);
+		    	You("learn how to perform card trick!");
+			break;
+		case 177:
+			learntech_or_leveltech(T_SKILLOMORPH, FROMOUTSIDE, 1);
+		    	You("learn how to perform skillomorph!");
+			break;
+		case 178:
+		case 179:
+		case 180:
+			learntech_or_leveltech(T_TERRAIN_CLEANUP, FROMOUTSIDE, 1);
+		    	You("learn how to perform terrain cleanup!");
+			break;
+		case 181:
+		case 182:
+		case 183:
+			learntech_or_leveltech(T_PREACHING, FROMOUTSIDE, 1);
+		    	You("learn how to perform preaching!");
+			break;
+		case 184:
+		case 185:
+		case 186:
+			learntech_or_leveltech(T_ON_THE_SAME_TEAM, FROMOUTSIDE, 1);
+		    	You("learn how to perform on the same team!");
+			break;
+		case 187:
+			learntech_or_leveltech(T_PERMAMORPH, FROMOUTSIDE, 1);
+		    	You("learn how to perform permamorph!");
+			break;
+
+		default:
+			break;
+
 	}
 
 }

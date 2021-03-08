@@ -26,6 +26,12 @@ d_level *lev;
 
 	return (boolean)(((sptr = Is_special(lev)) != 0 && !sptr->boneid)
 		|| !dungeons[lev->dnum].boneid
+		|| (iszapem && !(u.zapemescape) && In_spacebase(lev) && lev->dlevel < 3)
+		|| (u.preversionmode && !u.preversionescape && In_greencross(lev) && lev->dlevel < 3)
+		|| (flags.lostsoul && In_dod(lev) && lev->dlevel == (depth(&medusa_level) - 1) )
+		|| (flags.lostsoul && In_dod(lev) && lev->dlevel == (depth(&medusa_level)) )
+		|| (flags.lostsoul && In_dod(lev) && lev->dlevel == (depth(&medusa_level) + 1) )
+		|| (flags.uberlostsoul && In_gehennom(lev) && (lev->dlevel == 23 || lev->dlevel == 24 || lev->dlevel == 25))
 		   /* no bones on the last or multiway branch levels */
 		   /* in any dungeon (level 1 isn't multiway).       */
 		|| (Is_botlevel(lev) && In_V_tower(lev) ) || (Is_branchlev(lev) && lev->dlevel > 1 && !In_sokoban(lev) && !In_towndungeon(lev) )
@@ -266,8 +272,12 @@ xchar dnum;
 		strcpy(buf, "DEA");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Deep Mines"))
 		strcpy(buf, "DEE");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Digdug Challenge"))
+		strcpy(buf, "DIG");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Dungeons of Doom"))
 		strcpy(buf, "DOO");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Emyn Luin"))
+		strcpy(buf, "EMY");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber"))
 		strcpy(buf, "FOR");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Gamma Caves"))
@@ -278,22 +288,38 @@ xchar dnum;
 		strcpy(buf, "GIA");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Gnomish Mines"))
 		strcpy(buf, "GNO");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Green Cross"))
+		strcpy(buf, "GRC");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Grue Challenge"))
+		strcpy(buf, "GRE");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold"))
 		strcpy(buf, "GRU");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Ice Queen's Realm"))
+		strcpy(buf, "ICE");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Illusory Castle"))
 		strcpy(buf, "ILL");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Joust Challenge"))
+		strcpy(buf, "JOU");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios"))
 		strcpy(buf, "KNX");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab"))
 		strcpy(buf, "LAB");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Mainframe"))
 		strcpy(buf, "MAI");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Minotaur Maze"))
+		strcpy(buf, "MIN");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Minus World"))
+		strcpy(buf, "MIW");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch"))
 		strcpy(buf, "MOL");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Nether Realm"))
 		strcpy(buf, "NET");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos"))
 		strcpy(buf, "ORD");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Pacman Challenge"))
+		strcpy(buf, "PAC");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Pool Challenge"))
+		strcpy(buf, "POO");
 	else if (In_quest(&u.uz))
 		strcpy(buf, "QUE");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone A"))
@@ -308,6 +334,8 @@ xchar dnum;
 		strcpy(buf, "RGD");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone GE"))
 		strcpy(buf, "RGE");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Rival Quest"))
+		strcpy(buf, "RIV");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone S"))
 		strcpy(buf, "RSZ");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone TA"))

@@ -243,6 +243,7 @@ register struct obj *obj;
 	if (itemhasappearance(obj, APP_POTION_CHEWABLE)) return 1;
 
 	if (Race_if(PM_OCTOPODE) && obj->oclass == RING_CLASS) return 1;
+	if (uarmh && uarmh->oartifact == ART_VORE_OF_THE_RINGS && obj->oclass == RING_CLASS) return 1;
 
 	/* Incantifier only eats stone and metal --Amy */
 	if (Race_if(PM_INCANTIFIER) && !Upolyd) return (boolean) (is_metallic(obj) || is_lithic(obj));
@@ -557,6 +558,18 @@ register struct obj *food;
 			morehungry(100);	/* remove a bit of nutrition so you don't choke again instantly --Amy */
 			nomul(-2, "vomiting", TRUE);
 			u_wipe_engr(100);
+
+			u.cnd_vomitingcount++;
+			if (u.inasuppression) {
+
+				FemaleTrapIna += u.inasuppression;
+				FemaleTrapIna += rnz(20 * (monster_difficulty() + 1));
+				if (rn2(3)) FemaleTrapIna += 100;
+				if (!rn2(3)) FemaleTrapIna += rnz(500);
+				u.inasuppression = 0;
+				pline("Oh my god, you are now afflicted with the life-threatening disease known as anorexia!");
+			}
+
 			return;
 		}
 		You(FunnyHallu ? "vomit all over the place. Shit, now your clothes are a huge mess!" : "stuff yourself and then vomit voluminously.");
@@ -966,6 +979,15 @@ register int pm;
 
 		}
 		break;
+	    case PM_ROCK_HARD_COCKATRICE:
+		if (u.ublessed < 20) {
+			if (!(HProtection & INTRINSIC)) HProtection |= FROMOUTSIDE;
+			u.ublessed++;
+			find_ac();
+			flags.botl = TRUE;
+			pline("A holy aura of protection surrounds you!");
+		}
+		break;
 	    case PM_LIZARD:
 	    case PM_LIZZY:
 	    case PM_LIZARD_PRINCE:
@@ -1006,6 +1028,8 @@ register int pm;
 	    case PM_ICE_LIZARD:
 	    case PM_GIANT_LIZARD:
 	    case PM_LIZARD_EEL:
+	    case PM_INNOCLIZARD:
+	    case PM_FAT_LIZARD:
 	    case PM_EEL_LIZARD:
 	    case PM_GRASS_LIZARD:
 	    case PM_RUNE_LIZARD:
@@ -1152,6 +1176,8 @@ struct monst *mon;
       case PM_WILL_RATCH_LIZARD:
       case PM_LICHZARD:
       case PM_SKELLIZARD:
+      case PM_INNOCLIZARD:
+      case PM_FAT_LIZARD:
 	case PM_BABY_CAVE_LIZARD:
 	case PM_NIGHT_LIZARD:
 	case PM_LIZARD_MAN:
@@ -1858,6 +1884,7 @@ register int pm;
 		break;
 
 	    case PM_DRACOLISK:
+	    case PM_COCKENTRICE:
 	    case PM_CHARISMA_TROVE:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		if (ABASE(A_CHA) < ATTRMAX(A_CHA)) {
@@ -1938,6 +1965,7 @@ register int pm;
 	    case PM_SENSEI_NEWT:
 	    case PM_GRANDMASTER_NEWT:
 	    case PM_ASPHYNX:
+	    case PM_SHOCKATRICE:
 	    case PM_RUBBER_CHICKEN:
 	    case PM_NASTY_CHICKEN:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
@@ -2838,6 +2866,7 @@ register int pm;
 		/* bats are generalized with is_bat now --Amy */
 		break;
 	    case PM_QUANTUM_MECHANIC:
+	    case PM_SCREWER_MECHANIC:
 	    case PM_QUANTUM_CREATURE:
 	    case PM_ECO_MECHANIC:
 	    case PM_COMO_MECHANIC:
@@ -2903,6 +2932,8 @@ register int pm;
 			lesshungry(180); /* fall thru */
 	    case PM_LIZARD:
 	    case PM_LIZZY:
+	    case PM_INNOCLIZARD:
+	    case PM_FAT_LIZARD:
 	    case PM_LIZARD_PRINCE:
 	    case PM_WILL_STONE_LIZARD:
 	    case PM_WILL_RATCH_LIZARD:
@@ -3001,6 +3032,7 @@ register int pm;
 	    case PM_SLUMBER_HULK:
 	    case PM_OFFDIVER:
 	    case PM_CHANGELING:
+	    case PM_PLAYER_CHANGELING:
 	    case PM_CHANGELING_ZOMBIE:
 	    case PM_CHANGELING_MUMMY:
 	    case PM_ELEROTIC_DREAM_WOMAN:
@@ -3332,6 +3364,7 @@ register int pm;
 	    case PM_NASTY_MASTER_MIND_FLAYER:
 	    case PM_UNSEXY_MASTER_MIND_FLAYER:
 	    case PM_ILLITHID:
+	    case PM_MIND_GIVER:
 	    case PM_FLAYMIND_CAT:
 	    case PM_DEADLY_GAZER:
 	    case PM_MIND_BEAMER:
@@ -3352,6 +3385,10 @@ register int pm;
 		case PM_BRAIN_EATER:
 		case PM_BRAIN_OOZE:
 		case PM_BRAIN_MOLE:
+		case PM_MINDFLAYER_AMOEBA:
+		case PM_MASTER_MINDFLAYER_AMOEBA:
+		case PM_MINDFLAYER_AMOEBA_SWARM:
+		case PM_FLOATING_BRAIN:
 		case PM_MINDWITNESS:
 		case PM_BRAIN_GOLEM:
 		case PM_LOWER_BRAIN:
@@ -3382,6 +3419,12 @@ register int pm;
 		case PM_BLUE_FLAYER:
 		case PM_MASTER_BLUE_FLAYER:
 		case PM_MIND_FLAYER_TELEPATH:
+		case PM_TENTACLED_ONE:
+		case PM_TENTACLED_POTATO:
+		case PM_ELDER_TENTACLED_ONE:
+		case PM_ELDER_TENTACLED_POTATO:
+		case PM_TENTACLED_ONE_LICH:
+		case PM_DEATH_FLAYER:
 		case PM_MIND_FLAYER_LARVA:
 		case PM_EVIL_MIND_FLAYER_LARVA:
 		case PM_VAMPIRIC_MIND_FLAYER:
@@ -3529,6 +3572,12 @@ register int pm;
 		if (dmgtype(ptr, AD_SANI)) {
 			pline("It tasted really, really strange.");
 			increasesanity(rnz(100));
+		}
+
+	/* tech drain monsters have a small chance of increasing the level of a random tech --Amy */
+		if (dmgtype(ptr, AD_TDRA) && (ptr->mlevel > rn2(Race_if(PM_ILLITHID) ? 210 : 70) && rn2(2) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() )  ) ) {
+			You_feel("very good!");
+			techlevelup();
 		}
 
 	/* skill cap reducing monsters very rarely grant something good too --Amy */
@@ -4037,7 +4086,7 @@ void
 violated_vegetarian()
 {
     u.uconduct.unvegetarian++;
-    if (Role_if(PM_MONK) || have_anorexia() || Role_if(PM_FAILED_EXISTENCE) || Race_if(PM_SYLPH) ) {
+    if (Role_if(PM_MONK) || Role_if(PM_HALF_BAKED) || have_anorexia() || Role_if(PM_FAILED_EXISTENCE) || Race_if(PM_SYLPH) ) {
 	You_feel("guilty.");
 	adjalign(-5);
     }
@@ -4288,7 +4337,7 @@ opentin()		/* called during each move whilst opening a tin */
 			if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
 			if (!issoviet) lesshungry(tintxts[r].nut);
 		}
-	    else lesshungry(tintxts[r].nut);
+	    else lesshungry((uarmf && uarmf->oartifact == ART_U_BE_CURRY) ? ((tintxts[r].nut) * 3) : tintxts[r].nut);
 
 		if (Race_if(PM_WORM_THAT_WALKS)) { /* chance to polymorph into the tinned monster --Amy */
 			if (rn2(5) ) {
@@ -5187,10 +5236,6 @@ struct obj *otmp;
 		      ? (FunnyHallu ? "enjoyable." : "bland.") :
 		      FunnyHallu ? "gnarly!" : "delicious!");
 		}
-		if (otmp->otyp == EGG && otmp->oartifact == ART_EGG_OF_SPLAT) {
-		    pline("Ulch - that was a contaminated egg!");
-		    make_sick(rn1(25,25), "Team Splat egg (Go Team Hardcore Autism!)", TRUE, SICK_VOMITABLE);
-		}
 
 		break;
 	}
@@ -5316,6 +5361,7 @@ struct obj *otmp;
 		u.udamincxtra += otmp->spe;
 		break;
 	    case RIN_PROTECTION:
+	    case RIN_THREE_POINT_SEVEN_PROTECTI:
 		accessory_has_effect(otmp);
 		HProtection |= FROMOUTSIDE;
 		u.ublessed += otmp->spe;
@@ -5537,6 +5583,103 @@ eatspecial() /* called after eating non-food */
 	if (otmp->otyp == LOADBOULDER || otmp->otyp == LOADSTONE || otmp->otyp == STARLIGHTSTONE) {
 		You_feel("much heavier!");
 		IncreasedGravity += otmp->owt;
+	}
+
+	if (otmp->otyp >= ELIF_S_JEWEL && otmp->otyp <= DORA_S_JEWEL) {
+		pline("The feminine curse spreads through your body...");
+
+		switch (otmp->otyp) {
+
+			case ELIF_S_JEWEL:
+				FemaleTrapElif |= FROMOUTSIDE; break;
+			case MADELEINE_S_JEWEL:
+				FemaleTrapMadeleine |= FROMOUTSIDE; break;
+			case SANDRA_S_JEWEL:
+				FemaleTrapSandra |= FROMOUTSIDE; break;
+			case NADJA_S_JEWEL:
+				FemaleTrapNadja |= FROMOUTSIDE; break;
+			case SOLVEJG_S_JEWEL:
+				FemaleTrapSolvejg |= FROMOUTSIDE; break;
+			case THAI_S_JEWEL:
+				FemaleTrapThai |= FROMOUTSIDE; break;
+			case ELENA_S_JEWEL:
+				FemaleTrapElena |= FROMOUTSIDE; break;
+			case WENDY_S_JEWEL:
+				FemaleTrapWendy |= FROMOUTSIDE; break;
+			case ANASTASIA_S_JEWEL:
+				FemaleTrapAnastasia |= FROMOUTSIDE; break;
+			case JESSICA_S_JEWEL:
+				FemaleTrapJessica |= FROMOUTSIDE; break;
+			case MARLENA_S_JEWEL:
+				FemaleTrapMarlena |= FROMOUTSIDE; break;
+			case FEMMY_S_JEWEL:
+				FemaleTrapFemmy |= FROMOUTSIDE; break;
+			case NATALJE_S_JEWEL:
+				FemaleTrapNatalje |= FROMOUTSIDE; break;
+			case KARIN_S_JEWEL:
+				FemaleTrapKarin |= FROMOUTSIDE; break;
+			case JEANETTA_S_JEWEL:
+				FemaleTrapJeanetta |= FROMOUTSIDE; break;
+			case KATI_S_JEWEL:
+				FemaleTrapKati |= FROMOUTSIDE; break;
+			case CLAUDIA_S_JEWEL:
+				FemaleTrapClaudia |= FROMOUTSIDE; break;
+			case VICTORIA_S_JEWEL:
+				FemaleTrapVictoria |= FROMOUTSIDE; break;
+			case MAURAH_S_JEWEL:
+				FemaleTrapMaurah |= FROMOUTSIDE; break;
+			case JUEN_S_JEWEL:
+				FemaleTrapJuen |= FROMOUTSIDE; break;
+			case KRISTINA_S_JEWEL:
+				FemaleTrapKristina |= FROMOUTSIDE; break;
+			case SARAH_S_JEWEL:
+				FemaleTrapSarah |= FROMOUTSIDE; break;
+			case KATHARINA_S_JEWEL:
+				FemaleTrapKatharina |= FROMOUTSIDE; break;
+			case JULIETTA_S_JEWEL:
+				FemaleTrapJulietta |= FROMOUTSIDE; break;
+			case MELTEM_S_JEWEL:
+				FemaleTrapMeltem |= FROMOUTSIDE; break;
+			case MELISSA_S_JEWEL:
+				FemaleTrapMelissa |= FROMOUTSIDE; break;
+			case LUDGERA_S_JEWEL:
+				FemaleTrapLudgera |= FROMOUTSIDE; break;
+			case YVONNE_S_JEWEL:
+				FemaleTrapYvonne |= FROMOUTSIDE; break;
+			case EVELINE_S_JEWEL:
+				FemaleTrapEveline |= FROMOUTSIDE; break;
+			case NELLY_S_JEWEL:
+				FemaleTrapNelly |= FROMOUTSIDE; break;
+			case ARABELLA_S_JEWEL:
+				FemaleTrapArabella |= FROMOUTSIDE; break;
+			case RUEA_S_JEWEL:
+				FemaleTrapRuea |= FROMOUTSIDE; break;
+			case JETTE_S_JEWEL:
+				FemaleTrapJette |= FROMOUTSIDE; break;
+			case VERENA_S_JEWEL:
+				FemaleTrapVerena |= FROMOUTSIDE; break;
+			case LOU_S_JEWEL:
+				FemaleTrapLou |= FROMOUTSIDE; break;
+			case ANITA_S_JEWEL:
+				FemaleTrapAnita |= FROMOUTSIDE; break;
+			case MARIKE_S_JEWEL:
+				FemaleTrapMarike |= FROMOUTSIDE; break;
+			case KRISTIN_S_JEWEL:
+				FemaleTrapKristin |= FROMOUTSIDE; break;
+			case HENRIETTA_S_JEWEL:
+				FemaleTrapHenrietta |= FROMOUTSIDE; break;
+			case ALMUT_S_JEWEL:
+				FemaleTrapAlmut |= FROMOUTSIDE; break;
+			case ANNA_S_JEWEL:
+				FemaleTrapAnna |= FROMOUTSIDE; break;
+			case SING_S_JEWEL:
+				FemaleTrapSing |= FROMOUTSIDE; break;
+			case INA_S_JEWEL:
+				FemaleTrapIna |= FROMOUTSIDE; break;
+			case DORA_S_JEWEL:
+				FemaleTrapDora |= FROMOUTSIDE; break;
+
+		}
 	}
 
 	if (otmp->otyp >= RIGHT_MOUSE_BUTTON_STONE && otmp->otyp <= NASTY_STONE) {
@@ -6200,6 +6343,13 @@ register struct obj *otmp;
 		make_stunned(0L, TRUE);
 		break;
 
+	    case CHERRY:
+		if (PlayerBleeds) {
+			PlayerBleeds = 0;
+			Your("bleeding stops.");
+		}
+		break;
+
 	    case ASIAN_PEAR:
 		make_confused(0L, TRUE);
 		make_stunned(0L, TRUE);
@@ -6490,7 +6640,7 @@ struct obj *otmp;
 		else return 2;
 	}
 	if (cadaver && !vegetarian(&mons[mnum]) &&
-	    !u.uconduct.unvegetarian && (Role_if(PM_MONK) || have_anorexia() || Role_if(PM_FAILED_EXISTENCE) || Race_if(PM_SYLPH) ) ) {
+	    !u.uconduct.unvegetarian && (Role_if(PM_MONK) || Role_if(PM_HALF_BAKED) || have_anorexia() || Role_if(PM_FAILED_EXISTENCE) || Race_if(PM_SYLPH) ) ) {
 		sprintf(buf, "%s unhealthy. %s",
 			foodsmell, eat_it_anyway);
 		if (yn_function(buf,ynchars,'n')=='n') return 1;
@@ -6701,6 +6851,10 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 			if (basenutrit < 3) {basenutrit = 3;}
 		}
 
+		if (otmp->oartifact == ART_PAWNERMASTER) {
+			makemon(&mons[PM_GYPSY], u.ux, u.uy, MM_ADJACENTOK);
+		}
+
 	    victual.nmod = basenutrit;
 	    victual.eating = TRUE; /* needed for lesshungry() */
 
@@ -6779,6 +6933,20 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 
 	    }
 
+	    if (otmp->otyp == PETRIFYIUM_BRA) {
+		if (!Stoned && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM)) ) {
+			if (Hallucination && rn2(10)) pline("Good thing you are already stoned.");
+			else {
+				You("start turning to stone.");
+				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				u.cnd_stoningcount++;
+				stop_occupation();
+				delayed_killer = "eating a petrifying bra";
+			}
+		}
+
+	    }
+
 	    if (material == MT_INKA) {
 			pline("Urgh... your %s is turning as it's having difficulties digesting inka leather.", body_part(STOMACH));
 			nomul(-20, "trying to digest an inka object", TRUE);
@@ -6791,6 +6959,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 	    }
 
 	    eatspecial();
+
 	    return 1;
 	}
 
@@ -6916,6 +7085,16 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 		} else
 		consume_oeaten(otmp, 1);	/* oeaten >>= 1 */
 	    } else fprefx(otmp);
+	}
+
+	if (otmp->otyp == EGG && otmp->oartifact == ART_EGG_OF_SPLAT) {
+	    pline("Ulch - that was a contaminated egg!");
+	    make_sick(rn1(25,25), "Team Splat egg (Go Team Hardcore Autism!)", TRUE, SICK_VOMITABLE);
+	}
+
+	if (practicantterror && (otmp->otyp == SLICE_OF_PIZZA || otmp->otyp == PIZZA)) {
+		pline("%s booms: 'You're not allowed to eat pizza in my lab! That makes 50 zorkmids, maggot.'", noroelaname());
+		fineforpracticant(50, 0, 0);
 	}
 
 	/* re-calc the nutrition */
@@ -7109,7 +7288,7 @@ register int num;
 	if (Full_nutrient && num > 1 && u.uhunger < 2500) num /= 2;
 	if (StrongFull_nutrient && num > 1 && u.uhunger < 2500) num /= 2;
 
-	if (num < 0 && (CutNutritionEffect || u.uprops[CUT_NUTRITION].extrinsic || have_cutnutritionstone()) ) num /= 3;
+	if (num < 0 && (CutNutritionEffect || u.uprops[CUT_NUTRITION].extrinsic || have_cutnutritionstone() || (uwep && uwep->oartifact == ART_HAVANA_NERO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_HAVANA_NERO) ) ) num /= 3;
 
 	u.uhunger -= num;
 	newuhs(TRUE);
@@ -7125,7 +7304,7 @@ register int num;
 #ifdef DEBUG
 	debugpline("lesshungry(%d)", num);
 #endif
-	if (num > 0 && (CutNutritionEffect || u.uprops[CUT_NUTRITION].extrinsic || have_cutnutritionstone()) ) num /= 3;
+	if (num > 0 && (CutNutritionEffect || u.uprops[CUT_NUTRITION].extrinsic || have_cutnutritionstone() || (uwep && uwep->oartifact == ART_HAVANA_NERO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_HAVANA_NERO) ) ) num /= 3;
 
 	if (Race_if(PM_GERTEUT)) {
 		num *= 4;
@@ -7449,6 +7628,15 @@ void
 vomit()		/* A good idea from David Neves */
 {
 	u.cnd_vomitingcount++;
+	if (u.inasuppression) {
+
+		FemaleTrapIna += u.inasuppression;
+		FemaleTrapIna += rnz(20 * (monster_difficulty() + 1));
+		if (rn2(3)) FemaleTrapIna += 100;
+		if (!rn2(3)) FemaleTrapIna += rnz(500);
+		u.inasuppression = 0;
+		pline("Oh my god, you are now afflicted with the life-threatening disease known as anorexia!");
+	}
 	make_sick(0L, (char *) 0, TRUE, SICK_VOMITABLE);
 	nomul(-2, "vomiting", TRUE);
 	u_wipe_engr(100);

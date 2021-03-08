@@ -28,6 +28,8 @@ ENDMAP
 #
 #
 STAIR:(34,02),up
+# this branch has two levels now because we can't place the branch on the first one... --Amy
+STAIR:random,down
 BRANCH:(34,02,34,02),(0,0,0,0)
 #
 DOOR: closed,(34,4)

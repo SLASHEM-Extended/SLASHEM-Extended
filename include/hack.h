@@ -330,7 +330,7 @@ NEARDATA extern coord bhitpos;	/* place where throw or zap hits or stops */
 #define isproblematic (Race_if(PM_PROBLEMATIC) || flags.hybridproblematic)
 #define iswindinhabitant (Race_if(PM_WIND_INHABITANT) || flags.hybridwindinhabitant)
 #define isaggravator (Race_if(PM_AGGRAVATOR) || flags.hybridaggravator)
-#define isevilvariant (Race_if(PM_EVILVARIANT) || (!u.dungeongrowthhack && u.evilvartemporary) || flags.hybridevilvariant || EvilVariantActive || u.uprops[EVIL_VARIANT_ACTIVE].extrinsic || have_evilvariantstone() || (!u.dungeongrowthhack && uarmf && uarmf->oartifact == ART_A_SPOONFUL_OF_FO_U_RK) || (!u.dungeongrowthhack && uwep && uwep->oartifact == ART_FUURKER) || (!u.dungeongrowthhack && uarmh && uarmh->oartifact == ART_WHY_NOT_DO_THE_REAL_THING) || (!u.dungeongrowthhack && uswapwep && uswapwep->oartifact == ART_FUURKER) )
+#define isevilvariant (Race_if(PM_EVILVARIANT) || (!u.dungeongrowthhack && u.evilvartemporary) || (!u.dungeongrowthhack && u.badfdoomed) || flags.hybridevilvariant || EvilVariantActive || u.uprops[EVIL_VARIANT_ACTIVE].extrinsic || have_evilvariantstone() || (!u.dungeongrowthhack && uleft && uleft->oartifact == ART_NOW_IT_S_I_VEL) || (!u.dungeongrowthhack && uright && uright->oartifact == ART_NOW_IT_S_I_VEL) || (!u.dungeongrowthhack && uarmf && uarmf->oartifact == ART_A_SPOONFUL_OF_FO_U_RK) || (!u.dungeongrowthhack && uwep && uwep->oartifact == ART_FUURKER) || (!u.dungeongrowthhack && uarmh && uarmh->oartifact == ART_WHY_NOT_DO_THE_REAL_THING) || (!u.dungeongrowthhack && uswapwep && uswapwep->oartifact == ART_FUURKER) )
 #define islevelscaler (Race_if(PM_LEVELSCALER) || flags.hybridlevelscaler)
 #define iserosator (Race_if(PM_EROSATOR) || flags.hybriderosator)
 #define isroommate (Race_if(PM_ROOMMATE) || flags.hybridroommate)
@@ -356,7 +356,7 @@ NEARDATA extern coord bhitpos;	/* place where throw or zap hits or stops */
 /* Friday the 13th is supposed to make many things harder for the player, including some evilvariant stuff --Amy
  * can also deliberately invoke the effect by playing in elm street mode */
 #define evilfriday (isevilvariant || (flags.elmstreet && !rn2(5)) || (flags.friday13 && !rn2(5)))
-#define isfriday (flags.elmstreet || flags.friday13 || ElmStreetEffect || u.uprops[ELM_STREET_EFFECT].extrinsic || have_elmstreetstone())
+#define isfriday (flags.elmstreet || u.badfcursed || flags.friday13 || ElmStreetEffect || u.uprops[ELM_STREET_EFFECT].extrinsic || have_elmstreetstone())
 
 /* Luxidream wants to be able to name his characters */
 #define playeraliasname (plalias[0] ? plalias : plname)

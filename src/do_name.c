@@ -60,8 +60,15 @@ const char *goal;
 	pline("(For instructions type a ?)");
 	msg_given = TRUE;
     }
+
     cx = cc->x;
     cy = cc->y;
+
+    if (!isok(cx, cy) && isok(u.ux, u.uy)) {
+	cx = u.ux;
+	cy = u.uy;
+    }
+
 #ifdef CLIPPING
     cliparound(cx, cy);
 #endif
@@ -175,6 +182,7 @@ const char *goal;
 	    cx = -1;
 	    cy = 0;
 	    result = 0;	/* not -1 */
+	    if (c == 32) result = -1;
 	    break;
 	}
     nxtc:	;
@@ -190,7 +198,9 @@ const char *goal;
     if (msg_given) clear_nhwindow(WIN_MESSAGE);
     cc->x = cx;
     cc->y = cy;
+
     return result;
+
 }
 
 struct monst *
@@ -1026,6 +1036,9 @@ stupidsegfault:
 	    if (mtmp->egotype_stoner && (++egotypeamount < 21) ) sprintf(eos(buf), " Stoner");
 	    if (mtmp->egotype_maecke && (++egotypeamount < 21) ) sprintf(eos(buf), " Maecke");
 	    if (mtmp->egotype_flamer && (++egotypeamount < 21) ) sprintf(eos(buf), " Flamer");
+	    if (mtmp->egotype_datadeleter && (++egotypeamount < 21) ) sprintf(eos(buf), " DataDeleter");
+	    if (mtmp->egotype_blasphemer && (++egotypeamount < 21) ) sprintf(eos(buf), " Blasphemer");
+	    if (mtmp->egotype_dropper && (++egotypeamount < 21) ) sprintf(eos(buf), " Dropper");
 	    if (egotypeamount > 20) sprintf(eos(buf), " (%d egotypes)", egotypeamount);
 
 	}
@@ -5453,6 +5466,86 @@ static const char * const bogusmons[] = {
 	"Combat Boss",
 	"Arev", "U.GUR", "Khaldi", /* armenian */
 	"a stylized eye formed from the letters V, F, and D",
+	"Stroking Hands",
+	"Feel-Upper",
+	"Farting Gas Inhaler",
+	"Squeaking Noise Enjoyer",
+	"Curve Lover",
+	"Graceful Body Admirer",
+	"Blissful Air Current",
+	"Sexiness Expert",
+	"Master Softhand",
+	"Eveline", "Elena", "Marlen",
+	"Swing Student",
+	"Toe Stepper",
+	"Spinner",
+	"Gymnast",
+	"Dancehall Artist",
+	"Sindancer",
+	"Souldancer",
+	"Lifedancer",
+	"World-Class Dancer",
+	"the Archomentals", "Cryonax", "the Elder Elemental",
+	"Stocks That Hunter Inside Dweller",
+	"Cemetery Plunderer",
+	"Catacomb Evil-Fighter",
+	"Desert Caravanist",
+	"Tomb Comber",
+	"Jungle Stinger",
+	"Temple Cleanser",
+	"Heavenly Fortress Defender",
+	"Diablobane",
+	"Athulua", "Bul-Kathos", "Rathma", /* Diablo series */
+	"Newcomer",
+	"Green Cross Delver",
+	"Moneyless Adventurer",
+	"Balance Grumbler",
+	"Crash Bug Encounterer",
+	"Bad Game Design Bitcher",
+	"Fook-Yoo-Sayer",
+	"Ch3at0r",
+	"Ascension Run Skipper",
+	"0.54A", "Level Change UAE", "Reset Button Without A Confirmation", /* still salty about the latter... :-P --Amy */
+	"Hidden Operative",
+	"Covert OP",
+	"Underground Agitator",
+	"Secret Schemer",
+	"Gun Hider",
+	"Shady Executive",
+	"Banishment Wielder",
+	"Top-Secret Advice Member",
+	"Boss of the Secret Advice",
+	"Katrin", "Len-kind", "Coffin Nail",
+	"Socksmeller",
+	"Combat Boot Slave",
+	"Shin-Smashed Sneaker",
+	"Bathtub Despairer",
+	"Dogshit Challenger",
+	"Final Dancer",
+	"Fall-From-Grace",
+	"Toilet Puzzler",
+	"Winner At Last",
+	"Birkenstock", "Tamaris", "Peter Kaiser", /* German shoe brands */
+	"Half Baker",
+	"Bloody Novice",
+	"No-Hoper",
+	"Pupil of Gravel",
+	"Pupil of Fluids",
+	"Pupil of Trash",
+	"Pupil of Blows",
+	"Pupil of Heat",
+	"Self-Appointed Master",
+	"Nuwa", "Pangu", "Fuxi", /* Chinese */
+	"Complete Scrub",
+	"Skill Agnostic",
+	"Whippersnapper",
+	"Whiny Lamer",
+	"Terrible Rookie",
+	"Bad Player",
+	"Mindless Mower",
+	"Filthy Cheater",
+	"Biggest Noob Ever",
+	"P-Point", "I Have To Reload", "Upper Failure Kornop",
 
 };
 

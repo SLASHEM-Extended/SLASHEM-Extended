@@ -290,6 +290,29 @@ drinkfountain()
 	} else {
 	    switch (fate) {
 
+		case 11:
+
+			if (!rn2(10)) {
+				if (!u.badfcursed) {
+					u.badfcursed = rnz(10000);
+					You("start a trip on the road to nowhere.");
+				} else {
+					u.badfcursed += rnz(10000);
+					u.badfdoomed += rnz(10000);
+					if (u.badfcursed < u.badfdoomed) u.badfcursed += rnz(10000);
+					if (u.badfcursed < u.badfdoomed) u.badfcursed = (u.badfdoomed * 2);
+					You("continue a trip on the road to nowhere...");
+				}
+				break;
+			}
+
+			pline("This tepid water is tasteless.");
+
+			u.uhunger += rnd(5); /* don't choke on water */
+			newuhs(FALSE);
+
+			break;
+
 		case 12:
 			if (!Unchanging) { /* Serves you right for quaffing from fountains. --Amy */
 				You_feel("a change coming over you.");
@@ -355,10 +378,8 @@ drinkfountain()
 			}
 			if (!rn2(50)) {
 				int wondertech = rnd(MAXTECH-1);
-				if (!tech_known(wondertech)) {
-				    	learntech(wondertech, FROMOUTSIDE, 1);
-					You("learn how to perform a new technique!");
-				}
+			    	learntech_or_leveltech(wondertech, FROMOUTSIDE, 1);
+				You("learn how to perform a new technique!");
 			}
 
 			break;
@@ -577,7 +598,7 @@ register struct obj *obj;
 
 	if (obj->otyp == LONG_SWORD && obj->quan == 1L
 		/* it's supposed to be rare to get the thing if you're not a knight --Amy */
-	    && u.ulevel > 4 && (!isfriday || !rn2(3)) && !rn2(Role_if(PM_KNIGHT) ? 8 : 50) && !obj->oartifact
+	    && u.ulevel > 4 && (!isfriday || !rn2(3)) && !rn2(Role_if(PM_KNIGHT) ? 8 : 50) && !obj->oartifact && !obj->fakeartifact
 	    && !exist_artifact(LONG_SWORD, u.ualign.type == A_CHAOTIC ? artiname(ART_DIRGE) : artiname(ART_EXCALIBUR))) {
 
 		if (u.ualign.type == A_NEUTRAL || (u.ualign.type == A_CHAOTIC && !Role_if(PM_KNIGHT)) ) {
@@ -611,6 +632,7 @@ register struct obj *obj;
 				exercise(A_WIS, FALSE);
 			} else {
 
+				if (!Role_if(PM_KNIGHT)) u.dirtifiedexcalibur = TRUE;
 				pline("As the hand retreats, the fountain disappears!");
 				obj = oname(obj, artiname(ART_EXCALIBUR));
 				discover_artifact(ART_EXCALIBUR);
@@ -618,6 +640,7 @@ register struct obj *obj;
 				obj->oeroded = obj->oeroded2 = 0;
 				obj->oerodeproof = TRUE;
 				exercise(A_WIS, TRUE);
+				if (!Role_if(PM_KNIGHT)) pline("Something seems amiss about that sword though.");
 #ifdef LIVELOGFILE
 				livelog_report_trophy("had Excalibur thrown to them by some watery tart");
 #endif

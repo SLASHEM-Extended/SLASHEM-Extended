@@ -163,6 +163,11 @@ register struct monst *priest;
 	gx += rn1(3,-1);	/* mill around the altar */
 	gy += rn1(3,-1);
 
+	if (evilfriday && monnear(priest, u.ux, u.uy) && (uwep && (uwep->otyp == CIGARETTE || uwep->otyp == ELECTRIC_CIGARETTE || uwep->otyp == CIGAR)) && priest->mpeaceful) {
+		priest->mpeaceful = 0;
+		verbalize("Begone!  Thou desecratest this holy place with thy presence.");
+	}
+
 	if(!priest->mpeaceful ||
 	   (Conflict && !resist(priest, RING_CLASS, 0, 0)) ||
 	   (StrongConflict && !resist(priest, RING_CLASS, 0, 0))) {
@@ -423,6 +428,8 @@ register int roomno;
 				(!shrined) ? "" : " strange");
 		    else You("experience a strange sense of peace.");
 		}
+
+		if (can_speak && evilfriday) verbalize("Please be aware that smoking is strictly prohibited in this temple.");
 	    } else {
 		switch(rn2(3)) {
 		  case 0: You("have an eerie feeling..."); break;

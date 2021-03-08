@@ -1,0 +1,280 @@
+# NetHack 3.6	Drag.des
+#	Copyright (c) 1989 by Jean-Christophe Collet
+#	Copyright (c) 1991 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+# Based on Barb.des
+# originally from Splicehack, converted to SLEX by Amy
+#
+MAZE: "But-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+MAP
+.................................PPPPPPPPPPPP...............................
+..................................PPPPPPPPPP................................
+...................................PPPPPPP..................................
+....................................PPPPPP..................................
+....................................PPPPP...................................
+....................................PPPPP...................................
+....................................PPPPP...................................
+....................................PPPPP...................................
+............................................................................
+....................................PPPP....................................
+....................................PPPP....................................
+...................................PPPPP....................................
+..................................PPPPPP....................................
+.................................PPPPPPPP...................................
+................................PPPPPPPPPP..................................
+...............................PPPPPPPPPPPP.................................
+..............................PPPPPPPPPPPPPPP...............................
+.............................PPPPPPPPPPPPPPPPP..............................
+............................PPPPPPPPPPPPPPPPPPP.............................
+...........................PPPPPPPPPPPPPPPPPPPPPP...........................
+ENDMAP
+
+# Dungeon Description
+REGION:(00,00,75,19),lit,"ordinary"
+# Stairs
+STAIR:(09,09),down
+# Portal arrival point
+BRANCH:(68,02,68,02),(0,19,0,19)
+# Guardian
+MONSTER:'@',"Ben Argimunt",(10,07)
+# The Drakemother's children
+MONSTER:'@',"maiden",random
+MONSTER:'@',"maiden",random
+MONSTER:'@',"maiden",random
+MONSTER:'@',"maiden",random
+MONSTER:'@',"maiden",random
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+# Not very many traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# water monsters
+MONSTER:';',random,(37,01),hostile
+MONSTER:';',random,(37,04),hostile
+MONSTER:';',random,(37,10),hostile
+MONSTER:';',random,(37,12),hostile
+MONSTER:';',random,(37,16),hostile
+# Other monsters
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+#
+#	The "locate" level for the quest.
+#
+#	May be impassable without levitation.
+#
+#
+
+MAZE: "But-loca",' '
+FLAGS: hardfloor
+INIT_MAP: '.' , 'P' , true , true , unlit , false
+NOMAP
+# Dungeon Description
+REGION:(00,00,75,19),unlit,"ordinary"
+# Stairs
+STAIR:random,up
+STAIR:random,down
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps (Heavily trapped)
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+#
+#	The "goal" level for the quest.
+#
+#	You must battle the betrayer and his pet dragon.
+#
+
+MAZE: "But-goal", ' '
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+...............................................................
+..........................................     ................
+............................................     ..............
+.......  ................    ..................  ..............
+.......  .................  ...........  ......................
+....   ..........   ......  ........... .......................
+...  ............   ...........................................
+...  ............   ..................................   ......
+.................   ..................  ..............   ......
+.....................................   ............   ........
+........    .......................................... ........
+..........  ..............  .......................    ........
+.......... ..............   ...................................
+......... ..............     ..................................
+......... ...............     .........   .....................
+.........  ............................ . .....................
+.......................................  ...........   ........
+....................................................     ......
+.............   .....................  .............      .....
+..............  ....................... ..............   ......
+ENDMAP
+# Dungeon Description
+REGION:(00,00,62,19),lit,"ordinary"
+# Stairs
+STAIR:random,up
+# Non diggable walls
+NON_DIGGABLE:(00,00,62,19)
+# Objects
+OBJECT:'[',"sado maso gloves",(25,08),blessed,3,"Gropestroker"
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# monsters.
+MONSTER:'f',"Catcall Selina",(25,08)
+MONSTER:random,random,(26,08),hostile
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+# traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+#
+#	The "fill" levels for the quest.
+#
+#	These levels are used to fill out any levels not occupied by specific
+#	levels as defined above. "filla" is the upper filler, between the
+#	start and locate levels, and "fillb" the lower between the locate
+#	and goal levels.
+#
+
+MAZE: "But-fila" , ' '
+INIT_MAP: '.' , ' ' , true , true , unlit , false
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random,random
+OBJECT: random, random,random
+OBJECT: random, random,random
+OBJECT: random, random,random
+OBJECT: random, random,random
+OBJECT: random, random,random
+OBJECT: random, random,random
+OBJECT: random, random,random
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+#
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+MAZE: "But-filb" , ' '
+INIT_MAP: '.' , ' ' , true , true , unlit , true
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random,random
+OBJECT: random, random,random
+OBJECT: random, random,random
+OBJECT: random, random,random
+OBJECT: random, random,random
+OBJECT: random, random,random
+OBJECT: random, random,random
+OBJECT: random, random,random
+OBJECT: random, random,random
+OBJECT: random, random,random
+OBJECT: random, random,random
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+#
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+

@@ -1,6 +1,71 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.7.0 - Dec 2020
+- Fixed "there is a snow here" and similar odd messages.
+- Disabled the curses interface because it was too crashy.
+- If a non-knight creates Excalibur via a fountain now, it causes all Excaliburs to give the same penalties as a foreign role's quest artifact for the remaining game.
+- Fixed an oversight where the player could sometimes act during a pending weeping attack levelporting.
+- Fixed a SLASH'EM bug where trying to branchport from Sam's black market could cause a panic.
+- Added a failsafe to ensure that artifact rocks can't generate several times in a single game.
+- Using the pierce device artifact on a peaceful monster angers it now.
+- Fixed a bug where pressing space on the travelto prompt could lock up the game.
+- If polymorph control fails to let the player choose a form, there may now be several forms for the player to choose from.
+- Improved the message given when trying to use an axe on farmland or mountains.
+- Fixed certain dungeon levels that were impossible to traverse without teleportation or wallwalking.
+- Fixed an oversight that allowed players to still price identify candle types.
+- Fixed some weirdness with the displayed amount of turns left in a light source.
+- Listening to polka music can now increase the player's sanity.
+- Recalculated the random chance values for whether a room is lit.
+- Fixed a vanilla bug where paying shopkeepers when there was more than one shopkeeper present could leak information.
+- Cold resistance now helps the player resist the negative effects of walking in snow.
+- Added several new #monster abilities that certain forms can use.
+- If you have a symbiote that can dual-wield, your character can now also dual-wield even if you'd not be able to do so in your current form.
+- Being hit by a potion of acid in evilvariant mode can now deal acid damage to the player's items too.
+- Added a new dungeon branch, the Ice Queen's realm.
+- Fixed bugs that got inadvertently introduced in certain earlier versions that had to do with manipulating stacks of gold.
+- Using a digestion container now uses a turn even if the player didn't put in or take out anything.
+- Fixed a vanilla bug that caused silver objects to sometimes not deal extra damage to silver-haters.
+- Certain special modes that have the player start somewhere other than dungeon level 1 now prevent the player from leaving or finding bones on specific levels, typcially the one the player starts on and the adjacent ones.
+- Wands of banishment are much less common, and banishment can also warp the player to branch dungeons now.
+- The base cost of various common items has been reduced to make them more affordable.
+- The game will now try to make a green cross special room and try to place the portal to Green Cross in it.
+- Techniques may also gain levels when used now.
+- Having a symbiote that is low on health now counts as a minor trouble for prayer.
+- A pet that is about to die of starvation will live for a few more turns now before it actually dies, and can still catch thrown food even while confused.
+- Fixed a bug where the player could create Dirge from a fake artifact longsword, and a different bug that sometimes caused the player to not receive Dirge even though they were eligible for it.
+- Added the Minus World dungeon branch, which is initially reachable only via banishment.
+- Kicking with non-metallic boots or no boots doesn't always make noise now.
+- Fixed the bug where evil troll mummies left no corpse.
+- The overview command should display more information now, especially in the post-game dumplog.
+- Fixed the bug where certain livelogging messages would be displayed repeatedly, such as picking up the Bell of Opening.
+- The game should no longer apply randomized BUC status to gold pieces.
+- Increased the rate of training the squeaking and symbiosis skills.
+- Improved the reward for defeating Lady Ariane.
+- In evilvariant mode, bumping into a peaceful temple priest may scare them.
+- Fixed the bug where bubbletars would occasionally spawn in stacks.
+- In Gehennom and other late branches, items with high absolute values for their enchantment are generated a bit more often.
+
+2.6.9 - Nov 2020
+- In evilvariant mode, the player can't drop uncursed luckstones now if their luck is negative.
+- Techniques can now gain or lose levels.
+- Properly fixed the bug where monsters couldn't successfully shoot through farmland; the previous fix didn't completely remove the problem.
+- Added new dungeon branches: Emyn Luin, Minotaurs Maze, Green Cross and Rival Quest.
+- Newly generated dungeon levels now have slightly more items and traps on them.
+- Added the dungeon branches from the devnull tournament.
+- The soresu and devices skills are easier to train.
+- Fixed the oversight where certain effects that roll a random monster class could roll a nonexistant one.
+- New command #stackmark that can be used on an item in inventory to stop it from stacking with identical items. If the player then drops part of the stack and picks it back up, it also won't stack anymore.
+- Hitting a monster with venom no longer produces messages warning the player that they're not using a proper weapon.
+- Autopilot now also has a slight chance of affecting a player who isn't contaminated at all.
+- The player can now become cursed or doomed; main source of this effect is fountain quaffing.
+- When open tiles regrow into walls, those walls can now occasionally be secret corridors.
+- Certain actions that would set the player's prayer timeout to a low value will now instead add to the current prayer timeout.
+
 2.6.8 - May 2020
+- The player can no longer steal from a shop via applying a grappling hook.
+- Fixed a SLASH'EM bug where monsters zapping wands of draining or cancellation at the player could result in a shopkeeper getting mad at the player if the wand hit a shop-owned item.
+- Fixed a crash that could occur when a monster threw breakable objects (e.g. cream pies) at a player who was standing in iron bars.
+- Fixed a bug where monsters couldn't shoot ranged weapons through farmland.
 - Added a missing message when temporary polymorphitis ends.
 - Izchak should no longer disintegrate paladin player characters through no fault of the player.
 - Djinni, water demons and thrones can no longer give wishes to very low-level player characters.

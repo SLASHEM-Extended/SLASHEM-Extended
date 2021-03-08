@@ -47,6 +47,8 @@ RNDLEVEL:		"medus" "none" @ (36, 4) 12
 RNDLEVEL:		"cowla" "A" @ (13, 0) 80 5
 LEVEL:		"cowlb" "A" @ (31, 0) 80
 
+BRANCH:		"Pool Challenge" @ (2, 48) up -1
+
 #
 #   New mall is on levels 5 to 6, 75% chance.
 #   There shouldn't be any other special levels down to the Oracle.
@@ -61,11 +63,12 @@ LEVEL:		"oracle" "O" @ (2, 48) 70
 LEVALIGN:	neutral
 BRANCH:	"Sokoban" @ (5, 45) up -1
 BRANCH:	"Town" @ (6, 44) up -1
+BRANCH:	"Pacman Challenge" @ (2, 48) portal
 
 
 # Levels between the Oracle and the Quest.
 #   There's no guarantee that all will be created.
-RNDLEVEL:		"rats" "R" @ (2, 48) 20 3
+RNDLEVEL:		"rats" "R" @ (2, 48) 20 4
 RNDLEVEL:	"kobold" "K" @ (2, 48) 20 6
 BRANCH: 	"Grund's Stronghold" @ (2, 48)
 
@@ -83,6 +86,7 @@ BRANCH: 	"Grund's Stronghold" @ (2, 48)
 #   Put the branches with the least number of choices first
 
 BRANCH:	"Illusory Castle" @ (2, 48)
+BRANCH:	"Green Cross" @ (2, 48) portal
 BRANCH:	"Deep Mines" @ (2, 48)
 BRANCH: 	"The Temple of Moloch" @ (2, 48)
 BRANCH: 	"The Giant Caverns" @ (2, 48)
@@ -185,6 +189,8 @@ BRANCH:	"Void" @ (48, 0)
 # Dr. Frankenstein's Lab
 BRANCH:         "Frankenstein's Lab" @ (2, 47) up
 BRANCH:	"Angmar" @ (2, 47)
+BRANCH:	"Rival Quest" @ (2, 47) portal
+BRANCH:	"Emyn Luin" @ (2, 47)
 BRANCH:	"Swimming Pool" @ (2, 47)
 BRANCH:	"Hell's Bathroom" @ (2, 47)
 BRANCH:	"Resting Zone GA" @ (2, 47) up
@@ -245,6 +251,8 @@ RNDLEVEL:	"mintn" "T" @ (3, 2) 98 21
 LEVELDESC:	town
 RNDLEVEL:	"mnend" "E" @ (-2, 0) 95 10
 RNDLEVEL:		"mking" "M" @ (-1, 0) 90 18
+BRANCH:		"Digdug Challenge" @ (1, 8) portal
+BRANCH:		"Grue Challenge" @ (1, 8) portal
 
 
 ### The Quest Dungeon ###
@@ -274,6 +282,13 @@ BRANCH:     "Bell Caves" @ (6, 5)
 
 DUNGEON:    "Bell Caves" "N" (1, 0)
 
+DUNGEON:    "Rival Quest" "R" (5, 0)
+LEVEL:  	"y-6" "F" @ (1, 0)
+LEVEL:  	"y-fila" "L" @ (2, 0)
+LEVEL:  	"y-loca" "O" @ (3, 0)
+LEVEL:  	"y-filb" "B" @ (4, 0)
+LEVEL:  	"y-goal" "none" @ (5, 0)
+
 ### The aligned key quests ###
 DUNGEON:		"Lawful Quest" "none" (1, 0)
 ALIGNMENT:		lawful
@@ -300,6 +315,7 @@ RNDLEVEL:		"soko1" "A" @ (1, 0) 95 52
 RNDLEVEL:		"soko2" "B" @ (2, 0) 95 45
 RNDLEVEL:		"soko3" "C" @ (3, 0) 95 29
 RNDLEVEL:		"soko4" "D" @ (4, 0) 95 28
+BRANCH:     "Joust Challenge" @ (1, 0)
 
 #
 #   The city of Angband
@@ -328,10 +344,20 @@ ALIGNMENT:      unaligned
 RNDLEVEL:          "knox" "K" @ (-1, 0) 50 3
 
 ### The Wyrm Caves ###
-DUNGEON:        "The Wyrm Caves" "W" (1, 0)
+DUNGEON:        "The Wyrm Caves" "W" (2, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
 LEVEL:          "dragons" "D" @ (1, 0) 30
+BRANCH:	    "Minus World" @ (1, 0)
+BRANCH:	    "The Ice Queen's Realm" @ (2, 0)
+
+### The Ice Queen's Realm ###
+DUNGEON:        "The Ice Queen's Realm" "I" (3, 0)
+DESCRIPTION:    mazelike
+ALIGNMENT:      unaligned
+LEVEL:          "iceqa" "none" @ (1, 0) 98
+LEVEL:          "iceqb" "none" @ (2, 0) 98
+LEVEL:          "iceqc" "none" @ (3, 0) 98
 
 ### The Black Market ###
 DUNGEON:        "One-eyed Sam's Market" "X" (1, 0)
@@ -362,6 +388,21 @@ DUNGEON:        "The Temple of Moloch" "W" (1, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
 LEVEL:          "mtemple" "T" @ (1, 0) 25
+
+DUNGEON:        "Grue Challenge" "E" (1, 0)
+LEVEL:	    "gruelair" "D" @ (1, 0) 30
+
+DUNGEON:        "Joust Challenge" "E" (1, 0)
+LEVEL:	    "joust" "D" @ (1, 0) 30
+
+DUNGEON:        "Pacman Challenge" "E" (1, 0)
+LEVEL:	    "pmaze" "D" @ (1, 0) 30
+
+DUNGEON:        "Pool Challenge" "E" (1, 0)
+LEVEL:	    "poolhall" "D" @ (1, 0) 30
+
+DUNGEON:        "Digdug Challenge" "E" (1, 0)
+LEVEL:	    "dmaze" "D" @ (1, 0) 30
 
 DUNGEON:        "Illusory Castle" "S" (30, 0)
 ALIGNMENT:      neutral
@@ -405,6 +446,12 @@ ALIGNMENT:      chaotic
 DESCRIPTION:    hellish
 BRANCH:	"Resting Zone A" @ (2, 13) up
 
+DUNGEON:        "Emyn Luin" "F" (20, 0)
+ALIGNMENT:      chaotic
+
+DUNGEON:        "Minotaur Maze" "F" (25, 0)
+ALIGNMENT:      lawful
+
 DUNGEON:        "Swimming Pool" "F" (15, 0)
 ALIGNMENT:      lawful
 DESCRIPTION:    hellish
@@ -414,10 +461,28 @@ DUNGEON:        "Hell's Bathroom" "F" (3, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    hellish
 
+DUNGEON:        "Minus World" "F" (5, 0)
+LEVEL:          "minusw" "F" @ (1, 0)
+LEVEL:          "minusw" "F" @ (2, 0)
+LEVEL:          "minusw" "F" @ (3, 0)
+LEVEL:          "minusw" "F" @ (4, 0)
+LEVEL:          "minusw" "F" @ (5, 0)
+
+DUNGEON:        "Green Cross" "F" (60, 0)
+LEVEL:          "grcrf" "F" @ (1, 59) 90
+LEVEL:          "grcrb" "B" @ (1, 59) 90
+LEVEL:          "grcre" "E" @ (1, 59) 90
+LEVEL:          "grcrh" "H" @ (1, 59) 90
+LEVEL:          "grcrc" "C" @ (1, 59) 90
+LEVEL:          "grcra" "A" @ (1, 59) 90
+LEVEL:          "grcrd" "D" @ (1, 59) 90
+LEVEL:          "grcrg" "G" @ (1, 59) 90
+
 ### The Giant Caverns ###
-DUNGEON:        "The Giant Caverns" "W" (1, 0)
+DUNGEON:        "The Giant Caverns" "W" (2, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
+BRANCH:         "Minotaur Maze" @ (2, 0)
 LEVEL:          "cav2fill" "H" @ (1, 0) 10
 
 ### Dr Frankenstein's Lab ###

@@ -251,7 +251,7 @@ int
 randattack()
 {
 
-	switch (rnd(351)) {
+	switch (rnd(354)) {
 
 		case 1:
 		case 2:
@@ -741,6 +741,12 @@ randattack()
 		case 350:
 		case 351:
 			return AD_NIVE;
+		case 352:
+			return AD_TDRA;
+		case 353:
+			return AD_BLAS;
+		case 354:
+			return AD_DROP;
 		default:
 			return AD_PHYS;
 
@@ -814,7 +820,7 @@ randomdamageattack()
 int
 randomthievingattack()
 {
-	switch (rnd(27)) {
+	switch (rnd(29)) {
 		case 1:
 			return AD_SLOW;
 		case 2:
@@ -869,6 +875,10 @@ randomthievingattack()
 			return AD_DEBU;
 		case 27:
 			return AD_NIVE;
+		case 28:
+			return AD_TDRA;
+		case 29:
+			return AD_DROP;
 		default:
 			return AD_PHYS;
 	}
@@ -877,7 +887,7 @@ randomthievingattack()
 int
 randomillusionattack()
 {
-	switch (rnd(30)) {
+	switch (rnd(31)) {
 		case 1:
 			return AD_SPC2;
 		case 2:
@@ -938,6 +948,8 @@ randomillusionattack()
 			return AD_DEBU;
 		case 30:
 			return AD_UNPR;
+		case 31:
+			return AD_BLAS;
 		default:
 			return AD_PHYS;
 	}
@@ -1058,168 +1070,9 @@ int
 randenchantment()
 {
 
-	switch (rnd(174)) {
+	if (!rn2(20)) {
 
-		case 1:
-		case 2:
-		case 3:
-		case 4:
-		case 5:
-			return FIRE_RES;
-		case 6:
-		case 7:
-		case 8:
-		case 9:
-		case 10:
-			return COLD_RES;
-		case 11:
-		case 12:
-		case 13:
-		case 14:
-		case 15:
-			return SLEEP_RES;
-		case 16:
-		case 17:
-		case 18:
-			return DISINT_RES;
-		case 19:
-		case 20:
-		case 21:
-		case 22:
-		case 23:
-			return SHOCK_RES;
-		case 24:
-		case 25:
-		case 26:
-		case 27:
-		case 28:
-			return POISON_RES;
-		case 29:
-		case 30:
-		case 31:
-			return ACID_RES;
-		case 32:
-			return STONE_RES;
-		case 33:
-		case 34:
-		case 35:
-			return REGENERATION;
-		case 36:
-		case 37:
-		case 38:
-			return SEARCHING;
-		case 39:
-		case 40:
-		case 41:
-			return SEE_INVIS;
-		case 42:
-		case 43:
-		case 44:
-			return INVIS;
-		case 45:
-		case 46:
-		case 47:
-		case 48:
-		case 49:
-			return TELEPORT;
-		case 50:
-		case 51:
-		case 52:
-			return TELEPORT_CONTROL;
-		case 53:
-		case 54:
-		case 55:
-			return POLYMORPH;
-		case 56:
-			return POLYMORPH_CONTROL;
-		case 57:
-		case 58:
-		case 59:
-			return LEVITATION;
-		case 60:
-		case 61:
-		case 62:
-			return STEALTH;
-		case 63:
-		case 64:
-		case 65:
-			return AGGRAVATE_MONSTER;
-		case 66:
-			return CONFLICT;
-		case 67:
-		case 68:
-		case 69:
-			return WARNING;
-		case 70:
-		case 71:
-		case 72:
-			return TELEPAT;
-		case 73:
-		case 74:
-		case 75:
-			return FAST;
-		case 76:
-			return (rn2(50) ? HUNGER : PASSES_WALLS);
-		case 77:
-		case 78:
-			return HUNGER;
-		case 79:
-		case 80:
-		case 81:
-			return REFLECTING;
-		case 82:
-		case 83:
-			return ANTIMAGIC;
-		case 84:
-		case 85:
-			return ENERGY_REGENERATION;
-		case 86:
-		case 87:
-		case 88:
-			return MAGICAL_BREATHING;
-		case 89:
-			return HALF_SPDAM;
-		case 90:
-			return HALF_PHDAM;
-		case 91:
-			return SICK_RES;
-		case 92:
-		case 93:
-			return DRAIN_RES;
-		case 94:
-			return WARN_UNDEAD;
-		case 95:
-		case 96:
-		case 97:
-			return FREE_ACTION;
-		case 98:
-		case 99:
-			return FLYING;
-		case 100:
-		case 101:
-			return SLOW_DIGESTION;
-		case 102:
-			return INFRAVISION;
-		case 103:
-		case 104:
-		case 105:
-			return FEAR_RES;
-		case 106:
-			return DISPLACED;
-		case 107:
-			return SWIMMING;
-		case 108:
-			return FIXED_ABIL;
-		case 109:
-			return KEEN_MEMORY;
-		case 110:
-			return THE_FORCE;
-		case 111:
-		case 112:
-		case 113:
-		case 114:
-		case 115:
-			switch (rnd(237)) {
+		switch (rnd(237)) {
 
 			case 1: return SPELLS_LOST;
 			case 2: return CASTER_PROBLEM;
@@ -1461,69 +1314,61 @@ randenchantment()
 			case 237: return SIMEOUT_BUG;
 			default: return POISON_RES;
 
-			}
-		case 116:
-			return FROZEN;
-		case 117:
-			return GLIB;
-		case 118:
-			return HALLUC;
-		case 119:
-			return BURNED;
-		case 120:
-			return WOUNDED_LEGS;
-		case 121:
-			return NUMBED;
-		case 122:
-			return TRAP_REVEALING;
-		case 123:
-			return BLINDED;
-		case 124:
-			return PREMDEATH;
-		case 125:
-			return CLAIRVOYANT;
-		case 126:
-			return SIGHT_BONUS;
-		case 127:
-			return VERSUS_CURSES;
-		case 128:
-			return STUN_RES;
-		case 129:
-			return CONF_RES;
-		case 130:
-			return EXTRA_WEAPON_PRACTICE;
-		case 131:
-			return DTBEEM_RES;
-		case 132:
-			return (rn2(20) ? POISON_RES : DOUBLE_ATTACK);
-		case 133:
-			return (rn2(100) ? TELEPORT : QUAD_ATTACK);
-		case 134:
-			return PSI_RES;
-		case 135:
-			return MANALEECH;
-		case 136:
-			return MAP_AMNESIA;
-		case 137:
-			return DIMMED;
-		case 138:
-			return PEACEVISION;
-		case 139:
-		case 140:
-		case 141:
-		case 142:
-		case 143:
-		case 144:
-		case 145:
-		case 146:
-		case 147:
-		case 148:
-		case 149:
-		case 150:
-		case 151:
-		case 152:
-		case 153:
-			switch (rnd(103)) {
+		}
+
+	} else if (!rn2(15)) {
+
+		switch (rnd(44)) {
+			case 1: return FEMTRAP_FEMMY;
+			case 2: return FEMTRAP_MADELEINE;
+			case 3: return FEMTRAP_MARLENA;
+			case 4: return FEMTRAP_ANASTASIA;
+			case 5: return FEMTRAP_JESSICA;
+			case 6: return FEMTRAP_SOLVEJG;
+			case 7: return FEMTRAP_WENDY;
+			case 8: return FEMTRAP_KATHARINA;
+			case 9: return FEMTRAP_ELENA;
+			case 10: return FEMTRAP_THAI;
+			case 11: return FEMTRAP_ELIF;
+			case 12: return FEMTRAP_NADJA;
+			case 13: return FEMTRAP_SANDRA;
+			case 14: return FEMTRAP_NATALJE;
+			case 15: return FEMTRAP_JEANETTA;
+			case 16: return FEMTRAP_YVONNE;
+			case 17: return FEMTRAP_MAURAH;
+			case 18: return FEMTRAP_MELTEM;
+			case 19: return FEMTRAP_SARAH;
+			case 20: return FEMTRAP_CLAUDIA;
+			case 21: return FEMTRAP_LUDGERA;
+			case 22: return FEMTRAP_KATI;
+			case 23: return FEMTRAP_NELLY;
+			case 24: return FEMTRAP_EVELINE;
+			case 25: return FEMTRAP_KARIN;
+			case 26: return FEMTRAP_JUEN;
+			case 27: return FEMTRAP_KRISTINA;
+			case 28: return FEMTRAP_LOU;
+			case 29: return FEMTRAP_ALMUT;
+			case 30: return FEMTRAP_JULIETTA;
+			case 31: return FEMTRAP_ARABELLA;
+			case 32: return FEMTRAP_KRISTIN;
+			case 33: return FEMTRAP_ANNA;
+			case 34: return FEMTRAP_RUEA;
+			case 35: return FEMTRAP_DORA;
+			case 36: return FEMTRAP_MARIKE;
+			case 37: return FEMTRAP_JETTE;
+			case 38: return FEMTRAP_INA;
+			case 39: return FEMTRAP_SING;
+			case 40: return FEMTRAP_VICTORIA;
+			case 41: return FEMTRAP_MELISSA;
+			case 42: return FEMTRAP_ANITA;
+			case 43: return FEMTRAP_HENRIETTA;
+			case 44: return FEMTRAP_VERENA;
+			default: return POISON_RES;
+		}
+
+	} else if (!rn2(10)) {
+
+		switch (rnd(109)) {
 			case 1: return HALLU_PARTY;
 			case 2: return DRUNKEN_BOXING;
 			case 3: return STUNNOPATHY;
@@ -1627,79 +1472,252 @@ randenchantment()
 			case 101: return RNGE_POLYPILING;
 			case 102: return RNGE_SAP_GENERATION;
 			case 103: return RNGE_WEALTH;
+			case 104: return RNGE_WHORING;
+			case 105: return RNGE_BOSSING;
+			case 106: return RNGE_STENCH;
+			case 107: return RNGE_ECHOLOCATION;
+			case 108: return RNGE_STACKMESSAGING;
+			case 109: return RNGE_OVERVIEW_IMPROVEMENT;
 			default: return POISON_RES;
-			}
-		case 154:
+		}
+
+	} else {
+
+	switch (rnd(146)) {
+
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+			return FIRE_RES;
+		case 6:
+		case 7:
+		case 8:
+		case 9:
+		case 10:
+			return COLD_RES;
+		case 11:
+		case 12:
+		case 13:
+		case 14:
+		case 15:
+			return SLEEP_RES;
+		case 16:
+		case 17:
+		case 18:
+			return DISINT_RES;
+		case 19:
+		case 20:
+		case 21:
+		case 22:
+		case 23:
+			return SHOCK_RES;
+		case 24:
+		case 25:
+		case 26:
+		case 27:
+		case 28:
+			return POISON_RES;
+		case 29:
+		case 30:
+		case 31:
+			return ACID_RES;
+		case 32:
+			return STONE_RES;
+		case 33:
+		case 34:
+		case 35:
+			return REGENERATION;
+		case 36:
+		case 37:
+		case 38:
+			return SEARCHING;
+		case 39:
+		case 40:
+		case 41:
+			return SEE_INVIS;
+		case 42:
+		case 43:
+		case 44:
+			return INVIS;
+		case 45:
+		case 46:
+		case 47:
+		case 48:
+		case 49:
+			return TELEPORT;
+		case 50:
+		case 51:
+		case 52:
+			return TELEPORT_CONTROL;
+		case 53:
+		case 54:
+		case 55:
+			return POLYMORPH;
+		case 56:
+			return POLYMORPH_CONTROL;
+		case 57:
+		case 58:
+		case 59:
+			return LEVITATION;
+		case 60:
+		case 61:
+		case 62:
+			return STEALTH;
+		case 63:
+		case 64:
+		case 65:
+			return AGGRAVATE_MONSTER;
+		case 66:
+			return CONFLICT;
+		case 67:
+		case 68:
+		case 69:
+			return WARNING;
+		case 70:
+		case 71:
+		case 72:
+			return TELEPAT;
+		case 73:
+		case 74:
+		case 75:
+			return FAST;
+		case 76:
+			return (rn2(50) ? HUNGER : PASSES_WALLS);
+		case 77:
+		case 78:
+			return HUNGER;
+		case 79:
+		case 80:
+		case 81:
+			return REFLECTING;
+		case 82:
+		case 83:
+			return ANTIMAGIC;
+		case 84:
+		case 85:
+			return ENERGY_REGENERATION;
+		case 86:
+		case 87:
+		case 88:
+			return MAGICAL_BREATHING;
+		case 89:
+			return HALF_SPDAM;
+		case 90:
+			return HALF_PHDAM;
+		case 91:
+			return SICK_RES;
+		case 92:
+		case 93:
+			return DRAIN_RES;
+		case 94:
+			return WARN_UNDEAD;
+		case 95:
+		case 96:
+		case 97:
+			return FREE_ACTION;
+		case 98:
+		case 99:
+			return FLYING;
+		case 100:
+		case 101:
+			return SLOW_DIGESTION;
+		case 102:
+			return INFRAVISION;
+		case 103:
+		case 104:
+		case 105:
+			return FEAR_RES;
+		case 106:
+			return DISPLACED;
+		case 107:
+			return SWIMMING;
+		case 108:
+			return FIXED_ABIL;
+		case 109:
+			return KEEN_MEMORY;
+		case 110:
+			return THE_FORCE;
+		case 111:
+			return FROZEN;
+		case 112:
+			return GLIB;
+		case 113:
+			return HALLUC;
+		case 114:
+			return BURNED;
+		case 115:
+			return WOUNDED_LEGS;
+		case 116:
+			return NUMBED;
+		case 117:
+			return TRAP_REVEALING;
+		case 118:
+			return BLINDED;
+		case 119:
+			return PREMDEATH;
+		case 120:
+			return CLAIRVOYANT;
+		case 121:
+			return SIGHT_BONUS;
+		case 122:
+			return VERSUS_CURSES;
+		case 123:
+			return STUN_RES;
+		case 124:
+			return CONF_RES;
+		case 125:
+			return EXTRA_WEAPON_PRACTICE;
+		case 126:
+			return DTBEEM_RES;
+		case 127:
+			return (rn2(20) ? POISON_RES : DOUBLE_ATTACK);
+		case 128:
+			return (rn2(100) ? TELEPORT : QUAD_ATTACK);
+		case 129:
+			return PSI_RES;
+		case 130:
+			return MANALEECH;
+		case 131:
+			return MAP_AMNESIA;
+		case 132:
+			return DIMMED;
+		case 133:
+			return PEACEVISION;
+		case 134:
 			return STUNNED;
-		case 155:
+		case 135:
 			return CONFUSION;
-		case 156:
+		case 136:
 			return FEARED;
-		case 157:
+		case 137:
 			return CONT_RES;
-		case 158:
+		case 138:
 			return DISCOUNT_ACTION;
-		case 159:
+		case 139:
 			return FULL_NUTRIENT;
-		case 160:
+		case 140:
 			return TECHNICALITY;
-		case 161:
+		case 141:
 			return SCENT_VIEW;
-		case 162:
+		case 142:
 			return DIMINISHED_BLEEDING;
-		case 163:
-		case 164:
-		case 165:
-		case 166:
-		case 167:
-		case 168:
-		case 169:
-		case 170:
-		case 171:
-		case 172:
-			switch (rnd(31)) {
-			case 1: return FEMTRAP_FEMMY;
-			case 2: return FEMTRAP_MADELEINE;
-			case 3: return FEMTRAP_MARLENA;
-			case 4: return FEMTRAP_ANASTASIA;
-			case 5: return FEMTRAP_JESSICA;
-			case 6: return FEMTRAP_SOLVEJG;
-			case 7: return FEMTRAP_WENDY;
-			case 8: return FEMTRAP_KATHARINA;
-			case 9: return FEMTRAP_ELENA;
-			case 10: return FEMTRAP_THAI;
-			case 11: return FEMTRAP_ELIF;
-			case 12: return FEMTRAP_NADJA;
-			case 13: return FEMTRAP_SANDRA;
-			case 14: return FEMTRAP_NATALJE;
-			case 15: return FEMTRAP_JEANETTA;
-			case 16: return FEMTRAP_YVONNE;
-			case 17: return FEMTRAP_MAURAH;
-			case 18: return FEMTRAP_MELTEM;
-			case 19: return FEMTRAP_SARAH;
-			case 20: return FEMTRAP_CLAUDIA;
-			case 21: return FEMTRAP_LUDGERA;
-			case 22: return FEMTRAP_KATI;
-			case 23: return FEMTRAP_NELLY;
-			case 24: return FEMTRAP_EVELINE;
-			case 25: return FEMTRAP_KARIN;
-			case 26: return FEMTRAP_JUEN;
-			case 27: return FEMTRAP_KRISTINA;
-			case 28: return FEMTRAP_LOU;
-			case 29: return FEMTRAP_ALMUT;
-			case 30: return FEMTRAP_JULIETTA;
-			case 31: return FEMTRAP_ARABELLA;
-			default: return POISON_RES;
-			}
-		case 173:
+		case 143:
 			return CONTROL_MAGIC;
-		case 174:
+		case 144:
 			return EXP_BOOST;
+		case 145:
+			return (rn2(1000) ? BLIND_RES : ASTRAL_VISION);
+		case 146:
+			return HALLUC_RES;
 
 		default:
 			return POISON_RES;
 
 	}
+
+	} /* didn't pick any RNG enchantments, nasty effects etc. */
 
 }
 
@@ -1955,7 +1973,7 @@ randnastyenchantment()
 int
 randomdisableproperty()
 {
-	switch (rnd(68)) {
+	switch (rnd(71)) {
 
 		case 1:
 			return FIRE_RES;
@@ -2093,6 +2111,12 @@ randomdisableproperty()
 			return CONTROL_MAGIC;
 		case 68:
 			return EXP_BOOST;
+		case 69:
+			return ASTRAL_VISION;
+		case 70:
+			return BLIND_RES;
+		case 71:
+			return HALLUC_RES;
 		default:
 			return POISON_RES;
 	}
@@ -2496,6 +2520,62 @@ randartspellbook()
 }
 
 int
+randartpotion()
+{
+	int result;
+	result = rnd_class(POT_BOOZE,POT_PAN_GALACTIC_GARGLE_BLASTE);
+	return result;
+}
+
+int
+randartscroll()
+{
+	int result;
+	result = rnd_class(SCR_CREATE_MONSTER,SCR_GIRLINESS);
+	return result;
+}
+
+int
+randartball()
+{
+	int result;
+	result = rnd_class(HEAVY_IRON_BALL,LIQUID_BALL);
+	return result;
+}
+
+int
+randartchain()
+{
+	int result;
+	result = rnd_class(IRON_CHAIN,LIQUID_CHAIN);
+	return result;
+}
+
+int
+randartgem()
+{
+	int result;
+	result = rnd_class(DILITHIUM_CRYSTAL,ROCK);
+	return result;
+}
+
+int
+randartbadgraystone()
+{
+	int result;
+	result = rnd_class(RIGHT_MOUSE_BUTTON_STONE,NASTY_STONE);
+	return result;
+}
+
+int
+randartfeminismjewel()
+{
+	int result;
+	result = rnd_class(ELIF_S_JEWEL,DORA_S_JEWEL);
+	return result;
+}
+
+int
 randartmeleeweaponX()
 {
 	int result;
@@ -2637,12 +2717,52 @@ randartspellbookX()
 	return result;
 }
 
+int
+randartpotionX()
+{
+	int result;
+	result = POT_BOOZE + rn2((POT_PAN_GALACTIC_GARGLE_BLASTE + 1) - POT_BOOZE);
+	return result;
+}
+
+int
+randartscrollX()
+{
+	int result;
+	result = SCR_CREATE_MONSTER + rn2((SCR_GIRLINESS + 1) - SCR_CREATE_MONSTER);
+	return result;
+}
+
+int
+randartballX()
+{
+	int result;
+	result = HEAVY_IRON_BALL + rn2((LIQUID_BALL + 1) - HEAVY_IRON_BALL);
+	return result;
+}
+
+int
+randartchainX()
+{
+	int result;
+	result = IRON_CHAIN + rn2((LIQUID_CHAIN + 1) - IRON_CHAIN);
+	return result;
+}
+
+int
+randartgemX()
+{
+	int result;
+	result = DILITHIUM_CRYSTAL + rn2((ROCK + 1) - DILITHIUM_CRYSTAL);
+	return result;
+}
+
 void
 deacrandomintrinsic(amount)
 register int amount;
 {
 
-	switch (rnd(131)) {
+	switch (rnd(134)) {
 
 		case 1:
 		case 2:
@@ -2979,6 +3099,18 @@ register int amount;
 			u.uprops[DEAC_EXP_BOOST].intrinsic += amount;
 			pline("You are prevented from having EXP boost!");
 			break;
+		case 132:
+			u.uprops[DEAC_ASTRAL_VISION].intrinsic += amount;
+			pline("You are prevented from having astral vision!");
+			break;
+		case 133:
+			u.uprops[DEAC_BLIND_RES].intrinsic += amount;
+			pline("You are prevented from having blindness resistance!");
+			break;
+		case 134:
+			u.uprops[DEAC_HALLUC_RES].intrinsic += amount;
+			pline("You are prevented from having hallucination resistance!");
+			break;
 	}
 
 }
@@ -2987,7 +3119,7 @@ int
 goodimplanteffect(obj)
 struct obj *obj;
 {
-	switch (obj->shirtmessage % 55) {
+	switch (obj->shirtmessage % 57) { /* remember to not randomize them!!! each number has to map to exactly one property --Amy */
 
 		case 0:
 			return DTBEEM_RES;
@@ -3099,6 +3231,10 @@ struct obj *obj;
 			return CONTROL_MAGIC;
 		case 54:
 			return EXP_BOOST;
+		case 55:
+			return BLIND_RES;
+		case 56:
+			return HALLUC_RES;
 		default:
 			return POISON_RES;
 
@@ -3591,7 +3727,7 @@ void
 randomfeminismtrap(duration)
 int duration;
 {
-	switch (rnd(31)) {
+	switch (rnd(44)) {
 		case 1:
 			pline("You can already imagine the farting noises you're gonna hear.");
 			FemaleTrapSarah += duration;
@@ -3715,6 +3851,58 @@ int duration;
 		case 31:
 			pline("Oh no, the master of nasty traps is laying out her snares to get you!");
 			FemaleTrapArabella += duration;
+			break;
+		case 32:
+			pline("You feel that there are women around who really like various high heels.");
+			FemaleTrapKristin += duration;
+			break;
+		case 33:
+			pline("Oh, it seems that the hussies are on the loose!");
+			FemaleTrapAnna += duration;
+			break;
+		case 34:
+			pline("You get the feeling that some women are trying to convert you.");
+			FemaleTrapRuea += duration;
+			break;
+		case 35:
+			pline("Ack! There's birds on the loose, and they want to eat your shoes!");
+			FemaleTrapDora += duration;
+			break;
+		case 36:
+			pline("You want to endlessly listen to squeaking farting noises.");
+			FemaleTrapMarike += duration;
+			break;
+		case 37:
+			pline("The power of feminism compels you.");
+			FemaleTrapJette += duration;
+			break;
+		case 38:
+			pline("Oh my god, you are now afflicted with the life-threatening disease known as anorexia!");
+			FemaleTrapIna += duration;
+			break;
+		case 39:
+			pline("A heinously evil woman plans to force you to clean the shit from all kinds of female shoes...");
+			FemaleTrapSing += duration;
+			break;
+		case 40:
+			pline("There's some karate women who want to demonstrate their combat capabilities to you.");
+			FemaleTrapVictoria += duration;
+			break;
+		case 41:
+			pline("You suddenly feel that the women in this dungeon are quite attractive...");
+			FemaleTrapMelissa += duration;
+			break;
+		case 42:
+			pline("The women want to slit your legs with razor-sharp high heels! Be afraid of them!");
+			FemaleTrapAnita += duration;
+			break;
+		case 43:
+			pline("You feel that someone is going to open the zippers of your boots, making you fumble into a heap of dog shit.");
+			FemaleTrapHenrietta += duration;
+			break;
+		case 44:
+			pline("Oh no, some annoying blonde girl starts to follow you around. Sigh. Why can't you get a clever companion instead?!");
+			FemaleTrapVerena += duration;
 			break;
 	}
 }
@@ -4019,6 +4207,15 @@ combatreroll:
 	if (result >= P_SHII_CHO && result <= P_WEDI && rn2(10)) goto combatreroll;
 
 	return result;
+}
+
+int
+randomgoodmclass(withtroves)
+boolean withtroves;
+{
+	int monclassresult = rnd(S_WORM_TAIL);
+	while (monclassresult == 35 || (!withtroves && monclassresult == S_TROVE)) monclassresult = rnd(S_WORM_TAIL);
+	return monclassresult;
 }
 
 #endif /* OVLB */

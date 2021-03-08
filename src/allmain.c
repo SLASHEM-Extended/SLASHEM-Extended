@@ -195,6 +195,17 @@ moveloop()
 			u.comboactive = u.combostrike = 0;
 		}
 
+		if (Role_if(PM_DANCER)) {
+			if (u.dancercomboactive) u.dancercomboactive = FALSE;
+			else if (u.dancercombostrike > 0) {
+				u.dancercombostrike--;
+				if (!u.dancercombostrike) {
+					pline("Oh no! You touched the ground and can't move for a while.");
+					nomul(-5, "getting back up from dancing", TRUE);
+				}
+			}
+		}
+
 		u.polyprotected = 0;
 		u.aggravation = 0;
 		u.heavyaggravation = 0;
@@ -935,7 +946,7 @@ moveloop()
 				if (!rn2(100)) randsp *= 3;
 				if (!rn2(1000)) randsp *= 5;
 				if (!rn2(10000)) randsp *= 10;
-				monstercolor = rnd(376);
+				monstercolor = rnd(379);
 
 				if (wizard || !rn2(10)) pline(FunnyHallu ? "Someone got in here! Who could that be?" : "You feel that a group has arrived!");
 
@@ -998,7 +1009,7 @@ moveloop()
 				if (!rn2(100)) randsp *= 3;
 				if (!rn2(1000)) randsp *= 5;
 				if (!rn2(10000)) randsp *= 10;
-				monstercolor = rnd(376);
+				monstercolor = rnd(379);
 			      cx = rn2(COLNO);
 			      cy = rn2(ROWNO);
 
@@ -1101,6 +1112,15 @@ moveloop()
 				if (uarmf && uarmf->oartifact == ART_UPWARD_HEELS && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
+				if (uwep && uwep->oartifact == ART_SCJWILLX_ && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+
+				if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SCJWILLX_ && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+
+				if (uarmf && uarmf->oartifact == ART_GIVE_THE_ART_A_HOME && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+
 				if (flags.female && uarmf && itemhasappearance(uarmf, APP_OPERA_PUMPS) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
@@ -1187,9 +1207,12 @@ moveloop()
 					if (!rn2(10))
 					moveamt = 0;
 				}
-				if (Frozen && (!(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) || !rn2(3)) && moveamt > 1) {
+				if (Frozen && (!((uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) || (uarmf && itemhasappearance(uarmf, APP_CYAN_SNEAKERS)) ) || !rn2(3)) && moveamt > 1) {
 					moveamt /= 2;
 				}
+
+				if (Race_if(PM_PIECE) && u.dx && u.dy && !rn2(4) && moveamt > 1)
+					moveamt /= 2;
 
 				if (is_snow(u.ux, u.uy) && (u.umoved || !rn2(4)) && !Flying && !Levitation) {
 						static boolean canwalkonsnow = 0;
@@ -1201,19 +1224,26 @@ moveloop()
 					    if (!skates3) skates3 = find_skates3();
 					    static int skates4 = 0;
 					    if (!skates4) skates4 = find_skates4();
+					    static int skates5 = 0;
+					    if (!skates5) skates5 = find_cyan_sneakers();
 					    if ((uarmf && uarmf->otyp == skates)
 						    || (uarmf && uarmf->otyp == skates2)
 						    || (uarmf && uarmf->otyp == skates3)
 						    || (uarmf && uarmf->otyp == skates4)
+						    || (uarmf && uarmf->otyp == skates5)
 						    || (uwep && uwep->oartifact == ART_GLACIERDALE)
 						    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
 						    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
+						    || (uwep && uwep->oartifact == ART_DAMN_SKI_WEDGE && uarmf)
 						    || (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE)) canwalkonsnow = 1;
 
 					if (powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) canwalkonsnow = 1;
 
-					if (!canwalkonsnow)
-					moveamt /= 4;
+					if (!canwalkonsnow) {
+						if (StrongCold_resistance) moveamt /= 2;
+						else if (Cold_resistance) moveamt /= 3;
+						else moveamt /= 4;
+					}
 
 				}
 
@@ -1320,13 +1350,22 @@ moveloop()
 					moveamt *= 2;
 				}
 
-				if (u.usteed) {
-					struct obj *osaeddle = which_armor(u.usteed, W_SADDLE);
+				if (Race_if(PM_PIECE) && ((u.dx && !u.dy) || (!u.dx && u.dy)) && !rn2(4)) {
+					moveamt *= 2;
+				}
 
-					if ((osaeddle = which_armor(u.usteed, W_SADDLE)) && osaeddle->oartifact == ART_BIKE_SADDLE) {
+				if (u.usteed) {
+
+					if (bmwride(ART_BIKE_SADDLE)) {
 						moveamt *= 3;
 						moveamt /= 2;
 					}
+
+					if (bmwride(ART_SPEEDO_CAR)) {
+						moveamt *= 6;
+						moveamt /= 5;
+					}
+
 				}
 
 			} /* chance to reduce speed end */
@@ -1409,7 +1448,16 @@ moveloop()
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too are slower sometimes. */
 				moveamt /= 2;
 
+			if (uwep && uwep->oartifact == ART_SCJWILLX_ && !rn2(8) && moveamt > 1)
+				moveamt /= 2;
+
+			if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SCJWILLX_ && !rn2(8) && moveamt > 1)
+				moveamt /= 2;
+
 			if (uarmf && uarmf->oartifact == ART_UPWARD_HEELS && !rn2(8) && moveamt > 1)
+				moveamt /= 2;
+
+			if (uarmf && uarmf->oartifact == ART_GIVE_THE_ART_A_HOME && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
 
 			if (flags.female && uarmf && itemhasappearance(uarmf, APP_OPERA_PUMPS) && !rn2(8) && moveamt > 1)
@@ -1507,6 +1555,9 @@ moveloop()
 			if (Race_if(PM_CORTEX) && !Upolyd && !rn2(4) && moveamt > 1)
 				moveamt /= 2;
 
+			if (Race_if(PM_PIECE) && u.dx && u.dy && !rn2(4) && moveamt > 1)
+				moveamt /= 2;
+
 		/* The new numbed and frozen properties seem to dislike rn2 calls for some reason.
 		 * So I need to make a subloop to prevent numbed or frozen players from being completely immobile. */
 
@@ -1514,7 +1565,7 @@ moveloop()
 				if ( (youmonst.data->mmove > 1 || !rn2(2)) && !rn2(10))
 				moveamt = 0; /* numbed characters sometimes miss turns --Amy */
 			}
-			if (Frozen && (!(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) || !rn2(3)) && moveamt > 1) {
+			if (Frozen && (!((uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) || (uarmf && itemhasappearance(uarmf, APP_CYAN_SNEAKERS)) ) || !rn2(3)) && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2; /* frozen characters move at half speed --Amy */
 			}
@@ -1534,19 +1585,26 @@ moveloop()
 				    if (!skates3) skates3 = find_skates3();
 				    static int skates4 = 0;
 				    if (!skates4) skates4 = find_skates4();
+				    static int skates5 = 0;
+				    if (!skates5) skates5 = find_cyan_sneakers();
 				    if ((uarmf && uarmf->otyp == skates)
 					    || (uarmf && uarmf->otyp == skates2)
 					    || (uarmf && uarmf->otyp == skates3)
 					    || (uarmf && uarmf->otyp == skates4)
+					    || (uarmf && uarmf->otyp == skates5)
 					    || (uwep && uwep->oartifact == ART_GLACIERDALE)
 					    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
 					    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
+					    || (uwep && uwep->oartifact == ART_DAMN_SKI_WEDGE && uarmf)
 					    || (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE)) canwalkonsnow = 1;
 
 				if (powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) canwalkonsnow = 1;
 
-				if ((youmonst.data->mmove > 1 || !rn2(2)) && !canwalkonsnow)
-				moveamt /= 4;
+				if ((youmonst.data->mmove > 1 || !rn2(2)) && !canwalkonsnow) {
+					if (StrongCold_resistance) moveamt /= 2;
+					else if (Cold_resistance) moveamt /= 3;
+					else moveamt /= 4;
+				}
 
 				if (canwalkonsnow && ((uarmf && uarmf->otyp == skates4) || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) || (uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD)) && !rn2(2)) {
 					moveamt *= 2;
@@ -1705,6 +1763,15 @@ moveloop()
 			    if (rn2(3) != 0) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			}
 
+			if (u.usteed) {
+
+				if (bmwride(ART_SPEEDO_CAR)) {
+					moveamt *= 6;
+					moveamt /= 5;
+				}
+
+			}
+
 			if (Wonderlegs && Wounded_legs) {
 				moveamt *= 5;
 				moveamt /= 4;
@@ -1721,6 +1788,10 @@ moveloop()
 			}
 
 			if (numberofwornetheritems() > rn2(20)) {
+				moveamt *= 2;
+			}
+
+			if (Race_if(PM_PIECE) && ((u.dx && !u.dy) || (!u.dx && u.dy)) && !rn2(4)) {
 				moveamt *= 2;
 			}
 
@@ -1898,7 +1969,7 @@ moveloop()
 		    if (youmonst.movement < 0) youmonst.movement = 0;
 		    settrack();
 
-		    if (!rn2(2) || !(uarmf && itemhasappearance(uarmf, APP_IRREGULAR_BOOTS) ) ) {
+		    if ((!rn2(2) || !(uarmf && itemhasappearance(uarmf, APP_IRREGULAR_BOOTS) ) ) && (rn2(10) || !(uwep && uwep->oartifact == ART_TIMESHIFTER) ) ) {
 
 			if (!rn2(2) || !((uleft && uleft->oartifact == ART_GOOD_THINGS_WILL_HAPPEN_EV) || (uright && uright->oartifact == ART_GOOD_THINGS_WILL_HAPPEN_EV)) ) {
 				if (!rn2(2) || !RngeIrregularity) {
@@ -1989,6 +2060,29 @@ moveloop()
 			turn_allmonsters();
 		}
 
+		if (uarmf && uarmf->oartifact == ART_WHINY_TEACHER_INSIDE_WOMAN && !rn2(100)) {
+			register struct monst *whinymon;
+
+			for(whinymon = fmon; whinymon; whinymon = whinymon->nmon) {
+				if (DEADMONSTER(whinymon)) continue;
+				if (!monnear(whinymon, u.ux, u.uy)) continue;
+				if(cansee(whinymon->mx,whinymon->my)) {
+					if (!resist(whinymon, SCROLL_CLASS, 0, NOTELL)) monflee(whinymon, rnd(10), FALSE, FALSE);
+				}
+			}
+		}
+
+		if (uarmf && uarmf->oartifact == ART_RATCH_CLOSURE_SCRATCHING) {
+			if (Upolyd && u.mh >= u.mhmax) {
+				playerbleed(rnd(2 + (level_difficulty() * 10)));
+				pline_The("sharp-edged female zippers slit your %s.", body_part(LEG));
+			}
+			if (!Upolyd && u.uhp >= u.uhpmax) {
+				playerbleed(rnd(2 + (level_difficulty() * 10)));
+				pline_The("sharp-edged female zippers slit your %s.", body_part(LEG));
+			}
+		}
+
 		if (tech_inuse(T_AFTERBURNER) && u.umoved) {
 			buzz(21, 2 + (GushLevel / 10), u.ux, u.uy, -u.dx, -u.dy);
 		}
@@ -2019,6 +2113,34 @@ moveloop()
 		    }
 
 		}
+
+		if (uwep && uwep->oartifact == ART_VAPER_BAPER && !PlayerCannotUseSkills && !rn2(1000) && P_SKILL(P_VAAPAD) >= P_BASIC) {
+			int vaperceiling = (u.ulevel * 10);
+			boolean madechange;
+			switch (P_SKILL(P_VAAPAD)) {
+				case P_BASIC: vaperceiling = (u.ulevel * 10); break;
+				case P_SKILLED: vaperceiling = (u.ulevel * 12); break;
+				case P_EXPERT: vaperceiling = (u.ulevel * 15); break;
+				case P_MASTER: vaperceiling = (u.ulevel * 18); break;
+				case P_GRAND_MASTER: vaperceiling = (u.ulevel * 20); break;
+				case P_SUPREME_MASTER: vaperceiling = (u.ulevel * 25); break;
+			}
+
+			if (u.uhpmax < vaperceiling) {
+				u.uhpmax++;
+				madechange = TRUE;
+				flags.botl = TRUE;
+			}
+			if (Upolyd && (u.mhmax < vaperceiling)) {
+				u.mhmax++;
+				madechange = TRUE;
+				flags.botl = TRUE;
+			}
+			if (madechange) You("vaped for a bit, and have increased your maximum health.");
+		}
+
+		if (uwep && uwep->oartifact == ART_TSCHEND_FOR_ETERNITY && !rn2(1000) && !Punished) punish((struct obj *)0);
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_TSCHEND_FOR_ETERNITY && !rn2(1000) && !Punished) punish((struct obj *)0);
 
 		if (tech_inuse(T_THUNDERSTORM) && !rn2(10)) {
 		    int i, j, bd = 3;
@@ -2071,6 +2193,11 @@ moveloop()
 			stop_occupation();
 		}
 
+		if (uwep && uwep->oartifact == ART_FAITH_BRAND && !rn2(200)) adjalign(1);
+
+		if (uwep && uwep->oartifact == ART_BRAND_BRAND && !rn2(5)) verbalize("Sponsored by Nuka-Cola!");
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_BRAND_BRAND && !rn2(5)) verbalize("Sponsored by Nuka-Cola!");
+
 		if (u.shutdowntime) {
 			u.shutdowntime--;
 			if (!uinsymbiosis) u.shutdowntime = 0;
@@ -2095,6 +2222,7 @@ moveloop()
 		if (u.riderhack) u.riderhack = FALSE;
 
 		if (!occupation) u.katitrapocc = FALSE;
+		if (!occupation) u.singtrapocc = FALSE;
 
 		if (!rn2(100)) u.statuetrapname = rn2(NUMMONS);
 
@@ -2105,6 +2233,49 @@ moveloop()
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && Feared && !rn2(100)) {
 			pline("holy shit this is offensive");
 			badeffect();
+		}
+
+		if (uwep && uwep->oartifact == ART_PESSIVETROIN && !rn2(100)) {
+			int tryct, tryct2;
+			int ltsaberform = P_SHII_CHO + rn2(10);
+			int ltsaberamount = rnd(10);
+			boolean ltsaberup = rn2(2);
+			if (!rn2(20)) ltsaberamount += rnd(100);
+			if (ltsaberform < P_SHII_CHO || ltsaberform > P_WEDI) impossible("buggy lightsaber form %d for pessivetroin artifact", ltsaberform);
+			else {
+				if (ltsaberup) { /* skill goes up */
+					P_ADVANCE(ltsaberform) += ltsaberamount;
+				} else { /* skill goes down */
+					if ((P_ADVANCE(ltsaberform)) < ltsaberamount) P_ADVANCE(ltsaberform) = 0;
+					else P_ADVANCE(ltsaberform) -= ltsaberamount;
+
+					tryct = 2000;
+					tryct2 = 10;
+					i = 0;
+
+					while (u.skills_advanced && tryct && (P_ADVANCE(ltsaberform) < practice_needed_to_advance_nonmax(P_SKILL(ltsaberform) - 1, ltsaberform) ) ) {
+						lose_last_spent_skill();
+						i++;
+						tryct--;
+					}
+
+					while (i) {
+						if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
+						else u.weapon_slots++;  /* because every skill up costs one slot --Amy */
+						i--;
+					}
+
+					/* still higher than the cap? that probably means you started with some knowledge of the skill... */
+					while (tryct2 && P_ADVANCE(ltsaberform) < practice_needed_to_advance_nonmax(P_SKILL(ltsaberform) - 1, ltsaberform) ) {
+						P_SKILL(ltsaberform)--;
+						if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
+						else u.weapon_slots++;
+						tryct2--;
+					}
+
+				}
+			}
+
 		}
 
 		if (PlayerInBlockHeels) {
@@ -2126,6 +2297,11 @@ moveloop()
 
 			}
 
+		}
+
+		if ((u.inertia > 1) && uamul && uamul->oartifact == ART_VARIANT_GUARD) {
+			u.inertia /= 2;
+			if (u.inertia < 0) u.inertia = 0; /* fail safe */
 		}
 
 		if (uimplant && uimplant->oartifact == ART_ETERNAL_SORENESS && u.inertia < 5) u.inertia = 15;
@@ -2984,6 +3160,14 @@ newbossBQ:
 
 		/* the manler chases after the player; he often moves randomly but not always */
 		if (ManlerIsChasing && (u.manlerx >= 0 && u.manlery >= 0) ) {
+
+			/* artifacts that can simply be taken off could be abused to make the manler disappear, and
+			 * reappear at the other end of the map... we need to prevent that :P --Amy */
+			if (uwep && uwep->oartifact == ART_BAOBHAN_MOUNTAIN && ManlerEffect < 1000) ManlerEffect = 1000;
+			if (u.twoweap && uswapwep && uswapwep->oartifact == ART_BAOBHAN_MOUNTAIN && ManlerEffect < 1000) ManlerEffect = 1000;
+			if (uwep && uwep->oartifact == ART_DIZZY_METAL_STORM && ManlerEffect < 1000) ManlerEffect = 1000;
+			if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DIZZY_METAL_STORM && ManlerEffect < 1000) ManlerEffect = 1000;
+
 			if (u.manlerx == u.ux && u.manlery == u.uy) {
 				pline("Daedeldidaet! The manler caught you...");
 				u.cnd_manlergetcount++;
@@ -3229,6 +3413,14 @@ newbossBQ:
 		}
 
 		if (have_falloutstone() && !rn2(100)) {
+			contaminate(rnd(10), FALSE);
+		}
+
+		if (uwep && uwep->oartifact == ART_OCTARINESWANDIR && !rn2(100)) {
+			contaminate(rnd(10), FALSE);
+		}
+
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_OCTARINESWANDIR && !rn2(100)) {
 			contaminate(rnd(10), FALSE);
 		}
 
@@ -3509,6 +3701,41 @@ newbossBQ:
 
 		}
 
+		if (FemtrapActiveVerena && !rn2(1000) && (u.uhp > (u.uhpmax / 2)) ) {
+			switch (rnd(5)) {
+				case 1:
+					pline("Verena thunders her black stiletto heel on your head incredibly painfully.");
+					losehp(monster_difficulty() * 5, "extremely painful impact from Verena's stiletto sandals", KILLED_BY_AN);
+					break;
+				case 2:
+					pline("Verena slams her black stiletto heel on your head, and you see lots of little asterisks.");
+					losehp(monster_difficulty(), "hard impact from Verena's stiletto sandals", KILLED_BY_AN);
+					make_confused(HConfusion + rnz(50) + rnz(monster_difficulty() * 10), FALSE);
+					break;
+				case 3:
+					pline("Verena slams her black stiletto heel on your head so painfully that you're knocked down.");
+					losehp(monster_difficulty(), "crushing impact from Verena's stiletto sandals", KILLED_BY_AN);
+					nomul(-rnd(10), "knocked out by Verena's stiletto sandals", TRUE);
+					break;
+				case 4:
+					pline("Verena slams her black stiletto heel on your head, damaging your optical nerve.");
+					losehp(monster_difficulty(), "unfair impact from Verena's stiletto sandals", KILLED_BY_AN);
+					make_blinded(Blinded + rnz(100) + rnz(monster_difficulty() * 20), FALSE);
+					break;
+				case 5:
+					pline("Verena scratches her black stiletto heel over your leg, opening extremely sharp-edged bleeding wounds.");
+					losehp(monster_difficulty(), "leg scratches from Verena's stiletto sandals", KILLED_BY);
+					playerbleed(rnd(2 + (level_difficulty() * 10)));
+					break;
+
+			}
+		}
+
+		if (FemtrapActiveVerena && !rn2(100) && (u.uhp <= (u.uhpmax / 5)) ) {
+			pline("Verena announces: 'Oh no, you're badly hurt! Here, let me caress you a bit, does that make it feel better?'");
+			healup( ( (level_difficulty() * 3) + 5), 0, FALSE, FALSE);
+		}
+
 		if (FemtrapActiveElif && !rn2(100)) {
 
 			switch (rnd(4)) {
@@ -3521,6 +3748,7 @@ newbossBQ:
 				case 2:
 					pline("Elif suddenly produces %s farting noises with her sexy butt.", rn2(2) ? "tender" : "soft");
 					u.cnd_fartingcount++;
+					if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 					if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 					if (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) healup((level_difficulty() + 5), 0, FALSE, FALSE);
 					else if (!extralongsqueak()) badeffect();
@@ -3786,7 +4014,7 @@ controlagain:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(376);
+			monstercolor = rnd(379);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -5259,7 +5487,7 @@ controlagain:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(376);
+			monstercolor = rnd(379);
 
 			if (wizard || !rn2(10)) You_feel("that a group has arrived!");
 
@@ -5374,6 +5602,278 @@ newbossF:
 
 		}
 
+		if (RngeWhoring && !rn2(2000)) {
+
+			int attempts = 0;
+			struct permonst *pm = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+newbossWHOR:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_WHORE ))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossWHOR;
+			}
+			if (pm && !(pm->msound == MS_WHORE) && rn2(50) ) {
+				attempts = 0;
+				goto newbossWHOR;
+			}
+
+			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
+
+			u.aggravation = 0;
+
+		}
+
+		if (RngeStench && !rn2(2000)) {
+
+			int attempts = 0;
+			struct permonst *pm = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+newbossSTEN:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_STENCH ))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossSTEN;
+			}
+			if (pm && !(pm->msound == MS_STENCH) && rn2(50) ) {
+				attempts = 0;
+				goto newbossSTEN;
+			}
+
+			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
+
+			u.aggravation = 0;
+
+		}
+
+		if (Role_if(PM_BUTT_LOVER) && !rn2(2000)) {
+
+			int attempts = 0;
+			struct permonst *pm = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+newbossBUTT:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_FART_NORMAL) && !(pm->msound == MS_FART_LOUD) && !(pm->msound == MS_FART_QUIET))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossBUTT;
+			}
+			if (pm && !(pm->msound == MS_FART_NORMAL) && !(pm->msound == MS_FART_LOUD) && !(pm->msound == MS_FART_QUIET) && rn2(50) ) {
+				attempts = 0;
+				goto newbossBUTT;
+			}
+
+			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY);
+
+			u.aggravation = 0;
+
+		}
+
+		if (Role_if(PM_SHOE_FETISHIST) && !rn2(1000)) {
+
+			int attempts = 0;
+			struct permonst *pm = 0;
+
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+
+newbossSF:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_SHOE))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossSF;
+			}
+			if (pm && !(pm->msound == MS_SHOE) && rn2(50) ) {
+				attempts = 0;
+				goto newbossSF;
+			}
+
+			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY);
+
+			u.aggravation = 0;
+
+		}
+
+		if (FemtrapActiveRuea && !rn2(1000)) {
+
+			int attempts = 0;
+			struct permonst *pm = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+newbossCONV:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_CONVERT ))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossCONV;
+			}
+			if (pm && !(pm->msound == MS_CONVERT) && rn2(50) ) {
+				attempts = 0;
+				goto newbossCONV;
+			}
+
+			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
+
+			u.aggravation = 0;
+
+		}
+
+		if (FemtrapActiveSing && !rn2(1000)) {
+
+			int attempts = 0;
+			struct permonst *pm = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+newbossSING:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_SHOE )) || (pm && !(type_is_pname(pm))) ) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossSING;
+			}
+			if (pm && !(pm->msound == MS_SHOE) && rn2(50) ) {
+				attempts = 0;
+				goto newbossSING;
+			}
+			if (pm && !(type_is_pname(pm)) && rn2(50) ) {
+				attempts = 0;
+				goto newbossSING;
+			}
+
+			if (pm) {
+				struct monst *singbitch;
+				singbitch = makemon(pm, 0, 0, MM_ANGRY); /* not frenzied --Amy */
+				if (singbitch) singbitch->singannoyance = TRUE;
+			}
+
+			u.aggravation = 0;
+
+		}
+
+		if (FemtrapActiveVictoria && !rn2(5000)) {
+
+			int attempts = 0;
+			struct permonst *pm = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+newbossATHL:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(is_female(pm))) || (pm && !(attacktype(pm, AT_KICK))) ) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossATHL;
+			}
+			if (pm && !(attacktype(pm, AT_KICK)) && rn2(50) ) {
+				attempts = 0;
+				goto newbossATHL;
+			}
+			if (pm && !(is_female(pm)) && rn2(50) ) {
+				attempts = 0;
+				goto newbossATHL;
+			}
+
+			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
+
+			u.aggravation = 0;
+
+		}
+
+		if (RngeBossing && !rn2(5000)) {
+
+			int attempts = 0;
+			struct permonst *pm = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+newbossBOSS:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->geno & G_UNIQ))) && attempts < 50000);
+
+			if (pm && pm->geno & G_UNIQ) {
+				if (wizard) pline("monster generation: %s", pm->mname);
+				(void) makemon(pm, 0, 0, MM_ANGRY);
+			}
+			else if (rn2(50)) {
+				attempts = 0;
+				goto newbossBOSS;
+			}
+
+			u.aggravation = 0;
+
+		}
+
 		if (uleft && uleft->oartifact == ART_REAL_LIFE_EFFECTOR && !rn2(2000)) {
 
 			int attempts = 0;
@@ -5384,6 +5884,7 @@ newbossF:
 				reset_rndmonst(NON_PM);
 			}
 
+newbossRLL:
 			do {
 				pm = rndmonst();
 				attempts++;
@@ -5393,11 +5894,11 @@ newbossF:
 
 			if (!pm && rn2(50) ) {
 				attempts = 0;
-				goto newbossF;
+				goto newbossRLL;
 			}
 			if (pm && !(pm->msound == MS_SUPERMAN) && rn2(50) ) {
 				attempts = 0;
-				goto newbossF;
+				goto newbossRLL;
 			}
 
 			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
@@ -5416,6 +5917,7 @@ newbossF:
 				reset_rndmonst(NON_PM);
 			}
 
+newbossRLR:
 			do {
 				pm = rndmonst();
 				attempts++;
@@ -5425,11 +5927,11 @@ newbossF:
 
 			if (!pm && rn2(50) ) {
 				attempts = 0;
-				goto newbossF;
+				goto newbossRLR;
 			}
 			if (pm && !(pm->msound == MS_SUPERMAN) && rn2(50) ) {
 				attempts = 0;
-				goto newbossF;
+				goto newbossRLR;
 			}
 
 			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
@@ -5490,7 +5992,7 @@ newbossF:
 		}
 
 		/* for feminizer hybrid race: re-randomize feminism effect that is active --Amy */
-		if (!rn2(5000)) u.feminizeffect = rnd(31); /* amount of feminism trap effects; keyword: "marlena" */
+		if (!rn2(5000)) u.feminizeffect = rnd(44); /* amount of feminism trap effects; keyword: "marlena" */
 
 		if (isfeminizer && !rn2(5000)) randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
 
@@ -5922,6 +6424,74 @@ newbossO:
 
 		}
 
+		if (!rn2(200) && uwep && uwep->oartifact == ART_WHAW_WHAW) {
+
+			int lcount = rnd(monster_difficulty() ) + 1;
+
+		    if (!obsidianprotection()) switch (rn2(11)) {
+		    case 0: make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON),20),
+				"horrible sickness", TRUE, SICK_NONVOMITABLE);
+			    break;
+		    case 1: make_blinded(Blinded + lcount, TRUE);
+			    break;
+		    case 2: if (!Confusion)
+				You("suddenly feel %s.", FunnyHallu ? "trippy" : "confused");
+			    make_confused(HConfusion + lcount, TRUE);
+			    break;
+		    case 3: make_stunned(HStun + lcount, TRUE);
+			    break;
+		    case 4: make_numbed(HNumbed + lcount, TRUE);
+			    break;
+		    case 5: make_frozen(HFrozen + lcount, TRUE);
+			    break;
+		    case 6: make_burned(HBurned + lcount, TRUE);
+			    break;
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
+			    break;
+		    case 8: (void) make_hallucinated(HHallucination + lcount, TRUE, 0L);
+			    break;
+		    case 9: make_feared(HFeared + lcount, TRUE);
+			    break;
+		    case 10: make_dimmed(HDimmed + lcount, TRUE);
+			    break;
+		    }
+
+		}
+
+		if (!rn2(200) && u.twoweap && uswapwep && uswapwep->oartifact == ART_WHAW_WHAW) {
+
+			int lcount = rnd(monster_difficulty() ) + 1;
+
+		    if (!obsidianprotection()) switch (rn2(11)) {
+		    case 0: make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON),20),
+				"horrible sickness", TRUE, SICK_NONVOMITABLE);
+			    break;
+		    case 1: make_blinded(Blinded + lcount, TRUE);
+			    break;
+		    case 2: if (!Confusion)
+				You("suddenly feel %s.", FunnyHallu ? "trippy" : "confused");
+			    make_confused(HConfusion + lcount, TRUE);
+			    break;
+		    case 3: make_stunned(HStun + lcount, TRUE);
+			    break;
+		    case 4: make_numbed(HNumbed + lcount, TRUE);
+			    break;
+		    case 5: make_frozen(HFrozen + lcount, TRUE);
+			    break;
+		    case 6: make_burned(HBurned + lcount, TRUE);
+			    break;
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
+			    break;
+		    case 8: (void) make_hallucinated(HHallucination + lcount, TRUE, 0L);
+			    break;
+		    case 9: make_feared(HFeared + lcount, TRUE);
+			    break;
+		    case 10: make_dimmed(HDimmed + lcount, TRUE);
+			    break;
+		    }
+
+		}
+
 		if (!rn2(200) && have_horrorstone()) {
 
 			int lcount = rnd(monster_difficulty() ) + 1;
@@ -5964,15 +6534,34 @@ newbossO:
 			}
 		}
 
+		/* soresu form trains passively if you have both a lit lightsaber and a robe, but very slowly --Amy */
+		if (uarm && uwep && is_lightsaber(uwep) && uwep->lamplit && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS) ) {
+			u.usoresuturns++;
+			if (u.usoresuturns >= 100) {
+				u.usoresuturns = 0;
+				use_skill(P_SORESU, 1);
+			}
+
+		}
+
+		if (uarm && uarm->oartifact == ART_SORESURE) {
+			u.usoresuturns++;
+			if (u.usoresuturns >= 100) {
+				u.usoresuturns = 0;
+				use_skill(P_SORESU, 1);
+			}
+
+		}
+
 		if (uactivesymbiosis) {
 			u.usymbiosisslowturns++;
-			if (u.usymbiosisslowturns >= 50) {
+			if (u.usymbiosisslowturns >= 30) {
 				u.usymbiosisslowturns = 0;
 				use_skill(P_SYMBIOSIS, 1);
 			}
 		}
 
-		if ((DeLightBug || u.uprops[DE_LIGHT_BUG].extrinsic || have_delightstone() || (uwep && uwep->oartifact == ART_EGRID_BUG) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EGRID_BUG) || (uwep && uwep->oartifact == ART_WEAKITE_THRUST) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_WEAKITE_THRUST)) && isok(u.ux, u.uy)) {
+		if ((DeLightBug || u.uprops[DE_LIGHT_BUG].extrinsic || have_delightstone() || (uwep && uwep->oartifact == ART_EGRID_BUG) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EGRID_BUG) || (uwep && uwep->oartifact == ART_DELIGHTSABER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DELIGHTSABER) || (uwep && uwep->oartifact == ART_WEAKITE_THRUST) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_WEAKITE_THRUST)) && isok(u.ux, u.uy)) {
 			levl[u.ux][u.uy].lit = FALSE;
 		}
 
@@ -6101,6 +6690,11 @@ newbossO:
 					(void) destroy_item(FOOD_CLASS, AD_VENO);
 					break;
 			}
+		}
+
+		if (Hallucination && StrongHalluc_resistance) {
+			if (HHallucination > 5) HHallucination--;
+
 		}
 
 		if ((uarmc && itemhasappearance(uarmc, APP_ROADMAP_CLOAK)) && !rn2(10000)) {
@@ -6282,6 +6876,91 @@ newbossX:
 			if (iszapem && !(u.zapemescape)) {
 				pline("The exit of this spaceship was opened and you can go back to the Dungeons of Doom now! However, you might want to finish the Gamma Caves and Mainframe first, because once you leave, the monster difficulty in the entire ZAPM branch will increase.");
 			}
+		}
+
+		if (In_greencross(&u.uz) && u.preversionmode && !u.preversionescape && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) {
+			u.preversionescape = 1;
+			pline("Great job, you've completed the Green Cross dungeon! The exit to the regular dungeon is now open and your ability to level teleport was restored. Of course, you could try to fight Lord Stahngnir now if you feel like it.");
+		}
+
+		if (In_Devnull(&u.uz) && !u.devnullcomplete) {
+			if (!u.poolchallengecomplete && In_poolchallenge(&u.uz)) {
+				u.poolchallengecomplete = 1;
+				You("entered the Pool challenge.");
+			}
+			if (!u.joustchallengecomplete && In_joustchallenge(&u.uz)) {
+				u.joustchallengecomplete = 1;
+				You("entered the Joust challenge.");
+			}
+			if (!u.digdugchallengecomplete && In_digdugchallenge(&u.uz)) {
+				u.digdugchallengecomplete = 1;
+				You("entered the Digdug challenge.");
+			}
+			if (!u.gruechallengecomplete && In_gruechallenge(&u.uz)) {
+				u.gruechallengecomplete = 1;
+				You("entered the Grue challenge.");
+			}
+			if (!u.pacmanchallengecomplete && In_pacmanchallenge(&u.uz)) {
+				u.pacmanchallengecomplete = 1;
+				You("entered the Pacman challenge.");
+			}
+
+			if (u.poolchallengecomplete && u.digdugchallengecomplete && u.pacmanchallengecomplete && u.joustchallengecomplete && u.gruechallengecomplete) {
+				u.devnullcomplete = TRUE;
+				pline("Congratulations! You visited all the DevNull challenge areas. As a reward, one of your stats is increased!");
+				int attrcrease = rn2(A_MAX);
+				if (ABASE(attrcrease) >= ATTRMAX(attrcrease)) pline("But unfortunately the attribute that was picked happens to be maxxed out already!");
+				else {
+					ABASE(attrcrease)++;
+					flags.botl = TRUE;
+					switch (attrcrease) {
+						case A_STR:
+							pline("Strength +1!");
+							break;
+						case A_DEX:
+							pline("Dexterity +1!");
+							break;
+						case A_CON:
+							pline("Constitution +1!");
+							break;
+						case A_CHA:
+							pline("Charisma +1!");
+							break;
+						case A_INT:
+							pline("Intelligence +1!");
+							break;
+						case A_WIS:
+							pline("Wisdom +1!");
+							break;
+					}
+				}
+				/* note by Amy: it's not a bug that this bypasses sustain ability and soft cap checks */
+
+#ifdef RECORD_ACHIEVE
+
+				if (!achieveX.devnull_complete) {
+
+					achieveX.devnull_complete = TRUE;
+					if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
+					if (RngeTeamSplat) pline("TROPHY GET!");
+					if (Race_if(PM_INHERITOR)) giftartifact();
+					if (Race_if(PM_HERALD)) heraldgift();
+
+					if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+						u.uhpmax += 10;
+						u.uenmax += 10;
+						if (Upolyd) u.mhmax += 10;
+						pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+					}
+				}
+
+#ifdef LIVELOGFILE
+				livelog_achieve_update();
+				livelog_report_trophy("visited all DevNull challenge dungeons");
+#endif
+#endif
+			}
+
 		}
 
 		if (In_gammacaves(&u.uz) && !u.gammacavescomplete && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) {
@@ -7020,13 +7699,13 @@ newbossB:
 
 		}
 
-		if (is_snow(u.ux, u.uy) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) && !rn2(isfriday ? 10 : 20) && (Flying || Levitation)) {
+		if (is_snow(u.ux, u.uy) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) && !(Cold_resistance && rn2(StrongCold_resistance ? 10 : 3)) && !rn2(isfriday ? 10 : 20) && (Flying || Levitation)) {
 			You("are caught in a snowstorm!");
 			make_stunned(Stunned + rnd(5),FALSE);
 			stop_occupation();
 		}
 
-		if (is_snow(u.ux, u.uy) && !(powerfulimplants() && uimplant && (uimplant->oartifact == ART_WHITE_WHALE_HATH_COME || uimplant->oartifact == ART_DUBAI_TOWER_BREAK)) && !(uarmf && itemhasappearance(uarmf, APP_FLEECY_BOOTS) ) && !(uwep && uwep->oartifact == ART_GLACIERDALE) && !(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) && !(uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) && !(uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) && !rn2(StrongCold_resistance ? 500 : Cold_resistance ? 200 : 50) ) {
+		if (is_snow(u.ux, u.uy) && !(powerfulimplants() && uimplant && (uimplant->oartifact == ART_WHITE_WHALE_HATH_COME || uimplant->oartifact == ART_DUBAI_TOWER_BREAK)) && !(uarmf && itemhasappearance(uarmf, APP_FLEECY_BOOTS) ) && !(uarmf && itemhasappearance(uarmf, APP_CYAN_SNEAKERS) ) && !(uwep && uwep->oartifact == ART_GLACIERDALE) && !(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) && !(uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) && !(uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) && !rn2(StrongCold_resistance ? 500 : Cold_resistance ? 200 : 50) ) {
 			You("freeze!");
 			make_frozen(HFrozen + rnz(50),FALSE);
 			stop_occupation();
@@ -7797,7 +8476,7 @@ newboss:
 			}
 		}
 
-		if ( (have_blackbreathcurse() || (uinsymbiosis && u.usymbiote.bbcurse) || (uamul && uamul->oartifact == ART_SURTERSTAFF && !(uwep && (weapon_type(uwep) == P_QUARTERSTAFF))) ) && !rn2( (Race_if(PM_HOBBIT) || Role_if(PM_RINGSEEKER) ) ? 500 : 200) ) {
+		if ( (have_blackbreathcurse() || (uarmf && uarmf->oartifact == ART_SORROW_AND_DESPAIR) || (uinsymbiosis && u.usymbiote.bbcurse) || (uamul && uamul->oartifact == ART_SURTERSTAFF && !(uwep && (weapon_type(uwep) == P_QUARTERSTAFF))) ) && !rn2( (Race_if(PM_HOBBIT) || Role_if(PM_RINGSEEKER) ) ? 500 : 200) ) {
 			/* was 1 in 20 in ToME, or 1 in 50 if you were a hobbit */
 			if (!rn2(5)) { /* level drain */
 				if(!Drain_resistance || !rn2(StrongDrain_resistance ? 15 : 4) )
@@ -7808,7 +8487,7 @@ newboss:
 			}
 		}
 
-		if ( (have_blackbreathcurse() || (uinsymbiosis && u.usymbiote.bbcurse) || (uamul && uamul->oartifact == ART_SURTERSTAFF && !(uwep && (weapon_type(uwep) == P_QUARTERSTAFF))) ) && isfriday && !rn2( (Race_if(PM_HOBBIT) || Role_if(PM_RINGSEEKER) ) ? 500 : 200) ) {
+		if ( (have_blackbreathcurse() || (uarmf && uarmf->oartifact == ART_SORROW_AND_DESPAIR) || (uinsymbiosis && u.usymbiote.bbcurse) || (uamul && uamul->oartifact == ART_SURTERSTAFF && !(uwep && (weapon_type(uwep) == P_QUARTERSTAFF))) ) && isfriday && !rn2( (Race_if(PM_HOBBIT) || Role_if(PM_RINGSEEKER) ) ? 500 : 200) ) {
 			if (!rn2(5)) { /* level drain */
 				if(!Drain_resistance || !rn2(StrongDrain_resistance ? 15 : 4) )
 				    losexp("black breath drainage", FALSE, TRUE);
@@ -9297,6 +9976,8 @@ newboss:
 				u.inertia--;
 			}
 
+			if (uwep && uwep->oartifact == ART_TIMESHIFTER) u.inertia--;
+
 			if (u.inertia < 0) u.inertia = 0; /* fail safe */
 
 		}
@@ -9523,7 +10204,7 @@ newboss:
 
 		}
 
-		    if (!rn2(2) || !(uarmf && itemhasappearance(uarmf, APP_IRREGULAR_BOOTS) ) ) {
+		    if ((!rn2(2) || !(uarmf && itemhasappearance(uarmf, APP_IRREGULAR_BOOTS) ) ) && (rn2(10) || !(uwep && uwep->oartifact == ART_TIMESHIFTER) ) ) {
 
 			if (!rn2(2) || !((uleft && uleft->oartifact == ART_GOOD_THINGS_WILL_HAPPEN_EV) || (uright && uright->oartifact == ART_GOOD_THINGS_WILL_HAPPEN_EV)) ) {
 				if (!rn2(2) || !RngeIrregularity) {
@@ -9673,9 +10354,8 @@ newboss:
 			} /* player cannot use skills */
 
 			if (u.usteed) {
-				struct obj *osaeddle = which_armor(u.usteed, W_SADDLE);
 
-				if ((osaeddle = which_armor(u.usteed, W_SADDLE)) && osaeddle->oartifact == ART_CURE_HASSIA_COURSE) {
+				if (bmwride(ART_CURE_HASSIA_COURSE)) {
 					effcon += 5;
 					efflev += 5;
 				}
@@ -10434,7 +11114,7 @@ newboss:
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
-			      if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz)) ) level_tele();
+			      if (!playerlevelportdisabled() ) level_tele();
 				else You_feel("very disoriented but decide to move on.");
 
 			}
@@ -10457,7 +11137,7 @@ newboss:
 					goto cellarnope;
 				}
 
-				if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
+				if (playerlevelportdisabled()) { 
 					goto cellarnope;
 				}
 
@@ -10488,20 +11168,11 @@ cellarnope:
 					goto demonolpast;
 				}
 
-				if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
+				if (playerlevelportdisabled()) { 
 					goto demonolpast;
 				}
 
-				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
-
-				u.cnd_banishmentcount++;
-				if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
-				else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
-
-				register int newlev = rnd(99);
-				d_level newlevel;
-				get_level(&newlevel, newlev);
-				goto_level(&newlevel, TRUE, FALSE, FALSE);
+				banishplayer();
 				You("were banished!");
 
 			}
@@ -10512,7 +11183,7 @@ demonolpast:
 					goto demonolpast2;
 				}
 
-				if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
+				if (playerlevelportdisabled()) { 
 					goto demonolpast2;
 				}
 
@@ -10538,22 +11209,13 @@ demonolpast2:
 					goto past1;
 				}
 
-				if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
+				if (playerlevelportdisabled()) { 
 					NastinessProblem += rnd(1000);
 					You("can hear Arabella announce: 'Sorry, but the time of your demise is drawing near.'");
 					goto past1;
 				}
 
-				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
-
-				u.cnd_banishmentcount++;
-				if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
-				else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
-
-				register int newlev = rnd(99);
-				d_level newlevel;
-				get_level(&newlevel, newlev);
-				goto_level(&newlevel, TRUE, FALSE, FALSE);
+				banishplayer();
 				You("were banished!");
 
 			}
@@ -10566,22 +11228,13 @@ past1:
 					goto past2;
 				}
 
-				if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
+				if (playerlevelportdisabled()) { 
 					NastinessProblem += rnd(1000);
 					You("can hear Arabella announce: 'Sorry, but the time of your demise is drawing near.'");
 					goto past2;
 				}
 
-				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
-
-				u.cnd_banishmentcount++;
-				if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
-				else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
-
-				register int newlev = rnd(99);
-				d_level newlevel;
-				get_level(&newlevel, newlev);
-				goto_level(&newlevel, TRUE, FALSE, FALSE);
+				banishplayer();
 				You("were banished!");
 
 			}
@@ -10594,22 +11247,13 @@ past2:
 					goto past3;
 				}
 
-				if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
+				if (playerlevelportdisabled()) { 
 					NastinessProblem += rnd(1000);
 					You("can hear Arabella announce: 'Sorry, but the time of your demise is drawing near.'");
 					goto past3;
 				}
 
-				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
-
-				u.cnd_banishmentcount++;
-				if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
-				else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
-
-				register int newlev = rnd(99);
-				d_level newlevel;
-				get_level(&newlevel, newlev);
-				goto_level(&newlevel, TRUE, FALSE, FALSE);
+				banishplayer();
 				You("were banished!");
 
 			}
@@ -10646,7 +11290,7 @@ past3:
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
-			      if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) level_tele();
+			      if (!playerlevelportdisabled()) level_tele();
 				else You_feel("very disoriented but decide to move on.");
 
 			}
@@ -10655,7 +11299,7 @@ past3:
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
-			      if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) level_tele();
+			      if (!playerlevelportdisabled()) level_tele();
 				else You_feel("very disoriented but decide to move on.");
 
 			}
@@ -10664,7 +11308,7 @@ past3:
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
-			      if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) level_tele();
+			      if (!playerlevelportdisabled()) level_tele();
 				else You_feel("very disoriented but decide to move on.");
 
 			}
@@ -10673,7 +11317,7 @@ past3:
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
-			      if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) level_tele();
+			      if (!playerlevelportdisabled()) level_tele();
 				else You_feel("very disoriented but decide to move on.");
 
 			}
@@ -10686,19 +11330,17 @@ past3:
 			if (uarmf && uarmf->oartifact == ART_STRONG_GETAWAY_DESIRE && !rn2(5000)) {
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
-			      if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz)) ) level_tele();
+			      if (!playerlevelportdisabled()) level_tele();
 				else You_feel("very disoriented but decide to move on.");
 
 			}
 
 			if (u.usteed && !rn2(5000) ) {
 
-				struct obj *osaeddle = which_armor(u.usteed, W_SADDLE);
-
-				if ((osaeddle = which_armor(u.usteed, W_SADDLE)) && osaeddle->oartifact == ART_WESTERN_FRANKISH_COURSE) {
+				if (bmwride(ART_WESTERN_FRANKISH_COURSE)) {
 					pline("A mysterious force surrounds you...");
 					HTeleport_control++;
-				      if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) level_tele();
+				      if (!playerlevelportdisabled()) level_tele();
 					else You_feel("very disoriented but decide to move on.");
 				}
 
@@ -10706,9 +11348,7 @@ past3:
 
 			if (u.usteed && !rn2(200) ) {
 
-				struct obj *osaeddle = which_armor(u.usteed, W_SADDLE);
-
-				if ((osaeddle = which_armor(u.usteed, W_SADDLE)) && osaeddle->oartifact == ART_WESTERN_FRANKISH_COURSE) {
+				if (bmwride(ART_WESTERN_FRANKISH_COURSE)) {
 					xchar old_ux = u.ux, old_uy = u.uy;
 					You(FunnyHallu ? "open a warp gate!" : "suddenly get teleported!");
 					HTeleport_control++;
@@ -10729,25 +11369,15 @@ past3:
 
 			if (uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && !rn2(2000) ) {
 
-				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
 
 				if ((((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || In_endgame(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz)) || (u.usteed && mon_has_amulet(u.usteed)) ) ) {
 					u.datadeletedefer = 1;
 					datadeleteattack();
 				}
-				else if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) {
+				else if (!playerlevelportdisabled()) {
 
-					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
-
-					u.cnd_banishmentcount++;
-					if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
-					else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
-
-					register int newlev = rnd(99);
-					d_level newlevel;
-					get_level(&newlevel, newlev);
-					goto_level(&newlevel, TRUE, FALSE, FALSE);
+					banishplayer();
 					You("were banished!");
 
 				}
@@ -10760,25 +11390,15 @@ past3:
 
 			if (uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && !rn2(2000) ) {
 
-				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
 
 				if ((((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || In_endgame(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz)) || (u.usteed && mon_has_amulet(u.usteed)) ) ) {
 					u.datadeletedefer = 1;
 					datadeleteattack();
 				}
-				else if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) {
+				else if (!playerlevelportdisabled()) {
 
-					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
-
-					u.cnd_banishmentcount++;
-					if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
-					else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
-
-					register int newlev = rnd(99);
-					d_level newlevel;
-					get_level(&newlevel, newlev);
-					goto_level(&newlevel, TRUE, FALSE, FALSE);
+					banishplayer();
 					You("were banished!");
 
 				}
@@ -10895,12 +11515,23 @@ past3:
 	u.mushroompoleused = 0;
 	u.explodewandhack = 0;
 	u.symbiotedmghack = FALSE;
+	u.linkmasterswordhack = 0;
+
+	/* fail safe for banishment in case the player would somehow get a turn --Amy */
+	if (u.banishmentbeam && multi >= 0) nomul(-2, "being banished", FALSE);
+	if (u.levelporting && multi >= 0) nomul(-2, "being levelported", FALSE);
+
+	if (In_greencross(&u.uz) && !u.greencrossopen) u.greencrossopen = TRUE;
+
+	if (u.ugold < 0) { /* bug! */
+		BankTrapEffect += 10000; /* to hopefully thwart stupid exploits :-P --Amy */
+		u.ugold = 0;
+		pline("Looks like you tried to use antigold cheats, which is not permitted. Your antigold was deleted.");
+	}
 
 	u.dungeongrowthhack = 0; /* should always be 0 except during saving and loading */
 
-	/* etherealoid should have xray vision; doesn't stack with artifacts */
-	if (Race_if(PM_ETHEREALOID)) u.xray_range = 3;
-	if (Race_if(PM_INCORPOREALOID)) u.xray_range = 3;
+	if (In_greencross(&u.uz) && !u.greencrossopen) u.greencrossopen = TRUE;
 
 	if (Upolyd && youmonst.data == &mons[PM_SLITHER]) { /* laaaaaaaaaag! :D --Amy */
 		int lagamount = rno(10);
@@ -10908,6 +11539,23 @@ past3:
 			delay_output();
 			lagamount--;
 		}
+	}
+
+	/* check the player's current astral vision (if applicable) --Amy */
+	{
+		int astralstate = u.xray_range;
+		if (StrongAstral_vision) {
+			u.xray_range = 4;
+		} else if (Astral_vision) {
+			u.xray_range = 3;
+		} else {
+			u.xray_range = -1;
+		}
+
+		if (astralstate != u.xray_range) {
+			vision_full_recalc = 1;
+		}
+
 	}
 
 	/* depending on the player's speed, you may go back and forth and still end up on the same square when the next
@@ -11061,6 +11709,17 @@ past3:
 			fineforpracticant(1000, 1000, 0);
 			u.pract_heavymg = TRUE;
 		}
+		if (uwep && (uwep->otyp == CIGARETTE || uwep->otyp == ELECTRIC_CIGARETTE || uwep->otyp == CIGAR) && !u.pract_smokingtimer) {
+			u.pract_smokingtimer = 100;
+			pline("%s thunders: 'Smoking is strictly forbidden in the lab! You irresponsible little practicant maggot, don't you know that all the organic solvents and other chemicals could go BOOM from that! 5000 zorkmids, and if you don't put the thing away right away, your fine is doubled.'", noroelaname());
+			fineforpracticant(5000, 0, 0);
+		}
+		if (uwep && (uwep->otyp == CIGARETTE || uwep->otyp == ELECTRIC_CIGARETTE || uwep->otyp == CIGAR) && (u.pract_smokingtimer >= 10 && u.pract_smokingtimer <= 95)) {
+			u.pract_smokingtimer = 100;
+			pline("%s thunders: 'You fucking maggot! I *TOLD* you that smoking is strictly prohibited! Just for that, your fine is doubled now and you have to pay an additional 5000 zorkmids.'", noroelaname());
+			if (u.practicantpenalty > 0 && u.practicantpenalty < 9999999) u.practicantpenalty *= 2; /* don't let it overflow! 10 million zorkmids should be high enough that no normal char can ever collect enough to actually pay, anyway --Amy */
+			fineforpracticant(5000, 0, 0);
+		}
 		if (u.contamination >= 1000 && !u.pract_fatalcontamination) {
 			pline("%s booms: 'That's a violation of radiation safety protocols right there if I've ever seen one! You there, little practicant maggot! For this transgression you will pay 10000 zorkmids to me, and your lab coat won't protect you from poison for a week. Keep your hands off of radioactive materials, you hear?'", noroelaname());
 			fineforpracticant(10000, 0, 0);
@@ -11134,6 +11793,10 @@ past3:
 		skillcaploss_specific(P_RIDING);
 	}
 
+	if (Role_if(PM_NOOB_MODE_BARB) && P_MAX_SKILL(P_MEMORIZATION) >= P_BASIC) {
+		skillcaploss_specific(P_MEMORIZATION);
+	}
+
 	if (HardcoreAlienMode && P_MAX_SKILL(P_HIGH_HEELS) >= P_BASIC) {
 		skillcaploss_specific(P_HIGH_HEELS);
 	}
@@ -11177,7 +11840,7 @@ past3:
 			u.pokelieflags = 0;
 			u.pokeliespeed = rnd(50);
 			u.pokelieattacktype = rnd(22);
-			u.pokeliedamagetype = rnd(158);
+			u.pokeliedamagetype = rnd(161);
 		}
 	} else {
 		u.pokelieresistances = 0;
@@ -11191,7 +11854,7 @@ past3:
 
 	/* Frequentation spawn should be a different trait every time you get the effect --Amy */
 	if (FrequentationSpawns || u.uprops[FREQUENTATION_SPAWNS].extrinsic || have_frequentationspawnstone()) {
-		u.frequentationtrait = rnd(376); /* same as monstercolor function */
+		u.frequentationtrait = rnd(379); /* same as monstercolor function */
 	} else {
 		u.frequentationtrait = 0;
 	}
@@ -11283,7 +11946,7 @@ past3:
 		}
 	}
 
-	if ((BankTrapEffect || (uarmf && uarmf->oartifact == ART_SONJA_S_TORN_SOUL) || (uleft && uleft->oartifact == ART_ARABELLA_S_RESIST_COLD) || (uright && uright->oartifact == ART_ARABELLA_S_RESIST_COLD) || (uamul && uamul->oartifact == ART_LOW_ZERO_NUMBER) || (uamul && uamul->oartifact == ART_ARABELLA_S_PRECIOUS_GADGET) || u.uprops[BANKBUG].extrinsic || have_bankstone()) && u.ugold) {
+	if ((BankTrapEffect || (uarmf && uarmf->oartifact == ART_SONJA_S_TORN_SOUL) || (uleft && uleft->oartifact == ART_ARABELLA_S_RESIST_COLD) || (uright && uright->oartifact == ART_ARABELLA_S_RESIST_COLD) || (uamul && uamul->oartifact == ART_LOW_ZERO_NUMBER) || (uarmf && uarmf->oartifact == ART_NOW_YOU_LOOK_LIKE_A_BEGGAR) || (uamul && uamul->oartifact == ART_ARABELLA_S_PRECIOUS_GADGET) || u.uprops[BANKBUG].extrinsic || have_bankstone()) && u.ugold) {
 
 		if (!u.bankcashlimit) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
 
@@ -11436,31 +12099,24 @@ past3:
 	if (u.banishmentbeam) { /* uh-oh... something zapped you with a wand of banishment */
 		/* this replaces the code in muse.c that always caused segfaults --Amy */
 
-		make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
-
 		/* failsafes in case the player somehow manages to quickly snatch the amulet or something... */
 		if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
 			You("shudder for a moment."); (void) safe_teleds(FALSE); u.banishmentbeam = 0; break;
 		}
 
-		if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
+		if (playerlevelportdisabled()) { 
 			pline("Somehow, the banishment beam doesn't do anything."); u.banishmentbeam = 0; break;
 		}
 
-		u.cnd_banishmentcount++;
-		if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
-		else { (void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
+		(void) safe_teleds(FALSE); /* so that M2_STALK monsters near you won't follow all the time --Amy */
+		banishplayer();
 		u.banishmentbeam = 0; /* player got warped, now clear the flag even if it crashes afterwards */
 
-		register int newlev = rnd(99);
-		d_level newlevel;
-		get_level(&newlevel, newlev);
-		goto_level(&newlevel, TRUE, FALSE, FALSE);
 	}
 
 	if (u.levelporting) { /* something attacked you with nexus or weeping */
 
-		if ((!u.uevent.udemigod || u.freeplaymode) && !(flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) ) {
+		if ((!u.uevent.udemigod || u.freeplaymode) && !playerlevelportdisabled() ) {
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 			level_tele(); /* will take care of u.uhave.amulet and similar stuff --Amy */
 		}
@@ -11505,10 +12161,30 @@ stop_occupation()
 			} else return;
 		}
 
+		if (u.singtrapocc) {
+			pline("Something tries to interrupt your attempt to clean the female shoes! If you stop now, the sexy girl will hate you!");
+			if (yn("Really stop cleaning them?") == 'y') {
+
+			      register struct monst *mtmp2;
+
+				for (mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
+
+					if (!mtmp2->mtame) {
+						mtmp2->mpeaceful = 0;
+						mtmp2->mfrenzied = 1;
+						mtmp2->mhp = mtmp2->mhpmax;
+					}
+				}
+				pline("The beautiful girl in the sexy female shoes is very sad that you didn't finish cleaning her lovely footwear, and urges everyone in her vicinity to bludgeon you.");
+
+			} else return;
+		}
+
 		if (!maybe_finished_meal(TRUE))
 		    You("stop %s.", occtxt);
 		occupation = 0;
 		u.katitrapocc = FALSE;
+		u.singtrapocc = FALSE;
 		flags.botl = 1; /* in case u.uhs changed */
 /* fainting stops your occupation, there's no reason to sync.
 		sync_hunger();
@@ -11569,6 +12245,8 @@ newgame()
 	init_objects(TRUE);		/* must be before u_init() */
 
 	randommaterials();	/* only done here - do not call this during a running game! --Amy */
+
+	rivalroleinit();
 
 	flags.pantheon = -1;	/* role_init() will reset this */
 	role_init();		/* must be before init_dungeons(), u_init(),
@@ -11773,7 +12451,7 @@ boolean new_game;	/* false => restoring an old game */
 	}
 
 	/* prevent hangup cheating when special game modes haven't teleported you yet --Amy */
-	if ((flags.wonderland || iszapem || flags.lostsoul || flags.uberlostsoul || Role_if(PM_SOFTWARE_ENGINEER) || Role_if(PM_CRACKER) || Role_if(PM_JANITOR) || Role_if(PM_SPACE_MARINE) || Role_if(PM_STORMBOY) || Role_if(PM_YAUTJA) || Role_if(PM_QUARTERBACK) || Role_if(PM_PSYKER) || Role_if(PM_EMPATH) || Role_if(PM_MASTERMIND) || Role_if(PM_WEIRDBOY) || Role_if(PM_ASTRONAUT) || Role_if(PM_CYBERNINJA) || Role_if(PM_DISSIDENT) || Race_if(PM_RETICULAN) || Race_if(PM_OUTSIDER) || Role_if(PM_XELNAGA)) && new_game) {
+	if ((flags.wonderland || iszapem || Role_if(PM_PREVERSIONER) || flags.lostsoul || flags.uberlostsoul || Role_if(PM_SOFTWARE_ENGINEER) || Role_if(PM_CRACKER) || Role_if(PM_JANITOR) || Role_if(PM_SPACE_MARINE) || Role_if(PM_STORMBOY) || Role_if(PM_YAUTJA) || Role_if(PM_QUARTERBACK) || Role_if(PM_PSYKER) || Role_if(PM_EMPATH) || Role_if(PM_MASTERMIND) || Role_if(PM_WEIRDBOY) || Role_if(PM_ASTRONAUT) || Role_if(PM_CYBERNINJA) || Role_if(PM_DISSIDENT) || Race_if(PM_RETICULAN) || Race_if(PM_OUTSIDER) || Role_if(PM_XELNAGA)) && new_game) {
 		u.youaredead = 1;
 		u.youarereallydead = 1;
 	}
@@ -11889,7 +12567,7 @@ boolean new_game;	/* false => restoring an old game */
 #ifdef BIGSLEX
 	pline("Attention: You're playing BIGslex, where the dungeon levels are bigger than normal. Recommended terminal size is 125x45. Also, savebreaks will happen without warning in this version. If you have a far-progressed savegame that you want to finish, contact me on the IRC. If your savegame seems to be gone, contact me on the IRC too. Have fun!");
 #endif /* BIGSLEX */
-	if (new_game) pline("Message of the day: There are three new weapon types that were added recently. They are orb, claw and grinder. Not many roles can learn them, but if you do play one that can, feel free to tell me what you think of them! --Amy");
+	if (new_game) pline("Message of the day: Version 2.70 of this game added a bunch of new playable roles. In particular, the Diablist and Secret Advice Member roles are designed to be quite powerful. Feel free to playtest and tell me what you think! --Amy");
 #endif /* PHANTOM_CRASH_BUG */
 
 #endif /* PUBLIC_SERVER */
@@ -12233,9 +12911,12 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_SMELL_MONSTER].oc_name = "zapakh chudovishcha";
 	obj_descr[SPE_ECHOLOCATION].oc_name = "ekholokatsiya";
 	obj_descr[SPE_RANDOM_DETECTION].oc_name = "sluchaynoye obnaruzheniye";
+	obj_descr[SPE_MAGIC_CONTROL].oc_name = "magicheskiy kontrol'";
+	obj_descr[SPE_ASTRAL_VIEW].oc_name = "astral'nyy vzglyad";
+	obj_descr[SPE_CAROTINE_INJECTION].oc_name = "karotin dlya in''yektsiy";
+	obj_descr[SPE_DOWNER_TRIP].oc_name = "poyezdka vniz";
 
 	/* todo area */
-
 
 	{
 
@@ -13067,6 +13748,22 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wetsuit")) OBJ_DESCR(objects[i]) = "gidrokostyum";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "funeral shroud")) OBJ_DESCR(objects[i]) = "pogrebal'nyy savan";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bleached robe")) OBJ_DESCR(objects[i]) = "belenyy khalat";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "machinery boots")) OBJ_DESCR(objects[i]) = "sapogi dlya mashin";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "industrial boots")) OBJ_DESCR(objects[i]) = "promyshlennyye botinki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "christmas child mode boots")) OBJ_DESCR(objects[i]) = "rozhdestvenskiye botinki dlya detey";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "barefoot shoes")) OBJ_DESCR(objects[i]) = "bosikom";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "sandals with socks")) OBJ_DESCR(objects[i]) = "sandalii s noskami";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "climbing boots")) OBJ_DESCR(objects[i]) = "al'pinistskiye botinki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wedge sneakers")) OBJ_DESCR(objects[i]) = "krossovki na tanketke";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "clink boots")) OBJ_DESCR(objects[i]) = "choknut'sya sapogami";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "volcanic boots")) OBJ_DESCR(objects[i]) = "vulkanicheskiye sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "nail-new boots")) OBJ_DESCR(objects[i]) = "gvozdi novyye sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "iron boots")) OBJ_DESCR(objects[i]) = "zheleznyye sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "alloy boots")) OBJ_DESCR(objects[i]) = "sapogi iz splava";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "distancing boots")) OBJ_DESCR(objects[i]) = "distantsionnyye sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cyan sneakers")) OBJ_DESCR(objects[i]) = "golubyye krossovki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "coppered cloak")) OBJ_DESCR(objects[i]) = "plashch s mednym pokrytiyem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "vivarium cloak")) OBJ_DESCR(objects[i]) = "plashch vivariya";
 
 		/* todo area */
 
@@ -13415,9 +14112,12 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_SMELL_MONSTER].oc_name = "hayvonni hidlash";
 	obj_descr[SPE_ECHOLOCATION].oc_name = "echolokatsiya";
 	obj_descr[SPE_RANDOM_DETECTION].oc_name = "tasodifiy aniqlash";
+	obj_descr[SPE_MAGIC_CONTROL].oc_name = "sehrli boshqarish";
+	obj_descr[SPE_ASTRAL_VIEW].oc_name = "astral ko'rinish";
+	obj_descr[SPE_CAROTINE_INJECTION].oc_name = "karotin in'ektsiyasi";
+	obj_descr[SPE_DOWNER_TRIP].oc_name = "pastga safar";
 
 	/* todo area */
-
 
 	{
 
@@ -14249,6 +14949,22 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wetsuit")) OBJ_DESCR(objects[i]) = "suv kiyimi";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "funeral shroud")) OBJ_DESCR(objects[i]) = "dafn kafan";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bleached robe")) OBJ_DESCR(objects[i]) = "oqartirilgan xalat";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "machinery boots")) OBJ_DESCR(objects[i]) = "mashina etiklari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "industrial boots")) OBJ_DESCR(objects[i]) = "sanoat etiklari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "christmas child mode boots")) OBJ_DESCR(objects[i]) = "rojdestvo bolalar rejimida chizilmasin";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "barefoot shoes")) OBJ_DESCR(objects[i]) = "yalangoyoq poyabzal";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "sandals with socks")) OBJ_DESCR(objects[i]) = "paypoq bilan poyabzal";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "climbing boots")) OBJ_DESCR(objects[i]) = "toqqa chiqish botinkalari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wedge sneakers")) OBJ_DESCR(objects[i]) = "takozli krossovkalar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "clink boots")) OBJ_DESCR(objects[i]) = "klinker etiklar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "volcanic boots")) OBJ_DESCR(objects[i]) = "vulqon botinkalari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "nail-new boots")) OBJ_DESCR(objects[i]) = "yangi tirnoq";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "iron boots")) OBJ_DESCR(objects[i]) = "temir etik";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "alloy boots")) OBJ_DESCR(objects[i]) = "qotishma botinkalari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "distancing boots")) OBJ_DESCR(objects[i]) = "masofadan turib chizilmasin";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cyan sneakers")) OBJ_DESCR(objects[i]) = "moviy krossovkalar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "coppered cloak")) OBJ_DESCR(objects[i]) = "mis bilan qoplangan plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "vivarium cloak")) OBJ_DESCR(objects[i]) = "yashash maydoni plashi ";
 
 		/* todo area */
 
@@ -14358,7 +15074,7 @@ boolean new_game;	/* false => restoring an old game */
 	if (new_game) u.weapon_slots += 2;
 
 	if (new_game) u.zapem_mode = 0;
-	if ((flags.zapem || Role_if(PM_SOFTWARE_ENGINEER) || Role_if(PM_CRACKER) || Role_if(PM_JANITOR) || Role_if(PM_SPACE_MARINE) || Role_if(PM_STORMBOY) || Role_if(PM_YAUTJA) || Role_if(PM_QUARTERBACK) || Role_if(PM_PSYKER) || Role_if(PM_EMPATH) || Role_if(PM_MASTERMIND) || Role_if(PM_WEIRDBOY) || Role_if(PM_ASTRONAUT) || Race_if(PM_RETICULAN) || Race_if(PM_OUTSIDER) || Role_if(PM_CYBERNINJA) || Role_if(PM_DISSIDENT) || Role_if(PM_XELNAGA)) && new_game && !flags.wonderland && !flags.lostsoul && !flags.uberlostsoul) {
+	if ((flags.zapem || Role_if(PM_SOFTWARE_ENGINEER) || Role_if(PM_CRACKER) || Role_if(PM_JANITOR) || Role_if(PM_SPACE_MARINE) || Role_if(PM_STORMBOY) || Role_if(PM_YAUTJA) || Role_if(PM_QUARTERBACK) || Role_if(PM_PSYKER) || Role_if(PM_EMPATH) || Role_if(PM_MASTERMIND) || Role_if(PM_WEIRDBOY) || Role_if(PM_ASTRONAUT) || Race_if(PM_RETICULAN) || Race_if(PM_OUTSIDER) || Role_if(PM_CYBERNINJA) || Role_if(PM_DISSIDENT) || Role_if(PM_XELNAGA)) && new_game && !flags.wonderland && !flags.lostsoul && !flags.uberlostsoul && !Role_if(PM_PREVERSIONER)) {
 
 		if (!flags.zapem) u.zapem_mode = 1;
 
@@ -14398,7 +15114,7 @@ boolean new_game;	/* false => restoring an old game */
 
 	}
 
-	if (flags.lostsoul && !flags.uberlostsoul && new_game) { 
+	if (flags.lostsoul && !Role_if(PM_PREVERSIONER) && !flags.uberlostsoul && new_game) { 
 
 		goto_level(&medusa_level, TRUE, FALSE, FALSE); /* inspired by Tome, an Angband mod --Amy */
 		u.youaredead = 0;
@@ -14424,6 +15140,26 @@ boolean new_game;	/* false => restoring an old game */
 		save_currentstate();
 		pline("Enjoy your stay, and try to get out if you can.");
 
+
+	}
+
+	if (Role_if(PM_PREVERSIONER) && !flags.wonderland && !flags.uberlostsoul && new_game) {
+
+		u.preversionmode = TRUE;
+
+		d_level preverlevel;
+
+		preverlevel.dnum = dname_to_dnum("Green Cross");
+		preverlevel.dlevel = dungeons[preverlevel.dnum].entry_lev;
+
+		flags.lostsoul = flags.uberlostsoul = flags.wonderland = FALSE;
+
+		goto_level(&preverlevel, TRUE, FALSE, FALSE);
+
+		u.youaredead = 0;
+		u.youarereallydead = 0;
+		save_currentstate();
+		pline("Green Cross. This is where your adventure in the pre-alpha version of this game starts. In order to be able to get out, you have to make your way down to the deepest level of this dungeon. Good luck!");
 
 	}
 
@@ -14905,11 +15641,12 @@ timebasedlowerchance()
 		chance /= rn1(3,3);
 	}
 
-	if (In_subquest(&u.uz) || In_bellcaves(&u.uz)) {
+	if (In_rivalquest(&u.uz) || In_subquest(&u.uz) || In_bellcaves(&u.uz)) {
 		chance /= rnd(5);
 	}
 
 	if (chance < 10) chance = 10; /* always at least a 10% chance of getting it --Amy */
+	/* edit: actually 9%, i.e. the rnd below is not a typo */
 
 	if (chance > rnd(100)) return(TRUE); /* the effect will happen despite the lower chance */
 	else return(FALSE);

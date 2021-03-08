@@ -14175,6 +14175,478 @@ Maybe if you somehow lift the curse, it will become a truly
 useful talisman that can protect you from harm?
 %E
 
+#
+#       Noob Mode Barb
+#
+%Cc Noo 00001
+Warily you scan your surroundings, all of your senses alert for signs
+of possible danger.  Off in the distance, you can %x the familiar shapes
+of %H.
+
+But why, you think, should %l be there?
+
+Suddenly, the hairs on your neck stand on end as you detect the aura of
+evil magic in the air.
+
+Without thought, you ready your weapon, and mutter under your breath:
+
+    "By %d, there will be blood spilt today."
+%E
+%Cp Noo 00002
+Once again, you near %H.  You know that %l
+will be waiting.
+%E
+%Cp Noo 00003
+Again, and you think possibly for the last time, you approach
+%H.
+%E
+%Cp Noo 00005
+"The battles here have been good -- our enemies' blood soaks the soil!"
+%E
+%Cp Noo 00006
+"Remember that glory is crushing your enemies beneath your feet!"
+%E
+%Cp Noo 00007
+"There has been little treasure to loot, since the horde arrived."
+%E
+%Cp Noo 00008
+"The horde is mighty in numbers, but they have little courage."
+%E
+%Cp Noo 00009
+"%lC is a strange one, but he has helped defend us."
+%E
+%Cp Noo 00010
+"The battles here have been good -- our enemies' blood soaks the soil!"
+%E
+%Cp Noo 00011
+"Remember that glory is crushing your enemies beneath your feet!"
+%E
+%Cp Noo 00012
+"Times will be good again, now that the horde is vanquished."
+%E
+%Cp Noo 00013
+"You have brought our clan much honor in defeating %n."
+%E
+%Cp Noo 00014
+"You will be a worthy successor to %l."
+%E
+%Cc Noo 00015
+"Ah, %p.  You have returned at last.  The world is in dire
+need of your help.  There is a great quest you must undertake.
+
+"But first, I must see if you are ready to take on such a challenge."
+%E
+%Cp Noo 00016
+"%p, you are back.  Are you ready now for the challenge?"
+%E
+%Cp Noo 00017
+"Again, you stand before me, %p.  Surely you have prepared yourself."
+%E
+%Cc Noo 00018
+"Pah!  You have betrayed the gods, %p.  You will never attain
+the glory which you aspire to.  Your failure to follow the true path has
+closed this future to you.
+
+"I will protect these people as best I can, but soon %n will overcome
+me and destroy all who once called you %s.  Now begone!"
+%E
+%Cc Noo 00019
+"%p, I fear that you are as yet too inexperienced to face
+%n.  Only %Ra with the help of %d could ever hope to
+defeat him."
+%E
+%Cc Noo 00020
+"%pC!  You have wandered from the path of the %a!
+If you attempt to overcome %n in this state, he will surely
+enslave your soul.  Your only hope, and ours, lies in your purification.
+Go forth, and return when you feel ready."
+%E
+%Cc Noo 00021
+"The world is in great need of your assistance, %p.
+
+"About six months ago, I learned that a mysterious sorcerer, known
+as %n, had begun to gather a large group of cutthroats and brigands
+about him.
+
+"At about the same time, these people you once rode with `liberated' a
+potent magical talisman, %o, from a Turanian caravan.
+
+"%nC and his Black Horde swept down upon %i and defeated
+the people there, driving them out into the desert.  He has taken
+%o, and seeks to bend it to his will.  I detected the
+subtle changes in the currents of fate, and joined these people.
+Then I sent forth a summons for you.
+
+"If %n can bend %o to his will, he will become
+almost indestructible.  He will then be able to enslave the minds of
+men across the world.  You are the only hope.  The gods smile upon you,
+and with %d behind you, you alone can defeat %n.
+
+"You must go to %i.  From there, you can track down
+%n, defeat him, and return %o to us.  Only
+then will the world be safe."
+%E
+%Cp Noo 00025
+"%nC is strong in the dark arts, but not immune to cold steel."
+%E
+%Cp Noo 00026
+"Remember that %n is a great sorcerer.  He lived in the time
+of Atlantis."
+%E
+%Cp Noo 00027
+"If you fail, %p, I will not be able to protect these people long."
+%E
+%Cp Noo 00028
+"To enter %i, you must be very stealthy.  The horde will be on
+guard."
+%E
+%Cp Noo 00029
+"Call upon %d in your time of need."
+%E
+%Cp Noo 00030
+"May %d protect you, and guide your steps."
+%E
+%Cp Noo 00031
+"If you can lay hands upon %o, carry it for good fortune."
+%E
+%Cp Noo 00032
+"I cannot stand against %ns sorcery.  But %d will help you."
+%E
+%Cp Noo 00033
+"Do not fear %n.  I know you can defeat him."
+%E
+%Cp Noo 00034
+"You have a great road to travel, %p, but only after you defeat
+%n."
+%E
+%Cc Noo 00035
+The scent of water comes to you in the desert breeze.  You know that
+you have located %i.
+%E
+%Cp Noo 00036
+Yet again you have a chance to infiltrate %i.
+%E
+%Cc Noo 00040
+The hairs on the nape of your neck lift as you sense an energy in the
+very air around you.  You fight down a primordial panic that seeks to
+make you turn and run.  This is surely the lair of %n.
+%E
+%Cp Noo 00041
+Yet again you feel the air around you heavy with malevolent magical energy.
+%E
+%Cc Noo 00050
+"So.  This is what that second rate sorcerer %l sends to do his bidding.
+I have slain many before you.  You shall give me little sport.
+
+"Prepare to die, %c."
+%E
+%Cp Noo 00051
+"I have wasted too much time on you already.  Now, you shall die."
+%E
+%Cp Noo 00052
+"You return yet again, %c!  Are you prepared for death now?"
+%E
+%Cp Noo 00053
+"I shall have %o back, you pitiful excuse for %ca.
+And your life as well."
+%E
+%Cp Noo 00060
+"My pets will dine on your carcass tonight!"
+%E
+%Cp Noo 00061
+"You are a sorry excuse for %ra."
+%E
+%Cp Noo 00062
+"Run while you can, %c.  My next spell will be your last."
+%E
+%Cp Noo 00063
+"I shall use your very skin to bind my next grimoire."
+%E
+%Cp Noo 00064
+"%d cannot protect you now.  Here, you die."
+%E
+%Cp Noo 00065
+"Your %a nature makes you weak.  You cannot defeat me."
+%E
+%Cp Noo 00066
+"Come, %c.  I shall kill you, then unleash the horde on your tribe."
+%E
+%Cp Noo 00067
+"Once you are dead, my horde shall finish off %l, and your tribe."
+%E
+%Cp Noo 00068
+"Fight, %c, or are you afraid of the mighty %n?"
+%E
+%Cp Noo 00069
+"You have failed, %c.  Now, my victory is complete."
+%E
+%Cc Noo 00070
+As you pick up %o, you feel the power of it
+flowing through your hands.  It seems to be in two or more places
+at once, even though you are holding it.
+%E
+%Cc Noo 00080
+%nC falls to the ground, and utters a last curse at you.  Then his
+body fades slowly, seemingly dispersing into the air around you.  You
+slowly become aware that the overpowering aura of magic in the air has
+begun to fade.
+%E
+%Cc Noo 00081
+When %l sees %o, he smiles, and says:
+
+    Well done, %p.  You have saved the world from certain doom.
+    What, now, should be done with %o?
+
+    These people, brave as they are, cannot hope to guard it from
+    other sorcerers who will detect it, as surely as %n did.
+
+    Take %o with you, %p.  It will guard you in
+    your adventures, and you can best guard it.  You embark on a
+    quest far greater than you realize.
+
+    Remember me, %p, and return when you have triumphed.  I
+    will tell you then of what you must do.  You will understand when the
+    time comes.
+%E
+%Cc Noo 00082
+%l gazes reverently at %o, then back at you.
+
+"You are its keeper now, and the time has come to resume your search
+for the Amulet.  %Z await your return through the
+magic portal which brought you here."
+%E
+%Cp Noo 00090
+"Tell us, %p, have you fared well on your great quest?"
+%E
+%Cc Noo 00091
+"This is wondrous, %p.  I feared that you could not possibly
+succeed in your quest, but here you are in possession of the Amulet
+of Yendor!
+
+"I have studied the texts of the magi constantly since you left.  In
+the Book of Skelos, I found this:
+
+    %d will cause a child to be sent into the world.  This child is to
+    be made strong by trial of battle and magic, for %d has willed it so.
+    It is said that the child of %d will recover the Amulet of Yendor
+    that was stolen from the Creator at the beginning of time.
+
+"As you now possess the amulet, %p, I suspect that the Book
+speaks of you.
+
+    The child of %d will take the Amulet, and travel to the Astral
+    Plane, where the Great Temple of %d is to be found.  The Amulet
+    will be sacrificed to %d, there on His altar.  Then the child will
+    stand by %d as champion of all %cP for eternity.
+
+"This is all I know, %p.  I hope it will help you."
+%E
+%Cc Noo 00095
+"You have betrayed all those who hold allegiance to %d, as you once did.
+My allegiance to %d holds fast and I cannot condone or accept what you 
+have done.
+
+Leave this place.  You shall never set foot at %H again.
+That which you seek is now lost forever, for without the Bell of Opening, 
+you will never be able to enter the place where he who has the Amulet 
+resides.
+
+Go now!  You are banished from this place.
+%E
+%Cp Noo 00100
+You receive a faint telepathic message from %l:
+Your help is urgently needed at %H!
+Look for a ...ic transporter.
+You couldn't quite make out that last message.
+%E
+%Cp Noo 00101
+You again sense %l pleading for help.
+%E
+%Cp Noo 00102
+"The silver bell which was hoarded by %n will be
+essential in locating the Amulet of Yendor."
+%E
+
+%Cc Noo 00103
+As you enter the Bell Caves, the silver bell radiates brightly!
+You immediately know that you've successfully imbued it; after all, this
+is the place where the bell has originally been forged, and it regained
+its original power by being close to its source.
+
+In order to open the path to Moloch's Sanctum, you need two more artifacts.
+They're both said to be hidden in Gehennom, in the possession of powerful
+guardians. Only with them in your possession can you perform the ritual
+on the deepest level of Gehennom and gain access to the place where
+the Amulet of Yendor is kept.
+%E
+%Cc Noo 00104
+The Amulet of Yendor radiates brightly as you enter the Forging Chamber.
+
+In order to be fully imbued, the Amulet must also be taken to the
+Dead Grounds and Ordered Chaos subdungeons.
+%E
+%Cc Noo 00105
+The Amulet of Yendor radiates brightly as you enter the Dead Grounds.
+
+In order to be fully imbued, the Amulet must also be taken to the
+Forging Chamber and Ordered Chaos subdungeons.
+%E
+%Cc Noo 00106
+The Amulet of Yendor radiates brightly as you enter the Ordered Chaos.
+
+In order to be fully imbued, the Amulet must also be taken to the
+Forging Chamber and Dead Grounds subdungeons.
+%E
+%Cc Noo 00107
+At last, you have fully imbued the Amulet of Yendor! You know that now
+you have to get to the surface, where your final test awaits.
+
+A strange sensation seems to pull you downwards. This must surely be
+the power of the Amulet, and you get ready to traverse Moloch's Sanctum
+and Gehennom again.
+
+You also notice the Wizard of Yendor taunting you in your mind.
+He must surely have noticed that the Amulet has gained full power now,
+and will try his best to stop you on your ascension run...
+%E
+%Cc Noo 00108
+This seemingly mundane gray stone makes you feel lucky as you pick it up!
+It must hold a good charm, and you decide to hold onto it.
+%E
+%Cc Noo 00109
+After a long period of pushing boulders around, you've found a prize.
+'Well, at least there is some reward for the hell that is slexoban',
+you think, as you pick up this valuable item. It might come in handy
+on the path that lies ahead.
+%E
+%Cc Noo 00110
+As the dreadful Medusa finally stops living, you feel an immense burden
+lifted from your chest. You now know that you're a capable adventurer,
+one who can defeat creatures from legend and live to tell the tale.
+
+Hopefully, you are now ready to face the greater tasks that lie ahead.
+%E
+%Cc Noo 00111
+This menora surely seems important. It must be one of the artifacts
+required for the ominous invocation ritual!
+
+You must get two more of these artifacts. One of them is said to be
+in the possession of the Wizard of Yendor himself, who is lurking
+somewhere in Gehennom; the other such artifact can be obtained if
+you engage your personal nemesis in a duel and win...
+%E
+%Cc Noo 00112
+Quickly, you snatch the papyrus spellbook that the Wizard of Yendor
+was holding. It is obviously one of the key pieces in your mission
+to open the sanctum at the deepest level of Gehennom, but you also
+need the silver bell from your quest nemesis, and one more such
+artifact is hidden somewhere in Gehennom.
+%E
+%Cc Noo 00113
+Finally, you got what you came for! It's the Amulet of Yendor!!!
+
+Instinctively, you get ready to make a mad dash back to the upstair,
+for you know that %d desires this amulet. But something is amiss.
+
+Apparently, the Amulet of Yendor has to be imbued first, or it won't
+let you leave the mortal plane. And in order to imbue the Amulet,
+you must search Moloch's sanctum for a hidden magic portal that
+will lead you to the Yendorian Tower.
+
+Within the Yendorian Tower, three special staircases are hidden.
+You must seek everywhere within the Tower, and enter all three such
+staircases in order to imbue the Amulet. This is no easy task.
+The Yendorian Tower is about as big as the entire Dungeons of Doom
+and Gehennom added together, and the staircases can be anywhere.
+
+Also, it is rumored that if the guardians of the three Alignment Keys
+are still alive when you enter the Forging Chamber, Dead Grounds
+and Ordered Chaos areas, they will grow even stronger to haunt you!
+%E
+%Cc Noo 00114
+As you offer the Amulet of Yendor on the high altar to %d at last,
+you immediately feel an intense surge of power.
+
+You have faced many hardships, survived encounters with deadly
+beasts, and even battled the Wizard of Yendor himself and won.
+Not to forget carving a path through the Elemental Planes, slaying
+their denizens left and right, culminating in the Astral Plane,
+where you mowed down all the heretical angels and priests trying
+to prevent you from delivering the Amulet to %d.
+
+But now, the entire world around you seems to stop for a moment.
+You truly are a demigod now. %d is smiling on you, and leads you
+to a place known as the Demigod Bar: Here, the other successful
+adventurers are gathered, and they're happily drinking and telling
+their stories...
+
+And you get to join them!!! You did it, you've officially become
+a true master at your trade, and saved the world from Moloch's
+evil schemes! Immediately, you rush to greet your new friends
+to tell them about your heroic deeds.
+
+Congraturation! A winner is you! You've beaten SLASH'EM Extended,
+one of the most difficult and unfair roguelikes in existence!
+Make sure to tell Amy (the creator of the game) about it, too! :-)
+%E
+%Cc Noo 00115
+As you offer the Amulet of Yendor on the high altar,
+you somehow don't feel any different at first.
+
+But it has to be true! You just offered the Amulet to %d,
+and should be made a demigod any minute now...
+
+Death, Pestilence and Famine still look as threatening as ever.
+Something must be very wrong here. Shouldn't you be safe now,
+considering you went through Hell and back to get the Amulet
+of Yendor for your deity?
+
+Death reaches out with its deadly touch.
+You feel your life draining away...
+Pestilence reaches out, and you feel fever and chills.
+You feel deathly sick.
+Famine reaches out, and your body shrivels.
+You faint from lack of food.
+
+On the verge of death, you listen to a voice...
+'Foolish mortal, thou art an imbecile poltroon.
+But since thou bringest me the Amulet I desired,
+I shall let thee live. Thou mayst leave the Dungeon now.'
+
+SHIT! Due to a silly mistake, you failed so close to your goal!
+You forgot to make sure that the high altar is actually
+consecrated to %d, and offered the Amulet of Yendor to the wrong
+deity!
+
+Do you want your possessions identified? DYWYPI?
+Game over! Please insert a coin to start a new game.
+%E
+%Cc Noo 00116
+As you step on this particular floor tile, the ground is suddenly
+vibrating right beneath you.
+
+This must be the special place where the entrance to
+Moloch's sanctum is hidden! In order to open it, you need all three
+of the invocation tools: Book, Bell and Candle. And then you have
+to use all three of them in rapid succession while standing on
+this exact floor tile.
+
+Additionally, the bell must be imbued before you can complete
+the invocation rituals. It needs to be done inside the Subquest,
+a branch from where the bell can be found; specifically, the
+Bell Caves is the location where imbuing takes place.
+
+You must also make sure to attach seven candles
+to the candelabrum, otherwise it won't do what it ought to do.
+And the invocation tools better don't be cursed...
+%E
+%Cc Noo 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 #
 #       Unbeliever
@@ -16990,6 +17462,2297 @@ to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
 %Cc Gla 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
+
+
+#
+#       Dancer
+#       from splicehack, including the typos found there
+#       completions (because splice somehow doesn't have all the lines)
+by Amy
+#
+%Cc Dan 00001
+You suddenly find yourself at %H.
+Something is amiss, however. Instead of the whooping of excited
+festival-goers,
+you hear screams of pain, and see beings of fire, water, earth, air, and
+other
+substances wandering through the trees.
+
+You ready yourself for the fight of your life.
+%E
+%Cp Dan 00002
+You arrive again at %H. You need to talk to %l as fast as possible.
+%E
+%Cp Dan 00003
+For what may be the final time, you arrive at %H.
+%E
+%Cp Dan 00005
+"Please, %p, help us!"
+%E
+%Cp Dan 00006
+"My feet... please..."
+%E
+%Cp Dan 00007
+"I feel like I just performed in cut time."
+%E
+%Cp Dan 00008
+"Ow."
+%E
+%Cp Dan 00009
+"The elements have turned against us!"
+%E
+%Cp Dan 00010
+"Yahoo! Thank you, %p!"
+%E
+%Cp Dan 00011
+"Come and dance with us, %p!"
+%E
+%Cp Dan 00012
+"The time elemental is slain!"
+%E
+%Cp Dan 00013
+"Let us dance in celebration."
+%E
+%Cp Dan 00014
+"We are saved! You watusi'd that wacky time warper!"
+%E
+%Cc Dan 00015
+"%pC! You have returned, and in our hour of need no less!
+
+Let us have a dance-off to determine if you are ready for this task."
+%E
+%Cp Dan 00016
+"%pC, welcome back. Ready for another dance?"
+%E
+%Cp Dan 00017
+"%pC. Back again. One last dance, for old time's sake?"
+%E
+%Cc Dan 00018
+"Truly, %pC? Have you learned nothing in your travels? %nC is obviously
+always going to be beyond your skills. Begone!"
+%E
+%Cc Dan 00019
+"Pretty good, %p, but if you cannot keep up with me you will never
+defeat %n Come back when you have quciker feet!"
+%E
+%Cc Dan 00020
+"%pC!  You have strayed from the light of the %a!
+I cannot in good conscience send you to fight %n.
+Go forth, and come back when you are more devout."
+%E
+%Cc Dan 00021
+"Excellent dancing, %p. Now, I shall fill you in.
+
+In a fit of hubris, a number of our dancers performed a corrupted
+version of our usual ritual.
+The elemental they summoned was not of this reality. It slew them, and
+retreated deep within
+%i.
+
+%nC warps time itself around it, and turns elementals that would
+otherwise be our friends against us.
+If left unchecked, I fear it shall tear reality itself apart.
+
+I have already tried and failed to kill the Elemental. Where I have
+failed, however, you may
+succeed."
+
+%lC places a hand on your shoulder.
+
+"Go forth, %p, and become the dancer you are meant to be.
+%E
+%Cp Dan 00025
+"%nC is far more dangerous than you imagine."
+%E
+%Cp Dan 00026
+"%nC will try to trap you in a slower time stream. Try not to touch it!"
+%E
+%Cp Dan 00027
+"The caves are dangerous. Stay light on your feet!"
+%E
+%Cp Dan 00028
+"Be careful, %i is deadly to the unprepared."
+%E
+%Cp Dan 00029
+"Call upon %d if you are in need of aid."
+%E
+%Cp Dan 00030
+"It takes two to tango. Consider bringing a pet with you."
+%E
+%Cp Dan 00031
+"There is no pale moon or devil here, %p. %nC is far more than you imagine."
+%E
+%Cp Dan 00032
+"Beings of fire, wind, earth and water - Protect %p in this perilous time."
+%E
+%Cp Dan 00033
+"Do not lose hope! All of us will be there in spirt."
+%E
+%Cp Dan 00034
+"It is a great thing you are doing, %p."
+%E
+%Cc Dan 00035
+The air in %i is full of regular zephyrs, like the breath of a living being.
+The walls pulse with flashes of heat and cold, and the very ground
+underneath your feet shifts
+and trembles.
+%E
+%Cp Dan 00036
+Again, you descend into %i.
+%E
+%Cc Dan 00040
+Time slows to a crawl when you enter the depths of %i. %nC
+must be very close.
+%E
+%Cp Dan 00041
+You arrive back in the lair of %n.
+%E
+%Cc Dan 00050
+"Your time grows short... Your dance number has ended..."
+%E
+%Cc Dan 00051
+"TICK..."
+%E
+%Cp Dan 00052
+"...TOCK."
+%E
+%Cp Dan 00053
+"Give... me... %o..."
+%E
+%Cp Dan 00060
+"Tick tock..."
+%E
+%Cp Dan 00061
+"It's just a jump to the left..."
+%E
+%Cp Dan 00062
+"The dance cannot last forever..."
+%E
+%Cp Dan 00063
+"The end of the dance approaches..."
+%E
+%Cp Dan 00064
+"All elements fade, in the end... Only time is left..."
+%E
+%Cp Dan 00065
+"The time of puny mortal dancers is over."
+%E
+%Cp Dan 00066
+"Your clock gets reset to zero now."
+%E
+%Cp Dan 00067
+"I am both a premonition and a deja-vu... of your demise."
+%E
+%Cp Dan 00068
+"Puny mortal! You cannot change the predetermined flow of time!"
+%E
+%Cp Dan 00069
+"You clown! This is your last dance! When I'm done with you, get ready
+to dance in hell!"
+%E
+%Cc Dan 00070
+As you touch %o, you feel the power of it flow through your body.
+You feel that if you asked it to, it would fight at your side.
+%E
+%Cp Dan 00080
+%nC discorporates, and the flow of time around you returns to normal.
+The world is once again safe.
+%E
+%Cc Dan 00081
+%l applauds and smiles.
+
+    "Congratulations, %p. You have done what we could not, and defeated
+%n. Your dance skills
+    far exceed my own, and you are truly worthy of retrieving the
+Amulet of Yendor."
+
+    "Go now. Continue to make me proud."
+%E
+%Cc Dan 00082
+%lC looks at %o, then back at you.
+
+    "It's yours. You need it more than I."
+%E
+%Cc Dan 00090
+"Great to see you, %p! How's it going?"
+%E
+%Cc Dan 00091
+"Congratulations, %p! You have found the Amulet of Yendor! Quickly now,
+sashay off to the Astral Plane, and offer it upon the altar to %d.
+
+We're all cheering for you, %p!"
+%E
+%Cc Dan 00095
+"So you're not really a dancer, are you. It was your plan all along
+to disrupt our lessons! Probably you're on the side of that damn %n
+after all!
+
+Begone, and do not return!"
+%E
+
+%Cp Dan 00100
+You receive a faint telepathic message from %l:
+Your help is urgently needed at %H!
+Look for a ...ic transporter.
+You couldn't quite make out that last message.
+%E
+%Cp Dan 00101
+You again sense %l pleading for help.
+%E
+%Cp Dan 00102
+"The silver bell which was hoarded by %n will be
+essential in locating the Amulet of Yendor."
+%E
+
+%Cc Dan 00103
+As you enter the Bell Caves, the silver bell radiates brightly!
+You immediately know that you've successfully imbued it; after all, this
+is the place where the bell has originally been forged, and it regained
+its original power by being close to its source.
+
+In order to open the path to Moloch's Sanctum, you need two more artifacts.
+They're both said to be hidden in Gehennom, in the possession of powerful
+guardians. Only with them in your possession can you perform the ritual
+on the deepest level of Gehennom and gain access to the place where
+the Amulet of Yendor is kept.
+%E
+%Cc Dan 00104
+The Amulet of Yendor radiates brightly as you enter the Forging Chamber.
+
+In order to be fully imbued, the Amulet must also be taken to the
+Dead Grounds and Ordered Chaos subdungeons.
+%E
+%Cc Dan 00105
+The Amulet of Yendor radiates brightly as you enter the Dead Grounds.
+
+In order to be fully imbued, the Amulet must also be taken to the
+Forging Chamber and Ordered Chaos subdungeons.
+%E
+%Cc Dan 00106
+The Amulet of Yendor radiates brightly as you enter the Ordered Chaos.
+
+In order to be fully imbued, the Amulet must also be taken to the
+Forging Chamber and Dead Grounds subdungeons.
+%E
+%Cc Dan 00107
+At last, you have fully imbued the Amulet of Yendor! You know that now
+you have to get to the surface, where your final test awaits.
+
+A strange sensation seems to pull you downwards. This must surely be
+the power of the Amulet, and you get ready to traverse Moloch's Sanctum
+and Gehennom again.
+
+You also notice the Wizard of Yendor taunting you in your mind.
+He must surely have noticed that the Amulet has gained full power now,
+and will try his best to stop you on your ascension run...
+%E
+%Cc Dan 00108
+This seemingly mundane gray stone makes you feel lucky as you pick it up!
+It must hold a good charm, and you decide to hold onto it.
+%E
+%Cc Dan 00109
+After a long period of pushing boulders around, you've found a prize.
+'Well, at least there is some reward for the hell that is slexoban',
+you think, as you pick up this valuable item. It might come in handy
+on the path that lies ahead.
+%E
+%Cc Dan 00110
+As the dreadful Medusa finally stops living, you feel an immense burden
+lifted from your chest. You now know that you're a capable adventurer,
+one who can defeat creatures from legend and live to tell the tale.
+
+Hopefully, you are now ready to face the greater tasks that lie ahead.
+%E
+%Cc Dan 00111
+This menora surely seems important. It must be one of the artifacts
+required for the ominous invocation ritual!
+
+You must get two more of these artifacts. One of them is said to be
+in the possession of the Wizard of Yendor himself, who is lurking
+somewhere in Gehennom; the other such artifact can be obtained if
+you engage your personal nemesis in a duel and win...
+%E
+%Cc Dan 00112
+Quickly, you snatch the papyrus spellbook that the Wizard of Yendor
+was holding. It is obviously one of the key pieces in your mission
+to open the sanctum at the deepest level of Gehennom, but you also
+need the silver bell from your quest nemesis, and one more such
+artifact is hidden somewhere in Gehennom.
+%E
+%Cc Dan 00113
+Finally, you got what you came for! It's the Amulet of Yendor!!!
+
+Instinctively, you get ready to make a mad dash back to the upstair,
+for you know that %d desires this amulet. But something is amiss.
+
+Apparently, the Amulet of Yendor has to be imbued first, or it won't
+let you leave the mortal plane. And in order to imbue the Amulet,
+you must search Moloch's sanctum for a hidden magic portal that
+will lead you to the Yendorian Tower.
+
+Within the Yendorian Tower, three special staircases are hidden.
+You must seek everywhere within the Tower, and enter all three such
+staircases in order to imbue the Amulet. This is no easy task.
+The Yendorian Tower is about as big as the entire Dungeons of Doom
+and Gehennom added together, and the staircases can be anywhere.
+
+Also, it is rumored that if the guardians of the three Alignment Keys
+are still alive when you enter the Forging Chamber, Dead Grounds
+and Ordered Chaos areas, they will grow even stronger to haunt you!
+%E
+%Cc Dan 00114
+As you offer the Amulet of Yendor on the high altar to %d at last,
+you immediately feel an intense surge of power.
+
+You have faced many hardships, survived encounters with deadly
+beasts, and even battled the Wizard of Yendor himself and won.
+Not to forget carving a path through the Elemental Planes, slaying
+their denizens left and right, culminating in the Astral Plane,
+where you mowed down all the heretical angels and priests trying
+to prevent you from delivering the Amulet to %d.
+
+But now, the entire world around you seems to stop for a moment.
+You truly are a demigod now. %d is smiling on you, and leads you
+to a place known as the Demigod Bar: Here, the other successful
+adventurers are gathered, and they're happily drinking and telling
+their stories...
+
+And you get to join them!!! You did it, you've officially become
+a true master at your trade, and saved the world from Moloch's
+evil schemes! Immediately, you rush to greet your new friends
+to tell them about your heroic deeds.
+
+Congraturation! A winner is you! You've beaten SLASH'EM Extended,
+one of the most difficult and unfair roguelikes in existence!
+Make sure to tell Amy (the creator of the game) about it, too!
+%E
+%Cc Dan 00115
+As you offer the Amulet of Yendor on the high altar,
+you somehow don't feel any different at first.
+
+But it has to be true! You just offered the Amulet to %d,
+and should be made a demigod any minute now...
+
+Death, Pestilence and Famine still look as threatening as ever.
+Something must be very wrong here. Shouldn't you be safe now,
+considering you went through Hell and back to get the Amulet
+of Yendor for your deity?
+
+Death reaches out with its deadly touch.
+You feel your life draining away...
+Pestilence reaches out, and you feel fever and chills.
+You feel deathly sick.
+Famine reaches out, and your body shrivels.
+You faint from lack of food.
+
+On the verge of death, you listen to a voice...
+'Foolish mortal, thou art an imbecile poltroon.
+But since thou bringest me the Amulet I desired,
+I shall let thee live. Thou mayst leave the Dungeon now.'
+
+SHIT! Due to a silly mistake, you failed so close to your goal!
+You forgot to make sure that the high altar is actually
+consecrated to %d, and offered the Amulet of Yendor to the wrong
+deity!
+
+Do you want your possessions identified? DYWYPI?
+Game over! Please insert a coin to start a new game.
+%E
+%Cc Dan 00116
+As you step on this particular floor tile, the ground is suddenly
+vibrating right beneath you.
+
+This must be the special place where the entrance to
+Moloch's sanctum is hidden! In order to open it, you need all three
+of the invocation tools: Book, Bell and Candle. And then you have
+to use all three of them in rapid succession while standing on
+this exact floor tile.
+
+Additionally, the bell must be imbued before you can complete
+the invocation rituals. It needs to be done inside the Subquest,
+a branch from where the bell can be found; specifically, the
+Bell Caves is the location where imbuing takes place.
+
+You must also make sure to attach seven candles
+to the candelabrum, otherwise it won't do what it ought to do.
+And the invocation tools better don't be cursed...
+%E
+%Cc Dan 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
+
+#
+#       Butt Lover
+#
+%Cc But 00001
+Back at %H! You're looking forward to stroking some sexy butts.
+
+But... something is very clearly wrong. None of the nice people
+are around. Instead, it seems as if there is a group of evil persons
+who want to protest against your fondness for butt-groping!
+
+You need to hurry to %l and find out what's going on!
+%E
+%Cp But 00002
+Once again, you are back at %H.
+%E
+%Cp But 00003
+You are back at %H.
+You have an odd feeling this may be the last time you ever come here.
+%E
+%Cp But 00005
+"%n wants to ban our hobby!"
+%E
+%Cp But 00006
+"Feel free to caress my soft butt cheeks."
+%E
+%Cp But 00007
+"We shall never allow anyone to prohibit butt stroking."
+%E
+%Cp But 00008
+"Did you hear the news? Some stupid bitch is whining about our love for
+butt cheeks."
+%E
+%Cp But 00009
+"If you see anyone who wants to prevent you from groping butts, give
+them a free face-lift."
+%E
+%Cp But 00010
+"Do you enjoy stroking my buttocks?"
+%E
+%Cp But 00011
+"Come on, don't be shy! Touching explicitly allowed!"
+%E
+%Cp But 00012
+"Serves %n right for being such a stupid bitch."
+%E
+%Cp But 00013
+"Enjoy your stay in the land of sexy butts!"
+%E
+%Cp But 00014
+"Always use your soft hands!"
+%E
+%Cc But 00015
+"Hey %p. I know you want to touch my buttocks, for I'm the man with the
+sexiest
+butt on earth, but we have a problem for which we need your help."
+
+"Let me check whether you're ready to solve it for us!"
+%E
+%Cp But 00016
+"%p, I know you want to stroke everyone's butt and mine in particular, but
+there is still a task that you need to do. Are you ready now?"
+%E
+%Cp But 00017
+"Sorry %p, but you have to stop thinking about my sexy butt for a minute!
+If you're not ready to perform the task I have for you, maybe you'll
+never be
+able to stroke any buttocks again!"
+%E
+%Cc But 00018
+"What??? %p, you disappoint me! I cannot tolerate someone like you
+around here.
+You're %n's lap dog, aren't you? Go away, I don't want to see you ever
+again!"
+%E
+%Cc But 00019
+"You may have some experience in butt-loving, but I have to warn you,
+the task
+you're about to do involves combat. And I can see that you're not
+experienced
+with that yet, so please go spend some time training and then come back
+to me!"
+%E
+%Cc But 00020
+"Something is wrong about you, %p, I see that you're not loving butts
+enough.
+Maybe you even hurt some of them even though you're supposed to love them.
+This is unacceptable. Love them more, and then come back to me!"
+%E
+%Cc But 00021
+"You are ready, %p. The problem is that a group of people have come
+and demand that we stop with our butt-loving hobby. %n in particular
+is the worst of the lot and asserted that we're supposedly 'fetishists'!
+
+We're neither fetishists nor perverts, we're completely normal people that
+just happen to love the most beautiful human body part: the butt! And we
+won't let such a filthy %n person ruin our hobby.
+
+This is where you come into play. You will travel to %i and fight
+the evil %n and everyone else who opposes you. If you succeed,
+I'll let you enjoy my sexy butt as often as you like."
+%E
+%Cp But 00025
+"Don't underestimate the evil %n."
+%E
+%Cp But 00026
+"Quick, get moving to %i!"
+%E
+%Cp But 00027
+"Kill %n in my name!"
+%E
+%Cp But 00028
+"%d may aid you."
+%E
+%Cp But 00029
+"You may not fail in your task!"
+%E
+%Cp But 00030
+"%n also stole %o. You'll be allowed to keep it if you return it to us."
+%E
+%Cp But 00031
+"I believe in you, %p."
+%E
+%Cp But 00032
+"Everyone in this camp is cheering for you! Defeat %n and we'll celebrate!"
+%E
+%Cp But 00033
+"I know it's hard for you, but please suppress your love for butts until
+%n is defeated!"
+%E
+%Cp But 00034
+"Good luck, you can do it!"
+%E
+%Cc But 00035
+A squad of %n's minions is waiting for you here. You have to remove them
+from your path.
+%E
+%Cp But 00036
+You're wondering whether you can find the entrance to %i.
+%E
+%Cc But 00040
+This is it! %n's lair! Get ready for the fight of your life!
+%E
+%Cp But 00041
+You still need to get rid of %n.
+%E
+%Cc But 00050
+"You mean butt-lover pervert! You dare entering my domain?
+This won't go well for you, that much I promise! Get ready to fall to my
+furious assault!"
+%E
+%Cc But 00051
+"First I'll cut off your hands."
+%E
+%Cp But 00052
+"And then I shall mutilate your face into unrecognizability."
+%E
+%Cp But 00053
+"You won't get away with those gloves, that much I promise!"
+%E
+%Cp But 00060
+"Your craziness is coming to an end now!"
+%E
+%Cp But 00061
+"Tell %l that he's the next pervert on my hit list!"
+%E
+%Cp But 00062
+"All you butt lovers are a bunch of really crazy freaks."
+%E
+%Cp But 00063
+"Why didn't the authorities put you in a lunatic asylum, anyway?"
+%E
+%Cp But 00064
+"You crazy fetishist! Go home, we don't want you around here!"
+%E
+%Cp But 00065
+"I'll make sure you never grope anyone's butt again!"
+%E
+%Cp But 00066
+"Keep your hands off or I'll permanently remove them from your body!"
+%E
+%Cp But 00067
+"I shall be victorious and purge the world of you and your scumbag friends."
+%E
+%Cp But 00068
+"Without the likes of you, this world would be a better place."
+%E
+%Cp But 00069
+"Now I shall eradicate all the insane butt lovers off the face of this
+earth."
+%E
+%Cc But 00070
+These gloves are specifically made for stroking wonderfully soft butt
+cheeks!
+You'll keep them as your personal trophy, that's for sure.
+%E
+%Cp But 00080
+You powerfully kick %n right into that ugly face of hers, knocking her down.
+Then, you use your sword to make sure that she never gets back up.
+%E
+%Cc But 00081
+"Congratulations, you did it!!! %n is defeated, and our hobby is safe.
+Thanks a lot, %p, you are a true hero and have earned some rest.
+Would you like me to express my gratitude by producing air current noises
+with my very sexy butt while you grope me?"
+%E
+%Cc But 00082
+"Keep those gloves! They make it even more enjoyable to grope people's
+butts!
+You earned them for your heroic deed!"
+%E
+%Cc But 00090
+"Hi again! Want to feel up my pretty ass?"
+%E
+%Cc But 00091
+"Wow, the touch of your hands is really soothing.
+Please stay a while and feel up my butt!"
+%E
+%Cc But 00095
+"I should have known that you would try to rob me of my most important
+body part.
+But I won't allow it! Leave! You're not a butt lover any longer!"
+%E
+
+%Cp But 00100
+You receive a faint telepathic message from %l:
+Your help is urgently needed at %H!
+Look for a ...ic transporter.
+You couldn't quite make out that last message.
+%E
+%Cp But 00101
+You again sense %l pleading for help.
+%E
+%Cp But 00102
+"The silver bell which was hoarded by %n will be
+essential in locating the Amulet of Yendor."
+%E
+
+%Cc But 00103
+As you enter the Bell Caves, the silver bell radiates brightly!
+You immediately know that you've successfully imbued it; after all, this
+is the place where the bell has originally been forged, and it regained
+its original power by being close to its source.
+
+In order to open the path to Moloch's Sanctum, you need two more artifacts.
+They're both said to be hidden in Gehennom, in the possession of powerful
+guardians. Only with them in your possession can you perform the ritual
+on the deepest level of Gehennom and gain access to the place where
+the Amulet of Yendor is kept.
+%E
+%Cc But 00104
+The Amulet of Yendor radiates brightly as you enter the Forging Chamber.
+
+In order to be fully imbued, the Amulet must also be taken to the
+Dead Grounds and Ordered Chaos subdungeons.
+%E
+%Cc But 00105
+The Amulet of Yendor radiates brightly as you enter the Dead Grounds.
+
+In order to be fully imbued, the Amulet must also be taken to the
+Forging Chamber and Ordered Chaos subdungeons.
+%E
+%Cc But 00106
+The Amulet of Yendor radiates brightly as you enter the Ordered Chaos.
+
+In order to be fully imbued, the Amulet must also be taken to the
+Forging Chamber and Dead Grounds subdungeons.
+%E
+%Cc But 00107
+At last, you have fully imbued the Amulet of Yendor! You know that now
+you have to get to the surface, where your final test awaits.
+
+A strange sensation seems to pull you downwards. This must surely be
+the power of the Amulet, and you get ready to traverse Moloch's Sanctum
+and Gehennom again.
+
+You also notice the Wizard of Yendor taunting you in your mind.
+He must surely have noticed that the Amulet has gained full power now,
+and will try his best to stop you on your ascension run...
+%E
+%Cc But 00108
+This seemingly mundane gray stone makes you feel lucky as you pick it up!
+It must hold a good charm, and you decide to hold onto it.
+%E
+%Cc But 00109
+After a long period of pushing boulders around, you've found a prize.
+'Well, at least there is some reward for the hell that is slexoban',
+you think, as you pick up this valuable item. It might come in handy
+on the path that lies ahead.
+%E
+%Cc But 00110
+As the dreadful Medusa finally stops living, you feel an immense burden
+lifted from your chest. You now know that you're a capable adventurer,
+one who can defeat creatures from legend and live to tell the tale.
+
+Hopefully, you are now ready to face the greater tasks that lie ahead.
+%E
+%Cc But 00111
+This menora surely seems important. It must be one of the artifacts
+required for the ominous invocation ritual!
+
+You must get two more of these artifacts. One of them is said to be
+in the possession of the Wizard of Yendor himself, who is lurking
+somewhere in Gehennom; the other such artifact can be obtained if
+you engage your personal nemesis in a duel and win...
+%E
+%Cc But 00112
+Quickly, you snatch the papyrus spellbook that the Wizard of Yendor
+was holding. It is obviously one of the key pieces in your mission
+to open the sanctum at the deepest level of Gehennom, but you also
+need the silver bell from your quest nemesis, and one more such
+artifact is hidden somewhere in Gehennom.
+%E
+%Cc But 00113
+Finally, you got what you came for! It's the Amulet of Yendor!!!
+
+Instinctively, you get ready to make a mad dash back to the upstair,
+for you know that %d desires this amulet. But something is amiss.
+
+Apparently, the Amulet of Yendor has to be imbued first, or it won't
+let you leave the mortal plane. And in order to imbue the Amulet,
+you must search Moloch's sanctum for a hidden magic portal that
+will lead you to the Yendorian Tower.
+
+Within the Yendorian Tower, three special staircases are hidden.
+You must seek everywhere within the Tower, and enter all three such
+staircases in order to imbue the Amulet. This is no easy task.
+The Yendorian Tower is about as big as the entire Dungeons of Doom
+and Gehennom added together, and the staircases can be anywhere.
+
+Also, it is rumored that if the guardians of the three Alignment Keys
+are still alive when you enter the Forging Chamber, Dead Grounds
+and Ordered Chaos areas, they will grow even stronger to haunt you!
+%E
+%Cc But 00114
+As you offer the Amulet of Yendor on the high altar to %d at last,
+you immediately feel an intense surge of power.
+
+You have faced many hardships, survived encounters with deadly
+beasts, and even battled the Wizard of Yendor himself and won.
+Not to forget carving a path through the Elemental Planes, slaying
+their denizens left and right, culminating in the Astral Plane,
+where you mowed down all the heretical angels and priests trying
+to prevent you from delivering the Amulet to %d.
+
+But now, the entire world around you seems to stop for a moment.
+You truly are a demigod now. %d is smiling on you, and leads you
+to a place known as the Demigod Bar: Here, the other successful
+adventurers are gathered, and they're happily drinking and telling
+their stories...
+
+And you get to join them!!! You did it, you've officially become
+a true master at your trade, and saved the world from Moloch's
+evil schemes! Immediately, you rush to greet your new friends
+to tell them about your heroic deeds.
+
+Congraturation! A winner is you! You've beaten SLASH'EM Extended,
+one of the most difficult and unfair roguelikes in existence!
+Make sure to tell Amy (the creator of the game) about it, too!
+%E
+%Cc But 00115
+As you offer the Amulet of Yendor on the high altar,
+you somehow don't feel any different at first.
+
+But it has to be true! You just offered the Amulet to %d,
+and should be made a demigod any minute now...
+
+Death, Pestilence and Famine still look as threatening as ever.
+Something must be very wrong here. Shouldn't you be safe now,
+considering you went through Hell and back to get the Amulet
+of Yendor for your deity?
+
+Death reaches out with its deadly touch.
+You feel your life draining away...
+Pestilence reaches out, and you feel fever and chills.
+You feel deathly sick.
+Famine reaches out, and your body shrivels.
+You faint from lack of food.
+
+On the verge of death, you listen to a voice...
+'Foolish mortal, thou art an imbecile poltroon.
+But since thou bringest me the Amulet I desired,
+I shall let thee live. Thou mayst leave the Dungeon now.'
+
+SHIT! Due to a silly mistake, you failed so close to your goal!
+You forgot to make sure that the high altar is actually
+consecrated to %d, and offered the Amulet of Yendor to the wrong
+deity!
+
+Do you want your possessions identified? DYWYPI?
+Game over! Please insert a coin to start a new game.
+%E
+%Cc But 00116
+As you step on this particular floor tile, the ground is suddenly
+vibrating right beneath you.
+
+This must be the special place where the entrance to
+Moloch's sanctum is hidden! In order to open it, you need all three
+of the invocation tools: Book, Bell and Candle. And then you have
+to use all three of them in rapid succession while standing on
+this exact floor tile.
+
+Additionally, the bell must be imbued before you can complete
+the invocation rituals. It needs to be done inside the Subquest,
+a branch from where the bell can be found; specifically, the
+Bell Caves is the location where imbuing takes place.
+
+You must also make sure to attach seven candles
+to the candelabrum, otherwise it won't do what it ought to do.
+And the invocation tools better don't be cursed...
+%E
+%Cc But 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
+
+#
+#       Diablist
+#
+%Cc Dia 00001
+Ah, the familiar encampment. %H. You wonder what task you have
+to perform here, but it certainly involves slaying some evil creatures.
+%E
+%Cp Dia 00002
+Once again, you are back at %H.
+%E
+%Cp Dia 00003
+You are back at %H.
+You have an odd feeling this may be the last time you ever come here.
+%E
+%Cp Dia 00005
+"Hello, my friend! Stay a while and listen!"
+%E
+%Cp Dia 00006
+"Greetings, traveler!"
+%E
+%Cp Dia 00007
+"The Order welcomes you."
+%E
+%Cp Dia 00008
+"What do you need?"
+%E
+%Cp Dia 00009
+"Good morning."
+%E
+%Cp Dia 00010
+"There's nothing that you can't cure with the right elixir, or potion."
+%E
+%Cp Dia 00011
+"Welcome to The Desertwind!"
+%E
+%Cp Dia 00012
+"Let's trade, my friend!"
+%E
+%Cp Dia 00013
+"My ship is your ship."
+%E
+%Cp Dia 00014
+"Feel free to stay as long as you like!"
+%E
+%Cc Dia 00015
+"Mortal, I am impressed that you have returned.
+There is a task that you need to complete."
+%E
+%Cp Dia 00016
+"Hello again, mortal. Are you ready to go on your quest yet?"
+%E
+%Cp Dia 00017
+"Mortal, time is running out, our world is being consumed by evil!
+You must be ready to go on your quest, now!"
+%E
+%Cc Dia 00018
+"%p, you came too late. Diablo managed to free his accursed brother.
+Now, destruction will come over the world again.
+You have failed in your task. Please leave."
+%E
+%Cc Dia 00019
+"Halt! Before you're ready to go on this perilous task,
+you need to strengthen your equipment.
+Go to the legendary smith and let him forge a new suit of armor for you
+with the hammer."
+%E
+%Cc Dia 00020
+"%p, I can see that Diablo's minions have corrupted you!
+Go to the monastery and pray to purify your soul, and then return to me!"
+%E
+%Cc Dia 00021
+"The time has come to hunt down Diablo himself and annihilate him.
+Know that Diablo's innermost sanctuary is locked by five seals. Open
+each of the seals to pave the way for your final battle."
+%E
+%Cp Dia 00025
+"Diablo uses fire attacks, so you should have enchanted equipment
+that protects you from fire."
+%E
+%Cp Dia 00026
+"Diablo placed a bunch of minions that you have to defeat first."
+%E
+%Cp Dia 00027
+"Don't get caught by Diablo's cold-hand bitchslap."
+%E
+%Cp Dia 00028
+"If Diablo catches you in a bone prison, your best strategy is to
+teleport out."
+%E
+%Cp Dia 00029
+"You will want to use a strong and accurate weapon to defeat Diablo."
+%E
+%Cp Dia 00030
+"%n is just another name for Diablo himself. Do not underestimate him."
+%E
+%Cp Dia 00031
+"Use a weapon that you're highly skilled with. Then you can best Diablo."
+%E
+%Cp Dia 00032
+"Don't let the demons get the best of you. Defeat them all."
+%E
+%Cp Dia 00033
+"Remember to use your techniques to bring down your foes."
+%E
+%Cp Dia 00034
+"The more skilled you are, the more likely you are to defeat %n."
+%E
+%Cc Dia 00035
+This must be Act 3. Two more to go.
+Hopefully you can avoid being stung by too many mosquitoes.
+%E
+%Cp Dia 00036
+You're back in the jungle. Diablo's sanctuary is somewhere in the distance,
+but eventually you'll reach it.
+%E
+%Cc Dia 00040
+This is it. %i. Diablo's innermost sanctum.
+You prepare to crack those seals, which will release him.
+%E
+%Cp Dia 00041
+You still need to battle %n and win.
+%E
+%Cc Dia 00050
+"Not even death can save you from me."
+%E
+%Cc Dia 00051
+"Aggh... The smell of life surrounds me."
+%E
+%Cp Dia 00052
+"Mortal, prepare to be devoured."
+%E
+%Cp Dia 00053
+"I shall roast you, mortal."
+%E
+%Cp Dia 00060
+"Grrraaahh!"
+%E
+%Cp Dia 00061
+"Naau!"
+%E
+%Cp Dia 00062
+"Groooooaaaarrr!"
+%E
+%Cp Dia 00063
+"Graaaaah!"
+%E
+%Cp Dia 00064
+"Gaaaah!"
+%E
+%Cp Dia 00065
+"Grrrrrr!"
+%E
+%Cp Dia 00066
+"I shall scorch you with my RBOD!"
+%E
+%Cp Dia 00067
+"You can't evade my fire nova!"
+%E
+%Cp Dia 00068
+"My cold-hand bitchslap will crush you!"
+%E
+%Cp Dia 00069
+"I'll cast my ultra fire scorching spell that will burn you up instantly!"
+%E
+%Cc Dia 00070
+Oh, %n dropped a unique item: %o! You quickly collect it,
+ignoring the seven other players in your party accusing you of being a
+drop-stealer.
+%E
+%Cp Dia 00080
+Groooooooooooo-
+GRUEUEUEUEAAAAAAA-ooooooooooooooohhhhhh... (dweng, dweng, dweng, dweng...)
+*crash*
+"Lord Diablo, I have bested you.", you exclaim, relieved that %n is
+finally dead.
+%E
+%Cc Dia 00081
+"I am impressed, mortal. You have overcome the greatest challenge
+that there ever was.
+But while you were fighting at %l, %n's brother Baal has assembled
+an army of hellish minions.
+You need to get the Amulet of Yendor, for it's the only way to stop him."
+%E
+%Cc Dia 00082
+"Use this hammer against your foes. It was forged in the Hellforge,
+and is imbued with fire magic!"
+%E
+%Cc Dia 00090
+"Keep looking for the Amulet of Yendor!"
+%E
+%Cc Dia 00091
+"Masterfully done, mortal! You have the Amulet of Yendor!
+There is a high altar to %d where the amulet has to be offered,
+and then Diablo, Baal and the other Prime Evils will be sealed away forever.
+All hope lies in you, hero!"
+%E
+%Cc Dia 00095
+"You have betrayed me and the other angels. It is clear that you
+will never be the hero destined to defeat %n.
+You are banished from this place!"
+%E
+
+%Cp Dia 00100
+You receive a faint telepathic message from %l:
+Your help is urgently needed at %H!
+Look for a ...ic transporter.
+You couldn't quite make out that last message.
+%E
+%Cp Dia 00101
+You again sense %l pleading for help.
+%E
+%Cp Dia 00102
+"The silver bell which was hoarded by %n will be
+essential in locating the Amulet of Yendor."
+%E
+
+%Cc Dia 00103
+As you enter the Bell Caves, the silver bell radiates brightly!
+You immediately know that you've successfully imbued it; after all, this
+is the place where the bell has originally been forged, and it regained
+its original power by being close to its source.
+
+In order to open the path to Moloch's Sanctum, you need two more artifacts.
+They're both said to be hidden in Gehennom, in the possession of powerful
+guardians. Only with them in your possession can you perform the ritual
+on the deepest level of Gehennom and gain access to the place where
+the Amulet of Yendor is kept.
+%E
+%Cc Dia 00104
+The Amulet of Yendor radiates brightly as you enter the Forging Chamber.
+
+In order to be fully imbued, the Amulet must also be taken to the
+Dead Grounds and Ordered Chaos subdungeons.
+%E
+%Cc Dia 00105
+The Amulet of Yendor radiates brightly as you enter the Dead Grounds.
+
+In order to be fully imbued, the Amulet must also be taken to the
+Forging Chamber and Ordered Chaos subdungeons.
+%E
+%Cc Dia 00106
+The Amulet of Yendor radiates brightly as you enter the Ordered Chaos.
+
+In order to be fully imbued, the Amulet must also be taken to the
+Forging Chamber and Dead Grounds subdungeons.
+%E
+%Cc Dia 00107
+At last, you have fully imbued the Amulet of Yendor! You know that now
+you have to get to the surface, where your final test awaits.
+
+A strange sensation seems to pull you downwards. This must surely be
+the power of the Amulet, and you get ready to traverse Moloch's Sanctum
+and Gehennom again.
+
+You also notice the Wizard of Yendor taunting you in your mind.
+He must surely have noticed that the Amulet has gained full power now,
+and will try his best to stop you on your ascension run...
+%E
+%Cc Dia 00108
+This seemingly mundane gray stone makes you feel lucky as you pick it up!
+It must hold a good charm, and you decide to hold onto it.
+%E
+%Cc Dia 00109
+After a long period of pushing boulders around, you've found a prize.
+'Well, at least there is some reward for the hell that is slexoban',
+you think, as you pick up this valuable item. It might come in handy
+on the path that lies ahead.
+%E
+%Cc Dia 00110
+As the dreadful Medusa finally stops living, you feel an immense burden
+lifted from your chest. You now know that you're a capable adventurer,
+one who can defeat creatures from legend and live to tell the tale.
+
+Hopefully, you are now ready to face the greater tasks that lie ahead.
+%E
+%Cc Dia 00111
+This menora surely seems important. It must be one of the artifacts
+required for the ominous invocation ritual!
+
+You must get two more of these artifacts. One of them is said to be
+in the possession of the Wizard of Yendor himself, who is lurking
+somewhere in Gehennom; the other such artifact can be obtained if
+you engage your personal nemesis in a duel and win...
+%E
+%Cc Dia 00112
+Quickly, you snatch the papyrus spellbook that the Wizard of Yendor
+was holding. It is obviously one of the key pieces in your mission
+to open the sanctum at the deepest level of Gehennom, but you also
+need the silver bell from your quest nemesis, and one more such
+artifact is hidden somewhere in Gehennom.
+%E
+%Cc Dia 00113
+Finally, you got what you came for! It's the Amulet of Yendor!!!
+
+Instinctively, you get ready to make a mad dash back to the upstair,
+for you know that %d desires this amulet. But something is amiss.
+
+Apparently, the Amulet of Yendor has to be imbued first, or it won't
+let you leave the mortal plane. And in order to imbue the Amulet,
+you must search Moloch's sanctum for a hidden magic portal that
+will lead you to the Yendorian Tower.
+
+Within the Yendorian Tower, three special staircases are hidden.
+You must seek everywhere within the Tower, and enter all three such
+staircases in order to imbue the Amulet. This is no easy task.
+The Yendorian Tower is about as big as the entire Dungeons of Doom
+and Gehennom added together, and the staircases can be anywhere.
+
+Also, it is rumored that if the guardians of the three Alignment Keys
+are still alive when you enter the Forging Chamber, Dead Grounds
+and Ordered Chaos areas, they will grow even stronger to haunt you!
+%E
+%Cc Dia 00114
+As you offer the Amulet of Yendor on the high altar to %d at last,
+you immediately feel an intense surge of power.
+
+You have faced many hardships, survived encounters with deadly
+beasts, and even battled the Wizard of Yendor himself and won.
+Not to forget carving a path through the Elemental Planes, slaying
+their denizens left and right, culminating in the Astral Plane,
+where you mowed down all the heretical angels and priests trying
+to prevent you from delivering the Amulet to %d.
+
+But now, the entire world around you seems to stop for a moment.
+You truly are a demigod now. %d is smiling on you, and leads you
+to a place known as the Demigod Bar: Here, the other successful
+adventurers are gathered, and they're happily drinking and telling
+their stories...
+
+And you get to join them!!! You did it, you've officially become
+a true master at your trade, and saved the world from Moloch's
+evil schemes! Immediately, you rush to greet your new friends
+to tell them about your heroic deeds.
+
+Congraturation! A winner is you! You've beaten SLASH'EM Extended,
+one of the most difficult and unfair roguelikes in existence!
+Make sure to tell Amy (the creator of the game) about it, too!
+%E
+%Cc Dia 00115
+As you offer the Amulet of Yendor on the high altar,
+you somehow don't feel any different at first.
+
+But it has to be true! You just offered the Amulet to %d,
+and should be made a demigod any minute now...
+
+Death, Pestilence and Famine still look as threatening as ever.
+Something must be very wrong here. Shouldn't you be safe now,
+considering you went through Hell and back to get the Amulet
+of Yendor for your deity?
+
+Death reaches out with its deadly touch.
+You feel your life draining away...
+Pestilence reaches out, and you feel fever and chills.
+You feel deathly sick.
+Famine reaches out, and your body shrivels.
+You faint from lack of food.
+
+On the verge of death, you listen to a voice...
+'Foolish mortal, thou art an imbecile poltroon.
+But since thou bringest me the Amulet I desired,
+I shall let thee live. Thou mayst leave the Dungeon now.'
+
+SHIT! Due to a silly mistake, you failed so close to your goal!
+You forgot to make sure that the high altar is actually
+consecrated to %d, and offered the Amulet of Yendor to the wrong
+deity!
+
+Do you want your possessions identified? DYWYPI?
+Game over! Please insert a coin to start a new game.
+%E
+%Cc Dia 00116
+As you step on this particular floor tile, the ground is suddenly
+vibrating right beneath you.
+
+This must be the special place where the entrance to
+Moloch's sanctum is hidden! In order to open it, you need all three
+of the invocation tools: Book, Bell and Candle. And then you have
+to use all three of them in rapid succession while standing on
+this exact floor tile.
+
+Additionally, the bell must be imbued before you can complete
+the invocation rituals. It needs to be done inside the Subquest,
+a branch from where the bell can be found; specifically, the
+Bell Caves is the location where imbuing takes place.
+
+You must also make sure to attach seven candles
+to the candelabrum, otherwise it won't do what it ought to do.
+And the invocation tools better don't be cursed...
+%E
+%Cc Dia 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
+
+#
+#       Preversioner
+#       This is ***NOT*** a WIP! The messages are supposed to
+#       sound like you're playing a pre-alpha version of the game --Amy
+#
+%Cc Pre 00001
+It's Green Cross City all over again?! Why did you end up here?
+Well, whatever extra mission it is that you're being sent on, you get
+ready to finish it up real quick and then get on with the actual game.
+%E
+%Cp Pre 00002
+Once again, you are back at %H.
+%E
+%Cp Pre 00003
+You are back at %H.
+You have an odd feeling this may be the last time you ever come here.
+%E
+%Cp Pre 00005
+"Sorry, NPC dialogue has not been implemented in this version yet."
+%E
+%Cp Pre 00006
+"Sorry, NPC dialogue has not been implemented in this version yet."
+%E
+%Cp Pre 00007
+"Sorry, NPC dialogue has not been implemented in this version yet."
+%E
+%Cp Pre 00008
+"Sorry, NPC dialogue has not been implemented in this version yet."
+%E
+%Cp Pre 00009
+"Sorry, NPC dialogue has not been implemented in this version yet."
+%E
+%Cp Pre 00010
+"Sorry, NPC dialogue has not been implemented in this version yet."
+%E
+%Cp Pre 00011
+"Sorry, NPC dialogue has not been implemented in this version yet."
+%E
+%Cp Pre 00012
+"Sorry, NPC dialogue has not been implemented in this version yet."
+%E
+%Cp Pre 00013
+"Sorry, NPC dialogue has not been implemented in this version yet."
+%E
+%Cp Pre 00014
+"Sorry, NPC dialogue has not been implemented in this version yet."
+%E
+%Cc Pre 00015
+"I have no greeting. Please install the latest version of this game."
+%E
+%Cp Pre 00016
+"Please update your game version."
+%E
+%Cp Pre 00017
+"You are using an outdated version of the game."
+%E
+%Cc Pre 00018
+"This version of NetHack has expired. In order to continue, please
+save your game and update to the newest version.
+NetHack will close now."
+%E
+%Cc Pre 00019
+"Error: Player is too low experience level"
+%E
+%Cc Pre 00020
+"Error: Player's alignment record isn't positive"
+%E
+%Cc Pre 00021
+"Send Player On Quest dialogue goes here"
+%E
+%Cp Pre 00025
+"Missing Dialogue Line 025"
+%E
+%Cp Pre 00026
+"Missing Dialogue Line 026"
+%E
+%Cp Pre 00027
+"Missing Dialogue Line 027"
+%E
+%Cp Pre 00028
+"Missing Dialogue Line 028"
+%E
+%Cp Pre 00029
+"Missing Dialogue Line 029"
+%E
+%Cp Pre 00030
+"Missing Dialogue Line 030"
+%E
+%Cp Pre 00031
+"Missing Dialogue Line 031"
+%E
+%Cp Pre 00032
+"Missing Dialogue Line 032"
+%E
+%Cp Pre 00033
+"Missing Dialogue Line 033"
+%E
+%Cp Pre 00034
+"Missing Dialogue Line 034"
+%E
+%Cc Pre 00035
+How many of those similarly-looking dungeon levels are there?!
+%E
+%Cp Pre 00036
+You can't tell if this is the same dungeon level you've been to before,
+as they're all looking deceptively similar.
+%E
+%Cc Pre 00040
+This dungeon level looks just like a plain one. Well at least it doesn't
+look like another goddamn town with boarded-up shops...
+%E
+%Cp Pre 00041
+You feel that a MacGuffin just has to be somewhere on this dungeon level.
+%E
+%Cc Pre 00050
+"Boss Battle dialogue goes here"
+%E
+%Cc Pre 00051
+What is this boss doing here, anyway?
+%E
+%Cp Pre 00052
+You feel that you need to defeat this boss monster to be able to continue.
+%E
+%Cp Pre 00053
+It seems that the boss is trying to get back the MacGuffin.
+Maybe you should tell the boss that it's just a device to trap lions in
+the Scottish Highlands, i.e. something of no use at all.
+%E
+%Cp Pre 00060
+"Missing Boss Taunt 060"
+%E
+%Cp Pre 00061
+"Missing Boss Taunt 061"
+%E
+%Cp Pre 00062
+"Missing Boss Taunt 062"
+%E
+%Cp Pre 00063
+"Missing Boss Taunt 063"
+%E
+%Cp Pre 00064
+"Missing Boss Taunt 064"
+%E
+%Cp Pre 00065
+"Missing Boss Taunt 065"
+%E
+%Cp Pre 00066
+"Missing Boss Taunt 066"
+%E
+%Cp Pre 00067
+"Missing Boss Taunt 067"
+%E
+%Cp Pre 00068
+"Missing Boss Taunt 068"
+%E
+%Cp Pre 00069
+"Missing Boss Taunt 069"
+%E
+%Cc Pre 00070
+You picked up the MacGuffin. The game didn't display a message, because
+this is still the pre-alpha version that doesn't actually HAVE messages
+for important in-game events, but you know that it must be important.
+%E
+%Cp Pre 00080
+You killed the boss monster. Once again, there was no message at all.
+%E
+%Cc Pre 00081
+At least the reward seems to already be implemented!
+%E
+%Cc Pre 00082
+Somehow, the item landed in your inventory again.
+%E
+%Cc Pre 00090
+"Please check the manufacturer's webpage for an updated version of the game"
+%E
+%Cc Pre 00091
+"Please do not distribute this game"
+%E
+%Cc Pre 00095
+"MICROSOFT VISUAL C++ RUNTIME LIBRARY Runtime Error!
+Program: C:\GAMES\NETHACK.EXE abnormal program termination"
+%E
+%Cp Pre 00100
+
+%E
+%Cp Pre 00101
+
+%E
+%Cp Pre 00102
+"You are playing NetHack Pre-Alpha Release Version 0.54A"
+%E
+
+%Cc Pre 00103
+"important game message goes here"
+%E
+%Cc Pre 00104
+"important game message goes here"
+%E
+%Cc Pre 00105
+"important game message goes here"
+%E
+%Cc Pre 00106
+"important game message goes here"
+%E
+%Cc Pre 00107
+"important game message goes here"
+%E
+%Cc Pre 00108
+"FIXME: sidequest completion message not implemented yet"
+%E
+%Cc Pre 00109
+"FIXME: sidequest completion message not implemented yet"
+%E
+%Cc Pre 00110
+"FIXME: sidequest completion message not implemented yet"
+%E
+%Cc Pre 00111
+"important game message goes here"
+%E
+%Cc Pre 00112
+"important game message goes here"
+%E
+%Cc Pre 00113
+"important game message goes here"
+%E
+%Cc Pre 00114
+"error: player won the game
+please file complaint to the developer to up difficulty level"
+%E
+%Cc Pre 00115
+"error: game over
+please insert quarter to continue"
+%E
+%Cc Pre 00116
+"important game message goes here"
+%E
+%Cc Pre 00117
+"FIXME: sidequest completion message not implemented yet"
+%E
+
+#
+#       Secret Advice Member
+#
+%Cc Sec 00001
+You're back at %H, which seems to be besieged right now.
+%l is certainly capable of keeping the enemies at bay, but you
+still feel that it's your duty to help out.
+%E
+%Cp Sec 00002
+Once again, you are back at %H.
+%E
+%Cp Sec 00003
+You are back at %H.
+You have an odd feeling this may be the last time you ever come here.
+%E
+%Cp Sec 00005
+"During daytime, the secret advice is less powerful than at night."
+%E
+%Cp Sec 00006
+"The secret advice is rather powerful."
+%E
+%Cp Sec 00007
+"This dark area is perfect for us."
+%E
+%Cp Sec 00008
+"Remember where the gun is?"
+%E
+%Cp Sec 00009
+"Listen to the boss, he has a great plan."
+%E
+%Cp Sec 00010
+"During nighttime, the secret advice's power is at its maximum."
+%E
+%Cp Sec 00011
+"You found the key to proceed to the next area!"
+%E
+%Cp Sec 00012
+"Enemies that walk on this dungeon level won't live for long, thanks to
+you!"
+%E
+%Cp Sec 00013
+"You executed the boss's secret order!"
+%E
+%Cp Sec 00014
+"I told %n a hundred times already, but they just would not listen."
+%E
+%Cc Sec 00015
+"%p, we are under attack, as you probably observed. Now I know this isn't
+strictly necessary, but I'll still check whether you're ready to fight
+the enemy."
+%E
+%Cp Sec 00016
+"%p, you surely have to be ready now. I'll check you again."
+%E
+%Cp Sec 00017
+"Still not ready, %p? Let me check you a final time!"
+%E
+%Cc Sec 00018
+"%p, you're too slow! We can't let you go on this mission after all!
+Oh well, I'll just do it myself."
+%E
+%Cc Sec 00019
+"While you're probably strong enough to fight %n, there's also liches
+around,
+and you're not ready for those. Level up your abilities first!"
+%E
+%Cc Sec 00020
+"You didn't tell some of our secrets to the enemy, now did you?
+Only if I can be entirely sure of your loyalty can I send you on your
+mission!"
+%E
+%Cc Sec 00021
+"So you want to know what's up, well, %n has attacked us. Normally this
+wouldn't be a problem, but %o got stolen in the process.
+
+Your task is to get back %o, and if you kill %n I wouldn't shed
+a tear either, but the big problem is that a bunch of liches also got
+summoned.
+They want to prevent us from getting our mighty wand back. You must get past
+all the liches and reclaim our wand."
+%E
+%Cp Sec 00025
+"Don't worry about %n's attacks, they probably won't even dent you."
+%E
+%Cp Sec 00026
+"Getting to %n is the hard part, due to all the liches."
+%E
+%Cp Sec 00027
+"Don't hesitate to banish the liches if you can't fight them."
+%E
+%Cp Sec 00028
+"If you encounter %n, just use your favorite weapon."
+%E
+%Cp Sec 00029
+"Make sure you have magic resistance!"
+%E
+%Cp Sec 00030
+"You should blast those liches to heck."
+%E
+%Cp Sec 00031
+"We, the Secret Advice, will definitely get our wand back."
+%E
+%Cp Sec 00032
+"Honestly I'm surprised %n even had the guts to attack us in the first
+place."
+%E
+%Cp Sec 00033
+"%n may be controlling two devil fruits, but you don't need to worry
+about that."
+%E
+%Cp Sec 00034
+"%n is from the One Piece fandom and doesn't even belong here. Thankfully,
+the rules of the One Piece universe don't apply her, so you have nothing
+to fear."
+%E
+%Cc Sec 00035
+More liches. Damn. Hopefully you can get rid of them soon.
+%E
+%Cp Sec 00036
+Where the hell is %n hiding? Damn, getting there is certainly harder than
+the boss fight itself.
+%E
+%Cc Sec 00040
+Ah, the revolutino flags that indicate the presence of %n.
+You know that you need to focus on eradicating the liches first, though.
+%E
+%Cp Sec 00041
+Once again, you enter %n's hideout, and this time you will definitely
+reclaim %o for the Secret Advice.
+%E
+%Cc Sec 00050
+"Akuma no mi no namae wa oboete imasenga, ukabu kajitsu to torokeru
+kajitsu ga mazatte imasu."
+%E
+%Cc Sec 00051
+"Watashi wa Mari o atsuku shimasu. Sate, ima watashi wa yurumi ni ikimasu."
+%E
+%Cp Sec 00052
+"Watashi wa anata o ima shina se rarenai koto o anata wa shitte imasu ka"
+%E
+%Cp Sec 00053
+"A, anata wa watashi o shitte imasu"
+%E
+%Cp Sec 00060
+"Watashitachi ga futatabi watashitachi no bodo o toru nokori no hoho de
+teishi shimasu."
+%E
+%Cp Sec 00061
+"Esudakara anata no saisho no tesuto wa futatabi"
+%E
+%Cp Sec 00062
+"Hai, watashidesu ga, Mari to anata wa sausuburu no kiddoda to iimasu."
+%E
+%Cp Sec 00063
+"A,-sodesu ka"
+%E
+%Cp Sec 00064
+"Watashi no shimei tehai no posuta ga subete furu sugirukara shashin
+o tsukutte morau hitsuyo ga arimasu ka?"
+%E
+%Cp Sec 00065
+"Wakaranai, chizu o moraetara mite miyou"
+%E
+%Cp Sec 00066
+"Mada anata ga hoshimono"
+%E
+%Cp Sec 00067
+"Rara wa yoi auto kikan ga anata o motte imasu, soshite
+anata ga mada tsuyokunaru hito wa hoshi garimasu."
+%E
+%Cp Sec 00068
+"Sore wa osoraku nani no mondaide mo arimasendeshita."
+%E
+%Cp Sec 00069
+"Kare wa watashi ga watashi no seifuku-sha no haki o setto ni subekida
+to itta"
+%E
+%Cc Sec 00070
+The power of %o flows through your body!  You feel
+as if you could now take on the Wizard of Yendor himself and win, but
+you know you must return %o to %l.
+%E
+%Cp Sec 00080
+Finally that weird japanese-speaking girl was shut up!
+%E
+%Cc Sec 00081
+"I knew you could do it. Now tell me, what was worse, the liches or %n?
+Anyway, well done! The Secret Advice can continue its operations now!"
+%E
+%Cc Sec 00082
+"That wand doubles as a vacuum cleaner. Use it to suck away your opponents."
+%E
+%Cc Sec 00090
+"Welcome again! The Secret Advice is flourishing!"
+%E
+%Cc Sec 00091
+"Oh, THAT amulet! Wow, if you could offer that to %d, the power of
+the Secret Advice would become even greater than ever!
+
+Best of luck to you!"
+%E
+%Cc Sec 00095
+"You have betrayed all those who hold allegiance to %d, as you once did.
+My allegiance to %d holds fast and I cannot condone or accept what you
+have done.
+
+Leave this place.  You shall never set foot at %H again.
+That which you seek is now lost forever, for without the Bell of Opening,
+you will never be able to enter the place where he who has the Amulet
+resides.
+
+Go now!  You are banished from this place.
+%E
+
+%Cp Sec 00100
+You receive a faint telepathic message from %l:
+Your help is urgently needed at %H!
+Look for a ...ic transporter.
+You couldn't quite make out that last message.
+%E
+%Cp Sec 00101
+You again sense %l pleading for help.
+%E
+%Cp Sec 00102
+"The silver bell which was hoarded by %n will be
+essential in locating the Amulet of Yendor."
+%E
+
+%Cc Sec 00103
+As you enter the Bell Caves, the silver bell radiates brightly!
+You immediately know that you've successfully imbued it; after all, this
+is the place where the bell has originally been forged, and it regained
+its original power by being close to its source.
+
+In order to open the path to Moloch's Sanctum, you need two more artifacts.
+They're both said to be hidden in Gehennom, in the possession of powerful
+guardians. Only with them in your possession can you perform the ritual
+on the deepest level of Gehennom and gain access to the place where
+the Amulet of Yendor is kept.
+%E
+%Cc Sec 00104
+The Amulet of Yendor radiates brightly as you enter the Forging Chamber.
+
+In order to be fully imbued, the Amulet must also be taken to the
+Dead Grounds and Ordered Chaos subdungeons.
+%E
+%Cc Sec 00105
+The Amulet of Yendor radiates brightly as you enter the Dead Grounds.
+
+In order to be fully imbued, the Amulet must also be taken to the
+Forging Chamber and Ordered Chaos subdungeons.
+%E
+%Cc Sec 00106
+The Amulet of Yendor radiates brightly as you enter the Ordered Chaos.
+
+In order to be fully imbued, the Amulet must also be taken to the
+Forging Chamber and Dead Grounds subdungeons.
+%E
+%Cc Sec 00107
+At last, you have fully imbued the Amulet of Yendor! You know that now
+you have to get to the surface, where your final test awaits.
+
+A strange sensation seems to pull you downwards. This must surely be
+the power of the Amulet, and you get ready to traverse Moloch's Sanctum
+and Gehennom again.
+
+You also notice the Wizard of Yendor taunting you in your mind.
+He must surely have noticed that the Amulet has gained full power now,
+and will try his best to stop you on your ascension run...
+%E
+%Cc Sec 00108
+This seemingly mundane gray stone makes you feel lucky as you pick it up!
+It must hold a good charm, and you decide to hold onto it.
+%E
+%Cc Sec 00109
+After a long period of pushing boulders around, you've found a prize.
+'Well, at least there is some reward for the hell that is slexoban',
+you think, as you pick up this valuable item. It might come in handy
+on the path that lies ahead.
+%E
+%Cc Sec 00110
+As the dreadful Medusa finally stops living, you feel an immense burden
+lifted from your chest. You now know that you're a capable adventurer,
+one who can defeat creatures from legend and live to tell the tale.
+
+Hopefully, you are now ready to face the greater tasks that lie ahead.
+%E
+%Cc Sec 00111
+This menora surely seems important. It must be one of the artifacts
+required for the ominous invocation ritual!
+
+You must get two more of these artifacts. One of them is said to be
+in the possession of the Wizard of Yendor himself, who is lurking
+somewhere in Gehennom; the other such artifact can be obtained if
+you engage your personal nemesis in a duel and win...
+%E
+%Cc Sec 00112
+Quickly, you snatch the papyrus spellbook that the Wizard of Yendor
+was holding. It is obviously one of the key pieces in your mission
+to open the sanctum at the deepest level of Gehennom, but you also
+need the silver bell from your quest nemesis, and one more such
+artifact is hidden somewhere in Gehennom.
+%E
+%Cc Sec 00113
+Finally, you got what you came for! It's the Amulet of Yendor!!!
+
+Instinctively, you get ready to make a mad dash back to the upstair,
+for you know that %d desires this amulet. But something is amiss.
+
+Apparently, the Amulet of Yendor has to be imbued first, or it won't
+let you leave the mortal plane. And in order to imbue the Amulet,
+you must search Moloch's sanctum for a hidden magic portal that
+will lead you to the Yendorian Tower.
+
+Within the Yendorian Tower, three special staircases are hidden.
+You must seek everywhere within the Tower, and enter all three such
+staircases in order to imbue the Amulet. This is no easy task.
+The Yendorian Tower is about as big as the entire Dungeons of Doom
+and Gehennom added together, and the staircases can be anywhere.
+
+Also, it is rumored that if the guardians of the three Alignment Keys
+are still alive when you enter the Forging Chamber, Dead Grounds
+and Ordered Chaos areas, they will grow even stronger to haunt you!
+%E
+%Cc Sec 00114
+As you offer the Amulet of Yendor on the high altar to %d at last,
+you immediately feel an intense surge of power.
+
+You have faced many hardships, survived encounters with deadly
+beasts, and even battled the Wizard of Yendor himself and won.
+Not to forget carving a path through the Elemental Planes, slaying
+their denizens left and right, culminating in the Astral Plane,
+where you mowed down all the heretical angels and priests trying
+to prevent you from delivering the Amulet to %d.
+
+But now, the entire world around you seems to stop for a moment.
+You truly are a demigod now. %d is smiling on you, and leads you
+to a place known as the Demigod Bar: Here, the other successful
+adventurers are gathered, and they're happily drinking and telling
+their stories...
+
+And you get to join them!!! You did it, you've officially become
+a true master at your trade, and saved the world from Moloch's
+evil schemes! Immediately, you rush to greet your new friends
+to tell them about your heroic deeds.
+
+Congraturation! A winner is you! You've beaten SLASH'EM Extended,
+one of the most difficult and unfair roguelikes in existence!
+Make sure to tell Amy (the creator of the game) about it, too!
+%E
+%Cc Sec 00115
+As you offer the Amulet of Yendor on the high altar,
+you somehow don't feel any different at first.
+
+But it has to be true! You just offered the Amulet to %d,
+and should be made a demigod any minute now...
+
+Death, Pestilence and Famine still look as threatening as ever.
+Something must be very wrong here. Shouldn't you be safe now,
+considering you went through Hell and back to get the Amulet
+of Yendor for your deity?
+
+Death reaches out with its deadly touch.
+You feel your life draining away...
+Pestilence reaches out, and you feel fever and chills.
+You feel deathly sick.
+Famine reaches out, and your body shrivels.
+You faint from lack of food.
+
+On the verge of death, you listen to a voice...
+'Foolish mortal, thou art an imbecile poltroon.
+But since thou bringest me the Amulet I desired,
+I shall let thee live. Thou mayst leave the Dungeon now.'
+
+SHIT! Due to a silly mistake, you failed so close to your goal!
+You forgot to make sure that the high altar is actually
+consecrated to %d, and offered the Amulet of Yendor to the wrong
+deity!
+
+Do you want your possessions identified? DYWYPI?
+Game over! Please insert a coin to start a new game.
+%E
+%Cc Sec 00116
+As you step on this particular floor tile, the ground is suddenly
+vibrating right beneath you.
+
+This must be the special place where the entrance to
+Moloch's sanctum is hidden! In order to open it, you need all three
+of the invocation tools: Book, Bell and Candle. And then you have
+to use all three of them in rapid succession while standing on
+this exact floor tile.
+
+Additionally, the bell must be imbued before you can complete
+the invocation rituals. It needs to be done inside the Subquest,
+a branch from where the bell can be found; specifically, the
+Bell Caves is the location where imbuing takes place.
+
+You must also make sure to attach seven candles
+to the candelabrum, otherwise it won't do what it ought to do.
+And the invocation tools better don't be cursed...
+%E
+%Cc Sec 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
+
+#
+#       Shoe Fetishist
+#
+%Cc Sho 00001
+This must be the special side challenge that you have to undertake!
+Here at %H, you have to contend with certain female shoes,
+and only if you pass the test, you'll be able to proceed.
+
+Apparently %l is here to guide you too...
+%E
+%Cp Sho 00002
+Once again, you are back at %H.
+%E
+%Cp Sho 00003
+You are back at %H.
+You have an odd feeling this may be the last time you ever come here.
+%E
+%Cp Sho 00005
+"Did you see those pretty orange stiletto heels?"
+%E
+%Cp Sho 00006
+"Block heels are sooooo sexy!"
+%E
+%Cp Sho 00007
+"Are you fond of platform boots too?"
+%E
+%Cp Sho 00008
+"You certainly agree with me that colorful sandals are cute, right?"
+%E
+%Cp Sho 00009
+"Did you play with any hugging boots lately?"
+%E
+%Cp Sho 00010
+"Female sneakers can be sexy too!"
+%E
+%Cp Sho 00011
+"Once I saw a pair of grey velvet boots with block heels!"
+%E
+%Cp Sho 00012
+"I'd certainly love to be kicked in the shins by female dancing shoes."
+%E
+%Cp Sho 00013
+"Female boots with treaded soles are beautiful for falling in love!"
+%E
+%Cp Sho 00014
+"Do you like zipper boots?"
+%E
+%Cc Sho 00015
+"Welcome %p! There's a special challenge waiting for you, but
+I can't allow you to proceed unless you're ready. Let me test you."
+%E
+%Cp Sho 00016
+"%p, you still need to go on your special challenge!
+I'll again test whether you are ready."
+%E
+%Cp Sho 00017
+"%p, you're falling behind! You should hope that you're
+ready for the special challenge now."
+%E
+%Cc Sho 00018
+"Damn %p, you waited too long. Now your opportunity
+to claim the first place has passed.
+I can't help you anymore now."
+%E
+%Cc Sho 00019
+"Well you're being kicked in the ass even by little-girl shoes!
+How are you supposed to be able to be able to stand against
+the pair of hugging boots that's waiting for you?"
+%E
+%Cc Sho 00020
+"You're too crazy about shoes right now! Think of
+something else for a while before you come back and try again!"
+%E
+%Cc Sho 00021
+"%p, so your task is to meet %n.
+Be victorious and you'll get %o as a reward, too!
+You will find that lovely girl and her boots at %i."
+%E
+%Cp Sho 00025
+"Go ahead and have sex with %n!"
+%E
+%Cp Sho 00026
+"Of course we've placed lots of other shoes on the path to %i for you."
+%E
+%Cp Sho 00027
+"You will always remember %n!"
+%E
+%Cp Sho 00028
+"If you can claim %o, footwear will be even more fun for you."
+%E
+%Cp Sho 00029
+"Better hurry, your lead is small and you might lose your first place."
+%E
+%Cp Sho 00030
+"Use your running abilities."
+%E
+%Cp Sho 00031
+"Being kicked by %n will be really arousing for your penis."
+%E
+%Cp Sho 00032
+"Think of it this way, you're going to have a lot of fun!"
+%E
+%Cp Sho 00033
+"If you don't come out on top of your meeting with %n, you can't continue!"
+%E
+%Cp Sho 00034
+"Do you need help? I'm officially not allowed to give you too much help!"
+%E
+%Cc Sho 00035
+You feel that you're getting closer to %i.
+%E
+%Cp Sho 00036
+You still feel that %i must be nearby.
+%E
+%Cc Sho 00040
+This is %i, %n's lair!
+Now you need to prepare for a sexual encounter,
+and if you're lucky, you can then claim %o!
+%E
+%Cp Sho 00041
+You remember that you need to encounter %n and claim %o!
+%E
+%Cc Sho 00050
+Wow... so this is %n. You're in awe.
+This girl's boots are soooooo lovely! Hopefully you'll get to have some
+fun now!
+%E
+%Cc Sho 00051
+You really look forward to seeing what %n can do to you.
+%E
+%Cp Sho 00052
+You no longer care about how long you need. %n is here,
+and you're having the most fun of your life!
+%E
+%Cp Sho 00053
+With %o in your possession, dancing with %n becomes
+even more pleasant!
+%E
+%Cp Sho 00060
+Wow, you wonder how much more fun it will be to reencounter %n in
+nightmare difficulty.
+%E
+%Cp Sho 00061
+If %n is so hot even in normal difficulty, you can't wait to see what it
+would be like in hell mode!
+%E
+%Cp Sho 00062
+You want to have fun with %n's asian boots!
+%E
+%Cp Sho 00063
+Maybe being bludgeoned by %n would feel arousing?
+%E
+%Cp Sho 00064
+You're about to have a sexual orgasm.
+%E
+%Cp Sho 00065
+Wait, this is only an intermediate challenge? But there
+can't possibly exist an even sexier pair of boots somewhere else?!
+%E
+%Cp Sho 00066
+Suddenly you notice that your hand has wandered to your penis
+and you inadvertently started wanking off to the sight of %n.
+%E
+%Cp Sho 00067
+You feel that you want to marry %n!
+%E
+%Cp Sho 00068
+Sexual arousal. This is it. The shoes of lesser girls have managed to
+tickle your fancy, but %n beats all of them.
+%E
+%Cp Sho 00069
+You're sooooo excited right now.
+%E
+%Cc Sho 00070
+Wait, how come you have received these boots already. They're supposed
+to be the ones you get from defeating the final boss!
+Ah well, if you don them now, everything will be better.
+%E
+%Cp Sho 00080
+Awwwwwwwwww, you defeated %n. That's unfortunate.
+Now the fun is over. But then again, you have a race to win, and
+you might still be in first place right now;
+better hurry back to %l!
+%E
+%Cc Sho 00081
+%l exclaims:
+"You got %o! That's great, now you can walk the dark corridors
+and reach places you couldn't get to before!"
+%E
+%Cc Sho 00082
+"Why are you giving the girl boots to me, you need them much more
+than I do. Here, you can have them back. Wear them! And be aware of the fact
+that you still need to be wearing them in the end to claim your victory!"
+%E
+%Cc Sho 00090
+"Well done %p, but now you should hurry, lest you lose
+your beautiful lead and won't finish first!"
+%E
+%Cc Sho 00091
+"This is the final stretch, %p! There's still a bunch of shoes
+on the path ahead, but you're almost at your goal!
+Get going and win the race, then you'll get the reward of your life!"
+%E
+%Cc Sho 00095
+"It seems that you tried to use cheats, which is forbidden.
+You are hereby banned. No matter how fast you are, there will not
+be a reward for you if you 'win'. Be ashamed of yourself!"
+%E
+
+%Cp Sho 00100
+You receive a faint telepathic message from %l:
+There is a special challenge that you must take at %H!
+Look for a ...ic transporter.
+You couldn't quite make out that last message.
+%E
+%Cp Sho 00101
+You again sense %l announcing a challenge.
+%E
+%Cp Sho 00102
+"I know that you're not really in need of it, but %n has
+a silver bell, without which you won't be able to reach the goal.
+Go get that bell."
+%E
+
+%Cc Sho 00103
+As you enter the Bell Caves, the silver bell radiates brightly!
+You immediately know that you've successfully imbued it; after all, this
+is the place where the bell has originally been forged, and it regained
+its original power by being close to its source.
+
+In order to open the path to Moloch's Sanctum, you need two more artifacts.
+They're both said to be hidden in Gehennom, in the possession of powerful
+guardians. Only with them in your possession can you perform the ritual
+on the deepest level of Gehennom and gain access to the place where
+the Amulet of Yendor is kept.
+%E
+%Cc Sho 00104
+The Amulet of Yendor radiates brightly as you enter the Forging Chamber.
+
+In order to be fully imbued, the Amulet must also be taken to the
+Dead Grounds and Ordered Chaos subdungeons.
+%E
+%Cc Sho 00105
+The Amulet of Yendor radiates brightly as you enter the Dead Grounds.
+
+In order to be fully imbued, the Amulet must also be taken to the
+Forging Chamber and Ordered Chaos subdungeons.
+%E
+%Cc Sho 00106
+The Amulet of Yendor radiates brightly as you enter the Ordered Chaos.
+
+In order to be fully imbued, the Amulet must also be taken to the
+Forging Chamber and Dead Grounds subdungeons.
+%E
+%Cc Sho 00107
+At last, you have fully imbued the Amulet of Yendor! You know that now
+you have to get to the surface, where your final test awaits.
+
+A strange sensation seems to pull you downwards. This must surely be
+the power of the Amulet, and you get ready to traverse Moloch's Sanctum
+and Gehennom again.
+
+You also notice the Wizard of Yendor taunting you in your mind.
+He must surely have noticed that the Amulet has gained full power now,
+and will try his best to stop you on your ascension run...
+%E
+%Cc Sho 00108
+This seemingly mundane gray stone makes you feel lucky as you pick it up!
+It must hold a good charm, and you decide to hold onto it.
+%E
+%Cc Sho 00109
+After a long period of pushing boulders around, you've found a prize.
+'Well, at least there is some reward for the hell that is slexoban',
+you think, as you pick up this valuable item. It might come in handy
+on the path that lies ahead.
+%E
+%Cc Sho 00110
+As the dreadful Medusa finally stops living, you feel an immense burden
+lifted from your chest. You now know that you're a capable adventurer,
+one who can defeat creatures from legend and live to tell the tale.
+
+Hopefully, you are now ready to face the greater tasks that lie ahead.
+%E
+%Cc Sho 00111
+This menora surely seems important. It must be one of the artifacts
+required for the ominous invocation ritual!
+
+You must get two more of these artifacts. One of them is said to be
+in the possession of the Wizard of Yendor himself, who is lurking
+somewhere in Gehennom; the other such artifact can be obtained if
+you engage your personal nemesis in a duel and win...
+%E
+%Cc Sho 00112
+Quickly, you snatch the papyrus spellbook that the Wizard of Yendor
+was holding. It is obviously one of the key pieces in your mission
+to open the sanctum at the deepest level of Gehennom, but you also
+need the silver bell from your quest nemesis, and one more such
+artifact is hidden somewhere in Gehennom.
+%E
+%Cc Sho 00113
+Finally, you got what you came for! It's the Amulet of Yendor!!!
+
+Instinctively, you get ready to make a mad dash back to the upstair,
+for you know that %d desires this amulet. But something is amiss.
+
+Apparently, the Amulet of Yendor has to be imbued first, or it won't
+let you leave the mortal plane. And in order to imbue the Amulet,
+you must search Moloch's sanctum for a hidden magic portal that
+will lead you to the Yendorian Tower.
+
+Within the Yendorian Tower, three special staircases are hidden.
+You must seek everywhere within the Tower, and enter all three such
+staircases in order to imbue the Amulet. This is no easy task.
+The Yendorian Tower is about as big as the entire Dungeons of Doom
+and Gehennom added together, and the staircases can be anywhere.
+
+Also, it is rumored that if the guardians of the three Alignment Keys
+are still alive when you enter the Forging Chamber, Dead Grounds
+and Ordered Chaos areas, they will grow even stronger to haunt you!
+%E
+%Cc Sho 00114
+As you offer the Amulet of Yendor on the high altar to %d at last,
+you immediately feel an intense surge of power.
+
+You have faced many hardships, survived encounters with deadly
+beasts, and even battled the Wizard of Yendor himself and won.
+Not to forget carving a path through the Elemental Planes, slaying
+their denizens left and right, culminating in the Astral Plane,
+where you mowed down all the heretical angels and priests trying
+to prevent you from delivering the Amulet to %d.
+
+But now, the entire world around you seems to stop for a moment.
+You truly are a demigod now. %d is smiling on you, and leads you
+to a place known as the Demigod Bar: Here, the other successful
+adventurers are gathered, and they're happily drinking and telling
+their stories...
+
+And you get to join them!!! You did it, you've officially become
+a true master at your trade, and saved the world from Moloch's
+evil schemes! Immediately, you rush to greet your new friends
+to tell them about your heroic deeds.
+
+Congraturation! A winner is you! You've beaten SLASH'EM Extended,
+one of the most difficult and unfair roguelikes in existence!
+Make sure to tell Amy (the creator of the game) about it, too!
+%E
+%Cc Sho 00115
+As you offer the Amulet of Yendor on the high altar,
+you somehow don't feel any different at first.
+
+But it has to be true! You just offered the Amulet to %d,
+and should be made a demigod any minute now...
+
+Death, Pestilence and Famine still look as threatening as ever.
+Something must be very wrong here. Shouldn't you be safe now,
+considering you went through Hell and back to get the Amulet
+of Yendor for your deity?
+
+Death reaches out with its deadly touch.
+You feel your life draining away...
+Pestilence reaches out, and you feel fever and chills.
+You feel deathly sick.
+Famine reaches out, and your body shrivels.
+You faint from lack of food.
+
+On the verge of death, you listen to a voice...
+'Foolish mortal, thou art an imbecile poltroon.
+But since thou bringest me the Amulet I desired,
+I shall let thee live. Thou mayst leave the Dungeon now.'
+
+SHIT! Due to a silly mistake, you failed so close to your goal!
+You forgot to make sure that the high altar is actually
+consecrated to %d, and offered the Amulet of Yendor to the wrong
+deity!
+
+Do you want your possessions identified? DYWYPI?
+Game over! Please insert a coin to start a new game.
+%E
+%Cc Sho 00116
+As you step on this particular floor tile, the ground is suddenly
+vibrating right beneath you.
+
+This must be the special place where the entrance to
+Moloch's sanctum is hidden! In order to open it, you need all three
+of the invocation tools: Book, Bell and Candle. And then you have
+to use all three of them in rapid succession while standing on
+this exact floor tile.
+
+Additionally, the bell must be imbued before you can complete
+the invocation rituals. It needs to be done inside the Subquest,
+a branch from where the bell can be found; specifically, the
+Bell Caves is the location where imbuing takes place.
+
+You must also make sure to attach seven candles
+to the candelabrum, otherwise it won't do what it ought to do.
+And the invocation tools better don't be cursed...
+%E
+%Cc Sho 00117
 This peculiar gray stone makes you feel both good and bad at once.
 It must surely have great magical power, but there seems to be
 some sort of curse on it too.
@@ -35005,6 +37768,452 @@ Maybe if you somehow lift the curse, it will become a truly
 useful talisman that can protect you from harm?
 %E
 
+#
+#       Half Baked
+#
+# The quest artifact is "The Eyes of the Overworld", hence needs
+# to be treated as plural by messages which use %o.
+#
+%Cc Hal 00001
+You find yourself standing in sight of %H.  Something
+is obviously wrong here. Strange shapes lumber around
+outside %H!
+
+You realize that the %l needs your assistance!
+%E
+%Cp Hal 00002
+Once again, you stand before %H.
+%E
+%Cp Hal 00003
+Again you face %H.  Your intuition hints that this may be
+the final time you come here.
+%E
+%Cp Hal 00005
+"Greetings, honorable %r.  It is good to see you."
+%E
+%Cp Hal 00006
+"Ah, %p!  Surely you can help us in our hour of need."
+%E
+%Cp Hal 00007
+"Greetings, %s.  %lC has great need of your help."
+%E
+%Cp Hal 00008
+"Alas, it seems as if even %d has deserted us."
+%E
+%Cp Hal 00009
+"May %d be with you, %s."
+%E
+%Cp Hal 00010
+"Greetings, honorable %r.  It is good to see you again."
+%E
+%Cp Hal 00011
+"Ah, %p!  Our deepest gratitude for all of your help."
+%E
+%Cp Hal 00012
+"Greetings, %s.  Perhaps you will take some time to meditate with us?"
+%E
+%Cp Hal 00013
+"With this test behind you, may %d bring you enlightenment."
+%E
+%Cp Hal 00014
+"May %d be with you, %s."
+%E
+%Cc Hal 00015
+"Ah, %p, my %S.  You have returned to us at last.
+A great blow has befallen our order; perhaps you can help us.
+First, however, I must determine if you are prepared for this
+great challenge."
+%E
+%Cp Hal 00016
+"Again, my %S, you stand before me.  Are you ready now to help us?"
+%E
+%Cp Hal 00017
+"Once more, %p, you stand within the sanctum.  Are you ready now?"
+%E
+%Cc Hal 00018
+"You are a heretic, %p!  How can you, %ra, deviate so from the
+teachings of %d?  Begone from this temple.  You are no longer
+%sa to this order.  We will pray to %d for other assistance,
+as you have failed us utterly."
+%E
+%Cc Hal 00019
+"Alas, %p, it is not yet to be.  A mere %r could never
+withstand the might of %n.  Go forth, again into the world, and return
+when you have attained the post of %R."
+%E
+%Cc Hal 00020
+"This is terrible, %p.  You have deviated from the true path!
+You know that %d requires the most strident devotion of this
+order.  The %shood must stand for utmost piety.
+
+"Go from here, atone for your sins against %d.  Return only when
+you have purified yourself."
+%E
+%Cc Hal 00021
+"Yes, %p.  You are truly ready now.  Attend to me and I shall
+tell you of what has transpired:
+
+"During one of the Great Meditations a short time ago, %n and
+a legion of elementals invaded %H.  Many %gP were
+killed, including the one bearing %o.
+
+Now, there are barely enough %gP left to keep the
+elementals at bay.
+
+"We need you to find %i, then, from there, travel
+to %ns lair.  If you can manage to defeat %n
+and return %o here, we can then drive off the
+legions of elementals that slay our students.
+
+"Go with %d as your guide, %p."
+%E
+%Cp Hal 00025
+"You can prevail, if you rely on %d."
+%E
+%Cp Hal 00026
+"Remember that %n has great magic at his command."
+%E
+%Cp Hal 00027
+"Be pure, my %S."
+%E
+%Cp Hal 00028
+"Beware, %i is surrounded by hordes of earth elementals."
+%E
+%Cp Hal 00029
+"Remember your studies, and you will prevail!"
+%E
+%Cp Hal 00030
+"Acquire and wear %o if you can.  They will aid you
+against %n."
+%E
+%Cp Hal 00031
+"Call upon %d when your need is greatest.  You will be answered."
+%E
+%Cp Hal 00032
+"Remember to use the elementals' strength against them!"
+%E
+%Cp Hal 00033
+"Do not lose faith, %p.  If you do so, %n will grow stronger."
+%E
+%Cp Hal 00034
+"Wear %o.  They will assist you in your efforts."
+%E
+%Cc Hal 00035
+You remember the descriptions of %i, given to you
+by the %l.  It is ahead that you will find %n's trail.
+%E
+%Cp Hal 00036
+Again, you stand before %i.
+%E
+%Cc Hal 00040
+The stench of brimstone is all about you, and the elementals close in
+from all sides!
+
+Ahead, there is a small clearing amidst the bubbling pits of lava...
+%E
+%Cp Hal 00041
+Again, you have invaded %ns domain.
+%E
+%Cc Hal 00050
+"Ah, so %l has sent another %g to retrieve
+%o.
+
+"No, I see you are no %g.  Perhaps I shall have some fun today
+after all.  Prepare to die, %r!  You shall never regain
+%o."
+%E
+%Cp Hal 00051
+"So, %r.  Again you challenge me."
+%E
+%Cp Hal 00052
+"Die now, %r.  %d has no power here to aid you."
+%E
+%Cp Hal 00053
+"You shall die, %r, and I will have %o back."
+%E
+%Cp Hal 00060
+"Submit to my will, %c, and I shall spare you."
+%E
+%Cp Hal 00061
+"Your puny powers are no match for me, %c."
+%E
+%Cp Hal 00062
+"I shall have you turned into a zombie for my pleasure!"
+%E
+%Cp Hal 00063
+"Despair now, %r.  %d cannot help you."
+%E
+%Cp Hal 00064
+"I shall feast upon your soul for many days, %c."
+%E
+%Cp Hal 00065
+"Your death will be slow and painful.  That I promise!"
+%E
+%Cp Hal 00066
+"You cannot defeat %n, you fool.  I shall kill you now."
+%E
+%Cp Hal 00067
+"Your precious %lt will be my next victim."
+%E
+%Cp Hal 00068
+"I feel your powers failing you, %r.  You shall die now."
+%E
+%Cp Hal 00069
+"With %o, nothing can stand in my way."
+%E
+%Cc Hal 00070
+As you pick up %o, you feel the essence of
+%d fill your soul.  You know now why %n stole them from
+%H, for with them, %ca of %d could
+easily defeat his plans.
+
+You sense a message from %d.  Though not verbal, you
+get the impression that you must return to %l as soon
+as possible.
+%E
+%Cc Hal 00080
+%nC gasps:
+
+    "You have only defeated this mortal body.  Know this: my spirit
+    is strong.  I shall return and reclaim what is mine!"
+
+With that, %n expires.
+%E
+%Cc Hal 00081
+"You have returned, %p.  And with %o, I see.
+Congratulations.
+
+"I have been in meditation, and have received direction from
+a minion of %d.  %d commands that you retain
+%o.  With them, you must recover the Amulet
+of Yendor.
+
+"Go forth, and let %d guide your steps."
+%E
+%Cc Hal 00082
+%lC studies %o for a moment,
+then returns his gaze to you.
+
+"%oC must remain with you.  Use them
+as you resume your search for the Amulet.
+%Z await your return through the magic portal
+that brought you here."
+%E
+%Cp Hal 00090
+"Welcome back, %p.  How is your quest for the Amulet going?"
+%E
+%Cc Hal 00091
+"You have prevailed, %p!  %d is surely with you.  Now,
+you must take the amulet, and sacrifice it on %ds altar on
+the Astral plane.  I suspect that I shall never see you again in this
+life, but I hope to at %ds feet."
+%E
+%Cc Hal 00095
+"You have betrayed all those who hold allegiance to %d, as you once did.
+My allegiance to %d holds fast and I cannot condone or accept what you 
+have done.
+
+Leave this place.  You shall never set foot at %H again.
+That which you seek is now lost forever, for without the Bell of Opening, 
+you will never be able to enter the place where he who has the Amulet 
+resides.
+
+Go now!  You are banished from this place.
+%E
+
+%Cp Hal 00100
+You receive a faint telepathic message from %l:
+Your help is urgently needed at %H!
+Look for a ...ic transporter.
+You couldn't quite make out that last message.
+%E
+%Cp Hal 00101
+You again sense %l pleading for help.
+%E
+%Cp Hal 00102
+"The silver bell which was hoarded by %n will be
+essential in locating the Amulet of Yendor."
+%E
+%Cc Hal 00103
+As you enter the Bell Caves, the silver bell radiates brightly!
+You immediately know that you've successfully imbued it; after all, this
+is the place where the bell has originally been forged, and it regained
+its original power by being close to its source.
+
+In order to open the path to Moloch's Sanctum, you need two more artifacts.
+They're both said to be hidden in Gehennom, in the possession of powerful
+guardians. Only with them in your possession can you perform the ritual
+on the deepest level of Gehennom and gain access to the place where
+the Amulet of Yendor is kept.
+%E
+%Cc Hal 00104
+The Amulet of Yendor radiates brightly as you enter the Forging Chamber.
+
+In order to be fully imbued, the Amulet must also be taken to the
+Dead Grounds and Ordered Chaos subdungeons.
+%E
+%Cc Hal 00105
+The Amulet of Yendor radiates brightly as you enter the Dead Grounds.
+
+In order to be fully imbued, the Amulet must also be taken to the
+Forging Chamber and Ordered Chaos subdungeons.
+%E
+%Cc Hal 00106
+The Amulet of Yendor radiates brightly as you enter the Ordered Chaos.
+
+In order to be fully imbued, the Amulet must also be taken to the
+Forging Chamber and Dead Grounds subdungeons.
+%E
+%Cc Hal 00107
+At last, you have fully imbued the Amulet of Yendor! You know that now
+you have to get to the surface, where your final test awaits.
+
+A strange sensation seems to pull you downwards. This must surely be
+the power of the Amulet, and you get ready to traverse Moloch's Sanctum
+and Gehennom again.
+
+You also notice the Wizard of Yendor taunting you in your mind.
+He must surely have noticed that the Amulet has gained full power now,
+and will try his best to stop you on your ascension run...
+%E
+%Cc Hal 00108
+This seemingly mundane gray stone makes you feel lucky as you pick it up!
+It must hold a good charm, and you decide to hold onto it.
+%E
+%Cc Hal 00109
+After a long period of pushing boulders around, you've found a prize.
+'Well, at least there is some reward for the hell that is slexoban',
+you think, as you pick up this valuable item. It might come in handy
+on the path that lies ahead.
+%E
+%Cc Hal 00110
+As the dreadful Medusa finally stops living, you feel an immense burden
+lifted from your chest. You now know that you're a capable adventurer,
+one who can defeat creatures from legend and live to tell the tale.
+
+Hopefully, you are now ready to face the greater tasks that lie ahead.
+%E
+%Cc Hal 00111
+This menora surely seems important. It must be one of the artifacts
+required for the ominous invocation ritual!
+
+You must get two more of these artifacts. One of them is said to be
+in the possession of the Wizard of Yendor himself, who is lurking
+somewhere in Gehennom; the other such artifact can be obtained if
+you engage your personal nemesis in a duel and win...
+%E
+%Cc Hal 00112
+Quickly, you snatch the papyrus spellbook that the Wizard of Yendor
+was holding. It is obviously one of the key pieces in your mission
+to open the sanctum at the deepest level of Gehennom, but you also
+need the silver bell from your quest nemesis, and one more such
+artifact is hidden somewhere in Gehennom.
+%E
+%Cc Hal 00113
+Finally, you got what you came for! It's the Amulet of Yendor!!!
+
+Instinctively, you get ready to make a mad dash back to the upstair,
+for you know that %d desires this amulet. But something is amiss.
+
+Apparently, the Amulet of Yendor has to be imbued first, or it won't
+let you leave the mortal plane. And in order to imbue the Amulet,
+you must search Moloch's sanctum for a hidden magic portal that
+will lead you to the Yendorian Tower.
+
+Within the Yendorian Tower, three special staircases are hidden.
+You must seek everywhere within the Tower, and enter all three such
+staircases in order to imbue the Amulet. This is no easy task.
+The Yendorian Tower is about as big as the entire Dungeons of Doom
+and Gehennom added together, and the staircases can be anywhere.
+
+Also, it is rumored that if the guardians of the three Alignment Keys
+are still alive when you enter the Forging Chamber, Dead Grounds
+and Ordered Chaos areas, they will grow even stronger to haunt you!
+%E
+%Cc Hal 00114
+As you offer the Amulet of Yendor on the high altar to %d at last,
+you immediately feel an intense surge of power.
+
+You have faced many hardships, survived encounters with deadly
+beasts, and even battled the Wizard of Yendor himself and won.
+Not to forget carving a path through the Elemental Planes, slaying
+their denizens left and right, culminating in the Astral Plane,
+where you mowed down all the heretical angels and priests trying
+to prevent you from delivering the Amulet to %d.
+
+But now, the entire world around you seems to stop for a moment.
+You truly are a demigod now. %d is smiling on you, and leads you
+to a place known as the Demigod Bar: Here, the other successful
+adventurers are gathered, and they're happily drinking and telling
+their stories...
+
+And you get to join them!!! You did it, you've officially become
+a true master at your trade, and saved the world from Moloch's
+evil schemes! Immediately, you rush to greet your new friends
+to tell them about your heroic deeds.
+
+Congraturation! A winner is you! You've beaten SLASH'EM Extended,
+one of the most difficult and unfair roguelikes in existence!
+Make sure to tell Amy (the creator of the game) about it, too! :-)
+%E
+%Cc Hal 00115
+As you offer the Amulet of Yendor on the high altar,
+you somehow don't feel any different at first.
+
+But it has to be true! You just offered the Amulet to %d,
+and should be made a demigod any minute now...
+
+Death, Pestilence and Famine still look as threatening as ever.
+Something must be very wrong here. Shouldn't you be safe now,
+considering you went through Hell and back to get the Amulet
+of Yendor for your deity?
+
+Death reaches out with its deadly touch.
+You feel your life draining away...
+Pestilence reaches out, and you feel fever and chills.
+You feel deathly sick.
+Famine reaches out, and your body shrivels.
+You faint from lack of food.
+
+On the verge of death, you listen to a voice...
+'Foolish mortal, thou art an imbecile poltroon.
+But since thou bringest me the Amulet I desired,
+I shall let thee live. Thou mayst leave the Dungeon now.'
+
+SHIT! Due to a silly mistake, you failed so close to your goal!
+You forgot to make sure that the high altar is actually
+consecrated to %d, and offered the Amulet of Yendor to the wrong
+deity!
+
+Do you want your possessions identified? DYWYPI?
+Game over! Please insert a coin to start a new game.
+%E
+%Cc Hal 00116
+As you step on this particular floor tile, the ground is suddenly
+vibrating right beneath you.
+
+This must be the special place where the entrance to
+Moloch's sanctum is hidden! In order to open it, you need all three
+of the invocation tools: Book, Bell and Candle. And then you have
+to use all three of them in rapid succession while standing on
+this exact floor tile.
+
+Additionally, the bell must be imbued before you can complete
+the invocation rituals. It needs to be done inside the Subquest,
+a branch from where the bell can be found; specifically, the
+Bell Caves is the location where imbuing takes place.
+
+You must also make sure to attach seven candles
+to the candelabrum, otherwise it won't do what it ought to do.
+And the invocation tools better don't be cursed...
+%E
+%Cc Hal 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 #

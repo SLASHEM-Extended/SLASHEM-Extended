@@ -502,6 +502,9 @@ boolean forcecontrol;
 		mntmp = (PM_WHITE_MISSINGNO + rn2(14 + (u.ulevel / 2) ) );
 	}
 	else if ((Polymorph_control || forcecontrol) && !u.wormpolymorph && rn2(StrongPolymorph_control ? 5 : 3)) {
+
+		boolean hasfailed = FALSE;
+
 		do {
 			getlin("Become what kind of monster? [type the name]",
 				buf);
@@ -517,24 +520,92 @@ boolean forcecontrol;
 			/* taking on high-level forms sometimes fails, especially if your level is low --Amy */
 			else if (!forcecontrol && (rnd(50 - u.ulevel + mons[mntmp].mlevel) > 40 )) {
 
-				mntmp = LOW_PM - 1; break; /* polymorph failed */
+				mntmp = LOW_PM - 1; hasfailed = TRUE; break; /* polymorph failed */
 			}
 			/* uncommon forms are difficult to polymorph into, because the usual reason why they're uncommon is
 			 * that they are very powerful, so we need to reduce the player's chance of becoming one --Amy */
 			else if (!forcecontrol && ( (is_jonadabmonster(&mons[mntmp]) && rn2(20)) || ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5)) ) ) {
-				mntmp = LOW_PM - 1; break; /* polymorph failed */
+				mntmp = LOW_PM - 1; hasfailed = TRUE; break; /* polymorph failed */
 			}
 			else if (!forcecontrol && ((PlayerCannotUseSkills) && (rnd(StrongPolymorph_control ? 12 : 18) > 7) ) ) {
-				mntmp = LOW_PM - 1; break; /* polymorph failed */
+				mntmp = LOW_PM - 1; hasfailed = TRUE; break; /* polymorph failed */
 			}
 			else if (!forcecontrol && (!(PlayerCannotUseSkills) && (rnd(StrongPolymorph_control ? 15 : 18) > (P_SKILL(P_POLYMORPHING) + 10) ) ) ) {
-				mntmp = LOW_PM - 1; break; /* polymorph failed */
+				mntmp = LOW_PM - 1; hasfailed = TRUE; break; /* polymorph failed */
 			}
 
 			else break;
 		} while(++tries < 5);
 
 		if (tries==5) pline("%s", thats_enough_tries);
+
+		if (hasfailed && ((StrongPolymorph_control && rn2(10)) || (!StrongPolymorph_control && rn2(2)) ) ) {
+			boolean strongchoice = StrongPolymorph_control;
+			int whichchoice = 1;
+
+			int bschoice1 = LOW_PM - 1;
+			int bschoice2 = LOW_PM - 1;
+			int bschoice3 = LOW_PM - 1;
+
+			/* randomly pick an "ordinary" monster */
+
+			tries = 0;
+			do {
+				bschoice1 = rn1(SPECIAL_PM - LOW_PM, LOW_PM);
+			} while((!polyok(&mons[bschoice1]) || is_placeholder(&mons[bschoice1]) || (notake(&mons[bschoice1]) && rn2(4) ) || ((mons[bschoice1].mlet == S_BAT) && rn2(2)) || ((mons[bschoice1].mlet == S_EYE) && rn2(2) ) || ((mons[bschoice1].mmove == 1) && rn2(4) ) || ((mons[bschoice1].mmove == 2) && rn2(3) ) || ((mons[bschoice1].mmove == 3) && rn2(2) ) || ((mons[bschoice1].mmove == 4) && !rn2(3) ) || ( (mons[bschoice1].mlevel < 10) && ((mons[bschoice1].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[bschoice1]) && rn2(2) ) || ( is_nonmoving(&mons[bschoice1]) && rn2(5) ) || (is_jonadabmonster(&mons[bschoice1]) && rn2(20)) || ( uncommon2(&mons[bschoice1]) && !rn2(4) ) || ( uncommon3(&mons[bschoice1]) && !rn2(3) ) || ( uncommon5(&mons[bschoice1]) && !rn2(2) ) || ( uncommon7(&mons[bschoice1]) && rn2(3) ) || ( uncommon10(&mons[bschoice1]) && rn2(5) ) || ( is_eel(&mons[bschoice1]) && rn2(5) ) ) );
+
+			tries = 0;
+			do {
+				bschoice2 = rn1(SPECIAL_PM - LOW_PM, LOW_PM);
+			} while((!polyok(&mons[bschoice2]) || is_placeholder(&mons[bschoice2]) || (notake(&mons[bschoice2]) && rn2(4) ) || ((mons[bschoice2].mlet == S_BAT) && rn2(2)) || ((mons[bschoice2].mlet == S_EYE) && rn2(2) ) || ((mons[bschoice2].mmove == 1) && rn2(4) ) || ((mons[bschoice2].mmove == 2) && rn2(3) ) || ((mons[bschoice2].mmove == 3) && rn2(2) ) || ((mons[bschoice2].mmove == 4) && !rn2(3) ) || ( (mons[bschoice2].mlevel < 10) && ((mons[bschoice2].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[bschoice2]) && rn2(2) ) || ( is_nonmoving(&mons[bschoice2]) && rn2(5) ) || (is_jonadabmonster(&mons[bschoice2]) && rn2(20)) || ( uncommon2(&mons[bschoice2]) && !rn2(4) ) || ( uncommon3(&mons[bschoice2]) && !rn2(3) ) || ( uncommon5(&mons[bschoice2]) && !rn2(2) ) || ( uncommon7(&mons[bschoice2]) && rn2(3) ) || ( uncommon10(&mons[bschoice2]) && rn2(5) ) || ( is_eel(&mons[bschoice2]) && rn2(5) ) ) );
+
+			tries = 0;
+			do {
+				bschoice3 = rn1(SPECIAL_PM - LOW_PM, LOW_PM);
+			} while((!polyok(&mons[bschoice3]) || is_placeholder(&mons[bschoice3]) || (notake(&mons[bschoice3]) && rn2(4) ) || ((mons[bschoice3].mlet == S_BAT) && rn2(2)) || ((mons[bschoice3].mlet == S_EYE) && rn2(2) ) || ((mons[bschoice3].mmove == 1) && rn2(4) ) || ((mons[bschoice3].mmove == 2) && rn2(3) ) || ((mons[bschoice3].mmove == 3) && rn2(2) ) || ((mons[bschoice3].mmove == 4) && !rn2(3) ) || ( (mons[bschoice3].mlevel < 10) && ((mons[bschoice3].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[bschoice3]) && rn2(2) ) || ( is_nonmoving(&mons[bschoice3]) && rn2(5) ) || (is_jonadabmonster(&mons[bschoice3]) && rn2(20)) || ( uncommon2(&mons[bschoice3]) && !rn2(4) ) || ( uncommon3(&mons[bschoice3]) && !rn2(3) ) || ( uncommon5(&mons[bschoice3]) && !rn2(2) ) || ( uncommon7(&mons[bschoice3]) && rn2(3) ) || ( uncommon10(&mons[bschoice3]) && rn2(5) ) || ( is_eel(&mons[bschoice3]) && rn2(5) ) ) );
+
+			if (StrongPolymorph_control) pline("Your controlled polymorph failed, but your limited ability to control polymorphs allows you to pick from these polymorph forms: %s, %s or %s.", mons[bschoice1].mname, mons[bschoice2].mname, mons[bschoice3].mname);
+			else pline("Your controlled polymorph failed, but your limited ability to control polymorphs allows you to pick from these polymorph forms: %s or %s.", mons[bschoice1].mname, mons[bschoice2].mname);
+
+			pline("Pick a polymorph form. The prompt will show you the stats of the monsters you can choose, and loop until you actually make a choice.");
+
+controlchooseagain:
+			if (whichchoice < 2 || whichchoice > (StrongPolymorph_control ? 3 : 2)) {
+				corpsepager(bschoice1);
+				if (yn("Turn into this monster?") == 'y') {
+					mntmp = bschoice1;
+					goto controldone;
+				}
+				whichchoice++;
+				if (whichchoice > (StrongPolymorph_control ? 3 : 2)) whichchoice = 1;
+				goto controlchooseagain;
+			}
+			if (whichchoice == 2) {
+				corpsepager(bschoice2);
+				if (yn("Turn into this monster?") == 'y') {
+					mntmp = bschoice2;
+					goto controldone;
+				}
+				whichchoice++;
+				if (whichchoice > (StrongPolymorph_control ? 3 : 2)) whichchoice = 1;
+				goto controlchooseagain;
+			}
+			if (whichchoice == 3 && StrongPolymorph_control) {
+				corpsepager(bschoice3);
+				if (yn("Turn into this monster?") == 'y') {
+					mntmp = bschoice3;
+					goto controldone;
+				}
+				whichchoice++;
+				if (whichchoice > (StrongPolymorph_control ? 3 : 2)) whichchoice = 1;
+				goto controlchooseagain;
+			}
+			whichchoice = 0; /* fail safe */
+			goto controlchooseagain;
+
+		}
+controldone:
+
 		/* allow skin merging, even when polymorph is controlled */
 		if (draconian &&
 		    (mntmp == armor_to_dragon(uarm->otyp) || tries == 5))
@@ -1024,6 +1095,18 @@ int	mntmp;
 		pline(use_thec,monsterc,"fart");
 	    if (lays_eggs(youmonst.data) && flags.female)
 		pline(use_thec,"sit","lay an egg");
+	    if (youmonst.data->msound == MS_STENCH)
+		pline(use_thec,monsterc,"spread the perfume");
+	    if (youmonst.data->msound == MS_CONVERT)
+		pline(use_thec,monsterc,"preach");
+	    if (youmonst.data->msound == MS_HCALIEN)
+		pline(use_thec,monsterc,"chant");
+	    if (youmonst.data->msound == MS_WHORE)
+		pline(use_thec,monsterc,"talk sexily");
+	    if (youmonst.data->msound == MS_SUPERMAN)
+		pline(use_thec,monsterc,"make superman taunts");
+	    if (youmonst.data->msound == MS_BONES)
+		pline(use_thec,monsterc,"rattle");
 	}
 	/* you now know what an egg of your type looks like */
 	if (lays_eggs(youmonst.data)) {
@@ -1384,14 +1467,14 @@ int alone;
 		}
 	    uwepgone();
 
-	    if (!wep->cursed || (wep->otyp != LOADSTONE && wep->otyp != LUCKSTONE && wep->otyp != HEALTHSTONE && wep->otyp != MANASTONE && wep->otyp != SLEEPSTONE && wep->otyp != LOADBOULDER && wep->otyp != STARLIGHTSTONE && wep->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(wep) ) )
+	    if ((!wep->cursed || (wep->otyp != LOADSTONE && wep->otyp != LUCKSTONE && wep->otyp != HEALTHSTONE && wep->otyp != MANASTONE && wep->otyp != SLEEPSTONE && wep->otyp != LOADBOULDER && wep->otyp != STARLIGHTSTONE && wep->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(wep) && !is_feminismstone(wep) ) ) && !(wep->otyp == LUCKSTONE && isevilvariant && !wep->cursed && !wep->blessed && Luck < 0))
 		dropx(otmp);
 
 weapondone:
 
 	    if (otmp2 != 0) {
 		uswapwepgone();
-		if (!otmp2->cursed || (otmp2->otyp != LOADSTONE && otmp2->otyp != LUCKSTONE && otmp2->otyp != HEALTHSTONE && otmp2->otyp != MANASTONE && otmp2->otyp != SLEEPSTONE && otmp2->otyp != LOADBOULDER && otmp2->otyp != STARLIGHTSTONE && otmp2->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(otmp2) ) )
+		if ((!otmp2->cursed || (otmp2->otyp != LOADSTONE && otmp2->otyp != LUCKSTONE && otmp2->otyp != HEALTHSTONE && otmp2->otyp != MANASTONE && otmp2->otyp != SLEEPSTONE && otmp2->otyp != LOADBOULDER && otmp2->otyp != STARLIGHTSTONE && otmp2->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(otmp2) && !is_feminismstone(otmp2) ) ) && !(otmp2->otyp == LUCKSTONE && isevilvariant && !otmp2->cursed && !otmp2->blessed && Luck < 0))
 		    dropx(otmp2);
 	    }
 	    untwoweapon();
@@ -2010,6 +2093,19 @@ dospinweb()
 		case FEMMY_TRAP:
 		case MADELEINE_TRAP:
 		case MARLENA_TRAP:
+		case KRISTIN_TRAP:
+		case ANNA_TRAP:
+		case RUEA_TRAP:
+		case DORA_TRAP:
+		case MARIKE_TRAP:
+		case JETTE_TRAP:
+		case INA_TRAP:
+		case SING_TRAP:
+		case VICTORIA_TRAP:
+		case MELISSA_TRAP:
+		case ANITA_TRAP:
+		case HENRIETTA_TRAP:
+		case VERENA_TRAP:
 		case ARABELLA_TRAP:
 		case NELLY_TRAP:
 		case EVELINE_TRAP:

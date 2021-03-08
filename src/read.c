@@ -148,9 +148,24 @@ doread()
 	} else if (scroll->otyp == T_SHIRT || scroll->otyp == HAWAIIAN_SHIRT || scroll->otyp == BLACK_DRESS
 	|| scroll->otyp == STRIPED_SHIRT || scroll->otyp == BODYGLOVE || scroll->otyp == BAD_SHIRT || scroll->otyp == CHANTER_SHIRT || scroll->otyp == KYRT_SHIRT || scroll->otyp == WOOLEN_SHIRT || scroll->otyp == METAL_SHIRT || scroll->otyp == RED_STRING || scroll->otyp == YOGA_PANTS || scroll->otyp == GREEN_GOWN
 	|| scroll->otyp == BEAUTIFUL_SHIRT || scroll->otyp == PETA_COMPLIANT_SHIRT || scroll->otyp == TOILET_ROLL || scroll->otyp == RADIOACTIVE_UNDERGARMENT
-	|| scroll->otyp == PRINTED_SHIRT || scroll->otyp == FOAM_SHIRT || scroll->otyp == FLEECY_CORSET || scroll->otyp == FISHNET || scroll->otyp == BATH_TOWEL
+	|| scroll->otyp == PRINTED_SHIRT || scroll->otyp == FOAM_SHIRT || scroll->otyp == PETRIFYIUM_BRA || scroll->otyp == FLEECY_CORSET || scroll->otyp == FISHNET || scroll->otyp == BATH_TOWEL
 	|| scroll->otyp == PLUGSUIT || scroll->otyp == SWIMSUIT || scroll->otyp == MEN_S_UNDERWEAR
 	|| scroll->otyp == VICTORIAN_UNDERWEAR || scroll->otyp == RUFFLED_SHIRT) {
+
+	    if (scroll->otyp == PETRIFYIUM_BRA && (!Stone_resistance || (!IntStone_resistance && !rn2(20))) && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM)) ) {
+		if (!Stoned) {
+			if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
+			else {
+				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				u.cnd_stoningcount++;
+				pline("Eep - you gazed at the image of Medusa that is drawn on the front side of your bra! You start turning to stone.");
+			}
+		}
+		sprintf(killer_buf, "wearing a petrifyium bra");
+		delayed_killer = killer_buf;
+
+	    }
+
 	    static const char *shirt_msgs[] = { /* Scott Bigham */
     "I explored the Dungeons of Doom and all I got was this lousy T-shirt!",
     "Is that Mjollnir in your pocket or are you just happy to see me?",
@@ -751,6 +766,9 @@ doread()
 	"This shirt is worn by some weirdo who isn't a big fan of House Stark and therefore the shirt shows a golden lion instead.",
 	"Today, the wolf managed to defeat the lion. House Lannister is going DOWN and the Starks will be victorious!",
 	"With this train (which can ram other cars away), I'll be much faster in Leipzig or meadow brook than if I walk home.",
+	"Hello and welcome to Boyabali's used armor dealership! Please be aware that in order to enter our store, you not only need to be wearing a face mask, you also must have a pokemon with you.",
+	"Kick you, itchy money", /* by Pinkbeast, pun on Kiku-ichimonji */
+	"play slexbwos, the type of ice block's new variant. slex, but without shoes!", /* by Demo */
 
 	    };
 	    char buf[BUFSZ];
@@ -822,7 +840,7 @@ doread()
 	}
 	scroll->in_use = TRUE;	/* scroll, not spellbook, now being read */
 
-	if (Role_if(PM_CARTOMANCER) && scroll) {
+	if ((Role_if(PM_CARTOMANCER) && scroll) || (scroll && scroll->oartifact == ART_UPSIDE_DOWN_PLAYING_CARD)) {
 		cartochance = 0;
 
 		switch (scroll->otyp) { /* values depend on how much they cost to write, see write.c --Amy */
@@ -1015,6 +1033,7 @@ doread()
 			case SCR_NASTY_CURSE:
 			case SCR_TERRAFORMING:
 			case SCR_ALLY:
+			case SCR_SKILL_GROWTH:
 				cartochance = 15;
 				if (!PlayerCannotUseSkills) switch (P_SKILL(P_DEVICES)) {
 					case P_BASIC: cartochance = 16; break;
@@ -1038,6 +1057,7 @@ doread()
 			case SCR_POWER_HEALING:
 			case SCR_REVERSE_IDENTIFY:
 			case SCR_SUPERIOR_MATERIAL:
+			case SCR_BRANCH_TELEPORT:
 				cartochance = 10;
 				if (!PlayerCannotUseSkills) switch (P_SKILL(P_DEVICES)) {
 					case P_BASIC: cartochance = 11; break;
@@ -1111,8 +1131,13 @@ doread()
 		}
 
 		if (cartochance > 0 && (rn2(100) < cartochance) ) cartokeep = TRUE;
+		if (Role_if(PM_CARTOMANCER) && scroll->oartifact == ART_UPSIDE_DOWN_PLAYING_CARD && (rn2(100) < cartochance) ) cartokeep = TRUE; /* gotta make sure the effects stack, after all :-) --Amy */
 
 	} /* cartomancer dupe chance check */
+
+	if(scroll->oartifact == ART_SECRET_RECIPE) {
+		pline("Mastering the %s skill will teach you the hidden power.", wpskillname(u.hiddenpowerskill));
+	}
 
 	if(scroll->oartifact == ART_MARAUDER_S_MAP) {
 		if(Blind) {
@@ -1155,7 +1180,7 @@ doread()
 	 * care needs to be taken so that the scroll is used up before
 	 * a potential level teleport occurs.
 	 */
-	if (scroll->otyp == SCR_TELEPORTATION || scroll->otyp == SCR_ANTIMATTER || scroll->otyp == SCR_BAD_EFFECT || scroll->otyp == SCR_SIN || scroll->otyp == SCR_TELE_LEVEL || scroll->otyp == SCR_WARPING) {
+	if (scroll->otyp == SCR_TELEPORTATION || scroll->otyp == SCR_ANTIMATTER || scroll->otyp == SCR_BAD_EFFECT || scroll->otyp == SCR_SIN || scroll->otyp == SCR_TELE_LEVEL || scroll->otyp == SCR_BRANCH_TELEPORT || scroll->otyp == SCR_WARPING) {
 	    otemp = *scroll;
 	    otemp.where = OBJ_FREE;
 	    otemp.nobj = (struct obj *)0;
@@ -1209,7 +1234,7 @@ doread()
 				(scroll->blessed ? 2 : 1));
 		}
 		if(!cartokeep && scroll->otyp != SCR_BLANK_PAPER && scroll->oartifact != ART_MARAUDER_S_MAP &&
-		  scroll->otyp != SCR_TELEPORTATION && scroll->otyp != SCR_ANTIMATTER && scroll->otyp != SCR_BAD_EFFECT && scroll->otyp != SCR_SIN && scroll->otyp != SCR_TELE_LEVEL && scroll->otyp != SCR_WARPING) {
+		  scroll->otyp != SCR_TELEPORTATION && scroll->otyp != SCR_ANTIMATTER && scroll->otyp != SCR_BAD_EFFECT && scroll->otyp != SCR_SIN && scroll->otyp != SCR_TELE_LEVEL && scroll->otyp != SCR_BRANCH_TELEPORT && scroll->otyp != SCR_WARPING) {
 		    if (carried(scroll)) useup(scroll);
 		    else if (mcarried(scroll)) m_useup(scroll->ocarry, scroll);
 		    else useupf(scroll, 1L);
@@ -1282,7 +1307,7 @@ struct obj *obj;
 			(obj->known || objects[obj->otyp].oc_uname));
 	if (is_lightsaber(obj))
 	    return TRUE;
-	if (obj->otyp == OIL_LAMP || obj->otyp == MAGIC_LAMP || obj->otyp == BRASS_LANTERN) return TRUE;
+	if (obj->otyp == OIL_LAMP || obj->otyp == MAGIC_LAMP || obj->otyp == BRASS_LANTERN || obj->otyp == TORCH) return TRUE;
 	if (is_weptool(obj))	/* specific check before general tools */
 	    return FALSE;
 	if (obj->oclass == TOOL_CLASS)
@@ -1367,6 +1392,7 @@ int curse_bless;
 		    return;
 		}*/
 		u.cnd_chargingcount++;
+		use_skill(P_DEVICES, rnd(10));
 		if (obj->spe >= lim) p_glow2(obj, NH_BLUE);
 		else p_glow1(obj);
 		if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
@@ -1431,6 +1457,7 @@ int curse_bless;
 		if (obj->spe >= 5) p_glow2(obj, NH_BLUE);
 		else p_glow1(obj);
 		u.cnd_chargingcount++;
+		use_skill(P_DEVICES, rnd(10));
 		if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 			if (!obj->cursed) bless(obj);
 			else uncurse(obj, FALSE);
@@ -1458,7 +1485,10 @@ int curse_bless;
 		/* cause attributes and/or properties to be updated */
 		if (is_on) Ring_off(obj);
 		obj->spe += s;	/* update the ring while it's off */
-		if (s > 0) u.cnd_chargingcount++;
+		if (s > 0) {
+			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
+		}
 		if (s > 0 && obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 			if (!obj->cursed) bless(obj);
 			else uncurse(obj, FALSE);
@@ -1480,7 +1510,10 @@ int curse_bless;
 		if (((obj->spe + s) < 8) || !rn2(3)) { /* make it hard to reach ultra-high enchantment values --Amy */
 			Your("%s spins %sclockwise for a moment.", xname(obj), s < 0 ? "counter" : "");
 			obj->spe += s;	/* we don't need to take it off because it just affects AC and poly'd stuff */
-			if (s > 0) u.cnd_chargingcount++;
+			if (s > 0) {
+				u.cnd_chargingcount++;
+				use_skill(P_DEVICES, rnd(10));
+			}
 			if (s > 0 && obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 				if (!obj->cursed) bless(obj);
 				else uncurse(obj, FALSE);
@@ -1505,7 +1538,10 @@ int curse_bless;
 		else if (is_blessed) obj->spe += rnd(30);
 		else obj->spe += 10;
 		if (obj->spe > 100) obj->spe = 100;
-		if (!is_cursed) u.cnd_chargingcount++;
+		if (!is_cursed) {
+			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
+		}
 		if (!is_cursed && obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 			if (!obj->cursed) bless(obj);
 			else uncurse(obj, FALSE);
@@ -1555,6 +1591,7 @@ int curse_bless;
 
 			p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
 			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 				if (!obj->cursed) bless(obj);
 				else uncurse(obj, FALSE);
@@ -1571,6 +1608,7 @@ int curse_bless;
 
 			p_glow2(obj, NH_WHITE);
 			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
 			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 				if (!obj->cursed) bless(obj);
 				else uncurse(obj, FALSE);
@@ -1579,6 +1617,7 @@ int curse_bless;
 		break;
 	    case OIL_LAMP:
 	    case BRASS_LANTERN:
+	    case TORCH:
 
 		if (is_cursed) {
 		    stripspe(obj);
@@ -1596,6 +1635,7 @@ int curse_bless;
 		    else obj->age += 1500;
 		    p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
 			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 				if (!obj->cursed) bless(obj);
 				else uncurse(obj, FALSE);
@@ -1609,6 +1649,7 @@ int curse_bless;
 		    }
 		    p_glow1(obj);
 			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
 			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 				if (!obj->cursed) bless(obj);
 				else uncurse(obj, FALSE);
@@ -1626,7 +1667,14 @@ int curse_bless;
 	    case WHITE_DOUBLE_LIGHTSABER:
 	    case LASER_SWATTER:
 	    case NANO_HAMMER:
+	    case STARWARS_MACE:
 	    case LIGHTWHIP:
+	    case LASERDENT:
+	    case LASERXBOW:
+	    case LASER_POLE:
+	    case LASER_SWORD:
+	    case BEAMSWORD:
+	    case SITH_STAFF:
 	    case ELECTRIC_CIGARETTE:
 
 		if (is_cursed) {
@@ -1645,6 +1693,7 @@ int curse_bless;
 		    else obj->age += 1500;
 		    p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
 			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 				if (!obj->cursed) bless(obj);
 				else uncurse(obj, FALSE);
@@ -1657,6 +1706,7 @@ int curse_bless;
 		    }
 		    p_glow1(obj);
 			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
 			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 				if (!obj->cursed) bless(obj);
 				else uncurse(obj, FALSE);
@@ -1677,6 +1727,7 @@ int curse_bless;
 		    obj->spe = 6;
 		    p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
 			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 				if (!obj->cursed) bless(obj);
 				else uncurse(obj, FALSE);
@@ -1685,6 +1736,7 @@ int curse_bless;
 		    if (obj->spe < 5) {
 			obj->spe++;
 			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
 			p_glow1(obj);
 			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 				if (!obj->cursed) bless(obj);
@@ -1716,6 +1768,7 @@ int curse_bless;
 			if (obj->spe > 100) obj->spe = 100;
 			p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
 			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 				if (!obj->cursed) bless(obj);
 				else uncurse(obj, FALSE);
@@ -1725,6 +1778,7 @@ int curse_bless;
 			if (obj->spe > 100) obj->spe = 100;
 			p_glow1(obj);
 			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
 			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 				if (!obj->cursed) bless(obj);
 				else uncurse(obj, FALSE);
@@ -1751,6 +1805,7 @@ int curse_bless;
 		    if (obj->spe > 117) obj->spe = 117;
 		    p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
 			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 				if (!obj->cursed) bless(obj);
 				else uncurse(obj, FALSE);
@@ -1760,6 +1815,7 @@ int curse_bless;
 		    if (obj->spe > 117) obj->spe = 117;
 		    p_glow1(obj);
 			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
 			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 				if (!obj->cursed) bless(obj);
 				else uncurse(obj, FALSE);
@@ -1790,6 +1846,7 @@ int curse_bless;
 		    if (obj->spe > 20) obj->spe = 20;
 		    p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
 			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 				if (!obj->cursed) bless(obj);
 				else uncurse(obj, FALSE);
@@ -1799,6 +1856,7 @@ int curse_bless;
 		    if (obj->spe > 20) obj->spe = 20;
 		    p_glow1(obj);
 			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
 			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
 				if (!obj->cursed) bless(obj);
 				else uncurse(obj, FALSE);
@@ -2454,9 +2512,9 @@ undo_lockflood(x, y, roomcnt)
 int x, y;
 void * roomcnt;
 {
-	if (levl[x][y].typ != STONE)
+	if (levl[x][y].typ != STONE && levl[x][y].typ != ROCKWALL)
 		return;
-	if ((levl[x][y].wall_info & W_NONDIGGABLE) != 0)
+	if (((levl[x][y].wall_info & W_NONDIGGABLE) != 0) && levl[x][y].typ != ROCKWALL)
 		return;
 
 	if (*in_rooms(x,y,SHOPBASE)) return;
@@ -5541,6 +5599,7 @@ proofarmorchoice:
 			     obj->otyp == SLEEPSTONE ||
 			     obj->otyp == STONE_OF_MAGIC_RESISTANCE ||
 			     is_nastygraystone(obj) ||
+			     is_feminismstone(obj) ||
 			     (obj->otyp == LEATHER_LEASH && obj->leashmon) || (obj->otyp == INKA_LEASH && obj->leashmon) ) && !stack_too_big(obj) ) {
 			    if(confused) blessorcurse(obj, 2);
 			    else if (!(sobj->otyp == SPE_REMOVE_CURSE) || !rn2(5) ) uncurse(obj, FALSE);
@@ -6529,7 +6588,7 @@ materialchoice3:
 			monstercolor = rnd(15);
 			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 		} else {
-			monstercolor = rnd(376);
+			monstercolor = rnd(379);
 		}
 
 		while(cnt--) {
@@ -8730,7 +8789,7 @@ retry:
 	case SCR_TELEPORTATION:
 		if(confused || sobj->cursed) 
 			{
-		      if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) level_tele();
+		      if (!playerlevelportdisabled()) level_tele();
 			else pline("You try to teleport, but fail!");
 			}
 		else {
@@ -8765,15 +8824,20 @@ retry:
 		}
 		break;
 	case SCR_TELE_LEVEL:
-	      if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) level_tele();
+	      if (!playerlevelportdisabled()) level_tele();
 		else pline("Hmm... that level teleport scroll didn't do anything.");
+		known = TRUE;
+		break;
+	case SCR_BRANCH_TELEPORT:
+	      if (!playerlevelportdisabled()) randombranchtele();
+		else pline("Hmm... that branch teleport scroll didn't do anything.");
 		known = TRUE;
 		break;
 	case SCR_WARPING:
 		known = TRUE;
 		if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 
-		if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
+		if (playerlevelportdisabled()) { 
 			pline("You're unable to warp!"); break;}
 
 		/* restore the "no cyanide rule"... this is a simple y/n prompt because if you're read-identifying unknown
@@ -8784,19 +8848,7 @@ retry:
 			if (yn_function("You have found a scroll of warping! Do you want to warp to a random dungeon level?", "yn", 'y') == 'n') break;
 		}
 
-		make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
-
-		u.cnd_banishmentcount++;
-		if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
-		else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
-
-		/*(void) safe_teleds(FALSE);
-
-		goto_level((&medusa_level), TRUE, FALSE, FALSE);*/
-		register int newlev = rnd(99);
-		d_level newlevel;
-		get_level(&newlevel, newlev);
-		goto_level(&newlevel, TRUE, FALSE, FALSE);
+		banishplayer();
 
 		break;
 	case SCR_GOLD_DETECTION:
@@ -9129,6 +9181,28 @@ randenchchoice:
 		}
 		break;
 
+	case SCR_SKILL_GROWTH:
+
+		if (confused) {
+			skilltrainingdecrease(level_difficulty() + 1);
+			if (sobj->cursed) skilltrainingdecrease(level_difficulty() + 1);
+			pline("Must have been a skill-trashing scroll.");
+		} else {
+			if (evilfriday && sobj->cursed) {
+				skilltrainingdecrease(level_difficulty() + 1);
+				pline("Must have been a skill-trashing scroll.");
+			} else {
+				int rndskill = P_DAGGER;
+				for (rndskill = P_DAGGER; rndskill < P_NUM_SKILLS; rndskill++) {
+					P_ADVANCE(rndskill)++;
+				}
+				pline("All of your skills are trained by one point!");
+				known = TRUE;
+			}
+		}
+
+		break;
+
 	case SCR_WARDING: /* half spell damage for a period of time */
 
 		if (confused) {
@@ -9210,10 +9284,8 @@ randenchchoice:
 		if (sobj->oartifact == ART_ANASTASIA_S_PERILOUS_GAMBL) {
 		      u.uprops[EVIL_PATCH_EFFECT].intrinsic |= FROMOUTSIDE;
 			int wondertech = rnd(MAXTECH-1);
-			if (!tech_known(wondertech)) {
-			    	learntech(wondertech, FROMOUTSIDE, 1);
-				You("learn how to perform a new technique! But you also gained the intrinsic evilpatch effect...");
-			}
+		    	learntech_or_leveltech(wondertech, FROMOUTSIDE, 1);
+			You("learn how to perform a new technique! But you also gained the intrinsic evilpatch effect...");
 		}
 
 		if (sobj->cursed) {

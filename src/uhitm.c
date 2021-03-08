@@ -23,6 +23,8 @@ STATIC_DCL boolean shade_aware(struct obj *);
 
 static int martial_dmg(void);
 
+static const char allnoncount[] = { ALL_CLASSES, 0 };
+
 STATIC_PTR void set_lit(int,int,void *);
 
 extern boolean notonhead;	/* for long worms */
@@ -272,16 +274,20 @@ boolean barehanded;
 	    && !(Confusion && !Conf_resist) && !Hallucination && !(Stunned && !Stun_resist) ) {
 		/* Intelligent chaotic weapons (Stormbringer) want blood */
 		if (!barehanded &&
-		  uwep && (uwep->oartifact == ART_STORMBRINGER || (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) || uwep->oartifact == ART_STROMBRINGER || uwep->oartifact == ART_PATRICIA_S_FEMININITY || uwep->oartifact == ART_ALASSEA_TELEMNAR || uwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uwep->oartifact == ART_HEAVY_THUNDERSTORM || uwep->oartifact == ART_WAND_OF_ORCUS || uwep->oartifact == ART_GENOCIDE || uwep->oartifact == ART_SLAVE_TO_ARMOK || uwep->oartifact == ART_KILLING_EDGE) ) {
+		  uwep && (uwep->oartifact == ART_STORMBRINGER || (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) || uwep->oartifact == ART_STROMBRINGER || uwep->oartifact == ART_PATRICIA_S_FEMININITY || uwep->oartifact == ART_ALASSEA_TELEMNAR || uwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uwep->oartifact == ART_HEAVY_THUNDERSTORM || uwep->oartifact == ART_WAND_OF_ORCUS || uwep->oartifact == ART_GENOCIDE || uwep->oartifact == ART_THIRST_FOR_BLOOD || uwep->oartifact == ART_SLAVE_TO_ARMOK || uwep->oartifact == ART_KILLING_EDGE) ) {
 			override_confirmation = HIT_UWEP;
 			return retval;
 		}
 		if (canspotmon(mtmp)) {
+
+			/* from the variant that calls itself NetHack 3.70: sometimes, silently scare the priest --Amy */
+			if (isevilvariant && mtmp->ispriest && !rn2(7)) monflee(mtmp, rnd(6), FALSE, FALSE);
+
 			sprintf(qbuf, "Really attack %s?", mon_nam(mtmp));
 			if (yn(qbuf) != 'y') {
 				/* Stormbringer is not tricked so easily */
 				if (!barehanded && u.twoweap && uswapwep &&
-				  (uswapwep->oartifact == ART_STORMBRINGER || (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) || uswapwep->oartifact == ART_STROMBRINGER || uswapwep->oartifact == ART_PATRICIA_S_FEMININITY || uswapwep->oartifact == ART_ALASSEA_TELEMNAR || uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uswapwep->oartifact == ART_HEAVY_THUNDERSTORM || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
+				  (uswapwep->oartifact == ART_STORMBRINGER || (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) || uswapwep->oartifact == ART_STROMBRINGER || uswapwep->oartifact == ART_PATRICIA_S_FEMININITY || uswapwep->oartifact == ART_ALASSEA_TELEMNAR || uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uswapwep->oartifact == ART_HEAVY_THUNDERSTORM || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_THIRST_FOR_BLOOD || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
 					override_confirmation = HIT_USWAPWEP;
 					/* Lose primary attack */
 					return HIT_USWAPWEP;
@@ -294,7 +300,7 @@ boolean barehanded;
 			if (strcmp (bufX, "yes")) {
 				/* Stormbringer is not tricked so easily */
 				if (!barehanded && u.twoweap && uswapwep &&
-				  (uswapwep->oartifact == ART_STORMBRINGER || (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) || uswapwep->oartifact == ART_STROMBRINGER || uswapwep->oartifact == ART_PATRICIA_S_FEMININITY || uswapwep->oartifact == ART_ALASSEA_TELEMNAR || uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uswapwep->oartifact == ART_HEAVY_THUNDERSTORM || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
+				  (uswapwep->oartifact == ART_STORMBRINGER || (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) || uswapwep->oartifact == ART_STROMBRINGER || uswapwep->oartifact == ART_PATRICIA_S_FEMININITY || uswapwep->oartifact == ART_ALASSEA_TELEMNAR || uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uswapwep->oartifact == ART_HEAVY_THUNDERSTORM || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_THIRST_FOR_BLOOD || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
 					override_confirmation = HIT_USWAPWEP;
 					/* Lose primary attack */
 					return HIT_USWAPWEP;
@@ -595,6 +601,22 @@ register struct monst *mtmp;
 		}
 	}
 
+	if(Role_if(PM_HALF_BAKED) && uarm && ((uarm->otyp < ROBE) || (uarm->otyp > ROBE_OF_WEAKNESS)) ) {
+		pline("Your armor is rather cumbersome...");
+		tmp -= 20;
+	}
+
+	if (Race_if(PM_SWIKNI)) {
+		if (uwep) {
+			if (uwep->oeroded) tmp -= ((uwep->oeroded) * 2);
+			if (uwep->oeroded2) tmp -= ((uwep->oeroded2) * 2);
+		}
+		if (u.twoweap && uswapwep) {
+			if (uswapwep->oeroded) tmp -= ((uswapwep->oeroded) * 2);
+			if (uswapwep->oeroded2) tmp -= ((uswapwep->oeroded2) * 2);
+		}
+	}
+
 	if (Role_if(PM_GUNNER)) {
 
 		if (uwep && uwep_skill_type() != P_DAGGER && uwep_skill_type() != P_KNIFE && uwep_skill_type() != P_FIREARM) {
@@ -713,6 +735,8 @@ register struct monst *mtmp;
 	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 149) tmp += 1;
 	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 199) tmp += 1;
 	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 249) tmp += 1;
+	if (uwep && uwep->oartifact == ART_LUCKY_MELEE_ATTACKS) tmp += 10;
+	if (StrongBlind_resistance) tmp += rn1(5, 5);
 
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
 	if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
@@ -853,9 +877,9 @@ register struct monst *mtmp;
 	 */
 	/* Intelligent chaotic weapons (Stormbringer) want blood */
 	if (is_safepet(mtmp) && !flags.forcefight) {
-	    if (( (!uwep && !(BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone())) || (uwep->oartifact != ART_STORMBRINGER && !(BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) && uwep->oartifact != ART_STROMBRINGER && uwep->oartifact != ART_PATRICIA_S_FEMININITY && uwep->oartifact != ART_ALASSEA_TELEMNAR && uwep->oartifact != ART_THRANDUIL_LOSSEHELIN && uwep->oartifact != ART_HEAVY_THUNDERSTORM && uwep->oartifact != ART_WAND_OF_ORCUS && uwep->oartifact != ART_GENOCIDE && uwep->oartifact != ART_SLAVE_TO_ARMOK && uwep->oartifact != ART_KILLING_EDGE) ) 
+	    if (( (!uwep && !(BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone())) || (uwep->oartifact != ART_STORMBRINGER && !(BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) && uwep->oartifact != ART_STROMBRINGER && uwep->oartifact != ART_PATRICIA_S_FEMININITY && uwep->oartifact != ART_ALASSEA_TELEMNAR && uwep->oartifact != ART_THRANDUIL_LOSSEHELIN && uwep->oartifact != ART_HEAVY_THUNDERSTORM && uwep->oartifact != ART_WAND_OF_ORCUS && uwep->oartifact != ART_GENOCIDE && uwep->oartifact != ART_THIRST_FOR_BLOOD && uwep->oartifact != ART_SLAVE_TO_ARMOK && uwep->oartifact != ART_KILLING_EDGE) ) 
 		&& (!u.twoweap || !uswapwep 
-		   || (uswapwep->oartifact != ART_STORMBRINGER && !(BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) && uswapwep->oartifact != ART_STROMBRINGER && uswapwep->oartifact != ART_PATRICIA_S_FEMININITY && uswapwep->oartifact != ART_ALASSEA_TELEMNAR && uswapwep->oartifact != ART_THRANDUIL_LOSSEHELIN && uswapwep->oartifact != ART_HEAVY_THUNDERSTORM && uswapwep->oartifact != ART_WAND_OF_ORCUS && uswapwep->oartifact != ART_GENOCIDE && uswapwep->oartifact != ART_SLAVE_TO_ARMOK && uswapwep->oartifact != ART_KILLING_EDGE) )){
+		   || (uswapwep->oartifact != ART_STORMBRINGER && !(BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) && uswapwep->oartifact != ART_STROMBRINGER && uswapwep->oartifact != ART_PATRICIA_S_FEMININITY && uswapwep->oartifact != ART_ALASSEA_TELEMNAR && uswapwep->oartifact != ART_THRANDUIL_LOSSEHELIN && uswapwep->oartifact != ART_HEAVY_THUNDERSTORM && uswapwep->oartifact != ART_WAND_OF_ORCUS && uswapwep->oartifact != ART_GENOCIDE && uswapwep->oartifact != ART_THIRST_FOR_BLOOD && uswapwep->oartifact != ART_SLAVE_TO_ARMOK && uswapwep->oartifact != ART_KILLING_EDGE) )){
 		/* there are some additional considerations: this won't work
 		 * if in a shop or Punished or you miss a random roll or
 		 * if you can walk thru walls and your pet cannot (KAA) or
@@ -940,7 +964,7 @@ register struct monst *mtmp;
 		    if (!(PlayerCannotUseSkills) && P_SKILL(P_MARTIAL_ARTS) >= P_EXPERT)
 			You("assume a martial arts stance.");
 		    else You("begin %sing monsters with your %s %s.",
-			Role_if(PM_MONK) ? "strik" : "bash",
+			(Role_if(PM_MONK) || Role_if(PM_HALF_BAKED)) ? "strik" : "bash",
 			uarmg ? "gloved" : "bare",	/* Del Lamb */
 			makeplural(body_part(HAND)));
 	    }
@@ -1202,7 +1226,14 @@ martial_dmg()
                              5 if Basic  (1d4)
          */
 
-        if ((Role_if(PM_MONK) && !Upolyd && !(PlayerCannotUseSkills) )
+	  if (Role_if(PM_HALF_BAKED) && !Upolyd) {
+		damage = rnd(2);
+		if (!(PlayerCannotUseSkills) && (P_SKILL(P_MARTIAL_ARTS) >= P_BASIC)) {
+			damage += rnd(P_SKILL(P_MARTIAL_ARTS) - P_UNSKILLED);
+			if (!rn2(2)) damage += rnd(P_SKILL(P_MARTIAL_ARTS) - P_UNSKILLED);
+		}
+
+        } else if ((Role_if(PM_MONK) && !Upolyd && !(PlayerCannotUseSkills) )
                 && (P_SKILL(P_MARTIAL_ARTS) >= P_GRAND_MASTER)
                 && (u.ulevel > 16)) damage = d(6,2) + (P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER ? rnd(10) : 0) ;                                
         else if (!(PlayerCannotUseSkills) && (P_SKILL(P_MARTIAL_ARTS) >= P_BASIC) && u.ulevel > (2*(P_SKILL(P_MARTIAL_ARTS) - P_BASIC) + 5))
@@ -1481,12 +1512,14 @@ int dieroll;
 			}
 		}
 
+		if (uarmf && uarmf->oartifact == ART_FINGERNAIL_FRONT && (!uarmg || FingerlessGloves) ) tmp += 3;
+
 	    valid_weapon_attack = (tmp > 0);
 
 	    /* blessed gloves give bonuses when fighting 'bare-handed' */
 	    if (uarmg && uarmg->blessed && (is_undead(mdat) || is_demon(mdat)))
 		tmp += rnd(4);
-	    
+
 	    if (uarmg && uarmg->spe) tmp += uarmg->spe; /* WAC plusses from gloves */
 
 	    /* So do silver rings.  Note: rings are worn under gloves, so you
@@ -1504,6 +1537,7 @@ int dieroll;
 	    }
 
 	    /* WAC - Hand-to-Hand Combat Techniques */
+
 
 	    if ((tech_inuse(T_CHI_STRIKE))  && (u.uen > 0)) {
 		You_feel("a surge of force.");
@@ -1606,7 +1640,7 @@ int dieroll;
 		/* is it not a melee weapon? */
 		/* KMH, balance patch -- new macros */
 		if (/* if you strike with a bow... */
-		    is_launcher(obj) ||
+		    (is_launcher(obj) && !(obj->otyp == LASERXBOW && obj->lamplit)) ||
 		    /* or strike with a missile in your hand... */
 		    (!thrown && (is_missile(obj) || is_ammo(obj))) ||
 		    /* or use a pole at short range and not mounted... */
@@ -1614,12 +1648,14 @@ int dieroll;
 		    /* lightsaber that isn't lit ;) */
 		    (is_lightsaber(obj) && !obj->lamplit) ||
 		    /* or throw a missile without the proper bow... */
+		    (thrown == 1 && is_ammo(obj) && launcher && launcher->otyp == LASERXBOW && !launcher->lamplit) ||
 		    (thrown == 1 && is_ammo(obj) && 
 		    	!ammo_and_launcher(obj, launcher)) || 
 		    /* This case isn't actually needed so far since 
 		     * you can only throw in two-weapon mode when both
 		     * launchers take the same ammo
 		     */
+		    (thrown == 2 && is_ammo(obj) && launcher && launcher->otyp == LASERXBOW && !launcher->lamplit) ||
 		    (thrown == 2 && is_ammo(obj) && 
 		    	!ammo_and_launcher(obj, launcher))) {
 		    /* then do only 1-2 points of damage */
@@ -1630,7 +1666,7 @@ int dieroll;
 
 		/* Bashing with bows, darts, ranseurs or inactive lightsabers might not be completely useless... --Amy */
 
-		    if ((is_launcher(obj) || is_missile(obj) || (is_pole(obj) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(obj) && !obj->lamplit) ) && !thrown) {
+		    if (( (is_launcher(obj) && obj->otyp != WEAPON_SIGN && !(obj->otyp == LASERXBOW && obj->lamplit)) || is_missile(obj) || (is_pole(obj) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(obj) && !obj->lamplit) ) && !thrown) {
 
 			if (!(PlayerCannotUseSkills) && !rn2(2)) {
 
@@ -1695,6 +1731,47 @@ int dieroll;
 				else if (tmp == 4) tmp = 3;
 				else if (tmp == 5) tmp = 3;
 				else if (tmp >= 6) tmp /= 2;
+			}
+
+			/* bashing demons with silver arrows did NOTHING??? what a bug... --Amy */
+
+			if (objects[obj->otyp].oc_material == MT_SILVER && hates_silver(mdat)) {
+				tmp += rnd(20);
+				silvermsg = TRUE; silverobj = TRUE;
+			}
+			if (objects[obj->otyp].oc_material == MT_VIVA && hates_viva(mdat)) {
+				tmp += 20;
+				vivaobj = TRUE;
+			}
+			if (objects[obj->otyp].oc_material == MT_COPPER && hates_copper(mdat)) {
+				tmp += 20;
+				copperobj = TRUE;
+			}
+			if (objects[obj->otyp].oc_material == MT_PLATINUM && hates_platinum(mdat)) {
+				tmp += 20;
+				platinumobj = TRUE;
+			}
+			if (obj->cursed && hates_cursed(mdat)) {
+				tmp += 4;
+				if (obj->hvycurse) tmp += 4;
+				if (obj->prmcurse) tmp += 7;
+				if (obj->bbrcurse) tmp += 15;
+				if (obj->evilcurse) tmp += 15;
+				if (obj->morgcurse) tmp += 15;
+				cursedobj = 1;
+				if (obj->hvycurse) cursedobj++;
+				if (obj->prmcurse) cursedobj++;
+				if (obj->bbrcurse) cursedobj++;
+				if (obj->evilcurse) cursedobj++;
+				if (obj->morgcurse) cursedobj++;
+			}
+			if (objects[obj->otyp].oc_material == MT_INKA && hates_inka(mdat)) {
+				tmp += 5;
+				inkaobj = TRUE;
+			}
+			if (obj->otyp == ODOR_SHOT && hates_odor(mdat)) {
+				tmp += rnd(10);
+				odorobj = TRUE;
 			}
 
 		} else {
@@ -1797,10 +1874,10 @@ int dieroll;
 			tmp += issoviet ? GushLevel : rno(GushLevel); /* nerf by Amy */
 			hittxt = TRUE;
 		    } else if ((dieroll == 2 || (juyohelpchance >= rnd(100))) && obj == uwep &&
-			  !u.twoweap && obj->oclass == WEAPON_CLASS && (bimanual(obj) ||
+			  !u.twoweap && obj->oclass == WEAPON_CLASS && (bimanual(obj) || obj->oartifact == ART_OUTJUYOING ||
 			    (Role_if(PM_SAMURAI) && obj->otyp == KATANA && !uarms)) &&
-			  ((wtype = uwep_skill_type()) != P_NONE && !(PlayerCannotUseSkills) &&
-			    P_SKILL(wtype) >= P_SKILLED) && ((monwep = MON_WEP(mon)) != 0 && monwep &&
+			  (((wtype = uwep_skill_type()) != P_NONE && !(PlayerCannotUseSkills) && P_SKILL(wtype) >= P_SKILLED) || (obj->oartifact == ART_OUTJUYOING) ) && 
+			  ((monwep = MON_WEP(mon)) != 0 && monwep &&
 			   !is_flimsy(monwep) && !stack_too_big(monwep) &&
 			   !obj_resists(monwep, 50 + 15 * greatest_erosionX(obj), 100))) {
 			/*
@@ -1830,6 +1907,8 @@ int dieroll;
 				if (rn2(4)) {
 				    monflee(mon, d(2,3), TRUE, TRUE);
 				}
+				if (obj && obj->oartifact == ART_OUTJUYOING) use_skill(P_JUYO, rnd(4));
+
 				hittxt = TRUE;
 			}
 
@@ -1950,6 +2029,110 @@ int dieroll;
 				pline("%s is shaken out of %s frenzy by your attack!", Monnam(mon), mhis(mon));
 			}
 
+			/* tin opener special-casing */
+			if (obj && obj->oartifact == ART_TIN_FU) tmp += 20;
+			if (obj->oartifact == ART_SUPERMARKET_FU) {
+				tmp += rnd(10);
+				if (Role_if(PM_SUPERMARKET_CASHIER)) tmp += rnd(10);
+			}
+
+			if (obj && (obj->otyp == TIN_OPENER || obj->otyp == BUDO_NO_SASU) && Role_if(PM_SUPERMARKET_CASHIER)) {
+				if (obj->otyp == BUDO_NO_SASU) tmp += 5;
+				tmp += 2;
+				if (u.ulevel >= 18) tmp += rnd(10);
+				if (u.ulevel >= 24) tmp += rnd(4);
+				if (u.ulevel >= 27) tmp += rnd(2);
+				if (u.ulevel >= 30) tmp += 1;
+
+				if (!(PlayerCannotUseSkills)) {
+					switch (P_SKILL(P_MARTIAL_ARTS)) {
+						case P_BASIC: tmp += 2; break;
+						case P_SKILLED: tmp += 4; break;
+						case P_EXPERT: tmp += 6; break;
+						case P_MASTER: tmp += 8; break;
+						case P_GRAND_MASTER: tmp += 10; break;
+						case P_SUPREME_MASTER: tmp += 12; break;
+					}
+				}
+
+			    if ((tech_inuse(T_CHI_STRIKE))  && (u.uen > 0)) {
+				You_feel("a surge of force.");
+				tmp += (u.uen > (10 + (u.ulevel / 5)) ? 
+					 (10 + (u.ulevel / 5)) : u.uen);
+				u.uen -= (10 + (u.ulevel / 5));
+				if (u.uen < 0) u.uen = 0;
+			    }
+
+			    if (tech_inuse(T_E_FIST)) {
+			    	int dmgbonus = 0;
+				hittxt = TRUE;
+				dmgbonus = d(2,4);
+				switch (rn2(4)) {
+				    case 0: /* Fire */
+					if (!Blind) pline("%s is on fire!", Monnam(mon));
+					if (!rn2(33)) dmgbonus += destroy_mitem(mon, SCROLL_CLASS, AD_FIRE);
+					if (!rn2(33)) dmgbonus += destroy_mitem(mon, SPBOOK_CLASS, AD_FIRE);
+					if (noeffect || resists_fire(mon)) {
+					    if (!noeffect)
+						shieldeff(mon->mx, mon->my);
+					    if (!Blind) 
+						pline_The("fire doesn't heat %s!", mon_nam(mon));
+					    golemeffects(mon, AD_FIRE, dmgbonus);
+					    if (!noeffect)
+						dmgbonus = 0;
+					    else
+						noeffect = 0;
+					}
+					/* only potions damage resistant players in destroy_item */
+					if (!rn2(33)) dmgbonus += destroy_mitem(mon, POTION_CLASS, AD_FIRE);
+					break;
+				    case 1: /* Cold */
+				    	if (!Blind) pline("%s is covered in frost!", Monnam(mon));
+					if (noeffect || resists_cold(mon)) {
+					    if (!noeffect)
+						shieldeff(mon->mx, mon->my);
+					    if (!Blind) 
+						pline_The("frost doesn't chill %s!", mon_nam(mon));
+					    golemeffects(mon, AD_COLD, dmgbonus);
+					    dmgbonus = 0;
+					    noeffect = 0;
+					}
+					if (!rn2(33)) dmgbonus += destroy_mitem(mon, POTION_CLASS, AD_COLD);
+					break;
+				    case 2: /* Elec */
+					if (!Blind) pline("%s is zapped!", Monnam(mon));
+					if (!rn2(33)) dmgbonus += destroy_mitem(mon, WAND_CLASS, AD_ELEC);
+					if (noeffect || resists_elec(mon)) {
+					    if (!noeffect)
+						shieldeff(mon->mx, mon->my);
+					    if (!Blind)
+						pline_The("zap doesn't shock %s!", mon_nam(mon));
+					    golemeffects(mon, AD_ELEC, dmgbonus);
+					    if (!noeffect)
+						dmgbonus = 0;
+					    else
+						noeffect = 0;
+					}
+					/* only rings damage resistant players in destroy_item */
+					if (!rn2(33)) dmgbonus += destroy_mitem(mon, RING_CLASS, AD_ELEC);
+					break;
+				    case 3: /* Acid */
+					if (!Blind)
+					    pline("%s is covered in acid!", Monnam(mon));
+					if (noeffect || resists_acid(mon)) {
+					    if (!Blind)
+						pline_The("acid doesn't burn %s!", Monnam(mon));
+					    dmgbonus = 0;
+					    noeffect = 0;
+					}
+					break;
+				}
+				if (dmgbonus > 0)
+				    tmp += dmgbonus;
+			    } /* Techinuse Elemental Fist */	
+
+			}
+
 			/* software engineer can occasionally instakill bugs */
 			if (Role_if(PM_SOFTWARE_ENGINEER) && !mon->mtame && !mon->mpeaceful && mon->data->mlet == S_XAN && !rn2(100)) {
 				/* can't have all the ZAPM stuff in the game without using the word "derezzed" at least once! */
@@ -2020,6 +2203,10 @@ int dieroll;
 
 			    if (obj->otyp == ANTIMATTER_BULLET) {
 					tmp += 20;
+			    }
+
+			    if (launcher && launcher->otyp == LASERXBOW && launcher->lamplit && launcher->altmode) {
+					tmp += 5;
 			    }
 
 			    if (launcher->oartifact)
@@ -2126,7 +2313,7 @@ int dieroll;
 		mdat = mon->data;
 		tmp = (is_shade(mdat) || mon->egotype_shader) ? 0 : 1;
 	    } else {
-		if (flags.bash_reminder && !rn2(10)) pline("A helpful reminder: you attack with a non-weapon!");
+		if (flags.bash_reminder && obj->otyp != BOULDER && obj->otyp != WEAPON_SIGN && obj->oclass != VENOM_CLASS && !rn2(10)) pline("A helpful reminder: you attack with a non-weapon!");
 		if ((is_shade(mdat) || mon->egotype_shader) && !shade_aware(obj)) {
 		    tmp = 0;
 		    strcpy(unconventional, cxname(obj));
@@ -2434,108 +2621,38 @@ int dieroll;
 			else tmp = rnd(tmp);
 			if(tmp > 10) tmp = 10; /* slight increase --Amy */
 
-			if (obj && obj->oartifact == ART_TIN_FU) tmp += 20;
-
-			if (obj->oartifact == ART_SUPERMARKET_FU) {
-				tmp += rnd(10);
-				if (Role_if(PM_SUPERMARKET_CASHIER)) tmp += rnd(10);
-			}
-
-			if (obj && (obj->otyp == TIN_OPENER || obj->otyp == BUDO_NO_SASU) && Role_if(PM_SUPERMARKET_CASHIER)) {
-				if (obj->otyp == BUDO_NO_SASU) tmp += 5;
-				tmp += 2;
-				if (u.ulevel >= 18) tmp += rnd(10);
-				if (u.ulevel >= 24) tmp += rnd(4);
-				if (u.ulevel >= 27) tmp += rnd(2);
-				if (u.ulevel >= 30) tmp += 1;
+			if (obj && obj->otyp == WEAPON_SIGN) {
+				int weaponsign = 10;
+				if (obj->spe > 0) weaponsign += obj->spe;
 
 				if (!(PlayerCannotUseSkills)) {
-					switch (P_SKILL(P_MARTIAL_ARTS)) {
-						case P_BASIC: tmp += 2; break;
-						case P_SKILLED: tmp += 4; break;
-						case P_EXPERT: tmp += 6; break;
-						case P_MASTER: tmp += 8; break;
-						case P_GRAND_MASTER: tmp += 10; break;
-						case P_SUPREME_MASTER: tmp += 12; break;
+					switch (P_SKILL(P_SHIELD)) {
+						case P_BASIC: weaponsign += 2; break;
+						case P_SKILLED: weaponsign += 4; break;
+						case P_EXPERT: weaponsign += 6; break;
+						case P_MASTER: weaponsign += 8; break;
+						case P_GRAND_MASTER: weaponsign += 10; break;
+						case P_SUPREME_MASTER: weaponsign += 12; break;
 					}
 				}
 
-			    if ((tech_inuse(T_CHI_STRIKE))  && (u.uen > 0)) {
-				You_feel("a surge of force.");
-				tmp += (u.uen > (10 + (u.ulevel / 5)) ? 
-					 (10 + (u.ulevel / 5)) : u.uen);
-				u.uen -= (10 + (u.ulevel / 5));
-				if (u.uen < 0) u.uen = 0;
-			    }
-
-			    if (tech_inuse(T_E_FIST)) {
-			    	int dmgbonus = 0;
-				hittxt = TRUE;
-				dmgbonus = d(2,4);
-				switch (rn2(4)) {
-				    case 0: /* Fire */
-					if (!Blind) pline("%s is on fire!", Monnam(mon));
-					if (!rn2(33)) dmgbonus += destroy_mitem(mon, SCROLL_CLASS, AD_FIRE);
-					if (!rn2(33)) dmgbonus += destroy_mitem(mon, SPBOOK_CLASS, AD_FIRE);
-					if (noeffect || resists_fire(mon)) {
-					    if (!noeffect)
-						shieldeff(mon->mx, mon->my);
-					    if (!Blind) 
-						pline_The("fire doesn't heat %s!", mon_nam(mon));
-					    golemeffects(mon, AD_FIRE, dmgbonus);
-					    if (!noeffect)
-						dmgbonus = 0;
-					    else
-						noeffect = 0;
+				if (tech_inuse(T_SHIELD_BASH)) {
+					weaponsign += (3 + obj->spe);
+					if (!(PlayerCannotUseSkills)) {
+						switch (P_SKILL(P_SHIELD)) {
+							case P_BASIC: weaponsign += 1; break;
+							case P_SKILLED: weaponsign += 2; break;
+							case P_EXPERT: weaponsign += 3; break;
+							case P_MASTER: weaponsign += 4; break;
+							case P_GRAND_MASTER: weaponsign += 5; break;
+							case P_SUPREME_MASTER: weaponsign += 6; break;
+						}
 					}
-					/* only potions damage resistant players in destroy_item */
-					if (!rn2(33)) dmgbonus += destroy_mitem(mon, POTION_CLASS, AD_FIRE);
-					break;
-				    case 1: /* Cold */
-				    	if (!Blind) pline("%s is covered in frost!", Monnam(mon));
-					if (noeffect || resists_cold(mon)) {
-					    if (!noeffect)
-						shieldeff(mon->mx, mon->my);
-					    if (!Blind) 
-						pline_The("frost doesn't chill %s!", mon_nam(mon));
-					    golemeffects(mon, AD_COLD, dmgbonus);
-					    dmgbonus = 0;
-					    noeffect = 0;
-					}
-					if (!rn2(33)) dmgbonus += destroy_mitem(mon, POTION_CLASS, AD_COLD);
-					break;
-				    case 2: /* Elec */
-					if (!Blind) pline("%s is zapped!", Monnam(mon));
-					if (!rn2(33)) dmgbonus += destroy_mitem(mon, WAND_CLASS, AD_ELEC);
-					if (noeffect || resists_elec(mon)) {
-					    if (!noeffect)
-						shieldeff(mon->mx, mon->my);
-					    if (!Blind)
-						pline_The("zap doesn't shock %s!", mon_nam(mon));
-					    golemeffects(mon, AD_ELEC, dmgbonus);
-					    if (!noeffect)
-						dmgbonus = 0;
-					    else
-						noeffect = 0;
-					}
-					/* only rings damage resistant players in destroy_item */
-					if (!rn2(33)) dmgbonus += destroy_mitem(mon, RING_CLASS, AD_ELEC);
-					break;
-				    case 3: /* Acid */
-					if (!Blind)
-					    pline("%s is covered in acid!", Monnam(mon));
-					if (noeffect || resists_acid(mon)) {
-					    if (!Blind)
-						pline_The("acid doesn't burn %s!", Monnam(mon));
-					    dmgbonus = 0;
-					    noeffect = 0;
-					}
-					break;
+					if (obj->oartifact == ART_SPECTRATE_ETTECKOR) weaponsign += 10;
 				}
-				if (dmgbonus > 0)
-				    tmp += dmgbonus;
-			    } /* Techinuse Elemental Fist */	
+				if (Role_if(PM_PALADIN) && weaponsign > 0) weaponsign *= 2;
 
+				if (weaponsign > 0) tmp += rnd(weaponsign);
 			}
 
 			if (obj && obj->oclass == SPBOOK_CLASS && obj->oartifact) {
@@ -2615,6 +2732,23 @@ int dieroll;
 	    }
 	}
 
+	/* dancer has a combo system, inspired by splicehack, but here I used my own implementation --Amy */
+
+	if (Role_if(PM_DANCER) && !thrown && !pieks) {
+		tmp += u.dancercombostrike;
+		if (u.dancercombostrike > 0) {
+			You("continue dancing.");
+			pline("+%d bonus!", u.dancercombostrike);
+			u.dancercombostrike++;
+			u.dancercomboactive = TRUE;
+		} else {
+			You("start dancing.");
+			u.dancercombostrike++;
+			u.dancercomboactive = TRUE;
+		}
+	}
+
+
 	/****** NOTE: perhaps obj is undefined!! (if !thrown && BOOMERANG)
 	 *      *OR* if attacking bare-handed!! */
 
@@ -2640,6 +2774,10 @@ int dieroll;
 		get_dmg_bonus = 0;
 		if (tmp > 1) tmp /= 2;
 		if (flags.bash_reminder && !rn2(10)) You("can't fire that weapon effectively while engulfed...");
+	}
+
+	if (thrown && obj && is_ammo(obj) && launcher && launcher->otyp == LASERXBOW && !launcher->lamplit) {
+		if (flags.bash_reminder && !rn2(5)) pline("The laser-based crossbow is ineffective while it's not lit! You need to turn it on or it won't deal meaningful damage!");
 	}
 
 	if (thrown && obj && is_ammo(obj) && launcher && !ammo_and_launcher(obj, launcher)) {
@@ -2699,6 +2837,7 @@ int dieroll;
 		if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 149) tmp += 1;
 		if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 199) tmp += 1;
 		if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 249) tmp += 1;
+		if (uarmf && uarmf->oartifact == ART_EROTICLAMP && u.ustuck && !u.uswallow && !sticks(youmonst.data)) tmp += 2;
 
 		if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 
@@ -2713,6 +2852,7 @@ int dieroll;
 	if (!thrown && (!Upolyd || !no_obj) && tech_inuse(T_SHIELD_BASH) && uarms && (uarms->spe > -4)) {
 		pline("Schrack!");
 		tmp += (3 + uarms->spe);
+		if (uarms->oartifact == ART_SPECTRATE_ETTECKOR) tmp += rnd(10);
 		if (!(PlayerCannotUseSkills)) {
 			switch (P_SKILL(P_SHIELD)) {
 				case P_BASIC: tmp += 1; break;
@@ -2756,9 +2896,9 @@ int dieroll;
 	    wep = PROJECTILE(obj) ? launcher : obj;
 
 		/* bashing with launchers or other "bad" weapons shouldn't give insane bonuses --Amy */
-		if (wep && !((is_launcher(wep) || is_missile(wep) || (is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) ) && !thrown)) tmp += weapon_dam_bonus(wep);
+		if (wep && !(( (is_launcher(wep) && !(wep->otyp == LASERXBOW && wep->lamplit)) || is_missile(wep) || (is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) ) && !thrown)) tmp += weapon_dam_bonus(wep);
 
-		if (wep && !thrown && !((is_launcher(wep) || is_missile(wep) || (is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) )) ) tmp += melee_dam_bonus(wep);	/* extra damage bonus added by Amy */
+		if (wep && !thrown && !(( (is_launcher(wep) && !(wep->otyp == LASERXBOW && wep->lamplit)) || is_missile(wep) || (is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) )) ) tmp += melee_dam_bonus(wep);	/* extra damage bonus added by Amy */
 		if (wep && thrown) tmp += ranged_dam_bonus(wep);	/* ditto */
 
 		if (obj && obj->oartifact == ART_SHOE_BRAND && mon->data->msound == MS_SHOE) {
@@ -2881,6 +3021,46 @@ int dieroll;
 			pline("%s is bleeding!", Monnam(mon));
 		}
 
+		if (wep && wep->oartifact == ART_HAMSTRUNG_FOUR_SURE && mon->mcanmove && !rn2(3)) {
+			mon->mfrozen = 2;
+			mon->mcanmove = 0;
+			mon->mstrategy &= ~STRAT_WAITFORU;
+			pline("%s is unable to move!", Monnam(mon));
+		}
+
+		if (wep && wep->oartifact == ART_BOHEM_FUELKANAL && !rn2(100)) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) mon_adjust_speed(mon, -1, (struct obj *)0);
+		}
+
+		if (wep && wep->oartifact == ART_MELATED_METAL && !thrown && wep->spe > -20 && !rn2(1000)) {
+			register struct obj *melating;
+			pline("You may change the material of a worn armor piece to copper.");
+melatechoice:
+			melating = getobj(allnoncount, "magically enchant");
+			if(!melating) {
+				if (yn("Really exit with no object selected? Doing so will disenchant your weapon!") == 'y') {
+					if (wep && wep->spe > -20) wep->spe--;
+					pline("Well, your fault, now your weapon was disenchanted.");
+				}
+				else goto melatechoice;
+			} else if (melating && !(melating->owornmask & W_ARMOR) ) {
+				if (wep && wep->spe > -20) wep->spe--;
+				pline("You didn't select a worn armor piece, and therefore your weapon was disenchanted.");
+			} else if (melating && objects[(melating)->otyp].oc_material == MT_COPPER) {
+				if (wep && wep->spe > -20) wep->spe--;
+				pline("You selected an armor piece that was already made of copper, and therefore your weapon was disenchanted.");
+			} else if (melating) {
+				objects[(melating)->otyp].oc_material = MT_COPPER;
+				pline_The("armor piece is made of copper now.");
+			}
+
+		}
+
+		if (wep && wep->oartifact == ART_ENCHANTEASY && !rn2(1000) && wep->spe < 7) {
+			wep->spe++;
+			Your("weapon was enchanted!");
+		}
+
 		if (wep && wep->oartifact == ART_MARTHA_S_FOREIGN_GOER) {
 			mon->bleedout += rnd(10);
 			pline("%s is bleeding!", Monnam(mon));
@@ -2915,7 +3095,7 @@ int dieroll;
 
 	    /* [this assumes that `!thrown' implies wielded...] */
 	    wtype = weapon_type(wep);
-	    if (!(mon->egotype_flickerer) && !noeffect && !(mon->data == &mons[PM_LITTLE_POISON_IVY] || mon->data == &mons[PM_UNGENOCIDABLE_VAMPSHIFTER] || mon->data == &mons[PM_TERRIFYING_POISON_IVY] || mon->data == &mons[PM_GIRL_WITH_THE_MOST_BEAUTIFUL_SHOES_IN_THE_WORLD] || mon->data == &mons[PM_IMMOVABLE_OBSTACLE] || mon->data == &mons[PM_INVINCIBLE_HAEN] || mon->data == &mons[PM_CHAREY] || mon->data == &mons[PM_INVENTOR_OF_THE_SISTER_COMBAT_BOOTS] || mon->data == &mons[PM_SWEET_ASIAN_POISON_IVY] || mon->data == &mons[PM_FIRST_DUNVEGAN] || mon->data == &mons[PM_PERCENTI_HAS_LOST___] || mon->data == &mons[PM_PERCENTI_IS_IMMUNE_TO_THE_ATTACK_]) ) {
+	    if (!(mon->egotype_flickerer) && !noeffect && !(mon->data == &mons[PM_LITTLE_POISON_IVY] || mon->data == &mons[PM_AMBER_FEMMY] || mon->data == &mons[PM_UNGENOCIDABLE_VAMPSHIFTER] || mon->data == &mons[PM_TERRIFYING_POISON_IVY] || mon->data == &mons[PM_GIRL_WITH_THE_MOST_BEAUTIFUL_SHOES_IN_THE_WORLD] || mon->data == &mons[PM_IMMOVABLE_OBSTACLE] || mon->data == &mons[PM_INVINCIBLE_HAEN] || mon->data == &mons[PM_CHAREY] || mon->data == &mons[PM_INVENTOR_OF_THE_SISTER_COMBAT_BOOTS] || mon->data == &mons[PM_SWEET_ASIAN_POISON_IVY] || mon->data == &mons[PM_FIRST_DUNVEGAN] || mon->data == &mons[PM_PERCENTI_HAS_LOST___] || mon->data == &mons[PM_PERCENTI_IS_IMMUNE_TO_THE_ATTACK_]) ) {
 		    if (thrown || !u.twoweap || !rn2(2)) use_skill(wtype, 1);
 		    else if (u.twoweap) use_skill(P_TWO_WEAPON_COMBAT,1);
 
@@ -2924,6 +3104,48 @@ int dieroll;
 				if (u.ugeneralcombatturns >= 10) {
 					u.ugeneralcombatturns = 0;
 					use_skill(P_GENERAL_COMBAT, 1);
+				}
+
+				if (uwep && uwep->oartifact == ART_ATARU_ONE && u.twoweap && uswapwep && uswapwep->oartifact == ART_ATARU_TWO) {
+					u.uataruturns++;
+					if (u.uataruturns >= 4) {
+						u.uataruturns = 0;
+						use_skill(P_ATARU, 1);
+					}
+				}
+
+				if (uwep && uwep->oartifact == ART_ATARU_TWO && u.twoweap && uswapwep && uswapwep->oartifact == ART_ATARU_ONE) {
+					u.uataruturns++;
+					if (u.uataruturns >= 4) {
+						u.uataruturns = 0;
+						use_skill(P_ATARU, 1);
+					}
+				}
+
+				if (uwep && uwep->oartifact == ART_THIS_IS_VAAPAD) {
+						u.uvaapadturns++;
+						if (u.uvaapadturns >= 4) {
+							u.uvaapadturns = 0;
+							use_skill(P_VAAPAD, 1);
+						}
+				}
+
+				if (uwep && uwep->oartifact == ART_CONCENTRATOR) {
+					if (!u.twoweap || !rn2(2)) {
+						u.ushiichoturns++;
+						if (u.ushiichoturns >= 5) {
+							u.ushiichoturns = 0;
+							use_skill(P_SHII_CHO, 1);
+						}
+					}
+				}
+
+				if (!uarms && !u.twoweap && uwep && uwep->oartifact == ART_MA_STRIKE) {
+					u.umakashiturns++;
+					if (u.umakashiturns >= 4) {
+						u.umakashiturns = 0;
+						use_skill(P_MAKASHI, 1);
+					}
 				}
 
 				if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
@@ -2960,10 +3182,10 @@ int dieroll;
 						}
 					}
 
-				}
+				} /* end lightsaber-specific code */
 
 				/* For some reason, "wep" isn't always defined, yet the checks above don't crash... --Amy */
-				if (wep && !is_missile(wep) && !is_ammo(wep) && !is_launcher(wep) && !(is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) && bimanual(wep)) {
+				if (wep && !is_missile(wep) && !is_ammo(wep) && !(is_launcher(wep) && !(wep->otyp == LASERXBOW && wep->lamplit)) && !(is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) && bimanual(wep)) {
 					u.utwohandedcombatturns++;
 					if (u.utwohandedcombatturns >= 3) {
 						u.utwohandedcombatturns = 0;
@@ -2995,8 +3217,17 @@ int dieroll;
 					}
 				}
 				/* djem so was also training ultra slowly, so here's a multiplier */
-				if (wep && is_lightsaber(wep) && wep->lamplit) {
+				if (wep && is_lightsaber(wep) && wep->lamplit && obj && (wep == obj)) {
 					use_skill(P_DJEM_SO, rnd(4));
+				}
+
+				if (wep && wep->oartifact == ART_RUSMA_SRO && obj && (wep == obj)) {
+					use_skill(P_DJEM_SO, rnd(4));
+				}
+
+				if (uwep && uwep->oartifact == ART_DJARWETHEREYET && uwep->lamplit && obj && objects[obj->otyp].oc_skill == -P_CROSSBOW) {
+					use_skill(P_DJEM_SO, 1);
+					if (uwep->altmode) use_skill(P_DJEM_SO, 1);
 				}
 
 			}
@@ -3162,7 +3393,7 @@ int dieroll;
 		return FALSE;
 	}
 
-	if (mon->data == &mons[PM_LITTLE_POISON_IVY] || mon->data == &mons[PM_UNGENOCIDABLE_VAMPSHIFTER] || mon->data == &mons[PM_TERRIFYING_POISON_IVY] || mon->data == &mons[PM_GIRL_WITH_THE_MOST_BEAUTIFUL_SHOES_IN_THE_WORLD] || mon->data == &mons[PM_IMMOVABLE_OBSTACLE] || mon->data == &mons[PM_INVINCIBLE_HAEN] || mon->data == &mons[PM_CHAREY] || mon->data == &mons[PM_INVENTOR_OF_THE_SISTER_COMBAT_BOOTS] || mon->data == &mons[PM_SWEET_ASIAN_POISON_IVY] || mon->data == &mons[PM_FIRST_DUNVEGAN] || mon->data == &mons[PM_PERCENTI_HAS_LOST___] || mon->data == &mons[PM_PERCENTI_IS_IMMUNE_TO_THE_ATTACK_]) {
+	if (mon->data == &mons[PM_LITTLE_POISON_IVY] || mon->data == &mons[PM_AMBER_FEMMY] || mon->data == &mons[PM_UNGENOCIDABLE_VAMPSHIFTER] || mon->data == &mons[PM_TERRIFYING_POISON_IVY] || mon->data == &mons[PM_GIRL_WITH_THE_MOST_BEAUTIFUL_SHOES_IN_THE_WORLD] || mon->data == &mons[PM_IMMOVABLE_OBSTACLE] || mon->data == &mons[PM_INVINCIBLE_HAEN] || mon->data == &mons[PM_CHAREY] || mon->data == &mons[PM_INVENTOR_OF_THE_SISTER_COMBAT_BOOTS] || mon->data == &mons[PM_SWEET_ASIAN_POISON_IVY] || mon->data == &mons[PM_FIRST_DUNVEGAN] || mon->data == &mons[PM_PERCENTI_HAS_LOST___] || mon->data == &mons[PM_PERCENTI_IS_IMMUNE_TO_THE_ATTACK_]) {
 
 		pline("%s is IMMUNE to the attack!", Monnam(mon));
 		if (FunnyHallu) You("curse at Konami for designing it like that.");
@@ -3204,7 +3435,7 @@ int dieroll;
         }
 
 	/* Special monk strikes */
-	if (Role_if(PM_MONK) && !Upolyd && !thrown && no_obj &&
+	if ((Role_if(PM_MONK) || Role_if(PM_HALF_BAKED)) && !Upolyd && !thrown && no_obj &&
 		(!uarm || (uarm && uarm->otyp >= ROBE &&
 		 uarm->otyp <= ROBE_OF_WEAKNESS)) && !uarms &&
 		 distu(mon->mx, mon->my) <= 2) {
@@ -3309,7 +3540,7 @@ int dieroll;
 		abuse_dog(mon);
 		monflee(mon, 10 * rnd(tmp), FALSE, FALSE);
 	}
-	if((mdat == &mons[PM_SHOCK_PUDDING] || mdat == &mons[PM_VOLT_PUDDING] || mdat == &mons[PM_BLACK_PUDDING] || mdat == &mons[PM_GREY_PUDDING] || mdat == &mons[PM_STICKY_PUDDING] || mdat == &mons[PM_DRUDDING] || mdat == &mons[PM_BLACK_DRUDDING] || mdat == &mons[PM_BLACKSTEEL_PUDDING] || mdat == &mons[PM_BLOOD_PUDDING] || mdat == &mons[PM_MORAL_HAZARD] || mdat == &mons[PM_MORAL_EVENT_HORIZON] || mdat == &mons[PM_BLACK_PIERCER] || mdat == &mons[PM_BROWN_PUDDING])
+	if((mdat == &mons[PM_SHOCK_PUDDING] || mdat == &mons[PM_VOLT_PUDDING] || mdat == &mons[PM_BLACK_PUDDING] || mdat == &mons[PM_GEMINICROTTA] || mdat == &mons[PM_GREY_PUDDING] || mdat == &mons[PM_STICKY_PUDDING] || mdat == &mons[PM_DRUDDING] || mdat == &mons[PM_BLACK_DRUDDING] || mdat == &mons[PM_BLACKSTEEL_PUDDING] || mdat == &mons[PM_BLOOD_PUDDING] || mdat == &mons[PM_MORAL_HAZARD] || mdat == &mons[PM_MORAL_EVENT_HORIZON] || mdat == &mons[PM_BLACK_PIERCER] || mdat == &mons[PM_BROWN_PUDDING])
 		   && obj /* && obj == uwep -- !thrown and obj == weapon */
 		   && !thrown
 		   && objects[obj->otyp].oc_material == MT_IRON
@@ -4929,6 +5160,7 @@ register struct attack *mattk;
 	switch(mattk->adtyp) {
 	    case AD_STUN:
 	    case AD_FUMB:
+	    case AD_DROP:
 	    case AD_TREM:
 	    case AD_SOUN:
 		if(!Blind && !rn2(3))
@@ -5899,7 +6131,7 @@ register struct attack *mattk;
 	      return 1;
 	}
 
-	if (mdef->data == &mons[PM_LITTLE_POISON_IVY] || mdef->data == &mons[PM_UNGENOCIDABLE_VAMPSHIFTER] || mdef->data == &mons[PM_TERRIFYING_POISON_IVY] || mdef->data == &mons[PM_GIRL_WITH_THE_MOST_BEAUTIFUL_SHOES_IN_THE_WORLD] || mdef->data == &mons[PM_IMMOVABLE_OBSTACLE] || mdef->data == &mons[PM_INVINCIBLE_HAEN] || mdef->data == &mons[PM_CHAREY] || mdef->data == &mons[PM_INVENTOR_OF_THE_SISTER_COMBAT_BOOTS] || mdef->data == &mons[PM_SWEET_ASIAN_POISON_IVY] || mdef->data == &mons[PM_FIRST_DUNVEGAN] || mdef->data == &mons[PM_PERCENTI_HAS_LOST___] || mdef->data == &mons[PM_PERCENTI_IS_IMMUNE_TO_THE_ATTACK_]) {
+	if (mdef->data == &mons[PM_LITTLE_POISON_IVY] || mdef->data == &mons[PM_AMBER_FEMMY] || mdef->data == &mons[PM_UNGENOCIDABLE_VAMPSHIFTER] || mdef->data == &mons[PM_TERRIFYING_POISON_IVY] || mdef->data == &mons[PM_GIRL_WITH_THE_MOST_BEAUTIFUL_SHOES_IN_THE_WORLD] || mdef->data == &mons[PM_IMMOVABLE_OBSTACLE] || mdef->data == &mons[PM_INVINCIBLE_HAEN] || mdef->data == &mons[PM_CHAREY] || mdef->data == &mons[PM_INVENTOR_OF_THE_SISTER_COMBAT_BOOTS] || mdef->data == &mons[PM_SWEET_ASIAN_POISON_IVY] || mdef->data == &mons[PM_FIRST_DUNVEGAN] || mdef->data == &mons[PM_PERCENTI_HAS_LOST___] || mdef->data == &mons[PM_PERCENTI_IS_IMMUNE_TO_THE_ATTACK_]) {
 
 		pline("%s is IMMUNE to the attack!", Monnam(mdef));
 		if (FunnyHallu) You("curse at Konami for designing it like that.");
@@ -5955,6 +6187,7 @@ register struct attack *mattk;
 		break;
 	    case AD_STUN:
 	    case AD_FUMB:
+	    case AD_DROP:
 	    case AD_TREM:
 		if (haseyes(mdef->data) && mdef->mcansee) {
 		    pline("%s is stunned by your flash of light!", Monnam(mdef));
@@ -6828,7 +7061,7 @@ register int roll;
 
 	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && !rn2(5) && canspotmon(mdef) && flags.verbose) {
 
-		switch (rnd(588)) {
+		switch (rnd(589)) {
 
 		case 1: pline("%s cringes from your strike behind its %sshield.", Monnam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
 		case 2: pline("You smash into %s's %sshield, striking sparks.", mon_nam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
@@ -7418,6 +7651,7 @@ register int roll;
 		case 586: pline("%s polishes your visage.", Monnam(mdef)); break;
 		case 587: pline("You accidentally charge past %s, who swiftly kicks you in the calf with %s high heels.", mon_nam(mdef), mhis(mdef)); break;
 		case 588: pline("The entire lower part of your arm slides along %s's fingernails, and your blood is squirting in all directions.", mon_nam(mdef)); break;
+		case 589: pline("%s is really washed with all landing on water!", Monnam(mdef)); break;
 
 		default: pline("You missed %s!", mon_nam(mdef)); break;
 
@@ -7725,6 +7959,10 @@ use_weapon:
 					uwep->spe--;
 					pline("Your weapon sustains damage.");
 				}
+				if (uwep && uwep->oartifact == ART_CHA_SHATTER && !rn2(3) && uwep->spe > -20) {
+					uwep->spe--;
+					pline("Your weapon sustains damage.");
+				}
 				if (uwep && uwep->oartifact == ART_SIGIX_BROADSWORD && !rn2(20)) {
 					uwep->spe--;
 					pline("Your broadsword sustains damage.");
@@ -7743,6 +7981,22 @@ use_weapon:
 					}
 				}
 
+				if (uwep && uwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI && uwep->lamplit && (u.dx || u.dy) && !u.dz) {
+					u.linkmasterswordhack = 1;
+					struct obj *pseudo;
+					pseudo = mksobj(SPE_BEAMSWORD, FALSE, 2, FALSE);
+					if (!pseudo) goto bladeangerdone;
+					if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = SPE_BEAMSWORD; /* minimalist fix */
+					pseudo->blessed = pseudo->cursed = 0;
+					pseudo->quan = 20L;			/* do not let useup get it */
+					pseudo->spe = uwep->spe;
+					weffects(pseudo);
+					if (pseudo) obfree(pseudo, (struct obj *)0);	/* now, get rid of it */
+					if (!mon) return FALSE;
+					if (DEADMONSTER(mon)) return FALSE;
+
+				}
+bladeangerdone:
 				if (uwep && objects[uwep->otyp].oc_skill == (tech_inuse(T_GRAP_SWAP) ? P_LANCE : P_GRINDER)) {
 					int grindirection = 0;
 					if (u.dx > 0 && u.dy == 0) grindirection = 1; /* east */
@@ -7764,12 +8018,32 @@ use_weapon:
 					if (uwep && uwep->otyp == JARED_STONE) suckingchance = 11;
 					if (uwep && uwep->otyp == CIGARETTE) suckingchance = 11;
 					if (uwep && uwep->otyp == ELECTRIC_CIGARETTE) suckingchance = 10;
+					if (uwep && uwep->otyp == CIGAR) suckingchance = 10;
 					if (uwep && uwep->otyp == LIGHTBULB) suckingchance = 10;
 					if (uwep && uwep->otyp == HEATH_BALL) suckingchance = 9;
 					if (uwep && uwep->otyp == CIGARETTE && !rn2(250)) {
 						You("inhale some cancerogenous smoke!");
 						if (FunnyHallu) pline("Why are you such an idiot and smoke, anyway?");
 						badeffect();
+					}
+					if (uwep && uwep->otyp == CIGAR && !rn2(100)) {
+						switch (rnd(3)) {
+							case 1:
+								pline_The("smoke prevents you from seeing!");
+								make_blinded(Blinded + rnz(500), FALSE);
+								break;
+							case 2:
+								You("have a coughing fit!");
+								make_numbed(HNumbed + rnz(500), FALSE);
+								break;
+							case 3:
+								pline("The world spins and goes dark.");
+								flags.soundok = 0;
+								nomul(-rnd(10), "unconscious from smoking a cigar", TRUE);
+								nomovemsg = "You are conscious again.";
+								afternmv = Hear_again;
+								break;
+						}
 					}
 					if (uwep && uwep->otyp == ELECTRIC_CIGARETTE && !rn2(250)) {
 						pline("Kaboom! Your cigarette suddenly causes an explosion.");
@@ -7836,6 +8110,10 @@ use_weapon:
 					pline("Your ball sustains damage.");
 				}
 				if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DONNNNNNNNNNNNG && !rn2(3) && uswapwep->spe > -20) {
+					uswapwep->spe--;
+					pline("Your weapon sustains damage.");
+				}
+				if (u.twoweap && uswapwep && uswapwep->oartifact == ART_CHA_SHATTER && !rn2(3) && uswapwep->spe > -20) {
 					uswapwep->spe--;
 					pline("Your weapon sustains damage.");
 				}
@@ -8121,7 +8399,7 @@ use_weapon:
 		if (!noattacks(&mons[u.usymbiote.mnum])) {
 			Your("%s symbiote attacks!", mons[u.usymbiote.mnum].mname);
 			u.usymbiosisfastturns++;
-			if (u.usymbiosisfastturns >= 4) {
+			if (u.usymbiosisfastturns >= 3) {
 				u.usymbiosisfastturns = 0;
 				use_skill(P_SYMBIOSIS, 1);
 			}
@@ -8208,7 +8486,7 @@ boolean ranged;
 	else
 	    tmp = 0;
 
-	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone()) {
+	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || (uwep && uwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI)) {
 		if (ptr->mattk[i].damn)
 		    tmp = (int)ptr->mattk[i].damn * (int)ptr->mattk[i].damd;
 		else if(ptr->mattk[i].damd)
@@ -8595,7 +8873,7 @@ boolean ranged;
 		break;
 
 	    case AD_WEEP:
-		if (!rn2(3) && (!u.uevent.udemigod || u.freeplaymode) && !(flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) ) {
+		if (!rn2(3) && (!u.uevent.udemigod || u.freeplaymode) && !playerlevelportdisabled() ) {
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 			if (!u.levelporting) {
 				u.levelporting = 1;
@@ -9283,7 +9561,7 @@ boolean ranged;
 				break;
 			case 6:
 
-				if ((!u.uevent.udemigod || u.freeplaymode) && !(flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) ) {
+				if ((!u.uevent.udemigod || u.freeplaymode) && !playerlevelportdisabled() ) {
 					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 					level_tele();
 					nomul(-2, "being levelwarped", FALSE);
@@ -9449,6 +9727,21 @@ boolean ranged;
 		if (!rn2(10)) skillcaploss();
 		break;
 
+	    case AD_TDRA:
+		if (!rn2(10)) techdrain();
+		break;
+
+	    case AD_DROP:
+		dropitemattack();
+		break;
+
+	    case AD_BLAS:
+		if (!rn2(25)) {
+			u.ugangr++;
+		      You("get the feeling that %s is angry...", u_gname());
+		}
+		break;
+
 	  case AD_NGRA:
 
 		      if (ep && sengr_at("Elbereth", u.ux, u.uy) ) {
@@ -9585,8 +9878,10 @@ boolean ranged;
 	    case AD_BANI:
 		if (!rn2(3)) {
 			if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
-			if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) {
-			 pline("For some reason you resist the banishment!"); break;}
+			if (playerlevelportdisabled()) {
+				pline("For some reason you resist the banishment!");
+				break;
+			}
 
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 

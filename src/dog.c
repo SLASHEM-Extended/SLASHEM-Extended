@@ -32,6 +32,7 @@ register struct monst *mtmp;
 	EDOG(mtmp)->abuse = 0;
 	EDOG(mtmp)->revivals = 0;
 	EDOG(mtmp)->mhpmax_penalty = 0;
+	EDOG(mtmp)->abouttostarve = 0;
 	EDOG(mtmp)->killed_by_u = 0;
 
 	/* if the pet has a weapon, we want it to wield, not drop it! --Amy */
@@ -299,7 +300,7 @@ makedog()
 	static int petname_used = 0;
 
 	/* some roles should be forced to start with a pet because they get a detrimental one :P --Amy */
-	if (!Role_if(PM_KURWA) && !Role_if(PM_JANITOR) && !Role_if(PM_YAUTJA) && !Role_if(PM_GRENADONIN) && !Role_if(PM_PSYKER) && !Role_if(PM_MILL_SWALLOWER) && !Role_if(PM_CHAOS_SORCEROR) && (preferred_pet == 'n')) return((struct monst *) 0);
+	if (!Role_if(PM_KURWA) && !Role_if(PM_SHOE_FETISHIST) && !Role_if(PM_JANITOR) && !Role_if(PM_YAUTJA) && !Role_if(PM_GRENADONIN) && !Role_if(PM_PSYKER) && !Role_if(PM_MILL_SWALLOWER) && !Role_if(PM_CHAOS_SORCEROR) && (preferred_pet == 'n')) return((struct monst *) 0);
 
 	/* Gang scholars are supposed to start without a pet. However, every once in a blue moon they do get one --Amy */
 	if (Role_if(PM_GANG_SCHOLAR) && rn2(100)) return((struct monst *) 0);
@@ -373,7 +374,9 @@ maeney:
 	if (pettype == PM_GRAY_UNICORN_FOAL) petname = "Balance of Neutrality";
 	if (pettype == PM_BLACK_UNICORN_FOAL) petname = "Orderly Chaos";
 
-	if (pettype == PM_AGGRESSIVE_LICHEN) petname = "Sessilium";
+	if (pettype == PM_ROGUE_HIRELING) petname = "Aliza";
+
+	if (pettype == PM_SESSILICHEN) petname = "Sessilium";
 	if (pettype == PM_PILE_OF_COPPER_COINS) petname = "Counterfeit";
 	if (pettype == PM_BLOCK_HEELED_GIRL) petname = "Dora";
 
@@ -389,6 +392,10 @@ maeney:
 	if (pettype == PM_MARTTI_IHRASAARI) petname = "Martti Ihrasaari";
 	if (pettype == PM_ELIF) petname = "Elif";
 	if (pettype == PM_JENNIFER) petname = "Jennifer";
+	if (pettype == PM_JESSICA) petname = "Jessica";
+
+	if (pettype == PM_BUST_SUPERSECRET_ADVICE_RIFLING_UNVERIFIED_BOSOMING) petname = "Boris";
+	if (pettype == PM_KATI_S_STRIPED_SNEAKER) petname = "Sweet Kati";
 
 	if (pettype == PM_KICKBOXING_GIRL) petname = "Marija";
 
@@ -853,9 +860,8 @@ long nmv;		/* number of moves */
 	}
 
 	if (u.usteed && mtmp == u.usteed) {
-		struct obj *osaeddle = which_armor(u.usteed, W_SADDLE);
 
-		if ((osaeddle = which_armor(u.usteed, W_SADDLE)) && osaeddle->oartifact == ART_CURE_HASSIA_COURSE) {
+		if (bmwride(ART_CURE_HASSIA_COURSE)) {
 			if (mtmp->mhp + 1 >= mtmp->mhpmax)
 			      mtmp->mhp = mtmp->mhpmax;
 			else mtmp->mhp++;
@@ -1354,10 +1360,12 @@ boolean guaranteed;
 	if (mtmp->mtame && obj) {
 	    int tasty;
 
-	    if (mtmp->mcanmove && !mtmp->mconf && !mtmp->meating &&
+	    if (mtmp->mcanmove && (!mtmp->mconf || (EDOG(mtmp)->hungrytime <= monstermoves)) && !mtmp->meating &&
 		((tasty = dogfood(mtmp, obj)) == DOGFOOD ||
 		 (tasty <= ACCFOOD && EDOG(mtmp)->hungrytime <= monstermoves))) {
-		/* pet will "catch" and eat this thrown food */
+		/* pet will "catch" and eat this thrown food
+		 * Amy edit: since pets that are about to starve get confused, but they might have gotten very hungry due
+		 * to a hunger-inducing attack, they have to be able to catch the food anyway */
 		if (canseemon(mtmp)) {
 		    boolean big_corpse = (obj->otyp == CORPSE &&
 					  obj->corpsenm >= LOW_PM &&
@@ -1501,6 +1509,7 @@ boolean was_dead;
 	mtmp->mhp += edog->mhpmax_penalty;	/* heal it */
 	edog->mhpmax_penalty = 0;
     }
+    if (edog && edog->abouttostarve) edog->abouttostarve = 0;
 
     if (edog && (edog->killed_by_u == 1 || edog->abuse > 2)) {
 	mtmp->mpeaceful = mtmp->mtame = 0;

@@ -12,7 +12,7 @@ struct tech {
 					    * 	Unique number for the tech
 					    *	see the #defines below
 					    */
-	xchar       t_lev;                 /* power level 
+	int       t_lev;                 /* power level 
 					    *   This is the level 
 					    *   you were when you got the tech
 				            */
@@ -273,10 +273,18 @@ struct blitz_tab {
 #define T_GRAP_SWAP	203
 #define T_DIABOLIC_MINION	204
 
-#define T_JEDI_JUMP	205
-#define T_CHARGE_SABER	206
-#define T_TELEKINESIS	207
+#define T_CURE_AMNESIA	205
+#define T_ELEMENTAL_IMBUE	206
+
+#define T_HIDDEN_POWER	207
+
+#define T_SWORD_ART	208
+#define T_FIRM_CUDGEL	209
+
+#define T_JEDI_JUMP	210
+#define T_CHARGE_SABER	211
+#define T_TELEKINESIS	212
  
-#define MAXTECH 208
+#define MAXTECH 213
 
 #endif /* TECH_H */

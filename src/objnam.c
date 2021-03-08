@@ -454,6 +454,50 @@ int prop;
 			return "Arabella's curse";
 		case SCENT_VIEW:
 			return "scent view";
+		case RNGE_WHORING:
+			return "whoring";
+		case RNGE_BOSSING:
+			return "bossing";
+		case RNGE_STENCH:
+			return "stench";
+		case RNGE_ECHOLOCATION:
+			return "echolocation";
+		case RNGE_STACKMESSAGING:
+			return "stack messaging";
+		case FEMTRAP_KRISTIN:
+			return "Kristin's curse";
+		case FEMTRAP_ANNA:
+			return "Anna's curse";
+		case FEMTRAP_RUEA:
+			return "Ruea's curse";
+		case FEMTRAP_DORA:
+			return "Dora's curse";
+		case FEMTRAP_MARIKE:
+			return "Marike's curse";
+		case FEMTRAP_JETTE:
+			return "Jette's curse";
+		case FEMTRAP_INA:
+			return "Ina's curse";
+		case FEMTRAP_SING:
+			return "Sing's curse";
+		case FEMTRAP_VICTORIA:
+			return "Victoria's curse";
+		case FEMTRAP_MELISSA:
+			return "Melissa's curse";
+		case FEMTRAP_ANITA:
+			return "Anita's curse";
+		case FEMTRAP_HENRIETTA:
+			return "Henrietta's curse";
+		case FEMTRAP_VERENA:
+			return "Verena's curse";
+		case HALLUC_RES:
+			return "hallucination resistance";
+		case BLIND_RES:
+			return "blindness resistance";
+		case ASTRAL_VISION:
+			return "astral vision";
+		case RNGE_OVERVIEW_IMPROVEMENT:
+			return "overview improvement";
 
 		default:
 			return "Team Nastytrap";
@@ -3407,6 +3451,95 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ AMULET_OF_PET_VIEW, "amulet of vid domashnikh zhivotnykh" },
 	{ SCR_VISIBLE_ITEM, "vidimyy element" },
 
+	{ PETRIFYIUM_BRA, "petrifiy byustgal'ter" },
+	{ CHERRY, "vishnya" },
+	{ SPE_MAGIC_CONTROL, "magicheskiy kontrol'" },
+	{ AMULET_OF_CLIMBING, "amulet of al'pinizm" },
+	{ CLIMBING_SET, "nabor dlya skalolazaniya" },
+	{ LASER_POLE, "lazernyy stolb" },
+	{ LASER_SWORD, "lazernaya baza mech" },
+	{ LASERDENT, "lazerdent" },
+	{ SITH_STAFF, "posokh sitkhov" },
+	{ REACH_TRIDENT, "dostich' trezubtsa" },
+	{ CLIMBING_STICK, "al'pinistskaya palka" },
+	{ KRISTIN_COMBAT_BOOTS, "Kristin boyevyye sapogi" },
+	{ ANNA_HUGGING_BOOTS, "Anna obnimayushchiye sapogi" },
+	{ RUEA_COMBAT_BOOTS, "Ruea boyevyye sapogi" },
+	{ DORA_COMBAT_BOOTS, "Dora boyevyye sapogi" },
+	{ MARIKE_SNEAKERS, "Marike krossovki" },
+	{ JETTE_COMBAT_BOOTS, "Jette boyevyye sapogi" },
+	{ INA_HUGGING_BOOTS, "Ina obnimayushchiye sapogi" },
+	{ SING_PLATFORM_BOOTS, "Sing botinki na platforme" },
+	{ VICTORIA_COMBAT_BOOTS, "Victoria boyevyye sapogi" },
+	{ MELISSA_WEDGE_BOOTS, "Melissa botinki na tanketke" },
+	{ ANITA_LADY_PUMPS, "Anita zhenskiye tufli-lodochki" },
+	{ HENRIETTA_COMBAT_BOOTS, "Henrietta boyevyye sapogi" },
+	{ VERENA_STILETTO_SANDALS, "Verena bosonozhki na shpil'ke" },
+	{ STARWARS_MACE, "bulava zvezdnykh voyn" },
+	{ POTATO_BAG, "kartofel'nyy meshok" },
+	{ BITCHER, "suka" },
+
+	{ ELIF_S_JEWEL, "Elif dragotsennost'" },
+	{ MADELEINE_S_JEWEL, "Madeleine dragotsennost'" },
+	{ SANDRA_S_JEWEL, "Sandra dragotsennost'" },
+	{ NADJA_S_JEWEL, "Nadja dragotsennost'" },
+	{ SOLVEJG_S_JEWEL, "Solvejg dragotsennost'" },
+	{ THAI_S_JEWEL, "Thai dragotsennost'" },
+	{ ELENA_S_JEWEL, "Elena dragotsennost'" },
+	{ WENDY_S_JEWEL, "Wendy dragotsennost'" },
+	{ ANASTASIA_S_JEWEL, "Anastasia dragotsennost'" },
+	{ JESSICA_S_JEWEL, "Jessica dragotsennost'" },
+	{ MARLENA_S_JEWEL, "Marlena dragotsennost'" },
+	{ FEMMY_S_JEWEL, "Femmy dragotsennost'" },
+	{ NATALJE_S_JEWEL, "Natalje dragotsennost'" },
+	{ KARIN_S_JEWEL, "Karin dragotsennost'" },
+	{ JEANETTA_S_JEWEL, "Jeanetta dragotsennost'" },
+	{ KATI_S_JEWEL, "Kati dragotsennost'" },
+	{ CLAUDIA_S_JEWEL, "Claudia dragotsennost'" },
+	{ VICTORIA_S_JEWEL, "Victoria dragotsennost'" },
+	{ MAURAH_S_JEWEL, "Maurah dragotsennost'" },
+	{ JUEN_S_JEWEL, "Juen dragotsennost'" },
+	{ KRISTINA_S_JEWEL, "Kristina dragotsennost'" },
+	{ SARAH_S_JEWEL, "Sarah dragotsennost'" },
+	{ KATHARINA_S_JEWEL, "Katharina dragotsennost'" },
+	{ JULIETTA_S_JEWEL, "Julietta dragotsennost'" },
+	{ MELTEM_S_JEWEL, "Meltem dragotsennost'" },
+	{ MELISSA_S_JEWEL, "Melissa dragotsennost'" },
+	{ LUDGERA_S_JEWEL, "Ludgera dragotsennost'" },
+	{ YVONNE_S_JEWEL, "Yvonne dragotsennost'" },
+	{ EVELINE_S_JEWEL, "Eveline dragotsennost'" },
+	{ NELLY_S_JEWEL, "Nelly dragotsennost'" },
+	{ ARABELLA_S_JEWEL, "Arabella dragotsennost'" },
+	{ RUEA_S_JEWEL, "Ruea dragotsennost'" },
+	{ JETTE_S_JEWEL, "Jette dragotsennost'" },
+	{ VERENA_S_JEWEL, "Verena dragotsennost'" },
+	{ LOU_S_JEWEL, "Lou dragotsennost'" },
+	{ ANITA_S_JEWEL, "Anita dragotsennost'" },
+	{ MARIKE_S_JEWEL, "Marike dragotsennost'" },
+	{ KRISTIN_S_JEWEL, "Kristin dragotsennost'" },
+	{ HENRIETTA_S_JEWEL, "Henrietta dragotsennost'" },
+	{ ALMUT_S_JEWEL, "Almut dragotsennost'" },
+	{ ANNA_S_JEWEL, "Anna dragotsennost'" },
+	{ SING_S_JEWEL, "Sing dragotsennost'" },
+	{ INA_S_JEWEL, "Ina dragotsennost'" },
+	{ DORA_S_JEWEL, "Dora dragotsennost'" },
+
+	{ POT_TECH_LEVEL_UP, "tekhnicheskiy uroven' vverkh" },
+	{ CIGAR, "sigara" },
+	{ SCR_SKILL_GROWTH, "rost navykov" },
+	{ BEAMSWORD, "luch mech" },
+	{ LASERXBOW, "lazernyy luk" },
+	{ CLOAK_OF_BLINDNESS_RESISTANCE, "plashch soprotivleniya slepote" },
+	{ CLOAK_OF_HALLUCINATION_RESISTA, "plashch soprotivleniya gallyutsinatsiyam" },
+	{ AMULET_OF_CLEAR_VIEW, "amulet of yasnyy vid" },
+	{ SPE_ASTRAL_VIEW, "astral'nyy vzglyad" },
+	{ SPE_CAROTINE_INJECTION, "karotin dlya in''yektsiy" },
+	{ SPE_DOWNER_TRIP, "poyezdka vniz" },
+	{ SCR_BRANCH_TELEPORT, "teleport otdeleniya" },
+	{ RIN_THREE_POINT_SEVEN_PROTECTI, "tri tselykh sem' punkta zashchity" },
+	{ WEAPON_SIGN, "znak oruzhiya" },
+	{ AMULET_OF_GUARDING, "amulet of okhrana" },
+
 	/* todo area */
 
 	{0, "" }
@@ -6179,6 +6312,95 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ AMULET_OF_PET_VIEW, "amulet of uy hayvonlari ko'rinishi" },
 	{ SCR_VISIBLE_ITEM, "ko'rinadigan element" },
 
+	{ PETRIFYIUM_BRA, "petrifiyum sutyen" },
+	{ CHERRY, "gilos" },
+	{ SPE_MAGIC_CONTROL, "sehrli boshqarish" },
+	{ AMULET_OF_CLIMBING, "amulet of toqqa chiqish" },
+	{ CLIMBING_SET, "toqqa chiqish to'plami" },
+	{ LASER_POLE, "lazer qutb" },
+	{ LASER_SWORD, "lazer tayanch qilichi" },
+	{ LASERDENT, "lazerli tishlangan" },
+	{ SITH_STAFF, "sith xodimlari" },
+	{ REACH_TRIDENT, "tridentga erishish" },
+	{ CLIMBING_STICK, "toqqa chiqishga tayoq" },
+	{ KRISTIN_COMBAT_BOOTS, "Kristin jangovar botinkalar" },
+	{ ANNA_HUGGING_BOOTS, "Anna botinkalarni quchoqlash" },
+	{ RUEA_COMBAT_BOOTS, "Ruea jangovar botinkalar" },
+	{ DORA_COMBAT_BOOTS, "Dora jangovar botinkalar" },
+	{ MARIKE_SNEAKERS, "Marike krossovkalar" },
+	{ JETTE_COMBAT_BOOTS, "Jette jangovar botinkalar" },
+	{ INA_HUGGING_BOOTS, "Ina botinkalarni quchoqlash" },
+	{ SING_PLATFORM_BOOTS, "Sing platformali botinkalar" },
+	{ VICTORIA_COMBAT_BOOTS, "Victoria jangovar botinkalar" },
+	{ MELISSA_WEDGE_BOOTS, "Melissa takozli etiklar" },
+	{ ANITA_LADY_PUMPS, "Anita xonim nasoslar" },
+	{ HENRIETTA_COMBAT_BOOTS, "Henrietta jangovar botinkalar" },
+	{ VERENA_STILETTO_SANDALS, "Verena stiletto sandallari" },
+	{ STARWARS_MACE, "yulduzlar jangi" },
+	{ POTATO_BAG, "kartoshka sumkasi" },
+	{ BITCHER, "qonxo'r" },
+
+	{ ELIF_S_JEWEL, "Elif marvarid" },
+	{ MADELEINE_S_JEWEL, "Madeleine marvarid" },
+	{ SANDRA_S_JEWEL, "Sandra marvarid" },
+	{ NADJA_S_JEWEL, "Nadja marvarid" },
+	{ SOLVEJG_S_JEWEL, "Solvejg marvarid" },
+	{ THAI_S_JEWEL, "Thai marvarid" },
+	{ ELENA_S_JEWEL, "Elena marvarid" },
+	{ WENDY_S_JEWEL, "Wendy marvarid" },
+	{ ANASTASIA_S_JEWEL, "Anastasia marvarid" },
+	{ JESSICA_S_JEWEL, "Jessica marvarid" },
+	{ MARLENA_S_JEWEL, "Marlena marvarid" },
+	{ FEMMY_S_JEWEL, "Femmy marvarid" },
+	{ NATALJE_S_JEWEL, "Natalje marvarid" },
+	{ KARIN_S_JEWEL, "Karin marvarid" },
+	{ JEANETTA_S_JEWEL, "Jeanetta marvarid" },
+	{ KATI_S_JEWEL, "Kati marvarid" },
+	{ CLAUDIA_S_JEWEL, "Claudia marvarid" },
+	{ VICTORIA_S_JEWEL, "Victoria marvarid" },
+	{ MAURAH_S_JEWEL, "Maurah marvarid" },
+	{ JUEN_S_JEWEL, "Juen marvarid" },
+	{ KRISTINA_S_JEWEL, "Kristina marvarid" },
+	{ SARAH_S_JEWEL, "Sarah marvarid" },
+	{ KATHARINA_S_JEWEL, "Katharina marvarid" },
+	{ JULIETTA_S_JEWEL, "Julietta marvarid" },
+	{ MELTEM_S_JEWEL, "Meltem marvarid" },
+	{ MELISSA_S_JEWEL, "Melissa marvarid" },
+	{ LUDGERA_S_JEWEL, "Ludgera marvarid" },
+	{ YVONNE_S_JEWEL, "Yvonne marvarid" },
+	{ EVELINE_S_JEWEL, "Eveline marvarid" },
+	{ NELLY_S_JEWEL, "Nelly marvarid" },
+	{ ARABELLA_S_JEWEL, "Arabella marvarid" },
+	{ RUEA_S_JEWEL, "Ruea marvarid" },
+	{ JETTE_S_JEWEL, "Jette marvarid" },
+	{ VERENA_S_JEWEL, "Verena marvarid" },
+	{ LOU_S_JEWEL, "Lou marvarid" },
+	{ ANITA_S_JEWEL, "Anita marvarid" },
+	{ MARIKE_S_JEWEL, "Marike marvarid" },
+	{ KRISTIN_S_JEWEL, "Kristin marvarid" },
+	{ HENRIETTA_S_JEWEL, "Henrietta marvarid" },
+	{ ALMUT_S_JEWEL, "Almut marvarid" },
+	{ ANNA_S_JEWEL, "Anna marvarid" },
+	{ SING_S_JEWEL, "Sing marvarid" },
+	{ INA_S_JEWEL, "Ina marvarid" },
+	{ DORA_S_JEWEL, "Dora marvarid" },
+
+	{ POT_TECH_LEVEL_UP, "texnologiya darajasi" },
+	{ CIGAR, "puro" },
+	{ SCR_SKILL_GROWTH, "mahoratning o'sishi" },
+	{ BEAMSWORD, "nurli qilich" },
+	{ LASERXBOW, "lazerxbow" },
+	{ CLOAK_OF_BLINDNESS_RESISTANCE, "ko'r-ko'rona qarshilik plashi" },
+	{ CLOAK_OF_HALLUCINATION_RESISTA, "gallyutsinatsiyaga qarshilik plashi" },
+	{ AMULET_OF_CLEAR_VIEW, "amulet of aniq ko'rinish" },
+	{ SPE_ASTRAL_VIEW, "astral ko'rinish" },
+	{ SPE_CAROTINE_INJECTION, "karotin in'ektsiyasi" },
+	{ SPE_DOWNER_TRIP, "pastga safar" },
+	{ SCR_BRANCH_TELEPORT, "filial teleporti" },
+	{ RIN_THREE_POINT_SEVEN_PROTECTI, "uchta nuqta etti himoyasi" },
+	{ WEAPON_SIGN, "qurol belgisi" },
+	{ AMULET_OF_GUARDING, "amulet of qo'riqlash" },
+
 	/* todo area */
 
 	{0, "" }
@@ -6556,8 +6778,8 @@ register struct obj *obj;
 			index(vowels,*(mons[obj->corpsenm].mname)) ? "n" : "",
 			mons[obj->corpsenm].mname);
 
-		if (is_lightsaber(obj) && nn && obj->known) sprintf(eos(buf), " (%ld)", obj->age);
-		if (age_is_relative(obj) && nn && obj->known) sprintf(eos(buf), " (%ld)", obj->age);
+		if (is_lightsaber(obj) && nn && obj->known && obj->dknown) sprintf(eos(buf), " (%ld)", obj->age);
+		if (age_is_relative(obj) && typ != MAGIC_CANDLE && typ != MAGIC_LAMP && nn && obj->known && obj->dknown) sprintf(eos(buf), " (%ld)", obj->age);
 
 		break;
 	    case ARMOR_CLASS:
@@ -7149,7 +7371,7 @@ plus:
 			is_lightsaber(obj) ||
 			obj->otyp == STICK_OF_DYNAMITE) {
 		    if (obj->lamplit) {
-			if ((obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER) && obj->altmode) strcat(bp, " (2xlit)");
+			if ((obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASERXBOW || obj->otyp == SITH_STAFF || obj->otyp == LASER_POLE || obj->otyp == WHITE_DOUBLE_LIGHTSABER) && obj->altmode) strcat(bp, " (2xlit)");
 			else strcat(bp, " (lit)");
 		    }
 #  ifdef DEBUG
@@ -7196,9 +7418,10 @@ plus:
 			obj->otyp == BRASS_LANTERN || obj->otyp == TORCH ||
 			   Is_candle(obj)) {
 			if (Is_candle(obj) &&
-			    /* WAC - magic candles are never "partly used" */
+			    /* WAC - magic candles are never "partly used"
+			     * Amy edit: once again, have it not depend on cost */
 			    obj->otyp != MAGIC_CANDLE &&
-			    obj->age < 20L * (long)objects[obj->otyp].oc_cost)
+			    obj->age < 2000L)
 				strcat(prefix, "partly used ");
 			if(obj->lamplit)
 				strcat(bp, " (lit)");
@@ -7551,6 +7774,14 @@ register const char *str;
 	if (strncmpi(str, "the ", 4) &&
 	    strcmp(str, "molten lava") &&
 	    strcmp(str, "iron bars") &&
+	    strcmp(str, "farmland") &&
+	    strcmp(str, "moorland") &&
+	    strcmp(str, "shifting sand") &&
+	    strcmp(str, "snow") &&
+	    strcmp(str, "ash") &&
+	    strcmp(str, "sand") &&
+	    strcmp(str, "grass") &&
+	    strcmp(str, "nether mist") &&
 	    strcmp(str, "ice")) {
 		if (index(vowels, *str) &&
 		    strncmp(str, "one-", 4) &&
@@ -8949,6 +9180,7 @@ boolean actualwish;
 	   strncmpi(bp, "studded leather arm", 19) &&
 	   strncmpi(bp, "leather arm", 11) &&
 	   strncmpi(bp, "tooled horn", 11) &&
+	   strncmpi(bp, "weapon sign", 11) &&
        strncmpi(bp, "graywand", 8) &&
        strncmpi(bp, "staff of withering", 18) &&
        strncmpi(bp, "one ring", 8) &&
@@ -9156,7 +9388,9 @@ srch:
 			if (!strncmpi(tname, bp, strlen(tname))) {
 				/* avoid stupid mistakes */
 				if((trap == TRAPDOOR || trap == HOLE || trap == SHAFT_TRAP || trap == CURRENT_SHAFT)
-				      && !Can_fall_thru(&u.uz) && !Is_stronghold(&u.uz) ) trap = ROCKTRAP;
+				      && !Can_fall_thru(&u.uz) && !Is_stronghold(&u.uz) ) {
+					pline("Be aware: This trap shouldn't exist on this level.");
+				}
 				(void) maketrap(u.ux, u.uy, trap, 0, TRUE);
 				pline("%s.", An(tname));
 				return(&zeroobj);
@@ -9466,6 +9700,8 @@ typfnd:
 		    typ = BELL;
 		    break;
 		case SPE_BOOK_OF_THE_DEAD:
+		case SPE_BLADE_ANGER:
+		case SPE_BEAMSWORD:
 		    typ = SPE_BLANK_PAPER;
 		    break;
 	    }
@@ -9788,21 +10024,7 @@ typfnd:
 	/* and make them pay; charge them for the wish anyway! */
 	if ((is_quest_artifact(otmp) ||
 	    /* [ALI] Can't wish for artifacts which have a set location */
-	    (otmp->oartifact &&
-	       (otmp->oartifact == ART_KEY_OF_CHAOS ||
-	        otmp->oartifact == ART_KEY_OF_NEUTRALITY ||
-	        otmp->oartifact == ART_KEY_OF_LAW ||
-	        otmp->oartifact == ART_GAUNTLET_KEY ||
-	        otmp->oartifact == ART_HAND_OF_VECNA ||
-	        otmp->oartifact == ART_EYE_OF_THE_BEHOLDER ||
-	        otmp->oartifact == ART_NIGHTHORN ||
-	        otmp->oartifact == ART_MOTHERFUCKER_TROPHY ||
-	        otmp->oartifact == ART_HELM_OF_KNOWLEDGE ||
-	        otmp->oartifact == ART_BOOTS_OF_THE_MACHINE ||
-	        otmp->oartifact == ART_ARKENSTONE_OF_THRAIN ||
-	        otmp->oartifact == ART_BIZARRO_ORGASMATRON ||
-	        otmp->oartifact == ART_KATIA_S_SOFT_COTTON ||
-	        otmp->oartifact == ART_THIEFBANE)) ||
+	    (otmp->oartifact && arti_nonwishable(otmp)) ||
 # ifdef NOARTIFACTWISH
 /* Wishing for a "weak" artifact is easier than for a stronger one */
 	(otmp->oartifact &&

@@ -1172,6 +1172,15 @@ char* encodeachieveX(void)
    *  5   killed Erogenous Katia
    *  6   killed the Witch King of Angmar
    *  7   obtained the stone of magic resistance from the Deep Mines
+   *  8   visited all five DevNull challenge dungeons
+   *  9   killed the Minotaur of the Maze
+   *  10  killed Kalwina
+   *  11  killed Stahngnir
+   *  12  killed Ariane
+   *  13  completed the Rival Quest
+   *  14  completed Minus World
+   *  15  killed Vera
+   *  16  killed Elaine
    * but this isn't a bitfield, it's a string...
    */
 
@@ -1185,6 +1194,15 @@ char* encodeachieveX(void)
   if(achieveX.killed_katia)         sprintf(eos(encoded_achievements), "%s,", "killed_katia");
   if(achieveX.killed_witchking)     sprintf(eos(encoded_achievements), "%s,", "killed_witchking");
   if(achieveX.get_magresstone)      sprintf(eos(encoded_achievements), "%s,", "get_magresstone");
+  if(achieveX.devnull_complete)     sprintf(eos(encoded_achievements), "%s,", "devnull_complete");
+  if(achieveX.killed_minotaur)      sprintf(eos(encoded_achievements), "%s,", "killed_minotaur");
+  if(achieveX.killed_kalwina)       sprintf(eos(encoded_achievements), "%s,", "killed_kalwina");
+  if(achieveX.killed_stahngnir)     sprintf(eos(encoded_achievements), "%s,", "killed_stahngnir");
+  if(achieveX.killed_ariane)        sprintf(eos(encoded_achievements), "%s,", "killed_ariane");
+  if(achieveX.completed_rivalquest) sprintf(eos(encoded_achievements), "%s,", "completed_rivalquest");
+  if(achieveX.completed_minusworld) sprintf(eos(encoded_achievements), "%s,", "completed_minusworld");
+  if(achieveX.killed_vera)          sprintf(eos(encoded_achievements), "%s,", "killed_vera");
+  if(achieveX.killed_elaine)        sprintf(eos(encoded_achievements), "%s,", "killed_elaine");
 
   int len;
   if ((len=strlen(encoded_achievements))) { encoded_achievements[len-1] = '\0'; }

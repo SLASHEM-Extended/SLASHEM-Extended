@@ -121,6 +121,24 @@ void * poolcnt;
 
 }
 
+void
+elemental_imbue(elemtype)
+{
+	if (!uwep) return; /* bug */
+
+	switch (elemtype) {
+		case 1:
+			artilist[ART_FIRE_SWING].otyp = uwep->otyp;
+			break;
+		case 2:
+			artilist[ART_FROST_SWING].otyp = uwep->otyp;
+			break;
+		case 3:
+			artilist[ART_SHOCK_SWING].otyp = uwep->otyp;
+			break;
+	}
+}
+
 
 /* handle some special cases; must be called after role_init() */
 STATIC_OVL void
@@ -264,8 +282,17 @@ hack_artifacts()
 	artilist[ART_CAUSE_I_M_A_CHEATER].otyp = randartspellbook();
 	artilist[ART_BATMAN_NIGHT].otyp = randartspellbook();
 	artilist[ART_NIKKENIKKENIK].otyp = randartspellbook();
+	artilist[ART_POLITICAL_CORRECTNESS_FOR_].otyp = randartspellbook();
 	artilist[ART_CORTEX_COPROCESSOR].otyp = randartimplant();
 	artilist[ART_AMULET_OF_SPLENDOR].otyp = randartamulet();
+	artilist[ART_FASTPLANT].otyp = randartimplant();
+	artilist[ART_UPSIDE_DOWN_PLAYING_CARD].otyp = randartscroll();
+	artilist[ART_BERRYBREW].otyp = randartpotion();
+	artilist[ART_CURSED_WITH_THE_WORST].otyp = randartbadgraystone();
+	artilist[ART_FEMITY_SOLVE].otyp = randartfeminismjewel();
+	artilist[ART_VAPER_BAPER].otyp = randartball();
+	artilist[ART_TSCHEND_FOR_ETERNITY].otyp = randartchain();
+	artilist[ART_MACHINE_THAT_GOES_PLING].otyp = randartgem();
 
 	artilist[ART_JANA_S_GRAVE_WALL].otyp = randartcloakX();
 	artilist[ART_HENRIETTA_S_DOGSHIT_BOOTS].otyp = randartbootsX();
@@ -369,6 +396,11 @@ hack_artifacts()
 	artilist[ART_FLEECY_GREEN].otyp = randartamuletX();
 	artilist[ART_PEEK].otyp = randartmeleeweaponX();
 	artilist[ART_TAILCUTTER].otyp = randartmeleeweaponX();
+	artilist[ART_WONDER_WATERING_PLACE].otyp = randartpotionX();
+	artilist[ART_SECRET_RECIPE].otyp = randartscrollX();
+	artilist[ART_HEAVY_HEAVY_BABE].otyp = randartballX();
+	artilist[ART_HAMSTRUNG_FOUR_SURE].otyp = randartchainX();
+	artilist[ART_PAWNERMASTER].otyp = randartgemX();
 
 	artilist[ART_ELLI_S_PSEUDOBAND_OF_POS].otyp = randartmeleeweaponX();
 	artilist[ART_HIGHEST_FEELING].otyp = find_fetish_heels();
@@ -515,6 +547,12 @@ hack_artifacts()
 	artilist[ART_ARTHUR_S_HIGH_HEELED_PLATF].otyp = find_sharp_edged_sandals();
 	artilist[ART_GREEN_THUMB].otyp = find_nondescript_gloves();
 	artilist[ART_GEAVY_GREAVES].otyp = find_lead_boots();
+	artilist[ART_PERMINANT_INCREASE].otyp = find_machinery_boots();
+	artilist[ART_WHINY_TEACHER_INSIDE_WOMAN].otyp = find_christmas_child_mode_boots();
+	artilist[ART_NOW_YOU_LOOK_LIKE_A_BEGGAR].otyp = find_sandals_with_socks();
+	artilist[ART_ANJA_S_WIDE_FIELD].otyp = find_wedge_sneakers();
+	artilist[ART_U_BE_CURRY].otyp = find_barefoot_shoes();
+	artilist[ART_H__S_GANGSTER_KICKS].otyp = find_exceptional_sneakers();
 
 #if 0
 	/* Fix up the gifts */
@@ -635,7 +673,7 @@ boolean existingagain;	/* if TRUE, existing ones can be generated again */
 	    if ((!by_align ? a->otyp == o_typ :
 		    (a->alignment == alignment ||
 			(a->alignment == A_NONE && u.ugifts > 0))) &&
-		(!(a->spfx & SPFX_NOGEN) || unique) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && (!artiexist[m] || (existingagain && !(a->spfx & SPFX_ONLYONE) ) )) {
+		(!(a->spfx & SPFX_NOGEN) || unique) && !(a->otyp == ROCK && artiexist[m]) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && (!artiexist[m] || (existingagain && !(a->spfx & SPFX_ONLYONE) ) )) {
 		/*
 		 * [ALI] The determination of whether an artifact is
 		 * hostile to the player is a little more complex in
@@ -709,7 +747,7 @@ bad_artifact()
 
 	/* gather eligible artifacts */
 	for (n = 0, a = artilist+1, m = 1; a->otyp; a++, m++)
-	    if (!(a->spfx & SPFX_NOGEN) && (a->spfx & SPFX_EVIL) && !(a->otyp == AMULET_OF_STRANGULATION) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && (!(artiexist[m] && (a->spfx & SPFX_ONLYONE)) ) ) {
+	    if (!(a->spfx & SPFX_NOGEN) && (a->spfx & SPFX_EVIL) && !(a->otyp == AMULET_OF_STRANGULATION) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && !(a->otyp == ROCK && artiexist[m]) && (!(artiexist[m] && (a->spfx & SPFX_ONLYONE)) ) ) {
 
 		    eligible[n++] = m;
 	    }
@@ -728,6 +766,11 @@ bad_artifact()
 		if (!otmp) return;
 
 	    otmp->oartifact = m;
+		if (otmp->otyp == LOADSTONE || otmp->otyp == STARLIGHTSTONE || otmp->otyp == LOADBOULDER) {
+			otmp->quan = 1;
+			otmp->owt = weight(otmp);
+		}
+
 	    if (rn2(100)) artiexist[m] = TRUE;
 	} else {
 		return; /* aww, there are no evil artifacts left... so don't make one. Bummer. */
@@ -854,7 +897,7 @@ bad_artifact_xtra()
 
 	/* gather eligible artifacts */
 	for (n = 0, a = artilist+1, m = 1; a->otyp; a++, m++)
-	    if (!(a->spfx & SPFX_NOGEN) && (a->spfx & SPFX_EVIL) && !(a->otyp == AMULET_OF_STRANGULATION) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && (!(artiexist[m] && (a->spfx & SPFX_ONLYONE)) ) ) {
+	    if (!(a->spfx & SPFX_NOGEN) && (a->spfx & SPFX_EVIL) && !(a->otyp == AMULET_OF_STRANGULATION) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && !(a->otyp == ROCK && artiexist[m]) && (!(artiexist[m] && (a->spfx & SPFX_ONLYONE)) ) ) {
 
 		    eligible[n++] = m;
 	    }
@@ -873,6 +916,12 @@ bad_artifact_xtra()
 		if (!otmp) return;
 
 	    otmp->oartifact = m;
+
+		if (otmp->otyp == LOADSTONE || otmp->otyp == STARLIGHTSTONE || otmp->otyp == LOADBOULDER) {
+			otmp->quan = 1;
+			otmp->owt = weight(otmp);
+		}
+
 	    if (rn2(100)) artiexist[m] = TRUE;
 	} else {
 		return; /* aww, there are no evil artifacts left... so don't make one. Bummer. */
@@ -1097,7 +1146,7 @@ register boolean mod;
 			}
 		    }
 		    /* the age field is used both for lightsaber power and the invoke timer... ugh --Amy */
-		    if (!is_lightsaber(otmp) || otmp->oartifact == ART_LIGHTSABER_PROTOTYPE) otmp->age = 0;
+		    if (a->inv_prop || otmp->oartifact == ART_LIGHTSABER_PROTOTYPE) otmp->age = 0;
 		    if ((mod == FALSE) || rn2(100)) artiexist[m] = mod;
 		    break;
 		}
@@ -1134,6 +1183,14 @@ arti_is_evil(obj)
 struct obj *obj;
 {
     return (obj->oartifact && spec_ability(obj, SPFX_EVIL));
+}
+
+/* determine if a given artifact is nonwishable --Amy */
+boolean
+arti_nonwishable(obj)
+struct obj *obj;
+{
+    return (obj->oartifact && spec_ability(obj, SPFX_NOWISH));
 }
 
 /* used so that callers don't need to known about SPFX_ codes */
@@ -1374,10 +1431,9 @@ long wp_mask;
 	    }
 	}
 	if (spfx & SPFX_XRAY) {
-	    /* this assumes that no one else is using xray_range */
-	    if (on) u.xray_range = 3;
-	    else u.xray_range = -1;
-	    vision_full_recalc = 1;
+	    if (on) EAstral_vision |= wp_mask;
+	    else EAstral_vision &= ~wp_mask;
+	    /* xray_range is now modified in allmain.c --Amy */
 	}
 	/* KMH -- Reflection when wielded */
 	if ((spfx & SPFX_REFLECT)) { /* fix by Chris_ANG - why the heck was this on being wielded only??? */
@@ -2069,6 +2125,13 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 				instapetrify(kbuf);
 
 			}
+			if (otmp2->otyp == PETRIFYIUM_BRA && (!uarmg || FingerlessGloves)) {
+				char kbuf[BUFSZ];
+
+				sprintf(kbuf, "stolen petrifyium bra");
+				instapetrify(kbuf);
+
+			}
 			/* more take-away handling, after theft message */
 			if (unwornmask & W_WEP) {		/* stole wielded weapon */
 				possibly_unwield(mdef, FALSE);
@@ -2129,7 +2192,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	}
 
 	/* STEPHEN WHITE'S NEW CODE */
-	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
+	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_WONDERLIGHT || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
 	    otmp->dknown = TRUE;
 	    pline_The("twisted weapon poisons %s!",
 		    youdefend ? "you" : mon_nam(mdef));
@@ -2180,6 +2243,19 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	    *dmgptr += rnd(4) * 5;
 	    willreturntrue = 1;
        }
+
+       if (otmp->oartifact == ART_WOEBLADE && dieroll < 6) {
+	    if (youattack)
+		You("plunge the Woeblade deeply into %s!",
+			mon_nam(mdef));
+	    else
+		pline("%s plunges the Woeblade deeply into %s!",
+			Monnam(magr), hittee);
+		if (youattack && (PlayerHearsSoundEffects)) pline(issoviet ? "Tak chto vy dumayete, vy mozhete bit' igru tol'ko potomu, chto vy nashli artefakt. Bednyy zabluzhdayutsya dusha." : "Doaaaaaai!");
+	    *dmgptr += rnd(4) * 5;
+	    willreturntrue = 1;
+       }
+
       /* END OF STEPHEN WHITE'S NEW CODE */
 
 #if 0
@@ -2207,7 +2283,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	/* We really want "on a natural 20" but Nethack does it in */
 	/* reverse from AD&D. */
 	if (spec_ability(otmp, SPFX_BEHEAD)) {
-	    if ( (otmp->oartifact == ART_TSURUGI_OF_MURAMASA || otmp->oartifact == ART_GAYSECT || otmp->oartifact == ART_DRAGONCLAN_SWORD || otmp->oartifact == ART_KILLING_EDGE) && dieroll < 2) {
+	    if ( (otmp->oartifact == ART_TSURUGI_OF_MURAMASA || otmp->oartifact == ART_GAYSECT || otmp->oartifact == ART_LIGHTNING_STROKE || otmp->oartifact == ART_DRAGONCLAN_SWORD || otmp->oartifact == ART_KILLING_EDGE) && dieroll < 2) {
 		wepdesc = "The razor-sharp blade";
 		/* not really beheading, but so close, why add another SPFX */
 		if (youattack && u.uswallow && mdef == u.ustuck) {
@@ -2821,7 +2897,7 @@ doinvoke()
 					if (!rn2(100)) randsp *= 3;
 					if (!rn2(1000)) randsp *= 5;
 					if (!rn2(10000)) randsp *= 10;
-					monstercolor = rnd(376);
+					monstercolor = rnd(379);
 
 					You_feel("that a group has arrived!");
 
@@ -3155,6 +3231,34 @@ arti_invoke(obj)
 	}
 	if (artitimeout < 1) artitimeout = 1; /* fail safe */
 
+	if (obj->oartifact == ART_ATARU_ONE) {
+		if (!u.ataruinvoked && !exist_artifact(ETERNIUM_BLADE, artiname(ART_ATARU_TWO))) {
+			register struct obj *trophy;
+			u.ataruinvoked = TRUE;
+			trophy = mksobj(ETERNIUM_BLADE, FALSE, FALSE, FALSE);
+			if (trophy) {
+				trophy = oname(trophy, artiname(ART_ATARU_TWO));
+				dropy(trophy);
+			}
+			pline("Ataru Two was dropped on the floor.");
+		} else pline("It seems that Ataru Two has been generated already.");
+		return 1;
+	}
+
+	if (obj->oartifact == ART_ATARU_TWO) {
+		if (!u.ataruinvoked && !exist_artifact(CRYSTAL_SWORD, artiname(ART_ATARU_ONE))) {
+			register struct obj *trophy;
+			u.ataruinvoked = TRUE;
+			trophy = mksobj(CRYSTAL_SWORD, FALSE, FALSE, FALSE);
+			if (trophy) {
+				trophy = oname(trophy, artiname(ART_ATARU_ONE));
+				dropy(trophy);
+			}
+			pline("Ataru One was dropped on the floor.");
+		} else pline("It seems that Ataru One has been generated already.");
+		return 1;
+	}
+
     if(!oart || !oart->inv_prop) {
 	if(obj->otyp == CRYSTAL_BALL)
 	    use_crystal_ball(obj);
@@ -3275,7 +3379,7 @@ chargingchoice:
 	    break;
 	  }
 	case LEV_TELE:
-	      if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) level_tele();
+	      if (!playerlevelportdisabled()) level_tele();
 		else pline("You are disallowed to use this ability.");
 	    break;
 	case DRAGON_BREATH:
@@ -3346,6 +3450,21 @@ chargingchoice:
 	    /* Tsk,tsk.. */
 	    adjalign(-3);
 	    u.uluck -= 3;
+	    break;
+	case BOSS_NUKE:
+	    if (!Role_if(PM_PREVERSIONER)) {
+		pline("Since you're not a preversioner, you cannot use the power of this artifact. So sorry.");
+		break;
+	    }
+	    pline("Downsizing nuke initiated.");
+	    for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
+		if (DEADMONSTER(mtmp)) continue;
+		if (mtmp->data->geno & G_UNIQ) {
+		    pline("%s's health is cut down by the nuke!", Monnam(mtmp));
+		    mtmp->mhp -= (mtmp->mhp / 2); /* nerf by Amy :P */
+		    if (mtmp->mhp < 1) mtmp->mhp = 1;
+		}
+	    }
 	    break;
 	case SUMMON_UNDEAD:
 	    if (u.uluck < -9) {
@@ -3427,7 +3546,10 @@ chargingchoice:
 		(void)object_detect(obj, 0);
 		break;
 	case CREATE_PORTAL: 
-		if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) break;
+		if (playerlevelportdisabled()) {
+			You("can't branchport!");
+			break;
+		}
 				{
 	    int i, num_ok_dungeons, last_ok_dungeon = 0;
 	    d_level newlev;
@@ -3438,6 +3560,7 @@ chargingchoice:
 	    any.a_void = 0;	/* set all bits to zero */
 	    if (Is_blackmarket(&u.uz) && *u.ushops) {
 		You_feel("very disoriented for a moment.");
+		destroy_nhwindow(tmpwin);
 		break;
 	    }
 	    start_menu(tmpwin);

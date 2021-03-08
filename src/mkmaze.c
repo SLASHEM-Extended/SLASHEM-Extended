@@ -398,7 +398,7 @@ place_lregion(lx, ly, hx, hy, nlx, nly, nhx, nhy, rtype, lev)
 	 */
 	if(rtype == LR_BRANCH && nroom) {
 
-		if (!evilfriday && !isstairseeker && (at_dgn_entrance("The Subquest") || at_dgn_entrance("The Quest") || at_dgn_entrance("Lawful Quest") || at_dgn_entrance("Neutral Quest") || at_dgn_entrance("Chaotic Quest") || at_dgn_entrance("The Elemental Planes") || at_dgn_entrance("Sheol") || at_dgn_entrance("Bell Caves") || at_dgn_entrance("Vlad's Tower") || at_dgn_entrance("Forging Chamber") || at_dgn_entrance("Dead Grounds") || at_dgn_entrance("Ordered Chaos") ) ) {
+		if (!evilfriday && !isstairseeker && (at_dgn_entrance("Green Cross") || at_dgn_entrance("The Subquest") || at_dgn_entrance("The Quest") || at_dgn_entrance("Lawful Quest") || at_dgn_entrance("Neutral Quest") || at_dgn_entrance("Chaotic Quest") || at_dgn_entrance("The Elemental Planes") || at_dgn_entrance("Sheol") || at_dgn_entrance("Bell Caves") || at_dgn_entrance("Vlad's Tower") || at_dgn_entrance("Forging Chamber") || at_dgn_entrance("Dead Grounds") || at_dgn_entrance("Ordered Chaos") ) ) {
 
 			place_branch(Is_branchlev(&u.uz), 0, 0);
 			return;
@@ -875,15 +875,29 @@ register const char *s;
 	place_branch(Is_branchlev(&u.uz), 0, 0);
 
 #ifdef BIGSLEX
-	for(x = rn1(12,24); x; x--) {
+	for(x = (rn2(4) ? rn1(12,24) : rn1(24, 48)); x; x--) {
 #else
-	for(x = rn1(8,16); x; x--) {
+	for(x = (rn2(4) ? rn1(8,16) : rn1(16, 32)); x; x--) {
 #endif
 		if (timebasedlowerchance()) {
 			mazexy_all(&mm);
-			(void) mkobj_at(!rn2(3) ? GEM_CLASS : 0, mm.x, mm.y, TRUE, FALSE);
+			(void) mkobj_at(!rn2(10) ? GEM_CLASS : 0, mm.x, mm.y, TRUE, FALSE);
 		}
 	}
+
+	if (moves == 1 && !rn2(2)) { /* some earlygame help... --Amy */
+#ifdef BIGSLEX
+		for(x = (rn2(4) ? rn1(12,24) : rn1(24, 48)); x; x--) {
+#else
+		for(x = (rn2(4) ? rn1(8,16) : rn1(16, 32)); x; x--) {
+#endif
+			if (timebasedlowerchance()) {
+				mazexy_all(&mm);
+				(void) mkobj_at(!rn2(10) ? GEM_CLASS : 0, mm.x, mm.y, TRUE, FALSE);
+			}
+		}
+	}
+
 #ifdef BIGSLEX
 	for (x = rn1(4,20); x; x--) {
 #else
@@ -898,7 +912,7 @@ register const char *s;
 		mazexy_all(&mm);
 		(void) mksobj_at(BOULDER, mm.x, mm.y, TRUE, FALSE, FALSE);
 	}
-	if (!(iszapem && !(u.zapemescape)) && (depth(&u.uz) > depth(&medusa_level))) {
+	if (!(iszapem && !(u.zapemescape)) && !(u.preversionmode && !u.preversionescape) && (depth(&u.uz) > depth(&medusa_level))) {
 	for (x = rn2(3); x; x--) {
 		mazexy_all(&mm);
 		if (!ishomicider) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, MM_MAYSLEEP);
@@ -906,9 +920,9 @@ register const char *s;
 		}
 	}	 /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
 #ifdef BIGSLEX
-	for(x = rn1(10,14); x; x--) {
+	for(x = (rn2(4) ? rn1(10,14) : rn1(20, 28)); x; x--) {
 #else
-	for(x = rn1(5,7); x; x--) {
+	for(x = (rn2(4) ? rn1(5,7) : rn1(10, 14)); x; x--) {
 #endif
 		mazexy_all(&mm);
 		if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, MM_MAYSLEEP);
@@ -919,9 +933,9 @@ register const char *s;
 		(void) mkgold(0L,mm.x,mm.y);
 	}
 #ifdef BIGSLEX
-	for(x = rn1(12,14); x; x--) {
+	for(x = (rn2(4) ? rn1(12,14) : rn1(24, 28)); x; x--) {
 #else
-	for(x = rn1(6,7); x; x--) {
+	for(x = (rn2(4) ? rn1(6,7) : rn1(12, 14)); x; x--) {
 #endif
 		if (!(depth(&u.uz) == 1 && In_dod(&u.uz) && rn2(3)) && !(depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2)) ) {
 			mktrap(0,1,(struct mkroom *) 0, (coord*) 0, TRUE);
@@ -930,13 +944,13 @@ register const char *s;
 
 	if (ishaxor) {
 #ifdef BIGSLEX
-	for(x = rn1(12,24); x; x--) {
+	for(x = (rn2(4) ? rn1(12,24) : rn1(24, 48)); x; x--) {
 #else
-	for(x = rn1(8,16); x; x--) {
+	for(x = (rn2(4) ? rn1(8,16) : rn1(16, 32)); x; x--) {
 #endif
 		if (timebasedlowerchance()) {
 			mazexy_all(&mm);
-			(void) mkobj_at(!rn2(3) ? GEM_CLASS : 0, mm.x, mm.y, TRUE, FALSE);
+			(void) mkobj_at(!rn2(10) ? GEM_CLASS : 0, mm.x, mm.y, TRUE, FALSE);
 		}
 	}
 #ifdef BIGSLEX
@@ -953,7 +967,7 @@ register const char *s;
 		mazexy_all(&mm);
 		(void) mksobj_at(BOULDER, mm.x, mm.y, TRUE, FALSE, FALSE);
 	}
-	if (!(iszapem && !(u.zapemescape)) && (depth(&u.uz) > depth(&medusa_level))) {
+	if (!(iszapem && !(u.zapemescape)) && !(u.preversionmode && !u.preversionescape) && (depth(&u.uz) > depth(&medusa_level))) {
 	for (x = rn2(3); x; x--) {
 		mazexy_all(&mm);
 		if (!ishomicider) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, MM_MAYSLEEP);
@@ -961,9 +975,9 @@ register const char *s;
 		}
 	}	 /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
 #ifdef BIGSLEX
-	for(x = rn1(10,14); x; x--) {
+	for(x = (rn2(4) ? rn1(10,14) : rn1(20, 28)); x; x--) {
 #else
-	for(x = rn1(5,7); x; x--) {
+	for(x = (rn2(4) ? rn1(5,7) : rn1(10, 14)); x; x--) {
 #endif
 		mazexy_all(&mm);
 		if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, MM_MAYSLEEP);
@@ -974,9 +988,9 @@ register const char *s;
 		(void) mkgold(0L,mm.x,mm.y);
 	}
 #ifdef BIGSLEX
-	for(x = rn1(12,14); x; x--) {
+	for(x = (rn2(4) ? rn1(12,14) : rn1(24, 28)); x; x--) {
 #else
-	for(x = rn1(6,7); x; x--) {
+	for(x = (rn2(4) ? rn1(6,7) : rn1(12, 14)); x; x--) {
 #endif
 		if (!(depth(&u.uz) == 1 && In_dod(&u.uz) && rn2(3)) && !(depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2)) ) {
 			mktrap(0,1,(struct mkroom *) 0, (coord*) 0, TRUE);

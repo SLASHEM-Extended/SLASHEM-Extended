@@ -749,6 +749,9 @@ giveback:
 		case RIN_PROTECTION_FROM_SHAPE_CHAN:
 		    pline_The("sink looks nothing like a fountain.");
 		    break;
+		case RIN_THREE_POINT_SEVEN_PROTECTI:
+		    pline_The("sink looks like a feature from a different NetHack variant.");
+		    break;
 		case RIN_PROTECTION:
 		    pline_The("sink glows %s for a moment.",
 			    hcolor((obj->spe<0) ? NH_BLACK : NH_SILVER));
@@ -913,6 +916,9 @@ register struct obj *obj;
 	case AMULET_OF_ACID_RESISTANCE:
 		pline_The("toilet seems resistant to cleaning vinegar solutions.");
 		break;
+	case AMULET_OF_CLEAR_VIEW:
+		pline_The("toilet is very obviously visible.");
+		break;
 	case AMULET_OF_REGENERATION:
 		pline_The("toilet seems to be self-repairing.");
 		break;
@@ -955,6 +961,9 @@ register struct obj *obj;
 	case AMULET_OF_SCENT:
 		pline_The("toilet suddenly smells like roses!");
 		break;
+	case AMULET_OF_GUARDING:
+		pline_The("toilet is definitely not a feature from the variant that calls itself 3.7!");
+		break;
 	case AMULET_OF_THE_RNG:
 	case AMULET_OF_INFINITY:
 		pline("Something strange is happening to the toilet.");
@@ -991,6 +1000,9 @@ register struct obj *obj;
 		break;
 	case AMULET_OF_NECK_BRACE:
 		pline("A sword tries to smash the upper part of the toilet, but somehow misses wildly!");
+		break;
+	case AMULET_OF_CLIMBING:
+		pline_The("toilet seems to be moving slowly but steadily towards the ceiling!");
 		break;
 	case AMULET_OF_TECHNICALITY:
 		pline_The("toilet momentarily looks like a space station.");
@@ -1171,6 +1183,23 @@ register const char *word;
 			      word, obj->corpsenm ? " any of" : "",
 			      plur(obj->quan));
 			if (FunnyHallu) pline("Your fault for picking it up, you damn idiot!"); /* YANI by Yasdorian */
+		}
+		obj->corpsenm = 0;		/* reset */
+		obj->bknown = 1;
+		return(FALSE);
+	}
+	if (obj->otyp == LUCKSTONE && isevilvariant && !obj->cursed && !obj->blessed && Luck < 0) {
+		pline("Har har har, an evil presence prevents you from dropping that!");
+		return(FALSE);
+	}
+	if (is_feminismstone(obj) && obj->cursed) {
+		if (*word) {
+			/* getobj() ignores a count for throwing since that is
+			   implicitly forced to be 1; replicate its kludge... */
+			if (!strcmp(word, "throw") && obj->quan > 1L)
+			    obj->corpsenm = 1;
+			pline("There must be a curse on the gem%s. You fail to %s%s them.",
+			      plur(obj->quan), word, obj->corpsenm ? " any of" : "");
 		}
 		obj->corpsenm = 0;		/* reset */
 		obj->bknown = 1;
@@ -1490,8 +1519,10 @@ int retry;
 		if (cnt < otmp->quan) {
 		    if (welded(otmp)) {
 			;	/* don't split */
-		    } else if ( (otmp->otyp == LOADSTONE || otmp->otyp == LUCKSTONE || otmp->otyp == HEALTHSTONE || otmp->otyp == MANASTONE || otmp->otyp == SLEEPSTONE || otmp->otyp == LOADBOULDER || otmp->otyp == STARLIGHTSTONE || otmp->otyp == STONE_OF_MAGIC_RESISTANCE || is_nastygraystone(otmp) ) && otmp->cursed) {
+		    } else if ( (otmp->otyp == LOADSTONE || otmp->otyp == LUCKSTONE || otmp->otyp == HEALTHSTONE || otmp->otyp == MANASTONE || otmp->otyp == SLEEPSTONE || otmp->otyp == LOADBOULDER || otmp->otyp == STARLIGHTSTONE || otmp->otyp == STONE_OF_MAGIC_RESISTANCE || is_nastygraystone(otmp) || is_feminismstone(otmp) ) && otmp->cursed) {
 			/* same kludge as getobj(), for canletgo()'s use */
+			otmp->corpsenm = (int) cnt;	/* don't split */
+		    } else if (otmp->otyp == LUCKSTONE && isevilvariant && !otmp->cursed && !otmp->blessed && Luck < 0) {
 			otmp->corpsenm = (int) cnt;	/* don't split */
 		    } else {
 #ifndef GOLDOBJ
@@ -1766,6 +1797,11 @@ doup()
 		return(0);
 	}
 
+	if ((u.preversionmode && !(u.preversionescape)) && u.ux == sstairs.sx && u.uy == sstairs.sy && In_greencross(&u.uz) && (dunlev(&u.uz) == 1)) {
+		pline("This exit is closed until you've been to the very bottom of the Green Cross dungeon. Finish the pre-alpha version of this game first before you can play the full game!");
+		return(0);
+	}
+
 	if (u.ux == sstairs.sx && u.uy == sstairs.sy && at_dgn_entrance("Mainframe") && !u.gammacavescomplete) {
 		pline("The Mainframe cannot be entered as long as you didn't make it to the bottom of the Gamma Caves yet.");
 		return(0);
@@ -1812,6 +1848,24 @@ doup()
 		You("are held back by your pet!");
 		return(0);
 	}
+
+	if (!achieveX.completed_minusworld && u.ux == sstairs.sx && u.uy == sstairs.sy && In_minusworld(&u.uz) && (dunlev(&u.uz) == 1)) {
+	      achieveX.completed_minusworld = 1;
+
+		if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
+		if (RngeTeamSplat) pline("TROPHY GET!");
+		if (Race_if(PM_INHERITOR)) giftartifact();
+		if (Race_if(PM_HERALD)) heraldgift();
+
+		if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+			u.uhpmax += 10;
+			u.uenmax += 10;
+			if (Upolyd) u.mhmax += 10;
+			pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+		}
+
+	}
+
 	at_ladder = (boolean) (levl[u.ux][u.uy].typ == LADDER);
 	prev_level(TRUE);
 	at_ladder = FALSE;
@@ -2128,6 +2182,18 @@ boolean at_stairs, falling, portal;
 
 		if (In_angmar(&u.uz) && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) { /* witch king */
 			(void) makemon(&mons[PM_THE_WITCH_KING_OF_ANGMAR], 0, 0, NO_MM_FLAGS);
+		}
+
+		if (In_greencross(&u.uz) && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) { /* stahngnir */
+			(void) makemon(&mons[PM_STAHNGNIR__THE_STEEL_GIANT_LORD], 0, 0, MM_ANGRY);
+		}
+
+		if (In_emynluin(&u.uz) && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) { /* kalwina */
+			(void) makemon(&mons[PM_KALWINA], 0, 0, MM_ANGRY);
+		}
+
+		if (In_minotaurmaze(&u.uz) && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) { /* minotaur */
+			(void) makemon(&mons[PM_THE_MINOTAUR_OF_THE_MAZE], 0, 0, MM_ANGRY);
 		}
 
 		if (In_swimmingpool(&u.uz) && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) { /* jewelry and stuff */
@@ -3876,7 +3942,7 @@ rerollchaloc:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(376);
+			monstercolor = rnd(379);
 
 			if (wizard || !rn2(10)) pline(FunnyHallu ? "Err... is someone here? Hello-o, please show yourself!" : "Seems like someone made their home on this dungeon level.");
 
@@ -3895,7 +3961,7 @@ rerollchaloc:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(376);
+			monstercolor = rnd(379);
 
 		      cx = rn2(COLNO);
 		      cy = rn2(ROWNO);
@@ -4140,7 +4206,7 @@ rerollchaloc:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(376);
+			monstercolor = rnd(379);
 			if (rn2(2)) {
 			      cx = rn2(COLNO);
 			      cy = rn2(ROWNO);
@@ -4469,6 +4535,9 @@ rerollchaloc:
 			u.uevent.qcalled = TRUE;
 		}
 	}
+
+	/* once you enter Green Cross, it stays open even if the random number changes --Amy */
+	if (In_greencross(&u.uz) && !u.greencrossopen) u.greencrossopen = TRUE;
 
 	/* once Croesus is dead, his alarm doesn't work any more */
 	if (Is_knox(&u.uz) && (new || !mvitals[PM_CROESUS].died)) {

@@ -338,7 +338,7 @@ mattackm(magr, mdef)
 	if (mdef->minvis && haseyes(magr->data) && !perceives(magr->data)) tmp -= 10;
 	if (mdef->minvisreal) tmp -= (haseyes(magr->data) ? 30 : 20);
 
-	if ( (mdef->data == &mons[PM_DISPLACER_BEAST] || mdef->data == &mons[PM_POLYMORPH_CODE] || mdef->data == &mons[PM_FIRST_WRAITHWORM] || mdef->data == &mons[PM_WRAITHWORM] || mdef->data == &mons[PM_LILAC_FEMMY] || mdef->data == &mons[PM_SHARAB_KAMEREL] || mdef->data == &mons[PM_WUXTINA] || mdef->data == &mons[PM_IVEL_WUXTINA] || mdef->data == &mons[PM_FLUTTERBUG] || mdef->data == &mons[PM_ORTHOS] || mdef->data == &mons[PM_SHIMMERING_DRACONIAN] || mdef->data == &mons[PM_JUMPING_CHAMPION] || mdef->data->mlet == S_GRUE || mdef->data == &mons[PM_QUANTUM_MOLD] || mdef->data == &mons[PM_QUANTUM_GROWTH] || mdef->data == &mons[PM_QUANTUM_FUNGUS] || mdef->data == &mons[PM_QUANTUM_PATCH] || mdef->data == &mons[PM_QUANTUM_STALK] || mdef->data == &mons[PM_QUANTUM_MUSHROOM] || mdef->data == &mons[PM_QUANTUM_SPORE] || mdef->data == &mons[PM_QUANTUM_COLONY] || mdef->data == &mons[PM_QUANTUM_FORCE_FUNGUS] || mdef->data == &mons[PM_QUANTUM_WORT] || mdef->data == &mons[PM_QUANTUM_FORCE_PATCH] || mdef->data == &mons[PM_QUANTUM_WARP_FUNGUS] || mdef->data == &mons[PM_QUANTUM_WARP_PATCH] || mdef->egotype_displacer) && !rn2(2)) tmp -= 100;
+	if ( (mdef->data == &mons[PM_DISPLACER_BEAST] || mdef->data == &mons[PM_SARTAN_TANNIN] || mdef->data == &mons[PM_POLYMORPH_CODE] || mdef->data == &mons[PM_FIRST_WRAITHWORM] || mdef->data == &mons[PM_WRAITHWORM] || mdef->data == &mons[PM_LILAC_FEMMY] || mdef->data == &mons[PM_SHARAB_KAMEREL] || mdef->data == &mons[PM_WUXTINA] || mdef->data == &mons[PM_IVEL_WUXTINA] || mdef->data == &mons[PM_FLUTTERBUG] || mdef->data == &mons[PM_ORTHOS] || mdef->data == &mons[PM_SHIMMERING_DRACONIAN] || mdef->data == &mons[PM_JUMPING_CHAMPION] || mdef->data->mlet == S_GRUE || mdef->data == &mons[PM_QUANTUM_MOLD] || mdef->data == &mons[PM_QUANTUM_GROWTH] || mdef->data == &mons[PM_QUANTUM_FUNGUS] || mdef->data == &mons[PM_QUANTUM_PATCH] || mdef->data == &mons[PM_QUANTUM_STALK] || mdef->data == &mons[PM_QUANTUM_MUSHROOM] || mdef->data == &mons[PM_QUANTUM_SPORE] || mdef->data == &mons[PM_QUANTUM_COLONY] || mdef->data == &mons[PM_QUANTUM_FORCE_FUNGUS] || mdef->data == &mons[PM_QUANTUM_WORT] || mdef->data == &mons[PM_QUANTUM_FORCE_PATCH] || mdef->data == &mons[PM_QUANTUM_WARP_FUNGUS] || mdef->data == &mons[PM_QUANTUM_WARP_PATCH] || mdef->egotype_displacer) && !rn2(2)) tmp -= 100;
 
     } /* attacking monster is tame */
 
@@ -614,7 +614,7 @@ meleeattack:
 		strike = (tmp > dieroll);
 		if (strike) {
 		    res[i] = hitmm(magr, mdef, mattk);
-		    if((mdef->data == &mons[PM_BLACK_PUDDING] || mdef->data == &mons[PM_GREY_PUDDING] || mdef->data == &mons[PM_STICKY_PUDDING] || mdef->data == &mons[PM_SHOCK_PUDDING] || mdef->data == &mons[PM_VOLT_PUDDING] || mdef->data == &mons[PM_DRUDDING] || mdef->data == &mons[PM_BLACK_DRUDDING] || mdef->data == &mons[PM_BLACKSTEEL_PUDDING] || mdef->data == &mons[PM_BLOOD_PUDDING] || mdef->data == &mons[PM_MORAL_HAZARD] || mdef->data == &mons[PM_MORAL_EVENT_HORIZON] || mdef->data == &mons[PM_BLACK_PIERCER] || mdef->data == &mons[PM_BROWN_PUDDING])
+		    if((mdef->data == &mons[PM_BLACK_PUDDING] || mdef->data == &mons[PM_GEMINICROTTA] || mdef->data == &mons[PM_GREY_PUDDING] || mdef->data == &mons[PM_STICKY_PUDDING] || mdef->data == &mons[PM_SHOCK_PUDDING] || mdef->data == &mons[PM_VOLT_PUDDING] || mdef->data == &mons[PM_DRUDDING] || mdef->data == &mons[PM_BLACK_DRUDDING] || mdef->data == &mons[PM_BLACKSTEEL_PUDDING] || mdef->data == &mons[PM_BLOOD_PUDDING] || mdef->data == &mons[PM_MORAL_HAZARD] || mdef->data == &mons[PM_MORAL_EVENT_HORIZON] || mdef->data == &mons[PM_BLACK_PIERCER] || mdef->data == &mons[PM_BROWN_PUDDING])
 		       && otmp && objects[otmp->otyp].oc_material == MT_IRON
 		       && mdef->mhp > 1 && !mdef->mcan && !rn2(100) ) /* slowing pudding farming to a crawl --Amy */
 		    {
@@ -914,6 +914,44 @@ meleeattack:
 		a = &mdat2->mattk[3];
 		a->aatyp = AT_TUCH;
 		a->adtyp = AD_FLAM;
+		a->damn = 1;
+		a->damd = 1;
+
+		if(monnear(magr, mdef->mx, mdef->my)) {
+			dieroll = rnd(20 + i);
+			strike = (tmp > dieroll);
+			if (strike) res[i] = hitmm(magr, mdef, a);
+		}
+		if (res[i] & MM_AGR_DIED) return res[i];
+		if (res[i] & MM_DEF_DIED) return res[i];
+
+	}
+
+	if (magr->egotype_blasphemer ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_BLAS;
+		a->damn = 1;
+		a->damd = 1;
+
+		if(monnear(magr, mdef->mx, mdef->my)) {
+			dieroll = rnd(20 + i);
+			strike = (tmp > dieroll);
+			if (strike) res[i] = hitmm(magr, mdef, a);
+		}
+		if (res[i] & MM_AGR_DIED) return res[i];
+		if (res[i] & MM_DEF_DIED) return res[i];
+
+	}
+
+	if (magr->egotype_dropper ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_DROP;
 		a->damn = 1;
 		a->damd = 1;
 
@@ -1826,6 +1864,25 @@ meleeattack:
 		a = &mdat2->mattk[3];
 		a->aatyp = AT_TUCH;
 		a->adtyp = AD_DEST;
+		a->damn = 2;
+		a->damd = (1 + (magr->m_lev));
+
+		if(monnear(magr, mdef->mx, mdef->my)) {
+			dieroll = rnd(20 + i);
+			strike = (tmp > dieroll);
+			if (strike) res[i] = hitmm(magr, mdef, a);
+		}
+		if (res[i] & MM_AGR_DIED) return res[i];
+		if (res[i] & MM_DEF_DIED) return res[i];
+
+	}
+
+	if (magr->egotype_datadeleter) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_LASH;
+		a->adtyp = AD_DATA;
 		a->damn = 2;
 		a->damd = (1 + (magr->m_lev));
 
@@ -4010,6 +4067,7 @@ mdamagem(magr, mdef, mattk)
 		}
 		goto physical;
 	    case AD_FUMB:
+	    case AD_DROP:
 		if (magr->mcan) break;
 		if (canseemon(mdef))
 		    pline("%s %s for a moment.", Monnam(mdef), makeplural(stagger(mdef->data, "stagger")));
@@ -4797,6 +4855,7 @@ physical:
 			if (!cancelled && rn2(2) && !resists_drli(mdef)) {
 				if (vis) pline("%s suddenly seems weaker!", Monnam(mdef));
 				mdef->mhpmax -= d(2,6);
+				if (mdef->mhpmax < 1) mdef->mhpmax = 1;
 				if (mdef->m_lev == 0) tmp = mdef->mhp;
 				else mdef->m_lev--;
 				/* Automatic kill if drained past level 0 */
@@ -5577,6 +5636,7 @@ physical:
 		if (!cancelled && rn2(2) && !resists_drli(mdef)) {
 			if (vis) pline("%s suddenly seems weaker!", Monnam(mdef));
 			mdef->mhpmax -= d(2,6);
+			if (mdef->mhpmax < 1) mdef->mhpmax = 1;
 			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
 			if (mdef->m_lev == 0) tmp = mdef->mhp;
 			else mdef->m_lev--;
@@ -5594,6 +5654,7 @@ physical:
 		if (!cancelled && rn2(2) && (!resists_drli(mdef) || mdef->mtame) ) {
 			if (vis) pline("%s suddenly seems weaker!", Monnam(mdef));
 			mdef->mhpmax -= d(2,6);
+			if (mdef->mhpmax < 1) mdef->mhpmax = 1;
 			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
 			if (mdef->m_lev == 0) tmp = mdef->mhp;
 			else mdef->m_lev--;
@@ -5612,6 +5673,7 @@ physical:
 		if (!cancelled && rn2(2) && !resists_drli(mdef)) {
 			if (vis) pline("%s suddenly seems weaker!", Monnam(mdef));
 			mdef->mhpmax -= d(2,6);
+			if (mdef->mhpmax < 1) mdef->mhpmax = 1;
 			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
 			if (mdef->m_lev == 0) tmp = mdef->mhp;
 			else mdef->m_lev--;
@@ -5635,6 +5697,7 @@ physical:
 		if (!cancelled && rn2(2) && !resists_drli(mdef)) {
 			if (vis) pline("%s suddenly seems weaker!", Monnam(mdef));
 			mdef->mhpmax -= d(2,6);
+			if (mdef->mhpmax < 1) mdef->mhpmax = 1;
 			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
 			if (mdef->m_lev == 0) tmp = mdef->mhp;
 			else mdef->m_lev--;
@@ -5653,6 +5716,7 @@ physical:
 		if ((!cancelled || mdef->mtame) && (rn2(2) || mdef->mtame) && !resists_drli(mdef)) {
 			if (vis) pline("%s suddenly seems weaker!", Monnam(mdef));
 			mdef->mhpmax -= d(2,6);
+			if (mdef->mhpmax < 1) mdef->mhpmax = 1;
 			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
 			if (mdef->m_lev == 0) tmp = mdef->mhp;
 			else mdef->m_lev--;
@@ -5928,6 +5992,12 @@ physical:
 	    case AD_SKIL:
 		if (mdef->mtame && !rn2(4)) badpeteffect(mdef);
 		break;
+	    case AD_TDRA:
+		if (mdef->mtame && !rn2(4)) badpeteffect(mdef);
+		break;
+	    case AD_BLAS:
+		if (mdef->mtame && !rn2(5)) badpeteffect(mdef);
+		break;
 	    case AD_SUCK:
 		if (mdef->mtame) {
 			if (vis) pline("%s is sucked by a vacuum cleaner!", Monnam(mdef));
@@ -6064,10 +6134,12 @@ physical:
 				int reduction = rnd(mdef->mhpmax / 10);
 				if (reduction < 1) reduction = 1; /* shouldn't happen */
 				mdef->mhpmax -= reduction;
+				if (mdef->mhpmax < 1) mdef->mhpmax = 1;
 				if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
 				if (vis) pline("%s is in pain!", Monnam(mdef));
 			} else if (mdef->mhpmax > (Role_if(PM_ZOOKEEPER) ? 320 : 160)) {
 				mdef->mhpmax--;
+				if (mdef->mhpmax < 1) mdef->mhpmax = 1;
 				if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
 				if (vis) pline("%s seems to be hurt!", Monnam(mdef));
 			}
@@ -6546,10 +6618,12 @@ int attnumber;
 				int reduction = rnd(magr->mhpmax / 10);
 				if (reduction < 1) reduction = 1; /* shouldn't happen */
 				magr->mhpmax -= reduction;
+				if (magr->mhpmax < 1) magr->mhpmax = 1;
 				if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
 				if (canseemon(magr)) pline("%s is in pain!", Monnam(magr));
 			} else if (magr->mhpmax > (Role_if(PM_ZOOKEEPER) ? 320 : 160)) {
 				magr->mhpmax--;
+				if (magr->mhpmax < 1) magr->mhpmax = 1;
 				if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
 				if (canseemon(magr)) pline("%s seems to be hurt!", Monnam(magr));
 			}
@@ -6744,6 +6818,7 @@ int attnumber;
 		}
 		break;
 	    case AD_FUMB:
+	    case AD_DROP:
 		if (!magr->mstun) {
 		    magr->mstun = 1;
 		    if (canseemon(magr))
@@ -6986,6 +7061,7 @@ int attnumber;
 			if (rn2(2) && !resists_drli(magr)) {
 				if (canseemon(magr)) pline("%s suddenly seems weaker!", Monnam(magr));
 				magr->mhpmax -= d(2,6);
+				if (magr->mhpmax < 1) magr->mhpmax = 1;
 				if (magr->m_lev == 0) tmp = magr->mhp;
 				else magr->m_lev--;
 				/* Automatic kill if drained past level 0 */
@@ -7561,6 +7637,12 @@ int attnumber;
 		break;
 	    case AD_SKIL:
 		if (magr->mtame && !rn2(4)) badpeteffect(magr);
+		break;
+	    case AD_TDRA:
+		if (magr->mtame && !rn2(4)) badpeteffect(magr);
+		break;
+	    case AD_BLAS:
+		if (magr->mtame && !rn2(5)) badpeteffect(magr);
 		break;
 	    case AD_SUCK:
 		if (magr->mtame) {

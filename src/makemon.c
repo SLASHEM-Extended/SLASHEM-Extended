@@ -68,11 +68,11 @@ monster_with_trait(ptr, type)
 register struct permonst *ptr;
 int type;
 {
-	if (type > 376) { /* same as monstercolor function */
+	if (type > 379) { /* same as monstercolor function */
 
 	}
 
-	if (( (type == 1 && !(ptr->msound == MS_SILENT)) || (type == 2 && !(ptr->msound == MS_BARK)) || (type == 3 && !(ptr->msound == MS_MEW)) || (type == 4 && !(ptr->msound == MS_ROAR)) || (type == 5 && !(ptr->msound == MS_GROWL)) || (type == 6 && !(ptr->msound == MS_SQEEK)) || (type == 7 && !(ptr->msound == MS_SQAWK)) || (type == 8 && !(ptr->msound == MS_HISS)) || (type == 9 && !(ptr->msound == MS_BUZZ)) || (type == 10 && !(ptr->msound == MS_GRUNT)) || (type == 11 && !(ptr->msound == MS_NEIGH)) || (type == 12 && !(ptr->msound == MS_WAIL)) || (type == 13 && !(ptr->msound == MS_GURGLE)) || (type == 14 && !(ptr->msound == MS_BURBLE)) || (type == 15 && !(ptr->msound == MS_SHRIEK)) || (type == 16 && !(ptr->msound == MS_BONES)) || (type == 17 && !(ptr->msound == MS_LAUGH)) || (type == 18 && !(ptr->msound == MS_MUMBLE)) || (type == 19 && !(ptr->msound == MS_IMITATE)) || (type == 20 && !(ptr->msound == MS_ORC)) || (type == 21 && !(ptr->msound == MS_HUMANOID)) || (type == 22 && !(ptr->msound == MS_ARREST)) || (type == 23 && !(ptr->msound == MS_SOLDIER)) || (type == 24 && !(ptr->msound == MS_DJINNI)) || (type == 25 && !(ptr->msound == MS_NURSE)) || (type == 26 && !(ptr->msound == MS_SEDUCE)) || (type == 27 && !(ptr->msound == MS_VAMPIRE)) || (type == 28 && !(ptr->msound == MS_CUSS)) || (type == 29 && !(ptr->msound == MS_NEMESIS)) || (type == 30 && !(ptr->msound == MS_SPELL)) || (type == 31 && !(ptr->msound == MS_WERE)) || (type == 32 && !(ptr->msound == MS_BOAST)) || (type == 33 && !(ptr->msound == MS_SHEEP)) || (type == 34 && !(ptr->msound == MS_CHICKEN)) || (type == 35 && !(ptr->msound == MS_COW)) || (type == 36 && !(ptr->msound == MS_PARROT)) || (type == 37 && !(ptr->msound == MS_WHORE)) || (type == 38 && !(ptr->msound == MS_FART_QUIET)) || (type == 39 && !(ptr->msound == MS_FART_NORMAL)) || (type == 40 && !(ptr->msound == MS_FART_LOUD)) || (type == 41 && !(ptr->msound == MS_BOSS)) || (type == 42 && !(ptr->msound == MS_SOUND)) || (type == 43 && !(ptr->mresists & MR_FIRE)) || (type == 44 && !(ptr->mresists & MR_COLD)) || (type == 45 && !(ptr->mresists & MR_SLEEP)) || (type == 46 && !(ptr->mresists & MR_DISINT)) || (type == 47 && !(ptr->mresists & MR_ELEC)) || (type == 48 && !(ptr->mresists & MR_POISON)) || (type == 49 && !(ptr->mresists & MR_ACID)) || (type == 50 && !(ptr->mresists & MR_STONE)) || (type == 51 && !(ptr->mresists & MR_DEATH)) || (type == 52 && !(ptr->mresists & MR_DRAIN)) || (type == 53 && !(ptr->mresists & MR_PLUSONE)) || (type == 54 && !(ptr->mresists & MR_PLUSTWO)) || (type == 55 && !(ptr->mresists & MR_PLUSTHREE)) || (type == 56 && !(ptr->mresists & MR_PLUSFOUR)) || (type == 57 && !(ptr->mresists & MR_HITASONE)) || (type == 58 && !(ptr->mresists & MR_HITASTWO)) || (type == 59 && !(ptr->mresists & MR_HITASTHREE)) || (type == 60 && !(ptr->mresists & MR_HITASFOUR)) || (type == 61 && !(ptr->mflags1 & M1_FLY)) || (type == 62 && !(ptr->mflags1 & M1_SWIM)) || (type == 63 && !(ptr->mflags1 & M1_AMORPHOUS)) || (type == 64 && !(ptr->mflags1 & M1_WALLWALK)) || (type == 65 && !(ptr->mflags1 & M1_CLING)) || (type == 66 && !(ptr->mflags1 & M1_TUNNEL)) || (type == 67 && !(ptr->mflags1 & M1_NEEDPICK)) || (type == 68 && !(ptr->mflags1 & M1_CONCEAL)) || (type == 69 && !(ptr->mflags1 & M1_HIDE)) || (type == 70 && !(ptr->mflags1 & M1_AMPHIBIOUS)) || (type == 71 && !(ptr->mflags1 & M1_BREATHLESS)) || (type == 72 && !(ptr->mflags1 & M1_NOTAKE)) || (type == 73 && !(ptr->mflags1 & M1_NOEYES)) || (type == 74 && !(ptr->mflags1 & M1_NOHANDS)) || (type == 75 && !(ptr->mflags1 & M1_NOLIMBS)) || (type == 76 && !(ptr->mflags1 & M1_NOHEAD)) || (type == 77 && !(ptr->mflags1 & M1_MINDLESS)) || (type == 78 && !(ptr->mflags1 & M1_HUMANOID)) || (type == 79 && !(ptr->mflags1 & M1_ANIMAL)) || (type == 80 && !(ptr->mflags1 & M1_SLITHY)) || (type == 81 && !(ptr->mflags1 & M1_UNSOLID)) || (type == 82 && !(ptr->mflags1 & M1_THICK_HIDE)) || (type == 83 && !(ptr->mflags1 & M1_OVIPAROUS)) || (type == 84 && !(ptr->mflags1 & M1_REGEN)) || (type == 85 && !(ptr->mflags1 & M1_SEE_INVIS)) || (type == 86 && !(ptr->mflags1 & M1_TPORT)) || (type == 87 && !(ptr->mflags1 & M1_TPORT_CNTRL)) || (type == 88 && !(ptr->mflags1 & M1_ACID)) || (type == 89 && !(ptr->mflags1 & M1_POIS)) || (type == 90 && !(ptr->mflags1 & M1_CARNIVORE)) || (type == 91 && !(ptr->mflags1 & M1_HERBIVORE)) || (type == 92 && !(ptr->mflags1 & M1_OMNIVORE)) || (type == 93 && !(ptr->mflags1 & M1_METALLIVORE)) || (type == 94 && !(ptr->mflags2 & M2_NOPOLY)) || (type == 95 && !(ptr->mflags2 & M2_UNDEAD)) || (type == 96 && !(ptr->mflags2 & M2_MERC)) || (type == 97 && !(ptr->mflags2 & M2_HUMAN)) || (type == 98 && !(ptr->mflags2 & M2_ELF)) || (type == 99 && !(ptr->mflags2 & M2_DWARF)) || (type == 100 && !(ptr->mflags2 & M2_GNOME)) || (type == 101 && !(ptr->mflags2 & M2_ORC)) || (type == 102 && !(ptr->mflags2 & M2_HOBBIT)) || (type == 103 && !(ptr->mflags2 & M2_WERE)) || (type == 104 && !(ptr->mflags2 & M2_VAMPIRE)) || (type == 105 && !(ptr->mflags2 & M2_LORD)) || (type == 106 && !(ptr->mflags2 & M2_PRINCE)) || (type == 107 && !(ptr->mflags2 & M2_MINION)) || (type == 108 && !(ptr->mflags2 & M2_GIANT)) || (type == 109 && !(ptr->mflags2 & M2_DEMON)) || (type == 110 && !(ptr->mflags2 & M2_MALE)) || (type == 111 && !(ptr->mflags2 & M2_FEMALE)) || (type == 112 && !(ptr->mflags2 & M2_NEUTER)) || (type == 113 && !(ptr->mflags2 & M2_PNAME)) || (type == 114 && !(ptr->mflags2 & M2_HOSTILE)) || (type == 115 && !(ptr->mflags2 & M2_PEACEFUL)) || (type == 116 && !(ptr->mflags2 & M2_DOMESTIC)) || (type == 117 && !(ptr->mflags2 & M2_WANDER)) || (type == 118 && !(ptr->mflags2 & M2_STALK)) || (type == 119 && !(ptr->mflags2 & M2_NASTY)) || (type == 120 && !(ptr->mflags2 & M2_STRONG)) || (type == 121 && !(ptr->mflags2 & M2_ROCKTHROW)) || (type == 122 && !(ptr->mflags2 & M2_GREEDY))  || (type == 123 && !(ptr->mflags2 & M2_JEWELS)) || (type == 124 && !(ptr->mflags2 & M2_COLLECT)) || (type == 125 && !(ptr->mflags2 & M2_MAGIC)) || (type == 126 && !(ptr->mflags3 & M3_WANTSAMUL)) || (type == 127 && !(ptr->mflags3 & M3_WANTSBELL)) || (type == 128 && !(ptr->mflags3 & M3_WANTSBOOK)) || (type == 129 && !(ptr->mflags3 & M3_WANTSCAND)) || (type == 130 && !(ptr->mflags3 & M3_WANTSARTI)) || (type == 131 && !(ptr->mflags3 & M3_WAITFORU)) || (type == 132 && !(ptr->mflags3 & M3_CLOSE)) || (type == 133 && !(ptr->mflags3 & M3_INFRAVISION)) || (type == 134 && !(ptr->mflags3 & M3_INFRAVISIBLE)) || (type == 135 && !(ptr->mflags3 & M3_TRAITOR)) || (type == 136 && !(ptr->mflags3 & M3_NOTAME)) || (type == 137 && !(ptr->mflags3 & M3_AVOIDER)) || (type == 138 && !(ptr->mflags3 & M3_LITHIVORE)) || (type == 139 && !(ptr->mflags3 & M3_PETTY)) || (type == 140 && !(ptr->mflags3 & M3_POKEMON)) || (type == 141 && !(ptr->mflags3 & M3_NOPLRPOLY)) || (type == 142 && !(ptr->mflags3 & M3_NONMOVING)) || (type == 143 && !(ptr->mflags3 & M3_EGOTYPE)) || (type == 144 && !(ptr->mflags3 & M3_TELEPATHIC)) || (type == 145 && !(ptr->mflags3 & M3_SPIDER)) || (type == 146 && !(ptr->mflags3 & M3_PETRIFIES)) || (type == 147 && !(ptr->mflags3 & M3_IS_MIND_FLAYER)) || (type == 148 && !(ptr->mflags3 & M3_NO_DECAY)) || (type == 149 && !(ptr->mflags3 & M3_MIMIC)) || (type == 150 && !(ptr->mflags3 & M3_PERMAMIMIC)) || (type == 151 && !(ptr->mflags3 & M3_SLIME)) || (type == 152 && !(ptr->mflags3 & M3_FREQ_UNCOMMON2)) || (type == 153 && !(ptr->mflags3 & M3_FREQ_UNCOMMON3)) || (type == 154 && !(ptr->mflags3 & M3_FREQ_UNCOMMON5)) || (type == 155 && !(ptr->mflags3 & M3_FREQ_UNCOMMON7)) || (type == 156 && !(ptr->mflags3 & M3_FREQ_UNCOMMON10)) || (type == 157 && !(ptr->mflags3 & M3_MIND_FLAYER)) || (type == 158 && !(ptr->msize == MZ_TINY)) || (type == 159 && !(ptr->msize == MZ_SMALL)) || (type == 160 && !(ptr->msize == MZ_MEDIUM)) || (type == 161 && !(ptr->msize == MZ_LARGE)) || (type == 162 && !(ptr->msize == MZ_HUGE)) || (type == 163 && !(ptr->msize == MZ_GIGANTIC)) || (type == 164 && !(ptr->geno & G_VLGROUP)) || (type == 165 && !(ptr->geno & G_UNIQ)) || (type == 166 && !(ptr->geno & G_SGROUP)) || (type == 167 && !(ptr->geno & G_LGROUP)) || (type == 168 && !(ptr->geno & G_GENO)) || (type == 169 && !(ptr->geno & G_NOCORPSE)) || (type == 170 && !haspassive(ptr)) || (type == 171 && !attacktype(ptr, AT_CLAW)) || (type == 172 && !attacktype(ptr, AT_BITE)) || (type == 173 && !attacktype(ptr, AT_KICK)) || (type == 174 && !attacktype(ptr, AT_BUTT)) || (type == 175 && !attacktype(ptr, AT_TUCH)) || (type == 176 && !attacktype(ptr, AT_STNG)) || (type == 177 && !attacktype(ptr, AT_HUGS)) || (type == 178 && !attacktype(ptr, AT_SCRA)) || (type == 179 && !attacktype(ptr, AT_LASH)) || (type == 180 && !attacktype(ptr, AT_SPIT)) || (type == 181 && !attacktype(ptr, AT_ENGL)) || (type == 182 && !attacktype(ptr, AT_BREA)) || (type == 183 && !attacktype(ptr, AT_EXPL)) || (type == 184 && !attacktype(ptr, AT_BOOM)) || (type == 185 && !attacktype(ptr, AT_GAZE)) || (type == 186 && !attacktype(ptr, AT_TENT)) || (type == 187 && !attacktype(ptr, AT_TRAM)) || (type == 188 && !attacktype(ptr, AT_BEAM)) || (type == 189 && !attacktype(ptr, AT_MULTIPLY)) || (type == 190 && !attacktype(ptr, AT_WEAP)) || (type == 191 && !attacktype(ptr, AT_MAGC)) || (type == 192 && !dmgtype(ptr, AD_PHYS)) || (type == 193 && !dmgtype(ptr, AD_MAGM)) || (type == 194 && !dmgtype(ptr, AD_FIRE)) || (type == 195 && !dmgtype(ptr, AD_COLD)) || (type == 196 && !dmgtype(ptr, AD_SLEE)) || (type == 197 && !dmgtype(ptr, AD_DISN)) || (type == 198 && !dmgtype(ptr, AD_ELEC)) || (type == 199 && !dmgtype(ptr, AD_DRST)) || (type == 200 && !dmgtype(ptr, AD_ACID)) || (type == 201 && !dmgtype(ptr, AD_LITE)) || (type == 202 && !dmgtype(ptr, AD_BLND)) || (type == 203 && !dmgtype(ptr, AD_STUN)) || (type == 204 && !dmgtype(ptr, AD_SLOW)) || (type == 205 && !dmgtype(ptr, AD_PLYS)) || (type == 206 && !dmgtype(ptr, AD_DRLI)) || (type == 207 && !dmgtype(ptr, AD_DREN)) || (type == 208 && !dmgtype(ptr, AD_LEGS)) || (type == 209 && !dmgtype(ptr, AD_STON)) || (type == 210 && !dmgtype(ptr, AD_STCK)) || (type == 211 && !dmgtype(ptr, AD_SGLD)) || (type == 212 && !dmgtype(ptr, AD_SITM)) || (type == 213 && !dmgtype(ptr, AD_SEDU)) || (type == 214 && !dmgtype(ptr, AD_TLPT)) || (type == 215 && !dmgtype(ptr, AD_RUST)) || (type == 216 && !dmgtype(ptr, AD_CONF)) || (type == 217 && !dmgtype(ptr, AD_DGST)) || (type == 218 && !dmgtype(ptr, AD_HEAL)) || (type == 219 && !dmgtype(ptr, AD_WRAP)) || (type == 220 && !dmgtype(ptr, AD_WERE)) || (type == 221 && !dmgtype(ptr, AD_DRDX)) || (type == 222 && !dmgtype(ptr, AD_DRCO)) || (type == 223 && !dmgtype(ptr, AD_DRIN)) || (type == 224 && !dmgtype(ptr, AD_DISE)) || (type == 225 && !dmgtype(ptr, AD_DCAY)) || (type == 226 && !dmgtype(ptr, AD_SSEX)) || (type == 227 && !dmgtype(ptr, AD_HALU)) || (type == 228 && !dmgtype(ptr, AD_DETH)) || (type == 229 && !dmgtype(ptr, AD_PEST)) || (type == 230 && !dmgtype(ptr, AD_FAMN)) || (type == 231 && !dmgtype(ptr, AD_SLIM)) || (type == 232 && !dmgtype(ptr, AD_CALM)) || (type == 233 && !dmgtype(ptr, AD_ENCH)) || (type == 234 && !dmgtype(ptr, AD_POLY)) || (type == 235 && !dmgtype(ptr, AD_CORR)) || (type == 236 && !dmgtype(ptr, AD_TCKL)) || (type == 237 && !dmgtype(ptr, AD_NGRA)) || (type == 238 && !dmgtype(ptr, AD_GLIB)) || (type == 239 && !dmgtype(ptr, AD_DARK)) || (type == 240 && !dmgtype(ptr, AD_WTHR)) || (type == 241 && !dmgtype(ptr, AD_LUCK)) || (type == 242 && !dmgtype(ptr, AD_NUMB)) || (type == 243 && !dmgtype(ptr, AD_FRZE)) || (type == 244 && !dmgtype(ptr, AD_DISP)) || (type == 245 && !dmgtype(ptr, AD_BURN)) || (type == 246 && !dmgtype(ptr, AD_FEAR)) || (type == 247 && !dmgtype(ptr, AD_NPRO)) || (type == 248 && !dmgtype(ptr, AD_POIS)) || (type == 249 && !dmgtype(ptr, AD_THIR)) || (type == 250 && !dmgtype(ptr, AD_LAVA)) || (type == 251 && !dmgtype(ptr, AD_FAKE)) || (type == 252 && !dmgtype(ptr, AD_LETH)) || (type == 253 && !dmgtype(ptr, AD_CNCL)) || (type == 254 && !dmgtype(ptr, AD_BANI)) || (type == 255 && !dmgtype(ptr, AD_WISD)) || (type == 256 && !dmgtype(ptr, AD_SHRD)) || (type == 257 && !dmgtype(ptr, AD_WET)) || (type == 258 && !dmgtype(ptr, AD_SUCK)) || (type == 259 && !dmgtype(ptr, AD_MALK)) || (type == 260 && !dmgtype(ptr, AD_UVUU)) || (type == 261 && !dmgtype(ptr, AD_ABDC)) || (type == 262 && !dmgtype(ptr, AD_AXUS)) || (type == 263 && !dmgtype(ptr, AD_CHKH)) || (type == 264 && !dmgtype(ptr, AD_HODS)) || (type == 265 && !dmgtype(ptr, AD_CHRN)) || (type == 266 && !dmgtype(ptr, AD_WEEP)) || (type == 267 && !dmgtype(ptr, AD_VAMP)) || (type == 268 && !dmgtype(ptr, AD_WEBS)) || (type == 269 && !dmgtype(ptr, AD_STTP)) || (type == 270 && !dmgtype(ptr, AD_DEPR)) || (type == 271 && !dmgtype(ptr, AD_WRAT)) || (type == 272 && !dmgtype(ptr, AD_LAZY)) || (type == 273 && !dmgtype(ptr, AD_DRCH)) || (type == 274 && !dmgtype(ptr, AD_DFOO)) || (type == 275 && !dmgtype(ptr, AD_NEXU)) || (type == 276 && !dmgtype(ptr, AD_SOUN)) || (type == 277 && !dmgtype(ptr, AD_GRAV)) || (type == 278 && !dmgtype(ptr, AD_INER)) || (type == 279 && !dmgtype(ptr, AD_TIME)) || (type == 280 && !dmgtype(ptr, AD_MANA)) || (type == 281 && !dmgtype(ptr, AD_PLAS)) || (type == 282 && !dmgtype(ptr, AD_SKIL)) || (type == 283 && !dmgtype(ptr, AD_CLRC)) || (type == 284 && !dmgtype(ptr, AD_SPEL)) || (type == 285 && !dmgtype(ptr, AD_RBRE)) || (type == 286 && !dmgtype(ptr, AD_SAMU)) || (type == 287 && !dmgtype(ptr, AD_CURS)) || (type == 288 && !dmgtype(ptr, AD_SPC2)) || (type == 289 && !dmgtype(ptr, AD_VENO)) || (type == 290 && !dmgtype(ptr, AD_DREA)) || (type == 291 && !dmgtype(ptr, AD_NAST)) || (type == 292 && !dmgtype(ptr, AD_BADE)) || (type == 293 && !dmgtype(ptr, AD_SLUD)) || (type == 294 && !dmgtype(ptr, AD_ICUR)) || (type == 295 && !dmgtype(ptr, AD_VULN)) || (type == 296 && !dmgtype(ptr, AD_FUMB)) || (type == 297 && !dmgtype(ptr, AD_DIMN)) || (type == 298 && !dmgtype(ptr, AD_AMNE)) || (type == 299 && !dmgtype(ptr, AD_ICEB)) || (type == 300 && !dmgtype(ptr, AD_VAPO)) || (type == 301 && !dmgtype(ptr, AD_EDGE)) || (type == 302 && !dmgtype(ptr, AD_VOMT)) || (type == 303 && !dmgtype(ptr, AD_LITT)) || (type == 304 && !dmgtype(ptr, AD_FREN)) || (type == 305 && !dmgtype(ptr, AD_NGEN)) || (type == 306 && !dmgtype(ptr, AD_CHAO)) || (type == 307 && !dmgtype(ptr, AD_INSA)) || (type == 308 && !dmgtype(ptr, AD_TRAP)) || (type == 309 && !dmgtype(ptr, AD_WGHT)) || (type == 310 && !dmgtype(ptr, AD_NTHR)) || (type == 311 && !dmgtype(ptr, AD_MIDI)) || (type == 312 && !dmgtype(ptr, AD_RNG)) || (type == 313 && !dmgtype(ptr, AD_CAST)) || (type == 314 && !(ptr->mflags4 & M4_BAT)) || (type == 315 && !(ptr->mflags4 & M4_REVIVE)) || (type == 316 && !(ptr->mflags4 & M4_RAT)) || (type == 317 && !(ptr->mflags4 & M4_SHADE)) || (type == 318 && !(ptr->mflags4 & M4_REFLECT)) || (type == 319 && !(ptr->mflags4 & M4_MULTIHUED)) || (type == 320 && !(ptr->mflags4 & M4_TAME)) || (type == 321 && !(ptr->mflags4 & M4_ORGANIVORE)) || (type == 322 && !(ptr->mflags5 & M5_SPACEWARS)) || (type == 323 && !(ptr->mflags5 & M5_JOKE)) || (type == 324 && !(ptr->mflags5 & M5_ANGBAND)) || (type == 325 && !(ptr->mflags5 & M5_STEAMBAND)) || (type == 326 && !(ptr->mflags5 & M5_ANIMEBAND)) || (type == 327 && !(ptr->mflags5 & M5_DIABLO)) || (type == 328 && !(ptr->mflags5 & M5_DLORDS)) || (type == 329 && !(ptr->mflags5 & M5_VANILLA)) || (type == 330 && !(ptr->mflags5 & M5_DNETHACK)) || (type == 331 && !(ptr->mflags5 & M5_RANDOMIZED)) || (type == 332 && !(ptr->msound == MS_SHOE)) || (type == 333 && !(ptr->msound == MS_STENCH)) || (type == 334 && !dmgtype(ptr, AD_ALIN)) || (type == 335 && !dmgtype(ptr, AD_SIN)) || (type == 336 && !dmgtype(ptr, AD_MINA)) || (type == 337 && !dmgtype(ptr, AD_CONT)) || (type == 338 && !dmgtype(ptr, AD_AGGR)) || (type == 339 && !(ptr->mflags5 & M5_JONADAB)) || (type == 340 && !dmgtype(ptr, AD_DATA)) || (type == 341 && !(ptr->mflags5 & M5_EVIL)) || (type == 342 && !(ptr->mflags4 & M4_SHAPESHIFT)) || (type == 343 && !(ptr->mflags4 & M4_GRIDBUG)) || (type == 344 && !dmgtype(ptr, AD_DEST)) || (type == 345 && !dmgtype(ptr, AD_TREM)) || (type == 346 && !dmgtype(ptr, AD_RAGN)) || (type == 347 && !(ptr->msound == MS_CONVERT)) || (type == 348 && !(ptr->msound == MS_HCALIEN)) || (type == 349 && !dmgtype(ptr, AD_IDAM)) || (type == 350 && !dmgtype(ptr, AD_ANTI)) || (type == 351 && !dmgtype(ptr, AD_PAIN)) || (type == 352 && !dmgtype(ptr, AD_TECH)) || (type == 353 && !dmgtype(ptr, AD_MEMO)) || (type == 354 && !dmgtype(ptr, AD_TRAI)) || (type == 355 && !dmgtype(ptr, AD_STAT)) || (type == 356 && !dmgtype(ptr, AD_DAMA)) || (type == 357 && !dmgtype(ptr, AD_THIE)) || (type == 358 && !dmgtype(ptr, AD_PART)) || (type == 359 && !dmgtype(ptr, AD_RUNS)) || (type == 360 && !attacktype(ptr, AT_RATH)) || (type == 361 && !(ptr->mflags5 & M5_ELONA)) || (type == 362 && !dmgtype(ptr, AD_NACU)) || (type == 363 && !dmgtype(ptr, AD_SANI)) || (type == 364 && !dmgtype(ptr, AD_RBAD)) || (type == 365 && !dmgtype(ptr, AD_BLEE)) || (type == 366 && !dmgtype(ptr, AD_SHAN)) || (type == 367 && !dmgtype(ptr, AD_SCOR)) || (type == 368 && !dmgtype(ptr, AD_TERR)) || (type == 369 && !dmgtype(ptr, AD_FEMI)) || (type == 370 && !dmgtype(ptr, AD_LEVI)) || (type == 371 && !dmgtype(ptr, AD_ILLU)) || (type == 372 && !dmgtype(ptr, AD_MCRE)) || (type == 373 && !dmgtype(ptr, AD_FLAM)) || (type == 374 && !dmgtype(ptr, AD_DEBU)) || (type == 375 && !dmgtype(ptr, AD_UNPR)) || (type == 376 && !dmgtype(ptr, AD_NIVE)) )) return FALSE;
+	if (( (type == 1 && !(ptr->msound == MS_SILENT)) || (type == 2 && !(ptr->msound == MS_BARK)) || (type == 3 && !(ptr->msound == MS_MEW)) || (type == 4 && !(ptr->msound == MS_ROAR)) || (type == 5 && !(ptr->msound == MS_GROWL)) || (type == 6 && !(ptr->msound == MS_SQEEK)) || (type == 7 && !(ptr->msound == MS_SQAWK)) || (type == 8 && !(ptr->msound == MS_HISS)) || (type == 9 && !(ptr->msound == MS_BUZZ)) || (type == 10 && !(ptr->msound == MS_GRUNT)) || (type == 11 && !(ptr->msound == MS_NEIGH)) || (type == 12 && !(ptr->msound == MS_WAIL)) || (type == 13 && !(ptr->msound == MS_GURGLE)) || (type == 14 && !(ptr->msound == MS_BURBLE)) || (type == 15 && !(ptr->msound == MS_SHRIEK)) || (type == 16 && !(ptr->msound == MS_BONES)) || (type == 17 && !(ptr->msound == MS_LAUGH)) || (type == 18 && !(ptr->msound == MS_MUMBLE)) || (type == 19 && !(ptr->msound == MS_IMITATE)) || (type == 20 && !(ptr->msound == MS_ORC)) || (type == 21 && !(ptr->msound == MS_HUMANOID)) || (type == 22 && !(ptr->msound == MS_ARREST)) || (type == 23 && !(ptr->msound == MS_SOLDIER)) || (type == 24 && !(ptr->msound == MS_DJINNI)) || (type == 25 && !(ptr->msound == MS_NURSE)) || (type == 26 && !(ptr->msound == MS_SEDUCE)) || (type == 27 && !(ptr->msound == MS_VAMPIRE)) || (type == 28 && !(ptr->msound == MS_CUSS)) || (type == 29 && !(ptr->msound == MS_NEMESIS)) || (type == 30 && !(ptr->msound == MS_SPELL)) || (type == 31 && !(ptr->msound == MS_WERE)) || (type == 32 && !(ptr->msound == MS_BOAST)) || (type == 33 && !(ptr->msound == MS_SHEEP)) || (type == 34 && !(ptr->msound == MS_CHICKEN)) || (type == 35 && !(ptr->msound == MS_COW)) || (type == 36 && !(ptr->msound == MS_PARROT)) || (type == 37 && !(ptr->msound == MS_WHORE)) || (type == 38 && !(ptr->msound == MS_FART_QUIET)) || (type == 39 && !(ptr->msound == MS_FART_NORMAL)) || (type == 40 && !(ptr->msound == MS_FART_LOUD)) || (type == 41 && !(ptr->msound == MS_BOSS)) || (type == 42 && !(ptr->msound == MS_SOUND)) || (type == 43 && !(ptr->mresists & MR_FIRE)) || (type == 44 && !(ptr->mresists & MR_COLD)) || (type == 45 && !(ptr->mresists & MR_SLEEP)) || (type == 46 && !(ptr->mresists & MR_DISINT)) || (type == 47 && !(ptr->mresists & MR_ELEC)) || (type == 48 && !(ptr->mresists & MR_POISON)) || (type == 49 && !(ptr->mresists & MR_ACID)) || (type == 50 && !(ptr->mresists & MR_STONE)) || (type == 51 && !(ptr->mresists & MR_DEATH)) || (type == 52 && !(ptr->mresists & MR_DRAIN)) || (type == 53 && !(ptr->mresists & MR_PLUSONE)) || (type == 54 && !(ptr->mresists & MR_PLUSTWO)) || (type == 55 && !(ptr->mresists & MR_PLUSTHREE)) || (type == 56 && !(ptr->mresists & MR_PLUSFOUR)) || (type == 57 && !(ptr->mresists & MR_HITASONE)) || (type == 58 && !(ptr->mresists & MR_HITASTWO)) || (type == 59 && !(ptr->mresists & MR_HITASTHREE)) || (type == 60 && !(ptr->mresists & MR_HITASFOUR)) || (type == 61 && !(ptr->mflags1 & M1_FLY)) || (type == 62 && !(ptr->mflags1 & M1_SWIM)) || (type == 63 && !(ptr->mflags1 & M1_AMORPHOUS)) || (type == 64 && !(ptr->mflags1 & M1_WALLWALK)) || (type == 65 && !(ptr->mflags1 & M1_CLING)) || (type == 66 && !(ptr->mflags1 & M1_TUNNEL)) || (type == 67 && !(ptr->mflags1 & M1_NEEDPICK)) || (type == 68 && !(ptr->mflags1 & M1_CONCEAL)) || (type == 69 && !(ptr->mflags1 & M1_HIDE)) || (type == 70 && !(ptr->mflags1 & M1_AMPHIBIOUS)) || (type == 71 && !(ptr->mflags1 & M1_BREATHLESS)) || (type == 72 && !(ptr->mflags1 & M1_NOTAKE)) || (type == 73 && !(ptr->mflags1 & M1_NOEYES)) || (type == 74 && !(ptr->mflags1 & M1_NOHANDS)) || (type == 75 && !(ptr->mflags1 & M1_NOLIMBS)) || (type == 76 && !(ptr->mflags1 & M1_NOHEAD)) || (type == 77 && !(ptr->mflags1 & M1_MINDLESS)) || (type == 78 && !(ptr->mflags1 & M1_HUMANOID)) || (type == 79 && !(ptr->mflags1 & M1_ANIMAL)) || (type == 80 && !(ptr->mflags1 & M1_SLITHY)) || (type == 81 && !(ptr->mflags1 & M1_UNSOLID)) || (type == 82 && !(ptr->mflags1 & M1_THICK_HIDE)) || (type == 83 && !(ptr->mflags1 & M1_OVIPAROUS)) || (type == 84 && !(ptr->mflags1 & M1_REGEN)) || (type == 85 && !(ptr->mflags1 & M1_SEE_INVIS)) || (type == 86 && !(ptr->mflags1 & M1_TPORT)) || (type == 87 && !(ptr->mflags1 & M1_TPORT_CNTRL)) || (type == 88 && !(ptr->mflags1 & M1_ACID)) || (type == 89 && !(ptr->mflags1 & M1_POIS)) || (type == 90 && !(ptr->mflags1 & M1_CARNIVORE)) || (type == 91 && !(ptr->mflags1 & M1_HERBIVORE)) || (type == 92 && !(ptr->mflags1 & M1_OMNIVORE)) || (type == 93 && !(ptr->mflags1 & M1_METALLIVORE)) || (type == 94 && !(ptr->mflags2 & M2_NOPOLY)) || (type == 95 && !(ptr->mflags2 & M2_UNDEAD)) || (type == 96 && !(ptr->mflags2 & M2_MERC)) || (type == 97 && !(ptr->mflags2 & M2_HUMAN)) || (type == 98 && !(ptr->mflags2 & M2_ELF)) || (type == 99 && !(ptr->mflags2 & M2_DWARF)) || (type == 100 && !(ptr->mflags2 & M2_GNOME)) || (type == 101 && !(ptr->mflags2 & M2_ORC)) || (type == 102 && !(ptr->mflags2 & M2_HOBBIT)) || (type == 103 && !(ptr->mflags2 & M2_WERE)) || (type == 104 && !(ptr->mflags2 & M2_VAMPIRE)) || (type == 105 && !(ptr->mflags2 & M2_LORD)) || (type == 106 && !(ptr->mflags2 & M2_PRINCE)) || (type == 107 && !(ptr->mflags2 & M2_MINION)) || (type == 108 && !(ptr->mflags2 & M2_GIANT)) || (type == 109 && !(ptr->mflags2 & M2_DEMON)) || (type == 110 && !(ptr->mflags2 & M2_MALE)) || (type == 111 && !(ptr->mflags2 & M2_FEMALE)) || (type == 112 && !(ptr->mflags2 & M2_NEUTER)) || (type == 113 && !(ptr->mflags2 & M2_PNAME)) || (type == 114 && !(ptr->mflags2 & M2_HOSTILE)) || (type == 115 && !(ptr->mflags2 & M2_PEACEFUL)) || (type == 116 && !(ptr->mflags2 & M2_DOMESTIC)) || (type == 117 && !(ptr->mflags2 & M2_WANDER)) || (type == 118 && !(ptr->mflags2 & M2_STALK)) || (type == 119 && !(ptr->mflags2 & M2_NASTY)) || (type == 120 && !(ptr->mflags2 & M2_STRONG)) || (type == 121 && !(ptr->mflags2 & M2_ROCKTHROW)) || (type == 122 && !(ptr->mflags2 & M2_GREEDY))  || (type == 123 && !(ptr->mflags2 & M2_JEWELS)) || (type == 124 && !(ptr->mflags2 & M2_COLLECT)) || (type == 125 && !(ptr->mflags2 & M2_MAGIC)) || (type == 126 && !(ptr->mflags3 & M3_WANTSAMUL)) || (type == 127 && !(ptr->mflags3 & M3_WANTSBELL)) || (type == 128 && !(ptr->mflags3 & M3_WANTSBOOK)) || (type == 129 && !(ptr->mflags3 & M3_WANTSCAND)) || (type == 130 && !(ptr->mflags3 & M3_WANTSARTI)) || (type == 131 && !(ptr->mflags3 & M3_WAITFORU)) || (type == 132 && !(ptr->mflags3 & M3_CLOSE)) || (type == 133 && !(ptr->mflags3 & M3_INFRAVISION)) || (type == 134 && !(ptr->mflags3 & M3_INFRAVISIBLE)) || (type == 135 && !(ptr->mflags3 & M3_TRAITOR)) || (type == 136 && !(ptr->mflags3 & M3_NOTAME)) || (type == 137 && !(ptr->mflags3 & M3_AVOIDER)) || (type == 138 && !(ptr->mflags3 & M3_LITHIVORE)) || (type == 139 && !(ptr->mflags3 & M3_PETTY)) || (type == 140 && !(ptr->mflags3 & M3_POKEMON)) || (type == 141 && !(ptr->mflags3 & M3_NOPLRPOLY)) || (type == 142 && !(ptr->mflags3 & M3_NONMOVING)) || (type == 143 && !(ptr->mflags3 & M3_EGOTYPE)) || (type == 144 && !(ptr->mflags3 & M3_TELEPATHIC)) || (type == 145 && !(ptr->mflags3 & M3_SPIDER)) || (type == 146 && !(ptr->mflags3 & M3_PETRIFIES)) || (type == 147 && !(ptr->mflags3 & M3_IS_MIND_FLAYER)) || (type == 148 && !(ptr->mflags3 & M3_NO_DECAY)) || (type == 149 && !(ptr->mflags3 & M3_MIMIC)) || (type == 150 && !(ptr->mflags3 & M3_PERMAMIMIC)) || (type == 151 && !(ptr->mflags3 & M3_SLIME)) || (type == 152 && !(ptr->mflags3 & M3_FREQ_UNCOMMON2)) || (type == 153 && !(ptr->mflags3 & M3_FREQ_UNCOMMON3)) || (type == 154 && !(ptr->mflags3 & M3_FREQ_UNCOMMON5)) || (type == 155 && !(ptr->mflags3 & M3_FREQ_UNCOMMON7)) || (type == 156 && !(ptr->mflags3 & M3_FREQ_UNCOMMON10)) || (type == 157 && !(ptr->mflags3 & M3_MIND_FLAYER)) || (type == 158 && !(ptr->msize == MZ_TINY)) || (type == 159 && !(ptr->msize == MZ_SMALL)) || (type == 160 && !(ptr->msize == MZ_MEDIUM)) || (type == 161 && !(ptr->msize == MZ_LARGE)) || (type == 162 && !(ptr->msize == MZ_HUGE)) || (type == 163 && !(ptr->msize == MZ_GIGANTIC)) || (type == 164 && !(ptr->geno & G_VLGROUP)) || (type == 165 && !(ptr->geno & G_UNIQ)) || (type == 166 && !(ptr->geno & G_SGROUP)) || (type == 167 && !(ptr->geno & G_LGROUP)) || (type == 168 && !(ptr->geno & G_GENO)) || (type == 169 && !(ptr->geno & G_NOCORPSE)) || (type == 170 && !haspassive(ptr)) || (type == 171 && !attacktype(ptr, AT_CLAW)) || (type == 172 && !attacktype(ptr, AT_BITE)) || (type == 173 && !attacktype(ptr, AT_KICK)) || (type == 174 && !attacktype(ptr, AT_BUTT)) || (type == 175 && !attacktype(ptr, AT_TUCH)) || (type == 176 && !attacktype(ptr, AT_STNG)) || (type == 177 && !attacktype(ptr, AT_HUGS)) || (type == 178 && !attacktype(ptr, AT_SCRA)) || (type == 179 && !attacktype(ptr, AT_LASH)) || (type == 180 && !attacktype(ptr, AT_SPIT)) || (type == 181 && !attacktype(ptr, AT_ENGL)) || (type == 182 && !attacktype(ptr, AT_BREA)) || (type == 183 && !attacktype(ptr, AT_EXPL)) || (type == 184 && !attacktype(ptr, AT_BOOM)) || (type == 185 && !attacktype(ptr, AT_GAZE)) || (type == 186 && !attacktype(ptr, AT_TENT)) || (type == 187 && !attacktype(ptr, AT_TRAM)) || (type == 188 && !attacktype(ptr, AT_BEAM)) || (type == 189 && !attacktype(ptr, AT_MULTIPLY)) || (type == 190 && !attacktype(ptr, AT_WEAP)) || (type == 191 && !attacktype(ptr, AT_MAGC)) || (type == 192 && !dmgtype(ptr, AD_PHYS)) || (type == 193 && !dmgtype(ptr, AD_MAGM)) || (type == 194 && !dmgtype(ptr, AD_FIRE)) || (type == 195 && !dmgtype(ptr, AD_COLD)) || (type == 196 && !dmgtype(ptr, AD_SLEE)) || (type == 197 && !dmgtype(ptr, AD_DISN)) || (type == 198 && !dmgtype(ptr, AD_ELEC)) || (type == 199 && !dmgtype(ptr, AD_DRST)) || (type == 200 && !dmgtype(ptr, AD_ACID)) || (type == 201 && !dmgtype(ptr, AD_LITE)) || (type == 202 && !dmgtype(ptr, AD_BLND)) || (type == 203 && !dmgtype(ptr, AD_STUN)) || (type == 204 && !dmgtype(ptr, AD_SLOW)) || (type == 205 && !dmgtype(ptr, AD_PLYS)) || (type == 206 && !dmgtype(ptr, AD_DRLI)) || (type == 207 && !dmgtype(ptr, AD_DREN)) || (type == 208 && !dmgtype(ptr, AD_LEGS)) || (type == 209 && !dmgtype(ptr, AD_STON)) || (type == 210 && !dmgtype(ptr, AD_STCK)) || (type == 211 && !dmgtype(ptr, AD_SGLD)) || (type == 212 && !dmgtype(ptr, AD_SITM)) || (type == 213 && !dmgtype(ptr, AD_SEDU)) || (type == 214 && !dmgtype(ptr, AD_TLPT)) || (type == 215 && !dmgtype(ptr, AD_RUST)) || (type == 216 && !dmgtype(ptr, AD_CONF)) || (type == 217 && !dmgtype(ptr, AD_DGST)) || (type == 218 && !dmgtype(ptr, AD_HEAL)) || (type == 219 && !dmgtype(ptr, AD_WRAP)) || (type == 220 && !dmgtype(ptr, AD_WERE)) || (type == 221 && !dmgtype(ptr, AD_DRDX)) || (type == 222 && !dmgtype(ptr, AD_DRCO)) || (type == 223 && !dmgtype(ptr, AD_DRIN)) || (type == 224 && !dmgtype(ptr, AD_DISE)) || (type == 225 && !dmgtype(ptr, AD_DCAY)) || (type == 226 && !dmgtype(ptr, AD_SSEX)) || (type == 227 && !dmgtype(ptr, AD_HALU)) || (type == 228 && !dmgtype(ptr, AD_DETH)) || (type == 229 && !dmgtype(ptr, AD_PEST)) || (type == 230 && !dmgtype(ptr, AD_FAMN)) || (type == 231 && !dmgtype(ptr, AD_SLIM)) || (type == 232 && !dmgtype(ptr, AD_CALM)) || (type == 233 && !dmgtype(ptr, AD_ENCH)) || (type == 234 && !dmgtype(ptr, AD_POLY)) || (type == 235 && !dmgtype(ptr, AD_CORR)) || (type == 236 && !dmgtype(ptr, AD_TCKL)) || (type == 237 && !dmgtype(ptr, AD_NGRA)) || (type == 238 && !dmgtype(ptr, AD_GLIB)) || (type == 239 && !dmgtype(ptr, AD_DARK)) || (type == 240 && !dmgtype(ptr, AD_WTHR)) || (type == 241 && !dmgtype(ptr, AD_LUCK)) || (type == 242 && !dmgtype(ptr, AD_NUMB)) || (type == 243 && !dmgtype(ptr, AD_FRZE)) || (type == 244 && !dmgtype(ptr, AD_DISP)) || (type == 245 && !dmgtype(ptr, AD_BURN)) || (type == 246 && !dmgtype(ptr, AD_FEAR)) || (type == 247 && !dmgtype(ptr, AD_NPRO)) || (type == 248 && !dmgtype(ptr, AD_POIS)) || (type == 249 && !dmgtype(ptr, AD_THIR)) || (type == 250 && !dmgtype(ptr, AD_LAVA)) || (type == 251 && !dmgtype(ptr, AD_FAKE)) || (type == 252 && !dmgtype(ptr, AD_LETH)) || (type == 253 && !dmgtype(ptr, AD_CNCL)) || (type == 254 && !dmgtype(ptr, AD_BANI)) || (type == 255 && !dmgtype(ptr, AD_WISD)) || (type == 256 && !dmgtype(ptr, AD_SHRD)) || (type == 257 && !dmgtype(ptr, AD_WET)) || (type == 258 && !dmgtype(ptr, AD_SUCK)) || (type == 259 && !dmgtype(ptr, AD_MALK)) || (type == 260 && !dmgtype(ptr, AD_UVUU)) || (type == 261 && !dmgtype(ptr, AD_ABDC)) || (type == 262 && !dmgtype(ptr, AD_AXUS)) || (type == 263 && !dmgtype(ptr, AD_CHKH)) || (type == 264 && !dmgtype(ptr, AD_HODS)) || (type == 265 && !dmgtype(ptr, AD_CHRN)) || (type == 266 && !dmgtype(ptr, AD_WEEP)) || (type == 267 && !dmgtype(ptr, AD_VAMP)) || (type == 268 && !dmgtype(ptr, AD_WEBS)) || (type == 269 && !dmgtype(ptr, AD_STTP)) || (type == 270 && !dmgtype(ptr, AD_DEPR)) || (type == 271 && !dmgtype(ptr, AD_WRAT)) || (type == 272 && !dmgtype(ptr, AD_LAZY)) || (type == 273 && !dmgtype(ptr, AD_DRCH)) || (type == 274 && !dmgtype(ptr, AD_DFOO)) || (type == 275 && !dmgtype(ptr, AD_NEXU)) || (type == 276 && !dmgtype(ptr, AD_SOUN)) || (type == 277 && !dmgtype(ptr, AD_GRAV)) || (type == 278 && !dmgtype(ptr, AD_INER)) || (type == 279 && !dmgtype(ptr, AD_TIME)) || (type == 280 && !dmgtype(ptr, AD_MANA)) || (type == 281 && !dmgtype(ptr, AD_PLAS)) || (type == 282 && !dmgtype(ptr, AD_SKIL)) || (type == 283 && !dmgtype(ptr, AD_CLRC)) || (type == 284 && !dmgtype(ptr, AD_SPEL)) || (type == 285 && !dmgtype(ptr, AD_RBRE)) || (type == 286 && !dmgtype(ptr, AD_SAMU)) || (type == 287 && !dmgtype(ptr, AD_CURS)) || (type == 288 && !dmgtype(ptr, AD_SPC2)) || (type == 289 && !dmgtype(ptr, AD_VENO)) || (type == 290 && !dmgtype(ptr, AD_DREA)) || (type == 291 && !dmgtype(ptr, AD_NAST)) || (type == 292 && !dmgtype(ptr, AD_BADE)) || (type == 293 && !dmgtype(ptr, AD_SLUD)) || (type == 294 && !dmgtype(ptr, AD_ICUR)) || (type == 295 && !dmgtype(ptr, AD_VULN)) || (type == 296 && !dmgtype(ptr, AD_FUMB)) || (type == 297 && !dmgtype(ptr, AD_DIMN)) || (type == 298 && !dmgtype(ptr, AD_AMNE)) || (type == 299 && !dmgtype(ptr, AD_ICEB)) || (type == 300 && !dmgtype(ptr, AD_VAPO)) || (type == 301 && !dmgtype(ptr, AD_EDGE)) || (type == 302 && !dmgtype(ptr, AD_VOMT)) || (type == 303 && !dmgtype(ptr, AD_LITT)) || (type == 304 && !dmgtype(ptr, AD_FREN)) || (type == 305 && !dmgtype(ptr, AD_NGEN)) || (type == 306 && !dmgtype(ptr, AD_CHAO)) || (type == 307 && !dmgtype(ptr, AD_INSA)) || (type == 308 && !dmgtype(ptr, AD_TRAP)) || (type == 309 && !dmgtype(ptr, AD_WGHT)) || (type == 310 && !dmgtype(ptr, AD_NTHR)) || (type == 311 && !dmgtype(ptr, AD_MIDI)) || (type == 312 && !dmgtype(ptr, AD_RNG)) || (type == 313 && !dmgtype(ptr, AD_CAST)) || (type == 314 && !(ptr->mflags4 & M4_BAT)) || (type == 315 && !(ptr->mflags4 & M4_REVIVE)) || (type == 316 && !(ptr->mflags4 & M4_RAT)) || (type == 317 && !(ptr->mflags4 & M4_SHADE)) || (type == 318 && !(ptr->mflags4 & M4_REFLECT)) || (type == 319 && !(ptr->mflags4 & M4_MULTIHUED)) || (type == 320 && !(ptr->mflags4 & M4_TAME)) || (type == 321 && !(ptr->mflags4 & M4_ORGANIVORE)) || (type == 322 && !(ptr->mflags5 & M5_SPACEWARS)) || (type == 323 && !(ptr->mflags5 & M5_JOKE)) || (type == 324 && !(ptr->mflags5 & M5_ANGBAND)) || (type == 325 && !(ptr->mflags5 & M5_STEAMBAND)) || (type == 326 && !(ptr->mflags5 & M5_ANIMEBAND)) || (type == 327 && !(ptr->mflags5 & M5_DIABLO)) || (type == 328 && !(ptr->mflags5 & M5_DLORDS)) || (type == 329 && !(ptr->mflags5 & M5_VANILLA)) || (type == 330 && !(ptr->mflags5 & M5_DNETHACK)) || (type == 331 && !(ptr->mflags5 & M5_RANDOMIZED)) || (type == 332 && !(ptr->msound == MS_SHOE)) || (type == 333 && !(ptr->msound == MS_STENCH)) || (type == 334 && !dmgtype(ptr, AD_ALIN)) || (type == 335 && !dmgtype(ptr, AD_SIN)) || (type == 336 && !dmgtype(ptr, AD_MINA)) || (type == 337 && !dmgtype(ptr, AD_CONT)) || (type == 338 && !dmgtype(ptr, AD_AGGR)) || (type == 339 && !(ptr->mflags5 & M5_JONADAB)) || (type == 340 && !dmgtype(ptr, AD_DATA)) || (type == 341 && !(ptr->mflags5 & M5_EVIL)) || (type == 342 && !(ptr->mflags4 & M4_SHAPESHIFT)) || (type == 343 && !(ptr->mflags4 & M4_GRIDBUG)) || (type == 344 && !dmgtype(ptr, AD_DEST)) || (type == 345 && !dmgtype(ptr, AD_TREM)) || (type == 346 && !dmgtype(ptr, AD_RAGN)) || (type == 347 && !(ptr->msound == MS_CONVERT)) || (type == 348 && !(ptr->msound == MS_HCALIEN)) || (type == 349 && !dmgtype(ptr, AD_IDAM)) || (type == 350 && !dmgtype(ptr, AD_ANTI)) || (type == 351 && !dmgtype(ptr, AD_PAIN)) || (type == 352 && !dmgtype(ptr, AD_TECH)) || (type == 353 && !dmgtype(ptr, AD_MEMO)) || (type == 354 && !dmgtype(ptr, AD_TRAI)) || (type == 355 && !dmgtype(ptr, AD_STAT)) || (type == 356 && !dmgtype(ptr, AD_DAMA)) || (type == 357 && !dmgtype(ptr, AD_THIE)) || (type == 358 && !dmgtype(ptr, AD_PART)) || (type == 359 && !dmgtype(ptr, AD_RUNS)) || (type == 360 && !attacktype(ptr, AT_RATH)) || (type == 361 && !(ptr->mflags5 & M5_ELONA)) || (type == 362 && !dmgtype(ptr, AD_NACU)) || (type == 363 && !dmgtype(ptr, AD_SANI)) || (type == 364 && !dmgtype(ptr, AD_RBAD)) || (type == 365 && !dmgtype(ptr, AD_BLEE)) || (type == 366 && !dmgtype(ptr, AD_SHAN)) || (type == 367 && !dmgtype(ptr, AD_SCOR)) || (type == 368 && !dmgtype(ptr, AD_TERR)) || (type == 369 && !dmgtype(ptr, AD_FEMI)) || (type == 370 && !dmgtype(ptr, AD_LEVI)) || (type == 371 && !dmgtype(ptr, AD_ILLU)) || (type == 372 && !dmgtype(ptr, AD_MCRE)) || (type == 373 && !dmgtype(ptr, AD_FLAM)) || (type == 374 && !dmgtype(ptr, AD_DEBU)) || (type == 375 && !dmgtype(ptr, AD_UNPR)) || (type == 376 && !dmgtype(ptr, AD_NIVE)) || (type == 377 && !dmgtype(ptr, AD_TDRA)) || (type == 378 && !dmgtype(ptr, AD_BLAS)) || (type == 379 && !dmgtype(ptr, AD_DROP)) )) return FALSE;
 	return TRUE;
 
 }
@@ -1888,6 +1888,8 @@ register struct monst *mtmp;
 
 		   case PM_BARBARIAN:
 		   case PM_UNDEAD_BARBARIAN:
+		   case PM_NOOB_MODE_BARB:
+		   case PM_UNDEAD_NOOB_MODE_BARB:
 		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
 		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
 		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
@@ -2993,6 +2995,78 @@ register struct monst *mtmp;
 
 			break;
 
+		   case PM_BUTT_LOVER:
+		   case PM_UNDEAD_BUTT_LOVER:
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+
+			break;
+
+		   case PM_DANCER:
+		   case PM_UNDEAD_DANCER:
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+			(void) mongets(mtmp, DANCING_SHOES);
+
+			break;
+
+		   case PM_DIABLIST:
+		   case PM_UNDEAD_DIABLIST:
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+			(void) mongets(mtmp, !rn2(3) ? QATAR : !rn2(2) ? EAGLE_BALL : GRINDER);
+			(void) mongets(mtmp, LEATHER_ARMOR);
+			(void) mongets(mtmp, POT_HEALING);
+
+			break;
+
+		   case PM_PREVERSIONER:
+		   case PM_UNDEAD_PREVERSIONER:
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+			(void) mongets(mtmp, DAGGER);
+
+			break;
+
+		   case PM_SECRET_ADVICE_MEMBER:
+		   case PM_UNDEAD_SECRET_ADVICE_MEMBER:
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+			if (!rn2(100)) (void) mongets(mtmp, WAN_BANISHMENT);
+			(void) mongets(mtmp, ASSAULT_RIFLE);
+			 m_initthrow(mtmp, BULLET, 50);
+			 m_initthrow(mtmp, BULLET, 50);
+
+			break;
+
+		   case PM_SHOE_FETISHIST:
+		   case PM_UNDEAD_SHOE_FETISHIST:
+			(void) mongets(mtmp, HIPPIE_HEELS);
+
+			break;
+
 		   case PM_COURIER:
 		   case PM_UNDEAD_COURIER:
 		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
@@ -3192,7 +3266,7 @@ register struct monst *mtmp;
 		     if (!rn2(50)) (void)mongets(mtmp, WAN_CANCELLATION);
 		     if (!rn2(25)) (void)mongets(mtmp, WAN_POLYMORPH);
 		     if (!rn2(5)) (void)mongets(mtmp, WAN_TELEPORTATION);
-		     if (!rn2(100)) (void)mongets(mtmp, WAN_BANISHMENT);
+		     if (!rn2(1000)) (void)mongets(mtmp, WAN_BANISHMENT);
 		     if (!rn2(50)) (void)mongets(mtmp, WAN_CREATE_HORDE);
 		     if (!rn2(50)) (void)mongets(mtmp, WAN_CLONE_MONSTER);
 		     if (!rn2(5)) (void)mongets(mtmp, WAN_DIGGING);
@@ -3968,6 +4042,8 @@ register struct monst *mtmp;
 
 		   case PM_MONK:
 		   case PM_UNDEAD_MONK:
+		   case PM_HALF_BAKED:
+		   case PM_UNDEAD_HALF_BAKED:
 		   case PM_SAIYAN:
 		   case PM_UNDEAD_SAIYAN:
 		   case PM_PSION:
@@ -4842,7 +4918,7 @@ register struct monst *mtmp;
 		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, WAN_STRIKING);
-		     if (!rn2(10)) (void)mongets(mtmp, WAN_BANISHMENT);
+		     if (!rn2(100)) (void)mongets(mtmp, WAN_BANISHMENT);
 		     if (!rn2(2)) (void)mongets(mtmp, POT_PARALYSIS);
 		     if (!rn2(2)) (void)mongets(mtmp, POT_CYANIDE);
 		   break;
@@ -5082,7 +5158,7 @@ register struct monst *mtmp;
 
 			(void)mongets(mtmp, HUGGING_BOOT);
 			(void)mongets(mtmp, SPEED_BOOTS);
-			(void)mongets(mtmp, WAN_BANISHMENT);
+			if (!Role_if(PM_SHOE_FETISHIST)) (void)mongets(mtmp, WAN_BANISHMENT);
 
 		} else if (mm == PM_ANASTASIA){
 
@@ -7375,6 +7451,71 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_ELVEN_CANCERFAG]) (void) mongets(mtmp, CIGARETTE);
 		if (ptr == &mons[PM_WOOD_ELVEN_ASSAILANT]) (void) mongets(mtmp, CESTUS);
 		if (ptr == &mons[PM_FEMININE_ASSASSIN]) (void) mongets(mtmp, BELL_CLAWS);
+		if (ptr == &mons[PM_SWIKNI]) (void) mongets(mtmp, SURVIVAL_KNIFE);
+		if (mtmp->data == &mons[PM_MASK_MAN]) (void) mongets(mtmp, find_corona_mask());
+		if (ptr == &mons[PM_REGULAR_JEDI]) (void) mongets(mtmp, BEAMSWORD);
+		if (ptr == &mons[PM_LIGHTSABER_ART_JEDI]) (void) mongets(mtmp, BEAMSWORD);
+		if (ptr == &mons[PM_PUMPS_GIRL]) (void) mongets(mtmp, FEMININE_PUMPS);
+		if (ptr == &mons[PM_PUMPS_WOMAN]) (void) mongets(mtmp, FEMININE_PUMPS);
+		if (ptr == &mons[PM_PUMPS_LADY]) (void) mongets(mtmp, FEMININE_PUMPS);
+		if (ptr == &mons[PM_RED_BLOODED_HARLOT]) (void) mongets(mtmp, HIPPIE_HEELS);
+		if (ptr == &mons[PM_TELEPHONE_CELL_PROSTITUTE]) (void) mongets(mtmp, HIPPIE_HEELS);
+		if (ptr == &mons[PM_STREETLINE_PROSTITUTE]) (void) mongets(mtmp, HIPPIE_HEELS);
+
+		if (ptr == &mons[PM_VERA_THE_ICE_QUEEN]) {
+			if ((find_cyan_sneakers()) != -1) (void)mongets(mtmp, find_cyan_sneakers());
+			(void) mongets(mtmp, ATHAME);
+			(void) mongets(mtmp, GAUNTLETS);
+			(void) mongets(mtmp, AMULET_OF_REFLECTION);
+			(void) mongets(mtmp, HIGH_BOOTS);
+			(void) mongets(mtmp, CLOAK_OF_MAGIC_RESISTANCE);
+		}
+		if (ptr == &mons[PM_ELAINE_THE_ENCHANTRESS]) {
+			if ((find_yellow_sneakers()) != -1) (void)mongets(mtmp, find_yellow_sneakers());
+		}
+
+		if(ptr == &mons[PM_ADORNING_FEMINIST]) {
+			(void) mongets(mtmp, SLING);
+			(void) mongets(mtmp, rnd_class(ELIF_S_JEWEL,DORA_S_JEWEL));
+		}
+		if(ptr == &mons[PM_BRYG_WGAT]) {
+			(void) mongets(mtmp, HEAVY_IRON_BALL);
+			(void) mongets(mtmp, STRIPED_SHIRT);
+		}
+		if(ptr == &mons[PM_HOSTILE_CHARACTER]) {
+			(void) mongets(mtmp, LASER_SWORD);
+			(void) mongets(mtmp, rnd_defensive_item(mtmp));
+			(void) mongets(mtmp, rnd_misc_item(mtmp));
+			(void) mongets(mtmp, rnd_offensive_item(mtmp));
+			if (!rn2(8)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+			if (!rn2(8)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+			if (!rn2(8)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		}
+		if(ptr == &mons[PM_HOSTILE_ELITE_CHARACTER]) {
+			(void) mongets(mtmp, LASER_SWORD);
+			(void) mongets(mtmp, PLATE_MAIL);
+			(void) mongets(mtmp, HIGH_BOOTS);
+			(void) mongets(mtmp, DENTED_POT);
+			(void) mongets(mtmp, rnd_defensive_item(mtmp));
+			(void) mongets(mtmp, rnd_misc_item(mtmp));
+			(void) mongets(mtmp, rnd_offensive_item(mtmp));
+			(void) mongets(mtmp, rnd_defensive_item(mtmp));
+			(void) mongets(mtmp, rnd_misc_item(mtmp));
+			(void) mongets(mtmp, rnd_offensive_item(mtmp));
+			if (!rn2(8)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+			if (!rn2(8)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+			if (!rn2(8)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+			if (!rn2(8)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+			if (!rn2(8)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+			if (!rn2(8)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		}
+		if(ptr == &mons[PM_GLAMOROUS_FEMINIST]) {
+			(void) mongets(mtmp, SLING);
+			(void) mongets(mtmp, FEMININE_PUMPS);
+			(void) mongets(mtmp, rnd_class(ELIF_S_JEWEL,DORA_S_JEWEL));
+			(void) mongets(mtmp, rnd_class(ELIF_S_JEWEL,DORA_S_JEWEL));
+			(void) mongets(mtmp, rnd_class(ELIF_S_JEWEL,DORA_S_JEWEL));
+		}
 
 		if (ptr == &mons[PM_GRAVITY_STRIKER]) {
 			(void) mongets(mtmp, HAND_BLASTER);
@@ -7406,7 +7547,7 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, CESTUS);
 			(void) mongets(mtmp, FLEECY_CORSET);
 			(void) mongets(mtmp, LADY_BOOTS);
-			 m_initthrow(mtmp, BUBBLETAR, 50);
+			(void) mongets(mtmp, BUBBLETAR);
 		}
 		if (ptr == &mons[PM_FULLPOWER_JEDI]) {
 			(void) mongets(mtmp, NANO_HAMMER);
@@ -8430,6 +8571,18 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, SHOTGUN);
 			 m_initthrow(mtmp, LEAD_SHOT, 30);
 		}
+		if (ptr == &mons[PM_WAND_OF_WISHING_GOLEM]) {
+			struct obj *lolwow = mksobj(WAN_WISHING, TRUE, 2, FALSE);
+			if (lolwow) {
+				lolwow->quan = 1;
+				lolwow->spe = -1;
+				lolwow->recharged = 1;
+				lolwow->owt = weight(lolwow);
+				(void) mpickobj(mtmp, lolwow, TRUE);
+			}
+
+		}
+
 		if (ptr == &mons[PM_REFRACTOCHUCK]) {
 			(void) mongets(mtmp, CRYSTAL_SWORD);
 			(void) mongets(mtmp, CRYSTAL_SHIELD);
@@ -8442,6 +8595,15 @@ register struct	monst	*mtmp;
 		}
 		if (ptr == &mons[PM_BLACK_SOOTBALL]) {
 			(void) mongets(mtmp, BITUKNIFE);
+		}
+		if (ptr == &mons[PM_KILLER_KATANA]) {
+			(void) mongets(mtmp, KATANA);
+		}
+		if (ptr == &mons[PM_STARFIGHTER]) {
+			(void) mongets(mtmp, LASER_POLE);
+		}
+		if (ptr == &mons[PM_ARTISAN_FEMMY]) {
+			(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
 		}
 		if (ptr == &mons[PM_BARNACLE_ARMORED_GOLEM]) {
 			(void) mongets(mtmp, BARNACLE_ARMOR);
@@ -8788,6 +8950,9 @@ loveheelover:
 		if (mtmp->data == &mons[PM_DESERT_PERSIAN]) {
 			 (void) mongets(mtmp, YATAGAN);
 		}
+		if (mtmp->data == &mons[PM_CATCALL_SELINA]) {
+			 (void) mongets(mtmp, ETHER_WHIP);
+		}
 		if (mtmp->data == &mons[PM_SARS_SLINGER]) {
 			 m_initthrow(mtmp, ASBESTOS_JAVELIN, 5);
 		}
@@ -8817,6 +8982,7 @@ loveheelover:
 	    case S_ZOMBIE:
 
 		if (mtmp->data == &mons[PM_FINGERNAIL_ZOMBIE]) (void) mongets(mtmp, LOWER_ARM_BLADE);
+		if (mtmp->data == &mons[PM_ZOMBIE_WHORE]) (void) mongets(mtmp, HIPPIE_HEELS);
 
 		if (mtmp->data == &mons[PM_ROBOT_TERMINATOR_ZOMBIE]) {
 			 (void) mongets(mtmp, RED_LIGHTSABER);
@@ -8931,6 +9097,8 @@ loveheelover:
 		if (mtmp->data == &mons[PM_ENTERTAINER_IMP]) (void) mongets(mtmp, JARED_STONE);
 		if (mtmp->data == &mons[PM_SHARP_SANDMAN]) (void) mongets(mtmp, QATAR);
 		if (mtmp->data == &mons[PM_WRIST_TENGU]) (void) mongets(mtmp, LOWER_ARM_BLADE);
+		if (mtmp->data == &mons[PM_EASTERN_FEMMY]) (void) mongets(mtmp, FEMININE_PUMPS);
+		if (mtmp->data == &mons[PM_UNLUCKY_GIRL]) (void) mongets(mtmp, DOGSHIT_BOOT);
 
 		if (ptr == &mons[PM_ARENA_IMP]) {
 			(void) mongets(mtmp, SLING);
@@ -9139,6 +9307,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_RUNE_LIZARD]) (void) mongets(mtmp, RUNED_ROD);
 		if (mtmp->data == &mons[PM_STAR_SQUIRREL]) (void) mongets(mtmp, STAR_ROD);
 		if (mtmp->data == &mons[PM_SCRAPER_TROGLODYTE]) (void) mongets(mtmp, INFERNAL_BARDICHE);
+		if (mtmp->data == &mons[PM_SPACE_SITH]) (void) mongets(mtmp, SITH_STAFF);
 
 		if (mtmp->data == &mons[PM_LIZARD_MAGE]) (void) mongets(mtmp, !rn2(3) ? SHORT_SWORD : !rn2(2) ? BROADSWORD : LONG_SWORD);
 
@@ -9159,6 +9328,12 @@ loveheelover:
 		if (mtmp->data == &mons[PM_NEVERENDING_ETHER_SOLDIER]) {
 			(void) mongets(mtmp, CROSSBOW);
 			 m_initthrow(mtmp, ETHER_BOLT, 50);
+		}
+		if (mtmp->data == &mons[PM_ELITE_SITH]) {
+			(void) mongets(mtmp, SITH_STAFF);
+			(void) mongets(mtmp, FUR);
+			(void) mongets(mtmp, BARNACLE_ARMOR);
+			(void) mongets(mtmp, HIGH_BOOTS);
 		}
 
 		if (ptr == &mons[PM_HAITIAN_GANGSTER]) {
@@ -9221,6 +9396,8 @@ loveheelover:
 		if (mtmp->data == &mons[PM_OFFSEEN_TROLL]) (void) mongets(mtmp, WAN_BAD_EQUIPMENT);
 		if (mtmp->data == &mons[PM_OUTBIRTH_OF_UGLINESS]) (void) mongets(mtmp, ORCISH_CLOAK);
 		if (mtmp->data == &mons[PM_GRIN_TROLL]) (void) mongets(mtmp, GRINDER);
+		if (mtmp->data == &mons[PM_PERMANNOY_TROLL]) (void) mongets(mtmp, LASER_POLE);
+		if (mtmp->data == &mons[PM_CIGAR_SMOKING_JUROR]) (void) mongets(mtmp, CIGAR);
 
 		if (ptr == &mons[PM_BANGTROLL]) {
 			(void) mongets(mtmp, SHOTGUN);
@@ -9377,6 +9554,10 @@ loveheelover:
 		if (ptr == &mons[PM_SECRETORUBBER]) {
 			(void) mongets(mtmp, SECRETION_DAGGER);
 		}
+		if (ptr == &mons[PM_RELIGIOUS_FEMMY]) {
+			(void) mongets(mtmp, COMBAT_STILETTOS);
+			(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		}
 		if (ptr == &mons[PM_KNIFE_FUMBLE]) {
 			(void) mongets(mtmp, VICTIM_KNIFE);
 		}
@@ -9510,6 +9691,7 @@ loveheelover:
 
 		if (mtmp->data == &mons[PM_SABRINA_S_BLOCK_HEELED_SANDAL]) { (void) mongets(mtmp, HIGH_HEELED_SANDAL); (void) mongets(mtmp, WEDGE_SANDALS); }
 		if (mtmp->data == &mons[PM_SUNALI_S_HIKING_BOOT]) (void) mongets(mtmp, HUGGING_BOOT);
+		if (mtmp->data == &mons[PM_SCRATCHY_FEMMY]) (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
 		if (mtmp->data == &mons[PM_DORA_S_STINKING_LEATHER_BOOT]) { (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT); (void) mongets(mtmp, HIPPIE_HEELS); }
 		if (mtmp->data == &mons[PM_CARINA_S_PROFILED_COMBAT_BOOT]) { (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT); (void) mongets(mtmp, HIPPIE_HEELS); }
 		if (mtmp->data == &mons[PM_VERENA_S_WORN_OUT_COMBAT_BOOT]) { (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT); (void) mongets(mtmp, HIPPIE_HEELS); }
@@ -9520,6 +9702,10 @@ loveheelover:
 		if (ptr == &mons[PM_PILE_OF_FRAGMENTATION_COINS]) {
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, BONE_FRAGMENT, 25);
+		}
+		if (ptr == &mons[PM_RARE_GOLD_PIECE]) {
+			(void) mongets(mtmp, LASERXBOW);
+			 m_initthrow(mtmp, PIN_BOLT, 70);
 		}
 		if (ptr == &mons[PM_PILE_OF_UNKNOWN_COINS]) {
 			(void) mongets(mtmp, SLING);
@@ -10166,12 +10352,17 @@ loveheelover:
 		if(ptr == &mons[PM_ELFIN_SCYTHE]) (void) mongets(mtmp, ELVEN_SICKLE);
 		if(ptr == &mons[PM_PASTAFARIAN_ACOLYTE]) (void) mongets(mtmp, PASTA);
 		if(ptr == &mons[PM_PASTAFARIAN_PRIEST]) (void) mongets(mtmp, PASTA);
+		if(ptr == &mons[PM_STUTTERING_HARLOT]) (void) mongets(mtmp, HIPPIE_HEELS);
 		if(ptr == &mons[PM_PASTAFARIAN_HIGH_PRIEST]) {
 			(void) mongets(mtmp, PASTA);
 			(void) mongets(mtmp, PASTA);
 			(void) mongets(mtmp, PASTA);
 		}
 
+		if (mtmp->data == &mons[PM_CHOCOBONE]) {
+			 (void) mongets(mtmp, CHOCOLATE);
+			 (void) mongets(mtmp, CHOCOEGG);
+		}
 		if (ptr == &mons[PM_PUMPKIN]) {
 			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
 			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
@@ -10412,6 +10603,8 @@ loveheelover:
 		if (mtmp->data == &mons[PM_ROCK_THROWER]) m_initthrow(mtmp, ROCK, 10);
 		if (mtmp->data == &mons[PM_GWAWOL]) (void) mongets(mtmp, WAN_LIGHTNING);
 		if (mtmp->data == &mons[PM_CLOCKWORK_CLAW]) (void) mongets(mtmp, QATAR);
+		if (mtmp->data == &mons[PM_GNOME_LASERER]) (void) mongets(mtmp, LASER_SWORD);
+		if (mtmp->data == &mons[PM_GNOME_HUSSY]) (void) mongets(mtmp, FEMININE_PUMPS);
 
 		if (ptr == &mons[PM_NEUTRAL_GNOME]) {
 			(void) mongets(mtmp, SLING);
@@ -10564,6 +10757,7 @@ loveheelover:
 
 		if (mtmp->data == &mons[PM_VAPE_PUSSY]) (void) mongets(mtmp, ELECTRIC_CIGARETTE);
 		if (mtmp->data == &mons[PM_SHERWOOD_NYMPH]) (void) mongets(mtmp, QATAR);
+		if (mtmp->data == &mons[PM_SCRATCH_NYMPH]) (void) mongets(mtmp, FEMININE_PUMPS);
 
 	      if(mtmp->data == &mons[PM_SATYR]){
 	        if(!rn2(2)) (void) mongets(mtmp, POT_BOOZE);
@@ -10572,8 +10766,14 @@ loveheelover:
 		if (ptr == &mons[PM_CANDLE_NYMPH]) {
 			(void) mongets(mtmp, TALLOW_CANDLE);
 		}
+		if (ptr == &mons[PM_LIGHTDANCER]) {
+			(void) mongets(mtmp, LASER_POLE);
+		}
 		if (ptr == &mons[PM_SORROW_GIRL]) {
 			(void) mongets(mtmp, STRIPE_MAIL);
+		}
+		if (ptr == &mons[PM_CIGAR_SELLER]) {
+			(void) mongets(mtmp, CIGAR);
 		}
 
 		if (ptr == &mons[PM_LUMBERJACK_NYMPH]) {
@@ -10804,6 +11004,18 @@ loveheelover:
 
 	    case S_QUADRUPED:
 
+		if (ptr == &mons[PM_SOLDIERCROTTA]) {
+			(void)mongets(mtmp, rn2(2) ? RIFLE : SUBMACHINE_GUN);
+			(void)mongets(mtmp, rn2(2) ? KNIFE : DAGGER);
+			if (rn2(2)) (void) mongets(mtmp, FRAG_GRENADE);
+			(void)mongets(mtmp, HELMET);
+			(void)mongets(mtmp, STUDDED_LEATHER_ARMOR);
+			(void)mongets(mtmp, LEATHER_GLOVES);
+			(void)mongets(mtmp, LOW_BOOTS);
+			(void)mongets(mtmp, LEATHER_CLOAK);
+			m_initthrow(mtmp, BULLET, 25);
+			m_initthrow(mtmp, BULLET, 25);
+		}
 		if (ptr == &mons[PM_BLASTPIG]) {
 			 m_initthrow(mtmp, FRAG_GRENADE, 10);
 		}
@@ -11150,6 +11362,10 @@ loveheelover:
 			 m_initthrow(mtmp, SAND_DART, 50);
 			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
 		}
+		if (ptr == &mons[PM_RUM_RUNNER]) {
+			(void) mongets(mtmp, POT_CONFUSION);
+			(void) mongets(mtmp, POT_BOOZE);
+		}
 		if(ptr == &mons[PM_BELMONT_CLAN_MEMBER]) (void) mongets(mtmp, WOODEN_STAKE);
 		if(ptr == &mons[PM_WALDOGGO]) (void) mongets(mtmp, BOBBLE_HAT);
 
@@ -11177,6 +11393,8 @@ loveheelover:
 		if (mtmp->data == &mons[PM_CRAPDOG]) (void) mongets(mtmp, SCR_BULLSHIT);
 		if (mtmp->data == &mons[PM_ELEMENTAL_GIRL]) (void) mongets(mtmp, SOFT_SNEAKERS);
 		if (mtmp->data == &mons[PM_SUE_LYN_S_THICK_WINTER_BOOT]) { (void) mongets(mtmp, HUGGING_BOOT); (void) mongets(mtmp, SCR_TRAP_CREATION); }
+		if (mtmp->data == &mons[PM_AMATEURHOUR]) (void) mongets(mtmp, BOBBLE_HAT);
+		if (mtmp->data == &mons[PM_AMATEURHOUR_JR_]) (void) mongets(mtmp, BOBBLE_HAT);
 
 		if (mtmp->data == &mons[PM_BOW_WOLF]) {
 		  	(void) mongets(mtmp, BOW);
@@ -11236,6 +11454,9 @@ loveheelover:
 		if (ptr == &mons[PM_SECTION_SHADOW]) {
 		  	(void) mongets(mtmp, SHADOWBLADE);
 		}
+		if (ptr == &mons[PM_SITH_GHOST]) {
+		  	(void) mongets(mtmp, SITH_STAFF);
+		}
 		if (ptr == &mons[PM_BRIGHTER_SHADOW]) {
 		  	(void) mongets(mtmp, LIGHTWHIP);
 		}
@@ -11244,6 +11465,9 @@ loveheelover:
 		}
 		if (ptr == &mons[PM_ELVIN_PRESS]) {
 		  	(void) mongets(mtmp, AIR_PRESSURE_HAMMER);
+		}
+		if (ptr == &mons[PM_SMOKING_LIBAVIUS_SPIRIT]) {
+		  	(void) mongets(mtmp, rn2(2) ? CIGARETTE : CIGAR);
 		}
 		if (ptr == &mons[PM_BRIGHTFLARE_GHOST]) {
 		  	(void) mongets(mtmp, TORCH);
@@ -11318,6 +11542,10 @@ loveheelover:
 		if (ptr == &mons[PM_MILITARY_PUTIT]) {
 		  	(void) mongets(mtmp, FLINTLOCK);
 		  	m_initthrow(mtmp, BULLET, 15);
+		}
+		if (ptr == &mons[PM_PRIESTEFIX]) {
+		  	(void) mongets(mtmp, STARWARS_MACE);
+		  	(void) mongets(mtmp, SMALL_SHIELD);
 		}
 		if (ptr == &mons[PM_PISTOL_PUDDING]) {
 		  	(void) mongets(mtmp, PISTOL);
@@ -11497,8 +11725,16 @@ loveheelover:
 		  	(void) mongets(mtmp, AUTO_SHOTGUN);
 		  	m_initthrow(mtmp, LEAD_SHOT, 50);
 		}
+		if (ptr == &mons[PM_SACK_STUFF_POLICE]) {
+		  	(void) mongets(mtmp, PISTOL);
+		  	m_initthrow(mtmp, BULLET, 30);
+		}
 		if (ptr == &mons[PM_BRUTAL_KOP]) {
 		  	(void) mongets(mtmp, FLOGGER);
+		}
+		if (ptr == &mons[PM_HIPPIE_FEMMY]) {
+		  	(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		  	(void) mongets(mtmp, HIPPIE_HEELS);
 		}
 		if (ptr == &mons[PM_EXPERIENCED_GENDAME]) {
 		  	(void) mongets(mtmp, METEORIC_STEEL_SHIELD);
@@ -11883,6 +12119,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_ROVID]) (void) mongets(mtmp, TRIDENT);
 		if (mtmp->data == &mons[PM_JAPONSES_MONSTER]) (void) mongets(mtmp, OTAMA);
 		if (mtmp->data == &mons[PM_BOSS_FEMMY]) (void) mongets(mtmp, LEATHER_PEEP_TOES);
+		if (mtmp->data == &mons[PM_HUSSY_FEMMY]) (void) mongets(mtmp, SOFT_GIRL_SNEAKER);
 		if(ptr == &mons[PM_ASIATIC_FEMMY]) {
 			(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
 			(void) mongets(mtmp, LEATHER_PEEP_TOES);
@@ -11909,6 +12146,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_SPECIAL_HULK]) (void) mongets(mtmp, SPEC_LANCE);
 		if (mtmp->data == &mons[PM_UMBER_DIGGER]) (void) mongets(mtmp, BRONZE_PICK);
 		if (mtmp->data == &mons[PM_UMBRAGE_PROFESSOR]) (void) mongets(mtmp, CROW_QUILL);
+		if (mtmp->data == &mons[PM_AMBER_FEMMY]) (void) mongets(mtmp, SOFT_SNEAKERS);
 
 		if (mtmp->data == &mons[PM_UNWISE_BLUE_SMOKER]) {
 			(void) mongets(mtmp, LADY_BOOTS);
@@ -12223,6 +12461,12 @@ loveheelover:
 		if (ptr == &mons[PM_SEXTARIAN_CUTIE]) {
 			(void) mongets(mtmp, BLOCK_HEELED_SANDAL);
 		}
+		if (ptr == &mons[PM_CHERRY_MOUSE]) {
+			(void) mongets(mtmp, CHERRY);
+		}
+		if (ptr == &mons[PM_SAN_FIERRO_LADY]) {
+			(void) mongets(mtmp, HIPPIE_HEELS);
+		}
 		if (ptr == &mons[PM_PRICK_BEARER]) {
 			(void) mongets(mtmp, BATLETH);
 		}
@@ -12390,7 +12634,7 @@ loveheelover:
 		}
 		if (mtmp->data == &mons[PM_BUBBLE_BANGER]) {
 			(void) mongets(mtmp, BUBBLEHORN);
-			m_initthrow(mtmp, BUBBLETAR, 60);
+			(void) mongets(mtmp, BUBBLETAR);
 		}
 		if (mtmp->data == &mons[PM_DARK_BANGER]) {
 			(void) mongets(mtmp, DARK_HORN);
@@ -12645,8 +12889,29 @@ loveheelover:
 		    }
 		}
 
+		if (ptr == &mons[PM_STAHNGNIR__THE_STEEL_GIANT_LORD]) {
+		    otmp = mksobj(AIR_PRESSURE_HAMMER, FALSE, FALSE, FALSE);
+
+		    if (otmp) {
+
+			otmp = oname(otmp, artiname(ART_STAHNGNIR_S_BASHHUNK));
+			(void) mpickobj(mtmp, otmp, TRUE);
+
+		    }
+
+		    int stahngnirminions = rn1(10, 10);
+		    while (stahngnirminions > 0) {
+				(void) makemon(&mons[PM_STEEL_GIANT], mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				stahngnirminions--;
+		    }
+
+		}
+
+		if (ptr == &mons[PM_NORDIC_WALKING_GIANT]) (void)mongets(mtmp, CLIMBING_STICK);
 		if (ptr == &mons[PM_LAVA_SPAWN_GIANT]) (void)mongets(mtmp, GRINDER);
 		if (ptr == &mons[PM_STEELED_GIANT]) (void)mongets(mtmp, HEAVY_GRINDER);
+		if (ptr == &mons[PM_DOGSHIT_FEMMY]) (void)mongets(mtmp, DOGSHIT_BOOT);
+		if (ptr == &mons[PM_STONER_GIANT]) (void)mongets(mtmp, POT_HALLUCINATION);
 
 		if (ptr == &mons[PM_VEHEMENT_FEMMY]) {
 			(void)mongets(mtmp, FEMININE_PUMPS);
@@ -13101,7 +13366,14 @@ loveheelover:
 		if (ptr == &mons[PM_SCALEFISH]) (void)mongets(mtmp, FISH_SCALE_MAIL);
 		if (ptr == &mons[PM_THICKFISH]) (void)mongets(mtmp, FISH_SCALE_MAIL);
 		if (ptr == &mons[PM_STEALTH_FISH]) (void)mongets(mtmp, CAMO_QATAR);
+		if (ptr == &mons[PM_POSEIDONIC_ATLANTEAN]) (void)mongets(mtmp, LASERDENT);
+		if (ptr == &mons[PM_AVENGERIC_ATLANTEAN]) (void)mongets(mtmp, LASERDENT);
+		if (ptr == &mons[PM_GRACHTELS_WHALE]) (void)mongets(mtmp, LADY_BOOTS);
 
+		if (ptr == &mons[PM_REVOLUTINO_MARI]) {
+			(void)mongets(mtmp, BASTERD_SWORD);
+			(void)mongets(mtmp, COMBAT_STILETTOS);
+		}
 		if (ptr == &mons[PM_BONING_EEL]) {
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, BONE_FRAGMENT, 30);
@@ -13340,6 +13612,29 @@ loveheelover:
 
 		if (ptr == &mons[PM_DARKLAND_ORC]) {
 			(void) mongets(mtmp, BOW);
+			 m_initthrow(mtmp, ORCISH_ARROW, 40);
+		}
+		if (ptr == &mons[PM_ORC_ARCHER]) {
+			(void) mongets(mtmp, BOW);
+			 m_initthrow(mtmp, ORCISH_ARROW, 20);
+		}
+		if (ptr == &mons[PM_ORC_MARKSMAN]) {
+			(void) mongets(mtmp, BOW);
+			 m_initthrow(mtmp, ORCISH_ARROW, 30);
+		}
+		if (ptr == &mons[PM_ORC_LIGHTFOOT]) {
+			(void) mongets(mtmp, BOW);
+			(void) mongets(mtmp, ORCISH_DAGGER);
+			 m_initthrow(mtmp, ORCISH_ARROW, 30);
+		}
+		if (ptr == &mons[PM_ORC_SHOOTER]) {
+			(void) mongets(mtmp, BOW);
+			 m_initthrow(mtmp, ORCISH_ARROW, 40);
+		}
+		if (ptr == &mons[PM_ORC_RINGTHIEF]) {
+			(void) mongets(mtmp, BOW);
+			(void) mongets(mtmp, ORCISH_RING_MAIL);
+			(void) mongets(mtmp, ORCISH_SHORT_SWORD);
 			 m_initthrow(mtmp, ORCISH_ARROW, 40);
 		}
 		if (ptr == &mons[PM_CRUDE_GOBLIN]) {
@@ -13591,6 +13886,9 @@ loveheelover:
 		if (mtmp->data == &mons[PM_CHICKMAGNET]) (void) mongets(mtmp, GRINDER);
 		if (mtmp->data == &mons[PM_ALGAE_HAIR]) (void) mongets(mtmp, GRINDER);
 		if (mtmp->data == &mons[PM_FLYING_STEALTH_FISH]) (void) mongets(mtmp, CAMO_QATAR);
+		if (mtmp->data == &mons[PM_ANOREXIC_FEMMY]) (void) mongets(mtmp, HUGGING_BOOT);
+		if (mtmp->data == &mons[PM_UTE_S_PEEP_TOE]) (void) mongets(mtmp, LEATHER_PEEP_TOES);
+		if (mtmp->data == &mons[PM_UTE_S_SEXY_HIGH_HEELED_SANDAL]) (void) mongets(mtmp, HIGH_HEELED_SANDAL);
 
 		if (mtmp->data == &mons[PM_ANNE_S_SNEAKER]) {
 			(void) mongets(mtmp, SOFT_GIRL_SNEAKER);
@@ -13690,6 +13988,8 @@ loveheelover:
 		if (ptr == &mons[PM_MIKSCXIFONA]) (void) mongets(mtmp, SCYTHE);
 		if (ptr == &mons[PM_FLASHLIGHT_QUEEN]) (void) mongets(mtmp, FEMININE_PUMPS);
 		if (ptr == &mons[PM_PROFANITY_PRIEST]) (void) mongets(mtmp, SCYTHE);
+		if (ptr == &mons[PM_L_S_BELLS]) (void) mongets(mtmp, BELL);
+
 		if (ptr == &mons[PM_MESSENGER_OF_DEATH]) {
 			(void) mongets(mtmp, SCYTHE);
 			(void) mongets(mtmp, HELMET);
@@ -13970,6 +14270,9 @@ loveheelover:
 		if (monsndx(ptr) == PM_HIDEOUS_OGRE_MAGE) (void) mongets(mtmp, SCR_TRAP_CREATION);
 		if (monsndx(ptr) == PM_GROTESQUE_OGRE_SHAMAN) (void) mongets(mtmp, SCR_TRAP_CREATION);
 		if (monsndx(ptr) == PM_OGRE_STAFFER) (void) mongets(mtmp, QUARTERSTAFF);
+		if (monsndx(ptr) == PM_LASERSMASH_OGRE) (void) mongets(mtmp, STARWARS_MACE);
+		if (monsndx(ptr) == PM_LASERHORDE_OGRE) (void) mongets(mtmp, STARWARS_MACE);
+		if (monsndx(ptr) == PM_OGRE_YARDSTICK) (void) mongets(mtmp, PIKE);
 		if (ptr == &mons[PM_OGRE_WOARER]) {
 			(void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
 		}
@@ -14116,9 +14419,38 @@ loveheelover:
 		if (monsndx(ptr) == PM_ANGRY_MOB_FARMER) (void) mongets(mtmp, PITCHFORK);
 		if (monsndx(ptr) == PM_MORNING_STAR_FIGHTER) (void) mongets(mtmp, METAL_STAR);
 		if (monsndx(ptr) == PM_ELITE_MORNING_STAR_FIGHTER) (void) mongets(mtmp, STONE_STAR);
+		if (monsndx(ptr) == PM_REACHES_MUMMY) (void) mongets(mtmp, REACH_TRIDENT);
 
+		if (ptr == &mons[PM_MAUREEN]) {
+			(void) mongets(mtmp, CIGARETTE);
+			(void) mongets(mtmp, VICTORIAN_UNDERWEAR);
+		}
 		if (ptr == &mons[PM_ALABASTER_MUMMY]) {
 			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+		}
+		if (ptr == &mons[PM_WAKE_ELDER_MUMMY]) {
+			(void) mongets(mtmp, REACH_TRIDENT);
+			(void) mongets(mtmp, HEAVY_MAIL);
+			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, SMALL_SHIELD);
+		}
+
+		if (ptr == &mons[PM_KALWINA]) {
+		    otmp = mksobj(KALASHNIKOV, FALSE, FALSE, FALSE);
+
+		    if (otmp) {
+
+			otmp = oname(otmp, artiname(ART_KAL));
+			(void) mpickobj(mtmp, otmp, TRUE);
+
+		    }
+
+			m_initthrow(mtmp, BULLET, 50);
+			m_initthrow(mtmp, BULLET, 50);
+			m_initthrow(mtmp, BULLET, 50);
+			m_initthrow(mtmp, BULLET, 50);
+			m_initthrow(mtmp, BULLET, 50);
+
 		}
 
 		if (monsndx(ptr) == PM_BJARNARHAVEN_FARMER) {
@@ -14219,6 +14551,16 @@ loveheelover:
 			(void) mongets(mtmp, SLING);
 			(void) mongets(mtmp, ELVEN_MITHRIL_COAT);
 			 m_initthrow(mtmp, SMALL_PIECE_OF_UNREFINED_MITHR, 25);
+		}
+
+		if (ptr == &mons[PM_ARIANE__LADY_OF_THE_ELEMENTS]) {
+			(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+			(void) mongets(mtmp, HIPPIE_HEELS);
+			(void) mongets(mtmp, WAN_TELEPORTATION);
+			(void) mongets(mtmp, WAN_FULL_HEALING);
+			(void) mongets(mtmp, POT_FULL_HEALING);
+			(void) mongets(mtmp, POT_FULL_HEALING);
+			(void) mongets(mtmp, POT_FULL_HEALING);
 		}
 
 		if (ptr == &mons[PM_ARAB_GUARD]) {
@@ -14549,6 +14891,10 @@ loveheelover:
 			(void) mongets(mtmp, FEMININE_PUMPS);
 			(void) mongets(mtmp, WAN_DEATH);
 		}
+		if (ptr == &mons[PM_CHLOE]) {
+			(void) mongets(mtmp, CIGARETTE);
+			(void) mongets(mtmp, VICTORIAN_UNDERWEAR);
+		}
 
 		if (ptr == &mons[PM_CUTE_FEMMY]) {
 			(void) mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL);
@@ -14616,6 +14962,9 @@ loveheelover:
 		}
 		if (ptr == &mons[PM_TARBALL]) {
 			(void) mongets(mtmp, BITUKNIFE);
+		}
+		if (ptr == &mons[PM_COOLINK]) {
+			(void) mongets(mtmp, BEAMSWORD);
 		}
 		if (ptr == &mons[PM_FACKLING_TORCHBLAZE]) {
 			(void) mongets(mtmp, TORCH);
@@ -14714,6 +15063,9 @@ loveheelover:
 		if(ptr == &mons[PM_STEAK_VAMPIRE]) (void) mongets(mtmp, WOODEN_STAKE);
 		if(ptr == &mons[PM_VAMPIRE_CORRODER]) (void) mongets(mtmp, WAN_ACID);
 		if(ptr == &mons[PM_DRRDRRDRR_VAMPIRE]) (void) mongets(mtmp, WAN_ACID);
+		if(ptr == &mons[PM_VAMPIRIC_FEMMY]) (void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
+		if(ptr == &mons[PM_SITH_WOMAN]) (void) mongets(mtmp, SITH_STAFF);
+		if(ptr == &mons[PM_THURINGWETHIL]) (void) mongets(mtmp, WEDGE_SANDALS);
 		if (ptr == &mons[PM_VEIL_PSEUDO_LEYDE]) {
 			(void)mongets(mtmp, rnd_class(WEDGE_SANDALS,ITALIAN_HEELS));
 		}
@@ -14778,10 +15130,17 @@ loveheelover:
 		   have AT_WEAP so m_initweap() is not called for them */
 
 		if(ptr == &mons[PM_FINGERNAIL_DEMON]) (void) mongets(mtmp, QATAR);
+		if(ptr == &mons[PM_KARATE_FEMMY]) (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		if(ptr == &mons[PM_LASERVENGER]) (void) mongets(mtmp, LASERDENT);
+		if(ptr == &mons[PM_LILITU_QUEEN]) (void) mongets(mtmp, FEMININE_PUMPS);
 
 		if (ptr == &mons[PM_SWORD_DANCER]) {
 			(void) mongets(mtmp, SAND_SWORD);
 			 m_initthrow(mtmp, SAND_DART, 20);
+		}
+		if (ptr == &mons[PM_UTE]) {
+			(void) mongets(mtmp, LEATHER_PEEP_TOES);
+			(void) mongets(mtmp, HIGH_HEELED_SANDAL);
 		}
 		if (ptr == &mons[PM_HELLWALK_BARBARIAN]) {
 			(void) mongets(mtmp, RING_MAIL);
@@ -15199,6 +15558,12 @@ loveheelover:
 		if(ptr == &mons[PM_ALEAX_ORBER]) (void) mongets(mtmp, EAGLE_BALL);
 		if(ptr == &mons[PM_GOOD_JARED]) (void) mongets(mtmp, JARED_STONE);
 		if(ptr == &mons[PM_YOUR_UPLIGHTER]) (void) mongets(mtmp, LIGHTBULB);
+		if(ptr == &mons[PM_LASARCHON]) (void) mongets(mtmp, LASER_SWORD);
+		if(ptr == &mons[PM_BEALADRIN]) (void) mongets(mtmp, BEAMSWORD);
+		if (mtmp->data == &mons[PM_HIGHHEEL_ANGEL]) (void) mongets(mtmp, FEMININE_PUMPS);
+		if(ptr == &mons[PM_ALGONQUIN_BUSINESSLADY]) (void) mongets(mtmp, LEATHER_PEEP_TOES);
+		if(ptr == &mons[PM_STAIR_GUARDING_QUEEN]) (void) mongets(mtmp, LEATHER_PEEP_TOES);
+		if(ptr == &mons[PM_FIREFOX_ANGEL]) (void) mongets(mtmp, FIRE_STICK);
 
 		if (monsndx(ptr) == PM_DOUGLAS_ADAMS) {
 			(void) mongets(mtmp,HITCHHIKER_S_GUIDE_TO_THE_GALA);
@@ -15433,6 +15798,7 @@ loveheelover:
 	    case S_XAN:
 		if (ptr == &mons[PM_RANDOM_MONSTER_GENERATOR]) (void) mongets(mtmp, SCR_GROUP_SUMMONING);
 		if (ptr == &mons[PM_AKLYS_BUG]) (void) mongets(mtmp, AKLYS);
+		if (ptr == &mons[PM_SPACEBUG]) (void) mongets(mtmp, LASER_POLE);
 		if (ptr == &mons[PM_BLOWKLYS_BUG]) (void) mongets(mtmp, BLOW_AKLYS);
 		if (ptr == &mons[PM_GREATER_AKLYS_BUG]) (void) mongets(mtmp, AKLYS);
 		if (ptr == &mons[PM_EXTREMELY_CONTAMINATED_BUG]) (void) mongets(mtmp, SCR_STYX);
@@ -15620,6 +15986,7 @@ loveheelover:
 		if (ptr == &mons[PM_SLAVE_ZRUTY]) (void) mongets(mtmp, IRON_CHAIN);
 		if (ptr == &mons[PM_FASHION_MODEL_ZRUTY]) (void) mongets(mtmp, LEATHER_PEEP_TOES);
 		if (ptr == &mons[PM_SOKOZRUTY]) (void) mongets(mtmp, BOULDER);
+		if (ptr == &mons[PM_NORDIC_STALKING_BEAR]) (void)mongets(mtmp, CLIMBING_STICK);
 
 		if (ptr == &mons[PM_OOGABOOGAGOBILITGOOK_SEEKER_AREHETYPE_FUCKING_RETARD_ASS_SHIT_FLINGING_MONKEY_MONSTER]) {
 			(void) mongets(mtmp, WILDHILD_BOW);
@@ -15699,6 +16066,8 @@ loveheelover:
 		if (ptr == &mons[PM_ARMORSMITH_DWARF]) (void) mongets(mtmp, OSFA_CHAIN_MAIL);
 		if (ptr == &mons[PM_DWARVEN_MASTER_DIGGER]) (void) mongets(mtmp, CONUNDRUM_PICK);
 		if (ptr == &mons[PM_BAD_CIGARETTE_DWARF]) (void) mongets(mtmp, CIGARETTE);
+		if (ptr == &mons[PM_HANDED_BAOBHAN_SITH]) (void) mongets(mtmp, SITH_STAFF);
+		if (ptr == &mons[PM_KLOCK_HOBBIT]) (void) mongets(mtmp, SEXY_LEATHER_PUMP);
 
 		if (ptr == &mons[PM_CONTAGION_LASHER]) {
 			otmp = mksobj(BULLWHIP, FALSE, FALSE, FALSE);
@@ -15709,6 +16078,10 @@ loveheelover:
 		}
 		if (ptr == &mons[PM_TSAR_CULTIST]) (void) mongets(mtmp, ROBE);
 		if (mtmp->data == &mons[PM_WEAPGAFF]) m_initweap_normal(mtmp);
+		if (ptr == &mons[PM_SCHWILL_TWERP]) {
+			(void) mongets(mtmp, BEAMSWORD);
+			(void) mongets(mtmp, LARGE_SHIELD);
+		}
 
 		if (ptr == &mons[PM_TRICK_OR_TREAT_CHILDREN]) (void) mongets(mtmp, rnd_offensive_potion(mtmp));
 		if (ptr == &mons[PM_BOO_CHILDREN]) (void) mongets(mtmp, rnd_offensive_potion(mtmp));
@@ -15958,6 +16331,7 @@ loveheelover:
 	    case S_JELLY:
 
 		if (ptr == &mons[PM_ENEMY_CUBE_JELLY]) (void) mongets(mtmp, SCR_SUMMON_BOSS);
+		if (ptr == &mons[PM_REACH_JELLY]) (void) mongets(mtmp, REACH_TRIDENT);
 		if (ptr == &mons[PM_BUMMY]) (void) mongets(mtmp, NOOB_POLLAX);
 		if (ptr == &mons[PM_ANCOGEL]) (void) mongets(mtmp, INFERNAL_ANCUS);
 		if (ptr == &mons[PM_GLEAM_OOZE]) (void) mongets(mtmp, CRYSTAL_SWORD);
@@ -16177,6 +16551,7 @@ loveheelover:
 		if (ptr == &mons[PM_ABSOLUTE_JERK]) (void) mongets(mtmp, CONTRO_STAFF);
 		if (ptr == &mons[PM_GRINDRAGON]) (void) mongets(mtmp, GRINDER);
 		if (ptr == &mons[PM_STEAM_SMOKER]) (void) mongets(mtmp, ELECTRIC_CIGARETTE);
+		if (ptr == &mons[PM_EDDOMINA]) (void) mongets(mtmp, LEATHER_PEEP_TOES);
 
 		if (ptr == &mons[PM_DIABLO_GANGSTER]) {
 			(void) mongets(mtmp, MUMMY_WRAPPING);
@@ -16191,6 +16566,10 @@ loveheelover:
 		if (ptr == &mons[PM_LOCKDOWN_DENIER]) {
 			(void) mongets(mtmp, CONGLOMERATE_PICK);
 			(void) mongets(mtmp, WAN_DIGGING);
+		}
+		if (ptr == &mons[PM_BLONDE_FEMMY]) {
+			(void) mongets(mtmp, HIGH_HEELED_SANDAL);
+			(void) mongets(mtmp, STILETTO_SANDALS);
 		}
 		if (ptr == &mons[PM_ELEMENT_DRAGON]) {
 			(void) mongets(mtmp, QUARTERSTAFF);
@@ -21600,7 +21979,7 @@ register int	mmflags;
 	   mtmp->m_lev = (1 + rn2(base_you) + rn2(base_lev) / 2)+1;
 	}
 
-	if (ptr == &mons[PM_BLACKY] || ptr == &mons[PM_EROTICLOUDY] || ptr == &mons[PM_WOODICLOUDY] || ptr == &mons[PM_SCENTICLOUDY] || ptr == &mons[PM_WHITLEVEL_KOP] || ptr == &mons[PM_BLAKLEVEL_KOP] || ptr == &mons[PM_GREYLEVEL_KOP] || ptr == &mons[PM_RNGED_KOP] || ptr == &mons[PM_EXMINATOR_KOP]) {
+	if (ptr == &mons[PM_BLACKY] || ptr == &mons[PM_BLUEY] || ptr == &mons[PM_LAMER_TYPE] || ptr == &mons[PM_EROTICLOUDY] || ptr == &mons[PM_WOODICLOUDY] || ptr == &mons[PM_SCENTICLOUDY] || ptr == &mons[PM_WHITLEVEL_KOP] || ptr == &mons[PM_BLAKLEVEL_KOP] || ptr == &mons[PM_GREYLEVEL_KOP] || ptr == &mons[PM_RNGED_KOP] || ptr == &mons[PM_EXMINATOR_KOP]) {
 	   /* blacky too --Amy */
 	   /* and specific kop types */
 	   /* and the claudia trap monsters */
@@ -21844,6 +22223,7 @@ register int	mmflags;
 	mtmp->bleedout = 0;
 	mtmp->healblock = 0;
 	mtmp->inertia = 0;
+	mtmp->singannoyance = FALSE;
 	if (!rn2(2)) mtmp->warningvisible = (rn2(2) ? 2 : 1);
 	mtmp->telepatvisible = 0;
 	if (!rn2(3)) mtmp->telepatvisible = (rn2(2) ? 2 : 1);
@@ -22071,10 +22451,16 @@ register int	mmflags;
 		mtmp->isegotype = 1;
 		mtmp->egotype_farter = 1;
 	}
+	if (ptr == &mons[PM_BEN_ARGIMUNT]) {
+		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
+		mtmp->isegotype = 1;
+		mtmp->egotype_farter = 1;
+	}
 
 	/* slex shopkeepers don't fuck around - if you engage them, they may hit you with a variety of nasty stuff --Amy */
-	if (ptr == &mons[PM_SHOPKEEPER] || ptr == &mons[PM_MASTER_SHOPKEEPER] || ptr == &mons[PM_ELITE_SHOPKEEPER] || ptr == &mons[PM_BLACK_MARKETEER]) {
+	if (ptr == &mons[PM_SHOPKEEPER] || ptr == &mons[PM_MASTER_SHOPKEEPER] || ptr == &mons[PM_ELITE_SHOPKEEPER] || ptr == &mons[PM_BLACK_MARKETEER] || ptr == &mons[PM_GUARD] || ptr == &mons[PM_MASTER_GUARD] || ptr == &mons[PM_ELITE_GUARD]) {
 
+		if (ptr == &mons[PM_GUARD] || ptr == &mons[PM_MASTER_GUARD] || ptr == &mons[PM_ELITE_GUARD]) mtmp->noegodesc = TRUE;
 		if (rn2(2)) {
 			mtmp->noegodesc = mtmp->noegodisplay = TRUE;
 		}
@@ -22101,6 +22487,14 @@ register int	mmflags;
 		if (!rn2(100)) {
 			mtmp->isegotype = 1;
 			mtmp->egotype_flamer = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_blasphemer = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_dropper = TRUE;
 		}
 		if (!rn2(100)) {
 			mtmp->isegotype = 1;
@@ -22265,6 +22659,10 @@ register int	mmflags;
 		if (!rn2(100)) {
 			mtmp->isegotype = 1;
 			mtmp->egotype_destructor = TRUE;
+		}
+		if (!rn2(1000)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_datadeleter = TRUE;
 		}
 		if (!rn2(100)) {
 			mtmp->isegotype = 1;
@@ -23475,7 +23873,7 @@ register int	mmflags;
 		mitem = CANDELABRUM_OF_INVOCATION;
 	} else if (mndx == PM_CROESUS) {
 		mitem = TWO_HANDED_SWORD;
-	} else if (ptr->msound == MS_NEMESIS && mndx >= PM_LORD_CARNARVON && mndx <= PM_UPPER_BULL) {
+	} else if (ptr->msound == MS_NEMESIS && mndx >= PM_LORD_CARNARVON && mndx <= PM_UPPER_BULL && !(In_rivalquest(&u.uz)) ) {
 		mitem = BELL_OF_OPENING; /* prevent new random nemesis monsters from dropping the bell --Amy */
 	} else if (mndx == PM_PESTILENCE) {
 		mitem = POT_SICKNESS;
@@ -23504,7 +23902,7 @@ register int	mmflags;
 		mtmp->mpeaceful = mtmp->mtame = FALSE;
 	}
 
-	if (u.uprops[GHOST_WORLD].extrinsic || (uarmc && uarmc->oartifact == ART_HAUNTNIGHT) || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || GhostWorld || have_ghostlystone() ) {
+	if (u.uprops[GHOST_WORLD].extrinsic || (uarmc && uarmc->oartifact == ART_HAUNTNIGHT) || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || GhostWorld || have_ghostlystone() || (uwep && uwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI) ) {
 		mtmp->minvis = mtmp->perminvis = mtmp->minvisreal = 1;
 	}
 
@@ -24163,6 +24561,9 @@ rndmonst()
       if (u.uz.dnum == subquest_dnum && (!rn2(20)) && (ptr = qt_montype()) != 0)
 	    return ptr; 
 
+      if (u.uz.dnum == rivalquest_dnum && (!rn2(20)) && (ptr = qt_rival_montype()) != 0)
+	    return ptr; 
+
 	if (rndmonst_state.choice_count < 0) {	/* need to recalculate */
 	    int zlevel, minmlev, maxmlev;
 	    boolean elemlevel;
@@ -24272,6 +24673,10 @@ loopback:
 		if (ct > 0 && (In_sheol(&u.uz) && dmgtype(ptr, AD_COLD) )) ct += 5;
 		if (ct > 0 && (In_sheol(&u.uz) && dmgtype(ptr, AD_FRZE) )) ct += 5;
 		if (ct > 0 && (In_sheol(&u.uz) && dmgtype(ptr, AD_ICEB) )) ct += 2;
+		if (ct > 0 && (In_icequeen(&u.uz) && is_cold_resistant(ptr) )) ct += 5;
+		if (ct > 0 && (In_icequeen(&u.uz) && dmgtype(ptr, AD_COLD) )) ct += 5;
+		if (ct > 0 && (In_icequeen(&u.uz) && dmgtype(ptr, AD_FRZE) )) ct += 5;
+		if (ct > 0 && (In_icequeen(&u.uz) && dmgtype(ptr, AD_ICEB) )) ct += 5;
 		if (ct > 0 && (In_towndungeon(&u.uz) && is_angbandmonster(ptr) )) ct += 5;
 		if (ct > 0 && (In_towndungeon(&u.uz) && is_steammonster(ptr) )) ct += 1;
 		if (ct > 0 && (In_towndungeon(&u.uz) && is_animemonster(ptr) )) ct += 1;
@@ -24316,6 +24721,7 @@ loopback:
 		if (ct > 0 && (In_illusorycastle(&u.uz) && dmgtype(ptr, AD_FAKE) )) ct += 7;
 		if (ct > 0 && (In_illusorycastle(&u.uz) && dmgtype(ptr, AD_LETH) )) ct += 2;
 		if (ct > 0 && (In_illusorycastle(&u.uz) && dmgtype(ptr, AD_CNCL) )) ct += 1;
+		if (ct > 0 && (In_illusorycastle(&u.uz) && dmgtype(ptr, AD_BLAS) )) ct += 1;
 		if (ct > 0 && (In_illusorycastle(&u.uz) && dmgtype(ptr, AD_BANI) )) ct += 2;
 		if (ct > 0 && (In_illusorycastle(&u.uz) && dmgtype(ptr, AD_WISD) )) ct += 3;
 		if (ct > 0 && (In_illusorycastle(&u.uz) && dmgtype(ptr, AD_HODS) )) ct += 3;
@@ -24363,6 +24769,11 @@ loopback:
 		if (ct > 0 && (In_deepmines(&u.uz) && tunnels(ptr) )) ct += 4;
 		if (ct > 0 && (In_deepmines(&u.uz) && humanoid(ptr) )) ct += 2;
 		if (ct > 0 && (In_angmar(&u.uz) && (ptr->maligntyp < 0) )) ct += 15;
+		if (ct > 0 && (In_emynluin(&u.uz) && is_angbandmonster(ptr) )) ct += 10;
+		if (ct > 0 && (In_emynluin(&u.uz) && is_animemonster(ptr) )) ct += 2;
+		if (ct > 0 && (In_emynluin(&u.uz) && is_steammonster(ptr) )) ct += 5;
+		if (ct > 0 && (In_greencross(&u.uz) && is_cowmonster(ptr) )) ct += 50;
+		if (ct > 0 && (In_greencross(&u.uz) && is_jokemonster(ptr) )) ct += 5;
 		if (ct > 0 && (In_swimmingpool(&u.uz) && (ptr->mlet == S_EEL) )) ct += 20;
 		if (ct > 0 && (In_swimmingpool(&u.uz) && (ptr->mlet == S_FLYFISH) )) ct += 20;
 		if (ct > 0 && (In_swimmingpool(&u.uz) && dmgtype(ptr, AD_WRAP) )) ct += 10;
@@ -24372,6 +24783,8 @@ loopback:
 		if (ct > 0 && (In_hellbathroom(&u.uz) && (ptr->msound == MS_FART_QUIET) )) ct += 10;
 		if (ct > 0 && (In_hellbathroom(&u.uz) && (ptr->msound == MS_FART_LOUD) )) ct += 10;
 		if (ct > 0 && (In_hellbathroom(&u.uz) && dmgtype(ptr, AD_FEMI) )) ct += 15;
+		if (ct > 0 && (In_minusworld(&u.uz) && (ptr->mlet == S_WORM_TAIL) )) ct += 500;
+		if (ct > 0 && (In_minusworld(&u.uz) && is_randomizedmonster(ptr) )) ct += 500;
 		if (ct > 0 && (In_ZAPM(&u.uz) && is_evilpatchmonster(ptr) )) ct += 20;
 		if (ct > 0 && (In_sewerplant(&u.uz) && (ptr->mlet == S_RODENT) )) ct += 5;
 		if (ct > 0 && (In_sewerplant(&u.uz) && (ptr->mlet == S_BLOB) )) ct += 3;
@@ -24395,6 +24808,7 @@ loopback:
 		if (ct > 0 && (Role_if(PM_ARTIST) && attacktype(ptr, AT_GAZE))) ct += 2;
 		if (ct > 0 && (Role_if(PM_ASSASSIN) && is_diablomonster(ptr))) ct += 5;
 		if (ct > 0 && (Role_if(PM_BARBARIAN) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_NOOB_MODE_BARB) && is_vanillamonster(ptr))) ct += 5;
 		if (ct > 0 && (Role_if(PM_BARBARIAN) && is_diablomonster(ptr))) ct += 1;
 		if (ct > 0 && (Role_if(PM_BINDER) && is_dnethackmonster(ptr))) ct += 10;
 		if (ct > 0 && (Role_if(PM_ANACHRONOUNBINDER) && is_dnethackmonster(ptr))) ct += 10;
@@ -24435,6 +24849,7 @@ loopback:
 		if (ct > 0 && (Role_if(PM_MEDIUM) && dmgtype(ptr, AD_SPC2))) ct += 2;
 		if (ct > 0 && (Role_if(PM_MEDIUM) && is_mind_flayer(ptr))) ct += 1;
 		if (ct > 0 && (Role_if(PM_MONK) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_HALF_BAKED) && is_vanillamonster(ptr))) ct += 5;
 		if (ct > 0 && (Role_if(PM_MURDERER) && (ptr->msound == MS_ARREST))) ct += 5;
 		if (ct > 0 && (Role_if(PM_NECROMANCER) && is_vanillamonster(ptr))) ct += 1;
 		if (ct > 0 && (Role_if(PM_NECROMANCER) && is_diablomonster(ptr))) ct += 1;
@@ -24467,6 +24882,7 @@ loopback:
 		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_NPRO))) ct += 1;
 		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_LETH))) ct += 2;
 		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_CNCL))) ct += 3;
+		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_BLAS))) ct += 3;
 		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_BANI))) ct += 5;
 		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_SUCK))) ct += 2;
 		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_UVUU))) ct += 7;
@@ -24503,6 +24919,7 @@ loopback:
 		if (ct > 0 && (Role_if(PM_KURWA) && (ptr->msound == MS_SHOE))) ct += 5;
 		if (ct > 0 && (Role_if(PM_PROSTITUTE) && attacktype(ptr, AT_CLAW) && (ptr->msound == MS_SQEEK))) ct += 30;
 		if (ct > 0 && (Role_if(PM_KURWA) && attacktype(ptr, AT_CLAW) && (ptr->msound == MS_SQEEK))) ct += 30;
+		if (ct > 0 && (FemtrapActiveDora && attacktype(ptr, AT_CLAW) && (ptr->msound == MS_SQEEK))) ct += 30;
 		if (ct > 0 && (uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION && attacktype(ptr, AT_CLAW) && (ptr->msound == MS_SQEEK))) ct += 30;
 		if (ct > 0 && (Role_if(PM_PROSTITUTE) && dmgtype(ptr, AD_SSEX))) ct += 20;
 		if (ct > 0 && (Role_if(PM_KURWA) && dmgtype(ptr, AD_SSEX))) ct += 20;
@@ -24758,6 +25175,7 @@ loopback:
 		if (ct > 0 && (Role_if(PM_WEIRDBOY) && dmgtype(ptr, AD_FAKE) )) ct += 7;
 		if (ct > 0 && (Role_if(PM_WEIRDBOY) && dmgtype(ptr, AD_LETH) )) ct += 2;
 		if (ct > 0 && (Role_if(PM_WEIRDBOY) && dmgtype(ptr, AD_CNCL) )) ct += 1;
+		if (ct > 0 && (Role_if(PM_WEIRDBOY) && dmgtype(ptr, AD_BLAS) )) ct += 1;
 		if (ct > 0 && (Role_if(PM_WEIRDBOY) && dmgtype(ptr, AD_BANI) )) ct += 2;
 		if (ct > 0 && (Role_if(PM_WEIRDBOY) && dmgtype(ptr, AD_WISD) )) ct += 3;
 		if (ct > 0 && (Role_if(PM_WEIRDBOY) && dmgtype(ptr, AD_HODS) )) ct += 3;
@@ -25006,6 +25424,7 @@ loopback:
 		if (ct > 0 && (Role_if(PM_UNBELIEVER) && dmgtype(ptr, AD_MCRE) )) ct += 5;
 		if (ct > 0 && (Race_if(PM_CUPID) && is_elonamonster(ptr) )) ct += 2;
 		if (ct > 0 && (Race_if(PM_BACTERIA) && is_elonamonster(ptr) )) ct += 10;
+		if (ct > 0 && (Race_if(PM_PIECE) && is_elonamonster(ptr) )) ct += 5;
 		if (ct > 0 && (Race_if(PM_PLAYER_SHEEP) && is_elonamonster(ptr) )) ct += 1;
 		if (ct > 0 && (Race_if(PM_PLAYER_HOUND) && is_elonamonster(ptr) )) ct += 3;
 		if (ct > 0 && (Race_if(PM_PLAYER_CERBERUS) && is_elonamonster(ptr) )) ct += 5;
@@ -25084,8 +25503,54 @@ loopback:
 		if (ct > 0 && (ischallenger && (ptr->msound == MS_CONVERT) )) ct += (((int)(ptr->geno & G_FREQ)) * 4);
 		if (ct > 0 && (ischallenger && (ptr->msound == MS_HCALIEN) )) ct += (((int)(ptr->geno & G_FREQ)) * 4);
 		if (ct > 0 && (uarmf && uarmf->oartifact == ART_STRONG_GETAWAY_DESIRE && dmgtype(ptr, AD_WEEP) )) ct += 20;
+		if (ct > 0 && (Role_if(PM_ANACHRONIST) && dmgtype(ptr, AD_TDRA) )) ct += 3;
+		if (ct > 0 && (Role_if(PM_SHAPESHIFTER) && dmgtype(ptr, AD_BLAS) )) ct += 5;
+		if (ct > 0 && (Race_if(PM_HUMANOID_ANGEL) && dmgtype(ptr, AD_BLAS) )) ct += 1;
+		if (ct > 0 && (Race_if(PM_HUMANOID_DEVIL) && dmgtype(ptr, AD_BLAS) )) ct += 2;
+		if (ct > 0 && (Race_if(PM_DEVELOPER) && dmgtype(ptr, AD_BLAS) )) ct += 2;
+		if (ct > 0 && (Race_if(PM_PLAYER_DYNAMO) && dmgtype(ptr, AD_TDRA) )) ct += 1;
+		if (ct > 0 && (Race_if(PM_GAVIL) && dmgtype(ptr, AD_BLAS) )) ct += 1;
+		if (ct > 0 && (Race_if(PM_HC_ALIEN) && dmgtype(ptr, AD_BLAS) )) ct += 1;
+		if (ct > 0 && (isheretic && dmgtype(ptr, AD_BLAS) )) ct += 3;
+		if (ct > 0 && (Race_if(PM_IMPERIAL) && dmgtype(ptr, AD_BLAS) )) ct += 5;
+		if (ct > 0 && (Race_if(PM_SINNER) && dmgtype(ptr, AD_BLAS) )) ct += 1;
+		if (ct > 0 && (Race_if(PM_SPIRIT) && dmgtype(ptr, AD_TDRA) )) ct += 3;
+		if (ct > 0 && (Role_if(PM_BUTT_LOVER) && (ptr->msound == MS_FART_NORMAL) )) ct += 50;
+		if (ct > 0 && (Role_if(PM_BUTT_LOVER) && (ptr->msound == MS_FART_LOUD) )) ct += 50;
+		if (ct > 0 && (Role_if(PM_BUTT_LOVER) && (ptr->msound == MS_FART_QUIET) )) ct += 50;
+		if (ct > 0 && (Role_if(PM_DIABLIST) && is_diablomonster(ptr))) ct += 20;
+		if (ct > 0 && (Role_if(PM_PREVERSIONER) && is_cowmonster(ptr) )) ct += 50;
+		if (ct > 0 && (Role_if(PM_PREVERSIONER) && is_jokemonster(ptr) )) ct += 5;
+		if (ct > 0 && (Role_if(PM_SHOE_FETISHIST) && (ptr->msound == MS_SHOE) )) ct += 100;
+		if (ct > 0 && (Role_if(PM_SECRET_ADVICE_MEMBER) && (ptr->msound == MS_ARREST) )) ct += 4;
+		if (ct > 0 && (Role_if(PM_SECRET_ADVICE_MEMBER) && (ptr->msound == MS_SOLDIER) )) ct += 2;
+		if (ct > 0 && (Role_if(PM_SECRET_ADVICE_MEMBER) && strongmonst(ptr) )) ct += 2;
+		if (ct > 0 && (Role_if(PM_SECRET_ADVICE_MEMBER) && extra_nasty(ptr) )) ct += 3;
+		if (ct > 0 && (Role_if(PM_SECRET_ADVICE_MEMBER) && dmgtype(ptr, AD_TDRA) )) ct += 5;
+		if (ct > 0 && (Role_if(PM_SECRET_ADVICE_MEMBER) && dmgtype(ptr, AD_TECH) )) ct += 5;
+		if (ct > 0 && (Role_if(PM_SECRET_ADVICE_MEMBER) && is_cowmonster(ptr) )) ct += 5;
+		if (ct > 0 && (Role_if(PM_SECRET_ADVICE_MEMBER) && is_jokemonster(ptr) )) ct += 2;
+		if (ct > 0 && (PlayerInConeHeels && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && dmgtype(ptr, AD_DROP) )) ct += 5;
+		if (ct > 0 && (Role_if(PM_BARD) && dmgtype(ptr, AD_DROP) )) ct += 1;
+		if (ct > 0 && (Role_if(PM_BUTT_LOVER) && dmgtype(ptr, AD_DROP) )) ct += 10;
+		if (ct > 0 && (Role_if(PM_CONVICT) && dmgtype(ptr, AD_DROP) )) ct += 1;
+		if (ct > 0 && (Role_if(PM_MURDERER) && dmgtype(ptr, AD_DROP) )) ct += 1;
+		if (ct > 0 && (Role_if(PM_DOLL_MISTRESS) && dmgtype(ptr, AD_DROP) )) ct += 2;
+		if (ct > 0 && (Role_if(PM_DRUNK) && dmgtype(ptr, AD_DROP) )) ct += 3;
+		if (ct > 0 && (Role_if(PM_GENDERSTARIST) && dmgtype(ptr, AD_DROP) )) ct += 2;
+		if (ct > 0 && (Role_if(PM_JESTER) && dmgtype(ptr, AD_DROP) )) ct += 5;
+		if (ct > 0 && (Role_if(PM_POLITICIAN) && dmgtype(ptr, AD_DROP) )) ct += 2;
+		if (ct > 0 && (Role_if(PM_PRACTICANT) && dmgtype(ptr, AD_DROP) )) ct += 1;
+		if (ct > 0 && (Race_if(PM_ALCHEMIST) && dmgtype(ptr, AD_DROP) )) ct += 2;
+		if (ct > 0 && (Race_if(PM_DUFFLEPUD) && dmgtype(ptr, AD_DROP) )) ct += 2;
+		if (ct > 0 && (Race_if(PM_PERVERT) && dmgtype(ptr, AD_DROP) )) ct += 2;
+		if (ct > 0 && (Race_if(PM_TUMBLRER) && dmgtype(ptr, AD_DROP) )) ct += 10;
+		if (ct > 0 && (Race_if(PM_WOOKIE) && dmgtype(ptr, AD_DROP) )) ct += 2;
 
 		if (ct > 0 && (uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (ptr->msound == MS_STENCH))) ct += 10;
+		if (ct > 0 && (FemtrapActiveAnna && (ptr->msound == MS_STENCH))) ct += 50;
+		if (ct > 0 && (FemtrapActiveMarike && (ptr->msound == MS_FART_NORMAL))) ct += 10;
+		if (ct > 0 && (FemtrapActiveVictoria && is_female(ptr) && attacktype(ptr, AT_KICK) )) ct += 20;
 
 		if (ct > 0 && RngeExtinction && mvitals[mndx].born) ct += mvitals[mndx].born;
 
@@ -25497,6 +25962,10 @@ int     spc;
 		if ((In_sheol(&u.uz) && dmgtype(&mons[last], AD_COLD) )) num += 5;
 		if ((In_sheol(&u.uz) && dmgtype(&mons[last], AD_FRZE) )) num += 5;
 		if ((In_sheol(&u.uz) && dmgtype(&mons[last], AD_ICEB) )) num += 2;
+		if ((In_icequeen(&u.uz) && is_cold_resistant(&mons[last]) )) num += 5;
+		if ((In_icequeen(&u.uz) && dmgtype(&mons[last], AD_COLD) )) num += 5;
+		if ((In_icequeen(&u.uz) && dmgtype(&mons[last], AD_FRZE) )) num += 5;
+		if ((In_icequeen(&u.uz) && dmgtype(&mons[last], AD_ICEB) )) num += 5;
 		if ((In_towndungeon(&u.uz) && is_angbandmonster(&mons[last]) )) num += 5;
 		if ((In_towndungeon(&u.uz) && is_steammonster(&mons[last]) )) num += 1;
 		if ((In_towndungeon(&u.uz) && is_animemonster(&mons[last]) )) num += 1;
@@ -25531,6 +26000,7 @@ int     spc;
 		if ((In_illusorycastle(&u.uz) && dmgtype(&mons[last], AD_FAKE) )) num += 7;
 		if ((In_illusorycastle(&u.uz) && dmgtype(&mons[last], AD_LETH) )) num += 2;
 		if ((In_illusorycastle(&u.uz) && dmgtype(&mons[last], AD_CNCL) )) num += 1;
+		if ((In_illusorycastle(&u.uz) && dmgtype(&mons[last], AD_BLAS) )) num += 1;
 		if ((In_illusorycastle(&u.uz) && dmgtype(&mons[last], AD_BANI) )) num += 2;
 		if ((In_illusorycastle(&u.uz) && dmgtype(&mons[last], AD_WISD) )) num += 3;
 		if ((In_illusorycastle(&u.uz) && dmgtype(&mons[last], AD_HODS) )) num += 3;
@@ -25567,6 +26037,11 @@ int     spc;
 		if ((In_deepmines(&u.uz) && tunnels(&mons[last]) )) num += 4;
 		if ((In_deepmines(&u.uz) && humanoid(&mons[last]) )) num += 2;
 		if ((In_angmar(&u.uz) && (mons[last].maligntyp < 0) )) num += 15;
+		if ((In_emynluin(&u.uz) && is_angbandmonster(&mons[last]) )) num += 10;
+		if ((In_emynluin(&u.uz) && is_animemonster(&mons[last]) )) num += 2;
+		if ((In_emynluin(&u.uz) && is_steammonster(&mons[last]) )) num += 5;
+		if ((In_greencross(&u.uz) && is_cowmonster(&mons[last]) )) num += 50;
+		if ((In_greencross(&u.uz) && is_jokemonster(&mons[last]) )) num += 5;
 		if ((In_swimmingpool(&u.uz) && dmgtype(&mons[last], AD_WRAP) )) num += 10;
 		if ((In_swimmingpool(&u.uz) && amphibious(&mons[last]) )) num += 10;
 		if ((In_swimmingpool(&u.uz) && is_swimmer(&mons[last]) )) num += 10;
@@ -25574,6 +26049,7 @@ int     spc;
 		if ((In_hellbathroom(&u.uz) && (mons[last].msound == MS_FART_QUIET) )) num += 10;
 		if ((In_hellbathroom(&u.uz) && (mons[last].msound == MS_FART_LOUD) )) num += 10;
 		if ((In_hellbathroom(&u.uz) && dmgtype(&mons[last], AD_FEMI) )) num += 15;
+		if ((In_minusworld(&u.uz) && is_randomizedmonster(&mons[last]) )) num += 500;
 		if ((In_ZAPM(&u.uz) && is_evilpatchmonster(&mons[last]) )) num += 20;
 		if ((In_sewerplant(&u.uz) && acidic(&mons[last]) )) num += 4;
 		if ((In_sewerplant(&u.uz) && poisonous(&mons[last]) )) num += 3;
@@ -25591,6 +26067,7 @@ int     spc;
 		if ((Role_if(PM_ARTIST) && attacktype(&mons[last], AT_GAZE))) num += 2;
 		if ((Role_if(PM_ASSASSIN) && is_diablomonster(&mons[last]))) num += 5;
 		if ((Role_if(PM_BARBARIAN) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Role_if(PM_NOOB_MODE_BARB) && is_vanillamonster(&mons[last]))) num += 5;
 		if ((Role_if(PM_BARBARIAN) && is_diablomonster(&mons[last]))) num += 1;
 		if ((Role_if(PM_BINDER) && is_dnethackmonster(&mons[last]))) num += 10;
 		if ((Role_if(PM_ANACHRONOUNBINDER) && is_dnethackmonster(&mons[last]))) num += 10;
@@ -25631,6 +26108,7 @@ int     spc;
 		if ((Role_if(PM_MEDIUM) && dmgtype(&mons[last], AD_SPC2))) num += 2;
 		if ((Role_if(PM_MEDIUM) && is_mind_flayer(&mons[last]))) num += 1;
 		if ((Role_if(PM_MONK) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Role_if(PM_HALF_BAKED) && is_vanillamonster(&mons[last]))) num += 5;
 		if ((Role_if(PM_MURDERER) && (mons[last].msound == MS_ARREST))) num += 5;
 		if ((Role_if(PM_NECROMANCER) && is_vanillamonster(&mons[last]))) num += 1;
 		if ((Role_if(PM_NECROMANCER) && is_diablomonster(&mons[last]))) num += 1;
@@ -25663,6 +26141,7 @@ int     spc;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_NPRO))) num += 1;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_LETH))) num += 2;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_CNCL))) num += 3;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_BLAS))) num += 3;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_BANI))) num += 5;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_SUCK))) num += 2;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_UVUU))) num += 7;
@@ -25699,6 +26178,7 @@ int     spc;
 		if ((Role_if(PM_KURWA) && (mons[last].msound == MS_SHOE))) num += 5;
 		if ((Role_if(PM_PROSTITUTE) && attacktype(&mons[last], AT_CLAW) && (mons[last].msound == MS_SQEEK))) num += 30;
 		if ((Role_if(PM_KURWA) && attacktype(&mons[last], AT_CLAW) && (mons[last].msound == MS_SQEEK))) num += 30;
+		if ((FemtrapActiveDora && attacktype(&mons[last], AT_CLAW) && (mons[last].msound == MS_SQEEK))) num += 30;
 		if ((uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION && attacktype(&mons[last], AT_CLAW) && (mons[last].msound == MS_SQEEK))) num += 30;
 		if ((Role_if(PM_PROSTITUTE) && dmgtype(&mons[last], AD_SSEX))) num += 20;
 		if ((Role_if(PM_KURWA) && dmgtype(&mons[last], AD_SSEX))) num += 20;
@@ -25950,6 +26430,7 @@ int     spc;
 		if ((Role_if(PM_WEIRDBOY) && dmgtype(&mons[last], AD_FAKE) )) num += 7;
 		if ((Role_if(PM_WEIRDBOY) && dmgtype(&mons[last], AD_LETH) )) num += 2;
 		if ((Role_if(PM_WEIRDBOY) && dmgtype(&mons[last], AD_CNCL) )) num += 1;
+		if ((Role_if(PM_WEIRDBOY) && dmgtype(&mons[last], AD_BLAS) )) num += 1;
 		if ((Role_if(PM_WEIRDBOY) && dmgtype(&mons[last], AD_BANI) )) num += 2;
 		if ((Role_if(PM_WEIRDBOY) && dmgtype(&mons[last], AD_WISD) )) num += 3;
 		if ((Role_if(PM_WEIRDBOY) && dmgtype(&mons[last], AD_HODS) )) num += 3;
@@ -26194,6 +26675,7 @@ int     spc;
 		if ((Role_if(PM_UNBELIEVER) && dmgtype(&mons[last], AD_MCRE) )) num += 5;
 		if ((Race_if(PM_CUPID) && is_elonamonster(&mons[last]) )) num += 2;
 		if ((Race_if(PM_BACTERIA) && is_elonamonster(&mons[last]) )) num += 10;
+		if ((Race_if(PM_PIECE) && is_elonamonster(&mons[last]) )) num += 5;
 		if ((Race_if(PM_PLAYER_SHEEP) && is_elonamonster(&mons[last]) )) num += 1;
 		if ((Race_if(PM_PLAYER_HOUND) && is_elonamonster(&mons[last]) )) num += 3;
 		if ((Race_if(PM_PLAYER_CERBERUS) && is_elonamonster(&mons[last]) )) num += 5;
@@ -26271,8 +26753,54 @@ int     spc;
 		if ((ischallenger && (mons[last].msound == MS_CONVERT) )) num += ((mons[last].geno & G_FREQ) * 4);
 		if ((ischallenger && (mons[last].msound == MS_HCALIEN) )) num += ((mons[last].geno & G_FREQ) * 4);
 		if ((uarmf && uarmf->oartifact == ART_STRONG_GETAWAY_DESIRE && dmgtype(&mons[last], AD_WEEP) )) num += 20;
+		if ((Role_if(PM_ANACHRONIST) && dmgtype(&mons[last], AD_TDRA) )) num += 3;
+		if ((Role_if(PM_SHAPESHIFTER) && dmgtype(&mons[last], AD_BLAS) )) num += 5;
+		if ((Race_if(PM_HUMANOID_ANGEL) && dmgtype(&mons[last], AD_BLAS) )) num += 1;
+		if ((Race_if(PM_HUMANOID_DEVIL) && dmgtype(&mons[last], AD_BLAS) )) num += 2;
+		if ((Race_if(PM_DEVELOPER) && dmgtype(&mons[last], AD_BLAS) )) num += 2;
+		if ((Race_if(PM_PLAYER_DYNAMO) && dmgtype(&mons[last], AD_TDRA) )) num += 1;
+		if ((Race_if(PM_GAVIL) && dmgtype(&mons[last], AD_BLAS) )) num += 1;
+		if ((Race_if(PM_HC_ALIEN) && dmgtype(&mons[last], AD_BLAS) )) num += 1;
+		if ((isheretic && dmgtype(&mons[last], AD_BLAS) )) num += 3;
+		if ((Race_if(PM_IMPERIAL) && dmgtype(&mons[last], AD_BLAS) )) num += 5;
+		if ((Race_if(PM_SINNER) && dmgtype(&mons[last], AD_BLAS) )) num += 1;
+		if ((Race_if(PM_SPIRIT) && dmgtype(&mons[last], AD_TDRA) )) num += 3;
+		if ((Role_if(PM_BUTT_LOVER) && (mons[last].msound == MS_FART_NORMAL) )) num += 50;
+		if ((Role_if(PM_BUTT_LOVER) && (mons[last].msound == MS_FART_LOUD) )) num += 50;
+		if ((Role_if(PM_BUTT_LOVER) && (mons[last].msound == MS_FART_QUIET) )) num += 50;
+		if ((Role_if(PM_DIABLIST) && is_diablomonster(&mons[last]))) num += 20;
+		if ((Role_if(PM_PREVERSIONER) && is_cowmonster(&mons[last]) )) num += 50;
+		if ((Role_if(PM_PREVERSIONER) && is_jokemonster(&mons[last]) )) num += 5;
+		if ((Role_if(PM_SHOE_FETISHIST) && (mons[last].msound == MS_SHOE) )) num += 100;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && (mons[last].msound == MS_ARREST) )) num += 4;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && (mons[last].msound == MS_SOLDIER) )) num += 2;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && strongmonst(&mons[last]) )) num += 2;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && extra_nasty(&mons[last]) )) num += 3;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && dmgtype(&mons[last], AD_TDRA) )) num += 5;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && dmgtype(&mons[last], AD_TECH) )) num += 5;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && is_cowmonster(&mons[last]) )) num += 5;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && is_jokemonster(&mons[last]) )) num += 2;
+		if ((PlayerInConeHeels && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && dmgtype(&mons[last], AD_DROP) )) num += 5;
+		if ((Role_if(PM_BARD) && dmgtype(&mons[last], AD_DROP) )) num += 1;
+		if ((Role_if(PM_BUTT_LOVER) && dmgtype(&mons[last], AD_DROP) )) num += 10;
+		if ((Role_if(PM_CONVICT) && dmgtype(&mons[last], AD_DROP) )) num += 1;
+		if ((Role_if(PM_MURDERER) && dmgtype(&mons[last], AD_DROP) )) num += 1;
+		if ((Role_if(PM_DOLL_MISTRESS) && dmgtype(&mons[last], AD_DROP) )) num += 2;
+		if ((Role_if(PM_DRUNK) && dmgtype(&mons[last], AD_DROP) )) num += 3;
+		if ((Role_if(PM_GENDERSTARIST) && dmgtype(&mons[last], AD_DROP) )) num += 2;
+		if ((Role_if(PM_JESTER) && dmgtype(&mons[last], AD_DROP) )) num += 5;
+		if ((Role_if(PM_POLITICIAN) && dmgtype(&mons[last], AD_DROP) )) num += 2;
+		if ((Role_if(PM_PRACTICANT) && dmgtype(&mons[last], AD_DROP) )) num += 1;
+		if ((Race_if(PM_ALCHEMIST) && dmgtype(&mons[last], AD_DROP) )) num += 2;
+		if ((Race_if(PM_DUFFLEPUD) && dmgtype(&mons[last], AD_DROP) )) num += 2;
+		if ((Race_if(PM_PERVERT) && dmgtype(&mons[last], AD_DROP) )) num += 2;
+		if ((Race_if(PM_TUMBLRER) && dmgtype(&mons[last], AD_DROP) )) num += 10;
+		if ((Race_if(PM_WOOKIE) && dmgtype(&mons[last], AD_DROP) )) num += 2;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[last].msound == MS_STENCH))) num += 10;
+		if ((FemtrapActiveAnna && (mons[last].msound == MS_STENCH))) num += 50;
+		if ((FemtrapActiveMarike && (mons[last].msound == MS_FART_NORMAL))) num += 10;
+		if ((FemtrapActiveVictoria && is_female(&mons[last]) && attacktype(&mons[last], AT_KICK) )) num += 20;
 
 		if (monster_with_trait(&mons[last], u.frequenttrait1)) num += u.freqtraitbonus1;
 		if (u.frequenttrait2 && monster_with_trait(&mons[last], u.frequenttrait2)) num += u.freqtraitbonus2;
@@ -26359,6 +26887,10 @@ int     spc;
 		if ((In_sheol(&u.uz) && dmgtype(&mons[first], AD_COLD) )) num -= 5;
 		if ((In_sheol(&u.uz) && dmgtype(&mons[first], AD_FRZE) )) num -= 5;
 		if ((In_sheol(&u.uz) && dmgtype(&mons[first], AD_ICEB) )) num -= 2;
+		if ((In_icequeen(&u.uz) && is_cold_resistant(&mons[first]) )) num -= 5;
+		if ((In_icequeen(&u.uz) && dmgtype(&mons[first], AD_COLD) )) num -= 5;
+		if ((In_icequeen(&u.uz) && dmgtype(&mons[first], AD_FRZE) )) num -= 5;
+		if ((In_icequeen(&u.uz) && dmgtype(&mons[first], AD_ICEB) )) num -= 5;
 		if ((In_towndungeon(&u.uz) && is_angbandmonster(&mons[first]) )) num -= 5;
 		if ((In_towndungeon(&u.uz) && is_steammonster(&mons[first]) )) num -= 1;
 		if ((In_towndungeon(&u.uz) && is_animemonster(&mons[first]) )) num -= 1;
@@ -26393,6 +26925,7 @@ int     spc;
 		if ((In_illusorycastle(&u.uz) && dmgtype(&mons[first], AD_FAKE) )) num -= 7;
 		if ((In_illusorycastle(&u.uz) && dmgtype(&mons[first], AD_LETH) )) num -= 2;
 		if ((In_illusorycastle(&u.uz) && dmgtype(&mons[first], AD_CNCL) )) num -= 1;
+		if ((In_illusorycastle(&u.uz) && dmgtype(&mons[first], AD_BLAS) )) num -= 1;
 		if ((In_illusorycastle(&u.uz) && dmgtype(&mons[first], AD_BANI) )) num -= 2;
 		if ((In_illusorycastle(&u.uz) && dmgtype(&mons[first], AD_WISD) )) num -= 3;
 		if ((In_illusorycastle(&u.uz) && dmgtype(&mons[first], AD_HODS) )) num -= 3;
@@ -26429,6 +26962,11 @@ int     spc;
 		if ((In_deepmines(&u.uz) && tunnels(&mons[first]) )) num -= 4;
 		if ((In_deepmines(&u.uz) && humanoid(&mons[first]) )) num -= 2;
 		if ((In_angmar(&u.uz) && (mons[first].maligntyp < 0) )) num -= 15;
+		if ((In_emynluin(&u.uz) && is_angbandmonster(&mons[first]) )) num -= 10;
+		if ((In_emynluin(&u.uz) && is_animemonster(&mons[first]) )) num -= 2;
+		if ((In_emynluin(&u.uz) && is_steammonster(&mons[first]) )) num -= 5;
+		if ((In_greencross(&u.uz) && is_cowmonster(&mons[first]) )) num -= 50;
+		if ((In_greencross(&u.uz) && is_jokemonster(&mons[first]) )) num -= 5;
 		if ((In_swimmingpool(&u.uz) && dmgtype(&mons[first], AD_WRAP) )) num -= 10;
 		if ((In_swimmingpool(&u.uz) && amphibious(&mons[first]) )) num -= 10;
 		if ((In_swimmingpool(&u.uz) && is_swimmer(&mons[first]) )) num -= 10;
@@ -26436,6 +26974,7 @@ int     spc;
 		if ((In_hellbathroom(&u.uz) && (mons[first].msound == MS_FART_QUIET) )) num -= 10;
 		if ((In_hellbathroom(&u.uz) && (mons[first].msound == MS_FART_LOUD) )) num -= 10;
 		if ((In_hellbathroom(&u.uz) && dmgtype(&mons[first], AD_FEMI) )) num -= 15;
+		if ((In_minusworld(&u.uz) && is_randomizedmonster(&mons[first]) )) num -= 500;
 		if ((In_ZAPM(&u.uz) && is_evilpatchmonster(&mons[first]) )) num -= 20;
 		if ((In_sewerplant(&u.uz) && acidic(&mons[first]) )) num -= 4;
 		if ((In_sewerplant(&u.uz) && poisonous(&mons[first]) )) num -= 3;
@@ -26453,6 +26992,7 @@ int     spc;
 		if ((Role_if(PM_ARTIST) && attacktype(&mons[first], AT_GAZE))) num -= 2;
 		if ((Role_if(PM_ASSASSIN) && is_diablomonster(&mons[first]))) num -= 5;
 		if ((Role_if(PM_BARBARIAN) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Role_if(PM_NOOB_MODE_BARB) && is_vanillamonster(&mons[first]))) num -= 5;
 		if ((Role_if(PM_BARBARIAN) && is_diablomonster(&mons[first]))) num -= 1;
 		if ((Role_if(PM_BINDER) && is_dnethackmonster(&mons[first]))) num -= 10;
 		if ((Role_if(PM_ANACHRONOUNBINDER) && is_dnethackmonster(&mons[first]))) num -= 10;
@@ -26493,6 +27033,7 @@ int     spc;
 		if ((Role_if(PM_MEDIUM) && dmgtype(&mons[first], AD_SPC2))) num -= 2;
 		if ((Role_if(PM_MEDIUM) && is_mind_flayer(&mons[first]))) num -= 1;
 		if ((Role_if(PM_MONK) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Role_if(PM_HALF_BAKED) && is_vanillamonster(&mons[first]))) num -= 5;
 		if ((Role_if(PM_MURDERER) && (mons[first].msound == MS_ARREST))) num -= 5;
 		if ((Role_if(PM_NECROMANCER) && is_vanillamonster(&mons[first]))) num -= 1;
 		if ((Role_if(PM_NECROMANCER) && is_diablomonster(&mons[first]))) num -= 1;
@@ -26525,6 +27066,7 @@ int     spc;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_NPRO))) num -= 1;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_LETH))) num -= 2;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_CNCL))) num -= 3;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_BLAS))) num -= 3;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_BANI))) num -= 5;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_SUCK))) num -= 2;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_UVUU))) num -= 7;
@@ -26561,6 +27103,7 @@ int     spc;
 		if ((Role_if(PM_KURWA) && (mons[first].msound == MS_SHOE))) num -= 5;
 		if ((Role_if(PM_PROSTITUTE) && attacktype(&mons[first], AT_CLAW) && (mons[first].msound == MS_SQEEK))) num -= 30;
 		if ((Role_if(PM_KURWA) && attacktype(&mons[first], AT_CLAW) && (mons[first].msound == MS_SQEEK))) num -= 30;
+		if ((FemtrapActiveDora && attacktype(&mons[first], AT_CLAW) && (mons[first].msound == MS_SQEEK))) num -= 30;
 		if ((uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION && attacktype(&mons[first], AT_CLAW) && (mons[first].msound == MS_SQEEK))) num -= 30;
 		if ((Role_if(PM_PROSTITUTE) && dmgtype(&mons[first], AD_SSEX))) num -= 20;
 		if ((Role_if(PM_KURWA) && dmgtype(&mons[first], AD_SSEX))) num -= 20;
@@ -26812,6 +27355,7 @@ int     spc;
 		if ((Role_if(PM_WEIRDBOY) && dmgtype(&mons[first], AD_FAKE) )) num -= 7;
 		if ((Role_if(PM_WEIRDBOY) && dmgtype(&mons[first], AD_LETH) )) num -= 2;
 		if ((Role_if(PM_WEIRDBOY) && dmgtype(&mons[first], AD_CNCL) )) num -= 1;
+		if ((Role_if(PM_WEIRDBOY) && dmgtype(&mons[first], AD_BLAS) )) num -= 1;
 		if ((Role_if(PM_WEIRDBOY) && dmgtype(&mons[first], AD_BANI) )) num -= 2;
 		if ((Role_if(PM_WEIRDBOY) && dmgtype(&mons[first], AD_WISD) )) num -= 3;
 		if ((Role_if(PM_WEIRDBOY) && dmgtype(&mons[first], AD_HODS) )) num -= 3;
@@ -27056,6 +27600,7 @@ int     spc;
 		if ((Role_if(PM_UNBELIEVER) && dmgtype(&mons[first], AD_MCRE) )) num -= 5;
 		if ((Race_if(PM_CUPID) && is_elonamonster(&mons[first]) )) num -= 2;
 		if ((Race_if(PM_BACTERIA) && is_elonamonster(&mons[first]) )) num -= 10;
+		if ((Race_if(PM_PIECE) && is_elonamonster(&mons[first]) )) num -= 5;
 		if ((Race_if(PM_PLAYER_SHEEP) && is_elonamonster(&mons[first]) )) num -= 1;
 		if ((Race_if(PM_PLAYER_HOUND) && is_elonamonster(&mons[first]) )) num -= 3;
 		if ((Race_if(PM_PLAYER_CERBERUS) && is_elonamonster(&mons[first]) )) num -= 5;
@@ -27133,8 +27678,54 @@ int     spc;
 		if ((ischallenger && (mons[first].msound == MS_CONVERT) )) num -= ((mons[first].geno & G_FREQ) * 4);
 		if ((ischallenger && (mons[first].msound == MS_HCALIEN) )) num -= ((mons[first].geno & G_FREQ) * 4);
 		if ((uarmf && uarmf->oartifact == ART_STRONG_GETAWAY_DESIRE && dmgtype(&mons[first], AD_WEEP) )) num -= 20;
+		if ((Role_if(PM_ANACHRONIST) && dmgtype(&mons[first], AD_TDRA) )) num -= 3;
+		if ((Role_if(PM_SHAPESHIFTER) && dmgtype(&mons[first], AD_BLAS) )) num -= 5;
+		if ((Race_if(PM_HUMANOID_ANGEL) && dmgtype(&mons[first], AD_BLAS) )) num -= 1;
+		if ((Race_if(PM_HUMANOID_DEVIL) && dmgtype(&mons[first], AD_BLAS) )) num -= 2;
+		if ((Race_if(PM_DEVELOPER) && dmgtype(&mons[first], AD_BLAS) )) num -= 2;
+		if ((Race_if(PM_PLAYER_DYNAMO) && dmgtype(&mons[first], AD_TDRA) )) num -= 1;
+		if ((Race_if(PM_GAVIL) && dmgtype(&mons[first], AD_BLAS) )) num -= 1;
+		if ((Race_if(PM_HC_ALIEN) && dmgtype(&mons[first], AD_BLAS) )) num -= 1;
+		if ((isheretic && dmgtype(&mons[first], AD_BLAS) )) num -= 3;
+		if ((Race_if(PM_IMPERIAL) && dmgtype(&mons[first], AD_BLAS) )) num -= 5;
+		if ((Race_if(PM_SINNER) && dmgtype(&mons[first], AD_BLAS) )) num -= 1;
+		if ((Race_if(PM_SPIRIT) && dmgtype(&mons[first], AD_TDRA) )) num -= 3;
+		if ((Role_if(PM_BUTT_LOVER) && (mons[first].msound == MS_FART_NORMAL) )) num -= 50;
+		if ((Role_if(PM_BUTT_LOVER) && (mons[first].msound == MS_FART_LOUD) )) num -= 50;
+		if ((Role_if(PM_BUTT_LOVER) && (mons[first].msound == MS_FART_QUIET) )) num -= 50;
+		if ((Role_if(PM_DIABLIST) && is_diablomonster(&mons[first]))) num -= 20;
+		if ((Role_if(PM_PREVERSIONER) && is_cowmonster(&mons[first]) )) num -= 50;
+		if ((Role_if(PM_PREVERSIONER) && is_jokemonster(&mons[first]) )) num -= 5;
+		if ((Role_if(PM_SHOE_FETISHIST) && (mons[first].msound == MS_SHOE) )) num -= 100;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && (mons[first].msound == MS_ARREST) )) num -= 4;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && (mons[first].msound == MS_SOLDIER) )) num -= 2;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && strongmonst(&mons[first]) )) num -= 2;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && extra_nasty(&mons[first]) )) num -= 3;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && dmgtype(&mons[first], AD_TDRA) )) num -= 5;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && dmgtype(&mons[first], AD_TECH) )) num -= 5;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && is_cowmonster(&mons[first]) )) num -= 5;
+		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && is_jokemonster(&mons[first]) )) num -= 2;
+		if ((PlayerInConeHeels && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && dmgtype(&mons[first], AD_DROP) )) num -= 5;
+		if ((Role_if(PM_BARD) && dmgtype(&mons[first], AD_DROP) )) num -= 1;
+		if ((Role_if(PM_BUTT_LOVER) && dmgtype(&mons[first], AD_DROP) )) num -= 10;
+		if ((Role_if(PM_CONVICT) && dmgtype(&mons[first], AD_DROP) )) num -= 1;
+		if ((Role_if(PM_MURDERER) && dmgtype(&mons[first], AD_DROP) )) num -= 1;
+		if ((Role_if(PM_DOLL_MISTRESS) && dmgtype(&mons[first], AD_DROP) )) num -= 2;
+		if ((Role_if(PM_DRUNK) && dmgtype(&mons[first], AD_DROP) )) num -= 3;
+		if ((Role_if(PM_GENDERSTARIST) && dmgtype(&mons[first], AD_DROP) )) num -= 2;
+		if ((Role_if(PM_JESTER) && dmgtype(&mons[first], AD_DROP) )) num -= 5;
+		if ((Role_if(PM_POLITICIAN) && dmgtype(&mons[first], AD_DROP) )) num -= 2;
+		if ((Role_if(PM_PRACTICANT) && dmgtype(&mons[first], AD_DROP) )) num -= 1;
+		if ((Race_if(PM_ALCHEMIST) && dmgtype(&mons[first], AD_DROP) )) num -= 2;
+		if ((Race_if(PM_DUFFLEPUD) && dmgtype(&mons[first], AD_DROP) )) num -= 2;
+		if ((Race_if(PM_PERVERT) && dmgtype(&mons[first], AD_DROP) )) num -= 2;
+		if ((Race_if(PM_TUMBLRER) && dmgtype(&mons[first], AD_DROP) )) num -= 10;
+		if ((Race_if(PM_WOOKIE) && dmgtype(&mons[first], AD_DROP) )) num -= 2;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[first].msound == MS_STENCH))) num -= 10;
+		if ((FemtrapActiveAnna && (mons[first].msound == MS_STENCH))) num -= 50;
+		if ((FemtrapActiveMarike && (mons[first].msound == MS_FART_NORMAL))) num -= 10;
+		if ((FemtrapActiveVictoria && is_female(&mons[first]) && attacktype(&mons[first], AT_KICK) )) num -= 20;
 
 		if (monster_with_trait(&mons[first], u.frequenttrait1)) num -= u.freqtraitbonus1;
 		if (u.frequenttrait2 && monster_with_trait(&mons[first], u.frequenttrait2)) num -= u.freqtraitbonus2;
@@ -27484,6 +28075,11 @@ int type;
 		case PM_GRAVEL_GOLEM: return 12;
 		case PM_WARM_BLOODED_GOLEM: return 15;
 		case PM_PART_GOLEM: return 10;
+		case PM_EDGOLEM: return 10;
+		case PM_LEDGOLEM: return 20;
+		case PM_WOGOLEM: return 30;
+		case PM_METGOLEM: return 35;
+		case PM_SCRAP_METAL_GOLEM: return 90;
 		case PM_FOOD_GOLEM: return 50;
 		case PM_SPIDER_SILK_GOLEM: return 70;
 		case PM_SCHOOL_FOOD_GOLEM: return 150;
@@ -27504,6 +28100,8 @@ int type;
 		case PM_CLUMPED_GOLEM: return 120;
 		case PM_ROCKSHOT_GOLEM: return 200;
 		case PM_BOOT_GOLEM: return 100;
+		case PM_SHOE_GOLEM: return 80;
+		case PM_LINGERIE_GOLEM: return 60;
 		case PM_CARYATID: return 100;
 		case PM_KNIGHT_OF_EMPTY_REFLECTIONS: return 300;
 		case PM_SANDAL_GOLEM: return 150;
@@ -27636,6 +28234,7 @@ int type;
 		case PM_INDUSTRY_GOLEM: return 800;
 
 		case PM_WAND_GOLEM: return 120;
+		case PM_WAND_OF_WISHING_GOLEM: return 500;
 
 		case PM_ZAP_GOLEM: return 250;
 
@@ -27797,6 +28396,7 @@ int type;
 		case PM_ULTRA_STATUE: return 199;
 
 		case PM_DEATH_SWORD: return 250;
+		case PM_KILLER_KATANA: return 1000;
 		case PM_HAMLEM: return 250;
 		case PM_CLOCK_GOLEM: return 250;
 		case PM_NEXUS_GOLEM: return 250;
@@ -28028,6 +28628,7 @@ register struct permonst *ptr;
 	if (uarmf && uarmf->oartifact == ART_HADES_THE_MEANIE) return FALSE;
 	if (uarmf && uarmf->oartifact == ART_HENRIETTA_S_DOGSHIT_BOOTS) return FALSE;
 	if (uarmf && uarmf->oartifact == ART_TOTALLY_THE_SEXY_BITCH) return FALSE;
+	if (uarmf && uarmf->oartifact == ART_NOW_YOU_ARE_HOWEVER_TO) return FALSE;
 	if (ptr->msound == MS_NEMESIS)	return FALSE;
 	if (u.kyliemode) return FALSE;
 	if (RngeUnlikability) return FALSE;

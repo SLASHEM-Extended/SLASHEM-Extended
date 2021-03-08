@@ -4,7 +4,7 @@
 
 LEVEL: "guild-1"
 
-ROOM: "ordinary", lit, random, random, (15,10)
+ROOM: "playercentral", lit, random, random, (15,10)
 NAME: "central"
 # stuff for them to use on you...
 OBJECT: '?',random,random
@@ -26,100 +26,6 @@ OBJECT: random,random,random
 OBJECT: random,random,random
 OBJECT: random,random,random
 OBJECT: random,random,random
-MONSTER: '@', "archeologist", random, hostile
-MONSTER: '@', "barbarian", random, hostile
-MONSTER: '@', "caveman", random, hostile
-MONSTER: '@', "cavewoman", random, hostile
-MONSTER: '@', "convict", random, hostile
-MONSTER: '@', "doppelganger", random, hostile
-MONSTER: '@', "elf", random, hostile
-MONSTER: '@', "flame mage", random, hostile
-MONSTER: '@', "geek", random, hostile
-MONSTER: '@', "healer", random, hostile
-MONSTER: '@', "ice mage", random, hostile
-MONSTER: '@', "jedi", random, hostile
-MONSTER: '@', "padawan", random, hostile
-MONSTER: '@', "knight", random, hostile
-MONSTER: '@', "monk", random, hostile
-MONSTER: '@', "necromancer", random, hostile
-MONSTER: '@', "priest", random, hostile
-MONSTER: '@', "priestess", random, hostile
-MONSTER: '@', "rogue", random, hostile
-MONSTER: '@', "samurai", random, hostile
-MONSTER: '@', "tourist", random, hostile
-MONSTER: '@', "undead slayer", random, hostile
-MONSTER: '@', "valkyrie", random, hostile
-MONSTER: '@', "warrior", random, hostile
-MONSTER: '@', "wizard", random, hostile
-MONSTER: '@', "gangster", random, hostile
-MONSTER: '@', "pokemon", random, hostile
-MONSTER: '@', "death eater", random, hostile
-MONSTER: '@', "pirate", random, hostile
-MONSTER: '@', "nobleman", random, hostile
-MONSTER: '@', "noblewoman", random, hostile
-MONSTER: '@', "electric mage", random, hostile
-MONSTER: '@', "transvestite", random, hostile
-MONSTER: '@', "courier", random, hostile
-MONSTER: '@', "chevalier", random, hostile
-MONSTER: '@', "zyborg", random, hostile
-MONSTER: '@', "rocker", random, hostile
-MONSTER: '@', "acid mage", random, hostile
-MONSTER: '@', "spacewars fighter", random, hostile
-MONSTER: '@', "elph", random, hostile
-MONSTER: '@', "binder", random, hostile
-MONSTER: '@', "diver", random, hostile
-MONSTER: '@', "scientist", random, hostile
-MONSTER: '@', "korsair", random, hostile
-MONSTER: '@', "topmodel", random, hostile
-MONSTER: '@', "bleeder", random, hostile
-MONSTER: '@', "gladiator", random, hostile
-MONSTER: '@', "psion", random, hostile
-MONSTER: '@', "activistor", random, hostile
-MONSTER: '@', "lunatic", random, hostile
-MONSTER: '@', "bard", random, hostile
-MONSTER: '@', "drunk", random, hostile
-MONSTER: '@', "firefighter", random, hostile
-MONSTER: '@', "goff", random, hostile
-MONSTER: '@', "graduate", random, hostile
-MONSTER: '@', "locksmith", random, hostile
-MONSTER: '@', "musician", random, hostile
-MONSTER: '@', "ninja", random, hostile
-MONSTER: '@', "officer", random, hostile
-MONSTER: '@', "undertaker", random, hostile
-MONSTER: '@', "zookeeper", random, hostile
-MONSTER: '@', "amazon", random, hostile
-MONSTER: '@', "altmer", random, hostile
-MONSTER: '@', "bosmer", random, hostile
-MONSTER: '@', "dunmer", random, hostile
-MONSTER: '@', "thalmor", random, hostile
-MONSTER: '@', "ordinator", random, hostile
-MONSTER: '@', "cruel abuser", random, hostile
-MONSTER: '@', "saiyan", random, hostile
-MONSTER: '@', "politician", random, hostile
-MONSTER: '@', "librarian", random, hostile
-MONSTER: '@', "cook", random, hostile
-MONSTER: '@', "augurer", random, hostile
-MONSTER: '@', "sage", random, hostile
-MONSTER: '@', "gunner", random, hostile
-MONSTER: '@', "otaku", random, hostile
-MONSTER: '@', "artist", random, hostile
-MONSTER: '@', "gamer", random, hostile
-MONSTER: '@', "doll mistress", random, hostile
-MONSTER: '@', "feat master", random, hostile
-MONSTER: '@', "foxhound agent", random, hostile
-MONSTER: '@', "intel scribe", random, hostile
-MONSTER: '@', "paladin", random, hostile
-MONSTER: '@', "wandkeeper", random, hostile
-MONSTER: '@', "assassin", random, hostile
-MONSTER: '@', "bully", random, hostile
-MONSTER: '@', "supermarket cashier", random, hostile
-MONSTER: '@', "slave master", random, hostile
-MONSTER: '@', "mystic", random, hostile
-MONSTER: '@', "bloodseeker", random, hostile
-MONSTER: '@', "ladiesman", random, hostile
-MONSTER: '@', "jester", random, hostile
-MONSTER: '@', "pickpocket", random, hostile
-MONSTER: '@', "mahou shoujo", random, hostile
 
 ROOM: "ordinary" , random, random, random, random
 STAIR: random, up
@@ -146,7 +52,7 @@ RANDOM_CORRIDORS
 
 LEVEL: "guild-2"
 
-ROOM: "ordinary", lit, random, random, (25,10)
+ROOM: "playercentral", lit, random, random, (25,10)
 NAME: "central"
 # stuff for them to use on you...
 OBJECT: '?',random,random
@@ -168,100 +74,6 @@ OBJECT: random,random,random
 OBJECT: random,random,random
 OBJECT: random,random,random
 OBJECT: random,random,random
-MONSTER: '@', "archeologist", random, hostile
-MONSTER: '@', "barbarian", random, hostile
-MONSTER: '@', "caveman", random, hostile
-MONSTER: '@', "cavewoman", random, hostile
-MONSTER: '@', "convict", random, hostile
-MONSTER: '@', "doppelganger", random, hostile
-MONSTER: '@', "elf", random, hostile
-MONSTER: '@', "flame mage", random, hostile
-MONSTER: '@', "geek", random, hostile
-MONSTER: '@', "healer", random, hostile
-MONSTER: '@', "ice mage", random, hostile
-MONSTER: '@', "jedi", random, hostile
-MONSTER: '@', "padawan", random, hostile
-MONSTER: '@', "knight", random, hostile
-MONSTER: '@', "monk", random, hostile
-MONSTER: '@', "necromancer", random, hostile
-MONSTER: '@', "priest", random, hostile
-MONSTER: '@', "priestess", random, hostile
-MONSTER: '@', "rogue", random, hostile
-MONSTER: '@', "samurai", random, hostile
-MONSTER: '@', "tourist", random, hostile
-MONSTER: '@', "undead slayer", random, hostile
-MONSTER: '@', "valkyrie", random, hostile
-MONSTER: '@', "warrior", random, hostile
-MONSTER: '@', "wizard", random, hostile
-MONSTER: '@', "gangster", random, hostile
-MONSTER: '@', "pokemon", random, hostile
-MONSTER: '@', "death eater", random, hostile
-MONSTER: '@', "pirate", random, hostile
-MONSTER: '@', "nobleman", random, hostile
-MONSTER: '@', "noblewoman", random, hostile
-MONSTER: '@', "electric mage", random, hostile
-MONSTER: '@', "transvestite", random, hostile
-MONSTER: '@', "courier", random, hostile
-MONSTER: '@', "chevalier", random, hostile
-MONSTER: '@', "zyborg", random, hostile
-MONSTER: '@', "rocker", random, hostile
-MONSTER: '@', "acid mage", random, hostile
-MONSTER: '@', "spacewars fighter", random, hostile
-MONSTER: '@', "elph", random, hostile
-MONSTER: '@', "binder", random, hostile
-MONSTER: '@', "diver", random, hostile
-MONSTER: '@', "scientist", random, hostile
-MONSTER: '@', "korsair", random, hostile
-MONSTER: '@', "topmodel", random, hostile
-MONSTER: '@', "bleeder", random, hostile
-MONSTER: '@', "gladiator", random, hostile
-MONSTER: '@', "psion", random, hostile
-MONSTER: '@', "activistor", random, hostile
-MONSTER: '@', "lunatic", random, hostile
-MONSTER: '@', "bard", random, hostile
-MONSTER: '@', "drunk", random, hostile
-MONSTER: '@', "firefighter", random, hostile
-MONSTER: '@', "goff", random, hostile
-MONSTER: '@', "graduate", random, hostile
-MONSTER: '@', "locksmith", random, hostile
-MONSTER: '@', "musician", random, hostile
-MONSTER: '@', "ninja", random, hostile
-MONSTER: '@', "officer", random, hostile
-MONSTER: '@', "undertaker", random, hostile
-MONSTER: '@', "zookeeper", random, hostile
-MONSTER: '@', "amazon", random, hostile
-MONSTER: '@', "altmer", random, hostile
-MONSTER: '@', "bosmer", random, hostile
-MONSTER: '@', "dunmer", random, hostile
-MONSTER: '@', "thalmor", random, hostile
-MONSTER: '@', "ordinator", random, hostile
-MONSTER: '@', "cruel abuser", random, hostile
-MONSTER: '@', "saiyan", random, hostile
-MONSTER: '@', "politician", random, hostile
-MONSTER: '@', "librarian", random, hostile
-MONSTER: '@', "cook", random, hostile
-MONSTER: '@', "augurer", random, hostile
-MONSTER: '@', "sage", random, hostile
-MONSTER: '@', "gunner", random, hostile
-MONSTER: '@', "otaku", random, hostile
-MONSTER: '@', "artist", random, hostile
-MONSTER: '@', "gamer", random, hostile
-MONSTER: '@', "doll mistress", random, hostile
-MONSTER: '@', "feat master", random, hostile
-MONSTER: '@', "foxhound agent", random, hostile
-MONSTER: '@', "intel scribe", random, hostile
-MONSTER: '@', "paladin", random, hostile
-MONSTER: '@', "wandkeeper", random, hostile
-MONSTER: '@', "assassin", random, hostile
-MONSTER: '@', "bully", random, hostile
-MONSTER: '@', "supermarket cashier", random, hostile
-MONSTER: '@', "slave master", random, hostile
-MONSTER: '@', "mystic", random, hostile
-MONSTER: '@', "bloodseeker", random, hostile
-MONSTER: '@', "ladiesman", random, hostile
-MONSTER: '@', "jester", random, hostile
-MONSTER: '@', "pickpocket", random, hostile
-MONSTER: '@', "mahou shoujo", random, hostile
 
 ROOM: "ordinary" , random, random, random, random
 STAIR: random, up
@@ -288,7 +100,7 @@ RANDOM_CORRIDORS
 
 LEVEL: "guild-3"
 
-ROOM: "ordinary", lit, random, random, (15,15)
+ROOM: "playercentral", lit, random, random, (15,15)
 NAME: "central"
 # stuff for them to use on you...
 OBJECT: '?',random,random
@@ -310,100 +122,6 @@ OBJECT: random,random,random
 OBJECT: random,random,random
 OBJECT: random,random,random
 OBJECT: random,random,random
-MONSTER: '@', "archeologist", random, hostile
-MONSTER: '@', "barbarian", random, hostile
-MONSTER: '@', "caveman", random, hostile
-MONSTER: '@', "cavewoman", random, hostile
-MONSTER: '@', "convict", random, hostile
-MONSTER: '@', "doppelganger", random, hostile
-MONSTER: '@', "elf", random, hostile
-MONSTER: '@', "flame mage", random, hostile
-MONSTER: '@', "geek", random, hostile
-MONSTER: '@', "healer", random, hostile
-MONSTER: '@', "ice mage", random, hostile
-MONSTER: '@', "jedi", random, hostile
-MONSTER: '@', "padawan", random, hostile
-MONSTER: '@', "knight", random, hostile
-MONSTER: '@', "monk", random, hostile
-MONSTER: '@', "necromancer", random, hostile
-MONSTER: '@', "priest", random, hostile
-MONSTER: '@', "priestess", random, hostile
-MONSTER: '@', "rogue", random, hostile
-MONSTER: '@', "samurai", random, hostile
-MONSTER: '@', "tourist", random, hostile
-MONSTER: '@', "undead slayer", random, hostile
-MONSTER: '@', "valkyrie", random, hostile
-MONSTER: '@', "warrior", random, hostile
-MONSTER: '@', "wizard", random, hostile
-MONSTER: '@', "gangster", random, hostile
-MONSTER: '@', "pokemon", random, hostile
-MONSTER: '@', "death eater", random, hostile
-MONSTER: '@', "pirate", random, hostile
-MONSTER: '@', "nobleman", random, hostile
-MONSTER: '@', "noblewoman", random, hostile
-MONSTER: '@', "electric mage", random, hostile
-MONSTER: '@', "transvestite", random, hostile
-MONSTER: '@', "courier", random, hostile
-MONSTER: '@', "chevalier", random, hostile
-MONSTER: '@', "zyborg", random, hostile
-MONSTER: '@', "rocker", random, hostile
-MONSTER: '@', "acid mage", random, hostile
-MONSTER: '@', "spacewars fighter", random, hostile
-MONSTER: '@', "elph", random, hostile
-MONSTER: '@', "binder", random, hostile
-MONSTER: '@', "diver", random, hostile
-MONSTER: '@', "scientist", random, hostile
-MONSTER: '@', "korsair", random, hostile
-MONSTER: '@', "topmodel", random, hostile
-MONSTER: '@', "bleeder", random, hostile
-MONSTER: '@', "gladiator", random, hostile
-MONSTER: '@', "psion", random, hostile
-MONSTER: '@', "activistor", random, hostile
-MONSTER: '@', "lunatic", random, hostile
-MONSTER: '@', "bard", random, hostile
-MONSTER: '@', "drunk", random, hostile
-MONSTER: '@', "firefighter", random, hostile
-MONSTER: '@', "goff", random, hostile
-MONSTER: '@', "graduate", random, hostile
-MONSTER: '@', "locksmith", random, hostile
-MONSTER: '@', "musician", random, hostile
-MONSTER: '@', "ninja", random, hostile
-MONSTER: '@', "officer", random, hostile
-MONSTER: '@', "undertaker", random, hostile
-MONSTER: '@', "zookeeper", random, hostile
-MONSTER: '@', "amazon", random, hostile
-MONSTER: '@', "altmer", random, hostile
-MONSTER: '@', "bosmer", random, hostile
-MONSTER: '@', "dunmer", random, hostile
-MONSTER: '@', "thalmor", random, hostile
-MONSTER: '@', "ordinator", random, hostile
-MONSTER: '@', "cruel abuser", random, hostile
-MONSTER: '@', "saiyan", random, hostile
-MONSTER: '@', "politician", random, hostile
-MONSTER: '@', "librarian", random, hostile
-MONSTER: '@', "cook", random, hostile
-MONSTER: '@', "augurer", random, hostile
-MONSTER: '@', "sage", random, hostile
-MONSTER: '@', "gunner", random, hostile
-MONSTER: '@', "otaku", random, hostile
-MONSTER: '@', "artist", random, hostile
-MONSTER: '@', "gamer", random, hostile
-MONSTER: '@', "doll mistress", random, hostile
-MONSTER: '@', "feat master", random, hostile
-MONSTER: '@', "foxhound agent", random, hostile
-MONSTER: '@', "intel scribe", random, hostile
-MONSTER: '@', "paladin", random, hostile
-MONSTER: '@', "wandkeeper", random, hostile
-MONSTER: '@', "assassin", random, hostile
-MONSTER: '@', "bully", random, hostile
-MONSTER: '@', "supermarket cashier", random, hostile
-MONSTER: '@', "slave master", random, hostile
-MONSTER: '@', "mystic", random, hostile
-MONSTER: '@', "bloodseeker", random, hostile
-MONSTER: '@', "ladiesman", random, hostile
-MONSTER: '@', "jester", random, hostile
-MONSTER: '@', "pickpocket", random, hostile
-MONSTER: '@', "mahou shoujo", random, hostile
 
 ROOM: "ordinary" , random, random, random, random
 STAIR: random, up
@@ -452,100 +170,6 @@ OBJECT: random,random,random
 OBJECT: random,random,random
 OBJECT: random,random,random
 OBJECT: random,random,random
-MONSTER: '@', "archeologist", random, hostile
-MONSTER: '@', "barbarian", random, hostile
-MONSTER: '@', "caveman", random, hostile
-MONSTER: '@', "cavewoman", random, hostile
-MONSTER: '@', "convict", random, hostile
-MONSTER: '@', "doppelganger", random, hostile
-MONSTER: '@', "elf", random, hostile
-MONSTER: '@', "flame mage", random, hostile
-MONSTER: '@', "geek", random, hostile
-MONSTER: '@', "healer", random, hostile
-MONSTER: '@', "ice mage", random, hostile
-MONSTER: '@', "jedi", random, hostile
-MONSTER: '@', "padawan", random, hostile
-MONSTER: '@', "knight", random, hostile
-MONSTER: '@', "monk", random, hostile
-MONSTER: '@', "necromancer", random, hostile
-MONSTER: '@', "priest", random, hostile
-MONSTER: '@', "priestess", random, hostile
-MONSTER: '@', "rogue", random, hostile
-MONSTER: '@', "samurai", random, hostile
-MONSTER: '@', "tourist", random, hostile
-MONSTER: '@', "undead slayer", random, hostile
-MONSTER: '@', "valkyrie", random, hostile
-MONSTER: '@', "warrior", random, hostile
-MONSTER: '@', "wizard", random, hostile
-MONSTER: '@', "gangster", random, hostile
-MONSTER: '@', "pokemon", random, hostile
-MONSTER: '@', "death eater", random, hostile
-MONSTER: '@', "pirate", random, hostile
-MONSTER: '@', "nobleman", random, hostile
-MONSTER: '@', "noblewoman", random, hostile
-MONSTER: '@', "electric mage", random, hostile
-MONSTER: '@', "transvestite", random, hostile
-MONSTER: '@', "courier", random, hostile
-MONSTER: '@', "chevalier", random, hostile
-MONSTER: '@', "zyborg", random, hostile
-MONSTER: '@', "rocker", random, hostile
-MONSTER: '@', "acid mage", random, hostile
-MONSTER: '@', "spacewars fighter", random, hostile
-MONSTER: '@', "elph", random, hostile
-MONSTER: '@', "binder", random, hostile
-MONSTER: '@', "diver", random, hostile
-MONSTER: '@', "scientist", random, hostile
-MONSTER: '@', "korsair", random, hostile
-MONSTER: '@', "topmodel", random, hostile
-MONSTER: '@', "bleeder", random, hostile
-MONSTER: '@', "gladiator", random, hostile
-MONSTER: '@', "psion", random, hostile
-MONSTER: '@', "activistor", random, hostile
-MONSTER: '@', "lunatic", random, hostile
-MONSTER: '@', "bard", random, hostile
-MONSTER: '@', "drunk", random, hostile
-MONSTER: '@', "firefighter", random, hostile
-MONSTER: '@', "goff", random, hostile
-MONSTER: '@', "graduate", random, hostile
-MONSTER: '@', "locksmith", random, hostile
-MONSTER: '@', "musician", random, hostile
-MONSTER: '@', "ninja", random, hostile
-MONSTER: '@', "officer", random, hostile
-MONSTER: '@', "undertaker", random, hostile
-MONSTER: '@', "zookeeper", random, hostile
-MONSTER: '@', "amazon", random, hostile
-MONSTER: '@', "altmer", random, hostile
-MONSTER: '@', "bosmer", random, hostile
-MONSTER: '@', "dunmer", random, hostile
-MONSTER: '@', "thalmor", random, hostile
-MONSTER: '@', "ordinator", random, hostile
-MONSTER: '@', "cruel abuser", random, hostile
-MONSTER: '@', "saiyan", random, hostile
-MONSTER: '@', "politician", random, hostile
-MONSTER: '@', "librarian", random, hostile
-MONSTER: '@', "cook", random, hostile
-MONSTER: '@', "augurer", random, hostile
-MONSTER: '@', "sage", random, hostile
-MONSTER: '@', "gunner", random, hostile
-MONSTER: '@', "otaku", random, hostile
-MONSTER: '@', "artist", random, hostile
-MONSTER: '@', "gamer", random, hostile
-MONSTER: '@', "doll mistress", random, hostile
-MONSTER: '@', "feat master", random, hostile
-MONSTER: '@', "foxhound agent", random, hostile
-MONSTER: '@', "intel scribe", random, hostile
-MONSTER: '@', "paladin", random, hostile
-MONSTER: '@', "wandkeeper", random, hostile
-MONSTER: '@', "assassin", random, hostile
-MONSTER: '@', "bully", random, hostile
-MONSTER: '@', "supermarket cashier", random, hostile
-MONSTER: '@', "slave master", random, hostile
-MONSTER: '@', "mystic", random, hostile
-MONSTER: '@', "bloodseeker", random, hostile
-MONSTER: '@', "ladiesman", random, hostile
-MONSTER: '@', "jester", random, hostile
-MONSTER: '@', "pickpocket", random, hostile
-MONSTER: '@', "mahou shoujo", random, hostile
 
 ROOM: "ordinary" , random, random, random, random
 STAIR: random, up
@@ -572,7 +196,7 @@ RANDOM_CORRIDORS
 
 LEVEL: "guild-5"
 
-ROOM: "ordinary", lit, random, random, (15,10)
+ROOM: "playercentral", lit, random, random, (15,10)
 NAME: "central"
 # stuff for them to use on you...
 OBJECT: '?',random,random
@@ -594,100 +218,6 @@ OBJECT: random,random,random
 OBJECT: random,random,random
 OBJECT: random,random,random
 OBJECT: random,random,random
-MONSTER: '@', "archeologist", random, hostile
-MONSTER: '@', "barbarian", random, hostile
-MONSTER: '@', "caveman", random, hostile
-MONSTER: '@', "cavewoman", random, hostile
-MONSTER: '@', "convict", random, hostile
-MONSTER: '@', "doppelganger", random, hostile
-MONSTER: '@', "elf", random, hostile
-MONSTER: '@', "flame mage", random, hostile
-MONSTER: '@', "geek", random, hostile
-MONSTER: '@', "healer", random, hostile
-MONSTER: '@', "ice mage", random, hostile
-MONSTER: '@', "jedi", random, hostile
-MONSTER: '@', "padawan", random, hostile
-MONSTER: '@', "knight", random, hostile
-MONSTER: '@', "monk", random, hostile
-MONSTER: '@', "necromancer", random, hostile
-MONSTER: '@', "priest", random, hostile
-MONSTER: '@', "priestess", random, hostile
-MONSTER: '@', "rogue", random, hostile
-MONSTER: '@', "samurai", random, hostile
-MONSTER: '@', "tourist", random, hostile
-MONSTER: '@', "undead slayer", random, hostile
-MONSTER: '@', "valkyrie", random, hostile
-MONSTER: '@', "warrior", random, hostile
-MONSTER: '@', "wizard", random, hostile
-MONSTER: '@', "gangster", random, hostile
-MONSTER: '@', "pokemon", random, hostile
-MONSTER: '@', "death eater", random, hostile
-MONSTER: '@', "pirate", random, hostile
-MONSTER: '@', "nobleman", random, hostile
-MONSTER: '@', "noblewoman", random, hostile
-MONSTER: '@', "electric mage", random, hostile
-MONSTER: '@', "transvestite", random, hostile
-MONSTER: '@', "courier", random, hostile
-MONSTER: '@', "chevalier", random, hostile
-MONSTER: '@', "zyborg", random, hostile
-MONSTER: '@', "rocker", random, hostile
-MONSTER: '@', "acid mage", random, hostile
-MONSTER: '@', "spacewars fighter", random, hostile
-MONSTER: '@', "elph", random, hostile
-MONSTER: '@', "binder", random, hostile
-MONSTER: '@', "diver", random, hostile
-MONSTER: '@', "scientist", random, hostile
-MONSTER: '@', "korsair", random, hostile
-MONSTER: '@', "topmodel", random, hostile
-MONSTER: '@', "bleeder", random, hostile
-MONSTER: '@', "gladiator", random, hostile
-MONSTER: '@', "psion", random, hostile
-MONSTER: '@', "activistor", random, hostile
-MONSTER: '@', "lunatic", random, hostile
-MONSTER: '@', "bard", random, hostile
-MONSTER: '@', "drunk", random, hostile
-MONSTER: '@', "firefighter", random, hostile
-MONSTER: '@', "goff", random, hostile
-MONSTER: '@', "graduate", random, hostile
-MONSTER: '@', "locksmith", random, hostile
-MONSTER: '@', "musician", random, hostile
-MONSTER: '@', "ninja", random, hostile
-MONSTER: '@', "officer", random, hostile
-MONSTER: '@', "undertaker", random, hostile
-MONSTER: '@', "zookeeper", random, hostile
-MONSTER: '@', "amazon", random, hostile
-MONSTER: '@', "altmer", random, hostile
-MONSTER: '@', "bosmer", random, hostile
-MONSTER: '@', "dunmer", random, hostile
-MONSTER: '@', "thalmor", random, hostile
-MONSTER: '@', "ordinator", random, hostile
-MONSTER: '@', "cruel abuser", random, hostile
-MONSTER: '@', "saiyan", random, hostile
-MONSTER: '@', "politician", random, hostile
-MONSTER: '@', "librarian", random, hostile
-MONSTER: '@', "cook", random, hostile
-MONSTER: '@', "augurer", random, hostile
-MONSTER: '@', "sage", random, hostile
-MONSTER: '@', "gunner", random, hostile
-MONSTER: '@', "otaku", random, hostile
-MONSTER: '@', "artist", random, hostile
-MONSTER: '@', "gamer", random, hostile
-MONSTER: '@', "doll mistress", random, hostile
-MONSTER: '@', "feat master", random, hostile
-MONSTER: '@', "foxhound agent", random, hostile
-MONSTER: '@', "intel scribe", random, hostile
-MONSTER: '@', "paladin", random, hostile
-MONSTER: '@', "wandkeeper", random, hostile
-MONSTER: '@', "assassin", random, hostile
-MONSTER: '@', "bully", random, hostile
-MONSTER: '@', "supermarket cashier", random, hostile
-MONSTER: '@', "slave master", random, hostile
-MONSTER: '@', "mystic", random, hostile
-MONSTER: '@', "bloodseeker", random, hostile
-MONSTER: '@', "ladiesman", random, hostile
-MONSTER: '@', "jester", random, hostile
-MONSTER: '@', "pickpocket", random, hostile
-MONSTER: '@', "mahou shoujo", random, hostile
 
 ROOM: "ordinary" , random, random, random, random
 STAIR: random, up
@@ -714,7 +244,7 @@ RANDOM_CORRIDORS
 
 LEVEL: "guild-6"
 
-ROOM: "ordinary", lit, random, random, (15,10)
+ROOM: "playercentral", lit, random, random, (15,10)
 NAME: "central"
 # stuff for them to use on you...
 OBJECT: '?',random,random
@@ -793,100 +323,6 @@ OBJECT: random,random,random
 OBJECT: random,random,random
 OBJECT: random,random,random
 OBJECT: random,random,random
-MONSTER: '@', "archeologist", random, hostile
-MONSTER: '@', "barbarian", random, hostile
-MONSTER: '@', "caveman", random, hostile
-MONSTER: '@', "cavewoman", random, hostile
-MONSTER: '@', "convict", random, hostile
-MONSTER: '@', "doppelganger", random, hostile
-MONSTER: '@', "elf", random, hostile
-MONSTER: '@', "flame mage", random, hostile
-MONSTER: '@', "geek", random, hostile
-MONSTER: '@', "healer", random, hostile
-MONSTER: '@', "ice mage", random, hostile
-MONSTER: '@', "jedi", random, hostile
-MONSTER: '@', "padawan", random, hostile
-MONSTER: '@', "knight", random, hostile
-MONSTER: '@', "monk", random, hostile
-MONSTER: '@', "necromancer", random, hostile
-MONSTER: '@', "priest", random, hostile
-MONSTER: '@', "priestess", random, hostile
-MONSTER: '@', "rogue", random, hostile
-MONSTER: '@', "samurai", random, hostile
-MONSTER: '@', "tourist", random, hostile
-MONSTER: '@', "undead slayer", random, hostile
-MONSTER: '@', "valkyrie", random, hostile
-MONSTER: '@', "warrior", random, hostile
-MONSTER: '@', "wizard", random, hostile
-MONSTER: '@', "gangster", random, hostile
-MONSTER: '@', "pokemon", random, hostile
-MONSTER: '@', "death eater", random, hostile
-MONSTER: '@', "pirate", random, hostile
-MONSTER: '@', "nobleman", random, hostile
-MONSTER: '@', "noblewoman", random, hostile
-MONSTER: '@', "electric mage", random, hostile
-MONSTER: '@', "transvestite", random, hostile
-MONSTER: '@', "courier", random, hostile
-MONSTER: '@', "chevalier", random, hostile
-MONSTER: '@', "zyborg", random, hostile
-MONSTER: '@', "rocker", random, hostile
-MONSTER: '@', "acid mage", random, hostile
-MONSTER: '@', "spacewars fighter", random, hostile
-MONSTER: '@', "elph", random, hostile
-MONSTER: '@', "binder", random, hostile
-MONSTER: '@', "diver", random, hostile
-MONSTER: '@', "scientist", random, hostile
-MONSTER: '@', "korsair", random, hostile
-MONSTER: '@', "topmodel", random, hostile
-MONSTER: '@', "bleeder", random, hostile
-MONSTER: '@', "gladiator", random, hostile
-MONSTER: '@', "psion", random, hostile
-MONSTER: '@', "activistor", random, hostile
-MONSTER: '@', "lunatic", random, hostile
-MONSTER: '@', "bard", random, hostile
-MONSTER: '@', "drunk", random, hostile
-MONSTER: '@', "firefighter", random, hostile
-MONSTER: '@', "goff", random, hostile
-MONSTER: '@', "graduate", random, hostile
-MONSTER: '@', "locksmith", random, hostile
-MONSTER: '@', "musician", random, hostile
-MONSTER: '@', "ninja", random, hostile
-MONSTER: '@', "officer", random, hostile
-MONSTER: '@', "undertaker", random, hostile
-MONSTER: '@', "zookeeper", random, hostile
-MONSTER: '@', "amazon", random, hostile
-MONSTER: '@', "altmer", random, hostile
-MONSTER: '@', "bosmer", random, hostile
-MONSTER: '@', "dunmer", random, hostile
-MONSTER: '@', "thalmor", random, hostile
-MONSTER: '@', "ordinator", random, hostile
-MONSTER: '@', "cruel abuser", random, hostile
-MONSTER: '@', "saiyan", random, hostile
-MONSTER: '@', "politician", random, hostile
-MONSTER: '@', "librarian", random, hostile
-MONSTER: '@', "cook", random, hostile
-MONSTER: '@', "augurer", random, hostile
-MONSTER: '@', "sage", random, hostile
-MONSTER: '@', "gunner", random, hostile
-MONSTER: '@', "otaku", random, hostile
-MONSTER: '@', "artist", random, hostile
-MONSTER: '@', "gamer", random, hostile
-MONSTER: '@', "doll mistress", random, hostile
-MONSTER: '@', "feat master", random, hostile
-MONSTER: '@', "foxhound agent", random, hostile
-MONSTER: '@', "intel scribe", random, hostile
-MONSTER: '@', "paladin", random, hostile
-MONSTER: '@', "wandkeeper", random, hostile
-MONSTER: '@', "assassin", random, hostile
-MONSTER: '@', "bully", random, hostile
-MONSTER: '@', "supermarket cashier", random, hostile
-MONSTER: '@', "slave master", random, hostile
-MONSTER: '@', "mystic", random, hostile
-MONSTER: '@', "bloodseeker", random, hostile
-MONSTER: '@', "ladiesman", random, hostile
-MONSTER: '@', "jester", random, hostile
-MONSTER: '@', "pickpocket", random, hostile
-MONSTER: '@', "mahou shoujo", random, hostile
 
 ROOM: "ordinary" , random, random, random, random
 STAIR: random, up
@@ -913,7 +349,7 @@ RANDOM_CORRIDORS
 
 LEVEL: "guild-7"
 
-ROOM: "ordinary", lit, random, random, (15,10)
+ROOM: "playercentral", lit, random, random, (15,10)
 NAME: "central"
 # stuff for them to use on you...
 OBJECT: '?',random,random
@@ -935,100 +371,6 @@ OBJECT: random,random,random
 OBJECT: random,random,random
 OBJECT: random,random,random
 OBJECT: random,random,random
-MONSTER: '@', "archeologist", random, hostile
-MONSTER: '@', "barbarian", random, hostile
-MONSTER: '@', "caveman", random, hostile
-MONSTER: '@', "cavewoman", random, hostile
-MONSTER: '@', "convict", random, hostile
-MONSTER: '@', "doppelganger", random, hostile
-MONSTER: '@', "elf", random, hostile
-MONSTER: '@', "flame mage", random, hostile
-MONSTER: '@', "geek", random, hostile
-MONSTER: '@', "healer", random, hostile
-MONSTER: '@', "ice mage", random, hostile
-MONSTER: '@', "jedi", random, hostile
-MONSTER: '@', "padawan", random, hostile
-MONSTER: '@', "knight", random, hostile
-MONSTER: '@', "monk", random, hostile
-MONSTER: '@', "necromancer", random, hostile
-MONSTER: '@', "priest", random, hostile
-MONSTER: '@', "priestess", random, hostile
-MONSTER: '@', "rogue", random, hostile
-MONSTER: '@', "samurai", random, hostile
-MONSTER: '@', "tourist", random, hostile
-MONSTER: '@', "undead slayer", random, hostile
-MONSTER: '@', "valkyrie", random, hostile
-MONSTER: '@', "warrior", random, hostile
-MONSTER: '@', "wizard", random, hostile
-MONSTER: '@', "gangster", random, hostile
-MONSTER: '@', "pokemon", random, hostile
-MONSTER: '@', "death eater", random, hostile
-MONSTER: '@', "pirate", random, hostile
-MONSTER: '@', "nobleman", random, hostile
-MONSTER: '@', "noblewoman", random, hostile
-MONSTER: '@', "electric mage", random, hostile
-MONSTER: '@', "transvestite", random, hostile
-MONSTER: '@', "courier", random, hostile
-MONSTER: '@', "chevalier", random, hostile
-MONSTER: '@', "zyborg", random, hostile
-MONSTER: '@', "rocker", random, hostile
-MONSTER: '@', "acid mage", random, hostile
-MONSTER: '@', "spacewars fighter", random, hostile
-MONSTER: '@', "elph", random, hostile
-MONSTER: '@', "binder", random, hostile
-MONSTER: '@', "diver", random, hostile
-MONSTER: '@', "scientist", random, hostile
-MONSTER: '@', "korsair", random, hostile
-MONSTER: '@', "topmodel", random, hostile
-MONSTER: '@', "bleeder", random, hostile
-MONSTER: '@', "gladiator", random, hostile
-MONSTER: '@', "psion", random, hostile
-MONSTER: '@', "activistor", random, hostile
-MONSTER: '@', "lunatic", random, hostile
-MONSTER: '@', "bard", random, hostile
-MONSTER: '@', "drunk", random, hostile
-MONSTER: '@', "firefighter", random, hostile
-MONSTER: '@', "goff", random, hostile
-MONSTER: '@', "graduate", random, hostile
-MONSTER: '@', "locksmith", random, hostile
-MONSTER: '@', "musician", random, hostile
-MONSTER: '@', "ninja", random, hostile
-MONSTER: '@', "officer", random, hostile
-MONSTER: '@', "undertaker", random, hostile
-MONSTER: '@', "zookeeper", random, hostile
-MONSTER: '@', "amazon", random, hostile
-MONSTER: '@', "altmer", random, hostile
-MONSTER: '@', "bosmer", random, hostile
-MONSTER: '@', "dunmer", random, hostile
-MONSTER: '@', "thalmor", random, hostile
-MONSTER: '@', "ordinator", random, hostile
-MONSTER: '@', "cruel abuser", random, hostile
-MONSTER: '@', "saiyan", random, hostile
-MONSTER: '@', "politician", random, hostile
-MONSTER: '@', "librarian", random, hostile
-MONSTER: '@', "cook", random, hostile
-MONSTER: '@', "augurer", random, hostile
-MONSTER: '@', "sage", random, hostile
-MONSTER: '@', "gunner", random, hostile
-MONSTER: '@', "otaku", random, hostile
-MONSTER: '@', "artist", random, hostile
-MONSTER: '@', "gamer", random, hostile
-MONSTER: '@', "doll mistress", random, hostile
-MONSTER: '@', "feat master", random, hostile
-MONSTER: '@', "foxhound agent", random, hostile
-MONSTER: '@', "intel scribe", random, hostile
-MONSTER: '@', "paladin", random, hostile
-MONSTER: '@', "wandkeeper", random, hostile
-MONSTER: '@', "assassin", random, hostile
-MONSTER: '@', "bully", random, hostile
-MONSTER: '@', "supermarket cashier", random, hostile
-MONSTER: '@', "slave master", random, hostile
-MONSTER: '@', "mystic", random, hostile
-MONSTER: '@', "bloodseeker", random, hostile
-MONSTER: '@', "ladiesman", random, hostile
-MONSTER: '@', "jester", random, hostile
-MONSTER: '@', "pickpocket", random, hostile
-MONSTER: '@', "mahou shoujo", random, hostile
 
 ROOM: "ordinary" , random, random, random, random
 STAIR: random, up
@@ -1076,7 +418,7 @@ RANDOM_CORRIDORS
 
 LEVEL: "guild-8"
 
-ROOM: "ordinary", lit, random, random, (15,10)
+ROOM: "playercentral", lit, random, random, (15,10)
 NAME: "central"
 # stuff for them to use on you...
 OBJECT: '?',random,random
@@ -1098,100 +440,6 @@ OBJECT: random,random,random
 OBJECT: random,random,random
 OBJECT: random,random,random
 OBJECT: random,random,random
-MONSTER: '@', "archeologist", random, hostile
-MONSTER: '@', "barbarian", random, hostile
-MONSTER: '@', "caveman", random, hostile
-MONSTER: '@', "cavewoman", random, hostile
-MONSTER: '@', "convict", random, hostile
-MONSTER: '@', "doppelganger", random, hostile
-MONSTER: '@', "elf", random, hostile
-MONSTER: '@', "flame mage", random, hostile
-MONSTER: '@', "geek", random, hostile
-MONSTER: '@', "healer", random, hostile
-MONSTER: '@', "ice mage", random, hostile
-MONSTER: '@', "jedi", random, hostile
-MONSTER: '@', "padawan", random, hostile
-MONSTER: '@', "knight", random, hostile
-MONSTER: '@', "monk", random, hostile
-MONSTER: '@', "necromancer", random, hostile
-MONSTER: '@', "priest", random, hostile
-MONSTER: '@', "priestess", random, hostile
-MONSTER: '@', "rogue", random, hostile
-MONSTER: '@', "samurai", random, hostile
-MONSTER: '@', "tourist", random, hostile
-MONSTER: '@', "undead slayer", random, hostile
-MONSTER: '@', "valkyrie", random, hostile
-MONSTER: '@', "warrior", random, hostile
-MONSTER: '@', "wizard", random, hostile
-MONSTER: '@', "gangster", random, hostile
-MONSTER: '@', "pokemon", random, hostile
-MONSTER: '@', "death eater", random, hostile
-MONSTER: '@', "pirate", random, hostile
-MONSTER: '@', "nobleman", random, hostile
-MONSTER: '@', "noblewoman", random, hostile
-MONSTER: '@', "electric mage", random, hostile
-MONSTER: '@', "transvestite", random, hostile
-MONSTER: '@', "courier", random, hostile
-MONSTER: '@', "chevalier", random, hostile
-MONSTER: '@', "zyborg", random, hostile
-MONSTER: '@', "rocker", random, hostile
-MONSTER: '@', "acid mage", random, hostile
-MONSTER: '@', "spacewars fighter", random, hostile
-MONSTER: '@', "elph", random, hostile
-MONSTER: '@', "binder", random, hostile
-MONSTER: '@', "diver", random, hostile
-MONSTER: '@', "scientist", random, hostile
-MONSTER: '@', "korsair", random, hostile
-MONSTER: '@', "topmodel", random, hostile
-MONSTER: '@', "bleeder", random, hostile
-MONSTER: '@', "gladiator", random, hostile
-MONSTER: '@', "psion", random, hostile
-MONSTER: '@', "activistor", random, hostile
-MONSTER: '@', "lunatic", random, hostile
-MONSTER: '@', "bard", random, hostile
-MONSTER: '@', "drunk", random, hostile
-MONSTER: '@', "firefighter", random, hostile
-MONSTER: '@', "goff", random, hostile
-MONSTER: '@', "graduate", random, hostile
-MONSTER: '@', "locksmith", random, hostile
-MONSTER: '@', "musician", random, hostile
-MONSTER: '@', "ninja", random, hostile
-MONSTER: '@', "officer", random, hostile
-MONSTER: '@', "undertaker", random, hostile
-MONSTER: '@', "zookeeper", random, hostile
-MONSTER: '@', "amazon", random, hostile
-MONSTER: '@', "altmer", random, hostile
-MONSTER: '@', "bosmer", random, hostile
-MONSTER: '@', "dunmer", random, hostile
-MONSTER: '@', "thalmor", random, hostile
-MONSTER: '@', "ordinator", random, hostile
-MONSTER: '@', "cruel abuser", random, hostile
-MONSTER: '@', "saiyan", random, hostile
-MONSTER: '@', "politician", random, hostile
-MONSTER: '@', "librarian", random, hostile
-MONSTER: '@', "cook", random, hostile
-MONSTER: '@', "augurer", random, hostile
-MONSTER: '@', "sage", random, hostile
-MONSTER: '@', "gunner", random, hostile
-MONSTER: '@', "otaku", random, hostile
-MONSTER: '@', "artist", random, hostile
-MONSTER: '@', "gamer", random, hostile
-MONSTER: '@', "doll mistress", random, hostile
-MONSTER: '@', "feat master", random, hostile
-MONSTER: '@', "foxhound agent", random, hostile
-MONSTER: '@', "intel scribe", random, hostile
-MONSTER: '@', "paladin", random, hostile
-MONSTER: '@', "wandkeeper", random, hostile
-MONSTER: '@', "assassin", random, hostile
-MONSTER: '@', "bully", random, hostile
-MONSTER: '@', "supermarket cashier", random, hostile
-MONSTER: '@', "slave master", random, hostile
-MONSTER: '@', "mystic", random, hostile
-MONSTER: '@', "bloodseeker", random, hostile
-MONSTER: '@', "ladiesman", random, hostile
-MONSTER: '@', "jester", random, hostile
-MONSTER: '@', "pickpocket", random, hostile
-MONSTER: '@', "mahou shoujo", random, hostile
 
 ROOM: "ordinary" , random, random, random, random
 STAIR: random, up

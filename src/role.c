@@ -615,6 +615,38 @@ const struct Role roles[] = {
 	-10, 5, 0, 2, 10, A_INT, SPE_FINGER,   -4, 30
 },
 
+{	{"Butt Lover", 0}, {
+	{"Stroking Hands",         0},
+	{"Feel-Upper",         0},
+	{"Farting Gas Inhaler",         0},
+	{"Squeaking Noise Enjoyer",         0},
+	{"Curve Lover",         0},
+	{"Graceful Body Admirer",         0},
+	{"Blissful Air Current",         0},
+	{"Sexiness Expert",         0},
+	{"Master Softhand",  0} },
+	"_Eveline", "_Elena", "_Marlen",
+	"But", "Farting Gas Chamber", "Stupid Law Factory",
+	PM_BUTT_LOVER, NON_PM, PM_UNDEAD_BUTT_LOVER, NON_PM, PM_JESSICA,
+	PM_BEN_ARGIMUNT, PM_MAIDEN, PM_CATCALL_SELINA, PM_ORGASMIC_BITCH,
+	PM_FARTING_WOMAN, PM_PRETTY_ASIAN_WOMAN, S_HUMAN, S_HUMAN,
+
+	ART_GROPESTROKER, /* gloves */
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | 
+	ROLE_MALE|ROLE_FEMALE|ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */  /* Direct copy from Wizard */
+	/*{   7, 10,  7,  7,  7,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  20, 10, 20, 30, 10, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  18, 12, 15, 20, 14, 12 },
+	/* Init   Lower  Higher */
+	{ 10, 0,  0, 2,  3, 0 },	/* Hit points */
+	{  5, 1,  0, 1,  0, 0 }, 10,	/* Energy */
+	10, 10, -2, 
+	4, 6, A_INT, SPE_STINKING_CLOUD,        -4, 30 /* From old role.c */
+},
+
 {	{"Camperstriker", 0}, {
 	{"Aimbot User",     0},
 	{"Wallhack Exploiter",     0},
@@ -1012,6 +1044,37 @@ const struct Role roles[] = {
 	10, 10, 0, 0,  8, A_INT, SPE_DEFOG,      -4, 25
 },
 
+{	{"Dancer", 0}, {
+	{"Swing Student", 0},
+	{"Toe Stepper", 0},
+	{"Spinner", 0},
+	{"Gymnast", 0},
+	{"Dancehall Artist", 0},
+	{"Sindancer", 0},
+	{"Souldancer", 0},
+	{"Lifedancer", 0},
+	{"World-Class Dancer", 0} },
+	"_the Archomentals", "Cryonax", "_the Elder Elemental",
+	"Dan", "the Seasonal Festival Grounds", "the Elemental Confluence",
+	PM_DANCER, NON_PM, PM_UNDEAD_DANCER, NON_PM, PM_LITTLE_DOG,
+	PM_TROUPE_LEADER, PM_BACKUP_DANCER, PM_BOSS_TIME_ELEMENTAL, PM_FORGOTTEN_REALMS_VORTEX,
+	PM_THRIAE, PM_GREMLIN, S_GREMLIN, S_ELEMENTAL,
+
+	ART_SOFTSTEP, /* anastasia shoes */
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | 
+	ROLE_MALE|ROLE_FEMALE|ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	{  3,  3,  3,  3,  3,  3 },
+	{ 20, 10, 15, 30, 10, 20 },
+	/* new limit values for the six attributes by Amy */
+	{ 18, 18, 20, 25, 16, 25 },
+	/* Init   Lower  Higher */
+	{ 10, 0,  0, 8,  1, 0 },	/* Hit points */
+	{  2, 2,  0, 2,  0, 2 }, 8,	/* Energy */
+	8, 5, -2,
+	2, 30, A_WIS, SPE_SLOW_MONSTER,	-4, 50
+},
+
 {	{"Death Eater", 0}, {
 	{"Filthy Worm",  0},
 	{"Creeping Maggot", 0},
@@ -1024,7 +1087,7 @@ const struct Role roles[] = {
 	{"Dark Lord's Bodyguard", 0} },
 	"Merlin", "Salazar Slytherin", "Lord Voldemort", /* Harry Potter */
 	"Dea", "Malfoy Manor", "the Order of the Phoenix",
-	PM_DEATH_EATER, NON_PM, PM_UNDEAD_DEATH_EATER, NON_PM, PM_AGGRESSIVE_LICHEN,
+	PM_DEATH_EATER, NON_PM, PM_UNDEAD_DEATH_EATER, NON_PM, PM_SESSILICHEN,
 	PM_BELLATRIX_LESTRANGE, PM_FELLOW_DEATH_EATER, PM_HARRY_POTTER, PM_PARRY_HOTTER,
 	PM_AUROR, PM_ELVEN_MASTER_ROGUE, S_ANGEL, S_HUMAN,
 	ART_ELDER_STAFF,
@@ -1071,6 +1134,38 @@ const struct Role roles[] = {
 	{  20, 0,  0, 8,  4, 0 },	/* Hit points */
 	{  1,  0,  0, 1,  0, 1 }, 18,	/* Energy */
 	-50, 6, 4, 7, 15, A_INT, SPE_MESSAGE,      -4, 30
+},
+
+{	{"Diablist", 0}, {
+	{"Stocks That Hunter Inside Dweller",         0},
+	{"Cemetery Plunderer",         0},
+	{"Catacomb Evil-Fighter",         0},
+	{"Desert Caravanist",         0},
+	{"Tomb Comber",         0},
+	{"Jungle Stinger",         0},
+	{"Temple Cleanser",         0},
+	{"Heavenly Fortress Defender",         0},
+	{"Diablobane",  0} },
+	"Athulua", "Bul-Kathos", "Rathma", /* Diablo series */
+	"Dia", "Pandemonium Fortress", "Chaos Sanctuary",
+	PM_DIABLIST, NON_PM, PM_UNDEAD_DIABLIST, NON_PM, PM_ROGUE_HIRELING,
+	PM_TYRAEL, PM_SUPER_WARRIOR, PM_THE_THICKNESSES, PM_DIPPEL,
+	PM_STYGIAN_HAG, PM_STORM_CALLER, S_DOG, S_ELEMENTAL,
+
+	ART_HAMMER_OF_HELLFORGE, /* mallet */
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | 
+	ROLE_MALE|ROLE_FEMALE|ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */  /* Direct copy from Wizard */
+	/*{   7, 10,  7,  7,  7,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  17, 17, 16, 17, 17, 16 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
+	/* Init   Lower  Higher */
+	{ 25, 0,  0, 1,  1, 0 },	/* Hit points */
+	{  8, 1,  0, 1,  0, 1 }, 15,	/* Energy */
+	0, 8, 0, 
+	0, 0, A_INT, SPE_FIRE_GOLEM,        -4, 100 /* From old role.c */
 },
 
 {	{"Dissident", 0}, {
@@ -2177,6 +2272,39 @@ const struct Role roles[] = {
 	-10, 5, 0, 2, 10, A_INT, SPE_ANTI_DISINTEGRATION,   -4, 10
 },
 
+{	{"Half Baked", 0}, {
+	{"Half Baker",         0},
+	{"Bloody Novice",            0},
+	{"No-Hoper",          0},
+	{"Pupil of Gravel", 0},
+	{"Pupil of Fluids", 0},
+	{"Pupil of Trash", 0},
+	{"Pupil of Blows",  0},
+	{"Pupil of Heat",   0},
+	{"Self-Appointed Master",            0} },
+	"_Nuwa", "Pangu", "Fuxi", /* Chinese */
+	"Hal", "the Monastery of Chan-Sune", "the Monastery of the Earth-Lord",
+	PM_HALF_BAKED, NON_PM, PM_UNDEAD_HALF_BAKED, NON_PM, NON_PM,
+	PM_GRAND_MASTER, PM_ABBOT, PM_MASTER_KAEN, PM_KASTER_MAEN,
+	PM_EARTH_ELEMENTAL, PM_XORN, S_ELEMENTAL, S_XORN,
+#if 0
+	ART_GAUNTLETS_OF_DEFENSE, ART_WHISPERFEET,
+#endif
+	ART_EYES_OF_THE_HALF_BAKED_WOR,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  10,  7,  8,  8,  7,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  25, 10, 20, 20, 15, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 14, 20, 18, 14, 18 },
+	/* Init   Lower  Higher */
+	{ 17, 0,  0, 8,  1, 0 },	/* Hit points */
+	{  8, 2,  0, 2,  0, 2 },10,	/* Energy */
+	10, 8,-2, 2, 20, A_WIS, SPE_RESTORE_ABILITY, -4, 50
+},
+
 
 {	{"Healer", 0}, {
 	{"Rhizotomist",    0},
@@ -3044,6 +3172,36 @@ const struct Role roles[] = {
 	10, 4,-4, 4, 8, A_INT, SPE_PROTECTION, -24, 40
 },
 
+{	{"Noob Mode Barb", 0}, {
+	{"Complete Scrub",   0},
+	{"Skill Agnostic",    0},
+	{"Whippersnapper",      0},
+	{"Whiny Lamer",     0},
+	{"Terrible Rookie",      0},
+	{"Bad Player",      0},
+	{"Mindless Mower",      0},
+	{"Filthy Cheater",   0},
+	{"Biggest Noob Ever",   0} },
+	"P-Point", "I Have To Reload", "Upper Failure Kornop",
+	"Noo", "the Camp of the Duali Tribe", "the Duali Oasis",
+	PM_NOOB_MODE_BARB, NON_PM, PM_UNDEAD_NOOB_MODE_BARB, NON_PM, NON_PM,
+	PM_PELIAS, PM_CHIEFTAIN, PM_THOTH_AMON, PM_THOTH_AMUN,
+	PM_OGRE, PM_TROLL, S_OGRE, S_TROLL,
+	ART_HEART_OF_OTHER_AHRIMAN,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  16,  7,  7, 15, 16,  6 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  30,  6,  7, 20, 30,  7 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(20), 6, 8, 6, 20, 6 },
+	/* Init   Lower  Higher */
+	{ 80, 0,  0,20,  4, 0 },	/* Hit points */
+	{  0, 0,  0, 0,  0, 0 },10,	/* Energy */
+	10, 50, 20, 20,  50, A_INT, SPE_HASTE_SELF,      -4, 5
+},
+
 {	{"Nuclear Physicist", 0}, {
 	{"Safety Officer",    0},
 	{"Burning Stick Controller",    0},
@@ -3409,6 +3567,38 @@ const struct Role roles[] = {
 	{  8, 4, 0, 6, 0, 4 },12, /* Energy */
 	10, 6, -3,
 	6, 12, A_INT, SPE_BATTERING_RAM, -4, 70
+},
+
+{	{"Preversioner", 0}, {
+	{"Newcomer",         0},
+	{"Green Cross Delver",         0},
+	{"Moneyless Adventurer",         0},
+	{"Balance Grumbler",         0},
+	{"Crash Bug Encounterer",         0},
+	{"Bad Game Design Bitcher",         0},
+	{"Fook-Yoo-Sayer",         0},
+	{"Ch3at0r",         0},
+	{"Ascension Run Skipper",  0} },
+	"0.54A", "Level Change UAE", "Reset Button Without A Confirmation", /* still salty about the latter... :-P --Amy */
+	"Pre", "Northeast Quadrant", "Some Nondescript Dungeon Level",
+	PM_PREVERSIONER, NON_PM, PM_UNDEAD_PREVERSIONER, NON_PM, NON_PM,
+	PM_POLGARA, PM_HACKER, PM_EXTREMELY_ANCIENT_RED_DRAGON, PM_YET_ANOTHER_RED_KITE,
+	PM_OLD_RED_DRAGON, PM_VERY_OLD_BLUE_DRAGON, S_DRAGON, S_DEMON,
+
+	ART_DOWNSIZE_GLASS, /* mirror that cuts boss monsters' health in half, but only for preversioner role */
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | 
+	ROLE_MALE|ROLE_FEMALE|ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */  /* Direct copy from Wizard */
+	/*{   7, 10,  7,  7,  7,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  20, 20, 10, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
+	/* Init   Lower  Higher */
+	{ 14, 0,  0, 2,  2, 0 },	/* Hit points */
+	{  7, 1,  0, 1,  0, 1 }, 14,	/* Energy */
+	0, 8, -1, 
+	2, 3, A_INT, SPE_ACIDSHIELD,        -4, 100 /* From old role.c */
 },
 
 {	{"Priest", "Priestess"}, {
@@ -3840,6 +4030,38 @@ const struct Role roles[] = {
 	10, 3,-3, 2, 10, A_WIS, SPE_IDENTIFY,   -4, 35
 },
 
+{	{"Secret Advice Member", 0}, {
+	{"Hidden Operative",         0},
+	{"Covert OP",         0},
+	{"Underground Agitator",         0},
+	{"Secret Schemer",         0},
+	{"Gun Hider",         0},
+	{"Shady Executive",         0},
+	{"Banishment Wielder",         0},
+	{"Top-Secret Advice Member",         0},
+	{"Boss of the Secret Advice",  0} },
+	"_Katrin", "Len-kind", "Coffin Nail",
+	"Sec", "Secret Advice Hiding Place", "Revoluzzer Force HQ",
+	PM_SECRET_ADVICE_MEMBER, NON_PM, PM_UNDEAD_SECRET_ADVICE_MEMBER, NON_PM, PM_BUST_SUPERSECRET_ADVICE_RIFLING_UNVERIFIED_BOSOMING,
+	PM_CHAIRMAN_LEON, PM_TROOPER, PM_REVOLUTINO_MARI, PM_ASS_GAS_SPREADER,
+	PM_BODYBUILDER_LICH, PM_BACKFIRING_LICH, S_ZOMBIE, S_LICH,
+
+	ART_ASS_DEAF_AUGER,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | 
+	ROLE_MALE|ROLE_FEMALE|ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */  /* Direct copy from Wizard */
+	/*{   7, 10,  7,  7,  7,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  15, 20, 15, 20, 15, 15 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(20), 20, 20, 20, 20, 20 },
+	/* Init   Lower  Higher */
+	{ 20, 0,  0, 4,  5, 0 },	/* Hit points */
+	{ 10, 2,  0, 2,  0, 3 }, 17,	/* Energy */
+	10, 6, -3, 
+	4, 5, A_WIS, SPE_TELEPORT_AWAY,        -4, 100 /* From old role.c */
+},
+
 {	{"Shapeshifter", 0}, {
 	{"Polymorph Trainee",    0},
 	{"Item Zapper",    0},
@@ -3868,6 +4090,38 @@ const struct Role roles[] = {
 	{ 12, 0,  0, 3,  1, 0 },	/* Hit points */
 	{ 20, 0,  0, 4,  0, 4 },12,	/* Energy */
 	10, 9, 2, 1, 10, A_INT, SPE_POLYMORPH,   -4, 30
+},
+
+{	{"Shoe Fetishist", 0}, {
+	{"Socksmeller",         0},
+	{"Combat Boot Slave",         0},
+	{"Shin-Smashed Sneaker",         0},
+	{"Bathtub Despairer",         0},
+	{"Dogshit Challenger",         0},
+	{"Final Dancer",         0},
+	{"Fall-From-Grace",         0},
+	{"Toilet Puzzler",         0},
+	{"Winner At Last",  0} },
+	"Birkenstock", "Tamaris", "Peter Kaiser", /* German shoe brands */
+	"Sho", "Heel Hall", "Underway Simulation",
+	PM_SHOE_FETISHIST, NON_PM, PM_UNDEAD_SHOE_FETISHIST, NON_PM, PM_KATI_S_STRIPED_SNEAKER,
+	PM_SIMULATION_LEADER, PM_MODEL, PM_ARABELLA, PM_TUFTED_ASIAN_GIRL, /* make sure Arabella doesn't get the wand! */
+	PM_ANTJE_S_BLOCK_HEELED_BOOT, PM_HENRIETTA_S_THICK_BLOCK_HEELED_BOOT, S_RODENT, S_SPIDER,
+
+	ART_KATHARINA_S_LOVELINESS, /* platform boots */
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | 
+	ROLE_MALE|ROLE_FEMALE|ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */  /* Direct copy from Wizard */
+	/*{   7, 10,  7,  7,  7,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  10, 20, 15, 15, 10, 30 },
+	/* new limit values for the six attributes by Amy */
+	{  16, 18, 18, 18, 14, 18 },
+	/* Init   Lower  Higher */
+	{  9, 0,  0, 1,  1, 0 },	/* Hit points */
+	{  0, 0,  0, 1,  0, 1 }, 14,	/* Energy */
+	10, 10, 2, 
+	12, 10, A_INT, SPE_HOLD_AIR,        -4, 30 /* From old role.c */
 },
 
 {	{"Slave Master", 0}, {
@@ -5483,6 +5737,21 @@ const struct Race races[] = {
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
+{	"changeling", "changeling", "chhangelinger", "Chg",
+	{0, 0},
+	PM_PLAYER_CHANGELING, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
 },
 {	"chiquai", "chiquai", "chiquai gavenmengte", "Chu",
@@ -7556,6 +7825,21 @@ const struct Race races[] = {
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
 },
+{	"piece", "piece", "chess pieces", "Pic",
+	{0, 0},
+	PM_PIECE, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 17, 17, 18, 20, 16 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  2, 0 },	/* Hit points */
+	{  1, 0,  1, 0,  1, 0 }		/* Energy */
+},
 {	"piercer", "piercer", "piercing studio", "Pie",
 	{0, 0},
 	PM_PIERCER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -8212,6 +8496,21 @@ const struct Race races[] = {
 	{  6, 0,  0, 6,  6, 0 },	/* Hit points */
 	{  6, 0,  6, 0,  6, 0 }		/* Energy */
 },
+{	"swikni", "swikni", "swikzerni", "Swi",
+	{0, 0},
+	PM_SWIKNI, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(20), 19, 19, 24, 20, 17 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 3,  2, 0 },	/* Hit points */
+	{  2, 0,  1, 0,  1, 0 }		/* Energy */
+},
 {	"sylph", "sylph", "sylphood", "Syl",
 	{0,0},
 	PM_SYLPH, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -8854,6 +9153,32 @@ randrole()
 	return (rn2(SIZE(roles)-1));
 }
 
+void
+rivalroleinit()
+{
+	int rivalrolenum = randrole();
+	flags.rivalsavenum = rivalrolenum;
+
+	u.rivalcode = roles[rivalrolenum].filecode;
+	u.rivalneminum = roles[rivalrolenum].neminum;
+	u.rivalenemy1num = roles[rivalrolenum].enemy1num;
+	u.rivalenemy2num = roles[rivalrolenum].enemy2num;
+	u.rivalenemy1sym = roles[rivalrolenum].enemy1sym;
+	u.rivalenemy2sym = roles[rivalrolenum].enemy2sym;
+}
+
+void
+rivalrolerestore()
+{
+	int rivalrolenum = flags.rivalsavenum;
+
+	u.rivalcode = roles[rivalrolenum].filecode;
+	u.rivalneminum = roles[rivalrolenum].neminum;
+	u.rivalenemy1num = roles[rivalrolenum].enemy1num;
+	u.rivalenemy2num = roles[rivalrolenum].enemy2num;
+	u.rivalenemy1sym = roles[rivalrolenum].enemy1sym;
+	u.rivalenemy2sym = roles[rivalrolenum].enemy2sym;
+}
 
 int
 str2role(str)

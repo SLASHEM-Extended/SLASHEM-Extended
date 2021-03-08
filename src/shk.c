@@ -1414,6 +1414,10 @@ dopay()
 		     return(0);
 		}
 		mtmp = m_at(cx, cy);
+		if (!cansee(cx, cy) && (!mtmp || !canspotmon(mtmp))) { /* bugfix from 3.7 - yeah I'm a filthy heretic :P --Amy */
+		     You("can't see that location from here!");
+		     return(0);
+		}
 		if(!mtmp) {
 		     There("is no one there to receive your payment.");
 		     return(0);
@@ -2373,6 +2377,7 @@ register struct monst *shkp;	/* if angry, impose a surcharge */
 	/* character classes who are discriminated against... */
 	/* barbarians are gullible... */
 	if (Role_if(PM_BARBARIAN)) tmp *= 3L;
+	if (Role_if(PM_NOOB_MODE_BARB)) tmp *= 5L;
 	/* rogues are untrustworthy... */
 	if (Role_if(PM_ROGUE)) tmp *= 2L;
 	/* samurais are from out of town... */
@@ -2422,9 +2427,7 @@ register boolean unpaid_only;
 		if (saleable(shkp, otmp) &&
 			!otmp->unpaid && otmp->oclass != BALL_CLASS &&
 			!is_hazy(otmp) &&
-			!(otmp->oclass == FOOD_CLASS && otmp->oeaten) &&
-			!(Is_candle(otmp) && otmp->age <
-				20L * (long)objects[otmp->otyp].oc_cost))
+			!(otmp->oclass == FOOD_CLASS && otmp->oeaten) )
 		    price += set_cost(otmp, shkp);
 	    } else if (!otmp->no_charge &&
 		      (!unpaid_only || (unpaid_only && otmp->unpaid))) {
@@ -3194,9 +3197,7 @@ move_on:
 	   || obj->objwassold
 	   || obj->oclass == CHAIN_CLASS || offer == 0L
 	   || is_hazy(obj)
-	   || (obj->oclass == FOOD_CLASS && obj->oeaten)
-	   || (Is_candle(obj) &&
-		   obj->age < 20L * (long)objects[obj->otyp].oc_cost)) {
+	   || (obj->oclass == FOOD_CLASS && obj->oeaten) ) {
 		pline("%s seems uninterested%s.", Monnam(shkp),
 			cgold ? " in the rest" : "");
 		if (container)
@@ -3432,22 +3433,9 @@ boolean shk_buying;
 		/* Don't buy activated explosives! */
 		if (is_grenade(obj) && obj->oarmed) tmp = 0L;
 		break;
-	case TOOL_CLASS:
-		if (Is_candle(obj) &&
-			obj->age < 20L * (long)objects[obj->otyp].oc_cost)
-		    tmp /= 2L;
-		else if (obj->otyp == TORCH) {
-		  if (obj->age == 0) {
-		    tmp = 0L;
-		  }
-		  else if (obj->age < 25) {
-		    tmp /= 4L;
-		  }
-		  else if (obj->age < 50) {
-		    tmp /= 2L;
-		  }
-		}
-		break;
+
+	/* used to be that partly used light sources made it cheaper here... FUCK PRICE ID :P --Amy */
+
 	}
 	return tmp;
 }
@@ -4064,6 +4052,19 @@ boolean catchup;	/* restoring a level */
 				&& ttmp->ttyp != FEMMY_TRAP
 				&& ttmp->ttyp != MADELEINE_TRAP
 				&& ttmp->ttyp != MARLENA_TRAP
+				&& ttmp->ttyp != KRISTIN_TRAP
+				&& ttmp->ttyp != ANNA_TRAP
+				&& ttmp->ttyp != RUEA_TRAP
+				&& ttmp->ttyp != DORA_TRAP
+				&& ttmp->ttyp != MARIKE_TRAP
+				&& ttmp->ttyp != JETTE_TRAP
+				&& ttmp->ttyp != INA_TRAP
+				&& ttmp->ttyp != SING_TRAP
+				&& ttmp->ttyp != VICTORIA_TRAP
+				&& ttmp->ttyp != MELISSA_TRAP
+				&& ttmp->ttyp != ANITA_TRAP
+				&& ttmp->ttyp != HENRIETTA_TRAP
+				&& ttmp->ttyp != VERENA_TRAP
 				&& ttmp->ttyp != ARABELLA_TRAP
 				&& ttmp->ttyp != NELLY_TRAP
 				&& ttmp->ttyp != EVELINE_TRAP

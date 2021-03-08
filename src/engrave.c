@@ -1094,7 +1094,7 @@ can_reach_floor()
 {
 	return (boolean)(!u.uswallow &&
 			/* Restricted/unskilled riders can't reach the floor */
-			!(u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) &&
+			!(u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) &&
 			 ((!Levitation || StrongLevitation) || is_table(u.ux, u.uy) ||
 			  Is_airlevel(&u.uz) || Is_waterlevel(&u.uz)));
 }
@@ -1470,6 +1470,8 @@ doengrave()
 
 	multi = 0;		/* moves consumed */
 	nomovemsg = (char *)0;	/* occupation end message */
+
+	boolean canengravefast = (Role_if(PM_ARTIST) || (uarmf && uarmf->oartifact == ART_GIVE_THE_ART_A_HOME));
 
 	buf[0] = (char)0;
 	ebuf[0] = (char)0;
@@ -2591,16 +2593,16 @@ doengrave()
 	 */
 	switch(type){
 	    default:
-		multi = -(len/(Role_if(PM_ARTIST) ? 20 : 10) );
+		multi = -(len/(canengravefast ? 20 : 10) );
 		if (multi) nomovemsg = "You finish your weird engraving.";
 		break;
 	    case DUST:
-		multi = -(len/(Role_if(PM_ARTIST) ? 20 : 10) );
+		multi = -(len/(canengravefast ? 20 : 10) );
 		if (multi) nomovemsg = "You finish writing in the dust.";
 		break;
 	    case HEADSTONE:
 	    case ENGRAVE:
-		multi = -(len/(Role_if(PM_ARTIST) ? 20 : 10) );
+		multi = -(len/(canengravefast ? 20 : 10) );
 		if (otmp->otyp == WAN_DIGGING) multi /= 5; /* otherwise engraving with them would be useless --Amy */
 		if ((otmp->oclass == WEAPON_CLASS) && !stack_too_big(otmp) &&
 		    ( ((otmp->otyp != ATHAME) && (otmp->otyp != MERCURIAL_ATHAME) && (!is_lightsaber(otmp))) || otmp->cursed)) {
@@ -2633,14 +2635,14 @@ doengrave()
 		if (multi) nomovemsg = "You finish engraving.";
 		break;
 	    case BURN:
-		multi = -(len/(Role_if(PM_ARTIST) ? 20 : 10) );
+		multi = -(len/(canengravefast ? 20 : 10) );
 		if (multi)
 		    nomovemsg = is_ice(u.ux,u.uy) ?
 			"You finish melting your message into the ice.":
 			"You finish burning your message into the floor.";
 		break;
 	    case MARK:
-		multi = -(len/(Role_if(PM_ARTIST) ? 20 : 10) );
+		multi = -(len/(canengravefast ? 20 : 10) );
 		if ((otmp->oclass == TOOL_CLASS) &&
 		    (otmp->otyp == MAGIC_MARKER || otmp->otyp == FELT_TIP_MARKER)) {
 		    maxelen = (otmp->spe) * /*2*/8; /* one charge / 2 letters */ /* Amy edit - one charge per 8 letters */
@@ -2655,7 +2657,7 @@ doengrave()
 		if (multi) nomovemsg = "You finish defacing the dungeon.";
 		break;
 	    case ENGR_BLOOD:
-		multi = -(len/(Role_if(PM_ARTIST) ? 20 : 10) );
+		multi = -(len/(canengravefast ? 20 : 10) );
 		if (multi) nomovemsg = "You finish scrawling.";
 		break;
 	}
@@ -5392,6 +5394,27 @@ static const char *epitaphs[] = {
 	"WHAAAAAT you made it so that I can't simply startscum healers for wishes anymore YOU SUUUUUUCK AMY! I certainly won't touch your shit variant again!",
 	"Is there still something in slex that players enjoy? You should implement the opposite of that.", /* by amateurhour (exact original wording might be slightly different) */
 	"magic traps lead to tragic maps", /* by amateurhour */
+	"maybe slex would be winnable if, instead of ascension, it had other ways to win. like collect/consort with every kind of shoe in the game", /* by spicycat */
+	"God, the Minotaur Maze subdungeon is really capable of driving a player insane. #quit",
+	"Amy the reward for killing the Minotaur of the Maze sucks!!!!!!! I refuse to play the game again until you make it better!",
+	"Yet again the Green Cross subdungeon wasn't open even though I based my strategy around the 1 in 20 chance that it is, so I had to quit again. Great.",
+	"Omg how overpowered is that Lord Stahngnir boss at the lowest level of Green Cross???",
+	"WHAT? Amy, are you fucking serious right now? I steamrollered Stahngnir, the Steel Giant Lord, and then planned to whoop the extra boss you put there, but your 'Ariane, Lady of the Elements' should be renamed to 'Ariane, Lady of Cheating' because she can't be defeated at all!!!",
+	"Okay Amy I'm calling you out now, you bitch. I assembled five ascension kits with 20 artifact weapons and had to use all of that to kill your 'Ariane' boss at the bottom of Green Cross and all I got was two random artifacts and the ability to generate weak elemental artifacts, all of which are a lot weaker than what I actually used to defeat her???",
+	"What, rival quest in Gehennom? Sounds easy, there sure won't be anything dangeroWAIT WHAT WHOSE QUEST NEMESIS IS THAT AND WHY DID HE JUST ONESHOT ME???",
+	"Blah, the devnull challenge areas in this game suck, most of the time they don't exist at all and even if they do, you can't actually play pool or digdug! Amy I'll play the actual devnull instead! Screw you!",
+	"Wut? I kept running into walls in the Emyn Luin branch and somehow lost all of my intelligence and then a mind flayer came and instakilled me!",
+	"It's really unfair that the boss of Emyn Luin can wipe you out so quickly with that stupid assault rifle. None of the other enemies in there could even dent me.",
+	"Hell's Bathroom is a stuuuuupid, unfairly designed dungeon branch.",
+	"Amy I told you that the Witch King of Angmar is OP! Just to prove my case, he just offed my character that was otherwise ready for ascension!",
+	"Yeah you can't defeat Tiksrvzllat. Don't know why I even bothered trying.",
+	"WHAT??? Script-generated monsters shouldn't exist! They add nothing to the game! Fuck you Amy for having them in the first place!",
+	"I swear, script-generated monsters were a very bad addition to the game as their balance is completely out of whack. Amy should remove them.", /* but she never will :-P */
+	"SLEX is not a game but a C compiler testsuite", /* by bhaak */
+	"no mouth, one leg, you can use #monster to roll around on the ground, you start with an inka hat and randomized skills and intrinsics", /* by spicycat (original wording was slightly different) */
+	"hey amy ur game is LAMY", /* by Demo */
+	"Amy you suuuuuuck! why did you make that fucking town with the blasted HORDE of angels that is plain IMPOSSIBLE to defeat you BIIIIIIITCH! omg do you even play your game? apparently not, because otherwise you'd notice how it's more of a mental asylum simulator than a video game!!!",
+	"slex is for slosers", /* by Demo */
 
 };
 

@@ -1023,7 +1023,7 @@ level_tele()
 	    return;
 	}
 	/* Skipping the quest via teleport control is lame. --Amy */
-	if ((Teleport_control && !(In_quest(&u.uz)) && !Stunned && (!level.flags.has_insideroom || !rn2(5)) && rn2(StrongTeleport_control ? 10 : 3)) /* Teleport control might not always work. --Amy */
+	if ((Teleport_control && !(In_quest(&u.uz)) && !(In_minotaurmaze(&u.uz)) && !Stunned && (!level.flags.has_insideroom || !rn2(5)) && rn2(StrongTeleport_control ? 10 : 3)) /* Teleport control might not always work. --Amy */
 #ifdef WIZARD
 	   || (wizard && yn_function("Invoke wizard-mode teleport control?", ynchars, 'y') == 'y')
 #endif
@@ -1404,7 +1404,7 @@ struct trap *trap;
 	    You("are momentarily disoriented.");
 	deltrap(trap);
 	newsym(u.ux,u.uy);	/* get rid of trap symbol */
-      if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) level_tele();
+      if (!playerlevelportdisabled()) level_tele();
 	else pline("The trap doesn't seem to have any effect on you.");
 }
 
@@ -1427,7 +1427,7 @@ struct trap *trap;
 	    You("are momentarily disoriented.");
 	deltrap(trap);
 	newsym(u.ux,u.uy);	/* get rid of trap symbol */
-      if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) level_tele();
+      if (!playerlevelportdisabled()) level_tele();
 	else pline("The trap doesn't seem to have any effect on you.");
 }
 
@@ -1834,6 +1834,87 @@ random_teleport_level()
 	return nlev;
 }
 
+/* teleport player to a random branch --Amy */
+void
+randombranchtele()
+{
+
+	d_level dtmp;
+
+	/* make sure you can't be branchported if you're supposed to be immune --Amy */
+	if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+		return;
+	}
+
+	if (playerlevelportdisabled()) {
+		return;
+	}
+
+	dtmp = random_branchport_level();
+
+	schedule_goto(&dtmp, FALSE, FALSE, 0, (char *)0, (char *)0);
+	u.cnd_branchportcount++;
+
+}
+
+/* Random branchport level decision */
+d_level
+random_branchport_level()
+{
+
+	d_level dtmp;
+	extern int n_dgns; /* from dungeon.c */
+	int duncounter, num_ok_dungeons, last_ok_dungeon = 0;
+	int randomnumber;
+
+	for (duncounter = num_ok_dungeons = 0; duncounter < n_dgns; duncounter++) {
+		if (!dungeons[duncounter].dunlev_ureached) continue;
+		if (flags.wonderland && !achieve.perform_invocation) {
+			if (!strcmp(dungeons[duncounter].dname, "Yendorian Tower")) continue;
+			if (!strcmp(dungeons[duncounter].dname, "Forging Chamber")) continue;
+			if (!strcmp(dungeons[duncounter].dname, "Dead Grounds")) continue;
+			if (!strcmp(dungeons[duncounter].dname, "Ordered Chaos")) continue;
+			if (!strcmp(dungeons[duncounter].dname, "Resting Zone TA")) continue;
+			if (!strcmp(dungeons[duncounter].dname, "Resting Zone TB")) continue;
+			if (!strcmp(dungeons[duncounter].dname, "Resting Zone TC")) continue;
+			if (!strcmp(dungeons[duncounter].dname, "Resting Zone TD")) continue;
+			if (!strcmp(dungeons[duncounter].dname, "Resting Zone TE")) continue;
+			if (!strcmp(dungeons[duncounter].dname, "Resting Zone TF")) continue;
+			if (!strcmp(dungeons[duncounter].dname, "Resting Zone TG")) continue;
+			if (!strcmp(dungeons[duncounter].dname, "Resting Zone TH")) continue;
+			if (!strcmp(dungeons[duncounter].dname, "Resting Zone TI")) continue;
+			if (!strcmp(dungeons[duncounter].dname, "Resting Zone TJ")) continue;
+		} 
+		num_ok_dungeons++;
+		last_ok_dungeon = duncounter;
+
+	}
+	if (num_ok_dungeons > 1) randomnumber = rnd(num_ok_dungeons);
+	else randomnumber = 1;
+
+	dtmp.dnum = u.uz.dnum;
+
+	while (randomnumber > 0) {
+
+		randomnumber--;
+
+		dtmp.dnum++;
+		if (dtmp.dnum >= n_dgns) dtmp.dnum = 0;
+
+		while (!dungeons[dtmp.dnum].dunlev_ureached || (flags.wonderland && !achieve.perform_invocation && ( !strcmp(dungeons[dtmp.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[dtmp.dnum].dname, "Forging Chamber") || !strcmp(dungeons[dtmp.dnum].dname, "Dead Grounds") || !strcmp(dungeons[dtmp.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TA") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TB") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TC") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TD") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TE") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TF") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TG") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TH") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TI") || !strcmp(dungeons[dtmp.dnum].dname, "Resting Zone TJ") ) ) ) {
+
+			dtmp.dnum++;
+			if (dtmp.dnum >= n_dgns) dtmp.dnum = 0;
+		}
+	}
+
+	dtmp.dlevel = 1;
+	if (dungeons[dtmp.dnum].dunlev_ureached > 1) dtmp.dlevel = rnd(dungeons[dtmp.dnum].dunlev_ureached);
+
+	return dtmp;
+
+}
+
 /* Banishment level decision */
 int
 random_banish_level()
@@ -1863,6 +1944,265 @@ random_banish_level()
 	return nlev;
 }
 
+/* the player is being banished to a random level. Usually it'll be in the upper dungeons, sometimes in Gehennom,
+ * but occasionally also some branch, which should be accessible so as to prevent sequence breaking.
+ * 1% chance to end up in Minus World, which is initially the only way to get there. --Amy */
+void
+banishplayer()
+{
+	d_level dtmp;
+	boolean minusworld = FALSE;
+
+	dtmp.dnum = dname_to_dnum("The Dungeons of Doom"); /* fail safe in case something goes wrong */
+	dtmp.dlevel = 1; /* ditto */
+
+	/* make sure you can't be banished if you're supposed to be immune --Amy */
+	if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+		return;
+	}
+
+	if (playerlevelportdisabled()) {
+		return;
+	}
+
+	if (!rn2(100)) {
+		dtmp.dnum = dname_to_dnum("Minus World");
+		dtmp.dlevel = dunlevs_in_dungeon(&dtmp);
+		minusworld = TRUE;
+	} else if (rn2(2)) {
+		dtmp.dnum = dname_to_dnum("The Dungeons of Doom");
+	} else if (rn2(2)) {
+		dtmp.dnum = dname_to_dnum("Gehennom");
+	} else if (rn2(4)) {
+upperdungeonagain:
+		switch (rnd(32)) {
+			case 1:
+				dtmp.dnum = dname_to_dnum("The Gnomish Mines");
+				break;
+			case 2:
+				dtmp.dnum = dname_to_dnum("The Quest");
+				break;
+			case 3:
+				if (!u.silverbellget) goto upperdungeonagain;
+				dtmp.dnum = dname_to_dnum("The Subquest");
+				break;
+			case 4:
+				if (!u.silverbellget) goto upperdungeonagain;
+				dtmp.dnum = dname_to_dnum("Bell Caves");
+				break;
+			case 5:
+				dtmp.dnum = dname_to_dnum("Lawful Quest");
+				break;
+			case 6:
+				dtmp.dnum = dname_to_dnum("Neutral Quest");
+				break;
+			case 7:
+				dtmp.dnum = dname_to_dnum("Chaotic Quest");
+				break;
+			case 8:
+				dtmp.dnum = dname_to_dnum("Sokoban");
+				break;
+			case 9:
+				dtmp.dnum = dname_to_dnum("Town");
+				break;
+			case 10:
+				dtmp.dnum = dname_to_dnum("Grund's Stronghold");
+				break;
+			case 11:
+				dtmp.dnum = dname_to_dnum("Fort Ludios");
+				break;
+			case 12:
+				dtmp.dnum = dname_to_dnum("The Wyrm Caves");
+				break;
+			case 13:
+				dtmp.dnum = dname_to_dnum("One-eyed Sam's Market");
+				break;
+			case 14:
+				dtmp.dnum = dname_to_dnum("The Lost Tomb");
+				break;
+			case 15:
+				dtmp.dnum = dname_to_dnum("The Spider Caves");
+				break;
+			case 16:
+				dtmp.dnum = dname_to_dnum("The Sunless Sea");
+				break;
+			case 17:
+				dtmp.dnum = dname_to_dnum("The Temple of Moloch");
+				break;
+			case 18:
+				dtmp.dnum = dname_to_dnum("Grue Challenge");
+				break;
+			case 19:
+				dtmp.dnum = dname_to_dnum("Joust Challenge");
+				break;
+			case 20:
+				dtmp.dnum = dname_to_dnum("Pacman Challenge");
+				break;
+			case 21:
+				dtmp.dnum = dname_to_dnum("Pool Challenge");
+				break;
+			case 22:
+				dtmp.dnum = dname_to_dnum("Digdug Challenge");
+				break;
+			case 23:
+				dtmp.dnum = dname_to_dnum("Illusory Castle");
+				break;
+			case 24:
+				dtmp.dnum = dname_to_dnum("Deep Mines");
+				break;
+			case 25:
+				dtmp.dnum = dname_to_dnum("Space Base");
+				break;
+			case 26: /* not a bug that the space base subdungeons are always accessible --Amy */
+				dtmp.dnum = dname_to_dnum("Sewer Plant");
+				break;
+			case 27:
+				dtmp.dnum = dname_to_dnum("Gamma Caves");
+				break;
+			case 28:
+				dtmp.dnum = dname_to_dnum("Mainframe");
+				break;
+			case 29:
+				dtmp.dnum = dname_to_dnum("Minotaur Maze");
+				break;
+			case 30:
+				if (!u.greencrossopen && !Role_if(PM_PREVERSIONER) && !Role_if(PM_SPACEWARS_FIGHTER) && !Role_if(PM_CAMPERSTRIKER) && !(Role_if(PM_GANG_SCHOLAR) && u.greencrosschance < 5) && !(Role_if(PM_WALSCHOLAR) && u.greencrosschance < 5) && !(u.greencrosschance < 2) ) goto upperdungeonagain;
+				dtmp.dnum = dname_to_dnum("Green Cross");
+				break;
+			case 31:
+				dtmp.dnum = dname_to_dnum("The Giant Caverns");
+				break;
+			case 32:
+				dtmp.dnum = dname_to_dnum("The Ice Queen's Realm");
+				break;
+		}
+	} else {
+lowerdungeonagain:
+		switch (rnd(32)) {
+			case 1:
+				if (!u.silverbellget) goto lowerdungeonagain;
+				dtmp.dnum = dname_to_dnum("Rival Quest");
+				break;
+			case 2:
+				dtmp.dnum = dname_to_dnum("Void");
+				break;
+			case 3:
+				dtmp.dnum = dname_to_dnum("Nether Realm");
+				break;
+			case 4:
+				dtmp.dnum = dname_to_dnum("Angmar");
+				break;
+			case 5:
+				dtmp.dnum = dname_to_dnum("Emyn Luin");
+				break;
+			case 6:
+				dtmp.dnum = dname_to_dnum("Swimming Pool");
+				break;
+			case 7:
+				dtmp.dnum = dname_to_dnum("Hell's Bathroom");
+				break;
+			case 8:
+				dtmp.dnum = dname_to_dnum("Frankenstein's Lab");
+				break;
+			case 9:
+				dtmp.dnum = dname_to_dnum("Sheol");
+				break;
+			case 10:
+				dtmp.dnum = dname_to_dnum("Vlad's Tower");
+				break;
+			case 11:
+				if (!achieve.get_amulet) goto lowerdungeonagain;
+				dtmp.dnum = dname_to_dnum("Yendorian Tower");
+				break;
+			case 12:
+				if (!achieve.get_amulet) goto lowerdungeonagain;
+				dtmp.dnum = dname_to_dnum("Forging Chamber");
+				break;
+			case 13:
+				if (!achieve.get_amulet) goto lowerdungeonagain;
+				dtmp.dnum = dname_to_dnum("Dead Grounds");
+				break;
+			case 14:
+				if (!achieve.get_amulet) goto lowerdungeonagain;
+				dtmp.dnum = dname_to_dnum("Ordered Chaos");
+				break;
+			case 15:
+				dtmp.dnum = dname_to_dnum("Resting Zone GA");
+				break;
+			case 16:
+				dtmp.dnum = dname_to_dnum("Resting Zone GB");
+				break;
+			case 17:
+				dtmp.dnum = dname_to_dnum("Resting Zone GC");
+				break;
+			case 18:
+				dtmp.dnum = dname_to_dnum("Resting Zone GD");
+				break;
+			case 19:
+				dtmp.dnum = dname_to_dnum("Resting Zone GE");
+				break;
+			case 20:
+				if (!achieve.get_amulet) goto lowerdungeonagain;
+				dtmp.dnum = dname_to_dnum("Resting Zone TA");
+				break;
+			case 21:
+				if (!achieve.get_amulet) goto lowerdungeonagain;
+				dtmp.dnum = dname_to_dnum("Resting Zone TB");
+				break;
+			case 22:
+				if (!achieve.get_amulet) goto lowerdungeonagain;
+				dtmp.dnum = dname_to_dnum("Resting Zone TC");
+				break;
+			case 23:
+				if (!achieve.get_amulet) goto lowerdungeonagain;
+				dtmp.dnum = dname_to_dnum("Resting Zone TD");
+				break;
+			case 24:
+				if (!achieve.get_amulet) goto lowerdungeonagain;
+				dtmp.dnum = dname_to_dnum("Resting Zone TE");
+				break;
+			case 25:
+				if (!achieve.get_amulet) goto lowerdungeonagain;
+				dtmp.dnum = dname_to_dnum("Resting Zone TF");
+				break;
+			case 26:
+				if (!achieve.get_amulet) goto lowerdungeonagain;
+				dtmp.dnum = dname_to_dnum("Resting Zone TG");
+				break;
+			case 27:
+				if (!achieve.get_amulet) goto lowerdungeonagain;
+				dtmp.dnum = dname_to_dnum("Resting Zone TH");
+				break;
+			case 28:
+				if (!achieve.get_amulet) goto lowerdungeonagain;
+				dtmp.dnum = dname_to_dnum("Resting Zone TI");
+				break;
+			case 29:
+				if (!achieve.get_amulet) goto lowerdungeonagain;
+				dtmp.dnum = dname_to_dnum("Resting Zone TJ");
+				break;
+			case 30:
+				dtmp.dnum = dname_to_dnum("Resting Zone A");
+				break;
+			case 31:
+				dtmp.dnum = dname_to_dnum("Resting Zone S");
+				break;
+			case 32:
+				if (!u.freeplaymode || !u.freeplayplanes) goto lowerdungeonagain;
+				dtmp.dnum = dname_to_dnum("The Elemental Planes");
+				break;
+		}
+	}
+
+	if (!minusworld) {
+		dtmp.dlevel = rnd(dunlevs_in_dungeon(&dtmp));
+		if (!strcmp(dungeons[dtmp.dnum].dname, "Gehennom") && !u.uevent.invoked) dtmp.dlevel = rnd((dunlevs_in_dungeon(&dtmp)) - 1);
+	}
+
+	schedule_goto(&dtmp, FALSE, FALSE, 0, (char *)0, (char *)0);
+	u.cnd_banishmentcount++;
+
+}
 
 /* you teleport a monster (via wand, spell, or poly'd q.mechanic attack);
    return false iff the attempt fails */

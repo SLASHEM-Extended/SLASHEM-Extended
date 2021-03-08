@@ -207,6 +207,7 @@ boolean devour;
 	    mtmp->mhpmax += edog->mhpmax_penalty;
 	    edog->mhpmax_penalty = 0;
 	}
+	if (edog->abouttostarve) edog->abouttostarve = 0;
 	if (mtmp->mflee && mtmp->mfleetim > 1) mtmp->mfleetim /= 2;
 	if (mtmp->mtame < 20) mtmp->mtame++;
 	if (x != mtmp->mx || y != mtmp->my) {	/* moved & ate on same turn */
@@ -306,6 +307,8 @@ dog_hunger(mtmp, edog)
 register struct monst *mtmp;
 register struct edog *edog;
 {
+	if (monstermoves <= (edog->hungrytime + 500)) edog->abouttostarve = FALSE;
+
 	if (monstermoves > edog->hungrytime + 500) {
 	    if (!carnivorous(mtmp->data) && !herbivorous(mtmp->data) && !metallivorous(mtmp->data) && !mtmp->egotype_lithivore && !mtmp->egotype_metallivore && !mtmp->egotype_allivore && !lithivorous(mtmp->data)) {
 		edog->hungrytime = monstermoves + 500;
@@ -326,6 +329,24 @@ register struct edog *edog;
 		else
 		    You_feel("worried about %s.", y_monnam(mtmp));
 		stop_occupation();
+	    } else if (!edog->abouttostarve) {
+		edog->abouttostarve = 5;
+	    } else if (edog->abouttostarve > 1) {
+		edog->abouttostarve--;
+		if (edog->abouttostarve == 4) { /* give several warnings that the pet is going to starve --Amy */
+			if (couldsee(mtmp->mx, mtmp->my)) {
+			    beg(mtmp);
+			    You_feel("that %s is in dire need of food.", y_monnam(mtmp));
+			} else
+			    You_feel("that %s is about to starve.", y_monnam(mtmp));
+		}
+		if (edog->abouttostarve == 1) {
+			if (couldsee(mtmp->mx, mtmp->my)) {
+			    beg(mtmp);
+			    You_feel("that %s is in dire need of food.", y_monnam(mtmp));
+			} else
+			    You_feel("that %s is about to starve.", y_monnam(mtmp));
+		}
 	    } else if (monstermoves > edog->hungrytime + 750 || mtmp->mhp < 1) {
  dog_died:
 		if (mtmp->mleashed && mtmp != u.usteed)
@@ -338,6 +359,7 @@ register struct edog *edog;
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Tipichnyy igrok. Vy dazhe ne sposobny kormit' vashego pitomtsa." : "Tschwieaeaeh!");
 
 		}
+		edog->abouttostarve = FALSE;
 		mondied(mtmp);
 		return(TRUE);
 	    }
@@ -421,12 +443,12 @@ int udist;
 				if (obj->oclass == COIN_CLASS) {
 				    /* KMH, balance patch -- 10*level */
 				    if (dogquan < 1) dogquan = 1; /* fail safe by Amy */
+				    if (obj->quan < dogquan) dogquan = obj->quan;
+				    if (dogquan < 1) return 0; /* BUG */
 #ifndef GOLDOBJ
 				    obj->quan -= dogquan;
 				    if (cansee(omx, omy) && flags.verbose)
-					pline("%s picks up %d gold pieces.", 
-							Monnam(mtmp),
-							dogquan);
+					pline("%s picks up %d gold pieces.", Monnam(mtmp), dogquan);
 				    mtmp->mgold += dogquan;
 #else
 						if (obj->quan != dogquan)
@@ -673,9 +695,14 @@ register struct monst *mtmp;
 
 	if (Role_if(PM_SLAVE_MASTER) && rn2(10)) return FALSE; /* can keep monsters tame more easily --Amy */
 	if (Race_if(PM_CELTIC) && mtmp->data->mlet == S_GOLEM) return FALSE; /* everything else betrays you more often */
+	if (Role_if(PM_POKEMON) && is_pokemon(mtmp->data) && rn2(10)) return FALSE;
+	if (uarmu && uarmu->oartifact == ART_EIGHTH_BADGE && is_pokemon(mtmp->data)) return FALSE;
 
 	/* dragonmaster can of course wear DSM (sorry AntiGulp) and it prevents dragons from rebelling --Amy */
 	if (Role_if(PM_DRAGONMASTER) && mtmp->data->mlet == S_DRAGON && uarm && Is_dragon_armor(uarm) ) return FALSE;
+
+	/* secret advice member starting pet never rebels --Amy */
+	if (Role_if(PM_SECRET_ADVICE_MEMBER) && mtmp->data == &mons[PM_BUST_SUPERSECRET_ADVICE_RIFLING_UNVERIFIED_BOSOMING]) return FALSE;
 
 	/* changed the way this works: first see whether the monster can betray you at all, then whether it actually does
 	 * if the latter is the case, "hasbeenbetrayed" is set to 2 and the actual betrayal code runs where we roll against
@@ -769,7 +796,7 @@ register int after;	/* this is extra fast monster movement */
 		if (u.usteed && u.usteed == mtmp) {
 			if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed)) ) { pline("You shudder for a moment.");
 			}
-			if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) {
+			if (playerlevelportdisabled()) {
 			pline("For some reason you resist the banishment!");
 			}
 
@@ -1078,6 +1105,8 @@ register int after;	/* this is extra fast monster movement */
 			 (u.petattackenemies == 1 && mtmp2->mpeaceful) ||
 	/* Moldoux is special-cased */
 			 (mtmp2->data == &mons[PM_MOLDOUX__THE_DEFENCELESS_MOLD]) ||
+	/* the "spretty" isn't attacked either */
+			 (mtmp2->data == &mons[PM_SPRETTY]) ||
 	/* your one-way girlfriend is never attacked by pets */
 			 (mtmp2->data == &mons[PM_YOUR_ONE_WAY_GIRLFRIEND]) ||
 	/* if Izchak dies, the player gets disintegrated, so stop pets from killing them

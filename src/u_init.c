@@ -228,6 +228,16 @@ static struct trobj Barbarian[] = {
 	{ 0, 0, 0, 0, 0 }
 };
 
+static struct trobj NoobModeBarb[] = {
+#define N_MAJOR	0	/* two-handed sword or battle-axe  */
+#define N_MINOR	1	/* matched with axe or short sword */
+	{ TWO_HANDED_SWORD, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
+	{ AXE, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
+	{ RING_MAIL, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ FOOD_RATION, 0, FOOD_CLASS, 2, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
 static struct trobj Binder[] = {
 	{ VOULGE, 0, WEAPON_CLASS, 1, 0 },
 	{ KNIFE, 0, WEAPON_CLASS, 1, 0 },
@@ -1087,6 +1097,62 @@ static struct trobj Genderstarist[] = {
 	{ 0, 0, 0, 0, 0 }
 };
 
+static struct trobj ButtLover[] = {
+	{ MACE, 0, WEAPON_CLASS, 1, 0 },
+	{ T_SHIRT, 0, ARMOR_CLASS, 1, 0 },
+	{ HAWAIIAN_SHORTS, 0, ARMOR_CLASS, 1, 0 },
+	{ SNEAKERS, 0, ARMOR_CLASS, 1, 0 },
+
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj Dancer[] = {
+	{ SCIMITAR, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
+	{ MELON, 0, FOOD_CLASS, 1, 0 },
+	{ LEMON, 0, FOOD_CLASS, 1, 0 },
+	{ APPLE, 0, FOOD_CLASS, 1, 0 },
+	{ ORANGE, 0, FOOD_CLASS, 1, 0 },
+	{ PEAR, 0, FOOD_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, UNDEF_BLESS },
+	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
+
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj Diablist[] = {
+	{ QATAR, 1, WEAPON_CLASS, 1, 0 },
+	{ EAGLE_BALL, 1, WEAPON_CLASS, 1, 0 },
+	{ GRINDER, 1, WEAPON_CLASS, 1, 0 },
+	{ LEATHER_ARMOR, 0, ARMOR_CLASS, 1, 0 },
+	{ POT_HEALING, 0, POTION_CLASS, 4, UNDEF_BLESS },
+	{ SCR_IDENTIFY, 0, SCROLL_CLASS, 1, UNDEF_BLESS },
+
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj Preversioner[] = {
+	{ DAGGER, 0, WEAPON_CLASS, 1, 0 },
+
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj SecretAdviceMember[] = {
+	{ HUGGING_BOOT, 0, WEAPON_CLASS, 1, 0 },
+	{ WAN_BANISHMENT, UNDEF_SPE, WAND_CLASS, 1, 0 },
+	{ SOFT_SNEAKERS, 0, ARMOR_CLASS, 1, 0 },
+	{ T_SHIRT, 0, ARMOR_CLASS, 1, 0 },
+	{ HAWAIIAN_SHORTS, 0, ARMOR_CLASS, 1, 0 },
+
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj ShoeFetishist[] = {
+	{ HIGH_BOOTS, 0, ARMOR_CLASS, 1, 0 },
+	{ T_SHIRT, 0, ARMOR_CLASS, 1, 0 },
+
+	{ 0, 0, 0, 0, 0 }
+};
+
 static struct trobj Healer[] = {
 	{ SCALPEL, 1, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ LEATHER_GLOVES, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
@@ -1269,6 +1335,22 @@ static struct trobj Monk[] = {
 #define M_BOOK		2
 	{ LEATHER_GLOVES, 2, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ ROBE, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },
+	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
+	{ POT_HEALING, 0, POTION_CLASS, 3, UNDEF_BLESS },
+	{ FOOD_RATION, 0, FOOD_CLASS, 3, 0 },
+	{ APPLE, 0, FOOD_CLASS, 5, UNDEF_BLESS },
+	{ ORANGE, 0, FOOD_CLASS, 5, UNDEF_BLESS },
+	/* Yes, we know fortune cookies aren't really from China.  They were
+	 * invented by George Jung in Los Angeles, California, USA in 1916.
+	 */
+	{ FORTUNE_COOKIE, 0, FOOD_CLASS, 3, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj HalfBaked[] = {
+#define HBA_BOOK		1
+	{ LEATHER_GLOVES, 2, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },
 	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
 	{ POT_HEALING, 0, POTION_CLASS, 3, UNDEF_BLESS },
@@ -2214,6 +2296,11 @@ static struct trobj LevitatorItemD[] = {
 
 static struct trobj LevitatorItemE[] = {
 	{ UNICORN_HORN, -5, TOOL_CLASS, 1, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj SwikniItem[] = {
+	{ SURVIVAL_KNIFE, 1, WEAPON_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 
@@ -3463,6 +3550,178 @@ static const struct def_skill Skill_Gam[] = {
     { P_NONE, 0 }
 };
 
+static const struct def_skill Skill_But[] = {
+
+    { P_CLUB, P_MASTER },		{ P_PADDLE, P_MASTER },
+    { P_MACE, P_GRAND_MASTER },		{ P_MORNING_STAR, P_GRAND_MASTER },
+    { P_FLAIL, P_GRAND_MASTER },		{ P_HAMMER, P_EXPERT },
+    { P_DART, P_EXPERT },		{ P_LANCE, P_EXPERT },
+    { P_PROTECTION_SPELL, P_MASTER },		{ P_BODY_SPELL, P_EXPERT },
+    { P_HEALING_SPELL, P_EXPERT },		{ P_DIVINATION_SPELL, P_EXPERT },
+    { P_SHIELD, P_EXPERT },		{ P_TWO_WEAPON_COMBAT, P_GRAND_MASTER },
+    { P_QUARTERSTAFF, P_MASTER },		{ P_RIDING, P_MASTER },
+    { P_MARTIAL_ARTS, P_EXPERT },		{ P_CLAW, P_EXPERT },
+    { P_WHIP, P_GRAND_MASTER },		{ P_DEVICES, P_MASTER },
+    { P_SEARCHING, P_EXPERT },		{ P_TECHNIQUES, P_EXPERT },
+    { P_MEMORIZATION, P_EXPERT },		{ P_ATARU, P_EXPERT },
+    { P_SHIEN, P_EXPERT },
+
+    { P_NONE, 0 }
+};
+
+static const struct def_skill Skill_Dan[] = {
+
+    { P_AXE, P_EXPERT },	    { P_SHORT_SWORD, P_EXPERT },
+    { P_SCIMITAR, P_MASTER },	    { P_DAGGER, P_EXPERT },
+    { P_KNIFE, P_EXPERT },	    { P_FLAIL, P_EXPERT },
+    { P_POLEARMS, P_EXPERT },	    { P_TWO_WEAPON_COMBAT, P_EXPERT },
+    { P_BARE_HANDED_COMBAT, P_GRAND_MASTER },	    { P_HEALING_SPELL, P_EXPERT },
+    { P_ENCHANTMENT_SPELL, P_EXPERT },	    { P_ATTACK_SPELL, P_EXPERT },
+    { P_BODY_SPELL, P_EXPERT },	    { P_MATTER_SPELL, P_EXPERT },
+    { P_PADDLE, P_MASTER },		{ P_FIREARM, P_EXPERT },
+    { P_LIGHTSABER, P_MASTER },		{ P_CHAOS_SPELL, P_MASTER },
+    { P_HIGH_HEELS, P_GRAND_MASTER },		{ P_GENERAL_COMBAT, P_MASTER },
+    { P_BODY_ARMOR, P_EXPERT },		{ P_POLYMORPHING, P_GRAND_MASTER },
+    { P_DEVICES, P_MASTER },		{ P_PETKEEPING, P_EXPERT },
+    { P_MISSILE_WEAPONS, P_EXPERT },		{ P_TECHNIQUES, P_GRAND_MASTER },
+    { P_SEXY_FLATS, P_GRAND_MASTER },		{ P_MEMORIZATION, P_MASTER },
+    { P_GUN_CONTROL, P_EXPERT },		{ P_SQUEAKING, P_GRAND_MASTER },
+    { P_SYMBIOSIS, P_EXPERT },		{ P_SHII_CHO, P_EXPERT },
+    { P_SORESU, P_MASTER },		{ P_RIDING, P_EXPERT },
+
+    { P_NONE, 0 }
+};
+
+static const struct def_skill Skill_Dia[] = {
+
+    { P_ORB, P_GRAND_MASTER },		{ P_CLAW, P_GRAND_MASTER },
+    { P_GRINDER, P_GRAND_MASTER },		{ P_DAGGER, P_MASTER },
+    { P_KNIFE, P_EXPERT },		{ P_AXE, P_MASTER },
+    { P_SHORT_SWORD, P_MASTER },		{ P_BROAD_SWORD, P_MASTER },
+    { P_LONG_SWORD, P_MASTER },		{ P_TWO_HANDED_SWORD, P_MASTER },
+    { P_SCIMITAR, P_MASTER },		{ P_SABER, P_MASTER },
+    { P_CLUB, P_MASTER },		{ P_PADDLE, P_EXPERT },
+    { P_MACE, P_MASTER },		{ P_MORNING_STAR, P_MASTER },
+    { P_FLAIL, P_MASTER },		{ P_HAMMER, P_MASTER },
+    { P_QUARTERSTAFF, P_GRAND_MASTER },		{ P_POLEARMS, P_MASTER },
+    { P_SPEAR, P_MASTER },		{ P_JAVELIN, P_MASTER },
+    { P_TRIDENT, P_MASTER },		{ P_LANCE, P_MASTER },
+    { P_BOW, P_MASTER },		{ P_FIREARM, P_MASTER },
+    { P_CROSSBOW, P_MASTER },		{ P_SHURIKEN, P_EXPERT },
+    { P_WHIP, P_EXPERT },		{ P_ATTACK_SPELL, P_MASTER },
+    { P_HEALING_SPELL, P_EXPERT },		{ P_ENCHANTMENT_SPELL, P_EXPERT },
+    { P_PROTECTION_SPELL, P_EXPERT },		{ P_BODY_SPELL, P_MASTER },
+    { P_ELEMENTAL_SPELL, P_MASTER },		{ P_MATTER_SPELL, P_GRAND_MASTER },
+    { P_BARE_HANDED_COMBAT, P_EXPERT },		{ P_HIGH_HEELS, P_EXPERT },
+    { P_GENERAL_COMBAT, P_MASTER },		{ P_SHIELD, P_MASTER },
+    { P_BODY_ARMOR, P_MASTER },		{ P_TWO_HANDED_WEAPON, P_EXPERT },
+    { P_POLYMORPHING, P_EXPERT },		{ P_DEVICES, P_MASTER },
+    { P_PETKEEPING, P_MASTER },		{ P_MISSILE_WEAPONS, P_MASTER },
+    { P_TECHNIQUES, P_EXPERT },		{ P_MEMORIZATION, P_MASTER },
+    { P_GUN_CONTROL, P_EXPERT },		{ P_ATARU, P_EXPERT },
+    { P_NIMAN, P_EXPERT },		{ P_MARTIAL_ARTS, P_MASTER },
+
+    { P_NONE, 0 }
+};
+
+static const struct def_skill Skill_Pre[] = {
+
+    { P_DAGGER, P_MASTER },             { P_KNIFE,  P_EXPERT },
+    { P_AXE, P_EXPERT },                 { P_PICK_AXE, P_EXPERT },
+    { P_SHORT_SWORD, P_EXPERT },        { P_BROAD_SWORD, P_EXPERT },
+    { P_LONG_SWORD, P_EXPERT },        { P_TWO_HANDED_SWORD, P_EXPERT },
+    { P_SCIMITAR, P_EXPERT },          { P_SABER, P_EXPERT },
+    { P_CLUB, P_EXPERT },    { P_PADDLE, P_EXPERT },
+    { P_MACE, P_EXPERT },                { P_MORNING_STAR, P_EXPERT },
+    { P_FLAIL, P_EXPERT },               { P_HAMMER, P_EXPERT },
+    { P_QUARTERSTAFF, P_EXPERT },        { P_POLEARMS, P_EXPERT },
+
+    { P_SPEAR, P_EXPERT },               { P_JAVELIN, P_EXPERT },
+    { P_TRIDENT, P_EXPERT },             { P_LANCE, P_EXPERT },
+
+	{ P_FIREARM, P_MASTER },
+    { P_HIGH_HEELS, P_MASTER },
+    { P_SEXY_FLATS, P_EXPERT },
+    { P_SQUEAKING, P_MASTER },
+    { P_GUN_CONTROL, P_MASTER },
+
+    { P_WHIP, P_EXPERT },                { P_LIGHTSABER, P_MASTER },
+
+    { P_ATTACK_SPELL, P_EXPERT },      { P_HEALING_SPELL, P_EXPERT },
+    { P_DIVINATION_SPELL, P_EXPERT },   { P_ENCHANTMENT_SPELL, P_EXPERT },
+    { P_PROTECTION_SPELL, P_EXPERT },    { P_BODY_SPELL, P_EXPERT },
+    { P_MATTER_SPELL, P_EXPERT },
+
+    { P_GENERAL_COMBAT, P_EXPERT },
+    { P_SHIELD, P_EXPERT },
+    { P_BODY_ARMOR, P_EXPERT },
+    { P_TWO_HANDED_WEAPON, P_EXPERT },
+    { P_DEVICES, P_MASTER },
+    { P_SEARCHING, P_EXPERT },
+    { P_MEMORIZATION, P_MASTER },
+
+    { P_OCCULT_SPELL, P_EXPERT },
+    { P_ELEMENTAL_SPELL, P_EXPERT },
+    { P_CHAOS_SPELL, P_EXPERT },
+    { P_SHII_CHO, P_MASTER },
+    { P_MAKASHI, P_MASTER },
+    { P_SORESU, P_EXPERT },
+    { P_ATARU, P_EXPERT },
+    { P_SHIEN, P_GRAND_MASTER },
+    { P_DJEM_SO, P_EXPERT },
+    { P_NIMAN, P_MASTER },
+    { P_JUYO, P_EXPERT },
+    { P_VAAPAD, P_GRAND_MASTER },
+    { P_WEDI, P_GRAND_MASTER },
+
+    { P_BARE_HANDED_COMBAT, P_EXPERT },
+
+    { P_NONE, 0 }
+};
+
+static const struct def_skill Skill_Sec[] = {
+
+    { P_DAGGER, P_MASTER },		{ P_KNIFE, P_MASTER },
+    { P_CLUB, P_EXPERT },		{ P_PADDLE, P_EXPERT },
+    { P_MACE, P_EXPERT },		{ P_FLAIL, P_EXPERT },
+    { P_QUARTERSTAFF, P_EXPERT },		{ P_ORB, P_EXPERT },
+    { P_CLAW, P_MASTER },		{ P_POLEARMS, P_EXPERT },
+    { P_SPEAR, P_EXPERT },		{ P_BOW, P_EXPERT },
+    { P_FIREARM, P_GRAND_MASTER },		{ P_DART, P_EXPERT },
+    { P_SHURIKEN, P_MASTER },		{ P_BOOMERANG, P_EXPERT },
+    { P_WHIP, P_MASTER },		{ P_LIGHTSABER, P_EXPERT },
+    { P_ATTACK_SPELL, P_EXPERT },		{ P_HEALING_SPELL, P_EXPERT },
+    { P_DIVINATION_SPELL, P_MASTER },		{ P_PROTECTION_SPELL, P_MASTER },
+    { P_BODY_SPELL, P_MASTER },		{ P_OCCULT_SPELL, P_GRAND_MASTER },
+    { P_HIGH_HEELS, P_MASTER },		{ P_GENERAL_COMBAT, P_MASTER },
+    { P_SHIELD, P_EXPERT },		{ P_POLYMORPHING, P_EXPERT },
+    { P_DEVICES, P_GRAND_MASTER },		{ P_SEARCHING, P_EXPERT },
+    { P_MISSILE_WEAPONS, P_GRAND_MASTER },		{ P_TECHNIQUES, P_MASTER },
+    { P_IMPLANTS, P_EXPERT },		{ P_SEXY_FLATS, P_MASTER },
+    { P_MEMORIZATION, P_MASTER },		{ P_GUN_CONTROL, P_GRAND_MASTER },
+    { P_SQUEAKING, P_EXPERT },		{ P_SYMBIOSIS, P_EXPERT },
+    { P_SHII_CHO, P_EXPERT },		{ P_MAKASHI, P_MASTER },
+    { P_SORESU, P_EXPERT },		{ P_SHIEN, P_EXPERT },
+    { P_DJEM_SO, P_MASTER },		{ P_NIMAN, P_MASTER },
+    { P_JUYO, P_MASTER },		{ P_WEDI, P_MASTER },
+    { P_MARTIAL_ARTS, P_MASTER },
+
+    { P_NONE, 0 }
+};
+
+static const struct def_skill Skill_Sho[] = {
+
+    { P_CLUB, P_EXPERT },		{ P_PADDLE, P_MASTER },
+    { P_MACE, P_EXPERT },		{ P_FLAIL, P_EXPERT },
+    { P_HAMMER, P_EXPERT },		{ P_WHIP, P_MASTER },
+    { P_PROTECTION_SPELL, P_EXPERT },		{ P_BODY_SPELL, P_EXPERT },
+    { P_BARE_HANDED_COMBAT, P_EXPERT },		{ P_HIGH_HEELS, P_EXPERT },
+    { P_SEARCHING, P_MASTER },		{ P_PETKEEPING, P_EXPERT },
+    { P_SEXY_FLATS, P_MASTER },		{ P_RIDING, P_EXPERT },
+
+    { P_NONE, 0 }
+};
+
 static const struct def_skill Skill_Scr[] = {
 
     { P_DIVINATION_SPELL, P_EXPERT },
@@ -3597,6 +3856,27 @@ static const struct def_skill Skill_B[] = {
 
     { P_TWO_WEAPON_COMBAT, P_MASTER },
     { P_BARE_HANDED_COMBAT, P_MASTER },
+    { P_NONE, 0 }
+};
+
+static const struct def_skill Skill_Noo[] = { /* noob mode barb is much less skilled than regular barbarian --Amy */
+    { P_DAGGER, P_EXPERT },		{ P_AXE, P_EXPERT },
+    { P_PICK_AXE, P_EXPERT },	{ P_SHORT_SWORD, P_EXPERT },
+    { P_BROAD_SWORD, P_EXPERT },	{ P_LONG_SWORD, P_EXPERT },
+    { P_TWO_HANDED_SWORD, P_EXPERT },	{ P_SCIMITAR, P_EXPERT },
+    { P_SABER, P_EXPERT },		{ P_CLUB, P_EXPERT },
+    { P_PADDLE, P_EXPERT },
+    { P_MACE, P_EXPERT },		{ P_MORNING_STAR, P_EXPERT },
+    { P_FLAIL, P_EXPERT },		{ P_HAMMER, P_EXPERT },
+    { P_SPEAR, P_EXPERT },
+    { P_TRIDENT, P_EXPERT },
+    { P_GENERAL_COMBAT, P_EXPERT },
+    { P_BODY_ARMOR, P_EXPERT },
+    { P_TWO_HANDED_WEAPON, P_EXPERT },
+    { P_GRINDER, P_EXPERT },
+    { P_MISSILE_WEAPONS, P_EXPERT },  
+    { P_TWO_WEAPON_COMBAT, P_EXPERT },
+    { P_BARE_HANDED_COMBAT, P_EXPERT },
     { P_NONE, 0 }
 };
 
@@ -6798,6 +7078,18 @@ static const struct def_skill Skill_Mon[] = {
     { P_NONE, 0 }
 };
 
+static const struct def_skill Skill_Hba[] = {
+    { P_QUARTERSTAFF, P_EXPERT },	{ P_SPEAR, P_EXPERT },
+    { P_SHURIKEN, P_EXPERT },            { P_MARTIAL_ARTS, P_GRAND_MASTER },
+    { P_CROSSBOW, P_EXPERT },		{ P_JAVELIN, P_EXPERT },
+
+    { P_ATTACK_SPELL, P_EXPERT },    { P_HEALING_SPELL, P_EXPERT },
+    { P_DIVINATION_SPELL, P_EXPERT },	{ P_ENCHANTMENT_SPELL, P_EXPERT },
+    { P_PROTECTION_SPELL, P_EXPERT },	{ P_BODY_SPELL, P_EXPERT },
+    { P_MATTER_SPELL, P_EXPERT },
+    { P_NONE, 0 }
+};
+
 static const struct def_skill Skill_Sai[] = {
     { P_PADDLE, P_EXPERT },
     { P_SHORT_SWORD, P_EXPERT },
@@ -8159,6 +8451,8 @@ STATIC_OVL void
 knows_object(obj)
 register int obj;
 {
+	if ((obj == SPE_BEAMSWORD) || (obj == SPE_BLADE_ANGER)) return;
+
 	discover_object(obj,TRUE,FALSE);
 	objects[obj].oc_pre_discovered = 1;	/* not a "discovery" */
 }
@@ -8323,20 +8617,19 @@ static const char * const hereticgods[] = {
 /* pantheons for priests etc. These contain all the roles pantheons; they need to be aligned so that if we pick a random number and apply that to all three, a consistent role's pantheon is created! It also contains made-up pantheons that don't belong to an actual role. --Amy */
 static const char * const lawfulgods[] = {
 
-"The Lord of the Pit", "Anti-War Movement", "_Eilistraee", "_Suzanne Collins", "Quetzalcoatl", "Leonardo", "Ehud", "Dunlain", "Mitra", "Garl Glittergold", "Yaldabaoth", "Glycocalyx", "_Rhea Oro", "Eddergud", "_Everella Shrine", "Anu", "Buddha", "Ilmater", "McDonalds", "President Kimball", "Jacob Black", "Merlin", "Tane", "_Sakuya", "Apollo", "Orome", "Thomas Alva Edison", "Solonor Thelandira", "James Bond", "Prometheus", "Earth", "Colonel Campbell", "Nintendo", "Claude Speed", "UNIX", "Sulla", "_B'loody Mary", "Jobs", "_Athena", "Air", "Bowditch", "the Light Side", "Barnum", "Lugh", "Erzulie Freda", "Hugh Hefner", "Leo Tolstoi", "Nuada", "Eluvian", "_Queen Serenity", "Shan Lai Ching", "Falis", "Donblas", "Nharlotep", "Votishal", "God the Father", "Magnum", "_Vaire", "Brahma", "Ariel", "Danzai", "the Lord", "A'En", "Democracy", "Bickney", "Mercury", "Classic Rock", "Issek", "_Cassandra", "Moori", "_Amaterasu Omikami", "Nikola Tesla", "Airyaman", "_Lady Ariane", "the Homies", "Manwe Sulimo", "Speedy Gonzales", "Blind Io", "_Olivia", "Seeker", "_Hel", "Tyr", "Larry Koopa", "Talos", "Ptah", "His Majesty", "Balder", "Andromorph", "Seraphimon", "Scorpion", "Dios", "Ceipheid", "_Tsunami", "Ladon", "_Osiris", "_Goddess", "Biron", "_Ishtar", "_Nayru", "Zephyr", "Aslan", "Bahamut", "_Princess Celestia", "_Rainbow Dash", "Ceiling Cat", "SlimKirby", "Superego", "Porphyry", "Nike", "Little Mac", "Noeda", "Dungeon Collapse", "Commissioner Hunter", "upper bull", "Acehack", "Johanna from Orleans", "Kelvin", "Bar", "Deckard Cain", "Pepin the Healer", "Sulla", "Cheibriados", "Fedhas", "Lugonu", "Okawaru", "Vehumet", "Zin", "_the Bitches", "King Somnus", "Gaia", "Khronos", "Brahma", "Pangu", "Atum", "Khepri", "Corak", "Chiyo-chichi", "Truth", "Mr. Black", "_Irina", "Ulfric Stormcloak", "Gaming PC", "Aurum", "Moradin", "Lurtz", "Legolas", "Selvetarm", "Mahal", "Ilneval", "_Vandria", "Saint Cuthbert", "_Breasts", "_Mother", "Eden", "_Balam", "Enki", "_Eurynome", "Nudziarth", "Huginn and Muninn", "Jack", "Shiro", "Tenebrous", "_Paimon", "Dahlver-Nar", "potion of urine", "Tal Rascha", "China", "General Fai", "Terrans", "Kormu", "_Demeter", "Tartarica", "_Minerva", "Static", "Jiraiya", "Nereus", "_Tenderness", "_Softness", "Toesmashing", "Bill Gates", "Albert Einstein", "Dagobert Duck", "Donkey Kong", "Mr. Spock", "the U.N.O.", "the gnome with the wand of death", "bhaak", "Elronnd", "Dudley", "stth", "muad", "Eidolos", "Boko Haram", "_Nicki Minaj", "Full Moon", "Doenerteller Versace", "Grizz", "Zombieman Brigade", "Powdery Snow", "Sol", "_Selene", "Lawful Good", "_Umbrellarina Madeline", "Jonathan Joestar", "Seveso Toxin", "Milahowalpaw", "Kanigyilak", "The Riddler", "Zeon Zum Deikun", "_Laya", "the Great Light", "Asgore Dreemurr", "the Wave Existence", "_Arle Nadja", "Amon Ra", "Fate", "Regunin", "_Mercedes", "_Ewa", "_Kumiromi of Harvest", "Yacatect of Wealth", "_Jure of Healing", "_Morodwyn", "Corellius", "Elderon", "The One Who Sees", "Onn", "Sssracht", "_Shalla", "Ka'Omsh", "Gnarl", "Order", "Fiit-Ssaaar", "Valpurus", "Legifer", "Atavus", "_Dulcis", "_Seges", "Polypiling", "Mr. Maradonna", "_Gina", "_Polyhymnia", "Tariru", "_Madeleine", "The Battlehorse", "Utu", "_Your Magical Roommate", "Heimskr", "_Margaret", "_Zoe Quinn", "Speaker Walt", "Linus Torvalds", "Wikileaks", "Grime", "Krog", "Cortege", "Macbeth", "Roger Staubach", "Bill Rizer", "_Grolla Seyfarth", "_Marie Curie", "Tax Evasion", "Neil Armstrong", "Diddy the Fail Master", "_Aung San Suu Kyi", "Jim Raynor", "Johnny", "Enki", "Cheep Cheep", "Divert", "Slim Jim", "Arihant", "_Sulis", "Indra", "Erotic Air Current Noises", "Buergerinnen und Buerger", "Arev", 
+"The Lord of the Pit", "Anti-War Movement", "_Eilistraee", "_Suzanne Collins", "Quetzalcoatl", "Leonardo", "Ehud", "Dunlain", "Mitra", "Garl Glittergold", "Yaldabaoth", "Glycocalyx", "_Rhea Oro", "Eddergud", "_Everella Shrine", "Anu", "Buddha", "Ilmater", "McDonalds", "President Kimball", "Jacob Black", "Merlin", "Tane", "_Sakuya", "Apollo", "Orome", "Thomas Alva Edison", "Solonor Thelandira", "James Bond", "Prometheus", "Earth", "Colonel Campbell", "Nintendo", "Claude Speed", "UNIX", "Sulla", "_B'loody Mary", "Jobs", "_Athena", "Air", "Bowditch", "the Light Side", "Barnum", "Lugh", "Erzulie Freda", "Hugh Hefner", "Leo Tolstoi", "Nuada", "Eluvian", "_Queen Serenity", "Shan Lai Ching", "Falis", "Donblas", "Nharlotep", "Votishal", "God the Father", "Magnum", "_Vaire", "Brahma", "Ariel", "Danzai", "the Lord", "A'En", "Democracy", "Bickney", "Mercury", "Classic Rock", "Issek", "_Cassandra", "Moori", "_Amaterasu Omikami", "Nikola Tesla", "Airyaman", "_Lady Ariane", "the Homies", "Manwe Sulimo", "Speedy Gonzales", "Blind Io", "_Olivia", "Seeker", "_Hel", "Tyr", "Larry Koopa", "Talos", "Ptah", "His Majesty", "Balder", "Andromorph", "Seraphimon", "Scorpion", "Dios", "Ceipheid", "_Tsunami", "Ladon", "_Osiris", "_Goddess", "Biron", "_Ishtar", "_Nayru", "Zephyr", "Aslan", "Bahamut", "_Princess Celestia", "_Rainbow Dash", "Ceiling Cat", "SlimKirby", "Superego", "Porphyry", "Nike", "Little Mac", "Noeda", "Dungeon Collapse", "Commissioner Hunter", "upper bull", "Acehack", "Johanna from Orleans", "Kelvin", "Bar", "Deckard Cain", "Pepin the Healer", "Sulla", "Cheibriados", "Fedhas", "Lugonu", "Okawaru", "Vehumet", "Zin", "_the Bitches", "King Somnus", "Gaia", "Khronos", "Brahma", "Pangu", "Atum", "Khepri", "Corak", "Chiyo-chichi", "Truth", "Mr. Black", "_Irina", "Ulfric Stormcloak", "Gaming PC", "Aurum", "Moradin", "Lurtz", "Legolas", "Selvetarm", "Mahal", "Ilneval", "_Vandria", "Saint Cuthbert", "_Breasts", "_Mother", "Eden", "_Balam", "Enki", "_Eurynome", "Nudziarth", "Huginn and Muninn", "Jack", "Shiro", "Tenebrous", "_Paimon", "Dahlver-Nar", "potion of urine", "Tal Rascha", "China", "General Fai", "Terrans", "Kormu", "_Demeter", "Tartarica", "_Minerva", "Static", "Jiraiya", "Nereus", "_Tenderness", "_Softness", "Toesmashing", "Bill Gates", "Albert Einstein", "Dagobert Duck", "Donkey Kong", "Mr. Spock", "the U.N.O.", "the gnome with the wand of death", "bhaak", "Elronnd", "Dudley", "stth", "muad", "Eidolos", "Boko Haram", "_Nicki Minaj", "Full Moon", "Doenerteller Versace", "Grizz", "Zombieman Brigade", "Powdery Snow", "Sol", "_Selene", "Lawful Good", "_Umbrellarina Madeline", "Jonathan Joestar", "Seveso Toxin", "Milahowalpaw", "Kanigyilak", "The Riddler", "Zeon Zum Deikun", "_Laya", "the Great Light", "Asgore Dreemurr", "the Wave Existence", "_Arle Nadja", "Amon Ra", "Fate", "Regunin", "_Mercedes", "_Ewa", "_Kumiromi of Harvest", "Yacatect of Wealth", "_Jure of Healing", "_Morodwyn", "Corellius", "Elderon", "The One Who Sees", "Onn", "Sssracht", "_Shalla", "Ka'Omsh", "Gnarl", "Order", "Fiit-Ssaaar", "Valpurus", "Legifer", "Atavus", "_Dulcis", "_Seges", "Polypiling", "Mr. Maradonna", "_Gina", "_Polyhymnia", "Tariru", "_Madeleine", "The Battlehorse", "Utu", "_Your Magical Roommate", "Heimskr", "_Margaret", "_Zoe Quinn", "Speaker Walt", "Linus Torvalds", "Wikileaks", "Grime", "Krog", "Cortege", "Macbeth", "Roger Staubach", "Bill Rizer", "_Grolla Seyfarth", "_Marie Curie", "Tax Evasion", "Neil Armstrong", "Diddy the Fail Master", "_Aung San Suu Kyi", "Jim Raynor", "Johnny", "Enki", "Cheep Cheep", "Divert", "Slim Jim", "Arihant", "_Sulis", "Indra", "Erotic Air Current Noises", "Buergerinnen und Buerger", "Arev", "_Eveline", "_the Archomentals", "Athulua", "0.54A", "_Katrin", "Birkenstock", "_Nuwa", "P-Point", 
 
 };
 
 static const char * const neutralgods[] = {
 
-"Goldblight of the Flame", "Global Freedom Council", "_Kiaransali", "_Effie Trinket", "Camaxtli", "Picasso", "Ford", "Savos Aren", "Crom", "Flandal Steelskin", "the void", "Fibrinogen", "_Liebea Luna", "Vhaeraun", "Butch DeLoria", "_Ishtar", "Jahwe", "Grumbar", "Kentucky's Fried Chicken", "Mr. House", "_Bella Swan", "Salazar Slytherin", "Tangaroa", "_Reimu", "Dionysus", "_Yavanna", "Benjamin Franklin", "Aerdrie Faenya", "Chuck Norris", "Thor", "Fire", "Deepthroat", "Microsoft", "Carl CJ Johnson", "the PDP-7", "Cicero", "_Ebony Dark'ness", "Wozniak", "Hermes", "Frost", "Peabody", "the Force", "Bailey", "_Brigit", "Marassa Jumeaux", "G-boy", "Stephen Hawking", "Dagda", "Moon", "_Angel Aphrodite", "Chih Sung-tzu", "_Marfa", "Grome", "Zugguthobal", "Raiden", "_Mother Earth", "Smith", "_Varda Elentari", "Vishnu", "Tyrael", "Milanor", "_the deep blue sea", "Dr. Oujide", "Communism", "Corridor", "_Venus", "Symphonic Metal", "Mog", "Menelaos", "King Kai", "Raijin", "Erwin Schroedinger", "Gandarewa", "Lord Stahngnir", "the Robbers", "Mandos", "Dan Naginati", "_The Lady", "Peyman", "_Osiris", "Pluto", "Odin", "Roy Koopa", "_Meridia", "Thoth", "His Holiness", "_Edda", "Technix", "_Ophanimon", "Sub-Zero", "_the Rose Bride", "_the Lord of Nightmares", "_Washu", "Namanda", "Obelisk", "Doom", "Tieg", "Filaha", "_Farore", "_Raftina", "the Emperor-beyond-the-Sea", "Io", "_the Fausticorn", "_Fluttershy", "Longcat", "Lucahjin", "Ego", "_Fanny Kemble", "Adidas", "Mister Sandman", "Soviet5lo", "Segfault Bug", "Jeweler Jublgrais", "type of ice block", "DNethack", "Queen Katharina", "Celsius", "Torr", "Qual-Kehk", "Griswold the Armorer", "Amenophis", "Beogh", "Elyvilon", "Kikubaaqudgha", "Nemelex", "Trog", "Yredelemnul", "_the Hell Brides", "_Rubiss", "Ahura Mazda", "Demiourgos", "Aeon", "Bulaing", "Kamui", "Vishvakarman", "the Dragon Pharaoh", "Neco Coneco", "Love", "Big Bear", "Max", "_Delphine", "Sony PlayStation", "Argentum", "Dumathoin", "Saruman", "_Eowyn", "Keptolo", "Holashner", "_Luthic", "Corellon", "Helm", "_Feet", "Andromalius", "Berith", "_Cosmos", "Buer", "Amon", "Andrealphus", "Fafnir", "Astaroth", "_Eve", "_Chupoclops", "Naberius", "Orthos", "scroll of bullshit", "_Blood Raven", "USA", "General Townes", "Zerg", "_Sophie", "_Hestia", "Acetica", "Apollo", "Magnet", "_Tsunade", "Neptune", "_Beautifulness", "_Squeakiness", "Shin Kick", "_Britney Spears", "Homer Simpson", "_Xena", "Jack Bauer", "_Your mom", "the Flying Spaghetti Monster", "paxed", "tungtn", "Dion Nicolaas", "the RNG", "Adeon", "speedycat7", "dograt", "The Taliban", "_Taylor Swift", "New Moon", "Fish and Chips", "Panda", "The Revenants", "Large Snowflakes", "_Terra", "Helios", "True Neutral", "_Medium Deborah", "Hirohiko Araki", "Fukoshima Radiation", "_Timalixomol", "Omeatl", "_Poison Ivy", "Degwin Sodo Zabi", "Orakio", "Lutz", "the Absolute GOD of Hyperdeath", "Emperor Cain", "_Celine Jules", "Hersifon", "Unlimited Blade Works", "Caxon", "_Misty", "Lorskel", "Opatos of Earth", "Itzpalt of Element", "Mani of Machine", "Clamgaddin", "_Ayssia", "_Anssaria", "The One Who Kills", "_Istaria", "Issrecht", "_Auroree", "Ne'Ftrr", "_Berwyn", "Balance", "Sssaass", "Loricatus", "_Silva", "Mellis", "_Cleptia", "Sophos", "Monster Polymorphing", "_Ms. Unfortunate Forest", "Gordon Freeman", "_Euterpe", "FIQ", "_Sofia", "The Wild Boar", "Kossuth", "_Your Annoying Sister", "_Suffragette", "_Anaconda", "_Brianna Wu", "Great Corner-Hard", "Bjarne Stroustrup", "Guccifer 2.0", "Dog Shit", "Winston", "Tache", "Zoness", "Peyton Manning", "Lance Bean", "Pamela & Carl Arwig", "Georg Simon Ohm", "Murder and Arson", "_Sally Ride", "Bantor the Gay Voice", "Ai Weiwei", "Hierarch Artanis", "Spike", "Enlil", "Blubber", "Oat Camper", "Milwaukee Jon", "Siddha", "_Sequana", "Soma", "Wonderful Rubbing Noises", "Buergerlnnen", "U.GUR", 
+"Goldblight of the Flame", "Global Freedom Council", "_Kiaransali", "_Effie Trinket", "Camaxtli", "Picasso", "Ford", "Savos Aren", "Crom", "Flandal Steelskin", "the void", "Fibrinogen", "_Liebea Luna", "Vhaeraun", "Butch DeLoria", "_Ishtar", "Jahwe", "Grumbar", "Kentucky's Fried Chicken", "Mr. House", "_Bella Swan", "Salazar Slytherin", "Tangaroa", "_Reimu", "Dionysus", "_Yavanna", "Benjamin Franklin", "Aerdrie Faenya", "Chuck Norris", "Thor", "Fire", "Deepthroat", "Microsoft", "Carl CJ Johnson", "the PDP-7", "Cicero", "_Ebony Dark'ness", "Wozniak", "Hermes", "Frost", "Peabody", "the Force", "Bailey", "_Brigit", "Marassa Jumeaux", "G-boy", "Stephen Hawking", "Dagda", "Moon", "_Angel Aphrodite", "Chih Sung-tzu", "_Marfa", "Grome", "Zugguthobal", "Raiden", "_Mother Earth", "Smith", "_Varda Elentari", "Vishnu", "Tyrael", "Milanor", "_the deep blue sea", "Dr. Oujide", "Communism", "Corridor", "_Venus", "Symphonic Metal", "Mog", "Menelaos", "King Kai", "Raijin", "Erwin Schroedinger", "Gandarewa", "Lord Stahngnir", "the Robbers", "Mandos", "Dan Naginati", "_The Lady", "Peyman", "_Osiris", "Pluto", "Odin", "Roy Koopa", "_Meridia", "Thoth", "His Holiness", "_Edda", "Technix", "_Ophanimon", "Sub-Zero", "_the Rose Bride", "_the Lord of Nightmares", "_Washu", "Namanda", "Obelisk", "Doom", "Tieg", "Filaha", "_Farore", "_Raftina", "the Emperor-beyond-the-Sea", "Io", "_the Fausticorn", "_Fluttershy", "Longcat", "Lucahjin", "Ego", "_Fanny Kemble", "Adidas", "Mister Sandman", "Soviet5lo", "Segfault Bug", "Jeweler Jublgrais", "type of ice block", "DNethack", "Queen Katharina", "Celsius", "Torr", "Qual-Kehk", "Griswold the Armorer", "Amenophis", "Beogh", "Elyvilon", "Kikubaaqudgha", "Nemelex", "Trog", "Yredelemnul", "_the Hell Brides", "_Rubiss", "Ahura Mazda", "Demiourgos", "Aeon", "Bulaing", "Kamui", "Vishvakarman", "the Dragon Pharaoh", "Neco Coneco", "Love", "Big Bear", "Max", "_Delphine", "Sony PlayStation", "Argentum", "Dumathoin", "Saruman", "_Eowyn", "Keptolo", "Holashner", "_Luthic", "Corellon", "Helm", "_Feet", "Andromalius", "Berith", "_Cosmos", "Buer", "Amon", "Andrealphus", "Fafnir", "Astaroth", "_Eve", "_Chupoclops", "Naberius", "Orthos", "scroll of bullshit", "_Blood Raven", "USA", "General Townes", "Zerg", "_Sophie", "_Hestia", "Acetica", "Apollo", "Magnet", "_Tsunade", "Neptune", "_Beautifulness", "_Squeakiness", "Shin Kick", "_Britney Spears", "Homer Simpson", "_Xena", "Jack Bauer", "_Your mom", "the Flying Spaghetti Monster", "paxed", "tungtn", "Dion Nicolaas", "the RNG", "Adeon", "speedycat7", "dograt", "The Taliban", "_Taylor Swift", "New Moon", "Fish and Chips", "Panda", "The Revenants", "Large Snowflakes", "_Terra", "Helios", "True Neutral", "_Medium Deborah", "Hirohiko Araki", "Fukoshima Radiation", "_Timalixomol", "Omeatl", "_Poison Ivy", "Degwin Sodo Zabi", "Orakio", "Lutz", "the Absolute GOD of Hyperdeath", "Emperor Cain", "_Celine Jules", "Hersifon", "Unlimited Blade Works", "Caxon", "_Misty", "Lorskel", "Opatos of Earth", "Itzpalt of Element", "Mani of Machine", "Clamgaddin", "_Ayssia", "_Anssaria", "The One Who Kills", "_Istaria", "Issrecht", "_Auroree", "Ne'Ftrr", "_Berwyn", "Balance", "Sssaass", "Loricatus", "_Silva", "Mellis", "_Cleptia", "Sophos", "Monster Polymorphing", "_Ms. Unfortunate Forest", "Gordon Freeman", "_Euterpe", "FIQ", "_Sofia", "The Wild Boar", "Kossuth", "_Your Annoying Sister", "_Suffragette", "_Anaconda", "_Brianna Wu", "Great Corner-Hard", "Bjarne Stroustrup", "Guccifer 2.0", "Dog Shit", "Winston", "Tache", "Zoness", "Peyton Manning", "Lance Bean", "Pamela & Carl Arwig", "Georg Simon Ohm", "Murder and Arson", "_Sally Ride", "Bantor the Gay Voice", "Ai Weiwei", "Hierarch Artanis", "Spike", "Enlil", "Blubber", "Oat Camper", "Milwaukee Jon", "Siddha", "_Sequana", "Soma", "Wonderful Rubbing Noises", "Buergerlnnen", "U.GUR", "_Elena", "Cryonax", "Bul-Kathos", "Level Change UAE", "Len-kind", "Tamaris", "Pangu", "I Have To Reload", 
 
 };
 
 static const char * const chaoticgods[] = {
 
-"Warpfire Hellspawn", "Human Rights Progression", "_Lolth", "President Snow", "Huhetotl", "Dali", "Ivins", "_Hert the Vampire", "Set", "Urdlen", "_Sophia", "_Hemophilia", "_Elenya Pure", "the black web", "Draco Malfoy", "Anshar", "Allah", "_Tymora", "Burger King", "Caesar", "Edward Cullen", "Lord Voldemort", "Whiro", "_Yukari Yakumo", "Pan", "Tulkas", "_Marilyn Monroe", "Erevan Ilesere", "Jackie Chan", "Arson", "Ash", "The Patriots", "Sony", "Tommy Vercetti", "VMS", "Catilina", "Darth Valer", "Gates", "Poseidon", "Smoke", "Rothchild", "the Dark Side", "Shaco", "Manannan Mac Lir", "Papa Legba", "Arsene Lupin", "H. P. Lovecraft", "Morrigan", "Lycanthus", "_Queen Beryl", "Huan Ti", "Falaris", "Arioch", "Gothuulbe", "Rat God", "the Satan", "Wesson", "_Nessa", "_Shiva", "Gabriel", "Daini", "the Devil", "Team Missile Bomb", "Despotism", "Lockney", "Mars", "Hardcore Punk", "Kos", "_Helen of Troy", "Vegeta", "Susanowo", "Wernher von Braun", "Daevas", "Sven Fanara", "the Motherfuckers", "Lorien", "_Kylie Lum", "Offler", "_Lady Gaga", "Seth", "Orcus", "Loki", "Morton Koopa Jr.", "Clavicus Vile", "Anhur", "The Commons", "Hagen", "Mechatron", "Cherubimon", "Kano", "End of the World", "Shabranigdo", "_Tokimi", "_Myria", "Ra", "Poltergeist", "the Mist", "Asmodeus", "_Din", "Justine", "Tash", "_Tiamat", "_Princess Luna", "_Pinkie Pie", "Basement Cat", "The Dark Id", "Id", "Amos Bronson Alcott", "Puma", "Mike Tyson", "Kerio", "Game Freeze", "Captain Future", "water puddle", "SLASH'EM Extended", "Al-Mutasim", "Fahrenheit", "Atue", "Geglash", "Farnham the Drunk", "Pyrrhus", "Ashenzari", "Dithmenos", "Jiyva", "Makhleb", "Sif Muna", "Xom", "_the Sluts with Syphilis", "Malroth", "Viracocha", "Mbombo", "Unkulunkulu", "Apsu", "Coatlique", "Tepeu", "Sheltem", "Kamineko", "Courage", "Faster-Than-All-Others", "Anton", "General Tullius", "XBox 360", "Antimony", "Abbathor", "Morgoth", "Eol", "Ghaunadaur", "Armok", "Gruumsh", "_Sehanine", "_Mask", "Sexy Butt", "_Marionette", "Ymir", "Dantalion", "_Iris", "Acererak", "Ose", "Ahazu", "_Echidna", "Miska", "Malphas", "Otias", "_Simurgh", "wand of summon sexy girl", "B-a-a-l", "Global Liberation Army", "Rodall 'Demo' Juhziz", "Protoss", "Gabnid", "_Adephagia", "Hydrocloria", "Linus", "Lightning", "Orochimaru", "Proteus", "_Disgustingness", "_Loudness", "Kick in the Nuts", "_Mother Teresa", "George W. Bush", "Super Mario", "the blue Power Ranger", "the universe", "the Invisible Pink Unicorn", "the DevTeam", "_Bluescreenofdeath", "marvin", "Tariru", "mrivan", "stenno", "DeathOnAStick", "The IS", "_Miley Cyrus", "Friday the 13th", "Fugu Globefish Sushi", "Ice Bear", "Cyberdemon MkIII Deluxe", "Blizzard", "_Luna", "_Eos", "Chaotic Evil", "_Crueltrainer Cindy", "Cars", "Mustard Gas", "Emoxivalirex", "Tleselagyila", "Two-Face", "Gihren Zabi", "Dark Force", "_the Profound Darkness", "Chara", "Deus", "_Miki Onimaru", "Mor Havoc", "Heaven's Feel", "_Jylla", "_Kendl", "Kaczynski", "_Ehekatl of Luck", "_Lulwy of Wind", "Eyth of Infidel", "Abbad-Undar", "Ni'Pregh", "_Rofl'th", "The One Who Rages", "Ssraxx", "Ussrachs", "Fnordjar", "Vagrak", "_Urglyn", "Chaos", "Fiit-Yaaar", "Mortifer", "Cruentus", "_Infuscor", "_Scabies", "_Nefas", "Self-Polymorph", "_Ms. Storm", "G-Man", "_Terpsichore", "Demo", "_Wendy", "The Dire Wolf", "Garyx", "_Your Insufferable Mother-In-Law", "Cromwell", "Aerschie-Miesie", "_Anita Sarkeesian", "Left Guenter", "Mark Zuckerberg", "Anonymous", "Fag Butt", "Cyrus", "Pillory", "_Titania", "Tom Brady", "Haggle Man", "Iris Sepperin", "Albert Einstein", "Prison Outbreak", "Yuri Gagarin", "Conker the Bad Fur Squirrel", "Vladimir Bukovsky", "_Sarah Kerrigan", "Timmy", "_Ereshkigal", "Boss Bass", "_Jeannine", "Bose Jefferson", "Acharya", "_Damona", "Ishwara", "Sexy Licking Noises", "Buerger*innen", "Khaldi", 
-
+"Warpfire Hellspawn", "Human Rights Progression", "_Lolth", "President Snow", "Huhetotl", "Dali", "Ivins", "_Hert the Vampire", "Set", "Urdlen", "_Sophia", "_Hemophilia", "_Elenya Pure", "the black web", "Draco Malfoy", "Anshar", "Allah", "_Tymora", "Burger King", "Caesar", "Edward Cullen", "Lord Voldemort", "Whiro", "_Yukari Yakumo", "Pan", "Tulkas", "_Marilyn Monroe", "Erevan Ilesere", "Jackie Chan", "Arson", "Ash", "The Patriots", "Sony", "Tommy Vercetti", "VMS", "Catilina", "Darth Valer", "Gates", "Poseidon", "Smoke", "Rothchild", "the Dark Side", "Shaco", "Manannan Mac Lir", "Papa Legba", "Arsene Lupin", "H. P. Lovecraft", "Morrigan", "Lycanthus", "_Queen Beryl", "Huan Ti", "Falaris", "Arioch", "Gothuulbe", "Rat God", "the Satan", "Wesson", "_Nessa", "_Shiva", "Gabriel", "Daini", "the Devil", "Team Missile Bomb", "Despotism", "Lockney", "Mars", "Hardcore Punk", "Kos", "_Helen of Troy", "Vegeta", "Susanowo", "Wernher von Braun", "Daevas", "Sven Fanara", "the Motherfuckers", "Lorien", "_Kylie Lum", "Offler", "_Lady Gaga", "Seth", "Orcus", "Loki", "Morton Koopa Jr.", "Clavicus Vile", "Anhur", "The Commons", "Hagen", "Mechatron", "Cherubimon", "Kano", "End of the World", "Shabranigdo", "_Tokimi", "_Myria", "Ra", "Poltergeist", "the Mist", "Asmodeus", "_Din", "Justine", "Tash", "_Tiamat", "_Princess Luna", "_Pinkie Pie", "Basement Cat", "The Dark Id", "Id", "Amos Bronson Alcott", "Puma", "Mike Tyson", "Kerio", "Game Freeze", "Captain Future", "water puddle", "SLASH'EM Extended", "Al-Mutasim", "Fahrenheit", "Atue", "Geglash", "Farnham the Drunk", "Pyrrhus", "Ashenzari", "Dithmenos", "Jiyva", "Makhleb", "Sif Muna", "Xom", "_the Sluts with Syphilis", "Malroth", "Viracocha", "Mbombo", "Unkulunkulu", "Apsu", "Coatlique", "Tepeu", "Sheltem", "Kamineko", "Courage", "Faster-Than-All-Others", "Anton", "General Tullius", "XBox 360", "Antimony", "Abbathor", "Morgoth", "Eol", "Ghaunadaur", "Armok", "Gruumsh", "_Sehanine", "_Mask", "Sexy Butt", "_Marionette", "Ymir", "Dantalion", "_Iris", "Acererak", "Ose", "Ahazu", "_Echidna", "Miska", "Malphas", "Otias", "_Simurgh", "wand of summon sexy girl", "B-a-a-l", "Global Liberation Army", "Rodall 'Demo' Juhziz", "Protoss", "Gabnid", "_Adephagia", "Hydrocloria", "Linus", "Lightning", "Orochimaru", "Proteus", "_Disgustingness", "_Loudness", "Kick in the Nuts", "_Mother Teresa", "George W. Bush", "Super Mario", "the blue Power Ranger", "the universe", "the Invisible Pink Unicorn", "the DevTeam", "_Bluescreenofdeath", "marvin", "Tariru", "mrivan", "stenno", "DeathOnAStick", "The IS", "_Miley Cyrus", "Friday the 13th", "Fugu Globefish Sushi", "Ice Bear", "Cyberdemon MkIII Deluxe", "Blizzard", "_Luna", "_Eos", "Chaotic Evil", "_Crueltrainer Cindy", "Cars", "Mustard Gas", "Emoxivalirex", "Tleselagyila", "Two-Face", "Gihren Zabi", "Dark Force", "_the Profound Darkness", "Chara", "Deus", "_Miki Onimaru", "Mor Havoc", "Heaven's Feel", "_Jylla", "_Kendl", "Kaczynski", "_Ehekatl of Luck", "_Lulwy of Wind", "Eyth of Infidel", "Abbad-Undar", "Ni'Pregh", "_Rofl'th", "The One Who Rages", "Ssraxx", "Ussrachs", "Fnordjar", "Vagrak", "_Urglyn", "Chaos", "Fiit-Yaaar", "Mortifer", "Cruentus", "_Infuscor", "_Scabies", "_Nefas", "Self-Polymorph", "_Ms. Storm", "G-Man", "_Terpsichore", "Demo", "_Wendy", "The Dire Wolf", "Garyx", "_Your Insufferable Mother-In-Law", "Cromwell", "Aerschie-Miesie", "_Anita Sarkeesian", "Left Guenter", "Mark Zuckerberg", "Anonymous", "Fag Butt", "Cyrus", "Pillory", "_Titania", "Tom Brady", "Haggle Man", "Iris Sepperin", "Albert Einstein", "Prison Outbreak", "Yuri Gagarin", "Conker the Bad Fur Squirrel", "Vladimir Bukovsky", "_Sarah Kerrigan", "Timmy", "_Ereshkigal", "Boss Bass", "_Jeannine", "Bose Jefferson", "Acharya", "_Damona", "Ishwara", "Sexy Licking Noises", "Buerger*innen", "Khaldi", "_Marlen", "_the Elder Elemental", "Rathma", "Reset Button Without A Confirmation", "Coffin Nail", "Peter Kaiser", "Fuxi", "Upper Failure Kornop", 
 
 };
 
@@ -8876,18 +9169,18 @@ u_init()
 
 	u.shaperoomchance = (rnd(15) + 3);	/* chance of irregular rooms */
 
-	u.ungenocidable = rnd(S_WORM_TAIL);
+	u.ungenocidable = randomgoodmclass(TRUE);
 
-	if (!rn2(3)) u.speedymonster = rnd(S_WORM_TAIL);
-	if (!rn2(20)) u.musemonster = rnd(S_WORM_TAIL);
+	if (!rn2(3)) u.speedymonster = randomgoodmclass(TRUE);
+	if (!rn2(20)) u.musemonster = randomgoodmclass(TRUE);
 
 	u.alwaysinvisible = 0;
-	if (!rn2(20)) u.alwaysinvisible = rnd(S_WORM_TAIL);
+	if (!rn2(20)) u.alwaysinvisible = randomgoodmclass(TRUE);
 	u.alwayshidden = 0;
-	if (!rn2(500)) u.alwayshidden = rnd(S_WORM_TAIL);
+	if (!rn2(500)) u.alwayshidden = randomgoodmclass(TRUE);
 
 	if (!rn2(2)) {
-		u.frequentmonster = rnd(S_WORM_TAIL - 1);
+		u.frequentmonster = randomgoodmclass(FALSE);
 		u.freqmonsterbonus = rne(4);
 		if (!rn2(5)) u.freqmonsterbonus += rne(3);
 		if (!rn2(3)) u.freqmonsterbonus *= 2;
@@ -8931,7 +9224,7 @@ u_init()
 
 	register int traitamount = rnd(10); /* pick an # of monster traits that are more common --Amy */
 
-	u.frequenttrait1 = rnd(376); /* same as monstercolor function */
+	u.frequenttrait1 = rnd(379); /* same as monstercolor function */
 	u.freqtraitbonus1 = rne(4);
 	if (!rn2(5)) u.freqtraitbonus1 += rne(3);
 	if (!rn2(3)) u.freqtraitbonus1 *= 2;
@@ -8970,7 +9263,7 @@ u_init()
 
 	if (traitamount >= 2) {
 
-		u.frequenttrait2 = rnd(376);
+		u.frequenttrait2 = rnd(379);
 		u.freqtraitbonus2 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus2 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus2 *= 2;
@@ -8992,7 +9285,7 @@ u_init()
 
 	if (traitamount >= 3) {
 
-		u.frequenttrait3 = rnd(376);
+		u.frequenttrait3 = rnd(379);
 		u.freqtraitbonus3 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus3 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus3 *= 2;
@@ -9014,7 +9307,7 @@ u_init()
 
 	if (traitamount >= 4) {
 
-		u.frequenttrait4 = rnd(376);
+		u.frequenttrait4 = rnd(379);
 		u.freqtraitbonus4 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus4 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus4 *= 2;
@@ -9036,7 +9329,7 @@ u_init()
 
 	if (traitamount >= 5) {
 
-		u.frequenttrait5 = rnd(376);
+		u.frequenttrait5 = rnd(379);
 		u.freqtraitbonus5 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus5 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus5 *= 2;
@@ -9058,7 +9351,7 @@ u_init()
 
 	if (traitamount >= 6) {
 
-		u.frequenttrait6 = rnd(376);
+		u.frequenttrait6 = rnd(379);
 		u.freqtraitbonus6 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus6 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus6 *= 2;
@@ -9080,7 +9373,7 @@ u_init()
 
 	if (traitamount >= 7) {
 
-		u.frequenttrait7 = rnd(376);
+		u.frequenttrait7 = rnd(379);
 		u.freqtraitbonus7 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus7 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus7 *= 2;
@@ -9102,7 +9395,7 @@ u_init()
 
 	if (traitamount >= 8) {
 
-		u.frequenttrait8 = rnd(376);
+		u.frequenttrait8 = rnd(379);
 		u.freqtraitbonus8 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus8 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus8 *= 2;
@@ -9124,7 +9417,7 @@ u_init()
 
 	if (traitamount >= 9) {
 
-		u.frequenttrait9 = rnd(376);
+		u.frequenttrait9 = rnd(379);
 		u.freqtraitbonus9 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus9 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus9 *= 2;
@@ -9146,7 +9439,7 @@ u_init()
 
 	if (traitamount >= 10) {
 
-		u.frequenttrait10 = rnd(376);
+		u.frequenttrait10 = rnd(379);
 		u.freqtraitbonus10 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus10 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus10 *= 2;
@@ -9655,7 +9948,7 @@ u_init()
 	u.femauspices28 = rnd(9);
 	u.femauspices30 = rnd(10);
 
-	u.feminizeffect = rnd(31); /* amount of feminism trap effects; keyword: "marlena" */
+	u.feminizeffect = rnd(44); /* amount of feminism trap effects; keyword: "marlena" */
 
 	u.sjwL1E1 = rnd(235); /* timerun and stuff */
 	u.sjwL2E1 = rnd(235);
@@ -10579,6 +10872,10 @@ u_init()
 	else if (u.monstertimefinish % 3 == 0) u.eeveelution = PM_FLAREON;
 	else u.eeveelution = PM_VAPOREON;
 
+	u.greencrossopen = FALSE; /* initialized at game start only */
+
+	u.greencrosschance = rnd(20);
+
 	u.untrainableskill = 0;
 	u.halfspeedskill = 0;
 	u.fifthspeedskill = 0;
@@ -10594,6 +10891,8 @@ u_init()
 	u.lavtrainingskill = 0;
 	u.lavtrainingtimer = 0;
 	u.slowtrainingskill = 0;
+
+	u.hiddenpowerskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
 
 	if (!rn2(2)) u.untrainableskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
 	if (!rn2(2)) u.halfspeedskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
@@ -10717,6 +11016,7 @@ u_init()
 
 	u.wonderlandescape = 0;
 	u.zapemescape = 0;
+	u.preversionescape = 0;
 
 	u.felidlives = 9;
 
@@ -10724,18 +11024,23 @@ u_init()
 
 	u.dungeongrowthhack = 0;
 
+	rivalrolerestore();
+
 	u.katitrapocc = 0;
+	u.singtrapocc = 0;
 
 	u.cellargravate = 0;
 
 	u.walscholarpass = 0;
 	u.symbiotedmghack = FALSE;
 
+	u.dirtifiedexcalibur = FALSE;
 	u.pervertsex = 0;
 	u.pervertpray = 0;
 	u.mushroompoles = 0;
 	u.grenadoninlauncher = 0;
 	u.nataljetrapturns = 0;
+	u.inasuppression = 0;
 	u.conclusiocount = 0;
 	u.bucskill = 0;
 	u.enchantrecskill = 0;
@@ -10796,6 +11101,9 @@ u_init()
 	u.bizarrotries = 0;
 	u.comboactive = 0;
 
+	u.dancercombostrike = 0;
+	u.dancercomboactive = 0;
+
 	u.steedhitchance = 25;
 	u.symbioteaggressivity = 25;
 
@@ -10815,6 +11123,10 @@ u_init()
 	u.urmaxlvlN = 1; /* will go up whenever any player levels up */
 	u.urmaxlvlUP = 1; /* will go up whenever any player levels up */
 	u.xtralevelmult = 1; /* will go up if you level up from EXP points while already XL30 */
+
+	/* sanity check for the gods --Amy */
+	if (SIZE(lawfulgods) != SIZE(neutralgods)) impossible("ERROR! lawful and neutral gods arrays do not match (%d, %d)", SIZE(lawfulgods), SIZE(neutralgods));
+	if (SIZE(lawfulgods) != SIZE(chaoticgods)) impossible("ERROR! lawful and chaotic gods arrays do not match (%d, %d)", SIZE(lawfulgods), SIZE(chaoticgods));
 
 	u.uhereticgodinit = 0; /* for heretic race */
 	if (isheretic) {
@@ -10891,9 +11203,7 @@ u_init()
 	 *  out with a night vision range of 1 and their xray range disabled.
 	 */
 	u.nv_range   =  1;
-	u.xray_range = -1;
-	if (Race_if(PM_ETHEREALOID)) u.xray_range = 3;
-	if (Race_if(PM_INCORPOREALOID)) u.xray_range = 3;
+	u.xray_range = -1; /* set in allmain.c if applicable --Amy */
 	u.artifactprotection = 0;
 	u.fumbleduration = 0;
 	u.antimagicshell = 0;
@@ -11932,6 +12242,14 @@ u_init()
 		knows_class(ARMOR_CLASS);
 		skill_init(Skill_B);
 		break;
+	case PM_NOOB_MODE_BARB:
+		if (rn2(100) >= 50) {   /* see Elf comment */
+		    NoobModeBarb[N_MAJOR].trotyp = BATTLE_AXE;
+		    NoobModeBarb[N_MINOR].trotyp = SHORT_SWORD;
+		}
+		ini_inv(NoobModeBarb);
+		skill_init(Skill_Noo);
+		break;
 	case PM_BINDER:
 		ini_inv(Binder);
 		skill_init(Skill_Bin);
@@ -12408,6 +12726,20 @@ u_init()
 		knows_class(ARMOR_CLASS);
 		skill_init(Skill_Mon);
 		break;
+
+	case PM_HALF_BAKED:
+		switch (rn2(90) / 30) {
+		case 0: HalfBaked[HBA_BOOK].trotyp = SPE_HEALING; break;
+		case 1: HalfBaked[HBA_BOOK].trotyp = SPE_PROTECTION; break;
+		case 2: HalfBaked[HBA_BOOK].trotyp = SPE_SLEEP; break;
+		}
+		ini_inv(HalfBaked);
+		if(!rn2(5)) ini_inv(Magicmarker);
+		else if(!rn2(10)) ini_inv(Lamp);
+		knows_class(ARMOR_CLASS);
+		skill_init(Skill_Hba);
+		break;
+
 	case PM_SAIYAN:
 		ini_inv(Saiyan);
 		skill_init(Skill_Sai);
@@ -13284,6 +13616,36 @@ u_init()
 		skill_init(Skill_Gen);
 		break;
 
+	case PM_BUTT_LOVER:
+		ini_inv(ButtLover);
+		skill_init(Skill_But);
+		break;
+
+	case PM_DANCER:
+		ini_inv(Dancer);
+		skill_init(Skill_Dan);
+		break;
+
+	case PM_DIABLIST:
+		ini_inv(Diablist);
+		skill_init(Skill_Dia);
+		break;
+
+	case PM_PREVERSIONER:
+		ini_inv(Preversioner);
+		skill_init(Skill_Pre);
+		break;
+
+	case PM_SECRET_ADVICE_MEMBER:
+		ini_inv(SecretAdviceMember);
+		skill_init(Skill_Sec);
+		break;
+
+	case PM_SHOE_FETISHIST:
+		ini_inv(ShoeFetishist);
+		skill_init(Skill_Sho);
+		break;
+
 	case PM_UNDEAD_SLAYER:
 		switch (rn2(100) / 25) {
 		    case 0:	/* Pistol and silver bullets */
@@ -13547,6 +13909,10 @@ u_init()
 		skill_init(Skill_B);
 		break;
 
+	case PM_NOOB_MODE_BARB:
+		skill_init(Skill_Noo);
+		break;
+
 	case PM_BINDER:
 		skill_init(Skill_Bin);
 		break;
@@ -13806,6 +14172,10 @@ u_init()
 
 	case PM_MONK:
 		skill_init(Skill_Mon);
+		break;
+
+	case PM_HALF_BAKED:
+		skill_init(Skill_Hba);
 		break;
 
 	case PM_SAIYAN:
@@ -14129,6 +14499,30 @@ u_init()
 		skill_init(Skill_Gen);
 		break;
 
+	case PM_BUTT_LOVER:
+		skill_init(Skill_But);
+		break;
+
+	case PM_DANCER:
+		skill_init(Skill_Dan);
+		break;
+
+	case PM_DIABLIST:
+		skill_init(Skill_Dia);
+		break;
+
+	case PM_PREVERSIONER:
+		skill_init(Skill_Pre);
+		break;
+
+	case PM_SECRET_ADVICE_MEMBER:
+		skill_init(Skill_Sec);
+		break;
+
+	case PM_SHOE_FETISHIST:
+		skill_init(Skill_Sho);
+		break;
+
 	case PM_TOURIST:
 		skill_init(Skill_T);
 		break;
@@ -14180,7 +14574,7 @@ u_init()
 
 	if (!isnullrace) { /* randomizer only */
 
-	switch (rnd(157)) {
+	switch (rnd(165)) {
 	case 1:
 		switch (rnd(5)) {   
 		    case 1: Archeologist[A_BOOK].trotyp = SPE_DETECT_FOOD; break;
@@ -15654,6 +16048,50 @@ u_init()
 
 	case 157:
 		ini_inv(Genderstarist);
+		break;
+
+	case 158:
+		ini_inv(ButtLover);
+		break;
+
+	case 159:
+		ini_inv(Dancer);
+		break;
+
+	case 160:
+		ini_inv(Diablist);
+		break;
+
+	case 161:
+		ini_inv(Preversioner);
+		break;
+
+	case 162:
+		ini_inv(SecretAdviceMember);
+		break;
+
+	case 163:
+		ini_inv(ShoeFetishist);
+		break;
+
+	case 164:
+		switch (rn2(90) / 30) {
+		case 0: HalfBaked[HBA_BOOK].trotyp = SPE_HEALING; break;
+		case 1: HalfBaked[HBA_BOOK].trotyp = SPE_PROTECTION; break;
+		case 2: HalfBaked[HBA_BOOK].trotyp = SPE_SLEEP; break;
+		}
+		ini_inv(HalfBaked);
+		if(!rn2(5)) ini_inv(Magicmarker);
+		else if(!rn2(10)) ini_inv(Lamp);
+		knows_class(ARMOR_CLASS);
+		break;
+
+	case 165:
+		if (rn2(100) >= 50) {   /* see Elf comment */
+		    NoobModeBarb[N_MAJOR].trotyp = BATTLE_AXE;
+		    NoobModeBarb[N_MINOR].trotyp = SHORT_SWORD;
+		}
+		ini_inv(NoobModeBarb);
 		break;
 
 	default:	/* impossible */
@@ -15812,7 +16250,7 @@ u_init()
 
 	if (Race_if(PM_BASTARD)) {
 
-	switch (rnd(157)) {
+	switch (rnd(165)) {
 	case 1:
 		switch (rnd(5)) {   
 		    case 1: Archeologist[A_BOOK].trotyp = SPE_DETECT_FOOD; break;
@@ -17281,6 +17719,50 @@ u_init()
 
 	case 157:
 		ini_inv(Genderstarist);
+		break;
+
+	case 158:
+		ini_inv(ButtLover);
+		break;
+
+	case 159:
+		ini_inv(Dancer);
+		break;
+
+	case 160:
+		ini_inv(Diablist);
+		break;
+
+	case 161:
+		ini_inv(Preversioner);
+		break;
+
+	case 162:
+		ini_inv(SecretAdviceMember);
+		break;
+
+	case 163:
+		ini_inv(ShoeFetishist);
+		break;
+
+	case 164:
+		switch (rn2(90) / 30) {
+		case 0: HalfBaked[HBA_BOOK].trotyp = SPE_HEALING; break;
+		case 1: HalfBaked[HBA_BOOK].trotyp = SPE_PROTECTION; break;
+		case 2: HalfBaked[HBA_BOOK].trotyp = SPE_SLEEP; break;
+		}
+		ini_inv(HalfBaked);
+		if(!rn2(5)) ini_inv(Magicmarker);
+		else if(!rn2(10)) ini_inv(Lamp);
+		knows_class(ARMOR_CLASS);
+		break;
+
+	case 165:
+		if (rn2(100) >= 50) {   /* see Elf comment */
+		    NoobModeBarb[N_MAJOR].trotyp = BATTLE_AXE;
+		    NoobModeBarb[N_MINOR].trotyp = SHORT_SWORD;
+		}
+		ini_inv(NoobModeBarb);
 		break;
 
 	default:	/* impossible */
@@ -17506,336 +17988,7 @@ u_init()
 
 	case PM_ANCIENT: /* random technique --Amy */
 
-		switch (rnd(176)) {
-
-			case 1: 
-			case 2: 
-			case 3: 
-				if (!tech_known(T_BERSERK)) learntech(T_BERSERK, FROMOUTSIDE, 1);
-				break;
-			case 4: 
-			case 5: 
-			case 6: 
-				if (!tech_known(T_KIII)) learntech(T_KIII, FROMOUTSIDE, 1);
-				break;
-			case 7: 
-			case 8: 
-			case 9: 
-				if (!tech_known(T_RESEARCH)) learntech(T_RESEARCH, FROMOUTSIDE, 1);
-				break;
-			case 10: 
-			case 11: 
-			case 12: 
-				if (!tech_known(T_SURGERY)) learntech(T_SURGERY, FROMOUTSIDE, 1);
-				break;
-			case 13: 
-			case 14: 
-			case 15: 
-				if (!tech_known(T_REINFORCE)) learntech(T_REINFORCE, FROMOUTSIDE, 1);
-				break;
-			case 16: 
-			case 17:
-			case 18: 
-				if (!tech_known(T_FLURRY)) learntech(T_FLURRY, FROMOUTSIDE, 1);
-				break;
-			case 19: 
-			case 20: 
-			case 21: 
-				if (!tech_known(T_PRACTICE)) learntech(T_PRACTICE, FROMOUTSIDE, 1);
-				break;
-			case 22: 
-			case 23: 
-			case 24: 
-				if (!tech_known(T_EVISCERATE)) learntech(T_EVISCERATE, FROMOUTSIDE, 1);
-				break;
-			case 25: 
-			case 26: 
-			case 27: 
-				if (!tech_known(T_HEAL_HANDS)) learntech(T_HEAL_HANDS, FROMOUTSIDE, 1);
-				break;
-			case 28: 
-			case 29: 
-			case 30: 
-				if (!tech_known(T_CALM_STEED)) learntech(T_CALM_STEED, FROMOUTSIDE, 1);
-				break;
-			case 31: 
-			case 32: 
-			case 33: 
-				if (!tech_known(T_TURN_UNDEAD)) learntech(T_TURN_UNDEAD, FROMOUTSIDE, 1);
-				break;
-			case 34: 
-			case 35: 
-			case 36: 
-				if (!tech_known(T_VANISH)) learntech(T_VANISH, FROMOUTSIDE, 1);
-				break;
-			case 37: 
-			case 38: 
-			case 39: 
-				if (!tech_known(T_CUTTHROAT)) learntech(T_CUTTHROAT, FROMOUTSIDE, 1);
-				break;
-			case 40: 
-			case 41: 
-				if (!tech_known(T_BLESSING)) learntech(T_BLESSING, FROMOUTSIDE, 1);
-				break;
-			case 42: 
-			case 43: 
-			case 44: 
-				if (!tech_known(T_E_FIST)) learntech(T_E_FIST, FROMOUTSIDE, 1);
-				break;
-			case 45: 
-			case 46: 
-			case 47: 
-				if (!tech_known(T_PRIMAL_ROAR)) learntech(T_PRIMAL_ROAR, FROMOUTSIDE, 1);
-				break;
-			case 48: 
-			case 49: 
-				if (!tech_known(T_LIQUID_LEAP)) learntech(T_LIQUID_LEAP, FROMOUTSIDE, 1);
-				break;
-			case 50: 
-			case 51: 
-			case 52: 
-				if (!tech_known(T_CRIT_STRIKE)) learntech(T_CRIT_STRIKE, FROMOUTSIDE, 1);
-				break;
-			case 53: 
-			case 54: 
-			case 55: 
-				if (!tech_known(T_SIGIL_CONTROL)) learntech(T_SIGIL_CONTROL, FROMOUTSIDE, 1);
-				break;
-			case 56: 
-			case 57: 
-			case 58: 
-				if (!tech_known(T_SIGIL_TEMPEST)) learntech(T_SIGIL_TEMPEST, FROMOUTSIDE, 1);
-				break;
-			case 59: 
-			case 60: 
-			case 61: 
-				if (!tech_known(T_SIGIL_DISCHARGE)) learntech(T_SIGIL_DISCHARGE, FROMOUTSIDE, 1);
-				break;
-			case 62: 
-			case 63: 
-			case 64: 
-				if (!tech_known(T_RAISE_ZOMBIES)) learntech(T_RAISE_ZOMBIES, FROMOUTSIDE, 1);
-				break;
-			case 65: 
-				if (!tech_known(T_REVIVE)) learntech(T_REVIVE, FROMOUTSIDE, 1);
-				break;
-			case 66: 
-			case 67: 
-			case 68: 
-				if (!tech_known(T_WARD_FIRE)) learntech(T_WARD_FIRE, FROMOUTSIDE, 1);
-				break;
-			case 69: 
-			case 70: 
-			case 71: 
-				if (!tech_known(T_WARD_COLD)) learntech(T_WARD_COLD, FROMOUTSIDE, 1);
-				break;
-			case 72: 
-			case 73: 
-			case 74: 
-				if (!tech_known(T_WARD_ELEC)) learntech(T_WARD_ELEC, FROMOUTSIDE, 1);
-				break;
-			case 75: 
-			case 76: 
-			case 77: 
-				if (!tech_known(T_TINKER)) learntech(T_TINKER, FROMOUTSIDE, 1);
-				break;
-			case 78: 
-			case 79: 
-			case 80: 
-				if (!tech_known(T_RAGE)) learntech(T_RAGE, FROMOUTSIDE, 1);
-				break;
-			case 81: 
-			case 82: 
-			case 83: 
-				if (!tech_known(T_BLINK)) learntech(T_BLINK, FROMOUTSIDE, 1);
-				break;
-			case 84: 
-			case 85: 
-			case 86: 
-				if (!tech_known(T_CHI_STRIKE)) learntech(T_CHI_STRIKE, FROMOUTSIDE, 1);
-				break;
-			case 87: 
-			case 88: 
-			case 89: 
-				if (!tech_known(T_DRAW_ENERGY)) learntech(T_DRAW_ENERGY, FROMOUTSIDE, 1);
-				break;
-			case 90: 
-			case 91: 
-			case 92: 
-				if (!tech_known(T_CHI_HEALING)) learntech(T_CHI_HEALING, FROMOUTSIDE, 1);
-				break;
-			case 93: 
-			case 94: 
-			case 95: 
-				if (!tech_known(T_DAZZLE)) learntech(T_DAZZLE, FROMOUTSIDE, 1);
-				break;
-			case 96: 
-			case 97: 
-			case 98: 
-				if (!tech_known(T_BLITZ)) learntech(T_BLITZ, FROMOUTSIDE, 1);
-				break;
-			case 99: 
-			case 100: 
-			case 101: 
-				if (!tech_known(T_PUMMEL)) learntech(T_PUMMEL, FROMOUTSIDE, 1);
-				break;
-			case 102: 
-			case 103: 
-			case 104: 
-				if (!tech_known(T_G_SLAM)) learntech(T_G_SLAM, FROMOUTSIDE, 1);
-				break;
-			case 105: 
-			case 106: 
-			case 107: 
-				if (!tech_known(T_DASH)) learntech(T_DASH, FROMOUTSIDE, 1);
-				break;
-			case 108: 
-			case 109: 
-			case 110: 
-				if (!tech_known(T_POWER_SURGE)) learntech(T_POWER_SURGE, FROMOUTSIDE, 1);
-				break;
-			case 111: 
-			case 112: 
-			case 113: 
-				if (!tech_known(T_SPIRIT_BOMB)) learntech(T_SPIRIT_BOMB, FROMOUTSIDE, 1);
-				break;
-			case 114: 
-			case 115: 
-			case 116: 
-				if (!tech_known(T_DRAW_BLOOD)) learntech(T_DRAW_BLOOD, FROMOUTSIDE, 1);
-				break;
-			case 117: 
-				if (!tech_known(T_WORLD_FALL)) learntech(T_WORLD_FALL, FROMOUTSIDE, 1);
-				break;
-			case 118: 
-			case 119: 
-			case 120: 
-				if (!tech_known(T_CREATE_AMMO)) learntech(T_CREATE_AMMO, FROMOUTSIDE, 1);
-				break;
-			case 121: 
-			case 122: 
-			case 123: 
-				if (!tech_known(T_POKE_BALL)) learntech(T_POKE_BALL, FROMOUTSIDE, 1);
-				break;
-			case 124: 
-			case 125: 
-			case 126: 
-				if (!tech_known(T_ATTIRE_CHARM)) learntech(T_ATTIRE_CHARM, FROMOUTSIDE, 1);
-				break;
-			case 127: 
-			case 128: 
-			case 129: 
-				if (!tech_known(T_SUMMON_TEAM_ANT)) learntech(T_SUMMON_TEAM_ANT, FROMOUTSIDE, 1);
-				break;
-			case 130: 
-			case 131: 
-			case 132: 
-				if (!tech_known(T_JEDI_JUMP)) learntech(T_JEDI_JUMP, FROMOUTSIDE, 1);
-				break;
-			case 133: 
-			case 134: 
-			case 135: 
-				if (!tech_known(T_CHARGE_SABER)) learntech(T_CHARGE_SABER, FROMOUTSIDE, 1);
-				break;
-			case 136: 
-			case 137: 
-			case 138: 
-				if (!tech_known(T_TELEKINESIS)) learntech(T_TELEKINESIS, FROMOUTSIDE, 1);
-				break;
-			case 139: 
-				if (!tech_known(T_EGG_BOMB)) learntech(T_EGG_BOMB, FROMOUTSIDE, 1);
-				break;
-			case 140: 
-			case 141: 
-			case 142: 
-				if (!tech_known(T_BOOZE)) learntech(T_BOOZE, FROMOUTSIDE, 1);
-				break;
-			case 143: 
-			case 144: 
-			case 145: 
-				if (!tech_known(T_IRON_SKIN)) learntech(T_IRON_SKIN, FROMOUTSIDE, 1);
-				break;
-			case 146: 
-				if (!tech_known(T_POLYFORM)) learntech(T_POLYFORM, FROMOUTSIDE, 1);
-				break;
-			case 147: 
-			case 148: 
-			case 149: 
-				if (!tech_known(T_CONCENTRATING)) learntech(T_CONCENTRATING, FROMOUTSIDE, 1);
-				break;
-			case 150: 
-				if (!tech_known(T_SUMMON_PET)) learntech(T_SUMMON_PET, FROMOUTSIDE, 1);
-				break;
-			case 151: 
-			case 152: 
-				if (!tech_known(T_DOUBLE_THROWNAGE)) learntech(T_DOUBLE_THROWNAGE, FROMOUTSIDE, 1);
-				break;
-			case 153: 
-			case 154: 
-			case 155: 
-				if (!tech_known(T_SHIELD_BASH)) learntech(T_SHIELD_BASH, FROMOUTSIDE, 1);
-				break;
-			case 156: 
-			case 157: 
-				if (!tech_known(T_RECHARGE)) learntech(T_RECHARGE, FROMOUTSIDE, 1);
-				break;
-			case 158: 
-			case 159: 
-			case 160: 
-				if (!tech_known(T_SPIRITUALITY_CHECK)) learntech(T_SPIRITUALITY_CHECK, FROMOUTSIDE, 1);
-				break;
-			case 161: 
-				if (!tech_known(T_EDDY_WIND)) learntech(T_EDDY_WIND, FROMOUTSIDE, 1);
-				break;
-			case 162: 
-				if (!tech_known(T_BLOOD_RITUAL)) learntech(T_BLOOD_RITUAL, FROMOUTSIDE, 1);
-				break;
-			case 163: 
-				if (!tech_known(T_ENT_S_POTION)) learntech(T_ENT_S_POTION, FROMOUTSIDE, 1);
-				break;
-			case 164: 
-			case 165: 
-				if (!tech_known(T_LUCKY_GAMBLE)) learntech(T_LUCKY_GAMBLE, FROMOUTSIDE, 1);
-				break;
-			case 166: 
-				if (!tech_known(T_DECONTAMINATE)) learntech(T_DECONTAMINATE, FROMOUTSIDE, 1);
-				break;
-			case 167: 
-				if (!tech_known(T_WONDERSPELL)) learntech(T_WONDERSPELL, FROMOUTSIDE, 1);
-				break;
-			case 168: 
-				if (!tech_known(T_RESET_TECHNIQUE)) learntech(T_RESET_TECHNIQUE, FROMOUTSIDE, 1);
-				break;
-			case 169: 
-				if (!tech_known(T_DIAMOND_BARRIER)) learntech(T_DIAMOND_BARRIER, FROMOUTSIDE, 1);
-				break;
-			case 170:
-				if (!tech_known(T_ZAP_EM)) learntech(T_ZAP_EM, FROMOUTSIDE, 1);
-				break;
-			case 171:
-				if (!tech_known(T_CARD_TRICK)) learntech(T_CARD_TRICK, FROMOUTSIDE, 1);
-				break;
-			case 172:
-				if (!tech_known(T_SKILLOMORPH)) learntech(T_SKILLOMORPH, FROMOUTSIDE, 1);
-				break;
-			case 173:
-				if (!tech_known(T_TERRAIN_CLEANUP)) learntech(T_TERRAIN_CLEANUP, FROMOUTSIDE, 1);
-				break;
-			case 174:
-				if (!tech_known(T_PREACHING)) learntech(T_PREACHING, FROMOUTSIDE, 1);
-				break;
-			case 175:
-				if (!tech_known(T_ON_THE_SAME_TEAM)) learntech(T_ON_THE_SAME_TEAM, FROMOUTSIDE, 1);
-				break;
-			case 176:
-				if (!tech_known(T_PERMAMORPH)) learntech(T_PERMAMORPH, FROMOUTSIDE, 1);
-				break;
-
-
-			default:
-				break;
-
-		    }
+		learnrandomregulartech();
 
 	    break;
 
@@ -17856,6 +18009,9 @@ u_init()
           ini_inv(KoboltItemB);		
           ini_inv(KoboltItemC);		
 		HSleeping = 5;
+		break;
+	case PM_SWIKNI:
+          ini_inv(SwikniItem);		
 		break;
 	case PM_LEVITATOR:
           ini_inv(LevitatorItem);		
@@ -18093,6 +18249,7 @@ u_init()
 	case PM_ZYBORG: rolebounus = rnd(30); break;
 	case PM_LUNATIC: rolebounus = rnd(30); break;
 	case PM_BLEEDER: rolebounus = rnd(30); break;
+	case PM_SECRET_ADVICE_MEMBER: rolebounus = rnd(22); break;
 	default:	rolebounus = rnd(20); break;
 
 	}
@@ -18168,6 +18325,7 @@ u_init()
 	case PM_PLAYER_GOLEM: racebounus = rnz(11); break;
 	case PM_PLAYER_MECHANIC: racebounus = rnz(12); break;
 	case PM_BULDOZGAR: racebounus = rnz(12); break;
+	case PM_SWIKNI: racebounus = rnz(13); break;
 	default:	racebounus = rnz(10); break;
 
 	}
@@ -29609,6 +29767,7 @@ int otyp;
      case PM_ARTIST:	skills = Skill_Art; break;
      case PM_AUGURER:	skills = Skill_Aug; break;
      case PM_BARBARIAN:		skills = Skill_B; break;
+     case PM_NOOB_MODE_BARB:		skills = Skill_Noo; break;
      case PM_BARD:		skills = Skill_Bard; break;
      case PM_BINDER:			skills = Skill_Bin; break;
      case PM_POLITICIAN:			skills = Skill_Pol; break;
@@ -29690,6 +29849,7 @@ int otyp;
      case PM_DOLL_MISTRESS:		skills = Skill_Dol; break;
      case PM_MAHOU_SHOUJO:		skills = Skill_Mah; break;
      case PM_MONK:		skills = Skill_Mon; break;
+     case PM_HALF_BAKED:		skills = Skill_Hba; break;
      case PM_SAIYAN:		skills = Skill_Sai; break;
      case PM_PSION:		skills = Skill_Psi; break;
 	 case PM_PIRATE:		skills = Skill_Pir; break;
@@ -29751,6 +29911,12 @@ int otyp;
      case PM_MILL_SWALLOWER:		skills = Skill_Mil; break;
      case PM_SYMBIANT:		skills = Skill_Sym; break;
      case PM_GENDERSTARIST:		skills = Skill_Gen; break;
+     case PM_BUTT_LOVER:		skills = Skill_But; break;
+     case PM_DANCER:		skills = Skill_Dan; break;
+     case PM_DIABLIST:		skills = Skill_Dia; break;
+     case PM_PREVERSIONER:		skills = Skill_Pre; break;
+     case PM_SECRET_ADVICE_MEMBER:		skills = Skill_Sec; break;
+     case PM_SHOE_FETISHIST:		skills = Skill_Sho; break;
 
      default:			skills = 0; break;	/* lint suppression */
     }
@@ -30108,6 +30274,9 @@ register struct trobj *trop;
             if (objX->otyp == FOAM_SHIRT && !issoviet ) {
                 objX->cursed = TRUE;
             }
+            if (objX->otyp == PETRIFYIUM_BRA && !issoviet ) {
+                objX->cursed = TRUE;
+            }
             if (objX->otyp == FLEECY_CORSET && !issoviet ) {
                 objX->cursed = TRUE;
             }
@@ -30142,6 +30311,9 @@ register struct trobj *trop;
                 objX->cursed = TRUE;
             }
             if (is_nastygraystone(objX) ) {
+                objX->cursed = TRUE;
+            }
+            if (is_feminismstone(objX) ) {
                 objX->cursed = TRUE;
             }
 
@@ -30316,6 +30488,9 @@ register struct trobj *trop;
             if (obj->otyp == FOAM_SHIRT && !issoviet ) {
                 obj->cursed = TRUE;
             }
+            if (obj->otyp == PETRIFYIUM_BRA && !issoviet ) {
+                obj->cursed = TRUE;
+            }
             if (obj->otyp == FLEECY_CORSET && !issoviet ) {
                 obj->cursed = TRUE;
             }
@@ -30350,6 +30525,9 @@ register struct trobj *trop;
                 obj->cursed = TRUE;
             }
             if (is_nastygraystone(obj) ) {
+                obj->cursed = TRUE;
+            }
+            if (is_feminismstone(obj) ) {
                 obj->cursed = TRUE;
             }
 
@@ -30940,23 +31118,23 @@ int realityflag;
 
 	u.shaperoomchance = (rnd(15) + 3);	/* chance of irregular rooms */
 
-	u.ungenocidable = rnd(S_WORM_TAIL);
+	u.ungenocidable = randomgoodmclass(TRUE);
 	u.speedymonster = 0;
 	u.musemonster = 0;
 
-	if (!rn2(3)) u.speedymonster = rnd(S_WORM_TAIL);
-	if (!rn2(20)) u.musemonster = rnd(S_WORM_TAIL);
+	if (!rn2(3)) u.speedymonster = randomgoodmclass(TRUE);
+	if (!rn2(20)) u.musemonster = randomgoodmclass(TRUE);
 
 	u.alwaysinvisible = 0;
-	if (!rn2(20)) u.alwaysinvisible = rnd(S_WORM_TAIL);
+	if (!rn2(20)) u.alwaysinvisible = randomgoodmclass(TRUE);
 	u.alwayshidden = 0;
-	if (!rn2(500)) u.alwayshidden = rnd(S_WORM_TAIL);
+	if (!rn2(500)) u.alwayshidden = randomgoodmclass(TRUE);
 
 	u.frequentmonster = 0;
 	u.freqmonsterbonus = 0;
 
 	if (!rn2(2)) {
-		u.frequentmonster = rnd(S_WORM_TAIL - 1);
+		u.frequentmonster = randomgoodmclass(FALSE);
 		u.freqmonsterbonus = rne(4);
 		if (!rn2(5)) u.freqmonsterbonus += rne(3);
 		if (!rn2(3)) u.freqmonsterbonus *= 2;
@@ -31001,7 +31179,7 @@ int realityflag;
 
 	register int traitamount = rnd(10); /* pick an # of monster traits that are more common --Amy */
 
-	u.frequenttrait1 = rnd(376); /* same as monstercolor function */
+	u.frequenttrait1 = rnd(379); /* same as monstercolor function */
 	u.freqtraitbonus1 = rne(4);
 	if (!rn2(5)) u.freqtraitbonus1 += rne(3);
 	if (!rn2(3)) u.freqtraitbonus1 *= 2;
@@ -31040,7 +31218,7 @@ int realityflag;
 
 	if (traitamount >= 2) {
 
-		u.frequenttrait2 = rnd(376);
+		u.frequenttrait2 = rnd(379);
 		u.freqtraitbonus2 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus2 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus2 *= 2;
@@ -31062,7 +31240,7 @@ int realityflag;
 
 	if (traitamount >= 3) {
 
-		u.frequenttrait3 = rnd(376);
+		u.frequenttrait3 = rnd(379);
 		u.freqtraitbonus3 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus3 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus3 *= 2;
@@ -31084,7 +31262,7 @@ int realityflag;
 
 	if (traitamount >= 4) {
 
-		u.frequenttrait4 = rnd(376);
+		u.frequenttrait4 = rnd(379);
 		u.freqtraitbonus4 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus4 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus4 *= 2;
@@ -31106,7 +31284,7 @@ int realityflag;
 
 	if (traitamount >= 5) {
 
-		u.frequenttrait5 = rnd(376);
+		u.frequenttrait5 = rnd(379);
 		u.freqtraitbonus5 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus5 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus5 *= 2;
@@ -31128,7 +31306,7 @@ int realityflag;
 
 	if (traitamount >= 6) {
 
-		u.frequenttrait6 = rnd(376);
+		u.frequenttrait6 = rnd(379);
 		u.freqtraitbonus6 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus6 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus6 *= 2;
@@ -31150,7 +31328,7 @@ int realityflag;
 
 	if (traitamount >= 7) {
 
-		u.frequenttrait7 = rnd(376);
+		u.frequenttrait7 = rnd(379);
 		u.freqtraitbonus7 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus7 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus7 *= 2;
@@ -31172,7 +31350,7 @@ int realityflag;
 
 	if (traitamount >= 8) {
 
-		u.frequenttrait8 = rnd(376);
+		u.frequenttrait8 = rnd(379);
 		u.freqtraitbonus8 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus8 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus8 *= 2;
@@ -31194,7 +31372,7 @@ int realityflag;
 
 	if (traitamount >= 9) {
 
-		u.frequenttrait9 = rnd(376);
+		u.frequenttrait9 = rnd(379);
 		u.freqtraitbonus9 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus9 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus9 *= 2;
@@ -31216,7 +31394,7 @@ int realityflag;
 
 	if (traitamount >= 10) {
 
-		u.frequenttrait10 = rnd(376);
+		u.frequenttrait10 = rnd(379);
 		u.freqtraitbonus10 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus10 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus10 *= 2;
@@ -31725,7 +31903,7 @@ int realityflag;
 	u.femauspices28 = rnd(9);
 	u.femauspices30 = rnd(10);
 
-	u.feminizeffect = rnd(31); /* amount of feminism trap effects; keyword: "marlena" */
+	u.feminizeffect = rnd(44); /* amount of feminism trap effects; keyword: "marlena" */
 
 	u.sjwL1E1 = rnd(235); /* timerun and stuff */
 	u.sjwL2E1 = rnd(235);
@@ -32620,6 +32798,8 @@ int realityflag;
 	else if (u.monstertimefinish % 3 == 0) u.eeveelution = PM_FLAREON;
 	else u.eeveelution = PM_VAPOREON;
 
+	u.greencrosschance = rnd(20);
+
 	u.untrainableskill = 0;
 	u.halfspeedskill = 0;
 	u.fifthspeedskill = 0;
@@ -32635,6 +32815,8 @@ int realityflag;
 	u.lavtrainingskill = 0;
 	u.lavtrainingtimer = 0;
 	u.slowtrainingskill = 0;
+
+	u.hiddenpowerskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
 
 	if (!rn2(2)) u.untrainableskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
 	if (!rn2(2)) u.halfspeedskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();

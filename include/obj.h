@@ -84,6 +84,7 @@ struct obj {
 	Bitfield(ident_bkn,1);
 	Bitfield(ident_rkn,1);
 	Bitfield(icedobject,1);	/* has the corpse been in an ice box? */
+	Bitfield(stackmarked,1);	/* has the object been marked to not merge with other objects? */
 
 	Bitfield(oeroded,2);	/* rusted/burnt weapon/armor */
 	Bitfield(oeroded2,2);	/* corroded/rotted weapon/armor */
@@ -200,14 +201,16 @@ struct obj {
 			 objects[(otmp)->otyp].oc_skill <= P_SABER)
 #define is_pole(otmp)	(((otmp)->oclass == WEAPON_CLASS || \
 			(otmp)->oclass == TOOL_CLASS) && \
-			 (objects[(otmp)->otyp].oc_skill == P_POLEARMS || \
+			 ((otmp)->otyp == CIGAR || objects[(otmp)->otyp].oc_skill == P_POLEARMS || \
 			 objects[(otmp)->otyp].oc_skill == (tech_inuse(T_GRAP_SWAP) ? P_GRINDER : P_LANCE) ))
 #define is_applypole(otmp)	(((otmp)->oclass == WEAPON_CLASS || \
 			(otmp)->oclass == TOOL_CLASS) && \
 			 (objects[(otmp)->otyp].oc_skill == P_POLEARMS || \
 			 objects[(otmp)->otyp].oc_skill == P_GRINDER || \
+			 (otmp)->otyp == CIGAR || \
 			 (otmp)->otyp == AKLYS || \
 			 (otmp)->otyp == BLOW_AKLYS || \
+			 (otmp)->otyp == REACH_TRIDENT || \
 			 (otmp)->otyp == SPINED_BALL || \
 			 (otmp)->otyp == CHAIN_AND_SICKLE || \
 			 objects[(otmp)->otyp].oc_skill == P_LANCE))
@@ -261,7 +264,7 @@ struct obj {
 			  (otmp)->oclass == CHAIN_CLASS || (otmp)->oclass == TOOL_CLASS) && \
 			 objects[(otmp)->otyp].oc_bimanual)
 
-#define is_lightsaber(otmp) (objects[(otmp)->otyp].oc_skill == P_LIGHTSABER || (otmp)->otyp == LASER_SWATTER || (otmp)->otyp == NANO_HAMMER || (otmp)->otyp == LIGHTWHIP || (otmp)->otyp == ELECTRIC_CIGARETTE)
+#define is_lightsaber(otmp) (objects[(otmp)->otyp].oc_skill == P_LIGHTSABER || (otmp)->otyp == LASER_SWATTER || (otmp)->otyp == NANO_HAMMER || (otmp)->otyp == LIGHTWHIP || (otmp)->otyp == LASERDENT || (otmp)->otyp == LASERXBOW || (otmp)->otyp == STARWARS_MACE || (otmp)->otyp == LASER_POLE || (otmp)->otyp == LASER_SWORD || (otmp)->otyp == BEAMSWORD || (otmp)->otyp == SITH_STAFF || (otmp)->otyp == ELECTRIC_CIGARETTE)
 
 #define is_firearm(otmp) \
 			((otmp)->oclass == WEAPON_CLASS && \
@@ -318,6 +321,7 @@ struct obj {
 #define is_blindfold_slot(otmp)	((otmp)->otyp == BLINDFOLD\
 				|| (otmp)->otyp == CONDOME\
 				|| (otmp)->otyp == TOWEL\
+				|| (otmp)->otyp == CLIMBING_SET\
 				|| (otmp)->otyp == SOFT_CHASTITY_BELT\
 				|| (otmp)->otyp == EYECLOSER\
 				|| (otmp)->otyp == DRAGON_EYEPATCH\
@@ -328,6 +332,7 @@ struct obj {
 #define is_blindfoldbase(o)	(o == BLINDFOLD\
 				|| o == CONDOME\
 				|| o == TOWEL\
+				|| o == CLIMBING_SET\
 				|| o == SOFT_CHASTITY_BELT\
 				|| o == EYECLOSER\
 				|| o == DRAGON_EYEPATCH\
@@ -489,6 +494,7 @@ struct obj {
 
 /* special stones */
 #define is_nastygraystone(obj)	( ((obj)->otyp >= RIGHT_MOUSE_BUTTON_STONE) && ((obj)->otyp <= NASTY_STONE) )
+#define is_feminismstone(obj)	( ((obj)->otyp >= ELIF_S_JEWEL) && ((obj)->otyp <= DORA_S_JEWEL) )
 
 #define is_graystone(obj)	((obj)->otyp == LUCKSTONE || \
 				 (obj)->otyp == LOADSTONE || \

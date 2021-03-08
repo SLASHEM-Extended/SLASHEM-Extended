@@ -110,6 +110,7 @@ static int p_type; /* (-1)-3: (-1)=really naughty, 3=really good */
 #define TROUBLE_DIMMED		(-16)
 #define TROUBLE_BLEEDING		(-17)
 #define TROUBLE_LOW_ENERGY		(-18)
+#define TROUBLE_LOW_SYMBIOTE		(-19)
 
 /* We could force rehumanize of polyselfed people, but we can't tell
    unintentional shape changes from the other kind. Oh well.
@@ -232,6 +233,8 @@ in_trouble()
 	if(HFeared) return (TROUBLE_FEARED);
         if((u.uen <= 5 || u.uen*7 <= u.uenmax) && (u.uen < u.uenmax))
         	return(TROUBLE_LOW_ENERGY);
+	if (uinsymbiosis && u.usymbiote.mhpmax < 50) return (TROUBLE_LOW_SYMBIOTE);
+	if (uinsymbiosis && (u.usymbiote.mhp <= 5 || (u.usymbiote.mhp*7 <= u.usymbiote.mhpmax))) return (TROUBLE_LOW_SYMBIOTE);
 	return(0);
 }
 
@@ -600,6 +603,20 @@ decurse:
 	    case TROUBLE_LOW_ENERGY:
 		    You_feel("revitalised.");
 		    u.uen = u.uenmax;
+		    flags.botl = 1;
+		    break;
+	    case TROUBLE_LOW_SYMBIOTE:
+		    if (!uinsymbiosis) break; /* maybe it died during prayer... */
+		    if (uinsymbiosis && u.usymbiote.mhpmax < 50) {
+			u.usymbiote.mhpmax += 8;
+			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500; /* shouldn't happen */
+			Your("symbiote seems hardier!");
+		    }
+		    if (uinsymbiosis && (u.usymbiote.mhp <= 5 || (u.usymbiote.mhp*7 <= u.usymbiote.mhpmax))) {
+			u.usymbiote.mhp = u.usymbiote.mhpmax;
+			Your("symbiote seems healthy again.");
+		    }
+
 		    flags.botl = 1;
 		    break;
 	    case TROUBLE_SADDLE:
@@ -990,12 +1007,12 @@ gcrownu()
 		    godvoice(u.ualign.type, "Use my gift wisely!");
 #ifdef LIVELOGFILE
 			char	 reportbuf[BUFSZ];
-			sprintf (reportbuf, "received %s by %s", ONAME(obj), u_gname());
+			sprintf (reportbuf, "received %s from %s", ONAME(obj), u_gname());
 			livelog_report_trophy(reportbuf);
 #endif
 		    u.ugifts++;
-		    u.ublesscnt = rnz(300 + (50 * nartifact_exist() ));
-			if (ishaxor) u.ublesscnt /= 2;
+		    if (!ishaxor) u.ublesscnt += rnz(300 + (50 * nartifact_exist() ));
+		    else u.ublesscnt += rnz(150 + (25 * nartifact_exist() ));
 		    exercise(A_WIS, TRUE);
 		    /* make sure we can use this weapon */
 			if (P_MAX_SKILL(get_obj_skill(obj, TRUE)) == P_ISRESTRICTED) {
@@ -1088,7 +1105,7 @@ gcrownu()
 				dropy(obj);
 #ifdef LIVELOGFILE
 				char	 reportbuf[BUFSZ];
-				sprintf (reportbuf, "received %s by %s", ONAME(obj), u_gname());
+				sprintf (reportbuf, "received %s from %s", ONAME(obj), u_gname());
 				livelog_report_trophy(reportbuf);
 #endif
 				u.ugifts++;
@@ -1199,7 +1216,7 @@ gcrownu()
 		    dropy(obj);
 #ifdef LIVELOGFILE
 			char	 reportbuf[BUFSZ];
-			sprintf (reportbuf, "received %s by %s", ONAME(obj), u_gname());
+			sprintf (reportbuf, "received %s from %s", ONAME(obj), u_gname());
 			livelog_report_trophy(reportbuf);
 #endif
 		    u.ugifts++;
@@ -1264,7 +1281,7 @@ gcrownu()
 		    dropy(obj);
 #ifdef LIVELOGFILE
 			char	 reportbuf[BUFSZ];
-			sprintf (reportbuf, "received %s by %s", ONAME(obj), u_gname());
+			sprintf (reportbuf, "received %s from %s", ONAME(obj), u_gname());
 			livelog_report_trophy(reportbuf);
 #endif
 		    u.ugifts++;
@@ -1634,7 +1651,7 @@ pleased(g_align)
 	}
 
 setprayertimeout:
-	if (!((uarmc && itemhasappearance(uarmc, APP_STORM_COAT)) && !rn2(2))) u.ublesscnt = rnz(ishaxor ? 175 : 350);
+	if (!((uarmc && itemhasappearance(uarmc, APP_STORM_COAT)) && !rn2(2))) u.ublesscnt += rnz(ishaxor ? 175 : 350);
 	kick_on_butt = (u.uevent.udemigod && !u.freeplaymode && u.amuletcompletelyimbued) ? 1 : 0;
 	if (u.uevent.uhand_of_elbereth) kick_on_butt++;
 	if (kick_on_butt) u.ublesscnt += kick_on_butt * rnz(ishaxor ? 500 : 1000);
@@ -1928,6 +1945,7 @@ dosacrifice()
     int pm;
     aligntyp altaralign = a_align(u.ux,u.uy);
     struct monst *orac = NULL;
+    boolean cangetdirge = FALSE;
 
     /* KMH -- offerings to Oracle */
     /* Amy edit: you stupid head, why did you make this take precedence over standing on an altar */
@@ -2044,6 +2062,9 @@ dosacrifice()
 		value = eaten_stat(value, otmp);
 
 	/* fix for new races since they're MH_HUMAN but not actually supposed to count as same race --Amy */
+
+	if (your_race(ptr)) cangetdirge = TRUE;
+	else cangetdirge = FALSE;
 
 	if (your_race(ptr) && !canofferownrace()) {
 	    if (is_demon(youmonst.data) || Race_if(PM_HUMAN_WEREWOLF) || Race_if(PM_AK_THIEF_IS_DEAD_) || Role_if(PM_LUNATIC)) {
@@ -2226,6 +2247,23 @@ dosacrifice()
 		} else value += 3;
 	}
     } /* corpse */
+
+	if (cangetdirge && u.ualign.type == A_CHAOTIC && Role_if(PM_KNIGHT) && !u.ugangr && u.ualign.record > 0 && uwep && uwep->otyp == LONG_SWORD && !uwep->oartifact && !uwep->fakeartifact && !exist_artifact(LONG_SWORD, artiname(ART_DIRGE))) {
+
+		uwep = oname(uwep, artiname(ART_DIRGE));
+		if (uwep) { /* you can never be safe... --Amy */
+			curse(uwep);
+			if (uwep->spe < 10) uwep->spe++;
+			uwep->oeroded = uwep->oeroded2 = 0;
+			uwep->oerodeproof = TRUE;
+			discover_artifact(ART_DIRGE);
+			exercise(A_WIS,TRUE);
+			pline("Your sword slithers in your hand and seems to change!");
+#ifdef LIVELOGFILE
+			livelog_report_trophy("had Dirge gifted to them by the grace of a chaotic deity");
+#endif
+		}
+	}
 
     if (otmp->otyp == AMULET_OF_YENDOR) {
 	if (u.freeplaymode) {
@@ -2436,7 +2474,8 @@ dosacrifice()
 				pline("Orctown woes!");
 		    }
 
-		    u.ublesscnt = 0;  /* WAC You deserve this ... */
+		    u.ublesscnt -= 1000;  /* WAC You deserve this ... */
+		    if (u.ublesscnt < 0) u.ublesscnt = 0; /* fixed by Amy - don't make it baby easy... */
 		    exercise(A_WIS, TRUE);
 #ifdef NOARTIFACTWISH
 		    u.usacrifice += 5;
@@ -2628,12 +2667,12 @@ dosacrifice()
 		    godvoice(u.ualign.type, "Use my gift wisely!");
 #ifdef LIVELOGFILE
 			char	 reportbuf[BUFSZ];
-			sprintf (reportbuf, "received %s by %s", ONAME(otmp), u_gname());
+			sprintf (reportbuf, "received %s from %s", ONAME(otmp), u_gname());
 			livelog_report_trophy(reportbuf);
 #endif
 		    u.ugifts++;
-		    u.ublesscnt = rnz(300 + (50 * nartifacts));
-			if (ishaxor) u.ublesscnt /= 2;
+		    if (!ishaxor) u.ublesscnt += rnz(300 + (50 * nartifacts));
+		    else u.ublesscnt += rnz(150 + (25 * nartifacts));
 		    exercise(A_WIS, TRUE);
 		    /* make sure we can use this weapon */
 
@@ -2877,10 +2916,15 @@ dopray()
 #endif
 
     if (tech_inuse(T_PRAYING_SUCCESS)) {
-	    u.ublesscnt = 0;
+	    if (u.ublesscnt > 10000) u.ublesscnt -= 10000;
+	    else u.ublesscnt = 0;
 	    if (u.uluck < 0) u.uluck = 0;
-	    if (u.ualign.record <= 0) u.ualign.record = 1;
-	    u.ugangr = 0;
+	    if (u.ualign.record <= 0) {
+		if (u.ualign.record > -200) u.ualign.record = 1;
+		else u.ualign.record += 200;
+	    }
+	    if (u.ugangr > 10) u.ugangr -= 10;
+	    else u.ugangr = 0;
 	    if(p_type < 2) p_type = 3;
     }
 

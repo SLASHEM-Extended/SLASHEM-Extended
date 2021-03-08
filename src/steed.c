@@ -22,6 +22,20 @@ rider_cant_reach()
      You("aren't skilled enough to reach from %s.", y_monnam(u.usteed));
 }
 
+/* to check for your current steed's saddle, because we might be looking for a specific artifact --Amy */
+boolean
+bmwride(artid)
+int artid;
+{
+	if (!u.usteed) return FALSE;
+
+	struct obj *osaeddle = which_armor(u.usteed, W_SADDLE);
+	if ((osaeddle = which_armor(u.usteed, W_SADDLE)) && osaeddle->oartifact == artid) return TRUE;
+
+	return FALSE;
+
+}
+
 /*** Putting the saddle on ***/
 
 /* Can this monster wear a saddle? */
@@ -846,9 +860,8 @@ will_hit_steed()
 	if (u.usteed && (u.usteed->mhp < 5 || (u.usteed->mhp <= (u.usteed->mhpmax / 5) ) ) && rn2(5)) return FALSE;
 
 	if (u.usteed) {
-		struct obj *osaeddle = which_armor(u.usteed, W_SADDLE);
 
-		if ((osaeddle = which_armor(u.usteed, W_SADDLE)) && osaeddle->oartifact == ART_NO_DAMAGE) return FALSE;
+		if (bmwride(ART_NO_DAMAGE)) return FALSE;
 
 	}
 
@@ -861,9 +874,8 @@ boolean
 flysaddle()
 {
 	if (u.usteed) {
-		struct obj *osaeddle = which_armor(u.usteed, W_SADDLE);
 
-		if ((osaeddle = which_armor(u.usteed, W_SADDLE)) && osaeddle->oartifact == ART_CLOWN_CAR) return TRUE;
+		if (bmwride(ART_CLOWN_CAR)) return TRUE;
 
 	}
 	return FALSE;

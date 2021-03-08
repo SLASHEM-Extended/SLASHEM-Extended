@@ -304,12 +304,14 @@
 				 ((ptr) == &mons[PM_LUMINESCENT_WARP_FUNGUS]) ? 3 : \
 				 ((ptr) == &mons[PM_LUMINESCENT_WARP_PATCH]) ? 3 : \
 				 ((ptr) == &mons[PM_BRIGHTER_SHADOW]) ? 3 : \
+				 ((ptr) == &mons[PM_SMOKING_LIBAVIUS_SPIRIT]) ? 3 : \
 				 ((ptr) == &mons[PM_FIRE_VAMPIRE])? 2 : \
 				 ((ptr) == &mons[PM_GLOWING_DRACONIAN]) ? 2 : \
 				 ((ptr) == &mons[PM_UNDERWATER_THREAT]) ? 2 : \
 				 ((ptr) == &mons[PM_FLAMING_SPHERE]) ? 1 : \
 				 ((ptr) == &mons[PM_CAVE_EXPLORER]) ? 1 : \
 				 ((ptr) == &mons[PM_TORCH_CONVERTER]) ? 1 : \
+				 ((ptr) == &mons[PM_BLORCHING_DARKBREAD_ZURTY]) ? 1 : \
 				 ((ptr) == &mons[PM_UNEXPECTED_LIGHT]) ? 1 : \
 				 ((ptr) == &mons[PM_POFFISH]) ? 1 : \
 				 ((ptr) == &mons[PM_GOBLIN_WHO_CAN_T_SEE_IN_THE_DARK]) ? 1 : \

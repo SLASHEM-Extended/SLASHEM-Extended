@@ -91,6 +91,15 @@ encodeachieveX(void)
    *  5   killed Erogenous Katia
    *  6   killed the Witch King of Angmar
    *  7   obtained the stone of magic resistance from the Deep Mines
+   *  8   completed all the DevNull dungeons
+   *  9   killed the Minotaur of the Maze
+   *  10  killed Kalwina
+   *  11  killed Stahngnir
+   *  12  killed Ariane
+   *  13  completed the Rival Quest
+   *  14  completed Minus World
+   *  15  killed Vera
+   *  16  killed Elaine
    */
 
   long r;
@@ -105,6 +114,15 @@ encodeachieveX(void)
   if(achieveX.killed_katia)         r |= 1L << 5;
   if(achieveX.killed_witchking)     r |= 1L << 6;
   if(achieveX.get_magresstone)      r |= 1L << 7;
+  if(achieveX.devnull_complete)     r |= 1L << 8;
+  if(achieveX.killed_minotaur)      r |= 1L << 9;
+  if(achieveX.killed_kalwina)       r |= 1L << 10;
+  if(achieveX.killed_stahngnir)     r |= 1L << 11;
+  if(achieveX.killed_ariane)        r |= 1L << 12;
+  if(achieveX.completed_rivalquest) r |= 1L << 13;
+  if(achieveX.completed_minusworld) r |= 1L << 14;
+  if(achieveX.killed_vera)          r |= 1L << 15;
+  if(achieveX.killed_elaine)        r |= 1L << 16;
 
   return r;
 }

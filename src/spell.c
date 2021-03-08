@@ -2147,6 +2147,15 @@ learn()
 	    return(0);
 	}
 
+	if(booktype == SPE_BLADE_ANGER) {
+		impossible("player trying to read spellbook of blade anger");
+		return 0;
+	}
+	if(booktype == SPE_BEAMSWORD) {
+		impossible("player trying to read spellbook of beamsword");
+		return 0;
+	}
+
 	sprintf(splname, objects[booktype].oc_name_known ?
 			"\"%s\"" : "the \"%s\" spell",
 		OBJ_NAME(objects[booktype]) );
@@ -2161,6 +2170,7 @@ learn()
 			    if (!rn2(3)) u.uenmax++;
 			    u.cnd_spellbookcount++;
 			    incrnknow(i, FALSE);
+			    if (u.emynluincomplete) boostknow(i, 1000);
 				if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i, FALSE);
 				if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i, FALSE);
 			    book->spestudied++;
@@ -2221,6 +2231,7 @@ learn()
 			if (!rn2(3)) u.uenmax++;
 			u.cnd_spellbookcount++;
 			incrnknow(i, TRUE);
+			if (u.emynluincomplete) boostknow(i, 1000);
 			if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i, TRUE);
 			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i, TRUE);
 			book->spestudied++;
@@ -2390,6 +2401,11 @@ register struct obj *spellbook;
 			delay /= 100;
 			if (delay > -1) delay = -1; /* fail safe */
 
+		}
+
+		if (StrongBlind_resistance && delay < -1) {
+			delay /= 2;
+			if (delay > -1) delay = -1; /* fail safe */
 		}
 
 		/* Books are often wiser than their readers (Rus.) */
@@ -3661,6 +3677,13 @@ castanyway:
 		}
 
 	}
+	if (uwep && uwep->oartifact == ART_NEVERMAN) {
+		u.unimanturns++;
+		if (u.unimanturns >= 3) {
+			u.unimanturns = 0;
+			use_skill(P_NIMAN, 1);
+		}
+	}
 
 	if (Role_if(PM_MAHOU_SHOUJO)) { /* Casting any sort of magic causes all monsters on a level to 
       become alert of your location, due to mahou shoujo always announcing their attacks. */
@@ -4286,6 +4309,81 @@ bucchoice:
 		if(!(HTechnicality & INTRINSIC)) {
 			Your("techniques become stronger!");
 			incr_itimeout(&HTechnicality, HTechnicality ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+		} else {
+			pline("%s", nothing_happens);	/* Already have as intrinsic */
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		}
+
+		break;
+
+	case SPE_MAGIC_CONTROL:
+
+		if(!(HControlMagic & INTRINSIC)) {
+			You("feel more capable of controlling your magic!");
+			incr_itimeout(&HControlMagic, HControlMagic ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+		} else {
+			pline("%s", nothing_happens);	/* Already have as intrinsic */
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		}
+
+		break;
+
+	case SPE_ASTRAL_VIEW:
+
+		if(!(HAstral_vision & INTRINSIC)) {
+			You("can see through walls!");
+			incr_itimeout(&HAstral_vision, HAstral_vision ? 1 : (5 + spell_damage_bonus(spellid(spell)) ) );
+		} else {
+			pline("%s", nothing_happens);	/* Already have as intrinsic */
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		}
+
+		break;
+
+	case SPE_CAROTINE_INJECTION:
+
+		if (u.uhp < 6) {
+			You("don't have enough health to cast this!");
+			break;
+		}
+		if (Upolyd && u.mh < 6) {
+			You("don't have enough health to cast this!");
+			break;
+		}
+
+		pline("Ow!");
+		losehp(5, "carotine injection", KILLED_BY);
+
+		if(!(HBlind_resistance & INTRINSIC)) {
+			You("feel able to see freely!");
+			incr_itimeout(&HBlind_resistance, HBlind_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rnd(100) + spell_damage_bonus(spellid(spell))*20));
+		} else {
+			pline("%s", nothing_happens);	/* Already have as intrinsic */
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		}
+
+		break;
+
+	case SPE_DOWNER_TRIP:
+
+		u.uprops[DEAC_FEAR_RES].intrinsic += rnz(250);
+		make_feared(HFeared + rnz(250), TRUE);
+
+		if(!(HHalluc_resistance & INTRINSIC)) {
+			You("feel like you're on a bad trip that lacks fleecy colors!");
+			incr_itimeout(&HHalluc_resistance, HHalluc_resistance ? (rnd(100) + spell_damage_bonus(spellid(spell))) : (rnd(200) + spell_damage_bonus(spellid(spell))*50));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -4951,7 +5049,7 @@ addspmagain:
 				break;
 			case 6:
 
-				if ((!u.uevent.udemigod || u.freeplaymode) && !(flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) ) {
+				if ((!u.uevent.udemigod || u.freeplaymode) && !playerlevelportdisabled() ) {
 					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
 					if (!u.levelporting) {
@@ -5113,10 +5211,8 @@ addspmagain:
 
 		{
 			int wondertech = rnd(MAXTECH-1);
-			if (!tech_known(wondertech)) {
-			    	learntech(wondertech, FROMOUTSIDE, 1);
-				You("learn how to perform a new technique!");
-			} else pline("Tough luck! The technique that you would have learned happens to be one you already know.");
+		    	learntech_or_leveltech(wondertech, FROMOUTSIDE, 1);
+			You("learn how to perform a new technique!");
 
 		}
 
@@ -5494,7 +5590,7 @@ addspmagain:
 					if (!rn2(100)) randsp *= 3;
 					if (!rn2(1000)) randsp *= 5;
 					if (!rn2(10000)) randsp *= 10;
-					monstercolor = rnd(376);
+					monstercolor = rnd(379);
 
 					You_feel("that a group has arrived!");
 
@@ -7440,6 +7536,7 @@ whisperchoice:
 			     objC->otyp == SLEEPSTONE ||
 			     objC->otyp == STONE_OF_MAGIC_RESISTANCE ||
 			     is_nastygraystone(objC) ||
+			     is_feminismstone(objC) ||
 			     (objC->otyp == LEATHER_LEASH && objC->leashmon) || (objC->otyp == INKA_LEASH && objC->leashmon) ) && !stack_too_big(objC) && !rn2(5) ) {
 			    	blessorcurse(objC, 2);
 			}
@@ -8118,7 +8215,7 @@ whisperchoice:
 		else TimeStopped += rnd(3 + spell_damage_bonus(spellid(spell)) );
 		break;
 	case SPE_LEVELPORT:
-	      if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) {
+	      if (!playerlevelportdisabled()) {
 			level_tele();
 			pline("From your strain of casting such a powerful spell, the magical energy backlashes on you.");
 			badeffect();
@@ -8129,19 +8226,12 @@ whisperchoice:
 	case SPE_WARPING:
 		if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); break;}
 
-		if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
-			pline("You're unable to warp!"); break;}
+		if (playerlevelportdisabled()) { 
+			pline("You're unable to warp!");
+			break;
+		}
 
-		make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
-
-		u.cnd_banishmentcount++;
-		if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
-		else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
-
-		register int newlev = rnd(99);
-		d_level newlevel;
-		get_level(&newlevel, newlev);
-		goto_level(&newlevel, TRUE, FALSE, FALSE);
+		banishplayer();
 
 		if (rn2(2)) {
 			pline("From your strain of casting such a powerful spell, the magical energy backlashes on you.");
@@ -11641,6 +11731,7 @@ int spell;
 	}
 
 	if (issoviet) chance -= 30;
+	if (Role_if(PM_NOOB_MODE_BARB)) chance -= 50;
 
 	if (Race_if(PM_PLAYER_SKELETON)) chance -= 50;
 
@@ -11708,6 +11799,7 @@ int spell;
 	if (u.tiksrvzllatdown) chance += 10;
 	if (uarmf && uarmf->oartifact == ART_JONADAB_S_EVERYDAY_WEAR) chance += 5;
 	if (uarmf && uarmf->oartifact == ART_DON_T_FALL_INTO_THE_ABYSS) chance += 10;
+	if (uwep && uwep->oartifact == ART_BAOBHAN_MOUNTAIN) chance += 10;
 
 	/* higher spell skill should do SOMEthing --Amy */
 	skill = P_SKILL(spell_skilltype(spellid(spell)));
@@ -12470,6 +12562,7 @@ wonderspell()
 			if (spellknow(i) <= MAX_CAN_STUDY) {
 				Your("knowledge of the %s spell is keener.", splname);
 				incrnknow(i, FALSE);
+				if (u.emynluincomplete) boostknow(i, 1000);
 				if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i, FALSE);
 				if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i, FALSE);
 
@@ -12516,6 +12609,7 @@ wonderspell()
 			spl_book[i].sp_lev = objects[randomspell].oc_level;
 			spl_book[i].sp_memorize = TRUE;
 			incrnknow(i, TRUE);
+			if (u.emynluincomplete) boostknow(i, 1000);
 			if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i, TRUE);
 			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i, TRUE);
 			You("gain knowledge of the %s spell.", splname);

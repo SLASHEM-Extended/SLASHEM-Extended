@@ -841,6 +841,19 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "almut trap", C(CLR_WHITE)},	/* trap */
 	{'^', "julietta trap", C(CLR_BRIGHT_BLUE)},	/* trap */
 	{'^', "arabella trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "kristin trap", C(CLR_BLACK)},	/* trap */
+	{'^', "anna trap", C(CLR_BLACK)},	/* trap */
+	{'^', "ruea trap", C(CLR_BROWN)},	/* trap */
+	{'^', "dora trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "marike trap", C(CLR_WHITE)},	/* trap */
+	{'^', "jette trap", C(CLR_BLACK)},	/* trap */
+	{'^', "ina trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "sing trap", C(CLR_RED)},	/* trap */
+	{'^', "victoria trap", C(CLR_BROWN)},	/* trap */
+	{'^', "melissa trap", C(CLR_BLACK)},	/* trap */
+	{'^', "anita trap", C(CLR_BLACK)},	/* trap */
+	{'^', "henrietta trap", C(CLR_BROWN)},	/* trap */
+	{'^', "verena trap", C(CLR_BLACK)},	/* trap */
 
 	{'^', "timerun trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
@@ -1510,6 +1523,19 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_almut_trap),
 	g_FILLER(S_julietta_trap),
 	g_FILLER(S_arabella_trap),
+	g_FILLER(S_kristin_trap),
+	g_FILLER(S_anna_trap),
+	g_FILLER(S_ruea_trap),
+	g_FILLER(S_dora_trap),
+	g_FILLER(S_marike_trap),
+	g_FILLER(S_jette_trap),
+	g_FILLER(S_ina_trap),
+	g_FILLER(S_sing_trap),
+	g_FILLER(S_victoria_trap),
+	g_FILLER(S_melissa_trap),
+	g_FILLER(S_anita_trap),
+	g_FILLER(S_henrietta_trap),
+	g_FILLER(S_verena_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
@@ -2167,6 +2193,19 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_almut_trap),
 	g_FILLER(S_julietta_trap),
 	g_FILLER(S_arabella_trap),
+	g_FILLER(S_kristin_trap),
+	g_FILLER(S_anna_trap),
+	g_FILLER(S_ruea_trap),
+	g_FILLER(S_dora_trap),
+	g_FILLER(S_marike_trap),
+	g_FILLER(S_jette_trap),
+	g_FILLER(S_ina_trap),
+	g_FILLER(S_sing_trap),
+	g_FILLER(S_victoria_trap),
+	g_FILLER(S_melissa_trap),
+	g_FILLER(S_anita_trap),
+	g_FILLER(S_henrietta_trap),
+	g_FILLER(S_verena_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -2821,6 +2860,19 @@ static uchar wing_graphics[MAXPCHARS] = {
 	g_FILLER(S_almut_trap),
 	g_FILLER(S_julietta_trap),
 	g_FILLER(S_arabella_trap),
+	g_FILLER(S_kristin_trap),
+	g_FILLER(S_anna_trap),
+	g_FILLER(S_ruea_trap),
+	g_FILLER(S_dora_trap),
+	g_FILLER(S_marike_trap),
+	g_FILLER(S_jette_trap),
+	g_FILLER(S_ina_trap),
+	g_FILLER(S_sing_trap),
+	g_FILLER(S_victoria_trap),
+	g_FILLER(S_melissa_trap),
+	g_FILLER(S_anita_trap),
+	g_FILLER(S_henrietta_trap),
+	g_FILLER(S_verena_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -3476,6 +3528,19 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_almut_trap),
 	g_FILLER(S_julietta_trap),
 	g_FILLER(S_arabella_trap),
+	g_FILLER(S_kristin_trap),
+	g_FILLER(S_anna_trap),
+	g_FILLER(S_ruea_trap),
+	g_FILLER(S_dora_trap),
+	g_FILLER(S_marike_trap),
+	g_FILLER(S_jette_trap),
+	g_FILLER(S_ina_trap),
+	g_FILLER(S_sing_trap),
+	g_FILLER(S_victoria_trap),
+	g_FILLER(S_melissa_trap),
+	g_FILLER(S_anita_trap),
+	g_FILLER(S_henrietta_trap),
+	g_FILLER(S_verena_trap),
 
 	g_FILLER(S_timerun_trap),
 
@@ -4331,6 +4396,19 @@ boolean is_rlevel;
 	    showsyms[S_almut_trap] = 0x04;
 	    showsyms[S_julietta_trap] = 0x04;
 	    showsyms[S_arabella_trap] = 0x04;
+	    showsyms[S_kristin_trap] = 0x04;
+	    showsyms[S_anna_trap] = 0x04;
+	    showsyms[S_ruea_trap] = 0x04;
+	    showsyms[S_dora_trap] = 0x04;
+	    showsyms[S_marike_trap] = 0x04;
+	    showsyms[S_jette_trap] = 0x04;
+	    showsyms[S_ina_trap] = 0x04;
+	    showsyms[S_sing_trap] = 0x04;
+	    showsyms[S_victoria_trap] = 0x04;
+	    showsyms[S_melissa_trap] = 0x04;
+	    showsyms[S_anita_trap] = 0x04;
+	    showsyms[S_henrietta_trap] = 0x04;
+	    showsyms[S_verena_trap] = 0x04;
 
 	    showsyms[S_timerun_trap] = 0x04;
 #endif

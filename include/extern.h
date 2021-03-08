@@ -64,6 +64,7 @@ E boolean cyanspellok(int, int);
 
 /* ### artifact.c ### */
 
+E void elemental_imbue(int);
 E void init_artifacts(void);
 E void init_artifacts1(void);
 E void save_artifacts(int);
@@ -78,6 +79,7 @@ E void artifact_exists(struct obj *,const char *,BOOLEAN_P);
 E int nartifact_exist(void);
 E boolean spec_ability(struct obj *,unsigned long);
 E boolean arti_is_evil(struct obj *);
+E boolean arti_nonwishable(struct obj *);
 E boolean confers_luck(struct obj *);
 E boolean arti_reflects(struct obj *);
 E boolean restrict_name(struct obj *,const char *);
@@ -633,19 +635,30 @@ E boolean In_voiddungeon(d_level *);
 E boolean In_netherrealm(d_level *);
 E boolean In_deepmines(d_level *);
 E boolean In_angmar(d_level *);
+E boolean In_greencross(d_level *);
+E boolean In_emynluin(d_level *);
+E boolean In_minotaurmaze(d_level *);
 E boolean In_swimmingpool(d_level *);
 E boolean In_hellbathroom(d_level *);
+E boolean In_minusworld(d_level *);
 E boolean In_spacebase(d_level *);
 E boolean In_sewerplant(d_level *);
 E boolean In_gammacaves(d_level *);
 E boolean In_mainframe(d_level *);
+E boolean In_poolchallenge(d_level *);
+E boolean In_joustchallenge(d_level *);
+E boolean In_digdugchallenge(d_level *);
+E boolean In_gruechallenge(d_level *);
+E boolean In_pacmanchallenge(d_level *);
 E boolean In_subquest(d_level *);
+E boolean In_rivalquest(d_level *);
 E boolean In_bellcaves(d_level *);
 E boolean In_dod(d_level *);
 E boolean In_gehennom(d_level *);
 E boolean In_towndungeon(d_level *);
 E boolean In_spiders(d_level *);
 E boolean In_grund(d_level *);
+E boolean In_icequeen(d_level *);
 E boolean In_wyrm(d_level *);
 E boolean In_tomb(d_level *);
 E boolean In_slsea(d_level *);
@@ -653,10 +666,13 @@ E boolean In_gcavern(d_level *);
 E boolean In_frnkn(d_level *);
 E boolean In_mtemple(d_level *);
 E boolean In_restingzone(d_level *);
+E boolean playerlevelportdisabled(void);
 E branch *dungeon_branch(const char *);
 E boolean at_dgn_entrance(const char *);
 E boolean In_hell(d_level *);
 E boolean In_ZAPM(d_level *);
+E boolean In_Devnull(d_level *);
+E boolean In_lategame(d_level *);
 E boolean In_V_tower(d_level *);
 E boolean On_W_tower_level(d_level *);
 E boolean In_W_tower(int,int,d_level *);
@@ -1003,6 +1019,7 @@ E boolean have_lizard(void);
 E boolean have_loadstone(void);
 E boolean have_pokeloadstone(void);
 E boolean have_invisoloadstone(void);
+E boolean have_femityjewel(void);
 E boolean have_sleepstone(void);
 E boolean have_magicresstone(void);
 E boolean have_cursedmagicresstone(void);
@@ -1012,6 +1029,8 @@ E boolean sjwcheck(int);
 E boolean feminizecheck(int);
 E int itemactions(struct obj *,BOOLEAN_P);
 E boolean have_hungerhealer(void);
+
+E int dostackmark(void);
 
 E int numberofetheritems(void);
 E int numberofwornetheritems(void);
@@ -1296,6 +1315,19 @@ E boolean have_femtraplou(void);
 E boolean have_femtrapalmut(void);
 E boolean have_femtrapjulietta(void);
 E boolean have_femtraparabella(void);
+E boolean have_femtrapkristin(void);
+E boolean have_femtrapanna(void);
+E boolean have_femtrapruea(void);
+E boolean have_femtrapdora(void);
+E boolean have_femtrapmarike(void);
+E boolean have_femtrapjette(void);
+E boolean have_femtrapina(void);
+E boolean have_femtrapsing(void);
+E boolean have_femtrapvictoria(void);
+E boolean have_femtrapmelissa(void);
+E boolean have_femtrapanita(void);
+E boolean have_femtraphenrietta(void);
+E boolean have_femtrapverena(void);
 
 E boolean have_primecurse(void);
 
@@ -1604,6 +1636,7 @@ E int rndmonnum(void);
 E int usefulitem(void);
 E int nastymusableitem(void);
 E int makegreatitem(void);
+E int makemusableitem(void);
 E struct obj *splitobj(struct obj *,long);
 E void replace_object(struct obj *,struct obj *);
 E void bill_dummy_object(struct obj *);
@@ -2058,6 +2091,8 @@ E int find_failed_shoes(void);
 E int find_opera_pumps(void);
 E int find_wooden_clogs(void);
 E int find_regular_sneakers(void);
+E int find_exceptional_sneakers(void);
+E int find_cyan_sneakers(void);
 E int find_elite_sneakers(void);
 E int find_biker_boots(void);
 E int find_zero_drop_shoes(void);
@@ -2084,6 +2119,11 @@ E int find_weight_attachment_boots(void);
 E int find_fungal_sandals(void);
 E int find_standing_footwear(void);
 E int find_frequent_helmet(void);
+E int find_machinery_boots(void);
+E int find_christmas_child_mode_boots(void);
+E int find_sandals_with_socks(void);
+E int find_wedge_sneakers(void);
+E int find_barefoot_shoes(void);
 E void oinit(void);
 E void savenames(int,int);
 E void restnames(int);
@@ -2386,10 +2426,13 @@ E void terrainterror(void);
 E void giftartifact(void);
 E void heraldgift(void);
 E void sjwtrigger(void);
+E void buttlovertrigger(void);
 E void emerafrenzy(void);
 E boolean have_anorexia(void);
 E void uncurseoneitem(void);
 E void maybehackimplant(void);
+E boolean everythingfleecy(void);
+E void dropitemattack(void);
 
 E boolean sandprotection(void);
 E boolean shadowprotection(void);
@@ -2497,6 +2540,7 @@ E boolean is_quest_artifact(struct obj*);
 E void com_pager(int);
 E void qt_pager(int);
 E struct permonst *qt_montype(void);
+E struct permonst *qt_rival_montype(void);
 E const char *neminame(void);
 
 /* ### random.c ### */
@@ -2617,6 +2661,11 @@ E int randartamulet(void);
 E int randartimplant(void);
 E int randartwand(void);
 E int randartspellbook(void);
+E int randartpotion(void);
+E int randartscroll(void);
+E int randartball(void);
+E int randartchain(void);
+E int randartgem(void);
 E int randartmeleeweaponX(void);
 E int randartlauncherX(void);
 E int randartmissileX(void);
@@ -2632,11 +2681,21 @@ E int randartamuletX(void);
 E int randartimplantX(void);
 E int randartwandX(void);
 E int randartspellbookX(void);
+E int randartpotionX(void);
+E int randartscrollX(void);
+E int randartballX(void);
+E int randartchainX(void);
+E int randartgemX(void);
+
+E int randartbadgraystone(void);
+E int randartfeminismjewel(void);
+
 E void deacrandomintrinsic(int);
 E int goodimplanteffect(struct obj *);
 E void randomnastytrapeffect(int, int);
 E int randomgoodskill(void);
 E int randomgoodcombatskill(void);
+E int randomgoodmclass(BOOLEAN_P);
 E void getnastytrapintrinsic(void);
 E void randomfeminismtrap(int);
 
@@ -2676,6 +2735,8 @@ E void greenslimetransformation(void);
 E void bindertransformation(void);
 E void changehybridization(int);
 E void demagoguerecursioneffect(void);
+E void rivalroleinit(void);
+E void rivalrolerestore(void);
 
 /* ### rumors.c ### */
 
@@ -2819,6 +2880,14 @@ E int add_sound_mapping(const char *);
 E void play_sound_for_message(const char *);
 #endif
 E void maybegaincha(void);
+E void playermsconvert(void);
+E void playerwouwoutaunt(void);
+E void playerwhoretalk(void);
+E void playersupermantaunt(void);
+E void playerrattlebones(void);
+E void conversionsermon(void);
+E void wouwoutaunt(void);
+E void supermantaunt(void);
 
 /* ### sys/msdos/sound.c ### */
 
@@ -2909,6 +2978,7 @@ E boolean mayfalloffsteed(void);
 E boolean will_hit_steed(void);
 E boolean confsteeddir(void);
 E boolean flysaddle(void);
+E boolean bmwride(int);
 
 /* ### tech.c ### */
 
@@ -2921,6 +2991,7 @@ E void stopsingletechnique(int);
 E int tech_inuse(int);
 E void tech_timeout(void);
 E boolean tech_known(SHORT_P);
+E void learntech_or_leveltech(SHORT_P,long,int);
 E void learntech(SHORT_P,long,int);
 E int disarm_holdingtrap(struct trap *);
 E int disarm_rust_trap(struct trap *);
@@ -2933,6 +3004,11 @@ E void eviltechincrease(void);
 E int get_tech_no(int);
 E int techlevX(int);
 E void hurtmon(struct monst *,int);
+E void techdrain(void);
+E void techdrainsevere(void);
+E void techlevelup(void);
+E void techlevelspecific(int);
+E void learnrandomregulartech(void);
 
 /* ### teleport.c ### */
 
@@ -2963,6 +3039,9 @@ E int mlevel_tele_trap(struct monst *, struct trap *,BOOLEAN_P,int);
 E void rloco(struct obj *);
 E int random_teleport_level(void);
 E int random_banish_level(void);
+E d_level random_branchport_level(void);
+E void randombranchtele(void);
+E void banishplayer(void);
 E void teleX(void);
 E boolean u_teleport_mon(struct monst *,BOOLEAN_P);
 E boolean u_teleport_monB(struct monst *,BOOLEAN_P);

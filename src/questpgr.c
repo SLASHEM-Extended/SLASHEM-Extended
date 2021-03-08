@@ -456,4 +456,21 @@ qt_montype()
 	return (mkclass(urole.enemy2sym, 0));
 }
 
+struct permonst *
+qt_rival_montype()
+{
+	int qpm;
+
+	if (rn2(5)) {
+	    qpm = u.rivalenemy1num;
+	    if (qpm != NON_PM && rn2(5) && !(mvitals[qpm].mvflags & G_GENOD))
+	    	return (&mons[qpm]);
+	    return (mkclass(u.rivalenemy1sym, 0));
+	}
+	qpm = u.rivalenemy2num;
+	if (qpm != NON_PM && rn2(5) && !(mvitals[qpm].mvflags & G_GENOD))
+	    return (&mons[qpm]);
+	return (mkclass(u.rivalenemy2sym, 0));
+}
+
 /*questpgr.c*/

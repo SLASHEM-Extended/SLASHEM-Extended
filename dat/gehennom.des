@@ -13977,7 +13977,7 @@ MONSTER:'Z',"skeleton",(01,18)
 LEVEL: "school-5"
 MESSAGE: "You feel an eerie presence ..."
 
-ROOM: "ordinary", lit, random, random, (15,10)
+ROOM: "playercentral", lit, random, random, (15,10)
 NAME: "central"
 # stuff for them to use on you...
 OBJECT: '?',random,random
@@ -13999,100 +13999,7 @@ OBJECT: random,random,random
 OBJECT: random,random,random
 OBJECT: random,random,random
 OBJECT: random,random,random
-MONSTER: '@', "undead archeologist", random, hostile
-MONSTER: '@', "undead barbarian", random, hostile
-MONSTER: '@', "undead caveman", random, hostile
-MONSTER: '@', "undead cavewoman", random, hostile
-MONSTER: '@', "undead convict", random, hostile
-MONSTER: 'Z', "human zombie", random, hostile
-MONSTER: 'M', "elf mummy", random, hostile
-MONSTER: '@', "undead flame mage", random, hostile
-MONSTER: '@', "undead geek", random, hostile
-MONSTER: '@', "undead healer", random, hostile
-MONSTER: '@', "undead ice mage", random, hostile
-MONSTER: '@', "undead jedi", random, hostile
-MONSTER: '@', "undead padawan", random, hostile
-MONSTER: '@', "undead knight", random, hostile
-MONSTER: '@', "undead monk", random, hostile
-MONSTER: '@', "undead necromancer", random, hostile
-MONSTER: '@', "undead priest", random, hostile
-MONSTER: '@', "undead priestess", random, hostile
-MONSTER: '@', "undead rogue", random, hostile
-MONSTER: '@', "undead samurai", random, hostile
-MONSTER: '@', "undead tourist", random, hostile
-MONSTER: '@', "non-undead slayer", random, hostile
-MONSTER: '@', "undead valkyrie", random, hostile
-MONSTER: '@', "undead warrior", random, hostile
-MONSTER: '@', "undead wizard", random, hostile
-MONSTER: '@', "undead gangster", random, hostile
-MONSTER: '@', "undead pokemon", random, hostile
-MONSTER: '@', "undead death eater", random, hostile
-MONSTER: '@', "undead pirate", random, hostile
-MONSTER: '@', "undead nobleman", random, hostile
-MONSTER: '@', "undead noblewoman", random, hostile
-MONSTER: '@', "undead electric mage", random, hostile
-MONSTER: '@', "undead transvestite", random, hostile
-MONSTER: '@', "undead courier", random, hostile
-MONSTER: '@', "undead chevalier", random, hostile
-MONSTER: '@', "undead zyborg", random, hostile
-MONSTER: '@', "undead rocker", random, hostile
-MONSTER: '@', "undead acid mage", random, hostile
-MONSTER: '@', "undead spacewars fighter", random, hostile
-MONSTER: '@', "undead elph", random, hostile
-MONSTER: '@', "undead binder", random, hostile
-MONSTER: '@', "undead diver", random, hostile
-MONSTER: '@', "undead scientist", random, hostile
-MONSTER: '@', "undead korsair", random, hostile
-MONSTER: '@', "undead topmodel", random, hostile
-MONSTER: '@', "undead bleeder", random, hostile
-MONSTER: '@', "undead gladiator", random, hostile
-MONSTER: '@', "undead psion", random, hostile
-MONSTER: '@', "undead activistor", random, hostile
-MONSTER: '@', "undead lunatic", random, hostile
-MONSTER: '@', "undead bard", random, hostile
-MONSTER: '@', "undead drunk", random, hostile
-MONSTER: '@', "undead firefighter", random, hostile
-MONSTER: '@', "undead goff", random, hostile
-MONSTER: '@', "undead graduate", random, hostile
-MONSTER: '@', "undead locksmith", random, hostile
-MONSTER: '@', "undead musician", random, hostile
-MONSTER: '@', "undead ninja", random, hostile
-MONSTER: '@', "undead officer", random, hostile
-MONSTER: '@', "undead undertaker", random, hostile
-MONSTER: '@', "undead zookeeper", random, hostile
-MONSTER: '@', "undead amazon", random, hostile
-MONSTER: '@', "undead altmer", random, hostile
-MONSTER: '@', "undead bosmer", random, hostile
-MONSTER: '@', "undead dunmer", random, hostile
-MONSTER: '@', "undead thalmor", random, hostile
-MONSTER: '@', "undead ordinator", random, hostile
-MONSTER: '@', "undead cruel abuser", random, hostile
-MONSTER: '@', "undead saiyan", random, hostile
-MONSTER: '@', "undead politician", random, hostile
-MONSTER: '@', "undead librarian", random, hostile
-MONSTER: '@', "undead cook", random, hostile
-MONSTER: '@', "undead augurer", random, hostile
-MONSTER: '@', "undead sage", random, hostile
-MONSTER: '@', "undead gunner", random, hostile
-MONSTER: '@', "undead otaku", random, hostile
-MONSTER: '@', "undead artist", random, hostile
-MONSTER: '@', "undead gamer", random, hostile
-MONSTER: '@', "undead doll mistress", random, hostile
-MONSTER: '@', "undead feat master", random, hostile
-MONSTER: '@', "undead foxhound agent", random, hostile
-MONSTER: '@', "undead intel scribe", random, hostile
-MONSTER: '@', "undead paladin", random, hostile
-MONSTER: '@', "undead wandkeeper", random, hostile
-MONSTER: '@', "undead assassin", random, hostile
-MONSTER: '@', "undead bully", random, hostile
-MONSTER: '@', "undead supermarket cashier", random, hostile
-MONSTER: '@', "undead slave master", random, hostile
-MONSTER: '@', "undead mystic", random, hostile
-MONSTER: '@', "undead bloodseeker", random, hostile
-MONSTER: '@', "undead ladiesman", random, hostile
-MONSTER: '@', "undead jester", random, hostile
-MONSTER: '@', "undead pickpocket", random, hostile
-MONSTER: '@', "undead mahou shoujo", random, hostile
+
 ROOM: "ordinary" , random, random, random, random
 STAIR: random, up
 OBJECT: random,random,random
@@ -14985,20 +14892,20 @@ MAP
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 . ... . . ... . ... . . ... . ... . . ... . ... . . ... . ... . . ... . ... 
 .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..  
- .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. 
+ .. .. .. .. .. .. .. ..... .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. 
 ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-.... .... .... .... .... .... ......... .... .... .... .... .... .... .... .
+.... .... .... .... ......... ......... .... .... .... .... .... .... .... .
 . ... . ... . ... . ... . ... . ... H ... . ... . ... . ... . ... . ... . ..
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 ... ... ... ... ... ... ... ... ...H.H. ... ... ... ... ... ... ... ... ... 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 . ... . . ... . ... . . ... . ... . H ... . ... . . ... . ... . . ... . ... 
 .. .. .. .. .. .. .. .. .. .. .. ........ .. .. .. .. .. .. .. .. .. .. ..  
- .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. 
+ .. .. .. .. .. .. .. ..... .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. 
 ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-.... .... .... .... .... .... .... .... .... .... .... .... .... .... .... .
+.... .... .... .... ......... .... .... .... .... .... .... .... .... .... .
 . ... . ... . ... . ... . ... . ... . ... . ... . ... . ... . ... . ... . ..
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... 
@@ -17106,4 +17013,35 @@ TRAP: random, random
 TRAP: random, random
 TRAP: random, random
 TRAP: random, random
+
+MAZE: "minusw",' '
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7         
+#12345678901234567890123456789012345678901234567890123456789012345678901234567
+MAP
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+ENDMAP
+
+STAIR:random,up
+STAIR:random,down
+
+REGION:(00,00,77,18),unlit,"chaosroom",filled,true
 

@@ -151,7 +151,7 @@ STATIC_OVL int
 findrandtype()
 {
 retryrandtype:
-	switch (rnd(82)) {
+	switch (rnd(83)) {
 		case 1: return COURT;
 		case 2: return SWAMP;
 		case 3: return BEEHIVE;
@@ -237,6 +237,7 @@ retryrandtype:
 		case 80: return ILLUSIONROOM;
 		case 81: return ROBBERCAVE;
 		case 82: return SANITATIONCENTRAL;
+		case 83: return PLAYERCENTRAL;
 	}
 
 	return EMPTYNEST;
@@ -562,6 +563,7 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
 	if (/*!special && */rtype == PRISONCHAMBER) croom->colouur = CLR_WHITE;
 	if (/*!special && */rtype == NUCLEARCHAMBER) croom->colouur = CLR_ORANGE;
 	if (/*!special && */rtype == LEVELSEVENTYROOM) croom->colouur = CLR_BLACK;
+	if (/*!special && */rtype == PLAYERCENTRAL) croom->colouur = CLR_MAGENTA;
 	if (/*!special && */rtype == VARIANTROOM) croom->colouur = 20;
 	if (/*!special && */rtype == EVILROOM) croom->colouur = 21; /* magenta or bright magenta */
 	if (/*!special && */rtype == RELIGIONCENTER) croom->colouur = CLR_BLACK;
@@ -1506,7 +1508,7 @@ specdungeoninit()
 		if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
 	}
 
-	if ((isroommate || !rn2(100)) && ((depth(&u.uz) > 1 && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) || !rn2(10)) && !In_endgame(&u.uz)) {
+	if ((isroommate || !rn2(100)) && ((depth(&u.uz) > 1 && !(u.preversionmode && In_greencross(&u.uz) && (dunlev(&u.uz) == 1)) && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) || !rn2(10)) && !In_endgame(&u.uz)) {
 
 		mkroommateroom(0);
 		if (!rn2(5)) {
@@ -2016,6 +2018,7 @@ clear_level_structures()
 	level.flags.has_prisonchamber = 0;
 	level.flags.has_nuclearchamber = 0;
 	level.flags.has_levelseventyroom = 0;
+	level.flags.has_playercentral = 0;
 	level.flags.has_variantroom = 0;
 
 	level.flags.has_evilroom = 0;
@@ -2099,10 +2102,66 @@ makelevel()
 		    makemaz("");
 		    return;
 
+	    } else if (In_minotaurmaze(&u.uz)) { /* has only "interesting" mazes --Amy */
+
+			switch (rnd(49)) {
+
+			case 1: makemaz("mazes-1"); return;
+			case 2: makemaz("mazes-2"); return;
+			case 3: makemaz("mazes-3"); return;
+			case 4: makemaz("mazes-4"); return;
+			case 5: makemaz("mazes-5"); return;
+			case 6: makemaz("mazes-6"); return;
+			case 7: makemaz("mazes-7"); return;
+			case 8: makemaz("mazes-8"); return;
+			case 9: makemaz("mazes-9"); return;
+			case 10: makemaz("mazes-10"); return;
+			case 11: makemaz("mazes-11"); return;
+			case 12: makemaz("mazes-12"); return;
+			case 13: makemaz("mazes-13"); return;
+			case 14: makemaz("mazes-14"); return;
+			case 15: makemaz("mazes-15"); return;
+			case 16: makemaz("mazes-16"); return;
+			case 17: makemaz("mazes-17"); return;
+			case 18: makemaz("mazes-18"); return;
+			case 19: makemaz("mazes-19"); return;
+			case 20: makemaz("mazes-20"); return;
+			case 21: makemaz("mazes-21"); return;
+			case 22: makemaz("mazes-22"); return;
+			case 23: makemaz("mazes-23"); return;
+			case 24: makemaz("mazes-24"); return;
+			case 25: makemaz("mazes-25"); return;
+			case 26: makemaz("mazes-26"); return;
+			case 27: makemaz("mazes-27"); return;
+			case 28: makemaz("mazes-28"); return;
+			case 29: makemaz("mazes-29"); return;
+			case 30: makemaz("mazes-30"); return;
+			case 31: makemaz("mazes-31"); return;
+			case 32: makemaz("mazes-32"); return;
+			case 33: makemaz("mazes-33"); return;
+			case 34: makemaz("mazes-34"); return;
+			case 35: makemaz("mazes-35"); return;
+			case 36: makemaz("mazes-36"); return;
+			case 37: makemaz("mazes-37"); return;
+			case 38: makemaz("mazes-38"); return;
+			case 39: makemaz("mazes-39"); return;
+			case 40: makemaz("mazes-40"); return;
+			case 41: makemaz("mazes-41"); return;
+			case 42: makemaz("mazes-42"); return;
+			case 43: makemaz("mazes-43"); return;
+			case 44: makemaz("mazes-44"); return;
+			case 45: makemaz("mazes-45"); return;
+			case 46: makemaz("mazes-46"); return;
+			case 47: makemaz("mazes-47"); return;
+			case 48: makemaz("mazes-48"); return;
+			case 49: makemaz("mazes-49"); return;
+
+			}
+
 	    } else if ((!rn2(u.randomquestlevels) && !rn2(3))
 				&& !In_V_tower(&u.uz) && !Invocation_lev(&u.uz)
 				&& (!rn2(10) || depth(&u.uz) > 1)
-				&& (In_dod(&u.uz) || In_mines(&u.uz) || In_illusorycastle(&u.uz) || In_deepmines(&u.uz) || In_ZAPM(&u.uz) || In_sokoban(&u.uz) || In_towndungeon(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || In_restingzone(&u.uz) ) ) {
+				&& (In_dod(&u.uz) || In_mines(&u.uz) || In_Devnull(&u.uz) || In_greencross(&u.uz) || In_illusorycastle(&u.uz) || In_deepmines(&u.uz) || In_ZAPM(&u.uz) || In_sokoban(&u.uz) || In_towndungeon(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Ice Queen's Realm") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || In_restingzone(&u.uz) ) ) {
 
 ghnhom1:
 		{
@@ -2125,7 +2184,7 @@ ghnhom1:
 		    return;
 		}
 
-	    } else if ((!rn2(u.randomquestlevels) && !rn2(3)) && !In_V_tower(&u.uz) && !Invocation_lev(&u.uz) && (In_gehennom(&u.uz) || In_sheol(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz) || In_angmar(&u.uz) || In_swimmingpool(&u.uz) || In_hellbathroom(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab") ) ) {
+	    } else if ((!rn2(u.randomquestlevels) && !rn2(3)) && !In_V_tower(&u.uz) && !Invocation_lev(&u.uz) && (In_gehennom(&u.uz) || In_sheol(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz) || In_angmar(&u.uz) || In_emynluin(&u.uz) || In_swimmingpool(&u.uz) || In_hellbathroom(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab") ) ) {
 
 			if (rn2(3)) goto ghnhom1;
 
@@ -2147,7 +2206,7 @@ ghnhom1:
 		    makemaz(fillname);
 		    return;
 
-	    } else if (dungeons[u.uz.dnum].proto[0] && !In_V_tower(&u.uz) && !In_angmar(&u.uz) && !In_hellbathroom(&u.uz) && !Invocation_lev(&u.uz) && (rn2(2)) ) {
+	    } else if (dungeons[u.uz.dnum].proto[0] && !In_V_tower(&u.uz) && !In_angmar(&u.uz) && !In_emynluin(&u.uz) && !In_hellbathroom(&u.uz) && !Invocation_lev(&u.uz) && (rn2(2)) ) {
 
 		    if (rn2(3)) {
 
@@ -2220,6 +2279,8 @@ ghnhom1:
 			case 7: makemaz("minefilg"); break;
 		    }
 		    return;
+	    } else if (In_emynluin(&u.uz) && rn2(2)) {
+			makemaz("rndmazea"); return;
 	    } else if (In_deepmines(&u.uz) && rn2((iswarper ? 5 : 50) )) {
 		    switch (rnd(15)) {
 			case 1: makemaz("deepfila"); break;
@@ -2239,6 +2300,7 @@ ghnhom1:
 			case 15: makemaz("deepfilo"); break;
 		    }
 		    return;
+
 	    } else if (In_quest(&u.uz)) {
 		    char        fillname[16];
 		    s_level	*loc_lev;
@@ -2258,7 +2320,7 @@ ghnhom1:
 
 	/* "Revert change allowing Room/Corridors in Gehennom. Gehennom should only have mazes and the specified special levels again." In Soviet Russia, people actually like the endless boring mazes of the Gehennom for some inexplicable reason. Why don't they just turn Nethack into an 100-level dungeon that has only mazes??? --Amy */
 
-		 (In_hell(&u.uz) && !In_angmar(&u.uz) && !In_hellbathroom(&u.uz) && (!rn2(2) && (In_sheol(&u.uz) ? rn2(iswarper ? 2 : 5) : rn2(iswarper ? 3 : 10) ) )  ) || /* allowing random rooms-and-corridors in Gehennom --Amy */
+		 (In_hell(&u.uz) && !In_angmar(&u.uz) && !In_emynluin(&u.uz) && !In_hellbathroom(&u.uz) && (!rn2(2) && (In_sheol(&u.uz) ? rn2(iswarper ? 2 : 5) : rn2(iswarper ? 3 : 10) ) )  ) || /* allowing random rooms-and-corridors in Gehennom --Amy */
 		  (rn2(5) && u.uz.dnum == medusa_level.dnum
 			  && depth(&u.uz) > depth(&medusa_level)) || (In_mainframe(&u.uz) && rn2(10) ) ) {
 
@@ -2328,10 +2390,10 @@ ghnhom1:
 
 	if ( 
 		(In_dod(&u.uz) && (!rn2(100) || depth(&u.uz) > 1) && !rn2(iswarper ? 10 : 100))
-		|| (In_mines(&u.uz) && rn2(1000) /* check moved upwards */ ) || (In_sokoban(&u.uz) && !issokosolver && rn2(iswarper ? 5 : 2)) || (In_towndungeon(&u.uz) && !rn2(iswarper ? 3 : 20)) || (In_deepmines(&u.uz) && rn2(2)) || (In_illusorycastle(&u.uz) && !rn2(iswarper ? 3 : 20)) || (In_sewerplant(&u.uz) && !rn2(iswarper ? 20 : 50)) || (In_spacebase(&u.uz) && !rn2(iswarper ? 4 : 30)) || (In_gammacaves(&u.uz) && !rn2(iswarper ? 20 : 50)) || (In_mainframe(&u.uz) && !rn2(iswarper ? 3 : 20)) || (rn2(5) && (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || In_restingzone(&u.uz) ) ) ) {
+		|| (In_mines(&u.uz) && rn2(1000) /* check moved upwards */ ) || (In_sokoban(&u.uz) && !issokosolver && rn2(iswarper ? 5 : 2)) || (In_towndungeon(&u.uz) && !rn2(iswarper ? 3 : 20)) || (In_deepmines(&u.uz) && rn2(2)) || (In_illusorycastle(&u.uz) && !rn2(iswarper ? 3 : 20)) || (In_sewerplant(&u.uz) && !rn2(iswarper ? 20 : 50)) || (In_spacebase(&u.uz) && !rn2(iswarper ? 4 : 30)) || (In_gammacaves(&u.uz) && !rn2(iswarper ? 20 : 50)) || (In_greencross(&u.uz) && !rn2(iswarper ? 10 : 100)) || (In_mainframe(&u.uz) && !rn2(iswarper ? 3 : 20)) || (rn2(5) && (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Ice Queen's Realm") || In_Devnull(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || In_restingzone(&u.uz) ) ) ) {
 
 ghnhom2:
-	    switch (rnd(113)) {
+	    switch (rnd(117)) {
 
 	    case 1:
 	    case 2:
@@ -2421,7 +2483,7 @@ ghnhom2:
 	    case 19:
 	    case 20:
 
-		switch (rnd(96)) {
+		switch (rnd(97)) {
 
 			case 1: makemaz("unhck-1"); return;
 			case 2: makemaz("unhck-2"); return;
@@ -2519,6 +2581,7 @@ ghnhom2:
 			case 94: makemaz("unhck-94"); return;
 			case 95: makemaz("unhck-95"); return;
 			case 96: makemaz("unhck-96"); return;
+			case 97: makemaz("minusw"); return;
 
 		}
 		break;
@@ -2846,11 +2909,12 @@ ghnhom2:
 
 	    case 47:
 
-		switch (rnd(3)) {
+		switch (rnd(4)) {
 
 			case 1: makemaz("erats-1"); return;
 			case 2: makemaz("erats-2"); return;
 			case 3: makemaz("erats-3"); return;
+			case 4: makemaz("erats-4"); return;
 
 		}
 		break;
@@ -3195,7 +3259,7 @@ ghnhom2:
 	    case 92:
 	    case 93:
 
-		switch (rnd(785)) {
+		switch (rnd(820)) {
 
 			case 1: makemaz("Aci-1"); return;
 			case 2: makemaz("Aci-2"); return;
@@ -3982,6 +4046,41 @@ ghnhom2:
 			case 783: makemaz("Car-3"); return;
 			case 784: makemaz("Car-4"); return;
 			case 785: makemaz("Car-5"); return;
+			case 786: makemaz("But-1"); return;
+			case 787: makemaz("But-2"); return;
+			case 788: makemaz("But-3"); return;
+			case 789: makemaz("But-4"); return;
+			case 790: makemaz("But-5"); return;
+			case 791: makemaz("Dan-1"); return;
+			case 792: makemaz("Dan-2"); return;
+			case 793: makemaz("Dan-3"); return;
+			case 794: makemaz("Dan-4"); return;
+			case 795: makemaz("Dan-5"); return;
+			case 796: makemaz("Dia-1"); return;
+			case 797: makemaz("Dia-2"); return;
+			case 798: makemaz("Dia-3"); return;
+			case 799: makemaz("Dia-4"); return;
+			case 800: makemaz("Dia-5"); return;
+			case 801: makemaz("Pre-1"); return;
+			case 802: makemaz("Pre-2"); return;
+			case 803: makemaz("Pre-3"); return;
+			case 804: makemaz("Pre-4"); return;
+			case 805: makemaz("Pre-5"); return;
+			case 806: makemaz("Sec-1"); return;
+			case 807: makemaz("Sec-2"); return;
+			case 808: makemaz("Sec-3"); return;
+			case 809: makemaz("Sec-4"); return;
+			case 810: makemaz("Sec-5"); return;
+			case 811: makemaz("Sho-1"); return;
+			case 812: makemaz("Sho-2"); return;
+			case 813: makemaz("Sho-3"); return;
+			case 814: makemaz("Sho-4"); return;
+			case 815: makemaz("Sho-5"); return;
+			case 816: makemaz("Hal-1"); return;
+			case 817: makemaz("Hal-2"); return;
+			case 818: makemaz("Hal-3"); return;
+			case 819: makemaz("Hal-4"); return;
+			case 820: makemaz("Hal-5"); return;
 
 		}
 		break;
@@ -4246,6 +4345,45 @@ ghnhom2:
 
 		break;
 
+	    case 114:
+		switch (rnd(5)) {
+			case 1: makemaz("gruelaiX"); return;
+			case 2: makemaz("joustX"); return;
+			case 3: makemaz("pmazeX"); return;
+			case 4: makemaz("poolhalX"); return;
+			case 5: makemaz("dmazeX"); return;
+
+		}
+
+		break;
+
+	    case 115:
+	    case 116:
+
+		switch (rnd(8)) {
+
+			case 1: makemaz("grcra"); return;
+			case 2: makemaz("grcrb"); return;
+			case 3: makemaz("grcrc"); return;
+			case 4: makemaz("grcrd"); return;
+			case 5: makemaz("grcre"); return;
+			case 6: makemaz("grcrf"); return;
+			case 7: makemaz("grcrg"); return;
+			case 8: makemaz("grcrh"); return;
+
+		}
+		break;
+
+	    case 117:
+		switch (rnd(3)) {
+			case 1: makemaz("eiceqa"); return;
+			case 2: makemaz("eiceqb"); return;
+			case 3: makemaz("eiceqc"); return;
+
+		}
+
+		break;
+
 		break;
 
           }
@@ -4254,11 +4392,11 @@ ghnhom2:
 
 	if ( 
 		(In_dod(&u.uz) && (!rn2(100) || depth(&u.uz) > 1) && !rn2((iswarper ? 10000 : 100000)))
-		|| (In_mines(&u.uz) /* check moved upwards */ ) || (In_sokoban(&u.uz) && !issokosolver && rn2(iswarper ? 5000 : 2000)) || (In_towndungeon(&u.uz) && !rn2(iswarper ? 3000 : 20000)) ||  (In_deepmines(&u.uz)) || (In_illusorycastle(&u.uz) && !rn2(iswarper ? 3 : 20)) || (In_sewerplant(&u.uz) && !rn2(iswarper ? 20 : 50)) || (In_spacebase(&u.uz) && !rn2(iswarper ? 4 : 30)) || (In_gammacaves(&u.uz) && !rn2(iswarper ? 20 : 50)) || (In_mainframe(&u.uz) && !rn2(iswarper ? 3 : 20)) || (In_gehennom(&u.uz) && !rn2(iswarper ? 3 : 10)) || (In_voiddungeon(&u.uz) && !rn2(iswarper ? 3 : 10)) || (In_netherrealm(&u.uz) && !rn2(iswarper ? 3 : 10)) || (In_swimmingpool(&u.uz) && !rn2(iswarper ? 3 : 10)) || (In_hellbathroom(&u.uz) && !rn2(iswarper ? 20 : 50)) || (In_angmar(&u.uz) && !rn2(iswarper ? 5 : 20)) || (rn2(5) && !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab") ) || (!rn2(1000) && (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || In_restingzone(&u.uz) ) ) || (In_sheol(&u.uz) && (!rn2(iswarper ? 2 : 5) ) ) ) {
+		|| (In_mines(&u.uz) /* check moved upwards */ ) || (In_sokoban(&u.uz) && !issokosolver && rn2(iswarper ? 5000 : 2000)) || (In_towndungeon(&u.uz) && !rn2(iswarper ? 3000 : 20000)) ||  (In_deepmines(&u.uz)) || (In_illusorycastle(&u.uz) && !rn2(iswarper ? 3 : 20)) || (In_sewerplant(&u.uz) && !rn2(iswarper ? 20 : 50)) || (In_spacebase(&u.uz) && !rn2(iswarper ? 4 : 30)) || (In_gammacaves(&u.uz) && !rn2(iswarper ? 20 : 50)) || (In_mainframe(&u.uz) && !rn2(iswarper ? 3 : 20)) || (In_gehennom(&u.uz) && !rn2(iswarper ? 3 : 10)) || (In_voiddungeon(&u.uz) && !rn2(iswarper ? 3 : 10)) || (In_netherrealm(&u.uz) && !rn2(iswarper ? 3 : 10)) || (In_swimmingpool(&u.uz) && !rn2(iswarper ? 3 : 10)) || (In_hellbathroom(&u.uz) && !rn2(iswarper ? 20 : 50)) || (In_angmar(&u.uz) && !rn2(iswarper ? 5 : 20)) || (In_emynluin(&u.uz) && !rn2(iswarper ? 20 : 50)) || (rn2(5) && !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab") ) || (!rn2(1000) && (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Ice Queen's Realm") || In_Devnull(&u.uz) || In_greencross(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || In_restingzone(&u.uz) ) ) || (In_sheol(&u.uz) && (!rn2(iswarper ? 2 : 5) ) ) ) {
 
 		if (rn2(3)) goto ghnhom2;
 
-	    switch (rnd(113)) {
+	    switch (rnd(117)) {
 
 	    case 1:
 	    case 2:
@@ -4348,7 +4486,7 @@ ghnhom2:
 	    case 19:
 	    case 20:
 
-		switch (rnd(96)) {
+		switch (rnd(97)) {
 
 			case 1: makemaz("heck-1"); return;
 			case 2: makemaz("heck-2"); return;
@@ -4446,6 +4584,7 @@ ghnhom2:
 			case 94: makemaz("heck-94"); return;
 			case 95: makemaz("heck-95"); return;
 			case 96: makemaz("heck-96"); return;
+			case 97: makemaz("minusw"); return;
 
 		}
 		break;
@@ -4768,11 +4907,12 @@ ghnhom2:
 
 	    case 47:
 
-		switch (rnd(3)) {
+		switch (rnd(4)) {
 
 			case 1: makemaz("hrats-1"); return;
 			case 2: makemaz("hrats-2"); return;
 			case 3: makemaz("hrats-3"); return;
+			case 4: makemaz("hrats-4"); return;
 
 		}
 		break;
@@ -5116,7 +5256,7 @@ ghnhom2:
 	    case 92:
 	    case 93:
 
-		switch (rnd(785)) {
+		switch (rnd(820)) {
 
 			case 1: makemaz("Aci-6"); return;
 			case 2: makemaz("Aci-7"); return;
@@ -5903,6 +6043,41 @@ ghnhom2:
 			case 783: makemaz("Car-8"); return;
 			case 784: makemaz("Car-9"); return;
 			case 785: makemaz("Car-0"); return;
+			case 786: makemaz("But-6"); return;
+			case 787: makemaz("But-7"); return;
+			case 788: makemaz("But-8"); return;
+			case 789: makemaz("But-9"); return;
+			case 790: makemaz("But-0"); return;
+			case 791: makemaz("Dan-6"); return;
+			case 792: makemaz("Dan-7"); return;
+			case 793: makemaz("Dan-8"); return;
+			case 794: makemaz("Dan-9"); return;
+			case 795: makemaz("Dan-0"); return;
+			case 796: makemaz("Dia-6"); return;
+			case 797: makemaz("Dia-7"); return;
+			case 798: makemaz("Dia-8"); return;
+			case 799: makemaz("Dia-9"); return;
+			case 800: makemaz("Dia-0"); return;
+			case 801: makemaz("Pre-6"); return;
+			case 802: makemaz("Pre-7"); return;
+			case 803: makemaz("Pre-8"); return;
+			case 804: makemaz("Pre-9"); return;
+			case 805: makemaz("Pre-0"); return;
+			case 806: makemaz("Sec-6"); return;
+			case 807: makemaz("Sec-7"); return;
+			case 808: makemaz("Sec-8"); return;
+			case 809: makemaz("Sec-9"); return;
+			case 810: makemaz("Sec-0"); return;
+			case 811: makemaz("Sho-6"); return;
+			case 812: makemaz("Sho-7"); return;
+			case 813: makemaz("Sho-8"); return;
+			case 814: makemaz("Sho-9"); return;
+			case 815: makemaz("Sho-0"); return;
+			case 816: makemaz("Hal-6"); return;
+			case 817: makemaz("Hal-7"); return;
+			case 818: makemaz("Hal-8"); return;
+			case 819: makemaz("Hal-9"); return;
+			case 820: makemaz("Hal-0"); return;
 		}
 		break;
 
@@ -6165,6 +6340,44 @@ ghnhom2:
 
 		break;
 
+	    case 114:
+		switch (rnd(5)) {
+			case 1: makemaz("gruelaiX"); return;
+			case 2: makemaz("joustX"); return;
+			case 3: makemaz("pmazeX"); return;
+			case 4: makemaz("poolhalX"); return;
+			case 5: makemaz("dmazeX"); return;
+
+		}
+
+		break;
+
+	    case 115:
+	    case 116:
+
+		switch (rnd(8)) {
+
+			case 1: makemaz("grcra"); return;
+			case 2: makemaz("grcrb"); return;
+			case 3: makemaz("grcrc"); return;
+			case 4: makemaz("grcrd"); return;
+			case 5: makemaz("grcre"); return;
+			case 6: makemaz("grcrf"); return;
+			case 7: makemaz("grcrg"); return;
+			case 8: makemaz("grcrh"); return;
+
+		}
+		break;
+
+	    case 117:
+		switch (rnd(3)) {
+			case 1: makemaz("hiceqa"); return;
+			case 2: makemaz("hiceqb"); return;
+			case 3: makemaz("hiceqc"); return;
+
+		}
+
+
 		break;
 
           }
@@ -6248,7 +6461,7 @@ ghnhom2:
 
 	if ((specialraceflag == 2) && (!rn2(100) || depth(&u.uz) > 1) ) { /* sokosolver */
 
-		if (In_dod(&u.uz) || In_mines(&u.uz) || In_sokoban(&u.uz) || In_towndungeon(&u.uz) || In_illusorycastle(&u.uz) || In_deepmines(&u.uz) || In_ZAPM(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || In_restingzone(&u.uz) ) {
+		if (In_dod(&u.uz) || In_mines(&u.uz) || In_sokoban(&u.uz) || In_towndungeon(&u.uz) || In_illusorycastle(&u.uz) || In_deepmines(&u.uz) || In_ZAPM(&u.uz) || In_Devnull(&u.uz) || In_greencross(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Ice Queen's Realm") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || In_restingzone(&u.uz) ) {
 
 ghnhom3:
 		switch (rnd(154)) {
@@ -6415,7 +6628,7 @@ ghnhom3:
 
 		}
 
-		} else if (In_gehennom(&u.uz) || In_sheol(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz) || In_angmar(&u.uz) || In_swimmingpool(&u.uz) || In_hellbathroom(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab") ) {
+		} else if (In_gehennom(&u.uz) || In_sheol(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz) || In_angmar(&u.uz) || In_emynluin(&u.uz) || In_swimmingpool(&u.uz) || In_hellbathroom(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab") ) {
 
 			if (rn2(3)) goto ghnhom3;
 
@@ -6591,10 +6804,10 @@ ghnhom3:
 
 	if ((specialraceflag == 3) && (!rn2(100) || depth(&u.uz) > 1) ) { /* specialist */
 
-		if (In_dod(&u.uz) || In_mines(&u.uz) || In_sokoban(&u.uz) || In_towndungeon(&u.uz) || In_illusorycastle(&u.uz) || In_deepmines(&u.uz) || In_ZAPM(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || In_restingzone(&u.uz)) {
+		if (In_dod(&u.uz) || In_mines(&u.uz) || In_sokoban(&u.uz) || In_towndungeon(&u.uz) || In_illusorycastle(&u.uz) || In_deepmines(&u.uz) || In_ZAPM(&u.uz) || In_Devnull(&u.uz) || In_greencross(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Ice Queen's Realm") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || In_restingzone(&u.uz)) {
 
 ghnhom4:
-	    switch (rnd(113)) {
+	    switch (rnd(117)) {
 
 	    case 1:
 	    case 2:
@@ -6684,7 +6897,7 @@ ghnhom4:
 	    case 19:
 	    case 20:
 
-		switch (rnd(96)) {
+		switch (rnd(97)) {
 
 			case 1: makemaz("unhck-1"); return;
 			case 2: makemaz("unhck-2"); return;
@@ -6782,6 +6995,7 @@ ghnhom4:
 			case 94: makemaz("unhck-94"); return;
 			case 95: makemaz("unhck-95"); return;
 			case 96: makemaz("unhck-96"); return;
+			case 97: makemaz("minusw"); return;
 
 		}
 		break;
@@ -7109,11 +7323,12 @@ ghnhom4:
 
 	    case 47:
 
-		switch (rnd(3)) {
+		switch (rnd(4)) {
 
 			case 1: makemaz("erats-1"); return;
 			case 2: makemaz("erats-2"); return;
 			case 3: makemaz("erats-3"); return;
+			case 4: makemaz("erats-4"); return;
 
 		}
 		break;
@@ -7457,7 +7672,7 @@ ghnhom4:
 	    case 92:
 	    case 93:
 
-		switch (rnd(785)) {
+		switch (rnd(820)) {
 
 			case 1: makemaz("Aci-1"); return;
 			case 2: makemaz("Aci-2"); return;
@@ -8244,6 +8459,41 @@ ghnhom4:
 			case 783: makemaz("Car-3"); return;
 			case 784: makemaz("Car-4"); return;
 			case 785: makemaz("Car-5"); return;
+			case 786: makemaz("But-1"); return;
+			case 787: makemaz("But-2"); return;
+			case 788: makemaz("But-3"); return;
+			case 789: makemaz("But-4"); return;
+			case 790: makemaz("But-5"); return;
+			case 791: makemaz("Dan-1"); return;
+			case 792: makemaz("Dan-2"); return;
+			case 793: makemaz("Dan-3"); return;
+			case 794: makemaz("Dan-4"); return;
+			case 795: makemaz("Dan-5"); return;
+			case 796: makemaz("Dia-1"); return;
+			case 797: makemaz("Dia-2"); return;
+			case 798: makemaz("Dia-3"); return;
+			case 799: makemaz("Dia-4"); return;
+			case 800: makemaz("Dia-5"); return;
+			case 801: makemaz("Pre-1"); return;
+			case 802: makemaz("Pre-2"); return;
+			case 803: makemaz("Pre-3"); return;
+			case 804: makemaz("Pre-4"); return;
+			case 805: makemaz("Pre-5"); return;
+			case 806: makemaz("Sec-1"); return;
+			case 807: makemaz("Sec-2"); return;
+			case 808: makemaz("Sec-3"); return;
+			case 809: makemaz("Sec-4"); return;
+			case 810: makemaz("Sec-5"); return;
+			case 811: makemaz("Sho-1"); return;
+			case 812: makemaz("Sho-2"); return;
+			case 813: makemaz("Sho-3"); return;
+			case 814: makemaz("Sho-4"); return;
+			case 815: makemaz("Sho-5"); return;
+			case 816: makemaz("Hal-1"); return;
+			case 817: makemaz("Hal-2"); return;
+			case 818: makemaz("Hal-3"); return;
+			case 819: makemaz("Hal-4"); return;
+			case 820: makemaz("Hal-5"); return;
 		}
 		break;
 
@@ -8506,15 +8756,52 @@ ghnhom4:
 
 		break;
 
+	    case 114:
+		switch (rnd(5)) {
+			case 1: makemaz("gruelaiX"); return;
+			case 2: makemaz("joustX"); return;
+			case 3: makemaz("pmazeX"); return;
+			case 4: makemaz("poolhalX"); return;
+			case 5: makemaz("dmazeX"); return;
+
+		}
+
+		break;
+
+	    case 115:
+	    case 116:
+
+		switch (rnd(8)) {
+
+			case 1: makemaz("grcra"); return;
+			case 2: makemaz("grcrb"); return;
+			case 3: makemaz("grcrc"); return;
+			case 4: makemaz("grcrd"); return;
+			case 5: makemaz("grcre"); return;
+			case 6: makemaz("grcrf"); return;
+			case 7: makemaz("grcrg"); return;
+			case 8: makemaz("grcrh"); return;
+
+		}
+		break;
+
+	    case 117:
+		switch (rnd(3)) {
+			case 1: makemaz("eiceqa"); return;
+			case 2: makemaz("eiceqb"); return;
+			case 3: makemaz("eiceqc"); return;
+
+		}
+
 		break;
 	
           }
 
-		} else if (In_gehennom(&u.uz) || In_sheol(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz) || In_angmar(&u.uz) || In_swimmingpool(&u.uz) || In_hellbathroom(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab")) {
+		} else if (In_gehennom(&u.uz) || In_sheol(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz) || In_angmar(&u.uz) || In_emynluin(&u.uz) || In_swimmingpool(&u.uz) || In_hellbathroom(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab")) {
 
 		if (rn2(3)) goto ghnhom4;
 
-	    switch (rnd(113)) {
+	    switch (rnd(117)) {
 
 	    case 1:
 	    case 2:
@@ -8604,7 +8891,7 @@ ghnhom4:
 	    case 19:
 	    case 20:
 
-		switch (rnd(96)) {
+		switch (rnd(97)) {
 
 			case 1: makemaz("heck-1"); return;
 			case 2: makemaz("heck-2"); return;
@@ -8702,6 +8989,7 @@ ghnhom4:
 			case 94: makemaz("heck-94"); return;
 			case 95: makemaz("heck-95"); return;
 			case 96: makemaz("heck-96"); return;
+			case 97: makemaz("minusw"); return;
 
 		}
 		break;
@@ -9024,11 +9312,12 @@ ghnhom4:
 
 	    case 47:
 
-		switch (rnd(3)) {
+		switch (rnd(4)) {
 
 			case 1: makemaz("hrats-1"); return;
 			case 2: makemaz("hrats-2"); return;
 			case 3: makemaz("hrats-3"); return;
+			case 4: makemaz("hrats-4"); return;
 
 		}
 		break;
@@ -9372,7 +9661,7 @@ ghnhom4:
 	    case 92:
 	    case 93:
 
-		switch (rnd(785)) {
+		switch (rnd(820)) {
 
 			case 1: makemaz("Aci-6"); return;
 			case 2: makemaz("Aci-7"); return;
@@ -10159,6 +10448,41 @@ ghnhom4:
 			case 783: makemaz("Car-8"); return;
 			case 784: makemaz("Car-9"); return;
 			case 785: makemaz("Car-0"); return;
+			case 786: makemaz("But-6"); return;
+			case 787: makemaz("But-7"); return;
+			case 788: makemaz("But-8"); return;
+			case 789: makemaz("But-9"); return;
+			case 790: makemaz("But-0"); return;
+			case 791: makemaz("Dan-6"); return;
+			case 792: makemaz("Dan-7"); return;
+			case 793: makemaz("Dan-8"); return;
+			case 794: makemaz("Dan-9"); return;
+			case 795: makemaz("Dan-0"); return;
+			case 796: makemaz("Dia-6"); return;
+			case 797: makemaz("Dia-7"); return;
+			case 798: makemaz("Dia-8"); return;
+			case 799: makemaz("Dia-9"); return;
+			case 800: makemaz("Dia-0"); return;
+			case 801: makemaz("Pre-6"); return;
+			case 802: makemaz("Pre-7"); return;
+			case 803: makemaz("Pre-8"); return;
+			case 804: makemaz("Pre-9"); return;
+			case 805: makemaz("Pre-0"); return;
+			case 806: makemaz("Sec-6"); return;
+			case 807: makemaz("Sec-7"); return;
+			case 808: makemaz("Sec-8"); return;
+			case 809: makemaz("Sec-9"); return;
+			case 810: makemaz("Sec-0"); return;
+			case 811: makemaz("Sho-6"); return;
+			case 812: makemaz("Sho-7"); return;
+			case 813: makemaz("Sho-8"); return;
+			case 814: makemaz("Sho-9"); return;
+			case 815: makemaz("Sho-0"); return;
+			case 816: makemaz("Hal-6"); return;
+			case 817: makemaz("Hal-7"); return;
+			case 818: makemaz("Hal-8"); return;
+			case 819: makemaz("Hal-9"); return;
+			case 820: makemaz("Hal-0"); return;
 		}
 		break;
 
@@ -10421,6 +10745,44 @@ ghnhom4:
 
 		break;
 
+	    case 114:
+		switch (rnd(5)) {
+			case 1: makemaz("gruelaiX"); return;
+			case 2: makemaz("joustX"); return;
+			case 3: makemaz("pmazeX"); return;
+			case 4: makemaz("poolhalX"); return;
+			case 5: makemaz("dmazeX"); return;
+
+		}
+
+		break;
+
+	    case 115:
+	    case 116:
+
+		switch (rnd(8)) {
+
+			case 1: makemaz("grcra"); return;
+			case 2: makemaz("grcrb"); return;
+			case 3: makemaz("grcrc"); return;
+			case 4: makemaz("grcrd"); return;
+			case 5: makemaz("grcre"); return;
+			case 6: makemaz("grcrf"); return;
+			case 7: makemaz("grcrg"); return;
+			case 8: makemaz("grcrh"); return;
+
+		}
+		break;
+
+	    case 117:
+		switch (rnd(3)) {
+			case 1: makemaz("hiceqa"); return;
+			case 2: makemaz("hiceqb"); return;
+			case 3: makemaz("hiceqc"); return;
+
+		}
+
+
 		break;
 	
           }
@@ -10573,6 +10935,8 @@ skip0:
 	   one of each major type */
 	/*else {*/
 
+	if (at_dgn_entrance("Green Cross")) mkroom(GREENCROSSROOM);
+
 	/* "Make special rooms show up later. Reverted existant special room chances to their original values, new rooms have values that I believe work.  If not, they will be adjusted accordingly." The existing values do work, too; some players just don't seem to know what to do if there's a room filled with trolls on dlvl2: stay FAR away from there until you can handle it! But sure, in Soviet Russia they start appearing later. All the other races will have to contend with my intended values though. --Amy */
 
 gehennomxtra:
@@ -10700,9 +11064,10 @@ gehennomxtra:
 	else if (u_depth > (issoviet ? 12 : 3) && (ishaxor ? !rn2(25) : !rn2(50))) mkroom(GOLEMHALL);
 	else if (u_depth > (issoviet ? 16 : 3) && (ishaxor ? !rn2(40) : !rn2(80))) mkroom(MACHINEROOM);
 	else if (u_depth > (issoviet ? 26 : 8) && (ishaxor ? !rn2(20) : !rn2(40))) mkroom(VOIDROOM);
+	else if (u_depth > (issoviet ? 20 : 10) && (ishaxor ? !rn2(40) : !rn2(80))) mkroom(PLAYERCENTRAL);
 	else if (u_depth > (issoviet ? 8 : 1) && (ishaxor ? !rn2(35) : !rn2(70))) mkroom(GRUEROOM);
 	else if (u_depth > (issoviet ? 19 : 4) && (ishaxor ? !rn2(35) : !rn2(70))) mkroom(CHAOSROOM);
-	else if (u_depth > (issoviet ? 20 : 4) && (ishaxor ? !rn2(24) : !rn2(48))) mkroom(FEMINISMROOM);
+	else if (u_depth > (issoviet ? 20 : 4) && (ishaxor ? !rn2(36) : !rn2(64))) mkroom(FEMINISMROOM);
 	    else if (u_depth > (issoviet ? 5 : 1) && (ishaxor ? !rn2(100) : !rn2(200))) mkroom(NASTYCENTRAL);
 	else if (u_depth > (issoviet ? 8 : 1) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(TENSHALL);
 	else if (u_depth > (issoviet ? 25 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);
@@ -10759,7 +11124,7 @@ gehennomxtra:
 	}
 #endif
 
-		if ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && (!rn2(10) || (u_depth > 1 && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1)) ) ) ) {
+		if ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && (!rn2(10) || (u_depth > 1 && !(u.preversionmode && In_greencross(&u.uz) && (dunlev(&u.uz) == 1)) && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1)) ) ) ) {
 			mkroom(RANDOMROOM);
 			mkroom(RANDOMROOM);
 			mkroom(RANDOMROOM);
@@ -10821,7 +11186,9 @@ skip1:
 		}
 		/* put traps and mimics inside */
 		goldseen = FALSE;
-		x = 15 - (level_difficulty()/10);
+		x = (rn1(5,10) - (level_difficulty()/10));
+		if ((depth(&u.uz) > 2 || !In_dod(&u.uz)) && !rn2(3)) x /= 2;
+		if ((depth(&u.uz) > 2 || !In_dod(&u.uz)) && !rn2(10)) x /= 5;
 		if (x <= 1) x = 2;
 
 		/* less traps in the very early game --Amy */
@@ -11587,7 +11954,7 @@ skip1:
 #endif
 
 /* STEPHEN WHITE'S NEW CODE */
-		if(!rn2(4) && timebasedlowerchance()) {
+		if(!rn2(3) && timebasedlowerchance()) {
 		    (void) mkobj_at(0, somex(croom), somey(croom), TRUE, FALSE);
 		    tryct = 0;
 		    while(!rn2(3)) {
@@ -11599,7 +11966,20 @@ skip1:
 		    }
 		}
 
-		if(ishaxor && timebasedlowerchance() && !rn2(4)) {
+		if(ishaxor && timebasedlowerchance() && !rn2(3)) {
+		    (void) mkobj_at(0, somex(croom), somey(croom), TRUE, FALSE);
+		    tryct = 0;
+		    while(!rn2(3)) {
+			if(++tryct > 100) {
+			    impossible("tryct overflow4");
+			    break;
+			}
+			(void) mkobj_at(0, somex(croom), somey(croom), TRUE, FALSE);
+		    }
+		}
+
+		/* some earlygame help... --Amy */
+		if (moves == 1 && timebasedlowerchance() && !rn2(2)) {
 		    (void) mkobj_at(0, somex(croom), somey(croom), TRUE, FALSE);
 		    tryct = 0;
 		    while(!rn2(3)) {
@@ -12453,6 +12833,13 @@ find_branch_room(mp)
 		croom = &rooms[rn2(nroom)];
 	    while((croom == dnstairs_room || croom == upstairs_room ||
 		  croom->rtype != OROOM) && (++tryct < 100));
+
+	    if (at_dgn_entrance("Green Cross")) {
+		    do
+			croom = &rooms[rn2(nroom)];
+		    while((croom->rtype != GREENCROSSROOM) && (++tryct < 100));
+	    }
+
 	} else
 	    croom = &rooms[rn2(nroom)];
 
@@ -12524,7 +12911,7 @@ xchar x, y;	/* location */
 	    }
 
 		/* stairseeker changes stuff here */
-		if (br && (evilfriday || isstairseeker || !(at_dgn_entrance("The Subquest") || at_dgn_entrance("The Quest") || at_dgn_entrance("Lawful Quest") || at_dgn_entrance("Neutral Quest") || at_dgn_entrance("Chaotic Quest") || at_dgn_entrance("The Elemental Planes") || at_dgn_entrance("Sheol") || at_dgn_entrance("Bell Caves") || at_dgn_entrance("Vlad's Tower") || at_dgn_entrance("Forging Chamber") || at_dgn_entrance("Dead Grounds") || at_dgn_entrance("Ordered Chaos")) )) {
+		if (br && (evilfriday || isstairseeker || !(at_dgn_entrance("Green Cross") || at_dgn_entrance("The Subquest") || at_dgn_entrance("The Quest") || at_dgn_entrance("Lawful Quest") || at_dgn_entrance("Neutral Quest") || at_dgn_entrance("Chaotic Quest") || at_dgn_entrance("The Elemental Planes") || at_dgn_entrance("Sheol") || at_dgn_entrance("Bell Caves") || at_dgn_entrance("Vlad's Tower") || at_dgn_entrance("Forging Chamber") || at_dgn_entrance("Dead Grounds") || at_dgn_entrance("Ordered Chaos")) )) {
 
 			int steetries = 0;
 			while (steetries < 50000) {
@@ -12699,6 +13086,10 @@ boolean cangivehp;
 	    kind = FIRE_TRAP;
 	} else if (Role_if(PM_TRANSSYLVANIAN) && !rn2(20) ) {
 	    kind = HEEL_TRAP;
+	} else if (Role_if(PM_BUTT_LOVER) && !rn2(100) ) {
+	    kind = FART_TRAP;
+	} else if (Role_if(PM_BUTT_LOVER) && !rn2(500) ) {
+	    kind = FARTING_WEB;
 	} else if ((uarmf && itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) && !rn2(100) ) {
 	    kind = SHIT_TRAP;
 	} else {
@@ -13679,31 +14070,70 @@ selecttrap:
 			if (rn2(10) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case FEMMY_TRAP:
-			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case MADELEINE_TRAP:
-			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case MARLENA_TRAP:
-			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case KRISTIN_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case ANNA_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(20) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case RUEA_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(10) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case DORA_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case MARIKE_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(25) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case JETTE_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(20) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case INA_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case SING_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(20) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case VICTORIA_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(10) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case MELISSA_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(10) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case ANITA_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case HENRIETTA_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(20) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case VERENA_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case ARABELLA_TRAP:
-			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(25) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(25) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case SARAH_TRAP:
-			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case CLAUDIA_TRAP:
-			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case LUDGERA_TRAP:
-			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case KATI_TRAP:
-			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case ANASTASIA_TRAP:
-			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case TOXIC_VENOM_TRAP:
 			if (rn2(evilfriday ? 2 : 7) && !NastyTrapNation) goto selecttrap;
@@ -13715,70 +14145,70 @@ selecttrap:
 			if (rn2(evilfriday ? 2 : 5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case JESSICA_TRAP:
-			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(10) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(10) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case SOLVEJG_TRAP:
-			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(10) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(10) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case WENDY_TRAP:
-			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case KATHARINA_TRAP:
-			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(10) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(10) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case ELENA_TRAP:
-			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(10) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(10) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case THAI_TRAP:
-			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(10) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(10) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case ELIF_TRAP:
-			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(10) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(10) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case NADJA_TRAP:
-			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(20) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(20) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case SANDRA_TRAP:
-			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(15) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(15) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case NATALJE_TRAP:
-			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(50) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(50) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case JEANETTA_TRAP:
-			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case YVONNE_TRAP:
-			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case MAURAH_TRAP:
-			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(10) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(10) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case MELTEM_TRAP:
-			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case NELLY_TRAP:
-			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case EVELINE_TRAP:
-			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case KARIN_TRAP:
-			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case JUEN_TRAP:
-			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case KRISTINA_TRAP:
-			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case LOU_TRAP:
-			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(10) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(10) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case ALMUT_TRAP:
-			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case JULIETTA_TRAP:
-			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(10) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(10) && !NastyTrapNation) goto selecttrap;
 			break;
 
 		    case PREMATURE_DEATH_TRAP:

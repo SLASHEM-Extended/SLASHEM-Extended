@@ -718,6 +718,15 @@ int how;
 	u.ugrave_arise = NON_PM;
 	HUnchanging = 0L;
 	curs_on_u();
+
+	/* inspired by Elona: anorexia ends if you die, but there is no message --Amy */
+	if (FemaleTrapIna & TIMEOUT) {
+		u.inasuppression = FemaleTrapIna;
+		if (u.inasuppression >= 67108864) u.inasuppression -= 67108864;
+		if (u.inasuppression >= 33554432) u.inasuppression -= 33554432;
+		if (u.inasuppression >= 16777216) u.inasuppression -= 16777216;
+		FemaleTrapIna &= ~TIMEOUT;
+	}
 }
 
 /*
@@ -1100,6 +1109,30 @@ erudone:
 
 	}
 ruffledone:
+
+	if (uarmf && how < GENOCIDED && uarmf->oartifact == ART_UNFAIR_FIGHTING && !rn2(4) ) {
+		pline("But wait...");
+		pline("You simply refuse to die, even though you're supposed to have been defeated!");
+
+		if (wanttodie) {
+			pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+			goto kristindone;
+		}
+
+		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
+		savelife(how);
+		killer = 0;
+		killer_format = 0;
+
+#ifdef LIVELOGFILE
+		livelog_avert_death();
+#endif
+		u.youaredead = 0;
+
+		return;
+
+	}
+kristindone:
 
 	/* double detect monsters can let you lifesave too */
 	if (StrongDetect_monsters && how < GENOCIDED && !rn2(10) ) {
@@ -2505,11 +2538,23 @@ mk_dgl_extrainfo()
         } else if (In_angmar(&u.uz)) {
             sprintf(tmpdng, "%i|Ang%i", sortval, depth(&u.uz));
 		sortval = 3200 + depth(&u.uz);
+        } else if (In_greencross(&u.uz)) {
+            sprintf(tmpdng, "%i|Grc%i", sortval, depth(&u.uz));
+		sortval = 3200 + depth(&u.uz);
+        } else if (In_emynluin(&u.uz)) {
+            sprintf(tmpdng, "%i|Emy%i", sortval, depth(&u.uz));
+		sortval = 3200 + depth(&u.uz);
+        } else if (In_minotaurmaze(&u.uz)) {
+            sprintf(tmpdng, "%i|Mit%i", sortval, depth(&u.uz));
+		sortval = 3200 + depth(&u.uz);
         } else if (In_swimmingpool(&u.uz)) {
             sprintf(tmpdng, "%i|Swi%i", sortval, depth(&u.uz));
 		sortval = 3300 + depth(&u.uz);
         } else if (In_hellbathroom(&u.uz)) {
             sprintf(tmpdng, "%i|Bat%i", sortval, depth(&u.uz));
+		sortval = 3100 + depth(&u.uz);
+        } else if (In_minusworld(&u.uz)) {
+            sprintf(tmpdng, "%i|Miw%i", sortval, depth(&u.uz));
 		sortval = 3100 + depth(&u.uz);
         } else if (In_spacebase(&u.uz)) {
             sprintf(tmpdng, "%i|Spa%i", sortval, depth(&u.uz));
@@ -2523,8 +2568,26 @@ mk_dgl_extrainfo()
         } else if (In_mainframe(&u.uz)) {
             sprintf(tmpdng, "%i|Mai%i", sortval, depth(&u.uz));
 		sortval = 1100 + depth(&u.uz);
+        } else if (In_poolchallenge(&u.uz)) {
+            sprintf(tmpdng, "%i|Poo%i", sortval, depth(&u.uz));
+		sortval = 1100 + depth(&u.uz);
+        } else if (In_gruechallenge(&u.uz)) {
+            sprintf(tmpdng, "%i|Gre%i", sortval, depth(&u.uz));
+		sortval = 1100 + depth(&u.uz);
+        } else if (In_digdugchallenge(&u.uz)) {
+            sprintf(tmpdng, "%i|Dig%i", sortval, depth(&u.uz));
+		sortval = 1100 + depth(&u.uz);
+        } else if (In_joustchallenge(&u.uz)) {
+            sprintf(tmpdng, "%i|Jou%i", sortval, depth(&u.uz));
+		sortval = 1100 + depth(&u.uz);
+        } else if (In_pacmanchallenge(&u.uz)) {
+            sprintf(tmpdng, "%i|Pac%i", sortval, depth(&u.uz));
+		sortval = 1100 + depth(&u.uz);
         } else if (In_subquest(&u.uz)) {
             sprintf(tmpdng, "%i|Sub%i", sortval, depth(&u.uz));
+		sortval = 1800 + depth(&u.uz);
+        } else if (In_rivalquest(&u.uz)) {
+            sprintf(tmpdng, "%i|Riv%i", sortval, depth(&u.uz));
 		sortval = 1800 + depth(&u.uz);
         } else if (In_bellcaves(&u.uz)) {
             sprintf(tmpdng, "%i|%s", sortval, "Bel");
@@ -2538,6 +2601,9 @@ mk_dgl_extrainfo()
         } else if (In_grund(&u.uz)) {
             sprintf(tmpdng, "%i|%s", sortval, "Gru");
 		sortval = 1200 + depth(&u.uz);
+        } else if (In_icequeen(&u.uz)) {
+            sprintf(tmpdng, "%i|%s", sortval, "Ice");
+		sortval = 1300 + depth(&u.uz);
         } else if (In_wyrm(&u.uz)) {
             sprintf(tmpdng, "%i|%s", sortval, "Wyr");
 		sortval = 1600 + depth(&u.uz);
@@ -2557,9 +2623,7 @@ mk_dgl_extrainfo()
             sprintf(tmpdng, "%i|%s", sortval, "Mol");
 		sortval = 1000 + depth(&u.uz);
         } else {
-		if (depth(&u.uz) < 10) sprintf(tmpdng, "%i|%c%cD%i", sortval, ' ', ' ', depth(&u.uz));
-		else if (depth(&u.uz) < 100) sprintf(tmpdng, "%i|%cD%i", sortval, ' ', depth(&u.uz));
-            else sprintf(tmpdng, "%i|D%i", sortval, depth(&u.uz));
+            sprintf(tmpdng, "%i|%c%cD%i", sortval, ' ', ' ', depth(&u.uz));
         }
 
 #ifdef UNIX

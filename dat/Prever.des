@@ -1,0 +1,233 @@
+#	SCCS Id: @(#)Barb.des	3.4	1991/12/22
+#	Copyright (c) 1989 by Jean-Christophe Collet
+#	Copyright (c) 1991 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+#	The "start" level for the quest.
+#
+#	Here you meet your (besieged) class leader, Pelias,
+#	and receive your quest assignment.
+#
+MAZE: "Pre-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+iigg ...  ...  ...  ... ggggi                                              
+iigg  +    +    +    +  ggggi                                              
+iiiiiiiiiiiiiiiiiiiiiiiiigggi                                              
+iiiiiiiiiiiiiiiiiiiiiiiiigggi                                              
+iiggiggggggiggggiggigggiigggi                                              
+iig +  gg  + gg +  + ggiigggi                                              
+iig    gg  . gg .  . ggiigggi                                              
+iig    gg    gg      ggiigggi                                              
+iiiiiiiiiiiiiiiiiiiiiiiiiiiii                                              
+iig  +  g +   g      ggiigggi                                              
+iig     g     g   ..+ggiigggi                                              
+iig     g     g      ggiigggi                                              
+iig     g     g      ggiigggi                                              
+iig     g     g   ..+ggiigggi                                              
+iiggggggggggggg      ggiigggi                                              
+iig          ggggggggggiiiiii                                              
+iig          ggggggggggiigggi                                              
+iig          gg      ggiigggi                                              
+ENDMAP
+# Dungeon Description
+REGION:(00,00,74,17),lit,"ordinary"
+# Stairs
+STAIR:(27,16),down
+# Portal arrival point
+BRANCH:(01,01,01,01),(0,0,0,0)
+# Elder
+MONSTER:'@',"Polgara",(27,10)
+# chieftain guards for the audience chamber
+MONSTER:'@',"hacker",(27,09)
+MONSTER:'@',"hacker",(27,11)
+MONSTER:'@',"hacker",(26,09)
+MONSTER:'@',"hacker",(26,10)
+MONSTER:'@',"hacker",(26,11)
+MONSTER:'@',"hacker",(28,09)
+MONSTER:'@',"hacker",(28,10)
+MONSTER:'@',"hacker",(28,11)
+# Non diggable walls
+NON_DIGGABLE:(00,00,74,17)
+
+OBJECT:'!',random,(05,00)
+OBJECT:'!',random,(06,00)
+OBJECT:'!',random,(07,00)
+OBJECT:'?',random,(10,00)
+OBJECT:'?',random,(11,00)
+OBJECT:'?',random,(12,00)
+OBJECT:')',random,(15,00)
+OBJECT:')',random,(16,00)
+OBJECT:')',random,(17,00)
+OBJECT:'[',random,(20,00)
+OBJECT:'[',random,(21,00)
+OBJECT:'[',random,(22,00)
+OBJECT:'+',random,(11,06)
+OBJECT:'=',random,(16,06)
+OBJECT:'"',random,(19,06)
+OBJECT:'(',random,(19,10)
+OBJECT:'(',random,(18,10)
+OBJECT:'*',random,(18,13)
+OBJECT:'*',random,(19,13)
+
+#
+#	The "locate" level for the quest.
+#
+#	Here you have to infiltrate the Duali Oasis to go
+#	further towards your assigned quest.
+#
+
+MAZE: "Pre-loca",' '
+FLAGS: hardfloor,noteleport
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+iigggg                    ggi                                              
+iigggg  +    +    +    +  ggi                                              
+iigggiiiiiiiiiiiiiiiiiiiiiiii                                              
+iigggiiiiiiiiiiiiiiiiiiiiiiii                                              
+igggiigggiggiggggiggggggiggii                                              
+igggiigg +  + gg +  gg  + gii                                              
+igggiigg      gg    gg    gii                                              
+igggiigg      gg    gg    gii                                              
+iiiiiiiiiiiiiiiiiiiiiiiiiiiii                                              
+igggiigg      g   + g  +  gii                                              
+igggiigg+     g     g     gii                                              
+igggiigg      g     g     gii                                              
+igggiigg      g     g     gii                                              
+igggiigg+     g     g     gii                                              
+igggiigg      ggggggggggggggg                                              
+iiiiiigggggggggg          gii                                              
+igggiigggggggggg          gii                                              
+igggiigg      gg          gii                                              
+ENDMAP
+# Dungeon Description
+REGION:(00,00,74,17),lit,"ordinary"
+# Stairs
+STAIR:random,down
+STAIR:random,up
+
+#
+#	The "goal" level for the quest.
+#
+#	Here you meet Thoth Amon, your nemesis monster.  You have to
+#	defeat Thoth Amon in combat to gain the artifact you have
+#	been assigned to retrieve.
+#
+
+LEVEL: "Pre-goal"
+FLAGS: hardfloor,noteleport
+#
+ROOM: "ordinary", random, random, random, random
+STAIR: random, up
+OBJECT: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+
+ROOM: "ordinary", random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER:'D',"extremely ancient red dragon",random
+OBJECT:'(',"mirror",random,blessed,0,"Downsize Glass"
+
+ROOM: "ordinary", random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+
+ROOM: "ordinary", random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+OBJECT: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+
+ROOM: "ordinary", random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: random,random,random
+MONSTER: random,random,random
+
+ROOM: "ordinary", random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+
+RANDOM_CORRIDORS
+
+
+#
+#	The "fill" levels for the quest.
+#
+#	These levels are used to fill out any levels not occupied by specific
+#	levels as defined above. "filla" is the upper filler, between the
+#	start and locate levels, and "fillb" the lower between the locate
+#	and goal levels.
+#
+
+MAZE: "Pre-fila",' '
+FLAGS: hardfloor,noteleport
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+igggiigg      gg          gii                                              
+igggiigggggggggg          gii                                              
+iiiiiigggggggggg          gii                                              
+igggiigg      ggggggggggggggg                                              
+igggiigg+     g     g     gii                                              
+igggiigg      g     g     gii                                              
+igggiigg      g     g     gii                                              
+igggiigg+     g     g     gii                                              
+igggiigg      g   + g  +  gii                                              
+iiiiiiiiiiiiiiiiiiiiiiiiiiiii                                              
+igggiigg      gg    gg    gii                                              
+igggiigg      gg    gg    gii                                              
+igggiigg +  + gg +  gg  + gii                                              
+igggiigggiggiggggiggggggiggii                                              
+iigggiiiiiiiiiiiiiiiiiiiiiiii                                              
+iigggiiiiiiiiiiiiiiiiiiiiiiii                                              
+iigggg  +    +    +    +  ggi                                              
+iigggg                    ggi                                              
+ENDMAP
+# Dungeon Description
+REGION:(00,00,74,17),lit,"ordinary"
+# Stairs
+STAIR:random,down
+STAIR:random,up
+
+MAZE: "Pre-filb",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+iig          gg      ggiigggi                                              
+iig          ggggggggggiigggi                                              
+iig          ggggggggggiiiiii                                              
+iiggggggggggggg      ggiigggi                                              
+iig     g     g     +ggiigggi                                              
+iig     g     g      ggiigggi                                              
+iig     g     g      ggiigggi                                              
+iig     g     g     +ggiigggi                                              
+iig  +  g +   g      ggiigggi                                              
+iiiiiiiiiiiiiiiiiiiiiiiiiiiii                                              
+iig    gg    gg      ggiigggi                                              
+iig    gg    gg      ggiigggi                                              
+iig +  gg  + gg +  + ggiigggi                                              
+iiggiggggggiggggiggigggiigggi                                              
+iiiiiiiiiiiiiiiiiiiiiiiiigggi                                              
+iiiiiiiiiiiiiiiiiiiiiiiiigggi                                              
+iigg  +    +    +    +  ggggi                                              
+iigg                    ggggi                                              
+ENDMAP
+# Dungeon Description
+REGION:(00,00,74,17),lit,"ordinary"
+# Stairs
+STAIR:random,down
+STAIR:random,up

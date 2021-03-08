@@ -31,7 +31,7 @@ STATIC_DCL void kill_eggs(struct obj *);
 /* make wraith luring unnecessary --Amy */
 
 #define STARVATION_SPECIFIC_NOCORPSE(mdat) \
-	 (!is_reviver(mdat) && !(mdat == &mons[PM_TROLL_ZOMBIE]) && !(mdat == &mons[PM_EGO_TROLL_MUMMY]) && !(mdat == &mons[PM_TROLL_PERMAMIMIC_MUMMY]) && !(mdat == &mons[PM_TROLL_MUMMY]))
+	 (!is_reviver(mdat) && !(mdat == &mons[PM_TROLL_ZOMBIE]) && !(mdat == &mons[PM_EGO_TROLL_MUMMY]) && !(mdat == &mons[PM_EVIL_TROLL_MUMMY]) && !(mdat == &mons[PM_TROLL_PERMAMIMIC_MUMMY]) && !(mdat == &mons[PM_TROLL_MUMMY]))
 
 #define Qstatf(x)	(quest_status.x)
 
@@ -63,7 +63,7 @@ struct permonst *mdat;
 #ifdef REINCARNATION
 	if (Is_rogue_level(&u.uz) && rn2(2)) return TRUE;
 #endif
-	if ((level.flags.graveyard || mdat == &mons[PM_WRAITH] || mdat == &mons[PM_HUDDLED_WRAITH] || mdat == &mons[PM_HITTABLE_WRAITH] || mdat == &mons[PM_BIG_WRAITH] || mdat == &mons[PM_CREVICE_WRAITH] || mdat == &mons[PM_HUGE_WRAITH] || mdat == &mons[PM_GIGANTIC_WRAITH] || mdat == &mons[PM_WAFER_THIN_MINT] || mdat == &mons[PM_WRAITH_SHAMAN] || mdat == &mons[PM_NASTY_WRAITH] || mdat == &mons[PM_CREEPING___] ) && is_undead(mdat) && !is_reviver(mdat) && mdat != &mons[PM_TROLL_ZOMBIE] && mdat != &mons[PM_EGO_TROLL_MUMMY] && mdat != &mons[PM_TROLL_PERMAMIMIC_MUMMY] && mdat != &mons[PM_TROLL_MUMMY] && mdat != &mons[PM_VECNA] && rn2(3)) return TRUE;
+	if ((level.flags.graveyard || mdat == &mons[PM_WRAITH] || mdat == &mons[PM_HUDDLED_WRAITH] || mdat == &mons[PM_HITTABLE_WRAITH] || mdat == &mons[PM_BIG_WRAITH] || mdat == &mons[PM_CREVICE_WRAITH] || mdat == &mons[PM_HUGE_WRAITH] || mdat == &mons[PM_GIGANTIC_WRAITH] || mdat == &mons[PM_WAFER_THIN_MINT] || mdat == &mons[PM_WRAITH_SHAMAN] || mdat == &mons[PM_NASTY_WRAITH] || mdat == &mons[PM_CREEPING___] ) && is_undead(mdat) && !is_reviver(mdat) && mdat != &mons[PM_TROLL_ZOMBIE] && mdat != &mons[PM_EGO_TROLL_MUMMY] && mdat != &mons[PM_EVIL_TROLL_MUMMY] && mdat != &mons[PM_TROLL_PERMAMIMIC_MUMMY] && mdat != &mons[PM_TROLL_MUMMY] && mdat != &mons[PM_VECNA] && rn2(3)) return TRUE;
 
 	return FALSE;
 }
@@ -282,13 +282,14 @@ int mndx;
 	case PM_CHANGELING_ZOMBIE:	mcham = CHAM_CHANGELING_ZOMBIE; break;
 	case PM_CHANGELING_MUMMY:	mcham = CHAM_CHANGELING_MUMMY; break;
 	case PM_UNIQUE_SHIFTER:	mcham = CHAM_UNIQUE_SHIFTER; break;
+	case PM_PLAYER_CHANGELING:	mcham = CHAM_PLAYER_CHANGELING; break;
 	case PM_GIANT_CHAMELEON:	mcham = CHAM_GIANT_CHAMELEON; break;
 	default: mcham = CHAM_ORDINARY; break;
 	}
 	return mcham;
 }
 
-/* convert chameleon index to monster index */
+/* convert chameleon index to monster index - these must be in the same order as monst.h */
 STATIC_VAR int cham_to_pm[] = {
 		NON_PM,		/* placeholder for CHAM_ORDINARY */
 		PM_CHAMELEON,
@@ -348,6 +349,7 @@ STATIC_VAR int cham_to_pm[] = {
 		PM_CHAMELON,
 		PM_COMMA_CHAMELEON,
 		PM_UNIQUE_SHIFTER,
+		PM_PLAYER_CHANGELING,
 		PM_GIANT_CHAMELEON,
 };
 
@@ -493,6 +495,10 @@ register struct monst *mtmp;
 	    case PM_SMOKY_QUARTZ_UNICORN:
 	    case PM_JET_UNICORN:
 	    case PM_PEARL_UNICORN:
+	    case PM_OFFWHITE_UNICORN:
+	    case PM_PALE_GRAY_UNICORN:
+	    case PM_BLACKISH_UNICORN:
+	    case PM_MATURE_UNICORN:
 	    case PM_SELF_FLAGELLATING_UNICORN:
 	    case PM_WIPED_UNICORN:
 	    case PM_GREAT_WHITE_UNICORN:
@@ -634,8 +640,16 @@ register struct monst *mtmp;
 		(void) mksobj_at(LEMON, x, y, TRUE, FALSE, FALSE);
 		newsym(x, y);
 		return (struct obj *)0;
+	    case PM_JUICY_CHERRY:
+		(void) mksobj_at(CHERRY, x, y, TRUE, FALSE, FALSE);
+		newsym(x, y);
+		return (struct obj *)0;
 	    case PM_FLOATING_MELON:
 		(void) mksobj_at(MELON, x, y, TRUE, FALSE, FALSE);
+		newsym(x, y);
+		return (struct obj *)0;
+	    case PM_STRIP_BANANA:
+		(void) mksobj_at(BANANA, x, y, TRUE, FALSE, FALSE);
 		newsym(x, y);
 		return (struct obj *)0;
 	    case PM_RAVENOUS_CREAM_PIE:
@@ -686,6 +700,7 @@ register struct monst *mtmp;
 	    case PM_CALLS_ITSELF_ETTIN_MUMMY:
 	    case PM_TROLL_MUMMY:
 	    case PM_EGO_TROLL_MUMMY:
+	    case PM_EVIL_TROLL_MUMMY:
 	    case PM_TROLL_PERMAMIMIC_MUMMY:
 	    case PM_TROLL_ZOMBIE:
 	    case PM_KOBOLD_ZOMBIE:
@@ -835,6 +850,7 @@ register struct monst *mtmp;
 	    case PM_UNDEAD_YETI:
 	    case PM_UNDEAD_ARCHEOLOGIST:
 	    case PM_UNDEAD_BARBARIAN:
+	    case PM_UNDEAD_NOOB_MODE_BARB:
 	    case PM_UNDEAD_BINDER:
 	    case PM_UNDEAD_BLEEDER:
 	    case PM_UNDEAD_BARD:
@@ -853,6 +869,12 @@ register struct monst *mtmp;
 	    case PM_UNDEAD_AKLYST:
 	    case PM_UNDEAD_MILL_SWALLOWER:
 	    case PM_UNDEAD_SYMBIANT:
+	    case PM_UNDEAD_BUTT_LOVER:
+	    case PM_UNDEAD_DANCER:
+	    case PM_UNDEAD_DIABLIST:
+	    case PM_UNDEAD_PREVERSIONER:
+	    case PM_UNDEAD_SECRET_ADVICE_MEMBER:
+	    case PM_UNDEAD_SHOE_FETISHIST:
 	    case PM_UNDEAD_GENDERSTARIST:
 	    case PM_UNDEAD_COMBATANT:
 	    case PM_UNDEAD_ZYBORG:
@@ -878,6 +900,7 @@ register struct monst *mtmp;
 	    case PM_UNDEAD_KNIGHT:
 	    case PM_UNDEAD_WARRIOR:
 	    case PM_UNDEAD_MONK:
+	    case PM_UNDEAD_HALF_BAKED:
 	    case PM_UNDEAD_PROSTITUTE:
 	    case PM_UNDEAD_KURWA:
 	    case PM_UNDEAD_PSION:
@@ -1413,11 +1436,25 @@ register struct monst *mtmp;
 			obj = mksobj_at(LADY_BOOTS, x, y, TRUE, FALSE, FALSE);
 		mtmp->mnamelth = 0;
 		break;
+	    case PM_SHOE_GOLEM:
+		num = d(1,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(rnd_class(PLASTEEL_BOOTS,LEVITATION_BOOTS), x, y, TRUE, FALSE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
 	    case PM_SANDAL_GOLEM:
 		num = d(1,6);
 		if (num > 1 && rn2(2)) num /= 2;
 		while(num--)
 			obj = mksobj_at(STILETTO_SANDALS, x, y, TRUE, FALSE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_LINGERIE_GOLEM:
+		num = d(1,4);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(VICTORIAN_UNDERWEAR, x, y, TRUE, FALSE, FALSE);
 		mtmp->mnamelth = 0;
 		break;
 	    case PM_ITALIAN_GOLEM:
@@ -2606,6 +2643,8 @@ mpickstuff(mtmp, str)
 			otmp->corpsenm != PM_SWAMP_LIZARD &&
 			otmp->corpsenm != PM_SPITTING_LIZARD &&
 			otmp->corpsenm != PM_LIZARD_EEL &&
+			otmp->corpsenm != PM_INNOCLIZARD &&
+			otmp->corpsenm != PM_FAT_LIZARD &&
 			otmp->corpsenm != PM_LIZARD_MAN &&
 			otmp->corpsenm != PM_LIZARD_KING &&
 			otmp->corpsenm != PM_EEL_LIZARD &&
@@ -2652,6 +2691,8 @@ mpickstuff(mtmp, str)
 		 * also they shouldn't pick up certain items from special rooms */
 		if (otmp->otyp == STATUE) continue;
 		if (otmp->otyp == SWITCHER) continue;
+		if (otmp->otyp == BITCHER) continue;
+		if (otmp->otyp == POTATO_BAG) continue;
 		if (otmp->otyp == CHARGER) continue;
 		if (otmp->otyp == SYMBIOTE) continue;
 		if (otmp->otyp == UGH_MEMORY_TO_CREATE_INVENTORY) continue;
@@ -3428,6 +3469,19 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != FEMMY_TRAP
 				&& ttmp->ttyp != MADELEINE_TRAP
 				&& ttmp->ttyp != MARLENA_TRAP
+				&& ttmp->ttyp != KRISTIN_TRAP
+				&& ttmp->ttyp != ANNA_TRAP
+				&& ttmp->ttyp != RUEA_TRAP
+				&& ttmp->ttyp != DORA_TRAP
+				&& ttmp->ttyp != MARIKE_TRAP
+				&& ttmp->ttyp != JETTE_TRAP
+				&& ttmp->ttyp != INA_TRAP
+				&& ttmp->ttyp != SING_TRAP
+				&& ttmp->ttyp != VICTORIA_TRAP
+				&& ttmp->ttyp != MELISSA_TRAP
+				&& ttmp->ttyp != ANITA_TRAP
+				&& ttmp->ttyp != HENRIETTA_TRAP
+				&& ttmp->ttyp != VERENA_TRAP
 				&& ttmp->ttyp != ARABELLA_TRAP
 				&& ttmp->ttyp != NELLY_TRAP
 				&& ttmp->ttyp != EVELINE_TRAP
@@ -3919,6 +3973,34 @@ struct monst *mtmp;
 		} else
 			return;
 
+	} else if (FemtrapActiveMarike && rn2(5) && !mtmp->mpeaceful && (mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_LOUD)) {
+		visible = u.uswallow && u.ustuck == mtmp ||
+			cansee(mtmp->mx, mtmp->my);
+		if (visible) {
+			pline("But wait...");
+			pline("%s doesn't want to stop farting!", Monnam(mtmp));
+			if (attacktype(mtmp->data, AT_EXPL)
+			    || attacktype(mtmp->data, AT_BOOM))
+				pline("%s reconstitutes!", Monnam(mtmp));
+			else
+				pline("%s looks much better!", Monnam(mtmp));
+		}
+		mtmp->mcanmove = 1;
+		mtmp->masleep = 0;
+		mtmp->mfrozen = 0;
+		if (mtmp->mtame && !mtmp->isminion) {
+			wary_dog(mtmp, FALSE);
+		}
+		if (mtmp->mhpmax <= 0) mtmp->mhpmax = 10;
+		mtmp->mhp = mtmp->mhpmax;
+		if (mvitals[monsndx(mtmp->data)].mvflags & G_GENOD) {
+			if (visible)
+			    pline("Unfortunately %s is still genocided...",
+				mon_nam(mtmp));
+		} else
+			return;
+
+
 	} else if (!rn2(5) && !mtmp->mpeaceful && (LifeSavingBug || u.uprops[LIFE_SAVING_BUG].extrinsic || have_lifesavingstone()) ) {
 		visible = u.uswallow && u.ustuck == mtmp ||
 			cansee(mtmp->mx, mtmp->my);
@@ -4342,6 +4424,47 @@ register struct monst *mtmp;
 	    }
 	}
 
+	if (uarmf && uarmf->oartifact == ART_DESEAMING_GAME && !rn2(50) && tmp != PM_UNFORTUNATE_VICTIM && tmp != PM_SCROLLER_MASTER && tmp != PM_BOULDER_MASTER && tmp != PM_ITEM_MASTER && tmp != PM_GOOD_ITEM_MASTER && tmp != PM_BAD_ITEM_MASTER && tmp != PM_HOLE_MASTER && tmp != PM_TRAP_MASTER && !(mtmp->data->geno & G_UNIQ) ) {
+
+		int attempts = 0;
+		struct permonst *pm = 0;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+newbossSING:
+		do {
+			pm = rndmonst();
+			attempts++;
+			if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+		} while ( (!pm || (pm && !(pm->msound == MS_SHOE )) || (pm && !(type_is_pname(pm))) ) && attempts < 50000);
+
+		if (!pm && rn2(50) ) {
+			attempts = 0;
+			goto newbossSING;
+		}
+		if (pm && !(pm->msound == MS_SHOE) && rn2(50) ) {
+			attempts = 0;
+			goto newbossSING;
+		}
+		if (pm && !(type_is_pname(pm)) && rn2(50) ) {
+			attempts = 0;
+			goto newbossSING;
+		}
+
+		if (pm) {
+			struct monst *singbitch;
+			singbitch = makemon(pm, 0, 0, MM_ANGRY); /* not frenzied --Amy */
+			if (singbitch) singbitch->singannoyance = TRUE;
+		}
+
+		u.aggravation = 0;
+
+	}
+
 	/* Respawn trap effect by Amy. Gotta limit it somehow, to ensure that the game doesn't become completely impossible
 	 * for characters who have the effect intrinsically. It used to be that the # of newly spawned monsters was
 	 * on average exactly the amount that you killed, which is very problematic for trolls and other revivers.
@@ -4475,11 +4598,8 @@ register struct monst *mtmp;
 		    dropy(trophy);
 		}
 
-		if (!tech_known(T_SECURE_IDENTIFY)) {
-		    	learntech(T_SECURE_IDENTIFY, FROMOUTSIDE, 1);
-		    	You("also learn the secure identify technique, and it can be used twice as often for the remaining game.");
-		} else pline("Also, the secure identify technique can now be used twice as often for the remaining game.");
-
+	    	learntech_or_leveltech(T_SECURE_IDENTIFY, FROMOUTSIDE, 1);
+	    	You("also learn the secure identify technique, and it can be used twice as often for the remaining game.");
 
 	}
 
@@ -4487,6 +4607,483 @@ register struct monst *mtmp;
 		u.angmarcomplete = 1;
 		pline("Congratulations, the witch-king is defeated! As a reward, you gain 5 extra skill slots!");
 		u.weapon_slots += 5;
+	}
+
+	if(mtmp->data == &mons[u.rivalneminum] && !u.rivalquestcomplete) {
+		u.rivalquestcomplete = 1;
+		pline("Congratulations, your rival nemesis is defeated! As a reward, you gain 5 extra skill slots!");
+		u.weapon_slots += 5;
+	}
+
+      if(mtmp->data == &mons[PM_VERA_THE_ICE_QUEEN] && !u.veradown) {
+
+		int rndskill = P_DAGGER;
+
+		(void) makemon(&mons[PM_ELAINE_THE_ENCHANTRESS], u.ux, u.uy, MM_ANGRY|MM_ADJACENTOK);
+
+		u.veradown = 1;
+		pline("Congratulations, Vera is defeated! All of your skills are trained by one point!");
+
+		for (rndskill = P_DAGGER; rndskill < P_NUM_SKILLS; rndskill++) {
+			P_ADVANCE(rndskill)++;
+		}
+
+		verbalize("What? Why did you have to do that to Vera??? She... she was my rival, but I kind of liked her anyway... why did you have to kill her, you evil monster? Well, I guess now I have to avenge her death by bludgeoning you...");
+
+	}
+
+      if(mtmp->data == &mons[PM_ELAINE_THE_ENCHANTRESS] && !u.elainedown) {
+
+		u.elainedown = 1;
+		pline("Congratulations, Elaine is defeated! Your reward was dropped at your %s.", makeplural(body_part(FOOT)));
+
+		trophy = mksobj(POT_TECH_LEVEL_UP, FALSE, FALSE, FALSE);
+		if (trophy) {
+		    trophy->prmcurse = trophy->hvycurse = trophy->cursed = trophy->morgcurse = trophy->evilcurse = trophy->bbrcurse = trophy->stckcurse = 0;
+		    dropy(trophy);
+		}
+		trophy = mksobj(POT_TECH_LEVEL_UP, FALSE, FALSE, FALSE);
+		if (trophy) {
+		    trophy->prmcurse = trophy->hvycurse = trophy->cursed = trophy->morgcurse = trophy->evilcurse = trophy->bbrcurse = trophy->stckcurse = 0;
+		    dropy(trophy);
+		}
+		trophy = mksobj(POT_TECH_LEVEL_UP, FALSE, FALSE, FALSE);
+		if (trophy) {
+		    trophy->prmcurse = trophy->hvycurse = trophy->cursed = trophy->morgcurse = trophy->evilcurse = trophy->bbrcurse = trophy->stckcurse = 0;
+		    dropy(trophy);
+		}
+		trophy = mksobj(POT_TECH_LEVEL_UP, FALSE, FALSE, FALSE);
+		if (trophy) {
+		    trophy->prmcurse = trophy->hvycurse = trophy->cursed = trophy->morgcurse = trophy->evilcurse = trophy->bbrcurse = trophy->stckcurse = 0;
+		    dropy(trophy);
+		}
+		trophy = mksobj(POT_TECH_LEVEL_UP, FALSE, FALSE, FALSE);
+		if (trophy) {
+		    trophy->prmcurse = trophy->hvycurse = trophy->cursed = trophy->morgcurse = trophy->evilcurse = trophy->bbrcurse = trophy->stckcurse = 0;
+		    dropy(trophy);
+		}
+
+	}
+
+      if(mtmp->data == &mons[PM_STAHNGNIR__THE_STEEL_GIANT_LORD] && !u.stahngnirdown) {
+		u.stahngnirdown = 1;
+		pline("Congratulations, Lord Stahngnir is defeated! Your reward was dropped at your %s.", makeplural(body_part(FOOT)));
+
+		trophy = mksobj(MATERIAL_KIT, FALSE, FALSE, FALSE);
+		if (trophy) {
+		    dropy(trophy);
+		}
+
+		switch (rnd(10)) {
+
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+			case 6:
+				trophy = mksobj(SCR_INFERIOR_MATERIAL, FALSE, FALSE, FALSE);
+				if (trophy) {
+				    trophy->quan = 3;
+				    trophy->owt = weight(trophy);
+				    dropy(trophy);
+				}
+				break;
+			case 7:
+			case 8:
+			case 9:
+				trophy = mksobj(SCR_REGULAR_MATERIAL, FALSE, FALSE, FALSE);
+				if (trophy) {
+				    trophy->quan = 3;
+				    trophy->owt = weight(trophy);
+				    dropy(trophy);
+				}
+				break;
+			case 10:
+				trophy = mksobj(SCR_REGULAR_MATERIAL, FALSE, FALSE, FALSE);
+				if (trophy) {
+				    trophy->quan = 3;
+				    trophy->owt = weight(trophy);
+				    dropy(trophy);
+				}
+				break;
+		}
+
+	}
+
+      if(mtmp->data == &mons[PM_ARIANE__LADY_OF_THE_ELEMENTS] && !u.arianedown) {
+		u.arianedown = 1;
+
+		if (practicantterror) {
+			pline("%s booms: 'Didn't I tell you that you're not allowed to harm your fellow practicants! Ariane was a promising scientist in this laboratory, unlike you little maggot! All you ever do is step out of line and cause trouble! For that, you'll pay 50000 zorkmids right now and hope that it'll be enough to cover for Ariane's resurrection costs.'", noroelaname());
+			fineforpracticant(50000, 0, 0);
+		}
+
+		pline("Congratulations, Ariane is defeated! Your reward was dropped at your %s.", makeplural(body_part(FOOT)));
+
+		learntech_or_leveltech(T_ELEMENTAL_IMBUE, FROMOUTSIDE, 1);
+		You("learn how to perform elemental imbue!");
+
+		boolean havegifts = u.ugifts;
+
+		if (!havegifts) u.ugifts++;
+
+		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
+		if (trophy) {
+			dropy(trophy);
+			if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+			} else if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_UNSKILLED) {
+				unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_BASIC;
+			} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_BASIC) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SKILLED;
+			} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_SKILLED) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_EXPERT;
+			} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_EXPERT) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_MASTER;
+			} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_MASTER) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_GRAND_MASTER;
+			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_GRAND_MASTER) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SUPREME_MASTER;
+			}
+			if (Race_if(PM_RUSMOT)) {
+				if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_ISRESTRICTED) {
+					unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+				} else if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_UNSKILLED) {
+					unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_BASIC;
+				} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_BASIC) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SKILLED;
+				} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_SKILLED) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_EXPERT;
+				} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_EXPERT) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_MASTER;
+				} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_MASTER) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_GRAND_MASTER;
+				} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_GRAND_MASTER) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SUPREME_MASTER;
+				}
+			}
+			discover_artifact(trophy->oartifact);
+			if (!havegifts) u.ugifts--;
+		}
+
+		havegifts = u.ugifts;
+
+		if (!havegifts) u.ugifts++;
+
+		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
+		if (trophy) {
+			dropy(trophy);
+			if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+			} else if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_UNSKILLED) {
+				unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_BASIC;
+			} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_BASIC) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SKILLED;
+			} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_SKILLED) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_EXPERT;
+			} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_EXPERT) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_MASTER;
+			} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_MASTER) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_GRAND_MASTER;
+			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_GRAND_MASTER) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SUPREME_MASTER;
+			}
+			if (Race_if(PM_RUSMOT)) {
+				if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_ISRESTRICTED) {
+					unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+				} else if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_UNSKILLED) {
+					unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_BASIC;
+				} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_BASIC) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SKILLED;
+				} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_SKILLED) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_EXPERT;
+				} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_EXPERT) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_MASTER;
+				} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_MASTER) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_GRAND_MASTER;
+				} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_GRAND_MASTER) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SUPREME_MASTER;
+				}
+			}
+			discover_artifact(trophy->oartifact);
+			if (!havegifts) u.ugifts--;
+		}
+
+		int skillimprove = randomgoodskill();
+
+		if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+			unrestrict_weapon_skill(skillimprove);
+			pline("You can now learn the %s skill.", wpskillname(skillimprove));
+		} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+			unrestrict_weapon_skill(skillimprove);
+			P_MAX_SKILL(skillimprove) = P_BASIC;
+			pline("You can now learn the %s skill.", wpskillname(skillimprove));
+		} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
+			P_MAX_SKILL(skillimprove) = P_SKILLED;
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+		} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+			P_MAX_SKILL(skillimprove) = P_EXPERT;
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+		} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+			P_MAX_SKILL(skillimprove) = P_MASTER;
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+		} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+			P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+		} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+			P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+		}
+
+		skillimprove = randomgoodskill();
+
+		if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+			unrestrict_weapon_skill(skillimprove);
+			pline("You can now learn the %s skill.", wpskillname(skillimprove));
+		} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+			unrestrict_weapon_skill(skillimprove);
+			P_MAX_SKILL(skillimprove) = P_BASIC;
+			pline("You can now learn the %s skill.", wpskillname(skillimprove));
+		} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
+			P_MAX_SKILL(skillimprove) = P_SKILLED;
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+		} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+			P_MAX_SKILL(skillimprove) = P_EXPERT;
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+		} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+			P_MAX_SKILL(skillimprove) = P_MASTER;
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+		} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+			P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+		} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+			P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+		}
+
+		skillimprove = randomgoodskill();
+
+		if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+			unrestrict_weapon_skill(skillimprove);
+			pline("You can now learn the %s skill.", wpskillname(skillimprove));
+		} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+			unrestrict_weapon_skill(skillimprove);
+			P_MAX_SKILL(skillimprove) = P_BASIC;
+			pline("You can now learn the %s skill.", wpskillname(skillimprove));
+		} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
+			P_MAX_SKILL(skillimprove) = P_SKILLED;
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+		} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+			P_MAX_SKILL(skillimprove) = P_EXPERT;
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+		} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+			P_MAX_SKILL(skillimprove) = P_MASTER;
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+		} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+			P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+		} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+			P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+		}
+
+		if (Race_if(PM_RUSMOT)) {
+			skillimprove = randomgoodskill();
+
+			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(skillimprove);
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
+			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+				unrestrict_weapon_skill(skillimprove);
+				P_MAX_SKILL(skillimprove) = P_BASIC;
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
+			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
+				P_MAX_SKILL(skillimprove) = P_SKILLED;
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+				P_MAX_SKILL(skillimprove) = P_EXPERT;
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+				P_MAX_SKILL(skillimprove) = P_MASTER;
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+			}
+
+			skillimprove = randomgoodskill();
+
+			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(skillimprove);
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
+			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+				unrestrict_weapon_skill(skillimprove);
+				P_MAX_SKILL(skillimprove) = P_BASIC;
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
+			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
+				P_MAX_SKILL(skillimprove) = P_SKILLED;
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+				P_MAX_SKILL(skillimprove) = P_EXPERT;
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+				P_MAX_SKILL(skillimprove) = P_MASTER;
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+			}
+
+			skillimprove = randomgoodskill();
+
+			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(skillimprove);
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
+			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+				unrestrict_weapon_skill(skillimprove);
+				P_MAX_SKILL(skillimprove) = P_BASIC;
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
+			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
+				P_MAX_SKILL(skillimprove) = P_SKILLED;
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+				P_MAX_SKILL(skillimprove) = P_EXPERT;
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+				P_MAX_SKILL(skillimprove) = P_MASTER;
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+			}
+
+		}
+
+	}
+
+      if(mtmp->data == &mons[PM_KALWINA] && !u.emynluincomplete) {
+		u.emynluincomplete = 1;
+		pline("Congratulations, you broke the curse of Emyn Luin! As a reward, you'll gain extra spell memory when learning a new spell, your techniques time out faster so they can be used more often, and your skills train slightly faster!");
+	}
+
+      if(mtmp->data == &mons[PM_THE_MINOTAUR_OF_THE_MAZE] && !u.minotaurmazecomplete) {
+		u.minotaurmazecomplete = 1;
+		pline("Congratulations, the minotaur is defeated! Your reward was dropped at your %s.", makeplural(body_part(FOOT)));
+
+		boolean havegifts = u.ugifts;
+
+		if (!havegifts) u.ugifts++;
+
+		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
+		if (trophy) {
+			dropy(trophy);
+			if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+			} else if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_UNSKILLED) {
+				unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_BASIC;
+			} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_BASIC) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SKILLED;
+			} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_SKILLED) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_EXPERT;
+			} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_EXPERT) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_MASTER;
+			} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_MASTER) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_GRAND_MASTER;
+			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_GRAND_MASTER) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SUPREME_MASTER;
+			}
+			if (Race_if(PM_RUSMOT)) {
+				if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_ISRESTRICTED) {
+					unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+				} else if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_UNSKILLED) {
+					unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_BASIC;
+				} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_BASIC) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SKILLED;
+				} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_SKILLED) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_EXPERT;
+				} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_EXPERT) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_MASTER;
+				} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_MASTER) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_GRAND_MASTER;
+				} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_GRAND_MASTER) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SUPREME_MASTER;
+				}
+			}
+			discover_artifact(trophy->oartifact);
+			if (!havegifts) u.ugifts--;
+		}
+
+		int skillimprove = randomgoodskill();
+
+		if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+			unrestrict_weapon_skill(skillimprove);
+			pline("You can now learn the %s skill.", wpskillname(skillimprove));
+		} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+			unrestrict_weapon_skill(skillimprove);
+			P_MAX_SKILL(skillimprove) = P_BASIC;
+			pline("You can now learn the %s skill.", wpskillname(skillimprove));
+		} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
+			P_MAX_SKILL(skillimprove) = P_SKILLED;
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+		} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+			P_MAX_SKILL(skillimprove) = P_EXPERT;
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+		} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+			P_MAX_SKILL(skillimprove) = P_MASTER;
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+		} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+			P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+		} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+			P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+			pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+		}
+
+		if (Race_if(PM_RUSMOT)) {
+			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(skillimprove);
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
+			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+				unrestrict_weapon_skill(skillimprove);
+				P_MAX_SKILL(skillimprove) = P_BASIC;
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
+			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
+				P_MAX_SKILL(skillimprove) = P_SKILLED;
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+				P_MAX_SKILL(skillimprove) = P_EXPERT;
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+				P_MAX_SKILL(skillimprove) = P_MASTER;
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+			}
+		}
+
+		learntech_or_leveltech(T_CURE_AMNESIA, FROMOUTSIDE, 1);
+		You("learn how to perform cure amnesia!");
+
 	}
 
       if(mtmp->data == &mons[PM_EROGENOUS_KATIA] && !u.katiaremoved) {
@@ -5064,6 +5661,49 @@ register struct monst *mtmp;
 
             achieve.killed_grund = 1;
 	}
+
+        if(mtmp->data == &mons[PM_VERA_THE_ICE_QUEEN]) {
+
+		if (!achieveX.killed_vera) {
+
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
+			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
+
+			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+				u.uhpmax += 10;
+				u.uenmax += 10;
+				if (Upolyd) u.mhmax += 10;
+				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+			}
+
+		}
+
+            achieveX.killed_vera = 1;
+	}
+
+        if(mtmp->data == &mons[PM_ELAINE_THE_ENCHANTRESS]) {
+
+		if (!achieveX.killed_elaine) {
+
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
+			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
+
+			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+				u.uhpmax += 10;
+				u.uenmax += 10;
+				if (Upolyd) u.mhmax += 10;
+				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+			}
+
+		}
+
+            achieveX.killed_elaine = 1;
+	}
+
         if(mtmp->data == &mons[PM_THE_LARGEST_GIANT]) {
 
 		if (!achieve.killed_largestgiant) {
@@ -5357,6 +5997,117 @@ register struct monst *mtmp;
 
 	}
 
+	if(mtmp->data == &mons[PM_STAHNGNIR__THE_STEEL_GIANT_LORD]) {
+
+		if (!achieveX.killed_stahngnir) {
+
+	            achieveX.killed_stahngnir = 1;
+
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
+			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
+
+			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+				u.uhpmax += 10;
+				u.uenmax += 10;
+				if (Upolyd) u.mhmax += 10;
+				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+			}
+
+		}
+
+	}
+
+	if(mtmp->data == &mons[u.rivalneminum]) {
+
+		if (!achieveX.completed_rivalquest) {
+
+	            achieveX.completed_rivalquest = 1;
+
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
+			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
+
+			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+				u.uhpmax += 10;
+				u.uenmax += 10;
+				if (Upolyd) u.mhmax += 10;
+				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+			}
+
+		}
+
+	}
+
+	if(mtmp->data == &mons[PM_ARIANE__LADY_OF_THE_ELEMENTS]) {
+
+		if (!achieveX.killed_ariane) {
+
+	            achieveX.killed_ariane = 1;
+
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
+			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
+
+			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+				u.uhpmax += 10;
+				u.uenmax += 10;
+				if (Upolyd) u.mhmax += 10;
+				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+			}
+
+		}
+
+	}
+
+	if(mtmp->data == &mons[PM_KALWINA]) {
+
+		if (!achieveX.killed_kalwina) {
+
+	            achieveX.killed_kalwina = 1;
+
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
+			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
+
+			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+				u.uhpmax += 10;
+				u.uenmax += 10;
+				if (Upolyd) u.mhmax += 10;
+				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+			}
+
+		}
+
+	}
+
+	if(mtmp->data == &mons[PM_THE_MINOTAUR_OF_THE_MAZE]) {
+
+		if (!achieveX.killed_minotaur) {
+
+	            achieveX.killed_minotaur = 1;
+
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
+			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
+
+			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+				u.uhpmax += 10;
+				u.uenmax += 10;
+				if (Upolyd) u.mhmax += 10;
+				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+			}
+
+		}
+
+	}
+
+
 #ifdef LIVELOGFILE
 		livelog_achieve_update();
 #endif
@@ -5527,15 +6278,15 @@ boolean was_swallowed;			/* digestion */
 		return FALSE;
 
 	/* generally lower chance to leave corpses for balancing reasons, but only if the player is advanced enough --Amy */
-	if (!rn2(3) && !((u.urexp < 10000) && (moves < 10000)) && !mon->egotype_troll && !(is_reviver(mdat) && !(mdat->mlet == S_FUNGUS) ) && !(mdat == &mons[PM_TROLL_ZOMBIE]) && !(mdat == &mons[PM_VECNA]) && !(mdat == &mons[PM_NIGHTMARE]) && !(mdat == &mons[PM_BEHOLDER]) && !(mdat == &mons[PM_MEDUSA]) && !(mdat == &mons[PM_EGO_TROLL_MUMMY]) && !(mdat == &mons[PM_TROLL_PERMAMIMIC_MUMMY]) && !(mdat == &mons[PM_TROLL_MUMMY]) && !mon->mtame)
+	if (!rn2(3) && !((u.urexp < 10000) && (moves < 10000)) && !mon->egotype_troll && !(is_reviver(mdat) && !(mdat->mlet == S_FUNGUS) ) && !(mdat == &mons[PM_TROLL_ZOMBIE]) && !(mdat == &mons[PM_VECNA]) && !(mdat == &mons[PM_NIGHTMARE]) && !(mdat == &mons[PM_BEHOLDER]) && !(mdat == &mons[PM_MEDUSA]) && !(mdat == &mons[PM_EGO_TROLL_MUMMY]) && !(mdat == &mons[PM_EVIL_TROLL_MUMMY]) && !(mdat == &mons[PM_TROLL_PERMAMIMIC_MUMMY]) && !(mdat == &mons[PM_TROLL_MUMMY]) && !mon->mtame)
 		return FALSE;
 
 	/* make it even less likely later in the game, because monsters are spawning more often anyway
 	 * floor value (rn2(8)) because we don't want phantom race player characters to have no chance at all */
-	if (!timebasedlowerchance() && !timebasedlowerchance() && rn2(8) && !is_reviver(mdat) && !mon->egotype_troll && !(mdat == &mons[PM_TROLL_ZOMBIE]) && !(mdat == &mons[PM_VECNA]) && !(mdat == &mons[PM_NIGHTMARE]) && !(mdat == &mons[PM_BEHOLDER]) && !(mdat == &mons[PM_MEDUSA]) && !(mdat == &mons[PM_EGO_TROLL_MUMMY]) && !(mdat == &mons[PM_TROLL_PERMAMIMIC_MUMMY]) && !(mdat == &mons[PM_TROLL_MUMMY]) && !mon->mtame)
+	if (!timebasedlowerchance() && !timebasedlowerchance() && rn2(8) && !is_reviver(mdat) && !mon->egotype_troll && !(mdat == &mons[PM_TROLL_ZOMBIE]) && !(mdat == &mons[PM_VECNA]) && !(mdat == &mons[PM_NIGHTMARE]) && !(mdat == &mons[PM_BEHOLDER]) && !(mdat == &mons[PM_MEDUSA]) && !(mdat == &mons[PM_EGO_TROLL_MUMMY]) && !(mdat == &mons[PM_EVIL_TROLL_MUMMY]) && !(mdat == &mons[PM_TROLL_PERMAMIMIC_MUMMY]) && !(mdat == &mons[PM_TROLL_MUMMY]) && !mon->mtame)
 		return FALSE;
 
-	if (mon->egotype_troll || (is_reviver(mdat) && !(mdat->mlet == S_FUNGUS) ) || bigmonst(mdat) || mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_CHAOTIC_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_BLUE_LIZARD] || mdat == &mons[PM_GRASS_LIZARD] || mdat == &mons[PM_RUNE_LIZARD] || mdat == &mons[PM_SPECTRAL_LIZARD] || mdat == &mons[PM_SWAMP_LIZARD] || mdat == &mons[PM_SPITTING_LIZARD] || mdat == &mons[PM_ROCK_LIZARD] || mdat == &mons[PM_WILL_STONE_LIZARD] || mdat == &mons[PM_WILL_RATCH_LIZARD] || mdat == &mons[PM_LICHZARD] || mdat == &mons[PM_SKELLIZARD] || mdat == &mons[PM_BABY_CAVE_LIZARD] || mdat == &mons[PM_NIGHT_LIZARD] || mdat == &mons[PM_LIZARD_MAN] || mdat == &mons[PM_LIZARD_KING] || mdat == &mons[PM_LIZARD_OF_YENDOR] || mdat == &mons[PM_ANTI_STONE_LIZARD]  || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_PREHISTORIC_CAVE_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_GREEN_LIZARD] || mdat == &mons[PM_SCORZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_CLOCKBACK_LIZARD] || mdat == &mons[PM_LIZARD_MAGE] || mdat == &mons[PM_BLACK_LIZARDMAN] || mdat == &mons[PM_ASSASSIN_LIZARD] || mdat == &mons[PM_BLIZZARD_LIZARD] || mdat == &mons[PM_HELTH_LIZARD] || mdat == &mons[PM_NORMAL_LIZARD] || mdat == &mons[PM_ADULT_LIZARD] || mdat == &mons[PM_LIZZY] || mdat == &mons[PM_LIZARD_PRINCE] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_BLACK_LIZARD] || mdat == &mons[PM_KATNISS]
+	if (mon->egotype_troll || (is_reviver(mdat) && !(mdat->mlet == S_FUNGUS) ) || bigmonst(mdat) || mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_CHAOTIC_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_INNOCLIZARD] || mdat == &mons[PM_FAT_LIZARD] || mdat == &mons[PM_BLUE_LIZARD] || mdat == &mons[PM_GRASS_LIZARD] || mdat == &mons[PM_RUNE_LIZARD] || mdat == &mons[PM_SPECTRAL_LIZARD] || mdat == &mons[PM_SWAMP_LIZARD] || mdat == &mons[PM_SPITTING_LIZARD] || mdat == &mons[PM_ROCK_LIZARD] || mdat == &mons[PM_WILL_STONE_LIZARD] || mdat == &mons[PM_WILL_RATCH_LIZARD] || mdat == &mons[PM_LICHZARD] || mdat == &mons[PM_SKELLIZARD] || mdat == &mons[PM_BABY_CAVE_LIZARD] || mdat == &mons[PM_NIGHT_LIZARD] || mdat == &mons[PM_LIZARD_MAN] || mdat == &mons[PM_LIZARD_KING] || mdat == &mons[PM_LIZARD_OF_YENDOR] || mdat == &mons[PM_ANTI_STONE_LIZARD]  || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_PREHISTORIC_CAVE_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_GREEN_LIZARD] || mdat == &mons[PM_SCORZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_CLOCKBACK_LIZARD] || mdat == &mons[PM_LIZARD_MAGE] || mdat == &mons[PM_BLACK_LIZARDMAN] || mdat == &mons[PM_ASSASSIN_LIZARD] || mdat == &mons[PM_BLIZZARD_LIZARD] || mdat == &mons[PM_HELTH_LIZARD] || mdat == &mons[PM_NORMAL_LIZARD] || mdat == &mons[PM_ADULT_LIZARD] || mdat == &mons[PM_LIZZY] || mdat == &mons[PM_LIZARD_PRINCE] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_BLACK_LIZARD] || mdat == &mons[PM_KATNISS]
 		   || is_golem(mdat)
 		   || is_mplayer(mdat)
 		   || is_umplayer(mdat)
@@ -5847,6 +6598,12 @@ xkilled(mtmp, dest)
 	/* KMH, conduct */
 	u.uconduct.killer++;
 
+	if (Role_if(PM_DANCER) && u.dancercombostrike) {
+		u.dancercombostrike = 0;
+		u.dancercomboactive = FALSE;
+		You("finish dancing.");
+	}
+
 	if (Role_if(PM_BLOODSEEKER)) healup(mtmp->m_lev, 0, FALSE, FALSE); /* special ability called "Stygwyr's Thirst" */
 	if (Race_if(PM_ETHEREALOID) && !rn2(2)) healup(mtmp->m_lev, 0, FALSE, FALSE);
 	if (Race_if(PM_INCORPOREALOID) && !rn2(2)) healup(mtmp->m_lev, 0, FALSE, FALSE);
@@ -5973,7 +6730,7 @@ xkilled(mtmp, dest)
 		/* might be here after swallowed */
 
 		/* Throw a bone to vampiric and ghast players who cannot unstone themselves easily. --Amy */
-		if ((mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_PREHISTORIC_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_CHAOTIC_LIZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_ROCK_LIZARD] || mdat == &mons[PM_WILL_STONE_LIZARD] || mdat == &mons[PM_WILL_RATCH_LIZARD] || mdat == &mons[PM_BABY_CAVE_LIZARD] || mdat == &mons[PM_LICHZARD] || mdat == &mons[PM_SKELLIZARD] || mdat == &mons[PM_NIGHT_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_LIZZY] || mdat == &mons[PM_LIZARD_MAGE] || mdat == &mons[PM_BLACK_LIZARDMAN] || mdat == &mons[PM_ASSASSIN_LIZARD] || mdat == &mons[PM_BLIZZARD_LIZARD] || mdat == &mons[PM_CLOCKBACK_LIZARD] || mdat == &mons[PM_LIZARD_PRINCE] || mdat == &mons[PM_ADULT_LIZARD] || mdat == &mons[PM_HELTH_LIZARD] || mdat == &mons[PM_NORMAL_LIZARD] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_GREEN_LIZARD] || mdat == &mons[PM_BLACK_LIZARD] || mdat == &mons[PM_SCORZARD] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_GRASS_LIZARD] || mdat == &mons[PM_RUNE_LIZARD] || mdat == &mons[PM_SPECTRAL_LIZARD] || mdat == &mons[PM_BLUE_LIZARD] || mdat == &mons[PM_SWAMP_LIZARD] || mdat == &mons[PM_SPITTING_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_LIZARD_MAN] || mdat == &mons[PM_LIZARD_OF_YENDOR] || mdat == &mons[PM_LIZARD_KING] || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_ANTI_STONE_LIZARD]) && !rn2(5) && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(POT_ACID, x, y, TRUE, FALSE, FALSE);
+		if ((mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_PREHISTORIC_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_CHAOTIC_LIZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_ROCK_LIZARD] || mdat == &mons[PM_WILL_STONE_LIZARD] || mdat == &mons[PM_WILL_RATCH_LIZARD] || mdat == &mons[PM_BABY_CAVE_LIZARD] || mdat == &mons[PM_LICHZARD] || mdat == &mons[PM_SKELLIZARD] || mdat == &mons[PM_NIGHT_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_LIZZY] || mdat == &mons[PM_LIZARD_MAGE] || mdat == &mons[PM_BLACK_LIZARDMAN] || mdat == &mons[PM_ASSASSIN_LIZARD] || mdat == &mons[PM_BLIZZARD_LIZARD] || mdat == &mons[PM_CLOCKBACK_LIZARD] || mdat == &mons[PM_LIZARD_PRINCE] || mdat == &mons[PM_ADULT_LIZARD] || mdat == &mons[PM_HELTH_LIZARD] || mdat == &mons[PM_NORMAL_LIZARD] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_GREEN_LIZARD] || mdat == &mons[PM_BLACK_LIZARD] || mdat == &mons[PM_SCORZARD] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_GRASS_LIZARD] || mdat == &mons[PM_RUNE_LIZARD] || mdat == &mons[PM_SPECTRAL_LIZARD] || mdat == &mons[PM_BLUE_LIZARD] || mdat == &mons[PM_SWAMP_LIZARD] || mdat == &mons[PM_SPITTING_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_INNOCLIZARD] || mdat == &mons[PM_FAT_LIZARD] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_LIZARD_MAN] || mdat == &mons[PM_LIZARD_OF_YENDOR] || mdat == &mons[PM_LIZARD_KING] || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_ANTI_STONE_LIZARD]) && !rn2(5) && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(POT_ACID, x, y, TRUE, FALSE, FALSE);
 		/* of course the acid potions are useful for other races too, if they run out of lizard corpses */
 
 		if ((mdat == &mons[PM_SQUIRREL] || mdat == &mons[PM_IGUANA] || mdat == &mons[PM_HELPFUL_SQUIRREL] || mdat == &mons[PM_STAR_SQUIRREL] || mdat == &mons[PM_BIG_IGUANA]) && !rn2(20) && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(CARROT, x, y, TRUE, FALSE, FALSE);
@@ -6254,7 +7011,7 @@ xkilled(mtmp, dest)
 		if (!rn2(500) && timebasedlowerchance() && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(usefulitem(), x, y, TRUE, FALSE, FALSE);
 
 		/* you should not be able to farm trolls, gremlins, long worms etc. --Amy */
-		if (!rn2( (Race_if(PM_DROW) ? 100 : Race_if(PM_DOPPELGANGER) ? 150 : 30) ) && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && !is_reviver(mdat) && !is_rider(mdat) && !is_deadlysin(mdat) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && mdat != &mons[PM_DUMMY_MONSTER_NEEDED_FOR_VISUAL_INTERFACE] && mdat != &mons[PM_LONG_WORM] && mdat != &mons[PM_GHOST] && mdat != &mons[PM_TROLL_ZOMBIE] && mdat != &mons[PM_TROLL_MUMMY] && mdat != &mons[PM_TROLL_PERMAMIMIC_MUMMY] && mdat != &mons[PM_EGO_TROLL_MUMMY] && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) && !(issoviet && (mvitals[mndx].mvflags & G_NOCORPSE)) && !(issoviet && nohands(mdat))
+		if (!rn2( (Race_if(PM_DROW) ? 100 : Race_if(PM_DOPPELGANGER) ? 150 : 30) ) && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && !is_reviver(mdat) && !is_rider(mdat) && !is_deadlysin(mdat) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && mdat != &mons[PM_DUMMY_MONSTER_NEEDED_FOR_VISUAL_INTERFACE] && mdat != &mons[PM_LONG_WORM] && mdat != &mons[PM_GHOST] && mdat != &mons[PM_TROLL_ZOMBIE] && mdat != &mons[PM_TROLL_MUMMY] && mdat != &mons[PM_EVIL_TROLL_MUMMY] && mdat != &mons[PM_TROLL_PERMAMIMIC_MUMMY] && mdat != &mons[PM_EGO_TROLL_MUMMY] && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) && !(issoviet && (mvitals[mndx].mvflags & G_NOCORPSE)) && !(issoviet && nohands(mdat))
 	/* lowered overall chance, but see below for a chance to get extra items --Amy
 	 * Drow and especially Doppelgangers are super-powerful anyway, so I decided to nerf them a bit. */
 					&& (!issoviet || (mdat->mlet != S_KOP))
@@ -6774,6 +7531,7 @@ register struct monst *mtmp;
     if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_QUIET) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "tender" : "soft", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		u.cnd_fartingcount++;
+		if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
 		if (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) {
@@ -6819,6 +7577,7 @@ sarahdone:
     if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_NORMAL) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		u.cnd_fartingcount++;
+		if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 		if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
 			pline("The farting gas destroys your footwear instantly.");
@@ -6856,6 +7615,7 @@ sarahdone:
     if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_LOUD) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "disgusting" : "loud", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		u.cnd_fartingcount++;
+		if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 		if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
 			pline("The farting gas destroys your footwear instantly.");
@@ -6892,6 +7652,7 @@ sarahdone:
     if (mtmp->egotype_farter) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), !rn2(6) ? "disgusting" : !rn2(5) ? "loud" : !rn2(4) ? "tender" : !rn2(3) ? "soft" : !rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		u.cnd_fartingcount++;
+		if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 		if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
 			pline("The farting gas destroys your footwear instantly.");
@@ -7381,6 +8142,7 @@ struct monst *mon;
 	case CHAM_CHAMELON: chambaselvl = 16; break;
 	case CHAM_COMMA_CHAMELEON: chambaselvl = 6; break;
 	case CHAM_UNIQUE_SHIFTER: chambaselvl = 25; break;
+	case CHAM_PLAYER_CHANGELING: chambaselvl = 8; break;
 	case CHAM_GIANT_CHAMELEON: chambaselvl = 10; break;
 	/* gah they made it so that regular polymorphs, e.g. via potion, also use this function! */
 	default:
@@ -7909,6 +8671,7 @@ edotochoice:
 	    case CHAM_GHELEON:
 	    case CHAM_COCKAMELEON:
 	    case CHAM_CHANGELING:
+	    case CHAM_PLAYER_CHANGELING:
 	    case CHAM_CHANGELING_ZOMBIE:
 	    case CHAM_CHANGELING_MUMMY:
 	    case CHAM_KARMA_CHAMELEON:
@@ -8584,7 +9347,7 @@ boolean holdeneffect;
 	pline("%s becomes your new symbiote!", noit_Monnam(mtmp));
 	pline("Use #monster to manage your symbiote.");
 	if (flags.showsymbiotehp) flags.botl = TRUE;
-	use_skill(P_SYMBIOSIS, 1);
+	use_skill(P_SYMBIOSIS, rnd(5));
 
 	if (!holdeneffect) mongone(mtmp);
 }
@@ -8691,7 +9454,7 @@ boolean extrahealth;
 	pline("%s becomes your new symbiote!", mons[u.usymbiote.mnum].mname);
 	pline("Use #monster to manage your symbiote.");
 	if (flags.showsymbiotehp) flags.botl = TRUE;
-	use_skill(P_SYMBIOSIS, 1);
+	use_skill(P_SYMBIOSIS, rnd(5));
 
 }
 

@@ -1277,10 +1277,10 @@ boolean alwaysflag;
  * If you REALLY want the limit to come back for some weird reason, enable the knapsacklimit option */
 
 #ifndef GOLDOBJ
-    } else if (flags.knapsacklimit && obj->oclass != COIN_CLASS && inv_cnt() >= 52 &&
+    } else if (flags.knapsacklimit && obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) && !is_feminismstone(obj) && obj->oclass != COIN_CLASS && inv_cnt() >= 52 &&
 		!merge_choice(invent, obj)) {
 #else
-    } else if (flags.knapsacklimit && inv_cnt() >= 52 && !merge_choice(invent, obj)) {
+    } else if (flags.knapsacklimit && obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) && !is_feminismstone(obj) && inv_cnt() >= 52 && !merge_choice(invent, obj)) {
 #endif
 	Your("knapsack cannot accommodate any more items.");
 	result = -1;	/* nothing lifted */
@@ -1439,6 +1439,21 @@ boolean alwaysflag;	/* force the item to be picked up even if it burdens you --A
 		}
 		}
 
+	} else if (obj->otyp == PETRIFYIUM_BRA) {
+		if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !telekinesis) {
+		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
+		    display_nhwindow(WIN_MESSAGE, FALSE);
+		else {
+			char kbuf[BUFSZ];
+
+			strcpy(kbuf, "a petrifyium bra");
+			pline("Touching %s is a fatal mistake.", kbuf);
+			instapetrify(kbuf);
+		    return -1;
+
+		}
+		}
+
 	} else if (obj->otyp == CORPSE) {
 	    if ( (touch_petrifies(&mons[obj->corpsenm])) && (!uarmg || FingerlessGloves)
 				&& (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !telekinesis) {
@@ -1537,7 +1552,7 @@ boolean alwaysflag;	/* force the item to be picked up even if it burdens you --A
         /* Whats left of the special case for gold :-) */
 	if (obj->oclass == COIN_CLASS) flags.botl = 1;
 #endif
-	if (obj->quan != count && obj->otyp != LOADSTONE && obj->otyp != LUCKSTONE && obj->otyp != HEALTHSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) )
+	if (obj->quan != count && obj->otyp != LOADSTONE && obj->otyp != LUCKSTONE && obj->otyp != HEALTHSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) && !is_feminismstone(obj) )
 	    obj = splitobj(obj, count);
 
 	if (TooHeavyEffect || u.uprops[TOO_HEAVY_EFFECT].extrinsic || have_tooheavystone()) {
@@ -1548,6 +1563,10 @@ boolean alwaysflag;	/* force the item to be picked up even if it burdens you --A
 
 	/* evil patch addition: Nasty gray stones aren't usually generated cursed, but they autocurse if you pick them up. BUC testing won't save you! --Amy */
 	if (is_nastygraystone(obj)) curse(obj);
+	if (is_feminismstone(obj)) {
+		curse(obj);
+		pline("Oh no, apparently there is some sort of curse on this gem. It won't leave your inventory as long as it's still cursed.");
+	}
 
 	if (uwep && uwep == obj) mrg_to_wielded = TRUE;
 	nearload = near_capacity();
@@ -1662,7 +1681,7 @@ able_to_loot(x, y)
 int x, y;
 {
 	if (!can_reach_floor()) {
-		if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) )
+		if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) )
 			rider_cant_reach(); /* not skilled enough to reach */
 		else
 			You("cannot reach the %s.", surface(x, y));
@@ -2109,6 +2128,13 @@ boolean invobj;
 		obj->bknown = 1;
 	      pline_The("stone%s won't leave your person.", plur(obj->quan));
 		return 0;
+	} else if (obj->otyp == LUCKSTONE && isevilvariant && !obj->cursed && !obj->blessed && Luck < 0) {
+		pline("Har har har, an evil presence prevents you from getting rid of that!");
+		return(FALSE);
+	} else if (is_feminismstone(obj) && obj->cursed) {
+		obj->bknown = 1;
+		pline_The("gem%s will not leave your inventory as long as they're cursed.", plur(obj->quan));
+		return 0;
 	} else if (obj->otyp == AMULET_OF_YENDOR || obj->otyp == FAKE_AMULET_OF_YENDOR ||
 		   obj->otyp == CANDELABRUM_OF_INVOCATION ||
 		   obj->otyp == BELL_OF_OPENING ||
@@ -2169,6 +2195,21 @@ boolean invobj;
 		    char kbuf[BUFSZ];
 
 		    strcpy(kbuf, "a petrifyium bar");
+		    pline("Touching %s is a fatal mistake.", kbuf);
+		    instapetrify(kbuf);
+		    return -1;
+		}
+	    }
+	}
+
+	if (obj->otyp == PETRIFYIUM_BRA) {
+	    if ((!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) )) {
+		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
+		    display_nhwindow(WIN_MESSAGE, FALSE);
+		else {
+		    char kbuf[BUFSZ];
+
+		    strcpy(kbuf, "a petrifyium bra");
 		    pline("Touching %s is a fatal mistake.", kbuf);
 		    instapetrify(kbuf);
 		    return -1;
@@ -2363,6 +2404,21 @@ register struct obj *obj;
 	    }
 	}
 
+	if (obj->otyp == PETRIFYIUM_BRA) {
+	    if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) )) {
+		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
+		    display_nhwindow(WIN_MESSAGE, FALSE);
+		else {
+		    char kbuf[BUFSZ];
+
+		    strcpy(kbuf, "a petrifyium bra");
+		    pline("Touching %s is a fatal mistake.", kbuf);
+		    instapetrify(kbuf);
+		    return -1;
+		}
+	    }
+	}
+
 	if (obj->otyp == EGG) {
 	    if ( (touch_petrifies(&mons[obj->corpsenm])) && obj->corpsenm != PM_PLAYERMON && (!uarmg || FingerlessGloves)
 		 && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) )) {
@@ -2384,7 +2440,7 @@ register struct obj *obj;
 	if ((res = lift_object(obj, current_container, &count, FALSE, FALSE)) <= 0)
 	    return res;
 
-	if (obj->quan != count && obj->otyp != LOADSTONE && obj->otyp != LUCKSTONE && obj->otyp != HEALTHSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) )
+	if (obj->quan != count && obj->otyp != LOADSTONE && obj->otyp != LUCKSTONE && obj->otyp != HEALTHSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) && !is_feminismstone(obj) )
 	    obj = splitobj(obj, count);
 
 	/* Remove the object from the list. */

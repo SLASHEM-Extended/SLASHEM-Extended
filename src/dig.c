@@ -375,6 +375,9 @@ dig()
 				if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
 					use_skill(P_WEDI, 1);
 				}
+				if (uwep && uwep->oartifact == ART_DIGSRU) {
+					use_skill(P_WEDI, 1);
+				}
 			} else
 				/* it was a statue trap; break_statue()
 				 * printed a message and updated the screen
@@ -391,6 +394,9 @@ dig()
 			}
 			digtxt = "The boulder falls apart.";
 			if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+				use_skill(P_WEDI, 1);
+			}
+			if (uwep && uwep->oartifact == ART_DIGSRU) {
 				use_skill(P_WEDI, 1);
 			}
 		} else if (lev->typ == STONE || lev->typ == WATERTUNNEL || lev->typ == SCORR || IS_IRONBAR(lev->typ) ||
@@ -414,11 +420,17 @@ dig()
 				if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
 					use_skill(P_WEDI, 1);
 				}
+				if (uwep && uwep->oartifact == ART_DIGSRU) {
+					use_skill(P_WEDI, 1);
+				}
 			} else if (IS_WATERTUNNEL(lev->typ)) {
 			    digtxt = "You smash the solid part of the tunnel apart.  Now it's a moat!";
 			    u.cnd_diggingamount++;
 			    lev->typ = MOAT;
 				if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+					use_skill(P_WEDI, 1);
+				}
+				if (uwep && uwep->oartifact == ART_DIGSRU) {
 					use_skill(P_WEDI, 1);
 				}
 			} else if (uwep && IS_IRONBAR(lev->typ) && is_antibar(uwep) ) {
@@ -464,6 +476,9 @@ dig()
 				if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
 					use_skill(P_WEDI, 1);
 				}
+				if (uwep && uwep->oartifact == ART_DIGSRU) {
+					use_skill(P_WEDI, 1);
+				}
 			}
 		} else if(IS_WALL(lev->typ)) {
 			if(shopedge) {
@@ -489,6 +504,9 @@ dig()
 			if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
 				use_skill(P_WEDI, 1);
 			}
+			if (uwep && uwep->oartifact == ART_DIGSRU) {
+				use_skill(P_WEDI, 1);
+			}
 
 		} else if(lev->typ == SDOOR) {
 			cvt_sdoor_to_door(lev);	/* ->typ = DOOR */
@@ -496,11 +514,17 @@ dig()
 			if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
 				use_skill(P_WEDI, 1);
 			}
+			if (uwep && uwep->oartifact == ART_DIGSRU) {
+				use_skill(P_WEDI, 1);
+			}
 			if(!(lev->doormask & D_TRAPPED))
 				lev->doormask = D_BROKEN;
 		} else if(closed_door(dpx, dpy)) {
 			digtxt = "You break through the door.";
 			if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+				use_skill(P_WEDI, 1);
+			}
+			if (uwep && uwep->oartifact == ART_DIGSRU) {
 				use_skill(P_WEDI, 1);
 			}
 			if(shopedge) {
@@ -819,6 +843,7 @@ boolean pit_only;
 	boolean nohole = !Can_dig_down(&u.uz);
 
 	if ((ttmp && (ttmp->ttyp == MAGIC_PORTAL || ttmp->ttyp == HEEL_TRAP || ttmp->ttyp == LOUDSPEAKER || ttmp->ttyp == KOP_CUBE || ttmp->ttyp == BOSS_SPAWNER || ttmp->ttyp == ARABELLA_SPEAKER || ttmp->ttyp == FART_TRAP || nohole)) ||
+		In_minotaurmaze(&u.uz) ||
 	   /* ALI - artifact doors */
 	   IS_DOOR(levl[u.ux][u.uy].typ) && artifact_door(u.ux, u.uy) ||
 	   (IS_ROCK(lev->typ) && lev->typ != SDOOR &&
@@ -1193,6 +1218,10 @@ struct obj *obj;
 			    wake_nearby();
 			} else if (IS_TREE(lev->typ))
 			    You("need an axe to cut down a tree.");
+			else if (IS_FARMLAND(lev->typ))
+			    You("need to use the force to remove farmland.");
+			else if (IS_MOUNTAIN(lev->typ))
+			    You("cannot dig out an entire mountain.");
 			else if (IS_ROCK(lev->typ))
 			    You("need a pick to dig rock.");
 			else if (!ispick && (sobj_at(STATUE, rx, ry) ||

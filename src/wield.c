@@ -437,6 +437,13 @@ boolean put_away;
 	    You("wield the petrifyium bar in your bare %s.", makeplural(body_part(HAND)));
 	    sprintf(kbuf, "petrifyium bar");
 	    instapetrify(kbuf);
+	} else if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && wep->otyp == PETRIFYIUM_BRA) {
+	    /* Prevent wielding cockatrice when not wearing gloves --KAA */
+	    char kbuf[BUFSZ];
+
+	    You("wield the petrifyium bra in your bare %s.", body_part(HAND));
+	    sprintf(kbuf, "petrifyium bra");
+	    instapetrify(kbuf);
 	} else if (uarms && bimanual(wep))
 	    You("cannot wield a two-handed %s while wearing a shield.",
 		is_sword(wep) ? "sword" :
@@ -908,7 +915,7 @@ can_twoweapon()
 	struct obj *otmp;
 
 #define NOT_WEAPON(obj) (obj && !is_weptool(obj) && obj->oclass != WEAPON_CLASS && obj->oclass != BALL_CLASS && obj->oclass != GEM_CLASS && obj->oclass != CHAIN_CLASS)
-	if (!could_twoweap(youmonst.data) && (uwep || uswapwep)) {
+	if (!could_twoweap(youmonst.data) && !(uactivesymbiosis && mons[u.usymbiote.mnum].mattk[1].aatyp == AT_WEAP ) && (uwep || uswapwep)) {
 	    what = uwep && uswapwep ? "two weapons" : "more than one weapon";
 	    if (cantwield(youmonst.data) && !Race_if(PM_TRANSFORMER) )
 		pline("Don't be ridiculous! Your current form has enough trouble wielding ONE weapon!");
@@ -932,7 +939,8 @@ can_twoweapon()
 	} else if (cantwield(youmonst.data) && !Race_if(PM_TRANSFORMER) )
 	    pline("Don't be ridiculous! Your current form has enough trouble wielding ONE weapon!");
 	else if (youmonst.data->mattk[1].aatyp != AT_WEAP &&
-		youmonst.data->mattk[1].aatyp != AT_CLAW) {
+		youmonst.data->mattk[1].aatyp != AT_CLAW &&
+		!(uactivesymbiosis && mons[u.usymbiote.mnum].mattk[1].aatyp == AT_WEAP ) ) {
 	    if (Upolyd)
 		You_cant("fight with two %s in your current form.",
 			makeplural(body_part(HAND)));
@@ -986,6 +994,13 @@ can_twoweapon()
 
 	    You("wield the petrifyium bar with your bare %s.", body_part(HAND));
 	    sprintf(kbuf, "petrifyium bar");
+	    instapetrify(kbuf);
+        } 	else if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && 
+		(uswapwep && uswapwep->otyp == PETRIFYIUM_BRA)) {
+	    char kbuf[BUFSZ];
+
+	    You("wield the petrifyium bra with your bare %s.", body_part(HAND));
+	    sprintf(kbuf, "petrifyium bra");
 	    instapetrify(kbuf);
         } else if (uswapwep && (IsGlib || (uswapwep->cursed && (PlayerCannotUseSkills || (P_SKILL(P_TWO_WEAPON_COMBAT) < P_EXPERT) ) ) )) {
 	    if (!IsGlib)
@@ -1140,6 +1155,8 @@ boolean fade_scrolls;
 
 	if (itemhasappearance(target, APP_IMAGINARY_HEELS) ) return;
 
+	if (target->oartifact == ART_RATCH_CLOSURE_SCRATCHING && rn2(4) ) return;
+
 	if (itemhasappearance(target, APP_WITHERED_CLOAK) ) return;
 
 	if (uarmf && !rn2(2) && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) return;
@@ -1262,6 +1279,8 @@ boolean fade_scrolls;
 	if (itemhasappearance(target, APP_BRAND_NEW_GLOVES) && rn2(4) ) return;
 
 	if (itemhasappearance(target, APP_IMAGINARY_HEELS) ) return;
+
+	if (target->oartifact == ART_RATCH_CLOSURE_SCRATCHING && rn2(4) ) return;
 
 	if (itemhasappearance(target, APP_WITHERED_CLOAK) ) return;
 

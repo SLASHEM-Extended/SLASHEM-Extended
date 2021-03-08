@@ -132,7 +132,8 @@ struct monst {
 #define CHAM_CHAMELON		55	/* food monster */
 #define CHAM_COMMA_CHAMELEON		56	/* food monster */
 #define CHAM_UNIQUE_SHIFTER		57	/* unique */
-#define CHAM_GIANT_CHAMELEON		58	/* animal */
+#define CHAM_PLAYER_CHANGELING		58	/* animal */
+#define CHAM_GIANT_CHAMELEON		59	/* animal */
 #define CHAM_MAX_INDX		CHAM_GIANT_CHAMELEON
 	Bitfield(mundetected,1);	/* not seen in present hiding place */
 				/* implies one of M1_CONCEAL or M1_HIDE,
@@ -166,6 +167,7 @@ struct monst {
 	Bitfield(mleashed,1);	/* monster is on a leash */
 	Bitfield(isspell,1);	/* is a temporary spell being */
 	Bitfield(uexp,1);		/* you get experience for its kills */
+	Bitfield(singannoyance,1);	/* for sing trap */
 
 	Bitfield(mtraitor,1);	/* Former pet that turned traitor */
 	Bitfield(isshk,1);	/* is shopkeeper */
@@ -375,6 +377,10 @@ struct monst {
 	Bitfield(egotype_stoner,1); /* AD_STON, by Mickmane */
 	Bitfield(egotype_maecke,1); /* AD_MAGC */
 	Bitfield(egotype_flamer,1); /* AD_FLAM */
+	Bitfield(egotype_blasphemer,1); /* AD_BLAS */
+	Bitfield(egotype_dropper,1); /* AD_DROP */
+
+	Bitfield(egotype_datadeleter,1); /* AD_DATA */
 
 	Bitfield(nurse_extrahealth,1); /* to control which services a nurse will offer */
 	Bitfield(nurse_decontaminate,1);

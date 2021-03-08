@@ -1731,6 +1731,7 @@ register char oclass;
 	objects[DUMMY_BOOTS_AS].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 	objects[DUMMY_BOOTS_AT].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 	objects[DUMMY_BOOTS_AU].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_BOOTS_AV].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 
 	objects[DUMMY_BOOTS_A].a_can = rnd(10) ? 0 : rnd(3);
 	objects[DUMMY_BOOTS_B].a_can = rnd(10) ? 0 : rnd(3);
@@ -1779,6 +1780,7 @@ register char oclass;
 	objects[DUMMY_BOOTS_AS].a_can = rnd(10) ? 0 : rnd(3);
 	objects[DUMMY_BOOTS_AT].a_can = rnd(10) ? 0 : rnd(3);
 	objects[DUMMY_BOOTS_AU].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_BOOTS_AV].a_can = rnd(10) ? 0 : rnd(3);
 
 	objects[DUMMY_BOOTS_A].a_ac = 0;
 	if (rn2(10)) objects[DUMMY_BOOTS_A].a_ac = 1;
@@ -2014,6 +2016,11 @@ register char oclass;
 	if (rn2(10)) objects[DUMMY_BOOTS_AU].a_ac = 1;
 	while (!rn2(3)) {
 		if (objects[DUMMY_BOOTS_AU].a_ac < 20) objects[DUMMY_BOOTS_AU].a_ac++;
+	}
+	objects[DUMMY_BOOTS_AV].a_ac = 0;
+	if (rn2(10)) objects[DUMMY_BOOTS_AV].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_BOOTS_AV].a_ac < 20) objects[DUMMY_BOOTS_AV].a_ac++;
 	}
 
 	objects[SPE_FORBIDDEN_KNOWLEDGE].oc_level = rnd(8);
@@ -3764,6 +3771,20 @@ find_regular_sneakers()
 }
 
 int
+find_exceptional_sneakers()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_EXCEPTIONAL_SNEAKERS)) return i;
+    }
+
+    impossible("exceptional sneakers not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
 find_elite_sneakers()
 {
     register int i;
@@ -3776,6 +3797,21 @@ find_elite_sneakers()
     return -1;	/* not 0, or caller would try again each move */
 
 }
+
+int
+find_cyan_sneakers()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_CYAN_SNEAKERS)) return i;
+    }
+
+    impossible("cyan sneakers not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
 
 int
 find_biker_boots()
@@ -3955,6 +3991,76 @@ find_lead_boots()
     }
 
     impossible("lead boots not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_machinery_boots()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_MACHINERY_BOOTS)) return i;
+    }
+
+    impossible("machinery boots not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_christmas_child_mode_boots()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_CHRISTMAS_CHILD_MODE_BOOTS)) return i;
+    }
+
+    impossible("christmas child mode boots not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_sandals_with_socks()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_SANDALS_WITH_SOCKS)) return i;
+    }
+
+    impossible("sandals with socks not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_wedge_sneakers()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_WEDGE_SNEAKERS)) return i;
+    }
+
+    impossible("wedge sneakers not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_barefoot_shoes()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_BAREFOOT_SHOES)) return i;
+    }
+
+    impossible("barefoot shoes not found?");
     return -1;	/* not 0, or caller would try again each move */
 
 }
