@@ -1130,7 +1130,7 @@ blockingdone:
 		if (otmp->otyp == DISINTEGRATION_BAR) damage += rnd(50);
 		if (otmp->otyp == NASTYPOLE) damage += rnd(10);
 		if (otmp->otyp == PETRIFYIUM_BAR && !rn2(4)) damage += rnd(200);
-		if (otmp && objects[otmp->otyp].oc_skill == P_GRINDER) damage + rnd(10);
+		if (otmp && objects[otmp->otyp].oc_skill == P_GRINDER) damage += rnd(10);
 	    }
             if (otmp->otyp == SPOON) {
             pline("The spoon flashes brightly as it hits %s.",

@@ -2687,7 +2687,7 @@ register struct monst *mtmp;
 		}
 
 		wouwoutaunt();
-		u.cnd_wouwoucount;
+		u.cnd_wouwoucount++;
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
 		badeffect();
@@ -3971,7 +3971,7 @@ dotalk()
 	if (HardcoreAlienMode) {
 
 		wouwoutaunt();
-		u.cnd_wouwoucount;
+		u.cnd_wouwoucount++;
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 		wake_nearby();
 
