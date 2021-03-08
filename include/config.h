@@ -44,7 +44,7 @@
  * Some combinations make no sense.  See the installation document.
  */
 #define TTY_GRAPHICS		/* good old tty based graphics */
-#define CURSES_GRAPHICS		/* awful curses interface */
+/* #define CURSES_GRAPHICS */		/* awful curses interface */
 /* #define X11_GRAPHICS */	/* X11 interface */
 /* #define QT_GRAPHICS */	/* Qt Interface */
 /* #define KDE */		/* KDE Interface */
