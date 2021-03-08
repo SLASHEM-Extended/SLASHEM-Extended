@@ -4214,6 +4214,7 @@ dochat()
 
 			(void) tamedog(mtmp, (struct obj *) 0, FALSE);
 			u.ugold -= 1000;
+			use_skill(P_SQUEAKING, rnd(5));
 			return 1;
 
 		}
@@ -4224,9 +4225,10 @@ dochat()
 
 		if (yn("This lady wants to join your team. Do you want to tame her?") == 'y') {
 
-		(void) tamedog(mtmp, (struct obj *) 0, FALSE);
-
-		return 1;
+			(void) tamedog(mtmp, (struct obj *) 0, FALSE);
+			u.smexyberries = 0;
+			use_skill(P_SQUEAKING, rnd(5));
+			return 1;
 
 		}
 
@@ -4252,6 +4254,7 @@ dochat()
 		morehungry(100);
 
 		(void) tamedog(mtmp, (struct obj *) 0, TRUE);
+		use_skill(P_SQUEAKING, 1);
 
 	        return 1;
 		}
@@ -4312,6 +4315,7 @@ dochat()
 
 	      verbalize("%s", !rn2(3) ? "By the power of His Holiness Titus Medes, I beseech thee - stop thine combat actions!" : !rn2(2) ? "Long live Martin Septim! Thou shall surrender lest I smite thee!" : "The Emperor will spare thy life if thou stoppest fighting!");
 		morehungry(100);
+		use_skill(P_SQUEAKING, 1);
 
 		if (!mtmp->mfrenzied && mtmp->m_lev < rnd(50) && rn2(u.ulevel + 2) && (rn2(3) || ((rnd(30 - ACURR(A_CHA))) < 4)) ) { /* higher level monsters are less likely to be affected --Amy*/
 
@@ -4332,6 +4336,7 @@ dochat()
 
 	      pline("You frantically chant at %s.",mon_nam(mtmp) );
 		morehungry(500);
+		use_skill(P_SQUEAKING, rnd(5));
 
 		if (mtmp->m_lev < rnd(100) && rn2(u.ulevel + 2) && (rn2(3) || ((rnd(30 - ACURR(A_CHA))) < 4)) ) { /* higher level monsters are less likely to be affected --Amy*/
 
