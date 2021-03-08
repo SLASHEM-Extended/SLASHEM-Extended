@@ -7774,6 +7774,14 @@ register const char *str;
 	if (strncmpi(str, "the ", 4) &&
 	    strcmp(str, "molten lava") &&
 	    strcmp(str, "iron bars") &&
+	    strcmp(str, "farmland") &&
+	    strcmp(str, "moorland") &&
+	    strcmp(str, "shifting sand") &&
+	    strcmp(str, "snow") &&
+	    strcmp(str, "ash") &&
+	    strcmp(str, "sand") &&
+	    strcmp(str, "grass") &&
+	    strcmp(str, "nether mist") &&
 	    strcmp(str, "ice")) {
 		if (index(vowels, *str) &&
 		    strncmp(str, "one-", 4) &&
