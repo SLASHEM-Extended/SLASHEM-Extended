@@ -1884,6 +1884,7 @@ register int pm;
 		break;
 
 	    case PM_DRACOLISK:
+	    case PM_COCKENTRICE:
 	    case PM_CHARISMA_TROVE:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		if (ABASE(A_CHA) < ATTRMAX(A_CHA)) {
@@ -3418,6 +3419,12 @@ register int pm;
 		case PM_BLUE_FLAYER:
 		case PM_MASTER_BLUE_FLAYER:
 		case PM_MIND_FLAYER_TELEPATH:
+		case PM_TENTACLED_ONE:
+		case PM_TENTACLED_POTATO:
+		case PM_ELDER_TENTACLED_ONE:
+		case PM_ELDER_TENTACLED_POTATO:
+		case PM_TENTACLED_ONE_LICH:
+		case PM_DEATH_FLAYER:
 		case PM_MIND_FLAYER_LARVA:
 		case PM_EVIL_MIND_FLAYER_LARVA:
 		case PM_VAMPIRIC_MIND_FLAYER:

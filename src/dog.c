@@ -376,7 +376,7 @@ maeney:
 
 	if (pettype == PM_ROGUE_HIRELING) petname = "Aliza";
 
-	if (pettype == PM_AGGRESSIVE_LICHEN) petname = "Sessilium";
+	if (pettype == PM_SESSILICHEN) petname = "Sessilium";
 	if (pettype == PM_PILE_OF_COPPER_COINS) petname = "Counterfeit";
 	if (pettype == PM_BLOCK_HEELED_GIRL) petname = "Dora";
 

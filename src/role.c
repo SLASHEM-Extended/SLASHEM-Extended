@@ -1087,7 +1087,7 @@ const struct Role roles[] = {
 	{"Dark Lord's Bodyguard", 0} },
 	"Merlin", "Salazar Slytherin", "Lord Voldemort", /* Harry Potter */
 	"Dea", "Malfoy Manor", "the Order of the Phoenix",
-	PM_DEATH_EATER, NON_PM, PM_UNDEAD_DEATH_EATER, NON_PM, PM_AGGRESSIVE_LICHEN,
+	PM_DEATH_EATER, NON_PM, PM_UNDEAD_DEATH_EATER, NON_PM, PM_SESSILICHEN,
 	PM_BELLATRIX_LESTRANGE, PM_FELLOW_DEATH_EATER, PM_HARRY_POTTER, PM_PARRY_HOTTER,
 	PM_AUROR, PM_ELVEN_MASTER_ROGUE, S_ANGEL, S_HUMAN,
 	ART_ELDER_STAFF,

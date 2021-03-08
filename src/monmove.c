@@ -2793,6 +2793,7 @@ altarfound:
 	if (ptr == &mons[PM_SOCIAL_DISORDER]) appr = -1;
 	if (ptr == &mons[PM_LITTLE_WALL_FLOWER]) appr = -1;
 	if (ptr == &mons[PM_DEBILITATED_DANNY]) appr = -1;
+	if (ptr == &mons[PM_DECISION_WEAKSKI]) appr = (!rn2(3) ? -1 : rn2(2) ? 0 : 1);
 
 	if (u.katitrapocc && !mtmp->mpeaceful) appr = -1; /* they're supposed to let you perform your occupation in peace */
 	if (u.singtrapocc && !mtmp->mpeaceful) appr = -1;
