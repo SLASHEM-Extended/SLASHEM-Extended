@@ -5413,6 +5413,8 @@ dropitemattack()
 				Ring_gone(otmpi);
 			} else if (otmpi->owornmask & W_TOOL) continue;
 			else if (otmpi->owornmask & (W_WEP|W_SWAPWEP|W_QUIVER)) {
+			    if (otmpi == uwep && otmpi->cursed) continue;
+
 			    if (otmpi == uwep)
 				uwepgone();
 			    if (otmpi == uswapwep)
