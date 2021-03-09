@@ -1,6 +1,7 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.7.0 - Dec 2020
+- Upgrading tinning kits now works properly again.
 - Fixed "there is a snow here" and similar odd messages.
 - Disabled the curses interface because it was too crashy.
 - If a non-knight creates Excalibur via a fountain now, it causes all Excaliburs to give the same penalties as a foreign role's quest artifact for the remaining game.
