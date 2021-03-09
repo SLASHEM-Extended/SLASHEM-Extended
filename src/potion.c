@@ -12323,6 +12323,7 @@ register struct obj *obj;
 			break;
 		case TINNING_KIT:
 			obj->otyp = TIN_OPENER;
+			obj->spe = 0;
 			break;
 		case EXPENSIVE_CAMERA:
 			obj->otyp = MIRROR;
