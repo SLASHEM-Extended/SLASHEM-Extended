@@ -447,9 +447,6 @@ BRANCH:	"Resting Zone A" @ (2, 13) up
 DUNGEON:        "Emyn Luin" "F" (20, 0)
 ALIGNMENT:      chaotic
 
-DUNGEON:        "Minotaur Maze" "F" (25, 0)
-ALIGNMENT:      lawful
-
 DUNGEON:        "Swimming Pool" "F" (15, 0)
 ALIGNMENT:      lawful
 DESCRIPTION:    hellish
@@ -483,12 +480,14 @@ DESCRIPTION:    mazelike
 BRANCH:         "Minotaur Maze" @ (2, 0)
 LEVEL:          "cav2fill" "H" @ (1, 0)
 
-
 ### Dr Frankenstein's Lab ###
 DUNGEON:        "Frankenstein's Lab" "F" (1, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
 LEVEL:          "frnknstn" "L" @ (1, 0)
+
+DUNGEON:        "Minotaur Maze" "F" (25, 0)
+ALIGNMENT:      lawful
 
 
 DUNGEON:        "Sheol" "V" (25, 0)

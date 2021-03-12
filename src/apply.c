@@ -4268,7 +4268,7 @@ use_pole (obj)
 				if (grindx < u.ux && grindy > u.uy) grindirection = 6; /* southwest */
 				if (grindx == u.ux && grindy > u.uy) grindirection = 7; /* south */
 				if (grindx > u.ux && grindy < u.uy) grindirection = 8; /* northeast */
-				grinderattack(grindirection);
+				if (grindirection >= 1 && grindirection <= 8) grinderattack(grindirection);
 			}
 
 		    if (obj && obj->oartifact == ART_RIGHTLASH_LEFT && !rn2(100) && obj->spe < 15) {

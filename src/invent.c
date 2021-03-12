@@ -18725,7 +18725,7 @@ boolean knoweverything;
 				case ART_FRIEND_CALL:
 					pline("Artifact specs: Creates two familiars at once."); break;
 				case ART_FOR_THE_GOOD_CAUSE:
-					pline("Artifact specs: The effect applies to the confused radius even if you're not confused."); break;
+					pline("Artifact specs: The effect applies to the confused radius even if you're not confused. Lawful."); break;
 				case ART_WARPCHANGE:
 					pline("Artifact specs: teleportitis when worn."); break;
 				case ART_SEMI_SHAPE_CONTROL:

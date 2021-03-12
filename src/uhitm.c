@@ -8007,7 +8007,7 @@ bladeangerdone:
 					if (u.dx < 0 && u.dy > 0) grindirection = 6; /* southwest */
 					if (u.dx == 0 && u.dy > 0) grindirection = 7; /* south */
 					if (u.dx > 0 && u.dy < 0) grindirection = 8; /* northeast */
-					grinderattack(grindirection);
+					if (grindirection >= 1 && grindirection <= 8) grinderattack(grindirection);
 					if (!mon) return FALSE;
 					if (DEADMONSTER(mon)) return FALSE;
 
