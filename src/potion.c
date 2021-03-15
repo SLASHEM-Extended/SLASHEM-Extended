@@ -8138,7 +8138,6 @@ int
 dodrink()
 {
 	register struct obj *otmp;
-	const char *potion_descr;
 	char quaffables[SIZE(beverages) + 2];
 	char *qp = quaffables;
 
@@ -8360,8 +8359,6 @@ dodrink()
 
 #define POTION_OCCUPANT_CHANCE(n) (13 + 2*(n))	/* also in muse.c */
 
-	potion_descr = OBJ_DESCR(objects[otmp->otyp]);
-
 	u.cnd_quaffcount++;
 
 	use_skill(P_DEVICES,1);
@@ -8373,50 +8370,51 @@ dodrink()
 		use_skill(P_DEVICES,1);
 	}
 
-	if (potion_descr) {
-	    if ( (!strcmp(potion_descr, "milky") || !strcmp(potion_descr, "ghostly") || !strcmp(potion_descr, "hallowed") || !strcmp(potion_descr, "camping") || !strcmp(potion_descr, "spiritual")) &&
-		    flags.ghost_count < MAXMONNO &&
-		    !rn2(POTION_OCCUPANT_CHANCE(flags.ghost_count))) {
-		ghost_from_bottle();
-		if (carried(otmp)) useup(otmp);
-		else useupf(otmp, 1L);
-		return(1);
-	    } else if (!strcmp(potion_descr, "smoky") &&
-		    (flags.djinni_count < MAXMONNO) &&
-		    !rn2(POTION_OCCUPANT_CHANCE(flags.djinni_count))) {
+	if (itemhasappearance(otmp, APP_POTION_MILKY) || itemhasappearance(otmp, APP_POTION_GHOSTLY) || itemhasappearance(otmp, APP_POTION_HALLOWED) || itemhasappearance(otmp, APP_POTION_CAMPING) || itemhasappearance(otmp, APP_POTION_SPIRITUAL)) {
+		if (flags.ghost_count < MAXMONNO && !rn2(POTION_OCCUPANT_CHANCE(flags.ghost_count))) {
+			ghost_from_bottle();
+			if (carried(otmp)) useup(otmp);
+			else useupf(otmp, 1L);
+			return(1);
+		}
+	}
+
+	if (itemhasappearance(otmp, APP_POTION_SMOKY) &&
+		    (flags.djinni_count < MAXMONNO) && !rn2(POTION_OCCUPANT_CHANCE(flags.djinni_count))) {
 		djinni_from_bottle(otmp, 1);
 		if (carried(otmp)) useup(otmp);
 		else useupf(otmp, 1L);
 		return(1);
-	    } else if (!strcmp(potion_descr, "vapor") &&
-		    (flags.dao_count < MAXMONNO) &&
-		    !rn2(POTION_OCCUPANT_CHANCE(flags.dao_count))) {
+	}
+	if (itemhasappearance(otmp, APP_POTION_VAPOR) &&
+		    (flags.dao_count < MAXMONNO) && !rn2(POTION_OCCUPANT_CHANCE(flags.dao_count))) {
 		djinni_from_bottle(otmp, 2);
 		if (carried(otmp)) useup(otmp);
 		else useupf(otmp, 1L);
 		return(1);
-	    } else if (!strcmp(potion_descr, "fuming") &&
-		    (flags.efreeti_count < MAXMONNO) &&
-		    !rn2(POTION_OCCUPANT_CHANCE(flags.efreeti_count))) {
+	}
+	if (itemhasappearance(otmp, APP_POTION_FUMING) &&
+		    (flags.efreeti_count < MAXMONNO) && !rn2(POTION_OCCUPANT_CHANCE(flags.efreeti_count))) {
 		djinni_from_bottle(otmp, 3);
 		if (carried(otmp)) useup(otmp);
 		else useupf(otmp, 1L);
 		return(1);
-	    } else if (!strcmp(potion_descr, "sizzling") &&
-		    (flags.marid_count < MAXMONNO) &&
-		    !rn2(POTION_OCCUPANT_CHANCE(flags.marid_count))) {
+	}
+	if (itemhasappearance(otmp, APP_POTION_SIZZLING) &&
+		    (flags.marid_count < MAXMONNO) && !rn2(POTION_OCCUPANT_CHANCE(flags.marid_count))) {
 		djinni_from_bottle(otmp, 4);
 		if (carried(otmp)) useup(otmp);
 		else useupf(otmp, 1L);
 		return(1);
-	    } else if (!strcmp(potion_descr, "whisky") &&
-		    (flags.wineghost_count < MAXMONNO) &&
-		    !rn2(POTION_OCCUPANT_CHANCE(flags.wineghost_count))) {
+	}
+	if (itemhasappearance(otmp, APP_POTION_WHISKY) &&
+		    (flags.wineghost_count < MAXMONNO) && !rn2(POTION_OCCUPANT_CHANCE(flags.wineghost_count))) {
 		djinni_from_bottle(otmp, 5);
 		if (carried(otmp)) useup(otmp);
 		else useupf(otmp, 1L);
 		return(1);
-	    } else if (!strcmp(potion_descr, "dimly-shining") && !rn2(10)) {
+	}
+	if (itemhasappearance(otmp, APP_POTION_DIMLY_SHINING) && !rn2(10)) {
 
 		int summondemon = ndemon(A_CHAOTIC);
 		if (summondemon == NON_PM) {
@@ -8431,8 +8429,8 @@ dodrink()
 		if (carried(otmp)) useup(otmp);
 		else useupf(otmp, 1L);
 		return(1);
-	    } else if (!strcmp(potion_descr, "gaseous") && !rn2(10)) {
-
+	}
+	if (itemhasappearance(otmp, APP_POTION_GASEOUS) && !rn2(10)) {
 		int summondemon = ntrminion();
 		if (summondemon == NON_PM) {
 			pline("Somehow, the potion evaporates with no effect.");
@@ -8446,8 +8444,8 @@ dodrink()
 		if (carried(otmp)) useup(otmp);
 		else useupf(otmp, 1L);
 		return(1);
-	    } else if (!strcmp(potion_descr, "starlight") && !rn2(10)) {
-
+	}
+	if (itemhasappearance(otmp, APP_POTION_STARLIGHT) && !rn2(10)) {
 		int summondemon = lminion();
 		if (summondemon == NON_PM) {
 			pline("Somehow, the potion evaporates with no effect.");
@@ -8461,27 +8459,109 @@ dodrink()
 		if (carried(otmp)) useup(otmp);
 		else useupf(otmp, 1L);
 		return(1);
-	    } else if (!strcmp(potion_descr, "endbringer") && !rn2(64)) {
+	}
+
+	if (itemhasappearance(otmp, APP_POTION_ENDBRINGER) && !rn2(64)) {
 		ragnarok(TRUE);
 		if (evilfriday) evilragnarok(TRUE,level_difficulty());
-	    } else if (!strcmp(potion_descr, "deadweight") && !rn2(10)) {
+	}
+	if (itemhasappearance(otmp, APP_POTION_DEADWEIGHT) && !rn2(10)) {
 		pline("Some sinister force causes you to wear an item!");
 		bad_equipment(0);
-	    } else if (!strcmp(potion_descr, "present") && !rn2(10)) {
+	}
+	if (itemhasappearance(otmp, APP_POTION_PRESENT) && !rn2(10)) {
 		pline("Some sinister force causes you to wear an artifact!");
 		bad_artifact();
-	    } else if (!strcmp(potion_descr, "maleen") && !rn2(10)) {
+	}
+	if (itemhasappearance(otmp, APP_POTION_MALEEN) && !rn2(10)) {
 		pline("Some sinister force causes you to wear a pair of heels!");
 		bad_equipment_heel();
-	    } else if (!strcmp(potion_descr, "gloss") && !rn2(10)) {
+	}
+	if (itemhasappearance(otmp, APP_POTION_GLOSS) && !rn2(10)) {
 		You("apply the lovely lip gloss that was contained inside.");
 		(void) adjattrib(A_CHA, 1, FALSE, TRUE);
-	    } else if (!strcmp(potion_descr, "glam")) {
+	}
+	if (itemhasappearance(otmp, APP_POTION_GLAM)) {
 		if (u.nailpolish < 10) {
 			u.nailpolish++;
 			pline("The potion contained nail polish! You use it to dye your nails.");
 		} else pline("Sadly, the nail polish in the potion goes to waste since you've painted all your nails already.");
-	    }
+	}
+
+	if (itemhasappearance(otmp, APP_POTION_RESERVATROL)) {
+		(void) create_gas_cloud(u.ux, u.uy, 3+bcsign(otmp), 8+4*bcsign(otmp));
+		You("smell chemicals.");
+	}
+	if (itemhasappearance(otmp, APP_POTION_SYMBIO) && !rn2(5)) {
+		struct permonst *pm = 0;
+		int attempts = 0;
+		register struct monst *symbiomon;
+
+newsymbio:
+		do {
+			pm = rndmonst();
+			attempts++;
+
+		} while ( (!pm || (pm && !(stationary(pm) || pm->mmove == 0 || pm->mlet == S_TURRET ))) && attempts < 50000);
+
+		if (!pm && rn2(50) ) {
+			attempts = 0;
+			goto newsymbio;
+		}
+		if (pm && !(stationary(pm) || pm->mmove == 0 || pm->mlet == S_TURRET) && rn2(50) ) {
+			attempts = 0;
+			goto newsymbio;
+		}
+
+		if (pm) symbiomon = makemon(pm, u.ux, u.uy, NO_MM_FLAGS);
+		if (symbiomon) {
+			(void) tamedog(symbiomon, (struct obj *) 0, TRUE);
+			pline("A potential symbiote forms out of nowhere!");
+		}
+	}
+	if (itemhasappearance(otmp, APP_POTION_MICROBIOTIC) && !rn2(5)) {
+		register struct monst *mtmp;
+ 	      mtmp = makemon(mkclass(S_FUNGUS,0), u.ux, u.uy, NO_MM_FLAGS);
+		if (mtmp) {
+			(void) tamedog(mtmp, (struct obj *) 0, TRUE);
+			pline("A fungus forms out of nowhere!");
+		}
+	}
+	if (itemhasappearance(otmp, APP_POTION_NITROGLYCERIN)) {
+		struct obj *dynamite;
+		dynamite = mksobj_at(STICK_OF_DYNAMITE, u.ux, u.uy, TRUE, FALSE, FALSE);
+		if (dynamite) {
+			if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
+			else {
+				dynamite->dynamitekaboom = 1;
+				dynamite->quan = 1;
+				dynamite->owt = weight(dynamite);
+				attach_bomb_blow_timeout(dynamite, 0, 0);
+			}
+		}
+	}
+	if (itemhasappearance(otmp, APP_POTION_PERFUME)) {
+		int mondistance = 0;
+		struct monst *mtmp3;
+		int k, l;
+		for (k = -5; k <= 5; k++) for(l = -5; l <= 5; l++) {
+			if (!isok(u.ux + k, u.uy + l)) continue;
+
+			mondistance = 1;
+			if (k > 1) mondistance = k;
+			if (k < -1) mondistance = -k;
+			if (l > 1 && l > mondistance) mondistance = l;
+			if (l < -1 && (-l > mondistance)) mondistance = -l;
+
+			if ( (mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) {
+				mtmp3->mcanmove = 0;
+				mtmp3->mfrozen = (rnd(16 - (mondistance * 2)));
+				mtmp3->mstrategy &= ~STRAT_WAITFORU;
+				mtmp3->mconf = TRUE;
+				pline("%s becomes dizzy from the scent!", Monnam(mtmp3));
+			}
+		}
+
 	}
 
 	if (CurseAsYouUse && otmp && otmp->otyp != CANDELABRUM_OF_INVOCATION && otmp->otyp != SPE_BOOK_OF_THE_DEAD && otmp->otyp != BELL_OF_OPENING) curse(otmp);
@@ -10450,6 +10530,24 @@ boolean your_fault;
 	boolean isyou = (mon == &youmonst);
 	int distance;
 
+	if (obj && itemhasappearance(obj, APP_POTION_RESERVATROL) && isok(obj->ox, obj->oy)) {
+		(void) create_gas_cloud(obj->ox, obj->oy, 3+bcsign(obj), 8+4*bcsign(obj));
+		You("smell chemicals.");
+	}
+	if (obj && itemhasappearance(obj, APP_POTION_NITROGLYCERIN) && isok(obj->ox, obj->oy)) {
+		struct obj *dynamite;
+		dynamite = mksobj_at(STICK_OF_DYNAMITE, obj->ox, obj->oy, TRUE, FALSE, FALSE);
+		if (dynamite) {
+			if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
+			else {
+				dynamite->dynamitekaboom = 1;
+				dynamite->quan = 1;
+				dynamite->owt = weight(dynamite);
+				attach_bomb_blow_timeout(dynamite, 0, 0);
+			}
+		}
+	}
+
 	if (your_fault) u.cnd_potionthrowyoucount++;
 	else u.cnd_potionthrowmoncount++;
 
@@ -10943,6 +11041,12 @@ potionbreathe(obj)
 register struct obj *obj;
 {
 	register int i, ii, isdone, kn = 0;
+
+	if (itemhasappearance(obj, APP_POTION_SUBCLINICAL) || itemhasappearance(obj, APP_POTION_ABBREVIATOR) || itemhasappearance(obj, APP_POTION_MULLIONING) || itemhasappearance(obj, APP_POTION_DISLODGING) || itemhasappearance(obj, APP_POTION_REMONSTRATED) || itemhasappearance(obj, APP_POTION_CINERARIA) || itemhasappearance(obj, APP_POTION_SPURTED) || itemhasappearance(obj, APP_POTION_BASSETED)) {
+		if (breathless(youmonst.data)) pline("Some weird substance gets into your %s!", body_part(EYE));
+		else pline("Some weird stench gets into your %s!", body_part(NOSE));
+		badeffect();
+	}
 
 	switch(obj->otyp) {
 	case POT_RESTORE_ABILITY:

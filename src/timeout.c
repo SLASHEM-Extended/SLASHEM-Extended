@@ -3649,7 +3649,7 @@ boolean yours;
 {
 	long expiretime;	
 
-	if (bomb->cursed && !rn2(2)) return; /* doesn't arm if not armed */
+	if (bomb->cursed && !bomb->dynamitekaboom && !rn2(2)) return; /* doesn't arm if not armed */
 
 	/* Now if you play with other people's property... */
 	if (yours && (!carried(bomb) && costly_spot(bomb->ox, bomb->oy) &&

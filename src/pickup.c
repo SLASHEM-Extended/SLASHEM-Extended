@@ -274,7 +274,7 @@ boolean picked_some;
 
 	/* count the objects here */
 	for (obj = level.objects[u.ux][u.uy]; obj; obj = obj->nexthere) {
-	    if (obj != uchain)
+	    if ((obj != uchain) && !obj->dynamitekaboom)
 		ct++;
 	}
 
@@ -297,6 +297,7 @@ n_or_more(obj)
 struct obj *obj;
 {
     if (obj == uchain) return FALSE;
+    if (obj->dynamitekaboom) return FALSE;
     return (obj->quan >= val_for_n_or_more);
 }
 
@@ -321,7 +322,7 @@ STATIC_OVL boolean
 all_but_uchain(obj)
 struct obj *obj;
 {
-    return (obj != uchain);
+    return ((obj != uchain) && !obj->dynamitekaboom);
 }
 
 /* query_objlist callback: return TRUE */
@@ -1378,6 +1379,8 @@ boolean alwaysflag;	/* force the item to be picked up even if it burdens you --A
 		obj->dknown = 1;
 
 	if (obj == uchain) {    /* do not pick up attached chain */
+	    return 0;
+	} else if (obj->dynamitekaboom) {
 	    return 0;
 	} else if ( (obj == uball) && obj->otyp == GOLD_PIECE) {
 	    return 0;

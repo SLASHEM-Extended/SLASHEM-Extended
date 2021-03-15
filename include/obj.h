@@ -90,6 +90,7 @@ struct obj {
 	Bitfield(oeroded2,2);	/* corroded/rotted weapon/armor */
 	Bitfield(obrittle,2);	/* for antibar weapons */
 	Bitfield(obrittle2,2);	/* ditto */
+	Bitfield(dynamitekaboom,1);	/* hack to make sure that you can't move certain sticks of dynamite --Amy */
 #define greatest_erosion(otmp) (int)((otmp)->oeroded > (otmp)->oeroded2 ? (otmp)->oeroded : (otmp)->oeroded2)
 
 #define greatest_erosionX(otmp) (int) (objects[(otmp)->otyp].oc_material == MT_COMPOST ? (otmp)->oeroded : ((otmp)->oeroded > (otmp)->oeroded2 ? (otmp)->oeroded : (otmp)->oeroded2))

@@ -14039,38 +14039,65 @@ boolean knoweverything;
 #else
 		pline("%s - This is a potion. Color: %s. Material: %s. Appearance: %s. You can quaff it to experience its effects, but it's also possible to throw potions at monsters or bash them with it in melee.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
 #endif
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "milky") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "ghostly") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "hallowed") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "camping") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "spiritual"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (itemhasappearance(obj, APP_POTION_MILKY) || itemhasappearance(obj, APP_POTION_GHOSTLY) || itemhasappearance(obj, APP_POTION_HALLOWED) || itemhasappearance(obj, APP_POTION_CAMPING) || itemhasappearance(obj, APP_POTION_SPIRITUAL)) )
 			pline("Careful, sometimes a ghost may come out if you quaff this potion.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "smoky")))
+
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_SMOKY))
 			pline("A djinni may live in this potion.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "vapor")))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_VAPOR))
 			pline("A dao may live in this potion.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "sizzling")))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_SIZZLING))
 			pline("An efreeti may live in this potion.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "whisky")))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_WHISKY))
 			pline("A wine ghost may live in this potion.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "fuming")))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_FUMING))
 			pline("A marid may live in this potion.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "dimly-shining")))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_DIMLY_SHINING))
 			pline("A demon may live in this potion.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "gaseous")))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_GASEOUS))
 			pline("An elemental may live in this potion.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "starlight")))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_STARLIGHT))
 			pline("An angel may live in this potion.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "endbringer")))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_ENDBRINGER))
 			pline("DANGER: This potion brings an end. Quaff at your own peril.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "chewable")))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_CHEWABLE))
 			pline("You can eat this potion if you want. This will give the effects of inhaling the potion's vapors, which may be different than the quaff effect.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "deadweight")))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_DEADWEIGHT))
 			pline("Occasionally, the act of quaffing this potion forces you to wear some cursed crap.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "present")))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_PRESENT))
 			pline("Occasionally, the act of quaffing this potion forces you to wear a cursed artifact.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "maleen")))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_MALEEN))
 			pline("Occasionally, the act of quaffing this potion forces you to wear a cursed pair of high heels. (Thanks Malena for the inspiration.)");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "gloss")))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_GLOSS))
 			pline("This potion may contain lipstick that you'll automatically apply if you quaff it.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "glam")))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_GLAM))
 			pline("This potion contains nail polish that you'll automatically apply if you quaff it.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_RESERVATROL))
+			pline("This potion contains some noxious chemical that will be released if you quaff it.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_SYMBIO))
+			pline("Occasionally, quaffing this potion summons a tame immobile monster.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_MICROBIOTIC))
+			pline("Occasionally, quaffing this potion summons a tame fungus.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_NITROGLYCERIN))
+			pline("If you quaff or throw this potion, there will be a huge explosion.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_PERFUME))
+			pline("The label reads 'Contains a sample of my personal drum stint reluctance perfume. Sincerely, Anna.'");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_SUBCLINICAL))
+			pline("This potion seems to contain perfume of a largely unknown brand, known by the name 'subclinical lavished'...");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_ABBREVIATOR))
+			pline("This potion seems to contain perfume of a largely unknown brand, known by the name 'abbreviator rambled'...");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_MULLIONING))
+			pline("This potion seems to contain perfume of a largely unknown brand, known by the name 'mullioning almshouse'...");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_DISLODGING))
+			pline("This potion seems to contain perfume of a largely unknown brand, known by the name 'dislodging exscinding'...");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_REMONSTRATED))
+			pline("This potion seems to contain perfume of a largely unknown brand, known by the name 'remonstrated outmarching'...");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_CINERARIA))
+			pline("This potion seems to contain perfume of a largely unknown brand, known by the name 'cineraria lifted'...");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_SPURTED))
+			pline("This potion seems to contain perfume of a largely unknown brand, known by the name 'spurted woodcarver'...");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_BASSETED))
+			pline("This potion seems to contain perfume of a largely unknown brand, known by the name 'basseted prolongation'...");
 
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {

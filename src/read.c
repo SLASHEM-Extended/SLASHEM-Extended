@@ -769,6 +769,7 @@ doread()
 	"Hello and welcome to Boyabali's used armor dealership! Please be aware that in order to enter our store, you not only need to be wearing a face mask, you also must have a pokemon with you.",
 	"Kick you, itchy money", /* by Pinkbeast, pun on Kiku-ichimonji */
 	"play slexbwos, the type of ice block's new variant. slex, but without shoes!", /* by Demo */
+	"slex a variant of slashthem???? take that back you scallywag and scoundrel! (something about an ice block)", /* by amateurhour */
 
 	    };
 	    char buf[BUFSZ];

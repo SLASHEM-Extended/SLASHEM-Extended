@@ -1243,6 +1243,7 @@ xchar x, y;
 
 	/* Mjollnir is magically too heavy to kick */
 	if(kickobj->oartifact == ART_MJOLLNIR) range = 1;
+	if (kickobj->dynamitekaboom) range = 1;
 
 	/* see if the object has a place to move into */
 	if(!ZAP_POS(levl[x+u.dx][y+u.dy].typ) || closed_door(x+u.dx, y+u.dy))

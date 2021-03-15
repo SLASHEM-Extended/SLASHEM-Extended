@@ -1727,6 +1727,8 @@ register struct obj *obj;
 	boolean restricted_fall;
 	int try_limit = 4000;
 
+	if (obj->dynamitekaboom) return;
+
 	if (obj->otyp == CORPSE && is_rider(&mons[obj->corpsenm])) {
 	    if (revive_corpse(obj, FALSE)) return;
 	}

@@ -3184,6 +3184,25 @@ boolean in_view;
 {
 	const char *to_pieces;
 
+	if (itemhasappearance(obj, APP_POTION_RESERVATROL) && isok(obj->ox, obj->oy)) {
+		(void) create_gas_cloud(obj->ox, obj->oy, 3+bcsign(obj), 8+4*bcsign(obj));
+		You("smell chemicals.");
+	}
+	if (itemhasappearance(obj, APP_POTION_NITROGLYCERIN) && isok(obj->ox, obj->oy)) {
+		struct obj *dynamite;
+		dynamite = mksobj_at(STICK_OF_DYNAMITE, obj->ox, obj->oy, TRUE, FALSE, FALSE);
+		if (dynamite) {
+			if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
+			else {
+				dynamite->dynamitekaboom = 1;
+				dynamite->quan = 1;
+				dynamite->owt = weight(dynamite);
+				attach_bomb_blow_timeout(dynamite, 0, 0);
+			}
+		}
+
+	}
+
 	to_pieces = "";
 	switch (obj->oclass == POTION_CLASS ? POT_WATER : obj->otyp) {
 		default: /* glass or crystal wand */

@@ -8052,6 +8052,7 @@ bladeangerdone:
 						if (dynamite) {
 							if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
 							else {
+								dynamite->dynamitekaboom = 1;
 								dynamite->quan = 1;
 								dynamite->owt = weight(dynamite);
 								dropy(dynamite);

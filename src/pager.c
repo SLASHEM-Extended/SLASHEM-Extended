@@ -27117,6 +27117,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Annie'. It reads: 'Et maintenant a ete touche par mes pointes de foudre pour la troisieme fois et s'est evanoui. Au revoir.'",
 	"Incoming message for Player 1. The message is from 'Annie'. It reads: 'Je peux tirer des pointes de foudre, c'est ma capacite speciale.'",
 	"Incoming message for Player 1. The message is from 'Annie'. It reads: 'Oh non, m'a frappe avec le ballon pour la cinquieme fois et je suis vaincu!'",
+	"You smell chemicals.",
 
 };
 

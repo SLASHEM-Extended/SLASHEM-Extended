@@ -5415,6 +5415,7 @@ static const char *epitaphs[] = {
 	"hey amy ur game is LAMY", /* by Demo */
 	"Amy you suuuuuuck! why did you make that fucking town with the blasted HORDE of angels that is plain IMPOSSIBLE to defeat you BIIIIIIITCH! omg do you even play your game? apparently not, because otherwise you'd notice how it's more of a mental asylum simulator than a video game!!!",
 	"slex is for slosers", /* by Demo */
+	"slashtehmeretaher <--- play that instead", /* ditto */
 
 };
 
