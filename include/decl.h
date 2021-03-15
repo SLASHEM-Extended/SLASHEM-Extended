@@ -140,6 +140,7 @@ E struct dgn_topology {		/* special dungeon levels for speed */
     xchar   d_restingzone_tj_dnum;
     xchar   d_restingzone_a_dnum;
     xchar   d_restingzone_s_dnum;
+    xchar   d_restingzone_e_dnum;
     d_level	d_lawful_quest_level;
     d_level	d_neutral_quest_level;
     d_level	d_chaotic_quest_level;
@@ -271,6 +272,7 @@ E struct dgn_topology {		/* special dungeon levels for speed */
 #define restingzone_tj_dnum		(dungeon_topology.d_restingzone_tj_dnum)
 #define restingzone_a_dnum		(dungeon_topology.d_restingzone_a_dnum)
 #define restingzone_s_dnum		(dungeon_topology.d_restingzone_s_dnum)
+#define restingzone_e_dnum		(dungeon_topology.d_restingzone_e_dnum)
 #define lawful_quest_level	(dungeon_topology.d_lawful_quest_level)
 #define neutral_quest_level	(dungeon_topology.d_neutral_quest_level)
 #define chaotic_quest_level	(dungeon_topology.d_chaotic_quest_level)

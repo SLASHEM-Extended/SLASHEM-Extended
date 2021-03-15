@@ -716,6 +716,8 @@ int verbose;
 		sprintf(buf, flags.showlongstats ? "Resting Zone A:%d " : "RZA:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone S"))
 		sprintf(buf, flags.showlongstats ? "Resting Zone S:%d " : "RZS:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone E"))
+		sprintf(buf, flags.showlongstats ? "Resting Zone E:%d " : "RZE:%d ", depth(&u.uz));
 	else {
 		if (verbose)
 			sprintf(buf, "%s, level %d ",

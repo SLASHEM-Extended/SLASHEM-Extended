@@ -1055,6 +1055,7 @@ init_dungeons()
 	restingzone_tj_dnum = dname_to_dnum("Resting Zone TJ");
 	restingzone_a_dnum = dname_to_dnum("Resting Zone A");
 	restingzone_s_dnum = dname_to_dnum("Resting Zone S");
+	restingzone_e_dnum = dname_to_dnum("Resting Zone E");
 /*
 	blackmarket_dnum = dname_to_dnum("The Black Market");
 */

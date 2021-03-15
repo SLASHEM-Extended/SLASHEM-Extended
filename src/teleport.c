@@ -2078,7 +2078,7 @@ upperdungeonagain:
 		}
 	} else {
 lowerdungeonagain:
-		switch (rnd(32)) {
+		switch (rnd(33)) {
 			case 1:
 				if (!u.silverbellget) goto lowerdungeonagain;
 				dtmp.dnum = dname_to_dnum("Rival Quest");
@@ -2190,6 +2190,9 @@ lowerdungeonagain:
 			case 32:
 				if (!u.freeplaymode || !u.freeplayplanes) goto lowerdungeonagain;
 				dtmp.dnum = dname_to_dnum("The Elemental Planes");
+				break;
+			case 33:
+				dtmp.dnum = dname_to_dnum("Resting Zone E");
 				break;
 		}
 	}
