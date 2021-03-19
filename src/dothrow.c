@@ -3054,6 +3054,25 @@ xchar x, y;		/* object location (ox, oy may not be right) */
 boolean hero_caused;	/* is this the hero's fault? */
 boolean from_invent;
 {
+	if (itemhasappearance(obj, APP_POTION_RESERVATROL) && isok(x, y)) {
+		(void) create_gas_cloud(x, y, 3+bcsign(obj), 8+4*bcsign(obj));
+		You("smell chemicals.");
+	}
+	if (itemhasappearance(obj, APP_POTION_NITROGLYCERIN) && isok(x, y)) {
+		struct obj *dynamite;
+		dynamite = mksobj_at(STICK_OF_DYNAMITE, x, y, TRUE, FALSE, FALSE);
+		if (dynamite) {
+			if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
+			else {
+				dynamite->dynamitekaboom = 1;
+				dynamite->quan = 1;
+				dynamite->owt = weight(dynamite);
+				attach_bomb_blow_timeout(dynamite, 0, 0);
+			}
+		}
+
+	}
+
 	int am;
 	if (IS_ALTAR(levl[x][y].typ))
 	    am = levl[x][y].altarmask & AM_MASK;
@@ -3183,25 +3202,6 @@ struct obj *obj;
 boolean in_view;
 {
 	const char *to_pieces;
-
-	if (itemhasappearance(obj, APP_POTION_RESERVATROL) && isok(obj->ox, obj->oy)) {
-		(void) create_gas_cloud(obj->ox, obj->oy, 3+bcsign(obj), 8+4*bcsign(obj));
-		You("smell chemicals.");
-	}
-	if (itemhasappearance(obj, APP_POTION_NITROGLYCERIN) && isok(obj->ox, obj->oy)) {
-		struct obj *dynamite;
-		dynamite = mksobj_at(STICK_OF_DYNAMITE, obj->ox, obj->oy, TRUE, FALSE, FALSE);
-		if (dynamite) {
-			if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
-			else {
-				dynamite->dynamitekaboom = 1;
-				dynamite->quan = 1;
-				dynamite->owt = weight(dynamite);
-				attach_bomb_blow_timeout(dynamite, 0, 0);
-			}
-		}
-
-	}
 
 	to_pieces = "";
 	switch (obj->oclass == POTION_CLASS ? POT_WATER : obj->otyp) {

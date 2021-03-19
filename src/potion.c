@@ -10530,22 +10530,44 @@ boolean your_fault;
 	boolean isyou = (mon == &youmonst);
 	int distance;
 
-	if (obj && itemhasappearance(obj, APP_POTION_RESERVATROL) && isok(obj->ox, obj->oy)) {
-		(void) create_gas_cloud(obj->ox, obj->oy, 3+bcsign(obj), 8+4*bcsign(obj));
-		You("smell chemicals.");
-	}
-	if (obj && itemhasappearance(obj, APP_POTION_NITROGLYCERIN) && isok(obj->ox, obj->oy)) {
-		struct obj *dynamite;
-		dynamite = mksobj_at(STICK_OF_DYNAMITE, obj->ox, obj->oy, TRUE, FALSE, FALSE);
-		if (dynamite) {
-			if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
-			else {
-				dynamite->dynamitekaboom = 1;
-				dynamite->quan = 1;
-				dynamite->owt = weight(dynamite);
-				attach_bomb_blow_timeout(dynamite, 0, 0);
+	if (isyou) {
+		if (obj && itemhasappearance(obj, APP_POTION_RESERVATROL) && isok(u.ux, u.uy)) {
+			(void) create_gas_cloud(u.ux, u.uy, 3+bcsign(obj), 8+4*bcsign(obj));
+			You("smell chemicals.");
+		}
+		if (obj && itemhasappearance(obj, APP_POTION_NITROGLYCERIN) && isok(u.ux, u.uy)) {
+			struct obj *dynamite;
+			dynamite = mksobj_at(STICK_OF_DYNAMITE, u.ux, u.uy, TRUE, FALSE, FALSE);
+			if (dynamite) {
+				if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
+				else {
+					dynamite->dynamitekaboom = 1;
+					dynamite->quan = 1;
+					dynamite->owt = weight(dynamite);
+					attach_bomb_blow_timeout(dynamite, 0, 0);
+				}
 			}
 		}
+
+	} else {
+		if (obj && itemhasappearance(obj, APP_POTION_RESERVATROL) && isok(mon->mx, mon->my)) {
+			(void) create_gas_cloud(mon->mx, mon->my, 3+bcsign(obj), 8+4*bcsign(obj));
+			You("smell chemicals.");
+		}
+		if (obj && itemhasappearance(obj, APP_POTION_NITROGLYCERIN) && isok(mon->mx, mon->my)) {
+			struct obj *dynamite;
+			dynamite = mksobj_at(STICK_OF_DYNAMITE, mon->mx, mon->my, TRUE, FALSE, FALSE);
+			if (dynamite) {
+				if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
+				else {
+					dynamite->dynamitekaboom = 1;
+					dynamite->quan = 1;
+					dynamite->owt = weight(dynamite);
+					attach_bomb_blow_timeout(dynamite, 0, 0);
+				}
+			}
+		}
+
 	}
 
 	if (your_fault) u.cnd_potionthrowyoucount++;

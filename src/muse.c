@@ -2353,7 +2353,7 @@ struct obj *obj;
 	    }
 	    if (itemhasappearance(obj, APP_POTION_NITROGLYCERIN)) {
 		struct obj *dynamite;
-		dynamite = mksobj_at(STICK_OF_DYNAMITE, obj->ox, obj->oy, TRUE, FALSE, FALSE);
+		dynamite = mksobj_at(STICK_OF_DYNAMITE, mon->mx, mon->my, TRUE, FALSE, FALSE);
 		if (dynamite) {
 			if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
 			else {
