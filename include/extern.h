@@ -1015,6 +1015,7 @@ E void delallobj(int,int);
 E void delobj(struct obj *);
 E struct obj *sobj_at(int,int,int);
 E struct obj *carrying(int);
+E struct obj *carryingappearance(int);
 E boolean have_lizard(void);
 E boolean have_loadstone(void);
 E boolean have_pokeloadstone(void);

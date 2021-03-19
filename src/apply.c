@@ -5147,7 +5147,7 @@ doapply()
 
 	if(check_capacity((char *)0)) return (0);
 
-	if (carrying(POT_OIL) || uhave_graystone())
+	if (carrying(POT_OIL) || carryingappearance(APP_POTION_VACCINE) || uhave_graystone())
 		strcpy(class_list, tools_too);
 	else
 		strcpy(class_list, tools);
@@ -5190,6 +5190,17 @@ doapply()
 		}
 
 		goto mushroompolecheck;
+	}
+
+	if (itemhasappearance(obj, APP_POTION_VACCINE)) {
+		if (yn("Inject the vaccine?") == 'y') {
+			noartispeak = TRUE; /* item is now gone */
+			useup(obj);
+			You("inject the covid-19 vaccine...");
+			if (FunnyHallu) pline("Now you should no longer be obligated to wear a butt-ugly face mask and keep 2 meters of distance to other people. After all, you're immune to the plague now.");
+			upnivel(TRUE);
+			return 1;
+		}
 	}
 
 	switch(obj->otyp){

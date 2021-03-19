@@ -27118,6 +27118,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Annie'. It reads: 'Je peux tirer des pointes de foudre, c'est ma capacite speciale.'",
 	"Incoming message for Player 1. The message is from 'Annie'. It reads: 'Oh non, m'a frappe avec le ballon pour la cinquieme fois et je suis vaincu!'",
 	"You smell chemicals.",
+	"You inject the covid-19 vaccine...",
+	"You inject the covid-19 vaccine... Now you should no longer be obligated to wear a butt-ugly face mask and keep 2 meters of distance to other people. After all, you're immune to the plague now.",
+	"You inject the covid-19 vaccine... but it wasn't one of the officially licensed ones! Shocked, you see that the label reads 'Slexovir Institute', and their vaccines don't have the medical approval yet, so it might have unforeseen side effects!",
 
 };
 

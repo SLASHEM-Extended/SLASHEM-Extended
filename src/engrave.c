@@ -981,6 +981,7 @@ static const char *random_mesg[] = {
 	"SLEX is hereby presented to you by Amy Bluecuntwipeofdeath. Or it would be, according to a certain vandal on the roguebasin site.",
 	"fleecy bundle is an anagram of bully defence",
 	"Locke's men bind Julyne Stark to a tree, and then Locke pulls out his most devastating weapon which is roughly wand-shaped, using it to rob Julyne of something that she can't ever get back.",
+	"You cheated not only the game, but yourself. You didn't grow. You didn't improve. You took a shortcut and gained nothing. You experienced a hollow victory.",
 
 };
 

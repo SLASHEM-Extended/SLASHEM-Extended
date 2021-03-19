@@ -4867,6 +4867,8 @@ POTION((char *)0, "remonstrated", 0, 0,           0,   0, CLR_ORANGE, 1, APP_POT
 POTION((char *)0, "cineraria", 0, 0,           0,   0, CLR_YELLOW, 1, APP_POTION_CINERARIA),
 POTION((char *)0, "spurted", 0, 0,           0,   0, CLR_BRIGHT_MAGENTA, 1, APP_POTION_SPURTED),
 POTION((char *)0, "basseted", 0, 0,           0,   0, CLR_BRIGHT_GREEN, 1, APP_POTION_BASSETED),
+POTION((char *)0, "serum", 0, 0,           0,   0, CLR_YELLOW, 1, 0),
+POTION((char *)0, "vaccine", 0, 0,           0,   0, CLR_BROWN, 1, APP_POTION_VACCINE),
 
 POTION("water", "clear",                0, 0,          550, 100, CLR_CYAN, 1, 0),
 POTION("blood", "blood-red",            0, 0,          50, 100, CLR_RED, 1, 0),
@@ -7013,6 +7015,13 @@ SCROLL((char *)0,               "EI PRAECTISED DIS STOR",  P_NONE,     1,   0, 1
 SCROLL((char *)0,               "MUCH CONFIDENCE WAS PLAYFUL",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
 SCROLL((char *)0,               "FLASCHE DOSE IS JACKE WIE HOSE",  P_NONE,     1,   0, 100, CLR_RED, 1),
 SCROLL((char *)0,               "LATIN LAR LOVE LOUNGE",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
+SCROLL((char *)0,               "RESERVATROL IS SPELLED CORRECTLY",  P_NONE,     1,   0, 100, CLR_GREEN, 1),
+SCROLL((char *)0,               "DESNUDEDATE WANT ME",  P_NONE,     1,   0, 100, CLR_BRIGHT_BLUE, 1),
+SCROLL((char *)0,               "DER SIGARD IHRE KEILABSAETZE HABEN KREPPSOHLEN MIT KLACK KLACK EFFEKT",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
+SCROLL((char *)0,               "CAN A SNAIL AND A CARP HAVE OFFSPRING TOGETHER",  P_NONE,     1,   0, 100, CLR_WHITE, 1),
+SCROLL((char *)0,               "VAE VACCINATIS",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
+SCROLL((char *)0,               "OEH THE TSX ONES ARE FULLY GAY",  P_NONE,     1,   0, 100, CLR_BRIGHT_GREEN, 1),
+SCROLL((char *)0,               "REISSENSOEREN",  P_NONE,     1,   0, 100, CLR_WHITE, 1),
 
 
 #ifdef MAIL

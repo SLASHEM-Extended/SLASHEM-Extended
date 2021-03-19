@@ -1123,6 +1123,19 @@ register int type;
 	return((struct obj *) 0);
 }
 
+struct obj *
+carryingappearance(type)
+register int type;
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj)
+		if(itemhasappearance(otmp, type))
+			return(otmp);
+	return((struct obj *) 0);
+
+}
+
 const char *
 currency(amount)
 long amount;
@@ -6212,7 +6225,7 @@ struct obj *otmp;
 		      otyp != GAS_GRENADE &&
 		      otyp != STICK_OF_DYNAMITE &&
 		      !is_axe(otmp) && !is_antibar(otmp) && !is_applypole(otmp) && !(objects[otyp].oc_skill == P_WHIP && otyp != RUBBER_HOSE) ) ||
-		    (otmp->oclass == POTION_CLASS &&
+		    (otmp->oclass == POTION_CLASS && !(otmp->dknown && itemhasappearance(otmp, APP_POTION_VACCINE)) &&
 		     /* only applicable potion is oil, and it will only
 			be offered as a choice when already discovered */
 		     (otyp != POT_OIL || !otmp->dknown ||
@@ -14098,6 +14111,8 @@ boolean knoweverything;
 			pline("This potion seems to contain perfume of a largely unknown brand, known by the name 'spurted woodcarver'...");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_BASSETED))
 			pline("This potion seems to contain perfume of a largely unknown brand, known by the name 'basseted prolongation'...");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_VACCINE))
+			pline("If you apply this potion, you can inject it into your veins, which uses it up without giving the actual potion effect. Doing so may cure your covid-19 symptoms, if present. (Yes, this isn't how a vaccine works in real life, but this game isn't real life after all.)");
 
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {

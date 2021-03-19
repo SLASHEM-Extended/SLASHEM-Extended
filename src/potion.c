@@ -6113,13 +6113,18 @@ boolean guaranteed;
 		}
 
 		if (u.usymbiote.mhpmax < ceiling) {
+			int actualincrease = 1;
 			increaseamount = (ceiling / 5);
 			if (increaseamount < 1) increaseamount = 1; /* fail safe */
+			actualincrease = u.usymbiote.mhpmax;
 			u.usymbiote.mhpmax += increaseamount;
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 			if (u.usymbiote.mhpmax > ceiling) u.usymbiote.mhpmax = ceiling; /* fail safe */
+			if ((u.usymbiote.mhpmax - actualincrease) > increaseamount) {
+				increaseamount = (u.usymbiote.mhpmax - actualincrease);
+			}
 
-			Your("symbiote's health was boosted by %d.", increaseamount);
+			if (increaseamount > 0) Your("symbiote's health was boosted by %d.", increaseamount);
 		}
 
 	}
