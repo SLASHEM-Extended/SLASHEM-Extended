@@ -3304,7 +3304,7 @@ badeffect()
 		break;
 
 		case 473:
-			playerbleed(rnd(2 + (level_difficulty() * rnd(100))));
+			playerbleed(rnd(2 + (level_difficulty() * rnd(20))));
 			break;
 
 		case 474:
@@ -4537,7 +4537,7 @@ reallybadeffect()
 		break;
 
 		case 111:
-			playerbleed(rnd(2 + (level_difficulty() * rnd(100))));
+			playerbleed(rnd(2 + (level_difficulty() * rnd(20))));
 			break;
 
 		case 112:

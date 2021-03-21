@@ -335,7 +335,7 @@ nh_timeout()
 		}
 	}
 
-	if (PlayerBleeds) {
+	if (PlayerBleeds && !(u.uinvulnerable)) {
 		int bleedingdamage = 1;
 		if (PlayerBleeds > 4) bleedingdamage = rnd(PlayerBleeds / 5);
 		losehp(bleedingdamage, (PlayerBleeds > 100) ? "a hemorrhage" : (PlayerBleeds > 50) ? "profuse bleedout" : "bleedout", KILLED_BY);
