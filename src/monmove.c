@@ -676,7 +676,7 @@ register struct monst *mtmp;
 		};
 		verbalize("%s", polka_msgs[rn2(SIZE(polka_msgs))]);
 
-		if (!rn2(5) && !um_dist(mtmp->mx, mtmp->my, 7) ) increasesanity(rnz(20));
+		if (!rn2(5) && (!um_dist(mtmp->mx, mtmp->my, 7) || !rn2(20)) ) increasesanity(rnz(20));
 	}
 
 	if (mdat == &mons[PM_DARKNESS_ELEMENTAL] || mdat == &mons[PM_PERMADARKNESS_ELEMENTAL]) {
