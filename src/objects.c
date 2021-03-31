@@ -7022,6 +7022,17 @@ SCROLL((char *)0,               "CAN A SNAIL AND A CARP HAVE OFFSPRING TOGETHER"
 SCROLL((char *)0,               "VAE VACCINATIS",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
 SCROLL((char *)0,               "OEH THE TSX ONES ARE FULLY GAY",  P_NONE,     1,   0, 100, CLR_BRIGHT_GREEN, 1),
 SCROLL((char *)0,               "REISSENSOEREN",  P_NONE,     1,   0, 100, CLR_WHITE, 1),
+SCROLL((char *)0,               "SCHOENER TEMPLUE",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
+SCROLL((char *)0,               "TIKTOK TOKTOKTOK",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
+SCROLL((char *)0,               "THE PLURAL OF DOPPELGOTT IS DOPPELGOTTS",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "FRUEWVDSKAH",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
+SCROLL((char *)0,               "HOLYGENSTONE PALATINATE",  P_NONE,     1,   0, 100, CLR_WHITE, 1),
+SCROLL((char *)0,               "FREQUENTLYERSHOME",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
+SCROLL((char *)0,               "ZENTRALGREMIUM OBERSTER BEFEHLSHABER",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "NOT WITH THE HEADING AGAINST IT BOOM",  P_NONE,     1,   0, 100, CLR_RED, 1),
+SCROLL((char *)0,               "MOUSE MICE HOUSE HICE",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
+SCROLL((char *)0,               "SEE SAW SEEN FLEE FLAW FLEEN",  P_NONE,     1,   0, 100, CLR_RED, 1),
+SCROLL((char *)0,               "ABSOLUTELY SAFE VACCINE",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
 
 
 #ifdef MAIL
@@ -8261,7 +8272,7 @@ WAND((char *)0,        "black metal",0, 150, 1, 0,         MT_METAL,    CLR_BLAC
 #define GEM(name,desc,prob,wt,gval,sdam,ldam,nutr,mohs,glass,color,minlvl) OBJECT( \
 	    OBJ(name,desc), \
 	    BITS(0,1,1,0,0,0,0,0,0,HARDGEM(mohs),0,-P_SLING,glass), 0, \
-	    GEM_CLASS, prob, 0, 1, gval, sdam, ldam, 0, 0, nutr, color, minlvl, 0 )
+	    GEM_CLASS, prob, 0, 0, gval, sdam, ldam, 0, 0, nutr, color, minlvl, 0 )
 #define ROCK(name,desc,kn,prob,wt,gval,sdam,ldam,mgc,nutr,mohs,glass,color,minlvl) OBJECT( \
 	    OBJ(name,desc), \
 	    BITS(kn,1,1,0,mgc,0,0,0,0,HARDGEM(mohs),0,-P_SLING,glass), 0, \

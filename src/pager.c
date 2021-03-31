@@ -4031,6 +4031,9 @@ static NEARDATA const char * const demagoguelines[] = {
 "Our country used to be a 'democracy', but lately it has quickly drifted off into a dictatorship! We must remove the evil dictator!",
 "I will not forgive the government for erecting a dictatorship!",
 "This banana republic goes before the dogs!",
+"Napoleon was wrong when he said that people are stupid, because the truth would be that people are SUPER stupid!",
+"Einstein said that the world's population is increasing, and with that I agree. But I disagree that according to him the amount of intelligence is a constant; in reality, the amount of intelligence is decreasing!",
+"When looking at the results of the last election, I have to conclude that the majority of people aren't actually members of the 'homo sapiens' species. They're more like 'homo stultus'.",
 };
 
 static NEARDATA const char * const longinglines[] = {

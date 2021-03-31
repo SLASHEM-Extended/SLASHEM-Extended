@@ -17655,7 +17655,7 @@ boolean knoweverything;
 				case ART_PEACEKEEPER:
 					pline("Artifact specs: +4 to-hit and +8 damage to crossaligned monsters, lawful."); break;
 				case ART_RESTKEEPER:
-					pline("Artifact specs: +4 to-hit and +8 damage to crossaligned monsters, lawful. The type of ice block (Soviet5lo) created this item in case someone wants to compile firearms out of SLASHTHEM, which will never happen. :-P"); break;
+					pline("Artifact specs: +4 to-hit and +8 damage to crossaligned monsters, lawful. The type of ice block created this item in case someone wants to compile firearms out of the game, which will never happen. :-P"); break;
 				case ART_ICEBITER:
 					pline("Artifact specs: cold resistance when wielded, +6 to-hit and +6 damage to cold-susceptible monsters, lawful."); break;
 				case ART_SHOCK_BRAND:
@@ -17663,13 +17663,13 @@ boolean knoweverything;
 				case ART_ACID_BRAND:
 					pline("Artifact specs: acid resistance when wielded, +5 to-hit and double damage to acid-susceptible monsters."); break;
 				case ART_SNAKESKIN:
-					pline("Artifact specs: hallucination resistance, protection and acid resistance when worn, neutral. Soviet, the filthy heretic, actually deferred the role for which this artifact was originally intended..."); break;
+					pline("Artifact specs: hallucination resistance, protection and acid resistance when worn, neutral. Soviet, the creator of a different variant, actually deferred the role for which this artifact was originally intended..."); break;
 				case ART_POSEIDON_S_TREASURE:
 					pline("Artifact specs: +10 to-hit and +10 damage to shock-susceptible monsters, neutral."); break;
 				case ART_GLADIUS:
-					pline("Artifact specs: +8 to-hit and +6 damage, neutral. Someone ought to tell Soviet that he made an artifact sword that's basically called 'sword' (lol)."); break;
+					pline("Artifact specs: +8 to-hit and +6 damage, neutral. Someone ought to tell the creator that he made an artifact sword that's basically called 'sword' (lol)."); break;
 				case ART_HRUNTING:
-					pline("Artifact specs: +4 to-hit and +4 damage, neutral. In SLASHTHEM this thing is associated with the warrior role and the author of that fork completely forgot that the warrior role is Elder Scrolls-themed."); break;
+					pline("Artifact specs: +4 to-hit and +4 damage, neutral. In SLASHTHEM this thing is associated with the warrior role, despite the original idea that the warrior role is Elder Scrolls-themed."); break;
 				case ART_DEBUGGER:
 					pline("Artifact specs: shock resistance when wielded, +5 to-hit and +4 damage to shock-susceptible monsters, neutral."); break;
 				case ART_ACIDTESTER:
@@ -17713,7 +17713,7 @@ boolean knoweverything;
 				case ART_BLOODMARKER:
 					pline("Artifact specs: +3 to-hit and +6 damage, chaotic."); break;
 				case ART_SHAWSHANK:
-					pline("Artifact specs: +9 to-hit and +8 damage, chaotic. Soviet5lo created it for the Gangster role, being oblivious to the fact that the gangster is based on the Grand Theft Auto series."); break;
+					pline("Artifact specs: +9 to-hit and +8 damage, chaotic. Soviet5lo created it for the Gangster role, even though originally the gangster is based on the Grand Theft Auto series."); break;
 				case ART_SPINESEEKER:
 					pline("Artifact specs: +5 to-hit and +4 damage, chaotic."); break;
 				case ART_CROWN_ROYAL_CLOAK:
@@ -17725,9 +17725,9 @@ boolean knoweverything;
 				case ART_WARFORGER:
 					pline("Artifact specs: fire resistance when wielded, +15 to-hit and +14 damage, neutral. Originally intended to be carried by Durin the Blacksmith, maybe?"); break;
 				case ART_SLING_OF_DAVID:
-					pline("Artifact specs: half physical damage when wielded, +5 to-hit and double damage, neutral. No, Soviet, sling bullets fired by this thing will not instakill giants."); break;
+					pline("Artifact specs: half physical damage when wielded, +5 to-hit and double damage, neutral. No, dude, sling bullets fired by this thing will not instakill giants."); break;
 				case ART_GOLDEN_WHISTLE_OF_NORA:
-					pline("Artifact specs: warning, half physical damage and ESP when wielded, lawful. The type of ice block came up with this beautiful name and says it's TEMPORARY??? I don't wanna know what terrible name it will have in future SLASHTHEM versions."); break;
+					pline("Artifact specs: warning, half physical damage and ESP when wielded, lawful. The type of ice block came up with this beautiful name and says it's TEMPORARY??? If you ask me, the name should be permanent!"); break;
 				case ART_FUMA_ITTO_NO_KEN:
 					pline("Artifact specs: drain resistance when wielded, +8 to-hit and +8 damage to crossaligned monsters, chaotic."); break;
 				case ART_PICK_OF_THE_GRAVE:
@@ -17745,7 +17745,7 @@ boolean knoweverything;
 				case ART_CUDGEL_OF_CUTHBERT:
 					pline("Artifact specs: hallucination and drain resistance plus regeneration, warning, increased monster difficulty, wall trap effect and half spell damage when wielded, +5 to-hit and double damage to crossaligned monsters, lawful."); break;
 				case ART_SWORD_OF_SVYATOGOR:
-					pline("Artifact specs: half physical damage and cold resistance when wielded, +7 to-hit and +8 damage, lawful. No idea what weird mythology 'Svyatogor' comes from, but certainly not The Elder Scrolls, so this has no business being the warrior quest artifact in SLASHTHEM."); break;
+					pline("Artifact specs: half physical damage and cold resistance when wielded, +7 to-hit and +8 damage, lawful. No idea what weird mythology 'Svyatogor' comes from, but certainly not The Elder Scrolls, so this has no business being the warrior quest artifact in this game."); break;
 				case ART_TOMMY_GUN_OF_CAPONE:
 					pline("Artifact specs: fire resistance, warning, stealth and acts as a luckstone when wielded, +5 to-hit and +6 damage, chaotic."); break;
 				case ART_WHISTLE_OF_THE_WARDEN:
@@ -19641,7 +19641,7 @@ boolean knoweverything;
 				case ART_JONADAB_S_HEAVYLOAD:
 					pline("Artifact specs: ESP and invisibility while carried."); break;
 				case ART_HANGING_CALL:
-					pline("Artifact specs: +5 to-hit and +4 damage to acid-susceptible monsters, acid resistance when wielded, neutral. This is a 'temporary' artifact created by Soviet5lo, also known as the type of ice block whose variant is constantly being mocked in this one because Slash'EM Extended is just far better in every single way."); break;
+					pline("Artifact specs: +5 to-hit and +4 damage to acid-susceptible monsters, acid resistance when wielded, neutral. This is a 'temporary' artifact created by Soviet5lo, but which is permanent here because Slash'EM Extended normally doesn't implement temporary features."); break;
 				case ART_BLUE_SCREEN_OF_DEATH:
 					pline("Artifact specs: shock resistance when worn, makes everything blue and occasionally spawns blue monsters."); break;
 				case ART_SADDLE_OF_REFLECTION:
@@ -19876,7 +19876,7 @@ boolean knoweverything;
 				case ART_THEY_RE_ALL_YELLOW:
 					pline("Artifact specs: acid resistance when worn, and regeneration if you're in a form without hands."); break;
 				case ART_GELMER_KELANA_TWIN:
-					pline("Artifact specs: monsters from vanilla NetHack spawn more often when you wear it, which means that all non-vanilla monsters become more rare. But if you're in a form with hands, it also makes the game behave like SLASHTHEM, which will fuck you up. The type of ice block laughs, 'Harharharharhar HARR-HARR!'"); break;
+					pline("Artifact specs: monsters from vanilla NetHack spawn more often when you wear it, which means that all non-vanilla monsters become more rare. But if you're in a form with hands, it also makes the game behave like SLASHTHEM (well actually, it activates soviet mode, aka SLASHTHEM Extended), which will fuck you up. The type of ice block laughs, 'Harharharharhar HARR-HARR!'"); break;
 				case ART_NO_ABNORMAL_FUTURE:
 					pline("Artifact specs: whenever a monster hits you in melee while you wear this, there's a slight chance that your items are randomly damaged. The individual chance of this happening may be small but consider how many hits you're going to take over the course of a single game... If you wear it while in a form without hands, it also allows you to use your techniques 4 times as often."); break;
 				case ART_SIGNIFICANT_RNG_JITTER:
