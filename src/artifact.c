@@ -2285,6 +2285,15 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	if (spec_ability(otmp, SPFX_BEHEAD)) {
 	    if ( (otmp->oartifact == ART_TSURUGI_OF_MURAMASA || otmp->oartifact == ART_GAYSECT || otmp->oartifact == ART_LIGHTNING_STROKE || otmp->oartifact == ART_DRAGONCLAN_SWORD || otmp->oartifact == ART_KILLING_EDGE) && dieroll < 2) {
 		wepdesc = "The razor-sharp blade";
+
+		if (!youdefend && mdef->data->geno & G_UNIQ) {
+		    if (youattack) You("critically hit %s!", mon_nam(mdef));
+		    else if (vis) pline("%s critically hits %s!", Monnam(magr), hittee);
+		    *dmgptr += (GushLevel * 2);
+		    willreturntrue = 1;
+		    goto beheadingdone;
+		}
+
 		/* not really beheading, but so close, why add another SPFX */
 		if (youattack && u.uswallow && mdef == u.ustuck) {
 		    You("slice %s wide open!", mon_nam(mdef));
@@ -2340,6 +2349,19 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 		     "%s beheads %s!",
 		     "%s decapitates %s!"
 		};
+
+		if (!youdefend && mdef->data->geno & G_UNIQ) {
+
+		    if (!has_head(mdef->data) || notonhead || u.uswallow || noncorporeal(mdef->data) || amorphous(mdef->data)) {
+			    goto beheadingdone;
+		    }
+
+		    if (youattack) You("critically hit %s!", mon_nam(mdef));
+		    else if (vis) pline("%s critically hits %s!", Monnam(magr), hittee);
+		    *dmgptr += (GushLevel * 2);
+		    willreturntrue = 1;
+		    goto beheadingdone;
+		}
 
 		if (youattack && u.uswallow && mdef == u.ustuck) {
 			goto beheadingdone;
