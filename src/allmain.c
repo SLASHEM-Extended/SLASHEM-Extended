@@ -2094,6 +2094,7 @@ moveloop()
 		    for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 			if (!isok(u.ux + i, u.uy + j)) continue;
 			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0) {
+				if (mtmp->mpeaceful || mtmp->mtame) continue;
 				if (mtmp->data->msize >= MZ_HUGE) buggardchance = 2;
 				else if (!rathersmall(mtmp->data)) buggardchance = 4;
 				else if (!verysmall(mtmp->data)) buggardchance = 8;
@@ -2150,6 +2151,7 @@ moveloop()
 		    for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 			if (!isok(u.ux + i, u.uy + j)) continue;
 			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0) {
+				if (mtmp->mpeaceful || mtmp->mtame) continue;
 				amountoftargets++;
 				if (amountoftargets < 2 || !rn2(amountoftargets)) {
 					targetmon = mtmp;
@@ -2176,6 +2178,7 @@ moveloop()
 		    for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 			if (!isok(u.ux + i, u.uy + j)) continue;
 			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0) {
+				if (mtmp->mpeaceful || mtmp->mtame) continue;
 				pline("%s is slit by the blade!", Monnam(mtmp));
 				hurtmon(mtmp, rnd(5 + (GushLevel / 6)));
 
