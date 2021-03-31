@@ -6235,10 +6235,11 @@ struct obj *weapon;
 	 */
 	if (!(PlayerCannotUseSkills)) bonus = P_SKILL(type);
 	bonus = max(bonus,P_UNSKILLED) - 1;	/* unskilled => 0 */
-	bonus = ((bonus + 1) * (martial_bonus() ? 3 : 1)) / 2;
+	bonus = ((bonus + 1) * (martial_bonus() ? rnd(2) : 1)) / 2;
 
 	/* CAVEAT: martial arts seems to use its own martial_dmg() function in uhitm.c and does not run this code!!!
-	 * and speaking of which, bare-handed combat doesn't seem to do so either... */
+	 * and speaking of which, bare-handed combat doesn't seem to do so either...
+	 * Amy note: it seems that this is used for kicking, because it comes from dokick.c */
 
 	if (!(PlayerCannotUseSkills) && type == P_MARTIAL_ARTS) {
 
@@ -6247,11 +6248,11 @@ struct obj *weapon;
 		    case P_ISRESTRICTED:
 		    case P_UNSKILLED:	bonus += 0; break;
 		    case P_BASIC:	bonus += 0; break;
-		    case P_SKILLED:	bonus += rnd(4); break;
-		    case P_EXPERT:	bonus += rnd(8); break;
-		    case P_MASTER:	bonus += rnd(12); break;
-		    case P_GRAND_MASTER:	bonus += rnd(17); break;
-		    case P_SUPREME_MASTER:	bonus += rnd(23); break;
+		    case P_SKILLED:	bonus += rnd(2); break;
+		    case P_EXPERT:	bonus += rnd(4); break;
+		    case P_MASTER:	bonus += rnd(6); break;
+		    case P_GRAND_MASTER:	bonus += rnd(8); break;
+		    case P_SUPREME_MASTER:	bonus += rnd(10); break;
 		}
 
 	} else if (!(PlayerCannotUseSkills) && type == P_BARE_HANDED_COMBAT) {
@@ -6261,11 +6262,11 @@ struct obj *weapon;
 		    case P_ISRESTRICTED:
 		    case P_UNSKILLED:	bonus += 0; break;
 		    case P_BASIC:	bonus += 0; break;
-		    case P_SKILLED:	bonus += rnd(3); break;
-		    case P_EXPERT:	bonus += rnd(5); break;
-		    case P_MASTER:	bonus += rnd(8); break;
-		    case P_GRAND_MASTER:	bonus += rnd(12); break;
-		    case P_SUPREME_MASTER:	bonus += rnd(16); break;
+		    case P_SKILLED:	bonus += 1; break;
+		    case P_EXPERT:	bonus += rnd(2); break;
+		    case P_MASTER:	bonus += rnd(3); break;
+		    case P_GRAND_MASTER:	bonus += rnd(4); break;
+		    case P_SUPREME_MASTER:	bonus += rnd(5); break;
 		}
 
 	}
