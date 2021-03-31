@@ -27124,6 +27124,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"You inject the covid-19 vaccine...",
 	"You inject the covid-19 vaccine... Now you should no longer be obligated to wear a butt-ugly face mask and keep 2 meters of distance to other people. After all, you're immune to the plague now.",
 	"You inject the covid-19 vaccine... but it wasn't one of the officially licensed ones! Shocked, you see that the label reads 'Slexovir Institute', and their vaccines don't have the medical approval yet, so it might have unforeseen side effects!",
+	"You feel that the archon needs food immediately!",
+	"You feel that the archon needs food immediately! Weird, shouldn't they be inediate as a pet?",
+	"You feel that the anorexic topmodel is moments away from dying of starvation!",
+	"You feel that the anorexic topmodel is moments away from dying of starvation! Hopefully you have a nutritious injection ready, because otherwise she'll die with no chance.",
 
 };
 

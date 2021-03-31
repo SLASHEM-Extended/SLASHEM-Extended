@@ -329,7 +329,7 @@ register struct edog *edog;
 		else
 		    You_feel("worried about %s.", y_monnam(mtmp));
 		stop_occupation();
-	    } else if (!edog->abouttostarve) {
+	    } else if (!edog->abouttostarve && (monstermoves > edog->hungrytime + 750)) {
 		edog->abouttostarve = 5;
 	    } else if (edog->abouttostarve > 1) {
 		edog->abouttostarve--;
@@ -340,12 +340,19 @@ register struct edog *edog;
 			} else
 			    You_feel("that %s is about to starve.", y_monnam(mtmp));
 		}
-		if (edog->abouttostarve == 1) {
+		if (edog->abouttostarve == 2) {
 			if (couldsee(mtmp->mx, mtmp->my)) {
 			    beg(mtmp);
 			    You_feel("that %s is in dire need of food.", y_monnam(mtmp));
 			} else
 			    You_feel("that %s is about to starve.", y_monnam(mtmp));
+		}
+		if (edog->abouttostarve == 1) {
+			if (couldsee(mtmp->mx, mtmp->my)) {
+			    beg(mtmp);
+			    You_feel("that %s needs food immediately!", y_monnam(mtmp));
+			} else
+			    You_feel("that %s is moments away from dying of starvation!", y_monnam(mtmp));
 		}
 	    } else if (monstermoves > edog->hungrytime + 750 || mtmp->mhp < 1) {
  dog_died:
