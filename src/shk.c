@@ -2572,7 +2572,10 @@ register struct obj *unp_obj;	/* known to be unpaid */
 	    if ((bp = onbill(unp_obj, shkp, TRUE)) != 0) break;
 
 	/* onbill() gave no message if unexpected problem occurred */
-	if(!bp) impossible("unpaid_cost: object wasn't on any bill!");
+	if(!bp) {
+		impossible("unpaid_cost: object wasn't on any bill!");
+		unp_obj->unpaid = 0;
+	}
 
 	return bp ? unp_obj->quan * bp->price : 0L;
 }

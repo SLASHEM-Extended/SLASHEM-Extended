@@ -2275,6 +2275,7 @@ u_teleport_monB(mtmp, give_feedback)
 struct monst *mtmp;
 boolean give_feedback;
 {
+	if (mtmp->isshk) make_angry_shk(mtmp, 0, 0);
 
 			int nlev;
 			d_level flev;
