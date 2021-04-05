@@ -2780,7 +2780,7 @@ int dieroll;
 		if (flags.bash_reminder && !rn2(5)) pline("The laser-based crossbow is ineffective while it's not lit! You need to turn it on or it won't deal meaningful damage!");
 	}
 
-	if (thrown && obj && is_ammo(obj) && launcher && !ammo_and_launcher(obj, launcher)) {
+	if (thrown && obj && is_ammo(obj) && launcher && obj->otyp != FRAG_GRENADE && obj->otyp != GAS_GRENADE && !ammo_and_launcher(obj, launcher)) {
 		if (flags.bash_reminder && !rn2(10)) You("are throwing projectiles that are meant to be fired, which isn't very effective! Better wield an appropriate launcher in your main hand!");
 	}
 
