@@ -3967,6 +3967,9 @@ register struct obj *wand;
 	boolean willusecharge = TRUE;
 	boolean onlychargeonce = (wand->otyp == WAN_WISHING || wand->otyp == WAN_CHARGING || wand->otyp == WAN_BAD_EQUIPMENT || wand->otyp == WAN_ACQUIREMENT || wand->otyp == WAN_GAIN_LEVEL || wand->otyp == WAN_INCREASE_MAX_HITPOINTS);
 
+	int blessedboost = 1;
+	if (wand->blessed) blessedboost = 3;
+
 	int nochargechange = 10;
 	if (!(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_DEVICES)) {
@@ -3997,20 +4000,20 @@ register struct obj *wand;
 	if (DischargeBug || u.uprops[DISCHARGE_BUG].extrinsic || have_dischargestone()) wand->spe--;
 
 	u.cnd_zapcount++;
-	use_skill(P_DEVICES,1);
-	if (uwep && uwep->oartifact == ART_WANDERZAPPER) use_skill(P_DEVICES,1);
+	use_skill(P_DEVICES,blessedboost);
+	if (uwep && uwep->oartifact == ART_WANDERZAPPER) use_skill(P_DEVICES,blessedboost);
 	if (Race_if(PM_STICKER)) {
-		use_skill(P_DEVICES,1);
-		use_skill(P_DEVICES,1);
-		use_skill(P_DEVICES,1);
-		use_skill(P_DEVICES,1);
+		use_skill(P_DEVICES,blessedboost);
+		use_skill(P_DEVICES,blessedboost);
+		use_skill(P_DEVICES,blessedboost);
+		use_skill(P_DEVICES,blessedboost);
 	}
 	if (Race_if(PM_FAWN)) {
-		use_skill(P_DEVICES,1);
+		use_skill(P_DEVICES,blessedboost);
 	}
 	if (Race_if(PM_SATRE)) {
-		use_skill(P_DEVICES,1);
-		use_skill(P_DEVICES,1);
+		use_skill(P_DEVICES,blessedboost);
+		use_skill(P_DEVICES,blessedboost);
 	}
 
 	if (wand && wand->oartifact == ART_PSI_CHANGE) {
@@ -4018,7 +4021,7 @@ register struct obj *wand;
 		You_feel("more resistant to confusion!");
 	}
 
-	if (objects[(wand)->otyp].oc_material == MT_INKA) use_skill(P_DEVICES,1);
+	if (objects[(wand)->otyp].oc_material == MT_INKA) use_skill(P_DEVICES,blessedboost);
 	if (objects[(wand)->otyp].oc_material == MT_ANTIDOTIUM) upnivel(TRUE);
 	if (objects[(wand)->otyp].oc_material == MT_ARCANIUM) {
 		u.uenmax++;
@@ -4049,8 +4052,8 @@ register struct obj *wand;
 	}
 
 	if (Race_if(PM_INKA)) {
-		use_skill(P_DEVICES,1);
-		if (objects[(wand)->otyp].oc_material == MT_INKA) use_skill(P_DEVICES,1);
+		use_skill(P_DEVICES,blessedboost);
+		if (objects[(wand)->otyp].oc_material == MT_INKA) use_skill(P_DEVICES,blessedboost);
 	}
 
 	if (wand && wand->oartifact == ART_AVADA_PORKAVRA) {
