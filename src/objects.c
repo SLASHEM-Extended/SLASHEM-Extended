@@ -7033,6 +7033,13 @@ SCROLL((char *)0,               "NOT WITH THE HEADING AGAINST IT BOOM",  P_NONE,
 SCROLL((char *)0,               "MOUSE MICE HOUSE HICE",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
 SCROLL((char *)0,               "SEE SAW SEEN FLEE FLAW FLEEN",  P_NONE,     1,   0, 100, CLR_RED, 1),
 SCROLL((char *)0,               "ABSOLUTELY SAFE VACCINE",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
+SCROLL((char *)0,               "THE RAX",  P_NONE,     1,   0, 100, CLR_ORANGE, 1),
+SCROLL((char *)0,               "VIELE KOCHSENDUNGEN VERDERBEN DEN BREI",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
+SCROLL((char *)0,               "RATZEPUEUEH",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "BEETWAFFELSWELTA",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
+SCROLL((char *)0,               "MENGHETA IS DROPPED BEFORE YOU CAN CONTINUE",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
+SCROLL((char *)0,               "NOECKENBROETER",  P_NONE,     1,   0, 100, CLR_RED, 1),
+SCROLL((char *)0,               "TOUTOURIGANSOMIBAY",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
 
 
 #ifdef MAIL

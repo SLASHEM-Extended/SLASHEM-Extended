@@ -27128,6 +27128,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel that the archon needs food immediately! Weird, shouldn't they be inediate as a pet?",
 	"You feel that the anorexic topmodel is moments away from dying of starvation!",
 	"You feel that the anorexic topmodel is moments away from dying of starvation! Hopefully you have a nutritious injection ready, because otherwise she'll die with no chance.",
+	"The type of ice block is the guy who goes around to see who has the biggest and most beautiful sand castle, and then proceeds to stomp said sand castle repeatedly with his fat ugly boots.",
 
 };
 

@@ -771,6 +771,7 @@ doread()
 	"play slexbwos, the type of ice block's new variant. slex, but without shoes!", /* by Demo */
 	"slex a variant of slashthem???? take that back you scallywag and scoundrel! (something about an ice block)", /* by amateurhour */
 	"If you want a picture of the future NetHack variant scene, imagine a variety of colorful shoes stepping on a human face - forever.", /* by aosdict */
+	"woot...the master liche can suck it", /* by Lurchy */
 
 	    };
 	    char buf[BUFSZ];
