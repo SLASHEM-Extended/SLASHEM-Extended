@@ -6235,7 +6235,7 @@ struct obj *weapon;
 	 */
 	if (!(PlayerCannotUseSkills)) bonus = P_SKILL(type);
 	bonus = max(bonus,P_UNSKILLED) - 1;	/* unskilled => 0 */
-	bonus = ((bonus + 1) * (martial_bonus() ? rnd(2) : 1)) / 2;
+	bonus = ((bonus + 1) * (martial_bonus() ? rno(2) : 1)) / 2;
 
 	/* CAVEAT: martial arts seems to use its own martial_dmg() function in uhitm.c and does not run this code!!!
 	 * and speaking of which, bare-handed combat doesn't seem to do so either...
