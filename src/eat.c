@@ -560,6 +560,15 @@ register struct obj *food;
 			u_wipe_engr(100);
 
 			u.cnd_vomitingcount++;
+
+			if (isevilvariant) {
+				register struct monst *shkp = shop_keeper(*u.ushops);
+				if (shkp) {
+					verbalize("You dare vomiting all over my shop, motherfucker???");
+					make_angry_shk(shkp, 0, 0);
+				}
+			}
+
 			if (u.inasuppression) {
 
 				FemaleTrapIna += u.inasuppression;
@@ -7628,6 +7637,15 @@ void
 vomit()		/* A good idea from David Neves */
 {
 	u.cnd_vomitingcount++;
+
+	if (isevilvariant) {
+		register struct monst *shkp = shop_keeper(*u.ushops);
+		if (shkp) {
+			verbalize("You dare vomiting all over my shop, motherfucker???");
+			make_angry_shk(shkp, 0, 0);
+		}
+	}
+
 	if (u.inasuppression) {
 
 		FemaleTrapIna += u.inasuppression;
