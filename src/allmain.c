@@ -2672,7 +2672,7 @@ moveloop()
 			u.pract_finetimer++;
 			if (u.pract_finetimer >= 10000) {
 				fineforpracticant(1000, 0, 0); /* sets the finetimer var back to 0 */
-				pline("%s thunders: 'You now have to pay a fine of 1000 zorkmds as a penalty for not having to pay a fine in such a long time!'", noroelaname());
+				pline("%s thunders: 'You now have to pay a fine of 1000 zorkmids as a penalty for not having to pay a fine in such a long time!'", noroelaname());
 			}
 		}
 

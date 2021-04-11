@@ -4471,6 +4471,8 @@ static NEARDATA const char * const longinglines[] = {
 "%s's sneakers look like they absolutely want to kick you in the nuts! And you look like you'd enjoy that very much :-)",
 "Do you agree that %s's female sneakers look totally cuddly-gentle? Being kicked in the nuts by them would feel soooooo lovely!",
 "%s's beautiful column-shaped heels can probably do very erotic things to you, like squashing your testicles or stomping your fingers.",
+"You want to see %s use her ladylike shoe heels to crush the testicles of some idiot guy.",
+"You absolutely want to feel up %s's fleece-love-shoes and be kicked by their massive wedge heels!",
 };
 
 static NEARDATA const char * const soviettaunts[] = {
@@ -27129,6 +27131,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel that the anorexic topmodel is moments away from dying of starvation!",
 	"You feel that the anorexic topmodel is moments away from dying of starvation! Hopefully you have a nutritious injection ready, because otherwise she'll die with no chance.",
 	"The type of ice block is the guy who goes around to see who has the biggest and most beautiful sand castle, and then proceeds to stomp said sand castle repeatedly with his fat ugly boots.",
+	"'congratulations, mortal!' booms the boomvoice. 'these are just for you! end recording. stop. no, end recording. oh shoot, those boots still are embroidered with the last chosen one's name, and they're too big. well, too late. alexa restart recording, ahem, CONGRATULATIONS, MORTAL!'", /* by spicycat */
 
 };
 

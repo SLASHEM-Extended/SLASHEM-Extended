@@ -5620,7 +5620,8 @@ static NEARDATA const char * const hcolors[] = {
 	"romantic", "incandescent", "multicolored",
 	"apocyan", "cosmogone", "gant", "infra-pink",
 	"irrigo", "opalescent", "peligin", "razzmatazz",
-	"violant", "viric",
+	"violant", "viric", "burnt hombre", "gan green", "infra dead", 
+	"liver purple", "loathsome lilac", "matter yellow", "ultra violent", 
 };
 
 const char *
