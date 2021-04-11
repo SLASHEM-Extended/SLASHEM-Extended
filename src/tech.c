@@ -11085,11 +11085,11 @@ techdrain()
 {
 
 	int i, thisone, choicenumber, attempts;
+	attempts = 0;
 
 techdrainnew:
 	thisone = -1;
 	choicenumber = 0;
-	attempts = 0;
 
 	for (i = 0; i < MAXTECH; i++) {
 
@@ -11119,11 +11119,11 @@ techdrainsevere()
 {
 
 	int i, thisone, choicenumber, attempts;
+	attempts = 0;
 
 techdrainnewS:
 	thisone = -1;
 	choicenumber = 0;
-	attempts = 0;
 
 	for (i = 0; i < MAXTECH; i++) {
 
@@ -11153,11 +11153,11 @@ techlevelup()
 {
 
 	int i, thisone, choicenumber, attempts;
+	attempts = 0;
 
 techlvlupnew:
 	thisone = -1;
 	choicenumber = 0;
-	attempts = 0;
 
 	for (i = 0; i < MAXTECH; i++) {
 
@@ -11188,11 +11188,11 @@ int technumber;
 {
 
 	int i, thisone, choicenumber, attempts;
+	attempts = 0;
 
 techlvlupnew:
 
 	thisone = -1;
-	attempts = 0;
 	boolean foundtech = FALSE;
 
 	for (i = 0; i < MAXTECH; i++) {
