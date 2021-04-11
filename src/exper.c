@@ -216,7 +216,7 @@ void
 more_experienced(exp, rexp)
 	register int exp, rexp;
 {
-	if (u.uprops[ANTILEVELING].extrinsic || Antileveling || (uamul && uamul->oartifact == ART_NAZGUL_S_REVENGE) || have_antilevelstone() && !(u.ulevel < 10 && !rn2(u.ulevel + 1)) ) return;
+	if ( (u.uprops[ANTILEVELING].extrinsic || Antileveling || (uamul && uamul->oartifact == ART_NAZGUL_S_REVENGE) || have_antilevelstone() ) && !(u.ulevel < 10 && !rn2(u.ulevel + 1)) ) return;
 
 	if ((exp > 0) && Race_if(PM_YEEK)) exp *= 2;
 	if ((exp > 0) && uarmc && uarmc->oartifact == ART_TOO_MANY_AFFIXES) exp *= 2;
