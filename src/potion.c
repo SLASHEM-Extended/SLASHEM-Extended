@@ -11777,7 +11777,7 @@ boolean amnesia;
 			You("pollute the environment.");
 			if (practicantterror && !u.pract_oilspill) {
 				pline("%s thunders: 'That's a serious crime you committed there! You pay a fine of 10000 zorkmids, and additionally you have to carry some dead weight for the remaining day to ensure that you don't do such a thing again!'", noroelaname());
-				fineforpracticant(4000, 0, 0);
+				fineforpracticant(10000, 0, 0);
 				u.graundweight += 1000;
 				u.pract_oilspill = TRUE;
 			}

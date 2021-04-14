@@ -772,6 +772,17 @@ doread()
 	"slex a variant of slashthem???? take that back you scallywag and scoundrel! (something about an ice block)", /* by amateurhour */
 	"If you want a picture of the future NetHack variant scene, imagine a variety of colorful shoes stepping on a human face - forever.", /* by aosdict */
 	"woot...the master liche can suck it", /* by Lurchy */
+	"If violence isn't working, you are obviously not using enough of it.",
+	"What's yours is mine, and what's mine is mine. See that guy over there, his stuff? Mine too.",
+	"If it's not on fire now, it will be soon.",
+	"Anything worth doing is best done yourself.",
+	"Anything dead over THERE will not be bothering me HERE.",
+	"Everything worth doing is worth overdoing.",
+	"The whole world is my stage!",
+	"A hymn a day, will keep me away, Sinner!",
+	"did you just assume my gender",
+	"Why does this weird role start with a cursed t-shirt? It makes no sense!",
+	"lh a d a Adeo", /* by Amy when she was trying to type in the dark */
 
 	    };
 	    char buf[BUFSZ];

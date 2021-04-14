@@ -27132,6 +27132,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel that the anorexic topmodel is moments away from dying of starvation! Hopefully you have a nutritious injection ready, because otherwise she'll die with no chance.",
 	"The type of ice block is the guy who goes around to see who has the biggest and most beautiful sand castle, and then proceeds to stomp said sand castle repeatedly with his fat ugly boots.",
 	"'congratulations, mortal!' booms the boomvoice. 'these are just for you! end recording. stop. no, end recording. oh shoot, those boots still are embroidered with the last chosen one's name, and they're too big. well, too late. alexa restart recording, ahem, CONGRATULATIONS, MORTAL!'", /* by spicycat */
+	"you throw an opened can of surstroemming!",
+	"exnethack, then dnethack could rebase on that for dexnethack, obviously ndnh3 would be based on that for ndexnethack, then it gets ported to iphone for indexnethack",
 
 };
 

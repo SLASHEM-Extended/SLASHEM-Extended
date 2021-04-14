@@ -7040,6 +7040,8 @@ SCROLL((char *)0,               "BEETWAFFELSWELTA",  P_NONE,     1,   0, 100, CL
 SCROLL((char *)0,               "MENGHETA IS DROPPED BEFORE YOU CAN CONTINUE",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
 SCROLL((char *)0,               "NOECKENBROETER",  P_NONE,     1,   0, 100, CLR_RED, 1),
 SCROLL((char *)0,               "TOUTOURIGANSOMIBAY",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
+SCROLL((char *)0,               "LH A D A ADEO",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "YOU CANNOT UNREAD WHAT YOUVE READ",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
 
 
 #ifdef MAIL

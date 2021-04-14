@@ -5463,6 +5463,12 @@ static const char *epitaphs[] = {
 	"A level 2 monster with an active banishment attack??? BULLSHIT! No sane programmer would make such an unbalanced game!", /* once again, they are balanced, after all they're very slow */
 	"Yeah sure, a death lichen. Give a level 0 monster a touch of death attack and you'll have a garbage game where you can just die randomly through no fault of your own.", /* and of course the random poison dart traps in vanilla aren't unbalanced :-P */
 	"Tried to get to Oregon. Died of dysentery.",
+	"every joke suggestion becomes another fartifact that spawns on dlvl 1 and prevents you getting your first sac gift", /* by amateurhour */
+	"man you cannot get the first sacrifice gift and without it this role kind of sucks! #quit",
+	"amy i offered 250 corpses and had three altars disappear and got NO gift!!! #quit",
+	"man i sacfested for three hours straight and when i finally got a gift it was one that autocurses and gives some bullshit interface screw nastytrap garbage!!! #quit",
+	"The connection died and then I tried to reconnect and my game was gone.",
+	"suffocated in a vat of crappy shoes", /* by cebolla */
 
 };
 
