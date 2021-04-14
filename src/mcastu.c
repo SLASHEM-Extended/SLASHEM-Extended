@@ -850,6 +850,39 @@ int spellnum;
 	    else
 		pline("%s from nowhere!", mappear);
 	}
+
+	if (mtmp->data == &mons[PM_WOK]) {
+		int attempts = 0;
+		struct permonst *pm = 0;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+newbossRLL:
+		do {
+			pm = rndmonst();
+			attempts++;
+			if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+		} while ( (!pm || (pm && !(pm->msound == MS_SUPERMAN ))) && attempts < 50000);
+
+		if (!pm && rn2(50) ) {
+			attempts = 0;
+			goto newbossRLL;
+		}
+		if (pm && !(pm->msound == MS_SUPERMAN) && rn2(50) ) {
+			attempts = 0;
+			goto newbossRLL;
+		}
+
+		if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
+
+		u.aggravation = 0;
+
+	}
+
 	dmg = 0;
 	break;
     }
@@ -877,6 +910,39 @@ int spellnum;
 		pline("%s from nowhere!", mappear);
 	}
 	dmg = 0;
+
+	if (mtmp->data == &mons[PM_WOK]) {
+		int attempts = 0;
+		struct permonst *pm = 0;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+newbossRLM:
+		do {
+			pm = rndmonst();
+			attempts++;
+			if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+		} while ( (!pm || (pm && !(pm->msound == MS_SUPERMAN ))) && attempts < 50000);
+
+		if (!pm && rn2(50) ) {
+			attempts = 0;
+			goto newbossRLM;
+		}
+		if (pm && !(pm->msound == MS_SUPERMAN) && rn2(50) ) {
+			attempts = 0;
+			goto newbossRLM;
+		}
+
+		if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
+
+		u.aggravation = 0;
+
+	}
+
 	break;
     }
 
@@ -889,6 +955,39 @@ int spellnum;
 		pline("Undead creatures are called forth from the grave!");   
 		mkundead(&mm, FALSE, 0, FALSE);
 	}
+
+	if (mtmp->data == &mons[PM_WOK]) {
+		int attempts = 0;
+		struct permonst *pm = 0;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+newbossRLN:
+		do {
+			pm = rndmonst();
+			attempts++;
+			if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+		} while ( (!pm || (pm && !(pm->msound == MS_SUPERMAN ))) && attempts < 50000);
+
+		if (!pm && rn2(50) ) {
+			attempts = 0;
+			goto newbossRLN;
+		}
+		if (pm && !(pm->msound == MS_SUPERMAN) && rn2(50) ) {
+			attempts = 0;
+			goto newbossRLN;
+		}
+
+		if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
+
+		u.aggravation = 0;
+
+	}
+
 	dmg = 0;   
 	break;   
     case MGC_AGGRAVATION:

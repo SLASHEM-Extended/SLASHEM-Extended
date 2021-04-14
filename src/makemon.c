@@ -7461,6 +7461,7 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_RED_BLOODED_HARLOT]) (void) mongets(mtmp, HIPPIE_HEELS);
 		if (ptr == &mons[PM_TELEPHONE_CELL_PROSTITUTE]) (void) mongets(mtmp, HIPPIE_HEELS);
 		if (ptr == &mons[PM_STREETLINE_PROSTITUTE]) (void) mongets(mtmp, HIPPIE_HEELS);
+		if (ptr == &mons[PM_VAMPIRATE]) (void) mongets(mtmp, RAPIER);
 
 		if (ptr == &mons[PM_VERA_THE_ICE_QUEEN]) {
 			if ((find_cyan_sneakers()) != -1) (void)mongets(mtmp, find_cyan_sneakers());
@@ -11031,6 +11032,9 @@ loveheelover:
 		if (ptr == &mons[PM_RUTHLESS_RASHER]) {
 			(void) mongets(mtmp, TUBING_PLIERS);
 		}
+		if (ptr == &mons[PM_ESKETEPANSA]) {
+			(void) mongets(mtmp, GIANT_SEA_ANEMONE);
+		}
 		if (ptr == &mons[PM_DARKMOON_CLAN]) {
 			(void) mongets(mtmp, MOON_AXE);
 		}
@@ -11539,6 +11543,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_COLLUDED_HUNGER]) (void) mongets(mtmp, DARKNESS_CLUB);
 		if (mtmp->data == &mons[PM_BUBBLE_SLIME]) (void) mongets(mtmp, SCR_BUBBLE_BOBBLE);
 		if (mtmp->data == &mons[PM_CUD_CURD]) (void) mongets(mtmp, CUDSWORD);
+		if (mtmp->data == &mons[PM_CHANOP]) (void) mongets(mtmp, HEAVY_HAMMER);
 		if (ptr == &mons[PM_MILITARY_PUTIT]) {
 		  	(void) mongets(mtmp, FLINTLOCK);
 		  	m_initthrow(mtmp, BULLET, 15);
@@ -22926,6 +22931,7 @@ register int	mmflags;
 		case S_WORM:
 
 			if (mndx == PM_CLEAR_WORM_MASS) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_NOT_REALLY_EXISTING_MORGELLON) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
 			break;
 

@@ -4134,7 +4134,7 @@ dochat()
 	return (0);
     }
 
-    if (mtmp->mtame && (((stationary(mtmp->data) || mtmp->data->mmove == 0 || mtmp->data->mlet == S_TURRET) && !Race_if(PM_GOAULD)) || (!(stationary(mtmp->data) || mtmp->data->mmove == 0 || mtmp->data->mlet == S_TURRET) && Race_if(PM_GOAULD))) && !mtmp->mfrenzied && !(mtmp->data->mlevel > 29 || (mtmp->data->mlevel > (u.ulevel + 10)) || cannot_be_tamed(mtmp->data) || (mtmp->cham == CHAM_ZRUTINATOR) || mtmp->isshk || mtmp->isgd || mtmp->ispriest || mtmp->isminion || mtmp->isgyp || (mtmp->oldmonnm != monsndx(mtmp->data))) ) {
+    if ( (mtmp->mtame || (mtmp->data == &mons[PM_SYMBIULD]) ) && (((stationary(mtmp->data) || mtmp->data->mmove == 0 || mtmp->data->mlet == S_TURRET) && !Race_if(PM_GOAULD)) || (!(stationary(mtmp->data) || mtmp->data->mmove == 0 || mtmp->data->mlet == S_TURRET) && Race_if(PM_GOAULD))) && !mtmp->mfrenzied && !(mtmp->data->mlevel > 29 || (mtmp->data->mlevel > (u.ulevel + 10)) || cannot_be_tamed(mtmp->data) || (mtmp->cham == CHAM_ZRUTINATOR) || mtmp->isshk || mtmp->isgd || mtmp->ispriest || mtmp->isminion || mtmp->isgyp || (mtmp->oldmonnm != monsndx(mtmp->data))) ) {
 	
 	pline("You can attempt to turn this pet into a symbiote. Warning: if it's an intelligent monster, it may fail and result in a frenzied monster instead!");
 	getlin("Attempt to turn the pet into a symbiote? [yes/no]", buf);
@@ -4144,6 +4144,7 @@ dochat()
 		int resistrounds = 0;
 		if (!mindless(mtmp->data)) resistrounds++;
 		if (humanoid(mtmp->data)) resistrounds++;
+		if (mtmp->data == &mons[PM_SYMBIULD]) resistrounds = 0;
 		if (resistrounds >= 1 && resist(mtmp, TOOL_CLASS, 0, 0)) {
 			mtmp->mtame = FALSE;
 			mtmp->mpeaceful = FALSE;

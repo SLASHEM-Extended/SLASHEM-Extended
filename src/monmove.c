@@ -187,7 +187,7 @@ struct monst *mtmp;
 	    is_lminion(mtmp) || (mtmp->data->mlet == S_ANGEL && (rn2(20) || mtmp->data->geno & G_UNIQ )) || (mtmp->data->mlet == S_JELLY && (rn2(3) || mtmp->data->geno & G_UNIQ )) ||
 	    mtmp->data == &mons[PM_CTHULHU] || (mtmp->data->mlet == S_LIGHT && (rn2(2) || mtmp->data->geno & G_UNIQ )) || (mtmp->data->mlet == S_FUNGUS && (rn2(10) || mtmp->data->geno & G_UNIQ )) ||
 	    is_rider(mtmp->data) || is_deadlysin(mtmp->data) || (mtmp->data == &mons[PM_MINOTAUR] && (rn2(5) || mtmp->data->geno & G_UNIQ )) || (mtmp->data->msound == MS_BOSS && rn2(10) ) || (mtmp->data->msound == MS_FART_QUIET && rn2(50) ) || (mtmp->data->msound == MS_FART_NORMAL && rn2(30) ) || (mtmp->data->msound == MS_FART_LOUD && rn2(20) ) || 
-		 mtmp->mnum == quest_info(MS_NEMESIS) || mtmp->mnum == PM_VLAD_THE_IMPALER)
+		 mtmp->mnum == quest_info(MS_NEMESIS) || mtmp->mnum == PM_VLAD_THE_IMPALER || mtmp->mnum == PM_CHANOP)
 		return(FALSE);
 
 	if (mtmp->mhp < 2) return FALSE;
@@ -597,7 +597,7 @@ register struct monst *mtmp;
 	    return(0);	/* other frozen monsters can't do anything */
 	}
 
-	if ((mdat == &mons[PM_BUGBEAM_CUBE] || mdat == &mons[PM_METH_HEAD] || mdat == &mons[PM_TORSTINA] || mdat == &mons[PM_MARINERV] || mdat == &mons[PM_MARISTIN] || mdat == &mons[PM_MARIVERT] || mdat == &mons[PM_MARISISTER] || mdat == &mons[PM_FUNNY_ITALIAN] || mdat == &mons[PM_EAR_FIG_MACHINE] || mdat == &mons[PM_POLEPOKER] || mdat == &mons[PM_DISTURBMENT_HEAD]) && !rn2(4)) return 0; /* can sometimes not move; this is by design */
+	if ((mdat == &mons[PM_BUGBEAM_CUBE] || mdat == &mons[PM_IRMGARD] || mdat == &mons[PM_METH_HEAD] || mdat == &mons[PM_TORSTINA] || mdat == &mons[PM_MARINERV] || mdat == &mons[PM_MARISTIN] || mdat == &mons[PM_MARIVERT] || mdat == &mons[PM_MARISISTER] || mdat == &mons[PM_FUNNY_ITALIAN] || mdat == &mons[PM_EAR_FIG_MACHINE] || mdat == &mons[PM_POLEPOKER] || mdat == &mons[PM_DISTURBMENT_HEAD]) && !rn2(4)) return 0; /* can sometimes not move; this is by design */
 
 	if (mdat == &mons[PM_BLOTREE] && !rn2(2)) return 0;
 
@@ -1871,6 +1871,9 @@ convertdone:
 		pline("Oh, damn hueppogreifsch...");
 		nomul(-(rnd(5)), "unconscious from the hueppogreifsch", TRUE);
 	}
+	if (mdat == &mons[PM_WOK] && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(10)) {
+		verbalize("I am the WOK!");
+	}
 
 	if (mdat == &mons[PM_NOISY_ANNOYANCE] && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(20)) {
 		demagogueparole();
@@ -2682,6 +2685,8 @@ altarfound:
 	if (monsndx(ptr) == PM_DIDDLY_DINGUS_DUDE && !rn2(20)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_METH_HEAD) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_IRMGARD) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_FULL_WEAKMATE_O) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_DEBILITATED_DANNY) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_DIM_GIRL) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_GRAWLIX) mtmp->mconf = 1;
@@ -2794,6 +2799,7 @@ altarfound:
 	if (ptr == &mons[PM_LITTLE_WALL_FLOWER]) appr = -1;
 	if (ptr == &mons[PM_DEBILITATED_DANNY]) appr = -1;
 	if (ptr == &mons[PM_DECISION_WEAKSKI]) appr = (!rn2(3) ? -1 : rn2(2) ? 0 : 1);
+	if (ptr == &mons[PM_IRMGARD]) appr = (!rn2(3) ? -1 : rn2(2) ? 0 : 1);
 
 	if (u.katitrapocc && !mtmp->mpeaceful) appr = -1; /* they're supposed to let you perform your occupation in peace */
 	if (u.singtrapocc && !mtmp->mpeaceful) appr = -1;
@@ -2951,7 +2957,7 @@ altarfound:
 	if (passes_walls(ptr) || (mtmp->egotype_wallwalk) ) flag |= (ALLOW_WALL | ALLOW_ROCK);
 	if (passes_bars(ptr) && !In_sokoban(&u.uz)) flag |= ALLOW_BARS;
 	if (can_tunnel) flag |= ALLOW_DIG;
-	if (is_human(ptr) || ptr == &mons[PM_MINOTAUR]) flag |= ALLOW_SSM;
+	if (is_human(ptr) || ptr == &mons[PM_MINOTAUR] || ptr == &mons[PM_CHANOP]) flag |= ALLOW_SSM;
 	if ( (is_undead(ptr) || mtmp->egotype_undead) && ptr->mlet != S_GHOST) flag |= NOGARLIC;
 	if (throws_rocks(ptr) || passes_walls(ptr) || (mtmp->egotype_wallwalk) || amorphous(ptr) || is_whirly(ptr) || ptr->mlet == S_NEMESE || ptr->mlet == S_ARCHFIEND || ptr->msound == MS_NEMESIS || ptr->geno & G_UNIQ ||
 				verysmall(ptr) || slithy(ptr) || ptr == &mons[PM_BLACK_MARKETEER]) flag |= ALLOW_ROCK;

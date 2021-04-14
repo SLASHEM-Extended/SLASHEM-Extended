@@ -3230,6 +3230,12 @@ register int pm;
 
 		break;
 
+	    case PM_MINTY_COCKATRICE:
+
+		if (!Antimagic) You_feel("more resistant to magic!");
+		incr_itimeout(&HAntimagic, rnz(2000));
+		break;
+
 	    case PM_CHOOKATRICE:
 	    case PM_ROCKATRICE:
 
@@ -3426,6 +3432,7 @@ register int pm;
 		case PM_SHIELDED_MIND_FLAYER:
 		case PM_PARASITIC_MASTER_MIND_FLAYER:
 		case PM_BLUE_FLAYER:
+		case PM_TROUBLE_MINDFLAYER:
 		case PM_MASTER_BLUE_FLAYER:
 		case PM_MIND_FLAYER_TELEPATH:
 		case PM_TENTACLED_ONE:

@@ -161,6 +161,7 @@ int mndx;
 	case PM_ETTIN_ZOMBIE:
 	case PM_PROTESTAINST_ETTIN_ZOMBIE:
 	case PM_CALLS_ITSELF_ETTIN_MUMMY:
+	case PM_ORANGE_ETTIN_MUMMY:
 	case PM_EVIL_ETTIN_MUMMY:
 	case PM_ETTIN_MUMMY:	mndx = PM_ETTIN;  break;
 	case PM_TROLL_ZOMBIE:
@@ -697,6 +698,7 @@ register struct monst *mtmp;
 	    case PM_MIMIC_MUMMY:
 	    case PM_GIANT_MUMMY:
 	    case PM_ETTIN_MUMMY:
+	    case PM_ORANGE_ETTIN_MUMMY:
 	    case PM_CALLS_ITSELF_ETTIN_MUMMY:
 	    case PM_TROLL_MUMMY:
 	    case PM_EGO_TROLL_MUMMY:
