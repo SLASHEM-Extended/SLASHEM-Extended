@@ -12217,6 +12217,11 @@ int spell;
 		else chance += 1;
 	}
 
+	/* very high INT gives a boost, even if your casting stat is WIS --Amy */
+	if (ACURR(A_INT) >= 16) {
+		chance += (ACURR(A_INT) - 15);
+	}
+
 	if (uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) {
 		chance += 20;
 	}

@@ -254,6 +254,7 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"hidden power",
 	"sword art",
 	"firm cudgel",
+	"lighter balls",
 	"jedi jump",
 	"charge saber",
 	"telekinesis",
@@ -3391,6 +3392,10 @@ dotech()
 
 		case T_GREEN_WEAPON:
 			pline("Requires you to be wielding a claw, which will be badly poisoned, making it less likely to lose its poisoning compared to regular poisoned weapons.");
+			break;
+
+		case T_LIGHTER_BALLS:
+			pline("Lasts for quite a while, and reduces the weight of your wielded heavy iron ball by half while active.");
 			break;
 
 		case T_BALLSLIFF:
@@ -8719,6 +8724,26 @@ repairitemchoice:
 		      t_timeout = rnz(50000);
 			break;
 
+		case T_LIGHTER_BALLS:
+
+			if (!uwep) {
+				You("can't use this technique without a weapon!");
+				return(0);
+			}
+
+			if (uwep && uwep->oclass != BALL_CLASS) {
+				You("aren't wielding a ball!");
+				return(0);
+			}
+
+			num = 1000 + (techlevX(tech_no) * 10);
+		    	techt_inuse(tech_no) = num + 1;
+			Your("balls get lighter.");
+			if (FunnyHallu) pline("Shame, now no girl will want to kick them because it wouldn't hurt you anymore.");
+
+		      t_timeout = rnz(50000);
+			break;
+
 		case T_BALLSLIFF:
 
 			if (!uwep) {
@@ -9848,6 +9873,10 @@ tech_timeout()
 			break;
 		    case T_GRAP_SWAP:
 			pline("The effects of your grinders and lances are no longer swapped.");
+			break;
+		    case T_LIGHTER_BALLS:
+			Your("balls are heavy again.");
+			if (FunnyHallu) pline("Now's the time to present them to a sweet girl, who can kick them to test your pain threshold.");
 			break;
 		    case T_POWERBIOSIS:
 			pline("Your symbiote's awesome power fades.");

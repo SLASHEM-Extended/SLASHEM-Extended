@@ -4153,6 +4153,14 @@ jediskip:
 	    	learntech(T_HIDDEN_POWER, FROMOUTSIDE, 1);
 	    	You("learn how to perform hidden power!");
 	}
+	if (skill == P_FLAIL && P_SKILL(skill) == P_EXPERT && (Role_if(PM_MURDERER) || Role_if(PM_CONVICT)) && !tech_known(T_LIGHTER_BALLS)) {
+	    	learntech(T_LIGHTER_BALLS, FROMOUTSIDE, 1);
+	    	You("learn how to perform lighter balls!");
+	}
+	if (skill == P_FLAIL && P_SKILL(skill) == P_GRAND_MASTER && !tech_known(T_LIGHTER_BALLS)) {
+	    	learntech(T_LIGHTER_BALLS, FROMOUTSIDE, 1);
+	    	You("learn how to perform lighter balls!");
+	}
 	if (skill == P_GRINDER && P_SKILL(skill) == P_BASIC && !tech_known(T_BALLSLIFF)) {
 	    	learntech(T_BALLSLIFF, FROMOUTSIDE, 1);
 	    	You("learn how to perform ballsliff!");
@@ -5760,6 +5768,10 @@ int degree;
 			if (skill == u.hiddenpowerskill && !tech_known(T_HIDDEN_POWER)) {
 			    	learntech(T_HIDDEN_POWER, FROMOUTSIDE, 1);
 			    	You("learn how to perform hidden power!");
+			}
+			if (skill == P_FLAIL && !tech_known(T_LIGHTER_BALLS)) {
+			    	learntech(T_LIGHTER_BALLS, FROMOUTSIDE, 1);
+			    	You("learn how to perform lighter balls!");
 			}
 			if (skill == P_GRINDER && !tech_known(T_BALLSLIFF)) {
 			    	learntech(T_BALLSLIFF, FROMOUTSIDE, 1);
@@ -9031,6 +9043,9 @@ rerollthree:
 	}
 	if (P_SKILL(u.hiddenpowerskill) >= P_MASTER && !tech_known(T_HIDDEN_POWER)) {
 	    	learntech(T_HIDDEN_POWER, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_FLAIL) >= (Role_if(PM_CONVICT) ? P_EXPERT : Role_if(PM_MURDERER) ? P_EXPERT : P_GRAND_MASTER) && !tech_known(T_LIGHTER_BALLS)) {
+	    	learntech(T_LIGHTER_BALLS, FROMOUTSIDE, 1);
 	}
 	if (P_SKILL(P_GRINDER) >= P_BASIC && !tech_known(T_BALLSLIFF)) {
 	    	learntech(T_BALLSLIFF, FROMOUTSIDE, 1);

@@ -27169,6 +27169,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"The floor here is covered in deep perpendicular grooves. Hopefully you can fly or levitate.",
 	"You hear the sigh of much wasted time.",
 	"You hear the sigh of much wasted time. Apparently some speedrunner once again didn't get a gold split on the very last section of their 8-hour speedrun, and can now start over from the beginning.",
+	"Your balls are heavy again.",
+	"Your balls are heavy again. Now's the time to present them to a sweet girl, who can kick them to test your pain threshold.",
+	"Your balls get lighter.",
+	"Your balls get lighter. Shame, now no girl will want to kick them because it wouldn't hurt you anymore.",
 
 };
 

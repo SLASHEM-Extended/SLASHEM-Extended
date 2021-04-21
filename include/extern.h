@@ -947,6 +947,7 @@ E void reducesanity(int);
 E long money_cnt(struct obj *);
 #endif
 E boolean zapmrename(void);
+E int max_carr_cap(void);
 
 /* ### hacklib.c ### */
 

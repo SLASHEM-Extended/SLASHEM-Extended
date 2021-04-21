@@ -4989,6 +4989,19 @@ int k_format; /* WAC k_format is an int */
 }
 
 int
+max_carr_cap()
+{
+	int maxcarrcap = 5000;
+
+	if (tech_inuse(T_LIGHTER_BALLS)) {
+		if (uwep && uwep->oclass == BALL_CLASS) maxcarrcap += (uwep->owt / 2);
+		if (u.twoweap && uswapwep && uswapwep->oclass == BALL_CLASS) maxcarrcap += (uswapwep->owt / 2);
+	}
+
+	return maxcarrcap;
+}
+
+int
 weight_cap()
 {
 	register long carrcap;
@@ -4997,7 +5010,7 @@ weight_cap()
 	if (Upolyd) {
 		/* consistent with can_carry() in mon.c */
 		if (youmonst.data->mlet == S_NYMPH || youmonst.data == &mons[PM_GOLDEN_KNIGHT] || youmonst.data == &mons[PM_URCAGUARY])
-			carrcap = MAX_CARR_CAP;
+			carrcap = max_carr_cap();
 		else if (!youmonst.data->cwt)
 			carrcap = ((carrcap * (long)youmonst.data->msize) / MZ_HUMAN) + 50*(u.ulevel);
 		else if (!strongmonst(youmonst.data)
@@ -5046,16 +5059,21 @@ weight_cap()
 	if (Race_if(PM_CHIROPTERAN)) carrcap += 2000;
 	if (Race_if(PM_PLAYER_SHEEP) && u.ulevel >= 20) carrcap += 2000;
 
+	if (tech_inuse(T_LIGHTER_BALLS)) {
+		if (uwep && uwep->oclass == BALL_CLASS) carrcap += (uwep->owt / 2);
+		if (u.twoweap && uswapwep && uswapwep->oclass == BALL_CLASS) carrcap += (uswapwep->owt / 2);
+	}
+
 	if (carrcap < 500) carrcap = 500;
 
 	if (Levitation || Is_airlevel(&u.uz)    /* pugh@cornell */
 			|| (u.usteed && strongmonst(u.usteed->data))
 	) {
 		carrcap += 2000;
-		if(carrcap > MAX_CARR_CAP) carrcap = MAX_CARR_CAP;
+		if(carrcap > max_carr_cap()) carrcap = max_carr_cap();
 	}
 	else {
-		if(carrcap > MAX_CARR_CAP) carrcap = MAX_CARR_CAP;
+		if(carrcap > max_carr_cap()) carrcap = max_carr_cap();
 		if (!Flying) {
 			if(EWounded_legs & LEFT_SIDE) carrcap -= 250;
 			if(EWounded_legs & RIGHT_SIDE) carrcap -= 250;
