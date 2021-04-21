@@ -7042,6 +7042,9 @@ SCROLL((char *)0,               "NOECKENBROETER",  P_NONE,     1,   0, 100, CLR_
 SCROLL((char *)0,               "TOUTOURIGANSOMIBAY",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
 SCROLL((char *)0,               "LH A D A ADEO",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
 SCROLL((char *)0,               "YOU CANNOT UNREAD WHAT YOUVE READ",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
+SCROLL((char *)0,               "ACHUNDERHALL",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "OSTJERE AMUTOJMG AEIX OS MT DAMGERPISAEU GPPD AT",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
+SCROLL((char *)0,               "I ROGJT JAMD WAS DOSAAEACED",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
 
 
 #ifdef MAIL

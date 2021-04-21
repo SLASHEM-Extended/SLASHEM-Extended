@@ -987,6 +987,8 @@ static const char *random_mesg[] = {
 	"Got milky potions?",
 	"Try Pengalengan's Green Slime Meringue Pies - The Combustible Comestible",
 	"Lonely? Try one of Madame Ruth's Patented Love Potions - 'Taming in a Bottle'",
+	"All your castle are belong to us",
+	"DON'T DEAD OPEN INSIDE",
 
 };
 
@@ -5469,6 +5471,8 @@ static const char *epitaphs[] = {
 	"man i sacfested for three hours straight and when i finally got a gift it was one that autocurses and gives some bullshit interface screw nastytrap garbage!!! #quit",
 	"The connection died and then I tried to reconnect and my game was gone.",
 	"suffocated in a vat of crappy shoes", /* by cebolla */
+	"WHAAAAAAT? I'm supposed to use tactical combat where my positioning, choice of melee versus ranged weapons etc. MATTER? screw that, I'll just whack everything with my orcish dagger in melee :P",
+	"nurse dancing can result in the sexy nurses stepping on the player's toes with their sexy high-heeled nurse boots <3",
 
 };
 

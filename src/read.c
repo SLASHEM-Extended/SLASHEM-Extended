@@ -783,6 +783,16 @@ doread()
 	"did you just assume my gender",
 	"Why does this weird role start with a cursed t-shirt? It makes no sense!",
 	"lh a d a Adeo", /* by Amy when she was trying to type in the dark */
+	"do it... MOO EET", /* by K2 */
+	"how many cows does it take to screw in a lightbulb? MOO",
+	"why is the caveman always partying? he owns a club",
+	"Grin-itch Spinach",
+	"100%% All-Natural Croesus Meat - \"Eat the Rich!\"",
+	"I polymorphed everything in Fort Ludios and all I got was this lousy T-shirt!",
+	"I rubbed a magic lamp and all I got was this blessed fireproof +5 T-shirt!",
+	"Kiss me, I'm Elvish",
+	"Liches Get Stitches",
+
 
 	    };
 	    char buf[BUFSZ];

@@ -27134,6 +27134,41 @@ static NEARDATA const char * const fake_plines[] = {
 	"'congratulations, mortal!' booms the boomvoice. 'these are just for you! end recording. stop. no, end recording. oh shoot, those boots still are embroidered with the last chosen one's name, and they're too big. well, too late. alexa restart recording, ahem, CONGRATULATIONS, MORTAL!'", /* by spicycat */
 	"you throw an opened can of surstroemming!",
 	"exnethack, then dnethack could rebase on that for dexnethack, obviously ndnh3 would be based on that for ndexnethack, then it gets ported to iphone for indexnethack",
+	"if the script decided to name a monster something like 'quintessential strategical hyperbolic menstruation taxonomy hyperaudacious necromancer', it'd be waaaaay longer than 50",
+	"The large dog bites you! You die... DYWYPI? But wait... He just wants the tripe ration in your pocket! You feel much better!", /* by NetSysFire and aosdict */
+	"You hear a pick striking rock.",
+	"You hear a pick striking rock. Thank god, you're saved, a digging monster will finally let you out of your stony prison.",
+	"You hear a pick striking rock, but it sounds like some distorted CLANG. Probably the wielder of that pick-axe is fumbling and hit with the broad side of the pick.",
+	"You hear someone singing 'Gold, gold, gold.'",
+	"You hear a deep rolling sound.",
+	"You hear a deep rolling sound. (This sounds does not indicate the presence of a cluster bomb rock killer room on this level.)",
+	"You hear the rock rolling rolling rolling on the floor.",
+	"You hear a golfing giant.",
+	"You hear the whispering of leathery wings.",
+	"You hear the whispering of leathery wings. This is supposed to indicate the presence of Vlad the Impaler for some reason.",
+	"You hear a horrible choking scream.",
+	"You hear a horrible choking scream. Again, this is supposed to indicate the presence of Vlad the Impaler for some reason.",
+	"You hear a voice say 'I never drink... wine.'",
+	"You feel storms coming.",
+	"You feel storms coming. This supposedly indicates that you just angered your deity.", /* by NetSysFire */
+	"Why is the water green, the trees blue and the evening red?",
+	"With 'spep' one indicates way too little of something.",
+	"If you get involved with it, you need cutting butter, shears and euler.",
+	"This changed with the well-celebrated emissions of air from the wife.",
+	"You have a cheery feeling.",
+	"You have a cherry feeling.",
+	"You have a cherry feeling. Cherry Cherry Lady...",
+	"The room was really impy.", /* by Umbire */
+	"You think you heard batman arrive.",
+	"You think you heard batman arrive. Will he be able to defeat the Joker this time?",
+	"You feel a bit like lara croft.",
+	"You feel a bit like lara croft. But unlike her, you don't just throw the high heels away when there is a gunfight; instead, you take one of them in your hand and hit that ore-criminal Marco Bartoli in the temple with the very pointy, sharp-edged stiletto heel.",
+	"You feel stones rolling into place.",
+	"You feel stones rolling into place. Hey cool, someone's solving Sokoban for you so you don't have to!",
+	"The floor here is covered in deep perpendicular grooves.",
+	"The floor here is covered in deep perpendicular grooves. Hopefully you can fly or levitate.",
+	"You hear the sigh of much wasted time.",
+	"You hear the sigh of much wasted time. Apparently some speedrunner once again didn't get a gold split on the very last section of their 8-hour speedrun, and can now start over from the beginning.",
 
 };
 
