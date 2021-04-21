@@ -2284,6 +2284,7 @@ obj->otyp == SCR_CURE || obj->otyp == SCR_MANA || obj->otyp == SCR_GREATER_MANA_
 	      case POTION_CLASS:
 		/* Potions of amnesia are uncancelable. */
 		if (obj->otyp == POT_AMNESIA) break;
+		if (obj->otyp == POT_CANCELLATION) break;
 
 		if (!flags.mon_moving) costly_cancel(obj);
 		else if (issoviet) {
