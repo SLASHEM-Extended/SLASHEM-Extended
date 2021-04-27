@@ -22931,7 +22931,7 @@ register int	mmflags;
 		case S_WORM:
 
 			if (mndx == PM_CLEAR_WORM_MASS) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
-			if (mndx == PM_NOT_REALLY_EXISTING_MORGELLON) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_NOT_REALLY_EXISTING_MORGELLON) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 
 			break;
 
