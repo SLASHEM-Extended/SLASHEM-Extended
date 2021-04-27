@@ -2256,12 +2256,12 @@ boolean shopinit;
 	otmp->objwassold = (shopinit ? 1 : 0);
 	otmp->icedobject = 0;
 
-	/* each aspect that can be identified has a 2 in 3 chance of being possible to reveal by using the ID spell --Amy */
-	otmp->ident_bst = rn2(3);
-	otmp->ident_knw = rn2(3);
-	otmp->ident_dkn = rn2(3);
-	otmp->ident_bkn = rn2(3);
-	otmp->ident_rkn = rn2(3);
+	/* each aspect that can be identified has a 4 in 5 chance of being possible to reveal by using the ID spell --Amy */
+	otmp->ident_bst = rn2(5);
+	otmp->ident_knw = rn2(5);
+	otmp->ident_dkn = rn2(5);
+	otmp->ident_bkn = rn2(5);
+	otmp->ident_rkn = rn2(5);
 
 	otmp->stackmarked = FALSE;
 	otmp->shirtmessage = rnd(1000000);
