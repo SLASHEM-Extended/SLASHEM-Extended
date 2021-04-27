@@ -4671,6 +4671,7 @@ static NEARDATA const char * const soviettaunts[] = {
 "Vy mozhete snova napolnit' svoy ledyanoy yashchik polnymi legkikh trupov i pozhertvovat' imi, potomu chto Sovetskiy Soyuz ne imeyet predstavleniya ob igrovom balanse.",
 "Yesli vy nastol'ko tupy i igrayete v etot rezhim, vy zasluzhivayete togo, chtoby vash shlem razocharovyvalsya kazhdyy raz, kogda monstr brosayet v vas igristoye vino. MUA KHA KHA!",
 "Yesli monstr istoshchayet predmet s pomoshch'yu palochki, prodavets rasserditsya na vas, potomu chto Emi ne razresheno ispravlyat' oshibki. Gryaznaya bludnitsa, kem ona sebya schitayet???",
+"Yesli vy nastol'ko glupy i pytayetes' ispol'zovat' parnoye oruzhiye ne iz oruzhiya, eto ne srabotayet, potomu cho eto sovetskaya Rossiya, gde eto nikogda ne razreshayetsya.",
 };
 
 static NEARDATA const char * const practicantlines[] = {

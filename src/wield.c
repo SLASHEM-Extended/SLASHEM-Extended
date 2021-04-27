@@ -947,10 +947,11 @@ can_twoweapon()
 	    else
 		pline("%s aren't able to fight two-handed.",
 			upstart(makeplural(urace.noun)));
-	} else if (NOT_WEAPON(uwep) || NOT_WEAPON(uswapwep)) {
+	} else if ((NOT_WEAPON(uwep) && issoviet) || NOT_WEAPON(uswapwep)) {
 	    otmp = NOT_WEAPON(uwep) ? uwep : uswapwep;
 	    pline("%s %s.", Yname2(otmp),
 		is_plural(otmp) ? "aren't weapons" : "isn't a weapon");
+	    if (issoviet && NOT_WEAPON(uwep)) pline("Zamedlit'! Pochemu ty voobshche igrayesh' v etu duratskuyu igru?");
 	} else if ((uwep && bimanual(uwep)) || (uswapwep && bimanual(uswapwep))) {
 	    otmp = (uwep && bimanual(uwep)) ? uwep : uswapwep;
 	    pline("%s isn't one-handed.", Yname2(otmp));
