@@ -12103,7 +12103,7 @@ boolean knoweverything;
 			case MADELEINE_PLATEAU_BOOTS:
 				pline("A super cute dark blue pair of platform boots, which count as wedge heels. They carry Madeleine's curse, and have 3 AC and 2 MC."); break;
 			case MARLENA_HIKING_BOOTS:
-				pline("This pair of sexy flats is rather solid. They carry Marlena's curse, and have 7 AC and 0 MC."); break;
+				pline("This pair of sexy flats is rather solid. They carry Marlena's curse, and have 3 AC and 0 MC."); break;
 			case ANASTASIA_DANCING_SHOES:
 				pline("Such a lovely, soft pair of female dancing shoes! Wearing them uses the sexy flats skill. They carry Anastasia's curse, and have 2 AC and 0 MC."); break;
 			case JESSICA_LADY_SHOES:

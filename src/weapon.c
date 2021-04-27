@@ -222,7 +222,7 @@ int skill;
 		case P_VAAPAD:
 			return "form VII (Vaapad)";
 		case P_WEDI:
-			return "form VII (Wedi)";
+			return "form VIII (Wedi)";
 		case P_MARTIAL_ARTS:
 			return "martial arts";
 		case P_TWO_WEAPON_COMBAT:

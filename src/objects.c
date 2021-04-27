@@ -834,7 +834,7 @@ WEAPON("torpedo", (char *)0,
 WEAPON("homing torpedo", (char *)0,
 	1, 1, 0,  1, 8,  50,  16,  16, 1, P,   P_JAVELIN, MT_VIVA, CLR_ORANGE, 40),
 WEAPON("brick missile", (char *)0,
-	1, 1, 0, 10, 40, 10,  12,  12, 1, P,   P_JAVELIN, MT_BRICK, CLR_ORANGE, 25),
+	1, 1, 0, 10, 8, 10,  12,  12, 1, P,   P_JAVELIN, MT_BRICK, CLR_ORANGE, 25),
 WEAPON("stack javelin", (char *)0,
 	1, 1, 0, 30, 8,  3,  6,  6, 1, P,   P_JAVELIN, MT_IRON, CLR_GREEN, 1),
 
@@ -7045,6 +7045,12 @@ SCROLL((char *)0,               "YOU CANNOT UNREAD WHAT YOUVE READ",  P_NONE,   
 SCROLL((char *)0,               "ACHUNDERHALL",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
 SCROLL((char *)0,               "OSTJERE AMUTOJMG AEIX OS MT DAMGERPISAEU GPPD AT",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
 SCROLL((char *)0,               "I ROGJT JAMD WAS DOSAAEACED",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
+SCROLL((char *)0,               "LAND DER ALLESDICHTMACHER UND DENKER",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "NERVE HEAD MOVES",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
+SCROLL((char *)0,               "MOVES IS DICTATORSHIP PAR EXCELLENCE",  P_NONE,     1,   0, 100, CLR_RED, 1),
+SCROLL((char *)0,               "THE ENGLISHMAN DRIVES FOR MOVES DAEDELDAEDAEDAEAEAE",  P_NONE,     1,   0, 100, CLR_WHITE, 1),
+SCROLL((char *)0,               "FREE ACTION IS FOR CAITIFFS",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
+SCROLL((char *)0,               "BOBBLE HATS FOR DOGGOS",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
 
 
 #ifdef MAIL

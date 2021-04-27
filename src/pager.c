@@ -4034,6 +4034,9 @@ static NEARDATA const char * const demagoguelines[] = {
 "Napoleon was wrong when he said that people are stupid, because the truth would be that people are SUPER stupid!",
 "Einstein said that the world's population is increasing, and with that I agree. But I disagree that according to him the amount of intelligence is a constant; in reality, the amount of intelligence is decreasing!",
 "When looking at the results of the last election, I have to conclude that the majority of people aren't actually members of the 'homo sapiens' species. They're more like 'homo stultus'.",
+"The government does a damage have!",
+"This government has a total damage. I wish someone would go and stop the muck chaps.",
+"Someone should surround the state government.",
 };
 
 static NEARDATA const char * const longinglines[] = {
