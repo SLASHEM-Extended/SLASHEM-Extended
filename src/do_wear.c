@@ -4581,7 +4581,7 @@ dotakeoff()
 	if (otmp == uskin || ((otmp == uarm) && uarmc && !updowninversion) || ((otmp == uarmc) && uarm && updowninversion) 
 			  || ((otmp == uarmu) && (uarmc || uarm))
 		) {
-	    You_cant("take that off.");
+	    You_cant("take that off.%s", (otmp == uskin) ? "" : " It appears that the item is covered by another piece of equipment.");
 	    return 0;
 	}
 
