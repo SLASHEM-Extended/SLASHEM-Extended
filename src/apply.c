@@ -5266,13 +5266,19 @@ doapply()
 	case BAG_OF_HOLDING:
 	case OILSKIN_SACK:
 	case POTATO_BAG:
-		res = use_container(&obj, 1);
+		if ((obj->otyp == BAG_OF_HOLDING || obj->otyp == CHEST_OF_HOLDING || obj->otyp == ICE_BOX_OF_HOLDING) && obj->cursed) {
+			use_container(&obj, 1);
+			res = 1;
+		} else {
+			res = use_container(&obj, 1);
+		}
 		noartispeak = TRUE; /* because it could explode! */
 		break;
 	case BAG_OF_DIGESTION:
 	case LARGE_BOX_OF_DIGESTION:
 	case ICE_BOX_OF_DIGESTION:
 		use_container(&obj, 1);
+		res = 1;
 		/* always uses up a turn now, which makes it trivial to ID I guess but that's okay, because
 		 * at least it means you can no longer easily get rid of troll corpses and stuff :-P --Amy */
 		noartispeak = TRUE; /* because it could explode! */
