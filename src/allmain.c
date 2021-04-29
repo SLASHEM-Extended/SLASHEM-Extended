@@ -89,6 +89,8 @@ moveloop()
     int cx,cy;
 	register struct obj *acqo;
 
+	int oldspeed;
+
     char buf[BUFSZ];
 	char ebuf[BUFSZ];
     boolean didmove = FALSE, monscanmove = FALSE;
@@ -1347,7 +1349,9 @@ moveloop()
 				/* speed boosts while riding go here */
 
 				if (uarmf && itemhasappearance(uarmf, APP_BIKER_BOOTS) && !rn2(10)) {
+					oldspeed = moveamt;
 					moveamt *= 2;
+					if (moveamt > (oldspeed + 24)) moveamt = (oldspeed + 24);
 				}
 
 				if (Race_if(PM_PIECE) && ((u.dx && !u.dy) || (!u.dx && u.dy)) && !rn2(4)) {
@@ -1357,13 +1361,17 @@ moveloop()
 				if (u.usteed) {
 
 					if (bmwride(ART_BIKE_SADDLE)) {
+						oldspeed = moveamt;
 						moveamt *= 3;
 						moveamt /= 2;
+						if (moveamt > (oldspeed + 18)) moveamt = (oldspeed + 18);
 					}
 
 					if (bmwride(ART_SPEEDO_CAR)) {
+						oldspeed = moveamt;
 						moveamt *= 6;
 						moveamt /= 5;
+						if (moveamt > (oldspeed + 15)) moveamt = (oldspeed + 15);
 					}
 
 				}
@@ -1570,11 +1578,6 @@ moveloop()
 				moveamt /= 2; /* frozen characters move at half speed --Amy */
 			}
 
-			/* salamander race by Kwahn, speeds up in lava */
-			if (is_lava(u.ux, u.uy) && Race_if(PM_PLAYER_SALAMANDER)) {
-				moveamt *= 3;
-			}
-
 			if (is_snow(u.ux, u.uy) && (u.umoved || !rn2(4)) && !Flying && !Levitation) {
 					static boolean canwalkonsnow = 0;
 				    static int skates = 0;
@@ -1606,9 +1609,6 @@ moveloop()
 					else moveamt /= 4;
 				}
 
-				if (canwalkonsnow && ((uarmf && uarmf->otyp == skates4) || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) || (uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD)) && !rn2(2)) {
-					moveamt *= 2;
-				}
 			}
 
 			if ((uwep && uwep->oartifact == ART_KINGS_RANSOM_FOR_YOU) && moveamt > 1) {
@@ -1763,69 +1763,140 @@ moveloop()
 			    if (rn2(3) != 0) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			}
 
+			/* speed boosts while not riding go here */
+
 			if (u.usteed) {
 
 				if (bmwride(ART_SPEEDO_CAR)) {
+					oldspeed = moveamt;
 					moveamt *= 6;
 					moveamt /= 5;
+					if (moveamt > (oldspeed + 15)) moveamt = (oldspeed + 15);
+				}
+
+			}
+
+			/* salamander race by Kwahn, speeds up in lava */
+			if (is_lava(u.ux, u.uy) && Race_if(PM_PLAYER_SALAMANDER)) {
+				oldspeed = moveamt;
+				moveamt *= 3;
+				if (moveamt > (oldspeed + 24)) moveamt = (oldspeed + 24);
+			}
+
+			if (is_snow(u.ux, u.uy) && (u.umoved || !rn2(4)) && !Flying && !Levitation) {
+
+				static boolean canwalkonsnow = 0;
+			    static int skates = 0;
+			    if (!skates) skates = find_skates();
+			    static int skates2 = 0;
+			    if (!skates2) skates2 = find_skates2();
+			    static int skates3 = 0;
+			    if (!skates3) skates3 = find_skates3();
+			    static int skates4 = 0;
+			    if (!skates4) skates4 = find_skates4();
+			    static int skates5 = 0;
+			    if (!skates5) skates5 = find_cyan_sneakers();
+			    if ((uarmf && uarmf->otyp == skates)
+				    || (uarmf && uarmf->otyp == skates2)
+				    || (uarmf && uarmf->otyp == skates3)
+				    || (uarmf && uarmf->otyp == skates4)
+				    || (uarmf && uarmf->otyp == skates5)
+				    || (uwep && uwep->oartifact == ART_GLACIERDALE)
+				    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
+				    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
+				    || (uwep && uwep->oartifact == ART_DAMN_SKI_WEDGE && uarmf)
+				    || (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE)) canwalkonsnow = 1;
+
+				if (powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) canwalkonsnow = 1;
+
+				if (canwalkonsnow && ((uarmf && uarmf->otyp == skates4) || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) || (uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD)) && !rn2(2)) {
+					oldspeed = moveamt;
+					moveamt *= 2;
+					if (moveamt > (oldspeed + 24)) moveamt = (oldspeed + 24);
 				}
 
 			}
 
 			if (Wonderlegs && Wounded_legs) {
+				oldspeed = moveamt;
 				moveamt *= 5;
 				moveamt /= 4;
+				if (moveamt > (oldspeed + 6)) moveamt = (oldspeed + 6);
 			}
 
 			/* unicorns are ultra fast!!! However, they have enough bullshit downsides to reign them in. --Amy */
 			if (Race_if(PM_PLAYER_UNICORN)) {
+				oldspeed = moveamt;
 				moveamt *= 2;
+				if (moveamt > (oldspeed + 24)) moveamt = (oldspeed + 24);
 			}
 
 			/* metals are even faster but take greatly increased damage --Amy */
 			if (Race_if(PM_METAL)) {
+				oldspeed = moveamt;
 				moveamt *= 3;
+				if (moveamt > (oldspeed + 72)) moveamt = (oldspeed + 72);
 			}
 
 			if (numberofwornetheritems() > rn2(20)) {
+				oldspeed = moveamt;
 				moveamt *= 2;
+				if (moveamt > (oldspeed + 24)) moveamt = (oldspeed + 24);
 			}
 
 			if (Race_if(PM_PIECE) && ((u.dx && !u.dy) || (!u.dx && u.dy)) && !rn2(4)) {
+				oldspeed = moveamt;
 				moveamt *= 2;
+				if (moveamt > (oldspeed + 24)) moveamt = (oldspeed + 24);
 			}
 
 			if (!flags.female && uarmf && itemhasappearance(uarmf, APP_OPERA_PUMPS)) {
+				oldspeed = moveamt;
 				moveamt *= 11;
 				moveamt /= 10;
+				if (moveamt > (oldspeed + 3)) moveamt = (oldspeed + 3);
 			}
 
 			if (is_highway(u.ux, u.uy)) {
+				oldspeed = moveamt;
 				moveamt *= 2;
+				if (moveamt > (oldspeed + 36)) moveamt = (oldspeed + 36);
 			}
 
 			if (uarmh && uarmh->oartifact == ART_LUXIDREAM_S_ASCENSION) {
+				oldspeed = moveamt;
 				moveamt *= 11;
 				moveamt /= 10;
+				if (moveamt > (oldspeed + 3)) moveamt = (oldspeed + 3);
 			}
 
 			if (powerfulimplants() && uimplant && uimplant->oartifact == ART_ETHERATORGARDEN) {
+				oldspeed = moveamt;
 				moveamt *= 6;
 				moveamt /= 5;
+				if (moveamt > (oldspeed + 6)) moveamt = (oldspeed + 6);
 			}
 
 			if (powerfulimplants() && uimplant && uimplant->oartifact == ART_YOU_SHOULD_SURRENDER) {
+				oldspeed = moveamt;
 				moveamt *= 3;
 				moveamt /= 2;
+				if (moveamt > (oldspeed + 12)) moveamt = (oldspeed + 12);
 			}
 
 			if (uimplant && uimplant->oartifact == ART_BRRRRRRRRRRRRRMMMMMM) {
 				if (is_highway(u.ux, u.uy) || powerfulimplants()) {
+					oldspeed = moveamt;
 					moveamt *= 2;
+					if (moveamt > (oldspeed + 12)) moveamt = (oldspeed + 12);
 				}
 			}
 
-			if (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) moveamt *= 2;
+			if (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) {
+				oldspeed = moveamt;
+				moveamt *= 2;
+				if (moveamt > (oldspeed + 12)) moveamt = (oldspeed + 12);
+			}
 
 			if (uarmh && (uarmh->oartifact == ART_REAL_SPEED_DEVIL) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uwep && uwep->oartifact == ART_LULWY_S_TRICK && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
