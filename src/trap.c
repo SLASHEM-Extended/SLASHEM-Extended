@@ -2114,6 +2114,8 @@ struct monst *victim;
 
 	if (Race_if(PM_CHIQUAI) && rn2(4)) vulnerable = FALSE;
 
+	if (is_unwitherable(otmp)) vulnerable = FALSE;
+
 	if (uarmf && rn2(2) && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) vulnerable = FALSE;
 
 	if (!print && (!vulnerable /* || erosion == MAX_ERODE*/ ))
