@@ -289,8 +289,8 @@ A("Electrifier",			GREAT_HOUCHOU,
 	ELEC(5,2), ELEC(0,0), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
 /* intentional misspelling --Amy */
-A("Double Bestard",			BASTERD_SWORD,
-	(SPFX_RESTR|SPFX_SPEAK), 0, 0,
+A("Double Bestard",			BASTERD_SWORD, /* -d20 to-hit, slows you down twice as much as spirit */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_SPEAK), 0, 0,
 	PHYS(0,20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
 A("Guardian of Aranoch",			BENT_SABLE,
@@ -774,7 +774,7 @@ A("Offense Owns Defense",			ROBE, /* double attacks */
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
 A("Protection With A Price",			ROBE_OF_WEAKNESS, /* stun resistance and 5 extra points of AC */
-	(SPFX_RESTR|SPFX_HALRES), 0, 0,
+	(SPFX_RESTR|SPFX_HALRES|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
 A("Cute Idea",			ORANGE_DRAGON_SCALE_MAIL,
@@ -954,7 +954,7 @@ A("Functional Radio",			ANTENNA, /* works like radio helmet */
 	NO_ATTK, DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
 A("Warner Brother",			PLASTEEL_HELM,
-	(SPFX_RESTR|SPFX_WARN), 0, 0,
+	(SPFX_RESTR|SPFX_WARN|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 250L ),
 
 A("Dark Nadir",			HELMET, /* autocurses, creates darkness once every 100 turns, but improves your to-hit by 5 */
@@ -994,7 +994,7 @@ A("Omniscient",			HELMET_OF_UNDEAD_WARNING,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 600L ),
 
 A("Spacewarp",			HELM_OF_TELEPORTATION,
-	(SPFX_RESTR|SPFX_TCTRL), 0, 0,
+	(SPFX_RESTR|SPFX_TCTRL|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
 A("Dictatorship",			HELM_OF_TELEPORT_CONTROL, /* also gives polymorph control */
@@ -2496,7 +2496,7 @@ A("The Rod of the Elvish Lords", ELVEN_MACE, /* Elf noble first gift */
 	0,	A_CHAOTIC, NON_PM, NON_PM, 4000L), 
 
 A("Sol Valtiva",			TWO_HANDED_SWORD,		/* The Sun of the Gods of the Dead */
-	(SPFX_RESTR|SPFX_DEFN|SPFX_ATTK),  0, 0,
+	(SPFX_RESTR|SPFX_DEFN|SPFX_ATTK|SPFX_EVIL),  0, 0, /* random item destruction and disables fire resistance for 1000 turns when wielded */
 	FIRE(5,24),	DFNS(AD_FIRE),	NO_CARY,	
 	0, A_CHAOTIC, NON_PM, NON_PM, 4000L), 
 
@@ -2520,8 +2520,8 @@ A("The Kusanagi no Tsurugi",	LONG_SWORD, /* aggravate monster, recurring disench
 	PHYS(20,12),	NO_DFNS,	NO_CARY,
 	0,		A_LAWFUL, NON_PM, NON_PM, 4500L), 
 
-A("Genocide", TWO_HANDED_SWORD, /* bloodthirsty */
-	(SPFX_RESTR|SPFX_INTEL|SPFX_DEFN|SPFX_ATTK), 0, 0,
+A("Genocide", TWO_HANDED_SWORD, /* bloodthirsty, uberjackal effect, disables reflection for 1000 turns */
+	(SPFX_RESTR|SPFX_INTEL|SPFX_DEFN|SPFX_ATTK|SPFX_EVIL), 0, 0,
 	FIRE(10,20),	DFNS(AD_FIRE),	NO_CARY,
 	0,	A_LAWFUL, NON_PM, NON_PM, 9999L), 
 
@@ -3624,7 +3624,7 @@ A("Warpchange",				RIN_POLYMORPH, /* teleportitis */
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
 A("Semi Shape Control",				RIN_POLYMORPH_CONTROL, /* also gives polymorphitis */
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
 A("Formtaker",				AMULET_OF_POLYMORPH, /* gives permanent intrinsic polymorphitis if you put it on! */
@@ -4678,8 +4678,8 @@ A("Knbloeloeloelodrio",				SPE_MAGICTORCH,
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
-A("Desert Maid",			LONG_SWORD,
-	(SPFX_RESTR), 0, 0,
+A("Desert Maid",			LONG_SWORD, /* kurwa claw weakness and dora trap effect when wielded */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	PHYS(0,20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
 A("Cygniswan",			LONG_SWORD,
@@ -5703,7 +5703,7 @@ A("DuffDuffDuff",				PSEUDO_TELEPORTER_CLOAK, /* +3 increase damage */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
-A("Insane Mind Screw",				CLOCKLOAK, /* psi resistance */
+A("Insane Mind Screw",				CLOCKLOAK, /* psi resistance, horror trap effect */
 	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL|SPFX_REFLECT), 0, 0,
 	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 7000L ),
 
@@ -6876,7 +6876,7 @@ A("Susanne's Headsmasher",				MARBLE_CHUNK,
 	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
 A("Iron Ball of Ball Ironing",				HEAVY_IRON_BALL,
-	(SPFX_RESTR|SPFX_DFLAG2), 0, M2_MALE,
+	(SPFX_RESTR|SPFX_DFLAG2|SPFX_ATTK), 0, M2_MALE,
 	FIRE(5, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
 A("Gary's Rivalry",				CONTRO_STAFF, /* player can walk over farmland, magical breathing, items don't get wet, +2 increase damage when wielded */
@@ -7491,7 +7491,7 @@ A("PolyFast",				RIN_POLYMORPH, /* very fast speed */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
-A("Wobblesteady",				AMULET_OF_POLYMORPH, /* stun resistance */
+A("Wobblesteady",				RIN_POLYMORPH, /* stun resistance */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 

@@ -22009,7 +22009,7 @@ register int	mmflags;
 		if (mtmp->m_lev > 49) mtmp->m_lev = 49;
 	}
 
-	if (LevelTrapEffect || u.uprops[LEVELBUG].extrinsic || have_levelstone() || (uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) ) {
+	if (LevelTrapEffect || u.uprops[LEVELBUG].extrinsic || have_levelstone() || (uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) || (uwep && uwep->oartifact == ART_GENOCIDE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GENOCIDE) ) {
 
 		int leveltrapbonus = mvitals[mtmp->mnum].born + 1;
 		if (leveltrapbonus < 1) leveltrapbonus = 1;

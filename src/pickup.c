@@ -2787,6 +2787,8 @@ int held;
 			reset_rndmonst(NON_PM);
 		}
 
+		if (monsterator > 200) monsterator = 200;
+
 		while (monsterator > 0) {
 
 			(void) makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);

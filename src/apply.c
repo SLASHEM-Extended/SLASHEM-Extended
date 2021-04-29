@@ -1256,7 +1256,15 @@ struct obj *obj;
 		    pline ("%s admires herself in your mirror.", Monnam(mtmp));
 		    pline ("She takes it!");
 		} else pline ("It steals your mirror!");
-		if (obj && obj->oartifact == ART_FAIREST_IN_THE_LAND && !mtmp->mfrenzied) mtmp->mpeaceful = 1;
+		if (obj && obj->oartifact == ART_FAIREST_IN_THE_LAND && !obj->cursed && !mtmp->mfrenzied) {
+			mtmp->mpeaceful = 1;
+			if (!rn2(20)) {
+				if (obj->blessed) unbless(obj);
+				else curse(obj);
+				pline("Your mirror seems less effective.");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			}
+		}
 		setnotworn(obj); /* in case mirror was wielded */
 		freeinv(obj);
 		(void) mpickobj(mtmp,obj,FALSE);
@@ -1299,7 +1307,7 @@ struct obj **optr;
 		return;
 	}
 
-	if (obj && obj->oartifact == ART_BIMMEL_BIMMEL) {
+	if (obj && obj->oartifact == ART_BIMMEL_BIMMEL && !obj->cursed) {
 	    int i, j, bd = 1;
 		struct monst *bimmel;
 
@@ -1314,6 +1322,13 @@ struct obj **optr;
 				if (!resist(bimmel, RING_CLASS, 0, TELL) || ((rnd(30 - ACURR(A_CHA))) < 4) ) (void) tamedog(bimmel, (struct obj *) 0, FALSE);
 			}
 	    }
+
+		if (!rn2(20)) {
+			if (obj->blessed) unbless(obj);
+			else curse(obj);
+			pline("Your bell seems less effective.");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+		}
 
 	}
 

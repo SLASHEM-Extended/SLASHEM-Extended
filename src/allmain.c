@@ -1111,6 +1111,12 @@ moveloop()
 				if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
+				if (uwep && uwep->oartifact == ART_DOUBLE_BESTARD && !rn2(4) && moveamt > 1)
+					moveamt /= 2;
+
+				if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DOUBLE_BESTARD && !rn2(4) && moveamt > 1)
+					moveamt /= 2;
+
 				if (uarmf && uarmf->oartifact == ART_UPWARD_HEELS && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
@@ -1454,6 +1460,12 @@ moveloop()
 			}
 
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too are slower sometimes. */
+				moveamt /= 2;
+
+			if (uwep && uwep->oartifact == ART_DOUBLE_BESTARD && !rn2(4) && moveamt > 1)
+				moveamt /= 2;
+
+			if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DOUBLE_BESTARD && !rn2(4) && moveamt > 1)
 				moveamt /= 2;
 
 			if (uwep && uwep->oartifact == ART_SCJWILLX_ && !rn2(8) && moveamt > 1)
@@ -6465,6 +6477,40 @@ newbossO:
 
 		}
 
+		if (!rn2(200) && uarmc && uarmc->oartifact == ART_INSANE_MIND_SCREW) {
+
+			int lcount = rnd(monster_difficulty() ) + 1;
+
+		    if (!obsidianprotection()) switch (rn2(11)) {
+		    case 0: make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON),20),
+				"horrible sickness", TRUE, SICK_NONVOMITABLE);
+			    break;
+		    case 1: make_blinded(Blinded + lcount, TRUE);
+			    break;
+		    case 2: if (!Confusion)
+				You("suddenly feel %s.", FunnyHallu ? "trippy" : "confused");
+			    make_confused(HConfusion + lcount, TRUE);
+			    break;
+		    case 3: make_stunned(HStun + lcount, TRUE);
+			    break;
+		    case 4: make_numbed(HNumbed + lcount, TRUE);
+			    break;
+		    case 5: make_frozen(HFrozen + lcount, TRUE);
+			    break;
+		    case 6: make_burned(HBurned + lcount, TRUE);
+			    break;
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
+			    break;
+		    case 8: (void) make_hallucinated(HHallucination + lcount, TRUE, 0L);
+			    break;
+		    case 9: make_feared(HFeared + lcount, TRUE);
+			    break;
+		    case 10: make_dimmed(HDimmed + lcount, TRUE);
+			    break;
+		    }
+
+		}
+
 		if (!rn2(200) && u.uprops[HORROR_BUG].extrinsic) {
 
 			int lcount = rnd(monster_difficulty() ) + 1;
@@ -6628,6 +6674,22 @@ newbossO:
 
 		}
 
+		if (uwep && uwep->oartifact == ART_GENOCIDE && !(u.uprops[DEAC_REFLECTING].intrinsic) ) {
+			u.uprops[DEAC_REFLECTING].intrinsic += 1000;
+		}
+
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_GENOCIDE && !(u.uprops[DEAC_REFLECTING].intrinsic) ) {
+			u.uprops[DEAC_REFLECTING].intrinsic += 1000;
+		}
+
+		if (uwep && uwep->oartifact == ART_SOL_VALTIVA && !(u.uprops[DEAC_FIRE_RES].intrinsic) ) {
+			u.uprops[DEAC_FIRE_RES].intrinsic += 1000;
+		}
+
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SOL_VALTIVA && !(u.uprops[DEAC_FIRE_RES].intrinsic) ) {
+			u.uprops[DEAC_FIRE_RES].intrinsic += 1000;
+		}
+
 		if (uactivesymbiosis) {
 			u.usymbiosisslowturns++;
 			if (u.usymbiosisslowturns >= 30) {
@@ -6699,6 +6761,52 @@ newbossO:
 		}
 
 		if (DestructionEffect && !rn2(100)) {
+			switch (rnd(4)) {
+				case 1:
+					(void) burnarmor(&youmonst);
+					destroy_item(SCROLL_CLASS, AD_FIRE);
+					destroy_item(SPBOOK_CLASS, AD_FIRE);
+					destroy_item(POTION_CLASS, AD_FIRE);
+					break;
+				case 2:
+					destroy_item(POTION_CLASS, AD_COLD);
+					break;
+				case 3:
+					destroy_item(RING_CLASS, AD_ELEC);
+					destroy_item(WAND_CLASS, AD_ELEC);
+					destroy_item(AMULET_CLASS, AD_ELEC);
+					break;
+				case 4:
+					(void) destroy_item(POTION_CLASS, AD_VENO);
+					(void) destroy_item(FOOD_CLASS, AD_VENO);
+					break;
+			}
+		}
+
+		if (uwep && uwep->oartifact == ART_SOL_VALTIVA && !rn2(100)) {
+			switch (rnd(4)) {
+				case 1:
+					(void) burnarmor(&youmonst);
+					destroy_item(SCROLL_CLASS, AD_FIRE);
+					destroy_item(SPBOOK_CLASS, AD_FIRE);
+					destroy_item(POTION_CLASS, AD_FIRE);
+					break;
+				case 2:
+					destroy_item(POTION_CLASS, AD_COLD);
+					break;
+				case 3:
+					destroy_item(RING_CLASS, AD_ELEC);
+					destroy_item(WAND_CLASS, AD_ELEC);
+					destroy_item(AMULET_CLASS, AD_ELEC);
+					break;
+				case 4:
+					(void) destroy_item(POTION_CLASS, AD_VENO);
+					(void) destroy_item(FOOD_CLASS, AD_VENO);
+					break;
+			}
+		}
+
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SOL_VALTIVA && !rn2(100)) {
 			switch (rnd(4)) {
 				case 1:
 					(void) burnarmor(&youmonst);

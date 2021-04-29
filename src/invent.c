@@ -16913,7 +16913,7 @@ boolean knoweverything;
 				case ART_ELECTRIFIER:
 					pline("Artifact specs: +5 to-hit and +2 damage to shock-susceptible monsters, shock resistance when wielded."); break;
 				case ART_DOUBLE_BESTARD:
-					pline("Artifact specs: +20 damage. The misspelling is intentional."); break;
+					pline("Artifact specs: +20 damage, -d20 to-hit and slows you down considerably. The misspelling is intentional."); break;
 				case ART_GUARDIAN_OF_ARANOCH:
 					pline("Artifact specs: +20 damage."); break;
 				case ART_DULLSWANDIR:
@@ -17543,7 +17543,7 @@ boolean knoweverything;
 				case ART_LIGHTS__CAMERA__ACTION:
 					pline("Artifact specs: taking photos with it can scare nearby monsters."); break;
 				case ART_FAIREST_IN_THE_LAND:
-					pline("Artifact specs: Applying it at a hostile nymph will pacify her."); break;
+					pline("Artifact specs: Applying it at a hostile nymph will pacify her if the mirror isn't cursed, but doing so has a small chance of cursing the mirror."); break;
 				case ART_EYES_OF_THE_SPYING_ACADEMY:
 					pline("Artifact specs: ESP and searching when worn. Property of Team Splat."); break;
 				case ART_BLINDFOLD_OF_MISPELLING:
@@ -17947,7 +17947,7 @@ boolean knoweverything;
 				case ART_ROD_OF_THE_ELVISH_LORDS:
 					pline("Artifact specs: +3 to-hit and double damage, chaotic."); break;
 				case ART_SOL_VALTIVA:
-					pline("Artifact specs: fire resistance when wielded, +5 to-hit and +24 damage to fire-susceptible monsters, chaotic."); break;
+					pline("Artifact specs: fire resistance when wielded, +5 to-hit and +24 damage to fire-susceptible monsters, random item destruction, disables fire resistance for a while when wielded, chaotic."); break;
 				case ART_STAFF_OF_THE_ARCHMAGI:
 					pline("Artifact specs: searching, cold, fire and shock resistance and acts as a luckstone when wielded, +20 to-hit and +4 stun damage."); break;
 				case ART_ROBE_OF_THE_ARCHMAGI:
@@ -17957,7 +17957,7 @@ boolean knoweverything;
 				case ART_KUSANAGI_NO_TSURUGI:
 					pline("Artifact specs: energy regeneration, searching, acts as a luckstone, aggravate monster, recurring disenchantment and itemcursing when wielded, beheads monsters, +20 to-hit and +12 damage, lawful."); break;
 				case ART_GENOCIDE:
-					pline("Artifact specs: fire resistance when wielded, +10 to-hit and +20 damage to fire-susceptible monsters, bloodthirsty, lawful."); break;
+					pline("Artifact specs: fire resistance when wielded, +10 to-hit and +20 damage to fire-susceptible monsters, bloodthirsty, causes the uberjackal effect, disables reflection for a while when wielded, lawful."); break;
 				case ART_ROD_OF_DIS:
 					pline("Artifact specs: +10 to-hit and +8 damage, lawful."); break;
 				case ART_AVARICE:
@@ -18655,7 +18655,7 @@ boolean knoweverything;
 				case ART_SURFING_FUN:
 					pline("Artifact specs: completely prevents its contents from getting wet, even if it's cursed."); break;
 				case ART_MONSTERATOR:
-					pline("Artifact specs: if it deletes at least 10 items at once, monsters are created proportional to the # of items that were in it, but it will also greatly increase your prayer timeout to thwart the inevitable altar scumming that you want to do."); break;
+					pline("Artifact specs: if it deletes at least 10 items at once, monsters are created proportional to the # of items that were in it (with a max of 200), but it will also greatly increase your prayer timeout to thwart the inevitable altar scumming that you want to do."); break;
 				case ART_GO_AWAY_YOU_BASTARD:
 					pline("Artifact specs: if it's not cursed, applying it causes a phase door effect, but it will often curse itself after you used it."); break;
 				case ART_BATTLEHORN_OF_SESCHERON:
@@ -18665,7 +18665,7 @@ boolean knoweverything;
 				case ART_HEAVEN_S_CALL_TO_ARMS:
 					pline("Artifact specs: Has no special effect beyond its base item."); break;
 				case ART_BIMMEL_BIMMEL:
-					pline("Artifact specs: applying it tries to tame all 'x' adjacent to you, but they get a resistance roll and may also be frenzied instead."); break;
+					pline("Artifact specs: applying it while it's not cursed tries to tame all 'x' adjacent to you, but they get a resistance roll and may also be frenzied instead. Also, there's a chance that the bell becomes cursed."); break;
 				case ART_SCRABBLE_BABBLE:
 					pline("Artifact specs: engraving with it will only consume charges 1 out of 10 turns."); break;
 				case ART_I_THE_SAGE:
@@ -19139,7 +19139,7 @@ boolean knoweverything;
 				case ART_KNBLOELOELOELODRIO:
 					pline("Artifact specs: No specialties."); break;
 				case ART_DESERT_MAID:
-					pline("Artifact specs: +20 damage."); break;
+					pline("Artifact specs: +20 damage, makes you super-vulnerable to claw attacks and causes dora trap effect when wielded."); break;
 				case ART_CYGNISWAN:
 					pline("Artifact specs: hallucination resistance when wielded."); break;
 				case ART_TALKATOR:
@@ -19662,7 +19662,7 @@ boolean knoweverything;
 				case ART_DUFFDUFFDUFF:
 					pline("Artifact specs: +3 increase damage when worn."); break;
 				case ART_INSANE_MIND_SCREW:
-					pline("Artifact specs: reflection, magic and psi resistance when worn, chaotic."); break;
+					pline("Artifact specs: reflection, magic and psi resistance when worn, horror trap effect, chaotic."); break;
 				case ART_RESISTANT_PUNCHING_BAG:
 					pline("Artifact specs: drain resistance and +1 magic cancellation when worn."); break;
 				case ART_HONORED_FAIRNESS:
