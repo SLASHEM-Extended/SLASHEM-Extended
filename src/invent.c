@@ -14874,7 +14874,7 @@ boolean knoweverything;
 				pline("Learning this spell causes your deity to become very angry. Casting it angers your deity even more, but grants resistance to damage and spells for a while. The appearance and level of this book are random."); break;
 #endif
 			case SPE_SLOW_MONSTER:
-				pline("This spell fires an invisible beam that slows targets."); break;
+				pline("This spell fires an invisible beam that slows targets. However, after a couple of turns they will speed up again."); break;
 			case SPE_CAUSE_FEAR:
 				pline("Use this spell to make monsters flee from you. Occasionally it backlashes, afflicting you with a standard status effect."); break;
 			case SPE_CHARM_MONSTER:
@@ -14954,7 +14954,7 @@ boolean knoweverything;
 			case SPE_DESTROY_ARMOR:
 				pline("A useful spell if, and only if, you put on some terribly cursed armor and need to get rid of it."); break;
 			case SPE_INERTIA:
-				pline("Powerful spell that you can fire at enemies to slow them down."); break;
+				pline("Powerful spell that you can fire at enemies to slow them down. However, if you manage to slow them below their base speed, they will soon speed up again."); break;
 			case SPE_TIME:
 				pline("You can 'clock back' enemies with this spell, sometimes draining their health and level permanently."); break;
 			case SPE_LEVITATION:
@@ -14982,7 +14982,7 @@ boolean knoweverything;
 			case SPE_DIG:
 				pline("Casting this can dig through walls and other obstacles."); break;
 			case SPE_CANCELLATION:
-				pline("This spell can be cast at objects and monsters to cancel them. However, it occasionally backfires."); break;
+				pline("This spell can be cast at objects and monsters to cancel them. However, it occasionally backfires. Also, monsters cancelled by this spell will un-cancel themselves after a while (usually a couple hundred turns)."); break;
 			case SPE_REFLECTION:
 				pline("You can reflect beams and similar attacks for a limited amount of time if you cast this spell."); break;
 			case SPE_REPAIR_ARMOR:

@@ -22229,6 +22229,8 @@ register int	mmflags;
 	mtmp->healblock = 0;
 	mtmp->inertia = 0;
 	mtmp->singannoyance = FALSE;
+	mtmp->canceltimeout = FALSE;
+	mtmp->slowtimeout = FALSE;
 	if (!rn2(2)) mtmp->warningvisible = (rn2(2) ? 2 : 1);
 	mtmp->telepatvisible = 0;
 	if (!rn2(3)) mtmp->telepatvisible = (rn2(2) ? 2 : 1);

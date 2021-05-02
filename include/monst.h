@@ -168,6 +168,8 @@ struct monst {
 	Bitfield(isspell,1);	/* is a temporary spell being */
 	Bitfield(uexp,1);		/* you get experience for its kills */
 	Bitfield(singannoyance,1);	/* for sing trap */
+	Bitfield(canceltimeout,1);	/* for spell of cancellation */
+	Bitfield(slowtimeout,1);	/* for spell of slow monster or inertia */
 
 	Bitfield(mtraitor,1);	/* Former pet that turned traitor */
 	Bitfield(isshk,1);	/* is shopkeeper */

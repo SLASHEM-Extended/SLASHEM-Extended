@@ -1275,10 +1275,26 @@ register struct monst *mtmp;
 	}
 
 	/* cancelled monsters get un-cancelled with a VERY low probability --Amy */
-	if (mtmp->mcan && !rn2(10000)) mtmp->mcan = 0;
+	if (mtmp->mcan && !rn2(10000)) {
+		mtmp->mcan = 0;
+		mtmp->canceltimeout = 0;
+	}
+	/* and much more often if you used the spell */
+	if (mtmp->mcan && mtmp->canceltimeout && !rn2(500)) {
+		mtmp->mcan = 0;
+		mtmp->canceltimeout = 0;
+	}
 
 	/* slowed monsters get un-slowed with a low probability --Amy */
-	if (mtmp->mspeed == MSLOW && mtmp->permspeed == MSLOW && !mtmp->inertia && !rn2(2000)) mon_adjust_speed(mtmp, 1, (struct obj *)0);
+	if (mtmp->mspeed == MSLOW && mtmp->permspeed == MSLOW && !mtmp->inertia && !rn2(2000)) {
+		mon_adjust_speed(mtmp, 1, (struct obj *)0);
+		mtmp->slowtimeout = 0;
+	}
+	/* and much more often if you used the spell */
+	if (mtmp->mspeed == MSLOW && mtmp->permspeed == MSLOW && mtmp->slowtimeout && !mtmp->inertia && !rn2(100)) {
+		mon_adjust_speed(mtmp, 1, (struct obj *)0);
+		mtmp->slowtimeout = 0;
+	}
 
 	/* is the monster charging a special laser cannon? */
 	if (mtmp->hominglazer) {
