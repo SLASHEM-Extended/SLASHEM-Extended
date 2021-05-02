@@ -7051,6 +7051,10 @@ SCROLL((char *)0,               "MOVES IS DICTATORSHIP PAR EXCELLENCE",  P_NONE,
 SCROLL((char *)0,               "THE ENGLISHMAN DRIVES FOR MOVES DAEDELDAEDAEDAEAEAE",  P_NONE,     1,   0, 100, CLR_WHITE, 1),
 SCROLL((char *)0,               "FREE ACTION IS FOR CAITIFFS",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
 SCROLL((char *)0,               "BOBBLE HATS FOR DOGGOS",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
+SCROLL((char *)0,               "ALTER TABLE FOO ALTER COLUMN",  P_NONE,     1,   0, 100, CLR_GREEN, 1),
+SCROLL((char *)0,               "IT COMES THICKE",  P_NONE,     1,   0, 100, CLR_BRIGHT_CYAN, 1),
+SCROLL((char *)0,               "INFECTION PROTECTION IS THE UNWORD OF THE YEAR",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
+SCROLL((char *)0,               "ALS OB FLY SEIN EIN DEUTSCHES JUGENDWORT WAER",  P_NONE,     1,   0, 100, CLR_RED, 1),
 
 
 #ifdef MAIL

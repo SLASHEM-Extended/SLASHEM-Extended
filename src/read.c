@@ -792,6 +792,7 @@ doread()
 	"I rubbed a magic lamp and all I got was this blessed fireproof +5 T-shirt!",
 	"Kiss me, I'm Elvish",
 	"Liches Get Stitches",
+	"Procrastinators of all countries, unite... tomorrow!", /* by Amy's wonderful bundleroommate <3 */
 
 
 	    };
