@@ -1364,7 +1364,7 @@ int trap_type;
 		dosdoor(xx, yy, aroom, SDOOR);
 	    } else {
 		rm->typ = CORR;
-		if(rn2(7))
+		if(rn2(35))
 		    dosdoor(xx, yy, aroom, rn2(5) ? SDOOR : DOOR);
 		else {
 
@@ -1414,6 +1414,9 @@ make_niches()
 
 	boolean	ltptr = (!level.flags.noteleport && dep > 15),
 		vamp = (dep > 5 && dep < 25);
+
+	if (!rn2(2)) return; /* don't make so many --Amy */
+	if ((ct > 1) && rn2(10)) ct = rnd(ct);
 
 	while(ct--) {
 		if (ltptr && !rn2(6)) {
