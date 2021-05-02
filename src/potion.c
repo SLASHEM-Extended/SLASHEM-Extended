@@ -12076,6 +12076,8 @@ register struct obj *obj;
 		/* WAC -- Could have some funky fx */
 		return 0;
 
+	if (is_hazy(obj)) return 0; /* poly weapon into mattock, upgrade to pick-axe, poly into 0:50 tinning kit, unpoly... +50 weapon :-P can't have that! --Amy */
+
 	if (stack_too_big(obj))
 		return 1;
 
