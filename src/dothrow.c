@@ -637,6 +637,14 @@ dothrow()
 
 	if (!obj) return(0);
 
+#ifdef MAIL
+	if (obj->otyp == SCR_MAIL) {
+		You("try to cheat, but it fails.");
+		if (Is_airlevel(&u.uz)) pline("Stop being a wiseguy and play the game properly already! :-P");
+		return(0);
+	}
+#endif
+
 	/* kludge to work around parse()'s pre-decrement of 'multi' */
 	shotlimit = (multi || save_cm) ? multi + 1 : 0;
 
@@ -738,6 +746,14 @@ dofire()
 		}
 		else {return(0);}
 	}
+
+#ifdef MAIL
+	if (uquiver && uquiver->otyp == SCR_MAIL) {
+		You("try to cheat, but it fails.");
+		if (Is_airlevel(&u.uz)) pline("Stop being a wiseguy and play the game properly already! :-P");
+		return(0);
+	}
+#endif
 
 	if(check_capacity((char *)0)) return(0);
 	if (!uquiver) {

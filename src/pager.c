@@ -27177,6 +27177,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"Your balls are heavy again. Now's the time to present them to a sweet girl, who can kick them to test your pain threshold.",
 	"Your balls get lighter.",
 	"Your balls get lighter. Shame, now no girl will want to kick them because it wouldn't hurt you anymore.",
+	"You try to cheat, but it fails.",
+	"You try to cheat, but it fails. Stop being a wiseguy and play the game properly already! :-P",
+	"You try to cheat, but it fails. Stop being a wiseguy and play the game properly already! :-P (This message is given if you try to throw a scroll of mail on the plane of air, because you damn well need to bring your own items if you want to locomote by throwing stuff!)",
 
 };
 

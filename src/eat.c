@@ -216,6 +216,9 @@ register struct obj *obj;
 		return FALSE;
 	if (objects[obj->otyp].oc_unique)
 		return FALSE;
+#ifdef MAIL
+	if (obj->otyp == SCR_MAIL) return FALSE; /* cheator! :-P */
+#endif
 	/* above also prevents the Amulet from being eaten, so we must never
 	   allow fake amulets to be eaten either [which is already the case] */
 
