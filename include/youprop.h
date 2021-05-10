@@ -818,7 +818,7 @@
 /* Timeout, plus a worn mask */
 #define HFumbling		u.uprops[FUMBLING].intrinsic
 #define EFumbling		u.uprops[FUMBLING].extrinsic
-#define Fumbling		(HFumbling || EFumbling || u.uprops[MULTISHOES].extrinsic)
+#define Fumbling		(HFumbling || EFumbling || (uarmf && uarmf->otyp == ROLLER_BLADE) || u.uprops[MULTISHOES].extrinsic)
 
 #define HWounded_legs		u.uprops[WOUNDED_LEGS].intrinsic
 #define EWounded_legs		u.uprops[WOUNDED_LEGS].extrinsic
