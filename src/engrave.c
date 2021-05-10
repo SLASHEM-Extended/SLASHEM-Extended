@@ -5473,6 +5473,7 @@ static const char *epitaphs[] = {
 	"suffocated in a vat of crappy shoes", /* by cebolla */
 	"WHAAAAAAT? I'm supposed to use tactical combat where my positioning, choice of melee versus ranged weapons etc. MATTER? screw that, I'll just whack everything with my orcish dagger in melee :P",
 	"nurse dancing can result in the sexy nurses stepping on the player's toes with their sexy high-heeled nurse boots <3",
+	"So, like, atrocious segfaults happen every minute!",
 
 };
 
