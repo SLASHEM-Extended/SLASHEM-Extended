@@ -6308,7 +6308,7 @@ doapply()
 		if (HHallucination) {
 			pline("You carelessly push the buttons. On the screen is a text ... ");
 			outrumor(-1,42,TRUE);	/* always false */
-		} else {
+		} else if (u.usanity < 900) {
 			pline("So many knobs to turn! So many buttons to press!");
 			/* Amy edit: omg no, we can't allow such an easy guaranteed way for confusion on demand... */
 			if (!rn2(20)) {
@@ -6317,7 +6317,10 @@ doapply()
 				pline("And now the universe seems to be turning inwards on itself! Oh no!");
 			}
 			badeffect();
+			increasesanity(1000);
 			if (!obj->cursed || !rn2(4)) make_confused(HConfusion+rn2(10),TRUE);
+		} else {
+			pline("No! It's insane to mess with that thing!");
 		}
 		break;
 
