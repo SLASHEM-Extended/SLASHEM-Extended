@@ -2115,7 +2115,7 @@ register struct monst *mtmp;
 
 		   case PM_YAUTJA:
 		   case PM_UNDEAD_YAUTJA:
-		     (void)mongets(mtmp, rn2(3) ? HAND_BLASTER : ARM_BLASTER);
+		     (void)mongets(mtmp, (rn2(3) || (monster_difficulty() < 15) ) ? HAND_BLASTER : ARM_BLASTER);
 			m_initthrow(mtmp, BLASTER_BOLT, 50);
 			m_initthrow(mtmp, SPEAR, 5);
 		     (void)mongets(mtmp, SCIMITAR);
@@ -3055,7 +3055,7 @@ register struct monst *mtmp;
 		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 			if (!rn2(100)) (void) mongets(mtmp, WAN_BANISHMENT);
-			(void) mongets(mtmp, ASSAULT_RIFLE);
+			(void) mongets(mtmp, (monster_difficulty() < 9) ? SUBMACHINE_GUN : ASSAULT_RIFLE);
 			 m_initthrow(mtmp, BULLET, 50);
 			 m_initthrow(mtmp, BULLET, 50);
 
@@ -3161,7 +3161,7 @@ register struct monst *mtmp;
 		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     (void)mongets(mtmp, ASSAULT_RIFLE);
+		     (void)mongets(mtmp, (monster_difficulty() < 9) ? SUBMACHINE_GUN : ASSAULT_RIFLE);
 		     if (!rn2(5)) (void)mongets(mtmp, SNIPER_RIFLE);
 			 m_initthrow(mtmp, BULLET, 50);
 			 m_initthrow(mtmp, BULLET, 50);
@@ -3191,9 +3191,9 @@ register struct monst *mtmp;
 		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     (void)mongets(mtmp, ASSAULT_RIFLE);
+		     (void)mongets(mtmp, (monster_difficulty() < 9) ? SUBMACHINE_GUN : ASSAULT_RIFLE);
 			 m_initthrow(mtmp, BULLET, 50);
-		     (void)mongets(mtmp, ARM_BLASTER);
+		     (void)mongets(mtmp, (monster_difficulty() < 15) ? HAND_BLASTER : ARM_BLASTER);
 			 m_initthrow(mtmp, BLASTER_BOLT, 50);
 		     (void)mongets(mtmp, CHAIN_MAIL);
 		     (void)mongets(mtmp, HELMET);
