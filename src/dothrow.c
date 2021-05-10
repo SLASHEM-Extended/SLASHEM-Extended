@@ -402,6 +402,19 @@ int thrown;
 	    /* Shotlimit controls your rate of fire */
 	    if ((shotlimit > 0) && (multishot > shotlimit)) multishot = shotlimit;
 
+	    if (launcher && launcher->oartifact == ART_DESERT_EAGLE) {
+		multishot--;
+		if (multishot < 1) multishot = 1;
+	    }
+	    if (launcher && launcher->oartifact == ART_LEONE_M__GUAGE_SUPER) {
+		multishot -= 2;
+		if (multishot < 1) multishot = 1;
+	    }
+	    if (launcher && launcher->oartifact == ART_MOSIN_NAGANT) {
+		multishot -= 3;
+		if (multishot < 1) multishot = 1;
+	    }		
+
 	    /* Rate of fire is intrinsic to the weapon - cannot be user selected
 	     * except via altmode
 	     * Only for valid launchers 
@@ -1478,6 +1491,13 @@ int thrown;
 
 	thrownobj = obj;
 
+	if (launcher && launcher->oartifact == ART_LEONE_M__GUAGE_SUPER) {
+		nomul(-2, "suffering from M3 recoil", TRUE);
+	}
+	if (launcher && launcher->oartifact == ART_MOSIN_NAGANT) {
+		nomul(-3, "reloading the Mosin-Nagant", TRUE);
+	}
+
 	if(u.uswallow) {
 		mon = u.ustuck;
 		bhitpos.x = mon->mx;
@@ -2106,6 +2126,9 @@ boolean polearming;
 		if (!rn2(2)) tmp -= rnd(10);
 		if (!rn2(3)) tmp -= rnd(10);
 	}
+	if (launcher && launcher->oartifact == ART_FN_M____PARA) tmp -= rnd(15);
+	if (launcher && launcher->oartifact == ART_CITYKILLER_COMBAT_SHOTGUN) tmp -= rnd(10);
+	if (launcher && launcher->oartifact == ART_COLONEL_BASTARD_S_LASER_PI) tmp -= rnd(5);
 
 	if (Race_if(PM_SWIKNI)) {
 		if (obj) {

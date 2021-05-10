@@ -377,7 +377,7 @@ A("Pwnhammer",			MALLET,
 	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_HPHDAM), 0, 0,
 	COLD(5,16), DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
-A("Pwnhammer Duece",			SLEDGE_HAMMER,
+A("Pwnhammer Duece",			SLEDGE_HAMMER, /* +10 difficulty, can't see lit areas */
 	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_REGEN), 0, 0,
 	FIRE(8,24), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
 
@@ -389,7 +389,7 @@ A("Karate Kid",			SOFT_GIRL_SNEAKER, /* free action */
 	(SPFX_RESTR), 0, 0,
 	PHYS(5,16), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 10000L ),
 
-A("Girlful Bonking",			STURDY_PLATEAU_BOOT_FOR_GIRLS, /* aggravate monster, diarrhea, claw attacks deal extra damage to you, -500 carry capacity */
+A("Girlful Bonking",			STURDY_PLATEAU_BOOT_FOR_GIRLS, /* aggravate monster, diarrhea, claw attacks deal extra damage to you, -500 carry capacity, all skills behave as if they were unskilled, gushlush effect */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	PHYS(20,30), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
 
@@ -429,7 +429,7 @@ A("Sweetheart Pump",			SEXY_LEATHER_PUMP, /* psi resistance */
 	(SPFX_RESTR), 0, 0,
 	PHYS(15,2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
-A("Sandra's Evil Minddrill",			SPIKED_BATTLE_BOOT, /* aggravate monster, can cause amnesia when wielded */
+A("Sandra's Evil Minddrill",			SPIKED_BATTLE_BOOT, /* aggravate monster, confusion and can cause amnesia when wielded; wielding it disenchants it as long as it's better than -20 */
 	(SPFX_RESTR|SPFX_DEFN|SPFX_SEARCH|SPFX_EVIL), 0, 0,
 	PHYS(0,32), DFNS(AD_ELEC), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 10000L ),
 
@@ -553,7 +553,7 @@ A("Walther PPK",			PISTOL,
 	(SPFX_RESTR), 0, 0,
 	PHYS(2,10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
-A("Desert Eagle",			PISTOL,
+A("Desert Eagle",			PISTOL, /* -1 multishot */
 	(SPFX_RESTR), 0, 0,
 	PHYS(5,18), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
@@ -561,7 +561,7 @@ A("Ingram Mac-10",			SUBMACHINE_GUN, /* makes the player very fast when wielded 
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
 
-A("FN M249 Para",			HEAVY_MACHINE_GUN, /* aggravate monster */
+A("FN M249 Para",			HEAVY_MACHINE_GUN, /* aggravate monster, -d15 to-hit */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	PHYS(0,16), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
@@ -569,15 +569,15 @@ A("Surefire Gun",			RIFLE,
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
-A("Mosin-Nagant",			SNIPER_RIFLE,
+A("Mosin-Nagant",			SNIPER_RIFLE, /* paralyzes you for 2 turns after each shot, -3 multishot */
 	(SPFX_RESTR|SPFX_SEEK), 0, 0,
 	PHYS(20,30), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
-A("Leone M3 Guage Super",			SHOTGUN,
+A("Leone M3 Guage Super",			SHOTGUN, /* paralyzes you for a turn after each shot, -2 multishot */
 	(SPFX_RESTR), 0, 0,
 	PHYS(0,40), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1600L ),
 
-A("Citykiller Combat Shotgun",			AUTO_SHOTGUN,
+A("Citykiller Combat Shotgun",			AUTO_SHOTGUN, /* -d10 to-hit */
 	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
 	PHYS(0,10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3600L ),
 
@@ -585,7 +585,7 @@ A("Smugglers End",			HAND_BLASTER,
 	(SPFX_RESTR|SPFX_DEFN), 0, 0,
 	PHYS(10,2), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
-A("Colonel Bastard's Laser Pistol",			ARM_BLASTER,
+A("Colonel Bastard's Laser Pistol",			ARM_BLASTER, /* -d5 to-hit */
 	(SPFX_RESTR), 0, 0,
 	PHYS(10,10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 

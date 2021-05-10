@@ -16957,13 +16957,13 @@ boolean knoweverything;
 				case ART_PWNHAMMER:
 					pline("Artifact specs: Half physical damage and cold resistance when wielded, +5 to-hit and +16 damage to cold-susceptible monsters."); break;
 				case ART_PWNHAMMER_DUECE:
-					pline("Artifact specs: Regeneration and fire resistance when wielded, +8 to-hit and +24 damage to fire-susceptible monsters."); break;
+					pline("Artifact specs: Regeneration and fire resistance when wielded, +8 to-hit and +24 damage to fire-susceptible monsters, +10 monster difficulty and you can't see lit squares unless you'd also see them if they were unlit."); break;
 				case ART_DOCKSIDE_WALK:
 					pline("Artifact specs: Teleport control when wielded, +2 to-hit and +10 damage."); break;
 				case ART_KARATE_KID:
 					pline("Artifact specs: Free action when wielded, +5 to-hit and +16 damage, lawful."); break;
 				case ART_GIRLFUL_BONKING:
-					pline("Artifact specs: aggravate monster, diarrhea and reduced carry capacity when wielded and also causes claw attacks to do extra damage to you, +20 to-hit and +30 damage."); break;
+					pline("Artifact specs: aggravate monster, all skills act as if they were unskilled, many effects behave as if you were XL1, diarrhea and reduced carry capacity when wielded and also causes claw attacks to do extra damage to you, +20 to-hit and +30 damage."); break;
 				case ART_ARMOR_PIERCING_HUG:
 					pline("Artifact specs: Protection and shock resistance when wielded, +50 to-hit and +2 damage."); break;
 				case ART_ASIAN_WINTER:
@@ -16983,7 +16983,7 @@ boolean knoweverything;
 				case ART_SWEETHEART_PUMP:
 					pline("Artifact specs: Psi resistance when wielded, +15 to-hit and +2 damage."); break;
 				case ART_SANDRA_S_EVIL_MINDDRILL:
-					pline("Artifact specs: Aggravates monsters, searching and shock resistance when wielded. Can randomly cause amnesia. +32 damage, chaotic."); break;
+					pline("Artifact specs: Aggravates monsters, confuses you, searching and shock resistance when wielded. Can randomly cause amnesia. Every act of wielding it will disenchant it as long as it's better than -20. +32 damage, chaotic."); break;
 				case ART_RIBCRACKER:
 					pline("Artifact specs: +8 to-hit and +16 damage."); break;
 				case ART_DULL_METAL:
@@ -17045,23 +17045,23 @@ boolean knoweverything;
 				case ART_WALTHER_PPK:
 					pline("Artifact specs: +2 to-hit and +10 damage."); break;
 				case ART_DESERT_EAGLE:
-					pline("Artifact specs: +5 to-hit and +18 damage."); break;
+					pline("Artifact specs: +5 to-hit and +18 damage, but shoots more slowly than a regular pistol."); break;
 				case ART_INGRAM_MAC___:
 					pline("Artifact specs: speed when wielded."); break;
 				case ART_FN_M____PARA:
-					pline("Artifact specs: aggravates monsters when wielded, +16 damage."); break;
+					pline("Artifact specs: aggravates monsters when wielded, +16 damage but -d15 to-hit for bullets. After all, this thing has an enormous spread. Ever played Counter-Strike?"); break;
 				case ART_SUREFIRE_GUN:
 					pline("Artifact specs: Improves dexterity when wielded."); break;
 				case ART_MOSIN_NAGANT:
-					pline("Artifact specs: Searching when wielded, +20 to-hit and +30 damage."); break;
+					pline("Artifact specs: Searching when wielded, +20 to-hit and +30 damage, but shooting will force you to reload the rifle for the next 2 turns, whether you want to or not. It also shoots really slowly, to balance its awesome power. Paeaeaeaeaeaeaeau klink klink!"); break;
 				case ART_LEONE_M__GUAGE_SUPER:
-					pline("Artifact specs: +40 damage."); break;
+					pline("Artifact specs: +40 damage, but you get hit by recoil when shooting, which paralyzes you for one turn. Also, this gun shoots very slowly."); break;
 				case ART_CITYKILLER_COMBAT_SHOTGUN:
-					pline("Artifact specs: Reflection when wielded, +10 damage."); break;
+					pline("Artifact specs: Reflection when wielded, +10 damage but -d10 to-hit for shells."); break;
 				case ART_SMUGGLERS_END:
 					pline("Artifact specs: Fire resistance when wielded, +10 to-hit and +2 damage."); break;
 				case ART_COLONEL_BASTARD_S_LASER_PI:
-					pline("Artifact specs: +10 to-hit and +10 damage."); break;
+					pline("Artifact specs: +10 to-hit and +10 damage but -d5 to-hit for laser ammo."); break;
 				case ART_COOKIE_CUTTER:
 					pline("Artifact specs: Reflection and magic resistance when wielded."); break;
 				case ART_DOOMGUY_S_WET_DREAM:

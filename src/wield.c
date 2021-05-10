@@ -150,6 +150,10 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		if (uwep->spe > -10) uwep->spe = -10;
 	}
 
+	if (uwep && uwep->oartifact == ART_SANDRA_S_EVIL_MINDDRILL) {
+		if (uwep->spe > -20) uwep->spe--;
+	}
+
 	if (uwep && uwep->oartifact == ART_HENRIETTA_S_MISTAKE && !uwep->hvycurse) {
 		curse(uwep);
 		uwep->hvycurse = 1;
@@ -294,6 +298,10 @@ swapweaponchoice:
 			curse(uswapwep);
 			uswapwep->hvycurse = 1;
 			if (uswapwep->spe > -10) uswapwep->spe = -10;
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_SANDRA_S_EVIL_MINDDRILL) {
+			if (uswapwep->spe > -20) uswapwep->spe--;
 		}
 
 		if (uswapwep && uswapwep->oartifact == ART_HENRIETTA_S_MISTAKE && !uswapwep->hvycurse) {
