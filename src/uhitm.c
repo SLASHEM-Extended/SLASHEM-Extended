@@ -6791,6 +6791,18 @@ common:
 		    }
 		break;
 	}
+
+	if (uactivesymbiosis && attacktype(&mons[u.usymbiote.mnum], AT_EXPL)) {
+		u.usymbiote.active = 0;
+		u.usymbiote.mnum = PM_PLAYERMON;
+		u.usymbiote.mhp = 0;
+		u.usymbiote.mhpmax = 0;
+		u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0;
+		if (flags.showsymbiotehp) flags.botl = TRUE;
+		u.cnd_symbiotesdied++;
+		Your("symbiote was blown to smithereens.");
+	}
+
 	return(1);
 }
 

@@ -27180,6 +27180,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You try to cheat, but it fails.",
 	"You try to cheat, but it fails. Stop being a wiseguy and play the game properly already! :-P",
 	"You try to cheat, but it fails. Stop being a wiseguy and play the game properly already! :-P (This message is given if you try to throw a scroll of mail on the plane of air, because you damn well need to bring your own items if you want to locomote by throwing stuff!)",
+	"Your symbiote was blown to smithereens.",
 
 };
 
