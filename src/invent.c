@@ -14698,13 +14698,13 @@ boolean knoweverything;
 			case SPE_FORCE_BOLT:
 				pline("A spell that fires an invisible beam. It can damage monsters, items and certain dungeon features."); break;
 			case SPE_CREATE_MONSTER:
-				pline("Casting this spell summons random monsters. Beware, it also backfires sometimes. The summoned monster has a chance of being frenzied too."); break;
+				pline("Casting this spell summons random monsters. Beware, it also backfires sometimes. The summoned monster has a chance of being frenzied too, and in order to prevent the inevitable abuse, it increases your prayer timeout and reduces your alignment record so you can't simply create endless sacrifice fodder."); break;
 			case SPE_DRAIN_LIFE:
 				pline("This spell drains the life force out of monsters, sometimes reducing their level. It also reduces the enchantment of objects it hits."); break;
 			case SPE_COMMAND_UNDEAD:
 				pline("A spell that attempts to tame all adjacent undead monsters. They have a chance of resisting, and very rarely they may instead enter a state of frenzy, becoming immune to further taming attempts. Also, the spell may occasionally backfire."); break;
 			case SPE_SUMMON_UNDEAD:
-				pline("Summons an undead monster. It can also rarely backfire. The summoned monster has a chance of being frenzied too."); break;
+				pline("Summons an undead monster. It can also rarely backfire. The summoned monster has a chance of being frenzied too, and every cast slightly increases your prayer timeout and reduces your alignment record."); break;
 			case SPE_STONE_TO_FLESH:
 				pline("This spell can be cast at items, dungeon features and monsters that are made of stone, turning them into meat."); break;
 			case SPE_HEALING:
@@ -14734,7 +14734,7 @@ boolean knoweverything;
 			case SPE_RESTORE_ABILITY:
 				pline("If your attributes have been damaged, this spell may gradually restore them. Occasionally it fails though."); break;
 			case SPE_CREATE_FAMILIAR:
-				pline("Casting this spell sometimes summons a monster that fights on your side. It has a high chance of summoning a hostile creature instead, so beware..."); break;
+				pline("Casting this spell sometimes summons a monster that fights on your side. It has a high chance of summoning a hostile creature instead, so beware... and it also increases your prayer timeout and reduces alignment record, for good measure."); break;
 			case SPE_LIGHT:
 				pline("A spell that lights up dark areas."); break;
 			case SPE_DETECT_MONSTERS:

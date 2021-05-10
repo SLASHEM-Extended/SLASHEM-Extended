@@ -5659,6 +5659,8 @@ proofarmorchoice:
 			pline("The spell backfires!");
 			badeffect();
 		}
+		u.ublesscnt += 100;
+		adjalign(-5);
 
 		u.aggravation = 0;
 
@@ -6430,6 +6432,8 @@ materialchoice3:
 			pline("The spell backfires!");
 			badeffect();
 		}
+		u.ublesscnt += 30;
+		adjalign(-2);
 
 	case SCR_SUMMON_UNDEAD:        
 	    {

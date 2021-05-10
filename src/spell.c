@@ -9351,6 +9351,8 @@ controlagain:
 			pline("The spell backfired!");
 			badeffect();
 		}
+		u.ublesscnt += 50;
+		adjalign(-3);
 		break;
 	case SPE_CLAIRVOYANCE:
 		if (!BClairvoyant)
