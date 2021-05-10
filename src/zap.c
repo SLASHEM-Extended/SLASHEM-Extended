@@ -5490,6 +5490,7 @@ glowandfadechoice:
 	if (obj && obj->spe < 0) {
 	    pline("%s to dust.", Tobjnam(obj, "turn"));
 	    useup(obj);
+	    use_skill(P_DEVICES, 1);
 	}
 	update_inventory();	/* maybe used a charge */
 	return(1);
