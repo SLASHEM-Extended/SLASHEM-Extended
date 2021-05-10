@@ -4580,7 +4580,7 @@ secureidchoice:
 		} else {
                        pline("%s breaks the stare!", Monnam(mtmp));
 		}
-               	t_timeout = rnz(75);
+               	t_timeout = rnz(750);
 	    	break;
 	    case T_BLITZ:
 	    	if ((uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU) )) || (u.twoweap && uswapwep)) {
