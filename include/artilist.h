@@ -8401,6 +8401,77 @@ A("Jonadab's Metal Guard",				GAUNTLETS_OF_FUMBLING, /* putting them on changes 
 	(SPFX_RESTR|SPFX_HSPDAM|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
+A("Cockbanger Armor",				LEATHER_ARMOR, /* randart, sets itself to a random value from +1 to +10 if worn while +0 or lower */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Tlahuizcalpantecuhtli",				SHINY_STAR, /* diminished bleeding, allows you to sacrifice your own race when wielded */
+	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Panzer Tank",				LEATHER_SADDLE, /* while riding, you have +10 constitution, 10 extra points of AC and half physical damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Eimi wa bakadesu",				HIPPIE_HEELS, /* if your INT is higher than 10, 1 in 2000 chance per turn to lose one point of it, renames items to japanese, high heels skill trains five times as fast, grenades thrown by you get grenadonin-like damage boosts */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Shut Up You Fuck",				INKA_SADDLE, /* if the steed is hostile, it won't be able to use MS_FART or similar attacks against you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Utter Uselessness",				INKA_SADDLE, /* if you put it on a farting, perfume or superman monster, you'll be able to ride it even if it's not tame */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Chrome Good",				SHOTGUN, /* poison resistance when wielded */
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Gaygun",				RAYGUN, /* +5 melee damage if you're homosexual, and your footwear (if present) counts as high heels but if you're not homosexual, you're also numbed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Antimagicbane",                  COLLUSION_KNIFE, /* prevents both you and monsters from spellcasting */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	STUN(3,4),	DFNS(AD_MAGM),	NO_CARY,	0, A_NEUTRAL, NON_PM, NON_PM, 3500L ),
+
+A("Gantulets of Mispealing",				LEATHER_GLOVES, /* randart2, trying to engrave Elbereth will always misengrave, other engravings also randomly misengrave */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Sue Lyn's Usage",				TOILET_ROLL, /* replicates maurah trap effect, if it triggers you gain +1 max HP and Pw up to a max of 20*XL; if it's cursed, 1 in 1000 chance per turn to receive d50 turns of inertia */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Mr. Outlash",				PIN_BOLT,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Schokolade-eea",				CHOCOLATE, /* rnz(500) turns of deafness when eaten */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Christmas Egg",				CHOCOEGG, /* rn1(1000,1000) turns of half physical damage when eating */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Anikibombo-neau",				SPE_BOMBING, /* no special effects */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Goa-Evilgate",				SCR_SYMBIOSIS, /* can also give symbiotes that only goaulds could normally get (or if you are a goauld, can also give ones that a goauld cannot have) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 8000L ),
+
+A("Pushmicebire",				WAR_HAMMER,
+	(SPFX_RESTR|SPFX_DCLAS), 0, (S_RODENT),
+	PHYS(0, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("The Secret Book of Venom",				SPE_MAGICTORCH, /* randart2, teaches venom mixing tech if successfully read or increases its tech level by one if you already know it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 15000L ),
 
 /*
  *	Stormbringer only has a 2 because it can drain a level,

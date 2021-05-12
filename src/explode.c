@@ -1262,7 +1262,7 @@ int dest;
 	use_skill(P_FIREARM, (obj && obj->otyp == STICK_OF_DYNAMITE) ? 5 : 1);
     }
 
-    if (Role_if(PM_GRENADONIN)) {
+    if (Role_if(PM_GRENADONIN) || (uarmf && uarmf->oartifact == ART_EIMI_WA_BAKADESU) ) {
 
 	if (isyou) {
 
@@ -1281,7 +1281,7 @@ int dest;
 		      	default: break;
 			}		
 		}
-	} else grenadedamage += d(3,6);
+	} else if (Role_if(PM_GRENADONIN)) grenadedamage += d(3,6);
 
     }
     

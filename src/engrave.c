@@ -2525,7 +2525,7 @@ doengrave()
 	    u.uconduct.literate++;
 
 	/* Evil Variant by ais523: the first Elbereth will always misengrave */
-	if (evilfriday && strlen(ebuf) > 7) for (sp = ebuf; *sp; sp++) {
+	if ((evilfriday || (uarmg && uarmg->oartifact == ART_GANTULETS_OF_MISPEALING)) && strlen(ebuf) > 7) for (sp = ebuf; *sp; sp++) {
 
 		if (*sp == 'e' || *sp == 'E') {
 			sp++;
@@ -2588,6 +2588,9 @@ doengrave()
 			(Hallucination && (ishaxor ? !rn2(28) : !rn2(18))) )
 		*sp = ' ' + rnd(96 - 2);	/* ASCII '!' thru '~'
 						   (excludes ' ' and DEL) */
+
+		if (uarmg && uarmg->oartifact == ART_GANTULETS_OF_MISPEALING && rn2(2)) *sp = ' ' + rnd(96 - 2);
+
 	}
 
 	/* Previous engraving is overwritten */

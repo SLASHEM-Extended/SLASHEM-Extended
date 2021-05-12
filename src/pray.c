@@ -242,6 +242,7 @@ STATIC_OVL boolean
 canofferownrace()
 {
 	if (RngeCannibalism) return TRUE;
+	if (uwep && uwep->oartifact == ART_TLAHUIZCALPANTECUHTLI) return TRUE;
 
 	switch (Race_switch) {
 

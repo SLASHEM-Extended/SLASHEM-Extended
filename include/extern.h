@@ -1776,7 +1776,7 @@ E void uncursesymbiote(BOOLEAN_P);
 E void cursesymbiote(void);
 E boolean symbiotemelee(void);
 E boolean symbiotepassive(void);
-E void getrandomsymbiote(BOOLEAN_P);
+E void getrandomsymbiote(BOOLEAN_P,BOOLEAN_P);
 E void monst_globals_init(void);
 
 /* ### mondata.c ### */
@@ -2981,6 +2981,7 @@ E boolean will_hit_steed(void);
 E boolean confsteeddir(void);
 E boolean flysaddle(void);
 E boolean bmwride(int);
+E boolean mercedesride(int, struct monst *);
 
 /* ### tech.c ### */
 

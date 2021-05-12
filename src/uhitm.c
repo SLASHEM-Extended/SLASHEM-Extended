@@ -1688,6 +1688,7 @@ int dieroll;
 			if (obj && obj->spe > 0) tmp += obj->spe;
 
 			if (obj && obj->oartifact == ART_BASHCRASH && tmp > 0) tmp *= 2;
+			if (obj && obj->oartifact == ART_GAYGUN && (u.homosexual == 1)) tmp += 5;
 
 			valid_weapon_attack = (tmp > 0);
 			if (flags.bash_reminder && !rn2(20)) {

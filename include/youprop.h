@@ -295,7 +295,7 @@
 
 #define HNumbed		u.uprops[NUMBED].intrinsic
 #define ENumbed		u.uprops[NUMBED].extrinsic
-#define Numbed		(HNumbed || ENumbed || Race_if(PM_IRRITATOR) || (uarms && uarms->oartifact == ART_NUMBED_CAN_T_DO) || HeavyNumbed)
+#define Numbed		(HNumbed || ENumbed || Race_if(PM_IRRITATOR) || (uwep && uwep->oartifact == ART_GAYGUN && uarmf && (u.homosexual != 1)) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GAYGUN && uarmf && (u.homosexual != 1)) || (uarms && uarms->oartifact == ART_NUMBED_CAN_T_DO) || HeavyNumbed)
 #define HeavyNumbed		u.uprops[HEAVY_NUMBED].intrinsic
 
 #define HFeared		u.uprops[FEARED].intrinsic
@@ -670,7 +670,7 @@
 #define FemtrapActiveNatalje	(FemaleTrapNatalje || u.uprops[FEMTRAP_NATALJE].extrinsic || have_femtrapnatalje())
 #define FemtrapActiveJeanetta	(FemaleTrapJeanetta || u.uprops[FEMTRAP_JEANETTA].extrinsic || have_femtrapjeanetta())
 #define FemtrapActiveYvonne	(FemaleTrapYvonne || u.uprops[FEMTRAP_YVONNE].extrinsic || have_femtrapyvonne())
-#define FemtrapActiveMaurah	(FemaleTrapMaurah || u.uprops[FEMTRAP_MAURAH].extrinsic || have_femtrapmaurah() || (uarmf && uarmf->oartifact == ART_THICK_FARTING_GIRL) || (uarmf && uarmf->oartifact == ART_KATHARINA_S_LOVELINESS))
+#define FemtrapActiveMaurah	(FemaleTrapMaurah || u.uprops[FEMTRAP_MAURAH].extrinsic || have_femtrapmaurah() || (uarmf && uarmf->oartifact == ART_THICK_FARTING_GIRL) || (uarmu && uarmu->oartifact == ART_SUE_LYN_S_USAGE) || (uarmf && uarmf->oartifact == ART_KATHARINA_S_LOVELINESS))
 #define FemtrapActiveMeltem	(FemaleTrapMeltem || u.uprops[FEMTRAP_MELTEM].extrinsic || have_femtrapmeltem())
 #define FemtrapActiveSarah	(FemaleTrapSarah || u.uprops[FEMTRAP_SARAH].extrinsic || have_femtrapsarah())
 #define FemtrapActiveClaudia	(FemaleTrapClaudia || u.uprops[FEMTRAP_CLAUDIA].extrinsic || have_femtrapclaudia())
@@ -1247,7 +1247,7 @@
 #define HHalf_physical_damage	u.uprops[HALF_PHDAM].intrinsic
 #define EHalf_physical_damage	u.uprops[HALF_PHDAM].extrinsic
 #define IntHalf_physical_damage	(HHalf_physical_damage || (Race_if(PM_BOVER) && u.usteed))
-#define ExtHalf_physical_damage	(EHalf_physical_damage || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == HALF_PHDAM) ) || (uwep && uwep->otyp == SECRET_WHIP) || (uwep && uwep->otyp == ETERNAL_POLE) || (uarmf && uarmf->oartifact == ART_HUGGING__GROPING_AND_STROK && u.ustuck) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_POTATOROK) || (uarmh && itemhasappearance(uarmh, APP_CLOUDY_HELMET) && isok(u.ux, u.uy) && IS_CLOUD(levl[u.ux][u.uy].typ) ) || (uarmc && (moves % 10 == 0) && itemhasappearance(uarmc, APP_SOFT_CLOAK) ) || (ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) )
+#define ExtHalf_physical_damage	(EHalf_physical_damage || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == HALF_PHDAM) ) || (bmwride(ART_PANZER_TANK)) || (uwep && uwep->otyp == SECRET_WHIP) || (uwep && uwep->otyp == ETERNAL_POLE) || (uarmf && uarmf->oartifact == ART_HUGGING__GROPING_AND_STROK && u.ustuck) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_POTATOROK) || (uarmh && itemhasappearance(uarmh, APP_CLOUDY_HELMET) && isok(u.ux, u.uy) && IS_CLOUD(levl[u.ux][u.uy].typ) ) || (uarmc && (moves % 10 == 0) && itemhasappearance(uarmc, APP_SOFT_CLOAK) ) || (ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) )
 
 #define Half_physical_damage	(((IntHalf_physical_damage && u.nonintrinsicproperty != HALF_PHDAM) || (ExtHalf_physical_damage && u.nonextrinsicproperty != HALF_PHDAM)) && !NoHalf_physical_damage)
 #define StrongHalf_physical_damage	(IntHalf_physical_damage && ExtHalf_physical_damage && Half_physical_damage && u.nondoubleproperty != HALF_PHDAM)
@@ -1505,7 +1505,7 @@
 #define HDiminishedBleeding		u.uprops[DIMINISHED_BLEEDING].intrinsic
 #define EDiminishedBleeding		u.uprops[DIMINISHED_BLEEDING].extrinsic
 #define IntDiminishedBleeding	(HDiminishedBleeding || (Upolyd && !has_blood(youmonst.data)) )
-#define ExtDiminishedBleeding	(EDiminishedBleeding || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK) || (uarmf && uarmf->oartifact == ART_ANITA_S_RASHLUST) || (uwep && uwep->oartifact == ART_SHRED_THEM_) || (uwep && uwep->oartifact == ART_SELF_PROTECTION_IMPLEMENT) || (uarmf && uarmf->oartifact == ART_KATI_S_IRRESISTIBLE_STILET) || (uwep && uwep->oartifact == ART_DOLORES_S_SADISM) || (uwep && uwep->oartifact == ART_ARABELLA_S_BLACK_PRONG))
+#define ExtDiminishedBleeding	(EDiminishedBleeding || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK) || (uarmf && uarmf->oartifact == ART_ANITA_S_RASHLUST) || (uwep && uwep->oartifact == ART_TLAHUIZCALPANTECUHTLI) || (uwep && uwep->oartifact == ART_SHRED_THEM_) || (uwep && uwep->oartifact == ART_SELF_PROTECTION_IMPLEMENT) || (uarmf && uarmf->oartifact == ART_KATI_S_IRRESISTIBLE_STILET) || (uwep && uwep->oartifact == ART_DOLORES_S_SADISM) || (uwep && uwep->oartifact == ART_ARABELLA_S_BLACK_PRONG))
 
 #define DiminishedBleeding		(((IntDiminishedBleeding && u.nonintrinsicproperty != DIMINISHED_BLEEDING) || (ExtDiminishedBleeding && u.nonextrinsicproperty != DIMINISHED_BLEEDING)) && !Role_if(PM_BLEEDER) && !Race_if(PM_HEMOPHAGE) && !NoDiminishedBleeding)
 #define StrongDiminishedBleeding	(IntDiminishedBleeding && ExtDiminishedBleeding && DiminishedBleeding && u.nondoubleproperty != DIMINISHED_BLEEDING)

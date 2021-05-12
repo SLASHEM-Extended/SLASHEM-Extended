@@ -307,7 +307,7 @@ use_symbiote(obj)
 			u.cnd_symbiotesdied++;
 			Your("old symbiote was erased!");
 		}
-		getrandomsymbiote(FALSE);
+		getrandomsymbiote(FALSE, FALSE);
 		useup(obj);
 		return 1;
 	}

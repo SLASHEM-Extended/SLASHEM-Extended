@@ -2897,6 +2897,7 @@ int x;
 		if (Race_if(PM_BULDOZGAR)) tmp += 2;
 		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_DESEAMING_GAME) tmp += 3;
+		if (bmwride(ART_PANZER_TANK)) tmp += 10;
 
 		if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 			if (uarm && is_metallic(uarm)) tmp++;

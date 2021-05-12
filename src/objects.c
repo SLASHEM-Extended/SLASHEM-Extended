@@ -3768,6 +3768,7 @@ AMULET((char *)0, "star-shaped", 0, 0, MT_SAND,    CLR_WHITE, 1),
 AMULET((char *)0, "diamond", 0, 0, MT_GEMSTONE,    CLR_WHITE, 1),
 AMULET((char *)0, "icosahedral", 0, 0, MT_NANOMACHINE,    CLR_CYAN, 1),
 AMULET((char *)0, "dodecahedral", 0, 0, MT_BRICK,    CLR_RED, 1),
+AMULET((char *)0, "chicken drumstick", 0, 0, MT_FLESH,    CLR_BROWN, 1),
 
 OBJECT(OBJ("cheap plastic imitation of the Amulet of Yendor",
 	"Amulet of Yendor"), BITS(0,0,1,0,0,0,0,0,0,0,0,0,MT_PLASTIC), 0,
@@ -7075,6 +7076,7 @@ SCROLL((char *)0,               "NO ONE NEEDS MASK STRETCHER OBLIGATION",  P_NON
 SCROLL((char *)0,               "AN OLD CHILD WITH A YOUNG GRANDPA",  P_NONE,     1,   0, 100, CLR_ORANGE, 1),
 SCROLL((char *)0,               "MODDING PROGRESS IS MEASURED IN LINES",  P_NONE,     1,   0, 100, CLR_BRIGHT_BLUE, 1),
 SCROLL((char *)0,               "FARTY TOWELS",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
+SCROLL((char *)0,               "STRONG LYMPHATIC FLUID",  P_NONE,     1,   0, 100, CLR_BRIGHT_GREEN, 1),
 
 
 #ifdef MAIL
@@ -7772,6 +7774,7 @@ SPELL((char *)0,         "sword-crossed",  P_NONE, 0, 0, 0, 1, 0, CLR_GRAY, 1),
 SPELL((char *)0,         "purple velvet-bound",  P_NONE, 0, 0, 0, 1, 0, CLR_MAGENTA, 1),
 SPELL((char *)0,         "novel",  P_NONE, 0, 0, 0, 1, 0, CLR_BROWN, 1),
 SPELL((char *)0,         "pratchwood",  P_NONE, 0, 0, 0, 1, 0, CLR_GREEN, 1),
+SPELL((char *)0,         "copper arsenite",  P_NONE, 0, 0, 0, 1, 0, CLR_BRIGHT_GREEN, 1),
 SPELL("blank paper",	 "plain",		P_NONE, 150,  0, 0, 0, 0, HI_PAPER, 1),
 	/* ...Blank spellbook must come last because it retains its description */
 OBJECT(OBJ("Book of the Dead", "papyrus"),

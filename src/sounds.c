@@ -3249,7 +3249,7 @@ register struct monst *mtmp;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
 								maybegaincha();
-								getrandomsymbiote(FALSE);
+								getrandomsymbiote(FALSE, FALSE);
 
 								u.nursesymbiotecost += 5000;
 								if (u.nursesymbiotecost < 10000) u.nursesymbiotecost = 10000; /* fail safe */

@@ -9355,13 +9355,27 @@ boolean holdeneffect;
 }
 
 void
-getrandomsymbiote(extrahealth)
+getrandomsymbiote(extrahealth, canbeother)
 boolean extrahealth;
+boolean canbeother;
 {
 	struct permonst *pm = 0;
 	int attempts = 0;
 
-	if (!Race_if(PM_GOAULD)) {
+	if (canbeother) {
+		do {
+			pm = rndmonst();
+			attempts++;
+			if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+		} while ( (!pm || (pm && (!cannot_be_tamed(pm) ) )) && attempts < 500000);
+
+		if (!pm || (pm && (!cannot_be_tamed(pm) ) )) {
+			pline("For some reason, symbiote creation failed.");
+			return;
+		}
+
+	} else if (!Race_if(PM_GOAULD)) {
 		do {
 			pm = rndmonst();
 			attempts++;

@@ -9867,7 +9867,7 @@ rerollX:
 				getlin("You have found a scroll of symbiosis! Do you want to replace your current symbiote with a random new one? [yes/no]", buf);
 				(void) lcase (buf);
 				if (!(strcmp (buf, "yes")) ) {
-					getrandomsymbiote(sobj->blessed);
+					getrandomsymbiote(sobj->blessed, (sobj->oartifact == ART_GOA_EVILGATE) ? TRUE : FALSE);
 					break;
 				} else {
 					You("decided to not get a random new symbiote.");
@@ -9875,7 +9875,7 @@ rerollX:
 				}
 			}
 
-			getrandomsymbiote(sobj->blessed);
+			getrandomsymbiote(sobj->blessed, (sobj->oartifact == ART_GOA_EVILGATE) ? TRUE : FALSE);
 		}
 
 		break;

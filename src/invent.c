@@ -21265,6 +21265,42 @@ boolean knoweverything;
 					pline("Artifact specs: +5 to-hit and double damage, chaotic. If you kick it while it's on the ground and it goes 'Thump!', something bad may happen."); break;
 				case ART_JONADAB_S_METAL_GUARD:
 					pline("Artifact specs: half spell damage when worn. Putting them on changes their material to iron if it's something else."); break;
+				case ART_COCKBANGER_ARMOR:
+					pline("Artifact specs: sets itself to a random value from +1 to +10 if you put it on while it's +0 or lower."); break;
+				case ART_TLAHUIZCALPANTECUHTLI:
+					pline("Artifact specs: diminished bleeding while wielded, allows you to sacrifice your own race on an altar."); break;
+				case ART_PANZER_TANK:
+					pline("Artifact specs: while riding a monster that has this saddle, you have +10 constitution, 10 extra points of AC and half physical damage."); break;
+				case ART_EIMI_WA_BAKADESU:
+					pline("Artifact specs: if your intelligence is greater than 10, it gradually decreases over time. Items are renamed to japanese while you are wearing them, because this artifact's name means 'Amy is a retard' and was suggested by Demo. It also allows you to train the high heels skill five times as fast and boosts the damage done by grenades thrown by you."); break;
+				case ART_SHUT_UP_YOU_FUCK:
+					pline("Artifact specs: if you are riding a steed that has this saddle and is somehow hostile, the steed won't be able to use perfume, farting attacks and similar garbage against you."); break;
+				case ART_UTTER_USELESSNESS:
+					pline("Artifact specs: if you put this saddle on a monster that has farting, perfume or superman attacks, you can ride it even when it's not tame. As long as the monster is peaceful (as opposed to hostile), this isn't actually completely useless."); break;
+				case ART_CHROME_GOOD:
+					pline("Artifact specs: +6 to-hit and +2 damage, poison resistance when wielded."); break;
+				case ART_GAYGUN:
+					pline("Artifact specs: if you're homosexual, +5 bashing damage, and it also makes your footwear count as high heels regardless of your sexual orientation (but not if you're barefooted), but if you're not homosexual and are wearing shoes, you'll also be numbed."); break;
+				case ART_ANTIMAGICBANE:
+					pline("Artifact specs: magic resistance when wielded, +3 to-hit and +4 stun damage, prevents both you and monsters from spellcasting, neutral."); break;
+				case ART_GANTULETS_OF_MISPEALING:
+					pline("Artifact specs: trying to engrave Elbereth will always fail, engraving other stuff is also likely to misengrave."); break;
+				case ART_SUE_LYN_S_USAGE:
+					pline("Artifact specs: causes you to fart periodically, and if you do, your maximum HP and Pw may go up if they're not too high yet. If this artifact is cursed, wearing it will occasionally cause you to suffer from inertia."); break;
+				case ART_MR__OUTLASH:
+					pline("Artifact specs: +8 damage."); break;
+				case ART_SCHOKOLADE_EEA:
+					pline("Artifact specs: eating it causes you to become deaf for a while."); break;
+				case ART_CHRISTMAS_EGG:
+					pline("Artifact specs: grants temporary half physical damage when eaten."); break;
+				case ART_ANIKIBOMBO_NEAU:
+					pline("Artifact specs: no specialties."); break;
+				case ART_GOA_EVILGATE:
+					pline("Artifact specs: can also give you a symbiote that you couldn't normally obtain, chaotic."); break;
+				case ART_PUSHMICEBIRE:
+					pline("Artifact specs: +2 damage against rodents."); break;
+				case ART_SECRET_BOOK_OF_VENOM:
+					pline("Artifact specs: successfully reading it will teach you the venom mixing technique, or increase its level if you already know it."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

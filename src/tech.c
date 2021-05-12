@@ -255,6 +255,7 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"sword art",
 	"firm cudgel",
 	"lighter balls",
+	"venom mixing",
 	"jedi jump",
 	"charge saber",
 	"telekinesis",
@@ -3400,6 +3401,10 @@ dotech()
 
 		case T_BALLSLIFF:
 			pline("This technique only works if you're wielding a heavy iron ball, or another type of heavy ball as a weapon, and repairs a bit of damage on the ball.");
+			break;
+
+		case T_VENOM_MIXING:
+			pline("An arcane technique that allows you to create venom out of thin air.");
 			break;
 
 		case T_POLE_MELEE:
@@ -8742,6 +8747,26 @@ repairitemchoice:
 			if (FunnyHallu) pline("Shame, now no girl will want to kick them because it wouldn't hurt you anymore.");
 
 		      t_timeout = rnz(50000);
+			break;
+
+		case T_VENOM_MIXING:
+
+			{
+
+				struct obj *uammo;
+				uammo = mksobj(rn2(2) ? BLINDING_VENOM : ACID_VENOM, TRUE, FALSE, FALSE);
+				if (uammo) {
+					uammo->known = uammo->dknown = uammo->bknown = uammo->rknown = 1;
+					uammo->quan = 30 + techlevX(tech_no);
+					uammo->owt = weight(uammo);
+					dropy(uammo);
+					stackobj(uammo);
+					pline("A stack of venoms has been dropped on the ground.");
+				}
+
+			}
+
+		      t_timeout = rnz(15000);
 			break;
 
 		case T_BALLSLIFF:

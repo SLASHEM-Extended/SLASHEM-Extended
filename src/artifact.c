@@ -293,6 +293,7 @@ hack_artifacts()
 	artilist[ART_VAPER_BAPER].otyp = randartball();
 	artilist[ART_TSCHEND_FOR_ETERNITY].otyp = randartchain();
 	artilist[ART_MACHINE_THAT_GOES_PLING].otyp = randartgem();
+	artilist[ART_COCKBANGER_ARMOR].otyp = randartsuit();
 
 	artilist[ART_JANA_S_GRAVE_WALL].otyp = randartcloakX();
 	artilist[ART_HENRIETTA_S_DOGSHIT_BOOTS].otyp = randartbootsX();
@@ -401,6 +402,8 @@ hack_artifacts()
 	artilist[ART_HEAVY_HEAVY_BABE].otyp = randartballX();
 	artilist[ART_HAMSTRUNG_FOUR_SURE].otyp = randartchainX();
 	artilist[ART_PAWNERMASTER].otyp = randartgemX();
+	artilist[ART_GANTULETS_OF_MISPEALING].otyp = randartglovesX();
+	artilist[ART_SECRET_BOOK_OF_VENOM].otyp = randartspellbookX();
 
 	artilist[ART_ELLI_S_PSEUDOBAND_OF_POS].otyp = randartmeleeweaponX();
 	artilist[ART_HIGHEST_FEELING].otyp = find_fetish_heels();
@@ -3173,7 +3176,7 @@ newboss:
 					break;
 				case 27:
 					if (!uinsymbiosis) {
-						getrandomsymbiote(FALSE);
+						getrandomsymbiote(FALSE, FALSE);
 						pline("Suddenly you have a symbiote!");
 					} else {
 						u.usymbiote.mhpmax += rnd(10);

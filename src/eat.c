@@ -6306,6 +6306,18 @@ register struct obj *otmp;
 
 		}
 
+		if (otmp->oartifact == ART_SCHOKOLADE_EEA) {
+			pline("Auughh!");
+			Deafness += rnz(500);
+			flags.soundok = 0;
+		}
+
+		if (otmp->oartifact == ART_CHRISTMAS_EGG) {
+			You("ate the first christmas egg.");
+			incr_itimeout(&HHalf_physical_damage, rn1(1000, 1000));
+
+		}
+
 		break;
 
 	    case HOLY_WAFER:            

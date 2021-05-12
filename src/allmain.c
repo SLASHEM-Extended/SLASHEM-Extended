@@ -3731,6 +3731,18 @@ newbossBQ:
 			if (!extralongsqueak()) badeffect();
 			stop_occupation();
 
+			if (uarmu && uarmu->oartifact == ART_SUE_LYN_S_USAGE) {
+				if (Upolyd && (u.mhmax < (u.ulevel * 20))) u.mhmax++;
+				if (u.uhpmax < (u.ulevel * 20)) u.uhpmax++;
+				if (u.uenmax < (u.ulevel * 20)) u.uenmax++;
+				flags.botl = TRUE;
+			}
+
+		}
+
+		if (uarmu && uarmu->oartifact == ART_SUE_LYN_S_USAGE && uarmu->cursed && !rn2(1000)) {
+			u.inertia += rnd(50);
+			Your("butt feels sore...");
 		}
 
 		if (uarmh && uarmh->oartifact == ART_CLAUDIA_S_SEXY_SCENT && !rn2(100)) {
@@ -5645,6 +5657,10 @@ controlagain:
 		if (FemtrapActiveJulietta && !rn2(2000)) {
 			pline("Julietta rolls the dice to randomly select a punishment for you...");
 			randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
+		}
+
+		if (uarmf && uarmf->oartifact == ART_EIMI_WA_BAKADESU && !rn2(2000) && (ABASE(A_INT) > 10)) {
+			(void) adjattrib(A_INT, -1, FALSE, TRUE);
 		}
 
 		if (Race_if(PM_BULDOZGAR) && !rn2(100)) wake_nearby();

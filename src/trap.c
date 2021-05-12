@@ -6389,7 +6389,7 @@ newbossPENT:
 					break;
 				case 27:
 					if (!uinsymbiosis) {
-						getrandomsymbiote(FALSE);
+						getrandomsymbiote(FALSE, FALSE);
 						pline("Suddenly you have a symbiote!");
 					} else {
 						u.usymbiote.mhpmax += rnd(10);
