@@ -2115,7 +2115,7 @@ register struct monst *mtmp;
 
 		   case PM_YAUTJA:
 		   case PM_UNDEAD_YAUTJA:
-		     (void)mongets(mtmp, rn2(3) ? HAND_BLASTER : ARM_BLASTER);
+		     (void)mongets(mtmp, (rn2(3) || (monster_difficulty() < 15) ) ? HAND_BLASTER : ARM_BLASTER);
 			m_initthrow(mtmp, BLASTER_BOLT, 50);
 			m_initthrow(mtmp, SPEAR, 5);
 		     (void)mongets(mtmp, SCIMITAR);
@@ -3055,7 +3055,7 @@ register struct monst *mtmp;
 		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 			if (!rn2(100)) (void) mongets(mtmp, WAN_BANISHMENT);
-			(void) mongets(mtmp, ASSAULT_RIFLE);
+			(void) mongets(mtmp, (monster_difficulty() < 9) ? SUBMACHINE_GUN : ASSAULT_RIFLE);
 			 m_initthrow(mtmp, BULLET, 50);
 			 m_initthrow(mtmp, BULLET, 50);
 
@@ -3161,7 +3161,7 @@ register struct monst *mtmp;
 		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     (void)mongets(mtmp, ASSAULT_RIFLE);
+		     (void)mongets(mtmp, (monster_difficulty() < 9) ? SUBMACHINE_GUN : ASSAULT_RIFLE);
 		     if (!rn2(5)) (void)mongets(mtmp, SNIPER_RIFLE);
 			 m_initthrow(mtmp, BULLET, 50);
 			 m_initthrow(mtmp, BULLET, 50);
@@ -3191,9 +3191,9 @@ register struct monst *mtmp;
 		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-		     (void)mongets(mtmp, ASSAULT_RIFLE);
+		     (void)mongets(mtmp, (monster_difficulty() < 9) ? SUBMACHINE_GUN : ASSAULT_RIFLE);
 			 m_initthrow(mtmp, BULLET, 50);
-		     (void)mongets(mtmp, ARM_BLASTER);
+		     (void)mongets(mtmp, (monster_difficulty() < 15) ? HAND_BLASTER : ARM_BLASTER);
 			 m_initthrow(mtmp, BLASTER_BOLT, 50);
 		     (void)mongets(mtmp, CHAIN_MAIL);
 		     (void)mongets(mtmp, HELMET);
@@ -7461,6 +7461,7 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_RED_BLOODED_HARLOT]) (void) mongets(mtmp, HIPPIE_HEELS);
 		if (ptr == &mons[PM_TELEPHONE_CELL_PROSTITUTE]) (void) mongets(mtmp, HIPPIE_HEELS);
 		if (ptr == &mons[PM_STREETLINE_PROSTITUTE]) (void) mongets(mtmp, HIPPIE_HEELS);
+		if (ptr == &mons[PM_VAMPIRATE]) (void) mongets(mtmp, RAPIER);
 
 		if (ptr == &mons[PM_VERA_THE_ICE_QUEEN]) {
 			if ((find_cyan_sneakers()) != -1) (void)mongets(mtmp, find_cyan_sneakers());
@@ -11031,6 +11032,9 @@ loveheelover:
 		if (ptr == &mons[PM_RUTHLESS_RASHER]) {
 			(void) mongets(mtmp, TUBING_PLIERS);
 		}
+		if (ptr == &mons[PM_ESKETEPANSA]) {
+			(void) mongets(mtmp, GIANT_SEA_ANEMONE);
+		}
 		if (ptr == &mons[PM_DARKMOON_CLAN]) {
 			(void) mongets(mtmp, MOON_AXE);
 		}
@@ -11539,6 +11543,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_COLLUDED_HUNGER]) (void) mongets(mtmp, DARKNESS_CLUB);
 		if (mtmp->data == &mons[PM_BUBBLE_SLIME]) (void) mongets(mtmp, SCR_BUBBLE_BOBBLE);
 		if (mtmp->data == &mons[PM_CUD_CURD]) (void) mongets(mtmp, CUDSWORD);
+		if (mtmp->data == &mons[PM_CHANOP]) (void) mongets(mtmp, HEAVY_HAMMER);
 		if (ptr == &mons[PM_MILITARY_PUTIT]) {
 		  	(void) mongets(mtmp, FLINTLOCK);
 		  	m_initthrow(mtmp, BULLET, 15);
@@ -12127,6 +12132,13 @@ loveheelover:
 		if(ptr == &mons[PM_STROKING_JOANNA]) {
 			(void) mongets(mtmp, FISHNET);
 			(void) mongets(mtmp, LEATHER_PEEP_TOES);
+		}
+		if(ptr == &mons[PM_SUMATRA_CHIEF]) {
+			 m_initthrow(mtmp, rnd_class(JAVELIN, STACK_JAVELIN), 5);
+			 m_initthrow(mtmp, rnd_class(JAVELIN, STACK_JAVELIN), 5);
+			 m_initthrow(mtmp, rnd_class(JAVELIN, STACK_JAVELIN), 5);
+			 m_initthrow(mtmp, rnd_class(JAVELIN, STACK_JAVELIN), 5);
+			 m_initthrow(mtmp, rnd_class(JAVELIN, STACK_JAVELIN), 5);
 		}
 
 		break;
@@ -22004,7 +22016,7 @@ register int	mmflags;
 		if (mtmp->m_lev > 49) mtmp->m_lev = 49;
 	}
 
-	if (LevelTrapEffect || u.uprops[LEVELBUG].extrinsic || have_levelstone() || (uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) ) {
+	if (LevelTrapEffect || u.uprops[LEVELBUG].extrinsic || have_levelstone() || (uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) || (uwep && uwep->oartifact == ART_GENOCIDE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GENOCIDE) ) {
 
 		int leveltrapbonus = mvitals[mtmp->mnum].born + 1;
 		if (leveltrapbonus < 1) leveltrapbonus = 1;
@@ -22224,6 +22236,8 @@ register int	mmflags;
 	mtmp->healblock = 0;
 	mtmp->inertia = 0;
 	mtmp->singannoyance = FALSE;
+	mtmp->canceltimeout = FALSE;
+	mtmp->slowtimeout = FALSE;
 	if (!rn2(2)) mtmp->warningvisible = (rn2(2) ? 2 : 1);
 	mtmp->telepatvisible = 0;
 	if (!rn2(3)) mtmp->telepatvisible = (rn2(2) ? 2 : 1);
@@ -22926,6 +22940,7 @@ register int	mmflags;
 		case S_WORM:
 
 			if (mndx == PM_CLEAR_WORM_MASS) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_NOT_REALLY_EXISTING_MORGELLON) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 
 			break;
 

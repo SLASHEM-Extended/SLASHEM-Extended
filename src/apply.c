@@ -307,7 +307,7 @@ use_symbiote(obj)
 			u.cnd_symbiotesdied++;
 			Your("old symbiote was erased!");
 		}
-		getrandomsymbiote(FALSE);
+		getrandomsymbiote(FALSE, FALSE);
 		useup(obj);
 		return 1;
 	}
@@ -1256,7 +1256,15 @@ struct obj *obj;
 		    pline ("%s admires herself in your mirror.", Monnam(mtmp));
 		    pline ("She takes it!");
 		} else pline ("It steals your mirror!");
-		if (obj && obj->oartifact == ART_FAIREST_IN_THE_LAND && !mtmp->mfrenzied) mtmp->mpeaceful = 1;
+		if (obj && obj->oartifact == ART_FAIREST_IN_THE_LAND && !obj->cursed && !mtmp->mfrenzied) {
+			mtmp->mpeaceful = 1;
+			if (!rn2(20)) {
+				if (obj->blessed) unbless(obj);
+				else curse(obj);
+				pline("Your mirror seems less effective.");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			}
+		}
 		setnotworn(obj); /* in case mirror was wielded */
 		freeinv(obj);
 		(void) mpickobj(mtmp,obj,FALSE);
@@ -1299,7 +1307,7 @@ struct obj **optr;
 		return;
 	}
 
-	if (obj && obj->oartifact == ART_BIMMEL_BIMMEL) {
+	if (obj && obj->oartifact == ART_BIMMEL_BIMMEL && !obj->cursed) {
 	    int i, j, bd = 1;
 		struct monst *bimmel;
 
@@ -1314,6 +1322,13 @@ struct obj **optr;
 				if (!resist(bimmel, RING_CLASS, 0, TELL) || ((rnd(30 - ACURR(A_CHA))) < 4) ) (void) tamedog(bimmel, (struct obj *) 0, FALSE);
 			}
 	    }
+
+		if (!rn2(20)) {
+			if (obj->blessed) unbless(obj);
+			else curse(obj);
+			pline("Your bell seems less effective.");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+		}
 
 	}
 
@@ -5147,7 +5162,7 @@ doapply()
 
 	if(check_capacity((char *)0)) return (0);
 
-	if (carrying(POT_OIL) || uhave_graystone())
+	if (carrying(POT_OIL) || carryingappearance(APP_POTION_VACCINE) || uhave_graystone())
 		strcpy(class_list, tools_too);
 	else
 		strcpy(class_list, tools);
@@ -5190,6 +5205,17 @@ doapply()
 		}
 
 		goto mushroompolecheck;
+	}
+
+	if (itemhasappearance(obj, APP_POTION_VACCINE)) {
+		if (yn("Inject the vaccine?") == 'y') {
+			noartispeak = TRUE; /* item is now gone */
+			useup(obj);
+			You("inject the covid-19 vaccine...");
+			if (FunnyHallu) pline("Now you should no longer be obligated to wear a butt-ugly face mask and keep 2 meters of distance to other people. After all, you're immune to the plague now.");
+			upnivel(TRUE);
+			return 1;
+		}
 	}
 
 	switch(obj->otyp){
@@ -5255,13 +5281,19 @@ doapply()
 	case BAG_OF_HOLDING:
 	case OILSKIN_SACK:
 	case POTATO_BAG:
-		res = use_container(&obj, 1);
+		if ((obj->otyp == BAG_OF_HOLDING || obj->otyp == CHEST_OF_HOLDING || obj->otyp == ICE_BOX_OF_HOLDING) && obj->cursed) {
+			use_container(&obj, 1);
+			res = 1;
+		} else {
+			res = use_container(&obj, 1);
+		}
 		noartispeak = TRUE; /* because it could explode! */
 		break;
 	case BAG_OF_DIGESTION:
 	case LARGE_BOX_OF_DIGESTION:
 	case ICE_BOX_OF_DIGESTION:
 		use_container(&obj, 1);
+		res = 1;
 		/* always uses up a turn now, which makes it trivial to ID I guess but that's okay, because
 		 * at least it means you can no longer easily get rid of troll corpses and stuff :-P --Amy */
 		noartispeak = TRUE; /* because it could explode! */
@@ -6276,7 +6308,7 @@ doapply()
 		if (HHallucination) {
 			pline("You carelessly push the buttons. On the screen is a text ... ");
 			outrumor(-1,42,TRUE);	/* always false */
-		} else {
+		} else if (u.usanity < 900) {
 			pline("So many knobs to turn! So many buttons to press!");
 			/* Amy edit: omg no, we can't allow such an easy guaranteed way for confusion on demand... */
 			if (!rn2(20)) {
@@ -6285,7 +6317,10 @@ doapply()
 				pline("And now the universe seems to be turning inwards on itself! Oh no!");
 			}
 			badeffect();
+			increasesanity(1000);
 			if (!obj->cursed || !rn2(4)) make_confused(HConfusion+rn2(10),TRUE);
+		} else {
+			pline("No! It's insane to mess with that thing!");
 		}
 		break;
 

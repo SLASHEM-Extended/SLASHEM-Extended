@@ -2114,6 +2114,8 @@ struct monst *victim;
 
 	if (Race_if(PM_CHIQUAI) && rn2(4)) vulnerable = FALSE;
 
+	if (is_unwitherable(otmp)) vulnerable = FALSE;
+
 	if (uarmf && rn2(2) && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) vulnerable = FALSE;
 
 	if (!print && (!vulnerable /* || erosion == MAX_ERODE*/ ))
@@ -6387,7 +6389,7 @@ newbossPENT:
 					break;
 				case 27:
 					if (!uinsymbiosis) {
-						getrandomsymbiote(FALSE);
+						getrandomsymbiote(FALSE, FALSE);
 						pline("Suddenly you have a symbiote!");
 					} else {
 						u.usymbiote.mhpmax += rnd(10);
@@ -9412,6 +9414,7 @@ madnesseffect:
 		pline("CLICK! You have triggered a trap!");
 		pline("You are greatly startled by a sudden sound.");
 		seetrap(trap);
+		if (!rn2(10)) deltrap(trap);
 
 		{
 			register struct obj *otmp, *otmp2;
@@ -11737,6 +11740,7 @@ madnesseffect:
 
 			pline("Oh no, you stepped on a miguc trap!");
 			seetrap(trap);
+			if (!rn2(15)) deltrap(trap);
 
 			if (Aggravate_monster) {
 				u.aggravation = 1;
@@ -12807,7 +12811,7 @@ madnesseffect:
 
 		 case RAGNAROK_TRAP:
 
-			seetrap(trap);
+			deltrap(trap);
 			pline("CLICK! You have triggered a trap!");
 			ragnarok(FALSE);
 			if (evilfriday) evilragnarok(FALSE,level_difficulty());

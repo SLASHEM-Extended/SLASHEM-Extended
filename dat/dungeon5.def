@@ -445,6 +445,7 @@ BRANCH:	"Resting Zone A" @ (2, 13) up
 
 DUNGEON:        "Emyn Luin" "F" (20, 0)
 ALIGNMENT:      chaotic
+BRANCH:	"Resting Zone E" @ (2, 18) up
 
 DUNGEON:        "Swimming Pool" "F" (15, 0)
 ALIGNMENT:      lawful
@@ -611,6 +612,7 @@ DUNGEON:        "Resting Zone TI" "R" (1, 0)
 DUNGEON:        "Resting Zone TJ" "R" (1, 0)
 DUNGEON:        "Resting Zone A" "R" (1, 0)
 DUNGEON:        "Resting Zone S" "R" (1, 0)
+DUNGEON:        "Resting Zone E" "R" (1, 0)
 
 ### The Endgame levels ###
 #

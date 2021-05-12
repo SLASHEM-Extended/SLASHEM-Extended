@@ -329,7 +329,7 @@ register struct edog *edog;
 		else
 		    You_feel("worried about %s.", y_monnam(mtmp));
 		stop_occupation();
-	    } else if (!edog->abouttostarve) {
+	    } else if (!edog->abouttostarve && (monstermoves > edog->hungrytime + 750)) {
 		edog->abouttostarve = 5;
 	    } else if (edog->abouttostarve > 1) {
 		edog->abouttostarve--;
@@ -340,12 +340,19 @@ register struct edog *edog;
 			} else
 			    You_feel("that %s is about to starve.", y_monnam(mtmp));
 		}
-		if (edog->abouttostarve == 1) {
+		if (edog->abouttostarve == 2) {
 			if (couldsee(mtmp->mx, mtmp->my)) {
 			    beg(mtmp);
 			    You_feel("that %s is in dire need of food.", y_monnam(mtmp));
 			} else
 			    You_feel("that %s is about to starve.", y_monnam(mtmp));
+		}
+		if (edog->abouttostarve == 1) {
+			if (couldsee(mtmp->mx, mtmp->my)) {
+			    beg(mtmp);
+			    You_feel("that %s needs food immediately!", y_monnam(mtmp));
+			} else
+			    You_feel("that %s is moments away from dying of starvation!", y_monnam(mtmp));
 		}
 	    } else if (monstermoves > edog->hungrytime + 750 || mtmp->mhp < 1) {
  dog_died:
@@ -1076,13 +1083,13 @@ register int after;	/* this is extra fast monster movement */
 			(mtmp2->data==&mons[PM_GELATINOUS_CUBE] && rn2(10)) ||
 			(mtmp2->data==&mons[PM_GAS_SPORE] && rn2(16)) ||
 			(!attacktype(mtmp->data, AT_EXPL) &&
-			 max_passive_dmg(mtmp2, mtmp) >= mtmp->mhp) ||
+			 (max_passive_dmg(mtmp2, mtmp) >= mtmp->mhp) && mtmp->mhpmax > 1) ||
 			/* Minions/Angels don't attack
 			 * coaligned minions/priests/angels/unicorns.
 			 */
 			(align1 == align2 && align1 != A_NONE) ||
-			( (mtmp->mhp*10 < mtmp->mhpmax) && !Conflict ) ||
-			((mtmp->mhp*4 < mtmp->mhpmax
+			( (mtmp->mhp*10 < mtmp->mhpmax) && mtmp->mhpmax > 2 && !Conflict ) ||
+			(( ((mtmp->mhp*4 < mtmp->mhpmax) && mtmp->mhpmax > 1)
 			  || mtmp2->data->msound == MS_GUARDIAN
 			  || mtmp2->data->msound == MS_LEADER) &&
 	/* the activistor quest shouldn't be trivialized by bringing a high-level pet or using charm monster. --Amy */

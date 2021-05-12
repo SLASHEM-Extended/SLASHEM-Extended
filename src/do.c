@@ -235,7 +235,7 @@ const char *verb;
 		return TRUE;
 	} else if (is_lava(x, y)) {
 		return fire_damage(obj, FALSE, FALSE, x, y);
-	} else if (is_waterypool(x, y) || is_watertunnel(x, y)) {
+	} else if ((is_waterypool(x, y) || is_watertunnel(x, y)) && !is_crystalwater(x, y) ) {
 		/* Reasonably bulky objects (arbitrary) splash when dropped.
 		 * If you're floating above the water even small things make noise.
 		 * Stuff dropped near fountains always misses */

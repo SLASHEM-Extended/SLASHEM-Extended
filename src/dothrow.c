@@ -402,6 +402,19 @@ int thrown;
 	    /* Shotlimit controls your rate of fire */
 	    if ((shotlimit > 0) && (multishot > shotlimit)) multishot = shotlimit;
 
+	    if (launcher && launcher->oartifact == ART_DESERT_EAGLE) {
+		multishot--;
+		if (multishot < 1) multishot = 1;
+	    }
+	    if (launcher && launcher->oartifact == ART_LEONE_M__GUAGE_SUPER) {
+		multishot -= 2;
+		if (multishot < 1) multishot = 1;
+	    }
+	    if (launcher && launcher->oartifact == ART_MOSIN_NAGANT) {
+		multishot -= 3;
+		if (multishot < 1) multishot = 1;
+	    }		
+
 	    /* Rate of fire is intrinsic to the weapon - cannot be user selected
 	     * except via altmode
 	     * Only for valid launchers 
@@ -637,6 +650,14 @@ dothrow()
 
 	if (!obj) return(0);
 
+#ifdef MAIL
+	if (obj->otyp == SCR_MAIL) {
+		You("try to cheat, but it fails.");
+		if (Is_airlevel(&u.uz)) pline("Stop being a wiseguy and play the game properly already! :-P");
+		return(0);
+	}
+#endif
+
 	/* kludge to work around parse()'s pre-decrement of 'multi' */
 	shotlimit = (multi || save_cm) ? multi + 1 : 0;
 
@@ -738,6 +759,14 @@ dofire()
 		}
 		else {return(0);}
 	}
+
+#ifdef MAIL
+	if (uquiver && uquiver->otyp == SCR_MAIL) {
+		You("try to cheat, but it fails.");
+		if (Is_airlevel(&u.uz)) pline("Stop being a wiseguy and play the game properly already! :-P");
+		return(0);
+	}
+#endif
 
 	if(check_capacity((char *)0)) return(0);
 	if (!uquiver) {
@@ -1462,6 +1491,13 @@ int thrown;
 
 	thrownobj = obj;
 
+	if (launcher && launcher->oartifact == ART_LEONE_M__GUAGE_SUPER) {
+		nomul(-2, "suffering from M3 recoil", TRUE);
+	}
+	if (launcher && launcher->oartifact == ART_MOSIN_NAGANT) {
+		nomul(-3, "reloading the Mosin-Nagant", TRUE);
+	}
+
 	if(u.uswallow) {
 		mon = u.ustuck;
 		bhitpos.x = mon->mx;
@@ -2090,6 +2126,9 @@ boolean polearming;
 		if (!rn2(2)) tmp -= rnd(10);
 		if (!rn2(3)) tmp -= rnd(10);
 	}
+	if (launcher && launcher->oartifact == ART_FN_M____PARA) tmp -= rnd(15);
+	if (launcher && launcher->oartifact == ART_CITYKILLER_COMBAT_SHOTGUN) tmp -= rnd(10);
+	if (launcher && launcher->oartifact == ART_COLONEL_BASTARD_S_LASER_PI) tmp -= rnd(5);
 
 	if (Race_if(PM_SWIKNI)) {
 		if (obj) {
@@ -3054,6 +3093,25 @@ xchar x, y;		/* object location (ox, oy may not be right) */
 boolean hero_caused;	/* is this the hero's fault? */
 boolean from_invent;
 {
+	if (itemhasappearance(obj, APP_POTION_RESERVATROL) && isok(x, y)) {
+		(void) create_gas_cloud(x, y, 3+bcsign(obj), 8+4*bcsign(obj));
+		You("smell chemicals.");
+	}
+	if (itemhasappearance(obj, APP_POTION_NITROGLYCERIN) && isok(x, y)) {
+		struct obj *dynamite;
+		dynamite = mksobj_at(STICK_OF_DYNAMITE, x, y, TRUE, FALSE, FALSE);
+		if (dynamite) {
+			if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
+			else {
+				dynamite->dynamitekaboom = 1;
+				dynamite->quan = 1;
+				dynamite->owt = weight(dynamite);
+				attach_bomb_blow_timeout(dynamite, 0, 0);
+			}
+		}
+
+	}
+
 	int am;
 	if (IS_ALTAR(levl[x][y].typ))
 	    am = levl[x][y].altarmask & AM_MASK;

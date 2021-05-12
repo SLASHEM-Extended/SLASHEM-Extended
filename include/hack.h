@@ -19,7 +19,7 @@
 #define ON		1
 #define OFF		0
 #define BOLT_LIM    6	/* from this distance ranged attacks will be made */
-#define MAX_CARR_CAP	5000	/* so that boulders can be heavier */
+/*#define MAX_CARR_CAP	5000*/	/* so that boulders can be heavier; changed to max_carr_cap() in hack.c --Amy */
 #define DUMMY { 0 }
 
 /* symbolic names for capacity levels */

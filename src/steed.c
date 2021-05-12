@@ -36,6 +36,21 @@ int artid;
 
 }
 
+/* to check for some random monster's saddle, because we might be looking for a specific artifact --Amy */
+boolean
+mercedesride(artid, mtmp)
+int artid;
+struct monst *mtmp;
+{
+	if (!mtmp) return FALSE;
+
+	struct obj *osaeddle = which_armor(mtmp, W_SADDLE);
+	if ((osaeddle = which_armor(mtmp, W_SADDLE)) && osaeddle->oartifact == artid) return TRUE;
+
+	return FALSE;
+
+}
+
 /*** Putting the saddle on ***/
 
 /* Can this monster wear a saddle? */
@@ -222,7 +237,7 @@ use_saddle(otmp)
 	chance += GushLevel * (mtmp->mtame ? 20 : 5);
 	if (!mtmp->mtame) { /* humpers and steed egotypes should be easier... --Amy */
 
-		if (mtmp->egotype_steed || canalwaysride(mtmp->data)) {
+		if (mtmp->egotype_steed || canalwaysride(mtmp->data) || ((mercedesride(ART_UTTER_USELESSNESS, mtmp)) && (mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_LOUD || mtmp->data->msound == MS_STENCH || mtmp->data->msound == MS_SUPERMAN ) ) ) {
 			if (mtmp->mpeaceful) chance -= mtmp->m_lev;
 			else chance -= 2*mtmp->m_lev;
 		} else {
@@ -306,9 +321,9 @@ boolean
 can_ride(mtmp)
 	struct monst *mtmp;
 {
-	if (!issoviet) return (mtmp->mtame || mtmp->egotype_steed || canalwaysride(mtmp->data) || (Race_if(PM_SHOE) && mtmp->data->msound == MS_SHOE) );
+	if (!issoviet) return (mtmp->mtame || mtmp->egotype_steed || canalwaysride(mtmp->data) || ((mercedesride(ART_UTTER_USELESSNESS, mtmp)) && (mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_LOUD || mtmp->data->msound == MS_STENCH || mtmp->data->msound == MS_SUPERMAN ) ) || (Race_if(PM_SHOE) && mtmp->data->msound == MS_SHOE) );
 
-	return ((mtmp->mtame || mtmp->egotype_steed || canalwaysride(mtmp->data) || (Race_if(PM_SHOE) && mtmp->data->msound == MS_SHOE)) && humanoid(youmonst.data) &&
+	return ((mtmp->mtame || mtmp->egotype_steed || canalwaysride(mtmp->data) || ((mercedesride(ART_UTTER_USELESSNESS, mtmp)) && (mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_LOUD || mtmp->data->msound == MS_STENCH || mtmp->data->msound == MS_SUPERMAN ) ) || (Race_if(PM_SHOE) && mtmp->data->msound == MS_SHOE)) && humanoid(youmonst.data) &&
 			!verysmall(youmonst.data) && !bigmonst(youmonst.data) &&
 			(!Underwater || is_swimmer(mtmp->data)) );
 
@@ -448,7 +463,7 @@ mount_steed(mtmp, force)
 	    sprintf(kbuf, "attempting to ride %s", an(mtmp->data->mname));
 	    instapetrify(kbuf);
 	}
-	if (!(mtmp->mtame || mtmp->egotype_steed || canalwaysride(mtmp->data) || (Race_if(PM_SHOE) && mtmp->data->msound == MS_SHOE)) || mtmp->isminion) {
+	if (!(mtmp->mtame || mtmp->egotype_steed || canalwaysride(mtmp->data) || ((mercedesride(ART_UTTER_USELESSNESS, mtmp)) && (mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_LOUD || mtmp->data->msound == MS_STENCH || mtmp->data->msound == MS_SUPERMAN ) ) || (Race_if(PM_SHOE) && mtmp->data->msound == MS_SHOE)) || mtmp->isminion) {
 	    pline("I think %s would mind.", mon_nam(mtmp));
 	    return (FALSE);
 	}

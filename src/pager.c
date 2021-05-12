@@ -4031,6 +4031,12 @@ static NEARDATA const char * const demagoguelines[] = {
 "Our country used to be a 'democracy', but lately it has quickly drifted off into a dictatorship! We must remove the evil dictator!",
 "I will not forgive the government for erecting a dictatorship!",
 "This banana republic goes before the dogs!",
+"Napoleon was wrong when he said that people are stupid, because the truth would be that people are SUPER stupid!",
+"Einstein said that the world's population is increasing, and with that I agree. But I disagree that according to him the amount of intelligence is a constant; in reality, the amount of intelligence is decreasing!",
+"When looking at the results of the last election, I have to conclude that the majority of people aren't actually members of the 'homo sapiens' species. They're more like 'homo stultus'.",
+"The government does a damage have!",
+"This government has a total damage. I wish someone would go and stop the muck chaps.",
+"Someone should surround the state government.",
 };
 
 static NEARDATA const char * const longinglines[] = {
@@ -4468,6 +4474,8 @@ static NEARDATA const char * const longinglines[] = {
 "%s's sneakers look like they absolutely want to kick you in the nuts! And you look like you'd enjoy that very much :-)",
 "Do you agree that %s's female sneakers look totally cuddly-gentle? Being kicked in the nuts by them would feel soooooo lovely!",
 "%s's beautiful column-shaped heels can probably do very erotic things to you, like squashing your testicles or stomping your fingers.",
+"You want to see %s use her ladylike shoe heels to crush the testicles of some idiot guy.",
+"You absolutely want to feel up %s's fleece-love-shoes and be kicked by their massive wedge heels!",
 };
 
 static NEARDATA const char * const soviettaunts[] = {
@@ -4663,6 +4671,7 @@ static NEARDATA const char * const soviettaunts[] = {
 "Vy mozhete snova napolnit' svoy ledyanoy yashchik polnymi legkikh trupov i pozhertvovat' imi, potomu chto Sovetskiy Soyuz ne imeyet predstavleniya ob igrovom balanse.",
 "Yesli vy nastol'ko tupy i igrayete v etot rezhim, vy zasluzhivayete togo, chtoby vash shlem razocharovyvalsya kazhdyy raz, kogda monstr brosayet v vas igristoye vino. MUA KHA KHA!",
 "Yesli monstr istoshchayet predmet s pomoshch'yu palochki, prodavets rasserditsya na vas, potomu chto Emi ne razresheno ispravlyat' oshibki. Gryaznaya bludnitsa, kem ona sebya schitayet???",
+"Yesli vy nastol'ko glupy i pytayetes' ispol'zovat' parnoye oruzhiye ne iz oruzhiya, eto ne srabotayet, potomu cho eto sovetskaya Rossiya, gde eto nikogda ne razreshayetsya.",
 };
 
 static NEARDATA const char * const practicantlines[] = {
@@ -27117,6 +27126,70 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Annie'. It reads: 'Et maintenant a ete touche par mes pointes de foudre pour la troisieme fois et s'est evanoui. Au revoir.'",
 	"Incoming message for Player 1. The message is from 'Annie'. It reads: 'Je peux tirer des pointes de foudre, c'est ma capacite speciale.'",
 	"Incoming message for Player 1. The message is from 'Annie'. It reads: 'Oh non, m'a frappe avec le ballon pour la cinquieme fois et je suis vaincu!'",
+	"You smell chemicals.",
+	"You inject the covid-19 vaccine...",
+	"You inject the covid-19 vaccine... Now you should no longer be obligated to wear a butt-ugly face mask and keep 2 meters of distance to other people. After all, you're immune to the plague now.",
+	"You inject the covid-19 vaccine... but it wasn't one of the officially licensed ones! Shocked, you see that the label reads 'Slexovir Institute', and their vaccines don't have the medical approval yet, so it might have unforeseen side effects!",
+	"You feel that the archon needs food immediately!",
+	"You feel that the archon needs food immediately! Weird, shouldn't they be inediate as a pet?",
+	"You feel that the anorexic topmodel is moments away from dying of starvation!",
+	"You feel that the anorexic topmodel is moments away from dying of starvation! Hopefully you have a nutritious injection ready, because otherwise she'll die with no chance.",
+	"The type of ice block is the guy who goes around to see who has the biggest and most beautiful sand castle, and then proceeds to stomp said sand castle repeatedly with his fat ugly boots.",
+	"'congratulations, mortal!' booms the boomvoice. 'these are just for you! end recording. stop. no, end recording. oh shoot, those boots still are embroidered with the last chosen one's name, and they're too big. well, too late. alexa restart recording, ahem, CONGRATULATIONS, MORTAL!'", /* by spicycat */
+	"you throw an opened can of surstroemming!",
+	"exnethack, then dnethack could rebase on that for dexnethack, obviously ndnh3 would be based on that for ndexnethack, then it gets ported to iphone for indexnethack",
+	"if the script decided to name a monster something like 'quintessential strategical hyperbolic menstruation taxonomy hyperaudacious necromancer', it'd be waaaaay longer than 50",
+	"The large dog bites you! You die... DYWYPI? But wait... He just wants the tripe ration in your pocket! You feel much better!", /* by NetSysFire and aosdict */
+	"You hear a pick striking rock.",
+	"You hear a pick striking rock. Thank god, you're saved, a digging monster will finally let you out of your stony prison.",
+	"You hear a pick striking rock, but it sounds like some distorted CLANG. Probably the wielder of that pick-axe is fumbling and hit with the broad side of the pick.",
+	"You hear someone singing 'Gold, gold, gold.'",
+	"You hear a deep rolling sound.",
+	"You hear a deep rolling sound. (This sounds does not indicate the presence of a cluster bomb rock killer room on this level.)",
+	"You hear the rock rolling rolling rolling on the floor.",
+	"You hear a golfing giant.",
+	"You hear the whispering of leathery wings.",
+	"You hear the whispering of leathery wings. This is supposed to indicate the presence of Vlad the Impaler for some reason.",
+	"You hear a horrible choking scream.",
+	"You hear a horrible choking scream. Again, this is supposed to indicate the presence of Vlad the Impaler for some reason.",
+	"You hear a voice say 'I never drink... wine.'",
+	"You feel storms coming.",
+	"You feel storms coming. This supposedly indicates that you just angered your deity.", /* by NetSysFire */
+	"Why is the water green, the trees blue and the evening red?",
+	"With 'spep' one indicates way too little of something.",
+	"If you get involved with it, you need cutting butter, shears and euler.",
+	"This changed with the well-celebrated emissions of air from the wife.",
+	"You have a cheery feeling.",
+	"You have a cherry feeling.",
+	"You have a cherry feeling. Cherry Cherry Lady...",
+	"The room was really impy.", /* by Umbire */
+	"You think you heard batman arrive.",
+	"You think you heard batman arrive. Will he be able to defeat the Joker this time?",
+	"You feel a bit like lara croft.",
+	"You feel a bit like lara croft. But unlike her, you don't just throw the high heels away when there is a gunfight; instead, you take one of them in your hand and hit that ore-criminal Marco Bartoli in the temple with the very pointy, sharp-edged stiletto heel.",
+	"You feel stones rolling into place.",
+	"You feel stones rolling into place. Hey cool, someone's solving Sokoban for you so you don't have to!",
+	"The floor here is covered in deep perpendicular grooves.",
+	"The floor here is covered in deep perpendicular grooves. Hopefully you can fly or levitate.",
+	"You hear the sigh of much wasted time.",
+	"You hear the sigh of much wasted time. Apparently some speedrunner once again didn't get a gold split on the very last section of their 8-hour speedrun, and can now start over from the beginning.",
+	"Your balls are heavy again.",
+	"Your balls are heavy again. Now's the time to present them to a sweet girl, who can kick them to test your pain threshold.",
+	"Your balls get lighter.",
+	"Your balls get lighter. Shame, now no girl will want to kick them because it wouldn't hurt you anymore.",
+	"You try to cheat, but it fails.",
+	"You try to cheat, but it fails. Stop being a wiseguy and play the game properly already! :-P",
+	"You try to cheat, but it fails. Stop being a wiseguy and play the game properly already! :-P (This message is given if you try to throw a scroll of mail on the plane of air, because you damn well need to bring your own items if you want to locomote by throwing stuff!)",
+	"Your symbiote was blown to smithereens.",
+	"Your butt feels sore...",
+	"Your butt feels sore... that's the effect of being spanked.",
+	"Your butt feels sore... maybe you should have used the toilet, instead of soiling yourself.",
+	"You ate the first christmas egg.",
+	"You ate the first christmas egg. But normally those don't even exist, instead there would be easter eggs.",
+	"You gain the secret knowledge of venom mixing!",
+	"You gain the secret knowledge of venom mixing! Sadly, the ingredients required for actually using it are way too rare.",
+	"You gain the secret knowledge of the Sumatra Chief!",
+	"You gain the secret knowledge of the Sumatra Chief! Except not really, because this is a fake message, hahaha.",
 
 };
 

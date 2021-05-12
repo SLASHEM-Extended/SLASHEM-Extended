@@ -716,6 +716,8 @@ register struct monst *mtmp;
 	if (uarmc && uarmc->oartifact == ART_ENEMIES_SHALL_LAUGH_TOO) tmp += 10;
 	if (uimplant && uimplant->oartifact == ART_ACTUAL_PRECISION) tmp += 5;
 	if (uimplant && uimplant->oartifact == ART_RHEA_S_MISSING_EYESIGHT) tmp -= rnd(20);
+	if (uwep && uwep->oartifact == ART_DOUBLE_BESTARD) tmp -= rnd(20);
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DOUBLE_BESTARD) tmp -= rnd(20);
 	if (uwep && uwep->oartifact == ART_SIGIX_BROADSWORD) tmp -= 5;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SIGIX_BROADSWORD) tmp -= 5;
 	if (uwep && uwep->oartifact == ART_BAD_HITTER_BOY) tmp -= rnd(20);
@@ -1686,6 +1688,7 @@ int dieroll;
 			if (obj && obj->spe > 0) tmp += obj->spe;
 
 			if (obj && obj->oartifact == ART_BASHCRASH && tmp > 0) tmp *= 2;
+			if (obj && obj->oartifact == ART_GAYGUN && (u.homosexual == 1)) tmp += 5;
 
 			valid_weapon_attack = (tmp > 0);
 			if (flags.bash_reminder && !rn2(20)) {
@@ -2460,7 +2463,7 @@ int dieroll;
 			break;
 		    case CORPSE:		/* fixed by polder@cs.vu.nl */
 
-			if (!rn2(100)) {
+			if (!rn2(100) || nocorpsedecay(&mons[obj->corpsenm])) {
 			/* kludge, mainly for cursed lizards but also because of general c corpse overpoweredness --Amy */
 
 				if (thrown) obfree(obj, (struct obj *)0);
@@ -2780,7 +2783,7 @@ int dieroll;
 		if (flags.bash_reminder && !rn2(5)) pline("The laser-based crossbow is ineffective while it's not lit! You need to turn it on or it won't deal meaningful damage!");
 	}
 
-	if (thrown && obj && is_ammo(obj) && launcher && !ammo_and_launcher(obj, launcher)) {
+	if (thrown && obj && is_ammo(obj) && launcher && obj->otyp != FRAG_GRENADE && obj->otyp != GAS_GRENADE && !ammo_and_launcher(obj, launcher)) {
 		if (flags.bash_reminder && !rn2(10)) You("are throwing projectiles that are meant to be fired, which isn't very effective! Better wield an appropriate launcher in your main hand!");
 	}
 
@@ -6789,6 +6792,18 @@ common:
 		    }
 		break;
 	}
+
+	if (uactivesymbiosis && attacktype(&mons[u.usymbiote.mnum], AT_EXPL)) {
+		u.usymbiote.active = 0;
+		u.usymbiote.mnum = PM_PLAYERMON;
+		u.usymbiote.mhp = 0;
+		u.usymbiote.mhpmax = 0;
+		u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0;
+		if (flags.showsymbiotehp) flags.botl = TRUE;
+		u.cnd_symbiotesdied++;
+		Your("symbiote was blown to smithereens.");
+	}
+
 	return(1);
 }
 
@@ -8052,6 +8067,7 @@ bladeangerdone:
 						if (dynamite) {
 							if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
 							else {
+								dynamite->dynamitekaboom = 1;
 								dynamite->quan = 1;
 								dynamite->owt = weight(dynamite);
 								dropy(dynamite);

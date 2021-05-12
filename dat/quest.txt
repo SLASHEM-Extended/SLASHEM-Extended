@@ -73855,6 +73855,9 @@ essential in locating the Amulet of Yendor."
 %Cp - 01265
 "You wish you could get my shield of reflection, huh?"
 %E
+%Cp - 01266
+"Just one more sinner, and I get a promotion!"
+%E
 
 #
 #       Demonic maledictions.
@@ -74785,6 +74788,12 @@ essential in locating the Amulet of Yendor."
 %E
 %Cp - 02308
 "Social distancing? I'll give you some social distancing, you obedient lawful stupid adventurer!"
+%E
+%Cp - 02309
+"Talk to the claw!"
+%E
+%Cp - 02310
+"Thou calls thyself a %r? In sooth?"
 %E
 
 #

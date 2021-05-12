@@ -216,6 +216,9 @@ register struct obj *obj;
 		return FALSE;
 	if (objects[obj->otyp].oc_unique)
 		return FALSE;
+#ifdef MAIL
+	if (obj->otyp == SCR_MAIL) return FALSE; /* cheator! :-P */
+#endif
 	/* above also prevents the Amulet from being eaten, so we must never
 	   allow fake amulets to be eaten either [which is already the case] */
 
@@ -560,6 +563,15 @@ register struct obj *food;
 			u_wipe_engr(100);
 
 			u.cnd_vomitingcount++;
+
+			if (isevilvariant) {
+				register struct monst *shkp = shop_keeper(*u.ushops);
+				if (shkp) {
+					verbalize("You dare vomiting all over my shop, motherfucker???");
+					make_angry_shk(shkp, 0, 0);
+				}
+			}
+
 			if (u.inasuppression) {
 
 				FemaleTrapIna += u.inasuppression;
@@ -3221,6 +3233,12 @@ register int pm;
 
 		break;
 
+	    case PM_MINTY_COCKATRICE:
+
+		if (!Antimagic) You_feel("more resistant to magic!");
+		incr_itimeout(&HAntimagic, rnz(2000));
+		break;
+
 	    case PM_CHOOKATRICE:
 	    case PM_ROCKATRICE:
 
@@ -3417,6 +3435,7 @@ register int pm;
 		case PM_SHIELDED_MIND_FLAYER:
 		case PM_PARASITIC_MASTER_MIND_FLAYER:
 		case PM_BLUE_FLAYER:
+		case PM_TROUBLE_MINDFLAYER:
 		case PM_MASTER_BLUE_FLAYER:
 		case PM_MIND_FLAYER_TELEPATH:
 		case PM_TENTACLED_ONE:
@@ -6287,6 +6306,18 @@ register struct obj *otmp;
 
 		}
 
+		if (otmp->oartifact == ART_SCHOKOLADE_EEA) {
+			pline("Auughh!");
+			Deafness += rnz(500);
+			flags.soundok = 0;
+		}
+
+		if (otmp->oartifact == ART_CHRISTMAS_EGG) {
+			You("ate the first christmas egg.");
+			incr_itimeout(&HHalf_physical_damage, rn1(1000, 1000));
+
+		}
+
 		break;
 
 	    case HOLY_WAFER:            
@@ -7628,6 +7659,15 @@ void
 vomit()		/* A good idea from David Neves */
 {
 	u.cnd_vomitingcount++;
+
+	if (isevilvariant) {
+		register struct monst *shkp = shop_keeper(*u.ushops);
+		if (shkp) {
+			verbalize("You dare vomiting all over my shop, motherfucker???");
+			make_angry_shk(shkp, 0, 0);
+		}
+	}
+
 	if (u.inasuppression) {
 
 		FemaleTrapIna += u.inasuppression;

@@ -222,7 +222,7 @@ int skill;
 		case P_VAAPAD:
 			return "form VII (Vaapad)";
 		case P_WEDI:
-			return "form VII (Wedi)";
+			return "form VIII (Wedi)";
 		case P_MARTIAL_ARTS:
 			return "martial arts";
 		case P_TWO_WEAPON_COMBAT:
@@ -4153,6 +4153,14 @@ jediskip:
 	    	learntech(T_HIDDEN_POWER, FROMOUTSIDE, 1);
 	    	You("learn how to perform hidden power!");
 	}
+	if (skill == P_FLAIL && P_SKILL(skill) == P_EXPERT && (Role_if(PM_MURDERER) || Role_if(PM_CONVICT)) && !tech_known(T_LIGHTER_BALLS)) {
+	    	learntech(T_LIGHTER_BALLS, FROMOUTSIDE, 1);
+	    	You("learn how to perform lighter balls!");
+	}
+	if (skill == P_FLAIL && P_SKILL(skill) == P_GRAND_MASTER && !tech_known(T_LIGHTER_BALLS)) {
+	    	learntech(T_LIGHTER_BALLS, FROMOUTSIDE, 1);
+	    	You("learn how to perform lighter balls!");
+	}
 	if (skill == P_GRINDER && P_SKILL(skill) == P_BASIC && !tech_known(T_BALLSLIFF)) {
 	    	learntech(T_BALLSLIFF, FROMOUTSIDE, 1);
 	    	You("learn how to perform ballsliff!");
@@ -5761,6 +5769,10 @@ int degree;
 			    	learntech(T_HIDDEN_POWER, FROMOUTSIDE, 1);
 			    	You("learn how to perform hidden power!");
 			}
+			if (skill == P_FLAIL && !tech_known(T_LIGHTER_BALLS)) {
+			    	learntech(T_LIGHTER_BALLS, FROMOUTSIDE, 1);
+			    	You("learn how to perform lighter balls!");
+			}
 			if (skill == P_GRINDER && !tech_known(T_BALLSLIFF)) {
 			    	learntech(T_BALLSLIFF, FROMOUTSIDE, 1);
 			    	You("learn how to perform ballsliff!");
@@ -5852,6 +5864,7 @@ int degree;
 	if (uarmu && uarmu->oartifact == ART_GIVE_ME_STROKE__JO_ANNA && skill == P_HIGH_HEELS) degree *= 2;
 	if (uarmh && uarmh->oartifact == ART_THERE_ARE_SEVERAL_OF_THEM && skill == P_SPIRITUALITY) degree *= 2;
 	if (uimplant && uimplant->oartifact == ART_FASTPLANT && skill == P_IMPLANTS) degree *= 2;
+	if (uarmf && uarmf->oartifact == ART_EIMI_WA_BAKADESU && skill == P_HIGH_HEELS) degree *= 5;
 
 	if (skill == 0) goto screwupsdone; /* just me covering my butt in case the game somehow thinks you had used
 	* some skill that doesn't do anything and thinks it now has to set a blown timer --Amy */
@@ -6235,10 +6248,11 @@ struct obj *weapon;
 	 */
 	if (!(PlayerCannotUseSkills)) bonus = P_SKILL(type);
 	bonus = max(bonus,P_UNSKILLED) - 1;	/* unskilled => 0 */
-	bonus = ((bonus + 1) * (martial_bonus() ? 3 : 1)) / 2;
+	bonus = ((bonus + 1) * (martial_bonus() ? rno(2) : 1)) / 2;
 
 	/* CAVEAT: martial arts seems to use its own martial_dmg() function in uhitm.c and does not run this code!!!
-	 * and speaking of which, bare-handed combat doesn't seem to do so either... */
+	 * and speaking of which, bare-handed combat doesn't seem to do so either...
+	 * Amy note: it seems that this is used for kicking, because it comes from dokick.c */
 
 	if (!(PlayerCannotUseSkills) && type == P_MARTIAL_ARTS) {
 
@@ -6247,11 +6261,11 @@ struct obj *weapon;
 		    case P_ISRESTRICTED:
 		    case P_UNSKILLED:	bonus += 0; break;
 		    case P_BASIC:	bonus += 0; break;
-		    case P_SKILLED:	bonus += rnd(4); break;
-		    case P_EXPERT:	bonus += rnd(8); break;
-		    case P_MASTER:	bonus += rnd(12); break;
-		    case P_GRAND_MASTER:	bonus += rnd(17); break;
-		    case P_SUPREME_MASTER:	bonus += rnd(23); break;
+		    case P_SKILLED:	bonus += rnd(2); break;
+		    case P_EXPERT:	bonus += rnd(4); break;
+		    case P_MASTER:	bonus += rnd(6); break;
+		    case P_GRAND_MASTER:	bonus += rnd(8); break;
+		    case P_SUPREME_MASTER:	bonus += rnd(10); break;
 		}
 
 	} else if (!(PlayerCannotUseSkills) && type == P_BARE_HANDED_COMBAT) {
@@ -6261,11 +6275,11 @@ struct obj *weapon;
 		    case P_ISRESTRICTED:
 		    case P_UNSKILLED:	bonus += 0; break;
 		    case P_BASIC:	bonus += 0; break;
-		    case P_SKILLED:	bonus += rnd(3); break;
-		    case P_EXPERT:	bonus += rnd(5); break;
-		    case P_MASTER:	bonus += rnd(8); break;
-		    case P_GRAND_MASTER:	bonus += rnd(12); break;
-		    case P_SUPREME_MASTER:	bonus += rnd(16); break;
+		    case P_SKILLED:	bonus += 1; break;
+		    case P_EXPERT:	bonus += rnd(2); break;
+		    case P_MASTER:	bonus += rnd(3); break;
+		    case P_GRAND_MASTER:	bonus += rnd(4); break;
+		    case P_SUPREME_MASTER:	bonus += rnd(5); break;
 		}
 
 	}
@@ -7015,6 +7029,8 @@ struct obj *weapon;
 
 	if (Race_if(PM_FRO) && (wep_type == P_FIREARM || wep_type == -P_FIREARM)) bonus += rnd(10);
 
+	if ((wep_type == P_SHURIKEN || wep_type == -P_SHURIKEN) && !rn2(2)) bonus += 1;
+
 	if (!(PlayerCannotUseSkills)) {
 
 	if (weapon && weapon->otyp == GREAT_DAGGER && (P_SKILL(P_DAGGER) == P_EXPERT) ) bonus += rnd(2);
@@ -7062,9 +7078,31 @@ struct obj *weapon;
 	if (weapon && weapon->otyp == SHURIKEN && (P_SKILL(P_SHURIKEN) == P_MASTER) ) bonus += 1;
 	if (weapon && weapon->otyp == SHURIKEN && (P_SKILL(P_SHURIKEN) == P_GRAND_MASTER) ) bonus += rnd(2);
 	if (weapon && weapon->otyp == SHURIKEN && (P_SKILL(P_SHURIKEN) == P_SUPREME_MASTER) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == TAR_STAR && (P_SKILL(P_SHURIKEN) == P_MASTER) ) bonus += 1;
+	if (weapon && weapon->otyp == TAR_STAR && (P_SKILL(P_SHURIKEN) == P_GRAND_MASTER) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == TAR_STAR && (P_SKILL(P_SHURIKEN) == P_SUPREME_MASTER) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == WINDMILL_BLADE && (P_SKILL(P_SHURIKEN) == P_MASTER) ) bonus += 1;
+	if (weapon && weapon->otyp == WINDMILL_BLADE && (P_SKILL(P_SHURIKEN) == P_GRAND_MASTER) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == WINDMILL_BLADE && (P_SKILL(P_SHURIKEN) == P_SUPREME_MASTER) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == MYSTERY_SHURIKEN && (P_SKILL(P_SHURIKEN) == P_MASTER) ) bonus += 1;
+	if (weapon && weapon->otyp == MYSTERY_SHURIKEN && (P_SKILL(P_SHURIKEN) == P_GRAND_MASTER) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == MYSTERY_SHURIKEN && (P_SKILL(P_SHURIKEN) == P_SUPREME_MASTER) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == NANO_SHURIKEN && (P_SKILL(P_SHURIKEN) == P_MASTER) ) bonus += 1;
+	if (weapon && weapon->otyp == NANO_SHURIKEN && (P_SKILL(P_SHURIKEN) == P_GRAND_MASTER) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == NANO_SHURIKEN && (P_SKILL(P_SHURIKEN) == P_SUPREME_MASTER) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == CUBIC_STAR && (P_SKILL(P_SHURIKEN) == P_MASTER) ) bonus += 1;
+	if (weapon && weapon->otyp == CUBIC_STAR && (P_SKILL(P_SHURIKEN) == P_GRAND_MASTER) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == CUBIC_STAR && (P_SKILL(P_SHURIKEN) == P_SUPREME_MASTER) ) bonus += rnd(3);
 	if (weapon && weapon->otyp == NEEDLE && (P_SKILL(P_SHURIKEN) == P_MASTER) ) bonus += 1;
 	if (weapon && weapon->otyp == NEEDLE && (P_SKILL(P_SHURIKEN) == P_GRAND_MASTER) ) bonus += rnd(2);
 	if (weapon && weapon->otyp == NEEDLE && (P_SKILL(P_SHURIKEN) == P_SUPREME_MASTER) ) bonus += rnd(3);
+
+	if ((wep_type == P_SHURIKEN || wep_type == -P_SHURIKEN) && (P_SKILL(P_SHURIKEN) >= P_BASIC) && !rn2(2)) bonus += 1;
+	if ((wep_type == P_SHURIKEN || wep_type == -P_SHURIKEN) && (P_SKILL(P_SHURIKEN) >= P_SKILLED) && !rn2(2)) bonus += 1;
+	if ((wep_type == P_SHURIKEN || wep_type == -P_SHURIKEN) && (P_SKILL(P_SHURIKEN) >= P_EXPERT) && !rn2(2)) bonus += 1;
+	if ((wep_type == P_SHURIKEN || wep_type == -P_SHURIKEN) && (P_SKILL(P_SHURIKEN) >= P_MASTER) && !rn2(2)) bonus += 1;
+	if ((wep_type == P_SHURIKEN || wep_type == -P_SHURIKEN) && (P_SKILL(P_SHURIKEN) >= P_GRAND_MASTER) && !rn2(2)) bonus += 1;
+	if ((wep_type == P_SHURIKEN || wep_type == -P_SHURIKEN) && (P_SKILL(P_SHURIKEN) >= P_SUPREME_MASTER) && !rn2(2)) bonus += 1;
 
 	if (weapon && is_lightsaber(weapon) && weapon->lamplit) {
 		switch (P_SKILL(P_DJEM_SO)) {
@@ -9006,6 +9044,9 @@ rerollthree:
 	}
 	if (P_SKILL(u.hiddenpowerskill) >= P_MASTER && !tech_known(T_HIDDEN_POWER)) {
 	    	learntech(T_HIDDEN_POWER, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_FLAIL) >= (Role_if(PM_CONVICT) ? P_EXPERT : Role_if(PM_MURDERER) ? P_EXPERT : P_GRAND_MASTER) && !tech_known(T_LIGHTER_BALLS)) {
+	    	learntech(T_LIGHTER_BALLS, FROMOUTSIDE, 1);
 	}
 	if (P_SKILL(P_GRINDER) >= P_BASIC && !tech_known(T_BALLSLIFF)) {
 	    	learntech(T_BALLSLIFF, FROMOUTSIDE, 1);

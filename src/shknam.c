@@ -243,6 +243,8 @@ static const char * const shktools[] = {
 	"Esulcer", "Anelam", "Tsaebknip", "Enamkcim", "Namkrop",
 	"Goomorcim", "Rolam", "Kelrem", "Nomedcisum",
 	"Ruohruetama", "Resuelibom", "Ieoa", "Aletaber",
+	"Ecnalorcim", "Erifsysten", "Eribmu", "Iaf Tnc", "Ohor",
+	"Allobec",
 
     0
 };

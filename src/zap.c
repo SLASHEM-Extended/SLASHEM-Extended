@@ -911,6 +911,7 @@ armorsmashdone:
 	case SPE_SLOW_MONSTER:
 		if (!resist(mtmp, otmp->oclass, 0, NOTELL)) {
 			mon_adjust_speed(mtmp, -1, otmp);
+			if (otmp && otmp->otyp == SPE_SLOW_MONSTER) mtmp->slowtimeout = TRUE;
 			m_dowear(mtmp, FALSE); /* might want speed boots */
 			if (u.uswallow && (mtmp == u.ustuck) &&
 			    is_whirly(mtmp->data)) {
@@ -924,6 +925,7 @@ armorsmashdone:
 		if (!resist(mtmp, otmp->oclass, 0, NOTELL)) {
 			if (!rn2(2)) {
 				mon_adjust_speed(mtmp, -1, otmp);
+				mtmp->slowtimeout = TRUE;
 				m_dowear(mtmp, FALSE); /* might want speed boots */
 				if (u.uswallow && (mtmp == u.ustuck) &&
 				    is_whirly(mtmp->data)) {
@@ -1015,6 +1017,7 @@ armorsmashdone:
 		/* fall through */
 	case SPE_INERTIA:
 		mon_adjust_speed(mtmp, -1, otmp);
+		if (otmp && otmp->otyp == SPE_INERTIA) mtmp->slowtimeout = TRUE;
 		m_dowear(mtmp, FALSE); /* might want speed boots */
 		if (u.uswallow && (mtmp == u.ustuck) &&
 		    is_whirly(mtmp->data)) {
@@ -1215,6 +1218,7 @@ armorsmashdone:
 		if (mtmp->permspeed != MSLOW) {
 
 			mon_adjust_speed(mtmp, -1, otmp);
+			mtmp->slowtimeout = TRUE;
 			m_dowear(mtmp, FALSE); /* might want speed boots */
 			if (u.uswallow && (mtmp == u.ustuck) &&
 				is_whirly(mtmp->data)) {
@@ -2284,6 +2288,7 @@ obj->otyp == SCR_CURE || obj->otyp == SCR_MANA || obj->otyp == SCR_GREATER_MANA_
 	      case POTION_CLASS:
 		/* Potions of amnesia are uncancelable. */
 		if (obj->otyp == POT_AMNESIA) break;
+		if (obj->otyp == POT_CANCELLATION) break;
 
 		if (!flags.mon_moving) costly_cancel(obj);
 		else if (issoviet) {
@@ -3967,6 +3972,9 @@ register struct obj *wand;
 	boolean willusecharge = TRUE;
 	boolean onlychargeonce = (wand->otyp == WAN_WISHING || wand->otyp == WAN_CHARGING || wand->otyp == WAN_BAD_EQUIPMENT || wand->otyp == WAN_ACQUIREMENT || wand->otyp == WAN_GAIN_LEVEL || wand->otyp == WAN_INCREASE_MAX_HITPOINTS);
 
+	int blessedboost = 1;
+	if (wand->blessed) blessedboost = 3;
+
 	int nochargechange = 10;
 	if (!(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_DEVICES)) {
@@ -3997,20 +4005,20 @@ register struct obj *wand;
 	if (DischargeBug || u.uprops[DISCHARGE_BUG].extrinsic || have_dischargestone()) wand->spe--;
 
 	u.cnd_zapcount++;
-	use_skill(P_DEVICES,1);
-	if (uwep && uwep->oartifact == ART_WANDERZAPPER) use_skill(P_DEVICES,1);
+	use_skill(P_DEVICES,blessedboost);
+	if (uwep && uwep->oartifact == ART_WANDERZAPPER) use_skill(P_DEVICES,blessedboost);
 	if (Race_if(PM_STICKER)) {
-		use_skill(P_DEVICES,1);
-		use_skill(P_DEVICES,1);
-		use_skill(P_DEVICES,1);
-		use_skill(P_DEVICES,1);
+		use_skill(P_DEVICES,blessedboost);
+		use_skill(P_DEVICES,blessedboost);
+		use_skill(P_DEVICES,blessedboost);
+		use_skill(P_DEVICES,blessedboost);
 	}
 	if (Race_if(PM_FAWN)) {
-		use_skill(P_DEVICES,1);
+		use_skill(P_DEVICES,blessedboost);
 	}
 	if (Race_if(PM_SATRE)) {
-		use_skill(P_DEVICES,1);
-		use_skill(P_DEVICES,1);
+		use_skill(P_DEVICES,blessedboost);
+		use_skill(P_DEVICES,blessedboost);
 	}
 
 	if (wand && wand->oartifact == ART_PSI_CHANGE) {
@@ -4018,7 +4026,7 @@ register struct obj *wand;
 		You_feel("more resistant to confusion!");
 	}
 
-	if (objects[(wand)->otyp].oc_material == MT_INKA) use_skill(P_DEVICES,1);
+	if (objects[(wand)->otyp].oc_material == MT_INKA) use_skill(P_DEVICES,blessedboost);
 	if (objects[(wand)->otyp].oc_material == MT_ANTIDOTIUM) upnivel(TRUE);
 	if (objects[(wand)->otyp].oc_material == MT_ARCANIUM) {
 		u.uenmax++;
@@ -4049,8 +4057,8 @@ register struct obj *wand;
 	}
 
 	if (Race_if(PM_INKA)) {
-		use_skill(P_DEVICES,1);
-		if (objects[(wand)->otyp].oc_material == MT_INKA) use_skill(P_DEVICES,1);
+		use_skill(P_DEVICES,blessedboost);
+		if (objects[(wand)->otyp].oc_material == MT_INKA) use_skill(P_DEVICES,blessedboost);
 	}
 
 	if (wand && wand->oartifact == ART_AVADA_PORKAVRA) {
@@ -5484,6 +5492,7 @@ glowandfadechoice:
 	if (obj && obj->spe < 0) {
 	    pline("%s to dust.", Tobjnam(obj, "turn"));
 	    useup(obj);
+	    use_skill(P_DEVICES, 1);
 	}
 	update_inventory();	/* maybe used a charge */
 	return(1);
@@ -7404,6 +7413,10 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 	    }
 	} else {
 	    mdef->mcan = TRUE;
+
+		if (obj && obj->otyp == SPE_CANCELLATION) mdef->canceltimeout = TRUE;
+		if (obj && obj->otyp == SPE_VANISHING) mdef->canceltimeout = TRUE;
+		if (obj && obj->otyp == SPE_AURORA_BEAM) mdef->canceltimeout = TRUE;
 
 		/* successfully cancelling a monster removes all egotypes --Amy */
 		mdef->isegotype = mdef->egotype_thief = mdef->egotype_wallwalk = mdef->egotype_disenchant = mdef->egotype_rust = mdef->egotype_corrosion = mdef->egotype_decay = mdef->egotype_flamer = mdef->egotype_wither = mdef->egotype_grab = mdef->egotype_flying = mdef->egotype_hide = mdef->egotype_regeneration = mdef->egotype_undead = mdef->egotype_domestic = mdef->egotype_covetous = mdef->egotype_avoider = mdef->egotype_petty = mdef->egotype_pokemon = mdef->egotype_slows = mdef->egotype_vampire = mdef->egotype_teleportself = mdef->egotype_teleportyou = mdef->egotype_wrap = mdef->egotype_disease = mdef->egotype_slime = mdef->egotype_engrave = mdef->egotype_dark = mdef->egotype_luck = mdef->egotype_push = mdef->egotype_arcane = mdef->egotype_clerical = mdef->egotype_armorer = mdef->egotype_tank = mdef->egotype_speedster = mdef->egotype_racer = mdef->egotype_randomizer = mdef->egotype_blaster = mdef->egotype_multiplicator = mdef->egotype_gator = mdef->egotype_reflecting = mdef->egotype_hugger = mdef->egotype_mimic = mdef->egotype_permamimic = mdef->egotype_poisoner = mdef->egotype_elementalist = mdef->egotype_resistor = mdef->egotype_acidspiller = mdef->egotype_watcher = mdef->egotype_metallivore = mdef->egotype_lithivore = mdef->egotype_organivore = mdef->egotype_breather = mdef->egotype_beamer = mdef->egotype_troll = mdef->egotype_faker = mdef->egotype_farter = mdef->egotype_timer = mdef->egotype_thirster = mdef->egotype_watersplasher = mdef->egotype_cancellator = mdef->egotype_banisher = mdef->egotype_shredder = mdef->egotype_abductor = mdef->egotype_incrementor = mdef->egotype_mirrorimage = mdef->egotype_curser = mdef->egotype_horner = mdef->egotype_lasher = mdef->egotype_cullen = mdef->egotype_webber = mdef->egotype_itemporter = mdef->egotype_schizo = mdef->egotype_nexus = mdef->egotype_sounder = mdef->egotype_gravitator = mdef->egotype_inert = mdef->egotype_antimage = mdef->egotype_plasmon = mdef->egotype_weaponizer = mdef->egotype_engulfer = mdef->egotype_bomber = mdef->egotype_exploder = mdef->egotype_unskillor = mdef->egotype_blinker = mdef->egotype_psychic = mdef->egotype_abomination = mdef->egotype_gazer = mdef->egotype_seducer = mdef->egotype_flickerer = mdef->egotype_hitter = mdef->egotype_piercer = mdef->egotype_petshielder = mdef->egotype_displacer = mdef->egotype_lifesaver = mdef->egotype_venomizer = mdef->egotype_nastinator = mdef->egotype_baddie = mdef->egotype_dreameater = mdef->egotype_sludgepuddle = mdef->egotype_vulnerator = mdef->egotype_marysue = mdef->egotype_shader = mdef->egotype_amnesiac = mdef->egotype_trapmaster = mdef->egotype_midiplayer = mdef->egotype_rngabuser = mdef->egotype_mastercaster = mdef->egotype_aligner = mdef->egotype_sinner = mdef->egotype_minator = mdef->egotype_aggravator = mdef->egotype_contaminator = mdef->egotype_radiator = mdef->egotype_weeper = mdef->egotype_reactor = mdef->egotype_destructor = mdef->egotype_datadeleter = mdef->egotype_trembler = mdef->egotype_worldender = mdef->egotype_damager = mdef->egotype_antitype = mdef->egotype_painlord = mdef->egotype_empmaster = mdef->egotype_spellsucker = mdef->egotype_eviltrainer = mdef->egotype_statdamager = mdef->egotype_sanitizer = mdef->egotype_nastycurser = mdef->egotype_damagedisher = mdef->egotype_thiefguildmember = mdef->egotype_rogue = mdef->egotype_steed = mdef->egotype_champion = mdef->egotype_boss = mdef->egotype_atomizer = mdef->egotype_perfumespreader = mdef->egotype_converter = mdef->egotype_wouwouer = mdef->egotype_allivore = mdef->egotype_laserpwnzor = mdef->egotype_badowner = mdef->egotype_bleeder = mdef->egotype_shanker = mdef->egotype_terrorizer = mdef->egotype_feminizer = mdef->egotype_levitator = mdef->egotype_illusionator = mdef->egotype_stealer = mdef->egotype_stoner = mdef->egotype_maecke = mdef->egotype_blasphemer = mdef->egotype_dropper = 0;

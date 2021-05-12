@@ -614,6 +614,7 @@ static const char * const ghostnames[] = {
 	"Metanite", "Andrio", "Greyberyl", "Pellsson", "Recluse", "Malena",
 	"Pinkbeast", "Mickmane", "Porkman", "Micromoog", "Malor", "Merlek",
 	"Musicdemon", "Amateurhour", "Mobileuser", "Aoei", "Rebatela",
+	"Microlance", "NetSysFire", "Umbire", "CntFai", "Roho", "Cebolla",
 
 };
 
@@ -5620,7 +5621,8 @@ static NEARDATA const char * const hcolors[] = {
 	"romantic", "incandescent", "multicolored",
 	"apocyan", "cosmogone", "gant", "infra-pink",
 	"irrigo", "opalescent", "peligin", "razzmatazz",
-	"violant", "viric",
+	"violant", "viric", "burnt hombre", "gan green", "infra dead", 
+	"liver purple", "loathsome lilac", "matter yellow", "ultra violent", 
 };
 
 const char *

@@ -1055,6 +1055,7 @@ init_dungeons()
 	restingzone_tj_dnum = dname_to_dnum("Resting Zone TJ");
 	restingzone_a_dnum = dname_to_dnum("Resting Zone A");
 	restingzone_s_dnum = dname_to_dnum("Resting Zone S");
+	restingzone_e_dnum = dname_to_dnum("Resting Zone E");
 /*
 	blackmarket_dnum = dname_to_dnum("The Black Market");
 */
@@ -2258,7 +2259,7 @@ level_difficulty()
 	/* Psions are so overpowered if they have all their intrinsics, that I decided to make them harder. --Amy */
 	if (Role_if(PM_PSION) && u.ulevel >= 7) retvalue += rnd(retvalue);
 
-	if (DifficultyIncreased || u.uprops[DIFFICULTY_INCREASED].extrinsic || have_difficultystone() || Race_if(PM_PLAYER_DYNAMO) || (uwep && uwep->oartifact == ART_ARABELLA_S_BLACK_PRONG) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ARABELLA_S_BLACK_PRONG) || (uwep && uwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (uwep && uwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) ) retvalue += 10;
+	if (DifficultyIncreased || u.uprops[DIFFICULTY_INCREASED].extrinsic || have_difficultystone() || Race_if(PM_PLAYER_DYNAMO) || (uwep && uwep->oartifact == ART_ARABELLA_S_BLACK_PRONG) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ARABELLA_S_BLACK_PRONG) || (uwep && uwep->oartifact == ART_PWNHAMMER_DUECE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PWNHAMMER_DUECE) || (uwep && uwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (uwep && uwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) ) retvalue += 10;
 	if (Race_if(PM_BULDOZGAR) && !rn2(10)) retvalue += 10;
 	if (Race_if(PM_PHANTOM_GHOST)) retvalue++;
 

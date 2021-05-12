@@ -1174,6 +1174,9 @@ playerwearshighheels()
 
 	if (!uarmf) return FALSE;
 	/* uarmf is definitely defined now */
+
+	if (uwep && uwep->oartifact == ART_GAYGUN) return TRUE;
+
 	if ((uarmf->otyp == WEDGE_SANDALS) || (uarmf->otyp == EVELINE_WEDGE_SANDALS) || (uarmf->otyp == BUM_BUM_BOOTS) || (uarmf->otyp == MADELEINE_PLATEAU_BOOTS) || (uarmf->otyp == KATHARINA_PLATFORM_BOOTS) || (uarmf->otyp == FEMININE_PUMPS) || (uarmf->otyp == LEATHER_PEEP_TOES) || (uarmf->otyp == WENDY_LEATHER_PUMPS) || (uarmf->otyp == NELLY_LADY_PUMPS) || (uarmf->otyp == SANDRA_COMBAT_BOOTS) || (uarmf->otyp == CLAUDIA_WOODEN_SANDALS) || (uarmf && RngeIrregularity) || (uarmf->otyp == HIPPIE_HEELS) || (uarmf->otyp == SELF_WILLED_HEELS) || (uarmf->oartifact == ART_UPWARD_HEELS) || (uarmf->oartifact == ART_ABSURD_HEELED_TILESET) || (uarmf->oartifact == ART_SWARM_SOFT_HIGH_HEELS) || (uarmf->oartifact == ART_KATIE_MELUA_S_FEMALE_WEAPO) || (uarmf->oartifact == ART_ARVOGENIA_S_HIGH_HEELSES) || (uarmf->oartifact == ART_MANUELA_S_UNKNOWN_HEELS) || (uarmf->oartifact == ART_RITA_S_TENDER_STILETTOS) || (uarmf->oartifact == ART_ELENETTES) || (uarmf->oartifact == ART_ANASTASIA_S_UNEXPECTED_ABI) || (uarmf->oartifact == ART_HIGH_HEELED_HUG) || (Role_if(PM_BINDER) && uarmf->oartifact == ART_BINDER_CRASH) || (uarmf->otyp == PET_STOMPING_PLATFORM_BOOTS) || (uarmf->otyp == SENTIENT_HIGH_HEELED_SHOES) || (uarmf->otyp == ATSUZOKO_BOOTS) || (uarmf->otyp == COMBAT_STILETTOS) || (uarmf->otyp == FEMMY_STILETTO_BOOTS) || (uarmf->otyp == JUEN_PEEP_TOES) || (uarmf->otyp == JULIETTA_PEEP_TOES) || (uarmf->otyp == ITALIAN_HEELS) || (uarmf->otyp == LADY_BOOTS) || (uarmf->otyp == NADJA_BUCKLED_LADY_SHOES) || (uarmf->otyp == ELENA_COMBAT_BOOTS) || (uarmf->otyp == THAI_COMBAT_BOOTS) || (uarmf->otyp == MELTEM_COMBAT_BOOTS) || (uarmf->otyp == STILETTO_SANDALS) || (uarmf->otyp == NATALJE_BLOCK_HEEL_SANDALS) || (uarmf->otyp == HIGH_STILETTOS) || (uarmf->otyp == HIGH_HEELED_SKIERS) || (uarmf->otyp == UNFAIR_STILETTOS) || (uarmf->otyp == COVETED_BOOTS) || (uarmf->otyp == SKY_HIGH_HEELS) || (uarmf->otyp == RED_SPELL_HEELS) || (uarmf->otyp == DESTRUCTIVE_HEELS) || (uarmf->otyp == LONG_POINTY_HEELS) || (uarmf->otyp == VIOLET_BEAUTY_HEELS) || (uarmf->otyp == AUTOSCOOTER_HEELS) || (uarmf->otyp == SINFUL_HEELS) || (uarmf->otyp == KILLER_HEELS) || (uarmf->otyp == HIGH_SCORING_HEELS) || (uarmf->otyp == KRISTIN_COMBAT_BOOTS) || (uarmf->otyp == RUEA_COMBAT_BOOTS) || (uarmf->otyp == DORA_COMBAT_BOOTS) || (uarmf->otyp == JETTE_COMBAT_BOOTS) || (uarmf->otyp == SING_PLATFORM_BOOTS) || (uarmf->otyp == VICTORIA_COMBAT_BOOTS) || (uarmf->otyp == MELISSA_WEDGE_BOOTS) || (uarmf->otyp == ANITA_LADY_PUMPS) || (uarmf->otyp == HENRIETTA_COMBAT_BOOTS) || (uarmf->otyp == VERENA_STILETTO_SANDALS)) return TRUE;
 
 	if (OBJ_DESCR(objects[uarmf->otyp])) {
@@ -1698,7 +1701,7 @@ playerextrinsicpoisonres()
 	if ((uarmh && uarmh->oartifact == ART_TARI_FEFALAS) || (uarmg && uarmg->oartifact == ART_SPECTRATOR && (moves % 5 == 0) ) || (uarmf && uarmf->oartifact == ART_LEATHER_PUMPS_OF_HORROR) || (uarmf && uarmf->oartifact == ART_RHEA_S_COMBAT_PUMPS) || (uamul && uamul->oartifact == ART_WARNED_AND_PROTECTED)) return TRUE;
 	if ((uarmh && uarmh->oartifact == ART_GREEN_STATUS) || (uamul && uamul->oartifact == ART_GOOD_BEE) || (uamul && uamul->oartifact == ART_BUEING) || (uwep && uwep->oartifact == ART_ERU_ILUVATAR_S_BIBLE) || (uarmh && uarmh->oartifact == ART_WAR_MASK_OF_DURIN) || (uwep && uwep->oartifact == ART_SERPENT_S_TOOTH)) return TRUE;
 	if ((uarmf && uarmf->oartifact == ART_GRASSHOPPER_S_ANTIDOTE) || (uarmf && uarmf->oartifact == ART_AMPERSAND_HAREM) || (uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL) || (uarmf && uarmf->oartifact == ART_RUTH_S_UNDEAD_INLAY) || (uamul && uamul->oartifact == ART_AMULET_OF_SPLENDOR) || (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (uarmf && uarmf->oartifact == ART_NOW_YOU_LOOK_LIKE_A_BEGGAR)) return TRUE;
-	if ((uwep && uwep->oartifact == ART_REAL_WALKING) || (uwep && uwep->oartifact == ART_DANGER_SIGN) || (uarms && uarms->oartifact == ART_SPECTRATE_ETTECKOR) || (uwep && uwep->oartifact == ART_SPECTRATE_ETTECKOR)) return TRUE;
+	if ((uwep && uwep->oartifact == ART_REAL_WALKING) || (uwep && uwep->oartifact == ART_DANGER_SIGN) || (uarms && uarms->oartifact == ART_SPECTRATE_ETTECKOR) || (uwep && uwep->oartifact == ART_SPECTRATE_ETTECKOR) || (uwep && uwep->oartifact == ART_CHROME_GOOD) ) return TRUE;
 
 	return FALSE;
 }
@@ -6113,13 +6116,18 @@ boolean guaranteed;
 		}
 
 		if (u.usymbiote.mhpmax < ceiling) {
+			int actualincrease = 1;
 			increaseamount = (ceiling / 5);
 			if (increaseamount < 1) increaseamount = 1; /* fail safe */
+			actualincrease = u.usymbiote.mhpmax;
 			u.usymbiote.mhpmax += increaseamount;
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 			if (u.usymbiote.mhpmax > ceiling) u.usymbiote.mhpmax = ceiling; /* fail safe */
+			if ((u.usymbiote.mhpmax - actualincrease) > increaseamount) {
+				increaseamount = (u.usymbiote.mhpmax - actualincrease);
+			}
 
-			Your("symbiote's health was boosted by %d.", increaseamount);
+			if (increaseamount > 0) Your("symbiote's health was boosted by %d.", increaseamount);
 		}
 
 	}
@@ -8138,7 +8146,6 @@ int
 dodrink()
 {
 	register struct obj *otmp;
-	const char *potion_descr;
 	char quaffables[SIZE(beverages) + 2];
 	char *qp = quaffables;
 
@@ -8360,8 +8367,6 @@ dodrink()
 
 #define POTION_OCCUPANT_CHANCE(n) (13 + 2*(n))	/* also in muse.c */
 
-	potion_descr = OBJ_DESCR(objects[otmp->otyp]);
-
 	u.cnd_quaffcount++;
 
 	use_skill(P_DEVICES,1);
@@ -8373,50 +8378,51 @@ dodrink()
 		use_skill(P_DEVICES,1);
 	}
 
-	if (potion_descr) {
-	    if ( (!strcmp(potion_descr, "milky") || !strcmp(potion_descr, "ghostly") || !strcmp(potion_descr, "hallowed") || !strcmp(potion_descr, "camping") || !strcmp(potion_descr, "spiritual")) &&
-		    flags.ghost_count < MAXMONNO &&
-		    !rn2(POTION_OCCUPANT_CHANCE(flags.ghost_count))) {
-		ghost_from_bottle();
-		if (carried(otmp)) useup(otmp);
-		else useupf(otmp, 1L);
-		return(1);
-	    } else if (!strcmp(potion_descr, "smoky") &&
-		    (flags.djinni_count < MAXMONNO) &&
-		    !rn2(POTION_OCCUPANT_CHANCE(flags.djinni_count))) {
+	if (itemhasappearance(otmp, APP_POTION_MILKY) || itemhasappearance(otmp, APP_POTION_GHOSTLY) || itemhasappearance(otmp, APP_POTION_HALLOWED) || itemhasappearance(otmp, APP_POTION_CAMPING) || itemhasappearance(otmp, APP_POTION_SPIRITUAL)) {
+		if (flags.ghost_count < MAXMONNO && !rn2(POTION_OCCUPANT_CHANCE(flags.ghost_count))) {
+			ghost_from_bottle();
+			if (carried(otmp)) useup(otmp);
+			else useupf(otmp, 1L);
+			return(1);
+		}
+	}
+
+	if (itemhasappearance(otmp, APP_POTION_SMOKY) &&
+		    (flags.djinni_count < MAXMONNO) && !rn2(POTION_OCCUPANT_CHANCE(flags.djinni_count))) {
 		djinni_from_bottle(otmp, 1);
 		if (carried(otmp)) useup(otmp);
 		else useupf(otmp, 1L);
 		return(1);
-	    } else if (!strcmp(potion_descr, "vapor") &&
-		    (flags.dao_count < MAXMONNO) &&
-		    !rn2(POTION_OCCUPANT_CHANCE(flags.dao_count))) {
+	}
+	if (itemhasappearance(otmp, APP_POTION_VAPOR) &&
+		    (flags.dao_count < MAXMONNO) && !rn2(POTION_OCCUPANT_CHANCE(flags.dao_count))) {
 		djinni_from_bottle(otmp, 2);
 		if (carried(otmp)) useup(otmp);
 		else useupf(otmp, 1L);
 		return(1);
-	    } else if (!strcmp(potion_descr, "fuming") &&
-		    (flags.efreeti_count < MAXMONNO) &&
-		    !rn2(POTION_OCCUPANT_CHANCE(flags.efreeti_count))) {
+	}
+	if (itemhasappearance(otmp, APP_POTION_FUMING) &&
+		    (flags.efreeti_count < MAXMONNO) && !rn2(POTION_OCCUPANT_CHANCE(flags.efreeti_count))) {
 		djinni_from_bottle(otmp, 3);
 		if (carried(otmp)) useup(otmp);
 		else useupf(otmp, 1L);
 		return(1);
-	    } else if (!strcmp(potion_descr, "sizzling") &&
-		    (flags.marid_count < MAXMONNO) &&
-		    !rn2(POTION_OCCUPANT_CHANCE(flags.marid_count))) {
+	}
+	if (itemhasappearance(otmp, APP_POTION_SIZZLING) &&
+		    (flags.marid_count < MAXMONNO) && !rn2(POTION_OCCUPANT_CHANCE(flags.marid_count))) {
 		djinni_from_bottle(otmp, 4);
 		if (carried(otmp)) useup(otmp);
 		else useupf(otmp, 1L);
 		return(1);
-	    } else if (!strcmp(potion_descr, "whisky") &&
-		    (flags.wineghost_count < MAXMONNO) &&
-		    !rn2(POTION_OCCUPANT_CHANCE(flags.wineghost_count))) {
+	}
+	if (itemhasappearance(otmp, APP_POTION_WHISKY) &&
+		    (flags.wineghost_count < MAXMONNO) && !rn2(POTION_OCCUPANT_CHANCE(flags.wineghost_count))) {
 		djinni_from_bottle(otmp, 5);
 		if (carried(otmp)) useup(otmp);
 		else useupf(otmp, 1L);
 		return(1);
-	    } else if (!strcmp(potion_descr, "dimly-shining") && !rn2(10)) {
+	}
+	if (itemhasappearance(otmp, APP_POTION_DIMLY_SHINING) && !rn2(10)) {
 
 		int summondemon = ndemon(A_CHAOTIC);
 		if (summondemon == NON_PM) {
@@ -8431,8 +8437,8 @@ dodrink()
 		if (carried(otmp)) useup(otmp);
 		else useupf(otmp, 1L);
 		return(1);
-	    } else if (!strcmp(potion_descr, "gaseous") && !rn2(10)) {
-
+	}
+	if (itemhasappearance(otmp, APP_POTION_GASEOUS) && !rn2(10)) {
 		int summondemon = ntrminion();
 		if (summondemon == NON_PM) {
 			pline("Somehow, the potion evaporates with no effect.");
@@ -8446,8 +8452,8 @@ dodrink()
 		if (carried(otmp)) useup(otmp);
 		else useupf(otmp, 1L);
 		return(1);
-	    } else if (!strcmp(potion_descr, "starlight") && !rn2(10)) {
-
+	}
+	if (itemhasappearance(otmp, APP_POTION_STARLIGHT) && !rn2(10)) {
 		int summondemon = lminion();
 		if (summondemon == NON_PM) {
 			pline("Somehow, the potion evaporates with no effect.");
@@ -8461,27 +8467,109 @@ dodrink()
 		if (carried(otmp)) useup(otmp);
 		else useupf(otmp, 1L);
 		return(1);
-	    } else if (!strcmp(potion_descr, "endbringer") && !rn2(64)) {
+	}
+
+	if (itemhasappearance(otmp, APP_POTION_ENDBRINGER) && !rn2(64)) {
 		ragnarok(TRUE);
 		if (evilfriday) evilragnarok(TRUE,level_difficulty());
-	    } else if (!strcmp(potion_descr, "deadweight") && !rn2(10)) {
+	}
+	if (itemhasappearance(otmp, APP_POTION_DEADWEIGHT) && !rn2(10)) {
 		pline("Some sinister force causes you to wear an item!");
 		bad_equipment(0);
-	    } else if (!strcmp(potion_descr, "present") && !rn2(10)) {
+	}
+	if (itemhasappearance(otmp, APP_POTION_PRESENT) && !rn2(10)) {
 		pline("Some sinister force causes you to wear an artifact!");
 		bad_artifact();
-	    } else if (!strcmp(potion_descr, "maleen") && !rn2(10)) {
+	}
+	if (itemhasappearance(otmp, APP_POTION_MALEEN) && !rn2(10)) {
 		pline("Some sinister force causes you to wear a pair of heels!");
 		bad_equipment_heel();
-	    } else if (!strcmp(potion_descr, "gloss") && !rn2(10)) {
+	}
+	if (itemhasappearance(otmp, APP_POTION_GLOSS) && !rn2(10)) {
 		You("apply the lovely lip gloss that was contained inside.");
 		(void) adjattrib(A_CHA, 1, FALSE, TRUE);
-	    } else if (!strcmp(potion_descr, "glam")) {
+	}
+	if (itemhasappearance(otmp, APP_POTION_GLAM)) {
 		if (u.nailpolish < 10) {
 			u.nailpolish++;
 			pline("The potion contained nail polish! You use it to dye your nails.");
 		} else pline("Sadly, the nail polish in the potion goes to waste since you've painted all your nails already.");
-	    }
+	}
+
+	if (itemhasappearance(otmp, APP_POTION_RESERVATROL)) {
+		(void) create_gas_cloud(u.ux, u.uy, 3+bcsign(otmp), 8+4*bcsign(otmp));
+		You("smell chemicals.");
+	}
+	if (itemhasappearance(otmp, APP_POTION_SYMBIO) && !rn2(5)) {
+		struct permonst *pm = 0;
+		int attempts = 0;
+		register struct monst *symbiomon;
+
+newsymbio:
+		do {
+			pm = rndmonst();
+			attempts++;
+
+		} while ( (!pm || (pm && !(stationary(pm) || pm->mmove == 0 || pm->mlet == S_TURRET ))) && attempts < 50000);
+
+		if (!pm && rn2(50) ) {
+			attempts = 0;
+			goto newsymbio;
+		}
+		if (pm && !(stationary(pm) || pm->mmove == 0 || pm->mlet == S_TURRET) && rn2(50) ) {
+			attempts = 0;
+			goto newsymbio;
+		}
+
+		if (pm) symbiomon = makemon(pm, u.ux, u.uy, NO_MM_FLAGS);
+		if (symbiomon) {
+			(void) tamedog(symbiomon, (struct obj *) 0, TRUE);
+			pline("A potential symbiote forms out of nowhere!");
+		}
+	}
+	if (itemhasappearance(otmp, APP_POTION_MICROBIOTIC) && !rn2(5)) {
+		register struct monst *mtmp;
+ 	      mtmp = makemon(mkclass(S_FUNGUS,0), u.ux, u.uy, NO_MM_FLAGS);
+		if (mtmp) {
+			(void) tamedog(mtmp, (struct obj *) 0, TRUE);
+			pline("A fungus forms out of nowhere!");
+		}
+	}
+	if (itemhasappearance(otmp, APP_POTION_NITROGLYCERIN)) {
+		struct obj *dynamite;
+		dynamite = mksobj_at(STICK_OF_DYNAMITE, u.ux, u.uy, TRUE, FALSE, FALSE);
+		if (dynamite) {
+			if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
+			else {
+				dynamite->dynamitekaboom = 1;
+				dynamite->quan = 1;
+				dynamite->owt = weight(dynamite);
+				attach_bomb_blow_timeout(dynamite, 0, 0);
+			}
+		}
+	}
+	if (itemhasappearance(otmp, APP_POTION_PERFUME)) {
+		int mondistance = 0;
+		struct monst *mtmp3;
+		int k, l;
+		for (k = -5; k <= 5; k++) for(l = -5; l <= 5; l++) {
+			if (!isok(u.ux + k, u.uy + l)) continue;
+
+			mondistance = 1;
+			if (k > 1) mondistance = k;
+			if (k < -1) mondistance = -k;
+			if (l > 1 && l > mondistance) mondistance = l;
+			if (l < -1 && (-l > mondistance)) mondistance = -l;
+
+			if ( (mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) {
+				mtmp3->mcanmove = 0;
+				mtmp3->mfrozen = (rnd(16 - (mondistance * 2)));
+				mtmp3->mstrategy &= ~STRAT_WAITFORU;
+				mtmp3->mconf = TRUE;
+				pline("%s becomes dizzy from the scent!", Monnam(mtmp3));
+			}
+		}
+
 	}
 
 	if (CurseAsYouUse && otmp && otmp->otyp != CANDELABRUM_OF_INVOCATION && otmp->otyp != SPE_BOOK_OF_THE_DEAD && otmp->otyp != BELL_OF_OPENING) curse(otmp);
@@ -10450,6 +10538,46 @@ boolean your_fault;
 	boolean isyou = (mon == &youmonst);
 	int distance;
 
+	if (isyou) {
+		if (obj && itemhasappearance(obj, APP_POTION_RESERVATROL) && isok(u.ux, u.uy)) {
+			(void) create_gas_cloud(u.ux, u.uy, 3+bcsign(obj), 8+4*bcsign(obj));
+			You("smell chemicals.");
+		}
+		if (obj && itemhasappearance(obj, APP_POTION_NITROGLYCERIN) && isok(u.ux, u.uy)) {
+			struct obj *dynamite;
+			dynamite = mksobj_at(STICK_OF_DYNAMITE, u.ux, u.uy, TRUE, FALSE, FALSE);
+			if (dynamite) {
+				if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
+				else {
+					dynamite->dynamitekaboom = 1;
+					dynamite->quan = 1;
+					dynamite->owt = weight(dynamite);
+					attach_bomb_blow_timeout(dynamite, 0, 0);
+				}
+			}
+		}
+
+	} else {
+		if (obj && itemhasappearance(obj, APP_POTION_RESERVATROL) && isok(mon->mx, mon->my)) {
+			(void) create_gas_cloud(mon->mx, mon->my, 3+bcsign(obj), 8+4*bcsign(obj));
+			You("smell chemicals.");
+		}
+		if (obj && itemhasappearance(obj, APP_POTION_NITROGLYCERIN) && isok(mon->mx, mon->my)) {
+			struct obj *dynamite;
+			dynamite = mksobj_at(STICK_OF_DYNAMITE, mon->mx, mon->my, TRUE, FALSE, FALSE);
+			if (dynamite) {
+				if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
+				else {
+					dynamite->dynamitekaboom = 1;
+					dynamite->quan = 1;
+					dynamite->owt = weight(dynamite);
+					attach_bomb_blow_timeout(dynamite, 0, 0);
+				}
+			}
+		}
+
+	}
+
 	if (your_fault) u.cnd_potionthrowyoucount++;
 	else u.cnd_potionthrowmoncount++;
 
@@ -10943,6 +11071,12 @@ potionbreathe(obj)
 register struct obj *obj;
 {
 	register int i, ii, isdone, kn = 0;
+
+	if (itemhasappearance(obj, APP_POTION_SUBCLINICAL) || itemhasappearance(obj, APP_POTION_ABBREVIATOR) || itemhasappearance(obj, APP_POTION_MULLIONING) || itemhasappearance(obj, APP_POTION_DISLODGING) || itemhasappearance(obj, APP_POTION_REMONSTRATED) || itemhasappearance(obj, APP_POTION_CINERARIA) || itemhasappearance(obj, APP_POTION_SPURTED) || itemhasappearance(obj, APP_POTION_BASSETED)) {
+		if (breathless(youmonst.data)) pline("Some weird substance gets into your %s!", body_part(EYE));
+		else pline("Some weird stench gets into your %s!", body_part(NOSE));
+		badeffect();
+	}
 
 	switch(obj->otyp) {
 	case POT_RESTORE_ABILITY:
@@ -11646,7 +11780,7 @@ boolean amnesia;
 			You("pollute the environment.");
 			if (practicantterror && !u.pract_oilspill) {
 				pline("%s thunders: 'That's a serious crime you committed there! You pay a fine of 10000 zorkmids, and additionally you have to carry some dead weight for the remaining day to ensure that you don't do such a thing again!'", noroelaname());
-				fineforpracticant(4000, 0, 0);
+				fineforpracticant(10000, 0, 0);
 				u.graundweight += 1000;
 				u.pract_oilspill = TRUE;
 			}
@@ -11944,6 +12078,8 @@ register struct obj *obj;
 	if (obj->oartifact)
 		/* WAC -- Could have some funky fx */
 		return 0;
+
+	if (is_hazy(obj)) return 0; /* poly weapon into mattock, upgrade to pick-axe, poly into 0:50 tinning kit, unpoly... +50 weapon :-P can't have that! --Amy */
 
 	if (stack_too_big(obj))
 		return 1;

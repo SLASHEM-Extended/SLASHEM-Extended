@@ -3319,6 +3319,7 @@ sexysqueaking:
 	}
 
 	if (uarm && uarm->oartifact == ART_ARMOR_OF_ISILDUR && uarm->spe < 1) uarm->spe = rnd(10);
+	if (uarm && uarm->oartifact == ART_COCKBANGER_ARMOR && uarm->spe < 1) uarm->spe = rnd(10);
 
 	if (uarm && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uarm);
 
@@ -4581,7 +4582,7 @@ dotakeoff()
 	if (otmp == uskin || ((otmp == uarm) && uarmc && !updowninversion) || ((otmp == uarmc) && uarm && updowninversion) 
 			  || ((otmp == uarmu) && (uarmc || uarm))
 		) {
-	    You_cant("take that off.");
+	    You_cant("take that off.%s", (otmp == uskin) ? "" : " It appears that the item is covered by another piece of equipment.");
 	    return 0;
 	}
 
@@ -5662,6 +5663,7 @@ find_ac()
 	if (uarmf && uarmf->oartifact == ART_ARTHUR_S_HIGH_HEELED_PLATF) uac -= 2;
 	if (uwep && uwep->oartifact == ART_SIGIX_BROADSWORD) uac -= 20;
 	if (uarm && uarm->oartifact == ART_MOEBIUS_ARMOR) uac -= 10;
+	if (bmwride(ART_PANZER_TANK)) uac -= 10;
 
 	if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 		if ((!uarm || is_metallic(uarm)) && (!uarmc || is_metallic(uarmc)) && (!uarmu || is_metallic(uarmu)) && (!uarms || is_metallic(uarms)) && (!uarmg || is_metallic(uarmg)) && (!uarmf || is_metallic(uarmf)) && (!uarmh || is_metallic(uarmh)) ) {

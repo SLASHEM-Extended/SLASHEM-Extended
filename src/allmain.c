@@ -89,6 +89,8 @@ moveloop()
     int cx,cy;
 	register struct obj *acqo;
 
+	int oldspeed;
+
     char buf[BUFSZ];
 	char ebuf[BUFSZ];
     boolean didmove = FALSE, monscanmove = FALSE;
@@ -1109,6 +1111,12 @@ moveloop()
 				if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
+				if (uwep && uwep->oartifact == ART_DOUBLE_BESTARD && !rn2(4) && moveamt > 1)
+					moveamt /= 2;
+
+				if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DOUBLE_BESTARD && !rn2(4) && moveamt > 1)
+					moveamt /= 2;
+
 				if (uarmf && uarmf->oartifact == ART_UPWARD_HEELS && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
@@ -1347,7 +1355,9 @@ moveloop()
 				/* speed boosts while riding go here */
 
 				if (uarmf && itemhasappearance(uarmf, APP_BIKER_BOOTS) && !rn2(10)) {
+					oldspeed = moveamt;
 					moveamt *= 2;
+					if (moveamt > (oldspeed + 24)) moveamt = (oldspeed + 24);
 				}
 
 				if (Race_if(PM_PIECE) && ((u.dx && !u.dy) || (!u.dx && u.dy)) && !rn2(4)) {
@@ -1357,13 +1367,17 @@ moveloop()
 				if (u.usteed) {
 
 					if (bmwride(ART_BIKE_SADDLE)) {
+						oldspeed = moveamt;
 						moveamt *= 3;
 						moveamt /= 2;
+						if (moveamt > (oldspeed + 18)) moveamt = (oldspeed + 18);
 					}
 
 					if (bmwride(ART_SPEEDO_CAR)) {
+						oldspeed = moveamt;
 						moveamt *= 6;
 						moveamt /= 5;
+						if (moveamt > (oldspeed + 15)) moveamt = (oldspeed + 15);
 					}
 
 				}
@@ -1446,6 +1460,12 @@ moveloop()
 			}
 
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too are slower sometimes. */
+				moveamt /= 2;
+
+			if (uwep && uwep->oartifact == ART_DOUBLE_BESTARD && !rn2(4) && moveamt > 1)
+				moveamt /= 2;
+
+			if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DOUBLE_BESTARD && !rn2(4) && moveamt > 1)
 				moveamt /= 2;
 
 			if (uwep && uwep->oartifact == ART_SCJWILLX_ && !rn2(8) && moveamt > 1)
@@ -1570,11 +1590,6 @@ moveloop()
 				moveamt /= 2; /* frozen characters move at half speed --Amy */
 			}
 
-			/* salamander race by Kwahn, speeds up in lava */
-			if (is_lava(u.ux, u.uy) && Race_if(PM_PLAYER_SALAMANDER)) {
-				moveamt *= 3;
-			}
-
 			if (is_snow(u.ux, u.uy) && (u.umoved || !rn2(4)) && !Flying && !Levitation) {
 					static boolean canwalkonsnow = 0;
 				    static int skates = 0;
@@ -1606,9 +1621,6 @@ moveloop()
 					else moveamt /= 4;
 				}
 
-				if (canwalkonsnow && ((uarmf && uarmf->otyp == skates4) || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) || (uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD)) && !rn2(2)) {
-					moveamt *= 2;
-				}
 			}
 
 			if ((uwep && uwep->oartifact == ART_KINGS_RANSOM_FOR_YOU) && moveamt > 1) {
@@ -1763,69 +1775,140 @@ moveloop()
 			    if (rn2(3) != 0) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			}
 
+			/* speed boosts while not riding go here */
+
 			if (u.usteed) {
 
 				if (bmwride(ART_SPEEDO_CAR)) {
+					oldspeed = moveamt;
 					moveamt *= 6;
 					moveamt /= 5;
+					if (moveamt > (oldspeed + 15)) moveamt = (oldspeed + 15);
+				}
+
+			}
+
+			/* salamander race by Kwahn, speeds up in lava */
+			if (is_lava(u.ux, u.uy) && Race_if(PM_PLAYER_SALAMANDER)) {
+				oldspeed = moveamt;
+				moveamt *= 3;
+				if (moveamt > (oldspeed + 24)) moveamt = (oldspeed + 24);
+			}
+
+			if (is_snow(u.ux, u.uy) && (u.umoved || !rn2(4)) && !Flying && !Levitation) {
+
+				static boolean canwalkonsnow = 0;
+			    static int skates = 0;
+			    if (!skates) skates = find_skates();
+			    static int skates2 = 0;
+			    if (!skates2) skates2 = find_skates2();
+			    static int skates3 = 0;
+			    if (!skates3) skates3 = find_skates3();
+			    static int skates4 = 0;
+			    if (!skates4) skates4 = find_skates4();
+			    static int skates5 = 0;
+			    if (!skates5) skates5 = find_cyan_sneakers();
+			    if ((uarmf && uarmf->otyp == skates)
+				    || (uarmf && uarmf->otyp == skates2)
+				    || (uarmf && uarmf->otyp == skates3)
+				    || (uarmf && uarmf->otyp == skates4)
+				    || (uarmf && uarmf->otyp == skates5)
+				    || (uwep && uwep->oartifact == ART_GLACIERDALE)
+				    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
+				    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
+				    || (uwep && uwep->oartifact == ART_DAMN_SKI_WEDGE && uarmf)
+				    || (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE)) canwalkonsnow = 1;
+
+				if (powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) canwalkonsnow = 1;
+
+				if (canwalkonsnow && ((uarmf && uarmf->otyp == skates4) || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) || (uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD)) && !rn2(2)) {
+					oldspeed = moveamt;
+					moveamt *= 2;
+					if (moveamt > (oldspeed + 24)) moveamt = (oldspeed + 24);
 				}
 
 			}
 
 			if (Wonderlegs && Wounded_legs) {
+				oldspeed = moveamt;
 				moveamt *= 5;
 				moveamt /= 4;
+				if (moveamt > (oldspeed + 6)) moveamt = (oldspeed + 6);
 			}
 
 			/* unicorns are ultra fast!!! However, they have enough bullshit downsides to reign them in. --Amy */
 			if (Race_if(PM_PLAYER_UNICORN)) {
+				oldspeed = moveamt;
 				moveamt *= 2;
+				if (moveamt > (oldspeed + 24)) moveamt = (oldspeed + 24);
 			}
 
 			/* metals are even faster but take greatly increased damage --Amy */
 			if (Race_if(PM_METAL)) {
+				oldspeed = moveamt;
 				moveamt *= 3;
+				if (moveamt > (oldspeed + 72)) moveamt = (oldspeed + 72);
 			}
 
 			if (numberofwornetheritems() > rn2(20)) {
+				oldspeed = moveamt;
 				moveamt *= 2;
+				if (moveamt > (oldspeed + 24)) moveamt = (oldspeed + 24);
 			}
 
 			if (Race_if(PM_PIECE) && ((u.dx && !u.dy) || (!u.dx && u.dy)) && !rn2(4)) {
+				oldspeed = moveamt;
 				moveamt *= 2;
+				if (moveamt > (oldspeed + 24)) moveamt = (oldspeed + 24);
 			}
 
 			if (!flags.female && uarmf && itemhasappearance(uarmf, APP_OPERA_PUMPS)) {
+				oldspeed = moveamt;
 				moveamt *= 11;
 				moveamt /= 10;
+				if (moveamt > (oldspeed + 3)) moveamt = (oldspeed + 3);
 			}
 
 			if (is_highway(u.ux, u.uy)) {
+				oldspeed = moveamt;
 				moveamt *= 2;
+				if (moveamt > (oldspeed + 36)) moveamt = (oldspeed + 36);
 			}
 
 			if (uarmh && uarmh->oartifact == ART_LUXIDREAM_S_ASCENSION) {
+				oldspeed = moveamt;
 				moveamt *= 11;
 				moveamt /= 10;
+				if (moveamt > (oldspeed + 3)) moveamt = (oldspeed + 3);
 			}
 
 			if (powerfulimplants() && uimplant && uimplant->oartifact == ART_ETHERATORGARDEN) {
+				oldspeed = moveamt;
 				moveamt *= 6;
 				moveamt /= 5;
+				if (moveamt > (oldspeed + 6)) moveamt = (oldspeed + 6);
 			}
 
 			if (powerfulimplants() && uimplant && uimplant->oartifact == ART_YOU_SHOULD_SURRENDER) {
+				oldspeed = moveamt;
 				moveamt *= 3;
 				moveamt /= 2;
+				if (moveamt > (oldspeed + 12)) moveamt = (oldspeed + 12);
 			}
 
 			if (uimplant && uimplant->oartifact == ART_BRRRRRRRRRRRRRMMMMMM) {
 				if (is_highway(u.ux, u.uy) || powerfulimplants()) {
+					oldspeed = moveamt;
 					moveamt *= 2;
+					if (moveamt > (oldspeed + 12)) moveamt = (oldspeed + 12);
 				}
 			}
 
-			if (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) moveamt *= 2;
+			if (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) {
+				oldspeed = moveamt;
+				moveamt *= 2;
+				if (moveamt > (oldspeed + 12)) moveamt = (oldspeed + 12);
+			}
 
 			if (uarmh && (uarmh->oartifact == ART_REAL_SPEED_DEVIL) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uwep && uwep->oartifact == ART_LULWY_S_TRICK && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
@@ -2672,7 +2755,7 @@ moveloop()
 			u.pract_finetimer++;
 			if (u.pract_finetimer >= 10000) {
 				fineforpracticant(1000, 0, 0); /* sets the finetimer var back to 0 */
-				pline("%s thunders: 'You now have to pay a fine of 1000 zorkmds as a penalty for not having to pay a fine in such a long time!'", noroelaname());
+				pline("%s thunders: 'You now have to pay a fine of 1000 zorkmids as a penalty for not having to pay a fine in such a long time!'", noroelaname());
 			}
 		}
 
@@ -3433,6 +3516,7 @@ newbossBQ:
 			if (dynamite) {
 				if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
 				else {
+					dynamite->dynamitekaboom = 1;
 					dynamite->quan = 1;
 					dynamite->owt = weight(dynamite);
 					dropy(dynamite);
@@ -3647,6 +3731,18 @@ newbossBQ:
 			if (!extralongsqueak()) badeffect();
 			stop_occupation();
 
+			if (uarmu && uarmu->oartifact == ART_SUE_LYN_S_USAGE) {
+				if (Upolyd && (u.mhmax < (u.ulevel * 20))) u.mhmax++;
+				if (u.uhpmax < (u.ulevel * 20)) u.uhpmax++;
+				if (u.uenmax < (u.ulevel * 20)) u.uenmax++;
+				flags.botl = TRUE;
+			}
+
+		}
+
+		if (uarmu && uarmu->oartifact == ART_SUE_LYN_S_USAGE && uarmu->cursed && !rn2(1000)) {
+			u.inertia += rnd(50);
+			Your("butt feels sore...");
 		}
 
 		if (uarmh && uarmh->oartifact == ART_CLAUDIA_S_SEXY_SCENT && !rn2(100)) {
@@ -5563,6 +5659,10 @@ controlagain:
 			randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
 		}
 
+		if (uarmf && uarmf->oartifact == ART_EIMI_WA_BAKADESU && !rn2(2000) && (ABASE(A_INT) > 10)) {
+			(void) adjattrib(A_INT, -1, FALSE, TRUE);
+		}
+
 		if (Race_if(PM_BULDOZGAR) && !rn2(100)) wake_nearby();
 
 		if (Role_if(PM_FEMINIST) && u.ualign.record < 0 && !rn2(StrongStealth ? 100000 : Stealth ? 50000 : 5000)) {
@@ -6393,6 +6493,40 @@ newbossO:
 
 		}
 
+		if (!rn2(200) && uarmc && uarmc->oartifact == ART_INSANE_MIND_SCREW) {
+
+			int lcount = rnd(monster_difficulty() ) + 1;
+
+		    if (!obsidianprotection()) switch (rn2(11)) {
+		    case 0: make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON),20),
+				"horrible sickness", TRUE, SICK_NONVOMITABLE);
+			    break;
+		    case 1: make_blinded(Blinded + lcount, TRUE);
+			    break;
+		    case 2: if (!Confusion)
+				You("suddenly feel %s.", FunnyHallu ? "trippy" : "confused");
+			    make_confused(HConfusion + lcount, TRUE);
+			    break;
+		    case 3: make_stunned(HStun + lcount, TRUE);
+			    break;
+		    case 4: make_numbed(HNumbed + lcount, TRUE);
+			    break;
+		    case 5: make_frozen(HFrozen + lcount, TRUE);
+			    break;
+		    case 6: make_burned(HBurned + lcount, TRUE);
+			    break;
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
+			    break;
+		    case 8: (void) make_hallucinated(HHallucination + lcount, TRUE, 0L);
+			    break;
+		    case 9: make_feared(HFeared + lcount, TRUE);
+			    break;
+		    case 10: make_dimmed(HDimmed + lcount, TRUE);
+			    break;
+		    }
+
+		}
+
 		if (!rn2(200) && u.uprops[HORROR_BUG].extrinsic) {
 
 			int lcount = rnd(monster_difficulty() ) + 1;
@@ -6556,6 +6690,22 @@ newbossO:
 
 		}
 
+		if (uwep && uwep->oartifact == ART_GENOCIDE && !(u.uprops[DEAC_REFLECTING].intrinsic) ) {
+			u.uprops[DEAC_REFLECTING].intrinsic += 1000;
+		}
+
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_GENOCIDE && !(u.uprops[DEAC_REFLECTING].intrinsic) ) {
+			u.uprops[DEAC_REFLECTING].intrinsic += 1000;
+		}
+
+		if (uwep && uwep->oartifact == ART_SOL_VALTIVA && !(u.uprops[DEAC_FIRE_RES].intrinsic) ) {
+			u.uprops[DEAC_FIRE_RES].intrinsic += 1000;
+		}
+
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SOL_VALTIVA && !(u.uprops[DEAC_FIRE_RES].intrinsic) ) {
+			u.uprops[DEAC_FIRE_RES].intrinsic += 1000;
+		}
+
 		if (uactivesymbiosis) {
 			u.usymbiosisslowturns++;
 			if (u.usymbiosisslowturns >= 30) {
@@ -6627,6 +6777,52 @@ newbossO:
 		}
 
 		if (DestructionEffect && !rn2(100)) {
+			switch (rnd(4)) {
+				case 1:
+					(void) burnarmor(&youmonst);
+					destroy_item(SCROLL_CLASS, AD_FIRE);
+					destroy_item(SPBOOK_CLASS, AD_FIRE);
+					destroy_item(POTION_CLASS, AD_FIRE);
+					break;
+				case 2:
+					destroy_item(POTION_CLASS, AD_COLD);
+					break;
+				case 3:
+					destroy_item(RING_CLASS, AD_ELEC);
+					destroy_item(WAND_CLASS, AD_ELEC);
+					destroy_item(AMULET_CLASS, AD_ELEC);
+					break;
+				case 4:
+					(void) destroy_item(POTION_CLASS, AD_VENO);
+					(void) destroy_item(FOOD_CLASS, AD_VENO);
+					break;
+			}
+		}
+
+		if (uwep && uwep->oartifact == ART_SOL_VALTIVA && !rn2(100)) {
+			switch (rnd(4)) {
+				case 1:
+					(void) burnarmor(&youmonst);
+					destroy_item(SCROLL_CLASS, AD_FIRE);
+					destroy_item(SPBOOK_CLASS, AD_FIRE);
+					destroy_item(POTION_CLASS, AD_FIRE);
+					break;
+				case 2:
+					destroy_item(POTION_CLASS, AD_COLD);
+					break;
+				case 3:
+					destroy_item(RING_CLASS, AD_ELEC);
+					destroy_item(WAND_CLASS, AD_ELEC);
+					destroy_item(AMULET_CLASS, AD_ELEC);
+					break;
+				case 4:
+					(void) destroy_item(POTION_CLASS, AD_VENO);
+					(void) destroy_item(FOOD_CLASS, AD_VENO);
+					break;
+			}
+		}
+
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SOL_VALTIVA && !rn2(100)) {
 			switch (rnd(4)) {
 				case 1:
 					(void) burnarmor(&youmonst);

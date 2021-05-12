@@ -93,14 +93,14 @@ on the first floor, especially when you're playing as something with drain resis
 
 			}
 
-			if ((Role_if(PM_KURWA) || (uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION) ) && (multi < 0) && (mtmp->data->msound == MS_SQEEK || !rn2(3)) && rn2(4)) {
+			if ((Role_if(PM_KURWA) || (uwep && uwep->oartifact == ART_DESERT_MAID) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DESERT_MAID) || (uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION) ) && (multi < 0) && (mtmp->data->msound == MS_SQEEK || !rn2(3)) && rn2(4)) {
 
 				You_cant("move!");
 				nomul(-2, "being clawed", TRUE);
 
 			}
 
-			if ((Role_if(PM_KURWA) || (uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION) ) && (multi >= 0) && (mtmp->data->msound == MS_SQEEK || !rn2(3)) && rn2(10)) {
+			if ((Role_if(PM_KURWA) || (uwep && uwep->oartifact == ART_DESERT_MAID) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DESERT_MAID) || (uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION) ) && (multi >= 0) && (mtmp->data->msound == MS_SQEEK || !rn2(3)) && rn2(10)) {
 
 				You_cant("move!");
 				nomul(-2, "being clawed", TRUE);

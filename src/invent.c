@@ -1123,6 +1123,19 @@ register int type;
 	return((struct obj *) 0);
 }
 
+struct obj *
+carryingappearance(type)
+register int type;
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj)
+		if(itemhasappearance(otmp, type))
+			return(otmp);
+	return((struct obj *) 0);
+
+}
+
 const char *
 currency(amount)
 long amount;
@@ -6212,7 +6225,7 @@ struct obj *otmp;
 		      otyp != GAS_GRENADE &&
 		      otyp != STICK_OF_DYNAMITE &&
 		      !is_axe(otmp) && !is_antibar(otmp) && !is_applypole(otmp) && !(objects[otyp].oc_skill == P_WHIP && otyp != RUBBER_HOSE) ) ||
-		    (otmp->oclass == POTION_CLASS &&
+		    (otmp->oclass == POTION_CLASS && !(otmp->dknown && itemhasappearance(otmp, APP_POTION_VACCINE)) &&
 		     /* only applicable potion is oil, and it will only
 			be offered as a choice when already discovered */
 		     (otyp != POT_OIL || !otmp->dknown ||
@@ -12090,7 +12103,7 @@ boolean knoweverything;
 			case MADELEINE_PLATEAU_BOOTS:
 				pline("A super cute dark blue pair of platform boots, which count as wedge heels. They carry Madeleine's curse, and have 3 AC and 2 MC."); break;
 			case MARLENA_HIKING_BOOTS:
-				pline("This pair of sexy flats is rather solid. They carry Marlena's curse, and have 7 AC and 0 MC."); break;
+				pline("This pair of sexy flats is rather solid. They carry Marlena's curse, and have 3 AC and 0 MC."); break;
 			case ANASTASIA_DANCING_SHOES:
 				pline("Such a lovely, soft pair of female dancing shoes! Wearing them uses the sexy flats skill. They carry Anastasia's curse, and have 2 AC and 0 MC."); break;
 			case JESSICA_LADY_SHOES:
@@ -14039,38 +14052,67 @@ boolean knoweverything;
 #else
 		pline("%s - This is a potion. Color: %s. Material: %s. Appearance: %s. You can quaff it to experience its effects, but it's also possible to throw potions at monsters or bash them with it in melee.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
 #endif
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "milky") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "ghostly") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "hallowed") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "camping") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "spiritual"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (itemhasappearance(obj, APP_POTION_MILKY) || itemhasappearance(obj, APP_POTION_GHOSTLY) || itemhasappearance(obj, APP_POTION_HALLOWED) || itemhasappearance(obj, APP_POTION_CAMPING) || itemhasappearance(obj, APP_POTION_SPIRITUAL)) )
 			pline("Careful, sometimes a ghost may come out if you quaff this potion.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "smoky")))
+
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_SMOKY))
 			pline("A djinni may live in this potion.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "vapor")))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_VAPOR))
 			pline("A dao may live in this potion.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "sizzling")))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_SIZZLING))
 			pline("An efreeti may live in this potion.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "whisky")))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_WHISKY))
 			pline("A wine ghost may live in this potion.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "fuming")))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_FUMING))
 			pline("A marid may live in this potion.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "dimly-shining")))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_DIMLY_SHINING))
 			pline("A demon may live in this potion.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "gaseous")))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_GASEOUS))
 			pline("An elemental may live in this potion.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "starlight")))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_STARLIGHT))
 			pline("An angel may live in this potion.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "endbringer")))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_ENDBRINGER))
 			pline("DANGER: This potion brings an end. Quaff at your own peril.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "chewable")))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_CHEWABLE))
 			pline("You can eat this potion if you want. This will give the effects of inhaling the potion's vapors, which may be different than the quaff effect.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "deadweight")))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_DEADWEIGHT))
 			pline("Occasionally, the act of quaffing this potion forces you to wear some cursed crap.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "present")))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_PRESENT))
 			pline("Occasionally, the act of quaffing this potion forces you to wear a cursed artifact.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "maleen")))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_MALEEN))
 			pline("Occasionally, the act of quaffing this potion forces you to wear a cursed pair of high heels. (Thanks Malena for the inspiration.)");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "gloss")))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_GLOSS))
 			pline("This potion may contain lipstick that you'll automatically apply if you quaff it.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "glam")))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_GLAM))
 			pline("This potion contains nail polish that you'll automatically apply if you quaff it.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_RESERVATROL))
+			pline("This potion contains some noxious chemical that will be released if you quaff it.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_SYMBIO))
+			pline("Occasionally, quaffing this potion summons a tame immobile monster.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_MICROBIOTIC))
+			pline("Occasionally, quaffing this potion summons a tame fungus.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_NITROGLYCERIN))
+			pline("If you quaff or throw this potion, there will be a huge explosion.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_PERFUME))
+			pline("The label reads 'Contains a sample of my personal drum stint reluctance perfume. Sincerely, Anna.'");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_SUBCLINICAL))
+			pline("This potion seems to contain perfume of a largely unknown brand, known by the name 'subclinical lavished'...");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_ABBREVIATOR))
+			pline("This potion seems to contain perfume of a largely unknown brand, known by the name 'abbreviator rambled'...");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_MULLIONING))
+			pline("This potion seems to contain perfume of a largely unknown brand, known by the name 'mullioning almshouse'...");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_DISLODGING))
+			pline("This potion seems to contain perfume of a largely unknown brand, known by the name 'dislodging exscinding'...");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_REMONSTRATED))
+			pline("This potion seems to contain perfume of a largely unknown brand, known by the name 'remonstrated outmarching'...");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_CINERARIA))
+			pline("This potion seems to contain perfume of a largely unknown brand, known by the name 'cineraria lifted'...");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_SPURTED))
+			pline("This potion seems to contain perfume of a largely unknown brand, known by the name 'spurted woodcarver'...");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_BASSETED))
+			pline("This potion seems to contain perfume of a largely unknown brand, known by the name 'basseted prolongation'...");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_VACCINE))
+			pline("If you apply this potion, you can inject it into your veins, which uses it up without giving the actual potion effect. Doing so may cure your covid-19 symptoms, if present. (Yes, this isn't how a vaccine works in real life, but this game isn't real life after all.)");
 
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
@@ -14656,13 +14698,13 @@ boolean knoweverything;
 			case SPE_FORCE_BOLT:
 				pline("A spell that fires an invisible beam. It can damage monsters, items and certain dungeon features."); break;
 			case SPE_CREATE_MONSTER:
-				pline("Casting this spell summons random monsters. Beware, it also backfires sometimes. The summoned monster has a chance of being frenzied too."); break;
+				pline("Casting this spell summons random monsters. Beware, it also backfires sometimes. The summoned monster has a chance of being frenzied too, and in order to prevent the inevitable abuse, it increases your prayer timeout and reduces your alignment record so you can't simply create endless sacrifice fodder."); break;
 			case SPE_DRAIN_LIFE:
 				pline("This spell drains the life force out of monsters, sometimes reducing their level. It also reduces the enchantment of objects it hits."); break;
 			case SPE_COMMAND_UNDEAD:
 				pline("A spell that attempts to tame all adjacent undead monsters. They have a chance of resisting, and very rarely they may instead enter a state of frenzy, becoming immune to further taming attempts. Also, the spell may occasionally backfire."); break;
 			case SPE_SUMMON_UNDEAD:
-				pline("Summons an undead monster. It can also rarely backfire. The summoned monster has a chance of being frenzied too."); break;
+				pline("Summons an undead monster. It can also rarely backfire. The summoned monster has a chance of being frenzied too, and every cast slightly increases your prayer timeout and reduces your alignment record."); break;
 			case SPE_STONE_TO_FLESH:
 				pline("This spell can be cast at items, dungeon features and monsters that are made of stone, turning them into meat."); break;
 			case SPE_HEALING:
@@ -14692,7 +14734,7 @@ boolean knoweverything;
 			case SPE_RESTORE_ABILITY:
 				pline("If your attributes have been damaged, this spell may gradually restore them. Occasionally it fails though."); break;
 			case SPE_CREATE_FAMILIAR:
-				pline("Casting this spell sometimes summons a monster that fights on your side. It has a high chance of summoning a hostile creature instead, so beware..."); break;
+				pline("Casting this spell sometimes summons a monster that fights on your side. It has a high chance of summoning a hostile creature instead, so beware... and it also increases your prayer timeout and reduces alignment record, for good measure."); break;
 			case SPE_LIGHT:
 				pline("A spell that lights up dark areas."); break;
 			case SPE_DETECT_MONSTERS:
@@ -14832,7 +14874,7 @@ boolean knoweverything;
 				pline("Learning this spell causes your deity to become very angry. Casting it angers your deity even more, but grants resistance to damage and spells for a while. The appearance and level of this book are random."); break;
 #endif
 			case SPE_SLOW_MONSTER:
-				pline("This spell fires an invisible beam that slows targets."); break;
+				pline("This spell fires an invisible beam that slows targets. However, after a couple of turns they will speed up again."); break;
 			case SPE_CAUSE_FEAR:
 				pline("Use this spell to make monsters flee from you. Occasionally it backlashes, afflicting you with a standard status effect."); break;
 			case SPE_CHARM_MONSTER:
@@ -14912,7 +14954,7 @@ boolean knoweverything;
 			case SPE_DESTROY_ARMOR:
 				pline("A useful spell if, and only if, you put on some terribly cursed armor and need to get rid of it."); break;
 			case SPE_INERTIA:
-				pline("Powerful spell that you can fire at enemies to slow them down."); break;
+				pline("Powerful spell that you can fire at enemies to slow them down. However, if you manage to slow them below their base speed, they will soon speed up again."); break;
 			case SPE_TIME:
 				pline("You can 'clock back' enemies with this spell, sometimes draining their health and level permanently."); break;
 			case SPE_LEVITATION:
@@ -14940,7 +14982,7 @@ boolean knoweverything;
 			case SPE_DIG:
 				pline("Casting this can dig through walls and other obstacles."); break;
 			case SPE_CANCELLATION:
-				pline("This spell can be cast at objects and monsters to cancel them. However, it occasionally backfires."); break;
+				pline("This spell can be cast at objects and monsters to cancel them. However, it occasionally backfires. Also, monsters cancelled by this spell will un-cancel themselves after a while (usually a couple hundred turns)."); break;
 			case SPE_REFLECTION:
 				pline("You can reflect beams and similar attacks for a limited amount of time if you cast this spell."); break;
 			case SPE_REPAIR_ARMOR:
@@ -16871,7 +16913,7 @@ boolean knoweverything;
 				case ART_ELECTRIFIER:
 					pline("Artifact specs: +5 to-hit and +2 damage to shock-susceptible monsters, shock resistance when wielded."); break;
 				case ART_DOUBLE_BESTARD:
-					pline("Artifact specs: +20 damage. The misspelling is intentional."); break;
+					pline("Artifact specs: +20 damage, -d20 to-hit and slows you down considerably. The misspelling is intentional."); break;
 				case ART_GUARDIAN_OF_ARANOCH:
 					pline("Artifact specs: +20 damage."); break;
 				case ART_DULLSWANDIR:
@@ -16915,13 +16957,13 @@ boolean knoweverything;
 				case ART_PWNHAMMER:
 					pline("Artifact specs: Half physical damage and cold resistance when wielded, +5 to-hit and +16 damage to cold-susceptible monsters."); break;
 				case ART_PWNHAMMER_DUECE:
-					pline("Artifact specs: Regeneration and fire resistance when wielded, +8 to-hit and +24 damage to fire-susceptible monsters."); break;
+					pline("Artifact specs: Regeneration and fire resistance when wielded, +8 to-hit and +24 damage to fire-susceptible monsters, +10 monster difficulty and you can't see lit squares unless you'd also see them if they were unlit."); break;
 				case ART_DOCKSIDE_WALK:
 					pline("Artifact specs: Teleport control when wielded, +2 to-hit and +10 damage."); break;
 				case ART_KARATE_KID:
 					pline("Artifact specs: Free action when wielded, +5 to-hit and +16 damage, lawful."); break;
 				case ART_GIRLFUL_BONKING:
-					pline("Artifact specs: aggravate monster, diarrhea and reduced carry capacity when wielded and also causes claw attacks to do extra damage to you, +20 to-hit and +30 damage."); break;
+					pline("Artifact specs: aggravate monster, all skills act as if they were unskilled, many effects behave as if you were XL1, diarrhea and reduced carry capacity when wielded and also causes claw attacks to do extra damage to you, +20 to-hit and +30 damage."); break;
 				case ART_ARMOR_PIERCING_HUG:
 					pline("Artifact specs: Protection and shock resistance when wielded, +50 to-hit and +2 damage."); break;
 				case ART_ASIAN_WINTER:
@@ -16941,7 +16983,7 @@ boolean knoweverything;
 				case ART_SWEETHEART_PUMP:
 					pline("Artifact specs: Psi resistance when wielded, +15 to-hit and +2 damage."); break;
 				case ART_SANDRA_S_EVIL_MINDDRILL:
-					pline("Artifact specs: Aggravates monsters, searching and shock resistance when wielded. Can randomly cause amnesia. +32 damage, chaotic."); break;
+					pline("Artifact specs: Aggravates monsters, confuses you, searching and shock resistance when wielded. Can randomly cause amnesia. Every act of wielding it will disenchant it as long as it's better than -20. +32 damage, chaotic."); break;
 				case ART_RIBCRACKER:
 					pline("Artifact specs: +8 to-hit and +16 damage."); break;
 				case ART_DULL_METAL:
@@ -17003,23 +17045,23 @@ boolean knoweverything;
 				case ART_WALTHER_PPK:
 					pline("Artifact specs: +2 to-hit and +10 damage."); break;
 				case ART_DESERT_EAGLE:
-					pline("Artifact specs: +5 to-hit and +18 damage."); break;
+					pline("Artifact specs: +5 to-hit and +18 damage, but shoots more slowly than a regular pistol."); break;
 				case ART_INGRAM_MAC___:
 					pline("Artifact specs: speed when wielded."); break;
 				case ART_FN_M____PARA:
-					pline("Artifact specs: aggravates monsters when wielded, +16 damage."); break;
+					pline("Artifact specs: aggravates monsters when wielded, +16 damage but -d15 to-hit for bullets. After all, this thing has an enormous spread. Ever played Counter-Strike?"); break;
 				case ART_SUREFIRE_GUN:
 					pline("Artifact specs: Improves dexterity when wielded."); break;
 				case ART_MOSIN_NAGANT:
-					pline("Artifact specs: Searching when wielded, +20 to-hit and +30 damage."); break;
+					pline("Artifact specs: Searching when wielded, +20 to-hit and +30 damage, but shooting will force you to reload the rifle for the next 2 turns, whether you want to or not. It also shoots really slowly, to balance its awesome power. Paeaeaeaeaeaeaeau klink klink!"); break;
 				case ART_LEONE_M__GUAGE_SUPER:
-					pline("Artifact specs: +40 damage."); break;
+					pline("Artifact specs: +40 damage, but you get hit by recoil when shooting, which paralyzes you for one turn. Also, this gun shoots very slowly."); break;
 				case ART_CITYKILLER_COMBAT_SHOTGUN:
-					pline("Artifact specs: Reflection when wielded, +10 damage."); break;
+					pline("Artifact specs: Reflection when wielded, +10 damage but -d10 to-hit for shells."); break;
 				case ART_SMUGGLERS_END:
 					pline("Artifact specs: Fire resistance when wielded, +10 to-hit and +2 damage."); break;
 				case ART_COLONEL_BASTARD_S_LASER_PI:
-					pline("Artifact specs: +10 to-hit and +10 damage."); break;
+					pline("Artifact specs: +10 to-hit and +10 damage but -d5 to-hit for laser ammo."); break;
 				case ART_COOKIE_CUTTER:
 					pline("Artifact specs: Reflection and magic resistance when wielded."); break;
 				case ART_DOOMGUY_S_WET_DREAM:
@@ -17501,7 +17543,7 @@ boolean knoweverything;
 				case ART_LIGHTS__CAMERA__ACTION:
 					pline("Artifact specs: taking photos with it can scare nearby monsters."); break;
 				case ART_FAIREST_IN_THE_LAND:
-					pline("Artifact specs: Applying it at a hostile nymph will pacify her."); break;
+					pline("Artifact specs: Applying it at a hostile nymph will pacify her if the mirror isn't cursed, but doing so has a small chance of cursing the mirror."); break;
 				case ART_EYES_OF_THE_SPYING_ACADEMY:
 					pline("Artifact specs: ESP and searching when worn. Property of Team Splat."); break;
 				case ART_BLINDFOLD_OF_MISPELLING:
@@ -17613,7 +17655,7 @@ boolean knoweverything;
 				case ART_PEACEKEEPER:
 					pline("Artifact specs: +4 to-hit and +8 damage to crossaligned monsters, lawful."); break;
 				case ART_RESTKEEPER:
-					pline("Artifact specs: +4 to-hit and +8 damage to crossaligned monsters, lawful. The type of ice block (Soviet5lo) created this item in case someone wants to compile firearms out of SLASHTHEM, which will never happen. :-P"); break;
+					pline("Artifact specs: +4 to-hit and +8 damage to crossaligned monsters, lawful. The type of ice block created this item in case someone wants to compile firearms out of the game, which will never happen. :-P"); break;
 				case ART_ICEBITER:
 					pline("Artifact specs: cold resistance when wielded, +6 to-hit and +6 damage to cold-susceptible monsters, lawful."); break;
 				case ART_SHOCK_BRAND:
@@ -17621,13 +17663,13 @@ boolean knoweverything;
 				case ART_ACID_BRAND:
 					pline("Artifact specs: acid resistance when wielded, +5 to-hit and double damage to acid-susceptible monsters."); break;
 				case ART_SNAKESKIN:
-					pline("Artifact specs: hallucination resistance, protection and acid resistance when worn, neutral. Soviet, the filthy heretic, actually deferred the role for which this artifact was originally intended..."); break;
+					pline("Artifact specs: hallucination resistance, protection and acid resistance when worn, neutral. Soviet, the creator of a different variant, actually deferred the role for which this artifact was originally intended..."); break;
 				case ART_POSEIDON_S_TREASURE:
 					pline("Artifact specs: +10 to-hit and +10 damage to shock-susceptible monsters, neutral."); break;
 				case ART_GLADIUS:
-					pline("Artifact specs: +8 to-hit and +6 damage, neutral. Someone ought to tell Soviet that he made an artifact sword that's basically called 'sword' (lol)."); break;
+					pline("Artifact specs: +8 to-hit and +6 damage, neutral. Someone ought to tell the creator that he made an artifact sword that's basically called 'sword' (lol)."); break;
 				case ART_HRUNTING:
-					pline("Artifact specs: +4 to-hit and +4 damage, neutral. In SLASHTHEM this thing is associated with the warrior role and the author of that fork completely forgot that the warrior role is Elder Scrolls-themed."); break;
+					pline("Artifact specs: +4 to-hit and +4 damage, neutral. In SLASHTHEM this thing is associated with the warrior role, despite the original idea that the warrior role is Elder Scrolls-themed."); break;
 				case ART_DEBUGGER:
 					pline("Artifact specs: shock resistance when wielded, +5 to-hit and +4 damage to shock-susceptible monsters, neutral."); break;
 				case ART_ACIDTESTER:
@@ -17671,7 +17713,7 @@ boolean knoweverything;
 				case ART_BLOODMARKER:
 					pline("Artifact specs: +3 to-hit and +6 damage, chaotic."); break;
 				case ART_SHAWSHANK:
-					pline("Artifact specs: +9 to-hit and +8 damage, chaotic. Soviet5lo created it for the Gangster role, being oblivious to the fact that the gangster is based on the Grand Theft Auto series."); break;
+					pline("Artifact specs: +9 to-hit and +8 damage, chaotic. Soviet5lo created it for the Gangster role, even though originally the gangster is based on the Grand Theft Auto series."); break;
 				case ART_SPINESEEKER:
 					pline("Artifact specs: +5 to-hit and +4 damage, chaotic."); break;
 				case ART_CROWN_ROYAL_CLOAK:
@@ -17683,9 +17725,9 @@ boolean knoweverything;
 				case ART_WARFORGER:
 					pline("Artifact specs: fire resistance when wielded, +15 to-hit and +14 damage, neutral. Originally intended to be carried by Durin the Blacksmith, maybe?"); break;
 				case ART_SLING_OF_DAVID:
-					pline("Artifact specs: half physical damage when wielded, +5 to-hit and double damage, neutral. No, Soviet, sling bullets fired by this thing will not instakill giants."); break;
+					pline("Artifact specs: half physical damage when wielded, +5 to-hit and double damage, neutral. No, dude, sling bullets fired by this thing will not instakill giants."); break;
 				case ART_GOLDEN_WHISTLE_OF_NORA:
-					pline("Artifact specs: warning, half physical damage and ESP when wielded, lawful. The type of ice block came up with this beautiful name and says it's TEMPORARY??? I don't wanna know what terrible name it will have in future SLASHTHEM versions."); break;
+					pline("Artifact specs: warning, half physical damage and ESP when wielded, lawful. The type of ice block came up with this beautiful name and says it's TEMPORARY??? If you ask me, the name should be permanent!"); break;
 				case ART_FUMA_ITTO_NO_KEN:
 					pline("Artifact specs: drain resistance when wielded, +8 to-hit and +8 damage to crossaligned monsters, chaotic."); break;
 				case ART_PICK_OF_THE_GRAVE:
@@ -17703,7 +17745,7 @@ boolean knoweverything;
 				case ART_CUDGEL_OF_CUTHBERT:
 					pline("Artifact specs: hallucination and drain resistance plus regeneration, warning, increased monster difficulty, wall trap effect and half spell damage when wielded, +5 to-hit and double damage to crossaligned monsters, lawful."); break;
 				case ART_SWORD_OF_SVYATOGOR:
-					pline("Artifact specs: half physical damage and cold resistance when wielded, +7 to-hit and +8 damage, lawful. No idea what weird mythology 'Svyatogor' comes from, but certainly not The Elder Scrolls, so this has no business being the warrior quest artifact in SLASHTHEM."); break;
+					pline("Artifact specs: half physical damage and cold resistance when wielded, +7 to-hit and +8 damage, lawful. No idea what weird mythology 'Svyatogor' comes from, but certainly not The Elder Scrolls, so this has no business being the warrior quest artifact in this game."); break;
 				case ART_TOMMY_GUN_OF_CAPONE:
 					pline("Artifact specs: fire resistance, warning, stealth and acts as a luckstone when wielded, +5 to-hit and +6 damage, chaotic."); break;
 				case ART_WHISTLE_OF_THE_WARDEN:
@@ -17905,7 +17947,7 @@ boolean knoweverything;
 				case ART_ROD_OF_THE_ELVISH_LORDS:
 					pline("Artifact specs: +3 to-hit and double damage, chaotic."); break;
 				case ART_SOL_VALTIVA:
-					pline("Artifact specs: fire resistance when wielded, +5 to-hit and +24 damage to fire-susceptible monsters, chaotic."); break;
+					pline("Artifact specs: fire resistance when wielded, +5 to-hit and +24 damage to fire-susceptible monsters, random item destruction, disables fire resistance for a while when wielded, chaotic."); break;
 				case ART_STAFF_OF_THE_ARCHMAGI:
 					pline("Artifact specs: searching, cold, fire and shock resistance and acts as a luckstone when wielded, +20 to-hit and +4 stun damage."); break;
 				case ART_ROBE_OF_THE_ARCHMAGI:
@@ -17915,7 +17957,7 @@ boolean knoweverything;
 				case ART_KUSANAGI_NO_TSURUGI:
 					pline("Artifact specs: energy regeneration, searching, acts as a luckstone, aggravate monster, recurring disenchantment and itemcursing when wielded, beheads monsters, +20 to-hit and +12 damage, lawful."); break;
 				case ART_GENOCIDE:
-					pline("Artifact specs: fire resistance when wielded, +10 to-hit and +20 damage to fire-susceptible monsters, bloodthirsty, lawful."); break;
+					pline("Artifact specs: fire resistance when wielded, +10 to-hit and +20 damage to fire-susceptible monsters, bloodthirsty, causes the uberjackal effect, disables reflection for a while when wielded, lawful."); break;
 				case ART_ROD_OF_DIS:
 					pline("Artifact specs: +10 to-hit and +8 damage, lawful."); break;
 				case ART_AVARICE:
@@ -18613,7 +18655,7 @@ boolean knoweverything;
 				case ART_SURFING_FUN:
 					pline("Artifact specs: completely prevents its contents from getting wet, even if it's cursed."); break;
 				case ART_MONSTERATOR:
-					pline("Artifact specs: if it deletes at least 10 items at once, monsters are created proportional to the # of items that were in it, but it will also greatly increase your prayer timeout to thwart the inevitable altar scumming that you want to do."); break;
+					pline("Artifact specs: if it deletes at least 10 items at once, monsters are created proportional to the # of items that were in it (with a max of 200), but it will also greatly increase your prayer timeout to thwart the inevitable altar scumming that you want to do."); break;
 				case ART_GO_AWAY_YOU_BASTARD:
 					pline("Artifact specs: if it's not cursed, applying it causes a phase door effect, but it will often curse itself after you used it."); break;
 				case ART_BATTLEHORN_OF_SESCHERON:
@@ -18623,7 +18665,7 @@ boolean knoweverything;
 				case ART_HEAVEN_S_CALL_TO_ARMS:
 					pline("Artifact specs: Has no special effect beyond its base item."); break;
 				case ART_BIMMEL_BIMMEL:
-					pline("Artifact specs: applying it tries to tame all 'x' adjacent to you, but they get a resistance roll and may also be frenzied instead."); break;
+					pline("Artifact specs: applying it while it's not cursed tries to tame all 'x' adjacent to you, but they get a resistance roll and may also be frenzied instead. Also, there's a chance that the bell becomes cursed."); break;
 				case ART_SCRABBLE_BABBLE:
 					pline("Artifact specs: engraving with it will only consume charges 1 out of 10 turns."); break;
 				case ART_I_THE_SAGE:
@@ -19097,7 +19139,7 @@ boolean knoweverything;
 				case ART_KNBLOELOELOELODRIO:
 					pline("Artifact specs: No specialties."); break;
 				case ART_DESERT_MAID:
-					pline("Artifact specs: +20 damage."); break;
+					pline("Artifact specs: +20 damage, makes you super-vulnerable to claw attacks and causes dora trap effect when wielded."); break;
 				case ART_CYGNISWAN:
 					pline("Artifact specs: hallucination resistance when wielded."); break;
 				case ART_TALKATOR:
@@ -19599,7 +19641,7 @@ boolean knoweverything;
 				case ART_JONADAB_S_HEAVYLOAD:
 					pline("Artifact specs: ESP and invisibility while carried."); break;
 				case ART_HANGING_CALL:
-					pline("Artifact specs: +5 to-hit and +4 damage to acid-susceptible monsters, acid resistance when wielded, neutral. This is a 'temporary' artifact created by Soviet5lo, also known as the type of ice block whose variant is constantly being mocked in this one because Slash'EM Extended is just far better in every single way."); break;
+					pline("Artifact specs: +5 to-hit and +4 damage to acid-susceptible monsters, acid resistance when wielded, neutral. This is a 'temporary' artifact created by Soviet5lo, but which is permanent here because Slash'EM Extended normally doesn't implement temporary features."); break;
 				case ART_BLUE_SCREEN_OF_DEATH:
 					pline("Artifact specs: shock resistance when worn, makes everything blue and occasionally spawns blue monsters."); break;
 				case ART_SADDLE_OF_REFLECTION:
@@ -19620,7 +19662,7 @@ boolean knoweverything;
 				case ART_DUFFDUFFDUFF:
 					pline("Artifact specs: +3 increase damage when worn."); break;
 				case ART_INSANE_MIND_SCREW:
-					pline("Artifact specs: reflection, magic and psi resistance when worn, chaotic."); break;
+					pline("Artifact specs: reflection, magic and psi resistance when worn, horror trap effect, chaotic."); break;
 				case ART_RESISTANT_PUNCHING_BAG:
 					pline("Artifact specs: drain resistance and +1 magic cancellation when worn."); break;
 				case ART_HONORED_FAIRNESS:
@@ -19834,7 +19876,7 @@ boolean knoweverything;
 				case ART_THEY_RE_ALL_YELLOW:
 					pline("Artifact specs: acid resistance when worn, and regeneration if you're in a form without hands."); break;
 				case ART_GELMER_KELANA_TWIN:
-					pline("Artifact specs: monsters from vanilla NetHack spawn more often when you wear it, which means that all non-vanilla monsters become more rare. But if you're in a form with hands, it also makes the game behave like SLASHTHEM, which will fuck you up. The type of ice block laughs, 'Harharharharhar HARR-HARR!'"); break;
+					pline("Artifact specs: monsters from vanilla NetHack spawn more often when you wear it, which means that all non-vanilla monsters become more rare. But if you're in a form with hands, it also makes the game behave like SLASHTHEM (well actually, it activates soviet mode, aka SLASHTHEM Extended), which will fuck you up. The type of ice block laughs, 'Harharharharhar HARR-HARR!'"); break;
 				case ART_NO_ABNORMAL_FUTURE:
 					pline("Artifact specs: whenever a monster hits you in melee while you wear this, there's a slight chance that your items are randomly damaged. The individual chance of this happening may be small but consider how many hits you're going to take over the course of a single game... If you wear it while in a form without hands, it also allows you to use your techniques 4 times as often."); break;
 				case ART_SIGNIFICANT_RNG_JITTER:
@@ -21223,6 +21265,42 @@ boolean knoweverything;
 					pline("Artifact specs: +5 to-hit and double damage, chaotic. If you kick it while it's on the ground and it goes 'Thump!', something bad may happen."); break;
 				case ART_JONADAB_S_METAL_GUARD:
 					pline("Artifact specs: half spell damage when worn. Putting them on changes their material to iron if it's something else."); break;
+				case ART_COCKBANGER_ARMOR:
+					pline("Artifact specs: sets itself to a random value from +1 to +10 if you put it on while it's +0 or lower."); break;
+				case ART_TLAHUIZCALPANTECUHTLI:
+					pline("Artifact specs: diminished bleeding while wielded, allows you to sacrifice your own race on an altar."); break;
+				case ART_PANZER_TANK:
+					pline("Artifact specs: while riding a monster that has this saddle, you have +10 constitution, 10 extra points of AC and half physical damage."); break;
+				case ART_EIMI_WA_BAKADESU:
+					pline("Artifact specs: if your intelligence is greater than 10, it gradually decreases over time. Items are renamed to japanese while you are wearing them, because this artifact's name means 'Amy is a retard' and was suggested by Demo. It also allows you to train the high heels skill five times as fast and boosts the damage done by grenades thrown by you."); break;
+				case ART_SHUT_UP_YOU_FUCK:
+					pline("Artifact specs: if you are riding a steed that has this saddle and is somehow hostile, the steed won't be able to use perfume, farting attacks and similar garbage against you."); break;
+				case ART_UTTER_USELESSNESS:
+					pline("Artifact specs: if you put this saddle on a monster that has farting, perfume or superman attacks, you can ride it even when it's not tame. As long as the monster is peaceful (as opposed to hostile), this isn't actually completely useless."); break;
+				case ART_CHROME_GOOD:
+					pline("Artifact specs: +6 to-hit and +2 damage, poison resistance when wielded."); break;
+				case ART_GAYGUN:
+					pline("Artifact specs: if you're homosexual, +5 bashing damage, and it also makes your footwear count as high heels regardless of your sexual orientation (but not if you're barefooted), but if you're not homosexual and are wearing shoes, you'll also be numbed."); break;
+				case ART_ANTIMAGICBANE:
+					pline("Artifact specs: magic resistance when wielded, +3 to-hit and +4 stun damage, prevents both you and monsters from spellcasting, neutral."); break;
+				case ART_GANTULETS_OF_MISPEALING:
+					pline("Artifact specs: trying to engrave Elbereth will always fail, engraving other stuff is also likely to misengrave."); break;
+				case ART_SUE_LYN_S_USAGE:
+					pline("Artifact specs: causes you to fart periodically, and if you do, your maximum HP and Pw may go up if they're not too high yet. If this artifact is cursed, wearing it will occasionally cause you to suffer from inertia."); break;
+				case ART_MR__OUTLASH:
+					pline("Artifact specs: +8 damage."); break;
+				case ART_SCHOKOLADE_EEA:
+					pline("Artifact specs: eating it causes you to become deaf for a while."); break;
+				case ART_CHRISTMAS_EGG:
+					pline("Artifact specs: grants temporary half physical damage when eaten."); break;
+				case ART_ANIKIBOMBO_NEAU:
+					pline("Artifact specs: no specialties."); break;
+				case ART_GOA_EVILGATE:
+					pline("Artifact specs: can also give you a symbiote that you couldn't normally obtain, chaotic."); break;
+				case ART_PUSHMICEBIRE:
+					pline("Artifact specs: +2 damage against rodents."); break;
+				case ART_SECRET_BOOK_OF_VENOM:
+					pline("Artifact specs: successfully reading it will teach you the venom mixing technique, or increase its level if you already know it."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

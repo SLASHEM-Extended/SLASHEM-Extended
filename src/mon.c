@@ -161,6 +161,7 @@ int mndx;
 	case PM_ETTIN_ZOMBIE:
 	case PM_PROTESTAINST_ETTIN_ZOMBIE:
 	case PM_CALLS_ITSELF_ETTIN_MUMMY:
+	case PM_ORANGE_ETTIN_MUMMY:
 	case PM_EVIL_ETTIN_MUMMY:
 	case PM_ETTIN_MUMMY:	mndx = PM_ETTIN;  break;
 	case PM_TROLL_ZOMBIE:
@@ -697,6 +698,7 @@ register struct monst *mtmp;
 	    case PM_MIMIC_MUMMY:
 	    case PM_GIANT_MUMMY:
 	    case PM_ETTIN_MUMMY:
+	    case PM_ORANGE_ETTIN_MUMMY:
 	    case PM_CALLS_ITSELF_ETTIN_MUMMY:
 	    case PM_TROLL_MUMMY:
 	    case PM_EGO_TROLL_MUMMY:
@@ -2768,11 +2770,11 @@ register struct monst *mtmp;
 	 * proportional to their size instead of weight.
 	 */
 	if (!mtmp->data->cwt)
-		maxload = (MAX_CARR_CAP * (long)mtmp->data->msize) / MZ_HUMAN;
+		maxload = (5000 * (long)mtmp->data->msize) / MZ_HUMAN;
 	else if (!strongmonst(mtmp->data)
 		|| (strongmonst(mtmp->data) && (mtmp->data->cwt > WT_HUMAN)))
-		maxload = (MAX_CARR_CAP * (long)mtmp->data->cwt) / WT_HUMAN;
-	else	maxload = MAX_CARR_CAP; /*strong monsters w/cwt <= WT_HUMAN*/
+		maxload = (5000 * (long)mtmp->data->cwt) / WT_HUMAN;
+	else	maxload = 5000; /*strong monsters w/cwt <= WT_HUMAN*/
 
 	if (!strongmonst(mtmp->data)) maxload /= 2;
 
@@ -4587,6 +4589,12 @@ newbossSING:
 		u.uhpmax += rnd(3);
 		u.uenmax += rnd(3);
 		if (Upolyd) u.mhmax += rnd(3);
+	}
+
+	if (mtmp->data == &mons[PM_SUMATRA_CHIEF]) {
+		You("gain the secret knowledge of the Sumatra Chief!");
+	    	learntech_or_leveltech(T_JAVELIN_FORGING, FROMOUTSIDE, 1);
+
 	}
 
       if(mtmp->data == &mons[PM_MOTHERFUCKER_GLASS_GOLEM] && !u.glassgolemdown) {
@@ -9353,13 +9361,27 @@ boolean holdeneffect;
 }
 
 void
-getrandomsymbiote(extrahealth)
+getrandomsymbiote(extrahealth, canbeother)
 boolean extrahealth;
+boolean canbeother;
 {
 	struct permonst *pm = 0;
 	int attempts = 0;
 
-	if (!Race_if(PM_GOAULD)) {
+	if (canbeother) {
+		do {
+			pm = rndmonst();
+			attempts++;
+			if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+		} while ( (!pm || (pm && (!cannot_be_tamed(pm) ) )) && attempts < 500000);
+
+		if (!pm || (pm && (!cannot_be_tamed(pm) ) )) {
+			pline("For some reason, symbiote creation failed.");
+			return;
+		}
+
+	} else if (!Race_if(PM_GOAULD)) {
 		do {
 			pm = rndmonst();
 			attempts++;

@@ -289,8 +289,8 @@ A("Electrifier",			GREAT_HOUCHOU,
 	ELEC(5,2), ELEC(0,0), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
 /* intentional misspelling --Amy */
-A("Double Bestard",			BASTERD_SWORD,
-	(SPFX_RESTR|SPFX_SPEAK), 0, 0,
+A("Double Bestard",			BASTERD_SWORD, /* -d20 to-hit, slows you down twice as much as spirit */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_SPEAK), 0, 0,
 	PHYS(0,20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
 A("Guardian of Aranoch",			BENT_SABLE,
@@ -377,7 +377,7 @@ A("Pwnhammer",			MALLET,
 	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_HPHDAM), 0, 0,
 	COLD(5,16), DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
-A("Pwnhammer Duece",			SLEDGE_HAMMER,
+A("Pwnhammer Duece",			SLEDGE_HAMMER, /* +10 difficulty, can't see lit areas */
 	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_REGEN), 0, 0,
 	FIRE(8,24), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
 
@@ -389,7 +389,7 @@ A("Karate Kid",			SOFT_GIRL_SNEAKER, /* free action */
 	(SPFX_RESTR), 0, 0,
 	PHYS(5,16), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 10000L ),
 
-A("Girlful Bonking",			STURDY_PLATEAU_BOOT_FOR_GIRLS, /* aggravate monster, diarrhea, claw attacks deal extra damage to you, -500 carry capacity */
+A("Girlful Bonking",			STURDY_PLATEAU_BOOT_FOR_GIRLS, /* aggravate monster, diarrhea, claw attacks deal extra damage to you, -500 carry capacity, all skills behave as if they were unskilled, gushlush effect */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	PHYS(20,30), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
 
@@ -429,7 +429,7 @@ A("Sweetheart Pump",			SEXY_LEATHER_PUMP, /* psi resistance */
 	(SPFX_RESTR), 0, 0,
 	PHYS(15,2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
-A("Sandra's Evil Minddrill",			SPIKED_BATTLE_BOOT, /* aggravate monster, can cause amnesia when wielded */
+A("Sandra's Evil Minddrill",			SPIKED_BATTLE_BOOT, /* aggravate monster, confusion and can cause amnesia when wielded; wielding it disenchants it as long as it's better than -20 */
 	(SPFX_RESTR|SPFX_DEFN|SPFX_SEARCH|SPFX_EVIL), 0, 0,
 	PHYS(0,32), DFNS(AD_ELEC), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 10000L ),
 
@@ -553,7 +553,7 @@ A("Walther PPK",			PISTOL,
 	(SPFX_RESTR), 0, 0,
 	PHYS(2,10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
-A("Desert Eagle",			PISTOL,
+A("Desert Eagle",			PISTOL, /* -1 multishot */
 	(SPFX_RESTR), 0, 0,
 	PHYS(5,18), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
@@ -561,7 +561,7 @@ A("Ingram Mac-10",			SUBMACHINE_GUN, /* makes the player very fast when wielded 
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
 
-A("FN M249 Para",			HEAVY_MACHINE_GUN, /* aggravate monster */
+A("FN M249 Para",			HEAVY_MACHINE_GUN, /* aggravate monster, -d15 to-hit */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	PHYS(0,16), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
@@ -569,15 +569,15 @@ A("Surefire Gun",			RIFLE,
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
-A("Mosin-Nagant",			SNIPER_RIFLE,
+A("Mosin-Nagant",			SNIPER_RIFLE, /* paralyzes you for 2 turns after each shot, -3 multishot */
 	(SPFX_RESTR|SPFX_SEEK), 0, 0,
 	PHYS(20,30), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
-A("Leone M3 Guage Super",			SHOTGUN,
+A("Leone M3 Guage Super",			SHOTGUN, /* paralyzes you for a turn after each shot, -2 multishot */
 	(SPFX_RESTR), 0, 0,
 	PHYS(0,40), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1600L ),
 
-A("Citykiller Combat Shotgun",			AUTO_SHOTGUN,
+A("Citykiller Combat Shotgun",			AUTO_SHOTGUN, /* -d10 to-hit */
 	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
 	PHYS(0,10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3600L ),
 
@@ -585,7 +585,7 @@ A("Smugglers End",			HAND_BLASTER,
 	(SPFX_RESTR|SPFX_DEFN), 0, 0,
 	PHYS(10,2), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
-A("Colonel Bastard's Laser Pistol",			ARM_BLASTER,
+A("Colonel Bastard's Laser Pistol",			ARM_BLASTER, /* -d5 to-hit */
 	(SPFX_RESTR), 0, 0,
 	PHYS(10,10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
@@ -774,7 +774,7 @@ A("Offense Owns Defense",			ROBE, /* double attacks */
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
 A("Protection With A Price",			ROBE_OF_WEAKNESS, /* stun resistance and 5 extra points of AC */
-	(SPFX_RESTR|SPFX_HALRES), 0, 0,
+	(SPFX_RESTR|SPFX_HALRES|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
 A("Cute Idea",			ORANGE_DRAGON_SCALE_MAIL,
@@ -954,7 +954,7 @@ A("Functional Radio",			ANTENNA, /* works like radio helmet */
 	NO_ATTK, DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
 A("Warner Brother",			PLASTEEL_HELM,
-	(SPFX_RESTR|SPFX_WARN), 0, 0,
+	(SPFX_RESTR|SPFX_WARN|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 250L ),
 
 A("Dark Nadir",			HELMET, /* autocurses, creates darkness once every 100 turns, but improves your to-hit by 5 */
@@ -994,7 +994,7 @@ A("Omniscient",			HELMET_OF_UNDEAD_WARNING,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 600L ),
 
 A("Spacewarp",			HELM_OF_TELEPORTATION,
-	(SPFX_RESTR|SPFX_TCTRL), 0, 0,
+	(SPFX_RESTR|SPFX_TCTRL|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
 A("Dictatorship",			HELM_OF_TELEPORT_CONTROL, /* also gives polymorph control */
@@ -2496,7 +2496,7 @@ A("The Rod of the Elvish Lords", ELVEN_MACE, /* Elf noble first gift */
 	0,	A_CHAOTIC, NON_PM, NON_PM, 4000L), 
 
 A("Sol Valtiva",			TWO_HANDED_SWORD,		/* The Sun of the Gods of the Dead */
-	(SPFX_RESTR|SPFX_DEFN|SPFX_ATTK),  0, 0,
+	(SPFX_RESTR|SPFX_DEFN|SPFX_ATTK|SPFX_EVIL),  0, 0, /* random item destruction and disables fire resistance for 1000 turns when wielded */
 	FIRE(5,24),	DFNS(AD_FIRE),	NO_CARY,	
 	0, A_CHAOTIC, NON_PM, NON_PM, 4000L), 
 
@@ -2520,8 +2520,8 @@ A("The Kusanagi no Tsurugi",	LONG_SWORD, /* aggravate monster, recurring disench
 	PHYS(20,12),	NO_DFNS,	NO_CARY,
 	0,		A_LAWFUL, NON_PM, NON_PM, 4500L), 
 
-A("Genocide", TWO_HANDED_SWORD, /* bloodthirsty */
-	(SPFX_RESTR|SPFX_INTEL|SPFX_DEFN|SPFX_ATTK), 0, 0,
+A("Genocide", TWO_HANDED_SWORD, /* bloodthirsty, uberjackal effect, disables reflection for 1000 turns */
+	(SPFX_RESTR|SPFX_INTEL|SPFX_DEFN|SPFX_ATTK|SPFX_EVIL), 0, 0,
 	FIRE(10,20),	DFNS(AD_FIRE),	NO_CARY,
 	0,	A_LAWFUL, NON_PM, NON_PM, 9999L), 
 
@@ -3624,7 +3624,7 @@ A("Warpchange",				RIN_POLYMORPH, /* teleportitis */
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
 A("Semi Shape Control",				RIN_POLYMORPH_CONTROL, /* also gives polymorphitis */
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
 A("Formtaker",				AMULET_OF_POLYMORPH, /* gives permanent intrinsic polymorphitis if you put it on! */
@@ -4678,8 +4678,8 @@ A("Knbloeloeloelodrio",				SPE_MAGICTORCH,
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
-A("Desert Maid",			LONG_SWORD,
-	(SPFX_RESTR), 0, 0,
+A("Desert Maid",			LONG_SWORD, /* kurwa claw weakness and dora trap effect when wielded */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	PHYS(0,20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
 A("Cygniswan",			LONG_SWORD,
@@ -5703,7 +5703,7 @@ A("DuffDuffDuff",				PSEUDO_TELEPORTER_CLOAK, /* +3 increase damage */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
-A("Insane Mind Screw",				CLOCKLOAK, /* psi resistance */
+A("Insane Mind Screw",				CLOCKLOAK, /* psi resistance, horror trap effect */
 	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL|SPFX_REFLECT), 0, 0,
 	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 7000L ),
 
@@ -6876,7 +6876,7 @@ A("Susanne's Headsmasher",				MARBLE_CHUNK,
 	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
 A("Iron Ball of Ball Ironing",				HEAVY_IRON_BALL,
-	(SPFX_RESTR|SPFX_DFLAG2), 0, M2_MALE,
+	(SPFX_RESTR|SPFX_DFLAG2|SPFX_ATTK), 0, M2_MALE,
 	FIRE(5, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
 A("Gary's Rivalry",				CONTRO_STAFF, /* player can walk over farmland, magical breathing, items don't get wet, +2 increase damage when wielded */
@@ -7491,7 +7491,7 @@ A("PolyFast",				RIN_POLYMORPH, /* very fast speed */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
-A("Wobblesteady",				AMULET_OF_POLYMORPH, /* stun resistance */
+A("Wobblesteady",				RIN_POLYMORPH, /* stun resistance */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
@@ -8401,6 +8401,77 @@ A("Jonadab's Metal Guard",				GAUNTLETS_OF_FUMBLING, /* putting them on changes 
 	(SPFX_RESTR|SPFX_HSPDAM|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
+A("Cockbanger Armor",				LEATHER_ARMOR, /* randart, sets itself to a random value from +1 to +10 if worn while +0 or lower */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Tlahuizcalpantecuhtli",				SHINY_STAR, /* diminished bleeding, allows you to sacrifice your own race when wielded */
+	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Panzer Tank",				LEATHER_SADDLE, /* while riding, you have +10 constitution, 10 extra points of AC and half physical damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Eimi wa bakadesu",				HIPPIE_HEELS, /* if your INT is higher than 10, 1 in 2000 chance per turn to lose one point of it, renames items to japanese, high heels skill trains five times as fast, grenades thrown by you get grenadonin-like damage boosts */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Shut Up You Fuck",				INKA_SADDLE, /* if the steed is hostile, it won't be able to use MS_FART or similar attacks against you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Utter Uselessness",				INKA_SADDLE, /* if you put it on a farting, perfume or superman monster, you'll be able to ride it even if it's not tame */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Chrome Good",				SHOTGUN, /* poison resistance when wielded */
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Gaygun",				RAYGUN, /* +5 melee damage if you're homosexual, and your footwear (if present) counts as high heels but if you're not homosexual, you're also numbed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Antimagicbane",                  COLLUSION_KNIFE, /* prevents both you and monsters from spellcasting */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	STUN(3,4),	DFNS(AD_MAGM),	NO_CARY,	0, A_NEUTRAL, NON_PM, NON_PM, 3500L ),
+
+A("Gantulets of Mispealing",				LEATHER_GLOVES, /* randart2, trying to engrave Elbereth will always misengrave, other engravings also randomly misengrave */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Sue Lyn's Usage",				TOILET_ROLL, /* replicates maurah trap effect, if it triggers you gain +1 max HP and Pw up to a max of 20*XL; if it's cursed, 1 in 1000 chance per turn to receive d50 turns of inertia */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Mr. Outlash",				PIN_BOLT,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Schokolade-eea",				CHOCOLATE, /* rnz(500) turns of deafness when eaten */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Christmas Egg",				CHOCOEGG, /* rn1(1000,1000) turns of half physical damage when eating */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Anikibombo-neau",				SPE_BOMBING, /* no special effects */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Goa-Evilgate",				SCR_SYMBIOSIS, /* can also give symbiotes that only goaulds could normally get (or if you are a goauld, can also give ones that a goauld cannot have) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 8000L ),
+
+A("Pushmicebire",				WAR_HAMMER,
+	(SPFX_RESTR|SPFX_DCLAS), 0, (S_RODENT),
+	PHYS(0, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("The Secret Book of Venom",				SPE_MAGICTORCH, /* randart2, teaches venom mixing tech if successfully read or increases its tech level by one if you already know it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 15000L ),
 
 /*
  *	Stormbringer only has a 2 because it can drain a level,
@@ -8625,7 +8696,7 @@ A("The Iron Ball of Liberation", HEAVY_IRON_BALL,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL),
 		(SPFX_STLTH|SPFX_SEARCH|SPFX_WARN), 0,
 	NO_ATTK,	NO_DFNS,	CARY(AD_MAGM),
-	PHASING,	A_NEUTRAL, PM_PRISONER, NON_PM, 5000L ),
+	PHASING,	A_NEUTRAL, PM_CONVICT, NON_PM, 5000L ),
 
 A("Pitch Blade",			BROADSWORD,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_TCTRL|SPFX_INTEL),0,0,

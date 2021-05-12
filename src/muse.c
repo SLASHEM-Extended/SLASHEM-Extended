@@ -1970,14 +1970,11 @@ struct obj *obj;
 	if (obj->oclass == POTION_CLASS) {
 	    coord cc;
 	    static const char *empty = "The potion turns out to be empty.";
-	    const char *potion_descr;
 	    struct monst *mtmp;
 #define POTION_OCCUPANT_CHANCE(n) (13 + 2*(n))	/* also in potion.c */
 
-	    potion_descr = OBJ_DESCR(objects[obj->otyp]);
-	    if (potion_descr && (!strcmp(potion_descr, "milky") || !strcmp(potion_descr, "ghostly") || !strcmp(potion_descr, "hallowed") || !strcmp(potion_descr, "camping") || !strcmp(potion_descr, "spiritual")) ) {
-	        if ( flags.ghost_count < MAXMONNO &&
-		    !rn2(POTION_OCCUPANT_CHANCE(flags.ghost_count))) {
+	    if (itemhasappearance(obj, APP_POTION_MILKY) || itemhasappearance(obj, APP_POTION_GHOSTLY) || itemhasappearance(obj, APP_POTION_HALLOWED) || itemhasappearance(obj, APP_POTION_CAMPING) || itemhasappearance(obj, APP_POTION_SPIRITUAL)) {
+	        if ( flags.ghost_count < MAXMONNO && !rn2(POTION_OCCUPANT_CHANCE(flags.ghost_count))) {
 		    if (!enexto(&cc, mon->mx, mon->my, &mons[PM_GHOST])) return 0;
 		    mquaffmsg(mon, obj);
 		    m_useup(mon, obj);
@@ -1998,7 +1995,7 @@ struct obj *obj;
 		    return 2;
 		}
 	    }
-	    if (potion_descr && !strcmp(potion_descr, "smoky") &&
+	    if (itemhasappearance(obj, APP_POTION_SMOKY) &&
 		    flags.djinni_count < MAXMONNO &&
 		    !rn2(POTION_OCCUPANT_CHANCE(flags.djinni_count))) {
 		if (!enexto(&cc, mon->mx, mon->my, &mons[PM_DJINNI])) return 0;
@@ -2055,7 +2052,7 @@ struct obj *obj;
 		}
 		return 2;
 	    }
-	    if (potion_descr && !strcmp(potion_descr, "vapor") &&
+	    if (itemhasappearance(obj, APP_POTION_VAPOR) &&
 		    flags.dao_count < MAXMONNO &&
 		    !rn2(POTION_OCCUPANT_CHANCE(flags.dao_count))) {
 		if (!enexto(&cc, mon->mx, mon->my, &mons[PM_DAO])) return 0;
@@ -2108,7 +2105,7 @@ struct obj *obj;
 		}
 		return 2;
 	    }
-	    if (potion_descr && !strcmp(potion_descr, "fuming") &&
+	    if (itemhasappearance(obj, APP_POTION_FUMING) &&
 		    flags.efreeti_count < MAXMONNO &&
 		    !rn2(POTION_OCCUPANT_CHANCE(flags.efreeti_count))) {
 		if (!enexto(&cc, mon->mx, mon->my, &mons[PM_EFREETI])) return 0;
@@ -2161,7 +2158,7 @@ struct obj *obj;
 		}
 		return 2;
 	    }
-	    if (potion_descr && !strcmp(potion_descr, "sizzling") &&
+	    if (itemhasappearance(obj, APP_POTION_SIZZLING) &&
 		    flags.marid_count < MAXMONNO &&
 		    !rn2(POTION_OCCUPANT_CHANCE(flags.marid_count))) {
 		if (!enexto(&cc, mon->mx, mon->my, &mons[PM_MARID])) return 0;
@@ -2214,7 +2211,7 @@ struct obj *obj;
 		}
 		return 2;
 	    }
-	    if (potion_descr && !strcmp(potion_descr, "whisky") &&
+	    if (itemhasappearance(obj, APP_POTION_WHISKY) &&
 		    flags.wineghost_count < MAXMONNO &&
 		    !rn2(POTION_OCCUPANT_CHANCE(flags.wineghost_count))) {
 		if (!enexto(&cc, mon->mx, mon->my, &mons[PM_WINE_GHOST])) return 0;
@@ -2267,11 +2264,20 @@ struct obj *obj;
 		}
 		return 2;
 	    }
-	    if (potion_descr && !strcmp(potion_descr, "dimly-shining") && !rn2(10)) {
+	    if (itemhasappearance(obj, APP_POTION_DIMLY_SHINING) && !rn2(10)) {
 		if (!enexto(&cc, mon->mx, mon->my, &mons[PM_INFERNAL_POTATO])) return 0;
 		mquaffmsg(mon, obj);
 		m_useup(mon, obj);
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 		mtmp = makemon(mkclass(S_DEMON,0), cc.x, cc.y, MM_ANGRY);
+
+		u.aggravation = 0;
+
 		if (!mtmp) {
 		    if (vis) pline("%s", empty);
 		} else {
@@ -2280,11 +2286,20 @@ struct obj *obj;
 		}
 		return 2;
 	    }
-	    if (potion_descr && !strcmp(potion_descr, "gaseous") && !rn2(10)) {
+	    if (itemhasappearance(obj, APP_POTION_GASEOUS) && !rn2(10)) {
 		if (!enexto(&cc, mon->mx, mon->my, &mons[PM_AIR_ELEMENTAL])) return 0;
 		mquaffmsg(mon, obj);
 		m_useup(mon, obj);
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 		mtmp = makemon(mkclass(S_ELEMENTAL,0), cc.x, cc.y, MM_ANGRY);
+
+		u.aggravation = 0;
+
 		if (!mtmp) {
 		    if (vis) pline("%s", empty);
 		} else {
@@ -2293,11 +2308,20 @@ struct obj *obj;
 		}
 		return 2;
 	    }
-	    if (potion_descr && !strcmp(potion_descr, "starlight") && !rn2(10)) {
+	    if (itemhasappearance(obj, APP_POTION_STARLIGHT) && !rn2(10)) {
 		if (!enexto(&cc, mon->mx, mon->my, &mons[PM_ANGEL])) return 0;
 		mquaffmsg(mon, obj);
 		m_useup(mon, obj);
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 		mtmp = makemon(mkclass(S_ANGEL,0), cc.x, cc.y, MM_ANGRY);
+
+		u.aggravation = 0;
+
 		if (!mtmp) {
 		    if (vis) pline("%s", empty);
 		} else {
@@ -2307,21 +2331,87 @@ struct obj *obj;
 		return 2;
 	    }
 
-	    if (potion_descr && !strcmp(potion_descr, "endbringer") && !rn2(64)) {
+	    if (itemhasappearance(obj, APP_POTION_ENDBRINGER) && !rn2(64)) {
 		ragnarok(TRUE);
 		if (evilfriday) evilragnarok(TRUE,level_difficulty());
 	    }
-	    if (potion_descr && !strcmp(potion_descr, "deadweight") && !rn2(10)) {
+	    if (itemhasappearance(obj, APP_POTION_DEADWEIGHT) && !rn2(10)) {
 		pline("Some sinister force causes you to wear an item!");
 		bad_equipment(0);
 	    }
-	    if (potion_descr && !strcmp(potion_descr, "present") && !rn2(10)) {
+	    if (itemhasappearance(obj, APP_POTION_PRESENT) && !rn2(10)) {
 		pline("Some sinister force causes you to wear an artifact!");
 		bad_artifact();
 	    }
-	    if (potion_descr && !strcmp(potion_descr, "maleen") && !rn2(10)) {
+	    if (itemhasappearance(obj, APP_POTION_MALEEN) && !rn2(10)) {
 		pline("Some sinister force causes you to wear a pair of heels!");
 		bad_equipment_heel();
+	    }
+	    if (itemhasappearance(obj, APP_POTION_RESERVATROL)) {
+		(void) create_gas_cloud(mon->mx, mon->my, 3+bcsign(obj), 8+4*bcsign(obj));
+		You("smell chemicals.");
+	    }
+	    if (itemhasappearance(obj, APP_POTION_NITROGLYCERIN)) {
+		struct obj *dynamite;
+		dynamite = mksobj_at(STICK_OF_DYNAMITE, mon->mx, mon->my, TRUE, FALSE, FALSE);
+		if (dynamite) {
+			if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
+			else {
+				dynamite->dynamitekaboom = 1;
+				dynamite->quan = 1;
+				dynamite->owt = weight(dynamite);
+				attach_bomb_blow_timeout(dynamite, 0, 0);
+			}
+		}
+
+	    }
+	    if (itemhasappearance(obj, APP_POTION_SYMBIO)) {
+		struct permonst *pm = 0;
+		int attempts = 0;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+		register struct monst *symbiomon;
+
+newsymbio:
+		do {
+			pm = rndmonst();
+			attempts++;
+
+		} while ( (!pm || (pm && !(stationary(pm) || pm->mmove == 0 || pm->mlet == S_TURRET ))) && attempts < 50000);
+
+		if (!pm && rn2(50) ) {
+			attempts = 0;
+			goto newsymbio;
+		}
+		if (pm && !(stationary(pm) || pm->mmove == 0 || pm->mlet == S_TURRET) && rn2(50) ) {
+			attempts = 0;
+			goto newsymbio;
+		}
+
+		if (pm) symbiomon = makemon(pm, cc.x, cc.y, MM_ANGRY);
+
+		u.aggravation = 0;
+
+		if (symbiomon && vis) {
+			pline("A potential symbiote forms out of nowhere!");
+		}
+	    }
+	    if (itemhasappearance(obj, APP_POTION_MICROBIOTIC)) {
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+		mtmp = makemon(mkclass(S_FUNGUS,0), cc.x, cc.y, MM_ANGRY);
+
+		u.aggravation = 0;
+
+		if (mtmp && vis) pline("A fungus forms out of nowhere!");
 	    }
 	}
 	if (obj->oclass == WAND_CLASS && obj->cursed && !rn2(100)) {
@@ -4627,6 +4717,7 @@ struct monst *mtmp;
 #define MUSE_WAN_UNDRESSING 161
 #define MUSE_WAN_STAT_REDUCTION 162
 #define MUSE_SCR_VISIBLE_ITEM 163
+#define MUSE_POT_NITROGLYCERIN 164
 
 /* Select an offensive item/action for a monster.  Returns TRUE iff one is
  * found.
@@ -4911,6 +5002,11 @@ struct monst *mtmp;
 		if(obj->otyp == POT_FIRE) {
 			m.offensive = obj;
 			m.has_offense = MUSE_POT_FIRE;
+		}
+		nomore(MUSE_POT_NITROGLYCERIN);
+		if(itemhasappearance(obj, APP_POTION_NITROGLYCERIN)) {
+			m.offensive = obj;
+			m.has_offense = MUSE_POT_NITROGLYCERIN;
 		}
 		nomore(MUSE_POT_SALT_WATER);
 		if(obj->otyp == POT_SALT_WATER && Race_if(PM_ELONA_SNAIL) && !Upolyd) {
@@ -9817,6 +9913,7 @@ newboss:
 	case MUSE_POT_ICE:
 	case MUSE_POT_FEAR:
 	case MUSE_POT_FIRE:
+	case MUSE_POT_NITROGLYCERIN:
 	case MUSE_POT_SALT_WATER:
 	case MUSE_POT_DIMNESS:
 	case MUSE_POT_SANITY:
@@ -11674,6 +11771,7 @@ struct obj *obj;
 		    typ == POT_ICE ||
 		    typ == POT_FEAR ||
 		    typ == POT_FIRE ||
+		    itemhasappearance(obj, APP_POTION_NITROGLYCERIN) || 
 			/* Monsters will pick up potions of salt water even if your snail is polymorphed,
 			 * but they'll only throw them if you're actually in snail form --Amy */
 		    (typ == POT_SALT_WATER && Race_if(PM_ELONA_SNAIL)) ||

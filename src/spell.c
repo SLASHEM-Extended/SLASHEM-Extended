@@ -2166,6 +2166,12 @@ learn()
 			    book->otyp = booktype = SPE_BLANK_PAPER;
 			} else if (spellknow(i) <= MAX_CAN_STUDY) {
 			    Your("knowledge of that spell is keener.");
+
+			    if (book->oartifact == ART_SECRET_BOOK_OF_VENOM) {
+				You("gain the secret knowledge of venom mixing!");
+				learntech_or_leveltech(T_VENOM_MIXING, FROMOUTSIDE, 1);
+			    }
+
 			    use_skill(P_MEMORIZATION, spellev(i));
 			    if (!rn2(3)) u.uenmax++;
 			    u.cnd_spellbookcount++;
@@ -2238,6 +2244,10 @@ learn()
 			You("have keen knowledge of the spell.");
 			You(i > 0 ? "add %s to your repertoire." : "learn %s.",
 			    splname);
+			if (book->oartifact == ART_SECRET_BOOK_OF_VENOM) {
+				You("gain the secret knowledge of venom mixing!");
+				learntech_or_leveltech(T_VENOM_MIXING, FROMOUTSIDE, 1);
+			}
 			if (booktype == SPE_FORBIDDEN_KNOWLEDGE) {
 				u.ugangr += 15;
 				if (flags.soundok) You_hear("a thunderous growling and rumbling...");
@@ -2792,7 +2802,7 @@ docast()
 
 	int whatreturn;
 
-	if (u.antimagicshell || (uarmh && uarmh->otyp == HELM_OF_ANTI_MAGIC) || (RngeAntimagicA && (moves % 10 == 0)) || (RngeAntimagicB && (moves % 5 == 0)) || (RngeAntimagicC && (moves % 2 == 0)) || (RngeAntimagicD) || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || Role_if(PM_UNBELIEVER) ) {
+	if (u.antimagicshell || (uarmh && uarmh->otyp == HELM_OF_ANTI_MAGIC) || (RngeAntimagicA && (moves % 10 == 0)) || (RngeAntimagicB && (moves % 5 == 0)) || (RngeAntimagicC && (moves % 2 == 0)) || (RngeAntimagicD) || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || Role_if(PM_UNBELIEVER) || (uwep && uwep->oartifact == ART_ANTIMAGICBANE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ANTIMAGICBANE) ) {
 
 		pline("Your anti-magic shell prevents spellcasting.");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -5833,7 +5843,7 @@ newbossPENT:
 					break;
 				case 27:
 					if (!uinsymbiosis) {
-						getrandomsymbiote(FALSE);
+						getrandomsymbiote(FALSE, FALSE);
 						pline("Suddenly you have a symbiote!");
 					} else {
 						u.usymbiote.mhpmax += rnd(10);
@@ -9351,6 +9361,8 @@ controlagain:
 			pline("The spell backfired!");
 			badeffect();
 		}
+		u.ublesscnt += 50;
+		adjalign(-3);
 		break;
 	case SPE_CLAIRVOYANCE:
 		if (!BClairvoyant)
@@ -12215,6 +12227,11 @@ int spell;
 		else if (chance == 89) chance += 3;
 		else if (chance == 90) chance += 2;
 		else chance += 1;
+	}
+
+	/* very high INT gives a boost, even if your casting stat is WIS --Amy */
+	if (ACURR(A_INT) >= 16) {
+		chance += (ACURR(A_INT) - 15);
 	}
 
 	if (uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) {

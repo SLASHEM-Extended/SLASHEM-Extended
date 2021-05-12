@@ -6461,6 +6461,8 @@ register int otyp;
 		actualn = Alternate_item_name(otyp,Japanese_items);
 	if (Role_if(PM_OTAKU) && Alternate_item_name(otyp,Japanese_items))
 		actualn = Alternate_item_name(otyp,Japanese_items);
+	if (uarmf && uarmf->oartifact == ART_EIMI_WA_BAKADESU && Alternate_item_name(otyp,Japanese_items))
+		actualn = Alternate_item_name(otyp,Japanese_items);
 	if ( (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) && !issoviet && Alternate_item_name(otyp,Pirate_items))
 		actualn = Alternate_item_name(otyp,Pirate_items);
 	if ( (issoviet || (uarmc && uarmc->oartifact == ART_GAGARIN_S_TRANSLATOR)) && Alternate_item_name(otyp,Soviet_items))
@@ -6663,6 +6665,8 @@ register struct obj *obj;
 	if (Role_if(PM_NINJA) && Alternate_item_name(typ,Japanese_items))
 		actualn = Alternate_item_name(typ,Japanese_items);
 	if (Role_if(PM_OTAKU) && Alternate_item_name(typ,Japanese_items))
+		actualn = Alternate_item_name(typ,Japanese_items);
+	if (uarmf && uarmf->oartifact == ART_EIMI_WA_BAKADESU && Alternate_item_name(typ,Japanese_items))
 		actualn = Alternate_item_name(typ,Japanese_items);
 	if ( (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) && !issoviet && Alternate_item_name(typ,Pirate_items))
 		actualn = Alternate_item_name(typ,Pirate_items);

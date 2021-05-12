@@ -150,6 +150,10 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		if (uwep->spe > -10) uwep->spe = -10;
 	}
 
+	if (uwep && uwep->oartifact == ART_SANDRA_S_EVIL_MINDDRILL) {
+		if (uwep->spe > -20) uwep->spe--;
+	}
+
 	if (uwep && uwep->oartifact == ART_HENRIETTA_S_MISTAKE && !uwep->hvycurse) {
 		curse(uwep);
 		uwep->hvycurse = 1;
@@ -294,6 +298,10 @@ swapweaponchoice:
 			curse(uswapwep);
 			uswapwep->hvycurse = 1;
 			if (uswapwep->spe > -10) uswapwep->spe = -10;
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_SANDRA_S_EVIL_MINDDRILL) {
+			if (uswapwep->spe > -20) uswapwep->spe--;
 		}
 
 		if (uswapwep && uswapwep->oartifact == ART_HENRIETTA_S_MISTAKE && !uswapwep->hvycurse) {
@@ -947,10 +955,11 @@ can_twoweapon()
 	    else
 		pline("%s aren't able to fight two-handed.",
 			upstart(makeplural(urace.noun)));
-	} else if (NOT_WEAPON(uwep) || NOT_WEAPON(uswapwep)) {
+	} else if ((NOT_WEAPON(uwep) && issoviet) || NOT_WEAPON(uswapwep)) {
 	    otmp = NOT_WEAPON(uwep) ? uwep : uswapwep;
 	    pline("%s %s.", Yname2(otmp),
 		is_plural(otmp) ? "aren't weapons" : "isn't a weapon");
+	    if (issoviet && NOT_WEAPON(uwep)) pline("Zamedlit'! Pochemu ty voobshche igrayesh' v etu duratskuyu igru?");
 	} else if ((uwep && bimanual(uwep)) || (uswapwep && bimanual(uswapwep))) {
 	    otmp = (uwep && bimanual(uwep)) ? uwep : uswapwep;
 	    pline("%s isn't one-handed.", Yname2(otmp));

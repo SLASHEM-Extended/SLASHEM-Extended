@@ -254,6 +254,9 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"hidden power",
 	"sword art",
 	"firm cudgel",
+	"lighter balls",
+	"venom mixing",
+	"javelin forging",
 	"jedi jump",
 	"charge saber",
 	"telekinesis",
@@ -3393,8 +3396,20 @@ dotech()
 			pline("Requires you to be wielding a claw, which will be badly poisoned, making it less likely to lose its poisoning compared to regular poisoned weapons.");
 			break;
 
+		case T_LIGHTER_BALLS:
+			pline("Lasts for quite a while, and reduces the weight of your wielded heavy iron ball by half while active.");
+			break;
+
 		case T_BALLSLIFF:
 			pline("This technique only works if you're wielding a heavy iron ball, or another type of heavy ball as a weapon, and repairs a bit of damage on the ball.");
+			break;
+
+		case T_JAVELIN_FORGING:
+			pline("Creates a random javelin when used.");
+			break;
+
+		case T_VENOM_MIXING:
+			pline("An arcane technique that allows you to create venom out of thin air.");
 			break;
 
 		case T_POLE_MELEE:
@@ -4575,7 +4590,7 @@ secureidchoice:
 		} else {
                        pline("%s breaks the stare!", Monnam(mtmp));
 		}
-               	t_timeout = rnz(75);
+               	t_timeout = rnz(750);
 	    	break;
 	    case T_BLITZ:
 	    	if ((uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU) )) || (u.twoweap && uswapwep)) {
@@ -8719,6 +8734,64 @@ repairitemchoice:
 		      t_timeout = rnz(50000);
 			break;
 
+		case T_LIGHTER_BALLS:
+
+			if (!uwep) {
+				You("can't use this technique without a weapon!");
+				return(0);
+			}
+
+			if (uwep && uwep->oclass != BALL_CLASS) {
+				You("aren't wielding a ball!");
+				return(0);
+			}
+
+			num = 1000 + (techlevX(tech_no) * 10);
+		    	techt_inuse(tech_no) = num + 1;
+			Your("balls get lighter.");
+			if (FunnyHallu) pline("Shame, now no girl will want to kick them because it wouldn't hurt you anymore.");
+
+		      t_timeout = rnz(50000);
+			break;
+
+		case T_VENOM_MIXING:
+
+			{
+
+				struct obj *uammo;
+				uammo = mksobj(rn2(2) ? BLINDING_VENOM : ACID_VENOM, TRUE, FALSE, FALSE);
+				if (uammo) {
+					uammo->known = uammo->dknown = uammo->bknown = uammo->rknown = 1;
+					uammo->quan = 30 + techlevX(tech_no);
+					uammo->owt = weight(uammo);
+					dropy(uammo);
+					stackobj(uammo);
+					pline("A stack of venoms has been dropped on the ground.");
+				}
+
+			}
+
+		      t_timeout = rnz(15000);
+			break;
+
+		case T_JAVELIN_FORGING:
+
+			{
+
+				struct obj *uammo;
+				uammo = mksobj(rnd_class(JAVELIN, STACK_JAVELIN), TRUE, FALSE, FALSE);
+				if (uammo) {
+					uammo->known = uammo->dknown = uammo->bknown = uammo->rknown = 1;
+					dropy(uammo);
+					stackobj(uammo);
+					pline("A javelin was forged!");
+				}
+
+			}
+
+		      t_timeout = rnz(10000);
+			break;
+
 		case T_BALLSLIFF:
 
 			if (!uwep) {
@@ -9848,6 +9921,10 @@ tech_timeout()
 			break;
 		    case T_GRAP_SWAP:
 			pline("The effects of your grinders and lances are no longer swapped.");
+			break;
+		    case T_LIGHTER_BALLS:
+			Your("balls are heavy again.");
+			if (FunnyHallu) pline("Now's the time to present them to a sweet girl, who can kick them to test your pain threshold.");
 			break;
 		    case T_POWERBIOSIS:
 			pline("Your symbiote's awesome power fades.");

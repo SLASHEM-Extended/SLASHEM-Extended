@@ -769,6 +769,31 @@ doread()
 	"Hello and welcome to Boyabali's used armor dealership! Please be aware that in order to enter our store, you not only need to be wearing a face mask, you also must have a pokemon with you.",
 	"Kick you, itchy money", /* by Pinkbeast, pun on Kiku-ichimonji */
 	"play slexbwos, the type of ice block's new variant. slex, but without shoes!", /* by Demo */
+	"slex a variant of slashthem???? take that back you scallywag and scoundrel! (something about an ice block)", /* by amateurhour */
+	"If you want a picture of the future NetHack variant scene, imagine a variety of colorful shoes stepping on a human face - forever.", /* by aosdict */
+	"woot...the master liche can suck it", /* by Lurchy */
+	"If violence isn't working, you are obviously not using enough of it.",
+	"What's yours is mine, and what's mine is mine. See that guy over there, his stuff? Mine too.",
+	"If it's not on fire now, it will be soon.",
+	"Anything worth doing is best done yourself.",
+	"Anything dead over THERE will not be bothering me HERE.",
+	"Everything worth doing is worth overdoing.",
+	"The whole world is my stage!",
+	"A hymn a day, will keep me away, Sinner!",
+	"did you just assume my gender",
+	"Why does this weird role start with a cursed t-shirt? It makes no sense!",
+	"lh a d a Adeo", /* by Amy when she was trying to type in the dark */
+	"do it... MOO EET", /* by K2 */
+	"how many cows does it take to screw in a lightbulb? MOO",
+	"why is the caveman always partying? he owns a club",
+	"Grin-itch Spinach",
+	"100%% All-Natural Croesus Meat - \"Eat the Rich!\"",
+	"I polymorphed everything in Fort Ludios and all I got was this lousy T-shirt!",
+	"I rubbed a magic lamp and all I got was this blessed fireproof +5 T-shirt!",
+	"Kiss me, I'm Elvish",
+	"Liches Get Stitches",
+	"Procrastinators of all countries, unite... tomorrow!", /* by Amy's wonderful bundleroommate <3 */
+
 
 	    };
 	    char buf[BUFSZ];
@@ -5634,6 +5659,8 @@ proofarmorchoice:
 			pline("The spell backfires!");
 			badeffect();
 		}
+		u.ublesscnt += 100;
+		adjalign(-5);
 
 		u.aggravation = 0;
 
@@ -6405,6 +6432,8 @@ materialchoice3:
 			pline("The spell backfires!");
 			badeffect();
 		}
+		u.ublesscnt += 30;
+		adjalign(-2);
 
 	case SCR_SUMMON_UNDEAD:        
 	    {
@@ -9838,7 +9867,7 @@ rerollX:
 				getlin("You have found a scroll of symbiosis! Do you want to replace your current symbiote with a random new one? [yes/no]", buf);
 				(void) lcase (buf);
 				if (!(strcmp (buf, "yes")) ) {
-					getrandomsymbiote(sobj->blessed);
+					getrandomsymbiote(sobj->blessed, (sobj->oartifact == ART_GOA_EVILGATE) ? TRUE : FALSE);
 					break;
 				} else {
 					You("decided to not get a random new symbiote.");
@@ -9846,7 +9875,7 @@ rerollX:
 				}
 			}
 
-			getrandomsymbiote(sobj->blessed);
+			getrandomsymbiote(sobj->blessed, (sobj->oartifact == ART_GOA_EVILGATE) ? TRUE : FALSE);
 		}
 
 		break;

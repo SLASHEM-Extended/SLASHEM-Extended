@@ -947,6 +947,7 @@ E void reducesanity(int);
 E long money_cnt(struct obj *);
 #endif
 E boolean zapmrename(void);
+E int max_carr_cap(void);
 
 /* ### hacklib.c ### */
 
@@ -1015,6 +1016,7 @@ E void delallobj(int,int);
 E void delobj(struct obj *);
 E struct obj *sobj_at(int,int,int);
 E struct obj *carrying(int);
+E struct obj *carryingappearance(int);
 E boolean have_lizard(void);
 E boolean have_loadstone(void);
 E boolean have_pokeloadstone(void);
@@ -1774,7 +1776,7 @@ E void uncursesymbiote(BOOLEAN_P);
 E void cursesymbiote(void);
 E boolean symbiotemelee(void);
 E boolean symbiotepassive(void);
-E void getrandomsymbiote(BOOLEAN_P);
+E void getrandomsymbiote(BOOLEAN_P,BOOLEAN_P);
 E void monst_globals_init(void);
 
 /* ### mondata.c ### */
@@ -2979,6 +2981,7 @@ E boolean will_hit_steed(void);
 E boolean confsteeddir(void);
 E boolean flysaddle(void);
 E boolean bmwride(int);
+E boolean mercedesride(int, struct monst *);
 
 /* ### tech.c ### */
 

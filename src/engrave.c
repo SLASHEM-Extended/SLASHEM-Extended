@@ -981,6 +981,14 @@ static const char *random_mesg[] = {
 	"SLEX is hereby presented to you by Amy Bluecuntwipeofdeath. Or it would be, according to a certain vandal on the roguebasin site.",
 	"fleecy bundle is an anagram of bully defence",
 	"Locke's men bind Julyne Stark to a tree, and then Locke pulls out his most devastating weapon which is roughly wand-shaped, using it to rob Julyne of something that she can't ever get back.",
+	"You cheated not only the game, but yourself. You didn't grow. You didn't improve. You took a shortcut and gained nothing. You experienced a hollow victory.",
+	"get blasted off to space by the 5730 turboass! call now to receive a FREE turbofinger with your purchase!", /* by spicycat */
+	"Team Ant getting you down?  Call Nero's Extermination Service today!",
+	"Got milky potions?",
+	"Try Pengalengan's Green Slime Meringue Pies - The Combustible Comestible",
+	"Lonely? Try one of Madame Ruth's Patented Love Potions - 'Taming in a Bottle'",
+	"All your castle are belong to us",
+	"DON'T DEAD OPEN INSIDE",
 
 };
 
@@ -2517,7 +2525,7 @@ doengrave()
 	    u.uconduct.literate++;
 
 	/* Evil Variant by ais523: the first Elbereth will always misengrave */
-	if (evilfriday && strlen(ebuf) > 7) for (sp = ebuf; *sp; sp++) {
+	if ((evilfriday || (uarmg && uarmg->oartifact == ART_GANTULETS_OF_MISPEALING)) && strlen(ebuf) > 7) for (sp = ebuf; *sp; sp++) {
 
 		if (*sp == 'e' || *sp == 'E') {
 			sp++;
@@ -2580,6 +2588,9 @@ doengrave()
 			(Hallucination && (ishaxor ? !rn2(28) : !rn2(18))) )
 		*sp = ' ' + rnd(96 - 2);	/* ASCII '!' thru '~'
 						   (excludes ' ' and DEL) */
+
+		if (uarmg && uarmg->oartifact == ART_GANTULETS_OF_MISPEALING && rn2(2)) *sp = ' ' + rnd(96 - 2);
+
 	}
 
 	/* Previous engraving is overwritten */
@@ -5415,6 +5426,57 @@ static const char *epitaphs[] = {
 	"hey amy ur game is LAMY", /* by Demo */
 	"Amy you suuuuuuck! why did you make that fucking town with the blasted HORDE of angels that is plain IMPOSSIBLE to defeat you BIIIIIIITCH! omg do you even play your game? apparently not, because otherwise you'd notice how it's more of a mental asylum simulator than a video game!!!",
 	"slex is for slosers", /* by Demo */
+	"slashtehmeretaher <--- play that instead", /* ditto */
+	"tzt der sycrikk olkf symbiosis den skill freilschascltne+",
+	"SLEX is an egregore from the EPIs of every player", /* by luxidream */
+	"Here lies some hobbyless minecraft player, slain by the ender dragon because in hobbylessminecraft you always get killed by the ender dragon.",
+	"Here lies the ender dragon, slain by a bunch of exploding beds.",
+	"Arrested by the Keystone Kops. Permanently.",
+	"Come on!  What kind of watchmen arrest someone by killing them?",
+	"For years and years I wandered the earth, until I died and went to hell.",
+	"Here lies Hilda, calm and placid.  Added water to the acid.",
+	"Here lies Mittens the housecat, used up his wand of undead turning (0:8).",
+	"Here lies Owen Cash, tried and failed to dine and dash.",
+	"Here lies the zruty, eaten by a sea monster. May it zzz in peace.",
+	"Here lies the zruty, killed by a variant developer that dislikes variety.", /* :-P --Amy */
+	"I thought I could be like Adeon.  Guess not.",
+	"I was wanted dead or alive.  Turned out it was dead.",
+	"Little Timmy drank a potion. Now he is no more. Cause what he thought was H2O was H2SO4.",
+	"Oh, I died.  Well, better late than never!",
+	"Ten thousand start scummers lie at rest here, their lives tragically cut short.",
+	"Here lies this lame start scummer. We didn't even bother adding his, her or its stupid name because startscummers suck lol",
+	"Here lies Desideratus Annius, a perverted coward.",
+	"Here lies the captain of the town watch. He takes a lot of the blame for this fortress's downfall.",
+	"At last that old fool died, was about time.",
+	"Hey visitor! Feel free to dance on this grave, for I burrowed my insufferable mother-in-law here! Ding-dong, the witch is dead!",
+	"Terminated.",
+	"Don't you know it's rude to walk on someone else's grave?",
+	"How could the elves do this to me?",
+	"Here lies Jade, her debt to a shopkeeper finally paid.",
+	"Ashes to ashes, dust to dust.",
+	"This guy didn't pay enough to have his name on the headstone.",
+	"Here lies Brock, killed by a falling rock.",
+	"Huh, what's that you say about walking around with unpaid items while having uncontrolled teleportitis? What's the worst that could happen?",
+	"WAT? Contamination instakill? I don't even know why that killed me, or how I could have prevented that!",
+	"Tried to off that demon lord, but he breathed at me and I died.",
+	"Oh, I got hit with inertia. No big deal, that dragon can't possible kill me in one rou-",
+	"Hey I know what I'll do! I just flee from that ancient dragon by running over the snow tiles! Dragons are slow after all, they can't cat-",
+	"Aww how cute, a tai chi girl! Why did the variant developer even bother adding such a wimpy monster to the game... hey how come she just paralyzed me? Err what, she kicks me and kicks me and I don't regain control of my char??? I can't possibly die to h-",
+	"Amy that hippie heels kick attack is busted, the level 10 zombie prostitute just soloed my XL20 monk even though I had a full ascension kit.",
+	"Yeah of course this game is totally fair. You make your way through that endless Gehennom with your ascension kit and then suddenly there's this demon lord that just disintegrates all those items one after the other. UNBALANCED!!!", /* although of course it's not unbalanced, just a difficulty spike :-P */
+	"Whaaaaaaaat? Wouwou beggars are level 0??? Omg does the variant developer even know how OP the wouwou taunts are?",
+	"A level 2 monster with an active banishment attack??? BULLSHIT! No sane programmer would make such an unbalanced game!", /* once again, they are balanced, after all they're very slow */
+	"Yeah sure, a death lichen. Give a level 0 monster a touch of death attack and you'll have a garbage game where you can just die randomly through no fault of your own.", /* and of course the random poison dart traps in vanilla aren't unbalanced :-P */
+	"Tried to get to Oregon. Died of dysentery.",
+	"every joke suggestion becomes another fartifact that spawns on dlvl 1 and prevents you getting your first sac gift", /* by amateurhour */
+	"man you cannot get the first sacrifice gift and without it this role kind of sucks! #quit",
+	"amy i offered 250 corpses and had three altars disappear and got NO gift!!! #quit",
+	"man i sacfested for three hours straight and when i finally got a gift it was one that autocurses and gives some bullshit interface screw nastytrap garbage!!! #quit",
+	"The connection died and then I tried to reconnect and my game was gone.",
+	"suffocated in a vat of crappy shoes", /* by cebolla */
+	"WHAAAAAAT? I'm supposed to use tactical combat where my positioning, choice of melee versus ranged weapons etc. MATTER? screw that, I'll just whack everything with my orcish dagger in melee :P",
+	"nurse dancing can result in the sexy nurses stepping on the player's toes with their sexy high-heeled nurse boots <3",
+	"So, like, atrocious segfaults happen every minute!",
 
 };
 

@@ -441,7 +441,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 	}
 
 	/* monster unable to cast spells? */
-	if (mtmp->mcan || arcaniumfail() || (RngeAntimagicA && !rn2(10)) || (RngeAntimagicB && !rn2(5)) || (RngeAntimagicC && !rn2(2)) || (RngeAntimagicD) || (RngeSpellDisruption && !rn2(5)) || mtmp->m_en < 5 || mtmp->mspec_used || !ml || u.antimagicshell || (uarmh && uarmh->otyp == HELM_OF_ANTI_MAGIC) || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || Role_if(PM_UNBELIEVER) || (uarmc && (itemhasappearance(uarmc, APP_VOID_CLOAK) || itemhasappearance(uarmc, APP_SHELL_CLOAK)) && !rn2(5))  ) {
+	if (mtmp->mcan || arcaniumfail() || (RngeAntimagicA && !rn2(10)) || (RngeAntimagicB && !rn2(5)) || (RngeAntimagicC && !rn2(2)) || (RngeAntimagicD) || (RngeSpellDisruption && !rn2(5)) || mtmp->m_en < 5 || mtmp->mspec_used || !ml || u.antimagicshell || (uarmh && uarmh->otyp == HELM_OF_ANTI_MAGIC) || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || Role_if(PM_UNBELIEVER) || (uwep && uwep->oartifact == ART_ANTIMAGICBANE) || (uarmc && (itemhasappearance(uarmc, APP_VOID_CLOAK) || itemhasappearance(uarmc, APP_SHELL_CLOAK)) && !rn2(5))  ) {
 	    cursetxt(mtmp, is_undirected_spell(mattk->adtyp, spellnum));
 	    return(0);
 	}
@@ -850,6 +850,39 @@ int spellnum;
 	    else
 		pline("%s from nowhere!", mappear);
 	}
+
+	if (mtmp->data == &mons[PM_WOK]) {
+		int attempts = 0;
+		struct permonst *pm = 0;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+newbossRLL:
+		do {
+			pm = rndmonst();
+			attempts++;
+			if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+		} while ( (!pm || (pm && !(pm->msound == MS_SUPERMAN ))) && attempts < 50000);
+
+		if (!pm && rn2(50) ) {
+			attempts = 0;
+			goto newbossRLL;
+		}
+		if (pm && !(pm->msound == MS_SUPERMAN) && rn2(50) ) {
+			attempts = 0;
+			goto newbossRLL;
+		}
+
+		if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
+
+		u.aggravation = 0;
+
+	}
+
 	dmg = 0;
 	break;
     }
@@ -877,6 +910,39 @@ int spellnum;
 		pline("%s from nowhere!", mappear);
 	}
 	dmg = 0;
+
+	if (mtmp->data == &mons[PM_WOK]) {
+		int attempts = 0;
+		struct permonst *pm = 0;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+newbossRLM:
+		do {
+			pm = rndmonst();
+			attempts++;
+			if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+		} while ( (!pm || (pm && !(pm->msound == MS_SUPERMAN ))) && attempts < 50000);
+
+		if (!pm && rn2(50) ) {
+			attempts = 0;
+			goto newbossRLM;
+		}
+		if (pm && !(pm->msound == MS_SUPERMAN) && rn2(50) ) {
+			attempts = 0;
+			goto newbossRLM;
+		}
+
+		if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
+
+		u.aggravation = 0;
+
+	}
+
 	break;
     }
 
@@ -889,6 +955,39 @@ int spellnum;
 		pline("Undead creatures are called forth from the grave!");   
 		mkundead(&mm, FALSE, 0, FALSE);
 	}
+
+	if (mtmp->data == &mons[PM_WOK]) {
+		int attempts = 0;
+		struct permonst *pm = 0;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+newbossRLN:
+		do {
+			pm = rndmonst();
+			attempts++;
+			if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+		} while ( (!pm || (pm && !(pm->msound == MS_SUPERMAN ))) && attempts < 50000);
+
+		if (!pm && rn2(50) ) {
+			attempts = 0;
+			goto newbossRLN;
+		}
+		if (pm && !(pm->msound == MS_SUPERMAN) && rn2(50) ) {
+			attempts = 0;
+			goto newbossRLN;
+		}
+
+		if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
+
+		u.aggravation = 0;
+
+	}
+
 	dmg = 0;   
 	break;   
     case MGC_AGGRAVATION:
@@ -2307,7 +2406,7 @@ buzzmu(mtmp, mattk)		/* monster uses spell (ranged) */
 	if ((mattk->adtyp > AD_SPC2) || (mattk->adtyp < AD_MAGM))
 	    return(0);
 
-	if (mtmp->mcan || arcaniumfail() || (RngeAntimagicA && !rn2(10)) || (RngeAntimagicB && !rn2(5)) || (RngeAntimagicC && !rn2(2)) || (RngeAntimagicD) || (RngeSpellDisruption && !rn2(5)) || u.antimagicshell || (uarmh && uarmh->otyp == HELM_OF_ANTI_MAGIC) || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || Role_if(PM_UNBELIEVER) || (uarmc && (itemhasappearance(uarmc, APP_VOID_CLOAK) || itemhasappearance(uarmc, APP_SHELL_CLOAK)) && !rn2(5)) ) {
+	if (mtmp->mcan || arcaniumfail() || (RngeAntimagicA && !rn2(10)) || (RngeAntimagicB && !rn2(5)) || (RngeAntimagicC && !rn2(2)) || (RngeAntimagicD) || (RngeSpellDisruption && !rn2(5)) || u.antimagicshell || (uarmh && uarmh->otyp == HELM_OF_ANTI_MAGIC) || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || Role_if(PM_UNBELIEVER) || (uwep && uwep->oartifact == ART_ANTIMAGICBANE) || (uarmc && (itemhasappearance(uarmc, APP_VOID_CLOAK) || itemhasappearance(uarmc, APP_SHELL_CLOAK)) && !rn2(5)) ) {
 	    cursetxt(mtmp, FALSE);
 	    return(0);
 	}
