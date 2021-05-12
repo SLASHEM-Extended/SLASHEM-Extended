@@ -1,5 +1,42 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.7.1 - March 2021
+- Gems and venoms are zero-weight objects now (they used to weigh 1).
+- Fixed issues with cursed lizard corpses.
+- Applying a hitchhiker's guide to the galaxy only works with less than 900 sanity now, and increases the player's sanity by 1000 when applied.
+- Fixed the issue where certain traps that were supposed to only trigger once could be triggered indefinitely.
+- If the player zaps a cancelled wand causing it to turn to dust, the devices skill is trained by one point now.
+- Fixed the oversight where having an exploding symbiote wouldn't be handled correctly.
+- Scrolls of mail can no longer be eaten or thrown.
+- Player monsters should no longer generate with super-strong automatic firearms early on.
+- Greatly increased the timeout of the dazzle technique.
+- Fixed the bug where a player wearing roller blades wouldn't keep fumbling.
+- Certain spells that can slow down or cancel enemies will now cause their respective effects on monsters to time out more quickly. Summoning spells also have additional downsides.
+- Pets can no longer use non-melee artifact weapons as if they were actual melee weapons.
+- Alcoves in rooms-and-corridors levels are less common now.
+- The player can no longer upgrade hazy items via tinker or gain level potions.
+- Toned down the multiplicative stacking effect of certain movement speed boosts that the player could use.
+- Fixed a long-standing bug accidentally introduced in a much earlier version, which caused pets with 1 max HP to be completely unable to attack monsters.
+- Fixed the annoyance where candles would generate with random durations, which caused them to not stack anymore.
+- Using a cursed container of holding now uses a turn even if the player didn't put in or take out anything.
+- The player can now also dual-wield if the weapon in their main hand isn't a weapon. The off-hand weapon still has to be an actual weapon though.
+- Improved the feedback given when the player tries to take off a worn armor piece that's currently covered by another one.
+- Changed the values for determining whether individual item aspects could be identified by the identify spell, so that it's more likely to work now (but still not gauranteed).
+- The potion of cancellation cannot be cancelled anymore.
+- Fixed a bug where the anti-experience nastytrap effect made it too difficult to gain experience.
+- Fixed a game freeze that could occur if the player quaffed a potion of tech level up with no eligible techniques.
+- In evilvariant mode, vomiting in a shop will anger the shopkeeper.
+- Fixed a bug where zapping a wand of banishment at a shopkeeper could result in items remaining unpaid even when the shopkeeper wasn't in their shop anymore.
+- Shuriken thrown by the player gain additional damage bonuses from skill level.
+- Zapping a blessed wand now trains the devices skill more quickly than an uncursed one.
+- Improved the handling for starving pets to give the player more opportunities to quickly throw some food to them and save their life.
+- Fixed the bug where crystal water could rust items that didn't actually come in contact with it.
+- Fixed an oversight where certain techniques would hit allies even though they weren't supposed to.
+- If a boss monster is hit by a beheading/bisecting weapon and the instakill triggers, the monster only takes a lot of damage and isn't necessarily killed.
+- Polka music now has a low chance of affecting the player even if the monster is very far away.
+- Toned down the amount of kicking damage a player could do in melee with martial arts.
+- A bleeding player character will not bleed while successfully praying.
+
 2.7.0 - Dec 2020
 - Upgrading tinning kits now works properly again.
 - Fixed "there is a snow here" and similar odd messages.
