@@ -4172,8 +4172,16 @@ physical:
 		} else if(mattk->aatyp == AT_WEAP) {
 		    if(otmp) {
 			if (otmp->otyp == CORPSE &&
-				touch_petrifies(&mons[otmp->corpsenm]))
+				touch_petrifies(&mons[otmp->corpsenm]) && !(magr->mtame && nocorpsedecay(&mons[otmp->corpsenm])) )
 			    goto do_stone;
+
+			if (otmp->otyp == CORPSE &&
+				touch_petrifies(&mons[otmp->corpsenm]) && (magr->mtame && nocorpsedecay(&mons[otmp->corpsenm])) ) {
+				m_useup(magr, otmp);
+				otmp = (struct obj *) 0;
+				possibly_unwield(magr, FALSE);
+				return 0;
+			}
 
 			/* WAC -- Real weapon?
 			 * Could be stuck with a cursed bow/polearm it wielded

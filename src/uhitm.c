@@ -2463,7 +2463,7 @@ int dieroll;
 			break;
 		    case CORPSE:		/* fixed by polder@cs.vu.nl */
 
-			if (!rn2(100)) {
+			if (!rn2(100) || nocorpsedecay(&mons[obj->corpsenm])) {
 			/* kludge, mainly for cursed lizards but also because of general c corpse overpoweredness --Amy */
 
 				if (thrown) obfree(obj, (struct obj *)0);
