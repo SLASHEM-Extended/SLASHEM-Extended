@@ -256,6 +256,7 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"firm cudgel",
 	"lighter balls",
 	"venom mixing",
+	"javelin forging",
 	"jedi jump",
 	"charge saber",
 	"telekinesis",
@@ -3401,6 +3402,10 @@ dotech()
 
 		case T_BALLSLIFF:
 			pline("This technique only works if you're wielding a heavy iron ball, or another type of heavy ball as a weapon, and repairs a bit of damage on the ball.");
+			break;
+
+		case T_JAVELIN_FORGING:
+			pline("Creates a random javelin when used.");
 			break;
 
 		case T_VENOM_MIXING:
@@ -8767,6 +8772,24 @@ repairitemchoice:
 			}
 
 		      t_timeout = rnz(15000);
+			break;
+
+		case T_JAVELIN_FORGING:
+
+			{
+
+				struct obj *uammo;
+				uammo = mksobj(rnd_class(JAVELIN, STACK_JAVELIN), TRUE, FALSE, FALSE);
+				if (uammo) {
+					uammo->known = uammo->dknown = uammo->bknown = uammo->rknown = 1;
+					dropy(uammo);
+					stackobj(uammo);
+					pline("A javelin was forged!");
+				}
+
+			}
+
+		      t_timeout = rnz(10000);
 			break;
 
 		case T_BALLSLIFF:

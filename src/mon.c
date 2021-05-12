@@ -4591,6 +4591,12 @@ newbossSING:
 		if (Upolyd) u.mhmax += rnd(3);
 	}
 
+	if (mtmp->data == &mons[PM_SUMATRA_CHIEF]) {
+		You("gain the secret knowledge of the Sumatra Chief!");
+	    	learntech_or_leveltech(T_JAVELIN_FORGING, FROMOUTSIDE, 1);
+
+	}
+
       if(mtmp->data == &mons[PM_MOTHERFUCKER_GLASS_GOLEM] && !u.glassgolemdown) {
 		u.glassgolemdown = 1;
 		pline("Congratulations, the glass golem is defeated! Your reward was dropped at your %s.", makeplural(body_part(FOOT)));

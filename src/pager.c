@@ -27188,6 +27188,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You ate the first christmas egg. But normally those don't even exist, instead there would be easter eggs.",
 	"You gain the secret knowledge of venom mixing!",
 	"You gain the secret knowledge of venom mixing! Sadly, the ingredients required for actually using it are way too rare.",
+	"You gain the secret knowledge of the Sumatra Chief!",
+	"You gain the secret knowledge of the Sumatra Chief! Except not really, because this is a fake message, hahaha.",
 
 };
 

@@ -820,7 +820,7 @@ WEAPON("ceramic spear", (char *)0,
 	1, 1, 0, 10, 12, 5, 10, 10, 1, P,   P_SPEAR, MT_CERAMIC, CLR_WHITE, 15),
 
 
-/* Javelins */
+/* Javelins - regular javelin must be first */
 WEAPON("javelin", "throwing spear",
 	0, 1, 0, 69, 8,  3,  6,  6, 1, P,   P_JAVELIN, MT_IRON, HI_METAL, 1),
 WEAPON("asbestos javelin", (char *)0,
@@ -837,6 +837,7 @@ WEAPON("brick missile", (char *)0,
 	1, 1, 0, 10, 8, 10,  12,  12, 1, P,   P_JAVELIN, MT_BRICK, CLR_ORANGE, 25),
 WEAPON("stack javelin", (char *)0,
 	1, 1, 0, 30, 8,  3,  6,  6, 1, P,   P_JAVELIN, MT_IRON, CLR_GREEN, 1),
+/* stack javelin must be last */
 
 /* Tridents */
 WEAPON("trident", (char *)0,

@@ -12133,6 +12133,13 @@ loveheelover:
 			(void) mongets(mtmp, FISHNET);
 			(void) mongets(mtmp, LEATHER_PEEP_TOES);
 		}
+		if(ptr == &mons[PM_SUMATRA_CHIEF]) {
+			 m_initthrow(mtmp, rnd_class(JAVELIN, STACK_JAVELIN), 5);
+			 m_initthrow(mtmp, rnd_class(JAVELIN, STACK_JAVELIN), 5);
+			 m_initthrow(mtmp, rnd_class(JAVELIN, STACK_JAVELIN), 5);
+			 m_initthrow(mtmp, rnd_class(JAVELIN, STACK_JAVELIN), 5);
+			 m_initthrow(mtmp, rnd_class(JAVELIN, STACK_JAVELIN), 5);
+		}
 
 		break;
 
