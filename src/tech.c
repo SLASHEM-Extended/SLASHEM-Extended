@@ -4578,19 +4578,28 @@ secureidchoice:
                	t_timeout = rnz(75);
 			break;
 		}
-                You("stare at %s.", mon_nam(mtmp));
-                if (!haseyes(mtmp->data))
-                	pline("..but %s has no eyes!", mon_nam(mtmp));
-                else if (!mtmp->mcansee)
-                	pline("..but %s cannot see you!", mon_nam(mtmp));
-                if ((rn2(6) + rn2(6) + (techlevX(tech_no) - mtmp->m_lev)) > rnd(10)) {
+		You("stare at %s.", mon_nam(mtmp));
+		if (!haseyes(mtmp->data))
+			pline("..but %s has no eyes!", mon_nam(mtmp));
+		else if (!mtmp->mcansee)
+			pline("..but %s cannot see you!", mon_nam(mtmp));
+		else if ((rn2(6) + rn2(6) + (techlevX(tech_no) - mtmp->m_lev)) > rnd(10)) {
+
+			if (!rn2(10)) goto breakstare;
+			if (mtmp->mfrenzied && !rn2(5)) goto breakstare;
+
 			You("dazzle %s!", mon_nam(mtmp));
 			mtmp->mcanmove = 0;
 			mtmp->mfrozen = rnd(10);
 		} else {
-                       pline("%s breaks the stare!", Monnam(mtmp));
+breakstare:
+			pline("%s breaks the stare!", Monnam(mtmp));
+			if (!mtmp->mtame && !mtmp->mpeaceful && !mtmp->mfrenzied && !rn2(5)) {
+				mtmp->mfrenzied = 1;
+				pline("Now %s is really angry at you.", mon_nam(mtmp));
+			}
 		}
-               	t_timeout = rnz(750);
+		t_timeout = rnz(750);
 	    	break;
 	    case T_BLITZ:
 	    	if ((uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU) )) || (u.twoweap && uswapwep)) {
