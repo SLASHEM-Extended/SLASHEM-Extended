@@ -6406,30 +6406,30 @@ struct obj *weapon;
 	}
 
 	/* high heel skill improves whacking damage, but using them in melee does not train the skill --Amy */
-	if (weapon && !(PlayerCannotUseSkills) && (weapon->otyp == WEDGED_LITTLE_GIRL_SANDAL || weapon->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || weapon->otyp == BLOCK_HEELED_COMBAT_BOOT || weapon->otyp == WOODEN_GETA || weapon->otyp == LACQUERED_DANCING_SHOE || weapon->otyp == HIGH_HEELED_SANDAL || weapon->otyp == SEXY_LEATHER_PUMP || weapon->otyp == STICKSHOE || weapon->otyp == INKA_BOOT || weapon->otyp == STEEL_CAPPED_SANDAL || weapon->otyp == BLOCK_HEELED_SANDAL || weapon->otyp == PROSTITUTE_SHOE || weapon->otyp == DOGSHIT_BOOT) ) {
+	if (weapon && !rn2(3) && !(PlayerCannotUseSkills) && (weapon->otyp == WEDGED_LITTLE_GIRL_SANDAL || weapon->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || weapon->otyp == BLOCK_HEELED_COMBAT_BOOT || weapon->otyp == WOODEN_GETA || weapon->otyp == LACQUERED_DANCING_SHOE || weapon->otyp == HIGH_HEELED_SANDAL || weapon->otyp == SEXY_LEATHER_PUMP || weapon->otyp == STICKSHOE || weapon->otyp == INKA_BOOT || weapon->otyp == STEEL_CAPPED_SANDAL || weapon->otyp == BLOCK_HEELED_SANDAL || weapon->otyp == PROSTITUTE_SHOE || weapon->otyp == DOGSHIT_BOOT) ) {
 
 		switch (P_SKILL(P_HIGH_HEELS)) {
 			case P_BASIC: bonus += 1; break;
 			case P_SKILLED: bonus += 2; break;
 			case P_EXPERT: bonus += 3; break;
-			case P_MASTER: bonus += 5; break;
-			case P_GRAND_MASTER: bonus += 7; break;
-			case P_SUPREME_MASTER: bonus += 10; break;
+			case P_MASTER: bonus += 4; break;
+			case P_GRAND_MASTER: bonus += 5; break;
+			case P_SUPREME_MASTER: bonus += 6; break;
 
 		}
 
 	}
 
 	/* sexy flats skill too --Amy */
-	if (weapon && !(PlayerCannotUseSkills) && (weapon->otyp == HUGGING_BOOT || weapon->otyp == SPIKED_BATTLE_BOOT || weapon->otyp == SOFT_LADY_SHOE || weapon->otyp == SOFT_GIRL_SNEAKER) ) {
+	if (weapon && !rn2(5) && !(PlayerCannotUseSkills) && (weapon->otyp == HUGGING_BOOT || weapon->otyp == SPIKED_BATTLE_BOOT || weapon->otyp == SOFT_LADY_SHOE || weapon->otyp == SOFT_GIRL_SNEAKER) ) {
 
 		switch (P_SKILL(P_SEXY_FLATS)) {
 			case P_BASIC: bonus += 1; break;
 			case P_SKILLED: bonus += 2; break;
 			case P_EXPERT: bonus += 3; break;
-			case P_MASTER: bonus += 5; break;
-			case P_GRAND_MASTER: bonus += 7; break;
-			case P_SUPREME_MASTER: bonus += 10; break;
+			case P_MASTER: bonus += 4; break;
+			case P_GRAND_MASTER: bonus += 5; break;
+			case P_SUPREME_MASTER: bonus += 6; break;
 
 		}
 
