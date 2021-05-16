@@ -4037,6 +4037,14 @@ static NEARDATA const char * const demagoguelines[] = {
 "The government does a damage have!",
 "This government has a total damage. I wish someone would go and stop the muck chaps.",
 "Someone should surround the state government.",
+"We may not consume the state-regulated media, because they are fake news!",
+"All the newspapers are spreading fake news!",
+"Too many disturbing elements are showering our people with alternative facts and we have to remove those evil perpetrators for good.",
+"The current president is not my president! That unscrupulous person gained his title by cheating and therefore needs to be usurped!",
+"Goddamn politicians! They're responsible for all the evil in this world!",
+"Down with the government! Anarchy is the only way to victory!",
+"This country belongs to the people and no shitting law is gonna change that!",
+"Laws are there so that one does not obey them! Better yet, they should be abolished completely, which will free our people from their imaginary shackles!",
 };
 
 static NEARDATA const char * const longinglines[] = {
@@ -4476,6 +4484,9 @@ static NEARDATA const char * const longinglines[] = {
 "%s's beautiful column-shaped heels can probably do very erotic things to you, like squashing your testicles or stomping your fingers.",
 "You want to see %s use her ladylike shoe heels to crush the testicles of some idiot guy.",
 "You absolutely want to feel up %s's fleece-love-shoes and be kicked by their massive wedge heels!",
+"%s's velvet pumps may be old-fashioned, but they still look incredibly soft and very sexy!",
+"You just love seeing %s park her treaded high-heeled boots on a heap of dog shit, because it'll be you who then has to clean them by hand.",
+"When you go to bed together with %s, you want her to put her feet (which still have to be wearing high heels of course) into your lap, so that you can stroke her soft legs and sexy footwear all night <3",
 };
 
 static NEARDATA const char * const soviettaunts[] = {
@@ -27190,6 +27201,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"You gain the secret knowledge of venom mixing! Sadly, the ingredients required for actually using it are way too rare.",
 	"You gain the secret knowledge of the Sumatra Chief!",
 	"You gain the secret knowledge of the Sumatra Chief! Except not really, because this is a fake message, hahaha.",
+	"Suddenly, the dungeon collapses. Apparently destroying one of the fundamental states of matter has compromised the foundation.",
+	"Destroy what material? 'stone' Suddenly, the dungeon vanishes. You scream as you fall inward towards the molten iron core of the planet, eventually incinerating in it.",
+	"Suddenly, the dungeon vanishes. You scream as you fall inward towards the molten iron core of the planet, eventually incinerating in it. Do you want your possessions identified? Wait, no, those all burned up too.",
 
 };
 
