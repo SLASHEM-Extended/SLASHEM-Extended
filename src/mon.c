@@ -8787,7 +8787,7 @@ boolean msg;
 		   human forms any more
 		   Amy edit: oh my god they disallowed M2_HUMAN this is intolerable
 		   also, unique shifters should be able to pick M2_NOPOLY forms, this is by design */
-		if (is_mplayer(mdat) || is_umplayer(mdat) || monpolyok(mdat) || (mtmp->cham == CHAM_UNIQUE_SHIFTER && (mdat->geno & G_FREQ > 0) && (mdat->geno & G_UNIQ) ) )
+		if (is_mplayer(mdat) || is_umplayer(mdat) || monpolyok(mdat) || (mtmp->cham == CHAM_UNIQUE_SHIFTER && ((mdat->geno & G_FREQ) > 0) && (mdat->geno & G_UNIQ) ) )
 		    break;
 	    }
 	    if (tryct > 100) return 0;	/* Should never happen */
