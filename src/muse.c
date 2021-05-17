@@ -3416,7 +3416,7 @@ mon_tele:
 			pline_The("digging ray is ineffective.");
 			return 2;
 		}
-		if (!Can_dig_down(&u.uz)) {
+		if (!Can_dig_down(&u.uz) || In_minotaurmaze(&u.uz)) {
 		    if(canseemon(mtmp))
 			pline_The("%s here is too hard to dig in.",
 					surface(mtmp->mx, mtmp->my));
