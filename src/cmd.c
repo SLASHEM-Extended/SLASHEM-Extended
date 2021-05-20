@@ -12727,6 +12727,8 @@ static struct binding_list_tab *bindinglist = NULL;
 
 #define EXTCMDLIST_SIZE (sizeof(extcmdlist) / sizeof(extcmdlist[1]))
 
+	/* Extended commands: We ABSOLUTELY MUST have blank entries for wizard mode below!!! Otherwise, CRASH! --Amy */
+
 struct ext_func_tab extcmdlist[] = {
 	{"2weapon", "toggle two-weapon combat", dotwoweapon, !IFBURIED, AUTOCOMPLETE},
 	{"adjust", "adjust inventory letters", doorganize, IFBURIED, AUTOCOMPLETE},
@@ -12849,29 +12851,30 @@ struct ext_func_tab extcmdlist[] = {
 	{"?", "get this list of extended commands", doextlist, IFBURIED, AUTOCOMPLETE},
 #if defined(WIZARD)
 	/*
-	 * There must be a blank entry here for every entry in the table
-	 * below.
+	 * There MUST be a blank entry here for every entry in the table
+	 * below. Otherwise the game may crash in wizard mode, which would be very bad. --Amy
 	 */
 #ifdef DISPLAY_LAYERS
-	{(char *)0, (char *)0, donull, TRUE},
+	{(char *)0, (char *)0, donull, TRUE}, /* #display */
 #endif
 	{(char *)0, (char *)0, donull, TRUE}, /* #levelchange */
 	{(char *)0, (char *)0, donull, TRUE}, /* #lightsources */
 #ifdef DEBUG_MIGRATING_MONS
 	{(char *)0, (char *)0, donull, TRUE}, /* #migratemons */
 #endif
-	{(char *)0, (char *)0, donull, TRUE},
-	{(char *)0, (char *)0, donull, TRUE},
+	{(char *)0, (char *)0, donull, TRUE}, /* #detectmons */
+	{(char *)0, (char *)0, donull, TRUE}, /* #monpolycontrol */
+	{(char *)0, (char *)0, donull, TRUE}, /* #panic */
+	{(char *)0, (char *)0, donull, TRUE}, /* #polyself */
 #ifdef PORT_DEBUG
-	{(char *)0, (char *)0, donull, TRUE},
+	{(char *)0, (char *)0, donull, TRUE}, /* #portdebug */
 #endif
-	{(char *)0, (char *)0, donull, TRUE},
-	{(char *)0, (char *)0, donull, TRUE},
-        {(char *)0, (char *)0, donull, TRUE},
-	{(char *)0, (char *)0, donull, TRUE},
-	{(char *)0, (char *)0, donull, TRUE},
+	{(char *)0, (char *)0, donull, TRUE}, /* #seenv */
+	{(char *)0, (char *)0, donull, TRUE}, /* #stats */
+	{(char *)0, (char *)0, donull, TRUE}, /* #timeout */
+	{(char *)0, (char *)0, donull, TRUE}, /* #vision */
 #ifdef DEBUG
-	{(char *)0, (char *)0, donull, TRUE},
+	{(char *)0, (char *)0, donull, TRUE}, /* #wizdebug */
 #endif
 	{(char *)0, (char *)0, donull, TRUE}, /* #wmode */
 	{(char *)0, (char *)0, donull, TRUE}, /* #detect */
@@ -12888,6 +12891,8 @@ struct ext_func_tab extcmdlist[] = {
 #endif
 	{(char *)0, (char *)0, donull, TRUE}	/* sentinel */
 };
+
+	/* important: BLANK ENTRIES HAVE TO BE ABOVE OR CRASH --Amy */
 
 #ifdef WIZARD
 static struct ext_func_tab debug_extcmdlist[] = {
@@ -12928,6 +12933,8 @@ static struct ext_func_tab debug_extcmdlist[] = {
 	{(char *)0, (char *)0, donull, IFBURIED}
 
 };
+	/* important: BLANK ENTRIES HAVE TO BE ABOVE OR CRASH --Amy */
+
 
 
 static void
