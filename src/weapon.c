@@ -7029,7 +7029,11 @@ struct obj *weapon;
 
 	if (Race_if(PM_FRO) && (wep_type == P_FIREARM || wep_type == -P_FIREARM)) bonus += rnd(10);
 
-	if ((wep_type == P_SHURIKEN || wep_type == -P_SHURIKEN) && !rn2(2)) bonus += 1;
+	if ((wep_type == P_SHURIKEN || wep_type == -P_SHURIKEN) && !rn2(2)) {
+		if (!(weapon && weapon->otyp == SOFT_STAR && rn2(2)) && !(weapon && weapon->otyp == CALTROP && rn2(4))) {
+			bonus += 1;
+		}
+	}
 
 	if (!(PlayerCannotUseSkills)) {
 
@@ -7097,12 +7101,14 @@ struct obj *weapon;
 	if (weapon && weapon->otyp == NEEDLE && (P_SKILL(P_SHURIKEN) == P_GRAND_MASTER) ) bonus += rnd(2);
 	if (weapon && weapon->otyp == NEEDLE && (P_SKILL(P_SHURIKEN) == P_SUPREME_MASTER) ) bonus += rnd(3);
 
-	if ((wep_type == P_SHURIKEN || wep_type == -P_SHURIKEN) && (P_SKILL(P_SHURIKEN) >= P_BASIC) && !rn2(2)) bonus += 1;
-	if ((wep_type == P_SHURIKEN || wep_type == -P_SHURIKEN) && (P_SKILL(P_SHURIKEN) >= P_SKILLED) && !rn2(2)) bonus += 1;
-	if ((wep_type == P_SHURIKEN || wep_type == -P_SHURIKEN) && (P_SKILL(P_SHURIKEN) >= P_EXPERT) && !rn2(2)) bonus += 1;
-	if ((wep_type == P_SHURIKEN || wep_type == -P_SHURIKEN) && (P_SKILL(P_SHURIKEN) >= P_MASTER) && !rn2(2)) bonus += 1;
-	if ((wep_type == P_SHURIKEN || wep_type == -P_SHURIKEN) && (P_SKILL(P_SHURIKEN) >= P_GRAND_MASTER) && !rn2(2)) bonus += 1;
-	if ((wep_type == P_SHURIKEN || wep_type == -P_SHURIKEN) && (P_SKILL(P_SHURIKEN) >= P_SUPREME_MASTER) && !rn2(2)) bonus += 1;
+	if (!(weapon && weapon->otyp == SOFT_STAR && rn2(2)) && !(weapon && weapon->otyp == CALTROP && rn2(4))) {
+		if ((wep_type == P_SHURIKEN || wep_type == -P_SHURIKEN) && (P_SKILL(P_SHURIKEN) >= P_BASIC) && !rn2(2)) bonus += 1;
+		if ((wep_type == P_SHURIKEN || wep_type == -P_SHURIKEN) && (P_SKILL(P_SHURIKEN) >= P_SKILLED) && !rn2(2)) bonus += 1;
+		if ((wep_type == P_SHURIKEN || wep_type == -P_SHURIKEN) && (P_SKILL(P_SHURIKEN) >= P_EXPERT) && !rn2(2)) bonus += 1;
+		if ((wep_type == P_SHURIKEN || wep_type == -P_SHURIKEN) && (P_SKILL(P_SHURIKEN) >= P_MASTER) && !rn2(2)) bonus += 1;
+		if ((wep_type == P_SHURIKEN || wep_type == -P_SHURIKEN) && (P_SKILL(P_SHURIKEN) >= P_GRAND_MASTER) && !rn2(2)) bonus += 1;
+		if ((wep_type == P_SHURIKEN || wep_type == -P_SHURIKEN) && (P_SKILL(P_SHURIKEN) >= P_SUPREME_MASTER) && !rn2(2)) bonus += 1;
+	}
 
 	if (weapon && is_lightsaber(weapon) && weapon->lamplit) {
 		switch (P_SKILL(P_DJEM_SO)) {
