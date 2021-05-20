@@ -1891,7 +1891,7 @@ convertdone:
 		verbalize("I am the WOK!");
 	}
 
-	if (mdat == &mons[PM_NOISY_ANNOYANCE] && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(20)) {
+	if ((mdat == &mons[PM_NOISY_ANNOYANCE] || mdat == &mons[PM_DEMAGOGUE] || mdat == &mons[PM_UNDEAD_DEMAGOGUE]) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(20)) {
 		demagogueparole();
 		aggravate();
 	}
