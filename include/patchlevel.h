@@ -27,7 +27,7 @@
 "NetHack, Copyright 1985-2003 Stichting Mathematisch Centrum, M. Stephenson."
 
 #define COPYRIGHT_BANNER_C \
-"Contact the dev team via the #em.slashem.me channel on Freenode IRC."
+"Contact the dev team via the #em.slashem.me channel on Libera IRC."
 
 #define COPYRIGHT_BANNER_D \
 "See license for details. Bug reports can also be posted on Nethackwiki."

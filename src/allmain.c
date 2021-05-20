@@ -12760,13 +12760,13 @@ boolean new_game;	/* false => restoring an old game */
 #ifdef PUBLIC_SERVER
 
 #ifdef PHANTOM_CRASH_BUG
-	if (new_game) pline("Welcome to SLASH'EM Extended! For game discussion, bug reports etc. join the #slashemextended or #em.slashem.me IRC channel on Freenode. :-) --Amy");
+	if (new_game) pline("Welcome to SLASH'EM Extended! For game discussion, bug reports etc. join the #slashemextended or #em.slashem.me IRC channel on Libera. :-) --Amy");
 #else
-	if (new_game) pline("You are playing SLASH'EM Extended on a public server. For game discussion, bug reports etc. join the #em.slashem.me IRC channel on Freenode. You should absolutely do that, unless you want to figure out this complex game on your own. Amy and other players will be glad to give you advice!");
+	if (new_game) pline("You are playing SLASH'EM Extended on a public server. For game discussion, bug reports etc. join the #em.slashem.me IRC channel on Libera. You should absolutely do that, unless you want to figure out this complex game on your own. Amy and other players will be glad to give you advice!");
 #ifdef BIGSLEX
 	pline("Attention: You're playing BIGslex, where the dungeon levels are bigger than normal. Recommended terminal size is 125x45. Also, savebreaks will happen without warning in this version. If you have a far-progressed savegame that you want to finish, contact me on the IRC. If your savegame seems to be gone, contact me on the IRC too. Have fun!");
 #endif /* BIGSLEX */
-	if (new_game) pline("Message of the day: Version 2.70 of this game added a bunch of new playable roles. In particular, the Diablist and Secret Advice Member roles are designed to be quite powerful. Feel free to playtest and tell me what you think! --Amy");
+	if (new_game) pline("Message of the day: This is SLEX 2.71, the version for Junethack 2021, aka the annual NetHack Variant Public Beta Test. If you find any bugs, please tell me about it! --Amy");
 #endif /* PHANTOM_CRASH_BUG */
 
 #endif /* PUBLIC_SERVER */
@@ -15435,7 +15435,7 @@ boolean new_game;	/* false => restoring an old game */
 	/* Amy switch to invalidate older versions */
 #if 0
 	if (moves < 100) {
-		pline("Sorry, but this version of SLASH'EM Extended is outdated. Your current game ends now. Please start a new game on the up-to-date version, because this old version exists only to allow players to finish old runs and you don't seem to have an old savegame. If you feel that this is in error, get on the #em.slashem.me IRC channel on Freenode and complain to Amy.");
+		pline("Sorry, but this version of SLASH'EM Extended is outdated. Your current game ends now. Please start a new game on the up-to-date version, because this old version exists only to allow players to finish old runs and you don't seem to have an old savegame. If you feel that this is in error, get on the #em.slashem.me IRC channel on Libera and complain to Amy.");
 		done(QUIT);
 	}
 #endif

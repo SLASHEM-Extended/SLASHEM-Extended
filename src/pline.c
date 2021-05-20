@@ -587,7 +587,7 @@ impossible VA_DECL(const char *, s)
 	paniclog("impossible", pbuf);
 	pline("%s", pbuf); /*used to be vpline(s,VA_ARGS); but that was causing funky issues --Amy */
 	pline("Program in disorder. Please inform Amy (Bluescreenofdeath at nethackwiki) about this bug.");
-	pline("The admins can also be contacted on the #em.slashem.me IRC channel (Freenode).");
+	pline("The admins can also be contacted on the #em.slashem.me IRC channel (Libera).");
 	program_state.in_impossible = 0;
 	VA_END();
 	}

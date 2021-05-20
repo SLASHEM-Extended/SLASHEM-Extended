@@ -989,6 +989,7 @@ static const char *random_mesg[] = {
 	"Lonely? Try one of Madame Ruth's Patented Love Potions - 'Taming in a Bottle'",
 	"All your castle are belong to us",
 	"DON'T DEAD OPEN INSIDE",
+	"The Enclave is here! Being led by Aendru Rasenban who unleashes his multigoons to spread fear and panic, they've arrived and want to kill our peaceful citizens! Run for your lives!!!",
 
 };
 
