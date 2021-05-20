@@ -3122,7 +3122,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3143,7 +3143,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3164,7 +3164,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3185,7 +3185,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3206,7 +3206,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3227,7 +3227,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3248,7 +3248,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3269,7 +3269,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3290,7 +3290,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3311,7 +3311,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3332,7 +3332,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3353,7 +3353,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3374,7 +3374,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3395,7 +3395,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3416,7 +3416,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3437,7 +3437,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3458,7 +3458,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3479,7 +3479,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3500,7 +3500,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3521,7 +3521,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3542,7 +3542,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3563,7 +3563,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3584,7 +3584,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3605,7 +3605,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3626,7 +3626,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3647,7 +3647,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3668,7 +3668,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3689,7 +3689,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3710,7 +3710,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3731,7 +3731,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3752,7 +3752,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3773,7 +3773,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3794,7 +3794,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3815,7 +3815,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3836,7 +3836,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3857,7 +3857,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3878,7 +3878,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3899,7 +3899,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3920,7 +3920,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3938,7 +3938,7 @@ elena37:
 		a->damd = (1 + (mtmp->m_lev / 4));
 
 		if (range2 && (rn2(2) || issoviet) && !blue_on_blue(mtmp) && (ZAP_POS(levl[u.ux][u.uy].typ) ) )
-		    sum[i] = breamu(mtmp, a);
+		    (void) breamu(mtmp, a);
 		/* Note: breamu takes care of displacement */
 
 	}
@@ -3956,7 +3956,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3977,7 +3977,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -3998,7 +3998,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4019,7 +4019,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4040,7 +4040,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4061,7 +4061,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4082,7 +4082,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4103,7 +4103,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4124,7 +4124,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4145,7 +4145,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4166,7 +4166,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4187,7 +4187,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4208,7 +4208,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4229,7 +4229,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4250,7 +4250,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4271,7 +4271,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4292,7 +4292,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4313,7 +4313,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4334,7 +4334,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4355,7 +4355,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4376,7 +4376,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4397,7 +4397,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4418,7 +4418,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4439,7 +4439,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4460,7 +4460,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4481,7 +4481,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4502,7 +4502,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4523,7 +4523,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4544,7 +4544,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4565,7 +4565,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4586,7 +4586,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4607,7 +4607,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4628,7 +4628,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4649,7 +4649,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4670,7 +4670,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4691,7 +4691,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4712,7 +4712,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4733,7 +4733,7 @@ elena37:
 					!touch_petrifies(youmonst.data))) || (!rn2(20) && ((dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM)) || (elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) ) ) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4754,7 +4754,7 @@ elena37:
 					!touch_petrifies(youmonst.data))) || (!rn2(20) && ((dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM)) || (elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) ) ) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4775,7 +4775,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4796,7 +4796,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4817,7 +4817,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4838,7 +4838,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4877,7 +4877,7 @@ elena37:
 		if ( (rnd(5) > 3) && ( (tmp > (rnd(20+i))) || (tmp > (rnd(20+i))) ) && lined_up(mtmp) && ((dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM) || (elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) )
 		{
 		    if (foundyou) {
-			sum[i] = hitmu(mtmp, a);
+			(void) hitmu(mtmp, a);
 		    } else wildmiss(mtmp, a);
 		}
 
@@ -4896,7 +4896,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4917,7 +4917,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4938,7 +4938,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4959,7 +4959,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -4980,7 +4980,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -5001,7 +5001,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -5022,7 +5022,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -5043,7 +5043,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -5064,7 +5064,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -5085,7 +5085,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -5106,7 +5106,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -5127,7 +5127,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -5148,7 +5148,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -5169,7 +5169,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -5190,7 +5190,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -5211,7 +5211,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -5232,7 +5232,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -5293,7 +5293,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -5312,7 +5312,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -5331,7 +5331,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -5351,7 +5351,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -5383,7 +5383,7 @@ elena37:
 				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
-				sum[i] = hitmu(mtmp, a);
+				(void) hitmu(mtmp, a);
 			} else
 			    missmu(mtmp, tmp, j, a);
 		    } else wildmiss(mtmp, a);
@@ -5473,10 +5473,10 @@ elena37:
 				a->adtyp = AD_DISN;
 				a->damn = (1 + mtmp->m_lev);
 				a->damd = (1 + mtmp->m_lev);
-				sum[i] = breamu(mtmp, a);
+				(void) breamu(mtmp, a);
 
 				a->adtyp = AD_LITE;
-				sum[i] = breamu(mtmp, a);
+				(void) breamu(mtmp, a);
 
 				mtmp->hominglazer = 0;
 			}
@@ -5982,7 +5982,7 @@ elena37:
 		a->damd = (1 + (mtmp->m_lev * 5));
 
 		if(!range2) {
-			sum[i] = explmu(mtmp, a, foundyou);
+			(void) explmu(mtmp, a, foundyou);
 			return(0);
 		}
 
