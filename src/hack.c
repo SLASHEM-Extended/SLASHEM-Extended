@@ -5,9 +5,6 @@
 #include "hack.h"
 #include "qtext.h"
 
-/*#ifdef OVL1
-STATIC_DCL void maybe_wail(void);
-#endif*/ /*OVL1*/
 STATIC_DCL int moverock(void);
 STATIC_DCL int still_chewing(XCHAR_P,XCHAR_P);
 STATIC_DCL void dosinkfall(void);
@@ -4331,7 +4328,7 @@ monster_nearby()
 	return(0);
 }
 
-/*STATIC_OVL*/ void
+void
 maybe_wail()
 {
     static short powers[] = { TELEPORT, SEE_INVIS, POISON_RES, COLD_RES,

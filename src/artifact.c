@@ -123,6 +123,7 @@ void * poolcnt;
 
 void
 elemental_imbue(elemtype)
+int elemtype;
 {
 	if (!uwep) return; /* bug */
 

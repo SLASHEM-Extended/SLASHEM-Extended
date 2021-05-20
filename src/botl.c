@@ -3,6 +3,7 @@
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include "hack.h"
+#include "wintty.h"
 
 #ifdef OVL0
 extern const char *hu_stat[];	/* defined in eat.c */
@@ -113,7 +114,7 @@ struct color_option color_option;
 #if defined(UNIX) || !defined(CURSES_GRAPHICS)
 	int i;
 	if (color_option.color != NO_COLOR)
-		term_end_color(color_option.color);
+		term_end_color();
 	for (i = 0; (1 << i) <= color_option.attr_bits; ++i)
 		if (i != ATR_NONE && color_option.attr_bits & (1 << i))
 			term_end_attr(i);

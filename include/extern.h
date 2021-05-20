@@ -899,9 +899,7 @@ E void gypsy_chat(struct monst *);
 
 /* ### hack.c ### */
 
-#ifdef OVL1
 E void maybe_wail(void);
-#endif /*OVL1*/
 
 #ifdef DUNGEON_GROWTH
 E void catchup_dgn_growths(int);
@@ -1447,6 +1445,7 @@ E boolean doorlockX(int,int,BOOLEAN_P);
 E int doopen(void);
 E int doclose(void);
 E int artifact_door(int,int);
+E int doopen_indir(int,int);
 
 #ifdef MAC
 /* These declarations are here because the main code calls them. */
@@ -3408,6 +3407,8 @@ E int weapon_type(struct obj *);
 E int uwep_skill_type(void);
 E int weapon_hit_bonus(struct obj *);
 E int weapon_dam_bonus(struct obj *);
+E int melee_dam_bonus(struct obj *);
+E int ranged_dam_bonus(struct obj *);
 E int skill_bonus(int);
 E void skill_init(const struct def_skill *);
 E void practice_weapon(void);
@@ -3421,6 +3422,7 @@ E void additionalskilltraining(void);
 E void unrestrictskillchoice(void);
 E const char *wpskillname(int);
 E void grinderattack(int);
+E int difeasemu(struct permonst *);
 
 /* ### were.c ### */
 
@@ -3579,6 +3581,9 @@ E void livelog_achieve_update(void);
 E void livelog_wish(char*);
 E void livelog_avert_death(void);
 E void livelog_report_trophy(char *);
+#ifdef LIVELOG_BONES_KILLER 
+E void livelog_bones_killed(struct monst *);
+#endif
 #ifdef LIVELOG_SHOUT
 E int doshout(void);
 #endif
