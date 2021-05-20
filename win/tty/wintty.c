@@ -3683,10 +3683,10 @@ docorner(xmin, ymax)
 		return;
 	}
 
-    if (u.uswallow) {	/* Can be done more efficiently */
-	swallowed(1);
-	return;
-    }
+    /*if (u.uswallow) {*/	/* Can be done more efficiently */
+	/*swallowed(1);*/	/* according to amateurhour this can result in an infinite loop and isn't really needed --Amy */
+	/*return;
+    }*/
 
 #if defined(SIGWINCH) && defined(CLIPPING)
     if(ymax > LI) ymax = LI;		/* can happen if window gets smaller */
