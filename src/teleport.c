@@ -2275,6 +2275,8 @@ u_teleport_monB(mtmp, give_feedback)
 struct monst *mtmp;
 boolean give_feedback;
 {
+	boolean ball_active = (Punished && uball->where != OBJ_FREE);
+
 	if (mtmp->isshk) make_angry_shk(mtmp, 0, 0);
 
 			int nlev;
@@ -2289,6 +2291,16 @@ boolean give_feedback;
 				if (give_feedback) pline("%s shudders for a moment.", Monnam(mtmp));
 				return 2;
 			}
+
+			if (u.uswallow) {
+				u.uswldtim = u.uswallow = 0;
+				if (Punished && !ball_active) {
+				    /* ensure ball placement, like unstuck */
+				    ball_active = TRUE;
+				}
+				docrt();
+			}
+
 			get_level(&flev, nlev);
 			migrate_to_level(mtmp, ledger_no(&flev), MIGR_RANDOM, (coord *)0);
 
