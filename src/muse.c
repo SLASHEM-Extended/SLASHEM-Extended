@@ -9848,7 +9848,7 @@ newboss:
 		    }
 		    if (dmg) losehp(dmg, "scroll of earth", KILLED_BY_AN);
 		}
-	    xxx_noobj:
+xxx_noobj:
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 
@@ -12160,7 +12160,6 @@ boolean stoning;
 	obj->quan = save_quan;
     } else if (flags.soundok)
 	You_hear("%s.", (obj->otyp == POT_ACID) ? "drinking" : "chewing");
-    m_useup(mon, obj);
     if (((obj->otyp == POT_ACID) || acidic(&mons[obj->corpsenm])) &&
 		    !resists_acid(mon)) {
 	mon->mhp -= rnd(15);
@@ -12168,6 +12167,7 @@ boolean stoning;
 	    Monnam(mon));
     }
     if (mon->mhp <= 0) {
+	m_useup(mon, obj);
 	pline("%s dies!", Monnam(mon));
 	if (by_you) xkilled(mon, 0);
 	else mondead(mon);
@@ -12192,6 +12192,7 @@ boolean stoning;
 	edog->hungrytime += nutrit;
 	mon->mconf = 0;
     }
+    m_useup(mon, obj);
     mon->mlstmv = monstermoves; /* it takes a turn */
 }
 

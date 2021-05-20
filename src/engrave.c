@@ -2393,7 +2393,7 @@ doengrave()
 	}
 
 	if (!ptext) {		/* Early exit for some implements. */
-	    if (otmp->oclass == WAND_CLASS && !can_reach_floor())
+	    if (otmp && otmp->oclass == WAND_CLASS && !can_reach_floor())
 		You_cant("reach the %s!", surface(u.ux,u.uy));
 	    return(1);
 	}

@@ -2847,10 +2847,10 @@ register struct obj *obj, *otmp;
 		impossible("Zero quantity on bill??");
 	}
 	bp->bquan -= otmp->quan;
+	tmp = bp->price; /* according to amateurhour this needs to be here to prevent a read after free --Amy */
 
 	if(ESHK(shkp)->billct == BILLSZ) otmp->unpaid = 0;
 	else {
-		tmp = bp->price;
 		bp = &(ESHK(shkp)->bill_p[ESHK(shkp)->billct]);
 		bp->bo_id = otmp->o_id;
 		bp->bquan = otmp->quan;

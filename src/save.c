@@ -1044,6 +1044,7 @@ register int fd, mode;
 register struct trap *trap;
 {
 	register struct trap *trap2;
+	static struct trap zerotrap;
 
 	while (trap) {
 	    trap2 = trap->ntrap;
@@ -1054,7 +1055,7 @@ register struct trap *trap;
 	    trap = trap2;
 	}
 	if (perform_bwrite(mode))
-	    bwrite(fd, (void *)nulls, sizeof(struct trap));
+	    bwrite(fd, (void *) &zerotrap, sizeof(struct trap));
 }
 
 /* save all the fruit names and ID's; this is used only in saving whole games
@@ -1067,6 +1068,7 @@ savefruitchn(fd, mode)
 register int fd, mode;
 {
 	register struct fruit *f2, *f1;
+	static struct fruit zerofruit;
 
 	f1 = ffruit;
 	while (f1) {
@@ -1078,7 +1080,7 @@ register int fd, mode;
 	    f1 = f2;
 	}
 	if (perform_bwrite(mode))
-	    bwrite(fd, (void *)nulls, sizeof(struct fruit));
+	    bwrite(fd, (void *) &zerofruit, sizeof(struct fruit));
 	if (release_data(mode))
 	    ffruit = 0;
 }

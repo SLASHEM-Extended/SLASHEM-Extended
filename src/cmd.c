@@ -14261,7 +14261,9 @@ char sym;
 	if(iflags.num_pad) sdp = ndir; else sdp = sdir;	/* DICE workaround */
 
 	u.dz = 0;
-	if(!(dp = index(sdp, sym))) return 0;
+	dp = index(sdp, sym);
+	if (!dp || !*dp)
+		return 0;
 	u.dx = xdir[dp-sdp];
 	u.dy = ydir[dp-sdp];
 	u.dz = zdir[dp-sdp];

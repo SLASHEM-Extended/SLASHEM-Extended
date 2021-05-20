@@ -4750,6 +4750,7 @@ char *str;
 	int highest_fruit_id = 0;
 	char buf[PL_FSIZ];
 	boolean user_specified = (str == pl_fruit);
+	int len = strlen(str);
 	/* if not user-specified, then it's a fruit name for a fruit on
 	 * a bones level...
 	 */
@@ -4789,8 +4790,8 @@ char *str;
 			(!strcmp(str+7, "spinach") ||
 			 name_to_mon(str+7) >= LOW_PM)) ||
 		    !strcmp(str, "empty tin") ||
-		    ((!strncmp(eos(str)-7," corpse",7) ||
-			    !strncmp(eos(str)-4, " egg",4)) &&
+		    (((len > 7 && !strncmp(eos(str)-7," corpse",7)) ||
+			    (len > 4 && !strncmp(eos(str)-4, " egg",4))) &&
 			name_to_mon(str) >= LOW_PM))
 			{
 				strcpy(buf, pl_fruit);

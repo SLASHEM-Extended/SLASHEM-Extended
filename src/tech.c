@@ -2475,7 +2475,12 @@ dotechmenu(how, tech_no)
 	n = select_menu(tmpwin, how, &selected);
 	destroy_nhwindow(tmpwin);
 	if (n > 0) {
-	    *tech_no = selected[0].item.a_int - 1;
+	    int selection = selected[0].item.a_int - 1;
+	    if (selection < 0) { /* shouldn't happen, but according to amateurhour it can... so he fixed it --Amy */
+		    free((void *)selected);
+		    return FALSE;
+	    }
+	    *tech_no = selection;
 	    free((void *)selected);
 	    return TRUE;
 	}
