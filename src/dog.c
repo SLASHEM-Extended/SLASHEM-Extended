@@ -76,10 +76,6 @@ pet_type()
 {
 	if (urole.petnum != NON_PM)
 	    return (urole.petnum);
-	else if (preferred_pet == 'c')
-	    return (PM_KITTEN);
-	else if (preferred_pet == 'd')
-	    return (PM_LITTLE_DOG);
 	else if (Role_if(PM_PIRATE))
 		return (rn2(2) ? PM_AIRBORNE_PARROT : PM_MONKEY);
 	else if (Role_if(PM_GOFF))
@@ -163,6 +159,10 @@ pet_type()
 		case 1: return (PM_OXYGEN_GOLEM);
 		case 2: return (PM_SULFUR_GOLEM);
 		}
+	else if (preferred_pet == 'c')
+	    return (PM_KITTEN);
+	else if (preferred_pet == 'd')
+	    return (PM_LITTLE_DOG);
 	else
 	    return (rn2(2) ? PM_KITTEN : PM_LITTLE_DOG);
 
