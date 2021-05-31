@@ -7888,6 +7888,39 @@ repairitemchoice:
 		case T_SYMBIOSIS:
 
 			{
+
+			/* symbiant and goauld can use it more often... but they're too different, and therefore
+			 * being a goauld symbiant doesn't reduce the timeout by more :P --Amy */
+
+				int symbiotimer = 10000;
+
+				if (!PlayerCannotUseSkills) {
+					switch (P_SKILL(P_SYMBIOSIS)) {
+						default: break;
+						case P_BASIC:
+							symbiotimer = 9000;
+							break;
+						case P_SKILLED:
+							symbiotimer = 8000;
+							break;
+						case P_EXPERT:
+							symbiotimer = 7000;
+							break;
+						case P_MASTER:
+							symbiotimer = 6000;
+							break;
+						case P_GRAND_MASTER:
+							symbiotimer = 5000;
+							break;
+						case P_SUPREME_MASTER:
+							symbiotimer = 4000;
+							break;
+					}
+
+				}
+
+				if (Role_if(PM_SYMBIANT) || Race_if(PM_GOAULD)) symbiotimer /= 5;
+
 				struct obj *usymbioteitem;
 
 				pline("A symbiote is created!");
@@ -7896,21 +7929,21 @@ repairitemchoice:
 					usymbioteitem->quan = 1;
 					usymbioteitem->known = usymbioteitem->dknown = usymbioteitem->bknown = usymbioteitem->rknown = 1;
 					usymbioteitem->owt = weight(usymbioteitem);
+					usymbioteitem->finalcancel = TRUE; /* no polymorphing exploits, sorry --Amy */
 					dropy(usymbioteitem);
 					stackobj(usymbioteitem);
 				}
 
+			t_timeout = rnz(symbiotimer);
+
 			}
 
-			/* symbiant and goauld can use it more often... but they're too different, and therefore
-			 * being a goauld symbiant doesn't reduce the timeout by more :P --Amy */
-			t_timeout = rnz(Role_if(PM_SYMBIANT) ? 4000 : Race_if(PM_GOAULD) ? 4000 : 20000);
 			break;
 
 		case T_ADJUST_SYMBIOTE:
 
 			/* intentional that you can use this even while not having a symbiote --Amy */
-			if (P_SKILL(P_SYMBIOSIS) >= P_SKILLED) {
+			if (!PlayerCannotUseSkills && (P_SKILL(P_SYMBIOSIS) >= P_SKILLED)) {
 
 				pline("Currently your symbiote's aggressiveness is %d%%.", u.symbioteaggressivity);
 
