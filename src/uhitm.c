@@ -2926,7 +2926,7 @@ int dieroll;
 
 		if (gunused && tech_inuse(T_SHUT_THAT_BITCH_UP) && mon && mon->female && humanoid(mon->data)) {
 			if (!TimeStopped || !rn2(TimeStopped)) {
-				You("managed to shut the %s bitch up!", mon_nam(mon));
+				You("managed to shut the %s bitch up!", l_monnam(mon));
 				TimeStopped++;
 			}
 		}
@@ -3603,7 +3603,7 @@ melatechoice:
 
 		else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || sanitymessage) && !rn2(5)) {
 
-			switch (rnd(423)) {
+			switch (rnd(425)) {
 	
 			case 1: pline("%s staggers from your furious assault.", Monnam(mon)); break;
 			case 2: pline("Your cut barely scratches %s's scales.", mon_nam(mon)); break;
@@ -4028,6 +4028,8 @@ melatechoice:
 			case 421: pline("Your sister combat boots with very pretty black block heels stomp %s's %s.", mon_nam(mon), makeplural(mbodypart(mon, TOE))); break;
 			case 422: pline("You land a very lovely little-girl kick against %s's shin with your black calf-leather sandals!", mon_nam(mon)); break;
 			case 423: pline("You slam shut and %s lost lines.", mon_nam(mon)); break;
+			case 424: pline("%s is caught by your homosexual spin kick, but keeps fighting.", Monnam(mon)); break;
+			case 425: pline("Your jump kick catches %s, who is dazed for a moment.", mon_nam(mon)); break;
 
 			default: pline("You hit %s!", mon_nam(mon)); break;
 	
@@ -4142,7 +4144,7 @@ melatechoice:
 
 			else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && !rn2(5) && !thrown) {
 
-				switch (rnd(600)) {
+				switch (rnd(604)) {
 
 				case 1: pline("You crush %s's skull into jelly.", mon_nam(mon)); break;
 				case 2: pline("You decapitate %s with a backhand stroke.", mon_nam(mon)); break;
@@ -4744,6 +4746,10 @@ melatechoice:
 				case 598: pline("You ruined %s's day.", mon_nam(mon)); break;
 				case 599: pline("You crush %s's hopes.", mon_nam(mon)); break;
 				case 600: pline("%s has triggered too many nasty traps and therefore decides to ragequit the game.", Monnam(mon)); break;
+				case 601: pline("You throw a totally homosexual spin kick, and this time %s actually gets knocked out by it.", mon_nam(mon)); break;
+				case 602: pline("With your jump kick, you bludgeon the dirty ladder camper bastard of %s.", mon_nam(mon)); break;
+				case 603: pline("You rapidly batter %s with punches, beating the crap out of %s.", mon_nam(mon), mhim(mon)); break;
+				case 604: pline("%s loses an %s as a result of your thrown knife!", Monnam(mon), mbodypart(mon, ARM)); break;
 
 
 				default: pline("You hit %s very hard!", mon_nam(mon)); break;
@@ -7076,7 +7082,7 @@ register int roll;
 
 	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && !rn2(5) && canspotmon(mdef) && flags.verbose) {
 
-		switch (rnd(589)) {
+		switch (rnd(594)) {
 
 		case 1: pline("%s cringes from your strike behind its %sshield.", Monnam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
 		case 2: pline("You smash into %s's %sshield, striking sparks.", mon_nam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
@@ -7665,8 +7671,13 @@ register int roll;
 		case 585: pline("%s decides to teach you a lesson by firing lightning spikes at you.", Monnam(mdef)); break;
 		case 586: pline("%s polishes your visage.", Monnam(mdef)); break;
 		case 587: pline("You accidentally charge past %s, who swiftly kicks you in the calf with %s high heels.", mon_nam(mdef), mhis(mdef)); break;
-		case 588: pline("The entire lower part of your arm slides along %s's fingernails, and your blood is squirting in all directions.", mon_nam(mdef)); break;
+		case 588: pline("The entire lower part of your arm slides along %s's fingernails, and your %s is squirting in all directions.", mon_nam(mdef), body_part(BLOOD)); break;
 		case 589: pline("%s is really washed with all landing on water!", Monnam(mdef)); break;
+		case 590: pline("You try to throw a totally homosexual spin kick at %s, but miss (predictably).", mon_nam(mdef)); break;
+		case 591: pline("You charge %s and try a jump kick, but %s narrowly escapes!", mon_nam(mdef), mhe(mdef)); break;
+		case 592: pline("You attempt to batter %s with punches, but your first punch misses and because of some stupid rule you now have to wait for an entire second before you can try again!", mon_nam(mdef)); break;
+		case 593: pline("Your thrown knife doesn't hit %s!", mon_nam(mdef)); break;
+		case 594: pline("%s's brightly colored sneaker soles look so exciting that you just stand there staring at them instead of fighting!", Monnam(mdef)); break;
 
 		default: pline("You missed %s!", mon_nam(mdef)); break;
 

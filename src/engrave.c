@@ -5478,6 +5478,7 @@ static const char *epitaphs[] = {
 	"WHAAAAAAT? I'm supposed to use tactical combat where my positioning, choice of melee versus ranged weapons etc. MATTER? screw that, I'll just whack everything with my orcish dagger in melee :P",
 	"nurse dancing can result in the sexy nurses stepping on the player's toes with their sexy high-heeled nurse boots <3",
 	"So, like, atrocious segfaults happen every minute!",
+	"balanced means you don't fall off a tightrope. if you put a computer running slex on a tightrope it would fall off, therefore slex is not balanced", /* by qt */
 
 };
 

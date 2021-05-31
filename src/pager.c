@@ -4509,6 +4509,8 @@ static NEARDATA const char * const longinglines[] = {
 "When you want to present your nuts so that %s can kick them with her high-heeled combat boots, you'll have to remove your pants so they don't protect you from the beautiful block heels.",
 "Wow, %s can really brutally kick you in the back of the head with her block heels, which is absolutely beautiful to behold!",
 "Wow, %s can really beautifully kick her thick wedge heels against your butt!",
+"%s's gray sneaker soles look very lovely and you absolutely want them to rub over your skin, because you'd certainly enjoy it.",
+"Mmmmmmmmmmmmm, %s's sneakers have pink soles!!! They look so incredibly female and wonderlovely, and you absolutely want her to use them to squeeze your hands and fingers because it'll be such a beautiful feeling of pain!",
 };
 
 static NEARDATA const char * const soviettaunts[] = {
@@ -27226,6 +27228,13 @@ static NEARDATA const char * const fake_plines[] = {
 	"Suddenly, the dungeon collapses. Apparently destroying one of the fundamental states of matter has compromised the foundation.",
 	"Destroy what material? 'stone' Suddenly, the dungeon vanishes. You scream as you fall inward towards the molten iron core of the planet, eventually incinerating in it.",
 	"Suddenly, the dungeon vanishes. You scream as you fall inward towards the molten iron core of the planet, eventually incinerating in it. Do you want your possessions identified? Wait, no, those all burned up too.",
+	"You step on the rug. You have hit a feminism trap! You feel an urge to set fire to a pickup artist.",
+	"You feel compact.",
+	"You feel compact. This is an effect of being only 1,50 meters tall while weighing a hundred kilos.",
+	"You feel compact. This is an effect of being only 1,50 meters tall while weighing a hundred kilos, fatass.",
+	"You feel as if someone was body-shaming you.",
+	"You feel as if someone was body-shaming you. But in reality you're not thick, you're just big boned.",
+	"You feel as if someone was body-shaming you. Probably some anorexic slut who somehow thinks being super skinny was in any way 'sexy', which is obviously not the case. She looks like she needs to eat some cake if you ask me!",
 
 };
 
