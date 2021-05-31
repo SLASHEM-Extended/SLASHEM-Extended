@@ -1989,7 +1989,7 @@ int dieroll;
 							} else if (obj && obj->spe < 2) {
 								obj->spe++;
 								pline("Your lightsaber gains a point of enchantment!");
-							} else if (obj && obj->spe < 7 && !rn2(obj->spe)) {
+							} else if (obj && obj->spe < 7 && !rn2(obj->spe) && !rn2(obj->spe)) {
 								obj->spe++;
 								pline("Your lightsaber vibrates and is highly enchanted now!");
 							} else {
