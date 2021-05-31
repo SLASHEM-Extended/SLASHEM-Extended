@@ -2290,6 +2290,19 @@ boolean want_dump;
 	    /* countdown by monster "toughness" */
 	    /*for (lev = max_lev; lev >= 0; lev--)*/
 	      for (i = LOW_PM; i < NUMMONS; i++)
+
+#if 0
+		/* Amy test suite */
+
+		if ((mons[i].geno & G_UNIQ) && (mons[i].geno & G_GENO)) {
+			sprintf(buf, "%s UNIQGENO", mons[i].mname);
+			putstr(klwin, 0, buf);
+#ifdef DUMP_LOG
+			if (want_dump)  dump("  ", buf);
+#endif
+		}
+#endif /* 0 */
+
 		if (/*mons[i].mlevel == lev &&*/ (((nkilled = mvitals[i].died) > 0) || (nkilled != mvitals[i].born && (program_state.gameover || wizard)) ) ) {
 		    if ((mons[i].geno & G_UNIQ) && i != PM_HIGH_PRIEST) {
 			sprintf(buf, "%s%s",
