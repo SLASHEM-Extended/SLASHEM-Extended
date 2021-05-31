@@ -232,7 +232,17 @@ on the first floor, especially when you're playing as something with drain resis
 
 			if (humanoid(mtmp->data) && is_female(mtmp->data) && FemtrapActiveJeanetta) {
 				pline("%s uses her cute little boots to scrape a bit of skin off your %s!", Monnam(mtmp), body_part(LEG));
-				u.legscratching++;
+
+		/* this can now increase the player's legscratching variable. Since the damage you take depends on how much
+		 * legscratching you already have, and you might get hit by a long-lasting effect of this trap, we need to
+		 * make absolutely sure that the increases don't happen too quickly or it becomes unplayable; this is achieved
+		 * by having only 1 in (legscratching squared) chance for an increase --Amy */
+
+				if (!u.legscratching) u.legscratching++;
+				else if (u.legscratching > 60000) {
+					if (!rn2(60000) && !rn2(60000)) u.legscratching++;
+				} else if (!rn2(u.legscratching * u.legscratching)) u.legscratching++;
+
 				losehp(rno(u.legscratching + 1), "being scratched by Jeanetta's little boots", KILLED_BY);
 			}
 
