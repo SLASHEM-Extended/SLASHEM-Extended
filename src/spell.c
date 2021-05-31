@@ -10833,7 +10833,10 @@ int lossamount;
 		}
 
 		/* sometimes we're mean and reduce it by more, depending on how many spells you have... --Amy */
-		if (!rn2(3) && choicenumber > 1) lossamount *= rno(choicenumber);
+		if (!rn2(3) && choicenumber > 1) {
+			lossamount *= (50 + rno(choicenumber));
+			lossamount /= 50;
+		}
 		lossamount *= rnd(5);
 
 		if (choicenumber > 0 && thisone >= 0) {
