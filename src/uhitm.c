@@ -1910,7 +1910,7 @@ int dieroll;
 				if (rn2(4)) {
 				    monflee(mon, d(2,3), TRUE, TRUE);
 				}
-				if (obj && obj->oartifact == ART_OUTJUYOING) use_skill(P_JUYO, rnd(4));
+				if (obj && obj->oartifact == ART_OUTJUYOING) use_skill(P_JUYO, rnd(7));
 
 				hittxt = TRUE;
 			}
@@ -1976,7 +1976,7 @@ int dieroll;
 						}
 
 						hittxt = TRUE;
-						use_skill(P_JUYO, rnd(4)); /* has to be faster because hard to train otherwise --Amy */
+						use_skill(P_JUYO, rnd(7)); /* has to be faster because hard to train otherwise --Amy */
 
 						if (tech_inuse(T_SURRENDER_OR_DIE)) {
 							if (!mon->mfrenzied && !resist(mon, WEAPON_CLASS, 0, NOTELL) ) {
