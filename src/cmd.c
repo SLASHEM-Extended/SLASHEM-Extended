@@ -7724,7 +7724,7 @@ int final;
 
 	if (u.tremblingamount) {
 		sprintf(buf, " %d", u.tremblingamount);
-		dump("  You were tremling, reducing your to-hit and spellcasting chances. Amount:", buf);
+		dump("  You were trembling, reducing your to-hit and spellcasting chances. Amount:", buf);
 	}
 
 	if (u.tsloss_str) {
