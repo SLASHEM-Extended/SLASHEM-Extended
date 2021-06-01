@@ -2276,6 +2276,9 @@ boolean givehp;
 		typ = CATACLYSM_TRAP;
 	}
 
+	/* the caller doesn't care if we're on a level that cannot have holes, so we need an extra failsafe --Amy */
+	if ((typ == TRAPDOOR || typ == HOLE || typ == SHAFT_TRAP || typ == CURRENT_SHAFT) && !Can_fall_thru(&u.uz) && !Is_stronghold(&u.uz) ) typ = ROCKTRAP;
+
 	if ((ttmp = t_at(x,y)) != 0) {
 	    if (ttmp->ttyp == MAGIC_PORTAL) return (struct trap *)0;
 	    oldplace = TRUE;
@@ -7934,6 +7937,7 @@ newbossPENT:
 			    seetrap(trap);	/* normally done in fall_through */
 			    impossible("dotrap: %ss cannot exist on this level.",
 				       defsyms[trap_to_defsym(ttype)].explanation);
+			    deltrap(trap);
 			    break;		/* don't activate it after all */
 		    }
 		}
@@ -16204,6 +16208,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			if (!Can_fall_thru(&u.uz)) {
 			 impossible("mintrap: %ss cannot exist on this level.",
 				    defsyms[trap_to_defsym(tt)].explanation);
+			    deltrap(trap);
 			    break;	/* don't activate it after all */
 			}
 			if (is_flyer(mptr) || mtmp->egotype_flying || is_floater(mptr) ||
