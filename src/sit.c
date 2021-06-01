@@ -1113,17 +1113,22 @@ rndcurse()			/* curse a few inventory items at random! */
 void
 attrcurse()			/* remove a random INTRINSIC ability */
 {
-	switch(rnd(218)) {
-	case 1 : 
-	case 2 : 
-	case 3 : 
-	case 4 : 
-	case 5 : 
-	case 6 : 
-	case 7 : 
-	case 8 : 
-	case 9 : 
-	case 10 : if (HFire_resistance & INTRINSIC) {
+	switch(rnd(249)) {
+	case 1:
+	case 2:
+	case 3:
+	case 4:
+	case 5:
+	case 6:
+	case 7:
+	case 8:
+	case 9:
+	case 10:
+	case 11:
+	case 12:
+	case 13:
+	case 14:
+	case 15: if (HFire_resistance & INTRINSIC) {
 			HFire_resistance &= ~INTRINSIC;
 			You_feel("warmer.");
 			u.cnd_intrinsiclosscount++;
@@ -1134,12 +1139,14 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 11 : 
-	case 12 : 
-	case 13 : 
-	case 14 : 
-	case 15 : 
-	case 16 : if (HTeleportation & INTRINSIC) {
+	case 16:
+	case 17:
+	case 18:
+	case 19:
+	case 20:
+	case 21:
+	case 22:
+	case 23: if (HTeleportation & INTRINSIC) {
 			HTeleportation &= ~INTRINSIC;
 			You_feel("less jumpy.");
 			u.cnd_intrinsiclosscount++;
@@ -1150,16 +1157,21 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 17 : 
-	case 18 : 
-	case 19 : 
-	case 20 : 
-	case 21 : 
-	case 22 : 
-	case 23 : 
-	case 24 : 
-	case 25 : 
-	case 26 : if (HPoison_resistance & INTRINSIC) {
+	case 24:
+	case 25:
+	case 26:
+	case 27:
+	case 28:
+	case 29:
+	case 30:
+	case 31:
+	case 32:
+	case 33:
+	case 34:
+	case 35:
+	case 36:
+	case 37:
+	case 38: if (HPoison_resistance & INTRINSIC) {
 			HPoison_resistance &= ~INTRINSIC;
 			You_feel("a little sick!");
 			u.cnd_intrinsiclosscount++;
@@ -1170,16 +1182,16 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 27 : 
-	case 28 : 
-	case 29 : 
-	case 30 : 
-	case 31 : 
-	case 32 : 
-	case 33 : 
-	case 34 : 
-	case 35 : 
-	case 36 : if (HTelepat & INTRINSIC) {
+	case 39:
+	case 40:
+	case 41:
+	case 42:
+	case 43:
+	case 44:
+	case 45:
+	case 46:
+	case 47:
+	case 48: if (HTelepat & INTRINSIC) {
 			HTelepat &= ~INTRINSIC;
 			if (Blind && !Blind_telepat)
 			    see_monsters();	/* Can't sense mons anymore! */
@@ -1194,16 +1206,21 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 37 : 
-	case 38 : 
-	case 39 : 
-	case 40 : 
-	case 41 : 
-	case 42 : 
-	case 43 : 
-	case 44 : 
-	case 45 : 
-	case 46 : if (HCold_resistance & INTRINSIC) {
+	case 49:
+	case 50:
+	case 51:
+	case 52:
+	case 53:
+	case 54:
+	case 55:
+	case 56:
+	case 57:
+	case 58:
+	case 59:
+	case 60:
+	case 61:
+	case 62:
+	case 63: if (HCold_resistance & INTRINSIC) {
 			HCold_resistance &= ~INTRINSIC;
 			You_feel("cooler.");
 			u.cnd_intrinsiclosscount++;
@@ -1214,16 +1231,16 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 47 : 
-	case 48 : 
-	case 49 : 
-	case 50 : 
-	case 51 : 
-	case 52 : 
-	case 53 : 
-	case 54 : 
-	case 55 : 
-	case 56 : if (HInvis & INTRINSIC) {
+	case 64:
+	case 65:
+	case 66:
+	case 67:
+	case 68:
+	case 69:
+	case 70:
+	case 71:
+	case 72:
+	case 73: if (HInvis & INTRINSIC) {
 			HInvis &= ~INTRINSIC;
 			You_feel("paranoid.");
 			u.cnd_intrinsiclosscount++;
@@ -1234,16 +1251,16 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 57 : 
-	case 58 : 
-	case 59 : 
-	case 60 : 
-	case 61 : 
-	case 62 : 
-	case 63 : 
-	case 64 : 
-	case 65 : 
-	case 66 : if (HSee_invisible & INTRINSIC) {
+	case 74:
+	case 75:
+	case 76:
+	case 77:
+	case 78:
+	case 79:
+	case 80:
+	case 81:
+	case 82:
+	case 83: if (HSee_invisible & INTRINSIC) {
 			HSee_invisible &= ~INTRINSIC;
 			You("%s!", FunnyHallu ? "tawt you taw a puttie tat" : "thought you saw something");
 			u.cnd_intrinsiclosscount++;
@@ -1254,16 +1271,16 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 67 : 
-	case 68 : 
-	case 69 : 
-	case 70 : 
-	case 71 : 
-	case 72 : 
-	case 73 : 
-	case 74 : 
-	case 75 : 
-	case 76 : if (HFast & INTRINSIC) {
+	case 84:
+	case 85:
+	case 86:
+	case 87:
+	case 88:
+	case 89:
+	case 90:
+	case 91:
+	case 92:
+	case 93: if (HFast & INTRINSIC) {
 			HFast &= ~INTRINSIC;
 			You_feel("slower.");
 			u.cnd_intrinsiclosscount++;
@@ -1274,16 +1291,16 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 77 : 
-	case 78 : 
-	case 79 : 
-	case 80 : 
-	case 81 : 
-	case 82 : 
-	case 83 : 
-	case 84 : 
-	case 85 : 
-	case 86 : if (HStealth & INTRINSIC) {
+	case 94:
+	case 95:
+	case 96:
+	case 97:
+	case 98:
+	case 99:
+	case 100:
+	case 101:
+	case 102:
+	case 103: if (HStealth & INTRINSIC) {
 			HStealth &= ~INTRINSIC;
 			You_feel("clumsy.");
 			u.cnd_intrinsiclosscount++;
@@ -1294,7 +1311,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 87: if (HProtection & INTRINSIC) {
+	case 104: if (HProtection & INTRINSIC) {
 			HProtection &= ~INTRINSIC;
 			You_feel("vulnerable.");
 			u.cnd_intrinsiclosscount++;
@@ -1305,11 +1322,14 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 88 : 
-	case 89 : 
-	case 90 : 
-	case 91 : 
-	case 92: if (HAggravate_monster & INTRINSIC) {
+	case 105:
+	case 106:
+	case 107:
+	case 108:
+	case 109:
+	case 110:
+	case 111:
+	case 112: if (HAggravate_monster & INTRINSIC) {
 			HAggravate_monster &= ~INTRINSIC;
 			You_feel("less attractive.");
 			u.cnd_intrinsiclosscount++;
@@ -1320,16 +1340,21 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 93 : 
-	case 94 : 
-	case 95 : 
-	case 96 : 
-	case 97 : 
-	case 98 : 
-	case 99 : 
-	case 100 : 
-	case 101 : 
-	case 102: if (HSleep_resistance & INTRINSIC) {
+	case 113:
+	case 114:
+	case 115:
+	case 116:
+	case 117:
+	case 118:
+	case 119:
+	case 120:
+	case 121:
+	case 122:
+	case 123:
+	case 124:
+	case 125:
+	case 126:
+	case 127: if (HSleep_resistance & INTRINSIC) {
 			HSleep_resistance &= ~INTRINSIC;
 			You_feel("tired all of a sudden.");
 			u.cnd_intrinsiclosscount++;
@@ -1340,16 +1365,16 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 103 : 
-	case 104 : 
-	case 105 : 
-	case 106 : 
-	case 107 : 
-	case 108 : 
-	case 109 : 
-	case 110 : 
-	case 111 : 
-	case 112: if (HDisint_resistance & INTRINSIC) {
+	case 128:
+	case 129:
+	case 130:
+	case 131:
+	case 132:
+	case 133:
+	case 134:
+	case 135:
+	case 136:
+	case 137: if (HDisint_resistance & INTRINSIC) {
 			HDisint_resistance &= ~INTRINSIC;
 			You_feel("like you're going to break apart.");
 			u.cnd_intrinsiclosscount++;
@@ -1360,16 +1385,21 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 113 : 
-	case 114 : 
-	case 115 : 
-	case 116 : 
-	case 117 : 
-	case 118 : 
-	case 119 : 
-	case 120 : 
-	case 121 : 
-	case 122: if (HShock_resistance & INTRINSIC) {
+	case 138:
+	case 139:
+	case 140:
+	case 141:
+	case 142:
+	case 143:
+	case 144:
+	case 145:
+	case 146:
+	case 147:
+	case 148:
+	case 149:
+	case 150:
+	case 151:
+	case 152: if (HShock_resistance & INTRINSIC) {
 			HShock_resistance &= ~INTRINSIC;
 			You_feel("like someone has zapped you.");
 			u.cnd_intrinsiclosscount++;
@@ -1380,7 +1410,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 123: if (HDrain_resistance & INTRINSIC) {
+	case 153: if (HDrain_resistance & INTRINSIC) {
 			HDrain_resistance &= ~INTRINSIC;
 			You_feel("like someone is sucking out your life-force.");
 			u.cnd_intrinsiclosscount++;
@@ -1391,7 +1421,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 124: if (HSick_resistance & INTRINSIC) {
+	case 154: if (HSick_resistance & INTRINSIC) {
 			HSick_resistance &= ~INTRINSIC;
 			You_feel("no longer immune to diseases!");
 			u.cnd_intrinsiclosscount++;
@@ -1402,9 +1432,9 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 125 : 
-	case 126 : 
-	case 127: if (HWarning & INTRINSIC) {
+	case 155:
+	case 156:
+	case 157: if (HWarning & INTRINSIC) {
 			HWarning &= ~INTRINSIC;
 			You_feel("that your radar has just stopped working!");
 			u.cnd_intrinsiclosscount++;
@@ -1415,13 +1445,13 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 128 : 
-	case 129 : 
-	case 130 : 
-	case 131 : 
-	case 132 : 
-	case 133 : 
-	case 134: if (HSearching & INTRINSIC) {
+	case 158:
+	case 159:
+	case 160:
+	case 161:
+	case 162:
+	case 163:
+	case 164: if (HSearching & INTRINSIC) {
 			HSearching &= ~INTRINSIC;
 			You_feel("unable to find something you lost!");
 			u.cnd_intrinsiclosscount++;
@@ -1432,7 +1462,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 135: if (HClairvoyant & INTRINSIC) {
+	case 165: if (HClairvoyant & INTRINSIC) {
 			HClairvoyant &= ~INTRINSIC;
 			You_feel("a loss of mental capabilities!");
 			u.cnd_intrinsiclosscount++;
@@ -1443,7 +1473,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 136: if (HInfravision & INTRINSIC) {
+	case 166: if (HInfravision & INTRINSIC) {
 			HInfravision &= ~INTRINSIC;
 			You_feel("shrouded in darkness.");
 			u.cnd_intrinsiclosscount++;
@@ -1454,7 +1484,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 137: if (HDetect_monsters & INTRINSIC) {
+	case 167: if (HDetect_monsters & INTRINSIC) {
 			HDetect_monsters &= ~INTRINSIC;
 			You_feel("that you can no longer sense monsters.");
 			u.cnd_intrinsiclosscount++;
@@ -1465,7 +1495,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 138: if (HJumping & INTRINSIC) {
+	case 168: if (HJumping & INTRINSIC) {
 			HJumping &= ~INTRINSIC;
 			You_feel("your legs shrinking.");
 			u.cnd_intrinsiclosscount++;
@@ -1476,16 +1506,16 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 139 : 
-	case 140 : 
-	case 141 : 
-	case 142 : 
-	case 143 : 
-	case 144 : 
-	case 145 : 
-	case 146 : 
-	case 147 : 
-	case 148: if (HTeleport_control & INTRINSIC) {
+	case 169:
+	case 170:
+	case 171:
+	case 172:
+	case 173:
+	case 174:
+	case 175:
+	case 176:
+	case 177:
+	case 178: if (HTeleport_control & INTRINSIC) {
 			HTeleport_control &= ~INTRINSIC;
 			You_feel("unable to control where you're going.");
 			u.cnd_intrinsiclosscount++;
@@ -1496,7 +1526,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 149: if (HMagical_breathing & INTRINSIC) {
+	case 179: if (HMagical_breathing & INTRINSIC) {
 			HMagical_breathing &= ~INTRINSIC;
 			You_feel("you suddenly need to breathe!");
 			u.cnd_intrinsiclosscount++;
@@ -1507,7 +1537,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 150: if (HRegeneration & INTRINSIC) {
+	case 180: if (HRegeneration & INTRINSIC) {
 			HRegeneration &= ~INTRINSIC;
 			You_feel("your wounds are healing slower!");
 			u.cnd_intrinsiclosscount++;
@@ -1518,7 +1548,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 151: if (HEnergy_regeneration & INTRINSIC) {
+	case 181: if (HEnergy_regeneration & INTRINSIC) {
 			HEnergy_regeneration &= ~INTRINSIC;
 			You_feel("a loss of mystic power!");
 			u.cnd_intrinsiclosscount++;
@@ -1529,7 +1559,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 152: if (HPolymorph & INTRINSIC) {
+	case 182: if (HPolymorph & INTRINSIC) {
 			HPolymorph &= ~INTRINSIC;
 			You_feel("unable to change form!");
 			u.cnd_intrinsiclosscount++;
@@ -1540,7 +1570,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 153: if (HPolymorph_control & INTRINSIC) {
+	case 183: if (HPolymorph_control & INTRINSIC) {
 			HPolymorph_control &= ~INTRINSIC;
 			You_feel("less control over your own body.");
 			u.cnd_intrinsiclosscount++;
@@ -1551,10 +1581,10 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 154 : 
-	case 155 : 
-	case 156 : 
-	case 157: if (HAcid_resistance & INTRINSIC) {
+	case 184 : 
+	case 185 : 
+	case 186 : 
+	case 187: if (HAcid_resistance & INTRINSIC) {
 			HAcid_resistance &= ~INTRINSIC;
 			You_feel("worried about corrosion!");
 			u.cnd_intrinsiclosscount++;
@@ -1565,7 +1595,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 158: if (HFumbling & INTRINSIC) {
+	case 188: if (HFumbling & INTRINSIC) {
 			HFumbling &= ~INTRINSIC;
 			You_feel("less clumsy.");
 			u.cnd_intrinsiclosscount++;
@@ -1576,7 +1606,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 159: if (HSleeping & INTRINSIC) {
+	case 189: if (HSleeping & INTRINSIC) {
 			HSleeping &= ~INTRINSIC;
 			You_feel("like you just had some coffee.");
 			u.cnd_intrinsiclosscount++;
@@ -1587,7 +1617,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 160: if (HHunger & INTRINSIC) {
+	case 190: if (HHunger & INTRINSIC) {
 			HHunger &= ~INTRINSIC;
 			You_feel("like you just ate a chunk of meat.");
 			u.cnd_intrinsiclosscount++;
@@ -1598,7 +1628,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 161: if (HConflict & INTRINSIC) {
+	case 191: if (HConflict & INTRINSIC) {
 			HConflict &= ~INTRINSIC;
 			You_feel("more acceptable.");
 			u.cnd_intrinsiclosscount++;
@@ -1609,7 +1639,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 162: if (HSlow_digestion & INTRINSIC) {
+	case 192: if (HSlow_digestion & INTRINSIC) {
 			HSlow_digestion &= ~INTRINSIC;
 			You_feel("like you're burning calories faster.");
 			u.cnd_intrinsiclosscount++;
@@ -1620,7 +1650,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 163: if (HFlying & INTRINSIC) {
+	case 193: if (HFlying & INTRINSIC) {
 			HFlying &= ~INTRINSIC;
 			You_feel("like you just lost your wings!");
 			u.cnd_intrinsiclosscount++;
@@ -1631,7 +1661,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 164: if (HPasses_walls & INTRINSIC) {
+	case 194: if (HPasses_walls & INTRINSIC) {
 			HPasses_walls &= ~INTRINSIC;
 			You_feel("less ethereal!");
 			u.cnd_intrinsiclosscount++;
@@ -1642,7 +1672,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 165: if (HAntimagic & INTRINSIC) {
+	case 195: if (HAntimagic & INTRINSIC) {
 			HAntimagic &= ~INTRINSIC;
 			You_feel("less protected from magic!");
 			u.cnd_intrinsiclosscount++;
@@ -1653,7 +1683,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 166: if (HReflecting & INTRINSIC) {
+	case 196: if (HReflecting & INTRINSIC) {
 			HReflecting &= ~INTRINSIC;
 			You_feel("less reflexive!");
 			u.cnd_intrinsiclosscount++;
@@ -1664,7 +1694,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 167: if (Blinded & INTRINSIC) {
+	case 197: if (Blinded & INTRINSIC) {
 			Blinded &= ~INTRINSIC;
 			You_feel("visually clear!");
 			u.cnd_intrinsiclosscount++;
@@ -1675,7 +1705,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 168: if (Glib & INTRINSIC) {
+	case 198: if (Glib & INTRINSIC) {
 			Glib &= ~INTRINSIC;
 			You_feel("heavy-handed!");
 			u.cnd_intrinsiclosscount++;
@@ -1686,7 +1716,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 169: if (HSwimming & INTRINSIC) {
+	case 199: if (HSwimming & INTRINSIC) {
 			HSwimming &= ~INTRINSIC;
 			You_feel("less aquatic!");
 			u.cnd_intrinsiclosscount++;
@@ -1697,7 +1727,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 170: if (HNumbed & INTRINSIC) {
+	case 200: if (HNumbed & INTRINSIC) {
 			HNumbed &= ~INTRINSIC;
 			You_feel("your body parts relax.");
 			u.cnd_intrinsiclosscount++;
@@ -1708,7 +1738,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 171: if (HFree_action & INTRINSIC) {
+	case 201: if (HFree_action & INTRINSIC) {
 			HFree_action &= ~INTRINSIC;
 			You_feel("a loss of freedom!");
 			u.cnd_intrinsiclosscount++;
@@ -1719,7 +1749,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 172: if (HFeared & INTRINSIC) {
+	case 202: if (HFeared & INTRINSIC) {
 			HFeared &= ~INTRINSIC;
 			You_feel("less afraid.");
 			u.cnd_intrinsiclosscount++;
@@ -1730,7 +1760,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 173: if (HFear_resistance & INTRINSIC) {
+	case 203: if (HFear_resistance & INTRINSIC) {
 			HFear_resistance &= ~INTRINSIC;
 			You_feel("a little anxious!");
 			u.cnd_intrinsiclosscount++;
@@ -1741,21 +1771,21 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 174: if (u.uhitincxtra != 0) {
+	case 204: if (u.uhitincxtra != 0) {
 			u.uhitinc -= u.uhitincxtra;
 			u.uhitincxtra = 0;
 			You_feel("your to-hit rating changing!");
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 175: if (u.udamincxtra != 0) {
+	case 205: if (u.udamincxtra != 0) {
 			u.udaminc -= u.udamincxtra;
 			u.udamincxtra = 0;
 			You_feel("your damage rating changing!");
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 176: if (HKeen_memory & INTRINSIC) {
+	case 206: if (HKeen_memory & INTRINSIC) {
 			HKeen_memory &= ~INTRINSIC;
 			You_feel("a case of selective amnesia...");
 			u.cnd_intrinsiclosscount++;
@@ -1766,7 +1796,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 177: if (HVersus_curses & INTRINSIC) {
+	case 207: if (HVersus_curses & INTRINSIC) {
 			HVersus_curses &= ~INTRINSIC;
 			You_feel("cursed!");
 			u.cnd_intrinsiclosscount++;
@@ -1777,7 +1807,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 178: if (HStun_resist & INTRINSIC) {
+	case 208: if (HStun_resist & INTRINSIC) {
 			HStun_resist &= ~INTRINSIC;
 			You_feel("a little stunned!");
 			u.cnd_intrinsiclosscount++;
@@ -1788,7 +1818,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 179: if (HConf_resist & INTRINSIC) {
+	case 209: if (HConf_resist & INTRINSIC) {
 			HConf_resist &= ~INTRINSIC;
 			You_feel("a little confused!");
 			u.cnd_intrinsiclosscount++;
@@ -1799,7 +1829,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 180: if (HDouble_attack & INTRINSIC) {
+	case 210: if (HDouble_attack & INTRINSIC) {
 			HDouble_attack &= ~INTRINSIC;
 			You_feel("your attacks becoming slower!");
 			u.cnd_intrinsiclosscount++;
@@ -1810,7 +1840,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 181: if (HQuad_attack & INTRINSIC) {
+	case 211: if (HQuad_attack & INTRINSIC) {
 			HQuad_attack &= ~INTRINSIC;
 			You_feel("your attacks becoming a lot slower!");
 			u.cnd_intrinsiclosscount++;
@@ -1821,7 +1851,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 182: if (HExtra_wpn_practice & INTRINSIC) {
+	case 212: if (HExtra_wpn_practice & INTRINSIC) {
 			HExtra_wpn_practice &= ~INTRINSIC;
 			You_feel("less able to learn new stuff!");
 			u.cnd_intrinsiclosscount++;
@@ -1832,7 +1862,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 183: if (HDeath_resistance & INTRINSIC) {
+	case 213: if (HDeath_resistance & INTRINSIC) {
 			HDeath_resistance &= ~INTRINSIC;
 			You_feel("a little dead!");
 			u.cnd_intrinsiclosscount++;
@@ -1843,7 +1873,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 184: if (HDisplaced & INTRINSIC) {
+	case 214: if (HDisplaced & INTRINSIC) {
 			HDisplaced &= ~INTRINSIC;
 			You_feel("a little exposed!");
 			u.cnd_intrinsiclosscount++;
@@ -1854,7 +1884,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 185: if (HPsi_resist & INTRINSIC) {
+	case 215: if (HPsi_resist & INTRINSIC) {
 			HPsi_resist &= ~INTRINSIC;
 			You_feel("empty-minded!");
 			u.cnd_intrinsiclosscount++;
@@ -1865,7 +1895,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 186: if (HSight_bonus & INTRINSIC) {
+	case 216: if (HSight_bonus & INTRINSIC) {
 			HSight_bonus &= ~INTRINSIC;
 			You_feel("less perceptive!");
 			u.cnd_intrinsiclosscount++;
@@ -1876,8 +1906,8 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 187:
-	case 188: if (HManaleech & INTRINSIC) {
+	case 217:
+	case 218: if (HManaleech & INTRINSIC) {
 			HManaleech &= ~INTRINSIC;
 			You_feel("less magically attuned!");
 			u.cnd_intrinsiclosscount++;
@@ -1888,7 +1918,8 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 189: if (HMap_amnesia & INTRINSIC) {
+	case 219:
+	case 220: if (HMap_amnesia & INTRINSIC) {
 			HMap_amnesia &= ~INTRINSIC;
 			You_feel("less forgetful!");
 			u.cnd_intrinsiclosscount++;
@@ -1899,7 +1930,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 190: if (HPeacevision & INTRINSIC) {
+	case 221: if (HPeacevision & INTRINSIC) {
 			HPeacevision &= ~INTRINSIC;
 			You_feel("less peaceful!");
 			u.cnd_intrinsiclosscount++;
@@ -1910,7 +1941,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 191: if (HHallu_party & INTRINSIC) {
+	case 222: if (HHallu_party & INTRINSIC) {
 			HHallu_party &= ~INTRINSIC;
 			You_feel("that the party is over!");
 			u.cnd_intrinsiclosscount++;
@@ -1921,7 +1952,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 192: if (HDrunken_boxing & INTRINSIC) {
+	case 223: if (HDrunken_boxing & INTRINSIC) {
 			HDrunken_boxing &= ~INTRINSIC;
 			You_feel("a little drunk!");
 			u.cnd_intrinsiclosscount++;
@@ -1932,7 +1963,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 193: if (HStunnopathy & INTRINSIC) {
+	case 224: if (HStunnopathy & INTRINSIC) {
 			HStunnopathy &= ~INTRINSIC;
 			You_feel("an uncontrolled stunning!");
 			u.cnd_intrinsiclosscount++;
@@ -1943,7 +1974,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 194: if (HNumbopathy & INTRINSIC) {
+	case 225: if (HNumbopathy & INTRINSIC) {
 			HNumbopathy &= ~INTRINSIC;
 			You_feel("numbness spreading through your body!");
 			u.cnd_intrinsiclosscount++;
@@ -1954,7 +1985,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 195: if (HDimmopathy & INTRINSIC) {
+	case 226: if (HDimmopathy & INTRINSIC) {
 			HDimmopathy &= ~INTRINSIC;
 			You_feel(FunnyHallu ? "that your marriage is no longer safe..." : "worried about the future!");
 			u.cnd_intrinsiclosscount++;
@@ -1965,7 +1996,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 196: if (HFreezopathy & INTRINSIC) {
+	case 227: if (HFreezopathy & INTRINSIC) {
 			HFreezopathy &= ~INTRINSIC;
 			You_feel("ice-cold!");
 			u.cnd_intrinsiclosscount++;
@@ -1976,7 +2007,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 197: if (HStoned_chiller & INTRINSIC) {
+	case 228: if (HStoned_chiller & INTRINSIC) {
 			HStoned_chiller &= ~INTRINSIC;
 			You_feel("that you ain't gonna get time for relaxing anymore!");
 			u.cnd_intrinsiclosscount++;
@@ -1987,7 +2018,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 198: if (HCorrosivity & INTRINSIC) {
+	case 229: if (HCorrosivity & INTRINSIC) {
 			HCorrosivity &= ~INTRINSIC;
 			You_feel("the protective layer on your skin disappearing!");
 			u.cnd_intrinsiclosscount++;
@@ -1998,7 +2029,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 199: if (HFear_factor & INTRINSIC) {
+	case 230: if (HFear_factor & INTRINSIC) {
 			HFear_factor &= ~INTRINSIC;
 			You_feel("fearful!");
 			u.cnd_intrinsiclosscount++;
@@ -2009,7 +2040,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 200: if (HBurnopathy & INTRINSIC) {
+	case 231: if (HBurnopathy & INTRINSIC) {
 			HBurnopathy &= ~INTRINSIC;
 			You_feel("red-hot!");
 			u.cnd_intrinsiclosscount++;
@@ -2020,7 +2051,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 201: if (HSickopathy & INTRINSIC) {
+	case 232: if (HSickopathy & INTRINSIC) {
 			HSickopathy &= ~INTRINSIC;
 			You_feel("a loss of medical knowledge!");
 			u.cnd_intrinsiclosscount++;
@@ -2031,7 +2062,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 202: if (HWonderlegs & INTRINSIC) {
+	case 233: if (HWonderlegs & INTRINSIC) {
 			HWonderlegs &= ~INTRINSIC;
 			You_feel("that all girls and women will scratch bloody wounds on your legs with their high heels!");
 			u.cnd_intrinsiclosscount++;
@@ -2042,7 +2073,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 203: if (HGlib_combat & INTRINSIC) {
+	case 234: if (HGlib_combat & INTRINSIC) {
 			HGlib_combat &= ~INTRINSIC;
 			You_feel("fliction in your %s!", makeplural(body_part(HAND)));
 			u.cnd_intrinsiclosscount++;
@@ -2053,9 +2084,9 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 204:
-	case 205:
-	case 206: if (HStone_resistance & INTRINSIC) {
+	case 235:
+	case 236:
+	case 237: if (HStone_resistance & INTRINSIC) {
 			HStone_resistance &= ~INTRINSIC;
 			You_feel("less solid!");
 			u.cnd_intrinsiclosscount++;
@@ -2066,7 +2097,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 207: if (HCont_resist & INTRINSIC) {
+	case 238: if (HCont_resist & INTRINSIC) {
 			HCont_resist &= ~INTRINSIC;
 			You_feel("less resistant to contamination!");
 			u.cnd_intrinsiclosscount++;
@@ -2077,7 +2108,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 208: if (HDiscount_action & INTRINSIC) {
+	case 239: if (HDiscount_action & INTRINSIC) {
 			HDiscount_action &= ~INTRINSIC;
 			You_feel("less resistant to paralysis!");
 			u.cnd_intrinsiclosscount++;
@@ -2088,7 +2119,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 209: if (HFull_nutrient & INTRINSIC) {
+	case 240: if (HFull_nutrient & INTRINSIC) {
 			HFull_nutrient &= ~INTRINSIC;
 			You_feel("a hole in your %s!", body_part(STOMACH));
 			u.cnd_intrinsiclosscount++;
@@ -2099,7 +2130,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 210: if (HTechnicality & INTRINSIC) {
+	case 241: if (HTechnicality & INTRINSIC) {
 			HTechnicality &= ~INTRINSIC;
 			You_feel("less capable of using your techniques...");
 			u.cnd_intrinsiclosscount++;
@@ -2110,7 +2141,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 211: if (HHalf_spell_damage & INTRINSIC) {
+	case 242: if (HHalf_spell_damage & INTRINSIC) {
 			HHalf_spell_damage &= ~INTRINSIC;
 			You_feel("vulnerable to spells!");
 			u.cnd_intrinsiclosscount++;
@@ -2121,7 +2152,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 212: if (HHalf_physical_damage & INTRINSIC) {
+	case 243: if (HHalf_physical_damage & INTRINSIC) {
 			HHalf_physical_damage &= ~INTRINSIC;
 			You_feel("vulnerable to damage!");
 			u.cnd_intrinsiclosscount++;
@@ -2132,7 +2163,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 213: if (HUseTheForce & INTRINSIC) {
+	case 244: if (HUseTheForce & INTRINSIC) {
 			HUseTheForce &= ~INTRINSIC;
 			You_feel("that you lost your jedi powers!");
 			u.cnd_intrinsiclosscount++;
@@ -2143,7 +2174,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 214: if (HScentView & INTRINSIC) {
+	case 245: if (HScentView & INTRINSIC) {
 			HScentView &= ~INTRINSIC;
 			You_feel("unable to smell things!");
 			u.cnd_intrinsiclosscount++;
@@ -2154,7 +2185,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 215: if (HDiminishedBleeding & INTRINSIC) {
+	case 246: if (HDiminishedBleeding & INTRINSIC) {
 			HDiminishedBleeding &= ~INTRINSIC;
 			You_feel("your %s coagulants failing!", body_part(BLOOD));
 			u.cnd_intrinsiclosscount++;
@@ -2165,7 +2196,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 216: if (HControlMagic & INTRINSIC) {
+	case 247: if (HControlMagic & INTRINSIC) {
 			HControlMagic &= ~INTRINSIC;
 			You_feel("unable to control your magic!");
 			u.cnd_intrinsiclosscount++;
@@ -2176,7 +2207,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
-	case 217: if (HExpBoost & INTRINSIC) {
+	case 248: if (HExpBoost & INTRINSIC) {
 			HExpBoost &= ~INTRINSIC;
 			You_feel("a loss of experience!");
 			u.cnd_intrinsiclosscount++;
