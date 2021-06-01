@@ -5006,6 +5006,10 @@ struct attack *mattk;
 			delobj(otmp);
 			return;
 	    }
+	    if (otmp && otmp->mstartinventD && !(otmp->oartifact) && !(otmp->fakeartifact && !rn2(4)) && rn2(4) ) {
+			delobj(otmp);
+			return;
+	    }
 
 	    otmp = hold_another_objectX(otmp, "You snatched but dropped %s.",
 				       doname(otmp), "You steal: ");

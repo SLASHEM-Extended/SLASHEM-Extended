@@ -28068,6 +28068,13 @@ register int otyp;
 	    if (otmp->otyp == SHIELD_OF_REFLECTION && mtmp->data->mlet == S_ANGEL) otmp->mstartinventC = 1;
 	    if (otmp->otyp == ROBE && mtmp->data->mlet == S_WRAITH) otmp->mstartinventC = 1;
 	    if (otmp->otyp == RUBY && mtmp->data == &mons[PM_RUBY_BOSS]) otmp->mstartinventC = 1;
+	    if ((otmp->otyp >= WEDGED_LITTLE_GIRL_SANDAL) && (otmp->otyp <= PROSTITUTE_SHOE) && !Role_if(PM_TRANSVESTITE) && !Role_if(PM_TRANSSYLVANIAN)) {
+			otmp->mstartinventD = 1;
+		}
+	    if ((otmp->otyp >= WEDGE_SANDALS) && (otmp->otyp <= ITALIAN_HEELS) && !Role_if(PM_TOPMODEL)) {
+			otmp->mstartinventD = 1;
+		}
+	    if ((otmp->otyp >= WEDGE_SANDALS) && (otmp->otyp <= ITALIAN_HEELS) && Role_if(PM_FAILED_EXISTENCE)) otmp->mstartinventC = 1;
 	    (void) mpickobj(mtmp, otmp, TRUE);	/* might free otmp */
 	    return(spe);
 	} else return(0);

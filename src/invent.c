@@ -857,6 +857,7 @@ const char *drop_fmt, *drop_arg, *hold_msg;
 		obj->mstartinvent = 0;
 		obj->mstartinventB = 0;
 		obj->mstartinventC = 0;
+		obj->mstartinventD = 0;
 		sprintf(qbuf, "Got %s! Drop it?", doname(obj) );
 
 		if (yn_function(qbuf, ynchars, 'n') == 'y' ) {
