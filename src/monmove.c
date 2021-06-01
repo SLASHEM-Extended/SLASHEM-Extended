@@ -2336,6 +2336,10 @@ toofar:
 			"I'm expecting an apology!",
 			"You insult my womanhood.",
 			"You disgust me.",
+			"Oh yeah baby, let's brawl.",
+			"Think you're hard hitting a woman?",
+			"You want my heel in your ass?",
+			"This is gonna hurt!",
 		};
 
 		verbalize("%s", whore_msgs[rn2(SIZE(whore_msgs))]);

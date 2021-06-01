@@ -4045,6 +4045,7 @@ static NEARDATA const char * const demagoguelines[] = {
 "Down with the government! Anarchy is the only way to victory!",
 "This country belongs to the people and no shitting law is gonna change that!",
 "Laws are there so that one does not obey them! Better yet, they should be abolished completely, which will free our people from their imaginary shackles!",
+"Freedom of religion is stupid! If I become the head of state, I'll ensure that the only entity you are allowed to worship is gonna be me!",
 };
 
 static NEARDATA const char * const longinglines[] = {
@@ -4511,6 +4512,13 @@ static NEARDATA const char * const longinglines[] = {
 "Wow, %s can really beautifully kick her thick wedge heels against your butt!",
 "%s's gray sneaker soles look very lovely and you absolutely want them to rub over your skin, because you'd certainly enjoy it.",
 "Mmmmmmmmmmmmm, %s's sneakers have pink soles!!! They look so incredibly female and wonderlovely, and you absolutely want her to use them to squeeze your hands and fingers because it'll be such a beautiful feeling of pain!",
+"When looking at %s's beautiful sandals, you spontaneously come.",
+"%s's sandals have such wonderful block heels, they're simply irresistible!",
+"Isn't it incredible that the block heels of %s's female sandals are made of such lovely, fluffy material?",
+"You just can't stop admiring the thick platform soles of %s's women's sandals, and particularly their treaded soles look super sexy and exciting!",
+"You absolutely want to have the same pair of sandals that %s is wearing, because not only do they have treaded soles, but even the block heel is treaded!",
+"You'd love to have your hands pinned to the floor by %s's sexy cone heels.",
+"Having your nuts massaged by %s's gentle-soft hands would feel soooooooooooo wonderful... <3",
 };
 
 static NEARDATA const char * const soviettaunts[] = {

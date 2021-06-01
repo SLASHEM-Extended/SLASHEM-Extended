@@ -7084,6 +7084,13 @@ SCROLL((char *)0,               "LIBERA MI DALLE CATENE DI AENDRU RASENBAN",  P_
 SCROLL((char *)0,               "PC LOAD LETTER",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
 SCROLL((char *)0,               "FRCN TYPO",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
 SCROLL((char *)0,               "DER GLUECKSDRAHT",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
+SCROLL((char *)0,               "STAND YOU FORWARDS ONE WOULD ALWAYS UMENG SAY",  P_NONE,     1,   0, 100, CLR_RED, 1),
+SCROLL((char *)0,               "CRASH EM EXTENDED QUALITY ASSURANCE",  P_NONE,     1,   0, 100, CLR_BRIGHT_CYAN, 1),
+SCROLL((char *)0,               "DENIM YOU STAY",  P_NONE,     1,   0, 100, CLR_BRIGHT_BLUE, 1),
+SCROLL((char *)0,               "KRINSCH IST KEIN DEUTSCHES WORT",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
+SCROLL((char *)0,               "IN DER DEUTSCHEN SPRACHE GIBT ES KEINEN STERN MITTEN IN NEM WORT",  P_NONE,     1,   0, 100, CLR_BRIGHT_MAGENTA, 1),
+SCROLL((char *)0,               "FRANCESCA DUMMTRULLA DOOF IS A TOTAL MARY SUE",  P_NONE,     1,   0, 100, CLR_BRIGHT_GREEN, 1),
+SCROLL((char *)0,               "SAENK JU FOR TRAEWELLING",  P_NONE,     1,   0, 100, CLR_RED, 1),
 
 
 #ifdef MAIL

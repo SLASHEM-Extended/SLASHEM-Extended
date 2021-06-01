@@ -3594,6 +3594,10 @@ noservices:
 			"I'm expecting an apology!",
 			"You insult my womanhood.",
 			"You disgust me.",
+			"Oh yeah baby, let's brawl.",
+			"Think you're hard hitting a woman?",
+			"You want my heel in your ass?",
+			"This is gonna hurt!",
 		};
 
 		if (!mtmp->mpeaceful) verbalize("%s", whore_msgs[rn2(SIZE(whore_msgs))]);
@@ -4134,7 +4138,7 @@ dochat()
 	return (0);
     }
 
-    if ( (mtmp->mtame || (mtmp->data == &mons[PM_SYMBIULD]) ) && (((stationary(mtmp->data) || mtmp->data->mmove == 0 || mtmp->data->mlet == S_TURRET) && !Race_if(PM_GOAULD)) || (!(stationary(mtmp->data) || mtmp->data->mmove == 0 || mtmp->data->mlet == S_TURRET) && Race_if(PM_GOAULD))) && !mtmp->mfrenzied && !(mtmp->data->mlevel > 29 || (mtmp->data->mlevel > (u.ulevel + 10)) || cannot_be_tamed(mtmp->data) || (mtmp->cham == CHAM_ZRUTINATOR) || mtmp->isshk || mtmp->isgd || mtmp->ispriest || mtmp->isminion || mtmp->isgyp || (mtmp->oldmonnm != monsndx(mtmp->data))) ) {
+    if ( (mtmp->mtame || (mtmp->data == &mons[PM_SYMBIULD]) ) && (((stationary(mtmp->data) || mtmp->data->mmove == 0 || mtmp->data->mlet == S_TURRET) && !Race_if(PM_GOAULD)) || (!(stationary(mtmp->data) || mtmp->data->mmove == 0 || mtmp->data->mlet == S_TURRET) && Race_if(PM_GOAULD))) && !mtmp->mfrenzied && !(mtmp->data->mlevel > 20 || (mtmp->data->mlevel > (u.ulevel + 5)) || cannot_be_tamed(mtmp->data) || (mtmp->cham == CHAM_ZRUTINATOR) || mtmp->isshk || mtmp->isgd || mtmp->ispriest || mtmp->isminion || mtmp->isgyp || (mtmp->oldmonnm != monsndx(mtmp->data))) ) {
 	
 	pline("You can attempt to turn this pet into a symbiote. Warning: if it's an intelligent monster, it may fail and result in a frenzied monster instead!");
 	getlin("Attempt to turn the pet into a symbiote? [yes/no]", buf);

@@ -990,6 +990,7 @@ static const char *random_mesg[] = {
 	"All your castle are belong to us",
 	"DON'T DEAD OPEN INSIDE",
 	"The Enclave is here! Being led by Aendru Rasenban who unleashes his multigoons to spread fear and panic, they've arrived and want to kill our peaceful citizens! Run for your lives!!!",
+	"notnethack is a variant made by emo", /* by elronnd */
 
 };
 
@@ -5479,6 +5480,10 @@ static const char *epitaphs[] = {
 	"nurse dancing can result in the sexy nurses stepping on the player's toes with their sexy high-heeled nurse boots <3",
 	"So, like, atrocious segfaults happen every minute!",
 	"balanced means you don't fall off a tightrope. if you put a computer running slex on a tightrope it would fall off, therefore slex is not balanced", /* by qt */
+	"nethack worse game ever, never playing again", /* by aoei */
+	"nethack worse game ever, never playing again AND NO ONYO",
+	"Here lies democracy, slain by power-hungry politicians.",
+	"Got attacked by a plof anje and the game said that I 'come because her sandals are so beautiful'. This game is unplayable, no one can handle such wacky messages.",
 
 };
 
