@@ -3990,7 +3990,7 @@ melatechoice:
 			case 383: pline("Your sexy leather pumps continuously scratch up and down %s's %s, causing %s to squirt everywhere, but the tender heel absolutely wants to deal even more damage.", mon_nam(mon), mbodypart(mon, LEG), mbodypart(mon, BLOOD)); break;
 			case 384: pline("The tender heels of your fleecy combat boots are starting to get very %s-smeared as you keep scratching over the open wounds on %s's %s.", mbodypart(mon, BLOOD), mon_nam(mon), mbodypart(mon, LEG)); break;
 			case 385: pline("Your buckles slit %s's %s very painfully, but somehow no %s is flowing. Maybe %s has let it coagulate?", mon_nam(mon), mbodypart(mon, LEG), mbodypart(mon, BLOOD), mon_nam(mon)); break;
-			case 386: pline("You start kicking %s in the nuts repeatedly, and because the noob is wearing pants with holes, you always aim for the holes and thereby manage to bludgeon him.", mon_nam(mon)); break;
+			case 386: pline("Your sneakers fully slam into %s's nuts, but not strongly enough for a knock-out.", mon_nam(mon)); break;
 			case 387: pline("%s is trying to tease you with his sexy underwear, but you can't be fooled and place a powerful kick into his groin with your boots.", Monnam(mon)); break;
 			case 388: pline("You stick some fly paper onto %s's %s.", mon_nam(mon), mbodypart(mon, HAIR)); break;
 			case 389: pline("Your blade removes some of %s's %s.", mon_nam(mon), mbodypart(mon, HAIR)); break;
@@ -4144,7 +4144,7 @@ melatechoice:
 
 			else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && !rn2(5) && !thrown) {
 
-				switch (rnd(604)) {
+				switch (rnd(605)) {
 
 				case 1: pline("You crush %s's skull into jelly.", mon_nam(mon)); break;
 				case 2: pline("You decapitate %s with a backhand stroke.", mon_nam(mon)); break;
@@ -4750,6 +4750,7 @@ melatechoice:
 				case 602: pline("With your jump kick, you bludgeon the dirty ladder camper bastard of %s.", mon_nam(mon)); break;
 				case 603: pline("You rapidly batter %s with punches, beating the crap out of %s.", mon_nam(mon), mhim(mon)); break;
 				case 604: pline("%s loses an %s as a result of your thrown knife!", Monnam(mon), mbodypart(mon, ARM)); break;
+				case 605: pline("You start kicking %s in the nuts repeatedly, and because the noob is wearing pants with holes, you always aim for the holes and thereby manage to bludgeon him.", mon_nam(mon)); break;
 
 
 				default: pline("You hit %s very hard!", mon_nam(mon)); break;

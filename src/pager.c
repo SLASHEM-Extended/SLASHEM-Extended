@@ -4519,6 +4519,9 @@ static NEARDATA const char * const longinglines[] = {
 "You absolutely want to have the same pair of sandals that %s is wearing, because not only do they have treaded soles, but even the block heel is treaded!",
 "You'd love to have your hands pinned to the floor by %s's sexy cone heels.",
 "Having your nuts massaged by %s's gentle-soft hands would feel soooooooooooo wonderful... <3",
+"You absolutely love %s's cyan sneaker soles, because they can rub along your skin in such a wonderful way.",
+"It would be highly lustful to have %s and her girlfriend lovingly squeeze your nuts with their female sneakers.",
+"Being stepped on the toes or fingers by %s's treaded sandals is wonderful because they look cuuuuuuuuuuuuuuuuuuuute!",
 };
 
 static NEARDATA const char * const soviettaunts[] = {
@@ -27243,6 +27246,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel as if someone was body-shaming you.",
 	"You feel as if someone was body-shaming you. But in reality you're not thick, you're just big boned.",
 	"You feel as if someone was body-shaming you. Probably some anorexic slut who somehow thinks being super skinny was in any way 'sexy', which is obviously not the case. She looks like she needs to eat some cake if you ask me!",
+	"You hear someone counting gold coins. You hear someone yell, 'Hey, who dug this hole into the side of the vault?!'",
+	"You sneeze! You can now move again.", /* by Hekik */
 
 };
 

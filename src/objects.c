@@ -7091,6 +7091,9 @@ SCROLL((char *)0,               "KRINSCH IST KEIN DEUTSCHES WORT",  P_NONE,     
 SCROLL((char *)0,               "IN DER DEUTSCHEN SPRACHE GIBT ES KEINEN STERN MITTEN IN NEM WORT",  P_NONE,     1,   0, 100, CLR_BRIGHT_MAGENTA, 1),
 SCROLL((char *)0,               "FRANCESCA DUMMTRULLA DOOF IS A TOTAL MARY SUE",  P_NONE,     1,   0, 100, CLR_BRIGHT_GREEN, 1),
 SCROLL((char *)0,               "SAENK JU FOR TRAEWELLING",  P_NONE,     1,   0, 100, CLR_RED, 1),
+SCROLL((char *)0,               "THE STUPIDE PEOPLE HAS GIVEN UP",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
+SCROLL((char *)0,               "ICBUSIHVDAKWBEAOSUVNEEBI",  P_NONE,     1,   0, 100, CLR_WHITE, 1),
+SCROLL((char *)0,               "DUROW MONSTRA CARDO",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
 
 
 #ifdef MAIL

@@ -5484,6 +5484,8 @@ static const char *epitaphs[] = {
 	"nethack worse game ever, never playing again AND NO ONYO",
 	"Here lies democracy, slain by power-hungry politicians.",
 	"Got attacked by a plof anje and the game said that I 'come because her sandals are so beautiful'. This game is unplayable, no one can handle such wacky messages.",
+	"Amy the castle chest exploded, slex worst variant ever.", /* by amateurhour */
+	"oh sec has wand of banishment! selfzap selfzap selfzap oh empty? well geronimo", /* amateurhour still has until July 1, 2021 to figure out how to scum them more effectively, then I'll reveal the (IMHO rather obvious, but it requires familiarizing oneself with the role :P) secret --Amy */
 
 };
 
