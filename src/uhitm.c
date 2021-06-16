@@ -5898,7 +5898,7 @@ register struct attack *mattk;
 		if (parlyzdur > 1) parlyzdur = rnd(parlyzdur);
 		if (parlyzdur > 127) parlyzdur = 127;
 
-		if (rn2(2) && !(mdef->m_lev > 1 && (rnd(mdef->m_lev) > u.ulevel)) && !negated && !mdef->msleeping && /* drow nerf --Amy */
+		if (rn2(2) && !(mdef->m_lev > 1 && (rnd(mdef->m_lev) > u.ulevel)) && (rn2(100) > mdef->data->mr) && !negated && !mdef->msleeping && /* drow nerf --Amy */
 			(mattk->aatyp != AT_WEAP || barehanded_hit) && sleep_monst(mdef, parlyzdur, -1)) {
 		    if (!Blind)
 			pline("%s is put to sleep by you!", Monnam(mdef));
@@ -5925,6 +5925,14 @@ register struct attack *mattk;
 		break;
 	    case AD_SLOW:
 	    case AD_WGHT:
+		if (!negated && (rn2(100) > mdef->data->mr) && mdef->mspeed != MSLOW) {
+		    unsigned int oldspeed = mdef->mspeed;
+
+		    mon_adjust_speed(mdef, -1, (struct obj *)0);
+		    if (mdef->mspeed != oldspeed && canseemon(mdef))
+			pline("%s slows down.", Monnam(mdef));
+		}
+		break;
 	    case AD_INER:
 		if (!negated && mdef->mspeed != MSLOW) {
 		    unsigned int oldspeed = mdef->mspeed;
