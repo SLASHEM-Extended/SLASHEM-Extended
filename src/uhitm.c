@@ -594,10 +594,10 @@ register struct monst *mtmp;
 		  (!uarm || (uarm && uarm->otyp >= ROBE && 
 		  	uarm->otyp <= ROBE_OF_WEAKNESS)))
 		  	
-		  tmp += (u.ulevel / 3) + 2;
+		  tmp += (GushLevel / 3) + 2;
 		else if (!uwep && (!u.twoweap || !uswapwep)) {
 		   pline("Your armor is rather cumbersome...");
-		   tmp += (u.ulevel / 9) + 1;
+		   tmp += (GushLevel / 9) + 1;
 		}
 	}
 
@@ -1237,11 +1237,11 @@ martial_dmg()
 
         } else if ((Role_if(PM_MONK) && !Upolyd && !(PlayerCannotUseSkills) )
                 && (P_SKILL(P_MARTIAL_ARTS) >= P_GRAND_MASTER)
-                && (u.ulevel > 16)) damage = d(6,2) + (P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER ? rnd(10) : 0) ;                                
-        else if (!(PlayerCannotUseSkills) && (P_SKILL(P_MARTIAL_ARTS) >= P_BASIC) && u.ulevel > (2*(P_SKILL(P_MARTIAL_ARTS) - P_BASIC) + 5))
+                && (GushLevel > 16)) damage = d(6,2) + (P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER ? rnd(10) : 0) ;                                
+        else if (!(PlayerCannotUseSkills) && (P_SKILL(P_MARTIAL_ARTS) >= P_BASIC) && GushLevel > (2*(P_SKILL(P_MARTIAL_ARTS) - P_BASIC) + 5))
                 damage = d((int) (P_SKILL(P_MARTIAL_ARTS) - P_UNSKILLED),2);
         else
-                damage = d((int) ((u.ulevel+2)/3),2);
+                damage = d((int) ((GushLevel+2)/3),2);
 
         if((!uarm || (uarm && (uarm->otyp >= ROBE &&
             uarm->otyp <= ROBE_OF_WEAKNESS))) && (!uarms))
@@ -1257,7 +1257,7 @@ martial_dmg()
 
 	if (Glib_combat && IsGlib) {
 
-		damage += rnd(u.ulevel);
+		damage += rnd(GushLevel);
 
 	}
 
@@ -1438,7 +1438,7 @@ int dieroll;
 		else {
 			tmp = rnd(2);
 			if (Glib_combat && IsGlib) {
-				tmp += rnd(u.ulevel);
+				tmp += rnd(GushLevel);
 			}
 
 			if (!(PlayerCannotUseSkills)) {
@@ -2042,10 +2042,10 @@ int dieroll;
 			if (obj && (obj->otyp == TIN_OPENER || obj->otyp == BUDO_NO_SASU) && Role_if(PM_SUPERMARKET_CASHIER)) {
 				if (obj->otyp == BUDO_NO_SASU) tmp += 5;
 				tmp += 2;
-				if (u.ulevel >= 18) tmp += rnd(10);
-				if (u.ulevel >= 24) tmp += rnd(4);
-				if (u.ulevel >= 27) tmp += rnd(2);
-				if (u.ulevel >= 30) tmp += 1;
+				if (GushLevel >= 18) tmp += rnd(10);
+				if (GushLevel >= 24) tmp += rnd(4);
+				if (GushLevel >= 27) tmp += rnd(2);
+				if (GushLevel >= 30) tmp += 1;
 
 				if (!(PlayerCannotUseSkills)) {
 					switch (P_SKILL(P_MARTIAL_ARTS)) {
@@ -2323,7 +2323,7 @@ int dieroll;
 		} else {
 		switch(obj->otyp) {
 		    case BOULDER:		/* 1d20 */
-			tmp = thrown ? (dmgvalX(obj, mon) + u.ulevel) : dmgvalX(obj, mon);
+			tmp = thrown ? (dmgvalX(obj, mon) + GushLevel) : dmgvalX(obj, mon);
 			break;
 		    case HEAVY_IRON_BALL:	/* 1d25 */
 		    case REALLY_HEAVY_IRON_BALL:	/* 1d25 */
@@ -3443,18 +3443,18 @@ melatechoice:
 		 uarm->otyp <= ROBE_OF_WEAKNESS)) && !uarms &&
 		 distu(mon->mx, mon->my) <= 2) {
 	    /* just so we don't need another variable ... */
-	    canhitmon = rnd(100);
-	    if (canhitmon < u.ulevel / 8 && !thick_skinned(mdat)) {
+	    canhitmon = rnd(500);
+	    if (canhitmon < (GushLevel / 8) && !thick_skinned(mdat)) {
 		if (canspotmon(mon))
 		    You("strike %s extremely hard!", mon_nam(mon));
 		tmp *= 2;
 		hittxt = TRUE;
-	    } else if (canhitmon < u.ulevel / 4 && !thick_skinned(mdat)) {
+	    } else if (canhitmon < (GushLevel / 4) && !thick_skinned(mdat)) {
 		if (canspotmon(mon))
 		    You("strike %s very hard!", mon_nam(mon));
 		tmp += tmp / 2;
 		hittxt = TRUE;
-	    } else if (canhitmon < u.ulevel / 2 && !bigmonst(mon->data) &&
+	    } else if (canhitmon < (GushLevel / 2) && !bigmonst(mon->data) &&
 		    !thick_skinned(mdat)) {
 		if (canspotmon(mon))
 		    pline("%s %s from your powerful strike!", Monnam(mon),
