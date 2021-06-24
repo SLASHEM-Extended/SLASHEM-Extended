@@ -2416,7 +2416,7 @@ boolean givehp;
 	    case HEEL_TRAP:
 		{
 
-		ttmp->launch_otyp = rnd(15);
+		ttmp->launch_otyp = rnd(26);
 
 		break;
 	      }
@@ -13585,6 +13585,218 @@ madnesseffect:
 
 				break;
 
+				case 16:
+					pline("A block-heeled combat boot hits your %s with the massive heel!", body_part(HEAD));
+					losehp(rnd(12) + rnd( monster_difficulty() + 1),"a massive block heel to the head",KILLED_BY);
+					pline("You're seeing little asterisks everywhere.");
+					make_confused(HConfusion + rnd(10) + rnd( monster_difficulty() + 1), FALSE);
+
+				break;
+
+				case 17:
+					pline("A very erotic inka boot hits you, and you have an orgasm.");
+					if (practicantterror) {
+						pline("%s rings out: 'Wanking off is not permitted in my laboratory, but you know that. 200 zorkmids.'", noroelaname());
+						fineforpracticant(200, 0, 0);
+					}
+					badeffect();
+					losehp(rnd(4) + rnd( monster_difficulty() + 1),"inka boot to the head",KILLED_BY_AN);
+
+				break;
+
+				case 18:
+					pline("AAAAAHHHHH! Your %s screams as the steel-capped sandal hits with the massive, unyielding metal heel!", body_part(HEAD));
+					make_stunned(HStun + rnd(100) + rnd( (monster_difficulty() * 10) + 1), FALSE);
+						if (!rn2(10)) {
+							pline("You're knocked out and helplessly drop to the floor.");
+							nomovemsg = 0;	/* default: "you can move again" */
+							if (StrongFree_action) nomul(-rnd(2), "knocked out by a steel-capped sandal", TRUE);
+							else if (Free_action) nomul(-rnd(4), "knocked out by a steel-capped sandal", TRUE);
+							else nomul(-rnd(20), "knocked out by a steel-capped sandal", TRUE);
+						}
+					losehp(rnd(20)+ rnd( (monster_difficulty() * 5) + 1),"steel-capped sandal to the head",KILLED_BY_AN);
+
+				break;
+
+				case 19:
+					pline("Your %s is bashed by a very fleecy block-heeled sandal!", body_part(HEAD));
+					make_dimmed(HDimmed + rnd(50) + rnd( (monster_difficulty() * 2) + 1), TRUE);
+					losehp(rnd(12) + rnd( (monster_difficulty() * 2) + 1),"a pretty block-heeled sandal to the head",KILLED_BY);
+
+				break;
+
+				case 20:
+					pline("Ouch! A soft lady shoe hits you, and despite being incredibly soft, hits your optical nerve!");
+					make_blinded(Blinded + rnd(30) + rnd( (monster_difficulty() * 3) + 1),FALSE);
+					losehp(rnd(6) + rnd( (monster_difficulty() * 2) + 1),"a soft lady shoe to the head",KILLED_BY);
+
+				break;
+
+				case 21:
+					pline("Ulch - a block-heeled boot hits your body, and you find out that the soles are immersed with dog shit!");
+
+					    register struct obj *objX, *objX2;
+					    for (objX = invent; objX; objX = objX2) {
+					      objX2 = objX->nobj;
+						if (!rn2(5)) rust_dmg(objX, xname(objX), 3, TRUE, &youmonst);
+						if (objX && !rn2(100)) wither_dmg(objX, xname(objX), 3, TRUE, &youmonst);
+
+					    }
+					losehp(rnd(5) + rnd( monster_difficulty() + 1),"a dogshit boot trap",KILLED_BY);
+
+				break;
+
+				case 22:
+					pline("Wow, a beautiful prostitute shoe slams on your %s with the massive heel! It's irresistible!", body_part(HEAD));
+					losehp(rnd(10) + rnd( monster_difficulty() + 1),"a sexy prostitute shoe to the head",KILLED_BY);
+					badeffect();
+
+				break;
+
+				case 23:
+				{
+					int randomkick = rnd(15);
+
+					if (randomkick == 1) {
+						pline("A hippie heel steps on your %s with the plateau heels!", body_part(HAND));
+						incr_itimeout(&Glib, 20 + monster_difficulty()); /* painfully jamming your fingers */
+						losehp(rnd(10) + rnd( monster_difficulty() + 1),"being jammed by a plateau heel",KILLED_BY);
+					}
+					if (randomkick == 2) {
+						pline("A red whore boot jams your %ss!", body_part(TOE));
+
+						register long side = rn2(2) ? RIGHT_SIDE : LEFT_SIDE;
+						const char *sidestr = (side == RIGHT_SIDE) ? "right" : "left";
+				    		set_wounded_legs(side, HWounded_legs + rnd(60-ACURR(A_DEX)));
+				    		exercise(A_STR, FALSE);
+				    		exercise(A_DEX, FALSE);
+						losehp(rnd(10) + rnd( monster_difficulty() + 1),"being jammed by a red whore boot",KILLED_BY);
+					}
+
+					if (randomkick == 3) {
+						pline("A prostitute shoe kicks right into your nuts!");
+						losehp(rnd(10) + rnd( monster_difficulty() + 1),"being kicked in the nuts by a prostitute shoe",KILLED_BY);
+						if (!flags.female) losehp(rnd(10) + rnd( monster_difficulty() + 1),"being kicked in the nuts by a prostitute shoe",KILLED_BY);
+						else pline("But you don't actually have nuts. How the hell could this attack even affect you?");
+
+					}
+
+					if (randomkick == 4) {
+						pline("An erotic lady boot painfully stomps your body!");
+						u.uhp -= 1;
+						u.uhpmax -= 1;
+						u.uen -= 1;
+						u.uenmax -= 1;
+						losehp(rnd(15) + rnd( (monster_difficulty() * 3) + 1),"being stomped by erotic lady boots",KILLED_BY);
+					}
+
+					if (randomkick == 5) {
+						pline("An incredibly erotic female shoe kicks you and looks so lovely that you fall in love with her, and are unable to fight back.");
+						nomovemsg = "You finally decide to stop admiring the sexy leather boots.";
+						nomul(-rnd(5), "mesmerized by a pair of sexy leather boots", TRUE);
+						losehp(rnd(10) + rnd( monster_difficulty() + 1),"being stomped by erotic female shoes",KILLED_BY);
+
+					}
+
+					if (randomkick == 6) {
+						pline("You're being kicked by an incredibly high-heeled platform boot. Think of the sweet red leather your sputa will flow down.");
+						morehungry(1000);
+					      make_vomiting(Vomiting+20, TRUE);
+						if (Sick && Sick < 100)
+						 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
+						losehp(rnd(10) + rnd( monster_difficulty() + 1),"being kicked by incredibly high-heeled platform boots",KILLED_BY);
+					}
+
+					if (randomkick == 7) {
+						pline("You decide to close your %ss for a while, thinking about the sexy red overknees and their lovely block heels while they kick you very painfully.", body_part(EYE));
+						make_blinded(Blinded + (monster_difficulty() * 5), FALSE);
+						losehp(rnd(10) + rnd( monster_difficulty() + 1),"being kicked by sexy red overknees",KILLED_BY);
+					}
+
+					if (randomkick == 8) {
+						pline("Wow... those wonderful high heels are soooooo mesmerizing and beautiful while they kick you...");
+						make_hallucinated(HHallucination + (monster_difficulty() * 5),FALSE,0L);
+						losehp(rnd(10) + rnd( monster_difficulty() + 1),"being kicked by wonderful high heels",KILLED_BY);
+					}
+
+					if (randomkick == 9) {
+						pline("You wonder where the plateau heels come from. As they kick you, your %s spins in bewilderment.", body_part(HEAD));
+						make_confused(HConfusion + (monster_difficulty() * 5), FALSE);
+						losehp(rnd(10) + rnd( monster_difficulty() + 1),"being kicked by plateau heels",KILLED_BY);
+					}
+
+					if (randomkick == 10) {
+						pline("Argh! You got hit by a fleecy red combat boot, but the massive heel strained a vital muscle!");
+						make_stunned(HStun + (monster_difficulty() * 5),FALSE);
+						losehp(rnd(10) + rnd( monster_difficulty() + 1),"being kicked by massive heels",KILLED_BY);
+					}
+
+					if (randomkick == 11) {
+						if (!rn2(25)) {
+							pline("Fuck! You were hit by a high heel, which was contaminated with spores!");
+							make_sick(rn1(25,25), "contaminated high heel", TRUE, SICK_VOMITABLE);
+							losehp(rnd(10) + rnd( monster_difficulty() + 1),"being kicked by unclean high heels",KILLED_BY);
+						}
+						else {
+							pline("You get kicked by female boots, which some devious woman rubbed with venom! How unfair!");
+							poisoned("block heel", A_STR, "poisoned block heel", 8);
+							losehp(rnd(10) + rnd( monster_difficulty() + 1),"being kicked by venomous high heels",KILLED_BY);
+						}
+					}
+
+					if (randomkick == 12) {
+						pline("Ow, the slutty boots are stomping you repeatedly!");
+						make_numbed(HNumbed + (monster_difficulty() * 5), FALSE);
+						losehp(rnd(10) + rnd( monster_difficulty() + 1),"being stomped by slutty boots",KILLED_BY);
+					}
+
+					if (randomkick == 13) {
+						pline("You are getting the creeps as an incredibly high heel kicks you.");
+						make_frozen(HFrozen + (monster_difficulty() * 5),FALSE);
+						losehp(rnd(10) + rnd( monster_difficulty() + 1),"being kicked by incredibly high heels",KILLED_BY);
+						}
+
+					if (randomkick == 14) {
+						pline("A block-heeled lady boot kicks you, and burns your skin!");
+						make_burned(HBurned + (monster_difficulty() * 5),FALSE);
+						losehp(rnd(10) + rnd( monster_difficulty() + 1),"being kicked by block-heeled lady boots",KILLED_BY);
+					}
+
+					if (randomkick == 15) {
+						pline("You shudder in fear as a violent high-heeled plateau boot performs lethal kick attacks on you.");
+						make_feared(HFeared + (monster_difficulty() * 5),FALSE);
+						losehp(rnd(10) + rnd( monster_difficulty() + 1),"being kicked by a violent high-heeled plateau boot",KILLED_BY);
+					}
+
+				}
+				break;
+
+				case 24:
+					pline("A fleecy lady boot suddenly scratches over your %s with the lovely block heel!", body_part(LEG));
+					playerbleed(monster_difficulty());
+					losehp(rnd(10) + rnd( monster_difficulty() + 1),"a sharp-edged lady boot",KILLED_BY);
+
+				break;
+
+				case 25:
+					pline("A razor-sharp stiletto sandal scratches very %sy wounds on your %s!", body_part(BLOOD), body_part(LEG));
+					playerbleed(monster_difficulty());
+					losehp(rnd(15) + rnd( (monster_difficulty() * 2) + 1),"a sharp-edged stiletto sandal",KILLED_BY);
+
+				break;
+
+				case 26:
+					pline("An italian high heel scratches your %s very painfully!!", body_part(LEG));
+					playerbleed(monster_difficulty());
+					badeffect();
+					losehp(rnd(20) + rnd( (monster_difficulty() * 3) + 1),"a sharp-edged italian heel",KILLED_BY);
+
+				break;
+
+				default:
+					impossible("heel trap type %d used", trap->launch_otyp);
+				break;
+
 			}
 
 		 break;
@@ -19783,6 +19995,17 @@ struct trap *ttmp;
 	else if (ttmp->launch_otyp == 13) cnv_trap_obj(HUGGING_BOOT, 1, ttmp);
 	else if (ttmp->launch_otyp == 14) cnv_trap_obj(WOODEN_GETA, 1, ttmp);
 	else if (ttmp->launch_otyp == 15) cnv_trap_obj(LACQUERED_DANCING_SHOE, 1, ttmp);
+	else if (ttmp->launch_otyp == 16) cnv_trap_obj(BLOCK_HEELED_COMBAT_BOOT, 1, ttmp);
+	else if (ttmp->launch_otyp == 17) cnv_trap_obj(INKA_BOOT, 1, ttmp);
+	else if (ttmp->launch_otyp == 18) cnv_trap_obj(STEEL_CAPPED_SANDAL, 1, ttmp);
+	else if (ttmp->launch_otyp == 19) cnv_trap_obj(BLOCK_HEELED_SANDAL, 1, ttmp);
+	else if (ttmp->launch_otyp == 20) cnv_trap_obj(SOFT_LADY_SHOE, 1, ttmp);
+	else if (ttmp->launch_otyp == 21) cnv_trap_obj(DOGSHIT_BOOT, 1, ttmp);
+	else if (ttmp->launch_otyp == 22) cnv_trap_obj(PROSTITUTE_SHOE, 1, ttmp);
+	else if (ttmp->launch_otyp == 23) cnv_trap_obj(HIPPIE_HEELS, 1, ttmp);
+	else if (ttmp->launch_otyp == 24) cnv_trap_obj(LADY_BOOTS, 1, ttmp);
+	else if (ttmp->launch_otyp == 25) cnv_trap_obj(STILETTO_SANDALS, 1, ttmp);
+	else if (ttmp->launch_otyp == 26) cnv_trap_obj(ITALIAN_HEELS, 1, ttmp);
 	else deltrap(ttmp);
 	newsym(trapx, trapy);
 	return 1;
