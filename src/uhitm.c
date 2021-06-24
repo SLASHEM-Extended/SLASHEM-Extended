@@ -1243,10 +1243,16 @@ martial_dmg()
         else
                 damage = d((int) ((GushLevel+2)/3),2);
 
-        if((!uarm || (uarm && (uarm->otyp >= ROBE &&
-            uarm->otyp <= ROBE_OF_WEAKNESS))) && (!uarms))
-                damage *= 2;
-        else damage += 2;
+	  if (!Role_if(PM_HALF_BAKED)) {
+
+	        if(( (!uarm && rn2(2)) || (uarm && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS))) && (!uarms) && (damage > 1))
+	                damage += rnd(damage);
+	        else {
+			if (damage > 1) damage += rnd(2);
+			else damage++;
+		  }
+
+	  }
 
 	if (uarmg && itemhasappearance(uarmg, APP_BOXING_GLOVES) ) damage += 1;
 
@@ -3438,7 +3444,7 @@ melatechoice:
         }
 
 	/* Special monk strikes */
-	if ((Role_if(PM_MONK) || Role_if(PM_HALF_BAKED)) && !Upolyd && !thrown && no_obj &&
+	if (Role_if(PM_MONK) && !Upolyd && !thrown && no_obj &&
 		(!uarm || (uarm && uarm->otyp >= ROBE &&
 		 uarm->otyp <= ROBE_OF_WEAKNESS)) && !uarms &&
 		 distu(mon->mx, mon->my) <= 2) {
@@ -3456,6 +3462,26 @@ melatechoice:
 		hittxt = TRUE;
 	    } else if (canhitmon < (GushLevel / 2) && !bigmonst(mon->data) &&
 		    !thick_skinned(mdat)) {
+		if (canspotmon(mon))
+		    pline("%s %s from your powerful strike!", Monnam(mon),
+			  makeplural(stagger(mon->data, "stagger")));
+		/* avoid migrating a dead monster */
+		if (mon->mhp > tmp) {
+		    mhurtle(mon, u.dx, u.dy, 1);
+		    mdat = mon->data; /* in case of a polymorph trap */
+		    if (DEADMONSTER(mon)) already_killed = TRUE;
+		}
+		hittxt = TRUE;
+	    }
+	}
+
+	if (Role_if(PM_HALF_BAKED) && !Upolyd && !thrown && no_obj &&
+		(!uarm || (uarm && uarm->otyp >= ROBE &&
+		 uarm->otyp <= ROBE_OF_WEAKNESS)) && !uarms &&
+		 distu(mon->mx, mon->my) <= 2) {
+	    /* just so we don't need another variable ... */
+	    canhitmon = rnd(500);
+		if (canhitmon < (GushLevel / 2) && !bigmonst(mon->data) && !thick_skinned(mdat) && !rn2(10)) {
 		if (canspotmon(mon))
 		    pline("%s %s from your powerful strike!", Monnam(mon),
 			  makeplural(stagger(mon->data, "stagger")));
