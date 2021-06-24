@@ -4522,6 +4522,13 @@ static NEARDATA const char * const longinglines[] = {
 "You absolutely love %s's cyan sneaker soles, because they can rub along your skin in such a wonderful way.",
 "It would be highly lustful to have %s and her girlfriend lovingly squeeze your nuts with their female sneakers.",
 "Being stepped on the toes or fingers by %s's treaded sandals is wonderful because they look cuuuuuuuuuuuuuuuuuuuute!",
+"%s can really let you experience joy with her fleece heels!",
+"Mmmmmmm, are the %s her block heels made of such soft fleece-cuddle-cloth!",
+"You absolutely love the beautiful %s-hugging bundle!",
+"When you see %s, the first thing on your mind is 'MMMMMMMMMMMMMMMMMM! *double sweetheart bundle*'",
+"%s's last name should be Cuddle-Bundle because her long hair is just so beautifully soft!",
+"You want to play a game with %s where she is only allowed to lovingly caress your butt cheeks, but not hurt them.",
+"You want to play a game with %s where she is allowed to lovingly caress your butt cheeks, or also hurt them if she wants to.",
 };
 
 static NEARDATA const char * const soviettaunts[] = {
@@ -27248,6 +27255,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel as if someone was body-shaming you. Probably some anorexic slut who somehow thinks being super skinny was in any way 'sexy', which is obviously not the case. She looks like she needs to eat some cake if you ask me!",
 	"You hear someone counting gold coins. You hear someone yell, 'Hey, who dug this hole into the side of the vault?!'",
 	"You sneeze! You can now move again.", /* by Hekik */
+	"Did you find a strategy that is effective? Don't think it's the all-time meta, for new versions of the game may change stuff and make the strategy in question less effective. This is particularly true if it's a lame strategy that lets you bypass part of the game's intended difficulty.",
 
 };
 

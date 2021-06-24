@@ -7094,6 +7094,15 @@ SCROLL((char *)0,               "SAENK JU FOR TRAEWELLING",  P_NONE,     1,   0,
 SCROLL((char *)0,               "THE STUPIDE PEOPLE HAS GIVEN UP",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
 SCROLL((char *)0,               "ICBUSIHVDAKWBEAOSUVNEEBI",  P_NONE,     1,   0, 100, CLR_WHITE, 1),
 SCROLL((char *)0,               "DUROW MONSTRA CARDO",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "DURIA HOLD RECORDS TWICE",  P_NONE,     1,   0, 100, CLR_RED, 1),
+SCROLL((char *)0,               "WALLUVER BREAK UP THIS WAR",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "TOO BAD YOU WAS TOO SEEK",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
+SCROLL((char *)0,               "UNDEFINIERBARESETWAS DRITTESGESCHLECHTKNALLTUET",  P_NONE,     1,   0, 100, CLR_ORANGE, 1),
+SCROLL((char *)0,               "LAUREN EPSOM DELIRIUM",  P_NONE,     1,   0, 100, CLR_BRIGHT_GREEN, 1),
+SCROLL((char *)0,               "OVONORMALTRINE",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
+SCROLL((char *)0,               "WE EDIT THE MODE BECAUSE WE DONT LIKE IT",  P_NONE,     1,   0, 100, CLR_BRIGHT_BLUE, 1),
+SCROLL((char *)0,               "DEFERRED FEATURE",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
+SCROLL((char *)0,               "THE FIRST RULE OF FIGHT CLUB IS YOU DONT TALK ABOUT FIGHT CLUB",  P_NONE,     1,   0, 100, CLR_BRIGHT_MAGENTA, 1),
 
 
 #ifdef MAIL
