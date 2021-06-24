@@ -1199,8 +1199,11 @@ exprecalc(void)
 	/* slex has so many skills, you keep running out of slots all the damn time! Need to counteract that --Amy */
 	while (u.ulevel > u.urmaxlvlN) {
 		u.urmaxlvlN++;
+		if (u.urmaxlvlN == 5) u.weapon_slots += 1;
 		if (u.urmaxlvlN == 10) u.weapon_slots += 5;
+		if (u.urmaxlvlN == 15) u.weapon_slots += 1;
 		if (u.urmaxlvlN == 20) u.weapon_slots += 5;
+		if (u.urmaxlvlN == 25) u.weapon_slots += 1;
 		if (u.urmaxlvlN == 30) u.weapon_slots += 5;
 	}
 
