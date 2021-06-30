@@ -7103,6 +7103,7 @@ SCROLL((char *)0,               "OVONORMALTRINE",  P_NONE,     1,   0, 100, CLR_
 SCROLL((char *)0,               "WE EDIT THE MODE BECAUSE WE DONT LIKE IT",  P_NONE,     1,   0, 100, CLR_BRIGHT_BLUE, 1),
 SCROLL((char *)0,               "DEFERRED FEATURE",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
 SCROLL((char *)0,               "THE FIRST RULE OF FIGHT CLUB IS YOU DONT TALK ABOUT FIGHT CLUB",  P_NONE,     1,   0, 100, CLR_BRIGHT_MAGENTA, 1),
+SCROLL((char *)0,               "HUMANS BEARLE WE SIMPLY DO IT",  P_NONE,     1,   0, 100, CLR_RED, 1),
 
 
 #ifdef MAIL

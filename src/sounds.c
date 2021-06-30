@@ -3598,6 +3598,18 @@ noservices:
 			"Think you're hard hitting a woman?",
 			"You want my heel in your ass?",
 			"This is gonna hurt!",
+			"Ass-kicking runs in my family.",
+			"How about a free face-lift?",
+			"Watch those shoes, girl.",
+			"Oh my god, watch the pumps!",
+			"You're ruining the ambience.",
+			"I love it when it gets violent.",
+			"I'm totally spitting in your drink.",
+			"Can you put lotion on the back of my leg?",
+			"I can kick, you know.",
+			"You fight like a girl.",
+			"What are you wearing?!",
+			"Let's scrap you, buster.",
 		};
 
 		if (!mtmp->mpeaceful) verbalize("%s", whore_msgs[rn2(SIZE(whore_msgs))]);

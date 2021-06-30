@@ -5487,6 +5487,10 @@ static const char *epitaphs[] = {
 	"Amy the castle chest exploded, slex worst variant ever.", /* by amateurhour */
 	"oh sec has wand of banishment! selfzap selfzap selfzap oh empty? well geronimo", /* amateurhour still has until July 1, 2021 to figure out how to scum them more effectively, then I'll reveal the (IMHO rather obvious, but it requires familiarizing oneself with the role :P) secret --Amy */
 	"well the goal of slex is obviously to hurt players, so mission accomplished", /* by Earth Traveller */
+	"omg there are roles that cannot simply melee everything with their starting weapon? suuuuuucks! not gonna play that role again :P",
+	"SLEX is not a game, but a piece of postmodernist art designed to see how much suffering someone will endure in pursuit of petty goals.", /* by Earth Traveller, original wording may be slightly different */
+	"Can I get a count of everyone who plays slex that enjoys playing it? 1", /* and that person is Amy :-P */
+	"every time i get optimism that slex is beatable some crazy stuff happens", /* by amateurhour */
 
 };
 

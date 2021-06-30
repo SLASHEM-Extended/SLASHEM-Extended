@@ -4046,6 +4046,10 @@ static NEARDATA const char * const demagoguelines[] = {
 "This country belongs to the people and no shitting law is gonna change that!",
 "Laws are there so that one does not obey them! Better yet, they should be abolished completely, which will free our people from their imaginary shackles!",
 "Freedom of religion is stupid! If I become the head of state, I'll ensure that the only entity you are allowed to worship is gonna be me!",
+"The first rule of corona is that you don't talk about corona.",
+"Democracy is a misconception, it sounds nice on paper but doesn't work out in practice!",
+"In an ideal world everyone would be able to wear high heels, regardless of gender! Stop the discrimination now!",
+"If I want to wear a bra, I should damn well be allowed to do so! And I don't care if I'm a man, woman, dog, bear or attack helicopter! FUCK DISCRIMINATION",
 };
 
 static NEARDATA const char * const longinglines[] = {
