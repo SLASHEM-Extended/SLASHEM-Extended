@@ -15883,6 +15883,9 @@ contaminationcheck()
 	/* if you're in the Sewer Plant and have to breathe, your regeneration is also reduced */
 	if (In_sewerplant(&u.uz) && rn2(2) && !Breathless) return 1;
 
+	/* spirits need some sort of downside for their awesome power of phasing --Amy */
+	if (Race_if(PM_SPIRIT) && rn2(2)) return 1;
+
 	return 0;
 }
 

@@ -10333,8 +10333,16 @@ boolean ranged;
 		break;
 
 	  case AD_SLOW:
-		if (HFast && !defends(AD_SLOW, uwep) && !rn2(4))
+		if (HFast && !defends(AD_SLOW, uwep) && !rn2(4)) {
 		    u_slow_down();
+
+		    if (Race_if(PM_SPIRIT) && !rn2(3)) {
+			u.uprops[DEAC_FAST].intrinsic += ((tmp + 2) * 10);
+			pline(u.inertia ? "That was a bad idea - your body struggles at your attempts to get it to move again..." : "That was a bad idea - your body lost the will to listen to your instructions...");
+			u.inertia += (tmp + 2);
+		    }
+
+		}
 		break;
         case AD_DRLI:
 			if (!rn2(3) && (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) )  ) {

@@ -9984,9 +9984,15 @@ dopois:
 		break;
 	    case AD_SLOW:
 		hitmsg(mtmp, mattk);
-		if (uncancelled && HFast &&
-					!defends(AD_SLOW, uwep) && !rn2(4))
+		if (uncancelled && HFast && !defends(AD_SLOW, uwep) && !rn2(4)) {
 		    u_slow_down();
+
+			if (Race_if(PM_SPIRIT) && !rn2(3)) {
+				u.uprops[DEAC_FAST].intrinsic += ((dmg + 2) * 10);
+				pline(u.inertia ? "You feel even slower." : "You slow down to a crawl.");
+				u.inertia += (dmg + 2);
+			}
+		}
 		break;
 	    case AD_DREN:
 		hitmsg(mtmp, mattk);
@@ -11887,8 +11893,15 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 	      case AD_SLOW:
 				You_feel("a force field!");
-			if (HFast && !defends(AD_SLOW, uwep) && !rn2(4))
+			if (HFast && !defends(AD_SLOW, uwep) && !rn2(4)) {
 			    u_slow_down();
+
+			    if (Race_if(PM_SPIRIT) && !rn2(3)) {
+				u.uprops[DEAC_FAST].intrinsic += ((tmp + 2) * 10);
+				pline(u.inertia ? "You feel almost unable to move..." : "You feel very lethargic...");
+				u.inertia += (tmp + 2);
+			    }
+			}
 			break;
 	      case AD_PLYS:
 			pline("It whacks you!");
@@ -14869,8 +14882,15 @@ common:
 
 	    case AD_SLOW:
 
-		if (HFast && !defends(AD_SLOW, uwep))
+		if (HFast && !defends(AD_SLOW, uwep)) {
 		    u_slow_down();
+
+		    if (Race_if(PM_SPIRIT) && !rn2(3)) {
+			u.uprops[DEAC_FAST].intrinsic += ((tmp + 2) * 10);
+			pline(u.inertia ? "You feel even slower." : "You slow down to a crawl.");
+			u.inertia += (tmp + 2);
+		    }
+		}
 		break;
 	    case AD_SHRD:
 		{
@@ -18568,6 +18588,14 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    stop_occupation();
 
 		    u_slow_down();
+
+			if (Race_if(PM_SPIRIT) && !rn2(3)) {
+				u.uprops[DEAC_FAST].intrinsic += ((dmgplus + 2) * 10);
+				pline(u.inertia ? "You feel even slower." : "You slow down to a crawl.");
+				u.inertia += (dmgplus + 2);
+
+			}
+
 		    stop_occupation();
 			}
 		break;

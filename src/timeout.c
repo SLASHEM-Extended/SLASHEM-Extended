@@ -452,7 +452,7 @@ nh_timeout()
 		if (u.sokosolveuntrap < 0) u.sokosolveuntrap = 0; /* fail safe */
 	}
 
-	if (u.inertia && rn2(10)) {
+	if (u.inertia && rn2(10) && (!Race_if(PM_SPIRIT) || rn2(2)) ) {
 		u.inertia--;
 		if (!u.inertia) You_feel("less slow.");
 		if (u.inertia < 0) u.inertia = 0; /* fail safe */
