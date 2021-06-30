@@ -1838,25 +1838,13 @@ register struct attack *mattk;
 
 		/* evil patch idea: if equipment is used very often, it eventually degrades --Amy */
 
-		if (Race_if(PM_RUSMOT)) {
-			if (!rn2((objects[blocker->otyp].oc_material == MT_CERAMIC) ? 20 : (objects[blocker->otyp].oc_material == MT_LIQUID) ? 25 : 200) && (blocker->spe > (rn2(8) - 5)) && blocker->spe > ((objects[blocker->otyp].oc_material == MT_PLATINUM) ? -4 : (objects[blocker->otyp].oc_material == MT_CERAMIC) ? -15 : -5) && (rnd(7) > savechance) && (!(blocker->blessed && !rnl(6))) && (!rn2(3) || !(objects[blocker->otyp].oc_material == MT_GOLD) ) && !(objects[blocker->otyp].oc_material == MT_SECREE || objects[blocker->otyp].oc_material == MT_ARCANIUM) && !issoviet && (!(blocker->oartifact) || !rn2(4))) {
-				if (blocker->greased) {
-					blocker->greased--;
-					pline("Your %s loses its grease.", simple_typename(blocker->otyp));
-				} else {
-					blocker->spe--;
-					pline("Your %s dulls.", simple_typename(blocker->otyp));
-				}
-			}
-		} else {
-			if (!rn2((objects[blocker->otyp].oc_material == MT_CERAMIC) ? 100 : (objects[blocker->otyp].oc_material == MT_LIQUID) ? 125 : 1000) && (blocker->spe > rn2(8)) && blocker->spe > ((objects[blocker->otyp].oc_material == MT_PLATINUM) ? 1 : (objects[blocker->otyp].oc_material == MT_CERAMIC) ? -10 : 0) && (rnd(7) > savechance) && (!(blocker->blessed && !rnl(6))) && (!rn2(3) || !(objects[blocker->otyp].oc_material == MT_GOLD) ) && !(objects[blocker->otyp].oc_material == MT_SECREE || objects[blocker->otyp].oc_material == MT_ARCANIUM) && !issoviet && (!(blocker->oartifact) || !rn2(4))) {
-				if (blocker->greased) {
-					blocker->greased--;
-					pline("Your %s loses its grease.", simple_typename(blocker->otyp));
-				} else {
-					blocker->spe--;
-					pline("Your %s dulls.", simple_typename(blocker->otyp));
-				}
+		if (armorwilldull(blocker) && (rnd(7) > savechance) && !issoviet) {
+			if (blocker->greased) {
+				blocker->greased--;
+				pline("Your %s loses its grease.", simple_typename(blocker->otyp));
+			} else {
+				blocker->spe--;
+				pline("Your %s dulls.", simple_typename(blocker->otyp));
 			}
 		}
 

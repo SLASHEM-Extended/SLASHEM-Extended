@@ -2445,6 +2445,9 @@ E void nivellate(void);
 E void upnivel(BOOLEAN_P);
 E void nexus_swap(void);
 
+E boolean weaponwilldull(struct obj *);
+E boolean armorwilldull(struct obj *);
+
 E boolean hybridragontype(int);
 
 E boolean extralongsqueak(void);

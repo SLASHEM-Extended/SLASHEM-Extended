@@ -5263,6 +5263,91 @@ obsidianprotection()
 	return FALSE;
 }
 
+/* will the player's weapon dull when hitting in melee? --Amy */
+boolean
+weaponwilldull(dwpn)
+register struct obj *dwpn;
+{
+	int dullchance = 1000;
+	int minenchant = 0; /* spe must be greater than this */
+
+	if (!dwpn) return FALSE;
+
+	if (objects[dwpn->otyp].oc_material == MT_PLATINUM) minenchant = 1;
+
+	if (dwpn->otyp >= WEDGED_LITTLE_GIRL_SANDAL && dwpn->otyp <= PROSTITUTE_SHOE && !Role_if(PM_TRANSVESTITE) && !Role_if(PM_TRANSSYLVANIAN) && !Role_if(PM_SHOE_FETISHIST)) minenchant--;
+
+	if (dwpn->oartifact == ART_CLEAN_MAULER) minenchant = -10;
+	if (objects[dwpn->otyp].oc_material == MT_CERAMIC) minenchant = -10;
+
+	if (dwpn->spe <= minenchant) return FALSE;
+
+	if ((dwpn->spe <= rnd(8)) && rn2(8) ) return FALSE; /* less likely with lower enchantment --Amy */
+
+	if (dwpn->oartifact == ART_CLEAN_MAULER) dullchance = 100;
+	if (objects[dwpn->otyp].oc_material == MT_CERAMIC) dullchance = 100;
+	if (objects[dwpn->otyp].oc_material == MT_LIQUID) dullchance = 250;
+
+	if (dwpn->otyp >= WEDGED_LITTLE_GIRL_SANDAL && dwpn->otyp <= PROSTITUTE_SHOE && !Role_if(PM_TRANSVESTITE) && !Role_if(PM_TRANSSYLVANIAN) && !Role_if(PM_SHOE_FETISHIST)) dullchance /= 2;
+
+	if (dullchance < 1) dullchance = 1; /* fail safe */
+
+	if (objects[dwpn->otyp].oc_material == MT_GOLD && rn2(3)) return FALSE;
+
+	if (objects[dwpn->otyp].oc_material == MT_ARCANIUM) return FALSE;
+	if (objects[dwpn->otyp].oc_material == MT_SECREE) return FALSE;
+
+	if (dwpn->oartifact && rn2(4)) return FALSE;
+
+	if (dwpn->blessed && !rnl(6)) return FALSE;
+
+	if (!rn2(dullchance)) return TRUE;
+
+	return FALSE; /* fail safe */
+
+}
+
+boolean
+armorwilldull(dwpn)
+register struct obj *dwpn;
+{
+	int dullchance = 1000;
+	int minenchant = 0; /* spe must be greater than this */
+
+	if (!dwpn) return FALSE;
+
+	if (objects[dwpn->otyp].oc_material == MT_PLATINUM) minenchant = 1;
+
+	if (objects[dwpn->otyp].oc_material == MT_CERAMIC) minenchant = -10;
+
+	if (Race_if(PM_RUSMOT)) minenchant -= 5;
+
+	if (dwpn->spe <= minenchant) return FALSE;
+
+	if ((dwpn->spe <= (Race_if(PM_RUSMOT) ? (rnd(8) - 5) : rnd(8)) ) && rn2(8) ) return FALSE; /* less likely with lower enchantment --Amy */
+
+	if (objects[dwpn->otyp].oc_material == MT_CERAMIC) dullchance = 100;
+	if (objects[dwpn->otyp].oc_material == MT_LIQUID) dullchance = 125;
+
+	if (Race_if(PM_RUSMOT)) dullchance /= 5;
+
+	if (dullchance < 1) dullchance = 1; /* fail safe */
+
+	if (objects[dwpn->otyp].oc_material == MT_GOLD && rn2(3)) return FALSE;
+
+	if (objects[dwpn->otyp].oc_material == MT_ARCANIUM) return FALSE;
+	if (objects[dwpn->otyp].oc_material == MT_SECREE) return FALSE;
+
+	if (dwpn->oartifact && rn2(4)) return FALSE;
+
+	if (dwpn->blessed && !rnl(6)) return FALSE;
+
+	if (!rn2(dullchance)) return TRUE;
+
+	return FALSE; /* fail safe */
+
+}
+
 /* by jonadab: psychic waves can h@xx0r the player's implant --Amy */
 void
 maybehackimplant()

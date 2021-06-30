@@ -7941,7 +7941,7 @@ use_weapon:
 				}
 
 				/* evil patch idea: if a weapon is used very often, it eventually degrades --Amy */
-				if (uwep && uwep->spe > ((uwep->oartifact == ART_CLEAN_MAULER) ? -10 : (objects[uwep->otyp].oc_material == MT_PLATINUM) ? 1 : (objects[uwep->otyp].oc_material == MT_CERAMIC) ? -10 : 0) && (uwep->spe > rn2(8)) && !rn2((objects[uwep->otyp].oc_material == MT_CERAMIC) ? 100 : (uwep->oartifact == ART_CLEAN_MAULER) ? 100 : (objects[uwep->otyp].oc_material == MT_LIQUID) ? 250 : 1000) && (rnd(7) > savechance) && (!(uwep->blessed && !rnl(6))) && (!rn2(3) || !(objects[uwep->otyp].oc_material == MT_GOLD)) && !issoviet && !(objects[uwep->otyp].oc_material == MT_SECREE || objects[uwep->otyp].oc_material == MT_ARCANIUM) && (!(uwep->oartifact) || !rn2(4)) ) {
+				if (uwep && weaponwilldull(uwep) && (rnd(7) > savechance) && !issoviet) {
 					if (uwep->greased) {
 						uwep->greased--;
 						pline("Your weapon loses its grease.");
@@ -8156,7 +8156,7 @@ bladeangerdone:
 					return FALSE;
 				}
 
-				if (u.twoweap && uswapwep && uswapwep->spe > ((uswapwep->oartifact == ART_CLEAN_MAULER) ? -10 : (objects[uswapwep->otyp].oc_material == MT_PLATINUM) ? 1 : (objects[uswapwep->otyp].oc_material == MT_CERAMIC) ? -10 : 0) && (uswapwep->spe > rn2(8)) && !rn2((objects[uswapwep->otyp].oc_material == MT_CERAMIC) ? 100 : (uswapwep->oartifact == ART_CLEAN_MAULER) ? 100 : (objects[uswapwep->otyp].oc_material == MT_LIQUID) ? 250 : 1000) && (rnd(7) > savechance) && (!(uswapwep->blessed && !rnl(6))) && (!rn2(3) || !(objects[uswapwep->otyp].oc_material == MT_GOLD)) && !issoviet && !(objects[uswapwep->otyp].oc_material == MT_SECREE || objects[uswapwep->otyp].oc_material == MT_ARCANIUM) && (!(uswapwep->oartifact) || !rn2(4)) ) {
+				if (u.twoweap && uswapwep && weaponwilldull(uswapwep) && (rnd(7) > savechance) && !issoviet) {
 					if (uswapwep->greased) {
 						uswapwep->greased--;
 						pline("Your weapon loses its grease.");
