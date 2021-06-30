@@ -6204,6 +6204,9 @@ datadeleteattack()
 			forget(rn2(10) ? 35 : 100);
 			forget_levels(rn2(10) ? 35 : 100);
 			forget_objects(rn2(10) ? 35 : 100);
+			u.bucskill = 0;
+			u.enchantrecskill = 0;
+			u.weapchantrecskill = 0;
 			pline("Suddenly you don't remember anything.");
 			break;
 		case 2: /* delete a ton of their spells */
