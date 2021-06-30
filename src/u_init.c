@@ -10651,6 +10651,7 @@ u_init()
 	u.inertia = 0;
 	u.egglayingtimeout = 0;
 	u.dragonpolymorphtime = 0;
+	u.werepolymorphtime = 0;
 
 	u.usanity = 0;
 

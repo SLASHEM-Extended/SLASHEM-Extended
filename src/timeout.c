@@ -512,6 +512,12 @@ nh_timeout()
 		if (!u.dragonpolymorphtime) pline("You are capable of polymorphing into a dragon again.");
 	}
 
+	if (u.werepolymorphtime) {
+		u.werepolymorphtime--;
+		if (u.werepolymorphtime < 0) u.werepolymorphtime = 0; /* fail safe */
+		if (!u.werepolymorphtime) pline("You are capable of polymorphing into a werecreature again.");
+	}
+
 	if ((Glib > 1) && uarmh && uarmh->oartifact == ART_TARI_FEFALAS) {
 		Glib = 1;
 	}

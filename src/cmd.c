@@ -5844,6 +5844,12 @@ boolean guaranteed;
 		you_have(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && u.werepolymorphtime) {
+		sprintf(buf, "to wait until you can polymorph into a werecreature again.");
+	      sprintf(eos(buf), " (%d)", u.werepolymorphtime);
+		you_have(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && UseTheForce) {
 		sprintf(buf, StrongUseTheForce ? "able to use the force like a jedi grandmaster" : "able to use the force like a true jedi");
 		you_are(buf);
@@ -9901,6 +9907,13 @@ int final;
 	      sprintf(eos(buf), " (%d)", u.dragonpolymorphtime);
 		dump(youhad, buf);
 	}
+
+	if (u.werepolymorphtime) {
+		sprintf(buf, "to wait until you can polymorph into a werecreature again.");
+	      sprintf(eos(buf), " (%d)", u.werepolymorphtime);
+		dump(youhad, buf);
+	}
+
 
 	if (UseTheForce) {
 		sprintf(buf, StrongUseTheForce ? "able to use the force like a jedi grandmaster" : "able to use the force like a true jedi");
