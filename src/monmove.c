@@ -2352,6 +2352,9 @@ toofar:
 			"You fight like a girl.",
 			"What are you wearing?!",
 			"Let's scrap you, buster.",
+			"Still sleepy, sister?",
+			"I'm gonna slap you so hard you're gonna cry!",
+			"Oh what's the matter baby, gonna cry?",
 		};
 
 		verbalize("%s", whore_msgs[rn2(SIZE(whore_msgs))]);
