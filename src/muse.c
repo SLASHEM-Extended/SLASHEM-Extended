@@ -2369,6 +2369,8 @@ struct obj *obj;
 		struct permonst *pm = 0;
 		int attempts = 0;
 
+		if (!enexto(&cc, mon->mx, mon->my, &mons[PM_GOAULD])) return 0;
+
 		if (Aggravate_monster) {
 			u.aggravation = 1;
 			reset_rndmonst(NON_PM);
@@ -2401,6 +2403,8 @@ newsymbio:
 		}
 	    }
 	    if (itemhasappearance(obj, APP_POTION_MICROBIOTIC)) {
+
+		if (!enexto(&cc, mon->mx, mon->my, &mons[PM_LICHEN])) return 0;
 
 		if (Aggravate_monster) {
 			u.aggravation = 1;
