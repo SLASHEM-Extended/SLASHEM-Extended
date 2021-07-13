@@ -410,6 +410,7 @@ boolean forcecontrol;
 	else if (Race_if(PM_DEATHMOLD)) {
 		/* since we added new tilde-class monsters... have to hardwire this --Amy */
 		int deathmolds = 14 + (u.ulevel / 2);
+		mntmp = PM_WHITE_MISSINGNO; /* fail safe */
 		switch (rnd(deathmolds)) {
 			case 1:
 				mntmp = PM_WHITE_MISSINGNO;
@@ -498,8 +499,11 @@ boolean forcecontrol;
 			case 29:
 				mntmp = PM_MULTICOLORED_MISSINGNO;
 				break;
+			default:
+				impossible("wrong form for deathmold?");
+				mntmp = PM_WHITE_MISSINGNO; /* fall back to default one --Amy */
+				break;
 		}
-		mntmp = (PM_WHITE_MISSINGNO + rn2(14 + (u.ulevel / 2) ) );
 	}
 	else if ((Polymorph_control || forcecontrol) && !u.wormpolymorph && rn2(StrongPolymorph_control ? 5 : 3)) {
 
