@@ -4826,6 +4826,7 @@ struct obj *obj;
 	    || obj->otyp == IRON_CHAIN		/* dmgval handles those first three */
 	    || obj->otyp == MIRROR		/* silver in the reflective surface */
 	    || obj->otyp == CLOVE_OF_GARLIC	/* causes shades to flee */
+	    || objects[obj->otyp].oc_material == MT_ARCANIUM
 	    || objects[obj->otyp].oc_material == MT_SILVER)
 		return TRUE;
 	return FALSE;

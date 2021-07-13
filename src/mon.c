@@ -2801,7 +2801,7 @@ struct obj *otmp;
 	    return FALSE;
 	if (otyp == CORPSE && is_deadlysin(&mons[otmp->corpsenm]))
 	    return FALSE;
-	if (objects[otyp].oc_material == MT_SILVER && hates_silver(mdat) &&
+	if (objects[otyp].oc_material == MT_SILVER && issoviet && hates_silver(mdat) &&
 		(otyp != BELL_OF_OPENING || !is_covetous(mdat)))
 	    return FALSE;
 
@@ -2829,7 +2829,10 @@ struct obj *otmp;
 	if (curr_mon_load(mtmp) + newload > max_mon_load(mtmp)) return FALSE;
 
 	/* if the monster hates silver,  don't pick it up */
-	if (objects[otmp->otyp].oc_material == MT_SILVER && hates_silver(mtmp->data))
+	/* Amy edit: that's stupid. they only hate being hit by silver objects, but can handle them just fine! */
+	/* In Soviet Russia, monsters aren't supposed to be dangerous. Instead, they're burdened by silly restrictions that
+	 * prevent them from being able to use items that would be perfectly fine for them to use. */
+	if (objects[otmp->otyp].oc_material == MT_SILVER && issoviet && hates_silver(mtmp->data))
 		return(FALSE);
 
 	if(curr_mon_load(mtmp) + newload > max_mon_load(mtmp)) return(FALSE);
