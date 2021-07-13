@@ -7104,6 +7104,13 @@ SCROLL((char *)0,               "WE EDIT THE MODE BECAUSE WE DONT LIKE IT",  P_N
 SCROLL((char *)0,               "DEFERRED FEATURE",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
 SCROLL((char *)0,               "THE FIRST RULE OF FIGHT CLUB IS YOU DONT TALK ABOUT FIGHT CLUB",  P_NONE,     1,   0, 100, CLR_BRIGHT_MAGENTA, 1),
 SCROLL((char *)0,               "HUMANS BEARLE WE SIMPLY DO IT",  P_NONE,     1,   0, 100, CLR_RED, 1),
+SCROLL((char *)0,               "WE DAMAGED THINGS THE LIGHT",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
+SCROLL((char *)0,               "IT ANNOUNCED ITSELF AFTER SIEVED BELLS FINALLY",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
+SCROLL((char *)0,               "THE WOMEN BECOME HYENAS AND FLOAT WITH DIRE JOKE",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
+SCROLL((char *)0,               "WE MMMMM THE BUNDLE ON",  P_NONE,     1,   0, 100, CLR_BRIGHT_GREEN, 1),
+SCROLL((char *)0,               "THE GOERLS HAVE A POERSENAELITI",  P_NONE,     1,   0, 100, CLR_BRIGHT_CYAN, 1),
+SCROLL((char *)0,               "SLEX CAN MAKE PLAYERS FEEL UNCOMFORTABLE",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
+SCROLL((char *)0,               "GLOBAL RAINBOW OFFENSIVE",  P_NONE,     1,   0, 100, CLR_BRIGHT_MAGENTA, 1),
 
 
 #ifdef MAIL

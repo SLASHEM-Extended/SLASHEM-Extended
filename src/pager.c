@@ -4534,6 +4534,11 @@ static NEARDATA const char * const longinglines[] = {
 "%s's last name should be Cuddle-Bundle because her long hair is just so beautifully soft!",
 "You want to play a game with %s where she is only allowed to lovingly caress your butt cheeks, but not hurt them.",
 "You want to play a game with %s where she is allowed to lovingly caress your butt cheeks, or also hurt them if she wants to.",
+"%s can clamp your hands with her sweaty feet in a very sexy, lustful way!",
+"You absolutely want to present your body as a surface for %s to drive around on with her roller blades, because that would feel absolutely great!",
+"Being stomped by %s's female roller blades would feel super painful and exciting!",
+"%s's lady boots have metallic spikes, which can dig into your skin in a very wonderful way!",
+"You want your eventual epitaph to read 'killed by %s's beautiful high heels'.",
 };
 
 static NEARDATA const char * const soviettaunts[] = {
