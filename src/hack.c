@@ -435,7 +435,7 @@ trap_of_walls:
 			else if ((levl[randomx][randomy].wall_info & W_NONDIGGABLE) == 0) {
 				if (levl[randomx][randomy].typ != DOOR) {
 					if (secretcorr && !rn2(10)) levl[randomx][randomy].typ = SCORR;
-					else levl[randomx][randomy].typ = STONE;
+					else levl[randomx][randomy].typ = ROCKWALL;
 				}
 				else {
 					if (secretcorr && !rn2(10)) levl[randomx][randomy].typ = SDOOR;
