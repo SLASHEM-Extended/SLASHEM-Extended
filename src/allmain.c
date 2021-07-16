@@ -3443,6 +3443,10 @@ newbossBQ:
 			skilltrainingdecrease((level_difficulty() * rnd(3)) + 1);
 		}
 
+		if (have_amateurluckstone() && !rn2(100)) {
+			contaminate(rnd(10), FALSE);
+		}
+
 		if (FalloutEffect && !rn2(100)) {
 			contaminate(rnd(10), FALSE);
 		}
@@ -6060,6 +6064,7 @@ newbossRLR:
 		if (!rn2(200)) {
 			recalc_health();
 			recalc_mana();
+			set_moreluck();
 		}
 
 		if (Race_if(PM_FIXER) && !rn2(1000)) {
@@ -12668,6 +12673,7 @@ boolean new_game;	/* false => restoring an old game */
 	/* in case healthstones and stuff got out of sync somehow... */
 	recalc_health();
 	recalc_mana();
+	set_moreluck();
 
     }
 

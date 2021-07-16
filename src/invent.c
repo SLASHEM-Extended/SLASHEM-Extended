@@ -1346,6 +1346,18 @@ have_invisoloadstone()
 }
 
 boolean
+have_amateurluckstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == LUCKSTONE && otmp->oartifact == ART_AMATEURHOUR_S_SIGH)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
 have_femityjewel()
 {
 	register struct obj *otmp;
@@ -21302,6 +21314,14 @@ boolean knoweverything;
 					pline("Artifact specs: +2 damage against rodents."); break;
 				case ART_SECRET_BOOK_OF_VENOM:
 					pline("Artifact specs: successfully reading it will teach you the venom mixing technique, or increase its level if you already know it."); break;
+				case ART_ALDEBARAN_FORM:
+					pline("Artifact specs: flying when wielded, and if you kill something while wielding it, you recover some HP. There is no actual 'aldebaran' lightsaber form, but Demo suggested it and I decided to turn the idea into an artifact instead."); break;
+				case ART_JEDITATION:
+					pline("Artifact specs: +2 damage, energy regeneration when wielded."); break;
+				case ART_WIRE_OF_LUCK:
+					pline("Artifact specs: acts as a luckstone and grants +5 luck when wielded."); break;
+				case ART_AMATEURHOUR_S_SIGH:
+					pline("Artifact specs: +5 luck and fallout effect when carried. Sorry amateurhour, but your downsideless artifact is in another castle."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;
