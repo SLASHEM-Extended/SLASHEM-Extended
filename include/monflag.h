@@ -264,6 +264,9 @@
 #define M5_AOE	0x00002000L		/* Age of Empires monster */
 #define M5_ELDERSCROLLS	0x00004000L		/* monster from Fallout or The Elder Scrolls (yes they're the same :P) */
 
+#define M6_FLEE	0x00000001L		/* appr = -1 */
+#define M6_RANDWALK	0x00000002L		/* appr = 0 */
+
 #define MZ_TINY		0		/* < 2' */
 #define MZ_SMALL	1		/* 2-4' */
 #define MZ_MEDIUM	2		/* 4-7' */

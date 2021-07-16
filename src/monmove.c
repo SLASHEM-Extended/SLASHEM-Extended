@@ -2745,9 +2745,7 @@ altarfound:
 	if (monsndx(ptr) == PM_PANCAKE_SPIRIT) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_DIDDLY_DINGUS_DUDE && !rn2(10)) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_PARROT_RIDING_A_GIANT_PENIS && !rn2(10)) mtmp->mconf = 1;
-	if (mtmp->mconf || (uarmh && !rn2(10) && itemhasappearance(uarmh, APP_INKCOAT_HELMET) ) || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || (monsndx(ptr) == PM_DANCING_DRAGON) || (monsndx(ptr) == PM_ERR_BOSS) || (monsndx(ptr) == PM_ERR) || (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) || (monsndx(ptr) == PM_TREMBLING_POPLAR) || (monsndx(ptr) == PM_DEAR_ENEMY) || (monsndx(ptr) == PM_TOIDI) || (u.uswallow && mtmp == u.ustuck))
-		appr = 0;
-	else if ((monsndx(ptr) == PM_WIMPDAG_BANGER) || (monsndx(ptr) == PM_DARK_BANGER) || (monsndx(ptr) == PM_ARCANE_BANGER) || (monsndx(ptr) == PM_AVARICIOUS_BANGER) || (monsndx(ptr) == PM_SLING_BANGER) || (monsndx(ptr) == PM_TALC_BANGER) || (monsndx(ptr) == PM_EX_SLING_BANGER) || (monsndx(ptr) == PM_FLINT_BANGER) || (monsndx(ptr) == PM_DAT_BANGER) || (monsndx(ptr) == PM_BOW_BANGER) || (monsndx(ptr) == PM_PISTOL_BANGER) || (monsndx(ptr) == PM_LEAD_BANGER) || (monsndx(ptr) == PM_SPEA_BANGER) || (monsndx(ptr) == PM_XBOW_BANGER) || (monsndx(ptr) == PM_FLEECE_BANGER) || (monsndx(ptr) == PM_SHOTTY_BANGER) || (monsndx(ptr) == PM_SHURI_BANGER) || (monsndx(ptr) == PM_SMG_BANGER) || (monsndx(ptr) == PM_LASER_BANGER) || (monsndx(ptr) == PM_ETHER_BANGER) || (monsndx(ptr) == PM_ASSAULT_BANGER) || (monsndx(ptr) == PM_JAV_BANGER) || (monsndx(ptr) == PM_AUTOSHOT_BANGER) || (monsndx(ptr) == PM_ARMSTREAM_BANGER) || (monsndx(ptr) == PM_BIG_FUCKING_BANGER) )
+	if (mtmp->mconf || (uarmh && !rn2(10) && itemhasappearance(uarmh, APP_INKCOAT_HELMET) ) || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || (u.uswallow && mtmp == u.ustuck))
 		appr = 0;
 	else {
 #ifdef GOLDOBJ
@@ -2768,7 +2766,7 @@ altarfound:
 		    (youmonst.m_ap_type == M_AP_OBJECT && youmonst.mappearance == STRANGE_OBJECT) || u.uundetected ||
 		    (youmonst.m_ap_type == M_AP_OBJECT && youmonst.mappearance == GOLD_PIECE && !likes_gold(ptr)) ||
 		    (mtmp->mpeaceful && !mtmp->isshk) ||  /* allow shks to follow */
-		    ((monsndx(ptr) == PM_STALKER || ptr->mlet == S_BAT ||
+		    ((monsndx(ptr) == PM_STALKER || is_bat(ptr) ||
 		      ptr->mlet == S_LIGHT) && !rn2(3)))
 			appr = 0;
 
@@ -2826,13 +2824,9 @@ altarfound:
 
 	if (appr == 1 && !rn2(5) && (uarmc && itemhasappearance(uarmc, APP_PINK_CLOAK) )) appr = 0;
 
-	if (ptr == &mons[PM_ANCIENT_BIBLICAL_DRAGON]) appr = -1;
-	if (ptr == &mons[PM_BLOWSTREAM_BABY]) appr = -1;
-	if (ptr == &mons[PM_BOGUXORN]) appr = -1;
-	if (ptr == &mons[PM_POOL_EDGE_SWIMMER]) appr = -1;
-	if (ptr == &mons[PM_SOCIAL_DISORDER]) appr = -1;
-	if (ptr == &mons[PM_LITTLE_WALL_FLOWER]) appr = -1;
-	if (ptr == &mons[PM_DEBILITATED_DANNY]) appr = -1;
+	if (monsterrandomwalk(ptr)) appr = 0;
+	if (monsterflees(ptr)) appr = -1;
+
 	if (ptr == &mons[PM_DECISION_WEAKSKI]) appr = (!rn2(3) ? -1 : rn2(2) ? 0 : 1);
 	if (ptr == &mons[PM_IRMGARD]) appr = (!rn2(3) ? -1 : rn2(2) ? 0 : 1);
 

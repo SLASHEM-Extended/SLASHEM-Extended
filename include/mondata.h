@@ -239,6 +239,9 @@
 #define is_aoemonster(ptr)	((ptr)->mflags5 & M5_AOE)
 #define is_elderscrollsmonster(ptr)	((ptr)->mflags5 & M5_ELDERSCROLLS)
 
+#define monsterflees(ptr)	((ptr)->mflags6 & M6_FLEE)
+#define monsterrandomwalk(ptr)	((ptr)->mflags6 & M6_RANDWALK)
+
 #define nocorpsedecay(ptr)		((ptr)->mflags3 & M3_NO_DECAY)
 
 #define standardmimic(ptr)		((ptr)->mflags3 & M3_MIMIC)
