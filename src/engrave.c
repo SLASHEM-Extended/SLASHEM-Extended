@@ -5503,6 +5503,8 @@ static const char *epitaphs[] = {
 	"that spirit race nerf is bullshit! they weren't OP, just good!", /* but in reality they were very OP because phasing is uber powerful --Amy */
 	"Amy you always nerf exactly the thing that players use! Why not nerf something else instead for a change?", /* because the roles and races that no one plays remain untested until someone does play them :-P I'm just one woman, I can't very well playtest everything by myself?! No one has that much free time! */
 	"Well this is bullshit, the strategy I was using certainly wasn't OP and in no way it made the game too easy. That Amy nerfed it anyway is absolutely retarded and no one should play her fucked up game anymore.",
+	"works as intended",
+	"slex is a very fair and balanced game",
 
 };
 

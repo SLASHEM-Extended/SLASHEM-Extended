@@ -4170,7 +4170,7 @@ melatechoice:
 
 			else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && !rn2(5) && !thrown) {
 
-				switch (rnd(605)) {
+				switch (rnd(606)) {
 
 				case 1: pline("You crush %s's skull into jelly.", mon_nam(mon)); break;
 				case 2: pline("You decapitate %s with a backhand stroke.", mon_nam(mon)); break;
@@ -4777,6 +4777,7 @@ melatechoice:
 				case 603: pline("You rapidly batter %s with punches, beating the crap out of %s.", mon_nam(mon), mhim(mon)); break;
 				case 604: pline("%s loses an %s as a result of your thrown knife!", Monnam(mon), mbodypart(mon, ARM)); break;
 				case 605: pline("You start kicking %s in the nuts repeatedly, and because the noob is wearing pants with holes, you always aim for the holes and thereby manage to bludgeon him.", mon_nam(mon)); break;
+				case 606: pline("%s life flashes before %s %s as your sword connects with %s %s.", s_suffix(Monnam(mon)), mhis(mon), makeplural(mbodypart(mon, EYE)), mhis(mon), mbodypart(mon, rn2(2) ? FACE : NECK)); break;
 
 
 				default: pline("You hit %s very hard!", mon_nam(mon)); break;

@@ -7111,6 +7111,7 @@ SCROLL((char *)0,               "WE MMMMM THE BUNDLE ON",  P_NONE,     1,   0, 1
 SCROLL((char *)0,               "THE GOERLS HAVE A POERSENAELITI",  P_NONE,     1,   0, 100, CLR_BRIGHT_CYAN, 1),
 SCROLL((char *)0,               "SLEX CAN MAKE PLAYERS FEEL UNCOMFORTABLE",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
 SCROLL((char *)0,               "GLOBAL RAINBOW OFFENSIVE",  P_NONE,     1,   0, 100, CLR_BRIGHT_MAGENTA, 1),
+SCROLL((char *)0,               "CRASH EM EXTENDED COREDUMPS",  P_NONE,     1,   0, 100, CLR_BRIGHT_CYAN, 1),
 
 
 #ifdef MAIL
