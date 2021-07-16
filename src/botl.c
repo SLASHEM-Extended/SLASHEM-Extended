@@ -1035,6 +1035,33 @@ bot2str(char *newbot2)
 		strcat(nb = eos(nb), flags.showlongstats ? " Vibration" : " Vib");
 #endif
 
+	if(Slimed)
+#if defined(STATUS_COLORS) && defined(TEXTCOLOR)
+	     	add_colored_text(flags.showlongstats ? "Slime" : "Sli", newbot2);
+#else
+		strcat(nb = eos(nb), flags.showlongstats ? " Slime" : " Sli");
+#endif
+	if(Stoned)
+#if defined(STATUS_COLORS) && defined(TEXTCOLOR)
+	     	add_colored_text(flags.showlongstats ? "Stone" : "Sto", newbot2);
+#else
+		strcat(nb = eos(nb), flags.showlongstats ? " Stone" : " Sto");
+#endif
+	if(Sick) {
+		if (u.usick_type & SICK_VOMITABLE)
+#if defined(STATUS_COLORS) && defined(TEXTCOLOR)
+			add_colored_text(flags.showlongstats ? "FoodPois" : "FPo", newbot2);
+#else
+			strcat(nb = eos(nb), flags.showlongstats ? " FoodPois" : " FPo");
+#endif
+		if (u.usick_type & SICK_NONVOMITABLE)
+#if defined(STATUS_COLORS) && defined(TEXTCOLOR)
+			add_colored_text("Ill", newbot2);
+#else
+			strcat(nb = eos(nb), " Ill");
+#endif
+	}
+
 	if (multi < 0)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "Paralyzed" : "Par", newbot2);
@@ -1091,20 +1118,6 @@ bot2str(char *newbot2)
 #else
 		strcat(nb = eos(nb), flags.showlongstats ? " XConf" : " XCnf");
 #endif
-	if(Sick) {
-		if (u.usick_type & SICK_VOMITABLE)
-#if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-			add_colored_text(flags.showlongstats ? "FoodPois" : "FPo", newbot2);
-#else
-			strcat(nb = eos(nb), flags.showlongstats ? " FoodPois" : " FPo");
-#endif
-		if (u.usick_type & SICK_NONVOMITABLE)
-#if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-			add_colored_text("Ill", newbot2);
-#else
-			strcat(nb = eos(nb), " Ill");
-#endif
-	}
 
 	if(Blind && !HeavyBlind)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
@@ -1209,18 +1222,6 @@ bot2str(char *newbot2)
 	     	add_colored_text(flags.showlongstats ? "XHallu" : "XHal", newbot2);
 #else
 		strcat(nb = eos(nb), flags.showlongstats ? " XHallu" : " XHal");
-#endif
-	if(Slimed)
-#if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text(flags.showlongstats ? "Slime" : "Sli", newbot2);
-#else
-		strcat(nb = eos(nb), flags.showlongstats ? " Slime" : " Sli");
-#endif
-	if(Stoned)
-#if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text(flags.showlongstats ? "Stone" : "Sto", newbot2);
-#else
-		strcat(nb = eos(nb), flags.showlongstats ? " Stone" : " Sto");
 #endif
 	if(u.ustuck && !u.uswallow && !sticks(youmonst.data))
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
