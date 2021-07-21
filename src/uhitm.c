@@ -594,10 +594,10 @@ register struct monst *mtmp;
 		  (!uarm || (uarm && uarm->otyp >= ROBE && 
 		  	uarm->otyp <= ROBE_OF_WEAKNESS)))
 		  	
-		  tmp += (u.ulevel / 3) + 2;
+		  tmp += (GushLevel / 3) + 2;
 		else if (!uwep && (!u.twoweap || !uswapwep)) {
 		   pline("Your armor is rather cumbersome...");
-		   tmp += (u.ulevel / 9) + 1;
+		   tmp += (GushLevel / 9) + 1;
 		}
 	}
 
@@ -1237,16 +1237,22 @@ martial_dmg()
 
         } else if ((Role_if(PM_MONK) && !Upolyd && !(PlayerCannotUseSkills) )
                 && (P_SKILL(P_MARTIAL_ARTS) >= P_GRAND_MASTER)
-                && (u.ulevel > 16)) damage = d(6,2) + (P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER ? rnd(10) : 0) ;                                
-        else if (!(PlayerCannotUseSkills) && (P_SKILL(P_MARTIAL_ARTS) >= P_BASIC) && u.ulevel > (2*(P_SKILL(P_MARTIAL_ARTS) - P_BASIC) + 5))
+                && (GushLevel > 16)) damage = d(6,2) + (P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER ? rnd(10) : 0) ;                                
+        else if (!(PlayerCannotUseSkills) && (P_SKILL(P_MARTIAL_ARTS) >= P_BASIC) && GushLevel > (2*(P_SKILL(P_MARTIAL_ARTS) - P_BASIC) + 5))
                 damage = d((int) (P_SKILL(P_MARTIAL_ARTS) - P_UNSKILLED),2);
         else
-                damage = d((int) ((u.ulevel+2)/3),2);
+                damage = d((int) ((GushLevel+2)/3),2);
 
-        if((!uarm || (uarm && (uarm->otyp >= ROBE &&
-            uarm->otyp <= ROBE_OF_WEAKNESS))) && (!uarms))
-                damage *= 2;
-        else damage += 2;
+	  if (!Role_if(PM_HALF_BAKED)) {
+
+	        if(( (!uarm && rn2(2)) || (uarm && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS))) && (!uarms) && (damage > 1))
+	                damage += rnd(damage);
+	        else {
+			if (damage > 1) damage += rnd(2);
+			else damage++;
+		  }
+
+	  }
 
 	if (uarmg && itemhasappearance(uarmg, APP_BOXING_GLOVES) ) damage += 1;
 
@@ -1257,7 +1263,7 @@ martial_dmg()
 
 	if (Glib_combat && IsGlib) {
 
-		damage += rnd(u.ulevel);
+		damage += rnd(GushLevel);
 
 	}
 
@@ -1438,7 +1444,7 @@ int dieroll;
 		else {
 			tmp = rnd(2);
 			if (Glib_combat && IsGlib) {
-				tmp += rnd(u.ulevel);
+				tmp += rnd(GushLevel);
 			}
 
 			if (!(PlayerCannotUseSkills)) {
@@ -1910,7 +1916,7 @@ int dieroll;
 				if (rn2(4)) {
 				    monflee(mon, d(2,3), TRUE, TRUE);
 				}
-				if (obj && obj->oartifact == ART_OUTJUYOING) use_skill(P_JUYO, rnd(4));
+				if (obj && obj->oartifact == ART_OUTJUYOING) use_skill(P_JUYO, rnd(7));
 
 				hittxt = TRUE;
 			}
@@ -1976,7 +1982,7 @@ int dieroll;
 						}
 
 						hittxt = TRUE;
-						use_skill(P_JUYO, rnd(4)); /* has to be faster because hard to train otherwise --Amy */
+						use_skill(P_JUYO, rnd(7)); /* has to be faster because hard to train otherwise --Amy */
 
 						if (tech_inuse(T_SURRENDER_OR_DIE)) {
 							if (!mon->mfrenzied && !resist(mon, WEAPON_CLASS, 0, NOTELL) ) {
@@ -1989,7 +1995,7 @@ int dieroll;
 							} else if (obj && obj->spe < 2) {
 								obj->spe++;
 								pline("Your lightsaber gains a point of enchantment!");
-							} else if (obj && obj->spe < 7 && !rn2(obj->spe)) {
+							} else if (obj && obj->spe < 7 && !rn2(obj->spe) && !rn2(obj->spe)) {
 								obj->spe++;
 								pline("Your lightsaber vibrates and is highly enchanted now!");
 							} else {
@@ -2042,10 +2048,10 @@ int dieroll;
 			if (obj && (obj->otyp == TIN_OPENER || obj->otyp == BUDO_NO_SASU) && Role_if(PM_SUPERMARKET_CASHIER)) {
 				if (obj->otyp == BUDO_NO_SASU) tmp += 5;
 				tmp += 2;
-				if (u.ulevel >= 18) tmp += rnd(10);
-				if (u.ulevel >= 24) tmp += rnd(4);
-				if (u.ulevel >= 27) tmp += rnd(2);
-				if (u.ulevel >= 30) tmp += 1;
+				if (GushLevel >= 18) tmp += rnd(10);
+				if (GushLevel >= 24) tmp += rnd(4);
+				if (GushLevel >= 27) tmp += rnd(2);
+				if (GushLevel >= 30) tmp += 1;
 
 				if (!(PlayerCannotUseSkills)) {
 					switch (P_SKILL(P_MARTIAL_ARTS)) {
@@ -2323,7 +2329,7 @@ int dieroll;
 		} else {
 		switch(obj->otyp) {
 		    case BOULDER:		/* 1d20 */
-			tmp = thrown ? (dmgvalX(obj, mon) + u.ulevel) : dmgvalX(obj, mon);
+			tmp = thrown ? (dmgvalX(obj, mon) + GushLevel) : dmgvalX(obj, mon);
 			break;
 		    case HEAVY_IRON_BALL:	/* 1d25 */
 		    case REALLY_HEAVY_IRON_BALL:	/* 1d25 */
@@ -2926,7 +2932,7 @@ int dieroll;
 
 		if (gunused && tech_inuse(T_SHUT_THAT_BITCH_UP) && mon && mon->female && humanoid(mon->data)) {
 			if (!TimeStopped || !rn2(TimeStopped)) {
-				You("managed to shut the %s bitch up!", mon_nam(mon));
+				You("managed to shut the %s bitch up!", l_monnam(mon));
 				TimeStopped++;
 			}
 		}
@@ -3438,24 +3444,44 @@ melatechoice:
         }
 
 	/* Special monk strikes */
-	if ((Role_if(PM_MONK) || Role_if(PM_HALF_BAKED)) && !Upolyd && !thrown && no_obj &&
+	if (Role_if(PM_MONK) && !Upolyd && !thrown && no_obj &&
 		(!uarm || (uarm && uarm->otyp >= ROBE &&
 		 uarm->otyp <= ROBE_OF_WEAKNESS)) && !uarms &&
 		 distu(mon->mx, mon->my) <= 2) {
 	    /* just so we don't need another variable ... */
-	    canhitmon = rnd(100);
-	    if (canhitmon < u.ulevel / 8 && !thick_skinned(mdat)) {
+	    canhitmon = rnd(500);
+	    if (canhitmon < (GushLevel / 8) && !thick_skinned(mdat)) {
 		if (canspotmon(mon))
 		    You("strike %s extremely hard!", mon_nam(mon));
 		tmp *= 2;
 		hittxt = TRUE;
-	    } else if (canhitmon < u.ulevel / 4 && !thick_skinned(mdat)) {
+	    } else if (canhitmon < (GushLevel / 4) && !thick_skinned(mdat)) {
 		if (canspotmon(mon))
 		    You("strike %s very hard!", mon_nam(mon));
 		tmp += tmp / 2;
 		hittxt = TRUE;
-	    } else if (canhitmon < u.ulevel / 2 && !bigmonst(mon->data) &&
+	    } else if (canhitmon < (GushLevel / 2) && !bigmonst(mon->data) &&
 		    !thick_skinned(mdat)) {
+		if (canspotmon(mon))
+		    pline("%s %s from your powerful strike!", Monnam(mon),
+			  makeplural(stagger(mon->data, "stagger")));
+		/* avoid migrating a dead monster */
+		if (mon->mhp > tmp) {
+		    mhurtle(mon, u.dx, u.dy, 1);
+		    mdat = mon->data; /* in case of a polymorph trap */
+		    if (DEADMONSTER(mon)) already_killed = TRUE;
+		}
+		hittxt = TRUE;
+	    }
+	}
+
+	if (Role_if(PM_HALF_BAKED) && !Upolyd && !thrown && no_obj &&
+		(!uarm || (uarm && uarm->otyp >= ROBE &&
+		 uarm->otyp <= ROBE_OF_WEAKNESS)) && !uarms &&
+		 distu(mon->mx, mon->my) <= 2) {
+	    /* just so we don't need another variable ... */
+	    canhitmon = rnd(500);
+		if (canhitmon < (GushLevel / 2) && !bigmonst(mon->data) && !thick_skinned(mdat) && !rn2(10)) {
 		if (canspotmon(mon))
 		    pline("%s %s from your powerful strike!", Monnam(mon),
 			  makeplural(stagger(mon->data, "stagger")));
@@ -3603,7 +3629,7 @@ melatechoice:
 
 		else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || sanitymessage) && !rn2(5)) {
 
-			switch (rnd(423)) {
+			switch (rnd(425)) {
 	
 			case 1: pline("%s staggers from your furious assault.", Monnam(mon)); break;
 			case 2: pline("Your cut barely scratches %s's scales.", mon_nam(mon)); break;
@@ -3990,7 +4016,7 @@ melatechoice:
 			case 383: pline("Your sexy leather pumps continuously scratch up and down %s's %s, causing %s to squirt everywhere, but the tender heel absolutely wants to deal even more damage.", mon_nam(mon), mbodypart(mon, LEG), mbodypart(mon, BLOOD)); break;
 			case 384: pline("The tender heels of your fleecy combat boots are starting to get very %s-smeared as you keep scratching over the open wounds on %s's %s.", mbodypart(mon, BLOOD), mon_nam(mon), mbodypart(mon, LEG)); break;
 			case 385: pline("Your buckles slit %s's %s very painfully, but somehow no %s is flowing. Maybe %s has let it coagulate?", mon_nam(mon), mbodypart(mon, LEG), mbodypart(mon, BLOOD), mon_nam(mon)); break;
-			case 386: pline("You start kicking %s in the nuts repeatedly, and because the noob is wearing pants with holes, you always aim for the holes and thereby manage to bludgeon him.", mon_nam(mon)); break;
+			case 386: pline("Your sneakers fully slam into %s's nuts, but not strongly enough for a knock-out.", mon_nam(mon)); break;
 			case 387: pline("%s is trying to tease you with his sexy underwear, but you can't be fooled and place a powerful kick into his groin with your boots.", Monnam(mon)); break;
 			case 388: pline("You stick some fly paper onto %s's %s.", mon_nam(mon), mbodypart(mon, HAIR)); break;
 			case 389: pline("Your blade removes some of %s's %s.", mon_nam(mon), mbodypart(mon, HAIR)); break;
@@ -4028,6 +4054,8 @@ melatechoice:
 			case 421: pline("Your sister combat boots with very pretty black block heels stomp %s's %s.", mon_nam(mon), makeplural(mbodypart(mon, TOE))); break;
 			case 422: pline("You land a very lovely little-girl kick against %s's shin with your black calf-leather sandals!", mon_nam(mon)); break;
 			case 423: pline("You slam shut and %s lost lines.", mon_nam(mon)); break;
+			case 424: pline("%s is caught by your homosexual spin kick, but keeps fighting.", Monnam(mon)); break;
+			case 425: pline("Your jump kick catches %s, who is dazed for a moment.", mon_nam(mon)); break;
 
 			default: pline("You hit %s!", mon_nam(mon)); break;
 	
@@ -4142,7 +4170,7 @@ melatechoice:
 
 			else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && !rn2(5) && !thrown) {
 
-				switch (rnd(600)) {
+				switch (rnd(606)) {
 
 				case 1: pline("You crush %s's skull into jelly.", mon_nam(mon)); break;
 				case 2: pline("You decapitate %s with a backhand stroke.", mon_nam(mon)); break;
@@ -4702,7 +4730,7 @@ melatechoice:
 				case 556: pline("You cut %s's femoral artery wide open, causing instant death, but you're also showered with %s in the process.", mon_nam(mon), mbodypart(mon, BLOOD)); break;
 				case 557: pline("You cut %s across the abdomen, whose guts rejoice as they flee the body.", mon_nam(mon)); break;
 				case 558: pline("You cover %s's %s in a white leaden dust, and then it shatters, falling to the ground.", mon_nam(mon), mbodypart(mon, ARM)); break;
-				case 559: pline("You lie on the ground and as %s approaches, you bludgeon %s with a devastating bicycle kick.", Monnam(mon), mhim(mon)); break;
+				case 559: pline("You lie on the ground and as %s approaches, you bludgeon %s with a devastating bicycle kick.", mon_nam(mon), mhim(mon)); break;
 				case 560: pline("Now %s gets however skin-fully.", mon_nam(mon)); break;
 				case 561: pline("%s fallow together.", Monnam(mon)); break;
 				case 562: pline("You firstoh %s with your knife.", mon_nam(mon)); break;
@@ -4722,20 +4750,20 @@ melatechoice:
 				case 576: pline("%s is someone from the revolutinos army, who don't like marine guys like you at all, but the reverse is also true and therefore you shoot down %s now.", Monnam(mon), mon_nam(mon)); break;
 				case 577: pline("Your cannonball hits %s fully in the %s.", mon_nam(mon), mbodypart(mon, STOMACH)); break;
 				case 578: pline("Since you know that a guillotine trap is nearby, you lure %s to it, who is so stupid and actually triggers the trap, losing %s %s.", mon_nam(mon), mhis(mon), mbodypart(mon, HEAD)); break;
-				case 579: pline("As %s tries to push you into a bottomless pit, you dodge and thereby cause %s to fall in %sself.", m_monnam(mon), mhim(mon), mhim(mon)); break;
+				case 579: pline("As %s tries to push you into a bottomless pit, you dodge and thereby cause %s to fall in %sself.", mon_nam(mon), mhim(mon), mhim(mon)); break;
 				case 580: pline("%s clicked on a cursed called and sees a game over screen!", Monnam(mon)); break;
 				case 581: pline("%s has a level bug.", Monnam(mon)); break;
 				case 582: pline("%s isn't resistant to your elemental breath and therefore succumbs to your continued breathing!", Monnam(mon)); break;
-				case 583: pline("You tie %s to the railroad tracks and wait until the train comes.", m_monnam(mon)); break;
-				case 584: pline("You've constructed an electric trap with a lot of money as a bait, and %s is so greedy and actually touches the metal bars you set up. %s receives an electric shock and dies instantly.", m_monnam(mon), mhe(mon)); break;
-				case 585: pline("Suddenly %s is crushed by the collapsing ceiling.", m_monnam(mon)); break;
-				case 586: pline("You catch %s in a revolving spiked door.", m_monnam(mon)); break;
-				case 587: pline("You managed to throw %s out of the ring, thereby defeating %s!", m_monnam(mon), mhim(mon)); break;
-				case 588: pline("Bang, your gunboat sinks %s's ship.", m_monnam(mon)); break;
-				case 589: pline("You pull %s underwater and wait for %s to drown.", m_monnam(mon), mhim(mon)); break;
+				case 583: pline("You tie %s to the railroad tracks and wait until the train comes.", mon_nam(mon)); break;
+				case 584: pline("You've constructed an electric trap with a lot of money as a bait, and %s is so greedy and actually touches the metal bars you set up. %s receives an electric shock and dies instantly.", mon_nam(mon), mhe(mon)); break;
+				case 585: pline("Suddenly %s is crushed by the collapsing ceiling.", mon_nam(mon)); break;
+				case 586: pline("You catch %s in a revolving spiked door.", mon_nam(mon)); break;
+				case 587: pline("You managed to throw %s out of the ring, thereby defeating %s!", mon_nam(mon), mhim(mon)); break;
+				case 588: pline("Bang, your gunboat sinks %s's ship.", mon_nam(mon)); break;
+				case 589: pline("You pull %s underwater and wait for %s to drown.", mon_nam(mon), mhim(mon)); break;
 				case 590: pline("%s has overdosed on drugs, and suddenly falls over dead.", Monnam(mon)); break;
-				case 591: pline("You tell %s to 'kys yourself', and %s is actually stupid enough to comply.", m_monnam(mon), mhe(mon)); break;
-				case 592: pline("You smash %s's %s with your wedding ring because you're such a cowardly cunt.", m_monnam(mon), mbodypart(mon, FACE)); break;
+				case 591: pline("You tell %s to 'kys yourself', and %s is actually stupid enough to comply.", mon_nam(mon), mhe(mon)); break;
+				case 592: pline("You smash %s's %s with your wedding ring because you're such a cowardly cunt.", mon_nam(mon), mbodypart(mon, FACE)); break;
 				case 593: pline("With your block heels, you fully finish off %s in melee combat.", mon_nam(mon)); break;
 				case 594: pline("It turns out that %s was infected with covid-19 all the time, and has just passed away due to the disease.", mon_nam(mon)); break;
 				case 595: pline("%s tries to push you into a wall of fire, but you dodge and thereby cause %s to fall in %sself.", Monnam(mon), mhim(mon), mhim(mon)); break;
@@ -4744,6 +4772,12 @@ melatechoice:
 				case 598: pline("You ruined %s's day.", mon_nam(mon)); break;
 				case 599: pline("You crush %s's hopes.", mon_nam(mon)); break;
 				case 600: pline("%s has triggered too many nasty traps and therefore decides to ragequit the game.", Monnam(mon)); break;
+				case 601: pline("You throw a totally homosexual spin kick, and this time %s actually gets knocked out by it.", mon_nam(mon)); break;
+				case 602: pline("With your jump kick, you bludgeon the dirty ladder camper bastard of %s.", mon_nam(mon)); break;
+				case 603: pline("You rapidly batter %s with punches, beating the crap out of %s.", mon_nam(mon), mhim(mon)); break;
+				case 604: pline("%s loses an %s as a result of your thrown knife!", Monnam(mon), mbodypart(mon, ARM)); break;
+				case 605: pline("You start kicking %s in the nuts repeatedly, and because the noob is wearing pants with holes, you always aim for the holes and thereby manage to bludgeon him.", mon_nam(mon)); break;
+				case 606: pline("%s life flashes before %s %s as your sword connects with %s %s.", s_suffix(Monnam(mon)), mhis(mon), makeplural(mbodypart(mon, EYE)), mhis(mon), mbodypart(mon, rn2(2) ? FACE : NECK)); break;
 
 
 				default: pline("You hit %s very hard!", mon_nam(mon)); break;
@@ -4793,6 +4827,7 @@ struct obj *obj;
 	    || obj->otyp == IRON_CHAIN		/* dmgval handles those first three */
 	    || obj->otyp == MIRROR		/* silver in the reflective surface */
 	    || obj->otyp == CLOVE_OF_GARLIC	/* causes shades to flee */
+	    || objects[obj->otyp].oc_material == MT_ARCANIUM
 	    || objects[obj->otyp].oc_material == MT_SILVER)
 		return TRUE;
 	return FALSE;
@@ -4997,6 +5032,10 @@ struct attack *mattk;
 			return;
 	    }
 	    if (otmp && otmp->mstartinventC && !(otmp->oartifact) && !(otmp->fakeartifact && !rn2(10)) && rn2(10) ) {
+			delobj(otmp);
+			return;
+	    }
+	    if (otmp && otmp->mstartinventD && !(otmp->oartifact) && !(otmp->fakeartifact && !rn2(4)) && rn2(4) ) {
 			delobj(otmp);
 			return;
 	    }
@@ -5887,7 +5926,7 @@ register struct attack *mattk;
 		if (parlyzdur > 1) parlyzdur = rnd(parlyzdur);
 		if (parlyzdur > 127) parlyzdur = 127;
 
-		if (rn2(2) && !(mdef->m_lev > 1 && (rnd(mdef->m_lev) > u.ulevel)) && !negated && !mdef->msleeping && /* drow nerf --Amy */
+		if (rn2(2) && !(mdef->m_lev > 1 && (rnd(mdef->m_lev) > u.ulevel)) && (rn2(100) > mdef->data->mr) && !negated && !mdef->msleeping && /* drow nerf --Amy */
 			(mattk->aatyp != AT_WEAP || barehanded_hit) && sleep_monst(mdef, parlyzdur, -1)) {
 		    if (!Blind)
 			pline("%s is put to sleep by you!", Monnam(mdef));
@@ -5914,6 +5953,14 @@ register struct attack *mattk;
 		break;
 	    case AD_SLOW:
 	    case AD_WGHT:
+		if (!negated && (rn2(100) > mdef->data->mr) && mdef->mspeed != MSLOW) {
+		    unsigned int oldspeed = mdef->mspeed;
+
+		    mon_adjust_speed(mdef, -1, (struct obj *)0);
+		    if (mdef->mspeed != oldspeed && canseemon(mdef))
+			pline("%s slows down.", Monnam(mdef));
+		}
+		break;
 	    case AD_INER:
 		if (!negated && mdef->mspeed != MSLOW) {
 		    unsigned int oldspeed = mdef->mspeed;
@@ -7076,7 +7123,7 @@ register int roll;
 
 	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && !rn2(5) && canspotmon(mdef) && flags.verbose) {
 
-		switch (rnd(589)) {
+		switch (rnd(594)) {
 
 		case 1: pline("%s cringes from your strike behind its %sshield.", Monnam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
 		case 2: pline("You smash into %s's %sshield, striking sparks.", mon_nam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
@@ -7665,8 +7712,13 @@ register int roll;
 		case 585: pline("%s decides to teach you a lesson by firing lightning spikes at you.", Monnam(mdef)); break;
 		case 586: pline("%s polishes your visage.", Monnam(mdef)); break;
 		case 587: pline("You accidentally charge past %s, who swiftly kicks you in the calf with %s high heels.", mon_nam(mdef), mhis(mdef)); break;
-		case 588: pline("The entire lower part of your arm slides along %s's fingernails, and your blood is squirting in all directions.", mon_nam(mdef)); break;
+		case 588: pline("The entire lower part of your arm slides along %s's fingernails, and your %s is squirting in all directions.", mon_nam(mdef), body_part(BLOOD)); break;
 		case 589: pline("%s is really washed with all landing on water!", Monnam(mdef)); break;
+		case 590: pline("You try to throw a totally homosexual spin kick at %s, but miss (predictably).", mon_nam(mdef)); break;
+		case 591: pline("You charge %s and try a jump kick, but %s narrowly escapes!", mon_nam(mdef), mhe(mdef)); break;
+		case 592: pline("You attempt to batter %s with punches, but your first punch misses and because of some stupid rule you now have to wait for an entire second before you can try again!", mon_nam(mdef)); break;
+		case 593: pline("Your thrown knife doesn't hit %s!", mon_nam(mdef)); break;
+		case 594: pline("%s's brightly colored sneaker soles look so exciting that you just stand there staring at them instead of fighting!", Monnam(mdef)); break;
 
 		default: pline("You missed %s!", mon_nam(mdef)); break;
 
@@ -7891,7 +7943,7 @@ use_weapon:
 				}
 
 				/* evil patch idea: if a weapon is used very often, it eventually degrades --Amy */
-				if (uwep && uwep->spe > ((uwep->oartifact == ART_CLEAN_MAULER) ? -10 : (objects[uwep->otyp].oc_material == MT_PLATINUM) ? 1 : (objects[uwep->otyp].oc_material == MT_CERAMIC) ? -10 : 0) && (uwep->spe > rn2(8)) && !rn2((objects[uwep->otyp].oc_material == MT_CERAMIC) ? 100 : (uwep->oartifact == ART_CLEAN_MAULER) ? 100 : (objects[uwep->otyp].oc_material == MT_LIQUID) ? 250 : 1000) && (rnd(7) > savechance) && (!(uwep->blessed && !rnl(6))) && (!rn2(3) || !(objects[uwep->otyp].oc_material == MT_GOLD)) && !issoviet && !(objects[uwep->otyp].oc_material == MT_SECREE || objects[uwep->otyp].oc_material == MT_ARCANIUM) && (!(uwep->oartifact) || !rn2(4)) ) {
+				if (uwep && weaponwilldull(uwep) && (rnd(7) > savechance) && !issoviet) {
 					if (uwep->greased) {
 						uwep->greased--;
 						pline("Your weapon loses its grease.");
@@ -8106,7 +8158,7 @@ bladeangerdone:
 					return FALSE;
 				}
 
-				if (u.twoweap && uswapwep && uswapwep->spe > ((uswapwep->oartifact == ART_CLEAN_MAULER) ? -10 : (objects[uswapwep->otyp].oc_material == MT_PLATINUM) ? 1 : (objects[uswapwep->otyp].oc_material == MT_CERAMIC) ? -10 : 0) && (uswapwep->spe > rn2(8)) && !rn2((objects[uswapwep->otyp].oc_material == MT_CERAMIC) ? 100 : (uswapwep->oartifact == ART_CLEAN_MAULER) ? 100 : (objects[uswapwep->otyp].oc_material == MT_LIQUID) ? 250 : 1000) && (rnd(7) > savechance) && (!(uswapwep->blessed && !rnl(6))) && (!rn2(3) || !(objects[uswapwep->otyp].oc_material == MT_GOLD)) && !issoviet && !(objects[uswapwep->otyp].oc_material == MT_SECREE || objects[uswapwep->otyp].oc_material == MT_ARCANIUM) && (!(uswapwep->oartifact) || !rn2(4)) ) {
+				if (u.twoweap && uswapwep && weaponwilldull(uswapwep) && (rnd(7) > savechance) && !issoviet) {
 					if (uswapwep->greased) {
 						uswapwep->greased--;
 						pline("Your weapon loses its grease.");
@@ -10283,8 +10335,16 @@ boolean ranged;
 		break;
 
 	  case AD_SLOW:
-		if (HFast && !defends(AD_SLOW, uwep) && !rn2(4))
+		if (HFast && !defends(AD_SLOW, uwep) && !rn2(4)) {
 		    u_slow_down();
+
+		    if (Race_if(PM_SPIRIT) && !rn2(3)) {
+			u.uprops[DEAC_FAST].intrinsic += ((tmp + 2) * 10);
+			pline(u.inertia ? "That was a bad idea - your body struggles at your attempts to get it to move again..." : "That was a bad idea - your body lost the will to listen to your instructions...");
+			u.inertia += (tmp + 2);
+		    }
+
+		}
 		break;
         case AD_DRLI:
 			if (!rn2(3) && (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) )  ) {

@@ -4642,7 +4642,7 @@ physical:
 		}
 		if (parlyzdur > 127) parlyzdur = 127;
 
-		if (!cancelled && !mdef->msleeping && (!rn2(5) || !(magr->mtame)) &&
+		if (!cancelled && !(magr->mtame && (rn2(100) <= mdef->data->mr)) && !mdef->msleeping && (!rn2(5) || !(magr->mtame)) &&
 			sleep_monst(mdef, parlyzdur, -1)) {
 		    if (vis) {
 			strcpy(buf, Monnam(mdef));
@@ -4740,7 +4740,7 @@ physical:
 		break;
 	    case AD_SLOW:
 		if (nohit) break;
-		if(!cancelled && vis && mdef->mspeed != MSLOW) {
+		if(!cancelled && vis && mdef->mspeed != MSLOW && !(magr->mtame && (rn2(100) <= mdef->data->mr)) ) {
 		    unsigned int oldspeed = mdef->mspeed;
 
 		    mon_adjust_speed(mdef, -1, (struct obj *)0);
@@ -4751,7 +4751,7 @@ physical:
 		break;
 	    case AD_WGHT:
 		if (nohit) break;
-		if(!cancelled && vis && mdef->mspeed != MSLOW) {
+		if(!cancelled && vis && mdef->mspeed != MSLOW && !(magr->mtame && (rn2(100) <= mdef->data->mr))) {
 		    unsigned int oldspeed = mdef->mspeed;
 
 		    mon_adjust_speed(mdef, -1, (struct obj *)0);

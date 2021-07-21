@@ -4045,6 +4045,12 @@ static NEARDATA const char * const demagoguelines[] = {
 "Down with the government! Anarchy is the only way to victory!",
 "This country belongs to the people and no shitting law is gonna change that!",
 "Laws are there so that one does not obey them! Better yet, they should be abolished completely, which will free our people from their imaginary shackles!",
+"Freedom of religion is stupid! If I become the head of state, I'll ensure that the only entity you are allowed to worship is gonna be me!",
+"The first rule of corona is that you don't talk about corona.",
+"Democracy is a misconception, it sounds nice on paper but doesn't work out in practice!",
+"In an ideal world everyone would be able to wear high heels, regardless of gender! Stop the discrimination now!",
+"If I want to wear a bra, I should damn well be allowed to do so! And I don't care if I'm a man, woman, dog, bear or attack helicopter! FUCK DISCRIMINATION",
+"Morgellons are little worms that live in FFP-2 masks, placed there by the evil manufacturers to infiltrate and eat the wearer's brain. They also don't really exist, but are nonetheless very annoying!",
 };
 
 static NEARDATA const char * const longinglines[] = {
@@ -4509,6 +4515,30 @@ static NEARDATA const char * const longinglines[] = {
 "When you want to present your nuts so that %s can kick them with her high-heeled combat boots, you'll have to remove your pants so they don't protect you from the beautiful block heels.",
 "Wow, %s can really brutally kick you in the back of the head with her block heels, which is absolutely beautiful to behold!",
 "Wow, %s can really beautifully kick her thick wedge heels against your butt!",
+"%s's gray sneaker soles look very lovely and you absolutely want them to rub over your skin, because you'd certainly enjoy it.",
+"Mmmmmmmmmmmmm, %s's sneakers have pink soles!!! They look so incredibly female and wonderlovely, and you absolutely want her to use them to squeeze your hands and fingers because it'll be such a beautiful feeling of pain!",
+"When looking at %s's beautiful sandals, you spontaneously come.",
+"%s's sandals have such wonderful block heels, they're simply irresistible!",
+"Isn't it incredible that the block heels of %s's female sandals are made of such lovely, fluffy material?",
+"You just can't stop admiring the thick platform soles of %s's women's sandals, and particularly their treaded soles look super sexy and exciting!",
+"You absolutely want to have the same pair of sandals that %s is wearing, because not only do they have treaded soles, but even the block heel is treaded!",
+"You'd love to have your hands pinned to the floor by %s's sexy cone heels.",
+"Having your nuts massaged by %s's gentle-soft hands would feel soooooooooooo wonderful... <3",
+"You absolutely love %s's cyan sneaker soles, because they can rub along your skin in such a wonderful way.",
+"It would be highly lustful to have %s and her girlfriend lovingly squeeze your nuts with their female sneakers.",
+"Being stepped on the toes or fingers by %s's treaded sandals is wonderful because they look cuuuuuuuuuuuuuuuuuuuute!",
+"%s can really let you experience joy with her fleece heels!",
+"Mmmmmmm, are the %s her block heels made of such soft fleece-cuddle-cloth!",
+"You absolutely love the beautiful %s-hugging bundle!",
+"When you see %s, the first thing on your mind is 'MMMMMMMMMMMMMMMMMM! *double sweetheart bundle*'",
+"%s's last name should be Cuddle-Bundle because her long hair is just so beautifully soft!",
+"You want to play a game with %s where she is only allowed to lovingly caress your butt cheeks, but not hurt them.",
+"You want to play a game with %s where she is allowed to lovingly caress your butt cheeks, or also hurt them if she wants to.",
+"%s can clamp your hands with her sweaty feet in a very sexy, lustful way!",
+"You absolutely want to present your body as a surface for %s to drive around on with her roller blades, because that would feel absolutely great!",
+"Being stomped by %s's female roller blades would feel super painful and exciting!",
+"%s's lady boots have metallic spikes, which can dig into your skin in a very wonderful way!",
+"You want your eventual epitaph to read 'killed by %s's beautiful high heels'.",
 };
 
 static NEARDATA const char * const soviettaunts[] = {
@@ -4705,6 +4735,7 @@ static NEARDATA const char * const soviettaunts[] = {
 "Yesli vy nastol'ko tupy i igrayete v etot rezhim, vy zasluzhivayete togo, chtoby vash shlem razocharovyvalsya kazhdyy raz, kogda monstr brosayet v vas igristoye vino. MUA KHA KHA!",
 "Yesli monstr istoshchayet predmet s pomoshch'yu palochki, prodavets rasserditsya na vas, potomu chto Emi ne razresheno ispravlyat' oshibki. Gryaznaya bludnitsa, kem ona sebya schitayet???",
 "Yesli vy nastol'ko glupy i pytayetes' ispol'zovat' parnoye oruzhiye ne iz oruzhiya, eto ne srabotayet, potomu cho eto sovetskaya Rossiya, gde eto nikogda ne razreshayetsya.",
+"Konechno, demony ne mogut podbirat' serebryanyye predmety, potomu chto razrabotchik glup!",
 };
 
 static NEARDATA const char * const practicantlines[] = {
@@ -27226,6 +27257,16 @@ static NEARDATA const char * const fake_plines[] = {
 	"Suddenly, the dungeon collapses. Apparently destroying one of the fundamental states of matter has compromised the foundation.",
 	"Destroy what material? 'stone' Suddenly, the dungeon vanishes. You scream as you fall inward towards the molten iron core of the planet, eventually incinerating in it.",
 	"Suddenly, the dungeon vanishes. You scream as you fall inward towards the molten iron core of the planet, eventually incinerating in it. Do you want your possessions identified? Wait, no, those all burned up too.",
+	"You step on the rug. You have hit a feminism trap! You feel an urge to set fire to a pickup artist.",
+	"You feel compact.",
+	"You feel compact. This is an effect of being only 1,50 meters tall while weighing a hundred kilos.",
+	"You feel compact. This is an effect of being only 1,50 meters tall while weighing a hundred kilos, fatass.",
+	"You feel as if someone was body-shaming you.",
+	"You feel as if someone was body-shaming you. But in reality you're not thick, you're just big boned.",
+	"You feel as if someone was body-shaming you. Probably some anorexic slut who somehow thinks being super skinny was in any way 'sexy', which is obviously not the case. She looks like she needs to eat some cake if you ask me!",
+	"You hear someone counting gold coins. You hear someone yell, 'Hey, who dug this hole into the side of the vault?!'",
+	"You sneeze! You can now move again.", /* by Hekik */
+	"Did you find a strategy that is effective? Don't think it's the all-time meta, for new versions of the game may change stuff and make the strategy in question less effective. This is particularly true if it's a lame strategy that lets you bypass part of the game's intended difficulty.",
 
 };
 

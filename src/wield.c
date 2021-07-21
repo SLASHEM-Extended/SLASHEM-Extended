@@ -104,6 +104,8 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 	    end_burn(olduwep, FALSE);
 	    if (!Blind) pline("%s glowing.", Tobjnam(olduwep, "stop"));
 	}
+	if (uwep && obj && olduwep && olduwep->oartifact == ART_WIRE_OF_LUCK) set_moreluck();
+
 	/* Note: Explicitly wielding a pick-axe will not give a "bashing"
 	 * message.  Wielding one via 'a'pplying it will.
 	 * 3.2.2:  Wielding arbitrary objects will give bashing message too.
@@ -115,6 +117,8 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 				) : !is_weptool(obj);
 	} else
 		unweapon = TRUE;	/* for "bare hands" message */
+
+	if (uwep && uwep->oartifact == ART_WIRE_OF_LUCK) set_moreluck();
 
 	if (!cancurseshit) goto cursingdone;
 
@@ -509,6 +513,8 @@ boolean put_away;
 		if (!Blind)
 		    pline("%s to glow brilliantly!", Tobjnam(wep, "begin"));
 	    }
+
+	    if (wep->oartifact == ART_WIRE_OF_LUCK) set_moreluck();
 
 #if 0
 	    /* we'll get back to this someday, but it's not balanced yet */

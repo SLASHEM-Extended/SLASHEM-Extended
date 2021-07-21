@@ -2533,6 +2533,7 @@ dosummon()
 	if (u.ulycn == PM_WEREGHOST) somanymana = 30;
 	if (u.ulycn == PM_WERECOCKATRICE) somanymana = 60;
 	if (u.ulycn == PM_WERELICH) somanymana = 100;
+	if (u.ulycn == PM_UN_IN_PROTECT_MODE) somanymana = 100;
 	if (u.ulycn == PM_WEREDEMON) somanymana = 100;
 	if (u.ulycn == PM_WEREMINDFLAYER) somanymana = 150;
 	if (u.ulycn == PM_VORPAL_WERE_ALHOONTRICE_ZOMBIE) somanymana = 150;
@@ -2567,6 +2568,7 @@ dosummon()
 	if (u.umonnum == PM_WEREGHOST && somanymana < 30) somanymana = 30;
 	if (u.umonnum == PM_WERECOCKATRICE && somanymana < 60) somanymana = 60;
 	if (u.umonnum == PM_WERELICH && somanymana < 100) somanymana = 100;
+	if (u.umonnum == PM_UN_IN_PROTECT_MODE && somanymana < 100) somanymana = 100;
 	if (u.umonnum == PM_WEREDEMON && somanymana < 100) somanymana = 100;
 	if (u.umonnum == PM_WEREMINDFLAYER && somanymana < 150) somanymana = 150;
 	if (u.umonnum == PM_VORPAL_WERE_ALHOONTRICE_ZOMBIE && somanymana < 150) somanymana = 150;
@@ -3189,9 +3191,11 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 				 * Energy will be taken first, then you will get 
 				 * more hungry if you do not have enough energy.
 				 */
-#define EN_WERE 	10
-#define EN_BABY_DRAGON 	10
-#define EN_ADULT_DRAGON 15
+#define EN_BABY_DRAGON 	20
+#define EN_ADULT_DRAGON 50
+
+	int squeakamount = 0;
+	int somanymana = 10;
 
 	boolean scales = ((uarm && uarm->otyp == RED_DRAGON_SCALES
 				&& Role_if(PM_FLAME_MAGE)) ||
@@ -3222,8 +3226,9 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 
 	/* First, if in correct polymorphed form, rehumanize (for free) 
 	 * Omit Lycanthropes,  who need to spend energy to change back and forth
+	 * Amy edit: yeah sure, for free. You probably do not believe. Of course you need to pay for that too!
 	 */
-	if (Upolyd && !Race_if(PM_UNGENOMOLD) && (Race_if(PM_DOPPELGANGER) || Role_if(PM_SHAPESHIFTER) ||
+	if (Upolyd && !u.dragonpolymorphtime && !Race_if(PM_UNGENOMOLD) && (Race_if(PM_DOPPELGANGER) || Role_if(PM_SHAPESHIFTER) ||
 			(Role_if(PM_FLAME_MAGE) && (u.umonnum == PM_RED_DRAGON || 
 				u.umonnum == PM_BABY_RED_DRAGON)) ||
 			(Role_if(PM_ACID_MAGE) && (u.umonnum == PM_YELLOW_DRAGON || 
@@ -3234,12 +3239,17 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 				u.umonnum == PM_BABY_GREEN_DRAGON)) ||
 			(Role_if(PM_ICE_MAGE) && (u.umonnum == PM_WHITE_DRAGON || 
 				u.umonnum == PM_BABY_WHITE_DRAGON)))) {
-	    rehumanize();
-	    return 1;	    
+		if (yn("Turn back into your normal form?") == 'y') {
+
+			u.dragonpolymorphtime = rnz(2000);
+			pline("You have to wait %d turns until you can use the ability to polymorph into a dragon again.", u.dragonpolymorphtime);
+			rehumanize();
+			return 1;	    
+
+		}
 	}
 
-	if ((Role_if(PM_ICE_MAGE) || Role_if(PM_FLAME_MAGE) || Role_if(PM_ACID_MAGE) || Role_if(PM_ELECTRIC_MAGE) || Role_if(PM_POISON_MAGE)) && !u.dragonpolymorphtime && (yn("Transform into your draconic form?") == 'y') && 
-	    (u.ulevel > 6 || scale_mail)) {
+	if ((Role_if(PM_ICE_MAGE) || Role_if(PM_FLAME_MAGE) || Role_if(PM_ACID_MAGE) || Role_if(PM_ELECTRIC_MAGE) || Role_if(PM_POISON_MAGE)) && !u.dragonpolymorphtime && (u.ulevel > 6 || scale_mail) && (yn("Transform into your draconic form?") == 'y')) {
 	    /* [ALI]
 	     * I've rewritten the logic here to fix the failure messages,
 	     * but the requirements for polymorphing into the two dragon
@@ -3344,9 +3354,60 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 		}
 		return 1;	
 	    }
-	} else if ( (Race_if(PM_HUMAN_WEREWOLF) || Race_if(PM_AK_THIEF_IS_DEAD_) || Role_if(PM_LUNATIC) ) &&
+	} else if ( (Race_if(PM_HUMAN_WEREWOLF) || Race_if(PM_AK_THIEF_IS_DEAD_) || Role_if(PM_LUNATIC) ) && !u.werepolymorphtime &&
 		(!Upolyd || u.umonnum == u.ulycn)) {
-	    if (yn("Change form?") == 'n')
+
+		if (u.ulycn == PM_WERESOLDIERANT) somanymana = 15;
+		if (u.ulycn == PM_WEREWOLF) somanymana = 20;
+		if (u.ulycn == PM_WEREPIRANHA) somanymana = 20;
+		if (u.ulycn == PM_WEREEEL) somanymana = 25;
+		if (u.ulycn == PM_WEREKRAKEN) somanymana = 45;
+		if (u.ulycn == PM_WEREFLYFISH) somanymana = 45;
+		if (u.ulycn == PM_WEREPANTHER) somanymana = 30;
+		if (u.ulycn == PM_WERETIGER) somanymana = 30;
+		if (u.ulycn == PM_WERESNAKE) somanymana = 20;
+		if (u.ulycn == PM_WERECOW) somanymana = 20;
+		if (u.ulycn == PM_WEREBEAR) somanymana = 75;
+		if (u.ulycn == PM_WEREPHANT) somanymana = 75;
+		if (u.ulycn == PM_WEREVORTEX) somanymana = 50;
+		if (u.ulycn == PM_WERETROLL) somanymana = 50;
+		if (u.ulycn == PM_WEREGIANT) somanymana = 50;
+		if (u.ulycn == PM_WEREGHOST) somanymana = 30;
+		if (u.ulycn == PM_WERECOCKATRICE) somanymana = 60;
+		if (u.ulycn == PM_WERELICH) somanymana = 100;
+		if (u.ulycn == PM_UN_IN_PROTECT_MODE) somanymana = 100;
+		if (u.ulycn == PM_WEREDEMON) somanymana = 100;
+		if (u.ulycn == PM_WEREMINDFLAYER) somanymana = 150;
+		if (u.ulycn == PM_VORPAL_WERE_ALHOONTRICE_ZOMBIE) somanymana = 150;
+		if (u.ulycn == PM_WEREJABBERWOCK) somanymana = 200;
+		if (u.ulycn == PM_WEREWEDGESANDAL) somanymana = 80;
+		if (u.ulycn == PM_WEREHUGGINGBOOT) somanymana = 120;
+		if (u.ulycn == PM_WEREPEEPTOE) somanymana = 140;
+		if (u.ulycn == PM_WERESEXYLEATHERPUMP) somanymana = 160;
+		if (u.ulycn == PM_WEREBLOCKHEELEDCOMBATBOOT) somanymana = 160;
+		if (u.ulycn == PM_WERECOMBATSTILETTO) somanymana = 200;
+		if (u.ulycn == PM_WEREBEAUTIFULFUNNELHEELEDPUMP) somanymana = 240;
+		if (u.ulycn == PM_WEREPROSTITUTESHOE) somanymana = 240;
+		if (u.ulycn == PM_WERESTILETTOSANDAL) somanymana = 250;
+		if (u.ulycn == PM_WEREUNFAIRSTILETTO) somanymana = 260;
+		if (u.ulycn == PM_WEREWINTERSTILETTO) somanymana = 300;
+
+		squeakamount = somanymana;
+		/* we can now use the squeaking skill to reduce the cost */
+
+		if (!PlayerCannotUseSkills && somanymana > 2) {
+			switch (P_SKILL(P_SQUEAKING)) {
+		      	case P_BASIC:	somanymana *= 9; somanymana /= 10; break;
+		      	case P_SKILLED:	somanymana *= 8; somanymana /= 10; break;
+		      	case P_EXPERT:	somanymana *= 7; somanymana /= 10; break;
+		      	case P_MASTER:	somanymana *= 6; somanymana /= 10; break;
+		      	case P_GRAND_MASTER:	somanymana *= 5; somanymana /= 10; break;
+		      	case P_SUPREME_MASTER:	somanymana *= 4; somanymana /= 10; break;
+		      	default: break;
+			}
+		}
+
+	    if (yn("Change lycanthropic form?") == 'n')
 		return 0;
 	    else if (u.ulycn == NON_PM) {
 	    	/* Very serious */
@@ -3354,12 +3415,14 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 	    } else if (u.ulevel <= 2) {
 	    	You("can't invoke the change at will yet.");
 		return 0;		
-	    } else if (u.uen < EN_WERE) {
-		You("don't have the energy to change form! You need at least %d!",EN_WERE);
+	    } else if (u.uen < somanymana) {
+		You("don't have the energy to change form! You need at least %d!", somanymana);
 		return 0;
 	    } else {
 	    	/* Committed to the change now */
-		u.uen -= EN_WERE;
+		u.uen -= somanymana;
+		u.werepolymorphtime = rnz(2000);
+		pline("You have to wait %d turns until you can use the ability to polymorph into a werecreature again.", u.werepolymorphtime);
 		if (!Upolyd) {
 		    if (multi >= 0) {
 			if (occupation) stop_occupation();
@@ -3370,6 +3433,13 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 	    	    if (!Race_if(PM_UNGENOMOLD)) rehumanize();
 			else polyself(FALSE);
 		}
+
+		while (squeakamount > 40) {
+			use_skill(P_SQUEAKING, 1);
+			squeakamount -= 40;
+		}
+		use_skill(P_SQUEAKING, 1);
+
 		return 1;
 	    }
 	} else {

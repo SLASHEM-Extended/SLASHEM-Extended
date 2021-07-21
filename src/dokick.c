@@ -53,16 +53,16 @@ register boolean clumsy;
 	if (!(PlayerCannotUseSkills)) {
 
 	if (uarmf && (uarmf->otyp == KICKING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_SKILLED) dmg += 2;
-	if (uarmf && (uarmf->otyp == KICKING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 4;
-	if (uarmf && (uarmf->otyp == KICKING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_MASTER) dmg += 6;
-	if (uarmf && (uarmf->otyp == KICKING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 8;
-	if (uarmf && (uarmf->otyp == KICKING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER) dmg += 10;
+	if (uarmf && (uarmf->otyp == KICKING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 3;
+	if (uarmf && (uarmf->otyp == KICKING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_MASTER) dmg += 5;
+	if (uarmf && (uarmf->otyp == KICKING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 6;
+	if (uarmf && (uarmf->otyp == KICKING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER) dmg += 8;
 
-	if (uarmf && (uarmf->otyp == STOMPING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_SKILLED) dmg += 3;
-	if (uarmf && (uarmf->otyp == STOMPING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 6;
-	if (uarmf && (uarmf->otyp == STOMPING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_MASTER) dmg += 8;
-	if (uarmf && (uarmf->otyp == STOMPING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 11;
-	if (uarmf && (uarmf->otyp == STOMPING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER) dmg += 13;
+	if (uarmf && (uarmf->otyp == STOMPING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_SKILLED) dmg += 2;
+	if (uarmf && (uarmf->otyp == STOMPING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 4;
+	if (uarmf && (uarmf->otyp == STOMPING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_MASTER) dmg += 6;
+	if (uarmf && (uarmf->otyp == STOMPING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 8;
+	if (uarmf && (uarmf->otyp == STOMPING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER) dmg += 10;
 
 	}
 
@@ -113,47 +113,47 @@ register boolean clumsy;
 	if (uarmf && (uarmf->otyp == STILETTO_SANDALS) && P_SKILL(P_MARTIAL_ARTS) == P_SKILLED) dmg += 1;
 	if (uarmf && (uarmf->otyp == STILETTO_SANDALS) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 2;
 	if (uarmf && (uarmf->otyp == STILETTO_SANDALS) && P_SKILL(P_MARTIAL_ARTS) == P_MASTER) dmg += 4;
-	if (uarmf && (uarmf->otyp == STILETTO_SANDALS) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 6;
-	if (uarmf && (uarmf->otyp == STILETTO_SANDALS) && P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER) dmg += 8;
+	if (uarmf && (uarmf->otyp == STILETTO_SANDALS) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 5;
+	if (uarmf && (uarmf->otyp == STILETTO_SANDALS) && P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER) dmg += 7;
 
 	}
 
 	if (uarmf && uarmf->otyp == COMBAT_STILETTOS)
-	    dmg += 5;
+	    dmg += 3;
 
 	if (!(PlayerCannotUseSkills)) {
 
 	if (uarmf && (uarmf->otyp == COMBAT_STILETTOS) && P_SKILL(P_MARTIAL_ARTS) == P_SKILLED) dmg += 2;
-	if (uarmf && (uarmf->otyp == COMBAT_STILETTOS) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 5;
-	if (uarmf && (uarmf->otyp == COMBAT_STILETTOS) && P_SKILL(P_MARTIAL_ARTS) == P_MASTER) dmg += 8;
-	if (uarmf && (uarmf->otyp == COMBAT_STILETTOS) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 11;
-	if (uarmf && (uarmf->otyp == COMBAT_STILETTOS) && P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER) dmg += 13;
+	if (uarmf && (uarmf->otyp == COMBAT_STILETTOS) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 4;
+	if (uarmf && (uarmf->otyp == COMBAT_STILETTOS) && P_SKILL(P_MARTIAL_ARTS) == P_MASTER) dmg += 6;
+	if (uarmf && (uarmf->otyp == COMBAT_STILETTOS) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 8;
+	if (uarmf && (uarmf->otyp == COMBAT_STILETTOS) && P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER) dmg += 10;
 
 	}
 
 	if (uarmf && uarmf->otyp == LEATHER_PEEP_TOES)
-	    dmg += 4;
+	    dmg += 2;
 
 	if (!(PlayerCannotUseSkills)) {
 
 	if (uarmf && (uarmf->otyp == LEATHER_PEEP_TOES) && P_SKILL(P_MARTIAL_ARTS) == P_SKILLED) dmg += 1;
 	if (uarmf && (uarmf->otyp == LEATHER_PEEP_TOES) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 3;
 	if (uarmf && (uarmf->otyp == LEATHER_PEEP_TOES) && P_SKILL(P_MARTIAL_ARTS) == P_MASTER) dmg += 5;
-	if (uarmf && (uarmf->otyp == LEATHER_PEEP_TOES) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 8;
-	if (uarmf && (uarmf->otyp == LEATHER_PEEP_TOES) && P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER) dmg += 10;
+	if (uarmf && (uarmf->otyp == LEATHER_PEEP_TOES) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 7;
+	if (uarmf && (uarmf->otyp == LEATHER_PEEP_TOES) && P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER) dmg += 9;
 
 	}
 
 	if (uarmf && uarmf->otyp == HIPPIE_HEELS)
-	    dmg += 7;
+	    dmg += 4;
 
 	if (!(PlayerCannotUseSkills)) {
 
-	if (uarmf && (uarmf->otyp == HIPPIE_HEELS) && P_SKILL(P_MARTIAL_ARTS) == P_SKILLED) dmg += 4;
-	if (uarmf && (uarmf->otyp == HIPPIE_HEELS) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 7;
-	if (uarmf && (uarmf->otyp == HIPPIE_HEELS) && P_SKILL(P_MARTIAL_ARTS) == P_MASTER) dmg += 10;
-	if (uarmf && (uarmf->otyp == HIPPIE_HEELS) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 13;
-	if (uarmf && (uarmf->otyp == HIPPIE_HEELS) && P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER) dmg += 16;
+	if (uarmf && (uarmf->otyp == HIPPIE_HEELS) && P_SKILL(P_MARTIAL_ARTS) == P_SKILLED) dmg += 3;
+	if (uarmf && (uarmf->otyp == HIPPIE_HEELS) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 5;
+	if (uarmf && (uarmf->otyp == HIPPIE_HEELS) && P_SKILL(P_MARTIAL_ARTS) == P_MASTER) dmg += 8;
+	if (uarmf && (uarmf->otyp == HIPPIE_HEELS) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 10;
+	if (uarmf && (uarmf->otyp == HIPPIE_HEELS) && P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER) dmg += 13;
 
 	}
 
@@ -179,7 +179,7 @@ register boolean clumsy;
 
 	if (uarmf && uarmf->oartifact == ART_EROTICLAMP && u.ustuck && !u.uswallow && !sticks(youmonst.data)) dmg += 2;
 
-	if (uarmf && uarmf->otyp == FEMININE_PUMPS && uarmf->spe >= 1)
+	if (uarmf && uarmf->otyp == FEMININE_PUMPS && uarmf->spe >= 1 && !rn2(2))
 		dmg += uarmf->spe;
 
 	if (!(PlayerCannotUseSkills)) {
@@ -457,6 +457,9 @@ register boolean clumsy;
 			You("vaporize %s %s!", s_suffix(mon_nam(mon)), xname(monwepon));
 			delobj(monwepon);
 		} else if (monwepon && monwepon->mstartinventC && !(monwepon->oartifact) && !(monwepon->fakeartifact && !rn2(10)) && rn2(10) && !stack_too_big(monwepon) ) {
+			You("vaporize %s %s!", s_suffix(mon_nam(mon)), xname(monwepon));
+			delobj(monwepon);
+		} else if (monwepon && monwepon->mstartinventD && !(monwepon->oartifact) && !(monwepon->fakeartifact && !rn2(4)) && rn2(4) && !stack_too_big(monwepon) ) {
 			You("vaporize %s %s!", s_suffix(mon_nam(mon)), xname(monwepon));
 			delobj(monwepon);
 		} else {

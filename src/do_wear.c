@@ -1259,6 +1259,7 @@ Cloak_on()
 		u.totter = 1;
 		break;
 	case CLOAK_OF_DRAIN_LIFE:
+		if (rn2(25) && moves < 1000 && u.ulevel < 2) break; /* can still start the game dead or get a "poison pill" when wear-testing a random cloak at XL1 but it's greatly reduced --Amy */
 		losexp("a cloak of drain life", FALSE, TRUE);
 		break;
 

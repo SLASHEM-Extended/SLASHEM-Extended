@@ -990,6 +990,7 @@ static const char *random_mesg[] = {
 	"All your castle are belong to us",
 	"DON'T DEAD OPEN INSIDE",
 	"The Enclave is here! Being led by Aendru Rasenban who unleashes his multigoons to spread fear and panic, they've arrived and want to kill our peaceful citizens! Run for your lives!!!",
+	"notnethack is a variant made by emo", /* by elronnd */
 
 };
 
@@ -5478,6 +5479,32 @@ static const char *epitaphs[] = {
 	"WHAAAAAAT? I'm supposed to use tactical combat where my positioning, choice of melee versus ranged weapons etc. MATTER? screw that, I'll just whack everything with my orcish dagger in melee :P",
 	"nurse dancing can result in the sexy nurses stepping on the player's toes with their sexy high-heeled nurse boots <3",
 	"So, like, atrocious segfaults happen every minute!",
+	"balanced means you don't fall off a tightrope. if you put a computer running slex on a tightrope it would fall off, therefore slex is not balanced", /* by qt */
+	"nethack worse game ever, never playing again", /* by aoei */
+	"nethack worse game ever, never playing again AND NO ONYO",
+	"Here lies democracy, slain by power-hungry politicians.",
+	"Got attacked by a plof anje and the game said that I 'come because her sandals are so beautiful'. This game is unplayable, no one can handle such wacky messages.",
+	"Amy the castle chest exploded, slex worst variant ever.", /* by amateurhour */
+	"oh sec has wand of banishment! selfzap selfzap selfzap oh empty? well geronimo", /* originally the comment here read: 'amateurhour still has until July 1, 2021 to figure out how to scum them more effectively, then I'll reveal the (IMHO rather obvious, but it requires familiarizing oneself with the role :P) secret --Amy' - he didn't, so there's some follow-up messages now as well :D */
+	"Here lies a secret advice member who suicided after his wand of banishment ran out because he didnt familiarize himself with his abilities and therefore failed to realize that he could recharge the wand.",
+	"Whaaaaaaat? I'm supposed to familiarize myself with the new role I play by looking at my inventory and techniques first? SCREW YOU! I'll just whack everything in melee, using convoluted strategies like recharging an empty wand with a technique is for plebs!",
+	"well the goal of slex is obviously to hurt players, so mission accomplished", /* by Earth Traveller */
+	"omg there are roles that cannot simply melee everything with their starting weapon? suuuuuucks! not gonna play that role again :P",
+	"SLEX is not a game, but a piece of postmodernist art designed to see how much suffering someone will endure in pursuit of petty goals.", /* by Earth Traveller, original wording may be slightly different */
+	"Can I get a count of everyone who plays slex that enjoys playing it? 1", /* and that person is Amy :-P */
+	"every time i get optimism that slex is beatable some crazy stuff happens", /* by amateurhour */
+	"How do I reliably prevent triggering nasty traps? WHAT??? You can't? FUCK YOU! This game is unplayable!",
+	"Hey, how can I fix nasty trap effects? What, you say I need a single-use item that is so rare it basically requires a wish? That's absurd, I'm gonna file this stupid game in the trash bin.",
+	"SLEX is just too damn long! If the mandatory part of the dungeon was maybe 70 levels it would be okay, but the way it is, you're guaranteed to eventually encounter some bullshit that kills you.",
+	"Whaaaaaaaat? I thought nastytrap duration was capped at 2000 turns! No one told me that they could randomly last for over 10k! That is some prime bullshit right there if you ask me!",
+	"omg I triggered that feminism trap and it just wouldn't time out??? Amy urgently needs to rebalance that shit because the effect is crippling and lasts way too long!",
+	"omg Amy you overnerfed the monk role!!!",
+	"yeah you can't play the monk anymore if they don't deal a consistent 50-60 damage per round in melee. not gonna play again",
+	"that spirit race nerf is bullshit! they weren't OP, just good!", /* but in reality they were very OP because phasing is uber powerful --Amy */
+	"Amy you always nerf exactly the thing that players use! Why not nerf something else instead for a change?", /* because the roles and races that no one plays remain untested until someone does play them :-P I'm just one woman, I can't very well playtest everything by myself?! No one has that much free time! */
+	"Well this is bullshit, the strategy I was using certainly wasn't OP and in no way it made the game too easy. That Amy nerfed it anyway is absolutely retarded and no one should play her fucked up game anymore.",
+	"works as intended",
+	"slex is a very fair and balanced game",
 
 };
 

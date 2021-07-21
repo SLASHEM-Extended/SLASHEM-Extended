@@ -939,6 +939,7 @@ doforce()		/* try to force a chest with your weapon */
 				if (Role_if(PM_EMERA) && mtmp->data->msound == MS_SHOE) pline("Your %s furiously rip into %s. You evil bastard.", makeplural(body_part(HAND)), mon_nam(mtmp));
 
 				setmangry(mtmp);
+				wakeup(mtmp);
 
 				if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
 					u.uwediturns++;

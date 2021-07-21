@@ -1672,6 +1672,8 @@ set_moreluck()
 	else if (luckbon >= 0 && u.moreluckpts <= 3) u.moreluck = u.moreluckpts; /* not always give a flat +3 --Amy */
 	else if (luckbon >= 0 && u.moreluckpts > 3) u.moreluck = LUCKADD;
 	else u.moreluck = -LUCKADD;
+	if (uwep && uwep->oartifact == ART_WIRE_OF_LUCK) u.moreluck += 5;
+	if (have_amateurluckstone()) u.moreluck += 5;
 }
 
 

@@ -8473,6 +8473,22 @@ A("The Secret Book of Venom",				SPE_MAGICTORCH, /* randart2, teaches venom mixi
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 15000L ),
 
+A("Aldebaran Form",				SITH_STAFF, /* flying, killing something heals you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Jeditation",				YELLOW_LIGHTSABER,
+	(SPFX_RESTR|SPFX_EREGEN), 0, 0,
+	PHYS(0, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("The Wire of Luck",				RELAY, /* +5 luck when wielded */
+	(SPFX_RESTR|SPFX_LUCK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Amateurhour's Sigh",				LUCKSTONE, /* +5 luck and fallout effect when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

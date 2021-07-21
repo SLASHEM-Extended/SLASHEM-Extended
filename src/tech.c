@@ -2762,7 +2762,7 @@ dotech()
 			break;
 
 		case T_DISARM:
-			pline("Tries to disarm a monster; you need to be holding a weapon you're at least skilled with, though.");
+			pline("Tries to disarm a monster (read: knock their weapon away); you need to be holding a weapon you're at least skilled with, though. Also the weapon needs to be at least +1 and if it's successful, the weapon loses a point of enchantment.");
 			break;
 
 		case T_DAZZLE:
@@ -4417,6 +4417,11 @@ secureidchoice:
                 t_timeout = rnz(1500);
 		break;	
 	    case T_DISARM:
+		if (!uwep) {
+	    		You("aren't wielding a weapon!");
+	    		return(0);
+		}
+
 	    	if (P_SKILL(weapon_type(uwep)) == P_NONE) {
 	    		You("aren't wielding a proper weapon!");
 	    		return(0);
@@ -4425,6 +4430,14 @@ secureidchoice:
 	    		You("aren't capable of doing this!");
 	    		return(0);
 	    	}
+
+		if (uwep && uwep->spe < 1) {
+			Your("weapon isn't strong enough for that!");
+			/* could be unidentified, in which case we give a timeout --Amy */
+			if (!(uwep->known)) t_timeout = rnz(500);
+	    		break;
+		}
+
 		if (u.uswallow) {
 	    		pline("What do you think %s is?  A sword swallower?",
 				mon_nam(u.ustuck));
@@ -4480,15 +4493,25 @@ secureidchoice:
 		    if (roll > 3) roll = 3;
 
 		    if (obj && obj->mstartinventB && !(obj->oartifact) && !(obj->fakeartifact && timebasedlowerchance()) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) && !stack_too_big(obj) ) {
+				uwep->spe--;
 				You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(obj));
 				delobj(obj);
-	          		t_timeout = rnz(50);
+	          		t_timeout = rnz(5000);
 				break;
 		    }
 		    if (obj && obj->mstartinventC && !(obj->oartifact) && !(obj->fakeartifact && !rn2(10)) && rn2(10) && !stack_too_big(obj) ) {
+				uwep->spe--;
 				You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(obj));
 				delobj(obj);
-	          		t_timeout = rnz(50);
+	          		t_timeout = rnz(5000);
+				break;
+		    }
+
+		    if (obj && obj->mstartinventD && !(obj->oartifact) && !(obj->fakeartifact && !rn2(4)) && rn2(4) && !stack_too_big(obj) ) {
+				uwep->spe--;
+				You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(obj));
+				delobj(obj);
+	          		t_timeout = rnz(5000);
 				break;
 		    }
 
@@ -4497,39 +4520,20 @@ secureidchoice:
 			default:
 			    /* to floor near you */
 			    You("knock %s %s to the %s!",
-				s_suffix(mon_nam(mtmp)),
-				xname(obj),
-				surface(u.ux, u.uy));
+				s_suffix(mon_nam(mtmp)), xname(obj), surface(u.ux, u.uy));
 			    if (obj->otyp == CRYSKNIFE &&
 				    (!obj->oerodeproof || !rn2(10))) {
 				obj->otyp = WORM_TOOTH;
 				obj->oerodeproof = 0;
 			    }
+			    uwep->spe--;
 			    place_object(obj, u.ux, u.uy);
 			    stackobj(obj);
 			    break;
 			case 3:
-#if 0
-			    if (!rn2(25)) {
-				/* proficient at disarming, but maybe not
-				   so proficient at catching weapons */
-				int hitu, hitvalu;
-
-				hitvalu = 8 + obj->spe;
-				hitu = thitu(hitvalu,
-					dmgval(obj, &youmonst),
-					obj, xname(obj));
-				if (hitu)
-				    pline("%s hits you as you try to snatch it!",
-					    The(xname(obj)));
-				place_object(obj, u.ux, u.uy);
-				stackobj(obj);
-				break;
-			    }
-#endif /* 0 */
 			    /* right into your inventory */
-			    You("snatch %s %s!", s_suffix(mon_nam(mtmp)),
-				    xname(obj));
+			    uwep->spe--;
+			    You("snatch %s %s!", s_suffix(mon_nam(mtmp)), xname(obj));
 			    if (obj->otyp == CORPSE &&
 				    touch_petrifies(&mons[obj->corpsenm]) &&
 				    (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
@@ -4537,8 +4541,7 @@ secureidchoice:
 					polymon(PM_STONE_GOLEM))) {
 				char kbuf[BUFSZ];
 
-				sprintf(kbuf, "%s corpse",
-					an(mons[obj->corpsenm].mname));
+				sprintf(kbuf, "%s corpse", an(mons[obj->corpsenm].mname));
 				pline("Snatching %s is a fatal mistake.", kbuf);
 				instapetrify(kbuf);
 			    }
@@ -4549,15 +4552,14 @@ secureidchoice:
 		} else if (mtmp->mcanmove && !mtmp->msleeping)
 		    pline("%s evades your attack.", Monnam(mtmp));
 		else
-		    You("fail to dislodge %s %s.", s_suffix(mon_nam(mtmp)),
-			    xname(obj));
+		    You("fail to dislodge %s %s.", s_suffix(mon_nam(mtmp)), xname(obj));
 		wakeup(mtmp);
 		if (!mtmp->mcanmove && !rn2(10)) {
 		    mtmp->masleep = 0;
 		    mtmp->mcanmove = 1;
 		    mtmp->mfrozen = 0;
 		}
-                t_timeout = rnz(50);
+                t_timeout = rnz(5000);
 		break;
 	    case T_DAZZLE:
 	    	/* Short range stun attack */
@@ -6982,6 +6984,11 @@ revid_end:
 			delobj(obj);
 			t_timeout = rnz(1000);
 			break;
+		} else if (obj && obj->mstartinventD && !(obj->oartifact) && !(obj->fakeartifact && !rn2(4)) && rn2(4) && !stack_too_big(obj) ) {
+			You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(obj));
+			delobj(obj);
+			t_timeout = rnz(1000);
+			break;
 		}
 		else if (obj) {
 			You("knock %s %s to the %s!", s_suffix(mon_nam(mtmp)), xname(obj), surface(u.ux, u.uy));
@@ -7888,6 +7895,39 @@ repairitemchoice:
 		case T_SYMBIOSIS:
 
 			{
+
+			/* symbiant and goauld can use it more often... but they're too different, and therefore
+			 * being a goauld symbiant doesn't reduce the timeout by more :P --Amy */
+
+				int symbiotimer = 10000;
+
+				if (!PlayerCannotUseSkills) {
+					switch (P_SKILL(P_SYMBIOSIS)) {
+						default: break;
+						case P_BASIC:
+							symbiotimer = 9000;
+							break;
+						case P_SKILLED:
+							symbiotimer = 8000;
+							break;
+						case P_EXPERT:
+							symbiotimer = 7000;
+							break;
+						case P_MASTER:
+							symbiotimer = 6000;
+							break;
+						case P_GRAND_MASTER:
+							symbiotimer = 5000;
+							break;
+						case P_SUPREME_MASTER:
+							symbiotimer = 4000;
+							break;
+					}
+
+				}
+
+				if (Role_if(PM_SYMBIANT) || Race_if(PM_GOAULD)) symbiotimer /= 5;
+
 				struct obj *usymbioteitem;
 
 				pline("A symbiote is created!");
@@ -7896,21 +7936,21 @@ repairitemchoice:
 					usymbioteitem->quan = 1;
 					usymbioteitem->known = usymbioteitem->dknown = usymbioteitem->bknown = usymbioteitem->rknown = 1;
 					usymbioteitem->owt = weight(usymbioteitem);
+					usymbioteitem->finalcancel = TRUE; /* no polymorphing exploits, sorry --Amy */
 					dropy(usymbioteitem);
 					stackobj(usymbioteitem);
 				}
 
+			t_timeout = rnz(symbiotimer);
+
 			}
 
-			/* symbiant and goauld can use it more often... but they're too different, and therefore
-			 * being a goauld symbiant doesn't reduce the timeout by more :P --Amy */
-			t_timeout = rnz(Role_if(PM_SYMBIANT) ? 4000 : Race_if(PM_GOAULD) ? 4000 : 20000);
 			break;
 
 		case T_ADJUST_SYMBIOTE:
 
 			/* intentional that you can use this even while not having a symbiote --Amy */
-			if (P_SKILL(P_SYMBIOSIS) >= P_SKILLED) {
+			if (!PlayerCannotUseSkills && (P_SKILL(P_SYMBIOSIS) >= P_SKILLED)) {
 
 				pline("Currently your symbiote's aggressiveness is %d%%.", u.symbioteaggressivity);
 
@@ -11161,7 +11201,10 @@ int increaseamount;
 	}
 
 	/* make this effect actually matter --Amy */
-	if (!rn2(2) && choicenumber > 1) increaseamount *= choicenumber;
+	if (!rn2(2) && choicenumber > 1) {
+		increaseamount *= (50 + choicenumber);
+		increaseamount /= 50;
+	}
 	increaseamount *= rnd(5);
 
 	if (choicenumber > 0 && thisone >= 0) {

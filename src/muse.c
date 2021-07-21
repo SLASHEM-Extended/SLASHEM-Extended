@@ -11524,10 +11524,10 @@ newboss:
 		    if (!where_to) {
 			pline_The("whip slips free.");  /* not `The_whip' */
 			return 1;
-		    } else if (where_to == 3 && hates_silver(mtmp->data) &&
+		    } else if (where_to == 3 && hates_silver(mtmp->data) && issoviet &&
 			    objects[obj->otyp].oc_material == MT_SILVER) {
-			/* this monster won't want to catch a silver
-			   weapon; drop it at hero's feet instead */
+			/* this monster won't want to catch a silver weapon; drop it at hero's feet instead */
+			/* Amy edit: but only in soviet mode :-P catching it doesn't damage the monster! */
 			where_to = 2;
 		    }
 		    freeinv(obj);

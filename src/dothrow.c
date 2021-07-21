@@ -344,28 +344,28 @@ int thrown;
 				/* These fallthroughs are intentional --Amy */
 				case P_SUPREME_MASTER:
 					if ((skill == P_DAGGER || skill == P_KNIFE || skill == P_SPEAR ) && !rn2(5)) multishot++;
-					if (skill == P_JAVELIN && (rnd(10) > 4)) multishot++;
-					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && (rnd(10) > 3)) multishot++;
+					if (skill == P_JAVELIN && !rn2(3)) multishot++;
+					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && !rn2(4)) multishot++;
 				case P_GRAND_MASTER:
 					if ((skill == P_DAGGER || skill == P_KNIFE || skill == P_SPEAR ) && !rn2(5)) multishot++;
-					if (skill == P_JAVELIN && (rnd(10) > 4)) multishot++;
-					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && (rnd(10) > 3)) multishot++;
+					if (skill == P_JAVELIN && !rn2(3)) multishot++;
+					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && !rn2(4)) multishot++;
 				case P_MASTER:
 					if ((skill == P_DAGGER || skill == P_KNIFE || skill == P_SPEAR ) && !rn2(5)) multishot++;
-					if (skill == P_JAVELIN && (rnd(10) > 4)) multishot++;
-					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && (rnd(10) > 3)) multishot++;
+					if (skill == P_JAVELIN && !rn2(3)) multishot++;
+					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && !rn2(4)) multishot++;
 			    	case P_EXPERT:
 					if ((skill == P_DAGGER || skill == P_KNIFE || skill == P_SPEAR ) && !rn2(5)) multishot++;
-					if (skill == P_JAVELIN && (rnd(10) > 4)) multishot++;
-					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && (rnd(10) > 3)) multishot++;
+					if (skill == P_JAVELIN && !rn2(3)) multishot++;
+					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && !rn2(4)) multishot++;
 				case P_SKILLED:
 					if ((skill == P_DAGGER || skill == P_KNIFE || skill == P_SPEAR ) && !rn2(5)) multishot++;
-					if (skill == P_JAVELIN && (rnd(10) > 4)) multishot++;
-					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && (rnd(10) > 3)) multishot++;
+					if (skill == P_JAVELIN && !rn2(3)) multishot++;
+					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && !rn2(4)) multishot++;
 				case P_BASIC:
 					if ((skill == P_DAGGER || skill == P_KNIFE || skill == P_SPEAR ) && !rn2(5)) multishot++;
-					if (skill == P_JAVELIN && (rnd(10) > 4)) multishot++;
-					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && (rnd(10) > 3)) multishot++;
+					if (skill == P_JAVELIN && !rn2(3)) multishot++;
+					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && !rn2(4)) multishot++;
 				default: break;
 			}
 		}
@@ -2165,35 +2165,23 @@ boolean polearming;
 		if (obj && objects[obj->otyp].oc_skill == -P_FIREARM) {
 			switch (P_SKILL(P_GUN_CONTROL)) {
 				default: break;
-				case P_BASIC: tmp += 2; skillpierce += 1; break;
-				case P_SKILLED: tmp += 4; skillpierce += 2; break;
-				case P_EXPERT: tmp += 6; skillpierce += 3; break;
-				case P_MASTER: tmp += 8; skillpierce += 4; break;
-				case P_GRAND_MASTER: tmp += 10; skillpierce += 5; break;
-				case P_SUPREME_MASTER: tmp += 12; skillpierce += 6; break;
-			}
-		}
-
-		if (!rn2(3)) {
-			switch (P_SKILL(P_MISSILE_WEAPONS)) {
-				default: break;
-				case P_BASIC: tmp += 1; break;
-				case P_SKILLED: tmp += rn2(2); break;
-				case P_EXPERT: tmp += rn2(3); break;
-				case P_MASTER: tmp += rn2(4); break;
-				case P_GRAND_MASTER: tmp += rn2(5); break;
-				case P_SUPREME_MASTER: tmp += rn2(6); break;
+				case P_BASIC: tmp += rnd(2); skillpierce += 1; break;
+				case P_SKILLED: tmp += rnd(4); skillpierce += 2; break;
+				case P_EXPERT: tmp += rnd(6); skillpierce += 3; break;
+				case P_MASTER: tmp += rnd(8); skillpierce += 4; break;
+				case P_GRAND_MASTER: tmp += rnd(10); skillpierce += 5; break;
+				case P_SUPREME_MASTER: tmp += rnd(12); skillpierce += 6; break;
 			}
 		}
 
 		switch (P_SKILL(P_DJEM_SO)) {
 			default: break;
 			case P_BASIC: tmp += 1; break;
-			case P_SKILLED: tmp += 2; break;
-			case P_EXPERT: tmp += 3; break;
-			case P_MASTER: tmp += 4; break;
-			case P_GRAND_MASTER: tmp += 5; break;
-			case P_SUPREME_MASTER: tmp += 6; break;
+			case P_SKILLED: tmp += rnd(2); break;
+			case P_EXPERT: tmp += rnd(3); break;
+			case P_MASTER: tmp += rnd(4); break;
+			case P_GRAND_MASTER: tmp += rnd(5); break;
+			case P_SUPREME_MASTER: tmp += rnd(6); break;
 		}
 
 		/* polearms and such should get to-hit bonuses from general combat as well, because I want it :D --Amy */

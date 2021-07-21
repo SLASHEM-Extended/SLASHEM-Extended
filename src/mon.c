@@ -2801,7 +2801,7 @@ struct obj *otmp;
 	    return FALSE;
 	if (otyp == CORPSE && is_deadlysin(&mons[otmp->corpsenm]))
 	    return FALSE;
-	if (objects[otyp].oc_material == MT_SILVER && hates_silver(mdat) &&
+	if (objects[otyp].oc_material == MT_SILVER && issoviet && hates_silver(mdat) &&
 		(otyp != BELL_OF_OPENING || !is_covetous(mdat)))
 	    return FALSE;
 
@@ -2829,7 +2829,10 @@ struct obj *otmp;
 	if (curr_mon_load(mtmp) + newload > max_mon_load(mtmp)) return FALSE;
 
 	/* if the monster hates silver,  don't pick it up */
-	if (objects[otmp->otyp].oc_material == MT_SILVER && hates_silver(mtmp->data))
+	/* Amy edit: that's stupid. they only hate being hit by silver objects, but can handle them just fine! */
+	/* In Soviet Russia, monsters aren't supposed to be dangerous. Instead, they're burdened by silly restrictions that
+	 * prevent them from being able to use items that would be perfectly fine for them to use. */
+	if (objects[otmp->otyp].oc_material == MT_SILVER && issoviet && hates_silver(mtmp->data))
 		return(FALSE);
 
 	if(curr_mon_load(mtmp) + newload > max_mon_load(mtmp)) return(FALSE);
@@ -6431,6 +6434,7 @@ register struct monst *mdef;
 		if (is_musable(obj) && obj->mstartinvent && !(obj->oartifact) && !(obj->fakeartifact && timebasedlowerchance()) && (!rn2(3) || (rn2(100) < u.musableremovechance) || (rn2(4) && (obj->otyp == POT_BLOOD || obj->otyp == POT_VAMPIRE_BLOOD) ) || LootcutBug || u.uprops[LOOTCUT_BUG].extrinsic || have_lootcutstone() || !timebasedlowerchance() ) && !(mdef->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mdef->data == &mons[PM_BAD_ITEM_MASTER]) ) delobj(obj);
 		else if (obj->mstartinventB && !(obj->oartifact) && !(obj->fakeartifact && timebasedlowerchance()) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) && !(mdef->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mdef->data == &mons[PM_BAD_ITEM_MASTER]) ) delobj(obj);
 		else if (obj->mstartinventC && !(obj->oartifact) && !(obj->fakeartifact && !rn2(10)) && rn2(10) && !(mdef->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mdef->data == &mons[PM_BAD_ITEM_MASTER]) ) delobj(obj);
+		else if (obj->mstartinventD && !(obj->oartifact) && !(obj->fakeartifact && !rn2(4)) && rn2(4) && !(mdef->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mdef->data == &mons[PM_BAD_ITEM_MASTER]) ) delobj(obj);
 		    else (void) add_to_container(otmp, obj);
 		}
 #ifndef GOLDOBJ
@@ -6613,6 +6617,7 @@ xkilled(mtmp, dest)
 	}
 
 	if (Role_if(PM_BLOODSEEKER)) healup(mtmp->m_lev, 0, FALSE, FALSE); /* special ability called "Stygwyr's Thirst" */
+	if (uwep && uwep->oartifact == ART_ALDEBARAN_FORM) healup(mtmp->m_lev, 0, FALSE, FALSE);
 	if (Race_if(PM_ETHEREALOID) && !rn2(2)) healup(mtmp->m_lev, 0, FALSE, FALSE);
 	if (Race_if(PM_INCORPOREALOID) && !rn2(2)) healup(mtmp->m_lev, 0, FALSE, FALSE);
 	/* Demo wants a complicated calculation for how many HP the etherealoid gains from a kill... I took the easy way out */

@@ -1019,6 +1019,7 @@ E boolean have_lizard(void);
 E boolean have_loadstone(void);
 E boolean have_pokeloadstone(void);
 E boolean have_invisoloadstone(void);
+E boolean have_amateurluckstone(void);
 E boolean have_femityjewel(void);
 E boolean have_sleepstone(void);
 E boolean have_magicresstone(void);
@@ -2444,6 +2445,9 @@ E void statdebuff(void);
 E void nivellate(void);
 E void upnivel(BOOLEAN_P);
 E void nexus_swap(void);
+
+E boolean weaponwilldull(struct obj *);
+E boolean armorwilldull(struct obj *);
 
 E boolean hybridragontype(int);
 

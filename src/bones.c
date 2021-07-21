@@ -28,6 +28,7 @@ d_level *lev;
 		|| !dungeons[lev->dnum].boneid
 		|| (iszapem && !(u.zapemescape) && In_spacebase(lev) && lev->dlevel < 3)
 		|| (u.preversionmode && !u.preversionescape && In_greencross(lev) && lev->dlevel < 3)
+		|| (u.freeplaymode) /* otherwise you could just kill yourself on purpose to give ascension kits to chars */
 		|| (flags.lostsoul && In_dod(lev) && lev->dlevel == (depth(&medusa_level) - 1) )
 		|| (flags.lostsoul && In_dod(lev) && lev->dlevel == (depth(&medusa_level)) )
 		|| (flags.lostsoul && In_dod(lev) && lev->dlevel == (depth(&medusa_level) + 1) )

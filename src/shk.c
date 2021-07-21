@@ -5788,6 +5788,7 @@ shk_uncurse(slang, shkp)
 	/* Charge is same as cost */
 	charge = get_cost(obj, shop_keeper(/* roomno= */*u.ushops));
 	charge *= 3; /* uncursing shouldn't be possible for peanuts! --Amy */
+	if (charge < 300) charge = 300; /* uncursing REALLY shouldn't be possible for peanuts */
 
 	/* Artifacts cost more to deal with */
 	/* KMH -- Avoid floating-point */
@@ -5907,7 +5908,8 @@ shk_bless(slang, shkp)
 
 	/* Charge is same as cost */
 	charge = get_cost(obj, shop_keeper(/* roomno= */*u.ushops));
-	charge *= 3; /* blessing shouldn't be possible for peanuts! --Amy */
+	charge *= 5; /* blessing shouldn't be possible for peanuts! --Amy */
+	if (charge < 500) charge = 500; /* uncursing REALLY shouldn't be possible for peanuts */
 
 	/* Artifacts cost more to deal with */
 	/* KMH -- Avoid floating-point */
