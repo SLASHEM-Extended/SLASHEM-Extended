@@ -10453,9 +10453,76 @@ charge_saber()
 		continue;
 	    tlevel = techlevX(i);
 	}
-	if (tlevel >= 10 && !rn2(5)){
-		You("manage to channel the force perfectly!");
-		uwep->age += 1500; // Jackpot!
+	if (tlevel >= 10) {
+
+		int jackpotchance = 20; /* 1 in 5 was way too common --Amy */
+
+		switch (tlevel) {
+			default: jackpotchance = 20; if (tlevel >= 50) jackpotchance = 5; break;
+			case 10:
+			case 11:
+			case 12:
+			case 13:
+				jackpotchance = 20; break;
+			case 14:
+			case 15:
+			case 16:
+				jackpotchance = 19; break;
+			case 17:
+			case 18:
+			case 19:
+				jackpotchance = 18; break;
+			case 20:
+			case 21:
+			case 22:
+				jackpotchance = 17; break;
+			case 23:
+			case 24:
+				jackpotchance = 16; break;
+			case 25:
+			case 26:
+			case 27:
+				jackpotchance = 15; break;
+			case 28:
+			case 29:
+				jackpotchance = 14; break;
+			case 30:
+			case 31:
+			case 32:
+				jackpotchance = 13; break;
+			case 33:
+			case 34:
+				jackpotchance = 12; break;
+			case 35:
+			case 36:
+				jackpotchance = 11; break;
+			case 37:
+			case 38:
+				jackpotchance = 10; break;
+			case 39:
+			case 40:
+			case 41:
+				jackpotchance = 9; break;
+			case 42:
+			case 43:
+			case 44:
+				jackpotchance = 8; break;
+			case 45:
+			case 46:
+			case 47:
+				jackpotchance = 7; break;
+			case 48:
+			case 49:
+				jackpotchance = 6; break;
+			case 50:
+				jackpotchance = 5; break;
+		}
+
+		if (!rn2(jackpotchance)) {
+			You("manage to channel the force perfectly!");
+			uwep->age += 1500; // Jackpot!
+		}
+
 	} else
 		You("channel the force into %s.", the(xname(uwep)));
 
