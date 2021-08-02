@@ -491,6 +491,10 @@ found:
 		/* for some reason the charges weren't being used at all!!! --Amy */
 		new_obj->spe = oldspe;
 		new_obj->recharged = oldrecharged;
+
+		/* can't simply make a blank spellbook with dozens of charges and write a hard-to-recharge book, you cheater */
+		if ((new_obj->otyp == SPE_TIME || new_obj->otyp == SPE_GAIN_LEVEL || new_obj->otyp == SPE_MAP_LEVEL || new_obj->otyp == SPE_INERTIA || new_obj->otyp == SPE_CHARGING || new_obj->otyp == SPE_GENOCIDE || new_obj->otyp == SPE_GODMODE || new_obj->otyp == SPE_CHARACTER_RECURSION || new_obj->otyp == SPE_PETRIFY || new_obj->otyp == SPE_ACQUIREMENT || new_obj->otyp == SPE_THRONE_GAMBLE || new_obj->otyp == SPE_WISHING || new_obj->otyp == SPE_WORLD_FALL || new_obj->otyp == SPE_REROLL_ARTIFACT || new_obj->otyp == SPE_ATTUNE_MAGIC || new_obj->otyp == SPE_GAIN_SPACT || new_obj->otyp == SPE_CLONE_MONSTER || new_obj->otyp == SPE_TIME_STOP || new_obj->otyp == SPE_ALTER_REALITY || new_obj->otyp == SPE_AULE_SMITHING) && new_obj->spe > 1) new_obj->spe = 1;
+
 		if (oldknown == TRUE) new_obj->known = TRUE;
 
 	}
