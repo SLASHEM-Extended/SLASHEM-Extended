@@ -6598,7 +6598,7 @@ struct obj *weapon;
 
 	}
 
-	if (!(PlayerCannotUseSkills) && weapon && is_lightsaber(weapon) && weapon->lamplit) {
+	if (!(PlayerCannotUseSkills) && weapon && is_lightsaber(weapon) && (!rn2(2) || (bimanual(weapon) && weapon->altmode) ) && weapon->lamplit) {
 		switch (P_SKILL(P_SHII_CHO)) {
 
 			case P_BASIC:	bonus +=  rn2(2); break;
@@ -6614,12 +6614,12 @@ struct obj *weapon;
 	if (!(PlayerCannotUseSkills) && weapon && is_lightsaber(weapon) && weapon->lamplit && !uarms && !u.twoweap) {
 		switch (P_SKILL(P_MAKASHI)) {
 
-			case P_BASIC:	bonus +=  rn2(3); break;
-			case P_SKILLED:	bonus +=  rn2(5); break;
-			case P_EXPERT:	bonus +=  rn2(7); break;
-			case P_MASTER:	bonus +=  rn2(9); break;
-			case P_GRAND_MASTER:	bonus +=  rn2(11); break;
-			case P_SUPREME_MASTER:	bonus +=  rn2(13); break;
+			case P_BASIC:	bonus +=  rn3(3); break;
+			case P_SKILLED:	bonus +=  rn3(4); break;
+			case P_EXPERT:	bonus +=  rn3(6); break;
+			case P_MASTER:	bonus +=  rn3(7); break;
+			case P_GRAND_MASTER:	bonus +=  rn3(9); break;
+			case P_SUPREME_MASTER:	bonus +=  rn3(10); break;
 			default: bonus += 0; break;
 		}
 	}
