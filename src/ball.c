@@ -116,11 +116,34 @@ placebc()
 
     (void) flooreffects(uchain, u.ux, u.uy, "");	/* chain might rust */
 
+    if (!uchain || !uball) { /* can apparently happen due to erosion destroying them --Amy */
+	You("no longer have a ball and chain.");
+
+	if (uchain) obj_extract_self(uchain);
+
+	setworn((struct obj *)0, W_CHAIN);
+	setworn((struct obj *)0, W_BALL);
+	return;
+
+    }
+
     if (carried(uball))		/* the ball is carried */
 	u.bc_order = BCPOS_DIFFER;
     else {
 	/* ball might rust -- already checked when carried */
 	(void) flooreffects(uball, u.ux, u.uy, "");
+
+	if (!uchain || !uball) { /* can apparently happen due to erosion destroying them --Amy */
+		You("no longer have a ball and chain.");
+
+		if (uchain) obj_extract_self(uchain);
+
+		setworn((struct obj *)0, W_CHAIN);
+		setworn((struct obj *)0, W_BALL);
+		return;
+
+	}
+
 	place_object(uball, u.ux, u.uy);
 	u.bc_order = BCPOS_CHAIN;
     }
