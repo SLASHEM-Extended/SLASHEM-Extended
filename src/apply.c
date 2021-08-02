@@ -3847,6 +3847,30 @@ struct obj *obj;
 		gotit = FALSE;	/* can't pull it free */
 	    }
 	    if (gotit) {
+
+		if (otmp && otmp->mstartinventB && !(otmp->oartifact) && !(otmp->fakeartifact && timebasedlowerchance()) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) ) {
+			if (obj->spe > -20) obj->spe--;
+			else curse(obj);
+			You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(otmp));
+			delobj(otmp);
+			return 1;
+		}
+		if (otmp && otmp->mstartinventC && !(otmp->oartifact) && !(otmp->fakeartifact && !rn2(10)) && rn2(10) ) {
+			if (obj->spe > -20) obj->spe--;
+			else curse(obj);
+			You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(otmp));
+			delobj(otmp);
+			return 1;
+		}
+
+		if (otmp && otmp->mstartinventD && !(otmp->oartifact) && !(otmp->fakeartifact && !rn2(4)) && rn2(4) ) {
+			if (obj->spe > -20) obj->spe--;
+			else curse(obj);
+			You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(otmp));
+			delobj(otmp);
+			return 1;
+		}
+
 		obj_extract_self(otmp);
 		possibly_unwield(mtmp, FALSE);
 		setmnotwielded(mtmp,otmp);

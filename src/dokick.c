@@ -453,13 +453,13 @@ register boolean clumsy;
 
 		}
 
-		if (monwepon && monwepon->mstartinventB && !(monwepon->oartifact) && !(monwepon->fakeartifact && timebasedlowerchance()) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) && !stack_too_big(monwepon) ) {
+		if (monwepon && monwepon->mstartinventB && !(monwepon->oartifact) && !(monwepon->fakeartifact && timebasedlowerchance()) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) ) {
 			You("vaporize %s %s!", s_suffix(mon_nam(mon)), xname(monwepon));
 			delobj(monwepon);
-		} else if (monwepon && monwepon->mstartinventC && !(monwepon->oartifact) && !(monwepon->fakeartifact && !rn2(10)) && rn2(10) && !stack_too_big(monwepon) ) {
+		} else if (monwepon && monwepon->mstartinventC && !(monwepon->oartifact) && !(monwepon->fakeartifact && !rn2(10)) && rn2(10) ) {
 			You("vaporize %s %s!", s_suffix(mon_nam(mon)), xname(monwepon));
 			delobj(monwepon);
-		} else if (monwepon && monwepon->mstartinventD && !(monwepon->oartifact) && !(monwepon->fakeartifact && !rn2(4)) && rn2(4) && !stack_too_big(monwepon) ) {
+		} else if (monwepon && monwepon->mstartinventD && !(monwepon->oartifact) && !(monwepon->fakeartifact && !rn2(4)) && rn2(4) ) {
 			You("vaporize %s %s!", s_suffix(mon_nam(mon)), xname(monwepon));
 			delobj(monwepon);
 		} else {

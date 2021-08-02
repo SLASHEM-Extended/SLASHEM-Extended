@@ -4492,14 +4492,14 @@ secureidchoice:
 		    roll = rn2(num + 1);
 		    if (roll > 3) roll = 3;
 
-		    if (obj && obj->mstartinventB && !(obj->oartifact) && !(obj->fakeartifact && timebasedlowerchance()) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) && !stack_too_big(obj) ) {
+		    if (obj && obj->mstartinventB && !(obj->oartifact) && !(obj->fakeartifact && timebasedlowerchance()) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) ) {
 				uwep->spe--;
 				You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(obj));
 				delobj(obj);
 	          		t_timeout = rnz(5000);
 				break;
 		    }
-		    if (obj && obj->mstartinventC && !(obj->oartifact) && !(obj->fakeartifact && !rn2(10)) && rn2(10) && !stack_too_big(obj) ) {
+		    if (obj && obj->mstartinventC && !(obj->oartifact) && !(obj->fakeartifact && !rn2(10)) && rn2(10) ) {
 				uwep->spe--;
 				You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(obj));
 				delobj(obj);
@@ -4507,7 +4507,7 @@ secureidchoice:
 				break;
 		    }
 
-		    if (obj && obj->mstartinventD && !(obj->oartifact) && !(obj->fakeartifact && !rn2(4)) && rn2(4) && !stack_too_big(obj) ) {
+		    if (obj && obj->mstartinventD && !(obj->oartifact) && !(obj->fakeartifact && !rn2(4)) && rn2(4) ) {
 				uwep->spe--;
 				You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(obj));
 				delobj(obj);
@@ -6974,17 +6974,17 @@ revid_end:
 		possibly_unwield(mtmp, FALSE);
 		setmnotwielded(mtmp, obj);
 
-		if (obj && obj->mstartinventB && !(obj->oartifact) && !(obj->fakeartifact && timebasedlowerchance()) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) && !stack_too_big(obj) ) {
+		if (obj && obj->mstartinventB && !(obj->oartifact) && !(obj->fakeartifact && timebasedlowerchance()) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) ) {
 			You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(obj));
 			delobj(obj);
 			t_timeout = rnz(1000);
 			break;
-		} else if (obj && obj->mstartinventC && !(obj->oartifact) && !(obj->fakeartifact && !rn2(10)) && rn2(10) && !stack_too_big(obj) ) {
+		} else if (obj && obj->mstartinventC && !(obj->oartifact) && !(obj->fakeartifact && !rn2(10)) && rn2(10) ) {
 			You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(obj));
 			delobj(obj);
 			t_timeout = rnz(1000);
 			break;
-		} else if (obj && obj->mstartinventD && !(obj->oartifact) && !(obj->fakeartifact && !rn2(4)) && rn2(4) && !stack_too_big(obj) ) {
+		} else if (obj && obj->mstartinventD && !(obj->oartifact) && !(obj->fakeartifact && !rn2(4)) && rn2(4) ) {
 			You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(obj));
 			delobj(obj);
 			t_timeout = rnz(1000);
