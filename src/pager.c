@@ -27267,6 +27267,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You hear someone counting gold coins. You hear someone yell, 'Hey, who dug this hole into the side of the vault?!'",
 	"You sneeze! You can now move again.", /* by Hekik */
 	"Did you find a strategy that is effective? Don't think it's the all-time meta, for new versions of the game may change stuff and make the strategy in question less effective. This is particularly true if it's a lame strategy that lets you bypass part of the game's intended difficulty.",
+	"If you encounter a squad of OOD monsters that are faster than you and cannot escape, you'll probably get raped by them.",
+	"In SLEX, what foocubi do to you can actually be considered rape.",
 
 };
 

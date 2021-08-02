@@ -991,6 +991,8 @@ static const char *random_mesg[] = {
 	"DON'T DEAD OPEN INSIDE",
 	"The Enclave is here! Being led by Aendru Rasenban who unleashes his multigoons to spread fear and panic, they've arrived and want to kill our peaceful citizens! Run for your lives!!!",
 	"notnethack is a variant made by emo", /* by elronnd */
+	"are the pirates properly rapey?",
+	"Amy is an error in the matrix and needs to be terminated before she releases another stupid version of slex!",
 
 };
 
@@ -5505,6 +5507,11 @@ static const char *epitaphs[] = {
 	"Well this is bullshit, the strategy I was using certainly wasn't OP and in no way it made the game too easy. That Amy nerfed it anyway is absolutely retarded and no one should play her fucked up game anymore.",
 	"works as intended",
 	"slex is a very fair and balanced game",
+	"Amy is insane, every time I complain about bullshit she just mocks me, tells me it's working as intended and then proceeds to add more stupid garbage to the game! SLEX fucking sucks!",
+	"Hey, I tried to wish for a figurine of an archon but the game said it doesn't exist! What's that you say, I can't wish for figurines of specific monsters? FUCK YOU AMY, your game is so brain-dead that I won't ever play it again!",
+	"Urgh I cancelled myself and lost an intrinsic resistance but the cursed -5 luckstone wasn't uncursed and only became -4! That just sucks so very much, I don't even want to know what the developer was smoking cause it sure ain't legal.",
+	"Amy must have been on crack when she decided to make the restore ability spell not guaranteed to work. Like, who would design a game that badly?",
+	"How the hell could Amy screw up so bad? Man, her changed artiwishing rules suck ass! There are so many artifacts generated and they all suck but at the same time blow your artiwishing chances to heck!",
 
 };
 

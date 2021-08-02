@@ -794,6 +794,7 @@ doread()
 	"Liches Get Stitches",
 	"Procrastinators of all countries, unite... tomorrow!", /* by Amy's wonderful bundleroommate <3 */
 	"your chances of being successful in slex increase dramatically with access to the source code", /* by NetSysFire */
+	"I looked at SLEX source and lost sanity",
 
 
 	    };

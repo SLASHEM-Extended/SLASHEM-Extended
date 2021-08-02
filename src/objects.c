@@ -7112,6 +7112,8 @@ SCROLL((char *)0,               "THE GOERLS HAVE A POERSENAELITI",  P_NONE,     
 SCROLL((char *)0,               "SLEX CAN MAKE PLAYERS FEEL UNCOMFORTABLE",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
 SCROLL((char *)0,               "GLOBAL RAINBOW OFFENSIVE",  P_NONE,     1,   0, 100, CLR_BRIGHT_MAGENTA, 1),
 SCROLL((char *)0,               "CRASH EM EXTENDED COREDUMPS",  P_NONE,     1,   0, 100, CLR_BRIGHT_CYAN, 1),
+SCROLL((char *)0,               "OLTOR SCHREIB ENDLICH NE REZENSION FUER DIE CORONA PIZZA",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "AMY WAS DECLARED A PARIAH",  P_NONE,     1,   0, 100, CLR_ORANGE, 1),
 
 
 #ifdef MAIL
