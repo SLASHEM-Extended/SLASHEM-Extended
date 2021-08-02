@@ -9555,6 +9555,7 @@ controlagain:
 	case SPE_CURE_PARALYSIS:
 		if (multi < 0) {
 			multi = -1;
+			TimeStopped = 0; /* filthy exploit exploiter */
 			You("magically regain consciousness!");
 		} else You("weren't paralyzed to begin with, so there was nothing to cure.");
 		break;
