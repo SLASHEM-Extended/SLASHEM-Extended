@@ -316,7 +316,7 @@ register boolean clumsy;
 		    dmg += rn2(ACURR(A_DEX)/2 + 1);
 		    dmg += weapon_dam_bonus((struct obj *)0);
 			/* marital arts skill is supposed to improve this!!! --Amy */
-		    if (P_SKILL(P_MARTIAL_ARTS) > 0) dmg += (P_SKILL(P_MARTIAL_ARTS) * rno(2));
+		    if (P_SKILL(P_MARTIAL_ARTS) > 0) dmg += (rnd(P_SKILL(P_MARTIAL_ARTS)) * rno(2));
 		}
 		else if (dmg > 0) kick_skill = P_MARTIAL_ARTS; /* so that acu can unlock it if he wants to */
 		/* a good kick exercises your dex */
