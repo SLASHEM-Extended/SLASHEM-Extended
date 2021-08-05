@@ -3205,6 +3205,7 @@ poly_obj(obj, id, degradation)
 	otmp->blessed = obj->blessed;
 	otmp->oeroded = obj->oeroded;
 	otmp->oeroded2 = obj->oeroded2;
+	otmp->finalcancel = FALSE; /* the old object wasn't finalized, so the new one isn't either --Amy */
 	/* Don't obscure the known fields if they were known for the base item, since that's just an interface screw --Amy */
 	if (obj->known) otmp->known = TRUE;
 	if (obj->dknown) otmp->dknown = TRUE;
@@ -3290,6 +3291,11 @@ poly_obj(obj, id, degradation)
 	    if ((int)otmp->recharged < rn2(7))	/* recharge_limit */
 		otmp->recharged++;
 	    otmp->spestudied = obj->spestudied + 1;
+
+	    if (otmp->otyp == SPE_TIME || otmp->otyp == SPE_GAIN_LEVEL || otmp->otyp == SPE_MAP_LEVEL || otmp->otyp == SPE_INERTIA || otmp->otyp == SPE_CHARGING || otmp->otyp == SPE_GENOCIDE || otmp->otyp == SPE_GODMODE || otmp->otyp == SPE_CHARACTER_RECURSION || otmp->otyp == SPE_PETRIFY || otmp->otyp == SPE_ACQUIREMENT || otmp->otyp == SPE_THRONE_GAMBLE || otmp->otyp == SPE_WISHING || otmp->otyp == SPE_WORLD_FALL || otmp->otyp == SPE_REROLL_ARTIFACT || otmp->otyp == SPE_ATTUNE_MAGIC || otmp->otyp == SPE_GAIN_SPACT || otmp->otyp == SPE_CLONE_MONSTER || otmp->otyp == SPE_TIME_STOP || otmp->otyp == SPE_ALTER_REALITY || otmp->otyp == SPE_AULE_SMITHING) {
+		if (otmp->spe > 1) otmp->spe = 1; /* fuck you for trying to exploit the system --Amy */
+	    }
+
 	    break;
 
 	case GEM_CLASS:
