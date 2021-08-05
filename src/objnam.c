@@ -7525,6 +7525,9 @@ ring:
 		if (obj->otyp == MEAT_RING) goto ring;
 		break;
 	case VENOM_CLASS:
+		goto plus;
+		add_erosion_words(obj, prefix);
+		break;
 	case ROCK_CLASS:
 		add_erosion_words(obj, prefix);
 		break;
@@ -8393,13 +8396,11 @@ STATIC_OVL NEARDATA const struct o_range o_ranges[] = {
 			ARMOR_CLASS,  GRAY_DRAGON_SCALE_MAIL, YELLOW_DRAGON_SCALE_MAIL },
 	{ "sword",      WEAPON_CLASS, ORCISH_SHORT_SWORD,    TSURUGI },
 	{ "polearm",    WEAPON_CLASS, PARTISAN, LANCE },
-	{ "lightsaber", WEAPON_CLASS, GREEN_LIGHTSABER, WHITE_DOUBLE_LIGHTSABER },
+	{ "lightsaber", WEAPON_CLASS, GREEN_LIGHTSABER, MYSTERY_LIGHTSABER },
 	{ "firearm", 	WEAPON_CLASS, PISTOL, AUTO_SHOTGUN },
 	{ "gun", 	WEAPON_CLASS, PISTOL, AUTO_SHOTGUN },
 	{ "grenade", 	WEAPON_CLASS, FRAG_GRENADE, GAS_GRENADE },
-#ifdef WIZARD
 	{ "venom",	VENOM_CLASS,  BLINDING_VENOM, ACID_VENOM },
-#endif
 	{ "gray stone",	GEM_CLASS,    LUCKSTONE,      FLINT },
 	{ "grey stone",	GEM_CLASS,    LUCKSTONE,      FLINT },
 };
@@ -9162,13 +9163,7 @@ boolean actualwish;
 #endif
 	}
 	if (strlen(bp) == 1 &&
-	   (i = def_char_to_objclass(*bp)) < MAXOCLASSES && i > ILLOBJ_CLASS
-#ifdef WIZARD
-	    && (wizard || i != VENOM_CLASS)
-#else
-	    && i != VENOM_CLASS
-#endif
-	    ) {
+	   (i = def_char_to_objclass(*bp)) < MAXOCLASSES && i > ILLOBJ_CLASS) {
 		oclass = i;
 		goto any;
 	}
@@ -9770,10 +9765,6 @@ typfnd:
 		  ((oclass == WEAPON_CLASS && is_ammo(otmp))
 				|| typ == ROCK || is_missile(otmp)))))
 			otmp->quan = (long) cnt;
-
-#ifdef WIZARD
-	if (oclass == VENOM_CLASS) otmp->spe = 1;
-#endif
 
 	if (spesgn == 0) spe = otmp->spe;
 #ifdef WIZARD

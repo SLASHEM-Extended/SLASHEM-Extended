@@ -2331,12 +2331,8 @@ doengrave()
 		break;
 
 	    case VENOM_CLASS:
-#ifdef WIZARD
-		/*if (wizard) {*/
 		    pline(FunnyHallu ? "That would require some huge hands as it's just smearing big letters everywhere." : "Writing a poison pen letter??"); /* why the heck was this wizard-mode only??? --Amy */
 		    break;
-		/*}*/
-#endif
 	    case ILLOBJ_CLASS:
 		impossible("You're engraving with an illegal object!");
 		break;

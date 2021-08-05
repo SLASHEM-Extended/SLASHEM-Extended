@@ -1418,10 +1418,6 @@ do_look(quick)
 	for (i = 1; i < MAXOCLASSES; i++) {
 	    if (sym == (from_screen ? oc_syms[i] : def_oc_syms[i])) {
 		need_to_look = TRUE;
-		if (from_screen && i == VENOM_CLASS) {
-		    skipped_venom++;
-		    continue;
-		}
 		if (!found) {
 		    sprintf(out_str, "%c       %s", sym, an(objexplain[i]));
 		    firstmatch = objexplain[i];

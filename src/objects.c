@@ -9031,20 +9031,21 @@ OBJECT(OBJ("liquid chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT
 /* extra balls and chains for convict mainly (he can advance flail skill by swinging them) --Amy
  * that said, all other roles can too, as long as they have the flail skill :P */
 
+
 OBJECT(OBJ("blinding venom", "splash of venom"),
-		BITS(0,1,0,0,0,0,0,1,0,0,0,P_NONE,MT_LIQUID), 0,
+		BITS(0,1,1,0,0,0,0,1,0,0,0,P_NONE,MT_LIQUID), 0,
 		VENOM_CLASS,  4980, 0,	 0,  0,  0,  0, 0, 0,	 0, HI_ORGANIC, 1, 0),
 OBJECT(OBJ("tail spikes", "splash of venom"),
-		BITS(0,1,0,0,0,0,0,1,0,0,0,P_NONE,MT_LIQUID), 0,
+		BITS(0,1,1,0,0,0,0,1,0,0,0,P_NONE,MT_LIQUID), 0,
 		VENOM_CLASS,  20, 0,	 0,  0,  6,  6, 0, 0,	 0, CLR_BLACK, 1, 0),
 OBJECT(OBJ("faerie floss rhing", "splash of venom"),
-		BITS(0,1,0,0,0,0,0,1,0,0,0,P_NONE,MT_LIQUID), 0,
+		BITS(0,1,1,0,0,0,0,1,0,0,0,P_NONE,MT_LIQUID), 0,
 		VENOM_CLASS,  20, 0,	 0,  0,  0,  0, 0, 0,	 0, CLR_BRIGHT_MAGENTA, 1, 0),
 OBJECT(OBJ("acid venom", "splash of venom"),
-		BITS(0,1,0,0,0,0,0,1,0,0,0,P_NONE,MT_LIQUID), 0,
+		BITS(0,1,1,0,0,0,0,1,0,0,0,P_NONE,MT_LIQUID), 0,
 		VENOM_CLASS,  4980, 0,	 0,  0,  6,  6, 0, 0,	 0, HI_ORGANIC, 1, 0),
 OBJECT(OBJ("segfault venom", "splash of venom"),
-		BITS(0,1,0,0,0,0,0,1,0,0,0,P_NONE,MT_LIQUID), 0,
+		BITS(0,1,1,0,0,0,0,1,0,0,0,P_NONE,MT_LIQUID), 0,
 		VENOM_CLASS,  0, 0,	 0,  0,  6,  6, 0, 0,	 0, CLR_GRAY, 1, 0),
 		/* +d6 small or large */
 

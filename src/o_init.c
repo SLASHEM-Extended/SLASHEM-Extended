@@ -4247,15 +4247,13 @@ dodiscovered()				/* free after Robert Viduya */
 	}
     /* display any known artifacts as another pseudo-class */
 
-	/* temporarily disabled by Amy because of crashiness. Will be re-enabled if I figure out why artifacts with
-	 * an ID number greater than 127 are segfaulting here, but for the time being, please use an artifact spoiler. */
     ct += disp_artifact_discoveries(tmpwin);
 
     /* several classes are omitted from packorder; one is of interest here */
     strcpy(classes, flags.inv_order);
-    if (!index(classes, VENOM_CLASS)) {
+    if (!index(classes, MAXOCLASSES)) {
 	s = eos(classes);
-	*s++ = VENOM_CLASS;
+	*s++ = MAXOCLASSES;
 	*s = '\0';
     }
 
@@ -4316,9 +4314,9 @@ dump_discoveries()
 
     /* several classes are omitted from packorder; one is of interest here */
     strcpy(classes, flags.inv_order);
-    if (!index(classes, VENOM_CLASS)) {
+    if (!index(classes, MAXOCLASSES)) {
 	s = eos(classes);
-	*s++ = VENOM_CLASS;
+	*s++ = MAXOCLASSES;
 	*s = '\0';
     }
 

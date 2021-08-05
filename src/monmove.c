@@ -3497,9 +3497,7 @@ struct monst *mtmp;
 		    obj->oclass != AMULET_CLASS &&
 		    obj->oclass != IMPLANT_CLASS &&
 		    obj->oclass != RING_CLASS &&
-#ifdef WIZARD
 		    obj->oclass != VENOM_CLASS &&
-#endif
 		    typ != SACK && typ != BAG_OF_HOLDING &&
 		    typ != BAG_OF_TRICKS && !Is_candle(obj) &&
 		    typ != OILSKIN_SACK && typ != LEATHER_LEASH && typ != INKA_LEASH &&

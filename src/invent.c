@@ -52,6 +52,7 @@ static int lastinvnr = 51;	/* 0 ... 51 (never saved&restored) */
  * would probably cause mass confusion.  the test for inventory venom
  * is only WIZARD and not wizard because the wizard can leave venom lying
  * around on a bones level for normal players to find.
+ * Amy edit: venom is a proper item class now that may well appear in a regular game.
  */
 static char venom_inv[] = { VENOM_CLASS, 0 };	/* (constant) */
 #endif
@@ -6963,7 +6964,7 @@ unsigned *resultflags;
 		m_seen = TRUE;
 	    } else if (oc_of_sym == MAXOCLASSES) {
 		You("don't have any %c's.", sym);
-	    } else if (oc_of_sym != VENOM_CLASS) {	/* suppress venom */
+	    } else if (oc_of_sym != MAXOCLASSES) {	/* suppress venom - Amy edit: blah, it's a proper item class */
 		if (!index(olets, oc_of_sym)) {
 		    add_valid_menu_class(oc_of_sym);
 		    olets[oletct++] = oc_of_sym;
@@ -7710,10 +7711,10 @@ nextclass:
 	if (flags.sortpack) {
 		if (*++invlet) goto nextclass;
 #ifdef WIZARD
-		if (--invlet != venom_inv) {
+/*		if (--invlet != venom_inv) {
 			invlet = venom_inv;
 			goto nextclass;
-		}
+		}*/
 #endif
 	}
 	free(oarray);
@@ -8789,7 +8790,7 @@ STATIC_VAR NEARDATA const char *names[] = { 0,
 	"Illegal objects", "Weapons", "Armor", "Rings", "Amulets", "Implants",
 	"Tools", "Comestibles", "Potions", "Scrolls", "Spellbooks",
 	"Wands", "Coins", "Gems", "Boulders/Statues", "Iron balls",
-	"Chains", "Venoms"
+	"Chains", "Venoms", "MaxObjectClasses"
 };
 
 static NEARDATA const char oth_symbols[] = {
