@@ -2602,6 +2602,13 @@ boolean shopinit;
 		case GENERAL_CANDLE:
 			otmp->spe = 1;
 					otmp->age = 2000L; /* used to depend on cost but that's BS --Amy */
+
+					if (!rn2(20)) {
+						otmp->age += (rnd(10) * 500);
+					} else if (!rn2(20)) {
+						otmp->age -= (rnd(9) * 200);
+					}
+
 					if (ishaxor) otmp->age *= 2;
 					otmp->lamplit = 0;
 					otmp->quan = 1L +
@@ -2610,6 +2617,13 @@ boolean shopinit;
 					break;
 	        case TORCH:	        otmp->spe = 0;
 					otmp->age = (long) rn1(300,600);
+
+					if (!rn2(20)) {
+						otmp->age += rnz(1000);
+					} else if (!rn2(20)) {
+						otmp->age = rnz(600);
+					}
+
 					if (ishaxor) otmp->age *= 2;
 					otmp->lamplit = 0;
 					otmp->quan = rnd(3);
@@ -2621,6 +2635,11 @@ boolean shopinit;
 			if(!rn2(5)) otmp->recharged = rnd(7);
 			otmp->spe = 1;
 					otmp->age = (long) rn1(500,1000);
+					if (!rn2(20)) {
+						otmp->age += rnz(2000);
+					} else if (!rn2(20)) {
+						otmp->age = rnz(1000);
+					}
 					if (ishaxor) otmp->age *= 2;
 					otmp->lamplit = 0;
 					blessorcurse_on_creation(otmp, 5);
@@ -2656,6 +2675,11 @@ boolean shopinit;
 			if(!rn2(5)) otmp->recharged = rnd(7);
 			otmp->lamplit = 0;
 			otmp->age = (long) rn1(500,1000);
+					if (!rn2(20)) {
+						otmp->age += rnz(1000);
+					} else if (!rn2(20)) {
+						otmp->age = rnz(500);
+					}
 			if (ishaxor) otmp->age *= 2;
 
 			if(!rn2(ishaxor ? 3 : 6)) {
