@@ -3848,6 +3848,19 @@ struct obj *obj;
 	    }
 	    if (gotit) {
 
+		int whipchance = 5; /* was waaaaaaay too easy to disarm foes --Amy */
+		if (mtmp->m_lev > u.ulevel) whipchance += (mtmp->m_lev - u.ulevel);
+		if (mtmp->data->geno & G_UNIQ) whipchance *= 5;
+		if (whipchance < 5) whipchance = 5; /* fail safe */
+
+		if (!rn2(50)) {
+			setnotworn(obj);
+			freeinv(obj);
+			(void) mpickobj(mtmp,obj,FALSE);
+			pline("%s laughs fiendishly, and snatches your weapon!", Monnam(mtmp));
+			return 1;
+		}
+
 		if (otmp && otmp->mstartinventB && !(otmp->oartifact) && !(otmp->fakeartifact && timebasedlowerchance()) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) ) {
 			if (obj->spe > -20) obj->spe--;
 			else curse(obj);
@@ -3868,6 +3881,11 @@ struct obj *obj;
 			else curse(obj);
 			You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(otmp));
 			delobj(otmp);
+			return 1;
+		}
+
+		if (rn2(whipchance)) {
+			pline("%s", msg_slipsfree);
 			return 1;
 		}
 
