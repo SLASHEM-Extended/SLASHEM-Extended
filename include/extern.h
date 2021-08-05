@@ -1940,6 +1940,7 @@ E boolean searches_for_item(struct monst *,struct obj *);
 E boolean mon_reflects(struct monst *,const char *);
 E boolean ureflects(const char *,const char *);
 E boolean munstone(struct monst *,BOOLEAN_P);
+E void monsteremptycontainers(struct monst *);
 
 /* ### music.c ### */
 
@@ -2310,7 +2311,7 @@ E int out_container(struct obj *);
 #endif
 E int pickup(int);
 E int pickup_object(struct obj *, long, BOOLEAN_P, BOOLEAN_P);
-E int dump_container(struct obj *, BOOLEAN_P);
+E int dump_container(struct obj *, BOOLEAN_P, int, int);
 E int query_category(const char *, struct obj *, int, menu_item **, int);
 E int query_objlist(const char *, struct obj *, int, menu_item **, int, boolean (*)(OBJ_P));
 E struct obj *pick_obj(struct obj *);

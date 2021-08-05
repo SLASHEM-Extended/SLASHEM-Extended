@@ -2312,7 +2312,7 @@ boolean invobj;
 			panic("in_container:  bag not found."); */
 
 		/* dump it out onto the floor so the scatterage can take effect */
-		if (dump_container(current_container, TRUE)) {
+		if (dump_container(current_container, TRUE, u.ux, u.uy)) {
 			pline("The contents fly everywhere!");
 		}
 		scatter(u.ux,u.uy,10,VIS_EFFECTS|MAY_HIT|MAY_DESTROY|MAY_FRACTURE,0);
@@ -3144,10 +3144,17 @@ boolean outokay, inokay;
  * Returns 1 if at least one object was present, 0 if empty.
  */ 
 int
-dump_container(container, destroy_after)
+dump_container(container, destroy_after, coordx, coordy)
 struct obj* container;
 BOOLEAN_P destroy_after;
+int coordx, coordy;
 {
+	if (!isok(coordx, coordy)) {
+		impossible("dump_container coordinates %d, %d?", coordx, coordy);
+		coordx = u.ux;
+		coordy = u.uy; /* fail safe */
+	}
+
 	struct obj* otmp,*otmp2;
 	int ret = 0;
 
@@ -3169,7 +3176,7 @@ BOOLEAN_P destroy_after;
 				start_corpse_timeout(otmp);
 			}
 		}
-		place_object(otmp,u.ux,u.uy);
+		place_object(otmp,coordx,coordy);
 
 		if (otmp->otyp == GOLD_PIECE) {
 #ifndef GOLDOBJ

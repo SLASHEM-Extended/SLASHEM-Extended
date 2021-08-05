@@ -6599,7 +6599,7 @@ datadeleteattack()
 
 					/* if it's a bag of holding or other container, scatter the contents first --Amy */
 					if (Has_contents(otmpD)) {
-						dump_container(otmpD, FALSE);
+						dump_container(otmpD, FALSE, u.ux, u.uy);
 						scatter(u.ux,u.uy,10,VIS_EFFECTS|MAY_HIT|MAY_DESTROY|MAY_FRACTURE,0);
 					}
 					/* and if it still somehow has contents now, delete them */

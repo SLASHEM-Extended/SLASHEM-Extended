@@ -12200,4 +12200,27 @@ boolean stoning;
     mon->mlstmv = monstermoves; /* it takes a turn */
 }
 
+/* if a monster has a non-locked container, it empties its contents --Amy */
+void
+monsteremptycontainers(mtmp)
+struct monst *mtmp;
+{
+	register struct obj *obj;
+
+	for(obj=mtmp->minvent; obj; obj=obj->nobj) {
+		if (Is_container(obj)) {
+			if (obj->otyp == MEDICAL_KIT) continue;
+			if (obj->otyp == BAG_OF_TRICKS) continue;
+			if (obj->olocked) continue; /* don't bother with keys, lock traps etc. */
+			if (!Has_contents(obj)) continue;
+
+			if (canseemon(mtmp)) pline("%s empties a container on the %s.", Monnam(mtmp), surface(mtmp->mx, mtmp->my));
+			dump_container(obj, FALSE, mtmp->mx, mtmp->my);
+
+		}
+
+	}
+
+}
+
 /*muse.c*/
