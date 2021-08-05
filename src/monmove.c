@@ -2355,6 +2355,7 @@ toofar:
 			"Still sleepy, sister?",
 			"I'm gonna slap you so hard you're gonna cry!",
 			"Oh what's the matter baby, gonna cry?",
+			"Now I have to get another panic here!",
 		};
 
 		verbalize("%s", whore_msgs[rn2(SIZE(whore_msgs))]);

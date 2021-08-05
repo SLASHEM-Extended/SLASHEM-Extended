@@ -7114,6 +7114,13 @@ SCROLL((char *)0,               "GLOBAL RAINBOW OFFENSIVE",  P_NONE,     1,   0,
 SCROLL((char *)0,               "CRASH EM EXTENDED COREDUMPS",  P_NONE,     1,   0, 100, CLR_BRIGHT_CYAN, 1),
 SCROLL((char *)0,               "OLTOR SCHREIB ENDLICH NE REZENSION FUER DIE CORONA PIZZA",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
 SCROLL((char *)0,               "AMY WAS DECLARED A PARIAH",  P_NONE,     1,   0, 100, CLR_ORANGE, 1),
+SCROLL((char *)0,               "IT COMES ME FORWARDS LIKE A SUSTAINED MANEUVER",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "ECO CUNT RIVER",  P_NONE,     1,   0, 100, CLR_BRIGHT_GREEN, 1),
+SCROLL((char *)0,               "THE FOOCUBUS USES A RAPE ATTACK",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
+SCROLL((char *)0,               "EVERCOMPLAINING SJW WHO WHINES ALL THE TIME",  P_NONE,     1,   0, 100, CLR_BRIGHT_MAGENTA, 1),
+SCROLL((char *)0,               "WHO WOULD COME UP WITH THE IDEA OF A MONSTER NAMED FAGON",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
+SCROLL((char *)0,               "THE INDIAN DELTA VARIANT SHITS ON THE INEFFECTIVE VACCINE",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
+SCROLL((char *)0,               "NGCBTTTC",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
 
 
 #ifdef MAIL
