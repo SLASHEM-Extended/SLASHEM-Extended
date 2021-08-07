@@ -1483,7 +1483,7 @@ register struct monst *mtmp;
 	 * inrange, etc. all depend on stuff set by set_apparxy().
 	 */
 
-	monsteremptycontainers(mtmp);
+	if (!mtmp->mtame && !mtmp->mpeaceful) monsteremptycontainers(mtmp);
 
 	/* Monsters that want to acquire things */
 	/* may teleport, so do it before inrange is set */

@@ -30,7 +30,6 @@ STATIC_PTR int in_container_(struct obj *,BOOLEAN_P);
 STATIC_PTR int in_container(struct obj *);
 STATIC_PTR int ck_bag(struct obj *);
 STATIC_PTR int out_container(struct obj *);
-STATIC_DCL long mbag_item_gone(int,struct obj *);
 STATIC_DCL void observe_quantum_cat(struct obj *);
 STATIC_DCL int menu_loot(int, struct obj *, BOOLEAN_P);
 STATIC_DCL int in_or_out_menu(const char *,struct obj *, BOOLEAN_P, BOOLEAN_P);
@@ -2485,27 +2484,31 @@ register struct obj *obj;
 }
 
 /* an object inside a cursed bag of holding is being destroyed */
-STATIC_OVL long
-mbag_item_gone(held, item)
+long
+mbag_item_gone(held, item, yourfault)
 int held;
 struct obj *item;
+boolean yourfault;
 {
     struct monst *shkp;
     long loss = 0L;
 
 	/* In the Evil Variant, you aren't told which items have been destroyed. --Amy */
-    if (evilfriday)
-	Norep("Stuff has vanished!");
-    else if (item->dknown)
-	pline("%s %s vanished!", Doname2(item), otense(item, "have"));
-    else
-	You("%s %s disappear!", Blind ? "notice" : "see", doname(item));
+    if (yourfault) {
+	    if (evilfriday)
+		Norep("Stuff has vanished!");
+	    else if (item->dknown)
+		pline("%s %s vanished!", Doname2(item), otense(item, "have"));
+	    else
+		You("%s %s disappear!", Blind ? "notice" : "see", doname(item));
 
-    if (*u.ushops && (shkp = shop_keeper(*u.ushops)) != 0) {
-	if (held ? (boolean) item->unpaid : costly_spot(u.ux, u.uy))
-	    loss = stolen_value(item, u.ux, u.uy,
-				(boolean)shkp->mpeaceful, TRUE, TRUE);
+	    if (*u.ushops && (shkp = shop_keeper(*u.ushops)) != 0) {
+		if (held ? (boolean) item->unpaid : costly_spot(u.ux, u.uy))
+		    loss = stolen_value(item, u.ux, u.uy,
+					(boolean)shkp->mpeaceful, TRUE, TRUE);
+	    }
     }
+
     /* [ALI] In Slash'EM we must delete the contents of containers before
      * we call obj_extract_self() so that any indestructable items can
      * migrate into the bag of holding. We are also constrained by the
@@ -2747,7 +2750,7 @@ int held;
 		    if (obj && obj->oartifact == ART_MONSTERATOR) {
 			monsterator++;
 		    }
-		    loss += mbag_item_gone(held, curr);
+		    loss += mbag_item_gone(held, curr, TRUE);
 		    used = 1;
 		}
 	    }
@@ -2767,7 +2770,7 @@ int held;
 		    if (obj && obj->oartifact == ART_MONSTERATOR) {
 			monsterator++;
 		    }
-		    loss += mbag_item_gone(held, curr);
+		    loss += mbag_item_gone(held, curr, TRUE);
 		    used = 1;
 		}
 	    }

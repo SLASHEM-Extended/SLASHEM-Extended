@@ -12206,12 +12206,36 @@ monsteremptycontainers(mtmp)
 struct monst *mtmp;
 {
 	register struct obj *obj;
+	struct obj *curr, *otmp;
 
 	for(obj=mtmp->minvent; obj; obj=obj->nobj) {
 		if (Is_container(obj)) {
 			if (obj->otyp == MEDICAL_KIT) continue;
 			if (obj->otyp == BAG_OF_TRICKS) continue;
 			if (obj->olocked) continue; /* don't bother with keys, lock traps etc. */
+			if (!Has_contents(obj)) continue;
+
+			/* cursed holding, or digestion, can now erase stuff just as if you had used it */
+			if (Is_mbag(obj) && obj->cursed) {
+			    for (curr = obj->cobj; curr; curr = otmp) {
+				otmp = curr->nobj;
+				if (!rn2(13) && !evades_destruction(curr) && !stack_too_big(curr)) {
+				    (void) mbag_item_gone(0, curr, FALSE);
+				}
+			    }
+
+			}
+
+			if ( (obj->otyp == BAG_OF_DIGESTION || obj->otyp == ICE_BOX_OF_DIGESTION || obj->otyp == LARGE_BOX_OF_DIGESTION) && !rn2(obj->blessed ? 20 : (obj->cursed ? 2 : 10))) {
+			    for (curr = obj->cobj; curr; curr = otmp) {
+				otmp = curr->nobj;
+				if (!evades_destruction(curr) && !stack_too_big(curr)) {
+				    (void) mbag_item_gone(0, curr, FALSE);
+				}
+			    }
+			}
+
+			/* the above could have resulted in an empty container now, in which case we don't bother */
 			if (!Has_contents(obj)) continue;
 
 			if (canseemon(mtmp)) pline("%s empties a container on the %s.", Monnam(mtmp), surface(mtmp->mx, mtmp->my));
