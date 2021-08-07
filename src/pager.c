@@ -27265,6 +27265,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Did you find a strategy that is effective? Don't think it's the all-time meta, for new versions of the game may change stuff and make the strategy in question less effective. This is particularly true if it's a lame strategy that lets you bypass part of the game's intended difficulty.",
 	"If you encounter a squad of OOD monsters that are faster than you and cannot escape, you'll probably get raped by them.",
 	"In SLEX, what foocubi do to you can actually be considered rape.",
+	"SLESH'EM EXTANDED is a Doppelkopf-based card game, developed by Amy from 1967 until 1977, i.e. before she had even been conceived. It can currently be played on the Gnollhack server.", /* this is of course complete bullshit, based on a dream I once had */
 
 };
 

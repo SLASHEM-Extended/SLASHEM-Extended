@@ -175,7 +175,7 @@ char oclass;
 int artif;
 boolean shopinit;
 {
-	int tprob, i, j, prob = rnd(10000);
+	int tprob, i, j, prob = rnd(100000);
 
 	int debugvar = 0;
 	if (Is_rogue_level(&u.uz)) debugvar = 1;
@@ -332,7 +332,7 @@ levscalereroll:
 					i = GOLD_PIECE;
 					goto levscalerollpast;
 				}
-				prob = rnd(10000);
+				prob = rnd(100000);
 				goto levscalereroll;
 			}
 			levscalediff += 1;
@@ -347,7 +347,7 @@ levscalerollpast:
 
 			int spattempts = 0;
 			while (spattempts++ < 50000 && (spell_skilltype(i) != u.spellbookbias1)) {
-				prob = rnd(10000);
+				prob = rnd(100000);
 				i = bases[(int)oclass];
 				while((prob -= objects[i].oc_prob) > 0) i++;
 
@@ -360,7 +360,7 @@ levscalerollpast:
 		} else if (u.spellbookbias2 >= 0 && (rnd(100) <= u.spellbookchance2) && (spell_skilltype(i) != u.spellbookbias2)) {
 			int spattempts = 0;
 			while (spattempts++ < 50000 && (spell_skilltype(i) != u.spellbookbias2)) {
-				prob = rnd(10000);
+				prob = rnd(100000);
 				i = bases[(int)oclass];
 				while((prob -= objects[i].oc_prob) > 0) i++;
 
@@ -373,7 +373,7 @@ levscalerollpast:
 		} else if (u.spellbookbias3 >= 0 && (rnd(100) <= u.spellbookchance3) && (spell_skilltype(i) != u.spellbookbias3)) {
 			int spattempts = 0;
 			while (spattempts++ < 50000 && (spell_skilltype(i) != u.spellbookbias3)) {
-				prob = rnd(10000);
+				prob = rnd(100000);
 				i = bases[(int)oclass];
 				while((prob -= objects[i].oc_prob) > 0) i++;
 
@@ -392,7 +392,7 @@ levscalerollpast:
 		if (!rn2(20) && objects[i].oc_skill != P_JAVELIN) {
 			int spattempts = 0;
 			while (spattempts++ < 50000 && (objects[i].oc_skill != P_JAVELIN)) {
-				prob = rnd(10000);
+				prob = rnd(100000);
 				i = bases[(int)oclass];
 				while((prob -= objects[i].oc_prob) > 0) i++;
 
@@ -407,7 +407,7 @@ levscalerollpast:
 
 	if (ismusablenumber(i) && (u.antimusablebias > rn2(100) ) ) {
 
-		prob = rnd(10000);
+		prob = rnd(100000);
 		i = bases[(int)oclass];
 		while((prob -= objects[i].oc_prob) > 0) i++;
 
@@ -420,7 +420,7 @@ levscalerollpast:
 	/* Gray stones are too common; have a chance to reroll them at least once --Amy */
 	if (i >= RIGHT_MOUSE_BUTTON_STONE && i <= NASTY_STONE && rn2(5)) {
 
-		prob = rnd(10000);
+		prob = rnd(100000);
 		i = bases[(int)oclass];
 		while((prob -= objects[i].oc_prob) > 0) i++;
 
@@ -432,7 +432,7 @@ levscalerollpast:
 
 	if (i >= ELIF_S_JEWEL && i <= DORA_S_JEWEL && rn2(5)) {
 
-		prob = rnd(10000);
+		prob = rnd(100000);
 		i = bases[(int)oclass];
 		while((prob -= objects[i].oc_prob) > 0) i++;
 
@@ -443,7 +443,7 @@ levscalerollpast:
 	}
 
 	if (i == SCR_RAGNAROK && rn2(64)) {
-		prob = rnd(10000);
+		prob = rnd(100000);
 		i = bases[(int)oclass];
 		while((prob -= objects[i].oc_prob) > 0) i++;
 
@@ -459,7 +459,7 @@ levscalerollpast:
 
 		int armortries = 0;
 armorreroll:
-		prob = rnd(10000);
+		prob = rnd(100000);
 		i = bases[(int)oclass];
 		while((prob -= objects[i].oc_prob) > 0) i++;
 
@@ -474,6 +474,8 @@ armorreroll:
 		}
 
 	}
+
+	/* the rnd value is 10000 here, this is not an error --Amy */
 
 	if ((objects[u.veryobtainable].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost) ) return(mksobj(u.veryobtainable, TRUE, artif, shopinit));
 

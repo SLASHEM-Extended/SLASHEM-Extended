@@ -508,7 +508,7 @@ register char oclass;
 		for(i = first; i < last; i++) sum += objects[i].oc_prob;
 		if(sum == 0) {
 			for(i = first; i < last; i++)
-			    objects[i].oc_prob = (10000+i-first)/(last-first);
+			    objects[i].oc_prob = (100000+i-first)/(last-first);
 			goto check;
 		}
 		if(sum != sum)
