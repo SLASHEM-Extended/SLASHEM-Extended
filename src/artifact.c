@@ -205,6 +205,7 @@ hack_artifacts()
 	artilist[ART_LLLLLLLLLLLLLM].otyp = randarthelm();
 	artilist[ART_ARABELLA_S_GREAT_BANISHER].otyp = randartgloves();
 	artilist[ART_NO_FUTURE_BUT_AGONY].otyp = randartshield();
+	artilist[ART_THERMO_NUCLEAR_CHAMBER].otyp = randartshield();
 	artilist[ART_BONUS_HOLD].otyp = randartshield();
 	artilist[ART_GREXIT_IS_NEAR].otyp = randartshield();
 	artilist[ART_REAL_MEN_WEAR_PSYCHOS].otyp = randartshield();
@@ -354,6 +355,7 @@ hack_artifacts()
 	artilist[ART_TANKS_A_LOT].otyp = randartglovesX();
 	artilist[ART_DIMVISION].otyp = randartglovesX();
 	artilist[ART_I_M_GETTING_HUNGRY].otyp = randartshieldX();
+	artilist[ART_SUPER_ENERGY_LINES].otyp = randartshieldX();
 	artilist[ART_CCC_CCC_CCCCCCC].otyp = randartshieldX();
 	artilist[ART_FIVE_STAR_PARTY].otyp = randartshieldX();
 	artilist[ART_GUDRUN_S_STOMPING].otyp = randartbootsX();

@@ -630,6 +630,13 @@ register struct monst *mtmp;
 
 	}
 
+	if (uwep && uwep->oartifact == ART_TEH_HUNK && !uwep->lamplit && tmp > 0) tmp += 5;
+
+	if (u.twoweap && uwep && uswapwep && uswapwep->oartifact == ART_TEH_HUNK && (is_launcher(uwep) && !(uwep->otyp == LASERXBOW && uwep->lamplit))) tmp += 5;
+	if (u.twoweap && uwep && uswapwep && uswapwep->oartifact == ART_TEH_HUNK && (is_missile(uwep) || is_ammo(uwep))) tmp += 5;
+	if (u.twoweap && uwep && uswapwep && uswapwep->oartifact == ART_TEH_HUNK && (!u.usteed && !(tech_inuse(T_POLE_MELEE)) && is_pole(uwep))) tmp += 5;
+	if (u.twoweap && uwep && uswapwep && uswapwep->oartifact == ART_TEH_HUNK && (uwep->oclass != WEAPON_CLASS && !is_weptool(uwep) && uwep->oclass != GEM_CLASS && uwep->oclass != BALL_CLASS && uwep->oclass != CHAIN_CLASS)) tmp += 5;
+
 	if( (Role_if(PM_JEDI) || Race_if(PM_BORG)) && !Upolyd) {
 		if (((uwep && is_lightsaber(uwep) && uwep->lamplit) ||
 		    (uswapwep && u.twoweap && is_lightsaber(uswapwep) && uswapwep->lamplit)) &&
@@ -1694,6 +1701,7 @@ int dieroll;
 			if (obj && obj->spe > 0) tmp += obj->spe;
 
 			if (obj && obj->oartifact == ART_BASHCRASH && tmp > 0) tmp *= 2;
+			if (obj && obj->oartifact == ART_TEH_HUNK && !obj->lamplit && tmp > 0) tmp += 5;
 			if (obj && obj->oartifact == ART_GAYGUN && (u.homosexual == 1)) tmp += 5;
 
 			valid_weapon_attack = (tmp > 0);

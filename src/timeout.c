@@ -4387,32 +4387,37 @@ long timeout;
 
 		lightsaberchance = 0;
 		lightsaberchance2 = 0;
+		boolean willdrainenergy = TRUE;
+
+		if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER && rn2(3)) willdrainenergy = FALSE;
+		if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES && rn2(2)) willdrainenergy = FALSE;
 
 		if (tech_inuse(T_PIRATE_BROTHERING) && uwep && is_lightsaber(uwep) && uswapwep && weapon_type(uswapwep) == P_SCIMITAR && u.twoweap) {
-			; /* do nothing */
-		} else {
-			if (!PlayerCannotUseSkills && tech_inuse(T_ENERGY_CONSERVATION) && obj && is_lightsaber(obj)) {
-				switch (P_SKILL(P_MAKASHI)) {
-					case P_BASIC: lightsaberchance = 1; break;
-					case P_SKILLED: lightsaberchance = 3; break;
-					case P_EXPERT: lightsaberchance = 4; break;
-					case P_MASTER: lightsaberchance = 5; break;
-					case P_GRAND_MASTER: lightsaberchance = 7; break;
-					case P_SUPREME_MASTER: lightsaberchance = 8; break;
-				}
-			}
-			if (!PlayerCannotUseSkills && obj && obj->oartifact == ART_SERIALSABER) {
-				switch (P_SKILL(P_MAKASHI)) {
-					case P_BASIC: lightsaberchance2 = 1; break;
-					case P_SKILLED: lightsaberchance2 = 3; break;
-					case P_EXPERT: lightsaberchance2 = 4; break;
-					case P_MASTER: lightsaberchance2 = 5; break;
-					case P_GRAND_MASTER: lightsaberchance2 = 7; break;
-					case P_SUPREME_MASTER: lightsaberchance2 = 8; break;
-				}
-			}
-			if ((rnd(10) > lightsaberchance) && (rnd(10) > lightsaberchance2)) obj->age -= how_long;
+			willdrainenergy = FALSE; /* do nothing */
 		}
+
+		if (!PlayerCannotUseSkills && tech_inuse(T_ENERGY_CONSERVATION) && obj && is_lightsaber(obj)) {
+			switch (P_SKILL(P_MAKASHI)) {
+				case P_BASIC: lightsaberchance = 1; break;
+				case P_SKILLED: lightsaberchance = 3; break;
+				case P_EXPERT: lightsaberchance = 4; break;
+				case P_MASTER: lightsaberchance = 5; break;
+				case P_GRAND_MASTER: lightsaberchance = 7; break;
+				case P_SUPREME_MASTER: lightsaberchance = 8; break;
+			}
+		}
+		if (!PlayerCannotUseSkills && obj && obj->oartifact == ART_SERIALSABER) {
+			switch (P_SKILL(P_MAKASHI)) {
+				case P_BASIC: lightsaberchance2 = 1; break;
+				case P_SKILLED: lightsaberchance2 = 3; break;
+				case P_EXPERT: lightsaberchance2 = 4; break;
+				case P_MASTER: lightsaberchance2 = 5; break;
+				case P_GRAND_MASTER: lightsaberchance2 = 7; break;
+				case P_SUPREME_MASTER: lightsaberchance2 = 8; break;
+			}
+		}
+		if (willdrainenergy && (rnd(10) > lightsaberchance) && (rnd(10) > lightsaberchance2)) obj->age -= how_long;
+
 		begin_burn(obj, TRUE);
 	    }
 	    return;
@@ -4836,6 +4841,11 @@ begin_burn(obj, already_lit)
 		obj->altmode = TRUE;
 	    	if (obj->altmode && obj->age > 1) {
 
+			boolean willdrainenergy = TRUE;
+
+			if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER && rn2(3)) willdrainenergy = FALSE;
+			if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES && rn2(2)) willdrainenergy = FALSE;
+
 			if (!PlayerCannotUseSkills && tech_inuse(T_ENERGY_CONSERVATION)) {
 				switch (P_SKILL(P_MAKASHI)) {
 					case P_BASIC: lightsaberchance = 1; break;
@@ -4856,7 +4866,7 @@ begin_burn(obj, already_lit)
 					case P_SUPREME_MASTER: lightsaberchance2 = 8; break;
 				}
 			}
-			if ((rnd(10) > lightsaberchance) && (rnd(10) > lightsaberchance2)) obj->age--; /* Double power usage */
+			if (willdrainenergy && (rnd(10) > lightsaberchance) && (rnd(10) > lightsaberchance2)) obj->age--; /* Double power usage */
 
 		}
 	    	turns = 1;
@@ -4871,6 +4881,14 @@ begin_burn(obj, already_lit)
 	    case LASERXBOW:
 	    case SITH_STAFF:
 	    case WHITE_DOUBLE_LIGHTSABER:
+
+	    {
+
+		boolean willdrainenergy = TRUE;
+
+		if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER && rn2(3)) willdrainenergy = FALSE;
+		if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES && rn2(2)) willdrainenergy = FALSE;
+
 		lightsaberchance = 0;
 	    	if (obj->altmode && obj->age > 1) {
 			if (!PlayerCannotUseSkills && tech_inuse(T_ENERGY_CONSERVATION)) {
@@ -4893,8 +4911,9 @@ begin_burn(obj, already_lit)
 					case P_SUPREME_MASTER: lightsaberchance2 = 8; break;
 				}
 			}
-			if ((rnd(10) > lightsaberchance) && (rnd(10) > lightsaberchance2)) obj->age--; /* Double power usage */
+			if (willdrainenergy && (rnd(10) > lightsaberchance) && (rnd(10) > lightsaberchance2)) obj->age--; /* Double power usage */
 		}
+	    }
 	    case RED_LIGHTSABER:
 	    case LASER_SWATTER:
 	    case LASER_SWORD:
@@ -4982,6 +5001,15 @@ begin_burn(obj, already_lit)
 		obj->lamplit = 1;
 		if (obj->otyp == LASER_POLE) obj->altmode = 1;
 		lightsaberchance = 0;
+
+		boolean willdrainenergy = TRUE;
+
+		if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER && rn2(3)) willdrainenergy = FALSE;
+		if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES && rn2(2)) willdrainenergy = FALSE;
+		if (tech_inuse(T_PIRATE_BROTHERING) && uwep && is_lightsaber(uwep) && uswapwep && weapon_type(uswapwep) == P_SCIMITAR && u.twoweap) {
+			willdrainenergy = FALSE;
+		}
+
 		if (!PlayerCannotUseSkills && tech_inuse(T_ENERGY_CONSERVATION) && obj && is_lightsaber(obj)) {
 			switch (P_SKILL(P_MAKASHI)) {
 				case P_BASIC: lightsaberchance = 1; break;
@@ -5002,9 +5030,8 @@ begin_burn(obj, already_lit)
 				case P_SUPREME_MASTER: lightsaberchance2 = 8; break;
 			}
 		}
-		if (tech_inuse(T_PIRATE_BROTHERING) && uwep && is_lightsaber(uwep) && uswapwep && weapon_type(uswapwep) == P_SCIMITAR && u.twoweap) lightsaberchance = 9999; /* don't lose lightsaber energy */
 
-		if ((rnd(10) > lightsaberchance) && (rnd(10) > lightsaberchance2)) obj->age -= turns;
+		if (willdrainenergy && (rnd(10) > lightsaberchance) && (rnd(10) > lightsaberchance2)) obj->age -= turns;
 		if (carried(obj) && !already_lit)
 		    update_inventory();
 	    } else {

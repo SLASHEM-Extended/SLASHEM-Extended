@@ -5592,6 +5592,8 @@ find_ac()
 	if (Race_if(PM_INHERITOR)) uac += 5;
 	if (RngeDnethack) uac += 5;
 	if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) uac += 5;
+	if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER) uac += 10;
+	if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES) uac += 10;
 
 	if (uarm && uarm->oartifact == ART_PROTECTION_WITH_A_PRICE) uac -= 5;
 	if (uarm && uarm->oartifact == ART_GRANDMASTER_S_ROBE) uac -= 5;

@@ -27295,6 +27295,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Gregor'. It reads: 'I make everything finished!'",
 	"Incoming message for Player 1. The message is from 'Till'. It reads: 'You grabbed hold of my weapons! I gotta get them back!'",
 	"Incoming message for Player 1. The message is from 'Tomas'. It reads: 'Shit! You cock-dick trespassed the deeper levels!'",
+	"Your inventory is gone.",
+	"Your inventory is gone. This is the effect when someone reads the scroll 'Huro Haehae', which transforms each of your items or item stacks to a randomly generated monster and then teleports said monster to another dungeon level, so you'll never get them back.",
 
 };
 

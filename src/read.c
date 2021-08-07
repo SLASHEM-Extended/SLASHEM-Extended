@@ -9937,6 +9937,26 @@ newbossC:
 
 	case SCR_OFFLEVEL_ITEM:
 		known = TRUE;
+
+		if (sobj->oartifact == ART_HURO_HAEHAE) {
+
+			int mattries = 0;
+
+			register struct monst *offmon;
+			while ((inv_cnt() > 0) && mattries++ < 50000) {
+				if ((offmon = makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS)) != 0) {
+					char bufof[BUFSZ];
+					bufof[0] = '\0';
+					steal(offmon, bufof, TRUE, TRUE);
+					mdrop_special_objs(offmon); /* don't levelport ones that have the amulet! */
+					u_teleport_monB(offmon, FALSE);
+				}
+			}
+			Your("inventory is gone.");
+
+			break;
+		}
+
 		{
 			register struct monst *offmon;
 newoffmon:

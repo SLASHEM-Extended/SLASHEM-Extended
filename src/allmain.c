@@ -3451,6 +3451,10 @@ newbossBQ:
 			contaminate(rnd(10), FALSE);
 		}
 
+		if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER && !rn2(100)) {
+			contaminate(rnd(10), FALSE);
+		}
+
 		if (uwep && uwep->oartifact == ART_ARABELLA_S_BLACK_PRONG && !rn2(100)) {
 			contaminate(rnd(10), FALSE);
 		}
@@ -5668,6 +5672,28 @@ controlagain:
 		}
 
 		if (Race_if(PM_BULDOZGAR) && !rn2(100)) wake_nearby();
+
+		if (uarm && uarm->oartifact == ART_FLOCKDOWN) {
+			if (levl[u.ux][u.uy].typ == ROOM || levl[u.ux][u.uy].typ == CORR) {
+				levl[u.ux][u.uy].typ = SNOW;
+			}
+		}
+
+		if (uarmf && uarmf->oartifact == ART_SARAH_S_SNEAKERS_OF_INSTAN && !rn2(5000)) {
+			register struct monst *offmon;
+			struct obj *sarahfootwear;
+			int mattries = 0;
+			while (uarmf && mattries++ < 50000) {
+				if ((offmon = makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS)) != 0) {
+					sarahfootwear = uarmf;
+					setnotworn(sarahfootwear);
+					freeinv(sarahfootwear);
+					(void) mpickobj(offmon, sarahfootwear, FALSE);
+					/* there is no message when they get stolen, this is not a bug --Amy */
+					u_teleport_monB(offmon, FALSE);
+				}
+			}
+		}
 
 		if (Role_if(PM_FEMINIST) && u.ualign.record < 0 && !rn2(StrongStealth ? 100000 : Stealth ? 50000 : 5000)) {
 		/* feminist aggravation idea by bugsniper */

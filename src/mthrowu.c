@@ -262,6 +262,9 @@ const char *name;	/* if null, then format `obj' */
 
 		if (Role_if(PM_DANCER)) shieldblockrate /= 2;
 
+		if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER) shieldblockrate = 0;
+		if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES) shieldblockrate = 0;
+
 		if (shieldblockrate < 0) shieldblockrate = 0;
 
 		/* If you're berserk, you cannot block at all. We will still show your actual chance to block in enlightenment,

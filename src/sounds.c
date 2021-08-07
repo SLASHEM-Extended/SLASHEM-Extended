@@ -4294,7 +4294,7 @@ dochat()
 
 	}
 
-	if ((Role_if(PM_PROSTITUTE) || Role_if(PM_KURWA)) && humanoid(mtmp->data) ) {
+	if ((Role_if(PM_PROSTITUTE) || Role_if(PM_KURWA) || (uwep && uwep->oartifact == ART_SEXCALIBUR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SEXCALIBUR)) && humanoid(mtmp->data) ) {
 
 		if (!(mtmp->mtame)) {
 

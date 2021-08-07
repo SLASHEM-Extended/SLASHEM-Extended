@@ -21323,6 +21323,24 @@ boolean knoweverything;
 					pline("Artifact specs: acts as a luckstone and grants +5 luck when wielded."); break;
 				case ART_AMATEURHOUR_S_SIGH:
 					pline("Artifact specs: +5 luck and fallout effect when carried. Sorry amateurhour, but your downsideless artifact is in another castle."); break;
+				case ART_HURO_HAEHAE:
+					pline("Artifact specs: transfers your entire inventory to a bunch of random monsters, which are then teleported to other dungeon levels. This also applies if someone other than you reads this scroll."); break;
+				case ART_TEH_HUNK:
+					pline("Artifact specs: if it's unlit, it deals +5 damage and has +5 to-hit. Also, if you are dual-wielding with this weapon in your alternate slot and your primary weapon is a launcher, lightsaber that is not lit, non-ridden polearm or non-weapon, that one gets +5 to-hit as well."); break;
+				case ART_THERMO_NUCLEAR_CHAMBER:
+					pline("Artifact specs: causes etherwind when equipped, reduces lightsaber energy consumption rate to one third the usual rate, reduces your AC by 10 points and cannot block projectiles."); break;
+				case ART_SUPER_ENERGY_LINES:
+					pline("Artifact specs: reduces lightsaber energy consumption rate to half the usual rate, reduces your AC by 10 points and cannot block projectiles."); break;
+				case ART_SARAH_S_SNEAKERS_OF_INSTAN:
+					pline("Artifact specs: resist cold, shock and confusion when worn, but occasionally they... well, 'disappear' and you'll probably not find them again, causing you to feel very sad because they're such a beautiful pair of female sneakers and you don't want to lose them."); break;
+				case ART_LAMERANG:
+					pline("Artifact specs: +20 damage."); break;
+				case ART_SEXCALIBUR:
+					pline("Artifact specs: +5 to-hit and +10 damage, searching and drain resistance when wielded, changes the effect of the #chat command so that using it on an intelligent humanoid monster causes you to have sex with it."); break;
+				case ART_SLEXCALIBUR:
+					pline("Artifact specs: +5 to-hit and +10 damage, searching and drain resistance when wielded, all monsters without specific origin flags have +5 spawn frequency."); break;
+				case ART_FLOCKDOWN:
+					pline("Artifact specs: walking over regular floor while wearing it will transform the terrain into snow. This artifact was suggested by Amy's bundleroommate <3."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

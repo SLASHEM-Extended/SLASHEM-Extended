@@ -25561,6 +25561,8 @@ loopback:
 		if (ct > 0 && (Race_if(PM_PERVERT) && dmgtype(ptr, AD_DROP) )) ct += 2;
 		if (ct > 0 && (Race_if(PM_TUMBLRER) && dmgtype(ptr, AD_DROP) )) ct += 10;
 		if (ct > 0 && (Race_if(PM_WOOKIE) && dmgtype(ptr, AD_DROP) )) ct += 2;
+		if (ct > 0 && (uwep && uwep->oartifact == ART_SLEXCALIBUR && (ptr->mflags5 == 0) )) ct += 5;
+		if (ct > 0 && (u.twoweap && uswapwep && uswapwep->oartifact == ART_SLEXCALIBUR && (ptr->mflags5 == 0) )) ct += 5;
 
 		if (ct > 0 && (uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (ptr->msound == MS_STENCH))) ct += 10;
 		if (ct > 0 && (FemtrapActiveAnna && (ptr->msound == MS_STENCH))) ct += 50;
@@ -26811,6 +26813,8 @@ int     spc;
 		if ((Race_if(PM_PERVERT) && dmgtype(&mons[last], AD_DROP) )) num += 2;
 		if ((Race_if(PM_TUMBLRER) && dmgtype(&mons[last], AD_DROP) )) num += 10;
 		if ((Race_if(PM_WOOKIE) && dmgtype(&mons[last], AD_DROP) )) num += 2;
+		if ((uwep && uwep->oartifact == ART_SLEXCALIBUR && (&mons[last].mflags5 == 0) )) num += 5;
+		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_SLEXCALIBUR && (&mons[last].mflags5 == 0) )) num += 5;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[last].msound == MS_STENCH))) num += 10;
 		if ((FemtrapActiveAnna && (mons[last].msound == MS_STENCH))) num += 50;
@@ -27736,6 +27740,8 @@ int     spc;
 		if ((Race_if(PM_PERVERT) && dmgtype(&mons[first], AD_DROP) )) num -= 2;
 		if ((Race_if(PM_TUMBLRER) && dmgtype(&mons[first], AD_DROP) )) num -= 10;
 		if ((Race_if(PM_WOOKIE) && dmgtype(&mons[first], AD_DROP) )) num -= 2;
+		if ((uwep && uwep->oartifact == ART_SLEXCALIBUR && (&mons[first].mflags5 == 0) )) num -= 5;
+		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_SLEXCALIBUR && (&mons[first].mflags5 == 0) )) num -= 5;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[first].msound == MS_STENCH))) num -= 10;
 		if ((FemtrapActiveAnna && (mons[first].msound == MS_STENCH))) num -= 50;

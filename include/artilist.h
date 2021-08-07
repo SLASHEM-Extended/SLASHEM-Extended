@@ -8489,6 +8489,43 @@ A("Amateurhour's Sigh",				LUCKSTONE, /* +5 luck and fallout effect when carried
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
+A("Huro Haehae",				SCR_OFFLEVEL_ITEM, /* creates a monster for each of your items and levelports it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Teh-Hunk",				YELLOW_LIGHTSABER, /* +5 bashing damage and +5 to-hit when unlit; if you're dual-wielding and this weapon is in your off-hand and your primary weapon is a launcher, non-ridden pole, lightsaber or non-weapon, it also gets +5 to-hit */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Thermo Nuclear Chamber",				SHIELD, /* randart, fallout, lightsabers drain energy at one third of the usual rate, makes your AC worse by 10 points and cannot block */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Super Energy Lines",				SHIELD, /* randart2, lightsabers drain energy at half of the usual rate, makes your AC worse by 10 points and cannot block */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Sarah's Sneakers of Instant Sadness",				SOFT_SNEAKERS, /* resist cold, shock and confusion, but 1 in 5000 chance that they are transferred to a randomly generated monster and levelported away */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Lamerang",				BOOMERANG,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Sexcalibur",				ROSE_WHIP, /* chatting causes you to have sex, like a kurwa */
+	(SPFX_RESTR|SPFX_SEEK|SPFX_DEFN|SPFX_INTEL|SPFX_SEARCH),0,0,
+	PHYS(5,10),	DRLI(0,0),	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Slexcalibur",				TIN_OPENER, /* monsters that have no M5 flags for their origin have +5 spawn freq */
+	(SPFX_RESTR|SPFX_SEEK|SPFX_DEFN|SPFX_INTEL|SPFX_SEARCH),0,0,
+	PHYS(5,10),	DRLI(0,0),	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Flockdown",				WHITE_DRAGON_SCALES, /* by Amy's roommate, transforms terrain you walk over into snow */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.
