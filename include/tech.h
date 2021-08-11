@@ -286,10 +286,14 @@ struct blitz_tab {
 #define T_VENOM_MIXING	211
 #define T_JAVELIN_FORGING	212
 
-#define T_JEDI_JUMP	213
-#define T_CHARGE_SABER	214
-#define T_TELEKINESIS	215
+#define T_CORONATION_CULMINATION	213
+#define T_RESTORE_LIFE_LEVELS	214
+#define T_MAKE_A_WISH	215
+
+#define T_JEDI_JUMP	216
+#define T_CHARGE_SABER	217
+#define T_TELEKINESIS	218
  
-#define MAXTECH 216
+#define MAXTECH 219
 
 #endif /* TECH_H */

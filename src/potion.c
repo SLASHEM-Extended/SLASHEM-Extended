@@ -4709,6 +4709,12 @@ newoffmonX:
 
 }
 
+void
+goodeffect()
+{
+	/* todo */
+}
+
 /* hybridragon race by rikersan: cannot be resistant to its own breath */
 boolean
 hybridragontype(attacktype)

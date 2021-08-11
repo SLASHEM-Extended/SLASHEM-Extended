@@ -959,6 +959,7 @@ gcrownu()
     u.weapon_slots += 5;
     godvoice(u.ualign.type, (char *)0);
     u.coronations++;
+    	learntech_or_leveltech(T_CORONATION_CULMINATION, FROMOUTSIDE, 1);
 
     obj = ok_wep(uwep) ? uwep : 0;
     already_exists = in_hand = FALSE;	/* lint suppression */

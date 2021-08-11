@@ -7248,6 +7248,12 @@ newbossA:
 			pline("The nether mist dissipates.");
 			u.cnd_nethermistremoved++;
 			newsym(mtmp->mx, mtmp->my);
+
+			if ((u.cnd_nethermistremoved % 20) == 0) {
+			    	learntech_or_leveltech(T_RESTORE_LIFE_LEVELS, FROMOUTSIDE, 1);
+				pline("As a reward for dissipating so many nether mist tiles, you learn how to restore your life levels!");
+			}
+
 		}
 	}
 

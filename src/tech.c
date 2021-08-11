@@ -257,6 +257,9 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"lighter balls",
 	"venom mixing",
 	"javelin forging",
+	"coronation/culmination",
+	"restore life levels",
+	"make a wish",
 	"jedi jump",
 	"charge saber",
 	"telekinesis",
@@ -3415,6 +3418,18 @@ dotech()
 
 		case T_VENOM_MIXING:
 			pline("An arcane technique that allows you to create venom out of thin air.");
+			break;
+
+		case T_CORONATION_CULMINATION:
+			pline("Infects you with covid-19 and gives a random good effect when used.");
+			break;
+
+		case T_RESTORE_LIFE_LEVELS:
+			pline("When using this technique after you got your levels drained, they will be restored. No effect if your level wasn't drained.");
+			break;
+
+		case T_MAKE_A_WISH:
+			pline("Using this technique requires you to guess an item. If you guess correctly, you get the item in question, otherwise you're forced to equip a bad item.");
 			break;
 
 		case T_POLE_MELEE:
@@ -8806,6 +8821,94 @@ repairitemchoice:
 			if (FunnyHallu) pline("Shame, now no girl will want to kick them because it wouldn't hurt you anymore.");
 
 		      t_timeout = rnz(50000);
+			break;
+
+		case T_CORONATION_CULMINATION:
+			nivellate();
+			goodeffect();
+		      t_timeout = rnz(15000);
+			break;
+
+		case T_RESTORE_LIFE_LEVELS:
+
+			if (u.ulevel < u.ulevelmax) {
+				int attempts = 0;
+				while ((u.ulevel < u.ulevelmax) && (attempts++ < 10000)) {
+					gainlevelmaybe();
+				}
+				Your("level has been restored.");
+			} else {
+				pline("Whoops! Apparently your experience level hasn't been drained, and therefore it can't be restored to its previous value either. Too bad.");
+			}
+
+		      t_timeout = rnz(20000);
+			break;
+
+		case T_MAKE_A_WISH:
+
+			{
+				struct obj *uammo;
+				struct obj *yourobj;
+				uammo = mkobj(RANDOM_CLASS, TRUE, FALSE);
+				char buf[BUFSZ];
+				int attempts;
+				long oldgold;
+
+				if (!uammo) {
+					pline("Something must have gone wrong. Sorry!");
+				      t_timeout = rnz(100000);
+					break;
+				}
+
+				You("have to take a guess! What's the item that was generated?");
+
+				for (attempts = 0; attempts <= 5; attempts++) {
+
+					if (attempts >= 5) {
+						pline("%s", thats_enough_tries);
+						goto mkwsh_end;
+					}
+
+					getlin("Your guess:", buf);
+
+					if (buf[0] == 0) continue;
+					oldgold = u.ugold;
+					yourobj = readobjnam(buf, (struct obj *)0, TRUE, FALSE);
+					if (u.ugold != oldgold) {
+pline("Don't you date cheat me again! -- Your fault!");
+						/* Make them pay */
+						u.ugold = oldgold / 2;
+						continue;
+					}
+					if (yourobj == &zeroobj || yourobj == (struct obj *) 0) {
+						pline("That doesn't exist.");
+						continue;
+					}
+
+					if (yourobj && (yourobj->otyp == uammo->otyp)) {
+						uammo->owt = weight(uammo);
+						dropy(uammo);
+						stackobj(uammo);
+						pline("Yes!!! You successfully guessed the object! It can now be found on the ground.");
+						break;
+					} else if (yourobj && (yourobj->oclass == uammo->oclass)) {
+						bad_artifact();
+						pline("Sorry, you had the right item class but not the right type. The item we were looking for was %s.", xname(uammo));
+						delobj(uammo);
+						break;
+
+					} else {
+						bad_equipment(0);
+						pline("Sorry, your guess was completely wrong. The item we were looking for was %s.", xname(uammo));
+						delobj(uammo);
+						break;
+					}
+
+				}
+
+			}
+mkwsh_end:
+		      t_timeout = rnz(100000);
 			break;
 
 		case T_VENOM_MIXING:

@@ -427,6 +427,11 @@ drinkfountain()
 			break;
 
 		case 23: /* Water demon */
+			if (!rn2(500) && u.ulevel >= 7) {
+				You("learn the secret wishing technique!");
+			    	learntech_or_leveltech(T_MAKE_A_WISH, FROMOUTSIDE, 1);
+				break;
+			}
 			if (uarmc && uarmc->oartifact == ART_JANA_S_ROULETTE_OF_LIFE && !rn2(10)) {
 				pline("Booyah, luck is smiling on you!");
 				if (!rn2(4)) makewish(evilfriday ? FALSE : TRUE);
