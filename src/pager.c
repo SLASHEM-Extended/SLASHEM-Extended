@@ -4535,6 +4535,8 @@ static NEARDATA const char * const longinglines[] = {
 "Being stomped by %s's female roller blades would feel super painful and exciting!",
 "%s's lady boots have metallic spikes, which can dig into your skin in a very wonderful way!",
 "You want your eventual epitaph to read 'killed by %s's beautiful high heels'.",
+"You want %s to act like a virgin when she's on the toilet.",
+"%s's wooden sandals can slam into your legs so beautifully that you just can't resist!",
 };
 
 static NEARDATA const char * const soviettaunts[] = {
@@ -5464,6 +5466,10 @@ static NEARDATA const char * const noroelabuying[] = {
 "The government can bite me, no shop is closed for me. After all, that practicant gave me so much money, I just had to go out there and get %s.",
 "The punishment that you got for not wearing your corona mask in the lab? Well, I used that money to buy %s for myself.",
 "Just visited the best shop in existence! They had %s for sale, and I just had to get it!",
+"The salesperson of that shop was actually on a strike, but when they heard that I'd spend thousands of zorkmids for %s, they changed their mind.",
+"Good thing I'm vaccinated against covid-19, so I could enter the shop and buy %s from my big amount of practicant money.",
+"All the non-vaccinated people envied me when they saw me enter the big department store, and even more so when I came back out with my %s trophy.",
+"That practicant will never be able to buy %s, because they're not a valuable member of society, unlike me. I just bought one.",
 };
 
 static NEARDATA const char * const bosstaunts[] = {
@@ -6036,6 +6042,14 @@ static NEARDATA const char * const bosstaunts[] = {
 "sneers: 'Isn't that weapon skill of yours a bit low? You should use some other weapon because with the current one you won't even dent me!'",
 "laughs: 'Your AC is too bad and therefore all of my attacks will autohit you. There's no way for you to survive this encounter.'",
 "snickers: 'Your maximum hit points are woefully sad! How did you even manage to get this far? Well, nothing for it, I'll just off you and then you can roll a new, better character.'",
+"announces: 'I'm gonna rape you, bitch.'",
+"pulls a phallus-shaped object from underneath his trousers and suspiciously eyes the orifice between your legs!",
+"barks: 'I'm a master thief. The first thing I'm gonna steal is your virginity, by using my penis.'",
+"shouts: 'You're a pariah now! You've been expelled from the community and everyone is going to attack you on sight!'",
+"is actually the administrator of this server, and suddenly has random mood swings and decides to erase your save with no confirmation.",
+"has decided that the game you're playing is too offensive to be hosted on a public server, and deletes it, along with your current savegame file.",
+"screams 'Antivaxxer! I'm gonna make sure you'll never endanger anyone with your covid spread again!'",
+"announces: 'I know you don't want to be vaccinated, but I just decided to forcibly vaccinate you. Either you allow me to use this syringe on you now, or I'll beat you into submission and then jam the needle into your arm anyway.'",
 
 };
 
@@ -27297,6 +27311,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Tomas'. It reads: 'Shit! You cock-dick trespassed the deeper levels!'",
 	"Your inventory is gone.",
 	"Your inventory is gone. This is the effect when someone reads the scroll 'Huro Haehae', which transforms each of your items or item stacks to a randomly generated monster and then teleports said monster to another dungeon level, so you'll never get them back.",
+	"You see a rothe blow by in the wind.",
 
 };
 
