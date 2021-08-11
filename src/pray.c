@@ -958,6 +958,7 @@ gcrownu()
     HPoison_resistance |= FROMOUTSIDE;
     u.weapon_slots += 5;
     godvoice(u.ualign.type, (char *)0);
+    u.coronations++;
 
     obj = ok_wep(uwep) ? uwep : 0;
     already_exists = in_hand = FALSE;	/* lint suppression */
@@ -1594,7 +1595,7 @@ pleased(g_align)
 	case 7:
 	case 8:
 	case 9:		/* KMH -- can occur during full moons */
-	    if (u.ualign.record >= PIOUS && !u.uevent.uhand_of_elbereth) {
+	    if (u.ualign.record >= PIOUS && (!u.uevent.uhand_of_elbereth || !rn2(3)) ) {
 		gcrownu();
 		break;
 	    } /* else FALLTHRU */
@@ -1654,7 +1655,9 @@ pleased(g_align)
 setprayertimeout:
 	if (!((uarmc && itemhasappearance(uarmc, APP_STORM_COAT)) && !rn2(2))) u.ublesscnt += rnz(ishaxor ? 175 : 350);
 	kick_on_butt = (u.uevent.udemigod && !u.freeplaymode && u.amuletcompletelyimbued) ? 1 : 0;
-	if (u.uevent.uhand_of_elbereth) kick_on_butt++;
+	if (u.uevent.uhand_of_elbereth) {
+		kick_on_butt += u.coronations;
+	}
 	if (kick_on_butt) u.ublesscnt += kick_on_butt * rnz(ishaxor ? 500 : 1000);
 	if (uimplant && uimplant->oartifact == ART_CORONATION_CULMINATION) u.ublesscnt += rnz(ishaxor ? 500 : 1000);
 

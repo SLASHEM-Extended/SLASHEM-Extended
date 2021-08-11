@@ -644,6 +644,8 @@ struct you {
 	int greencrosschance;
 	boolean greencrossopen;
 
+	int coronations;	/* how often have you been crowned? */
+
 	int musableremovechance;	/* extra chance for musable items to get removed */
 	int equipmentremovechance;
 
