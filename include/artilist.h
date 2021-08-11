@@ -8513,7 +8513,7 @@ A("Lamerang",				BOOMERANG,
 	(SPFX_RESTR), 0, 0,
 	PHYS(0, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
-A("Sexcalibur",				ROSE_WHIP, /* chatting causes you to have sex, like a kurwa */
+A("Sexcalibur",				ROSE_WHIP, /* chatting causes you to have sex, like a kurwa, heavily autocurses (note that it is not a bug that this particular artifact doesn't have the evil flag) */
 	(SPFX_RESTR|SPFX_SEEK|SPFX_DEFN|SPFX_INTEL|SPFX_SEARCH),0,0,
 	PHYS(5,10),	DRLI(0,0),	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 4000L ),
 

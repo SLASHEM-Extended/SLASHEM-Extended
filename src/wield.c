@@ -140,6 +140,12 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		pline("A terrible black aura surrounds your sickle...");
 	}
 
+	if (uwep && uwep->oartifact == ART_SEXCALIBUR && !uwep->hvycurse) {
+		curse(uwep);
+		uwep->hvycurse = 1;
+		pline("A terrible black aura surrounds your whip...");
+	}
+
 	if (uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && !uwep->cursed) {
 		curse(uwep);
 	}
@@ -288,6 +294,12 @@ swapweaponchoice:
 			curse(uswapwep);
 			uswapwep->hvycurse = 1;
 			pline("A terrible black aura surrounds your sickle...");
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_SEXCALIBUR && !uswapwep->hvycurse) {
+			curse(uswapwep);
+			uswapwep->hvycurse = 1;
+			pline("A terrible black aura surrounds your whip...");
 		}
 
 		if (uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && !uswapwep->cursed) {

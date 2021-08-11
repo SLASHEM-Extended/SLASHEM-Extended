@@ -21336,7 +21336,7 @@ boolean knoweverything;
 				case ART_LAMERANG:
 					pline("Artifact specs: +20 damage."); break;
 				case ART_SEXCALIBUR:
-					pline("Artifact specs: +5 to-hit and +10 damage, searching and drain resistance when wielded, changes the effect of the #chat command so that using it on an intelligent humanoid monster causes you to have sex with it."); break;
+					pline("Artifact specs: +5 to-hit and +10 damage, searching and drain resistance when wielded, changes the effect of the #chat command so that using it on an intelligent humanoid monster causes you to have sex with it. This weapon heavily autocurses when wielded, so be careful."); break;
 				case ART_SLEXCALIBUR:
 					pline("Artifact specs: +5 to-hit and +10 damage, searching and drain resistance when wielded, all monsters without specific origin flags have +5 spawn frequency."); break;
 				case ART_FLOCKDOWN:
