@@ -384,6 +384,8 @@ struct monst {
 
 	Bitfield(egotype_datadeleter,1); /* AD_DATA */
 
+	Bitfield(egotype_amberite,1); /* M4_AMBERITE */
+
 	Bitfield(nurse_extrahealth,1); /* to control which services a nurse will offer */
 	Bitfield(nurse_decontaminate,1);
 	Bitfield(nurse_healing,1);

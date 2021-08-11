@@ -22778,6 +22778,10 @@ register int	mmflags;
 			mtmp->isegotype = 1;
 			mtmp->egotype_maecke = TRUE;
 		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_amberite = TRUE;
+		}
 
 	}
 

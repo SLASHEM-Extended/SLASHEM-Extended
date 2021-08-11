@@ -377,6 +377,7 @@
 
 #define is_rat(ptr)		((ptr)->mflags4 & M4_RAT)
 #define is_reflector(ptr)	((ptr)->mflags4 & M4_REFLECT)
+#define is_amberite(ptr)	((ptr)->mflags4 & M4_AMBERITE)
 
 #define nonliving(ptr)		(is_golem(ptr) || is_undead(ptr) || \
 				 (ptr)->mlet == S_VORTEX || \

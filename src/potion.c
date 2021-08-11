@@ -7141,7 +7141,12 @@ register struct monst *mtmp;
 		case 128: mtmp->egotype_abomination = 1; break;
 		case 129: mtmp->egotype_gazer = 1; break;
 		case 130: mtmp->egotype_seducer = 1; break;
-		case 131: mtmp->egotype_flickerer = 1; break;
+		case 131:
+			if (rn2(10)) {
+				mtmp->egotype_flickerer = 1; break;
+			} else {
+				mtmp->egotype_amberite = 1; break;
+			}
 		case 132:
 		case 133: mtmp->egotype_hitter = 1; break;
 		case 134: mtmp->egotype_piercer = 1; break;

@@ -247,6 +247,7 @@
 #define M4_SHAPESHIFT	0x00000100L		/* chameleons and similar monsters */
 #define M4_GRIDBUG	0x00000200L		/* can only move in cardinal directions */
 #define M4_HUMANWERE	0x00000400L		/* for makedefs only - append HUMAN_ in front of werewolf name */
+#define M4_AMBERITE	0x00000800L		/* can use curse of amber, unkillable while the witch king lives */
 
 #define M5_SPACEWARS	0x00000001L		/* Castle of the Winds monster */
 #define M5_JOKE	0x00000002L		/* joke monster */

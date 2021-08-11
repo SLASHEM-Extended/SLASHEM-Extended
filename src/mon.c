@@ -3888,7 +3888,34 @@ struct monst *mtmp;
 	int visible;
 	struct obj *lifesave = mlifesaver(mtmp);
 
-	if (lifesave) {
+	if ((mtmp->egotype_amberite || is_amberite(mtmp->data)) && !mvitals[PM_THE_WITCH_KING_OF_ANGMAR].died) {
+		visible = u.uswallow && u.ustuck == mtmp || cansee(mtmp->mx, mtmp->my);
+		if (visible) {
+			pline("But wait...");
+			pline("%s is unkillable as long as the Witch-King of Angmar is still alive!", Monnam(mtmp));
+			if (attacktype(mtmp->data, AT_EXPL) || attacktype(mtmp->data, AT_BOOM))
+				pline("%s reconstitutes!", Monnam(mtmp));
+			else
+				pline("%s looks much better!", Monnam(mtmp));
+		}
+		mtmp->mcanmove = 1;
+		mtmp->masleep = 0;
+		mtmp->mfrozen = 0;
+		if (mtmp->mtame) { /* if tame (specifically), frenzy them, otherwise just turn them hostile --Amy */
+			mtmp->mtame = FALSE;
+			mtmp->mpeaceful = FALSE;
+			mtmp->mfrenzied = TRUE;
+		} else if (mtmp->mpeaceful) mtmp->mpeaceful = FALSE;
+		if (mtmp->mhpmax <= 0) mtmp->mhpmax = 10;
+		mtmp->mhp = mtmp->mhpmax;
+		if (mvitals[monsndx(mtmp->data)].mvflags & G_GENOD) {
+			if (visible)
+			    pline("Unfortunately %s is still genocided...",
+				mon_nam(mtmp));
+		} else
+			return;
+
+	} else if (lifesave) {
 		/* not canseemon; amulets are on the head, so you don't want */
 		/* to show this for a long worm with only a tail visible. */
 		/* Nor do you check invisibility, because glowing and disinte- */

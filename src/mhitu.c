@@ -4228,6 +4228,114 @@ elena37:
 
 	}
 
+	if (mtmp->egotype_amberite || is_amberite(mtmp->data)) {
+
+		if (!range2 && !rn2(20)) {
+			pline("%s afflicts you with the Curse of Amber!", Monnam(mtmp));
+
+			switch (rnd(27)) {
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+				case 5: /* aggravate monster */
+					You_feel("that monsters are aware of your presence.");
+					if (PlayerHearsSoundEffects) pline(issoviet ? "Dazhe sovetskaya Pyat' Lo obostryayetsya v vashem nizkom igrovom masterstve." : "Woaaaaaah!");
+					aggravate();
+					break;
+				case 6:
+				case 7:
+				case 8: /* summon nasties */
+					(void)nasty((struct monst *)0);
+					break;
+				case 9:
+				case 10:
+				case 11:
+				case 12: /* summon vortices */
+					if (Aggravate_monster) {
+						u.aggravation = 1;
+						reset_rndmonst(NON_PM);
+					}
+			 	    (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
+			 	    (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
+			 	    (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
+			 	    (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
+			 	    if (!rn2(2)) (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
+			 	    if (!rn2(5)) (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
+			 	    if (!rn2(12)) (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
+			 	    if (!rn2(27)) (void) makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
+					u.aggravation = 0;
+					break;
+				case 13:
+				case 14:
+				case 15: /* level drain */
+					if(!Drain_resistance || !rn2(StrongDrain_resistance ? 15 : 4) )
+					    losexp("amber drainage", FALSE, TRUE);
+					break;
+				case 16:
+				case 17:
+				case 18:
+				case 19:
+				case 20: /* paralysis: up to 3 turns with free action, up to 13 without */
+					You_feel("like a statue!");
+					if (StrongFree_action) nomul(-rnd(2), "paralyzed by the Curse of Amber", TRUE);
+					else if (Free_action) nomul(-rnd(3), "paralyzed by the Curse of Amber", TRUE);
+					else nomul(-rnd(13), "paralyzed by the Curse of Amber", TRUE);
+					break;
+				case 21:
+				case 22:
+				case 23: /* drain a random stat by 3 points */
+					(void) adjattrib(rn2(A_MAX), -3, FALSE, TRUE);
+					break;
+				case 24: /* amnesia, magnitude 1-3 */
+					forget(rnd(3));
+					break;
+				case 25: /* summon "cyberdemon" */
+					{
+					int attempts = 0;
+					register struct permonst *ptrZ;
+
+					if (Aggravate_monster) {
+						u.aggravation = 1;
+						reset_rndmonst(NON_PM);
+					}
+newboss:
+					do {
+
+						ptrZ = rndmonst();
+						attempts++;
+						if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+					} while ( (!ptrZ || (ptrZ && !(ptrZ->geno & G_UNIQ))) && attempts < 50000);
+
+					if (ptrZ && ptrZ->geno & G_UNIQ) {
+						if (wizard) pline("monster generation: %s", ptrZ->mname);
+						(void) makemon(ptrZ, u.ux, u.uy, NO_MM_FLAGS);
+					}
+					else if (rn2(50)) {
+						attempts = 0;
+						goto newboss;
+					}
+					pline("Boss monsters appear from nowhere!");
+
+					}
+					u.aggravation = 0;
+					break;
+				case 26:
+				case 27: /* drain random stats by one, 50% chance for each of being affected */
+					if (rn2(2)) (void) adjattrib(A_STR, -1, FALSE, TRUE);
+					if (rn2(2)) (void) adjattrib(A_INT, -1, FALSE, TRUE);
+					if (rn2(2)) (void) adjattrib(A_DEX, -1, FALSE, TRUE);
+					if (rn2(2)) (void) adjattrib(A_CHA, -1, FALSE, TRUE);
+					if (rn2(2)) (void) adjattrib(A_CON, -1, FALSE, TRUE);
+					if (rn2(2)) (void) adjattrib(A_WIS, -1, FALSE, TRUE);
+					break;
+			}
+
+		}
+
+	}
+
 	if (mtmp->egotype_trembler) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];

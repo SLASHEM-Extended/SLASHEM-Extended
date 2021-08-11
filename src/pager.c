@@ -2724,6 +2724,9 @@ get_flag_description_of_monster_type(struct permonst * ptr, char * description)
 	if (slime_on_touch(ptr)) {
 		strcat(description, " It can turn you to slime if you touch it.");
 	}
+	if (is_amberite(ptr)) {
+		strcat(description, " Is an amberite.");
+	}
 	if (eating_is_fatal(ptr)) {
 		strcat(description, " Eating its corpse is instantly fatal.");
 	}

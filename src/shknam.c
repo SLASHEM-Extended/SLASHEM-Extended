@@ -836,6 +836,10 @@ const char * const *nlp;
 			shk->isegotype = 1;
 			shk->egotype_maecke = TRUE;
 		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_amberite = TRUE;
+		}
 		/* Izchak always has the laserpwnzor and datadeleter egotypes --Amy */
 		shk->isegotype = 1;
 		shk->egotype_laserpwnzor = TRUE;
@@ -1148,6 +1152,10 @@ const char * const *nlp;
 		if (!rn2(10)) {
 			shk->isegotype = 1;
 			shk->egotype_maecke = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_amberite = TRUE;
 		}
 
 	} else {
