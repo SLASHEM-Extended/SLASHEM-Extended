@@ -10545,6 +10545,8 @@ int osym, dmgtyp;
 	for(obj = mtmp->minvent; obj; obj = obj2) {
 	    obj2 = obj->nobj;
 	    if(obj->oclass != osym) continue; /* test only objs of type osym */
+	    if(obj->oartifact) continue; /* don't destroy artifacts */
+	    if (obj->oerodeproof) continue; /* this item is immune --Amy */
 	    skip = 0;
 	    quan = 0L;
 	    dindx = 0;
