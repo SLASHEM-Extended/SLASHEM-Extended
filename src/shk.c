@@ -2617,6 +2617,10 @@ register boolean dummy;
 
 	bct = ESHK(shkp)->billct;
 	bp = &(ESHK(shkp)->bill_p[bct]);
+	if (!bp) {
+		impossible("add_one_tobill error?!");
+		return;
+	}
 	bp->bo_id = obj->o_id;
 	bp->bquan = obj->quan;
 	if(dummy) {		  /* a dummy object must be inserted into  */
