@@ -51,9 +51,11 @@ STATIC_DCL void mkfeature(int,int);
 #define CENTER	3
 #define H_RIGHT	4
 #define RIGHT	5
+#define RANDOMX	-1
 
 #define TOP	1
 #define BOTTOM	5
+#define RANDOMY	-1
 
 #define sq(x) ((x)*(x))
 
@@ -5531,11 +5533,35 @@ dlb *fd;
 	    case CENTER:    xstart = 2+((x_maze_max-2-xsize)/2);	break;
 	    case H_RIGHT:   xstart = 2+((x_maze_max-2-xsize)*3/4);	break;
 	    case RIGHT:     xstart = x_maze_max-xsize-1;		break;
+	    case RANDOMX:
+			switch (rnd(5)) {
+				case 1:
+					xstart = 3; break;
+				case 2:
+					xstart = 2+((x_maze_max-2-xsize)/4); break;
+				case 3:
+					xstart = 2+((x_maze_max-2-xsize)/2); break;
+				case 4:
+					xstart = 2+((x_maze_max-2-xsize)*3/4); break;
+				case 5:
+					xstart = x_maze_max-xsize-1; break;
+			}
+			break;
 	}
 	switch((int) valign) {
 	    case TOP:	    ystart = 3;					break;
 	    case CENTER:    ystart = 2+((y_maze_max-2-ysize)/2);	break;
 	    case BOTTOM:    ystart = y_maze_max-ysize-1;		break;
+	    case RANDOMY:
+			switch (rnd(3)) {
+				case 1:
+					ystart = 3; break;
+				case 2:
+					ystart = 2+((y_maze_max-2-ysize)/2); break;
+				case 3:
+					ystart = y_maze_max-ysize-1; break;
+			}
+			break;
 	}
 	if (!(xstart % 2)) xstart++;
 #ifdef BIGSLEX

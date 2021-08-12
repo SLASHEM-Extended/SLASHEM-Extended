@@ -124,9 +124,9 @@ RNDLEVEL:		"levgn" "V" @ (2, 48) 95
 RNDLEVEL:		"levgn" "V" @ (2, 48) 95
 RNDLEVEL:		"levgn" "V" @ (2, 48) 95
 RNDLEVEL:		"emptb" "E" @ (2, 48) 60
-RNDLEVEL:		"mazes" "M" @ (2, 48) 46
-RNDLEVEL:		"mazes" "M" @ (2, 48) 46
-RNDLEVEL:		"mazes" "M" @ (2, 48) 46
+RNDLEVEL:		"mazes" "M" @ (2, 48) 69
+RNDLEVEL:		"mazes" "M" @ (2, 48) 69
+RNDLEVEL:		"mazes" "M" @ (2, 48) 69
 
 # The famous Fort Ludios...
 BRANCH:			"Fort Ludios" @ (2, 48) portal
