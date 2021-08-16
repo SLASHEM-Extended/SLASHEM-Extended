@@ -25565,8 +25565,8 @@ loopback:
 		if (ct > 0 && (Race_if(PM_PERVERT) && dmgtype(ptr, AD_DROP) )) ct += 2;
 		if (ct > 0 && (Race_if(PM_TUMBLRER) && dmgtype(ptr, AD_DROP) )) ct += 10;
 		if (ct > 0 && (Race_if(PM_WOOKIE) && dmgtype(ptr, AD_DROP) )) ct += 2;
-		if (ct > 0 && (uwep && uwep->oartifact == ART_SLEXCALIBUR && (ptr->mflags5 == 0) )) ct += 5;
-		if (ct > 0 && (u.twoweap && uswapwep && uswapwep->oartifact == ART_SLEXCALIBUR && (ptr->mflags5 == 0) )) ct += 5;
+		if (ct > 0 && (uwep && uwep->oartifact == ART_SLEXCALIBUR && !is_angbandmonster(ptr) && !is_cowmonster(ptr) && !is_vanillamonster(ptr) && !is_animemonster(ptr) && !is_steammonster(ptr) && !is_dlordsmonster(ptr) && !is_dnethackmonster(ptr) && !is_jokemonster(ptr) && !is_diablomonster(ptr) && !is_jonadabmonster(ptr) && !is_evilpatchmonster(ptr) && !is_randomizedmonster(ptr) && !is_elonamonster(ptr) && !is_aoemonster(ptr) && !is_elderscrollsmonster(ptr) )) ct += 5;
+		if (ct > 0 && (u.twoweap && uswapwep && uswapwep->oartifact == ART_SLEXCALIBUR && !is_angbandmonster(ptr) && !is_cowmonster(ptr) && !is_vanillamonster(ptr) && !is_animemonster(ptr) && !is_steammonster(ptr) && !is_dlordsmonster(ptr) && !is_dnethackmonster(ptr) && !is_jokemonster(ptr) && !is_diablomonster(ptr) && !is_jonadabmonster(ptr) && !is_evilpatchmonster(ptr) && !is_randomizedmonster(ptr) && !is_elonamonster(ptr) && !is_aoemonster(ptr) && !is_elderscrollsmonster(ptr) )) ct += 5;
 
 		if (ct > 0 && (uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (ptr->msound == MS_STENCH))) ct += 10;
 		if (ct > 0 && (FemtrapActiveAnna && (ptr->msound == MS_STENCH))) ct += 50;
@@ -26817,8 +26817,8 @@ int     spc;
 		if ((Race_if(PM_PERVERT) && dmgtype(&mons[last], AD_DROP) )) num += 2;
 		if ((Race_if(PM_TUMBLRER) && dmgtype(&mons[last], AD_DROP) )) num += 10;
 		if ((Race_if(PM_WOOKIE) && dmgtype(&mons[last], AD_DROP) )) num += 2;
-		if ((uwep && uwep->oartifact == ART_SLEXCALIBUR && (&mons[last].mflags5 == 0) )) num += 5;
-		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_SLEXCALIBUR && (&mons[last].mflags5 == 0) )) num += 5;
+		if ((uwep && uwep->oartifact == ART_SLEXCALIBUR && !is_dlordsmonster(&mons[last]) && !is_dnethackmonster(&mons[last]) && !is_jokemonster(&mons[last]) && !is_diablomonster(&mons[last]) && !is_jonadabmonster(&mons[last]) && !is_evilpatchmonster(&mons[last]) && !is_randomizedmonster(&mons[last]) && !is_elonamonster(&mons[last]) && !is_aoemonster(&mons[last]) && !is_elderscrollsmonster(&mons[last]) )) num += 5;
+		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_SLEXCALIBUR && !is_dlordsmonster(&mons[last]) && !is_dnethackmonster(&mons[last]) && !is_jokemonster(&mons[last]) && !is_diablomonster(&mons[last]) && !is_jonadabmonster(&mons[last]) && !is_evilpatchmonster(&mons[last]) && !is_randomizedmonster(&mons[last]) && !is_elonamonster(&mons[last]) && !is_aoemonster(&mons[last]) && !is_elderscrollsmonster(&mons[last]) )) num += 5;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[last].msound == MS_STENCH))) num += 10;
 		if ((FemtrapActiveAnna && (mons[last].msound == MS_STENCH))) num += 50;
@@ -27744,8 +27744,8 @@ int     spc;
 		if ((Race_if(PM_PERVERT) && dmgtype(&mons[first], AD_DROP) )) num -= 2;
 		if ((Race_if(PM_TUMBLRER) && dmgtype(&mons[first], AD_DROP) )) num -= 10;
 		if ((Race_if(PM_WOOKIE) && dmgtype(&mons[first], AD_DROP) )) num -= 2;
-		if ((uwep && uwep->oartifact == ART_SLEXCALIBUR && (&mons[first].mflags5 == 0) )) num -= 5;
-		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_SLEXCALIBUR && (&mons[first].mflags5 == 0) )) num -= 5;
+		if ((uwep && uwep->oartifact == ART_SLEXCALIBUR && !is_dlordsmonster(&mons[first]) && !is_dnethackmonster(&mons[first]) && !is_jokemonster(&mons[first]) && !is_diablomonster(&mons[first]) && !is_jonadabmonster(&mons[first]) && !is_evilpatchmonster(&mons[first]) && !is_randomizedmonster(&mons[first]) && !is_elonamonster(&mons[first]) && !is_aoemonster(&mons[first]) && !is_elderscrollsmonster(&mons[first]) )) num -= 5;
+		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_SLEXCALIBUR && !is_dlordsmonster(&mons[first]) && !is_dnethackmonster(&mons[first]) && !is_jokemonster(&mons[first]) && !is_diablomonster(&mons[first]) && !is_jonadabmonster(&mons[first]) && !is_evilpatchmonster(&mons[first]) && !is_randomizedmonster(&mons[first]) && !is_elonamonster(&mons[first]) && !is_aoemonster(&mons[first]) && !is_elderscrollsmonster(&mons[first]) )) num -= 5;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[first].msound == MS_STENCH))) num -= 10;
 		if ((FemtrapActiveAnna && (mons[first].msound == MS_STENCH))) num -= 50;
