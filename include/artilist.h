@@ -8673,6 +8673,11 @@ A("Shock Swing",			LONG_SWORD,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_NOWISH|SPFX_ATTK), 0, 0,
 	ELEC(0,8),	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 2000L ),
 
+A("ProComfort Super",			RED_STRING,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_NOWISH|SPFX_REGEN), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, PM_CLIMACTERIAL, NON_PM, 6000L ),
+
+
 /* reward for finishing the Illusory Castle */
 A("The Helm of Knowledge", HELM_OF_TELEPATHY,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_NOWISH), 0, 0,
@@ -9523,6 +9528,15 @@ A("Ass Deaf Auger",				WAN_BANISHMENT, /* doesn't get zapped by monsters; if a s
 A("Katharina's Loveliness",				KATHARINA_PLATFORM_BOOTS, /* +10 kick damage, +10 CHA, maurah trap effect */
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_DEFN), 0, 0,
 	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_CHAOTIC, PM_SHOE_FETISHIST, NON_PM, 16000L ),
+
+A("Clickpass",				SOFT_CHASTITY_BELT, /* prevents foocubi from using their sex attack on you, protects from item theft like being a nymph */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, PM_CLIMACTERIAL, NON_PM, 8000L ),
+
+A("Spectrum Pling",				CIRMOCLINE, /* prism reflection and resist fire, cold, shock, poison and psi when carried */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), (SPFX_REFLECT), 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, PM_WOMANIZER, NON_PM, 20000L ),
+
 
 /* Amy note: DO NOT add non-quest artifacts beyond this point!!! foreignartifactcount() in invent.c depends on it */
 

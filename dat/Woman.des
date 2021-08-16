@@ -1,0 +1,315 @@
+#	SCCS Id: @(#)Knight.des	3.4	1995/04/16
+#	Copyright (c) 1989 by Jean-Christophe Collet
+#	Copyright (c) 1991,92 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+#	The "start" level for the quest.
+#
+#	Here you meet your (besieged) class leader, King Arthur
+#	and receive your quest assignment.
+#
+MAZE: "Wom-strt",'.'
+FLAGS: noteleport,hardfloor
+# This is a kludge to init the level as a lit field.
+INIT_MAP: '.' , '.' , false , false , lit , false
+GEOMETRY:center,center
+MAP
+..................................................
+.-----......................................-----.
+.|...|......................................|...|.
+.--|+-------------------++-------------------+|--.
+...|...................+..+...................|...
+...|.|-----------------|++|-----------------|.|...
+...|.|.................|..|.........|.......|.|...
+...|.|...\.............+..+.........|.......|.|...
+...|.|.................+..+.........+.......|.|...
+...|.|.................|..|.........|.......|.|...
+...|.|--------------------------------------|.|...
+...|..........................................|...
+.--|+----------------------------------------+|--.
+.|...|......................................|...|.
+.-----......................................-----.
+..................................................
+ENDMAP
+# Dungeon Description
+REGION:(00,00,49,15),lit,"ordinary"
+REGION:(04,04,45,11),unlit,"ordinary"
+REGION:(06,06,22,09),lit,"throne" , unfilled
+REGION:(27,06,43,09),lit,"ordinary"
+# Portal arrival point
+BRANCH:(20,14,20,14),(0,0,0,0)
+# Stairs
+STAIR:(40,7),down
+# Doors
+# Outside Doors
+DOOR:locked,(24,03)
+DOOR:locked,(25,03)
+# Inside Doors
+DOOR:closed,(23,04)
+DOOR:closed,(26,04)
+DOOR:locked,(24,05)
+DOOR:locked,(25,05)
+DOOR:closed,(23,07)
+DOOR:closed,(26,07)
+DOOR:closed,(23,08)
+DOOR:closed,(26,08)
+DOOR:closed,(36,08)
+# Watchroom Doors
+DOOR:closed,(04,03)
+DOOR:closed,(45,03)
+DOOR:closed,(04,12)
+DOOR:closed,(45,12)
+# King Arthur
+MONSTER:'@',"Huge Hefner",(09,07)
+# The treasure of King Arthur
+OBJECT:'(',"chest",(09,07)
+# knight guards for the watchrooms
+MONSTER:'@',"model",(04,02),peaceful
+MONSTER:'@',"model",(04,13),peaceful
+MONSTER:'@',"model",(45,02),peaceful
+MONSTER:'@',"model",(45,13),peaceful
+# page guards for the audience chamber
+MONSTER:'@',"model",(16,06)
+MONSTER:'@',"model",(18,06)
+MONSTER:'@',"model",(20,06)
+MONSTER:'@',"model",(16,09)
+MONSTER:'@',"model",(18,09)
+MONSTER:'@',"model",(20,09)
+# Non diggable walls
+NON_DIGGABLE:(00,00,49,15)
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Monsters on siege duty.
+MONSTER: '@',"social justice warrior",(14,00),hostile
+MONSTER: '@',"social justice warrior",(18,00),hostile
+MONSTER: '@',"social justice warrior",(22,00),hostile
+MONSTER: '@',"social justice warrior",(26,00),hostile
+MONSTER: '@',"social justice warrior",(30,00),hostile
+MONSTER: '@',"social justice warrior",(34,00),hostile
+
+#
+#	The "locate" level for the quest.
+#
+#	Here you have to find your way to the Isle of Glass to go
+#	further towards your assigned quest.
+#
+
+MAZE: "Wom-loca",' '
+FLAGS: hardfloor
+INIT_MAP: '.' , 'P' , false , true , lit , false
+GEOMETRY:center,center
+MAP
+...PPP.........PPPP..............PPPP...
+.PPPP...........PP................PPPP..
+PP.................................PPP..
+....................................PPP.
+.....................................PP.
+.......................................P
+........................................
+PP...................................PPP
+.PPP...............................PPP..
+..PP.............................PPPP...
+..PPP...........................PPPPPP..
+....PPPP.........PPP.........PPPP..PP...
+ENDMAP
+# Dungeon Description
+# The Isle of Glass is a Tor rising out of the swamps surrounding it.
+REGION:(00,00,39,11),lit,"ordinary"
+# Stairs
+STAIR:(38,0),up
+STAIR:(18,05),down
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random monsters.
+MONSTER:'@',"social justice warrior",random,hostile
+MONSTER:'@',"social justice warrior",random,hostile
+MONSTER:'@',"social justice warrior",random,hostile
+MONSTER:'@',"social justice warrior",random,hostile
+MONSTER:'@',"social justice warrior",random,hostile
+MONSTER:'@',"angry prostitute",random,hostile
+MONSTER:'@',"angry prostitute",random,hostile
+MONSTER:'@',"angry prostitute",random,hostile
+MONSTER:'@',"angry prostitute",random,hostile
+MONSTER:'@',"angry prostitute",random,hostile
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+#
+#	The "goal" level for the quest.
+#
+#	Here you meet Ixoth your nemesis monster.  You have to
+#	defeat Ixoth in combat to gain the artifact you have
+#	been assigned to retrieve.
+#
+
+MAZE: "Wom-goal", ' '
+GEOMETRY:center,center
+MAP
+....PPPP..PPP..                                                             
+.PPPPP...PP..     ..........     .................................          
+..PPPPP...P..    ...........    ...................................         
+..PPP.......   ...........    ................................  ....        
+...PPP.......    .........     ...............   .............  ......      
+...........    ............    ............     ......................      
+.......  ...   ......  .....      .......     .....................         
+.......  ............  .......            .........................         
+...............................   ..................................        
+.............................    ....................................       
+.........    ..........  .................  ...................  ..         
+.....PP...    .........  .................  ...................  ..         
+.....PPP....    ....................................................        
+......PPP....   ..............   ..............    ..................       
+.......PPP....  .......    ..    .....  .......    ...................      
+........PP...    ......    ..    .....  .......    ....................     
+...PPP........     ....    ..     ..................................        
+..PPPPP........     ...    ...     ..............................           
+....PPPPP......       .........     ..........................              
+.......PPPP...                                                              
+ENDMAP
+# Dungeon Description
+REGION:(00,00,14,19),lit,"ordinary"
+REGION:(15,00,75,19),unlit,"ordinary"
+# Stairs
+STAIR:(03,08),up
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+# Objects
+OBJECT:'*',"cirmocline",(50,06),blessed,5,"Spectrum Pling"
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:'R',"Berbal",(50,06),hostile
+MONSTER:'@',"social justice warrior",random,hostile
+MONSTER:'@',"social justice warrior",random,hostile
+MONSTER:'@',"social justice warrior",random,hostile
+MONSTER:'@',"social justice warrior",random,hostile
+MONSTER:'@',"social justice warrior",random,hostile
+MONSTER:'@',"social justice warrior",random,hostile
+MONSTER:'@',"social justice warrior",random,hostile
+MONSTER:'@',"social justice warrior",random,hostile
+MONSTER:'@',"angry prostitute",random,hostile
+MONSTER:'@',"angry prostitute",random,hostile
+MONSTER:'@',"angry prostitute",random,hostile
+MONSTER:'@',"angry prostitute",random,hostile
+MONSTER:'@',"angry prostitute",random,hostile
+MONSTER:'@',"angry prostitute",random,hostile
+MONSTER:'@',"angry prostitute",random,hostile
+MONSTER:'@',"angry prostitute",random,hostile
+
+#
+#	The "fill" levels for the quest.
+#
+#	These levels are used to fill out any levels not occupied by specific
+#	levels as defined above. "filla" is the upper filler, between the
+#	start and locate levels, and "fillb" the lower between the locate
+#	and goal levels.
+#
+
+MAZE: "Wom-fila" , '.'
+INIT_MAP: '.' , ' ' , false , true , lit , false
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+MONSTER:'@',"social justice warrior",random,hostile
+MONSTER:'@',"social justice warrior",random,hostile
+MONSTER:'@',"social justice warrior",random,hostile
+MONSTER:'@',"angry prostitute",random,hostile
+MONSTER:random,random,random
+MONSTER:random,random,random
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+MAZE: "Wom-filb" , '.'
+INIT_MAP: '.' , ' ' , false , true , lit , false
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+MONSTER:'@',"social justice warrior",random,hostile
+MONSTER:'@',"angry prostitute",random,hostile
+MONSTER:'@',"angry prostitute",random,hostile
+MONSTER:'@',"angry prostitute",random,hostile
+MONSTER:'@',"angry prostitute",random,hostile
+MONSTER:'@',"angry prostitute",random,hostile
+MONSTER:'@',"angry prostitute",random,hostile
+MONSTER:'@',"angry prostitute",random,hostile
+MONSTER:random,random,random
+MONSTER:random,random,random
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random

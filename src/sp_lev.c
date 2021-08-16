@@ -3033,6 +3033,13 @@ struct mkroom	*croom;
 
     if (rn2(100) < m->chance) {
 
+	/* ugly hack for monster symbols with ascii chars greater than 127 --Amy */
+
+	if (m->class == -79) m->class = 177;
+	if (m->class == -80) m->class = 176;
+	if (m->class == -81) m->class = 175;
+	if (m->class == -89) m->class = 167;
+
 	if (m->class >= 0)
 	    class = (char) def_char_to_monclass((char)m->class);
 	else if (m->class > -11)

@@ -352,7 +352,8 @@ spec_levs: ../util/lev_comp \
 	Mastermi.des Tosser.des Symbia.des Pract.des Millsw.des \
 	Gender.des Fjorde.des Emera.des Combat.des Aklyst.des \
 	Drag.des Carto.des Dancer.des Shoefe.des Secret.des \
-	Prever.des Diabl.des Butt.des Halfba.des Noob.des
+	Prever.des Diabl.des Butt.des Halfba.des Noob.des \
+	Woman.des Climac.des
 
 	../util/lev_comp Abuser.des
 	../util/lev_comp Acid.des
@@ -523,6 +524,8 @@ spec_levs: ../util/lev_comp \
 	echo ../util/lev_comp Yeoman.des ; ../util/lev_comp Yeoman.des ; \
 	else rm -f Yeo-goal.lev Yeo-fil?.lev Yeo-loca.lev Yeo-strt.lev ; fi
 	../util/lev_comp Zooke.des
+	../util/lev_comp Woman.des
+	../util/lev_comp Climac.des
 	touch spec_levs
 
 dungeon: dungeon.def ../util/makedefs ../util/dgn_comp

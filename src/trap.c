@@ -3636,6 +3636,7 @@ unsigned trflags;
 		else if (trap->launch_otyp < 33) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rn2(2) ? "beautiful" : "squeaky");
 		else pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rn2(2) ? "disgusting" : "loud");
 		u.cnd_fartingcount++;
+		if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(1);
 		if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
@@ -20993,6 +20994,7 @@ fartingweb()
 	else if (ttmp->launch_otyp < 33) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[ttmp->launch_otyp], rn2(2) ? "beautiful" : "squeaky");
 	else pline("%s produces %s farting noises with her sexy butt.", farttrapnames[ttmp->launch_otyp], rn2(2) ? "disgusting" : "loud");
 	u.cnd_fartingcount++;
+	if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(1);
 	if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 	if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 

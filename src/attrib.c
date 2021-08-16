@@ -604,6 +604,21 @@ const struct innate {
 		     {  10, &(HPoison_resistance), "hardy", "less healthy", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
+	cli_abil[] = { {   1, &(FemaleTrapJulietta), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	wom_abil[] = { {   5, &(FemaleTrapMaurah), "the need to fart constantly", "that your farting gas is depleted", FALSE },
+			 {   8, &(FemaleTrapYvonne), "the desire to find a toilet", "that toilets are actually unnecessary", FALSE },
+			 {   10, &(FemaleTrapSing), "enslaved by a woman who wants you to clean shoes", "that cleaning shit from shoes is, well, shit", FALSE },
+			 {   12, &(FemaleTrapMeltem), "that the women in this dungeon want to fart you in the face", "that the female butts forgot how to fart", FALSE },
+			 {   16, &(FemaleTrapJette), "the power of feminism increasing", "the power of feminism decreasing", FALSE },
+			 {   18, &(FemaleTrapAnastasia), "like stepping into dog shit", "that only a fool would ever step into dog shit voluntarily", FALSE },
+			 {   20, &(FemaleTrapJuen), "that someone is going to kick you in the shins", "like using a shin-pad", FALSE },
+			 {   23, &(FemaleTrapEveline), "that the women are running faster", "that the women stopped running", FALSE },
+			 {   27, &(FemaleTrapKristina), "a sharp smoky stench in the air", "that the fire got extinguished", FALSE },
+			 {   30, &(FemaleTrapElif), "the presence of a lovely ghostly girl", "that the lovely ghostly girl has departed", FALSE },
+		     {   0, 0, 0, 0, 0 } },
+
 	jed_abil[] = { {   1, &(HStealth), "", "", TRUE },
 		       {   3, &(HTelepat), "disturbances in the force", "your grip on the force lessen", TRUE },
 		       {   5, &(HSee_invisible), "your vision sharpen", "your vision blurring", TRUE },
@@ -2291,6 +2306,8 @@ int oldlevel, newlevel;
 	case PM_GRENADONIN:       abil = gro_abil;	break;
 	case PM_WIZARD:         abil = wiz_abil;	break;
 	case PM_ZOOKEEPER:         abil = zoo_abil;	break;
+	case PM_WOMANIZER:         abil = wom_abil;	break;
+	case PM_CLIMACTERIAL:         abil = cli_abil;	break;
 	case PM_YEOMAN:		abil = yeo_abil;	break;
 	case PM_JUSTICE_KEEPER:		abil = jus_abil;	break;
 	case PM_CARTOMANCER:		abil = car_abil;	break;

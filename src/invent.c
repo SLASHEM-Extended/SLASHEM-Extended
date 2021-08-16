@@ -1347,6 +1347,18 @@ have_invisoloadstone()
 }
 
 boolean
+have_spectrumplinggem()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == CIRMOCLINE && otmp->oartifact == ART_SPECTRUM_PLING)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
 have_amateurluckstone()
 {
 	register struct obj *otmp;
@@ -2064,9 +2076,22 @@ boolean
 feminizecheck(femnumber)
 int femnumber;
 {
-	if (!isfeminizer) return FALSE;
+	if (!isfeminizer && !Role_if(PM_CLIMACTERIAL)) return FALSE;
 
-	if (u.feminizeffect == femnumber) return TRUE;
+	if (Role_if(PM_CLIMACTERIAL)) {
+		if (u.urmaxlvlUP >= 3 && u.climauspices3 == femnumber) return TRUE;
+		if (u.urmaxlvlUP >= 6 && u.climauspices6 == femnumber) return TRUE;
+		if (u.urmaxlvlUP >= 9 && u.climauspices9 == femnumber) return TRUE;
+		if (u.urmaxlvlUP >= 12 && u.climauspices12 == femnumber) return TRUE;
+		if (u.urmaxlvlUP >= 15 && u.climauspices15 == femnumber) return TRUE;
+		if (u.urmaxlvlUP >= 18 && u.climauspices18 == femnumber) return TRUE;
+		if (u.urmaxlvlUP >= 21 && u.climauspices21 == femnumber) return TRUE;
+		if (u.urmaxlvlUP >= 24 && u.climauspices24 == femnumber) return TRUE;
+		if (u.urmaxlvlUP >= 27 && u.climauspices27 == femnumber) return TRUE;
+		if (u.urmaxlvlUP >= 30 && u.climauspices30 == femnumber) return TRUE;
+	}
+
+	if (isfeminizer && u.feminizeffect == femnumber) return TRUE;
 
 	return FALSE;
 }
@@ -19805,6 +19830,8 @@ boolean knoweverything;
 					pline("Artifact specs: +14 damage to fire-susceptible monsters, can be invoked for dragon breath, nuclear physicist quest artifact."); break;
 				case ART_SWORD_OF_GILGAMESH:
 					pline("Artifact specs: warning and reflection when wielded, +5 to-hit and +10 damage, tracer quest artifact."); break;
+				case ART_PROCOMFORT_SUPER:
+					pline("Artifact specs: regeneration when worn. Gotta contain that nasty menstruation after all!"); break;
 				case ART_MOTHERFUCKER_TROPHY:
 					pline("Artifact specs: reflection, magic resistance, +5 increase damage and accuracy, 20%% better spellcasting chances and increased skill training when worn. Congratulations. You beat the motherfucking ELDER PRIEST to get this artifact, and he's the most dangerous monster that exists in any NetHack variant!!! Well done, you truly are a master at this game!");
 				case ART_HELM_OF_KNOWLEDGE:
@@ -21341,6 +21368,10 @@ boolean knoweverything;
 					pline("Artifact specs: +5 to-hit and +10 damage, searching and drain resistance when wielded, all monsters without specific origin flags have +5 spawn frequency."); break;
 				case ART_FLOCKDOWN:
 					pline("Artifact specs: walking over regular floor while wearing it will transform the terrain into snow. This artifact was suggested by Amy's bundleroommate <3."); break;
+				case ART_CLICKPASS:
+					pline("Artifact specs: prevents foocubi from using their sex attack against you, makes you resistant against item theft, lawful, climacterial quest artifact."); break;
+				case ART_SPECTRUM_PLING:
+					pline("Artifact specs: prism reflection and resistance to fire, cold, shock, poison and psi when carried, neutral, womanizer quest artifact."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

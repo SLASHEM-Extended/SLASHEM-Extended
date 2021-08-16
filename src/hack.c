@@ -719,6 +719,7 @@ moverock()
 		if (otmp && otmp->oartifact == ART_WENDYHOLE) {
 			pline("Wendy produces %s farting noises with her sexy butt.", !rn2(3) ? "loud" : !rn2(2) ? "disgusting" : "erogenous");
 			u.cnd_fartingcount++;
+			if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(1);
 			if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 			if (!extralongsqueak()) badeffect();
@@ -5130,8 +5131,9 @@ inv_weight()
 	if (uarmf && itemhasappearance(uarmf, APP_WEIGHT_ATTACHMENT_BOOTS)) wt += 500;
 
 	/* Symbiotes can have a weight. If you're a symbiant, the weight is considerably lower; everyone else will get
-	 * a skill-dependant amount of weight added. At master and above, the weight no longer gets a multiplier --Amy */
-	if (uinsymbiosis) {
+	 * a skill-dependant amount of weight added. At master and above, the weight no longer gets a multiplier --Amy
+	 * climacterial role has zero symbiote weight starting at XL5 */
+	if (uinsymbiosis && !(Role_if(PM_CLIMACTERIAL) && u.ulevel >= 5)) {
 
 		if (Role_if(PM_SYMBIANT)) {
 			if (mons[u.usymbiote.mnum].msize >= MZ_GIGANTIC) wt += 100;

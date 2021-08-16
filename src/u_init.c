@@ -819,6 +819,22 @@ static struct trobj Undertaker[] = {
 	{ 0, 0, 0, 0, 0, }
 };
 
+static struct trobj Climacterial[] = {
+	{ SCR_CURE, 0, SCROLL_CLASS, 5, 0 },
+	{ TOILET_ROLL, 0, ARMOR_CLASS, 1, 0 },
+	{ 0, 0, 0, 0, 0, }
+};
+
+static struct trobj Womanizer[] = {
+#define WOMGEM          4
+	{ ROSE_WHIP, 0, WEAPON_CLASS, 1, 0 },
+	{ KYRT_SHIRT, -3, ARMOR_CLASS, 1, 0 },
+	{ ELVIS_SHOES, 3, ARMOR_CLASS, 1, 0 },
+	{ RIN_ADORNMENT, 5, RING_CLASS, 1, 0 },
+	{ YVONNE_S_JEWEL, UNDEF_SPE, GEM_CLASS, 1, 0 },
+	{ 0, 0, 0, 0, 0, }
+};
+
 static struct trobj Zookeeper[] = {
 	{ BULLWHIP, 1, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ TRIPE_RATION, 0, TOOL_CLASS, 5, UNDEF_BLESS },
@@ -8370,6 +8386,46 @@ static const struct def_skill Skill_Zoo[] = {
     { P_NONE, 0 }
 };
 
+static const struct def_skill Skill_Cli[] = {
+
+    { P_DAGGER,  P_MASTER },	{ P_KNIFE,  P_GRAND_MASTER },
+    { P_SHORT_SWORD,  P_EXPERT },	{ P_SCIMITAR,  P_EXPERT },
+    { P_SABER,  P_EXPERT },	{ P_PADDLE,  P_EXPERT },
+    { P_SPEAR,  P_EXPERT },	{ P_JAVELIN,  P_MASTER },
+    { P_LANCE,  P_EXPERT },	{ P_FIREARM,  P_EXPERT },
+    { P_CROSSBOW,  P_EXPERT },	{ P_DART,  P_MASTER },
+    { P_SHURIKEN,  P_MASTER },	{ P_WHIP,  P_MASTER },
+    { P_UNICORN_HORN,  P_GRAND_MASTER },	{ P_LIGHTSABER,  P_EXPERT },
+    { P_ATTACK_SPELL,  P_EXPERT },	{ P_HEALING_SPELL,  P_MASTER },
+    { P_ENCHANTMENT_SPELL,  P_EXPERT },	{ P_PROTECTION_SPELL,  P_MASTER },
+    { P_BODY_SPELL,  P_GRAND_MASTER },	{ P_CHAOS_SPELL,  P_EXPERT },
+    { P_BARE_HANDED_COMBAT,  P_GRAND_MASTER },	{ P_HIGH_HEELS,  P_MASTER },
+    { P_GENERAL_COMBAT,  P_EXPERT },	{ P_DEVICES,  P_EXPERT },
+    { P_SEARCHING,  P_EXPERT },	{ P_SPIRITUALITY,  P_EXPERT },
+    { P_TECHNIQUES,  P_EXPERT },	{ P_MEMORIZATION,  P_EXPERT },
+    { P_SQUEAKING,  P_GRAND_MASTER },	{ P_SHIEN,  P_EXPERT },
+    { P_DJEM_SO,  P_EXPERT },	{ P_JUYO,  P_MASTER },
+    { P_TWO_WEAPON_COMBAT,  P_EXPERT },	{ P_RIDING,  P_MASTER },
+
+    { P_NONE, 0 }
+};
+
+static const struct def_skill Skill_Wom[] = {
+
+    { P_SABER,  P_EXPERT },	{ P_CLUB,  P_EXPERT },
+    { P_PADDLE,  P_MASTER },	{ P_FLAIL,  P_EXPERT },
+    { P_ORB,  P_MASTER },	{ P_TRIDENT,  P_EXPERT },
+    { P_SLING,  P_GRAND_MASTER },	{ P_DART,  P_MASTER },
+    { P_WHIP,  P_GRAND_MASTER },	{ P_LIGHTSABER,  P_EXPERT },
+    { P_BODY_SPELL,  P_MASTER },	{ P_BARE_HANDED_COMBAT,  P_EXPERT },
+    { P_BODY_ARMOR,  P_EXPERT },	{ P_POLYMORPHING,  P_EXPERT },
+    { P_SEARCHING,  P_EXPERT },	{ P_PETKEEPING,  P_MASTER },
+    { P_SEXY_FLATS,  P_MASTER },	{ P_SHII_CHO,  P_EXPERT },
+    { P_RIDING,  P_EXPERT },
+
+    { P_NONE, 0 }
+};
+
 static const struct def_skill Skill_Dea[] = {
     { P_KNIFE,  P_EXPERT },
     { P_QUARTERSTAFF, P_EXPERT },	
@@ -8617,19 +8673,19 @@ static const char * const hereticgods[] = {
 /* pantheons for priests etc. These contain all the roles pantheons; they need to be aligned so that if we pick a random number and apply that to all three, a consistent role's pantheon is created! It also contains made-up pantheons that don't belong to an actual role. --Amy */
 static const char * const lawfulgods[] = {
 
-"The Lord of the Pit", "Anti-War Movement", "_Eilistraee", "_Suzanne Collins", "Quetzalcoatl", "Leonardo", "Ehud", "Dunlain", "Mitra", "Garl Glittergold", "Yaldabaoth", "Glycocalyx", "_Rhea Oro", "Eddergud", "_Everella Shrine", "Anu", "Buddha", "Ilmater", "McDonalds", "President Kimball", "Jacob Black", "Merlin", "Tane", "_Sakuya", "Apollo", "Orome", "Thomas Alva Edison", "Solonor Thelandira", "James Bond", "Prometheus", "Earth", "Colonel Campbell", "Nintendo", "Claude Speed", "UNIX", "Sulla", "_B'loody Mary", "Jobs", "_Athena", "Air", "Bowditch", "the Light Side", "Barnum", "Lugh", "Erzulie Freda", "Hugh Hefner", "Leo Tolstoi", "Nuada", "Eluvian", "_Queen Serenity", "Shan Lai Ching", "Falis", "Donblas", "Nharlotep", "Votishal", "God the Father", "Magnum", "_Vaire", "Brahma", "Ariel", "Danzai", "the Lord", "A'En", "Democracy", "Bickney", "Mercury", "Classic Rock", "Issek", "_Cassandra", "Moori", "_Amaterasu Omikami", "Nikola Tesla", "Airyaman", "_Lady Ariane", "the Homies", "Manwe Sulimo", "Speedy Gonzales", "Blind Io", "_Olivia", "Seeker", "_Hel", "Tyr", "Larry Koopa", "Talos", "Ptah", "His Majesty", "Balder", "Andromorph", "Seraphimon", "Scorpion", "Dios", "Ceipheid", "_Tsunami", "Ladon", "_Osiris", "_Goddess", "Biron", "_Ishtar", "_Nayru", "Zephyr", "Aslan", "Bahamut", "_Princess Celestia", "_Rainbow Dash", "Ceiling Cat", "SlimKirby", "Superego", "Porphyry", "Nike", "Little Mac", "Noeda", "Dungeon Collapse", "Commissioner Hunter", "upper bull", "Acehack", "Johanna from Orleans", "Kelvin", "Bar", "Deckard Cain", "Pepin the Healer", "Sulla", "Cheibriados", "Fedhas", "Lugonu", "Okawaru", "Vehumet", "Zin", "_the Bitches", "King Somnus", "Gaia", "Khronos", "Brahma", "Pangu", "Atum", "Khepri", "Corak", "Chiyo-chichi", "Truth", "Mr. Black", "_Irina", "Ulfric Stormcloak", "Gaming PC", "Aurum", "Moradin", "Lurtz", "Legolas", "Selvetarm", "Mahal", "Ilneval", "_Vandria", "Saint Cuthbert", "_Breasts", "_Mother", "Eden", "_Balam", "Enki", "_Eurynome", "Nudziarth", "Huginn and Muninn", "Jack", "Shiro", "Tenebrous", "_Paimon", "Dahlver-Nar", "potion of urine", "Tal Rascha", "China", "General Fai", "Terrans", "Kormu", "_Demeter", "Tartarica", "_Minerva", "Static", "Jiraiya", "Nereus", "_Tenderness", "_Softness", "Toesmashing", "Bill Gates", "Albert Einstein", "Dagobert Duck", "Donkey Kong", "Mr. Spock", "the U.N.O.", "the gnome with the wand of death", "bhaak", "Elronnd", "Dudley", "stth", "muad", "Eidolos", "Boko Haram", "_Nicki Minaj", "Full Moon", "Doenerteller Versace", "Grizz", "Zombieman Brigade", "Powdery Snow", "Sol", "_Selene", "Lawful Good", "_Umbrellarina Madeline", "Jonathan Joestar", "Seveso Toxin", "Milahowalpaw", "Kanigyilak", "The Riddler", "Zeon Zum Deikun", "_Laya", "the Great Light", "Asgore Dreemurr", "the Wave Existence", "_Arle Nadja", "Amon Ra", "Fate", "Regunin", "_Mercedes", "_Ewa", "_Kumiromi of Harvest", "Yacatect of Wealth", "_Jure of Healing", "_Morodwyn", "Corellius", "Elderon", "The One Who Sees", "Onn", "Sssracht", "_Shalla", "Ka'Omsh", "Gnarl", "Order", "Fiit-Ssaaar", "Valpurus", "Legifer", "Atavus", "_Dulcis", "_Seges", "Polypiling", "Mr. Maradonna", "_Gina", "_Polyhymnia", "Tariru", "_Madeleine", "The Battlehorse", "Utu", "_Your Magical Roommate", "Heimskr", "_Margaret", "_Zoe Quinn", "Speaker Walt", "Linus Torvalds", "Wikileaks", "Grime", "Krog", "Cortege", "Macbeth", "Roger Staubach", "Bill Rizer", "_Grolla Seyfarth", "_Marie Curie", "Tax Evasion", "Neil Armstrong", "Diddy the Fail Master", "_Aung San Suu Kyi", "Jim Raynor", "Johnny", "Enki", "Cheep Cheep", "Divert", "Slim Jim", "Arihant", "_Sulis", "Indra", "Erotic Air Current Noises", "Buergerinnen und Buerger", "Arev", "_Eveline", "_the Archomentals", "Athulua", "0.54A", "_Katrin", "Birkenstock", "_Nuwa", "P-Point", 
+"The Lord of the Pit", "Anti-War Movement", "_Eilistraee", "_Suzanne Collins", "Quetzalcoatl", "Leonardo", "Ehud", "Dunlain", "Mitra", "Garl Glittergold", "Yaldabaoth", "Glycocalyx", "_Rhea Oro", "Eddergud", "_Everella Shrine", "Anu", "Buddha", "Ilmater", "McDonalds", "President Kimball", "Jacob Black", "Merlin", "Tane", "_Sakuya", "Apollo", "Orome", "Thomas Alva Edison", "Solonor Thelandira", "James Bond", "Prometheus", "Earth", "Colonel Campbell", "Nintendo", "Claude Speed", "UNIX", "Sulla", "_B'loody Mary", "Jobs", "_Athena", "Air", "Bowditch", "the Light Side", "Barnum", "Lugh", "Erzulie Freda", "Hugh Hefner", "Leo Tolstoi", "Nuada", "Eluvian", "_Queen Serenity", "Shan Lai Ching", "Falis", "Donblas", "Nharlotep", "Votishal", "God the Father", "Magnum", "_Vaire", "Brahma", "Ariel", "Danzai", "the Lord", "A'En", "Democracy", "Bickney", "Mercury", "Classic Rock", "Issek", "_Cassandra", "Moori", "_Amaterasu Omikami", "Nikola Tesla", "Airyaman", "_Lady Ariane", "the Homies", "Manwe Sulimo", "Speedy Gonzales", "Blind Io", "_Olivia", "Seeker", "_Hel", "Tyr", "Larry Koopa", "Talos", "Ptah", "His Majesty", "Balder", "Andromorph", "Seraphimon", "Scorpion", "Dios", "Ceipheid", "_Tsunami", "Ladon", "_Osiris", "_Goddess", "Biron", "_Ishtar", "_Nayru", "Zephyr", "Aslan", "Bahamut", "_Princess Celestia", "_Rainbow Dash", "Ceiling Cat", "SlimKirby", "Superego", "Porphyry", "Nike", "Little Mac", "Noeda", "Dungeon Collapse", "Commissioner Hunter", "upper bull", "Acehack", "Johanna from Orleans", "Kelvin", "Bar", "Deckard Cain", "Pepin the Healer", "Sulla", "Cheibriados", "Fedhas", "Lugonu", "Okawaru", "Vehumet", "Zin", "_the Bitches", "King Somnus", "Gaia", "Khronos", "Brahma", "Pangu", "Atum", "Khepri", "Corak", "Chiyo-chichi", "Truth", "Mr. Black", "_Irina", "Ulfric Stormcloak", "Gaming PC", "Aurum", "Moradin", "Lurtz", "Legolas", "Selvetarm", "Mahal", "Ilneval", "_Vandria", "Saint Cuthbert", "_Breasts", "_Mother", "Eden", "_Balam", "Enki", "_Eurynome", "Nudziarth", "Huginn and Muninn", "Jack", "Shiro", "Tenebrous", "_Paimon", "Dahlver-Nar", "potion of urine", "Tal Rascha", "China", "General Fai", "Terrans", "Kormu", "_Demeter", "Tartarica", "_Minerva", "Static", "Jiraiya", "Nereus", "_Tenderness", "_Softness", "Toesmashing", "Bill Gates", "Albert Einstein", "Dagobert Duck", "Donkey Kong", "Mr. Spock", "the U.N.O.", "the gnome with the wand of death", "bhaak", "Elronnd", "Dudley", "stth", "muad", "Eidolos", "Boko Haram", "_Nicki Minaj", "Full Moon", "Doenerteller Versace", "Grizz", "Zombieman Brigade", "Powdery Snow", "Sol", "_Selene", "Lawful Good", "_Umbrellarina Madeline", "Jonathan Joestar", "Seveso Toxin", "Milahowalpaw", "Kanigyilak", "The Riddler", "Zeon Zum Deikun", "_Laya", "the Great Light", "Asgore Dreemurr", "the Wave Existence", "_Arle Nadja", "Amon Ra", "Fate", "Regunin", "_Mercedes", "_Ewa", "_Kumiromi of Harvest", "Yacatect of Wealth", "_Jure of Healing", "_Morodwyn", "Corellius", "Elderon", "The One Who Sees", "Onn", "Sssracht", "_Shalla", "Ka'Omsh", "Gnarl", "Order", "Fiit-Ssaaar", "Valpurus", "Legifer", "Atavus", "_Dulcis", "_Seges", "Polypiling", "Mr. Maradonna", "_Gina", "_Polyhymnia", "Tariru", "_Madeleine", "The Battlehorse", "Utu", "_Your Magical Roommate", "Heimskr", "_Margaret", "_Zoe Quinn", "Speaker Walt", "Linus Torvalds", "Wikileaks", "Grime", "Krog", "Cortege", "Macbeth", "Roger Staubach", "Bill Rizer", "_Grolla Seyfarth", "_Marie Curie", "Tax Evasion", "Neil Armstrong", "Diddy the Fail Master", "_Aung San Suu Kyi", "Jim Raynor", "Johnny", "Enki", "Cheep Cheep", "Divert", "Slim Jim", "Arihant", "_Sulis", "Indra", "Erotic Air Current Noises", "Buergerinnen und Buerger", "Arev", "_Eveline", "_the Archomentals", "Athulua", "0.54A", "_Katrin", "Birkenstock", "_Nuwa", "P-Point", "Charlie Sheen", "_Sophie Kinsella", 
 
 };
 
 static const char * const neutralgods[] = {
 
-"Goldblight of the Flame", "Global Freedom Council", "_Kiaransali", "_Effie Trinket", "Camaxtli", "Picasso", "Ford", "Savos Aren", "Crom", "Flandal Steelskin", "the void", "Fibrinogen", "_Liebea Luna", "Vhaeraun", "Butch DeLoria", "_Ishtar", "Jahwe", "Grumbar", "Kentucky's Fried Chicken", "Mr. House", "_Bella Swan", "Salazar Slytherin", "Tangaroa", "_Reimu", "Dionysus", "_Yavanna", "Benjamin Franklin", "Aerdrie Faenya", "Chuck Norris", "Thor", "Fire", "Deepthroat", "Microsoft", "Carl CJ Johnson", "the PDP-7", "Cicero", "_Ebony Dark'ness", "Wozniak", "Hermes", "Frost", "Peabody", "the Force", "Bailey", "_Brigit", "Marassa Jumeaux", "G-boy", "Stephen Hawking", "Dagda", "Moon", "_Angel Aphrodite", "Chih Sung-tzu", "_Marfa", "Grome", "Zugguthobal", "Raiden", "_Mother Earth", "Smith", "_Varda Elentari", "Vishnu", "Tyrael", "Milanor", "_the deep blue sea", "Dr. Oujide", "Communism", "Corridor", "_Venus", "Symphonic Metal", "Mog", "Menelaos", "King Kai", "Raijin", "Erwin Schroedinger", "Gandarewa", "Lord Stahngnir", "the Robbers", "Mandos", "Dan Naginati", "_The Lady", "Peyman", "_Osiris", "Pluto", "Odin", "Roy Koopa", "_Meridia", "Thoth", "His Holiness", "_Edda", "Technix", "_Ophanimon", "Sub-Zero", "_the Rose Bride", "_the Lord of Nightmares", "_Washu", "Namanda", "Obelisk", "Doom", "Tieg", "Filaha", "_Farore", "_Raftina", "the Emperor-beyond-the-Sea", "Io", "_the Fausticorn", "_Fluttershy", "Longcat", "Lucahjin", "Ego", "_Fanny Kemble", "Adidas", "Mister Sandman", "Soviet5lo", "Segfault Bug", "Jeweler Jublgrais", "type of ice block", "DNethack", "Queen Katharina", "Celsius", "Torr", "Qual-Kehk", "Griswold the Armorer", "Amenophis", "Beogh", "Elyvilon", "Kikubaaqudgha", "Nemelex", "Trog", "Yredelemnul", "_the Hell Brides", "_Rubiss", "Ahura Mazda", "Demiourgos", "Aeon", "Bulaing", "Kamui", "Vishvakarman", "the Dragon Pharaoh", "Neco Coneco", "Love", "Big Bear", "Max", "_Delphine", "Sony PlayStation", "Argentum", "Dumathoin", "Saruman", "_Eowyn", "Keptolo", "Holashner", "_Luthic", "Corellon", "Helm", "_Feet", "Andromalius", "Berith", "_Cosmos", "Buer", "Amon", "Andrealphus", "Fafnir", "Astaroth", "_Eve", "_Chupoclops", "Naberius", "Orthos", "scroll of bullshit", "_Blood Raven", "USA", "General Townes", "Zerg", "_Sophie", "_Hestia", "Acetica", "Apollo", "Magnet", "_Tsunade", "Neptune", "_Beautifulness", "_Squeakiness", "Shin Kick", "_Britney Spears", "Homer Simpson", "_Xena", "Jack Bauer", "_Your mom", "the Flying Spaghetti Monster", "paxed", "tungtn", "Dion Nicolaas", "the RNG", "Adeon", "speedycat7", "dograt", "The Taliban", "_Taylor Swift", "New Moon", "Fish and Chips", "Panda", "The Revenants", "Large Snowflakes", "_Terra", "Helios", "True Neutral", "_Medium Deborah", "Hirohiko Araki", "Fukoshima Radiation", "_Timalixomol", "Omeatl", "_Poison Ivy", "Degwin Sodo Zabi", "Orakio", "Lutz", "the Absolute GOD of Hyperdeath", "Emperor Cain", "_Celine Jules", "Hersifon", "Unlimited Blade Works", "Caxon", "_Misty", "Lorskel", "Opatos of Earth", "Itzpalt of Element", "Mani of Machine", "Clamgaddin", "_Ayssia", "_Anssaria", "The One Who Kills", "_Istaria", "Issrecht", "_Auroree", "Ne'Ftrr", "_Berwyn", "Balance", "Sssaass", "Loricatus", "_Silva", "Mellis", "_Cleptia", "Sophos", "Monster Polymorphing", "_Ms. Unfortunate Forest", "Gordon Freeman", "_Euterpe", "FIQ", "_Sofia", "The Wild Boar", "Kossuth", "_Your Annoying Sister", "_Suffragette", "_Anaconda", "_Brianna Wu", "Great Corner-Hard", "Bjarne Stroustrup", "Guccifer 2.0", "Dog Shit", "Winston", "Tache", "Zoness", "Peyton Manning", "Lance Bean", "Pamela & Carl Arwig", "Georg Simon Ohm", "Murder and Arson", "_Sally Ride", "Bantor the Gay Voice", "Ai Weiwei", "Hierarch Artanis", "Spike", "Enlil", "Blubber", "Oat Camper", "Milwaukee Jon", "Siddha", "_Sequana", "Soma", "Wonderful Rubbing Noises", "Buergerlnnen", "U.GUR", "_Elena", "Cryonax", "Bul-Kathos", "Level Change UAE", "Len-kind", "Tamaris", "Pangu", "I Have To Reload", 
+"Goldblight of the Flame", "Global Freedom Council", "_Kiaransali", "_Effie Trinket", "Camaxtli", "Picasso", "Ford", "Savos Aren", "Crom", "Flandal Steelskin", "the void", "Fibrinogen", "_Liebea Luna", "Vhaeraun", "Butch DeLoria", "_Ishtar", "Jahwe", "Grumbar", "Kentucky's Fried Chicken", "Mr. House", "_Bella Swan", "Salazar Slytherin", "Tangaroa", "_Reimu", "Dionysus", "_Yavanna", "Benjamin Franklin", "Aerdrie Faenya", "Chuck Norris", "Thor", "Fire", "Deepthroat", "Microsoft", "Carl CJ Johnson", "the PDP-7", "Cicero", "_Ebony Dark'ness", "Wozniak", "Hermes", "Frost", "Peabody", "the Force", "Bailey", "_Brigit", "Marassa Jumeaux", "G-boy", "Stephen Hawking", "Dagda", "Moon", "_Angel Aphrodite", "Chih Sung-tzu", "_Marfa", "Grome", "Zugguthobal", "Raiden", "_Mother Earth", "Smith", "_Varda Elentari", "Vishnu", "Tyrael", "Milanor", "_the deep blue sea", "Dr. Oujide", "Communism", "Corridor", "_Venus", "Symphonic Metal", "Mog", "Menelaos", "King Kai", "Raijin", "Erwin Schroedinger", "Gandarewa", "Lord Stahngnir", "the Robbers", "Mandos", "Dan Naginati", "_The Lady", "Peyman", "_Osiris", "Pluto", "Odin", "Roy Koopa", "_Meridia", "Thoth", "His Holiness", "_Edda", "Technix", "_Ophanimon", "Sub-Zero", "_the Rose Bride", "_the Lord of Nightmares", "_Washu", "Namanda", "Obelisk", "Doom", "Tieg", "Filaha", "_Farore", "_Raftina", "the Emperor-beyond-the-Sea", "Io", "_the Fausticorn", "_Fluttershy", "Longcat", "Lucahjin", "Ego", "_Fanny Kemble", "Adidas", "Mister Sandman", "Soviet5lo", "Segfault Bug", "Jeweler Jublgrais", "type of ice block", "DNethack", "Queen Katharina", "Celsius", "Torr", "Qual-Kehk", "Griswold the Armorer", "Amenophis", "Beogh", "Elyvilon", "Kikubaaqudgha", "Nemelex", "Trog", "Yredelemnul", "_the Hell Brides", "_Rubiss", "Ahura Mazda", "Demiourgos", "Aeon", "Bulaing", "Kamui", "Vishvakarman", "the Dragon Pharaoh", "Neco Coneco", "Love", "Big Bear", "Max", "_Delphine", "Sony PlayStation", "Argentum", "Dumathoin", "Saruman", "_Eowyn", "Keptolo", "Holashner", "_Luthic", "Corellon", "Helm", "_Feet", "Andromalius", "Berith", "_Cosmos", "Buer", "Amon", "Andrealphus", "Fafnir", "Astaroth", "_Eve", "_Chupoclops", "Naberius", "Orthos", "scroll of bullshit", "_Blood Raven", "USA", "General Townes", "Zerg", "_Sophie", "_Hestia", "Acetica", "Apollo", "Magnet", "_Tsunade", "Neptune", "_Beautifulness", "_Squeakiness", "Shin Kick", "_Britney Spears", "Homer Simpson", "_Xena", "Jack Bauer", "_Your mom", "the Flying Spaghetti Monster", "paxed", "tungtn", "Dion Nicolaas", "the RNG", "Adeon", "speedycat7", "dograt", "The Taliban", "_Taylor Swift", "New Moon", "Fish and Chips", "Panda", "The Revenants", "Large Snowflakes", "_Terra", "Helios", "True Neutral", "_Medium Deborah", "Hirohiko Araki", "Fukoshima Radiation", "_Timalixomol", "Omeatl", "_Poison Ivy", "Degwin Sodo Zabi", "Orakio", "Lutz", "the Absolute GOD of Hyperdeath", "Emperor Cain", "_Celine Jules", "Hersifon", "Unlimited Blade Works", "Caxon", "_Misty", "Lorskel", "Opatos of Earth", "Itzpalt of Element", "Mani of Machine", "Clamgaddin", "_Ayssia", "_Anssaria", "The One Who Kills", "_Istaria", "Issrecht", "_Auroree", "Ne'Ftrr", "_Berwyn", "Balance", "Sssaass", "Loricatus", "_Silva", "Mellis", "_Cleptia", "Sophos", "Monster Polymorphing", "_Ms. Unfortunate Forest", "Gordon Freeman", "_Euterpe", "FIQ", "_Sofia", "The Wild Boar", "Kossuth", "_Your Annoying Sister", "_Suffragette", "_Anaconda", "_Brianna Wu", "Great Corner-Hard", "Bjarne Stroustrup", "Guccifer 2.0", "Dog Shit", "Winston", "Tache", "Zoness", "Peyton Manning", "Lance Bean", "Pamela & Carl Arwig", "Georg Simon Ohm", "Murder and Arson", "_Sally Ride", "Bantor the Gay Voice", "Ai Weiwei", "Hierarch Artanis", "Spike", "Enlil", "Blubber", "Oat Camper", "Milwaukee Jon", "Siddha", "_Sequana", "Soma", "Wonderful Rubbing Noises", "Buergerlnnen", "U.GUR", "_Elena", "Cryonax", "Bul-Kathos", "Level Change UAE", "Len-kind", "Tamaris", "Pangu", "I Have To Reload", "Tiger Woods", "_Mavis Cheek", 
 
 };
 
 static const char * const chaoticgods[] = {
 
-"Warpfire Hellspawn", "Human Rights Progression", "_Lolth", "President Snow", "Huhetotl", "Dali", "Ivins", "_Hert the Vampire", "Set", "Urdlen", "_Sophia", "_Hemophilia", "_Elenya Pure", "the black web", "Draco Malfoy", "Anshar", "Allah", "_Tymora", "Burger King", "Caesar", "Edward Cullen", "Lord Voldemort", "Whiro", "_Yukari Yakumo", "Pan", "Tulkas", "_Marilyn Monroe", "Erevan Ilesere", "Jackie Chan", "Arson", "Ash", "The Patriots", "Sony", "Tommy Vercetti", "VMS", "Catilina", "Darth Valer", "Gates", "Poseidon", "Smoke", "Rothchild", "the Dark Side", "Shaco", "Manannan Mac Lir", "Papa Legba", "Arsene Lupin", "H. P. Lovecraft", "Morrigan", "Lycanthus", "_Queen Beryl", "Huan Ti", "Falaris", "Arioch", "Gothuulbe", "Rat God", "the Satan", "Wesson", "_Nessa", "_Shiva", "Gabriel", "Daini", "the Devil", "Team Missile Bomb", "Despotism", "Lockney", "Mars", "Hardcore Punk", "Kos", "_Helen of Troy", "Vegeta", "Susanowo", "Wernher von Braun", "Daevas", "Sven Fanara", "the Motherfuckers", "Lorien", "_Kylie Lum", "Offler", "_Lady Gaga", "Seth", "Orcus", "Loki", "Morton Koopa Jr.", "Clavicus Vile", "Anhur", "The Commons", "Hagen", "Mechatron", "Cherubimon", "Kano", "End of the World", "Shabranigdo", "_Tokimi", "_Myria", "Ra", "Poltergeist", "the Mist", "Asmodeus", "_Din", "Justine", "Tash", "_Tiamat", "_Princess Luna", "_Pinkie Pie", "Basement Cat", "The Dark Id", "Id", "Amos Bronson Alcott", "Puma", "Mike Tyson", "Kerio", "Game Freeze", "Captain Future", "water puddle", "SLASH'EM Extended", "Al-Mutasim", "Fahrenheit", "Atue", "Geglash", "Farnham the Drunk", "Pyrrhus", "Ashenzari", "Dithmenos", "Jiyva", "Makhleb", "Sif Muna", "Xom", "_the Sluts with Syphilis", "Malroth", "Viracocha", "Mbombo", "Unkulunkulu", "Apsu", "Coatlique", "Tepeu", "Sheltem", "Kamineko", "Courage", "Faster-Than-All-Others", "Anton", "General Tullius", "XBox 360", "Antimony", "Abbathor", "Morgoth", "Eol", "Ghaunadaur", "Armok", "Gruumsh", "_Sehanine", "_Mask", "Sexy Butt", "_Marionette", "Ymir", "Dantalion", "_Iris", "Acererak", "Ose", "Ahazu", "_Echidna", "Miska", "Malphas", "Otias", "_Simurgh", "wand of summon sexy girl", "B-a-a-l", "Global Liberation Army", "Rodall 'Demo' Juhziz", "Protoss", "Gabnid", "_Adephagia", "Hydrocloria", "Linus", "Lightning", "Orochimaru", "Proteus", "_Disgustingness", "_Loudness", "Kick in the Nuts", "_Mother Teresa", "George W. Bush", "Super Mario", "the blue Power Ranger", "the universe", "the Invisible Pink Unicorn", "the DevTeam", "_Bluescreenofdeath", "marvin", "Tariru", "mrivan", "stenno", "DeathOnAStick", "The IS", "_Miley Cyrus", "Friday the 13th", "Fugu Globefish Sushi", "Ice Bear", "Cyberdemon MkIII Deluxe", "Blizzard", "_Luna", "_Eos", "Chaotic Evil", "_Crueltrainer Cindy", "Cars", "Mustard Gas", "Emoxivalirex", "Tleselagyila", "Two-Face", "Gihren Zabi", "Dark Force", "_the Profound Darkness", "Chara", "Deus", "_Miki Onimaru", "Mor Havoc", "Heaven's Feel", "_Jylla", "_Kendl", "Kaczynski", "_Ehekatl of Luck", "_Lulwy of Wind", "Eyth of Infidel", "Abbad-Undar", "Ni'Pregh", "_Rofl'th", "The One Who Rages", "Ssraxx", "Ussrachs", "Fnordjar", "Vagrak", "_Urglyn", "Chaos", "Fiit-Yaaar", "Mortifer", "Cruentus", "_Infuscor", "_Scabies", "_Nefas", "Self-Polymorph", "_Ms. Storm", "G-Man", "_Terpsichore", "Demo", "_Wendy", "The Dire Wolf", "Garyx", "_Your Insufferable Mother-In-Law", "Cromwell", "Aerschie-Miesie", "_Anita Sarkeesian", "Left Guenter", "Mark Zuckerberg", "Anonymous", "Fag Butt", "Cyrus", "Pillory", "_Titania", "Tom Brady", "Haggle Man", "Iris Sepperin", "Albert Einstein", "Prison Outbreak", "Yuri Gagarin", "Conker the Bad Fur Squirrel", "Vladimir Bukovsky", "_Sarah Kerrigan", "Timmy", "_Ereshkigal", "Boss Bass", "_Jeannine", "Bose Jefferson", "Acharya", "_Damona", "Ishwara", "Sexy Licking Noises", "Buerger*innen", "Khaldi", "_Marlen", "_the Elder Elemental", "Rathma", "Reset Button Without A Confirmation", "Coffin Nail", "Peter Kaiser", "Fuxi", "Upper Failure Kornop", 
+"Warpfire Hellspawn", "Human Rights Progression", "_Lolth", "President Snow", "Huhetotl", "Dali", "Ivins", "_Hert the Vampire", "Set", "Urdlen", "_Sophia", "_Hemophilia", "_Elenya Pure", "the black web", "Draco Malfoy", "Anshar", "Allah", "_Tymora", "Burger King", "Caesar", "Edward Cullen", "Lord Voldemort", "Whiro", "_Yukari Yakumo", "Pan", "Tulkas", "_Marilyn Monroe", "Erevan Ilesere", "Jackie Chan", "Arson", "Ash", "The Patriots", "Sony", "Tommy Vercetti", "VMS", "Catilina", "Darth Valer", "Gates", "Poseidon", "Smoke", "Rothchild", "the Dark Side", "Shaco", "Manannan Mac Lir", "Papa Legba", "Arsene Lupin", "H. P. Lovecraft", "Morrigan", "Lycanthus", "_Queen Beryl", "Huan Ti", "Falaris", "Arioch", "Gothuulbe", "Rat God", "the Satan", "Wesson", "_Nessa", "_Shiva", "Gabriel", "Daini", "the Devil", "Team Missile Bomb", "Despotism", "Lockney", "Mars", "Hardcore Punk", "Kos", "_Helen of Troy", "Vegeta", "Susanowo", "Wernher von Braun", "Daevas", "Sven Fanara", "the Motherfuckers", "Lorien", "_Kylie Lum", "Offler", "_Lady Gaga", "Seth", "Orcus", "Loki", "Morton Koopa Jr.", "Clavicus Vile", "Anhur", "The Commons", "Hagen", "Mechatron", "Cherubimon", "Kano", "End of the World", "Shabranigdo", "_Tokimi", "_Myria", "Ra", "Poltergeist", "the Mist", "Asmodeus", "_Din", "Justine", "Tash", "_Tiamat", "_Princess Luna", "_Pinkie Pie", "Basement Cat", "The Dark Id", "Id", "Amos Bronson Alcott", "Puma", "Mike Tyson", "Kerio", "Game Freeze", "Captain Future", "water puddle", "SLASH'EM Extended", "Al-Mutasim", "Fahrenheit", "Atue", "Geglash", "Farnham the Drunk", "Pyrrhus", "Ashenzari", "Dithmenos", "Jiyva", "Makhleb", "Sif Muna", "Xom", "_the Sluts with Syphilis", "Malroth", "Viracocha", "Mbombo", "Unkulunkulu", "Apsu", "Coatlique", "Tepeu", "Sheltem", "Kamineko", "Courage", "Faster-Than-All-Others", "Anton", "General Tullius", "XBox 360", "Antimony", "Abbathor", "Morgoth", "Eol", "Ghaunadaur", "Armok", "Gruumsh", "_Sehanine", "_Mask", "Sexy Butt", "_Marionette", "Ymir", "Dantalion", "_Iris", "Acererak", "Ose", "Ahazu", "_Echidna", "Miska", "Malphas", "Otias", "_Simurgh", "wand of summon sexy girl", "B-a-a-l", "Global Liberation Army", "Rodall 'Demo' Juhziz", "Protoss", "Gabnid", "_Adephagia", "Hydrocloria", "Linus", "Lightning", "Orochimaru", "Proteus", "_Disgustingness", "_Loudness", "Kick in the Nuts", "_Mother Teresa", "George W. Bush", "Super Mario", "the blue Power Ranger", "the universe", "the Invisible Pink Unicorn", "the DevTeam", "_Bluescreenofdeath", "marvin", "Tariru", "mrivan", "stenno", "DeathOnAStick", "The IS", "_Miley Cyrus", "Friday the 13th", "Fugu Globefish Sushi", "Ice Bear", "Cyberdemon MkIII Deluxe", "Blizzard", "_Luna", "_Eos", "Chaotic Evil", "_Crueltrainer Cindy", "Cars", "Mustard Gas", "Emoxivalirex", "Tleselagyila", "Two-Face", "Gihren Zabi", "Dark Force", "_the Profound Darkness", "Chara", "Deus", "_Miki Onimaru", "Mor Havoc", "Heaven's Feel", "_Jylla", "_Kendl", "Kaczynski", "_Ehekatl of Luck", "_Lulwy of Wind", "Eyth of Infidel", "Abbad-Undar", "Ni'Pregh", "_Rofl'th", "The One Who Rages", "Ssraxx", "Ussrachs", "Fnordjar", "Vagrak", "_Urglyn", "Chaos", "Fiit-Yaaar", "Mortifer", "Cruentus", "_Infuscor", "_Scabies", "_Nefas", "Self-Polymorph", "_Ms. Storm", "G-Man", "_Terpsichore", "Demo", "_Wendy", "The Dire Wolf", "Garyx", "_Your Insufferable Mother-In-Law", "Cromwell", "Aerschie-Miesie", "_Anita Sarkeesian", "Left Guenter", "Mark Zuckerberg", "Anonymous", "Fag Butt", "Cyrus", "Pillory", "_Titania", "Tom Brady", "Haggle Man", "Iris Sepperin", "Albert Einstein", "Prison Outbreak", "Yuri Gagarin", "Conker the Bad Fur Squirrel", "Vladimir Bukovsky", "_Sarah Kerrigan", "Timmy", "_Ereshkigal", "Boss Bass", "_Jeannine", "Bose Jefferson", "Acharya", "_Damona", "Ishwara", "Sexy Licking Noises", "Buerger*innen", "Khaldi", "_Marlen", "_the Elder Elemental", "Rathma", "Reset Button Without A Confirmation", "Coffin Nail", "Peter Kaiser", "Fuxi", "Upper Failure Kornop", "George Clooney", "_Charlotte Roche", 
 
 };
 
@@ -9949,6 +10005,17 @@ u_init()
 	u.femauspices30 = rnd(10);
 
 	u.feminizeffect = rnd(44); /* amount of feminism trap effects; keyword: "marlena" */
+
+	u.climauspices3 = rnd(44);
+	u.climauspices6 = rnd(44);
+	u.climauspices9 = rnd(44);
+	u.climauspices12 = rnd(44);
+	u.climauspices15 = rnd(44);
+	u.climauspices18 = rnd(44);
+	u.climauspices21 = rnd(44);
+	u.climauspices24 = rnd(44);
+	u.climauspices27 = rnd(44);
+	u.climauspices30 = rnd(44);
 
 	u.sjwL1E1 = rnd(235); /* timerun and stuff */
 	u.sjwL2E1 = rnd(235);
@@ -13486,6 +13553,17 @@ u_init()
 		skill_init(Skill_Zoo);
 		break;
 
+	case PM_CLIMACTERIAL:
+		ini_inv(Climacterial);
+		skill_init(Skill_Cli);
+		break;
+
+	case PM_WOMANIZER:
+		Womanizer[WOMGEM].trotyp = rnd_class(ELIF_S_JEWEL, DORA_S_JEWEL);
+		ini_inv(Womanizer);
+		skill_init(Skill_Wom);
+		break;
+
 	case PM_FIREFIGHTER:
 		ini_inv(Firefighter);
 		skill_init(Skill_Fir);
@@ -14569,6 +14647,15 @@ u_init()
 		skill_init(Skill_Ana);
 		break;
 
+	case PM_CLIMACTERIAL:
+		skill_init(Skill_Cli);
+		break;
+
+	case PM_WOMANIZER:
+		skill_init(Skill_Wom);
+		break;
+
+
 	default:	/* impossible */
 		pline("skill init failed %d", Role_switch);
 		break;
@@ -14576,7 +14663,7 @@ u_init()
 
 	if (!isnullrace) { /* randomizer only */
 
-	switch (rnd(165)) {
+	switch (rnd(167)) {
 	case 1:
 		switch (rnd(5)) {   
 		    case 1: Archeologist[A_BOOK].trotyp = SPE_DETECT_FOOD; break;
@@ -16094,6 +16181,15 @@ u_init()
 		    NoobModeBarb[N_MINOR].trotyp = SHORT_SWORD;
 		}
 		ini_inv(NoobModeBarb);
+		break;
+
+	case 166:
+		ini_inv(Climacterial);
+		break;
+
+	case 167:
+		Womanizer[WOMGEM].trotyp = rnd_class(ELIF_S_JEWEL, DORA_S_JEWEL);
+		ini_inv(Womanizer);
 		break;
 
 	default:	/* impossible */
@@ -16252,7 +16348,7 @@ u_init()
 
 	if (Race_if(PM_BASTARD)) {
 
-	switch (rnd(165)) {
+	switch (rnd(167)) {
 	case 1:
 		switch (rnd(5)) {   
 		    case 1: Archeologist[A_BOOK].trotyp = SPE_DETECT_FOOD; break;
@@ -17765,6 +17861,15 @@ u_init()
 		    NoobModeBarb[N_MINOR].trotyp = SHORT_SWORD;
 		}
 		ini_inv(NoobModeBarb);
+		break;
+
+	case 166:
+		ini_inv(Climacterial);
+		break;
+
+	case 167:
+		Womanizer[WOMGEM].trotyp = rnd_class(ELIF_S_JEWEL, DORA_S_JEWEL);
+		ini_inv(Womanizer);
 		break;
 
 	default:	/* impossible */
@@ -29899,6 +30004,8 @@ int otyp;
      case PM_FIREFIGHTER:		skills = Skill_Fir; break;
      case PM_OFFICER:		skills = Skill_Off; break;
      case PM_ZOOKEEPER:		skills = Skill_Zoo; break;
+     case PM_CLIMACTERIAL:		skills = Skill_Cli; break;
+     case PM_WOMANIZER:		skills = Skill_Wom; break;
      case PM_NINJA:		skills = Skill_Nin; break;
      case PM_UNDERTAKER:		skills = Skill_Unt; break;
      case PM_GRADUATE:		skills = Skill_Gra; break;
@@ -31906,6 +32013,17 @@ int realityflag;
 	u.femauspices30 = rnd(10);
 
 	u.feminizeffect = rnd(44); /* amount of feminism trap effects; keyword: "marlena" */
+
+	u.climauspices3 = rnd(44);
+	u.climauspices6 = rnd(44);
+	u.climauspices9 = rnd(44);
+	u.climauspices12 = rnd(44);
+	u.climauspices15 = rnd(44);
+	u.climauspices18 = rnd(44);
+	u.climauspices21 = rnd(44);
+	u.climauspices24 = rnd(44);
+	u.climauspices27 = rnd(44);
+	u.climauspices30 = rnd(44);
 
 	u.sjwL1E1 = rnd(235); /* timerun and stuff */
 	u.sjwL2E1 = rnd(235);

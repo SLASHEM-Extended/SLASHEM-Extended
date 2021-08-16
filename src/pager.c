@@ -27315,6 +27315,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"Your inventory is gone.",
 	"Your inventory is gone. This is the effect when someone reads the scroll 'Huro Haehae', which transforms each of your items or item stacks to a randomly generated monster and then teleports said monster to another dungeon level, so you'll never get them back.",
 	"You see a rothe blow by in the wind.",
+	"You have a sinking feeling for a moment, then it passes."
+	"You have a sinking feeling for a moment, then it passes. This message appears if your pet manages to drown while outside your view."
+	"You have a sinking feeling for a moment, then it passes. This message appears if your pet manages to drown while outside your view, which will be the case very rarely. For example, by messing with a fountain in a dark room while there's a pet a couple squares away from you."
 
 };
 

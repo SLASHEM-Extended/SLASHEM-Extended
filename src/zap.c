@@ -9539,6 +9539,24 @@ raypassthrough: /* if the player's control magic made it pass through --Amy */
 				dy = 0;
 			    }
 
+			} else if (have_spectrumplinggem()) {
+
+			    if (dx && dy) {
+
+				if (rn2(2)) {
+					dx = -dx;
+				} else {
+					dy = -dy;
+				}
+
+			    } else if (dx) {
+				dx = 0;
+				dy = rn2(2) ? -1 : 1;
+			    } else {
+				dx = rn2(2) ? -1 : 1;
+				dy = 0;
+			    }
+
 			} else if (uamul && uamul->oartifact == ART_GUARDIAN_ANGLE) {
 
 			    if (dx && dy) {

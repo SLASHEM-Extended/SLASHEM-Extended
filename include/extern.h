@@ -1019,6 +1019,7 @@ E boolean have_lizard(void);
 E boolean have_loadstone(void);
 E boolean have_pokeloadstone(void);
 E boolean have_invisoloadstone(void);
+E boolean have_spectrumplinggem(void);
 E boolean have_amateurluckstone(void);
 E boolean have_femityjewel(void);
 E boolean have_sleepstone(void);
@@ -2422,6 +2423,8 @@ E struct monst *split_mon(struct monst *,struct monst *);
 E const char *bottlename(void);
 E void bad_equipment(int);
 E void bad_equipment_heel(void);
+E void bad_equipment_femshoes(void);
+E void bad_equipment_implant(void);
 E void increasesanity(int);
 E boolean conundrumbreak(void);
 E void statdrain(void);
@@ -2741,6 +2744,7 @@ E void recursioneffect(void);
 E void temprecursioneffect(void);
 E void greenslimetransformation(void);
 E void bindertransformation(void);
+E void climrecursioneffect(void);
 E void changehybridization(int);
 E void demagoguerecursioneffect(void);
 E void rivalroleinit(void);
@@ -3430,6 +3434,7 @@ E void unrestrictskillchoice(void);
 E const char *wpskillname(int);
 E void grinderattack(int);
 E int difeasemu(struct permonst *);
+E void climtrainsqueaking(int);
 
 /* ### were.c ### */
 

@@ -830,6 +830,36 @@ const struct Role roles[] = {
 	0, 3,-2, 2, 10, A_WIS, SPE_REMOVE_CURSE,    -4, 70
 },
 
+{	{"Climacterial", 0}, {
+	{"Body Juice Worshipper",	0},
+	{"Icky Sapper",	0},
+	{"Outbleeder",	0},
+	{"Orgasmaniac",	0},
+	{"Menstrator",	0},
+	{"Eggjumper",	0},
+	{"Menopause Hesitator",	0},
+	{"Big Birthmother",	0},
+	{"Smegmatic Reacher",	0} },
+	"_Sophie Kinsella", "_Mavis Cheek", "_Charlotte Roche", /* authors */
+	"Cli", "Countryside Birthclinic", "The Temple of Xian",
+	PM_CLIMACTERIAL, NON_PM, PM_UNDEAD_CLIMACTERIAL, NON_PM, PM_ISABEL,
+	PM_NURSE_CATHERINE, PM_ATTENDANT, PM_LARUS, PM_MALE_VERSION_OF_LARA_CROFT,
+	PM_BROWN_BEAR, PM_HANGING_SEMEN_EJACULATOR, S_QUADRUPED, S_TURRET,
+	ART_CLICKPASS, /* soft chastity belt */
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC |
+	ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  13, 13, 13,  9, 13,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  10, 20, 10, 20, 15, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  14, 19, 18, 22, 18, 22 },
+	/* Init   Lower  Higher */
+	{ 20, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  4, 0,  0, 2,  0, 7 },14,	/* Energy */
+	10, 8, -5, 3, 6, A_INT, SPE_BLOOD_STREAM,   -4, 50
+},
+
 {	{ "Combatant", 0 }, {
 	{ "Fighter Lad", 0 },
 	{ "Puncher", 0 },
@@ -4958,6 +4988,36 @@ const struct Role roles[] = {
 	{ 15, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 25, 3,  0, 2,  0, 3 },12,	/* Energy */
 	0, 1, 0, 3, 10, A_INT, SPE_MAGIC_MISSILE,   -4, 200
+},
+
+{	{"Womanizer", 0}, {
+	{"Cheekstroker",	0},
+	{"Curve Adorer",	0},
+	{"Sweetheart Lover",	0},
+	{"Turn-On-Jockey",	0},
+	{"Speech Charmer",	0},
+	{"Promise Keeper",	0},
+	{"Engaged Man",	0},
+	{"Married Luck Mushroom",	0},
+	{"Happiness Enjoyer",	0} },
+	"Charlie Sheen", "Tiger Woods", "George Clooney", /* famous womanizers */
+	"Wom", "Neverending Party Hall", "Socjus Brigade Center",
+	PM_WOMANIZER, NON_PM, PM_UNDEAD_WOMANIZER, NON_PM, PM_EROTICLOUDY,
+	PM_HUGE_HEFNER, PM_MODEL, PM_BERBAL, PM_NUTCRUNCHER_BITCH,
+	PM_SOCIAL_JUSTICE_WARRIOR, PM_ANGRY_PROSTITUTE, S_HUMAN, S_DOG,
+	ART_SPECTRUM_PLING, /* covelline or whatever that gem's name was, reflection and stuff */
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC |
+	ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  13, 13, 13,  9, 13,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  15, 10, 15, 15, 25, 20 },
+	/* new limit values for the six attributes by Amy */
+	{  18, 17, 17, 18, 19, 17 },
+	/* Init   Lower  Higher */
+	{ 12, 0,  0, 4,  4, 0 },	/* Hit points */
+	{  6, 0,  0, 3,  0, 2 }, 16,	/* Energy */
+	0, 12, 0, 5, 14, A_INT, SPE_TAKE_SELFIE,   -4, 20
 },
 
 {	{"XelNaga", 0}, {
@@ -10789,6 +10849,29 @@ temprecursioneffect()
 		pline("You're temporarily a %s now!", urace.noun);
 
 	}
+
+	init_uasmon();
+
+	if (Race_if(PM_UNGENOMOLD) && !Upolyd) polyself(FALSE);
+
+}
+
+void
+climrecursioneffect()
+{
+	if (u.temprecursion) return;
+	u.demagoguerecursion = 0;
+	u.demagoguerecursiontime = 0;
+
+	u.temprecursiontime = 1000;
+	u.temprecursion = 1;
+
+	u.oldrecursionrace = flags.initrace;
+	u.oldrecursionrole = -1;
+	flags.initrace = randrace(flags.initrole);
+	urace = races[flags.initrace];
+	pline("You suddenly feel a genetic injection!");
+	pline("You're temporarily a %s now!", urace.noun);
 
 	init_uasmon();
 

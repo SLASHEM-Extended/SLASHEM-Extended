@@ -5548,6 +5548,26 @@ static const char * const bogusmons[] = {
 	"Filthy Cheater",
 	"Biggest Noob Ever",
 	"P-Point", "I Have To Reload", "Upper Failure Kornop",
+	"Body Juice Worshipper",
+	"Icky Sapper",
+	"Outbleeder",
+	"Orgasmaniac",
+	"Menstrator",
+	"Eggjumper",
+	"Menopause Hesitator",
+	"Big Birthmother",
+	"Smegmatic Reacher",
+	"Sophie Kinsella", "Mavis Cheek", "Charlotte Roche", /* authors */
+	"Cheekstroker",
+	"Curve Adorer",
+	"Sweetheart Lover",
+	"Turn-On-Jockey",
+	"Speech Charmer",
+	"Promise Keeper",
+	"Engaged Man",
+	"Married Luck Mushroom",
+	"Happiness Enjoyer",
+	"Charlie Sheen", "Tiger Woods", "George Clooney", /* famous womanizers */
 
 };
 

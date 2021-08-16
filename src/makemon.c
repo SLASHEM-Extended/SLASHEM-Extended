@@ -1851,6 +1851,69 @@ register struct monst *mtmp;
 		     (void)mongets(mtmp, BULLWHIP);
 		   break;
 
+		   case PM_CLIMACTERIAL:
+		   case PM_UNDEAD_CLIMACTERIAL:
+		     (void)mongets(mtmp, TOILET_ROLL);
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+
+		   break;
+
+		   case PM_WOMANIZER:
+		   case PM_UNDEAD_WOMANIZER:
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     (void)mongets(mtmp, ROSE_WHIP);
+		     (void)mongets(mtmp, ELVIS_SHOES);
+
+		   break;
+
 		   case PM_ARTIST:
 		   case PM_UNDEAD_ARTIST:
 		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
@@ -15882,6 +15945,12 @@ loveheelover:
 			 m_initthrow(mtmp, ROCKET, 10);
 		}
 
+		if (ptr == &mons[PM_LARUS]) {
+			(void) mongets(mtmp, BULLWHIP);
+			(void) mongets(mtmp, HIGH_BOOTS);
+			(void) mongets(mtmp, LEATHER_JACKET);
+		}
+
 		if (ptr == &mons[PM_LIGHTWHOOSH_WALL]) {
 			(void) mongets(mtmp, MYSTERY_LIGHTSABER);
 		}
@@ -25565,6 +25634,8 @@ loopback:
 		if (ct > 0 && (Race_if(PM_PERVERT) && dmgtype(ptr, AD_DROP) )) ct += 2;
 		if (ct > 0 && (Race_if(PM_TUMBLRER) && dmgtype(ptr, AD_DROP) )) ct += 10;
 		if (ct > 0 && (Race_if(PM_WOOKIE) && dmgtype(ptr, AD_DROP) )) ct += 2;
+		if (ct > 0 && (Race_if(PM_CLIMACTERIAL) && dmgtype(ptr, AD_FEMI) )) ct += 50;
+		if (ct > 0 && (Role_if(PM_WOMANIZER) && is_female(ptr) )) ct += 1;
 		if (ct > 0 && (uwep && uwep->oartifact == ART_SLEXCALIBUR && !is_angbandmonster(ptr) && !is_cowmonster(ptr) && !is_vanillamonster(ptr) && !is_animemonster(ptr) && !is_steammonster(ptr) && !is_dlordsmonster(ptr) && !is_dnethackmonster(ptr) && !is_jokemonster(ptr) && !is_diablomonster(ptr) && !is_jonadabmonster(ptr) && !is_evilpatchmonster(ptr) && !is_randomizedmonster(ptr) && !is_elonamonster(ptr) && !is_aoemonster(ptr) && !is_elderscrollsmonster(ptr) )) ct += 5;
 		if (ct > 0 && (u.twoweap && uswapwep && uswapwep->oartifact == ART_SLEXCALIBUR && !is_angbandmonster(ptr) && !is_cowmonster(ptr) && !is_vanillamonster(ptr) && !is_animemonster(ptr) && !is_steammonster(ptr) && !is_dlordsmonster(ptr) && !is_dnethackmonster(ptr) && !is_jokemonster(ptr) && !is_diablomonster(ptr) && !is_jonadabmonster(ptr) && !is_evilpatchmonster(ptr) && !is_randomizedmonster(ptr) && !is_elonamonster(ptr) && !is_aoemonster(ptr) && !is_elderscrollsmonster(ptr) )) ct += 5;
 
@@ -26817,6 +26888,8 @@ int     spc;
 		if ((Race_if(PM_PERVERT) && dmgtype(&mons[last], AD_DROP) )) num += 2;
 		if ((Race_if(PM_TUMBLRER) && dmgtype(&mons[last], AD_DROP) )) num += 10;
 		if ((Race_if(PM_WOOKIE) && dmgtype(&mons[last], AD_DROP) )) num += 2;
+		if ((Race_if(PM_CLIMACTERIAL) && dmgtype(&mons[last], AD_FEMI) )) num += 50;
+		if ((Role_if(PM_WOMANIZER) && is_female(&mons[last]) )) num += 1;
 		if ((uwep && uwep->oartifact == ART_SLEXCALIBUR && !is_dlordsmonster(&mons[last]) && !is_dnethackmonster(&mons[last]) && !is_jokemonster(&mons[last]) && !is_diablomonster(&mons[last]) && !is_jonadabmonster(&mons[last]) && !is_evilpatchmonster(&mons[last]) && !is_randomizedmonster(&mons[last]) && !is_elonamonster(&mons[last]) && !is_aoemonster(&mons[last]) && !is_elderscrollsmonster(&mons[last]) )) num += 5;
 		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_SLEXCALIBUR && !is_dlordsmonster(&mons[last]) && !is_dnethackmonster(&mons[last]) && !is_jokemonster(&mons[last]) && !is_diablomonster(&mons[last]) && !is_jonadabmonster(&mons[last]) && !is_evilpatchmonster(&mons[last]) && !is_randomizedmonster(&mons[last]) && !is_elonamonster(&mons[last]) && !is_aoemonster(&mons[last]) && !is_elderscrollsmonster(&mons[last]) )) num += 5;
 
@@ -27744,6 +27817,8 @@ int     spc;
 		if ((Race_if(PM_PERVERT) && dmgtype(&mons[first], AD_DROP) )) num -= 2;
 		if ((Race_if(PM_TUMBLRER) && dmgtype(&mons[first], AD_DROP) )) num -= 10;
 		if ((Race_if(PM_WOOKIE) && dmgtype(&mons[first], AD_DROP) )) num -= 2;
+		if ((Race_if(PM_CLIMACTERIAL) && dmgtype(&mons[first], AD_FEMI) )) num -= 50;
+		if ((Role_if(PM_WOMANIZER) && is_female(&mons[first]) )) num -= 1;
 		if ((uwep && uwep->oartifact == ART_SLEXCALIBUR && !is_dlordsmonster(&mons[first]) && !is_dnethackmonster(&mons[first]) && !is_jokemonster(&mons[first]) && !is_diablomonster(&mons[first]) && !is_jonadabmonster(&mons[first]) && !is_evilpatchmonster(&mons[first]) && !is_randomizedmonster(&mons[first]) && !is_elonamonster(&mons[first]) && !is_aoemonster(&mons[first]) && !is_elderscrollsmonster(&mons[first]) )) num -= 5;
 		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_SLEXCALIBUR && !is_dlordsmonster(&mons[first]) && !is_dnethackmonster(&mons[first]) && !is_jokemonster(&mons[first]) && !is_diablomonster(&mons[first]) && !is_jonadabmonster(&mons[first]) && !is_evilpatchmonster(&mons[first]) && !is_randomizedmonster(&mons[first]) && !is_elonamonster(&mons[first]) && !is_aoemonster(&mons[first]) && !is_elderscrollsmonster(&mons[first]) )) num -= 5;
 

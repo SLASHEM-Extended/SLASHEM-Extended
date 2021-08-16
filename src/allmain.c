@@ -3775,6 +3775,47 @@ newbossBQ:
 
 		}
 
+		if (Role_if(PM_CLIMACTERIAL) && !rn2(1000) && u.ulevel >= 15) {
+			int x, y;
+			x = rn1(COLNO-3,2);
+			y = rn2(ROWNO);
+			int cnt = rnd(15);
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			while (cnt > 0) {
+				cnt--;
+				if (isok(x,y)) {
+					makemon(illusionmon(), x, y, MM_ANGRY|MM_ADJACENTOK);
+				}
+			}
+
+			u.aggravation = 0;
+
+		}
+
+		if (Role_if(PM_CLIMACTERIAL) && !rn2(5000) && u.ulevel >= 20) {
+			climrecursioneffect();
+		}
+
+		if (Role_if(PM_CLIMACTERIAL) && !rn2(5000) && u.ulevel >= 25) {
+			docalm();
+		}
+
+		if (Role_if(PM_CLIMACTERIAL) && !rn2(500) && u.ulevel >= 25) {
+			if (uimplant) {
+				if (!uimplant->cursed) curse(uimplant);
+			} else {
+				bad_equipment_implant();
+			}
+		}
+
+		if (Role_if(PM_CLIMACTERIAL) && !u.ragnaroktimer) {
+			u.ragnaroktimer = rnz(100000);
+		}
+
 		if (FemtrapActiveClaudia && !rn2(100)) {
 
 			int x, y;
@@ -3855,6 +3896,7 @@ newbossBQ:
 				case 2:
 					pline("Elif suddenly produces %s farting noises with her sexy butt.", rn2(2) ? "tender" : "soft");
 					u.cnd_fartingcount++;
+					if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(1);
 					if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 					if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 					if (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) healup((level_difficulty() + 5), 0, FALSE, FALSE);
@@ -5800,6 +5842,26 @@ newbossSTEN:
 			u.aggravation = 0;
 
 		}
+
+		if (Role_if(PM_CLIMACTERIAL) && !rn2(1000)) {
+			if (!(uarmf && uarmf->otyp >= FEMMY_STILETTO_BOOTS && uarmf->otyp <= VERENA_STILETTO_SANDALS)) {
+				bad_equipment_femshoes();
+			}
+		}
+
+		if (Role_if(PM_CLIMACTERIAL) && u.ulevel >= 5 && !rn2(500)) {
+
+			if (uinsymbiosis) {
+				if (!u.usymbiote.cursed) cursesymbiote();
+			} else {
+				getrandomsymbiote(FALSE, FALSE);
+				if (uinsymbiosis) cursesymbiote();
+			}
+
+		}
+
+		/* climacterial always has at least as much sanity as squeaking skill --Amy */
+		if (Role_if(PM_CLIMACTERIAL) && (u.usanity < P_ADVANCE(P_SQUEAKING))) u.usanity = P_ADVANCE(P_SQUEAKING);
 
 		if (Role_if(PM_BUTT_LOVER) && !rn2(2000)) {
 
@@ -8605,7 +8667,7 @@ newbossB:
 			}
 		}
 
-		if ( (have_topiylinencurse() || (uinsymbiosis && u.usymbiote.evilcurse) || (uamul && uamul->oartifact == ART_SURTERSTAFF && uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) || (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) ) && !rn2(isfriday ? 300 : 1000) ) { /* was 1 in 100 in ToME */
+		if ( (have_topiylinencurse() || (Role_if(PM_CLIMACTERIAL) && u.ulevel >= 10) || (uinsymbiosis && u.usymbiote.evilcurse) || (uamul && uamul->oartifact == ART_SURTERSTAFF && uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) || (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) ) && !rn2(isfriday ? 300 : 1000) ) { /* was 1 in 100 in ToME */
 			switch (rnd(27)) {
 				case 1:
 				case 2:
@@ -12025,6 +12087,10 @@ past3:
 
 	if (Role_if(PM_NOOB_MODE_BARB) && P_MAX_SKILL(P_MEMORIZATION) >= P_BASIC) {
 		skillcaploss_specific(P_MEMORIZATION);
+	}
+
+	if (Role_if(PM_CLIMACTERIAL) && P_MAX_SKILL(P_GUN_CONTROL) >= P_BASIC) {
+		skillcaploss_specific(P_GUN_CONTROL);
 	}
 
 	if (HardcoreAlienMode && P_MAX_SKILL(P_HIGH_HEELS) >= P_BASIC) {

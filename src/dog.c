@@ -430,6 +430,8 @@ maeney:
 	if (pettype == PM_DENRYU) petname = "Ryu Hayabusa";
 	if (pettype == PM_CHRISTINE) petname = "Christine";
 	if (pettype == PM_BIRSEN) petname = "Birsen";
+	if (pettype == PM_ISABEL) petname = "Isabel";
+	if (pettype == PM_EROTICLOUDY) petname = "Claudia";
 
 	if (pettype == PM_FLOATING_EYE) petname = "Gazing Beholder Orb";
 

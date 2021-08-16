@@ -487,7 +487,7 @@ elena2:
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == UNFAIR_STILETTOS) || (footwear && itemhasappearance(footwear, APP_FAILED_SHOES)) || (randomsexyheels == 4) || mtmp->data == &mons[PM_ANIMATED_UNFAIR_STILETTO] || mtmp->data == &mons[PM_WEREUNFAIRSTILETTO] || mtmp->data == &mons[PM_HUMAN_WEREUNFAIRSTILETTO]) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == UNFAIR_STILETTOS) || (footwear && itemhasappearance(footwear, APP_FAILED_SHOES)) || (randomsexyheels == 4) || mtmp->data == &mons[PM_ANIMATED_UNFAIR_STILETTO] || mtmp->data == &mons[PM_WEREUNFAIRSTILETTO] || mtmp->data == &mons[PM_BERBAL] || mtmp->data == &mons[PM_NUTCRUNCHER_BITCH] || mtmp->data == &mons[PM_HUMAN_WEREUNFAIRSTILETTO]) ) {
 elena3:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -7218,6 +7218,7 @@ hitmu(mtmp, mattk)
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
 		randomfeminismtrap(rnz( (dmg + 2) * rnd(100)));
+		if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(dmg);
 
 		break;
 
@@ -8400,7 +8401,7 @@ dopois:
 			hitmsg(mtmp, mattk);
 			if (mtmp->mcan) break;
 			/* Continue below */
-		} else if (rn2(5) && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_COPPERED_OFF_FROM_ME) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) && (dmgtype(youmonst.data, AD_SEDU) || (uarmg && uarmg->oartifact == ART_LORSKEL_S_SPECIAL_PROTECTI) || (uwep && uwep->oartifact == ART_ONE_HUNDRED_STARS)
+		} else if (rn2(5) && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_COPPERED_OFF_FROM_ME) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) && (dmgtype(youmonst.data, AD_SEDU) || (uarmg && uarmg->oartifact == ART_LORSKEL_S_SPECIAL_PROTECTI) || (ublindf && ublindf->oartifact == ART_CLICKPASS) || (uwep && uwep->oartifact == ART_ONE_HUNDRED_STARS)
 			|| dmgtype(youmonst.data, AD_SSEX)
 						) ) {
 			pline("%s %s.", Monnam(mtmp), mtmp->minvent ?
@@ -11108,6 +11109,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 			pline("It feels very feminine in here!");
 			randomfeminismtrap(rnz( (tmp + 2) * rnd(100)));
+			if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(tmp);
 
 		break;
 
@@ -15217,6 +15219,7 @@ common:
 
 	    case AD_FEMI:
 		randomfeminismtrap(rnz( (tmp + 2) * rnd(100)));
+		if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(tmp);
 
 		break;
 
@@ -19660,6 +19663,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(20))) {
                 pline("%s gazes at you in a very female way!", Monnam(mtmp));
 			randomfeminismtrap(rnz( (dmgplus + 2) * rnd(100)));
+			if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(dmgplus);
 		}
 
 		break;
@@ -20486,6 +20490,8 @@ struct attack *mattk;
 		if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y")) ) u.homosexual = 2;
 		else u.homosexual = 1;
 	}
+
+	if (ublindf && ublindf->oartifact == ART_CLICKPASS) return 0; /* immunity */
 
 	if (rn2(5) && is_animal(magr->data)) return (0); /* Oh come on. In Elona snails can have sex with humans too. --Amy */
 

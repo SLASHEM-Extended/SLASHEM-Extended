@@ -986,6 +986,8 @@ register struct monst *mtmp;
 	    case PM_UNDEAD_OFFICER:
 	    case PM_UNDEAD_UNDERTAKER:
 	    case PM_UNDEAD_ZOOKEEPER:
+	    case PM_UNDEAD_CLIMACTERIAL:
+	    case PM_UNDEAD_WOMANIZER:
 	    case PM_UNDEAD_TRANSVESTITE:
 	    case PM_UNDEAD_TRANSSYLVANIAN:
 	    case PM_UNDEAD_SOFTWARE_ENGINEER:
@@ -7577,6 +7579,7 @@ register struct monst *mtmp;
     if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_QUIET) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "tender" : "soft", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		u.cnd_fartingcount++;
+		if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(1);
 		if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
@@ -7623,6 +7626,7 @@ sarahdone:
     if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_NORMAL) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		u.cnd_fartingcount++;
+		if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(1);
 		if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 		if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
@@ -7661,6 +7665,7 @@ sarahdone:
     if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_LOUD) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "disgusting" : "loud", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		u.cnd_fartingcount++;
+		if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(1);
 		if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 		if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
@@ -7698,6 +7703,7 @@ sarahdone:
     if (mtmp->egotype_farter) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), !rn2(6) ? "disgusting" : !rn2(5) ? "loud" : !rn2(4) ? "tender" : !rn2(3) ? "soft" : !rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		u.cnd_fartingcount++;
+		if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(1);
 		if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 		if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {

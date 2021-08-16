@@ -2874,6 +2874,7 @@ BOOTS("noisy boots", "marji shoes",
 BOOTS("mork boots", "mary janes",
 		0, 1,  MOVEMORKING,  3, 2, 8, 50,  7, 2, MT_PLASTIC, CLR_RED, 1, APP_MARY_JANES),
 
+/* feminism shoes: Femmy stiletto boots have to be first */
 BOOTS("Femmy stiletto boots", "fleshy boots",
 		0, 0,  FEMTRAP_FEMMY,   	3, 2, 8, 50, 8, 0, MT_FLESH, CLR_WHITE, 1, 0),
 BOOTS("Madeleine plateau boots", "paper shoes",
@@ -2962,6 +2963,7 @@ BOOTS("Henrietta combat boots", "alloy boots",
 		0, 0,  FEMTRAP_HENRIETTA,   	3, 2, 8, 50, 6, 0, MT_ALLOY, CLR_BROWN, 1, 0),
 BOOTS("Verena stiletto sandals", "distancing boots",
 		0, 0,  FEMTRAP_VERENA,   	3, 2, 8, 50, 9, 3, MT_TAR, CLR_BLACK, 1, 0),
+/* Verena stiletto sandals are last */
 
 BOOTS("high stilettos", "block-heeled boots",
 		0, 1,  0,  500, 2, 8, 50,  9, 1, MT_LEATHER, CLR_BLACK, 10, APP_BLOCK_HEELED_BOOTS),

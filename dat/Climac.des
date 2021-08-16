@@ -1,0 +1,333 @@
+#	SCCS Id: @(#)Knight.des	3.4	1995/04/16
+#	Copyright (c) 1989 by Jean-Christophe Collet
+#	Copyright (c) 1991,92 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+#	The "start" level for the quest.
+#
+#	Here you meet your (besieged) class leader, King Arthur
+#	and receive your quest assignment.
+#
+MAZE: "Cli-strt",'.'
+FLAGS: noteleport,hardfloor
+# This is a kludge to init the level as a lit field.
+INIT_MAP: ' ' , ' ' , false , false , lit , false
+GEOMETRY:center,center
+MAP
+...........                            ...........
+.-----.....                            .....-----.
+.|...|......................................|...|.
+.--|+-------------------++-------------------+|--.
+...|...................+..+...................|...
+...|.|-----------------|++|-----------------|.|...
+...|.|.................|..|.........|.......|.|...
+...|.|...\.............+..+.........|.......|.|...
+...|.|.................+..+.........+.......|.|...
+...|.|.................|..|.........|.......|.|...
+...|.|--------------------------------------|.|...
+...|..........................................|...
+.--|+----------------------------------------+|--.
+.|...|......................................|...|.
+.-----..                ..                ..-----.
+........                ..                ........
+ENDMAP
+# Dungeon Description
+REGION:(00,00,49,15),lit,"ordinary"
+REGION:(04,04,45,11),unlit,"ordinary"
+REGION:(06,06,22,09),lit,"throne", unfilled
+REGION:(27,06,43,09),lit,"ordinary"
+# Portal arrival point
+BRANCH:(20,14,20,14),(0,0,0,0)
+# Stairs
+STAIR:(40,7),down
+# Doors
+# Outside Doors
+DOOR:locked,(24,03)
+DOOR:locked,(25,03)
+# Inside Doors
+DOOR:closed,(23,04)
+DOOR:closed,(26,04)
+DOOR:locked,(24,05)
+DOOR:locked,(25,05)
+DOOR:closed,(23,07)
+DOOR:closed,(26,07)
+DOOR:closed,(23,08)
+DOOR:closed,(26,08)
+DOOR:closed,(36,08)
+# Watchroom Doors
+DOOR:closed,(04,03)
+DOOR:closed,(45,03)
+DOOR:closed,(04,12)
+DOOR:closed,(45,12)
+# King Arthur
+MONSTER:'@',"Nurse Catherine",(09,07)
+# The treasure of King Arthur
+CONTAINER:'(',"chest",(07,07)
+OBJECT:'[',"red string",contained,blessed,0,"ProComfort Super"
+# knight guards for the watchrooms
+MONSTER:'@',"attendant",(04,02),peaceful
+MONSTER:'@',"attendant",(04,13),peaceful
+MONSTER:'@',"attendant",(45,02),peaceful
+MONSTER:'@',"attendant",(45,13),peaceful
+# page guards for the audience chamber
+MONSTER:'@',"attendant",(16,06)
+MONSTER:'@',"attendant",(18,06)
+MONSTER:'@',"attendant",(20,06)
+MONSTER:'@',"attendant",(16,09)
+MONSTER:'@',"attendant",(18,09)
+MONSTER:'@',"attendant",(20,09)
+# Non diggable walls
+NON_DIGGABLE:(00,00,49,15)
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# no monsters
+
+#
+#	The "locate" level for the quest.
+#
+#	Here you have to find your way to the Isle of Glass to go
+#	further towards your assigned quest.
+#
+
+MAZE: "Cli-loca",' '
+FLAGS: hardfloor
+INIT_MAP: '.' , 'F' , false , true , lit , false
+GEOMETRY:center,center
+MAP
+...FFF.........FFFF..............FFFF...
+.FFFF...........FF................FFFF..
+FF.................................FFF..
+....................................FFF.
+.....................................FF.
+.......................................F
+........................................
+FF...................................FFF
+.FFF...............................FFF..
+..FF.............................FFFF...
+..FFF...........................FFFFFF..
+....FFFF.........FFF.........FFFF..FF...
+ENDMAP
+# Dungeon Description
+# The Isle of Glass is a Tor rising out of the swamps surrounding it.
+REGION:(00,00,39,11),lit,"ordinary"
+# Stairs
+STAIR:(38,0),up
+STAIR:(18,05),down
+# The altar atop the Tor and its attendant (creating altar makes the priest).
+ALTAR:(17,05),neutral,altar
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+# All of the avenues are guarded by magic except for the East.
+# South
+TRAP:"pit",random
+TRAP:"pit",random
+TRAP:"pit",random
+TRAP:"pit",random
+TRAP:"pit",random
+TRAP:"pit",random
+TRAP:"pit",random
+TRAP:"pit",random
+TRAP:"pit",random
+TRAP:"pit",random
+TRAP:"pit",random
+TRAP:"pit",random
+TRAP:"spiked pit",random
+TRAP:"spiked pit",random
+TRAP:"spiked pit",random
+TRAP:"spiked pit",random
+TRAP:"spiked pit",random
+# Random monsters.
+MONSTER:'q',"brown bear",random,hostile
+MONSTER:'q',"brown bear",random,hostile
+MONSTER:'q',"brown bear",random,hostile
+MONSTER:'q',"brown bear",random,hostile
+MONSTER:'q',"brown bear",random,hostile
+MONSTER:'q',"brown bear",random,hostile
+MONSTER:'q',"brown bear",random,hostile
+MONSTER:'q',"brown bear",random,hostile
+MONSTER:'q',"brown bear",random,hostile
+MONSTER:'q',"brown bear",random,hostile
+MONSTER:'q',"brown bear",random,hostile
+MONSTER:'q',"brown bear",random,hostile
+MONSTER:'q',"brown bear",random,hostile
+MONSTER:'q',"brown bear",random,hostile
+MONSTER:'q',"brown bear",random,hostile
+MONSTER:'q',"brown bear",random,hostile
+MONSTER:'q',"brown bear",random,hostile
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+
+#
+#	The "goal" level for the quest.
+#
+#	Here you meet Ixoth your nemesis monster.  You have to
+#	defeat Ixoth in combat to gain the artifact you have
+#	been assigned to retrieve.
+#
+
+MAZE: "Cli-goal", ' '
+GEOMETRY:center,center
+MAP
+-----------------------------------------------------------------------------
+|...........................................................................|
+|...........................................................................|
+|...........................................................................|
+|...........................................................................|
+|...........................................................................|
+|...........................................................................|
+|...........................................................................|
+|...........................................................................|
+|...........................................................................|
+|...........................................................................|
+|...........................................................................|
+|...........................................................................|
+|...........................................................................|
+|...........................................................................|
+|...........................................................................|
+|...........................................................................|
+|...........................................................................|
+|...........................................................................|
+-----------------------------------------------------------------------------
+ENDMAP
+# Dungeon Description
+REGION:(00,00,75,19),unlit,"ordinary"
+# Stairs
+STAIR:random,up
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+# Objects
+OBJECT:'(',"soft chastity belt",(50,06),blessed,0,"Clickpass"
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:"spiked pit",random
+TRAP:"spiked pit",random
+TRAP:"spiked pit",random
+TRAP:"spiked pit",random
+TRAP:"spiked pit",random
+TRAP:"spiked pit",random
+TRAP:"spiked pit",random
+TRAP:"spiked pit",random
+TRAP:"spiked pit",random
+TRAP:"spiked pit",random
+TRAP:"spiked pit",random
+TRAP:"spiked pit",random
+TRAP:"spiked pit",random
+TRAP:"spiked pit",random
+# Random monsters.
+MONSTER:'°',"Larus",(50,06),hostile
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+
+#
+#	The "fill" levels for the quest.
+#
+#	These levels are used to fill out any levels not occupied by specific
+#	levels as defined above. "filla" is the upper filler, between the
+#	start and locate levels, and "fillb" the lower between the locate
+#	and goal levels.
+#
+
+MAZE: "Cli-fila" , '.'
+INIT_MAP: '.' , 'T' , false , true , lit , false
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+MAZE: "Cli-filb" , '.'
+INIT_MAP: '.' , 'L' , false , true , lit , false
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+MONSTER:'±',"hanging semen ejaculator",random,hostile
+MONSTER:'q',"brown bear",random,hostile
+MONSTER:'q',"brown bear",random,hostile
+MONSTER:'q',"brown bear",random,hostile
+MONSTER:'q',"brown bear",random,hostile
+MONSTER:'q',"brown bear",random,hostile
+MONSTER:'q',"brown bear",random,hostile
+MONSTER:'q',"brown bear",random,hostile
+MONSTER:'q',"brown bear",random,hostile
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random

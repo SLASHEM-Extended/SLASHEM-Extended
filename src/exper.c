@@ -677,6 +677,177 @@ exprecalc(void)
 			else if (u.urmaxlvlUP == 30) Antileveling |= FROMOUTSIDE;
 		}
 
+		if (Role_if(PM_CLIMACTERIAL) && !rn2(3)) {
+
+			boolean climintcheck = 0;
+			int whichcheck = u.climauspices3;
+			int displaycheck = 3;			
+			switch (u.urmaxlvlUP) {
+				default:
+					whichcheck = 0; displaycheck = 0; goto climdone; break;
+				case 2:
+					whichcheck = u.climauspices3; displaycheck = 3; break;
+				case 5:
+					whichcheck = u.climauspices6; displaycheck = 6; break;
+				case 8:
+					whichcheck = u.climauspices9; displaycheck = 9; break;
+				case 11:
+					whichcheck = u.climauspices12; displaycheck = 12; break;
+				case 14:
+					whichcheck = u.climauspices15; displaycheck = 15; break;
+				case 17:
+					whichcheck = u.climauspices18; displaycheck = 18; break;
+				case 20:
+					whichcheck = u.climauspices21; displaycheck = 21; break;
+				case 23:
+					whichcheck = u.climauspices24; displaycheck = 24; break;
+				case 26:
+					whichcheck = u.climauspices27; displaycheck = 27; break;
+				case 27:
+					whichcheck = u.climauspices30; displaycheck = 30; break;
+			}
+			if (rnd(70) < ACURR(A_INT)) climintcheck = 1;
+
+			if (climintcheck) {
+				switch (whichcheck) {
+					case 1:
+						pline("You receive an elaborate auspicious message: At experience level %d, the game will start spawning random fart traps, heel traps and farting monsters.", displaycheck);
+						break;
+					case 2:
+						pline("You receive an elaborate auspicious message: At experience level %d, intelligent female monsters have greatly increased to-hit for their kick attacks.", displaycheck);
+						break;
+					case 3:
+						pline("You receive an elaborate auspicious message: At experience level %d, some glyphs will display in a green color.", displaycheck);
+						break;
+					case 4:
+						pline("You receive an elaborate auspicious message: At experience level %d, random shit traps will start spawning and you trigger them even if you fly.", displaycheck);
+						break;
+					case 5:
+						pline("You receive an elaborate auspicious message: At experience level %d, your constitution is decreased, lashing monsters deal extra damage to you, and monsters with touch attacks can cause you to fart.", displaycheck);
+						break;
+					case 6:
+						pline("You receive an elaborate auspicious message: At experience level %d, you randomly get hit with the aggravate monster effect and the chat command can irritate monsters.", displaycheck);
+						break;
+					case 7:
+						pline("You receive an elaborate auspicious message: At experience level %d, intelligent female monsters have more HP, and their to-hit against you is increased while your to-hit against them is reduced.", displaycheck);
+						break;
+					case 8:
+						pline("You receive an elaborate auspicious message: At experience level %d, farting monsters can fart at you from a distance, and if they find a toilet, they can paralyze you from infinitely far away.", displaycheck);
+						break;
+					case 9:
+						pline("You receive an elaborate auspicious message: At experience level %d, monsters with farting or high heel attacks may use them several times at once.", displaycheck);
+						break;
+					case 10:
+						pline("You receive an elaborate auspicious message: At experience level %d, walking over a toilet can cause you to take a shit, your strength and dexterity are reduced, and monsters can use toilets to paralyze you.", displaycheck);
+						break;
+					case 11:
+						pline("You receive an elaborate auspicious message: At experience level %d, a ghostly girl will start to follow you.", displaycheck);
+						break;
+					case 12:
+						pline("You receive an elaborate auspicious message: At experience level %d, attacking an intelligent female monster causes you to get hit with retribution.", displaycheck);
+						break;
+					case 13:
+						pline("You receive an elaborate auspicious message: At experience level %d, intelligent female monsters can attack you with winter stilettos.", displaycheck);
+						break;
+					case 14:
+						pline("You receive an elaborate auspicious message: At experience level %d, you have to dance or get scarred by female toenails.", displaycheck);
+						break;
+					case 15:
+						pline("You receive an elaborate auspicious message: At experience level %d, intelligent female monsters can scrape off more and more skin the more often they kick you.", displaycheck);
+						break;
+					case 16:
+						pline("You receive an elaborate auspicious message: At experience level %d, toilets start spawning randomly and walking over one can cause you to take a crap.", displaycheck);
+						break;
+					case 17:
+						pline("You receive an elaborate auspicious message: At experience level %d, you will have to fart randomly.", displaycheck);
+						break;
+					case 18:
+						pline("You receive an elaborate auspicious message: At experience level %d, intelligent female monsters can fart at you.", displaycheck);
+						break;
+					case 19:
+						pline("You receive an elaborate auspicious message: At experience level %d, stinking clouds can form randomly.", displaycheck);
+						break;
+					case 20:
+						pline("You receive an elaborate auspicious message: At experience level %d, you may sometimes become heavily confused, and tiles can turn into clouds, occasionally with monsters.", displaycheck);
+						break;
+					case 21:
+						pline("You receive an elaborate auspicious message: At experience level %d, monsters with loud farting attacks spawn over time.", displaycheck);
+						break;
+					case 22:
+						pline("You receive an elaborate auspicious message: At experience level %d, intelligent female monsters deal more damage to you with kick attacks and may request that you clean their shoes.", displaycheck);
+						break;
+					case 23:
+						pline("You receive an elaborate auspicious message: At experience level %d, intelligent female monsters have additional hug attacks.", displaycheck);
+						break;
+					case 24:
+						pline("You receive an elaborate auspicious message: At experience level %d, intelligent female monsters move more quickly.", displaycheck);
+						break;
+					case 25:
+						pline("You receive an elaborate auspicious message: At experience level %d, intelligent female monsters can knee you in the nuts repeatedly and occasionally also massage them.", displaycheck);
+						break;
+					case 26:
+						pline("You receive an elaborate auspicious message: At experience level %d, intelligent female monsters with kick attacks can paralyze you.", displaycheck);
+						break;
+					case 27:
+						pline("You receive an elaborate auspicious message: At experience level %d, intelligent female monsters can burn you with cigarettes.", displaycheck);
+						break;
+					case 28:
+						pline("You receive an elaborate auspicious message: At experience level %d, monsters with kick attacks can wither your gear.", displaycheck);
+						break;
+					case 29:
+						pline("You receive an elaborate auspicious message: At experience level %d, intelligent female monsters can kick the weapon out of your hands.", displaycheck);
+						break;
+					case 30:
+						pline("You receive an elaborate auspicious message: At experience level %d, Julietta will subject you to random punishments.", displaycheck);
+						break;
+					case 31:
+						pline("You receive an elaborate auspicious message: At experience level %d, the master of nasty traps will start constructing traps everywhere.", displaycheck);
+						break;
+					case 32:
+						pline("You receive an elaborate auspicious message: At experience level %d, intelligent female monsters will attack you with random high heels.", displaycheck);
+						break;
+					case 33:
+						pline("You receive an elaborate auspicious message: At experience level %d, perfume monsters will spawn much more frequently, and you trigger shit traps even if you fly.", displaycheck);
+						break;
+					case 34:
+						pline("You receive an elaborate auspicious message: At experience level %d, monsters that use conversion sermon will spawn over time.", displaycheck);
+						break;
+					case 35:
+						pline("You receive an elaborate auspicious message: At experience level %d, monsters with claw attacks spawn more often and can damage your worn boots.", displaycheck);
+						break;
+					case 36:
+						pline("You receive an elaborate auspicious message: At experience level %d, monsters with squeaky farting attacks spawn more often, and all hostile farting monsters are very hard to kill.", displaycheck);
+						break;
+					case 37:
+						pline("You receive an elaborate auspicious message: At experience level %d, feminism traps spawn much more often.", displaycheck);
+						break;
+					case 38:
+						pline("You receive an elaborate auspicious message: At experience level %d, you develop anorexia and have reduced strength and constitution.", displaycheck);
+						break;
+					case 39:
+						pline("You receive an elaborate auspicious message: At experience level %d, random shoe monsters will spawn over time and want you to clean them.", displaycheck);
+						break;
+					case 40:
+						pline("You receive an elaborate auspicious message: At experience level %d, female monsters with kick attacks spawn much more often and are also sometimes forcibly spawned.", displaycheck);
+						break;
+					case 41:
+						pline("You receive an elaborate auspicious message: At experience level %d, intelligent female monsters can try to steal your items.", displaycheck);
+						break;
+					case 42:
+						pline("You receive an elaborate auspicious message: At experience level %d, intelligent female monsters can scratch you bloodily with their heels.", displaycheck);
+						break;
+					case 43:
+						pline("You receive an elaborate auspicious message: At experience level %d, you sometimes fumble into a heap of shit, even if you fly.", displaycheck);
+						break;
+					case 44:
+						pline("You receive an elaborate auspicious message: At experience level %d, an annoying blonde will start to annoy you to death.", displaycheck);
+						break;
+				}
+			} else pline("Your auspices say: %d %d", displaycheck, whichcheck);
+
+		}
+climdone:
+
 		if (Role_if(PM_FEMINIST) && !rn2(3)) {
 
 			boolean femintcheck = 0;

@@ -1486,6 +1486,17 @@ struct you {
 	int femauspices28;
 	int femauspices30;
 
+	int climauspices3; /* for climacterial role: determine at game start which feminism trap effects you'll get later */
+	int climauspices6;
+	int climauspices9;
+	int climauspices12;
+	int climauspices15;
+	int climauspices18;
+	int climauspices21;
+	int climauspices24;
+	int climauspices27;
+	int climauspices30;
+
 	int stickycursechance; /* extra chance for items to become sticky cursed */
 	int heavycursechance; /* extra chance for items that generate cursed to be generated heavily cursed */
 	int primecursechance; /* ditto, but prime cursed */

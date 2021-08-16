@@ -714,6 +714,14 @@ register boolean special;
 		case PM_UNDEAD_ZOOKEEPER:
 		    weapon = BULLWHIP;
 		    break;
+		case PM_CLIMACTERIAL:
+		case PM_UNDEAD_CLIMACTERIAL:
+		    weapon = RUBBER_HOSE;
+		    break;
+		case PM_WOMANIZER:
+		case PM_UNDEAD_WOMANIZER:
+		    weapon = SEXPLAY_WHIP;
+		    break;
 		case PM_FIREFIGHTER:
 		case PM_UNDEAD_FIREFIGHTER:
 		    weapon = AXE;

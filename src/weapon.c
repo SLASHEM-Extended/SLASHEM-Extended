@@ -7331,9 +7331,10 @@ const struct def_skill *class_skill;
 	    skmax = class_skill->skmax;
 
 	    /* Amy note: gun control and squeaking are gender-specific at game start (but you can unlock the other later)
-	     * except if you're a genderstarist, then you'll start with both */
+	     * except if you're a genderstarist, then you'll start with both
+	     * climacterial specifically starts with squeaking no matter what */
 	    if (!Role_if(PM_GENDERSTARIST) && flags.female && skill == P_GUN_CONTROL) continue;
-	    if (!Role_if(PM_GENDERSTARIST) && !flags.female && skill == P_SQUEAKING) continue;
+	    if (!Role_if(PM_GENDERSTARIST) && !Role_if(PM_CLIMACTERIAL) && !flags.female && skill == P_SQUEAKING) continue;
 	    /* orb, claw and grinder are alignment-specific at game start except if you're a diablist */
 	    if (!Role_if(PM_DIABLIST) && u.ualign.type != A_LAWFUL && skill == P_ORB) continue;
 	    if (!Role_if(PM_DIABLIST) && u.ualign.type != A_NEUTRAL && skill == P_CLAW) continue;
@@ -8618,7 +8619,7 @@ rerollthree:
 		P_SKILL(P_GUN_CONTROL) = P_ISRESTRICTED;
 		P_ADVANCE(P_GUN_CONTROL) = 0;
 	}
-	if (!Role_if(PM_GENDERSTARIST) && !flags.female && P_MAX_SKILL(P_SQUEAKING) >= P_BASIC) {
+	if (!Role_if(PM_GENDERSTARIST) && !Role_if(PM_CLIMACTERIAL) && !flags.female && P_MAX_SKILL(P_SQUEAKING) >= P_BASIC) {
 		P_MAX_SKILL(P_SQUEAKING) = P_ISRESTRICTED;
 		P_SKILL(P_SQUEAKING) = P_ISRESTRICTED;
 		P_ADVANCE(P_SQUEAKING) = 0;
@@ -9988,6 +9989,24 @@ int direction;
 	if (isok(grnddx, grnddy) && (mtmp = m_at(grnddx, grnddy)) && !(mtmp->mtame) && !(mtmp->mpeaceful) && !DEADMONSTER(mtmp)) {
 		Your("weapon grinds %s!", mon_nam(mtmp));
 		hurtmon(mtmp, grindingdamage);
+	}
+
+}
+
+void
+climtrainsqueaking(trainamount)
+int trainamount;
+{
+	if (trainamount < 1) trainamount = 1; /* fail safe */
+
+	boolean advance_before;
+	advance_before = can_advance(P_SQUEAKING, FALSE);
+	P_ADVANCE(P_SQUEAKING) += trainamount;
+	if (!advance_before && can_advance(P_SQUEAKING, FALSE)) {
+		give_may_advance_msg(P_SQUEAKING);
+		if (P_RESTRICTED(P_SQUEAKING)) {
+			unrestrict_weapon_skill(P_SQUEAKING);
+		}
 	}
 
 }
