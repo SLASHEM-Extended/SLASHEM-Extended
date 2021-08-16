@@ -2419,11 +2419,17 @@ register int pm;
 		break;
 	    case PM_HUMAN_WERERAT:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERERAT;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WERERAT;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WERESTALKER:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERESTALKER;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WERESTALKER;
+			u.cnd_lycanthropecount++;
+		}
 
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		if(!Invis) {
@@ -2440,171 +2446,297 @@ register int pm;
 		break;
 	    case PM_HUMAN_WERERABBIT:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERERABBIT;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WERERABBIT;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREACIDBLOB:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREACIDBLOB;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREACIDBLOB;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREFOX:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREFOX;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREFOX;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREMONKEY:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREMONKEY;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREMONKEY;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREFLOATINGEYE:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREFLOATINGEYE;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREFLOATINGEYE;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREGIANTANT:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREGIANTANT;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREGIANTANT;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREKOBOLD:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREKOBOLD;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREKOBOLD;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WERELEPRECHAUN:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERELEPRECHAUN;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WERELEPRECHAUN;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREHORSE:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREHORSE;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREHORSE;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WERERUSTMONSTER:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERERUSTMONSTER;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WERERUSTMONSTER;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREBLACKLIGHT:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREBLACKLIGHT;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREBLACKLIGHT;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREAUTON:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREAUTON;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREAUTON;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREGREMLIN:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREGREMLIN;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREGREMLIN;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREGREENSLIME:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREGREENSLIME;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREGREENSLIME;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREJELLY:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREJELLY;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREJELLY;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREXAN:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREXAN;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREXAN;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREMUMAK:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREMUMAK;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREMUMAK;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WERECENTAUR:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERECENTAUR;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WERECENTAUR;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WERECOUATL:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERECOUATL;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WERECOUATL;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREGELATINOUSCUBE:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREGELATINOUSCUBE;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREGELATINOUSCUBE;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREAIRELEMENTAL:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREAIRELEMENTAL;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREAIRELEMENTAL;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREEARTHELEMENTAL:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREEARTHELEMENTAL;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREEARTHELEMENTAL;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREFIREELEMENTAL:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREFIREELEMENTAL;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREFIREELEMENTAL;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREWATERELEMENTAL:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREWATERELEMENTAL;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREWATERELEMENTAL;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREASTRALELEMENTAL:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREASTRALELEMENTAL;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREASTRALELEMENTAL;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREXORN:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREXORN;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREXORN;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREDRACONIAN:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREDRACONIAN;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREDRACONIAN;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREUMBERHULK:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREUMBERHULK;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREUMBERHULK;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREVAMPIRE:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREVAMPIRE;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREVAMPIRE;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREKILLERBEE:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREKILLERBEE;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREKILLERBEE;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREKANGAROO:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREKANGAROO;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREKANGAROO;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREGRUE:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREGRUE;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREGRUE;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WERECOINS:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERECOINS;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WERECOINS;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WERETRAPPER:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERETRAPPER;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WERETRAPPER;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WERESHADE:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERESHADE;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WERESHADE;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREDISENCHANTER:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREDISENCHANTER;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREDISENCHANTER;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WERENAGA:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERENAGA;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WERENAGA;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREWORM:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREWORM;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREWORM;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREDRAGON:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREDRAGON;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREDRAGON;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WERELOCUST:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERELOCUST;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WERELOCUST;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREBOAR:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREBOAR;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREBOAR;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_VORPAL_WERE_ALHOONTRICE_ZOMBIE:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_VORPAL_WERE_ALHOONTRICE_ZOMBIE;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_VORPAL_WERE_ALHOONTRICE_ZOMBIE;
+			u.cnd_lycanthropecount++;
+		}
 
 		Your("velocity suddenly seems very uncertain!");
 		if (HFast & INTRINSIC) {
@@ -2618,176 +2750,305 @@ register int pm;
 		break;
 	    case PM_HUMAN_WEREJACKAL:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREJACKAL;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREJACKAL;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREWOLF:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREWOLF;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREWOLF;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREPANTHER:            
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREPANTHER;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREPANTHER;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WERETIGER:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERETIGER;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WERETIGER;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WERESNAKE:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERESNAKE;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WERESNAKE;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WERESPIDER:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERESPIDER;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WERESPIDER;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREPIRANHA:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREPIRANHA;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREPIRANHA;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREEEL:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREEEL;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREEEL;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREFLYFISH:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREFLYFISH;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREFLYFISH;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREKRAKEN:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREKRAKEN;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREKRAKEN;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREGHOST:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREGHOST;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREGHOST;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREGIANT:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREGIANT;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREGIANT;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WERELICHEN:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERELICHEN;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WERELICHEN;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREVORTEX:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREVORTEX;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREVORTEX;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WERECOW:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERECOW;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WERECOW;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREBEAR:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREBEAR;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREBEAR;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREBRONZEGRAM:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREBRONZEGRAM;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREBRONZEGRAM;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WERECHROMEGRAM:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERECHROMEGRAM;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WERECHROMEGRAM;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREDEMON:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREDEMON;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREDEMON;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREPHANT:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREPHANT;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREPHANT;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREWEDGESANDAL:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREWEDGESANDAL;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREWEDGESANDAL;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREHUGGINGBOOT:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREHUGGINGBOOT;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREHUGGINGBOOT;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREPEEPTOE:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREPEEPTOE;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREPEEPTOE;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WERESEXYLEATHERPUMP:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERESEXYLEATHERPUMP;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WERESEXYLEATHERPUMP;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREBLOCKHEELEDCOMBATBOOT:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREBLOCKHEELEDCOMBATBOOT;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREBLOCKHEELEDCOMBATBOOT;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WERECOMBATSTILETTO:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERECOMBATSTILETTO;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WERECOMBATSTILETTO;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREBEAUTIFULFUNNELHEELEDPUMP:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREBEAUTIFULFUNNELHEELEDPUMP;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREBEAUTIFULFUNNELHEELEDPUMP;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREPROSTITUTESHOE:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREPROSTITUTESHOE;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREPROSTITUTESHOE;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WERESTILETTOSANDAL:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERESTILETTOSANDAL;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WERESTILETTOSANDAL;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREUNFAIRSTILETTO:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREUNFAIRSTILETTO;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREUNFAIRSTILETTO;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREWINTERSTILETTO:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREWINTERSTILETTO;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREWINTERSTILETTO;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREPIERCER:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREPIERCER;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREPIERCER;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREPENETRATOR:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREPENETRATOR;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREPENETRATOR;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WERESMASHER:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERESMASHER;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WERESMASHER;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WERENYMPH:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERENYMPH;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WERENYMPH;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREBEE:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREBEE;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREBEE;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WERESOLDIERANT:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERESOLDIERANT;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WERESOLDIERANT;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WERETROLL:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERETROLL;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WERETROLL;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREBAT:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREBAT;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREBAT;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREGRIDBUG:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREGRIDBUG;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREGRIDBUG;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WERELICH:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERELICH;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WERELICH;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREJABBERWOCK:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREJABBERWOCK;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREJABBERWOCK;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 
 	    case PM_HUMAN_WERECOCKATRICE:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WERECOCKATRICE;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WERECOCKATRICE;
+			u.cnd_lycanthropecount++;
+		}
 
 		Your("velocity suddenly seems very uncertain!");
 		if (HFast & INTRINSIC) {
@@ -2800,11 +3061,17 @@ register int pm;
 		break;
 	    case PM_HUMAN_WEREMIMIC:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREMIMIC;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREMIMIC;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_HUMAN_WEREPERMAMIMIC:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREMIMIC;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREMIMIC;
+			u.cnd_lycanthropecount++;
+		}
 		break;
 	    case PM_NOVICE_NURSE:
 	    case PM_CONTROL_NURSE:
@@ -3337,7 +3604,10 @@ register int pm;
 		/* WAC all mind flayers as per mondata.h have to be here */
 	    case PM_HUMAN_WEREMINDFLAYER:
 		catch_lycanthropy = TRUE;
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREMINDFLAYER;
+		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+			u.ulycn = PM_WEREMINDFLAYER;
+			u.cnd_lycanthropecount++;
+		}
 		/* fall through */
 
 	    case PM_INTELLIGENT_TROVE:

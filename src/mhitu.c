@@ -7789,6 +7789,7 @@ dopois:
 			    You_feel("feverish.");
 			    exercise(A_CON, FALSE);
 			    u.ulycn = PM_WERECOW;
+			    u.cnd_lycanthropecount++;
 			} else {
 				if (multi >= 0) {
 				    if (Sleep_resistance && rn2(StrongSleep_resistance ? 20 : 5)) break;
@@ -8284,6 +8285,7 @@ dopois:
 		    You_feel("feverish.");
 		    exercise(A_CON, FALSE);
 		    u.ulycn = monsndx(mdat);
+			u.cnd_lycanthropecount++;
 			if (u.ulycn == PM_HUMAN_WERERAT) u.ulycn = PM_WERERAT;
 			if (u.ulycn == PM_HUMAN_WERERABBIT) u.ulycn = PM_WERERABBIT;
 			if (u.ulycn == PM_HUMAN_WEREBOAR) u.ulycn = PM_WEREBOAR;
@@ -12082,6 +12084,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			    You_feel("feverish.");
 			    exercise(A_CON, FALSE);
 			    u.ulycn = PM_WERECOW;
+			    u.cnd_lycanthropecount++;
 			} else {
 				if (multi >= 0) {
 				    if (Sleep_resistance && rn2(StrongSleep_resistance ? 20 : 5)) break;
@@ -15056,6 +15059,7 @@ common:
 			    You_feel("feverish.");
 			    exercise(A_CON, FALSE);
 			    u.ulycn = PM_WERECOW;
+			    u.cnd_lycanthropecount++;
 			} else {
 				if (multi >= 0) {
 				    if (Sleep_resistance && rn2(StrongSleep_resistance ? 20 : 5)) break;
@@ -17471,6 +17475,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			    You_feel("feverish.");
 			    exercise(A_CON, FALSE);
 			    u.ulycn = PM_WERECOW;
+			    u.cnd_lycanthropecount++;
 			} else {
 				if (multi >= 0) {
 				    if (Sleep_resistance && rn2(StrongSleep_resistance ? 20 : 5)) break;

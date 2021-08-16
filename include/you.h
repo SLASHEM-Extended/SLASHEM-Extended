@@ -1849,6 +1849,7 @@ struct you {
 	int cnd_vomitingcount;	/* how many times you vomited */
 	int cnd_cwnannwncount;	/* how many times you were low on health */
 	int cnd_bansheecount;	/* how many times you were down to your last hit point */
+	int cnd_lycanthropecount;	/* how many times you contracted lycanthropy */
 
 	struct symbiotemon usymbiote;	/* for the symbiosis skill */
 	int symbioteaggressivity;	/* how often your symbiote attacks or takes damage */

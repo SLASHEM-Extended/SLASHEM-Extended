@@ -12141,6 +12141,11 @@ int final;
 		enl_msg(You_, "were down to your last hit point ", "were down to your last hit point ", buf);
 	}
 
+	if (u.cnd_lycanthropecount && final) {
+		sprintf(buf, "%d time%s", u.cnd_lycanthropecount, plur(u.cnd_lycanthropecount));
+		enl_msg(You_, "contracted lycanthropy ", "contracted lycanthropy ", buf);
+	}
+
 	/* Pop up the window and wait for a key */
 	display_nhwindow(en_win, TRUE);
 	destroy_nhwindow(en_win);
@@ -12703,6 +12708,10 @@ int final;
 
 	sprintf(buf, "%d time%s", u.cnd_bansheecount, plur(u.cnd_bansheecount));
 	dump("  You were down to your last hit point ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_lycanthropecount, plur(u.cnd_lycanthropecount));
+	dump("  You contracted lycanthropy ", buf);
+
 
 	dump("", "");
 }

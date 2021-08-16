@@ -7491,6 +7491,7 @@ whisperchoice:
 			if (is_were(&mons[monstZ]) && !(mons[monstZ].mlet == S_HUMAN) ) {
 				u.ulycn = monstZ;
 				pline("You feel feverish.");
+				u.cnd_lycanthropecount++;
 			}
 
 		}

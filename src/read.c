@@ -6260,6 +6260,7 @@ materialchoice3:
 				    You_feel("feverish.");
 				    exercise(A_CON, FALSE);
 				    u.ulycn = PM_WERECOW;
+				    u.cnd_lycanthropecount++;
 				} else {
 					if (multi >= 0) {
 					    if (Sleep_resistance && rn2(StrongSleep_resistance ? 20 : 5)) break;

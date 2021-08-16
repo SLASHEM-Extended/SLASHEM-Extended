@@ -7471,6 +7471,7 @@ struct monst *mtmp;
 				    You_feel("feverish.");
 				    exercise(A_CON, FALSE);
 				    u.ulycn = PM_WERECOW;
+				    u.cnd_lycanthropecount++;
 				} else {
 					if (multi >= 0) {
 					    if (Sleep_resistance && rn2(StrongSleep_resistance ? 20 : 5)) break;
@@ -9457,6 +9458,7 @@ newboss:
 				    You_feel("feverish.");
 				    exercise(A_CON, FALSE);
 				    u.ulycn = PM_WERECOW;
+				    u.cnd_lycanthropecount++;
 				} else {
 					if (multi >= 0) {
 					    if (Sleep_resistance && rn2(StrongSleep_resistance ? 20 : 5)) break;
@@ -9700,6 +9702,7 @@ newboss:
 		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
 			u.ulycn = PM_WEREWOLF;
 			You_feel("feverish.");
+			u.cnd_lycanthropecount++;
 		}
 
 		if (oseen) makeknown(WAN_LYCANTHROPY);

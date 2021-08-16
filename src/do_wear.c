@@ -1215,6 +1215,7 @@ Cloak_on()
 		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
 			u.ulycn = PM_WEREWOLF;
 			You_feel("feverish.");
+			u.cnd_lycanthropecount++;
 		}
 		break;
 	case CLOAK_OF_UNLIGHT:
