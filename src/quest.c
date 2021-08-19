@@ -194,6 +194,18 @@ struct obj *obj;	/* quest artifact; possibly null if carrying Amulet */
 	    if ((otmp = carrying(AMULET_OF_YENDOR)) != 0)
 		fully_identify_obj(otmp);
 		makeknown(otmp->otyp);
+
+	    if (!Qstat(amulet_bonus)) {
+		Qstat(amulet_bonus) = TRUE;
+		u.weapon_slots += 2;
+		pline("As a reward, you gain 2 extra skill slots!");
+	    }
+	    if (u.amuletcompletelyimbued && !Qstat(amulet_bonus2)) {
+		Qstat(amulet_bonus2) = TRUE;
+		u.weapon_slots += 3;
+		pline("As an additional reward, you gain 3 extra skill slots!");
+	    }
+
 	} else {
 	    qt_pager(!Qstat(got_thanks) ? QT_OFFEREDIT : QT_OFFEREDIT2);
 	    /* should have obtained bell during quest;

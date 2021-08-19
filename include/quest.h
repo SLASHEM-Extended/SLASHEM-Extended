@@ -25,6 +25,8 @@ struct q_score {			/* Quest "scorecard" */
 	Bitfield(touched_artifact,1);	/* for a special message */
 	Bitfield(offered_artifact,1);	/* offered to leader */
 	Bitfield(got_thanks,1);		/* final message from leader */
+	Bitfield(amulet_bonus,1);	/* showed amulet to leader */
+	Bitfield(amulet_bonus2,1);	/* showed imbued amulet to leader */
 
 	/* keep track of leader presence/absence even if leader is
 	   polymorphed, raised from dead, etc */
