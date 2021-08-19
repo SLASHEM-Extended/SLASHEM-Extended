@@ -315,7 +315,7 @@
 
 #define HDimmed		u.uprops[DIMMED].intrinsic
 #define EDimmed		u.uprops[DIMMED].extrinsic
-#define Dimmed		(HDimmed || EDimmed || HeavyDimmed || Race_if(PM_INKA) || (uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME) || (uwep && uwep->otyp == TRAFFIC_LIGHT) )
+#define Dimmed		(HDimmed || EDimmed || HeavyDimmed || Race_if(PM_INKA) || (uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME) || (uwep && uwep->otyp == TECPATL) || (uwep && uwep->otyp == TRAFFIC_LIGHT) || (u.twoweap && uswapwep && uswapwep->otyp == TECPATL) || (u.twoweap && uswapwep && uswapwep->otyp == TRAFFIC_LIGHT) )
 #define HeavyDimmed		u.uprops[HEAVY_DIMMED].intrinsic
 
 #define Blinded			u.uprops[BLINDED].intrinsic
@@ -1058,7 +1058,7 @@
 #define IntInvis	(HInvis || pm_invisible(youmonst.data))
 #define ExtInvis	(EInvis || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == INVIS) ) || (uwep && uwep->oartifact == ART_MOVE_IN_THE_SHADOWS) || (uwep && uwep->oartifact == ART_WHEREABOUT_OF_X) || (uarmc && uarmc->oartifact == ART_INVISIBLE_VISIBILITITY) || (uwep && uwep->oartifact == ART_ORB_OF_FLEECE) || have_invisoloadstone() || (Race_if(PM_BATMAN) && uwep && uwep->oartifact == ART_BLACKSWANDIR) || (uarmf && uarmf->oartifact == ART_GORGEOUS_VEIL_MODEL) || (uamul && uamul->oartifact == ART_ARABELLA_S_DICINATOR) || (uarmh && uarmh->oartifact == ART_MARLENA_S_SONG) || (uarmh && uarmh->oartifact == ART_DULLIFIER) || (uwep && uwep->oartifact == ART_JARMEN_CHEATERTYPE_KELL) || (uarm && uarm->oartifact == ART_VERY_INVISIBLE) || (uarmc && uarmc->oartifact == ART_CAN_T_KILL_WHAT_YOU_CAN_T_) || (uwep && uwep->oartifact == ART_SECRETS_OF_INVISIBLE_PLEAS) )
 
-#define Invis			(((IntInvis && u.nonintrinsicproperty != INVIS) || (ExtInvis && u.nonextrinsicproperty != INVIS)) && !BInvis && !Race_if(PM_ELEMENTAL) && !NoInvisible)
+#define Invis			(((IntInvis && u.nonintrinsicproperty != INVIS) || (ExtInvis && u.nonextrinsicproperty != INVIS)) && !BInvis && !Race_if(PM_ELEMENTAL) && !NoInvisible && !((uwep && uwep->otyp == GROM_AXE) || (u.twoweap && uswapwep && uswapwep->otyp == GROM_AXE)) )
 #define Invisible		(Invis && !See_invisible)
 		/* Note: invisibility also hides inventory and steed */
 #define StrongInvis	(IntInvis && ExtInvis && Invis && u.nondoubleproperty != INVIS)

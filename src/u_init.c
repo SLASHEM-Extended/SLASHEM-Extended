@@ -3385,6 +3385,10 @@ static struct inv_sub { int race_pm, item_otyp, subs_otyp; } inv_subs[] = {
     { PM_INKA,	BLINDFOLD,	EYECLOSER},
     { PM_INKA,	LEATHER_SADDLE,	INKA_SADDLE},
     { PM_INKA,	LEATHER_LEASH,	INKA_LEASH},
+    { PM_AZTPOK,	SLING,	ATLATL},
+    { PM_AZTPOK,	T_SHIRT,	ICHCAHUIPILLI},
+    { PM_MAYMES,	SLING,	ATLATL},
+    { PM_MAYMES,	T_SHIRT,	ICHCAHUIPILLI},
 
     /* for weight reasons, don't give scurriers heavy items */  
     {PM_SCURRIER, FOOD_RATION, SLIME_MOLD},  
@@ -30383,6 +30387,12 @@ register struct trobj *trop;
             if (objX->otyp == FOAM_SHIRT && !issoviet ) {
                 objX->cursed = TRUE;
             }
+            if (objX->otyp == CANDY_BRA && !issoviet ) {
+                objX->cursed = TRUE;
+            }
+            if (objX->otyp == ICHCAHUIPILLI && !issoviet ) {
+                objX->cursed = TRUE;
+            }
             if (objX->otyp == PETRIFYIUM_BRA && !issoviet ) {
                 objX->cursed = TRUE;
             }
@@ -30595,6 +30605,12 @@ register struct trobj *trop;
                 obj->cursed = TRUE;
             }
             if (obj->otyp == FOAM_SHIRT && !issoviet ) {
+                obj->cursed = TRUE;
+            }
+            if (obj->otyp == CANDY_BRA && !issoviet ) {
+                obj->cursed = TRUE;
+            }
+            if (obj->otyp == ICHCAHUIPILLI && !issoviet ) {
                 obj->cursed = TRUE;
             }
             if (obj->otyp == PETRIFYIUM_BRA && !issoviet ) {

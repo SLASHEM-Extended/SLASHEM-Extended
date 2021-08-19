@@ -1111,6 +1111,12 @@ moveloop()
 				if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
+				if (uwep && uwep->otyp == CIRCULAR_SAW && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+
+				if (u.twoweap && uswapwep && uswapwep->otyp == CIRCULAR_SAW && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+
 				if (uwep && uwep->oartifact == ART_DOUBLE_BESTARD && !rn2(4) && moveamt > 1)
 					moveamt /= 2;
 
@@ -1282,6 +1288,12 @@ moveloop()
 				}
 
 				if ((uarmf && itemhasappearance(uarmf, APP_FETISH_HEELS)) && u.umoved && moveamt > 1) {
+					moveamt /= 2;
+				}
+				if (uwep && uwep->otyp == AMBUSH_QATAR && !u.umoved && moveamt > 1) {
+					moveamt /= 2;
+				}
+				if (u.twoweap && uswapwep && uswapwep->otyp == AMBUSH_QATAR && !u.umoved && moveamt > 1) {
 					moveamt /= 2;
 				}
 				if ((uarmf && itemhasappearance(uarmf, APP_VELCRO_SANDALS)) && u.umoved && moveamt > 1) {
@@ -1460,6 +1472,12 @@ moveloop()
 			}
 
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too are slower sometimes. */
+				moveamt /= 2;
+
+			if (uwep && uwep->otyp == CIRCULAR_SAW && !rn2(8) && moveamt > 1)
+				moveamt /= 2;
+
+			if (u.twoweap && uswapwep && uswapwep->otyp == CIRCULAR_SAW && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
 
 			if (uwep && uwep->oartifact == ART_DOUBLE_BESTARD && !rn2(4) && moveamt > 1)
@@ -1670,6 +1688,16 @@ moveloop()
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2;
 			}
+
+			if (uwep && uwep->otyp == AMBUSH_QATAR && !u.umoved && moveamt > 1) {
+				if (youmonst.data->mmove > 1 || !rn2(2))
+				moveamt /= 2;
+			}
+			if (u.twoweap && uswapwep && uswapwep->otyp == AMBUSH_QATAR && !u.umoved && moveamt > 1) {
+				if (youmonst.data->mmove > 1 || !rn2(2))
+				moveamt /= 2;
+			}
+
 			if ((uarmf && itemhasappearance(uarmf, APP_VELCRO_SANDALS)) && u.umoved && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2;
@@ -10186,6 +10214,94 @@ newboss:
 
 		}
 
+		if (uwep && uwep->otyp == PHEONIX_STAFF && (u.uprops[DEAC_FIRE_RES].intrinsic < 500)) {
+			u.uprops[DEAC_FIRE_RES].intrinsic += 1000;
+			Your("fire resistance was disabled for a while.");
+		}
+		if (u.twoweap && uswapwep && uswapwep->otyp == PHEONIX_STAFF && (u.uprops[DEAC_FIRE_RES].intrinsic < 500)) {
+			u.uprops[DEAC_FIRE_RES].intrinsic += 1000;
+			Your("fire resistance was disabled for a while.");
+		}
+
+		if (uwep && uwep->otyp == PHEONIX_STAFF) {
+			losehp(rnd(5), "pheonix burning", KILLED_BY);
+			(void) burnarmor(&youmonst);
+			if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) destroy_item(SCROLL_CLASS, AD_FIRE);
+			if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) destroy_item(SPBOOK_CLASS, AD_FIRE);
+			if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) destroy_item(POTION_CLASS, AD_FIRE);
+
+			if (uwep->cursed && !rn2(10)) {
+				if (uwep->oeroded < MAX_ERODE) uwep->oeroded++;
+				else {
+					useup(uwep);
+					Your("pheonix staff burned to cinders.");
+				}
+			}
+
+		}
+		if (u.twoweap && uswapwep && uswapwep->otyp == PHEONIX_STAFF) {
+			losehp(rnd(5), "pheonix burning", KILLED_BY);
+			(void) burnarmor(&youmonst);
+			if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) destroy_item(SCROLL_CLASS, AD_FIRE);
+			if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) destroy_item(SPBOOK_CLASS, AD_FIRE);
+			if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) destroy_item(POTION_CLASS, AD_FIRE);
+			if (uswapwep->cursed && !rn2(10)) {
+				if (uswapwep->oeroded < MAX_ERODE) uswapwep->oeroded++;
+				else {
+					useup(uswapwep);
+					Your("pheonix staff burned to cinders.");
+				}
+			}
+
+		}
+
+		if (uwep && uwep->otyp == DIMENSIONAL_SHARD && (u.uprops[DEAC_TELEPORT_CONTROL].intrinsic < 5000)) {
+			u.uprops[DEAC_TELEPORT_CONTROL].intrinsic += 10000;
+			Your("teleport control was disabled for a while.");
+		}
+		if (u.twoweap && uswapwep && uswapwep->otyp == DIMENSIONAL_SHARD && (u.uprops[DEAC_TELEPORT_CONTROL].intrinsic < 5000)) {
+			u.uprops[DEAC_TELEPORT_CONTROL].intrinsic += 10000;
+			Your("teleport control was disabled for a while.");
+		}
+
+		if (!rn2(5000) && uwep && uwep->otyp == DIMENSIONAL_SHARD ) {
+
+			if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+				NastinessProblem += rnd(1000);
+				You("hear otherworldly noises.");
+				goto pastds1;
+			}
+
+			if (playerlevelportdisabled()) { 
+				NastinessProblem += rnd(1000);
+				You("hear noises that are obviously not from this world.");
+				goto pastds1;
+			}
+			banishplayer();
+			You("were banished!");
+
+		}
+pastds1:
+
+		if (!rn2(5000) && u.twoweap && uswapwep && uswapwep->otyp == DIMENSIONAL_SHARD ) {
+
+			if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+				NastinessProblem += rnd(1000);
+				You("hear otherworldly noises.");
+				goto pastds2;
+			}
+
+			if (playerlevelportdisabled()) { 
+				NastinessProblem += rnd(1000);
+				You("hear noises that are obviously not from this world.");
+				goto pastds2;
+			}
+			banishplayer();
+			You("were banished!");
+
+		}
+pastds2:
+
 		if (u.drippingtread) {
 
 			u.drippingtread--;
@@ -14072,6 +14188,11 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "organo gloves")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "alumen shoes")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "tree sap shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "stone polearm")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "thick undershirt")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "metal box")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "high-tech container")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "liquid box")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -15282,6 +15403,11 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "organo gloves")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "alumen shoes")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "tree sap shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "stone polearm")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "thick undershirt")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "metal box")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "high-tech container")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "liquid box")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}

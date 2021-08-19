@@ -6612,6 +6612,7 @@ boolean ordinary;
 			} else You("stiffen momentarily.");
 
 		    break;
+		case DEATH_HORN:
 		case WAN_DISINTEGRATION:
 		case WAN_DISINTEGRATION_BEAM:
 		case SPE_DISINTEGRATION:

@@ -62,7 +62,7 @@ boolean restoring = FALSE;
 static NEARDATA struct fruit *oldfruit;
 static NEARDATA long omoves;
 
-#define Is_IceBox(o) ( ( (o)->otyp == ICE_BOX || (o)->otyp == ICE_BOX_OF_HOLDING || (o)->otyp == ICE_BOX_OF_WATERPROOFING || (o)->otyp == ICE_BOX_OF_DIGESTION) ? TRUE : FALSE)
+#define Is_IceBox(o) ( ( (o)->otyp == ICE_BOX || (o)->otyp == DISPERSION_BOX || (o)->otyp == ICE_BOX_OF_HOLDING || (o)->otyp == ICE_BOX_OF_WATERPROOFING || (o)->otyp == ICE_BOX_OF_DIGESTION) ? TRUE : FALSE)
 
 /* Recalculate level.objects[x][y], since this info was not saved. */
 STATIC_OVL void

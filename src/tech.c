@@ -7198,8 +7198,14 @@ revid_end:
 
 			attrcurse();
 
-			if (uwep && is_lightsaber(uwep)) uwep->age += 1000;
-			if (uswapwep && is_lightsaber(uswapwep)) uswapwep->age += 1000;
+			if (uwep && is_lightsaber(uwep)) {
+				uwep->age += 1000;
+				if (uwep->otyp == ORANGE_LIGHTSABER) uwep->age += (1000 * rnd(2));
+			}
+			if (uswapwep && is_lightsaber(uswapwep)) {
+				uswapwep->age += 1000;
+				if (uswapwep->otyp == ORANGE_LIGHTSABER) uswapwep->age += (1000 * rnd(2));
+			}
 
 			pline("Lightsaber energy replenished. Did it cost you an important intrinsic?");
 
@@ -9523,6 +9529,10 @@ extrachargechoice:
 						    madechoice = 1; sabertype = 12; }
 					else if (yn("Do you want to switch to a laserxbow?")=='y') {
 						    madechoice = 1; sabertype = 13; }
+					else if (yn("Do you want to switch to a heavy laser ball?")=='y') {
+						    madechoice = 1; sabertype = 14; }
+					else if (yn("Do you want to switch to a laser chain?")=='y') {
+						    madechoice = 1; sabertype = 15; }
 
 				}
 
@@ -9548,7 +9558,7 @@ extrachargechoice:
 				}
 
 				if (sabertype == 1) {
-					switch (rnd(7)) {
+					switch (rnd(9)) {
 						case 1: uwep->otyp = GREEN_LIGHTSABER; break;
 						case 2: uwep->otyp = BLUE_LIGHTSABER; break;
 						case 3: uwep->otyp = RED_LIGHTSABER; break;
@@ -9556,6 +9566,8 @@ extrachargechoice:
 						case 5: uwep->otyp = VIOLET_LIGHTSABER; break;
 						case 6: uwep->otyp = WHITE_LIGHTSABER; break;
 						case 7: uwep->otyp = MYSTERY_LIGHTSABER; break;
+						case 8: uwep->otyp = ORANGE_LIGHTSABER; break;
+						case 9: uwep->otyp = BLACK_LIGHTSABER; break;
 					}
 				} else if (sabertype == 2) {
 					uwep->otyp = rn2(2) ? RED_DOUBLE_LIGHTSABER : WHITE_DOUBLE_LIGHTSABER;
@@ -9579,8 +9591,12 @@ extrachargechoice:
 					uwep->otyp = STARWARS_MACE;
 				} else if (sabertype == 12) {
 					uwep->otyp = BEAMSWORD;
-				} else /* sabertype == 13 */
+				} else if (sabertype == 13) {
 					uwep->otyp = LASERXBOW;
+				} else if (sabertype == 14) {
+					uwep->otyp = HEAVY_LASER_BALL;
+				} else /* sabertype == 15 */
+					uwep->otyp = LASER_CHAIN;
 
 				pline("Your lightsaber warps, and changes into a different one!");
 				/* known problem: you can pick the form that your lightsaber already has */
@@ -10631,6 +10647,7 @@ charge_saber()
 		if (!rn2(jackpotchance)) {
 			You("manage to channel the force perfectly!");
 			uwep->age += 1500; // Jackpot!
+			if (uwep->otyp == ORANGE_LIGHTSABER) uwep->age += (1500 * rnd(2));
 		}
 
 	} else
@@ -10662,6 +10679,10 @@ manacalccomplete:
 
 	/* yes no return above, it's a bonus :) */
 	uwep->age += (yourmana * (( (effectlevel + rnd(5 + effectlevel) ) / rnd(10)) + rno(3)));
+	if (uwep->otyp == ORANGE_LIGHTSABER) {
+		uwep->age += (yourmana * (( (effectlevel + rnd(5 + effectlevel) ) / rnd(10)) + rno(3)));
+		if (!rn2(2)) uwep->age += (yourmana * (( (effectlevel + rnd(5 + effectlevel) ) / rnd(10)) + rno(3)));
+	}
 	/* improved results by Amy */
 
 	u.uen = 0;

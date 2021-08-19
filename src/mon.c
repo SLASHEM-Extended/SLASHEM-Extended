@@ -1545,6 +1545,20 @@ register struct monst *mtmp;
 			obj = mksobj_at(RIBBED_PLATE_MAIL, x, y, TRUE, FALSE, FALSE);
 		mtmp->mnamelth = 0;
 		break;
+	    case PM_TINSEL_GOLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(TINSEL_LONGSWORD, x, y, TRUE, FALSE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_AMBER_GOLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(ANCUS, x, y, TRUE, FALSE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
 	    case PM_PLATE_GOLEM:
 		num = d(2,2);
 		if (num > 1 && rn2(2)) num /= 2;
@@ -2519,7 +2533,7 @@ meatobj(mtmp)		/* for gelatinous cubes */
 		       is arbitrary, but otherwise g.cubes are too powerful */
 		    while ((otmp3 = otmp->cobj) != 0) {
 			obj_extract_self(otmp3);
-			if ( (otmp->otyp == ICE_BOX || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == ICE_BOX_OF_WATERPROOFING || otmp->otyp == ICE_BOX_OF_DIGESTION) && otmp3->otyp == CORPSE) {
+			if ( (otmp->otyp == ICE_BOX || otmp->otyp == DISPERSION_BOX || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == ICE_BOX_OF_WATERPROOFING || otmp->otyp == ICE_BOX_OF_DIGESTION) && otmp3->otyp == CORPSE) {
 			    otmp3->icedobject = TRUE;
 			    otmp3->age = monstermoves - otmp3->age;
 			    start_corpse_timeout(otmp3);
@@ -2894,6 +2908,8 @@ mfndpos(mon, poss, info, flag)
 			  (m_carrying(mon, MOON_AXE) &&
 			   !which_armor(mon, W_ARMS)) ||
 			  (m_carrying(mon, CHEMISTRY_SPACE_AXE) &&
+			   !which_armor(mon, W_ARMS)) ||
+			  (m_carrying(mon, GROM_AXE) &&
 			   !which_armor(mon, W_ARMS)) ||
 			  (m_carrying(mon, DWARVISH_BATTLE_AXE) &&
 			   !which_armor(mon, W_ARMS)));

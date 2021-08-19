@@ -205,12 +205,13 @@ struct obj {
 			(otmp)->oclass == TOOL_CLASS) && \
 			 ((otmp)->otyp == CIGAR || objects[(otmp)->otyp].oc_skill == P_POLEARMS || \
 			 objects[(otmp)->otyp].oc_skill == (tech_inuse(T_GRAP_SWAP) ? P_GRINDER : P_LANCE) ))
-#define is_applypole(otmp)	(((otmp)->oclass == WEAPON_CLASS || \
+#define is_applypole(otmp)	(((otmp)->oclass == WEAPON_CLASS || (otmp)->oclass == CHAIN_CLASS || (otmp)->oclass == BALL_CLASS || \
 			(otmp)->oclass == TOOL_CLASS) && \
 			 (objects[(otmp)->otyp].oc_skill == P_POLEARMS || \
 			 objects[(otmp)->otyp].oc_skill == P_GRINDER || \
 			 (otmp)->otyp == CIGAR || \
 			 (otmp)->otyp == AKLYS || \
+			 (otmp)->otyp == LASER_CHAIN || \
 			 (otmp)->otyp == BLOW_AKLYS || \
 			 (otmp)->otyp == REACH_TRIDENT || \
 			 (otmp)->otyp == SPINED_BALL || \
@@ -256,7 +257,7 @@ struct obj {
 #define is_pick(otmp)	(((otmp)->oclass == WEAPON_CLASS || \
 			 (otmp)->oclass == TOOL_CLASS) && \
 			 objects[(otmp)->otyp].oc_skill == P_PICK_AXE)
-#define is_antibar(otmp)	((otmp)->otyp == ELECTRIC_SWORD || (otmp)->otyp == GOLDEN_SABER || (otmp)->otyp == BLOCK_HEELED_SANDAL || (otmp)->otyp == PLATINUM_SABER  || (otmp)->otyp == METAL_CLUB  || (otmp)->otyp == RADIOACTIVE_DAGGER  || (otmp)->otyp == ETERNIUM_BLADE  || (otmp)->otyp == DEVIL_STAR  || (otmp)->otyp == OBSID  || (otmp)->otyp == IMPACT_STAFF  || (otmp)->otyp == SOFT_LADY_SHOE  || (otmp)->otyp == INKA_BOOT  || (otmp)->otyp == BRIDGE_MUZZLE  || (otmp)->otyp == MALLET  || (otmp)->otyp == YATAGAN  || (otmp)->otyp == WEDGED_LITTLE_GIRL_SANDAL  || (otmp)->otyp == HUGGING_BOOT || (otmp)->otyp == DIAMOND_SMASHER  || (otmp)->otyp == BLOCK_HEELED_COMBAT_BOOT  || (otmp)->otyp == HIGH_HEELED_SANDAL  || (otmp)->otyp == SEXY_LEATHER_PUMP  || (otmp)->otyp == TORPEDO  || (otmp)->otyp == HOMING_TORPEDO  || (otmp)->otyp == STEEL_WHIP  )
+#define is_antibar(otmp)	((otmp)->otyp == ELECTRIC_SWORD || (otmp)->otyp == GOLDEN_SABER || (otmp)->otyp == BLOCK_HEELED_SANDAL || (otmp)->otyp == PLATINUM_SABER  || (otmp)->otyp == METAL_CLUB  || (otmp)->otyp == RADIOACTIVE_DAGGER  || (otmp)->otyp == ETERNIUM_BLADE  || (otmp)->otyp == DEVIL_STAR  || (otmp)->otyp == OBSID  || (otmp)->otyp == IMPACT_STAFF  || (otmp)->otyp == SOFT_LADY_SHOE  || (otmp)->otyp == INKA_BOOT  || (otmp)->otyp == BRIDGE_MUZZLE  || (otmp)->otyp == MALLET  || (otmp)->otyp == YATAGAN  || (otmp)->otyp == GROM_AXE  || (otmp)->otyp == HONOR_KATANA  || (otmp)->otyp == WEDGED_LITTLE_GIRL_SANDAL  || (otmp)->otyp == HUGGING_BOOT || (otmp)->otyp == DIAMOND_SMASHER  || (otmp)->otyp == BLOCK_HEELED_COMBAT_BOOT  || (otmp)->otyp == HIGH_HEELED_SANDAL  || (otmp)->otyp == SEXY_LEATHER_PUMP  || (otmp)->otyp == TORPEDO  || (otmp)->otyp == HOMING_TORPEDO  || (otmp)->otyp == STEEL_WHIP  )
 
 #define ammo_and_launcher(otmp,ltmp) \
 			(is_ammo(otmp) && (ltmp) && \
@@ -266,7 +267,7 @@ struct obj {
 			  (otmp)->oclass == CHAIN_CLASS || (otmp)->oclass == TOOL_CLASS) && \
 			 objects[(otmp)->otyp].oc_bimanual)
 
-#define is_lightsaber(otmp) (objects[(otmp)->otyp].oc_skill == P_LIGHTSABER || (otmp)->otyp == LASER_SWATTER || (otmp)->otyp == NANO_HAMMER || (otmp)->otyp == LIGHTWHIP || (otmp)->otyp == LASERDENT || (otmp)->otyp == LASERXBOW || (otmp)->otyp == STARWARS_MACE || (otmp)->otyp == LASER_POLE || (otmp)->otyp == LASER_SWORD || (otmp)->otyp == BEAMSWORD || (otmp)->otyp == SITH_STAFF || (otmp)->otyp == ELECTRIC_CIGARETTE)
+#define is_lightsaber(otmp) (objects[(otmp)->otyp].oc_skill == P_LIGHTSABER || (otmp)->otyp == LASER_SWATTER || (otmp)->otyp == NANO_HAMMER || (otmp)->otyp == LIGHTWHIP || (otmp)->otyp == LASERDENT || (otmp)->otyp == LASERXBOW || (otmp)->otyp == STARWARS_MACE || (otmp)->otyp == LASER_POLE || (otmp)->otyp == LASER_SWORD || (otmp)->otyp == BEAMSWORD || (otmp)->otyp == SITH_STAFF || (otmp)->otyp == ELECTRIC_CIGARETTE || (otmp)->otyp == HEAVY_LASER_BALL || (otmp)->otyp == LASER_CHAIN)
 
 #define is_firearm(otmp) \
 			((otmp)->oclass == WEAPON_CLASS && \
@@ -361,7 +362,7 @@ struct obj {
 			 (o)->cobj != (struct obj *)0)
 #define Is_container(o) ((o)->otyp == MEDICAL_KIT || \
 			 (o)->otyp >= LARGE_BOX && (o)->otyp <= BAG_OF_TRICKS)
-#define Is_box(otmp)	((otmp)->otyp == LARGE_BOX || (otmp)->otyp == CHEST || (otmp)->otyp == TREASURE_CHEST || (otmp)->otyp == LARGE_BOX_OF_DIGESTION || (otmp)->otyp == CHEST_OF_HOLDING)
+#define Is_box(otmp)	((otmp)->otyp == LARGE_BOX || (otmp)->otyp == LEAD_BOX || (otmp)->otyp == CHEST || (otmp)->otyp == NANO_CHEST || (otmp)->otyp == TREASURE_CHEST || (otmp)->otyp == LARGE_BOX_OF_DIGESTION || (otmp)->otyp == CHEST_OF_HOLDING)
 #ifdef WALLET_O_P
 #define Is_mbag(otmp)	((otmp)->otyp == BAG_OF_HOLDING || (otmp)->otyp == ICE_BOX_OF_HOLDING || (otmp)->otyp == CHEST_OF_HOLDING || \
                          ((otmp)->oartifact && \
@@ -508,6 +509,7 @@ struct obj {
 				 (obj)->otyp == LEAD_CLUMP || \
 				 (obj)->otyp == SLING_AMMO || \
 				 (obj)->otyp == BONE_FRAGMENT || \
+				 (obj)->otyp == AMBER_FRAGMENT || \
 				 (obj)->otyp == HEALTHSTONE || \
 				 (obj)->otyp == SALT_CHUNK || \
 				 (obj)->otyp == MANASTONE || \
@@ -520,7 +522,7 @@ struct obj {
 				 (obj)->otyp == SLEEPSTONE || \
 				 (obj)->otyp == WHETSTONE || is_nastygraystone(obj) )
 
-#define is_heavyweapon(obj)	(bimanual(obj) && objects[(obj)->otyp].oc_skill >= P_DAGGER && objects[(obj)->otyp].oc_skill <= P_WHIP && objects[(obj)->otyp].oc_skill != P_POLEARMS && objects[(obj)->otyp].oc_skill != P_QUARTERSTAFF && !(objects[(obj)->otyp].oc_skill >= P_LANCE && objects[(obj)->otyp].oc_skill <= P_BOOMERANG) )
+#define is_heavyweapon(obj)	((bimanual(obj) && objects[(obj)->otyp].oc_skill >= P_DAGGER && objects[(obj)->otyp].oc_skill <= P_WHIP && objects[(obj)->otyp].oc_skill != P_POLEARMS && objects[(obj)->otyp].oc_skill != P_QUARTERSTAFF && !(objects[(obj)->otyp].oc_skill >= P_LANCE && objects[(obj)->otyp].oc_skill <= P_BOOMERANG) ) || obj->otyp == ATGEIR)
 
 /* misc */
 #define is_flimsy(otmp)		(objects[(otmp)->otyp].oc_material <= MT_LEATHER || objects[(otmp)->otyp].oc_material == MT_INKA || objects[(otmp)->otyp].oc_material == MT_SILK || objects[(otmp)->otyp].oc_material == MT_FOAM || objects[(otmp)->otyp].oc_material == MT_TINSEL || \

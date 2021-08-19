@@ -6659,6 +6659,10 @@ hitmu(mtmp, mattk)
 
 			}
 
+			if (otmp && otmp->otyp == SPRAY_BOX && !Blind) {
+				make_blinded(Blinded + rnd(10), TRUE);
+			}
+
 			if (otmp && otmp->otyp == DARKNESS_CLUB && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5))) {
 
 				pline("Collusion!");

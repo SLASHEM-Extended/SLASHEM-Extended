@@ -1000,6 +1000,20 @@ dig_up_grave()
 		adjalign(-10);
 	    You("disturb the honorable dead!");
 	}
+	if (uwep && uwep->otyp == HONOR_KATANA) {
+	    adjalign(-sgn(u.ualign.type)*5); /* stiffer penalty */
+		u.ualign.sins++;
+		u.alignlim--;
+		adjalign(-10);
+	    You("disturb the honorable dead!");
+	}
+	if (u.twoweap && uswapwep && uswapwep->otyp == HONOR_KATANA) {
+	    adjalign(-sgn(u.ualign.type)*5); /* stiffer penalty */
+		u.ualign.sins++;
+		u.alignlim--;
+		adjalign(-10);
+	    You("disturb the honorable dead!");
+	}
 	if ((u.ualign.type == A_LAWFUL)) {
 	    adjalign(-sgn(u.ualign.type)*2);
 	    You("have violated the sanctity of this grave!");

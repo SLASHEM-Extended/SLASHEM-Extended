@@ -134,6 +134,11 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		Your("weapon's material morphs to a different one!");
 	}
 
+	if (uwep && uwep->otyp == HONOR_KATANA && !uwep->cursed) {
+		curse(uwep);
+		Your("katana welds itself to your %s!", body_part(HAND));
+	}
+
 	if (uwep && uwep->oartifact == ART_ALASSEA_TELEMNAR && !uwep->hvycurse) {
 		curse(uwep);
 		uwep->hvycurse = 1;
@@ -294,6 +299,11 @@ swapweaponchoice:
 			curse(uswapwep);
 			uswapwep->hvycurse = 1;
 			pline("A terrible black aura surrounds your sickle...");
+		}
+
+		if (uswapwep && uswapwep->otyp == HONOR_KATANA && !uswapwep->cursed) {
+			curse(uswapwep);
+			Your("katana welds itself to your other %s!", body_part(HAND));
 		}
 
 		if (uswapwep && uswapwep->oartifact == ART_SEXCALIBUR && !uswapwep->hvycurse) {

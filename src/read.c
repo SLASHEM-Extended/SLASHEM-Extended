@@ -148,7 +148,7 @@ doread()
 	} else if (scroll->otyp == T_SHIRT || scroll->otyp == HAWAIIAN_SHIRT || scroll->otyp == BLACK_DRESS
 	|| scroll->otyp == STRIPED_SHIRT || scroll->otyp == BODYGLOVE || scroll->otyp == BAD_SHIRT || scroll->otyp == CHANTER_SHIRT || scroll->otyp == KYRT_SHIRT || scroll->otyp == WOOLEN_SHIRT || scroll->otyp == METAL_SHIRT || scroll->otyp == RED_STRING || scroll->otyp == YOGA_PANTS || scroll->otyp == GREEN_GOWN
 	|| scroll->otyp == BEAUTIFUL_SHIRT || scroll->otyp == PETA_COMPLIANT_SHIRT || scroll->otyp == TOILET_ROLL || scroll->otyp == RADIOACTIVE_UNDERGARMENT
-	|| scroll->otyp == PRINTED_SHIRT || scroll->otyp == FOAM_SHIRT || scroll->otyp == PETRIFYIUM_BRA || scroll->otyp == FLEECY_CORSET || scroll->otyp == FISHNET || scroll->otyp == BATH_TOWEL
+	|| scroll->otyp == PRINTED_SHIRT || scroll->otyp == FOAM_SHIRT || scroll->otyp == PETRIFYIUM_BRA || scroll->otyp == FLEECY_CORSET || scroll->otyp == FISHNET || scroll->otyp == BATH_TOWEL || scroll->otyp == CANDY_BRA || scroll->otyp == ICHCAHUIPILLI
 	|| scroll->otyp == PLUGSUIT || scroll->otyp == SWIMSUIT || scroll->otyp == MEN_S_UNDERWEAR
 	|| scroll->otyp == VICTORIAN_UNDERWEAR || scroll->otyp == RUFFLED_SHIRT) {
 
@@ -1684,6 +1684,8 @@ int curse_bless;
 		}
 		break;
 	    case GREEN_LIGHTSABER:
+	    case ORANGE_LIGHTSABER:
+	    case BLACK_LIGHTSABER:
 	    case BLUE_LIGHTSABER:
 	    case MYSTERY_LIGHTSABER:
 	    case VIOLET_LIGHTSABER:
@@ -1702,6 +1704,8 @@ int curse_bless;
 	    case LASER_SWORD:
 	    case BEAMSWORD:
 	    case SITH_STAFF:
+	    case HEAVY_LASER_BALL:
+	    case LASER_CHAIN:
 	    case ELECTRIC_CIGARETTE:
 
 		if (is_cursed) {
@@ -1717,7 +1721,10 @@ int curse_bless;
 				obj->age = 1500;
 				pline("Vasha legkaya sablya ne zaryazhena pravil'no, potomu chto tip ledyanogo bloka nenavidit Emi i vse izmeneniya, kotoryye ona proizvodit. Yasno, chto slesh ikh vsegda budet vonyuchey kuchey der'ma.");
 		    }
-		    else obj->age += 1500;
+		    else {
+			obj->age += 1500;
+			if (obj->otyp == ORANGE_LIGHTSABER) obj->age += (1500 * rnd(2));
+		    }
 		    p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
 			use_skill(P_DEVICES, rnd(10));
@@ -1727,6 +1734,7 @@ int curse_bless;
 			}
 		} else {
 		    obj->age += 750;
+		    if (obj->otyp == ORANGE_LIGHTSABER) obj->age += (750 * rnd(2));
 		    if (issoviet && obj->age > 1500) {
 				obj->age = 1500;
 				pline("Vasha legkaya sablya ne zaryazhena pravil'no, potomu chto tip ledyanogo bloka nenavidit Emi i vse izmeneniya, kotoryye ona proizvodit. Yasno, chto slesh ikh vsegda budet vonyuchey kuchey der'ma.");
@@ -1854,6 +1862,7 @@ int curse_bless;
 	    case FROST_HORN:
 	    case TEMPEST_HORN:
 	    case CHROME_HORN:
+	    case DEATH_HORN:
 	    case SHADOW_HORN:
 	    case ETHER_HORN:
 	    case FIRE_HORN:

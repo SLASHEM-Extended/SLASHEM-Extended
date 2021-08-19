@@ -439,6 +439,7 @@ struct obj *instr;
 	case TEMPEST_HORN:		/* Idem wand of lightning */
 	case ETHER_HORN:		/* Idem wand of mm */
 	case CHROME_HORN:		/* Idem wand of poison */
+	case DEATH_HORN:		/* Idem wand of disint beam */
 	case SHADOW_HORN:		/* Idem wand of acid */
 	    if (do_spec && instr->spe > 0) {
 		if ((!instr->oartifact || !rn2(2) ) && (nochargechange >= rnd(10)) ) consume_obj_charge(instr, TRUE);
@@ -470,7 +471,7 @@ hornchoice:
 			losehp(damage, buf, KILLED_BY);
 		    }
 		} else {
-		    buzz((instr->otyp == FROST_HORN) ? AD_COLD-1 : (instr->otyp == TEMPEST_HORN) ? AD_ELEC-1 : (instr->otyp == ETHER_HORN) ? AD_MAGM-1 : (instr->otyp == CHROME_HORN) ? 26 : (instr->otyp == SHADOW_HORN) ? AD_ACID-1 : AD_FIRE-1,
+		    buzz((instr->otyp == FROST_HORN) ? AD_COLD-1 : (instr->otyp == TEMPEST_HORN) ? AD_ELEC-1 : (instr->otyp == ETHER_HORN) ? AD_MAGM-1 : (instr->otyp == CHROME_HORN) ? 26 : (instr->otyp == DEATH_HORN) ? 24 : (instr->otyp == SHADOW_HORN) ? AD_ACID-1 : AD_FIRE-1,
 			 rn1(6,6), u.ux, u.uy, u.dx, u.dy);
 		}
 		makeknown(instr->otyp);
@@ -882,6 +883,7 @@ char	*buf;
 	case SHADOW_HORN:
 	case ETHER_HORN:
 	case CHROME_HORN:
+	case DEATH_HORN:
 	case FIRE_HORN:
 	    (void) write(fd, "<<ol", 2); /* drop two octaves & lock */
 	    break;
@@ -955,6 +957,7 @@ char	*buf;
 	case FROST_HORN:
 	case TEMPEST_HORN:
 	case CHROME_HORN:
+	case DEATH_HORN:
 	case SHADOW_HORN:
 	case ETHER_HORN:
 	case FIRE_HORN:

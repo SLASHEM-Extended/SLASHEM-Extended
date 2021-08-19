@@ -6266,7 +6266,11 @@ boolean guaranteed;
 		case SMALL_SHIELD:
 			shieldblockrate = 10;
 			break;
+		case ORGANOSHIELD:
+			shieldblockrate = 12;
+			break;
 		case PAPER_SHIELD:
+		case BULL_SHIELD:
 		case DIFFICULT_SHIELD:
 			shieldblockrate = 40;
 			break;
@@ -10330,7 +10334,11 @@ int final;
 		case SMALL_SHIELD:
 			shieldblockrate = 10;
 			break;
+		case ORGANOSHIELD:
+			shieldblockrate = 12;
+			break;
 		case PAPER_SHIELD:
+		case BULL_SHIELD:
 		case DIFFICULT_SHIELD:
 			shieldblockrate = 40;
 			break;

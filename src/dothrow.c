@@ -469,6 +469,8 @@ int thrown;
 
 	if (multishot > 1 && isfriday && !rn2(3)) multishot = rnd(multishot);
 
+	if (obj && obj->otyp == JUMPING_FLAMER) multishot = 1;
+
 	m_shot.s = (ammo_and_launcher(obj, uwep) && !(uwep && uwep->otyp == LASERXBOW && !uwep->lamplit) ) ? TRUE : FALSE;
 	/* give a message if shooting more than one, or if player
 	   attempted to specify a count */
@@ -1497,6 +1499,9 @@ int thrown;
 	if (launcher && launcher->oartifact == ART_MOSIN_NAGANT) {
 		nomul(-3, "reloading the Mosin-Nagant", TRUE);
 	}
+	if (obj && obj->otyp == JUMPING_FLAMER) {
+		nomul(-3, "reloading the jumping flamer", TRUE);
+	}
 
 	if(u.uswallow) {
 		mon = u.ustuck;
@@ -2341,7 +2346,11 @@ boolean polearming;
 			case SMALL_SHIELD:
 				shieldblockrate = 20;
 				break;
+			case ORGANOSHIELD:
+				shieldblockrate = 22;
+				break;
 			case PAPER_SHIELD:
+			case BULL_SHIELD:
 			case DIFFICULT_SHIELD:
 				shieldblockrate = 50;
 				break;
@@ -2687,6 +2696,14 @@ boolean polearming;
 			if (u.uvaapadturns >= 4) {
 				u.uvaapadturns = 0;
 				use_skill(P_VAAPAD, 1);
+			}
+		}
+
+		if (obj && obj->otyp == LASER_CHAIN && !bimanual(obj) && !uarms && !u.twoweap) {
+			u.umakashiturns++;
+			if (u.umakashiturns >= 4) {
+				u.umakashiturns = 0;
+				use_skill(P_MAKASHI, 1);
 			}
 		}
 

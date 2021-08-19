@@ -71,7 +71,11 @@ const char *name;	/* if null, then format `obj' */
 		case SMALL_SHIELD:
 			shieldblockrate = 10;
 			break;
+		case ORGANOSHIELD:
+			shieldblockrate = 12;
+			break;
 		case PAPER_SHIELD:
+		case BULL_SHIELD:
 		case DIFFICULT_SHIELD:
 			shieldblockrate = 40;
 			break;
@@ -291,7 +295,7 @@ const char *name;	/* if null, then format `obj' */
 	is_acid = (obj && obj->otyp == ACID_VENOM);
 	is_tailspike = (obj && obj->otyp == TAIL_SPIKES);
 	is_egg = (obj && obj->otyp == EGG);
-	is_polearm = (obj && (objects[obj->otyp].oc_skill == P_POLEARMS || objects[obj->otyp].oc_skill == P_LANCE || objects[obj->otyp].oc_skill == P_GRINDER || obj->otyp == AKLYS || obj->otyp == BLOW_AKLYS || obj->otyp == REACH_TRIDENT || obj->otyp == SPINED_BALL || obj->otyp == CHAIN_AND_SICKLE));
+	is_polearm = (obj && (objects[obj->otyp].oc_skill == P_POLEARMS || objects[obj->otyp].oc_skill == P_LANCE || objects[obj->otyp].oc_skill == P_GRINDER || obj->otyp == AKLYS || obj->otyp == BLOW_AKLYS || obj->otyp == REACH_TRIDENT || obj->otyp == SPINED_BALL || obj->otyp == CHAIN_AND_SICKLE || obj->otyp == LASER_CHAIN));
 	is_thrown_weapon = (obj && (objects[obj->otyp].oc_skill == P_DART || objects[obj->otyp].oc_skill == P_SHURIKEN) );
 	is_bulletammo = (obj && obj->otyp >= BULLET && obj->otyp <= GAS_GRENADE);
 
@@ -381,6 +385,7 @@ const char *name;	/* if null, then format `obj' */
 		if (tech_inuse(T_ABSORBER_SHIELD) && uwep && is_lightsaber(uwep) && uwep->lamplit) {
 			pline("Energy surges into the lightsaber as the projectile is blocked.");
 			uwep->age += 25;
+			if (uwep->otyp == ORANGE_LIGHTSABER) uwep->age += (25 * rnd(2));
 		}
 
 		return(0);
@@ -957,7 +962,11 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 			case SMALL_SHIELD:
 				shieldblockrate = 20;
 				break;
+			case ORGANOSHIELD:
+				shieldblockrate = 22;
+				break;
 			case PAPER_SHIELD:
+			case BULL_SHIELD:
 			case DIFFICULT_SHIELD:
 				shieldblockrate = 50;
 				break;
@@ -1455,9 +1464,15 @@ m_throw(mon, x, y, dx, dy, range, obj)
 				pline("Collusion!");
 				litroomlite(FALSE);
 		    }
-		    if (hitu && singleobj->otyp == DARKNESS_CLUB&& !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5))) {
+		    if (hitu && singleobj->otyp == DARKNESS_CLUB && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5))) {
 				pline("Collusion!");
 				litroomlite(FALSE);
+		    }
+		    if (hitu && singleobj->otyp == JUMPING_FLAMER) {
+			(void) burnarmor(&youmonst);
+			if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) destroy_item(SCROLL_CLASS, AD_FIRE);
+			if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) destroy_item(SPBOOK_CLASS, AD_FIRE);
+			if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) destroy_item(POTION_CLASS, AD_FIRE);
 		    }
 		    if (hitu && singleobj->otyp == YITH_TENTACLE) {
 				increasesanity(rnz(monster_difficulty() + 1));

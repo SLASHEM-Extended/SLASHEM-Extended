@@ -3683,6 +3683,7 @@ castanyway:
 
 		if (uwep && tech_inuse(T_ENERGY_TRANSFER)) {
 			uwep->age += energy;
+			if (uwep->otyp == ORANGE_LIGHTSABER) uwep->age += (energy * rnd(2));
 			pline("Your lightsaber is charged a bit.");
 		}
 

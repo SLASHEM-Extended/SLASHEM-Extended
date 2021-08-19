@@ -60,7 +60,7 @@ lock_action()
 	if (xlock.door && !(xlock.door->doormask & D_LOCKED))
 		return actions[0]+2;	/* "locking the door" */
 	else if (xlock.box && !xlock.box->olocked)
-		return (xlock.box->otyp == CHEST || xlock.box->otyp == CHEST_OF_HOLDING) ? actions[1]+2 : actions[2]+2;
+		return (xlock.box->otyp == CHEST || xlock.box->otyp == NANO_CHEST || xlock.box->otyp == CHEST_OF_HOLDING) ? actions[1]+2 : actions[2]+2;
 	/* otherwise we're trying to unlock it */
 	else if (xlock.picktyp == LOCK_PICK)
 		return actions[3];	/* "picking the lock" */
@@ -73,7 +73,7 @@ lock_action()
 	else if (xlock.door)
 		return actions[0];	/* "unlocking the door" */
 	else
-		return (xlock.box->otyp == CHEST || xlock.box->otyp == CHEST_OF_HOLDING) ? actions[1] : actions[2];
+		return (xlock.box->otyp == CHEST || xlock.box->otyp == NANO_CHEST || xlock.box->otyp == CHEST_OF_HOLDING) ? actions[1] : actions[2];
 }
 
 STATIC_PTR
@@ -270,7 +270,7 @@ forcelock()	/* try to force a locked chest */
 		    }
 		    useup(otmp);
 		}
-		if ( (xlock.box->otyp == ICE_BOX || xlock.box->otyp == ICE_BOX_OF_HOLDING || xlock.box->otyp == ICE_BOX_OF_WATERPROOFING || xlock.box->otyp == ICE_BOX_OF_DIGESTION) && otmp->otyp == CORPSE) {
+		if ( (xlock.box->otyp == ICE_BOX || xlock.box->otyp == DISPERSION_BOX || xlock.box->otyp == ICE_BOX_OF_HOLDING || xlock.box->otyp == ICE_BOX_OF_WATERPROOFING || xlock.box->otyp == ICE_BOX_OF_DIGESTION) && otmp->otyp == CORPSE) {
 		    otmp->age = monstermoves - otmp->age; /* actual age */
 		    otmp->icedobject = TRUE;
 		    start_corpse_timeout(otmp);
@@ -435,6 +435,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 	    picktyp != CREDIT_CARD &&
 	    picktyp != DATA_CHIP &&
 	    picktyp != SECRET_KEY &&
+	    picktyp != CONTROVERSY_CODE &&
 	    picktyp != SKELETON_KEY)) {
 		impossible("picking lock with object %d?", picktyp);
 		return(0);
@@ -548,6 +549,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    ch = 4*ACURR(A_DEX) + 25*Role_if(PM_ROGUE) + 50*Role_if(PM_LOCKSMITH) + 30*Role_if(PM_CYBERNINJA);
 			    break;
 			case SKELETON_KEY:
+			case CONTROVERSY_CODE:
 			case SECRET_KEY:
 			    if(!rn2(isfriday ? 7 : 15) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				Your("key didn't quite fit the lock and snapped!");
@@ -684,6 +686,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    ch = 3*ACURR(A_DEX) + 30*Role_if(PM_ROGUE) + 60*Role_if(PM_LOCKSMITH) + 30*Role_if(PM_CYBERNINJA);
 			    break;
 			case SKELETON_KEY:
+			case CONTROVERSY_CODE:
 			case SECRET_KEY:
 			    if(!rn2(isfriday ? 7 : Role_if(PM_LOCKSMITH) ? 40 : Role_if(PM_CYBERNINJA) ? 30 : 15) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				Your("key wasn't designed for this door and broke!");
@@ -706,7 +709,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 		    /* ALI - Artifact doors */
 		    xlock.key = pick->oartifact;
 		    if (key && xlock.key != key) {
-			if (picktyp == SKELETON_KEY || picktyp == SECRET_KEY) {
+			if (picktyp == SKELETON_KEY || picktyp == CONTROVERSY_CODE || picktyp == SECRET_KEY) {
 			    Your("key doesn't seem to fit.");
 			    return(0);
 			}
@@ -769,6 +772,7 @@ doforce()		/* try to force a chest with your weapon */
 	    uwep->otyp == CREDIT_CARD ||
 	    uwep->otyp == DATA_CHIP ||
 	    uwep->otyp == SECRET_KEY ||
+	    uwep->otyp == CONTROVERSY_CODE ||
 	    uwep->otyp == SKELETON_KEY) {
 	    	return pick_lock(&uwep);
 	/* not a lightsaber or lockpicking device*/

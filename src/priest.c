@@ -53,6 +53,7 @@ register xchar omx,omy,gx,gy;
 	if (!nohands(mtmp->data) && !verysmall(mtmp->data)) {
 		allowflags |= OPENDOOR;
 		if (m_carrying(mtmp, SKELETON_KEY)) allowflags |= BUSTDOOR;
+		if (m_carrying(mtmp, CONTROVERSY_CODE)) allowflags |= BUSTDOOR;
 		if (m_carrying(mtmp, SECRET_KEY)) allowflags |= BUSTDOOR;
 	}
 	if (is_giant(mtmp->data)) allowflags |= BUSTDOOR;

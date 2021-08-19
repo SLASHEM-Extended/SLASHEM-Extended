@@ -95,13 +95,19 @@ NEARDATA struct objclass objects[] = {
 /* Daggers */
 /* orcish dagger must be the first weapon defined, many pieces of code depend on it --Amy */
 WEAPON("orcish dagger", "crude dagger",
-	0, 1, 0,  500, 4,  4,  2,  1, 1, P,   P_DAGGER, MT_IRON, CLR_BLACK, 1),
+	0, 1, 0,  499, 4,  4,  2,  1, 1, P,   P_DAGGER, MT_IRON, CLR_BLACK, 1),
 WEAPON("dagger", (char *)0,
-	1, 1, 0,  700, 4,  4,  3,  2, 1, P,   P_DAGGER, MT_IRON, HI_METAL, 2),
+	1, 1, 0,  699, 4,  4,  3,  2, 1, P,   P_DAGGER, MT_IRON, HI_METAL, 2),
 WEAPON("radioactive dagger", (char *)0,
 	1, 1, 0,  50, 4,  4,  3,  2, 1, P,   P_DAGGER, MT_VIVA, CLR_ORANGE, 10),
 WEAPON("droven dagger", "obsidian dagger",
 	0, 1, 0,  20,  4,  12,  8,  6, 4, P,   P_DAGGER, MT_OBSIDIAN, CLR_BLACK, 25),
+WEAPON("bone dagger", (char *)0,
+	1, 1, 0,  30, 4,  5,  4,  5, 1, P,   P_DAGGER, MT_BONE, CLR_GRAY, 24),
+WEAPON("wraithblade", (char *)0,
+	1, 1, 0,   1, 4, 50,  5,  5, 1, P,   P_DAGGER, MT_SHADOWSTUFF, CLR_BRIGHT_BLUE, 40),
+WEAPON("tecpatl", (char *)0, /* dim and bloodthirsty when wielded */
+	1, 1, 0,   1, 4, 200, 8,  6, 1, P,   P_DAGGER, MT_TINSEL, CLR_BLACK, 40),
 WEAPON("wonder dagger", (char *)0,
 	1, 1, 0,  200, 4,  4,  3,  2, 1, P,   P_DAGGER, MT_IRON, CLR_MAGENTA, 2),
 WEAPON("athame", (char *)0,
@@ -114,7 +120,7 @@ WEAPON("silver dagger", (char *)0,
 	/* WAC silver dagger now pierces, to be same as other daggers
         allows it to be thrown without penalty as well*/
 WEAPON("elven dagger", "runed dagger",
-	0, 1, 0,  480, 4,  4,  3,  3, 1, P,   P_DAGGER, MT_WOOD, HI_METAL, 10),
+	0, 1, 0,  450, 4,  4,  3,  3, 1, P,   P_DAGGER, MT_WOOD, HI_METAL, 10),
 WEAPON("dark elven dagger", "black runed dagger",
 	0, 1, 0,  200, 4,  4,  4,  4, 1, P,   P_DAGGER, MT_WOOD, CLR_BLACK, 15),
 WEAPON("secretion dagger", (char *)0,
@@ -170,6 +176,8 @@ WEAPON("nano axe", (char *)0,
 	1, 0, 0, 100, 48, 40,  12,  9, 0, S,   P_AXE, MT_NANOMACHINE, CLR_RED, 15),
 WEAPON("sharp axe", (char *)0,
 	1, 0, 0, 400, 24,  8,  8,  4, 0, S,   P_AXE, MT_IRON, CLR_YELLOW, 2),
+WEAPON("grom axe", (char *)0, /* aggravate monster, -5 to-hit, can't be invisible while wielding it */
+	1, 0, 1,  1, 20, 200,  16, 16, 0, S,   P_AXE, MT_SHADOWSTUFF, CLR_BRIGHT_BLUE, 80),
 WEAPON("infernal axe", (char *)0,
 	1, 0, 0,  20, 24, 30,  8, 12, 0, S,   P_AXE, MT_CONUNDRUM, CLR_RED, 12),
 WEAPON("tubing pliers", (char *)0,
@@ -183,7 +191,7 @@ WEAPON("obsidian axe", (char *)0,
 WEAPON("dwarvish battle-axe", "beaked axe", /* +1 damage */
 	0, 0, 1,  10, 26, 40, 12, 16, 0, S,   P_AXE, MT_IRON, HI_METAL, 36),
 WEAPON("battle-axe", "double-headed axe", /* "double-bitted" ? */
-	0, 0, 1, 940, 48, 40,  12,  9, 0, S,   P_AXE, MT_IRON, HI_METAL, 15),
+	0, 0, 1, 939, 48, 40,  12,  9, 0, S,   P_AXE, MT_IRON, HI_METAL, 15),
 WEAPON("chemistry space axe", (char *)0,
 	1, 0, 1,  50, 48, 40,  14, 14, 0, S,   P_AXE, MT_LIQUID, CLR_BRIGHT_GREEN, 30),
 
@@ -200,13 +208,15 @@ WEAPON("eternium mattock", (char *)0,
 WEAPON("orcish short sword", "crude short sword",
 	0, 0, 0, 280, 12, 10,  5,  8, 0, P,   P_SHORT_SWORD, MT_IRON, CLR_BLACK, 1),
 WEAPON("short sword", (char *)0,
-	1, 0, 0, 1260, 12, 10,  6,  8, 0, P,   P_SHORT_SWORD, MT_IRON, HI_METAL, 2),
+	1, 0, 0, 1220, 12, 10,  6,  8, 0, P,   P_SHORT_SWORD, MT_IRON, HI_METAL, 2),
 WEAPON("trash sword", (char *)0,
 	1, 0, 0, 400, 12, 10,  6,  8, 0, P,   P_SHORT_SWORD, MT_SCRAP, HI_METAL, 1),
 WEAPON("sand sword", (char *)0,
 	1, 0, 0, 200, 12, 10,  6,  8, 0, P,   P_SHORT_SWORD, MT_SAND, CLR_BROWN, 2),
 WEAPON("short blade", (char *)0,
 	1, 0, 0, 500, 12, 10,  6,  9, 0, P,   P_SHORT_SWORD, MT_IRON, CLR_WHITE, 4),
+WEAPON("khopesh", (char *)0,
+	1, 0, 0, 40, 16, 15,  8,  6, 0, P,   P_SHORT_SWORD, MT_COPPER, HI_METAL, 4),
 WEAPON("inka blade", (char *)0,
 	1, 0, 0, 50, 12, 10,  6,  8, 0, P,   P_SHORT_SWORD, MT_INKA, CLR_BROWN, 2),
 WEAPON("silver short sword", (char *)0,
@@ -251,13 +261,15 @@ WEAPON("meatsword", (char *)0,
 
 /* Long swords */
 WEAPON("long sword", (char *)0,
-	1, 0, 0, 730, 16, 15,  8, 12, 0, S,   P_LONG_SWORD, MT_IRON, HI_METAL, 5),
+	1, 0, 0, 680, 16, 15,  8, 12, 0, S,   P_LONG_SWORD, MT_IRON, HI_METAL, 5),
 WEAPON("heavy long sword", (char *)0,
 	1, 0, 0, 100, 50, 15,  8, 12, 0, S,   P_LONG_SWORD, MT_LEAD, CLR_GRAY, 5),
 WEAPON("main sword", (char *)0,
 	1, 0, 0, 100, 16, 15,  8, 12, 0, S,   P_LONG_SWORD, MT_IRON, CLR_GRAY, 5),
 WEAPON("flame mountain", (char *)0,
 	1, 0, 0, 100, 24, 50,  8, 12, 0, S,   P_LONG_SWORD, MT_BRICK, CLR_GRAY, 20),
+WEAPON("tinsel longsword", (char *)0,
+	1, 0, 0, 50,  4,  5,  6, 8, 0, S,   P_LONG_SWORD, MT_TINSEL, HI_METAL, 1),
 WEAPON("icky blade", (char *)0,
 	1, 0, 0, 300, 16, 15,  8, 12, 1, S,   P_LONG_SWORD, MT_SECREE, CLR_BLACK, 5),
 WEAPON("crystal sword", (char *)0,
@@ -266,11 +278,13 @@ WEAPON("silver long sword", (char *)0,
 	1, 0, 0, 200, 16, 75,  8, 12, 0, S,   P_LONG_SWORD, MT_SILVER, HI_SILVER, 30),
 	/* STEPHEN WHITE'S NEW CODE */
 WEAPON("katana", "samurai sword",
-	0, 0, 0, 220, 16, 80, 10, 12, 1, S,   P_LONG_SWORD, MT_IRON, HI_METAL, 25),
+	0, 0, 0, 219, 16, 80, 10, 12, 1, S,   P_LONG_SWORD, MT_IRON, HI_METAL, 25),
 WEAPON("automatic katana", (char *)0,
 	1, 0, 0,  40, 16, 80, 10, 12, 1, S,   P_LONG_SWORD, MT_NANOMACHINE, CLR_BRIGHT_GREEN, 25),
 WEAPON("osbane katana", (char *)0,
 	1, 0, 0,  20, 16, 80, 10, 12, 1, S,   P_LONG_SWORD, MT_MITHRIL, HI_METAL, 35),
+WEAPON("honor katana", (char *)0, /* autocurses, enforces samurai and knight conducts, losing alignment calls attrcurse */
+	1, 0, 0,  1, 12, 500, 16, 18, 1, S,   P_LONG_SWORD, MT_METEOSTEEL, CLR_GRAY, 90),
 WEAPON("granite impaler", (char *)0,
 	1, 0, 0,  50, 16, 80, 10, 12, 0, S,   P_LONG_SWORD, MT_MINERAL, CLR_GRAY, 30),
 WEAPON("electric sword", (char *)0,
@@ -362,7 +376,7 @@ WEAPON("golden saber", (char *)0,
 
 /* Clubs */
 WEAPON("club", (char *)0,
-	1, 0, 0, 1344, 12,  3,  6,  3, 0, B,   P_CLUB, MT_WOOD, HI_WOOD, 1),
+	1, 0, 0, 1324, 12,  3,  6,  3, 0, B,   P_CLUB, MT_WOOD, HI_WOOD, 1),
 WEAPON("alloy club", (char *)0,
 	1, 0, 0, 100, 12,  3,  6,  3, 0, B,   P_CLUB, MT_ALLOY, CLR_BROWN, 1),
 WEAPON("natural stick", (char *)0,
@@ -373,6 +387,8 @@ WEAPON("blow aklys", (char *)0,
 	1, 0, 0, 200, 7,  4,  7,  3, 0, B,   P_CLUB, MT_IRON, CLR_RED, 2),
 WEAPON("jagged-tooth club", (char *)0,
 	1, 0, 0, 20, 18, 20,  6,  6, 0, B,   P_CLUB, MT_SCRAP, CLR_GRAY, 6),
+WEAPON("macuahuitl", (char *)0,
+	1, 0, 0, 20,  6, 70,  8,  6, 0, B,   P_CLUB, MT_AMBER, HI_WOOD, 8),
 WEAPON("poured club", (char *)0,
 	1, 0, 0, 200, 28,  4,  7,  3, 0, B,   P_CLUB, MT_POURPOOR, HI_METAL, 1),
 WEAPON("baseball bat", (char *)0,
@@ -427,7 +443,7 @@ WEAPON("telephone", (char *)0, /* applying a positively enchanted one disenchant
 	1, 0, 0,  50, 2, 50, 6, 6, 2, B,   P_PADDLE, MT_PAPER, CLR_BRIGHT_BLUE, 5),
 
 WEAPON("eagle ball", (char *)0,
-	1, 0, 0, 620, 2, 5,  2, 2, 0, B,   P_ORB, MT_PLASTIC, CLR_ORANGE, 1),
+	1, 0, 0, 619, 2, 5,  2, 2, 0, B,   P_ORB, MT_PLASTIC, CLR_ORANGE, 1),
 WEAPON("jared stone", (char *)0,
 	1, 0, 0, 200, 2, 20, 4, 4, 0, B,   P_ORB, MT_DRAGON_HIDE, CLR_BRIGHT_BLUE, 10),
 WEAPON("lightbulb", (char *)0,
@@ -436,6 +452,8 @@ WEAPON("heath ball", (char *)0,
 	1, 0, 0,  10, 2, 200, 7, 7, 0, B,   P_ORB, MT_CELESTIUM, CLR_GRAY, 50),
 WEAPON("cigarette", (char *)0,
 	1, 0, 0, 100, 2, 20, 5, 5, 0, B,   P_ORB, MT_IRON, CLR_WHITE, 8),
+WEAPON("dimensional shard", (char *)0, /* banishmentitis; when wielded, tele control is disabled for 10k turns */
+	1, 0, 0,  1,  2, 5000, 9, 9, 0, B,   P_ORB, MT_SHADOWSTUFF, CLR_GRAY, 95),
 
 WEAPON("cigar", (char *)0, /* polearm-type */
 	1, 0, 0,  20, 2, 100, 6, 6, 1, B,   P_ORB, MT_COMPOST, CLR_BROWN, 24),
@@ -443,12 +461,14 @@ WEAPON("cigar", (char *)0, /* polearm-type */
 WEAPON("grinder", (char *)0,
 	1, 0, 1, 700, 100, 20, 6, 6, 0, P,   P_GRINDER, MT_IRON, CLR_BLACK, 1),
 WEAPON("heavy grinder", (char *)0,
-	1, 0, 1, 200, 120, 150, 8, 8, 0, P,   P_GRINDER, MT_IRON, CLR_BLACK, 20),
+	1, 0, 1, 199, 120, 150, 8, 8, 0, P,   P_GRINDER, MT_IRON, CLR_BLACK, 20),
 WEAPON("varied grinder", (char *)0,
 	1, 0, 1, 100, 100, 20, 7, 7, 0, P,   P_GRINDER, MT_IRON, CLR_MAGENTA, 10),
+WEAPON("circular saw", (char *)0, /* peaceful monsters automatically become hostile, slows you down like spirit */
+	1, 0, 1,  1, 260, 800, 12, 10, 1, P,   P_GRINDER, MT_SCRAP, CLR_GRAY, 80),
 
 WEAPON("qatar", (char *)0,
-	1, 0, 0, 690, 8, 10, 7, 7, 0, P,   P_CLAW, MT_IRON, CLR_CYAN, 1),
+	1, 0, 0, 689, 8, 10, 7, 7, 0, P,   P_CLAW, MT_IRON, CLR_CYAN, 1),
 WEAPON("lower arm blade", (char *)0,
 	1, 0, 0, 150, 8, 20, 9, 9, 0, P,   P_CLAW, MT_METAL, CLR_BLACK, 9),
 WEAPON("cestus", (char *)0,
@@ -457,13 +477,15 @@ WEAPON("bell claws", (char *)0,
 	1, 0, 0, 10, 8, 100, 15, 6, 0, P,   P_CLAW, MT_ALLOY, CLR_CYAN, 24),
 WEAPON("camo qatar", (char *)0,
 	1, 0, 0, 100, 8, 35, 8, 8, 0, P,   P_CLAW, MT_IRON, CLR_CYAN, 10),
+WEAPON("ambush qatar", (char *)0, /* when doing something other than moving, your speed is cut in half */
+	1, 0, 1,  1, 8, 200, 16, 16, 0, P,   P_CLAW, MT_IRON, CLR_BLACK, 60),
 
 /* Maces */
 WEAPON("silver mace", (char *)0,
 	1, 0, 0, 550, 12, 65,  6,  7, 0, B,   P_MACE, MT_SILVER, HI_SILVER, 15),
 	/* STEPHEN WHITE'S NEW CODE */
 WEAPON("mace", (char *)0,
-	1, 0, 0, 1150, 12,  5,  6,  7, 0, B,   P_MACE, MT_IRON, HI_METAL, 2),
+	1, 0, 0, 1050, 12,  5,  6,  7, 0, B,   P_MACE, MT_IRON, HI_METAL, 2),
 	/* +1 small */
 WEAPON("ornate mace", (char *)0,
 	1, 0, 0, 100,  12,  5,  6,  6, 0, B,   P_MACE, MT_GOLD, HI_METAL, 6),
@@ -483,6 +505,8 @@ WEAPON("elite batleth", (char *)0,
 	1, 0, 0, 100, 12, 20, 10, 10, 0, B,   P_MACE, MT_IRON, CLR_RED, 18),
 WEAPON("kamerel vajra", (char *)0,
 	1, 0, 0, 50, 12, 20,  6,  6, 0, B,   P_MACE, MT_CELESTIUM, HI_GOLD, 6),
+WEAPON("spray box", (char *)0, /* 1 in 3 to blind enemies who fail a resistance roll */
+	1, 0, 0, 100, 8, 25,  2,  2, 0, B,   P_MACE, MT_PLASTIC, CLR_MAGENTA, 30),
 
 WEAPON("flanged mace", (char *)0,
 	1, 0, 0, 300, 12, 15,  8,  9, 0, B,   P_MACE, MT_IRON, HI_METAL, 13),
@@ -615,7 +639,7 @@ WEAPON("prostitute shoe", (char *)0,
 
 /* Quarterstaves */
 WEAPON("quarterstaff", "staff",
-	0, 0, 1, 380, 16,  5,  9,  9, 0, B,   P_QUARTERSTAFF, MT_WOOD, HI_WOOD, 1),
+	0, 0, 1, 359, 16,  5,  9,  9, 0, B,   P_QUARTERSTAFF, MT_WOOD, HI_WOOD, 1),
 WEAPON("troutstaff", (char *)0,
 	1, 0, 1, 100, 16,  5,  9,  9, 0, B,   P_QUARTERSTAFF, MT_CLOTH, CLR_WHITE, 1),
 WEAPON("contro staff", (char *)0, /* control magic when wielded */
@@ -624,6 +648,8 @@ WEAPON("climbing stick", (char *)0,
 	1, 0, 1, 20, 5, 25,  8,  8, 0, B,   P_QUARTERSTAFF, MT_PLASTIC, CLR_GRAY, 12),
 WEAPON("foamy staff", (char *)0,
 	1, 0, 1, 60, 16,  5,  8,  8, 0, B,   P_QUARTERSTAFF, MT_FOAM, CLR_WHITE, 1),
+WEAPON("treestaff", (char *)0,
+	1, 0, 1, 20,  8, 12, 12, 10, 0, B,   P_QUARTERSTAFF, MT_AMBER, HI_WOOD, 8),
 WEAPON("rain pipe", (char *)0,
 	1, 0, 1, 200, 64,  2,  8, 10, 0, B,   P_QUARTERSTAFF, MT_POURPOOR, CLR_BRIGHT_BLUE, 4),
 WEAPON("massager", (char *)0,
@@ -644,6 +670,8 @@ WEAPON("chrome staff", (char *)0,
 	1, 0, 1, 20, 80,  10,  12,  9, 0, B,   P_QUARTERSTAFF, MT_CHROME, CLR_GREEN, 7),
 WEAPON("battle staff", (char *)0,
 	1, 0, 1, 100, 16,  50,  15,  15, 0, B,   P_QUARTERSTAFF, MT_METAL, HI_METAL, 24),
+WEAPON("pheonix staff", (char *)0, /* burns you and your inventory every turn, disables fire res for 1000 turns */
+	1, 0, 1,  1, 5, 400, 18, 18, 0, B,   P_QUARTERSTAFF, MT_FOAM, CLR_GRAY, 80),
 WEAPON("silver khakkhara", "silver monk's staff",
 	0, 0, 1, 20, 24,  5,  9,  7, 0, B|P,   P_QUARTERSTAFF, MT_SILVER, HI_SILVER, 10),
 WEAPON("bo staff", (char *)0,
@@ -728,6 +756,8 @@ WEAPON("bardiche", "long poleaxe",
 WEAPON("infernal bardiche", "black poleaxe",
 	0, 0, 1, 10, 48, 40,  6,  6, 0, S,   P_POLEARMS, MT_CONUNDRUM, CLR_BLACK, 22),
 						/* +2d4 small, +3d4 large */
+WEAPON("ancus", "stone polearm",
+	0, 0, 1, 40, 60, 10,  6, 4, 0, P|S, P_POLEARMS, MT_AMBER, CLR_ORANGE, 6),
 WEAPON("infernal ancus", "ornamental polearm",
 	0, 0, 1, 10, 48, 30,  6, 15, 1, P|S, P_POLEARMS, MT_CONUNDRUM, CLR_BLACK, 30),
 						/* +2d4 small */
@@ -735,7 +765,7 @@ WEAPON("voulge", "pole cleaver",
 	0, 0, 1, 200, 48,  5,  6,  6, 1, S,   P_POLEARMS, MT_IRON, HI_METAL, 8),
 						/* +d4 both */
 WEAPON("halberd", "angled poleaxe",
-	0, 0, 1, 220, 60, 10, 15,  9, 0, P|S, P_POLEARMS, MT_IRON, HI_METAL, 15),
+	0, 0, 1, 200, 60, 10, 15,  9, 0, P|S, P_POLEARMS, MT_IRON, HI_METAL, 15),
 	/* +1d6 large */
 WEAPON("helmet beard", (char *)0,
 	1, 0, 1, 20, 60, 10, 15,  9, 5, P|S, P_POLEARMS, MT_TAR, CLR_BLACK, 45),
@@ -749,9 +779,9 @@ WEAPON("black halberd", "black polearm",
 
 /* curved/hooked */
 WEAPON("fauchard", "pole sickle",
-	0, 0, 1,  250, 24,  5,  9,  12, 1, P|S, P_POLEARMS, MT_IRON, HI_METAL, 10),
+	0, 0, 1,  240, 24,  5,  9,  12, 1, P|S, P_POLEARMS, MT_IRON, HI_METAL, 10),
 WEAPON("guisarme", "pruning hook",
-	0, 0, 1,  250, 32,  5,  6,  13, 1, S,   P_POLEARMS, MT_IRON, HI_METAL, 10),
+	0, 0, 1,  240, 32,  5,  6,  13, 1, S,   P_POLEARMS, MT_IRON, HI_METAL, 10),
 						/* +1d4 small */
 WEAPON("bill-guisarme", "hooked polearm",
 	0, 0, 1,  170, 48,  7,  6, 15, 1, P|S, P_POLEARMS, MT_IRON, HI_METAL, 20),
@@ -786,7 +816,7 @@ WEAPON("bec de corbin", "beaked polearm",
 WEAPON("orcish spear", "crude spear",
 	0, 1, 0, 700, 12,  3,  5,  7, 0, P,   P_SPEAR, MT_IRON, CLR_BLACK, 1),
 WEAPON("spear", (char *)0,
-	1, 1, 0, 1020, 12,  3,  6,  8, 0, P,   P_SPEAR, MT_IRON, HI_METAL, 3),
+	1, 1, 0, 1019, 12,  3,  6,  8, 0, P,   P_SPEAR, MT_IRON, HI_METAL, 3),
 WEAPON("crappy spear", (char *)0,
 	1, 1, 0, 200, 12,  2,  6,  8, 0, P,   P_SPEAR, MT_SCRAP, HI_METAL, 1),
 WEAPON("brittle spear", (char *)0,
@@ -795,6 +825,8 @@ WEAPON("silk spear", (char *)0,
 	1, 1, 0, 300, 12,  3,  6,  8, 0, P,   P_SPEAR, MT_SILK, CLR_WHITE, 4),
 WEAPON("bronze spear", (char *)0,
 	1, 1, 0, 20, 12,  3,  6,  8, 1, P,   P_SPEAR, MT_COPPER, HI_COPPER, 4),
+WEAPON("atgeir", (char *)0, /* counts as heavy weapon */
+	1, 1, 0,  1, 12, 40,  8, 12, 0, P,   P_SPEAR, MT_TINSEL, CLR_ORANGE, 24),
 WEAPON("flint spear", (char *)0,
 	1, 1, 0, 20, 12,  3,  6,  8, 1, P,   P_SPEAR, MT_MINERAL, HI_MINERAL, 4),
 WEAPON("droven spear", "long obsidian spear",
@@ -909,7 +941,9 @@ BOW("wildhild bow", (char *)0,	1, 1, 10, 12, 60, 0, MT_SILK, P_BOW, CLR_WHITE, 2
 PROJECTILE("orcish arrow", "crude arrow",
 	0, 1200, 0, 2, 9, 9, 0, MT_IRON, -P_BOW, CLR_BLACK, 1),
 PROJECTILE("arrow", (char *)0,
-	1, 2500, 0, 2, 10, 10, 0, MT_IRON, -P_BOW, HI_METAL, 2),
+	1, 2400, 0, 2, 10, 10, 0, MT_IRON, -P_BOW, HI_METAL, 2),
+PROJECTILE("bone arrow", (char *)0,
+	1, 200, 0, 2, 8, 9, 0, MT_BONE, -P_BOW, CLR_GRAY, 1),
 PROJECTILE("paper arrow", (char *)0,
 	1, 400, 0, 2, 8, 8, 0, MT_PAPER, -P_BOW, CLR_WHITE, 1),
 PROJECTILE("odor shot", (char *)0,
@@ -919,7 +953,7 @@ PROJECTILE("forbidden arrow", (char *)0,
 PROJECTILE("silver arrow", (char *)0,
 	1, 1500, 0, 5, 11, 11, 0, MT_SILVER, -P_BOW, HI_SILVER, 15),
 PROJECTILE("elven arrow", "runed arrow",
-	0, 1800, 0, 2, 12, 12, 0, MT_WOOD, -P_BOW, HI_METAL, 6),
+	0, 1700, 0, 2, 12, 12, 0, MT_WOOD, -P_BOW, HI_METAL, 6),
 PROJECTILE("dark elven arrow", "black runed arrow",
 	0, 200, 0, 2, 13, 13, 1, MT_WOOD, -P_BOW, CLR_BLACK, 12),
 PROJECTILE("ya", "bamboo arrow",
@@ -936,10 +970,11 @@ PROJECTILE("wonder arrow", (char *)0,
 	1, 500, 0, 2, 10, 10, 0, MT_IRON, -P_BOW, CLR_MAGENTA, 2),
 
 /* Slings */
-BOW("sling", (char *)0,		1, 0, 2900,  2, 20, 2, MT_WOOD, P_SLING, HI_LEATHER, 1),
+BOW("sling", (char *)0,		1, 0, 2800, 2, 20, 2, MT_WOOD, P_SLING, HI_LEATHER, 1),
 BOW("metal sling", (char *)0,	1, 0, 400,  2, 20, 2, MT_METAL, P_SLING, CLR_CYAN, 3),
 BOW("inka sling", (char *)0,	1, 0, 200,  2, 20, 5, MT_INKA, P_SLING, CLR_BROWN, 3),
-BOW("catapult", (char *)0,	1, 1,  100,  2, 250, 5, MT_METAL, P_SLING, CLR_BLACK, 40),
+BOW("catapult", (char *)0,	1, 1, 100,  2, 250, 5, MT_METAL, P_SLING, CLR_BLACK, 40),
+BOW("atlatl", (char *)0,	1, 0, 100,  4, 20, 3, MT_AMBER, P_SLING, CLR_ORANGE, 5),
 BOW("snipesling", (char *)0,	1, 0, 100,  2, 20, 2, MT_SHADOWSTUFF, P_SLING, CLR_BRIGHT_BLUE, 10), /* +5 range for ammos, weak sight when wielded */
 
 /* Firearms */
@@ -1032,11 +1067,13 @@ PROJECTILE("material bolt", (char *)0,
 /* Darts */
 /* (also weptoool spoon) */
 WEAPON("dart", (char *)0,
-	1, 1, 0, 2800,  0,  4,  5,  2, 0, P,   -P_DART, MT_IRON, HI_METAL, 1),
+	1, 1, 0, 2799,  0,  4,  5,  2, 0, P,   -P_DART, MT_IRON, HI_METAL, 1),
 WEAPON("flimsy dart", (char *)0,
 	1, 1, 0, 660,  0,  4,  5,  2, 0, P,   -P_DART, MT_PLASTIC, CLR_WHITE, 1),
 WEAPON("inka stinger", (char *)0,
 	1, 1, 0, 500,  0,  4,  5,  2, 2, P,   -P_DART, MT_INKA, CLR_RED, 6),
+WEAPON("divine dart", (char *)0,
+	1, 1, 0,  1, 0,  12,  5,  5, 0, P,   -P_DART, MT_CELESTIUM, CLR_CYAN, 50),
 WEAPON("spike", (char *)0,
 	1, 1, 0, 100,  0,  4,  5,  2, 0, P,   -P_DART, MT_BONE, CLR_WHITE, 1),
 WEAPON("dart of disintegration", (char *)0,
@@ -1049,7 +1086,7 @@ WEAPON("random dart", (char *)0,
 
 /* Shurikens */
 WEAPON("shuriken", "throwing star",
-	0, 1, 0, 1740,  0,  5,  8,  6, 2, P,   -P_SHURIKEN, MT_IRON, HI_METAL, 1),
+	0, 1, 0, 1739,  0,  5,  8,  6, 2, P,   -P_SHURIKEN, MT_IRON, HI_METAL, 1),
 WEAPON("soft star", (char *)0,
 	1, 1, 0, 270,  0,  5,  4,  3, 2, P,   -P_SHURIKEN, MT_SILK, CLR_WHITE, 1),
 WEAPON("tar star", (char *)0,
@@ -1058,6 +1095,8 @@ WEAPON("needle", (char *)0,
 	1, 1, 0, 20,  0,  2,  8,  6, 0, P,   -P_SHURIKEN, MT_BONE, CLR_BROWN, 1),
 WEAPON("windmill blade", "giant throwing star",
       0, 1, 0, 10,  0,  30, 10,  8, 2, P,   -P_SHURIKEN, MT_METAL, HI_METAL, 10),
+WEAPON("jumping flamer", (char *)0, /* can burn target inventory; you can only throw one at a time and it paralyzes you for 3 turns when you do */
+      1, 1, 0,  1,  0, 180, 12, 12, 50, P,   -P_SHURIKEN, MT_LIQUID, CLR_YELLOW, 50),
 WEAPON("caltrop", (char *)0,
 	1, 1, 0, 20,  0,  2,  2,  1, 0, P,   -P_SHURIKEN, MT_IRON, HI_METAL, 1),
 WEAPON("mystery shuriken", (char *)0,
@@ -1081,7 +1120,7 @@ WEAPON("dark batarang", (char *)0,
 
 
 WEAPON("bullwhip", (char *)0,
-	1, 0, 0, 500, 8,  4,  5,  3, 2, 0,   P_WHIP, MT_LEATHER, CLR_BROWN, 1),
+	1, 0, 0, 449, 8,  4,  5,  3, 2, 0,   P_WHIP, MT_LEATHER, CLR_BROWN, 1),
 WEAPON("inka shackle", (char *)0,
 	1, 0, 0,  20, 8,  4,  7,  7, 2, 0,   P_WHIP, MT_INKA, CLR_BROWN, 7),
 WEAPON("bulletproof chainwhip", (char *)0,
@@ -1090,6 +1129,10 @@ WEAPON("viperwhip", (char *)0,
 	1, 0, 0, 20,  8, 15,  7,  5, 2, 0,   P_WHIP, MT_PWN_BUBBLE, HI_SILVER, 6),
 WEAPON("heavenly whip", (char *)0,
 	1, 0, 0,  30,  4, 12,  6,  9, 2, 0,   P_WHIP, MT_CELESTIUM, CLR_CYAN, 9),
+WEAPON("garbowhip", (char *)0,
+	1, 0, 0, 50,  2,  1,  1,  1, 5, 0,   P_WHIP, MT_TINSEL, CLR_BROWN, 1),
+WEAPON("secret sound whip", (char *)0, /* every time you hit something, your sanity increases by one (can do bad stuff) */
+	1, 0, 0,  1, 10,  80, 12, 12, 0, 0,   P_WHIP, 0, CLR_ORANGE, 40),
 
 WEAPON("steel whip", (char *)0,
 	1, 0, 0, 100, 8,  10,  10,  6, 4, 0,   P_WHIP, MT_METAL, HI_METAL, 5),
@@ -1151,9 +1194,9 @@ WEAPON("secret whip", (char *)0,
 /* Shirts */
 /* many pieces of code depend on hawaiian shirt being first - add new shirts below it, please! --Amy */
 ARMOR("Hawaiian shirt", (char *)0,
-	1, 0, 0, 0,	270, 0,	 2,   3, 10, 0, ARM_SHIRT, MT_CLOTH, CLR_MAGENTA, 1, 0),
+	1, 0, 0, 0,	260, 0,	 2,   3, 10, 0, ARM_SHIRT, MT_CLOTH, CLR_MAGENTA, 1, 0),
 ARMOR("T-shirt", (char *)0,
-	1, 0, 0, 0,	280, 0,	 2,   2, 10, 0, ARM_SHIRT, MT_CLOTH, CLR_WHITE, 1, 0),
+	1, 0, 0, 0,	270, 0,	 2,   2, 10, 0, ARM_SHIRT, MT_CLOTH, CLR_WHITE, 1, 0),
 ARMOR("metal shirt", (char *)0,
 	1, 0, 0, POISON_RES,	20, 0,	 2,   3, 10, 0, ARM_SHIRT, MT_CHROME, CLR_GREEN, 20, 0),
 ARMOR("red string", (char *)0,
@@ -1164,12 +1207,16 @@ ARMOR("foam shirt", (char *)0,
 	1, 0, 0, 0,	20, 0,	 2,   2, 10, 0, ARM_SHIRT, MT_FOAM, CLR_WHITE, 1, 0),
 ARMOR("petrifyium bra", (char *)0,
 	1, 0, 0, 0,	10, 0,	 2,   2, 10, 0, ARM_SHIRT, MT_FLESH, CLR_GRAY, 10, 0),
+ARMOR("ichcahuipilli", "thick undershirt",
+	0, 0, 0, 0,	10, 0,	 2,   2, 10, 0, ARM_SHIRT, MT_TINSEL, CLR_YELLOW, 1, 0),
 ARMOR("beautiful shirt", (char *)0,
 	1, 0, 0, 0,	10, 0,	 2,   2, 10, 0, ARM_SHIRT, MT_INKA, CLR_RED, 1, 0),
 ARMOR("chanter shirt", (char *)0,
 	1, 0, 0, 0,	240, 0,	 2,   2, 10, 0, ARM_SHIRT, MT_ARCANIUM, CLR_BRIGHT_GREEN, 25, 0),
 ARMOR("bad shirt", (char *)0,
 	1, 0, 0, 0,	240, 0,	 2,   2, 5, 2, ARM_SHIRT, MT_CLOTH, CLR_MAGENTA, 1, 0),
+ARMOR("candy bra", (char *)0,
+	1, 0, 0, 0,	10, 0,	 2,   2, 10, 0, ARM_SHIRT, MT_VEGGY, CLR_YELLOW, 1, 0),
 ARMOR("PETA-compliant shirt", (char *)0,
 	1, 0, 0, 0,	10, 0,	 2,   2, 10, 0, ARM_SHIRT, MT_COMPOST, CLR_BROWN, 1, 0),
 ARMOR("radioactive undergarment", (char *)0,
@@ -1214,7 +1261,9 @@ ARMOR("victorian underwear", (char *)0,
 
 /* Suits of armor */
 ARMOR("plate mail", (char *)0,
-	1, 0, 1, 0,	2420, 5, 200, 600,  0, 2, ARM_SUIT, MT_IRON, HI_METAL, 36, 0),
+	1, 0, 1, 0,	2419, 5, 200, 600,  0, 2, ARM_SUIT, MT_IRON, HI_METAL, 36, 0),
+ARMOR("old mail", (char *)0,
+	1, 0, 1, 0,	  1, 6, 750, 1500, -4, 3, ARM_SUIT, MT_METAL, CLR_GRAY, 80, 0),
 ARMOR("field plate", (char *)0,
 	1, 0, 1, 0,	200, 5, 200, 600,  1, 2, ARM_SUIT, MT_METEOSTEEL, HI_METAL, 38, 0),
 ARMOR("wonder plate", (char *)0,
@@ -2522,7 +2571,7 @@ GLOVES("gauntlets of dexterity", "fencing gloves",
 
 /* Shields */
 SHIELD("small shield", (char *)0,
-		1, 0, 0, 0,	     550, 0, 12,	3,  8, 0, MT_WOOD, HI_WOOD, 1, 0),
+		1, 0, 0, 0,	     500, 0, 12,	3,  8, 0, MT_WOOD, HI_WOOD, 1, 0),
 SHIELD("shield of peace", (char *)0,
 		1, 0, 0, PEACEVISION,  40, 0, 12,	10,  8, 1, MT_INKA, CLR_ORANGE, 20, 0),
 SHIELD("heavy shield", (char *)0,
@@ -2535,8 +2584,12 @@ SHIELD("special shield", (char *)0,
 		1, 0, 0, 0,	     250, 0, 40,	50,  6, 0, MT_SILK, CLR_WHITE, 15, 0),
 SHIELD("barrier shield", (char *)0,
 		1, 0, 0, 0,	     100, 0, 30,	8,  6, 0, MT_BONE, CLR_GRAY, 15, 0),
+SHIELD("bull shield", (char *)0,
+		1, 0, 0, 0,	     1, 0, 500,   300,  -5, 2, MT_LEAD, CLR_GRAY, 75, 0),
 SHIELD("weapon sign", (char *)0,
 		1, 0, 0, 0,	      30, 0, 50,	30, 7, 0, MT_WOOD, CLR_CYAN, 12, 0),
+SHIELD("organoshield", (char *)0,
+		1, 0, 0, 0,	      50, 0, 16,	5,  8, 0, MT_AMBER, CLR_ORANGE, 2, 0),
 SHIELD("tarrier", (char *)0,
 		1, 0, 0, 0,	      20, 0, 30,	8,  6, 0, MT_TAR, CLR_BLACK, 15, 0),
 SHIELD("troll shield", (char *)0,
@@ -2563,7 +2616,7 @@ SHIELD("large shield", (char *)0,
 SHIELD("paper shield", (char *)0,
 		1, 0, 1, 0,	     50, 0,10, 4,  10, 0, MT_PAPER, CLR_WHITE, 1, 0),
 SHIELD("dwarvish roundshield", "large round shield",
-		0, 0, 0, 0,	     300, 0,40, 10,  7, 1, MT_IRON, HI_METAL, 6, 0),
+		0, 0, 0, 0,	     299, 0,40, 10,  7, 1, MT_IRON, HI_METAL, 6, 0),
 SHIELD("icky shield", (char *)0,
 		1, 0, 0, 0,	     20, 0,40, 10,  0, 0, MT_SECREE, CLR_BLACK, 12, 0),
 SHIELD("flame shield", "dark red shield",
@@ -4254,17 +4307,21 @@ IMPLANT((char *)0, 	"epidermal", 0, 0, 0, 0, MT_NANOMACHINE,   CLR_BRIGHT_MAGENT
 		wt, cost, sdam, ldam, hitbon, 0, wt, clr, minlvl, 0 )
 
 /* Containers - large box must be first, see obj.h */
-CONTAINER("large box", "wooden box",    0, 0, 0, 1, 3480,500,   8, MT_WOOD, HI_WOOD, 1),
+CONTAINER("large box", "wooden box",    0, 0, 0, 1, 3470,500,   8, MT_WOOD, HI_WOOD, 1),
 CONTAINER("large box of digestion", "wooden box", 0, 0, 0, 1, 20,500,   8, MT_WOOD, HI_WOOD, 10),
-CONTAINER("chest", "wooden container",  0, 0, 0, 1, 3480,750,  16, MT_WOOD, HI_WOOD, 1),
+CONTAINER("lead box", "metal box",    0, 0, 0, 1, 10, 1000,  50, MT_LEAD, CLR_GRAY, 40), /* cannot be emptied by monsters */
+CONTAINER("chest", "wooden container",  0, 0, 0, 1, 3479,750,  16, MT_WOOD, HI_WOOD, 1),
 CONTAINER("chest of holding", "wooden container",  0, 0, 0, 1, 20,750,  16, MT_WOOD, HI_WOOD, 10),
+CONTAINER("nano chest", "high-tech container",  0, 0, 0, 1, 1, 750, 500, MT_NANOMACHINE, CLR_WHITE, 90),
 CONTAINER("treasure chest", (char *)0,  1, 0, 0, 1,   50, 50000,  5000, MT_ARCANIUM, CLR_BRIGHT_GREEN, 1),
-CONTAINER("ice box", "cooling box",         0, 0, 0, 1,  940,400,  42, MT_PLASTIC, CLR_WHITE, 1),
+CONTAINER("ice box", "cooling box",         0, 0, 0, 1,  937,400,  42, MT_PLASTIC, CLR_WHITE, 1),
 CONTAINER("ice box of holding", "cooling box", 0, 0, 0, 1,   20,400,  42, MT_PLASTIC, CLR_WHITE, 20),
 CONTAINER("ice box of waterproofing", "cooling box", 0, 0, 0, 1,   20,400,  42, MT_PLASTIC, CLR_WHITE, 20),
 CONTAINER("ice box of digestion", "cooling box", 0, 0, 0, 1,   20,400,  42, MT_PLASTIC, CLR_WHITE, 20),
-CONTAINER("sack", "bag",                0, 0, 0, 0, 2750, 5, 30, MT_CLOTH, HI_CLOTH, 1),
+CONTAINER("dispersion box", "liquid box",         0, 0, 0, 1,  3, 400,  200, MT_LIQUID, CLR_WHITE, 1), /* waterproof, cannot be emptied by monsters */
+CONTAINER("sack", "bag",                0, 0, 0, 0, 2550, 5, 30, MT_CLOTH, HI_CLOTH, 1),
 CONTAINER("potato bag", (char *)0,      1, 0, 0, 0,  250, 20, 40, MT_ARCANIUM, CLR_BRIGHT_BLUE, 5),
+CONTAINER("handybag", (char *)0,      1, 0, 0, 0,  200, 2, 100, MT_LEATHER, CLR_BROWN, 10), /* can be used without hands; as a female char, contents weigh less */
 CONTAINER("oilskin sack", "bag",        0, 0, 0, 0, 2000, 5, 30, MT_CLOTH, HI_CLOTH, 5),
 CONTAINER("bag of holding", "bag",      0, 1, 0, 0, 2000, 5, 30, MT_CLOTH, HI_CLOTH, 8),
 CONTAINER("bag of digestion","bag",     0, 1, 0, 0,  500, 5, 30, MT_CLOTH, HI_CLOTH, 5),
@@ -4272,8 +4329,10 @@ CONTAINER("bag of tricks", "bag",       0, 1, 1, 0, 1950, 5, 30, MT_CLOTH, HI_CL
 /* bag of tricks must be last */
 
 /* Unlocking tools */
-TOOL("skeleton key", "key",     0, 0, 0, 0, 6490,  0,  10, MT_IRON, HI_METAL, 1),
+TOOL("skeleton key", "key",     0, 0, 0, 0, 6390,  0,  10, MT_IRON, HI_METAL, 1),
 TOOL("secret key", (char *)0,   1, 0, 0, 0,  500,  0,  10, MT_SECREE, CLR_BLACK, 1),
+WEPTOOL("controversy code", (char *)0, /* can be used as a key to unlock stuff */
+	1, 0, 0, 0, 100, 0,   10,  4,  6, 0, WHACK,  P_SHORT_SWORD, MT_IRON, HI_METAL, 15),
 TOOL("lock pick", (char *)0,    1, 0, 0, 0, 4890,  0,  20, MT_IRON, HI_METAL, 1),
 TOOL("hairclip", (char *)0,     1, 0, 0, 0,  600,  0,  20, MT_SILK, CLR_WHITE, 1),
 TOOL("credit card", (char *)0,  1, 0, 0, 0, 1100,  0,  10, MT_PLASTIC, CLR_WHITE, 1),
@@ -4298,7 +4357,7 @@ TOOL("magic lamp", "lamp",      0, 0, 1, 0,  1000, 0,  40, MT_COPPER, CLR_YELLOW
 
 /* Instruments */
 /* KMH -- made less common */
-TOOL("tin whistle", "whistle",  0, 0, 0, 0, 3840,  0,  10, MT_METAL, HI_METAL, 1),
+TOOL("tin whistle", "whistle",  0, 0, 0, 0, 3639,  0,  10, MT_METAL, HI_METAL, 1),
 TOOL("grass whistle", "whistle",  0, 0, 0, 0, 600,  0,  10, MT_WOOD, HI_METAL, 1),
 TOOL("magic whistle", "whistle",0, 0, 1, 0, 2400,  0,  10, MT_METAL, HI_METAL, 10),
 TOOL("dark magic whistle", "whistle",0, 0, 1, 0, 100,  0,  10, MT_METAL, HI_METAL, 20),
@@ -4313,6 +4372,7 @@ TOOL("tempest horn", "horn",    0, 0, 1, 1,   20, 0,  50, MT_BONE, CLR_WHITE, 5)
 TOOL("ether horn", "horn",      0, 0, 1, 1,   10, 0,  50, MT_ETHER, CLR_WHITE, 5), /* shoots magic missiles */
 TOOL("shadow horn", "horn",     0, 0, 1, 1,   10, 0,  50, MT_SHADOWSTUFF, CLR_WHITE, 5), /* shoots acid */
 TOOL("chrome horn", "horn",     0, 0, 1, 1,   50, 0,  50, MT_CHROME, CLR_WHITE, 5), /* shoots poison */
+TOOL("death horn", "horn",     0, 0, 1, 1,    1, 0,  50, MT_OBSIDIAN, CLR_BLACK, 50), /* shoots disintegration */
 TOOL("horn of plenty", "horn",  0, 0, 1, 1,  100, 0,  50, MT_BONE, CLR_WHITE, 25),
 TOOL("wooden harp", "harp",     0, 0, 0, 0,  200, 0,  50, MT_WOOD, HI_WOOD, 8),
 TOOL("magic harp", "harp",      0, 0, 1, 1,  100, 0,  50, MT_WOOD, HI_WOOD, 30),
@@ -4388,6 +4448,10 @@ WEPTOOL("red lightsaber",  "lightsaber",
 	0, 0, 1, 0,  100, 24, 500, 9,  11, 0, SLASH, P_LIGHTSABER, MT_PLATINUM, HI_METAL, 16),
 WEPTOOL("red double lightsaber",  "double lightsaber",
 	0, 0, 1, 1,  100, 24,1000, 15, 20, 0, SLASH, P_LIGHTSABER, MT_PLATINUM, HI_METAL, 30),
+WEPTOOL("black lightsaber",  "lightsaber", /* weaker than red lightsaber, higher charge */
+	0, 0, 1, 0,  100, 24, 500, 8,  9, 0, SLASH, P_LIGHTSABER, MT_SCRAP, CLR_BLACK, 4),
+WEPTOOL("orange lightsaber", "lightsaber", /* -5 to-hit, otherwise like green lightsaber, can be charged more effectively */
+	0, 0, 1, 0,  100, 24, 500, 3,  5, 0, SLASH, P_LIGHTSABER, MT_TINSEL, CLR_ORANGE, 3),
 
 WEPTOOL("laser swatter",  (char *)0,
 	1, 0, 1, 0,  200, 24, 500, 30,  3, 5, WHACK, P_PADDLE, MT_PLATINUM, CLR_BRIGHT_MAGENTA, 1),
@@ -7852,6 +7916,8 @@ SPELL((char *)0,         "purple velvet-bound",  P_NONE, 0, 0, 0, 1, 0, CLR_MAGE
 SPELL((char *)0,         "novel",  P_NONE, 0, 0, 0, 1, 0, CLR_BROWN, 1),
 SPELL((char *)0,         "pratchwood",  P_NONE, 0, 0, 0, 1, 0, CLR_GREEN, 1),
 SPELL((char *)0,         "copper arsenite",  P_NONE, 0, 0, 0, 1, 0, CLR_BRIGHT_GREEN, 1),
+SPELL((char *)0,         "serpent-entwined",  P_NONE, 0, 0, 0, 1, 0, CLR_GREEN, 1),
+SPELL((char *)0,         "deerskin",  P_NONE, 0, 0, 0, 1, 0, CLR_BROWN, 1),
 SPELL("blank paper",	 "plain",		P_NONE, 1500,  0, 0, 0, 0, HI_PAPER, 1),
 	/* ...Blank spellbook must come last because it retains its description */
 OBJECT(OBJ("Book of the Dead", "papyrus"),
@@ -8797,10 +8863,11 @@ ROCK("starlightstone", "gray",		0, 10,  5000,  10, 20, 20, 1, 5000, 6, MT_MINERA
 ROCK("flint", "gray",				0, 1200, 0,  10, 10, 12, 0, 10, 7, MT_MINERAL, CLR_GRAY, 1),
 ROCK("lead clump", "gray",			0, 500,  0,  10, 9, 10, 0, 10, 4, MT_LEAD, CLR_GRAY, 1),
 ROCK("bone fragment", "gray",			0, 1200, 0,  10, 8, 8, 0, 10, 4, MT_BONE, CLR_GRAY, 1),
+ROCK("amber fragment", "gray",		0, 20,   0,  10, 7, 8, 0, 10, 3, MT_AMBER, CLR_GRAY, 1),
 ROCK("sling ammo", "gray",			0, 4000, 0,  10, 9, 9, 0, 10, 7, MT_MINERAL, CLR_GRAY, 1),
 /* sling ammo = last random gray stone, for e.g. shk.c --Amy */
 
-ROCK("rock", (char *)0,				1,37760, 0,    0, 5, 5, 0, 10, 7, MT_MINERAL, CLR_GRAY, 1),
+ROCK("rock", (char *)0,				1,37740, 0,    0, 5, 5, 0, 10, 7, MT_MINERAL, CLR_GRAY, 1),
 #undef GEM
 #undef ROCK
 
@@ -8817,8 +8884,10 @@ OBJECT(OBJ("statue", (char *)0), BITS(1,0,0,1,0,0,0,0,0,0,0,P_NONE,MT_MINERAL), 
 
 /* heavy iron ball must be first */
 OBJECT(OBJ("heavy iron ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_IRON), 0,
-		BALL_CLASS,  33600, 0,  2400, 10, 25, 25, 0, 0,  200, HI_METAL, 1, 0),
+		BALL_CLASS,  31400, 0,  2400, 10, 25, 25, 0, 0,  200, HI_METAL, 1, 0),
 						/* +d4 when "very heavy" */
+OBJECT(OBJ("heavy tinsel ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_TINSEL), 0,
+		BALL_CLASS,  1000, 0,  2400, 10, 18, 18, 0, 0,  200, CLR_BROWN, 1, 0),
 OBJECT(OBJ("heavy stone ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_MINERAL), 0,
 		BALL_CLASS,  4000, 0,  2400, 10, 25, 25, 0, 0,  200, CLR_WHITE, 1, 0),
 OBJECT(OBJ("heavy glass ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_GLASS), 0,
@@ -8932,19 +9001,25 @@ OBJECT(OBJ("heavy silk ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL
 OBJECT(OBJ("heavy leather ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_LEATHER), 0,
 		BALL_CLASS,  50, 0,  4800, 10, 40, 40, 10, 0,  200, CLR_BROWN, 30, 0),
 
+OBJECT(OBJ("heavy laser ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_IRON), 0,
+		BALL_CLASS,  200, 0,  2400, 10, 25, 25, 0, 0,  200, HI_METAL, 1, 0),
 OBJECT(OBJ("wonder ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_MYSTERIOUS), 0, /* material randomized at game start */
 		BALL_CLASS,  1000, 0,  3600, 10, 35, 35, 0, 0,  200, CLR_BRIGHT_MAGENTA, 10, 0),
 OBJECT(OBJ("null ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_MYSTERIOUS), 0,
 		BALL_CLASS,  1000, 0,  3600, 10, 35, 35, 0, 0,  200, CLR_BLACK, 10, 0),
+OBJECT(OBJ("amber ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_AMBER), 0,
+		BALL_CLASS,  1000, 0,  3600, 10, 35, 35, 0, 0,  200, CLR_ORANGE, 10, 0),
 OBJECT(OBJ("liquid ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_LIQUID), 0,
 		BALL_CLASS,  1000, 0,  3600, 10, 35, 35, 0, 0,  200, CLR_BRIGHT_GREEN, 10, 0),
 /* liquid ball must be last */
 
 /* iron chain must be first */
 OBJECT(OBJ("iron chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_IRON), 0,
-		CHAIN_CLASS, 35800, 0,  240,  0,  4,  4, 0, 0,  200, HI_METAL, 1, 0),
+		CHAIN_CLASS, 33600, 0,  240,  0,  4,  4, 0, 0,  200, HI_METAL, 1, 0),
 						/* +1 both l & s */
 
+OBJECT(OBJ("tinsel chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_TINSEL), 0,
+		CHAIN_CLASS, 1000, 0,  240,  0,  2,  2, 0, 0,  200, CLR_BROWN, 1, 0),
 OBJECT(OBJ("stone chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_MINERAL), 0,
 		CHAIN_CLASS, 4000, 0,  240,  0,  4,  4, 0, 0,  200, CLR_WHITE, 1, 0),
 OBJECT(OBJ("glass chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_GLASS), 0,
@@ -9059,10 +9134,14 @@ OBJECT(OBJ("silk scourge", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT
 OBJECT(OBJ("leather nunchiaku", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_LEATHER), 0,
 		CHAIN_CLASS, 50, 0,  1600,  0,  16,  16, 10, 0,  200, CLR_BROWN, 30, 0),
 
+OBJECT(OBJ("laser chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_IRON), 0,
+		CHAIN_CLASS, 200, 0,  240,  0,  4,  4, 0, 0,  200, HI_METAL, 1, 0),
 OBJECT(OBJ("wonder chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_MYSTERIOUS), 0, /* material randomized at game start */
 		CHAIN_CLASS, 1000, 0,  720,  0,  12,  12, 0, 0,  200, CLR_BRIGHT_MAGENTA, 10, 0),
 OBJECT(OBJ("null chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_MYSTERIOUS), 0,
 		CHAIN_CLASS, 1000, 0,  720,  0,  12,  12, 0, 0,  200, CLR_BLACK, 10, 0),
+OBJECT(OBJ("amber chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_AMBER), 0,
+		CHAIN_CLASS, 1000, 0,  720,  0,  12,  12, 0, 0,  200, CLR_ORANGE, 10, 0),
 OBJECT(OBJ("liquid chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_LIQUID), 0,
 		CHAIN_CLASS, 1000, 0,  720,  0,  12,  12, 0, 0,  200, CLR_BRIGHT_GREEN, 10, 0),
 /* liquid chain must be last */

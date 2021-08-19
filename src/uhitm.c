@@ -274,7 +274,7 @@ boolean barehanded;
 	    && !(Confusion && !Conf_resist) && !Hallucination && !(Stunned && !Stun_resist) ) {
 		/* Intelligent chaotic weapons (Stormbringer) want blood */
 		if (!barehanded &&
-		  uwep && (uwep->oartifact == ART_STORMBRINGER || (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) || uwep->oartifact == ART_STROMBRINGER || uwep->oartifact == ART_PATRICIA_S_FEMININITY || uwep->oartifact == ART_ALASSEA_TELEMNAR || uwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uwep->oartifact == ART_HEAVY_THUNDERSTORM || uwep->oartifact == ART_WAND_OF_ORCUS || uwep->oartifact == ART_GENOCIDE || uwep->oartifact == ART_THIRST_FOR_BLOOD || uwep->oartifact == ART_SLAVE_TO_ARMOK || uwep->oartifact == ART_KILLING_EDGE) ) {
+		  uwep && (uwep->oartifact == ART_STORMBRINGER || (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) || uwep->oartifact == ART_STROMBRINGER || uwep->oartifact == ART_PATRICIA_S_FEMININITY || uwep->oartifact == ART_ALASSEA_TELEMNAR || uwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uwep->oartifact == ART_HEAVY_THUNDERSTORM || (uwep && uwep->otyp == TECPATL) || (u.twoweap && uswapwep && uswapwep->otyp == TECPATL) || uwep->oartifact == ART_WAND_OF_ORCUS || uwep->oartifact == ART_GENOCIDE || uwep->oartifact == ART_THIRST_FOR_BLOOD || uwep->oartifact == ART_SLAVE_TO_ARMOK || uwep->oartifact == ART_KILLING_EDGE) ) {
 			override_confirmation = HIT_UWEP;
 			return retval;
 		}
@@ -287,7 +287,7 @@ boolean barehanded;
 			if (yn(qbuf) != 'y') {
 				/* Stormbringer is not tricked so easily */
 				if (!barehanded && u.twoweap && uswapwep &&
-				  (uswapwep->oartifact == ART_STORMBRINGER || (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) || uswapwep->oartifact == ART_STROMBRINGER || uswapwep->oartifact == ART_PATRICIA_S_FEMININITY || uswapwep->oartifact == ART_ALASSEA_TELEMNAR || uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uswapwep->oartifact == ART_HEAVY_THUNDERSTORM || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_THIRST_FOR_BLOOD || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
+				  (uswapwep->oartifact == ART_STORMBRINGER || (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) || uswapwep->oartifact == ART_STROMBRINGER || uswapwep->oartifact == ART_PATRICIA_S_FEMININITY || uswapwep->oartifact == ART_ALASSEA_TELEMNAR || uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uswapwep->oartifact == ART_HEAVY_THUNDERSTORM || (uwep && uwep->otyp == TECPATL) || (u.twoweap && uswapwep && uswapwep->otyp == TECPATL) || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_THIRST_FOR_BLOOD || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
 					override_confirmation = HIT_USWAPWEP;
 					/* Lose primary attack */
 					return HIT_USWAPWEP;
@@ -300,7 +300,7 @@ boolean barehanded;
 			if (strcmp (bufX, "yes")) {
 				/* Stormbringer is not tricked so easily */
 				if (!barehanded && u.twoweap && uswapwep &&
-				  (uswapwep->oartifact == ART_STORMBRINGER || (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) || uswapwep->oartifact == ART_STROMBRINGER || uswapwep->oartifact == ART_PATRICIA_S_FEMININITY || uswapwep->oartifact == ART_ALASSEA_TELEMNAR || uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uswapwep->oartifact == ART_HEAVY_THUNDERSTORM || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_THIRST_FOR_BLOOD || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
+				  (uswapwep->oartifact == ART_STORMBRINGER || (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) || uswapwep->oartifact == ART_STROMBRINGER || uswapwep->oartifact == ART_PATRICIA_S_FEMININITY || uswapwep->oartifact == ART_ALASSEA_TELEMNAR || uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uswapwep->oartifact == ART_HEAVY_THUNDERSTORM || (uwep && uwep->otyp == TECPATL) || (u.twoweap && uswapwep && uswapwep->otyp == TECPATL) || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_THIRST_FOR_BLOOD || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
 					override_confirmation = HIT_USWAPWEP;
 					/* Lose primary attack */
 					return HIT_USWAPWEP;
@@ -334,6 +334,22 @@ struct monst *mtmp;
 	}
 
 	if (Role_if(PM_KNIGHT) && u.ualign.type == A_LAWFUL &&
+	    (!mtmp->mcanmove || mtmp->msleeping ||
+	     (mtmp->mflee && !mtmp->mavenge)) ) {
+	    You("caitiff!");
+	    adjalign(-5);
+
+	}
+
+	if (uwep && uwep->otyp == HONOR_KATANA && u.ualign.type == A_LAWFUL &&
+	    (!mtmp->mcanmove || mtmp->msleeping ||
+	     (mtmp->mflee && !mtmp->mavenge)) ) {
+	    You("caitiff!");
+	    adjalign(-5);
+
+	}
+
+	if (u.twoweap && uswapwep && uswapwep->otyp == HONOR_KATANA && u.ualign.type == A_LAWFUL &&
 	    (!mtmp->mcanmove || mtmp->msleeping ||
 	     (mtmp->mflee && !mtmp->mavenge)) ) {
 	    You("caitiff!");
@@ -502,6 +518,20 @@ register struct monst *mtmp;
 	    adjalign(-5);
 	}
 
+	if (uwep && uwep->otyp == HONOR_KATANA && mtmp->mpeaceful) {
+	    You("dishonorably attack the innocent!");
+		u.ualign.sins++;
+		u.alignlim--;
+	    adjalign(-5);
+	}
+
+	if (u.twoweap && uswapwep && uswapwep->otyp == HONOR_KATANA && mtmp->mpeaceful) {
+	    You("dishonorably attack the innocent!");
+		u.ualign.sins++;
+		u.alignlim--;
+	    adjalign(-5);
+	}
+
 	if (uwep && uwep->oartifact == ART_JAPANESE_WOMEN && mtmp->mpeaceful) {
 	    You("dishonorably attack the innocent!");
 		u.ualign.sins++;
@@ -653,6 +683,11 @@ register struct monst *mtmp;
 		tmp -= 10;
 		tmp -= rn2(21);
 	}
+
+	if (uwep && uwep->otyp == GROM_AXE) tmp -= 5;
+	if (u.twoweap && uswapwep && uswapwep->otyp == GROM_AXE) tmp -= 5;
+	if (uwep && uwep->otyp == ORANGE_LIGHTSABER) tmp -= 5;
+	if (u.twoweap && uswapwep && uswapwep->otyp == ORANGE_LIGHTSABER) tmp -= 5;
 
 	/* special class effect uses... */
 	if (tech_inuse(T_KIII)) tmp += 4;
@@ -886,9 +921,9 @@ register struct monst *mtmp;
 	 */
 	/* Intelligent chaotic weapons (Stormbringer) want blood */
 	if (is_safepet(mtmp) && !flags.forcefight) {
-	    if (( (!uwep && !(BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone())) || (uwep->oartifact != ART_STORMBRINGER && !(BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) && uwep->oartifact != ART_STROMBRINGER && uwep->oartifact != ART_PATRICIA_S_FEMININITY && uwep->oartifact != ART_ALASSEA_TELEMNAR && uwep->oartifact != ART_THRANDUIL_LOSSEHELIN && uwep->oartifact != ART_HEAVY_THUNDERSTORM && uwep->oartifact != ART_WAND_OF_ORCUS && uwep->oartifact != ART_GENOCIDE && uwep->oartifact != ART_THIRST_FOR_BLOOD && uwep->oartifact != ART_SLAVE_TO_ARMOK && uwep->oartifact != ART_KILLING_EDGE) ) 
+	    if (( (!uwep && !(BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone())) || (uwep->oartifact != ART_STORMBRINGER && !(BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) && uwep->oartifact != ART_STROMBRINGER && uwep->oartifact != ART_PATRICIA_S_FEMININITY && uwep->oartifact != ART_ALASSEA_TELEMNAR && uwep->oartifact != ART_THRANDUIL_LOSSEHELIN && uwep->oartifact != ART_HEAVY_THUNDERSTORM && uwep->otyp != TECPATL && !(u.twoweap && uswapwep && uswapwep->otyp == TECPATL) && uwep->oartifact != ART_WAND_OF_ORCUS && uwep->oartifact != ART_GENOCIDE && uwep->oartifact != ART_THIRST_FOR_BLOOD && uwep->oartifact != ART_SLAVE_TO_ARMOK && uwep->oartifact != ART_KILLING_EDGE) ) 
 		&& (!u.twoweap || !uswapwep 
-		   || (uswapwep->oartifact != ART_STORMBRINGER && !(BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) && uswapwep->oartifact != ART_STROMBRINGER && uswapwep->oartifact != ART_PATRICIA_S_FEMININITY && uswapwep->oartifact != ART_ALASSEA_TELEMNAR && uswapwep->oartifact != ART_THRANDUIL_LOSSEHELIN && uswapwep->oartifact != ART_HEAVY_THUNDERSTORM && uswapwep->oartifact != ART_WAND_OF_ORCUS && uswapwep->oartifact != ART_GENOCIDE && uswapwep->oartifact != ART_THIRST_FOR_BLOOD && uswapwep->oartifact != ART_SLAVE_TO_ARMOK && uswapwep->oartifact != ART_KILLING_EDGE) )){
+		   || (uswapwep->oartifact != ART_STORMBRINGER && !(BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) && uswapwep->oartifact != ART_STROMBRINGER && uswapwep->oartifact != ART_PATRICIA_S_FEMININITY && uswapwep->oartifact != ART_ALASSEA_TELEMNAR && uswapwep->oartifact != ART_THRANDUIL_LOSSEHELIN && uswapwep->oartifact != ART_HEAVY_THUNDERSTORM && uwep->otyp != TECPATL && !(u.twoweap && uswapwep && uswapwep->otyp == TECPATL) && uswapwep->oartifact != ART_WAND_OF_ORCUS && uswapwep->oartifact != ART_GENOCIDE && uswapwep->oartifact != ART_THIRST_FOR_BLOOD && uswapwep->oartifact != ART_SLAVE_TO_ARMOK && uswapwep->oartifact != ART_KILLING_EDGE) )){
 		/* there are some additional considerations: this won't work
 		 * if in a shop or Punished or you miss a random roll or
 		 * if you can walk thru walls and your pet cannot (KAA) or
@@ -2008,6 +2043,7 @@ int dieroll;
 								pline("Your lightsaber vibrates and is highly enchanted now!");
 							} else {
 								obj->age += 100;
+								if (obj->otyp == ORANGE_LIGHTSABER) obj->age += (100 * rnd(2));
 								pline("Your lightsaber gains additional energy!");
 							}
 						}
@@ -2033,6 +2069,7 @@ int dieroll;
 
 			if (obj && objects[obj->otyp].oc_skill == P_CLAW) {
 				if (mon->mflee || !(mon->mcanmove)) tmp += rnd(10);
+				if (obj->otyp == AMBUSH_QATAR) tmp += rnd(10);
 			}
 
 			/* empath can feel the monster's psyche sometimes --Amy */
@@ -2274,6 +2311,7 @@ int dieroll;
 			      if (Role_if(PM_ROCKER)) {
 				if ((obj->otyp == SLING) && tech_inuse(T_FLURRY)) tmp += 2;
 				if ((obj->otyp == INKA_SLING) && tech_inuse(T_FLURRY)) tmp += 2;
+				if ((obj->otyp == ATLATL) && tech_inuse(T_FLURRY)) tmp += 2;
 				if ((obj->otyp == SNIPESLING) && tech_inuse(T_FLURRY)) tmp += 2;
 				if ((obj->otyp == METAL_SLING) && tech_inuse(T_FLURRY)) tmp += 2;
 				if ((obj->otyp == CATAPULT) && tech_inuse(T_FLURRY)) tmp += 5;
@@ -2351,6 +2389,9 @@ int dieroll;
 		    case HEAVY_CLAY_BALL: 
 		    case HEAVY_GRANITE_BALL: 
 		    case HEAVY_CONUNDRUM_BALL: 
+		    case HEAVY_LASER_BALL: 
+		    case HEAVY_TINSEL_BALL: 
+		    case AMBER_BALL: 
 		    case HEAVY_CONCRETE_BALL: 
 		    case HEAVY_BRICK_BALL: 
 		    case HEAVY_PAPER_BALL:
@@ -2423,6 +2464,9 @@ int dieroll;
 		    case LEATHER_NUNCHIAKU:
 		    case WONDER_CHAIN:
 		    case NULL_CHAIN:
+		    case TINSEL_CHAIN:
+		    case AMBER_CHAIN:
+		    case LASER_CHAIN:
 		    case LIQUID_CHAIN:
 		    case IMPOSSIBLY_HEAVY_GLASS_BALL:
 		    case IMPOSSIBLY_HEAVY_ELYSIUM_BALL:
@@ -3028,6 +3072,13 @@ int dieroll;
 			litroomlite(FALSE);
 		}
 
+		if (wep && wep->otyp == JUMPING_FLAMER) {
+			if (!rn2(33)) (burnarmor(mon));
+			if (!rn2(33)) (void)destroy_mitem(mon, POTION_CLASS, AD_FIRE);
+			if (!rn2(33)) (void)destroy_mitem(mon, SCROLL_CLASS, AD_FIRE);
+			if (!rn2(50)) (void)destroy_mitem(mon, SPBOOK_CLASS, AD_FIRE);
+		}
+
 		if (wep && wep->otyp == DARKNESS_CLUB && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5))) {
 			pline("Collusion!");
 			litroomlite(FALSE);
@@ -3043,6 +3094,15 @@ int dieroll;
 			mon->mcanmove = 0;
 			mon->mstrategy &= ~STRAT_WAITFORU;
 			pline("%s is unable to move!", Monnam(mon));
+		}
+
+		if (wep && wep->otyp == SPRAY_BOX && !rn2(3) && mon->mcansee && !resists_blnd(mon)) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) {
+				mon->mcansee = 0;
+				mon->mblinded = rnd(10);
+				pline("%s is blinded by your spray!", Monnam(mon));
+
+			}
 		}
 
 		if (wep && wep->oartifact == ART_BOHEM_FUELKANAL && !rn2(100)) {
@@ -3257,6 +3317,20 @@ melatechoice:
 	    if (Race_if(PM_IRAHA)) nopoison *= 10;
 	    if(nopoison < 2) nopoison = 2;
 	    if (Role_if(PM_SAMURAI) && !Race_if(PM_IRAHA) && !Race_if(PM_POISONER)) {
+		You("dishonorably use a poisoned weapon!");
+		adjalign(-sgn(u.ualign.type));
+		adjalign(-5);
+		u.ualign.sins++;
+		u.alignlim--;
+	    }
+	    if (uwep && uwep->otyp == HONOR_KATANA && !Race_if(PM_IRAHA) && !Race_if(PM_POISONER)) {
+		You("dishonorably use a poisoned weapon!");
+		adjalign(-sgn(u.ualign.type));
+		adjalign(-5);
+		u.ualign.sins++;
+		u.alignlim--;
+	    }
+	    if (u.twoweap && uswapwep && uswapwep->otyp == HONOR_KATANA && !Race_if(PM_IRAHA) && !Race_if(PM_POISONER)) {
 		You("dishonorably use a poisoned weapon!");
 		adjalign(-sgn(u.ualign.type));
 		adjalign(-5);
@@ -4863,6 +4937,7 @@ melatechoice:
 
 	if (tech_inuse(T_PIRATE_BROTHERING) && uwep && is_lightsaber(uwep) && uwep->lamplit && uswapwep && weapon_type(uswapwep) == P_SCIMITAR && u.twoweap && obj && obj == uswapwep) {
 		uwep->age += tmp;
+		if (uwep->otyp == ORANGE_LIGHTSABER) uwep->age += (tmp * rnd(2));
 		pline("Your lightsaber is recharged a bit!");
 	}
 
@@ -8128,6 +8203,9 @@ use_weapon:
 					uwep->spe--;
 					pline("Your weapon sustains damage.");
 				}
+				if (uwep && uwep->otyp == SECRET_SOUND_WHIP) {
+					increasesanity(1);
+				}
 				if (uwep && uwep->oartifact == ART_CHA_SHATTER && !rn2(3) && uwep->spe > -20) {
 					uwep->spe--;
 					pline("Your weapon sustains damage.");
@@ -8190,6 +8268,7 @@ bladeangerdone:
 					if (uwep && uwep->otyp == CIGAR) suckingchance = 10;
 					if (uwep && uwep->otyp == LIGHTBULB) suckingchance = 10;
 					if (uwep && uwep->otyp == HEATH_BALL) suckingchance = 9;
+					if (uwep && uwep->otyp == DIMENSIONAL_SHARD) suckingchance = 7;
 					if (uwep && uwep->otyp == CIGARETTE && !rn2(250)) {
 						You("inhale some cancerogenous smoke!");
 						if (FunnyHallu) pline("Why are you such an idiot and smoke, anyway?");
@@ -8282,6 +8361,9 @@ bladeangerdone:
 				if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DONNNNNNNNNNNNG && !rn2(3) && uswapwep->spe > -20) {
 					uswapwep->spe--;
 					pline("Your weapon sustains damage.");
+				}
+				if (u.twoweap && uswapwep && uswapwep->otyp == SECRET_SOUND_WHIP) {
+					increasesanity(1);
 				}
 				if (u.twoweap && uswapwep && uswapwep->oartifact == ART_CHA_SHATTER && !rn2(3) && uswapwep->spe > -20) {
 					uswapwep->spe--;

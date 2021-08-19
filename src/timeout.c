@@ -4391,6 +4391,7 @@ long timeout;
 
 		if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER && rn2(3)) willdrainenergy = FALSE;
 		if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES && rn2(2)) willdrainenergy = FALSE;
+		if (obj->otyp == HEAVY_LASER_BALL && rn2(3)) willdrainenergy = FALSE;
 
 		if (tech_inuse(T_PIRATE_BROTHERING) && uwep && is_lightsaber(uwep) && uswapwep && weapon_type(uswapwep) == P_SCIMITAR && u.twoweap) {
 			willdrainenergy = FALSE; /* do nothing */
@@ -4678,9 +4679,13 @@ long timeout;
 			    whose, xname(obj));
 	    	}
 	    case GREEN_LIGHTSABER: 
+	    case ORANGE_LIGHTSABER: 
+	    case BLACK_LIGHTSABER: 
 	    case BLUE_LIGHTSABER:
 	    case LASER_SWORD:
 	    case BEAMSWORD:
+	    case HEAVY_LASER_BALL:
+	    case LASER_CHAIN:
 	    case MYSTERY_LIGHTSABER:
 	    case VIOLET_LIGHTSABER:
 	    case WHITE_LIGHTSABER:
@@ -4845,6 +4850,7 @@ begin_burn(obj, already_lit)
 
 			if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER && rn2(3)) willdrainenergy = FALSE;
 			if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES && rn2(2)) willdrainenergy = FALSE;
+			if (obj->otyp == HEAVY_LASER_BALL && rn2(3)) willdrainenergy = FALSE;
 
 			if (!PlayerCannotUseSkills && tech_inuse(T_ENERGY_CONSERVATION)) {
 				switch (P_SKILL(P_MAKASHI)) {
@@ -4888,6 +4894,7 @@ begin_burn(obj, already_lit)
 
 		if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER && rn2(3)) willdrainenergy = FALSE;
 		if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES && rn2(2)) willdrainenergy = FALSE;
+		if (obj->otyp == HEAVY_LASER_BALL && rn2(3)) willdrainenergy = FALSE;
 
 		lightsaberchance = 0;
 	    	if (obj->altmode && obj->age > 1) {
@@ -4923,11 +4930,15 @@ begin_burn(obj, already_lit)
 	    case LIGHTWHIP:
 	    case ELECTRIC_CIGARETTE:
 	    case BLUE_LIGHTSABER:
+	    case HEAVY_LASER_BALL:
+	    case LASER_CHAIN:
 	    case MYSTERY_LIGHTSABER:
 	    case VIOLET_LIGHTSABER:
 	    case WHITE_LIGHTSABER:
 	    case YELLOW_LIGHTSABER:
 	    case GREEN_LIGHTSABER:
+	    case ORANGE_LIGHTSABER:
+	    case BLACK_LIGHTSABER:
 	    	turns = 1;
     	    	radius = 1;
 		if (obj->oartifact == ART_LIGHTSABER_PROTOTYPE){
@@ -5006,6 +5017,7 @@ begin_burn(obj, already_lit)
 
 		if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER && rn2(3)) willdrainenergy = FALSE;
 		if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES && rn2(2)) willdrainenergy = FALSE;
+		if (obj->otyp == HEAVY_LASER_BALL && rn2(3)) willdrainenergy = FALSE;
 		if (tech_inuse(T_PIRATE_BROTHERING) && uwep && is_lightsaber(uwep) && uswapwep && weapon_type(uswapwep) == P_SCIMITAR && u.twoweap) {
 			willdrainenergy = FALSE;
 		}

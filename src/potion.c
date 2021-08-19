@@ -122,6 +122,7 @@ struct obj *otmp;
 		case ETHER_HORN:
 		case SHADOW_HORN:
 		case CHROME_HORN:
+		case DEATH_HORN:
 		case WAN_DRAINING:
 		case WAN_INCREASE_MAX_HITPOINTS:
 		case WAN_REDUCE_MAX_HITPOINTS:
@@ -348,6 +349,7 @@ int number;
 		case ETHER_HORN:
 		case SHADOW_HORN:
 		case CHROME_HORN:
+		case DEATH_HORN:
 		case WAN_DRAINING:
 		case WAN_INCREASE_MAX_HITPOINTS:
 		case WAN_REDUCE_MAX_HITPOINTS:
@@ -650,6 +652,7 @@ findmorearrows:
 		prcarrow = carrying(ORCISH_ARROW);
 		if (!prcarrow) prcarrow = carrying(ARROW);
 		if (!prcarrow) prcarrow = carrying(PAPER_ARROW);
+		if (!prcarrow) prcarrow = carrying(BONE_ARROW);
 		if (!prcarrow) prcarrow = carrying(ODOR_SHOT);
 		if (!prcarrow) prcarrow = carrying(FORBIDDEN_ARROW);
 		if (!prcarrow) prcarrow = carrying(SILVER_ARROW);
@@ -1602,6 +1605,7 @@ playerextrinsicaggravatemon()
 
 	if (uarmc && itemhasappearance(uarmc, APP_AVENGER_CLOAK)) return TRUE;
 
+	if ((uwep && uwep->otyp == GROM_AXE) || (u.twoweap && uswapwep && uswapwep->otyp == GROM_AXE)) return TRUE;
 	if ((uwep && uwep->oartifact == ART_ASIAN_WINTER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ASIAN_WINTER)) return TRUE;
 	if ((uwep && uwep->oartifact == ART_FN_M____PARA) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FN_M____PARA)) return TRUE;
 	if ((uwep && uwep->oartifact == ART_KILLER_PIANO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KILLER_PIANO)) return TRUE;
@@ -12144,6 +12148,7 @@ boolean amnesia;
 			case ETHER_HORN:
 			case SHADOW_HORN:
 			case CHROME_HORN:
+			case DEATH_HORN:
 			case HORN_OF_PLENTY:
 			    downgrade_obj(obj, TOOLED_HORN, &used);
 			    break;
@@ -12606,6 +12611,7 @@ register struct obj *obj;
 		case ETHER_HORN:
 		case SHADOW_HORN:
 		case CHROME_HORN:
+		case DEATH_HORN:
 			obj->otyp = TOOLED_HORN;
 			break;
 		case WOODEN_HARP:

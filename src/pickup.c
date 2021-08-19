@@ -50,6 +50,10 @@ STATIC_DCL boolean mon_beside(int, int);
 #define DELTA_CWT(cont,obj)		\
     ((cont)->cursed ? (obj)->owt * ((cont)->oartifact ? 4 : 2) :	\
    CEILDIV((obj)->owt, ((cont)->oartifact ? 3 : 2) * ((cont)->blessed ? 2 : 1)))
+
+#define HANDYBAG_CWT(cont,obj)	\
+	(flags.female ? ((obj)->owt * 4 / 5) : (obj)->owt )
+
 #define GOLD_WT(n)		(((n) + 50L) / 100L)
 /* if you can figure this out, give yourself a hearty pat on the back... */
 #define GOLD_CAPACITY(w,n)	(((w) * -100L) - ((n) + 50L) - 1L)
@@ -58,7 +62,7 @@ STATIC_DCL boolean mon_beside(int, int);
 /* in_container() and out_container() from askchain() and use_container(). */
 /* Also used by memu_loot() and container_gone().			   */
 static NEARDATA struct obj *current_container;
-#define Icebox (current_container->otyp == ICE_BOX || current_container->otyp == ICE_BOX_OF_HOLDING || current_container->otyp == ICE_BOX_OF_WATERPROOFING || current_container->otyp == ICE_BOX_OF_DIGESTION)
+#define Icebox (current_container->otyp == ICE_BOX || current_container->otyp == DISPERSION_BOX || current_container->otyp == ICE_BOX_OF_HOLDING || current_container->otyp == ICE_BOX_OF_WATERPROOFING || current_container->otyp == ICE_BOX_OF_DIGESTION)
 
 static const char moderateloadmsg[] = "You have a little trouble lifting";
 static const char nearloadmsg[] = "You have much trouble lifting";
@@ -1117,7 +1121,7 @@ int *wt_before, *wt_after;
     wt = iw + (int)obj->owt;
     if (adjust_wt)
 	wt -= (container->otyp == BAG_OF_HOLDING || container->otyp == ICE_BOX_OF_HOLDING || container->otyp == CHEST_OF_HOLDING) ?
-		(int)DELTA_CWT(container, obj) : (int)obj->owt;
+		(int)DELTA_CWT(container, obj) : (container->otyp == HANDYBAG) ? (int)HANDYBAG_CWT(container, obj) : (int)obj->owt;
 #ifndef GOLDOBJ
     if (is_gold)	/* merged gold might affect cumulative weight */
 	wt -= (GOLD_WT(u.ugold) + GOLD_WT(count) - GOLD_WT(u.ugold + count));
@@ -1163,7 +1167,7 @@ int *wt_before, *wt_after;
 		ow = (int)GOLD_WT(umoney + qq);
 #endif
 		ow -= (container->otyp == BAG_OF_HOLDING || container->otyp == ICE_BOX_OF_HOLDING || container->otyp == CHEST_OF_HOLDING) ?
-			(int)DELTA_CWT(container, obj) : (int)obj->owt;
+			(int)DELTA_CWT(container, obj) : (container->otyp == HANDYBAG) ? (int)HANDYBAG_CWT(container, obj) :  (int)obj->owt;
 		if (iw + ow >= 0) break;
 		oow = ow;
 	    }
@@ -1190,7 +1194,7 @@ int *wt_before, *wt_after;
 	    obj->owt = (unsigned)(ow = weight(obj));
 	    if (adjust_wt)
 		ow -= (container->otyp == BAG_OF_HOLDING || container->otyp == ICE_BOX_OF_HOLDING || container->otyp == CHEST_OF_HOLDING) ?
-			(int)DELTA_CWT(container, obj) : (int)obj->owt;
+			(int)DELTA_CWT(container, obj) : (container->otyp == HANDYBAG) ? (int)HANDYBAG_CWT(container, obj) :  (int)obj->owt;
 	    if (iw + ow >= 0)
 		break;
 	    wt = iw + ow;
@@ -2237,7 +2241,7 @@ boolean invobj;
 	}
 
 	/* boxes, boulders, and big statues can't fit into any container */
-	if (obj->otyp == ICE_BOX || obj->otyp == ICE_BOX_OF_HOLDING || obj->otyp == ICE_BOX_OF_WATERPROOFING || obj->otyp == ICE_BOX_OF_DIGESTION || Is_box(obj) || obj->otyp == BOULDER ||
+	if (obj->otyp == ICE_BOX || obj->otyp == DISPERSION_BOX || obj->otyp == ICE_BOX_OF_HOLDING || obj->otyp == ICE_BOX_OF_WATERPROOFING || obj->otyp == ICE_BOX_OF_DIGESTION || Is_box(obj) || obj->otyp == BOULDER ||
 		(obj->otyp == STATUE && bigmonst(&mons[obj->corpsenm]))) {
 		/*
 		 *  xname() uses a static result array.  Save obj's name
@@ -2677,7 +2681,7 @@ int held;
 	int monsterator = 0;
 
 	emptymsg[0] = '\0';
-	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) {
+	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && !(obj && obj->otyp == HANDYBAG) ) {
 		You("have no hands!");	/* not `body_part(HAND)' */
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
@@ -3172,7 +3176,7 @@ int coordx, coordy;
 		container->owt = weight(container);
 
 		/* we do need to start the timer on these */
-		if ( (container->otyp == ICE_BOX || container->otyp == ICE_BOX_OF_HOLDING || container->otyp == ICE_BOX_OF_WATERPROOFING || container->otyp == ICE_BOX_OF_DIGESTION) && !age_is_relative(otmp) && !is_lightsaber(otmp)) {
+		if ( (container->otyp == ICE_BOX || container->otyp == DISPERSION_BOX || container->otyp == ICE_BOX_OF_HOLDING || container->otyp == ICE_BOX_OF_WATERPROOFING || container->otyp == ICE_BOX_OF_DIGESTION) && !age_is_relative(otmp) && !is_lightsaber(otmp)) {
 			otmp->age = monstermoves - otmp->age;
 			otmp->icedobject = TRUE;
 			if (otmp->otyp == CORPSE) {

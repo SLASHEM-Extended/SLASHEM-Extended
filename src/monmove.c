@@ -1163,6 +1163,9 @@ register struct monst *mtmp;
 		wakeup(mtmp);
 	}
 
+	if (uwep && uwep->otyp == CIRCULAR_SAW && mtmp->mpeaceful && !mtmp->mtame) wakeup(mtmp);
+	if (u.twoweap && uswapwep && uswapwep->otyp == CIRCULAR_SAW && mtmp->mpeaceful && !mtmp->mtame) wakeup(mtmp);
+
 	if (mdat == &mons[PM_NINJA_SALESMAN] && mtmp->mpeaceful && !mtmp->mtame && !rn2(500)) {
 		wakeup(mtmp);
 	}
@@ -2555,7 +2558,7 @@ register int after;
 #endif
 	    can_tunnel = tunnels(ptr);
 	can_open = !(nohands(ptr) || verysmall(ptr));
-	can_unlock = ((can_open && m_carrying(mtmp, SKELETON_KEY)) || (can_open && m_carrying(mtmp, SECRET_KEY)) ||
+	can_unlock = ((can_open && m_carrying(mtmp, SKELETON_KEY)) || (can_open && m_carrying(mtmp, SECRET_KEY)) || (can_open && m_carrying(mtmp, CONTROVERSY_CODE)) ||
 		      mtmp->iswiz || is_rider(ptr) || is_deadlysin(ptr));
 /*        doorbuster = is_giant(ptr);*/
 

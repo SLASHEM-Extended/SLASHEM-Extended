@@ -525,6 +525,7 @@ struct Jitem {
 			   typ != PERIDOT && 	\
 			   typ != VOLCANIC_GLASS_FRAGMENT && 	\
 			   typ != BONE_FRAGMENT && 	\
+			   typ != AMBER_FRAGMENT && 	\
 			   typ != LEAD_CLUMP && 	\
 			   typ != SLING_AMMO && 	\
 			   typ != MOONSTONE && 	\
@@ -3542,6 +3543,49 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 
 	/* todo area */
 
+	{ BONE_ARROW, "todo" },
+	{ BONE_DAGGER, "todo" },
+	{ WRAITHBLADE, "todo" },
+	{ TECPATL, "todo" },
+	{ ANCUS, "todo" },
+	{ ATGEIR, "todo" },
+	{ KHOPESH, "todo" },
+	{ MACUAHUITL, "todo" },
+	{ ATLATL, "todo" },
+	{ ICHCAHUIPILLI, "todo" },
+	{ TINSEL_LONGSWORD, "todo" },
+	{ TREESTAFF, "todo" },
+	{ GARBOWHIP, "todo" },
+	{ ORGANOSHIELD, "todo" },
+	{ HEAVY_TINSEL_BALL, "todo" },
+	{ AMBER_BALL, "todo" },
+	{ TINSEL_CHAIN, "todo" },
+	{ AMBER_CHAIN, "todo" },
+	{ GROM_AXE, "todo" },
+	{ HONOR_KATANA, "todo" },
+	{ DIMENSIONAL_SHARD, "todo" },
+	{ CIRCULAR_SAW, "todo" },
+	{ AMBUSH_QATAR, "todo" },
+	{ PHEONIX_STAFF, "todo" },
+	{ DIVINE_DART, "todo" },
+	{ JUMPING_FLAMER, "todo" },
+	{ SECRET_SOUND_WHIP, "todo" },
+	{ OLD_MAIL, "todo" },
+	{ CANDY_BRA, "todo" },
+	{ BULL_SHIELD, "todo" },
+	{ LEAD_BOX, "todo" },
+	{ NANO_CHEST, "todo" },
+	{ DISPERSION_BOX, "todo" },
+	{ HANDYBAG, "todo" },
+	{ DEATH_HORN, "todo" },
+	{ BLACK_LIGHTSABER, "todo" },
+	{ ORANGE_LIGHTSABER, "todo" },
+	{ AMBER_FRAGMENT, "todo" },
+	{ HEAVY_LASER_BALL, "todo" },
+	{ LASER_CHAIN, "todo" },
+	{ SPRAY_BOX, "todo" },
+	{ CONTROVERSY_CODE, "todo" },
+
 	{0, "" }
 };
 
@@ -6403,6 +6447,49 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 
 	/* todo area */
 
+	{ BONE_ARROW, "todo" },
+	{ BONE_DAGGER, "todo" },
+	{ WRAITHBLADE, "todo" },
+	{ TECPATL, "todo" },
+	{ ANCUS, "todo" },
+	{ ATGEIR, "todo" },
+	{ KHOPESH, "todo" },
+	{ MACUAHUITL, "todo" },
+	{ ATLATL, "todo" },
+	{ ICHCAHUIPILLI, "todo" },
+	{ TINSEL_LONGSWORD, "todo" },
+	{ TREESTAFF, "todo" },
+	{ GARBOWHIP, "todo" },
+	{ ORGANOSHIELD, "todo" },
+	{ HEAVY_TINSEL_BALL, "todo" },
+	{ AMBER_BALL, "todo" },
+	{ TINSEL_CHAIN, "todo" },
+	{ AMBER_CHAIN, "todo" },
+	{ GROM_AXE, "todo" },
+	{ HONOR_KATANA, "todo" },
+	{ DIMENSIONAL_SHARD, "todo" },
+	{ CIRCULAR_SAW, "todo" },
+	{ AMBUSH_QATAR, "todo" },
+	{ PHEONIX_STAFF, "todo" },
+	{ DIVINE_DART, "todo" },
+	{ JUMPING_FLAMER, "todo" },
+	{ SECRET_SOUND_WHIP, "todo" },
+	{ OLD_MAIL, "todo" },
+	{ CANDY_BRA, "todo" },
+	{ BULL_SHIELD, "todo" },
+	{ LEAD_BOX, "todo" },
+	{ NANO_CHEST, "todo" },
+	{ DISPERSION_BOX, "todo" },
+	{ HANDYBAG, "todo" },
+	{ DEATH_HORN, "todo" },
+	{ BLACK_LIGHTSABER, "todo" },
+	{ ORANGE_LIGHTSABER, "todo" },
+	{ AMBER_FRAGMENT, "todo" },
+	{ HEAVY_LASER_BALL, "todo" },
+	{ LASER_CHAIN, "todo" },
+	{ SPRAY_BOX, "todo" },
+	{ CONTROVERSY_CODE, "todo" },
+
 	{0, "" }
 };
 
@@ -6538,7 +6625,7 @@ register int otyp;
 		} else {
 			strcpy(buf, dn ? dn : actualn);
 			if(ocl->oc_class == GEM_CLASS)
-				strcat(buf, (ocl->oc_material == MT_MINERAL || otyp == SMALL_PIECE_OF_UNREFINED_MITHR || otyp == VOLCANIC_GLASS_FRAGMENT || otyp == LEAD_CLUMP || otyp == SLING_AMMO || otyp == BONE_FRAGMENT || otyp == SILVER_SLINGSTONE || otyp == CONUNDRUM_NUGGET ) ?
+				strcat(buf, (ocl->oc_material == MT_MINERAL || otyp == SMALL_PIECE_OF_UNREFINED_MITHR || otyp == VOLCANIC_GLASS_FRAGMENT || otyp == LEAD_CLUMP || otyp == SLING_AMMO || otyp == BONE_FRAGMENT || otyp == AMBER_FRAGMENT || otyp == SILVER_SLINGSTONE || otyp == CONUNDRUM_NUGGET ) ?
 						" stone" : " gem");
 			if(un)
 				sprintf(eos(buf), " called %s", un);
@@ -7001,7 +7088,7 @@ register struct obj *obj;
 	case GEM_CLASS:
 	    {
 		const char *rock =
-			    (ocl->oc_material == MT_MINERAL || typ == SMALL_PIECE_OF_UNREFINED_MITHR || typ == VOLCANIC_GLASS_FRAGMENT || typ == LEAD_CLUMP || typ == SLING_AMMO || typ == BONE_FRAGMENT || typ == SILVER_SLINGSTONE || typ == CONUNDRUM_NUGGET) ? "stone" : "gem";
+			    (ocl->oc_material == MT_MINERAL || typ == SMALL_PIECE_OF_UNREFINED_MITHR || typ == VOLCANIC_GLASS_FRAGMENT || typ == LEAD_CLUMP || typ == SLING_AMMO || typ == BONE_FRAGMENT || typ == AMBER_FRAGMENT || typ == SILVER_SLINGSTONE || typ == CONUNDRUM_NUGGET) ? "stone" : "gem";
 		if (!obj->dknown || PlayerUninformation) {
 		    strcpy(buf, rock);
 		} else if (!nn) {
@@ -7373,16 +7460,12 @@ plus:
 			else if (obj->altmode == WP_MODE_SINGLE) strcat(bp, " (single)");
 			else strcat(bp, " (auto)");
 		}
-		if (
-			is_lightsaber(obj) ||
-			obj->otyp == STICK_OF_DYNAMITE) {
+		if (is_lightsaber(obj) || obj->otyp == STICK_OF_DYNAMITE) {
 		    if (obj->lamplit) {
 			if ((obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASERXBOW || obj->otyp == SITH_STAFF || obj->otyp == LASER_POLE || obj->otyp == WHITE_DOUBLE_LIGHTSABER) && obj->altmode) strcat(bp, " (2xlit)");
 			else strcat(bp, " (lit)");
 		    }
-#  ifdef DEBUG
 		    sprintf(eos(bp), " (%d)", obj->age);		
-#  endif
 		} else if (is_grenade(obj))
 		    if (obj->oarmed) strcat(bp, " (armed)");
 		break;
@@ -7535,6 +7618,7 @@ ring:
 		break;
 	case BALL_CLASS:
 	case CHAIN_CLASS:
+
 		goto plus;
 		add_erosion_words(obj, prefix);
 		if(obj->owornmask & W_BALL)
@@ -7592,9 +7676,9 @@ ring:
 #ifdef SHOW_WEIGHT
 	  /* [max] weight inventory */
 	if ((obj->otyp != BOULDER) || !throws_rocks (youmonst.data))
-	  if ((obj->otyp <= ACID_VENOM) /* && (obj->otyp != CHEST) && (obj->otyp != LARGE_BOX) && */
+	  if ((obj->otyp <= ACID_VENOM) /* && (obj->otyp != CHEST) && (obj->otyp != LARGE_BOX) && (obj->otyp != LEAD_BOX) && */
 && (obj->otyp != LUCKSTONE) && (obj->otyp != HEALTHSTONE) && (obj->otyp != LOADSTONE) && (obj->otyp != TOUCHSTONE)
-&& (obj->otyp != WHETSTONE) && (obj->otyp != MANASTONE) && (obj->otyp != SLEEPSTONE) && (obj->otyp != LOADBOULDER) && (obj->otyp != STARLIGHTSTONE) && (obj->otyp != TALC) && (obj->otyp != GRAPHITE) && (obj->otyp != BONE_FRAGMENT) && (obj->otyp != LEAD_CLUMP) && (obj->otyp != SLING_AMMO) && (obj->otyp != VOLCANIC_GLASS_FRAGMENT) && (obj->otyp != STONE_OF_MAGIC_RESISTANCE) && (obj->otyp != FLINT) && (obj->otyp != SALT_CHUNK) && (obj->otyp != SILVER_SLINGSTONE) && (obj->otyp != CONUNDRUM_NUGGET) && (obj->otyp != SMALL_PIECE_OF_UNREFINED_MITHR) && (obj->otyp != AMULET_OF_YENDOR) && (obj->otyp != FAKE_AMULET_OF_YENDOR) && (!is_nastygraystone(obj))
+&& (obj->otyp != WHETSTONE) && (obj->otyp != MANASTONE) && (obj->otyp != SLEEPSTONE) && (obj->otyp != LOADBOULDER) && (obj->otyp != STARLIGHTSTONE) && (obj->otyp != TALC) && (obj->otyp != GRAPHITE) && (obj->otyp != BONE_FRAGMENT) && (obj->otyp != AMBER_FRAGMENT) && (obj->otyp != LEAD_CLUMP) && (obj->otyp != SLING_AMMO) && (obj->otyp != VOLCANIC_GLASS_FRAGMENT) && (obj->otyp != STONE_OF_MAGIC_RESISTANCE) && (obj->otyp != FLINT) && (obj->otyp != SALT_CHUNK) && (obj->otyp != SILVER_SLINGSTONE) && (obj->otyp != CONUNDRUM_NUGGET) && (obj->otyp != SMALL_PIECE_OF_UNREFINED_MITHR) && (obj->otyp != AMULET_OF_YENDOR) && (obj->otyp != FAKE_AMULET_OF_YENDOR) && (!is_nastygraystone(obj))
 	      /*(obj->otyp != ICE_BOX) */ && (!Hallucination && flags.invweight && !WeightDisplayIsArbitrary))
 		        sprintf (eos(bp), " {%d}", obj->owt);
 /* show the freaking weight of all items! --Amy */
@@ -9809,7 +9893,7 @@ typfnd:
 			break;
 		case SLIME_MOLD: otmp->spe = ftype;
 			/* Fall through */
-		case SKELETON_KEY: case SECRET_KEY: case CHEST: case LARGE_BOX:
+		case SKELETON_KEY: case SECRET_KEY: case CHEST: case NANO_CHEST: case LARGE_BOX: case LEAD_BOX:
 		/*case HEAVY_IRON_BALL:*/ /*case IRON_CHAIN:*/ case STATUE:
 			/* otmp->cobj already done in mksobj() */
 				break;

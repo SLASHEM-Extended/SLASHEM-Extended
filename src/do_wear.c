@@ -2841,6 +2841,8 @@ Shield_on()
 
     switch (uarms->otyp) {
 	case SMALL_SHIELD:
+	case BULL_SHIELD:
+	case ORGANOSHIELD:
 	case ELVEN_SHIELD:
 	case URUK_HAI_SHIELD:
 	case ORCISH_SHIELD:
@@ -3028,6 +3030,8 @@ Shield_off()
 /*
     switch (uarms->otyp) {
 	case SMALL_SHIELD:
+	case BULL_SHIELD:
+	case ORGANOSHIELD:
 	case ELVEN_SHIELD:
 	case URUK_HAI_SHIELD:
 	case ORCISH_SHIELD:
@@ -5892,7 +5896,6 @@ find_ac()
 		int difference = (-(uac - 10));
 		difference = difference / 5;
 		if (difference > 0) uac = 10 - difference;
-		else uac = 10;
 		
 	}
 
@@ -5901,7 +5904,6 @@ find_ac()
 		difference *= 4;
 		difference /= 5;
 		if (difference > 0) uac = 10 - difference;
-		else uac = 10;
 	}
 
 	if (Race_if(PM_RUSMOT)) {
@@ -5909,14 +5911,12 @@ find_ac()
 		difference *= 4;
 		difference /= 5;
 		if (difference > 0) uac = 10 - difference;
-		else uac = 10;
 	}
 
 	if (Dimmed) {
 		int difference = (-(uac - 10));
 		difference = difference / 2;
 		if (difference > 0) uac = 10 - difference;
-		else uac = 10;
 		
 	}
 
@@ -5924,7 +5924,6 @@ find_ac()
 		int difference = (-(uac - 10));
 		difference = difference / 2;
 		if (difference > 0) uac = 10 - difference;
-		else uac = 10;
 		
 	}
 
@@ -5955,7 +5954,6 @@ find_ac()
 		difference *= heavyreduction;
 		difference /= 100;
 		if (difference > 0) uac = 10 - difference;
-		else uac = 10;
 
 	}
 
@@ -5975,7 +5973,6 @@ find_ac()
 			difference = difference * (20 - worncount);
 			difference /= 20;
 			if (difference > 0) uac = 10 - difference;
-			else uac = 10;
 
 		}
 
@@ -5985,7 +5982,6 @@ find_ac()
 		int difference = (-(uac - 10));
 		difference = difference / 2;
 		if (difference > 0) uac = 10 - difference;
-		else uac = 10;
 		
 	}
 

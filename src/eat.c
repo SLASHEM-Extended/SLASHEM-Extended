@@ -467,7 +467,7 @@ register struct obj *food;
 	if (u.uhs != SATIATED) {
 		if (!food || food->otyp != AMULET_OF_STRANGULATION)
 			return;
-	} else if ((Role_if(PM_KNIGHT) && u.ualign.type == A_LAWFUL) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA) || Role_if(PM_PALADIN) || have_anorexia() || Role_if(PM_FAILED_EXISTENCE)) {
+	} else if ((Role_if(PM_KNIGHT) && u.ualign.type == A_LAWFUL) || (uwep && uwep->otyp == HONOR_KATANA) || (u.twoweap && uswapwep && uswapwep->otyp == HONOR_KATANA) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA) || Role_if(PM_PALADIN) || have_anorexia() || Role_if(PM_FAILED_EXISTENCE)) {
 			adjalign(-3);		/* gluttony is unchivalrous */
 		You(FunnyHallu ? "feel that your belly's gonna burst!" : "feel like a glutton!");
 	}
@@ -4286,7 +4286,7 @@ void
 gluttonous()
 {
 	/* only happens if you were satiated, extra check by Amy to make that conduct mean more */
-	if ((u.uhs == SATIATED) && ((Role_if(PM_KNIGHT) && u.ualign.type == A_LAWFUL) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA) || Role_if(PM_PALADIN) || have_anorexia() || Role_if(PM_FAILED_EXISTENCE)) ) {
+	if ((u.uhs == SATIATED) && ((Role_if(PM_KNIGHT) && u.ualign.type == A_LAWFUL) || (uwep && uwep->otyp == HONOR_KATANA) || (u.twoweap && uswapwep && uswapwep->otyp == HONOR_KATANA) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA) || Role_if(PM_PALADIN) || have_anorexia() || Role_if(PM_FAILED_EXISTENCE)) ) {
 			adjalign(-3);		/* gluttony is unchivalrous */
 		You(FunnyHallu ? "feel that your belly's gonna burst!" : "feel like a glutton!");
 	}
@@ -4835,6 +4835,9 @@ start_tin(otmp)		/* called when starting to open a tin */
 		case RADIOACTIVE_DAGGER:
 		case SECRETION_DAGGER:
 		case WONDER_DAGGER:
+		case BONE_DAGGER:
+		case WRAITHBLADE:
+		case TECPATL:
 		case DROVEN_DAGGER:
 			tmp = 3;
 			break;

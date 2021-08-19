@@ -18165,7 +18165,9 @@ xchar x, y;
 
 	if (Is_container(obj)) {
 	    switch (obj->otyp) {
+	    case LEAD_BOX:
 	    case ICE_BOX:
+	    case DISPERSION_BOX:
 	    case ICE_BOX_OF_HOLDING:
 	    case ICE_BOX_OF_WATERPROOFING:
 	    case ICE_BOX_OF_DIGESTION:
@@ -18173,6 +18175,7 @@ xchar x, y;
 		/*NOTREACHED*/
 		break;
 	    case CHEST:
+	    case NANO_CHEST:
 	    case CHEST_OF_HOLDING:
 		chance = 60;
 		break;
@@ -18370,7 +18373,7 @@ register boolean force, here;
 			continue;
 		} else if(obj->greased) {
 			if (force || !rn2(2)) obj->greased -= 1;
-		} else if(Is_container(obj) && !Is_box(obj) && !(obj->otyp == ICE_BOX_OF_WATERPROOFING) &&
+		} else if(Is_container(obj) && !Is_box(obj) && !(obj->otyp == ICE_BOX_OF_WATERPROOFING) && !(obj->otyp == DISPERSION_BOX) &&
 			(obj->otyp != OILSKIN_SACK || (obj->cursed && !(obj->oartifact == ART_SURFING_FUN) && !rn2(3)))) {
 			water_damage(obj->cobj, force, FALSE);
 		} else if (!force && !Race_if(PM_ANCIPITAL) && (Luck - luckpenalty + 5 + (issoviet ? 0 : rnd(20)) ) > rn2(20)) {
@@ -18498,6 +18501,7 @@ register boolean force, here;
 			    case TEMPEST_HORN:
 			    case ETHER_HORN:
 			    case CHROME_HORN:
+			    case DEATH_HORN:
 			    case SHADOW_HORN:
 			    case HORN_OF_PLENTY:
 				obj->otyp = TOOLED_HORN;
@@ -18651,6 +18655,7 @@ register boolean force, here;
 			    case TEMPEST_HORN:
 			    case ETHER_HORN:
 			    case CHROME_HORN:
+			    case DEATH_HORN:
 			    case SHADOW_HORN:
 			    case HORN_OF_PLENTY:
 				obj->otyp = TOOLED_HORN;
@@ -21108,7 +21113,9 @@ lava_effects()
 		if (Is_container(obj)) {
 
 			switch (obj->otyp) {
+				case LEAD_BOX:
 				case ICE_BOX:
+				case DISPERSION_BOX:
 				case ICE_BOX_OF_HOLDING:
 				case ICE_BOX_OF_WATERPROOFING:
 				case ICE_BOX_OF_DIGESTION:
@@ -21116,6 +21123,7 @@ lava_effects()
 				/*NOTREACHED*/
 				break;
 			case CHEST:
+			case NANO_CHEST:
 			case CHEST_OF_HOLDING:
 				if (rnd(10) < 7) continue; /* 60% chance of survival */
 				break;

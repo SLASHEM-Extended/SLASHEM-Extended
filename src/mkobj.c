@@ -564,11 +564,15 @@ struct obj *box;
 	case TREASURE_CHEST:	n = (ishaxor ? rno(100) : rno(50)); break;
 	case ICE_BOX_OF_HOLDING:
 	case ICE_BOX_OF_WATERPROOFING:
+	case DISPERSION_BOX:
 	case ICE_BOX:		n = (ishaxor ? 40 : 20); break;
 	case CHEST_OF_HOLDING:
+	case NANO_CHEST:
 	case CHEST:		n = (ishaxor ? rnd(10) : rnd(5)); break;
 	case LARGE_BOX:		n = (ishaxor ? rnd(6) : rnd(3)); break;
+	case LEAD_BOX:		n = (ishaxor ? rnd(6) : rnd(3)); break;
 	case SACK:
+	case HANDYBAG:
 	case OILSKIN_SACK:
 				/* initial inventory: sack starts out empty */
 				if (moves <= 1 && !in_mklev) { n = 0; break; }
@@ -588,7 +592,7 @@ struct obj *box;
 		else
 		    otmp->oinvis = otmp->oinvisreal = FALSE;
 	    } else
-	    if (box->otyp == ICE_BOX || box->otyp == ICE_BOX_OF_HOLDING || box->otyp == ICE_BOX_OF_WATERPROOFING || box->otyp == ICE_BOX_OF_DIGESTION) {
+	    if (box->otyp == ICE_BOX || box->otyp == DISPERSION_BOX || box->otyp == ICE_BOX_OF_HOLDING || box->otyp == ICE_BOX_OF_WATERPROOFING || box->otyp == ICE_BOX_OF_DIGESTION) {
 		if (!timebasedlowerchance()) continue;
 		if (!(otmp = mksobj(CORPSE, TRUE, TRUE, FALSE))) continue;
 		/* Note: setting age to 0 is correct.  Age has a different
@@ -2320,6 +2324,7 @@ boolean shopinit;
 		if (otmp->otyp == NANO_SHURIKEN) otmp->quan += rnd(100);
 		if (otmp->otyp == CUBIC_STAR) otmp->quan += rnd(100);
 		if (otmp->otyp == WINDMILL_BLADE) otmp->quan += rnd(100);
+		if (otmp->otyp == JUMPING_FLAMER) otmp->quan += rnd(100);
 		if (otmp->otyp == NEEDLE) otmp->quan += rnd(100);
 		if (otmp->otyp == SOFT_STAR) otmp->quan += rnd(200);
 		if (otmp->otyp == CALTROP) otmp->quan += rnd(400);
@@ -2663,6 +2668,8 @@ boolean shopinit;
 		case LASER_SWORD:
 		case BEAMSWORD:
 		case GREEN_LIGHTSABER:
+		case ORANGE_LIGHTSABER:
+		case BLACK_LIGHTSABER:
 		case BLUE_LIGHTSABER:
 		case MYSTERY_LIGHTSABER:
 		case VIOLET_LIGHTSABER:
@@ -2682,6 +2689,9 @@ boolean shopinit;
 					} else if (!rn2(20)) {
 						otmp->age = rnz(500);
 					}
+
+			if (otmp->otyp == BLACK_LIGHTSABER) otmp->age += rnz(5000);
+
 			if (ishaxor) otmp->age *= 2;
 
 			if(!rn2(ishaxor ? 3 : 6)) {
@@ -2710,16 +2720,20 @@ boolean shopinit;
 		break;
 
 		case CHEST:
+		case NANO_CHEST:
 		case CHEST_OF_HOLDING:
 		case LARGE_BOX:
+		case LEAD_BOX:
 			otmp->olocked = !!(rn2(5));
 					otmp->otrapped = !(rn2(10));
 		case ICE_BOX:
+		case DISPERSION_BOX:
 		case ICE_BOX_OF_HOLDING:
 		case ICE_BOX_OF_WATERPROOFING:
 		case SACK:
 		case OILSKIN_SACK:
 		case POTATO_BAG:
+		case HANDYBAG:
 		case BAG_OF_HOLDING:
 		case MEDICAL_KIT:
 			if (artif != 2) mkbox_cnts(otmp);
@@ -2959,6 +2973,30 @@ boolean shopinit;
 		break;
 	case CHAIN_CLASS:
 	case BALL_CLASS:
+
+		switch (otmp->otyp) {
+			case HEAVY_LASER_BALL:
+			case LASER_CHAIN:
+				otmp->recharged = 0;
+				if(!rn2(5)) otmp->recharged = rnd(7);
+				otmp->lamplit = 0;
+				otmp->age = (long) rn1(500,1000);
+						if (!rn2(20)) {
+							otmp->age += rnz(1000);
+						} else if (!rn2(20)) {
+							otmp->age = rnz(500);
+						}
+
+				if (otmp->otyp == BLACK_LIGHTSABER) otmp->age += rnz(5000);
+
+				if (ishaxor) otmp->age *= 2;
+
+				break;
+		}
+
+			if ((Race_if(PM_LISTENER) || RngeListening) && !Hallucination && (rnd(30) > ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+
+
 		if(!rn2(ishaxor ? 3 : 6)) {
 			otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 			if (rn2(2)) otmp->blessed = rn2(2);
@@ -3784,6 +3822,7 @@ register struct obj *obj;
 		if (obj->otyp == BAG_OF_HOLDING || obj->otyp == ICE_BOX_OF_HOLDING || obj->otyp == CHEST_OF_HOLDING)
 			cwt = obj->cursed ? (cwt * (obj->oartifact ? 4 : 2)) :
 				CEILDIV(cwt, (obj->oartifact ? 3 : 2) * (obj->blessed ? 2 : 1));
+		if (obj->otyp == HANDYBAG) cwt = (flags.female ? (cwt * 4 / 5) : cwt );
 #undef CEILDIV
 		return wt + cwt;
 	}

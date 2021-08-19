@@ -27319,6 +27319,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You have a sinking feeling for a moment, then it passes."
 	"You have a sinking feeling for a moment, then it passes. This message appears if your pet manages to drown while outside your view."
 	"You have a sinking feeling for a moment, then it passes. This message appears if your pet manages to drown while outside your view, which will be the case very rarely. For example, by messing with a fountain in a dark room while there's a pet a couple squares away from you."
+	"You hear otherworldly noises.",
+	"You hear noises that are obviously not from this world.",
 
 };
 

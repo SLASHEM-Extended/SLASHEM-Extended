@@ -4440,7 +4440,7 @@ register int fall;
 	lang = 2;
 
     if(!inhishop(shkp)) {
-	if (Role_if(PM_KNIGHT) || Role_if(PM_CHEVALIER) || Role_if(PM_PALADIN)) {
+	if (Role_if(PM_KNIGHT) || (uwep && uwep->otyp == HONOR_KATANA) || (u.twoweap && uswapwep && uswapwep->otyp == HONOR_KATANA) || Role_if(PM_CHEVALIER) || Role_if(PM_PALADIN)) {
 	    You_feel("like a common thief.");
 	    adjalign(-sgn(u.ualign.type));
 	}
@@ -4459,7 +4459,7 @@ register int fall;
 		verbalize("%s, do not damage the floor here!",
 			flags.female ? "Madam" : "Sir");
 	}
-	if (Role_if(PM_KNIGHT) || Role_if(PM_CHEVALIER) || Role_if(PM_PALADIN)) {
+	if (Role_if(PM_KNIGHT) || (uwep && uwep->otyp == HONOR_KATANA) || (u.twoweap && uswapwep && uswapwep->otyp == HONOR_KATANA) || Role_if(PM_CHEVALIER) || Role_if(PM_PALADIN)) {
 	    You_feel("like a common thief.");
 	    adjalign(-sgn(u.ualign.type));
 	}
