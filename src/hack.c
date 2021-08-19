@@ -5062,22 +5062,18 @@ weight_cap()
 		if (u.twoweap && uswapwep && uswapwep->oclass == BALL_CLASS) carrcap += (uswapwep->owt / 2);
 	}
 
-	if (carrcap < 500) carrcap = 500;
-
 	if (Levitation || Is_airlevel(&u.uz)    /* pugh@cornell */
-			|| (u.usteed && strongmonst(u.usteed->data))
-	) {
+			|| (u.usteed && strongmonst(u.usteed->data)) ) {
 		carrcap += 2000;
-		if(carrcap > max_carr_cap()) carrcap = max_carr_cap();
+	} else if (!Flying) {
+		if(EWounded_legs & LEFT_SIDE) carrcap -= 250;
+		if(EWounded_legs & RIGHT_SIDE) carrcap -= 250;
 	}
-	else {
-		if(carrcap > max_carr_cap()) carrcap = max_carr_cap();
-		if (!Flying) {
-			if(EWounded_legs & LEFT_SIDE) carrcap -= 250;
-			if(EWounded_legs & RIGHT_SIDE) carrcap -= 250;
-		}
-		if (carrcap < 0) carrcap = 0;
+
+	if (uarmf && uarmf->oartifact == ART_A_SPOONFUL_OF_FO_U_RK) {
+		carrcap = max_carr_cap();
 	}
+
 	if (Upolyd && !PlayerCannotUseSkills) {
 		switch (P_SKILL(P_POLYMORPHING)) {
 			case P_BASIC: carrcap *= 6; carrcap /= 5; break;
@@ -5089,7 +5085,9 @@ weight_cap()
 		}
 	}
 
-	if (uarmf && uarmf->oartifact == ART_A_SPOONFUL_OF_FO_U_RK) return 5000;
+	/* absolute minimum and maximum values --Amy */
+	if (carrcap < 500) carrcap = 500;
+	if(carrcap > (max_carr_cap())) carrcap = max_carr_cap();
 
 	return((int) carrcap);
 }
