@@ -7345,6 +7345,13 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 				"Some writing vanishes from %s head!";
 	static const char your[] = "your";	/* should be extern */
 
+	/* In Soviet Russia, bugs exist that no one could come up with, because the communist government dislikes
+	 * inequality. Cancelling others is therefore strictly forbidden and doing it means you lose an intrinsic. */
+	if (issoviet) {
+		attrcurse();
+		pline("Oy! Vy tol'ko chto poteryali vnutrenneye. Potomu chto poshli vy.");
+	}
+
 	if (youdefend) {
 	    You(!FunnyHallu? "are covered in sparkling lights!"
 			      : "are enveloped by psychedelic fireworks!");

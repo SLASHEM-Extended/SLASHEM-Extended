@@ -4737,6 +4737,7 @@ static NEARDATA const char * const soviettaunts[] = {
 "Yesli monstr istoshchayet predmet s pomoshch'yu palochki, prodavets rasserditsya na vas, potomu chto Emi ne razresheno ispravlyat' oshibki. Gryaznaya bludnitsa, kem ona sebya schitayet???",
 "Yesli vy nastol'ko glupy i pytayetes' ispol'zovat' parnoye oruzhiye ne iz oruzhiya, eto ne srabotayet, potomu cho eto sovetskaya Rossiya, gde eto nikogda ne razreshayetsya.",
 "Konechno, demony ne mogut podbirat' serebryanyye predmety, potomu chto razrabotchik glup!",
+"Tip ledyanogo bloka dobavlyayet v igru oshibki, kotorykh dazhe ne sushchestvuyet, naprimer, vy teryayete vnutrenniy element, yesli otmenyayete monstra KHAR KHAR HUA KHA KHA.",
 };
 
 static NEARDATA const char * const practicantlines[] = {
