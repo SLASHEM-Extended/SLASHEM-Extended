@@ -6518,7 +6518,7 @@ static const char *foodwords[] = {
 	"shadow material", "volcanic glass", "lead", "chrome",
 	"porcelain", "celestial cloth", "conundrum",
 	"bubbles", "meteoric steel", "antidote", "nanomachines",
-	"foam", "scrap metal", "alloy",
+	"foam", "scrap metal", "alloy", "lametta", "amber",
 };
 
 STATIC_OVL const char *

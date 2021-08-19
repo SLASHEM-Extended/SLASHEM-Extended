@@ -304,6 +304,7 @@ const char *materialnm[] = {
 	"obsidian", "lead", "chrome", "ceramic",
 	"celestium", "conundrum", "pwn-bubble", "meteosteel",
 	"antidotium", "nanomachine", "foam", "scrap", "alloy",
+	"tinsel", "amber",
 };
 
 /* Vision */

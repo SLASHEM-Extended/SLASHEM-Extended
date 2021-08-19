@@ -275,6 +275,8 @@ Boots_on()
 	case DUMMY_BOOTS_AT:
 	case DUMMY_BOOTS_AU:
 	case DUMMY_BOOTS_AV:
+	case DUMMY_BOOTS_AW:
+	case DUMMY_BOOTS_AX:
 		if (!uarmf->cursed) curse(uarmf);
 		break;
 
@@ -694,6 +696,8 @@ Boots_off()
 	case DUMMY_BOOTS_AT:
 	case DUMMY_BOOTS_AU:
 	case DUMMY_BOOTS_AV:
+	case DUMMY_BOOTS_AW:
+	case DUMMY_BOOTS_AX:
 	case DISCONNECTED_BOOTS:
 	case BOSS_BOOTS:
 	case SENTIENT_HIGH_HEELED_SHOES:
@@ -1109,6 +1113,8 @@ Cloak_on()
 	case DUMMY_CLOAK_AT:
 	case DUMMY_CLOAK_AU:
 	case DUMMY_CLOAK_AV:
+	case DUMMY_CLOAK_AW:
+	case DUMMY_CLOAK_AX:
 
 		if (!uarmc->cursed) curse(uarmc);
 		break;
@@ -1580,6 +1586,8 @@ Cloak_off()
 	case DUMMY_CLOAK_AT:
 	case DUMMY_CLOAK_AU:
 	case DUMMY_CLOAK_AV:
+	case DUMMY_CLOAK_AW:
+	case DUMMY_CLOAK_AX:
 	case ANTI_DISQUIET_CLOAK:
 	case HUGGING_GOWN:
 	case COCLOAK:
@@ -2017,6 +2025,8 @@ Helmet_on()
 	case DUMMY_HELMET_AC:
 	case DUMMY_HELMET_AD:
 	case DUMMY_HELMET_AE:
+	case DUMMY_HELMET_AF:
+	case DUMMY_HELMET_AG:
 		if (!uarmh->cursed) curse(uarmh);
 		break;
 	default: impossible(unknown_type_long, c_helmet, uarmh->otyp);
@@ -2257,6 +2267,8 @@ Helmet_off()
 	case DUMMY_HELMET_AC:
 	case DUMMY_HELMET_AD:
 	case DUMMY_HELMET_AE:
+	case DUMMY_HELMET_AF:
+	case DUMMY_HELMET_AG:
 	/* KMH, balance patch -- removed */ /* but re-inserted by Amy */
 	case FIRE_HELMET:
 	case HELM_OF_SPEED:
@@ -2448,6 +2460,8 @@ Gloves_on()
 	case DUMMY_GLOVES_AE:
 	case DUMMY_GLOVES_AF:
 	case DUMMY_GLOVES_AG:
+	case DUMMY_GLOVES_AH:
+	case DUMMY_GLOVES_AI:
 		if (!uarmg->cursed) curse(uarmg);
 		break;
 
@@ -2724,6 +2738,8 @@ Gloves_off()
 	case DUMMY_GLOVES_AE:
 	case DUMMY_GLOVES_AF:
 	case DUMMY_GLOVES_AG:
+	case DUMMY_GLOVES_AH:
+	case DUMMY_GLOVES_AI:
 	case GAUNTLETS:
 	case ELVEN_GAUNTLETS:
 	case UNKNOWN_GAUNTLETS:

@@ -2919,6 +2919,14 @@ create_polymon(obj, okind)
 	    pm_index = PM_PAPER_GOLEM;
 	    material = "paper ";
 	    break;
+	case MT_TINSEL:
+	    pm_index = PM_TINSEL_GOLEM;
+	    material = "tinsel ";
+	    break;
+	case MT_AMBER:
+	    pm_index = PM_AMBER_GOLEM;
+	    material = "amber ";
+	    break;
 	default:
 	    /* if all else fails... */
 	    pm_index = PM_STRAW_GOLEM;

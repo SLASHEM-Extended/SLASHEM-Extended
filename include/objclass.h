@@ -94,13 +94,15 @@ struct objclass {
 #define MT_FOAM		45	/* inedible */
 #define MT_SCRAP		46	/* metallic */
 #define MT_ALLOY		47	/* metallic */
-#define LASTMATERIAL	MT_ALLOY
+#define MT_TINSEL		48	/* metallic */
+#define MT_AMBER		49	/* lithic */
+#define LASTMATERIAL	MT_AMBER
 /* grep for "materialeffect" to see all the places that need changing if we add new ones --Amy */
 
 #define is_organic(otmp)	(objects[(otmp)->otyp].oc_material <= MT_WOOD || objects[(otmp)->otyp].oc_material == MT_DRAGON_HIDE || objects[(otmp)->otyp].oc_material == MT_CELESTIUM || objects[(otmp)->otyp].oc_material == MT_INKA || objects[(otmp)->otyp].oc_material == MT_SILK || objects[(otmp)->otyp].oc_material == MT_SECREE || objects[(otmp)->otyp].oc_material == MT_COMPOST)
 #define is_metallic(otmp)	((objects[(otmp)->otyp].oc_material >= MT_IRON && \
-				 objects[(otmp)->otyp].oc_material <= MT_MITHRIL) || objects[(otmp)->otyp].oc_material == MT_VIVA || objects[(otmp)->otyp].oc_material == MT_ETHER || objects[(otmp)->otyp].oc_material == MT_METEOSTEEL || objects[(otmp)->otyp].oc_material == MT_POURPOOR || objects[(otmp)->otyp].oc_material == MT_LEAD || objects[(otmp)->otyp].oc_material == MT_CHROME)
-#define is_lithic(otmp)		(objects[(otmp)->otyp].oc_material == MT_BONE || objects[(otmp)->otyp].oc_material == MT_GLASS || objects[(otmp)->otyp].oc_material == MT_GEMSTONE || objects[(otmp)->otyp].oc_material == MT_MINERAL || objects[(otmp)->otyp].oc_material == MT_SAND || objects[(otmp)->otyp].oc_material == MT_OBSIDIAN || objects[(otmp)->otyp].oc_material == MT_CONUNDRUM || objects[(otmp)->otyp].oc_material == MT_CERAMIC || objects[(otmp)->otyp].oc_material == MT_TAR || objects[(otmp)->otyp].oc_material == MT_BRICK)
+				 objects[(otmp)->otyp].oc_material <= MT_MITHRIL) || objects[(otmp)->otyp].oc_material == MT_VIVA || objects[(otmp)->otyp].oc_material == MT_ETHER || objects[(otmp)->otyp].oc_material == MT_METEOSTEEL || objects[(otmp)->otyp].oc_material == MT_POURPOOR || objects[(otmp)->otyp].oc_material == MT_LEAD || objects[(otmp)->otyp].oc_material == MT_CHROME || objects[(otmp)->otyp].oc_material == MT_TINSEL)
+#define is_lithic(otmp)		(objects[(otmp)->otyp].oc_material == MT_BONE || objects[(otmp)->otyp].oc_material == MT_GLASS || objects[(otmp)->otyp].oc_material == MT_GEMSTONE || objects[(otmp)->otyp].oc_material == MT_MINERAL || objects[(otmp)->otyp].oc_material == MT_SAND || objects[(otmp)->otyp].oc_material == MT_OBSIDIAN || objects[(otmp)->otyp].oc_material == MT_CONUNDRUM || objects[(otmp)->otyp].oc_material == MT_CERAMIC || objects[(otmp)->otyp].oc_material == MT_TAR || objects[(otmp)->otyp].oc_material == MT_BRICK || objects[(otmp)->otyp].oc_material == MT_AMBER)
 
 /* primary damage: fire/rust/--- */
 /* secondary damage: rot/acid/acid */

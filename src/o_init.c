@@ -713,6 +713,8 @@ register char oclass;
 	objects[DUMMY_CLOAK_AT].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 	objects[DUMMY_CLOAK_AU].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 	objects[DUMMY_CLOAK_AV].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_CLOAK_AW].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_CLOAK_AX].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 
 	objects[IMPLANT_OF_ABSORPTION].a_ac = rnd(10);
 	objects[IMPLANT_OF_PUNCTURING].a_ac = rnd(10);
@@ -988,6 +990,8 @@ register char oclass;
 	objects[DUMMY_CLOAK_AT].a_can = rn2(4);
 	objects[DUMMY_CLOAK_AU].a_can = rn2(4);
 	objects[DUMMY_CLOAK_AV].a_can = rn2(4);
+	objects[DUMMY_CLOAK_AW].a_can = rn2(4);
+	objects[DUMMY_CLOAK_AX].a_can = rn2(4);
 
 	objects[DUMMY_CLOAK_A].a_ac = 0;
 	if (rn2(10)) objects[DUMMY_CLOAK_A].a_ac = 1;
@@ -1229,6 +1233,16 @@ register char oclass;
 	while (!rn2(3)) {
 		if (objects[DUMMY_CLOAK_AV].a_ac < 20) objects[DUMMY_CLOAK_AV].a_ac++;
 	}
+	objects[DUMMY_CLOAK_AW].a_ac = 0;
+	if (rn2(10)) objects[DUMMY_CLOAK_AW].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_CLOAK_AW].a_ac < 20) objects[DUMMY_CLOAK_AW].a_ac++;
+	}
+	objects[DUMMY_CLOAK_AX].a_ac = 0;
+	if (rn2(10)) objects[DUMMY_CLOAK_AX].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_CLOAK_AX].a_ac < 20) objects[DUMMY_CLOAK_AX].a_ac++;
+	}
 
 	objects[DUMMY_HELMET_A].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 	objects[DUMMY_HELMET_B].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
@@ -1261,6 +1275,8 @@ register char oclass;
 	objects[DUMMY_HELMET_AC].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 	objects[DUMMY_HELMET_AD].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 	objects[DUMMY_HELMET_AE].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_HELMET_AF].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_HELMET_AG].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 
 	objects[DUMMY_HELMET_A].a_can = rnd(10) ? 0 : rnd(3);
 	objects[DUMMY_HELMET_B].a_can = rnd(10) ? 0 : rnd(3);
@@ -1293,6 +1309,8 @@ register char oclass;
 	objects[DUMMY_HELMET_AC].a_can = rnd(10) ? 0 : rnd(3);
 	objects[DUMMY_HELMET_AD].a_can = rnd(10) ? 0 : rnd(3);
 	objects[DUMMY_HELMET_AE].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_HELMET_AF].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_HELMET_AG].a_can = rnd(10) ? 0 : rnd(3);
 
 	objects[DUMMY_HELMET_A].a_ac = 0;
 	if (rn2(10)) objects[DUMMY_HELMET_A].a_ac = 1;
@@ -1449,6 +1467,16 @@ register char oclass;
 	while (!rn2(3)) {
 		if (objects[DUMMY_HELMET_AE].a_ac < 20) objects[DUMMY_HELMET_AE].a_ac++;
 	}
+	objects[DUMMY_HELMET_AF].a_ac = 0;
+	if (rn2(10)) objects[DUMMY_HELMET_AF].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_HELMET_AF].a_ac < 20) objects[DUMMY_HELMET_AF].a_ac++;
+	}
+	objects[DUMMY_HELMET_AG].a_ac = 0;
+	if (rn2(10)) objects[DUMMY_HELMET_AG].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_HELMET_AG].a_ac < 20) objects[DUMMY_HELMET_AG].a_ac++;
+	}
 
 	objects[DUMMY_GLOVES_A].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 	objects[DUMMY_GLOVES_B].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
@@ -1483,6 +1511,8 @@ register char oclass;
 	objects[DUMMY_GLOVES_AE].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 	objects[DUMMY_GLOVES_AF].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 	objects[DUMMY_GLOVES_AG].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_GLOVES_AH].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_GLOVES_AI].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 
 	objects[DUMMY_GLOVES_A].a_can = rnd(10) ? 0 : rnd(3);
 	objects[DUMMY_GLOVES_B].a_can = rnd(10) ? 0 : rnd(3);
@@ -1517,6 +1547,8 @@ register char oclass;
 	objects[DUMMY_GLOVES_AE].a_can = rnd(10) ? 0 : rnd(3);
 	objects[DUMMY_GLOVES_AF].a_can = rnd(10) ? 0 : rnd(3);
 	objects[DUMMY_GLOVES_AG].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_GLOVES_AH].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_GLOVES_AI].a_can = rnd(10) ? 0 : rnd(3);
 
 	objects[DUMMY_GLOVES_A].a_ac = 0;
 	if (rn2(10)) objects[DUMMY_GLOVES_A].a_ac = 1;
@@ -1683,6 +1715,16 @@ register char oclass;
 	while (!rn2(3)) {
 		if (objects[DUMMY_GLOVES_AG].a_ac < 20) objects[DUMMY_GLOVES_AG].a_ac++;
 	}
+	objects[DUMMY_GLOVES_AH].a_ac = 0;
+	if (rn2(10)) objects[DUMMY_GLOVES_AH].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_GLOVES_AH].a_ac < 20) objects[DUMMY_GLOVES_AH].a_ac++;
+	}
+	objects[DUMMY_GLOVES_AI].a_ac = 0;
+	if (rn2(10)) objects[DUMMY_GLOVES_AI].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_GLOVES_AI].a_ac < 20) objects[DUMMY_GLOVES_AI].a_ac++;
+	}
 
 	objects[DUMMY_BOOTS_A].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 	objects[DUMMY_BOOTS_B].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
@@ -1732,6 +1774,8 @@ register char oclass;
 	objects[DUMMY_BOOTS_AT].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 	objects[DUMMY_BOOTS_AU].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 	objects[DUMMY_BOOTS_AV].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_BOOTS_AW].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_BOOTS_AX].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 
 	objects[DUMMY_BOOTS_A].a_can = rnd(10) ? 0 : rnd(3);
 	objects[DUMMY_BOOTS_B].a_can = rnd(10) ? 0 : rnd(3);
@@ -1781,6 +1825,8 @@ register char oclass;
 	objects[DUMMY_BOOTS_AT].a_can = rnd(10) ? 0 : rnd(3);
 	objects[DUMMY_BOOTS_AU].a_can = rnd(10) ? 0 : rnd(3);
 	objects[DUMMY_BOOTS_AV].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_BOOTS_AW].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_BOOTS_AX].a_can = rnd(10) ? 0 : rnd(3);
 
 	objects[DUMMY_BOOTS_A].a_ac = 0;
 	if (rn2(10)) objects[DUMMY_BOOTS_A].a_ac = 1;
@@ -2021,6 +2067,16 @@ register char oclass;
 	if (rn2(10)) objects[DUMMY_BOOTS_AV].a_ac = 1;
 	while (!rn2(3)) {
 		if (objects[DUMMY_BOOTS_AV].a_ac < 20) objects[DUMMY_BOOTS_AV].a_ac++;
+	}
+	objects[DUMMY_BOOTS_AW].a_ac = 0;
+	if (rn2(10)) objects[DUMMY_BOOTS_AW].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_BOOTS_AW].a_ac < 20) objects[DUMMY_BOOTS_AW].a_ac++;
+	}
+	objects[DUMMY_BOOTS_AX].a_ac = 0;
+	if (rn2(10)) objects[DUMMY_BOOTS_AX].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_BOOTS_AX].a_ac < 20) objects[DUMMY_BOOTS_AX].a_ac++;
 	}
 
 	objects[SPE_FORBIDDEN_KNOWLEDGE].oc_level = rnd(8);

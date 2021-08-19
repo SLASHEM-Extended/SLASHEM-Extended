@@ -5937,7 +5937,7 @@ materialchoice1:
 				break;
 			} else {
 				int changematerial;
-				switch (rnd(17)) {
+				switch (rnd(18)) {
 					case 1: changematerial = MT_LIQUID; break;
 					case 2: changematerial = MT_WAX; break;
 					case 3: changematerial = MT_VEGGY; break;
@@ -5955,6 +5955,7 @@ materialchoice1:
 					case 15: changematerial = MT_FOAM; break;
 					case 16: changematerial = MT_ALLOY; break;
 					case 17: changematerial = MT_SCRAP; break;
+					case 18: changematerial = MT_TINSEL; break;
 					default: changematerial = MT_PAPER; break;
 				}
 				objects[otmpC->otyp].oc_material = changematerial;
@@ -5984,7 +5985,7 @@ materialchoice2:
 				break;
 			} else {
 				int changematerial;
-				switch (rnd(15)) {
+				switch (rnd(16)) {
 					case 1: changematerial = MT_MYSTERIOUS; break;
 					case 2: changematerial = MT_WOOD; break;
 					case 3: changematerial = MT_BONE; break;
@@ -6000,6 +6001,7 @@ materialchoice2:
 					case 13: changematerial = MT_OBSIDIAN; break;
 					case 14: changematerial = MT_LEAD; break;
 					case 15: changematerial = MT_CHROME; break;
+					case 16: changematerial = MT_AMBER; break;
 					default: changematerial = MT_METAL; break;
 				}
 				objects[otmpC->otyp].oc_material = changematerial;
