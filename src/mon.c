@@ -797,6 +797,7 @@ register struct monst *mtmp;
 	    case PM_GHOUL:
 	    case PM_OH_GOD_GHOUL:
 	    case PM_GHAST:
+	    case PM_DOSTICH:
 	    case PM_LOL_WE_INVENTED_ANOTHER_GHAST:
 	    case PM_STINKING_ALIEN:
 	    case PM_GASTLY:
