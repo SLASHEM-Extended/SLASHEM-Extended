@@ -1380,7 +1380,7 @@ walscholardone:
 		if (mode == DO_MOVE) {
 		    if (amorphous(youmonst.data))
 			You("try to ooze under the door, but can't squeeze your possessions through.");
-		    else if (iflags.autoopen && !Confusion && !Stunned && !Fumbling && levl[ux][uy].seenv && !(RMBLoss || u.uprops[RMB_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) || (uamul && uamul->oartifact == ART_BUEING) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || (uamul && uamul->oartifact == ART_YOU_HAVE_UGH_MEMORY) || have_rmbstone() || u.totter || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || (uarms && uarms->oartifact == ART_BLUE_SHIRT_OF_DEATH) || u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (uwep && uwep->oartifact == ART_OMGHAXERETH) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_OMGHAXERETH) || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || WallsAreHyperBlue ) ) {
+		    else if (iflags.autoopen && !Confusion && !Stunned && !Fumbling && levl[ux][uy].seenv && !(RMBLoss || u.uprops[RMB_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) || (uamul && uamul->oartifact == ART_BUEING) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || (uamul && uamul->oartifact == ART_YOU_HAVE_UGH_MEMORY) || have_rmbstone() || u.totter || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || (uarms && uarms->oartifact == ART_BLUE_SHIRT_OF_DEATH) || u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || (uwep && uwep->oartifact == ART_PWNHAMMER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PWNHAMMER) || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (uwep && uwep->oartifact == ART_OMGHAXERETH) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_OMGHAXERETH) || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || WallsAreHyperBlue ) ) {
 			    door_opened = flags.move = doopen_indir(x, y);
 			    opentry = 1;
 		    }
@@ -4995,6 +4995,7 @@ max_carr_cap()
 		if (uwep && uwep->oclass == BALL_CLASS) maxcarrcap += (uwep->owt / 2);
 		if (u.twoweap && uswapwep && uswapwep->oclass == BALL_CLASS) maxcarrcap += (uswapwep->owt / 2);
 	}
+	if (have_daisybag()) maxcarrcap += 500;
 
 	return maxcarrcap;
 }
@@ -5037,6 +5038,7 @@ weight_cap()
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_GIRLFUL_BONKING) carrcap -= 500;
 	if (uleft && uleft->oartifact == ART_CORGON_S_RING) carrcap += 100;
 	if (uright && uright->oartifact == ART_CORGON_S_RING) carrcap += 100;
+	if (have_daisybag()) carrcap += 1000;
 
 	if (!PlayerCannotUseSkills && uarm && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) {
 
@@ -5052,8 +5054,6 @@ weight_cap()
 
 	}
 
-	if (Race_if(PM_HAXOR)) carrcap *= 2;
-	if (Race_if(PM_HUMANOID_CENTAUR)) carrcap /= 2;
 	if (Race_if(PM_CHIROPTERAN)) carrcap += 2000;
 	if (Race_if(PM_PLAYER_SHEEP) && u.ulevel >= 20) carrcap += 2000;
 
@@ -5070,9 +5070,10 @@ weight_cap()
 		if(EWounded_legs & RIGHT_SIDE) carrcap -= 250;
 	}
 
-	if (uarmf && uarmf->oartifact == ART_A_SPOONFUL_OF_FO_U_RK) {
-		carrcap = max_carr_cap();
-	}
+	/* multipliers go here */
+
+	if (Race_if(PM_HAXOR)) carrcap *= 2;
+	if (Race_if(PM_HUMANOID_CENTAUR)) carrcap /= 2;
 
 	if (Upolyd && !PlayerCannotUseSkills) {
 		switch (P_SKILL(P_POLYMORPHING)) {
@@ -5083,6 +5084,10 @@ weight_cap()
 			case P_GRAND_MASTER: carrcap *= 10; carrcap /= 5; break;
 			case P_SUPREME_MASTER: carrcap *= 11; carrcap /= 5; break;
 		}
+	}
+
+	if (uarmf && uarmf->oartifact == ART_A_SPOONFUL_OF_FO_U_RK) {
+		carrcap = max_carr_cap();
 	}
 
 	/* absolute minimum and maximum values --Amy */

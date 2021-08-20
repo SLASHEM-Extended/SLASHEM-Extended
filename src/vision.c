@@ -654,8 +654,10 @@ vision_recalc(control)
 
 	efflightradius = (u.nv_range + Sight_bonus + StrongSight_bonus);
 	if (uarmh && uarmh->oartifact == ART_DARKSIGHT_HELM) efflightradius += 2;
+	if (uarm && uarm->oartifact == ART_SILKS_OF_THE_VICTOR) efflightradius += 1;
 	if (uwep && uwep->oartifact == ART_IT_BECOME_LIGHT) efflightradius += 2;
 	if (uwep && uwep->oartifact == ART_WONDERLIGHT) efflightradius += 2;
+	if (uwep && uwep->oartifact == ART_SEEVEEN) efflightradius += 2;
 	if (uwep && uwep->oartifact == ART_NURSING_THE_FLAME) efflightradius += 1;
 	if (uwep && uwep->oartifact == ART_DARKLITE && uwep->lamplit) efflightradius += 2;
 

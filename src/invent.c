@@ -1359,6 +1359,30 @@ have_spectrumplinggem()
 }
 
 boolean
+have_whitewaterrafting()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == DISPERSION_BOX && otmp->oartifact == ART_WHITEWATER_RAFTING)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_daisybag()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == HANDYBAG && otmp->oartifact == ART_DAISY_S_HANDBAG)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
 have_amateurluckstone()
 {
 	register struct obj *otmp;
@@ -6253,7 +6277,7 @@ struct obj *otmp;
 		|| ((!strcmp(word, "use or apply") ||
 			!strcmp(word, "untrap with")) &&
 		     /* Picks, axes, pole-weapons, bullwhips */
-		    ((otmp->oclass == WEAPON_CLASS && !(u.mushroompoles && Race_if(PM_PLAYER_MUSHROOM)) && !is_pick(otmp) &&
+		    ((otmp->oclass == WEAPON_CLASS && !(u.mushroompoles && (Race_if(PM_PLAYER_MUSHROOM) || (uchain && uchain->oartifact == ART_ERO_ERO_ERO_ERO_MUSHROOM_M)) ) && !is_pick(otmp) &&
 		      otyp != SUBMACHINE_GUN &&
 		      otyp != DEMON_CROSSBOW &&
 		      otyp != AUTO_SHOTGUN &&
@@ -9585,7 +9609,7 @@ boolean knoweverything;
 			case HEAVY_HAMMER:
 				pline("This hammer is a definite improvement of the standard war hammer that does good damage."); break;
 			case MALLET:
-				pline("A huge hammer made of massive wood that is very useful for bashing down enemies. It can be applied to bash iron bars."); break;
+				pline("A huge hammer made of massive wood that is very useful for bashing down enemies. However, it slightly slows your non-movement action rate, unless you're an artist or diablist. It can be applied to bash iron bars."); break;
 			case WEDGED_LITTLE_GIRL_SANDAL:
 				pline("It's a wedge-heeled sandal. Whacking it over the head of an enemy might deal a bit of damage. It uses the hammer skill. It can be applied to bash iron bars."); break;
 			case SOFT_GIRL_SNEAKER:
@@ -13824,7 +13848,7 @@ boolean knoweverything;
 			case GREEN_LIGHTSABER:
 				pline("This lightsaber does solid damage, but it needs to be turned on in order to work. An activated lightsaber is good for engraving."); break;
 			case ORANGE_LIGHTSABER:
-				pline("This lightsaber does solid damage, but it needs to be turned on in order to work and has a to-hit malus. Charging it will add more charge on average compared to other lightsaber types. An activated lightsaber is good for engraving."); break;
+				pline("This lightsaber does solid damage, but it needs to be turned on in order to work and has a to-hit malus. Charging it will add more charge on average compared to other lightsaber types, as long as the method of charging wasn't the 'charge saber' technique. An activated lightsaber is good for engraving."); break;
 			case BLUE_LIGHTSABER:
 				pline("This lightsaber does good damage, but it needs to be turned on in order to work. An activated lightsaber is good for engraving."); break;
 			case RED_LIGHTSABER:
@@ -13907,21 +13931,27 @@ boolean knoweverything;
 #else
 				pline("A bag filled with medical tools. Applying it will cause you to swallow a pill and feel deathly sick, or sometimes you can get other effects as well. Some techniques, e.g. draw blood and surgery, will work better if you have this item."); break;
 #endif
-			case TIN_OPENER: 
+			case TIN_OPENER:
 				pline("A tool that must be wielded in order to work. It allows you to open tins more quickly. Some players use it to kill Vlad but that's not a good idea in Slash'EM Extended."); break;
-			case CAN_OF_GREASE: 
+			case LASER_TIN_OPENER:
+				pline("This tool lets you open tins more quickly when wielded. You can also use it as a weapon, but if you plan to do so, you'd be wise to turn it on first, and even then it deals negligible damage. It uses the martial arts skill, and power usage is half that of a regular lightsaber."); break;
+			case POWERFIST:
+				pline("Annoyed that bare-handed combat always deals crappy damage? Wield this to power up your unarmed melee attack! Beware though, it does count as using a weapon in case you're going for a weaponless conduct."); break;
+			case LASERFIST:
+				pline("Laser-based bare-handed combat weapon tool. You need to turn it on first, otherwise its damage output is complete garbage. When turned on, it's pretty strong."); break;
+			case CAN_OF_GREASE:
 #ifdef PHANTOM_CRASH_BUG
 				pline("You can grease your items with this tool, and every item can have up to three layers of grease."); break;
 #else
 				pline("Despite seeming so mundane, this tool is actually rare and valuable as it allows you to grease your items. However, grease will wear off quickly and needs to be applied again. You can apply up to three layers of grease to a single item."); break;
 #endif
-			case FIGURINE: 
+			case FIGURINE:
 				pline("Apply this at an empty location to transform it into a living monster. Please don't apply a figurine at a square containing a monster; doing so will just cause the figurine to break and do nothing!");
 #ifdef EXTENDED_INFO
 				corpsepager(obj->corpsenm);
 #endif
 				break;
-			case ENERGY_SAP: 
+			case ENERGY_SAP:
 				pline("If you apply this tool, you'll get effects similar to eating the corpse of the monster it's made of.");
 #ifdef EXTENDED_INFO
 				corpsepager(obj->corpsenm);
@@ -17098,7 +17128,7 @@ boolean knoweverything;
 				case ART_STARCRAFT_FLAIL:
 					pline("Artifact specs: Half spell damage when wielded, +1 to-hit and double damage, chaotic."); break;
 				case ART_PWNHAMMER:
-					pline("Artifact specs: Half physical damage and cold resistance when wielded, +5 to-hit and +16 damage to cold-susceptible monsters."); break;
+					pline("Artifact specs: Grayout, half physical damage and cold resistance when wielded, +5 to-hit and +16 damage to cold-susceptible monsters."); break;
 				case ART_PWNHAMMER_DUECE:
 					pline("Artifact specs: Regeneration and fire resistance when wielded, +8 to-hit and +24 damage to fire-susceptible monsters, +10 monster difficulty and you can't see lit squares unless you'd also see them if they were unlit."); break;
 				case ART_DOCKSIDE_WALK:
@@ -21476,6 +21506,90 @@ boolean knoweverything;
 					pline("Artifact specs: prevents foocubi from using their sex attack against you, makes you resistant against item theft, lawful, climacterial quest artifact."); break;
 				case ART_SPECTRUM_PLING:
 					pline("Artifact specs: prism reflection and resistance to fire, cold, shock, poison and psi when carried, neutral, womanizer quest artifact."); break;
+				case ART_FLINGTILE:
+					pline("Artifact specs: +6 to-hit and +2 damage."); break;
+				case ART_AL_AZZARED_GYETH_GYETH:
+					pline("Artifact specs: diminished bleeding when wielded."); break;
+				case ART_POUSCHEN_OPH_GAEIN_LEWEL:
+					pline("Artifact specs: drain resistance when wielded."); break;
+				case ART_TEZCATLIPOCA_S_BUBBLESTORM:
+					pline("Artifact specs: +10 to-hit and +8 damage, swimming, unbreathing and protects your inevntory from water when wielded, but every turn you wield it, there's a 1%% chance for you to contract corona."); break;
+				case ART_YOU_LIL_PUSSY:
+					pline("Artifact specs: can sometimes paralyze the target."); break;
+				case ART_REGULARER_ANCHOR:
+					pline("Artifact specs: +6 damage, protects you from the water-drowning attack used by eels (but they can still pull you into other hazardous terrain, e.g. lava)."); break;
+				case ART_STOP_THE_AIRSHIPS:
+					pline("Artifact specs: flying enemies may occasionally miss their turn."); break;
+				case ART_FIRE_BRANDED_HELLHUNK:
+					pline("Artifact specs: +4 to-hit and +10 damage to fire-susceptible monsters, fire resistance when wielded."); break;
+				case ART_SEEVEEN:
+					pline("Artifact specs: +2 light radius when wielded."); break;
+				case ART_BIRDBANE:
+					pline("Artifact specs: +5 to-hit and double damage to bats and birds."); break;
+				case ART_RASSCHEN_TAAK:
+					pline("Artifact specs: +2 to-hit and +2 damage, autocurses, defense bonus and improved spellcasting chances when wielded but activates soviet mode."); break;
+				case ART_SMOKING_SQUIRREL:
+					pline("Artifact specs: etherwind, full nutrients and discount action when wielded."); break;
+				case ART_SPEERTHROW:
+					pline("Artifact specs: spears have +2 multishot while you wield this."); break;
+				case ART_NEKO_S_WHITEOUT:
+					pline("Artifact specs: can be invoked for chocolate creation."); break;
+				case ART_KLIMA_PLEDSCHE:
+					pline("Artifact specs: +2 to-hit and +8 damage, poison resistance when wielded."); break;
+				case ART_BIMMSELIMMELIMM:
+					pline("Artifact specs: +20 to-hit and +2 damage, better chance to block with your shield if you have one, but if your shield actually does block something, it may lose a point of enchantment."); break;
+				case ART_VAMPIRE_SING_S_BLOODRUSH:
+					pline("Artifact specs: +5 to-hit and +6 drain life damage, may drain a level from the target, drain resistance and sing trap effect when wielded, chaotic."); break;
+				case ART_ULTIMATE_WORLD_FALL:
+					pline("Artifact specs: +24 to-hit and +8 damage, teaches the world fall technique and activates a ragnarok timer when wielded."); break;
+				case ART_DEATH_S_FATHOM:
+					pline("Artifact specs: +10 to-hit and +16 damage to cold-susceptible monsters, fire and shock resistance when wielded."); break;
+				case ART_ZANTASBORE:
+					pline("Artifact specs: +4 to-hit and +6 damage, very fast speed when wielded."); break;
+				case ART_STRIKE_THE_BALL:
+					pline("Artifact specs: while wielding it, 1 in 1000 chance for you to go berserk."); break;
+				case ART_HACHURATE:
+					pline("Artifact specs: very fast speed and +5 charisma when wielded."); break;
+				case ART_ORE_EVIL_WIGHT:
+					pline("Artifact specs: +20 damage, paralyzes the target for 3 turns."); break;
+				case ART_WOH:
+					pline("Artifact specs: +8 damage."); break;
+				case ART_ELVIS_S_BONES_FILE:
+					pline("Artifact specs: you always encounter bones levels (if present), and if you die while wearing it and are on an eligible level, you're guaranteed to leave bones."); break;
+				case ART_CAPITAL_RAP:
+					pline("Artifact specs: sound effects, +5 charisma and double skill training when worn."); break;
+				case ART_SILKS_OF_THE_VICTOR:
+					pline("Artifact specs: manaleech, +1 light radius and 5 extra points of AC when worn."); break;
+				case ART_HEALTHIER_FEEL:
+					pline("Artifact specs: resist poison, sickness and drain life when worn."); break;
+				case ART_WHITEWATER_RAFTING:
+					pline("Artifact specs: while it's in your inventory, your items are all protected from water damage."); break;
+				case ART_DAISY_S_HANDBAG:
+					pline("Artifact specs: while it's in your inventory, your carry cap is increased significantly, and the maximum possible value is also boosted."); break;
+				case ART_MINNIE_S_HANDBAG:
+					pline("Artifact specs: can be used even if your hands are curse-welded."); break;
+				case ART_ILJA_S_ASSHOLERY:
+					pline("Artifact specs: if you hit something that has a head and isn't wearing a helmet, the target bleeds."); break;
+				case ART_ATTIC_CODE:
+					pline("Artifact specs: wielding it allows you to access certain dungeon branches that aren't normally accessible."); break;
+				case ART_VADER_S_CHARGE:
+					pline("Artifact specs: +6 to-hit and +4 damage."); break;
+				case ART_KYLE_S_JACKPOT:
+					pline("Artifact specs: +6 damage, charging it with the charge saber technique will also give extra charge."); break;
+				case ART_PUCKOCK:
+					pline("Artifact specs: +6 to-hit and +2 damage. If this is the ball you're punished with, throwing it will deal 30 extra points of damage to the target."); break;
+				case ART_ERO_ERO_ERO_ERO_MUSHROOM_M:
+					pline("Artifact specs: +4 damage. If you were punished with it (which you probably aren't, because you apparently have the item in your inventory and are reading the description), it would also allow you to #monster to (de-)activate mushroom mode, which if activated, allows you to use all weapons as polearms with the apply command."); break;
+				case ART_CUTRITION:
+					pline("Artifact specs: +2 to-hit and +2 damage, full nutrients when wielded."); break;
+				case ART_FISTO_:
+					pline("Artifact specs: +6 damage."); break;
+				case ART_PNEUMATIC_FORCE:
+					pline("Artifact specs: +7 to-hit and +8 damage."); break;
+				case ART_TAVION_S_CHARGE:
+					pline("Artifact specs: +2 to-hit and +4 damage."); break;
+				case ART_DESANN_S_WRATH:
+					pline("Artifact specs: +8 damage but -8 to-hit, charging it with something other than charge saber will give extra-high charge bonuses."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

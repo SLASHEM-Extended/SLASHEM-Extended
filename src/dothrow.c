@@ -249,6 +249,11 @@ int thrown;
 	    if (launcher && launcher->otyp == CATAPULT && (!obj || obj->otyp != ROCK)) multishot += rnd(5);
 	    if (launcher && launcher->otyp == CATAPULT && obj && obj->otyp == ROCK) multishot += rno(5);
 
+	    if ((uwep && uwep->oartifact == ART_SPEERTHROW) && (skill == P_SPEAR) ) {
+			multishot += 2;
+			if (Race_if(PM_AZTPOK) || Race_if(PM_MAYMES)) multishot++;
+	    }
+
 	    if (launcher && (launcher->otyp == RIFLE || launcher->otyp == SNIPER_RIFLE || launcher->otyp == HUNTING_RIFLE || launcher->otyp == PROCESS_CARD) && uarmc && itemhasappearance(uarmc, APP_RIFLING_POWER_CLOAK) ) multishot += rnd(2);
 
 	    if (launcher && launcher->otyp == HYDRA_BOW) multishot += 2;

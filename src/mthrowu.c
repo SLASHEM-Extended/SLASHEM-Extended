@@ -240,6 +240,7 @@ const char *name;	/* if null, then format `obj' */
 		if (uarms->spe < 0) shieldblockrate += (uarms->spe * 2);
 
 		if (uarm && uarm->oartifact == ART_WOODSTOCK) shieldblockrate += 5;
+		if (uwep && uwep->oartifact == ART_BIMMSELIMMELIMM) shieldblockrate += 10;
 		if (Numbed) shieldblockrate -= 10;
 
 		if (tlev > 10) shieldblockrate -= (rn2(tlev - 9));
@@ -365,6 +366,10 @@ const char *name;	/* if null, then format `obj' */
 				else You("block %s with your shield.", onm);
 				use_skill(P_SHIELD, 1);
 				if (uarms && uarms->oartifact == ART_SHIENSIDE) use_skill(P_SHIEN, 1);
+				if (uwep && uwep->oartifact == ART_BIMMSELIMMELIMM && !rn2(50) && uarms && uarms->spe > -20) {
+					uarms->spe--;
+					pline("Bimmselimmelimm! Splinters of your shield are flying everywhere!");
+				}
 
 				u.ubodyarmorturns++;
 				if (u.ubodyarmorturns >= 5) {
@@ -386,6 +391,7 @@ const char *name;	/* if null, then format `obj' */
 			pline("Energy surges into the lightsaber as the projectile is blocked.");
 			uwep->age += 25;
 			if (uwep->otyp == ORANGE_LIGHTSABER) uwep->age += (25 * rnd(2));
+			if (uwep->oartifact == ART_DESANN_S_WRATH) uwep->age += (25 * rnd(2));
 		}
 
 		return(0);

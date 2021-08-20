@@ -78,5 +78,6 @@ struct artifact {
 #define DRAGON_BREATH	(LAST_PROP+19)
 #define OBJECT_DET	(LAST_PROP+20)
 #define BOSS_NUKE		(LAST_PROP+21)
+#define CHOCOLATE_CREATION		(LAST_PROP+22)
 
 #endif /* ARTIFACT_H */

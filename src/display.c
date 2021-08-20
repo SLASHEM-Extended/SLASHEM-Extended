@@ -436,7 +436,7 @@ unmap_object(x, y)
 	show_glyph(x, y, cmap_to_glyph(S_stone));	\
 	return;	\
 	}	\
-	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone()) && ((moves % 15 == 0) || ((moves + 1) % 15 == 0) || ((moves + 2) % 15 == 0) || ((moves + 3) % 15 == 0) || ((moves + 4) % 15 == 0))  ) {	\
+	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || (uwep && uwep->oartifact == ART_PWNHAMMER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PWNHAMMER) ) && ((moves % 15 == 0) || ((moves + 1) % 15 == 0) || ((moves + 2) % 15 == 0) || ((moves + 3) % 15 == 0) || ((moves + 4) % 15 == 0))  ) {	\
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));			\
 	return;								\
 	}								\
@@ -516,7 +516,7 @@ int memory_glyph(x, y)
 	return cmap_to_glyph(S_stone);
 	}
 
-	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone()) && ((moves % 15 == 0) || ((moves + 1) % 15 == 0) || ((moves + 2) % 15 == 0) || ((moves + 3) % 15 == 0) || ((moves + 4) % 15 == 0)) ) {
+	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || (uwep && uwep->oartifact == ART_PWNHAMMER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PWNHAMMER) ) && ((moves % 15 == 0) || ((moves + 1) % 15 == 0) || ((moves + 2) % 15 == 0) || ((moves + 3) % 15 == 0) || ((moves + 4) % 15 == 0)) ) {
 	return cmap_to_glyph(S_grayglyph);
 	}
 
@@ -1058,7 +1058,7 @@ newsym(x,y)
 	return;
 	}
 
-	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone()) && ((moves % 15 == 0) || ((moves + 1) % 15 == 0) || ((moves + 2) % 15 == 0) || ((moves + 3) % 15 == 0) || ((moves + 4) % 15 == 0)) ) {
+	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || (uwep && uwep->oartifact == ART_PWNHAMMER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PWNHAMMER) ) && ((moves % 15 == 0) || ((moves + 1) % 15 == 0) || ((moves + 2) % 15 == 0) || ((moves + 3) % 15 == 0) || ((moves + 4) % 15 == 0)) ) {
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
 	return;
 	}
@@ -1412,7 +1412,7 @@ newsymX(x,y)
 	return;
 	}
 
-	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone()) && ((moves % 15 == 0) || ((moves + 1) % 15 == 0) || ((moves + 2) % 15 == 0) || ((moves + 3) % 15 == 0) || ((moves + 4) % 15 == 0)) ) {
+	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || (uwep && uwep->oartifact == ART_PWNHAMMER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PWNHAMMER) ) && ((moves % 15 == 0) || ((moves + 1) % 15 == 0) || ((moves + 2) % 15 == 0) || ((moves + 3) % 15 == 0) || ((moves + 4) % 15 == 0)) ) {
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
 	return;
 	}

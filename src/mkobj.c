@@ -2671,6 +2671,8 @@ boolean shopinit;
 		case ORANGE_LIGHTSABER:
 		case BLACK_LIGHTSABER:
 		case BLUE_LIGHTSABER:
+		case LASERFIST:
+		case LASER_TIN_OPENER:
 		case MYSTERY_LIGHTSABER:
 		case VIOLET_LIGHTSABER:
 		case WHITE_LIGHTSABER:
@@ -2691,6 +2693,7 @@ boolean shopinit;
 					}
 
 			if (otmp->otyp == BLACK_LIGHTSABER) otmp->age += rnz(5000);
+			if (otmp->otyp == LASER_TIN_OPENER) otmp->age += rnz(5000);
 
 			if (ishaxor) otmp->age *= 2;
 

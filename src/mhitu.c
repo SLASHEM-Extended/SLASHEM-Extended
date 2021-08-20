@@ -8107,7 +8107,7 @@ dopois:
 			}
 		    } else if(u.ustuck == mtmp) {
 
-			if (is_drowningpool(mtmp->mx,mtmp->my) && !Race_if(PM_KORONST)) {
+			if (is_drowningpool(mtmp->mx,mtmp->my) && !(uwep && uwep->oartifact == ART_REGULARER_ANCHOR) && !Race_if(PM_KORONST)) {
 
 		/* Being drowned should ALWAYS involve your stuff getting wet. 
 		 * Even if you're unbreathing, swimming or whatever. Your stuff isn't immune just because you are.  --Amy	*/
@@ -8249,7 +8249,7 @@ dopois:
 
 			}
 
-			if (is_drowningpool(mtmp->mx,mtmp->my) && !Race_if(PM_KORONST) && !Swimming
+			if (is_drowningpool(mtmp->mx,mtmp->my) && !(uwep && uwep->oartifact == ART_REGULARER_ANCHOR) && !Race_if(PM_KORONST) && !Swimming
 			    && !Amphibious && !Breathless && !rn2(StrongFlying ? 5 : 3) && !(uarmf && itemhasappearance(uarmf, APP_FIN_BOOTS)  ) ) { /* greatly lowered chance of getting drowned --Amy */
 			    boolean moat =
 				(levl[mtmp->mx][mtmp->my].typ != POOL) &&

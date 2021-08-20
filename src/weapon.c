@@ -584,6 +584,8 @@ struct monst *mon;
 
 		case GREEN_LIGHTSABER:  tmp += rnd(13); break;
 		case ORANGE_LIGHTSABER:  tmp += rnd(13); break;
+		case LASERFIST:  tmp += rnd(13); break;
+		case LASER_TIN_OPENER:  tmp += rnd(5); break;
 		case BLUE_LIGHTSABER:   tmp += rnd(12); break;
 		case HEAVY_LASER_BALL:   tmp += rnd(12); break;
 		case LASER_CHAIN:   tmp += rnd(12); break;
@@ -679,6 +681,8 @@ struct monst *mon;
 
 		case GREEN_LIGHTSABER:  tmp += rnd(9); break;
 		case ORANGE_LIGHTSABER:  tmp += rnd(9); break;
+		case LASERFIST:  tmp += rnd(13); break;
+		case LASER_TIN_OPENER:  tmp += rnd(5); break;
 		case BLUE_LIGHTSABER:   tmp += rnd(8); break;
 		case HEAVY_LASER_BALL:   tmp += rnd(8); break;
 		case LASER_CHAIN:   tmp += rnd(8); break;
@@ -1083,6 +1087,8 @@ struct monst *mon;
 
 		case GREEN_LIGHTSABER:  tmp += rnd(13); break;
 		case ORANGE_LIGHTSABER:  tmp += rnd(13); break;
+		case LASERFIST:  tmp += rnd(13); break;
+		case LASER_TIN_OPENER:  tmp += rnd(5); break;
 		case BLUE_LIGHTSABER:   tmp += rnd(12); break;
 		case HEAVY_LASER_BALL:   tmp += rnd(12); break;
 		case LASER_CHAIN:   tmp += rnd(12); break;
@@ -1179,6 +1185,8 @@ struct monst *mon;
 
 		case GREEN_LIGHTSABER:  tmp += rnd(9); break;
 		case ORANGE_LIGHTSABER:  tmp += rnd(9); break;
+		case LASERFIST:  tmp += rnd(13); break;
+		case LASER_TIN_OPENER:  tmp += rnd(5); break;
 		case BLUE_LIGHTSABER:   tmp += rnd(8); break;
 		case HEAVY_LASER_BALL:   tmp += rnd(8); break;
 		case LASER_CHAIN:   tmp += rnd(8); break;
@@ -2759,7 +2767,7 @@ static const NEARDATA short hwep[] = {
 	  WEDGED_LITTLE_GIRL_SANDAL, SOFT_GIRL_SNEAKER, STURDY_PLATEAU_BOOT_FOR_GIRLS, HUGGING_BOOT,
 	  BLOCK_HEELED_COMBAT_BOOT, ORGANOBLADE, GUITAR, DARK_HORN, SHADOWBLADE, ROMAN_SWORD, ETHER_SAW, SKY_HORN,
 	  TWO_HANDED_SWORD, YESTERDAY_STAR, DEVIL_STAR, BATTLE_AXE, HUGE_CLUB, CHEMISTRY_SPACE_AXE, PLATINUM_SABER,
-	  GOLDEN_SABER, ETERNIUM_SABER, CRYPTIC_SABER, TWO_HANDED_FLAIL, BOAT_OAR,
+	  GOLDEN_SABER, ETERNIUM_SABER, CRYPTIC_SABER, TWO_HANDED_FLAIL, BOAT_OAR, LASERFIST,
 	  MASSIVE_STAFF, BATTLE_STAFF, BACKHAND_MACE, OLDEST_STAFF, PHEONIX_STAFF,
 	  REINFORCED_MACE, OSBANE_KATANA, GRANITE_IMPALER, FLAME_MOUNTAIN, LEAD_FILLED_MACE,
 	  AUTOMATIC_KATANA, KATANA, ARCANE_HORN, UNICORN_HORN, CRYSKNIFE, ELECTRIC_SWORD, AMBUSH_QATAR,
@@ -2780,7 +2788,7 @@ static const NEARDATA short hwep[] = {
 	  HEAVY_CHAIN, GLASS_CHAIN, STONE_CHAIN, IRON_CHAIN, BRICK_CHAIN, METAL_CHAIN, WAX_CHAIN, ALLOY_CHAIN,
 	  TAR_CHAIN, BUBBLE_CHAIN, TINSEL_CHAIN,
 
-	  INKUTLASS, GREEN_SABER, RAPIER, ARCANE_RAPIER, LEATHER_SABER,
+	  INKUTLASS, GREEN_SABER, RAPIER, ARCANE_RAPIER, LEATHER_SABER, POWERFIST,
 	  DOGSHIT_BOOT, CHROME_STAFF, CONTRO_STAFF, CALCULATOR, ELITE_BATLETH, RAKUYO, CROW_QUILL,
 	  PLATINUM_FIRE_HOOK, FIRE_HOOK, DROVEN_DAGGER, TECPATL, ELVEN_BROADSWORD, BROADSWORD, SCIMITAR, SILVER_SABER,
 	  MILL_PAIL, FLANGED_MACE, BATLETH, BRONZE_MORNING_STAR, STONE_STAR, WRAITHBLADE, BONE_DAGGER,

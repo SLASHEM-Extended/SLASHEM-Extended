@@ -1114,6 +1114,12 @@ moveloop()
 				if (uwep && uwep->otyp == CIRCULAR_SAW && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
+				if (uwep && uwep->otyp == MALLET && !Role_if(PM_ARTIST) && !Role_if(PM_DIABLIST) && !u.umoved && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+
+				if (u.twoweap && uswapwep && uswapwep->otyp == MALLET && !Role_if(PM_ARTIST) && !Role_if(PM_DIABLIST) && !u.umoved && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+
 				if (u.twoweap && uswapwep && uswapwep->otyp == CIRCULAR_SAW && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
@@ -1478,6 +1484,12 @@ moveloop()
 				moveamt /= 2;
 
 			if (u.twoweap && uswapwep && uswapwep->otyp == CIRCULAR_SAW && !rn2(8) && moveamt > 1)
+				moveamt /= 2;
+
+			if (uwep && uwep->otyp == MALLET && !Role_if(PM_ARTIST) && !Role_if(PM_DIABLIST) && !u.umoved && !rn2(8) && moveamt > 1)
+				moveamt /= 2;
+
+			if (u.twoweap && uswapwep && uswapwep->otyp == MALLET && !Role_if(PM_ARTIST) && !Role_if(PM_DIABLIST) && !u.umoved && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
 
 			if (uwep && uwep->oartifact == ART_DOUBLE_BESTARD && !rn2(4) && moveamt > 1)
@@ -3488,6 +3500,14 @@ newbossBQ:
 		}
 
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ARABELLA_S_BLACK_PRONG && !rn2(100)) {
+			contaminate(rnd(10), FALSE);
+		}
+
+		if (uwep && uwep->oartifact == ART_SMOKING_SQUIRREL && !rn2(100)) {
+			contaminate(rnd(10), FALSE);
+		}
+
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SMOKING_SQUIRREL && !rn2(100)) {
 			contaminate(rnd(10), FALSE);
 		}
 
@@ -5731,6 +5751,29 @@ controlagain:
 		}
 
 		if (uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL && u.contamination < 10) u.contamination = 10;
+
+		if (uwep && uwep->oartifact == ART_TEZCATLIPOCA_S_BUBBLESTORM && !rn2(100)) nivellate();
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_TEZCATLIPOCA_S_BUBBLESTORM && !rn2(100)) nivellate();
+
+		if (uwep && uwep->oartifact == ART_STRIKE_THE_BALL && !u.berserktime && !rn2(1000)) {
+			u.berserktime = 25;
+			You("suddenly get angry at the ball and want to strike it.");
+		}
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_STRIKE_THE_BALL && !u.berserktime && !rn2(1000)) {
+			u.berserktime = 25;
+			You("suddenly get angry at the ball and want to strike it.");
+		}
+
+		if (uwep && uwep->oartifact == ART_ULTIMATE_WORLD_FALL) {
+			if (!tech_known(T_WORLD_FALL)) {
+			    	learntech(T_WORLD_FALL, FROMOUTSIDE, 1);
+			    	pline("Suddenly, you know how to use the world fall technique!");
+			}
+			if (!u.ragnaroktimer) u.ragnaroktimer = rnz(100000);
+		}
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ULTIMATE_WORLD_FALL) {
+			if (!u.ragnaroktimer) u.ragnaroktimer = rnz(100000);
+		}
 
 		if (FemtrapActiveJulietta && !rn2(2000)) {
 			pline("Julietta rolls the dice to randomly select a punishment for you...");

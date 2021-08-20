@@ -3585,6 +3585,9 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ LASER_CHAIN, "todo" },
 	{ SPRAY_BOX, "todo" },
 	{ CONTROVERSY_CODE, "todo" },
+	{ LASER_TIN_OPENER, "todo" },
+	{ POWERFIST, "todo" },
+	{ LASERFIST, "todo" },
 
 	{0, "" }
 };
@@ -6489,6 +6492,9 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ LASER_CHAIN, "todo" },
 	{ SPRAY_BOX, "todo" },
 	{ CONTROVERSY_CODE, "todo" },
+	{ LASER_TIN_OPENER, "todo" },
+	{ POWERFIST, "todo" },
+	{ LASERFIST, "todo" },
 
 	{0, "" }
 };
@@ -7465,7 +7471,7 @@ plus:
 			if ((obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASERXBOW || obj->otyp == SITH_STAFF || obj->otyp == LASER_POLE || obj->otyp == WHITE_DOUBLE_LIGHTSABER) && obj->altmode) strcat(bp, " (2xlit)");
 			else strcat(bp, " (lit)");
 		    }
-		    sprintf(eos(bp), " (%d)", obj->age);		
+		    if (obj->oclass == BALL_CLASS || obj->oclass == CHAIN_CLASS) sprintf(eos(bp), " (%d)", obj->age);		
 		} else if (is_grenade(obj))
 		    if (obj->oarmed) strcat(bp, " (armed)");
 		break;

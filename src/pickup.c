@@ -2700,7 +2700,7 @@ int held;
 		}
 		else {return(0);}
 
-	} else if (!freehandX() && !(Role_if(PM_CELLAR_CHILD) && uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) ) {
+	} else if (!freehandX() && !(obj->oartifact == ART_MINNIE_S_HANDBAG) && !(Role_if(PM_CELLAR_CHILD) && uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) ) {
 		You("have no free %s.", body_part(HAND));
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;

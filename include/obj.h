@@ -267,7 +267,7 @@ struct obj {
 			  (otmp)->oclass == CHAIN_CLASS || (otmp)->oclass == TOOL_CLASS) && \
 			 objects[(otmp)->otyp].oc_bimanual)
 
-#define is_lightsaber(otmp) (objects[(otmp)->otyp].oc_skill == P_LIGHTSABER || (otmp)->otyp == LASER_SWATTER || (otmp)->otyp == NANO_HAMMER || (otmp)->otyp == LIGHTWHIP || (otmp)->otyp == LASERDENT || (otmp)->otyp == LASERXBOW || (otmp)->otyp == STARWARS_MACE || (otmp)->otyp == LASER_POLE || (otmp)->otyp == LASER_SWORD || (otmp)->otyp == BEAMSWORD || (otmp)->otyp == SITH_STAFF || (otmp)->otyp == ELECTRIC_CIGARETTE || (otmp)->otyp == HEAVY_LASER_BALL || (otmp)->otyp == LASER_CHAIN)
+#define is_lightsaber(otmp) (objects[(otmp)->otyp].oc_skill == P_LIGHTSABER || (otmp)->otyp == LASER_SWATTER || (otmp)->otyp == NANO_HAMMER || (otmp)->otyp == LIGHTWHIP || (otmp)->otyp == LASERDENT || (otmp)->otyp == LASERXBOW || (otmp)->otyp == STARWARS_MACE || (otmp)->otyp == LASER_POLE || (otmp)->otyp == LASER_SWORD || (otmp)->otyp == BEAMSWORD || (otmp)->otyp == SITH_STAFF || (otmp)->otyp == ELECTRIC_CIGARETTE || (otmp)->otyp == HEAVY_LASER_BALL || (otmp)->otyp == LASER_CHAIN || (otmp)->otyp == LASERFIST || (otmp)->otyp == LASER_TIN_OPENER)
 
 #define is_firearm(otmp) \
 			((otmp)->oclass == WEAPON_CLASS && \

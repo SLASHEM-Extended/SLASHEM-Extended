@@ -373,8 +373,8 @@ A("Starcraft Flail",			OBSID,
 	(SPFX_RESTR|SPFX_HSPDAM), 0, 0,
 	PHYS(1,0), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 6500L ),
 
-A("Pwnhammer",			MALLET,
-	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_HPHDAM), 0, 0,
+A("Pwnhammer",			MALLET, /* grayout */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_HPHDAM|SPFX_EVIL), 0, 0,
 	COLD(5,16), DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
 A("Pwnhammer Duece",			SLEDGE_HAMMER, /* +10 difficulty, can't see lit areas */
@@ -1859,7 +1859,7 @@ A("Dirk", 		DAGGER,
 	PHYS(5,4),	NO_DFNS,	NO_CARY,	0, A_NEUTRAL, NON_PM, NON_PM, 1500L ),
 
 A("Tenderizer",                   MALLET,           
-	(SPFX_RESTR|SPFX_ATTK),  0, 0,
+	(SPFX_RESTR|SPFX_ATTK|SPFX_EVIL),  0, 0,
 	PHYS(3,6),	NO_DFNS,	NO_CARY,	0, A_NEUTRAL, NON_PM, NON_PM, 4000L ),
 
 /* 5lo: Some more artifacts... */
@@ -8525,6 +8525,173 @@ A("Flockdown",				WHITE_DRAGON_SCALES, /* by Amy's roommate, transforms terrain 
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
+A("Flingtile",				BONE_ARROW,
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 40L ),
+
+A("Al'azzared Gyeth Gyeth",				BONE_DAGGER, /* diminished bleeding */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Pouschen Oph Gaein Lewel",				WRAITHBLADE,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Tezcatlipoca's Bubblestorm",				TECPATL, /* waterproofs your inventory, swimming and unbreathing when wielded, 1 in 100 per turn to contract corona */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ATTK), 0, 0,
+	PHYS(10, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("You Lil Pussy",				SPRAY_BOX, /* chance to paralyze the target */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Regularer Anchor",				ANCUS, /* protects you from eel drowning attacks in water */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Stop The Airships",				ANCUS, /* flying enemies have 1 in 6 chance to miss their turn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Fire-Branded Hellhunk",				ANCUS,
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+	FIRE(4, 10), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Seeveen",				ANCUS, /* +2 light radius when wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Birdbane",				ATGEIR,
+	(SPFX_RESTR|SPFX_DCLAS), 0, S_BAT,
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Rasschen Taak",				KHOPESH, /* autocurses, soviet mode when wielded, improves spellcasting chances like failuncap equipment */
+	(SPFX_RESTR|SPFX_PROTEC|SPFX_EVIL), 0, 0,
+	PHYS(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Smoking Squirrel",				MACUAHUITL, /* etherwind when wielded, full nutrients and discount action */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("SpeerThrow",				ATLATL, /* +2 multishot when throwing spears */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Neko's Whiteout",				TINSEL_LONGSWORD,
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, CHOCOLATE_CREATION, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Klima Pledsche",				TREESTAFF, /* poison resistance when wielded */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Bimmselimmelimm",				GARBOWHIP, /* +10% chance to block when wearing a shield, but if your shield actually blocks something, 1 in 50 chance for it to dull up to -20 */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(20, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Vampire-Sing's Bloodrush",				GROM_AXE, /* sing trap effect */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN|SPFX_ATTK|SPFX_DRLI), 0, 0,
+	DRLI(5, 6), DRLI(0,0), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 5000L ),
+
+A("Ultimate World Fall",				HONOR_KATANA, /* activates ragnarok timer, teaches world fall technique */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(24, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Death's Fathom",				DIMENSIONAL_SHARD, /* resist lightning and fire */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ATTK), 0, 0,
+	COLD(10, 16), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Zantasbore",				CIRCULAR_SAW, /* very fast speed if wielded */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(4, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Strike The Ball",				AMBUSH_QATAR, /* 1 in 1000 chance to go berserk if not already berserk */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Hachurate",				PHEONIX_STAFF, /* very fast speed if wielded, +5 charisma */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Ore Evil Wight",				JUMPING_FLAMER, /* paralyzes target for 3 turns */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Woh",				SECRET_SOUND_WHIP,
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Elvis's Bones File",				CANDY_BRA, /* bones effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Capital Rap",				CANDY_BRA, /* sound effects, +5 charisma, double skill training */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Silks of the Victor",				OLD_MAIL, /* manaleech, +1 light radius, +5 AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Healthier Feel",				ORGANOSHIELD, /* resist poison, sickness and drain */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Whitewater Rafting",				DISPERSION_BOX, /* waterproofs inventory while carried */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Daisy's Handbag",				HANDYBAG, /* +1000 carry cap and +500 max carry cap while carried */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Minnie's Handbag",				HANDYBAG, /* can be used even if both of your hands are curse-welded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Ilja's Assholery",				CONTROVERSY_CODE, /* +d10 bleeding damage to a target that has a head and isn't wearing a helmet */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Attic Code",				CONTROVERSY_CODE, /* wielding it allows you to enter Green Cross and the various ZAPM sub-branches even if they're closed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50000L ),
+
+A("Vader's Charge",				BLACK_LIGHTSABER, /* spawns with extra-high charge count */
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Kyle's Jackpot",				ORANGE_LIGHTSABER, /* gains extra charge with charge saber too */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Puckock",				HEAVY_LASER_BALL, /* if punished with this one, throwing it deals 30 extra damage */
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Ero-Ero-Ero-Ero-Mushroom-Mushroom",				LASER_CHAIN, /* if punished with this one, you can use melee weapons as polearms like the mushroom race */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Cutrition",				LASER_TIN_OPENER, /* full nutrients */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Fisto!",				POWERFIST,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Pneumatic Force",				LASERFIST,
+	(SPFX_RESTR), 0, 0,
+	PHYS(7, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 9000L ),
+
+A("Tavion's Charge",				RED_LIGHTSABER, /* randart lightsaber, spawns with rnz(5000) extra charge */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Desann's Wrath",				RED_LIGHTSABER, /* randart2 lightsaber, -8 to-hit, gains extra charge when charged with something other than charge saber */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
 /*
  *	Stormbringer only has a 2 because it can drain a level,

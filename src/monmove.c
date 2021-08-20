@@ -599,6 +599,8 @@ register struct monst *mtmp;
 
 	if ((mdat == &mons[PM_BUGBEAM_CUBE] || mdat == &mons[PM_IRMGARD] || mdat == &mons[PM_METH_HEAD] || mdat == &mons[PM_TORSTINA] || mdat == &mons[PM_MARINERV] || mdat == &mons[PM_MARISTIN] || mdat == &mons[PM_MARIVERT] || mdat == &mons[PM_MARISISTER] || mdat == &mons[PM_FUNNY_ITALIAN] || mdat == &mons[PM_EAR_FIG_MACHINE] || mdat == &mons[PM_POLEPOKER] || mdat == &mons[PM_DISTURBMENT_HEAD]) && !rn2(4)) return 0; /* can sometimes not move; this is by design */
 
+	if (uwep && uwep->oartifact == ART_STOP_THE_AIRSHIPS && is_flyer(mtmp->data) && !mtmp->mpeaceful && !mtmp->mtame && !rn2(6)) return 0;
+
 	if (mdat == &mons[PM_BLOTREE] && !rn2(2)) return 0;
 
 	/* huro troves are for the matrayser race: they're only there as a means of porting your possessions to a different

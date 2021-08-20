@@ -3684,6 +3684,7 @@ castanyway:
 		if (uwep && tech_inuse(T_ENERGY_TRANSFER)) {
 			uwep->age += energy;
 			if (uwep->otyp == ORANGE_LIGHTSABER) uwep->age += (energy * rnd(2));
+			if (uwep->oartifact == ART_DESANN_S_WRATH) uwep->age += (energy * rnd(2));
 			pline("Your lightsaber is charged a bit.");
 		}
 
@@ -12237,6 +12238,16 @@ int spell;
 	}
 
 	if (uarmf && itemhasappearance(uarmf, APP_FAILUNCAP_SHOES) ) {
+		if (chance < 86) chance += 5;
+		else if (chance == 86) chance += 4;
+		else if (chance == 87) chance += 4;
+		else if (chance == 88) chance += 3;
+		else if (chance == 89) chance += 3;
+		else if (chance == 90) chance += 2;
+		else chance += 1;
+	}
+
+	if (uwep && uwep->oartifact == ART_RASSCHEN_TAAK) {
 		if (chance < 86) chance += 5;
 		else if (chance == 86) chance += 4;
 		else if (chance == 87) chance += 4;

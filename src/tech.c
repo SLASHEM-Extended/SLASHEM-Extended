@@ -4629,7 +4629,7 @@ breakstare:
 		t_timeout = rnz(750);
 	    	break;
 	    case T_BLITZ:
-	    	if ((uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU) )) || (u.twoweap && uswapwep)) {
+	    	if ((uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == LASER_TIN_OPENER || uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU) )) || (u.twoweap && uswapwep)) {
 			You("can't do this while wielding a weapon!");
 	    		return(0);
 	    	} else if (uarms) {
@@ -4642,7 +4642,7 @@ breakstare:
                 t_timeout = rnz(5000);
 	    	break;
             case T_PUMMEL:
-	    	if ((uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU) )) || (u.twoweap && uswapwep)) {
+	    	if ((uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == LASER_TIN_OPENER || uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU) )) || (u.twoweap && uswapwep)) {
 			You("can't do this while wielding a weapon!");
 	    		return(0);
 	    	} else if (uarms) {
@@ -4662,7 +4662,7 @@ breakstare:
 		    t_timeout = rnz(2000);
 		break;
             case T_G_SLAM:
-	    	if ((uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU) )) || (u.twoweap && uswapwep)) {
+	    	if ((uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == LASER_TIN_OPENER || uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU) )) || (u.twoweap && uswapwep)) {
 			You("can't do this while wielding a weapon!");
 	    		return(0);
 	    	} else if (uarms) {
@@ -4696,7 +4696,7 @@ breakstare:
 		if (issoviet) pline("Sovetskaya nichego ne znayet o balansirovaniya ne ponimayet i poetomu khochet etu tekhniku, kotoraya uzhe slishkom sil'na, chtoby byt' yeshche sil'neye.");
 		break;            	
             case T_SPIRIT_BOMB:
-	    	if ((uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU) )) || (u.twoweap && uswapwep)) {
+	    	if ((uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == LASER_TIN_OPENER || uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU) )) || (u.twoweap && uswapwep)) {
 			You("can't do this while wielding a weapon!");
 	    		return(0);
 	    	} else if (uarms) {
@@ -7201,10 +7201,12 @@ revid_end:
 			if (uwep && is_lightsaber(uwep)) {
 				uwep->age += 1000;
 				if (uwep->otyp == ORANGE_LIGHTSABER) uwep->age += (1000 * rnd(2));
+				if (uwep->oartifact == ART_DESANN_S_WRATH) uwep->age += (1000 * rnd(2));
 			}
 			if (uswapwep && is_lightsaber(uswapwep)) {
 				uswapwep->age += 1000;
 				if (uswapwep->otyp == ORANGE_LIGHTSABER) uswapwep->age += (1000 * rnd(2));
+				if (uswapwep->oartifact == ART_DESANN_S_WRATH) uswapwep->age += (1000 * rnd(2));
 			}
 
 			pline("Lightsaber energy replenished. Did it cost you an important intrinsic?");
@@ -9533,6 +9535,10 @@ extrachargechoice:
 						    madechoice = 1; sabertype = 14; }
 					else if (yn("Do you want to switch to a laser chain?")=='y') {
 						    madechoice = 1; sabertype = 15; }
+					else if (yn("Do you want to switch to a laserfist?")=='y') {
+						    madechoice = 1; sabertype = 16; }
+					else if (yn("Do you want to switch to a laser tin opener?")=='y') {
+						    madechoice = 1; sabertype = 17; }
 
 				}
 
@@ -9595,8 +9601,12 @@ extrachargechoice:
 					uwep->otyp = LASERXBOW;
 				} else if (sabertype == 14) {
 					uwep->otyp = HEAVY_LASER_BALL;
-				} else /* sabertype == 15 */
+				} else if (sabertype == 15) {
 					uwep->otyp = LASER_CHAIN;
+				} else if (sabertype == 16) {
+					uwep->otyp = LASERFIST;
+				} else /* sabertype == 17 */
+					uwep->otyp = LASER_TIN_OPENER;
 
 				pline("Your lightsaber warps, and changes into a different one!");
 				/* known problem: you can pick the form that your lightsaber already has */
@@ -10647,7 +10657,7 @@ charge_saber()
 		if (!rn2(jackpotchance)) {
 			You("manage to channel the force perfectly!");
 			uwep->age += 1500; // Jackpot!
-			if (uwep->otyp == ORANGE_LIGHTSABER) uwep->age += (1500 * rnd(2));
+			if (uwep->oartifact == ART_KYLE_S_JACKPOT) uwep->age += (1500 * rnd(2));
 		}
 
 	} else
@@ -10679,7 +10689,7 @@ manacalccomplete:
 
 	/* yes no return above, it's a bonus :) */
 	uwep->age += (yourmana * (( (effectlevel + rnd(5 + effectlevel) ) / rnd(10)) + rno(3)));
-	if (uwep->otyp == ORANGE_LIGHTSABER) {
+	if (uwep->oartifact == ART_KYLE_S_JACKPOT) {
 		uwep->age += (yourmana * (( (effectlevel + rnd(5 + effectlevel) ) / rnd(10)) + rno(3)));
 		if (!rn2(2)) uwep->age += (yourmana * (( (effectlevel + rnd(5 + effectlevel) ) / rnd(10)) + rno(3)));
 	}

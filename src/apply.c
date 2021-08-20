@@ -5242,7 +5242,7 @@ doapply()
 	    return do_break_wand(obj);
 
 	/* Mushroom can use every weapon as a polearm, including bows, arrows etc., can be turned on via #monster --Amy */
-	if (Race_if(PM_PLAYER_MUSHROOM) && obj->oclass == WEAPON_CLASS && u.mushroompoles) {
+	if ( (Race_if(PM_PLAYER_MUSHROOM) || (uchain && uchain->oartifact == ART_ERO_ERO_ERO_ERO_MUSHROOM_M)) && obj->oclass == WEAPON_CLASS && u.mushroompoles) {
 
 		if (uwep && uwep == obj) res = use_pole(obj);
 		else {
@@ -5624,6 +5624,8 @@ doapply()
 	case ORANGE_LIGHTSABER:
 	case BLACK_LIGHTSABER:
   	case BLUE_LIGHTSABER:
+  	case LASER_TIN_OPENER:
+  	case LASERFIST:
   	case MYSTERY_LIGHTSABER:
 	case VIOLET_LIGHTSABER:
 	case WHITE_LIGHTSABER:
@@ -5647,6 +5649,7 @@ doapply()
 				u.ugold -= 10000;
 				obj->age += 750;
 				if (obj->otyp == ORANGE_LIGHTSABER) obj->age += (750 * rnd(2));
+				if (obj->oartifact == ART_DESANN_S_WRATH) obj->age += (750 * rnd(2));
 				Your("lightsaber was recharged.");
 			}
 		}
@@ -5667,6 +5670,7 @@ doapply()
 				u.ugold -= 10000;
 				obj->age += 750;
 				if (obj->otyp == ORANGE_LIGHTSABER) obj->age += (750 * rnd(2));
+				if (obj->oartifact == ART_DESANN_S_WRATH) obj->age += (750 * rnd(2));
 				Your("lightsaber was recharged.");
 			}
 		}
@@ -5688,6 +5692,7 @@ doapply()
 				u.ugold -= 10000;
 				obj->age += 750;
 				if (obj->otyp == ORANGE_LIGHTSABER) obj->age += (750 * rnd(2));
+				if (obj->oartifact == ART_DESANN_S_WRATH) obj->age += (750 * rnd(2));
 				Your("lightsaber was recharged.");
 			}
 		}

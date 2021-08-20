@@ -2740,6 +2740,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_TOTALLY_THE_SEXY_BITCH) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK) tmp += 5;
 		if (uarmu && uarmu->otyp == FISHNET) tmp += 2;
+		if (uarmu && uarmu->oartifact == ART_CAPITAL_RAP) tmp += 5;
 		if (uamul && uamul->otyp == AMULET_OF_TIME) tmp += 5;
 		if (uarmu && uarmu->oartifact == ART_SWEET_VICTORIA) tmp += 3;
 		if (uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL) tmp += 5;
@@ -2748,6 +2749,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_SCRATCHE_HUSSY) tmp += 3;
 		if (uarmf && uarmf->oartifact == ART_KATHARINA_S_LOVELINESS) tmp += 10;
 		if (uwep && uwep->oartifact == ART_DAINTY_SLOAD) tmp += 3;
+		if (uwep && uwep->oartifact == ART_HACHURATE) tmp += 5;
 
 		if (RngeCoquetry) tmp += 5;
 		if (FemtrapActiveSolvejg) tmp += 5;

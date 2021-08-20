@@ -8899,6 +8899,8 @@ madnesseffect:
 			break;
 		}
 
+		if (uwep && uwep->oartifact == ART_ATTIC_CODE) greencrossworks = TRUE;
+
 		if (!greencrossworks) {
 			pline("You trigger a magic portal.");
 			pline("But apparently, the secret entrance isn't open today. :(");
@@ -18349,8 +18351,10 @@ register boolean force, here;
 		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_GARY_S_RIVALRY ) continue;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_NEWFOUND_AND_USEFUL) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_JESUS_FOOTWEAR) continue;
+		if ((obj->where != OBJ_FLOOR) && have_whitewaterrafting()) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmc && uarmc->oartifact == ART_SCOOBA_COOBA) continue;
 		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_TRIDENT_OF_POSEIDON) continue;		
+		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_TEZCATLIPOCA_S_BUBBLESTORM) continue;		
 		if ((obj->where != OBJ_FLOOR) && Race_if(PM_PLAYER_ATLANTEAN)) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_JANA_S_VAGINAL_FUN) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmu && uarmu->oartifact == ART_THERMAL_BATH) continue;

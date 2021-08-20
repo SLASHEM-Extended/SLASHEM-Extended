@@ -1588,7 +1588,7 @@ dodown()
 		return(0);
 	}
 
-	if (stairs_down && u.ux == sstairs.sx && u.uy == sstairs.sy && at_dgn_entrance("Gamma Caves") && !u.sewerplantcomplete) {
+	if (stairs_down && u.ux == sstairs.sx && u.uy == sstairs.sy && at_dgn_entrance("Gamma Caves") && !u.sewerplantcomplete && !(uwep && uwep->oartifact == ART_ATTIC_CODE)) {
 		pline("The Gamma Caves cannot be entered as long as you didn't make it to the bottom of the Sewer Plant yet.");
 		return(0);
 	}
@@ -1802,7 +1802,7 @@ doup()
 		return(0);
 	}
 
-	if (u.ux == sstairs.sx && u.uy == sstairs.sy && at_dgn_entrance("Mainframe") && !u.gammacavescomplete) {
+	if (u.ux == sstairs.sx && u.uy == sstairs.sy && at_dgn_entrance("Mainframe") && !u.gammacavescomplete && !(uwep && uwep->oartifact == ART_ATTIC_CODE)) {
 		pline("The Mainframe cannot be entered as long as you didn't make it to the bottom of the Gamma Caves yet.");
 		return(0);
 	}

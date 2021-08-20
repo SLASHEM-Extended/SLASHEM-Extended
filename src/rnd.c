@@ -2410,6 +2410,15 @@ reroll:
 }
 
 int
+randartlightsaber()
+{
+	int result;
+reroll:
+	result = rnd_class(GREEN_LIGHTSABER, MYSTERY_LIGHTSABER);
+	return result;
+}
+
+int
 randartsuit()
 {
 	int result;
@@ -2604,6 +2613,15 @@ randartmissileX()
 reroll:
 	result = ORCISH_DAGGER + rn2(HAWAIIAN_SHIRT - ORCISH_DAGGER);
 	if (!(objects[result].oc_skill >= -P_CROSSBOW && objects[result].oc_skill <= -P_BOW) && !(objects[result].oc_skill >= -P_BOOMERANG && objects[result].oc_skill <= -P_DART) ) goto reroll;
+	return result;
+}
+
+int
+randartlightsaberX()
+{
+	int result;
+reroll:
+	result = GREEN_LIGHTSABER + rn2((MYSTERY_LIGHTSABER + 1) - GREEN_LIGHTSABER);
 	return result;
 }
 

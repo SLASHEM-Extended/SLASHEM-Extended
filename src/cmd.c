@@ -1877,7 +1877,7 @@ newbossSTEN:
 
 		}
 
-	} else if (Race_if(PM_PLAYER_MUSHROOM)) {
+	} else if ((Race_if(PM_PLAYER_MUSHROOM) || (uchain && uchain->oartifact == ART_ERO_ERO_ERO_ERO_MUSHROOM_M)) ) {
 
 		/* This does not consume a turn, which is intentional. --Amy */
 		if (!u.mushroompoles && yn("Currently your ability to use any weapon as a polearm is deactivated. Do you want to activate it?") == 'y') {
@@ -6437,6 +6437,7 @@ boolean guaranteed;
 		if (uarms->spe < 0) shieldblockrate += (uarms->spe * 2);
 
 		if (uarm && uarm->oartifact == ART_WOODSTOCK) shieldblockrate += 5;
+		if (uwep && uwep->oartifact == ART_BIMMSELIMMELIMM) shieldblockrate += 10;
 		if (Numbed) shieldblockrate -= 10;
 
 		if (!PlayerCannotUseSkills) {
@@ -10505,6 +10506,7 @@ int final;
 		if (uarms->spe < 0) shieldblockrate += (uarms->spe * 2);
 
 		if (uarm && uarm->oartifact == ART_WOODSTOCK) shieldblockrate += 5;
+		if (uwep && uwep->oartifact == ART_BIMMSELIMMELIMM) shieldblockrate += 10;
 		if (Numbed) shieldblockrate -= 10;
 
 		if (!PlayerCannotUseSkills) {

@@ -5646,6 +5646,7 @@ find_ac()
 	if (uarmc && uarmc->oartifact == ART_ACIDSHOCK_CASTLECRUSHER) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_YAUI_GAUI_FURS) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_PHANTOM_OF_THE_OPERA) uac -= 5;
+	if (uarm && uarm->oartifact == ART_SILKS_OF_THE_VICTOR) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_SPACEWASTE) uac -= 3;
 	if (uarmh && uarmh->oartifact == ART_NOSED_BUG) uac -= 7;
 	if (uarmf && uarmf->oartifact == ART_PORCELAIN_ELEPHANT) uac -= 5;

@@ -1561,7 +1561,7 @@ menunosedone:
 rodneydone:
 
 	/* if you triggered a bones trap, bad luck - you can now leave bones even if you disabled them :P --Amy */
-	bones_ok = (iflags.bones || (BonesLevelChange || u.uprops[BONES_CHANGE].extrinsic || have_bonestone()) ) && (how < GENOCIDED) && can_make_bones(); /* dthexpl patch */
+	bones_ok = (iflags.bones || (BonesLevelChange || u.uprops[BONES_CHANGE].extrinsic || have_bonestone() || (uarmu && uarmu->oartifact == ART_ELVIS_S_BONES_FILE) ) ) && (how < GENOCIDED) && can_make_bones(); /* dthexpl patch */
 
 	if ((
 #ifdef WIZARD

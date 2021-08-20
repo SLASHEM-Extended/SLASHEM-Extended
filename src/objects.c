@@ -4329,7 +4329,7 @@ CONTAINER("bag of tricks", "bag",       0, 1, 1, 0, 1950, 5, 30, MT_CLOTH, HI_CL
 /* bag of tricks must be last */
 
 /* Unlocking tools */
-TOOL("skeleton key", "key",     0, 0, 0, 0, 6390,  0,  10, MT_IRON, HI_METAL, 1),
+TOOL("skeleton key", "key",     0, 0, 0, 0, 6190,  0,  10, MT_IRON, HI_METAL, 1),
 TOOL("secret key", (char *)0,   1, 0, 0, 0,  500,  0,  10, MT_SECREE, CLR_BLACK, 1),
 WEPTOOL("controversy code", (char *)0, /* can be used as a key to unlock stuff */
 	1, 0, 0, 0, 100, 0,   10,  4,  6, 0, WHACK,  P_SHORT_SWORD, MT_IRON, HI_METAL, 15),
@@ -4357,7 +4357,7 @@ TOOL("magic lamp", "lamp",      0, 0, 1, 0,  1000, 0,  40, MT_COPPER, CLR_YELLOW
 
 /* Instruments */
 /* KMH -- made less common */
-TOOL("tin whistle", "whistle",  0, 0, 0, 0, 3639,  0,  10, MT_METAL, HI_METAL, 1),
+TOOL("tin whistle", "whistle",  0, 0, 0, 0, 3439,  0,  10, MT_METAL, HI_METAL, 1),
 TOOL("grass whistle", "whistle",  0, 0, 0, 0, 600,  0,  10, MT_WOOD, HI_METAL, 1),
 TOOL("magic whistle", "whistle",0, 0, 1, 0, 2400,  0,  10, MT_METAL, HI_METAL, 10),
 TOOL("dark magic whistle", "whistle",0, 0, 1, 0, 100,  0,  10, MT_METAL, HI_METAL, 20),
@@ -4440,6 +4440,9 @@ OBJECT(OBJ("torch", (char *)0),
  * red :  6 + d9, 10 + d11
  * red double: 6 + d9 + d9, 10 + d11 + d11  (15/21) in double mode
  */
+
+/* green must be first */
+
 WEPTOOL("green lightsaber", "lightsaber",
 	0, 0, 1, 0,  100, 24, 500, 3,  5, 0, SLASH, P_LIGHTSABER, MT_PLASTIC, HI_METAL, 1),
 WEPTOOL("blue lightsaber",  "lightsaber",
@@ -4490,9 +4493,11 @@ WEPTOOL("white double lightsaber",  "double lightsaber",
 WEPTOOL("mystery lightsaber",  "lightsaber",
 	0, 0, 1, 0,  100, 24, 500, 6,  6, 0, SLASH, P_LIGHTSABER, MT_PLATINUM, CLR_BRIGHT_MAGENTA, 5),
 
+/* mystery must be last */
+
 /* Other tools */
 TOOL("expensive camera", (char *)0, 1, 0, 0, 1,  1000, 0, 200, MT_PLASTIC, CLR_BLACK, 1),
-TOOL("mirror", "looking glass", 0, 0, 0, 0,  1900, 0,  10, MT_GLASS, HI_SILVER, 1),
+TOOL("mirror", "looking glass", 0, 0, 0, 0,  1500, 0,  10, MT_GLASS, HI_SILVER, 1),
 TOOL("crystal ball", "glass orb", 0, 0, 1, 1,  1000, 0,  60, MT_GLASS, HI_GLASS, 1),
 #if 0
 /* STEPHEN WHITE'S NEW CODE */
@@ -4507,10 +4512,10 @@ TOOL("orb of destruction", "glass orb",
 TOOL("lenses", (char *)0,	1, 0, 0, 0,   500,  0,  80, MT_GLASS, HI_GLASS, 1),
 TOOL("radioglasses", (char *)0, 1, 0, 0, 0, 300,  0,  200, MT_VIVA, CLR_ORANGE, 1),
 TOOL("boss visor", (char *)0, 1, 0, 0, 0, 300,  0,  200, MT_ARCANIUM, CLR_BRIGHT_MAGENTA, 10),
-TOOL("blindfold", (char *)0,    1, 0, 0, 0, 3000,  0,  20, MT_CLOTH, CLR_BLACK, 1),
+TOOL("blindfold", (char *)0,    1, 0, 0, 0, 2800,  0,  20, MT_CLOTH, CLR_BLACK, 1),
 TOOL("eyecloser", (char *)0, 1, 0, 0, 0, 300,  0,  20, MT_INKA, CLR_BROWN, 1),
 TOOL("dragon eyepatch", (char *)0, 1, 0, 0, 0, 300,  0,  20, MT_DRAGON_HIDE, CLR_BRIGHT_BLUE, 10),
-TOOL("towel", (char *)0,        1, 0, 0, 0, 1700,  0,  50, MT_CLOTH, CLR_MAGENTA, 1),
+TOOL("towel", (char *)0,        1, 0, 0, 0, 1600,  0,  50, MT_CLOTH, CLR_MAGENTA, 1),
 TOOL("condome", (char *)0,      1, 0, 0, 0,  190,  0,   5, MT_CLOTH, CLR_WHITE, 1),
 TOOL("climbing set", (char *)0,      1, 0, 0, 0,  100,  0,   500, MT_MINERAL, CLR_GRAY, 80),
 TOOL("soft chastity belt", (char *)0,      1, 0, 0, 0,   10,  0,   5, MT_SILK, CLR_WHITE, 1),
@@ -4525,9 +4530,16 @@ TOOL("binning kit", (char *)0,  1, 0, 0, 1, 100, 0,  30, MT_COMPOST, CLR_BROWN, 
 CONTAINER("medical kit", "leather bag", 0, 0, 0, 0,  1000, 0, 500, MT_LEATHER, HI_LEATHER, 1),
 
 WEPTOOL("tin opener",  (char *)0,
-	1, 0, 1, 0,  2000, 0, 30, 1,  1, 0, PIERCE, 0, MT_IRON, HI_METAL, 1),
+	1, 0, 1, 0,  1900, 0, 30, 1,  1, 0, PIERCE, 0, MT_IRON, HI_METAL, 1),
+WEPTOOL("laser tin opener", (char *)0,
+	1, 0, 1, 0,  100,  0, 100, 1,  1, 0, PIERCE, P_MARTIAL_ARTS, MT_IRON, CLR_YELLOW, 12),
 WEPTOOL("budo no sasu",  (char *)0,
 	1, 0, 1, 0,  400, 0, 300, 1,  1, 0, PIERCE, 0, MT_SILVER, CLR_BRIGHT_CYAN, 1),
+
+WEPTOOL("powerfist", (char *)0,
+	1, 0, 1, 0,  1000,  6, 100, 7,  7, 0, WHACK, P_BARE_HANDED_COMBAT, MT_METAL, CLR_GRAY, 8),
+WEPTOOL("laserfist", (char *)0,
+	1, 0, 1, 0,  100,  6, 2000, 7,  7, 0, WHACK, P_BARE_HANDED_COMBAT, MT_VIVA, CLR_ORANGE, 34),
 
 TOOL("can of grease", (char *)0,1, 0, 0, 1,  1400, 0,  20, MT_IRON, HI_METAL, 1),
 TOOL("lubricant can", (char *)0,1, 0, 0, 1,  100, 0,  20, MT_PLASTIC, CLR_BROWN, 1),

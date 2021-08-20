@@ -154,6 +154,9 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 	if (uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && !uwep->cursed) {
 		curse(uwep);
 	}
+	if (uwep && uwep->oartifact == ART_RASSCHEN_TAAK && !uwep->cursed) {
+		curse(uwep);
+	}
 	if (uwep && uwep->oartifact == ART_YOU_RE_STUCCO && !uwep->cursed) {
 		curse(uwep);
 		pline("Great. You're stucco now.");
@@ -313,6 +316,9 @@ swapweaponchoice:
 		}
 
 		if (uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && !uswapwep->cursed) {
+			curse(uswapwep);
+		}
+		if (uswapwep && uswapwep->oartifact == ART_RASSCHEN_TAAK && !uswapwep->cursed) {
 			curse(uswapwep);
 		}
 		if (uswapwep && uswapwep->oartifact == ART_YOU_RE_STUCCO && !uswapwep->cursed) {

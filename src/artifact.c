@@ -296,6 +296,7 @@ hack_artifacts()
 	artilist[ART_TSCHEND_FOR_ETERNITY].otyp = randartchain();
 	artilist[ART_MACHINE_THAT_GOES_PLING].otyp = randartgem();
 	artilist[ART_COCKBANGER_ARMOR].otyp = randartsuit();
+	artilist[ART_TAVION_S_CHARGE].otyp = randartlightsaber();
 
 	artilist[ART_JANA_S_GRAVE_WALL].otyp = randartcloakX();
 	artilist[ART_HENRIETTA_S_DOGSHIT_BOOTS].otyp = randartbootsX();
@@ -407,6 +408,7 @@ hack_artifacts()
 	artilist[ART_PAWNERMASTER].otyp = randartgemX();
 	artilist[ART_GANTULETS_OF_MISPEALING].otyp = randartglovesX();
 	artilist[ART_SECRET_BOOK_OF_VENOM].otyp = randartspellbookX();
+	artilist[ART_DESANN_S_WRATH].otyp = randartlightsaberX();
 
 	artilist[ART_ELLI_S_PSEUDOBAND_OF_POS].otyp = randartmeleeweaponX();
 	artilist[ART_HIGHEST_FEELING].otyp = find_fetish_heels();
@@ -732,6 +734,10 @@ make_artif: if (by_align) otmp = mksobj((int)a->otyp, TRUE, FALSE, FALSE);
 	    else otmp = oname(otmp, a->name);
 
 	    otmp->oartifact = m;
+
+	    if (otmp && otmp->oartifact == ART_VADER_S_CHARGE) otmp->age += rnz(5000);
+	    if (otmp && otmp->oartifact == ART_TAVION_S_CHARGE) otmp->age += rnz(5000);
+
 		/* usually mark artifact as existing... but not always :D --Amy */
 	    if (rn2(100)) artiexist[m] = TRUE;
 	} else {
@@ -776,6 +782,8 @@ bad_artifact()
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
 		}
+	    if (otmp && otmp->oartifact == ART_VADER_S_CHARGE) otmp->age += rnz(5000);
+	    if (otmp && otmp->oartifact == ART_TAVION_S_CHARGE) otmp->age += rnz(5000);
 
 	    if (rn2(100)) artiexist[m] = TRUE;
 	} else {
@@ -927,6 +935,8 @@ bad_artifact_xtra()
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
 		}
+	    if (otmp && otmp->oartifact == ART_VADER_S_CHARGE) otmp->age += rnz(5000);
+	    if (otmp && otmp->oartifact == ART_TAVION_S_CHARGE) otmp->age += rnz(5000);
 
 	    if (rn2(100)) artiexist[m] = TRUE;
 	} else {
@@ -1137,6 +1147,8 @@ register boolean mod;
 		if (a->otyp == otmp->otyp && !strcmp(a->name, name)) {
 		    register int m = a - artilist;
 		    otmp->oartifact = (/*char*/int)(mod ? m : 0);
+		    if (otmp && otmp->oartifact == ART_VADER_S_CHARGE) otmp->age += rnz(5000);
+		    if (otmp && otmp->oartifact == ART_TAVION_S_CHARGE) otmp->age += rnz(5000);
 		    if (mod) {
 			/* Light up Candle of Eternal Flame and
 			 * Holy Spear of Light on creation.
@@ -3497,6 +3509,31 @@ chargingchoice:
 		    if (mtmp->mhp < 1) mtmp->mhp = 1;
 		}
 	    }
+	    break;
+	case CHOCOLATE_CREATION:
+
+		{
+			struct obj *uchocitem;
+
+			uchocitem = mksobj(CHOCOLATE, TRUE, FALSE, FALSE);
+			if (uchocitem) {
+				uchocitem->quan = 1;
+				uchocitem->known = uchocitem->dknown = uchocitem->bknown = uchocitem->rknown = 1;
+				uchocitem->owt = weight(uchocitem);
+				dropy(uchocitem);
+				stackobj(uchocitem);
+			}
+			uchocitem = mksobj(CHOCOEGG, TRUE, FALSE, FALSE);
+			if (uchocitem) {
+				uchocitem->quan = 1;
+				uchocitem->known = uchocitem->dknown = uchocitem->bknown = uchocitem->rknown = 1;
+				uchocitem->owt = weight(uchocitem);
+				dropy(uchocitem);
+				stackobj(uchocitem);
+			}
+			pline("A christmas present may be waiting for you on the floor!");
+		}
+
 	    break;
 	case SUMMON_UNDEAD:
 	    if (u.uluck < -9) {

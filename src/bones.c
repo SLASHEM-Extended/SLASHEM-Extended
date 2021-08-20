@@ -243,7 +243,7 @@ can_make_bones()
 	/* KMH -- Restored to NetHack's chances, to limit abuse and for fairness */
 	/* to both low-level and high-level characters */
 	if(depth(&u.uz) <= 0 ||		/* bulletproofing for endgame */
-	   (!rn2(1 + (depth(&u.uz)>>2)) && !(BonesLevelChange || u.uprops[BONES_CHANGE].extrinsic || have_bonestone())	/* fewer ghosts on low levels */
+	   (!rn2(1 + (depth(&u.uz)>>2)) && !(BonesLevelChange || u.uprops[BONES_CHANGE].extrinsic || have_bonestone() || (uarmu && uarmu->oartifact == ART_ELVIS_S_BONES_FILE) )	/* fewer ghosts on low levels */
 #ifdef WIZARD
 		&& !wizard
 #endif
@@ -649,14 +649,14 @@ getbones()
 		return(0);
 
 	/* wizard check added by GAN 02/05/87 */
-	if(rn2(3) && !(BonesLevelChange || u.uprops[BONES_CHANGE].extrinsic || have_bonestone())	/* only once in three times do we find bones */
+	if(rn2(3) && !(BonesLevelChange || u.uprops[BONES_CHANGE].extrinsic || have_bonestone() || (uarmu && uarmu->oartifact == ART_ELVIS_S_BONES_FILE) )	/* only once in three times do we find bones */
 
 #ifdef WIZARD
 		&& !wizard
 #endif
 		) return(0);
 	/* if you triggered a bones trap, bad luck - you can now get bones even if you disabled them :P --Amy */
-	if (!iflags.bones && !(BonesLevelChange || u.uprops[BONES_CHANGE].extrinsic || have_bonestone()) ) return(0);
+	if (!iflags.bones && !(BonesLevelChange || u.uprops[BONES_CHANGE].extrinsic || have_bonestone() || (uarmu && uarmu->oartifact == ART_ELVIS_S_BONES_FILE) ) ) return(0);
 	if(no_bones_level(&u.uz)) return(0);
 	fd = open_bonesfile(&u.uz, &bonesid);
 	if (fd < 0) return(0);

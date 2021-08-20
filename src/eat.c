@@ -4820,6 +4820,7 @@ start_tin(otmp)		/* called when starting to open a tin */
 	} else if(uwep) {
 		switch(uwep->otyp) {
 		case TIN_OPENER:
+		case LASER_TIN_OPENER:
 		case BUDO_NO_SASU:
 			tmp = 1;
 			break;

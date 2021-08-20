@@ -760,6 +760,8 @@ register struct monst *mtmp;
 	if (uimplant && uimplant->oartifact == ART_RHEA_S_MISSING_EYESIGHT) tmp -= rnd(20);
 	if (uwep && uwep->oartifact == ART_DOUBLE_BESTARD) tmp -= rnd(20);
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DOUBLE_BESTARD) tmp -= rnd(20);
+	if (uwep && uwep->oartifact == ART_DESANN_S_WRATH) tmp -= 8;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DESANN_S_WRATH) tmp -= 8;
 	if (uwep && uwep->oartifact == ART_SIGIX_BROADSWORD) tmp -= 5;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SIGIX_BROADSWORD) tmp -= 5;
 	if (uwep && uwep->oartifact == ART_BAD_HITTER_BOY) tmp -= rnd(20);
@@ -2044,6 +2046,7 @@ int dieroll;
 							} else {
 								obj->age += 100;
 								if (obj->otyp == ORANGE_LIGHTSABER) obj->age += (100 * rnd(2));
+								if (obj->oartifact == ART_DESANN_S_WRATH) obj->age += (100 * rnd(2));
 								pline("Your lightsaber gains additional energy!");
 							}
 						}
@@ -2072,6 +2075,44 @@ int dieroll;
 				if (obj->otyp == AMBUSH_QATAR) tmp += rnd(10);
 			}
 
+			if (obj && (obj->otyp == POWERFIST || obj->otyp == LASERFIST) && tech_inuse(T_JIU_JITSU)) {
+				int jiuextradmg = 0;
+				if (find_mac(mon) <= -5) jiuextradmg += 2;
+				if (find_mac(mon) <= -10) jiuextradmg += 2;
+				if (find_mac(mon) <= -15) jiuextradmg += 2;
+				if (find_mac(mon) <= -20) jiuextradmg += 2;
+				if (find_mac(mon) <= -25) jiuextradmg += 2;
+				if (find_mac(mon) <= -30) jiuextradmg += 2;
+				if (find_mac(mon) <= -35) jiuextradmg += 2;
+				if (find_mac(mon) <= -40) jiuextradmg += 2;
+				if (find_mac(mon) <= -45) jiuextradmg += 2;
+				if (find_mac(mon) <= -50) jiuextradmg += 2;
+				if (find_mac(mon) <= -55) jiuextradmg += 2;
+				if (find_mac(mon) <= -60) jiuextradmg += 2;
+				if (find_mac(mon) <= -65) jiuextradmg += 2;
+				if (find_mac(mon) <= -70) jiuextradmg += 2;
+				if (find_mac(mon) <= -75) jiuextradmg += 2;
+				if (find_mac(mon) <= -80) jiuextradmg += 2;
+				if (find_mac(mon) <= -85) jiuextradmg += 2;
+				if (find_mac(mon) <= -90) jiuextradmg += 2;
+				if (find_mac(mon) <= -95) jiuextradmg += 2;
+				if (find_mac(mon) <= -100) jiuextradmg += 2;
+				if (find_mac(mon) <= -105) jiuextradmg += 2;
+				if (find_mac(mon) <= -110) jiuextradmg += 2;
+				if (find_mac(mon) <= -115) jiuextradmg += 2;
+				if (find_mac(mon) <= -120) jiuextradmg += 2;
+
+				if (!(PlayerCannotUseSkills)) {
+					if (P_SKILL(P_BARE_HANDED_COMBAT) >= P_SUPREME_MASTER) jiuextradmg *= 2;
+					else if (P_SKILL(P_BARE_HANDED_COMBAT) >= P_GRAND_MASTER) {
+						jiuextradmg *= 3;
+						jiuextradmg /= 2;
+					}
+				}
+				if (jiuextradmg) pline("You deal %d extra points of damage!", jiuextradmg);
+				tmp += jiuextradmg;
+			}
+
 			/* empath can feel the monster's psyche sometimes --Amy */
 			if (Role_if(PM_EMPATH) && !rn2(20)) {
 				You("probe %s!", mon_nam(mon));
@@ -2090,7 +2131,7 @@ int dieroll;
 				if (Role_if(PM_SUPERMARKET_CASHIER)) tmp += rnd(10);
 			}
 
-			if (obj && (obj->otyp == TIN_OPENER || obj->otyp == BUDO_NO_SASU) && Role_if(PM_SUPERMARKET_CASHIER)) {
+			if (obj && (obj->otyp == LASER_TIN_OPENER || obj->otyp == TIN_OPENER || obj->otyp == BUDO_NO_SASU) && Role_if(PM_SUPERMARKET_CASHIER)) {
 				if (obj->otyp == BUDO_NO_SASU) tmp += 5;
 				tmp += 2;
 				if (GushLevel >= 18) tmp += rnd(10);
@@ -3072,11 +3113,18 @@ int dieroll;
 			litroomlite(FALSE);
 		}
 
+		if (wep && wep->oartifact == ART_PUCKOCK && thrown && uball && (wep == uball)) tmp += 30;
+
 		if (wep && wep->otyp == JUMPING_FLAMER) {
 			if (!rn2(33)) (burnarmor(mon));
 			if (!rn2(33)) (void)destroy_mitem(mon, POTION_CLASS, AD_FIRE);
 			if (!rn2(33)) (void)destroy_mitem(mon, SCROLL_CLASS, AD_FIRE);
 			if (!rn2(50)) (void)destroy_mitem(mon, SPBOOK_CLASS, AD_FIRE);
+			if (thrown && wep->oartifact == ART_ORE_EVIL_WIGHT && mon->mcanmove) {
+				mon->mfrozen = 3;
+				mon->mcanmove = 0;
+				mon->mstrategy &= ~STRAT_WAITFORU;
+			}
 		}
 
 		if (wep && wep->otyp == DARKNESS_CLUB && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5))) {
@@ -3085,6 +3133,10 @@ int dieroll;
 		}
 
 		if (wep && wep->oartifact == ART_SVEN_S_GARBAGE_BOOSTER) {
+			mon->bleedout += rnd(10);
+			pline("%s is bleeding!", Monnam(mon));
+		}
+		if (wep && wep->oartifact == ART_ILJA_S_ASSHOLERY && has_head(mon->data) && !(mon->misc_worn_check & W_ARMH) && !thrown) {
 			mon->bleedout += rnd(10);
 			pline("%s is bleeding!", Monnam(mon));
 		}
@@ -3102,6 +3154,14 @@ int dieroll;
 				mon->mblinded = rnd(10);
 				pline("%s is blinded by your spray!", Monnam(mon));
 
+			}
+		}
+		if (wep && wep->oartifact == ART_YOU_LIL_PUSSY && mon->mcanmove && !rn2(3)) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) {
+				mon->mfrozen = rnd(10);
+				mon->mcanmove = 0;
+				mon->mstrategy &= ~STRAT_WAITFORU;
+				pline("%s is maced!", Monnam(mon));
 			}
 		}
 
@@ -4938,6 +4998,7 @@ melatechoice:
 	if (tech_inuse(T_PIRATE_BROTHERING) && uwep && is_lightsaber(uwep) && uwep->lamplit && uswapwep && weapon_type(uswapwep) == P_SCIMITAR && u.twoweap && obj && obj == uswapwep) {
 		uwep->age += tmp;
 		if (uwep->otyp == ORANGE_LIGHTSABER) uwep->age += (tmp * rnd(2));
+		if (uwep->oartifact == ART_DESANN_S_WRATH) uwep->age += (tmp * rnd(2));
 		pline("Your lightsaber is recharged a bit!");
 	}
 

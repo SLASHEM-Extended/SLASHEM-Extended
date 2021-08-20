@@ -795,6 +795,8 @@ doread()
 	"Procrastinators of all countries, unite... tomorrow!", /* by Amy's wonderful bundleroommate <3 */
 	"your chances of being successful in slex increase dramatically with access to the source code", /* by NetSysFire */
 	"I looked at SLEX source and lost sanity",
+	"Fuck you if you find SLEX offensive.",
+	"Excuse me, what part of FUCK YOU did you double-plus-ungood badpeople NOT understand???",
 
 
 	    };
@@ -1687,6 +1689,8 @@ int curse_bless;
 	    case ORANGE_LIGHTSABER:
 	    case BLACK_LIGHTSABER:
 	    case BLUE_LIGHTSABER:
+	    case LASERFIST:
+	    case LASER_TIN_OPENER:
 	    case MYSTERY_LIGHTSABER:
 	    case VIOLET_LIGHTSABER:
 	    case WHITE_LIGHTSABER:
@@ -1724,6 +1728,7 @@ int curse_bless;
 		    else {
 			obj->age += 1500;
 			if (obj->otyp == ORANGE_LIGHTSABER) obj->age += (1500 * rnd(2));
+			if (obj->oartifact == ART_DESANN_S_WRATH) obj->age += (1500 * rnd(2));
 		    }
 		    p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
@@ -1735,6 +1740,7 @@ int curse_bless;
 		} else {
 		    obj->age += 750;
 		    if (obj->otyp == ORANGE_LIGHTSABER) obj->age += (750 * rnd(2));
+		    if (obj->oartifact == ART_DESANN_S_WRATH) obj->age += (750 * rnd(2));
 		    if (issoviet && obj->age > 1500) {
 				obj->age = 1500;
 				pline("Vasha legkaya sablya ne zaryazhena pravil'no, potomu chto tip ledyanogo bloka nenavidit Emi i vse izmeneniya, kotoryye ona proizvodit. Yasno, chto slesh ikh vsegda budet vonyuchey kuchey der'ma.");

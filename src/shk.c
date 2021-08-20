@@ -1039,7 +1039,7 @@ register struct obj *obj, *merge;
 		}
 	}
 
-	if (Race_if(PM_PLAYER_MUSHROOM) && u.mushroompoleused) {
+	if ((Race_if(PM_PLAYER_MUSHROOM) || (uchain && uchain->oartifact == ART_ERO_ERO_ERO_ERO_MUSHROOM_M)) && u.mushroompoleused) {
 		setnotworn(obj);
 		obj_extract_self(obj);
 	}
