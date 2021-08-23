@@ -27328,6 +27328,16 @@ static NEARDATA const char * const fake_plines[] = {
 	"Bimmselimmelimm! Splinters of your shield are flying everywhere! Maybe you should have avoided the black dragon's disintegration breath after all.",
 	"You suddenly get angry at the ball and want to strike it.",
 	"You suddenly get angry at the ball and want to strike it. (You became probably moved.)",
+	"Today in SLEX News: How an aspiring variant developer got exiled from the community, complete with said community falsely claiming that she exiled herself",
+	"Today in SLEX News: Evil nethack server admins deleting variant developer's savegames that she poured many many hours into, even though they knew she could have finished those savegames on her own server after her game got deleted from the big community's one",
+	"Today in SLEX News: Variant developer decides to double her bets, with the rule that an additional card has to be drawn (also known as 'doubling down')",
+	"Today in SLEX News: The game that is a manifestation of the developer's id, and basically allows people to explore her psyche, sword-and-sorcery style",
+	"Today in SLEX News: Community members picking out several features from a nethack variant that are actually unrelated to each other, correlate them, and intentionally draw the worst possible conclusions just to have an excuse for putting her game on the index",
+	"Today in SLEX News: New climacterial role, complete with a quest that features the player fighting hanging semen ejaculators and their boss, the evil Larus bastard (who is a male version of Lara Croft) who tries to inseminate the female player character with the intention of making her pregnant",
+	"Today in SLEX News: community members waiting for variant developer's return so they can go at her with torches and pitchforks, except that she won't be making that mistake because there's nothing left for her anyway",
+	"Today in SLEX News: SLEX no longer has a player base, any mentions to the contrary are fake news because what activity's left is just people goofing around, not playing seriously",
+	"Today in SLEX News: Variant developer DARES to announce that she'd be retiring development, only to change her mind two weeks later and pump out commits machine-gun-style, how CAN she! What an EVIL person she is! BURN HER AT THE STAKE!",
+	"Today in SLEX News: Read the logs! The SJW community decided to judge, condemn and hang a promising variant developer, all in her absence, including labeling her a pariah, and when she came back to discover what has happened, she did the only right thing, namely removing herself from that community (which is what they wanted all along), only for them to state that somehow SHE labeled herself a pariah of her own volition. Maybe someone ought to tell them that if they didn't mean it that she is a pariah now, they shouldn't have said it.",
 
 };
 

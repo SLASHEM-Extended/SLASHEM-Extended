@@ -797,6 +797,7 @@ doread()
 	"I looked at SLEX source and lost sanity",
 	"Fuck you if you find SLEX offensive.",
 	"Excuse me, what part of FUCK YOU did you double-plus-ungood badpeople NOT understand???",
+	"thinking about starting my own TV channel, it would be called SLEX News and it would report the newest slex-related happenings, Fox News style",
 
 
 	    };

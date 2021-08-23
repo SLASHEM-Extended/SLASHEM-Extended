@@ -993,6 +993,7 @@ static const char *random_mesg[] = {
 	"notnethack is a variant made by emo", /* by elronnd */
 	"are the pirates properly rapey?",
 	"Amy is an error in the matrix and needs to be terminated before she releases another stupid version of slex!",
+	"gravestone: amy is the epitome of mental health, as we all know",
 
 };
 
