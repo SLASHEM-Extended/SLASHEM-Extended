@@ -1222,7 +1222,7 @@ break_armor()
 	if (uarmu && uarmu->stckcurse) shirtkeep = 1;
 
     if (breakarm(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
-	if (((otmp = uarm) != 0) && !(uarm && uarm->oartifact == ART_WRONG_TURN) && !armorkeep) {
+	if (((otmp = uarm) != 0) && !(uarm && uarm->otyp == OSFA_CHAIN_MAIL) && !(uarm && uarm->oartifact == ART_WRONG_TURN) && !armorkeep) {
 	    if(otmp->oartifact || (uarmf && uarmf->oartifact == ART_MALENA_S_LADYNESS) || (otmp->fakeartifact && rn2(2)) ) {
 		if (donning(otmp)) cancel_don();
 		Your("armor falls off!");
@@ -1293,7 +1293,7 @@ break_armor()
 		useup(uarmu);
 	    }
 	}
-    } else if (sliparm(youmonst.data) && !(uarm && uarm->oartifact == ART_WRONG_TURN) && !Race_if(PM_TRANSFORMER) ) {
+    } else if (sliparm(youmonst.data) && !(uarm && uarm->otyp == OSFA_CHAIN_MAIL) && !(uarm && uarm->oartifact == ART_WRONG_TURN) && !Race_if(PM_TRANSFORMER) ) {
 	if (((otmp = uarm) != 0) && !armorkeep && (racial_exception(&youmonst, otmp) < 1)) {
 		if (donning(otmp)) cancel_don();
 		Your("armor falls around you!");
