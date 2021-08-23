@@ -7478,7 +7478,7 @@ newbossX:
 
 		}
 
-		if (u.ucreamed < 0) {
+		if ((int)(u.ucreamed) < 0) {
 			pline("Fixing a bug that gave you a negative creamed counter...");
 			u.ucreamed = 0;
 		}

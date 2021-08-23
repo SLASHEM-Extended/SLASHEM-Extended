@@ -4048,6 +4048,7 @@ magicalenergychoice:
 			int effreduction = rnd(Blinded / 2);
 			if (effreduction > 0) {
 				u.ucreamed -= effreduction;
+				if ((int)(u.ucreamed) < 0) u.ucreamed = 0; /* fail safe */
 				Blinded -= effreduction;
 				Your("blindness counter is reduced.");
 			}
@@ -8015,6 +8016,7 @@ whisperchoice:
 					int effreduction = rnd(Blinded / 2);
 					if (effreduction > 0) {
 						u.ucreamed -= effreduction;
+						if ((int)(u.ucreamed) < 0) u.ucreamed = 0; /* fail safe */
 						Blinded -= effreduction;
 						Your("blindness counter is reduced.");
 					}
