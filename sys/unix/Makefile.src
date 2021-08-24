@@ -144,7 +144,7 @@ SYSOBJ = ioctl.o unixmain.o unixtty.o unixunix.o unixres.o recover.o
 # flags for debugging:
 # CFLAGS = -g -I../include
 
-CFLAGS = -g -O
+CFLAGS = -g -O -fcommon
 CFLAGS += -I../include
 LFLAGS = -g
 

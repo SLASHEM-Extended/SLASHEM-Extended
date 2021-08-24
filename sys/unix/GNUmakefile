@@ -21,7 +21,7 @@ TOUCH_VARDATA = touch $(1)
 TOUCH_VARDATA += $(if $(GAMEUID),&& chown $(GAMEUID) $(1))
 TOUCH_VARDATA += $(if $(GAMEGID),&& chgrp $(GAMEGID) $(1))
 
-CFLAGS = -g -O2
+CFLAGS = -g -O2 -fcommon
 
 CPPFLAGS += -Iinclude
 CPPFLAGS += -DDLB

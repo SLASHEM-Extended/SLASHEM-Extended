@@ -89,7 +89,7 @@
 # flags for debugging:
 # CFLAGS = -g -I../include
 
-CFLAGS = -g -O
+CFLAGS = -g -O -fcommon
 CFLAGS += -I../include
 LFLAGS = -g
 
