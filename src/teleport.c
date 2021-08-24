@@ -2277,6 +2277,8 @@ boolean give_feedback;
 {
 	boolean ball_active = (Punished && uball->where != OBJ_FREE);
 
+	if (mtmp->data == &mons[PM_BAN_EVADING_TROLL]) return FALSE;
+
 	if (mtmp->isshk) make_angry_shk(mtmp, 0, 0);
 
 			int nlev;

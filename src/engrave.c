@@ -993,7 +993,6 @@ static const char *random_mesg[] = {
 	"notnethack is a variant made by emo", /* by elronnd */
 	"are the pirates properly rapey?",
 	"Amy is an error in the matrix and needs to be terminated before she releases another stupid version of slex!",
-	"gravestone: amy is the epitome of mental health, as we all know",
 
 };
 
@@ -5509,6 +5508,7 @@ static const char *epitaphs[] = {
 	"Urgh I cancelled myself and lost an intrinsic resistance but the cursed -5 luckstone wasn't uncursed and only became -4! That just sucks so very much, I don't even want to know what the developer was smoking cause it sure ain't legal.",
 	"Amy must have been on crack when she decided to make the restore ability spell not guaranteed to work. Like, who would design a game that badly?",
 	"How the hell could Amy screw up so bad? Man, her changed artiwishing rules suck ass! There are so many artifacts generated and they all suck but at the same time blow your artiwishing chances to heck!",
+	"amy is the epitome of mental health, as we all know",
 
 };
 

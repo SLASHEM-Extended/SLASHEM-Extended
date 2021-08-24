@@ -5842,6 +5842,10 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, HIGH_HEELED_SANDAL);
 			(void)mongets(mtmp, FEMININE_PUMPS);
 
+		} else if (mm == PM_BUNDLE_SOFT_LOVEWOMAN){
+			(void)mongets(mtmp, HIGH_HEELED_SANDAL);
+			(void)mongets(mtmp, FEMININE_PUMPS);
+
 		} else if (mm == PM_YOUNG_MAN){
 			(void)mongets(mtmp, HIGH_HEELED_SANDAL);
 			(void)mongets(mtmp, WEDGE_SANDALS);
@@ -10471,6 +10475,19 @@ loveheelover:
 		if (mtmp->data == &mons[PM_SHURIKEN_PLANT]) m_initthrow(mtmp, SHURIKEN, 40);
 		if (mtmp->data == &mons[PM_RUNNING_SHURIKEN_PLANT]) m_initthrow(mtmp, SHURIKEN, 40);
 
+		if (ptr == &mons[PM_LUCKILY_STALLE]) {
+			(void)mongets(mtmp, (rn2(2)) ? RIFLE : SUBMACHINE_GUN);
+		  	m_initthrow(mtmp, BULLET, 25);
+		  	m_initthrow(mtmp, BULLET, 25);
+			(void)mongets(mtmp, (rn2(2)) ? KNIFE : DAGGER);
+			if (rn2(2)) (void) mongets(mtmp, FRAG_GRENADE);
+			(void) mongets(mtmp, RING_MAIL);
+			(void) mongets(mtmp, LOW_BOOTS);
+			(void) mongets(mtmp, DENTED_POT);
+			(void) mongets(mtmp, LEATHER_CLOAK);
+			if (rn2(2)) (void) mongets(mtmp, LEATHER_GLOVES);
+		}
+
 		if (mtmp->data == &mons[PM_KOP_PIE]) m_initthrow(mtmp, CREAM_PIE, 2);
 		if (mtmp->data == &mons[PM_PIE_SERGEANT]) m_initthrow(mtmp, CREAM_PIE, 2);
 		if (mtmp->data == &mons[PM_PIE_LIEUTENANT]) m_initthrow(mtmp, CREAM_PIE, 2);
@@ -12638,6 +12655,9 @@ loveheelover:
 
 		if (ptr == &mons[PM_SEXTARIAN_CUTIE]) {
 			(void) mongets(mtmp, BLOCK_HEELED_SANDAL);
+		}
+		if (ptr == &mons[PM_SCIENTITS]) {
+			(void) mongets(mtmp, CANDY_BRA);
 		}
 		if (ptr == &mons[PM_CHERRY_MOUSE]) {
 			(void) mongets(mtmp, CHERRY);
@@ -28366,6 +28386,7 @@ int type;
 		case PM_SHOE_GOLEM: return 80;
 		case PM_LINGERIE_GOLEM: return 60;
 		case PM_CARYATID: return 100;
+		case PM_GREEN_STEEL_GOLEM: return 190;
 		case PM_KNIGHT_OF_EMPTY_REFLECTIONS: return 300;
 		case PM_SANDAL_GOLEM: return 150;
 		case PM_MOUNTAIN_GOLEM: return 200;
@@ -28724,6 +28745,7 @@ int type;
 		case PM_SMOKE_GOLEM: return 200;
 		case PM_CLAY_STATUE: return 150;
 		case PM_TREASURY_GOLEM: return 160;
+		case PM_BATTLE_SPAM_GOLEM: return 160;
 		case PM_ANIMATED_HUGGING_BOOT: return 160;
 		case PM_WEREHUGGINGBOOT: return 160;
 		case PM_SNOW_GOLEM: return 160;

@@ -4867,7 +4867,7 @@ coord *mm;
 		(void) makemon(&mons[PM_KOP_KCHIEF], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 		break;
 		case 201:
-		(void) makemon(&mons[PM_ARCH_LICH], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
+		(void) makemon(&mons[PM_UNGENOCIDABLE_ARCH_LICH], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 		break;
 		case 202:
 		(void) makemon(&mons[PM_ANGRY_WATCH_LEADER], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);

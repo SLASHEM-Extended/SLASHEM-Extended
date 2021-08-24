@@ -2337,6 +2337,7 @@ mattacku(mtmp)
 	if (mtmp->data == &mons[PM_JOURHEA]) tmp -= 40;	/* has terribly bad aim */
 	if (mtmp->data == &mons[PM_THE_DIN_MISSED_YOU_]) tmp -= 20;	/* also aims badly */
 	if (mtmp->data == &mons[PM_FUNNY_MISSER]) tmp -= rnd(20);	/* ditto */
+	if (mtmp->data == &mons[PM_CURSED____LEFTHANDED_FARTING_ELEPHANT]) tmp -= 10;	/* left-handed */
 	if (mtmp->data == &mons[PM_UNEXPECTED_BANNER]) tmp -= rnd(20);	/* ditto */
 	if (mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_]) tmp += rnd(100); /* the elder priest uses an aimbot and a wallhack */
 

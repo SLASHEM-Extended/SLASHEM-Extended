@@ -3323,6 +3323,7 @@ register int pm;
 	    case PM_WILD_CHANGE_NYMPH:
 	    case PM_VERY_POLY_NYMPH:
 	    case PM_KARMA_CHAMELEON:
+	    case PM_EVIL_CHAMELEON:
 	    case PM_DOPPELGANGER:
 	    case PM_METAL_DOPPELGANGER:
 	    case PM_LAURA_S_PARLOR_TRICK:
@@ -3680,8 +3681,14 @@ register int pm;
 		case PM_MINDWITNESS:
 		case PM_BRAIN_GOLEM:
 		case PM_LOWER_BRAIN:
+		case PM_MUMAK_FLAYER:
 		case PM_IDIOT_BRAIN:
 		case PM_ELDER_BRAIN:
+		case PM_CHIMERIC_XAN_FLAYER:
+		case PM_CHIMERIC_EKS_FLAYER:
+		case PM_COILING_BRAWN:
+		case PM_FUNGAL_BRAIN:
+		case PM_PRESERVED_BRAIN:
 		case PM_MASTER_BRAIN:
 		case PM_PETTY_BRAIN_GOLEM:
 		case PM_LARGE_BRAIN_EATER:
@@ -3719,6 +3726,7 @@ register int pm;
 		case PM_VAMPIRIC_MIND_FLAYER:
 		case PM_HAPPY_MEAL:
 		case PM_CANCEROUS_MIND_FLAYER:
+		case PM_JUST_STAND_THERE_MIND_FLAYER:
 	    case PM_MIND_FLAYER: {
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 

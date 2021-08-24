@@ -227,6 +227,7 @@ int mndx;
 
 	switch (mndx) {
 	case PM_CHAMELEON:	mcham = CHAM_CHAMELEON; break;
+	case PM_EVIL_CHAMELEON:	mcham = CHAM_EVIL_CHAMELEON; break;
 	case PM_CHAMECHAUN:	mcham = CHAM_CHAMECHAUN; break;
 	case PM_METAMORPHOSE:	mcham = CHAM_METAMORPHOSE; break;
 	case PM_GHELEON:	mcham = CHAM_GHELEON; break;
@@ -351,6 +352,7 @@ STATIC_VAR int cham_to_pm[] = {
 		PM_COMMA_CHAMELEON,
 		PM_UNIQUE_SHIFTER,
 		PM_PLAYER_CHANGELING,
+		PM_EVIL_CHAMELEON,
 		PM_GIANT_CHAMELEON,
 };
 
@@ -645,11 +647,22 @@ register struct monst *mtmp;
 		(void) mksobj_at(CHERRY, x, y, TRUE, FALSE, FALSE);
 		newsym(x, y);
 		return (struct obj *)0;
+	    case PM_TSCHERRYTREE:
+		{
+			int tscherries = rnd(10);
+			while (tscherries > 0) {
+				(void) mksobj_at(CHERRY, x, y, TRUE, FALSE, FALSE);
+				tscherries--;
+			}
+			newsym(x, y);
+			return (struct obj *)0;
+		}
 	    case PM_FLOATING_MELON:
 		(void) mksobj_at(MELON, x, y, TRUE, FALSE, FALSE);
 		newsym(x, y);
 		return (struct obj *)0;
 	    case PM_STRIP_BANANA:
+	    case PM_KICKING_BANANA:
 		(void) mksobj_at(BANANA, x, y, TRUE, FALSE, FALSE);
 		newsym(x, y);
 		return (struct obj *)0;
@@ -8155,6 +8168,7 @@ struct monst *mon;
 	switch (mon->cham) {
 
 	case CHAM_CHAMELEON: chambaselvl = 6; break;
+	case CHAM_EVIL_CHAMELEON: chambaselvl = 6; break;
 	case CHAM_DOPPELGANGER: chambaselvl = 9; break;
 	case CHAM_DOPPLEZON: chambaselvl = 10; break;
 	case CHAM_SANDESTIN: chambaselvl = 13; break;
@@ -8735,6 +8749,7 @@ edotochoice:
 			if (rn2(10000) && !(pm->mlet == S_ARCHFIEND) ) goto jokechoice;
 		break;
 	    case CHAM_CHAMELEON:
+	    case CHAM_EVIL_CHAMELEON:
 	    case CHAM_COMMA_CHAMELEON:
 	    case CHAM_CHAMECHAUN:
 	    case CHAM_GHELEON:
