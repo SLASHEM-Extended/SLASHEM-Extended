@@ -2272,6 +2272,31 @@ toofar:
 			}
 		}
 
+	    if (inrange && (mdat == &mons[PM_EVERCOMPLAINING_UBERSJW]) && !mtmp->mpeaceful && !rn2(5) ) {
+		static const char *ubersjw_msgs[] = {
+			"omg that monster has 'girl' in its name that is soooooo offensive",
+			"oh my god amy keeps doubling down on the offensiveness",
+			"slex is sexist",
+			"the stupid obsession with body functions is retarded",
+			"holy shit the transvestite role breaks new ground in offensiveness",
+			"the game is full of transmisogyny",
+			"discrimination everywhere! dont play slex!",
+			"this garbage makes me feel uncomfortable",
+			"amy uses the evil r-word in her game",
+			"those new playable roles are childish and stupid",
+			"why all the farting, that doesnt belong in the game",
+			"omg this game is like fatal the roguelike",
+			"we should put slex on the index",
+			"why am i a monster in slex, that is so unfair",
+			"the insults in the random scroll labels need to go",
+			"eimi wa bakadesu", /* "Amy is stupid" translated to japanese */
+			"using 'gay' as an insult is way below the belt",
+			"the creator keeps digging a deeper hole for herself by calling people 'retards'",
+		};
+		verbalize("%s", ubersjw_msgs[rn2(SIZE(ubersjw_msgs))]);
+
+	    }
+
 	    if(inrange && mtmp->data->msound == MS_BOSS && !mtmp->mpeaceful && !rn2(10))
 	    pline("%s %s", Monnam(mtmp), bosstaunt());
 
@@ -2732,7 +2757,10 @@ altarfound:
 	if (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_DAFT_SHEEP) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_METH_HEAD) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_CONTRULLA) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_GAGAGAGOGL) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_IRMGARD) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_IRITAL) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_FULL_WEAKMATE_O) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_DEBILITATED_DANNY) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_DIM_GIRL) mtmp->mconf = 1;
@@ -3023,7 +3051,7 @@ altarfound:
 	       nidist > (couldsee(nix,niy) ? 144 : 36) && appr == 1) appr = 0;
 
 		/* special coding for "homing" giant wasps from the hunger games --Amy */
-		if ((ptr == &mons[PM_TRACKER_JACKER] || ptr == &mons[PM_CURSED____LEFTHANDED_FARTING_ELEPHANT] || ptr == &mons[PM_VERONA_MARBLE] || ptr == &mons[PM_CHASE_BIRD] || ptr == &mons[PM_OOGABOOGAGOBILITGOOK_SEEKER_AREHETYPE_FUCKING_RETARD_ASS_SHIT_FLINGING_MONKEY_MONSTER] || ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_DRIVE_TRAIN] || ptr == &mons[PM_XTREME_TRACKER] || ptr == &mons[PM_REFUGE_UHLERT]) && !mtmp->mpeaceful) appr = 1;
+		if ((ptr == &mons[PM_TRACKER_JACKER] || ptr == &mons[PM_POLICE_DOG] || ptr == &mons[PM_POLICE_HUSKY] || ptr == &mons[PM_BIG_POLICE_DOG] || ptr == &mons[PM_CURSED____LEFTHANDED_FARTING_ELEPHANT] || ptr == &mons[PM_VERONA_MARBLE] || ptr == &mons[PM_CHASE_BIRD] || ptr == &mons[PM_OOGABOOGAGOBILITGOOK_SEEKER_AREHETYPE_FUCKING_RETARD_ASS_SHIT_FLINGING_MONKEY_MONSTER] || ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_DRIVE_TRAIN] || ptr == &mons[PM_XTREME_TRACKER] || ptr == &mons[PM_REFUGE_UHLERT]) && !mtmp->mpeaceful) appr = 1;
 
 	if (uarmh && itemhasappearance(uarmh, APP_BUG_TRACKING_HELMET) && !rn2(3) ) appr = 1; 
 

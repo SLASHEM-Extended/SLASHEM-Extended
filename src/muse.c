@@ -12274,7 +12274,8 @@ struct monst *mtmp;
 			if (!Has_contents(obj)) continue;
 
 			if (canseemon(mtmp)) pline("%s empties a container on the %s.", Monnam(mtmp), surface(mtmp->mx, mtmp->my));
-			dump_container(obj, FALSE, mtmp->mx, mtmp->my);
+			if (mtmp->data == &mons[PM_BOXPORT_NYMPH]) dump_container_tele(obj, FALSE, mtmp->mx, mtmp->my);
+			else dump_container(obj, FALSE, mtmp->mx, mtmp->my);
 
 		}
 

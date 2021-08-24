@@ -5500,6 +5500,27 @@ newboss:
 		}
 	}
 
+	if (mtmp->data == &mons[PM_EVIL_RAPIST] && flags.female) {
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_INER;
+		a->damn = 2;
+		a->damd = 4;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				(void) hitmu(mtmp, a);
+				You_feel("violated!");
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
 	if (evilfriday && mtmp->data->mlet == S_GHOST) {
 		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict || !touch_petrifies(youmonst.data))) {
 			if (foundyou && tmp > (j = rnd(20+i))) {
@@ -20736,6 +20757,11 @@ skiptreason:
 	u.pervertsex = 0;
 	if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
+	if (mon->data == &mons[PM_VIRGINITY_STEALER] && flags.female && !u.uconduct.celibacy) {
+		pline("AIIEGH! %s's penis popped your cherry!", Monnam(mon));
+		nomul(-10, "being deflowered", TRUE);
+	}
+
 	if (Role_if(PM_GRENADONIN) && mon->data->mcolor == CLR_BLACK) {
 		u.ualign.sins++;
 		u.alignlim--;
@@ -20955,7 +20981,7 @@ enjoyable:
 
 	/* maybe contract a disease? --Amy */
 	if (protect_test) {
-
+stdcontracting:
 		 if (slextest(5, 25)) {
 			stdmsg("syphilis");
 
@@ -21627,6 +21653,8 @@ enjoyable:
 		set_itimeout(&HeavyNumbed, HNumbed);
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
+
+		if (mon->data == &mons[PM_STD_CONTRACTOR] && rn2(5)) goto stdcontracting;
 
 		if (practicantterror) {
 			pline("%s thunders: 'What the hell, you're having sex in my lab??? And you're not even using contraceptives? Didn't your parents teach you anything, you can catch STDs that way! That's a fine of 5000 zorkmids, and here's also an additional punishment. At least get a fucking room next time!'", noroelaname());

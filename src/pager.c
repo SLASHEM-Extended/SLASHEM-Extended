@@ -27338,6 +27338,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Today in SLEX News: SLEX no longer has a player base, any mentions to the contrary are fake news because what activity's left is just people goofing around, not playing seriously",
 	"Today in SLEX News: Variant developer DARES to announce that she'd be retiring development, only to change her mind two weeks later and pump out commits machine-gun-style, how CAN she! What an EVIL person she is! BURN HER AT THE STAKE!",
 	"Today in SLEX News: Read the logs! The SJW community decided to judge, condemn and hang a promising variant developer, all in her absence, including labeling her a pariah, and when she came back to discover what has happened, she did the only right thing, namely removing herself from that community (which is what they wanted all along), only for them to state that somehow SHE labeled herself a pariah of her own volition. Maybe someone ought to tell them that if they didn't mean it that she is a pariah now, they shouldn't have said it.",
+	"AIIEGH! The virginity stealer's penis popped your cherry!",
+	"AIIEGH! The virginity stealer's penis popped your cherry! (This message would cause the admin to remove the game from the server if he hadn't already done so, because it's so turbogross.)",
 
 };
 

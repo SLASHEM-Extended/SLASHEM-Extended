@@ -2315,6 +2315,7 @@ E int out_container(struct obj *);
 E int pickup(int);
 E int pickup_object(struct obj *, long, BOOLEAN_P, BOOLEAN_P);
 E int dump_container(struct obj *, BOOLEAN_P, int, int);
+E int dump_container_tele(struct obj *, BOOLEAN_P, int, int);
 E int query_category(const char *, struct obj *, int, menu_item **, int);
 E int query_objlist(const char *, struct obj *, int, menu_item **, int, boolean (*)(OBJ_P));
 E struct obj *pick_obj(struct obj *);
