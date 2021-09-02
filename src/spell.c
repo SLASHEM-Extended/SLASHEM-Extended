@@ -12171,8 +12171,29 @@ int spell;
 	if (Race_if(PM_INHERITOR)) chance -= 10;
 	if (RngeUnnethack) chance -= 33;
 
+	/* artifacts and other items that boost the chance after "hard" penalties are applied go here --Amy */
+
+	if (uarmc && itemhasappearance(uarmc, APP_FAILUNCAP_CLOAK) ) chance += 5;
+	if (uarmh && itemhasappearance(uarmh, APP_FAILUNCAP_HELMET) ) chance += 5;
+	if (uarmg && itemhasappearance(uarmg, APP_FAILUNCAP_GLOVES) ) chance += 5;
+	if (uarmf && itemhasappearance(uarmf, APP_FAILUNCAP_SHOES) ) chance += 5;
+
+	if (uwep && uwep->oartifact == ART_RASSCHEN_TAAK) chance += 5;
+
+	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) chance += 5;
+
+	/* very high INT gives a boost, even if your casting stat is WIS --Amy */
+	if (ACURR(A_INT) >= 16) {
+		chance += (ACURR(A_INT) - 15);
+	}
+
+	if (uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) {
+		chance += 20;
+	}
+
 	/* "bullshit change" by Amy: make it quite a bit harder to get to 0% fail, because spells are generally easier to
-	 * cast compared to vanilla which results in difficult spells being too easy for non-caster roles */
+	 * cast compared to vanilla which results in difficult spells being too easy for non-caster roles
+	 * THIS MUST COME AFTER ANYTHING THAT BOOSTS THE CHANCE */
 	if (chance > 50) {
 		int chancediff = (chance - 50);
 		chancediff /= 2;
@@ -12191,6 +12212,10 @@ int spell;
 	/* Clamp to percentile */
 	if (chance > 100) chance = 100;
 
+	if (RememberanceEffect || u.uprops[REMEMBERANCE_EFFECT].extrinsic || have_rememberancestone()) {
+		if (chance > (spellknow(spell) / 100)) chance = (spellknow(spell) / 100);
+	}
+
 	if (uarmc && itemhasappearance(uarmc, APP_SHELL_CLOAK) ) chance -= 20;
 
 	if (is_grassland(u.ux, u.uy) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) chance -= 10;
@@ -12201,82 +12226,8 @@ int spell;
 		chance *= 5;
 		chance /= 6;
 	}
+
 	if (Race_if(PM_INHERITOR)) chance--;
-
-	if (RememberanceEffect || u.uprops[REMEMBERANCE_EFFECT].extrinsic || have_rememberancestone()) {
-		if (chance > (spellknow(spell) / 100)) chance = (spellknow(spell) / 100);
-	}
-
-	/* artifacts and other items that boost the chance after "hard" penalties are applied go here --Amy */
-
-	if (uarmc && itemhasappearance(uarmc, APP_FAILUNCAP_CLOAK) ) {
-		if (chance < 86) chance += 5;
-		else if (chance == 86) chance += 4;
-		else if (chance == 87) chance += 4;
-		else if (chance == 88) chance += 3;
-		else if (chance == 89) chance += 3;
-		else if (chance == 90) chance += 2;
-		else chance += 1;
-	}
-
-	if (uarmh && itemhasappearance(uarmh, APP_FAILUNCAP_HELMET) ) {
-		if (chance < 86) chance += 5;
-		else if (chance == 86) chance += 4;
-		else if (chance == 87) chance += 4;
-		else if (chance == 88) chance += 3;
-		else if (chance == 89) chance += 3;
-		else if (chance == 90) chance += 2;
-		else chance += 1;
-	}
-
-	if (uarmg && itemhasappearance(uarmg, APP_FAILUNCAP_GLOVES) ) {
-		if (chance < 86) chance += 5;
-		else if (chance == 86) chance += 4;
-		else if (chance == 87) chance += 4;
-		else if (chance == 88) chance += 3;
-		else if (chance == 89) chance += 3;
-		else if (chance == 90) chance += 2;
-		else chance += 1;
-	}
-
-	if (uarmf && itemhasappearance(uarmf, APP_FAILUNCAP_SHOES) ) {
-		if (chance < 86) chance += 5;
-		else if (chance == 86) chance += 4;
-		else if (chance == 87) chance += 4;
-		else if (chance == 88) chance += 3;
-		else if (chance == 89) chance += 3;
-		else if (chance == 90) chance += 2;
-		else chance += 1;
-	}
-
-	if (uwep && uwep->oartifact == ART_RASSCHEN_TAAK) {
-		if (chance < 86) chance += 5;
-		else if (chance == 86) chance += 4;
-		else if (chance == 87) chance += 4;
-		else if (chance == 88) chance += 3;
-		else if (chance == 89) chance += 3;
-		else if (chance == 90) chance += 2;
-		else chance += 1;
-	}
-
-	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) {
-		if (chance < 86) chance += 5;
-		else if (chance == 86) chance += 4;
-		else if (chance == 87) chance += 4;
-		else if (chance == 88) chance += 3;
-		else if (chance == 89) chance += 3;
-		else if (chance == 90) chance += 2;
-		else chance += 1;
-	}
-
-	/* very high INT gives a boost, even if your casting stat is WIS --Amy */
-	if (ACURR(A_INT) >= 16) {
-		chance += (ACURR(A_INT) - 15);
-	}
-
-	if (uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) {
-		chance += 20;
-	}
 
 	/* REALLY clamp chance now */
 	if (chance > 100) chance = 100;
