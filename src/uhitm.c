@@ -2850,7 +2850,6 @@ int dieroll;
 		}
 	}
 
-
 	/****** NOTE: perhaps obj is undefined!! (if !thrown && BOOMERANG)
 	 *      *OR* if attacking bare-handed!! */
 
@@ -3191,6 +3190,11 @@ melatechoice:
 				pline_The("armor piece is made of copper now.");
 			}
 
+		}
+
+		if (thrown && obj && (obj->oartifact == ART_SELF_SUFFICIENCE)) {
+			if (obj->cursed) uncurse(obj, TRUE);
+			if (obj->spe < 0) obj->spe++;
 		}
 
 		if (wep && wep->oartifact == ART_ENCHANTEASY && !rn2(1000) && wep->spe < 7) {

@@ -729,7 +729,7 @@ int x,y;
 	    } else {
 		chance = 3 + obj->spe - greatest_erosionX(obj);
 		if (chance > 3) chance = 2 + rno(chance - 2);
-		if (chance < 1) chance = 1; /* fail safe */
+		if (chance < 2) chance = 2; /* fail safe */
 		if (Race_if(PM_MONGUNG)) chance *= 2;
 
 		create = rn2(chance);

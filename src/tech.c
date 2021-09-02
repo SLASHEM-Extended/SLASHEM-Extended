@@ -7318,6 +7318,7 @@ revid_end:
 				break;
 			}
 			uwep->quan++;
+			uwep->owt = weight(uwep);
 			pline("A new javelin is created out of thin air!");
 			t_timeout = rnz(7000);
 			break;

@@ -8693,6 +8693,26 @@ A("Desann's Wrath",				RED_LIGHTSABER, /* randart2 lightsaber, -8 to-hit, gains 
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
+A("Boah What A Stack",				WONDER_ARROW, /* spawns with 200 extra ammo */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20L ),
+
+A("Niner",				HEAVY_CROSSBOW_BOLT, /* spawning enchantment is increased by 9 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 70L ),
+
+A("Self-Sufficience",				AMBER_FRAGMENT, /* when hitting a monster with it, uncurses itself and loses a point of negative enchantment (if present) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),
+
+A("Slittem Off",				MYSTERY_SHURIKEN,
+	(SPFX_RESTR|SPFX_BEHEAD), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Zieieie!",				BFG_AMMO, /* spawns with 400 extra ammo */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 40L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

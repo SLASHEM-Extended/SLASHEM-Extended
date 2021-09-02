@@ -21594,6 +21594,16 @@ boolean knoweverything;
 					pline("Artifact specs: +2 to-hit and +4 damage."); break;
 				case ART_DESANN_S_WRATH:
 					pline("Artifact specs: +8 damage but -8 to-hit, charging it with something other than charge saber will give extra-high charge bonuses."); break;
+				case ART_BOAH_WHAT_A_STACK:
+					pline("Artifact specs: well you probably have quite a bunch of them now, but they don't actually do anything special."); break;
+				case ART_NINER:
+					pline("Artifact specs: they may have spawned with a high enchantment value; apart from that, they have no special effects."); break;
+				case ART_SELF_SUFFICIENCE:
+					pline("Artifact specs: if they hit a monster, they will uncurse and un-disenchant themselves."); break;
+				case ART_SLITTEM_OFF:
+					pline("Artifact specs: beheads targets."); break;
+				case ART_ZIEIEIE_:
+					pline("Artifact specs: no special effect but they may well have spawned with an unusually high stack size."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

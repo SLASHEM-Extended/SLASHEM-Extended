@@ -10102,7 +10102,13 @@ typfnd:
 		otmp = oname(otmp, nname);
 		obj_extract_self(otmp);	 /* now release it for caller's use */
 		if (otmp->oartifact) {
-			otmp->quan = 1L;
+#ifdef WIZARD
+			if (!wizard) {
+#endif
+				otmp->quan = 1L;
+#ifdef WIZARD
+			}
+#endif
 			u.uconduct.wisharti++;	/* KMH, conduct */
 		}
 	}

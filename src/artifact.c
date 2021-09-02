@@ -14,6 +14,10 @@ STATIC_DCL struct artifact artilist[];
  *	  so loops over them should normally start at #1.  The primary
  *	  exception is the save & restore code, which doesn't care about
  *	  the contents, just the total size.
+ *
+ * Amy note: artifact_exists() is the function called when creating an artifact, strangely enough. If we want to add
+ * special code that runs upon the artifact's generation, such as extra-high charge counts for a lightsaber artifact,
+ * that is where we need to put it.
  */
 
 
@@ -735,9 +739,6 @@ make_artif: if (by_align) otmp = mksobj((int)a->otyp, TRUE, FALSE, FALSE);
 
 	    otmp->oartifact = m;
 
-	    if (otmp && otmp->oartifact == ART_VADER_S_CHARGE) otmp->age += rnz(5000);
-	    if (otmp && otmp->oartifact == ART_TAVION_S_CHARGE) otmp->age += rnz(5000);
-
 		/* usually mark artifact as existing... but not always :D --Amy */
 	    if (rn2(100)) artiexist[m] = TRUE;
 	} else {
@@ -782,8 +783,6 @@ bad_artifact()
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
 		}
-	    if (otmp && otmp->oartifact == ART_VADER_S_CHARGE) otmp->age += rnz(5000);
-	    if (otmp && otmp->oartifact == ART_TAVION_S_CHARGE) otmp->age += rnz(5000);
 
 	    if (rn2(100)) artiexist[m] = TRUE;
 	} else {
@@ -935,8 +934,6 @@ bad_artifact_xtra()
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
 		}
-	    if (otmp && otmp->oartifact == ART_VADER_S_CHARGE) otmp->age += rnz(5000);
-	    if (otmp && otmp->oartifact == ART_TAVION_S_CHARGE) otmp->age += rnz(5000);
 
 	    if (rn2(100)) artiexist[m] = TRUE;
 	} else {
@@ -1149,6 +1146,18 @@ register boolean mod;
 		    otmp->oartifact = (/*char*/int)(mod ? m : 0);
 		    if (otmp && otmp->oartifact == ART_VADER_S_CHARGE) otmp->age += rnz(5000);
 		    if (otmp && otmp->oartifact == ART_TAVION_S_CHARGE) otmp->age += rnz(5000);
+		    if (otmp && otmp->oartifact == ART_NINER) {
+			otmp->spe += 9;
+			if (otmp->spe > 127) otmp->spe = 127;
+		    }
+		    if (otmp && otmp->oartifact == ART_BOAH_WHAT_A_STACK) {
+			otmp->quan += 200;
+			otmp->owt = weight(otmp);
+		    }
+		    if (otmp && otmp->oartifact == ART_ZIEIEIE_) {
+			otmp->quan += 400;
+			otmp->owt = weight(otmp);
+		    }
 		    if (mod) {
 			/* Light up Candle of Eternal Flame and
 			 * Holy Spear of Light on creation.
