@@ -3091,10 +3091,11 @@ struct mkroom	*croom;
 	    else if (g_mvflags & G_GONE)	/* genocided or extinct */
 		pm = (struct permonst *) 0;	/* make random monster */
 	} else {
-	    pm = mkclass(class,G_NOGEN|MKC_ULIMIT);
+	    pm = mkclass(class,MKC_ULIMIT);
 	    /* if we can't get a specific monster type (pm == 0) then all
 	       the monsters of acceptable difficulty in the given class
 	       have been genocided, so settle for a random monster */
+	    /* Amy edit: what the fuck man why did this allow G_NOGEN monsters to spawn */
 	}
 	x = m->x;
 	y = m->y;
