@@ -282,7 +282,11 @@ on the first floor, especially when you're playing as something with drain resis
 			}
 
 			if (FemtrapActiveKati && humanoid(mtmp->data) && is_female(mtmp->data)) {
-				pline("%s painfully kicks you in the %s with her sexy Kati shoes!", Monnam(mtmp), makeplural(body_part(LEG)));
+
+			/* kati and sing trap effects are supposed to always tell you the exact name of the monster,
+			 * even if you're blind, hallucinating or whatever, so you know whose shoes you're cleaning --Amy */
+
+				pline("%s painfully kicks you in the %s with her sexy Kati shoes!", mtmp->data->mname, makeplural(body_part(LEG)));
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				losehp((monsterlev), "being kicked by Kati shoes", KILLED_BY);
@@ -302,7 +306,7 @@ on the first floor, especially when you're playing as something with drain resis
 
 			if (FemtrapActiveSing && mtmp->singannoyance) {
 				boolean extraannoying = !rn2(5);
-				pline("Sing announces that %s stepped into %s, and asks you to clean them.", Monnam(mtmp), extraannoying ? "cow dung" : "dog shit");
+				pline("Sing announces that %s stepped into %s, and asks you to clean them.", mtmp->data->mname, extraannoying ? "cow dung" : "dog shit");
 				if (yn("Do you want to clean them?") == 'y') {
 						delay = (extraannoying ? -200 : -40);
 						u.singtrapocc = TRUE;
