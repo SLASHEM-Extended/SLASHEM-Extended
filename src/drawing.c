@@ -235,7 +235,7 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'-', "wall",		C(CLR_GRAY)},	/* tdwall */
 /*10*/	{'|', "wall",		C(CLR_GRAY)},	/* tlwall */
 	{'|', "wall",		C(CLR_GRAY)},	/* trwall */
-	{'#', "rock wall",		C(CLR_BROWN)},	/* rockwall */
+	{'#', "solid rock",		C(CLR_BROWN)},	/* rockwall - displays as "solid rock" */
 	{'#', "grave wall",		C(CLR_YELLOW)},	/* gravewall */
 	{'#', "tunnel",		C(CLR_RED)},	/* tunnelwall */
 	{'.', "doorway",	C(CLR_GRAY)},	/* ndoor */
@@ -3604,6 +3604,7 @@ def_char_to_monclass(ch)
     char ch;
 {
     int i;
+
     for (i = 1; i < MAXMCLASSES; i++)
 	if (def_monsyms[i] == ch) break;
     return i;
