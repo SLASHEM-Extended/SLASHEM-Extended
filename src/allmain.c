@@ -12799,6 +12799,8 @@ aliasagain:
               newsym(u.ux,u.uy);
        }
 
+	if (flags.contentwarning) com_pager(200);
+
 	if (flags.legacy) {
 		flush_screen(1);
         if (Role_if(PM_CONVICT)) {

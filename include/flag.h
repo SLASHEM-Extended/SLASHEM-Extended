@@ -31,6 +31,7 @@ struct flag {
 	boolean  bash_reminder;	/* remind player about bashing with a launcher or non-weapon */
 	boolean  etimed_autosave;	/* automatically save state every 100 turns to ward off phantom crash bugs --Amy */
 	boolean  xtimed_autosave;	/* automatically save state every 100 turns to ward off phantom crash bugs --Amy */
+	boolean  contentwarning;	/* show a content warning upon starting a new char */
 
 	boolean  beginner;
 #ifdef MAIL

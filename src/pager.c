@@ -26475,7 +26475,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Maureen'. It reads: 'Many thanks and see you again in Chloe's Beauty Salon!'",
 	"Incoming message for Player 1. The message is from 'Maureen'. It reads: 'It was a pleasure doing business with you!'",
 	"Incoming message for Player 1. The message is from 'Maureen'. It reads: 'From now on you'll have luck with your relationships again while I once again have a full coinpurse, so it's a win-win situation for the two of us!'",
-	"Incoming message for Player 1. The message is from 'Maureen'. It reads: 'Remmeber, don't wipe your mascara!'",
+	"Incoming message for Player 1. The message is from 'Maureen'. It reads: 'Remember, don't wipe your mascara!'",
 	"Incoming message for Player 1. The message is from 'Maureen'. It reads: 'Never did a woman wear as much rouge as you! Now you'll certainly win second place in the beauty contest (the first place goes to me, of course)!'",
 	"Incoming message for Player 1. The message is from 'Maureen'. It reads: 'Now you can use your new voluptuous lips to irresistibly kiss your lover!'",
 	"Incoming message for Player 1. The message is from 'Maureen'. It reads: 'Have fun picniccing with your future spouse!'",
@@ -27340,6 +27340,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Today in SLEX News: Read the logs! The SJW community decided to judge, condemn and hang a promising variant developer, all in her absence, including labeling her a pariah, and when she came back to discover what has happened, she did the only right thing, namely removing herself from that community (which is what they wanted all along), only for them to state that somehow SHE labeled herself a pariah of her own volition. Maybe someone ought to tell them that if they didn't mean it that she is a pariah now, they shouldn't have said it.",
 	"AIIEGH! The virginity stealer's penis popped your cherry!",
 	"AIIEGH! The virginity stealer's penis popped your cherry! (This message would cause the admin to remove the game from the server if he hadn't already done so, because it's so turbogross.)",
+	"Incoming message for Player 1. The message is from 'Derek'. It reads: 'Ah-jaje popo chambo ah-jaje!'",
 
 };
 

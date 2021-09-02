@@ -1104,7 +1104,7 @@ WEAPON("mystery shuriken", (char *)0,
 WEAPON("nano shuriken", (char *)0,
 	1, 1, 0, 40,  0,  5,  8,  6, 2, P,   -P_SHURIKEN, MT_NANOMACHINE, CLR_BRIGHT_GREEN, 1),
 WEAPON("cubic star", (char *)0,
-	0, 1, 0, 200,  0,  5,  8,  6, 2, P,   -P_SHURIKEN, MT_IRON, CLR_BLACK, 1),
+	1, 1, 0, 200,  0,  5,  8,  6, 2, P,   -P_SHURIKEN, MT_IRON, CLR_BLACK, 1),
 
 /* Boomerangs */
 WEAPON("boomerang", (char *)0,
@@ -7230,6 +7230,7 @@ SCROLL((char *)0,               "EVERCOMPLAINING SJW WHO WHINES ALL THE TIME",  
 SCROLL((char *)0,               "WHO WOULD COME UP WITH THE IDEA OF A MONSTER NAMED FAGON",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
 SCROLL((char *)0,               "THE INDIAN DELTA VARIANT SHITS ON THE INEFFECTIVE VACCINE",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
 SCROLL((char *)0,               "NGCBTTTC",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
+SCROLL((char *)0,               "ECHA ECHETATE",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
 
 
 #ifdef MAIL

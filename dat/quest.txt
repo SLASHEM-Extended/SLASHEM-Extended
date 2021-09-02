@@ -76066,6 +76066,24 @@ a staircase is hidden that will take you to the Bell Caves.
 Entering the Bell Caves will imbue the bell, allowing it to work.
 %E
 
+%Cc - 00200
+Content warning:
+
+This game is rated R, or Mature Content. The content of this game
+may be unsuitable for underage players. Additionally, some of this
+game's content may include features that can be triggering to some
+players, including but not limited to strong language, graphical
+descriptions of violence, sexual assault, self injury and mental
+disabilities. If you feel that you could be triggered by the
+exposure to this kind of content, you might want to opt out of
+this game. The author, Amy, takes no responsibility for any harm
+caused by playing this game.
+
+If you wish to not see this message on every new game start,
+you can hide it by adding OPTIONS=!contentwarning to your
+user configuration file.
+%E
+
 %Cc - 09999
 You read the following text in the Nethack sources ...
 

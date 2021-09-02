@@ -18835,6 +18835,12 @@ loveheelover:
 
 	}
 
+	if (ptr == &mons[PM_POPO_CHAMBO]) {
+
+		mtmp->fartbonus += 5;
+
+	}
+
 	if (ptr == &mons[PM_NICE_EVIL_GIRL]) {
 
 		mtmp->fartbonus += 9;

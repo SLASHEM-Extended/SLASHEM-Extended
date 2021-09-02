@@ -798,6 +798,8 @@ doread()
 	"Fuck you if you find SLEX offensive.",
 	"Excuse me, what part of FUCK YOU did you double-plus-ungood badpeople NOT understand???",
 	"thinking about starting my own TV channel, it would be called SLEX News and it would report the newest slex-related happenings, Fox News style",
+	"Praise the almighty server administrator for his quick action when he realized just how offensive slex is - c. the lynch mob.",
+	"Amy is such a bad person and we're glad that her offensive game was removed from our server - c. the lynch mob.",
 
 
 	    };

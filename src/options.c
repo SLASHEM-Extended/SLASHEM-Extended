@@ -95,6 +95,9 @@ static struct Bool_Opt
 # else	/* systems that support multiple terminals, many monochrome */
 	{"color",         &iflags.wc_color, FALSE, SET_IN_GAME},	/*WC*/
 # endif
+
+	{"contentwarning", &flags.contentwarning, TRUE, SET_IN_FILE},
+
 	{"confirm",&flags.confirm, TRUE, SET_IN_GAME},
 #ifdef CURSES_GRAPHICS
 	{"classic_status", &iflags.classic_status, TRUE, SET_IN_GAME},
