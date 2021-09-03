@@ -10174,7 +10174,7 @@ madnesseffect:
 
 			BankTrapEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
-			if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+			if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1 + (long)mvitals[PM_ARABELLA_THE_MONEY_THIEF].born));
 			u.bankcashamount += u.ugold;
 			u.ugold = 0;
 
@@ -13116,7 +13116,7 @@ madnesseffect:
 				case 43: BigscriptEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 				case 44: {
 					BankTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1));
-					if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+					if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1 + (long)mvitals[PM_ARABELLA_THE_MONEY_THIEF].born));
 					u.bankcashamount += u.ugold;
 					u.ugold = 0;
 	

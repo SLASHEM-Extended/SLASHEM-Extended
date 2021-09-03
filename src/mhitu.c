@@ -8834,7 +8834,7 @@ dopois:
 				case 43: BigscriptEffect += rnz(nastyduration); break;
 				case 44: {
 					BankTrapEffect += rnz(nastyduration);
-					if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+					if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1 + (long)mvitals[PM_ARABELLA_THE_MONEY_THIEF].born));
 					u.bankcashamount += u.ugold;
 					u.ugold = 0;
 	
@@ -9117,7 +9117,7 @@ dopois:
 				case 43: BigscriptEffect += rnz(nastyduration); break;
 				case 44: {
 					BankTrapEffect += rnz(nastyduration);
-					if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+					if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1 + (long)mvitals[PM_ARABELLA_THE_MONEY_THIEF].born));
 					u.bankcashamount += u.ugold;
 					u.ugold = 0;
 	
@@ -11473,7 +11473,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 				case 43: BigscriptEffect += rnz(nastyduration); break;
 				case 44: {
 					BankTrapEffect += rnz(nastyduration);
-					if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+					if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1 + (long)mvitals[PM_ARABELLA_THE_MONEY_THIEF].born));
 					u.bankcashamount += u.ugold;
 					u.ugold = 0;
 	
@@ -11752,7 +11752,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 				case 43: BigscriptEffect += rnz(nastyduration); break;
 				case 44: {
 					BankTrapEffect += rnz(nastyduration);
-					if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+					if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1 + (long)mvitals[PM_ARABELLA_THE_MONEY_THIEF].born));
 					u.bankcashamount += u.ugold;
 					u.ugold = 0;
 	
@@ -14074,7 +14074,7 @@ common:
 				case 43: BigscriptEffect += rnz(nastyduration); break;
 				case 44: {
 					BankTrapEffect += rnz(nastyduration);
-					if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+					if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1 + (long)mvitals[PM_ARABELLA_THE_MONEY_THIEF].born));
 					u.bankcashamount += u.ugold;
 					u.ugold = 0;
 	
@@ -14353,7 +14353,7 @@ common:
 				case 43: BigscriptEffect += rnz(nastyduration); break;
 				case 44: {
 					BankTrapEffect += rnz(nastyduration);
-					if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+					if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1 + (long)mvitals[PM_ARABELLA_THE_MONEY_THIEF].born));
 					u.bankcashamount += u.ugold;
 					u.ugold = 0;
 	
@@ -19015,7 +19015,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				case 43: BigscriptEffect += rnz(nastyduration); break;
 				case 44: {
 					BankTrapEffect += rnz(nastyduration);
-					if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+					if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1 + (long)mvitals[PM_ARABELLA_THE_MONEY_THIEF].born));
 					u.bankcashamount += u.ugold;
 					u.ugold = 0;
 	
@@ -19297,7 +19297,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				case 43: BigscriptEffect += rnz(nastyduration); break;
 				case 44: {
 					BankTrapEffect += rnz(nastyduration);
-					if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+					if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1 + (long)mvitals[PM_ARABELLA_THE_MONEY_THIEF].born));
 					u.bankcashamount += u.ugold;
 					u.ugold = 0;
 	

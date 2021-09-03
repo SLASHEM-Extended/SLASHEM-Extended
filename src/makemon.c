@@ -1182,7 +1182,7 @@ register struct monst *mtmp;
 
 			mtmp->mgold = u.bankcashamount;
 			u.bankcashamount = 0;
-			u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+			u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1 + (long)mvitals[PM_ARABELLA_THE_MONEY_THIEF].born));
 
 		}
 

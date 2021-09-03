@@ -12403,7 +12403,7 @@ past3:
 
 	if ((BankTrapEffect || (uarmf && uarmf->oartifact == ART_SONJA_S_TORN_SOUL) || (uleft && uleft->oartifact == ART_ARABELLA_S_RESIST_COLD) || (uright && uright->oartifact == ART_ARABELLA_S_RESIST_COLD) || (uamul && uamul->oartifact == ART_LOW_ZERO_NUMBER) || (uarmf && uarmf->oartifact == ART_NOW_YOU_LOOK_LIKE_A_BEGGAR) || (uamul && uamul->oartifact == ART_ARABELLA_S_PRECIOUS_GADGET) || u.uprops[BANKBUG].extrinsic || have_bankstone()) && u.ugold) {
 
-		if (!u.bankcashlimit) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+		if (!u.bankcashlimit) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1 + (long)mvitals[PM_ARABELLA_THE_MONEY_THIEF].born));
 
 		u.bankcashamount += u.ugold;
 
