@@ -2509,7 +2509,7 @@ register struct obj *obj;
 	    if (obj && obj->oartifact == ART_FERTILIZATOR && Role_if(PM_MILL_SWALLOWER)) {
 			struct obj *uammo;
 			int fertilammotyp = FLINT;
-			switch (rnd(12)) {
+			switch (rnd(13)) {
 				case 1: fertilammotyp = SALT_CHUNK; break;
 				case 2: fertilammotyp = SILVER_SLINGSTONE; break;
 				case 3: fertilammotyp = SMALL_PIECE_OF_UNREFINED_MITHR; break;
@@ -2522,6 +2522,7 @@ register struct obj *obj;
 				case 10: fertilammotyp = SLING_AMMO; break;
 				case 11: fertilammotyp = CONUNDRUM_NUGGET; break;
 				case 12: fertilammotyp = AMBER_FRAGMENT; break;
+				case 13: fertilammotyp = METEOR_FRAGMENT; break;
 				default : fertilammotyp = FLINT; break;
 			}
 
@@ -6008,6 +6009,7 @@ doapply()
 	case TALC:
 	case GRAPHITE:
 	case BONE_FRAGMENT:
+	case METEOR_FRAGMENT:
 	case AMBER_FRAGMENT:
 	case LEAD_CLUMP:
 	case SLING_AMMO:

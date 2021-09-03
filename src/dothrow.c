@@ -487,6 +487,10 @@ int thrown;
 		(multishot == 1) ? singular(obj, xname) :  xname(obj));
 	}
 
+	if (obj && obj->oartifact == ART_POWERED_BY_HUNGER) {
+		morehungry(multishot * 50);
+	}
+
 	if (obj && uwep && ammo_and_launcher(obj,uwep) && uwep->oartifact == ART_BUG_BAZOOKA) {
 		(void) makemon(mkclass(S_XAN,0), 0, 0, MM_ANGRY);
 		(void) makemon(mkclass(S_ANT,0), 0, 0, MM_ANGRY);
@@ -1461,7 +1465,7 @@ int thrown;
 	if (launcher && obj && ammo_and_launcher(obj, launcher) && obj->otyp == POISON_BOLT) obj->opoisoned = 1;
 
 	obj->was_thrown = 1;
-	if ((obj->cursed || (obj->otyp == FLIMSY_DART) || (obj->oartifact == ART_COMPLETELY_OFF) || (is_grassland(u.ux, u.uy) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) || obj->greased || (uwep && uwep->oartifact == ART_FOEOEOEOEOEOEOE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FOEOEOEOEOEOEOE) || (Race_if(PM_PLAYER_SKELETON) && !rn2(3)) || (uarmg && itemhasappearance(uarmg, APP_CLUMSY_GLOVES) ) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() ) ) && (u.dx || u.dy) && (!rn2(7) || (obj->oartifact == ART_COMPLETELY_OFF) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() )) ) {
+	if ((obj->cursed || (obj->otyp == FLIMSY_DART) || (obj->oartifact == ART_COMPLETELY_OFF) || (obj->oartifact == ART_STREW_ANYWHERE) || (is_grassland(u.ux, u.uy) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) || obj->greased || (uwep && uwep->oartifact == ART_FOEOEOEOEOEOEOE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FOEOEOEOEOEOEOE) || (Race_if(PM_PLAYER_SKELETON) && !rn2(3)) || (uarmg && itemhasappearance(uarmg, APP_CLUMSY_GLOVES) ) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() ) ) && (u.dx || u.dy) && (!rn2(7) || (obj->oartifact == ART_COMPLETELY_OFF) || (obj->oartifact == ART_STREW_ANYWHERE) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() )) ) {
 	    boolean slipok = TRUE;
 	    if (ammo_and_launcher(obj, launcher))
 		pline("%s!", Tobjnam(obj, "misfire"));
@@ -2838,6 +2842,12 @@ boolean polearming;
 			/* Due to segfaults and stuff when trying to make this work in other functions, I'm just deciding that
 			 * any thoroughly eroded stuff you throw will generally be destroyed much more often. --Amy */
 		    if ((obj->oeroded == MAX_ERODE || obj->oeroded2 == MAX_ERODE) && !rn2(25) && !hard_to_destruct(obj)) broken = 1;
+
+			/* artifact that sets the mulching rate to exactly 10%, regardless of other calculations */
+		    if (obj->oartifact == ART_ACTUALLY_THE_MATTER_COMES_) {
+			if (!rn2(10)) broken = 1;
+			else broken = 0;
+		    }
 
 		    if (broken) {
 			if (*u.ushops)

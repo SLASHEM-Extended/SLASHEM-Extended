@@ -177,6 +177,8 @@ hack_artifacts()
 	artilist[ART_SANDRA_S_SECRET_WEAPON].otyp = randartmeleeweapon();
 	artilist[ART_DUMBOAK_S_HEW].otyp = randartmeleeweapon();
 	artilist[ART_POWER_AMMO].otyp = randartmissile();
+	artilist[ART_PAUERED_BY_THE_CAP].otyp = randartmissile();
+	artilist[ART_DESSINTERGRATE].otyp = randartmissile();
 	artilist[ART_BLOBLOBLOBLOBLO].otyp = randartlauncher();
 	artilist[ART_PSCHIUDITT].otyp = randartlauncher();
 	artilist[ART_RATTATTATTATTATT].otyp = randartlauncher();
@@ -342,6 +344,8 @@ hack_artifacts()
 	artilist[ART_INNER_TUBE].otyp = randartmeleeweaponX();
 	artilist[ART_SOLO_SLACKER].otyp = randartlauncherX();
 	artilist[ART_AMMO_OF_THE_MACHINE].otyp = randartmissileX();
+	artilist[ART_STREW_ANYWHERE].otyp = randartmissileX();
+	artilist[ART_PIERCETHROUGH].otyp = randartmissileX();
 	artilist[ART_DAE_OE_OE_OE_OE_OE].otyp = randartlauncherX();
 	artilist[ART_CANNONEER].otyp = randartlauncherX();
 	artilist[ART_SPEEDHACK].otyp = randartlauncherX();
@@ -3283,6 +3287,30 @@ arti_invoke(obj)
 		}
 	}
 	if (artitimeout < 1) artitimeout = 1; /* fail safe */
+
+	if (obj->oartifact == ART_FUEL_NAIL) {
+		if (u.roxannemode) {
+			pline("You can only summon Roxanne once.");
+			return 1;
+		}
+		u.roxannemode = TRUE;
+		use_skill(P_SQUEAKING, 20);
+
+		register struct monst *roxannesummon;
+		roxannesummon = makemon(&mons[PM_ROXANNE], u.ux, u.uy, NO_MM_FLAGS);
+		if (roxannesummon) {
+
+			/* she's traitorious, and anyway you could get unlucky to have her be untamed by something, so we
+			 * specifically change her permonst struct permanently to allow you to tame her with food */
+			struct permonst* poisonroxanne = &mons[PM_ROXANNE];
+			poisonroxanne->mflags2 |= M2_DOMESTIC;
+
+			tamedog(roxannesummon, (struct obj *) 0, TRUE);
+			verbalize("You've summoned me! I'll fight on your side. If you want to power me up, chat to me and give me a few crossbow bolts, then I'll turn on my poison enchantment that will poison our enemies.");
+		}
+
+		return 1;
+	}
 
 	if (obj->oartifact == ART_ATARU_ONE) {
 		if (!u.ataruinvoked && !exist_artifact(ETERNIUM_BLADE, artiname(ART_ATARU_TWO))) {

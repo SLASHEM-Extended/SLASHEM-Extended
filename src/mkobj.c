@@ -2540,6 +2540,10 @@ boolean shopinit;
 			otmp->quan = (long) rn1(10,10);
 			if (!rn2(10)) otmp->quan *= 2;
 		}
+		else if (otmp->otyp == METEOR_FRAGMENT && rn2(2) ) {
+			otmp->quan = (long) rn1(13,13);
+			if (!rn2(10)) otmp->quan *= 2;
+		}
 		else if (otmp->otyp == CONUNDRUM_NUGGET && rn2(2) ) {
 			otmp->quan = (long) rn1(9,9);
 			if (!rn2(10)) otmp->quan *= 2;

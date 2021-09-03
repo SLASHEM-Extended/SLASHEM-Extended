@@ -1724,7 +1724,10 @@ int dieroll;
 
 			if (!(PlayerCannotUseSkills) && !rn2(2)) {
 
-				switch (P_SKILL(objects[obj->otyp].oc_skill)) {
+				int basherskill = objects[obj->otyp].oc_skill;
+				if (basherskill < 0) basherskill = -(basherskill);
+
+				switch (P_SKILL(basherskill)) {
 
 					case P_SKILLED: tmp += 1; break;
 					case P_EXPERT: tmp += rno(2); break;
@@ -3219,9 +3222,109 @@ melatechoice:
 			if (obj->spe < 0) obj->spe++;
 		}
 
+		if (thrown && obj && (obj->oartifact == ART_MINDTURNER) && !rn2(20)) {
+			if (mon->female) mon->female = 0;
+			else mon->female = 1;
+			pline("%s undergoes gender surgery!", Monnam(mon));
+		}
+
+		if (thrown && obj && (obj->oartifact == ART_PAUERED_BY_THE_CAP)) {
+
+			int paueredskill = objects[obj->otyp].oc_skill;
+			if (paueredskill < 0) paueredskill = -(paueredskill);
+
+			if (P_MAX_SKILL(paueredskill) >= P_BASIC) tmp += 5;
+			if (P_MAX_SKILL(paueredskill) >= P_SKILLED) tmp += 5;
+			if (P_MAX_SKILL(paueredskill) >= P_EXPERT) tmp += 5;
+			if (P_MAX_SKILL(paueredskill) >= P_MASTER) tmp += 5;
+			if (P_MAX_SKILL(paueredskill) >= P_GRAND_MASTER) tmp += 5;
+			if (P_MAX_SKILL(paueredskill) >= P_SUPREME_MASTER) tmp += 5;
+
+			if (!rn2(10) && !P_RESTRICTED(paueredskill) ) {
+				int tryct;
+				int i = 0;
+
+				if (P_MAX_SKILL(paueredskill) == P_BASIC) {
+					P_MAX_SKILL(paueredskill) = P_UNSKILLED;
+					pline("You lose all knowledge of the %s skill!", wpskillname(paueredskill));
+				} else if (P_MAX_SKILL(paueredskill) == P_SKILLED) {
+					P_MAX_SKILL(paueredskill) = P_BASIC;
+					pline("You lose some knowledge of the %s skill!", wpskillname(paueredskill));
+				} else if (P_MAX_SKILL(paueredskill) == P_EXPERT) {
+					P_MAX_SKILL(paueredskill) = P_SKILLED;
+					pline("You lose some knowledge of the %s skill!", wpskillname(paueredskill));
+				} else if (P_MAX_SKILL(paueredskill) == P_MASTER) {
+					P_MAX_SKILL(paueredskill) = P_EXPERT;
+					pline("You lose some knowledge of the %s skill!", wpskillname(paueredskill));
+				} else if (P_MAX_SKILL(paueredskill) == P_GRAND_MASTER) {
+					P_MAX_SKILL(paueredskill) = P_MASTER;
+					pline("You lose some knowledge of the %s skill!", wpskillname(paueredskill));
+				} else if (P_MAX_SKILL(paueredskill) == P_SUPREME_MASTER) {
+					P_MAX_SKILL(paueredskill) = P_GRAND_MASTER;
+					pline("You lose some knowledge of the %s skill!", wpskillname(paueredskill));
+				}
+
+				tryct = 2000;
+
+				while (u.skills_advanced && tryct && (P_SKILL(paueredskill) > P_MAX_SKILL(paueredskill)) ) {
+					lose_last_spent_skill();
+					i++;
+					tryct--;
+				}
+
+				while (i) {
+					if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
+					else u.weapon_slots++;  /* because every skill up costs one slot --Amy */
+					i--;
+				}
+
+				/* still higher than the cap? that probably means you started with some knowledge of the skill... */
+				if (P_SKILL(paueredskill) > P_MAX_SKILL(paueredskill)) {
+					P_SKILL(paueredskill) = P_MAX_SKILL(paueredskill);
+					if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
+					else u.weapon_slots++;
+				}
+
+			}
+		}
+
+		if (thrown && obj && (obj->oartifact == ART_CHANGE_THE_PLAY)) {
+			if (P_RESTRICTED(P_DART) && !P_RESTRICTED(P_SHURIKEN)) {
+				int changetheplaycap = 20;
+				if (P_MAX_SKILL(P_SHURIKEN) == P_SKILLED) changetheplaycap = 160;
+				if (P_MAX_SKILL(P_SHURIKEN) == P_EXPERT) changetheplaycap = 540;
+				if (P_MAX_SKILL(P_SHURIKEN) == P_MASTER) changetheplaycap = 1280;
+				if (P_MAX_SKILL(P_SHURIKEN) == P_GRAND_MASTER) changetheplaycap = 2500;
+				if (P_MAX_SKILL(P_SHURIKEN) == P_SUPREME_MASTER) changetheplaycap = 4320;
+
+				if (P_ADVANCE(P_DART) >= changetheplaycap) {
+					skillcaploss_specific(P_SHURIKEN);
+					unrestrict_weapon_skill(P_DART);
+					P_ADVANCE(P_DART) = 0;
+					P_SKILL(P_DART) = P_UNSKILLED;
+					if (changetheplaycap == 4320) P_MAX_SKILL(P_DART) = P_SUPREME_MASTER;
+					else if (changetheplaycap == 2500) P_MAX_SKILL(P_DART) = P_GRAND_MASTER;
+					else if (changetheplaycap == 1280) P_MAX_SKILL(P_DART) = P_MASTER;
+					else if (changetheplaycap == 540) P_MAX_SKILL(P_DART) = P_EXPERT;
+					else if (changetheplaycap == 160) P_MAX_SKILL(P_DART) = P_SKILLED;
+					else P_MAX_SKILL(P_DART) = P_BASIC;
+					You("lose all knowledge of the shuriken skill, and learn the dart skill instead!");
+				}
+			}
+		}
+
 		if (wep && wep->oartifact == ART_ENCHANTEASY && !rn2(1000) && wep->spe < 7) {
 			wep->spe++;
 			Your("weapon was enchanted!");
+		}
+
+		if (thrown && obj && (obj->oartifact == ART_TRAPPERATE) && isok(mon->mx, mon->my) && !(t_at(mon->mx, mon->my)) ) {
+			(void) maketrap(mon->mx, mon->my, randomtrap(), 100, TRUE);
+		}
+
+		if (thrown && obj && (obj->oartifact == ART_FEMMY_LOVES_YOU) ) {
+			if (!FemaleTrapFemmy) pline("Femmy loves you!");
+			FemaleTrapFemmy += rnd(1000);
 		}
 
 		if (wep && wep->oartifact == ART_MARTHA_S_FOREIGN_GOER) {

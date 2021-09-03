@@ -941,7 +941,7 @@ BOW("wildhild bow", (char *)0,	1, 1, 10, 12, 60, 0, MT_SILK, P_BOW, CLR_WHITE, 2
 PROJECTILE("orcish arrow", "crude arrow",
 	0, 1200, 0, 2, 9, 9, 0, MT_IRON, -P_BOW, CLR_BLACK, 1),
 PROJECTILE("arrow", (char *)0,
-	1, 2400, 0, 2, 10, 10, 0, MT_IRON, -P_BOW, HI_METAL, 2),
+	1, 2399, 0, 2, 10, 10, 0, MT_IRON, -P_BOW, HI_METAL, 2),
 PROJECTILE("bone arrow", (char *)0,
 	1, 200, 0, 2, 8, 9, 0, MT_BONE, -P_BOW, CLR_GRAY, 1),
 PROJECTILE("paper arrow", (char *)0,
@@ -962,6 +962,8 @@ PROJECTILE("droven arrow", "obsidian arrow",
 	0, 100, 0, 6, 16, 16, 3, MT_OBSIDIAN, -P_BOW, CLR_BLACK, 20),
 PROJECTILE("golden arrow", (char *)0,
 	1, 100, 0,10,15,15, 0, MT_GOLD, -P_BOW, HI_GOLD, 16),
+PROJECTILE("meteor arrow", (char *)0,
+	1, 1,   0,20,16,16, 0, MT_METEOSTEEL, -P_BOW, CLR_GRAY, 80),
 PROJECTILE("ancient arrow", (char *)0,
 	1, 100, 0,10,14,14, 0, MT_METAL, -P_BOW, CLR_BLACK, 16),
 PROJECTILE("bronze arrow", (char *)0,
@@ -8881,11 +8883,12 @@ ROCK("starlightstone", "gray",		0, 10,  5000,  10, 20, 20, 1, 5000, 6, MT_MINERA
 ROCK("flint", "gray",				0, 1200, 0,  10, 10, 12, 0, 10, 7, MT_MINERAL, CLR_GRAY, 1),
 ROCK("lead clump", "gray",			0, 500,  0,  10, 9, 10, 0, 10, 4, MT_LEAD, CLR_GRAY, 1),
 ROCK("bone fragment", "gray",			0, 1200, 0,  10, 8, 8, 0, 10, 4, MT_BONE, CLR_GRAY, 1),
+ROCK("meteor fragment", "gray",		0, 1,    0,  10, 13, 13, 0, 10, 9, MT_METEOSTEEL, CLR_GRAY, 20),
 ROCK("amber fragment", "gray",		0, 20,   0,  10, 7, 8, 0, 10, 3, MT_AMBER, CLR_GRAY, 1),
 ROCK("sling ammo", "gray",			0, 4000, 0,  10, 9, 9, 0, 10, 7, MT_MINERAL, CLR_GRAY, 1),
 /* sling ammo = last random gray stone, for e.g. shk.c --Amy */
 
-ROCK("rock", (char *)0,				1,37740, 0,    0, 5, 5, 0, 10, 7, MT_MINERAL, CLR_GRAY, 1),
+ROCK("rock", (char *)0,				1,37739, 0,    0, 5, 5, 0, 10, 7, MT_MINERAL, CLR_GRAY, 1),
 #undef GEM
 #undef ROCK
 

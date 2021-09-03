@@ -8494,13 +8494,17 @@ mergable(otmp, obj)	/* returns TRUE if obj  & otmp can be merged */
 	if (otmp == uchain) return FALSE;
 	if (otmp == uball) return FALSE;
 
-	if (obj->stackmarked || otmp->stackmarked) return FALSE; /* by Amy */
-
 	if (obj->otyp != otmp->otyp) return FALSE;
 #ifdef GOLDOBJ
 	/* coins of the same kind will always merge */
 	if (obj->oclass == COIN_CLASS) return TRUE;
 #endif
+
+	if (obj->oartifact == ART_DESSINTERGRATE) return FALSE;
+	if (otmp->oartifact == ART_DESSINTERGRATE) return FALSE;
+
+	if (obj->stackmarked || otmp->stackmarked) return FALSE; /* by Amy */
+
 	if (obj->unpaid != otmp->unpaid ||
 	    obj->spe != otmp->spe || (obj->dknown && !otmp->dknown) ||
 	    (obj->bknown && !otmp->bknown && !(Role_if(PM_PRIEST) || Role_if(PM_NECROMANCER) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA) ) ) ||
@@ -9978,6 +9982,8 @@ boolean knoweverything;
 				pline("These arrows deal average damage and may be made of a rare material."); break;
 			case PAPER_ARROW:
 				pline("If you don't have real arrows, you can use these weak ones with your bow."); break;
+			case METEOR_ARROW:
+				pline("Super-powerful arrows. You can fire them with a bow."); break;
 			case METAL_SLING:
 				pline("A launcher that can shoot rocks and gems."); break;
 			case ATLATL:
@@ -16005,6 +16011,8 @@ boolean knoweverything;
 				pline("Yet another type of sling ammo that deals mediocre damage."); break;
 			case BONE_FRAGMENT:
 				pline("It's better than a rock, but not as good as a flint stone. You can fire it with a sling to deal damage to monsters."); break;
+			case METEOR_FRAGMENT:
+				pline("If you fire this stone with a sling, it does very high damage."); break;
 			case GRAPHITE:
 				pline("It's a gray stone that doesn't do anything special, but at least it doesn't do anything bad, unlike some other stones..."); break;
 			case VOLCANIC_GLASS_FRAGMENT:
@@ -21616,6 +21624,28 @@ boolean knoweverything;
 					pline("Artifact specs: if you train a lightsaber form while having both blades of it lit, it regains an additional 4 points of charge."); break;
 				case ART_LETS_MAKE_IT_OFFICIAL:
 					pline("Artifact specs: gives bonuses when your form X (Kliu) skill increases. Basic skill gives improved vision, skilled gives infravision, expert gives free action, master gives control magic and grand master gives reflection."); break;
+				case ART_MINDTURNER:
+					pline("Artifact specs: occasionally changes the target's gender."); break;
+				case ART_CHANGE_THE_PLAY:
+					pline("Artifact specs: if you use them while restricted in the dart skill, and your amount of dart skill training reaches the amount of your shuriken skill cap (which must be at least Basic), you lose the shuriken skill permanently and gain the dart skill instead."); break;
+				case ART_PAUERED_BY_THE_CAP:
+					pline("Artifact specs: deals extra damage the higher your cap in its skill is, but every time you hit something with it there's a considerable chance for the skill cap to be reduced permanently!"); break;
+				case ART_STREW_ANYWHERE:
+					pline("Artifact specs: always fires in a random direction."); break;
+				case ART_FUEL_NAIL:
+					pline("Artifact specs: can be invoked to spawn a tame Roxanne, but only once per game. You can then give non-artifact crossbow bolts to Roxanne by #chat-ting with her, which temporarily allows her to use additional poison attacks."); break;
+				case ART_TRAPPERATE:
+					pline("Artifact specs: if it hits a monster and there is no trap on its location, one is created."); break;
+				case ART_FEMMY_LOVES_YOU:
+					pline("Artifact specs: +6 to-hit and +12 damage, but hitting something with it gives you the femmy trap effect or increases its duration if you already have it active."); break;
+				case ART_POWERED_BY_HUNGER:
+					pline("Artifact specs: +2 drain life damage, can drain levels from targets, throwing them makes you more hungry."); break;
+				case ART_DESSINTERGRATE:
+					pline("Artifact specs: +28 damage. If this artifact is a stack and you split it for any reason, it won't stack again no matter what."); break;
+				case ART_PIERCETHROUGH:
+					pline("Artifact specs: may continue when it collides with a monster, possibly hitting the monster standing behind it."); break;
+				case ART_ACTUALLY_THE_MATTER_COMES_:
+					pline("Artifact specs: always has exactly a one in ten chance of mulching when it hits an enemy, regardless of any modifiers to the ammo mulching chance."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

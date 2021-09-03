@@ -8249,6 +8249,11 @@ boolean cancontrol;	/* does control magic work on this? --Amy */
 
 	    if ((mtmp = m_at(bhitpos.x, bhitpos.y)) != 0) {
 
+		if (obj && obj->oartifact == ART_PIERCETHROUGH && !rn2(3)) {
+			pline_The("ammo passes through %s.", mon_nam(mtmp));
+			goto notamonster;
+		}
+
 		/* can the effect pass through a player's pet? --Amy */
 		if (cancontrol && mtmp && mtmp->mtame) {
 			if (!(obj && weapon != ZAPPED_WAND && weapon != INVIS_BEAM && befriend_with_obj(mtmp->data, obj)) ) {

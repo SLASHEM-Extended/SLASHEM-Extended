@@ -525,6 +525,7 @@ struct Jitem {
 			   typ != PERIDOT && 	\
 			   typ != VOLCANIC_GLASS_FRAGMENT && 	\
 			   typ != BONE_FRAGMENT && 	\
+			   typ != METEOR_FRAGMENT && 	\
 			   typ != AMBER_FRAGMENT && 	\
 			   typ != LEAD_CLUMP && 	\
 			   typ != SLING_AMMO && 	\
@@ -3591,6 +3592,8 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ SCR_COURSE_TRAVELING, "todo" },
 	{ CYAN_DOUBLE_LIGHTSABER, "todo" },
 	{ KLIUSLING, "todo" },
+	{ METEOR_ARROW, "todo" },
+	{ METEOR_FRAGMENT, "todo" },
 
 	{0, "" }
 };
@@ -6501,6 +6504,8 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ SCR_COURSE_TRAVELING, "todo" },
 	{ CYAN_DOUBLE_LIGHTSABER, "todo" },
 	{ KLIUSLING, "todo" },
+	{ METEOR_ARROW, "todo" },
+	{ METEOR_FRAGMENT, "todo" },
 
 	{0, "" }
 };
@@ -6637,7 +6642,7 @@ register int otyp;
 		} else {
 			strcpy(buf, dn ? dn : actualn);
 			if(ocl->oc_class == GEM_CLASS)
-				strcat(buf, (ocl->oc_material == MT_MINERAL || otyp == SMALL_PIECE_OF_UNREFINED_MITHR || otyp == VOLCANIC_GLASS_FRAGMENT || otyp == LEAD_CLUMP || otyp == SLING_AMMO || otyp == BONE_FRAGMENT || otyp == AMBER_FRAGMENT || otyp == SILVER_SLINGSTONE || otyp == CONUNDRUM_NUGGET ) ?
+				strcat(buf, (ocl->oc_material == MT_MINERAL || otyp == SMALL_PIECE_OF_UNREFINED_MITHR || otyp == VOLCANIC_GLASS_FRAGMENT || otyp == LEAD_CLUMP || otyp == SLING_AMMO || otyp == BONE_FRAGMENT || otyp == METEOR_FRAGMENT || otyp == AMBER_FRAGMENT || otyp == SILVER_SLINGSTONE || otyp == CONUNDRUM_NUGGET ) ?
 						" stone" : " gem");
 			if(un)
 				sprintf(eos(buf), " called %s", un);
@@ -7100,7 +7105,7 @@ register struct obj *obj;
 	case GEM_CLASS:
 	    {
 		const char *rock =
-			    (ocl->oc_material == MT_MINERAL || typ == SMALL_PIECE_OF_UNREFINED_MITHR || typ == VOLCANIC_GLASS_FRAGMENT || typ == LEAD_CLUMP || typ == SLING_AMMO || typ == BONE_FRAGMENT || typ == AMBER_FRAGMENT || typ == SILVER_SLINGSTONE || typ == CONUNDRUM_NUGGET) ? "stone" : "gem";
+			    (ocl->oc_material == MT_MINERAL || typ == SMALL_PIECE_OF_UNREFINED_MITHR || typ == VOLCANIC_GLASS_FRAGMENT || typ == LEAD_CLUMP || typ == SLING_AMMO || typ == BONE_FRAGMENT || typ == METEOR_FRAGMENT || typ == AMBER_FRAGMENT || typ == SILVER_SLINGSTONE || typ == CONUNDRUM_NUGGET) ? "stone" : "gem";
 		if (!obj->dknown || PlayerUninformation) {
 		    strcpy(buf, rock);
 		} else if (!nn) {
@@ -7690,7 +7695,7 @@ ring:
 	if ((obj->otyp != BOULDER) || !throws_rocks (youmonst.data))
 	  if ((obj->otyp <= ACID_VENOM) /* && (obj->otyp != CHEST) && (obj->otyp != LARGE_BOX) && (obj->otyp != LEAD_BOX) && */
 && (obj->otyp != LUCKSTONE) && (obj->otyp != HEALTHSTONE) && (obj->otyp != LOADSTONE) && (obj->otyp != TOUCHSTONE)
-&& (obj->otyp != WHETSTONE) && (obj->otyp != MANASTONE) && (obj->otyp != SLEEPSTONE) && (obj->otyp != LOADBOULDER) && (obj->otyp != STARLIGHTSTONE) && (obj->otyp != TALC) && (obj->otyp != GRAPHITE) && (obj->otyp != BONE_FRAGMENT) && (obj->otyp != AMBER_FRAGMENT) && (obj->otyp != LEAD_CLUMP) && (obj->otyp != SLING_AMMO) && (obj->otyp != VOLCANIC_GLASS_FRAGMENT) && (obj->otyp != STONE_OF_MAGIC_RESISTANCE) && (obj->otyp != FLINT) && (obj->otyp != SALT_CHUNK) && (obj->otyp != SILVER_SLINGSTONE) && (obj->otyp != CONUNDRUM_NUGGET) && (obj->otyp != SMALL_PIECE_OF_UNREFINED_MITHR) && (obj->otyp != AMULET_OF_YENDOR) && (obj->otyp != FAKE_AMULET_OF_YENDOR) && (!is_nastygraystone(obj))
+&& (obj->otyp != WHETSTONE) && (obj->otyp != MANASTONE) && (obj->otyp != SLEEPSTONE) && (obj->otyp != LOADBOULDER) && (obj->otyp != STARLIGHTSTONE) && (obj->otyp != TALC) && (obj->otyp != GRAPHITE) && (obj->otyp != BONE_FRAGMENT) && (obj->otyp != METEOR_FRAGMENT) && (obj->otyp != AMBER_FRAGMENT) && (obj->otyp != LEAD_CLUMP) && (obj->otyp != SLING_AMMO) && (obj->otyp != VOLCANIC_GLASS_FRAGMENT) && (obj->otyp != STONE_OF_MAGIC_RESISTANCE) && (obj->otyp != FLINT) && (obj->otyp != SALT_CHUNK) && (obj->otyp != SILVER_SLINGSTONE) && (obj->otyp != CONUNDRUM_NUGGET) && (obj->otyp != SMALL_PIECE_OF_UNREFINED_MITHR) && (obj->otyp != AMULET_OF_YENDOR) && (obj->otyp != FAKE_AMULET_OF_YENDOR) && (!is_nastygraystone(obj))
 	      /*(obj->otyp != ICE_BOX) */ && (!Hallucination && flags.invweight && !WeightDisplayIsArbitrary))
 		        sprintf (eos(bp), " {%d}", obj->owt);
 /* show the freaking weight of all items! --Amy */

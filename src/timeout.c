@@ -570,6 +570,30 @@ nh_timeout()
 
 	}
 
+	if (u.roxannemode && u.roxannetimer) {
+		u.roxannetimer--;
+		if (u.roxannetimer < 0) u.roxannetimer = 0; /* fail safe */
+		if (u.roxannetimer == 0) {
+			struct attack* attkptr;
+			struct permonst* poisonroxanne = &mons[PM_ROXANNE];
+
+			attkptr = &poisonroxanne->mattk[4];
+			attkptr->aatyp = AT_NONE;
+			attkptr->adtyp = AD_PHYS;
+			attkptr->damn = 0;
+			attkptr->damd = 0;
+
+			attkptr = &poisonroxanne->mattk[5];
+			attkptr->aatyp = AT_NONE;
+			attkptr->adtyp = AD_PHYS;
+			attkptr->damn = 0;
+			attkptr->damd = 0;
+
+			pline("Roxanne's poison enchantment ran out of fuel.");
+
+		}
+	}
+
 	if (u.fumbleduration) u.fumbleduration--;
 	if (u.fumbleduration < 0) u.fumbleduration = 0; /* fail safe */
 	if (u.antimagicshell) {

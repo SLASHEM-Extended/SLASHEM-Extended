@@ -8725,6 +8725,50 @@ A("Lets Make It Official",				KLIUSLING, /* sight bonus at basic kliu skill, inf
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
+A("Mindturner",				INFERIOR_BOLT, /* 5% chance to change the target's gender */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
+
+A("Change The Play",				DIVINE_DART, /* if you're restricted with darts and train the skill high enough to reach the cap of your shuriken skill, you lose the shuriken skill and gain the dart skill instead */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Pauered By The Cap",				ARROW, /* randart ammo, +5 damage multiplied by the cap in its corresponding skill but if you hit something with it, 10% chance that the cap permanently decreases by one skill level */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("Strew Anywhere",				ARROW, /* randart2 ammo, always fires in a random direction */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),
+
+A("Fuel Nail",				DROVEN_BOLT, /* can be invoked once to spawn a tame Roxanne, which trains squeaking by 20 points and then you can chat to Roxanne and give her bolts to temporarily give her extra poison attacks */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Trapperate",				WINDMILL_BLADE, /* if it hits a monster and there's no trap on its square, create one */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 60L ),
+
+A("Femmy Loves You",				INKA_STINGER, /* if you hit something, +d1000 turns for femmy trap effect */
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("Powered By Hunger",				TAR_STAR, /* every time you throw one, you get hungry by 50 points */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DRLI), 0, 0,
+	DRLI(0, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Dessintergrate",				ARROW, /* randart ammo, never stacks */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 28), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 300L ),
+
+A("Piercethrough",				ARROW, /* randart2 ammo, can continue when colliding with a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Actually The Matter Comes From Switzerland",				HEAVY_CROSSBOW_BOLT, /* always has exactly 90% chance of being preserved, regardless of anything that modifies mulching odds */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

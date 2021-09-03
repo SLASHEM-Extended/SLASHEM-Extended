@@ -7551,6 +7551,19 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, AMBER_FRAGMENT, 30);
 		}
+		if (ptr == &mons[PM_TREBBER]) {
+			(void) mongets(mtmp, LARGE_SHIELD);
+			(void) mongets(mtmp, SLING);
+			 m_initthrow(mtmp, METEOR_FRAGMENT, 20);
+		}
+		if (ptr == &mons[PM_NUKE_TREBBER]) {
+			(void) mongets(mtmp, LARGE_SHIELD);
+			(void) mongets(mtmp, LORICATED_CLOAK);
+			(void) mongets(mtmp, RING_MAIL);
+			(void) mongets(mtmp, SLING);
+			 m_initthrow(mtmp, METEOR_FRAGMENT, 50);
+			 m_initthrow(mtmp, METEOR_FRAGMENT, 50);
+		}
 
 		if(ptr == &mons[PM_ADORNING_FEMINIST]) {
 			(void) mongets(mtmp, SLING);
@@ -16852,6 +16865,11 @@ loveheelover:
 		if (ptr == &mons[PM_STEAM_SMOKER]) (void) mongets(mtmp, ELECTRIC_CIGARETTE);
 		if (ptr == &mons[PM_EDDOMINA]) (void) mongets(mtmp, LEATHER_PEEP_TOES);
 
+		if (ptr == &mons[PM_NUKE_TREB]) {
+			(void) mongets(mtmp, BOW);
+	  		m_initthrow(mtmp, METEOR_ARROW, 40);
+	  		m_initthrow(mtmp, METEOR_ARROW, 40);
+		}
 		if (ptr == &mons[PM_DIABLO_GANGSTER]) {
 			(void) mongets(mtmp, MUMMY_WRAPPING);
 			if (!rn2(2)) (void) mongets(mtmp, BASEBALL_BAT);

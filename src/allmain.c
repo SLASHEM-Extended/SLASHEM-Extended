@@ -11984,6 +11984,39 @@ past3:
 
 	if (In_greencross(&u.uz) && !u.greencrossopen) u.greencrossopen = TRUE;
 
+	/* if player used Fuel Nail artifact, make sure Roxanne keeps her stats */
+	if (u.roxannemode) {
+		struct permonst* poisonroxanne = &mons[PM_ROXANNE];
+		poisonroxanne->mflags2 |= M2_DOMESTIC;
+		struct attack* attkptr;
+
+		if (u.roxannetimer) {
+			attkptr = &poisonroxanne->mattk[4];
+			attkptr->aatyp = AT_NONE;
+			attkptr->adtyp = AD_POIS;
+			attkptr->damn = 0;
+			attkptr->damd = 4;
+
+			attkptr = &poisonroxanne->mattk[5];
+			attkptr->aatyp = AT_LASH;
+			attkptr->adtyp = AD_POIS;
+			attkptr->damn = 2;
+			attkptr->damd = 4;
+		} else {
+			attkptr = &poisonroxanne->mattk[4];
+			attkptr->aatyp = AT_NONE;
+			attkptr->adtyp = AD_PHYS;
+			attkptr->damn = 0;
+			attkptr->damd = 0;
+
+			attkptr = &poisonroxanne->mattk[5];
+			attkptr->aatyp = AT_NONE;
+			attkptr->adtyp = AD_PHYS;
+			attkptr->damn = 0;
+			attkptr->damd = 0;
+		}
+	}
+
 	if (Upolyd && youmonst.data == &mons[PM_SLITHER]) { /* laaaaaaaaaag! :D --Amy */
 		int lagamount = rno(10);
 		while (lagamount > 0) {

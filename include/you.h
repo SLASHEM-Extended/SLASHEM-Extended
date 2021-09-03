@@ -644,6 +644,9 @@ struct you {
 	int greencrosschance;
 	boolean greencrossopen;
 
+	boolean roxannemode; /* for Fuel Nail artifact */
+	int roxannetimer;
+
 	int coronations;	/* how often have you been crowned? */
 
 	int musableremovechance;	/* extra chance for musable items to get removed */

@@ -3511,6 +3511,55 @@ noservices:
 
 	case MS_WHORE:
 
+		if (mtmp->mtame && u.roxannemode && mtmp->data == &mons[PM_ROXANNE]) {
+			if (u.roxannetimer) {
+				if (u.roxannetimer < 1000) verbalize("My poison enchantment is active, but I'm running low on bolts!");
+				else verbalize("My poison enchantment is active, meaning that all nearby monsters are being poisoned automatically.");
+			}
+
+			register struct obj *roxybolt;
+findmorebolts:
+			roxybolt = carrying(CROSSBOW_BOLT);
+			if (!roxybolt) roxybolt = carrying(FLEECE_BOLT);
+			if (!roxybolt) roxybolt = carrying(PIN_BOLT);
+			if (!roxybolt) roxybolt = carrying(MINERAL_BOLT);
+			if (!roxybolt) roxybolt = carrying(DROVEN_BOLT);
+			if (!roxybolt) roxybolt = carrying(KOKKEN);
+			if (!roxybolt) roxybolt = carrying(POISON_BOLT);
+			if (!roxybolt) roxybolt = carrying(HEAVY_CROSSBOW_BOLT);
+			if (!roxybolt) roxybolt = carrying(INFERIOR_BOLT);
+			if (!roxybolt) roxybolt = carrying(ETHER_BOLT);
+			if (!roxybolt) roxybolt = carrying(MATERIAL_BOLT);
+			if (roxybolt) {
+				verbalize("Ah, excellent, you have a stack of %d crossbow bolts! Do you want to give them to me?", roxybolt->quan);
+
+				if (yn("Give the bolts to Roxanne?") == 'y') {
+
+					struct attack* attkptr;
+					struct permonst* poisonroxanne = &mons[PM_ROXANNE];
+
+					u.roxannetimer += (roxybolt->quan * 200);
+					useupall(roxybolt);
+					verbalize("Thanks! My poison enchantment will ensure that the enemy is poisoned.");
+
+					attkptr = &poisonroxanne->mattk[4];
+					attkptr->aatyp = AT_NONE;
+					attkptr->adtyp = AD_POIS;
+					attkptr->damn = 0;
+					attkptr->damd = 4;
+
+					attkptr = &poisonroxanne->mattk[5];
+					attkptr->aatyp = AT_LASH;
+					attkptr->adtyp = AD_POIS;
+					attkptr->damn = 2;
+					attkptr->damd = 4;
+
+					goto findmorebolts;
+				}				
+
+			}
+		}
+
 		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
 			verbl_msg = "Why did you allow those rude customers to treat me like that? Some sort of pimp you are!";
 			break;

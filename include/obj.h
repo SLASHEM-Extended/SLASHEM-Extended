@@ -509,6 +509,7 @@ struct obj {
 				 (obj)->otyp == LEAD_CLUMP || \
 				 (obj)->otyp == SLING_AMMO || \
 				 (obj)->otyp == BONE_FRAGMENT || \
+				 (obj)->otyp == METEOR_FRAGMENT || \
 				 (obj)->otyp == AMBER_FRAGMENT || \
 				 (obj)->otyp == HEALTHSTONE || \
 				 (obj)->otyp == SALT_CHUNK || \
