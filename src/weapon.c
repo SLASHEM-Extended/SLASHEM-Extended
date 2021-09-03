@@ -598,6 +598,7 @@ struct monst *mon;
 		case ELECTRIC_CIGARETTE:	tmp += rnd(10); break;
 		case NANO_HAMMER:	tmp += rnd(8); break;
 		case STARWARS_MACE:	tmp += rnd(9); break;
+		case KLIUSLING:	tmp += rnd(5); break;
 
 		case LASER_POLE: 
 					if (otmp->altmode) tmp += rnd(8);
@@ -619,6 +620,11 @@ struct monst *mon;
 					if (otmp->altmode) tmp += rnd(12);
 					/* fallthrough */
 		case WHITE_LIGHTSABER:	tmp += rnd(14); break;
+
+		case CYAN_DOUBLE_LIGHTSABER: 
+			if (otmp->altmode) tmp += rnd(12);
+			tmp += rnd(8); break;
+			break;
 
 		case RED_DOUBLE_LIGHTSABER: 
 					if (otmp->altmode) tmp += rnd(15);
@@ -695,6 +701,7 @@ struct monst *mon;
 		case ELECTRIC_CIGARETTE:	tmp += rnd(10); break;
 		case NANO_HAMMER:	tmp += rnd(8); break;
 		case STARWARS_MACE:	tmp += rnd(9); break;
+		case KLIUSLING:	tmp += rnd(5); break;
 
 		case LASER_POLE:
 					if (otmp->altmode) tmp += rnd(8);
@@ -715,6 +722,11 @@ struct monst *mon;
 					if (otmp->altmode) tmp += rnd(15);
 					/* fallthrough */
 		case WHITE_LIGHTSABER:	tmp += rnd(11); break;
+
+		case CYAN_DOUBLE_LIGHTSABER: 
+			if (otmp->altmode) tmp += rnd(10);
+			tmp += rnd(5); break;
+			break;
 
 		case RED_DOUBLE_LIGHTSABER:
 					if (otmp->altmode) tmp += rnd(12);
@@ -1101,6 +1113,7 @@ struct monst *mon;
 		case ELECTRIC_CIGARETTE:	tmp += rnd(10); break;
 		case NANO_HAMMER:	tmp += rnd(8); break;
 		case STARWARS_MACE:	tmp += rnd(9); break;
+		case KLIUSLING:	tmp += rnd(5); break;
 
 		case LASER_POLE: 
 					if (otmp->altmode) tmp += rnd(8);
@@ -1122,6 +1135,11 @@ struct monst *mon;
 					if (otmp->altmode) tmp += rnd(12);
 					/* fallthrough */
 		case WHITE_LIGHTSABER:	tmp += rnd(14); break;
+
+		case CYAN_DOUBLE_LIGHTSABER: 
+			if (otmp->altmode) tmp += rnd(12);
+			tmp += rnd(8); break;
+			break;
 
 		case RED_DOUBLE_LIGHTSABER: 
 					if (otmp->altmode) tmp += rnd(15);
@@ -1199,6 +1217,7 @@ struct monst *mon;
 		case ELECTRIC_CIGARETTE:	tmp += rnd(10); break;
 		case NANO_HAMMER:	tmp += rnd(8); break;
 		case STARWARS_MACE:	tmp += rnd(9); break;
+		case KLIUSLING:	tmp += rnd(5); break;
 
 		case LASER_POLE: 
 					if (otmp->altmode) tmp += rnd(8);
@@ -1220,6 +1239,11 @@ struct monst *mon;
 					if (otmp->altmode) tmp += rnd(15);
 					/* fallthrough */
 		case WHITE_LIGHTSABER:	tmp += rnd(11); break;
+
+		case CYAN_DOUBLE_LIGHTSABER: 
+			if (otmp->altmode) tmp += rnd(10);
+			tmp += rnd(5); break;
+			break;
 
 		case RED_DOUBLE_LIGHTSABER:
 					if (otmp->altmode) tmp += rnd(12);
@@ -2618,6 +2642,7 @@ boolean polespecial; /* may use polearm for monster-versus-monster combat */
 		  break;
 		case P_SLING:
 		  propellor = (oselect(mtmp, CATAPULT));
+		  if (!propellor) propellor = (oselect(mtmp, KLIUSLING));
 		  if (!propellor) propellor = (oselect(mtmp, INKA_SLING));
 		  if (!propellor) propellor = (oselect(mtmp, ATLATL));
 		  if (!propellor) propellor = (oselect(mtmp, SNIPESLING));
@@ -2764,7 +2789,7 @@ static const NEARDATA short hwep[] = {
 	  RED_DOUBLE_LIGHTSABER, WHITE_DOUBLE_LIGHTSABER, LASERDENT, SITH_STAFF, LASER_POLE, RED_LIGHTSABER,
 	  MYSTERY_LIGHTSABER, BLUE_LIGHTSABER, LASER_SWORD, VIOLET_LIGHTSABER, WHITE_LIGHTSABER, YELLOW_LIGHTSABER,
 	  BEAMSWORD, GREEN_LIGHTSABER, PIANO, DESERT_SWORD, GROM_AXE, CIRCULAR_SAW, ORANGE_LIGHTSABER, BLACK_LIGHTSABER,
-	  WEDGED_LITTLE_GIRL_SANDAL, SOFT_GIRL_SNEAKER, STURDY_PLATEAU_BOOT_FOR_GIRLS, HUGGING_BOOT,
+	  WEDGED_LITTLE_GIRL_SANDAL, SOFT_GIRL_SNEAKER, STURDY_PLATEAU_BOOT_FOR_GIRLS, HUGGING_BOOT, CYAN_DOUBLE_LIGHTSABER,
 	  BLOCK_HEELED_COMBAT_BOOT, ORGANOBLADE, GUITAR, DARK_HORN, SHADOWBLADE, ROMAN_SWORD, ETHER_SAW, SKY_HORN,
 	  TWO_HANDED_SWORD, YESTERDAY_STAR, DEVIL_STAR, BATTLE_AXE, HUGE_CLUB, CHEMISTRY_SPACE_AXE, PLATINUM_SABER,
 	  GOLDEN_SABER, ETERNIUM_SABER, CRYPTIC_SABER, TWO_HANDED_FLAIL, BOAT_OAR, LASERFIST,
@@ -2809,7 +2834,7 @@ static const NEARDATA short hwep[] = {
 	  GREAT_DAGGER, JAVELIN, BLOW_AKLYS, AKLYS, POURED_CLUB, JAGGED_TOOTH_CLUB, TRASH_SWORD,
 	  NATURAL_STICK, BONE_CLUB, CLUB, ALLOY_CLUB, CIGARETTE, BUBBLETAR, CONUNDRUM_PICK,
 	  BRONZE_PICK, CONGLOMERATE_PICK, MYSTERY_PICK, PICK_AXE, VERMIN_SWATTER, FLY_SWATTER, TENNIS_RACKET,
-	  RADIOACTIVE_DAGGER, SECRETION_DAGGER, BRITTLE_SPEAR, JARED_STONE,
+	  RADIOACTIVE_DAGGER, SECRETION_DAGGER, BRITTLE_SPEAR, JARED_STONE, KLIUSLING,
 	  TELEPHONE, FUTON_SWATTER, MAGICAL_PAINTBRUSH, BROOM, MOP, ORNATE_MACE, CONTROVERSY_CODE,
 
 	  HEAVENLY_WHIP, VIPERWHIP, ETHER_WHIP, BULLETPROOF_CHAINWHIP, INKA_SHACKLE, RUBBER_HOSE, SECRET_WHIP,
@@ -3116,7 +3141,7 @@ struct monst * mon;
 	    }
 	} else {
 		/* Double Lightsaber in single mode? Ignite second blade */
-		if ((obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASERXBOW || obj->otyp == LASER_POLE || obj->otyp == SITH_STAFF || obj->otyp == WHITE_DOUBLE_LIGHTSABER) && !obj->altmode) {
+		if ((obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == CYAN_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASERXBOW || obj->otyp == LASER_POLE || obj->otyp == SITH_STAFF || obj->otyp == WHITE_DOUBLE_LIGHTSABER) && !obj->altmode) {
 		    /* Do we want to activate dual bladed mode? */
 		    if (!obj->altmode && (!obj->cursed || rn2(4))) {
 			if (canseemon(mon)) pline("%s ignites the second blade of %s.", 
@@ -5055,6 +5080,48 @@ restrpasstwo:
 	    }
 
 	    if (!restrpass && (wizard || want_dump)) {
+#ifdef DUMP_LOG
+		if (want_dump) {
+
+			dump("  ", "Hidden Skills");
+
+			sprintf(buf2, "form IX (Hunk) %s %d",
+			    (u.hunkskill >= 4320) ? "Supreme Master" : (u.hunkskill >= 2500) ? "Grand Master" : (u.hunkskill >= 1280) ? "Master" : (u.hunkskill >= 540) ? "Expert" : (u.hunkskill >= 160) ? "Skilled" : (u.hunkskill >= 20) ? "Basic" : "Unskilled", u.hunkskill);
+			dump("    ",buf2);
+			sprintf(buf2, "form X (Kliu) %s %d",
+			    (u.kliuskill >= 4320) ? "Supreme Master" : (u.kliuskill >= 2500) ? "Grand Master" : (u.kliuskill >= 1280) ? "Master" : (u.kliuskill >= 540) ? "Expert" : (u.kliuskill >= 160) ? "Skilled" : (u.kliuskill >= 20) ? "Basic" : "Unskilled", u.kliuskill);
+			dump("    ",buf2);
+			sprintf(buf2, "form XI (Aldebaran) %s %d",
+			    (u.aldebaranskill >= 4320) ? "Supreme Master" : (u.aldebaranskill >= 2500) ? "Grand Master" : (u.aldebaranskill >= 1280) ? "Master" : (u.aldebaranskill >= 540) ? "Expert" : (u.aldebaranskill >= 160) ? "Skilled" : (u.aldebaranskill >= 20) ? "Basic" : "Unskilled", u.aldebaranskill);
+			dump("    ",buf2);
+			logged=TRUE;
+
+		} else {
+#endif
+			any.a_int = 0;
+			add_menu(win, NO_GLYPH, &any, 0, 0, iflags.menu_headings, "Hidden Skills", MENU_UNSELECTED);
+
+			sprintf(buf, "  form IX (Hunk) %s %d",
+			    (u.hunkskill >= 4320) ? "Supreme Master" : (u.hunkskill >= 2500) ? "Grand Master" : (u.hunkskill >= 1280) ? "Master" : (u.hunkskill >= 540) ? "Expert" : (u.hunkskill >= 160) ? "Skilled" : (u.hunkskill >= 20) ? "Basic" : "Unskilled", u.hunkskill);
+			any.a_int = 0;
+			add_menu(win, NO_GLYPH, &any, 0, 0, ATR_NONE, buf, MENU_UNSELECTED);
+			sprintf(buf, "  form X (Kliu) %s %d",
+			    (u.kliuskill >= 4320) ? "Supreme Master" : (u.kliuskill >= 2500) ? "Grand Master" : (u.kliuskill >= 1280) ? "Master" : (u.kliuskill >= 540) ? "Expert" : (u.kliuskill >= 160) ? "Skilled" : (u.kliuskill >= 20) ? "Basic" : "Unskilled", u.kliuskill);
+			any.a_int = 0;
+			add_menu(win, NO_GLYPH, &any, 0, 0, ATR_NONE, buf, MENU_UNSELECTED);
+			sprintf(buf, "  form XI (Aldebaran) %s %d",
+			    (u.aldebaranskill >= 4320) ? "Supreme Master" : (u.aldebaranskill >= 2500) ? "Grand Master" : (u.aldebaranskill >= 1280) ? "Master" : (u.aldebaranskill >= 540) ? "Expert" : (u.aldebaranskill >= 160) ? "Skilled" : (u.aldebaranskill >= 20) ? "Basic" : "Unskilled", u.aldebaranskill);
+			any.a_int = 0;
+			add_menu(win, NO_GLYPH, &any, 0, 0, ATR_NONE, buf, MENU_UNSELECTED);
+
+
+#ifdef DUMP_LOG
+		}
+#endif
+
+	    }
+
+	    if (!restrpass && (wizard || want_dump)) {
 		restrpass = TRUE;
 		goto restrpasstwo;
 	    }
@@ -6013,7 +6080,21 @@ screwupsdone:
 
 	if (Race_if(PM_KORONST) && rn2(3) && (skill <= P_LAST_WEAPON && skill != P_SLING && skill != P_FIREARM)) return;
 
-	if (!PlayerCannotTrainSkills || u.uprops[TRAINING_DEACTIVATED].extrinsic || have_trainingstone()) P_ADVANCE(skill) += degree;
+	if (!PlayerCannotTrainSkills || u.uprops[TRAINING_DEACTIVATED].extrinsic || have_trainingstone()) {
+		P_ADVANCE(skill) += degree;
+
+		if (uwep && uwep->otyp == CYAN_DOUBLE_LIGHTSABER && uwep->lamplit && uwep->altmode && skill >= P_SHII_CHO && skill <= P_WEDI) {
+			uwep->age++;
+			if (uwep->otyp == ORANGE_LIGHTSABER) uwep->age += rnd(2);
+			if (uwep->oartifact == ART_DESANN_S_WRATH) uwep->age += rnd(2);
+		}
+		if (uwep && uwep->oartifact == ART_GLUCKERCHARGE && uwep->lamplit && uwep->altmode && skill >= P_SHII_CHO && skill <= P_WEDI) {
+			uwep->age += 4;
+			if (uwep->otyp == ORANGE_LIGHTSABER) uwep->age += (4 * rnd(2));
+			if (uwep->oartifact == ART_DESANN_S_WRATH) uwep->age += (4 * rnd(2));
+		}
+	}
+
 	if (!advance_before && can_advance(skill, FALSE)) {
 	    give_may_advance_msg(skill);
 	    if (P_RESTRICTED(skill)) {
@@ -10189,6 +10270,9 @@ dataskilldecrease()
 	}
 
 	if (permloss > 0) You("permanently lost %d skill points because this is the evil variant.", permloss);
+	u.hunkskill = 0;
+	u.kliuskill = 0;
+	u.aldebaranskill = 0;
 
 }
 
@@ -10521,6 +10605,22 @@ int lossamount;
 			tryct2--;
 		}
 
+	}
+
+	if (!rn2(500)) {
+		u.hunkskill -= lossamount;
+		if (u.hunkskill < 0) u.hunkskill = 0;
+		Your("form IX (Hunk) skill deteriorates.");
+	}
+	if (!rn2(500)) {
+		u.kliuskill -= lossamount;
+		if (u.kliuskill < 0) u.kliuskill = 0;
+		Your("form X (Kliu) skill deteriorates.");
+	}
+	if (!rn2(500)) {
+		u.aldebaranskill -= lossamount;
+		if (u.aldebaranskill < 0) u.aldebaranskill = 0;
+		Your("form XI (Aldebaran) skill deteriorates.");
 	}
 
 }

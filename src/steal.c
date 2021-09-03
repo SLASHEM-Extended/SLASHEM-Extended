@@ -602,7 +602,7 @@ gotobj:
 	/* evil patch idea by jonadab - levelporting stealers
          he wants them to always levelport if they manage to steal an artifact...
 	   however, if it's an artifact key (those meant for Vlad's Tower), they won't (obvious rule patch) --Amy */
-	if (!rn2(1000) || (otmp->oartifact && !(otmp->otyp == SKELETON_KEY)) ) (void) mongets(mtmp, rn2(5) ? SCR_ROOT_PASSWORD_DETECTION : SCR_WARPING);
+	if (!rn2(1000) || (otmp->oartifact && !(otmp->otyp == SKELETON_KEY)) ) (void) mongets(mtmp, rn2(5) ? SCR_ROOT_PASSWORD_DETECTION : rn2(5) ? SCR_WARPING : SCR_COURSE_TRAVELING);
 
 	could_petrify = (otmp->otyp == CORPSE &&
 			 touch_petrifies(&mons[otmp->corpsenm]));

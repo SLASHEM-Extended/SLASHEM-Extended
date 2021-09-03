@@ -107,6 +107,7 @@ register struct obj *otmp;
 	case SCR_UNDO_GENOCIDE:
 	case SCR_RANDOM_ENCHANTMENT:
 	case SCR_BAD_EQUIPMENT:
+	case SCR_COURSE_TRAVELING:
 	case SCR_HEAL_OTHER:
 	case SCR_REGULAR_MATERIAL:
 		return(20);

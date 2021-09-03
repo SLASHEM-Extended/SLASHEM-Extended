@@ -2571,6 +2571,7 @@ struct obj *otmp;
 #define MUSE_SCR_EXTRA_HEALING 45
 #define MUSE_POT_BLOOD 46
 #define MUSE_SCR_BRANCH_TELEPORT 47
+#define MUSE_SCR_COURSE_TRAVELING 48
 /*
 #define MUSE_INNATE_TPT 9999
  * We cannot use this.  Since monsters get unlimited teleportation, if they
@@ -2900,6 +2901,14 @@ struct monst *mtmp;
 			    && !mtmp->isgd && !mtmp->ispriest)) {
 			m.defensive = obj;
 			m.has_defense = MUSE_SCR_ROOT_PASSWORD_DETECTION;
+		}
+
+		nomore(MUSE_SCR_COURSE_TRAVELING);
+		if(obj->otyp == SCR_COURSE_TRAVELING
+		   && (!(mtmp->isshk && inhishop(mtmp))
+			    && !mtmp->isgd && !mtmp->ispriest)) {
+			m.defensive = obj;
+			m.has_defense = MUSE_SCR_COURSE_TRAVELING;
 		}
 
 		nomore(MUSE_SCR_RELOCATION);
@@ -3310,6 +3319,36 @@ mon_tele:
 			flev = random_branchport_level();
 			migrate_to_level(mtmp, ledger_no(&flev), MIGR_RANDOM, (coord *)0);
 			if (oseen) makeknown(SCR_BRANCH_TELEPORT);
+
+		return 2;
+	    }
+
+	case MUSE_SCR_COURSE_TRAVELING:
+	    {
+		if (mtmp->isshk || mtmp->isgd || mtmp->ispriest) return 2;
+		m_flee(mtmp);
+		mreadmsg(mtmp, otmp);
+
+		if (otmp && otmp->oartifact == ART_MAXIMUM_PENALTY) {
+			reallybadeffect(); reallybadeffect(); reallybadeffect(); reallybadeffect(); reallybadeffect(); reallybadeffect(); reallybadeffect(); reallybadeffect(); reallybadeffect(); reallybadeffect();
+		}
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+		how = SCR_COURSE_TRAVELING;
+
+			d_level flev;
+
+			if (mon_has_amulet(mtmp) || In_endgame(&u.uz)) {
+			    if (vismon) {
+				pline("%s seems very disoriented for a moment.",
+					Monnam(mtmp));
+				if (oseen) makeknown(SCR_COURSE_TRAVELING);
+				}
+			    return 2;
+			}
+			flev = random_branchport_level();
+			migrate_to_level(mtmp, ledger_no(&flev), MIGR_RANDOM, (coord *)0);
+			if (oseen) makeknown(SCR_COURSE_TRAVELING);
 
 		return 2;
 	    }
@@ -4513,7 +4552,7 @@ struct monst *mtmp;
 			|| pm->mlet == S_GHOST
 			|| pm->mlet == S_KOP
 		) && issoviet) return 0;
-	switch (rn2(37)) {
+	switch (rn2(38)) {
 
 		case 0: return SCR_TELEPORTATION;
 		case 1: return POT_HEALING;
@@ -4552,6 +4591,7 @@ struct monst *mtmp;
 		case 34: return SCR_RELOCATION;
 		case 35: return SCR_EXTRA_HEALING;
 		case 36: return POT_BLOOD;
+		case 37: return SCR_COURSE_TRAVELING;
 	}
 	/*NOTREACHED*/
 	return 0;
@@ -11831,6 +11871,7 @@ struct obj *obj;
 		 typ == SCR_TELE_LEVEL ||
 		 typ == SCR_BRANCH_TELEPORT ||
 		 typ == SCR_WARPING ||
+		 typ == SCR_COURSE_TRAVELING ||
 		 typ == SCR_ROOT_PASSWORD_DETECTION ||
 		 typ == SCR_CREATE_MONSTER ||
 		 typ == SCR_CREATE_TRAP ||

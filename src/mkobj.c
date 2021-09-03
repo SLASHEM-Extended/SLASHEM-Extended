@@ -961,7 +961,7 @@ int
 nastymusableitem() /* select the ID number of an item that the monsters may use against you --Amy */
 {
 
-	switch (rnd(208)) {
+	switch (rnd(209)) {
 
 		case 1:
 		case 2:
@@ -1289,6 +1289,8 @@ nastymusableitem() /* select the ID number of an item that the monsters may use 
 			return SCR_EVIL_VARIANT;
 		case 208:
 			return WAN_STAT_REDUCTION;
+		case 209:
+			return SCR_COURSE_TRAVELING;
 		default: /* fail safe */
 			return WAN_CREATE_HORDE;
 	}
@@ -1298,7 +1300,7 @@ nastymusableitem() /* select the ID number of an item that the monsters may use 
 int
 makemusableitem() /* select the ID number of a musable item --Amy */
 {
-	switch (rnd(319)) {
+	switch (rnd(320)) {
 
 		case 1: return WAN_SLEEP;
 		case 2: return WAN_FIREBALL;
@@ -1619,6 +1621,7 @@ makemusableitem() /* select the ID number of a musable item --Amy */
 		case 317: return WAN_MUTATION;
 		case 318: return WAN_GAIN_LEVEL;
 		case 319: return WAN_INCREASE_MAX_HITPOINTS;
+		case 320: return SCR_COURSE_TRAVELING;
 		default: return WAN_MAGIC_MISSILE;
 
 	}
@@ -2658,6 +2661,7 @@ boolean shopinit;
 					blessorcurse_on_creation(otmp, 2);
 					break;
 		case RED_DOUBLE_LIGHTSABER:
+		case CYAN_DOUBLE_LIGHTSABER:
 		case LASERDENT:
 		case LASERXBOW:
 		case SITH_STAFF:
@@ -2665,6 +2669,7 @@ boolean shopinit;
 		case WHITE_DOUBLE_LIGHTSABER:
 					otmp->altmode = FALSE;
 		case STARWARS_MACE:
+		case KLIUSLING:
 		case LASER_SWORD:
 		case BEAMSWORD:
 		case GREEN_LIGHTSABER:

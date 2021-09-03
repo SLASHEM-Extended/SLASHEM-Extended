@@ -6652,7 +6652,7 @@ hitmu(mtmp, mattk)
 			 * Could be stuck with a cursed bow/polearm it wielded
 			 */
 			if (/* if you strike with a bow... */
-				(is_launcher(otmp) && otmp->otyp != LASERXBOW) ||
+				(is_launcher(otmp) && otmp->otyp != LASERXBOW && otmp->otyp != KLIUSLING) ||
 				/* or strike with a missile in your hand... */
 				(is_missile(otmp) || is_ammo(otmp)) ||
 				/* lightsaber that isn't lit ;) */
@@ -10503,7 +10503,7 @@ dopois:
 			 * Could be stuck with a cursed bow/polearm it wielded
 			 */
 			if (/* if you strike with a bow... */
-				(is_launcher(otmp) && otmp->otyp != LASERXBOW) ||
+				(is_launcher(otmp) && otmp->otyp != LASERXBOW && otmp->otyp != KLIUSLING) ||
 				/* or strike with a missile in your hand... */
 				(is_missile(otmp) || is_ammo(otmp)) ||
 				/* lightsaber that isn't lit ;) */

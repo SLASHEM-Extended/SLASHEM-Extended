@@ -1625,7 +1625,7 @@ register struct monst *mtmp;
 			  break;
 			case PM_PADAWAN:
 			case PM_JEDI:
-			  switch(rnd(11)){
+			  switch(rnd(12)){
 			    case 1: mongets(mtmp, RED_LIGHTSABER); break;
 			    case 2: mongets(mtmp, BLUE_LIGHTSABER); break;
 			    case 3: mongets(mtmp, GREEN_LIGHTSABER); break;
@@ -1637,6 +1637,7 @@ register struct monst *mtmp;
 			    case 9: mongets(mtmp, MYSTERY_LIGHTSABER); break;
 			    case 10: mongets(mtmp, ORANGE_LIGHTSABER); break;
 			    case 11: mongets(mtmp, BLACK_LIGHTSABER); break;
+			    case 12: mongets(mtmp, CYAN_DOUBLE_LIGHTSABER); break;
 			    default: break;
 			  }
 			  break;
@@ -10664,6 +10665,8 @@ loveheelover:
 		if (mtmp->data == &mons[PM_ORNATE_NAGA]) (void) mongets(mtmp, ORNATE_MACE);
 		if (mtmp->data == &mons[PM_GRAPNEPTO]) (void) mongets(mtmp, GRAPPLING_HOOK);
 		if (mtmp->data == &mons[PM_TU_TARA_SPELLSWINGER]) (void) mongets(mtmp, EAGLE_BALL);
+		if (mtmp->data == &mons[PM_CYAN_NAGA_HATCHLING]) (void) mongets(mtmp, CYAN_DOUBLE_LIGHTSABER);
+		if (mtmp->data == &mons[PM_CYAN_NAGA]) (void) mongets(mtmp, CYAN_DOUBLE_LIGHTSABER);
 
 		if (ptr == &mons[PM_ABNORM_DRUG_ADDICT]) {
 			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
@@ -11652,6 +11655,12 @@ loveheelover:
 		if (ptr == &mons[PM_CHTO]) {
 		  	(void) mongets(mtmp, KHOPESH);
 		}
+		if (ptr == &mons[PM_TRAVELTRAIN]) {
+		  	(void) mongets(mtmp, SCR_COURSE_TRAVELING);
+		}
+		if (ptr == &mons[PM_D_TRAIN]) {
+		  	(void) mongets(mtmp, SCR_COURSE_TRAVELING);
+		}
 		if (ptr == &mons[PM_ELVIN_PRESS]) {
 		  	(void) mongets(mtmp, AIR_PRESSURE_HAMMER);
 		}
@@ -12352,6 +12361,10 @@ loveheelover:
 		if (mtmp->data == &mons[PM_UNWISE_BLUE_SMOKER]) {
 			(void) mongets(mtmp, LADY_BOOTS);
 			(void) mongets(mtmp, CIGARETTE);
+		}
+		if (mtmp->data == &mons[PM_JEDI_HORROR]) {
+			(void) mongets(mtmp, CYAN_DOUBLE_LIGHTSABER);
+			(void) mongets(mtmp, ROBE);
 		}
 		if(ptr == &mons[PM_YITH_DAEMON]) {
 			(void) mongets(mtmp, YITH_TENTACLE);

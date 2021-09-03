@@ -1708,6 +1708,13 @@ struct you {
 
 	int inasuppression;	/* dying and lifesaving while having the ina trap active will set this */
 
+	int hunkturns;	/* inofficial lightsaber forms that don't appear as regular skills */
+	int hunkskill;
+	int kliuturns;
+	int kliuskill;
+	int aldebaranturns;
+	int aldebaranskill;
+
 	boolean keythief;	/* did the player use certain keys on Vlad's? if yes, give a reward once */
 	boolean keynocturn;
 	boolean keyaccess;

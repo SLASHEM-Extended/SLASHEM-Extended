@@ -9540,6 +9540,8 @@ extrachargechoice:
 						    madechoice = 1; sabertype = 16; }
 					else if (yn("Do you want to switch to a laser tin opener?")=='y') {
 						    madechoice = 1; sabertype = 17; }
+					else if (yn("Do you want to switch to a kliusling?")=='y') {
+						    madechoice = 1; sabertype = 18; }
 
 				}
 
@@ -9577,7 +9579,7 @@ extrachargechoice:
 						case 9: uwep->otyp = BLACK_LIGHTSABER; break;
 					}
 				} else if (sabertype == 2) {
-					uwep->otyp = rn2(2) ? RED_DOUBLE_LIGHTSABER : WHITE_DOUBLE_LIGHTSABER;
+					uwep->otyp = !rn2(3) ? CYAN_DOUBLE_LIGHTSABER : rn2(2) ? RED_DOUBLE_LIGHTSABER : WHITE_DOUBLE_LIGHTSABER;
 				} else if (sabertype == 3) {
 					uwep->otyp = LASER_SWATTER;
 				} else if (sabertype == 4) {
@@ -9606,8 +9608,10 @@ extrachargechoice:
 					uwep->otyp = LASER_CHAIN;
 				} else if (sabertype == 16) {
 					uwep->otyp = LASERFIST;
-				} else /* sabertype == 17 */
+				} else if (sabertype == 17) {
 					uwep->otyp = LASER_TIN_OPENER;
+				} else /* sabertype == 18 */
+					uwep->otyp = KLIUSLING;
 
 				pline("Your lightsaber warps, and changes into a different one!");
 				/* known problem: you can pick the form that your lightsaber already has */

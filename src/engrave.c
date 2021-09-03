@@ -5509,6 +5509,9 @@ static const char *epitaphs[] = {
 	"Amy must have been on crack when she decided to make the restore ability spell not guaranteed to work. Like, who would design a game that badly?",
 	"How the hell could Amy screw up so bad? Man, her changed artiwishing rules suck ass! There are so many artifacts generated and they all suck but at the same time blow your artiwishing chances to heck!",
 	"amy is the epitome of mental health, as we all know",
+	"Guh why won't that dumbie lightsaber get better regardless of how much I bash with it while it's unlit? That trains the Hunk lightsaber form after all, which is supposed to increase bashing damage!",
+	"This stupid lightsaber, it doesn't want me to win! I tried everything I could think of to train the Kliu form, but it just wouldn't gain any skill!",
+	"Shitty lightsaber, I tried so hard to make the Aldebaran form work but the RNG wasn't on my side!",
 
 };
 

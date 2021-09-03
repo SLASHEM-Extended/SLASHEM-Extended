@@ -8713,6 +8713,18 @@ A("Zieieie!",				BFG_AMMO, /* spawns with 400 extra ammo */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 40L ),
 
+A("Maximum Penalty",				SCR_COURSE_TRAVELING, /* 10 super-bad effects when someone reads it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 1000L ),
+
+A("Gluckercharge",				CYAN_DOUBLE_LIGHTSABER, /* gives an additional 4 charges when training a lightsaber form */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Lets Make It Official",				KLIUSLING, /* sight bonus at basic kliu skill, infravision at skilled, free action at expert, control magic at master, reflection at grand master */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

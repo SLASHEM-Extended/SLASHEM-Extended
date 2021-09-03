@@ -4329,11 +4329,11 @@ CONTAINER("bag of tricks", "bag",       0, 1, 1, 0, 1950, 5, 30, MT_CLOTH, HI_CL
 /* bag of tricks must be last */
 
 /* Unlocking tools */
-TOOL("skeleton key", "key",     0, 0, 0, 0, 6190,  0,  10, MT_IRON, HI_METAL, 1),
+TOOL("skeleton key", "key",     0, 0, 0, 0, 6140,  0,  10, MT_IRON, HI_METAL, 1),
 TOOL("secret key", (char *)0,   1, 0, 0, 0,  500,  0,  10, MT_SECREE, CLR_BLACK, 1),
 WEPTOOL("controversy code", (char *)0, /* can be used as a key to unlock stuff */
 	1, 0, 0, 0, 100, 0,   10,  4,  6, 0, WHACK,  P_SHORT_SWORD, MT_IRON, HI_METAL, 15),
-TOOL("lock pick", (char *)0,    1, 0, 0, 0, 4890,  0,  20, MT_IRON, HI_METAL, 1),
+TOOL("lock pick", (char *)0,    1, 0, 0, 0, 4790,  0,  20, MT_IRON, HI_METAL, 1),
 TOOL("hairclip", (char *)0,     1, 0, 0, 0,  600,  0,  20, MT_SILK, CLR_WHITE, 1),
 TOOL("credit card", (char *)0,  1, 0, 0, 0, 1100,  0,  10, MT_PLASTIC, CLR_WHITE, 1),
 TOOL("data chip", (char *)0,    1, 0, 0, 0,  400,  0,  10, MT_PLATINUM, CLR_GRAY, 1),
@@ -4451,6 +4451,8 @@ WEPTOOL("red lightsaber",  "lightsaber",
 	0, 0, 1, 0,  100, 24, 500, 9,  11, 0, SLASH, P_LIGHTSABER, MT_PLATINUM, HI_METAL, 16),
 WEPTOOL("red double lightsaber",  "double lightsaber",
 	0, 0, 1, 1,  100, 24,1000, 15, 20, 0, SLASH, P_LIGHTSABER, MT_PLATINUM, HI_METAL, 30),
+WEPTOOL("cyan double lightsaber",  "double lightsaber",
+	0, 0, 1, 1,  100, 24,1000, 12, 15, 0, SLASH, P_LIGHTSABER, MT_METAL, CLR_CYAN, 30),
 WEPTOOL("black lightsaber",  "lightsaber", /* weaker than red lightsaber, higher charge */
 	0, 0, 1, 0,  100, 24, 500, 8,  9, 0, SLASH, P_LIGHTSABER, MT_SCRAP, CLR_BLACK, 4),
 WEPTOOL("orange lightsaber", "lightsaber", /* -5 to-hit, otherwise like green lightsaber, can be charged more effectively */
@@ -4480,6 +4482,8 @@ WEPTOOL("beamsword",  (char *)0,
 	1, 0, 1, 0, 50, 12, 500, 10, 10, 0, SLASH, P_SABER, MT_GOLD, CLR_YELLOW, 10),
 WEPTOOL("laserxbow",  (char *)0,
 	1, 0, 1, 1, 10, 70, 5000, 12, 0, 3, WHACK, P_CROSSBOW, MT_WOOD, CLR_BRIGHT_MAGENTA, 90),
+WEPTOOL("kliusling",  (char *)0,
+	1, 0, 1, 0, 50,  3, 500,  4, 4, 0, WHACK, P_SLING, MT_COMPOST, CLR_BROWN, 20),
 
 WEPTOOL("yellow lightsaber",  "lightsaber",
 	0, 0, 1, 0,  100, 24, 500, 6,  6, 0, SLASH, P_LIGHTSABER, MT_PLATINUM, HI_METAL, 5),
@@ -5172,7 +5176,8 @@ SCROLL("rain",		"WASH MY PAST AWAY",	      P_ELEMENTAL_SPELL,  1,  100, 100, CLR
 SCROLL("barrhing",		"CONVICT PATCH",	      P_ELEMENTAL_SPELL,  1,  500, 100, CLR_BRIGHT_MAGENTA, 1),
 SCROLL("lockout",		"WE WILL HURT YOU",	      P_ELEMENTAL_SPELL,  1,  500, 100, CLR_ORANGE, 1),
 SCROLL("stoning",		"CURSED TIN OF COCKATRICE MEAT",	      P_NONE,  1,  100, 100, CLR_BLACK, 20),
-SCROLL("root password detection","XYZZY",		      P_NONE,  1,  500, 100, CLR_GRAY, 1),
+SCROLL("root password detection","XYZZY",		      P_NONE,  1,  450, 100, CLR_GRAY, 1),
+SCROLL("course traveling","SUPER NOPE EXPRESS",		      P_NONE,  1,  50, 100, CLR_RED, 1),
 SCROLL("trap creation","TOP SECRET DO NOT READ",      P_NONE,  1,  500, 100, CLR_BLACK, 1),
 SCROLL("sleep","I AM SO FUCKING TIRED",         P_NONE, 1,   500, 100, CLR_BRIGHT_MAGENTA, 1),
 SCROLL("chaos terrain","TIGHT SPANDEX SHIRT",         P_CHAOS_SPELL, 1,   100, 100, CLR_BRIGHT_BLUE, 1),

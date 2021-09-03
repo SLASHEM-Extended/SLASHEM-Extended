@@ -1731,7 +1731,7 @@ struct obj *obj;
 				obj->otyp == BRASS_LANTERN) {
 		    pline("%s lamp is now off.", Shk_Your(buf, obj));
 		} else if(is_lightsaber(obj)) {
-		    if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASERXBOW || obj->otyp == SITH_STAFF) {
+		    if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == CYAN_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASERXBOW || obj->otyp == SITH_STAFF) {
 
 			/* Do we want to activate dual bladed mode? */
 			if (vaapadcheck) {
@@ -1831,7 +1831,7 @@ struct obj *obj;
 		    if (!Blind) makeknown(obj->otyp);
 		    You("ignite %s.", yname(obj));
 
-			if ((obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASERXBOW || obj->otyp == SITH_STAFF) && vaapadcheck) {
+			if ((obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == CYAN_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASERXBOW || obj->otyp == SITH_STAFF) && vaapadcheck) {
 				if (yn("Use only one of the two blades? (If you say no, you ignite both)") != 'n') {
 					; /* do nothing */
 				} else {
@@ -5636,9 +5636,11 @@ doapply()
 	case LIGHTWHIP:
 	case ELECTRIC_CIGARETTE:
 	case RED_DOUBLE_LIGHTSABER:
+	case CYAN_DOUBLE_LIGHTSABER:
 	case WHITE_DOUBLE_LIGHTSABER:
 	case LASERDENT:
 	case LASERXBOW:
+	case KLIUSLING:
 	case STARWARS_MACE:
 	case LASER_SWORD:
 	case BEAMSWORD:

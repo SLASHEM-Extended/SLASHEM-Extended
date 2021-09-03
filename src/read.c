@@ -1003,6 +1003,7 @@ doread()
 			case SCR_UNDO_GENOCIDE:
 			case SCR_RANDOM_ENCHANTMENT:
 			case SCR_BAD_EQUIPMENT:
+			case SCR_COURSE_TRAVELING:
 			case SCR_HEAL_OTHER:
 			case SCR_REGULAR_MATERIAL:
 				cartochance = 25;
@@ -1700,11 +1701,13 @@ int curse_bless;
 	    case YELLOW_LIGHTSABER:
 	    case RED_LIGHTSABER:
 	    case RED_DOUBLE_LIGHTSABER:
+	    case CYAN_DOUBLE_LIGHTSABER:
 	    case WHITE_DOUBLE_LIGHTSABER:
 	    case LASER_SWATTER:
 	    case NANO_HAMMER:
 	    case STARWARS_MACE:
 	    case LIGHTWHIP:
+	    case KLIUSLING:
 	    case LASERDENT:
 	    case LASERXBOW:
 	    case LASER_POLE:
@@ -10403,6 +10406,18 @@ secremchoice:
 		You("sense the computer's root password.");
 		pline("It is: %s.", sobj->cursed ? "jsdfljfdsh" : (sobj->blessed ? "memalezu" : "xyzzy"));
 		pline("(No warranty implied.)");
+		break;
+
+	case SCR_COURSE_TRAVELING:
+
+		if (sobj->oartifact == ART_MAXIMUM_PENALTY) {
+			reallybadeffect(); reallybadeffect(); reallybadeffect(); reallybadeffect(); reallybadeffect(); reallybadeffect(); reallybadeffect(); reallybadeffect(); reallybadeffect(); reallybadeffect();
+		}
+
+		if (sobj->cursed) pline("Have fun travelling with the N-car!");
+		else if (sobj->blessed) pline("Western Frankish Course - exactly your track.");
+		else pline("Welcome aboard the Assfuck Express!");
+
 		break;
 
 	case SCR_STINKING_CLOUD: {

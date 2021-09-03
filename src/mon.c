@@ -6682,6 +6682,23 @@ xkilled(mtmp, dest)
 
 	if (Role_if(PM_BLOODSEEKER)) healup(mtmp->m_lev, 0, FALSE, FALSE); /* special ability called "Stygwyr's Thirst" */
 	if (uwep && uwep->oartifact == ART_ALDEBARAN_FORM) healup(mtmp->m_lev, 0, FALSE, FALSE);
+
+	if (uwep && uwep->lamplit && ((uwep->oartifact == ART_ALDEBARAN_FORM) || (is_lightsaber(uwep) && Flying) ) ) {
+		u.aldebaranturns++;
+		if (u.aldebaranturns >= 2) {
+			u.aldebaranturns = 0;
+			u.aldebaranskill++;
+			if (uwep && uwep->oartifact == ART_ALDEBARAN_FORM) {
+				if (u.aldebaranskill == 20) You("are now more skilled in form XI (Aldebaran).");
+				if (u.aldebaranskill == 160) You("are now more skilled in form XI (Aldebaran).");
+				if (u.aldebaranskill == 540) You("are now more skilled in form XI (Aldebaran).");
+				if (u.aldebaranskill == 1280) You("are now more skilled in form XI (Aldebaran).");
+				if (u.aldebaranskill == 2560) You("are now more skilled in form XI (Aldebaran).");
+				if (u.aldebaranskill == 4320) You("are now most skilled in form XI (Aldebaran).");
+			}
+		}
+	}
+
 	if (Race_if(PM_ETHEREALOID) && !rn2(2)) healup(mtmp->m_lev, 0, FALSE, FALSE);
 	if (Race_if(PM_INCORPOREALOID) && !rn2(2)) healup(mtmp->m_lev, 0, FALSE, FALSE);
 	/* Demo wants a complicated calculation for how many HP the etherealoid gains from a kill... I took the easy way out */

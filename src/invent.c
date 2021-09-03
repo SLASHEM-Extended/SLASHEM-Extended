@@ -13861,6 +13861,8 @@ boolean knoweverything;
 				pline("This lightsaber does random damage, but it needs to be turned on in order to work and it also deals less damage than most other lightsaber types. An activated lightsaber is good for engraving."); break;
 			case RED_DOUBLE_LIGHTSABER:
 				pline("A two-handed lightsaber that can be set to double mode in order to do even more damage. It needs to be turned on in order to work, and while activated it is also useful for engraving. It's especially effective against large monsters."); break;
+			case CYAN_DOUBLE_LIGHTSABER:
+				pline("A two-handed lightsaber that can be set to double mode in order to do even more damage. It needs to be turned on in order to work, and while activated it is also useful for engraving. It deals higher damage to large monsters compared to small ones, but less damage than other types of double lightsaber. If you have both blades active and perform an action that trains one of the lightsaber forms, this weapon is recharged by one point, but since double mode consumes two points of charge per turn you'll probably still have a net loss of charge."); break;
 			case YELLOW_LIGHTSABER:
 				pline("This lightsaber does randomized damage, but it needs to be turned on in order to work. An activated lightsaber is good for engraving."); break;
 			case VIOLET_LIGHTSABER:
@@ -13873,6 +13875,8 @@ boolean knoweverything;
 				pline("This special crossbow is laser-based, you have to apply it to turn it on. It can also be set to double mode, increasing its strength. You can both whack things with it and fire crossbow bolts from it, but unless it's lit, it doesn't work. So make sure to turn it on first! When used properly, it also has a to-hit bonus."); break;
 			case STARWARS_MACE:
 				pline("It's a mace-lightsaber, which needs to be turned on in order to work, and then it deals solid melee damage."); break;
+			case KLIUSLING:
+				pline("This one-handed sling is laser-powered, and needs to be turned on if you want to fire. When it's turned on, you can also bash things with it, which is less effective than regular melee weapons but still better than bashing with it while it's unlit. It also allows you to train the hidden form X (Kliu) skill, which if it gets high enough, will improve the range of rocks and stones you shoot with it."); break;
 			case SITH_STAFF:
 				pline("This is a quarterstaff that uses lightsaber power; you need to turn it on first or it won't be effective. It requires two hands, and if you apply it twice, you can activate double blade mode, further increasing its damage output."); break;
 			case LASER_POLE:
@@ -14809,6 +14813,8 @@ boolean knoweverything;
 				pline("Corridors near you turn into solid rock walls and doors automatically repair and lock themselves if you read this scroll."); break;
 			case SCR_ROOT_PASSWORD_DETECTION:
 				pline("This scroll has the computer's root password written on it, which you can read. It's likely to be useless anyway."); break;
+			case SCR_COURSE_TRAVELING:
+				pline("Do you want to travel with the course? Then read this scroll! But most probably the course will be delayed or cancelled :-)"); break;
 			case SCR_TRAP_CREATION:
 				pline("A dangerous scroll that creates traps around you."); break;
 			case SCR_CREATE_TRAP:
@@ -21481,7 +21487,7 @@ boolean knoweverything;
 				case ART_SECRET_BOOK_OF_VENOM:
 					pline("Artifact specs: successfully reading it will teach you the venom mixing technique, or increase its level if you already know it."); break;
 				case ART_ALDEBARAN_FORM:
-					pline("Artifact specs: flying when wielded, and if you kill something while wielding it, you recover some HP. There is no actual 'aldebaran' lightsaber form, but Demo suggested it and I decided to turn the idea into an artifact instead."); break;
+					pline("Artifact specs: flying when wielded, and if you kill something while wielding it, you recover some HP. There is no actual 'aldebaran' lightsaber form, but Demo suggested it and I decided to turn the idea into an artifact instead. The form XI (Aldebaran) skill is hidden and currently does nothing; if it would have increased while you're wielding this weapon, you will get a message."); break;
 				case ART_JEDITATION:
 					pline("Artifact specs: +2 damage, energy regeneration when wielded."); break;
 				case ART_WIRE_OF_LUCK:
@@ -21491,7 +21497,7 @@ boolean knoweverything;
 				case ART_HURO_HAEHAE:
 					pline("Artifact specs: transfers your entire inventory to a bunch of random monsters, which are then teleported to other dungeon levels. This also applies if someone other than you reads this scroll."); break;
 				case ART_TEH_HUNK:
-					pline("Artifact specs: if it's unlit, it deals +5 damage and has +5 to-hit. Also, if you are dual-wielding with this weapon in your alternate slot and your primary weapon is a launcher, lightsaber that is not lit, non-ridden polearm or non-weapon, that one gets +5 to-hit as well."); break;
+					pline("Artifact specs: if it's unlit, it deals +5 damage and has +5 to-hit. Also, if you are dual-wielding with this weapon in your alternate slot and your primary weapon is a launcher, lightsaber that is not lit, non-ridden polearm or non-weapon, that one gets +5 to-hit as well. As an added bonus, using this artifact tells you if your form IX (Hunk) skill increases."); break;
 				case ART_THERMO_NUCLEAR_CHAMBER:
 					pline("Artifact specs: causes etherwind when equipped, reduces lightsaber energy consumption rate to one third the usual rate, reduces your AC by 10 points and cannot block projectiles."); break;
 				case ART_SUPER_ENERGY_LINES:
@@ -21604,6 +21610,12 @@ boolean knoweverything;
 					pline("Artifact specs: beheads targets."); break;
 				case ART_ZIEIEIE_:
 					pline("Artifact specs: no special effect but they may well have spawned with an unusually high stack size."); break;
+				case ART_MAXIMUM_PENALTY:
+					pline("Artifact specs: really bad stuff happens if someone reads it. You've been warned."); break;
+				case ART_GLUCKERCHARGE:
+					pline("Artifact specs: if you train a lightsaber form while having both blades of it lit, it regains an additional 4 points of charge."); break;
+				case ART_LETS_MAKE_IT_OFFICIAL:
+					pline("Artifact specs: gives bonuses when your form X (Kliu) skill increases. Basic skill gives improved vision, skilled gives infravision, expert gives free action, master gives control magic and grand master gives reflection."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;
