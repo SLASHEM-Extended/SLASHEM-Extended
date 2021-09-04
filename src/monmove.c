@@ -3051,7 +3051,7 @@ altarfound:
 	       nidist > (couldsee(nix,niy) ? 144 : 36) && appr == 1) appr = 0;
 
 		/* special coding for "homing" giant wasps from the hunger games --Amy */
-		if ((ptr == &mons[PM_TRACKER_JACKER] || ptr == &mons[PM_POLICE_DOG] || ptr == &mons[PM_POLICE_HUSKY] || ptr == &mons[PM_BIG_POLICE_DOG] || ptr == &mons[PM_CURSED____LEFTHANDED_FARTING_ELEPHANT] || ptr == &mons[PM_VERONA_MARBLE] || ptr == &mons[PM_CHASE_BIRD] || ptr == &mons[PM_OOGABOOGAGOBILITGOOK_SEEKER_AREHETYPE_FUCKING_RETARD_ASS_SHIT_FLINGING_MONKEY_MONSTER] || ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_DRIVE_TRAIN] || ptr == &mons[PM_XTREME_TRACKER] || ptr == &mons[PM_REFUGE_UHLERT]) && !mtmp->mpeaceful) appr = 1;
+		if ((ptr == &mons[PM_TRACKER_JACKER] || ptr == &mons[PM_POLICE_DOG] || ptr == &mons[PM_POLICE_HUSKY] || ptr == &mons[PM_BIG_POLICE_DOG] || ptr == &mons[PM_CURSED____LEFTHANDED_FARTING_ELEPHANT] || ptr == &mons[PM_VERONA_MARBLE] || ptr == &mons[PM_CHASE_BIRD] || ptr == &mons[PM_JAYCEE] || ptr == &mons[PM_OOGABOOGAGOBILITGOOK_SEEKER_AREHETYPE_FUCKING_RETARD_ASS_SHIT_FLINGING_MONKEY_MONSTER] || ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_DRIVE_TRAIN] || ptr == &mons[PM_XTREME_TRACKER] || ptr == &mons[PM_REFUGE_UHLERT] || ptr == &mons[PM_THE_ULTIMATE_REFUGE]) && !mtmp->mpeaceful) appr = 1;
 
 	if (uarmh && itemhasappearance(uarmh, APP_BUG_TRACKING_HELMET) && !rn2(3) ) appr = 1; 
 

@@ -3259,5 +3259,127 @@ int coordx, coordy;
 	return ret;
 }
 
+int
+dump_container_huro(container, destroy_after, coordx, coordy)
+struct obj* container;
+BOOLEAN_P destroy_after;
+int coordx, coordy;
+{
+	if (!isok(coordx, coordy)) {
+		impossible("dump_container coordinates %d, %d?", coordx, coordy);
+		coordx = u.ux;
+		coordy = u.uy; /* fail safe */
+	}
+
+	struct obj* otmp,*otmp2;
+	register struct monst *offmon;
+	int ret = 0;
+
+	/* sanity check */
+	if (!container) { return 0; }
+
+	for (otmp = container->cobj; otmp; otmp = otmp2)
+	{
+		ret = 1;
+		otmp2 = otmp->nobj;
+		obj_extract_self(otmp);
+		container->owt = weight(container);
+
+		/* we do need to start the timer on these */
+		if ( (container->otyp == ICE_BOX || container->otyp == DISPERSION_BOX || container->otyp == ICE_BOX_OF_HOLDING || container->otyp == ICE_BOX_OF_WATERPROOFING || container->otyp == ICE_BOX_OF_DIGESTION) && !age_is_relative(otmp) && !is_lightsaber(otmp)) {
+			otmp->age = monstermoves - otmp->age;
+			otmp->icedobject = TRUE;
+			if (otmp->otyp == CORPSE) {
+				start_corpse_timeout(otmp);
+			}
+		}
+		if ((offmon = makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS)) != 0) {
+			(void) mpickobj(offmon,otmp,FALSE);
+			mdrop_special_objs(offmon); /* don't levelport ones that have the amulet! */
+			u_teleport_monB(offmon, FALSE);
+		} else {
+			place_object(otmp,coordx,coordy);
+		}
+
+		if (otmp && otmp->otyp == GOLD_PIECE) {
+#ifndef GOLDOBJ
+			/*dealloc_obj(otmp);*/ /* causes panic, and besides, is it really needed??? --Amy */
+#endif
+			bot();	/* update character's gold piece count immediately */
+		}
+	}
+
+	if (destroy_after) {
+		if (container->where == OBJ_INVENT) {
+			useup(container);
+		} else if (obj_here(container, u.ux, u.uy)) {
+			useupf(container, container->quan);
+		}
+	}
+
+	return ret;
+}
+
+int
+dump_container_superhuro(container, destroy_after, coordx, coordy)
+struct obj* container;
+BOOLEAN_P destroy_after;
+int coordx, coordy;
+{
+	if (!isok(coordx, coordy)) {
+		impossible("dump_container coordinates %d, %d?", coordx, coordy);
+		coordx = u.ux;
+		coordy = u.uy; /* fail safe */
+	}
+
+	struct obj* otmp,*otmp2;
+	register struct monst *offmon;
+	int ret = 0;
+
+	/* sanity check */
+	if (!container) { return 0; }
+
+	for (otmp = container->cobj; otmp; otmp = otmp2)
+	{
+		ret = 1;
+		otmp2 = otmp->nobj;
+		obj_extract_self(otmp);
+		container->owt = weight(container);
+
+		/* we do need to start the timer on these */
+		if ( (container->otyp == ICE_BOX || container->otyp == DISPERSION_BOX || container->otyp == ICE_BOX_OF_HOLDING || container->otyp == ICE_BOX_OF_WATERPROOFING || container->otyp == ICE_BOX_OF_DIGESTION) && !age_is_relative(otmp) && !is_lightsaber(otmp)) {
+			otmp->age = monstermoves - otmp->age;
+			otmp->icedobject = TRUE;
+			if (otmp->otyp == CORPSE) {
+				start_corpse_timeout(otmp);
+			}
+		}
+		if ((offmon = makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS)) != 0) {
+			(void) mpickobj(offmon,otmp,FALSE);
+			mdrop_special_objs(offmon); /* don't levelport ones that have the amulet! */
+			u_teleport_monC(offmon, FALSE);
+		} else {
+			place_object(otmp,coordx,coordy);
+		}
+
+		if (otmp && otmp->otyp == GOLD_PIECE) {
+#ifndef GOLDOBJ
+			/*dealloc_obj(otmp);*/ /* causes panic, and besides, is it really needed??? --Amy */
+#endif
+			bot();	/* update character's gold piece count immediately */
+		}
+	}
+
+	if (destroy_after) {
+		if (container->where == OBJ_INVENT) {
+			useup(container);
+		} else if (obj_here(container, u.ux, u.uy)) {
+			useupf(container, container->quan);
+		}
+	}
+
+	return ret;
+}
+
 /*pickup.c*/
 

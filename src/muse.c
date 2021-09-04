@@ -12282,6 +12282,9 @@ struct monst *mtmp;
 	register struct obj *obj;
 	struct obj *curr, *otmp;
 
+	if (mtmp->data == &mons[PM_COW_HILL_GIANT]) return;
+	if (mtmp->data == &mons[PM_IT_S_TOO_HEAVY_FOR_YOUR_HILL_GIANT]) return;
+
 	for(obj=mtmp->minvent; obj; obj=obj->nobj) {
 		if (Is_container(obj)) {
 			if (obj->otyp == MEDICAL_KIT) continue;
@@ -12316,6 +12319,8 @@ struct monst *mtmp;
 
 			if (canseemon(mtmp)) pline("%s empties a container on the %s.", Monnam(mtmp), surface(mtmp->mx, mtmp->my));
 			if (mtmp->data == &mons[PM_BOXPORT_NYMPH]) dump_container_tele(obj, FALSE, mtmp->mx, mtmp->my);
+			else if (mtmp->data == &mons[PM_HURO_NYMPH]) dump_container_huro(obj, FALSE, mtmp->mx, mtmp->my);
+			else if (mtmp->data == &mons[PM_SUPERHURO_NYMPH]) dump_container_superhuro(obj, FALSE, mtmp->mx, mtmp->my);
 			else dump_container(obj, FALSE, mtmp->mx, mtmp->my);
 
 		}

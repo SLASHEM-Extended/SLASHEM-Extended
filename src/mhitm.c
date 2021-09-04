@@ -614,7 +614,7 @@ meleeattack:
 		strike = (tmp > dieroll);
 		if (strike) {
 		    res[i] = hitmm(magr, mdef, mattk);
-		    if((mdef->data == &mons[PM_BLACK_PUDDING] || mdef->data == &mons[PM_GEMINICROTTA] || mdef->data == &mons[PM_GREY_PUDDING] || mdef->data == &mons[PM_STICKY_PUDDING] || mdef->data == &mons[PM_SHOCK_PUDDING] || mdef->data == &mons[PM_VOLT_PUDDING] || mdef->data == &mons[PM_DRUDDING] || mdef->data == &mons[PM_BLACK_DRUDDING] || mdef->data == &mons[PM_BLACKSTEEL_PUDDING] || mdef->data == &mons[PM_BLOOD_PUDDING] || mdef->data == &mons[PM_MORAL_HAZARD] || mdef->data == &mons[PM_MORAL_EVENT_HORIZON] || mdef->data == &mons[PM_BLACK_PIERCER] || mdef->data == &mons[PM_BROWN_PUDDING])
+		    if((mdef->data == &mons[PM_BLACK_PUDDING] || mdef->data == &mons[PM_GEMINICROTTA] || mdef->data == &mons[PM_DIVISIBLE_ICE_CREAM_BAR] || mdef->data == &mons[PM_GREY_PUDDING] || mdef->data == &mons[PM_STICKY_PUDDING] || mdef->data == &mons[PM_SHOCK_PUDDING] || mdef->data == &mons[PM_VOLT_PUDDING] || mdef->data == &mons[PM_DRUDDING] || mdef->data == &mons[PM_BLACK_DRUDDING] || mdef->data == &mons[PM_BLACKSTEEL_PUDDING] || mdef->data == &mons[PM_BLOOD_PUDDING] || mdef->data == &mons[PM_MORAL_HAZARD] || mdef->data == &mons[PM_MORAL_EVENT_HORIZON] || mdef->data == &mons[PM_BLACK_PIERCER] || mdef->data == &mons[PM_BROWN_PUDDING])
 		       && otmp && objects[otmp->otyp].oc_material == MT_IRON
 		       && mdef->mhp > 1 && !mdef->mcan && !rn2(100) ) /* slowing pudding farming to a crawl --Amy */
 		    {

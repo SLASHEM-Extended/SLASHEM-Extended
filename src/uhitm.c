@@ -3948,7 +3948,7 @@ melatechoice:
 		abuse_dog(mon);
 		monflee(mon, 10 * rnd(tmp), FALSE, FALSE);
 	}
-	if((mdat == &mons[PM_SHOCK_PUDDING] || mdat == &mons[PM_VOLT_PUDDING] || mdat == &mons[PM_BLACK_PUDDING] || mdat == &mons[PM_GEMINICROTTA] || mdat == &mons[PM_GREY_PUDDING] || mdat == &mons[PM_STICKY_PUDDING] || mdat == &mons[PM_DRUDDING] || mdat == &mons[PM_BLACK_DRUDDING] || mdat == &mons[PM_BLACKSTEEL_PUDDING] || mdat == &mons[PM_BLOOD_PUDDING] || mdat == &mons[PM_MORAL_HAZARD] || mdat == &mons[PM_MORAL_EVENT_HORIZON] || mdat == &mons[PM_BLACK_PIERCER] || mdat == &mons[PM_BROWN_PUDDING])
+	if((mdat == &mons[PM_SHOCK_PUDDING] || mdat == &mons[PM_VOLT_PUDDING] || mdat == &mons[PM_BLACK_PUDDING] || mdat == &mons[PM_DIVISIBLE_ICE_CREAM_BAR] || mdat == &mons[PM_GEMINICROTTA] || mdat == &mons[PM_GREY_PUDDING] || mdat == &mons[PM_STICKY_PUDDING] || mdat == &mons[PM_DRUDDING] || mdat == &mons[PM_BLACK_DRUDDING] || mdat == &mons[PM_BLACKSTEEL_PUDDING] || mdat == &mons[PM_BLOOD_PUDDING] || mdat == &mons[PM_MORAL_HAZARD] || mdat == &mons[PM_MORAL_EVENT_HORIZON] || mdat == &mons[PM_BLACK_PIERCER] || mdat == &mons[PM_BROWN_PUDDING])
 		   && obj /* && obj == uwep -- !thrown and obj == weapon */
 		   && !thrown
 		   && objects[obj->otyp].oc_material == MT_IRON

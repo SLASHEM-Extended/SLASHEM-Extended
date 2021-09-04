@@ -7207,7 +7207,7 @@ register struct monst *mtmp;
 		if(ptr == &mons[PM_DUNGEON_ARCHER]) { (void) mongets(mtmp, BOW); m_initthrow(mtmp, ELVEN_ARROW, 30); }
 		if(ptr == &mons[PM_SCORCHING_ARCHER]) { (void) mongets(mtmp, BOW); m_initthrow(mtmp, DARK_ELVEN_ARROW, 30); }
 
-		if(ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_CLEAVED_ZOMBIE]) (void) mongets(mtmp, AXE);
+		if(ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_THE_ULTIMATE_REFUGE] || ptr == &mons[PM_REFUGE_UHLERT] || ptr == &mons[PM_MENISMAN] || ptr == &mons[PM_CLEAVED_ZOMBIE]) (void) mongets(mtmp, AXE);
 
 		if (mm == PM_ZOMBIE_PROSTITUTE){
 			(void)mongets(mtmp, BULLWHIP);
@@ -10955,6 +10955,9 @@ loveheelover:
 		if (ptr == &mons[PM_LIGHTDANCER]) {
 			(void) mongets(mtmp, LASER_POLE);
 		}
+		if (ptr == &mons[PM_FRANCESCA_DUMMTRULLA]) {
+			(void) mongets(mtmp, FEMININE_PUMPS);
+		}
 		if (ptr == &mons[PM_SORROW_GIRL]) {
 			(void) mongets(mtmp, STRIPE_MAIL);
 		}
@@ -13148,6 +13151,8 @@ loveheelover:
 		if (ptr == &mons[PM_STEELED_GIANT]) (void)mongets(mtmp, HEAVY_GRINDER);
 		if (ptr == &mons[PM_DOGSHIT_FEMMY]) (void)mongets(mtmp, DOGSHIT_BOOT);
 		if (ptr == &mons[PM_STONER_GIANT]) (void)mongets(mtmp, POT_HALLUCINATION);
+		if (ptr == &mons[PM_COW_HILL_GIANT]) (void)mongets(mtmp, SACK);
+		if (ptr == &mons[PM_IT_S_TOO_HEAVY_FOR_YOUR_HILL_GIANT]) (void)mongets(mtmp, TREASURE_CHEST);
 
 		if (ptr == &mons[PM_VEHEMENT_FEMMY]) {
 			(void)mongets(mtmp, FEMININE_PUMPS);
@@ -13782,6 +13787,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_CLANG_CLANG]) (void) mongets(mtmp, IRON_CHAIN);
 		if (mtmp->data == &mons[PM_ANTI_COVID_FIGHTER]) (void) mongets(mtmp, POISON_REPELLANT_ARMOR);
 		if (mtmp->data == &mons[PM_STEEL_WRAITH]) (void) mongets(mtmp, WRAITHBLADE);
+		if (mtmp->data == &mons[PM_JAYCEE]) (void) mongets(mtmp, RAZOR_WHIP);
 
 		if (ptr == &mons[PM_FLINGER]) {
 			(void) mongets(mtmp, SLING);

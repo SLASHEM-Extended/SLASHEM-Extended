@@ -2309,6 +2309,31 @@ boolean give_feedback;
 	return TRUE;
 }
 
+boolean
+u_teleport_monC(mtmp, give_feedback)
+struct monst *mtmp;
+boolean give_feedback;
+{
+	boolean ball_active = (Punished && uball->where != OBJ_FREE);
+
+	if (mtmp->data == &mons[PM_BAN_EVADING_TROLL]) return FALSE;
+
+	if (mtmp->isshk) make_angry_shk(mtmp, 0, 0);
+
+			int nlev;
+			d_level flev;
+
+			if (mon_has_amulet(mtmp) || In_endgame(&u.uz)) {
+				if (give_feedback) pline("%s seems very disoriented for a moment.", Monnam(mtmp));
+				return 2;
+			}
+
+			flev = random_branchport_level();
+			migrate_to_level(mtmp, ledger_no(&flev), MIGR_RANDOM, (coord *)0);
+
+	return TRUE;
+}
+
 /* A function that pushes the player around, mainly to be used by ranged attackers so they can get a shot. --Amy
  * "allowtrap" should be FALSE if it's the result of a monster attack, because otherwise we could get segfaults
  * and bus errors when the trap moves you off the level before the monster's attack routine is finished! */
