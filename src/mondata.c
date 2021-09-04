@@ -408,6 +408,9 @@ struct permonst *ptr;
     case PM_OFFWHITE_UNICORN:
     case PM_PALE_GRAY_UNICORN:
     case PM_BLACKISH_UNICORN:
+    case PM_BUTTICORN:
+    case PM_SQUEAKICORN:
+    case PM_FARTICORN:
     case PM_MATURE_UNICORN:
     case PM_BUBBLY_UNICORN:
     case PM_ALIEN_UNICORN:

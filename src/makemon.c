@@ -7551,6 +7551,11 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, AMBER_FRAGMENT, 30);
 		}
+		if (ptr == &mons[PM_CASINO_SECURITY]) {
+			(void) mongets(mtmp, LEATHER_ARMOR);
+			(void) mongets(mtmp, PISTOL);
+			 m_initthrow(mtmp, BULLET, 50);
+		}
 		if (ptr == &mons[PM_TREBBER]) {
 			(void) mongets(mtmp, LARGE_SHIELD);
 			(void) mongets(mtmp, SLING);
@@ -8523,6 +8528,9 @@ register struct	monst	*mtmp;
 			case PM_GUARD: mac = -1; break;
 			case PM_MASTER_GUARD: mac = -2; break;
 			case PM_ELITE_GUARD: mac = -3; break;
+			case PM_CROUPIER: mac = -1; break;
+			case PM_MASTER_CROUPIER: mac = -2; break;
+			case PM_ELITE_CROUPIER: mac = -3; break;
 			case PM_PRISON_GUARD: mac = -2; break;
 			case PM_SOLDIER: mac = 3; break;
 			case PM_TEUTON_SOLDIER: mac = 3; break;
@@ -8605,6 +8613,9 @@ register struct	monst	*mtmp;
 		    if(ptr != &mons[PM_GUARD] &&
 			ptr != &mons[PM_MASTER_GUARD] &&
 			ptr != &mons[PM_ELITE_GUARD] &&
+			ptr != &mons[PM_CROUPIER] &&
+			ptr != &mons[PM_MASTER_CROUPIER] &&
+			ptr != &mons[PM_ELITE_CROUPIER] &&
 			ptr != &mons[PM_PRISON_GUARD] &&
 			ptr != &mons[PM_WATCHMAN] &&
 			ptr != &mons[PM_BEGINNER_MERC] &&
@@ -8712,6 +8723,10 @@ register struct	monst	*mtmp;
 				(void) mpickobj(mtmp, lolwow, TRUE);
 			}
 
+		}
+
+		if (ptr == &mons[PM_FESTIVUS_POLE]) {
+			(void) mongets(mtmp, rnd_class(PARTISAN,BEC_DE_CORBIN));
 		}
 
 		if (ptr == &mons[PM_REFRACTOCHUCK]) {
@@ -10783,6 +10798,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_CLOCKWORK_CLAW]) (void) mongets(mtmp, QATAR);
 		if (mtmp->data == &mons[PM_GNOME_LASERER]) (void) mongets(mtmp, LASER_SWORD);
 		if (mtmp->data == &mons[PM_GNOME_HUSSY]) (void) mongets(mtmp, FEMININE_PUMPS);
+		if (mtmp->data == &mons[PM_WEED_GNOME]) (void) mongets(mtmp, POT_HALLUCINATION);
 
 		if (ptr == &mons[PM_NEUTRAL_GNOME]) {
 			(void) mongets(mtmp, SLING);
@@ -11205,6 +11221,9 @@ loveheelover:
 			m_initthrow(mtmp, BULLET, 25);
 			m_initthrow(mtmp, BULLET, 25);
 		}
+		if (ptr == &mons[PM_CAREBEAR_IN_HIGH_HEELS]) {
+			(void)mongets(mtmp, rnd_class(WEDGE_SANDALS,ITALIAN_HEELS));
+		}
 		if (ptr == &mons[PM_BLASTPIG]) {
 			 m_initthrow(mtmp, FRAG_GRENADE, 10);
 		}
@@ -11220,6 +11239,14 @@ loveheelover:
 		if (ptr == &mons[PM_EGGNOG_BUSTER]) {
 			(void) mongets(mtmp, TINSEL_LONGSWORD);
 			 m_initthrow(mtmp, FRAG_GRENADE, 20);
+		}
+		if (ptr == &mons[PM_SHERIFF_D__THE_GELORDLY]) {
+			(void) mongets(mtmp, PISTOL);
+			(void) mongets(mtmp, LEATHER_JACKET);
+			(void) mongets(mtmp, ELVEN_LEATHER_HELM);
+			(void) mongets(mtmp, FLINTLOCK);
+			 m_initthrow(mtmp, BULLET, 40);
+			 m_initthrow(mtmp, BULLET, 40);
 		}
 		if (ptr == &mons[PM_VOLDEPORK]) {
 			(void) mongets(mtmp, WAN_DEATH);
@@ -11407,6 +11434,13 @@ loveheelover:
 		if (ptr == &mons[PM_CATERPILLAR_SNIPER]) {
 		  	(void) mongets(mtmp, SNIPER_RIFLE);
 		  	m_initthrow(mtmp, BULLET, 20);
+		}
+		if (ptr == &mons[PM_LIEUTEN_ANT]) {
+		  	(void) mongets(mtmp, HEAVY_MACHINE_GUN);
+		  	m_initthrow(mtmp, BULLET, 50);
+		  	m_initthrow(mtmp, BULLET, 50);
+		  	m_initthrow(mtmp, BULLET, 50);
+		  	m_initthrow(mtmp, BULLET, 50);
 		}
 		if (ptr == &mons[PM_REAL_SOLDIER_ANT]) {
 		  	(void) mongets(mtmp, PISTOL);
@@ -16382,6 +16416,10 @@ loveheelover:
 		if (ptr == &mons[PM_CALLED_UNDERTAKER]) {
 			(void) mongets(mtmp, ROBE);
 			 m_initthrow(mtmp, BONE_DAGGER, 5);
+		}
+		if (ptr == &mons[PM_OOMPA_LOOMPA]) {
+			(void) mongets(mtmp, MEASURER);
+			 m_initthrow(mtmp, DART, 30);
 		}
 		if (ptr == &mons[PM_GERMAN_STORMTROOPER]) {
 			(void) mongets(mtmp, SUBMACHINE_GUN);
@@ -22789,9 +22827,9 @@ register int	mmflags;
 	}
 
 	/* slex shopkeepers don't fuck around - if you engage them, they may hit you with a variety of nasty stuff --Amy */
-	if (ptr == &mons[PM_SHOPKEEPER] || ptr == &mons[PM_MASTER_SHOPKEEPER] || ptr == &mons[PM_ELITE_SHOPKEEPER] || ptr == &mons[PM_BLACK_MARKETEER] || ptr == &mons[PM_GUARD] || ptr == &mons[PM_MASTER_GUARD] || ptr == &mons[PM_ELITE_GUARD]) {
+	if (ptr == &mons[PM_SHOPKEEPER] || ptr == &mons[PM_MASTER_SHOPKEEPER] || ptr == &mons[PM_ELITE_SHOPKEEPER] || ptr == &mons[PM_BLACK_MARKETEER] || ptr == &mons[PM_GUARD] || ptr == &mons[PM_MASTER_GUARD] || ptr == &mons[PM_ELITE_GUARD] || ptr == &mons[PM_CROUPIER] || ptr == &mons[PM_MASTER_CROUPIER] || ptr == &mons[PM_ELITE_CROUPIER]) {
 
-		if (ptr == &mons[PM_GUARD] || ptr == &mons[PM_MASTER_GUARD] || ptr == &mons[PM_ELITE_GUARD]) mtmp->noegodesc = TRUE;
+		if (ptr == &mons[PM_GUARD] || ptr == &mons[PM_MASTER_GUARD] || ptr == &mons[PM_ELITE_GUARD] || ptr == &mons[PM_CROUPIER] || ptr == &mons[PM_MASTER_CROUPIER] || ptr == &mons[PM_ELITE_CROUPIER]) mtmp->noegodesc = TRUE;
 		if (rn2(2)) {
 			mtmp->noegodesc = mtmp->noegodisplay = TRUE;
 		}
@@ -23163,6 +23201,7 @@ register int	mmflags;
 			break;
 		case S_WALLMONST:
 			if (mndx == PM_DARK_NUMBER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_FUNK_HOLE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_BELT_MOUNTAIN) set_mimic_sym(mtmp);
 			break;
 		case S_LICH:
@@ -23231,6 +23270,8 @@ register int	mmflags;
 			if (mndx == PM_ETHEREAL_HOUND) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_REAL_CLEAR_HOUND) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_REAL_ETHEREAL_HOUND) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_STAIRWOLF) set_mimic_sym(mtmp);
+			if (mndx == PM_FAKE_STAIRWOLF) set_mimic_sym(mtmp);
 
 			break;
 
@@ -23243,6 +23284,8 @@ register int	mmflags;
 			if (mndx == PM_VAMPKIN) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_CORPSER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mtmp->data == &mons[PM_ROTTEN_FOOD_RATION]) set_mimic_sym(mtmp);
+			if (mtmp->data == &mons[PM_TREEENT]) set_mimic_sym(mtmp);
+			if (mtmp->data == &mons[PM_TREE_ENT]) set_mimic_sym(mtmp);
 
 			if (mndx == PM_POISON_CREEPER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_PLAGUE_POPPY) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
@@ -24302,7 +24345,7 @@ register int	mmflags;
 		else if (rn2(10))        m_initsgrp(mtmp, mtmp->mx, mtmp->my);
 	    }
 		/* allow other monsters to spawn in groups too --Amy */
-	    else if (!rn2(isgrouper ? 10 : 500) && allow_special && mndx != PM_SHOPKEEPER && mndx != PM_MASTER_SHOPKEEPER && mndx != PM_ELITE_SHOPKEEPER && mndx != PM_BLACK_MARKETEER && mndx != PM_ALIGNED_PRIEST && mndx != PM_MASTER_PRIEST && mndx != PM_ELITE_PRIEST && mndx != PM_HIGH_PRIEST && mndx != PM_DNETHACK_ELDER_PRIEST_TM_ && mndx != PM_GUARD && mndx != PM_MASTER_GUARD && mndx != PM_ELITE_GUARD && mndx != quest_info(MS_NEMESIS) /*&& !(ptr->geno & G_UNIQ)*/ ) {
+	    else if (!rn2(isgrouper ? 10 : 500) && allow_special && mndx != PM_SHOPKEEPER && mndx != PM_MASTER_SHOPKEEPER && mndx != PM_ELITE_SHOPKEEPER && mndx != PM_BLACK_MARKETEER && mndx != PM_ALIGNED_PRIEST && mndx != PM_MASTER_PRIEST && mndx != PM_ELITE_PRIEST && mndx != PM_HIGH_PRIEST && mndx != PM_DNETHACK_ELDER_PRIEST_TM_ && mndx != PM_GUARD && mndx != PM_MASTER_GUARD && mndx != PM_ELITE_GUARD && mndx != PM_CROUPIER && mndx != PM_MASTER_CROUPIER && mndx != PM_ELITE_CROUPIER && mndx != quest_info(MS_NEMESIS) /*&& !(ptr->geno & G_UNIQ)*/ ) {
 		if (!rn2(isgrouper ? 100 : 500))  m_initxxlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if(!rn2(isgrouper ?  10 : 100))  m_initxlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if (!rn2(isgrouper ? 5 : 20)) m_initvlgrp(mtmp, mtmp->mx, mtmp->my);
@@ -29520,6 +29563,22 @@ assign_sym:
 	if (mtmp->data == &mons[PM_BELT_MOUNTAIN]) {
 		ap_type = M_AP_FURNITURE;
 		appear = S_mountain;
+	}
+	if (mtmp->data == &mons[PM_TREEENT]) {
+		ap_type = M_AP_FURNITURE;
+		appear = S_tree;
+	}
+	if (mtmp->data == &mons[PM_STAIRWOLF]) {
+		ap_type = M_AP_FURNITURE;
+		appear = rn2(2) ? S_upstair : S_dnstair;
+	}
+	if (mtmp->data == &mons[PM_FAKE_STAIRWOLF]) {
+		ap_type = M_AP_FURNITURE;
+		appear = rn2(2) ? S_upstair : S_dnstair;
+	}
+	if (mtmp->data == &mons[PM_TREE_ENT]) {
+		ap_type = M_AP_FURNITURE;
+		appear = S_tree;
 	}
 	if (mtmp->data == &mons[PM_ROCK_NYMPH]) {
 		ap_type = M_AP_FURNITURE;

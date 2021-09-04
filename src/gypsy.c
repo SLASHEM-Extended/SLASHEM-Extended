@@ -919,4 +919,10 @@ gypsy_chat (mtmp)
 	return;
 }
 
+void
+play_blackjack()
+{
+	/* todo */
+	return;
+}
 

@@ -63,6 +63,9 @@
 #define MS_STENCH 54	/* evil patch idea :D causes bad effects if you are reasonably close and the monster is hostile */
 #define MS_CONVERT 55	/* reduces your alignment, can permaconvert you if it gets too low! */
 #define MS_HCALIEN 56	/* similar to MS_STENCH */
+#define MS_CASINO 57	/* allows you to play blackjack */
+#define MS_GIBBERISH 58	/* garbled strings */
+#define MS_GLYPHS 59	/* talks about glyphs */
 
 /* MS_DOUGLAS_ADAMS used to be 42, however I fear the DevTeam eventually 
 ** reaching that number.  - sk */

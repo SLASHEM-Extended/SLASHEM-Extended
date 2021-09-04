@@ -11349,7 +11349,7 @@ boolean revival;
 {
 
 	/* SHOPKEEPERS can be revived now */
-	if (*mtype==PM_GUARD || *mtype==PM_MASTER_GUARD || *mtype==PM_ELITE_GUARD || (*mtype==PM_SHOPKEEPER && !revival) || (*mtype==PM_MASTER_SHOPKEEPER && !revival) || (*mtype==PM_ELITE_SHOPKEEPER && !revival)
+	if (*mtype==PM_GUARD || *mtype==PM_MASTER_GUARD || *mtype==PM_ELITE_GUARD || *mtype==PM_CROUPIER || *mtype==PM_MASTER_CROUPIER || *mtype==PM_ELITE_CROUPIER || (*mtype==PM_SHOPKEEPER && !revival) || (*mtype==PM_MASTER_SHOPKEEPER && !revival) || (*mtype==PM_ELITE_SHOPKEEPER && !revival)
 	     || *mtype==PM_ALIGNED_PRIEST || *mtype==PM_MASTER_PRIEST || *mtype==PM_ELITE_PRIEST || *mtype==PM_ANGEL) {
 		*mtype = PM_HUMAN_ZOMBIE;
 		return TRUE;

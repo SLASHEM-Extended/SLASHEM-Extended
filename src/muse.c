@@ -2829,6 +2829,9 @@ struct monst *mtmp;
 				mon->data != &mons[PM_GUARD] &&
 				mon->data != &mons[PM_MASTER_GUARD] &&
 				mon->data != &mons[PM_ELITE_GUARD] &&
+				mon->data != &mons[PM_CROUPIER] &&
+				mon->data != &mons[PM_MASTER_CROUPIER] &&
+				mon->data != &mons[PM_ELITE_CROUPIER] &&
 				(mon->msleeping || (!mon->mcanmove))) {
 			m.defensive = obj;
 			m.has_defense = MUSE_BUGLE;

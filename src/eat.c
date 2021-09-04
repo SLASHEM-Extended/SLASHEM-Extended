@@ -1023,6 +1023,10 @@ register int pm;
 	    case PM_FBI_AGENT:
 	    case PM_OWN_SMOKE:
 	    case PM_GRANDPA:
+	    case PM_PRESSLIZARD:
+	    case PM_STATIOLIZARD:
+	    case PM_GIBLIZARD:
+	    case PM_CASINO_LIZARD:
 	    case PM_TOUCAN:
 	    case PM_GIANT_TOUCAN:
 	    case PM_LIZARD_MAGE:
@@ -1217,6 +1221,10 @@ struct monst *mon;
 	case PM_HUGE_LIZARD:
 	case PM_SAND_TIDE:
 	case PM_FBI_AGENT:
+	    case PM_PRESSLIZARD:
+	    case PM_STATIOLIZARD:
+	    case PM_GIBLIZARD:
+	    case PM_CASINO_LIZARD:
 	    case PM_OWN_SMOKE:
 	    case PM_ADULT_LIZARD:
 	    case PM_GRANDPA:
@@ -3209,6 +3217,7 @@ register int pm;
 			lesshungry(300); /* fall thru */
 	    case PM_CHAOS_LIZARD:
 	    case PM_CHAOTIC_LIZARD:
+	    case PM_CASINO_LIZARD:
 	    case PM_LIZARD_MAN:
 	    case PM_SKELLIZARD:
 	    case PM_NORMAL_LIZARD:
@@ -3241,6 +3250,9 @@ register int pm;
 	    case PM_ANTI_STONE_LIZARD:
 	    case PM_HIDDEN_LIZARD:
 	    case PM_CLINGING_LIZARD:
+	    case PM_PRESSLIZARD:
+	    case PM_STATIOLIZARD:
+	    case PM_GIBLIZARD:
 			lesshungry(20); /* fall thru */
 	    case PM_UNDEAD_COCKATRICE:
 		if (HStun > 2)  make_stunned(2L,FALSE);

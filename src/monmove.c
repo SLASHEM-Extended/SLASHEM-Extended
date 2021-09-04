@@ -597,6 +597,9 @@ register struct monst *mtmp;
 	    return(0);	/* other frozen monsters can't do anything */
 	}
 
+	/* croupiers are meant to mostly stay in their casinos */
+	if ((mdat == &mons[PM_CROUPIER] || mdat == &mons[PM_MASTER_CROUPIER] || mdat == &mons[PM_ELITE_CROUPIER]) && mtmp->mpeaceful && !mtmp->mtame && rn2(20) && levl[mtmp->mx][mtmp->my].typ == ROOM) return 0;
+
 	if ((mdat == &mons[PM_BUGBEAM_CUBE] || mdat == &mons[PM_IRMGARD] || mdat == &mons[PM_METH_HEAD] || mdat == &mons[PM_TORSTINA] || mdat == &mons[PM_MARINERV] || mdat == &mons[PM_MARISTIN] || mdat == &mons[PM_MARIVERT] || mdat == &mons[PM_MARISISTER] || mdat == &mons[PM_FUNNY_ITALIAN] || mdat == &mons[PM_EAR_FIG_MACHINE] || mdat == &mons[PM_POLEPOKER] || mdat == &mons[PM_DISTURBMENT_HEAD]) && !rn2(4)) return 0; /* can sometimes not move; this is by design */
 
 	if (uwep && uwep->oartifact == ART_STOP_THE_AIRSHIPS && is_flyer(mtmp->data) && !mtmp->mpeaceful && !mtmp->mtame && !rn2(6)) return 0;
@@ -1172,6 +1175,11 @@ register struct monst *mtmp;
 		wakeup(mtmp);
 	}
 
+	if (mdat == &mons[PM_MILU]) {
+		mtmp->mconf = FALSE;
+		mtmp->mstun = FALSE;
+	}
+
 	/* not frozen or sleeping: wipe out texts written in the dust */
 	wipe_engr_at(mtmp->mx, mtmp->my, 1);
 
@@ -1668,6 +1676,15 @@ register struct monst *mtmp;
 				break;
 			case MS_SHOE:
 				verbalize("We absolutely want to kick you. Hopefully you enjoy pain!");
+				break;
+			case MS_CASINO:
+				verbalize("Place your bets here! Only 2000 zorkmids per casino chip!");
+				break;
+			case MS_GIBBERISH:
+				pline("%s", generate_garbage_string());
+				break;
+			case MS_GLYPHS:
+				verbalize("Hmm, the green glyph is good, but I also have the red one... too bad I have no idea where the blue glyph ended up!");
 				break;
 			case MS_STENCH:
 				if (canseemon(mtmp)) pline("%s sprays %sself with perfume.", Monnam(mtmp), mhim(mtmp));
@@ -2272,6 +2289,77 @@ toofar:
 			}
 		}
 
+	    if (inrange && (mdat == &mons[PM_HARDFOUGHT_ANTI_AMY_SQUAD]) && !mtmp->mpeaceful && !rn2(5) && !u.antiamysquad ) {
+			u.antiamysquad = TRUE;
+			/* this monster cannot actually be reasoned with; the messages are just fluff */
+
+			if (!strncmpi(plname, "Amy", 4) || !strncmpi(plalias, "Amy", 4) || !strncmpi(plname, "Bluescreen", 11) || !strncmpi(plalias, "Bluescreen", 11)) {
+				You("hear an angry voice shouting:");
+				verbalize("AMY ALERT! Oh my god SHE'S HERE! Quick, it's time to beat up that heretical witch and punish her for the crime of putting all those offensive things into her game!");
+			} else {
+				You("hear an angry voice speaking to you:");
+				verbalize("Hey! We're looking for Amy, we're gonna beat her up. Do you know where she is?");
+
+				winid tmpwin;
+				anything any;
+				menu_item *selected;
+				int n;
+
+				any.a_void = 0;         /* zero out all bits */
+				tmpwin = create_nhwindow(NHW_MENU);
+				start_menu(tmpwin);
+				any.a_int = 1;
+				add_menu(tmpwin, NO_GLYPH, &any , 'a', 0, ATR_NONE, "Actually, I am Amy.", MENU_UNSELECTED);
+				any.a_int = 2;
+				add_menu(tmpwin, NO_GLYPH, &any , 'b', 0, ATR_NONE, "Uhh, I think she's three levels down from here.", MENU_UNSELECTED);
+				any.a_int = 3;
+				add_menu(tmpwin, NO_GLYPH, &any , 'c', 0, ATR_NONE, "I have no idea.", MENU_UNSELECTED);
+				any.a_int = 4;
+				add_menu(tmpwin, NO_GLYPH, &any , 'd', 0, ATR_NONE, "Why are you looking for her?", MENU_UNSELECTED);
+
+				end_menu(tmpwin, "Your answer:");
+				n = select_menu(tmpwin, PICK_ONE, &selected);
+				destroy_nhwindow(tmpwin);
+
+				if (n > 0) {
+					switch (selected[0].item.a_int) {
+						case 1:
+							verbalize("WHAT? Guys we got her, OVER HERE! Now we'll punish that demon for all the grubby shit in her NetHack variant! She's gonna get one hell of a beating!");
+							break;
+						case 2:
+							verbalize("What? We don't believe you. In fact, we're fairly certain you're protecting her. That won't be tolerated and we'll have to remove you now.");
+							break;
+						case 3:
+							verbalize("Another useless fool... wait, didn't the boss tell us to leave no witnesses? Oh well, we're gonna remove that idiot real quick and then continue searching for that pesky Amy demon!");
+							break;
+						case 4:
+							verbalize("Ain't that obvious? She's responsible for creating a game that has all kinds of seriously offensive stuff in it! And you know what, judging by the stupidity of your question, I have the suspicion that you're either her in disguise or one of her agents, so I'll just beat you up now, punk!");
+							break;
+					}
+				} else verbalize("What, you think you can pretend you haven't heard me? Oh well, I'm just gonna beat you up too. And then we're really gonna find Amy and show her what we think of her sorry excuse for a 'video game'!");
+
+			}
+
+	    }
+
+	    if (inrange && (mdat == &mons[PM_HARDFOUGHT_EXILE_KEEPER]) && !mtmp->mpeaceful && !rn2(5) ) {
+		static const char *exilekeeper_msgs[] = {
+			"This area is off-limits to people like you who aren't members of the hdf community.",
+			"You were elevated to full pariah status!",
+			"Yes, we exiled you from our community, but we'll tell everyone that you exiled yourself so people will blame you, not us. Muahahahaha.",
+			"You got the order to stay away from our house! Disappear now, or we'll make you!",
+			"You there! You have no business in this area!",
+			"Hey! You were exiled from this community because of things you put into your NetHack variant! What are you doing here?",
+			"We deleted your game from the server, along with your savegame files, the reason for that was something really petty that no normal human would have considered a ban reason but we did it anyway because we don't like you.",
+			"What is that pariah doing in here?",
+			"Hmm. The boss said that the pariah probably wouldn't be coming back, guess he was wrong... oh well, time for us to finish the job and send that foolish intruder away permanently.",
+			"You got lucky that it was us who found you, because we're just gonna ban you. Be glad you didn't run into the mob with the torches and pitchforks instead, because they want your blood.",
+			"We're sorry, but you're no longer wanted around these parts. So we have to ask you to kindly leave now.",
+		};
+		verbalize("%s", exilekeeper_msgs[rn2(SIZE(exilekeeper_msgs))]);
+
+	    }
+
 	    if (inrange && (mdat == &mons[PM_EVERCOMPLAINING_UBERSJW]) && !mtmp->mpeaceful && !rn2(5) ) {
 		static const char *ubersjw_msgs[] = {
 			"omg that monster has 'girl' in its name that is soooooo offensive",
@@ -2302,6 +2390,10 @@ toofar:
 
 	    if(inrange && (mtmp->data->msound == MS_STENCH || mtmp->data->msound == MS_WHORE || mtmp->data->msound == MS_SUPERMAN || mtmp->data->msound == MS_HCALIEN || mtmp->data->msound == MS_CONVERT || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_LOUD) && (mtmp->data->geno & G_UNIQ) && !mtmp->mpeaceful && !rn2(10))
 	    pline("%s %s", Monnam(mtmp), bosstaunt());
+
+	    if(inrange && mtmp->data->msound == MS_GIBBERISH && !mtmp->mpeaceful && !rn2(5)) {
+		pline("%s", generate_garbage_string());
+	    }
 
 	    if(inrange && mtmp->data->msound == MS_CUSS && !mtmp->mpeaceful &&
 		/*couldsee(mtmp->mx, mtmp->my) && !mtmp->minvis &&*/ !rn2(5))
@@ -2658,7 +2750,7 @@ register int after;
 #endif
 
 	/* teleport if that lies in our nature */
-	if( (ptr == &mons[PM_TENGU] || ptr == &mons[PM_CORONA_TASK_FORCE] || ptr == &mons[PM_PURPLE_BOUNCING_GIRL] || ptr == &mons[PM_CORONA_LICHEN] || ptr == &mons[PM_STALKING_CORONA_LICHEN] || ptr == &mons[PM_CORONA_SPORE_LICHEN] || ptr == &mons[PM_CORONA_COLONY_LICHEN] || ptr == &mons[PM_SUDDEN_TENGU] || ptr == &mons[PM_FAKE_NEWS_TENGU] || ptr == &mons[PM_LASTING_TENGU] || ptr == &mons[PM_TELEPORTER] || ptr == &mons[PM_COUNTRY_SHARK] || ptr == &mons[PM_POLITICAL_TENGU] || ptr == &mons[PM_EASTERN_TENGU] || ptr == &mons[PM_PHASING_TENGU] || ptr == &mons[PM_CHEERFUL_LEPRECHAUN] || ptr == &mons[PM_BLINK] || ptr == &mons[PM_VORPAL_BUNNY] || ptr == &mons[PM_KING_OF_PORN] || ptr == &mons[PM_OF_FLOW] || ptr == &mons[PM_PEARDUCK] || ptr == &mons[PM_UAE] || ptr == &mons[PM_CHEATY_SILVER_COIN] || ptr == &mons[PM_SPACEWARP_JELLY] || ptr == &mons[PM_ALSAPIA_MURDERER_MASK] || ptr == &mons[PM_NIGHTMARE_SHEEP] || ptr == &mons[PM_HELL_SHEEP] || ptr == &mons[PM_LOVECRAFT_SHEEP] || ptr == &mons[PM_INDIVIDUAL_WILL_O_THE_WISP] || ptr == &mons[PM_TELEHOBBIT] || ptr == &mons[PM_SPOOPY_GHOST] || ptr == &mons[PM_ANNOYING_SLEX_GHOST] || ptr == &mons[PM_SPRING_WOLF] || ptr == &mons[PM_DIMENSIONAL_SHAMBLER] || ptr == &mons[PM_MAGNET_ELEMENTAL] || ptr == &mons[PM_PHASE_KNIGHT] || ptr == &mons[PM_TELEPORTING_DEMON] || ptr == &mons[PM_BEAMING_UFO_PART] || ptr == &mons[PM_BEAMER] || mtmp->egotype_teleportself) && !rn2(25) && !mtmp->mcan &&
+	if( (ptr == &mons[PM_TENGU] || ptr == &mons[PM_CORONA_TASK_FORCE] || ptr == &mons[PM_PURPLE_BOUNCING_GIRL] || ptr == &mons[PM_CORONA_LICHEN] || ptr == &mons[PM_STALKING_CORONA_LICHEN] || ptr == &mons[PM_CORONA_SPORE_LICHEN] || ptr == &mons[PM_CORONA_COLONY_LICHEN] || ptr == &mons[PM_SUDDEN_TENGU] || ptr == &mons[PM_FAKE_NEWS_TENGU] || ptr == &mons[PM_LASTING_TENGU] || ptr == &mons[PM_TELEPORTER] || ptr == &mons[PM_COUNTRY_SHARK] || ptr == &mons[PM_POLITICAL_TENGU] || ptr == &mons[PM_EASTERN_TENGU] || ptr == &mons[PM_PHASING_TENGU] || ptr == &mons[PM_CHEERFUL_LEPRECHAUN] || ptr == &mons[PM_BLINK] || ptr == &mons[PM_VORPAL_BUNNY] || ptr == &mons[PM_KING_OF_PORN] || ptr == &mons[PM_ZOMBIE_STUNTMAN] || ptr == &mons[PM_OF_FLOW] || ptr == &mons[PM_PEARDUCK] || ptr == &mons[PM_UAE] || ptr == &mons[PM_CHEATY_SILVER_COIN] || ptr == &mons[PM_SPACEWARP_JELLY] || ptr == &mons[PM_ALSAPIA_MURDERER_MASK] || ptr == &mons[PM_NIGHTMARE_SHEEP] || ptr == &mons[PM_HELL_SHEEP] || ptr == &mons[PM_LOVECRAFT_SHEEP] || ptr == &mons[PM_INDIVIDUAL_WILL_O_THE_WISP] || ptr == &mons[PM_TELEHOBBIT] || ptr == &mons[PM_SPOOPY_GHOST] || ptr == &mons[PM_ANNOYING_SLEX_GHOST] || ptr == &mons[PM_SPRING_WOLF] || ptr == &mons[PM_DIMENSIONAL_SHAMBLER] || ptr == &mons[PM_MAGNET_ELEMENTAL] || ptr == &mons[PM_PHASE_KNIGHT] || ptr == &mons[PM_TELEPORTING_DEMON] || ptr == &mons[PM_BEAMING_UFO_PART] || ptr == &mons[PM_BEAMER] || mtmp->egotype_teleportself) && !rn2(25) && !mtmp->mcan &&
 	   !tele_restrict(mtmp)) {
 	    if(mtmp->mhp < 7 || (ptr == &mons[PM_SPOOPY_GHOST]) || mtmp->mpeaceful || rn2(2))
 		(void) rloc(mtmp, FALSE);

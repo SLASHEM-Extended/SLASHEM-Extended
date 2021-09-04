@@ -1569,6 +1569,15 @@ register struct monst *mtmp;
 	case MS_MUMBLE:
 		ret = "mumbles loudly";
 		break;
+	case MS_CASINO:
+		ret = "calls for the casino's security";
+		break;
+	case MS_GLYPHS:
+		ret = "screams 'Wait until I activate the awesome power of the yellow glyph!'";
+		break;
+	case MS_GIBBERISH:
+		pline("%s", generate_garbage_string());
+		break;
 	case MS_ARREST:
 		ret = "shouts 'I am an officer of the law!'";
 		break;
@@ -1666,6 +1675,15 @@ register struct monst *mtmp;
 	case MS_MUMBLE:
 		ret = "mumbles a bit";
 		break;
+	case MS_CASINO:
+		ret = "complains about a loss of money";
+		break;
+	case MS_GIBBERISH:
+		pline("%s", generate_garbage_string());
+		break;
+	case MS_GLYPHS:
+		ret = "moans 'Why doesn't the glyph work...'";
+		break;
 	case MS_ARREST:
 		ret = "blows a whistle";
 		aggravate();
@@ -1746,6 +1764,15 @@ register struct monst *mtmp;
 		break;
 	case MS_MUMBLE:
 		ret = "mumbles in anticipation of danger";
+		break;
+	case MS_CASINO:
+		ret = "warns you that the mafia is coming";
+		break;
+	case MS_GIBBERISH:
+		pline("%s", generate_garbage_string());
+		break;
+	case MS_GLYPHS:
+		ret = "suggests you to use a trap detection glyph";
 		break;
 	case MS_ARREST:
 		ret = "calls for reinforcements";
@@ -2321,6 +2348,27 @@ register struct monst *mtmp;
 				pline_msg = "clucks.";
 		}
 		else pline_msg = "clucks.";
+		break;
+	case MS_GLYPHS:
+		if (mtmp->mtame) {
+			if (mtmp->mhp < mtmp->mhpmax/3) {
+				verbl_msg = "Hell if I knew how to activate the healing glyph...";
+			} else if (mtmp->mtame && hastoeat && !mtmp->isminion && moves > EDOG(mtmp)->hungrytime)
+				verbl_msg = "I've been trying all this time to make this glyph do something, but the only thing that happened was that I'm getting hungry!";
+			else if (mtmp->mconf || mtmp->mflee)
+				verbl_msg = "Where is the button? Hey, can you take a look, do you see a button somewhere on this stone glyph?";
+			else
+				verbl_msg = "I know that the magic glyphs exist, and I even know the name of the place where they supposedly can be found, but I forgot the name! Damn!";
+		}
+		else verbl_msg = "Go away, I'm looking for the magic glyphs, they have to be around here somewhere...";
+		break;
+	case MS_GIBBERISH:
+		pline("%s", generate_garbage_string());
+		break;
+	case MS_CASINO:
+		verbalize("Hello sir, welcome to 'Fortune Cookie' casino!"); /* from Elona, where they always say 'sir' even if you're female */
+		/* TODO allow player to play blackjack */
+		/* play_blackjack(); */
 		break;
 	case MS_COW:
 		if (mtmp->mtame) {
@@ -4105,6 +4153,8 @@ dochat()
     struct obj *otmp;
 	char buf[BUFSZ];
 
+    boolean eligiblesymbio = FALSE;
+
     if (Muteness || u.uprops[MUTENESS].extrinsic || have_mutenessstone()) {
 	pline("You're muted!");
 	if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -4203,7 +4253,11 @@ dochat()
 	return (0);
     }
 
-    if ( (mtmp->mtame || (mtmp->data == &mons[PM_SYMBIULD]) ) && (((stationary(mtmp->data) || mtmp->data->mmove == 0 || mtmp->data->mlet == S_TURRET) && !Race_if(PM_GOAULD)) || (!(stationary(mtmp->data) || mtmp->data->mmove == 0 || mtmp->data->mlet == S_TURRET) && Race_if(PM_GOAULD))) && !mtmp->mfrenzied && !(mtmp->data->mlevel > 20 || (mtmp->data->mlevel > (u.ulevel + 5)) || cannot_be_tamed(mtmp->data) || (mtmp->cham == CHAM_ZRUTINATOR) || mtmp->isshk || mtmp->isgd || mtmp->ispriest || mtmp->isminion || mtmp->isgyp || (mtmp->oldmonnm != monsndx(mtmp->data))) ) {
+    if ((mtmp->data == &mons[PM_SYMBIULD]) || (mtmp->data == &mons[PM_SYMBIOTE_WITH_A_DATA_DELETE_ATTACK])) eligiblesymbio = TRUE;
+
+    if ( (mtmp->mtame) && (((stationary(mtmp->data) || mtmp->data->mmove == 0 || mtmp->data->mlet == S_TURRET) && !Race_if(PM_GOAULD)) || (!(stationary(mtmp->data) || mtmp->data->mmove == 0 || mtmp->data->mlet == S_TURRET) && Race_if(PM_GOAULD))) && !mtmp->mfrenzied && !(mtmp->data->mlevel > 20 || (mtmp->data->mlevel > (u.ulevel + 5)) || cannot_be_tamed(mtmp->data) || (mtmp->cham == CHAM_ZRUTINATOR) || mtmp->isshk || mtmp->isgd || mtmp->ispriest || mtmp->isminion || mtmp->isgyp || (mtmp->oldmonnm != monsndx(mtmp->data))) ) eligiblesymbio = TRUE;
+
+	if (eligiblesymbio) {
 	
 	pline("You can attempt to turn this pet into a symbiote. Warning: if it's an intelligent monster, it may fail and result in a frenzied monster instead!");
 	getlin("Attempt to turn the pet into a symbiote? [yes/no]", buf);
@@ -4214,6 +4268,7 @@ dochat()
 		if (!mindless(mtmp->data)) resistrounds++;
 		if (humanoid(mtmp->data)) resistrounds++;
 		if (mtmp->data == &mons[PM_SYMBIULD]) resistrounds = 0;
+		if (mtmp->data == &mons[PM_SYMBIOTE_WITH_A_DATA_DELETE_ATTACK]) resistrounds = 0;
 		if (resistrounds >= 1 && resist(mtmp, TOOL_CLASS, 0, 0)) {
 			mtmp->mtame = FALSE;
 			mtmp->mpeaceful = FALSE;
@@ -4577,7 +4632,7 @@ playermsconvert()
 	for (k = -3; k <= 3; k++) for(l = -3; l <= 3; l++) {
 		if (!isok(u.ux + k, u.uy + l)) continue;
 		if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && mtmp3->mtame == 0 && mtmp3->mpeaceful == 0 && mtmp3->mfrenzied == 0 && mtmp3->isshk == 0 && mtmp3->isgd == 0 && mtmp3->ispriest == 0 && mtmp3->isminion == 0 && mtmp3->isgyp == 0
-&& mtmp3->data != &mons[PM_SHOPKEEPER] && mtmp3->data != &mons[PM_MASTER_SHOPKEEPER] && mtmp3->data != &mons[PM_ELITE_SHOPKEEPER] && mtmp3->data != &mons[PM_BLACK_MARKETEER] && mtmp3->data != &mons[PM_ALIGNED_PRIEST] && mtmp3->data != &mons[PM_MASTER_PRIEST] && mtmp3->data != &mons[PM_ELITE_PRIEST] && mtmp3->data != &mons[PM_HIGH_PRIEST] && mtmp3->data != &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && mtmp3->data != &mons[PM_GUARD] && mtmp3->data != &mons[PM_MASTER_GUARD] && mtmp3->data != &mons[PM_ELITE_GUARD]
+&& mtmp3->data != &mons[PM_SHOPKEEPER] && mtmp3->data != &mons[PM_MASTER_SHOPKEEPER] && mtmp3->data != &mons[PM_ELITE_SHOPKEEPER] && mtmp3->data != &mons[PM_BLACK_MARKETEER] && mtmp3->data != &mons[PM_ALIGNED_PRIEST] && mtmp3->data != &mons[PM_MASTER_PRIEST] && mtmp3->data != &mons[PM_ELITE_PRIEST] && mtmp3->data != &mons[PM_HIGH_PRIEST] && mtmp3->data != &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && mtmp3->data != &mons[PM_GUARD] && mtmp3->data != &mons[PM_MASTER_GUARD] && mtmp3->data != &mons[PM_ELITE_GUARD] && mtmp3->data != &mons[PM_CROUPIER] && mtmp3->data != &mons[PM_MASTER_CROUPIER] && mtmp3->data != &mons[PM_ELITE_CROUPIER]
 		&& mtmp3->mnum != quest_info(MS_NEMESIS) && !(mtmp3->data->geno & G_UNIQ) )
 
 		{

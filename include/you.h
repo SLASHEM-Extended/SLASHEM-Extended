@@ -689,6 +689,8 @@ struct you {
 
 	boolean artifactprotection;	/* because NHTNG's protection code is faulty */
 
+	boolean antiamysquad;	/* monster that gives its speech only once */
+
 	/* Extra nastiness - currently only nastinator race, but might add more functionality someday --Amy
 	 * timerun (keyword for my grepping) */
 	boolean nastinator01;
