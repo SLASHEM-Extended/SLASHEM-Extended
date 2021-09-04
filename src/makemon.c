@@ -24927,7 +24927,7 @@ rndmonst()
 		/* In Soviet Russia, things can never be difficult enough. Don't bother the player with weak stuff like newts,
 		 * when we could spawn all kinds of barbazus, chthonians and great wyrms of the elements in Gehennom. --Amy */
 	    if (issoviet && !rn2(2) && maxmlev > 2) minmlev = (maxmlev / 2);
-		if ((ScalingBug || u.uprops[SCALING_BUG].extrinsic || have_scalingstone()) && maxmlev > 2) minmlev += (maxmlev / 2);
+		if ((ScalingBug || u.uprops[SCALING_BUG].extrinsic || have_scalingstone() || (uarm && uarm->oartifact == ART_ALPHA_TAURI) ) && maxmlev > 2) minmlev += (maxmlev / 2);
 
 		if (((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) && !rn2(3)) {
 			minmlev += u.ulevel;
@@ -25187,6 +25187,7 @@ loopback:
 		if (ct > 0 && (Role_if(PM_NOBLEMAN) && is_dnethackmonster(ptr))) ct += 5;
 		if (ct > 0 && (Role_if(PM_OCCULT_MASTER) && is_dlordsmonster(ptr))) ct += 3;
 		if (ct > 0 && (Role_if(PM_OTAKU) && is_elonamonster(ptr))) ct += 3;
+		if (ct > 0 && (uarm && uarm->oartifact == ART_ALPHA_TAURI && is_elonamonster(ptr))) ct += 20;
 		if (ct > 0 && (Race_if(PM_WISP) && is_elonamonster(ptr))) ct += 3;
 		if (ct > 0 && (Race_if(PM_ELONA_SNAIL) && is_elonamonster(ptr))) ct += 10;
 		if (ct > 0 && (Race_if(PM_WEAPONIZED_DINOSAUR) && is_elonamonster(ptr))) ct += 2;
@@ -26204,7 +26205,7 @@ int     spc;
 	minmlev = 0;
 
 	if (issoviet && rn2(2) && maxmlev > 2) minmlev = (maxmlev / 2);
-	if ((ScalingBug || u.uprops[SCALING_BUG].extrinsic || have_scalingstone()) && maxmlev > 2) minmlev += (maxmlev / 2);
+	if ((ScalingBug || u.uprops[SCALING_BUG].extrinsic || have_scalingstone() || (uarm && uarm->oartifact == ART_ALPHA_TAURI)) && maxmlev > 2) minmlev += (maxmlev / 2);
 
 	if (((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) && !rn2(3)) {
 		minmlev += u.ulevel;
@@ -26450,6 +26451,7 @@ int     spc;
 		if ((Role_if(PM_NOBLEMAN) && is_dnethackmonster(&mons[last]))) num += 5;
 		if ((Role_if(PM_OCCULT_MASTER) && is_dlordsmonster(&mons[last]))) num += 3;
 		if ((Role_if(PM_OTAKU) && is_elonamonster(&mons[last]))) num += 3;
+		if ((uarm && uarm->oartifact == ART_ALPHA_TAURI && is_elonamonster(&mons[last]))) num += 20;
 		if ((Race_if(PM_WISP) && is_elonamonster(&mons[last]))) num += 3;
 		if ((Race_if(PM_ELONA_SNAIL) && is_elonamonster(&mons[last]))) num += 10;
 		if ((Race_if(PM_WEAPONIZED_DINOSAUR) && is_elonamonster(&mons[last]))) num += 2;
@@ -27379,6 +27381,7 @@ int     spc;
 		if ((Role_if(PM_NOBLEMAN) && is_dnethackmonster(&mons[first]))) num -= 5;
 		if ((Role_if(PM_OCCULT_MASTER) && is_dlordsmonster(&mons[first]))) num -= 3;
 		if ((Role_if(PM_OTAKU) && is_elonamonster(&mons[first]))) num -= 3;
+		if ((uarm && uarm->oartifact == ART_ALPHA_TAURI && is_elonamonster(&mons[first]))) num -= 20;
 		if ((Race_if(PM_WISP) && is_elonamonster(&mons[first]))) num -= 3;
 		if ((Race_if(PM_ELONA_SNAIL) && is_elonamonster(&mons[first]))) num -= 10;
 		if ((Race_if(PM_WEAPONIZED_DINOSAUR) && is_elonamonster(&mons[first]))) num -= 2;

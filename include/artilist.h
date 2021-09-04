@@ -8769,6 +8769,94 @@ A("Actually The Matter Comes From Switzerland",				HEAVY_CROSSBOW_BOLT, /* alway
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
 
+A("Dam Hit",				ARROW,
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 30L ),
+
+A("Re-Poison",				ORCISH_ARROW, /* can be invoked to poison them */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 40L ),
+
+A("Stelshot",				ELVEN_ARROW, /* hitting something with them gives +200 turns of stealth */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20L ),
+
+A("Mattertack",				DARK_ELVEN_ARROW,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	ACID(5, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 80L ),
+
+A("Thousand Fragments",				DROVEN_ARROW, /* bisects targets */
+	(SPFX_RESTR|SPFX_BEHEAD), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 300L ),
+
+A("Nuka Shot",				METEOR_ARROW,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(5, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Use-A-Lot",				BRONZE_ARROW, /* if it would have mulched, 90% chance that it doesn't */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Ampersand Eraser",				SILVER_BULLET,
+	(SPFX_RESTR|SPFX_DFLAG2), 0, M2_DEMON,
+	PHYS(20, 50), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 70L ),
+
+A("Moretrain",				BLASTER_BOLT, /* hitting something with them trains firearms by an additional 5 and gun control by one point */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Kaflummp",				ROCKET,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 300L ),
+
+A("Loitemup",				GAS_GRENADE, /* igniting them trains firearms and gun control by an extra 2 points */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 300L ),
+
+A("Elven Spandex",				SMALL_PIECE_OF_UNREFINED_MITHR,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),
+
+A("Trackstop",				SILVER_SLINGSTONE, /* hitting a monster that can currently move will paralyze it for 2 turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 70L ),
+
+A("Flusch",				TALC, /* always fires in the wrong direction */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 30L ),
+
+A("Become Normal",				GRAPHITE, /* hitting a monster with it causes a random graphite to spawn at your feet, which can never be an artifact */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20L ),
+
+A("Razorshard",				VOLCANIC_GLASS_FRAGMENT, /* hitting a monster causes it to bleed for 10 (more) turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 60L ),
+
+A("Superhard Stone",				CONUNDRUM_NUGGET,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Map End",				METEOR_FRAGMENT, /* hitting something with it causes a fireball to be shot on a random square */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Zackschrack",				ARROW, /* bashing with it deals +5 damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5L ),
+
+A("Hunksterman",				LEATHER_ARMOR, /* randart2, hunk form gives +1 damage when bashing with a lightsaber and +1 to-hit when bashing in general, speed bug, monster speed bug */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Lu Nonname",				LEATHER_ARMOR, /* randart2, kliu form gives +1 multishot when firing a sling, ludgera trap effect, petrification resistance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Alpha Tauri",				LEATHER_ARMOR, /* randart2, aldebaran form heals you when you kill something while flying, and more if you have a lit lightsaber, elona monsters have +20 spawn chance, scaling bug */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

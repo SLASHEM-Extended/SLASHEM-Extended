@@ -21646,6 +21646,50 @@ boolean knoweverything;
 					pline("Artifact specs: may continue when it collides with a monster, possibly hitting the monster standing behind it."); break;
 				case ART_ACTUALLY_THE_MATTER_COMES_:
 					pline("Artifact specs: always has exactly a one in ten chance of mulching when it hits an enemy, regardless of any modifiers to the ammo mulching chance."); break;
+				case ART_DAM_HIT:
+					pline("Artifact specs: +2 to-hit and +2 damage."); break;
+				case ART_RE_POISON:
+					pline("Artifact specs: can be invoked to poison them."); break;
+				case ART_STELSHOT:
+					pline("Artifact specs: +2 damage, hitting a monster with it gives temporary stealth."); break;
+				case ART_MATTERTACK:
+					pline("Artifact specs: +5 to-hit and +8 damage to acid-susceptible targets."); break;
+				case ART_THOUSAND_FRAGMENTS:
+					pline("Artifact specs: can bisect targets."); break;
+				case ART_NUKA_SHOT:
+					pline("Artifact specs: +5 to-hit and +12 damage to fire-susceptible targets."); break;
+				case ART_USE_A_LOT:
+					pline("Artifact specs: much less likely to mulch."); break;
+				case ART_AMPERSAND_ERASER:
+					pline("Artifact specs: +20 to-hit and +50 damage to monsters flagged as demons."); break;
+				case ART_MORETRAIN:
+					pline("Artifact specs: shooting something with it gives extra training to your firearms and gun control skills."); break;
+				case ART_KAFLUMMP:
+					pline("Artifact specs: +20 damage."); break;
+				case ART_LOITEMUP:
+					pline("Artifact specs: igniting them gives extra training to your firearms and gun control skills."); break;
+				case ART_ELVEN_SPANDEX:
+					pline("Artifact specs: +2 damage."); break;
+				case ART_TRACKSTOP:
+					pline("Artifact specs: hitting a monster paralyzes it for 2 turns."); break;
+				case ART_FLUSCH:
+					pline("Artifact specs: +2 to-hit and +6 damage, always fires in a random direction."); break;
+				case ART_BECOME_NORMAL:
+					pline("Artifact specs: if you shoot a monster with it, new graphites will be created at your feet."); break;
+				case ART_RAZORSHARD:
+					pline("Artifact specs: causes monsters to bleed if you shoot them with it."); break;
+				case ART_SUPERHARD_STONE:
+					pline("Artifact specs: +12 damage."); break;
+				case ART_MAP_END:
+					pline("Artifact specs: hitting something with it causes a fireball to be shot on a random location on the current level."); break;
+				case ART_ZACKSCHRACK:
+					pline("Artifact specs: bashing a monster with it deals 5 extra points of damage."); break;
+				case ART_HUNKSTERMAN:
+					pline("Artifact specs: gives actual boosts for your form IX (Hunk) skill, speed bug and monster speed bug when worn. The boosts are extra damage and to-hit when bashing with lightsabers."); break;
+				case ART_LU_NONNAME:
+					pline("Artifact specs: if your form X (Kliu) skill is higher than Unskilled, every skill point adds +1 multishot when firing a sling. Also grants petrification resistance and the ludgera trap effect when worn."); break;
+				case ART_ALPHA_TAURI:
+					pline("Artifact specs: allows you to heal up when killing a monster, depending on your form XI (Aldebaran) skill, and more so when using a lit lightsaber. While wearing it, elona monsters have +20 spawn chance and the scaling bug is active."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

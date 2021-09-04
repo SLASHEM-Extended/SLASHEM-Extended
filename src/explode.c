@@ -1260,6 +1260,10 @@ int dest;
     if (isyou) {
 	u.cnd_gunpowderused++;
 	use_skill(P_FIREARM, (obj && obj->otyp == STICK_OF_DYNAMITE) ? 5 : 1);
+	if (obj && obj->oartifact == ART_LOITEMUP) {
+		use_skill(P_FIREARM, 2);
+		use_skill(P_GUN_CONTROL, 2);
+	}
     }
 
     if (Role_if(PM_GRENADONIN) || (uarmf && uarmf->oartifact == ART_EIMI_WA_BAKADESU) ) {

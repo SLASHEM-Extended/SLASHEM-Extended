@@ -5512,6 +5512,9 @@ static const char *epitaphs[] = {
 	"Guh why won't that dumbie lightsaber get better regardless of how much I bash with it while it's unlit? That trains the Hunk lightsaber form after all, which is supposed to increase bashing damage!",
 	"This stupid lightsaber, it doesn't want me to win! I tried everything I could think of to train the Kliu form, but it just wouldn't gain any skill!",
 	"Shitty lightsaber, I tried so hard to make the Aldebaran form work but the RNG wasn't on my side!",
+	"Gah why did I think the Hunksterman artifact was good? The speed bugs caused monsters to outspeed me by a factor three and they ended up killing me with no chance!",
+	"Man, 'Lu Nonname' is such a bad artifact. Don't ever try to use that, the supposed bonuses to the Kliu form are never worth it and the downsides will cause you to die.",
+	"Fuck the inventor of the Aldebaran lightsaber form! And fuck whoever made the Alpha Tauri artifact armor, I still wasn't able to actually train or use the Aldebaran skill but the game constantly spawned nemains and wenkamuis and metal vesda fire machines and mikraanesises and then I died!",
 
 };
 

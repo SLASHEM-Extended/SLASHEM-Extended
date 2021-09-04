@@ -270,6 +270,15 @@ int thrown;
 
 	    if (launcher && launcher->oartifact == ART_FOEOEOEOEOEOEOE) multishot += rnd(3);
 
+	    if (skill == P_SLING && uarm && uarm->oartifact == ART_LU_NONNAME) {
+		if (u.kliuskill >= 20) multishot++;
+		if (u.kliuskill >= 160) multishot++;
+		if (u.kliuskill >= 540) multishot++;
+		if (u.kliuskill >= 1280) multishot++;
+		if (u.kliuskill >= 2500) multishot++;
+		if (u.kliuskill >= 4320) multishot++;
+	    }
+
 	    if (Role_if(PM_TOSSER) && obj && objects[obj->otyp].oc_skill == P_JAVELIN) multishot += 1;
 	    if (Role_if(PM_MILL_SWALLOWER) && obj && (objects[obj->otyp].oc_skill == P_CROSSBOW || objects[obj->otyp].oc_skill == -P_CROSSBOW)) multishot += 1;
 
@@ -1465,7 +1474,7 @@ int thrown;
 	if (launcher && obj && ammo_and_launcher(obj, launcher) && obj->otyp == POISON_BOLT) obj->opoisoned = 1;
 
 	obj->was_thrown = 1;
-	if ((obj->cursed || (obj->otyp == FLIMSY_DART) || (obj->oartifact == ART_COMPLETELY_OFF) || (obj->oartifact == ART_STREW_ANYWHERE) || (is_grassland(u.ux, u.uy) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) || obj->greased || (uwep && uwep->oartifact == ART_FOEOEOEOEOEOEOE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FOEOEOEOEOEOEOE) || (Race_if(PM_PLAYER_SKELETON) && !rn2(3)) || (uarmg && itemhasappearance(uarmg, APP_CLUMSY_GLOVES) ) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() ) ) && (u.dx || u.dy) && (!rn2(7) || (obj->oartifact == ART_COMPLETELY_OFF) || (obj->oartifact == ART_STREW_ANYWHERE) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() )) ) {
+	if ((obj->cursed || (obj->otyp == FLIMSY_DART) || (obj->oartifact == ART_COMPLETELY_OFF) || (obj->oartifact == ART_FLUSCH) || (obj->oartifact == ART_STREW_ANYWHERE) || (is_grassland(u.ux, u.uy) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) || obj->greased || (uwep && uwep->oartifact == ART_FOEOEOEOEOEOEOE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FOEOEOEOEOEOEOE) || (Race_if(PM_PLAYER_SKELETON) && !rn2(3)) || (uarmg && itemhasappearance(uarmg, APP_CLUMSY_GLOVES) ) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() ) ) && (u.dx || u.dy) && (!rn2(7) || (obj->oartifact == ART_COMPLETELY_OFF) || (obj->oartifact == ART_FLUSCH) || (obj->oartifact == ART_STREW_ANYWHERE) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() )) ) {
 	    boolean slipok = TRUE;
 	    if (ammo_and_launcher(obj, launcher))
 		pline("%s!", Tobjnam(obj, "misfire"));
@@ -2836,6 +2845,10 @@ boolean polearming;
 		    if (Race_if(PM_MACTHEIST) && objects[otyp].oc_skill == -P_SLING && broken && !rn2(2))
 			broken = 0;
 
+		    if (obj->oartifact == ART_USE_A_LOT) {
+			if (rn2(10)) broken = 0;
+		    }
+
 		    if (objects[otyp].oc_material == MT_LEAD && broken && !rn2(4)) broken = 0;
 		    if (otyp == DART_OF_DISINTEGRATION && rn2(10) ) broken = 1;
 
@@ -3238,13 +3251,18 @@ boolean from_invent;
  * Check to see if obj is going to break, but don't actually break it.
  * Return 0 if the object isn't going to break, 1 if it is.
  * Amy edit: artifacts no longer completely immune, muahahahaha!
+ * also, if the item is vitric, artifact versions should have a considerable chance of breaking too
  */
 boolean
 breaktest(obj)
 struct obj *obj;
 {
-	if (obj_resists(obj, 1, 99)) return 0;
-	if ((objects[obj->otyp].oc_material == MT_GLASS || objects[obj->otyp].oc_material == MT_OBSIDIAN || is_vitric(obj)) && (!obj->oartifact || !rn2(10)) &&
+	if (is_vitric(obj)) {
+		if (obj_resists(obj, 1, 33)) return 0;
+	} else {
+		if (obj_resists(obj, 1, 99)) return 0;
+	}
+	if ((objects[obj->otyp].oc_material == MT_GLASS || objects[obj->otyp].oc_material == MT_OBSIDIAN || is_vitric(obj)) && (!obj->oartifact || is_vitric(obj) || !rn2(10)) &&
 		obj->oclass != GEM_CLASS)
 	    return 1;
 	switch (obj->oclass == POTION_CLASS ? POT_WATER : obj->otyp) {

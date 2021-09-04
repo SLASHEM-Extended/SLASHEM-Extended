@@ -2009,7 +2009,7 @@ struct monst *mon;
 
 	if (is_highway(mon->mx, mon->my)) mmove += rnd(mmove);
 
-	if ((MonsterSpeedBug || u.uprops[MONSTER_SPEED_BUG].extrinsic || have_monsterspeedstone()) && !rn2(2) && (mmove > 0)) {
+	if ((MonsterSpeedBug || u.uprops[MONSTER_SPEED_BUG].extrinsic || (uarm && uarm->oartifact == ART_HUNKSTERMAN) || have_monsterspeedstone()) && !rn2(2) && (mmove > 0)) {
 		mmove *= 3;
 		if (mmove == 3) mmove = 4;
 		mmove /= 2;
@@ -6683,12 +6683,23 @@ xkilled(mtmp, dest)
 	if (Role_if(PM_BLOODSEEKER)) healup(mtmp->m_lev, 0, FALSE, FALSE); /* special ability called "Stygwyr's Thirst" */
 	if (uwep && uwep->oartifact == ART_ALDEBARAN_FORM) healup(mtmp->m_lev, 0, FALSE, FALSE);
 
+	if (uarm && uarm->oartifact == ART_ALPHA_TAURI && uwep && (Flying || (uwep->oartifact == ART_ALDEBARAN_FORM)) && ((is_lightsaber(uwep) && uwep->lamplit) || !rn2(3) ) ) {
+		int alphatauriheal = 0;
+		if (u.aldebaranskill >= 20) alphatauriheal++;
+		if (u.aldebaranskill >= 160) alphatauriheal++;
+		if (u.aldebaranskill >= 540) alphatauriheal++;
+		if (u.aldebaranskill >= 1280) alphatauriheal++;
+		if (u.aldebaranskill >= 2500) alphatauriheal++;
+		if (u.aldebaranskill >= 4320) alphatauriheal++;
+		healup(alphatauriheal, 0, FALSE, FALSE);
+	}
+
 	if (uwep && uwep->lamplit && ((uwep->oartifact == ART_ALDEBARAN_FORM) || (is_lightsaber(uwep) && Flying) ) ) {
 		u.aldebaranturns++;
 		if (u.aldebaranturns >= 2) {
 			u.aldebaranturns = 0;
 			u.aldebaranskill++;
-			if (uwep && uwep->oartifact == ART_ALDEBARAN_FORM) {
+			if ((uwep && uwep->oartifact == ART_ALDEBARAN_FORM) || (uarm && uarm->oartifact == ART_ALPHA_TAURI)) {
 				if (u.aldebaranskill == 20) You("are now more skilled in form XI (Aldebaran).");
 				if (u.aldebaranskill == 160) You("are now more skilled in form XI (Aldebaran).");
 				if (u.aldebaranskill == 540) You("are now more skilled in form XI (Aldebaran).");

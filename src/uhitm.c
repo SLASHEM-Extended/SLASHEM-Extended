@@ -667,6 +667,42 @@ register struct monst *mtmp;
 	if (u.twoweap && uwep && uswapwep && uswapwep->oartifact == ART_TEH_HUNK && (!u.usteed && !(tech_inuse(T_POLE_MELEE)) && is_pole(uwep))) tmp += 5;
 	if (u.twoweap && uwep && uswapwep && uswapwep->oartifact == ART_TEH_HUNK && (uwep->oclass != WEAPON_CLASS && !is_weptool(uwep) && uwep->oclass != GEM_CLASS && uwep->oclass != BALL_CLASS && uwep->oclass != CHAIN_CLASS)) tmp += 5;
 
+	if (uarm && uarm->oartifact == ART_HUNKSTERMAN && (is_launcher(uwep) && !(uwep->otyp == LASERXBOW && uwep->lamplit))) {
+		if (u.hunkskill >= 20) tmp++;
+		if (u.hunkskill >= 160) tmp++;
+		if (u.hunkskill >= 540) tmp++;
+		if (u.hunkskill >= 1280) tmp++;
+		if (u.hunkskill >= 2500) tmp++;
+		if (u.hunkskill >= 4320) tmp++;
+	}
+
+	if (uarm && uarm->oartifact == ART_HUNKSTERMAN && (is_missile(uwep) || is_ammo(uwep))) {
+		if (u.hunkskill >= 20) tmp++;
+		if (u.hunkskill >= 160) tmp++;
+		if (u.hunkskill >= 540) tmp++;
+		if (u.hunkskill >= 1280) tmp++;
+		if (u.hunkskill >= 2500) tmp++;
+		if (u.hunkskill >= 4320) tmp++;
+	}
+
+	if (uarm && uarm->oartifact == ART_HUNKSTERMAN && (!u.usteed && !(tech_inuse(T_POLE_MELEE)) && is_pole(uwep))) {
+		if (u.hunkskill >= 20) tmp++;
+		if (u.hunkskill >= 160) tmp++;
+		if (u.hunkskill >= 540) tmp++;
+		if (u.hunkskill >= 1280) tmp++;
+		if (u.hunkskill >= 2500) tmp++;
+		if (u.hunkskill >= 4320) tmp++;
+	}
+
+	if (uarm && uarm->oartifact == ART_HUNKSTERMAN && (uwep->oclass != WEAPON_CLASS && !is_weptool(uwep) && uwep->oclass != GEM_CLASS && uwep->oclass != BALL_CLASS && uwep->oclass != CHAIN_CLASS)) {
+		if (u.hunkskill >= 20) tmp++;
+		if (u.hunkskill >= 160) tmp++;
+		if (u.hunkskill >= 540) tmp++;
+		if (u.hunkskill >= 1280) tmp++;
+		if (u.hunkskill >= 2500) tmp++;
+		if (u.hunkskill >= 4320) tmp++;
+	}
+
 	if( (Role_if(PM_JEDI) || Race_if(PM_BORG)) && !Upolyd) {
 		if (((uwep && is_lightsaber(uwep) && uwep->lamplit) ||
 		    (uswapwep && u.twoweap && is_lightsaber(uswapwep) && uswapwep->lamplit)) &&
@@ -1718,6 +1754,10 @@ int dieroll;
 		    else
 			tmp = rnd(2);
 
+			if (!thrown && obj && obj->oartifact == ART_ZACKSCHRACK) {
+				tmp += 5;
+			}
+
 		/* Bashing with bows, darts, ranseurs or inactive lightsabers might not be completely useless... --Amy */
 
 		    if (( (is_launcher(obj) && obj->otyp != WEAPON_SIGN && !(obj->otyp == LASERXBOW && obj->lamplit) && !(obj->otyp == KLIUSLING && obj->lamplit)) || is_missile(obj) || (is_pole(obj) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(obj) && !obj->lamplit) ) && !thrown) {
@@ -1742,7 +1782,9 @@ int dieroll;
 
 			if (obj && obj->spe > 0) tmp += obj->spe;
 
-			if (obj && obj->oartifact == ART_BASHCRASH && tmp > 0) tmp *= 2;
+			if (obj && obj->oartifact == ART_BASHCRASH && tmp > 0) {
+				tmp *= 2;
+			}
 			if (obj && obj->oartifact == ART_TEH_HUNK && !obj->lamplit && tmp > 0) tmp += 5;
 			if (obj && obj->oartifact == ART_GAYGUN && (u.homosexual == 1)) tmp += 5;
 
@@ -1751,7 +1793,7 @@ int dieroll;
 				if (u.hunkturns >= 5) {
 					u.hunkturns = 0;
 					u.hunkskill++;
-					if (obj && obj->oartifact == ART_TEH_HUNK) {
+					if ((obj && obj->oartifact == ART_TEH_HUNK) || (uarm && uarm->oartifact == ART_HUNKSTERMAN)) {
 						if (u.hunkskill == 20) You("are now more skilled in form IX (Hunk).");
 						if (u.hunkskill == 160) You("are now more skilled in form IX (Hunk).");
 						if (u.hunkskill == 540) You("are now more skilled in form IX (Hunk).");
@@ -1759,6 +1801,15 @@ int dieroll;
 						if (u.hunkskill == 2560) You("are now more skilled in form IX (Hunk).");
 						if (u.hunkskill == 4320) You("are now most skilled in form IX (Hunk).");
 					}
+				}
+
+				if (uarm && uarm->oartifact == ART_HUNKSTERMAN) {
+					if (u.hunkskill >= 20) tmp++;
+					if (u.hunkskill >= 160) tmp++;
+					if (u.hunkskill >= 540) tmp++;
+					if (u.hunkskill >= 1280) tmp++;
+					if (u.hunkskill >= 2500) tmp++;
+					if (u.hunkskill >= 4320) tmp++;
 				}
 			}
 
@@ -3217,6 +3268,22 @@ melatechoice:
 
 		}
 
+		if (thrown && obj && obj->oartifact == ART_RAZORSHARD) {
+			mon->bleedout += 10;
+			pline("%s is bleeding!", Monnam(mon));
+		}
+
+		if (thrown && obj && obj->oartifact == ART_MAP_END) {
+			register int mapendx, mapendy;
+			int dirx, diry;
+			mapendx = rnd(COLNO-1);
+			mapendy = rn2(ROWNO);
+			dirx = rn2(3) - 1;
+			diry = rn2(3) - 1;
+			if(dirx != 0 || diry != 0)
+				buzz(-11, 8, mapendx, mapendy, dirx, diry);
+		}
+
 		if (thrown && obj && (obj->oartifact == ART_SELF_SUFFICIENCE)) {
 			if (obj->cursed) uncurse(obj, TRUE);
 			if (obj->spe < 0) obj->spe++;
@@ -3325,6 +3392,33 @@ melatechoice:
 		if (thrown && obj && (obj->oartifact == ART_FEMMY_LOVES_YOU) ) {
 			if (!FemaleTrapFemmy) pline("Femmy loves you!");
 			FemaleTrapFemmy += rnd(1000);
+		}
+
+		if (thrown && obj && (obj->oartifact == ART_BECOME_NORMAL) ) {
+			struct obj *uammo;
+			uammo = mksobj(GRAPHITE, TRUE, 2, FALSE);
+			if (uammo) {
+				uammo->quan = 1;
+				uammo->owt = weight(uammo);
+				dropy(uammo);
+				stackobj(uammo);
+			}
+		}
+
+		if (thrown && obj && (obj->oartifact == ART_TRACKSTOP) && mon->mcanmove ) {
+			mon->mfrozen = 2;
+			mon->mcanmove = 0;
+			mon->mstrategy &= ~STRAT_WAITFORU;
+			pline("%s is stopped in %s tracks!", Monnam(mon), mhis(mon));
+		}
+
+		if (thrown && launcher && obj && (obj->oartifact == ART_MORETRAIN) ) {
+			use_skill(P_FIREARM, 5);
+			use_skill(P_GUN_CONTROL, 1);
+		}
+
+		if (thrown && obj && (obj->oartifact == ART_STELSHOT) ) {
+			incr_itimeout(&HStealth, 200);
 		}
 
 		if (wep && wep->oartifact == ART_MARTHA_S_FOREIGN_GOER) {

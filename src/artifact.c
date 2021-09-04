@@ -353,6 +353,9 @@ hack_artifacts()
 	artilist[ART_FIRE_ALREADY].otyp = randartmissileX();
 	artilist[ART_HUMAN_WIPEOUT].otyp = randartmeleeweaponX();
 	artilist[ART_SPLINTER_ARMAMENT].otyp = randartsuitX();
+	artilist[ART_HUNKSTERMAN].otyp = randartsuitX();
+	artilist[ART_LU_NONNAME].otyp = randartsuitX();
+	artilist[ART_ALPHA_TAURI].otyp = randartsuitX();
 	artilist[ART_ABSOLUTE_MONSTER_MAIL].otyp = randartsuitX();
 	artilist[ART_RITA_S_TENDER_STILETTOS].otyp = randartbootsX();
 	artilist[ART_HALF_MOON_TONIGHT].otyp = randartcloakX();
@@ -2318,7 +2321,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	/* We really want "on a natural 20" but Nethack does it in */
 	/* reverse from AD&D. */
 	if (spec_ability(otmp, SPFX_BEHEAD)) {
-	    if ( (otmp->oartifact == ART_TSURUGI_OF_MURAMASA || otmp->oartifact == ART_GAYSECT || otmp->oartifact == ART_LIGHTNING_STROKE || otmp->oartifact == ART_DRAGONCLAN_SWORD || otmp->oartifact == ART_KILLING_EDGE) && dieroll < 2) {
+	    if ( (otmp->oartifact == ART_TSURUGI_OF_MURAMASA || otmp->oartifact == ART_GAYSECT || otmp->oartifact == ART_THOUSAND_FRAGMENTS || otmp->oartifact == ART_LIGHTNING_STROKE || otmp->oartifact == ART_DRAGONCLAN_SWORD || otmp->oartifact == ART_KILLING_EDGE) && dieroll < 2) {
 		wepdesc = "The razor-sharp blade";
 
 		if (!youdefend && mdef->data->geno & G_UNIQ) {
@@ -3309,6 +3312,15 @@ arti_invoke(obj)
 			verbalize("You've summoned me! I'll fight on your side. If you want to power me up, chat to me and give me a few crossbow bolts, then I'll turn on my poison enchantment that will poison our enemies.");
 		}
 
+		return 1;
+	}
+
+	if (obj->oartifact == ART_RE_POISON) {
+
+		if (!obj->opoisoned) {
+			obj->opoisoned = TRUE;
+			pline("The arrows have been poisoned.");
+		} else pline("These arrows are already poisoned.");
 		return 1;
 	}
 
