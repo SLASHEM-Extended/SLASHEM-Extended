@@ -267,6 +267,7 @@ struct permonst *ptr;
 	for(i = 0; i < NATTK; i++) {
 	    atyp = ptr->mattk[i].aatyp;
 	    if (atyp >= AT_WEAP) return TRUE;
+	    if (atyp == AT_HUGS) return TRUE;
 	 /* assert(atyp < 32); */
 	    if ((atk_mask & (1L << atyp)) != 0L) return TRUE;
 	}

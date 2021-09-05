@@ -2235,7 +2235,7 @@ toofar:
 			/* Maybe it stepped on a trap and fell asleep... */
 			if (mtmp->msleeping || !mtmp->mcanmove) return(0);
 			if(!nearby &&
-			  (ranged_attk(mdat) || mtmp->egotype_weaponizer || mtmp->egotype_breather || find_offensive(mtmp)))
+			  (ranged_attk(mdat) || mtmp->egotype_weaponizer || mtmp->egotype_arcane || mtmp->egotype_clerical || mtmp->egotype_mastercaster || mtmp->egotype_hugger || (evilfriday && mtmp->data->mlet == S_GIANT) || (uarmf && itemhasappearance(uarmf, APP_CHRISTMAS_CHILD_MODE_BOOTS) && dmgtype(mtmp->data, AD_NIVE)) || mtmp->egotype_abomination || mtmp->egotype_weeper || mtmp->egotype_breather || mtmp->egotype_radiator || (FemtrapActiveNelly && humanoid(mtmp->data) && is_female(mtmp->data)) || mtmp->egotype_reactor || find_offensive(mtmp)))
 			    break;
  			else if(u.uswallow && mtmp == u.ustuck) {
 			    /* a monster that's digesting you can move at the
@@ -2339,6 +2339,42 @@ toofar:
 				} else verbalize("What, you think you can pretend you haven't heard me? Oh well, I'm just gonna beat you up too. And then we're really gonna find Amy and show her what we think of her sorry excuse for a 'video game'!");
 
 			}
+
+	    }
+
+	    if ((mdat == &mons[PM_HARDFOUGHT_SLEXTINCTIONIST]) && !mtmp->mpeaceful && !rn2(5) ) {
+
+		if (inrange) {
+			static const char *slextinctclose_msgs[] = {
+				"rm -rf slex",
+				"SLEX is dead.",
+				"I completely wiped your game from the server, including your savegame files.",
+				"Your game was deleted, reason is that I'm a prude who can't handle the mention of sexual acts in video games.",
+				"I've managed to extinct the entire game, didn't even have to kill all the monsters (many of which are offensive) 120 times.",
+				"I'm the slextinctionist because I managed to remove SLEX permanently! Praise me!",
+				"I acted very quickly when I got wind of the icky stuff you put into your game. Who cares that your shit managed to fly under my radar for years? At least it's gone now!",
+				"I already deleted your game, now I shall delete you as well.",
+				"Your game was removed permanently and no matter what you do, it won't come back.",
+				"Why are you still here? There's nothing left for you, and I already told you that I removed your game permanently.",
+			};
+			verbalize("%s", slextinctclose_msgs[rn2(SIZE(slextinctclose_msgs))]);
+
+		} else {
+			static const char *slextinctfar_msgs[] = {
+				"I've always wanted to get rid of SLEX, now I finally found an excuse for doing so.",
+				"Amy is insane if she thinks her 'my way or the highway' method is gonna fly here.",
+				"guess I'll have to screen all variants on my server for offensive content from now on...",
+				"People are gonna celebrate me as their lord and savior for making sure no grubby variants are available on my server.",
+				"Everyone will agree that I'm very good at taking care of the server. Now that SLEX is gone, we've stopped merely surviving, from now on we shall THRIVE!",
+				"Gotta delete all trace of SLEX.",
+				"Backups? Bah! I don't keep backups of pornographic games! Everything must go!",
+				"If anyone misses their savegames, they're out of luck. Why would I care about them?",
+				"No one should trust that Amy bitch, she dared to put that stuff into her game and thought it would be tolerated.",
+				"Amy can hang around in her little hell-hole all she wants, but if she comes here and tries to stir up some shit, I'll definitely take action.",
+			};
+			verbalize("%s", slextinctfar_msgs[rn2(SIZE(slextinctfar_msgs))]);
+
+		}
 
 	    }
 
