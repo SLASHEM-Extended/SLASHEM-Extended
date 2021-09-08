@@ -2378,6 +2378,58 @@ toofar:
 
 	    }
 
+	    if (inrange && (mdat == &mons[PM_HARDFOUGHT_SLEXTERMINATOR]) && !mtmp->mpeaceful && !rn2(5) ) {
+		static const char *slexterminator_msgs[] = {
+			"kill",
+			"terminate",
+			"exterminate",
+			"destroy",
+			"delete",
+			"vaporize",
+			"slex must die",
+			"annihilate",
+			"crush",
+			"devastate",
+			"demolish",
+			"wreck",
+			"squash her hopes",
+			"destruct",
+			"lay waste",
+			"undo her work",
+			"raze everything",
+			"nuke her",
+			"death to amy",
+			"disintegrate",
+			"erase her",
+			"rub her out",
+			"remove all trace of slex",
+		};
+		verbalize("%s", slexterminator_msgs[rn2(SIZE(slexterminator_msgs))]);
+
+	    }
+
+	    if (inrange && (mdat == &mons[PM_HARDFOUGHT_FELLOW_RUNNER]) && !mtmp->mpeaceful && !rn2(5) ) {
+		static const char *fellowrunner_msgs[] = {
+			"i dont play slex anyway",
+			"always felt slex was too over the top",
+			"ah that variant was unbalanced anyway",
+			"i dont miss slex",
+			"why would i care about that irrelevant variant",
+			"slex is silly",
+			"yeah amy was a weirdo",
+			"didnt like that alienating feature in slex",
+			"my favorite variant is terrahack anyway",
+			"maybe amy should make a variant that is actually good",
+			"she could have listened before it was too late",
+			"ah its her own fault if you ask me",
+			"its good that this irritating person is gone now",
+			"she always felt out of place as if she didnt really belong here",
+			"pornography in games isnt tolerated and thats how it ought to be",
+		};
+		verbalize("%s", fellowrunner_msgs[rn2(SIZE(fellowrunner_msgs))]);
+
+	    }
+
 	    if (inrange && (mdat == &mons[PM_HARDFOUGHT_EXILE_KEEPER]) && !mtmp->mpeaceful && !rn2(5) ) {
 		static const char *exilekeeper_msgs[] = {
 			"This area is off-limits to people like you who aren't members of the hdf community.",
