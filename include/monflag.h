@@ -66,6 +66,19 @@
 #define MS_CASINO 57	/* allows you to play blackjack */
 #define MS_GIBBERISH 58	/* garbled strings */
 #define MS_GLYPHS 59	/* talks about glyphs */
+#define MS_SOCKS	60	/* can paralyze you */
+#define MS_PANTS	61	/* can increase your contamination and sanity */
+#define MS_HANDY	62	/* monster's phone rings occasionally */
+#define MS_CAR	63	/* vroom-vroom sounds, for vehicle monsters */
+#define MS_JAPANESE	64	/* speaks japanese */
+#define MS_SOVIET	65	/* speaks russian */
+#define MS_SNORE	66	/* sleeps often and makes noise while it does, but doesn't wake up itself */
+#define MS_PHOTO	67	/* wants to photograph you, causing blindness */
+#define MS_REPAIR	68	/* offers item repair service */
+#define MS_DRUGS	69	/* offers drug purchasing service */
+#define MS_COMBAT	70	/* always gives spacewars fighter combat messages */
+#define MS_MUTE	71	/* can't talk, but unlike MS_SILENT they can moan, grunt etc. */
+#define MS_CORONA	72	/* says stuff about the plague */
 
 /* MS_DOUGLAS_ADAMS used to be 42, however I fear the DevTeam eventually 
 ** reaching that number.  - sk */
