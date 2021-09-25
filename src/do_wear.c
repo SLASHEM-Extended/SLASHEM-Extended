@@ -3764,39 +3764,41 @@ Implant_on()
 		durifact = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
 		if (durifact) {
 
-			if (P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_ISRESTRICTED) {
-			    unrestrict_weapon_skill(get_obj_skill(durifact, TRUE));
-			} else if (P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_UNSKILLED) {
-				unrestrict_weapon_skill(get_obj_skill(durifact, TRUE));
-				P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_BASIC;
-			} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_BASIC) {
-				P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_SKILLED;
-			} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_SKILLED) {
-				P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_EXPERT;
-			} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_EXPERT) {
-				P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_MASTER;
-			} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_MASTER) {
-				P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_GRAND_MASTER;
-			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_GRAND_MASTER) {
-				P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_SUPREME_MASTER;
+			int duriskill = get_obj_skill(durifact, TRUE);
+
+			if (P_MAX_SKILL(duriskill) == P_ISRESTRICTED) {
+			    unrestrict_weapon_skill(duriskill);
+			} else if (P_MAX_SKILL(duriskill) == P_UNSKILLED) {
+				unrestrict_weapon_skill(duriskill);
+				P_MAX_SKILL(duriskill) = P_BASIC;
+			} else if (rn2(2) && P_MAX_SKILL(duriskill) == P_BASIC) {
+				P_MAX_SKILL(duriskill) = P_SKILLED;
+			} else if (!rn2(4) && P_MAX_SKILL(duriskill) == P_SKILLED) {
+				P_MAX_SKILL(duriskill) = P_EXPERT;
+			} else if (!rn2(10) && P_MAX_SKILL(duriskill) == P_EXPERT) {
+				P_MAX_SKILL(duriskill) = P_MASTER;
+			} else if (!rn2(100) && P_MAX_SKILL(duriskill) == P_MASTER) {
+				P_MAX_SKILL(duriskill) = P_GRAND_MASTER;
+			} else if (!rn2(200) && P_MAX_SKILL(duriskill) == P_GRAND_MASTER) {
+				P_MAX_SKILL(duriskill) = P_SUPREME_MASTER;
 			}
 
 			if (Race_if(PM_RUSMOT)) {
-				if (P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_ISRESTRICTED) {
-				    unrestrict_weapon_skill(get_obj_skill(durifact, TRUE));
-				} else if (P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_UNSKILLED) {
-					unrestrict_weapon_skill(get_obj_skill(durifact, TRUE));
-					P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_BASIC;
-				} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_BASIC) {
-					P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_SKILLED;
-				} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_SKILLED) {
-					P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_EXPERT;
-				} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_EXPERT) {
-					P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_MASTER;
-				} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_MASTER) {
-					P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_GRAND_MASTER;
-				} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_GRAND_MASTER) {
-					P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_SUPREME_MASTER;
+				if (P_MAX_SKILL(duriskill) == P_ISRESTRICTED) {
+				    unrestrict_weapon_skill(duriskill);
+				} else if (P_MAX_SKILL(duriskill) == P_UNSKILLED) {
+					unrestrict_weapon_skill(duriskill);
+					P_MAX_SKILL(duriskill) = P_BASIC;
+				} else if (rn2(2) && P_MAX_SKILL(duriskill) == P_BASIC) {
+					P_MAX_SKILL(duriskill) = P_SKILLED;
+				} else if (!rn2(4) && P_MAX_SKILL(duriskill) == P_SKILLED) {
+					P_MAX_SKILL(duriskill) = P_EXPERT;
+				} else if (!rn2(10) && P_MAX_SKILL(duriskill) == P_EXPERT) {
+					P_MAX_SKILL(duriskill) = P_MASTER;
+				} else if (!rn2(100) && P_MAX_SKILL(duriskill) == P_MASTER) {
+					P_MAX_SKILL(duriskill) = P_GRAND_MASTER;
+				} else if (!rn2(200) && P_MAX_SKILL(duriskill) == P_GRAND_MASTER) {
+					P_MAX_SKILL(duriskill) = P_SUPREME_MASTER;
 				}
 			}
 

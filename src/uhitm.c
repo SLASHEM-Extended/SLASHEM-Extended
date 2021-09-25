@@ -5241,7 +5241,7 @@ melatechoice:
 				case 634: pline("You've used your quest artifact for %d turns straight, and are now really proficient with it. Case in point, %s fell in a single hit.", u.artifinitythreshold, mon_nam(mon)); break;
 				case 635: pline("There's the danger of you meeting Mr. Conclusio, in fact the counter has already increased to %d. So you decide to not waste any more time, and cut down the hapless %s.", u.conclusiocount, l_monnam(mon)); break;
 				case 636: pline("You use the hidden power number %d to get rid of %s!", u.hiddenpowerskill, mon_nam(mon)); break;
-				case 637: pline("%s calls for a timeout, stating that %s has to go to the toilet, and you pretend to comply... only to shoot %s in the back as he's walking away.", Monnam(mon), mhe(mon), mhim(mon)); break;
+				case 637: pline("%s calls for a timeout, stating that %s has to go to the toilet, and you pretend to comply... only to shoot %s in the back as %s's walking away.", Monnam(mon), mhe(mon), mhim(mon), mhe(mon)); break;
 				case 638: pline("You throw the bottle at %s, it explodes, and the fragments fly everywhere.", mon_nam(mon)); break;
 				case 639: pline("%s is no longer capable of protecting the castle!", Monnam(mon)); break;
 				case 640: pline("You hope that the wilderness will devour %s's corpse.", mon_nam(mon)); break;
@@ -8304,7 +8304,7 @@ register int roll;
 		case 676: pline("%s body-shames you for being such a fatass.", Monnam(mdef)); break;
 		case 677: pline("You miss %s despite your high weapon skill because you forgot to enhance your secondary combat skills!", mon_nam(mdef)); break;
 		case 678: pline("Why don't you noob try to enchant your weapon, you should have realized that without enchantment it just whiffs every time!"); break;
-		case 679: pline("Your gun is out of ammo, so you cant shoot this turn and need to reload first."); break;
+		case 679: pline("Your gun is out of ammo, so you can't shoot this turn and need to reload first."); break;
 		case 680: pline("Suddenly you realize that the monster you're fighting is one that crashes the game as soon as its name is displayed, so you decide to not attack after all."); break;
 		case 681: pline("%s tries to display a panic message, but it has a bugged string and therefore your game crashes.", Monnam(mdef)); break;
 		case 682: pline("Oh no, due to a bug that has been fixed thrice already, %s has much more AC than intended! How many times does the incapable dev have to fix this bug before it's finally gone for good?", mon_nam(mdef)); break;

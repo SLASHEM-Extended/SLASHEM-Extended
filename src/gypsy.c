@@ -1125,6 +1125,44 @@ blackjackwin:
 		blackjackreward = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
 		if (blackjackreward) {
 			dropy(blackjackreward);
+
+			int blackjackskill = get_obj_skill(blackjackreward, TRUE);
+
+			if (P_MAX_SKILL(blackjackskill) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(blackjackskill);
+			} else if (P_MAX_SKILL(blackjackskill) == P_UNSKILLED) {
+				unrestrict_weapon_skill(blackjackskill);
+				P_MAX_SKILL(blackjackskill) = P_BASIC;
+			} else if (rn2(2) && P_MAX_SKILL(blackjackskill) == P_BASIC) {
+				P_MAX_SKILL(blackjackskill) = P_SKILLED;
+			} else if (!rn2(4) && P_MAX_SKILL(blackjackskill) == P_SKILLED) {
+				P_MAX_SKILL(blackjackskill) = P_EXPERT;
+			} else if (!rn2(10) && P_MAX_SKILL(blackjackskill) == P_EXPERT) {
+				P_MAX_SKILL(blackjackskill) = P_MASTER;
+			} else if (!rn2(100) && P_MAX_SKILL(blackjackskill) == P_MASTER) {
+				P_MAX_SKILL(blackjackskill) = P_GRAND_MASTER;
+			} else if (!rn2(200) && P_MAX_SKILL(blackjackskill) == P_GRAND_MASTER) {
+				P_MAX_SKILL(blackjackskill) = P_SUPREME_MASTER;
+			}
+			if (Race_if(PM_RUSMOT)) {
+				if (P_MAX_SKILL(blackjackskill) == P_ISRESTRICTED) {
+					unrestrict_weapon_skill(blackjackskill);
+				} else if (P_MAX_SKILL(blackjackskill) == P_UNSKILLED) {
+					unrestrict_weapon_skill(blackjackskill);
+					P_MAX_SKILL(blackjackskill) = P_BASIC;
+				} else if (rn2(2) && P_MAX_SKILL(blackjackskill) == P_BASIC) {
+					P_MAX_SKILL(blackjackskill) = P_SKILLED;
+				} else if (!rn2(4) && P_MAX_SKILL(blackjackskill) == P_SKILLED) {
+					P_MAX_SKILL(blackjackskill) = P_EXPERT;
+				} else if (!rn2(10) && P_MAX_SKILL(blackjackskill) == P_EXPERT) {
+					P_MAX_SKILL(blackjackskill) = P_MASTER;
+				} else if (!rn2(100) && P_MAX_SKILL(blackjackskill) == P_MASTER) {
+					P_MAX_SKILL(blackjackskill) = P_GRAND_MASTER;
+				} else if (!rn2(200) && P_MAX_SKILL(blackjackskill) == P_GRAND_MASTER) {
+					P_MAX_SKILL(blackjackskill) = P_SUPREME_MASTER;
+				}
+			}
+
 		}
 		if (!havegifts) u.ugifts--;
 	}
@@ -1138,6 +1176,12 @@ blackjackwin:
 blackjackgameover:
 	disappearchance += (playerblackjackwins * 4);
 	if (playerblackjackwins >= 20) disappearchance = 100;
+
+	if (practicantterror) {
+		pline("%s thunders: 'Gambling is strictly forbidden! Since you already gambled away those precious zorkmids and therefore can't pay them to me anymore, you pay 100 stones to me instead.'", noroelaname());
+		fineforpracticant(0, 100, 0);
+	}
+
 	if (rn2(100) < disappearchance) return TRUE;
 
 	return FALSE;

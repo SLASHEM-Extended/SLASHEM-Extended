@@ -948,39 +948,41 @@ bad_artifact_xtra()
 	}
 
 	if (otmp) {
-		if (P_MAX_SKILL(get_obj_skill(otmp, TRUE)) == P_ISRESTRICTED) {
-		    unrestrict_weapon_skill(get_obj_skill(otmp, TRUE));
-		} else if (P_MAX_SKILL(get_obj_skill(otmp, TRUE)) == P_UNSKILLED) {
-			unrestrict_weapon_skill(get_obj_skill(otmp, TRUE));
-			P_MAX_SKILL(get_obj_skill(otmp, TRUE)) = P_BASIC;
-		} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(otmp, TRUE)) == P_BASIC) {
-			P_MAX_SKILL(get_obj_skill(otmp, TRUE)) = P_SKILLED;
-		} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(otmp, TRUE)) == P_SKILLED) {
-			P_MAX_SKILL(get_obj_skill(otmp, TRUE)) = P_EXPERT;
-		} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(otmp, TRUE)) == P_EXPERT) {
-			P_MAX_SKILL(get_obj_skill(otmp, TRUE)) = P_MASTER;
-		} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(otmp, TRUE)) == P_MASTER) {
-			P_MAX_SKILL(get_obj_skill(otmp, TRUE)) = P_GRAND_MASTER;
-		} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(otmp, TRUE)) == P_GRAND_MASTER) {
-			P_MAX_SKILL(get_obj_skill(otmp, TRUE)) = P_SUPREME_MASTER;
+		int evfskill = get_obj_skill(otmp, TRUE);
+
+		if (P_MAX_SKILL(evfskill) == P_ISRESTRICTED) {
+		    unrestrict_weapon_skill(evfskill);
+		} else if (P_MAX_SKILL(evfskill) == P_UNSKILLED) {
+			unrestrict_weapon_skill(evfskill);
+			P_MAX_SKILL(evfskill) = P_BASIC;
+		} else if (rn2(2) && P_MAX_SKILL(evfskill) == P_BASIC) {
+			P_MAX_SKILL(evfskill) = P_SKILLED;
+		} else if (!rn2(4) && P_MAX_SKILL(evfskill) == P_SKILLED) {
+			P_MAX_SKILL(evfskill) = P_EXPERT;
+		} else if (!rn2(10) && P_MAX_SKILL(evfskill) == P_EXPERT) {
+			P_MAX_SKILL(evfskill) = P_MASTER;
+		} else if (!rn2(100) && P_MAX_SKILL(evfskill) == P_MASTER) {
+			P_MAX_SKILL(evfskill) = P_GRAND_MASTER;
+		} else if (!rn2(200) && P_MAX_SKILL(evfskill) == P_GRAND_MASTER) {
+			P_MAX_SKILL(evfskill) = P_SUPREME_MASTER;
 		}
 
 		if (Race_if(PM_RUSMOT)) {
-			if (P_MAX_SKILL(get_obj_skill(otmp, TRUE)) == P_ISRESTRICTED) {
-			    unrestrict_weapon_skill(get_obj_skill(otmp, TRUE));
-			} else if (P_MAX_SKILL(get_obj_skill(otmp, TRUE)) == P_UNSKILLED) {
-				unrestrict_weapon_skill(get_obj_skill(otmp, TRUE));
-				P_MAX_SKILL(get_obj_skill(otmp, TRUE)) = P_BASIC;
-			} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(otmp, TRUE)) == P_BASIC) {
-				P_MAX_SKILL(get_obj_skill(otmp, TRUE)) = P_SKILLED;
-			} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(otmp, TRUE)) == P_SKILLED) {
-				P_MAX_SKILL(get_obj_skill(otmp, TRUE)) = P_EXPERT;
-			} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(otmp, TRUE)) == P_EXPERT) {
-				P_MAX_SKILL(get_obj_skill(otmp, TRUE)) = P_MASTER;
-			} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(otmp, TRUE)) == P_MASTER) {
-				P_MAX_SKILL(get_obj_skill(otmp, TRUE)) = P_GRAND_MASTER;
-			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(otmp, TRUE)) == P_GRAND_MASTER) {
-				P_MAX_SKILL(get_obj_skill(otmp, TRUE)) = P_SUPREME_MASTER;
+			if (P_MAX_SKILL(evfskill) == P_ISRESTRICTED) {
+			    unrestrict_weapon_skill(evfskill);
+			} else if (P_MAX_SKILL(evfskill) == P_UNSKILLED) {
+				unrestrict_weapon_skill(evfskill);
+				P_MAX_SKILL(evfskill) = P_BASIC;
+			} else if (rn2(2) && P_MAX_SKILL(evfskill) == P_BASIC) {
+				P_MAX_SKILL(evfskill) = P_SKILLED;
+			} else if (!rn2(4) && P_MAX_SKILL(evfskill) == P_SKILLED) {
+				P_MAX_SKILL(evfskill) = P_EXPERT;
+			} else if (!rn2(10) && P_MAX_SKILL(evfskill) == P_EXPERT) {
+				P_MAX_SKILL(evfskill) = P_MASTER;
+			} else if (!rn2(100) && P_MAX_SKILL(evfskill) == P_MASTER) {
+				P_MAX_SKILL(evfskill) = P_GRAND_MASTER;
+			} else if (!rn2(200) && P_MAX_SKILL(evfskill) == P_GRAND_MASTER) {
+				P_MAX_SKILL(evfskill) = P_SUPREME_MASTER;
 			}
 		}
 
@@ -2634,39 +2636,41 @@ doinvoke()
 					acqo = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
 					if (acqo) {
 					    dropy(acqo);
-						if (P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_ISRESTRICTED) {
-						    unrestrict_weapon_skill(get_obj_skill(acqo, TRUE));
-						} else if (P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_UNSKILLED) {
-							unrestrict_weapon_skill(get_obj_skill(acqo, TRUE));
-							P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_BASIC;
-						} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_BASIC) {
-							P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_SKILLED;
-						} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_SKILLED) {
-							P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_EXPERT;
-						} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_EXPERT) {
-							P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_MASTER;
-						} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_MASTER) {
-							P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_GRAND_MASTER;
-						} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_GRAND_MASTER) {
-							P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_SUPREME_MASTER;
+						int acqoskill = get_obj_skill(acqo, TRUE);
+
+						if (P_MAX_SKILL(acqoskill) == P_ISRESTRICTED) {
+						    unrestrict_weapon_skill(acqoskill);
+						} else if (P_MAX_SKILL(acqoskill) == P_UNSKILLED) {
+							unrestrict_weapon_skill(acqoskill);
+							P_MAX_SKILL(acqoskill) = P_BASIC;
+						} else if (rn2(2) && P_MAX_SKILL(acqoskill) == P_BASIC) {
+							P_MAX_SKILL(acqoskill) = P_SKILLED;
+						} else if (!rn2(4) && P_MAX_SKILL(acqoskill) == P_SKILLED) {
+							P_MAX_SKILL(acqoskill) = P_EXPERT;
+						} else if (!rn2(10) && P_MAX_SKILL(acqoskill) == P_EXPERT) {
+							P_MAX_SKILL(acqoskill) = P_MASTER;
+						} else if (!rn2(100) && P_MAX_SKILL(acqoskill) == P_MASTER) {
+							P_MAX_SKILL(acqoskill) = P_GRAND_MASTER;
+						} else if (!rn2(200) && P_MAX_SKILL(acqoskill) == P_GRAND_MASTER) {
+							P_MAX_SKILL(acqoskill) = P_SUPREME_MASTER;
 						}
 
 						if (Race_if(PM_RUSMOT)) {
-							if (P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_ISRESTRICTED) {
-							    unrestrict_weapon_skill(get_obj_skill(acqo, TRUE));
-							} else if (P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_UNSKILLED) {
-								unrestrict_weapon_skill(get_obj_skill(acqo, TRUE));
-								P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_BASIC;
-							} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_BASIC) {
-								P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_SKILLED;
-							} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_SKILLED) {
-								P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_EXPERT;
-							} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_EXPERT) {
-								P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_MASTER;
-							} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_MASTER) {
-								P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_GRAND_MASTER;
-							} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_GRAND_MASTER) {
-								P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_SUPREME_MASTER;
+							if (P_MAX_SKILL(acqoskill) == P_ISRESTRICTED) {
+							    unrestrict_weapon_skill(acqoskill);
+							} else if (P_MAX_SKILL(acqoskill) == P_UNSKILLED) {
+								unrestrict_weapon_skill(acqoskill);
+								P_MAX_SKILL(acqoskill) = P_BASIC;
+							} else if (rn2(2) && P_MAX_SKILL(acqoskill) == P_BASIC) {
+								P_MAX_SKILL(acqoskill) = P_SKILLED;
+							} else if (!rn2(4) && P_MAX_SKILL(acqoskill) == P_SKILLED) {
+								P_MAX_SKILL(acqoskill) = P_EXPERT;
+							} else if (!rn2(10) && P_MAX_SKILL(acqoskill) == P_EXPERT) {
+								P_MAX_SKILL(acqoskill) = P_MASTER;
+							} else if (!rn2(100) && P_MAX_SKILL(acqoskill) == P_MASTER) {
+								P_MAX_SKILL(acqoskill) = P_GRAND_MASTER;
+							} else if (!rn2(200) && P_MAX_SKILL(acqoskill) == P_GRAND_MASTER) {
+								P_MAX_SKILL(acqoskill) = P_SUPREME_MASTER;
 							}
 						}
 
