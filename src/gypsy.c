@@ -919,10 +919,227 @@ gypsy_chat (mtmp)
 	return;
 }
 
-void
+/* draw a card for blackjack minigame; unlike the real Black Jack game, there is no 'deck', and there's both an ace
+ * and a 1 point card, however if someone's first two cards are both an ace, the second ace automatically turns into
+ * a 1 point card because busting with less than 3 cards is supposed to be impossible
+ * we don't disambiguate between 10, jack, queen and king; if the starting hand is 21, there's simply an 80% chance
+ * for it to be a black jack (four, not five 10 point cards existing notwithstanding) */
+int
+blackjack_card()
+{
+	int blackjackcard = rnd(14); /* "suits" don't exist here because there's no deck to be aware of; a typical Black Jack deck would have 52 cards, 13 for each suit, but since we also have a 1 point card, there's actually 14 cards for each suit */
+	if (blackjackcard >= 12) blackjackcard = 10;
+	return blackjackcard;
+}
+
+/* blackjack minigame by Amy: the more often you win, the more likely the dealer will disappear
+ * returns TRUE if the dealer will disappear
+ * rules are slightly different from the real Black Jack game, and the dealer can cheat
+ * the player's luck stat can slightly affect the chance that the dealer cheats
+ * heavily inspired by Elona, but the implementation is my own --Amy */
+boolean
 play_blackjack()
 {
-	/* todo */
-	return;
+	int dealercheatchance = 10;
+	int playerblackjackwins = 0;
+	int disappearchance = 10;
+	struct obj *blackjackreward;
+
+	if (yn("Play blackjack? (2000 zorkmids)") != 'y') {
+		return FALSE;
+	}
+	if (u.ugold < 2000) {
+		verbalize("Sorry sir, you don't seem to have enough money to buy a casino chip.");
+		return FALSE;
+	}
+	u.ugold -= 2000;
+
+	int playercards = 0;
+	int dealercards = 0;
+	int dealerfirstcard = 0;
+	int playerhand = 0;
+	int dealerhand = 0;
+	int dealervisiblehand = 0;
+	int tempcardvar = 0;
+
+newblackjackrun:
+	playercards = 0;
+	dealercards = 0;
+	dealerfirstcard = 0;
+	playerhand = 0;
+	dealerhand = 0;
+	dealervisiblehand = 0;
+	tempcardvar = 0;
+	dealercheatchance = (10 - Luck + (playerblackjackwins * 5)); /* dealer becomes increasingly more difficult to defeat the more often you win in a row, making it almost impossible to get the later rewards */
+
+	/* the dealer's first card is upside down so you don't know what it is */
+	dealerfirstcard = blackjack_card();
+	dealerhand += dealerfirstcard;
+	tempcardvar = blackjack_card();
+	if (dealerhand == 11 && tempcardvar == 11) tempcardvar = 1; /* can't bust on first turn */
+	if (dealerhand >= 10 && (rn2(100) < dealercheatchance)) { /* dealer can cheat to automatically get a black jack */
+		pline("Tough luck! The dealer has a black jack, and you automatically lose.");
+		u.cnd_blackjackdealercheat++;
+		goto blackjackgameover;
+	}
+	dealerhand += tempcardvar;
+	dealervisiblehand += tempcardvar;
+	dealercards = 2;
+	if (dealerhand == 21 && rn2(5)) {
+		pline("Tough luck! The dealer has a black jack, and you automatically lose.");
+		goto blackjackgameover;
+	}
+	/* it is not a bug that you don't get to roll for your own black jack, because this game favors the dealer;
+	 * if he has a black jack, you autolose regardless of your own hand */
+
+	/* dealer has to draw on 15 and stand on 16; this is probably different from RL blackjack */
+	while (dealercards < 5 && dealerhand < 16) {
+		tempcardvar = blackjack_card();
+		if (dealerhand > 21 && (rn2(100) < dealercheatchance)) { /* dealer can cheat to ensure he doesn't bust */
+			tempcardvar = rnd(21 - dealerhand);
+			u.cnd_blackjackdealercheat++;
+		}
+		dealerhand += tempcardvar;
+		dealervisiblehand += tempcardvar;
+		dealercards++;
+	}
+	pline("The dealer's visible hand is %d with %d cards drawn.", dealervisiblehand, dealercards);
+
+	tempcardvar = blackjack_card();
+	playerhand += tempcardvar;
+	tempcardvar = blackjack_card();
+	if (playerhand == 11 && tempcardvar == 11) tempcardvar = 1; /* can't bust on first turn */
+	if (playerhand == 10 && tempcardvar == 11 && (rn2(100) < dealercheatchance)) { /* dealer can cheat to make you not get a black jack */
+		tempcardvar = rnd(10);
+		u.cnd_blackjackdealercheat++;
+	}
+	if (playerhand == 11 && tempcardvar == 10 && (rn2(100) < dealercheatchance)) {
+		tempcardvar = rnd(9);
+		u.cnd_blackjackdealercheat++;
+	}
+	playerhand += tempcardvar;
+	playercards = 2;
+	if (playerhand == 21 && rn2(5)) {
+		pline("Yeah! You scored a black jack and automatically win!");
+		goto blackjackwin;
+		/* we know by this point that the dealer doesn't have a black jack */
+	}
+	pline("Your hand is %d with %d cards drawn.", playerhand, playercards);
+
+	while (playercards < 5) {
+		if (yn("Draw a card?") != 'y') {
+			goto blackjackevaluate;
+		}
+		tempcardvar = blackjack_card();
+		if (playerhand >= 11 && (rn2(100) < dealercheatchance)) { /* dealer can cheat to make you bust */
+			tempcardvar = 11;
+			u.cnd_blackjackdealercheat++;
+		}
+		playerhand += tempcardvar;
+		playercards++;
+		if (playerhand > 21) {
+			pline("You busted. Your hand is %d with %d cards. Game over!", playerhand, playercards);
+			goto blackjackgameover;
+			/* it doesn't matter if the dealer busted as well, because once again this game favors the dealer; even though it would probably be a draw in real life, here you autolose if you bust */
+		}
+		pline("Your hand is %d with %d cards drawn.", playerhand, playercards);
+		pline("The dealer's visible hand is %d with %d cards drawn.", dealervisiblehand, dealercards);
+	}
+
+blackjackevaluate:
+	if ((playerhand > dealerhand) && dealerhand < 21 && dealerfirstcard < 11 && (rn2(100) < dealercheatchance)) { /* dealer can cheat to change his first card so that he doesn't lose */
+		while (dealerhand < 21 && dealerhand <= playerhand && dealerfirstcard < 11) {
+			dealerfirstcard++;
+			dealerhand++;
+		}
+		u.cnd_blackjackdealercheat++;
+	}
+	pline("The dealer's first card is revealed to be worth %d.", dealerfirstcard);
+	pline("Your hand is %d with %d cards. The dealer's hand is %d with %d cards.", playerhand, playercards, dealerhand, dealercards);
+
+	if (dealerhand > 21) {
+		pline("The dealer has busted. You win. To the next round.");
+		goto blackjackwin;
+	} else if (playerhand > dealerhand) {
+		pline("Congratulations, you win. To the next round.");
+		goto blackjackwin;
+	} else if (playerhand == dealerhand) {
+		pline("The match is a draw. To the next round.");
+		goto newblackjackrun;
+	} else {
+		pline("You lose. Game over.");
+		goto blackjackgameover;
+	}
+
+blackjackwin:
+	playerblackjackwins++;
+
+	/* every win gives a random weapon or armor piece */
+	blackjackreward = mkobj(rn2(2) ? ARMOR_CLASS : WEAPON_CLASS, TRUE, FALSE);
+	if (blackjackreward) {
+		dropy(blackjackreward);
+	}
+
+	/* rewards for winning streaks: 4 wins in a row give a potion of cure insanity, 8 wins give a scroll of consecration, 12 wins give a scroll of skill up, 16 wins give a scroll of alter reality and 20 wins give a random artifact */
+	if (playerblackjackwins == 4) {
+		blackjackreward = mksobj(POT_CURE_INSANITY, TRUE, TRUE, FALSE);
+		if (blackjackreward) {
+			blackjackreward->quan = 1;
+			blackjackreward->owt = weight(blackjackreward);
+			dropy(blackjackreward);
+			stackobj(blackjackreward);
+		}
+	}
+	if (playerblackjackwins == 8) {
+		blackjackreward = mksobj(SCR_CONSECRATION, TRUE, TRUE, FALSE);
+		if (blackjackreward) {
+			blackjackreward->quan = 1;
+			blackjackreward->owt = weight(blackjackreward);
+			dropy(blackjackreward);
+			stackobj(blackjackreward);
+		}
+	}
+	if (playerblackjackwins == 12) {
+		blackjackreward = mksobj(SCR_SKILL_UP, TRUE, TRUE, FALSE);
+		if (blackjackreward) {
+			blackjackreward->quan = 1;
+			blackjackreward->owt = weight(blackjackreward);
+			dropy(blackjackreward);
+			stackobj(blackjackreward);
+		}
+	}
+	if (playerblackjackwins == 16) {
+		blackjackreward = mksobj(SCR_ALTER_REALITY, TRUE, TRUE, FALSE);
+		if (blackjackreward) {
+			blackjackreward->quan = 1;
+			blackjackreward->owt = weight(blackjackreward);
+			dropy(blackjackreward);
+			stackobj(blackjackreward);
+		}
+	}
+	if (playerblackjackwins == 20) {
+		boolean havegifts = u.ugifts;
+
+		if (!havegifts) u.ugifts++;
+
+		blackjackreward = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
+		if (blackjackreward) {
+			dropy(blackjackreward);
+		}
+		if (!havegifts) u.ugifts--;
+	}
+	pline("Reward items have been dropped on the ground.");
+	pline("Your winning streak has reached %d wins in a row now.", playerblackjackwins);
+	u.cnd_blackjackwins++;
+
+	/* add reward here */
+	goto newblackjackrun;
+
+blackjackgameover:
+	disappearchance += (playerblackjackwins * 4);
+	if (playerblackjackwins >= 20) disappearchance = 100;
+	if (rn2(100) < disappearchance) return TRUE;
+
+	return FALSE;
 }
 

@@ -12155,6 +12155,14 @@ int final;
 		sprintf(buf, "%d time%s", u.cnd_lycanthropecount, plur(u.cnd_lycanthropecount));
 		enl_msg(You_, "contracted lycanthropy ", "contracted lycanthropy ", buf);
 	}
+	if (u.cnd_blackjackwins) {
+		sprintf(buf, "%d blackjack game%s", u.cnd_blackjackwins, plur(u.cnd_blackjackwins));
+		enl_msg(You_, "won ", "won ", buf);
+	}
+	if (u.cnd_blackjackdealercheat && final) {
+		sprintf(buf, "%d time%s", u.cnd_blackjackdealercheat, plur(u.cnd_blackjackdealercheat));
+		enl_msg(You_, "were subjected to the blackjack dealer's cheating ", "were subjected to the blackjack dealer's cheating ", buf);
+	}
 
 	/* Pop up the window and wait for a key */
 	display_nhwindow(en_win, TRUE);
@@ -12722,6 +12730,11 @@ int final;
 	sprintf(buf, "%d time%s", u.cnd_lycanthropecount, plur(u.cnd_lycanthropecount));
 	dump("  You contracted lycanthropy ", buf);
 
+	sprintf(buf, "%d blackjack game%s", u.cnd_blackjackwins, plur(u.cnd_blackjackwins));
+	dump("  You won ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_blackjackdealercheat, plur(u.cnd_blackjackdealercheat));
+	dump("  You were subjected to the blackjack dealer's cheating ", buf);
 
 	dump("", "");
 }

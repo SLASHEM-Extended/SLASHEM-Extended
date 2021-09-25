@@ -1873,6 +1873,8 @@ struct you {
 	int cnd_cwnannwncount;	/* how many times you were low on health */
 	int cnd_bansheecount;	/* how many times you were down to your last hit point */
 	int cnd_lycanthropecount;	/* how many times you contracted lycanthropy */
+	int cnd_blackjackwins;	/* how many times you won the blackjack minigame */
+	int cnd_blackjackdealercheat;	/* how many times the blackjack dealer cheated */
 
 	struct symbiotemon usymbiote;	/* for the symbiosis skill */
 	int symbioteaggressivity;	/* how often your symbiote attacks or takes damage */

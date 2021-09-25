@@ -895,7 +895,8 @@ E void whetstone_toilet_effects(struct obj *);
 
 E void gypsy_init(struct monst *);
 E void gypsy_chat(struct monst *);
-E void play_blackjack(void);
+E boolean play_blackjack(void);
+E int blackjack_card(void);
 
 /* ### hack.c ### */
 

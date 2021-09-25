@@ -2366,9 +2366,17 @@ register struct monst *mtmp;
 		pline("%s", generate_garbage_string());
 		break;
 	case MS_CASINO:
-		verbalize("Hello sir, welcome to 'Fortune Cookie' casino!"); /* from Elona, where they always say 'sir' even if you're female */
-		/* TODO allow player to play blackjack */
-		/* play_blackjack(); */
+		{
+			boolean willdisappear = 0;
+			verbalize("Hello sir, welcome to 'Fortune Cookie' casino!"); /* from Elona, where they always say 'sir' even if you're female */
+			if (play_blackjack()) willdisappear = 1;
+			if (willdisappear) {
+				mongone(mtmp);
+				verbalize("Sorry sir, I've been ordered to return to Las Venturas! Thanks for playing!");
+				return(1);
+			}
+			verbalize("Remember, if you win, your reward will be dropped on the ground beneath you.");
+		}
 		break;
 	case MS_COW:
 		if (mtmp->mtame) {
