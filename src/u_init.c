@@ -1415,9 +1415,9 @@ static struct trobj Noble[] = {
 };
 static struct trobj Pirate[] = {
 #define PIR_KNIVES	1
-#define PIR_SNACK 5
-#define PIR_JEWELRY 7
-#define PIR_TOOL 8
+#define PIR_SNACK 8
+#define PIR_JEWELRY 10
+#define PIR_TOOL 11
 	{ SCIMITAR, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ KNIFE, 1, WEAPON_CLASS, 2, 0 },
 	{ PISTOL, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
