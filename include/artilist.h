@@ -8662,7 +8662,7 @@ A("Vader's Charge",				BLACK_LIGHTSABER, /* spawns with extra-high charge count 
 	PHYS(6, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
 
 A("Kyle's Jackpot",				ORANGE_LIGHTSABER, /* gains extra charge with charge saber too */
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	PHYS(0, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
 A("Puckock",				HEAVY_LASER_BALL, /* if punished with this one, throwing it deals 30 extra damage */

@@ -7238,6 +7238,12 @@ SCROLL((char *)0,               "WHO WOULD COME UP WITH THE IDEA OF A MONSTER NA
 SCROLL((char *)0,               "THE INDIAN DELTA VARIANT SHITS ON THE INEFFECTIVE VACCINE",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
 SCROLL((char *)0,               "NGCBTTTC",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
 SCROLL((char *)0,               "ECHA ECHETATE",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "HOT NEW FOOCUBI IN YOUR AREA",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
+SCROLL((char *)0,               "INCREASE YOUR WAND OF WISHING BY 5 CHARGES",  P_NONE,     1,   0, 100, CLR_ORANGE, 1),
+SCROLL((char *)0,               "SHE WOMBURE IS AN AUTHOR WHO WROTE A BOOK CALLED SO DEAD",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "UNFORTUNATELY NOT A STOIAKMIDM",  P_NONE,     1,   0, 100, CLR_GREEN, 1),
+SCROLL((char *)0,               "WHINE ON YOU CRAZY DIAMOND",  P_NONE,     1,   0, 100, CLR_WHITE, 1),
+SCROLL((char *)0,               "THE AMY OVERSHOOTS GEVELSBERG IN TRAIN SIM WORLD",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
 
 
 #ifdef MAIL

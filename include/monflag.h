@@ -79,6 +79,15 @@
 #define MS_COMBAT	70	/* always gives spacewars fighter combat messages */
 #define MS_MUTE	71	/* can't talk, but unlike MS_SILENT they can moan, grunt etc. */
 #define MS_CORONA	72	/* says stuff about the plague */
+#define MS_TRUMPET	73	/* occasionally makes noise that wakes monsters */
+#define MS_PAIN	74	/* hitting it gives wounds patch messages */
+#define MS_BRAG	75	/* brags about having X amount of HP or whatever */
+#define MS_PRINCESSLEIA	76	/* asks you about Han Solo */
+#define MS_SISSY	77	/* whines when you hit it */
+#define MS_SING	78	/* can force you to clean a pair of shoes */
+#define MS_ALLA	79	/* reduces a counter, and if it reaches zero, you die */
+#define MS_POKEDEX	80	/* occasionally spams you with stats of a random monster */
+#define MS_BOT	81	/* for robots */
 
 /* MS_DOUGLAS_ADAMS used to be 42, however I fear the DevTeam eventually 
 ** reaching that number.  - sk */

@@ -4008,7 +4008,7 @@ melatechoice:
 
 		else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || sanitymessage) && !rn2(5)) {
 
-			switch (rnd(445)) {
+			switch (rnd(479)) {
 	
 			case 1: pline("%s staggers from your furious assault.", Monnam(mon)); break;
 			case 2: pline("Your cut barely scratches %s's scales.", mon_nam(mon)); break;
@@ -4455,6 +4455,40 @@ melatechoice:
 			case 443: pline("Your contamination of %d powers up your melee just enough that you manage to hit %s.", u.contamination, mon_nam(mon)); break;
 			case 444: pline("It was a good idea to enhance %d skills after all. Look how your blade slashes its way through %s!", u.skills_advanced, mon_nam(mon)); break;
 			case 445: pline("You use the parting attack ID %d on %s, which proves reasonably effective.", u.adpartattack, mon_nam(mon)); break;
+			case 446: pline("%s's light does not go any longer!", Monnam(mon)); break;
+			case 447: pline("%s's chassis is damaged!", Monnam(mon)); break;
+			case 448: pline("%s has a FAILURE: CLOCK, and no longer knows what time it is!", Monnam(mon)); break;
+			case 449: pline("Well, at least you did hit at all, even if you didn't deal much damage."); break;
+			case 450: pline("You attempt to thrust %s into the iron bars.", mon_nam(mon)); break;
+			case 451: pline("You fire your water gun at %s.", mon_nam(mon)); break;
+			case 452: pline("You popped one of %s's tires!", mon_nam(mon)); break;
+			case 453: pline("You thwacked %s with the iron chain.", mon_nam(mon)); break;
+			case 454: pline("You fire your FLUDD at %s, which doesn't seem to be very effective.", mon_nam(mon)); break;
+			case 455: pline("%s is nothing but a hounddog, just crying all the time.", Monnam(mon)); break;
+			case 456: pline("%s lost a little bit of health, which %s has to regenerate first, so please stop attacking for a while.", Monnam(mon), mhe(mon)); break;
+			case 457: pline("Your research on %s's weaknesses pays off.", mon_nam(mon)); break;
+			case 458: pline("You're a firm believer in equal opportunity sexism, and therefore counter %s's previous sexist remark with your own one.", mon_nam(mon)); break;
+			case 459: pline("You land a reasonably good hit against %s.", mon_nam(mon)); break;
+			case 460: pline("%s tries to use the madeleine strategy but gets hit by you anyway.", Monnam(mon)); break;
+			case 461: pline("%s made the mistake to stand still rather than dodging your blow.", Monnam(mon)); break;
+			case 462: pline("Yes, keep going, you might be able to defeat %s yet!", mon_nam(mon)); break;
+			case 463: pline("You use the frenzy attack, meaning this hit dealt more damage to %s than your last one.", mon_nam(mon)); break;
+			case 464: pline("You batter %s with your branch.", mon_nam(mon)); break;
+			case 465: pline("Your weapon hits %s, but its enchantment level is too low to kill %s in one hit.", mon_nam(mon), mhim(mon)); break;
+			case 466: pline("Your weapon skill isn't high enough to kill %s outright, but at least you have some weapon skill at all, otherwise you would have missed entirely.", mon_nam(mon)); break;
+			case 467: pline("You spank %s's ructious little ass.", mon_nam(mon)); break;
+			case 468: pline("You punch and kick %s.", mon_nam(mon)); break;
+			case 469: pline("%s's game lags, causing %s evade command to not execute, and therefore your attack hits.", Monnam(mon), mhis(mon)); break;
+			case 470: pline("After your slap hits %s, %s starts to cry like a little girl.", mon_nam(mon), mhe(mon)); break;
+			case 471: pline("%s intentionally allows your weapon to hit.", Monnam(mon)); break;
+			case 472: pline("It seems that %s is a masochist, just standing there receiving your melee hits.", mon_nam(mon)); break;
+			case 473: pline("You offer a shin kick of love to %s with your very cuuuuute girl platform boots.", mon_nam(mon)); break;
+			case 474: pline("You park your lovely black sandals on %s's %s.", mon_nam(mon), mbodypart(mon, HAND)); break;
+			case 475: pline("%s grumbles incessantly after being kicked by your boots, complaining that you should have cleaned the dog shit from your treaded soles.", Monnam(mon)); break;
+			case 476: pline("Lightning strikes %s!", mon_nam(mon)); break;
+			case 477: pline("Your fiery weapon burns %s!", mon_nam(mon)); break;
+			case 478: pline("The ice-cold blade chills %s!", mon_nam(mon)); break;
+			case 479: pline("Your artifact weapon douses %s with acid!", mon_nam(mon)); break;
 
 			default: pline("You hit %s!", mon_nam(mon)); break;
 	
@@ -4569,7 +4603,7 @@ melatechoice:
 
 			else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && !rn2(5) && !thrown) {
 
-				switch (rnd(636)) {
+				switch (rnd(672)) {
 
 				case 1: pline("You crush %s's skull into jelly.", mon_nam(mon)); break;
 				case 2: pline("You decapitate %s with a backhand stroke.", mon_nam(mon)); break;
@@ -5207,6 +5241,42 @@ melatechoice:
 				case 634: pline("You've used your quest artifact for %d turns straight, and are now really proficient with it. Case in point, %s fell in a single hit.", u.artifinitythreshold, mon_nam(mon)); break;
 				case 635: pline("There's the danger of you meeting Mr. Conclusio, in fact the counter has already increased to %d. So you decide to not waste any more time, and cut down the hapless %s.", u.conclusiocount, l_monnam(mon)); break;
 				case 636: pline("You use the hidden power number %d to get rid of %s!", u.hiddenpowerskill, mon_nam(mon)); break;
+				case 637: pline("%s calls for a timeout, stating that %s has to go to the toilet, and you pretend to comply... only to shoot %s in the back as he's walking away.", Monnam(mon), mhe(mon), mhim(mon)); break;
+				case 638: pline("You throw the bottle at %s, it explodes, and the fragments fly everywhere.", mon_nam(mon)); break;
+				case 639: pline("%s is no longer capable of protecting the castle!", Monnam(mon)); break;
+				case 640: pline("You hope that the wilderness will devour %s's corpse.", mon_nam(mon)); break;
+				case 641: pline("You drown %s in the underground river.", mon_nam(mon)); break;
+				case 642: pline("After thrusting %s into the nearby pond, you realize that %s cannot swim, decide that %s was an asshole anyway, and watch %s slowly turn into a watery corpse.", mon_nam(mon), mhe(mon), mhe(mon), mhim(mon)); break;
+				case 643: pline("%s suddenly steers %s car into a tree at full speed, and dies in the resulting collision.", Monnam(mon), mhis(mon)); break;
+				case 644: pline("Since there's the stupid rule that %s is immune to your physical attacks, you push %s into a spiked pit instead, which %s turns out to not be immune to.", mon_nam(mon), mhim(mon), mhe(mon)); break;
+				case 645: pline("You smash %s's %s to a pulp with your massive guitar.", mon_nam(mon), mbodypart(mon, FACE)); break;
+				case 646: pline("Finally, you managed to land the killing blow against %s, after getting annoyed by the stupid 'last hitpoint is always the hardest to remove' 'feature' that caused you to miss five times in a row.", mon_nam(mon)); break;
+				case 647: pline("%s was living a good life, which you just decided to terminate.", Monnam(mon)); break;
+				case 648: pline("You mercilessly slaughter %s!", mon_nam(mon)); break;
+				case 649: pline("Taking down %s was like shooting fish in a barrel.", mon_nam(mon)); break;
+				case 650: pline("Your sword slits %s completely from top to bottom.", mon_nam(mon)); break;
+				case 651: pline("You hit %s so hard that %s is no longer in one piece.", mon_nam(mon), mhe(mon)); break;
+				case 652: pline("Yeah! You rolled a natural 20 and instakill %s!", mon_nam(mon)); break;
+				case 653: pline("%s spontaneously breaks down!", Monnam(mon)); break;
+				case 654: pline("Since %s has been awake for 25 hours straight, %s suddenly falls down unconscious from exertion.", mon_nam(mon), mhe(mon)); break;
+				case 655: pline("You decide to act as if %s has stopped existing - and suddenly that thought becomes reality.", mon_nam(mon)); break;
+				case 656: pline("%s's deity decides to remove %s from the dungeon.", Monnam(mon), mhim(mon)); break;
+				case 657: pline("You push %s onto a railroad track just as the train approaches.", mon_nam(mon)); break;
+				case 658: pline("%s falls from a high bridge.", Monnam(mon)); break;
+				case 659: pline("Suddenly %s reads a cursed scroll of teleportation and accidentally levelports to level -9, and ends up falling to %s death.", mon_nam(mon), mhis(mon)); break;
+				case 660: pline("%s dies due to genocidal confusion!", Monnam(mon)); break;
+				case 661: pline("Suddenly %s is turned to slime by a scroll of genocide.", mon_nam(mon)); break;
+				case 662: pline("You don't know why, but %s somehow managed to be petrified by a green slime.", mon_nam(mon)); break;
+				case 663: pline("%s was killed by a died.", Monnam(mon)); break;
+				case 664: pline("*click click click click click* %s died.", Monnam(mon)); break;
+				case 665: pline("The game master decides to cheat in your favor and makes you roll a super-double-critical hit that vaporizes %s instantly.", mon_nam(mon)); break;
+				case 666: pline("You smashed %s so hard, your weapon almost broke.", mon_nam(mon)); break;
+				case 667: pline("Your character is way too overpowered! Look how %s stood absolutely no chance!", mon_nam(mon)); break;
+				case 668: pline("Man, you should play a bit worse, and give %s a chance for once!", mon_nam(mon)); break;
+				case 669: pline("There was absolutely nothing that %s could have done to stop your wrath.", mon_nam(mon)); break;
+				case 670: pline("%s tries to stop your pistol bullet with %s %s.", Monnam(mon), mhis(mon), mbodypart(mon, HEAD)); break;
+				case 671: pline("And again you defeated an enemy!"); break;
+				case 672: pline("You're simply unstoppable!"); break;
 
 
 				default: pline("You hit %s very hard!", mon_nam(mon)); break;
@@ -7554,7 +7624,7 @@ register int roll;
 
 	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && !rn2(5) && canspotmon(mdef) && flags.verbose) {
 
-		switch (rnd(637)) {
+		switch (rnd(686)) {
 
 		case 1: pline("%s cringes from your strike behind its %sshield.", Monnam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
 		case 2: pline("You smash into %s's %sshield, striking sparks.", mon_nam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
@@ -7940,7 +8010,7 @@ register int roll;
 		case 382: pline("%s says: 'Harharharharharharharrrrr!'", Monnam(mdef)); break;
 		case 383: pline("Wow, you really are the greatest. The greatest failure of the world!"); break;
 		case 384: pline("You fire your assault rifle 24 times and miss 25 times!"); break;
-		case 385: pline("That's typical. Always brag about your deeds but unable to even hit the wimpy %s!", mon_nam(mdef)); break;
+		case 385: pline("That's typical. Always brag about your deeds but unable to even hit the wimpy %s!", l_monnam(mdef)); break;
 		case 386: pline("Your stick isn't long enough!"); break;
 		case 387: pline("You try to bludgeon %s with your penis but the attempt fails.", mon_nam(mdef)); break;
 		case 388: pline("%s constructed a nasty trap that causes you to miss!", Monnam(mdef)); break;
@@ -8193,6 +8263,55 @@ register int roll;
 		case 635: pline("Even after %d turns, you still haven't enhanced more than %d skills. Are you REALLY surprised that you miss more often than you hit?", moves, u.skills_advanced); break;
 		case 636: pline("Maybe you should lower your sanity, since an amount of %d doesn't let you see %s for what it really is. Your mind causes you to think you're fighting a weak monster, which isn't actually the case!", u.usanity, mon_nam(mdef)); break;
 		case 637: pline("You've used your quest artifact for only %d turns! That's way too little, you should probably re-equip it and then maybe %s wouldn't be completely impervious to your attacks!", u.artifactaffinity, mon_nam(mdef)); break;
+		case 638: pline("%s calls for a timeout, stating that %s has to go to the toilet, and you're actually stupid enough to cease attacking.", Monnam(mdef), mhe(mdef)); break;
+		case 639: pline("%s decides to dam your cathedral, and there is nothing you can do about it.", Monnam(mdef)); break;
+		case 640: pline("%s starts singing an Abba song. Terrified, you put your %s into your ears.", Monnam(mdef), makeplural(body_part(FINGER))); break;
+		case 641: pline("Your wife will not be pleased to hear that you're losing to %s!", mon_nam(mdef)); break;
+		case 642: pline("Hmm, you called the police 15 minutes ago in an attempt to get %s arrested, you're beginning to wonder whether they will ever come...", mon_nam(mdef)); break;
+		case 643: pline("It turns out that the policemen you called to get %s arrested are useless, since they're just standing there instead of doing anything.", mon_nam(mdef)); break;
+		case 644: pline("%s douses you with water!", Monnam(mdef)); break;
+		case 645: pline("Your game lags, and therefore skips right past the attack command you gave, deciding to execute a wait command instead."); break;
+		case 646: pline("%s messes up your humeroradial joint, making you incapable of swinging that weapon.", Monnam(mdef)); break;
+		case 647: pline("Is that 'tactic' of yours some kind of joke? Just punch everything that moves or looks like it might move? Pathetic. Just pathetic."); break;
+		case 648: pline("You must be really desperate, resorting to punching a monster that's clearly meant to be fought with ranged attacks."); break;
+		case 649: pline("%s is impervious to melee attacks and you'd better wise up and start using some offensive wands or spells!", Monnam(mdef)); break;
+		case 650: pline("You're playing like a complete noob! A real player would be smart enough to cast a spell to get rid of %s, but obviously you're not such a player!", mon_nam(mdef)); break;
+		case 651: pline("%s crashes into you, and you're too shaken to continue fighting.", Monnam(mdef)); break;
+		case 652: pline("You're out of water and therefore cannot fire your FLUDD at %s!", mon_nam(mdef)); break;
+		case 653: pline("%s's armament repelled the impact.", Monnam(mdef)); break;
+		case 654: pline("Oh no, %s stepped on your blue suede shoes!", mon_nam(mdef)); break;
+		case 655: pline("%s is the dancing queen, and easily evades every attack you throw at her!", Monnam(mdef)); break;
+		case 656: pline("%s reminds you that you're in arrears with your tax bills for 4 months, and if you don't pay up soon, the cops will be after you!", Monnam(mdef)); break;
+		case 657: pline("%s makes you come to a stop and demands that you pay 700 zorkmids as a fine for exceeding the permissible maximum speed with your car.", Monnam(mdef)); break;
+		case 658: pline("You curse at the fact that the last hitpoint is always the hardest to remove, because that bullshit feature is causing you to miss %s way more often than you should!", mon_nam(mdef)); break;
+		case 659: pline("%s shouts '%ss out!'", Monnam(mdef), urace.noun); break;
+		case 660: pline("%s screams some racist bullshit at you.", Monnam(mdef)); break;
+		case 661: pline("%s tells you that your race sucks because it gets so few techniques upon leveling up.", Monnam(mdef)); break;
+		case 662: pline("%s laughs: 'You're playing a %s? And you expect to be able to hit me? lol bro'", Monnam(mdef), urole.name.m); break;
+		case 663: pline("%s suddenly screams like a woman, and you drop your weapon in shock.", Monnam(mdef)); break;
+		case 664: pline("%s tells you that the last line was sexist, and you're busy pondering the meaning of that.", Monnam(mdef)); break;
+		case 665: pline("Suddenly a mosquito starts buzzing right next to your ear, and you're so scared that you completely forget what you were doing."); break;
+		case 666: pline("%s simply pushes you away.", Monnam(mdef)); break;
+		case 667: pline("%s blocks with %s own weapon.", Monnam(mdef), mhis(mdef)); break;
+		case 668: pline("%s is too small and therefore your clumsy attack missed!", Monnam(mdef)); break;
+		case 669: pline("%s just slightly changes position and that was enough to make your attack hit thin air!", Monnam(mdef)); break;
+		case 670: pline("You rolled a 1 with your d20 and so your strike automatically misses."); break;
+		case 671: pline("You need more coffee! You're too tired and therefore cannot concentrate!"); break;
+		case 672: pline("It seems that you forgot to take your accuracy pills today!"); break;
+		case 673: pline("You're so high on drugs right now that you forgot how to use a weapon!"); break;
+		case 674: pline("You missed, and thereby blew your last chance to ever defeat %s.", mon_nam(mdef)); break;
+		case 675: pline("You miss so often, you won't be able to overcome %s's HP regeneration rate if you continue like this!", mon_nam(mdef)); break;
+		case 676: pline("%s body-shames you for being such a fatass.", Monnam(mdef)); break;
+		case 677: pline("You miss %s despite your high weapon skill because you forgot to enhance your secondary combat skills!", mon_nam(mdef)); break;
+		case 678: pline("Why don't you noob try to enchant your weapon, you should have realized that without enchantment it just whiffs every time!"); break;
+		case 679: pline("Your gun is out of ammo, so you cant shoot this turn and need to reload first."); break;
+		case 680: pline("Suddenly you realize that the monster you're fighting is one that crashes the game as soon as its name is displayed, so you decide to not attack after all."); break;
+		case 681: pline("%s tries to display a panic message, but it has a bugged string and therefore your game crashes.", Monnam(mdef)); break;
+		case 682: pline("Oh no, due to a bug that has been fixed thrice already, %s has much more AC than intended! How many times does the incapable dev have to fix this bug before it's finally gone for good?", mon_nam(mdef)); break;
+		case 683: pline("Yeah, maybe you should relearn the basic lesson of 'How much to-hit do I need relative to the amount of AC a monster has'?"); break;
+		case 684: pline("You're playing like the last noob, using a weapon that %s is highly resistant to. Switch to another one or you won't have no chance.", mon_nam(mdef)); break;
+		case 685: pline("Maybe you shouldn't have slept through the basic combat lessons."); break;
+		case 686: pline("%s's lightsaber stops burning, and your game crashes. You have no idea why that happened, even with the backtrace. Maybe you should ask Amy why that happens, she might be able to fix it...", Monnam(mdef)); break;
 
 
 		default: pline("You missed %s!", mon_nam(mdef)); break;

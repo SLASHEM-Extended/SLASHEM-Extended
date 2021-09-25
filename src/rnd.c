@@ -958,7 +958,7 @@ randomillusionattack()
 int
 randmonsound()
 {
-	switch (rnd(56)) {
+	switch (rnd(78)) {
 		case 1:
 			return MS_SILENT;
 		case 2:
@@ -1071,6 +1071,50 @@ randmonsound()
 			return MS_GIBBERISH;
 		case 56:
 			return MS_GLYPHS;
+		case 57:
+			return MS_SOCKS;
+		case 58:
+			return MS_PANTS;
+		case 59:
+			return MS_HANDY;
+		case 60:
+			return MS_CAR;
+		case 61:
+			return MS_JAPANESE;
+		case 62:
+			return MS_SOVIET;
+		case 63:
+			return MS_SNORE;
+		case 64:
+			return MS_PHOTO;
+		case 65:
+			return MS_REPAIR;
+		case 66:
+			return MS_DRUGS;
+		case 67:
+			return MS_COMBAT;
+		case 68:
+			return MS_MUTE;
+		case 69:
+			return MS_CORONA;
+		case 70:
+			return MS_TRUMPET;
+		case 71:
+			return MS_PAIN;
+		case 72:
+			return MS_BRAG;
+		case 73:
+			return MS_PRINCESSLEIA;
+		case 74:
+			return MS_SISSY;
+		case 75:
+			return MS_SING;
+		case 76:
+			return MS_ALLA;
+		case 77:
+			return MS_POKEDEX;
+		case 78:
+			return MS_BOT;
 		default:
 			return MS_HUMANOID;
 	}

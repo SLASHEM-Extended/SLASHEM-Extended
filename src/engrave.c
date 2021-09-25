@@ -993,6 +993,7 @@ static const char *random_mesg[] = {
 	"notnethack is a variant made by emo", /* by elronnd */
 	"are the pirates properly rapey?",
 	"Amy is an error in the matrix and needs to be terminated before she releases another stupid version of slex!",
+	"Everywhere you go, the-e-ere you are, and you fall asleep, from this pot of sleep.",
 
 };
 
@@ -5515,6 +5516,8 @@ static const char *epitaphs[] = {
 	"Gah why did I think the Hunksterman artifact was good? The speed bugs caused monsters to outspeed me by a factor three and they ended up killing me with no chance!",
 	"Man, 'Lu Nonname' is such a bad artifact. Don't ever try to use that, the supposed bonuses to the Kliu form are never worth it and the downsides will cause you to die.",
 	"Fuck the inventor of the Aldebaran lightsaber form! And fuck whoever made the Alpha Tauri artifact armor, I still wasn't able to actually train or use the Aldebaran skill but the game constantly spawned nemains and wenkamuis and metal vesda fire machines and mikraanesises and then I died!",
+	"Hey! I thought SLEX was supposed to be a fun game, not super bullshit simulator!",
+	"Man, SLEX is no fun. There is so little strategy headroom, you get very few useful items and then have to be super careful or you end up losing them again to some bullshit! And if you do lose them, you never find another!",
 
 };
 
