@@ -2645,6 +2645,7 @@ get_flag_description_of_monster_type(struct permonst * ptr, char * description)
 	adjective_counter = append(adjectives, (hides_under(ptr)), "concealing", adjective_counter);
 	adjective_counter = append(adjectives, (nonliving(ptr) && !is_undead(ptr)), "nonliving", adjective_counter);
 
+	append(special_adjectives, (mindless(ptr)), "mindless", 0);
 	append(special_adjectives, (is_undead(ptr)), "undead", 0);
 	append(special_adjectives, (is_demon(ptr)), "demon", 0);
 
