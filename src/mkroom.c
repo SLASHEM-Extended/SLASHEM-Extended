@@ -1524,7 +1524,7 @@ struct mkroom *sroom;
 		level.flags.has_feminismroom = 1;
 
 		if (somexy(sroom, &mm)) {
-			(void) mksobj_at(SACK, mm.x, mm.y, TRUE, FALSE, FALSE);
+			(void) mksobj_at(HANDYBAG, mm.x, mm.y, TRUE, FALSE, FALSE);
 		}
 		if (!rn2(10)) {
 			if (somexy(sroom, &mm)) {
