@@ -8956,6 +8956,7 @@ xchar sx, sy;
 		u.youaredead = 0;
 		return; /* lifesaved */
 	    } else { /* death ray and didn't get instakilled */
+		if (u.uhpmax >= 10) u.uhpmax -= (u.uhpmax / 10); /* make it hurt --Amy */
 		dam = d(4,6) + rnd(level_difficulty() + 1);
 		u.uhpmax -= dam/2;
 		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
