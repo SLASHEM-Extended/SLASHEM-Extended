@@ -332,6 +332,7 @@ E NEARDATA struct sinfo {
 #ifdef PANICLOG
 	int in_paniclog;
 #endif
+	int bonesdo;	/* suppress certain stuff at this point to prevent crashes --Amy */
 } program_state;
 
 E boolean restoring;

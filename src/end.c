@@ -1874,6 +1874,9 @@ die:
 	    }
 	}
 
+	/* if the screen is redrawn at this point, the MC display can somehow crash --Amy */
+	program_state.bonesdo = TRUE;
+
 	if (bones_ok) {
 #ifdef WIZARD
 		/* KMH -- We need the "Save bones?" prompt for testing! */

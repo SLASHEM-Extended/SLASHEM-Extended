@@ -984,7 +984,7 @@ struct obj *obj;
 		curse(obj);
 	} else if (is_feminismstone(obj)) {
 		curse(obj);
-		You_feel("relieved, but something tells you that it would be better not to pick this gem back up.");
+		if (!program_state.bonesdo) You_feel("relieved, but something tells you that it would be better not to pick this gem back up.");
 	} else if (confers_luck(obj)) {
 		set_moreluck();
 		flags.botl = 1;

@@ -754,6 +754,8 @@ int
 magic_negationX(mon)
 struct monst *mon;
 {
+	if (program_state.bonesdo) return 0; /* should prevent stupid crashes */
+
 	struct obj *armor;
 	int armpro = 0;
 
