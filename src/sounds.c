@@ -1578,6 +1578,76 @@ register struct monst *mtmp;
 	case MS_GIBBERISH:
 		pline("%s", generate_garbage_string());
 		break;
+	case MS_SOCKS:
+		ret = "looks very sad";
+		break;
+	case MS_PANTS:
+		ret = "is heavily damaged";
+		break;
+	case MS_HANDY:
+		ret = "screams 'How do you dare interrupting me during an important call!'";
+		break;
+	case MS_CAR:
+		ret = "shouts 'You dorf, get away get away!'";
+		break;
+	case MS_JAPANESE:
+		ret = "announces 'Sore wa seisen-shi no yarikata ni hanshimasu.'";
+		break;
+	case MS_SOVIET:
+		ret = "shouts 'Ty pochuvstvuyesh' kholodnyy potseluy smerti, debil!'";
+		break;
+	case MS_SNORE:
+		ret = "is jolted into consciousness";
+		break;
+	case MS_PHOTO:
+		ret = "shouts 'Attacking a journalist is a severe crime!'";
+		break;
+	case MS_REPAIR:
+		ret = "shouts 'Hey! I want to repair your gear, not be attacked by you!'";
+		break;
+	case MS_DRUGS:
+		ret = "shouts 'Fuck you, asshole! I'm gonna sell my stuff somewhere else!'";
+		break;
+	case MS_COMBAT:
+		ret = "shouts 'You can't fight fair, eh?'";
+		break;
+	case MS_MUTE:
+		ret = "emits a long, angry grunt";
+		break;
+	case MS_CORONA:
+		ret = "screams 'Hopefully you contract the virus and die!'";
+		break;
+	case MS_TRUMPET:
+		ret = "emits a long, anguished trumpet sound";
+		aggravate();
+		break;
+	case MS_PAIN:
+		ret = "screams 'Ow-wow-wow! Owwwww!'";
+		break;
+	case MS_BRAG:
+		ret = "shouts 'One day I'll kill you, and then you'll end up crying!'";
+		break;
+	case MS_PRINCESSLEIA:
+		ret = "sobs 'That's not a way to treat a princess...'";
+		break;
+	case MS_SISSY:
+		ret = "whines 'owwww %s has me pain-done!'";
+		break;
+	case MS_SING:
+		ret = "shouts 'Stop that! You're not allowed to use those girl boots against me!'";
+		break;
+	case MS_ALLA:
+		ret = "shouts 'If you keep angering me like that, you'll pay.'";
+		break;
+	case MS_POKEDEX:
+		ret = "shouts 'Hey! You're damaging my pokedex's CPU!'";
+		break;
+	case MS_BOT:
+		ret = "drones 'Hostile acts detected.'";
+		break;
+	case MS_APOC:
+		ret = "screams 'The apocalypse is truly coming now, everyone's going insane!'";
+		break;
 	case MS_ARREST:
 		ret = "shouts 'I am an officer of the law!'";
 		break;
@@ -1681,6 +1751,75 @@ register struct monst *mtmp;
 	case MS_GIBBERISH:
 		pline("%s", generate_garbage_string());
 		break;
+	case MS_SOCKS:
+		ret = "frowns";
+		break;
+	case MS_PANTS:
+		ret = "doesn't look so good";
+		break;
+	case MS_HANDY:
+		ret = "has to interrupt a call";
+		break;
+	case MS_CAR:
+		ret = "flashes a warning light";
+		break;
+	case MS_JAPANESE:
+		ret = "mumbles 'Watashi wa futatabi kin'yoku-tekidenakereba narimasen...'";
+		break;
+	case MS_SOVIET:
+		ret = "shouts 'Eto podzemel'ye rabotayet ne tak, kak zadumano!'";
+		break;
+	case MS_SNORE:
+		ret = "seems alert for a bit, then dozes off again";
+		break;
+	case MS_PHOTO:
+		ret = "checks the camera again";
+		break;
+	case MS_REPAIR:
+		ret = "checks the repair hammer again";
+		break;
+	case MS_DRUGS:
+		ret = "grumbles 'Stupid cops, can't they just go home...'";
+		break;
+	case MS_COMBAT:
+		ret = "assumes a fighting pose";
+		break;
+	case MS_MUTE:
+		ret = "growls annoyedly";
+		break;
+	case MS_CORONA:
+		ret = "screams 'Police! Someone got closer to me than 1,50 meters!'";
+		break;
+	case MS_TRUMPET:
+		ret = "emits a muffled trumpet sound";
+		break;
+	case MS_PAIN:
+		ret = "seems to be in pain";
+		break;
+	case MS_BRAG:
+		ret = "leafs through the monster stat sheet";
+		break;
+	case MS_PRINCESSLEIA:
+		ret = "cries 'It's unfair that I always get hurt! A princess is supposed to be protected from harm at all times!'";
+		break;
+	case MS_SISSY:
+		ret = "cries 'noooooo i broke a nail!'";
+		break;
+	case MS_SING:
+		ret = "is sad that no one wants to clean the female shoes";
+		break;
+	case MS_ALLA:
+		ret = "shouts 'Better stop mistreating me, for you'll not like my counterattack.'";
+		break;
+	case MS_POKEDEX:
+		ret = "looks worriedly at the PokeGear(TM) display";
+		break;
+	case MS_BOT:
+		ret = "drones 'Threat level omega.'";
+		break;
+	case MS_APOC:
+		ret = "mutters 'Everything is falling apart at the seams...'";
+		break;
 	case MS_GLYPHS:
 		ret = "moans 'Why doesn't the glyph work...'";
 		break;
@@ -1770,6 +1909,76 @@ register struct monst *mtmp;
 		break;
 	case MS_GIBBERISH:
 		pline("%s", generate_garbage_string());
+		break;
+	case MS_SOCKS:
+		ret = "waggles warningly";
+		break;
+	case MS_PANTS:
+		ret = "swerves back and forth";
+		break;
+	case MS_HANDY:
+		ret = "briefly interrupts the call and shouts 'CAREFUL!'";
+		break;
+	case MS_CAR:
+		ret = "alarm installation goes off!";
+		aggravate();
+		break;
+	case MS_JAPANESE:
+		ret = "instructs 'Sono pureto kara hanarete kudasai, sore wa jaakuna doragon ni yotte settei sa reta wanadesu.'";
+		break;
+	case MS_SOVIET:
+		ret = "laughs 'Vy popadete v lovushku i, nakonets, zakonchite igru, i vy, kak sleduyet, igrayete v takuyu ??der'movuyu igru.'";
+		break;
+	case MS_SNORE:
+		ret = "opens the eyes, looks worriedly at you, and dozes off again";
+		break;
+	case MS_PHOTO:
+		ret = "takes a photo of the nearby dungeon floor for some reason";
+		break;
+	case MS_REPAIR:
+		ret = "makes a motion towards the floor";
+		break;
+	case MS_DRUGS:
+		ret = "screams 'Damn! It's a trap set by the cops!'";
+		break;
+	case MS_COMBAT:
+		ret = "shouts 'Search! There's a trap nearby! Use the search command!'";
+		break;
+	case MS_MUTE:
+		ret = "exhales thrice in a row, while gesturing at the floor";
+		break;
+	case MS_CORONA:
+		ret = "shouts 'Let's go somewhere else, the corona wind is bad around here!'";
+		break;
+	case MS_TRUMPET:
+		ret = "trumpets scaredly";
+		break;
+	case MS_PAIN:
+		ret = "shouts 'Ack! It's a trap!'";
+		break;
+	case MS_BRAG:
+		ret = "laughs 'Bet I'll find that trap before you do?'";
+		break;
+	case MS_PRINCESSLEIA:
+		ret = "whispers 'I sense a trap. Please be careful, don't step into it.'";
+		break;
+	case MS_SISSY:
+		ret = "whimpers 'arrrrgh we will all die!'";
+		break;
+	case MS_SING:
+		ret = "seems happy for some reason";
+		break;
+	case MS_ALLA:
+		ret = "wordlessly gazes at you";
+		break;
+	case MS_POKEDEX:
+		ret = "shouts 'A game bug! Watch out, don't step on that tile next to you or the game will glitch out and delete your last pokemon!'";
+		break;
+	case MS_BOT:
+		ret = "drones 'Area is scanned for hostile threats!'";
+		break;
+	case MS_APOC:
+		ret = "shouts 'The plunderers are trying to lead us into a trap!'";
 		break;
 	case MS_GLYPHS:
 		ret = "suggests you to use a trap detection glyph";
@@ -2362,6 +2571,54 @@ register struct monst *mtmp;
 		}
 		else verbl_msg = "Go away, I'm looking for the magic glyphs, they have to be around here somewhere...";
 		break;
+
+	case MS_SOCKS:
+		break;
+	case MS_PANTS:
+		break;
+	case MS_HANDY:
+		break;
+	case MS_CAR:
+		break;
+	case MS_JAPANESE:
+		break;
+	case MS_SOVIET:
+		break;
+	case MS_SNORE:
+		break;
+	case MS_PHOTO:
+		break;
+	case MS_REPAIR:
+		break;
+	case MS_DRUGS:
+		break;
+	case MS_COMBAT:
+		break;
+	case MS_MUTE:
+		break;
+	case MS_CORONA:
+		break;
+	case MS_TRUMPET:
+		break;
+	case MS_PAIN:
+		break;
+	case MS_BRAG:
+		break;
+	case MS_PRINCESSLEIA:
+		break;
+	case MS_SISSY:
+		break;
+	case MS_SING:
+		break;
+	case MS_ALLA:
+		break;
+	case MS_POKEDEX:
+		break;
+	case MS_BOT:
+		break;
+	case MS_APOC:
+		break;
+
 	case MS_GIBBERISH:
 		pline("%s", generate_garbage_string());
 		break;

@@ -88,6 +88,7 @@
 #define MS_ALLA	79	/* reduces a counter, and if it reaches zero, you die */
 #define MS_POKEDEX	80	/* occasionally spams you with stats of a random monster */
 #define MS_BOT	81	/* for robots */
+#define MS_APOC	82	/* talks about the end of the world */
 
 /* MS_DOUGLAS_ADAMS used to be 42, however I fear the DevTeam eventually 
 ** reaching that number.  - sk */

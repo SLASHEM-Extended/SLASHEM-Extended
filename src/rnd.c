@@ -958,7 +958,7 @@ randomillusionattack()
 int
 randmonsound()
 {
-	switch (rnd(78)) {
+	switch (rnd(79)) {
 		case 1:
 			return MS_SILENT;
 		case 2:
@@ -1115,6 +1115,8 @@ randmonsound()
 			return MS_POKEDEX;
 		case 78:
 			return MS_BOT;
+		case 79:
+			return MS_APOC;
 		default:
 			return MS_HUMANOID;
 	}

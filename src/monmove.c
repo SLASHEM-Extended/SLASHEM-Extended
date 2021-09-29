@@ -1680,6 +1680,83 @@ register struct monst *mtmp;
 			case MS_CASINO:
 				verbalize("Place your bets here! Only 2000 zorkmids per casino chip!");
 				break;
+			case MS_SOCKS:
+				if (canseemon(mtmp)) pline("%s is emanating a sweaty stench.", Monnam(mtmp));
+				else You("sense a sweaty stench emanating from something close by.");
+				break;
+			case MS_PANTS:
+				if (canseemon(mtmp)) pline("Eww, %s stinks like shit!", mon_nam(mtmp));
+				else You("sense something stinky close by.");
+				break;
+			case MS_CAR:
+				verbalize("Vrrrrrrrr! Here I come!");
+				break;
+			case MS_JAPANESE:
+				verbalize("Yameru! Nigemichi wa arimasen!");
+				break;
+			case MS_SOVIET:
+				verbalize("Vasha igra dolzhna byt' izmenena, chtoby garantirovat', chto vy ne vyigrayete.");
+				break;
+			case MS_SNORE:
+				if (canseemon(mtmp)) pline("%s yawns loudly.", Monnam(mtmp));
+				else You_hear("a yawning sound nearby.");
+				break;
+			case MS_PHOTO:
+				verbalize("Don't move, I want to take a photo of you!");
+				break;
+			case MS_REPAIR:
+				verbalize("Repair your equipment here!");
+				break;
+			case MS_DRUGS:
+				verbalize("Hey %s! Hit me if you want the good stuff!", flags.female ? "gal" : "dude");
+				break;
+			case MS_COMBAT:
+				verbalize("I own this dungeon. Fight me.");
+				break;
+			case MS_MUTE:
+				if (canseemon(mtmp)) pline("%s grumbles and grunts loudly.", Monnam(mtmp));
+				else You_hear("loud grumbling and grunting.");
+				break;
+			case MS_CORONA:
+				verbalize("Wear your fucking mask goddammit!");
+				break;
+			case MS_PAIN:
+				verbalize("I may be in pain, but soon the same will apply to you!");
+				break;
+			case MS_PRINCESSLEIA:
+				verbalize("Please, don't hurt me, I'm the princess!");
+				break;
+			case MS_SISSY:
+				verbalize("help i am afraid!");
+				break;
+			case MS_SING:
+				verbalize("Come here, I have this sexy pair of female shoes that you're allowed to clean.");
+				break;
+			case MS_ALLA:
+				verbalize("I will leave a permanent scar on your body.");
+				break;
+			case MS_BOT:
+				switch (rnd(5)) {
+					case 1:
+						verbalize("Target lock mode activated. Enemy target will be attacked.");
+						break;
+					case 2:
+						verbalize("Aim... Fire.");
+						break;
+					case 3:
+						verbalize("Please don't act surprised if you get killed once I found you.");
+						break;
+					case 4:
+						verbalize("With the blue beans we come!");
+						break;
+					case 5:
+						verbalize("Oh, that's nice, I found you.");
+						break;
+				}
+				break;
+			case MS_APOC:
+				verbalize("The world may be headed for destruction, but you shall be destroyed first!");
+				break;
 			case MS_GIBBERISH:
 				pline("%s", generate_garbage_string());
 				break;
