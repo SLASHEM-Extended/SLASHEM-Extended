@@ -13822,6 +13822,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_ANTI_COVID_FIGHTER]) (void) mongets(mtmp, POISON_REPELLANT_ARMOR);
 		if (mtmp->data == &mons[PM_STEEL_WRAITH]) (void) mongets(mtmp, WRAITHBLADE);
 		if (mtmp->data == &mons[PM_JAYCEE]) (void) mongets(mtmp, RAZOR_WHIP);
+		if (mtmp->data == &mons[PM_BELLY_NAVEL_PIERCED_GIRL]) (void) mongets(mtmp, VICTORIAN_UNDERWEAR);
 
 		if (ptr == &mons[PM_FLINGER]) {
 			(void) mongets(mtmp, SLING);
