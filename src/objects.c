@@ -7244,6 +7244,11 @@ SCROLL((char *)0,               "SHE WOMBURE IS AN AUTHOR WHO WROTE A BOOK CALLE
 SCROLL((char *)0,               "UNFORTUNATELY NOT A STOIAKMIDM",  P_NONE,     1,   0, 100, CLR_GREEN, 1),
 SCROLL((char *)0,               "WHINE ON YOU CRAZY DIAMOND",  P_NONE,     1,   0, 100, CLR_WHITE, 1),
 SCROLL((char *)0,               "THE AMY OVERSHOOTS GEVELSBERG IN TRAIN SIM WORLD",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
+SCROLL((char *)0,               "WHATSQUAAK INSTADOOF SNAPHOBBYLOS",  P_NONE,     1,   0, 100, CLR_GREEN, 1),
+SCROLL((char *)0,               "DI DUE DI DUE DI DUE",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
+SCROLL((char *)0,               "IS THE SO GAY",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
+SCROLL((char *)0,               "GEPOLD TO WERRA IN 7 MINUTES",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
+SCROLL((char *)0,               "OH MY GOD THERE ARE TOO MANY SCRIPT MONSTERS",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
 
 
 #ifdef MAIL

@@ -802,6 +802,7 @@ doread()
 	"Amy is such a bad person and we're glad that her offensive game was removed from our server - c. the lynch mob.",
 	"I step in the through-washed bucket.",
 	"SHE WOMBURE - SO DEAD",
+	"At first I need to sneak in the bridal couple near the milo.",
 
 
 	    };

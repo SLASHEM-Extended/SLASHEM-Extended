@@ -27343,6 +27343,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"AIIEGH! The virginity stealer's penis popped your cherry!",
 	"AIIEGH! The virginity stealer's penis popped your cherry! (This message would cause the admin to remove the game from the server if he hadn't already done so, because it's so turbogross.)",
 	"Incoming message for Player 1. The message is from 'Derek'. It reads: 'Ah-jaje popo chambo ah-jaje!'",
+	"It's time for our super-special commercial announcement: Eat our vegan slurry! Looks like meat, doesn't really taste like meat, and poisons you very badly when consumed! Diarrhea guaranteed or your money back!",
+	"It's time for our super-special commercial announcement: 500 g of vegan meat for only 3,99 $! (Did you know that 'vegan meat' is something that doesn't exist, because a comestible can only either be vegan or meat, not both, and saying that something is both could be considered intentional misdirection?)",
+	"It's time for our super-special commercial announcement: Plant-based fish sticks! We absolutely don't care that plant-based products cannot be fish, because we are the vegan missionaries that will convert everyone to the animal-product-free religion muahahahahaha!",
 
 };
 
