@@ -4051,6 +4051,7 @@ static NEARDATA const char * const demagoguelines[] = {
 "In an ideal world everyone would be able to wear high heels, regardless of gender! Stop the discrimination now!",
 "If I want to wear a bra, I should damn well be allowed to do so! And I don't care if I'm a man, woman, dog, bear or attack helicopter! FUCK DISCRIMINATION",
 "Morgellons are little worms that live in FFP-2 masks, placed there by the evil manufacturers to infiltrate and eat the wearer's brain. They also don't really exist, but are nonetheless very annoying!",
+"Humankind is just so stupid! If they were a bit smarter, maybe we would get somewhere!",
 };
 
 static NEARDATA const char * const longinglines[] = {

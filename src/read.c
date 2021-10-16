@@ -803,6 +803,7 @@ doread()
 	"I step in the through-washed bucket.",
 	"SHE WOMBURE - SO DEAD",
 	"At first I need to sneak in the bridal couple near the milo.",
+	"Fuck the great male renunciation! I can wear heels whenever I want to, regardless of gender, you sexist assholes!",
 
 
 	    };

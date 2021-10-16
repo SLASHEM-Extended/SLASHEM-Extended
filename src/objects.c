@@ -7249,6 +7249,7 @@ SCROLL((char *)0,               "DI DUE DI DUE DI DUE",  P_NONE,     1,   0, 100
 SCROLL((char *)0,               "IS THE SO GAY",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
 SCROLL((char *)0,               "GEPOLD TO WERRA IN 7 MINUTES",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
 SCROLL((char *)0,               "OH MY GOD THERE ARE TOO MANY SCRIPT MONSTERS",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
+SCROLL((char *)0,               "ROTATE ME SHOULD BE ON THE STICK",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
 
 
 #ifdef MAIL

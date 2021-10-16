@@ -5520,6 +5520,9 @@ static const char *epitaphs[] = {
 	"Hey! I thought SLEX was supposed to be a fun game, not super bullshit simulator!",
 	"Man, SLEX is no fun. There is so little strategy headroom, you get very few useful items and then have to be super careful or you end up losing them again to some bullshit! And if you do lose them, you never find another!",
 	"What, it's a 'massed affecting calendared', whatever that is! I'll throw some darts at it, hmm, that doesn't really seem to be doing so much... damage, why the hell am I suddenly paralyzed? Huh, does that thing have ranged thorns or what?",
+	"Wait, so there *actually* is a lag trap that causes fake lag? And it lasts for thousands of turns and cannot be easily cured? #quit",
+	"Configuration file? Who needs that anyway? I'll just play with the default settings. By the way, what does it mean when the bottom status line says 'Stressed' after I just killed some elves? Oh well, certainly not important, I'll just continue killing everything in my pa-",
+	"The s-course had 12 minutes delay.",
 
 };
 
