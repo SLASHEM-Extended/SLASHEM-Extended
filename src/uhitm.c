@@ -667,7 +667,7 @@ register struct monst *mtmp;
 	if (u.twoweap && uwep && uswapwep && uswapwep->oartifact == ART_TEH_HUNK && (!u.usteed && !(tech_inuse(T_POLE_MELEE)) && is_pole(uwep))) tmp += 5;
 	if (u.twoweap && uwep && uswapwep && uswapwep->oartifact == ART_TEH_HUNK && (uwep->oclass != WEAPON_CLASS && !is_weptool(uwep) && uwep->oclass != GEM_CLASS && uwep->oclass != BALL_CLASS && uwep->oclass != CHAIN_CLASS)) tmp += 5;
 
-	if (uarm && uarm->oartifact == ART_HUNKSTERMAN && (is_launcher(uwep) && !(uwep->otyp == LASERXBOW && uwep->lamplit))) {
+	if (!PlayerCannotUseSkills && uarm && uarm->oartifact == ART_HUNKSTERMAN && (is_launcher(uwep) && !(uwep->otyp == LASERXBOW && uwep->lamplit))) {
 		if (u.hunkskill >= 20) tmp++;
 		if (u.hunkskill >= 160) tmp++;
 		if (u.hunkskill >= 540) tmp++;
@@ -676,7 +676,7 @@ register struct monst *mtmp;
 		if (u.hunkskill >= 4320) tmp++;
 	}
 
-	if (uarm && uarm->oartifact == ART_HUNKSTERMAN && (is_missile(uwep) || is_ammo(uwep))) {
+	if (!PlayerCannotUseSkills && uarm && uarm->oartifact == ART_HUNKSTERMAN && (is_missile(uwep) || is_ammo(uwep))) {
 		if (u.hunkskill >= 20) tmp++;
 		if (u.hunkskill >= 160) tmp++;
 		if (u.hunkskill >= 540) tmp++;
@@ -685,7 +685,7 @@ register struct monst *mtmp;
 		if (u.hunkskill >= 4320) tmp++;
 	}
 
-	if (uarm && uarm->oartifact == ART_HUNKSTERMAN && (!u.usteed && !(tech_inuse(T_POLE_MELEE)) && is_pole(uwep))) {
+	if (!PlayerCannotUseSkills && uarm && uarm->oartifact == ART_HUNKSTERMAN && (!u.usteed && !(tech_inuse(T_POLE_MELEE)) && is_pole(uwep))) {
 		if (u.hunkskill >= 20) tmp++;
 		if (u.hunkskill >= 160) tmp++;
 		if (u.hunkskill >= 540) tmp++;
@@ -694,7 +694,7 @@ register struct monst *mtmp;
 		if (u.hunkskill >= 4320) tmp++;
 	}
 
-	if (uarm && uarm->oartifact == ART_HUNKSTERMAN && (uwep->oclass != WEAPON_CLASS && !is_weptool(uwep) && uwep->oclass != GEM_CLASS && uwep->oclass != BALL_CLASS && uwep->oclass != CHAIN_CLASS)) {
+	if (!PlayerCannotUseSkills && uarm && uarm->oartifact == ART_HUNKSTERMAN && (uwep->oclass != WEAPON_CLASS && !is_weptool(uwep) && uwep->oclass != GEM_CLASS && uwep->oclass != BALL_CLASS && uwep->oclass != CHAIN_CLASS)) {
 		if (u.hunkskill >= 20) tmp++;
 		if (u.hunkskill >= 160) tmp++;
 		if (u.hunkskill >= 540) tmp++;
@@ -1788,28 +1788,31 @@ int dieroll;
 			if (obj && obj->oartifact == ART_TEH_HUNK && !obj->lamplit && tmp > 0) tmp += 5;
 			if (obj && obj->oartifact == ART_GAYGUN && (u.homosexual == 1)) tmp += 5;
 
-			if (is_lightsaber(obj)) {
-				u.hunkturns++;
-				if (u.hunkturns >= 5) {
-					u.hunkturns = 0;
-					u.hunkskill++;
-					if ((obj && obj->oartifact == ART_TEH_HUNK) || (uarm && uarm->oartifact == ART_HUNKSTERMAN)) {
-						if (u.hunkskill == 20) You("are now more skilled in form IX (Hunk).");
-						if (u.hunkskill == 160) You("are now more skilled in form IX (Hunk).");
-						if (u.hunkskill == 540) You("are now more skilled in form IX (Hunk).");
-						if (u.hunkskill == 1280) You("are now more skilled in form IX (Hunk).");
-						if (u.hunkskill == 2560) You("are now more skilled in form IX (Hunk).");
-						if (u.hunkskill == 4320) You("are now most skilled in form IX (Hunk).");
-					}
-				}
+			if (!PlayerCannotTrainSkills || u.uprops[TRAINING_DEACTIVATED].extrinsic || have_trainingstone()) {
 
-				if (uarm && uarm->oartifact == ART_HUNKSTERMAN) {
-					if (u.hunkskill >= 20) tmp++;
-					if (u.hunkskill >= 160) tmp++;
-					if (u.hunkskill >= 540) tmp++;
-					if (u.hunkskill >= 1280) tmp++;
-					if (u.hunkskill >= 2500) tmp++;
-					if (u.hunkskill >= 4320) tmp++;
+				if (is_lightsaber(obj)) {
+					u.hunkturns++;
+					if (u.hunkturns >= 5) {
+						u.hunkturns = 0;
+						u.hunkskill++;
+						if ((obj && obj->oartifact == ART_TEH_HUNK) || (uarm && uarm->oartifact == ART_HUNKSTERMAN)) {
+							if (u.hunkskill == 20) You("are now more skilled in form IX (Hunk).");
+							if (u.hunkskill == 160) You("are now more skilled in form IX (Hunk).");
+							if (u.hunkskill == 540) You("are now more skilled in form IX (Hunk).");
+							if (u.hunkskill == 1280) You("are now more skilled in form IX (Hunk).");
+							if (u.hunkskill == 2560) You("are now more skilled in form IX (Hunk).");
+							if (u.hunkskill == 4320) You("are now most skilled in form IX (Hunk).");
+						}
+					}
+
+					if (uarm && uarm->oartifact == ART_HUNKSTERMAN) {
+						if (u.hunkskill >= 20) tmp++;
+						if (u.hunkskill >= 160) tmp++;
+						if (u.hunkskill >= 540) tmp++;
+						if (u.hunkskill >= 1280) tmp++;
+						if (u.hunkskill >= 2500) tmp++;
+						if (u.hunkskill >= 4320) tmp++;
+					}
 				}
 			}
 
@@ -3590,17 +3593,19 @@ melatechoice:
 					if (uwep->altmode) use_skill(P_DJEM_SO, 1);
 				}
 
-				if (uwep && uwep->otyp == KLIUSLING && uwep->lamplit && obj && objects[obj->otyp].oc_skill == -P_SLING) {
-					u.kliuturns++;
-					if (u.kliuturns >= 5) {
-						u.kliuturns = 0;
-						u.kliuskill++;
-						if (u.kliuskill == 20) You("are now more skilled in form X (Kliu).");
-						if (u.kliuskill == 160) You("are now more skilled in form X (Kliu).");
-						if (u.kliuskill == 540) You("are now more skilled in form X (Kliu).");
-						if (u.kliuskill == 1280) You("are now more skilled in form X (Kliu).");
-						if (u.kliuskill == 2560) You("are now more skilled in form X (Kliu).");
-						if (u.kliuskill == 4320) You("are now most skilled in form X (Kliu).");
+				if (!PlayerCannotTrainSkills || u.uprops[TRAINING_DEACTIVATED].extrinsic || have_trainingstone()) {
+					if (uwep && uwep->otyp == KLIUSLING && uwep->lamplit && obj && objects[obj->otyp].oc_skill == -P_SLING) {
+						u.kliuturns++;
+						if (u.kliuturns >= 5) {
+							u.kliuturns = 0;
+							u.kliuskill++;
+							if (u.kliuskill == 20) You("are now more skilled in form X (Kliu).");
+							if (u.kliuskill == 160) You("are now more skilled in form X (Kliu).");
+							if (u.kliuskill == 540) You("are now more skilled in form X (Kliu).");
+							if (u.kliuskill == 1280) You("are now more skilled in form X (Kliu).");
+							if (u.kliuskill == 2560) You("are now more skilled in form X (Kliu).");
+							if (u.kliuskill == 4320) You("are now most skilled in form X (Kliu).");
+						}
 					}
 				}
 

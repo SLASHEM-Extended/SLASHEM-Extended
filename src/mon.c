@@ -6699,7 +6699,7 @@ xkilled(mtmp, dest)
 	if (Role_if(PM_BLOODSEEKER)) healup(mtmp->m_lev, 0, FALSE, FALSE); /* special ability called "Stygwyr's Thirst" */
 	if (uwep && uwep->oartifact == ART_ALDEBARAN_FORM) healup(mtmp->m_lev, 0, FALSE, FALSE);
 
-	if (uarm && uarm->oartifact == ART_ALPHA_TAURI && uwep && (Flying || (uwep->oartifact == ART_ALDEBARAN_FORM)) && ((is_lightsaber(uwep) && uwep->lamplit) || !rn2(3) ) ) {
+	if (!PlayerCannotUseSkills && uarm && uarm->oartifact == ART_ALPHA_TAURI && uwep && (Flying || (uwep->oartifact == ART_ALDEBARAN_FORM)) && ((is_lightsaber(uwep) && uwep->lamplit) || !rn2(3) ) ) {
 		int alphatauriheal = 0;
 		if (u.aldebaranskill >= 20) alphatauriheal++;
 		if (u.aldebaranskill >= 160) alphatauriheal++;
@@ -6710,18 +6710,20 @@ xkilled(mtmp, dest)
 		healup(alphatauriheal, 0, FALSE, FALSE);
 	}
 
-	if (uwep && uwep->lamplit && ((uwep->oartifact == ART_ALDEBARAN_FORM) || (is_lightsaber(uwep) && Flying) ) ) {
-		u.aldebaranturns++;
-		if (u.aldebaranturns >= 2) {
-			u.aldebaranturns = 0;
-			u.aldebaranskill++;
-			if ((uwep && uwep->oartifact == ART_ALDEBARAN_FORM) || (uarm && uarm->oartifact == ART_ALPHA_TAURI)) {
-				if (u.aldebaranskill == 20) You("are now more skilled in form XI (Aldebaran).");
-				if (u.aldebaranskill == 160) You("are now more skilled in form XI (Aldebaran).");
-				if (u.aldebaranskill == 540) You("are now more skilled in form XI (Aldebaran).");
-				if (u.aldebaranskill == 1280) You("are now more skilled in form XI (Aldebaran).");
-				if (u.aldebaranskill == 2560) You("are now more skilled in form XI (Aldebaran).");
-				if (u.aldebaranskill == 4320) You("are now most skilled in form XI (Aldebaran).");
+	if (!PlayerCannotTrainSkills || u.uprops[TRAINING_DEACTIVATED].extrinsic || have_trainingstone()) {
+		if (uwep && uwep->lamplit && ((uwep->oartifact == ART_ALDEBARAN_FORM) || (is_lightsaber(uwep) && Flying) ) ) {
+			u.aldebaranturns++;
+			if (u.aldebaranturns >= 2) {
+				u.aldebaranturns = 0;
+				u.aldebaranskill++;
+				if ((uwep && uwep->oartifact == ART_ALDEBARAN_FORM) || (uarm && uarm->oartifact == ART_ALPHA_TAURI)) {
+					if (u.aldebaranskill == 20) You("are now more skilled in form XI (Aldebaran).");
+					if (u.aldebaranskill == 160) You("are now more skilled in form XI (Aldebaran).");
+					if (u.aldebaranskill == 540) You("are now more skilled in form XI (Aldebaran).");
+					if (u.aldebaranskill == 1280) You("are now more skilled in form XI (Aldebaran).");
+					if (u.aldebaranskill == 2560) You("are now more skilled in form XI (Aldebaran).");
+					if (u.aldebaranskill == 4320) You("are now most skilled in form XI (Aldebaran).");
+				}
 			}
 		}
 	}

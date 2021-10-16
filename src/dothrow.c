@@ -270,7 +270,7 @@ int thrown;
 
 	    if (launcher && launcher->oartifact == ART_FOEOEOEOEOEOEOE) multishot += rnd(3);
 
-	    if (skill == P_SLING && uarm && uarm->oartifact == ART_LU_NONNAME) {
+	    if (!PlayerCannotUseSkills && skill == P_SLING && uarm && uarm->oartifact == ART_LU_NONNAME) {
 		if (u.kliuskill >= 20) multishot++;
 		if (u.kliuskill >= 160) multishot++;
 		if (u.kliuskill >= 540) multishot++;
@@ -1639,7 +1639,7 @@ int thrown;
 		if (launcher && ammo_and_launcher(obj, launcher) && launcher->otyp == BLUE_BOW && obj) range += 1;
 		if (launcher && (ammo_and_launcher(obj, launcher) && !(launcher && launcher->otyp == LASERXBOW && !launcher->lamplit) ) && obj && obj->otyp == ETHER_BOLT) range += 2;
 
-		if (launcher && ammo_and_launcher(obj, launcher) && launcher->otyp == KLIUSLING && launcher->lamplit) {
+		if (!PlayerCannotUseSkills && launcher && ammo_and_launcher(obj, launcher) && launcher->otyp == KLIUSLING && launcher->lamplit) {
 			if (u.kliuskill >= 20) range++;
 			if (u.kliuskill >= 160) range++;
 			if (u.kliuskill >= 540) range++;
