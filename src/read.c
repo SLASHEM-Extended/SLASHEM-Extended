@@ -804,6 +804,10 @@ doread()
 	"SHE WOMBURE - SO DEAD",
 	"At first I need to sneak in the bridal couple near the milo.",
 	"Fuck the great male renunciation! I can wear heels whenever I want to, regardless of gender, you sexist assholes!",
+	"Yes, my game has a playable transvestite role and I won't remove it just because some self-appointed do-gooder comes and starts complaining!",
+	"Bah, fuck off. Just because you're too stupid to program your shit properly doesn't mean I h@cked into your database.",
+	"What? I am not bebing.",
+	"What? I am not bebing. I'm GnollhackIsGreat, aka Amy or the person that the entire nethack community hates for no reason.",
 
 
 	    };

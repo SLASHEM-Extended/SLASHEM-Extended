@@ -995,6 +995,8 @@ static const char *random_mesg[] = {
 	"Amy is an error in the matrix and needs to be terminated before she releases another stupid version of slex!",
 	"Everywhere you go, the-e-ere you are, and you fall asleep, from this pot of sleep.",
 	"Es war einmal ein Fraeuelein, das war ganz gemeinelein. Da brach sie sich ein Naegelein, und fing an zu schreielein.",
+	"Who was it that brings the children? Was it the platypus? Or the disturbenvulture?",
+	"The knackwurst is no cervela.",
 
 };
 
@@ -5523,6 +5525,10 @@ static const char *epitaphs[] = {
 	"Wait, so there *actually* is a lag trap that causes fake lag? And it lasts for thousands of turns and cannot be easily cured? #quit",
 	"Configuration file? Who needs that anyway? I'll just play with the default settings. By the way, what does it mean when the bottom status line says 'Stressed' after I just killed some elves? Oh well, certainly not important, I'll just continue killing everything in my pa-",
 	"The s-course had 12 minutes delay.",
+	"Here lies SLEX, killed by internet cancel culture.",
+	"SLEX, 2013-2021. Some person found a tiny little game feature, decided to interpret it as if it was something REEEEEEEEEEEEEALLY BAD, and told that to the entire community who then proceeded to cancel the game and its developer.",
+	"I cannot imagine the mental disorder that would make a person *want* to wear shoes that are so terrible, practice is required just to walk in them.",
+	"She got stuck with her stiletto heel in a tiny little crevice so badly that she fell against a massive stone statue, hitting her head and dying instantly.",
 
 };
 

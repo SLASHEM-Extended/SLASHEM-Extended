@@ -27347,6 +27347,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"It's time for our super-special commercial announcement: Eat our vegan slurry! Looks like meat, doesn't really taste like meat, and poisons you very badly when consumed! Diarrhea guaranteed or your money back!",
 	"It's time for our super-special commercial announcement: 500 g of vegan meat for only 3,99 $! (Did you know that 'vegan meat' is something that doesn't exist, because a comestible can only either be vegan or meat, not both, and saying that something is both could be considered intentional misdirection?)",
 	"It's time for our super-special commercial announcement: Plant-based fish sticks! We absolutely don't care that plant-based products cannot be fish, because we are the vegan missionaries that will convert everyone to the animal-product-free religion muahahahahaha!",
+	"lol why do you even care what I do or don't put into the game? If you're one of those evercomplaining sjw types, you'll certainly not play it anyway so you can just leave me the hell alone and go back to your little comfort bubble you loser!",
+	"The sjws think they're sooooo progressive and making the world a better place, but all they ever do is complaining. No one should listen to their drivel, and certainly no game designer should remove game features just because of such illogical complaints!",
+	"Someone said 'slex is shit'. That confirms what I always knew, i.e. that I (Amy) was indeed unpersoned. Because no one disagreed with the statement, meaning that they all silently agreed and therefore I know that really everyone considers my game to be shit.",
 
 };
 

@@ -415,11 +415,11 @@ WEAPON("log", (char *)0,
 /* Paddles */
 /* Good to-hit and small damage, but low large damage */
 WEAPON("fly swatter", (char *)0,
-	1, 0, 0,  659, 4,  3, 15,  2, 2, B,   P_PADDLE, MT_PLASTIC, CLR_GREEN, 1),
+	1, 0, 0,  659, 4,  3, 12,  2, 2, B,   P_PADDLE, MT_PLASTIC, CLR_GREEN, 1),
 WEAPON("vermin swatter", (char *)0,
-	1, 0, 0,   50, 4,  3, 15,  2, 5, B,   P_PADDLE, MT_INKA, CLR_BROWN, 4),
+	1, 0, 0,   50, 4,  3, 12,  2, 5, B,   P_PADDLE, MT_INKA, CLR_BROWN, 4),
 WEAPON("insect squasher", (char *)0,
-	1, 0, 0,  100, 4, 10, 30,  2, 4, B,   P_PADDLE, MT_PLASTIC, CLR_GREEN, 35),
+	1, 0, 0,  100, 4, 10, 15,  2, 4, B,   P_PADDLE, MT_PLASTIC, CLR_GREEN, 35),
 WEAPON("tennis racket", (char *)0,
 	1, 0, 0,  100, 4,  3, 7,  7, 2, B,   P_PADDLE, MT_WOOD, CLR_BROWN, 1),
 
@@ -6636,6 +6636,7 @@ SCROLL((char *)0,               "SLEXY ROBBER NYMPHETS 2018",  P_NONE,     1,   
 SCROLL((char *)0,               "SLEXUAL JUSTICE WARRIORS 2019",  P_NONE,     1,   0, 100, CLR_WHITE, 1),
 SCROLL((char *)0,               "SLEXY POLEARM DANCERS 2020",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
 SCROLL((char *)0,               "SLEXANDTHECITY 2021",  P_NONE,     1,   0, 100, CLR_RED, 1),
+SCROLL((char *)0,               "SLEXISTPIGSFROMHELL 2022",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
 SCROLL((char *)0,               "WHAT THE HELL THE YES NO CONFIRMATION IS TEH UBER SUX",  P_NONE,     1,   0, 100, CLR_BRIGHT_BLUE, 1),
 SCROLL((char *)0,               "GERMANY LOST 0 2 TO SOUTH KOREA IN 2018",  P_NONE,     1,   0, 100, CLR_WHITE, 1),
 SCROLL((char *)0,               "GERMANY WAS DEAD LAST AGAINST MEXICO SWEDEN AND SOUTHKOREA",  P_NONE,     1,   0, 100, CLR_ORANGE, 1),
@@ -7250,6 +7251,11 @@ SCROLL((char *)0,               "IS THE SO GAY",  P_NONE,     1,   0, 100, CLR_Y
 SCROLL((char *)0,               "GEPOLD TO WERRA IN 7 MINUTES",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
 SCROLL((char *)0,               "OH MY GOD THERE ARE TOO MANY SCRIPT MONSTERS",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
 SCROLL((char *)0,               "ROTATE ME SHOULD BE ON THE STICK",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
+SCROLL((char *)0,               "AUF ZU NEUEN VIREN",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "ERSTEMOL DRUFFWESCHE",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
+SCROLL((char *)0,               "MAPS CONTINUED",  P_NONE,     1,   0, 100, CLR_RED, 1),
+SCROLL((char *)0,               "QUADRATISCH PRAKTISCH BLOCKABSATZ",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "WHAT I AM NOT BEBING",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
 
 
 #ifdef MAIL
