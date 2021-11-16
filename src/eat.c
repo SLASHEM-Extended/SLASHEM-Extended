@@ -2299,6 +2299,7 @@ register int pm;
 		break;
 
 	    case PM_WRAITH:
+	    case PM_KODAK:
 	    case PM_BITCHY_LITTLE_ONE:
 	    case PM_CORONA_WRAITH:
 	    case PM_WIGHTSPECTRE:
@@ -3646,6 +3647,7 @@ register int pm;
 	    case PM_INTELLIGENT_TROVE:
 	    case PM_NEOTHELID:
 	    case PM_VILLITHID:
+	    case PM_HALF_ILLITHID:
 	    case PM_ILLITHILICH:
 	    case PM_FEMIFLAYER:
 	    case PM_ULITHARID:
