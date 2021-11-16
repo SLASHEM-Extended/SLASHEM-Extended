@@ -5195,6 +5195,8 @@ int degree;
 
 	if (isdemagogue) {
 
+		if (P_ADVANCE(skill) == 0) return; /* fix exploits */
+
 		if (P_ADVANCE(skill) < degree) P_ADVANCE(skill) = 0;
 		else P_ADVANCE(skill) -= degree;
 
@@ -5958,7 +5960,7 @@ int degree;
 
 		return;
 
-	}
+	} /* end demagogue check. As a demagogue, the code below should never be reached!! --Amy */
 
 	advance_before = can_advance(skill, FALSE);
 	if (Extra_wpn_practice) degree *= 2;
