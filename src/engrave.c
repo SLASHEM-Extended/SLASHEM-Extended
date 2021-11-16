@@ -5529,6 +5529,7 @@ static const char *epitaphs[] = {
 	"SLEX, 2013-2021. Some person found a tiny little game feature, decided to interpret it as if it was something REEEEEEEEEEEEEALLY BAD, and told that to the entire community who then proceeded to cancel the game and its developer.",
 	"I cannot imagine the mental disorder that would make a person *want* to wear shoes that are so terrible, practice is required just to walk in them.",
 	"She got stuck with her stiletto heel in a tiny little crevice so badly that she fell against a massive stone statue, hitting her head and dying instantly.",
+	"You fucking bumped into a fucking peaceful monster with a fucking Stormbringer for fuck's sake!",
 
 };
 

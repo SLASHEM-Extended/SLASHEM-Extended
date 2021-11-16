@@ -2189,10 +2189,29 @@ domove()
 		if(mtmp->m_ap_type && !Protection_from_shape_changers
 						    && !sensemon(mtmp))
 		    stumble_onto_mimic(mtmp);
-		else if (mtmp->mpeaceful && !Hallucination)
+		else if (mtmp->mpeaceful && !Hallucination) {
 		    pline("Pardon me, %s.", m_monnam(mtmp));
-		else
+
+			/* Amy edit: it makes no fucking sense that Stormbringer doesn't auto-attack in this situation!
+			 * You fucking bumped into a fucking peaceful monster with a fucking Stormbringer for fuck's sake!
+			 * Since it's too annoying to program it so that it does, I'm just making the monster hostile for now */
+			if (uwep && (uwep->oartifact == ART_STORMBRINGER || (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) || uwep->oartifact == ART_STROMBRINGER || uwep->oartifact == ART_PATRICIA_S_FEMININITY || uwep->oartifact == ART_ALASSEA_TELEMNAR || uwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uwep->oartifact == ART_HEAVY_THUNDERSTORM || (uwep && uwep->otyp == TECPATL) || (u.twoweap && uswapwep && uswapwep->otyp == TECPATL) || uwep->oartifact == ART_WAND_OF_ORCUS || uwep->oartifact == ART_GENOCIDE || uwep->oartifact == ART_THIRST_FOR_BLOOD || uwep->oartifact == ART_SLAVE_TO_ARMOK || uwep->oartifact == ART_KILLING_EDGE)) {
+				setmangry(mtmp);
+			}
+			if (u.twoweap && uswapwep &&
+				  (uswapwep->oartifact == ART_STORMBRINGER || (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) || uswapwep->oartifact == ART_STROMBRINGER || uswapwep->oartifact == ART_PATRICIA_S_FEMININITY || uswapwep->oartifact == ART_ALASSEA_TELEMNAR || uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uswapwep->oartifact == ART_HEAVY_THUNDERSTORM || (uwep && uwep->otyp == TECPATL) || (u.twoweap && uswapwep && uswapwep->otyp == TECPATL) || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_THIRST_FOR_BLOOD || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
+				setmangry(mtmp);
+			}
+		} else {
 		    You("move right into %s.", mon_nam(mtmp));
+			if (uwep && (uwep->oartifact == ART_STORMBRINGER || (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) || uwep->oartifact == ART_STROMBRINGER || uwep->oartifact == ART_PATRICIA_S_FEMININITY || uwep->oartifact == ART_ALASSEA_TELEMNAR || uwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uwep->oartifact == ART_HEAVY_THUNDERSTORM || (uwep && uwep->otyp == TECPATL) || (u.twoweap && uswapwep && uswapwep->otyp == TECPATL) || uwep->oartifact == ART_WAND_OF_ORCUS || uwep->oartifact == ART_GENOCIDE || uwep->oartifact == ART_THIRST_FOR_BLOOD || uwep->oartifact == ART_SLAVE_TO_ARMOK || uwep->oartifact == ART_KILLING_EDGE)) {
+				setmangry(mtmp);
+			}
+			if (u.twoweap && uswapwep &&
+				  (uswapwep->oartifact == ART_STORMBRINGER || (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) || uswapwep->oartifact == ART_STROMBRINGER || uswapwep->oartifact == ART_PATRICIA_S_FEMININITY || uswapwep->oartifact == ART_ALASSEA_TELEMNAR || uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uswapwep->oartifact == ART_HEAVY_THUNDERSTORM || (uwep && uwep->otyp == TECPATL) || (u.twoweap && uswapwep && uswapwep->otyp == TECPATL) || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_THIRST_FOR_BLOOD || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
+				setmangry(mtmp);
+			}
+		}
 		return;
 	    }
 
