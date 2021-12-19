@@ -1155,6 +1155,14 @@ register boolean mod;
 		    otmp->oartifact = (/*char*/int)(mod ? m : 0);
 		    if (otmp && otmp->oartifact == ART_VADER_S_CHARGE) otmp->age += rnz(5000);
 		    if (otmp && otmp->oartifact == ART_TAVION_S_CHARGE) otmp->age += rnz(5000);
+		    if (otmp && otmp->oartifact == ART_MYSTERIOUS_SPIKES) {
+			otmp->quan = 1;
+			otmp->owt = weight(otmp);
+			}
+		    if (otmp && otmp->oartifact == ART_BUS_ERROR) {
+			otmp->quan = 1;
+			otmp->owt = weight(otmp);
+			}
 		    if (otmp && otmp->oartifact == ART_NINER) {
 			otmp->spe += 9;
 			if (otmp->spe > 127) otmp->spe = 127;

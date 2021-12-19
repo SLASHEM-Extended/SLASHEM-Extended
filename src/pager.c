@@ -27355,7 +27355,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Someone said 'slex is shit'. That confirms what I always knew, i.e. that I (Amy) was indeed unpersoned. Because no one disagreed with the statement, meaning that they all silently agreed and therefore I know that really everyone considers my game to be shit.",
 	"God is laughing his ass off because he's watching humankind futilely struggle against the virus. Because God in His Almightiness knows that humankind will lose the battle anyway and the virus is ultimately going to win.",
 	"No matter how stupid, unfair, ridiculous or 'unbalanced' you say SLEX is, if you need savescumming to beat it, you didn't actually beat it. In fact, you're not supposed to beat it at all, and if you somehow do, that's a bug and means the game is too easy.",
-	"There are SJW types who see the playable role 'genderstarist' in SLEX and immediately decide that it must be offensive because it has the word gender in it. Lol.",
+	"There are SJW types who see the playable role 'genderstarist' in SLEX and immediately decide that it must be offensive because it has the word 'gender' in it. Lol.",
 	"Yes, I know that the word 'gender' is politically charged these days. And I also know that it's often used wrong, because when people say gender, what they usually mean is gender identity, which is something quite different.",
 	"In Germany, children of German origin are being paid to say 'digger' 200 times per sentence, while children of Turkish origin say 'wolloh' 200 times per sentence instead.",
 

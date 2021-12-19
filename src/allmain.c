@@ -9743,7 +9743,7 @@ newboss:
 
 		if (!rn2(100) && CaptchaProblem) {
 			u.captchahack = 1;
-			strcpy(buf, rn2(20) ? rndmonnam() : fauxmessage() );
+			strcpy(buf, rn2(200) ? rndmonnam() : fauxmessage() );
 			if ((int) strlen(buf) > 75) buf[75] = '\0';
 
 			pline("Captcha! Please type in the following word(s) to continue: %s", buf);
@@ -9975,7 +9975,7 @@ newboss:
 
 		if (!rn2(100) && u.uprops[CAPTCHA].extrinsic) {
 			u.captchahack = 1;
-			strcpy(buf, rn2(20) ? rndmonnam() : fauxmessage() );
+			strcpy(buf, rn2(200) ? rndmonnam() : fauxmessage() );
 			if ((int) strlen(buf) > 75) buf[75] = '\0';
 
 			pline("Captcha! Please type in the following word(s) to continue: %s", buf);
@@ -10022,7 +10022,7 @@ newboss:
 
 		if (!rn2(100) && have_captchastone()) {
 			u.captchahack = 1;
-			strcpy(buf, rn2(20) ? rndmonnam() : fauxmessage() );
+			strcpy(buf, rn2(200) ? rndmonnam() : fauxmessage() );
 			if ((int) strlen(buf) > 75) buf[75] = '\0';
 
 			pline("Captcha! Please type in the following word(s) to continue: %s", buf);

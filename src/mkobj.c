@@ -50,8 +50,8 @@ const struct icp mkobjprobs[] = {
 { 70, WAND_CLASS},
 { 20, RING_CLASS},
 { 15, AMULET_CLASS},
-{122, COIN_CLASS},
-{  1, VENOM_CLASS},
+{118, COIN_CLASS},
+{  5, VENOM_CLASS},
 { 10, ROCK_CLASS},
 {  1, BALL_CLASS},
 {  1, CHAIN_CLASS},
@@ -70,11 +70,11 @@ const struct icp boxiprobs[] = {
 {120, POTION_CLASS},
 {120, SCROLL_CLASS},
 { 60, SPBOOK_CLASS},
-{133, COIN_CLASS},
+{ 84, COIN_CLASS},
 { 65, WAND_CLASS},
 { 40, RING_CLASS},
 { 20, AMULET_CLASS},
-{  1, VENOM_CLASS},
+{ 50, VENOM_CLASS},
 { 10, ROCK_CLASS},
 {  1, BALL_CLASS},
 {  1, CHAIN_CLASS},
@@ -90,11 +90,11 @@ const struct icp tchestprobs[] = {
 { 90, POTION_CLASS},
 { 90, SCROLL_CLASS},
 { 60, SPBOOK_CLASS},
-{ 53, COIN_CLASS},
+{  4, COIN_CLASS},
 { 45, WAND_CLASS},
 { 55, RING_CLASS},
 { 45, AMULET_CLASS},
-{  1, VENOM_CLASS},
+{ 50, VENOM_CLASS},
 { 10, ROCK_CLASS},
 {  1, BALL_CLASS},
 {  1, CHAIN_CLASS},
@@ -125,8 +125,8 @@ const struct icp hellprobs[] = {
 { 30, RING_CLASS},
 { 20, AMULET_CLASS},
 { 35, SPBOOK_CLASS},
-{242, COIN_CLASS},
-{  1, VENOM_CLASS},
+{223, COIN_CLASS},
+{ 20, VENOM_CLASS},
 { 10, ROCK_CLASS},
 {  1, BALL_CLASS},
 {  1, CHAIN_CLASS},
@@ -3043,6 +3043,35 @@ boolean shopinit;
 	case VENOM_CLASS:
 		blessorcurse_on_creation(otmp, 10);
 
+		if(!rn2(ishaxor ? 3 : 6)) {
+			otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
+			if (rn2(2)) otmp->blessed = rn2(2);
+			 else	blessorcurse_on_creation(otmp, 3);
+		} else if(!rn2(ishaxor ? 4 : 8)) {
+			if (rn2(10)) curse_on_creation(otmp);
+			 else	blessorcurse_on_creation(otmp, 3);
+			otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		} else	blessorcurse_on_creation(otmp, 10);
+
+		if (otmp->spe && !rn2(6) && In_lategame(&u.uz)) {
+			if (otmp->spe > 0) otmp->spe += rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe -= rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
+
+		if (issoviet) otmp->spe = 0;
+
+		if (!issoviet) otmp->quan = rnd(100);
+		if (!issoviet && !rn2(20) ) {
+			otmp->quan += rnd(otmp->quan);
+			if (!rn2(50)) otmp->quan += rnz(otmp->quan + 3);
+			if (!rn2(50)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
+		}
+		if (In_lategame(&u.uz) && !issoviet && !rn2(6) ) {
+			otmp->quan += rnd(otmp->quan);
+			if (!rn2(20)) otmp->quan += rnz(otmp->quan + 3);
+			if (!rn2(50)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
+		}
+
 		if (!rn2(400)) otmp->oerodeproof = 1;
 		if (!rn2(400)) {
 			if (!rn2(3)) otmp->oeroded = rnd(3);
@@ -3059,6 +3088,11 @@ boolean shopinit;
 			otmp->fakeartifact = 1;
 			if (artif != 2) u.fakeartifacts++;
 		}
+
+		if ((Race_if(PM_LISTENER) || RngeListening) && !Hallucination && (rnd(30) > ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+
+		if (otmp->oartifact == ART_BUS_ERROR || otmp->oartifact == ART_MYSTERIOUS_SPIKES) otmp->quan = 1;
+
 		break;
 	case CHAIN_CLASS:
 	case BALL_CLASS:
@@ -3086,9 +3120,6 @@ boolean shopinit;
 
 				break;
 		}
-
-			if ((Race_if(PM_LISTENER) || RngeListening) && !Hallucination && (rnd(30) > ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
-
 
 		if(!rn2(ishaxor ? 3 : 6)) {
 			otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
@@ -3179,6 +3210,11 @@ boolean shopinit;
 			else otmp->spe = rnd(ishaxor ? 4 : 2);
 			if (!rn2(10)) otmp->spe -= rnd(4);
 		}
+
+		if ((otmp->spe > 0) && !rn2(6) && In_lategame(&u.uz)) {
+			otmp->spe += rnd(otmp->spe);
+		}
+
 		otmp->recharged = 0;
 		if(!rn2(3)) otmp->recharged = rnd(7);
 		blessorcurse_on_creation(otmp, 17);

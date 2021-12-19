@@ -3814,6 +3814,8 @@ boolean is_rlevel;
 #ifndef PUBLIC_SERVER
 		/* putty can't display non-printable characters... so let's disable that horrible interface screw --Amy */
 	    monsyms[S_HUMAN] = 0x01; /* smiley face */
+#else
+	    ; /* nothing */
 #endif /* PUBLIC_SERVER */
 
 # endif
