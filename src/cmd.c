@@ -12163,6 +12163,14 @@ int final;
 		sprintf(buf, "%d time%s", u.cnd_blackjackdealercheat, plur(u.cnd_blackjackdealercheat));
 		enl_msg(You_, "were subjected to the blackjack dealer's cheating ", "were subjected to the blackjack dealer's cheating ", buf);
 	}
+	if (u.cnd_covideffect && final) {
+		sprintf(buf, "%d time%s", u.cnd_covideffect, plur(u.cnd_covideffect));
+		enl_msg(You_, "suffered from covid-19 symptoms ", "suffered from covid-19 symptoms ", buf);
+	}
+	if (u.cnd_covidantidote && final) {
+		sprintf(buf, "%d time%s", u.cnd_covidantidote, plur(u.cnd_covidantidote));
+		enl_msg(You_, "received a covid-19 antidote ", "received a covid-19 antidote ", buf);
+	}
 
 	/* Pop up the window and wait for a key */
 	display_nhwindow(en_win, TRUE);
@@ -12735,6 +12743,12 @@ int final;
 
 	sprintf(buf, "%d time%s", u.cnd_blackjackdealercheat, plur(u.cnd_blackjackdealercheat));
 	dump("  You were subjected to the blackjack dealer's cheating ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_covideffect, plur(u.cnd_covideffect));
+	dump("  You suffered from covid-19 symptoms ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_covidantidote, plur(u.cnd_covidantidote));
+	dump("  You received a covid-19 antidote ", buf);
 
 	dump("", "");
 }

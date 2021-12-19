@@ -400,6 +400,7 @@ struct monst {
 	Bitfield(nurse_fixsymbiote,1);
 	Bitfield(nurse_shutdownsymbiote,1);
 	Bitfield(nurse_restoration,1);
+	Bitfield(nurse_vaccine,1);
 
 	Bitfield(butthurt,6);
 	Bitfield(fartbonus,6); /* actually, max should be 9 */

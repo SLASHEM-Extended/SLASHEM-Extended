@@ -5620,6 +5620,8 @@ nivellate()
 		return;
 	}
 
+	u.cnd_covideffect++;
+
 	/* at very low XLs, we'll be nice... */
 	if (u.ulevel < 3) nivellevel = 3;
 	if (u.ulevel == 3) nivellevel = 4;
@@ -5968,6 +5970,8 @@ boolean guaranteed;
 	if (issoviet && !guaranteed) return; /* lol */
 	if (evilfriday && !guaranteed && rn2(3)) return; /* tough luck */
 	if (u.ulevel < 4) return; /* not available yet */
+
+	u.cnd_covidantidote++;
 
 	int nivellevel = u.ulevel;
 	int ceiling = 1;

@@ -9224,6 +9224,7 @@ u_init()
 	u.nursedecontamcost = 1000;	/* cost to buy decontamination from nurses */
 	u.nursesymbiotecost = 10000;	/* cost to buy a new symbiote from nurses */
 	u.nurseshutdowncost = 1000;	/* cost to buy shutdown service from nurses */
+	u.nursevaccinecost = 2000;	/* cost to buy covid-19 vaccine from nurses */
 
 	u.shutdowntime = 0;
 

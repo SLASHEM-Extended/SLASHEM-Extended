@@ -1348,6 +1348,7 @@ struct you {
 
 	int nurseextracost;	/* for chat-to-nurses functionality */
 	int nursedecontamcost;	/* ditto */
+	int nursevaccinecost;
 	int nursesymbiotecost;
 	int nurseshutdowncost;
 
@@ -1875,6 +1876,8 @@ struct you {
 	int cnd_lycanthropecount;	/* how many times you contracted lycanthropy */
 	int cnd_blackjackwins;	/* how many times you won the blackjack minigame */
 	int cnd_blackjackdealercheat;	/* how many times the blackjack dealer cheated */
+	int cnd_covideffect;	/* how many times you suffered from covid symptoms */
+	int cnd_covidantidote;	/* how many times you received the cure for covid */
 
 	struct symbiotemon usymbiote;	/* for the symbiosis skill */
 	int symbioteaggressivity;	/* how often your symbiote attacks or takes damage */

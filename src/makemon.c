@@ -22577,6 +22577,7 @@ register int	mmflags;
 	mtmp->nurse_fixsymbiote = !rn2(15);
 	mtmp->nurse_shutdownsymbiote = !rn2(8);
 	mtmp->nurse_restoration = !rn2(5);
+	mtmp->nurse_vaccine = !rn2(10);
 
 	mtmp->sagesvisible = !rn2(10);
 	mtmp->internetvisible = !rn2(9);

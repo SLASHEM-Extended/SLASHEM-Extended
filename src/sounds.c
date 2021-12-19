@@ -3323,7 +3323,7 @@ register struct monst *mtmp;
 			menu_item *selected;
 			int n;
 
-			if (!mtmp->nurse_extrahealth && !mtmp->nurse_decontaminate && !mtmp->nurse_healing && !mtmp->nurse_curesickness && !mtmp->nurse_curesliming && !mtmp->nurse_curesanity && !mtmp->nurse_medicalsupplies && !mtmp->nurse_purchasedrugs && !mtmp->nurse_obtainsymbiote && !mtmp->nurse_fixsymbiote && !mtmp->nurse_shutdownsymbiote && !mtmp->nurse_restoration) {
+			if (!mtmp->nurse_extrahealth && !mtmp->nurse_decontaminate && !mtmp->nurse_healing && !mtmp->nurse_curesickness && !mtmp->nurse_curesliming && !mtmp->nurse_curesanity && !mtmp->nurse_medicalsupplies && !mtmp->nurse_purchasedrugs && !mtmp->nurse_obtainsymbiote && !mtmp->nurse_fixsymbiote && !mtmp->nurse_shutdownsymbiote && !mtmp->nurse_restoration && !mtmp->nurse_vaccine) {
 				verbalize("Sorry. I'm all out of services.");
 				goto noservices;
 			}
@@ -3355,6 +3355,8 @@ register struct monst *mtmp;
 			if (mtmp->nurse_shutdownsymbiote) add_menu(tmpwin, NO_GLYPH, &any , 's', 0, ATR_NONE, "Shutdown Symbiote", MENU_UNSELECTED);
 			any.a_int = 12;
 			if (mtmp->nurse_restoration) add_menu(tmpwin, NO_GLYPH, &any , 'r', 0, ATR_NONE, "Restoration", MENU_UNSELECTED);
+			any.a_int = 13;
+			if (mtmp->nurse_vaccine) add_menu(tmpwin, NO_GLYPH, &any , 'v', 0, ATR_NONE, "COVID-19 Vaccine", MENU_UNSELECTED);
 
 			end_menu(tmpwin, "Services Available:");
 			n = select_menu(tmpwin, PICK_ONE, &selected);
@@ -3651,23 +3653,61 @@ register struct monst *mtmp;
 							verbalize("Sorry, restoration costs 2500 dollars.");
 							break;
 						}
-						if (u.ulevel < 4) {
-							verbalize("Sorry. You are too frail and inexperienced, and would probably not survive this procedure. Come back when you have gained a few experience levels.");
-							break;
-						}
 						if (issoviet) {
 							verbalize("Otvali! V Sovetskoy Rossli zdorov'ye istoshchayet VAS!");
 							break;
 						}
 						if (u.ugold >= 2500) {
-							verbalize("Restoration is used to fix low HP and Pw maximum values. Generally, this is the case if your maximum is less than ten times your experience level, although for some roles and races the ceiling values may be different. If you give me 2500 dollars, I can give it a try but be warned: if your maximum values are too high, you won't get your money back.");
+							verbalize("This procedure will safely recover one drained attribute point for 2500 dollars. Please be aware that if none of your attributes have been drained, you won't get your money back.");
 							if (yn("Accept the offer?") == 'y') {
 								verbalize("Okay, hold still while I puncture you with this long, pointy needle...");
 								u.ugold -= 2500;
 								if (!rn2(10)) mtmp->nurse_restoration = 0;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
+
+								{
+									int i, ii, lim;
+
+									i = rn2(A_MAX);		/* start at a random point */
+									for (ii = 0; ii < A_MAX; ii++) {
+										lim = AMAX(i);
+										if (i == A_STR && u.uhs >= 3) --lim;	/* WEAK */
+										if (ABASE(i) < lim) {
+											ABASE(i)++;
+											pline("Wow! This makes you feel good!");
+											flags.botl = 1;
+											break; /* only restore one --Amy */
+										}
+									if(++i >= A_MAX) i = 0;
+									}
+								}
+
 								u.cnd_nurseserviceamount++;
 								maybegaincha();
+							}
+						}
+
+						break;
+					case 13:
+						if (u.ugold < u.nursevaccinecost) {
+							verbalize("Sorry, vaccination costs %d dollars.", u.nursevaccinecost);
+							break;
+						}
+						if (u.ulevel < 4) {
+							verbalize("Sorry. You're still a child, and the permanent vaccination commission doesn't recommend us to vaccinate children. Come back when you're older.");
+							break;
+						}
+						if (u.ugold >= u.nursevaccinecost) {
+							verbalize("Yes, you are wise to get vaccinated against COVID-19. Unfortunately, we are currently experiencing supply bottlenecks, which has caused the prices for vaccines to explode, which means that a shot will cost you %d dollars, but it's for the best, because we're using a Yendorian State Approved(TM) vaccine that is guaranteed to be safe and highly effective! Get your covid shot now!", u.nursevaccinecost);
+							if (yn("Accept the offer?") == 'y') {
+								verbalize("Okay, hold still while I puncture you with this long, pointy needle...");
+								u.ugold -= u.nursevaccinecost;
+								if (!rn2(20)) mtmp->nurse_vaccine = 0;
+								if (u.ualign.type == A_NEUTRAL) adjalign(1);
+								u.cnd_nurseserviceamount++;
+								maybegaincha();
+								u.nursevaccinecost += 250;
+								if (u.nursevaccinecost < 2000) u.nurseshutdowncost = 2000; /* fail safe */
 								upnivel(TRUE); /* guaranteed */
 							}
 						}
