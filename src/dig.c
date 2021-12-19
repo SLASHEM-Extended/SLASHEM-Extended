@@ -2036,6 +2036,11 @@ long timeout;	/* unused */
 #endif
 	struct obj *obj = (struct obj *) arg;
 
+	/* nope, you do not get to retrieve the medical kit contents that way, you filthy exploit exploiter --Amy */
+	if (obj && obj->otyp == MEDICAL_KIT && Has_contents(obj)) {
+		delete_contents(obj);
+	}
+
 	while (Has_contents(obj)) {
 	    /* We don't need to place contained object on the floor
 	       first, but we do need to update its map coordinates. */
