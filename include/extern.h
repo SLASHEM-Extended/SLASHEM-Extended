@@ -3476,6 +3476,7 @@ E void untwoweapon(void);
 E void erode_obj(struct obj *,BOOLEAN_P,BOOLEAN_P);
 E void wither_obj(struct obj *,BOOLEAN_P,BOOLEAN_P);
 E int chwepon(struct obj *,int);
+E int chwepon_other(struct obj *,int);
 E int welded(struct obj *);
 E void weldmsg(struct obj *);
 E void setmnotwielded(struct monst *,struct obj *);

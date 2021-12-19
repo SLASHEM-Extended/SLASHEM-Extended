@@ -4779,6 +4779,8 @@ goodeffect()
 {
 	if (isfriday && !rn2(5)) return;
 
+	u.cnd_goodeffectcount++;
+
 	if (rn2(10)) { /* "common" effects */
 
 		switch (rnd(166)) {
@@ -4862,21 +4864,22 @@ goodeffect()
 						}
 					    }
 					}
-				}
-				/* Amy nerf: blessed ones were way too powerful, allowing you to more or less ignore curses */
-				if (( !rn2(5) || wornmask ||
-				     obj->otyp == LOADSTONE ||
-				     obj->otyp == LOADBOULDER ||
-				     obj->otyp == STARLIGHTSTONE ||
-				     obj->otyp == LUCKSTONE ||
-				     obj->otyp == HEALTHSTONE ||
-				     obj->otyp == MANASTONE ||
-				     obj->otyp == SLEEPSTONE ||
-				     obj->otyp == STONE_OF_MAGIC_RESISTANCE ||
-				     is_nastygraystone(obj) ||
-				     is_feminismstone(obj) ||
-				     (obj->otyp == LEATHER_LEASH && obj->leashmon) || (obj->otyp == INKA_LEASH && obj->leashmon) ) && !stack_too_big(obj) ) {
-					uncurse(obj, FALSE);
+					/* Amy nerf: blessed ones were way too powerful, allowing you to more or less ignore curses */
+					if (( !rn2(5) || wornmask ||
+					     obj->otyp == LOADSTONE ||
+					     obj->otyp == LOADBOULDER ||
+					     obj->otyp == STARLIGHTSTONE ||
+					     obj->otyp == LUCKSTONE ||
+					     obj->otyp == HEALTHSTONE ||
+					     obj->otyp == MANASTONE ||
+					     obj->otyp == SLEEPSTONE ||
+					     obj->otyp == STONE_OF_MAGIC_RESISTANCE ||
+					     is_nastygraystone(obj) ||
+					     is_feminismstone(obj) ||
+					     (obj->otyp == LEATHER_LEASH && obj->leashmon) || (obj->otyp == INKA_LEASH && obj->leashmon) ) && !stack_too_big(obj) ) {
+						uncurse(obj, FALSE);
+					}
+
 				}
 
 				}
@@ -4973,6 +4976,7 @@ goodeffect()
 			case 68:
 			case 69:
 			case 70: /* healing */
+				You("are healed!");
 				healup(rn1(400, 400), 0, TRUE, TRUE);
 				break;
 			case 71:
@@ -5276,7 +5280,7 @@ enchantweaponchoice:
 					break;
 				}
 
-				chwepon(otmp, 1);
+				chwepon_other(otmp, 1);
 
 			    }
 
@@ -5348,6 +5352,7 @@ enchantweaponchoice:
 			case 151:
 			case 152:
 			case 153: /* restore mana */
+				Your("mana is restored.");
 				u.uen += rn1(400, 400);
 				if (u.uen > u.uenmax) u.uen = u.uenmax;
 				flags.botl = TRUE;
@@ -5387,6 +5392,7 @@ chargingchoice:
 			case 164:
 			case 165:
 			case 166: /* cure covid-19 symptoms */
+				pline("It's a corona antidote!");
 				upnivel(FALSE);
 				break;
 		}
@@ -10617,96 +10623,7 @@ peffects(otmp)
 
 	case POT_BENEFICIAL_EFFECT:
 
-		switch (rnd(13)) {
-
-			case 1:
-				if (ABASE(A_CHA) < ATTRMAX(A_CHA)) {
-					You_feel("more %s!", flags.female ? "pretty" : "attractive");
-					(void) adjattrib(A_CHA, 1, FALSE, TRUE);
-					break;
-				}
-			break;
-			case 2:
-				if (ABASE(A_CON) < ATTRMAX(A_CON)) {
-					You_feel("tougher!");
-					(void) adjattrib(A_CON, 1, FALSE, TRUE);
-					}
-			break;
-			case 3:
-				u.uenmax += rnd(3);
-				You_feel("a mild buzz.");
-				flags.botl = 1;
-			break;
-			case 4:
-				if (Upolyd) {
-					u.mh++;
-					u.mhmax++;
-					if (u.mh > u.mhmax) u.mh = u.mhmax;
-				} else {
-					u.uhp++;
-					u.uhpmax++;
-					if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
-				}
-				if (uactivesymbiosis) {
-					u.usymbiote.mhpmax++;
-					if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
-				}
-				You_feel("vitalized.");
-				flags.botl = 1;
-			break;
-			case 5:
-				You_feel("clairvoyant!");
-				if (PlayerHearsSoundEffects) pline(issoviet ? "Vy znayete raspolozheniye, no ne lovushki, a te vse ravno budut poshel na khuy vverkh." : "Wschiiiiiiie!");
-				incr_itimeout(&HClairvoyant, rnd(500));
-			break;
-			case 6:
-			      You_feel("that was a smart thing to do.");
-				gainlevelmaybe();
-			break;
-			case 7:
-				if (Upolyd) u.mh = u.mhmax;
-				else u.uhp = u.uhpmax;
-				You_feel("restored to health!");
-				flags.botl = 1;
-			break;
-			case 8:
-				if (!(HInvis & INTRINSIC)) You_feel("hidden!");
-				else You_feel("able to see what cannot be seen!");
-				HInvis |= FROMOUTSIDE;
-				HSee_invisible |= FROMOUTSIDE;
-			break;
-			case 9:
-				gainstr((struct obj *)0, 0);
-				pline(FunnyHallu ? "You feel like ripping out some trees!" : "You feel stronger!");
-				break;
-			break;
-			case 10:
-				if (ABASE(A_INT) < ATTRMAX(A_INT)) {
-					(void) adjattrib(A_INT, 1, FALSE, TRUE);
-				}
-				else {
-					pline(FunnyHallu ? "Eek, that tasted like rotten oversalted seaweed!" : "For some reason, that tasted bland.");
-				}
-			break;
-			case 11:
-				if (u.contamination && u.contamination < 1000) {
-				decontaminate(100);
-				}
-			break;
-			case 12:
-				if (!Very_fast)
-					You("are suddenly moving %sfaster.", Fast ? "" : "much ");
-				else {
-					Your("%s get new energy.", makeplural(body_part(LEG)));
-				}
-				incr_itimeout(&HFast, rn1(1000, 1000));
-			break;
-			case 13:
-				You_feel("ethereal.");
-				incr_itimeout(&HPasses_walls, rn1(10, 50));
-			break;
-
-		}
+		goodeffect();
 
 		break;
 

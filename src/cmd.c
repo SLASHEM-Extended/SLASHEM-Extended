@@ -12053,6 +12053,10 @@ int final;
 		sprintf(buf, "%d time%s", u.cnd_reallybadeffectcount, plur(u.cnd_reallybadeffectcount));
 		enl_msg(You_, "got hit by really bad effects ", "got hit by really bad effects ", buf);
 	}
+	if (u.cnd_goodeffectcount && final) {
+		sprintf(buf, "%d time%s", u.cnd_goodeffectcount, plur(u.cnd_goodeffectcount));
+		enl_msg(You_, "experienced good effects ", "experienced good effects ", buf);
+	}
 	if (u.cnd_itemportcount && final) {
 		sprintf(buf, "%d item%s teleported out of your inventory", u.cnd_itemportcount, plur(u.cnd_itemportcount));
 		enl_msg(You_, "had ", "had ", buf);
@@ -12661,6 +12665,9 @@ int final;
 
 	sprintf(buf, "%d time%s", u.cnd_reallybadeffectcount, plur(u.cnd_reallybadeffectcount));
 	dump("  You got hit by really bad effects ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_goodeffectcount, plur(u.cnd_goodeffectcount));
+	dump("  You experienced good effects ", buf);
 
 	sprintf(buf, "%d item%s teleported out of your inventory", u.cnd_itemportcount, plur(u.cnd_itemportcount));
 	dump("  You had ", buf);

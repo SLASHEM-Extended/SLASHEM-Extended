@@ -1852,6 +1852,7 @@ struct you {
 	int cnd_traprevealcount;	/* how many traps you revealed magically */
 	int cnd_badeffectcount;	/* how often you got bad effects */
 	int cnd_reallybadeffectcount;	/* how often you got really bad effects */
+	int cnd_goodeffectcount;	/* how often you got good effects */
 	int cnd_itemportcount;	/* how many of your items were teleported away */
 	int cnd_bonescount;	/* how many bones levels you found */
 	int cnd_mommacount;	/* how often your momma was insulted */

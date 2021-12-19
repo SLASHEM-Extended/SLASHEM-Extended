@@ -1522,6 +1522,124 @@ register int amount;
 }
 
 int
+chwepon_other(otmp, amount)
+register struct obj *otmp;
+register int amount;
+{
+	const char *color = hcolor((amount < 0) ? NH_BLACK : NH_BLUE);
+	const char *xtime;
+
+	if(!otmp || (otmp->oclass != WEAPON_CLASS && otmp->oclass != BALL_CLASS && otmp->oclass != GEM_CLASS && otmp->oclass != CHAIN_CLASS && !is_weptool(otmp))) {
+		char buf[BUFSZ];
+
+		sprintf(buf, "Your %s %s.", makeplural(body_part(HAND)),
+			(amount >= 0) ? "twitch" : "itch");
+		exercise(A_DEX, (boolean) (amount >= 0));
+		return(0);
+	}
+
+	if(otmp->otyp == WORM_TOOTH && amount >= 0) {
+		otmp->otyp = CRYSKNIFE;
+		otmp->oerodeproof = 0;
+		Your("weapon seems sharper now.");
+
+		if ((otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(100) ) {
+			otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+		}
+		else if (otmp->prmcurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(10) ) {
+			otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+		}
+		else if (!(otmp->prmcurse) && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && otmp->hvycurse && !rn2(3) ) {
+			otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+		}
+		else if (!(otmp->prmcurse) && !(otmp->hvycurse) && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) ) otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+
+		return(1);
+	}
+
+	if(otmp->otyp == CRYSKNIFE && amount < 0) {
+		if (!otmp->oartifact) otmp->otyp = WORM_TOOTH;
+		otmp->oerodeproof = 0;
+		Your("weapon seems duller now.");
+		return(1);
+	}
+
+	if (amount < 0 && otmp->oartifact && restrict_name(otmp, ONAME(otmp))) {
+	    if (!Blind)
+		Your("%s %s.", aobjnam(otmp, "faintly glow"), color);
+	    return(1);
+	}
+	/* there is a (soft) upper and lower limit to otmp->spe */
+	if(((otmp->spe > (is_droven_weapon(otmp) ? 10 : is_elven_weapon(otmp) ? 8 : 5) && amount >= 0) || (otmp->spe < -5 && amount < 0)) && rn2(3) && !rn2(3) ) {
+
+		if (otmp->oartifact) {
+			otmp->spe = 0;
+		    Your("%s %s for a while and then %s.",
+			 aobjnam(otmp, "violently glow"), color,
+			 otense(otmp, "fade"));
+			return(1);
+		}
+	    if (!Blind)
+	    Your("%s %s for a while and then %s.",
+		 aobjnam(otmp, "violently glow"), color,
+		 otense(otmp, "evaporate"));
+	    else
+		Your("%s.", aobjnam(otmp, "evaporate"));
+
+	    useupall(otmp);	/* let all of them disappear */
+	    return(1);
+	}
+	if (!Blind) {
+	    xtime = (amount*amount == 1) ? "moment" : "while";
+	    Your("%s %s for a %s.",
+		 aobjnam(otmp, amount == 0 ? "violently glow" : "glow"),
+		 color, xtime);
+	}
+	otmp->spe += amount;
+	if (otmp && otmp->oartifact == ART_BOARDED_SHELF && amount > 0 && otmp->spe < 22) otmp->spe += 4;
+	if (Race_if(PM_SPARD) && amount > 0) otmp->spe++;
+	if(amount > 0) {
+
+		if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM) {
+			if (!otmp->cursed) bless(otmp);
+			else uncurse(otmp, FALSE);
+		}
+
+		if ((otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(100) ) {
+			otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+		}
+		else if (otmp->prmcurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(10) ) {
+			otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+		}
+		else if (!(otmp->prmcurse) && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && otmp->hvycurse && !rn2(3) ) {
+			otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+		}
+		else if (!(otmp->prmcurse) && !(otmp->hvycurse) && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) ) otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+
+	}
+
+	/*
+	 * Enchantment, which normally improves a weapon, has an
+	 * addition adverse reaction on Magicbane whose effects are
+	 * spe dependent.  Give an obscure clue here.
+	 */
+	if (otmp->oartifact == ART_MAGICBANE && otmp->spe >= 0) {
+		Your("right %s %sches!",
+			body_part(HAND),
+			(((amount > 1) && (otmp->spe > 1)) ? "flin" : "it"));
+	}
+
+	/* an elven magic clue, cookie@keebler */
+	/* elven weapons vibrate warningly when enchanted beyond a limit */
+	if ((otmp->spe > (is_droven_weapon(otmp) ? 10 : is_elven_weapon(otmp) ? 8 : 5) )
+		&& (is_elven_weapon(otmp) || otmp->oartifact || !rn2(7)))
+	    Your("%s unexpectedly.",
+		aobjnam(otmp, "suddenly vibrate"));
+
+	return(1);
+}
+
+int
 welded(obj)
 register struct obj *obj;
 {
