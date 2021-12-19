@@ -998,6 +998,7 @@ static const char *random_mesg[] = {
 	"Who was it that brings the children? Was it the platypus? Or the disturbenvulture?",
 	"The knackwurst is no cervela.",
 	"Q: Why is spell retention a range? A: Because it's not, it's an exact value. Only weird variants would make the display inaccurate.",
+	"Asian people usually know karate, and all Germans eat sauerkraut with Bavarian veal sausage.",
 
 };
 

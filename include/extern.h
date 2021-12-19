@@ -3030,6 +3030,7 @@ E void techdrainsevere(void);
 E void techlevelup(void);
 E void techlevelspecific(int);
 E void learnrandomregulartech(void);
+E void resettechniqueextra(void);
 
 /* ### teleport.c ### */
 

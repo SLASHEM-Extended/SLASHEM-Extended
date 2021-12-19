@@ -6334,6 +6334,7 @@ struct obj *otmp;
 		|| (!strcmp(word, "poison") && !is_poisonable(otmp))
 		|| (!strcmp(word, "rustproof") && objects[(otmp)->otyp].oc_material == MT_IRON)
 		|| (!strcmp(word, "magically enchant") && !(otmp->owornmask & W_ARMOR) )
+		|| (!strcmp(word, "weapon enchant") && !(otmp->oclass == WEAPON_CLASS || otmp->oclass == BALL_CLASS || otmp->oclass == GEM_CLASS || otmp->oclass == CHAIN_CLASS || is_weptool(otmp) ) )
 		|| ((!strcmp(word, "draw blood with") ||
 			!strcmp(word, "bandage your wounds with")) &&
 		    (otmp->oclass == TOOL_CLASS && otyp != MEDICAL_KIT))
@@ -14353,7 +14354,7 @@ boolean knoweverything;
 			case POT_TRAINING:
 				pline("This very rare potion allows you to pick a skill and double the amount of training in it. It can even allow you to bypass the RNG-decreed limits, but it won't take you over the actual max of your skill (seen in the #enhance screen)."); break;
 			case POT_BENEFICIAL_EFFECT:
-				pline("Quaffing this potion gives a random good effect that can also be gotten from eating a corpse."); break;
+				pline("Quaffing this potion gives a random good effect. If you get lucky, it's something useful."); break;
 			case POT_TECH_LEVEL_UP:
 				pline("This valuable potion can increase the level of a randomly selected technique! However, the technique's level cannot be increased beyond your current character level, so you shouldn't quaff it unless you have at least one technique whose level is below your XL."); break;
 			case POT_RANDOM_INTRINSIC:

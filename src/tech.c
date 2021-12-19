@@ -11983,6 +11983,34 @@ learnrandomregulartech()
 
 }
 
+void
+resettechniqueextra()
+{
+
+	int numtechs;
+	pline("Choose a technique to reset. The prompt will loop until you actually make a choice.");
+resetretrying:
+	for (numtechs = 0; numtechs < MAXTECH && techid(numtechs) != NO_TECH; numtechs++) {
+		if (techid(numtechs) == T_RESET_TECHNIQUE) continue;
+		if (techtout(numtechs) > 0) {
+			pline("Your %s technique is currently on timeout.", techname(numtechs));
+			if (yn("Make this technique usable again?") == 'y') {
+				techtout(numtechs) = 0;
+				pline("The timeout on your %s technique has been set to zero.", techname(numtechs));
+				goto resettechdone;
+			}
+		}
+	}
+	pline("If you don't feel like resetting a technique right now, you can choose to reset none at all.");
+	if (yn("Do you want to reset no technique at all?") == 'y') {
+		goto resettechdone;
+	}
+	goto resetretrying;
+
+resettechdone:
+	return;
+}
+
 #ifdef DEBUG
 void
 wiz_debug_cmd() /* in this case, allow controlled loss of techniques */
