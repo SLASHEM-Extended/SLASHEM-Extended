@@ -17868,6 +17868,9 @@ struct obj *box;	/* null for floor trap */
 	    You("smell paper burning.");
 	if (is_ice(u.ux, u.uy))
 	    melt_ice(u.ux, u.uy);
+
+	if (u.uhp > u.uhpmax) u.uhp = u.uhpmax; /* fail safe */
+
 }
 
 STATIC_OVL void
