@@ -19002,7 +19002,7 @@ drown()
 		    !u.usleep && (Teleport_control || rn2(3) < Luck+2)) {
 		You("attempt a teleport spell.");	/* utcsri!carroll */
 		if (!level.flags.noteleport && !u.antitelespelltimeout) {
-			(void) dotele();
+			(void) dotele_post(FALSE);
 			if(!is_drowningpool(u.ux,u.uy))
 				return(TRUE);
 		} else pline_The("attempted teleport spell fails.");
@@ -19151,7 +19151,7 @@ crystaldrown()
 		    !u.usleep && (Teleport_control || rn2(3) < Luck+2)) {
 		You("attempt a teleport spell.");	/* utcsri!carroll */
 		if (!level.flags.noteleport && !u.antitelespelltimeout) {
-			(void) dotele();
+			(void) dotele_post(FALSE);
 		} else pline_The("attempted teleport spell fails.");
 	}
 	crawl_ok = FALSE;

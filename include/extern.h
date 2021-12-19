@@ -3046,6 +3046,7 @@ E boolean teleport_pet(struct monst *,BOOLEAN_P);
 E void tele(void);
 E void phase_door(BOOLEAN_P);
 E int dotele(void);
+E int dotele_post(BOOLEAN_P);
 E void level_tele(void);
 E void domagicportal(struct trap *);
 E void tele_trap(struct trap *);

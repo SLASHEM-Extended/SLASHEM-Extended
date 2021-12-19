@@ -881,10 +881,20 @@ boolean confused;
 	(void) safe_teledsPD(confused);
 }
 
+/* the player has used the Ctrl-T or "dotele" command, as opposed to automatically trying to teleport after falling into
+ * a pool of water or something. This is a very powerful ability that only costs 30 Pw, so there needs to be a downside */
 int
 dotele()
 {
+	dotele_post(TRUE);
+}
+
+int
+dotele_post(costly)
+boolean costly;
+{
 	struct trap *trap;
+	boolean reallycostly = FALSE;
 
 	trap = t_at(u.ux, u.uy);
 	if (trap && (!trap->tseen || trap->ttyp != TELEP_TRAP))
@@ -929,6 +939,9 @@ dotele()
 		}
 #endif
 	    }
+	    else if (!wizard) {
+		reallycostly = TRUE; /* no trap, and using teleportitis at will */
+	    }
 
 	    if (u.uhunger <= 10 || ACURR(A_STR) < 6) {
 #ifdef WIZARD
@@ -941,6 +954,9 @@ dotele()
 		}
 #endif
 	    }
+
+	    /* unless you have double teleportitis, which will be the case very rarely, you'll be unable to control it */
+	    if (reallycostly && !StrongTeleportation) u.uprops[DEAC_TELEPORT_CONTROL].intrinsic++;
 
 	    energy = objects[SPE_TELEPORT_AWAY].oc_level * 5;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_KATRIN_S_SUDDEN_APPEARANCE) energy /= 2;
@@ -979,7 +995,11 @@ dotele()
 
 	if (next_to_u()) {
 		if (trap && trap->once) vault_tele();
-		else tele();
+		else {
+			tele();
+			/* using teleportitis at will now stuns you, to reduce the player's ability to abuse it --Amy */
+			if (reallycostly) make_stunned(HStun + rn1(3,3), TRUE);
+		}
 		(void) next_to_u();
 	} else {
 		You("%s", shudder_for_moment);

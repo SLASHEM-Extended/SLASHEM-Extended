@@ -2176,7 +2176,7 @@ escape_tomb()
 	if ((Teleportation || can_teleport(youmonst.data)) &&
 	    (Teleport_control || rn2(3) < Luck+2)) {
 		You("attempt a teleport spell.");
-		(void) dotele();	/* calls unearth_you() */
+		(void) dotele_post(FALSE);	/* calls unearth_you() */
 	} else if(u.uburied) { /* still buried after 'port attempt */
 		boolean good;
 
