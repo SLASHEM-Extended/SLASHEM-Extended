@@ -1693,6 +1693,8 @@ struct you {
 
 	int conclusiocount;	/* to check whether Mr. Conclusio can spawn */
 
+	int goodoffercount;	/* getting good effects from offering corpses reduces the odds of getting more of them */
+
 	int persiantimer;	/* for persian boots */
 
 	int stoogedepth;	/* occasionally the three stooges will spawn */

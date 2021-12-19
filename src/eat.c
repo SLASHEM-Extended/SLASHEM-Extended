@@ -4071,6 +4071,11 @@ register int pm;
 			badeffect();
 		}
 
+		if (ptr->msound == MS_CONVERT) {
+			if (rn2(2)) badeffect();
+			else goodeffect();
+		}
+
 		if (dmgtype(ptr, AD_EDGE) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) ) {
 			int edgeeffect;
 			if (touch_petrifies(ptr)) {

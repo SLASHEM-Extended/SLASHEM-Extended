@@ -11107,6 +11107,7 @@ u_init()
 	u.walscholarpass = 0;
 	u.symbiotedmghack = FALSE;
 
+	u.goodoffercount = 10;
 	u.dirtifiedexcalibur = FALSE;
 	u.pervertsex = 0;
 	u.pervertpray = 0;

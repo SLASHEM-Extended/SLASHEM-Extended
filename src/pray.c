@@ -2743,6 +2743,12 @@ dosacrifice()
 		    return(1);
 	    }
 
+		/* the effects from offering corpses are too useless! let's make some other useful stuff that can happen --Amy */
+	    if (!rn2(u.goodoffercount)) {
+		u.goodoffercount++;
+		goodeffect();
+	    }
+
 	    if (!rn2(3)) { change_luck((value * LUCKMAX) / (MAXVALUE * 2));
 	    if ((int)u.uluck < 0) /*u.uluck = 0;*/change_luck(1);
 	    if (u.uluck != saved_luck) {
