@@ -3811,7 +3811,11 @@ boolean is_rlevel;
 		&& !iflags.grmode
 #  endif
 		)
+#ifndef PUBLIC_SERVER
+		/* putty can't display non-printable characters... so let's disable that horrible interface screw --Amy */
 	    monsyms[S_HUMAN] = 0x01; /* smiley face */
+#endif /* PUBLIC_SERVER */
+
 # endif
 	for (i = 0; i < MAXPCHARS; i++)
 	    showsyms[i] = defsyms[i].sym;
