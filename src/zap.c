@@ -165,7 +165,7 @@ struct obj *otmp;
 	case WAN_GOOD_NIGHT:
 	case SPE_GOOD_NIGHT:
 		dmg = d(2,12) + rnz(u.ulevel);
-		if (otyp == SPE_GOOD_NIGHT) dmg = d(2,12) + rnd(rnz(u.ulevel));
+		if (otyp == SPE_GOOD_NIGHT) dmg = d(2,12) + rnd(u.ulevel);
 		if (otyp == WAN_GOOD_NIGHT) dmg += rnz(u.ulevel);
 		if(dbldam) dmg *= 2;
 		dmg += skilldmg;
@@ -187,7 +187,7 @@ struct obj *otmp;
 			if (canseemon(mtmp)) pline("%s is unaffected!", Monnam(mtmp));
 		} else {
 			dmg = d(4,12) + rnz(u.ulevel);
-			if (otyp == SPE_BUBBLEBEAM) dmg = d(4,12) + rnd(rnz(u.ulevel));
+			if (otyp == SPE_BUBBLEBEAM) dmg = d(4,12) + rnd(u.ulevel);
 			if(dbldam) dmg *= 2;
 			dmg += skilldmg;
 			if (canseemon(mtmp)) pline("%s is immersed in a water bubble!", Monnam(mtmp));
@@ -197,7 +197,13 @@ struct obj *otmp;
 
 	case SPE_BATTERING_RAM:
 
-		dmg = d(10, 10) + rnd(rnz(u.ulevel * 4));
+		{
+		boolean willbepushed = TRUE;
+		if (mtmp && bigmonst(mtmp->data) && rn2(2)) willbepushed = FALSE;
+		if (mtmp && (mtmp->data->geno & G_UNIQ) && rn2(3)) willbepushed = FALSE;
+		if (mtmp && (mtmp->data->msize >= MZ_HUGE)) willbepushed = FALSE;
+
+		dmg = d(10, 10) + rnd(u.ulevel * 4);
 
 		if (distu(mtmp->mx, mtmp->my) > 3) {
 			wake = FALSE;
@@ -206,7 +212,7 @@ struct obj *otmp;
 		pline("%s is battered!", Monnam(mtmp));
 		if (dmg > 0) (void) resist(mtmp, otmp->oclass, dmg, NOTELL);
 
-		if (!DEADMONSTER(mtmp)) {
+		if (!DEADMONSTER(mtmp) && willbepushed) {
 			int mdx, mdy;
 			mdx = mtmp->mx + u.dx;
 			mdy = mtmp->my + u.dy;
@@ -220,6 +226,8 @@ struct obj *otmp;
 				    set_apparxy(mtmp);
 				}
 			}
+
+		}
 
 		}
 
@@ -605,6 +613,7 @@ armorsmashdone:
 	case SPE_DREAM_EATER:
 		if (!(mtmp->mcanmove)) {
 			dmg = d(8,12) + rnz(u.ulevel * 3);
+			if (otyp == SPE_DREAM_EATER) dmg = d(8,12) + rnd(u.ulevel * 3);
 			if(dbldam) dmg *= 2;
 			dmg += skilldmg;
 			if (canseemon(mtmp)) pline("%s's dream is eaten!", Monnam(mtmp));
@@ -691,6 +700,7 @@ armorsmashdone:
 	case WAN_CHLOROFORM:
 	case SPE_CHLOROFORM:
 		dmg = d(2, 9) + (rnz(u.ulevel) / 2);
+		if (otyp == SPE_CHLOROFORM) dmg = d(2, 9) + (rnd(u.ulevel) / 2);
 		if (otyp == WAN_CHLOROFORM) dmg += (rnz(u.ulevel) / 2);
 		if(dbldam) dmg *= 2;
 		dmg += skilldmg;
@@ -1137,7 +1147,7 @@ armorsmashdone:
 			pline("%s is frozen by the beam.", Monnam(mtmp) );
 		}
 		mtmp->mcanmove = 0;
-		mtmp->mfrozen = rn2(3) ? rnz(5) : rnz(5 + skilldmg);
+		mtmp->mfrozen = rn2(3) ? rno(5) : rno(5 + skilldmg);
 		mtmp->mstrategy &= ~STRAT_WAITFORU;
 
 		break;

@@ -3838,6 +3838,15 @@ castanyway:
 	case SPE_HYPER_BEAM:
 	case SPE_PARALYSIS:
 
+		if (pseudo->otyp == SPE_BATTERING_RAM) {
+			if (u.battertimer) {
+				You("need to wait %d more turns to ready the ram. Battering ram can be used again at turn %ld.", u.battertimer, (moves + u.battertimer));
+				break;
+			} else {
+				u.battertimer = 2;
+			}
+		}
+
 		if (pseudo->otyp == SPE_PARTICLE_CANNON) {
 			if (u.gaugetimer) {
 				You("need to wait %d more turns to refill your gauge. The particle cannon can be used again at turn %ld.", u.gaugetimer, (moves + u.gaugetimer));
@@ -10570,6 +10579,12 @@ rerollX:
 	}
 	if (pseudo && (pseudo->otyp == SPE_ONE_POINT_SHOOT)) {
 		pline("One Point Shoot can be used again at turn %ld.", (moves + u.gaugetimer));
+	}
+	if (pseudo && (pseudo->otyp == SPE_BATTERING_RAM)) {
+		pline("Battering Ram can be used again at turn %ld.", (moves + u.battertimer));
+	}
+	if (pseudo && (pseudo->otyp == SPE_BUBBLING_HOLE)) {
+		nomul(-2, "recovering from the bubbling hole", TRUE);
 	}
 
 	obfree(pseudo, (struct obj *)0);	/* now, get rid of it */

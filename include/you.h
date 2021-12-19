@@ -1689,6 +1689,7 @@ struct you {
 	boolean fungalsandals;
 
 	int gaugetimer;	/* one point shoot and particle cannon require 50 turns to reload */
+	int battertimer;	/* battering ram requires 2 turns to reload */
 
 	int conclusiocount;	/* to check whether Mr. Conclusio can spawn */
 

@@ -15015,7 +15015,7 @@ boolean knoweverything;
 			case SPE_GEYSER:
 				pline("You can cast this spell in a direction of your choice, dealing good damage to monsters in a line, but swimming or otherwise water-based ones are immune."); break;
 			case SPE_BUBBLING_HOLE:
-				pline("The bubbling hole spell targets an adjacent monster that you can choose. If possible, the monster will rise through the ceiling to the level above, or if for some reason that doesn't work, the monster will hit its head on the ceiling and take great damage."); break;
+				pline("The bubbling hole spell targets an adjacent monster that you can choose. If possible, the monster will rise through the ceiling to the level above, or if for some reason that doesn't work, the monster will hit its head on the ceiling and take great damage. However, you'll be paralyzed for a turn after casting it."); break;
 			case SPE_PURIFICATION:
 				pline("Cast this to turn adjacent styx rivers into water."); break;
 			case SPE_ADD_SPELL_MEMORY:
@@ -15495,7 +15495,7 @@ boolean knoweverything;
 			case SPE_THUNDER_WAVE:
 				pline("Monsters adjacent to you are shocked and may be paralyzed, but they get a resistance check."); break;
 			case SPE_BATTERING_RAM:
-				pline("A very powerful spell that deals huge irresistible damage to a single monster standing right next to you, and will also try to push it back."); break;
+				pline("A very powerful spell that deals huge irresistible damage to a single monster standing right next to you, and will also try to push it back (bigger monsters as well as bosses might resist the latter effect). It requires two turns to reload though, so it's useless to try spamming the spell against a monster."); break;
 			case SPE_BURROW:
 				pline("Casting this spell causes you to burrow yourself into the ground, becoming immobile until you dig yourself out, but your armor class is also greatly increased as long as you're still burrowed."); break;
 			case SPE_GAIN_CORRUPTION:

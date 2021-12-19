@@ -379,6 +379,12 @@ nh_timeout()
 		if (u.gaugetimer < 0) u.gaugetimer = 0; /* fail safe */
 	}
 
+	if (u.battertimer) {
+		u.battertimer--;
+		if (!u.battertimer) Your("battering ram is ready again.");
+		if (u.battertimer < 0) u.battertimer = 0; /* fail safe */
+	}
+
 	if (u.garbagetrucktime) {
 		u.garbagetrucktime--;
 		if (u.garbagetrucktime < 0) u.garbagetrucktime = 0; /* fail safe */
