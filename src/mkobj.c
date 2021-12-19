@@ -2344,6 +2344,11 @@ boolean shopinit;
 			if (!rn2(50)) otmp->quan += rnz(otmp->quan + 3);
 			if (!rn2(50)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
 		}
+		if (In_lategame(&u.uz) && !issoviet && !rn2(is_multigen(otmp) ? 6 : is_lower_multigen(otmp) ? 20 : 1000) ) {
+			otmp->quan += rnd(otmp->quan);
+			if (!rn2(20)) otmp->quan += rnz(otmp->quan + 3);
+			if (!rn2(50)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
+		}
 
 		if (Race_if(PM_JAVA) && (otmp->otyp == JAVELIN || otmp->otyp == ASBESTOS_JAVELIN || otmp->otyp == STACK_JAVELIN || otmp->otyp == SPIRIT_THROWER || otmp->otyp == COURSE_JAVELIN || otmp->otyp == BRICK_MISSILE || otmp->otyp == TORPEDO || otmp->otyp == HOMING_TORPEDO)) {
 			otmp->quan += rnd(5);
@@ -2449,6 +2454,16 @@ boolean shopinit;
 	    case SLIME_MOLD:
 		otmp->spe = current_fruit;
 		otmp->quan = (long) rnd(15);
+		if (!issoviet && !rn2(20) ) {
+			otmp->quan += rnd(otmp->quan);
+			if (!rn2(50)) otmp->quan += rnz(otmp->quan + 3);
+			if (!rn2(50)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
+		}
+		if (In_lategame(&u.uz) && !issoviet && !rn2(6) ) {
+			otmp->quan += rnd(otmp->quan);
+			if (!rn2(20)) otmp->quan += rnz(otmp->quan + 3);
+			if (!rn2(50)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
+		}
 		blessorcurse_on_creation(otmp, 10);
 		break;
 	    case APPLE:
@@ -2462,6 +2477,16 @@ boolean shopinit;
 	    case MELON:
 	    case KELP_FROND:
 		otmp->quan = (long) rnd(5);
+		if (!issoviet && !rn2(20) ) {
+			otmp->quan += rnd(otmp->quan);
+			if (!rn2(50)) otmp->quan += rnz(otmp->quan + 3);
+			if (!rn2(50)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
+		}
+		if (In_lategame(&u.uz) && !issoviet && !rn2(6) ) {
+			otmp->quan += rnd(otmp->quan);
+			if (!rn2(20)) otmp->quan += rnz(otmp->quan + 3);
+			if (!rn2(50)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
+		}
 		blessorcurse_on_creation(otmp, 10);
 		break;
 	    }
@@ -2562,6 +2587,11 @@ boolean shopinit;
 			if (!rn2(50)) otmp->quan += rnz(otmp->quan + 3);
 			if (!rn2(50)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
 		}
+		if (In_lategame(&u.uz) && !issoviet && !rn2(6) ) {
+			otmp->quan += rnd(otmp->quan);
+			if (!rn2(20)) otmp->quan += rnz(otmp->quan + 3);
+			if (!rn2(50)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
+		}
 
 		if(!rn2(ishaxor ? 4 : 8)) {
 			otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
@@ -2624,9 +2654,24 @@ boolean shopinit;
 					}
 
 					if (ishaxor) otmp->age *= 2;
+
+					if (!rn2(6) && In_lategame(&u.uz)) {
+						otmp->age += rnd(otmp->age);
+					}
+
 					otmp->lamplit = 0;
 					otmp->quan = 1L +
 					      (long)(rn2(2) ? rn2(7) : 0);
+					if (!issoviet && !rn2(20) ) {
+						otmp->quan += rnd(otmp->quan);
+						if (!rn2(50)) otmp->quan += rnz(otmp->quan + 3);
+						if (!rn2(50)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
+					}
+					if (In_lategame(&u.uz) && !issoviet && !rn2(6) ) {
+						otmp->quan += rnd(otmp->quan);
+						if (!rn2(20)) otmp->quan += rnz(otmp->quan + 3);
+						if (!rn2(50)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
+					}
 					blessorcurse_on_creation(otmp, 5);
 					break;
 	        case TORCH:	        otmp->spe = 0;
@@ -2639,8 +2684,23 @@ boolean shopinit;
 					}
 
 					if (ishaxor) otmp->age *= 2;
+
+					if (!rn2(6) && In_lategame(&u.uz)) {
+						otmp->age += rnd(otmp->age);
+					}
+
 					otmp->lamplit = 0;
 					otmp->quan = rnd(3);
+					if (!issoviet && !rn2(20) ) {
+						otmp->quan += rnd(otmp->quan);
+						if (!rn2(50)) otmp->quan += rnz(otmp->quan + 3);
+						if (!rn2(50)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
+					}
+					if (In_lategame(&u.uz) && !issoviet && !rn2(6) ) {
+						otmp->quan += rnd(otmp->quan);
+						if (!rn2(20)) otmp->quan += rnz(otmp->quan + 3);
+						if (!rn2(50)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
+					}
 					blessorcurse_on_creation(otmp, 5);
 					break;
 		case BRASS_LANTERN:
@@ -2655,6 +2715,11 @@ boolean shopinit;
 						otmp->age = rnz(1000);
 					}
 					if (ishaxor) otmp->age *= 2;
+
+					if (!rn2(6) && In_lategame(&u.uz)) {
+						otmp->age += rnd(otmp->age);
+					}
+
 					otmp->lamplit = 0;
 					blessorcurse_on_creation(otmp, 5);
 					break;
@@ -2705,6 +2770,10 @@ boolean shopinit;
 			if (otmp->otyp == LASER_TIN_OPENER) otmp->age += rnz(5000);
 
 			if (ishaxor) otmp->age *= 2;
+
+			if (!rn2(6) && In_lategame(&u.uz)) {
+				otmp->age += rnd(otmp->age);
+			}
 
 			if(!rn2(ishaxor ? 3 : 6)) {
 				otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
@@ -2939,6 +3008,14 @@ boolean shopinit;
 		       if (rn2(3)) otmp->spe = rne(2)+1;
 		       else otmp->spe = -(rne(2)+1);
 		    }
+
+			if ((otmp->spe > 0) && !rn2(6) && In_lategame(&u.uz)) {
+				otmp->spe += rnd(otmp->spe);
+			}
+			if ((otmp->spe < 0) && !rn2(6) && In_lategame(&u.uz)) {
+				otmp->spe -= rnd(abs(otmp->spe));
+			}
+
 			if ((Race_if(PM_LISTENER) || RngeListening) && !Hallucination && (rnd(30) > ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
 
 		    /* negative implants are usually cursed */
@@ -3002,6 +3079,10 @@ boolean shopinit;
 				if (otmp->otyp == BLACK_LIGHTSABER) otmp->age += rnz(5000);
 
 				if (ishaxor) otmp->age *= 2;
+
+				if (!rn2(6) && In_lategame(&u.uz)) {
+					otmp->age += rnd(otmp->age);
+				}
 
 				break;
 		}
@@ -3077,6 +3158,17 @@ boolean shopinit;
 		|| otmp->otyp == SCR_MAIL
 #endif
 		|| otmp->otyp == SCR_CURE || otmp->otyp == SCR_PHASE_DOOR) ) otmp->finalcancel = TRUE;
+
+		if (!issoviet && !rn2(500) && otmp->otyp != SCR_CREATE_CREATE_SCROLL ) {
+			otmp->quan += rnd(4);
+			if (!rn2(50)) otmp->quan += rnz(otmp->quan + 3);
+			if (!rn2(50)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
+		}
+		if (In_lategame(&u.uz) && !issoviet && !rn2(100) && otmp->otyp != SCR_CREATE_CREATE_SCROLL ) {
+			otmp->quan += rnd(4);
+			if (!rn2(20)) otmp->quan += rnz(otmp->quan + 3);
+			if (!rn2(50)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
+		}
 
 		break;
 	case SPBOOK_CLASS:
@@ -3248,6 +3340,13 @@ boolean shopinit;
 		if (!rn2(3) && !issoviet) otmp->spe -= rnd(3); /* allow random useless wands to spawn --Amy */
 		/* "Remove chance of non-charged wands spawning." In Soviet Russia, players don't realize that a lower chance of finding useful stuff makes the game more interesting. The pre-cancelled wands are actually there for a reason: that way, players trying to zap-identify can randomly vaporize their wands if they happen to be cancelled, making identification more useful! --Amy */
 
+		/* in the late game, wands may generate with more charges but only if they're a type that can be recharged
+		 * indefinitely, as we once again need to keep things balanced --Amy */
+		if ((otmp->spe > 0) && !rn2(6) && In_lategame(&u.uz)) {
+			if (!(otmp->otyp == WAN_WISHING || otmp->otyp == WAN_CHARGING || otmp->otyp == WAN_ACQUIREMENT || otmp->otyp == WAN_GAIN_LEVEL || otmp->otyp == WAN_INCREASE_MAX_HITPOINTS))
+			otmp->spe += rnd(otmp->spe);
+		}
+
 		blessorcurse_on_creation(otmp, 17);
 		if (otmp->otyp != WAN_WISHING && otmp->otyp != WAN_ACQUIREMENT && otmp->otyp != WAN_GENOCIDE && otmp->otyp != WAN_GAIN_LEVEL && otmp->otyp != WAN_INCREASE_MAX_HITPOINTS) otmp->recharged = 0; /* used to control recharging */
 		if (!rn2(10)) otmp->recharged = rnd(7); /* allow recharged wands to spawn --Amy */
@@ -3285,6 +3384,14 @@ boolean shopinit;
 		       if (rn2(3)) otmp->spe = rne(2)+1;
 		       else otmp->spe = -(rne(2)+1);
 		    }
+
+			if ((otmp->spe > 0) && !rn2(6) && In_lategame(&u.uz)) {
+				otmp->spe += rnd(otmp->spe);
+			}
+			if ((otmp->spe < 0) && !rn2(6) && In_lategame(&u.uz)) {
+				otmp->spe -= rnd(abs(otmp->spe));
+			}
+
 			if ((Race_if(PM_LISTENER) || RngeListening) && !Hallucination && (rnd(30) > ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
 
 		    /* negative rings are usually cursed */

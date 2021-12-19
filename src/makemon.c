@@ -189,6 +189,11 @@ int otyp,oquan;
 		if (!rn2(1000)) otmp->quan += rnz(otmp->quan + 3);
 		if (!rn2(1000)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
 	}
+	if (In_lategame(&u.uz) && !issoviet) {
+		if (!rn2(6)) otmp->quan += rnd(otmp->quan);
+		if (!rn2(50)) otmp->quan += rnz(otmp->quan + 3);
+		if (!rn2(200)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
+	}
 	otmp->owt = weight(otmp);
 	if (otyp == ORCISH_ARROW) otmp->opoisoned = TRUE;
 	if (otyp == CROSSBOW_BOLT && mtmp->data == &mons[PM_POISON_ARROW_FROG]) otmp->opoisoned = TRUE;
