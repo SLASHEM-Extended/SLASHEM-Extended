@@ -997,6 +997,7 @@ static const char *random_mesg[] = {
 	"Es war einmal ein Fraeuelein, das war ganz gemeinelein. Da brach sie sich ein Naegelein, und fing an zu schreielein.",
 	"Who was it that brings the children? Was it the platypus? Or the disturbenvulture?",
 	"The knackwurst is no cervela.",
+	"Q: Why is spell retention a range? A: Because it's not, it's an exact value. Only weird variants would make the display inaccurate.",
 
 };
 
@@ -5530,6 +5531,8 @@ static const char *epitaphs[] = {
 	"I cannot imagine the mental disorder that would make a person *want* to wear shoes that are so terrible, practice is required just to walk in them.",
 	"She got stuck with her stiletto heel in a tiny little crevice so badly that she fell against a massive stone statue, hitting her head and dying instantly.",
 	"You fucking bumped into a fucking peaceful monster with a fucking Stormbringer for fuck's sake!",
+	"Internet cancel culture is just terrible. All it takes is one person in a position of power who declares your game dead, and all of their followers will mindlessly follow suit and treat your game as if it never existed, even those who used to play and enjoy it. That is the fate that befell slex.",
+	"Balance? What's that? No one needs that. Let's just throw everything into the game that we can think of, and call it a day.",
 
 };
 

@@ -7256,6 +7256,11 @@ SCROLL((char *)0,               "ERSTEMOL DRUFFWESCHE",  P_NONE,     1,   0, 100
 SCROLL((char *)0,               "MAPS CONTINUED",  P_NONE,     1,   0, 100, CLR_RED, 1),
 SCROLL((char *)0,               "QUADRATISCH PRAKTISCH BLOCKABSATZ",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
 SCROLL((char *)0,               "WHAT I AM NOT BEBING",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
+SCROLL((char *)0,               "BUCK PAD FEOPLE",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "I E JOYN I E FUN I E SEASONS IN THE SUN",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
+SCROLL((char *)0,               "DU GEHOERST GEAENDERHOLT",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
+SCROLL((char *)0,               "VSP OAA RNU AKL NTI",  P_NONE,     1,   0, 100, CLR_RED, 1),
+SCROLL((char *)0,               "FREEDOM FOR NON VACCINATED PEOPLE",  P_NONE,     1,   0, 100, CLR_BRIGHT_GREEN, 1),
 
 
 #ifdef MAIL

@@ -808,6 +808,10 @@ doread()
 	"Bah, fuck off. Just because you're too stupid to program your shit properly doesn't mean I h@cked into your database.",
 	"What? I am not bebing.",
 	"What? I am not bebing. I'm GnollhackIsGreat, aka Amy or the person that the entire nethack community hates for no reason.",
+	"I just want things to be normal again. I want to live in a world where there's no vaccines, masks, or gay social distancing protocols.",
+	"You should be changegotten.",
+	"h = n - 6, d = s - 11, f = a + 5",
+	"Of course SLEX is worth touching. Don't be such a fucking SJW dick.",
 
 
 	    };
