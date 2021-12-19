@@ -1755,7 +1755,7 @@ int thrown;
 			case P_EXPERT:	djemsochance =  4; break;
 			case P_MASTER:	djemsochance =  6; break;
 			case P_GRAND_MASTER:	djemsochance =  8; break;
-			case P_SUPREME_MASTER:	djemsochance =  10; break;
+			case P_SUPREME_MASTER:	djemsochance =  9; break;
 			default: djemsochance = 0; break;
 		}
 	}
@@ -1801,8 +1801,8 @@ int thrown;
 		if (
 			(obj->oartifact == ART_MJOLLNIR && Role_if(PM_VALKYRIE) && rn2(100)) ||
 
-			(is_lightsaber(obj) && obj->lamplit && (rn2(2) || (djemsochance >= rnd(11)) ) &&
-			( (Role_if(PM_JEDI) && P_SKILL(weapon_type(obj)) > P_SKILLED) || (!rn2(2) && P_SKILL(weapon_type(obj)) > P_SKILLED) || (djemsochance >= rnd(11)) ) ) ||
+			(is_lightsaber(obj) && obj->lamplit && (rn2(2) || (djemsochance >= rn2(11)) ) &&
+			( (Role_if(PM_JEDI) && P_SKILL(weapon_type(obj)) > P_SKILLED) || (!rn2(2) && P_SKILL(weapon_type(obj)) > P_SKILLED) || (djemsochance >= rn2(11)) ) ) ||
 
 			((objects[obj->otyp].oc_skill == P_BOOMERANG || objects[obj->otyp].oc_skill == -P_BOOMERANG) &&
 			((boomerangchance > rn2(100)) || (obj->oartifact && !rn2(3)) ) )
