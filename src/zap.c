@@ -9504,6 +9504,7 @@ sigilcontroldirection:
 			if (!otmp) {
 			    /* normal non-fatal hit */
 			    hit(fltxt, mon, exclam(tmp));
+				monster_pain(mon);
 				wounds_message(mon);
 			    if (mblamed && mblamed != mon &&
 				    !DEADMONSTER(mblamed) &&
@@ -10728,7 +10729,10 @@ int damage, tell;
 		if(m_using) monkilled(mtmp, "", AD_RBRE);
 		else killed(mtmp);
 	    }
-	    else wounds_message(mtmp);
+	    else {
+		monster_pain(mtmp);
+		wounds_message(mtmp);
+	    }
 	}
 	return(resisted);
 }

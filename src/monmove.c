@@ -2205,6 +2205,11 @@ toofar:
 			int res;
 			res = mattackm(mtmp, mtmp2);
 			if (res & MM_AGR_DIED) return 1; /* Oops. */
+			/* now the pet should be able to fight back if it's still alive */
+			if (rn2(4) && !(res & MM_AGR_DIED) && !(res & MM_DEF_DIED) && ((res & MM_HIT) || !rn2(5)) ) {
+				res = mattackm(mtmp2, mtmp);
+				if (res & MM_DEF_DIED) return 1; /* Oops. */
+			}
 		}
 	}
 

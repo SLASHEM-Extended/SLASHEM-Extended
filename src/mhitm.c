@@ -248,7 +248,9 @@ fightm(mtmp)		/* have monsters fight each other */
 			if (mon->movement < 0) mon->movement = 0; /* fail safe */
 			notonhead = 0;
 
-			if (!DEADMONSTER(mon) && !DEADMONSTER(mtmp)) (void) mattackm(mon, mtmp);	/* return attack */
+			if (!DEADMONSTER(mon) && !DEADMONSTER(mtmp)) {
+				(void) mattackm(mon, mtmp);	/* return attack */
+			}
 		    }
 
 		    return ((result & MM_HIT) ? 1 : 0);
@@ -3327,8 +3329,10 @@ struct monst *magr, *mdef;
 		mondied(mdef);
 		return MM_DEF_DIED | MM_HIT;
 	    }
-	    else
+	    else {
+		monster_pain(mdef);
 		return MM_HIT;
+	    }
 	}
     }
 
@@ -6378,6 +6382,8 @@ physical:
 	    return (MM_DEF_DIED |
 		    ((magr->mhp > 0 && grow_up(magr,mdef)) ? 0 : MM_AGR_DIED));
 	}
+	if (mdef->mhp > 0) monster_pain(mdef);
+
 	return(MM_HIT);
 }
 

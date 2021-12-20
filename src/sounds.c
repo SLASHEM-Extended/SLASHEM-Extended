@@ -4452,6 +4452,18 @@ dotalk()
     return result;
 }
 
+/* monster got hit, and can now emit a pain sound or otherwise display a message for the player; it shouldn't always do so,
+ * but every once in a while, so that the player can gauge roughly how much damage they're doing to a monster,
+ * or (more importantly) how much their pet has been hurt, to make it possible to tell when they're in need of healing
+ * without constantly needing to stethoscope or chat to them (which requires you to be adjacent to them and often also
+ * wastes a turn, which isn't always an option in the middle of a fight). --Amy */
+void
+monster_pain(mtmp)
+register struct monst *mtmp;
+{
+	return; /* todo */
+}
+
 static int
 dochat()
 {

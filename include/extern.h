@@ -2908,6 +2908,7 @@ E void playerrattlebones(void);
 E void conversionsermon(void);
 E void wouwoutaunt(void);
 E void supermantaunt(void);
+E void monster_pain(struct monst *);
 
 /* ### sys/msdos/sound.c ### */
 

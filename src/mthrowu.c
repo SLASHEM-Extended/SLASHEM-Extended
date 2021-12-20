@@ -1224,6 +1224,7 @@ blockingdone:
 		    xkilled(mtmp,0);
 		else mondied(mtmp);
 	    }
+	    if (mtmp->mhp > 0) monster_pain(mtmp);
 
 	    if (can_blnd((struct monst*)0, mtmp,
 		    (uchar)(otmp->otyp == BLINDING_VENOM ? AT_SPIT : AT_WEAP),
