@@ -4461,7 +4461,449 @@ void
 monster_pain(mtmp)
 register struct monst *mtmp;
 {
-	return; /* todo */
+	int painchance = 10;
+	boolean soundbased = FALSE;
+	int distresslevel = 0;
+
+	if (!mtmp) {
+		impossible("monster_pain called with nonexistant monster!");
+		return;
+	}
+
+	if (mtmp->mhp < (mtmp->mhpmax / 4)) distresslevel = 3;
+	else if (mtmp->mhp < (mtmp->mhpmax / 2)) distresslevel = 2;
+	else if (mtmp->mhp < (mtmp->mhpmax * 3 / 4)) distresslevel = 1;
+
+	if (distresslevel == 0) return; /* didn't lose enough health yet */
+
+	if (mtmp->data->msound == MS_SILENT) return; /* never emits any sound */
+	if (mtmp->data->msound == MS_SISSY) painchance = 0; /* always emits a sound whenever it's damaged */
+
+	/* petkeeping skill makes it more likely for pets to make sounds, so that you can see how much they've been hurt */
+	if (mtmp->mtame) {
+		if (!PlayerCannotUseSkills) {
+			switch (P_SKILL(P_PETKEEPING)) {
+		      	case P_BASIC:	painchance -= 1; break;
+		      	case P_SKILLED:	painchance -= 2; break;
+		      	case P_EXPERT:	painchance -= 3; break;
+		      	case P_MASTER:	painchance -= 4; break;
+		      	case P_GRAND_MASTER:	painchance -= 5; break;
+		      	case P_SUPREME_MASTER:	painchance -= 6; break;
+		      	default: break;
+			}
+
+		}
+	}
+
+	/* riding skill makes it more likely for your steed to make sounds, even if the steed isn't tame */
+	if (u.usteed && (u.usteed == mtmp)) {
+		if (!PlayerCannotUseSkills) {
+			switch (P_SKILL(P_RIDING)) {
+		      	case P_BASIC:	painchance -= 1; break;
+		      	case P_SKILLED:	painchance -= 2; break;
+		      	case P_EXPERT:	painchance -= 3; break;
+		      	case P_MASTER:	painchance -= 4; break;
+		      	case P_GRAND_MASTER:	painchance -= 5; break;
+		      	case P_SUPREME_MASTER:	painchance -= 6; break;
+		      	default: break;
+			}
+		}
+	}
+	if (painchance < 0) painchance = 0; /* fail safe */
+
+	if (painchance >= (rnd(11))) return;
+
+	/* some of these are sound-based, others are vision-based */
+	switch (mtmp->data->msound) {
+		default:
+			break;
+		case MS_HUMANOID:
+		case MS_ARREST:
+		case MS_SOLDIER:
+		case MS_CUSS:
+		case MS_SUPERMAN:
+		case MS_CONVERT:
+		case MS_JAPANESE:
+		case MS_SOVIET:
+		case MS_BRAG:
+		case MS_PRINCESSLEIA:
+		case MS_SISSY:
+		case MS_BOT:
+			soundbased = TRUE;
+			break;
+	}
+
+	if (soundbased && !flags.soundok) return; /* can't hear */
+	if (soundbased && mtmp->data->msound != MS_SISSY && (distu(mtmp->mx,mtmp->my) > (BOLT_LIM+1)*(BOLT_LIM+1)) ) return; /* too far away */
+	if (!soundbased && mtmp->data->msound != MS_GIBBERISH && !cansee(mtmp->mx, mtmp->my)) return; /* can't see */
+
+	switch (mtmp->data->msound) {
+
+		default:
+		case MS_BARK:
+		case MS_MEW:
+		case MS_ROAR:
+		case MS_GROWL:
+		case MS_SQEEK:
+		case MS_SQAWK:
+		case MS_HISS:
+		case MS_BUZZ:
+		case MS_GRUNT:
+		case MS_NEIGH:
+		case MS_WAIL:
+		case MS_GURGLE:
+		case MS_BURBLE:
+		/*case MS_ANIMAL: -- duplicate */ 
+		case MS_SHRIEK:
+		case MS_BONES:
+		case MS_LAUGH:
+		case MS_MUMBLE:
+		case MS_IMITATE:
+		/*case MS_ORC: -- duplicate */
+		case MS_GUARD:
+		case MS_DJINNI:
+		case MS_NURSE:
+		case MS_SEDUCE:
+		case MS_VAMPIRE:
+		case MS_BRIBE:
+		case MS_RIDER:
+		case MS_LEADER:
+		case MS_NEMESIS:
+		case MS_GUARDIAN:
+		case MS_SELL:
+		case MS_ORACLE:
+		case MS_PRIEST:
+		case MS_SPELL:
+		case MS_WERE:
+		case MS_BOAST:
+		case MS_GYPSY:
+		case MS_SHEEP:
+		case MS_CHICKEN:
+		case MS_COW:
+		case MS_PARROT:
+		case MS_VICE:
+		case MS_BOSS:
+		case MS_SOUND:
+		case MS_STENCH:
+		case MS_CASINO:
+		case MS_GLYPHS:
+		case MS_SNORE:
+		case MS_PHOTO:
+		case MS_REPAIR:
+		case MS_DRUGS:
+		case MS_COMBAT:
+		case MS_MUTE:
+		case MS_CORONA:
+		case MS_TRUMPET:
+		case MS_PAIN:
+		case MS_SING:
+		case MS_ALLA:
+		case MS_POKEDEX:
+		case MS_APOC:
+			switch (distresslevel) {
+				case 1:
+					pline("%s screams.", Monnam(mtmp));
+					break;
+				case 2:
+					pline("%s writhes in pain.", Monnam(mtmp));
+					break;
+				case 3:
+					pline("%s is severely hurt!", Monnam(mtmp));
+					break;
+			}
+			break;
+		case MS_HUMANOID:
+			switch (distresslevel) {
+				case 1:
+					pline("%s shouts 'I'm hit!'", Monnam(mtmp));
+					break;
+				case 2:
+					pline("%s shouts 'Need a healing potion!'", Monnam(mtmp));
+					break;
+				case 3:
+					pline("%s groans 'I'm close to death!'", Monnam(mtmp));
+					break;
+			}
+			break;
+		case MS_ARREST:
+			switch (distresslevel) {
+				case 1:
+					pline("%s shouts 'Unit %d was hit!'", Monnam(mtmp), mtmp->m_id);
+					break;
+				case 2:
+					pline("%s shouts 'Officer in need of a backup!'", Monnam(mtmp));
+					break;
+				case 3:
+					pline("%s shouts 'Emergency! Unit %d confronted with extreme resistance!'", Monnam(mtmp), mtmp->m_id);
+					break;
+			}
+			break;
+		case MS_SOLDIER:
+			switch (distresslevel) {
+				case 1:
+					pline("%s shouts 'Medic!'", Monnam(mtmp));
+					break;
+				case 2:
+					pline("%s shouts 'Excuse me! I'm in need of medical attention!'", Monnam(mtmp));
+					break;
+				case 3:
+					pline("%s shouts 'God dammit!'", Monnam(mtmp));
+					break;
+			}
+			break;
+		case MS_CUSS:
+			switch (distresslevel) {
+				case 1:
+					pline("%s shouts 'Fuck! I'm hit!'", Monnam(mtmp));
+					break;
+				case 2:
+					pline("%s shouts 'Damn those assholes!'", Monnam(mtmp));
+					break;
+				case 3:
+					pline("%s shouts 'Your mother is such a cunt!'", Monnam(mtmp));
+					break;
+			}
+			break;
+		case MS_WHORE:
+			switch (distresslevel) {
+				case 1:
+					pline("%s complains about a broken nail.", Monnam(mtmp));
+					break;
+				case 2:
+					pline("%s's makeup is running down %s cheeks.", Monnam(mtmp), mhis(mtmp));
+					break;
+				case 3:
+					pline("%s is badly bruised.", Monnam(mtmp));
+					break;
+			}
+			break;
+		case MS_SUPERMAN:
+			switch (distresslevel) {
+				case 1:
+					verbalize("GRRRR!");
+					break;
+				case 2:
+					verbalize("ARRRRH! REVENGE!");
+					break;
+				case 3:
+					verbalize("KILL THEM ALL!");
+					break;
+			}
+			break;
+		case MS_FART_QUIET:
+		case MS_FART_NORMAL:
+		case MS_FART_LOUD:
+			switch (distresslevel) {
+				case 1:
+					pline("%s's butt cheeks are bruised.", Monnam(mtmp));
+					break;
+				case 2:
+					pline("%s's butt cheeks look sore.", Monnam(mtmp));
+					break;
+				case 3:
+					pline("%s's butt cheeks are bleeding...", Monnam(mtmp));
+					break;
+			}
+			break;
+		case MS_SHOE:
+		case MS_SOCKS:
+		case MS_PANTS:
+			switch (distresslevel) {
+				case 1:
+					pline("%s's material seems to degrade.", Monnam(mtmp));
+					break;
+				case 2:
+					pline("%s looks a bit worn-out.", Monnam(mtmp));
+					break;
+				case 3:
+					pline("%s seems about to fall apart!", Monnam(mtmp));
+					break;
+			}
+			break;
+		case MS_CONVERT:
+			switch (distresslevel) {
+				case 1:
+					pline("%s shouts 'Kafirler!'", Monnam(mtmp));
+					break;
+				case 2:
+					pline("%s shouts 'Allah seni cezalandiracak!'", Monnam(mtmp));
+					break;
+				case 3:
+					pline("%s grumbles 'Cennette beni bekleyen bir suerue bakire var...'", Monnam(mtmp));
+					break;
+			}
+			break;
+		case MS_HCALIEN:
+			switch (distresslevel) {
+				case 1:
+					pline("%s looks annoyed.", Monnam(mtmp));
+					break;
+				case 2:
+					pline("%s seems to be angry at the enemy who attacked %s.", Monnam(mtmp), mhim(mtmp));
+					break;
+				case 3:
+					pline("%s's facial expression is very threatening.", Monnam(mtmp));
+					break;
+			}
+			break;
+		case MS_GIBBERISH:
+			pline("%s", generate_garbage_string());
+			break;
+		case MS_HANDY: /* todo for when they're in the middle of a call */
+			switch (distresslevel) {
+				case 1:
+					pline("%s screams.", Monnam(mtmp));
+					break;
+				case 2:
+					pline("%s writhes in pain.", Monnam(mtmp));
+					break;
+				case 3:
+					pline("%s is severely hurt!", Monnam(mtmp));
+					break;
+			}
+			break;
+		case MS_CAR:
+			switch (distresslevel) {
+				case 1:
+					pline("%s is dented.", Monnam(mtmp));
+					break;
+				case 2:
+					pline("Splinters of %s's chassis are flying around!", mon_nam(mtmp));
+					break;
+				case 3:
+					pline("%s looks quite a bit like a car wreck!", Monnam(mtmp));
+					break;
+			}
+			break;
+		case MS_JAPANESE:
+			switch (distresslevel) {
+				case 1:
+					pline("%s shouts 'Karera no ken ga watashi o osotta!'", Monnam(mtmp));
+					break;
+				case 2:
+					pline("%s shouts 'Iya, senaka ni ya ga sasatte iru!'", Monnam(mtmp));
+					break;
+				case 3:
+					pline("%s shouts 'Watashi wa mada shinu ka jisatsu suru junbi ga dekite imasen!'", Monnam(mtmp));
+					break;
+			}
+			break;
+		case MS_SOVIET:
+			switch (distresslevel) {
+				case 1:
+					pline("%s remarks 'Eta igra - otstoy.'", Monnam(mtmp));
+					break;
+				case 2:
+					pline("%s mutters 'Fignya programmirovaniya.'", Monnam(mtmp));
+					break;
+				case 3:
+					pline("%s grumbles 'Emi chertova shlyukha, i yey dolzhno byt' stydno za sebya.'", Monnam(mtmp));
+					break;
+			}
+			break;
+		case MS_BRAG:
+			switch (distresslevel) {
+				case 1:
+					verbalize("Bah! I still have %d HP remaining!", mtmp->mhp);
+					break;
+				case 2:
+					verbalize("Yeah whatever, I have %d HP left!", mtmp->mhp);
+					break;
+				case 3:
+					verbalize("No one can take off my remaining %d HP!", mtmp->mhp);
+					break;
+			}
+			break;
+		case MS_PRINCESSLEIA:
+			switch (distresslevel) {
+				case 1:
+					pline("%s sighs 'Another evil-doer who doesn't respect a princess...'", Monnam(mtmp));
+					break;
+				case 2:
+					pline("%s sobs 'If only we could live in a world without those violent people...'", Monnam(mtmp));
+					break;
+				case 3:
+					pline("%s cries 'This is not fair! I just want to wear my crown and purple dress, not spill my blue blood all over the place!'", Monnam(mtmp));
+					break;
+			}
+			break;
+		case MS_SISSY:
+			switch (distresslevel) {
+				case 1:
+					switch (rnd(5)) {
+						case 1:
+							verbalize("ow!");
+							break;
+						case 2:
+							verbalize("owwow!");
+							break;
+						case 3:
+							verbalize("ouch!");
+							break;
+						case 4:
+							verbalize("ow, this is painful!");
+							break;
+						case 5:
+							verbalize("ouchie!");
+							break;
+					}
+					break;
+				case 2:
+					switch (rnd(5)) {
+						case 1:
+							verbalize("owwowow ow-wow!");
+							break;
+						case 2:
+							verbalize("owwowow!");
+							break;
+						case 3:
+							verbalize("ow! ow!");
+							break;
+						case 4:
+							verbalize("oooooow!");
+							break;
+						case 5:
+							verbalize("man this hurts so much!");
+							break;
+					}
+					break;
+				case 3:
+					switch (rnd(5)) {
+						case 1:
+							verbalize("oooooooow-wowowowowowowow!");
+							break;
+						case 2:
+							verbalize("ooooooow! this is so painful! please make it stop hurting!");
+							break;
+						case 3:
+							verbalize("owwowow! owwowow! why doesn't it stop hurting?!");
+							break;
+						case 4:
+							verbalize("owwooooooooow! i don't want that, owwooooooooow!");
+							break;
+						case 5:
+							verbalize("waaaaaaaah! waaaaaaah! you meanie! you big, evil... owwww...");
+							break;
+					}
+					break;
+			}
+			break;
+		case MS_BOT:
+			switch (distresslevel) {
+				case 1:
+					verbalize("Bsst.");
+					break;
+				case 2:
+					verbalize("Dirt ****!");
+					break;
+				case 3:
+					verbalize("Bssssssss-bssssssss...");
+					break;
+			}
+			break;
+
+
+	}
 }
 
 static int
