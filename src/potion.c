@@ -9626,6 +9626,20 @@ dodrink()
 	    }
 	    pline(FunnyHallu ? "This water seems especially clean. In fact, it's the cleanest water you've ever seen." : "Do you know what lives in this water!");
 
+		/* and yes, something bad does live in this water... --Amy */
+		if (!rn2(10)) badeffect();
+		if (!rn2(100)) {
+			int nastytrapdur;
+			int blackngdur;
+			nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
+			if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
+			blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
+			if (!blackngdur ) blackngdur = 500; /* fail safe */
+
+			randomnastytrapeffect(rnz(nastytrapdur * (monster_difficulty() + 1)), blackngdur - (monster_difficulty() * 3));
+
+		}
+
 		if (level.flags.lethe) {
 
 			pline("In any case, you apparently forgot that it causes amnesia.");
