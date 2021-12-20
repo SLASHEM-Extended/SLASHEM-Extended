@@ -604,8 +604,8 @@ practicant_payup()
 
 		/* do you have gold in the bank? if yes, can use that to pay */
 		if (u.practicantpenalty && u.bankcashamount) {
-			if (u.practicantpenalty > u.bankcashamount) amountpaid = u.practicantpenalty;
-			else amountpaid = u.bankcashamount;
+			if (u.practicantpenalty > u.bankcashamount) amountpaid = u.bankcashamount;
+			else amountpaid = u.practicantpenalty;
 
 			pline("Your bank account is used to pay %d zorkmids to %s.", amountpaid, noroelaname());
 
