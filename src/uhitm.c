@@ -4683,7 +4683,7 @@ melatechoice:
 
 			else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && !rn2(5) && !thrown) {
 
-				switch (rnd(718)) {
+				switch (rnd(720)) {
 
 				case 1: pline("You crush %s's skull into jelly.", mon_nam(mon)); break;
 				case 2: pline("You decapitate %s with a backhand stroke.", mon_nam(mon)); break;
@@ -5403,6 +5403,8 @@ melatechoice:
 				case 716: pline("Thankfully you are very wise, with %d wisdom in fact, and make the wise decision to off %s.", ACURR(A_WIS), mon_nam(mon)); break;
 				case 717: pline("Barely managed to off %s before %s could unleash the gauge attack on you!", mon_nam(mon), mhe(mon)); break;
 				case 718: pline("You tell %s to jump off a bridge, and %s actually does so and plummets to %s death.", mon_nam(mon), mhe(mon), mhis(mon)); break;
+				case 719: pline("%s has died, and needs to be buried.", Monnam(mon)); break;
+				case 720: pline("Now you can sing the elegy, for %s has just passed away.", mon_nam(mon)); break;
 
 
 				default: pline("You hit %s very hard!", mon_nam(mon)); break;
