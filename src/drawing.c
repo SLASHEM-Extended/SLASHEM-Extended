@@ -3852,8 +3852,8 @@ boolean is_rlevel;
 	    showsyms[S_tlwall]  = 0xb9;
 	    showsyms[S_trwall]  = 0xcc;
 	    showsyms[S_ndoor]   = 0xce;
-	    showsyms[S_vodoor]  = 0xce;
-	    showsyms[S_hodoor]  = 0xce;
+	    showsyms[S_vodoor]  = 0xe1;
+	    showsyms[S_hodoor]  = 0xe1;
 	    showsyms[S_room]    = 0xfa; /* centered dot */
 	    showsyms[S_corr]    = 0xb1;
 	    showsyms[S_litcorr] = 0xb2;
