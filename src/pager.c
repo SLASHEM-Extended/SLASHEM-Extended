@@ -3652,6 +3652,39 @@ int crpsnum;
 
 #endif
 
+void
+somepokedex(monnum)
+int monnum;
+{
+	switch (rnd(8)) {
+		case 1:
+			pline("Monster %s has the following pokedex entry:", mons[monnum].mname);
+			corpsepager(monnum);
+			break;
+		case 2:
+			pline("Monster %s has a base level of %d.", mons[monnum].mname, mons[monnum].mlevel);
+			break;
+		case 3:
+			pline("Monster %s has a movement rate of %d.", mons[monnum].mname, mons[monnum].mmove);
+			break;
+		case 4:
+			pline("Monster %s has %d points of AC.", mons[monnum].mname, mons[monnum].ac);
+			break;
+		case 5:
+			pline("Monster %s has %d percentage points of magic resistance.", mons[monnum].mname, mons[monnum].mr);
+			break;
+		case 6:
+			pline("Monster %s has an alignment of %d.", mons[monnum].mname, mons[monnum].maligntyp);
+			break;
+		case 7:
+			pline("Monster %s has a corpse weight of %d.", mons[monnum].mname, mons[monnum].cwt);
+			break;
+		case 8:
+			pline("Monster %s gives %d nutrition when eaten.", mons[monnum].mname, mons[monnum].cnutrit);
+			break;
+	}
+}
+
 int
 dowhatis()
 {
@@ -27387,6 +27420,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"The RNG dropped a useful item at your feet. Or at least that's what the top status line says right now, but sadly it's a fake message.",
 	"You'll find a great item on the ground.",
 	"You'll find a great item on the ground. But we don't tell you where, so you can search all the levels of the dungeon including all the branches.",
+	"You allowed someone who was on the phone to die! The gods certainly aren't very pleased.",
+	"You allowed someone who was on the phone to die! The gods certainly aren't very pleased. (Isn't that a great example for being penalized by the game for something that's outside of your control?)",
+	"Your alla is critically low!",
+	"Your alla is critically low! (What the hell is that anyway?)",
 
 };
 

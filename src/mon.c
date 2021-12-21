@@ -286,6 +286,7 @@ int mndx;
 	case PM_UNIQUE_SHIFTER:	mcham = CHAM_UNIQUE_SHIFTER; break;
 	case PM_PLAYER_CHANGELING:	mcham = CHAM_PLAYER_CHANGELING; break;
 	case PM_CHANGERING_KELPIE:	mcham = CHAM_CHANGERING_KELPIE; break;
+	case PM_DITTO:	mcham = CHAM_DITTO; break;
 	case PM_GIANT_CHAMELEON:	mcham = CHAM_GIANT_CHAMELEON; break;
 	default: mcham = CHAM_ORDINARY; break;
 	}
@@ -355,6 +356,7 @@ STATIC_VAR int cham_to_pm[] = {
 		PM_PLAYER_CHANGELING,
 		PM_EVIL_CHAMELEON,
 		PM_CHANGERING_KELPIE,
+		PM_DITTO,
 		PM_GIANT_CHAMELEON,
 };
 
@@ -2688,6 +2690,7 @@ mpickstuff(mtmp, str)
 			otmp->corpsenm != PM_EEL_LIZARD &&
 			otmp->corpsenm != PM_ANTI_STONE_LIZARD &&
 			otmp->corpsenm != PM_HUGE_LIZARD &&
+			otmp->corpsenm != PM_VERY_SLOW_HUGE_LIZARD &&
 			otmp->corpsenm != PM_ROCK_LIZARD &&
 			otmp->corpsenm != PM_WILL_STONE_LIZARD &&
 			otmp->corpsenm != PM_WILL_RATCH_LIZARD &&
@@ -4190,6 +4193,14 @@ register struct monst *mtmp;
 		u.ugangr++; u.ugangr++; u.ugangr++; u.ugangr++; u.ugangr++; u.ugangr++; u.ugangr++; u.ugangr++; u.ugangr++;
 		prayer_done();
 		god_zaps_you(u.ualign.type);
+	}
+
+	if (mtmp->handytime) {
+		u.ualign.sins += 3;
+		u.alignlim -= 3;
+		adjalign(-100);
+		change_luck(-3);
+		You("allowed someone who was on the phone to die! The gods certainly aren't very pleased.");
 	}
 
 	if(mtmp->isgd) {
@@ -6377,7 +6388,7 @@ boolean was_swallowed;			/* digestion */
 	if (!timebasedlowerchance() && !timebasedlowerchance() && rn2(8) && !is_reviver(mdat) && !mon->egotype_troll && !(mdat == &mons[PM_TROLL_ZOMBIE]) && !(mdat == &mons[PM_VECNA]) && !(mdat == &mons[PM_NIGHTMARE]) && !(mdat == &mons[PM_BEHOLDER]) && !(mdat == &mons[PM_MEDUSA]) && !(mdat == &mons[PM_EGO_TROLL_MUMMY]) && !(mdat == &mons[PM_EVIL_TROLL_MUMMY]) && !(mdat == &mons[PM_TROLL_PERMAMIMIC_MUMMY]) && !(mdat == &mons[PM_TROLL_MUMMY]) && !mon->mtame)
 		return FALSE;
 
-	if (mon->egotype_troll || (is_reviver(mdat) && !(mdat->mlet == S_FUNGUS) ) || bigmonst(mdat) || mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_CHAOTIC_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_INNOCLIZARD] || mdat == &mons[PM_FAT_LIZARD] || mdat == &mons[PM_BLUE_LIZARD] || mdat == &mons[PM_GRASS_LIZARD] || mdat == &mons[PM_RUNE_LIZARD] || mdat == &mons[PM_SPECTRAL_LIZARD] || mdat == &mons[PM_SWAMP_LIZARD] || mdat == &mons[PM_SPITTING_LIZARD] || mdat == &mons[PM_ROCK_LIZARD] || mdat == &mons[PM_WILL_STONE_LIZARD] || mdat == &mons[PM_WILL_RATCH_LIZARD] || mdat == &mons[PM_LICHZARD] || mdat == &mons[PM_SKELLIZARD] || mdat == &mons[PM_BABY_CAVE_LIZARD] || mdat == &mons[PM_NIGHT_LIZARD] || mdat == &mons[PM_LIZARD_MAN] || mdat == &mons[PM_LIZARD_KING] || mdat == &mons[PM_LIZARD_OF_YENDOR] || mdat == &mons[PM_ANTI_STONE_LIZARD]  || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_PREHISTORIC_CAVE_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_GREEN_LIZARD] || mdat == &mons[PM_SCORZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_TOUCAN] || mdat == &mons[PM_GIANT_TOUCAN] || mdat == &mons[PM_CLOCKBACK_LIZARD] || mdat == &mons[PM_PRESSLIZARD] || mdat == &mons[PM_STATIOLIZARD] || mdat == &mons[PM_GIBLIZARD] || mdat == &mons[PM_CASINO_LIZARD]|| mdat == &mons[PM_LIZARD_MAGE] || mdat == &mons[PM_BLACK_LIZARDMAN] || mdat == &mons[PM_ASSASSIN_LIZARD] || mdat == &mons[PM_BLIZZARD_LIZARD] || mdat == &mons[PM_HELTH_LIZARD] || mdat == &mons[PM_NORMAL_LIZARD] || mdat == &mons[PM_ADULT_LIZARD] || mdat == &mons[PM_LIZZY] || mdat == &mons[PM_LIZARD_PRINCE] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_BLACK_LIZARD] || mdat == &mons[PM_KATNISS]
+	if (mon->egotype_troll || (is_reviver(mdat) && !(mdat->mlet == S_FUNGUS) ) || bigmonst(mdat) || mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_CHAOTIC_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_INNOCLIZARD] || mdat == &mons[PM_FAT_LIZARD] || mdat == &mons[PM_BLUE_LIZARD] || mdat == &mons[PM_GRASS_LIZARD] || mdat == &mons[PM_RUNE_LIZARD] || mdat == &mons[PM_SPECTRAL_LIZARD] || mdat == &mons[PM_SWAMP_LIZARD] || mdat == &mons[PM_SPITTING_LIZARD] || mdat == &mons[PM_ROCK_LIZARD] || mdat == &mons[PM_WILL_STONE_LIZARD] || mdat == &mons[PM_WILL_RATCH_LIZARD] || mdat == &mons[PM_LICHZARD] || mdat == &mons[PM_SKELLIZARD] || mdat == &mons[PM_BABY_CAVE_LIZARD] || mdat == &mons[PM_NIGHT_LIZARD] || mdat == &mons[PM_LIZARD_MAN] || mdat == &mons[PM_LIZARD_KING] || mdat == &mons[PM_LIZARD_OF_YENDOR] || mdat == &mons[PM_ANTI_STONE_LIZARD]  || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_VERY_SLOW_HUGE_LIZARD] || mdat == &mons[PM_PREHISTORIC_CAVE_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_GREEN_LIZARD] || mdat == &mons[PM_SCORZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_TOUCAN] || mdat == &mons[PM_GIANT_TOUCAN] || mdat == &mons[PM_CLOCKBACK_LIZARD] || mdat == &mons[PM_PRESSLIZARD] || mdat == &mons[PM_STATIOLIZARD] || mdat == &mons[PM_GIBLIZARD] || mdat == &mons[PM_CASINO_LIZARD]|| mdat == &mons[PM_LIZARD_MAGE] || mdat == &mons[PM_BLACK_LIZARDMAN] || mdat == &mons[PM_ASSASSIN_LIZARD] || mdat == &mons[PM_BLIZZARD_LIZARD] || mdat == &mons[PM_HELTH_LIZARD] || mdat == &mons[PM_NORMAL_LIZARD] || mdat == &mons[PM_ADULT_LIZARD] || mdat == &mons[PM_LIZZY] || mdat == &mons[PM_LIZARD_PRINCE] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_BLACK_LIZARD] || mdat == &mons[PM_KATNISS]
 		   || is_golem(mdat)
 		   || is_mplayer(mdat)
 		   || is_umplayer(mdat)
@@ -6853,7 +6864,7 @@ xkilled(mtmp, dest)
 		/* might be here after swallowed */
 
 		/* Throw a bone to vampiric and ghast players who cannot unstone themselves easily. --Amy */
-		if ((mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_PREHISTORIC_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_CHAOTIC_LIZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_ROCK_LIZARD] || mdat == &mons[PM_WILL_STONE_LIZARD] || mdat == &mons[PM_WILL_RATCH_LIZARD] || mdat == &mons[PM_BABY_CAVE_LIZARD] || mdat == &mons[PM_LICHZARD] || mdat == &mons[PM_SKELLIZARD] || mdat == &mons[PM_NIGHT_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_TOUCAN] || mdat == &mons[PM_GIANT_TOUCAN] || mdat == &mons[PM_LIZZY] || mdat == &mons[PM_LIZARD_MAGE] || mdat == &mons[PM_BLACK_LIZARDMAN] || mdat == &mons[PM_ASSASSIN_LIZARD] || mdat == &mons[PM_BLIZZARD_LIZARD] || mdat == &mons[PM_CLOCKBACK_LIZARD] || mdat == &mons[PM_PRESSLIZARD] || mdat == &mons[PM_STATIOLIZARD] || mdat == &mons[PM_GIBLIZARD] || mdat == &mons[PM_CASINO_LIZARD] || mdat == &mons[PM_LIZARD_PRINCE] || mdat == &mons[PM_ADULT_LIZARD] || mdat == &mons[PM_HELTH_LIZARD] || mdat == &mons[PM_NORMAL_LIZARD] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_GREEN_LIZARD] || mdat == &mons[PM_BLACK_LIZARD] || mdat == &mons[PM_SCORZARD] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_GRASS_LIZARD] || mdat == &mons[PM_RUNE_LIZARD] || mdat == &mons[PM_SPECTRAL_LIZARD] || mdat == &mons[PM_BLUE_LIZARD] || mdat == &mons[PM_SWAMP_LIZARD] || mdat == &mons[PM_SPITTING_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_INNOCLIZARD] || mdat == &mons[PM_FAT_LIZARD] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_LIZARD_MAN] || mdat == &mons[PM_LIZARD_OF_YENDOR] || mdat == &mons[PM_LIZARD_KING] || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_ANTI_STONE_LIZARD]) && !rn2(5) && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(POT_ACID, x, y, TRUE, FALSE, FALSE);
+		if ((mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_PREHISTORIC_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_VERY_SLOW_HUGE_LIZARD] || mdat == &mons[PM_CHAOTIC_LIZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_ROCK_LIZARD] || mdat == &mons[PM_WILL_STONE_LIZARD] || mdat == &mons[PM_WILL_RATCH_LIZARD] || mdat == &mons[PM_BABY_CAVE_LIZARD] || mdat == &mons[PM_LICHZARD] || mdat == &mons[PM_SKELLIZARD] || mdat == &mons[PM_NIGHT_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_TOUCAN] || mdat == &mons[PM_GIANT_TOUCAN] || mdat == &mons[PM_LIZZY] || mdat == &mons[PM_LIZARD_MAGE] || mdat == &mons[PM_BLACK_LIZARDMAN] || mdat == &mons[PM_ASSASSIN_LIZARD] || mdat == &mons[PM_BLIZZARD_LIZARD] || mdat == &mons[PM_CLOCKBACK_LIZARD] || mdat == &mons[PM_PRESSLIZARD] || mdat == &mons[PM_STATIOLIZARD] || mdat == &mons[PM_GIBLIZARD] || mdat == &mons[PM_CASINO_LIZARD] || mdat == &mons[PM_LIZARD_PRINCE] || mdat == &mons[PM_ADULT_LIZARD] || mdat == &mons[PM_HELTH_LIZARD] || mdat == &mons[PM_NORMAL_LIZARD] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_GREEN_LIZARD] || mdat == &mons[PM_BLACK_LIZARD] || mdat == &mons[PM_SCORZARD] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_GRASS_LIZARD] || mdat == &mons[PM_RUNE_LIZARD] || mdat == &mons[PM_SPECTRAL_LIZARD] || mdat == &mons[PM_BLUE_LIZARD] || mdat == &mons[PM_SWAMP_LIZARD] || mdat == &mons[PM_SPITTING_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_INNOCLIZARD] || mdat == &mons[PM_FAT_LIZARD] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_LIZARD_MAN] || mdat == &mons[PM_LIZARD_OF_YENDOR] || mdat == &mons[PM_LIZARD_KING] || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_ANTI_STONE_LIZARD]) && !rn2(5) && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(POT_ACID, x, y, TRUE, FALSE, FALSE);
 		/* of course the acid potions are useful for other races too, if they run out of lizard corpses */
 
 		if ((mdat == &mons[PM_SQUIRREL] || mdat == &mons[PM_IGUANA] || mdat == &mons[PM_HELPFUL_SQUIRREL] || mdat == &mons[PM_STAR_SQUIRREL] || mdat == &mons[PM_BIG_IGUANA]) && !rn2(20) && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(CARROT, x, y, TRUE, FALSE, FALSE);
@@ -7826,6 +7837,39 @@ sarahdone:
 		wake_nearby();
     }
 
+    if(mtmp->data->msound == MS_PANTS) {
+		u.cnd_pantsmell++;
+		pline("You catch a whiff from %s...", mon_nam(mtmp) );
+		contaminate(rnd((mtmp->m_lev + 1) * 2), TRUE);
+		increasesanity(rnd((mtmp->m_lev + 1) * 2));
+    }
+    if(mtmp->data->msound == MS_SOCKS) {
+		u.cnd_socksmell++;
+		pline("You inhale the beguiling smell that emanates from %s...", mon_nam(mtmp) );
+
+		int armpro, armprolimit;
+
+		armpro = magic_negation(&youmonst);
+		armprolimit = 75;
+		if (!(PlayerCannotUseSkills)) {
+
+			switch (P_SKILL(P_SPIRITUALITY)) {
+				default: armprolimit = 75; break;
+				case P_BASIC: armprolimit = 78; break;
+				case P_SKILLED: armprolimit = 81; break;
+				case P_EXPERT: armprolimit = 84; break;
+				case P_MASTER: armprolimit = 87; break;
+				case P_GRAND_MASTER: armprolimit = 90; break;
+				case P_SUPREME_MASTER: armprolimit = 93; break;
+			}
+		}
+
+		if ((rn2(3) >= armpro) || ((rnd(100) > armprolimit) && ((armpro < 4) || (rnd(armpro) < 4) ) ) ) {
+			nomul(-(rn1(3, 4)), "unconscious from smelling worn socks", TRUE); /* chain paralysis is possible */
+			nomovemsg = 0;
+		}
+    }
+
     if(mtmp->data == &mons[PM_MEDUSA]) {
 	register int i;
 	for(i = 0; i < NATTK; i++)
@@ -8017,6 +8061,9 @@ wake_nearby()
 
 	for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
 	    if (!DEADMONSTER(mtmp) && (rnd(100) > stealthchance) && !(Race_if(PM_VIETIS) && rn2(3)) && !(Race_if(PM_KUTAR) && rn2(3)) && distu(mtmp->mx,mtmp->my) < level_difficulty()*20) {
+
+		if (mtmp->data->msound == MS_SNORE) continue; /* won't wake up from this effect */
+
 		mtmp->msleeping = 0;
 		if (mtmp->mtame && !mtmp->isminion)
 		    EDOG(mtmp)->whistletime = moves;
@@ -8025,6 +8072,8 @@ wake_nearby()
 
 	if (!rn2(250)) for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
 	    if (!DEADMONSTER(mtmp) && (rnd(100) > stealthchance) && !(Race_if(PM_VIETIS) && rn2(3)) && !(Race_if(PM_KUTAR) && rn2(3)) ) {
+		if (mtmp->data->msound == MS_SNORE) continue; /* won't wake up from this effect */
+
 		mtmp->msleeping = 0;
 		if (mtmp->mtame && !mtmp->isminion)
 		    EDOG(mtmp)->whistletime = moves;
@@ -8045,6 +8094,9 @@ register int x, y, distance;
 	for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
 		if (!DEADMONSTER(mtmp) && !(Race_if(PM_VIETIS) && rn2(3)) && !(Race_if(PM_KUTAR) && rn2(3)) && mtmp->msleeping && (distance == 0 ||
 				 dist2(mtmp->mx, mtmp->my, x, y) < distance)) {
+
+			if (mtmp->data->msound == MS_SNORE) continue; /* won't wake up from this effect */
+
 			if (distance > 1) wakedistance = rnd(distance);
 			if (rn2(2) && ( (distance == 0) || (dist2(mtmp->mx, mtmp->my, x, y) < wakedistance)) ) {
 				mtmp->msleeping = 0;
@@ -8278,6 +8330,7 @@ struct monst *mon;
 	case CHAM_COMMA_CHAMELEON: chambaselvl = 6; break;
 	case CHAM_UNIQUE_SHIFTER: chambaselvl = 25; break;
 	case CHAM_PLAYER_CHANGELING: chambaselvl = 8; break;
+	case CHAM_DITTO: chambaselvl = 12; break;
 	case CHAM_GIANT_CHAMELEON: chambaselvl = 10; break;
 	/* gah they made it so that regular polymorphs, e.g. via potion, also use this function! */
 	default:
@@ -8660,6 +8713,20 @@ spacewarschoice:
 			if (uncommon10(pm) && rn2(5)) goto spacewarschoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto spacewarschoice;
 			if (rn2(10000) && !(is_cowmonster(pm)) ) goto spacewarschoice;
+		break;
+	    case CHAM_DITTO:
+dittochoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto dittochoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto dittochoice;
+			if (uncommon2(pm) && !rn2(4)) goto dittochoice;
+			if (uncommon3(pm) && !rn2(3)) goto dittochoice;
+			if (uncommon5(pm) && !rn2(2)) goto dittochoice;
+			if (uncommon7(pm) && rn2(3)) goto dittochoice;
+			if (uncommon10(pm) && rn2(5)) goto dittochoice;
+			if (is_jonadabmonster(pm) && rn2(20)) goto dittochoice;
+			if (rn2(10000) && !(is_pokemon(pm)) ) goto dittochoice;
 		break;
 	    case CHAM_OFFDIVER:
 jokechoice:

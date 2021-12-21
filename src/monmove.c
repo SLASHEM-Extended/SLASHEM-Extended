@@ -617,6 +617,112 @@ register struct monst *mtmp;
 		return(0);
 	}
 
+	if (mtmp->handytime) { /* todo - make it so that greeting messages appear at the beginning of a call etc. */
+		mtmp->handytime--;
+		if (mtmp->handytime < 0) mtmp->handytime = 0; /* fail safe */
+
+		if (!mtmp->handyfirst) {
+			mtmp->handyfirst = TRUE;
+			switch (rnd(6)) {
+				case 1:
+					verbalize("Hey."); break;
+				case 2:
+					verbalize("Hey, how you doing?"); break;
+				case 3:
+					verbalize("Wassup?"); break;
+				case 4:
+					verbalize("Hey dear."); break;
+				case 5:
+					verbalize("Hello there!"); break;
+				case 6:
+					verbalize("Que pasa?"); break;
+			}
+		}
+
+		if (mtmp->handyfirst && (mtmp->handytime > 0) && rn2(2)) switch (rnd(30)) {
+			case 1:
+				verbalize("How you doing today?"); break;
+			case 2:
+				verbalize("I've seen a mudcrab the other day."); break;
+			case 3:
+				verbalize("Nada, man."); break;
+			case 4:
+				verbalize("Lots of work today..."); break;
+			case 5:
+				verbalize("Fine, and you?"); break;
+			case 6:
+				verbalize("Whatcha doing today?"); break;
+			case 7:
+				verbalize("Wanna meet up later?"); break;
+			case 8:
+				verbalize("That's great!"); break;
+			case 9:
+				verbalize("I see."); break;
+			case 10:
+				verbalize("Cool!"); break;
+			case 11:
+				verbalize("Great news!"); break;
+			case 12:
+				verbalize("Hey, did you hear this story?"); break;
+			case 13:
+				verbalize("I gotta tell you about my relatives..."); break;
+			case 14:
+				verbalize("Nice weather today!"); break;
+			case 15:
+				verbalize("The boss is after me again."); break;
+			case 16:
+				verbalize("I got a new job!"); break;
+			case 17:
+				verbalize("Did you hear that I bought this week's winning lottery ticket?"); break;
+			case 18:
+				verbalize("Have you heard of the guy from Nantuckit?"); break;
+			case 19:
+				verbalize("I'm going to a club tonight, wanna join me?"); break;
+			case 20:
+				verbalize("Yes yes, I understand..."); break;
+			case 21:
+				verbalize("I quite agree, but not exactly, yet I'm not being indecisive."); break;
+			case 22:
+				verbalize("You're so right."); break;
+			case 23:
+				verbalize("He should be castrated."); break;
+			case 24:
+				verbalize("Hmm, what am I supposed to say about that?"); break;
+			case 25:
+				verbalize("That's terrible."); break;
+			case 26:
+				verbalize("Can I help?"); break;
+			case 27:
+				verbalize("Did you tell them?"); break;
+			case 28:
+				verbalize("You should do something about it..."); break;
+			case 29:
+				verbalize("Hey, I'd like to not talk about that on the phone, okay?"); break;
+			case 30:
+				verbalize("Really? Is it a reliable source?"); break;
+		}
+
+		if (mtmp->handyfirst && (mtmp->handytime == 0) ) switch (rnd(7)) {
+			case 1:
+				verbalize("See you later!"); break;
+			case 2:
+				verbalize("Bye!"); break;
+			case 3:
+				verbalize("Later."); break;
+			case 4:
+				verbalize("Bye pal!"); break;
+			case 5:
+				verbalize("Seeya missy!"); break;
+			case 6:
+				verbalize("Call me later!"); break;
+			case 7:
+				verbalize("I am so unwilling to put down the phone! Bye!"); break;
+
+		}
+
+		return 0;
+	}
+
       if(OBJ_AT(mtmp->mx, mtmp->my) && !mtmp->mpeaceful) {
 
 		register int pctload = (curr_mon_load(mtmp) * 100) / max_mon_load(mtmp);
@@ -650,6 +756,34 @@ register struct monst *mtmp;
 		while (lagamount > 0) {
 			delay_output();
 			lagamount--;
+		}
+	}
+
+	if (mtmp->data->msound == MS_HANDY && !mtmp->handytime && !rn2(500)) {
+		mtmp->handytime = 5 + rn2(11);
+		mtmp->handyfirst = FALSE;
+		if (canseemon(mtmp)) pline("%s's phone is ringing!", Monnam(mtmp));
+		else You_hear("a phone ringing!");
+	}
+
+	if (mtmp->data->msound == MS_PHOTO && canseemon(mtmp)) {
+		int photochance = 20;
+		if (ACURR(A_CHA) > 10) photochance -= (ACURR(A_CHA) - 10);
+		if (photochance < 3) photochance = 3;
+		if (mtmp->phototaken) photochance *= 5;
+
+		if (!rn2(photochance)) {
+			if (rn2(5)) pline("%s announces 'Cheese!'", Monnam(mtmp));
+			else pline("%s announces 'Pin-sel-bue-schel!'", Monnam(mtmp));
+			if (flags.soundok) pline("*click*");
+
+			if (!resists_blnd(&youmonst)) {
+				You("are blinded by the flash!");
+				make_blinded((long)rnd(25), FALSE);
+				if (!Blind) Your("%s", vision_clears);
+			}
+			u.cnd_photo_op++;
+			mtmp->phototaken = TRUE;
 		}
 	}
 
@@ -1439,6 +1573,72 @@ register struct monst *mtmp;
 		}
 	}
 
+	if (mdat->msound == MS_PANTS && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(10) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful) {
+	    m_respond(mtmp);
+	}
+	if (mdat->msound == MS_SOCKS && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(10) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful) {
+	    m_respond(mtmp);
+	}
+	if (mdat->msound == MS_ALLA && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful) {
+		pline("alla");
+		drain_alla(1);
+	}
+
+	if (mtmp->singannoyance && !mtmp->mpeaceful) {
+		singclean(mtmp);
+	}
+
+	if (FemtrapActiveKati && !rn2(20) && !mtmp->mpeaceful && humanoid(mtmp->data) && is_female(mtmp->data) && attacktype(mtmp->data, AT_KICK) && !mtmp->mfrenzied) {
+		katiclean(mtmp);
+	}
+
+	if (mdat->msound == MS_SING && !mtmp->singability) {
+
+		int attempts = 0;
+		struct permonst *pm = 0;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+newbossSING:
+		do {
+			pm = rndmonst();
+			attempts++;
+			if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+		} while ( (!pm || (pm && !(pm->msound == MS_SHOE )) || (pm && !(type_is_pname(pm))) ) && attempts < 50000);
+
+		if (!pm && rn2(50) ) {
+			attempts = 0;
+			goto newbossSING;
+		}
+		if (pm && !(pm->msound == MS_SHOE) && rn2(50) ) {
+			attempts = 0;
+			goto newbossSING;
+		}
+		if (pm && !(type_is_pname(pm)) && rn2(50) ) {
+			attempts = 0;
+			goto newbossSING;
+		}
+
+		if (pm) {
+			struct monst *singbitch;
+			singbitch = makemon(pm, u.ux, u.uy, MM_ANGRY|MM_ADJACENTOK); /* not frenzied --Amy */
+			if (singbitch) {
+				if (!singclean(singbitch)) {
+					mtmp->mpeaceful = TRUE;
+					mtmp->mfrenzied = FALSE;
+				}
+			}
+		}
+
+		u.aggravation = 0;
+
+		mtmp->singability = TRUE;
+	}
+
 	if (mdat->msound == MS_FART_QUIET && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && mtmp->crapbonus && (rn2(2000) < mtmp->crapbonus) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
 	{
 		pline("Using %s %s butt, %s produces tender noises and craps right in your %s.", mhis(mtmp), mtmp->female ? "sexy" : "ugly", mon_nam(mtmp), body_part(FACE) );
@@ -1483,6 +1683,7 @@ register struct monst *mtmp;
 			m_respond(mtmp);
 		}
 	}
+
 	if ( (mdat->msound == MS_SOUND || mtmp->egotype_sounder) && !rn2(20) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
 	    m_respond(mtmp);
 	if (mdat == &mons[PM_MEDUSA] && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && couldsee(mtmp->mx, mtmp->my))
@@ -2005,6 +2206,50 @@ convertdone:
 	if (mdat == &mons[PM_MIKRAANESIS] && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(20)) {
 		pline("*tschoeck tschoeck* Mikraanesis stopped time.");
 		nomul(-(rnd(10)), "Mikraanesis had stopped time", FALSE);
+	}
+
+	if (mdat->msound == MS_POKEDEX && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(100)) {
+		int pokedexmon = rn2(NUMMONS);
+
+		somepokedex(pokedexmon);
+	}
+
+	if (mdat->msound == MS_BRAG && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(20)) {
+		switch (rnd(11)) {
+			case 1:
+				pline("%s brags 'No one can take off my remaining %d HP!'", Monnam(mtmp), mtmp->mhp);
+				break;
+			case 2:
+				pline("%s brags 'My health status is very good, I've got %d HP!'", Monnam(mtmp), mtmp->mhp);
+				break;
+			case 3:
+				pline("%s brags 'I'm very powerful with my %d HP!'", Monnam(mtmp), mtmp->mhp);
+				break;
+			case 4:
+				pline("%s brags 'Man, I'm really the sturdiest being in this dungeon, I've got %d HP! Fear me!'", Monnam(mtmp), mtmp->mhp);
+				break;
+			case 5:
+				pline("%s brags 'Ha! I've got %d HP remaining!'", Monnam(mtmp), mtmp->mhp);
+				break;
+			case 6:
+				pline("%s brags 'Yo, my maximum HP is a whopping %d!'", Monnam(mtmp), mtmp->mhpmax);
+				break;
+			case 7:
+				pline("%s brags 'Hey, my level is %d! I bet yours is lower!'", Monnam(mtmp), mtmp->m_lev);
+				break;
+			case 8:
+				pline("%s brags 'Fear my movement rate of %d!'", Monnam(mtmp), mtmp->movement);
+				break;
+			case 9:
+				pline("%s brags 'I hold the high ground at coordinates %d,%d!'", Monnam(mtmp), mtmp->mx, mtmp->my);
+				break;
+			case 10:
+				pline("%s brags 'Still got %d mana left!'", Monnam(mtmp), mtmp->m_en);
+				break;
+			case 11:
+				pline("%s brags 'You certainly can't beat my max mana of %d...'", Monnam(mtmp), mtmp->m_enmax);
+				break;
+		}
 	}
 
 	if ((mdat->msound == MS_STENCH || mtmp->egotype_perfumespreader) && !Role_if(PM_HUSSY) && !(youmonst.data->msound == MS_STENCH) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2((mdat == &mons[PM_NICE_AUNTIE_HILDA]) ? 5 : (mdat == &mons[PM_AUNT_ANITA]) ? 5 : 20)) {
@@ -3008,6 +3253,20 @@ altarfound:
 
 	}
 
+	if (mtmp->data->msound == MS_SNORE && !rn2(500)) mtmp->msleeping = 1;
+	if (mtmp->data->msound == MS_SNORE && mtmp->msleeping && !rn2(5)) {
+		wake_nearto(mtmp->mx, mtmp->my, 25);
+		if (canseemon(mtmp)) pline("%s snores loudly!", Monnam(mtmp));
+		else You_hear("loud snoring!");
+	}
+	if (mtmp->data->msound == MS_TRUMPET && !rn2(200)) {
+		wake_nearto(mtmp->mx, mtmp->my, rn1(50, 50));
+		if (canseemon(mtmp)) pline("%s trumpets loudly!", Monnam(mtmp));
+		else You_hear("a trumpet sound!");
+	}
+
+	if (mtmp->singability && !rn2(10000)) mtmp->singability = FALSE;
+
 	if (monsndx(ptr) == PM_SLEEPING_GIANT && !rn2(10)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_APATHETIC_ASSHOLE && !rn2(10)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_SARSLEEPER && !rn2(10)) mtmp->msleeping = 1;
@@ -3314,7 +3573,7 @@ altarfound:
 	       nidist > (couldsee(nix,niy) ? 144 : 36) && appr == 1) appr = 0;
 
 		/* special coding for "homing" giant wasps from the hunger games --Amy */
-		if ((ptr == &mons[PM_TRACKER_JACKER] || ptr == &mons[PM_POLICE_DOG] || ptr == &mons[PM_POLICE_HUSKY] || ptr == &mons[PM_BIG_POLICE_DOG] || ptr == &mons[PM_CURSED____LEFTHANDED_FARTING_ELEPHANT] || ptr == &mons[PM_VERONA_MARBLE] || ptr == &mons[PM_CHASE_BIRD] || ptr == &mons[PM_JAYCEE] || ptr == &mons[PM_OOGABOOGAGOBILITGOOK_SEEKER_AREHETYPE_FUCKING_RETARD_ASS_SHIT_FLINGING_MONKEY_MONSTER] || ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_DRIVE_TRAIN] || ptr == &mons[PM_XTREME_TRACKER] || ptr == &mons[PM_REFUGE_UHLERT] || ptr == &mons[PM_THE_ULTIMATE_REFUGE]) && !mtmp->mpeaceful) appr = 1;
+		if ((ptr == &mons[PM_TRACKER_JACKER] || ptr == &mons[PM_KILLER_GIANT_RAT] || ptr == &mons[PM_POLICE_DOG] || ptr == &mons[PM_POLICE_HUSKY] || ptr == &mons[PM_BIG_POLICE_DOG] || ptr == &mons[PM_CURSED____LEFTHANDED_FARTING_ELEPHANT] || ptr == &mons[PM_VERONA_MARBLE] || ptr == &mons[PM_CHASE_BIRD] || ptr == &mons[PM_JAYCEE] || ptr == &mons[PM_OOGABOOGAGOBILITGOOK_SEEKER_AREHETYPE_FUCKING_RETARD_ASS_SHIT_FLINGING_MONKEY_MONSTER] || ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_DRIVE_TRAIN] || ptr == &mons[PM_XTREME_TRACKER] || ptr == &mons[PM_REFUGE_UHLERT] || ptr == &mons[PM_THE_ULTIMATE_REFUGE]) && !mtmp->mpeaceful) appr = 1;
 
 	if (uarmh && itemhasappearance(uarmh, APP_BUG_TRACKING_HELMET) && !rn2(3) ) appr = 1; 
 

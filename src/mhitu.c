@@ -283,59 +283,11 @@ on the first floor, especially when you're playing as something with drain resis
 
 			if (FemtrapActiveKati && humanoid(mtmp->data) && is_female(mtmp->data)) {
 
-			/* kati and sing trap effects are supposed to always tell you the exact name of the monster,
-			 * even if you're blind, hallucinating or whatever, so you know whose shoes you're cleaning --Amy */
-
 				pline("%s painfully kicks you in the %s with her sexy Kati shoes!", mtmp->data->mname, makeplural(body_part(LEG)));
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				losehp((monsterlev), "being kicked by Kati shoes", KILLED_BY);
 
-				if (!rn2(20) && !mtmp->mfrenzied) {
-					pline("She asks you to clean the dog shit from her soles. This will take a long time, but if you can do it, she'll no longer hurt you.");
-					if (yn("Do you want to clean the sexy Kati shoes?") == 'y') {
-						delay = -200;
-						u.katitrapocc = TRUE;
-						set_occupation(katicleaning, "cleaning the sexy Kati shoes", 0);
-						mtmp->mpeaceful = TRUE;
-						pline("You start cleaning the shit from the profiled girl boots...");
-						return; /* monster stops attacking */
-					}
-				}
-			}
-
-			if (FemtrapActiveSing && mtmp->singannoyance) {
-				boolean extraannoying = !rn2(5);
-				pline("Sing announces that %s stepped into %s, and asks you to clean them.", mtmp->data->mname, extraannoying ? "cow dung" : "dog shit");
-				if (yn("Do you want to clean them?") == 'y') {
-						delay = (extraannoying ? -200 : -40);
-						u.singtrapocc = TRUE;
-						if (extraannoying) set_occupation(singcleaning, "cleaning cow dung from female shoes", 0);
-						else set_occupation(singcleaning, "cleaning dog shit from female shoes", 0);
-						mtmp->mpeaceful = TRUE;
-						mtmp->singannoyance = FALSE;
-						pline("You start cleaning the shit from %s...", Monnam(mtmp));
-						return; /* monster stops attacking */
-
-				} else {
-					pline("Sing ushers all the girls to attack you relentlessly...");
-					nomul(-5, "being bound by Sing", TRUE);
-					mtmp->mtame = mtmp->mpeaceful = FALSE;
-					mtmp->mfrenzied = TRUE;
-					mtmp->singannoyance = FALSE;
-
-				      register struct monst *mtmp2;
-
-					for (mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
-
-						if (!mtmp2->mtame) {
-							mtmp2->mpeaceful = 0;
-							mtmp2->mfrenzied = 1;
-							mtmp2->mhp = mtmp2->mhpmax;
-						}
-					}
-
-				}
 			}
 
 			if (FemtrapActiveLou && !rn2(10)) {
@@ -22544,6 +22496,63 @@ stdmsg(stdmsgse)
 const char *stdmsgse;
 {
 	pline("Ulch - you contracted %s from having unprotected intercourse with your lover!", stdmsgse);
+}
+
+int
+singclean(mtmp)
+register struct monst *mtmp;
+{
+	boolean extraannoying = !rn2(5);
+	pline("Sing announces that %s stepped into %s, and asks you to clean them.", mtmp->data->mname, extraannoying ? "cow dung" : "dog shit");
+	if (yn("Do you want to clean them?") == 'y') {
+			delay = (extraannoying ? -200 : -40);
+			u.singtrapocc = TRUE;
+			if (extraannoying) set_occupation(singcleaning, "cleaning cow dung from female shoes", 0);
+			else set_occupation(singcleaning, "cleaning dog shit from female shoes", 0);
+			mtmp->mpeaceful = TRUE;
+			mtmp->singannoyance = FALSE;
+			pline("You start cleaning the shit from %s...", Monnam(mtmp));
+			return 0;
+
+	} else {
+		pline("Sing ushers all the girls to attack you relentlessly...");
+		nomul(-5, "being bound by Sing", TRUE);
+		mtmp->mtame = mtmp->mpeaceful = FALSE;
+		mtmp->mfrenzied = TRUE;
+		mtmp->singannoyance = FALSE;
+
+	      register struct monst *mtmp2;
+		for (mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
+
+			if (!mtmp2->mtame) {
+				mtmp2->mpeaceful = 0;
+				mtmp2->mfrenzied = 1;
+				mtmp2->mhp = mtmp2->mhpmax;
+			}
+		}
+	}
+	return 1;
+}
+
+int
+katiclean(mtmp)
+register struct monst *mtmp;
+{
+	/* kati and sing trap effects are supposed to always tell you the exact name of the monster,
+	 * even if you're blind, hallucinating or whatever, so you know whose shoes you're cleaning --Amy */
+
+	if (!rn2(20) && !mtmp->mfrenzied) {
+		pline("%s asks you to clean the dog shit from her soles. This will take a long time, but if you can do it, she'll no longer hurt you.", mtmp->data->mname);
+		if (yn("Do you want to clean the sexy Kati shoes?") == 'y') {
+			delay = -200;
+			u.katitrapocc = TRUE;
+			set_occupation(katicleaning, "cleaning the sexy Kati shoes", 0);
+			mtmp->mpeaceful = TRUE;
+			pline("You start cleaning the shit from the profiled girl boots...");
+			return 0;
+		}
+	}
+	return 1;
 }
 
 #endif /* OVLB */

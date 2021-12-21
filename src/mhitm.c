@@ -308,6 +308,7 @@ mattackm(magr, mdef)
     if (DEADMONSTER(magr)) { /* shouldn't happen, but who knows? */
 	return(MM_MISS);
     }
+    if (mdef->handytime) return(MM_MISS);
     if (!magr->mcanmove || magr->msleeping) return(MM_MISS);
     pa = magr->data;  pd = mdef->data;
 
@@ -2977,6 +2978,25 @@ meleeattack:
 		aggravate();
 	}
 
+	if (magr->data->msound == MS_PHOTO && !rn2(50)) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_BLND;
+		a->damn = 1;
+		a->damd = 100;
+
+		if(monnear(magr, mdef->mx, mdef->my)) {
+			dieroll = rnd(20 + i);
+			strike = (tmp > dieroll);
+			if (strike) res[i] = hitmm(magr, mdef, a);
+		}
+		if (res[i] & MM_AGR_DIED) return res[i];
+		if (res[i] & MM_DEF_DIED) return res[i];
+
+	}
+
 	if ((magr->data->msound == MS_FART_QUIET || magr->data->msound == MS_FART_NORMAL || magr->data->msound == MS_FART_LOUD || magr->egotype_farter) && monnear(magr, mdef->mx, mdef->my)) {
 		if (magr->fartbonus > 9) magr->fartbonus = 9; /* fail save */
 		int monfartchance = 10 + magr->butthurt - magr->fartbonus;
@@ -3012,6 +3032,22 @@ meleeattack:
 		mdef->mstun = TRUE;
 		wake_nearby();
 		if (!rn2(5)) badpeteffect(mdef);
+	}
+
+	if ((magr->data->msound == MS_ALLA) && monnear(magr, mdef->mx, mdef->my)) {
+		if (vis) pline("%s's alla is reduced!", Monnam(mdef));
+		badpeteffect(mdef);
+	}
+
+	if ((magr->data->msound == MS_SOCKS) && mdef->mcanmove && !rn2(10) && monnear(magr, mdef->mx, mdef->my)) {
+		if (vis) pline("%s's beguiling smell affects %s!", Monnam(magr), mon_nam(mdef) );
+		mdef->mcanmove = 0;
+		mdef->mfrozen = rn1(3,4);
+		mdef->mstrategy &= ~STRAT_WAITFORU;
+	}
+	if ((magr->data->msound == MS_PANTS) && !rn2(10) && monnear(magr, mdef->mx, mdef->my)) {
+		if (vis) pline("%s catches a whiff from %s!", Monnam(mdef), mon_nam(magr) );
+		badpeteffect(mdef);
 	}
 
 	if (magr->data->msound == MS_CUSS && !rn2(5) && monnear(magr, mdef->mx, mdef->my)) {

@@ -22583,6 +22583,7 @@ register int	mmflags;
 	mtmp->nurse_shutdownsymbiote = !rn2(8);
 	mtmp->nurse_restoration = !rn2(5);
 	mtmp->nurse_vaccine = !rn2(10);
+	mtmp->nurse_alla = !rn2(20);
 
 	mtmp->sagesvisible = !rn2(10);
 	mtmp->internetvisible = !rn2(9);
@@ -22592,6 +22593,11 @@ register int	mmflags;
 	mtmp->scentvisible = rn2(3);
 	mtmp->echolocatevisible = rn2(5);
 	mtmp->terraintrans = rnd(29); /* keyword: RAINCLOUD */
+	mtmp->handytime = 0;
+	mtmp->handyfirst = 0;
+	mtmp->phototaken = 0;
+	mtmp->repaircredit = 0;
+	mtmp->singability = 0;
 	mtmp->hominglazer = 0;
 	mtmp->ogrethief = 0;
 	mtmp->bleedout = 0;
@@ -22664,6 +22670,8 @@ register int	mmflags;
 	if (ptr == &mons[PM_SLEEPING_ASIAN_GIRL]) mtmp->msleeping = 1;
 	if (ptr == &mons[PM_DEEP_SLEEPER]) mtmp->msleeping = 1;
 	if (ptr == &mons[PM_SLEEPING_HULK]) mtmp->msleeping = 1;
+
+	if (mtmp->data->msound == MS_SNORE) mtmp->msleeping = 1;
 
 	/* or an invisible one, based on an evil patch idea by jonadab */
 
@@ -29574,6 +29582,14 @@ assign_sym:
 	if (mtmp->data == &mons[PM_TREEENT]) {
 		ap_type = M_AP_FURNITURE;
 		appear = S_tree;
+	}
+	if (mtmp->data == &mons[PM_SEEMINGLY_INNOCUOUS_CLOUD]) {
+		ap_type = M_AP_FURNITURE;
+		appear = S_cloud;
+	}
+	if (mtmp->data == &mons[PM_NOT_JUST_A_CLOUD_GRAPHIC]) {
+		ap_type = M_AP_FURNITURE;
+		appear = S_cloud;
 	}
 	if (mtmp->data == &mons[PM_STAIRWOLF]) {
 		ap_type = M_AP_FURNITURE;

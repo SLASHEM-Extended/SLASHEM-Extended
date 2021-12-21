@@ -1019,6 +1019,7 @@ register int pm;
 	    case PM_CHAOS_LIZARD:
 	    case PM_CHAOTIC_LIZARD:
 	    case PM_HUGE_LIZARD:
+	    case PM_VERY_SLOW_HUGE_LIZARD:
 	    case PM_SAND_TIDE:
 	    case PM_FBI_AGENT:
 	    case PM_OWN_SMOKE:
@@ -1219,6 +1220,7 @@ struct monst *mon;
     case PM_CLINGING_LIZARD:
     case PM_DEFORMED_LIZARD:
 	case PM_HUGE_LIZARD:
+      case PM_VERY_SLOW_HUGE_LIZARD:
 	case PM_SAND_TIDE:
 	case PM_FBI_AGENT:
 	    case PM_PRESSLIZARD:
@@ -3274,6 +3276,7 @@ register int pm;
 		break;
 
 	    case PM_HUGE_LIZARD:
+	    case PM_VERY_SLOW_HUGE_LIZARD:
 	    case PM_SAND_TIDE:
 	    case PM_FBI_AGENT:
 	    case PM_OWN_SMOKE:
@@ -3369,6 +3372,7 @@ register int pm;
 	    case PM_PEANUT__BUTTER_AND_JELLY_SANDWICH:
 	    case PM_SANDESTIN:
 	    case PM_POLYMORPHITIC_WOLF:
+	    case PM_DITTO:
 	    case PM_COVETOUSLEON:
 	    case PM_THE_ZRUTINATOR:
 	    case PM_GIANT_CHAMELEON:
@@ -5924,6 +5928,8 @@ eatspecial() /* called after eating non-food */
 		You_feel("much heavier!");
 		IncreasedGravity += otmp->owt;
 	}
+
+	if (otmp->oclass == GEM_CLASS && otmp->otyp != ROCK) gain_alla(5); /* fuck why does the game not save the mohs hardness anywhere??? */
 
 	if (otmp->otyp >= ELIF_S_JEWEL && otmp->otyp <= DORA_S_JEWEL) {
 		pline("The feminine curse spreads through your body...");

@@ -9433,6 +9433,36 @@ int snamount;
 
 }
 
+void
+gain_alla(bonusamount)
+int bonusamount;
+{
+	u.alla += bonusamount;
+}
+
+void
+drain_alla(drainamount)
+int drainamount;
+{
+	if (Race_if(PM_HUMANOID_ANGEL)) drainamount *= 10;
+
+	u.alla -= drainamount;
+	if (u.alla < 21) pline("Your alla is critically low!");
+	else if (u.alla < 101) pline("Your alla is running low!");
+
+	if (u.alla < 1) {
+		u.youaredead = 1;
+		pline("You ran out of alla. Game over.");
+		killer = "running out of alla";
+		killer_format = KILLED_BY;
+		done(DIED);
+		/* lifesaved */
+		u.youaredead = 0;
+		u.alla = 1000;
+
+	}
+}
+
 int
 dodrink()
 {

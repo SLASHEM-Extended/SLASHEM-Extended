@@ -1562,6 +1562,8 @@ E int could_seduceX(struct monst *,struct monst *,struct attack *);
 E int doseduce(struct monst *);
 E void hurtarmor(int);
 E void witherarmor(void);
+E int singclean(struct monst *);
+E int katiclean(struct monst *);
 
 /* ### minion.c ### */
 
@@ -2225,6 +2227,8 @@ E int dohistory(void);
 E void corpsepager(int);
 #endif
 
+E void somepokedex(int);
+
 E const char *noroelaname(void);
 
 E const char *fauxmessage(void);
@@ -2432,6 +2436,8 @@ E void bad_equipment_heel(void);
 E void bad_equipment_femshoes(void);
 E void bad_equipment_implant(void);
 E void increasesanity(int);
+E void gain_alla(int);
+E void drain_alla(int);
 E boolean conundrumbreak(void);
 E void statdrain(void);
 E void nastytrapcurse(void);

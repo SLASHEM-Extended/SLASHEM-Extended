@@ -3323,7 +3323,7 @@ register struct monst *mtmp;
 			menu_item *selected;
 			int n;
 
-			if (!mtmp->nurse_extrahealth && !mtmp->nurse_decontaminate && !mtmp->nurse_healing && !mtmp->nurse_curesickness && !mtmp->nurse_curesliming && !mtmp->nurse_curesanity && !mtmp->nurse_medicalsupplies && !mtmp->nurse_purchasedrugs && !mtmp->nurse_obtainsymbiote && !mtmp->nurse_fixsymbiote && !mtmp->nurse_shutdownsymbiote && !mtmp->nurse_restoration && !mtmp->nurse_vaccine) {
+			if (!mtmp->nurse_extrahealth && !mtmp->nurse_decontaminate && !mtmp->nurse_healing && !mtmp->nurse_curesickness && !mtmp->nurse_curesliming && !mtmp->nurse_curesanity && !mtmp->nurse_medicalsupplies && !mtmp->nurse_purchasedrugs && !mtmp->nurse_obtainsymbiote && !mtmp->nurse_fixsymbiote && !mtmp->nurse_shutdownsymbiote && !mtmp->nurse_restoration && !mtmp->nurse_vaccine && !mtmp->nurse_alla) {
 				verbalize("Sorry. I'm all out of services.");
 				goto noservices;
 			}
@@ -3357,6 +3357,8 @@ register struct monst *mtmp;
 			if (mtmp->nurse_restoration) add_menu(tmpwin, NO_GLYPH, &any , 'r', 0, ATR_NONE, "Restoration", MENU_UNSELECTED);
 			any.a_int = 13;
 			if (mtmp->nurse_vaccine) add_menu(tmpwin, NO_GLYPH, &any , 'v', 0, ATR_NONE, "COVID-19 Vaccine", MENU_UNSELECTED);
+			any.a_int = 14;
+			if (mtmp->nurse_alla) add_menu(tmpwin, NO_GLYPH, &any , 'v', 0, ATR_NONE, "Gain Alla", MENU_UNSELECTED);
 
 			end_menu(tmpwin, "Services Available:");
 			n = select_menu(tmpwin, PICK_ONE, &selected);
@@ -3709,6 +3711,25 @@ register struct monst *mtmp;
 								u.nursevaccinecost += 250;
 								if (u.nursevaccinecost < 2000) u.nurseshutdowncost = 2000; /* fail safe */
 								upnivel(TRUE); /* guaranteed */
+							}
+						}
+
+						break;
+					case 14:
+						if (u.ugold < 100) {
+							verbalize("Sorry, that costs 100 dollars.");
+							break;
+						}
+						if (u.ugold >= 100) {
+							verbalize("You can buy one line of alla for 100 dollars.");
+							if (yn("Accept the offer?") == 'y') {
+								verbalize("Alright here's a line of alla for you.");
+								u.ugold -= 100;
+								if (!rn2(100)) mtmp->nurse_alla = 0;
+								if (u.ualign.type == A_NEUTRAL) adjalign(1);
+								u.cnd_nurseserviceamount++;
+								maybegaincha();
+								gain_alla(1);
 							}
 						}
 

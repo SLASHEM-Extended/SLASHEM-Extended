@@ -1471,6 +1471,7 @@ struct you {
 	int nataljetrapx, nataljetrapy;
 
 	int contamination;	/* weeping angel, but also other effects */
+	int alla;	/* for MS_ALLA */
 
 	int copwantedlevel;	/* for hot pursuits, i.e. when you've stolen from a shop */
 
@@ -1882,6 +1883,9 @@ struct you {
 	int cnd_blackjackdealercheat;	/* how many times the blackjack dealer cheated */
 	int cnd_covideffect;	/* how many times you suffered from covid symptoms */
 	int cnd_covidantidote;	/* how many times you received the cure for covid */
+	int cnd_socksmell;	/* for MS_SOCKS */
+	int cnd_pantsmell;	/* for MS_PANTS */
+	int cnd_photo_op;	/* for MS_PHOTO */
 
 	struct symbiotemon usymbiote;	/* for the symbiosis skill */
 	int symbioteaggressivity;	/* how often your symbiote attacks or takes damage */

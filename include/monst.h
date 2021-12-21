@@ -135,7 +135,8 @@ struct monst {
 #define CHAM_PLAYER_CHANGELING		58	/* animal */
 #define CHAM_EVIL_CHAMELEON		59	/* animal */
 #define CHAM_CHANGERING_KELPIE		60	/* animal */
-#define CHAM_GIANT_CHAMELEON		61	/* animal */
+#define CHAM_DITTO		61	/* pokemon */
+#define CHAM_GIANT_CHAMELEON		62	/* animal */
 #define CHAM_MAX_INDX		CHAM_GIANT_CHAMELEON
 	Bitfield(mundetected,1);	/* not seen in present hiding place */
 				/* implies one of M1_CONCEAL or M1_HIDE,
@@ -401,6 +402,7 @@ struct monst {
 	Bitfield(nurse_shutdownsymbiote,1);
 	Bitfield(nurse_restoration,1);
 	Bitfield(nurse_vaccine,1);
+	Bitfield(nurse_alla,1);
 
 	Bitfield(butthurt,6);
 	Bitfield(fartbonus,6); /* actually, max should be 9 */
@@ -429,6 +431,11 @@ struct monst {
 	int healblock;	/* normally zero; monster cannot heal over time if nonzero */
 	int inertia;	/* normally zero; monster moves at half speed */
 	int terraintrans;	/* for dimm coin: determines which terrain is created when the monster moves */
+	int handytime;	/* for MS_HANDY, determines for how long the monster is on the phone */
+	boolean handyfirst;	/* ditto, to ensure they only give greeting messages once */
+	boolean phototaken;	/* for MS_PHOTO, should lower the chance of them photographing you after the first time */
+	int repaircredit;	/* for MS_REPAIR, used to pay for their service */
+	boolean singability;	/* for MS_SING */
 
 	struct obj *mw;
 	long misc_worn_check;

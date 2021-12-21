@@ -3642,6 +3642,10 @@ boolean guaranteed;
 		enl_msg("Your sanity ", "is", "was", buf);
 	}
 
+	if (guaranteed || !rn2(10)) {sprintf(buf, " %d alla remaining", u.alla);
+		enl_msg("You ", "have", "had", buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && u.negativeprotection) {sprintf(buf, " %d", u.negativeprotection);
 		enl_msg("Your protection was reduced. The amount ", "is", "was", buf);
 	}
@@ -7730,6 +7734,9 @@ int final;
 
 	sprintf(buf, " %d", u.usanity);
 	dump("  Your sanity was", buf);
+
+	sprintf(buf, " %d alla remaining", u.alla);
+	dump("  You had", buf);
 
 	if (u.negativeprotection) {
 		sprintf(buf, " %d", u.negativeprotection);
@@ -12175,6 +12182,18 @@ int final;
 		sprintf(buf, "%d time%s", u.cnd_covidantidote, plur(u.cnd_covidantidote));
 		enl_msg(You_, "received a covid-19 antidote ", "received a covid-19 antidote ", buf);
 	}
+	if (u.cnd_socksmell) {
+		sprintf(buf, "%d time%s", u.cnd_socksmell, plur(u.cnd_socksmell));
+		enl_msg(You_, "sniffed worn socks ", "sniffed worn socks", buf);
+	}
+	if (u.cnd_pantsmell) {
+		sprintf(buf, "%d time%s", u.cnd_pantsmell, plur(u.cnd_pantsmell));
+		enl_msg(You_, "sniffed worn pants ", "sniffed worn pants", buf);
+	}
+	if (u.cnd_photo_op) {
+		sprintf(buf, "%d time%s", u.cnd_photo_op, plur(u.cnd_photo_op));
+		enl_msg(You_, "were photographed by monsters ", "were photographed by monsters", buf);
+	}
 
 	/* Pop up the window and wait for a key */
 	display_nhwindow(en_win, TRUE);
@@ -12756,6 +12775,15 @@ int final;
 
 	sprintf(buf, "%d time%s", u.cnd_covidantidote, plur(u.cnd_covidantidote));
 	dump("  You received a covid-19 antidote ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_socksmell, plur(u.cnd_socksmell));
+	dump("  You sniffed worn socks", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_pantsmell, plur(u.cnd_pantsmell));
+	dump("  You sniffed worn pants", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_photo_op, plur(u.cnd_photo_op));
+	dump("  You were photographed by monsters", buf);
 
 	dump("", "");
 }

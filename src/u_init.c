@@ -11119,6 +11119,7 @@ u_init()
 	u.conclusiocount = 0;
 	u.bucskill = 0;
 	u.enchantrecskill = 0;
+	u.alla = 1000;
 	u.juyofleeing = 1;
 	u.controlmiguc = 1;
 	u.riderhack = 0;

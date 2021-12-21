@@ -8259,6 +8259,11 @@ boolean cancontrol;	/* does control magic work on this? --Amy */
 
 	    if ((mtmp = m_at(bhitpos.x, bhitpos.y)) != 0) {
 
+		if (mtmp->handytime) {
+			pline_The("ammo passes through %s.", mon_nam(mtmp));
+			goto notamonster;
+		}
+
 		if (obj && obj->oartifact == ART_PIERCETHROUGH && !rn2(3)) {
 			pline_The("ammo passes through %s.", mon_nam(mtmp));
 			goto notamonster;
@@ -8548,6 +8553,8 @@ int dx, dy;
 		if(MON_AT(bhitpos.x, bhitpos.y)) {
 			mtmp = m_at(bhitpos.x,bhitpos.y);
 			if (mtmp && mtmp->mtame && control_magic_works()) {
+				pline_The("boomerang passes through %s.", mon_nam(mtmp));
+			} else if (mtmp->handytime) {
 				pline_The("boomerang passes through %s.", mon_nam(mtmp));
 			} else {
 				m_respond(mtmp);
@@ -9407,6 +9414,10 @@ sigilcontroldirection:
 			pline_The("spell passes through %s.", mon_nam(mon));
 			goto raypassthrough;
 		}
+		if (mon->handytime) {
+			pline_The("spell passes through %s.", mon_nam(mon));
+			goto raypassthrough;
+		}
 
         /* WAC Player/Monster Fireball */
             if (abs(type) == ZT_SPELL(ZT_FIRE)) break;
@@ -9535,6 +9546,8 @@ raypassthrough: /* if the player's control magic made it pass through --Amy */
 	    nomul(0, 0, FALSE);
 	    if (u.usteed && will_hit_steed() && !mon_reflects(u.usteed, (char *)0)) {
 			if (control_magic_works() && type >= 0) {
+				pline_The("spell passes through %s.", mon_nam(u.usteed));
+			} else if (u.usteed->handytime) {
 				pline_The("spell passes through %s.", mon_nam(u.usteed));
 			} else {
 				mon = u.usteed;
