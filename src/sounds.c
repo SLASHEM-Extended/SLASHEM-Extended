@@ -56,6 +56,7 @@ int rmtyp;
 
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 static const char allnoncount[] = { ALL_CLASSES, 0 };
+STATIC_OVL NEARDATA const char pawnables[] = { ALLOW_COUNT, GEM_CLASS, 0 };
 
 void
 dosounds()
@@ -2707,8 +2708,207 @@ register struct monst *mtmp;
 
 		break;
 	case MS_REPAIR:
+
+		{
+			if (mtmp->repaircredit) verbalize("Welcome back to my repair shop. You still have %d credit remaining for repairs.", mtmp->repaircredit);
+			else verbalize("Welcome to my repair shop. You can pawn gems to me to generate credit, and then use that credit to have your equipment repaired!");
+
+			winid tmpwin;
+			anything any;
+			menu_item *selected;
+			int n;
+
+			any.a_void = 0;         /* zero out all bits */
+			tmpwin = create_nhwindow(NHW_MENU);
+			start_menu(tmpwin);
+			any.a_int = 1;
+			add_menu(tmpwin, NO_GLYPH, &any , 'p', 0, ATR_NONE, "Pawn Gems", MENU_UNSELECTED);
+			any.a_int = 2;
+			add_menu(tmpwin, NO_GLYPH, &any , 'r', 0, ATR_NONE, "Repair", MENU_UNSELECTED);
+
+			end_menu(tmpwin, "Services Available:");
+			n = select_menu(tmpwin, PICK_ONE, &selected);
+			destroy_nhwindow(tmpwin);
+
+			if (n > 0) {
+				switch (selected[0].item.a_int) {
+					case 1:
+						{
+							struct obj *pawngem;
+							int gemvalue = 0;
+							pawngem = getobj((const char *)pawnables, "pawn");
+							if (!pawngem) break;
+							if (pawngem->oclass != GEM_CLASS) {
+								verbalize("That's not a gem!");
+								break;
+							}
+							if (pawngem->otyp >= ELIF_S_JEWEL) {
+								verbalize("Sorry, I only accept real gems or worthless glass.");
+								break;
+							}
+							if (pawngem->otyp > JADE) gemvalue = 5;
+							else gemvalue = objects[pawngem->otyp].oc_cost;
+							if (pawngem->spe > 0) gemvalue += (pawngem->spe * 10);
+							if (pawngem->spe < 0) {
+								gemvalue += (pawngem->spe * 10);
+								if (gemvalue < 5) gemvalue = 5;
+							}
+							if (mtmp->mpeaceful) {
+								gemvalue *= 5;
+								gemvalue /= 4;
+							}
+							if (pawngem->oeroded == 3) gemvalue /= 4;
+							else if (pawngem->oeroded == 2) gemvalue /= 3;
+							else if (pawngem->oeroded == 1) gemvalue /= 2;
+							if (pawngem->oeroded2 == 3) gemvalue /= 4;
+							else if (pawngem->oeroded2 == 2) gemvalue /= 3;
+							else if (pawngem->oeroded2 == 1) gemvalue /= 2;
+							if (gemvalue < 1) gemvalue = 1;
+
+							if (pawngem->quan > 1) {
+								pawngem->quan--;
+								pawngem->owt = weight(pawngem);
+							} else useup(pawngem);
+
+							mtmp->repaircredit += gemvalue;
+							verbalize("Alright, your credit was increased by %d and amounts to %d now.", gemvalue, mtmp->repaircredit);
+
+						}
+						break;
+					case 2:
+						{
+						register struct obj *repairotmp;
+						int repaircost = 0;
+
+						if (mtmp->repaircredit < 1000) {
+							verbalize("Sorry, you only have %d credit, that's too little.", mtmp->repaircredit);
+							break;
+						}
+
+repairitemchoice:
+						repairotmp = getobj(allnoncount, "magically repair");
+						if (!repairotmp) {
+							break;
+						}
+
+						if (!repairotmp->oeroded && !repairotmp->oeroded2) {
+							verbalize("That item doesn't need repairs!");
+							break;
+						}
+
+						if (repairotmp->oeroded == 3) repaircost += 10000;
+						if (repairotmp->oeroded == 2) repaircost += 2500;
+						if (repairotmp->oeroded == 1) repaircost += 1000;
+						if (repairotmp->oeroded2 == 3) repaircost += 10000;
+						if (repairotmp->oeroded2 == 2) repaircost += 2500;
+						if (repairotmp->oeroded2 == 1) repaircost += 1000;
+
+						if (repaircost > mtmp->repaircredit) {
+							verbalize("Sorry, you only have %d credit, and repairing that item would cost %d.", mtmp->repaircredit, repaircost);
+							break;
+						}
+
+						verbalize("It'll cost you %d zorkmids to repair that.", repaircost);
+						if (yn("Pay?") != 'y') {
+							verbalize("Ah well, maybe next time.");
+							break;
+						}
+						mtmp->repaircredit -= repaircost;
+
+						if (repairotmp && stack_too_big(repairotmp)) {
+							pline("The stack was too big and therefore didn't get repaired!");
+						} else if (repairotmp) {
+							if (!Blind) {
+								pline("Your %s looks as good as new!",xname(repairotmp));
+							}
+							if (repairotmp->oeroded > 0) { repairotmp->oeroded = 0; }
+							if (repairotmp->oeroded2 > 0) { repairotmp->oeroded2 = 0; }
+							if (repairotmp && objects[(repairotmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(repairotmp)) {
+								if (!repairotmp->cursed) bless(repairotmp);
+								else uncurse(repairotmp, FALSE);
+							}
+
+						}
+
+						}
+						break;
+				}
+			}
+		}
+
 		break;
 	case MS_DRUGS:
+		{
+			register int cnt = 0;
+			register struct monst *mkop, *mkop2;
+			int kopchance = 10;
+
+			verbalize("Ey yo man, what you need, dog?");
+			if (yn("Purchase drugs?") != 'y') {
+				verbalize("Keep calm, man!");
+				break;
+			}
+			if (u.ugold < 1000) {
+				verbalize("You ain't got the cash, man!");
+				break;
+			}
+			u.ugold -= 1000;
+			adjalign(-5);
+
+			struct obj *medkit;
+			medkit = mksobj(rn2(2) ? MUSHROOM : PILL, TRUE, FALSE, FALSE);
+			if (medkit) {
+				medkit->quan = 1;
+				medkit->known = medkit->dknown = medkit->bknown = medkit->rknown = 1;
+				medkit->owt = weight(medkit);
+				dropy(medkit);
+				stackobj(medkit);
+			}
+			verbalize("Yo, cool man, go check out the ground but shhhh!");
+
+			for (mkop = fmon; mkop; mkop = mkop2) {
+			    mkop2 = mkop->nmon;
+			    if (mkop->data->mlet == S_KOP) {
+				cnt++;
+			    }
+			}
+			while (cnt > 0) {
+				cnt--;
+				if (!rn2(4)) kopchance--;
+			}
+			if (kopchance < 3) kopchance = 3;
+			if (!rn2(kopchance)) {
+				u.copwantedlevel += rnz(1000);
+				verbalize("WEOWEO");
+			}
+
+			if (!rn2(kopchance)) {
+				int randsp;
+				int i;
+				coord cc, dd;
+				int cx,cy;
+			      cx = rn2(COLNO);
+			      cy = rn2(ROWNO);
+
+				randsp = (rn2(14) + 2);
+				if (!rn2(10)) randsp *= 2;
+				if (!rn2(100)) randsp *= 3;
+				if (!rn2(1000)) randsp *= 5;
+				if (!rn2(10000)) randsp *= 10;
+
+				for (i = 0; i < randsp; i++) {
+					if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
+					(void) makemon(mkclass(S_KOP,0), cx, cy, MM_ADJACENTOK|MM_ANGRY|MM_FRENZIED);
+				}
+
+			}
+
+			if (!rn2(7)) {
+				mongone(mtmp);
+				verbalize("Yo man this too hot here, later!");
+				return(1);
+			}
+		}
 		break;
 	case MS_COMBAT:
 		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/10) {

@@ -3345,7 +3345,6 @@ boolean atme;
 		return (0);
 	}
 
-
 	/* Casting any sort of magic as a mahou shoujo or naga does not cause hunger */
 	/* Amy edit: but if you're satiated, you always use the standard amount of nutrition. That way, hungerless casting
 	 * does not rob you of the ability to get out of satiated status by repeatedly casting spells. */
@@ -3562,6 +3561,30 @@ castanyway:
 			if ( role_skill == P_MASTER) confusionchance = 75;
 			if ( role_skill == P_GRAND_MASTER) confusionchance = 90;
 			if ( role_skill == P_SUPREME_MASTER) confusionchance = 100;
+		}
+	}
+
+	if (isevilvariant && youmonst.data->msound == MS_JAPANESE) {
+		if (strstri(spellname(spell), "r") != 0) {
+
+			pline("You can't spell the letter 'r', and therefore fail to cast the spell correctly.");
+			u.cnd_spellfailcount++;
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (!rn2(100)) { /* evil patch idea by Amy: failure effect */
+				pline("In fact, you cast the spell incorrectly in a way that causes bad stuff to happen...");
+				badeffect();
+			}
+			if (SpellColorSilver) u.seesilverspell = 0;
+
+			register int confusedcost = ((energy * 50 / ((role_skill == P_SUPREME_MASTER) ? 240 : (role_skill == P_GRAND_MASTER) ? 220 : (role_skill == P_MASTER) ? 200 : (role_skill == P_EXPERT) ? 180 : (role_skill == P_SKILLED) ? 160 : (role_skill == P_BASIC) ? 140 : 120)) + 1);
+
+			u.uen -= confusedcost;
+
+			if (SpellColorOrange) losehp(confusedcost, "casting an orange spell while confused", KILLED_BY);
+
+			flags.botl = 1;
+
+			return (1);
 		}
 	}
 
