@@ -2573,50 +2573,314 @@ register struct monst *mtmp;
 		break;
 
 	case MS_SOCKS:
+
+		if (mtmp->mtame) {
+			if (mtmp->mhp < mtmp->mhpmax/3) {
+				pline_msg = "are very sad that they've been damaged so badly...";
+			} else
+				pline_msg = "look sexy.";
+		}
+		else pline_msg = "emit an exciting smell.";
+
 		break;
 	case MS_PANTS:
+		if (mtmp->mtame) {
+			if (mtmp->mhp < mtmp->mhpmax/3) {
+				pline_msg = "look quite torn.";
+			} else
+				pline_msg = "are quite erotic.";
+		}
+		else pline_msg = "want you to take a whiff from them.";
+
 		break;
 	case MS_HANDY:
+		if (mtmp->handytime) {
+			pline_msg = "is on the phone and can't be interrupted right now!";
+			break;
+		}
+
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "I gotta call an ambulance!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Do you happen to have the phone number of that pizza delivery service?";
+			break;
+		}
+		if (mtmp->mtame) verbl_msg = "Go ahead, I'll follow you. But please be aware that I'm expecting an important phone call.";
+		else verbl_msg = "Don't disturb me, I'm expecting a phone call!";
+
 		break;
 	case MS_CAR:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Just hold on Tetsuo. I'm gonna find you to cure your pain.";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Teeeeeeeee tsuuuuuuu oooooooo!";
+			break;
+		}
+		if (mtmp->mtame) verbl_msg = "Relax, it's gonna take some time to warm my engine up.";
+		else verbl_msg = rn2(2) ? "Bo-Bo-Bo" : "Va-Va-Va";
+
 		break;
 	case MS_JAPANESE:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/10) {
+			verbl_msg = "Kofuku shimasen! Watashi wa katsu ka, watashi no kuni no tame ni shinudeshou!";
+			break;
+		}
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Watashitachi no firudodokuta ni denwa shite kudasai!";
+			break;
+		}
+		if (mtmp->mtame && mtmp->mconf) {
+			verbl_msg = "Nani? Chugokujin wa shinryaku shite imasu ka? Soretomo daitoryo wa kakumisairu o hassha shita nodeshou ka?";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Yasai o tori ni itte kudasai.";
+			break;
+		}
+		if (mtmp->mtame && mtmp->bleedout) {
+			verbl_msg = "Kizuguchi ni subayaku hotai o maku!";
+			break;
+		}
+		if (mtmp->mtame) verbl_msg = "Kekko.";
+		else if (mtmp->mpeaceful) verbl_msg = "Go aisatsu.";
+		else if (mtmp->mfrenzied) verbl_msg = "Watashi ni kohei-sa o kitai shinaide kudasai.";
+		else verbl_msg = "Anata wa tekidesu.";
+
 		break;
 	case MS_SOVIET:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/10) {
+			verbl_msg = "K chertu vsyu igru, kto voobshche zaprogrammiruyet etu fignyu.";
+			break;
+		}
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Skazhi programmistu, chtoby on otsosal mne.";
+			break;
+		}
+		if (mtmp->mtame && mtmp->mconf) {
+			verbl_msg = "YA sluchayno sozdal svoy variant? Eto neobychno.";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Ba, v moyey igre ya smogu protyanut' dol'she bez yedy.";
+			break;
+		}
+		if (mtmp->mtame && mtmp->bleedout) {
+			verbl_msg = "Pochemu etot statusnyy effekt voobshche imeyet znacheniye.";
+			break;
+		}
+		if (mtmp->mtame) verbl_msg = "Da ladno, ya ne khochu razygryvat' etu glupost'.";
+		else if (mtmp->mpeaceful) verbl_msg = "Pochemu ya voobshche dolzhen byt' zdes'?";
+		else if (mtmp->mfrenzied) verbl_msg = "Vse neuravnovesheno i ne imeyet smysla, i Emi deystvitel'no stoit obratit'sya k psikhiatru, potomu chto u neye opredelenno yest' bol'she, chem prosto neskol'ko nezakreplennykh vintov.";
+		else verbl_msg = "Skoro ty umresh', i togda tebe ne ostanetsya nichego drugogo, kak sygrat' v ledyanoy blok tipa yego variant, kotoryy namnogo luchshe, chem etot musor!";
+
 		break;
 	case MS_SNORE:
+		if (mtmp->mtame) {
+			if (mtmp->mhp < mtmp->mhpmax/3)
+				pline_msg = "breathes faintly.";
+			else if (mtmp->mtame && hastoeat && !mtmp->isminion && moves > EDOG(mtmp)->hungrytime)
+				pline_msg = "wants to eat a lot.";
+			else
+				pline_msg = "snores peacefully.";
+		}
+		else pline_msg = "snores.";
 		break;
 	case MS_PHOTO:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "I'll take a photo of whoever hurt me there, and then we'll manhunt that person!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Let's go to the cafeteria, I need a little snack!";
+			break;
+		}
+		if (mtmp->mtame) {
+			if (ACURR(A_CHA) > 17) verbl_msg = "Wow, you look splendid! I'm happy to accompany you!";
+			else if (ACURR(A_CHA) > 17) verbl_msg = "Hey, good looking!";
+			else verbl_msg = "Let's look for good photo opportunities.";
+		}
+		else verbl_msg = "Don't move, I want to take a photo of you!";
+
 		break;
 	case MS_REPAIR:
 		break;
 	case MS_DRUGS:
 		break;
 	case MS_COMBAT:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/10) {
+			verbl_msg = "If I don't get some source of healing, the next hit will kill me!";
+			break;
+		}
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "I'm low on health! Hopefully you have some healing powers!";
+			break;
+		}
+		if (mtmp->mtame && mtmp->mconf) {
+			verbl_msg = "I'm confused! Could you lend me your unicorn horn?";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Find me something to eat!";
+			break;
+		}
+		if (mtmp->mtame && mtmp->bleedout) {
+			verbl_msg = "Dang, I'm still bleeding from that last hit! Can you heal me? That should take care of it!";
+			break;
+		}
+		if (mtmp->mtame) verbl_msg = "I'm looking forward to the next battle!";
+		else if (mtmp->mpeaceful) verbl_msg = "I'd like to fight some enemies!";
+		else if (mtmp->mfrenzied) verbl_msg = "I'll finish you off!";
+		else verbl_msg = "Come! Fight me!";
 		break;
 	case MS_MUTE:
+		if (mtmp->mtame) {
+			if (mtmp->mhp < mtmp->mhpmax/3)
+				pline_msg = "moans.";
+			else if (mtmp->mtame && hastoeat && !mtmp->isminion && moves > EDOG(mtmp)->hungrytime)
+				pline_msg = "grunts like a pig.";
+			else
+				pline_msg = "grunts peacefully.";
+		}
+		else pline_msg = rn2(2) ? "barks threateningly." : "grunts angrily.";
 		break;
 	case MS_CORONA:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "I'm dying of covid-19! Bring me to the intensive care unit, FAST!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Man, everything tastes the same! But I really need to eat something...";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = rn2(2) ? "Lead the way, and be sure to always wear your face mask properly." : "Careful, I know we're on the same team, but please don't get closer than 1.50 meters to me.";
+		}
+		else verbl_msg = rn2(2) ? "Stop! You need to wear a face mask! I'm not gonna let you spread the virus to me!" : "Stay away! I don't want to contract your covid infection! Keep a minimum distance of 2 meters, got it?";
 		break;
 	case MS_TRUMPET:
+		if (mtmp->mtame) {
+			if (mtmp->mhp < mtmp->mhpmax/3)
+				pline_msg = "lets out a tormented squeak.";
+			else if (mtmp->mtame && !mtmp->isminion && hastoeat && moves > EDOG(mtmp)->hungrytime)
+				pline_msg = "emits a long sigh.";
+			else
+				pline_msg = "trumpets.";
+		}
+		else pline_msg = mtmp->mpeaceful ? "trumpets peacefully." : "roars!";
 		break;
 	case MS_PAIN:
+		verbalize("My health status is %d HP out of a maximum of %d!", mtmp->mhp, mtmp->mhpmax);
 		break;
 	case MS_BRAG:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Bah, I won't die that easily! I still got some hit points left!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Once I've eaten, my strength will be even higher than before!";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "I am the best!";
+		}
+		else verbl_msg = "Bah, I'm much better than you!";
 		break;
 	case MS_PRINCESSLEIA:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/10) {
+			verbl_msg = "Noooooo! I may not die! If I die, this kingdom will perish!";
+			break;
+		}
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Please repair my broken nail!";
+			break;
+		}
+		if (mtmp->mtame && mtmp->mconf) {
+			verbl_msg = "That green elf dude... I think his name was Zelda, right? And he has to defeat that horned demon named Link to save the kingdom of Ganondorf!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Oh, I just remember that I baked a cake, but I forgot where I left it? Can you find it, then we can eat it together?";
+			break;
+		}
+		if (mtmp->mtame && mtmp->bleedout) {
+			verbl_msg = "Do something! You see that I'm dripping my blue blood all over the place!";
+			break;
+		}
+		if (mtmp->mtame) verbl_msg = "Together, we can peacefully rule this kingdom.";
+		else if (mtmp->mpeaceful) verbl_msg = "Have you seen Han Solo?";
+		else if (mtmp->mfrenzied) verbl_msg = "You cannot defeat the princess! My marital arts training will pay off and I'll chase you away!";
+		else verbl_msg = "Are you trying to invade my kingdom? Because if you are, I'll have to bludgeon you with my pointy pink girl shoes.";
+
 		break;
 	case MS_SISSY:
+		verbl_msg = "waaaaaaah...";
 		break;
 	case MS_SING:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "What, why'd they turn on me? I was supposed to rule them...";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Oh, I'm afraid I've run out of bloodpacks, do you have some for me?";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "It's nice of you to help me force those slaves to clean the girls' shoes.";
+		}
+		else if (mtmp->mpeaceful) verbl_msg = "Hey, do you want to assist me? I'd be thrilled if you were to step into dog shit with your shoes, because then I can force my slaves to clean your shoes, and when they're done, you'll get them back.";
+		else verbl_msg = "You know the rules. You have to clean the dog shit off of every pair of female shoes that I present to you, and you're not allowed to use anything other than your hands and a can of shoe polish.";
 		break;
 	case MS_ALLA:
+		if (!mtmp->mtame && !mtmp->mpeaceful) verbl_msg = "you will lose";
 		break;
 	case MS_POKEDEX:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Argh, I bit off more than I can chew! That monster is too strong!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "All that pokemon hunting has caused me to go hungry! I got to eat some berries!";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Let's look for new pokemon in that grass patch over there.";
+		}
+		else if (mtmp->mpeaceful) verbl_msg = "Hmm, my PokeWalker(TM) said that a couple new pokemon species can be encountered on this level...";
+		else verbl_msg = "Go away, this is my pokemon hunting ground! I'm not letting you catch the shinies here, you hear?";
 		break;
 	case MS_BOT:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Calculating chance of success... 25%%.";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Hungry! Let's go to the bar!";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "I protect and serve you.";
+		}
+		else if (mtmp->mpeaceful) verbl_msg = "Another great day in the history of our army!";
+		else verbl_msg = "Please don't be surprised if I kill you. That's just my programming.";
 		break;
 	case MS_APOC:
+		if (mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Just fucking kill me now.";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Of course, the food supply chains have broken down too...";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "This world is headed towards destruction.";
+		}
+		else if (mtmp->mpeaceful) verbl_msg = "Did you know that the end of the world is coming?";
+		else verbl_msg = "Oh, don't mind me, I know that we're all gonna die anyway.";
 		break;
 
 	case MS_GIBBERISH:
