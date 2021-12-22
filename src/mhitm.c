@@ -321,6 +321,29 @@ mattackm(magr, mdef)
     /* Calculate the armour class differential. */
     tmp = find_mac(mdef);
 
+    boolean egotypearcane = magr->egotype_arcane;
+    boolean egotypeclerical = magr->egotype_clerical;
+    boolean egotypemastercaster = magr->egotype_mastercaster;
+    boolean egotypethief = magr->egotype_thief;
+    boolean egotypedisenchant = magr->egotype_disenchant;
+    boolean egotyperust = magr->egotype_rust;
+    boolean egotypecorrosion = magr->egotype_corrosion;
+    boolean egotypedecay = magr->egotype_decay;
+    boolean egotypeflamer = magr->egotype_flamer;
+    boolean egotypeblasphemer = magr->egotype_blasphemer;
+    boolean egotypedropper = magr->egotype_dropper;
+    boolean egotypewither = magr->egotype_wither;
+    boolean egotypegrab = magr->egotype_grab;
+    boolean egotypefaker = magr->egotype_faker;
+    boolean egotypeslows = magr->egotype_slows;
+    boolean egotypevampire = magr->egotype_vampire;
+    boolean egotypeteleportyou = magr->egotype_teleportyou;
+    boolean egotypewrap = magr->egotype_wrap;
+    boolean egotypedisease = magr->egotype_disease;
+    boolean egotypeslime = magr->egotype_slime;
+    boolean egotypepoisoner = magr->egotype_poisoner;
+    boolean egotypeelementalist = magr->egotype_elementalist;
+
     /* To-hit based on the monster's level. Nerf by Amy: high-level monsters shouldn't autohit. */
     magrlev = magr->m_lev;
     if (magrlev > 19) {
@@ -759,7 +782,7 @@ meleeattack:
     /* egotypes and other extra attacks, by Amy */
     if (mdef->mtame) {
 
-	if (magr->egotype_arcane ) {
+	if (egotypearcane ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
@@ -778,7 +801,7 @@ meleeattack:
 
 	}
 
-	if (magr->egotype_clerical ) {
+	if (egotypeclerical ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
@@ -797,7 +820,7 @@ meleeattack:
 
 	}
 
-	if (magr->egotype_mastercaster ) {
+	if (egotypemastercaster ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
@@ -816,7 +839,7 @@ meleeattack:
 
 	}
 
-	if (magr->egotype_thief ) {
+	if (egotypethief ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
@@ -835,7 +858,7 @@ meleeattack:
 
 	}
 
-	if (magr->egotype_disenchant ) {
+	if (egotypedisenchant ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
@@ -854,7 +877,7 @@ meleeattack:
 
 	}
 
-	if (magr->egotype_rust ) {
+	if (egotyperust ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
@@ -873,7 +896,7 @@ meleeattack:
 
 	}
 
-	if (magr->egotype_corrosion ) {
+	if (egotypecorrosion ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
@@ -892,7 +915,7 @@ meleeattack:
 
 	}
 
-	if (magr->egotype_decay ) {
+	if (egotypedecay ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
@@ -911,7 +934,7 @@ meleeattack:
 
 	}
 
-	if (magr->egotype_flamer ) {
+	if (egotypeflamer ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
@@ -930,7 +953,7 @@ meleeattack:
 
 	}
 
-	if (magr->egotype_blasphemer ) {
+	if (egotypeblasphemer ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
@@ -949,7 +972,7 @@ meleeattack:
 
 	}
 
-	if (magr->egotype_dropper ) {
+	if (egotypedropper ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
@@ -968,7 +991,7 @@ meleeattack:
 
 	}
 
-	if (magr->egotype_wither ) {
+	if (egotypewither ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
@@ -987,7 +1010,7 @@ meleeattack:
 
 	}
 
-	if (magr->egotype_grab ) {
+	if (egotypegrab ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
@@ -1006,7 +1029,7 @@ meleeattack:
 
 	}
 
-	if (magr->egotype_faker ) {
+	if (egotypefaker ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
@@ -1025,7 +1048,7 @@ meleeattack:
 
 	}
 
-	if (magr->egotype_slows ) {
+	if (egotypeslows ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
@@ -1044,7 +1067,7 @@ meleeattack:
 
 	}
 
-	if (magr->egotype_vampire ) {
+	if (egotypevampire ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
@@ -1063,7 +1086,7 @@ meleeattack:
 
 	}
 
-	if (magr->egotype_teleportyou ) {
+	if (egotypeteleportyou ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
@@ -1082,7 +1105,7 @@ meleeattack:
 
 	}
 
-	if (magr->egotype_wrap ) {
+	if (egotypewrap ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
@@ -1101,7 +1124,7 @@ meleeattack:
 
 	}
 
-	if (magr->egotype_disease ) {
+	if (egotypedisease ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
@@ -1120,7 +1143,7 @@ meleeattack:
 
 	}
 
-	if (magr->egotype_slime ) {
+	if (egotypeslime ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
@@ -1139,7 +1162,7 @@ meleeattack:
 
 	}
 
-	if (magr->egotype_poisoner ) {
+	if (egotypepoisoner ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
@@ -1158,7 +1181,7 @@ meleeattack:
 
 	}
 
-	if (magr->egotype_elementalist ) {
+	if (egotypeelementalist ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
