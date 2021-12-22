@@ -7890,7 +7890,7 @@ A("Stormbundler",               SOFT_LADY_SHOE,
 A("The Longbundle of Diana", ICKY_BLADE,
 	(SPFX_RESTR|SPFX_INTEL|SPFX_REFLECT|SPFX_ESP), 0, 0,
 	PHYS(5,0),	NO_DFNS,	NO_CARY,
-	0, A_CHAOTIC, 0, NON_PM, 4000L ),
+	0, A_CHAOTIC, NON_PM, NON_PM, 4000L ),
 
 A("Quiver of Fleecy Arrows",				PAPER_ARROW,
 	(SPFX_RESTR), 0, 0,
@@ -8989,7 +8989,7 @@ A("Kal",			KALASHNIKOV,
 A("Stahngnir's Bashhunk", AIR_PRESSURE_HAMMER, /* petrification resistance when wielded */
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	PHYS(5, 0),	NO_DFNS, NO_CARY,
-	0,	0, 0, NON_PM, 20000L ),
+	0,	A_NONE, NON_PM, NON_PM, 20000L ),
 
 /* three artifacts for elemental imbue technique, cannot be wished for */
 A("Fire Swing",			LONG_SWORD,
