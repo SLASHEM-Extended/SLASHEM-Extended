@@ -754,6 +754,7 @@ static struct {
 	{ "levelseventyroom",  LEVELSEVENTYROOM },
 	{ "robbercave",  ROBBERCAVE },
 	{ "sanitationcentral",  SANITATIONCENTRAL },
+	{ "casinoroom",  CASINOROOM },
 
 	{ "evilroom", EVILROOM },
 	{ "religioncenter", RELIGIONCENTER },

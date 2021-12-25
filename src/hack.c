@@ -3780,6 +3780,9 @@ register boolean newlev;
                 pline(FunnyHallu ? "Oh my god, Amy's fanfics have come true!" : "You enter the robbers' hideout!");
 		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
+	      case CASINOROOM:
+                pline(FunnyHallu ? "As you enter the room, your head starts to ring like a slot machine!" : "You enter a casino!");
+                break;
 	      case SANITATIONCENTRAL:
                 pline(FunnyHallu ? "Muahahahahaha, you feel like focusing your gaze on a great race of yith because who needs sanity anyway?" : "Something seems to focus on your mind as you enter this room.");
 		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
@@ -3951,6 +3954,9 @@ register boolean newlev;
                         break;
                       case ROBBERCAVE:
                         level.flags.has_robbercave = 0;
+                        break;
+                      case CASINOROOM:
+                        level.flags.has_casinoroom = 0;
                         break;
                       case SANITATIONCENTRAL:
                         level.flags.has_sanitationcentral = 0;

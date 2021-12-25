@@ -173,6 +173,7 @@ int	roomtype;
 	case WEAPONCHAMBER: mkzoo(WEAPONCHAMBER); break;
 	case HELLPIT: mkzoo(HELLPIT); break;
 	case ROBBERCAVE: mkzoo(ROBBERCAVE); break;
+	case CASINOROOM: mkzoo(CASINOROOM); break;
 	case SANITATIONCENTRAL: mkzoo(SANITATIONCENTRAL); break;
 	case FEMINISMROOM: mkzoo(FEMINISMROOM); break;
 	case MEADOWROOM: mkzoo(MEADOWROOM); break;
@@ -219,7 +220,7 @@ int	roomtype;
 	case RANDOMROOM: {
 
 retryrandtype:
-		switch (rnd(83)) {
+		switch (rnd(84)) {
 
 			case 1: mkzoo(COURT); break;
 			case 2: mkswamp(); break;
@@ -308,6 +309,7 @@ retryrandtype:
 			case 81: mkzoo(ROBBERCAVE); break;
 			case 82: mkzoo(SANITATIONCENTRAL); break;
 			case 83: mkzoo(PLAYERCENTRAL); break;
+			case 84: mkzoo(CASINOROOM); break;
 
 		}
 		break;
@@ -672,6 +674,7 @@ struct mkroom *sroom;
 	}
 	if (type == ARMORY) moreorless /= 2;
 	if (type == ROBBERCAVE) moreorless /= 2;
+	if (type == CASINOROOM) moreorless /= 4;
 	if (type == DIVERPARADISE) moreorless /= 5;
 	if (type == SANITATIONCENTRAL) moreorless /= 3;
 	if (type == LEVELFFROOM) moreorless /= 3;
@@ -761,6 +764,7 @@ struct mkroom *sroom;
 		    (type == RELIGIONCENTER) ? (rn2(5) ? specialtensmon(347) /* MS_CONVERT */ : specialtensmon(348) /* MS_ALIEN */ ) :
 			(type == CLINIC) ? specialtensmon(218) /* AD_HEAL */ :
 			(type == TERRORHALL) ? mkclass(S_UMBER,0) :
+			(type == CASINOROOM) ? (level_difficulty() > 39 ? &mons[PM_ELITE_CROUPIER] : level_difficulty() > 19 ? &mons[PM_MASTER_CROUPIER] : &mons[PM_CROUPIER] )  :
 			(type == ROBBERCAVE) ? (!rn2(20) ? specialtensmon(286) /* AD_SAMU */ : !rn2(4) ? specialtensmon(357) /* AD_THIE */ : !rn2(3) ? specialtensmon(212) /* AD_SITM */ : !rn2(2) ? specialtensmon(213) /* AD_SEDU */ : specialtensmon(211) /* AD_SGLD */ ) :
 			(type == SANITATIONCENTRAL) ? specialtensmon(363) /* AD_SANI */ :
 			(type == VARIANTROOM) ? specialtensmon(u.specialtensionmonster) :
@@ -822,7 +826,7 @@ struct mkroom *sroom;
 		/* In Soviet Russia, monsters are always awake harharharharhar harharhar harhar! --Amy */
 
 			/*enemies in these rooms will almost always be hostile now --Amy*/
-			if (mon->mpeaceful && rn2(20)) {
+			if (mon->mpeaceful && type != CASINOROOM && rn2(20)) {
 				mon->mpeaceful = 0;
 				set_malign(mon);
 			}
@@ -831,6 +835,12 @@ struct mkroom *sroom;
 			if (type == GREENCROSSROOM && (rnd(20) < u.ualign.record)) {
 				mon->mpeaceful = 1;
 				set_malign(mon);
+			}
+
+			if (type == CASINOROOM) { /* croupiers are meant to be awake and non-hostile --Amy */
+				mon->mfrenzied = FALSE;
+				mon->mpeaceful = 1;
+				mon->msleeping = FALSE;
 			}
 
 		}
@@ -877,6 +887,25 @@ struct mkroom *sroom;
 
 			if(!rn2(25) && !t_at(sx, sy)) {
 				(void) maketrap(sx, sy, MONSTER_CUBE, 100, FALSE);
+			}
+
+			break;
+
+		    case CASINOROOM:
+
+			if(levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) {
+
+				if (!rn2(10) || (sx == tx && sy == ty)) levl[sx][sy].typ = WOODENTABLE;
+			}
+
+			if (sx == tx && sy == ty) {
+				register struct monst *croupier;
+				croupier = makemon(level_difficulty() > 39 ? &mons[PM_ELITE_CROUPIER] : level_difficulty() > 19 ? &mons[PM_MASTER_CROUPIER] : &mons[PM_CROUPIER], sx, sy, MM_ADJACENTOK);
+				if (croupier) {
+					croupier->mfrenzied = FALSE;
+					croupier->mpeaceful = 1;
+					croupier->msleeping = FALSE;
+				}
 			}
 
 			break;
@@ -1619,6 +1648,9 @@ struct mkroom *sroom;
 		break;
 	    case SANITATIONCENTRAL:
 		level.flags.has_sanitationcentral = 1;
+		break;
+	    case CASINOROOM:
+		level.flags.has_casinoroom = 1;
 		break;
 	    case NUCLEARCHAMBER:
 		level.flags.has_nuclearchamber = 1;

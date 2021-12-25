@@ -503,6 +503,31 @@ dosounds()
 		return;
 	    }
 
+	    if (level.flags.has_casinoroom && !rn2(200)) {
+		static const char *casinoroom_msg[] = {
+			"hear the clinging of jetons.",
+			"hear someone announce 'Place your bets please!'",
+			"see a passerby holding a casino chip.",
+			"can hear a roulette wheel spinning.",
+			"are feeling like gambling away a couple thousand zorkmids.",
+			"are looking for the entrance to Caligula's Casino.",
+			"hear someone complaining about the Forelli and Sindacco competitors.",
+			"feel like playing some cards.",
+			"hear someone using the video poker machine.",
+			"hear someone announce 'FISHING! FISHING! WIN! WIN!'",
+			"see someone passing by who definitely has to be a high roller!",
+			"suddenly realize that there are ever more security full refuges coming, and they'll whittle down your health if you don't manage to escape!",
+			"feel that the right way to address Don Salvatore is by saying 'Greetings, Mr. Don', even though Don is actually Italian for Mister.", /* GTA San Andreas mafia boss */
+			"know that one of the two chips is a fake without even looking at them.",
+			"hear a cat singing 'Vrei sa pleci dar, numa numa yay. Numa numa yay, numa numa numa yay!", /* "Dragostea Din Tei", which is quoted by cats in Elona */
+			"hear a cat singing 'Mai-Ya-Hi, Mai-Ya-Hu, Mai-Ya-Ho, Mai-Ya-Ho-Ho!'",
+			"have to chase the assassins, who are travelling as a string quartet, and their airplane is too damn fast!", /* "Free Fall" mission in GTA San Andreas */
+			"wonder why the beanpole englishman is constantly wanking off. Like who is that monkey?", /* Maccer, obviously */
+		};
+		You("%s", casinoroom_msg[rn2(9+hallu*9)]);
+		return;
+	    }
+
 	    if (level.flags.has_sanitationcentral && !rn2(200)) {
 		static const char *sanitationcentral_msg[] = {
 			"hear heavy breathing.",

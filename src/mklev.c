@@ -151,7 +151,7 @@ STATIC_OVL int
 findrandtype()
 {
 retryrandtype:
-	switch (rnd(83)) {
+	switch (rnd(84)) {
 		case 1: return COURT;
 		case 2: return SWAMP;
 		case 3: return BEEHIVE;
@@ -238,6 +238,7 @@ retryrandtype:
 		case 81: return ROBBERCAVE;
 		case 82: return SANITATIONCENTRAL;
 		case 83: return PLAYERCENTRAL;
+		case 84: return CASINOROOM;
 	}
 
 	return EMPTYNEST;
@@ -1999,6 +2000,7 @@ clear_level_structures()
 	level.flags.has_weaponchamber = 0;
 	level.flags.has_hellpit = 0;
 	level.flags.has_robbercave = 0;
+	level.flags.has_casinoroom = 0;
 	level.flags.has_sanitationcentral = 0;
 	level.flags.has_feminismroom = 0;
 	level.flags.has_meadowroom = 0;
@@ -11190,7 +11192,8 @@ gehennomxtra:
 	    else if(depth(&u.uz) > (issoviet ? 13 : 1) && (ishaxor ? !rn2(8) : !rn2(15))) mkroom(BADFOODSHOP);
 	    else if(depth(&u.uz) > (issoviet ? 18 : 1) && (ishaxor ? !rn2(18) : !rn2(36))) mkroom(SWAMP);
 	    else if(depth(&u.uz) > (issoviet ? 26 : 5) && (ishaxor ? !rn2(75) : !rn2(150))) mkroom(MIRASPA);
-	    else if(depth(&u.uz) > (issoviet ? 18 : 1) && (ishaxor ? !rn2(60) : !rn2(120))) mkroom(DIVERPARADISE);
+          else if(depth(&u.uz) > (issoviet ? 15 : 1) && (ishaxor ? !rn2(90) : !rn2(150))) mkroom(CASINOROOM);
+	    else if(depth(&u.uz) > (issoviet ? 18 : 1) && (ishaxor ? !rn2(90) : !rn2(150))) mkroom(DIVERPARADISE);
 	    else if(depth(&u.uz) > (issoviet ? 18 : 1) && (ishaxor ? !rn2(60) : !rn2(120))) mkroom(SHOWERROOM);
         else if (depth(&u.uz) > (issoviet ? 20 : 10) && (ishaxor ? !rn2(30) : !rn2(60))) mkroom(CLINIC); /*supposed to be very rare --Amy*/
         else if (depth(&u.uz) > (issoviet ? 13 : 5) && (ishaxor ? !rn2(20) : !rn2(40))) mkroom(COOLINGCHAMBER);

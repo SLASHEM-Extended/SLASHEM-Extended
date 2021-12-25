@@ -27429,6 +27429,24 @@ static NEARDATA const char * const fake_plines[] = {
 	"Your equipment is missing some effects. Did you also realize that your ring of free action hasn't prevented even a single paralysis attack since you started wearing it?",
 	"'echoes from the last bastion of sanity' is an associated phrase idk why", /* by Demo */
 	"Man I'm just so glad that the brand of nail polish I'm using is called 'Beauty Woman' and not 'Beauty person who menstruates'. Because the latter sounds just ewwww.",
+	"You hear the clinging of jetons.",
+	"You hear someone announce 'Place your bets please!'",
+	"You see a passerby holding a casino chip.",
+	"You can hear a roulette wheel spinning.",
+	"You are feeling like gambling away a couple thousand zorkmids.",
+	"You are looking for the entrance to Caligula's Casino.",
+	"You hear someone complaining about the Forelli and Sindacco competitors.",
+	"You feel like playing some cards.",
+	"You hear someone using the video poker machine.",
+	"You hear someone announce 'FISHING! FISHING! WIN! WIN!'",
+	"You see someone passing by who definitely has to be a high roller!",
+	"You suddenly realize that there are ever more security full refuges coming, and they'll whittle down your health if you don't manage to escape!",
+	"You feel that the right way to address Don Salvatore is by saying 'Greetings, Mr. Don', even though Don is actually Italian for Mister.",
+	"You know that one of the two chips is a fake without even looking at them.",
+	"You hear a cat singing 'Vrei sa pleci dar, numa numa yay. Numa numa yay, numa numa numa yay!",
+	"You hear a cat singing 'Mai-Ya-Hi, Mai-Ya-Hu, Mai-Ya-Ho, Mai-Ya-Ho-Ho!'",
+	"You have to chase the assassins, who are travelling as a string quartet, and their airplane is too damn fast!",
+	"You wonder why the beanpole englishman is constantly wanking off. Like who is that monkey?",
 
 };
 
