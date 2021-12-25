@@ -8979,7 +8979,7 @@ terrainterror()
 
 		else {
 
-			monstercolor = rnd(379);
+			monstercolor = rnd(407);
 
 			for (i = 0; i < randsp; i++) {
 

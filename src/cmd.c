@@ -998,6 +998,62 @@ int traitno;
 			return "monsters with blasphemy attacks";
 		case 379:
 			return "monsters whose attack makes you trip and drop your items";
+		case 380:
+			return "monsters who always flee from you";
+		case 381:
+			return "monsters who always walk randomly";
+		case 382:
+			return "monsters who allow you to play casino games";
+		case 383:
+			return "monsters who talk gibberish";
+		case 384:
+			return "monsters who talk about glyphs";
+		case 385:
+			return "monster socks";
+		case 386:
+			return "monster pants";
+		case 387:
+			return "monsters who are occasionally on the phone";
+		case 388:
+			return "monster cars";
+		case 389:
+			return "monsters who speak japanese";
+		case 390:
+			return "monsters who speak russian";
+		case 391:
+			return "monsters who snore";
+		case 392:
+			return "monsters who try to photograph you";
+		case 393:
+			return "monsters who can repair your stuff";
+		case 394:
+			return "monsters who sell drugs to you";
+		case 395:
+			return "monsters who generate special combat messages";
+		case 396:
+			return "monsters who are mute";
+		case 397:
+			return "monsters who blabber about the plague";
+		case 398:
+			return "monsters who trumpet";
+		case 399:
+			return "monsters who are in pain";
+		case 400:
+			return "monsters who brag about their deeds";
+		case 401:
+			return "monsters who are royal princesses";
+		case 402:
+			return "monsters who are whiny little sissies";
+		case 403:
+			return "monsters who want you to clean female shoes";
+		case 404:
+			return "monsters who drain your alla";
+		case 405:
+			return "monsters who use a pokedex";
+		case 406:
+			return "bot monsters";
+		case 407:
+			return "monsters who talk about the apocalypse";
 
 		default:
 			impossible("bad trait no %d, please update montraitname() in cmd.c", traitno);

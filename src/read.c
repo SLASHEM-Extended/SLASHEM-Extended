@@ -6659,7 +6659,7 @@ materialchoice3:
 			monstercolor = rnd(15);
 			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 		} else {
-			monstercolor = rnd(379);
+			monstercolor = rnd(407);
 		}
 
 		while(cnt--) {

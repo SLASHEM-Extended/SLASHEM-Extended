@@ -3328,7 +3328,7 @@ altarfound:
 	}
 
 	if (mtmp->data->msound == MS_SNORE && !rn2(500)) mtmp->msleeping = 1;
-	if (mtmp->data->msound == MS_SNORE && mtmp->msleeping && !rn2(5)) {
+	if (mtmp->data->msound == MS_SNORE && (mtmp->msleeping || mtmp->masleep) && !rn2(5)) {
 		wake_nearto(mtmp->mx, mtmp->my, 25);
 		if (canseemon(mtmp)) pline("%s snores loudly!", Monnam(mtmp));
 		else You_hear("loud snoring!");

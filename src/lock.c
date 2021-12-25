@@ -918,7 +918,7 @@ doforce()		/* try to force a chest with your weapon */
 				if (Role_if(PM_JEDI) && StrongUseTheForce) dmg += u.ulevel;
 				else if (Race_if(PM_BORG) && StrongUseTheForce) dmg += rnd(u.ulevel);
 
-				if (Role_if(PM_EMERA) && mtmp->data->msound == MS_SHOE) {
+				if (Role_if(PM_EMERA) && (mtmp->data->msound == MS_SHOE || mtmp->data->msound == MS_PANTS || mtmp->data->msound == MS_SOCKS)) {
 					dmg += rnd(2 * u.ulevel);
 				}
 
@@ -940,7 +940,7 @@ doforce()		/* try to force a chest with your weapon */
 				pline("You use the force on %s.", mon_nam(mtmp));
 				u.cnd_forcecount++;
 
-				if (Role_if(PM_EMERA) && mtmp->data->msound == MS_SHOE) pline("Your %s furiously rip into %s. You evil bastard.", makeplural(body_part(HAND)), mon_nam(mtmp));
+				if (Role_if(PM_EMERA) && (mtmp->data->msound == MS_SHOE || mtmp->data->msound == MS_PANTS || mtmp->data->msound == MS_SOCKS)) pline("Your %s furiously rip into %s. You evil bastard.", makeplural(body_part(HAND)), mon_nam(mtmp));
 
 				setmangry(mtmp);
 				wakeup(mtmp);
