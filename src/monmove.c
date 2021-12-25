@@ -617,13 +617,13 @@ register struct monst *mtmp;
 		return(0);
 	}
 
-	if (mtmp->handytime) { /* todo - make it so that greeting messages appear at the beginning of a call etc. */
+	if (mtmp->handytime) {
 		mtmp->handytime--;
 		if (mtmp->handytime < 0) mtmp->handytime = 0; /* fail safe */
 
 		if (!mtmp->handyfirst) {
 			mtmp->handyfirst = TRUE;
-			switch (rnd(6)) {
+			switch (rnd(16)) {
 				case 1:
 					verbalize("Hey."); break;
 				case 2:
@@ -636,10 +636,30 @@ register struct monst *mtmp;
 					verbalize("Hello there!"); break;
 				case 6:
 					verbalize("Que pasa?"); break;
+				case 7:
+					verbalize("Wei!"); break;
+				case 8:
+					verbalize("Hey mister, good that you're calling."); break;
+				case 9:
+					verbalize("Ah, hi! I was expecting your call!"); break;
+				case 10:
+					verbalize("Hi! Nice to hear from you!"); break;
+				case 11:
+					verbalize("Hi!"); break;
+				case 12:
+					verbalize("Yo wassup man?"); break;
+				case 13:
+					verbalize("Hey handsome!"); break;
+				case 14:
+					verbalize("Hey babe!"); break;
+				case 15:
+					verbalize("Hey! Did I catch you at a bad time?"); break;
+				case 16:
+					verbalize("Hi, how have you been?"); break;
 			}
 		}
 
-		if (mtmp->handyfirst && (mtmp->handytime > 0) && rn2(2)) switch (rnd(30)) {
+		if (mtmp->handyfirst && (mtmp->handytime > 0) && rn2(2)) switch (rnd(40)) {
 			case 1:
 				verbalize("How you doing today?"); break;
 			case 2:
@@ -700,9 +720,29 @@ register struct monst *mtmp;
 				verbalize("Hey, I'd like to not talk about that on the phone, okay?"); break;
 			case 30:
 				verbalize("Really? Is it a reliable source?"); break;
+			case 31:
+				verbalize("Did you hear that story? About my neighbors?"); break;
+			case 32:
+				verbalize("You won't believe me, but my aunt called yesterday and told me about this great thing..."); break;
+			case 33:
+				verbalize("Watching any good movies on the TV tonight?"); break;
+			case 34:
+				verbalize("Hey I've been thinking, we should go out to a club!"); break;
+			case 35:
+				verbalize("I'd give a clever response to that, but my helmet is constricting my thoughts."); break;
+			case 36:
+				verbalize("Awesome, man!"); break;
+			case 37:
+				verbalize("Wow, you're really lucky!"); break;
+			case 38:
+				verbalize("That's a good thing."); break;
+			case 39:
+				verbalize("Hmm, that doesn't sound so good..."); break;
+			case 40:
+				verbalize("What? Really???"); break;
 		}
 
-		if (mtmp->handyfirst && (mtmp->handytime == 0) ) switch (rnd(7)) {
+		if (mtmp->handyfirst && (mtmp->handytime == 0) ) switch (rnd(21)) {
 			case 1:
 				verbalize("See you later!"); break;
 			case 2:
@@ -717,6 +757,34 @@ register struct monst *mtmp;
 				verbalize("Call me later!"); break;
 			case 7:
 				verbalize("I am so unwilling to put down the phone! Bye!"); break;
+			case 8:
+				verbalize("Bye bitch!"); break;
+			case 9:
+				verbalize("See ya cunt!"); break;
+			case 10:
+				verbalize("Later dude!"); break;
+			case 11:
+				verbalize("Bah, I got bored of this call anyway."); break;
+			case 12:
+				verbalize("Until next time!"); break;
+			case 13:
+				verbalize("Have a nice time!"); break;
+			case 14:
+				verbalize("Godspeed!"); break;
+			case 15:
+				verbalize("Have a wonderful day!"); break;
+			case 16:
+				verbalize("I enjoyed speaking with you today! Goodbye!"); break;
+			case 17:
+				verbalize("Thanks for calling, please call back if you have any questions."); break;
+			case 18:
+				verbalize("We'll be in touch."); break;
+			case 19:
+				verbalize("Alright, I'll send you the information via e-mail shortly after this call."); break;
+			case 20:
+				verbalize("I'll call you once the update is ready. Have a nice day!"); break;
+			case 21:
+				verbalize("I hope you enjoy the rest of your day."); break;
 
 		}
 

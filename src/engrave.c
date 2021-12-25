@@ -5534,6 +5534,8 @@ static const char *epitaphs[] = {
 	"You fucking bumped into a fucking peaceful monster with a fucking Stormbringer for fuck's sake!",
 	"Internet cancel culture is just terrible. All it takes is one person in a position of power who declares your game dead, and all of their followers will mindlessly follow suit and treat your game as if it never existed, even those who used to play and enjoy it. That is the fate that befell slex.",
 	"Balance? What's that? No one needs that. Let's just throw everything into the game that we can think of, and call it a day.",
+	"Since I can't see the information invisible, I feel my future is uncertain. Read 2 healing scrolls, a phase door scroll, and fuck him hard.",
+	"To be honest, I was really gambled on my life, but good luck was on my side and killed it with a silver dagger, an artifact of the Immortal Nemesis.",
 
 };
 

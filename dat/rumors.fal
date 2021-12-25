@@ -3650,3 +3650,25 @@ They say that the Aldebaran form can be trained only while you're polymorphed in
 They say that an artifact armor exists which causes the Hunk form to add full weapon damage bonuses when bashing with an ineffective weapon like a bow or polearm, depending on how much Hunk skill you have.
 They say that an artifact armor exists which causes the Kliu form to automatically shoot tailspikes at monsters standing up to three tiles away from you, which deal 6d6 damage.
 They say that an artifact armor exists which causes the Aldebaran form to increase the spawn chance of minotaurs relative to how skilled you are. At Grand Master, 9 out of 10 randomly spawned monsters will be minotaurs.
+They say that your alla will be reduced completely randomly, and if it reaches zero, a random bad effect happens every turn.
+They say that if your alla is too low, you should improve the spirituality skill to fix it.
+In order to play Black Jack, stand next to a shopkeeper and use the hidden #blackjack command.
+Monster socks can chain-paralyze you only if you have free action, so better take off that ring when fighting them.
+If you encounter monster pants, be aware that they have a powerful ranged paralysis attack.
+Monsters who are on the phone can still be attacked if you prefix your attacks with F, so that's what you should do.
+They say that killing a monster who is currently on the phone allows you to continue the call, i.e. chat to whoever called the monster, if you're fast enough.
+Snoring monsters pretend to be asleep, but in reality they're still fully alert and their snoring will secretly drain your intelligence over time with no message.
+You cannot attack permamimics in melee at all. Hopefully you have some ranged attacks or spells!
+Certain monsters will try to photograph you, which seems to only cause blindness but really also drains your skills every time.
+Some monsters can repair your items if you chat to them. Due to blind idiot programming, these are the ones that have the 'fart' string in their name.
+Certain monsters offer a drug-purchasing service when chatted to. They are generally medics and soldiers, so make sure to chat to all of them you encounter.
+Sing's agents are forever looking for victims whom they can force to clean dog shit from female shoes. If they catch you, be aware that refusing will cause you to be abducted to a torture chamber.
+Sing's agents are forever looking for victims whom they can force to clean dog shit from female shoes. If they catch you, be aware that complying will end the game automatically because it means you become a will-less slave.
+They say that climacterials are forced to equip cursed amulets every once in a while. Better have a steady supply of remove curse scrolls or eventually an amulet of strangulation will kill you.
+Climacterials can never have devices, but are guaranteed to have a very high polymorphing skill cap and it will train itself over time, with the caveat that their contamination also can't ever be lower than the polymorphing skill.
+They say that climacterials of experience level 5 or higher will have a cursed gun welded to their hands every once in a while.
+A level 10 climacterial suffers from the Ancient Morgothian curse, with no way to cure it.
+If your climacterial survives to reach experience level 15, hostile monsters with data delete attacks start spawning over time.
+The climacterial role starts having her inventory items randomly polymorphed into others once she reaches experience level 20.
+Once the climacterial reaches experience level 25, she will go berserk, and automatically learns random spells over time.
+If you're playing a climacterial, your game automatically ends after rnz(100000) turns. Better hope you've ascended by then.

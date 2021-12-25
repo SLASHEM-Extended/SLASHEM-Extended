@@ -27424,6 +27424,11 @@ static NEARDATA const char * const fake_plines[] = {
 	"You allowed someone who was on the phone to die! The gods certainly aren't very pleased. (Isn't that a great example for being penalized by the game for something that's outside of your control?)",
 	"Your alla is critically low!",
 	"Your alla is critically low! (What the hell is that anyway?)",
+	"Your equipment is missing some effects.",
+	"Your equipment is missing some effects. For example, your cloak of reflection somehow isn't reflecting anything.",
+	"Your equipment is missing some effects. Did you also realize that your ring of free action hasn't prevented even a single paralysis attack since you started wearing it?",
+	"'echoes from the last bastion of sanity' is an associated phrase idk why", /* by Demo */
+	"Man I'm just so glad that the brand of nail polish I'm using is called 'Beauty Woman' and not 'Beauty person who menstruates'. Because the latter sounds just ewwww.",
 
 };
 
