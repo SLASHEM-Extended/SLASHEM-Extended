@@ -2049,7 +2049,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 
 	/* monsters can smash you with e.g. Instant Death even though that's not a melee weapon, this is intentional --Amy
 	 * however, we can't allow the player's pets to smash enemies with such weapons as that would be way too OP! */
-	if (!youattack && magr->mtame && (is_launcher(otmp) || is_missile(otmp) || is_ammo(otmp) || (is_lightsaber(otmp) && !otmp->lamplit) || (is_pole(otmp)) ) ) return 0;
+	if (magr && !youattack && magr->mtame && (is_launcher(otmp) || is_missile(otmp) || is_ammo(otmp) || (is_lightsaber(otmp) && !otmp->lamplit) || (is_pole(otmp)) ) ) return 0;
 
 	strcpy(hittee, youdefend ? you : mon_nam(mdef));
 
