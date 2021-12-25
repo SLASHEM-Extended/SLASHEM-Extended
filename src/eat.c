@@ -1023,6 +1023,8 @@ register int pm;
 	    case PM_SAND_TIDE:
 	    case PM_FBI_AGENT:
 	    case PM_OWN_SMOKE:
+	    case PM_DIGLIZARD:
+	    case PM_DIGGING_LIZARD:
 	    case PM_GRANDPA:
 	    case PM_PRESSLIZARD:
 	    case PM_STATIOLIZARD:
@@ -1189,6 +1191,8 @@ struct monst *mon;
     switch(monsndx(mon->data)) {
 	case PM_LIZARD:
 	case PM_LIZZY:
+	    case PM_DIGLIZARD:
+	    case PM_DIGGING_LIZARD:
 	case PM_LIZARD_PRINCE:
 	case PM_ROCK_LIZARD:
       case PM_WILL_STONE_LIZARD:
@@ -3229,6 +3233,8 @@ register int pm;
 			lesshungry(180); /* fall thru */
 	    case PM_LIZARD:
 	    case PM_LIZZY:
+	    case PM_DIGLIZARD:
+	    case PM_DIGGING_LIZARD:
 	    case PM_INNOCLIZARD:
 	    case PM_FAT_LIZARD:
 	    case PM_LIZARD_PRINCE:
@@ -3718,6 +3724,7 @@ register int pm;
 		case PM_FLOATING_BRAIN:
 		case PM_MINDWITNESS:
 		case PM_BRAIN_GOLEM:
+		case PM_INTELLIGENCE_PIN:
 		case PM_LOWER_BRAIN:
 		case PM_MUMAK_FLAYER:
 		case PM_IDIOT_BRAIN:

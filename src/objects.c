@@ -637,7 +637,7 @@ WEAPON("prostitute shoe", (char *)0,
 	1, 0, 0, 100, 10, 200, 10,  10, 2, B,   P_HAMMER, MT_WOOD, CLR_ORANGE, 30),
 /* prostitute shoe has to be last */
 
-/* Quarterstaves */
+/* Quarterstaves - regular one has to be first one */
 WEAPON("quarterstaff", "staff",
 	0, 0, 1, 359, 16,  5,  9,  9, 0, B,   P_QUARTERSTAFF, MT_WOOD, HI_WOOD, 1),
 WEAPON("troutstaff", (char *)0,
@@ -686,6 +686,7 @@ WEAPON("fire hook", "beaked staff",
 	0, 0, 1,  20, 15,  5, 12, 12, 0, B|P, P_QUARTERSTAFF, MT_IRON, HI_METAL, 12),
 WEAPON("platinum fire hook", "beaked staff",
 	0, 0, 1,  20, 16,  5, 12, 12, 0, B|P, P_QUARTERSTAFF, MT_PLATINUM, CLR_WHITE, 12),
+/* platinum fire hook has to be last, see makemon.c */
 
 /* Polearms */
 /* (also weptool fishing pole) */
@@ -1421,7 +1422,7 @@ ARMOR("Hawaiian shorts", "flowery shorts and lei",
 ARMOR("leather jacket", (char *)0,
 	1, 0, 0, 0,	1050, 0,	12,  10,  9, 0, ARM_SUIT, MT_LEATHER, CLR_BLACK, 1, 0),
 
-/* Robes */
+/* Robes - regular one must be first */
 /* STEPHEN WHITE'S NEW CODE */
 ARMOR("robe", "red robe",
 	0, 0, 0, 0,		100, 1,  16,  50,  9, 0, ARM_SUIT, MT_LEATHER, CLR_RED, 1, 0),
@@ -1463,6 +1464,7 @@ ARMOR("robe of psionics", "pink robe",
 	0, 1, 0, PSI_RES,		100, 1,  16,  50,  9, 0, ARM_SUIT, MT_LEATHER, CLR_BRIGHT_MAGENTA, 15, 0),
 ARMOR("robe of weakness", "green robe",
 	0, 1, 0, STUNNED,		70, 1,  16,  50,  9, 0, ARM_SUIT, MT_LEATHER, CLR_GREEN, 1, 0),
+/* weakness must be last, see makemon.c */
 
 /*
  * Dragon suits

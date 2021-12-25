@@ -7556,6 +7556,10 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, AMBER_FRAGMENT, 30);
 		}
+		if (ptr == &mons[PM_STUPID_CHEST_ADVENTURER]) {
+			(void) mongets(mtmp, CHEST);
+			(void) mongets(mtmp, LOW_BOOTS);
+		}
 		if (ptr == &mons[PM_CASINO_SECURITY]) {
 			(void) mongets(mtmp, LEATHER_ARMOR);
 			(void) mongets(mtmp, PISTOL);
@@ -9472,6 +9476,8 @@ loveheelover:
 		if (mtmp->data == &mons[PM_SPACE_SITH]) (void) mongets(mtmp, SITH_STAFF);
 		if (mtmp->data == &mons[PM_POWERFIST_DRACONIAN]) (void) mongets(mtmp, POWERFIST);
 		if (mtmp->data == &mons[PM_PA_DRACONIAN]) (void) mongets(mtmp, POWERFIST);
+		if (mtmp->data == &mons[PM_DIGLIZARD]) (void) mongets(mtmp, PICK_AXE);
+		if (mtmp->data == &mons[PM_DIGGING_LIZARD]) (void) mongets(mtmp, PICK_AXE);
 
 		if (mtmp->data == &mons[PM_LIZARD_MAGE]) (void) mongets(mtmp, !rn2(3) ? SHORT_SWORD : !rn2(2) ? BROADSWORD : LONG_SWORD);
 
@@ -11890,6 +11896,7 @@ loveheelover:
 		if (ptr == &mons[PM_GWEN_ACTOR]) (void) mongets(mtmp, YITH_TENTACLE);
 		if (ptr == &mons[PM_HC_FISHER]) (void) mongets(mtmp, FISHING_POLE);
 		if (ptr == &mons[PM_EURGH_SMOKER]) (void) mongets(mtmp, CIGARETTE);
+		if (ptr == &mons[PM_LUISA_S_DANCING_SHOE]) (void) mongets(mtmp, DANCING_SHOES);
 
 		if (ptr == &mons[PM_WOODFALLER_BRIGADE]) {
 			(void) mongets(mtmp, SHARP_AXE);
@@ -12672,6 +12679,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_LOU_S_DANCING_SHOE]) { (void) mongets(mtmp, LACQUERED_DANCING_SHOE); (void) mongets(mtmp, DANCING_SHOES); }
 		if (mtmp->data == &mons[PM_CLAWCAMO_RUST_MONSTER]) (void) mongets(mtmp, CAMO_QATAR);
 		if (mtmp->data == &mons[PM_AZTEC_MONSTER]) (void) mongets(mtmp, TECPATL);
+		if (mtmp->data == &mons[PM_PROVINZKAJA]) (void) mongets(mtmp, TENNIS_RACKET);
 
 		if (mtmp->data == &mons[PM_BLASTER_DISINTEGRATOR]) {
 			 (void) mongets(mtmp, ARM_BLASTER);
@@ -13079,6 +13087,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_INDOCTRINATED_ALIEN]) (void) mongets(mtmp, NASTYPOLE);
 		if (mtmp->data == &mons[PM_ARMVIPER]) (void) mongets(mtmp, VIPERWHIP);
 		if (mtmp->data == &mons[PM_DIRE_MASK_WOMAN]) (void) mongets(mtmp, find_corona_mask());
+		if (mtmp->data == &mons[PM_VACCINATION_GESTAPO]) (void) mongets(mtmp, SCALPEL);
 
 		if (ptr == &mons[PM_WOODFALL_CATTLE]) {
 			(void) mongets(mtmp, SHARP_AXE);
@@ -14739,6 +14748,7 @@ loveheelover:
 		if (monsndx(ptr) == PM_MORNING_STAR_FIGHTER) (void) mongets(mtmp, METAL_STAR);
 		if (monsndx(ptr) == PM_ELITE_MORNING_STAR_FIGHTER) (void) mongets(mtmp, STONE_STAR);
 		if (monsndx(ptr) == PM_REACHES_MUMMY) (void) mongets(mtmp, REACH_TRIDENT);
+		if (mtmp->data == &mons[PM_MASK_GESTAPO]) (void) mongets(mtmp, find_corona_mask());
 
 		if (ptr == &mons[PM_MAUREEN]) {
 			(void) mongets(mtmp, CIGARETTE);
@@ -15393,6 +15403,10 @@ loveheelover:
 		if (mtmp->data == &mons[PM_POWERFIST_VAMPIRE]) (void) mongets(mtmp, POWERFIST);
 		if (ptr == &mons[PM_VEIL_PSEUDO_LEYDE]) {
 			(void)mongets(mtmp, rnd_class(WEDGE_SANDALS,ITALIAN_HEELS));
+		}
+		if (ptr == &mons[PM_NOSTRO]) {
+		     (void)mongets(mtmp, rnd_class(ROBE,ROBE_OF_WEAKNESS));
+		     (void)mongets(mtmp, rnd_class(QUARTERSTAFF,PLATINUM_FIRE_HOOK));
 		}
 
 		if (ptr == &mons[PM_SUNBARARIAN]) {
@@ -16418,6 +16432,45 @@ loveheelover:
 		if (ptr == &mons[PM_SCHWILL_TWERP]) {
 			(void) mongets(mtmp, BEAMSWORD);
 			(void) mongets(mtmp, LARGE_SHIELD);
+		}
+		if (ptr == &mons[PM_CRIMINAL_PREACHER]) {
+			(void) mongets(mtmp, WOODEN_STAKE);
+			(void)mongets(mtmp, rnd_class(ROBE,ROBE_OF_WEAKNESS));
+			  otmp = mksobj(POT_WATER, FALSE, FALSE, FALSE);
+			  if (otmp) {
+				  bless(otmp);
+				  mpickobj(mtmp, otmp, TRUE);
+			  }
+			  otmp = mksobj(POT_WATER, FALSE, FALSE, FALSE);
+			  if (otmp) {
+				  bless(otmp);
+				  mpickobj(mtmp, otmp, TRUE);
+			  }
+		}
+		if (ptr == &mons[PM_SUPER_CRAZY_CRIMINAL_ASSFACE_KID]) {
+			(void) mongets(mtmp, HIGH_BOOTS);
+			(void) mongets(mtmp, HELMET);
+			switch (rnd(4)) {
+				case 1:
+					(void) mongets(mtmp, BULLWHIP);
+					(void) mongets(mtmp, CROSSBOW);
+					 m_initthrow(mtmp, CROSSBOW_BOLT, 30);
+					break;
+				case 2:
+					(void) mongets(mtmp, PISTOL);
+					 m_initthrow(mtmp, SILVER_BULLET, 50);
+					(void) mongets(mtmp, SILVER_SPEAR);
+					break;
+				case 3:
+					(void) mongets(mtmp, SILVER_SHORT_SWORD);
+					(void) mongets(mtmp, META_BOW);
+					 m_initthrow(mtmp, SILVER_ARROW, 50);
+					break;
+				case 4:
+					(void) mongets(mtmp, WOODEN_STAKE);
+					 m_initthrow(mtmp, SILVER_DAGGER, 5);
+					break;
+			}
 		}
 		if (ptr == &mons[PM_CALLED_UNDERTAKER]) {
 			(void) mongets(mtmp, ROBE);

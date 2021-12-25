@@ -1225,6 +1225,10 @@ have_lizard()
 			return(TRUE);
 		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_NIGHT_LIZARD)
 			return(TRUE);
+		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_DIGGING_LIZARD)
+			return(TRUE);
+		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_DIGLIZARD)
+			return(TRUE);
 		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_SAND_TIDE)
 			return(TRUE);
 		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_FBI_AGENT)
