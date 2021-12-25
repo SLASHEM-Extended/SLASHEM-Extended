@@ -2352,6 +2352,7 @@ mattacku(mtmp)
 /*	Special demon handling code */
 	if(!mtmp->cham && (is_demon(mdat) || mtmp->egotype_gator) && !range2
 	   && mtmp->data != &mons[PM_DEMON_SPOTTER] /* moved to monmove.c --Amy */
+	   && mtmp->data != &mons[PM_FUNK_CAR] /* ditto */
 	   && mtmp->data != &mons[PM_BALROG]
 	   && mtmp->data != &mons[PM_SUCCUBUS]
 	   && mtmp->data != &mons[PM_INCUBUS]

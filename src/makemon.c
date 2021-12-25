@@ -7506,6 +7506,7 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_GIRL_OUTSIDE_GANG]) (void) mongets(mtmp, LADY_BOOTS);
 		if (ptr == &mons[PM_YOUR_SISTER]) (void) mongets(mtmp, SWEET_MOCASSINS);
 		if (ptr == &mons[PM_ARMED_MOON_ELF]) (void) mongets(mtmp, MOON_AXE);
+		if (ptr == &mons[PM_ARYTOS_CAR]) (void) mongets(mtmp, PICK_AXE);
 		if (ptr == &mons[PM_GRUDGING_DARK_RONIN]) (void) mongets(mtmp, OSBANE_KATANA);
 		if (ptr == &mons[PM_TANKWIELDER]) (void) mongets(mtmp, BIDENHANDER);
 		if (ptr == &mons[PM_STRONG_TANKWIELDER]) (void) mongets(mtmp, BIDENHANDER);
@@ -11616,6 +11617,10 @@ loveheelover:
 			(void) mongets(mtmp, POT_CONFUSION);
 			(void) mongets(mtmp, POT_BOOZE);
 		}
+		if (ptr == &mons[PM_HOT_DOG_VAN]) {
+			(void) mongets(mtmp, FOOD_RATION);
+			(void) mongets(mtmp, TRIPE_RATION);
+		}
 		if(ptr == &mons[PM_BELMONT_CLAN_MEMBER]) (void) mongets(mtmp, WOODEN_STAKE);
 		if(ptr == &mons[PM_WALDOGGO]) (void) mongets(mtmp, BOBBLE_HAT);
 
@@ -11700,6 +11705,16 @@ loveheelover:
 		if (ptr == &mons[PM_GUN_SPIRIT]) {
 		  	(void) mongets(mtmp, FLINTLOCK);
 		  	m_initthrow(mtmp, BULLET, 10);
+		}
+		if (ptr == &mons[PM_COP_BIKE]) {
+
+			otmp = mksobj(PISTOL, FALSE, FALSE, FALSE);
+			if (otmp) {
+				otmp->spe += 2;
+				(void) mpickobj(mtmp, otmp, TRUE);
+			}
+		  	m_initthrow(mtmp, BULLET, 50);
+		  	m_initthrow(mtmp, BULLET, 25);
 		}
 		if (ptr == &mons[PM_SECTION_SHADOW]) {
 		  	(void) mongets(mtmp, SHADOWBLADE);
@@ -13216,6 +13231,10 @@ loveheelover:
 			(void)mongets(mtmp, HEAVY_HAMMER);
 			(void)mongets(mtmp, SLING);
 		  	m_initthrow(mtmp, ROCK, 50);
+		}
+		if (ptr == &mons[PM_GRANIT_AUTO]) {
+			(void)mongets(mtmp, SLING);
+		  	m_initthrow(mtmp, FLINT, 40);
 		}
 		if (ptr == &mons[PM_FILL_GIANT]) {
 			(void)mongets(mtmp, SCR_FLOODING);
@@ -16972,6 +16991,25 @@ loveheelover:
 			(void) mongets(mtmp, BOW);
 	  		m_initthrow(mtmp, METEOR_ARROW, 40);
 	  		m_initthrow(mtmp, METEOR_ARROW, 40);
+		}
+		if (ptr == &mons[PM_ARMED_COP_CAR]) {
+			(void) mongets(mtmp, PISTOL);
+	  		m_initthrow(mtmp, BULLET, 50);
+		}
+		if (ptr == &mons[PM_HEADER_RA____AUTO]) {
+			(void) mongets(mtmp, ASSAULT_RIFLE);
+	  		m_initthrow(mtmp, BULLET, 50);
+	  		m_initthrow(mtmp, BULLET, 50);
+	  		m_initthrow(mtmp, BULLET, 50);
+	  		m_initthrow(mtmp, BULLET, 50);
+		}
+		if (ptr == &mons[PM_ARMED_PICKUP]) {
+			(void) mongets(mtmp, PISTOL);
+	  		m_initthrow(mtmp, BULLET, 20);
+		}
+		if (ptr == &mons[PM_WOODEN_AUTO]) {
+			(void) mongets(mtmp, QUARTERSTAFF);
+			(void) mongets(mtmp, BAMBOO_MAIL);
 		}
 		if (ptr == &mons[PM_DIABLO_GANGSTER]) {
 			(void) mongets(mtmp, MUMMY_WRAPPING);

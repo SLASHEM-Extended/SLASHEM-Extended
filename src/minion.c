@@ -37,11 +37,11 @@ boolean ownloc; /* TRUE = summon wherever I am (REQUIRES A MONSTER TO EXIST!!!),
 	    cnt = (!rn2(4) && is_ndemon(&mons[dtype])) ? 2 : 1;
 	} else if (is_ndemon(ptr) || mon->egotype_gator) {
 	    dtype = (!rn2(250)) ? dprince(atyp) : (!rn2(20)) ? dlord(atyp) :
-				 (!rn2(6) || mon->data == &mons[PM_DEMON_SPOTTER]) ? ndemon(atyp) : monsndx(ptr);
+				 (!rn2(6) || mon->data == &mons[PM_DEMON_SPOTTER] || mon->data == &mons[PM_FUNK_CAR]) ? ndemon(atyp) : monsndx(ptr);
 	    cnt = 1;
 	} else if (is_lminion(mon)) {
 	    dtype = (is_lord(ptr) && !rn2(20)) ? llord() :
-		     (is_lord(ptr) || !rn2(6) || mon->data == &mons[PM_DEMON_SPOTTER]) ? lminion() : monsndx(ptr);
+		     (is_lord(ptr) || !rn2(6) || mon->data == &mons[PM_DEMON_SPOTTER] || mon->data == &mons[PM_FUNK_CAR]) ? lminion() : monsndx(ptr);
 	    cnt = (!rn2(4) && !is_lord(&mons[dtype])) ? 2 : 1;
 	} else if (ptr == &mons[PM_ANGEL]) {
 	    /* non-lawful angels can also summon */

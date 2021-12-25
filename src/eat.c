@@ -1021,6 +1021,7 @@ register int pm;
 	    case PM_HUGE_LIZARD:
 	    case PM_VERY_SLOW_HUGE_LIZARD:
 	    case PM_SAND_TIDE:
+	    case PM_O_P_E_L:
 	    case PM_FBI_AGENT:
 	    case PM_OWN_SMOKE:
 	    case PM_DIGLIZARD:
@@ -1226,6 +1227,7 @@ struct monst *mon;
 	case PM_HUGE_LIZARD:
       case PM_VERY_SLOW_HUGE_LIZARD:
 	case PM_SAND_TIDE:
+	    case PM_O_P_E_L:
 	case PM_FBI_AGENT:
 	    case PM_PRESSLIZARD:
 	    case PM_STATIOLIZARD:
@@ -3284,6 +3286,7 @@ register int pm;
 	    case PM_HUGE_LIZARD:
 	    case PM_VERY_SLOW_HUGE_LIZARD:
 	    case PM_SAND_TIDE:
+	    case PM_O_P_E_L:
 	    case PM_FBI_AGENT:
 	    case PM_OWN_SMOKE:
 	    case PM_GRANDPA:
