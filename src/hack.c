@@ -4426,6 +4426,7 @@ nomul(nval, txt, discountpossible)
 					mtmp2->mhp = mtmp2->mhpmax;
 				}
 			}
+			u.katitrapocc = FALSE;
 			pline("The beautiful girl in the sexy Kati shoes is very sad that you didn't finish cleaning her lovely boots, and urges everyone in her vicinity to bludgeon you.");
 
 		} else return;
@@ -4444,6 +4445,7 @@ nomul(nval, txt, discountpossible)
 					mtmp2->mhp = mtmp2->mhpmax;
 				}
 			}
+			u.singtrapocc = FALSE;
 			pline("The beautiful girl in the sexy female shoes is very sad that you didn't finish cleaning her lovely footwear, and urges everyone in her vicinity to bludgeon you.");
 
 		} else return;

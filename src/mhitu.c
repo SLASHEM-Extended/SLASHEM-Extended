@@ -22463,6 +22463,7 @@ katicleaning()
 		return(1);
 	} else {
 		pline("Finally, you cleaned all the dog shit from the sexy Kati shoes!");
+		u.katitrapocc = FALSE;
 		return(0);
 	}
 }
@@ -22475,6 +22476,7 @@ singcleaning()
 		return(1);
 	} else {
 		pline("Finally, you cleaned all the shit from the sexy female shoes!");
+		u.singtrapocc = FALSE;
 		return(0);
 	}
 }
