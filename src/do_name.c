@@ -615,6 +615,7 @@ static const char * const ghostnames[] = {
 	"Pinkbeast", "Mickmane", "Porkman", "Micromoog", "Malor", "Merlek",
 	"Musicdemon", "Amateurhour", "Mobileuser", "Aoei", "Rebatela",
 	"Microlance", "NetSysFire", "Umbire", "CntFai", "Roho", "Cebolla",
+	"Pineapple Tycoon",
 
 };
 

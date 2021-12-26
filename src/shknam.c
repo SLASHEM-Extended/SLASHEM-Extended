@@ -244,7 +244,7 @@ static const char * const shktools[] = {
 	"Goomorcim", "Rolam", "Kelrem", "Nomedcisum",
 	"Ruohruetama", "Resuelibom", "Ieoa", "Aletaber",
 	"Ecnalorcim", "Erifsysten", "Eribmu", "Iaf Tnc", "Ohor",
-	"Allobec",
+	"Allobec", "Noocyt Elppaenip",
 
     0
 };
