@@ -756,56 +756,58 @@ FLAGS:noteleport, hardfloor
 GEOMETRY:center,center
 # "J Franklin Mentzer <wryter@aol.com>"
 MAP
-     -------    ......................
- .   |..|..|    .--------            .
--.----.....--- -.-......---          .
-|......---...| |..........|          .
-|.|.|......|.--|........|.---.........
-|.|.--..|..|...-F-F-F-F--...|
-|.......|...................|
-|.|.--..|..|...-F-F-F-F--...|.........
-|.|.|......|.--|........|.---        .
-|......---...| |..........|          .
--.----.....--- -.-......---          .
- .   |..|..|    .--------            .
-     -------    ......................
+               ------------------------
+---  -------   |......................|
+|.|  |..|..|   |.--------------------.|
+-.----.....--- -.-......---         |.|
+|......---...| |..........| ---------.|
+|.|.|......|.--|........|.---.........|
+|.|.--..|..|...-F-F-F-F--...|----------
+|.......|...................|----------
+|.|.--..|..|...-F-F-F-F--...|.........|
+|.|.|......|.--|........|.-----------.|
+|......---...| |..........|         |.|
+-.----.....--- -.-......---         |.|
+|.|  |..|..|   |.-------------------|.|
+|--  -------   |......................|
+               ------------------------
 ENDMAP
-BRANCH:(13,6,13,6),(0,0,0,0)
-STAIR:(26,6), up
-REGION:(00,00,37,12),lit,"ordinary"
-NON_DIGGABLE:(00,00,37,12)
-NON_PASSWALL:(00,00,37,12)
-OBJECT:'?',"earth",(16,3)
-OBJECT:'?',"earth",(16,9)
-OBJECT:'`',"boulder",(8,2)
-OBJECT:'`',"boulder",(8,4)
-OBJECT:'`',"boulder",(3,5)
-OBJECT:'`',"boulder",(6,6)
-OBJECT:'`',"boulder",(7,6)
-OBJECT:'`',"boulder",(9,6)
-OBJECT:'`',"boulder",(10,6)
-OBJECT:'`',"boulder",(3,7)
-OBJECT:'`',"boulder",(8,8)
-OBJECT:'`',"boulder",(8,10)
-TRAP:"pit",(15,6)
-TRAP:"pit",(16,6)
-TRAP:"pit",(17,6)
-TRAP:"pit",(18,6)
-TRAP:"pit",(19,6)
-TRAP:"pit",(20,6)
-TRAP:"pit",(21,6)
-TRAP:"pit",(22,6)
-TRAP:"pit",(23,6)
+BRANCH:(13,7,13,7),(0,0,0,0)
+STAIR:(26,7), up
+REGION:(00,00,38,14),lit,"ordinary"
+NON_DIGGABLE:(00,00,38,14)
+NON_PASSWALL:(00,00,38,14)
+OBJECT:'?',"earth",(16,4)
+OBJECT:'?',"earth",(16,10)
+OBJECT:'`',"boulder",(8,3)
+OBJECT:'`',"boulder",(8,5)
+OBJECT:'`',"boulder",(3,6)
+OBJECT:'`',"boulder",(6,7)
+OBJECT:'`',"boulder",(7,7)
+OBJECT:'`',"boulder",(9,7)
+OBJECT:'`',"boulder",(10,7)
+OBJECT:'`',"boulder",(3,8)
+OBJECT:'`',"boulder",(8,9)
+OBJECT:'`',"boulder",(8,11)
+TRAP:"pit",(15,7)
+TRAP:"pit",(16,7)
+TRAP:"pit",(17,7)
+TRAP:"pit",(18,7)
+TRAP:"pit",(19,7)
+TRAP:"pit",(20,7)
+TRAP:"pit",(21,7)
+TRAP:"pit",(22,7)
+TRAP:"pit",(23,7)
 
-TRAP:"black ng wall",(29,4)
-TRAP:"inventory",(29,7)
-OBJECT:'"',"amulet of strangulation",(29,4)
-OBJECT:'=',"disarming",(29,7)
+TRAP:"black ng wall",(29,5)
+TRAP:"inventory",(29,8)
+OBJECT:'"',"amulet of strangulation",(29,5)
+OBJECT:'=',"disarming",(29,8)
 
-TRAP:"memory",(1,1)
-TRAP:"yellow spell",(1,11)
-OBJECT:'[',"zipper boots",(1,1)
-OBJECT:')',"crysknife",(1,11),cursed,-15
+TRAP:"memory",(1,2)
+TRAP:"yellow spell",(1,12)
+OBJECT:'[',"zipper boots",(1,2)
+OBJECT:')',"crysknife",(1,12),cursed,-15
 
 OBJECT:'%',random,random
 OBJECT:'%',random,random
@@ -2853,10 +2855,11 @@ MAP
 -----..............|........|
     |.|....|..|...--........-|
     ---------------LLLLLLLLLL|
+                  ------------
 ENDMAP
 STAIR:(8,1), down
 STAIR:(10,4), up
-REGION:(00,00,19,15),lit,"ordinary"
+REGION:(00,00,19,16),lit,"ordinary"
 
 REGION:(20,05,27,14),lit,"boulder shop"
 DOOR:locked,(19,05)
@@ -2864,8 +2867,8 @@ DOOR:locked,(19,05)
 REGION:(18,01,27,02),lit,"shop"
 DOOR:locked,(17,01)
 
-NON_DIGGABLE:(00,00,29,15)
-NON_PASSWALL:(00,00,29,15)
+NON_DIGGABLE:(00,00,29,16)
+NON_PASSWALL:(00,00,29,16)
 OBJECT:'`',"boulder",(7,2)
 OBJECT:'`',"boulder",(12,2)
 OBJECT:'`',"boulder",(14,3)
@@ -3123,54 +3126,56 @@ FLAGS:noteleport
 GEOMETRY:center,center
 # "Joseph L Traub"
 MAP
- }}}}} }}}} }}  } }    }
- ..... }}}} }} ......} }
- ..... .... ..  FF ..} }
- ..... ........ ..F.   }
- ..... ....  .. ..F.}}}}
- .....  .......+..F. 
-  . .. }.       ..F. }}}
-  . ..  ....... ..F.}}}} 
- .. ........... FF . }}}
- ................... 
- .....  . ..... } ..}}}} 
- }}}}}  } }}}}} } } }}}} 
+-------------------------
+|}}}}} }}}} }}  } }    }|
+|..... }}}} }} ......} }|
+|..... .... ..  FF ..} }|
+|..... ........ ..F.   }|
+|..... ....  .. ..F.}}}}|
+|.....  .......+..F.    |
+| . .. }.       ..F. }}}|
+| . ..  ....... ..F.}}}}|
+|.. ........... FF . }}}|
+|...................    |
+|.....  . ..... } ..}}}}|
+|}}}}}  } }}}}} } } }}}}|
+-------------------------
 ENDMAP
-STAIR:(8,10), down
-STAIR:(15,1), up
-REGION:(00,00,23,11),lit,"ordinary"
-NON_DIGGABLE:(00,00,23,11)
-NON_PASSWALL:(00,00,23,11)
-DOOR:locked,(15,5)
-OBJECT:'`',"boulder",(2,3)
-OBJECT:'`',"boulder",(10,3)
-OBJECT:'`',"boulder",(12,3)
-OBJECT:'`',"boulder",(3,4)
-OBJECT:'`',"boulder",(9,4)
-OBJECT:'`',"boulder",(2,5)
+STAIR:(8,11), down
+STAIR:(15,2), up
+REGION:(00,00,24,13),lit,"ordinary"
+NON_DIGGABLE:(00,00,24,13)
+NON_PASSWALL:(00,00,24,13)
+DOOR:locked,(15,6)
+OBJECT:'`',"boulder",(2,4)
+OBJECT:'`',"boulder",(10,4)
+OBJECT:'`',"boulder",(12,4)
 OBJECT:'`',"boulder",(3,5)
-OBJECT:'`',"boulder",(8,5)
-OBJECT:'`',"boulder",(10,5)
-OBJECT:'`',"boulder",(4,8)
+OBJECT:'`',"boulder",(9,5)
+OBJECT:'`',"boulder",(2,6)
+OBJECT:'`',"boulder",(3,6)
+OBJECT:'`',"boulder",(8,6)
+OBJECT:'`',"boulder",(10,6)
 OBJECT:'`',"boulder",(4,9)
-OBJECT:'`',"boulder",(5,9)
-TRAP:"hole",(16,1)
-TRAP:"hole",(17,1)
-TRAP:"hole",(18,1)
-TRAP:"hole",(19,3)
+OBJECT:'`',"boulder",(4,10)
+OBJECT:'`',"boulder",(5,10)
+TRAP:"hole",(16,2)
+TRAP:"hole",(17,2)
+TRAP:"hole",(18,2)
 TRAP:"hole",(19,4)
 TRAP:"hole",(19,5)
 TRAP:"hole",(19,6)
 TRAP:"hole",(19,7)
 TRAP:"hole",(19,8)
-TRAP:"hole",(15,9)
-TRAP:"hole",(16,9)
-TRAP:"hole",(17,9)
+TRAP:"hole",(19,9)
+TRAP:"hole",(15,10)
+TRAP:"hole",(16,10)
+TRAP:"hole",(17,10)
 
-FOUNTAIN: (8, 8)
-FOUNTAIN: (14, 8)
-FOUNTAIN: (16, 5)
-FOUNTAIN: (2, 2)
+FOUNTAIN: (8, 9)
+FOUNTAIN: (14, 9)
+FOUNTAIN: (16, 6)
+FOUNTAIN: (2, 3)
 
 OBJECT:'%',random,random
 OBJECT:'%',random,random
@@ -11255,6 +11260,7 @@ FLAGS:noteleport
 GEOMETRY:center,center
 # Steve Melenchuk <smelenchuk@gmail.com>
 MAP
+                            ---------------------
   -----                     |.............FTLFTL|
   |...------  -----   -------.......------FTLFTL|
   |........----...| ---.............|TTTT|-----+|
@@ -11273,88 +11279,88 @@ MAP
 .......-----                 -------------------|
 ENDMAP
 
-RANDOM_PLACES: (21,03),(21,05),(21,07)
-STAIR:(08,07),down
-REGION:(00,00,30,15),lit,"ordinary"
-NON_DIGGABLE:(00,00,48,15)
-NON_PASSWALL:(00,00,48,15)
+RANDOM_PLACES: (21,04),(21,06),(21,08)
+STAIR:(08,08),down
+REGION:(00,00,30,16),lit,"ordinary"
+NON_DIGGABLE:(00,00,48,16)
+NON_PASSWALL:(00,00,48,16)
 
-REGION:(31,05,37,13),lit,"randomroom"
+REGION:(31,06,37,14),lit,"randomroom"
 
-REGION:(18,09,21,11),lit,"randomroom"
+REGION:(18,10,21,12),lit,"randomroom"
 
-REGION:(00,13,06,15),lit,"randomroom"
+REGION:(00,14,06,16),lit,"randomroom"
 
-REGION:(29,00,35,02),lit,"randomroom"
+REGION:(29,01,35,03),lit,"randomroom"
 
-REGION:(40,04,46,04),lit,"nymphhall"
-REGION:(40,05,46,13),lit,"anthole"
+REGION:(40,05,46,05),lit,"nymphhall"
+REGION:(40,06,46,14),lit,"anthole"
 
-TRAP:"superscroller",(37,00)
-TRAP:"black ng wall",(38,00)
-TRAP:"yellow spell",(39,00)
-TRAP:"inventory",(40,00)
+TRAP:"superscroller",(37,01)
+TRAP:"black ng wall",(38,01)
+TRAP:"yellow spell",(39,01)
+TRAP:"inventory",(40,01)
 
-OBJECT:'/',"bugging",(37,00)
-OBJECT:'?',"amnesia",(38,00)
-OBJECT:'!',"Pan Galactic Gargle Blaster",(39,00)
-OBJECT:'(',"bag of digestion",(40,00)
+OBJECT:'/',"bugging",(37,01)
+OBJECT:'?',"amnesia",(38,01)
+OBJECT:'!',"Pan Galactic Gargle Blaster",(39,01)
+OBJECT:'(',"bag of digestion",(40,01)
 
-DOOR:locked,(47,02)
+DOOR:locked,(47,03)
 
-OBJECT:random,random,(23,10)
-OBJECT:random,random,(24,10)
-OBJECT:random,random,(25,10)
-OBJECT:random,random,(26,10)
-OBJECT:random,random,(27,10)
 OBJECT:random,random,(23,11)
 OBJECT:random,random,(24,11)
 OBJECT:random,random,(25,11)
 OBJECT:random,random,(26,11)
 OBJECT:random,random,(27,11)
+OBJECT:random,random,(23,12)
+OBJECT:random,random,(24,12)
+OBJECT:random,random,(25,12)
+OBJECT:random,random,(26,12)
+OBJECT:random,random,(27,12)
 
 # Boulders
-OBJECT:'`',"boulder",(04,02)
-OBJECT:'`',"boulder",(06,02)
-OBJECT:'`',"boulder",(08,02)
-OBJECT:'`',"boulder",(16,03)
-OBJECT:'`',"boulder",(03,04)
-OBJECT:'`',"boulder",(06,04)
-OBJECT:'`',"boulder",(12,04)
-OBJECT:'`',"boulder",(14,04)
+OBJECT:'`',"boulder",(04,03)
+OBJECT:'`',"boulder",(06,03)
+OBJECT:'`',"boulder",(08,03)
+OBJECT:'`',"boulder",(16,04)
+OBJECT:'`',"boulder",(03,05)
+OBJECT:'`',"boulder",(06,05)
+OBJECT:'`',"boulder",(12,05)
 OBJECT:'`',"boulder",(14,05)
-OBJECT:'`',"boulder",(02,06)
-OBJECT:'`',"boulder",(03,06)
-OBJECT:'`',"boulder",(15,07)
-OBJECT:'`',"boulder",(04,08)
-OBJECT:'`',"boulder",(09,08)
+OBJECT:'`',"boulder",(14,06)
+OBJECT:'`',"boulder",(02,07)
+OBJECT:'`',"boulder",(03,07)
 OBJECT:'`',"boulder",(15,08)
+OBJECT:'`',"boulder",(04,09)
+OBJECT:'`',"boulder",(09,09)
 OBJECT:'`',"boulder",(15,09)
-OBJECT:'`',"boulder",(05,10)
-OBJECT:'`',"boulder",(06,10)
-OBJECT:'`',"boulder",(12,10)
-OBJECT:'`',"boulder",(14,10)
 OBJECT:'`',"boulder",(15,10)
+OBJECT:'`',"boulder",(05,11)
+OBJECT:'`',"boulder",(06,11)
+OBJECT:'`',"boulder",(12,11)
+OBJECT:'`',"boulder",(14,11)
+OBJECT:'`',"boulder",(15,11)
 
 # Traps
-TRAP:"hole",(11,13)
-TRAP:"hole",(12,13)
-TRAP:"hole",(13,13)
-TRAP:"hole",(14,13)
-TRAP:"hole",(15,13)
-TRAP:"hole",(16,13)
-TRAP:"hole",(17,13)
-TRAP:"hole",(18,13)
-TRAP:"hole",(19,13)
-TRAP:"hole",(20,13)
-TRAP:"hole",(21,13)
-TRAP:"hole",(22,13)
-TRAP:"hole",(23,13)
-TRAP:"hole",(24,13)
-TRAP:"hole",(25,13)
-TRAP:"hole",(26,13)
-TRAP:"hole",(27,13)
-TRAP:"hole",(28,13)
+TRAP:"hole",(11,14)
+TRAP:"hole",(12,14)
+TRAP:"hole",(13,14)
+TRAP:"hole",(14,14)
+TRAP:"hole",(15,14)
+TRAP:"hole",(16,14)
+TRAP:"hole",(17,14)
+TRAP:"hole",(18,14)
+TRAP:"hole",(19,14)
+TRAP:"hole",(20,14)
+TRAP:"hole",(21,14)
+TRAP:"hole",(22,14)
+TRAP:"hole",(23,14)
+TRAP:"hole",(24,14)
+TRAP:"hole",(25,14)
+TRAP:"hole",(26,14)
+TRAP:"hole",(27,14)
+TRAP:"hole",(28,14)
 
 OBJECT:'%',random,random
 OBJECT:'%',random,random
@@ -11371,11 +11377,11 @@ MONSTER:'m',random, random
 MONSTER:'m',random, random
 
 # Rewards
-DOOR:locked,(28,05)
-DOOR:closed,(22,03)
-DOOR:closed,(22,05)
-DOOR:closed,(22,07)
-REGION:(23,02,27,08),lit,"randomroom",filled,true
+DOOR:locked,(28,06)
+DOOR:closed,(22,04)
+DOOR:closed,(22,06)
+DOOR:closed,(22,08)
+REGION:(23,03,27,09),lit,"randomroom",filled,true
 
 
 MAZE:"soko1-36",' '
@@ -13935,56 +13941,58 @@ FLAGS:noteleport, hardfloor
 GEOMETRY:center,center
 # "J Franklin Mentzer <wryter@aol.com>"
 MAP
-     -------    ......................
- .   |..|..|    .--------            .
--.----.....--- -.-......---          .
-|......---...| |..........|          .
-|.|.|......|.--|........|.---.........
-|.|.--..|..|...-F-F-F-F--...|
-|.......|...................|
-|.|.--..|..|...-F-F-F-F--...|.........
-|.|.|......|.--|........|.---        .
-|......---...| |..........|          .
--.----.....--- -.-......---          .
- .   |..|..|    .--------            .
-     -------    ......................
+               ------------------------
+---  -------   |......................|
+|.|  |..|..|   |.--------------------.|
+-.----.....--- -.-......---         |.|
+|......---...| |..........| ---------.|
+|.|.|......|.--|........|.---.........|
+|.|.--..|..|...-F-F-F-F--...|----------
+|.......|...................|----------
+|.|.--..|..|...-F-F-F-F--...|.........|
+|.|.|......|.--|........|.-----------.|
+|......---...| |..........|         |.|
+-.----.....--- -.-......---         |.|
+|.|  |..|..|   |.-------------------|.|
+|--  -------   |......................|
+               ------------------------
 ENDMAP
-STAIR:(13,6),down
-STAIR:(26,6), up
-REGION:(00,00,37,12),lit,"ordinary"
-NON_DIGGABLE:(00,00,37,12)
-NON_PASSWALL:(00,00,37,12)
-OBJECT:'?',"earth",(16,3)
-OBJECT:'?',"earth",(16,9)
-OBJECT:'`',"boulder",(8,2)
-OBJECT:'`',"boulder",(8,4)
-OBJECT:'`',"boulder",(3,5)
-OBJECT:'`',"boulder",(6,6)
-OBJECT:'`',"boulder",(7,6)
-OBJECT:'`',"boulder",(9,6)
-OBJECT:'`',"boulder",(10,6)
-OBJECT:'`',"boulder",(3,7)
-OBJECT:'`',"boulder",(8,8)
-OBJECT:'`',"boulder",(8,10)
-TRAP:"pit",(15,6)
-TRAP:"pit",(16,6)
-TRAP:"pit",(17,6)
-TRAP:"pit",(18,6)
-TRAP:"pit",(19,6)
-TRAP:"pit",(20,6)
-TRAP:"pit",(21,6)
-TRAP:"pit",(22,6)
-TRAP:"pit",(23,6)
+BRANCH:(13,7,13,7),(0,0,0,0)
+STAIR:(26,7), up
+REGION:(00,00,38,14),lit,"ordinary"
+NON_DIGGABLE:(00,00,38,14)
+NON_PASSWALL:(00,00,38,14)
+OBJECT:'?',"earth",(16,4)
+OBJECT:'?',"earth",(16,10)
+OBJECT:'`',"boulder",(8,3)
+OBJECT:'`',"boulder",(8,5)
+OBJECT:'`',"boulder",(3,6)
+OBJECT:'`',"boulder",(6,7)
+OBJECT:'`',"boulder",(7,7)
+OBJECT:'`',"boulder",(9,7)
+OBJECT:'`',"boulder",(10,7)
+OBJECT:'`',"boulder",(3,8)
+OBJECT:'`',"boulder",(8,9)
+OBJECT:'`',"boulder",(8,11)
+TRAP:"pit",(15,7)
+TRAP:"pit",(16,7)
+TRAP:"pit",(17,7)
+TRAP:"pit",(18,7)
+TRAP:"pit",(19,7)
+TRAP:"pit",(20,7)
+TRAP:"pit",(21,7)
+TRAP:"pit",(22,7)
+TRAP:"pit",(23,7)
 
-TRAP:"black ng wall",(29,4)
-TRAP:"inventory",(29,7)
-OBJECT:'"',"amulet of strangulation",(29,4)
-OBJECT:'=',"disarming",(29,7)
+TRAP:"black ng wall",(29,5)
+TRAP:"inventory",(29,8)
+OBJECT:'"',"amulet of strangulation",(29,5)
+OBJECT:'=',"disarming",(29,8)
 
-TRAP:"memory",(1,1)
-TRAP:"yellow spell",(1,11)
-OBJECT:'[',"zipper boots",(1,1)
-OBJECT:')',"crysknife",(1,11),cursed,-15
+TRAP:"memory",(1,2)
+TRAP:"yellow spell",(1,12)
+OBJECT:'[',"zipper boots",(1,2)
+OBJECT:')',"crysknife",(1,12),cursed,-15
 
 OBJECT:'%',random,random
 OBJECT:'%',random,random
@@ -18419,6 +18427,7 @@ FLAGS:noteleport
 GEOMETRY:center,center
 # Steve Melenchuk <smelenchuk@gmail.com>
 MAP
+                            ---------------------
   -----                     |.............FTLFTL|
   |...------  -----   -------.......------FTLFTL|
   |........----...| ---.............|TTTT|-----+|
@@ -18437,89 +18446,88 @@ MAP
 .......-----                 -------------------|
 ENDMAP
 
-RANDOM_PLACES: (21,03),(21,05),(21,07)
-STAIR:(08,07),down
-STAIR:random,up
-REGION:(00,00,30,15),lit,"ordinary"
-NON_DIGGABLE:(00,00,48,15)
-NON_PASSWALL:(00,00,48,15)
+RANDOM_PLACES: (21,04),(21,06),(21,08)
+STAIR:(08,08),down
+REGION:(00,00,30,16),lit,"ordinary"
+NON_DIGGABLE:(00,00,48,16)
+NON_PASSWALL:(00,00,48,16)
 
-REGION:(31,05,37,13),lit,"randomroom"
+REGION:(31,06,37,14),lit,"randomroom"
 
-REGION:(18,09,21,11),lit,"randomroom"
+REGION:(18,10,21,12),lit,"randomroom"
 
-REGION:(00,13,06,15),lit,"randomroom"
+REGION:(00,14,06,16),lit,"randomroom"
 
-REGION:(29,00,35,02),lit,"randomroom"
+REGION:(29,01,35,03),lit,"randomroom"
 
-REGION:(40,04,46,04),lit,"nymphhall"
-REGION:(40,05,46,13),lit,"anthole"
+REGION:(40,05,46,05),lit,"nymphhall"
+REGION:(40,06,46,14),lit,"anthole"
 
-TRAP:"superscroller",(37,00)
-TRAP:"black ng wall",(38,00)
-TRAP:"yellow spell",(39,00)
-TRAP:"inventory",(40,00)
+TRAP:"superscroller",(37,01)
+TRAP:"black ng wall",(38,01)
+TRAP:"yellow spell",(39,01)
+TRAP:"inventory",(40,01)
 
-OBJECT:'/',"bugging",(37,00)
-OBJECT:'?',"amnesia",(38,00)
-OBJECT:'!',"Pan Galactic Gargle Blaster",(39,00)
-OBJECT:'(',"bag of digestion",(40,00)
+OBJECT:'/',"bugging",(37,01)
+OBJECT:'?',"amnesia",(38,01)
+OBJECT:'!',"Pan Galactic Gargle Blaster",(39,01)
+OBJECT:'(',"bag of digestion",(40,01)
 
-DOOR:locked,(47,02)
+DOOR:locked,(47,03)
 
-OBJECT:random,random,(23,10)
-OBJECT:random,random,(24,10)
-OBJECT:random,random,(25,10)
-OBJECT:random,random,(26,10)
-OBJECT:random,random,(27,10)
 OBJECT:random,random,(23,11)
 OBJECT:random,random,(24,11)
 OBJECT:random,random,(25,11)
 OBJECT:random,random,(26,11)
 OBJECT:random,random,(27,11)
+OBJECT:random,random,(23,12)
+OBJECT:random,random,(24,12)
+OBJECT:random,random,(25,12)
+OBJECT:random,random,(26,12)
+OBJECT:random,random,(27,12)
 
 # Boulders
-OBJECT:'`',"boulder",(04,02)
-OBJECT:'`',"boulder",(06,02)
-OBJECT:'`',"boulder",(08,02)
-OBJECT:'`',"boulder",(16,03)
-OBJECT:'`',"boulder",(03,04)
-OBJECT:'`',"boulder",(06,04)
-OBJECT:'`',"boulder",(12,04)
-OBJECT:'`',"boulder",(14,04)
+OBJECT:'`',"boulder",(04,03)
+OBJECT:'`',"boulder",(06,03)
+OBJECT:'`',"boulder",(08,03)
+OBJECT:'`',"boulder",(16,04)
+OBJECT:'`',"boulder",(03,05)
+OBJECT:'`',"boulder",(06,05)
+OBJECT:'`',"boulder",(12,05)
 OBJECT:'`',"boulder",(14,05)
-OBJECT:'`',"boulder",(02,06)
-OBJECT:'`',"boulder",(03,06)
-OBJECT:'`',"boulder",(15,07)
-OBJECT:'`',"boulder",(04,08)
-OBJECT:'`',"boulder",(09,08)
+OBJECT:'`',"boulder",(14,06)
+OBJECT:'`',"boulder",(02,07)
+OBJECT:'`',"boulder",(03,07)
 OBJECT:'`',"boulder",(15,08)
+OBJECT:'`',"boulder",(04,09)
+OBJECT:'`',"boulder",(09,09)
 OBJECT:'`',"boulder",(15,09)
-OBJECT:'`',"boulder",(05,10)
-OBJECT:'`',"boulder",(06,10)
-OBJECT:'`',"boulder",(12,10)
-OBJECT:'`',"boulder",(14,10)
 OBJECT:'`',"boulder",(15,10)
+OBJECT:'`',"boulder",(05,11)
+OBJECT:'`',"boulder",(06,11)
+OBJECT:'`',"boulder",(12,11)
+OBJECT:'`',"boulder",(14,11)
+OBJECT:'`',"boulder",(15,11)
 
 # Traps
-TRAP:"hole",(11,13)
-TRAP:"hole",(12,13)
-TRAP:"hole",(13,13)
-TRAP:"hole",(14,13)
-TRAP:"hole",(15,13)
-TRAP:"hole",(16,13)
-TRAP:"hole",(17,13)
-TRAP:"hole",(18,13)
-TRAP:"hole",(19,13)
-TRAP:"hole",(20,13)
-TRAP:"hole",(21,13)
-TRAP:"hole",(22,13)
-TRAP:"hole",(23,13)
-TRAP:"hole",(24,13)
-TRAP:"hole",(25,13)
-TRAP:"hole",(26,13)
-TRAP:"hole",(27,13)
-TRAP:"hole",(28,13)
+TRAP:"hole",(11,14)
+TRAP:"hole",(12,14)
+TRAP:"hole",(13,14)
+TRAP:"hole",(14,14)
+TRAP:"hole",(15,14)
+TRAP:"hole",(16,14)
+TRAP:"hole",(17,14)
+TRAP:"hole",(18,14)
+TRAP:"hole",(19,14)
+TRAP:"hole",(20,14)
+TRAP:"hole",(21,14)
+TRAP:"hole",(22,14)
+TRAP:"hole",(23,14)
+TRAP:"hole",(24,14)
+TRAP:"hole",(25,14)
+TRAP:"hole",(26,14)
+TRAP:"hole",(27,14)
+TRAP:"hole",(28,14)
 
 OBJECT:'%',random,random
 OBJECT:'%',random,random
@@ -18536,11 +18544,11 @@ MONSTER:'m',random, random
 MONSTER:'m',random, random
 
 # Rewards
-DOOR:locked,(28,05)
-DOOR:closed,(22,03)
-DOOR:closed,(22,05)
-DOOR:closed,(22,07)
-REGION:(23,02,27,08),lit,"randomroom",filled,true
+DOOR:locked,(28,06)
+DOOR:closed,(22,04)
+DOOR:closed,(22,06)
+DOOR:closed,(22,08)
+REGION:(23,03,27,09),lit,"randomroom",filled,true
 
 
 MAZE:"soko6-36",' '
@@ -21263,10 +21271,11 @@ MAP
 -----..............|........|
     |.|....|..|...--........-|
     ---------------LLLLLLLLLL|
+                  ------------
 ENDMAP
 STAIR:(8,1), down
 STAIR:(10,4), up
-REGION:(00,00,19,15),lit,"ordinary"
+REGION:(00,00,19,16),lit,"ordinary"
 
 REGION:(20,05,27,14),lit,"boulder shop"
 DOOR:locked,(19,05)
@@ -21274,8 +21283,8 @@ DOOR:locked,(19,05)
 REGION:(18,01,27,02),lit,"shop"
 DOOR:locked,(17,01)
 
-NON_DIGGABLE:(00,00,29,15)
-NON_PASSWALL:(00,00,29,15)
+NON_DIGGABLE:(00,00,29,16)
+NON_PASSWALL:(00,00,29,16)
 OBJECT:'`',"boulder",(7,2)
 OBJECT:'`',"boulder",(12,2)
 OBJECT:'`',"boulder",(14,3)
@@ -21533,54 +21542,56 @@ FLAGS:noteleport
 GEOMETRY:center,center
 # "Joseph L Traub"
 MAP
- }}}}} }}}} }}  } }    }
- ..... }}}} }} ......} }
- ..... .... ..  FF ..} }
- ..... ........ ..F.   }
- ..... ....  .. ..F.}}}}
- .....  .......+..F. 
-  . .. }.       ..F. }}}
-  . ..  ....... ..F.}}}} 
- .. ........... FF . }}}
- ................... 
- .....  . ..... } ..}}}} 
- }}}}}  } }}}}} } } }}}} 
+-------------------------
+|}}}}} }}}} }}  } }    }|
+|..... }}}} }} ......} }|
+|..... .... ..  FF ..} }|
+|..... ........ ..F.   }|
+|..... ....  .. ..F.}}}}|
+|.....  .......+..F.    |
+| . .. }.       ..F. }}}|
+| . ..  ....... ..F.}}}}|
+|.. ........... FF . }}}|
+|...................    |
+|.....  . ..... } ..}}}}|
+|}}}}}  } }}}}} } } }}}}|
+-------------------------
 ENDMAP
-STAIR:(8,10), down
-STAIR:(15,1), up
-REGION:(00,00,23,11),lit,"ordinary"
-NON_DIGGABLE:(00,00,23,11)
-NON_PASSWALL:(00,00,23,11)
-DOOR:locked,(15,5)
-OBJECT:'`',"boulder",(2,3)
-OBJECT:'`',"boulder",(10,3)
-OBJECT:'`',"boulder",(12,3)
-OBJECT:'`',"boulder",(3,4)
-OBJECT:'`',"boulder",(9,4)
-OBJECT:'`',"boulder",(2,5)
+STAIR:(8,11), down
+STAIR:(15,2), up
+REGION:(00,00,24,13),lit,"ordinary"
+NON_DIGGABLE:(00,00,24,13)
+NON_PASSWALL:(00,00,24,13)
+DOOR:locked,(15,6)
+OBJECT:'`',"boulder",(2,4)
+OBJECT:'`',"boulder",(10,4)
+OBJECT:'`',"boulder",(12,4)
 OBJECT:'`',"boulder",(3,5)
-OBJECT:'`',"boulder",(8,5)
-OBJECT:'`',"boulder",(10,5)
-OBJECT:'`',"boulder",(4,8)
+OBJECT:'`',"boulder",(9,5)
+OBJECT:'`',"boulder",(2,6)
+OBJECT:'`',"boulder",(3,6)
+OBJECT:'`',"boulder",(8,6)
+OBJECT:'`',"boulder",(10,6)
 OBJECT:'`',"boulder",(4,9)
-OBJECT:'`',"boulder",(5,9)
-TRAP:"hole",(16,1)
-TRAP:"hole",(17,1)
-TRAP:"hole",(18,1)
-TRAP:"hole",(19,3)
+OBJECT:'`',"boulder",(4,10)
+OBJECT:'`',"boulder",(5,10)
+TRAP:"hole",(16,2)
+TRAP:"hole",(17,2)
+TRAP:"hole",(18,2)
 TRAP:"hole",(19,4)
 TRAP:"hole",(19,5)
 TRAP:"hole",(19,6)
 TRAP:"hole",(19,7)
 TRAP:"hole",(19,8)
-TRAP:"hole",(15,9)
-TRAP:"hole",(16,9)
-TRAP:"hole",(17,9)
+TRAP:"hole",(19,9)
+TRAP:"hole",(15,10)
+TRAP:"hole",(16,10)
+TRAP:"hole",(17,10)
 
-FOUNTAIN: (8, 8)
-FOUNTAIN: (14, 8)
-FOUNTAIN: (16, 5)
-FOUNTAIN: (2, 2)
+FOUNTAIN: (8, 9)
+FOUNTAIN: (14, 9)
+FOUNTAIN: (16, 6)
+FOUNTAIN: (2, 3)
 
 OBJECT:'%',random,random
 OBJECT:'%',random,random
@@ -27164,56 +27175,58 @@ FLAGS:noteleport, hardfloor
 GEOMETRY:center,center
 # "J Franklin Mentzer <wryter@aol.com>"
 MAP
-     -------    ......................
- .   |..|..|    .--------            .
--.----.....--- -.-......---          .
-|......---...| |..........|          .
-|.|.|......|.--|........|.---.........
-|.|.--..|..|...-F-F-F-F--...|
-|.......|...................|
-|.|.--..|..|...-F-F-F-F--...|.........
-|.|.|......|.--|........|.---        .
-|......---...| |..........|          .
--.----.....--- -.-......---          .
- .   |..|..|    .--------            .
-     -------    ......................
+               ------------------------
+---  -------   |......................|
+|.|  |..|..|   |.--------------------.|
+-.----.....--- -.-......---         |.|
+|......---...| |..........| ---------.|
+|.|.|......|.--|........|.---.........|
+|.|.--..|..|...-F-F-F-F--...|----------
+|.......|...................|----------
+|.|.--..|..|...-F-F-F-F--...|.........|
+|.|.|......|.--|........|.-----------.|
+|......---...| |..........|         |.|
+-.----.....--- -.-......---         |.|
+|.|  |..|..|   |.-------------------|.|
+|--  -------   |......................|
+               ------------------------
 ENDMAP
-STAIR:(13,6),down
-STAIR:(26,6), up
-REGION:(00,00,37,12),lit,"ordinary"
-NON_DIGGABLE:(00,00,37,12)
-NON_PASSWALL:(00,00,37,12)
-OBJECT:'?',"earth",(16,3)
-OBJECT:'?',"earth",(16,9)
-OBJECT:'`',"boulder",(8,2)
-OBJECT:'`',"boulder",(8,4)
-OBJECT:'`',"boulder",(3,5)
-OBJECT:'`',"boulder",(6,6)
-OBJECT:'`',"boulder",(7,6)
-OBJECT:'`',"boulder",(9,6)
-OBJECT:'`',"boulder",(10,6)
-OBJECT:'`',"boulder",(3,7)
-OBJECT:'`',"boulder",(8,8)
-OBJECT:'`',"boulder",(8,10)
-TRAP:"pit",(15,6)
-TRAP:"pit",(16,6)
-TRAP:"pit",(17,6)
-TRAP:"pit",(18,6)
-TRAP:"pit",(19,6)
-TRAP:"pit",(20,6)
-TRAP:"pit",(21,6)
-TRAP:"pit",(22,6)
-TRAP:"pit",(23,6)
+BRANCH:(13,7,13,7),(0,0,0,0)
+STAIR:(26,7), up
+REGION:(00,00,38,14),lit,"ordinary"
+NON_DIGGABLE:(00,00,38,14)
+NON_PASSWALL:(00,00,38,14)
+OBJECT:'?',"earth",(16,4)
+OBJECT:'?',"earth",(16,10)
+OBJECT:'`',"boulder",(8,3)
+OBJECT:'`',"boulder",(8,5)
+OBJECT:'`',"boulder",(3,6)
+OBJECT:'`',"boulder",(6,7)
+OBJECT:'`',"boulder",(7,7)
+OBJECT:'`',"boulder",(9,7)
+OBJECT:'`',"boulder",(10,7)
+OBJECT:'`',"boulder",(3,8)
+OBJECT:'`',"boulder",(8,9)
+OBJECT:'`',"boulder",(8,11)
+TRAP:"pit",(15,7)
+TRAP:"pit",(16,7)
+TRAP:"pit",(17,7)
+TRAP:"pit",(18,7)
+TRAP:"pit",(19,7)
+TRAP:"pit",(20,7)
+TRAP:"pit",(21,7)
+TRAP:"pit",(22,7)
+TRAP:"pit",(23,7)
 
-TRAP:"black ng wall",(29,4)
-TRAP:"inventory",(29,7)
-OBJECT:'"',"amulet of strangulation",(29,4)
-OBJECT:'=',"disarming",(29,7)
+TRAP:"black ng wall",(29,5)
+TRAP:"inventory",(29,8)
+OBJECT:'"',"amulet of strangulation",(29,5)
+OBJECT:'=',"disarming",(29,8)
 
-TRAP:"memory",(1,1)
-TRAP:"yellow spell",(1,11)
-OBJECT:'[',"zipper boots",(1,1)
-OBJECT:')',"crysknife",(1,11),cursed,-15
+TRAP:"memory",(1,2)
+TRAP:"yellow spell",(1,12)
+OBJECT:'[',"zipper boots",(1,2)
+OBJECT:')',"crysknife",(1,12),cursed,-15
 
 OBJECT:'%',random,random
 OBJECT:'%',random,random
@@ -31631,6 +31644,7 @@ FLAGS:noteleport
 GEOMETRY:center,center
 # Steve Melenchuk <smelenchuk@gmail.com>
 MAP
+                            ---------------------
   -----                     |.............FTLFTL|
   |...------  -----   -------.......------FTLFTL|
   |........----...| ---.............|TTTT|-----+|
@@ -31649,89 +31663,88 @@ MAP
 .......-----                 -------------------|
 ENDMAP
 
-RANDOM_PLACES: (21,03),(21,05),(21,07)
-STAIR:(08,07),down
-STAIR:random,up
-REGION:(00,00,30,15),lit,"ordinary"
-NON_DIGGABLE:(00,00,48,15)
-NON_PASSWALL:(00,00,48,15)
+RANDOM_PLACES: (21,04),(21,06),(21,08)
+STAIR:(08,08),down
+REGION:(00,00,30,16),lit,"ordinary"
+NON_DIGGABLE:(00,00,48,16)
+NON_PASSWALL:(00,00,48,16)
 
-REGION:(31,05,37,13),lit,"randomroom"
+REGION:(31,06,37,14),lit,"randomroom"
 
-REGION:(18,09,21,11),lit,"randomroom"
+REGION:(18,10,21,12),lit,"randomroom"
 
-REGION:(00,13,06,15),lit,"randomroom"
+REGION:(00,14,06,16),lit,"randomroom"
 
-REGION:(29,00,35,02),lit,"randomroom"
+REGION:(29,01,35,03),lit,"randomroom"
 
-REGION:(40,04,46,04),lit,"nymphhall"
-REGION:(40,05,46,13),lit,"anthole"
+REGION:(40,05,46,05),lit,"nymphhall"
+REGION:(40,06,46,14),lit,"anthole"
 
-TRAP:"superscroller",(37,00)
-TRAP:"black ng wall",(38,00)
-TRAP:"yellow spell",(39,00)
-TRAP:"inventory",(40,00)
+TRAP:"superscroller",(37,01)
+TRAP:"black ng wall",(38,01)
+TRAP:"yellow spell",(39,01)
+TRAP:"inventory",(40,01)
 
-OBJECT:'/',"bugging",(37,00)
-OBJECT:'?',"amnesia",(38,00)
-OBJECT:'!',"Pan Galactic Gargle Blaster",(39,00)
-OBJECT:'(',"bag of digestion",(40,00)
+OBJECT:'/',"bugging",(37,01)
+OBJECT:'?',"amnesia",(38,01)
+OBJECT:'!',"Pan Galactic Gargle Blaster",(39,01)
+OBJECT:'(',"bag of digestion",(40,01)
 
-DOOR:locked,(47,02)
+DOOR:locked,(47,03)
 
-OBJECT:random,random,(23,10)
-OBJECT:random,random,(24,10)
-OBJECT:random,random,(25,10)
-OBJECT:random,random,(26,10)
-OBJECT:random,random,(27,10)
 OBJECT:random,random,(23,11)
 OBJECT:random,random,(24,11)
 OBJECT:random,random,(25,11)
 OBJECT:random,random,(26,11)
 OBJECT:random,random,(27,11)
+OBJECT:random,random,(23,12)
+OBJECT:random,random,(24,12)
+OBJECT:random,random,(25,12)
+OBJECT:random,random,(26,12)
+OBJECT:random,random,(27,12)
 
 # Boulders
-OBJECT:'`',"boulder",(04,02)
-OBJECT:'`',"boulder",(06,02)
-OBJECT:'`',"boulder",(08,02)
-OBJECT:'`',"boulder",(16,03)
-OBJECT:'`',"boulder",(03,04)
-OBJECT:'`',"boulder",(06,04)
-OBJECT:'`',"boulder",(12,04)
-OBJECT:'`',"boulder",(14,04)
+OBJECT:'`',"boulder",(04,03)
+OBJECT:'`',"boulder",(06,03)
+OBJECT:'`',"boulder",(08,03)
+OBJECT:'`',"boulder",(16,04)
+OBJECT:'`',"boulder",(03,05)
+OBJECT:'`',"boulder",(06,05)
+OBJECT:'`',"boulder",(12,05)
 OBJECT:'`',"boulder",(14,05)
-OBJECT:'`',"boulder",(02,06)
-OBJECT:'`',"boulder",(03,06)
-OBJECT:'`',"boulder",(15,07)
-OBJECT:'`',"boulder",(04,08)
-OBJECT:'`',"boulder",(09,08)
+OBJECT:'`',"boulder",(14,06)
+OBJECT:'`',"boulder",(02,07)
+OBJECT:'`',"boulder",(03,07)
 OBJECT:'`',"boulder",(15,08)
+OBJECT:'`',"boulder",(04,09)
+OBJECT:'`',"boulder",(09,09)
 OBJECT:'`',"boulder",(15,09)
-OBJECT:'`',"boulder",(05,10)
-OBJECT:'`',"boulder",(06,10)
-OBJECT:'`',"boulder",(12,10)
-OBJECT:'`',"boulder",(14,10)
 OBJECT:'`',"boulder",(15,10)
+OBJECT:'`',"boulder",(05,11)
+OBJECT:'`',"boulder",(06,11)
+OBJECT:'`',"boulder",(12,11)
+OBJECT:'`',"boulder",(14,11)
+OBJECT:'`',"boulder",(15,11)
 
 # Traps
-TRAP:"hole",(11,13)
-TRAP:"hole",(12,13)
-TRAP:"hole",(13,13)
-TRAP:"hole",(14,13)
-TRAP:"hole",(15,13)
-TRAP:"hole",(16,13)
-TRAP:"hole",(17,13)
-TRAP:"hole",(18,13)
-TRAP:"hole",(19,13)
-TRAP:"hole",(20,13)
-TRAP:"hole",(21,13)
-TRAP:"hole",(22,13)
-TRAP:"hole",(23,13)
-TRAP:"hole",(24,13)
-TRAP:"hole",(25,13)
-TRAP:"hole",(26,13)
-TRAP:"hole",(27,13)
-TRAP:"hole",(28,13)
+TRAP:"hole",(11,14)
+TRAP:"hole",(12,14)
+TRAP:"hole",(13,14)
+TRAP:"hole",(14,14)
+TRAP:"hole",(15,14)
+TRAP:"hole",(16,14)
+TRAP:"hole",(17,14)
+TRAP:"hole",(18,14)
+TRAP:"hole",(19,14)
+TRAP:"hole",(20,14)
+TRAP:"hole",(21,14)
+TRAP:"hole",(22,14)
+TRAP:"hole",(23,14)
+TRAP:"hole",(24,14)
+TRAP:"hole",(25,14)
+TRAP:"hole",(26,14)
+TRAP:"hole",(27,14)
+TRAP:"hole",(28,14)
 
 OBJECT:'%',random,random
 OBJECT:'%',random,random
@@ -31748,11 +31761,11 @@ MONSTER:'m',random, random
 MONSTER:'m',random, random
 
 # Rewards
-DOOR:locked,(28,05)
-DOOR:closed,(22,03)
-DOOR:closed,(22,05)
-DOOR:closed,(22,07)
-REGION:(23,02,27,08),lit,"randomroom",filled,true
+DOOR:locked,(28,06)
+DOOR:closed,(22,04)
+DOOR:closed,(22,06)
+DOOR:closed,(22,08)
+REGION:(23,03,27,09),lit,"randomroom",filled,true
 
 MAZE:"soko0-36",' '
 FLAGS:noteleport
