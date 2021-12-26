@@ -11499,6 +11499,8 @@ loveheelover:
 
 	    case S_CENTAUR:
 
+		if(ptr == &mons[PM_REAL_DEGA]) (void) mongets(mtmp, PICK_AXE);
+
 		if (ptr == &mons[PM_HEAVY_CENTAUR]) {
 			(void) mongets(mtmp, FLINTLOCK);
 	  		m_initthrow(mtmp, LEAD_BULLET, 20);
@@ -12434,6 +12436,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_UMBRAGE_PROFESSOR]) (void) mongets(mtmp, CROW_QUILL);
 		if (mtmp->data == &mons[PM_AMBER_FEMMY]) (void) mongets(mtmp, SOFT_SNEAKERS);
 		if (mtmp->data == &mons[PM_STEELFIST]) (void) mongets(mtmp, POWERFIST);
+		if (mtmp->data == &mons[PM_DIGGER_HULK]) (void) mongets(mtmp, CONGLOMERATE_PICK);
 
 		if (mtmp->data == &mons[PM_UNWISE_BLUE_SMOKER]) {
 			(void) mongets(mtmp, LADY_BOOTS);
@@ -12750,6 +12753,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_REVIVED_FEMMY]) (void) mongets(mtmp, DANCING_SHOES);
 		if (mtmp->data == &mons[PM_PLAYFUL_FEMMY]) (void) mongets(mtmp, SOFT_SNEAKERS);
 		if (mtmp->data == &mons[PM_EAR_SHOOM]) (void) mongets(mtmp, FOAMY_STAFF);
+		if (mtmp->data == &mons[PM_DIG_MOLE]) (void) mongets(mtmp, PICK_AXE);
 
 		if (ptr == &mons[PM_SEXTARIAN_CUTIE]) {
 			(void) mongets(mtmp, BLOCK_HEELED_SANDAL);
@@ -12880,6 +12884,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_HORNPEEK_HORSE]) (void) mongets(mtmp, UNICORN_HORN);
 		if (mtmp->data == &mons[PM_ROTATING_THROUGH_UNICORN]) (void) mongets(mtmp, UNICORN_HORN);
 		if (mtmp->data == &mons[PM_CANCER_INHALER]) (void) mongets(mtmp, CIGARETTE);
+		if (mtmp->data == &mons[PM_PICK_HORN]) (void) mongets(mtmp, PICK_AXE);
 
 		if (mtmp->data == &mons[PM_POLECORN]) (void) mongets(mtmp, SPETUM);
 		if (mtmp->data == &mons[PM_HUGE_POLECORN]) (void) mongets(mtmp, HALBERD);
@@ -16438,6 +16443,8 @@ loveheelover:
 		if (ptr == &mons[PM_HANDED_BAOBHAN_SITH]) (void) mongets(mtmp, SITH_STAFF);
 		if (ptr == &mons[PM_KLOCK_HOBBIT]) (void) mongets(mtmp, SEXY_LEATHER_PUMP);
 		if (ptr == &mons[PM_STARWARS_FAN]) (void) mongets(mtmp, ORANGE_LIGHTSABER);
+		if (ptr == &mons[PM_RANDOM_DIG_DWARF]) (void) mongets(mtmp, PICK_AXE);
+		if (ptr == &mons[PM_SLOW_DIG_DWARF]) (void) mongets(mtmp, PICK_AXE);
 
 		if (ptr == &mons[PM_CONTAGION_LASHER]) {
 			otmp = mksobj(BULLWHIP, FALSE, FALSE, FALSE);

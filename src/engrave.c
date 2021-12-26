@@ -999,6 +999,7 @@ static const char *random_mesg[] = {
 	"The knackwurst is no cervela.",
 	"Q: Why is spell retention a range? A: Because it's not, it's an exact value. Only weird variants would make the display inaccurate.",
 	"Asian people usually know karate, and all Germans eat sauerkraut with Bavarian veal sausage.",
+	"Usually deformation is not a bad thing, I see if my equipment does not burst. In addition, if the deformation is unfavorable, I have aconite grass that can be cured.",
 
 };
 
@@ -5536,6 +5537,16 @@ static const char *epitaphs[] = {
 	"Balance? What's that? No one needs that. Let's just throw everything into the game that we can think of, and call it a day.",
 	"Since I can't see the information invisible, I feel my future is uncertain. Read 2 healing scrolls, a phase door scroll, and fuck him hard.",
 	"To be honest, I was really gambled on my life, but good luck was on my side and killed it with a silver dagger, an artifact of the Immortal Nemesis.",
+	"What? Died because I 'ran out of alla'? What is that bullshit death that came out of nowhere?!",
+	"Stupid monster socks with stupid paralysis attacks.",
+	"WTF, why on earth does Sing (who is that even supposed to be) suddenly ask that I clean a pair of female shoes with dog shit on the soles and why do I get paralyzed to death if I rightfully refuse???",
+	"Got very very annoyed at the casino croupier and decided to take my money back by force. Only, it turned out that he was too strong, the bastard!",
+	"Monster pants are a stupid mechanic and Amy should feel bad about adding them.",
+	"WTF, killing a monster that is on the phone gives a huge alignment and luck penalty for no obvious reason??? #quit",
+	"I tried to be stealthy. I really did. Gave a wide berth to that zoo and avoided every action that could possibly wake up monsters. But there was some weird snoring sound and suddenly they were all awake and killed me. Bullshit.",
+	"The annoying VF kept photographing and blinding me while the other monsters beat the crap out of me!",
+	"What on earth are you supposed to do if a permamimic corners you and you have no ranged weapons? I bumped into it 200 times and it still didn't die; instead, I did!",
+	"Well the monsters that keep mimicking things even when you attack them can just fuck off, the cunts. Doubly so because you can't melee them. Bullshit mechanic that should be abolished.",
 
 };
 

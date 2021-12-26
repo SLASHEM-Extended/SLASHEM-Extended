@@ -508,6 +508,9 @@ register struct monst *mtmp;
 	    case PM_BUTTICORN:
 	    case PM_SQUEAKICORN:
 	    case PM_FARTICORN:
+	    case PM_PICK_HORN:
+	    case PM_DIG_HORN:
+	    case PM_PHASE_HORN:
 	    case PM_MATURE_UNICORN:
 	    case PM_SELF_FLAGELLATING_UNICORN:
 	    case PM_WIPED_UNICORN:
