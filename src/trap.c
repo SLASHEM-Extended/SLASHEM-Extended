@@ -3502,12 +3502,27 @@ unsigned trflags;
 		pline("An arrow shoots out at you!");
 		otmp = mksobj(ARROW, TRUE, FALSE, FALSE);
 		if (otmp) {
+			int projectiledamage = dmgval(otmp, &youmonst);
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
 			otmp->quan = 1L;
 			otmp->owt = weight(otmp);
 			otmp->opoisoned = 0;
 			if (u.usteed && will_hit_steed() && steedintrap(trap, otmp)) /* nothing */;
 			else
-			if (thitu(8 + rnd((monster_difficulty() / 2) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() / 2) + 1) , otmp, "arrow")) {
+			if (thitu(8 + rnd((monster_difficulty() / 2) + 1), projectiledamage + rnd((monster_difficulty() / 2) + 1) , otmp, "arrow")) {
 			    obfree(otmp, (struct obj *)0);
 			} else if (!timebasedlowerchance()) {
 			    obfree(otmp, (struct obj *)0);
@@ -3532,12 +3547,27 @@ unsigned trflags;
 		pline("A bolt shoots out at you!");
 		otmp = mksobj(CROSSBOW_BOLT, TRUE, FALSE, FALSE);
 		if (otmp) {
+			int projectiledamage = dmgval(otmp, &youmonst);
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
 			otmp->quan = 1L;
 			otmp->owt = weight(otmp);
 			otmp->opoisoned = 0;
 			if (u.usteed && will_hit_steed() && steedintrap(trap, otmp)) /* nothing */;
 			else
-			if (thitu(8 + rnd((monster_difficulty() * 2 / 3) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() * 2 / 3) + 1) , otmp, "bolt")) {
+			if (thitu(8 + rnd((monster_difficulty() * 2 / 3) + 1), projectiledamage + rnd((monster_difficulty() * 2 / 3) + 1) , otmp, "bolt")) {
 			    obfree(otmp, (struct obj *)0);
 			} else if (!timebasedlowerchance()) {
 			    obfree(otmp, (struct obj *)0);
@@ -3562,12 +3592,27 @@ unsigned trflags;
 		pline("BANG! A gun shoots at you!");
 		otmp = mksobj(BULLET, TRUE, FALSE, FALSE);
 		if (otmp) {
+			int projectiledamage = dmgval(otmp, &youmonst);
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
 			otmp->quan = 1L;
 			otmp->owt = weight(otmp);
 			otmp->opoisoned = 0;
 			if (u.usteed && will_hit_steed() && steedintrap(trap, otmp)) /* nothing */;
 			else
-			if (thitu(8 + rnd(monster_difficulty() + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() * 2 / 3) + 1) , otmp, "bullet")) {
+			if (thitu(8 + rnd(monster_difficulty() + 1), projectiledamage + rnd((monster_difficulty() * 2 / 3) + 1) , otmp, "bullet")) {
 			    obfree(otmp, (struct obj *)0);
 			} else {
 			    obfree(otmp, (struct obj *)0);
@@ -3587,12 +3632,27 @@ unsigned trflags;
 		pline("A glass arrow shoots out at you!");
 		otmp = mksobj(DROVEN_ARROW, TRUE, FALSE, FALSE);
 		if (otmp) {
+			int projectiledamage = dmgval(otmp, &youmonst);
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
 			otmp->quan = 1L;
 			otmp->owt = weight(otmp);
 			otmp->opoisoned = 0;
 			if (u.usteed && will_hit_steed() && steedintrap(trap, otmp)) /* nothing */;
 			else
-			if (thitu(8 + rnd((monster_difficulty() / 2) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() / 2) + 1) , otmp, "glass arrow")) {
+			if (thitu(8 + rnd((monster_difficulty() / 2) + 1), projectiledamage + rnd((monster_difficulty() / 2) + 1) , otmp, "glass arrow")) {
 			    obfree(otmp, (struct obj *)0);
 			} else {
 			    obfree(otmp, (struct obj *)0);
@@ -3612,12 +3672,27 @@ unsigned trflags;
 		pline("A glass bolt shoots out at you!");
 		otmp = mksobj(DROVEN_BOLT, TRUE, FALSE, FALSE);
 		if (otmp) {
+			int projectiledamage = dmgval(otmp, &youmonst);
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
 			otmp->quan = 1L;
 			otmp->owt = weight(otmp);
 			otmp->opoisoned = 0;
 			if (u.usteed && will_hit_steed() && steedintrap(trap, otmp)) /* nothing */;
 			else
-			if (thitu(8 + rnd((monster_difficulty() * 2 / 3) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() * 2 / 3) + 1) , otmp, "glass bolt")) {
+			if (thitu(8 + rnd((monster_difficulty() * 2 / 3) + 1), projectiledamage + rnd((monster_difficulty() * 2 / 3) + 1) , otmp, "glass bolt")) {
 			    obfree(otmp, (struct obj *)0);
 			} else {
 			    obfree(otmp, (struct obj *)0);
@@ -3685,7 +3760,7 @@ unsigned trflags;
 		You_hear("a soft click.");
 		seetrap(trap);
 		if (isok(trap->launch.x,trap->launch.y) && IS_STWALL(levl[trap->launch.x][trap->launch.y].typ)) {
-		    buzz(trap->launch_otyp, 7 + rnd((monster_difficulty() / 10) + 1) ,
+		    buzz(trap->launch_otyp, 5 + rnd((monster_difficulty() / 10) + 1) ,
 			 trap->launch.x,trap->launch.y,
 			 sgn(trap->tx - trap->launch.x),sgn(trap->ty - trap->launch.y));
 		    trap->once = 1;
@@ -3701,7 +3776,7 @@ unsigned trflags;
 		seetrap(trap);
 		u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
 		if (isok(trap->launch.x,trap->launch.y) && IS_STWALL(levl[trap->launch.x][trap->launch.y].typ)) {
-		    buzz(trap->launch_otyp, 7 + rnd((monster_difficulty() / 10) + 1) ,
+		    buzz(trap->launch_otyp, 5 + rnd((monster_difficulty() / 10) + 1) ,
 			 trap->launch.x,trap->launch.y,
 			 sgn(trap->tx - trap->launch.x),sgn(trap->ty - trap->launch.y));
 		    trap->once = 1;
@@ -3724,12 +3799,27 @@ unsigned trflags;
 		pline("A little dart shoots out at you!");
 		otmp = mksobj(DART, TRUE, FALSE, FALSE);
 		if (otmp) {
+			int projectiledamage = dmgval(otmp, &youmonst);
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
 			otmp->quan = 1L;
 			otmp->owt = weight(otmp);
 			if (!rn2(6)) otmp->opoisoned = 1;
 			if (u.usteed && will_hit_steed() && steedintrap(trap, otmp)) /* nothing */;
 			else
-			if (thitu(7 + rnd((monster_difficulty() / 3) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() / 3) + 1), otmp, "little dart")) {
+			if (thitu(7 + rnd((monster_difficulty() / 3) + 1), projectiledamage + rnd((monster_difficulty() / 3) + 1), otmp, "little dart")) {
 			    if (otmp->opoisoned)
 				poisoned("dart", A_CON, "little dart", -10);
 			    obfree(otmp, (struct obj *)0);
@@ -3755,12 +3845,27 @@ unsigned trflags;
 		pline("A shuriken shoots out at you!");
 		otmp = mksobj(SHURIKEN, TRUE, FALSE, FALSE);
 		if (otmp) {
+			int projectiledamage = dmgval(otmp, &youmonst);
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
 			otmp->quan = 1L;
 			otmp->owt = weight(otmp);
 			if (!rn2(6)) otmp->opoisoned = 1;
 			if (u.usteed && will_hit_steed() && steedintrap(trap, otmp)) /* nothing */;
 			else
-			if (thitu(8 + rnd((monster_difficulty() / 2) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() / 2) + 1), otmp, "shuriken")) {
+			if (thitu(8 + rnd((monster_difficulty() / 2) + 1), projectiledamage + rnd((monster_difficulty() / 2) + 1), otmp, "shuriken")) {
 			    if (otmp->opoisoned)
 				poisoned("shuriken", A_CON, "shuriken", -10);
 			    obfree(otmp, (struct obj *)0);
@@ -3782,6 +3887,19 @@ unsigned trflags;
 		    newsym(u.ux,u.uy);
 		} else {
 		    int dmg = d(2,6) + rnd((monster_difficulty() * 2 / 3) + 1); /* should be std ROCK dmg? */
+			if (dmg > 1) {
+				if (u.ulevel == 1) dmg /= 2;
+				else if (u.ulevel == 2) {
+					dmg *= 2;
+					dmg /= 3;
+				} else if (u.ulevel == 3) {
+					dmg *= 3;
+					dmg /= 4;
+				} else if (u.ulevel == 4) {
+					dmg *= 4;
+					dmg /= 5;
+				}
+			}
 
 		    trap->once = 1;
 		    seetrap(trap);
@@ -3817,6 +3935,19 @@ unsigned trflags;
 	    case FALLING_LOADSTONE_TRAP:
 		{
 		    int dmg = rnd(30) + rnd(monster_difficulty() + 1);
+			if (dmg > 1) {
+				if (u.ulevel == 1) dmg /= 2;
+				else if (u.ulevel == 2) {
+					dmg *= 2;
+					dmg /= 3;
+				} else if (u.ulevel == 3) {
+					dmg *= 3;
+					dmg /= 4;
+				} else if (u.ulevel == 4) {
+					dmg *= 4;
+					dmg /= 5;
+				}
+			}
 
 		    otmp = mksobj_at(LOADSTONE, u.ux, u.uy, TRUE, FALSE, FALSE);
 		    if (otmp) {
@@ -3853,6 +3984,19 @@ unsigned trflags;
 	    case FALLING_NASTYSTONE_TRAP:
 		{
 		    int dmg = rnd(20) + rnd(monster_difficulty() + 1);
+			if (dmg > 1) {
+				if (u.ulevel == 1) dmg /= 2;
+				else if (u.ulevel == 2) {
+					dmg *= 2;
+					dmg /= 3;
+				} else if (u.ulevel == 3) {
+					dmg *= 3;
+					dmg /= 4;
+				} else if (u.ulevel == 4) {
+					dmg *= 4;
+					dmg /= 5;
+				}
+			}
 
 		    otmp = mksobj_at(rnd_class(RIGHT_MOUSE_BUTTON_STONE,NASTY_STONE), u.ux, u.uy, TRUE, FALSE, FALSE);
 		    if (otmp) {
@@ -3894,6 +4038,19 @@ unsigned trflags;
 		    newsym(u.ux,u.uy);
 		} else {
 		    int dmg = d(6,6) + rnd(monster_difficulty() + 1); /* should be std BOULDER dmg? */
+			if (dmg > 1) {
+				if (u.ulevel == 1) dmg /= 2;
+				else if (u.ulevel == 2) {
+					dmg *= 2;
+					dmg /= 3;
+				} else if (u.ulevel == 3) {
+					dmg *= 3;
+					dmg /= 4;
+				} else if (u.ulevel == 4) {
+					dmg *= 4;
+					dmg /= 5;
+				}
+			}
 
 		    trap->once = 1;
 		    seetrap(trap);
@@ -4134,6 +4291,20 @@ unsigned trflags;
 		struct obj *target;
 	        num = d(4, 4) + rnd((monster_difficulty() / 2) + 1);
 
+			if (num > 1) {
+				if (u.ulevel == 1) num /= 2;
+				else if (u.ulevel == 2) {
+					num *= 2;
+					num /= 3;
+				} else if (u.ulevel == 3) {
+					num *= 3;
+					num /= 4;
+				} else if (u.ulevel == 4) {
+					num *= 4;
+					num /= 5;
+				}
+			}
+
 	        pline("You are sprayed with acid!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vasha glupaya bronya budet korroziyey, potomu chto vy ne sledite glupyy igrok durak." : "Tsch-tschhh-hhh!");
 		if (Stoned) fix_petrification();
@@ -4177,6 +4348,20 @@ unsigned trflags;
 
 	        int numX = 0;
 	        numX = d(3, 3) + rnd((monster_difficulty() / 3) + 1);
+
+			if (num > 1) {
+				if (u.ulevel == 1) num /= 2;
+				else if (u.ulevel == 2) {
+					num *= 2;
+					num /= 3;
+				} else if (u.ulevel == 3) {
+					num *= 3;
+					num /= 4;
+				} else if (u.ulevel == 4) {
+					num *= 4;
+					num /= 5;
+				}
+			}
 
 		  if (Swimming) {pline("You fell into a pool of water, but thankfully you can swim."); numX = 0;}
 		  else if (Amphibious || Breathless) {pline("You fell into a pool of water, but you aren't drowning."); numX = 0;}
@@ -6625,7 +6810,7 @@ newbossPENT:
 				forget(rnd(5));
 				pline("You forget some important things...");
 			}
-			if (!rn2(200)) {
+			if (!rn2(200) && (u.urmaxlvlUP >= 2) ) {
 				losexp("psionic drain", FALSE, TRUE);
 			}
 			if (!rn2(200)) {
@@ -6922,8 +7107,24 @@ newbossPENT:
 
 				break;
 			case 7:
+				{
+				int projectiledamage = 2*rnd(10) + 5;
+				if (projectiledamage > 1) {
+					if (u.ulevel == 1) projectiledamage /= 2;
+					else if (u.ulevel == 2) {
+						projectiledamage *= 2;
+						projectiledamage /= 3;
+					} else if (u.ulevel == 3) {
+						projectiledamage *= 3;
+						projectiledamage /= 4;
+					} else if (u.ulevel == 4) {
+						projectiledamage *= 4;
+						projectiledamage /= 5;
+					}
+				}
 				pline("Something explodes in your %s!", body_part(FACE));
-				losehp(2*rnd(10)+5, "exploding rune", KILLED_BY_AN);
+				losehp(projectiledamage, "exploding rune", KILLED_BY_AN);
+				}
 
 				break;
 			case 8:
@@ -7030,6 +7231,11 @@ newbossPENT:
 
 		seetrap(trap);
 		pline("CLICK! You have triggered a trap!");
+
+		if (moves < 1000 && (u.urmaxlvlUP == 1) && rn2(25)) {
+			pline("But it didn't do anything.");
+			break;
+		}
 
 		if (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) ) {
 			pline("A malevolent black glow suddenly surrounds you...");
@@ -7318,7 +7524,7 @@ newbossPENT:
 					if(u.uen > u.uenmax) u.uen = u.uenmax;
 				}
 				if (!rn2(4)) {
-					if(!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) )
+					if((!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4)) && (u.urmaxlvlUP >= 2) )
 					    losexp("life drainage", FALSE, TRUE);
 					else You_feel("woozy for an instant, but shrug it off.");
 				}
@@ -7498,6 +7704,19 @@ newbossPENT:
 
 		    int dmg = (d(4, 4) + rnd((monster_difficulty() / 2) + 1));
 			int dmgtype = rnd(4);
+			if (dmg > 1) {
+				if (u.ulevel == 1) dmg /= 2;
+				else if (u.ulevel == 2) {
+					dmg *= 2;
+					dmg /= 3;
+				} else if (u.ulevel == 3) {
+					dmg *= 3;
+					dmg /= 4;
+				} else if (u.ulevel == 4) {
+					dmg *= 4;
+					dmg /= 5;
+				}
+			}
 
 			switch (dmgtype) {
 
@@ -7558,6 +7777,19 @@ newbossPENT:
 
 		    int dmg = (d(4, 4) + rnd((monster_difficulty() * 3) + 1));
 			int dmgtype = rnd(4);
+			if (dmg > 1) {
+				if (u.ulevel == 1) dmg /= 2;
+				else if (u.ulevel == 2) {
+					dmg *= 2;
+					dmg /= 3;
+				} else if (u.ulevel == 3) {
+					dmg *= 3;
+					dmg /= 4;
+				} else if (u.ulevel == 4) {
+					dmg *= 4;
+					dmg /= 5;
+				}
+			}
 
 			switch (dmgtype) {
 
@@ -7600,6 +7832,19 @@ newbossPENT:
 
 		    int dmg = (d(4, 4) + rnd((monster_difficulty() / 2) + 1));
 			int dmgtype = rnd(4);
+			if (dmg > 1) {
+				if (u.ulevel == 1) dmg /= 2;
+				else if (u.ulevel == 2) {
+					dmg *= 2;
+					dmg /= 3;
+				} else if (u.ulevel == 3) {
+					dmg *= 3;
+					dmg /= 4;
+				} else if (u.ulevel == 4) {
+					dmg *= 4;
+					dmg /= 5;
+				}
+			}
 
 			switch (dmgtype) {
 
@@ -7666,6 +7911,19 @@ newbossPENT:
 
 		    int dmg = (d(4, 4) + rnd(monster_difficulty() + 1));
 			int dmgtype = rnd(4);
+			if (dmg > 1) {
+				if (u.ulevel == 1) dmg /= 2;
+				else if (u.ulevel == 2) {
+					dmg *= 2;
+					dmg /= 3;
+				} else if (u.ulevel == 3) {
+					dmg *= 3;
+					dmg /= 4;
+				} else if (u.ulevel == 4) {
+					dmg *= 4;
+					dmg /= 5;
+				}
+			}
 
 			switch (dmgtype) {
 
@@ -7712,6 +7970,19 @@ newbossPENT:
 
 		    int dmg = (d(4, 4) + rnd(monster_difficulty() + 1));
 			int dmgtype = rnd(4);
+			if (dmg > 1) {
+				if (u.ulevel == 1) dmg /= 2;
+				else if (u.ulevel == 2) {
+					dmg *= 2;
+					dmg /= 3;
+				} else if (u.ulevel == 3) {
+					dmg *= 3;
+					dmg /= 4;
+				} else if (u.ulevel == 4) {
+					dmg *= 4;
+					dmg /= 5;
+				}
+			}
 
 			switch (dmgtype) {
 
@@ -7775,6 +8046,19 @@ newbossPENT:
 
 		    int dmg = (d(4, 4) + rnd((monster_difficulty() / 4) + 1));
 			int dmgtype = rnd(4);
+			if (dmg > 1) {
+				if (u.ulevel == 1) dmg /= 2;
+				else if (u.ulevel == 2) {
+					dmg *= 2;
+					dmg /= 3;
+				} else if (u.ulevel == 3) {
+					dmg *= 3;
+					dmg /= 4;
+				} else if (u.ulevel == 4) {
+					dmg *= 4;
+					dmg /= 5;
+				}
+			}
 
 			switch (dmgtype) {
 
@@ -7902,15 +8186,62 @@ newbossPENT:
 		    if (ttype == GIANT_CHASM) u.utrap += rnd(75);
 		u.utraptype = TT_PIT;
 		if (!steedintrap(trap, (struct obj *)0)) {
-		if (ttype == SPIKED_PIT) {
-		    losehp(rnd(10) + rnd((monster_difficulty() / 2) + 1) ,"fell into a pit of iron spikes",
-			NO_KILLER_PREFIX);
-		    if (!rn2(6))
-			poisoned("spikes", A_STR, "fall onto poison spikes", 8);
-		} else if (ttype == GIANT_CHASM) {
-		    losehp(rnd(25) + rnd(monster_difficulty() + 1) ,"fell into a giant chasm", NO_KILLER_PREFIX);
-		} else {
-		    losehp(rnd(6) + rnd((monster_difficulty() / 3) + 1) ,"fell into a pit", NO_KILLER_PREFIX);
+
+		{
+			int pitdamage;
+
+			if (ttype == SPIKED_PIT) {
+				pitdamage = 10;
+				if (pitdamage > 1) {
+					if (u.ulevel == 1) pitdamage /= 2;
+					else if (u.ulevel == 2) {
+						pitdamage *= 2;
+						pitdamage /= 3;
+					} else if (u.ulevel == 3) {
+						pitdamage *= 3;
+						pitdamage /= 4;
+					} else if (u.ulevel == 4) {
+						pitdamage *= 4;
+						pitdamage /= 5;
+					}
+				}
+			    losehp(rnd(10) + rnd((monster_difficulty() / 2) + 1) ,"fell into a pit of iron spikes",
+				NO_KILLER_PREFIX);
+			    if (!rn2(6))
+				poisoned("spikes", A_STR, "fall onto poison spikes", 8);
+			} else if (ttype == GIANT_CHASM) {
+				pitdamage = 25;
+				if (pitdamage > 1) {
+					if (u.ulevel == 1) pitdamage /= 2;
+					else if (u.ulevel == 2) {
+						pitdamage *= 2;
+						pitdamage /= 3;
+					} else if (u.ulevel == 3) {
+						pitdamage *= 3;
+						pitdamage /= 4;
+					} else if (u.ulevel == 4) {
+						pitdamage *= 4;
+						pitdamage /= 5;
+					}
+				}
+			    losehp(rnd(25) + rnd(monster_difficulty() + 1) ,"fell into a giant chasm", NO_KILLER_PREFIX);
+			} else {
+				pitdamage = 6;
+				if (pitdamage > 1) {
+					if (u.ulevel == 1) pitdamage /= 2;
+					else if (u.ulevel == 2) {
+						pitdamage *= 2;
+						pitdamage /= 3;
+					} else if (u.ulevel == 3) {
+						pitdamage *= 3;
+						pitdamage /= 4;
+					} else if (u.ulevel == 4) {
+						pitdamage *= 4;
+						pitdamage /= 5;
+					}
+				}
+			    losehp(rnd(6) + rnd((monster_difficulty() / 3) + 1) ,"fell into a pit", NO_KILLER_PREFIX);
+			}
 		}
 
 		if (ttype == SHIT_PIT) {
@@ -8235,7 +8566,7 @@ newbossPENT:
 			case 5:
 				You_feel("life has clocked back.");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Zhizn' razgonyal nazad, potomu chto vy ne smotreli, i teper' vy dolzhny poluchit', chto poteryannyy uroven' nazad." : "Kloeck!");
-			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
+			      if (u.urmaxlvlUP >= 2) losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
 			case 7:
@@ -8771,6 +9102,22 @@ madnesseffect:
 		}
 
 	    case LANDMINE: {
+
+		int projectiledamage = rnd(16) + rnd(monster_difficulty() + 1);
+		if (projectiledamage > 1) {
+			if (u.ulevel == 1) projectiledamage /= 2;
+			else if (u.ulevel == 2) {
+				projectiledamage *= 2;
+				projectiledamage /= 3;
+			} else if (u.ulevel == 3) {
+				projectiledamage *= 3;
+				projectiledamage /= 4;
+			} else if (u.ulevel == 4) {
+				projectiledamage *= 4;
+				projectiledamage /= 5;
+			}
+		}
+
 		unsigned steed_mid = 0;
 		struct obj *saddle = 0;
 		if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) {
@@ -8811,21 +9158,36 @@ madnesseffect:
 		if (steed_mid && saddle && !u.usteed)
 			(void)keep_saddle_with_steedcorpse(steed_mid, fobj, saddle);
 		newsym(u.ux,u.uy);		/* update trap symbol */
-		losehp(rnd(16) + rnd(monster_difficulty() + 1), "land mine", KILLED_BY_AN);
+		losehp(projectiledamage, "land mine", KILLED_BY_AN);
 		/* fall recursively into the pit... */
 		if ((trap = t_at(u.ux, u.uy)) != 0) dotrap(trap, RECURSIVETRAP);
 		fill_pit(u.ux, u.uy);
 		break;
 	    }
 
-	    case BOMB_TRAP: {
+	    case BOMB_TRAP:
+		{
+			int projectiledamage = rnd(36) + rnd( (monster_difficulty() * 3) + 1);
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
 
-		    int i, j, bd = (1 + (monster_difficulty() / 10) );
-		    pline("KAABLAMM!!!  You triggered a bomb!");
-		newsym(u.ux,u.uy);		/* update trap symbol */
-		losehp(rnd(36) + rnd( (monster_difficulty() * 3) + 1), "hidden bomb", KILLED_BY_AN);
-		deltrap(trap);
-		/* fall recursively into the pit... */
+			int i, j, bd = (1 + (monster_difficulty() / 10) );
+			pline("KAABLAMM!!!  You triggered a bomb!");
+			newsym(u.ux,u.uy);		/* update trap symbol */
+			losehp(projectiledamage, "hidden bomb", KILLED_BY_AN);
+			deltrap(trap);
+			/* fall recursively into the pit... */
 
 		    for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 				if (!isok(u.ux + i, u.uy + j)) continue;
@@ -8835,7 +9197,7 @@ madnesseffect:
 		if ((trap = t_at(u.ux, u.uy)) != 0) dotrap(trap, RECURSIVETRAP);
 
 		break;
-	    }
+		}
 
 	    case ROLLING_BOULDER_TRAP: {
 		int style = ROLL | (trap->tseen ? LAUNCH_KNOWN : 0);
@@ -8961,8 +9323,23 @@ madnesseffect:
 		} else if (unsolid(youmonst.data)) {
 			pline("It passes right through you!");
 		} else {
+			int projectiledamage = rnd(10)+ rnd(monster_difficulty() + 1);
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
 			pline("Ouch! That hurts!");
-			losehp(rnd(10)+ rnd(monster_difficulty() + 1),"sharpened bamboo stick",KILLED_BY_AN);
+			losehp(projectiledamage,"sharpened bamboo stick",KILLED_BY_AN);
 		}
 		break;
 
@@ -8976,8 +9353,23 @@ madnesseffect:
 		} else if (!rn2(4)) {
 			pline("You are barely missed by a scything blade!");
 		} else {
+			int projectiledamage = rnd(9)+ rnd( (monster_difficulty() / 2) + 1 + ((has_head(youmonst.data) && !Role_if(PM_COURIER)) ? 10 : 0));
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
 			pline("You are hit by a scything blade!");
-			losehp(rnd(9)+ rnd( (monster_difficulty() / 2) + 1 + ((has_head(youmonst.data) && !Role_if(PM_COURIER)) ? 10 : 0)),"scything blade",KILLED_BY_AN);
+			losehp(projectiledamage,"scything blade",KILLED_BY_AN);
 		}
 		break;
 
@@ -8987,8 +9379,23 @@ madnesseffect:
 		if (unsolid(youmonst.data)) {
 			pline("A spined ball swings through your body.");
 		} else {
+			int projectiledamage = rnd(12)+ rnd( (monster_difficulty() / 2) + 1);
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
 			pline("You are hit by a spined ball!");
-			losehp(rnd(12)+ rnd( (monster_difficulty() / 2) + 1),"spined ball",KILLED_BY_AN);
+			losehp(projectiledamage,"spined ball",KILLED_BY_AN);
 		}
 		break;
 
@@ -8998,8 +9405,23 @@ madnesseffect:
 		if (unsolid(youmonst.data)) {
 			pline("A pendulum swings through your body.");
 		} else {
+			int projectiledamage = rnd(6)+ rnd( (monster_difficulty() / 2) + 1);
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
 			pline("You are hit by a pendulum!");
-			losehp(rnd(6)+ rnd( (monster_difficulty() / 2) + 1),"pendulum",KILLED_BY_AN);
+			losehp(projectiledamage,"pendulum",KILLED_BY_AN);
 			pushplayer(TRUE);
 		}
 		break;
@@ -9066,6 +9488,22 @@ madnesseffect:
 		seetrap(trap);
 
 	      {
+
+		int projectiledamage = rnd(20)+ rnd( (monster_difficulty() ) + 1);
+		if (projectiledamage > 1) {
+			if (u.ulevel == 1) projectiledamage /= 2;
+			else if (u.ulevel == 2) {
+				projectiledamage *= 2;
+				projectiledamage /= 3;
+			} else if (u.ulevel == 3) {
+				projectiledamage *= 3;
+				projectiledamage /= 4;
+			} else if (u.ulevel == 4) {
+				projectiledamage *= 4;
+				projectiledamage /= 5;
+			}
+		}
+
 		boolean youbreath = !breathless(youmonst.data);
 		boolean youghoul = (saprovorousnumber(u.umonnum) || (Race_if(PM_GASTLY) && !Upolyd) || (Race_if(PM_PLAYER_SKELETON) && !Upolyd) || (Race_if(PM_PHANTOM_GHOST) && !Upolyd) );
 		trap->once = 1;
@@ -9100,7 +9538,7 @@ madnesseffect:
 				if(is_undead(youmonst.data) || hates_silver(youmonst.data) || (uwep && uwep->oartifact == ART_PORKMAN_S_BALLS_OF_STEEL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PORKMAN_S_BALLS_OF_STEEL)) {
 
 					pline("Eek - this smells like %s!", FunnyHallu ? "priest's fart" : "exocism incense");
-					losehp(rnd(20)+ rnd( (monster_difficulty() ) + 1),"holy incense",KILLED_BY);
+					losehp(projectiledamage,"holy incense",KILLED_BY);
 
 				} else if(youbreath) {
 					if (!rn2(3)) {
@@ -9116,7 +9554,7 @@ madnesseffect:
 
 				if (youbreath) {
 				    You("are suffering from smoke of mosquito-incense!");
-					losehp(rnd(20)+ rnd( (monster_difficulty() ) + 1),"mosquito incense",KILLED_BY);
+					losehp(projectiledamage,"mosquito incense",KILLED_BY);
 				      make_vomiting(Vomiting+20, TRUE);
 					if (Sick && Sick < 100)	set_itimeout(&Sick, (Sick * 2) + 10);
 
@@ -9131,7 +9569,7 @@ madnesseffect:
 				if (u.ualign.type == A_CHAOTIC) {
 
 					pline("Eek - this smells like holy flowers!");
-					losehp(rnd(20)+ rnd( (monster_difficulty() ) + 1),"holy flowers",KILLED_BY);
+					losehp(projectiledamage,"holy flowers",KILLED_BY);
 
 				} else if (youbreath) {
 				    You_feel("relaxed with the smell of flowers...");
@@ -9268,7 +9706,22 @@ madnesseffect:
 					You_feel("cosmic lifestream.");
 			}
 
-			losehp(rnd(3)+ rnd( (monster_difficulty() / 5) + 1),"falling bathtub",KILLED_BY_AN);
+			int projectiledamage = rnd(3)+ rnd( (monster_difficulty() / 5) + 1);
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
+			losehp(projectiledamage,"falling bathtub",KILLED_BY_AN);
 	
 			/*from NetHack brass 08.03.25, and arrange [Sakusha]*/
 			if(!rn2(5)) {
@@ -9308,7 +9761,25 @@ madnesseffect:
 		if (!rn2(2)) set_wounded_legs(LEFT_SIDE, HWounded_legs + rn1(35, 41));
 		else set_wounded_legs(RIGHT_SIDE, HWounded_legs + rn1(35, 41));
 
-		losehp(rnd(2)+ rnd( (monster_difficulty() / 10) + 1),"caltrop trap",KILLED_BY_AN);
+		{
+			int projectiledamage = rnd(2)+ rnd( (monster_difficulty() / 10) + 1);
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
+			losehp(projectiledamage,"caltrop trap",KILLED_BY_AN);
+
+		}
 
 		u.inertia += (rnd(4) + rnd( (monster_difficulty() / 6) + 1));
 
@@ -9333,7 +9804,23 @@ madnesseffect:
 		}
 		if (rn2(4)) {
 			pline("It slits your %s!", makeplural(body_part(LEG)) );
-		    losehp(rnd(7)+ rnd( (monster_difficulty() / 5) + 1),"blade wire",KILLED_BY_AN);
+
+			int projectiledamage = rnd(7)+ rnd( (monster_difficulty() / 5) + 1);
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
+			losehp(projectiledamage,"blade wire",KILLED_BY_AN);
 		}
 
 		break;
@@ -9522,10 +10009,25 @@ madnesseffect:
 		pline("A stone shoots out at you!");
 		otmp = mksobj(ROCK, TRUE, FALSE, FALSE);
 		if (otmp) {
+			int projectiledamage = dmgval(otmp, &youmonst);
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
 			otmp->quan = 1L;
 			otmp->owt = weight(otmp);
 
-			if (thitu(5 + rnd((monster_difficulty() / 3) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() / 3) + 1), otmp, "stone")) {
+			if (thitu(5 + rnd((monster_difficulty() / 3) + 1), projectiledamage + rnd((monster_difficulty() / 3) + 1), otmp, "stone")) {
 			    obfree(otmp, (struct obj *)0);
 			} else if (!timebasedlowerchance()) {
 			    obfree(otmp, (struct obj *)0);
@@ -9545,7 +10047,25 @@ madnesseffect:
 
 		pline("CLICK! You have triggered a trap!");
 		pline("Suddenly, you're hit by an enormous cannonball!");
-		losehp(rnd(24)+ rnd( (monster_difficulty() * 2) + 1),"cannonball",KILLED_BY_AN);
+
+		{
+			int projectiledamage = rnd(24)+ rnd( (monster_difficulty() * 2) + 1);
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
+			losehp(projectiledamage,"cannonball",KILLED_BY_AN);
+		}
 
 		break;
 
@@ -9564,7 +10084,22 @@ madnesseffect:
 			if (Acid_resistance && rn2(StrongAcid_resistance ? 20 : 5)) {
 				pline("But it seems harmless.");
 			} else {
-				losehp(rnd(6)+ rnd( (monster_difficulty() / 3) + 1),"sprinkled acid venom",KILLED_BY_AN);
+				int projectiledamage = rnd(6)+ rnd( (monster_difficulty() / 3) + 1);
+				if (projectiledamage > 1) {
+					if (u.ulevel == 1) projectiledamage /= 2;
+					else if (u.ulevel == 2) {
+						projectiledamage *= 2;
+						projectiledamage /= 3;
+					} else if (u.ulevel == 3) {
+						projectiledamage *= 3;
+						projectiledamage /= 4;
+					} else if (u.ulevel == 4) {
+						projectiledamage *= 4;
+						projectiledamage /= 5;
+					}
+				}
+
+				losehp(projectiledamage,"sprinkled acid venom",KILLED_BY_AN);
 				if(!rn2(3)) erode_armor(&youmonst, TRUE);
 			}
 		}
@@ -9689,8 +10224,23 @@ madnesseffect:
 			pline("You are decapitated by a guillotine!");
 			losehp(2 * (Upolyd ? u.mh : u.uhp) + 200, "guillotine trap",KILLED_BY_AN);
 		} else {
+			int projectiledamage = rnd(20)+ rnd( (monster_difficulty() * 2) + 1 + ((has_head(youmonst.data) && !Role_if(PM_COURIER)) ? 40 : 0));
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
 			pline("You are hit by a guillotine!");
-			losehp(rnd(20)+ rnd( (monster_difficulty() * 2) + 1 + ((has_head(youmonst.data) && !Role_if(PM_COURIER)) ? 40 : 0)),"guillotine trap",KILLED_BY_AN);
+			losehp(projectiledamage,"guillotine trap",KILLED_BY_AN);
 		}
 		break;
 
@@ -9701,8 +10251,23 @@ madnesseffect:
 			pline("You are bisected by a razor-sharp blade!");
 			losehp(2 * (Upolyd ? u.mh : u.uhp) + 200, "bisection trap",KILLED_BY);
 		} else {
+			int projectiledamage = rnd(30)+ rnd( (monster_difficulty() * 3) + 1);
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
 			pline("You are hit by a razor-sharp blade!");
-			losehp(rnd(30)+ rnd( (monster_difficulty() * 3) + 1),"bisection trap",KILLED_BY_AN);
+			losehp(projectiledamage,"bisection trap",KILLED_BY_AN);
 		}
 		break;
 
@@ -13387,6 +13952,105 @@ madnesseffect:
 		 break;
 
 		 case HEEL_TRAP:
+		{
+			int projectiledamage = 1;
+			int randomkick = rnd(15);
+			switch (trap->launch_otyp) {
+				case 1:
+					projectiledamage = rnd(10)+ rnd(monster_difficulty() + 1);
+					break;
+				case 2:
+					projectiledamage = 1;
+					break;
+				case 3:
+					projectiledamage = 1;
+					break;
+				case 4:
+					projectiledamage = rnd(10)+ rnd(monster_difficulty() + 1);
+					break;
+				case 5:
+					projectiledamage = rnd(10)+ rnd(monster_difficulty() + 1);
+					break;
+				case 6:
+					projectiledamage = rnd(10)+ rnd( (monster_difficulty() * 2) + 1);
+					break;
+				case 7:
+					projectiledamage = rnd(10)+ rnd( (monster_difficulty() * 4) + 1);
+					break;
+				case 8:
+					projectiledamage = rnd(12)+ rnd( monster_difficulty() + 1);
+					break;
+				case 9:
+					projectiledamage = rnd(20)+ rnd( monster_difficulty() + 1);
+					break;
+				case 10:
+					projectiledamage = rnd(10)+ rnd( monster_difficulty() + 1);
+					break;
+				case 11:
+					projectiledamage = rnd(4)+ rnd( monster_difficulty() + 1);
+					break;
+				case 12:
+					projectiledamage = rnd(10)+ rnd( monster_difficulty() + 1);
+					break;
+				case 13:
+					projectiledamage = rnd(12)+ rnd( monster_difficulty() + 1);
+					break;
+				case 14:
+					projectiledamage = rnd(15)+ rnd( monster_difficulty() + 1);
+					break;
+				case 15:
+					projectiledamage = 1;
+					break;
+				case 16:
+					projectiledamage = rnd(12) + rnd( monster_difficulty() + 1);
+					break;
+				case 17:
+					projectiledamage = rnd(4) + rnd( monster_difficulty() + 1);
+					break;
+				case 18:
+					projectiledamage = rnd(20)+ rnd( (monster_difficulty() * 5) + 1);
+					break;
+				case 19:
+					projectiledamage = rnd(12) + rnd( (monster_difficulty() * 2) + 1);
+					break;
+				case 20:
+					projectiledamage = rnd(6) + rnd( (monster_difficulty() * 2) + 1);
+					break;
+				case 21:
+					projectiledamage = rnd(5) + rnd( monster_difficulty() + 1);
+					break;
+				case 22:
+					projectiledamage = rnd(10) + rnd( monster_difficulty() + 1);
+					break;
+				case 23:
+					projectiledamage = rnd(10) + rnd( monster_difficulty() + 1);
+					if (randomkick == 4) projectiledamage  = rnd(15) + rnd( (monster_difficulty() * 3) + 1);
+					break;
+				case 24:
+					projectiledamage = rnd(10) + rnd( monster_difficulty() + 1);
+					break;
+				case 25:
+					projectiledamage = rnd(15) + rnd( (monster_difficulty() * 2) + 1);
+					break;
+				case 26:
+					projectiledamage = rnd(20) + rnd( (monster_difficulty() * 3) + 1);
+					break;
+			}
+
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
 			seetrap(trap);
 
 			pline("You stepped on a trigger!");
@@ -13396,7 +14060,7 @@ madnesseffect:
 				case 1:
 
 				pline("A wedged sandal suddenly slams against your shins! It hurts!");
-				losehp(rnd(10)+ rnd(monster_difficulty() + 1),"wedged sandal",KILLED_BY_AN);
+				losehp(projectiledamage,"wedged sandal",KILLED_BY_AN);
 				break;
 
 				case 2:
@@ -13416,13 +14080,13 @@ madnesseffect:
 
 				pline("A soft sneaker hits your %ss!", body_part(HAND) );
 			      incr_itimeout(&Glib, 2);
-				losehp(rnd(10)+ rnd(monster_difficulty() + 1),"soft sneaker",KILLED_BY_AN);
+				losehp(projectiledamage,"soft sneaker",KILLED_BY_AN);
 				break;
 
 				case 5:
 
 				pline("A leather peep-toe slams against your shins!");
-				losehp(rnd(10)+ rnd(monster_difficulty() + 1),"leather peep-toe",KILLED_BY_AN);
+				losehp(projectiledamage,"leather peep-toe",KILLED_BY_AN);
 
 				if (multi >= 0 && !rn2(2)) {
 				    if (flags.female) {
@@ -13453,7 +14117,7 @@ madnesseffect:
 
 				pline("A sexy leather pump suddenly scratches up and down your %ss!", body_part(LEG) );
 
-				losehp(rnd(10)+ rnd( (monster_difficulty() * 2) + 1),"sexy leather pump",KILLED_BY_AN);
+				losehp(projectiledamage,"sexy leather pump",KILLED_BY_AN);
 
 				if (u.legscratching <= 5)
 			    	    pline("It stings a little.");
@@ -13480,7 +14144,7 @@ madnesseffect:
 
 				pline("A stiletto boot suddenly kicks one of your sensitive body parts!" );
 
-				losehp(rnd(10)+ rnd( (monster_difficulty() * 4) + 1),"stiletto boot",KILLED_BY_AN);
+				losehp(projectiledamage,"stiletto boot",KILLED_BY_AN);
 				if (!rn2(250)) pushplayer(TRUE);
 
 				break;
@@ -13489,7 +14153,7 @@ madnesseffect:
 
 				pline("Your %s is suddenly hit painfully by a high-heeled sandal!", body_part(HEAD) );
 
-				losehp(rnd(12)+ rnd( monster_difficulty() + 1),"heeled sandal to the head",KILLED_BY_AN);
+				losehp(projectiledamage,"heeled sandal to the head",KILLED_BY_AN);
 
 				break;
 
@@ -13497,7 +14161,7 @@ madnesseffect:
 
 				pline("Klock! A sexy leather pump suddenly slams on your %s, producing a beautiful sound.", body_part(HEAD) );
 
-				losehp(rnd(20)+ rnd( monster_difficulty() + 1),"sexy leather pump to the head",KILLED_BY_AN);
+				losehp(projectiledamage,"sexy leather pump to the head",KILLED_BY_AN);
 
 				break;
 
@@ -13505,7 +14169,7 @@ madnesseffect:
 
 				pline("Suddenly, a spiked battle boot squeezes and stings your skin!" );
 
-				losehp(rnd(10)+ rnd( monster_difficulty() + 1),"battle boot with spikes",KILLED_BY_AN);
+				losehp(projectiledamage,"battle boot with spikes",KILLED_BY_AN);
 				    if (!rn2(6))
 					poisoned("spikes", A_STR, "poisoned battle boot", 8);
 
@@ -13515,7 +14179,7 @@ madnesseffect:
 
 				pline("A wedged little-girl sandal painfully thunders on your %s!", body_part(HEAD) );
 
-				losehp(rnd(4)+ rnd( monster_difficulty() + 1),"wedged girl sandal to the head",KILLED_BY_AN);
+				losehp(projectiledamage,"wedged girl sandal to the head",KILLED_BY_AN);
 
 				break;
 
@@ -13523,7 +14187,7 @@ madnesseffect:
 
 				pline("A girl's plateau boot unyieldingly bonks your %s!", body_part(HEAD) );
 
-				losehp(rnd(10)+ rnd( monster_difficulty() + 1),"female plateau boot to the head",KILLED_BY_AN);
+				losehp(projectiledamage,"female plateau boot to the head",KILLED_BY_AN);
 
 				break;
 
@@ -13531,7 +14195,7 @@ madnesseffect:
 
 				pline("Your %s is hit hard by a thick hugging boot!", body_part(HEAD) );
 
-				losehp(rnd(12)+ rnd( monster_difficulty() + 1),"female winter boot to the head",KILLED_BY_AN);
+				losehp(projectiledamage,"female winter boot to the head",KILLED_BY_AN);
 				if (Upolyd) u.mhmax--; /* lose one hit point */
 				else u.uhpmax--; /* lose one hit point */
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
@@ -13543,7 +14207,7 @@ madnesseffect:
 
 				pline("An unyielding wooden sandal painfully lands on your %s!", body_part(HEAD) );
 
-				losehp(rnd(15)+ rnd( monster_difficulty() + 1),"wooden geta to the head",KILLED_BY_AN);
+				losehp(projectiledamage,"wooden geta to the head",KILLED_BY_AN);
 
 					if (multi >= 0 && !rn2(2)) {
 					    if (Free_action) {
@@ -13616,7 +14280,7 @@ madnesseffect:
 
 				case 16:
 					pline("A block-heeled combat boot hits your %s with the massive heel!", body_part(HEAD));
-					losehp(rnd(12) + rnd( monster_difficulty() + 1),"a massive block heel to the head",KILLED_BY);
+					losehp(projectiledamage,"a massive block heel to the head",KILLED_BY);
 					pline("You're seeing little asterisks everywhere.");
 					make_confused(HConfusion + rnd(10) + rnd( monster_difficulty() + 1), FALSE);
 
@@ -13629,7 +14293,7 @@ madnesseffect:
 						fineforpracticant(200, 0, 0);
 					}
 					badeffect();
-					losehp(rnd(4) + rnd( monster_difficulty() + 1),"inka boot to the head",KILLED_BY_AN);
+					losehp(projectiledamage,"inka boot to the head",KILLED_BY_AN);
 
 				break;
 
@@ -13643,21 +14307,21 @@ madnesseffect:
 							else if (Free_action) nomul(-rnd(4), "knocked out by a steel-capped sandal", TRUE);
 							else nomul(-rnd(8), "knocked out by a steel-capped sandal", TRUE);
 						}
-					losehp(rnd(20)+ rnd( (monster_difficulty() * 5) + 1),"steel-capped sandal to the head",KILLED_BY_AN);
+					losehp(projectiledamage,"steel-capped sandal to the head",KILLED_BY_AN);
 
 				break;
 
 				case 19:
 					pline("Your %s is bashed by a very fleecy block-heeled sandal!", body_part(HEAD));
 					make_dimmed(HDimmed + rnd(50) + rnd( (monster_difficulty() * 2) + 1), TRUE);
-					losehp(rnd(12) + rnd( (monster_difficulty() * 2) + 1),"a pretty block-heeled sandal to the head",KILLED_BY);
+					losehp(projectiledamage,"a pretty block-heeled sandal to the head",KILLED_BY);
 
 				break;
 
 				case 20:
 					pline("Ouch! A soft lady shoe hits you, and despite being incredibly soft, hits your optical nerve!");
 					make_blinded(Blinded + rnd(30) + rnd( (monster_difficulty() * 3) + 1),FALSE);
-					losehp(rnd(6) + rnd( (monster_difficulty() * 2) + 1),"a soft lady shoe to the head",KILLED_BY);
+					losehp(projectiledamage,"a soft lady shoe to the head",KILLED_BY);
 
 				break;
 
@@ -13671,25 +14335,24 @@ madnesseffect:
 						if (objX && !rn2(100)) wither_dmg(objX, xname(objX), 3, TRUE, &youmonst);
 
 					    }
-					losehp(rnd(5) + rnd( monster_difficulty() + 1),"a dogshit boot trap",KILLED_BY);
+					losehp(projectiledamage,"a dogshit boot trap",KILLED_BY);
 
 				break;
 
 				case 22:
 					pline("Wow, a beautiful prostitute shoe slams on your %s with the massive heel! It's irresistible!", body_part(HEAD));
-					losehp(rnd(10) + rnd( monster_difficulty() + 1),"a sexy prostitute shoe to the head",KILLED_BY);
+					losehp(projectiledamage,"a sexy prostitute shoe to the head",KILLED_BY);
 					badeffect();
 
 				break;
 
 				case 23:
 				{
-					int randomkick = rnd(15);
 
 					if (randomkick == 1) {
 						pline("A hippie heel steps on your %s with the plateau heels!", body_part(HAND));
 						incr_itimeout(&Glib, 20 + monster_difficulty()); /* painfully jamming your fingers */
-						losehp(rnd(10) + rnd( monster_difficulty() + 1),"being jammed by a plateau heel",KILLED_BY);
+						losehp(projectiledamage,"being jammed by a plateau heel",KILLED_BY);
 					}
 					if (randomkick == 2) {
 						pline("A red whore boot jams your %ss!", body_part(TOE));
@@ -13699,13 +14362,13 @@ madnesseffect:
 				    		set_wounded_legs(side, HWounded_legs + rnd(60-ACURR(A_DEX)));
 				    		exercise(A_STR, FALSE);
 				    		exercise(A_DEX, FALSE);
-						losehp(rnd(10) + rnd( monster_difficulty() + 1),"being jammed by a red whore boot",KILLED_BY);
+						losehp(projectiledamage,"being jammed by a red whore boot",KILLED_BY);
 					}
 
 					if (randomkick == 3) {
 						pline("A prostitute shoe kicks right into your nuts!");
-						losehp(rnd(10) + rnd( monster_difficulty() + 1),"being kicked in the nuts by a prostitute shoe",KILLED_BY);
-						if (!flags.female) losehp(rnd(10) + rnd( monster_difficulty() + 1),"being kicked in the nuts by a prostitute shoe",KILLED_BY);
+						losehp(projectiledamage,"being kicked in the nuts by a prostitute shoe",KILLED_BY);
+						if (!flags.female) losehp(projectiledamage,"being kicked in the nuts by a prostitute shoe",KILLED_BY);
 						else pline("But you don't actually have nuts. How the hell could this attack even affect you?");
 
 					}
@@ -13716,14 +14379,14 @@ madnesseffect:
 						u.uhpmax -= 1;
 						u.uen -= 1;
 						u.uenmax -= 1;
-						losehp(rnd(15) + rnd( (monster_difficulty() * 3) + 1),"being stomped by erotic lady boots",KILLED_BY);
+						losehp(projectiledamage,"being stomped by erotic lady boots",KILLED_BY);
 					}
 
 					if (randomkick == 5) {
 						pline("An incredibly erotic female shoe kicks you and looks so lovely that you fall in love with her, and are unable to fight back.");
 						nomovemsg = "You finally decide to stop admiring the sexy leather boots.";
 						nomul(-rnd(5), "mesmerized by a pair of sexy leather boots", TRUE);
-						losehp(rnd(10) + rnd( monster_difficulty() + 1),"being stomped by erotic female shoes",KILLED_BY);
+						losehp(projectiledamage,"being stomped by erotic female shoes",KILLED_BY);
 
 					}
 
@@ -13733,68 +14396,68 @@ madnesseffect:
 					      make_vomiting(Vomiting+20, TRUE);
 						if (Sick && Sick < 100)
 						 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
-						losehp(rnd(10) + rnd( monster_difficulty() + 1),"being kicked by incredibly high-heeled platform boots",KILLED_BY);
+						losehp(projectiledamage,"being kicked by incredibly high-heeled platform boots",KILLED_BY);
 					}
 
 					if (randomkick == 7) {
 						pline("You decide to close your %ss for a while, thinking about the sexy red overknees and their lovely block heels while they kick you very painfully.", body_part(EYE));
 						make_blinded(Blinded + (monster_difficulty() * 5), FALSE);
-						losehp(rnd(10) + rnd( monster_difficulty() + 1),"being kicked by sexy red overknees",KILLED_BY);
+						losehp(projectiledamage,"being kicked by sexy red overknees",KILLED_BY);
 					}
 
 					if (randomkick == 8) {
 						pline("Wow... those wonderful high heels are soooooo mesmerizing and beautiful while they kick you...");
 						make_hallucinated(HHallucination + (monster_difficulty() * 5),FALSE,0L);
-						losehp(rnd(10) + rnd( monster_difficulty() + 1),"being kicked by wonderful high heels",KILLED_BY);
+						losehp(projectiledamage,"being kicked by wonderful high heels",KILLED_BY);
 					}
 
 					if (randomkick == 9) {
 						pline("You wonder where the plateau heels come from. As they kick you, your %s spins in bewilderment.", body_part(HEAD));
 						make_confused(HConfusion + (monster_difficulty() * 5), FALSE);
-						losehp(rnd(10) + rnd( monster_difficulty() + 1),"being kicked by plateau heels",KILLED_BY);
+						losehp(projectiledamage,"being kicked by plateau heels",KILLED_BY);
 					}
 
 					if (randomkick == 10) {
 						pline("Argh! You got hit by a fleecy red combat boot, but the massive heel strained a vital muscle!");
 						make_stunned(HStun + (monster_difficulty() * 5),FALSE);
-						losehp(rnd(10) + rnd( monster_difficulty() + 1),"being kicked by massive heels",KILLED_BY);
+						losehp(projectiledamage,"being kicked by massive heels",KILLED_BY);
 					}
 
 					if (randomkick == 11) {
 						if (!rn2(25)) {
 							pline("Fuck! You were hit by a high heel, which was contaminated with spores!");
 							make_sick(rn1(25,25), "contaminated high heel", TRUE, SICK_VOMITABLE);
-							losehp(rnd(10) + rnd( monster_difficulty() + 1),"being kicked by unclean high heels",KILLED_BY);
+							losehp(projectiledamage,"being kicked by unclean high heels",KILLED_BY);
 						}
 						else {
 							pline("You get kicked by female boots, which some devious woman rubbed with venom! How unfair!");
 							poisoned("block heel", A_STR, "poisoned block heel", 8);
-							losehp(rnd(10) + rnd( monster_difficulty() + 1),"being kicked by venomous high heels",KILLED_BY);
+							losehp(projectiledamage,"being kicked by venomous high heels",KILLED_BY);
 						}
 					}
 
 					if (randomkick == 12) {
 						pline("Ow, the slutty boots are stomping you repeatedly!");
 						make_numbed(HNumbed + (monster_difficulty() * 5), FALSE);
-						losehp(rnd(10) + rnd( monster_difficulty() + 1),"being stomped by slutty boots",KILLED_BY);
+						losehp(projectiledamage,"being stomped by slutty boots",KILLED_BY);
 					}
 
 					if (randomkick == 13) {
 						pline("You are getting the creeps as an incredibly high heel kicks you.");
 						make_frozen(HFrozen + (monster_difficulty() * 5),FALSE);
-						losehp(rnd(10) + rnd( monster_difficulty() + 1),"being kicked by incredibly high heels",KILLED_BY);
+						losehp(projectiledamage,"being kicked by incredibly high heels",KILLED_BY);
 						}
 
 					if (randomkick == 14) {
 						pline("A block-heeled lady boot kicks you, and burns your skin!");
 						make_burned(HBurned + (monster_difficulty() * 5),FALSE);
-						losehp(rnd(10) + rnd( monster_difficulty() + 1),"being kicked by block-heeled lady boots",KILLED_BY);
+						losehp(projectiledamage,"being kicked by block-heeled lady boots",KILLED_BY);
 					}
 
 					if (randomkick == 15) {
 						pline("You shudder in fear as a violent high-heeled plateau boot performs lethal kick attacks on you.");
 						make_feared(HFeared + (monster_difficulty() * 5),FALSE);
-						losehp(rnd(10) + rnd( monster_difficulty() + 1),"being kicked by a violent high-heeled plateau boot",KILLED_BY);
+						losehp(projectiledamage,"being kicked by a violent high-heeled plateau boot",KILLED_BY);
 					}
 
 				}
@@ -13803,14 +14466,14 @@ madnesseffect:
 				case 24:
 					pline("A fleecy lady boot suddenly scratches over your %s with the lovely block heel!", body_part(LEG));
 					playerbleed(monster_difficulty());
-					losehp(rnd(10) + rnd( monster_difficulty() + 1),"a sharp-edged lady boot",KILLED_BY);
+					losehp(projectiledamage,"a sharp-edged lady boot",KILLED_BY);
 
 				break;
 
 				case 25:
 					pline("A razor-sharp stiletto sandal scratches very %sy wounds on your %s!", body_part(BLOOD), body_part(LEG));
 					playerbleed(monster_difficulty());
-					losehp(rnd(15) + rnd( (monster_difficulty() * 2) + 1),"a sharp-edged stiletto sandal",KILLED_BY);
+					losehp(projectiledamage,"a sharp-edged stiletto sandal",KILLED_BY);
 
 				break;
 
@@ -13818,7 +14481,7 @@ madnesseffect:
 					pline("An italian high heel scratches your %s very painfully!!", body_part(LEG));
 					playerbleed(monster_difficulty());
 					badeffect();
-					losehp(rnd(20) + rnd( (monster_difficulty() * 3) + 1),"a sharp-edged italian heel",KILLED_BY);
+					losehp(projectiledamage,"a sharp-edged italian heel",KILLED_BY);
 
 				break;
 
@@ -13827,7 +14490,7 @@ madnesseffect:
 				break;
 
 			}
-
+		}
 		 break;
 
 		 case AUTOMATIC_SWITCHER:
@@ -14325,19 +14988,35 @@ madnesseffect:
 		 break;
 
 		 case CYANIDE_TRAP:
+		{
+			int projectiledamage = rnd(30) + rnd((monster_difficulty() * 5) + 1);
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
 			pline("CLICK! You have triggered a trap!");
 			seetrap(trap);
 			pline("Cyanide gas blows in your %s!", body_part(FACE) ); /* unbreathing doesn't help --Amy */
 			if (Upolyd) {
 				if (u.mh > 1) u.mh /= 2;
-				else losehp(100, "cyanide trap", KILLED_BY_AN);
+				else losehp(projectiledamage, "cyanide trap", KILLED_BY_AN);
 			} else {
 				if (u.uhp > 1) u.uhp /= 2;
-				else losehp(100, "cyanide trap", KILLED_BY_AN);
+				else losehp(projectiledamage, "cyanide trap", KILLED_BY_AN);
 			}
 			You_feel("very poisoned...");
 		      poisoned("gas", rn2(A_MAX), "cyanide trap", 5);
-
+		}
 		 break;
 
 		 case NEST_TRAP:
@@ -15096,6 +15775,19 @@ int zx,zy;
 			} else if (flags.verbose) {
 				Your("%s does not protect you.", xname(uarmh));
 			}
+		}
+	}
+	if (dmg > 1) {
+		if (u.ulevel == 1) dmg /= 2;
+		else if (u.ulevel == 2) {
+			dmg *= 2;
+			dmg /= 3;
+		} else if (u.ulevel == 3) {
+			dmg *= 3;
+			dmg /= 4;
+		} else if (u.ulevel == 4) {
+			dmg *= 4;
+			dmg /= 5;
 		}
 	}
 	losehp(dmg + rnd((monster_difficulty()*2) + 1 ),"shower of rocks",KILLED_BY_AN);
@@ -17647,6 +18339,19 @@ struct obj *box;        /* at the moment only for floor traps */
 {
         int num = 0;
         num = d(4, 4) + rnd((monster_difficulty() / 3) + 1);
+		if (num > 1) {
+			if (u.ulevel == 1) num /= 2;
+			else if (u.ulevel == 2) {
+				num *= 2;
+				num /= 3;
+			} else if (u.ulevel == 3) {
+				num *= 3;
+				num /= 4;
+			} else if (u.ulevel == 4) {
+				num *= 4;
+				num /= 5;
+			}
+		}
         if (box) {
                 impossible("doicetrap() called with non-null box.");
                 return;
@@ -17673,6 +18378,19 @@ struct obj *box;        /* at the moment only for floor traps */
 {
         int num = 0;
         num = d(4, 4) + rnd((monster_difficulty() / 3) + 1);
+		if (num > 1) {
+			if (u.ulevel == 1) num /= 2;
+			else if (u.ulevel == 2) {
+				num *= 2;
+				num /= 3;
+			} else if (u.ulevel == 3) {
+				num *= 3;
+				num /= 4;
+			} else if (u.ulevel == 4) {
+				num *= 4;
+				num /= 5;
+			}
+		}
         if (box) {
                 impossible("doshocktrap() called with non-null box.");
                 return;
@@ -17701,6 +18419,19 @@ struct obj *box;        /* at the moment only for floor traps */
 {
         int num = 0;
         num = d(8, 4) + rnd(monster_difficulty() + 1);
+		if (num > 1) {
+			if (u.ulevel == 1) num /= 2;
+			else if (u.ulevel == 2) {
+				num *= 2;
+				num /= 3;
+			} else if (u.ulevel == 3) {
+				num *= 3;
+				num /= 4;
+			} else if (u.ulevel == 4) {
+				num *= 4;
+				num /= 5;
+			}
+		}
         if (box) {
                 impossible("doshocktrap() called with non-null box.");
                 return;
@@ -17740,6 +18471,19 @@ struct obj *box;        /* at the moment only for floor traps */
 {
         int num = 0;
         num = d(4, 4) + rnd((monster_difficulty() / 2) + 1);
+		if (num > 1) {
+			if (u.ulevel == 1) num /= 2;
+			else if (u.ulevel == 2) {
+				num *= 2;
+				num /= 3;
+			} else if (u.ulevel == 3) {
+				num *= 3;
+				num /= 4;
+			} else if (u.ulevel == 4) {
+				num *= 4;
+				num /= 5;
+			}
+		}
         if (box) {
                 impossible("doshittrap() called with non-null box.");
                 return;
@@ -17870,6 +18614,21 @@ struct obj *box;	/* null for floor trap */
 		if (issoviet) pline("Plamya plameni! Kha kha kha! Nadeyus', vy poteryayete vse svoi maksimal'nyye ochki zhizni, spasticheskaya zaderzhka.");
 	    }
 	}
+
+	if (num > 1) {
+		if (u.ulevel == 1) num /= 2;
+		else if (u.ulevel == 2) {
+			num *= 2;
+			num /= 3;
+		} else if (u.ulevel == 3) {
+			num *= 3;
+			num /= 4;
+		} else if (u.ulevel == 4) {
+			num *= 4;
+			num /= 5;
+		}
+	}
+
 	if (!num)
 	    You("are uninjured.");
 	else
@@ -17933,6 +18692,21 @@ struct obj *box;	/* null for floor trap */
 	} else {
 	    num = d(6,4);
 	}
+
+	if (num > 1) {
+		if (u.ulevel == 1) num /= 2;
+		else if (u.ulevel == 2) {
+			num *= 2;
+			num /= 3;
+		} else if (u.ulevel == 3) {
+			num *= 3;
+			num /= 4;
+		} else if (u.ulevel == 4) {
+			num *= 4;
+			num /= 5;
+		}
+	}
+
 	if (!num)
 	    You("are uninjured.");
 	else {

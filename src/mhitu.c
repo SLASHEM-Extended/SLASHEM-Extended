@@ -7455,7 +7455,7 @@ dopois:
 			if(u.uen > u.uenmax) u.uen = u.uenmax;
 		}
 		if (!rn2(4)) {
-			if(!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) )
+			if((!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4)) && (u.urmaxlvlUP >= 2) )
 			    losexp("life drainage", FALSE, TRUE);
 			else You_feel("woozy for an instant, but shrug it off.");
 		}
@@ -7666,7 +7666,7 @@ dopois:
 			destroy_item(AMULET_CLASS, AD_ELEC);
 		}
 
-		if (uncancelled && !rn2(3) && (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) )  ) {
+		if (uncancelled && !rn2(3) && (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) ) && (u.urmaxlvlUP >= 2) ) {
 		    losexp("life drainage", FALSE, TRUE);
 		}
 
@@ -7685,6 +7685,10 @@ dopois:
 			    	EDOG(mtmp)->hungrytime += ((int)((youmonst.data)->cnutrit / 20) + 1);
 		}
 		
+		if (moves < 1000 && (u.urmaxlvlUP == 1) && rn2(25)) { /* grace period --Amy */
+			break;
+		}
+
 		if (uncancelled && !rn2(3) && (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) )  ) {
 		    losexp("life drainage", FALSE, TRUE);
 		}
@@ -7914,6 +7918,10 @@ dopois:
 			    	EDOG(mtmp)->hungrytime += ((int)((youmonst.data)->cnutrit / 20) + 1);
 		}
 		
+		if (moves < 1000 && (u.urmaxlvlUP == 1) && rn2(25)) { /* grace period --Amy */
+			break;
+		}
+
 		if (!rn2(3) && (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) )  ) {
 		    losexp("life drainage", FALSE, TRUE);
 		}
@@ -8559,7 +8567,7 @@ dopois:
 			}
 
 		}
-		else if (!rn2(3) && (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) )  ) {
+		else if (!rn2(3) && (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) ) && (u.urmaxlvlUP >= 2) ) {
 		    losexp("loss of potential", FALSE, TRUE);
 		}
 		break;
@@ -9602,7 +9610,8 @@ dopois:
 			case 5:
 				You_feel("life has clocked back.");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Zhizn' razgonyal nazad, potomu chto vy ne smotreli, i teper' vy dolzhny poluchit', chto poteryannyy uroven' nazad." : "Kloeck!");
-			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
+
+				if (u.urmaxlvlUP >= 2) losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
 			case 7:
@@ -9969,7 +9978,7 @@ dopois:
 				forget(rnd(5));
 				pline("You forget some important things...");
 			}
-			if (!rn2(200)) {
+			if (!rn2(200) && (u.urmaxlvlUP >= 2)) {
 				losexp("psionic drain", FALSE, TRUE);
 			}
 			if (!rn2(200)) {
@@ -10986,7 +10995,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 				forget(rnd(5));
 				pline("You forget some important things...");
 			}
-			if (!rn2(200)) {
+			if (!rn2(200) && (u.urmaxlvlUP >= 2)) {
 				losexp("psionic drain", FALSE, TRUE);
 			}
 			if (!rn2(200)) {
@@ -12057,12 +12066,22 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 	      case AD_DRLI:
 			pline("It sucks you!");
 /* Imagine the facial expression of a player who thinks this is the mind flayer's amnesia attack. --Amy */
+
+			if (moves < 1000 && (u.urmaxlvlUP == 1) && rn2(25)) {
+				break;
+			}
+
 			if (!rn2(3) && (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) )  ) {
 			    losexp("life drainage", FALSE, TRUE);
 			}
 			break;
 	      case AD_VAMP:
 			pline("It sucks you!");
+
+			if (moves < 1000 && (u.urmaxlvlUP == 1) && rn2(25)) {
+				break;
+			}
+
 			if (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) ) {
 			    losexp("life drainage", FALSE, TRUE);
 			}
@@ -12310,7 +12329,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			if(u.uen > u.uenmax) u.uen = u.uenmax;
 		}
 		if (!rn2(4)) {
-			if(!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) )
+			if((!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4)) && (u.urmaxlvlUP >= 2) )
 			    losexp("life drainage", FALSE, TRUE);
 			else You_feel("woozy for an instant, but shrug it off.");
 		}
@@ -12756,7 +12775,7 @@ do_stone2:
 			case 5:
 				You_feel("life has clocked back.");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Zhizn' razgonyal nazad, potomu chto vy ne smotreli, i teper' vy dolzhny poluchit', chto poteryannyy uroven' nazad." : "Kloeck!");
-			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
+			      if (u.urmaxlvlUP >= 2) losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
 			case 7:
@@ -13017,7 +13036,7 @@ do_stone2:
 				nomul(-2, "being levelported", FALSE); /* because it's not called until you get another turn... */
 			}
 		}
-		else if (!rn2(3) && (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) )  ) {
+		else if (!rn2(3) && (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) ) && (u.urmaxlvlUP >= 2) ) {
 		    losexp("loss of potential", FALSE, TRUE);
 		}
 		break;
@@ -13487,7 +13506,7 @@ do_stone2:
 			}
 		    }
 
-			if (!rn2(3) && (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) )  ) {
+			if (!rn2(3) && (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) ) && (u.urmaxlvlUP >= 2) ) {
 			    losexp("life drainage", FALSE, TRUE);
 			}
 
@@ -13873,7 +13892,7 @@ boolean ufound;
 		goto common;
 
 	    case AD_AXUS:
-		if (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) )
+		if ((!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4)) && (u.urmaxlvlUP >= 2) )
 		    losexp("draining explosion", FALSE, TRUE);
 
 		goto common;
@@ -14723,7 +14742,7 @@ common:
 			}
 
 		}
-		else if (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) ) {
+		else if ((!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4)) && (u.urmaxlvlUP >= 2) ) {
 		    losexp("loss of potential", FALSE, TRUE);
 		}
 		mdamageu(mtmp, tmp);
@@ -15374,7 +15393,7 @@ common:
 			case 5:
 				You_feel("life has clocked back.");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Zhizn' razgonyal nazad, potomu chto vy ne smotreli, i teper' vy dolzhny poluchit', chto poteryannyy uroven' nazad." : "Kloeck!");
-			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
+			      if (u.urmaxlvlUP >= 2) losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
 			case 7:
@@ -15757,6 +15776,10 @@ common:
 
 	    case AD_DRLI:
 
+		if (moves < 1000 && (u.urmaxlvlUP == 1) && rn2(25)) {
+			break;
+		}
+
 		if (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) )
 		    losexp("draining explosion", FALSE, TRUE);
 		break;
@@ -15807,6 +15830,10 @@ common:
 		break;
 
 	    case AD_VAMP:
+
+		if (moves < 1000 && (u.urmaxlvlUP == 1) && rn2(25)) {
+			break;
+		}
 
 		losexp("draining explosion", FALSE, TRUE);
 	      mdamageu(mtmp, tmp);
@@ -16078,7 +16105,7 @@ common:
 			if(u.uen > u.uenmax) u.uen = u.uenmax;
 		}
 		if (!rn2(2)) {
-			if(!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) )
+			if((!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4)) && (u.urmaxlvlUP >= 2) )
 			    losexp("life drainage", FALSE, TRUE);
 			else You_feel("woozy for an instant, but shrug it off.");
 		}
@@ -16192,7 +16219,7 @@ common:
 				forget(rnd(5));
 				pline("You forget some important things...");
 			}
-			if (!rn2(200)) {
+			if (!rn2(200) && (u.urmaxlvlUP >= 2)) {
 				losexp("psionic drain", FALSE, TRUE);
 			}
 			if (!rn2(200)) {
@@ -16910,7 +16937,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				forget(rnd(5));
 				pline("You forget some important things...");
 			}
-			if (!rn2(200)) {
+			if (!rn2(200) && (u.urmaxlvlUP >= 2)) {
 				losexp("psionic drain", FALSE, TRUE);
 			}
 			if (!rn2(200)) {
@@ -17072,7 +17099,13 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			if (!rn2(issoviet ? 3 : 7) && (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) )  ) {
 				pline("%s seems to drain your life with its gaze!", Monnam(mtmp));
 		    stop_occupation();
-			    losexp("life drainage", FALSE, TRUE);
+
+				if (moves < 1000 && (u.urmaxlvlUP == 1) && rn2(25)) {
+					pline("But it failed to drain you to death.");
+					break;
+				} else {
+					losexp("life drainage", FALSE, TRUE);
+				}
 				if (!rn2(4)) mdamageu(mtmp, dmgplus);
 			}
 		}
@@ -17084,7 +17117,14 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			if (!rn2(issoviet ? 2 : 3) && (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) )  ) {
 				pline("%s seems to drain your life with its gaze!", Monnam(mtmp));
 		    stop_occupation();
-			    losexp("life drainage", FALSE, TRUE);
+
+				if (moves < 1000 && (u.urmaxlvlUP == 1) && rn2(25)) {
+					pline("But it failed to drain you to death.");
+					break;
+				} else {
+					losexp("life drainage", FALSE, TRUE);
+				}
+
 				if (!rn2(2)) mdamageu(mtmp, dmgplus);
 			}
 		}
@@ -17723,7 +17763,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			if(u.uen > u.uenmax) u.uen = u.uenmax;
 		}
 		if (!rn2(4)) {
-			if(!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) )
+			if((!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4)) && (u.urmaxlvlUP >= 2) )
 			    losexp("life drainage", FALSE, TRUE);
 			else You_feel("woozy for an instant, but shrug it off.");
 		}
@@ -17982,7 +18022,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				nomul(-2, "being levelported", FALSE); /* because it's not called until you get another turn... */
 			}
 		}
-		else if (!rn2(3) && (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) )  ) {
+		else if (!rn2(3) && (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) ) && (u.urmaxlvlUP >= 2) ) {
 		    losexp("loss of potential", FALSE, TRUE);
 		}
 		}
@@ -18341,7 +18381,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			case 5:
 				You_feel("life has clocked back.");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Zhizn' razgonyal nazad, potomu chto vy ne smotreli, i teper' vy dolzhny poluchit', chto poteryannyy uroven' nazad." : "Kloeck!");
-			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
+			      if (u.urmaxlvlUP >= 2) losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
 			case 7:
@@ -18540,7 +18580,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 		    if (dmg) mdamageu(mtmp, dmg);
 
-			if (!rn2(7) && (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) )  ) {
+			if (!rn2(7) && (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) ) && (u.urmaxlvlUP >= 2) ) {
 			    losexp("life drainage", FALSE, TRUE);
 			}
 
@@ -20814,7 +20854,7 @@ skiptreason:
 				flags.botl = 1;
 				break;
 			case 3:
-				if (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) ) {
+				if ((!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4)) && (u.urmaxlvlUP >= 2) ) {
 				    You_feel("out of shape.");
 				    losexp("overexertion", FALSE, TRUE);
 				} else {
