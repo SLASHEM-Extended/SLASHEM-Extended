@@ -4058,7 +4058,7 @@ unsigned trflags;
 		if (!Free_action || !rn2(StrongFree_action ? 100 : 10)) {
 		    pline("You are frozen in place!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
-		    nomul(-rnz(10), "frozen by a paralysis trap", TRUE);
+		    nomul(-rnd(10), "frozen by a paralysis trap", TRUE);
 		    nomovemsg = You_can_move_again;
 		    exercise(A_DEX, FALSE);
 		} else You("stiffen momentarily.");
@@ -7196,7 +7196,7 @@ newbossPENT:
 						You("are frozen!");
 						if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 						nomovemsg = 0;	/* default: "you can move again" */
-						nomul(-rnd(10), "paralyzed by a sin trap", TRUE);
+						nomul(-rnd(5), "paralyzed by a sin trap", TRUE);
 						exercise(A_DEX, FALSE);
 					    }
 					}
@@ -7390,7 +7390,7 @@ newbossPENT:
 					You("are frozen!");
 					if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 					nomovemsg = 0;	/* default: "you can move again" */
-					nomul(-rnd(10), "paralyzed by a sin trap", TRUE);
+					nomul(-rnd(5), "paralyzed by a sin trap", TRUE);
 					exercise(A_DEX, FALSE);
 				    }
 				}
@@ -8100,7 +8100,7 @@ newbossPENT:
 			if (!Free_action || !rn2(StrongFree_action ? 100 : 20)) {
 			pline("Suddenly you are frozen in place!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
-			nomul(-d(5, 6), "frozen by a lock trap", TRUE);
+			nomul(-rn1(5, 6), "frozen by a lock trap", TRUE);
 			exercise(A_DEX, FALSE);
 			nomovemsg = You_can_move_again;
 			} else You("momentarily stiffen.");
@@ -9319,8 +9319,16 @@ madnesseffect:
 		seetrap(trap);
 
 		if (rn2(4)) {
+			int paralysistime = (monster_difficulty() / 10) + 1;
+			if (paralysistime > 1) paralysistime = rnd(paralysistime);
+			if (paralysistime > 10) {
+				while (rn2(5) && (paralysistime > 10)) {
+					paralysistime--;
+				}
+			}
+
 			pline("You fall down.");
-		    nomul(-(2 + rnd( (monster_difficulty() / 10) + 1) ) , "helpless from tripping over a wire", TRUE);
+			nomul(-(2 + paralysistime) , "helpless from tripping over a wire", TRUE);
 			nomovemsg = "You get up again.";
 		}
 		if (rn2(4)) {
@@ -11763,7 +11771,7 @@ madnesseffect:
 			}
 
 			(void) makemon((struct permonst *) 0, u.ux, u.uy, NO_MM_FLAGS);
-			nomul(-(rnz(5) ), "paralyzed by a miguc trap", TRUE);
+			nomul(-(rnd(5) ), "paralyzed by a miguc trap", TRUE);
 
 			u.aggravation = 0;
 
@@ -13422,9 +13430,19 @@ madnesseffect:
 				    } else if (Free_action) {
 					pline("It hurts like hell, but you bear it like a man.");            
 				    } else {
+					int paralysistime = monster_difficulty() + 1;
+					paralysistime /= 2;
+					if (paralysistime <= 0) paralysistime = 1;
+					if (paralysistime > 1) paralysistime = rnd(paralysistime);
+					if (paralysistime > 10) {
+						while (rn2(5) && (paralysistime > 10)) {
+							paralysistime--;
+						}
+					}
+
 					pline("It hurts like hell! You pass out from the intense pain.");            
 					nomovemsg = "You finally manage to get up again.";
-					nomul(-(rnd(monster_difficulty() + 1)), "knocked out by a peep-toe trap", TRUE);
+					nomul(-(paralysistime), "knocked out by a peep-toe trap", TRUE);
 					exercise(A_DEX, FALSE);
 				    }
 				}
@@ -13623,7 +13641,7 @@ madnesseffect:
 							nomovemsg = 0;	/* default: "you can move again" */
 							if (StrongFree_action) nomul(-rnd(2), "knocked out by a steel-capped sandal", TRUE);
 							else if (Free_action) nomul(-rnd(4), "knocked out by a steel-capped sandal", TRUE);
-							else nomul(-rnd(20), "knocked out by a steel-capped sandal", TRUE);
+							else nomul(-rnd(8), "knocked out by a steel-capped sandal", TRUE);
 						}
 					losehp(rnd(20)+ rnd( (monster_difficulty() * 5) + 1),"steel-capped sandal to the head",KILLED_BY_AN);
 
@@ -17707,7 +17725,7 @@ struct obj *box;        /* at the moment only for floor traps */
 				if (!Free_action || !rn2(StrongFree_action ? 20 : 5)) {
 				    pline("You are frozen in place!");
 					if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
-				    nomul(-rnz(10), "frozen by a volt trap", TRUE);
+				    nomul(-rnd(7), "frozen by a volt trap", TRUE);
 				    nomovemsg = You_can_move_again;
 				    exercise(A_DEX, FALSE);
 				} else You("stiffen momentarily.");
@@ -20711,7 +20729,7 @@ boolean disarm;
 			if (!Free_action || !rn2(StrongFree_action ? 100 : 20)) {                        
 			pline("Suddenly you are frozen in place!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
-			nomul(-d(5, 6), "frozen by a container trap", TRUE);
+			nomul(-rn1(5, 6), "frozen by a container trap", TRUE);
 			exercise(A_DEX, FALSE);
 			nomovemsg = You_can_move_again;
 			} else You("momentarily stiffen.");

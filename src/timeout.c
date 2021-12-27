@@ -1322,8 +1322,20 @@ nh_timeout()
 				    } else {
 					pline("It hurts like hell! You pass out from the intense pain.");            
 					nomovemsg = "You finally manage to get up again.";
-					nomul(-(rnd(monster_difficulty() + 1)), "knocked out by their own sentient footwear", TRUE);
-					exercise(A_DEX, FALSE);
+					{
+						int paralysistime = monster_difficulty() + 1;
+						paralysistime /= 2;
+						if (paralysistime <= 0) paralysistime = 1;
+						if (paralysistime > 1) paralysistime = rnd(paralysistime);
+						if (paralysistime > 10) {
+							while (rn2(5) && (paralysistime > 10)) {
+								paralysistime--;
+							}
+						}
+
+						nomul(-(paralysistime), "knocked out by their own sentient footwear", TRUE);
+						exercise(A_DEX, FALSE);
+					}
 				    }
 				}
 
@@ -1521,7 +1533,7 @@ nh_timeout()
 							nomovemsg = 0;	/* default: "you can move again" */
 							if (StrongFree_action) nomul(-rnd(2), "knocked out by a sentient steel-capped sandal", TRUE);
 							else if (Free_action) nomul(-rnd(4), "knocked out by a sentient steel-capped sandal", TRUE);
-							else nomul(-rnd(20), "knocked out by a sentient steel-capped sandal", TRUE);
+							else nomul(-rnd(8), "knocked out by a sentient steel-capped sandal", TRUE);
 						}
 					losehp(rnd(20)+ rnd( (monster_difficulty() * 5) + 1),"sentient steel-capped sandal to the head",KILLED_BY_AN);
 

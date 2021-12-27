@@ -1848,9 +1848,9 @@ register struct monst *mtmp;
 	if (mtmp->crapbonus > 0) crapcnt += mtmp->crapbonus;
 	if (crapcnt > 10) crapcnt = 10; /* sanity check --Amy */
 
-      if (mtmp->data->msound == MS_FART_QUIET) nomul(-rnz(3 + crapcnt), "listening to tender crapping noises", TRUE);
-      else if (mtmp->data->msound == MS_FART_NORMAL) nomul(-rnz(4 + crapcnt), "listening to beautiful crapping noises", TRUE);
-      else nomul(-rnz(2 + crapcnt), "listening to disgusting crapping noises", TRUE);
+      if (mtmp->data->msound == MS_FART_QUIET) nomul(-rnd(3 + crapcnt), "listening to tender crapping noises", TRUE);
+      else if (mtmp->data->msound == MS_FART_NORMAL) nomul(-rnd(4 + crapcnt), "listening to beautiful crapping noises", TRUE);
+      else nomul(-rnd(2 + crapcnt), "listening to disgusting crapping noises", TRUE);
       nomovemsg = "At last, you get yourself together, ready to move on.";
 
 	if (!rn2(10)) increasesanity(1);
@@ -1867,7 +1867,7 @@ register struct monst *mtmp;
 	if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
 	pline("Because you are stupid, you stop to listen.");
-	nomul(-rnz(3 + mtmp->crapbonus), "listening to crapping noises", TRUE);
+	nomul(-rnd(3 + mtmp->crapbonus), "listening to crapping noises", TRUE);
       nomovemsg = "At last, you get yourself together, ready to move on.";
 	if (!rn2(10)) increasesanity(1);
     }

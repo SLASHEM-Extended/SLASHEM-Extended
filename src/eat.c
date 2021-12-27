@@ -7845,6 +7845,11 @@ boolean incr;
 	}
 
 	if(newhs == FAINTING) {
+
+		/* make the fainted time random --Amy */
+		int extraparalysistime = u.uhunger/200;
+		if (extraparalysistime > 1) extraparalysistime = rnd(extraparalysistime);
+
 		if(is_fainted()) newhs = FAINTED;
 		if(u.uhs <= WEAK || rn2(50-u.uhunger/50) >= 49) {
 			if(!is_fainted() && multi >= 0 /* %% */) {
@@ -7857,7 +7862,7 @@ boolean incr;
 		if (have_anorexia()) adjalign(5);
 		}
 				flags.soundok = 0;
-				nomul(-3+(u.uhunger/200), "fainted from lack of food", TRUE);
+				nomul((-2 + extraparalysistime), "fainted from lack of food", TRUE);
 				nomovemsg = "You regain consciousness.";
 				afternmv = unfaint;
 				newhs = FAINTED;

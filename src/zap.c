@@ -4398,7 +4398,7 @@ secureidchoice:
 						You("are frozen!");
 						if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 						nomovemsg = 0;	/* default: "you can move again" */
-						nomul(-rnd(10), "paralyzed by a wand of sin", TRUE);
+						nomul(-rnd(5), "paralyzed by a wand of sin", TRUE);
 						exercise(A_DEX, FALSE);
 					    }
 					}
@@ -4588,7 +4588,7 @@ secureidchoice:
 					You("are frozen!");
 					if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 					nomovemsg = 0;	/* default: "you can move again" */
-					nomul(-rnd(10), "paralyzed by a wand of sin", TRUE);
+					nomul(-rnd(5), "paralyzed by a wand of sin", TRUE);
 					exercise(A_DEX, FALSE);
 				    }
 				}
@@ -6569,7 +6569,7 @@ boolean ordinary;
 			} else {
 				if (!Free_action || !rn2(StrongFree_action ? 20 : 5)) {
 				    pline("You are frozen in place!");
-				    nomul(-rnz(20), "frozen by their own spell", TRUE);
+				    nomul(-rnd(20), "frozen by their own spell", TRUE);
 				    nomovemsg = You_can_move_again;
 				    exercise(A_DEX, FALSE);
 				} else You("stiffen momentarily.");
@@ -6606,7 +6606,7 @@ boolean ordinary;
 			if (!Free_action || !rn2(StrongFree_action ? 20 : 5)) {
 			    pline("You are frozen in place!");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
-			    nomul(-rnz(20), "frozen by their own wand", TRUE);
+			    nomul(-rnd(20), "frozen by their own wand", TRUE);
 			    nomovemsg = You_can_move_again;
 			    exercise(A_DEX, FALSE);
 			} else You("stiffen momentarily.");
@@ -6616,7 +6616,7 @@ boolean ordinary;
 			if (!Free_action || !rn2(StrongFree_action ? 20 : 5)) {
 			    pline("You are frozen in place!");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
-			    nomul(-rnz(20), "frozen by their own spell", TRUE);
+			    nomul(-rnd(20), "frozen by their own spell", TRUE);
 			    nomovemsg = You_can_move_again;
 			    exercise(A_DEX, FALSE);
 			} else You("stiffen momentarily.");

@@ -2510,7 +2510,7 @@ moveloop()
 
 			You("faint from exertion.");
 			flags.soundok = 0;
-			nomul(-(rnz(5) ), "fainted from exertion", TRUE);
+			nomul(-(rn1(4,1) ), "fainted from exertion", TRUE);
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
@@ -2520,7 +2520,7 @@ moveloop()
 
 			You("faint from exertion.");
 			flags.soundok = 0;
-			nomul(-(rnz(5) ), "fainted from exertion", TRUE);
+			nomul(-(rn1(4,1) ), "fainted from exertion", TRUE);
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
@@ -2530,7 +2530,7 @@ moveloop()
 
 			You("faint from the terrible sounds.");
 			flags.soundok = 0;
-			nomul(-(rnz(5) ), "fainted from terrible sounds", TRUE);
+			nomul(-(rn1(4,1) ), "fainted from terrible sounds", TRUE);
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
@@ -2540,7 +2540,7 @@ moveloop()
 
 			You("faint from exertion.");
 			flags.soundok = 0;
-			nomul(-(rnz(5) ), "fainted from exertion", TRUE);
+			nomul(-(rn1(4,1) ), "fainted from exertion", TRUE);
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
@@ -2550,7 +2550,7 @@ moveloop()
 
 			You("faint from exertion.");
 			flags.soundok = 0;
-			nomul(-(rnz(5) ), "fainted from exertion", TRUE);
+			nomul(-(rn1(4,1) ), "fainted from exertion", TRUE);
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
@@ -2577,7 +2577,7 @@ moveloop()
 
 			Your("terrible eating disorder causes you to faint.");
 			flags.soundok = 0;
-			nomul(-(rnz(5) ), "fainted from anorexia", TRUE);
+			nomul(-(rn1(4,1) ), "fainted from anorexia", TRUE);
 			nomovemsg = "Dear Ina, you need to eat!!! If you don't, you'll die!";
 			afternmv = unfaintX;
 
@@ -2585,7 +2585,7 @@ moveloop()
 
 			You("faint from anorexia.");
 			flags.soundok = 0;
-			nomul(-(rnz(5) ), "fainted from anorexia", TRUE);
+			nomul(-(rn1(4,1) ), "fainted from anorexia", TRUE);
 			nomovemsg = "If you don't want to end like Ina did, eat!!!";
 			afternmv = unfaintX;
 
@@ -2600,7 +2600,7 @@ moveloop()
 
 			Your("terrible eating disorder causes you to faint.");
 			flags.soundok = 0;
-			nomul(-(rnz(5) ), "fainted from anorexia", TRUE);
+			nomul(-(rn1(4,1) ), "fainted from anorexia", TRUE);
 			nomovemsg = "Dear Ina, you need to eat!!! If you don't, you'll die!";
 			afternmv = unfaintX;
 
@@ -2608,7 +2608,7 @@ moveloop()
 
 			You("faint from anorexia.");
 			flags.soundok = 0;
-			nomul(-(rnz(5) ), "fainted from anorexia", TRUE);
+			nomul(-(rn1(4,1) ), "fainted from anorexia", TRUE);
 			nomovemsg = "If you don't want to end like Ina did, eat!!!";
 			afternmv = unfaintX;
 
@@ -3133,7 +3133,7 @@ trapsdone:
 
 			You("faint from exertion.");
 			flags.soundok = 0;
-			nomul(-(rnz(5) ), "fainted from exertion", TRUE);
+			nomul(-(rn1(4,1) ), "fainted from exertion", TRUE);
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
@@ -3257,7 +3257,7 @@ newbossBQ:
 
 			You("faint from exertion.");
 			flags.soundok = 0;
-			nomul(-(rnz(5) ), "fainted from exertion", TRUE);
+			nomul(-(rn1(4,1) ), "fainted from exertion", TRUE);
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
@@ -4051,7 +4051,7 @@ newbossBQ:
 
 			You("faint from exertion.");
 			flags.soundok = 0;
-			nomul(-(rnz(5) ), "fainted from exertion", TRUE);
+			nomul(-(rn1(4,1) ), "fainted from exertion", TRUE);
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
@@ -4061,7 +4061,7 @@ newbossBQ:
 
 			You("faint from exertion.");
 			flags.soundok = 0;
-			nomul(-(rnz(5) ), "fainted from exertion", TRUE);
+			nomul(-(rn1(4,1) ), "fainted from exertion", TRUE);
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
@@ -4071,7 +4071,7 @@ newbossBQ:
 
 			You("are clawed by your gauntlets and faint.");
 			flags.soundok = 0;
-			nomul(-(rnz(5) ), "fainted due to the revenancer", TRUE);
+			nomul(-(rn1(4,1) ), "fainted due to the revenancer", TRUE);
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 

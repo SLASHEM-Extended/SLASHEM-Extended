@@ -2121,7 +2121,7 @@ badeffect()
 		case 100:
 		pline("The world spins and goes dark.");
 		flags.soundok = 0;
-		nomul(-rnd(10), "helplessly knocked out", TRUE);
+		nomul(-rnd(5), "helplessly knocked out", TRUE);
 		nomovemsg = "You are conscious again.";
 		afternmv = Hear_again;
 		break;
@@ -3650,7 +3650,7 @@ reallybadeffect()
 		case 9:
 		pline("The world spins and goes dark.");
 		flags.soundok = 0;
-		nomul(-rnd(10), "helplessly knocked out", TRUE);
+		nomul(-rnd(5), "helplessly knocked out", TRUE);
 		nomovemsg = "You are conscious again.";
 		afternmv = Hear_again;
 		break;
@@ -9416,8 +9416,16 @@ int snamount;
 	if (u.usanity > 9000) {
 		You("realize in shock that this dungeon is a truly atrocious place.");
 		if (multi >= 0) {
+			int paralysistime = (u.usanity / 1000) - 8;
+			if (paralysistime > 1) paralysistime = rnd(paralysistime);
+			if (paralysistime > 5) {
+				while (rn2(5) && (paralysistime > 5)) {
+					paralysistime--;
+				}
+			}
+
 			flags.soundok = 0;
-			nomul(-(rnd(4 + ((u.usanity / 1000) - 8) ) ), "paralyzed by sanity", TRUE);
+			nomul(-(rnd(4 + paralysistime)), "paralyzed by sanity", TRUE);
 			nomovemsg = "You regain consciousness.";
 		}
 	}
@@ -10688,7 +10696,8 @@ peffects(otmp)
 			Your("%s are frozen to the %s!",
 			     makeplural(body_part(FOOT)), surface(u.ux, u.uy));
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
-		    nomul(-(rn1(10, 25 - 12*bcsign(otmp))), "frozen by a potion", TRUE);
+			/* effect used to last way too long! quaff IDing shouldn't be such a crapshoot --Amy */
+		    nomul(-(rn1(8, 6 - 5*bcsign(otmp))), "frozen by a potion", TRUE);
 		    nomovemsg = You_can_move_again;
 		    exercise(A_DEX, FALSE);
 		}

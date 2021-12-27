@@ -827,6 +827,12 @@ elena13:
 					monsterlev = ((mtmp->m_lev) + 1);
 					monsterlev /= 2;
 					if (monsterlev <= 0) monsterlev = 1;
+					if (monsterlev > 1) monsterlev = rnd(monsterlev);
+					if (monsterlev > 10) {
+						while (rn2(5) && (monsterlev > 10)) {
+							monsterlev--;
+						}
+					}
 					nomul(-monsterlev, "knocked out by an asian peep-toe", TRUE);
 					exercise(A_DEX, FALSE);
 				    }
@@ -1473,6 +1479,12 @@ elena23:
 				monsterlev = ((mtmp->m_lev) + 1);
 				monsterlev /= 3;
 				if (monsterlev <= 0) monsterlev = 1;
+				if (monsterlev > 1) monsterlev = rnd(monsterlev);
+				if (monsterlev > 4) {
+					while (rn2(5) && (monsterlev > 4)) {
+						monsterlev--;
+					}
+				}
 				nomul(-monsterlev, "flinching", TRUE);
 				exercise(A_DEX, FALSE);
 			    }
@@ -2962,7 +2974,7 @@ elena35:
 							nomovemsg = 0;	/* default: "you can move again" */
 							if (StrongFree_action) nomul(-rnd(2), "knocked out by a steel-capped sandal", TRUE);
 							else if (Free_action) nomul(-rnd(4), "knocked out by a steel-capped sandal", TRUE);
-							else nomul(-rnd(20), "knocked out by a steel-capped sandal", TRUE);
+							else nomul(-rnd(8), "knocked out by a steel-capped sandal", TRUE);
 						}
 						if (FemtrapActiveElena && !rn2(3)) {
 							pline("You long for more!");
@@ -7549,8 +7561,17 @@ dopois:
 			else You("are frozen by %s!", mon_nam(mtmp));
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 			nomovemsg = 0;	/* default: "you can move again" */
-			if (!rn2(3)) nomul(-rnd(10), "paralyzed by a monster attack", TRUE);
-			else nomul(-(dmg), "paralyzed by a monster attack", TRUE);
+			{
+				int paralysistime = dmg;
+				if (paralysistime > 1) paralysistime = rnd(paralysistime);
+				if (paralysistime > 5) {
+					while (rn2(5) && (paralysistime > 5)) {
+						paralysistime--;
+					}
+				}
+				if (!rn2(3)) nomul(-rnd(5), "paralyzed by a monster attack", TRUE);
+				else nomul(-(paralysistime), "paralyzed by a monster attack", TRUE);
+			}
 			exercise(A_DEX, FALSE);
 		    }
 		}
@@ -7565,8 +7586,17 @@ dopois:
 			if (Blind) You("are mercilessly tickled!");
 			else You("are mercilessly tickled by %s!", mon_nam(mtmp));
 			nomovemsg = 0;	/* default: "you can move again" */
-			if (!rn2(3)) nomul(-rnd(10), "tickled by a monster", TRUE);
-			else nomul(-(dmg), "tickled by a monster", TRUE);
+			{
+				int paralysistime = dmg;
+				if (paralysistime > 1) paralysistime = rnd(paralysistime);
+				if (paralysistime > 4) {
+					while (rn2(12) && (paralysistime > 4)) {
+						paralysistime--;
+					}
+				}
+				if (!rn2(3)) nomul(-rnd(4), "tickled by a monster", TRUE);
+				else nomul(-(paralysistime), "tickled by a monster", TRUE);
+			}
 			exercise(A_DEX, FALSE);
 			exercise(A_CON, FALSE);
 		    }
@@ -7817,7 +7847,7 @@ dopois:
 				else You("are frozen by %s!", mon_nam(mtmp));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
-				nomul(-rnd(10), "paralyzed by a monster attack", TRUE);
+				nomul(-rnd(5), "paralyzed by a monster attack", TRUE);
 				exercise(A_DEX, FALSE);
 			    }
 			}
@@ -10203,7 +10233,7 @@ dopois:
 				else You("are frozen by %s!", mon_nam(mtmp));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
-				nomul(-rnd(10), "paralyzed by a monster attack", TRUE);
+				nomul(-rnd(5), "paralyzed by a monster attack", TRUE);
 				exercise(A_DEX, FALSE);
 			    }
 			}
@@ -12007,8 +12037,18 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 				You("can't move!");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
-				if (!rn2(3)) nomul(-rnd(10), "paralyzed by an engulfing monster", TRUE);
-				else nomul(-(tmp), "paralyzed by an engulfing monster", TRUE);
+				{
+					int paralysistime = tmp;
+					if (paralysistime > 1) paralysistime = rnd(paralysistime);
+					if (paralysistime > 5) {
+						while (rn2(5) && (paralysistime > 5)) {
+							paralysistime--;
+						}
+					}
+
+					if (!rn2(3)) nomul(-rnd(5), "paralyzed by an engulfing monster", TRUE);
+					else nomul(-(paralysistime), "paralyzed by an engulfing monster", TRUE);
+				}
 				exercise(A_DEX, FALSE);
 			    }
 			}
@@ -12113,7 +12153,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 				else You("are frozen by %s!", mon_nam(mtmp));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
-				nomul(-rnd(10), "paralyzed by an engulfing monster", TRUE);
+				nomul(-rnd(5), "paralyzed by an engulfing monster", TRUE);
 				exercise(A_DEX, FALSE);
 			    }
 			}
@@ -12210,7 +12250,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 				else You("are frozen by %s!", mon_nam(mtmp));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
-				nomul(-rnd(10), "paralyzed by an engulfing monster", TRUE);
+				nomul(-rnd(5), "paralyzed by an engulfing monster", TRUE);
 				exercise(A_DEX, FALSE);
 			    }
 			}
@@ -13242,7 +13282,7 @@ do_stone2:
 		    else {
 			pline("Wahahahaha! Arrgh! It tickles!");
 			nomovemsg = 0;	/* default: "you can move again" */
-			nomul(-rnd(10), "tickled by a bunch of feelers", TRUE);
+			nomul(-rnd(5), "tickled by a bunch of feelers", TRUE);
 			exercise(A_DEX, FALSE);
 			exercise(A_CON, FALSE);
 		    }
@@ -15083,7 +15123,7 @@ common:
 				else You("are frozen by %s!", mon_nam(mtmp));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
-				nomul(-rnd(10), "paralyzed by a monster explosion", TRUE);
+				nomul(-rnd(5), "paralyzed by a monster explosion", TRUE);
 				exercise(A_DEX, FALSE);
 			    }
 			}
@@ -15540,7 +15580,16 @@ common:
 			You("suddenly recognize an inability to move!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 			nomovemsg = 0;	/* default: "you can move again" */
-			nomul(-tmp, "paralyzed by an explosion", TRUE);
+			{
+				int paralysistime = tmp;
+				if (paralysistime > 1) paralysistime = rnd(paralysistime);
+				if (paralysistime > 10) {
+					while (rn2(5) && (paralysistime > 10)) {
+						paralysistime--;
+					}
+				}
+				nomul(-(paralysistime), "paralyzed by an explosion", TRUE);
+			}
 			exercise(A_DEX, FALSE);
 		    }
 
@@ -15829,7 +15878,7 @@ common:
 				pline("You can't move!");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
-				nomul(-rnd(10), "paralyzed by an explosion", TRUE);
+				nomul(-rnd(5), "paralyzed by an explosion", TRUE);
 				exercise(A_DEX, FALSE);
 			    }
 			}
@@ -17505,7 +17554,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				else You("are frozen by %s!", mon_nam(mtmp));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
-				nomul(-rnd(10), "paralyzed by a monster attack", TRUE);
+				nomul(-rnd(5), "paralyzed by a monster attack", TRUE);
 				exercise(A_DEX, FALSE);
 			    }
 			}
@@ -17611,7 +17660,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				else You("are frozen by %s!", mon_nam(mtmp));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
-				nomul(-rnd(10), "paralyzed by a monster attack", TRUE);
+				nomul(-rnd(5), "paralyzed by a monster attack", TRUE);
 				exercise(A_DEX, FALSE);
 			    }
 			}
@@ -20025,10 +20074,19 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	                else {
 	                        You("are frozen by %s!", mon_nam(mtmp));
 					if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
-				nomovemsg = 0;
-					if (!rn2(3)) nomul(-rnd(4), "paralyzed by a monster's gaze", TRUE);
-					else nomul(-(dmgplus), "paralyzed by a monster's gaze", TRUE);
-					exercise(A_DEX, FALSE);
+					nomovemsg = 0;
+					{
+						int paralysistime = dmgplus;
+						if (paralysistime > 1) paralysistime = rnd(paralysistime);
+						if (paralysistime > 5) {
+							while (rn2(5) && (paralysistime > 5)) {
+								paralysistime--;
+							}
+						}
+						if (!rn2(3)) nomul(-rnd(4), "paralyzed by a monster's gaze", TRUE);
+						else nomul(-(paralysistime), "paralyzed by a monster's gaze", TRUE);
+						exercise(A_DEX, FALSE);
+					}
 	                }
 	        }
 	        break;

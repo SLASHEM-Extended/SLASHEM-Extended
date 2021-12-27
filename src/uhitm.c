@@ -7596,9 +7596,17 @@ register struct attack *mattk;
 				 * attacked (which uses his real location) or
 				 * if his See_invisible wears off
 				 */
+				int paralysistime = tmp;
+				if (paralysistime > 1) paralysistime = rnd(paralysistime);
+				if (paralysistime > 10) {
+					while (rn2(5) && (paralysistime > 10)) {
+						paralysistime--;
+					}
+				}
+
 				You("digest %s.", mon_nam(mdef));
-				if (Slow_digestion) tmp *= 2;
-				nomul(-tmp, "digesting a monster", TRUE);
+				if (Slow_digestion) paralysistime *= 2;
+				nomul(-paralysistime, "digesting a monster", TRUE);
 				nomovemsg = msgbuf;
 			    } else pline("%s", msgbuf);
 			    if (slime_on_touch(mdef->data)) {
@@ -11766,7 +11774,7 @@ boolean ranged;
 				else You("are frozen by %s!", mon_nam(mon));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
-				nomul(-rnd(10), "paralyzed by a monster attack", TRUE);
+				nomul(-rnd(5), "paralyzed by a monster attack", TRUE);
 				exercise(A_DEX, FALSE);
 			    }
 			}
@@ -11878,7 +11886,7 @@ boolean ranged;
 				else You("are frozen by %s!", mon_nam(mon));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
-				nomul(-rnd(10), "paralyzed by a monster attack", TRUE);
+				nomul(-rnd(5), "paralyzed by a monster attack", TRUE);
 				exercise(A_DEX, FALSE);
 			    }
 			}

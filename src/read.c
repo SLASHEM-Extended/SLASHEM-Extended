@@ -6146,7 +6146,7 @@ materialchoice3:
 						You("are frozen!");
 						if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 						nomovemsg = 0;	/* default: "you can move again" */
-						nomul(-rnd(10), "paralyzed by a scroll of sin", TRUE);
+						nomul(-rnd(5), "paralyzed by a scroll of sin", TRUE);
 						exercise(A_DEX, FALSE);
 					    }
 					}
@@ -6336,7 +6336,7 @@ materialchoice3:
 					You("are frozen!");
 					if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 					nomovemsg = 0;	/* default: "you can move again" */
-					nomul(-rnd(10), "paralyzed by a scroll of sin", TRUE);
+					nomul(-rnd(5), "paralyzed by a scroll of sin", TRUE);
 					exercise(A_DEX, FALSE);
 				    }
 				}

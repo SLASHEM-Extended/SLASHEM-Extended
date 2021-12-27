@@ -5769,7 +5769,7 @@ register struct obj *otmp;
 			if (!Free_action || !rn2(StrongFree_action ? 20 : 5)) {
 			    pline("You are frozen in place!");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
-			    nomul(-rnz(5), "frozen by a wand", TRUE);
+			    nomul(-rnd(5), "frozen by a wand", TRUE);
 			    nomovemsg = You_can_move_again;
 			    exercise(A_DEX, FALSE);
 			} else You("stiffen momentarily.");
@@ -7371,7 +7371,7 @@ struct monst *mtmp;
 						You("are frozen!");
 						if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 						nomovemsg = 0;	/* default: "you can move again" */
-						nomul(-rnd(10), "paralyzed by a scroll of sin", TRUE);
+						nomul(-rnd(5), "paralyzed by a scroll of sin", TRUE);
 						exercise(A_DEX, FALSE);
 					    }
 					}
@@ -7561,7 +7561,7 @@ struct monst *mtmp;
 					You("are frozen!");
 					if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 					nomovemsg = 0;	/* default: "you can move again" */
-					nomul(-rnd(10), "paralyzed by a scroll of sin", TRUE);
+					nomul(-rnd(5), "paralyzed by a scroll of sin", TRUE);
 					exercise(A_DEX, FALSE);
 				    }
 				}
@@ -9358,7 +9358,7 @@ newboss:
 						You("are frozen!");
 						if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 						nomovemsg = 0;	/* default: "you can move again" */
-						nomul(-rnd(10), "paralyzed by a wand of sin", TRUE);
+						nomul(-rnd(5), "paralyzed by a wand of sin", TRUE);
 						exercise(A_DEX, FALSE);
 					    }
 					}
@@ -9548,7 +9548,7 @@ newboss:
 					You("are frozen!");
 					if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 					nomovemsg = 0;	/* default: "you can move again" */
-					nomul(-rnd(10), "paralyzed by a wand of sin", TRUE);
+					nomul(-rnd(5), "paralyzed by a wand of sin", TRUE);
 					exercise(A_DEX, FALSE);
 				    }
 				}

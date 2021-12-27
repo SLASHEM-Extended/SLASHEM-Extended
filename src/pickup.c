@@ -2626,7 +2626,7 @@ containerkaboom()
 			if (!Free_action || !rn2(StrongFree_action ? 100 : 20)) {
 			pline("Suddenly you are frozen in place!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
-			nomul(-d(5, 6), "frozen by a container kaboom", TRUE);
+			nomul(-rn1(5, 6), "frozen by a container kaboom", TRUE);
 			exercise(A_DEX, FALSE);
 			nomovemsg = You_can_move_again;
 			} else You("momentarily stiffen.");
