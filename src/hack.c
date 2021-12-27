@@ -1513,7 +1513,7 @@ walscholardone:
     }
 
     if (sobj_at(BOULDER,x,y) && (In_sokoban(&u.uz) || !Passes_walls)) {
-	if (!(Blind || Hallucination) && (flags.run >= 2) && mode != TEST_TRAV)
+	if (!(Blind || Hallucination) && (flags.run >= 1) && mode != TEST_TRAV)
 	    return FALSE;
 	if (mode == DO_MOVE) {
 	    /* tunneling monsters will chew before pushing */
