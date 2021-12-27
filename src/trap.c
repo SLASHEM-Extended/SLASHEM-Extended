@@ -8205,7 +8205,7 @@ newbossPENT:
 						pitdamage /= 5;
 					}
 				}
-			    losehp(rnd(10) + rnd((monster_difficulty() / 2) + 1) ,"fell into a pit of iron spikes",
+			    losehp(rnd(pitdamage) + rnd((monster_difficulty() / 2) + 1) ,"fell into a pit of iron spikes",
 				NO_KILLER_PREFIX);
 			    if (!rn2(6))
 				poisoned("spikes", A_STR, "fall onto poison spikes", 8);
@@ -8224,7 +8224,7 @@ newbossPENT:
 						pitdamage /= 5;
 					}
 				}
-			    losehp(rnd(25) + rnd(monster_difficulty() + 1) ,"fell into a giant chasm", NO_KILLER_PREFIX);
+			    losehp(rnd(pitdamage) + rnd(monster_difficulty() + 1) ,"fell into a giant chasm", NO_KILLER_PREFIX);
 			} else {
 				pitdamage = 6;
 				if (pitdamage > 1) {
@@ -8240,7 +8240,7 @@ newbossPENT:
 						pitdamage /= 5;
 					}
 				}
-			    losehp(rnd(6) + rnd((monster_difficulty() / 3) + 1) ,"fell into a pit", NO_KILLER_PREFIX);
+			    losehp(rnd(pitdamage) + rnd((monster_difficulty() / 3) + 1) ,"fell into a pit", NO_KILLER_PREFIX);
 			}
 		}
 
