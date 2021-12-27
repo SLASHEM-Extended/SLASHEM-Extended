@@ -12240,15 +12240,15 @@ int final;
 	}
 	if (u.cnd_socksmell) {
 		sprintf(buf, "%d time%s", u.cnd_socksmell, plur(u.cnd_socksmell));
-		enl_msg(You_, "sniffed worn socks ", "sniffed worn socks", buf);
+		enl_msg(You_, "sniffed worn socks ", "sniffed worn socks ", buf);
 	}
 	if (u.cnd_pantsmell) {
 		sprintf(buf, "%d time%s", u.cnd_pantsmell, plur(u.cnd_pantsmell));
-		enl_msg(You_, "sniffed worn pants ", "sniffed worn pants", buf);
+		enl_msg(You_, "sniffed worn pants ", "sniffed worn pants ", buf);
 	}
 	if (u.cnd_photo_op) {
 		sprintf(buf, "%d time%s", u.cnd_photo_op, plur(u.cnd_photo_op));
-		enl_msg(You_, "were photographed by monsters ", "were photographed by monsters", buf);
+		enl_msg(You_, "were photographed by monsters ", "were photographed by monsters ", buf);
 	}
 
 	/* Pop up the window and wait for a key */
@@ -12833,13 +12833,13 @@ int final;
 	dump("  You received a covid-19 antidote ", buf);
 
 	sprintf(buf, "%d time%s", u.cnd_socksmell, plur(u.cnd_socksmell));
-	dump("  You sniffed worn socks", buf);
+	dump("  You sniffed worn socks ", buf);
 
 	sprintf(buf, "%d time%s", u.cnd_pantsmell, plur(u.cnd_pantsmell));
-	dump("  You sniffed worn pants", buf);
+	dump("  You sniffed worn pants ", buf);
 
 	sprintf(buf, "%d time%s", u.cnd_photo_op, plur(u.cnd_photo_op));
-	dump("  You were photographed by monsters", buf);
+	dump("  You were photographed by monsters ", buf);
 
 	dump("", "");
 }
