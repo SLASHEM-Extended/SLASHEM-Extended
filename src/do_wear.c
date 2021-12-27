@@ -5704,6 +5704,9 @@ find_ac()
 		}
 	}
 
+	/* make it easier for player to finish shoe-cleaning occupation --Amy */
+	if (u.singtrapocc || u.katitrapocc) uac -= 20;
+
 	if (Numbed) uac += 5;
 
 	if (uarms && uarms->oartifact == ART_ARMOR_CLASS_WALL) {

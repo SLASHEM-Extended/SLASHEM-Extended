@@ -10761,6 +10761,12 @@ pastds2:
 				}
 			}
 
+			if (u.singtrapocc || u.katitrapocc) {
+				u.mh++;
+				if (Race_if(PM_PIERCER)) u.mh++;
+				if (u.mh > u.mhmax) u.mh = u.mhmax;
+			}
+
 		/* evil patch idea by b_jonas: slower HP regeneration while standing on Elbereth
                he actually proposes regeneration to be completely eliminated, but let's not be too cruel here... --Amy */
 
@@ -10850,6 +10856,12 @@ pastds2:
 					if (Race_if(PM_PIERCER)) u.uhp++;
 					if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				}
+			}
+
+			if (u.singtrapocc || u.katitrapocc) { /* regenerate fast, to increase odds of success --Amy */
+				u.uhp++;
+				if (Race_if(PM_PIERCER)) u.uhp++;
+				if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			}
 
 			if (uwep && uwep->oartifact == ART_CRYSPEAR) {
@@ -15909,6 +15921,9 @@ boolean new_game;	/* false => restoring an old game */
 #ifdef HANGUPPENALTY
 		pline("You hanged up during your last session! Since I can't determine whether you did that to cheat, you will now be paralyzed, slowed and have your max HP/Pw reduced. Please save your game normally next time! --Amy");
 		if (multi >= 0) nomul(-(2 + u.hangupparalysis), "paralyzed by trying to hangup cheat", FALSE);
+
+		u.singtrapocc = 0;
+		u.katitrapocc = 0;
 
 		u.ublesscnt += rnz(300);
 		change_luck(-1);
