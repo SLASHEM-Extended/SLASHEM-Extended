@@ -2273,6 +2273,7 @@ mattacku(mtmp)
 	/* very high-level monsters shouldn't require absurd amounts of AC --Amy */
 	mlevfortohit = mtmp->m_lev;
 	if (mlevfortohit > 39) mlevfortohit -= rn3(mlevfortohit - 38);
+	if (mlevfortohit > 29) mlevfortohit -= rn2(mlevfortohit - 28);
 	if (mlevfortohit > 19) mlevfortohit -= rn2(mlevfortohit - 18);
 
 	/* deep down, the "chaff" monsters shouldn't be completely irrelevant */
@@ -2285,11 +2286,11 @@ mattacku(mtmp)
 	if (level_difficulty() > 5 && mlevfortohit < 5 && !rn2(5)) mlevfortohit++;
 	if (level_difficulty() > 10 && mlevfortohit < 5 && !rn2(2)) mlevfortohit++;
 	if (level_difficulty() > 10 && mlevfortohit < 10 && !rn2(5)) mlevfortohit++;
-	if (level_difficulty() > 20 && mlevfortohit < 10 && !rn2(2)) mlevfortohit++;
+	if (level_difficulty() > 20 && mlevfortohit < 10 && !rn2(3)) mlevfortohit++;
 	if (level_difficulty() > 20 && mlevfortohit < 15 && !rn2(5)) mlevfortohit++;
-	if (level_difficulty() > 40 && mlevfortohit < 15 && !rn2(2)) mlevfortohit++;
+	if (level_difficulty() > 40 && mlevfortohit < 15 && !rn2(4)) mlevfortohit++;
 	if (level_difficulty() > 30 && mlevfortohit < 20 && !rn2(5)) mlevfortohit++;
-	if (level_difficulty() > 60 && mlevfortohit < 20 && !rn2(2)) mlevfortohit++;
+	if (level_difficulty() > 60 && mlevfortohit < 20 && !rn2(5)) mlevfortohit++;
 
 	tmp += mlevfortohit;
 	if (mtmp->egotype_hitter) tmp += 10;
@@ -2310,19 +2311,19 @@ mattacku(mtmp)
 	if (mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_]) tmp += rnd(100); /* the elder priest uses an aimbot and a wallhack */
 
 	/* farting monsters are simply more likely to hit you, except if you bash their sexy butts --Amy */
-	if (mtmp->data->msound == MS_FART_LOUD && !mtmp->butthurt) tmp += 5;
-	if (mtmp->data->msound == MS_FART_NORMAL && !mtmp->butthurt) tmp += 10;
-	if (mtmp->data->msound == MS_FART_QUIET && !mtmp->butthurt) tmp += 15;
-	if (mtmp->data->msound == MS_WHORE && !mtmp->butthurt) tmp += rnd(20);
-	if (mtmp->data->msound == MS_SHOE) tmp += rnd(20);
-	if (mtmp->data->msound == MS_STENCH) tmp += rnd(20);
-	if (mtmp->data->msound == MS_CONVERT) tmp += rnd(10);
-	if (mtmp->data->msound == MS_HCALIEN) tmp += rnd(25);
-	if (mtmp->egotype_farter) tmp += 15;
-	if (mtmp->fartbonus) tmp += mtmp->fartbonus;
-	if (mtmp->crapbonus) tmp += mtmp->crapbonus;
+	if (mtmp->data->msound == MS_FART_LOUD && !mtmp->butthurt) tmp += rnd(5);
+	if (mtmp->data->msound == MS_FART_NORMAL && !mtmp->butthurt) tmp += rnd(7);
+	if (mtmp->data->msound == MS_FART_QUIET && !mtmp->butthurt) tmp += rnd(10);
+	if (mtmp->data->msound == MS_WHORE && !mtmp->butthurt) tmp += rnd(15);
+	if (mtmp->data->msound == MS_SHOE) tmp += rnd(10);
+	if (mtmp->data->msound == MS_STENCH) tmp += rnd(15);
+	if (mtmp->data->msound == MS_CONVERT) tmp += rnd(5);
+	if (mtmp->data->msound == MS_HCALIEN) tmp += rnd(10);
+	if (mtmp->egotype_farter) tmp += rnd(7);
+	if (mtmp->fartbonus) tmp += rnd(mtmp->fartbonus);
+	if (mtmp->crapbonus) tmp += rno(mtmp->crapbonus);
 	if (is_table(mtmp->mx, mtmp->my)) tmp += 3;
-	if (humanoid(mtmp->data) && is_female(mtmp->data) && attacktype(mtmp->data, AT_KICK) && FemtrapActiveMadeleine) tmp += 100;
+	if (humanoid(mtmp->data) && is_female(mtmp->data) && attacktype(mtmp->data, AT_KICK) && FemtrapActiveMadeleine) tmp += rnd(100);
 	if (humanoid(mtmp->data) && is_female(mtmp->data) && FemtrapActiveWendy) tmp += rnd(20);
 
 	if (!rn2(20)) tmp += 20; /* "natural 20" like in D&D --Amy */
@@ -2334,7 +2335,7 @@ mattacku(mtmp)
 
 	if (u.twoweap && uwep && uswapwep && tech_inuse(T_WEAPON_BLOCKER)) tmp -= rnd(20);
 
-	if ((uarmf && itemhasappearance(uarmf, APP_VELCRO_SANDALS)) && attacktype(mtmp->data, AT_CLAW)) tmp += 100;
+	if ((uarmf && itemhasappearance(uarmf, APP_VELCRO_SANDALS)) && attacktype(mtmp->data, AT_CLAW)) tmp += rnd(100);
 
 	if (Conflict) tmp += rnd(1 + mlevfortohit);
 	if (StrongConflict) tmp += rnd(1 + mlevfortohit);

@@ -22335,6 +22335,7 @@ register int	mmflags;
 	int randsp;
 	int i;
 	coord cc;
+	int leveladjustment, leveladjusttemp;
 
 	/* ATTENTION: ptr might not be defined at this point!!! */
 
@@ -22439,7 +22440,7 @@ register int	mmflags;
 	
 	/* WAC set oldmonnm */
 	mtmp->oldmonnm = monsndx(ptr);
-	
+
 	if (ptr >= &mons[PM_ARCHEOLOGIST] && ptr <= &mons[PM_WIZARD]) {
 	   /* enemy characters are of varying level */
 	   int base_you, base_lev;
@@ -22519,12 +22520,30 @@ register int	mmflags;
 	    /*mtmp->m_lev = mtmp->mhp / 4;*/	/* approximation */
 	/*}*/ else if (ptr->mlet == S_DRAGON && mndx >= PM_GRAY_DRAGON) {
 	    /* adult dragons */
+		leveladjustment = mtmp->m_lev;
+		if (leveladjustment > 20) {
+			leveladjusttemp = (leveladjustment - 19);
+			leveladjustment -= rn2(leveladjusttemp);
+		}
+
 	    mtmp->mhpmax = mtmp->mhp = (int) (In_endgame(&u.uz) ?
-		(8 * mtmp->m_lev) : (4 * mtmp->m_lev + d((int)mtmp->m_lev, 4)));
+		(8 * leveladjustment) : (4 * leveladjustment + d((int)leveladjustment, 4)));
 	} else if (!mtmp->m_lev) {
 	    mtmp->mhpmax = mtmp->mhp = rnd(4);
 	} else {
-	    mtmp->mhpmax = mtmp->mhp = d((int)mtmp->m_lev, weakmon ? (6 + rn2(3)) : 8);
+
+		/* very high-level monsters shouldn't get excessive amounts of HP every single time --Amy */
+		leveladjustment = mtmp->m_lev;
+		if (leveladjustment > 50) {
+			leveladjusttemp = (leveladjustment - 49);
+			leveladjustment -= rn2(leveladjusttemp);
+		}
+		if (leveladjustment > 20) {
+			leveladjusttemp = (leveladjustment - 19);
+			leveladjustment -= rn2(leveladjusttemp);
+		}
+
+	    mtmp->mhpmax = mtmp->mhp = d((int)leveladjustment, weakmon ? (6 + rn2(3)) : 8);
 		/* small things like ants and stuff shouldn't have the same amount of health as big monsters --Amy */
 	    if (verysmall(mtmp->data) && mtmp->mhpmax > 3) {
 		mtmp->mhpmax *= 3;
@@ -22550,11 +22569,14 @@ register int	mmflags;
 			mtmp->mhp /= 8;
 		}
 	    }
+
+	    if (rn2(2)) {
+		mtmp->mhpmax += (leveladjustment * rnd(2));
+		mtmp->mhp = mtmp->mhpmax;
+	    }
 	    
 	    if (is_home_elemental(ptr))
 		mtmp->mhpmax = (mtmp->mhp *= 3);
-	    else mtmp->mhpmax = mtmp->mhp = 
-		d((int)mtmp->m_lev, 8) + (mtmp->m_lev*rnd(2));
 	}
 
 	if (humanoid(ptr) && is_female(ptr) && FemtrapActiveWendy && (mtmp->mhpmax < 2000) ) mtmp->mhpmax += rnd(mtmp->mhpmax);
