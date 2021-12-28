@@ -1652,15 +1652,15 @@ register struct monst *mtmp;
 		drain_alla(1);
 	}
 
-	if (mtmp->singannoyance && !mtmp->mpeaceful) {
+	if (mtmp->singannoyance && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful) {
 		singclean(mtmp);
 	}
 
-	if (FemtrapActiveKati && !rn2(20) && !mtmp->mpeaceful && humanoid(mtmp->data) && is_female(mtmp->data) && attacktype(mtmp->data, AT_KICK) && !mtmp->mfrenzied) {
+	if (FemtrapActiveKati && !um_dist(mtmp->mx, mtmp->my, 1) && !rn2(20) && !mtmp->mpeaceful && humanoid(mtmp->data) && is_female(mtmp->data) && attacktype(mtmp->data, AT_KICK) && !mtmp->mfrenzied) {
 		katiclean(mtmp);
 	}
 
-	if (mdat->msound == MS_SING && !mtmp->singability) {
+	if (mdat->msound == MS_SING && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->singability) {
 
 		int attempts = 0;
 		struct permonst *pm = 0;
