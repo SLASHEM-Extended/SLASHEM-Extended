@@ -406,6 +406,9 @@ struct permonst *ptr;
     case PM_SMOKY_QUARTZ_UNICORN:
     case PM_JET_UNICORN:
     case PM_PEARL_UNICORN:
+    case PM_CURICORN:
+    case PM_JAPICORN:
+    case PM_BLASTICORN:
     case PM_OFFWHITE_UNICORN:
     case PM_PALE_GRAY_UNICORN:
     case PM_BLACKISH_UNICORN:

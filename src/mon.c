@@ -502,6 +502,9 @@ register struct monst *mtmp;
 	    case PM_SMOKY_QUARTZ_UNICORN:
 	    case PM_JET_UNICORN:
 	    case PM_PEARL_UNICORN:
+	    case PM_CURICORN:
+	    case PM_JAPICORN:
+	    case PM_BLASTICORN:
 	    case PM_OFFWHITE_UNICORN:
 	    case PM_PALE_GRAY_UNICORN:
 	    case PM_BLACKISH_UNICORN:
@@ -9541,6 +9544,11 @@ boolean holdeneffect;
 	u.usymbiote.active = 1;
 	u.usymbiote.mnum = mtmp->mnum;
 	u.usymbiote.mhpmax = mtmp->mhpmax;
+	if ((u.usymbiote.mnum != PM_CRITICALLY_INJURED_THIEF) && (u.usymbiote.mnum != PM_CRITICALLY_INJURED_JEDI) && u.usymbiote.mhpmax < (mons[u.usymbiote.mnum].mlevel * 8)) {
+		u.usymbiote.mhpmax += mons[u.usymbiote.mnum].mlevel;
+		if (u.usymbiote.mhpmax > (mons[u.usymbiote.mnum].mlevel * 8)) u.usymbiote.mhpmax = (mons[u.usymbiote.mnum].mlevel * 8);
+	}
+
 	if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500; /* cap value */
 
 	/* symbiote HP start out lower (but can heal back up) if the monster wasn't wounded;
