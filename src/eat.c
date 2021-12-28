@@ -5940,7 +5940,7 @@ eatspecial() /* called after eating non-food */
 		IncreasedGravity += otmp->owt;
 	}
 
-	if (otmp->oclass == GEM_CLASS && otmp->otyp != ROCK) gain_alla(5); /* fuck why does the game not save the mohs hardness anywhere??? */
+	if (otmp->oclass == GEM_CLASS && otmp->otyp >= DILITHIUM_CRYSTAL && otmp->otyp <= JADE) gain_alla(5); /* fuck why does the game not save the mohs hardness anywhere??? */
 
 	if (otmp->otyp >= ELIF_S_JEWEL && otmp->otyp <= DORA_S_JEWEL) {
 		pline("The feminine curse spreads through your body...");
