@@ -460,11 +460,11 @@ mattackm(magr, mdef)
 	if (level_difficulty() > 5 && magrlev < 5 && !rn2(5)) magrlev++;
 	if (level_difficulty() > 10 && magrlev < 5 && !rn2(2)) magrlev++;
 	if (level_difficulty() > 10 && magrlev < 10 && !rn2(5)) magrlev++;
-	if (level_difficulty() > 20 && magrlev < 10 && !rn2(2)) magrlev++;
+	if (level_difficulty() > 20 && magrlev < 10 && !rn2(3)) magrlev++;
 	if (level_difficulty() > 20 && magrlev < 15 && !rn2(5)) magrlev++;
-	if (level_difficulty() > 40 && magrlev < 15 && !rn2(2)) magrlev++;
+	if (level_difficulty() > 40 && magrlev < 15 && !rn2(4)) magrlev++;
 	if (level_difficulty() > 30 && magrlev < 20 && !rn2(5)) magrlev++;
-	if (level_difficulty() > 60 && magrlev < 20 && !rn2(2)) magrlev++;
+	if (level_difficulty() > 60 && magrlev < 20 && !rn2(5)) magrlev++;
 
 	if (magr->egotype_hitter) tmp += 10;
 	if (magr->egotype_piercer) tmp += 25;
@@ -477,19 +477,19 @@ mattackm(magr, mdef)
 	if (magr->data == &mons[PM_FIRST_DUNVEGAN]) tmp += 100; /* this monster also almost always hits */
 	if (magr->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_]) tmp += rnd(100); /* the elder priest uses an aimbot and a wallhack */
 
-	if (magr->data->msound == MS_FART_LOUD && !magr->butthurt) tmp += 5;
-	if (magr->data->msound == MS_FART_NORMAL && !magr->butthurt) tmp += 10;
-	if (magr->data->msound == MS_FART_QUIET && !magr->butthurt) tmp += 15;
-	if (magr->data->msound == MS_WHORE && !magr->butthurt) tmp += rnd(20);
-	if (magr->data->msound == MS_SHOE) tmp += rnd(20);
-	if (magr->data->msound == MS_STENCH) tmp += rnd(20);
-	if (magr->data->msound == MS_CONVERT) tmp += rnd(10);
-	if (magr->data->msound == MS_HCALIEN) tmp += rnd(25);
-	if (magr->egotype_farter) tmp += 15;
-	if (magr->fartbonus) tmp += magr->fartbonus;
-	if (magr->crapbonus) tmp += magr->crapbonus;
+	if (magr->data->msound == MS_FART_LOUD && !magr->butthurt) tmp += rnd(5);
+	if (magr->data->msound == MS_FART_NORMAL && !magr->butthurt) tmp += rnd(7);
+	if (magr->data->msound == MS_FART_QUIET && !magr->butthurt) tmp += rnd(10);
+	if (magr->data->msound == MS_WHORE && !magr->butthurt) tmp += rnd(15);
+	if (magr->data->msound == MS_SHOE) tmp += rnd(10);
+	if (magr->data->msound == MS_STENCH) tmp += rnd(15);
+	if (magr->data->msound == MS_CONVERT) tmp += rnd(5);
+	if (magr->data->msound == MS_HCALIEN) tmp += rnd(10);
+	if (magr->egotype_farter) tmp += rnd(7);
+	if (magr->fartbonus) tmp += rnd(magr->fartbonus);
+	if (magr->crapbonus) tmp += rno(magr->crapbonus);
 	if (is_table(magr->mx, magr->my)) tmp += 3;
-	if (humanoid(magr->data) && is_female(magr->data) && attacktype(magr->data, AT_KICK) && FemtrapActiveMadeleine) tmp += 100;
+	if (humanoid(magr->data) && is_female(magr->data) && attacktype(magr->data, AT_KICK) && FemtrapActiveMadeleine) tmp += rnd(100);
 	if (humanoid(magr->data) && is_female(magr->data) && FemtrapActiveWendy) tmp += rnd(20);
 
 	if (!rn2(20)) tmp += 20; /* "natural 20" like in D&D --Amy */
