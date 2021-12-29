@@ -3346,7 +3346,7 @@ repairitemchoice:
 
 				mtmp->mcan = TRUE;
 
-				if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed)) ) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+				if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed)) ) { pline("You shudder for a moment."); (void) safe_teleds_normalterrain(FALSE); break;}
 				if (playerlevelportdisabled()) {
 					pline("For some reason you resist the banishment!");
 					break;

@@ -1455,7 +1455,7 @@ implantdone:
 
 				u.aggravation = 0;
 
-			    (void) safe_teleds(FALSE);
+			    (void) safe_teleds_normalterrain(FALSE);
 
 #ifdef LIVELOGFILE
 			    livelog_avert_death();
@@ -1543,7 +1543,7 @@ menunosedone:
 
 				u.aggravation = 0;
 
-			    (void) safe_teleds(FALSE);
+			    (void) safe_teleds_normalterrain(FALSE);
 
 #ifdef LIVELOGFILE
 			    livelog_avert_death();

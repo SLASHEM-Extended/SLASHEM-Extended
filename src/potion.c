@@ -2384,7 +2384,7 @@ badeffect()
 		case 183:
 		case 184:
 	      You_feel("yanked in a new direction!");
-		(void) safe_teleds(FALSE);
+		(void) safe_teleds_normalterrain(FALSE);
 
 		break;
 
@@ -3849,7 +3849,7 @@ reallybadeffect()
 
 		case 29:
 	      You_feel("yanked in a new direction!");
-		(void) safe_teleds(FALSE);
+		(void) safe_teleds_normalterrain(FALSE);
 
 		break;
 
@@ -5875,6 +5875,7 @@ cure_feminism_traps()
 
 }
 
+void
 cure_nasty_traps()
 {
 	RMBLoss = 0L;
@@ -12281,7 +12282,7 @@ boolean your_fault;
 
 			if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
 				pline("You shudder for a moment.");
-				(void) safe_teleds(FALSE);
+				(void) safe_teleds_normalterrain(FALSE);
 			} else if (playerlevelportdisabled()) { 
 				pline("Somehow, the hall exclusion doesn't do anything.");
 				break;

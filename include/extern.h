@@ -3052,6 +3052,7 @@ E int epathto(coord *,int,XCHAR_P,XCHAR_P,struct permonst *);
 E void xpathto(int,XCHAR_P,XCHAR_P,int (*)(void *,int,int),void *);
 E void teleds(int,int,BOOLEAN_P);
 E boolean safe_teleds(BOOLEAN_P);
+E boolean safe_teleds_normalterrain(BOOLEAN_P);
 E boolean safe_teledsPD(BOOLEAN_P);
 E boolean safe_teledsNOTRAP(BOOLEAN_P);
 E boolean teleport_pet(struct monst *,BOOLEAN_P);
@@ -3084,6 +3085,7 @@ E void pushplayer(BOOLEAN_P);
 E void pushplayersilently(BOOLEAN_P);
 E boolean pushmonster(struct monst *);
 E boolean teleok(int,int,BOOLEAN_P);
+E boolean teleok_normalterrain(int,int,BOOLEAN_P);
 
 /* ### tile.c ### */
 #ifdef USE_TILES

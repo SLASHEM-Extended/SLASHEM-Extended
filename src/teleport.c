@@ -506,6 +506,28 @@ boolean trapok;
 	return TRUE;
 }
 
+boolean
+teleok_normalterrain(x, y, trapok)
+register int x, y;
+boolean trapok;
+{
+	if (!trapok && t_at(x, y)) return FALSE;
+	if (!goodpos(x, y, &youmonst, 0)) return FALSE;
+
+	/* In Soviet Russia, water is considered safe as long as you can swim, because hehehe. --Amy */
+
+	if (is_waterypool(x, y)) return FALSE;
+	if (is_watertunnel(x,y)) return FALSE;
+	if (!ACCESSIBLE(levl[x][y].typ) ) return FALSE;
+
+	if (closed_door(x, y)) return FALSE;
+	if (is_raincloud(x,y)) return FALSE;
+
+	if (!tele_jump_ok(u.ux, u.uy, x, y)) return FALSE;
+	if (!in_out_region(x, y)) return FALSE;
+	return TRUE;
+}
+
 STATIC_OVL boolean
 teleokX(x, y, trapok)
 register int x, y;
@@ -672,6 +694,40 @@ boolean allow_drag;
 		teleds(nux, nuy, allow_drag);
 		return TRUE;
 	} else
+		return FALSE;
+}
+
+/* safer teleportation that always ignores stuff like phaseable walls, water and so on --Amy
+ * used for e.g. automatic relocation when entering forging chambers, where we really don't want players to end up
+ * outside of the actual playing field with sucky odds of getting back (e.g. sokoban level clones) */
+boolean
+safe_teleds_normalterrain(allow_drag)
+boolean allow_drag;
+{
+	register int nux, nuy, tcnt = 0;
+
+	do {
+		nux = rnd(COLNO-1);
+		nuy = rn2(ROWNO);
+	} while (!teleok_normalterrain(nux, nuy, (boolean)(tcnt > 200)) && ++tcnt <= 4000);
+
+	if (tcnt <= 4000) {
+		teleds(nux, nuy, allow_drag);
+		return TRUE;
+	} else /* still didn't find a place? grudgingly use the regular method then */
+		{
+			do {
+				nux = rnd(COLNO-1);
+				nuy = rn2(ROWNO);
+			} while (!teleok(nux, nuy, (boolean)(tcnt > 200)) && ++tcnt <= 400);
+
+			if (tcnt <= 400) {
+				teleds(nux, nuy, allow_drag);
+				return TRUE;
+			}
+
+		}
+
 		return FALSE;
 }
 

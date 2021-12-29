@@ -1759,7 +1759,7 @@ int spellnum;
 		break;
 	case 26:
 	      You_feel("yanked in a new direction!"); /* relocation */
-		(void) safe_teleds(FALSE);
+		(void) safe_teleds_normalterrain(FALSE);
 		dmg = 0;
 		break;
 	case 27:

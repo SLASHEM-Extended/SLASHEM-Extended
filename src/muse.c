@@ -5743,7 +5743,7 @@ register struct obj *otmp;
 	case WAN_BANISHMENT:
 		if (zap_oseen) makeknown(WAN_BANISHMENT);
 
-		if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE);  break; }
+		if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds_normalterrain(FALSE);  break; }
 
 		if (playerlevelportdisabled()) { 
 			pline("Somehow, the banishment beam doesn't do anything.");

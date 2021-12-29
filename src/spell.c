@@ -7123,7 +7123,7 @@ whisperchoice:
 		if (u.uenmax < 0) u.uenmax = 0;
 		if (u.uen > u.uenmax) u.uen = u.uenmax;
 
-	      (void) safe_teleds(FALSE);
+	      (void) safe_teleds_normalterrain(FALSE);
 
 		break;
 
@@ -10182,7 +10182,7 @@ rerollX:
 
 			u.aggravation = 0;
 
-			(void) safe_teleds(FALSE);
+			(void) safe_teleds_normalterrain(FALSE);
 
 			recursioneffect();
 

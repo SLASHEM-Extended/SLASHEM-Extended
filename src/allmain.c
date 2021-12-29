@@ -7235,7 +7235,7 @@ newbossX:
 
 		if (In_sewerplant(&u.uz) && !u.sewerplantcomplete && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) {
 			u.sewerplantcomplete = 1;
-		      (void) safe_teleds(FALSE);
+		      (void) safe_teleds_normalterrain(FALSE);
 			pline("Well done, you've reached the bottom of the Sewer Plant! The entrance to the Gamma Caves is now open.");
 			if (iszapem && !(u.zapemescape)) {
 				pline("The exit of this spaceship was opened and you can go back to the Dungeons of Doom now! However, you might want to finish the Gamma Caves and Mainframe first, because once you leave, the monster difficulty in the entire ZAPM branch will increase.");
@@ -7329,7 +7329,7 @@ newbossX:
 
 		if (In_gammacaves(&u.uz) && !u.gammacavescomplete && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) {
 			u.gammacavescomplete = 1;
-		      (void) safe_teleds(FALSE);
+		      (void) safe_teleds_normalterrain(FALSE);
 			pline("Well done, you've reached the bottom of the Gamma Caves! The entrance to the Mainframe is now open.");
 		}
 
@@ -7367,7 +7367,7 @@ newbossX:
 
 			(void) makemon(mkclass(urole.enemy2sym,0), u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 
-		      (void) safe_teleds(FALSE);
+		      (void) safe_teleds_normalterrain(FALSE);
 
 #ifdef RECORD_ACHIEVE
 
@@ -7403,7 +7403,7 @@ newbossX:
 		if (!u.amuletimbued1 && u.uhave.amulet && In_forging(&u.uz)) {
 			u.amuletimbued1 = 1;
 			qt_pager(QT_AMULETIMBUED1);
-		      (void) safe_teleds(FALSE);
+		      (void) safe_teleds_normalterrain(FALSE);
 
 			if (!achieve.killed_beholder) {
 				pline("Suddenly, you get the feeling that a sinister presence is watching you intently...");
@@ -7415,7 +7415,7 @@ newbossX:
 		if (!u.amuletimbued2 && u.uhave.amulet && In_ordered(&u.uz)) {
 			u.amuletimbued2 = 1;
 			qt_pager(QT_AMULETIMBUED2);
-		      (void) safe_teleds(FALSE);
+		      (void) safe_teleds_normalterrain(FALSE);
 
 			if (!achieve.killed_nightmare) {
 				pline("Suddenly, you get the feeling that a nightmarish creature is on the loose...");
@@ -7427,7 +7427,7 @@ newbossX:
 		if (!u.amuletimbued3 && u.uhave.amulet && In_deadground(&u.uz)) {
 			u.amuletimbued3 = 1;
 			qt_pager(QT_AMULETIMBUED3);
-		      (void) safe_teleds(FALSE);
+		      (void) safe_teleds_normalterrain(FALSE);
 
 			if (!achieve.killed_vecna) {
 				pline("Suddenly, you get the feeling that an eerie lord of the dead is living here...");
@@ -7555,7 +7555,7 @@ newbossX:
 		if (In_netherrealm(&u.uz) && !u.netherrealmcomplete && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) {
 			u.netherrealmcomplete = TRUE;
 			create_critters(rnd(25), (struct permonst *)0);
-		      (void) safe_teleds(FALSE);
+		      (void) safe_teleds_normalterrain(FALSE);
 			pline("You've reached the bottom of the Nether Realm. Tiksrvzllat has noticed this, and was spawned on the bottom of the Void. Defeat her and you'll get a very useful reward!");
 		}
 
@@ -7659,14 +7659,14 @@ newbossL:
 			(void) lcase (buf);
 			if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y"))) {
 				pline("Brrrr... it's deathly cold.");
-			      (void) safe_teleds(FALSE);
+			      (void) safe_teleds_normalterrain(FALSE);
 			}
 		}
 		if ((In_bellcaves(&u.uz) || In_deadground(&u.uz) || In_ordered(&u.uz) || In_forging(&u.uz) || (In_netherrealm(&u.uz) && !u.netherrealmcomplete && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz))) ) && !rn2(10000)) {
 
 			pline("Suddenly, a void jumpgate appears and transports you away!");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
-		      (void) safe_teleds(FALSE);
+		      (void) safe_teleds_normalterrain(FALSE);
 		}
 
 		/* and just in case you end up stuck somewhere else... this lets the player decline, because it's only meant
@@ -7681,7 +7681,7 @@ newbossL:
 			(void) lcase (buf);
 			if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y"))) {
 				pline("Brrrr... it's deathly cold.");
-			      (void) safe_teleds(FALSE);
+			      (void) safe_teleds_normalterrain(FALSE);
 			}
 		}
 
@@ -12602,7 +12602,7 @@ past3:
 
 		/* failsafes in case the player somehow manages to quickly snatch the amulet or something... */
 		if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
-			You("shudder for a moment."); (void) safe_teleds(FALSE); u.banishmentbeam = 0; break;
+			You("shudder for a moment."); (void) safe_teleds_normalterrain(FALSE); u.banishmentbeam = 0; break;
 		}
 
 		if (playerlevelportdisabled()) { 
@@ -15641,9 +15641,9 @@ boolean new_game;	/* false => restoring an old game */
 		 * spawns you inside the temple! This should not be, and therefore you're teleported out if it happens. */
 		if (*in_rooms(u.ux, u.uy, TEMPLE) || (u.ux > 74) ) {
 			pline("S'Wonderful!");
-			(void) safe_teleds(FALSE);
+			(void) safe_teleds_normalterrain(FALSE);
 			/* still in the temple? try again, but prevent infinite loops */
-			while (rn2(1000) && (*in_rooms(u.ux, u.uy, TEMPLE) || (u.ux > 74)) ) (void) safe_teleds(FALSE);
+			while (rn2(1000) && (*in_rooms(u.ux, u.uy, TEMPLE) || (u.ux > 74)) ) (void) safe_teleds_normalterrain(FALSE);
 		}
 
 	}

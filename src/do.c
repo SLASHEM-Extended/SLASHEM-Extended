@@ -2046,7 +2046,7 @@ boolean at_stairs, falling, portal;
 		pline("A dirty mysterious dirt force full of dirt momentarily surrounds you...");
 		u.cnd_mysteriousforcecount++;
 		if (on_level(newlevel, &u.uz)) {
-			(void) safe_teleds(FALSE);
+			(void) safe_teleds_normalterrain(FALSE);
 			(void) next_to_u();
 			return;
 		} else
@@ -4565,7 +4565,7 @@ rerollchaloc:
 	(void) pickup(1);
 
 	if (DisconnectedStairs || u.uprops[DISCONNECTED_STAIRS].extrinsic || (uleft && uleft->oartifact == ART_LIKE_A_REAL_SERVER) || (uright && uright->oartifact == ART_LIKE_A_REAL_SERVER) || have_disconnectstone()) {
-	      (void) safe_teleds(FALSE);
+	      (void) safe_teleds_normalterrain(FALSE);
 		pline("The entrance was disconnected!");
 	}
 

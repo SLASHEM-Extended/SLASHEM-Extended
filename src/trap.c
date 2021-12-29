@@ -8299,14 +8299,14 @@ newbossPENT:
 		seetrap(trap);
 		You_feel("yourself yanked in a direction you didn't know existed!");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
-	      (void) safe_teleds(FALSE);
+	      (void) safe_teleds_normalterrain(FALSE);
 		deltrap(trap);
 		break;
 
 	    case WARP_ZONE:
 		deltrap(trap);
 
-		if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+		if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds_normalterrain(FALSE); break;}
 
 		if (playerlevelportdisabled()) { 
 			pline("For some reason you resist the banishment!");
@@ -8321,7 +8321,7 @@ newbossPENT:
 	    case BACK_TO_START_TRAP:
 		deltrap(trap);
 
-		if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+		if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds_normalterrain(FALSE); break;}
 
 		if (playerlevelportdisabled()) { 
 			pline("For some reason you resist the banishment!");
@@ -19660,7 +19660,7 @@ drown()
 	done(DROWNING);
 	u.youaredead = 0;
 	/* oops, we're still alive.  better get out of the water. */
-	while (!safe_teleds(TRUE)) {
+	while (!safe_teleds_normalterrain(TRUE)) {
 		u.youaredead = 1;
 		pline("You're still drowning.");
 		done(DROWNING);
@@ -19787,7 +19787,7 @@ crystaldrown()
 	done(DROWNING);
 	u.youaredead = 0;
 	/* oops, we're still alive.  better get out of the water. */
-	while (!safe_teleds(TRUE)) {
+	while (!safe_teleds_normalterrain(TRUE)) {
 		u.youaredead = 1;
 		pline("You're still drowning.");
 		done(DROWNING);
@@ -21739,7 +21739,7 @@ lava_effects()
 	if (PlayerHearsSoundEffects) pline(issoviet ? "Do svidaniya! Vy, navernoye, sdelal oshibku khodit' vokrug vo vremya oglusheniya ili sputannost' soznaniya, i teper' vy zaplatili samuyu vysokuyu tsenu." : "Ohoho-ho-ho!");
 	done(BURNING);
 	u.youaredead = 0;
-	while (!safe_teleds(TRUE)) {
+	while (!safe_teleds_normalterrain(TRUE)) {
 		u.youaredead = 1;
 		pline("You're still burning.");
 		done(BURNING);
