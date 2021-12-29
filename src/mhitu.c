@@ -22605,6 +22605,7 @@ singclean(mtmp)
 register struct monst *mtmp;
 {
 	boolean extraannoying = !rn2(5);
+
 	pline("Sing announces that %s stepped into %s, and asks you to clean them.", mtmp->data->mname, extraannoying ? "cow dung" : "dog shit");
 	if (yn("Do you want to clean them?") == 'y') {
 			delay = (extraannoying ? -200 : -40);
@@ -22652,6 +22653,10 @@ register struct monst *mtmp;
 			mtmp->mpeaceful = TRUE;
 			pline("You start cleaning the shit from the profiled girl boots...");
 			return 0;
+		} else {
+			pline("%s is very sad that you don't want to clean her sexy Kati shoes...", mtmp->data->mname);
+			mtmp->mpeaceful = FALSE;
+			mtmp->mfrenzied = TRUE;
 		}
 	}
 	return 1;
