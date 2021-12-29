@@ -2307,6 +2307,7 @@ register int pm;
 		break;
 
 	    case PM_WRAITH:
+	    case PM_DARKHORN_WRAITH:
 	    case PM_KODAK:
 	    case PM_BITCHY_LITTLE_ONE:
 	    case PM_CORONA_WRAITH:
@@ -3407,6 +3408,21 @@ register int pm;
 		}
 		break;
 
+	    case PM_FIETENIETE:
+		(void) cancel_monst(&youmonst, (struct obj *)0, TRUE, FALSE, TRUE);
+		cure_feminism_traps();
+		Your("feminism trap effects have been cured!");
+
+		break;
+	    case PM_NASTYGIRL:
+		cure_nasty_traps(); /* no message on purpose */
+		u.badfcursed += rnz(20000);
+		u.badfdoomed += rnz(20000);
+		if (u.badfcursed < u.badfdoomed) u.badfcursed += rnz(20000);
+		if (u.badfcursed < u.badfdoomed) u.badfcursed = (u.badfdoomed * 2);
+		You("are on a trip on the road to nowhere...");
+
+		break;
 	    case PM_UMBER_MIND_FLAYER:
 	    case PM_GLOCKATRICE:
 	    case PM_BOSSATRICE:
@@ -3763,6 +3779,7 @@ register int pm;
 		case PM_TROUBLE_MINDFLAYER:
 		case PM_MASTER_BLUE_FLAYER:
 		case PM_MIND_FLAYER_TELEPATH:
+		case PM_INTELLIMIND_FLAYER:
 		case PM_TENTACLED_ONE:
 		case PM_TENTACLED_POTATO:
 		case PM_ELDER_TENTACLED_ONE:

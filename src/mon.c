@@ -517,6 +517,7 @@ register struct monst *mtmp;
 	    case PM_MATURE_UNICORN:
 	    case PM_SELF_FLAGELLATING_UNICORN:
 	    case PM_WIPED_UNICORN:
+	    case PM_GRAVY_UNICORN:
 	    case PM_GREAT_WHITE_UNICORN:
 	    case PM_GREAT_GRAY_UNICORN:
 	    case PM_GREAT_BLACK_UNICORN:
@@ -698,6 +699,10 @@ register struct monst *mtmp;
 	    case PM_BAD_EGG:
 	    case PM_PORTER_BAD_EGG:
 		(void) mksobj_at(EGG, x, y, TRUE, FALSE, FALSE);
+		newsym(x, y);
+		return (struct obj *)0;
+	    case PM_INTELLIMIND_FLAYER:
+		(void) mksobj_at(INTELLIGENCE_PACK, x, y, TRUE, FALSE, FALSE);
 		newsym(x, y);
 		return (struct obj *)0;
 	    case PM_VAMPIRE:

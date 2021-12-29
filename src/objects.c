@@ -7316,7 +7316,7 @@ SCROLL("blank paper",           "unlabeled",            P_NONE, 0, 2800, 100, CL
 		OBJ(name,desc), BITS(0,0,1,0,mgc,1,0,0,0,0,dir,sub,MT_PAPER), 0, \
 		SPBOOK_CLASS, prob, delay, \
 		0, 200, 0, 0, 0, level, 20, color, minlvl, 0 )
-/* Attack spells */
+/* Attack spells - force bolt is first */
 SPELL("force bolt",      "red",         P_ATTACK_SPELL, 1960, 2, 1, 1, IMMEDIATE, CLR_RED, 1),
 SPELL("mana bolt",    "irresistible",   P_ATTACK_SPELL, 500,  4, 2, 1, IMMEDIATE, CLR_BRIGHT_BLUE, 5),
 SPELL("drain life",      "velvet",      P_ATTACK_SPELL, 800,  4, 3, 1, IMMEDIATE, CLR_MAGENTA, 9),

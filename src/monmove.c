@@ -1342,6 +1342,12 @@ register struct monst *mtmp;
 		increasesanity(1);
 	}
 
+	if (mdat == &mons[PM_KRINSCH_SAEIER] && !rn2(10) && (distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) ) {
+		verbalize(rn2(2) ? "krinsch" : "is ja krinsch");
+	}
+	if (mdat == &mons[PM_LOSTESTER_TEENAGER] && !rn2(10) && (distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) ) {
+		verbalize(rn2(2) ? "lost" : "is ja lost");
+	}
 	if (mdat == &mons[PM_BUNDLE_MONSTER] && !rn2(10) && (distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) ) {
 		You_hear("'bundlebundlebundle!!'");
 	}
@@ -3361,6 +3367,7 @@ altarfound:
 	if (monsndx(ptr) == PM_DIDDLY_DINGUS_DUDE && !rn2(20)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_HUMDIGGLE_DISINTEGRATOR && !rn2(20)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_WATER_MATERIAL_BLONDE) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_DAFT_SHEEP) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_METH_HEAD) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_CONTRULLA) mtmp->mconf = 1;
@@ -3389,6 +3396,7 @@ altarfound:
 	if (monsndx(ptr) == PM_HIGHEST_PRIESTEST) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_HAMMER_DRIVE) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_PANCAKE_SPIRIT) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_WESTERHARE) mtmp->mflee = 1;
 	if (monsndx(ptr) == PM_DIDDLY_DINGUS_DUDE && !rn2(10)) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_PARROT_RIDING_A_GIANT_PENIS && !rn2(10)) mtmp->mconf = 1;
 	if (mtmp->mconf || (uarmh && !rn2(10) && itemhasappearance(uarmh, APP_INKCOAT_HELMET) ) || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || (u.uswallow && mtmp == u.ustuck))
@@ -3474,6 +3482,8 @@ altarfound:
 	if (monsterflees(ptr)) appr = -1;
 
 	if (ptr == &mons[PM_DECISION_WEAKSKI]) appr = (!rn2(3) ? -1 : rn2(2) ? 0 : 1);
+	if (ptr == &mons[PM_STOIAKMIDM]) appr = (!rn2(3) ? -1 : rn2(2) ? 0 : 1);
+	if (ptr == &mons[PM_SPACKMATICIAN]) appr = (!rn2(3) ? -1 : rn2(2) ? 0 : 1);
 	if (ptr == &mons[PM_HEADER_RA____AUTO]) appr = (!rn2(3) ? -1 : rn2(2) ? 0 : 1);
 	if (ptr == &mons[PM_IRMGARD]) appr = (!rn2(3) ? -1 : rn2(2) ? 0 : 1);
 

@@ -13819,6 +13819,18 @@ boolean ufound;
 		}
 	}
 
+	if (mtmp->data == &mons[PM_CURSE_LIGHT]) {
+		u.badfcursed += rnz(10000);
+		You("start a trip on the road to nowhere.");
+	}
+	if (mtmp->data == &mons[PM_DOOM_LIGHT]) {
+		u.badfcursed += rnz(20000);
+		u.badfdoomed += rnz(20000);
+		if (u.badfcursed < u.badfdoomed) u.badfcursed += rnz(20000);
+		if (u.badfcursed < u.badfdoomed) u.badfcursed = (u.badfdoomed * 2);
+		You("continue a trip on the road to nowhere...");
+	}
+
 	switch (atttypC) {
 	    case AD_CONF:
 		    if (mon_visible(mtmp) || (rnd(tmp /= 2) > u.ulevel)) {

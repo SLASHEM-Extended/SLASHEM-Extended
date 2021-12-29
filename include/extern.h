@@ -2455,6 +2455,9 @@ E void maybehackimplant(void);
 E boolean everythingfleecy(void);
 E void dropitemattack(void);
 
+E void cure_feminism_traps(void);
+E void cure_nasty_traps(void);
+
 E boolean sandprotection(void);
 E boolean shadowprotection(void);
 E boolean obsidianprotection(void);
