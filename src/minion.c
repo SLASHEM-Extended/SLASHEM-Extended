@@ -75,8 +75,17 @@ boolean ownloc; /* TRUE = summon wherever I am (REQUIRES A MONSTER TO EXIST!!!),
 	}
 
 	/* Mr. Conclusio can only be summoned if a sizable amount of demon princes have been summoned --Amy
+	 * same for Clark Supes and Patient Zero
 	 * the counter goes down over time so unless you're obviously farming, he should be impossible to spawn */
 	if (dtype == PM_MR__CONCLUSIO && u.conclusiocount < 10) {
+	    dtype = ndemon(atyp);
+	    if (dtype == NON_PM) return;
+	}
+	if (dtype == PM_CLARK_SUPES && u.conclusiocount < 10) {
+	    dtype = ndemon(atyp);
+	    if (dtype == NON_PM) return;
+	}
+	if (dtype == PM_PATIENT_ZERO && u.conclusiocount < 10) {
 	    dtype = ndemon(atyp);
 	    if (dtype == NON_PM) return;
 	}
@@ -391,8 +400,10 @@ aligntyp atyp;
 	for (tryct = 0; tryct < 20; tryct++) {
 	    pm = rn1(PM_DEMOGORGON + 1 - PM_ORCUS, PM_ORCUS);
 
-	    /* make sure Mr. Conclusio doesn't spawn early... --Amy */
+	    /* make sure Mr. Conclusio/Clark Supes/Patient Zero doesn't spawn early... --Amy */
 	    if (pm == PM_MR__CONCLUSIO && u.conclusiocount < 10) return(dlord(atyp));
+	    if (pm == PM_CLARK_SUPES && u.conclusiocount < 10) return(dlord(atyp));
+	    if (pm == PM_PATIENT_ZERO && u.conclusiocount < 10) return(dlord(atyp));
 
 	    if (!(mvitals[pm].mvflags & G_GONE) &&
 		    (atyp == A_NONE || sgn(mons[pm].maligntyp) == sgn(atyp)))

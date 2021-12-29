@@ -259,7 +259,7 @@ WEAPON("white flower sword", "flower-pommeled broadsword", /* +2 small, +1 large
 WEAPON("meatsword", (char *)0,
 	1, 0, 0, 100, 30, 10,  8,  10, 0, S,   P_BROAD_SWORD, MT_FLESH, CLR_RED, 5),
 
-/* Long swords */
+/* Long swords - regular one has to be first */
 WEAPON("long sword", (char *)0,
 	1, 0, 0, 680, 16, 15,  8, 12, 0, S,   P_LONG_SWORD, MT_IRON, HI_METAL, 5),
 WEAPON("heavy long sword", (char *)0,
@@ -293,6 +293,7 @@ WEAPON("suguhanoken", (char *)0,
 	1, 0, 0,  20, 16, 15, 8, 8, 0, S,   P_LONG_SWORD, MT_IRON, HI_METAL, 7),
 WEAPON("great houchou", (char *)0,
 	1, 0, 0,  20, 16, 15, 8, 10, 0, S,   P_LONG_SWORD, MT_IRON, HI_METAL, 10),
+/* great houchou has to be last, see makemon.c */
 
 /* Two-handed swords */
 WEAPON("two-handed sword", (char *)0,
@@ -1262,7 +1263,7 @@ ARMOR("ruffled shirt", (char *)0,
 ARMOR("victorian underwear", (char *)0,
 	1, 0, 0, 0,	200, 5,	 5,   2, 10, 3, ARM_SHIRT, MT_CLOTH, CLR_WHITE, 5, 0),
 
-/* Suits of armor */
+/* Suits of armor - plate mail has to be first */
 ARMOR("plate mail", (char *)0,
 	1, 0, 1, 0,	2419, 5, 200, 600,  0, 2, ARM_SUIT, MT_IRON, HI_METAL, 36, 0),
 ARMOR("old mail", (char *)0,
@@ -2573,7 +2574,7 @@ GLOVES("dummy gloves AI", "organo gloves",
 GLOVES("gauntlets of dexterity", "fencing gloves",
 		0, 1,  0,	800, 1, 4, 50,  9, 0, MT_LEATHER, HI_LEATHER, 10, APP_FENCING_GLOVES),
 
-/* Shields */
+/* Shields - small shield must be first */
 SHIELD("small shield", (char *)0,
 		1, 0, 0, 0,	     500, 0, 12,	3,  8, 0, MT_WOOD, HI_WOOD, 1, 0),
 SHIELD("shield of peace", (char *)0,
@@ -2730,6 +2731,7 @@ SHIELD("yellow dragon scale shield", "yellow dragonhide shield",
 		0, 1, 0, ACID_RES,  1, 0, 20, 1200, 7, 0, MT_DRAGON_HIDE, CLR_YELLOW, 30, 0),
 SHIELD("shield of reflection", "polished silver shield",
 		0, 1, 0, REFLECTING, 300, 0, 20, 50,  6, 0, MT_SILVER, HI_SILVER, 10, 0),
+/* shield of reflection must be last, see makemon.c */
 
 /* Boots */
 BOOTS("plasteel boots", "white boots", /* these things were crashing the game for binders and certain other chars! */

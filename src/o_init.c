@@ -2461,6 +2461,19 @@ find_hugging_boots()
 }
 
 int
+find_plateau_boots()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_PLATEAU_BOOTS)) return i;
+    }
+
+    impossible("plateau boots not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_fleecy_boots()
 {
     register int i;

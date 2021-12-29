@@ -5549,6 +5549,7 @@ static const char *epitaphs[] = {
 	"The annoying VF kept photographing and blinding me while the other monsters beat the crap out of me!",
 	"What on earth are you supposed to do if a permamimic corners you and you have no ranged weapons? I bumped into it 200 times and it still didn't die; instead, I did!",
 	"Well the monsters that keep mimicking things even when you attack them can just fuck off, the cunts. Doubly so because you can't melee them. Bullshit mechanic that should be abolished.",
+	"The main reason is that piles of useless things are useless, and a little bit of money is a little bit.",
 
 };
 

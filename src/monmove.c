@@ -241,7 +241,7 @@ boolean digest_meal;
 	}
 
 	/* super regene */
-	if (mon->data == &mons[PM_MESHERA_ALPHA_DEFORMED_ANGEL] || mon->data == &mons[PM_TESTER] || mon->data == &mons[PM_TEA_HUSSY] || mon->data == &mons[PM_OUROBOROS] || mon->data == &mons[PM_UNITDEAD_QUEEN] || mon->data == &mons[PM_UNITDEAD_KING] || mon->data == &mons[PM_REGULUS_THE_ALTERED] || mon->data == &mons[PM_ZANAN_ENHANCED_SOLDIER] || mon->data == &mons[PM_VANESSA_ENHANCED_SOLDIER] || mon->data == &mons[PM_SUPERREGENEBOROS] || mon->data == &mons[PM_JUERE_DEMON_SOLDIER] || mon->data == &mons[PM_JENNIFER_DEMON_SOLDIER] || mon->data == &mons[PM_ARIANE__LADY_OF_THE_ELEMENTS] || mon->data == &mons[PM_RENAI_OVER_MESHERA]) {
+	if (mon->data == &mons[PM_MESHERA_ALPHA_DEFORMED_ANGEL] || mon->data == &mons[PM_TESTER] || mon->data == &mons[PM_TEA_HUSSY] || mon->data == &mons[PM_OUROBOROS] || mon->data == &mons[PM_UNITDEAD_QUEEN] || mon->data == &mons[PM_UNITDEAD_KING] || mon->data == &mons[PM_REGULUS_THE_ALTERED] || mon->data == &mons[PM_ZANAN_ENHANCED_SOLDIER] || mon->data == &mons[PM_VANESSA_ENHANCED_SOLDIER] || mon->data == &mons[PM_SUPERREGENEBOROS] || mon->data == &mons[PM_JUERE_DEMON_SOLDIER] || mon->data == &mons[PM_JENNIFER_DEMON_SOLDIER] || mon->data == &mons[PM_ARIANE__LADY_OF_THE_ELEMENTS] || mon->data == &mons[PM_RENAI_OVER_MESHERA] || mon->data == &mons[PM_PATIENT_ZERO] || mon->data == &mons[PM_MISSU]) {
 		mon->mhp += 20;
 		if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
 	}
@@ -3350,6 +3350,8 @@ altarfound:
 	if (mtmp->singability && !rn2(10000)) mtmp->singability = FALSE;
 
 	if (monsndx(ptr) == PM_SLEEPING_GIANT && !rn2(10)) mtmp->msleeping = 1;
+	if (monsndx(ptr) == PM_MUEJDE && !rn2(10)) mtmp->msleeping = 1;
+	if (monsndx(ptr) == PM_SLEEP_BUNDLE_TIREDEL && !rn2(10)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_APATHETIC_ASSHOLE && !rn2(10)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_SARSLEEPER && !rn2(10)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_SLEEPY_GIRL && !rn2(10)) mtmp->msleeping = 1;

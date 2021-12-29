@@ -2008,6 +2008,7 @@ E int find_grey_shaded_gloves(void);
 E int find_weeb_cloak(void);
 E int find_persian_boots(void);
 E int find_hugging_boots(void);
+E int find_plateau_boots(void);
 E int find_fleecy_boots(void);
 E int find_fingerless_gloves(void);
 E int find_mantle_of_coat(void);
