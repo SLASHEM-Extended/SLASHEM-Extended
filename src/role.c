@@ -11353,6 +11353,15 @@ struct monst *mtmp;
 {
 	if (isevilvariant) return("Palim-Palim"); /* idea by bhaak */
 
+	if (issoviet || (youmonst.data->msound == MS_SOVIET)) {
+		if (mtmp && mtmp->data == &mons[PM_SHOPKEEPER]) return("O, kakoy slabak");
+		else return("Smekh novichok");
+	}
+	if (youmonst.data->msound == MS_JAPANESE) {
+		if (mtmp && mtmp->data == &mons[PM_SHOPKEEPER]) return("Irasshaimase");
+		else return("Konnichi wa");
+	}
+
 	switch (Role_switch) {
 	case PM_KNIGHT:
 	case PM_CHEVALIER:
@@ -11383,6 +11392,13 @@ const char *
 Goodbye()
 {
 	if (isevilvariant) return("Buh-Bye");
+
+	if (issoviet || (youmonst.data->msound == MS_SOVIET)) {
+		return("Proshchay, neudachnik");
+	}
+	if (youmonst.data->msound == MS_JAPANESE) {
+		return("Sayonara");
+	}
 
 	switch (Role_switch) {
 	case PM_KNIGHT:

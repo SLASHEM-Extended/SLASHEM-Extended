@@ -1000,6 +1000,8 @@ static const char *random_mesg[] = {
 	"Q: Why is spell retention a range? A: Because it's not, it's an exact value. Only weird variants would make the display inaccurate.",
 	"Asian people usually know karate, and all Germans eat sauerkraut with Bavarian veal sausage.",
 	"Usually deformation is not a bad thing, I see if my equipment does not burst. In addition, if the deformation is unfavorable, I have aconite grass that can be cured.",
+	"In the monster room in the lower right corner, one of the Asian girls fart attacked the petrified person, and was also slowed down.",
+	"The door here is not allowed to be destroyed by soldiers at first, so that soldiers will not enter through an oblique direction and maintain an attack surface.",
 
 };
 

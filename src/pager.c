@@ -27471,6 +27471,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Your feet feel hot. Someone must have turned on the floor heating.",
 	"You suddenly realized that it's boxing day today, and start looking for your boxing gloves because it's time to fight with somebody.",
 	"You know for a fact that Christmas Eve is celebrated on the 24th of December. Not 25th. Nope, the 'Heiligabend' (holy eve) is traditionally celebrated on the 24th and everyone who waits until 25th is doing it wrong :-P",
+	"The author often uses 'Tong Fake English'. Too many places are not correct in simple English. It is probably deliberate.",
+	"Presumably, you can find a door to enter after passing the moat behind Lydiaborg.",
 
 };
 

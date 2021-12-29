@@ -816,6 +816,7 @@ doread()
 	"I have a bottle of clear water, because using prayer to make evil water will reduce the camp value.",
 	"I'm a woman. Kindly refer to me by that term. If you ever call me 'person who menstruates', you're dead in my book because I don't do business with people who treat me like shit.",
 	"In addition, I have an ESP amulet (perceives monsters, but the effect is very poor, and only sells for 7 yuan), and an anti-petrification amulet (can be resurrected by death due to petrification).",
+	"I picked up almost 50,000 yuan in a money room in Ludiburg.",
 
 	    };
 	    char buf[BUFSZ];
