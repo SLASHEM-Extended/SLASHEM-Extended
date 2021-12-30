@@ -13073,7 +13073,9 @@ boolean new_game;	/* false => restoring an old game */
 #ifdef BIGSLEX
 	pline("Attention: You're playing BIGslex, where the dungeon levels are bigger than normal. Recommended terminal size is 125x45. Also, savebreaks will happen without warning in this version. If you have a far-progressed savegame that you want to finish, contact me on the IRC. If your savegame seems to be gone, contact me on the IRC too. Have fun!");
 #endif /* BIGSLEX */
-	if (new_game) pline("Message of the day: For the time being, SLEX is still available on this public server. The developer reserves the right to retire development at any point, though. --Amy");
+
+	/* MOTD for public server */
+	if (new_game) pline("Message of the day: This is version 2.75, I'm aware that version updates are happening quite often lately, but if your old savegame seems to be gone, please go back to the main menu and choose 'SLASH'EM Extended - Old Version'. Your save might still be there. If not, send me a message --Amy");
 #endif /* PHANTOM_CRASH_BUG */
 
 #endif /* PUBLIC_SERVER */
