@@ -5786,7 +5786,7 @@ secremchoice:
 
 	} else { /* "uber rare" effects - extremely powerful stuff goes here */
 
-		switch (rnd(5)) {
+		switch (rnd(7)) {
 
 			case 1: /* 1-UP */
 				u.extralives++;
@@ -5816,6 +5816,13 @@ secremchoice:
 					verbalize("You'll find a great item on the ground.");
 				}
 				}
+				break;
+			case 6: /* cure feminism trap effects */
+				cure_feminism_traps();
+				Your("feminism trap effects have been cured!");
+				break;
+			case 7: /* cure nasty trap effects */
+				cure_nasty_traps(); /* no message on purpose */
 				break;
 
 		}

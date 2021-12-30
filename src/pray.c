@@ -1956,6 +1956,8 @@ dosacrifice()
     struct monst *orac = NULL;
     boolean cangetdirge = FALSE;
 
+    boolean cangetgoodeffect = TRUE;
+
     /* KMH -- offerings to Oracle */
     /* Amy edit: you stupid head, why did you make this take precedence over standing on an altar */
     if (Is_oracle_level(&u.uz) && !on_altar() && !u.uswallow) {
@@ -2602,6 +2604,8 @@ dosacrifice()
 	/* OK, you get brownie points. */
 	if(u.ugangr) {
 
+		cangetgoodeffect = FALSE;
+
 		/* In the Evil Variant, gods are much harder to mollify if they're very angry. There's no upper limit,
 		 * meaning that extremely angry gods might require sacrifices whose levels are higher than the
 		 * maximum possible monster level, making them impossible to mollify. Yes, this is intentional --Amy */
@@ -2631,11 +2635,13 @@ dosacrifice()
 		else You("have a feeling of inadequacy.");
 	    }
 	} else if(ugod_is_angry()) {
+		cangetgoodeffect = FALSE;
 	    if(value > MAXVALUE) value = MAXVALUE;
 	    if(value > -u.ualign.record) value = -u.ualign.record;
 	    adjalign(value);
 	    You_feel("partially absolved.");
 	} else if (u.ublesscnt > 0) {
+		cangetgoodeffect = FALSE;
 	    u.ublesscnt -=
 		((value * (u.ualign.type == A_CHAOTIC ? 500 : 300)) / MAXVALUE);
 	    if(u.ublesscnt < 0) u.ublesscnt = 0;
@@ -2743,12 +2749,6 @@ dosacrifice()
 		    return(1);
 	    }
 
-		/* the effects from offering corpses are too useless! let's make some other useful stuff that can happen --Amy */
-	    if (!rn2(u.goodoffercount)) {
-		u.goodoffercount++;
-		goodeffect();
-	    }
-
 	    if (!rn2(3)) { change_luck((value * LUCKMAX) / (MAXVALUE * 2));
 	    if ((int)u.uluck < 0) /*u.uluck = 0;*/change_luck(1);
 	    if (u.uluck != saved_luck) {
@@ -2761,6 +2761,19 @@ dosacrifice()
 			}
 	    }
 	}
+
+	/* the effects from offering corpses are too useless! let's make some other useful stuff that can happen --Amy
+	 * if we get here, we've established that the player gets "brownie points", i.e. it was a sacrifice directed
+	 * to the player's own deity, and if that deity was angry or alignment too low or w/e, then "cangetgoodeffect"
+	 * will now be FALSE; give the good effects only if the player was in good standing with the deity */
+	if (cangetgoodeffect) {
+	    if (!rn2(u.goodoffercount)) {
+		u.goodoffercount++;
+		goodeffect();
+	    }
+
+	}
+
     }
     return(1);
 }
