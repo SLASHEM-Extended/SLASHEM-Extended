@@ -1183,6 +1183,13 @@ newsym(x,y)
 		(Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) ||
 		(Sickopathy && Sick && extra_nasty(mon->data) ) ||
 		(Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE ) ||
+		(StrongStunnopathy && Stunned && dmgtype(mon->data, AD_STUN)) ||
+		(StrongNumbopathy && Numbed && (dmgtype(mon->data, AD_NUMB) || dmgtype(mon->data, AD_PLYS) ) ) ||
+		(StrongDimmopathy && Dimmed && (dmgtype(mon->data, AD_DIMN) || mon->data->msound == MS_CUSS ) ) ||
+		(StrongFreezopathy && Frozen && (dmgtype(mon->data, AD_FRZE) || dmgtype(mon->data, AD_ICEB) ) ) ||
+		(StrongCorrosivity && Slimed && acidic(mon->data) ) ||
+		(StrongBurnopathy && Burned && (dmgtype(mon->data, AD_BURN) || dmgtype(mon->data, AD_FLAM) ) ) ||
+		(StrongSickopathy && Sick && (dmgtype(mon->data, AD_DISE) || dmgtype(mon->data, AD_PEST) ) ) ||
 		(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) ||
 		(Burnopathy && Burned && infravision(mon->data) ) ||
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel) ||
@@ -1282,6 +1289,13 @@ newsym(x,y)
 		(Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) ||
 		(Sickopathy && Sick && extra_nasty(mon->data) ) ||
 		(Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE ) ||
+		(StrongStunnopathy && Stunned && dmgtype(mon->data, AD_STUN)) ||
+		(StrongNumbopathy && Numbed && (dmgtype(mon->data, AD_NUMB) || dmgtype(mon->data, AD_PLYS) ) ) ||
+		(StrongDimmopathy && Dimmed && (dmgtype(mon->data, AD_DIMN) || mon->data->msound == MS_CUSS ) ) ||
+		(StrongFreezopathy && Frozen && (dmgtype(mon->data, AD_FRZE) || dmgtype(mon->data, AD_ICEB) ) ) ||
+		(StrongCorrosivity && Slimed && acidic(mon->data) ) ||
+		(StrongBurnopathy && Burned && (dmgtype(mon->data, AD_BURN) || dmgtype(mon->data, AD_FLAM) ) ) ||
+		(StrongSickopathy && Sick && (dmgtype(mon->data, AD_DISE) || dmgtype(mon->data, AD_PEST) ) ) ||
 		(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) ||
 		(Burnopathy && Burned && infravision(mon->data) ) ||
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel) ||
@@ -1537,6 +1551,13 @@ newsymX(x,y)
 		(Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) ||
 		(Sickopathy && Sick && extra_nasty(mon->data) ) ||
 		(Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE ) ||
+		(StrongStunnopathy && Stunned && dmgtype(mon->data, AD_STUN)) ||
+		(StrongNumbopathy && Numbed && (dmgtype(mon->data, AD_NUMB) || dmgtype(mon->data, AD_PLYS) ) ) ||
+		(StrongDimmopathy && Dimmed && (dmgtype(mon->data, AD_DIMN) || mon->data->msound == MS_CUSS ) ) ||
+		(StrongFreezopathy && Frozen && (dmgtype(mon->data, AD_FRZE) || dmgtype(mon->data, AD_ICEB) ) ) ||
+		(StrongCorrosivity && Slimed && acidic(mon->data) ) ||
+		(StrongBurnopathy && Burned && (dmgtype(mon->data, AD_BURN) || dmgtype(mon->data, AD_FLAM) ) ) ||
+		(StrongSickopathy && Sick && (dmgtype(mon->data, AD_DISE) || dmgtype(mon->data, AD_PEST) ) ) ||
 		(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) ||
 		(Burnopathy && Burned && infravision(mon->data) ) ||
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel) ||
@@ -1636,6 +1657,13 @@ newsymX(x,y)
 		(Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) ||
 		(Sickopathy && Sick && extra_nasty(mon->data) ) ||
 		(Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE ) ||
+		(StrongStunnopathy && Stunned && dmgtype(mon->data, AD_STUN)) ||
+		(StrongNumbopathy && Numbed && (dmgtype(mon->data, AD_NUMB) || dmgtype(mon->data, AD_PLYS) ) ) ||
+		(StrongDimmopathy && Dimmed && (dmgtype(mon->data, AD_DIMN) || mon->data->msound == MS_CUSS ) ) ||
+		(StrongFreezopathy && Frozen && (dmgtype(mon->data, AD_FRZE) || dmgtype(mon->data, AD_ICEB) ) ) ||
+		(StrongCorrosivity && Slimed && acidic(mon->data) ) ||
+		(StrongBurnopathy && Burned && (dmgtype(mon->data, AD_BURN) || dmgtype(mon->data, AD_FLAM) ) ) ||
+		(StrongSickopathy && Sick && (dmgtype(mon->data, AD_DISE) || dmgtype(mon->data, AD_PEST) ) ) ||
 		(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) ||
 		(Burnopathy && Burned && infravision(mon->data) ) ||
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel) ||
@@ -3542,6 +3570,13 @@ struct monst *mon;
 	if (Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) return TRUE;
 	if (Sickopathy && Sick && extra_nasty(mon->data) ) return TRUE;
 	if (Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE ) return TRUE;
+	if (StrongStunnopathy && Stunned && dmgtype(mon->data, AD_STUN)) return TRUE;
+	if (StrongNumbopathy && Numbed && (dmgtype(mon->data, AD_NUMB) || dmgtype(mon->data, AD_PLYS) ) ) return TRUE;
+	if (StrongDimmopathy && Dimmed && (dmgtype(mon->data, AD_DIMN) || mon->data->msound == MS_CUSS ) ) return TRUE;
+	if (StrongFreezopathy && Frozen && (dmgtype(mon->data, AD_FRZE) || dmgtype(mon->data, AD_ICEB) ) ) return TRUE;
+	if (StrongCorrosivity && Slimed && acidic(mon->data) ) return TRUE;
+	if (StrongBurnopathy && Burned && (dmgtype(mon->data, AD_BURN) || dmgtype(mon->data, AD_FLAM) ) ) return TRUE;
+	if (StrongSickopathy && Sick && (dmgtype(mon->data, AD_DISE) || dmgtype(mon->data, AD_PEST) ) ) return TRUE;
 	if (ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || mon->data->msound == MS_STENCH) ) return TRUE;
 	if (uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mon->data->msound == MS_SHOE) return TRUE;
 	if (EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || mon->data->msound == MS_SOUND || mon->data->msound == MS_SHRIEK || mon->data->msound == MS_FART_NORMAL || mon->data->msound == MS_FART_LOUD || mon->data->msound == MS_FART_QUIET ) ) return TRUE;

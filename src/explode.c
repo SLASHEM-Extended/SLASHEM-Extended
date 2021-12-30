@@ -679,6 +679,9 @@ boolean yours; /* is it your fault (for killing monsters) */
 		if (Invulnerable || (Stoned_chiller && Stoned)) {
 		    damu = 0;
 		    You("are unharmed!");
+		} else if (StrongWonderlegs && !rn2(10) && Wounded_legs) {
+		    damu = 0;
+		    You("are unharmed!");
 		} else if (u.metalguard) {
 		    u.metalguard = 0;
 		    damu = 0;

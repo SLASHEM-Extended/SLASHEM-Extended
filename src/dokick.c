@@ -329,6 +329,7 @@ register boolean clumsy;
 	else dmg += u.udaminc;	/* add ring(s) of increase damage */
 
 	dmg += (Drunken_boxing && Confusion);
+	dmg += (StrongDrunken_boxing && Confusion);
 	if (RngeBloodlust) dmg += 1;
 	if (uarms && uarms->oartifact == ART_TEH_BASH_R) dmg += 2;
 

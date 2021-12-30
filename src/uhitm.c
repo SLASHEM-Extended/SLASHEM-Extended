@@ -788,6 +788,8 @@ register struct monst *mtmp;
 	if (uarmg && itemhasappearance(uarmg, APP_UNCANNY_GLOVES)) tmp += 1;
 	if (uarmg && itemhasappearance(uarmg, APP_SLAYING_GLOVES)) tmp += 1;
 
+	if (!uwep && StrongGlib_combat && Glib) tmp += 5;
+
 	if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
 	if (uwep && uwep->oartifact == ART_WILD_HEAVY_SWINGS) tmp -= 10;
 	if (uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON) tmp += 1;
@@ -1349,6 +1351,7 @@ martial_dmg()
 	if (Glib_combat && IsGlib) {
 
 		damage += rnd(GushLevel);
+		if (StrongGlib_combat) damage += 5;
 
 	}
 
@@ -2998,6 +3001,8 @@ int dieroll;
 		if (ublindf && ublindf->oartifact == ART_EYEHANDER) tmp += 5;
 		if (uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) tmp += 3;
 		tmp += (Drunken_boxing && Confusion);
+		tmp += (StrongDrunken_boxing && Confusion);
+		if (StrongFear_factor && Feared) tmp += rnd(5);
 		if (RngeBloodlust) tmp += 1;
 		if (uarms && uarms->oartifact == ART_TEH_BASH_R) tmp += 2;
 		if (uarmc && uarmc->oartifact == ART_DUFFDUFFDUFF) tmp += 3;

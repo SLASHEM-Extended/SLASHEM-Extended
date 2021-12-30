@@ -7049,7 +7049,7 @@ boolean ordinary;
 			  : "You seem no deader than before.");
 			break;
 		    }
-		    if (Invulnerable || (Stoned_chiller && Stoned)) {
+		    if (Invulnerable || (StrongWonderlegs && !rn2(10) && Wounded_legs) || (Stoned_chiller && Stoned)) {
 			pline("You are unharmed!");
 			break;
 		    }
@@ -8955,7 +8955,7 @@ xchar sx, sy;
 		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		pline("You resist the attack, but it hurts!");
 		break;
-	    } else if (Invulnerable || (Stoned_chiller && Stoned)) {
+	    } else if (Invulnerable || (StrongWonderlegs && !rn2(10) && Wounded_legs) || (Stoned_chiller && Stoned)) {
 		dam = 0;
 		pline("You are unharmed!");
 		break;

@@ -6566,19 +6566,19 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && (Blind_telepat || Unblind_telepat) && StrongTelepat) you_are("very telepathic");
 	if ((guaranteed || !rn2(10)) && Map_amnesia) enl_msg(You_, "have", "had", " map amnesia");
 
-	if ((guaranteed || !rn2(10)) && Hallu_party) you_are("hallu partying");
-	if ((guaranteed || !rn2(10)) && Drunken_boxing) you_are("a drunken boxer");
-	if ((guaranteed || !rn2(10)) && Stunnopathy) you_are("stunnopathic");
-	if ((guaranteed || !rn2(10)) && Numbopathy) you_are("numbopathic");
-	if ((guaranteed || !rn2(10)) && Dimmopathy) you_are("dimmopathic");
-	if ((guaranteed || !rn2(10)) && Freezopathy) you_are("freezopathic");
-	if ((guaranteed || !rn2(10)) && Stoned_chiller) you_are("a stoned chiller");
-	if ((guaranteed || !rn2(10)) && Corrosivity) you_are("extremely corrosive");
-	if ((guaranteed || !rn2(10)) && Fear_factor) you_have("an increased fear factor");
-	if ((guaranteed || !rn2(10)) && Burnopathy) you_are("burnopathic");
-	if ((guaranteed || !rn2(10)) && Sickopathy) you_are("sickopathic");
-	if ((guaranteed || !rn2(10)) && Wonderlegs) you_have("wonderlegs");
-	if ((guaranteed || !rn2(10)) && Glib_combat) you_are("a glibbery fighter");
+	if ((guaranteed || !rn2(10)) && Hallu_party) you_are(StrongHallu_party ? "totally hallu partying" : "hallu partying");
+	if ((guaranteed || !rn2(10)) && Drunken_boxing) you_are(StrongDrunken_boxing ? "a very drunken boxer" : "a drunken boxer");
+	if ((guaranteed || !rn2(10)) && Stunnopathy) you_are(StrongStunnopathy ? "very stunnopathic" : "stunnopathic");
+	if ((guaranteed || !rn2(10)) && Numbopathy) you_are(StrongNumbopathy ? "very numbopathic" : "numbopathic");
+	if ((guaranteed || !rn2(10)) && Dimmopathy) you_are(StrongDimmopathy ? "very dimmopathic" : "dimmopathic");
+	if ((guaranteed || !rn2(10)) && Freezopathy) you_are(StrongFreezopathy ? "very freezopathic" : "freezopathic");
+	if ((guaranteed || !rn2(10)) && Stoned_chiller) you_are(StrongStoned_chiller ? "a totally stoned chiller" : "a stoned chiller");
+	if ((guaranteed || !rn2(10)) && Corrosivity) you_are(StrongCorrosivity ? "incredibly corrosive" : "extremely corrosive");
+	if ((guaranteed || !rn2(10)) && Fear_factor) you_have(StrongFear_factor ? "a highly increased fear factor" : "an increased fear factor");
+	if ((guaranteed || !rn2(10)) && Burnopathy) you_are(StrongBurnopathy ? "very burnopathic" : "burnopathic");
+	if ((guaranteed || !rn2(10)) && Sickopathy) you_are(StrongSickopathy ? "very sickopathic" : "sickopathic");
+	if ((guaranteed || !rn2(10)) && Wonderlegs) you_have(StrongWonderlegs ? "protected wonderlegs" : "wonderlegs");
+	if ((guaranteed || !rn2(10)) && Glib_combat) you_are(StrongGlib_combat ? "a flictionless glibbery fighter" : "a glibbery fighter");
 
 	if ((guaranteed || !rn2(10)) && Warning) you_are(StrongWarning ? "definitely warned" : "warned");
 	if ((guaranteed || !rn2(10)) && (Warn_of_mon && flags.warntype)) {
@@ -10641,19 +10641,19 @@ int final;
 	if ((Blind_telepat || Unblind_telepat) && !StrongTelepat) dump(youwere, "telepathic");
 	if ((Blind_telepat || Unblind_telepat) && StrongTelepat) dump(youwere, "very telepathic");
 
-	if (Hallu_party) dump(youwere, "hallu partying");
-	if (Drunken_boxing) dump(youwere, "a drunken boxer");
-	if (Stunnopathy) dump(youwere, "stunnopathic");
-	if (Numbopathy) dump(youwere, "numbopathic");
-	if (Dimmopathy) dump(youwere, "dimmopathic");
-	if (Freezopathy) dump(youwere, "freezopathic");
-	if (Stoned_chiller) dump(youwere, "a stoned chiller");
-	if (Corrosivity) dump(youwere, "extremely corrosive");
-	if (Fear_factor) dump(youhad, "an increased fear factor");
-	if (Burnopathy) dump(youwere, "burnopathic");
-	if (Sickopathy) dump(youwere, "sickopathic");
-	if (Wonderlegs) dump(youhad, "wonderlegs");
-	if (Glib_combat) dump(youwere, "a glibbery fighter");
+	if (Hallu_party) dump(youwere, StrongHallu_party ? "totally hallu partying" : "hallu partying");
+	if (Drunken_boxing) dump(youwere, StrongDrunken_boxing ? "a very drunken boxer" : "a drunken boxer");
+	if (Stunnopathy) dump(youwere, StrongStunnopathy ? "very stunnopathic" : "stunnopathic");
+	if (Numbopathy) dump(youwere, StrongNumbopathy ? "very numbopathic" : "numbopathic");
+	if (Dimmopathy) dump(youwere, StrongDimmopathy ? "very dimmopathic" : "dimmopathic");
+	if (Freezopathy) dump(youwere, StrongFreezopathy ? "very freezopathic" : "freezopathic");
+	if (Stoned_chiller) dump(youwere, StrongStoned_chiller ? "a totally stoned chiller" : "a stoned chiller");
+	if (Corrosivity) dump(youwere, StrongCorrosivity ? "incredibly corrosive" : "extremely corrosive");
+	if (Fear_factor) dump(youhad, StrongFear_factor ? "a highly increased fear factor" : "an increased fear factor");
+	if (Burnopathy) dump(youwere, StrongBurnopathy ? "very burnopathic" : "burnopathic");
+	if (Sickopathy) dump(youwere, StrongSickopathy ? "very sickopathic" : "sickopathic");
+	if (Wonderlegs) dump(youhad, StrongWonderlegs ? "protected wonderlegs" : "wonderlegs");
+	if (Glib_combat) dump(youwere, StrongGlib_combat ? "a flictionless glibbery fighter" : "a glibbery fighter");
 
 	if (Warning) dump(youwere, StrongWarning ? "definitely warned" : "warned");
 	if (Warn_of_mon && flags.warntype) {

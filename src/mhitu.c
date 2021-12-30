@@ -20320,7 +20320,7 @@ register int n;
 
 	if (isfriday && !rn2(50)) n += rnd(n);
 
-	if (Invulnerable || (Stoned_chiller && Stoned)) n=0;
+	if (Invulnerable || (StrongWonderlegs && !rn2(10) && Wounded_legs) || (Stoned_chiller && Stoned)) n=0;
 
 	if (u.metalguard) {
 		u.metalguard = 0;
@@ -21797,9 +21797,11 @@ register struct attack *mattk;
 	boolean powerbiote = FALSE;
 
 	if (Slimed && Corrosivity && !resists_acid(mtmp)) {
+		int corrosivdamage = rnd(u.ulevel);
+		if (StrongCorrosivity) corrosivdamage = rnd(u.ulevel * 2);
 
 		pline("%s is covered with a corrosive substance!", Monnam(mtmp));
-		if((mtmp->mhp -= rnd(u.ulevel) ) <= 0) {
+		if((mtmp->mhp -= corrosivdamage) <= 0) {
 			pline("%s dies!", Monnam(mtmp));
 			xkilled(mtmp,0);
 			if (mtmp->mhp > 0) return 1;

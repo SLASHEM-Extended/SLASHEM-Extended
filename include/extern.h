@@ -2389,6 +2389,7 @@ E void ugolemeffects(int,int);
 E int polyatwill(void);
 E boolean polyskillchance(void);
 E boolean powerfulimplants(void);
+E boolean powerfulsymbiosis(void);
 
 /* ### potion.c ### */
 

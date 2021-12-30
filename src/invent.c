@@ -9271,7 +9271,7 @@ struct obj *obj;
 boolean knoweverything;
 {
 
-	if (Hallucination && !knoweverything) {
+	if (Hallucination && !StrongHallu_party && !knoweverything) {
 
 	pline("%s - This item radiates in an array of beautiful colors. It's very mesmerizing.",xname(obj) );
 

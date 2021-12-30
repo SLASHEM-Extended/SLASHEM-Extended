@@ -1353,6 +1353,7 @@ boolean hitsroof;
 	if (dmg > 0 && uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) dmg += 3;
 	if (dmg > 0 && ublindf && ublindf->oartifact == ART_EYEHANDER) dmg += 5;
 	if (dmg > 0) dmg += (Drunken_boxing && Confusion);
+	if (dmg > 0) dmg += (StrongDrunken_boxing && Confusion);
 	if (RngeBloodlust && dmg > 0) dmg++;
 	if (dmg > 0 && uarms && uarms->oartifact == ART_TEH_BASH_R) dmg += 2;
 	if (dmg > 0 && uarmc && uarmc->oartifact == ART_DUFFDUFFDUFF) dmg += 3;

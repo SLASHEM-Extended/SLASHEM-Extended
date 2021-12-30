@@ -4892,7 +4892,10 @@ int k_format; /* WAC k_format is an int */
 		/* NOTE: DO NOT RETURN - losehp is also called to check for death 
 		 * via u.uhp < 1
 		 */
-	}        
+	} else if (StrongWonderlegs && !rn2(10) && Wounded_legs) {
+		n = 0;
+		pline("You are unharmed!");
+	}
 	else if (u.metalguard) {
 		    u.metalguard = 0;
 		    n = 0;

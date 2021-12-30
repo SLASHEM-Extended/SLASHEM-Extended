@@ -7150,7 +7150,7 @@ register struct obj *obj;
 #endif
 	register char *buf = &(bufr[PREFIX]);   /* leave room for "17 -3 " */
 
-	if (Hallucination && !program_state.gameover) {
+	if (Hallucination && !StrongHallu_party && !program_state.gameover) {
 		hobj = mkobj(obj->oclass, 2, FALSE);
 		if (hobj) {
 			hobj->quan = obj->quan;

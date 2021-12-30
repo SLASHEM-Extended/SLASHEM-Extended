@@ -3507,6 +3507,21 @@ powerfulimplants()
 	return FALSE;
 }
 
+/* are you eligible for getting your symbiote's resistances? depends on your symbiosis skill level --Amy
+ * this function ensures that your symbiote exists, otherwise it returns FALSE */
+boolean
+powerfulsymbiosis()
+{
+	if (!uactivesymbiosis) return FALSE;
+
+	if (!PlayerCannotUseSkills) {
+		if (P_SKILL(P_SYMBIOSIS) >= P_MASTER) return TRUE;
+		if (Role_if(PM_SYMBIANT) && (P_SKILL(P_SYMBIOSIS) >= P_EXPERT)) return TRUE;
+	}
+
+	return FALSE;
+}
+
 static void
 merge_with_armor()
 {

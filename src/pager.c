@@ -277,7 +277,7 @@ lookat(x, y, buf, monbuf)
 	mtmp = m_at(x,y);
 	if (mtmp != (struct monst *) 0) {
 	    char *name, monnambuf[BUFSZ];
-	    boolean accurate = !Hallucination;
+	    boolean accurate = (!Hallucination || StrongHallu_party);
 
 		if (FarlookProblem || (uarms && uarms->oartifact == ART_REAL_PSYCHOS_WEAR_PURPLE) || (uwep && uwep->oartifact == ART_DRAMA_STAFF) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DRAMA_STAFF) || (uarms && uarms->oartifact == ART_REAL_MEN_WEAR_PSYCHOS) || u.uprops[FARLOOK_BUG].extrinsic || have_farlookstone() || (uarmc && uarmc->oartifact == ART_LIGHT_OF_DECEPTION)) wakeup(mtmp);
 
@@ -508,6 +508,20 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (Freezopathy && Frozen && mtmp->data->mcolor == CLR_WHITE )
 		    ways_seen++;
+		if (StrongStunnopathy && Stunned && dmgtype(mtmp->data, AD_STUN))
+		    ways_seen++;
+		if (StrongNumbopathy && Numbed && (dmgtype(mtmp->data, AD_NUMB) || dmgtype(mtmp->data, AD_PLYS) ) )
+		    ways_seen++;
+		if (StrongDimmopathy && Dimmed && (dmgtype(mtmp->data, AD_DIMN) || mtmp->data->msound == MS_CUSS ) )
+		    ways_seen++;
+		if (StrongFreezopathy && Frozen && (dmgtype(mtmp->data, AD_FRZE) || dmgtype(mtmp->data, AD_ICEB) ) )
+		    ways_seen++;
+		if (StrongCorrosivity && Slimed && acidic(mtmp->data) )
+		    ways_seen++;
+		if (StrongBurnopathy && Burned && (dmgtype(mtmp->data, AD_BURN) || dmgtype(mtmp->data, AD_FLAM) ) )
+		    ways_seen++;
+		if (StrongSickopathy && Sick && (dmgtype(mtmp->data, AD_DISE) || dmgtype(mtmp->data, AD_PEST) ) )
+		    ways_seen++;
 		if (ScentView && distu(mtmp->mx, mtmp->my) < 101 && mtmp->scentvisible && (is_animal(mtmp->data) || mtmp->data->msound == MS_STENCH) )
 		    ways_seen++;
 		if (uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mtmp->data->msound == MS_SHOE)
@@ -685,6 +699,34 @@ lookat(x, y, buf, monbuf)
 		    }
 		    if (Freezopathy && Frozen && mtmp->data->mcolor == CLR_WHITE ) {
 			strcat(monbuf, "freezopathy");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (StrongStunnopathy && Stunned && dmgtype(mtmp->data, AD_STUN)) {
+			strcat(monbuf, "strong stunnopathy");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (StrongNumbopathy && Numbed && (dmgtype(mtmp->data, AD_NUMB) || dmgtype(mtmp->data, AD_PLYS) ) ) {
+			strcat(monbuf, "strong numbopathy");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (StrongDimmopathy && Dimmed && (dmgtype(mtmp->data, AD_DIMN) || mtmp->data->msound == MS_CUSS ) ) {
+			strcat(monbuf, "strong dimmopathy");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (StrongFreezopathy && Frozen && (dmgtype(mtmp->data, AD_FRZE) || dmgtype(mtmp->data, AD_ICEB) ) ) {
+			strcat(monbuf, "strong freezopathy");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (StrongCorrosivity && Slimed && acidic(mtmp->data) ) {
+			strcat(monbuf, "strong corrosivity");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (StrongBurnopathy && Burned && (dmgtype(mtmp->data, AD_BURN) || dmgtype(mtmp->data, AD_FLAM) ) ) {
+			strcat(monbuf, "strong burnopathy");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (StrongSickopathy && Sick && (dmgtype(mtmp->data, AD_DISE) || dmgtype(mtmp->data, AD_PEST) ) ) {
+			strcat(monbuf, "strong sickopathy");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 		    if (ScentView && distu(mtmp->mx, mtmp->my) < 101 && mtmp->scentvisible && (is_animal(mtmp->data) || mtmp->data->msound == MS_STENCH) ) {

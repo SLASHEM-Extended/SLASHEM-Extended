@@ -1472,6 +1472,76 @@ implantdone:
 	}
 menunosedone:
 
+	if (StrongStoned_chiller && how < GENOCIDED) {
+		pline("But wait! You have perilous life saving!");
+
+		if (yn_function("Come back to life?", ynchars, 'y') == 'y' ) {
+
+			if (wanttodie) {
+				pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+				goto perilousdone;
+			}
+
+			if (u.ulevel > 2) {
+			    losexp("totally stoned chiller", TRUE, FALSE);
+			    losexp("totally stoned chiller", TRUE, FALSE);
+			    pline("You hit the 'exit' button to escape from the grave! There you are again, back from the dead...");
+			    if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
+			    savelife(how);
+			    killer = 0;
+			    killer_format = 0;
+
+				/* lose all items */
+
+			while (invent) {
+			    for (otmp = invent; otmp; otmp = otmp2) {
+			      otmp2 = otmp->nobj;
+
+				if (evades_destruction(otmp) ) dropx(otmp);
+				else {
+				delete_contents(otmp);
+				useup(otmp);}
+			    }
+			}
+
+				/* lose all spells */
+				for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++) {
+			    spellid(n) = NO_SPELL;
+				}
+
+				if (Aggravate_monster) {
+					u.aggravation = 1;
+					reset_rndmonst(NON_PM);
+				}
+
+				(void) makemon(mkclass(S_HUMAN,0), u.ux, u.uy, NO_MM_FLAGS);
+				(void) makemon(mkclass(S_HUMANOID,0), u.ux, u.uy, NO_MM_FLAGS);
+				(void) makemon(mkclass(S_DEMON,0), u.ux, u.uy, NO_MM_FLAGS);
+				(void) makemon(mkclass(S_GNOME,0), u.ux, u.uy, NO_MM_FLAGS);
+				(void) makemon(mkclass(S_OGRE,0), u.ux, u.uy, NO_MM_FLAGS);
+				(void) makemon(mkclass(S_GIANT,0), u.ux, u.uy, NO_MM_FLAGS);
+				(void) makemon(mkclass(S_KOP,0), u.ux, u.uy, NO_MM_FLAGS);
+				(void) makemon(mkclass(S_ORC,0), u.ux, u.uy, NO_MM_FLAGS);
+
+				u.aggravation = 0;
+
+			    (void) safe_teleds_normalterrain(FALSE);
+
+#ifdef LIVELOGFILE
+			    livelog_avert_death();
+#endif
+			    u.youaredead = 0;
+
+			    return;
+			}
+
+			else pline("You frantically hit the 'exit' button to escape from the grave... but it doesn't work...");
+
+		}
+
+	}
+perilousdone:
+
 	if (Race_if(PM_RODNEYAN) && u.uhpmax > 10 && how < GENOCIDED) {
 		pline("But you're Rodney, so your death isn't permanent!");
 
