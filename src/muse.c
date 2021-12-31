@@ -4985,8 +4985,10 @@ struct monst *mtmp;
 			m.has_offense = MUSE_WAN_MAGIC_MISSILE;
 		    }
 		}
+		/* wands of draining in monster hands before you've had the chance to level up at least once are BS...
+		 * if you've ever been XL2 or higher, though, they can and will zap you at XL1 and end your game --Amy */
 		nomore(MUSE_WAN_DRAINING);
-		if(obj->otyp == WAN_DRAINING && obj->spe > 0) {
+		if(obj->otyp == WAN_DRAINING && (u.urmaxlvlUP >= 2) && obj->spe > 0) {
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_DRAINING;
 		}
@@ -5995,7 +5997,7 @@ register struct obj *otmp;
 			case 5:
 				You_feel("life has clocked back.");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Zhizn' razgonyal nazad, potomu chto vy ne smotreli, i teper' vy dolzhny poluchit', chto poteryannyy uroven' nazad." : "Kloeck!");
-			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
+			      if (u.urmaxlvlUP >= 2) losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
 			case 7:
@@ -7495,7 +7497,7 @@ struct monst *mtmp;
 					if(u.uen > u.uenmax) u.uen = u.uenmax;
 				}
 				if (!rn2(4)) {
-					if(!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) )
+					if((!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4)) && (u.urmaxlvlUP >= 2) )
 					    losexp("life drainage", FALSE, TRUE);
 					else You_feel("woozy for an instant, but shrug it off.");
 				}
@@ -9482,7 +9484,7 @@ newboss:
 					if(u.uen > u.uenmax) u.uen = u.uenmax;
 				}
 				if (!rn2(4)) {
-					if(!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) )
+					if((!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4)) && (u.urmaxlvlUP >= 2) )
 					    losexp("life drainage", FALSE, TRUE);
 					else You_feel("woozy for an instant, but shrug it off.");
 				}
