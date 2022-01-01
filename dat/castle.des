@@ -5964,10 +5964,10 @@ FOUNTAIN:(67,09)
 # The Genie (on the throne):
 MONSTER:'&',"djinni",(37,09),hostile
 # The Palace Guard:
-MONSTER:'@',"captain",(34,08),hostile
-MONSTER:'@',"captain",(40,08),hostile
-MONSTER:'@',"captain",(35,13),hostile
-MONSTER:'@',"captain",(39,13),hostile
+MONSTER:'@',random,(34,08),hostile
+MONSTER:'@',random,(40,08),hostile
+MONSTER:'@',random,(35,13),hostile
+MONSTER:'@',random,(39,13),hostile
 MONSTER:'@',"lieutenant",(26,08),hostile
 MONSTER:'@',"lieutenant",(48,08),hostile
 MONSTER:'@',"lieutenant",(26,11),hostile
@@ -6212,10 +6212,10 @@ FOUNTAIN:(67,09)
 # The Genie (on the throne):
 MONSTER:'&',"djinni",(37,09),hostile
 # The Palace Guard:
-MONSTER:'@',"captain",(34,08),hostile
-MONSTER:'@',"captain",(40,08),hostile
-MONSTER:'@',"captain",(35,13),hostile
-MONSTER:'@',"captain",(39,13),hostile
+MONSTER:'@',random,(34,08),hostile
+MONSTER:'@',random,(40,08),hostile
+MONSTER:'@',random,(35,13),hostile
+MONSTER:'@',random,(39,13),hostile
 MONSTER:'@',"lieutenant",(26,08),hostile
 MONSTER:'@',"lieutenant",(48,08),hostile
 MONSTER:'@',"lieutenant",(26,11),hostile
