@@ -1011,9 +1011,6 @@ boolean costly;
 #endif
 	    }
 
-	    /* unless you have double teleportitis, which will be the case very rarely, you'll be unable to control it */
-	    if (reallycostly && !StrongTeleportation) u.uprops[DEAC_TELEPORT_CONTROL].intrinsic++;
-
 	    energy = objects[SPE_TELEPORT_AWAY].oc_level * 5;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_KATRIN_S_SUDDEN_APPEARANCE) energy /= 2;
 		if (uarmh && uarmh->oartifact == ART_TRIP_TERRAIN) energy /= 3;
@@ -1029,6 +1026,9 @@ boolean costly;
 			return /*1*/0;
 		}
 	    }
+
+	    /* unless you have double teleportitis, which will be the case very rarely, you'll be unable to control it */
+	    if (reallycostly && !StrongTeleportation) u.uprops[DEAC_TELEPORT_CONTROL].intrinsic++;
 
 	    if (check_capacity(
 			"Your concentration falters from carrying so much."))
