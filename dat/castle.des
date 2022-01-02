@@ -3817,7 +3817,7 @@ MONSTER:'@',"soldier",(08,10)
 MONSTER:'@',"soldier",(09,11)
 MONSTER:'@',"soldier",(11,11)
 MONSTER:'@',"soldier",(12,10)
-MONSTER:'@',"lieutenant",(09,08)
+MONSTER:'@',random,(09,08)
 # Soldiers guarding the towers
 MONSTER:'@',"soldier",(03,02)
 MONSTER:'@',"soldier",(05,02)
@@ -4515,13 +4515,13 @@ MONSTER:'@',"soldier",(08,10)
 MONSTER:'@',"soldier",(09,11)
 MONSTER:'@',"soldier",(11,11)
 MONSTER:'@',"soldier",(12,10)
-MONSTER:'@',"lieutenant",(09,08)
+MONSTER:'@',random,(09,08)
 
 MONSTER:'@',"soldier",(27,07)
 MONSTER:'@',"soldier",(28,11)
 MONSTER:'@',"soldier",(27,07)
 MONSTER:'@',"soldier",(28,11)
-MONSTER:'@',"lieutenant",(27,09)
+MONSTER:'@',random,(27,09)
 # Soldiers guarding the towers
 MONSTER:'@',"soldier",(03,03)
 MONSTER:'@',"soldier",(05,03)
@@ -5050,7 +5050,7 @@ MONSTER:'@',"soldier",(29,13)
 MONSTER:'@',"soldier",(26,11)
 MONSTER:'@',"soldier",(26,13)
 MONSTER:'@',"soldier",(26,12)
-MONSTER:'@',"lieutenant",(28,12)
+MONSTER:'@',random,(28,12)
 # Soldiers guarding the towers
 MONSTER:'@',"soldier",(10,02)
 MONSTER:'@',"soldier",(11,06)
@@ -5294,7 +5294,7 @@ MONSTER:'@',"soldier",(05,10)
 MONSTER:'@',"soldier",(07,11)
 MONSTER:'@',"soldier",(06,11)
 MONSTER:'@',"soldier",(08,08)
-MONSTER:'@',"lieutenant",(04,04)
+MONSTER:'@',random,(04,04)
 # Soldiers guarding the towers
 MONSTER:'@',"soldier",(19,02)
 MONSTER:'@',"soldier",(21,02)
@@ -5525,7 +5525,7 @@ MONSTER:'@',"soldier",(29,13)
 MONSTER:'@',"soldier",(26,11)
 MONSTER:'@',"soldier",(26,13)
 MONSTER:'@',"soldier",(26,12)
-MONSTER:'@',"lieutenant",(28,12)
+MONSTER:'@',random,(28,12)
 # Soldiers guarding the towers
 MONSTER:'@',"soldier",(10,02)
 MONSTER:'@',"soldier",(11,06)
@@ -5968,10 +5968,10 @@ MONSTER:'@',random,(34,08),hostile
 MONSTER:'@',random,(40,08),hostile
 MONSTER:'@',random,(35,13),hostile
 MONSTER:'@',random,(39,13),hostile
-MONSTER:'@',"lieutenant",(26,08),hostile
-MONSTER:'@',"lieutenant",(48,08),hostile
-MONSTER:'@',"lieutenant",(26,11),hostile
-MONSTER:'@',"lieutenant",(48,11),hostile
+MONSTER:'@',random,(26,08),hostile
+MONSTER:'@',random,(48,08),hostile
+MONSTER:'@',random,(26,11),hostile
+MONSTER:'@',random,(48,11),hostile
 # Dragons around back:
 MONSTER:'D',random,(09,03),hostile
 MONSTER:'D',random,(24,02),hostile
@@ -6216,10 +6216,10 @@ MONSTER:'@',random,(34,08),hostile
 MONSTER:'@',random,(40,08),hostile
 MONSTER:'@',random,(35,13),hostile
 MONSTER:'@',random,(39,13),hostile
-MONSTER:'@',"lieutenant",(26,08),hostile
-MONSTER:'@',"lieutenant",(48,08),hostile
-MONSTER:'@',"lieutenant",(26,11),hostile
-MONSTER:'@',"lieutenant",(48,11),hostile
+MONSTER:'@',random,(26,08),hostile
+MONSTER:'@',random,(48,08),hostile
+MONSTER:'@',random,(26,11),hostile
+MONSTER:'@',random,(48,11),hostile
 # Dragons around back:
 MONSTER:'D',random,(09,03),hostile
 MONSTER:'D',random,(24,02),hostile
