@@ -9544,6 +9544,9 @@ newboss:
 		if (uarmh && itemhasappearance(uarmh, APP_RNG_HELMET) && !rn2(100000) ) {
 			badeffect();
 		}
+		if (uarmh && itemhasappearance(uarmh, APP_RNG_HELMET) && !rn2(100000) ) {
+			goodeffect();
+		}
 
 		if ( (have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic || (uarmc && uarmc->oartifact == ART_VEIL_OF_LATONA) || (uarmg && uarmg->oartifact == ART_BLACKY_S_BACK_WITHOUT_L) || (uarmc && uarmc->oartifact == ART_VEIL_OF_MINISTRY) ) && !BlackNgWalls && !rn2(100) ) {
 
