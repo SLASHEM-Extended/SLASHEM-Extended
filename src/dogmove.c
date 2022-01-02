@@ -1124,7 +1124,7 @@ register int after;	/* this is extra fast monster movement */
 	   well screw it, just completely prevent them from attacking shopkeepers, priests and vault guards --Amy */
 	/* In Soviet Russia, pets are totally stupid (in fact, even more so than modders). They simply attack everything,
 	 * even if it's something the player might want to use. --Amy */
-			 (!issoviet && mtmp2->isshk ) || (!issoviet && mtmp2->data == &mons[PM_BLACKSMITH]) || (!issoviet && mtmp2->isgd ) || (!issoviet && mtmp2->ispriest ) ||
+			 (!issoviet && mtmp2->isshk ) || (!issoviet && mtmp2->data == &mons[PM_BLACKSMITH]) || (!issoviet && mtmp2->data == &mons[PM_CROUPIER]) || (!issoviet && mtmp2->data == &mons[PM_MASTER_CROUPIER]) || (!issoviet && mtmp2->data == &mons[PM_ELITE_CROUPIER]) || (!issoviet && mtmp2->isgd ) || (!issoviet && mtmp2->ispriest ) ||
 			   (touch_petrifies(mtmp2->data) &&
 				!resists_ston(mtmp)))
 			continue;
