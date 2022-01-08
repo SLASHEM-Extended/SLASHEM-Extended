@@ -933,11 +933,12 @@ blackjack_card()
 }
 
 /* blackjack minigame by Amy: the more often you win, the more likely the dealer will disappear
- * returns TRUE if the dealer will disappear
+ * returns at least 1 if the player decided to play
+ * returns 2 if the dealer will disappear
  * rules are slightly different from the real Black Jack game, and the dealer can cheat
  * the player's luck stat can slightly affect the chance that the dealer cheats
  * heavily inspired by Elona, but the implementation is my own --Amy */
-boolean
+int
 play_blackjack()
 {
 	int dealercheatchance = 10;
@@ -946,11 +947,11 @@ play_blackjack()
 	struct obj *blackjackreward;
 
 	if (yn("Play blackjack? (2000 zorkmids)") != 'y') {
-		return FALSE;
+		return 0;
 	}
 	if (u.ugold < 2000) {
 		verbalize("Sorry sir, you don't seem to have enough money to buy a casino chip.");
-		return FALSE;
+		return 0;
 	}
 	u.ugold -= 2000;
 
@@ -1182,8 +1183,8 @@ blackjackgameover:
 		fineforpracticant(0, 100, 0);
 	}
 
-	if (rn2(100) < disappearchance) return TRUE;
+	if (rn2(100) < disappearchance) return 2;
 
-	return FALSE;
+	return 1;
 }
 

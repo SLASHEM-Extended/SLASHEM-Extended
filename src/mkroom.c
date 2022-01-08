@@ -674,7 +674,7 @@ struct mkroom *sroom;
 	}
 	if (type == ARMORY) moreorless /= 2;
 	if (type == ROBBERCAVE) moreorless /= 2;
-	if (type == CASINOROOM) moreorless /= 4;
+	if (type == CASINOROOM) moreorless /= 10;
 	if (type == DIVERPARADISE) moreorless /= 5;
 	if (type == SANITATIONCENTRAL) moreorless /= 3;
 	if (type == LEVELFFROOM) moreorless /= 3;
@@ -764,7 +764,7 @@ struct mkroom *sroom;
 		    (type == RELIGIONCENTER) ? (rn2(5) ? specialtensmon(347) /* MS_CONVERT */ : specialtensmon(348) /* MS_ALIEN */ ) :
 			(type == CLINIC) ? specialtensmon(218) /* AD_HEAL */ :
 			(type == TERRORHALL) ? mkclass(S_UMBER,0) :
-			(type == CASINOROOM) ? (level_difficulty() > 39 ? &mons[PM_ELITE_CROUPIER] : level_difficulty() > 19 ? &mons[PM_MASTER_CROUPIER] : &mons[PM_CROUPIER] )  :
+			(type == CASINOROOM) ? (level_difficulty() > 80 ? &mons[PM_ELITE_CROUPIER] : level_difficulty() > 40 ? &mons[PM_MASTER_CROUPIER] : &mons[PM_CROUPIER] )  :
 			(type == ROBBERCAVE) ? (!rn2(20) ? specialtensmon(286) /* AD_SAMU */ : !rn2(4) ? specialtensmon(357) /* AD_THIE */ : !rn2(3) ? specialtensmon(212) /* AD_SITM */ : !rn2(2) ? specialtensmon(213) /* AD_SEDU */ : specialtensmon(211) /* AD_SGLD */ ) :
 			(type == SANITATIONCENTRAL) ? specialtensmon(363) /* AD_SANI */ :
 			(type == VARIANTROOM) ? specialtensmon(u.specialtensionmonster) :
@@ -822,10 +822,10 @@ struct mkroom *sroom;
                else mon = ((struct monst *)0);
 /* some rooms can spawn new monster variants now --Amy */
 		if(mon) {
-			if ((sleepchance > 1) && !(In_netherrealm(&u.uz)) && !issoviet && !(uarmf && uarmf->oartifact == ART_VERY_NICE_PERSON) && rn2(sleepchance)) mon->msleeping = 1; /*random chance of them not being asleep --Amy*/
+			if ((sleepchance > 1) && !(In_netherrealm(&u.uz)) && !issoviet && !(uarmf && uarmf->oartifact == ART_VERY_NICE_PERSON) && rn2(sleepchance)) mon->msleeping = 1; /* random chance of them not being asleep --Amy */
 		/* In Soviet Russia, monsters are always awake harharharharhar harharhar harhar! --Amy */
 
-			/*enemies in these rooms will almost always be hostile now --Amy*/
+			/* enemies in these rooms will almost always be hostile now --Amy */
 			if (mon->mpeaceful && type != CASINOROOM && rn2(20)) {
 				mon->mpeaceful = 0;
 				set_malign(mon);
@@ -900,7 +900,7 @@ struct mkroom *sroom;
 
 			if (sx == tx && sy == ty) {
 				register struct monst *croupier;
-				croupier = makemon(level_difficulty() > 39 ? &mons[PM_ELITE_CROUPIER] : level_difficulty() > 19 ? &mons[PM_MASTER_CROUPIER] : &mons[PM_CROUPIER], sx, sy, MM_ADJACENTOK);
+				croupier = makemon(level_difficulty() > 80 ? &mons[PM_ELITE_CROUPIER] : level_difficulty() > 40 ? &mons[PM_MASTER_CROUPIER] : &mons[PM_CROUPIER], sx, sy, MM_ADJACENTOK);
 				if (croupier) {
 					croupier->mfrenzied = FALSE;
 					croupier->mpeaceful = 1;
