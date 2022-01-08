@@ -836,54 +836,54 @@ struct monst *mon;
 		if (otmp->otyp == ALLOY_CHAIN && thick_skinned(ptr)) bonus += rnd(4);
 		if (otmp->otyp == BUBBLE_CHAIN && thick_skinned(ptr)) bonus += rnd(4);
 		if (otmp->otyp == CLOTH_CHAIN && thick_skinned(ptr)) bonus += rnd(4);
-		if (otmp->otyp == POURPOOR_LASH && thick_skinned(ptr)) bonus += rnd(6);
-		if (otmp->otyp == ROTATING_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
-		if (otmp->otyp == GOLD_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
-		if (otmp->otyp == CLAY_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
-		if (otmp->otyp == COMPOST_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
-		if (otmp->otyp == PAPER_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
-		if (otmp->otyp == PLASTIC_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
-		if (otmp->otyp == SCRAP_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
-		if (otmp->otyp == FOAM_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
-		if (otmp->otyp == WOOD_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
-		if (otmp->otyp == TAR_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
-		if (otmp->otyp == WONDER_CHAIN && thick_skinned(ptr)) bonus += rnd(12);
-		if (otmp->otyp == LIQUID_CHAIN && thick_skinned(ptr)) bonus += rnd(12);
-		if (otmp->otyp == NULL_CHAIN && thick_skinned(ptr)) bonus += rnd(12);
-		if (otmp->otyp == AMBER_CHAIN && thick_skinned(ptr)) bonus += rnd(12);
-		if (otmp->otyp == GEMSTONE_LASH && thick_skinned(ptr)) bonus += rnd(12);
-		if (otmp->otyp == SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
-		if (otmp->otyp == ELYSIUM_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
-		if (otmp->otyp == GRANITE_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
-		if (otmp->otyp == DISGUSTING_CHAIN && thick_skinned(ptr)) bonus += rnd(15);
-		if (otmp->otyp == CHROME_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
-		if (otmp->otyp == SHADOW_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
-		if (otmp->otyp == COPPER_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
-		if (otmp->otyp == ANTIDOTE_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
-		if (otmp->otyp == CELESTIAL_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
-		if (otmp->otyp == SILK_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
-		if (otmp->otyp == FLESH_LASH && thick_skinned(ptr)) bonus += rnd(20);
-		if (otmp->otyp == NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
-		if (otmp->otyp == CONUNDRUM_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
-		if (otmp->otyp == CONCRETE_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
-		if (otmp->otyp == ELASTHAN_CHAIN && thick_skinned(ptr)) bonus += rnd(24);
-		if (otmp->otyp == NANO_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
-		if (otmp->otyp == LEAD_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
-		if (otmp->otyp == SILVER_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
-		if (otmp->otyp == LEATHER_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
-		if (otmp->otyp == METEORIC_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
-		if (otmp->otyp == ZEBETITE_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
-		if (otmp->otyp == MITHRIL_LASH && thick_skinned(ptr)) bonus += rnd(28);
-		if (otmp->otyp == HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
-		if (otmp->otyp == GLASS_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
-		if (otmp->otyp == MINERAL_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
-		if (otmp->otyp == ELYSIUM_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
-		if (otmp->otyp == NUCLEAR_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
-		if (otmp->otyp == SAND_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
-		if (otmp->otyp == ETHER_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
-		if (otmp->otyp == FOAM_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
-		if (otmp->otyp == ALLOY_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
-		if (otmp->otyp == OBSIDIAN_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
+		if (otmp->otyp == POURPOOR_LASH && thick_skinned(ptr)) bonus += rnd(5);
+		if (otmp->otyp == ROTATING_CHAIN && thick_skinned(ptr)) bonus += rnd(6);
+		if (otmp->otyp == GOLD_CHAIN && thick_skinned(ptr)) bonus += rnd(6);
+		if (otmp->otyp == CLAY_CHAIN && thick_skinned(ptr)) bonus += rnd(6);
+		if (otmp->otyp == COMPOST_CHAIN && thick_skinned(ptr)) bonus += rnd(6);
+		if (otmp->otyp == PAPER_CHAIN && thick_skinned(ptr)) bonus += rnd(6);
+		if (otmp->otyp == PLASTIC_CHAIN && thick_skinned(ptr)) bonus += rnd(6);
+		if (otmp->otyp == SCRAP_CHAIN && thick_skinned(ptr)) bonus += rnd(6);
+		if (otmp->otyp == FOAM_CHAIN && thick_skinned(ptr)) bonus += rnd(6);
+		if (otmp->otyp == WOOD_CHAIN && thick_skinned(ptr)) bonus += rnd(6);
+		if (otmp->otyp == TAR_CHAIN && thick_skinned(ptr)) bonus += rnd(6);
+		if (otmp->otyp == WONDER_CHAIN && thick_skinned(ptr)) bonus += rnd(7);
+		if (otmp->otyp == LIQUID_CHAIN && thick_skinned(ptr)) bonus += rnd(7);
+		if (otmp->otyp == NULL_CHAIN && thick_skinned(ptr)) bonus += rnd(7);
+		if (otmp->otyp == AMBER_CHAIN && thick_skinned(ptr)) bonus += rnd(7);
+		if (otmp->otyp == GEMSTONE_LASH && thick_skinned(ptr)) bonus += rnd(7);
+		if (otmp->otyp == SCOURGE && thick_skinned(ptr)) bonus += rnd(8);
+		if (otmp->otyp == ELYSIUM_SCOURGE && thick_skinned(ptr)) bonus += rnd(8);
+		if (otmp->otyp == GRANITE_SCOURGE && thick_skinned(ptr)) bonus += rnd(8);
+		if (otmp->otyp == DISGUSTING_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
+		if (otmp->otyp == CHROME_SCOURGE && thick_skinned(ptr)) bonus += rnd(8);
+		if (otmp->otyp == SHADOW_SCOURGE && thick_skinned(ptr)) bonus += rnd(8);
+		if (otmp->otyp == COPPER_SCOURGE && thick_skinned(ptr)) bonus += rnd(8);
+		if (otmp->otyp == ANTIDOTE_SCOURGE && thick_skinned(ptr)) bonus += rnd(8);
+		if (otmp->otyp == CELESTIAL_SCOURGE && thick_skinned(ptr)) bonus += rnd(8);
+		if (otmp->otyp == SILK_SCOURGE && thick_skinned(ptr)) bonus += rnd(8);
+		if (otmp->otyp == FLESH_LASH && thick_skinned(ptr)) bonus += rnd(10);
+		if (otmp->otyp == NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(12);
+		if (otmp->otyp == CONUNDRUM_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(12);
+		if (otmp->otyp == CONCRETE_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(12);
+		if (otmp->otyp == ELASTHAN_CHAIN && thick_skinned(ptr)) bonus += rnd(12);
+		if (otmp->otyp == NANO_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(12);
+		if (otmp->otyp == LEAD_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(12);
+		if (otmp->otyp == SILVER_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(12);
+		if (otmp->otyp == LEATHER_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(12);
+		if (otmp->otyp == METEORIC_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(12);
+		if (otmp->otyp == ZEBETITE_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(12);
+		if (otmp->otyp == MITHRIL_LASH && thick_skinned(ptr)) bonus += rnd(13);
+		if (otmp->otyp == HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(15);
+		if (otmp->otyp == GLASS_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(15);
+		if (otmp->otyp == MINERAL_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(15);
+		if (otmp->otyp == ELYSIUM_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(15);
+		if (otmp->otyp == NUCLEAR_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(15);
+		if (otmp->otyp == SAND_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(15);
+		if (otmp->otyp == ETHER_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(15);
+		if (otmp->otyp == FOAM_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(15);
+		if (otmp->otyp == ALLOY_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(15);
+		if (otmp->otyp == OBSIDIAN_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(15);
 
 	    /* KMH -- Paddles are effective against insects */
 	    if (otmp->otyp == FLY_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
@@ -893,7 +893,7 @@ struct monst *mon;
 	    if (otmp->otyp == INSECT_SQUASHER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
 		bonus += rnd(12);
 	    if (otmp->otyp == LASER_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
-		bonus += 15;
+		bonus += rnd(15);
 
 	    if (otmp->otyp == FLY_SWATTER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) bonus += rnd(25);
 	    if (otmp->otyp == VERMIN_SWATTER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) bonus += rnd(25);
@@ -902,72 +902,72 @@ struct monst *mon;
 
 	    /* trident is highly effective against swimmers */
 	    if (otmp->otyp == TRIDENT && is_swimmer(ptr)) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
-		   if (Race_if(PM_NEMESIS)) bonus += 20;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(2);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 1;
+		   if (Race_if(PM_NEMESIS)) bonus += rnd(20);
 	    }
 
 	    if (otmp->otyp == FOURDENT && is_swimmer(ptr)) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
-		   if (Race_if(PM_NEMESIS)) bonus += 20;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(2);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 1;
+		   if (Race_if(PM_NEMESIS)) bonus += rnd(20);
 	    }
 	    if (otmp->otyp == LASERDENT && is_swimmer(ptr)) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
-		   if (Race_if(PM_NEMESIS)) bonus += 20;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(2);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 1;
+		   if (Race_if(PM_NEMESIS)) bonus += rnd(20);
 	    }
 	    if (otmp->otyp == REACH_TRIDENT && is_swimmer(ptr)) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
-		   if (Race_if(PM_NEMESIS)) bonus += 20;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(2);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 1;
+		   if (Race_if(PM_NEMESIS)) bonus += rnd(20);
 	    }
 
 	    if (otmp->otyp == SHOOMDENT && is_swimmer(ptr)) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
-		   if (Race_if(PM_NEMESIS)) bonus += 20;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(2);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 1;
+		   if (Race_if(PM_NEMESIS)) bonus += rnd(20);
 	    }
 
 	    if (otmp->otyp == DIFFICULT_TRIDENT && is_swimmer(ptr)) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
-		   if (Race_if(PM_NEMESIS)) bonus += 20;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(2);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 1;
+		   if (Race_if(PM_NEMESIS)) bonus += rnd(20);
 	    }
 
 	    if (otmp->otyp == STYGIAN_PIKE && is_swimmer(ptr)) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 10;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
-		   if (Race_if(PM_NEMESIS)) bonus += 20;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(4);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(2);
+		   if (Race_if(PM_NEMESIS)) bonus += rnd(20);
 	    }
 
 	    if (otmp->otyp == MANCATCHER && is_swimmer(ptr)) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 10;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
-		   if (Race_if(PM_NEMESIS)) bonus += 20;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(4);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(2);
+		   if (Race_if(PM_NEMESIS)) bonus += rnd(20);
 	    }
 
 	    if (otmp->otyp == MARE_TRIDENT && is_swimmer(ptr)) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 10;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
-		   if (Race_if(PM_NEMESIS)) bonus += 20;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(4);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(2);
+		   if (Race_if(PM_NEMESIS)) bonus += rnd(20);
 	    }
 
 	    if (otmp->otyp == PLOW && is_swimmer(ptr)) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 10;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
-		   if (Race_if(PM_NEMESIS)) bonus += 20;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(4);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(2);
+		   if (Race_if(PM_NEMESIS)) bonus += rnd(20);
 	    }
 
 	    if (otmp->otyp == TWO_HANDED_TRIDENT && is_swimmer(ptr)) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 12;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 6;
-		   if (Race_if(PM_NEMESIS)) bonus += 20;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(6);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(3);
+		   if (Race_if(PM_NEMESIS)) bonus += rnd(20);
 	    }
 
 	    /* blunt weapons versus undead (Diablo 2) */
 	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == WEIGHTED_FLAIL || otmp->otyp == RIDING_CROP || otmp->otyp == ETHER_KNOUT || otmp->otyp == SPIKERACK || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr)) bonus += rnd(2);
-	    if (objects[otmp->otyp].oc_skill == P_QUARTERSTAFF && is_undead(ptr)) bonus += rnd(6);
+	    if (objects[otmp->otyp].oc_skill == P_QUARTERSTAFF && is_undead(ptr)) bonus += rnd(4);
 	    if (otmp->otyp == TWO_HANDED_FLAIL && is_undead(ptr)) bonus += rnd(6);
 
 	    /* as well as silver bullets */
@@ -1351,54 +1351,54 @@ struct monst *mon;
 		if (otmp->otyp == ALLOY_CHAIN && thick_skinned(ptr)) bonus += rnd(4);
 		if (otmp->otyp == BUBBLE_CHAIN && thick_skinned(ptr)) bonus += rnd(4);
 		if (otmp->otyp == CLOTH_CHAIN && thick_skinned(ptr)) bonus += rnd(4);
-		if (otmp->otyp == POURPOOR_LASH && thick_skinned(ptr)) bonus += rnd(6);
-		if (otmp->otyp == ROTATING_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
-		if (otmp->otyp == GOLD_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
-		if (otmp->otyp == CLAY_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
-		if (otmp->otyp == COMPOST_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
-		if (otmp->otyp == PAPER_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
-		if (otmp->otyp == PLASTIC_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
-		if (otmp->otyp == WOOD_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
-		if (otmp->otyp == TAR_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
-		if (otmp->otyp == FOAM_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
-		if (otmp->otyp == SCRAP_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
-		if (otmp->otyp == WONDER_CHAIN && thick_skinned(ptr)) bonus += rnd(12);
-		if (otmp->otyp == LIQUID_CHAIN && thick_skinned(ptr)) bonus += rnd(12);
-		if (otmp->otyp == NULL_CHAIN && thick_skinned(ptr)) bonus += rnd(12);
-		if (otmp->otyp == AMBER_CHAIN && thick_skinned(ptr)) bonus += rnd(12);
-		if (otmp->otyp == GEMSTONE_LASH && thick_skinned(ptr)) bonus += rnd(12);
-		if (otmp->otyp == SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
-		if (otmp->otyp == ELYSIUM_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
-		if (otmp->otyp == GRANITE_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
-		if (otmp->otyp == DISGUSTING_CHAIN && thick_skinned(ptr)) bonus += rnd(15);
-		if (otmp->otyp == CHROME_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
-		if (otmp->otyp == ANTIDOTE_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
-		if (otmp->otyp == CELESTIAL_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
-		if (otmp->otyp == SHADOW_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
-		if (otmp->otyp == COPPER_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
-		if (otmp->otyp == SILK_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
-		if (otmp->otyp == FLESH_LASH && thick_skinned(ptr)) bonus += rnd(20);
-		if (otmp->otyp == NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
-		if (otmp->otyp == CONUNDRUM_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
-		if (otmp->otyp == CONCRETE_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
-		if (otmp->otyp == ELASTHAN_CHAIN && thick_skinned(ptr)) bonus += rnd(24);
-		if (otmp->otyp == NANO_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
-		if (otmp->otyp == LEAD_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
-		if (otmp->otyp == SILVER_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
-		if (otmp->otyp == METEORIC_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
-		if (otmp->otyp == ZEBETITE_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
-		if (otmp->otyp == LEATHER_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
-		if (otmp->otyp == MITHRIL_LASH && thick_skinned(ptr)) bonus += rnd(28);
-		if (otmp->otyp == HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
-		if (otmp->otyp == GLASS_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
-		if (otmp->otyp == MINERAL_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
-		if (otmp->otyp == ELYSIUM_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
-		if (otmp->otyp == NUCLEAR_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
-		if (otmp->otyp == SAND_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
-		if (otmp->otyp == ETHER_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
-		if (otmp->otyp == FOAM_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
-		if (otmp->otyp == ALLOY_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
-		if (otmp->otyp == OBSIDIAN_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
+		if (otmp->otyp == POURPOOR_LASH && thick_skinned(ptr)) bonus += rnd(5);
+		if (otmp->otyp == ROTATING_CHAIN && thick_skinned(ptr)) bonus += rnd(6);
+		if (otmp->otyp == GOLD_CHAIN && thick_skinned(ptr)) bonus += rnd(6);
+		if (otmp->otyp == CLAY_CHAIN && thick_skinned(ptr)) bonus += rnd(6);
+		if (otmp->otyp == COMPOST_CHAIN && thick_skinned(ptr)) bonus += rnd(6);
+		if (otmp->otyp == PAPER_CHAIN && thick_skinned(ptr)) bonus += rnd(6);
+		if (otmp->otyp == PLASTIC_CHAIN && thick_skinned(ptr)) bonus += rnd(6);
+		if (otmp->otyp == SCRAP_CHAIN && thick_skinned(ptr)) bonus += rnd(6);
+		if (otmp->otyp == FOAM_CHAIN && thick_skinned(ptr)) bonus += rnd(6);
+		if (otmp->otyp == WOOD_CHAIN && thick_skinned(ptr)) bonus += rnd(6);
+		if (otmp->otyp == TAR_CHAIN && thick_skinned(ptr)) bonus += rnd(6);
+		if (otmp->otyp == WONDER_CHAIN && thick_skinned(ptr)) bonus += rnd(7);
+		if (otmp->otyp == LIQUID_CHAIN && thick_skinned(ptr)) bonus += rnd(7);
+		if (otmp->otyp == NULL_CHAIN && thick_skinned(ptr)) bonus += rnd(7);
+		if (otmp->otyp == AMBER_CHAIN && thick_skinned(ptr)) bonus += rnd(7);
+		if (otmp->otyp == GEMSTONE_LASH && thick_skinned(ptr)) bonus += rnd(7);
+		if (otmp->otyp == SCOURGE && thick_skinned(ptr)) bonus += rnd(8);
+		if (otmp->otyp == ELYSIUM_SCOURGE && thick_skinned(ptr)) bonus += rnd(8);
+		if (otmp->otyp == GRANITE_SCOURGE && thick_skinned(ptr)) bonus += rnd(8);
+		if (otmp->otyp == DISGUSTING_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
+		if (otmp->otyp == CHROME_SCOURGE && thick_skinned(ptr)) bonus += rnd(8);
+		if (otmp->otyp == SHADOW_SCOURGE && thick_skinned(ptr)) bonus += rnd(8);
+		if (otmp->otyp == COPPER_SCOURGE && thick_skinned(ptr)) bonus += rnd(8);
+		if (otmp->otyp == ANTIDOTE_SCOURGE && thick_skinned(ptr)) bonus += rnd(8);
+		if (otmp->otyp == CELESTIAL_SCOURGE && thick_skinned(ptr)) bonus += rnd(8);
+		if (otmp->otyp == SILK_SCOURGE && thick_skinned(ptr)) bonus += rnd(8);
+		if (otmp->otyp == FLESH_LASH && thick_skinned(ptr)) bonus += rnd(10);
+		if (otmp->otyp == NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(12);
+		if (otmp->otyp == CONUNDRUM_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(12);
+		if (otmp->otyp == CONCRETE_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(12);
+		if (otmp->otyp == ELASTHAN_CHAIN && thick_skinned(ptr)) bonus += rnd(12);
+		if (otmp->otyp == NANO_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(12);
+		if (otmp->otyp == LEAD_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(12);
+		if (otmp->otyp == SILVER_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(12);
+		if (otmp->otyp == LEATHER_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(12);
+		if (otmp->otyp == METEORIC_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(12);
+		if (otmp->otyp == ZEBETITE_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(12);
+		if (otmp->otyp == MITHRIL_LASH && thick_skinned(ptr)) bonus += rnd(13);
+		if (otmp->otyp == HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(15);
+		if (otmp->otyp == GLASS_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(15);
+		if (otmp->otyp == MINERAL_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(15);
+		if (otmp->otyp == ELYSIUM_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(15);
+		if (otmp->otyp == NUCLEAR_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(15);
+		if (otmp->otyp == SAND_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(15);
+		if (otmp->otyp == ETHER_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(15);
+		if (otmp->otyp == FOAM_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(15);
+		if (otmp->otyp == ALLOY_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(15);
+		if (otmp->otyp == OBSIDIAN_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(15);
 
 		if (otmp->oclass == BALL_CLASS && RngePunishment) bonus += 5;
 
@@ -1773,25 +1773,25 @@ struct monst *mon;
 		if (!(PlayerCannotUseSkills)) {
 
 	if (otmp->otyp == FLY_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_SKILLED) ) bonus += rnd(2);
-	if (otmp->otyp == FLY_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_EXPERT) ) bonus += rnd(5);
-	if (otmp->otyp == FLY_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_MASTER) ) bonus += rnd(7);
-	if (otmp->otyp == FLY_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_GRAND_MASTER) ) bonus += rnd(10);
-	if (otmp->otyp == FLY_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_SUPREME_MASTER) ) bonus += rnd(15);
+	if (otmp->otyp == FLY_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_EXPERT) ) bonus += rnd(3);
+	if (otmp->otyp == FLY_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_MASTER) ) bonus += rnd(5);
+	if (otmp->otyp == FLY_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_GRAND_MASTER) ) bonus += rnd(7);
+	if (otmp->otyp == FLY_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_SUPREME_MASTER) ) bonus += rnd(8);
 	if (otmp->otyp == VERMIN_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_SKILLED) ) bonus += rnd(2);
-	if (otmp->otyp == VERMIN_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_EXPERT) ) bonus += rnd(5);
-	if (otmp->otyp == VERMIN_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_MASTER) ) bonus += rnd(7);
-	if (otmp->otyp == VERMIN_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_GRAND_MASTER) ) bonus += rnd(10);
-	if (otmp->otyp == VERMIN_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_SUPREME_MASTER) ) bonus += rnd(15);
-	if (otmp->otyp == INSECT_SQUASHER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_SKILLED) ) bonus += rnd(4);
-	if (otmp->otyp == INSECT_SQUASHER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_EXPERT) ) bonus += rnd(8);
-	if (otmp->otyp == INSECT_SQUASHER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_MASTER) ) bonus += rnd(12);
-	if (otmp->otyp == INSECT_SQUASHER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_GRAND_MASTER) ) bonus += rnd(16);
-	if (otmp->otyp == INSECT_SQUASHER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_SUPREME_MASTER) ) bonus += rnd(24);
-	if (otmp->otyp == LASER_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_SKILLED) ) bonus += rnd(10);
-	if (otmp->otyp == LASER_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_EXPERT) ) bonus += rnd(20);
-	if (otmp->otyp == LASER_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_MASTER) ) bonus += rnd(30);
-	if (otmp->otyp == LASER_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_GRAND_MASTER) ) bonus += rnd(40);
-	if (otmp->otyp == LASER_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_SUPREME_MASTER) ) bonus += rnd(50);
+	if (otmp->otyp == VERMIN_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_EXPERT) ) bonus += rnd(3);
+	if (otmp->otyp == VERMIN_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_MASTER) ) bonus += rnd(5);
+	if (otmp->otyp == VERMIN_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_GRAND_MASTER) ) bonus += rnd(7);
+	if (otmp->otyp == VERMIN_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_SUPREME_MASTER) ) bonus += rnd(8);
+	if (otmp->otyp == INSECT_SQUASHER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_SKILLED) ) bonus += rnd(3);
+	if (otmp->otyp == INSECT_SQUASHER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_EXPERT) ) bonus += rnd(5);
+	if (otmp->otyp == INSECT_SQUASHER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_MASTER) ) bonus += rnd(7);
+	if (otmp->otyp == INSECT_SQUASHER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_GRAND_MASTER) ) bonus += rnd(9);
+	if (otmp->otyp == INSECT_SQUASHER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_SUPREME_MASTER) ) bonus += rnd(11);
+	if (otmp->otyp == LASER_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_SKILLED) ) bonus += rnd(3);
+	if (otmp->otyp == LASER_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_EXPERT) ) bonus += rnd(5);
+	if (otmp->otyp == LASER_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_MASTER) ) bonus += rnd(7);
+	if (otmp->otyp == LASER_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_GRAND_MASTER) ) bonus += rnd(9);
+	if (otmp->otyp == LASER_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN) && (P_SKILL(P_PADDLE) == P_SUPREME_MASTER) ) bonus += rnd(11);
 
 		}
 
@@ -1802,334 +1802,334 @@ struct monst *mon;
 
 	    /* trident is highly effective against swimmers */
 	    if (otmp->otyp == TRIDENT && is_swimmer(ptr)) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
-		   if (Race_if(PM_NEMESIS)) bonus += 20;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(2);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 1;
+		   if (Race_if(PM_NEMESIS)) bonus += rnd(20);
 	    }
 
 	    if (otmp->otyp == FOURDENT && is_swimmer(ptr)) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
-		   if (Race_if(PM_NEMESIS)) bonus += 20;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(2);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 1;
+		   if (Race_if(PM_NEMESIS)) bonus += rnd(20);
 	    }
 	    if (otmp->otyp == LASERDENT && is_swimmer(ptr)) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
-		   if (Race_if(PM_NEMESIS)) bonus += 20;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(2);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 1;
+		   if (Race_if(PM_NEMESIS)) bonus += rnd(20);
 	    }
 	    if (otmp->otyp == REACH_TRIDENT && is_swimmer(ptr)) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
-		   if (Race_if(PM_NEMESIS)) bonus += 20;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(2);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 1;
+		   if (Race_if(PM_NEMESIS)) bonus += rnd(20);
 	    }
 
 	    if (otmp->otyp == SHOOMDENT && is_swimmer(ptr)) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
-		   if (Race_if(PM_NEMESIS)) bonus += 20;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(2);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 1;
+		   if (Race_if(PM_NEMESIS)) bonus += rnd(20);
 	    }
 
 	    if (otmp->otyp == DIFFICULT_TRIDENT && is_swimmer(ptr)) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
-		   if (Race_if(PM_NEMESIS)) bonus += 20;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(2);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 1;
+		   if (Race_if(PM_NEMESIS)) bonus += rnd(20);
 	    }
 
 	    if (otmp->otyp == STYGIAN_PIKE && is_swimmer(ptr)) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 10;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
-		   if (Race_if(PM_NEMESIS)) bonus += 20;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(4);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(2);
+		   if (Race_if(PM_NEMESIS)) bonus += rnd(20);
 	    }
 
 	    if (otmp->otyp == MANCATCHER && is_swimmer(ptr)) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 10;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
-		   if (Race_if(PM_NEMESIS)) bonus += 20;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(4);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(2);
+		   if (Race_if(PM_NEMESIS)) bonus += rnd(20);
 	    }
 
 	    if (otmp->otyp == MARE_TRIDENT && is_swimmer(ptr)) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 10;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
-		   if (Race_if(PM_NEMESIS)) bonus += 20;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(4);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(2);
+		   if (Race_if(PM_NEMESIS)) bonus += rnd(20);
 	    }
 
 	    if (otmp->otyp == PLOW && is_swimmer(ptr)) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 10;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
-		   if (Race_if(PM_NEMESIS)) bonus += 20;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(4);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(2);
+		   if (Race_if(PM_NEMESIS)) bonus += rnd(20);
 	    }
 
 	    if (otmp->otyp == TWO_HANDED_TRIDENT && is_swimmer(ptr)) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 12;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 6;
-		   if (Race_if(PM_NEMESIS)) bonus += 20;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(6);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(3);
+		   if (Race_if(PM_NEMESIS)) bonus += rnd(20);
 	    }
 
 		if (!(PlayerCannotUseSkills)) {
 
 	    if (otmp->otyp == TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SKILLED) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 2;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(2);
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 1;
 	    }
 
 	    if (otmp->otyp == FOURDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SKILLED) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 2;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(2);
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 1;
 	    }
 	    if (otmp->otyp == LASERDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SKILLED) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 2;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(2);
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 1;
 	    }
 	    if (otmp->otyp == REACH_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SKILLED) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 2;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(2);
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 1;
 	    }
 
 	    if (otmp->otyp == SHOOMDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SKILLED) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 2;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(2);
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 1;
 	    }
 
 	    if (otmp->otyp == DIFFICULT_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SKILLED) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 2;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(2);
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 1;
 	    }
 
 	    if (otmp->otyp == STYGIAN_PIKE && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SKILLED) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(4);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(2);
 	    }
 
 	    if (otmp->otyp == MANCATCHER && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SKILLED) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(4);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(2);
 	    }
 
 	    if (otmp->otyp == MARE_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SKILLED) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(4);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(2);
 	    }
 
 	    if (otmp->otyp == PLOW && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SKILLED) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(4);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(2);
 	    }
 
 	    if (otmp->otyp == TWO_HANDED_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SKILLED) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 6;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 3;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(6);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(3);
 	    }
 
 	    if (otmp->otyp == TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_EXPERT) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(4);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(2);
 	    }
 
 	    if (otmp->otyp == FOURDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_EXPERT) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(4);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(2);
 	    }
 	    if (otmp->otyp == LASERDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_EXPERT) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(4);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(2);
 	    }
 	    if (otmp->otyp == REACH_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_EXPERT) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(4);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(2);
 	    }
 
 	    if (otmp->otyp == SHOOMDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_EXPERT) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(4);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(2);
 	    }
 
 	    if (otmp->otyp == DIFFICULT_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_EXPERT) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(4);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(2);
 	    }
 
 	    if (otmp->otyp == STYGIAN_PIKE && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_EXPERT) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 8;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 4;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(8);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(4);
 	    }
 
 	    if (otmp->otyp == MANCATCHER && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_EXPERT) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 8;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 4;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(8);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(4);
 	    }
 
 	    if (otmp->otyp == MARE_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_EXPERT) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 8;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 4;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(8);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(4);
 	    }
 
 	    if (otmp->otyp == PLOW && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_EXPERT) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 8;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 4;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(8);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(4);
 	    }
 
 	    if (otmp->otyp == TWO_HANDED_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_EXPERT) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 12;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 6;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(12);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(6);
 	    }
 
 	    if (otmp->otyp == TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 8;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 4;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(8);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(4);
 	    }
 
 	    if (otmp->otyp == FOURDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 8;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 4;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(8);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(4);
 	    }
 	    if (otmp->otyp == LASERDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 8;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 4;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(8);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(4);
 	    }
 	    if (otmp->otyp == REACH_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 8;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 4;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(8);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(4);
 	    }
 
 	    if (otmp->otyp == SHOOMDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 8;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 4;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(8);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(4);
 	    }
 
 	    if (otmp->otyp == DIFFICULT_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 8;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 4;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(8);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(4);
 	    }
 
 	    if (otmp->otyp == STYGIAN_PIKE && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 16;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 8;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(16);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(8);
 	    }
 
 	    if (otmp->otyp == MANCATCHER && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 16;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 8;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(16);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(8);
 	    }
 
 	    if (otmp->otyp == MARE_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 16;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 8;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(16);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(8);
 	    }
 
 	    if (otmp->otyp == PLOW && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 16;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 8;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(16);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(8);
 	    }
 
 	    if (otmp->otyp == TWO_HANDED_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 24;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 12;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(24);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(12);
 	    }
 
 	    if (otmp->otyp == TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_GRAND_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 16;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 8;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(16);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(8);
 	    }
 
 	    if (otmp->otyp == FOURDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_GRAND_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 16;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 8;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(16);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(8);
 	    }
 	    if (otmp->otyp == LASERDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_GRAND_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 16;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 8;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(16);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(8);
 	    }
 	    if (otmp->otyp == REACH_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_GRAND_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 16;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 8;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(16);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(8);
 	    }
 
 	    if (otmp->otyp == SHOOMDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_GRAND_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 16;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 8;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(16);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(8);
 	    }
 
 	    if (otmp->otyp == DIFFICULT_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_GRAND_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 16;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 8;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(16);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(8);
 	    }
 
 	    if (otmp->otyp == STYGIAN_PIKE && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_GRAND_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 32;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 16;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(20);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(10);
 	    }
 
 	    if (otmp->otyp == MANCATCHER && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_GRAND_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 32;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 16;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(20);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(10);
 	    }
 
 	    if (otmp->otyp == MARE_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_GRAND_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 32;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 16;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(20);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(10);
 	    }
 
 	    if (otmp->otyp == PLOW && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_GRAND_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 32;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 16;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(20);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(10);
 	    }
 
 	    if (otmp->otyp == TWO_HANDED_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_GRAND_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 48;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 24;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(24);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(12);
 	    }
 
 	    if (otmp->otyp == TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SUPREME_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 20;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 10;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(24);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(12);
 	    }
 
 	    if (otmp->otyp == FOURDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SUPREME_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 20;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 10;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(24);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(12);
 	    }
 	    if (otmp->otyp == LASERDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SUPREME_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 20;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 10;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(24);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(12);
 	    }
 	    if (otmp->otyp == REACH_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SUPREME_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 20;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 10;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(24);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(12);
 	    }
 
 	    if (otmp->otyp == SHOOMDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SUPREME_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 20;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 10;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(24);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(12);
 	    }
 
 	    if (otmp->otyp == DIFFICULT_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SUPREME_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 20;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 10;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(24);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(12);
 	    }
 
 	    if (otmp->otyp == STYGIAN_PIKE && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SUPREME_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 40;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 20;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(30);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(15);
 	    }
 
 	    if (otmp->otyp == MANCATCHER && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SUPREME_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 40;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 20;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(30);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(15);
 	    }
 
 	    if (otmp->otyp == MARE_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SUPREME_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 40;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 20;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(30);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(15);
 	    }
 
 	    if (otmp->otyp == PLOW && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SUPREME_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 40;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 20;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(30);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(15);
 	    }
 
 	    if (otmp->otyp == TWO_HANDED_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SUPREME_MASTER) ) {
-		   if (is_waterypool(mon->mx, mon->my)) bonus += 60;
-		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 30;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += rnd(36);
+		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += rnd(18);
 	    }
 
 		}
@@ -2160,30 +2160,30 @@ struct monst *mon;
 		if (objects[otmp->otyp].oc_skill == P_GRINDER && P_SKILL(P_AXE) == P_GRAND_MASTER) bonus += rnd(5);
 		if (objects[otmp->otyp].oc_skill == P_GRINDER && P_SKILL(P_AXE) == P_SUPREME_MASTER) bonus += rnd(6);
 
-	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == WEIGHTED_FLAIL || otmp->otyp == RIDING_CROP || otmp->otyp == ETHER_KNOUT || otmp->otyp == SPIKERACK || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_SKILLED) ) bonus += rnd(2);
-	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == WEIGHTED_FLAIL || otmp->otyp == RIDING_CROP || otmp->otyp == ETHER_KNOUT || otmp->otyp == SPIKERACK || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_EXPERT) ) bonus += rnd(4);
-	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == WEIGHTED_FLAIL || otmp->otyp == RIDING_CROP || otmp->otyp == ETHER_KNOUT || otmp->otyp == SPIKERACK || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_MASTER) ) bonus += rnd(5);
-	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == WEIGHTED_FLAIL || otmp->otyp == RIDING_CROP || otmp->otyp == ETHER_KNOUT || otmp->otyp == SPIKERACK || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_GRAND_MASTER) ) bonus += rnd(7);
-	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == WEIGHTED_FLAIL || otmp->otyp == RIDING_CROP || otmp->otyp == ETHER_KNOUT || otmp->otyp == SPIKERACK || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_SUPREME_MASTER) ) bonus += rnd(10);
+	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == WEIGHTED_FLAIL || otmp->otyp == RIDING_CROP || otmp->otyp == ETHER_KNOUT || otmp->otyp == SPIKERACK || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_SKILLED) ) bonus += 1;
+	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == WEIGHTED_FLAIL || otmp->otyp == RIDING_CROP || otmp->otyp == ETHER_KNOUT || otmp->otyp == SPIKERACK || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_EXPERT) ) bonus += rnd(3);
+	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == WEIGHTED_FLAIL || otmp->otyp == RIDING_CROP || otmp->otyp == ETHER_KNOUT || otmp->otyp == SPIKERACK || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_MASTER) ) bonus += rnd(4);
+	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == WEIGHTED_FLAIL || otmp->otyp == RIDING_CROP || otmp->otyp == ETHER_KNOUT || otmp->otyp == SPIKERACK || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_GRAND_MASTER) ) bonus += rnd(5);
+	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == WEIGHTED_FLAIL || otmp->otyp == RIDING_CROP || otmp->otyp == ETHER_KNOUT || otmp->otyp == SPIKERACK || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_SUPREME_MASTER) ) bonus += rnd(6);
 
 		}
 
-	    if (objects[otmp->otyp].oc_skill == P_QUARTERSTAFF && is_undead(ptr)) bonus += rnd(6);
+	    if (objects[otmp->otyp].oc_skill == P_QUARTERSTAFF && is_undead(ptr)) bonus += rnd(4);
 	    if (otmp->otyp == TWO_HANDED_FLAIL && is_undead(ptr)) bonus += rnd(6);
 
 		if (!(PlayerCannotUseSkills)) {
 
-	    if (objects[otmp->otyp].oc_skill == P_QUARTERSTAFF && is_undead(ptr) && (P_SKILL(P_QUARTERSTAFF) == P_SKILLED)) bonus += rnd(5);
-	    if (objects[otmp->otyp].oc_skill == P_QUARTERSTAFF && is_undead(ptr) && (P_SKILL(P_QUARTERSTAFF) == P_EXPERT)) bonus += rnd(10);
-	    if (objects[otmp->otyp].oc_skill == P_QUARTERSTAFF && is_undead(ptr) && (P_SKILL(P_QUARTERSTAFF) == P_MASTER)) bonus += rnd(15);
-	    if (objects[otmp->otyp].oc_skill == P_QUARTERSTAFF && is_undead(ptr) && (P_SKILL(P_QUARTERSTAFF) == P_GRAND_MASTER)) bonus += rnd(25);
-	    if (objects[otmp->otyp].oc_skill == P_QUARTERSTAFF && is_undead(ptr) && (P_SKILL(P_QUARTERSTAFF) == P_SUPREME_MASTER)) bonus += rnd(35);
+	    if (objects[otmp->otyp].oc_skill == P_QUARTERSTAFF && is_undead(ptr) && (P_SKILL(P_QUARTERSTAFF) == P_SKILLED)) bonus += 1;
+	    if (objects[otmp->otyp].oc_skill == P_QUARTERSTAFF && is_undead(ptr) && (P_SKILL(P_QUARTERSTAFF) == P_EXPERT)) bonus += rnd(2);
+	    if (objects[otmp->otyp].oc_skill == P_QUARTERSTAFF && is_undead(ptr) && (P_SKILL(P_QUARTERSTAFF) == P_MASTER)) bonus += rnd(3);
+	    if (objects[otmp->otyp].oc_skill == P_QUARTERSTAFF && is_undead(ptr) && (P_SKILL(P_QUARTERSTAFF) == P_GRAND_MASTER)) bonus += rnd(5);
+	    if (objects[otmp->otyp].oc_skill == P_QUARTERSTAFF && is_undead(ptr) && (P_SKILL(P_QUARTERSTAFF) == P_SUPREME_MASTER)) bonus += rnd(7);
 
-	    if (otmp->otyp == TWO_HANDED_FLAIL && is_undead(ptr) && (P_SKILL(P_FLAIL) == P_SKILLED)) bonus += rnd(5);
-	    if (otmp->otyp == TWO_HANDED_FLAIL && is_undead(ptr) && (P_SKILL(P_FLAIL) == P_EXPERT)) bonus += rnd(10);
-	    if (otmp->otyp == TWO_HANDED_FLAIL && is_undead(ptr) && (P_SKILL(P_FLAIL) == P_MASTER)) bonus += rnd(15);
-	    if (otmp->otyp == TWO_HANDED_FLAIL && is_undead(ptr) && (P_SKILL(P_FLAIL) == P_GRAND_MASTER)) bonus += rnd(25);
-	    if (otmp->otyp == TWO_HANDED_FLAIL && is_undead(ptr) && (P_SKILL(P_FLAIL) == P_SUPREME_MASTER)) bonus += rnd(35);
+	    if (otmp->otyp == TWO_HANDED_FLAIL && is_undead(ptr) && (P_SKILL(P_FLAIL) == P_SKILLED)) bonus += rnd(2);
+	    if (otmp->otyp == TWO_HANDED_FLAIL && is_undead(ptr) && (P_SKILL(P_FLAIL) == P_EXPERT)) bonus += rnd(4);
+	    if (otmp->otyp == TWO_HANDED_FLAIL && is_undead(ptr) && (P_SKILL(P_FLAIL) == P_MASTER)) bonus += rnd(6);
+	    if (otmp->otyp == TWO_HANDED_FLAIL && is_undead(ptr) && (P_SKILL(P_FLAIL) == P_GRAND_MASTER)) bonus += rnd(8);
+	    if (otmp->otyp == TWO_HANDED_FLAIL && is_undead(ptr) && (P_SKILL(P_FLAIL) == P_SUPREME_MASTER)) bonus += rnd(10);
 
 		}
 
@@ -2192,11 +2192,11 @@ struct monst *mon;
 
 		if (!(PlayerCannotUseSkills)) {
 
-	    if (otmp->otyp == SILVER_BULLET && is_undead(ptr) && (P_SKILL(P_FIREARM) == P_SKILLED)) bonus += 8;
-	    if (otmp->otyp == SILVER_BULLET && is_undead(ptr) && (P_SKILL(P_FIREARM) == P_EXPERT)) bonus += 16;
-	    if (otmp->otyp == SILVER_BULLET && is_undead(ptr) && (P_SKILL(P_FIREARM) == P_MASTER)) bonus += 24;
-	    if (otmp->otyp == SILVER_BULLET && is_undead(ptr) && (P_SKILL(P_FIREARM) == P_GRAND_MASTER)) bonus += 32;
-	    if (otmp->otyp == SILVER_BULLET && is_undead(ptr) && (P_SKILL(P_FIREARM) == P_SUPREME_MASTER)) bonus += 40;
+	    if (otmp->otyp == SILVER_BULLET && is_undead(ptr) && (P_SKILL(P_FIREARM) == P_SKILLED)) bonus += rnd(4);
+	    if (otmp->otyp == SILVER_BULLET && is_undead(ptr) && (P_SKILL(P_FIREARM) == P_EXPERT)) bonus += rnd(7);
+	    if (otmp->otyp == SILVER_BULLET && is_undead(ptr) && (P_SKILL(P_FIREARM) == P_MASTER)) bonus += rnd(10);
+	    if (otmp->otyp == SILVER_BULLET && is_undead(ptr) && (P_SKILL(P_FIREARM) == P_GRAND_MASTER)) bonus += rnd(14);
+	    if (otmp->otyp == SILVER_BULLET && is_undead(ptr) && (P_SKILL(P_FIREARM) == P_SUPREME_MASTER)) bonus += rnd(18);
 
 		}
 
@@ -2215,11 +2215,11 @@ struct monst *mon;
 
 		if (!(PlayerCannotUseSkills)) {
 
-	    if (objects[otmp->otyp].oc_skill == P_LANCE && is_animal(ptr) && (P_SKILL(P_LANCE) == P_SKILLED)) bonus += rnd(2);
-	    if (objects[otmp->otyp].oc_skill == P_LANCE && is_animal(ptr) && (P_SKILL(P_LANCE) == P_EXPERT)) bonus += rnd(3);
-	    if (objects[otmp->otyp].oc_skill == P_LANCE && is_animal(ptr) && (P_SKILL(P_LANCE) == P_MASTER)) bonus += rnd(5);
-	    if (objects[otmp->otyp].oc_skill == P_LANCE && is_animal(ptr) && (P_SKILL(P_LANCE) == P_GRAND_MASTER)) bonus += rnd(6);
-	    if (objects[otmp->otyp].oc_skill == P_LANCE && is_animal(ptr) && (P_SKILL(P_LANCE) == P_SUPREME_MASTER)) bonus += rnd(8);
+	    if (objects[otmp->otyp].oc_skill == P_LANCE && is_animal(ptr) && (P_SKILL(P_LANCE) == P_SKILLED)) bonus += 1;
+	    if (objects[otmp->otyp].oc_skill == P_LANCE && is_animal(ptr) && (P_SKILL(P_LANCE) == P_EXPERT)) bonus += rnd(2);
+	    if (objects[otmp->otyp].oc_skill == P_LANCE && is_animal(ptr) && (P_SKILL(P_LANCE) == P_MASTER)) bonus += rnd(3);
+	    if (objects[otmp->otyp].oc_skill == P_LANCE && is_animal(ptr) && (P_SKILL(P_LANCE) == P_GRAND_MASTER)) bonus += rnd(4);
+	    if (objects[otmp->otyp].oc_skill == P_LANCE && is_animal(ptr) && (P_SKILL(P_LANCE) == P_SUPREME_MASTER)) bonus += rnd(5);
 	    if (otmp->otyp == SURVIVAL_KNIFE && is_animal(ptr) && (P_SKILL(P_KNIFE) == P_SKILLED)) bonus += rnd(2);
 	    if (otmp->otyp == SURVIVAL_KNIFE && is_animal(ptr) && (P_SKILL(P_KNIFE) == P_EXPERT)) bonus += rnd(3);
 	    if (otmp->otyp == SURVIVAL_KNIFE && is_animal(ptr) && (P_SKILL(P_KNIFE) == P_MASTER)) bonus += rnd(5);
@@ -2261,11 +2261,11 @@ struct monst *mon;
 
 		if (!(PlayerCannotUseSkills)) {
 
-	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && (ptr->mlet == S_GOLEM || ptr->mlet == S_CENTAUR || ptr->mlet == S_UNICORN) && (P_SKILL(P_POLEARMS) == P_SKILLED)) bonus += rnd(2);
-	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && (ptr->mlet == S_GOLEM || ptr->mlet == S_CENTAUR || ptr->mlet == S_UNICORN) && (P_SKILL(P_POLEARMS) == P_EXPERT)) bonus += rnd(4);
-	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && (ptr->mlet == S_GOLEM || ptr->mlet == S_CENTAUR || ptr->mlet == S_UNICORN) && (P_SKILL(P_POLEARMS) == P_MASTER)) bonus += rnd(6);
-	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && (ptr->mlet == S_GOLEM || ptr->mlet == S_CENTAUR || ptr->mlet == S_UNICORN) && (P_SKILL(P_POLEARMS) == P_GRAND_MASTER)) bonus += rnd(9);
-	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && (ptr->mlet == S_GOLEM || ptr->mlet == S_CENTAUR || ptr->mlet == S_UNICORN) && (P_SKILL(P_POLEARMS) == P_SUPREME_MASTER)) bonus += rnd(12);
+	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && (ptr->mlet == S_GOLEM || ptr->mlet == S_CENTAUR || ptr->mlet == S_UNICORN) && (P_SKILL(P_POLEARMS) == P_SKILLED)) bonus += 1;
+	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && (ptr->mlet == S_GOLEM || ptr->mlet == S_CENTAUR || ptr->mlet == S_UNICORN) && (P_SKILL(P_POLEARMS) == P_EXPERT)) bonus += rnd(2);
+	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && (ptr->mlet == S_GOLEM || ptr->mlet == S_CENTAUR || ptr->mlet == S_UNICORN) && (P_SKILL(P_POLEARMS) == P_MASTER)) bonus += rnd(3);
+	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && (ptr->mlet == S_GOLEM || ptr->mlet == S_CENTAUR || ptr->mlet == S_UNICORN) && (P_SKILL(P_POLEARMS) == P_GRAND_MASTER)) bonus += rnd(4);
+	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && (ptr->mlet == S_GOLEM || ptr->mlet == S_CENTAUR || ptr->mlet == S_UNICORN) && (P_SKILL(P_POLEARMS) == P_SUPREME_MASTER)) bonus += rnd(5);
 
 		}
 
@@ -2273,11 +2273,11 @@ struct monst *mon;
 
 		if (!(PlayerCannotUseSkills)) {
 
-	    if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == SCYTHE) && ptr->mlet == S_BAD_FOOD && (P_SKILL(P_POLEARMS) == P_SKILLED)) bonus += rnd(8);
-	    if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == SCYTHE) && ptr->mlet == S_BAD_FOOD && (P_SKILL(P_POLEARMS) == P_EXPERT)) bonus += rnd(16);
-	    if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == SCYTHE) && ptr->mlet == S_BAD_FOOD && (P_SKILL(P_POLEARMS) == P_MASTER)) bonus += rnd(25);
-	    if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == SCYTHE) && ptr->mlet == S_BAD_FOOD && (P_SKILL(P_POLEARMS) == P_GRAND_MASTER)) bonus += rnd(34);
-	    if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == SCYTHE) && ptr->mlet == S_BAD_FOOD && (P_SKILL(P_POLEARMS) == P_SUPREME_MASTER)) bonus += rnd(44);
+	    if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == SCYTHE) && ptr->mlet == S_BAD_FOOD && (P_SKILL(P_POLEARMS) == P_SKILLED)) bonus += rnd(3);
+	    if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == SCYTHE) && ptr->mlet == S_BAD_FOOD && (P_SKILL(P_POLEARMS) == P_EXPERT)) bonus += rnd(5);
+	    if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == SCYTHE) && ptr->mlet == S_BAD_FOOD && (P_SKILL(P_POLEARMS) == P_MASTER)) bonus += rnd(7);
+	    if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == SCYTHE) && ptr->mlet == S_BAD_FOOD && (P_SKILL(P_POLEARMS) == P_GRAND_MASTER)) bonus += rnd(10);
+	    if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == SCYTHE) && ptr->mlet == S_BAD_FOOD && (P_SKILL(P_POLEARMS) == P_SUPREME_MASTER)) bonus += rnd(12);
 		}
 
 	    /* electric sword versus quantum mechanic */
@@ -2285,11 +2285,11 @@ struct monst *mon;
 
 		if (!(PlayerCannotUseSkills)) {
 
-	    if (otmp->otyp == ELECTRIC_SWORD && ptr->mlet == S_QUANTMECH && (P_SKILL(P_LONG_SWORD) == P_SKILLED)) bonus += rnd(8);
-	    if (otmp->otyp == ELECTRIC_SWORD && ptr->mlet == S_QUANTMECH && (P_SKILL(P_LONG_SWORD) == P_EXPERT)) bonus += rnd(16);
-	    if (otmp->otyp == ELECTRIC_SWORD && ptr->mlet == S_QUANTMECH && (P_SKILL(P_LONG_SWORD) == P_MASTER)) bonus += rnd(25);
-	    if (otmp->otyp == ELECTRIC_SWORD && ptr->mlet == S_QUANTMECH && (P_SKILL(P_LONG_SWORD) == P_GRAND_MASTER)) bonus += rnd(34);
-	    if (otmp->otyp == ELECTRIC_SWORD && ptr->mlet == S_QUANTMECH && (P_SKILL(P_LONG_SWORD) == P_SUPREME_MASTER)) bonus += rnd(44);
+	    if (otmp->otyp == ELECTRIC_SWORD && ptr->mlet == S_QUANTMECH && (P_SKILL(P_LONG_SWORD) == P_SKILLED)) bonus += rnd(2);
+	    if (otmp->otyp == ELECTRIC_SWORD && ptr->mlet == S_QUANTMECH && (P_SKILL(P_LONG_SWORD) == P_EXPERT)) bonus += rnd(4);
+	    if (otmp->otyp == ELECTRIC_SWORD && ptr->mlet == S_QUANTMECH && (P_SKILL(P_LONG_SWORD) == P_MASTER)) bonus += rnd(6);
+	    if (otmp->otyp == ELECTRIC_SWORD && ptr->mlet == S_QUANTMECH && (P_SKILL(P_LONG_SWORD) == P_GRAND_MASTER)) bonus += rnd(8);
+	    if (otmp->otyp == ELECTRIC_SWORD && ptr->mlet == S_QUANTMECH && (P_SKILL(P_LONG_SWORD) == P_SUPREME_MASTER)) bonus += rnd(10);
 		}
 
 	    /* shotgun versus bears or other quadrupeds */
@@ -2297,28 +2297,28 @@ struct monst *mon;
 	    if (otmp->otyp == LEAD_SHOT && ptr->mlet == S_QUADRUPED) bonus += (10 + rnd(10));
 
 		if (!(PlayerCannotUseSkills)) {
-	    if (otmp->otyp == SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_SKILLED)) bonus += rnd(10);
-	    if (otmp->otyp == SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_EXPERT)) bonus += rnd(22);
-	    if (otmp->otyp == SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_MASTER)) bonus += rnd(36);
-	    if (otmp->otyp == SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_GRAND_MASTER)) bonus += rnd(54);
-	    if (otmp->otyp == SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_SUPREME_MASTER)) bonus += rnd(72);
+	    if (otmp->otyp == SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_SKILLED)) bonus += rnd(4);
+	    if (otmp->otyp == SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_EXPERT)) bonus += rnd(7);
+	    if (otmp->otyp == SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_MASTER)) bonus += rnd(10);
+	    if (otmp->otyp == SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_GRAND_MASTER)) bonus += rnd(12);
+	    if (otmp->otyp == SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_SUPREME_MASTER)) bonus += rnd(15);
 
-	    if (otmp->otyp == LEAD_SHOT && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_SKILLED)) bonus += rnd(10);
-	    if (otmp->otyp == LEAD_SHOT && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_EXPERT)) bonus += rnd(22);
-	    if (otmp->otyp == LEAD_SHOT && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_MASTER)) bonus += rnd(36);
-	    if (otmp->otyp == LEAD_SHOT && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_GRAND_MASTER)) bonus += rnd(54);
-	    if (otmp->otyp == LEAD_SHOT && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_SUPREME_MASTER)) bonus += rnd(72);
+	    if (otmp->otyp == LEAD_SHOT && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_SKILLED)) bonus += rnd(4);
+	    if (otmp->otyp == LEAD_SHOT && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_EXPERT)) bonus += rnd(7);
+	    if (otmp->otyp == LEAD_SHOT && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_MASTER)) bonus += rnd(10);
+	    if (otmp->otyp == LEAD_SHOT && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_GRAND_MASTER)) bonus += rnd(12);
+	    if (otmp->otyp == LEAD_SHOT && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_SUPREME_MASTER)) bonus += rnd(15);
 		}
 
 	    /* axes versus umber hulks */
 	    if (objects[otmp->otyp].oc_skill == P_AXE && ptr->mlet == S_UMBER) bonus += rnd(2);
 
 		if (!(PlayerCannotUseSkills)) {
-	    if (objects[otmp->otyp].oc_skill == P_AXE && ptr->mlet == S_UMBER && (P_SKILL(P_AXE) == P_SKILLED)) bonus += rnd(2);
-	    if (objects[otmp->otyp].oc_skill == P_AXE && ptr->mlet == S_UMBER && (P_SKILL(P_AXE) == P_EXPERT)) bonus += rnd(5);
-	    if (objects[otmp->otyp].oc_skill == P_AXE && ptr->mlet == S_UMBER && (P_SKILL(P_AXE) == P_MASTER)) bonus += rnd(10);
-	    if (objects[otmp->otyp].oc_skill == P_AXE && ptr->mlet == S_UMBER && (P_SKILL(P_AXE) == P_GRAND_MASTER)) bonus += rnd(17);
-	    if (objects[otmp->otyp].oc_skill == P_AXE && ptr->mlet == S_UMBER && (P_SKILL(P_AXE) == P_SUPREME_MASTER)) bonus += rnd(25);
+	    if (objects[otmp->otyp].oc_skill == P_AXE && ptr->mlet == S_UMBER && (P_SKILL(P_AXE) == P_SKILLED)) bonus += 1;
+	    if (objects[otmp->otyp].oc_skill == P_AXE && ptr->mlet == S_UMBER && (P_SKILL(P_AXE) == P_EXPERT)) bonus += rnd(2);
+	    if (objects[otmp->otyp].oc_skill == P_AXE && ptr->mlet == S_UMBER && (P_SKILL(P_AXE) == P_MASTER)) bonus += rnd(3);
+	    if (objects[otmp->otyp].oc_skill == P_AXE && ptr->mlet == S_UMBER && (P_SKILL(P_AXE) == P_GRAND_MASTER)) bonus += rnd(4);
+	    if (objects[otmp->otyp].oc_skill == P_AXE && ptr->mlet == S_UMBER && (P_SKILL(P_AXE) == P_SUPREME_MASTER)) bonus += rnd(5);
 		}
 
 	    /* whips for lashing people's asses :P */
@@ -2326,10 +2326,10 @@ struct monst *mon;
 
 		if (!(PlayerCannotUseSkills)) {
 	    if (objects[otmp->otyp].oc_skill == P_WHIP && ptr->mlet == S_HUMAN && (P_SKILL(P_WHIP) == P_SKILLED)) bonus += 1;
-	    if (objects[otmp->otyp].oc_skill == P_WHIP && ptr->mlet == S_HUMAN && (P_SKILL(P_WHIP) == P_EXPERT)) bonus += 2;
-	    if (objects[otmp->otyp].oc_skill == P_WHIP && ptr->mlet == S_HUMAN && (P_SKILL(P_WHIP) == P_MASTER)) bonus += 3;
-	    if (objects[otmp->otyp].oc_skill == P_WHIP && ptr->mlet == S_HUMAN && (P_SKILL(P_WHIP) == P_GRAND_MASTER)) bonus += 4;
-	    if (objects[otmp->otyp].oc_skill == P_WHIP && ptr->mlet == S_HUMAN && (P_SKILL(P_WHIP) == P_SUPREME_MASTER)) bonus += 5;
+	    if (objects[otmp->otyp].oc_skill == P_WHIP && ptr->mlet == S_HUMAN && (P_SKILL(P_WHIP) == P_EXPERT)) bonus += rnd(2);
+	    if (objects[otmp->otyp].oc_skill == P_WHIP && ptr->mlet == S_HUMAN && (P_SKILL(P_WHIP) == P_MASTER)) bonus += rnd(3);
+	    if (objects[otmp->otyp].oc_skill == P_WHIP && ptr->mlet == S_HUMAN && (P_SKILL(P_WHIP) == P_GRAND_MASTER)) bonus += rnd(4);
+	    if (objects[otmp->otyp].oc_skill == P_WHIP && ptr->mlet == S_HUMAN && (P_SKILL(P_WHIP) == P_SUPREME_MASTER)) bonus += rnd(5);
 		}
 
 		if (objects[otmp->otyp].oc_skill == P_WHIP && uarmg && uarmg->oartifact == ART_FIFTY_SHADES_OF_FUCKED_UP) bonus += 10;
@@ -6628,17 +6628,17 @@ struct obj *weapon;
 
 	if (!(PlayerCannotUseSkills)) {
 
-	if (weapon && weapon_type(weapon) == P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_SKILLED) ) bonus += rnd(3);
-	if (weapon && weapon_type(weapon) == P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_EXPERT) ) bonus += rnd(6);
-	if (weapon && weapon_type(weapon) == P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_MASTER) ) bonus += rnd(9);
-	if (weapon && weapon_type(weapon) == P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_GRAND_MASTER) ) bonus += rnd(12);
-	if (weapon && weapon_type(weapon) == P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_SUPREME_MASTER) ) bonus += rnd(15);
+	if (weapon && weapon_type(weapon) == P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_SKILLED) ) bonus += rnd(2);
+	if (weapon && weapon_type(weapon) == P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_EXPERT) ) bonus += rnd(4);
+	if (weapon && weapon_type(weapon) == P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_MASTER) ) bonus += rnd(6);
+	if (weapon && weapon_type(weapon) == P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_GRAND_MASTER) ) bonus += rnd(8);
+	if (weapon && weapon_type(weapon) == P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_SUPREME_MASTER) ) bonus += rnd(10);
 
-	if (weapon && weapon_type(weapon) == -P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_SKILLED) ) bonus += rnd(3);
-	if (weapon && weapon_type(weapon) == -P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_EXPERT) ) bonus += rnd(6);
-	if (weapon && weapon_type(weapon) == -P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_MASTER) ) bonus += rnd(9);
-	if (weapon && weapon_type(weapon) == -P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_GRAND_MASTER) ) bonus += rnd(12);
-	if (weapon && weapon_type(weapon) == -P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_SUPREME_MASTER) ) bonus += rnd(15);
+	if (weapon && weapon_type(weapon) == -P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_SKILLED) ) bonus += rnd(2);
+	if (weapon && weapon_type(weapon) == -P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_EXPERT) ) bonus += rnd(4);
+	if (weapon && weapon_type(weapon) == -P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_MASTER) ) bonus += rnd(6);
+	if (weapon && weapon_type(weapon) == -P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_GRAND_MASTER) ) bonus += rnd(8);
+	if (weapon && weapon_type(weapon) == -P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_SUPREME_MASTER) ) bonus += rnd(10);
 
 	}
 
@@ -6840,275 +6840,275 @@ struct obj *weapon;
 	if (weapon && weapon_type(weapon) == P_KNIFE && (P_SKILL(P_KNIFE) == P_GRAND_MASTER) ) bonus += rnd(7);
 	if (weapon && weapon_type(weapon) == P_KNIFE && (P_SKILL(P_KNIFE) == P_SUPREME_MASTER) ) bonus += rnd(11);
 
-	if (weapon && weapon->otyp == BATTLE_AXE && (P_SKILL(P_AXE) == P_SKILLED) ) bonus += rnd(6);
-	if (weapon && weapon->otyp == BATTLE_AXE && (P_SKILL(P_AXE) == P_EXPERT) ) bonus += rnd(12);
-	if (weapon && weapon->otyp == BATTLE_AXE && (P_SKILL(P_AXE) == P_MASTER) ) bonus += rnd(18);
-	if (weapon && weapon->otyp == BATTLE_AXE && (P_SKILL(P_AXE) == P_GRAND_MASTER) ) bonus += rnd(24);
-	if (weapon && weapon->otyp == BATTLE_AXE && (P_SKILL(P_AXE) == P_SUPREME_MASTER) ) bonus += rnd(30);
+	if (weapon && weapon->otyp == BATTLE_AXE && (P_SKILL(P_AXE) == P_SKILLED) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == BATTLE_AXE && (P_SKILL(P_AXE) == P_EXPERT) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == BATTLE_AXE && (P_SKILL(P_AXE) == P_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == BATTLE_AXE && (P_SKILL(P_AXE) == P_GRAND_MASTER) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == BATTLE_AXE && (P_SKILL(P_AXE) == P_SUPREME_MASTER) ) bonus += rnd(15);
 
-	if (weapon && weapon->otyp == DWARVISH_BATTLE_AXE && (P_SKILL(P_AXE) == P_SKILLED) ) bonus += rnd(6);
-	if (weapon && weapon->otyp == DWARVISH_BATTLE_AXE && (P_SKILL(P_AXE) == P_EXPERT) ) bonus += rnd(12);
-	if (weapon && weapon->otyp == DWARVISH_BATTLE_AXE && (P_SKILL(P_AXE) == P_MASTER) ) bonus += rnd(18);
-	if (weapon && weapon->otyp == DWARVISH_BATTLE_AXE && (P_SKILL(P_AXE) == P_GRAND_MASTER) ) bonus += rnd(24);
-	if (weapon && weapon->otyp == DWARVISH_BATTLE_AXE && (P_SKILL(P_AXE) == P_SUPREME_MASTER) ) bonus += rnd(30);
+	if (weapon && weapon->otyp == DWARVISH_BATTLE_AXE && (P_SKILL(P_AXE) == P_SKILLED) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == DWARVISH_BATTLE_AXE && (P_SKILL(P_AXE) == P_EXPERT) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == DWARVISH_BATTLE_AXE && (P_SKILL(P_AXE) == P_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == DWARVISH_BATTLE_AXE && (P_SKILL(P_AXE) == P_GRAND_MASTER) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == DWARVISH_BATTLE_AXE && (P_SKILL(P_AXE) == P_SUPREME_MASTER) ) bonus += rnd(15);
 
-	if (weapon && weapon->otyp == CHEMISTRY_SPACE_AXE && (P_SKILL(P_AXE) == P_SKILLED) ) bonus += rnd(6);
-	if (weapon && weapon->otyp == CHEMISTRY_SPACE_AXE && (P_SKILL(P_AXE) == P_EXPERT) ) bonus += rnd(12);
-	if (weapon && weapon->otyp == CHEMISTRY_SPACE_AXE && (P_SKILL(P_AXE) == P_MASTER) ) bonus += rnd(18);
-	if (weapon && weapon->otyp == CHEMISTRY_SPACE_AXE && (P_SKILL(P_AXE) == P_GRAND_MASTER) ) bonus += rnd(24);
-	if (weapon && weapon->otyp == CHEMISTRY_SPACE_AXE && (P_SKILL(P_AXE) == P_SUPREME_MASTER) ) bonus += rnd(30);
+	if (weapon && weapon->otyp == CHEMISTRY_SPACE_AXE && (P_SKILL(P_AXE) == P_SKILLED) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == CHEMISTRY_SPACE_AXE && (P_SKILL(P_AXE) == P_EXPERT) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == CHEMISTRY_SPACE_AXE && (P_SKILL(P_AXE) == P_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == CHEMISTRY_SPACE_AXE && (P_SKILL(P_AXE) == P_GRAND_MASTER) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == CHEMISTRY_SPACE_AXE && (P_SKILL(P_AXE) == P_SUPREME_MASTER) ) bonus += rnd(15);
 
-	if (weapon && weapon->otyp == GROM_AXE && (P_SKILL(P_AXE) == P_SKILLED) ) bonus += rnd(6);
-	if (weapon && weapon->otyp == GROM_AXE && (P_SKILL(P_AXE) == P_EXPERT) ) bonus += rnd(12);
-	if (weapon && weapon->otyp == GROM_AXE && (P_SKILL(P_AXE) == P_MASTER) ) bonus += rnd(18);
-	if (weapon && weapon->otyp == GROM_AXE && (P_SKILL(P_AXE) == P_GRAND_MASTER) ) bonus += rnd(24);
-	if (weapon && weapon->otyp == GROM_AXE && (P_SKILL(P_AXE) == P_SUPREME_MASTER) ) bonus += rnd(30);
+	if (weapon && weapon->otyp == GROM_AXE && (P_SKILL(P_AXE) == P_SKILLED) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == GROM_AXE && (P_SKILL(P_AXE) == P_EXPERT) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == GROM_AXE && (P_SKILL(P_AXE) == P_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == GROM_AXE && (P_SKILL(P_AXE) == P_GRAND_MASTER) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == GROM_AXE && (P_SKILL(P_AXE) == P_SUPREME_MASTER) ) bonus += rnd(15);
 
-	if (weapon && weapon->otyp == AMBUSH_QATAR && (P_SKILL(P_AXE) == P_SKILLED) ) bonus += rnd(5);
-	if (weapon && weapon->otyp == AMBUSH_QATAR && (P_SKILL(P_AXE) == P_EXPERT) ) bonus += rnd(10);
-	if (weapon && weapon->otyp == AMBUSH_QATAR && (P_SKILL(P_AXE) == P_MASTER) ) bonus += rnd(15);
-	if (weapon && weapon->otyp == AMBUSH_QATAR && (P_SKILL(P_AXE) == P_GRAND_MASTER) ) bonus += rnd(20);
-	if (weapon && weapon->otyp == AMBUSH_QATAR && (P_SKILL(P_AXE) == P_SUPREME_MASTER) ) bonus += rnd(25);
+	if (weapon && weapon->otyp == AMBUSH_QATAR && (P_SKILL(P_AXE) == P_SKILLED) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == AMBUSH_QATAR && (P_SKILL(P_AXE) == P_EXPERT) ) bonus += rnd(4);
+	if (weapon && weapon->otyp == AMBUSH_QATAR && (P_SKILL(P_AXE) == P_MASTER) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == AMBUSH_QATAR && (P_SKILL(P_AXE) == P_GRAND_MASTER) ) bonus += rnd(8);
+	if (weapon && weapon->otyp == AMBUSH_QATAR && (P_SKILL(P_AXE) == P_SUPREME_MASTER) ) bonus += rnd(10);
 
-	if (weapon && weapon->otyp == DWARVISH_MATTOCK && (P_SKILL(P_PICK_AXE) == P_SKILLED) ) bonus += rnd(6);
-	if (weapon && weapon->otyp == DWARVISH_MATTOCK && (P_SKILL(P_PICK_AXE) == P_EXPERT) ) bonus += rnd(11);
-	if (weapon && weapon->otyp == DWARVISH_MATTOCK && (P_SKILL(P_PICK_AXE) == P_MASTER) ) bonus += rnd(16);
-	if (weapon && weapon->otyp == DWARVISH_MATTOCK && (P_SKILL(P_PICK_AXE) == P_GRAND_MASTER) ) bonus += rnd(21);
-	if (weapon && weapon->otyp == DWARVISH_MATTOCK && (P_SKILL(P_PICK_AXE) == P_SUPREME_MASTER) ) bonus += rnd(26);
+	if (weapon && weapon->otyp == DWARVISH_MATTOCK && (P_SKILL(P_PICK_AXE) == P_SKILLED) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == DWARVISH_MATTOCK && (P_SKILL(P_PICK_AXE) == P_EXPERT) ) bonus += rnd(5);
+	if (weapon && weapon->otyp == DWARVISH_MATTOCK && (P_SKILL(P_PICK_AXE) == P_MASTER) ) bonus += rnd(7);
+	if (weapon && weapon->otyp == DWARVISH_MATTOCK && (P_SKILL(P_PICK_AXE) == P_GRAND_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == DWARVISH_MATTOCK && (P_SKILL(P_PICK_AXE) == P_SUPREME_MASTER) ) bonus += rnd(12);
 
-	if (weapon && weapon->otyp == SOFT_MATTOCK && (P_SKILL(P_PICK_AXE) == P_SKILLED) ) bonus += rnd(6);
-	if (weapon && weapon->otyp == SOFT_MATTOCK && (P_SKILL(P_PICK_AXE) == P_EXPERT) ) bonus += rnd(11);
-	if (weapon && weapon->otyp == SOFT_MATTOCK && (P_SKILL(P_PICK_AXE) == P_MASTER) ) bonus += rnd(16);
-	if (weapon && weapon->otyp == SOFT_MATTOCK && (P_SKILL(P_PICK_AXE) == P_GRAND_MASTER) ) bonus += rnd(21);
-	if (weapon && weapon->otyp == SOFT_MATTOCK && (P_SKILL(P_PICK_AXE) == P_SUPREME_MASTER) ) bonus += rnd(26);
+	if (weapon && weapon->otyp == SOFT_MATTOCK && (P_SKILL(P_PICK_AXE) == P_SKILLED) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == SOFT_MATTOCK && (P_SKILL(P_PICK_AXE) == P_EXPERT) ) bonus += rnd(5);
+	if (weapon && weapon->otyp == SOFT_MATTOCK && (P_SKILL(P_PICK_AXE) == P_MASTER) ) bonus += rnd(7);
+	if (weapon && weapon->otyp == SOFT_MATTOCK && (P_SKILL(P_PICK_AXE) == P_GRAND_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == SOFT_MATTOCK && (P_SKILL(P_PICK_AXE) == P_SUPREME_MASTER) ) bonus += rnd(12);
 
-	if (weapon && weapon->otyp == ETERNIUM_MATTOCK && (P_SKILL(P_PICK_AXE) == P_SKILLED) ) bonus += rnd(6);
-	if (weapon && weapon->otyp == ETERNIUM_MATTOCK && (P_SKILL(P_PICK_AXE) == P_EXPERT) ) bonus += rnd(11);
-	if (weapon && weapon->otyp == ETERNIUM_MATTOCK && (P_SKILL(P_PICK_AXE) == P_MASTER) ) bonus += rnd(16);
-	if (weapon && weapon->otyp == ETERNIUM_MATTOCK && (P_SKILL(P_PICK_AXE) == P_GRAND_MASTER) ) bonus += rnd(21);
-	if (weapon && weapon->otyp == ETERNIUM_MATTOCK && (P_SKILL(P_PICK_AXE) == P_SUPREME_MASTER) ) bonus += rnd(26);
+	if (weapon && weapon->otyp == ETERNIUM_MATTOCK && (P_SKILL(P_PICK_AXE) == P_SKILLED) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == ETERNIUM_MATTOCK && (P_SKILL(P_PICK_AXE) == P_EXPERT) ) bonus += rnd(5);
+	if (weapon && weapon->otyp == ETERNIUM_MATTOCK && (P_SKILL(P_PICK_AXE) == P_MASTER) ) bonus += rnd(7);
+	if (weapon && weapon->otyp == ETERNIUM_MATTOCK && (P_SKILL(P_PICK_AXE) == P_GRAND_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == ETERNIUM_MATTOCK && (P_SKILL(P_PICK_AXE) == P_SUPREME_MASTER) ) bonus += rnd(12);
 
-	if (weapon && weapon->otyp == BROOM && (P_SKILL(P_PADDLE) == P_SKILLED) ) bonus += rnd(6);
-	if (weapon && weapon->otyp == BROOM && (P_SKILL(P_PADDLE) == P_EXPERT) ) bonus += rnd(11);
-	if (weapon && weapon->otyp == BROOM && (P_SKILL(P_PADDLE) == P_MASTER) ) bonus += rnd(16);
-	if (weapon && weapon->otyp == BROOM && (P_SKILL(P_PADDLE) == P_GRAND_MASTER) ) bonus += rnd(21);
-	if (weapon && weapon->otyp == BROOM && (P_SKILL(P_PADDLE) == P_SUPREME_MASTER) ) bonus += rnd(26);
+	if (weapon && weapon->otyp == BROOM && (P_SKILL(P_PADDLE) == P_SKILLED) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == BROOM && (P_SKILL(P_PADDLE) == P_EXPERT) ) bonus += rnd(5);
+	if (weapon && weapon->otyp == BROOM && (P_SKILL(P_PADDLE) == P_MASTER) ) bonus += rnd(7);
+	if (weapon && weapon->otyp == BROOM && (P_SKILL(P_PADDLE) == P_GRAND_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == BROOM && (P_SKILL(P_PADDLE) == P_SUPREME_MASTER) ) bonus += rnd(12);
 
-	if (weapon && weapon->otyp == MOP && (P_SKILL(P_PADDLE) == P_SKILLED) ) bonus += rnd(6);
-	if (weapon && weapon->otyp == MOP && (P_SKILL(P_PADDLE) == P_EXPERT) ) bonus += rnd(11);
-	if (weapon && weapon->otyp == MOP && (P_SKILL(P_PADDLE) == P_MASTER) ) bonus += rnd(16);
-	if (weapon && weapon->otyp == MOP && (P_SKILL(P_PADDLE) == P_GRAND_MASTER) ) bonus += rnd(21);
-	if (weapon && weapon->otyp == MOP && (P_SKILL(P_PADDLE) == P_SUPREME_MASTER) ) bonus += rnd(26);
+	if (weapon && weapon->otyp == MOP && (P_SKILL(P_PADDLE) == P_SKILLED) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == MOP && (P_SKILL(P_PADDLE) == P_EXPERT) ) bonus += rnd(5);
+	if (weapon && weapon->otyp == MOP && (P_SKILL(P_PADDLE) == P_MASTER) ) bonus += rnd(7);
+	if (weapon && weapon->otyp == MOP && (P_SKILL(P_PADDLE) == P_GRAND_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == MOP && (P_SKILL(P_PADDLE) == P_SUPREME_MASTER) ) bonus += rnd(12);
 
-	if (weapon && weapon->otyp == SPECIAL_MOP && (P_SKILL(P_PADDLE) == P_SKILLED) ) bonus += rnd(6);
-	if (weapon && weapon->otyp == SPECIAL_MOP && (P_SKILL(P_PADDLE) == P_EXPERT) ) bonus += rnd(11);
-	if (weapon && weapon->otyp == SPECIAL_MOP && (P_SKILL(P_PADDLE) == P_MASTER) ) bonus += rnd(16);
-	if (weapon && weapon->otyp == SPECIAL_MOP && (P_SKILL(P_PADDLE) == P_GRAND_MASTER) ) bonus += rnd(21);
-	if (weapon && weapon->otyp == SPECIAL_MOP && (P_SKILL(P_PADDLE) == P_SUPREME_MASTER) ) bonus += rnd(26);
+	if (weapon && weapon->otyp == SPECIAL_MOP && (P_SKILL(P_PADDLE) == P_SKILLED) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == SPECIAL_MOP && (P_SKILL(P_PADDLE) == P_EXPERT) ) bonus += rnd(5);
+	if (weapon && weapon->otyp == SPECIAL_MOP && (P_SKILL(P_PADDLE) == P_MASTER) ) bonus += rnd(7);
+	if (weapon && weapon->otyp == SPECIAL_MOP && (P_SKILL(P_PADDLE) == P_GRAND_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == SPECIAL_MOP && (P_SKILL(P_PADDLE) == P_SUPREME_MASTER) ) bonus += rnd(12);
 
-	if (weapon && weapon->otyp == BOAT_OAR && (P_SKILL(P_PADDLE) == P_SKILLED) ) bonus += rnd(6);
-	if (weapon && weapon->otyp == BOAT_OAR && (P_SKILL(P_PADDLE) == P_EXPERT) ) bonus += rnd(11);
-	if (weapon && weapon->otyp == BOAT_OAR && (P_SKILL(P_PADDLE) == P_MASTER) ) bonus += rnd(16);
-	if (weapon && weapon->otyp == BOAT_OAR && (P_SKILL(P_PADDLE) == P_GRAND_MASTER) ) bonus += rnd(21);
-	if (weapon && weapon->otyp == BOAT_OAR && (P_SKILL(P_PADDLE) == P_SUPREME_MASTER) ) bonus += rnd(26);
+	if (weapon && weapon->otyp == BOAT_OAR && (P_SKILL(P_PADDLE) == P_SKILLED) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == BOAT_OAR && (P_SKILL(P_PADDLE) == P_EXPERT) ) bonus += rnd(5);
+	if (weapon && weapon->otyp == BOAT_OAR && (P_SKILL(P_PADDLE) == P_MASTER) ) bonus += rnd(7);
+	if (weapon && weapon->otyp == BOAT_OAR && (P_SKILL(P_PADDLE) == P_GRAND_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == BOAT_OAR && (P_SKILL(P_PADDLE) == P_SUPREME_MASTER) ) bonus += rnd(12);
 
-	if (weapon && weapon->otyp == MAGICAL_PAINTBRUSH && (P_SKILL(P_PADDLE) == P_SKILLED) ) bonus += rnd(6);
-	if (weapon && weapon->otyp == MAGICAL_PAINTBRUSH && (P_SKILL(P_PADDLE) == P_EXPERT) ) bonus += rnd(11);
-	if (weapon && weapon->otyp == MAGICAL_PAINTBRUSH && (P_SKILL(P_PADDLE) == P_MASTER) ) bonus += rnd(16);
-	if (weapon && weapon->otyp == MAGICAL_PAINTBRUSH && (P_SKILL(P_PADDLE) == P_GRAND_MASTER) ) bonus += rnd(21);
-	if (weapon && weapon->otyp == MAGICAL_PAINTBRUSH && (P_SKILL(P_PADDLE) == P_SUPREME_MASTER) ) bonus += rnd(26);
+	if (weapon && weapon->otyp == MAGICAL_PAINTBRUSH && (P_SKILL(P_PADDLE) == P_SKILLED) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == MAGICAL_PAINTBRUSH && (P_SKILL(P_PADDLE) == P_EXPERT) ) bonus += rnd(5);
+	if (weapon && weapon->otyp == MAGICAL_PAINTBRUSH && (P_SKILL(P_PADDLE) == P_MASTER) ) bonus += rnd(7);
+	if (weapon && weapon->otyp == MAGICAL_PAINTBRUSH && (P_SKILL(P_PADDLE) == P_GRAND_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == MAGICAL_PAINTBRUSH && (P_SKILL(P_PADDLE) == P_SUPREME_MASTER) ) bonus += rnd(12);
 
-	if (weapon && weapon->otyp == PICK_AXE && (P_SKILL(P_PICK_AXE) == P_SKILLED) ) bonus += rnd(4);
-	if (weapon && weapon->otyp == PICK_AXE && (P_SKILL(P_PICK_AXE) == P_EXPERT) ) bonus += rnd(8);
-	if (weapon && weapon->otyp == PICK_AXE && (P_SKILL(P_PICK_AXE) == P_MASTER) ) bonus += rnd(12);
-	if (weapon && weapon->otyp == PICK_AXE && (P_SKILL(P_PICK_AXE) == P_GRAND_MASTER) ) bonus += rnd(16);
-	if (weapon && weapon->otyp == PICK_AXE && (P_SKILL(P_PICK_AXE) == P_SUPREME_MASTER) ) bonus += rnd(20);
+	if (weapon && weapon->otyp == PICK_AXE && (P_SKILL(P_PICK_AXE) == P_SKILLED) ) bonus += 1;
+	if (weapon && weapon->otyp == PICK_AXE && (P_SKILL(P_PICK_AXE) == P_EXPERT) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == PICK_AXE && (P_SKILL(P_PICK_AXE) == P_MASTER) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == PICK_AXE && (P_SKILL(P_PICK_AXE) == P_GRAND_MASTER) ) bonus += rnd(4);
+	if (weapon && weapon->otyp == PICK_AXE && (P_SKILL(P_PICK_AXE) == P_SUPREME_MASTER) ) bonus += rnd(5);
 
-	if (weapon && weapon->otyp == CONGLOMERATE_PICK && (P_SKILL(P_PICK_AXE) == P_SKILLED) ) bonus += rnd(4);
-	if (weapon && weapon->otyp == CONGLOMERATE_PICK && (P_SKILL(P_PICK_AXE) == P_EXPERT) ) bonus += rnd(8);
-	if (weapon && weapon->otyp == CONGLOMERATE_PICK && (P_SKILL(P_PICK_AXE) == P_MASTER) ) bonus += rnd(12);
-	if (weapon && weapon->otyp == CONGLOMERATE_PICK && (P_SKILL(P_PICK_AXE) == P_GRAND_MASTER) ) bonus += rnd(16);
-	if (weapon && weapon->otyp == CONGLOMERATE_PICK && (P_SKILL(P_PICK_AXE) == P_SUPREME_MASTER) ) bonus += rnd(20);
+	if (weapon && weapon->otyp == CONGLOMERATE_PICK && (P_SKILL(P_PICK_AXE) == P_SKILLED) ) bonus += 1;
+	if (weapon && weapon->otyp == CONGLOMERATE_PICK && (P_SKILL(P_PICK_AXE) == P_EXPERT) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == CONGLOMERATE_PICK && (P_SKILL(P_PICK_AXE) == P_MASTER) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == CONGLOMERATE_PICK && (P_SKILL(P_PICK_AXE) == P_GRAND_MASTER) ) bonus += rnd(4);
+	if (weapon && weapon->otyp == CONGLOMERATE_PICK && (P_SKILL(P_PICK_AXE) == P_SUPREME_MASTER) ) bonus += rnd(5);
 
-	if (weapon && weapon->otyp == CONUNDRUM_PICK && (P_SKILL(P_PICK_AXE) == P_SKILLED) ) bonus += rnd(4);
-	if (weapon && weapon->otyp == CONUNDRUM_PICK && (P_SKILL(P_PICK_AXE) == P_EXPERT) ) bonus += rnd(8);
-	if (weapon && weapon->otyp == CONUNDRUM_PICK && (P_SKILL(P_PICK_AXE) == P_MASTER) ) bonus += rnd(12);
-	if (weapon && weapon->otyp == CONUNDRUM_PICK && (P_SKILL(P_PICK_AXE) == P_GRAND_MASTER) ) bonus += rnd(16);
-	if (weapon && weapon->otyp == CONUNDRUM_PICK && (P_SKILL(P_PICK_AXE) == P_SUPREME_MASTER) ) bonus += rnd(20);
+	if (weapon && weapon->otyp == CONUNDRUM_PICK && (P_SKILL(P_PICK_AXE) == P_SKILLED) ) bonus += 1;
+	if (weapon && weapon->otyp == CONUNDRUM_PICK && (P_SKILL(P_PICK_AXE) == P_EXPERT) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == CONUNDRUM_PICK && (P_SKILL(P_PICK_AXE) == P_MASTER) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == CONUNDRUM_PICK && (P_SKILL(P_PICK_AXE) == P_GRAND_MASTER) ) bonus += rnd(4);
+	if (weapon && weapon->otyp == CONUNDRUM_PICK && (P_SKILL(P_PICK_AXE) == P_SUPREME_MASTER) ) bonus += rnd(5);
 
-	if (weapon && weapon->otyp == MYSTERY_PICK && (P_SKILL(P_PICK_AXE) == P_SKILLED) ) bonus += rnd(4);
-	if (weapon && weapon->otyp == MYSTERY_PICK && (P_SKILL(P_PICK_AXE) == P_EXPERT) ) bonus += rnd(8);
-	if (weapon && weapon->otyp == MYSTERY_PICK && (P_SKILL(P_PICK_AXE) == P_MASTER) ) bonus += rnd(12);
-	if (weapon && weapon->otyp == MYSTERY_PICK && (P_SKILL(P_PICK_AXE) == P_GRAND_MASTER) ) bonus += rnd(16);
-	if (weapon && weapon->otyp == MYSTERY_PICK && (P_SKILL(P_PICK_AXE) == P_SUPREME_MASTER) ) bonus += rnd(20);
+	if (weapon && weapon->otyp == MYSTERY_PICK && (P_SKILL(P_PICK_AXE) == P_SKILLED) ) bonus += 1;
+	if (weapon && weapon->otyp == MYSTERY_PICK && (P_SKILL(P_PICK_AXE) == P_EXPERT) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == MYSTERY_PICK && (P_SKILL(P_PICK_AXE) == P_MASTER) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == MYSTERY_PICK && (P_SKILL(P_PICK_AXE) == P_GRAND_MASTER) ) bonus += rnd(4);
+	if (weapon && weapon->otyp == MYSTERY_PICK && (P_SKILL(P_PICK_AXE) == P_SUPREME_MASTER) ) bonus += rnd(5);
 
-	if (weapon && weapon->otyp == BRONZE_PICK && (P_SKILL(P_PICK_AXE) == P_SKILLED) ) bonus += rnd(4);
-	if (weapon && weapon->otyp == BRONZE_PICK && (P_SKILL(P_PICK_AXE) == P_EXPERT) ) bonus += rnd(8);
-	if (weapon && weapon->otyp == BRONZE_PICK && (P_SKILL(P_PICK_AXE) == P_MASTER) ) bonus += rnd(12);
-	if (weapon && weapon->otyp == BRONZE_PICK && (P_SKILL(P_PICK_AXE) == P_GRAND_MASTER) ) bonus += rnd(16);
-	if (weapon && weapon->otyp == BRONZE_PICK && (P_SKILL(P_PICK_AXE) == P_SUPREME_MASTER) ) bonus += rnd(20);
+	if (weapon && weapon->otyp == BRONZE_PICK && (P_SKILL(P_PICK_AXE) == P_SKILLED) ) bonus += 1;
+	if (weapon && weapon->otyp == BRONZE_PICK && (P_SKILL(P_PICK_AXE) == P_EXPERT) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == BRONZE_PICK && (P_SKILL(P_PICK_AXE) == P_MASTER) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == BRONZE_PICK && (P_SKILL(P_PICK_AXE) == P_GRAND_MASTER) ) bonus += rnd(4);
+	if (weapon && weapon->otyp == BRONZE_PICK && (P_SKILL(P_PICK_AXE) == P_SUPREME_MASTER) ) bonus += rnd(5);
 
-	if (weapon && weapon->otyp == BRICK_PICK && (P_SKILL(P_PICK_AXE) == P_SKILLED) ) bonus += rnd(4);
-	if (weapon && weapon->otyp == BRICK_PICK && (P_SKILL(P_PICK_AXE) == P_EXPERT) ) bonus += rnd(8);
-	if (weapon && weapon->otyp == BRICK_PICK && (P_SKILL(P_PICK_AXE) == P_MASTER) ) bonus += rnd(12);
-	if (weapon && weapon->otyp == BRICK_PICK && (P_SKILL(P_PICK_AXE) == P_GRAND_MASTER) ) bonus += rnd(16);
-	if (weapon && weapon->otyp == BRICK_PICK && (P_SKILL(P_PICK_AXE) == P_SUPREME_MASTER) ) bonus += rnd(20);
+	if (weapon && weapon->otyp == BRICK_PICK && (P_SKILL(P_PICK_AXE) == P_SKILLED) ) bonus += 1;
+	if (weapon && weapon->otyp == BRICK_PICK && (P_SKILL(P_PICK_AXE) == P_EXPERT) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == BRICK_PICK && (P_SKILL(P_PICK_AXE) == P_MASTER) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == BRICK_PICK && (P_SKILL(P_PICK_AXE) == P_GRAND_MASTER) ) bonus += rnd(4);
+	if (weapon && weapon->otyp == BRICK_PICK && (P_SKILL(P_PICK_AXE) == P_SUPREME_MASTER) ) bonus += rnd(5);
 
-	if (weapon && weapon->otyp == NANO_PICK && (P_SKILL(P_PICK_AXE) == P_SKILLED) ) bonus += rnd(4);
-	if (weapon && weapon->otyp == NANO_PICK && (P_SKILL(P_PICK_AXE) == P_EXPERT) ) bonus += rnd(8);
-	if (weapon && weapon->otyp == NANO_PICK && (P_SKILL(P_PICK_AXE) == P_MASTER) ) bonus += rnd(12);
-	if (weapon && weapon->otyp == NANO_PICK && (P_SKILL(P_PICK_AXE) == P_GRAND_MASTER) ) bonus += rnd(16);
-	if (weapon && weapon->otyp == NANO_PICK && (P_SKILL(P_PICK_AXE) == P_SUPREME_MASTER) ) bonus += rnd(20);
+	if (weapon && weapon->otyp == NANO_PICK && (P_SKILL(P_PICK_AXE) == P_SKILLED) ) bonus += 1;
+	if (weapon && weapon->otyp == NANO_PICK && (P_SKILL(P_PICK_AXE) == P_EXPERT) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == NANO_PICK && (P_SKILL(P_PICK_AXE) == P_MASTER) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == NANO_PICK && (P_SKILL(P_PICK_AXE) == P_GRAND_MASTER) ) bonus += rnd(4);
+	if (weapon && weapon->otyp == NANO_PICK && (P_SKILL(P_PICK_AXE) == P_SUPREME_MASTER) ) bonus += rnd(5);
 
-	if (weapon && weapon->otyp == TSURUGI && (P_SKILL(P_TWO_HANDED_SWORD) == P_SKILLED) ) bonus += rnd(6);
-	if (weapon && weapon->otyp == TSURUGI && (P_SKILL(P_TWO_HANDED_SWORD) == P_EXPERT) ) bonus += rnd(12);
-	if (weapon && weapon->otyp == TSURUGI && (P_SKILL(P_TWO_HANDED_SWORD) == P_MASTER) ) bonus += rnd(18);
-	if (weapon && weapon->otyp == TSURUGI && (P_SKILL(P_TWO_HANDED_SWORD) == P_GRAND_MASTER) ) bonus += rnd(24);
-	if (weapon && weapon->otyp == TSURUGI && (P_SKILL(P_TWO_HANDED_SWORD) == P_SUPREME_MASTER) ) bonus += rnd(30);
+	if (weapon && weapon->otyp == TSURUGI && (P_SKILL(P_TWO_HANDED_SWORD) == P_SKILLED) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == TSURUGI && (P_SKILL(P_TWO_HANDED_SWORD) == P_EXPERT) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == TSURUGI && (P_SKILL(P_TWO_HANDED_SWORD) == P_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == TSURUGI && (P_SKILL(P_TWO_HANDED_SWORD) == P_GRAND_MASTER) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == TSURUGI && (P_SKILL(P_TWO_HANDED_SWORD) == P_SUPREME_MASTER) ) bonus += rnd(15);
 
-	if (weapon && weapon->otyp == DROVEN_GREATSWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_SKILLED) ) bonus += rnd(6);
-	if (weapon && weapon->otyp == DROVEN_GREATSWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_EXPERT) ) bonus += rnd(12);
-	if (weapon && weapon->otyp == DROVEN_GREATSWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_MASTER) ) bonus += rnd(18);
-	if (weapon && weapon->otyp == DROVEN_GREATSWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_GRAND_MASTER) ) bonus += rnd(24);
-	if (weapon && weapon->otyp == DROVEN_GREATSWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_SUPREME_MASTER) ) bonus += rnd(30);
+	if (weapon && weapon->otyp == DROVEN_GREATSWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_SKILLED) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == DROVEN_GREATSWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_EXPERT) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == DROVEN_GREATSWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == DROVEN_GREATSWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_GRAND_MASTER) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == DROVEN_GREATSWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_SUPREME_MASTER) ) bonus += rnd(15);
 
-	if (weapon && weapon->otyp == CHAINSWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_SKILLED) ) bonus += rnd(6);
-	if (weapon && weapon->otyp == CHAINSWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_EXPERT) ) bonus += rnd(12);
-	if (weapon && weapon->otyp == CHAINSWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_MASTER) ) bonus += rnd(18);
-	if (weapon && weapon->otyp == CHAINSWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_GRAND_MASTER) ) bonus += rnd(24);
-	if (weapon && weapon->otyp == CHAINSWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_SUPREME_MASTER) ) bonus += rnd(30);
+	if (weapon && weapon->otyp == CHAINSWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_SKILLED) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == CHAINSWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_EXPERT) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == CHAINSWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == CHAINSWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_GRAND_MASTER) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == CHAINSWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_SUPREME_MASTER) ) bonus += rnd(15);
 
-	if (weapon && weapon->otyp == BIDENHANDER && (P_SKILL(P_TWO_HANDED_SWORD) == P_SKILLED) ) bonus += rnd(6);
-	if (weapon && weapon->otyp == BIDENHANDER && (P_SKILL(P_TWO_HANDED_SWORD) == P_EXPERT) ) bonus += rnd(12);
-	if (weapon && weapon->otyp == BIDENHANDER && (P_SKILL(P_TWO_HANDED_SWORD) == P_MASTER) ) bonus += rnd(18);
-	if (weapon && weapon->otyp == BIDENHANDER && (P_SKILL(P_TWO_HANDED_SWORD) == P_GRAND_MASTER) ) bonus += rnd(24);
-	if (weapon && weapon->otyp == BIDENHANDER && (P_SKILL(P_TWO_HANDED_SWORD) == P_SUPREME_MASTER) ) bonus += rnd(30);
+	if (weapon && weapon->otyp == BIDENHANDER && (P_SKILL(P_TWO_HANDED_SWORD) == P_SKILLED) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == BIDENHANDER && (P_SKILL(P_TWO_HANDED_SWORD) == P_EXPERT) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == BIDENHANDER && (P_SKILL(P_TWO_HANDED_SWORD) == P_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == BIDENHANDER && (P_SKILL(P_TWO_HANDED_SWORD) == P_GRAND_MASTER) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == BIDENHANDER && (P_SKILL(P_TWO_HANDED_SWORD) == P_SUPREME_MASTER) ) bonus += rnd(15);
 
-	if (weapon && weapon->otyp == ETHER_SAW && (P_SKILL(P_TWO_HANDED_SWORD) == P_SKILLED) ) bonus += rnd(6);
-	if (weapon && weapon->otyp == ETHER_SAW && (P_SKILL(P_TWO_HANDED_SWORD) == P_EXPERT) ) bonus += rnd(12);
-	if (weapon && weapon->otyp == ETHER_SAW && (P_SKILL(P_TWO_HANDED_SWORD) == P_MASTER) ) bonus += rnd(18);
-	if (weapon && weapon->otyp == ETHER_SAW && (P_SKILL(P_TWO_HANDED_SWORD) == P_GRAND_MASTER) ) bonus += rnd(24);
-	if (weapon && weapon->otyp == ETHER_SAW && (P_SKILL(P_TWO_HANDED_SWORD) == P_SUPREME_MASTER) ) bonus += rnd(30);
+	if (weapon && weapon->otyp == ETHER_SAW && (P_SKILL(P_TWO_HANDED_SWORD) == P_SKILLED) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == ETHER_SAW && (P_SKILL(P_TWO_HANDED_SWORD) == P_EXPERT) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == ETHER_SAW && (P_SKILL(P_TWO_HANDED_SWORD) == P_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == ETHER_SAW && (P_SKILL(P_TWO_HANDED_SWORD) == P_GRAND_MASTER) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == ETHER_SAW && (P_SKILL(P_TWO_HANDED_SWORD) == P_SUPREME_MASTER) ) bonus += rnd(15);
 
-	if (weapon && weapon->otyp == SHADOWBLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_SKILLED) ) bonus += rnd(6);
-	if (weapon && weapon->otyp == SHADOWBLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_EXPERT) ) bonus += rnd(12);
-	if (weapon && weapon->otyp == SHADOWBLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_MASTER) ) bonus += rnd(18);
-	if (weapon && weapon->otyp == SHADOWBLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_GRAND_MASTER) ) bonus += rnd(24);
-	if (weapon && weapon->otyp == SHADOWBLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_SUPREME_MASTER) ) bonus += rnd(30);
+	if (weapon && weapon->otyp == SHADOWBLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_SKILLED) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == SHADOWBLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_EXPERT) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == SHADOWBLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == SHADOWBLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_GRAND_MASTER) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == SHADOWBLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_SUPREME_MASTER) ) bonus += rnd(15);
 
-	if (weapon && weapon->otyp == ROMAN_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_SKILLED) ) bonus += rnd(6);
-	if (weapon && weapon->otyp == ROMAN_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_EXPERT) ) bonus += rnd(12);
-	if (weapon && weapon->otyp == ROMAN_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_MASTER) ) bonus += rnd(18);
-	if (weapon && weapon->otyp == ROMAN_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_GRAND_MASTER) ) bonus += rnd(24);
-	if (weapon && weapon->otyp == ROMAN_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_SUPREME_MASTER) ) bonus += rnd(30);
+	if (weapon && weapon->otyp == ROMAN_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_SKILLED) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == ROMAN_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_EXPERT) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == ROMAN_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == ROMAN_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_GRAND_MASTER) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == ROMAN_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_SUPREME_MASTER) ) bonus += rnd(15);
 
-	if (weapon && weapon->otyp == ORGANOBLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_SKILLED) ) bonus += rnd(6);
-	if (weapon && weapon->otyp == ORGANOBLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_EXPERT) ) bonus += rnd(12);
-	if (weapon && weapon->otyp == ORGANOBLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_MASTER) ) bonus += rnd(18);
-	if (weapon && weapon->otyp == ORGANOBLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_GRAND_MASTER) ) bonus += rnd(24);
-	if (weapon && weapon->otyp == ORGANOBLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_SUPREME_MASTER) ) bonus += rnd(30);
+	if (weapon && weapon->otyp == ORGANOBLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_SKILLED) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == ORGANOBLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_EXPERT) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == ORGANOBLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == ORGANOBLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_GRAND_MASTER) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == ORGANOBLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_SUPREME_MASTER) ) bonus += rnd(15);
 
-	if (weapon && weapon->otyp == COLOSSUS_BLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_SKILLED) ) bonus += rnd(12);
-	if (weapon && weapon->otyp == COLOSSUS_BLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_EXPERT) ) bonus += rnd(24);
-	if (weapon && weapon->otyp == COLOSSUS_BLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_MASTER) ) bonus += rnd(36);
-	if (weapon && weapon->otyp == COLOSSUS_BLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_GRAND_MASTER) ) bonus += rnd(48);
-	if (weapon && weapon->otyp == COLOSSUS_BLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_SUPREME_MASTER) ) bonus += rnd(60);
+	if (weapon && weapon->otyp == COLOSSUS_BLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_SKILLED) ) bonus += rnd(4);
+	if (weapon && weapon->otyp == COLOSSUS_BLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_EXPERT) ) bonus += rnd(8);
+	if (weapon && weapon->otyp == COLOSSUS_BLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_MASTER) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == COLOSSUS_BLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_GRAND_MASTER) ) bonus += rnd(16);
+	if (weapon && weapon->otyp == COLOSSUS_BLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_SUPREME_MASTER) ) bonus += rnd(20);
 
-	if (weapon && weapon->otyp == BASTERD_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_SKILLED) ) bonus += rnd(6);
-	if (weapon && weapon->otyp == BASTERD_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_EXPERT) ) bonus += rnd(12);
-	if (weapon && weapon->otyp == BASTERD_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_MASTER) ) bonus += rnd(18);
-	if (weapon && weapon->otyp == BASTERD_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_GRAND_MASTER) ) bonus += rnd(24);
-	if (weapon && weapon->otyp == BASTERD_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_SUPREME_MASTER) ) bonus += rnd(30);
+	if (weapon && weapon->otyp == BASTERD_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_SKILLED) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == BASTERD_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_EXPERT) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == BASTERD_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == BASTERD_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_GRAND_MASTER) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == BASTERD_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_SUPREME_MASTER) ) bonus += rnd(15);
 
-	if (weapon && weapon->otyp == TWO_HANDED_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_SKILLED) ) bonus += rnd(6);
-	if (weapon && weapon->otyp == TWO_HANDED_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_EXPERT) ) bonus += rnd(12);
-	if (weapon && weapon->otyp == TWO_HANDED_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_MASTER) ) bonus += rnd(18);
-	if (weapon && weapon->otyp == TWO_HANDED_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_GRAND_MASTER) ) bonus += rnd(24);
-	if (weapon && weapon->otyp == TWO_HANDED_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_SUPREME_MASTER) ) bonus += rnd(30);
+	if (weapon && weapon->otyp == TWO_HANDED_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_SKILLED) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == TWO_HANDED_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_EXPERT) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == TWO_HANDED_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == TWO_HANDED_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_GRAND_MASTER) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == TWO_HANDED_SWORD && (P_SKILL(P_TWO_HANDED_SWORD) == P_SUPREME_MASTER) ) bonus += rnd(15);
 
-	if (weapon && weapon->otyp == GOLDEN_SABER && (P_SKILL(P_SABER) == P_SKILLED) ) bonus += rnd(2);
-	if (weapon && weapon->otyp == GOLDEN_SABER && (P_SKILL(P_SABER) == P_EXPERT) ) bonus += rnd(4);
-	if (weapon && weapon->otyp == GOLDEN_SABER && (P_SKILL(P_SABER) == P_MASTER) ) bonus += rnd(7);
-	if (weapon && weapon->otyp == GOLDEN_SABER && (P_SKILL(P_SABER) == P_GRAND_MASTER) ) bonus += rnd(10);
-	if (weapon && weapon->otyp == GOLDEN_SABER && (P_SKILL(P_SABER) == P_SUPREME_MASTER) ) bonus += rnd(14);
+	if (weapon && weapon->otyp == GOLDEN_SABER && (P_SKILL(P_SABER) == P_SKILLED) ) bonus += 1;
+	if (weapon && weapon->otyp == GOLDEN_SABER && (P_SKILL(P_SABER) == P_EXPERT) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == GOLDEN_SABER && (P_SKILL(P_SABER) == P_MASTER) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == GOLDEN_SABER && (P_SKILL(P_SABER) == P_GRAND_MASTER) ) bonus += rnd(4);
+	if (weapon && weapon->otyp == GOLDEN_SABER && (P_SKILL(P_SABER) == P_SUPREME_MASTER) ) bonus += rnd(5);
 
-	if (weapon && weapon->otyp == ETERNIUM_SABER && (P_SKILL(P_SABER) == P_SKILLED) ) bonus += rnd(2);
-	if (weapon && weapon->otyp == ETERNIUM_SABER && (P_SKILL(P_SABER) == P_EXPERT) ) bonus += rnd(4);
-	if (weapon && weapon->otyp == ETERNIUM_SABER && (P_SKILL(P_SABER) == P_MASTER) ) bonus += rnd(7);
-	if (weapon && weapon->otyp == ETERNIUM_SABER && (P_SKILL(P_SABER) == P_GRAND_MASTER) ) bonus += rnd(10);
-	if (weapon && weapon->otyp == ETERNIUM_SABER && (P_SKILL(P_SABER) == P_SUPREME_MASTER) ) bonus += rnd(14);
+	if (weapon && weapon->otyp == ETERNIUM_SABER && (P_SKILL(P_SABER) == P_SKILLED) ) bonus += 1;
+	if (weapon && weapon->otyp == ETERNIUM_SABER && (P_SKILL(P_SABER) == P_EXPERT) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == ETERNIUM_SABER && (P_SKILL(P_SABER) == P_MASTER) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == ETERNIUM_SABER && (P_SKILL(P_SABER) == P_GRAND_MASTER) ) bonus += rnd(4);
+	if (weapon && weapon->otyp == ETERNIUM_SABER && (P_SKILL(P_SABER) == P_SUPREME_MASTER) ) bonus += rnd(5);
 
-	if (weapon && weapon->otyp == PLATINUM_SABER && (P_SKILL(P_SABER) == P_SKILLED) ) bonus += rnd(2);
-	if (weapon && weapon->otyp == PLATINUM_SABER && (P_SKILL(P_SABER) == P_EXPERT) ) bonus += rnd(4);
-	if (weapon && weapon->otyp == PLATINUM_SABER && (P_SKILL(P_SABER) == P_MASTER) ) bonus += rnd(7);
-	if (weapon && weapon->otyp == PLATINUM_SABER && (P_SKILL(P_SABER) == P_GRAND_MASTER) ) bonus += rnd(10);
-	if (weapon && weapon->otyp == PLATINUM_SABER && (P_SKILL(P_SABER) == P_SUPREME_MASTER) ) bonus += rnd(14);
+	if (weapon && weapon->otyp == PLATINUM_SABER && (P_SKILL(P_SABER) == P_SKILLED) ) bonus += 1;
+	if (weapon && weapon->otyp == PLATINUM_SABER && (P_SKILL(P_SABER) == P_EXPERT) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == PLATINUM_SABER && (P_SKILL(P_SABER) == P_MASTER) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == PLATINUM_SABER && (P_SKILL(P_SABER) == P_GRAND_MASTER) ) bonus += rnd(4);
+	if (weapon && weapon->otyp == PLATINUM_SABER && (P_SKILL(P_SABER) == P_SUPREME_MASTER) ) bonus += rnd(5);
 
-	if (weapon && weapon->otyp == METAL_CLUB && (P_SKILL(P_CLUB) == P_SKILLED) ) bonus += rnd(2);
-	if (weapon && weapon->otyp == METAL_CLUB && (P_SKILL(P_CLUB) == P_EXPERT) ) bonus += rnd(4);
-	if (weapon && weapon->otyp == METAL_CLUB && (P_SKILL(P_CLUB) == P_MASTER) ) bonus += rnd(7);
-	if (weapon && weapon->otyp == METAL_CLUB && (P_SKILL(P_CLUB) == P_GRAND_MASTER) ) bonus += rnd(10);
-	if (weapon && weapon->otyp == METAL_CLUB && (P_SKILL(P_CLUB) == P_SUPREME_MASTER) ) bonus += rnd(14);
+	if (weapon && weapon->otyp == METAL_CLUB && (P_SKILL(P_CLUB) == P_SKILLED) ) bonus += 1;
+	if (weapon && weapon->otyp == METAL_CLUB && (P_SKILL(P_CLUB) == P_EXPERT) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == METAL_CLUB && (P_SKILL(P_CLUB) == P_MASTER) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == METAL_CLUB && (P_SKILL(P_CLUB) == P_GRAND_MASTER) ) bonus += rnd(4);
+	if (weapon && weapon->otyp == METAL_CLUB && (P_SKILL(P_CLUB) == P_SUPREME_MASTER) ) bonus += rnd(5);
 
-	if (weapon && weapon->otyp == DIAMOND_SMASHER && (P_SKILL(P_CLUB) == P_SKILLED) ) bonus += rnd(2);
-	if (weapon && weapon->otyp == DIAMOND_SMASHER && (P_SKILL(P_CLUB) == P_EXPERT) ) bonus += rnd(4);
-	if (weapon && weapon->otyp == DIAMOND_SMASHER && (P_SKILL(P_CLUB) == P_MASTER) ) bonus += rnd(7);
-	if (weapon && weapon->otyp == DIAMOND_SMASHER && (P_SKILL(P_CLUB) == P_GRAND_MASTER) ) bonus += rnd(10);
-	if (weapon && weapon->otyp == DIAMOND_SMASHER && (P_SKILL(P_CLUB) == P_SUPREME_MASTER) ) bonus += rnd(14);
+	if (weapon && weapon->otyp == DIAMOND_SMASHER && (P_SKILL(P_CLUB) == P_SKILLED) ) bonus += 1;
+	if (weapon && weapon->otyp == DIAMOND_SMASHER && (P_SKILL(P_CLUB) == P_EXPERT) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == DIAMOND_SMASHER && (P_SKILL(P_CLUB) == P_MASTER) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == DIAMOND_SMASHER && (P_SKILL(P_CLUB) == P_GRAND_MASTER) ) bonus += rnd(4);
+	if (weapon && weapon->otyp == DIAMOND_SMASHER && (P_SKILL(P_CLUB) == P_SUPREME_MASTER) ) bonus += rnd(5);
 
-	if (weapon && weapon->otyp == LOG && (P_SKILL(P_CLUB) == P_SKILLED) ) bonus += rnd(6);
-	if (weapon && weapon->otyp == LOG && (P_SKILL(P_CLUB) == P_EXPERT) ) bonus += rnd(12);
-	if (weapon && weapon->otyp == LOG && (P_SKILL(P_CLUB) == P_MASTER) ) bonus += rnd(18);
-	if (weapon && weapon->otyp == LOG && (P_SKILL(P_CLUB) == P_GRAND_MASTER) ) bonus += rnd(24);
-	if (weapon && weapon->otyp == LOG && (P_SKILL(P_CLUB) == P_SUPREME_MASTER) ) bonus += rnd(30);
+	if (weapon && weapon->otyp == LOG && (P_SKILL(P_CLUB) == P_SKILLED) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == LOG && (P_SKILL(P_CLUB) == P_EXPERT) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == LOG && (P_SKILL(P_CLUB) == P_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == LOG && (P_SKILL(P_CLUB) == P_GRAND_MASTER) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == LOG && (P_SKILL(P_CLUB) == P_SUPREME_MASTER) ) bonus += rnd(15);
 
-	if (weapon && weapon->otyp == HUGE_CLUB && (P_SKILL(P_CLUB) == P_SKILLED) ) bonus += rnd(6);
-	if (weapon && weapon->otyp == HUGE_CLUB && (P_SKILL(P_CLUB) == P_EXPERT) ) bonus += rnd(12);
-	if (weapon && weapon->otyp == HUGE_CLUB && (P_SKILL(P_CLUB) == P_MASTER) ) bonus += rnd(18);
-	if (weapon && weapon->otyp == HUGE_CLUB && (P_SKILL(P_CLUB) == P_GRAND_MASTER) ) bonus += rnd(24);
-	if (weapon && weapon->otyp == HUGE_CLUB && (P_SKILL(P_CLUB) == P_SUPREME_MASTER) ) bonus += rnd(30);
+	if (weapon && weapon->otyp == HUGE_CLUB && (P_SKILL(P_CLUB) == P_SKILLED) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == HUGE_CLUB && (P_SKILL(P_CLUB) == P_EXPERT) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == HUGE_CLUB && (P_SKILL(P_CLUB) == P_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == HUGE_CLUB && (P_SKILL(P_CLUB) == P_GRAND_MASTER) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == HUGE_CLUB && (P_SKILL(P_CLUB) == P_SUPREME_MASTER) ) bonus += rnd(15);
 
-	if (weapon && weapon->otyp == BATTLE_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_SKILLED) ) bonus += rnd(5);
-	if (weapon && weapon->otyp == BATTLE_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_EXPERT) ) bonus += rnd(10);
-	if (weapon && weapon->otyp == BATTLE_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_MASTER) ) bonus += rnd(15);
-	if (weapon && weapon->otyp == BATTLE_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_GRAND_MASTER) ) bonus += rnd(20);
-	if (weapon && weapon->otyp == BATTLE_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_SUPREME_MASTER) ) bonus += rnd(25);
+	if (weapon && weapon->otyp == BATTLE_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_SKILLED) ) bonus += 1;
+	if (weapon && weapon->otyp == BATTLE_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_EXPERT) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == BATTLE_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_MASTER) ) bonus += rnd(5);
+	if (weapon && weapon->otyp == BATTLE_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_GRAND_MASTER) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == BATTLE_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_SUPREME_MASTER) ) bonus += rnd(8);
 
-	if (weapon && weapon->otyp == MASSIVE_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_SKILLED) ) bonus += rnd(5);
-	if (weapon && weapon->otyp == MASSIVE_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_EXPERT) ) bonus += rnd(10);
-	if (weapon && weapon->otyp == MASSIVE_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_MASTER) ) bonus += rnd(15);
-	if (weapon && weapon->otyp == MASSIVE_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_GRAND_MASTER) ) bonus += rnd(20);
-	if (weapon && weapon->otyp == MASSIVE_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_SUPREME_MASTER) ) bonus += rnd(25);
+	if (weapon && weapon->otyp == MASSIVE_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_SKILLED) ) bonus += 1;
+	if (weapon && weapon->otyp == MASSIVE_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_EXPERT) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == MASSIVE_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_MASTER) ) bonus += rnd(5);
+	if (weapon && weapon->otyp == MASSIVE_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_GRAND_MASTER) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == MASSIVE_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_SUPREME_MASTER) ) bonus += rnd(8);
 
-	if (weapon && weapon->otyp == OLDEST_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_SKILLED) ) bonus += rnd(5);
-	if (weapon && weapon->otyp == OLDEST_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_EXPERT) ) bonus += rnd(10);
-	if (weapon && weapon->otyp == OLDEST_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_MASTER) ) bonus += rnd(15);
-	if (weapon && weapon->otyp == OLDEST_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_GRAND_MASTER) ) bonus += rnd(20);
-	if (weapon && weapon->otyp == OLDEST_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_SUPREME_MASTER) ) bonus += rnd(25);
+	if (weapon && weapon->otyp == OLDEST_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_SKILLED) ) bonus += 1;
+	if (weapon && weapon->otyp == OLDEST_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_EXPERT) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == OLDEST_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_MASTER) ) bonus += rnd(5);
+	if (weapon && weapon->otyp == OLDEST_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_GRAND_MASTER) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == OLDEST_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_SUPREME_MASTER) ) bonus += rnd(8);
 
-	if (weapon && weapon->otyp == IMPACT_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_SKILLED) ) bonus += rnd(5);
-	if (weapon && weapon->otyp == IMPACT_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_EXPERT) ) bonus += rnd(10);
-	if (weapon && weapon->otyp == IMPACT_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_MASTER) ) bonus += rnd(15);
-	if (weapon && weapon->otyp == IMPACT_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_GRAND_MASTER) ) bonus += rnd(20);
-	if (weapon && weapon->otyp == IMPACT_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_SUPREME_MASTER) ) bonus += rnd(25);
+	if (weapon && weapon->otyp == IMPACT_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_SKILLED) ) bonus += 1;
+	if (weapon && weapon->otyp == IMPACT_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_EXPERT) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == IMPACT_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_MASTER) ) bonus += rnd(5);
+	if (weapon && weapon->otyp == IMPACT_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_GRAND_MASTER) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == IMPACT_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_SUPREME_MASTER) ) bonus += rnd(8);
 
-	if (weapon && weapon->otyp == BO_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_SKILLED) ) bonus += rnd(5);
-	if (weapon && weapon->otyp == BO_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_EXPERT) ) bonus += rnd(10);
-	if (weapon && weapon->otyp == BO_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_MASTER) ) bonus += rnd(15);
-	if (weapon && weapon->otyp == BO_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_GRAND_MASTER) ) bonus += rnd(20);
-	if (weapon && weapon->otyp == BO_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_SUPREME_MASTER) ) bonus += rnd(25);
+	if (weapon && weapon->otyp == BO_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_SKILLED) ) bonus += 1;
+	if (weapon && weapon->otyp == BO_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_EXPERT) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == BO_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_MASTER) ) bonus += rnd(5);
+	if (weapon && weapon->otyp == BO_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_GRAND_MASTER) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == BO_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_SUPREME_MASTER) ) bonus += rnd(8);
 
-	if (weapon && weapon->otyp == SLEDGE_HAMMER && (P_SKILL(P_HAMMER) == P_SKILLED) ) bonus += rnd(5);
-	if (weapon && weapon->otyp == SLEDGE_HAMMER && (P_SKILL(P_HAMMER) == P_EXPERT) ) bonus += rnd(10);
-	if (weapon && weapon->otyp == SLEDGE_HAMMER && (P_SKILL(P_HAMMER) == P_MASTER) ) bonus += rnd(15);
-	if (weapon && weapon->otyp == SLEDGE_HAMMER && (P_SKILL(P_HAMMER) == P_GRAND_MASTER) ) bonus += rnd(20);
-	if (weapon && weapon->otyp == SLEDGE_HAMMER && (P_SKILL(P_HAMMER) == P_SUPREME_MASTER) ) bonus += rnd(25);
+	if (weapon && weapon->otyp == SLEDGE_HAMMER && (P_SKILL(P_HAMMER) == P_SKILLED) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == SLEDGE_HAMMER && (P_SKILL(P_HAMMER) == P_EXPERT) ) bonus += rnd(4);
+	if (weapon && weapon->otyp == SLEDGE_HAMMER && (P_SKILL(P_HAMMER) == P_MASTER) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == SLEDGE_HAMMER && (P_SKILL(P_HAMMER) == P_GRAND_MASTER) ) bonus += rnd(8);
+	if (weapon && weapon->otyp == SLEDGE_HAMMER && (P_SKILL(P_HAMMER) == P_SUPREME_MASTER) ) bonus += rnd(10);
 
-	if (weapon && weapon->otyp == THUNDER_HAMMER && (P_SKILL(P_HAMMER) == P_SKILLED) ) bonus += rnd(6);
-	if (weapon && weapon->otyp == THUNDER_HAMMER && (P_SKILL(P_HAMMER) == P_EXPERT) ) bonus += rnd(12);
-	if (weapon && weapon->otyp == THUNDER_HAMMER && (P_SKILL(P_HAMMER) == P_MASTER) ) bonus += rnd(18);
-	if (weapon && weapon->otyp == THUNDER_HAMMER && (P_SKILL(P_HAMMER) == P_GRAND_MASTER) ) bonus += rnd(24);
-	if (weapon && weapon->otyp == THUNDER_HAMMER && (P_SKILL(P_HAMMER) == P_SUPREME_MASTER) ) bonus += rnd(30);
+	if (weapon && weapon->otyp == THUNDER_HAMMER && (P_SKILL(P_HAMMER) == P_SKILLED) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == THUNDER_HAMMER && (P_SKILL(P_HAMMER) == P_EXPERT) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == THUNDER_HAMMER && (P_SKILL(P_HAMMER) == P_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == THUNDER_HAMMER && (P_SKILL(P_HAMMER) == P_GRAND_MASTER) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == THUNDER_HAMMER && (P_SKILL(P_HAMMER) == P_SUPREME_MASTER) ) bonus += rnd(15);
 
 	if (weapon && weapon_type(weapon) == P_POLEARMS && (P_SKILL(P_POLEARMS) == P_SKILLED) ) bonus += 1;
 	if (weapon && weapon_type(weapon) == P_POLEARMS && (P_SKILL(P_POLEARMS) == P_EXPERT) ) bonus += rnd(2);
@@ -7128,11 +7128,11 @@ struct obj *weapon;
 	if (weapon && weapon_type(weapon) == P_LANCE && (P_SKILL(P_LANCE) == P_GRAND_MASTER) ) bonus += rnd(7);
 	if (weapon && weapon_type(weapon) == P_LANCE && (P_SKILL(P_LANCE) == P_SUPREME_MASTER) ) bonus += rnd(9);
 
-	if (weapon && weapon_type(weapon) == P_WHIP && (P_SKILL(P_WHIP) == P_SKILLED) ) bonus += rnd(2);
-	if (weapon && weapon_type(weapon) == P_WHIP && (P_SKILL(P_WHIP) == P_EXPERT) ) bonus += rnd(4);
-	if (weapon && weapon_type(weapon) == P_WHIP && (P_SKILL(P_WHIP) == P_MASTER) ) bonus += rnd(6);
-	if (weapon && weapon_type(weapon) == P_WHIP && (P_SKILL(P_WHIP) == P_GRAND_MASTER) ) bonus += rnd(8);
-	if (weapon && weapon_type(weapon) == P_WHIP && (P_SKILL(P_WHIP) == P_SUPREME_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon_type(weapon) == P_WHIP && (P_SKILL(P_WHIP) == P_SKILLED) ) bonus += 1;
+	if (weapon && weapon_type(weapon) == P_WHIP && (P_SKILL(P_WHIP) == P_EXPERT) ) bonus += rnd(2);
+	if (weapon && weapon_type(weapon) == P_WHIP && (P_SKILL(P_WHIP) == P_MASTER) ) bonus += rnd(3);
+	if (weapon && weapon_type(weapon) == P_WHIP && (P_SKILL(P_WHIP) == P_GRAND_MASTER) ) bonus += rnd(4);
+	if (weapon && weapon_type(weapon) == P_WHIP && (P_SKILL(P_WHIP) == P_SUPREME_MASTER) ) bonus += rnd(5);
 
 	}
 
@@ -7213,23 +7213,23 @@ struct obj *weapon;
 	if (weapon && weapon->otyp == CRYSKNIFE && (P_SKILL(P_KNIFE) == P_GRAND_MASTER) ) bonus += rnd(80);
 	if (weapon && weapon->otyp == CRYSKNIFE && (P_SKILL(P_KNIFE) == P_SUPREME_MASTER) ) bonus += rnd(120);
 
-	if (weapon && weapon->otyp == SPIRIT_THROWER && (P_SKILL(P_JAVELIN) == P_SKILLED) ) bonus += rnd(4);
-	if (weapon && weapon->otyp == SPIRIT_THROWER && (P_SKILL(P_JAVELIN) == P_EXPERT) ) bonus += rnd(8);
-	if (weapon && weapon->otyp == SPIRIT_THROWER && (P_SKILL(P_JAVELIN) == P_MASTER) ) bonus += rnd(12);
-	if (weapon && weapon->otyp == SPIRIT_THROWER && (P_SKILL(P_JAVELIN) == P_GRAND_MASTER) ) bonus += rnd(16);
-	if (weapon && weapon->otyp == SPIRIT_THROWER && (P_SKILL(P_JAVELIN) == P_SUPREME_MASTER) ) bonus += rnd(20);
+	if (weapon && weapon->otyp == SPIRIT_THROWER && (P_SKILL(P_JAVELIN) == P_SKILLED) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == SPIRIT_THROWER && (P_SKILL(P_JAVELIN) == P_EXPERT) ) bonus += rnd(4);
+	if (weapon && weapon->otyp == SPIRIT_THROWER && (P_SKILL(P_JAVELIN) == P_MASTER) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == SPIRIT_THROWER && (P_SKILL(P_JAVELIN) == P_GRAND_MASTER) ) bonus += rnd(8);
+	if (weapon && weapon->otyp == SPIRIT_THROWER && (P_SKILL(P_JAVELIN) == P_SUPREME_MASTER) ) bonus += rnd(10);
 
-	if (weapon && weapon->otyp == TORPEDO && (P_SKILL(P_JAVELIN) == P_SKILLED) ) bonus += rnd(5);
-	if (weapon && weapon->otyp == TORPEDO && (P_SKILL(P_JAVELIN) == P_EXPERT) ) bonus += rnd(10);
-	if (weapon && weapon->otyp == TORPEDO && (P_SKILL(P_JAVELIN) == P_MASTER) ) bonus += rnd(15);
-	if (weapon && weapon->otyp == TORPEDO && (P_SKILL(P_JAVELIN) == P_GRAND_MASTER) ) bonus += rnd(20);
-	if (weapon && weapon->otyp == TORPEDO && (P_SKILL(P_JAVELIN) == P_SUPREME_MASTER) ) bonus += rnd(25);
+	if (weapon && weapon->otyp == TORPEDO && (P_SKILL(P_JAVELIN) == P_SKILLED) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == TORPEDO && (P_SKILL(P_JAVELIN) == P_EXPERT) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == TORPEDO && (P_SKILL(P_JAVELIN) == P_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == TORPEDO && (P_SKILL(P_JAVELIN) == P_GRAND_MASTER) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == TORPEDO && (P_SKILL(P_JAVELIN) == P_SUPREME_MASTER) ) bonus += rnd(15);
 
-	if (weapon && weapon->otyp == HOMING_TORPEDO && (P_SKILL(P_JAVELIN) == P_SKILLED) ) bonus += rnd(5);
-	if (weapon && weapon->otyp == HOMING_TORPEDO && (P_SKILL(P_JAVELIN) == P_EXPERT) ) bonus += rnd(10);
-	if (weapon && weapon->otyp == HOMING_TORPEDO && (P_SKILL(P_JAVELIN) == P_MASTER) ) bonus += rnd(15);
-	if (weapon && weapon->otyp == HOMING_TORPEDO && (P_SKILL(P_JAVELIN) == P_GRAND_MASTER) ) bonus += rnd(20);
-	if (weapon && weapon->otyp == HOMING_TORPEDO && (P_SKILL(P_JAVELIN) == P_SUPREME_MASTER) ) bonus += rnd(25);
+	if (weapon && weapon->otyp == HOMING_TORPEDO && (P_SKILL(P_JAVELIN) == P_SKILLED) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == HOMING_TORPEDO && (P_SKILL(P_JAVELIN) == P_EXPERT) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == HOMING_TORPEDO && (P_SKILL(P_JAVELIN) == P_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == HOMING_TORPEDO && (P_SKILL(P_JAVELIN) == P_GRAND_MASTER) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == HOMING_TORPEDO && (P_SKILL(P_JAVELIN) == P_SUPREME_MASTER) ) bonus += rnd(15);
 
 	if (weapon && weapon->otyp == SHURIKEN && (P_SKILL(P_SHURIKEN) == P_MASTER) ) bonus += 1;
 	if (weapon && weapon->otyp == SHURIKEN && (P_SKILL(P_SHURIKEN) == P_GRAND_MASTER) ) bonus += rnd(2);

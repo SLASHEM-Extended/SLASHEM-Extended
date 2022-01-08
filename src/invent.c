@@ -10202,7 +10202,7 @@ boolean knoweverything;
 			case POWER_CROSSBOW:
 				pline("Two-handed crossbow that can fire more quickly than a regular one, but will hit targets less often."); break;
 			case DEMON_CROSSBOW:
-				pline("An automatic crossbow that can quiver several bolts in a single turn, but has rather bad accuracy. Wielding it for a while may occasionally summon hostile demons around you."); break;
+				pline("An automatic crossbow that can quiver several bolts in a single turn, but has rather bad accuracy. Wielding it for a while may occasionally summon hostile demons around you. Firing it can also summon demons, create traps, or malfunction entirely."); break;
 			case PILE_BUNKER:
 				pline("This crossbow can fire a bit faster than a regular crossbow but at the expense of accuracy. It only requires one hand to be wielded."); break;
 			case HELO_CROSSBOW:

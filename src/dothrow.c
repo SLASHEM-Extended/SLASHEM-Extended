@@ -461,6 +461,58 @@ int thrown;
 
 	if (multishot < 1) multishot = 1;
 
+	if (objects[obj->otyp].oc_skill == -P_CROSSBOW && launcher && launcher->otyp != DEMON_CROSSBOW && multishot > 1) multishot = rnd(multishot);
+
+	if (launcher && launcher->otyp == DEMON_CROSSBOW && !rn2(100)) {
+		int attempts = 0;
+		register struct permonst *ptrZ;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+newbossO:
+		do {
+			ptrZ = rndmonst();
+			attempts++;
+			if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+		} while ( (!ptrZ || (ptrZ && !is_demon(ptrZ))) && attempts < 50000);
+
+		if (ptrZ && is_demon(ptrZ)) {
+			(void) makemon(ptrZ, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
+			pline("A demon suddenly appears from nowhere!");
+		} else if (rn2(50)) {
+			attempts = 0;
+			goto newbossO;
+		}
+
+		u.aggravation = 0;
+	}
+
+	if (launcher && launcher->otyp == DEMON_CROSSBOW && !rn2(100)) {
+		int tryct = 0;
+		int x, y;
+
+		for (tryct = 0; tryct < 2000; tryct++) {
+			x = rn1(COLNO-3,2);
+			y = rn2(ROWNO);
+
+			if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+				(void) maketrap(x, y, randomtrap(), 100, FALSE);
+				break;
+				}
+		}
+
+	}
+
+	if (launcher && launcher->otyp == DEMON_CROSSBOW && !rn2(100)) {
+		badeffect();
+		pline_The("demon crossbow malfunctioned!");
+		return(1);
+	}
+
 	/* nerf multishot --Amy */
 
 	fullmultishot = 0;
@@ -2147,7 +2199,7 @@ boolean polearming;
 		if (!rn2(2)) tmp -= rnd(8);
 	}
 	if (launcher && launcher->otyp == DEMON_CROSSBOW) {
-		tmp -= rnd(8);
+		tmp -= rnd(20);
 		if (!rn2(2)) tmp -= rnd(6);
 	}
 	if (launcher && launcher->otyp == KALASHNIKOV) {

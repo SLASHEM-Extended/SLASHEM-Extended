@@ -1526,6 +1526,34 @@ int dieroll;
 		} else {
 		    tmp = martial_dmg();
 		}
+
+		if (!(PlayerCannotUseSkills)) {
+			switch (P_SKILL(P_GENERAL_COMBAT)) {
+		
+				case P_BASIC:		tmp +=  1; break;
+				case P_SKILLED:	tmp +=  rnd(2); break;
+				case P_EXPERT:	tmp +=  rnd(3); break;
+				case P_MASTER:	tmp +=  rnd(4); break;
+				case P_GRAND_MASTER:	tmp +=  rnd(5); break;
+				case P_SUPREME_MASTER:	tmp +=  rnd(6); break;
+				default: tmp += 0; break;
+			}
+		}
+
+		if (!(PlayerCannotUseSkills) && uarm && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS) ) {
+			switch (P_SKILL(P_SORESU)) {
+		
+				case P_BASIC:		tmp +=  rn2(2); break;
+				case P_SKILLED:	tmp +=  rnd(2); break;
+				case P_EXPERT:	tmp +=  rnd(3); break;
+				case P_MASTER:	tmp +=  rnd(4); break;
+				case P_GRAND_MASTER:	tmp +=  rnd(5); break;
+				case P_SUPREME_MASTER:	tmp +=  rnd(6); break;
+				default: tmp += 0; break;
+			}
+
+		}
+
 	    } else { /* bare-handed combat skill */
 	    if (is_shade(mdat) || mon->egotype_shader)
 		tmp = 0;
@@ -1533,6 +1561,19 @@ int dieroll;
 			tmp = rnd(2);
 			if (Glib_combat && IsGlib) {
 				tmp += rnd(GushLevel);
+			}
+
+			if (!(PlayerCannotUseSkills)) {
+				switch (P_SKILL(P_GENERAL_COMBAT)) {
+			
+					case P_BASIC:		tmp +=  1; break;
+					case P_SKILLED:	tmp +=  rnd(2); break;
+					case P_EXPERT:	tmp +=  rnd(3); break;
+					case P_MASTER:	tmp +=  rnd(4); break;
+					case P_GRAND_MASTER:	tmp +=  rnd(5); break;
+					case P_SUPREME_MASTER:	tmp +=  rnd(6); break;
+					default: tmp += 0; break;
+				}
 			}
 
 			if (!(PlayerCannotUseSkills)) {

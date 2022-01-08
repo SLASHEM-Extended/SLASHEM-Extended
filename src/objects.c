@@ -4498,7 +4498,7 @@ WEPTOOL("orange lightsaber", "lightsaber", /* -5 to-hit, otherwise like green li
 	0, 0, 1, 0,  100, 24, 500, 3,  5, 0, SLASH, P_LIGHTSABER, MT_TINSEL, CLR_ORANGE, 3),
 
 WEPTOOL("laser swatter",  (char *)0,
-	1, 0, 1, 0,  200, 24, 500, 30,  3, 5, WHACK, P_PADDLE, MT_PLATINUM, CLR_BRIGHT_MAGENTA, 1),
+	1, 0, 1, 0,  200, 24, 500, 20,  3, 5, WHACK, P_PADDLE, MT_PLATINUM, CLR_BRIGHT_MAGENTA, 1),
 WEPTOOL("nano hammer",  (char *)0,
 	1, 0, 1, 0,  20, 24, 500, 12,  12, 0, WHACK, P_HAMMER, MT_NANOMACHINE, CLR_BRIGHT_GREEN, 18),
 WEPTOOL("lightwhip",  (char *)0,
