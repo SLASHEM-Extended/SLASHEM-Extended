@@ -7496,20 +7496,30 @@ boolean guaranteed;
 		if (ceiling < 10) ceiling = 10; /* fail safe */
 
 		if (u.uhpmax < ceiling) {
+			int actualincrease = 1;
 			increaseamount = (ceiling / 10);
+			actualincrease = u.uhpmax;
 			if (increaseamount < 1) increaseamount = 1; /* fail safe */
 			u.uhpmax += increaseamount;
 			if (u.uhpmax > ceiling) u.uhpmax = ceiling; /* fail safe */
+			if ((u.uhpmax - actualincrease) > increaseamount) {
+				increaseamount = (u.uhpmax - actualincrease);
+			}
 			Your("health was recovered by %d.", increaseamount);
 		}
 
 		if (Upolyd) {
 
 			if (u.mhmax < ceiling) {
+				int actualincrease = 1;
 				increaseamount = (ceiling / 10);
+				actualincrease = u.mhmax;
 				if (increaseamount < 1) increaseamount = 1; /* fail safe */
 				u.mhmax += increaseamount;
 				if (u.mhmax > ceiling) u.mhmax = ceiling; /* fail safe */
+				if ((u.mhmax - actualincrease) > increaseamount) {
+					increaseamount = (u.mhmax - actualincrease);
+				}
 				Your("polymorphed health was recovered by %d.", increaseamount);
 			}
 
@@ -7602,10 +7612,15 @@ boolean guaranteed;
 		if (ceiling < 10) ceiling = 10; /* fail safe */
 
 		if (u.uenmax < ceiling) {
+			int actualincrease = 1;
 			increaseamount = (ceiling / 10);
 			if (increaseamount < 1) increaseamount = 1; /* fail safe */
+			actualincrease = u.uenmax;
 			u.uenmax += increaseamount;
 			if (u.uenmax > ceiling) u.uenmax = ceiling; /* fail safe */
+			if ((u.uenmax - actualincrease) > increaseamount) {
+				increaseamount = (u.uenmax - actualincrease);
+			}
 			Your("mana was recovered by %d.", increaseamount);
 		}
 

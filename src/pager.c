@@ -2844,7 +2844,7 @@ get_flag_description_of_monster_type(struct permonst * ptr, char * description)
 	if (is_rat(ptr)) {
 		strcat(description, " Can be tamed by throwing cheese.");
 	}
-	if (ptr->mlet == S_YETI) {
+	if (ptr->mlet == S_YETI && herbivorous(ptr)) {
 		strcat(description, " Can be tamed by throwing a banana.");
 	}
 	if (is_pokemon(ptr)) {
