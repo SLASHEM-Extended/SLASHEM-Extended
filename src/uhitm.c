@@ -4734,7 +4734,7 @@ melatechoice:
 
 			else if ((Role_if(PM_SPACEWARS_FIGHTER) || (mon->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && (!rn2(5) || (mon->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) && !thrown) {
 
-				switch (rnd(720)) {
+				switch (rnd(721)) {
 
 				case 1: pline("You crush %s's skull into jelly.", mon_nam(mon)); break;
 				case 2: pline("You decapitate %s with a backhand stroke.", mon_nam(mon)); break;
@@ -5142,7 +5142,7 @@ melatechoice:
 				case 404: pline("You sap the very vital energy of %s's spirit, whose life begins to slip away.", mon_nam(mon)); break;
 				case 405: pline("You engulf %s in intense cold causing its heart to stop, leaving a very well preserved corpse.", mon_nam(mon)); break;
 				case 406: pline("Your breath literally freezes in %s's throat as its %s is frozen. %s drops to the knees and the shock shatters its frozen %s, causing it to die of suffocation shortly later.", mon_nam(mon), mbodypart(mon, NECK), Monnam(mon), mbodypart(mon, NECK)); break;
-				case 407: pline("Frost climbs up %s's %s moments before it freezes solid and shatters. %s falls impaling its %s on its own weapon.", mon_nam(mon), mbodypart(mon, LEG), Monnam(mon), mbodypart(mon, FACE)); break;
+				case 407: pline("Frost climbs up %s's %s moments before it freezes solid and shatters. %s falls impaling its %s on its own weapon.", mon_nam(mon), mbodypart(mon, LEG), mon_nam(mon), mbodypart(mon, FACE)); break;
 				case 408: pline("%s thrashes around in horrible pain before dropping down dead.", Monnam(mon)); break;
 				case 409: pline("The front of %s's %s becomes frozen. It stumbles around in pain and strikes a wall, breaking the front half of its skull apart, showing frozen brain to all bystanders.", mon_nam(mon), mbodypart(mon, FACE)); break;
 				case 410: pline("%s's waist becomes stiff, and a moment later it falls over backwards as its torso separates from the lower body.", Monnam(mon)); break;
@@ -5456,6 +5456,7 @@ melatechoice:
 				case 718: pline("You tell %s to jump off a bridge, and %s actually does so and plummets to %s death.", mon_nam(mon), mhe(mon), mhis(mon)); break;
 				case 719: pline("%s has died, and needs to be buried.", Monnam(mon)); break;
 				case 720: pline("Now you can sing the elegy, for %s has just passed away.", mon_nam(mon)); break;
+				case 721: pline("%s has an E, which is shorthand for epileptic seizure!", Monnam(mon)); break;
 
 
 				default: pline("You hit %s very hard!", mon_nam(mon)); break;
