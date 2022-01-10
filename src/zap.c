@@ -5303,13 +5303,17 @@ chargingchoice:
 			break;
 		case WAN_BUGGING:
 			known = TRUE; 
-			{int i;
-
-			i = rn2(6) + 1;
-			while (i--) {
-				(void) makemon(&mons[rn2(3) ? PM_BUG : PM_HEISENBUG], u.ux,u.uy, NO_MM_FLAGS);
-					}
-			} break;
+			{
+				int i;
+				i = rn2(6) + 1;
+				while (i--) {
+					if (level_difficulty() < 9)
+						(void) makemon(&mons[PM_BUG], u.ux,u.uy, NO_MM_FLAGS);
+					else
+						(void) makemon(&mons[rn2(3) ? PM_BUG : PM_HEISENBUG], u.ux,u.uy, NO_MM_FLAGS);
+				}
+			}
+			break;
 	}
 	if (obj && known && !objects[obj->otyp].oc_name_known) {
 		makeknown(obj->otyp);
