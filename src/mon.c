@@ -3090,7 +3090,7 @@ nexttry:	/* eels prefer the water, but if there is no water nearby,
 				info[cnt] |= ALLOW_SANCT;
 			}
 		}
-		if(checkobj && sobj_at(CLOVE_OF_GARLIC, nx, ny)) {
+		if(checkobj && rn2(5) && sobj_at(CLOVE_OF_GARLIC, nx, ny)) {
 			if(flag & NOGARLIC) continue;
 			info[cnt] |= NOGARLIC;
 		}

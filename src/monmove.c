@@ -205,7 +205,7 @@ struct monst *mtmp;
 
 	return (boolean)((sobj_at(SCR_SCARE_MONSTER, x, y) && !(Conflict && rn2(StrongConflict ? 5 : 2)) && !scmresists)
 			 || (sengr_at("Elbereth", x, y) && !mresists && !(Conflict && rn2(StrongConflict ? 5 : 2)) && !(EngravingDoesntWork || u.uprops[ENGRAVINGBUG].extrinsic || have_engravingstone() || (uwep && uwep->oartifact == ART_ELBERGOFUKYOURSELF) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ELBERGOFUKYOURSELF) || (uarmf && uarmf->oartifact == ART_VARIANTISH_DESIGN) ) )
-			 || (is_vampire(mtmp->data)
+			 || (is_vampire(mtmp->data) && rn2(5)
 			     && IS_ALTAR(levl[x][y].typ)));
 }
 

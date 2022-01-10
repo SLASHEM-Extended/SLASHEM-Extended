@@ -2780,7 +2780,37 @@ int dieroll;
 		      }
 		    case CLOVE_OF_GARLIC:	/* no effect against demons */
 			if (is_undead(mdat) || mon->egotype_undead) {
-			    monflee(mon, d(2, 4), FALSE, TRUE);
+
+				/* nerf by Amy - shouldn't be infinite, non-vampiric undead are highly resistant */
+				if (!rn2(100)) {
+
+					if (!rn2(2)) {
+						if (obj->oeroded < MAX_ERODE) {
+							obj->oeroded++;
+							Your("clove of garlic degrades.");
+						} else {
+							useup(obj);
+							Your("clove of garlic has been used up.");
+							return(TRUE);
+						}
+					} else {
+						if (obj->oeroded2 < MAX_ERODE) {
+							obj->oeroded2++;
+							Your("clove of garlic degrades.");
+						} else {
+							useup(obj);
+							Your("clove of garlic has been used up.");
+							return(TRUE);
+						}
+
+					}
+
+				}
+
+				if (!resist(mon, WEAPON_CLASS, 0, NOTELL) && (is_vampire(mdat) || !rn2(3)) ) {
+					monflee(mon, d(2, 4), FALSE, TRUE);
+				}
+
 			}
 			tmp = 1;
 			break;
