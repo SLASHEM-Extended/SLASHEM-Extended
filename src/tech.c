@@ -2950,7 +2950,7 @@ dotech()
 			break;
 
 		case T_POINTINESS:
-			pline("This technique requires you to wield a polearm or lance. If it's a negatively enchanted one, it will become +0, otherwise it can gain an additional point of enchantment, but the chance is lower the more enchantment your weapon has. Maximum that can be reached is +25.");
+			pline("This technique requires you to wield a polearm or lance. If it's a negatively enchanted one, it gains a random amount of enchantment (not past +0), otherwise it can gain an additional point of enchantment, but the chance is lower the more enchantment your weapon has. Maximum that can be reached is +25.");
 			break;
 
 		case T_BUG_SPRAY:
@@ -5585,7 +5585,8 @@ resettechdone:
 			}
 
 			if (uwep && uwep->spe < 0) {
-				uwep->spe = 0;
+				uwep->spe += rnd(abs(uwep->spe));
+				if (uwep->spe > 0) uwep->spe = 0; /* fail safe */
 				pline("Your stick seems slightly sharp now.");
 			} else if (uwep && uwep->spe < 2) {
 				uwep->spe++;
@@ -6198,7 +6199,8 @@ heelschosen:
 			if (uwep && stack_too_big(uwep)) {
 				pline("You were trying to enchant too many boomerangs at once and therefore they barely received any enchantment bonus.");
 			} else if (uwep && uwep->spe < 0) {
-				uwep->spe = 0;
+				uwep->spe += rnd(abs(uwep->spe));
+				if (uwep->spe > 0) uwep->spe = 0; /* fail safe */
 			} else if (uwep && uwep->spe < 2) {
 				uwep->spe++;
 			} else if (uwep && uwep->spe < 25 && !rn2(uwep->spe) ) {
@@ -6766,8 +6768,9 @@ revid_end:
 			pline("Your robe's special enchantment was randomized.");
 			if (!PlayerCannotUseSkills && P_SKILL(P_SORESU) >= P_GRAND_MASTER) {
 				if (wearrobe && wearrobe->spe < 0) {
-					wearrobe->spe = 0;
-					pline("Your robe is no longer negatively enchanted.");
+					wearrobe->spe += rnd(abs(wearrobe->spe));
+					if (wearrobe->spe > 0) wearrobe->spe = 0; /* fail safe */
+					pline("Your robe's negative enchantment value is remedied.");
 				} else if (wearrobe && wearrobe->spe < 2) {
 					wearrobe->spe++;
 					pline("Your robe gained a positive enchantment value.");
