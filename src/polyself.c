@@ -3087,6 +3087,9 @@ int atyp;
 	    case BLUE_DRAGON_SCALE_MAIL:
 	    case BLUE_DRAGON_SCALES:
 		return PM_BLUE_DRAGON;
+	    case DARK_DRAGON_SCALE_MAIL:
+	    case DARK_DRAGON_SCALES:
+		return PM_DARK_DRAGON;
 	    case COPPER_DRAGON_SCALE_MAIL:
 	    case COPPER_DRAGON_SCALES:
 		return PM_COPPER_DRAGON;

@@ -1057,6 +1057,7 @@ register int pm;
 	    case PM_RUNE_LIZARD:
 	    case PM_SPECTRAL_LIZARD:
 	    case PM_BLUE_LIZARD:
+	    case PM_DARKEN_LIZARD:
 	    case PM_SWAMP_LIZARD:
 	    case PM_SPITTING_LIZARD:
 	    case PM_ANTI_STONE_LIZARD:
@@ -1217,6 +1218,7 @@ struct monst *mon;
 	case PM_RUNE_LIZARD:
 	case PM_SPECTRAL_LIZARD:
       case PM_BLUE_LIZARD:
+      case PM_DARKEN_LIZARD:
 	case PM_SWAMP_LIZARD:
 	case PM_SPITTING_LIZARD:
 	case PM_ANTI_STONE_LIZARD:
@@ -3172,6 +3174,7 @@ register int pm;
 	    case PM_QUANTUM_CREATURE:
 	    case PM_ECO_MECHANIC:
 	    case PM_COMO_MECHANIC:
+	    case PM_RADIOACTIVE_MECHANIC:
 	    case PM_MATHEMATICIAN:
 	    case PM_TOLKIEN_MECHANIC:
 	    case PM_FORGER_MECHANIC:
@@ -3187,6 +3190,7 @@ register int pm;
 	    case PM_FORCE_QUANTUM_MECHANIC:
 	    case PM_METAL_MECHANIC:
 	    case PM_AUTO_MECHANIC:
+	    case PM_VELOCICOCK:
 	    case PM_COMMUNITY_SPREAD_MECHANIC:
 	    case PM_GORGON_BEETLE:
 	    case PM_SPEED_TROVE:
@@ -3254,6 +3258,7 @@ register int pm;
 	    case PM_RUNE_LIZARD:
 	    case PM_SPECTRAL_LIZARD:
 	    case PM_BLUE_LIZARD:
+	    case PM_DARKEN_LIZARD:
 	    case PM_SWAMP_LIZARD:
 	    case PM_SPITTING_LIZARD:
 	    case PM_LIZARD_EEL:
@@ -3700,6 +3705,10 @@ register int pm;
 	    case PM_LOW_MIND_FLAYER:
 	    case PM_BWARHAR_FLAYER:
 	    case PM_LARGE_MIND_FLAYER:
+	    case PM_MIND_ELEMENTAL:
+	    case PM_INSANE_ELEMENTAL:
+	    case PM_BRAINBLAST_ELEMENTAL:
+	    case PM_ILLUSORY_ELEMENTAL:
 	    case PM_EVIL_MIND_FLAYER:
 	    case PM_TELEMINDFLAYER:
 	    case PM_GIANT_MIND_FLAYER:

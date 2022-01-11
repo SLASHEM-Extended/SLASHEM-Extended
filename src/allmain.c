@@ -929,7 +929,6 @@ moveloop()
 				if (!rn2(1000)) randsp *= 5;
 				if (!rn2(10000)) randsp *= 10;
 				monstercolor = rnd(15);
-				do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 
 				if (wizard || !rn2(10)) pline(FunnyHallu ? "The colors, the colors!" : "You feel a colorful sensation!");
 
@@ -990,7 +989,6 @@ moveloop()
 				if (!rn2(1000)) randsp *= 5;
 				if (!rn2(10000)) randsp *= 10;
 				monstercolor = rnd(15);
-				do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 			      cx = rn2(COLNO);
 			      cy = rn2(ROWNO);
 
@@ -5664,7 +5662,6 @@ controlagain:
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
 			monstercolor = rnd(15);
-			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 
 			if (wizard || !rn2(10)) You_feel("a colorful sensation!");
 
@@ -14291,6 +14288,7 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "metal box")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "high-tech container")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "liquid box")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dark dragonhide shield")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -15506,6 +15504,7 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "metal box")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "high-tech container")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "liquid box")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dark dragonhide shield")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}

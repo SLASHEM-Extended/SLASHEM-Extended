@@ -3594,6 +3594,9 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ KLIUSLING, "todo" },
 	{ METEOR_ARROW, "todo" },
 	{ METEOR_FRAGMENT, "todo" },
+	{ DARK_DRAGON_SCALE_MAIL, "todo" },
+	{ DARK_DRAGON_SCALES, "todo" },
+	{ DARK_DRAGON_SCALE_SHIELD, "todo" },
 
 	{0, "" }
 };
@@ -6506,6 +6509,9 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ KLIUSLING, "todo" },
 	{ METEOR_ARROW, "todo" },
 	{ METEOR_FRAGMENT, "todo" },
+	{ DARK_DRAGON_SCALE_MAIL, "todo" },
+	{ DARK_DRAGON_SCALES, "todo" },
+	{ DARK_DRAGON_SCALE_SHIELD, "todo" },
 
 	{0, "" }
 };

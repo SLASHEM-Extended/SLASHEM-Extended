@@ -9265,7 +9265,6 @@ u_init()
 
 	if (!rn2(10)) {
 	u.frequentcolor = rnd(15);
-	do { u.frequentcolor = rnd(15); } while (u.frequentcolor == CLR_BLUE);
 	u.freqcolorbonus = rne(4);
 	if (!rn2(5)) u.freqcolorbonus += rne(3);
 	if (!rn2(3)) u.freqcolorbonus *= 2;
@@ -31430,7 +31429,6 @@ int realityflag;
 
 	if (!rn2(10)) {
 	u.frequentcolor = rnd(15);
-	do { u.frequentcolor = rnd(15); } while (u.frequentcolor == CLR_BLUE);
 	u.freqcolorbonus = rne(4);
 	if (!rn2(5)) u.freqcolorbonus += rne(3);
 	if (!rn2(3)) u.freqcolorbonus *= 2;

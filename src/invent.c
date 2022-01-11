@@ -1181,6 +1181,8 @@ have_lizard()
 			return(TRUE);
 		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_BLUE_LIZARD)
 			return(TRUE);
+		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_DARKEN_LIZARD)
+			return(TRUE);
 		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_SWAMP_LIZARD)
 			return(TRUE);
 		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_SPITTING_LIZARD)
@@ -11130,6 +11132,8 @@ boolean knoweverything;
 				pline("This armor offers great protection as well as disintegration resistance."); break;
 			case BLUE_DRAGON_SCALE_MAIL: 
 				pline("This armor offers great protection as well as shock resistance."); break;
+			case DARK_DRAGON_SCALE_MAIL: 
+				pline("This armor offers great protection as well as +1 to-hit and damage."); break;
 			case COPPER_DRAGON_SCALE_MAIL: 
 				pline("This armor offers great protection as well as %s.", enchname(objects[COPPER_DRAGON_SCALE_MAIL].oc_oprop) ); break;
 			case PLATINUM_DRAGON_SCALE_MAIL: 
@@ -11202,6 +11206,8 @@ boolean knoweverything;
 				pline("This armor offers moderate protection as well as disintegration resistance."); break;
 			case BLUE_DRAGON_SCALES: 
 				pline("This armor offers moderate protection as well as shock resistance."); break;
+			case DARK_DRAGON_SCALES: 
+				pline("This armor offers moderate protection as well as +1 damage and to-hit."); break;
 			case COPPER_DRAGON_SCALES: 
 				pline("This armor offers moderate protection as well as %s.", enchname(objects[COPPER_DRAGON_SCALES].oc_oprop) ); break;
 			case PLATINUM_DRAGON_SCALES: 
@@ -12044,6 +12050,8 @@ boolean knoweverything;
 				pline("A shield made from dragon hide that provides disintegration resistance as well as protection."); break;
 			case BLUE_DRAGON_SCALE_SHIELD:
 				pline("A shield made from dragon hide that provides shock resistance as well as protection."); break;
+			case DARK_DRAGON_SCALE_SHIELD:
+				pline("A shield made from dragon hide that provides +1 damage and to-hit as well as protection."); break;
 			case COPPER_DRAGON_SCALE_SHIELD: 
 				pline("A shield made from dragon hide that provides %s as well as protection.", enchname(objects[COPPER_DRAGON_SCALE_SHIELD].oc_oprop) ); break;
 			case PLATINUM_DRAGON_SCALE_SHIELD: 

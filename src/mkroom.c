@@ -638,9 +638,6 @@ struct mkroom *sroom;
 			u.specialtensionmonsterB = 0;
 			if (!rn2(8)) {u.colormonster = rnd(15);
 				if (!rn2(4)) u.colormonsterB = rnd(15);
-
-				if (u.colormonster == CLR_BLUE) { u.colormonster = 0; u.colormonsterB = 0;}
-				if (u.colormonsterB == CLR_BLUE) u.colormonsterB = 0;
 			}
 
 			if (!rn2(4)) u.tensionmonsterB = (rn2(187) + 1);
@@ -2630,7 +2627,12 @@ squadmon()		/* return soldier types. */
 		mndx = PM_GENERAL;
 		goto gotone;
 	}
-	mndx = rn2(2) ? PM_CAPTAIN : PM_GOTHIC_CAPTAIN;
+	switch (rnd(3)) {
+		case 1: mndx = PM_CAPTAIN; break;
+		case 2: mndx = PM_GOTHIC_CAPTAIN; break;
+		case 3: mndx = PM_URBAN_CAMO_CAPTAIN; break;
+
+	}
 	goto gotone;
 
 gotone:

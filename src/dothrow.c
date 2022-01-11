@@ -1397,6 +1397,9 @@ boolean hitsroof;
 	if (dmg > 0 && uarmf && uarmf->oartifact == ART_KATI_S_IRRESISTIBLE_STILET) dmg += 2;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_THOR_S_STRIKE && ACURR(A_STR) >= STR19(25)) dmg += 5;
 	if (dmg > 0 && uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) dmg += 10;
+	if (dmg > 0 && uarm && uarm->otyp == DARK_DRAGON_SCALES) dmg += 1;
+	if (dmg > 0 && uarm && uarm->otyp == DARK_DRAGON_SCALE_MAIL) dmg += 1;
+	if (dmg > 0 && uarms && uarms->otyp == DARK_DRAGON_SCALE_SHIELD) dmg += 1;
 	if (dmg > 0 && uarmg && uarmg->oartifact == ART_YES_TO_RANGED_COMBAT) dmg += rnd(6);
 	if (dmg > 0 && uleft && uleft->oartifact == ART_BLIND_PILOT) dmg += 10;
 	if (dmg > 0 && uright && uright->oartifact == ART_BLIND_PILOT) dmg += 10;
@@ -2119,6 +2122,9 @@ boolean polearming;
 	if (uarmg && itemhasappearance(uarmg, APP_SLAYING_GLOVES)) tmp += 1;
 
 	if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
+	if (uarm && uarm->otyp == DARK_DRAGON_SCALES) tmp += 1;
+	if (uarm && uarm->otyp == DARK_DRAGON_SCALE_MAIL) tmp += 1;
+	if (uarms && uarms->otyp == DARK_DRAGON_SCALE_SHIELD) tmp += 1;
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
 	if (uwep && uwep->oartifact == ART_WILD_HEAVY_SWINGS) tmp -= 10;
 	if (uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON) tmp += 1;
@@ -2529,6 +2535,7 @@ boolean polearming;
 			case ORANGE_DRAGON_SCALE_SHIELD:
 			case BLACK_DRAGON_SCALE_SHIELD:
 			case BLUE_DRAGON_SCALE_SHIELD:
+			case DARK_DRAGON_SCALE_SHIELD:
 			case COPPER_DRAGON_SCALE_SHIELD:
 			case PLATINUM_DRAGON_SCALE_SHIELD:
 			case BRASS_DRAGON_SCALE_SHIELD:

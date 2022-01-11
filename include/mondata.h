@@ -279,6 +279,7 @@
 				 ((ptr) == &mons[PM_CROUPIER]) ? 1 : \
 				 ((ptr) == &mons[PM_MASTER_CROUPIER]) ? 1 : \
 				 ((ptr) == &mons[PM_ELITE_CROUPIER]) ? 1 : \
+				 ((ptr) == &mons[PM_RADIANT_BLUE_CENTIPEDE]) ? 1 : \
 				 ((ptr) == &mons[PM_INDIVIDUAL_WILL_O_THE_WISP]) ? 1 : \
 				 ((ptr) == &mons[PM_BANG_BRIGHT_LIGHT]) ? 5 : \
 				 ( (ptr)->mlet == S_LIGHT || (ptr) == &mons[PM_FIRE_VORTEX]) ? 3 : \

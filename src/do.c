@@ -3813,7 +3813,6 @@ rerollchaloc:
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
 			monstercolor = rnd(15);
-			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 
 			if (wizard || !rn2(10)) pline(FunnyHallu ? "Uh... wow, what a strong color flash of rainbows!" : "You feel that a certain color might be prominent around here...");
 
@@ -3921,7 +3920,6 @@ rerollchaloc:
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
 			monstercolor = rnd(15);
-			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 		      cx = rn2(COLNO);
 		      cy = rn2(ROWNO);
 
@@ -4182,7 +4180,6 @@ rerollchaloc:
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
 			monstercolor = rnd(15);
-			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 			if (rn2(2)) {
 			      cx = rn2(COLNO);
 			      cy = rn2(ROWNO);

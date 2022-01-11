@@ -9281,7 +9281,6 @@ terrainterror()
 		else if (!rn2(2)) {
 
 			monstercolor = rnd(15);
-			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 
 			for (i = 0; i < randsp; i++) {
 

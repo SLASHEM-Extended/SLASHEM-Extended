@@ -5617,7 +5617,6 @@ addspmagain:
 					if (!rn2(1000)) randsp *= 5;
 					if (!rn2(10000)) randsp *= 10;
 					monstercolor = rnd(15);
-					do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 
 					You_feel("a colorful sensation!");
 

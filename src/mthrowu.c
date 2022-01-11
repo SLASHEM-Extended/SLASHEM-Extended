@@ -168,6 +168,7 @@ const char *name;	/* if null, then format `obj' */
 		case ORANGE_DRAGON_SCALE_SHIELD:
 		case BLACK_DRAGON_SCALE_SHIELD:
 		case BLUE_DRAGON_SCALE_SHIELD:
+		case DARK_DRAGON_SCALE_SHIELD:
 		case COPPER_DRAGON_SCALE_SHIELD:
 		case PLATINUM_DRAGON_SCALE_SHIELD:
 		case BRASS_DRAGON_SCALE_SHIELD:
@@ -1066,6 +1067,7 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 			case ORANGE_DRAGON_SCALE_SHIELD:
 			case BLACK_DRAGON_SCALE_SHIELD:
 			case BLUE_DRAGON_SCALE_SHIELD:
+			case DARK_DRAGON_SCALE_SHIELD:
 			case COPPER_DRAGON_SCALE_SHIELD:
 			case PLATINUM_DRAGON_SCALE_SHIELD:
 			case BRASS_DRAGON_SCALE_SHIELD:

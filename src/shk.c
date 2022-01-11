@@ -4835,8 +4835,10 @@ coord *mm;
 		(void) makemon(&mons[PM_KOP_LIEUTENANT], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 		break;
 		case 181:
-		case 182:
 		(void) makemon(&mons[PM_CAPTAIN], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
+		break;
+		case 182:
+		(void) makemon(&mons[PM_URBAN_CAMO_CAPTAIN], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 		break;
 		case 183:
 		(void) makemon(&mons[PM_GOTHIC_CAPTAIN], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
