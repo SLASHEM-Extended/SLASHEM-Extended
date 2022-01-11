@@ -389,6 +389,11 @@ struct monst {
 
 	Bitfield(egotype_amberite,1); /* M4_AMBERITE */
 
+	Bitfield(egotype_phonecaller,1); /* MS_HANDY */
+	Bitfield(egotype_cameraclicker,1); /* MS_PHOTO */
+	Bitfield(egotype_singagent,1); /* MS_SING */
+	Bitfield(egotype_alladrainer,1); /* MS_ALLA */
+
 	Bitfield(nurse_extrahealth,1); /* to control which services a nurse will offer */
 	Bitfield(nurse_decontaminate,1);
 	Bitfield(nurse_healing,1);

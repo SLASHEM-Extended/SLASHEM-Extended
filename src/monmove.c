@@ -827,14 +827,14 @@ register struct monst *mtmp;
 		}
 	}
 
-	if (mtmp->data->msound == MS_HANDY && !mtmp->handytime && !rn2(500)) {
+	if ((mtmp->data->msound == MS_HANDY || mtmp->egotype_phonecaller) && !mtmp->handytime && !rn2(500)) {
 		mtmp->handytime = 5 + rn2(11);
 		mtmp->handyfirst = FALSE;
 		if (canseemon(mtmp)) pline("%s's phone is ringing!", Monnam(mtmp));
 		else You_hear("a phone ringing!");
 	}
 
-	if (mtmp->data->msound == MS_PHOTO && canseemon(mtmp)) {
+	if ((mtmp->data->msound == MS_PHOTO || mtmp->egotype_cameraclicker) && canseemon(mtmp)) {
 		int photochance = 20;
 		if (ACURR(A_CHA) > 10) photochance -= (ACURR(A_CHA) - 10);
 		if (photochance < 3) photochance = 3;
@@ -1653,7 +1653,7 @@ register struct monst *mtmp;
 	if (mdat->msound == MS_SOCKS && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(10) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful) {
 	    m_respond(mtmp);
 	}
-	if (mdat->msound == MS_ALLA && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful) {
+	if ((mdat->msound == MS_ALLA || mtmp->egotype_alladrainer) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful) {
 		pline("alla");
 		drain_alla(1);
 	}
@@ -1666,7 +1666,7 @@ register struct monst *mtmp;
 		katiclean(mtmp);
 	}
 
-	if (mdat->msound == MS_SING && !u.singtrapocc && !u.katitrapocc && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->singability) {
+	if ((mdat->msound == MS_SING || mtmp->egotype_singagent) && !u.singtrapocc && !u.katitrapocc && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->singability) {
 
 		int attempts = 0;
 		struct permonst *pm = 0;

@@ -23457,6 +23457,10 @@ register int	mmflags;
 		}
 		if (!rn2(100)) {
 			mtmp->isegotype = 1;
+			mtmp->egotype_alladrainer = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
 			mtmp->egotype_wouwouer = TRUE;
 		}
 		if (!rn2(100)) {

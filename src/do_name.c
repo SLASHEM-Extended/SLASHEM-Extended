@@ -1042,6 +1042,10 @@ stupidsegfault:
 	    if (mtmp->egotype_blasphemer && (++egotypeamount < 21) ) sprintf(eos(buf), " Blasphemer");
 	    if (mtmp->egotype_dropper && (++egotypeamount < 21) ) sprintf(eos(buf), " Dropper");
 	    if (mtmp->egotype_amberite && (++egotypeamount < 21) ) sprintf(eos(buf), " Amberite");
+	    if (mtmp->egotype_phonecaller && (++egotypeamount < 21) ) sprintf(eos(buf), " Phonecaller");
+	    if (mtmp->egotype_cameraclicker && (++egotypeamount < 21) ) sprintf(eos(buf), " CameraClicker");
+	    if (mtmp->egotype_singagent && (++egotypeamount < 21) ) sprintf(eos(buf), " SingAgent");
+	    if (mtmp->egotype_alladrainer && (++egotypeamount < 21) ) sprintf(eos(buf), " Alladrainer");
 	    if (egotypeamount > 20) sprintf(eos(buf), " (%d egotypes)", egotypeamount);
 
 	}

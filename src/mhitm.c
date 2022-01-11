@@ -424,6 +424,8 @@ mattackm(magr, mdef)
     boolean egotypeweeper = magr->egotype_weeper;
     boolean egotypeweaponizer = magr->egotype_weaponizer;
     boolean egotypeengulfer = magr->egotype_engulfer;
+    boolean egotypecameraclicker = magr->egotype_cameraclicker;
+    boolean egotypealladrainer = magr->egotype_alladrainer;
 
     /* To-hit based on the monster's level. Nerf by Amy: high-level monsters shouldn't autohit. */
     magrlev = magr->m_lev;
@@ -3082,7 +3084,7 @@ meleeattack:
 		aggravate();
 	}
 
-	if (magr->data->msound == MS_PHOTO && !rn2(50)) {
+	if ((magr->data->msound == MS_PHOTO || egotypecameraclicker) && !rn2(50)) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
@@ -3130,7 +3132,7 @@ meleeattack:
 
 	}
 
-	if ((magr->data->msound == MS_SOUND || magr->egotype_sounder) && !rn2(20) && monnear(magr, mdef->mx, mdef->my)) {
+	if ((magr->data->msound == MS_SOUND || egotypesounder) && !rn2(20) && monnear(magr, mdef->mx, mdef->my)) {
 		if (vis) pline("%s lets out an ear-splitting scream!", Monnam(magr) );
 		else if (!YouAreDeaf) pline("You hear a scream.");
 		mdef->mstun = TRUE;
@@ -3138,7 +3140,7 @@ meleeattack:
 		if (!rn2(5)) badpeteffect(mdef);
 	}
 
-	if ((magr->data->msound == MS_ALLA) && monnear(magr, mdef->mx, mdef->my)) {
+	if ((magr->data->msound == MS_ALLA || egotypealladrainer) && monnear(magr, mdef->mx, mdef->my)) {
 		if (vis) pline("%s's alla is reduced!", Monnam(mdef));
 		badpeteffect(mdef);
 	}

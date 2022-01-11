@@ -794,6 +794,10 @@ const char * const *nlp;
 		}
 		if (!rn2(20)) {
 			shk->isegotype = 1;
+			shk->egotype_alladrainer = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
 			shk->egotype_wouwouer = TRUE;
 		}
 		if (!rn2(20)) {
@@ -1104,6 +1108,10 @@ const char * const *nlp;
 		if (!rn2(10)) {
 			shk->isegotype = 1;
 			shk->egotype_converter = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_alladrainer = TRUE;
 		}
 		if (!rn2(10)) {
 			shk->isegotype = 1;
