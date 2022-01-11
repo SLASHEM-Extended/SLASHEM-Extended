@@ -4631,9 +4631,11 @@ breakstare:
 	    case T_BLITZ:
 	    	if ((uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == LASER_TIN_OPENER || uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU) )) || (u.twoweap && uswapwep)) {
 			You("can't do this while wielding a weapon!");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    		return(0);
 	    	} else if (uarms) {
 			You("can't do this while holding a shield!");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    		return(0);
 	    	}
 	    	if (!doblitz()) return (0);		
@@ -4644,9 +4646,11 @@ breakstare:
             case T_PUMMEL:
 	    	if ((uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == LASER_TIN_OPENER || uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU) )) || (u.twoweap && uswapwep)) {
 			You("can't do this while wielding a weapon!");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    		return(0);
 	    	} else if (uarms) {
 			You("can't do this while holding a shield!");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    		return(0);
 	    	}
 		if (!getdir((char *)0)) return(0);
@@ -4664,9 +4668,11 @@ breakstare:
             case T_G_SLAM:
 	    	if ((uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == LASER_TIN_OPENER || uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU) )) || (u.twoweap && uswapwep)) {
 			You("can't do this while wielding a weapon!");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    		return(0);
 	    	} else if (uarms) {
 			You("can't do this while holding a shield!");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    		return(0);
 	    	}
 		if (!getdir((char *)0)) return(0);
@@ -4698,9 +4704,11 @@ breakstare:
             case T_SPIRIT_BOMB:
 	    	if ((uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == LASER_TIN_OPENER || uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU) )) || (u.twoweap && uswapwep)) {
 			You("can't do this while wielding a weapon!");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    		return(0);
 	    	} else if (uarms) {
 			You("can't do this while holding a shield!");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    		return(0);
 	    	}
 		if (!getdir((char *)0)) return(0);
@@ -7338,9 +7346,11 @@ revid_end:
 
 	    	if ((uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU) )) || (u.twoweap && uswapwep)) {
 			You("can't do this while wielding a weapon!");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    		return(0);
 	    	} else if (uarms) {
 			You("can't do this while holding a shield!");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    		return(0);
 	    	}
 		if (!getdir((char *)0)) return(0);
