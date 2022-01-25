@@ -106,7 +106,9 @@ for (1 .. $moncount) {
                              WHORE CONVERT HCALIEN CASINO GIBBERISH GLYPHS SOCKS PANTS
                              HANDY CAR JAPANESE SOVIET SNORE PHOTO REPAIR DRUGS COMBAT
                              MUTE CORONA TRUMPET PAIN BRAG PRINCESSLEIA SISSY SING ALLA
-                             POKEDEX BOT APOC);
+                             POKEDEX BOT APOC LIEDER GAARDIEN MISSING SELFHARM CLOCK OHGOD
+                             WOLLOH CODE BARBER AREOLA STABILIZE ESCAPE FEARHARE SPOILER
+                             DEAD TREESQUAD METALMAFIA DEEPSTATE);
   } else {
     push @ms, "MS_$_" for qw(GUARD BRIBE RIDER LEADER NEMESIS GUARDIAN SELL ORACLE PRIEST);
   }
@@ -162,9 +164,9 @@ for (1 .. $moncount) {
   my @clr = ((map { "CLR_$_" } qw(BLACK RED BLUE GREEN BROWN MAGENTA CYAN GRAY ORANGE
                                   BRIGHT_GREEN YELLOW BRIGHT_BLUE BRIGHT_MAGENTA BRIGHT_CYAN
                                   WHITE)));
-  if ($slex) {
-    @clr = grep { not /CLR_BLUE/ } @clr;
-  }
+#  if ($slex) {
+#    @clr = grep { not /CLR_BLUE/ } @clr;
+#  }
   my $color = $clr[rand @clr];
   my $flags = wrap((join ", ", @mf, $color), 6);
 

@@ -89,16 +89,34 @@
 #define MS_POKEDEX	80	/* occasionally spams you with stats of a random monster */
 #define MS_BOT	81	/* for robots */
 #define MS_APOC	82	/* talks about the end of the world */
+#define MS_LIEDER	83	/* cloned quest leader */
+#define MS_GAARDIEN	84	/* cloned quest guardian */
+#define MS_MISSING	85	/* "unfinished" monster that does not make a sound */
+#define MS_SELFHARM	86	/* does... bad things to itself */
+#define MS_CLOCK	87	/* shows date and time */
+#define MS_OHGOD	88	/* says "oh god" */
+#define MS_WOLLOH	89	/* says "wolloh" */
+#define MS_CODE	90	/* makes you guess a code number */
+#define MS_BARBER	91	/* offers service to cut your hair */
+#define MS_AREOLA	92	/* monster reacts differently to you depending on your areola diameter */
+#define MS_STABILIZE	93	/* monster can stabilize space to prevent teleportation */
+#define MS_ESCAPE	94	/* monster disappears (is deleted) if its health gets low */
+#define MS_FEARHARE	95	/* always flees when it takes damage */
+#define MS_SPOILER	96	/* cannot be pokedexed ("spoiler-proof" monster) */
+#define MS_DEAD	97	/* spawns dead */
+#define MS_TREESQUAD	98	/* punishes players who cut a lot of trees */
+#define MS_METALMAFIA	99	/* punishes players who smash a lot of iron bars */
+#define MS_DEEPSTATE	100	/* cannot be seen via detection methods or warning */
 
 /* MS_DOUGLAS_ADAMS used to be 42, however I fear the DevTeam eventually 
 ** reaching that number.  - sk */
 /* The slashem devteam did. :D --Amy */
 
-#define MS_DOUGLAS_ADAMS 95	/* "42"; "Nice day"; etc. */
-#define MS_PUPIL 	96
-#define MS_TEACHER	97
-#define MS_PRINCIPAL	98
-#define MS_SMITH	99
+#define MS_DOUGLAS_ADAMS 195	/* "42"; "Nice day"; etc. */
+#define MS_PUPIL 	196
+#define MS_TEACHER	197
+#define MS_PRINCIPAL	198
+#define MS_SMITH	199
 
 
 #define MR_FIRE         0x01    /* resists fire */
