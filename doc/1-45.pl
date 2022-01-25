@@ -81,9 +81,11 @@ for (1 .. $moncount) {
     my $at = $at[rand @at];
     my $ad = $ad[rand @ad];
     my $dice = int rand 10;
-#    if ($dice == 0 && $at != NONE && $at != RATH) {
-#	$dice = 1;
-#    }
+    if ($dice == 0) {
+	if (not ($at eq "AT_NONE") && not ($at eq "AT_RATH")) {
+		$dice = 1;
+	}
+    }
     my $num  = int rand 10;
     if ($num == 0) {
 	$num = 1;
@@ -114,7 +116,8 @@ for (1 .. $moncount) {
   if ($slex) { push @allres, "MR_$_" for qw(DEATH DRAIN); }
   my @res     = (grep { 25 > rand 100 } @allres);
   my @grant   = (grep { 10 > rand 100 } @res);
-# ideally, "grant" should not be able to pick DEATH or DRAIN
+  @grant = grep { not /DEATH/ } @grant;
+  @grant = grep { not /DRAIN/ } @grant;
   my $size    = wrap((join ", ", ("SIZ($weight, $nutr, 0, $sound, $size)",
                                   ((join "|", @res) || "0"),
                                   ((join "|", @grant) || "0"))), 6);
