@@ -1024,7 +1024,23 @@ doforce()		/* try to force a chest with your weapon */
 					}
 					u.cnd_forcebuttcount++;
 					if (mtmp->butthurt < 20 && (!rn2(3) || Role_if(PM_EMERA)) ) {
-						mtmp->butthurt += rnd(5);
+						int butthurting = 5;
+						if (!PlayerCannotUseSkills) {
+							switch (P_SKILL(P_WEDI)) {
+								case P_BASIC:	butthurting++; break;
+								case P_SKILLED:	butthurting += 2; break;
+								case P_EXPERT:	butthurting += 3; break;
+								case P_MASTER:	butthurting += 4; break;
+								case P_GRAND_MASTER:	butthurting += 5; break;
+								case P_SUPREME_MASTER:	butthurting += 6; break;
+								default: break;
+							}
+						}
+						if (uwep && uwep->spe > 0) butthurting += rn2(uwep->spe + 1);
+						if (UseTheForce) butthurting += 3;
+						if (StrongUseTheForce) butthurting += 3;
+
+						mtmp->butthurt += rnd(butthurting);
 						if (mtmp->butthurt < 5) pline("%s's %s butt is getting %s red bruises.", Monnam(mtmp), mtmp->female ? "sexy" : "ugly", mtmp->female ? "beautiful" : "intense");
 						else if (mtmp->butthurt < 9) pline("%s's %s butt is getting sore from your beating.", Monnam(mtmp), mtmp->female ? "sexy" : "ugly");
 						else if (mtmp->butthurt < 13) pline("%s's %s butt is hurt badly, and blood is slowly dripping out...", Monnam(mtmp), mtmp->female ? "sexy" : "ugly");
@@ -1050,7 +1066,23 @@ doforce()		/* try to force a chest with your weapon */
 					}
 					u.cnd_forcebuttcount++;
 					if (mtmp->butthurt < 20 && (!rn2(3) || Role_if(PM_EMERA)) ) {
-						mtmp->butthurt += rnd(3);
+						int butthurting = 3;
+						if (!PlayerCannotUseSkills) {
+							switch (P_SKILL(P_WEDI)) {
+								case P_BASIC:	butthurting++; break;
+								case P_SKILLED:	butthurting += rnd(2); break;
+								case P_EXPERT:	butthurting += rnd(3); break;
+								case P_MASTER:	butthurting += rnd(4); break;
+								case P_GRAND_MASTER:	butthurting += rnd(5); break;
+								case P_SUPREME_MASTER:	butthurting += rnd(6); break;
+								default: break;
+							}
+						}
+						if (uwep && rn2(2) && uwep->spe > 0) butthurting += rn2(uwep->spe + 1);
+						if (UseTheForce) butthurting += 2;
+						if (StrongUseTheForce) butthurting += 2;
+
+						mtmp->butthurt += rnd(butthurting);
 						if (mtmp->butthurt < 5) pline("%s's %s butt is getting %s red bruises.", Monnam(mtmp), mtmp->female ? "sexy" : "ugly", mtmp->female ? "beautiful" : "intense");
 						else if (mtmp->butthurt < 9) pline("%s's %s butt is getting sore from your beating.", Monnam(mtmp), mtmp->female ? "sexy" : "ugly");
 						else if (mtmp->butthurt < 13) pline("%s's %s butt is hurt badly, and blood is slowly dripping out...", Monnam(mtmp), mtmp->female ? "sexy" : "ugly");
@@ -1078,7 +1110,23 @@ doforce()		/* try to force a chest with your weapon */
 					}
 					u.cnd_forcebuttcount++;
 					if (mtmp->butthurt < 20 && (!rn2(3) || Role_if(PM_EMERA)) ) {
-						mtmp->butthurt += 1;
+						int butthurting = 1;
+						if (!PlayerCannotUseSkills && !rn2(2)) {
+							switch (P_SKILL(P_WEDI)) {
+								case P_BASIC:	butthurting++; break;
+								case P_SKILLED:	butthurting += rnd(2); break;
+								case P_EXPERT:	butthurting += rnd(3); break;
+								case P_MASTER:	butthurting += rnd(4); break;
+								case P_GRAND_MASTER:	butthurting += rnd(5); break;
+								case P_SUPREME_MASTER:	butthurting += rnd(6); break;
+								default: break;
+							}
+						}
+						if (uwep && !rn2(4) && uwep->spe > 0) butthurting += rn2(uwep->spe + 1);
+						if (UseTheForce) butthurting += 1;
+						if (StrongUseTheForce) butthurting += 1;
+
+						mtmp->butthurt += rnd(butthurting);
 						if (mtmp->butthurt < 5) pline("%s's %s butt is getting %s red bruises.", Monnam(mtmp), mtmp->female ? "sexy" : "ugly", mtmp->female ? "beautiful" : "intense");
 						else if (mtmp->butthurt < 9) pline("%s's %s butt is getting sore from your beating.", Monnam(mtmp), mtmp->female ? "sexy" : "ugly");
 						else if (mtmp->butthurt < 13) pline("%s's %s butt is hurt badly, and blood is slowly dripping out...", Monnam(mtmp), mtmp->female ? "sexy" : "ugly");
