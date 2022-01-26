@@ -1958,6 +1958,8 @@ d_level *newlevel;
 boolean at_stairs, falling, portal;
 {
 	int fd, l_idx;
+	int dist = newlevel->dlevel - dunlev(&u.uz);
+	boolean do_fall_dmg = FALSE;
 	xchar new_ledger;
 	boolean cant_go_back,
 		up = (depth(newlevel) < depth(&u.uz)),
@@ -4397,6 +4399,8 @@ rerollchaloc:
 	    if (falling) {
 		if (Punished) ballfall();
 		selftouch("Falling, you");
+		/* from the variant that calls itself 3.7: deal possibly huge damage (very well-balanced!) */
+		if (isevilvariant) do_fall_dmg = TRUE;
 	    }
 	}
 
@@ -4559,6 +4563,12 @@ rerollchaloc:
 
 	/* assume this will always return TRUE when changing level */
 	(void) in_out_region(u.ux, u.uy);
+
+	if (do_fall_dmg) {
+		int dmg = d(dist, 6);
+		losehp(dmg, "falling down a mine shaft", KILLED_BY);
+	}
+
 	(void) pickup(1);
 
 	if (DisconnectedStairs || u.uprops[DISCONNECTED_STAIRS].extrinsic || (uleft && uleft->oartifact == ART_LIKE_A_REAL_SERVER) || (uright && uright->oartifact == ART_LIKE_A_REAL_SERVER) || have_disconnectstone()) {
