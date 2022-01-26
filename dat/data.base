@@ -136,6 +136,16 @@ ais*
 	several of his Sokoban levels, which are variants of the infamous
 	"vanilla nightmare" level that look almost the same but have
 	completely different, much more difficult solutions.
+alla
+	Characters start with 1000 lines of alla, which is supposed to
+	be a measure for their 'mental integrity'. In a way, it's therefore
+	a bit similar to sanity, yet still different. Certain creatures
+	are capable of reducing a character's alla, and if that happens,
+	there is just a very obscure 'alla' message, unless the player's
+	alla is getting low, in which case there's an additional warning.
+	Running out of alla ends the game. It is said to be possible to
+	increase the amount of alla by eating a valuable gem, and sometimes
+	a nurse may also offer a service to increase it.
 *leax
 	An Aleax,  according to the  AD&D Fiend Folio,  is a  creature that
 	looks exactly  like the character, and  is sent  by the character's
@@ -6416,6 +6426,25 @@ sandestin
 	though typical, is after all, only a guise.  If I were to put
 	such things inside myself, I might well become uneasy."
 		[ Rhialto the Marvellous, by Jack Vance ]
+sanity
+	When you enter the dungeon, you start with a sanity score of
+	zero. This is not an error; your character is completely insane
+	at game start because they think this is just an ordinary
+	dungeon. But as the character comes into contact with things
+	not meant for mortal eyes, their sanity may increase, which
+	causes them to start seeing the terrible things that have always
+	been there. Higher sanity scores increase the chance that bad
+	things happen upon an event that increases sanity, and the
+	higher it is, the more often the character will start seeing
+	things. This can result in monsters appearing as different
+	monsters, which can be highly confusing.
+
+	Curing sanity is possible by quaffing the very rare and
+	precious potion of cure insanity (sic), but successful
+	interactions with a benevolent deity can also reduce it, as can
+	the otherwise often undesirable effect of amnesia. There are
+	several other ways of reducing sanity that the daring
+	adventurer may find.
 sasquatch
 	The name _Sasquatch_ doesn't really become important in Canada
 	until the 1930s, when it appeared in the works of J. W. Burns,

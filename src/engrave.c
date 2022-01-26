@@ -997,11 +997,13 @@ static const char *random_mesg[] = {
 	"Es war einmal ein Fraeuelein, das war ganz gemeinelein. Da brach sie sich ein Naegelein, und fing an zu schreielein.",
 	"Who was it that brings the children? Was it the platypus? Or the disturbenvulture?",
 	"The knackwurst is no cervela.",
+	"French is no Finnish, and the knackwurst is no cervela.",
 	"Q: Why is spell retention a range? A: Because it's not, it's an exact value. Only weird variants would make the display inaccurate.",
 	"Asian people usually know karate, and all Germans eat sauerkraut with Bavarian veal sausage.",
 	"Usually deformation is not a bad thing, I see if my equipment does not burst. In addition, if the deformation is unfavorable, I have aconite grass that can be cured.",
 	"In the monster room in the lower right corner, one of the Asian girls fart attacked the petrified person, and was also slowed down.",
 	"The door here is not allowed to be destroyed by soldiers at first, so that soldiers will not enter through an oblique direction and maintain an attack surface.",
+	"Rule #1 of Cleaver safety: Don't play a version where it hits peaceful creatures that you didn't even attack.",
 
 };
 
@@ -5550,6 +5552,7 @@ static const char *epitaphs[] = {
 	"What on earth are you supposed to do if a permamimic corners you and you have no ranged weapons? I bumped into it 200 times and it still didn't die; instead, I did!",
 	"Well the monsters that keep mimicking things even when you attack them can just fuck off, the cunts. Doubly so because you can't melee them. Bullshit mechanic that should be abolished.",
 	"The main reason is that piles of useless things are useless, and a little bit of money is a little bit.",
+	"oh lol you thought those blank tiles in vlad's cellar were just unexplored areas? mua ha ha ha ha, they're really bottomless pits, and now your char that you've put 100 hours into is gone. lololololol I'm so great, next time I'll just delete your save 100 hours into a run with the same effect, ain't I a genius?",
 
 };
 

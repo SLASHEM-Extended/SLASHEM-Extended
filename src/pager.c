@@ -4130,6 +4130,7 @@ static NEARDATA const char * const demagoguelines[] = {
 "Democracy is a fallacy! Democracy means that a committee of STUPID people make silly decisions against the will of smart citizens like me!",
 "People are so stupid! They do everything the government wants! In fact, they are so mindlessly obedient, the government could force them to step into dog shit once per day and clean their shoes by hand, and people would actually do that without asking questions.",
 "Humankind has failed. In the future, the predominant species on this planet will not be the human, but the virus. And that's despite the fact that the virus isn't even a sentient being.",
+"I give you a 3g certificate in your face bitch, in a democracy you could decide whether you want to be vaccinated but this country obviously isn't one.",
 };
 
 static NEARDATA const char * const longinglines[] = {
@@ -27518,6 +27519,13 @@ static NEARDATA const char * const fake_plines[] = {
 	"Damn, it didn't work! and you realise there's no more stats to regain", /* by amateurhour */
 	"Your feminism trap effects have been cured!",
 	"Your feminism trap effects have been cured! Or at least the game is saying that, but really they're still going on.",
+	"There actually is someone who says they're going to play slex again if I 'remove problematic content'. Apart from the fact that I'll not do that anyway, how the hell am I supposed to know what exactly that weirdo considers 'problematic'? That's highly subjective, you'll get different answers when asking someone else! Either way I'm not going to let such a person dictate what is or isn't allowed to be in my game, so that person can just go away.",
+	"Marriage is something that doesn't really exist. It is just some piece of paper that says two people now have certain obligations and stuff, but that depends on the laws that enforce the marriage contract, and therefore if the laws in question are changed or abolished, the marriage is void. Ever realized that humans are the only beings that have the concept of marriage, while animals will fuck whoever they want and whenever they want to?",
+	"I'm not going to remove features from my game just because one weird person whines about them being 'offensive'! If you really thought I'd do that, you can just fuck yourself because this is my game and I decide whether or not I change things.",
+	"If you're really gonna whine because you consider one or two rarely seen slex game features 'problematic', consider just playing some other game, you delicately sensible sissy.",
+	"If you're gonna whine that the 'hanging semen ejaculator' monster is sooooo offensive, just don't. Instead, consider how long slex has been around and how many other whiners complained about that kind of content in my game. I didn't listen to those, so what makes you think I'd listen to you?",
+	"I'm not going to remove features from my game just because people complain. It also doesn't matter how many people complain about a particular feature. I will defend its inclusion, even if I'm the only person on the planet who wants it in the game. Because this is my game and I don't let public opinion dictate what content is allowed or disallowed, got it?",
+	"You know what I find really weird? People who expect me to scrap controversial content in my game JUST after being told that my game has been removed from the big public server permanently. The word 'permanently' says everything, namely that it won't be allowed back on no matter what, so why on earth would I try and persuade the admins to change their mind? You must be crazy, I certainly have better things to do with my time. Adding new farting monsters to the game, for example.",
 
 };
 

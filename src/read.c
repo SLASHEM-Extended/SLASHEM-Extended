@@ -817,6 +817,8 @@ doread()
 	"I'm a woman. Kindly refer to me by that term. If you ever call me 'person who menstruates', you're dead in my book because I don't do business with people who treat me like shit.",
 	"In addition, I have an ESP amulet (perceives monsters, but the effect is very poor, and only sells for 7 yuan), and an anti-petrification amulet (can be resurrected by death due to petrification).",
 	"I picked up almost 50,000 yuan in a money room in Ludiburg.",
+	"I put the hanging semen ejaculator into the game because I want it to be in the game, and I will not remove it. Any attempt to change my mind on this matter is considered a hostile act.",
+	"Anyone who expects me to remove features from slex just because they're supposedly problematic can get fucked. I won't listen to such monkeys, either you accept my game the way it is or stay away from it.",
 
 	    };
 	    char buf[BUFSZ];
