@@ -1630,10 +1630,6 @@ int thrown;
 			obfree(obj, (struct obj *)0);
 			return;
 		}
-	    } else if (tech_inuse(T_BLADE_ANGER) && (objects[obj->otyp].oc_skill == -P_SHURIKEN || objects[obj->otyp].oc_skill == P_SHURIKEN ) ) {
-		check_shop_obj(obj, u.ux, u.uy, TRUE);
-		obfree(obj, (struct obj *)0);
-		return;
 	    }
 	    if (u.dz < 0 && !Is_airlevel(&u.uz) &&
 		    !Underwater && !Is_waterlevel(&u.uz)) {
@@ -1793,12 +1789,6 @@ int thrown;
 			obfree(obj, (struct obj *)0);
 			return;
 		}
-	}
-
-	if (tech_inuse(T_BLADE_ANGER) && (objects[obj->otyp].oc_skill == -P_SHURIKEN || objects[obj->otyp].oc_skill == P_SHURIKEN ) ) {
-	    check_shop_obj(obj, bhitpos.x,bhitpos.y, TRUE);
-	    obfree(obj, (struct obj *)0);
-	    return;
 	}
 
 	int djemsochance = 0;

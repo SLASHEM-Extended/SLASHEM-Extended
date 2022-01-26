@@ -3046,7 +3046,7 @@ dotech()
 			break;
 
 		case T_BLADE_ANGER:
-			pline("A pain in the butt to code, this technique is supposed to temporarily allow your shuriken to pierce monsters and continue flying after hitting them, but with the downside that when they stop travelling they'll always be broken. The implementation is rather hacky but it kind of works.");
+			pline("While this technique is active, throwing shuriken will additionally shoot invisible beams at the enemy that may hit several of them at once.");
 			break;
 
 		case T_RE_TAMING:
@@ -6371,6 +6371,11 @@ incarnationfinish:
 
 		case T_COMBO_STRIKE:
 
+			if (uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == LASER_TIN_OPENER || uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU)) ) {
+				You("can't do that while wielding a weapon!");
+				return 0;
+			}
+
 			num = 30 + (techlevX(tech_no) * 2);
 		    	techt_inuse(tech_no) = num + 1;
 			pline("You're starting your combo!");
@@ -6412,7 +6417,7 @@ incarnationfinish:
 		    	techt_inuse(tech_no) = num + 1;
 			pline("Your shuriken can fire beams now!");
 
-			t_timeout = rnz(3000);
+			t_timeout = rnz(7500);
 			break;
 
 		case T_RE_TAMING:
