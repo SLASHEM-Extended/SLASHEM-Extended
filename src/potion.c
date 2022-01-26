@@ -6698,7 +6698,7 @@ register struct obj *dwpn;
 
 	if (dwpn->spe <= minenchant) return FALSE;
 
-	if ((dwpn->spe <= rnd(8)) && rn2(8) ) return FALSE; /* less likely with lower enchantment --Amy */
+	if ((dwpn->spe <= rnd(8)) && rn2(8) && objects[dwpn->otyp].oc_material != MT_CERAMIC && !(dwpn->oartifact == ART_CLEAN_MAULER) ) return FALSE; /* less likely with lower enchantment --Amy */
 
 	if (dwpn->oartifact == ART_CLEAN_MAULER) dullchance = 100;
 	if (objects[dwpn->otyp].oc_material == MT_CERAMIC) dullchance = 100;
@@ -6740,7 +6740,7 @@ register struct obj *dwpn;
 
 	if (dwpn->spe <= minenchant) return FALSE;
 
-	if ((dwpn->spe <= (Race_if(PM_RUSMOT) ? (rnd(8) - 5) : rnd(8)) ) && rn2(8) ) return FALSE; /* less likely with lower enchantment --Amy */
+	if ((dwpn->spe <= (Race_if(PM_RUSMOT) ? (rnd(8) - 5) : rnd(8)) ) && rn2(8) && objects[dwpn->otyp].oc_material != MT_CERAMIC ) return FALSE; /* less likely with lower enchantment --Amy */
 
 	if (objects[dwpn->otyp].oc_material == MT_CERAMIC) dullchance = 100;
 	if (objects[dwpn->otyp].oc_material == MT_LIQUID) dullchance = 125;
