@@ -1983,11 +1983,23 @@ newbossSING:
 			case MS_REPAIR:
 				verbalize("Repair your equipment here!");
 				break;
+			case MS_BARBER:
+				verbalize("Come here, I'm gonna give you a new haircut!");
+				break;
 			case MS_DRUGS:
 				verbalize("Hey %s! Hit me if you want the good stuff!", flags.female ? "gal" : "dude");
 				break;
 			case MS_COMBAT:
 				verbalize("I own this dungeon. Fight me.");
+				break;
+			case MS_DEAD:
+				verbalize("Man I don't want to fight you. Can't you just go away and leave me alone?");
+				break;
+			case MS_FEARHARE:
+				verbalize("Oh no! The player character is coming to get me! I should probably flee!");
+				break;
+			case MS_DEEPSTATE:
+				verbalize("You are going down.");
 				break;
 			case MS_MUTE:
 				if (canseemon(mtmp)) pline("%s grumbles and grunts loudly.", Monnam(mtmp));
@@ -1999,8 +2011,20 @@ newbossSING:
 			case MS_PAIN:
 				verbalize("I may be in pain, but soon the same will apply to you!");
 				break;
+			case MS_OHGOD:
+				verbalize("Oh god the %s!", playeraliasname);
+				break;
 			case MS_PRINCESSLEIA:
 				verbalize("Please, don't hurt me, I'm the princess!");
+				break;
+			case MS_LIEDER:
+				verbalize("Hey, you! Why aren't you busy doing your quest?");
+				break;
+			case MS_WOLLOH:
+				verbalize("Wolloh age, I'ma beat you up wolloh!");
+				break;
+			case MS_GAARDIEN:
+				verbalize("Why is that weirdo over there not doing %s job?", flags.female ? "her" : "his");
 				break;
 			case MS_SISSY:
 				verbalize("help i am afraid!");

@@ -1656,6 +1656,61 @@ register struct monst *mtmp;
 	case MS_PRINCESSLEIA:
 		ret = "sobs 'That's not a way to treat a princess...'";
 		break;
+	case MS_LIEDER:
+		ret = "shouts 'You will be excommunicated!'";
+		break;
+	case MS_GAARDIEN:
+		ret = "shouts 'Friendly fire! FRIENDLY FIRE!'";
+		break;
+	case MS_MISSING:
+		ret = "does not make a sound when seriously abused";
+		break;
+	case MS_SELFHARM:
+		ret = "is bleeding terribly...";
+		increasesanity(rnz(100));
+		break;
+	case MS_CLOCK:
+		ret = "complains about the clock being broken";
+		break;
+	case MS_OHGOD:
+		ret = "screams 'Ohtenthousandfoldgod!'";
+		break;
+	case MS_WOLLOH:
+		ret = "shouts 'Wolloh asshole, I'm gonna beat up your ugly face wolloh!'";
+		break;
+	case MS_CODE:
+		ret = "seems unable to remember the code";
+		break;
+	case MS_BARBER:
+		ret = "screams 'Argh! I'm a barber, not a haircutter!'";
+		break;
+	case MS_AREOLA:
+		ret = "is about to go crazy";
+		break;
+	case MS_STABILIZE:
+		ret = "frantically tries to cast an emergency spell";
+		break;
+	case MS_ESCAPE:
+		ret = "is about to escape";
+		break;
+	case MS_FEARHARE:
+		ret = "is seriously afraid!";
+		break;
+	case MS_SPOILER:
+		ret = "Error 25. Please restart the game";
+		break;
+	case MS_DEAD:
+		ret = "moans 'Please just kill me now.'";
+		break;
+	case MS_TREESQUAD:
+		ret = "screams 'Alert! Serious environmental damage!'";
+		break;
+	case MS_METALMAFIA:
+		ret = "groans 'I will get your metal someday...'";
+		break;
+	case MS_DEEPSTATE:
+		ret = "doesn't show a visible reaction";
+		break;
 	case MS_SISSY:
 		ret = "whines 'owwww %s has me pain-done!'";
 		break;
@@ -1828,6 +1883,61 @@ register struct monst *mtmp;
 	case MS_PRINCESSLEIA:
 		ret = "cries 'It's unfair that I always get hurt! A princess is supposed to be protected from harm at all times!'";
 		break;
+	case MS_LIEDER:
+		ret = "shouts 'That's a violation of your conduct!'";
+		break;
+	case MS_GAARDIEN:
+		ret = "laughs 'Keep doing that and I'll tell your boss, then you'll be fired.'";
+		break;
+	case MS_MISSING:
+		ret = "does not make a sound when injured";
+		break;
+	case MS_SELFHARM:
+		ret = "is squirting blood...";
+		increasesanity(rnz(10));
+		break;
+	case MS_CLOCK:
+		ret = "has to check the clock again";
+		break;
+	case MS_OHGOD:
+		ret = "shouts 'Ohdoublegod!'";
+		break;
+	case MS_WOLLOH:
+		ret = "screams 'Wolloh man, I'll fuck you up if you do that again, wolloh!";
+		break;
+	case MS_CODE:
+		ret = "is trying hard to keep the code secret";
+		break;
+	case MS_BARBER:
+		ret = "shouts 'No one stops the tunnel queues!'";
+		break;
+	case MS_AREOLA:
+		ret = "stares at you in shock";
+		break;
+	case MS_STABILIZE:
+		ret = "is attempting to erect a force field";
+		break;
+	case MS_ESCAPE:
+		ret = "ponders the meaning of the dungeon";
+		break;
+	case MS_FEARHARE:
+		ret = "screams 'Ah! I'm endangered! Screw that, I'm outta here!'";
+		break;
+	case MS_SPOILER:
+		ret = "Buffer overrun detected. NETHACK cannot safely continue execution and needs to close.";
+		break;
+	case MS_DEAD:
+		ret = "mutters 'Oh, if only I could have stayed dead...'";
+		break;
+	case MS_TREESQUAD:
+		ret = "screams 'All activists, protect the trees with your lives!'";
+		break;
+	case MS_METALMAFIA:
+		ret = "shouts 'If you don't give me your metal I'll shoot you with my gun and take it by force!'";
+		break;
+	case MS_DEEPSTATE:
+		ret = "has second thoughts about you";
+		break;
 	case MS_SISSY:
 		ret = "cries 'noooooo i broke a nail!'";
 		break;
@@ -1987,6 +2097,60 @@ register struct monst *mtmp;
 		break;
 	case MS_PRINCESSLEIA:
 		ret = "whispers 'I sense a trap. Please be careful, don't step into it.'";
+		break;
+	case MS_LIEDER:
+		ret = "says 'The nemesis put a trap over there! Don't trigger it!'";
+		break;
+	case MS_GAARDIEN:
+		ret = "tells you 'I remember that there's a trap here.'";
+		break;
+	case MS_MISSING:
+		ret = "does not make a sound when distressed";
+		break;
+	case MS_SELFHARM:
+		ret = "suddenly seems very eager to take one more step!";
+		break;
+	case MS_CLOCK:
+		ret = "notices that the clock's alarm has gone off!";
+		break;
+	case MS_OHGOD:
+		ret = "shouts 'Oh god, a trap!'";
+		break;
+	case MS_WOLLOH:
+		ret = "shouts 'Wolloh, watch out, wolloh!'";
+		break;
+	case MS_CODE:
+		ret = "is trying hard to avoid losing the code";
+		break;
+	case MS_BARBER:
+		ret = "says 'Watch out, the overseer has laid a trap!'";
+		break;
+	case MS_AREOLA:
+		ret = "is staring at you in expectation";
+		break;
+	case MS_STABILIZE:
+		ret = "opens the abilities menu and searches for the one that disarms traps";
+		break;
+	case MS_ESCAPE:
+		ret = "wonders whether there's an escape path";
+		break;
+	case MS_FEARHARE:
+		ret = "screams 'Get me away from here, I don't have a good feeling about this place!'";
+		break;
+	case MS_SPOILER:
+		ret = "An error has occurred in your application. If you choose Close, NETHACK will close. If you choose Ignore, you should save your work in a new file.";
+		break;
+	case MS_DEAD:
+		ret = "whimpers 'Why do you have to lead me into such dangerous areas?'";
+		break;
+	case MS_TREESQUAD:
+		ret = "shouts 'Attention! Our enemies are up to something devious!'";
+		break;
+	case MS_METALMAFIA:
+		ret = "contemplates 'Hmm... if I just pull that hunk of metal out of the ground...'";
+		break;
+	case MS_DEEPSTATE:
+		ret = "is pointing a finger in a certain direction";
 		break;
 	case MS_SISSY:
 		ret = "whimpers 'arrrrgh we will all die!'";
@@ -3013,6 +3177,60 @@ repairitemchoice:
 			verbl_msg = "I am the best!";
 		}
 		else verbl_msg = "Bah, I'm much better than you!";
+		break;
+	case MS_LIEDER:
+		/* todo */
+		break;
+	case MS_GAARDIEN:
+		/* todo */
+		break;
+	case MS_MISSING:
+		/* todo */
+		break;
+	case MS_SELFHARM:
+		/* todo */
+		break;
+	case MS_CLOCK:
+		/* todo */
+		break;
+	case MS_OHGOD:
+		/* todo */
+		break;
+	case MS_WOLLOH:
+		/* todo */
+		break;
+	case MS_CODE:
+		/* todo */
+		break;
+	case MS_BARBER:
+		/* todo */
+		break;
+	case MS_AREOLA:
+		/* todo */
+		break;
+	case MS_STABILIZE:
+		/* todo */
+		break;
+	case MS_ESCAPE:
+		/* todo */
+		break;
+	case MS_FEARHARE:
+		/* todo */
+		break;
+	case MS_SPOILER:
+		/* todo */
+		break;
+	case MS_DEAD:
+		/* todo */
+		break;
+	case MS_TREESQUAD:
+		/* todo */
+		break;
+	case MS_METALMAFIA:
+		/* todo */
+		break;
+	case MS_DEEPSTATE:
+		/* todo */
 		break;
 	case MS_PRINCESSLEIA:
 		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/10) {
@@ -5036,6 +5254,7 @@ register struct monst *mtmp;
 		default:
 			break;
 		case MS_HUMANOID:
+		case MS_OHGOD:
 		case MS_ARREST:
 		case MS_SOLDIER:
 		case MS_CUSS:
@@ -5047,6 +5266,10 @@ register struct monst *mtmp;
 		case MS_PRINCESSLEIA:
 		case MS_SISSY:
 		case MS_BOT:
+		case MS_BARBER:
+		case MS_TREESQUAD:
+		case MS_METALMAFIA:
+		case MS_WOLLOH:
 			soundbased = TRUE;
 			break;
 	}
@@ -5118,6 +5341,15 @@ register struct monst *mtmp;
 		case MS_ALLA:
 		case MS_POKEDEX:
 		case MS_APOC:
+		case MS_LIEDER:
+		case MS_GAARDIEN:
+		case MS_CLOCK:
+		case MS_AREOLA:
+		case MS_DEAD:
+		case MS_STABILIZE:
+		case MS_ESCAPE:
+		case MS_FEARHARE:
+		case MS_CODE:
 			switch (distresslevel) {
 				case 1:
 					pline("%s screams.", Monnam(mtmp));
@@ -5143,6 +5375,19 @@ register struct monst *mtmp;
 					break;
 			}
 			break;
+		case MS_METALMAFIA:
+			switch (distresslevel) {
+				case 1:
+					pline("%s shouts 'Stop being such a dick! Just gimme your metal!'", Monnam(mtmp));
+					break;
+				case 2:
+					pline("%s shouts 'I'll blast you with my shotgun if you don't give me your metal!'", Monnam(mtmp));
+					break;
+				case 3:
+					pline("%s groans 'You cannot stop the metal mafia...'", Monnam(mtmp));
+					break;
+			}
+			break;
 		case MS_ARREST:
 			switch (distresslevel) {
 				case 1:
@@ -5156,6 +5401,19 @@ register struct monst *mtmp;
 					break;
 			}
 			break;
+		case MS_TREESQUAD:
+			switch (distresslevel) {
+				case 1:
+					pline("%s shouts 'They're resisting!'", Monnam(mtmp));
+					break;
+				case 2:
+					pline("%s shouts 'We need to kill them, it's the only way to stop them!'", Monnam(mtmp));
+					break;
+				case 3:
+					pline("%s shouts 'They're going to burn our trees! We must not fall!'", Monnam(mtmp));
+					break;
+			}
+			break;
 		case MS_SOLDIER:
 			switch (distresslevel) {
 				case 1:
@@ -5166,6 +5424,74 @@ register struct monst *mtmp;
 					break;
 				case 3:
 					pline("%s shouts 'God dammit!'", Monnam(mtmp));
+					break;
+			}
+			break;
+		case MS_BARBER:
+			switch (distresslevel) {
+				case 1:
+					pline("%s shouts 'You're not allowed to hit me, I'm a barber!'", Monnam(mtmp));
+					break;
+				case 2:
+					pline("%s shouts 'Stop that, man! Let me cut your hair instead!'", Monnam(mtmp));
+					break;
+				case 3:
+					pline("%s shouts 'I'm gonna cut like the devil!'", Monnam(mtmp));
+					break;
+			}
+			break;
+		case MS_SPOILER:
+			switch (distresslevel) {
+				case 1:
+					pline("Out of memory. Please restart the program.");
+					break;
+				case 2:
+					pline("Runtime Error! R6016 - Not enough space for thread data");
+					break;
+				case 3:
+					pline("Runtime Error! R6025 - pure virtual function call");
+					break;
+			}
+			break;
+		case MS_OHGOD:
+			switch (distresslevel) {
+				case 1:
+					pline("%s shouts 'Oh god!'", Monnam(mtmp));
+					break;
+				case 2:
+					pline("%s shouts 'Oh doublegod!'", Monnam(mtmp));
+					break;
+				case 3:
+					pline("%s shouts 'Ohtenfoldgod!'", Monnam(mtmp));
+					break;
+			}
+			break;
+		case MS_WOLLOH:
+			switch (distresslevel) {
+				case 1:
+					pline("%s shouts 'Wolloh age!'", Monnam(mtmp));
+					break;
+				case 2:
+					pline("%s shouts 'Wolloh, you fucked up, wolloh!'", Monnam(mtmp));
+					break;
+				case 3:
+					pline("%s shouts 'Ey wolloh, older! Wolloh, I have a knife, wolloh, and I'll cut out your fucking tongue, wolloh!'", Monnam(mtmp));
+					break;
+			}
+			break;
+		case MS_SELFHARM:
+			switch (distresslevel) {
+				case 1:
+					pline("%s is bleeding...", Monnam(mtmp));
+					increasesanity(rnz(10));
+					break;
+				case 2:
+					pline("%s is squirting blood everywhere!", Monnam(mtmp));
+					increasesanity(rnz(50));
+					break;
+				case 3:
+					pline("Oh no! %s is bleeding profusely and it just doesn't want to stop and the entire floor is already colored red and... urgh, your %s...", Monnam(mtmp), body_part(STOMACH));
+					increasesanity(rnz(200));
 					break;
 			}
 			break;

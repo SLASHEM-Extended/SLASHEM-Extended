@@ -1117,6 +1117,42 @@ randmonsound()
 			return MS_BOT;
 		case 79:
 			return MS_APOC;
+		case 80:
+			return MS_LIEDER;
+		case 81:
+			return MS_GAARDIEN;
+		case 82:
+			return MS_MISSING;
+		case 83:
+			return MS_SELFHARM;
+		case 84:
+			return MS_CLOCK;
+		case 85:
+			return MS_OHGOD;
+		case 86:
+			return MS_WOLLOH;
+		case 87:
+			return MS_CODE;
+		case 88:
+			return MS_BARBER;
+		case 89:
+			return MS_AREOLA;
+		case 90:
+			return MS_STABILIZE;
+		case 91:
+			return MS_ESCAPE;
+		case 92:
+			return MS_FEARHARE;
+		case 93:
+			return MS_SPOILER;
+		case 94:
+			return MS_DEAD;
+		case 95:
+			return MS_TREESQUAD;
+		case 96:
+			return MS_METALMAFIA;
+		case 97:
+			return MS_DEEPSTATE;
 		default:
 			return MS_HUMANOID;
 	}
