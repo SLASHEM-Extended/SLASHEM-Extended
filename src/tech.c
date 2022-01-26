@@ -11509,6 +11509,17 @@ techdrainnewS:
 }
 
 void
+techdrainrll()
+{
+	int i;
+	for (i = 0; i < MAXTECH; i++) {
+	    if (techid(i) == T_RESTORE_LIFE_LEVELS )
+		tech_list[i].t_lev = 130;
+	}
+
+}
+
+void
 techlevelup()
 {
 

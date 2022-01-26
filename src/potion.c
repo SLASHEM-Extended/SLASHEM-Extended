@@ -7944,6 +7944,11 @@ datadeleteattack()
 				if (Role_if(PM_DQ_SLIME) && Race_if(PM_PLAYER_SLIME)) u.uhpmax += 20;
 				if (u.uhp < u.uhpmax) u.uhp = u.uhpmax;
 			}
+			if (!tech_known(T_RESTORE_LIFE_LEVELS)) {
+			    	learntech(T_RESTORE_LIFE_LEVELS, FROMOUTSIDE, 1);
+			}
+			techdrainrll();
+
 			break;
 		case 8: /* steal 20 random intrinsics, so the chance of stealing something important is high, muahahahaha */
 			pline("You feel a loss of intrinsics...");

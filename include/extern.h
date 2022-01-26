@@ -3039,6 +3039,7 @@ E int techlevX(int);
 E void hurtmon(struct monst *,int);
 E void techdrain(void);
 E void techdrainsevere(void);
+E void techdrainrll(void);
 E void techlevelup(void);
 E void techlevelspecific(int);
 E void learnrandomregulartech(void);
