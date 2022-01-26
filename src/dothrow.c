@@ -2192,11 +2192,11 @@ boolean polearming;
 		tmp -= rnd(10);
 		if (!rn2(2)) tmp -= rnd(10);
 	}
-	if (launcher && launcher->otyp == SUBMACHINE_GUN) tmp -= rnd(6);
-	if (launcher && launcher->otyp == AUTO_SHOTGUN) tmp -= rnd(8);
+	if (launcher && launcher->otyp == SUBMACHINE_GUN && launcher->altmode == WP_MODE_AUTO) tmp -= rnd(6);
+	if (launcher && launcher->otyp == AUTO_SHOTGUN && launcher->altmode == WP_MODE_AUTO) tmp -= rnd(8);
 	if (launcher && launcher->otyp == POWER_CROSSBOW) tmp -= rnd(8);
 	if (launcher && launcher->otyp == PILE_BUNKER) tmp -= rnd(4);
-	if (launcher && launcher->otyp == ASSAULT_RIFLE) {
+	if (launcher && launcher->otyp == ASSAULT_RIFLE && (launcher->altmode == WP_MODE_AUTO || (launcher->altmode == WP_MODE_BURST && !rn2(3)) ) ) {
 		tmp -= rnd(8);
 		if (!rn2(3)) tmp -= rnd(5);
 	}
@@ -2204,11 +2204,11 @@ boolean polearming;
 		tmp -= rnd(10);
 		if (!rn2(2)) tmp -= rnd(8);
 	}
-	if (launcher && launcher->otyp == DEMON_CROSSBOW) {
+	if (launcher && launcher->otyp == DEMON_CROSSBOW && launcher->altmode == WP_MODE_AUTO) {
 		tmp -= rnd(20);
 		if (!rn2(2)) tmp -= rnd(6);
 	}
-	if (launcher && launcher->otyp == KALASHNIKOV) {
+	if (launcher && launcher->otyp == KALASHNIKOV && (launcher->altmode == WP_MODE_AUTO || (launcher->altmode == WP_MODE_BURST && !rn2(3)) ) ) {
 		tmp -= rnd(9);
 		if (!rn2(2)) tmp -= rnd(5);
 	}
