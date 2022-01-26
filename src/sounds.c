@@ -5247,6 +5247,17 @@ register struct monst *mtmp;
 	}
 	if (painchance < 0) painchance = 0; /* fail safe */
 
+	/* pets need even better chances */
+	if (mtmp->mtame && !rn2(10)) painchance = 0;
+	if (!PlayerCannotUseSkills && mtmp->mtame) {
+		if (P_SKILL(P_PETKEEPING) >= P_BASIC && !rn2(10)) painchance = 0;
+		if (P_SKILL(P_PETKEEPING) >= P_SKILLED && !rn2(10)) painchance = 0;
+		if (P_SKILL(P_PETKEEPING) >= P_EXPERT && !rn2(10)) painchance = 0;
+		if (P_SKILL(P_PETKEEPING) >= P_MASTER && !rn2(10)) painchance = 0;
+		if (P_SKILL(P_PETKEEPING) >= P_GRAND_MASTER && !rn2(10)) painchance = 0;
+		if (P_SKILL(P_PETKEEPING) >= P_SUPREME_MASTER && !rn2(10)) painchance = 0;
+	}
+
 	if (painchance >= (rnd(11))) return;
 
 	/* some of these are sound-based, others are vision-based */
