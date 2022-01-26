@@ -26424,6 +26424,7 @@ loopback:
 		if (ct > 0 && (Race_if(PM_SPAMMER) && (ptr->msound == MS_GIBBERISH) )) ct += 1;
 		if (ct > 0 && (Race_if(PM_VIETIS) && (ptr->msound == MS_JAPANESE) )) ct += 1;
 		if (ct > 0 && (Race_if(PM_WOOKIE) && (ptr->msound == MS_BOT) )) ct += 1;
+		if (ct > 0 && (Race_if(PM_RELEASIER) && (ptr->mlet == S_LIZARD))) ct += 10;
 
 		if (ct > 0 && (uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (ptr->msound == MS_STENCH))) ct += 10;
 		if (ct > 0 && (FemtrapActiveAnna && (ptr->msound == MS_STENCH))) ct += 50;

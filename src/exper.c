@@ -562,7 +562,10 @@ boolean incr;	/* true iff via incremental experience growth */
 	    }
 	    ++u.ulevel;
 	    if (u.ulevelmax < u.ulevel) u.ulevelmax = u.ulevel;
-	    pline("Welcome to experience level %d.", u.ulevel);
+
+	    if (Race_if(PM_RELEASIER)) verbalize("Iii-am-debest!");
+	    else pline("Welcome to experience level %d.", u.ulevel);
+
 	    adjabil(u.ulevel - 1, u.ulevel);	/* give new intrinsics */
 	    reset_rndmonst(NON_PM);		/* new monster selection */
 	}

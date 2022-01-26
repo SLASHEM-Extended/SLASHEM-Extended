@@ -8049,6 +8049,21 @@ const struct Race races[] = {
 	{  10, 0,  0, 6,  4, 0 },	/* Hit points */
 	{  0, 0,  0, 0,  0, 0 }		/* Energy */
 },
+{	"releasier", "releasier", "Super Releasio 64", "Rel",
+	{0, 0},
+	PM_RELEASIER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, 0,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(40), 18, 18, 14, 18, 16 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 1,  1, 0 },	/* Hit points */
+	{  2, 0,  1, 0,  1, 0 }		/* Energy */
+},
 {	"reticulan", "reticulan", "ZAPM planet", "Ret",
 	{0, 0},
 	PM_RETICULAN, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,

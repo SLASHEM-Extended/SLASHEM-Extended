@@ -855,7 +855,7 @@ lookat(x, y, buf, monbuf)
 	} else
 	    strcpy(buf, distant_name(otmp, xname));
 
-	if ((!(MojibakeEffect || u.uprops[MOJIBAKE].extrinsic || have_mojibakestone())) || levl[x][y].seenv ) {
+	if ((!(MojibakeEffect || u.uprops[MOJIBAKE].extrinsic || have_mojibakestone() || Race_if(PM_RELEASIER))) || levl[x][y].seenv ) {
 		if (IS_TREE(levl[x][y].typ))
 		    strcat(buf, " stuck in a tree"); 
 		else if (IS_IRONBAR(levl[x][y].typ))

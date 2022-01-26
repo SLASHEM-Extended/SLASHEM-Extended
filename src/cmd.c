@@ -14005,7 +14005,7 @@ register char *cmd;
 	}
 
 	/* Autopilot means your char does random things depending on your contamination --Amy */
-	if (*cmd && (AutopilotEffect || u.uprops[AUTOPILOT_EFFECT].extrinsic || (uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL) || have_autopilotstone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK) || (uarmf && uarmf->oartifact == ART_PRADA_S_DEVIL_WEAR) ) ) {
+	if (*cmd && (AutopilotEffect || u.uprops[AUTOPILOT_EFFECT].extrinsic || (uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL) || have_autopilotstone() || Race_if(PM_RELEASIER) || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK) || (uarmf && uarmf->oartifact == ART_PRADA_S_DEVIL_WEAR) ) ) {
 		int autopilotchance = u.contamination;
 		if (isevilvariant && (autopilotchance > 900)) autopilotchance = 900;
 		else if (!isevilvariant && (autopilotchance > 500)) autopilotchance = 500;
@@ -14024,6 +14024,17 @@ register char *cmd;
 
 		/* always at least 1% chance of having the autopilot activate --Amy */
 		if ((rn2(1000) < autopilotchance) || !rn2(100)) {
+
+			if (Race_if(PM_RELEASIER)) {
+				switch (rnd(6)) {
+					case 1: verbalize("Bo!"); break;
+					case 2: verbalize("Rueue!"); break;
+					case 3: verbalize("Kjear!"); break;
+					case 4: verbalize("Oh-dey!"); break;
+					case 5: verbalize("Aeaeaeaeaeaeaeaeaeaeaeh!"); break;
+					case 6: verbalize("Ah-dubberdubberdubberdubberdubber!"); break;
+				}
+			}
 
 			if (rn2(10)) {
 				u.dx = !rn2(3) ? -1 : !rn2(2) ? 0 : 1;

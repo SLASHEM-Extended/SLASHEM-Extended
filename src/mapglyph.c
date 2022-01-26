@@ -1339,6 +1339,7 @@ unsigned *ospecial;
 		if (WallsAreHyperBlue && (offset == S_dungwall)) color = CLR_BRIGHT_BLUE;
 		if (SpellColorOrange && offset == S_grayglyph) color = CLR_ORANGE;
 		if (SpellColorBrightCyan && offset == S_grayglyph) color = CLR_BRIGHT_CYAN;
+		if (Race_if(PM_RELEASIER) && !rn2(3)) color = !rn2(3) ? CLR_CYAN : !rn2(2) ? CLR_WHITE : CLR_RED;
 		if ((KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone()) && (offset == S_grayglyph)) color = rnd(15);
 		if (Hallucination) color = rnd(15);
 		if ((uarmc && itemhasappearance(uarmc, APP_FLEECELING_CLOAK)) && !rn2(5) ) color = rnd(15);

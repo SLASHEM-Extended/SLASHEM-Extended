@@ -4300,7 +4300,7 @@ randomgoodskill()
 	int result;
 
 skillreroll:
-	result = rnd(P_NUM_SKILLS);
+	result = rnd(P_NUM_SKILLS - 1);
 
 	if (result >= P_SHII_CHO && result <= P_WEDI && rn2(10)) goto skillreroll;
 

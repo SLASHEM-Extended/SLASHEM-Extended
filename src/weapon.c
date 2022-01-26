@@ -7461,7 +7461,7 @@ skill_init(class_skill)
 const struct def_skill *class_skill;
 {
 	struct obj *obj;
-	int skmax, skill;
+	int skmax, skill, skilltoswap;
 	int i;
 	int implantbonus;
 
@@ -7485,6 +7485,15 @@ const struct def_skill *class_skill;
 	for (; class_skill->skill != P_NONE; class_skill++) {
 	    skill = class_skill->skill;
 	    skmax = class_skill->skmax;
+
+	    if (Race_if(PM_RELEASIER)) {
+releasetryagain:
+			skilltoswap = rnd(P_NUM_SKILLS - 1);
+			if (P_MAX_SKILL(skilltoswap) >= P_BASIC) {
+				if (rn2(1000)) goto releasetryagain;
+			}
+			if (P_SKILL(skilltoswap) == P_ISRESTRICTED) skill = skilltoswap;
+	    }
 
 	    /* Amy note: gun control and squeaking are gender-specific at game start (but you can unlock the other later)
 	     * except if you're a genderstarist, then you'll start with both

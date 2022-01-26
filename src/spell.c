@@ -3728,6 +3728,10 @@ castanyway:
 
 	}
 
+	if (Race_if(PM_RELEASIER)) {
+		verbalize("%s", !rn2(3) ? "Kjear! Hahahahaha!" : !rn2(2) ? "Aa-hu!" : "Hiarwigo!");
+	}
+
 	if (SpellColorBrightCyan) {
 		u.aggravation = 1;
 		reset_rndmonst(NON_PM);
