@@ -27526,6 +27526,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"If you're gonna whine that the 'hanging semen ejaculator' monster is sooooo offensive, just don't. Instead, consider how long slex has been around and how many other whiners complained about that kind of content in my game. I didn't listen to those, so what makes you think I'd listen to you?",
 	"I'm not going to remove features from my game just because people complain. It also doesn't matter how many people complain about a particular feature. I will defend its inclusion, even if I'm the only person on the planet who wants it in the game. Because this is my game and I don't let public opinion dictate what content is allowed or disallowed, got it?",
 	"You know what I find really weird? People who expect me to scrap controversial content in my game JUST after being told that my game has been removed from the big public server permanently. The word 'permanently' says everything, namely that it won't be allowed back on no matter what, so why on earth would I try and persuade the admins to change their mind? You must be crazy, I certainly have better things to do with my time. Adding new farting monsters to the game, for example.",
+	"You, a newly spawned nitwit, have been heralded from birth as a source of bones files. You are destined to die suddenly, rise as a ghost, and get kicked to death by whoever discovers your body. Go bravely with the RNG!",
 
 };
 

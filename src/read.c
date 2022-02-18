@@ -819,6 +819,7 @@ doread()
 	"I picked up almost 50,000 yuan in a money room in Ludiburg.",
 	"I put the hanging semen ejaculator into the game because I want it to be in the game, and I will not remove it. Any attempt to change my mind on this matter is considered a hostile act.",
 	"Anyone who expects me to remove features from slex just because they're supposedly problematic can get fucked. I won't listen to such monkeys, either you accept my game the way it is or stay away from it.",
+	"Don't you dare gender me. If you address me, use proper grammar. 'Gamer*in' is not proper grammar, it's bullshit and causes eye cancer!",
 
 	    };
 	    char buf[BUFSZ];

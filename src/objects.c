@@ -7394,6 +7394,16 @@ SCROLL((char *)0,               "AWE BAUWI ESJUWI",  P_NONE,     1,   0, 100, CL
 SCROLL((char *)0,               "HANGING SEMEN EJACULATOR HAHAHA HAHAHA HAHAHAHAHA",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
 SCROLL((char *)0,               "THE IRON LADY WILL NOT REMOVE CONTROVERSIAL GAME FEATURES",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
 SCROLL((char *)0,               "AND IF YOU STAND ON THE HEAD AND WAGGLE WITH THE EARS",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "THE GIRLS GUERSEN A GOOD PRESENTATION DISPLAY",  P_NONE,     1,   0, 100, CLR_ORANGE, 1),
+SCROLL((char *)0,               "HOW MANY GRHLER DID YOU HAVE",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
+SCROLL((char *)0,               "KIEW VERWEIGERN VESUV",  P_NONE,     1,   0, 100, CLR_RED, 1),
+SCROLL((char *)0,               "I HAVE MEANWHILE BEEN DEVACCINATED",  P_NONE,     1,   0, 100, CLR_BLUE, 1),
+SCROLL((char *)0,               "I DO NOT BIMS IT",  P_NONE,     1,   0, 100, CLR_BRIGHT_GREEN, 1),
+SCROLL((char *)0,               "NEMISTIC STIC HIGH SCHOOL",  P_NONE,     1,   0, 100, CLR_BRIGHT_MAGENTA, 1),
+SCROLL((char *)0,               "JYLL TO CUXHAVEN",  P_NONE,     1,   0, 100, CLR_BRIGHT_CYAN, 1),
+SCROLL((char *)0,               "PISS ON MY CHIPS",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
+SCROLL((char *)0,               "A JO FINES A JO FEIER TSCHO DISEIER",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "WHY SAY ZUFAELLIG IF YOU COULD SAY WAENDEM",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
 
 
 #ifdef MAIL
