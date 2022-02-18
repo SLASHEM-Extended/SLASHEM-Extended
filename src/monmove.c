@@ -2591,7 +2591,7 @@ toofar:
 /*	Now the actual movement phase	*/
 
 #ifndef GOLDOBJ
-	if(!nearby || mtmp->mflee || scared ||
+	if(!nearby || (monsterflees(mtmp->data) && !rn2(3)) || (u.singtrapocc && rn2(5)) || (u.katitrapocc && rn2(5)) || mtmp->mflee || scared ||
 	   mtmp->mconf || mtmp->mstun || (mtmp->minvis && !rn2(3)) ||
 	   (mdat->mlet == S_LEPRECHAUN && !u.ugold && (mtmp->mgold || rn2(2))) ||
 
@@ -2601,7 +2601,7 @@ toofar:
 	    lepgold = findgold(mtmp->minvent);
 	}
 
-	if(!nearby || mtmp->mflee || scared ||
+	if(!nearby || (monsterflees(mtmp->data) && !rn2(3)) || (u.singtrapocc && rn2(5)) || (u.katitrapocc && rn2(5)) || mtmp->mflee || scared ||
 	   mtmp->mconf || mtmp->mstun || (mtmp->minvis && !rn2(3)) ||
 	   (mdat->mlet == S_LEPRECHAUN && !ygold && (lepgold || rn2(2))) ||
 #endif
@@ -3660,7 +3660,9 @@ altarfound:
 	flag = 0L;
 	if (mtmp->mpeaceful && (!Conflict || (resist(mtmp, RING_CLASS, 0, 0) && (!StrongConflict || resist(mtmp, RING_CLASS, 0, 0)) ) ))
 	    flag |= (ALLOW_SANCT | ALLOW_SSM);
-	else flag |= ALLOW_U;
+	else {
+		flag |= ALLOW_U;
+	}
 	if (is_minion(ptr) || is_rider(ptr) || is_deadlysin(ptr)) flag |= ALLOW_SANCT;
 	/* unicorn may not be able to avoid hero on a noteleport level */
 	if (is_unicorn(ptr) && !level.flags.noteleport && !Race_if(PM_STABILISATOR) && !u.antitelespelltimeout) flag |= NOTONL;
