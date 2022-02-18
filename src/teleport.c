@@ -827,7 +827,7 @@ tele()
 	coord cc;
 
 	/* Disable teleportation in stronghold && Vlad's Tower */
-	if ((level.flags.noteleport || u.antitelespelltimeout) && !Race_if(PM_RODNEYAN) ) {
+	if ((level.flags.noteleport || Race_if(PM_STABILISATOR) || u.antitelespelltimeout) && !Race_if(PM_RODNEYAN) ) {
 #ifdef WIZARD
 		if (!wizard) {
 #endif
@@ -892,7 +892,7 @@ void
 teleX()
 {
 	/* Disable teleportation in stronghold && Vlad's Tower */
-	if ((level.flags.noteleport || u.antitelespelltimeout) && !Race_if(PM_RODNEYAN) ) {
+	if ((level.flags.noteleport || Race_if(PM_STABILISATOR) || u.antitelespelltimeout) && !Race_if(PM_RODNEYAN) ) {
 		    pline("A mysterious force prevents you from teleporting!");
 		    return;
 	}
@@ -917,7 +917,7 @@ phase_door(confused)
 boolean confused;
 {
 	/* Disable teleportation in stronghold && Vlad's Tower */
-	if ((level.flags.noteleport || u.antitelespelltimeout) && !Race_if(PM_RODNEYAN) ) {
+	if ((level.flags.noteleport || Race_if(PM_STABILISATOR) || u.antitelespelltimeout) && !Race_if(PM_RODNEYAN) ) {
 		    pline("A mysterious force prevents you from phasing!");
 		    return;
 	}
@@ -1675,7 +1675,7 @@ boolean
 tele_restrict(mon)
 struct monst *mon;
 {
-	if (level.flags.noteleport || u.antitelespelltimeout) {
+	if (level.flags.noteleport || Race_if(PM_STABILISATOR) || u.antitelespelltimeout) {
 		if (canseemon(mon))
 		    pline("A mysterious force prevents %s from teleporting!",
 			mon_nam(mon));
@@ -2294,7 +2294,7 @@ boolean give_feedback;
 {
 	coord cc;
 
-	if (evilfriday && (level.flags.noteleport || u.antitelespelltimeout)) {
+	if (evilfriday && (level.flags.noteleport || Race_if(PM_STABILISATOR) || u.antitelespelltimeout)) {
 	    if (give_feedback)
 		pline("Ha ha ha, the wand destruction patch made it so that your wand of teleportation does jack diddly on a no-teleport level. You just wasted a charge, sucker!");
 		return FALSE;
@@ -2302,7 +2302,7 @@ boolean give_feedback;
 	    if (give_feedback)
 		pline("%s resists your magic!", Monnam(mtmp));
 	    return FALSE;
-	} else if ((level.flags.noteleport || u.antitelespelltimeout) && u.uswallow && mtmp == u.ustuck) {
+	} else if ((level.flags.noteleport || Race_if(PM_STABILISATOR) || u.antitelespelltimeout) && u.uswallow && mtmp == u.ustuck) {
 	    if (give_feedback)
 		You("are no longer inside %s!", mon_nam(mtmp));
 	    unstuck(mtmp);

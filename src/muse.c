@@ -2878,7 +2878,7 @@ struct monst *mtmp;
 		     * mean if the monster leaves the level, they'll know
 		     * about teleport traps.
 		     */
-		    if (!level.flags.noteleport && !u.antitelespelltimeout) {
+		    if (!level.flags.noteleport && !Race_if(PM_STABILISATOR) && !u.antitelespelltimeout) {
 			m.defensive = obj;
 			m.has_defense = (mon_has_amulet(mtmp))
 				? MUSE_WAN_TELEPORTATION
@@ -2892,7 +2892,7 @@ struct monst *mtmp;
 		       (!(mtmp->isshk && inhishop(mtmp))
 			    && !mtmp->isgd && !mtmp->ispriest))) {
 		    /* see WAN_TELEPORTATION case above */
-		    if (!level.flags.noteleport && !u.antitelespelltimeout) {
+		    if (!level.flags.noteleport && !Race_if(PM_STABILISATOR) && !u.antitelespelltimeout) {
 			m.defensive = obj;
 			m.has_defense = MUSE_SCR_TELEPORTATION;
 		    }
@@ -4519,7 +4519,7 @@ struct monst *mtmp;
 	switch (rn2(8 + (difficulty > 3) + (difficulty > 6) +
 				(difficulty > 8))) {
 		case 6: case 9:
-			if ((level.flags.noteleport || u.antitelespelltimeout) && ++trycnt < 2)
+			if ((level.flags.noteleport || Race_if(PM_STABILISATOR) || u.antitelespelltimeout) && ++trycnt < 2)
 			    goto try_again;
 			if (!rn2(3)) return WAN_TELEPORTATION;
 			/* else FALLTHRU */

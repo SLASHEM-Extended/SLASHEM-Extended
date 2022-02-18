@@ -2363,7 +2363,7 @@ mattacku(mtmp)
 	}
 
 /*	Special demon handling code */
-	if(!mtmp->cham && (is_demon(mdat) || mtmp->egotype_gator) && !range2
+	if(!mtmp->cham && (is_demon(mdat) || mtmp->egotype_gator) && (!range2 || (Race_if(PM_WEAPON_XORN) && distu(mtmp->mx, mtmp->my) < 9) )
 	   && mtmp->data != &mons[PM_DEMON_SPOTTER] /* moved to monmove.c --Amy */
 	   && mtmp->data != &mons[PM_FUNK_CAR] /* ditto */
 	   && mtmp->data != &mons[PM_BALROG]
@@ -2418,7 +2418,7 @@ mattacku(mtmp)
 	}
 
 /*	Special lycanthrope handling code */
-	if(!mtmp->cham && is_were(mdat) && !range2) {
+	if(!mtmp->cham && is_were(mdat) && (!range2 || (Race_if(PM_WEAPON_XORN) && distu(mtmp->mx, mtmp->my) < 9) ) ) {
 	    if(is_human(mdat)) {
 		if(!rn2(15 - (night() * 5)) && !mtmp->mcan) new_were(mtmp);
 	    } else if(!rn2(30) && !mtmp->mcan) new_were(mtmp);
@@ -2498,7 +2498,7 @@ mattacku(mtmp)
 		case AT_TUCH:
 		case AT_BUTT:
 		case AT_TENT:
-			if((!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+			if(( (!range2 || (Race_if(PM_WEAPON_XORN) && distu(mtmp->mx, mtmp->my) < 9) ) && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
 					!touch_petrifies(youmonst.data))) || (mtmp->egotype_hugger && !rn2(20) && ((dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM)) || (elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) ) ) {
 			    if (foundyou) {
 				if ((tmp > (j = rnd(20+i))) || (uarmf && itemhasappearance(uarmf, APP_KOREAN_SANDALS) && !rn2(3) ) ) {
@@ -2515,7 +2515,7 @@ mattacku(mtmp)
 				else wildmiss(mtmp, mattk);  
 			}  
 
-			if (!range2 && mtmp->egotype_engulfer) {
+			if ((!range2 || (Race_if(PM_WEAPON_XORN) && distu(mtmp->mx, mtmp->my) < 9) ) && mtmp->egotype_engulfer) {
 			    if(foundyou) {
 				if((u.uswallow || tmp > (j = rnd(20+i))) && (rnd(125) > ACURR(A_WIS)) && (issoviet || rn2(10)) ) { /* 10% chance to miss --Amy */
 				    /* Force swallowing monster to be
@@ -2553,7 +2553,7 @@ mattacku(mtmp)
 		case AT_HUGS:	/* automatic if prev two attacks succeed */
 			/* Note: if displaced, prev attacks never succeeded */
 		/* Note by Amy: come on, allow it to hit sometimes even if there are no previous attacks (shambling horror)! */
-		                if((!range2 && i>=2 && sum[i-1] && sum[i-2]) || mtmp == u.ustuck || (!rn2(Race_if(PM_IRRITATOR) ? 4 : 50) && ((dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM)) || (elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone())) ) ) {
+		                if(((!range2 || (Race_if(PM_WEAPON_XORN) && distu(mtmp->mx, mtmp->my) < 9) ) && i>=2 && sum[i-1] && sum[i-2]) || mtmp == u.ustuck || (!rn2(Race_if(PM_IRRITATOR) ? 4 : 50) && ((dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM)) || (elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone())) ) ) {
 				if ( (tmp > (rnd(20+i))) || (tmp > (rnd(20+i))) ) sum[i]= hitmu(mtmp, mattk);
 				}
 		/* This has the side effect of AT_HUGS hitting from far away. I decided to declare this "bug" a feature. */
@@ -2578,7 +2578,7 @@ cursesatyou:
 			if(!range2) sum[i] = explmu(mtmp, mattk, foundyou);
 			break;
 		case AT_ENGL:
-			if (!range2) {
+			if (!range2 || (Race_if(PM_WEAPON_XORN) && distu(mtmp->mx, mtmp->my) < 9) ) {
 			    if(foundyou) {
 				if((u.uswallow || tmp > (j = rnd(20+i))) && (issoviet || rn2(10)) ) { /* 10% chance to miss --Amy */
 				    /* Force swallowing monster to be
@@ -2663,7 +2663,7 @@ cursesatyou:
 			 *
 			 * RJ
 			 */
-			if (!u.sterilized && !range2 && (!rn2(5)) ) { /* greatly reduced chance --Amy */
+			if (!u.sterilized && (!range2 || (Race_if(PM_WEAPON_XORN) && distu(mtmp->mx, mtmp->my) < 9) ) && (!rn2(5)) ) { /* greatly reduced chance --Amy */
 
 			    pline("%s multiplies!",Monnam(mtmp) );
 			    clone_mon(mtmp, 0, 0);
@@ -9494,7 +9494,7 @@ dopois:
 		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
 
-		if (level.flags.noteleport || u.antitelespelltimeout || (u.uhave.amulet && !u.freeplaymode) || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmg *= (1 + rnd(2));
+		if (level.flags.noteleport || Race_if(PM_STABILISATOR) || u.antitelespelltimeout || (u.uhave.amulet && !u.freeplaymode) || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmg *= (1 + rnd(2));
 
 		switch (rnd(7)) {
 
@@ -9565,7 +9565,7 @@ dopois:
 
 	    case AD_GRAV:
 
-		if (level.flags.noteleport || u.antitelespelltimeout || (u.uhave.amulet && !u.freeplaymode) || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmg *= 2;
+		if (level.flags.noteleport || Race_if(PM_STABILISATOR) || u.antitelespelltimeout || (u.uhave.amulet && !u.freeplaymode) || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmg *= 2;
 
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
@@ -12672,7 +12672,7 @@ do_stone2:
 		if (mtmp->mcan) break;
 		You_feel("an energy irradiation!");
 
-		if (level.flags.noteleport || u.antitelespelltimeout || (u.uhave.amulet && !u.freeplaymode) || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= (1 + rnd(2));
+		if (level.flags.noteleport || Race_if(PM_STABILISATOR) || u.antitelespelltimeout || (u.uhave.amulet && !u.freeplaymode) || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= (1 + rnd(2));
 
 		switch (rnd(7)) {
 
@@ -12740,7 +12740,7 @@ do_stone2:
 	    case AD_GRAV:
 		if (mtmp->mcan) break;
 
-		if (level.flags.noteleport || u.antitelespelltimeout || (u.uhave.amulet && !u.freeplaymode) || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= 2;
+		if (level.flags.noteleport || Race_if(PM_STABILISATOR) || u.antitelespelltimeout || (u.uhave.amulet && !u.freeplaymode) || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= 2;
 
 		pline("You're turned upside down...");
 		phase_door(0);
@@ -15681,7 +15681,7 @@ common:
 		break;
 
 	    case AD_NEXU:
-		if (level.flags.noteleport || u.antitelespelltimeout || (u.uhave.amulet && !u.freeplaymode) || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= (1 + rnd(2));
+		if (level.flags.noteleport || Race_if(PM_STABILISATOR) || u.antitelespelltimeout || (u.uhave.amulet && !u.freeplaymode) || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= (1 + rnd(2));
 
 		switch (rnd(7)) {
 
@@ -15751,7 +15751,7 @@ common:
 
 	    case AD_GRAV:
 
-		if (level.flags.noteleport || u.antitelespelltimeout || (u.uhave.amulet && !u.freeplaymode) || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= 2;
+		if (level.flags.noteleport || Race_if(PM_STABILISATOR) || u.antitelespelltimeout || (u.uhave.amulet && !u.freeplaymode) || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= 2;
 
 		pline("Gravity warps around you...");
 		phase_door(0);
@@ -18265,7 +18265,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    stop_occupation();
 		int dmg = dmgplus;
 
-		if (level.flags.noteleport || u.antitelespelltimeout || (u.uhave.amulet && !u.freeplaymode) || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmg *= (1 + rnd(2));
+		if (level.flags.noteleport || Race_if(PM_STABILISATOR) || u.antitelespelltimeout || (u.uhave.amulet && !u.freeplaymode) || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmg *= (1 + rnd(2));
 
 		switch (rnd(7)) {
 
@@ -18343,7 +18343,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    pline("%s wiggles a %s, and suddenly you stand upside down...", Monnam(mtmp), mbodypart(mtmp, FINGER) );
 		    stop_occupation();
 
-		if (level.flags.noteleport || u.antitelespelltimeout || (u.uhave.amulet && !u.freeplaymode) || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmgplus *= 2;
+		if (level.flags.noteleport || Race_if(PM_STABILISATOR) || u.antitelespelltimeout || (u.uhave.amulet && !u.freeplaymode) || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmgplus *= 2;
 
 		phase_door(0);
 		pushplayer(FALSE);

@@ -1427,6 +1427,9 @@ const struct innate {
 	exp_abil[] = { {	 1, &(HPsi_resist), "", "", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
+	stb_abil[] = { {	 1, &(HDisint_resistance), "", "", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
 	rod_abil[] = { {   1, &(HFire_resistance), "", "", TRUE },
 		     {   1, &(HPoison_resistance), "", "", TRUE },
 		     {   1, &(HMagical_breathing), "", "", TRUE },
@@ -2398,6 +2401,7 @@ int oldlevel, newlevel;
 	case PM_WOOKIE:            rabil = woo_abil;	break;
 	case PM_WISP:            rabil = wis_abil;	break;
 	case PM_EXPERT:            rabil = exp_abil;	break;
+	case PM_STABILISATOR:            rabil = stb_abil;	break;
 	case PM_GIGANT:            rabil = gig_abil;	break;
 	case PM_NYMPH:            rabil = nym_abil;	break;
 	case PM_METAL:            rabil = met_abil;	break;
@@ -2841,6 +2845,8 @@ int x;
 		if (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) tmp += 2;
 		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
 		if (x == A_WIS && uwep && uwep->oartifact == ART_SCJWILLX_) tmp += 5;
+		if (x == A_INT && Race_if(PM_MAZIN)) tmp += 2;
+		if (x == A_WIS && Race_if(PM_MAZIN)) tmp += 1;
 
 		if (uarmh && uarmh->oartifact == ART_YOU_DON_T_KNOW_SHIT) tmp -= 3;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp -= 10;

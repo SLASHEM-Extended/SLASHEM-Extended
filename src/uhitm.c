@@ -10497,7 +10497,7 @@ boolean ranged;
 		break;
 
 	    case AD_NEXU:
-		if (level.flags.noteleport || u.antitelespelltimeout || (u.uhave.amulet && !u.freeplaymode) || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= (1 + rnd(2));
+		if (level.flags.noteleport || Race_if(PM_STABILISATOR) || u.antitelespelltimeout || (u.uhave.amulet && !u.freeplaymode) || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= (1 + rnd(2));
 		mdamageu(mon, tmp);
 		switch (rnd(7)) {
 
@@ -10562,7 +10562,7 @@ boolean ranged;
 
 	    case AD_GRAV:
 		pline("As you try to hit %s, you're hurled through the air and slam onto the floor with a crash.", mon_nam(mon) );
-		if (level.flags.noteleport || u.antitelespelltimeout || (u.uhave.amulet && !u.freeplaymode) || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= 2;
+		if (level.flags.noteleport || Race_if(PM_STABILISATOR) || u.antitelespelltimeout || (u.uhave.amulet && !u.freeplaymode) || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= 2;
 		phase_door(0);
 		pushplayer(FALSE);
 		u.uprops[DEAC_FAST].intrinsic += (tmp + 2);

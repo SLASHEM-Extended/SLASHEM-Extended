@@ -8294,11 +8294,11 @@ newbossB:
 					if (hussytraptype == ARTIFACT_JACKPOT_TRAP) hussytraptype = MAGIC_TRAP;
 					if (hussytraptype == GOOD_ARTIFACT_TRAP) hussytraptype = WEB;
 					if (hussytraptype == BOON_TRAP) hussytraptype = MAGIC_BEAM_TRAP;
-					if (hussytraptype == LEVEL_TELEP && (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban_real(&u.uz) ) ) hussytraptype = ANTI_MAGIC;
-					if (hussytraptype == LEVEL_BEAMER && (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban_real(&u.uz) ) ) hussytraptype = ANTI_MAGIC;
-					if (hussytraptype == NEXUS_TRAP && (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban_real(&u.uz) ) ) hussytraptype = ANTI_MAGIC;
-					if (hussytraptype == TELEP_TRAP && level.flags.noteleport) hussytraptype = SQKY_BOARD;
-					if (hussytraptype == BEAMER_TRAP && level.flags.noteleport) hussytraptype = SQKY_BOARD;
+					if (hussytraptype == LEVEL_TELEP && (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban_real(&u.uz) ) ) hussytraptype = ANTI_MAGIC;
+					if (hussytraptype == LEVEL_BEAMER && (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban_real(&u.uz) ) ) hussytraptype = ANTI_MAGIC;
+					if (hussytraptype == NEXUS_TRAP && (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban_real(&u.uz) ) ) hussytraptype = ANTI_MAGIC;
+					if (hussytraptype == TELEP_TRAP && (level.flags.noteleport || Race_if(PM_STABILISATOR)) ) hussytraptype = SQKY_BOARD;
+					if (hussytraptype == BEAMER_TRAP && (level.flags.noteleport || Race_if(PM_STABILISATOR)) ) hussytraptype = SQKY_BOARD;
 					if ((hussytraptype == TRAPDOOR || hussytraptype == HOLE || hussytraptype == SHAFT_TRAP || hussytraptype == CURRENT_SHAFT) && !Can_fall_thru(&u.uz) && !Is_stronghold(&u.uz) ) hussytraptype = ROCKTRAP;
 					if (hussytraptype == ACTIVE_SUPERSCROLLER_TRAP) hussytraptype = SUPERSCROLLER_TRAP;
 					if (hussytraptype == AUTOMATIC_SWITCHER) hussytraptype = UNKNOWN_TRAP;
@@ -12956,7 +12956,7 @@ boolean new_game;	/* false => restoring an old game */
 	}
 
 	/* prevent hangup cheating when special game modes haven't teleported you yet --Amy */
-	if ((flags.wonderland || iszapem || Role_if(PM_PREVERSIONER) || flags.lostsoul || flags.uberlostsoul || Role_if(PM_SOFTWARE_ENGINEER) || Role_if(PM_CRACKER) || Role_if(PM_JANITOR) || Role_if(PM_SPACE_MARINE) || Role_if(PM_STORMBOY) || Role_if(PM_YAUTJA) || Role_if(PM_QUARTERBACK) || Role_if(PM_PSYKER) || Role_if(PM_EMPATH) || Role_if(PM_MASTERMIND) || Role_if(PM_WEIRDBOY) || Role_if(PM_ASTRONAUT) || Role_if(PM_CYBERNINJA) || Role_if(PM_DISSIDENT) || Race_if(PM_RETICULAN) || Race_if(PM_OUTSIDER) || Role_if(PM_XELNAGA)) && new_game) {
+	if ((flags.wonderland || iszapem || Role_if(PM_PREVERSIONER) || flags.lostsoul || flags.uberlostsoul || Role_if(PM_SOFTWARE_ENGINEER) || Role_if(PM_CRACKER) || Role_if(PM_JANITOR) || Role_if(PM_SPACE_MARINE) || Role_if(PM_STORMBOY) || Role_if(PM_YAUTJA) || Role_if(PM_QUARTERBACK) || Role_if(PM_PSYKER) || Role_if(PM_EMPATH) || Role_if(PM_MASTERMIND) || Role_if(PM_WEIRDBOY) || Role_if(PM_ASTRONAUT) || Role_if(PM_CYBERNINJA) || Role_if(PM_DISSIDENT) || Race_if(PM_RETICULAN) || Race_if(PM_STABILISATOR) || Race_if(PM_OUTSIDER) || Role_if(PM_XELNAGA)) && new_game) {
 		u.youaredead = 1;
 		u.youarereallydead = 1;
 	}
@@ -15612,7 +15612,7 @@ boolean new_game;	/* false => restoring an old game */
 	if (new_game) u.weapon_slots += 2;
 
 	if (new_game) u.zapem_mode = 0;
-	if ((flags.zapem || Role_if(PM_SOFTWARE_ENGINEER) || Role_if(PM_CRACKER) || Role_if(PM_JANITOR) || Role_if(PM_SPACE_MARINE) || Role_if(PM_STORMBOY) || Role_if(PM_YAUTJA) || Role_if(PM_QUARTERBACK) || Role_if(PM_PSYKER) || Role_if(PM_EMPATH) || Role_if(PM_MASTERMIND) || Role_if(PM_WEIRDBOY) || Role_if(PM_ASTRONAUT) || Race_if(PM_RETICULAN) || Race_if(PM_OUTSIDER) || Role_if(PM_CYBERNINJA) || Role_if(PM_DISSIDENT) || Role_if(PM_XELNAGA)) && new_game && !flags.wonderland && !flags.lostsoul && !flags.uberlostsoul && !Role_if(PM_PREVERSIONER)) {
+	if ((flags.zapem || Role_if(PM_SOFTWARE_ENGINEER) || Role_if(PM_CRACKER) || Role_if(PM_JANITOR) || Role_if(PM_SPACE_MARINE) || Role_if(PM_STORMBOY) || Role_if(PM_YAUTJA) || Role_if(PM_QUARTERBACK) || Role_if(PM_PSYKER) || Role_if(PM_EMPATH) || Role_if(PM_MASTERMIND) || Role_if(PM_WEIRDBOY) || Role_if(PM_ASTRONAUT) || Race_if(PM_RETICULAN) || Race_if(PM_STABILISATOR) || Race_if(PM_OUTSIDER) || Role_if(PM_CYBERNINJA) || Role_if(PM_DISSIDENT) || Role_if(PM_XELNAGA)) && new_game && !flags.wonderland && !flags.lostsoul && !flags.uberlostsoul && !Role_if(PM_PREVERSIONER)) {
 
 		if (!flags.zapem) u.zapem_mode = 1;
 
@@ -15652,7 +15652,7 @@ boolean new_game;	/* false => restoring an old game */
 
 	}
 
-	if (flags.lostsoul && !Role_if(PM_PREVERSIONER) && !flags.uberlostsoul && new_game) { 
+	if (flags.lostsoul && !flags.uberlostsoul && new_game) { 
 
 		goto_level(&medusa_level, TRUE, FALSE, FALSE); /* inspired by Tome, an Angband mod --Amy */
 		u.youaredead = 0;
@@ -15681,7 +15681,7 @@ boolean new_game;	/* false => restoring an old game */
 
 	}
 
-	if (Role_if(PM_PREVERSIONER) && !flags.wonderland && !flags.uberlostsoul && new_game) {
+	if (Role_if(PM_PREVERSIONER) && !flags.wonderland && !flags.lostsoul && !flags.uberlostsoul && new_game) {
 
 		u.preversionmode = TRUE;
 

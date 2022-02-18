@@ -2259,11 +2259,11 @@ boolean givehp;
 		if (typ == ARTIFACT_JACKPOT_TRAP) typ = MAGIC_TRAP;
 		if (typ == GOOD_ARTIFACT_TRAP) typ = WEB;
 		if (typ == BOON_TRAP) typ = MAGIC_BEAM_TRAP;
-		if (typ == LEVEL_TELEP && (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) typ = ANTI_MAGIC;
-		if (typ == LEVEL_BEAMER && (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) typ = ANTI_MAGIC;
-		if (typ == NEXUS_TRAP && (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) typ = ANTI_MAGIC;
-		if (typ == TELEP_TRAP && level.flags.noteleport) typ = SQKY_BOARD;
-		if (typ == BEAMER_TRAP && level.flags.noteleport) typ = SQKY_BOARD;
+		if (typ == LEVEL_TELEP && (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) typ = ANTI_MAGIC;
+		if (typ == LEVEL_BEAMER && (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) typ = ANTI_MAGIC;
+		if (typ == NEXUS_TRAP && (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) typ = ANTI_MAGIC;
+		if (typ == TELEP_TRAP && (level.flags.noteleport || Race_if(PM_STABILISATOR)) ) typ = SQKY_BOARD;
+		if (typ == BEAMER_TRAP && (level.flags.noteleport || Race_if(PM_STABILISATOR)) ) typ = SQKY_BOARD;
 		if ((typ == TRAPDOOR || typ == HOLE || typ == SHAFT_TRAP || typ == CURRENT_SHAFT) && !Can_fall_thru(&u.uz) && !Is_stronghold(&u.uz) ) typ = ROCKTRAP;
 		if (typ == ACTIVE_SUPERSCROLLER_TRAP) typ = SUPERSCROLLER_TRAP;
 		
@@ -7162,7 +7162,7 @@ newbossPENT:
 			register struct monst *nexusmon;
 			boolean teleportdone = FALSE;
 
-			if ((level.flags.noteleport || u.antitelespelltimeout) && !Race_if(PM_RODNEYAN) ) {
+			if ((level.flags.noteleport || Race_if(PM_STABILISATOR) || u.antitelespelltimeout) && !Race_if(PM_RODNEYAN) ) {
 				pline("A mysterious force prevents you from teleporting!");
 				break;
 			}
@@ -19559,7 +19559,7 @@ drown()
 	if ((Teleportation || can_teleport(youmonst.data)) &&
 		    !u.usleep && (Teleport_control || rn2(3) < Luck+2)) {
 		You("attempt a teleport spell.");	/* utcsri!carroll */
-		if (!level.flags.noteleport && !u.antitelespelltimeout) {
+		if (!level.flags.noteleport && !Race_if(PM_STABILISATOR) && !u.antitelespelltimeout) {
 			(void) dotele_post(FALSE);
 			if(!is_drowningpool(u.ux,u.uy))
 				return(TRUE);
@@ -19708,7 +19708,7 @@ crystaldrown()
 	if ((Teleportation || can_teleport(youmonst.data)) &&
 		    !u.usleep && (Teleport_control || rn2(3) < Luck+2)) {
 		You("attempt a teleport spell.");	/* utcsri!carroll */
-		if (!level.flags.noteleport && !u.antitelespelltimeout) {
+		if (!level.flags.noteleport && !Race_if(PM_STABILISATOR) && !u.antitelespelltimeout) {
 			(void) dotele_post(FALSE);
 		} else pline_The("attempted teleport spell fails.");
 	}

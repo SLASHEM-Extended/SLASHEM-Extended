@@ -4805,7 +4805,7 @@ wand_explode(obj, hero_broke)
     case WAN_TELEPORTATION:
 		/* WAC make tele trap if you broke a wand of teleport */
 		/* But make sure the spot is valid! */
-	    if ((obj->spe > 2) && rn2(obj->spe - 2) && !level.flags.noteleport && !u.antitelespelltimeout &&
+	    if ((obj->spe > 2) && rn2(obj->spe - 2) && !level.flags.noteleport && !Race_if(PM_STABILISATOR) && !u.antitelespelltimeout &&
 		    !u.uswallow && !On_stairs(u.ux, u.uy) && (!IS_FURNITURE(levl[u.ux][u.uy].typ) &&
 		    !IS_ROCK(levl[u.ux][u.uy].typ) &&
 		    !closed_door(u.ux, u.uy) && !t_at(u.ux, u.uy))) {
@@ -4826,7 +4826,7 @@ wand_explode(obj, hero_broke)
 	break;
     case WAN_BANISHMENT:
 
-	    if ((obj->spe > 2) && rn2(obj->spe - 2) && !level.flags.noteleport && !u.antitelespelltimeout &&
+	    if ((obj->spe > 2) && rn2(obj->spe - 2) && !level.flags.noteleport && !Race_if(PM_STABILISATOR) && !u.antitelespelltimeout &&
 		    !u.uswallow && !On_stairs(u.ux, u.uy) && (!IS_FURNITURE(levl[u.ux][u.uy].typ) &&
 		    !IS_ROCK(levl[u.ux][u.uy].typ) &&
 		    !Is_knox(&u.uz) && !Is_blackmarket(&u.uz) && !Is_aligned_quest(&u.uz) &&

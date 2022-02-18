@@ -9011,7 +9011,7 @@ controlagain:
 			register struct monst *nexusmon;
 			boolean teleportdone = FALSE;
 
-			if ((level.flags.noteleport || u.antitelespelltimeout) && !Race_if(PM_RODNEYAN) ) {
+			if ((level.flags.noteleport || Race_if(PM_STABILISATOR) || u.antitelespelltimeout) && !Race_if(PM_RODNEYAN) ) {
 				pline("A mysterious force prevents you from teleporting!");
 				break;
 			}

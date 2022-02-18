@@ -1533,7 +1533,7 @@ register struct monst *mtmp;
 
 	/* some monsters teleport */
 	if (mtmp->mflee && !rn2(40) && can_teleport(mdat) && !mtmp->iswiz &&
-	    !level.flags.noteleport && !u.antitelespelltimeout) {
+	    !level.flags.noteleport && !Race_if(PM_STABILISATOR) && !u.antitelespelltimeout) {
 		(void) rloc(mtmp, FALSE);
 		return(0);
 	}
@@ -3663,7 +3663,7 @@ altarfound:
 	else flag |= ALLOW_U;
 	if (is_minion(ptr) || is_rider(ptr) || is_deadlysin(ptr)) flag |= ALLOW_SANCT;
 	/* unicorn may not be able to avoid hero on a noteleport level */
-	if (is_unicorn(ptr) && !level.flags.noteleport && !u.antitelespelltimeout) flag |= NOTONL;
+	if (is_unicorn(ptr) && !level.flags.noteleport && !Race_if(PM_STABILISATOR) && !u.antitelespelltimeout) flag |= NOTONL;
 	if (passes_walls(ptr) || (mtmp->egotype_wallwalk) ) flag |= (ALLOW_WALL | ALLOW_ROCK);
 	if (passes_bars(ptr) && !In_sokoban(&u.uz)) flag |= ALLOW_BARS;
 	if (can_tunnel) flag |= ALLOW_DIG;
@@ -3702,7 +3702,7 @@ altarfound:
 
 		if (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) appr = 0;
 
-	    if (is_unicorn(ptr) && (level.flags.noteleport || u.antitelespelltimeout)) {
+	    if (is_unicorn(ptr) && (level.flags.noteleport || Race_if(PM_STABILISATOR) || u.antitelespelltimeout)) {
 		/* on noteleport levels, perhaps we cannot avoid hero */
 		for(i = 0; i < cnt; i++)
 		    if(!(info[i] & NOTONL)) avoid=TRUE;

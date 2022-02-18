@@ -5973,6 +5973,8 @@ int degree;
 
 	if (uwep && uwep->oartifact == ART_ROSH_TRAINOR && skill >= P_SHII_CHO && skill <= P_WEDI) degree *= 2;
 
+	if (Race_if(PM_MAZIN) && (skill >= P_ATTACK_SPELL && skill <= P_MATTER_SPELL) ) degree *= 2;
+
 	if (Race_if(PM_PERVERT) && skill == P_SPIRITUALITY) degree *= 2;
 	if (Race_if(PM_MAYMES) && (skill == P_FIREARM || skill == P_BOW || skill == P_CROSSBOW)) degree *= 2;
 	if (Race_if(PM_AZTPOK) && skill == P_SPIRITUALITY) {
@@ -8044,6 +8046,19 @@ rerollthree:
 			else if (P_MAX_SKILL(skill) == P_MASTER) P_MAX_SKILL(skill) = P_SKILLED;
 			else if (P_MAX_SKILL(skill) == P_GRAND_MASTER) P_MAX_SKILL(skill) = P_EXPERT;
 			else if (P_MAX_SKILL(skill) == P_SUPREME_MASTER) P_MAX_SKILL(skill) = P_MASTER;
+
+		}
+	}
+
+	if (Race_if(PM_MAZIN)) {
+
+		for (skill = 0; skill < P_NUM_SKILLS; skill++) {
+			if (skill < P_ATTACK_SPELL) continue;
+			if (skill > P_MATTER_SPELL) continue;
+			if (P_MAX_SKILL(skill) == P_EXPERT) P_MAX_SKILL(skill) = P_SKILLED;
+			else if (P_MAX_SKILL(skill) == P_MASTER) P_MAX_SKILL(skill) = P_EXPERT;
+			else if (P_MAX_SKILL(skill) == P_GRAND_MASTER) P_MAX_SKILL(skill) = P_MASTER;
+			else if (P_MAX_SKILL(skill) == P_SUPREME_MASTER) P_MAX_SKILL(skill) = P_GRAND_MASTER;
 
 		}
 	}

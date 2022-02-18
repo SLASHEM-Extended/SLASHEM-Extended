@@ -1371,7 +1371,7 @@ int trap_type;
 
 		    if (!rn2(2) && IS_WALL(levl[xx][yy].typ)) levl[xx][yy].typ = IRONBARS;
 
-		    if (!level.flags.noteleport)
+		    if (!level.flags.noteleport && !Race_if(PM_STABILISATOR))
 			(void) mksobj_at(SCR_TELEPORTATION, xx, yy+dy, TRUE, FALSE, FALSE);
 		    if (!rn2(3) && timebasedlowerchance()) (void) mkobj_at(0, xx, yy+dy, TRUE, FALSE);
 		}
@@ -1413,7 +1413,7 @@ make_niches()
 {
 	register int ct = rnd((nroom>>1) + 1), dep = depth(&u.uz);
 
-	boolean	ltptr = (!level.flags.noteleport && dep > 15),
+	boolean	ltptr = (!level.flags.noteleport && !Race_if(PM_STABILISATOR) && dep > 15),
 		vamp = (dep > 5 && dep < 25);
 
 	if (!rn2(2)) return; /* don't make so many --Amy */
@@ -11069,7 +11069,7 @@ skip0:
 			++room_threshold;
 			fill_room(&rooms[nroom - 1], FALSE);
 			mk_knox_portal(vault_x+w, vault_y+h);
-			if(!level.flags.noteleport && !rn2(3)) makevtele();
+			if(!level.flags.noteleport && !Race_if(PM_STABILISATOR) && !rn2(3)) makevtele();
 		} else if(rnd_rect() && create_vault()) {
 			vault_x = rooms[nroom].lx;
 			vault_y = rooms[nroom].ly;
@@ -13290,13 +13290,13 @@ selecttrap:
 		    case LEVEL_TELEP:
 		    case LEVEL_BEAMER:
 		    case NEXUS_TRAP:
-			if (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) goto selecttrap;
+			if (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) goto selecttrap;
 			break;
 		    case TELEP_TRAP:
-			if (level.flags.noteleport) goto selecttrap;
+			if (level.flags.noteleport || Race_if(PM_STABILISATOR)) goto selecttrap;
 			break;
 		    case BEAMER_TRAP:
-			if (level.flags.noteleport) goto selecttrap;
+			if (level.flags.noteleport || Race_if(PM_STABILISATOR)) goto selecttrap;
 			break;
 		    case HOLE:
 			/* make these much less often than other traps */

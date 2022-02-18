@@ -595,14 +595,14 @@ selecttrap:
 			if (In_sokoban(&u.uz) && rn2(10)) goto selecttrap;
 			break;
 
-	     case LEVEL_TELEP:	if (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) )  goto selecttrap;
+	     case LEVEL_TELEP:	if (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) )  goto selecttrap;
 			break;
-	     case LEVEL_BEAMER:	if (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) )  goto selecttrap;
+	     case LEVEL_BEAMER:	if (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) )  goto selecttrap;
 			break;
-	     case NEXUS_TRAP:	if (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) )  goto selecttrap;
+	     case NEXUS_TRAP:	if (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) )  goto selecttrap;
 			break;
-	     case TELEP_TRAP:	if (level.flags.noteleport) goto selecttrap;
-	     case BEAMER_TRAP:	if (level.flags.noteleport) goto selecttrap;
+	     case TELEP_TRAP:	if (level.flags.noteleport || Race_if(PM_STABILISATOR)) goto selecttrap;
+	     case BEAMER_TRAP:	if (level.flags.noteleport || Race_if(PM_STABILISATOR)) goto selecttrap;
 			break;
 	     case ROLLING_BOULDER_TRAP:
 	     case ROCKTRAP:	if (In_endgame(&u.uz)) goto selecttrap;
@@ -1773,11 +1773,11 @@ selecttrap2:
 		if (rtrap == TRAPDOOR && !Can_dig_down(&u.uz) && !Is_stronghold(&u.uz) ) goto selecttrap2;
 		if (rtrap == SHAFT_TRAP && !Can_dig_down(&u.uz) && !Is_stronghold(&u.uz) ) goto selecttrap2;
 		if (rtrap == CURRENT_SHAFT && !Can_dig_down(&u.uz) && !Is_stronghold(&u.uz) ) goto selecttrap2;
-		if (rtrap == LEVEL_TELEP && (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) goto selecttrap2;
-		if (rtrap == LEVEL_BEAMER && (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) goto selecttrap2;
-		if (rtrap == NEXUS_TRAP && (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) goto selecttrap2;
-		if (rtrap == TELEP_TRAP && level.flags.noteleport) goto selecttrap2;
-		if (rtrap == BEAMER_TRAP && level.flags.noteleport) goto selecttrap2;
+		if (rtrap == LEVEL_TELEP && (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) goto selecttrap2;
+		if (rtrap == LEVEL_BEAMER && (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) goto selecttrap2;
+		if (rtrap == NEXUS_TRAP && (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) goto selecttrap2;
+		if (rtrap == TELEP_TRAP && (level.flags.noteleport || Race_if(PM_STABILISATOR) )) goto selecttrap2;
+		if (rtrap == BEAMER_TRAP && (level.flags.noteleport || Race_if(PM_STABILISATOR) )) goto selecttrap2;
 		if (rtrap == ROLLING_BOULDER_TRAP) goto selecttrap2;
 		if (rtrap == NO_TRAP) goto selecttrap2;
 		if (rtrap == RMB_LOSS_TRAP && !Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && !Role_if(PM_SPACEWARS_FIGHTER) && rn2(2)) goto selecttrap2;
