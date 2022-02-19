@@ -7501,6 +7501,8 @@ register struct	monst	*mtmp;
 		if (monsndx(ptr) == PM_HUMAN_WERECOMBATSTILETTO) (void)mongets(mtmp, COMBAT_STILETTOS);
 		if (monsndx(ptr) == PM_HUMAN_WERESTILETTOSANDAL) (void)mongets(mtmp, HIGH_STILETTOS);
 
+		if (ptr == &mons[PM_MURRY_OLD_LADY]) (void) mongets(mtmp, UMBRELLA);
+		if (ptr == &mons[PM_SUNBATH_WOMAN]) (void) mongets(mtmp, PARASOL);
 		if (ptr == &mons[PM_AMBUSH_ELF]) (void) mongets(mtmp, QATAR);
 		if (ptr == &mons[PM_DROW_OCCULTIST]) (void) mongets(mtmp, DROVEN_DAGGER);
 		if (ptr == &mons[PM_SICKLY_GRANNY]) (void) mongets(mtmp, TROUTSTAFF);
@@ -8789,6 +8791,9 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_KILLER_KATANA]) {
 			(void) mongets(mtmp, KATANA);
 		}
+		if (ptr == &mons[PM_FLYING_UMBRELLA]) {
+			(void) mongets(mtmp, UMBRELLA);
+		}
 		if (ptr == &mons[PM_STARFIGHTER]) {
 			(void) mongets(mtmp, LASER_POLE);
 		}
@@ -9403,6 +9408,9 @@ loveheelover:
 		}
 		if (mtmp->data == &mons[PM_XTRA_SPIKY_CROW]) {
 			(void) mongets(mtmp, CROW_QUILL);
+		}
+		if (mtmp->data == &mons[PM_GUY_WITH_THE_DOG]) {
+			(void) mongets(mtmp, LEATHER_LEASH);
 		}
 		if (mtmp->data == &mons[PM_COOK_COOK]) {
 			(void) mongets(mtmp, SCR_VISIBLE_ITEM);
@@ -11494,6 +11502,9 @@ loveheelover:
 		if (ptr == &mons[PM_CATERPILLAR_SNIPER]) {
 		  	(void) mongets(mtmp, SNIPER_RIFLE);
 		  	m_initthrow(mtmp, BULLET, 20);
+		}
+		if (ptr == &mons[PM_SPIKE_BEE]) {
+		  	m_initthrow(mtmp, SPIKE, 20);
 		}
 		if (ptr == &mons[PM_LIEUTEN_ANT]) {
 		  	(void) mongets(mtmp, HEAVY_MACHINE_GUN);
@@ -24124,6 +24135,10 @@ register int	mmflags;
 				if (!rn2(5)) (void) makemon(&mons[PM_ICE_WARRIOR], mtmp->mx, mtmp->my, MM_ADJACENTOK);
 			}
 
+			if (mtmp->data == &mons[PM_GUY_WITH_THE_DOG]) {
+				(void) makemon(&mons[PM_BLIND_DOG], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+			}
+
 			if (mtmp->data == &mons[PM_UNRAVELER] || mtmp->data == &mons[PM_DISAFFECTOR]) {
 				(void) makemon(&mons[PM_BONE_WARRIOR], mtmp->mx, mtmp->my, MM_ADJACENTOK);
 				(void) makemon(&mons[PM_BONE_WARRIOR], mtmp->mx, mtmp->my, MM_ADJACENTOK);
@@ -29207,6 +29222,7 @@ int type;
 		case PM_KARAKASA: return 30;
 		case PM_RETARDED_GOLEM: return 30;
 		case PM_FLEECY_LEATHER_GOLEM: return 80;
+		case PM_FLYING_UMBRELLA: return 30;
 		case PM_DENT_GOLEM: return 100;
 		case PM_ANIMATED_LADY_BOOT: return 150;
 		case PM_GAUNTPEEKER: return 10;

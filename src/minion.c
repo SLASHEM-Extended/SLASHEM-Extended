@@ -81,6 +81,10 @@ boolean ownloc; /* TRUE = summon wherever I am (REQUIRES A MONSTER TO EXIST!!!),
 	    dtype = ndemon(atyp);
 	    if (dtype == NON_PM) return;
 	}
+	if (dtype == PM_BOOM && u.ulevel < 10) {
+	    dtype = ndemon(atyp);
+	    if (dtype == NON_PM) return;
+	}
 	if (dtype == PM_CLARK_SUPES && u.conclusiocount < 10) {
 	    dtype = ndemon(atyp);
 	    if (dtype == NON_PM) return;
@@ -402,6 +406,7 @@ aligntyp atyp;
 
 	    /* make sure Mr. Conclusio/Clark Supes/Patient Zero doesn't spawn early... --Amy */
 	    if (pm == PM_MR__CONCLUSIO && u.conclusiocount < 10) return(dlord(atyp));
+	    if (pm == PM_BOOM && u.ulevel < 10) return(dlord(atyp));
 	    if (pm == PM_CLARK_SUPES && u.conclusiocount < 10) return(dlord(atyp));
 	    if (pm == PM_PATIENT_ZERO && u.conclusiocount < 10) return(dlord(atyp));
 
