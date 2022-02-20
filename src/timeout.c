@@ -2772,6 +2772,12 @@ nh_timeout()
 
 		 break;
 
+		 case FEMTRAP_JANINA:
+
+			pline("You got enough of smelling female pants.");
+
+		 break;
+
 		 case FEMTRAP_KRISTIN:
 
 			pline("The women got bored of the multitude of high heels.");

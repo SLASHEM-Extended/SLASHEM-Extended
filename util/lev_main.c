@@ -699,6 +699,7 @@ static struct {
 	{ "julia", JULIA_TRAP },
 	{ "nicole", NICOLE_TRAP },
 	{ "rita", RITA_TRAP },
+	{ "janina", JANINA_TRAP },
 
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }

@@ -2287,6 +2287,19 @@ have_femtraprita()
 }
 
 boolean
+have_femtrapjanina()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == JANINA_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(67)) return TRUE;
+	return(FALSE);
+}
+
+boolean
 have_primecurse()
 {
 	register struct obj *otmp;
@@ -12546,6 +12559,8 @@ boolean knoweverything;
 				pline("A super cute dark blue pair of platform boots, which count as wedge heels. They carry Madeleine's curse, and have 3 AC and 2 MC."); break;
 			case MARLENA_HIKING_BOOTS:
 				pline("This pair of sexy flats is rather solid. They carry Marlena's curse, and have 3 AC and 0 MC."); break;
+			case JANINA_LADY_PUMPS:
+				pline("Quite attractive and sexy cone heels. They carry Janina's curse, and have 2 AC and 2 MC."); break;
 			case ANASTASIA_DANCING_SHOES:
 				pline("Such a lovely, soft pair of female dancing shoes! Wearing them uses the sexy flats skill. They carry Anastasia's curse, and have 2 AC and 0 MC."); break;
 			case JESSICA_LADY_SHOES:
@@ -16453,6 +16468,8 @@ boolean knoweverything;
 				pline("While having this jewel in your inventory, you're afflicted with Jessica's curse. It autocurses and cannot be dropped while cursed."); break;
 			case MARLENA_S_JEWEL:
 				pline("While having this jewel in your inventory, you're afflicted with Marlena's curse. It autocurses and cannot be dropped while cursed."); break;
+			case JANINA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Janina's curse. It autocurses and cannot be dropped while cursed."); break;
 			case FEMMY_S_JEWEL:
 				pline("While having this jewel in your inventory, you're afflicted with Femmy's curse. It autocurses and cannot be dropped while cursed."); break;
 			case NATALJE_S_JEWEL:

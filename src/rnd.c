@@ -1410,7 +1410,7 @@ randenchantment()
 
 	} else if (!rn2(15)) {
 
-		switch (rnd(66)) {
+		switch (rnd(67)) {
 			case 1: return FEMTRAP_FEMMY;
 			case 2: return FEMTRAP_MADELEINE;
 			case 3: return FEMTRAP_MARLENA;
@@ -1477,6 +1477,7 @@ randenchantment()
 			case 64: return FEMTRAP_JULIA;
 			case 65: return FEMTRAP_NICOLE;
 			case 66: return FEMTRAP_RITA;
+			case 67: return FEMTRAP_JANINA;
 			default: return POISON_RES;
 		}
 
@@ -3859,7 +3860,7 @@ void
 randomfeminismtrap(duration)
 int duration;
 {
-	switch (rnd(66)) {
+	switch (rnd(67)) {
 		case 1:
 			pline("You can already imagine the farting noises you're gonna hear.");
 			FemaleTrapSarah += duration;
@@ -4124,6 +4125,10 @@ int duration;
 		case 66:
 			pline("Hahahahaha, now the women can just trigger feminism traps at will and when they do, the trap effect in question will be activated for YOU! Hahaha!");
 			FemaleTrapRita += duration;
+			break;
+		case 67:
+			pline("Those women are gonna hang their worn pants in front of your %s, forcing you to smell them!", body_part(NOSE));
+			FemaleTrapJanina += duration;
 			break;
 	}
 }

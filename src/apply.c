@@ -6084,6 +6084,7 @@ doapply()
 	case JULIA_S_JEWEL:
 	case NICOLE_S_JEWEL:
 	case RITA_S_JEWEL:
+	case JANINA_S_JEWEL:
 
 	case RIGHT_MOUSE_BUTTON_STONE:
  	case DISPLAY_LOSS_STONE:

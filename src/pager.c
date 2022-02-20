@@ -27573,6 +27573,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Aww, you'd have loved to figure out what that dark aura surrounding the women is, but it's gone...",
 	"Hahahahaha, now the women can just trigger feminism traps at will and when they do, the trap effect in question will be activated for YOU! Hahaha!",
 	"That bullshit effect where monsters could trigger feminism trap effects and cause you to be affected by them, it has ended. Took way too long. You're really angry at the sadistic programmer bitch who designed it like that.",
+	"Those women are gonna hang their worn pants in front of your nose, forcing you to smell them!",
+	"You got enough of smelling female pants.",
 
 };
 

@@ -1355,6 +1355,7 @@ E boolean have_femtrapbridghitte(void);
 E boolean have_femtrapjulia(void);
 E boolean have_femtrapnicole(void);
 E boolean have_femtraprita(void);
+E boolean have_femtrapjanina(void);
 
 E boolean have_primecurse(void);
 

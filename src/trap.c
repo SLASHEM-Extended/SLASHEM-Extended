@@ -12687,6 +12687,23 @@ madnesseffect:
 
 		 break;
 
+		 case JANINA_TRAP:
+
+			if (FemaleTrapJanina) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Janina.");
+			pline("Those women are gonna hang their worn pants in front of your %s, forcing you to smell them!", body_part(NOSE));
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapJanina = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapJanina += 100;
+			if (!rn2(3)) FemaleTrapJanina += rnz(500);
+
+		 break;
+
 		case ANNEMARIE_TRAP:
 			if (FemaleTrapAnnemarie) break;
 			seetrap(trap);
@@ -17624,6 +17641,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case FEMMY_TRAP:
 		case MADELEINE_TRAP:
 		case MARLENA_TRAP:
+		case JANINA_TRAP:
 		case KRISTIN_TRAP:
 		case ANNA_TRAP:
 		case RUEA_TRAP:
