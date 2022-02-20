@@ -2137,6 +2137,28 @@ dospinweb()
 		case JEANETTA_TRAP:
 		case YVONNE_TRAP:
 		case MAURAH_TRAP:
+		case ANNEMARIE_TRAP:
+		case JIL_TRAP:
+		case JANA_TRAP:
+		case KATRIN_TRAP:
+		case GUDRUN_TRAP:
+		case ELLA_TRAP:
+		case MANUELA_TRAP:
+		case JENNIFER_TRAP:
+		case PATRICIA_TRAP:
+		case ANTJE_TRAP:
+		case ANTJE_TRAP_X:
+		case KERSTIN_TRAP:
+		case LAURA_TRAP:
+		case LARISSA_TRAP:
+		case NORA_TRAP:
+		case NATALIA_TRAP:
+		case SUSANNE_TRAP:
+		case LISA_TRAP:
+		case BRIDGHITTE_TRAP:
+		case JULIA_TRAP:
+		case NICOLE_TRAP:
+		case RITA_TRAP:
 
 		case ELEMENTAL_PORTAL:
 		case GIRLINESS_TRAP:

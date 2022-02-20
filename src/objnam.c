@@ -498,6 +498,50 @@ int prop;
 			return "astral vision";
 		case RNGE_OVERVIEW_IMPROVEMENT:
 			return "overview improvement";
+		case FEMTRAP_ANNEMARIE:
+			return "Annemarie's curse";
+		case FEMTRAP_JIL:
+			return "Jil's curse";
+		case FEMTRAP_JANA:
+			return "Jana's curse";
+		case FEMTRAP_KATRIN:
+			return "Katrin's curse";
+		case FEMTRAP_GUDRUN:
+			return "Gudrun's curse";
+		case FEMTRAP_ELLA:
+			return "Ella's curse";
+		case FEMTRAP_MANUELA:
+			return "Manuela's curse";
+		case FEMTRAP_JENNIFER:
+			return "Jennifer's curse";
+		case FEMTRAP_PATRICIA:
+			return "Patricia's curse";
+		case FEMTRAP_ANTJE:
+			return "Antje's curse";
+		case FEMTRAP_ANTJE_X:
+			return "Antje's special curse";
+		case FEMTRAP_KERSTIN:
+			return "Kerstin's curse";
+		case FEMTRAP_LAURA:
+			return "Laura's curse";
+		case FEMTRAP_LARISSA:
+			return "Larissa's curse";
+		case FEMTRAP_NORA:
+			return "Nora's curse";
+		case FEMTRAP_NATALIA:
+			return "Natalia's curse";
+		case FEMTRAP_SUSANNE:
+			return "Susanne's curse";
+		case FEMTRAP_LISA:
+			return "Lisa's curse";
+		case FEMTRAP_BRIDGHITTE:
+			return "Bridghitte's curse";
+		case FEMTRAP_JULIA:
+			return "Julia's curse";
+		case FEMTRAP_NICOLE:
+			return "Nicole's curse";
+		case FEMTRAP_RITA:
+			return "Rita's curse";
 
 		default:
 			return "Team Nastytrap";
@@ -3526,6 +3570,29 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ INA_S_JEWEL, "Ina dragotsennost'" },
 	{ DORA_S_JEWEL, "Dora dragotsennost'" },
 
+	{ ANNEMARIE_S_JEWEL, "Annemarie dragotsennost'" },
+	{ JIL_S_JEWEL, "Jil dragotsennost'" },
+	{ JANA_S_JEWEL, "Jana dragotsennost'" },
+	{ KATRIN_S_JEWEL, "Katrin dragotsennost'" },
+	{ GUDRUN_S_JEWEL, "Gudrun dragotsennost'" },
+	{ ELLA_S_JEWEL, "Ella dragotsennost'" },
+	{ MANUELA_S_JEWEL, "Manuela dragotsennost'" },
+	{ JENNIFER_S_JEWEL, "Jennifer dragotsennost'" },
+	{ PATRICIA_S_JEWEL, "Patricia dragotsennost'" },
+	{ ANTJE_S_JEWEL, "Antje dragotsennost'" },
+	{ ANTJE_S_SECOND_JEWEL, "Antje vtoroy dragotsennost'" },
+	{ KERSTIN_S_JEWEL, "Kerstin dragotsennost'" },
+	{ LAURA_S_JEWEL, "Laura dragotsennost'" },
+	{ LARISSA_S_JEWEL, "Larissa dragotsennost'" },
+	{ NORA_S_JEWEL, "Nora dragotsennost'" },
+	{ NATALIA_S_JEWEL, "Natalia dragotsennost'" },
+	{ SUSANNE_S_JEWEL, "Susanne dragotsennost'" },
+	{ LISA_S_JEWEL, "Lisa dragotsennost'" },
+	{ BRIDGHITTE_S_JEWEL, "Bridghitte dragotsennost'" },
+	{ JULIA_S_JEWEL, "Julia dragotsennost'" },
+	{ NICOLE_S_JEWEL, "Nicole dragotsennost'" },
+	{ RITA_S_JEWEL, "Rita dragotsennost'" },
+
 	{ POT_TECH_LEVEL_UP, "tekhnicheskiy uroven' vverkh" },
 	{ CIGAR, "sigara" },
 	{ SCR_SKILL_GROWTH, "rost navykov" },
@@ -3597,6 +3664,31 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ DARK_DRAGON_SCALE_MAIL, "todo" },
 	{ DARK_DRAGON_SCALES, "todo" },
 	{ DARK_DRAGON_SCALE_SHIELD, "todo" },
+
+	{ ANNEMARIE_PLATFORM_SANDALS, "todo" },
+	{ JIL_VELCRO_SHOES, "todo" },
+	{ JANA_SNEAKERS, "todo" },
+	{ KATRIN_COMBAT_BOOTS, "todo" },
+	{ GUDRUN_WEDGE_SANDALS, "todo" },
+	{ ELLA_WEDGE_SANDALS, "todo" },
+	{ MANUELA_COMBAT_BOOTS, "todo" },
+	{ JENNIFER_COMBAT_BOOTS, "todo" },
+	{ PATRICIA_STEEL_CAPPED_SANDALS, "todo" },
+	{ ANTJE_SNEAKERS, "todo" },
+	{ ANTJE_COMBAT_BOOTS, "todo" },
+	{ KERSTIN_COMBAT_BOOTS, "todo" },
+	{ KERSTIN_WOODEN_SANDALS, "todo" },
+	{ KERSTIN_SNEAKERS, "todo" },
+	{ LAURA_WINTER_BOOTS, "todo" },
+	{ LARISSA_PLATFORM_BOOTS, "todo" },
+	{ NORA_COMBAT_BOOTS, "todo" },
+	{ NATALIA_WEDGE_SANDALS, "todo" },
+	{ SUSANNE_COMBAT_BOOTS, "todo" },
+	{ LISA_COMBAT_BOOTS, "todo" },
+	{ BRIDGHITTE_SKI_HEELS, "todo" },
+	{ JULIA_COMBAT_BOOTS, "todo" },
+	{ NICOLE_COMBAT_BOOTS, "todo" },
+	{ RITA_STILETTOS, "todo" },
 
 	{0, "" }
 };
@@ -6441,6 +6533,29 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ INA_S_JEWEL, "Ina marvarid" },
 	{ DORA_S_JEWEL, "Dora marvarid" },
 
+	{ ANNEMARIE_S_JEWEL, "Annemarie marvarid" },
+	{ JIL_S_JEWEL, "Jil marvarid" },
+	{ JANA_S_JEWEL, "Jana marvarid" },
+	{ KATRIN_S_JEWEL, "Katrin marvarid" },
+	{ GUDRUN_S_JEWEL, "Gudrun marvarid" },
+	{ ELLA_S_JEWEL, "Ella marvarid" },
+	{ MANUELA_S_JEWEL, "Manuela marvarid" },
+	{ JENNIFER_S_JEWEL, "Jennifer marvarid" },
+	{ PATRICIA_S_JEWEL, "Patricia marvarid" },
+	{ ANTJE_S_JEWEL, "Antje marvarid" },
+	{ ANTJE_S_SECOND_JEWEL, "Antje ikkinchi marvarid" },
+	{ KERSTIN_S_JEWEL, "Kerstin marvarid" },
+	{ LAURA_S_JEWEL, "Laura marvarid" },
+	{ LARISSA_S_JEWEL, "Larissa marvarid" },
+	{ NORA_S_JEWEL, "Nora marvarid" },
+	{ NATALIA_S_JEWEL, "Natalia marvarid" },
+	{ SUSANNE_S_JEWEL, "Susanne marvarid" },
+	{ LISA_S_JEWEL, "Lisa marvarid" },
+	{ BRIDGHITTE_S_JEWEL, "Bridghitte marvarid" },
+	{ JULIA_S_JEWEL, "Julia marvarid" },
+	{ NICOLE_S_JEWEL, "Nicole marvarid" },
+	{ RITA_S_JEWEL, "Rita marvarid" },
+
 	{ POT_TECH_LEVEL_UP, "texnologiya darajasi" },
 	{ CIGAR, "puro" },
 	{ SCR_SKILL_GROWTH, "mahoratning o'sishi" },
@@ -6512,6 +6627,31 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ DARK_DRAGON_SCALE_MAIL, "todo" },
 	{ DARK_DRAGON_SCALES, "todo" },
 	{ DARK_DRAGON_SCALE_SHIELD, "todo" },
+
+	{ ANNEMARIE_PLATFORM_SANDALS, "todo" },
+	{ JIL_VELCRO_SHOES, "todo" },
+	{ JANA_SNEAKERS, "todo" },
+	{ KATRIN_COMBAT_BOOTS, "todo" },
+	{ GUDRUN_WEDGE_SANDALS, "todo" },
+	{ ELLA_WEDGE_SANDALS, "todo" },
+	{ MANUELA_COMBAT_BOOTS, "todo" },
+	{ JENNIFER_COMBAT_BOOTS, "todo" },
+	{ PATRICIA_STEEL_CAPPED_SANDALS, "todo" },
+	{ ANTJE_SNEAKERS, "todo" },
+	{ ANTJE_COMBAT_BOOTS, "todo" },
+	{ KERSTIN_COMBAT_BOOTS, "todo" },
+	{ KERSTIN_WOODEN_SANDALS, "todo" },
+	{ KERSTIN_SNEAKERS, "todo" },
+	{ LAURA_WINTER_BOOTS, "todo" },
+	{ LARISSA_PLATFORM_BOOTS, "todo" },
+	{ NORA_COMBAT_BOOTS, "todo" },
+	{ NATALIA_WEDGE_SANDALS, "todo" },
+	{ SUSANNE_COMBAT_BOOTS, "todo" },
+	{ LISA_COMBAT_BOOTS, "todo" },
+	{ BRIDGHITTE_SKI_HEELS, "todo" },
+	{ JULIA_COMBAT_BOOTS, "todo" },
+	{ NICOLE_COMBAT_BOOTS, "todo" },
+	{ RITA_STILETTOS, "todo" },
 
 	{0, "" }
 };

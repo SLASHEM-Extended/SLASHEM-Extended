@@ -854,6 +854,28 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "anita trap", C(CLR_BLACK)},	/* trap */
 	{'^', "henrietta trap", C(CLR_BROWN)},	/* trap */
 	{'^', "verena trap", C(CLR_BLACK)},	/* trap */
+	{'^', "annemarie trap", C(CLR_BRIGHT_CYAN)},	/* trap */
+	{'^', "jil trap", C(CLR_BROWN)},	/* trap */
+	{'^', "jana trap", C(CLR_BLUE)},	/* trap */
+	{'^', "katrin trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "gudrun trap", C(CLR_CYAN)},	/* trap */
+	{'^', "ella trap", C(CLR_WHITE)},	/* trap */
+	{'^', "manuela trap", C(CLR_RED)},	/* trap */
+	{'^', "jennifer trap", C(CLR_BLACK)},	/* trap */
+	{'^', "patricia trap", C(CLR_BLUE)},	/* trap */
+	{'^', "antje trap", C(CLR_BLUE)},	/* trap */
+	{'^', "antje trap 2", C(CLR_BLACK)},	/* trap */
+	{'^', "kerstin trap", C(CLR_BLUE)},	/* trap */
+	{'^', "laura trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "larissa trap", C(CLR_BLUE)},	/* trap */
+	{'^', "nora trap", C(CLR_BLACK)},	/* trap */
+	{'^', "natalia trap", C(CLR_GRAY)},	/* trap */
+	{'^', "susanne trap", C(CLR_BLACK)},	/* trap */
+	{'^', "lisa trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "bridghitte trap", C(CLR_RED)},	/* trap */
+	{'^', "julia trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "nicole trap", C(CLR_BLACK)},	/* trap */
+	{'^', "rita trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 
 	{'^', "timerun trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
@@ -1536,6 +1558,28 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_anita_trap),
 	g_FILLER(S_henrietta_trap),
 	g_FILLER(S_verena_trap),
+	g_FILLER(S_annemarie_trap),
+	g_FILLER(S_jil_trap),
+	g_FILLER(S_jana_trap),
+	g_FILLER(S_katrin_trap),
+	g_FILLER(S_gudrun_trap),
+	g_FILLER(S_ella_trap),
+	g_FILLER(S_manuela_trap),
+	g_FILLER(S_jennifer_trap),
+	g_FILLER(S_patricia_trap),
+	g_FILLER(S_antje_trap),
+	g_FILLER(S_antje_x_trap),
+	g_FILLER(S_kerstin_trap),
+	g_FILLER(S_laura_trap),
+	g_FILLER(S_larissa_trap),
+	g_FILLER(S_nora_trap),
+	g_FILLER(S_natalia_trap),
+	g_FILLER(S_susanne_trap),
+	g_FILLER(S_lisa_trap),
+	g_FILLER(S_bridghitte_trap),
+	g_FILLER(S_julia_trap),
+	g_FILLER(S_nicole_trap),
+	g_FILLER(S_rita_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
@@ -2206,6 +2250,28 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_anita_trap),
 	g_FILLER(S_henrietta_trap),
 	g_FILLER(S_verena_trap),
+	g_FILLER(S_annemarie_trap),
+	g_FILLER(S_jil_trap),
+	g_FILLER(S_jana_trap),
+	g_FILLER(S_katrin_trap),
+	g_FILLER(S_gudrun_trap),
+	g_FILLER(S_ella_trap),
+	g_FILLER(S_manuela_trap),
+	g_FILLER(S_jennifer_trap),
+	g_FILLER(S_patricia_trap),
+	g_FILLER(S_antje_trap),
+	g_FILLER(S_antje_x_trap),
+	g_FILLER(S_kerstin_trap),
+	g_FILLER(S_laura_trap),
+	g_FILLER(S_larissa_trap),
+	g_FILLER(S_nora_trap),
+	g_FILLER(S_natalia_trap),
+	g_FILLER(S_susanne_trap),
+	g_FILLER(S_lisa_trap),
+	g_FILLER(S_bridghitte_trap),
+	g_FILLER(S_julia_trap),
+	g_FILLER(S_nicole_trap),
+	g_FILLER(S_rita_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -2873,6 +2939,28 @@ static uchar wing_graphics[MAXPCHARS] = {
 	g_FILLER(S_anita_trap),
 	g_FILLER(S_henrietta_trap),
 	g_FILLER(S_verena_trap),
+	g_FILLER(S_annemarie_trap),
+	g_FILLER(S_jil_trap),
+	g_FILLER(S_jana_trap),
+	g_FILLER(S_katrin_trap),
+	g_FILLER(S_gudrun_trap),
+	g_FILLER(S_ella_trap),
+	g_FILLER(S_manuela_trap),
+	g_FILLER(S_jennifer_trap),
+	g_FILLER(S_patricia_trap),
+	g_FILLER(S_antje_trap),
+	g_FILLER(S_antje_x_trap),
+	g_FILLER(S_kerstin_trap),
+	g_FILLER(S_laura_trap),
+	g_FILLER(S_larissa_trap),
+	g_FILLER(S_nora_trap),
+	g_FILLER(S_natalia_trap),
+	g_FILLER(S_susanne_trap),
+	g_FILLER(S_lisa_trap),
+	g_FILLER(S_bridghitte_trap),
+	g_FILLER(S_julia_trap),
+	g_FILLER(S_nicole_trap),
+	g_FILLER(S_rita_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -3541,6 +3629,28 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_anita_trap),
 	g_FILLER(S_henrietta_trap),
 	g_FILLER(S_verena_trap),
+	g_FILLER(S_annemarie_trap),
+	g_FILLER(S_jil_trap),
+	g_FILLER(S_jana_trap),
+	g_FILLER(S_katrin_trap),
+	g_FILLER(S_gudrun_trap),
+	g_FILLER(S_ella_trap),
+	g_FILLER(S_manuela_trap),
+	g_FILLER(S_jennifer_trap),
+	g_FILLER(S_patricia_trap),
+	g_FILLER(S_antje_trap),
+	g_FILLER(S_antje_x_trap),
+	g_FILLER(S_kerstin_trap),
+	g_FILLER(S_laura_trap),
+	g_FILLER(S_larissa_trap),
+	g_FILLER(S_nora_trap),
+	g_FILLER(S_natalia_trap),
+	g_FILLER(S_susanne_trap),
+	g_FILLER(S_lisa_trap),
+	g_FILLER(S_bridghitte_trap),
+	g_FILLER(S_julia_trap),
+	g_FILLER(S_nicole_trap),
+	g_FILLER(S_rita_trap),
 
 	g_FILLER(S_timerun_trap),
 
@@ -4417,6 +4527,28 @@ boolean is_rlevel;
 	    showsyms[S_anita_trap] = 0x04;
 	    showsyms[S_henrietta_trap] = 0x04;
 	    showsyms[S_verena_trap] = 0x04;
+	    showsyms[S_annemarie_trap] = 0x04;
+	    showsyms[S_jil_trap] = 0x04;
+	    showsyms[S_jana_trap] = 0x04;
+	    showsyms[S_katrin_trap] = 0x04;
+	    showsyms[S_gudrun_trap] = 0x04;
+	    showsyms[S_ella_trap] = 0x04;
+	    showsyms[S_manuela_trap] = 0x04;
+	    showsyms[S_jennifer_trap] = 0x04;
+	    showsyms[S_patricia_trap] = 0x04;
+	    showsyms[S_antje_trap] = 0x04;
+	    showsyms[S_antje_x_trap] = 0x04;
+	    showsyms[S_kerstin_trap] = 0x04;
+	    showsyms[S_laura_trap] = 0x04;
+	    showsyms[S_larissa_trap] = 0x04;
+	    showsyms[S_nora_trap] = 0x04;
+	    showsyms[S_natalia_trap] = 0x04;
+	    showsyms[S_susanne_trap] = 0x04;
+	    showsyms[S_lisa_trap] = 0x04;
+	    showsyms[S_bridghitte_trap] = 0x04;
+	    showsyms[S_julia_trap] = 0x04;
+	    showsyms[S_nicole_trap] = 0x04;
+	    showsyms[S_rita_trap] = 0x04;
 
 	    showsyms[S_timerun_trap] = 0x04;
 #endif /* PUBLIC_SERVER */

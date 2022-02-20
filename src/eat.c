@@ -6061,6 +6061,51 @@ eatspecial() /* called after eating non-food */
 				FemaleTrapIna |= FROMOUTSIDE; break;
 			case DORA_S_JEWEL:
 				FemaleTrapDora |= FROMOUTSIDE; break;
+			case ANNEMARIE_S_JEWEL:
+				FemaleTrapAnnemarie |= FROMOUTSIDE; break;
+			case JIL_S_JEWEL:
+				FemaleTrapJil |= FROMOUTSIDE; break;
+			case JANA_S_JEWEL:
+				FemaleTrapJana |= FROMOUTSIDE; break;
+			case KATRIN_S_JEWEL:
+				FemaleTrapKatrin |= FROMOUTSIDE; break;
+			case GUDRUN_S_JEWEL:
+				FemaleTrapGudrun |= FROMOUTSIDE; break;
+			case ELLA_S_JEWEL:
+				FemaleTrapElla |= FROMOUTSIDE; break;
+			case MANUELA_S_JEWEL:
+				FemaleTrapManuela |= FROMOUTSIDE; break;
+			case JENNIFER_S_JEWEL:
+				FemaleTrapJennifer |= FROMOUTSIDE; break;
+			case PATRICIA_S_JEWEL:
+				FemaleTrapPatricia |= FROMOUTSIDE; break;
+			case ANTJE_S_JEWEL:
+				FemaleTrapAntje |= FROMOUTSIDE; break;
+			case ANTJE_S_SECOND_JEWEL:
+				FemaleTrapAntjeX |= FROMOUTSIDE; break;
+			case KERSTIN_S_JEWEL:
+				FemaleTrapKerstin |= FROMOUTSIDE; break;
+			case LAURA_S_JEWEL:
+				FemaleTrapLaura |= FROMOUTSIDE; break;
+			case LARISSA_S_JEWEL:
+				FemaleTrapLarissa |= FROMOUTSIDE; break;
+			case NORA_S_JEWEL:
+				FemaleTrapNora |= FROMOUTSIDE; break;
+			case NATALIA_S_JEWEL:
+				FemaleTrapNatalia |= FROMOUTSIDE; break;
+			case SUSANNE_S_JEWEL:
+				FemaleTrapSusanne |= FROMOUTSIDE; break;
+			case LISA_S_JEWEL:
+				FemaleTrapLisa |= FROMOUTSIDE; break;
+			case BRIDGHITTE_S_JEWEL:
+				FemaleTrapBridghitte |= FROMOUTSIDE; break;
+			case JULIA_S_JEWEL:
+				FemaleTrapJulia |= FROMOUTSIDE; break;
+			case NICOLE_S_JEWEL:
+				FemaleTrapNicole |= FROMOUTSIDE; break;
+			case RITA_S_JEWEL:
+				FemaleTrapRita |= FROMOUTSIDE; break;
+
 
 		}
 	}

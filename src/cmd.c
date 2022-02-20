@@ -5628,6 +5628,138 @@ boolean guaranteed;
 		you_are(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && FemtrapActiveAnnemarie) {
+		sprintf(buf, "possessed by the ghost of Annemarie.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapAnnemarie);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveJil) {
+		sprintf(buf, "possessed by the ghost of Jil.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapJil);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveJana) {
+		sprintf(buf, "possessed by the ghost of Jana.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapJana);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveKatrin) {
+		sprintf(buf, "possessed by the ghost of Katrin.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapKatrin);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveGudrun) {
+		sprintf(buf, "possessed by the ghost of Gudrun.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapGudrun);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveElla) {
+		sprintf(buf, "possessed by the ghost of Ella.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapElla);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveManuela) {
+		sprintf(buf, "possessed by the ghost of Manuela.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapManuela);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveJennifer) {
+		sprintf(buf, "possessed by the ghost of Jennifer.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapJennifer);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActivePatricia) {
+		sprintf(buf, "possessed by the ghost of Patricia.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapPatricia);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveAntje) {
+		sprintf(buf, "possessed by the ghost of Antje.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapAntje);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveAntjeX) {
+		sprintf(buf, "possessed by the special ghost of Antje.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapAntjeX);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveKerstin) {
+		sprintf(buf, "possessed by the ghost of Kerstin.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapKerstin);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveLaura) {
+		sprintf(buf, "possessed by the ghost of Laura.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapLaura);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveLarissa) {
+		sprintf(buf, "possessed by the ghost of Larissa.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapLarissa);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveNora) {
+		sprintf(buf, "possessed by the ghost of Nora.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapNora);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveNatalia) {
+		sprintf(buf, "possessed by the ghost of Natalia.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapNatalia);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveSusanne) {
+		sprintf(buf, "possessed by the ghost of Susanne.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapSusanne);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveLisa) {
+		sprintf(buf, "possessed by the ghost of Lisa.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapLisa);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveBridghitte) {
+		sprintf(buf, "possessed by the ghost of Bridghitte.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapBridghitte);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveJulia) {
+		sprintf(buf, "possessed by the ghost of Julia.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapJulia);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveNicole) {
+		sprintf(buf, "possessed by the ghost of Nicole.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapNicole);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveRita) {
+		sprintf(buf, "possessed by the ghost of Rita.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapRita);
+		you_are(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && Race_if(PM_PERVERT)) {
 		sprintf(buf, "had sex the last time this many turns ago:");
 		sprintf(eos(buf), " %d", u.pervertsex);
@@ -9702,6 +9834,138 @@ int final;
 	if (FemtrapActiveVerena) {
 		sprintf(buf, "possessed by the ghost of Verena.");
 	      sprintf(eos(buf), " (%ld)", FemaleTrapVerena);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveAnnemarie) {
+		sprintf(buf, "possessed by the ghost of Annemarie.");
+		sprintf(eos(buf), " (%ld)", FemaleTrapAnnemarie);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveJil) {
+		sprintf(buf, "possessed by the ghost of Jil.");
+		sprintf(eos(buf), " (%ld)", FemaleTrapJil);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveJana) {
+		sprintf(buf, "possessed by the ghost of Jana.");
+		sprintf(eos(buf), " (%ld)", FemaleTrapJana);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveKatrin) {
+		sprintf(buf, "possessed by the ghost of Katrin.");
+		sprintf(eos(buf), " (%ld)", FemaleTrapKatrin);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveGudrun) {
+		sprintf(buf, "possessed by the ghost of Gudrun.");
+		sprintf(eos(buf), " (%ld)", FemaleTrapGudrun);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveElla) {
+		sprintf(buf, "possessed by the ghost of Ella.");
+		sprintf(eos(buf), " (%ld)", FemaleTrapElla);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveManuela) {
+		sprintf(buf, "possessed by the ghost of Manuela.");
+		sprintf(eos(buf), " (%ld)", FemaleTrapManuela);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveJennifer) {
+		sprintf(buf, "possessed by the ghost of Jennifer.");
+		sprintf(eos(buf), " (%ld)", FemaleTrapJennifer);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActivePatricia) {
+		sprintf(buf, "possessed by the ghost of Patricia.");
+		sprintf(eos(buf), " (%ld)", FemaleTrapPatricia);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveAntje) {
+		sprintf(buf, "possessed by the ghost of Antje.");
+		sprintf(eos(buf), " (%ld)", FemaleTrapAntje);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveAntjeX) {
+		sprintf(buf, "possessed by the special ghost of Antje.");
+		sprintf(eos(buf), " (%ld)", FemaleTrapAntjeX);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveKerstin) {
+		sprintf(buf, "possessed by the ghost of Kerstin.");
+		sprintf(eos(buf), " (%ld)", FemaleTrapKerstin);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveLaura) {
+		sprintf(buf, "possessed by the ghost of Laura.");
+		sprintf(eos(buf), " (%ld)", FemaleTrapLaura);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveLarissa) {
+		sprintf(buf, "possessed by the ghost of Larissa.");
+		sprintf(eos(buf), " (%ld)", FemaleTrapLarissa);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveNora) {
+		sprintf(buf, "possessed by the ghost of Nora.");
+		sprintf(eos(buf), " (%ld)", FemaleTrapNora);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveNatalia) {
+		sprintf(buf, "possessed by the ghost of Natalia.");
+		sprintf(eos(buf), " (%ld)", FemaleTrapNatalia);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveSusanne) {
+		sprintf(buf, "possessed by the ghost of Susanne.");
+		sprintf(eos(buf), " (%ld)", FemaleTrapSusanne);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveLisa) {
+		sprintf(buf, "possessed by the ghost of Lisa.");
+		sprintf(eos(buf), " (%ld)", FemaleTrapLisa);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveBridghitte) {
+		sprintf(buf, "possessed by the ghost of Bridghitte.");
+		sprintf(eos(buf), " (%ld)", FemaleTrapBridghitte);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveJulia) {
+		sprintf(buf, "possessed by the ghost of Julia.");
+		sprintf(eos(buf), " (%ld)", FemaleTrapJulia);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveNicole) {
+		sprintf(buf, "possessed by the ghost of Nicole.");
+		sprintf(eos(buf), " (%ld)", FemaleTrapNicole);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveRita) {
+		sprintf(buf, "possessed by the ghost of Rita.");
+		sprintf(eos(buf), " (%ld)", FemaleTrapRita);
 		dump(youwere, buf);
 	}
 

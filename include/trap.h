@@ -616,6 +616,29 @@ extern struct trap *ftrap;
 #define HENRIETTA_TRAP 532
 #define VERENA_TRAP 533
 
+#define ANNEMARIE_TRAP 534
+#define JIL_TRAP 535
+#define JANA_TRAP 536
+#define KATRIN_TRAP 537
+#define GUDRUN_TRAP 538
+#define ELLA_TRAP 539
+#define MANUELA_TRAP 540
+#define JENNIFER_TRAP 541
+#define PATRICIA_TRAP 542
+#define ANTJE_TRAP 543
+#define ANTJE_TRAP_X 544
+#define KERSTIN_TRAP 545
+#define LAURA_TRAP 546
+#define LARISSA_TRAP 547
+#define NORA_TRAP 548
+#define NATALIA_TRAP 549
+#define SUSANNE_TRAP 550
+#define LISA_TRAP 551
+#define BRIDGHITTE_TRAP 552
+#define JULIA_TRAP 553
+#define NICOLE_TRAP 554
+#define RITA_TRAP 555
+
 /* todo area
 
 normal ones:
@@ -759,29 +782,6 @@ nasty traps:
 #define RANDOM_NASTYTRAP
 #define TURBONASTY_TRAP
 
-feminism traps:
-#define ANNEMARIE_TRAP
-#define JIL_TRAP
-#define JANA_TRAP
-#define KATRIN_TRAP
-#define GUDRUN_TRAP
-#define ELLA_TRAP
-#define MANUELA_TRAP
-#define JENNIFER_TRAP
-#define PATRICIA_TRAP
-#define ANTJE_TRAP
-#define ANTJE_TRAP_X
-#define KERSTIN_TRAP
-#define LAURA_TRAP
-#define LARISSA_TRAP
-#define NORA_TRAP
-#define NATALIA_TRAP
-#define SUSANNE_TRAP
-#define LISA_TRAP
-#define BRIDGHITTE_TRAP
-#define JULIA_TRAP
-#define NICOLE_TRAP
-
 real weird ones:
 #define CURSED_CALLED
 #define CED_TRAP
@@ -794,8 +794,8 @@ special ones that don't spawn randomly:
 
 */
 
-#define TIMERUN_TRAP	534
+#define TIMERUN_TRAP	556
 
-#define TRAPNUM 535
+#define TRAPNUM 557
 
 #endif /* TRAP_H */

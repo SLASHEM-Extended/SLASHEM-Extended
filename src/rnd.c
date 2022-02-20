@@ -1410,7 +1410,7 @@ randenchantment()
 
 	} else if (!rn2(15)) {
 
-		switch (rnd(44)) {
+		switch (rnd(66)) {
 			case 1: return FEMTRAP_FEMMY;
 			case 2: return FEMTRAP_MADELEINE;
 			case 3: return FEMTRAP_MARLENA;
@@ -1455,6 +1455,28 @@ randenchantment()
 			case 42: return FEMTRAP_ANITA;
 			case 43: return FEMTRAP_HENRIETTA;
 			case 44: return FEMTRAP_VERENA;
+			case 45: return FEMTRAP_ANNEMARIE;
+			case 46: return FEMTRAP_JIL;
+			case 47: return FEMTRAP_JANA;
+			case 48: return FEMTRAP_KATRIN;
+			case 49: return FEMTRAP_GUDRUN;
+			case 50: return FEMTRAP_ELLA;
+			case 51: return FEMTRAP_MANUELA;
+			case 52: return FEMTRAP_JENNIFER;
+			case 53: return FEMTRAP_PATRICIA;
+			case 54: return FEMTRAP_ANTJE;
+			case 55: return FEMTRAP_ANTJE_X;
+			case 56: return FEMTRAP_KERSTIN;
+			case 57: return FEMTRAP_LAURA;
+			case 58: return FEMTRAP_LARISSA;
+			case 59: return FEMTRAP_NORA;
+			case 60: return FEMTRAP_NATALIA;
+			case 61: return FEMTRAP_SUSANNE;
+			case 62: return FEMTRAP_LISA;
+			case 63: return FEMTRAP_BRIDGHITTE;
+			case 64: return FEMTRAP_JULIA;
+			case 65: return FEMTRAP_NICOLE;
+			case 66: return FEMTRAP_RITA;
 			default: return POISON_RES;
 		}
 
@@ -3837,7 +3859,7 @@ void
 randomfeminismtrap(duration)
 int duration;
 {
-	switch (rnd(44)) {
+	switch (rnd(66)) {
 		case 1:
 			pline("You can already imagine the farting noises you're gonna hear.");
 			FemaleTrapSarah += duration;
@@ -4013,6 +4035,95 @@ int duration;
 		case 44:
 			pline("Oh no, some annoying blonde girl starts to follow you around. Sigh. Why can't you get a clever companion instead?!");
 			FemaleTrapVerena += duration;
+			break;
+		case 45:
+			pline("It seems that the women are doing athletic exercises.");
+			FemaleTrapAnnemarie += duration;
+			break;
+		case 46:
+			pline("The girls are planning to attack you with their sweaty socks!");
+			FemaleTrapJil += duration;
+			break;
+		case 47:
+			pline("Someone's hiding underneath a grave wall, but some of the grave walls have teleporters or cursed calleds underneath, so be careful!");
+			FemaleTrapJana += duration;
+			break;
+		case 48:
+			pline("Some girls are planning to use their sticky chewing gum as a trap to prevent you from getting away!");
+			FemaleTrapKatrin += duration;
+			break;
+		case 49:
+			pline("A stringy feminist named Gudrun is challenging you...");
+			FemaleTrapGudrun += duration;
+			break;
+		case 50:
+			pline("A fearless feminist named Ella is challenging you...");
+			FemaleTrapElla += duration;
+			break;
+		case 51:
+			pline("Some unfair woman wants to crush you with her block-heeled combat boots!");
+			FemaleTrapManuela += duration;
+			break;
+		case 52:
+			pline("The girls are going to fart you in the face without emitting any kind of sound.");
+			FemaleTrapJennifer += duration;
+			break;
+		case 53:
+			pline("You feel like a beautifully thick girl, capable of splitting enemies' skulls with blunt weapons!");
+			FemaleTrapPatricia += duration;
+			break;
+		case 54:
+			pline("You feel like walking the dyke with your extra thick block heels.");
+			FemaleTrapAntje += duration;
+			break;
+		case 55:
+			pline("Something tells you that you'd like to visit the public toilet.");
+			FemaleTrapAntjeX += duration;
+			break;
+		case 56:
+			pline("Those farmer girls plan to use block-heeled lady boots, wooden sandals and scentful sneakers on you!");
+			FemaleTrapKerstin += duration;
+			break;
+		case 57:
+			pline("Every woman is going to attack you with their clothing.");
+			FemaleTrapLaura += duration;
+			break;
+		case 58:
+			pline("You are commanded to seek out heaps of dog shit and step into it with your high heels. Something tells you that there are bad consequences if you don't obey this instruction.");
+			FemaleTrapLarissa += duration;
+			break;
+		case 59:
+			pline("You feel that eating is a sin and should be avoided at all costs, even though that may end up killing you.");
+			FemaleTrapNora += duration;
+			break;
+		case 60:
+			if (flags.female) pline("Ack! You suddenly have to deal with the effects of your menstruational period!");
+			else pline("Some russian girl decided that you're a very naughty boy, and will continuously bash your head with her high-heeled sandals.");
+			FemaleTrapNatalia += duration;
+			break;
+		case 61:
+			pline("You might have to fight some particularly powerful woman!");
+			FemaleTrapSusanne += duration;
+			break;
+		case 62:
+			pline("You're interested in seeing what kind of underwear the girls are wearing.");
+			FemaleTrapLisa += duration;
+			break;
+		case 63:
+			pline("Watch out, walking over the bridge has a large chance of you stepping into a heap of dog shit unexpectedly!");
+			FemaleTrapBridghitte += duration;
+			break;
+		case 64:
+			pline("Since it's unfair that you can simply hit women whenever you want to, you can no longer freely do so.");
+			FemaleTrapJulia += duration;
+			break;
+		case 65:
+			pline("The women are apparently surrounded by a dark aura! Is it some kind of black light, maybe?");
+			FemaleTrapNicole += duration;
+			break;
+		case 66:
+			pline("Hahahahaha, now the women can just trigger feminism traps at will and when they do, the trap effect in question will be activated for YOU! Hahaha!");
+			FemaleTrapRita += duration;
 			break;
 	}
 }

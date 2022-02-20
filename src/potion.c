@@ -5879,6 +5879,28 @@ cure_feminism_traps()
 	FemaleTrapAnita = 0L;
 	FemaleTrapHenrietta = 0L;
 	FemaleTrapVerena = 0L;
+	FemaleTrapAnnemarie = 0L;
+	FemaleTrapJil = 0L;
+	FemaleTrapJana = 0L;
+	FemaleTrapKatrin = 0L;
+	FemaleTrapGudrun = 0L;
+	FemaleTrapElla = 0L;
+	FemaleTrapManuela = 0L;
+	FemaleTrapJennifer = 0L;
+	FemaleTrapPatricia = 0L;
+	FemaleTrapAntje = 0L;
+	FemaleTrapAntjeX = 0L;
+	FemaleTrapKerstin = 0L;
+	FemaleTrapLaura = 0L;
+	FemaleTrapLarissa = 0L;
+	FemaleTrapNora = 0L;
+	FemaleTrapNatalia = 0L;
+	FemaleTrapSusanne = 0L;
+	FemaleTrapLisa = 0L;
+	FemaleTrapBridghitte = 0L;
+	FemaleTrapJulia = 0L;
+	FemaleTrapNicole = 0L;
+	FemaleTrapRita = 0L;
 
 }
 

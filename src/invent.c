@@ -2001,6 +2001,292 @@ have_femtrapverena()
 }
 
 boolean
+have_femtrapannemarie()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == ANNEMARIE_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(45)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapjil()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == JIL_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(46)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapjana()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == JANA_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(47)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapkatrin()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == KATRIN_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(48)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapgudrun()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == GUDRUN_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(49)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapella()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == ELLA_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(50)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapmanuela()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == MANUELA_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(51)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapjennifer()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == JENNIFER_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(52)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrappatricia()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == PATRICIA_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(53)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapantje()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == ANTJE_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(54)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapantjex()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == ANTJE_S_SECOND_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(55)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapkerstin()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == KERSTIN_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(56)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtraplaura()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == LAURA_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(57)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtraplarissa()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == LARISSA_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(58)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapnora()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == NORA_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(59)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapnatalia()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == NATALIA_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(60)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapsusanne()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == SUSANNE_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(61)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtraplisa()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == LISA_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(62)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapbridghitte()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == BRIDGHITTE_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(63)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapjulia()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == JULIA_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(64)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapnicole()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == NICOLE_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(65)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtraprita()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == RITA_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(66)) return TRUE;
+	return(FALSE);
+}
+
+boolean
 have_primecurse()
 {
 	register struct obj *otmp;
@@ -12342,6 +12628,54 @@ boolean knoweverything;
 				pline("This pair of lady boots has very thick block heels. They carry Henrietta's curse, and have 4 AC and 0 MC."); break;
 			case VERENA_STILETTO_SANDALS:
 				pline("A delicate pair of sandals with lovely stiletto heels. They carry Verena's curse, and have 1 AC and 3 MC."); break;
+			case ANNEMARIE_PLATFORM_SANDALS:
+				pline("Totally the sexy wedge sandals! They carry Annemarie's curse, and have 0 AC and 1 MC."); break;
+			case JIL_VELCRO_SHOES:
+				pline("It's a pair of girl shoes with velcro lashes, which count as sexy flats even though they actually look rather plain. They carry Jil's curse, and have 2 AC and 0 MC."); break;
+			case JANA_SNEAKERS:
+				pline("A thick pair of girl sneakers, which count as sexy flats. They carry Jana's curse, and have 1 AC and 1 MC."); break;
+			case KATRIN_COMBAT_BOOTS:
+				pline("These purple combat boots have very wonderful black block heels. They carry Katrin's curse, and have 3 AC and 2 MC."); break;
+			case GUDRUN_WEDGE_SANDALS:
+				pline("Cute wedge sandals. They carry Gudrun's curse, and have 0 AC and 0 MC."); break;
+			case ELLA_WEDGE_SANDALS:
+				pline("This pair of wedge sandals looks very cute. They carry Ella's curse, and have 0 AC and 0 MC."); break;
+			case MANUELA_COMBAT_BOOTS:
+				pline("A highly erotic pair of red combat boots with cone heels that make the wearer look like a prostitute. They carry Manuela's curse, and have 3 AC and 3 MC."); break;
+			case JENNIFER_COMBAT_BOOTS:
+				pline("According to Amy's roommate, this tender pair of black combat boots has extra thick block heels, but really the block heels are tender too. They carry Jennifer's curse, and have 3 AC and 1 MC."); break;
+			case PATRICIA_STEEL_CAPPED_SANDALS:
+				pline("Mmmmmmmmmm! The heels of this pair of stiletto sandals are made of metal! They carry Patricia's curse, and have 0 AC and 2 MC."); break;
+			case ANTJE_SNEAKERS:
+				pline("Actually these sneakers look kinda weird, but they're still quite exciting and therefore qualify as sexy flats. They carry Antje's curse, and have 2 AC and 1 MC."); break;
+			case ANTJE_COMBAT_BOOTS:
+				pline("Oh yeah, baby. Everyone loves this pair of black combat boots because the thick block heels look sooooooo sexy! They carry Antje's special curse, and have 3 AC and 2 MC."); break;
+			case KERSTIN_COMBAT_BOOTS:
+				pline("Wow! These dark blue lady boots have such wonderful block heels! They carry Kerstin's curse, and have 4 AC and 2 MC."); break;
+			case KERSTIN_WOODEN_SANDALS:
+				pline("Such a cute pair of wooden sandals with a bright pink inlay! <3 Obviously, they count as sexy flats. They carry Kerstin's curse, and have 1 AC and 1 MC."); break;
+			case KERSTIN_SNEAKERS:
+				pline("A very sexy pair of dark blue girl sneakers that emit a beguiling scent. Do I really need to mention that of course, they count as sexy flats? They carry Kerstin's curse, and have 2 AC and 2 MC."); break;
+			case LAURA_WINTER_BOOTS:
+				pline("This pair of girl boots looks robust, and counts as sexy flats. They carry Laura's curse, and have 3 AC and 0 MC."); break;
+			case LARISSA_PLATFORM_BOOTS:
+				pline("Very cute platform boots that count as wedge heels for in-game purposes. They carry Larissa's curse, and have 4 AC and 1 MC."); break;
+			case NORA_COMBAT_BOOTS:
+				pline("A classic pair of black block-heeled combat boots. They carry Nora's curse, and have 3 AC and 2 MC."); break;
+			case NATALIA_WEDGE_SANDALS:
+				pline("Sexy, but robust, this pair of wedge heels is rather practical. They carry Natalia's curse, and have 0 AC and 2 MC."); break;
+			case SUSANNE_COMBAT_BOOTS:
+				pline("The fleecy-soft combat boots look so pretty, and the block heels are so beautifully massive! They carry Susanne's curse, and have 3 AC and 2 MC."); break;
+			case LISA_COMBAT_BOOTS:
+				pline("This pair of lady boots not only has block heels, but also displays a beautiful metallic buckle. They carry Lisa's curse, and have 4 AC and 2 MC."); break;
+			case BRIDGHITTE_SKI_HEELS:
+				pline("A pair of heels that look a bit like skiers, and counts as wedge heels. They carry Bridghitte's curse, and have 2 AC and 3 MC."); break;
+			case JULIA_COMBAT_BOOTS:
+				pline("You absolutely love these 'sister' combat boots and their sharp-edged black block heels. They carry Julia's curse, and have 3 AC and 2 MC."); break;
+			case NICOLE_COMBAT_BOOTS:
+				pline("A wonderful pair of combat boots with block heels. They carry Nicole's curse, and have 3 AC and 1 MC."); break;
+			case RITA_STILETTOS:
+				pline("Black stiletto heels which look super cute. They carry Rita's curse, and have 1 AC and 3 MC."); break;
 
 			case HIPPIE_HEELS:
 				pline("This pair of red leather plateau boots looks extraordinarily sexy. You get the feeling that they would love to be worn by you. Can you resist the temptation to put on these block-heeled beauties? :-)"); break;
@@ -15924,6 +16258,16 @@ boolean knoweverything;
 				pline("A white gem with a mohs hardness of 10, worth 4000 zorkmids."); break;
 			case CYAN_STONE:
 				pline("A teal gem with a mohs hardness of 8, worth 600 zorkmids."); break;
+			case GRANDIDIERITE:
+				pline("A dark blue gem with a mohs hardness of 7, worth 800 zorkmids."); break;
+			case IOLITE:
+				pline("A dark blue gem with a mohs hardness of 7, worth 2000 zorkmids."); break;
+			case TANZANITE:
+				pline("A dark blue gem with a mohs hardness of 6, worth 1000 zorkmids."); break;
+			case SPECTROLITE:
+				pline("A dark blue gem with a mohs hardness of 6, worth 3250 zorkmids."); break;
+			case LARIMAR:
+				pline("A dark blue gem with a mohs hardness of 5, worth 400 zorkmids."); break;
 			case MOONSTONE:
 				pline("A white gem with a mohs hardness of 6, worth 500 zorkmids."); break;
 			case DISTHENE:
@@ -16175,6 +16519,50 @@ boolean knoweverything;
 				pline("While having this jewel in your inventory, you're afflicted with Ina's curse. It autocurses and cannot be dropped while cursed."); break;
 			case DORA_S_JEWEL:
 				pline("While having this jewel in your inventory, you're afflicted with Dora's curse. It autocurses and cannot be dropped while cursed."); break;
+			case ANNEMARIE_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Annemarie's curse. It autocurses and cannot be dropped while cursed."); break;
+			case JIL_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Jil's curse. It autocurses and cannot be dropped while cursed."); break;
+			case JANA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Jana's curse. It autocurses and cannot be dropped while cursed."); break;
+			case KATRIN_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Katrin's curse. It autocurses and cannot be dropped while cursed."); break;
+			case GUDRUN_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Gudrun's curse. It autocurses and cannot be dropped while cursed."); break;
+			case ELLA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Ella's curse. It autocurses and cannot be dropped while cursed."); break;
+			case MANUELA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Manuela's curse. It autocurses and cannot be dropped while cursed."); break;
+			case JENNIFER_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Jennifer's curse. It autocurses and cannot be dropped while cursed."); break;
+			case PATRICIA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Patricia's curse. It autocurses and cannot be dropped while cursed."); break;
+			case ANTJE_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Antje's curse. It autocurses and cannot be dropped while cursed."); break;
+			case ANTJE_S_SECOND_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Antje's special curse. It autocurses and cannot be dropped while cursed."); break;
+			case KERSTIN_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Kerstin's curse. It autocurses and cannot be dropped while cursed."); break;
+			case LAURA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Laura's curse. It autocurses and cannot be dropped while cursed."); break;
+			case LARISSA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Larissa's curse. It autocurses and cannot be dropped while cursed."); break;
+			case NORA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Nora's curse. It autocurses and cannot be dropped while cursed."); break;
+			case NATALIA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Natalia's curse. It autocurses and cannot be dropped while cursed."); break;
+			case SUSANNE_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Susanne's curse. It autocurses and cannot be dropped while cursed."); break;
+			case LISA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Lisa's curse. It autocurses and cannot be dropped while cursed."); break;
+			case BRIDGHITTE_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Bridghitte's curse. It autocurses and cannot be dropped while cursed."); break;
+			case JULIA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Julia's curse. It autocurses and cannot be dropped while cursed."); break;
+			case NICOLE_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Nicole's curse. It autocurses and cannot be dropped while cursed."); break;
+			case RITA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Rita's curse. It autocurses and cannot be dropped while cursed."); break;
 
 			case RIGHT_MOUSE_BUTTON_STONE:
 				pline("A stone that curses itself and causes the right mouse button to stop working."); break;

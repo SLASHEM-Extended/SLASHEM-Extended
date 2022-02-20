@@ -2832,6 +2832,74 @@ nh_timeout()
 
 		 break;
 
+		case FEMTRAP_ANNEMARIE:
+			pline("The women stopped their athletic exercises.");
+			break;
+		case FEMTRAP_JIL:
+			pline("Ah, good, the girls decided to put their sweaty socks in the washing machine at last. About time, too.");
+			break;
+		case FEMTRAP_JANA:
+			pline("All the grave walls are set up now. But somehow you feel that they behave normally now.");
+			break;
+		case FEMTRAP_KATRIN:
+			pline("It seems that no more chewing gum traps are being set up, although you still need to be wary of the existing ones.");
+			break;
+		case FEMTRAP_GUDRUN:
+			pline("You hear Gudrun announce that the challenge has ended, but maybe she's still around somewhere? Gotta see if you can catch her!");
+			break;
+		case FEMTRAP_ELLA:
+			pline("Ella announces that her challenge is over. Quick, see if she's still trying to escape, you could attack her from behind!");
+			break;
+		case FEMTRAP_MANUELA:
+			pline("Apparently you said something that the women consider offensive, and their block-heeled combat boots are retreating as a result.");
+			break;
+		case FEMTRAP_JENNIFER:
+			pline("You've realized that no more silent farters are coming.");
+			break;
+		case FEMTRAP_PATRICIA:
+			pline("Aww, you're no longer the thick girl with the sexy steel-capped sandals...");
+			break;
+		case FEMTRAP_ANTJE:
+			pline("Careful, the storm is coming! The sheep ain't got no coil anymore!");
+			break;
+		case FEMTRAP_ANTJE_X:
+			pline("Maybe, it dawns on you, it's better to use the toilet at your own home after all...");
+			break;
+		case FEMTRAP_KERSTIN:
+			pline("Finally those pesky farmer girls are leaving, they were really getting on your nerves.");
+			break;
+		case FEMTRAP_LAURA:
+			pline("You got really sick of fighting female clothing all the time, hopefully there'll be some actual monsters for a while now...");
+			break;
+		case FEMTRAP_LARISSA:
+			pline("Blegh, the asshole tricked you! It seems that you stepped into dog shit for nothing at all, and now you can waste all your free time cleaning your shoes again! If you get that guy into your fingers...");
+			break;
+		case FEMTRAP_NORA:
+			pline("Man, now you're REALLY hungry. You feel like eating a bear whole to fill the huge hole in your %s.", body_part(STOMACH));
+			break;
+		case FEMTRAP_NATALIA:
+			if (flags.female) pline("Oh good, your menstruational period seems to have come to an end. Hopefully it won't make a return.");
+			else pline("The russian girl is done punishing you with her heel sandals.");
+			break;
+		case FEMTRAP_SUSANNE:
+			pline("Well, the powerful women haven't killed you yet, so they decide to spawn no longer.");
+			break;
+		case FEMTRAP_LISA:
+			pline("Bah, underwear is actually boring, why on earth did you waste your time with that?");
+			break;
+		case FEMTRAP_BRIDGHITTE:
+			pline("Now be careful, for even though you might have been lucky when you crossed the bridge, you might slip up on the way back...");
+			break;
+		case FEMTRAP_JULIA:
+			pline("That special shield the women had, it was so turbo annoying. Good thing it's no longer active now.");
+			break;
+		case FEMTRAP_NICOLE:
+			pline("Aww, you'd have loved to figure out what that dark aura surrounding the women is, but it's gone...");
+			break;
+		case FEMTRAP_RITA:
+			pline("That bullshit effect where monsters could trigger feminism trap effects and cause you to be affected by them, it has ended. Took way too long. You're really angry at the sadistic programmer bitch who designed it like that.");
+			break;
+
 		 case FEMTRAP_ANITA:
 
 			pline("You survived the dangerous high heels... for now.");

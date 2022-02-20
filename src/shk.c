@@ -2346,6 +2346,9 @@ register struct monst *shkp;	/* if angry, impose a surcharge */
 			case 13: /* violet */
 			    i = pseudorand ? AMETHYST : FLUORITE;
 			    break;
+			case 14: /* dark blue */
+			    i = pseudorand ? IOLITE : LARIMAR;
+			    break;
 			default: impossible("bad glass gem %ld?", obj->otyp);
 			    i = /*STRANGE_OBJECT*/MORGANITE; /* fail safe - in case of doubt have it be something expensive --Amy */
 			    break;
@@ -4099,6 +4102,28 @@ boolean catchup;	/* restoring a level */
 				&& ttmp->ttyp != JEANETTA_TRAP
 				&& ttmp->ttyp != YVONNE_TRAP
 				&& ttmp->ttyp != MAURAH_TRAP
+				&& ttmp->ttyp != ANNEMARIE_TRAP
+				&& ttmp->ttyp != JIL_TRAP
+				&& ttmp->ttyp != JANA_TRAP
+				&& ttmp->ttyp != KATRIN_TRAP
+				&& ttmp->ttyp != GUDRUN_TRAP
+				&& ttmp->ttyp != ELLA_TRAP
+				&& ttmp->ttyp != MANUELA_TRAP
+				&& ttmp->ttyp != JENNIFER_TRAP
+				&& ttmp->ttyp != PATRICIA_TRAP
+				&& ttmp->ttyp != ANTJE_TRAP
+				&& ttmp->ttyp != ANTJE_TRAP_X
+				&& ttmp->ttyp != KERSTIN_TRAP
+				&& ttmp->ttyp != LAURA_TRAP
+				&& ttmp->ttyp != LARISSA_TRAP
+				&& ttmp->ttyp != NORA_TRAP
+				&& ttmp->ttyp != NATALIA_TRAP
+				&& ttmp->ttyp != SUSANNE_TRAP
+				&& ttmp->ttyp != LISA_TRAP
+				&& ttmp->ttyp != BRIDGHITTE_TRAP
+				&& ttmp->ttyp != JULIA_TRAP
+				&& ttmp->ttyp != NICOLE_TRAP
+				&& ttmp->ttyp != RITA_TRAP
 
 				&& ttmp->ttyp != ELEMENTAL_PORTAL
 				&& ttmp->ttyp != GIRLINESS_TRAP
