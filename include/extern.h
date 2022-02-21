@@ -33,6 +33,8 @@ E time_t get_realtime(void);
 #endif
 E boolean timebasedlowerchance(void);
 E int speedbonus(int, int);
+E boolean cyanspellok(int, int);
+E boolean nicolesquareok(int, int);
 
 /* ### apply.c ### */
 
@@ -60,7 +62,6 @@ E void reset_trapset(void);
 E void fig_transform(void *, long);
 E int unfixable_trouble_count(BOOLEAN_P);
 E int wand_explode(struct obj *,BOOLEAN_P);
-E boolean cyanspellok(int, int);
 
 /* ### artifact.c ### */
 

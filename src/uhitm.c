@@ -1085,6 +1085,11 @@ register struct monst *mtmp;
 		return(FALSE);
 	}
 
+	if (FemtrapActiveJulia && !rn2(5) && mtmp->female && humanoid(mtmp->data) ) {
+		You("are held back by the referee, who states that it's unfair of you to try to attack %s!", mon_nam(mtmp));
+		return(FALSE);
+	}
+
 	tmp = find_roll_to_hit(mtmp);
 	
 newroundofattacks:

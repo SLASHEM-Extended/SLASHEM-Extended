@@ -472,6 +472,10 @@ unmap_object(x, y)
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));			\
 	return;								\
 	}								\
+	if (FemtrapActiveNicole && nicolesquareok(x,y)) { 	\
+	show_glyph(x, y, cmap_to_glyph(S_stone));			\
+	return;								\
+	}								\
 	if (SpellColorBrown && (distu(x,y) % 3 == 0)) { 	\
 	show_glyph(x, y, cmap_to_glyph(S_pile_of_shit));			\
 	return;								\
@@ -548,6 +552,10 @@ int memory_glyph(x, y)
 
 	if (SpellColorBrightCyan && cyanspellok(x,y)) {
 	return cmap_to_glyph(S_grayglyph);
+	}
+
+	if (FemtrapActiveNicole && nicolesquareok(x,y)) {
+	return cmap_to_glyph(S_stone);
 	}
 
 	if (SpellColorBrown && (distu(x,y) % 3 == 0)) {
@@ -1103,6 +1111,11 @@ newsym(x,y)
 	return;
 	}
 
+	if (FemtrapActiveNicole && nicolesquareok(x,y)) {
+	show_glyph(x, y, cmap_to_glyph(S_stone));
+	return;
+	}
+
 	if (SpellColorBrown && (distu(x,y) % 3 == 0)) {
 	show_glyph(x, y, cmap_to_glyph(S_pile_of_shit));
 	return;
@@ -1468,6 +1481,11 @@ newsymX(x,y)
 
 	if (SpellColorBrightCyan && cyanspellok(x,y)) {
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
+	return;
+	}
+
+	if (FemtrapActiveNicole && nicolesquareok(x,y)) {
+	show_glyph(x, y, cmap_to_glyph(S_stone));
 	return;
 	}
 

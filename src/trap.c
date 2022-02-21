@@ -16027,6 +16027,8 @@ struct obj *otmp;
 
 		case PARALYSIS_TRAP:
 
+			if (FemtrapActiveKatrin && !mtmp->mpeaceful && !mtmp->mtame) break; /* immune */
+
 			if (dmgtype(mtmp->data, AD_PLYS)) break;
 		      {
 			    mtmp->mcanmove = 0;

@@ -3148,6 +3148,9 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != MENU_TRAP
 				&& ttmp->ttyp != SWARM_TRAP
 				&& ttmp->ttyp != AUTOMATIC_SWITCHER
+
+				&& !(ttmp->ttyp == PARALYSIS_TRAP && FemtrapActiveKatrin && !mon->mpeaceful && !mon->mtame)
+
 				&& ttmp->ttyp != HEEL_TRAP
 				&& ttmp->ttyp != VULN_TRAP
 				&& ttmp->ttyp != DISPLAY_TRAP

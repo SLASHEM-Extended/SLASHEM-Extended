@@ -5260,6 +5260,21 @@ controlagain:
 			Your("weapon spontaneously disintegrates!");
 		}
 
+		if (u.umoved && FemtrapActiveBridghitte && !rn2(500)) {
+
+			if (!(t_at(u.ux, u.uy) )) {
+				register struct trap *bridghittetrap;
+				bridghittetrap = maketrap(u.ux, u.uy, SHIT_TRAP, 0, FALSE);
+
+				if (bridghittetrap) {
+					bridghittetrap->trapdiff += 500;
+					if (!rn2(10)) bridghittetrap->hiddentrap = TRUE;
+				}
+				/* trap doesn't trigger immediately */
+			}
+
+		}
+
 		if (u.umoved && uwep && uwep->oartifact == ART_HENRIETTA_S_MISTAKE && !rn2(10)) {
 
 			doshittrap((struct obj *)0);
@@ -5411,6 +5426,48 @@ controlagain:
 			}
 			u.aggravation = 0;
 			pline("Your sexiness seems to have attracted some monsters...");
+
+		}
+
+		if (FemtrapActiveJanina && !rn2(1000)) {
+			int aggroamount = rnd(10);
+			if (isfriday) aggroamount *= 2;
+			reset_rndmonst(NON_PM);
+		      cx = rn2(COLNO);
+		      cy = rn2(ROWNO);
+			while (aggroamount) {
+
+				aggroamount--;
+
+				int attempts = 0;
+				struct permonst *pm = 0;
+
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+
+newbossJANI:
+				do {
+					pm = rndmonst();
+					attempts++;
+					if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+				} while ( (!pm || (pm && !(pm->msound == MS_PANTS) ) ) && attempts < 50000);
+
+				if (!pm && rn2(50) ) {
+					attempts = 0;
+					goto newbossJANI;
+				}
+				if (pm && !(pm->msound == MS_PANTS) && rn2(50) ) {
+					attempts = 0;
+					goto newbossJANI;
+				}
+
+				if (pm) (void) makemon(pm, cx, cy, MM_ANGRY|MM_ADJACENTOK);
+
+				u.aggravation = 0;
+
+			}
+			u.aggravation = 0;
 
 		}
 
@@ -6101,6 +6158,39 @@ newbossATHL:
 			}
 
 			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
+
+			u.aggravation = 0;
+
+		}
+
+		if (FemtrapActiveJil && !rn2(1000)) {
+
+			int attempts = 0;
+			struct permonst *pm = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+newbossJIL:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_SOCKS) ) ) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossJIL;
+			}
+			if (pm && !(pm->msound == MS_SOCKS) && rn2(50) ) {
+				attempts = 0;
+				goto newbossJIL;
+			}
+
+			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY);
 
 			u.aggravation = 0;
 
@@ -8220,6 +8310,22 @@ newbossB:
 		if (uarmf && uarmf->oartifact == ART_WASTEFUL_PLAYER && !rn2(1000)) {
 			antimatter_damage(invent, FALSE, FALSE);
 			Your("stuff has withered. God are you a wasteful player, you should stop playing with Lou's dirty sneakers.");
+		}
+
+		if (FemtrapActiveJana && !rn2(200)) {
+			int tryct = 0;
+			int x, y;
+
+			for (tryct = 0; tryct < 10000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (x && y && isok(x, y) && (levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && !(t_at(x, y)) ) {
+					levl[x][y].typ = GRAVEWALL;
+					break;
+					}
+			}
+
 		}
 
 		if (uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS && !rn2(1000) ) {
@@ -16290,6 +16396,26 @@ int x, y;
 	for (i = -1; i <= 1; i++) for(j = -1; j <= 1; j++) {
 		if (!isok(x + i, y + j)) continue;
 		if (MON_AT(x + i, y + j)) return TRUE;
+	}
+
+	return FALSE;
+
+}
+
+/* nicole trap: don't display tiles that have at least one adjacent intelligent female monster but don't have a monster themselves --Amy */
+boolean
+nicolesquareok(x, y)
+int x, y;
+{
+	register struct monst *nicolemon;
+	if (MON_AT(x, y)) return FALSE;
+
+	int i, j;
+	for (i = -1; i <= 1; i++) for(j = -1; j <= 1; j++) {
+		if (!isok(x + i, y + j)) continue;
+		if ((nicolemon = level.monsters[x + i][y + j]) != (struct monst *)0 ) {
+			if (nicolemon && nicolemon->female && humanoid(nicolemon->data)) return TRUE;
+		}
 	}
 
 	return FALSE;

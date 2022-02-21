@@ -26447,6 +26447,10 @@ loopback:
 		if (ct > 0 && (FemtrapActiveAnna && (ptr->msound == MS_STENCH))) ct += 50;
 		if (ct > 0 && (FemtrapActiveMarike && (ptr->msound == MS_FART_NORMAL))) ct += 10;
 		if (ct > 0 && (FemtrapActiveVictoria && is_female(ptr) && attacktype(ptr, AT_KICK) )) ct += 20;
+		if (ct > 0 && (FemtrapActiveJil && (ptr->msound == MS_SOCKS))) ct += 25;
+		if (ct > 0 && (FemtrapActiveLaura && (ptr->msound == MS_SOCKS))) ct += 50;
+		if (ct > 0 && (FemtrapActiveLaura && (ptr->msound == MS_PANTS))) ct += 50;
+		if (ct > 0 && (FemtrapActiveLaura && (ptr->msound == MS_SHOE))) ct += 50;
 
 		if (ct > 0 && RngeExtinction && mvitals[mndx].born) ct += mvitals[mndx].born;
 
@@ -27774,6 +27778,10 @@ int     spc;
 		if ((FemtrapActiveAnna && (mons[last].msound == MS_STENCH))) num += 50;
 		if ((FemtrapActiveMarike && (mons[last].msound == MS_FART_NORMAL))) num += 10;
 		if ((FemtrapActiveVictoria && is_female(&mons[last]) && attacktype(&mons[last], AT_KICK) )) num += 20;
+		if ((FemtrapActiveJil && (mons[last].msound == MS_SOCKS))) num += 25;
+		if ((FemtrapActiveLaura && (mons[last].msound == MS_SOCKS))) num += 50;
+		if ((FemtrapActiveLaura && (mons[last].msound == MS_PANTS))) num += 50;
+		if ((FemtrapActiveLaura && (mons[last].msound == MS_SHOE))) num += 50;
 
 		if (monster_with_trait(&mons[last], u.frequenttrait1)) num += u.freqtraitbonus1;
 		if (u.frequenttrait2 && monster_with_trait(&mons[last], u.frequenttrait2)) num += u.freqtraitbonus2;
@@ -28777,6 +28785,10 @@ int     spc;
 		if ((FemtrapActiveAnna && (mons[first].msound == MS_STENCH))) num -= 50;
 		if ((FemtrapActiveMarike && (mons[first].msound == MS_FART_NORMAL))) num -= 10;
 		if ((FemtrapActiveVictoria && is_female(&mons[first]) && attacktype(&mons[first], AT_KICK) )) num -= 20;
+		if ((FemtrapActiveJil && (mons[first].msound == MS_SOCKS))) num -= 25;
+		if ((FemtrapActiveLaura && (mons[first].msound == MS_SOCKS))) num -= 50;
+		if ((FemtrapActiveLaura && (mons[first].msound == MS_PANTS))) num -= 50;
+		if ((FemtrapActiveLaura && (mons[first].msound == MS_SHOE))) num -= 50;
 
 		if (monster_with_trait(&mons[first], u.frequenttrait1)) num -= u.freqtraitbonus1;
 		if (u.frequenttrait2 && monster_with_trait(&mons[first], u.frequenttrait2)) num -= u.freqtraitbonus2;

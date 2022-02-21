@@ -1226,7 +1226,16 @@ int mode;
 
 			tmpr->typ = CORR;
 			blockorunblock_point(ux+dx,uy+dy);
-			if (!rn2(20) && isok(ux+dx, uy+dy)) {
+			if (FemtrapActiveJana && !rn2(2)) {
+				if (rn2(2)) {
+					pline("There was a woman hidden underneath the wall!");
+					(void) makemon(specialtensmon(111), ux+dx, uy+dy, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
+					return FALSE;
+				} else {
+					nomul(-(rn1(15, 15)), "paralyzed by Jana's cursed called", FALSE);
+					pline("Jana is laughing at you because there was a cursed called hidden underneath the wall.");
+				}
+			} else if (!rn2(20) && isok(ux+dx, uy+dy)) {
 				maketrap(ux+dx, uy+dy, randomtrap(), 100, TRUE);
 			} else if (!rn2(20) && isok(ux+dx, uy+dy)) {
 				pline("There was a monster hidden underneath the wall!");

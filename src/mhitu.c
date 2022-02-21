@@ -4895,6 +4895,27 @@ newboss:
 
 	}
 
+	if (FemtrapActiveJil && (mtmp->data->msound == MS_SOCKS)) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_PLYS;
+		a->damn = 1;
+		a->damd = 4;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				(void) hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
 	if (FemtrapActiveAnita && humanoid(mtmp->data) && is_female(mtmp->data)) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];

@@ -27575,6 +27575,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"That bullshit effect where monsters could trigger feminism trap effects and cause you to be affected by them, it has ended. Took way too long. You're really angry at the sadistic programmer bitch who designed it like that.",
 	"Those women are gonna hang their worn pants in front of your nose, forcing you to smell them!",
 	"You got enough of smelling female pants.",
+	"You are held back by the referee, who states that it's unfair of you to try to attack the lusi!",
+	"You are held back by the referee, who states that it's unfair of you to try to attack the dogift! Quick, swerve around and hit the ass of a referee in the face instead, because seriously, who does he think he is?",
 
 };
 

@@ -1842,6 +1842,12 @@ newbossSING:
 		}
 	}
 
+	if (FemaleTrapKatrin && !rn2(1000) && humanoid(mtmp->data) && is_female(mtmp->data) ) {
+		if (!(t_at(mtmp->mx, mtmp->my))) {
+			maketrap(mtmp->mx, mtmp->my, PARALYSIS_TRAP, 0, FALSE);
+		}
+	}
+
 	/* monster noise trap: some of these noises have effects, might add others in future --Amy */
 	if ((MonnoiseEffect || u.uprops[MONNOISE_EFFECT].extrinsic || have_monnoisestone()) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(250) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) ) {
 		switch (mdat->msound) {
