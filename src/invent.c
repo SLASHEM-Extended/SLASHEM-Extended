@@ -11145,6 +11145,44 @@ boolean knoweverything;
 			pline("These boots make it easier to climb mountain terrain.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_WEDGE_SNEAKERS))
 			pline("A special pair of shoes that counts as both wedge heels and sexy flats at the same time.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BAYONET_HEELS))
+			pline("These stiletto heels deal extra damage when kicking, based on your short sword skill, and train that.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BLOCKCHOC_BOOTS))
+			pline("A very lovely pair of block-heeled combat boots that can also be eaten, which may give one of a variety of effects.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_PLATFORM_SNEAKERS))
+			pline("These sexy flats deal slightly increased damage if you kick an opponent.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ICEBLOCK_HEELS))
+			pline("Due to looking very lovely, this pair of block-heeled lady boots gives a charisma boost.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_PARAGRAPH_SHOES))
+			pline("A pair of female cone-heeled pumps.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_PARAGRAPH_SANDALS))
+			pline("A pair of female stiletto sandals.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_COPPER_STILETTOS))
+			pline("These stiletto heels are made of copper.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_PLATINUM_STILETTOS))
+			pline("These stiletto heels are made of platinum.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SILVER_STILETTOS))
+			pline("These stiletto heels are made of silver.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FOREIGN_BODY_SHOES))
+			pline("There's something in these shoes that doesn't belong there, and which will occasionally hurt your %s when you walk around!", makeplural(body_part(FOOT)));
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BRIDAL_SHOES))
+			pline("Wear this pair of cone heels if you're planning to get married. If you have a sexual encounter while wearing them, there's an increased chance of good effects.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_PISTOL_BOOTS))
+			pline("This pair of stiletto heels has a pistol for a heel. If you kick while having bullets quivered, they'll fire in the direction of your kick.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_NG_SHOES))
+			pline("--");
+			int lagamount = rnz(20);
+			while (lagamount > 0) {
+				delay_output();
+				lagamount--;
+			}
+			pline("These shoes are so ugly that the processor decided to hang.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_OTTING_BOOTS))
+			pline("An organic pair of shoes that will rot over time, although thankfully they'll not rot away to nothingness (unless they get rotted from an external source, so be wary of that).");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ENARMORING_BOOTS))
+			pline("Whenever you level up your body armor skill while wearing these boots, they will become rustproof!");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_CHELSEA_BOOTS))
+			pline("An exciting pair of shoes with treaded soles. They use the sexy flats skill.");
 
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
