@@ -5,6 +5,7 @@
 /* various code that was replicated in *main.c */
 
 #include "hack.h"
+#include "edog.h"
 #ifndef NO_SIGNAL
 #include <signal.h>
 #endif
@@ -1109,6 +1110,9 @@ moveloop()
 				if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
+				if (FemtrapActivePatricia && !rn2(8) && moveamt > 1 && u.umoved && u.dx && u.dy)
+					moveamt /= 2;
+
 				if (uwep && uwep->otyp == CIRCULAR_SAW && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
@@ -1197,7 +1201,7 @@ moveloop()
 				if (uarm && uarm->otyp == EVIL_LEATHER_ARMOR && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
-				if (is_sand(u.ux,u.uy) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmf && itemhasappearance(uarmf, APP_DYKE_BOOTS)) && !(uarmf && uarmf->oartifact == ART_EVERYWHERE_AT_ONCE) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !Race_if(PM_DUTHOL) && !sandprotection() && !Flying && !Levitation && !rn2(4) && moveamt > 1)
+				if (is_sand(u.ux,u.uy) && !(FemtrapActiveAntje && PlayerInBlockHeels) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmf && itemhasappearance(uarmf, APP_DYKE_BOOTS)) && !(uarmf && uarmf->oartifact == ART_EVERYWHERE_AT_ONCE) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !Race_if(PM_DUTHOL) && !sandprotection() && !Flying && !Levitation && !rn2(4) && moveamt > 1)
 					moveamt /= 2;
 
 				if (uarmc && uarmc->oartifact == ART_WEB_OF_THE_CHOSEN && !rn2(8) && moveamt > 1)
@@ -1478,6 +1482,9 @@ moveloop()
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too are slower sometimes. */
 				moveamt /= 2;
 
+			if (FemtrapActivePatricia && !rn2(8) && moveamt > 1 && u.umoved && u.dx && u.dy)
+				moveamt /= 2;
+
 			if (uwep && uwep->otyp == CIRCULAR_SAW && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
 
@@ -1579,7 +1586,7 @@ moveloop()
 			if (uarm && uarm->otyp == EVIL_LEATHER_ARMOR && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
 
-			if (is_sand(u.ux,u.uy) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmf && itemhasappearance(uarmf, APP_DYKE_BOOTS)) && !(uarmf && uarmf->oartifact == ART_EVERYWHERE_AT_ONCE) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !Race_if(PM_DUTHOL) && !sandprotection() && !Flying && !Levitation && !rn2(4) && moveamt > 1)
+			if (is_sand(u.ux,u.uy) && !(FemtrapActiveAntje && PlayerInBlockHeels) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmf && itemhasappearance(uarmf, APP_DYKE_BOOTS)) && !(uarmf && uarmf->oartifact == ART_EVERYWHERE_AT_ONCE) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !Race_if(PM_DUTHOL) && !sandprotection() && !Flying && !Levitation && !rn2(4) && moveamt > 1)
 				moveamt /= 2;
 
 			if (uarmc && uarmc->oartifact == ART_WEB_OF_THE_CHOSEN && !rn2(8) && moveamt > 1)
@@ -2038,6 +2045,8 @@ moveloop()
 				}
 
 			}
+
+		    if (FemtrapActiveAntje && u.uhunger >= 2500) moveamt -= (moveamt / 5);
 
 			/* being satiated makes you slower... --Amy */
 		    if (u.uhunger >= 3200) moveamt -= (moveamt / 6);
@@ -3155,6 +3164,47 @@ trapsdone:
 			}
 		}
 
+		if (FemtrapActiveJennifer && !rn2(1000)) {
+			register struct monst *jennymon;
+
+			struct permonst *pm = 0;
+			int attempts = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+newbossJENNY:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_FART_QUIET))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossJENNY;
+			}
+			if (pm && !(pm->msound == MS_FART_QUIET) && rn2(50) ) {
+				attempts = 0;
+				goto newbossJENNY;
+			}
+
+			if (pm) (jennymon = makemon(pm, u.ux, u.uy, NO_MM_FLAGS));
+
+			if (jennymon) {
+				if (rn2(2)) jennymon->mpeaceful = TRUE;
+				else {
+					jennymon->minvis = jennymon->perminvis = jennymon->minvisreal = 1;
+				}
+			}
+
+			u.aggravation = 0;
+
+		}
+
 		if (uarmf && uarmf->oartifact == ART_BEAUTYQUEAK && !rn2(10000)) {
 			register struct monst *blonde;
 
@@ -3747,6 +3797,66 @@ newbossBQ:
 			use_skill(P_SQUEAKING, 10);
 			pline("But in your haste, you forgot to open the lid!");
 			adjalign(-20);
+
+		}
+
+		if (FemtrapActiveAntje && IS_TOILET(levl[u.ux][u.uy].typ) && u.uhs < HUNGRY ) {
+
+			struct monst* mtmp2;
+			struct edog* edog;
+
+			pline("You absolutely have to use the toilet.");
+
+			if (Sick && !rn2(3) ) make_sick(0L, (char *)0, TRUE, SICK_VOMITABLE);
+			else if (Sick && !rn2(10) ) make_sick(0L, (char *)0, TRUE, SICK_ALL);
+			morehungry(rn2(400)+200);
+
+			if (uarmu && uarmu->oartifact == ART_KATIA_S_SOFT_COTTON) {
+				You("produce very erotic noises.");
+				if (!rn2(10)) adjattrib(rn2(A_CHA), 1, -1, TRUE);
+			}
+
+			use_skill(P_SQUEAKING, 10);
+			pline("Intentionally, you decided to not open the lid before taking a crap.");
+			adjalign(-50);
+			reducesanity(100);
+			decontaminate(100);
+
+			for (mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
+				if (rn2(3) && distu(mtmp2->mx,mtmp2->my) < 16) {
+					if (mtmp2->mtame) {
+						edog = (mtmp2->isminion) ? 0 : EDOG(mtmp2);
+						if (mtmp2->mtame <= /*3*/rnd(21) || (edog && edog->abuse >= /*5*/ rn2(6) )) {
+
+							int untamingchance = 10;
+
+							if (!(PlayerCannotUseSkills)) {
+								switch (P_SKILL(P_PETKEEPING)) {
+									default: untamingchance = 10; break;
+									case P_BASIC: untamingchance = 9; break;
+									case P_SKILLED: untamingchance = 8; break;
+									case P_EXPERT: untamingchance = 7; break;
+									case P_MASTER: untamingchance = 6; break;
+									case P_GRAND_MASTER: untamingchance = 5; break;
+									case P_SUPREME_MASTER: untamingchance = 4; break;
+								}
+							}
+
+							if (untamingchance > rnd(10) && !(Role_if(PM_DRAGONMASTER) && uarms && Is_dragon_shield(uarms) && mtmp2->data->mlet == S_DRAGON) && !((rnd(30 - ACURR(A_CHA))) < 4) ) {
+
+								mtmp2->mtame = mtmp2->mpeaceful = 0;
+								if (mtmp2->mleashed) { m_unleash(mtmp2,FALSE); }
+
+							}
+						}
+					} else if (mtmp2->mpeaceful) {
+						mtmp2->mpeaceful = 0;
+					} else {
+						if (!rn2(5)) mtmp2->mfrenzied = 1; /* but we have something else instead now :D */
+						mtmp2->mhp = mtmp2->mhpmax; /* let's heal them instead --Amy */
+					}
+				}
+			}
 
 		}
 
@@ -5846,6 +5956,23 @@ newbossJANI:
 			}
 		}
 
+		if (FemtrapActiveAntje && u.uhunger >= 2500 && !rn2(50)) {
+			switch (rnd(4)) {
+				case 1:
+					exercise(A_STR, FALSE);
+					break;
+				case 2:
+					exercise(A_DEX, FALSE);
+					break;
+				case 3:
+					exercise(A_CON, FALSE);
+					break;
+				case 4:
+					exercise(A_WIS, FALSE);
+					break;
+			}
+		}
+
 		if (uarmf && uarmf->oartifact == ART_SARAH_S_SNEAKERS_OF_INSTAN && !rn2(5000)) {
 			register struct monst *offmon;
 			struct obj *sarahfootwear;
@@ -5860,6 +5987,20 @@ newbossJANI:
 					u_teleport_monB(offmon, FALSE);
 				}
 			}
+		}
+
+		if (FemtrapActiveGudrun && u.ulevel >= 10 && !rn2(20000)) {
+		      (void) makemon(&mons[PM_GUDRUN_THE_FEMINIST], 0, 0, MM_ANGRY);
+			u.gudrunspawncount++;
+			verbalize("I'm challenging you to a duel. Let's see if you can overcome my stalwart defenses!");
+
+		}
+
+		if (FemtrapActiveElla && u.ulevel >= 10 && !rn2(20000)) {
+		      (void) makemon(&mons[PM_ELLA_THE_FEMINIST], 0, 0, MM_ANGRY);
+			u.ellaspawncount++;
+			verbalize("I'm challenging you to a duel. Bet that you won't be able to survive my furious attack?");
+
 		}
 
 		if (Role_if(PM_FEMINIST) && u.ualign.record < 0 && !rn2(StrongStealth ? 100000 : Stealth ? 50000 : 5000)) {
@@ -8133,7 +8274,7 @@ newbossB:
 			levl[u.ux][u.uy].typ = POOL;
 		}
 
-		if (is_sand(u.ux, u.uy) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !(Race_if(PM_DUTHOL) && rn2(10)) && !sandprotection() && !rn2(isfriday ? 10 : 20)) {
+		if (is_sand(u.ux, u.uy) && !(FemtrapActiveAntje && PlayerInBlockHeels) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !(Race_if(PM_DUTHOL) && rn2(10)) && !sandprotection() && !rn2(isfriday ? 10 : 20)) {
 			You("are caught in a sandstorm, and the sand gets in your %s!", body_part(EYE));
 			make_blinded(Blinded + rnd(5),FALSE);
 		}
@@ -8340,6 +8481,30 @@ newbossB:
 					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
+			}
+		}
+
+		if (FemtrapActiveLarissa && !rn2(1000) && !(u.larissatimer) ) {
+			struct trap *larissatrap;
+			int tryct = 0;
+			int x, y;
+
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+					larissatrap = maketrap(x, y, SHIT_TRAP, 0, FALSE);
+					if (larissatrap) {
+						larissatrap->tseen = TRUE; /* always visible */
+						larissatrap->hiddentrap = FALSE;
+						u.larissatimer = 200;
+						pline("Something commands you to step into dog shit within 200 turns, and if you don't comply, bad things will happen!");
+						if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+						stop_occupation();
+					}
+					break;
+				}
 			}
 		}
 

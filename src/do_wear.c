@@ -5743,6 +5743,7 @@ find_ac()
 	if (uwep && uwep->oartifact == ART_SIGIX_BROADSWORD) uac -= 20;
 	if (uarm && uarm->oartifact == ART_MOEBIUS_ARMOR) uac -= 10;
 	if (bmwride(ART_PANZER_TANK)) uac -= 10;
+	if (FemtrapActivePatricia) uac -= 3;
 
 	if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 		if ((!uarm || is_metallic(uarm)) && (!uarmc || is_metallic(uarmc)) && (!uarmu || is_metallic(uarmu)) && (!uarms || is_metallic(uarms)) && (!uarmg || is_metallic(uarmg)) && (!uarmf || is_metallic(uarmf)) && (!uarmh || is_metallic(uarmh)) ) {

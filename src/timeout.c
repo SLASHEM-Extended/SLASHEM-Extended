@@ -500,6 +500,23 @@ nh_timeout()
 		if (!u.acutraining) pline("Your extra skill training ends.");
 	}
 
+	if (u.larissatimer) {
+		u.larissatimer--;
+
+		if (u.larissatimer == 20) pline("Quick, find a heap of shit to step into!");
+		if (u.larissatimer == 10) pline("Hurry up!!! You have to step into a heap of shit, now!");
+
+		if (u.larissatimer < 0) u.larissatimer = 0; /* fail safe */
+		if (u.larissatimer == 0) {
+			dismount_steed(DISMOUNT_FELL);
+			set_wounded_legs(BOTH_SIDES, HWounded_legs + (int)HWounded_legs + rn1(5,5));
+			make_feared(HFeared + rnz(150),FALSE);
+			set_itimeout(&HeavyFeared, HFeared);
+			IncreasedGravity += 1000;
+			pline("Well, now things are bad, because you didn't want to step into shit with your shoes.");
+		}
+	}
+
 	if (u.egglayingtimeout) {
 		u.egglayingtimeout--;
 		if (u.egglayingtimeout < 0) u.egglayingtimeout = 0; /* fail safe */

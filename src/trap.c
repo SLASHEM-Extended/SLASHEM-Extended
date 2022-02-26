@@ -8101,19 +8101,35 @@ newbossPENT:
 
 	    case SHIT_TRAP:
 
-		if ((Levitation || Flying || (uarmf && itemhasappearance(uarmf, APP_YELLOW_SNEAKERS) ) ) && !(Role_if(PM_GANG_SCHOLAR)) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) && !SpellColorBrown && !FemtrapActiveAnastasia && !FemtrapActiveHenrietta && !FemtrapActiveAnna && !(uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) && !(uarmf && itemhasappearance(uarmf, APP_SKI_HEELS)) && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS) && !(uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) && !(uarmf && (itemhasappearance(uarmf, APP_HUGGING_BOOTS) || itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) ) ) { /* ground-based trap, obviously */
-		    if (!already_seen && rn2(3)) break;
-		    seetrap(trap);
-		    pline("%s %s on the ground below you.",
-			    already_seen ? "There is" : "You discover",
-			    "a stinking heap of shit");
-			break;
-		} 
+		{
+			boolean larissashoes = (uarmf ? TRUE : FALSE);
 
-		seetrap(trap);
-		doshittrap((struct obj *)0);
-		if (!rn2(50) || (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) ) deltrap(trap);
-		break;
+			if ((Levitation || Flying || (uarmf && itemhasappearance(uarmf, APP_YELLOW_SNEAKERS) ) ) && !(Role_if(PM_GANG_SCHOLAR)) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) && !SpellColorBrown && !FemtrapActiveAnastasia && !FemtrapActiveBridghitte && !FemtrapActiveLarissa && !FemtrapActiveHenrietta && !FemtrapActiveAnna && !(uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) && !(uarmf && itemhasappearance(uarmf, APP_SKI_HEELS)) && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS) && !(uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) && !(uarmf && (itemhasappearance(uarmf, APP_HUGGING_BOOTS) || itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) ) ) { /* ground-based trap, obviously */
+			    if (!already_seen && rn2(3)) break;
+			    seetrap(trap);
+			    pline("%s %s on the ground below you.",
+				    already_seen ? "There is" : "You discover", "a stinking heap of shit");
+				break;
+			} 
+
+			seetrap(trap);
+			doshittrap((struct obj *)0);
+
+			if (u.larissatimer) {
+				u.larissatimer = 0;
+				if (!larissashoes) {
+					statdrain();
+					You("were told that you should be wearing shoes when stepping into shit, but you just didn't want to listen...");
+				} else if (PlayerInHighHeels) {
+					pline("It was fun to step into dog shit with your high heels.");
+					goodeffect();
+				}
+			}
+
+			if (!rn2(50) || (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) ) deltrap(trap);
+			break;
+
+		}
 
 	    case PIT:
 	    case SPIKED_PIT:
@@ -9314,7 +9330,7 @@ madnesseffect:
 		 case SPEAR_TRAP:
 		seetrap(trap);
 		pline("A spear stabs up from a hole in the ground at you!");
-		if (thick_skinned(youmonst.data) || (uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON) || (uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) || (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) || (uarmf && uarmf->oartifact == ART_THICK_FARTING_GIRL) || Race_if(PM_DUTHOL) ) {
+		if (thick_skinned(youmonst.data) || (uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON) || (uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) || FemtrapActivePatricia || (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) || (uarmf && uarmf->oartifact == ART_THICK_FARTING_GIRL) || Race_if(PM_DUTHOL) ) {
 			pline("But it breaks off against your body.");
 			deltrap(trap);
 		} else if (Levitation && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) {

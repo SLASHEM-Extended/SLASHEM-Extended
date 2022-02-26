@@ -1050,6 +1050,10 @@ stupidsegfault:
 
 	}
 
+	if (!do_hallu && mtmp->female && humanoid(mtmp->data) && mtmp->lisaseen) {
+		sprintf(eos(buf), " wearing %s", pantsdescription(mtmp));
+	}
+
 	{
 	    char buf2[BUFSZ];
 
@@ -1191,6 +1195,147 @@ register struct monst *mtmp;
 
 	*bp = highc(*bp);
 	return(bp);
+}
+
+char *
+pantsdescription(mtmp)
+register struct monst *mtmp;
+{
+	static char pantsbuf[BUFSZ]; 
+
+	switch (mtmp->lisapantscolor) {
+
+		case 1:
+			sprintf(pantsbuf, "white");
+			break;
+		case 2:
+			sprintf(pantsbuf, "gray");
+			break;
+		case 3:
+			sprintf(pantsbuf, "black");
+			break;
+		case 4:
+			sprintf(pantsbuf, "yellow");
+			break;
+		case 5:
+			sprintf(pantsbuf, "red");
+			break;
+		case 6:
+			sprintf(pantsbuf, "green");
+			break;
+		case 7:
+			sprintf(pantsbuf, "blue");
+			break;
+		case 8:
+			sprintf(pantsbuf, "pink");
+			break;
+		case 9:
+			sprintf(pantsbuf, "lilac");
+			break;
+		case 10:
+			sprintf(pantsbuf, "magenta");
+			break;
+		case 11:
+			sprintf(pantsbuf, "cyan");
+			break;
+		case 12:
+			sprintf(pantsbuf, "orange");
+			break;
+		case 13:
+			sprintf(pantsbuf, "polka-dotted");
+			break;
+		case 14:
+			sprintf(pantsbuf, "wine-red");
+			break;
+		case 15:
+			sprintf(pantsbuf, "rainbow-colored");
+			break;
+		case 16:
+			sprintf(pantsbuf, "dark blue");
+			break;
+		case 17:
+			sprintf(pantsbuf, "sky blue");
+			break;
+		case 18:
+			sprintf(pantsbuf, "neon green");
+			break;
+		case 19:
+			sprintf(pantsbuf, "beige");
+			break;
+		default:
+			impossible("weird lisapantscolor %d", mtmp->lisapantscolor);
+			sprintf(pantsbuf, "weird");
+			break;
+
+	}
+
+		strcat(pantsbuf, " ");
+
+	switch (mtmp->lisapantstype) {
+
+		case 1:
+			strcat(pantsbuf, "pants");
+			break;
+		case 2:
+			strcat(pantsbuf, "panties");
+			break;
+		case 3:
+			strcat(pantsbuf, "string tangas");
+			break;
+		case 4:
+			strcat(pantsbuf, "hotpants");
+			break;
+		case 5:
+			strcat(pantsbuf, "sexy underwear");
+			break;
+		case 6:
+			strcat(pantsbuf, "thongs");
+			break;
+		case 7:
+			strcat(pantsbuf, "bikini pants");
+			break;
+		case 8:
+			strcat(pantsbuf, "hipster pants");
+			break;
+		case 9:
+			strcat(pantsbuf, "high briefs");
+			break;
+		case 10:
+			strcat(pantsbuf, "mid-rise pants");
+			break;
+		case 11:
+			strcat(pantsbuf, "cheekies");
+			break;
+		case 12:
+			strcat(pantsbuf, "seamless pants");
+			break;
+		case 13:
+			strcat(pantsbuf, "g-strings");
+			break;
+		case 14:
+			strcat(pantsbuf, "french-cut panties");
+			break;
+		case 15:
+			strcat(pantsbuf, "spandex pants");
+			break;
+		case 16:
+			strcat(pantsbuf, "cotton pants");
+			break;
+		case 17:
+			strcat(pantsbuf, "slip shorts");
+			break;
+		case 18:
+			strcat(pantsbuf, "form-fitting panties");
+			break;
+		default:
+			impossible("weird lisapantstype %d", mtmp->lisapantstype);
+			strcat(pantsbuf, "weirdunderoos");
+			break;
+
+	}
+
+	return pantsbuf;
+
 }
 
 /* used for monster ID by the '/', ';', and 'C' commands to block remote

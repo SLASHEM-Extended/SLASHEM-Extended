@@ -812,7 +812,7 @@ struct monst *mon;
 	    if((objects[otyp].oc_dir & (SLASH) ) && (ptr->mlet == S_JELLY))
 			bonus += 2;
 	    /* concussion damage is better agains chitinous armour */
-	    if( (objects[otyp].oc_dir & (WHACK) ) &&
+	    if( (objects[otyp].oc_dir == 0 ) &&
 	        (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
 			bonus += 2; 
 	    /* flyers can better be reached with a polearm */
@@ -1327,7 +1327,7 @@ struct monst *mon;
 	    if((objects[otyp].oc_dir & (SLASH) ) && (ptr->mlet == S_JELLY))
 			bonus += 2;
 	    /* concussion damage is better agains chitinous armour */
-	    if( (objects[otyp].oc_dir & (WHACK) ) &&
+	    if( (objects[otyp].oc_dir == 0 ) &&
 	        (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
 			bonus += 2; 
 	    /* flyers can better be reached with a polearm */
@@ -6815,6 +6815,9 @@ struct obj *weapon;
 
 	}
 
+	if (FemtrapActivePatricia && weapon && (objects[weapon->otyp].oc_dir == 0 ) ) {
+		bonus += 10;
+	}
 
 	if (uarmc && uarmc->oartifact == ART_DISBELIEVING_POWERLORD) bonus += rnd(5);
 

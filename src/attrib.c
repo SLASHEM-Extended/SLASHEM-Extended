@@ -2644,6 +2644,10 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) tmp += 10;
 		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_DESEAMING_GAME) tmp += 3;
+		if (FemtrapActiveNora && u.uhs == WEAK) tmp += 2;
+		if (FemtrapActiveNora && u.uhs == FAINTING) tmp += 5;
+		if (FemtrapActiveNora && u.uhs == FAINTED) tmp += 10;
+		if (FemtrapActiveNora && u.uhs == STARVED) tmp += 25;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (uarmg && uarmg->otyp == GAUNTLETS_OF_POWER) tmp += (uarmg->spe + 3);
@@ -2652,6 +2656,15 @@ int x;
 
 		if (PlayerBleeds > 50) tmp--;
 		if (PlayerBleeds > 100) tmp -= 2;
+
+		if (FemtrapActiveNora && u.uhunger > 500) {
+			int norahunger = (u.uhunger - 500);
+			if (norahunger < 200) norahunger = 0;
+			norahunger /= 200;
+			if (norahunger < 0) norahunger = 0;
+			tmp--;
+			tmp -= norahunger;
+		}
 
 		if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT && tmp > 12) tmp = 12;
 		if (uwep && uwep->oartifact == ART_JAPANESE_WOMEN && tmp > 14) tmp = 14;
@@ -2754,6 +2767,10 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_KATHARINA_S_LOVELINESS) tmp += 10;
 		if (uwep && uwep->oartifact == ART_DAINTY_SLOAD) tmp += 3;
 		if (uwep && uwep->oartifact == ART_HACHURATE) tmp += 5;
+		if (FemtrapActiveNora && u.uhs == WEAK) tmp += 2;
+		if (FemtrapActiveNora && u.uhs == FAINTING) tmp += 5;
+		if (FemtrapActiveNora && u.uhs == FAINTED) tmp += 10;
+		if (FemtrapActiveNora && u.uhs == STARVED) tmp += 25;
 
 		if (RngeCoquetry) tmp += 5;
 		if (FemtrapActiveSolvejg) tmp += 5;
@@ -2818,6 +2835,16 @@ int x;
 		if (uarmf && itemhasappearance(uarmf, APP_SANDALS_WITH_SOCKS)) tmp -= 25;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
 		if (u.tsloss_cha > 0) tmp -= u.tsloss_cha;
+		if (FemtrapActiveAntje && !PlayerInBlockHeels) tmp -= 5;
+
+		if (FemtrapActiveNora && u.uhunger > 500) {
+			int norahunger = (u.uhunger - 500);
+			if (norahunger < 200) norahunger = 0;
+			norahunger /= 200;
+			if (norahunger < 0) norahunger = 0;
+			tmp--;
+			tmp -= norahunger;
+		}
 
 		/* having a hemorrhage means you don't look so good... --Amy */
 		if (PlayerBleeds > 100) tmp--;
@@ -2847,6 +2874,10 @@ int x;
 		if (x == A_WIS && uwep && uwep->oartifact == ART_SCJWILLX_) tmp += 5;
 		if (x == A_INT && Race_if(PM_MAZIN)) tmp += 2;
 		if (x == A_WIS && Race_if(PM_MAZIN)) tmp += 1;
+		if (FemtrapActiveNora && u.uhs == WEAK) tmp += 2;
+		if (FemtrapActiveNora && u.uhs == FAINTING) tmp += 5;
+		if (FemtrapActiveNora && u.uhs == FAINTED) tmp += 10;
+		if (FemtrapActiveNora && u.uhs == STARVED) tmp += 25;
 
 		if (uarmh && uarmh->oartifact == ART_YOU_DON_T_KNOW_SHIT) tmp -= 3;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp -= 10;
@@ -2862,6 +2893,15 @@ int x;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
 		if (u.tsloss_int > 0 && x == A_INT) tmp -= u.tsloss_int;
 		if (u.tsloss_wis > 0 && x == A_WIS) tmp -= u.tsloss_wis;
+
+		if (FemtrapActiveNora && u.uhunger > 500) {
+			int norahunger = (u.uhunger - 500);
+			if (norahunger < 200) norahunger = 0;
+			norahunger /= 200;
+			if (norahunger < 0) norahunger = 0;
+			tmp--;
+			tmp -= norahunger;
+		}
 
 		if (uarmh && uarmh->otyp == DUNCE_CAP) return(Role_if(PM_JESTER) ? 9 : 6);
 	} else if (x == A_DEX) {
@@ -2892,6 +2932,10 @@ int x;
 		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
 		if (uwep && uwep->oartifact == ART_LONGBONE_OF_BANANA) tmp += 3;
 		if (uwep && uwep->oartifact == ART_LONGBOW_OF_BANANA) tmp += 3;
+		if (FemtrapActiveNora && u.uhs == WEAK) tmp += 2;
+		if (FemtrapActiveNora && u.uhs == FAINTING) tmp += 5;
+		if (FemtrapActiveNora && u.uhs == FAINTED) tmp += 10;
+		if (FemtrapActiveNora && u.uhs == STARVED) tmp += 25;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (PlayerBleeds > 100) tmp -= 2;
@@ -2903,6 +2947,15 @@ int x;
 		if (have_lowstatstone()) tmp -= 10;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
 		if (u.tsloss_dex > 0) tmp -= u.tsloss_dex;
+
+		if (FemtrapActiveNora && u.uhunger > 500) {
+			int norahunger = (u.uhunger - 500);
+			if (norahunger < 200) norahunger = 0;
+			norahunger /= 200;
+			if (norahunger < 0) norahunger = 0;
+			tmp--;
+			tmp -= norahunger;
+		}
 
 	} else { /* A_CON */
 
@@ -2925,6 +2978,10 @@ int x;
 		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_DESEAMING_GAME) tmp += 3;
 		if (bmwride(ART_PANZER_TANK)) tmp += 10;
+		if (FemtrapActiveNora && u.uhs == WEAK) tmp += 2;
+		if (FemtrapActiveNora && u.uhs == FAINTING) tmp += 5;
+		if (FemtrapActiveNora && u.uhs == FAINTED) tmp += 10;
+		if (FemtrapActiveNora && u.uhs == STARVED) tmp += 25;
 
 		if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 			if (uarm && is_metallic(uarm)) tmp++;
@@ -2945,6 +3002,15 @@ int x;
 		if (FemtrapActiveIna) tmp -= 3;
 		if (PlayerBleeds > 50) tmp--;
 		if (PlayerBleeds > 100) tmp -= 2;
+
+		if (FemtrapActiveNora && u.uhunger > 500) {
+			int norahunger = (u.uhunger - 500);
+			if (norahunger < 200) norahunger = 0;
+			norahunger /= 200;
+			if (norahunger < 0) norahunger = 0;
+			tmp--;
+			tmp -= norahunger;
+		}
 
 		if (AllStatsAreLower) tmp -= 10;
 		if (uarmf && uarmf->oartifact == ART_STAR_SOLES) tmp -= 2;

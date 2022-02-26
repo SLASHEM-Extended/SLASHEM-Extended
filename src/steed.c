@@ -321,9 +321,9 @@ boolean
 can_ride(mtmp)
 	struct monst *mtmp;
 {
-	if (!issoviet) return (mtmp->mtame || mtmp->egotype_steed || canalwaysride(mtmp->data) || ((mercedesride(ART_UTTER_USELESSNESS, mtmp)) && (mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_LOUD || mtmp->data->msound == MS_STENCH || mtmp->data->msound == MS_SUPERMAN ) ) || (Race_if(PM_SHOE) && mtmp->data->msound == MS_SHOE) );
+	if (!issoviet) return (mtmp->mtame || mtmp->egotype_steed || (FemtrapActiveLarissa && mtmp->data->msound == MS_SHOE) || canalwaysride(mtmp->data) || ((mercedesride(ART_UTTER_USELESSNESS, mtmp)) && (mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_LOUD || mtmp->data->msound == MS_STENCH || mtmp->data->msound == MS_SUPERMAN ) ) || (Race_if(PM_SHOE) && mtmp->data->msound == MS_SHOE) );
 
-	return ((mtmp->mtame || mtmp->egotype_steed || canalwaysride(mtmp->data) || ((mercedesride(ART_UTTER_USELESSNESS, mtmp)) && (mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_LOUD || mtmp->data->msound == MS_STENCH || mtmp->data->msound == MS_SUPERMAN ) ) || (Race_if(PM_SHOE) && mtmp->data->msound == MS_SHOE)) && humanoid(youmonst.data) &&
+	return ((mtmp->mtame || mtmp->egotype_steed || (FemtrapActiveLarissa && mtmp->data->msound == MS_SHOE) || canalwaysride(mtmp->data) || ((mercedesride(ART_UTTER_USELESSNESS, mtmp)) && (mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_LOUD || mtmp->data->msound == MS_STENCH || mtmp->data->msound == MS_SUPERMAN ) ) || (Race_if(PM_SHOE) && mtmp->data->msound == MS_SHOE)) && humanoid(youmonst.data) &&
 			!verysmall(youmonst.data) && !bigmonst(youmonst.data) &&
 			(!Underwater || is_swimmer(mtmp->data)) );
 
@@ -463,7 +463,7 @@ mount_steed(mtmp, force)
 	    sprintf(kbuf, "attempting to ride %s", an(mtmp->data->mname));
 	    instapetrify(kbuf);
 	}
-	if (!(mtmp->mtame || mtmp->egotype_steed || canalwaysride(mtmp->data) || ((mercedesride(ART_UTTER_USELESSNESS, mtmp)) && (mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_LOUD || mtmp->data->msound == MS_STENCH || mtmp->data->msound == MS_SUPERMAN ) ) || (Race_if(PM_SHOE) && mtmp->data->msound == MS_SHOE)) || mtmp->isminion) {
+	if (!(mtmp->mtame || mtmp->egotype_steed || (FemtrapActiveLarissa && mtmp->data->msound == MS_SHOE) || canalwaysride(mtmp->data) || ((mercedesride(ART_UTTER_USELESSNESS, mtmp)) && (mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_LOUD || mtmp->data->msound == MS_STENCH || mtmp->data->msound == MS_SUPERMAN ) ) || (Race_if(PM_SHOE) && mtmp->data->msound == MS_SHOE)) || mtmp->isminion) {
 	    pline("I think %s would mind.", mon_nam(mtmp));
 	    return (FALSE);
 	}

@@ -6493,6 +6493,11 @@ register struct attack *mattk;
 			tmp *= 4;
 			pline("You eat %s's dream!", mon_nam(mdef));
 			u.uconduct.food++;
+			if (FemtrapActiveNora) {
+				You("vomit.");
+				vomit();
+				morehungry(20);
+			}
 			morehungry(-rnd(10)); /* cannot choke */
 		}
 
@@ -6538,6 +6543,11 @@ register struct attack *mattk;
 
 		You("eat %s brain!", s_suffix(mon_nam(mdef)));
 		u.uconduct.food++;
+		if (FemtrapActiveNora) {
+			You("vomit.");
+			vomit();
+			morehungry(20);
+		}
 		if (touch_petrifies(mdef->data) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !Stoned) {
 			if (Hallucination && rn2(10)) pline("You are already stoned.");
 			else {
@@ -7391,6 +7401,11 @@ register struct attack *mattk;
 			tmp *= 4;
 			pline("You eat %s's dream!", mon_nam(mdef));
 			u.uconduct.food++;
+			if (FemtrapActiveNora) {
+				You("vomit.");
+				vomit();
+				morehungry(20);
+			}
 			morehungry(-rnd(10)); /* cannot choke */
 		}
 		goto common;
@@ -7410,6 +7425,11 @@ register struct attack *mattk;
 		}
 		You("eat %s brain!", s_suffix(mon_nam(mdef)));
 		u.uconduct.food++;
+		if (FemtrapActiveNora) {
+			You("vomit.");
+			vomit();
+			morehungry(20);
+		}
 		if (touch_petrifies(mdef->data) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !Stoned) {
 			if (Hallucination && rn2(10)) pline("You are already stoned.");
 			else {
@@ -7655,6 +7675,11 @@ register struct attack *mattk;
 
 			/* KMH, conduct */
 			u.uconduct.food++;
+			if (FemtrapActiveNora) {
+				You("vomit.");
+				vomit();
+				morehungry(20);
+			}
 			if (!vegan(mdef->data))
 			     u.uconduct.unvegan++;
 			if (!vegetarian(mdef->data))
@@ -9038,6 +9063,18 @@ bladeangerdone:
 						return FALSE;
 					}
 				}
+
+				if (FemtrapActivePatricia && uwep && (objects[uwep->otyp].oc_dir == 0 ) && !rn2(uwep->oartifact ? 150 : 30) ) {
+					uwep->spe--;
+					pline("Your weapon degrades.");
+					if (uwep->spe < -20) {
+						useupall(uwep);
+						pline("Your weapon is destroyed.");
+						return FALSE;
+					}
+
+				}
+
 				if (uwep && uwep->oartifact == ART_H__S_BRITTLE_REPLICA && !rn2(10)) {
 					useupall(uwep);
 					pline("Your broadsword replica shatters into a thousand fragments.");
@@ -9093,6 +9130,18 @@ bladeangerdone:
 						return FALSE;
 					}
 				}
+
+				if (FemtrapActivePatricia && u.twoweap && uswapwep && (objects[uswapwep->otyp].oc_dir == 0 ) && !rn2(uswapwep->oartifact ? 150 : 30) ) {
+					uswapwep->spe--;
+					pline("Your weapon degrades.");
+					if (uswapwep->spe < -20) {
+						useupall(uswapwep);
+						pline("Your weapon is destroyed.");
+						return FALSE;
+					}
+
+				}
+
 				if (u.twoweap && uswapwep && uswapwep->oartifact == ART_H__S_BRITTLE_REPLICA && !rn2(10)) {
 					useupall(uswapwep);
 					pline("Your broadsword replica shatters into a thousand fragments.");

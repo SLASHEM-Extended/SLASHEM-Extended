@@ -27577,6 +27577,12 @@ static NEARDATA const char * const fake_plines[] = {
 	"You got enough of smelling female pants.",
 	"You are held back by the referee, who states that it's unfair of you to try to attack the lusi!",
 	"You are held back by the referee, who states that it's unfair of you to try to attack the dogift! Quick, swerve around and hit the ass of a referee in the face instead, because seriously, who does he think he is?",
+	"Something commands you to step into dog shit within 200 turns, and if you don't comply, bad things will happen!",
+	"Something commands you to step into dog shit within 200 turns, and if you don't comply or aren't wearing shoes when you do comply, bad things will happen!",
+	"Quick, find a heap of shit to step into!",
+	"Quick, find a heap of shit to step into! Preferrably, you should be wearing dark shoes so that people won't notice!",
+	"Hurry up!!! You have to step into a heap of shit, now!",
+	"Hurry up!!! You have to step into a heap of shit, now! The guy who commands you to do so will clean your shoes, or at least he promised to do so even though it's obvious that he just wants to trick you!",
 
 };
 

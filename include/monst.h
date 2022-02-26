@@ -64,6 +64,9 @@ struct monst {
 	unsigned long mintrinsics;	/* initialized from mresists */
 	int mspec_used;		/* monster's special ability attack timeout */
 	int     oldmonnm;       /* Old monster number - for polymorph */
+	int lisapantscolor;	/* for lisa trap effect */
+	int lisapantstype;
+	boolean lisaseen;
 
 	Bitfield(female,1);	/* is female */
 	Bitfield(minvis,1);	/* currently invisible */

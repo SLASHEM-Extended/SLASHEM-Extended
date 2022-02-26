@@ -847,6 +847,11 @@ still_chewing(x,y)
 
     /* Okay, you've chewed through something */
     u.uconduct.food++;
+	if (FemtrapActiveNora) {
+		You("vomit.");
+		vomit();
+		morehungry(20);
+	}
     u.uhunger += rnd(20);
 
     if (boulder) {
@@ -1481,7 +1486,7 @@ walscholardone:
 		You("cannot pass that way.");
 	    return FALSE;
 	}
-	if ( (bigmonst(youmonst.data) && !Race_if(PM_TRANSFORMER) ) || (!Upolyd && Race_if(PM_HUMANOID_CENTAUR) ) || (!Upolyd && Race_if(PM_ETHEREALOID) ) || (!Upolyd && Race_if(PM_INCORPOREALOID) ) || (!Upolyd && Race_if(PM_PLAYER_CERBERUS) ) || (!Upolyd && Race_if(PM_CHIROPTERAN) ) || (!Upolyd && Race_if(PM_THUNDERLORD) ) || (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) || (!Upolyd && Race_if(PM_PLAYER_JABBERWOCK) ) ) {
+	if ( (bigmonst(youmonst.data) && !Race_if(PM_TRANSFORMER) ) || FemtrapActivePatricia || (!Upolyd && Race_if(PM_HUMANOID_CENTAUR) ) || (!Upolyd && Race_if(PM_ETHEREALOID) ) || (!Upolyd && Race_if(PM_INCORPOREALOID) ) || (!Upolyd && Race_if(PM_PLAYER_CERBERUS) ) || (!Upolyd && Race_if(PM_CHIROPTERAN) ) || (!Upolyd && Race_if(PM_THUNDERLORD) ) || (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) || (!Upolyd && Race_if(PM_PLAYER_JABBERWOCK) ) ) {
 	    if (mode == DO_MOVE)
 		Your("body is too large to fit through.");
 	    return FALSE;

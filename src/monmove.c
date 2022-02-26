@@ -233,7 +233,7 @@ boolean digest_meal;
 	if (ishaxor) regenrate /= 2;
 
 	if (mon->mhp < mon->mhpmax && !is_golem(mon->data) &&
-	    (!rn2(regenrate) || regenerates(mon->data) || mon->egotype_regeneration )) mon->mhp++;
+	    (!rn2(regenrate) || (FemtrapActiveGudrun && mon->female && humanoid(mon->data)) || regenerates(mon->data) || mon->egotype_regeneration )) mon->mhp++;
 
 	if (mon->data == &mons[PM_GROGGY_GUY]) {
 		mon->mhp += rnd(5);
@@ -241,7 +241,7 @@ boolean digest_meal;
 	}
 
 	/* super regene */
-	if (mon->data == &mons[PM_MESHERA_ALPHA_DEFORMED_ANGEL] || mon->data == &mons[PM_TESTER] || mon->data == &mons[PM_TEA_HUSSY] || mon->data == &mons[PM_OUROBOROS] || mon->data == &mons[PM_UNITDEAD_QUEEN] || mon->data == &mons[PM_UNITDEAD_KING] || mon->data == &mons[PM_REGULUS_THE_ALTERED] || mon->data == &mons[PM_ZANAN_ENHANCED_SOLDIER] || mon->data == &mons[PM_VANESSA_ENHANCED_SOLDIER] || mon->data == &mons[PM_SUPERREGENEBOROS] || mon->data == &mons[PM_JUERE_DEMON_SOLDIER] || mon->data == &mons[PM_JENNIFER_DEMON_SOLDIER] || mon->data == &mons[PM_ARIANE__LADY_OF_THE_ELEMENTS] || mon->data == &mons[PM_RENAI_OVER_MESHERA] || mon->data == &mons[PM_PATIENT_ZERO] || mon->data == &mons[PM_MISSU]) {
+	if (mon->data == &mons[PM_MESHERA_ALPHA_DEFORMED_ANGEL] || mon->data == &mons[PM_TESTER] || mon->data == &mons[PM_TEA_HUSSY] || mon->data == &mons[PM_OUROBOROS] || mon->data == &mons[PM_UNITDEAD_QUEEN] || mon->data == &mons[PM_UNITDEAD_KING] || mon->data == &mons[PM_REGULUS_THE_ALTERED] || mon->data == &mons[PM_ZANAN_ENHANCED_SOLDIER] || mon->data == &mons[PM_VANESSA_ENHANCED_SOLDIER] || mon->data == &mons[PM_SUPERREGENEBOROS] || mon->data == &mons[PM_JUERE_DEMON_SOLDIER] || mon->data == &mons[PM_JENNIFER_DEMON_SOLDIER] || mon->data == &mons[PM_ARIANE__LADY_OF_THE_ELEMENTS] || mon->data == &mons[PM_RENAI_OVER_MESHERA] || mon->data == &mons[PM_PATIENT_ZERO] || mon->data == &mons[PM_MISSU] || (FemtrapActiveGudrun && mon->female && humanoid(mon->data)) ) {
 		mon->mhp += 20;
 		if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
 	}
@@ -1625,7 +1625,7 @@ register struct monst *mtmp;
 
 	}
 
-	if (mdat->msound == MS_FART_QUIET && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && !um_dist(mtmp->mx, mtmp->my, fartdistance) && !mtmp->mpeaceful) {
+	if (mdat->msound == MS_FART_QUIET && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && !um_dist(mtmp->mx, mtmp->my, fartdistance) && (!mtmp->mpeaceful || FemtrapActiveJennifer)) {
 	    m_respond(mtmp);
 		while (FemtrapActiveElena && !rn2(3)) {
 			pline("You long for more!");
@@ -1713,7 +1713,7 @@ newbossSING:
 		mtmp->singability = TRUE;
 	}
 
-	if (mdat->msound == MS_FART_QUIET && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && mtmp->crapbonus && (rn2(2000) < mtmp->crapbonus) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
+	if (mdat->msound == MS_FART_QUIET && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && mtmp->crapbonus && (rn2(2000) < mtmp->crapbonus) && !um_dist(mtmp->mx, mtmp->my, 1) && (!mtmp->mpeaceful || FemtrapActiveJennifer))
 	{
 		pline("Using %s %s butt, %s produces tender noises and craps right in your %s.", mhis(mtmp), mtmp->female ? "sexy" : "ugly", mon_nam(mtmp), body_part(FACE) );
 
@@ -1767,6 +1767,8 @@ newbossSING:
 	/* fleeing monsters might regain courage */
 	if (mtmp->mflee && !mtmp->mfleetim
 	   && mtmp->mhp == mtmp->mhpmax && !rn2(25)) mtmp->mflee = 0;
+
+	if (FemtrapActiveElla && mtmp->female && humanoid(mtmp->data) && (mtmp->mhp < (mtmp->mhpmax * 9 / 10) )) mtmp->mflee = 0;
 
 	set_apparxy(mtmp);
 	/* Must be done after you move and before the monster does.  The
@@ -1836,13 +1838,19 @@ newbossSING:
 		}
 	}
 
-	if (FemaleTrapAnna && !rn2(1000) && humanoid(mtmp->data) && is_female(mtmp->data) && (mdat->msound == MS_STENCH)) {
+	if (FemtrapActiveLarissa && !rn2(200) && mtmp->data->mlet == S_DOG) {
 		if (!(t_at(mtmp->mx, mtmp->my))) {
 			maketrap(mtmp->mx, mtmp->my, SHIT_TRAP, 0, FALSE);
 		}
 	}
 
-	if (FemaleTrapKatrin && !rn2(1000) && humanoid(mtmp->data) && is_female(mtmp->data) ) {
+	if (FemtrapActiveAnna && !rn2(1000) && humanoid(mtmp->data) && is_female(mtmp->data) && (mdat->msound == MS_STENCH)) {
+		if (!(t_at(mtmp->mx, mtmp->my))) {
+			maketrap(mtmp->mx, mtmp->my, SHIT_TRAP, 0, FALSE);
+		}
+	}
+
+	if (FemtrapActiveKatrin && !rn2(1000) && humanoid(mtmp->data) && is_female(mtmp->data) ) {
 		if (!(t_at(mtmp->mx, mtmp->my))) {
 			maketrap(mtmp->mx, mtmp->my, PARALYSIS_TRAP, 0, FALSE);
 		}
@@ -2440,6 +2448,14 @@ convertdone:
 			nomul(-2, "scared by rattling", TRUE);
 			nomovemsg = 0;
 		}
+	}
+
+	if (FemtrapActiveLisa && mtmp->female && humanoid(mtmp->data) && !mtmp->lisaseen && canseemon(mtmp)) {
+
+		pline("%s comes into view. She is wearing %s.", Monnam(mtmp), pantsdescription(mtmp));
+
+		mtmp->lisaseen = TRUE;
+
 	}
 
 	/* the watch will look around and see if you are up to no good :-) */
@@ -3700,7 +3716,7 @@ altarfound:
 	       nidist > (couldsee(nix,niy) ? 144 : 36) && appr == 1) appr = 0;
 
 		/* special coding for "homing" giant wasps from the hunger games --Amy */
-		if ((ptr == &mons[PM_TRACKER_JACKER] || ptr == &mons[PM_ASSHOLE_WHO_CANNOT_ENJOY_ANYTHING__NOT_EVEN_A_PAIR_OF_CUDDLE_HEELS] || ptr == &mons[PM_KILLER_GIANT_RAT] || ptr == &mons[PM_POLICE_DOG] || ptr == &mons[PM_POLICE_HUSKY] || ptr == &mons[PM_BIG_POLICE_DOG] || ptr == &mons[PM_CURSED____LEFTHANDED_FARTING_ELEPHANT] || ptr == &mons[PM_VERONA_MARBLE] || ptr == &mons[PM_CHASE_BIRD] || ptr == &mons[PM_JAYCEE] || ptr == &mons[PM_OOGABOOGAGOBILITGOOK_SEEKER_AREHETYPE_FUCKING_RETARD_ASS_SHIT_FLINGING_MONKEY_MONSTER] || ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_DRIVE_TRAIN] || ptr == &mons[PM_XTREME_TRACKER] || ptr == &mons[PM_REFUGE_UHLERT] || ptr == &mons[PM_THE_ULTIMATE_REFUGE]) && !mtmp->mpeaceful) appr = 1;
+		if ((ptr == &mons[PM_TRACKER_JACKER] || (FemtrapActiveElla && mtmp->female && humanoid(mtmp->data) && (mtmp->mhp < (mtmp->mhpmax * 9 / 10) )) || ptr == &mons[PM_ASSHOLE_WHO_CANNOT_ENJOY_ANYTHING__NOT_EVEN_A_PAIR_OF_CUDDLE_HEELS] || ptr == &mons[PM_KILLER_GIANT_RAT] || ptr == &mons[PM_POLICE_DOG] || ptr == &mons[PM_POLICE_HUSKY] || ptr == &mons[PM_BIG_POLICE_DOG] || ptr == &mons[PM_CURSED____LEFTHANDED_FARTING_ELEPHANT] || ptr == &mons[PM_VERONA_MARBLE] || ptr == &mons[PM_CHASE_BIRD] || ptr == &mons[PM_JAYCEE] || ptr == &mons[PM_OOGABOOGAGOBILITGOOK_SEEKER_AREHETYPE_FUCKING_RETARD_ASS_SHIT_FLINGING_MONKEY_MONSTER] || ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_DRIVE_TRAIN] || ptr == &mons[PM_XTREME_TRACKER] || ptr == &mons[PM_REFUGE_UHLERT] || ptr == &mons[PM_THE_ULTIMATE_REFUGE]) && !mtmp->mpeaceful) appr = 1;
 
 	if (uarmh && itemhasappearance(uarmh, APP_BUG_TRACKING_HELMET) && !rn2(3) ) appr = 1; 
 

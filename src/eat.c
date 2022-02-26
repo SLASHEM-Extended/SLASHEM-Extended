@@ -4655,6 +4655,11 @@ opentin()		/* called during each move whilst opening a tin */
 
 	    /* KMH, conduct */
 	    u.uconduct.food++;
+		if (FemtrapActiveNora) {
+			You("vomit.");
+			vomit();
+			morehungry(20);
+		}
 		gluttonous();
 	    if (!vegan(&mons[tin.tin->corpsenm]))
 		u.uconduct.unvegan++;
@@ -4768,6 +4773,11 @@ opentin()		/* called during each move whilst opening a tin */
 	    lesshungry(600);
 	    gainstr(tin.tin, 0);
 	    u.uconduct.food++;
+		if (FemtrapActiveNora) {
+			You("vomit.");
+			vomit();
+			morehungry(20);
+		}
 	} else if (tin.tin->spe == 2) { /* canned beans, idea from /rlg/ on 4chan */
 	    if (tin.tin->cursed)
 		pline("It contains some decaying%s%s substance.",
@@ -4811,6 +4821,11 @@ opentin()		/* called during each move whilst opening a tin */
 
 	    lesshungry(600);
 	    u.uconduct.food++;
+		if (FemtrapActiveNora) {
+			You("vomit.");
+			vomit();
+			morehungry(20);
+		}
 	} else if (tin.tin->spe == 3) {
 	    if (tin.tin->cursed)
 		pline("It contains some decaying%s%s substance.",
@@ -4842,6 +4857,11 @@ opentin()		/* called during each move whilst opening a tin */
 
 	    lesshungry(600);
 	    u.uconduct.food++;
+		if (FemtrapActiveNora) {
+			You("vomit.");
+			vomit();
+			morehungry(20);
+		}
 	} else if (tin.tin->spe == 4) {
 	    if (tin.tin->cursed)
 		pline("It contains something extremely stinky.");
@@ -4872,6 +4892,11 @@ opentin()		/* called during each move whilst opening a tin */
 
 	    lesshungry(600);
 	    u.uconduct.food++;
+		if (FemtrapActiveNora) {
+			You("vomit.");
+			vomit();
+			morehungry(20);
+		}
 	}
 use_me:
 	if (carried(tin.tin)) useup(tin.tin);
@@ -7309,6 +7334,11 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 	    } else if (material == MT_WAX)
 			u.uconduct.unvegan++;
 	    u.uconduct.food++;
+		if (FemtrapActiveNora) {
+			You("vomit.");
+			vomit();
+			morehungry(20);
+		}
 		gluttonous();
 
 	    
@@ -7441,6 +7471,11 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 
 	/* KMH, conduct */
 	u.uconduct.food++;
+	if (FemtrapActiveNora) {
+		You("vomit.");
+		vomit();
+		morehungry(20);
+	}
 
 	victual.piece = otmp = touchfood(otmp);
 	victual.usedtime = 0;

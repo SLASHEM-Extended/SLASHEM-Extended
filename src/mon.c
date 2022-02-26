@@ -4497,6 +4497,79 @@ register struct monst *mtmp;
 	      (void) makemon(&mons[PM_GREAT_WYRM_OF_POWER], u.ux, u.uy, MM_ANGRY|MM_FRENZIED|MM_XFRENZIED);
 	}
 
+	if (tmp == PM_GUDRUN_THE_FEMINIST) {
+		if (u.gudrunspawncount > 0) {
+			u.gudrunspawncount--;
+			verbalize("Ahh... how did you do that... guess you're not as weak as you look, %s... alright, as a reward I'll allow you to train a skill of your choice.", playeraliasname);
+			doubleskilltraining();
+		}
+	}
+
+	if (tmp == PM_ELLA_THE_FEMINIST) {
+		if (u.ellaspawncount > 0) {
+			u.ellaspawncount--;
+			verbalize("This is impossible! %s, you cannot have defeated me! I... I will... *groan* oh well, here, you'll get your reward, but next time I'll bludgeon you for sure...", playeraliasname);
+
+			int skillimprove = randomgoodskill();
+
+			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(skillimprove);
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
+			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+				unrestrict_weapon_skill(skillimprove);
+				P_MAX_SKILL(skillimprove) = P_BASIC;
+				pline("You can now learn the %s skill.", wpskillname(skillimprove));
+			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
+				P_MAX_SKILL(skillimprove) = P_SKILLED;
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+				P_MAX_SKILL(skillimprove) = P_EXPERT;
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+				P_MAX_SKILL(skillimprove) = P_MASTER;
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+				pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+			} else {
+				adjattrib(rn2(A_MAX), 1, 0, TRUE);
+			}
+
+			if (Race_if(PM_RUSMOT)) {
+				if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+					unrestrict_weapon_skill(skillimprove);
+					pline("You can now learn the %s skill.", wpskillname(skillimprove));
+				} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+					unrestrict_weapon_skill(skillimprove);
+					P_MAX_SKILL(skillimprove) = P_BASIC;
+					pline("You can now learn the %s skill.", wpskillname(skillimprove));
+				} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
+					P_MAX_SKILL(skillimprove) = P_SKILLED;
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+				} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+					P_MAX_SKILL(skillimprove) = P_EXPERT;
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+				} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+					P_MAX_SKILL(skillimprove) = P_MASTER;
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+				} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+					P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+				} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+					P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+					pline("Your knowledge of the %s skill increases.", wpskillname(skillimprove));
+				} else {
+					adjattrib(rn2(A_MAX), 1, 0, TRUE);
+				}
+			}
+
+
+		}
+	}
+
 	if (tmp == PM_GUNNHILD_S_GENERAL_STORE) {	/* create traps on the level, disregarding special probability checks */
 
 		while (rn2(25)) {
@@ -7727,7 +7800,7 @@ register struct monst *mtmp;
 	aggravate();
     }
     if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_QUIET) {
-		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "tender" : "soft", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
+		if (!FemtrapActiveJennifer) pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "tender" : "soft", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		u.cnd_fartingcount++;
 		if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(1);
 		if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();

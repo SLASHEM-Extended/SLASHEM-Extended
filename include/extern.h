@@ -468,6 +468,7 @@ E const char *roguename(void);
 #endif
 E struct obj *realloc_obj(struct obj *, int, void *, int, const char *);
 E char *coyotename(struct monst *,char *);
+E char *pantsdescription(struct monst *);
 
 
 /* ### do_wear.c ### */

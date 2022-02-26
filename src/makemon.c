@@ -13286,6 +13286,10 @@ loveheelover:
 		if (ptr == &mons[PM_COW_HILL_GIANT]) (void)mongets(mtmp, SACK);
 		if (ptr == &mons[PM_IT_S_TOO_HEAVY_FOR_YOUR_HILL_GIANT]) (void)mongets(mtmp, TREASURE_CHEST);
 
+		if (ptr == &mons[PM_GUDRUN_THE_FEMINIST]) {
+			(void)mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL);
+			(void)mongets(mtmp, HIPPIE_HEELS);
+		}
 		if (ptr == &mons[PM_VEHEMENT_FEMMY]) {
 			(void)mongets(mtmp, FEMININE_PUMPS);
 			(void)mongets(mtmp, SEXY_LEATHER_PUMP);
@@ -14467,6 +14471,11 @@ loveheelover:
 		if (ptr == &mons[PM_PROFANITY_PRIEST]) (void) mongets(mtmp, SCYTHE);
 		if (ptr == &mons[PM_L_S_BELLS]) (void) mongets(mtmp, BELL);
 		if (ptr == &mons[PM_HARDFOUGHT_LYNCH_MOB_MEMBER]) (void) mongets(mtmp, PITCHFORK);
+
+		if (ptr == &mons[PM_ELLA_THE_FEMINIST]) {
+			(void)mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL);
+			(void)mongets(mtmp, WEDGE_SANDALS);
+		}
 
 		if (ptr == &mons[PM_MESSENGER_OF_DEATH]) {
 			(void) mongets(mtmp, SCYTHE);
@@ -22722,7 +22731,7 @@ register int	mmflags;
 		if (mtmp->m_lev > 49) mtmp->m_lev = 49;
 	}
 
-	if (LevelTrapEffect || u.uprops[LEVELBUG].extrinsic || have_levelstone() || (uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) || (uwep && uwep->oartifact == ART_GENOCIDE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GENOCIDE) ) {
+	if (LevelTrapEffect || u.uprops[LEVELBUG].extrinsic || have_levelstone() || (uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) || (ptr == &mons[PM_GUDRUN_THE_FEMINIST]) || (ptr == &mons[PM_ELLA_THE_FEMINIST]) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) || (uwep && uwep->oartifact == ART_GENOCIDE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GENOCIDE) ) {
 
 		int leveltrapbonus = mvitals[mtmp->mnum].born + 1;
 		if (leveltrapbonus < 1) leveltrapbonus = 1;
@@ -22934,6 +22943,11 @@ register int	mmflags;
 	}
 	if (!rn2(30)) mtmp->crapbonus += rnd(50);
 
+	if (FemtrapActiveJennifer && mtmp->data->msound == MS_FART_QUIET) {
+		mtmp->fartbonus += rnd(9);
+		if (mtmp->fartbonus > 9) mtmp->fartbonus = 9;
+	}
+
 	/* initialize nurse services... yes it's not a bug that we set this for every monster, because monsters are capable
 	 * of polymorphing into MS_NURSE monsters, you noob :P --Amy */
 	mtmp->nurse_extrahealth = !rn2(5);
@@ -22977,6 +22991,9 @@ register int	mmflags;
 	if (!rn2(3)) mtmp->telepatvisible = (rn2(2) ? 2 : 1);
 	mtmp->seeinvisble = rn2(3);
 	mtmp->infravisble = rn2(3);
+	mtmp->lisapantscolor = rnd(19);
+	mtmp->lisapantstype = rnd(18);
+	mtmp->lisaseen = FALSE;
 
 	if (Movemork || u.uprops[MOVEMORKING].extrinsic || have_movemorkstone()) mtmp->movement += 12;
 	if (uarmf && uarmf->oartifact == ART_SATAN_S_HYPERCHARGE) mtmp->movement += rnd(24);
