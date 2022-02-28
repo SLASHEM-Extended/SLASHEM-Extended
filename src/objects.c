@@ -600,7 +600,7 @@ WEAPON("mallet", (char *)0,
 
 /* Yes, these are melee weapons for whacking enemies to death. Hammer skill, for obvious reasons. --Amy
  * wedged little-girl sandal has to be first, see makemon.c */
-WEAPON("wedged little-girl sandal", (char *)0,
+WEAPON("wedged little-girl sandal", (char *)0, /* M4_HAMMERSANDAL */
 	1, 0, 0, 100, 1,  5,  4,  4, 2, B,   P_HAMMER, MT_MINERAL, CLR_WHITE, 1),
 WEAPON("soft girl sneaker", (char *)0,
 	1, 0, 0, 100, 2,  100,  2,  2, 5, B,   P_HAMMER, MT_LEATHER, CLR_RED, 2),
@@ -612,19 +612,19 @@ WEAPON("block-heeled combat boot", (char *)0,
 	1, 0, 0, 100, 5,  100,  11,  3, 0, B,   P_HAMMER, MT_LEATHER, CLR_BLACK, 20),
 WEAPON("inka boot", (char *)0,
 	1, 0, 0, 100, 3,  400,  20,  2, 0, B,   P_HAMMER, MT_INKA, CLR_BROWN, 25),
-WEAPON("steel-capped sandal", (char *)0,
+WEAPON("steel-capped sandal", (char *)0, /* M4_HAMMERSANDAL */
 	1, 0, 0, 100, 100,  100,  15,  15, 0, B,   P_HAMMER, MT_POURPOOR, CLR_GRAY, 35),
-WEAPON("block-heeled sandal", (char *)0,
+WEAPON("block-heeled sandal", (char *)0, /* M4_HAMMERSANDAL */
 	1, 0, 0, 100, 2,  50,  6,  8, 1, B,   P_HAMMER, MT_LEATHER, CLR_BLACK, 10),
 /* Some of these are expensive because they're supposed to be brands like Nike, Adidas etc. */
 /* We won't use those brand names in-game though. */
 
 /* adult versions - these do more damage, but monsters will rarely start with them in their inventory */
-WEAPON("wooden geta", (char *)0,
+WEAPON("wooden geta", (char *)0, /* M4_HAMMERSANDAL */
 	1, 0, 0, 100, 1,  5,  10,  10, 0, B,   P_HAMMER, MT_WOOD, CLR_BROWN, 10),
 WEAPON("lacquered dancing shoe", (char *)0,
 	1, 0, 0, 100, 2,  75,  6,  11, 0, B,   P_HAMMER, MT_MINERAL, CLR_BLACK, 36),
-WEAPON("high-heeled sandal", (char *)0,
+WEAPON("high-heeled sandal", (char *)0, /* M4_HAMMERSANDAL */
 	1, 0, 0, 100, 1,  10,  9,  7, 0, B,   P_HAMMER, MT_MINERAL, CLR_WHITE, 24),
 WEAPON("sexy leather pump", (char *)0,
 	1, 0, 0, 100, 2,  50,  8, 10, 4, B,   P_HAMMER, MT_LEATHER, CLR_BRIGHT_MAGENTA, 15),
@@ -2760,27 +2760,27 @@ BOOTS("crystal boots", "glass boots",
 		0, 0,  0,	   20, 2,30,300,  7, 0, MT_GLASS, CLR_CYAN, 10, 0),
 
 /* pretty footwear: wedge sandals have to be first, see makemon.c */
-BOOTS("wedge sandals", "heeled sandals",
+BOOTS("wedge sandals", "heeled sandals", /* M4_SANDALS */
 		0, 0,  0,         100, 5, 2,  25,  10, 0, MT_MINERAL, CLR_WHITE, 1, 0),
 BOOTS("dancing shoes", "soft footwear", /* not high-heeled - transvestites won't benefit from wearing this pair! --Amy */
 		0, 0,  0,         100, 1, 1,  80,   8, 0, MT_LEATHER, CLR_BRIGHT_BLUE, 3, 0),
-BOOTS("sweet mocassins", "womens footwear", /* not high-heeled*/
+BOOTS("sweet mocassins", "womens footwear", /* not high-heeled */
 		0, 0,  0,         100, 1, 1,  50,   9, 0, MT_LEATHER, CLR_ORANGE, 5, 0),
-BOOTS("soft sneakers", "light footwear", /* not high-heeled*/
+BOOTS("soft sneakers", "light footwear", /* M4_SNEAKERS, not high-heeled */
 		0, 0,  0,         100, 2, 2,  150,   8, 0, MT_LEATHER, CLR_WHITE, 1, 0),
 BOOTS("feminine pumps", "female footwear",
 		0, 0,  0,         100, 2, 4,  100,  10, 0, MT_LEATHER, CLR_ORANGE, 15, 0),
 BOOTS("leather peep-toes", "asian footwear",
 		0, 0,  0,         100, 3, 4,  200,   9, 0, MT_LEATHER, CLR_BLACK, 20, 0),
-BOOTS("hippie heels", "red overknees",
+BOOTS("hippie heels", "red overknees", /* M4_BLOCKHEELBOOTS */
 		0, 0,  HALLUC,    100, 3, 5,  200,  5, 0, MT_DRAGON_HIDE, CLR_ORANGE, 25, 0),
 BOOTS("combat stilettos", "heeled boots",
 		0, 0,  0,         100, 5, 10,  250,  9, 0, MT_DRAGON_HIDE, CLR_BLACK, 30, 0),
-BOOTS("lady boots", "lovely boots",
+BOOTS("lady boots", "lovely boots", /* M4_BLOCKHEELBOOTS */
 		0, 0,  0,         100, 2, 4,  100,  8, 0, MT_ETERNIUM, CLR_BLACK, 15, 0),
-BOOTS("stiletto sandals", "feminine sandals", /* offers full protection from sand terrain */
+BOOTS("stiletto sandals", "feminine sandals", /* M4_SANDALS, offers full protection from sand terrain */
 		0, 0,  0,         100, 5, 1,  100,  10, 0, MT_SAND, CLR_BROWN, 5, 0),
-BOOTS("italian heels", (char *)0, /* stiletto */
+BOOTS("italian heels", (char *)0, /* M4_SANDALS, stiletto */
 		1, 0,  0,   	100, 4, 5, 400, 9, 0, MT_LEATHER, CLR_BRIGHT_BLUE, 30, 0),
 /* italian heels have to be last */
 

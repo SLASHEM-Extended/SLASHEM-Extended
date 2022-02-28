@@ -292,6 +292,10 @@
 #define M4_GRIDBUG	0x00000200L		/* can only move in cardinal directions */
 #define M4_HUMANWERE	0x00000400L		/* for makedefs only - append HUMAN_ in front of werewolf name */
 #define M4_AMBERITE	0x00000800L		/* can use curse of amber, unkillable while the witch king lives */
+#define M4_BLOCKHEELBOOTS	0x00001000L	/* spawns with some sort of block-heeled boots */
+#define M4_SANDALS	0x00002000L	/* spawns with some sort of sandals */
+#define M4_SNEAKERS	0x00004000L	/* spawns with some sort of sneakers */
+#define M4_HAMMERSANDAL	0x00008000L	/* spawns with some sort of sandal weapon */
 
 #define M5_SPACEWARS	0x00000001L		/* Castle of the Winds monster */
 #define M5_JOKE	0x00000002L		/* joke monster */
