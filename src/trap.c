@@ -17656,73 +17656,10 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case BOON_TRAP:
 		case FOUNTAIN_TRAP:
 		case THRONE_TRAP:
-		case FEMMY_TRAP:
-		case MADELEINE_TRAP:
-		case MARLENA_TRAP:
-		case JANINA_TRAP:
-		case KRISTIN_TRAP:
-		case ANNA_TRAP:
-		case RUEA_TRAP:
-		case DORA_TRAP:
-		case MARIKE_TRAP:
-		case JETTE_TRAP:
-		case INA_TRAP:
-		case SING_TRAP:
-		case VICTORIA_TRAP:
-		case MELISSA_TRAP:
-		case ANITA_TRAP:
-		case HENRIETTA_TRAP:
-		case VERENA_TRAP:
-		case ARABELLA_TRAP:
-		case NELLY_TRAP:
-		case EVELINE_TRAP:
-		case KARIN_TRAP:
-		case JUEN_TRAP:
-		case KRISTINA_TRAP:
-		case ALMUT_TRAP:
-		case JULIETTA_TRAP:
-		case LOU_TRAP:
-		case ANASTASIA_TRAP:
 		case FILLER_TRAP:
 		case TOXIC_VENOM_TRAP:
 		case INSANITY_TRAP:
 		case MADNESS_TRAP:
-		case JESSICA_TRAP:
-		case SOLVEJG_TRAP:
-		case WENDY_TRAP:
-		case KATHARINA_TRAP:
-		case ELENA_TRAP:
-		case THAI_TRAP:
-		case ELIF_TRAP:
-		case NADJA_TRAP:
-		case SANDRA_TRAP:
-		case NATALJE_TRAP:
-		case JEANETTA_TRAP:
-		case YVONNE_TRAP:
-		case MAURAH_TRAP:
-		case MELTEM_TRAP:
-		case ANNEMARIE_TRAP:
-		case JIL_TRAP:
-		case JANA_TRAP:
-		case KATRIN_TRAP:
-		case GUDRUN_TRAP:
-		case ELLA_TRAP:
-		case MANUELA_TRAP:
-		case JENNIFER_TRAP:
-		case PATRICIA_TRAP:
-		case ANTJE_TRAP:
-		case ANTJE_TRAP_X:
-		case KERSTIN_TRAP:
-		case LAURA_TRAP:
-		case LARISSA_TRAP:
-		case NORA_TRAP:
-		case NATALIA_TRAP:
-		case SUSANNE_TRAP:
-		case LISA_TRAP:
-		case BRIDGHITTE_TRAP:
-		case JULIA_TRAP:
-		case NICOLE_TRAP:
-		case RITA_TRAP:
 
 		case HYBRID_TRAP:
 		case SHAPECHANGE_TRAP:
@@ -17762,11 +17699,6 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case SANITY_INCREASE_TRAP:
 		case PSI_TRAP:
 		case GAY_TRAP:
-
-		case SARAH_TRAP:
-		case CLAUDIA_TRAP:
-		case LUDGERA_TRAP:
-		case KATI_TRAP:
 
 		case SANITY_TREBLE_TRAP:
 		case STAT_DECREASE_TRAP:
@@ -17952,6 +17884,409 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case BOSS_SPAWNER:
 		case CONTAMINATION_TRAP:
 
+			break;
+
+		case FEMMY_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapFemmy) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case MADELEINE_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapMadeleine) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case MARLENA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapMarlena) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case JANINA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapJanina) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case KRISTIN_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapKristin) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case ANNA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapAnna) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case RUEA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapRuea) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case DORA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapDora) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case MARIKE_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapMarike) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case JETTE_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapJette) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case INA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapIna) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case SING_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapSing) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case VICTORIA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapVictoria) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case MELISSA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapMelissa) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case ANITA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapAnita) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case HENRIETTA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapHenrietta) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case VERENA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapVerena) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case ARABELLA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapArabella) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case NELLY_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapNelly) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case EVELINE_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapEveline) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case KARIN_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapKarin) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case JUEN_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapJuen) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case KRISTINA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapKristina) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case ALMUT_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapAlmut) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case JULIETTA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapJulietta) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case LOU_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapLou) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case ANASTASIA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapAnastasia) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case JESSICA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapJessica) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case SOLVEJG_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapSolvejg) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case WENDY_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapWendy) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case KATHARINA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapKatharina) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case ELENA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapElena) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case THAI_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapThai) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case ELIF_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapElif) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case NADJA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapNadja) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case SANDRA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapSandra) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case NATALJE_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapNatalje) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case JEANETTA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapJeanetta) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case YVONNE_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapYvonne) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case MAURAH_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapMaurah) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case MELTEM_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapMeltem) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case ANNEMARIE_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapAnnemarie) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case JIL_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapJil) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case JANA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapJana) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case KATRIN_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapKatrin) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case GUDRUN_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapGudrun) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case ELLA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapElla) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case MANUELA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapManuela) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case JENNIFER_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapJennifer) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case PATRICIA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapPatricia) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case ANTJE_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapAntje) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case ANTJE_TRAP_X:
+			if (FemtrapActiveRita && !FemaleTrapAntjeX) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case KERSTIN_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapKerstin) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case LAURA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapLaura) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case LARISSA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapLarissa) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case NORA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapNora) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case NATALIA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapNatalia) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case SUSANNE_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapSusanne) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case LISA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapLisa) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case BRIDGHITTE_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapBridghitte) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case JULIA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapJulia) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case NICOLE_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapNicole) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case RITA_TRAP: /* always triggered by monsters */
+			if (!FemaleTrapRita) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case SARAH_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapSarah) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case CLAUDIA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapClaudia) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case LUDGERA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapLudgera) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case KATI_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapKati) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
 			break;
 
 		case PET_TRAP:
@@ -20417,7 +20752,7 @@ boolean force_failure;
 	}
 	/* untrappable traps are located on the ground. */
 	if (!can_reach_floor()) {
-		if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) )
+		if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !FemtrapActiveKerstin && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) )
 			You("aren't skilled enough to reach from %s.",
 				mon_nam(u.usteed));
 		else
@@ -21388,7 +21723,7 @@ boolean force;
 			case 'q': return(0);
 			case 'n': continue;
 		    }
-		    if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
+		    if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !FemtrapActiveKerstin && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
 			You("aren't skilled enough to reach from %s.",
 				mon_nam(u.usteed));
 			return(0);

@@ -1117,7 +1117,7 @@ can_reach_floor()
 {
 	return (boolean)(!u.uswallow &&
 			/* Restricted/unskilled riders can't reach the floor */
-			!(u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) &&
+			!(u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !FemtrapActiveKerstin && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) &&
 			 ((!Levitation || StrongLevitation) || is_table(u.ux, u.uy) ||
 			  Is_airlevel(&u.uz) || Is_waterlevel(&u.uz)));
 }

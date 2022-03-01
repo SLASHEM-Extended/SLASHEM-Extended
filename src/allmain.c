@@ -5496,6 +5496,125 @@ controlagain:
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		}
 
+		if (!rn2(2000) && FemtrapActiveManuela ) {
+			u.aggravation = 1;
+			u.heavyaggravation = 1;
+
+			struct permonst *pm = 0;
+			int attempts = 0;
+
+			reset_rndmonst(NON_PM);
+
+newbossMANU:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(spawnswithblockheels(pm) ))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossMANU;
+			}
+			if (pm && !(spawnswithblockheels(pm)) && rn2(50) ) {
+				attempts = 0;
+				goto newbossMANU;
+			}
+
+			if (pm) (makemon(pm, u.ux, u.uy, MM_ANGRY|MM_FRENZIED|MM_XFRENZIED|MM_ADJACENTOK));
+
+			u.aggravation = 0;
+			u.heavyaggravation = 0;
+			pline("Manuela challenges you to fight a woman in block-heeled boots!");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			stop_occupation();
+		}
+
+		if (!rn2(5000) && FemtrapActiveSusanne ) {
+			u.aggravation = 1;
+			u.heavyaggravation = 1;
+			DifficultyIncreased += 1;
+			HighlevelStatus += 1;
+			EntireLevelMode += 1;
+			Bossfights += 1;
+
+			struct permonst *pm = 0;
+			int attempts = 0;
+
+			reset_rndmonst(NON_PM);
+
+newbossSUSA:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(is_female(pm) && (pm->geno & G_UNIQ) ))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossSUSA;
+			}
+			if (pm && !(is_female(pm) && (pm->geno & G_UNIQ) ) && rn2(50) ) {
+				attempts = 0;
+				goto newbossSUSA;
+			}
+
+			if (pm) (makemon(pm, u.ux, u.uy, MM_ANGRY|MM_ADJACENTOK));
+
+			u.aggravation = 0;
+			u.heavyaggravation = 0;
+			DifficultyIncreased -= 1;
+			HighlevelStatus -= 1;
+			EntireLevelMode -= 1;
+			Bossfights -= 1;
+			pline("A truly powerful woman challenges you to the duel of your life.");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			stop_occupation();
+		}
+
+		if (!rn2(1000) && FemtrapActiveKerstin ) {
+
+			struct permonst *pm = 0;
+			int attempts = 0;
+			register struct monst *kerstinmon;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+newbossKERSTIN:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(spawnswithblockheels(pm) || spawnswithsandals(pm) || spawnswithsneakers(pm)) )) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossKERSTIN;
+			}
+			if (pm && !(spawnswithblockheels(pm) || spawnswithsandals(pm) || spawnswithsneakers(pm)) && rn2(50) ) {
+				attempts = 0;
+				goto newbossKERSTIN;
+			}
+
+			if (pm) (kerstinmon = makemon(pm, u.ux, u.uy, MM_ANGRY|MM_ADJACENTOK));
+
+			if (kerstinmon && spawnswithsneakers(kerstinmon->data)) {
+				kerstinmon->isegotype = 1;
+				kerstinmon->egotype_perfumespreader = 1;
+				kerstinmon->noegodesc = 1;
+				kerstinmon->noegodisplay = 1;
+			}
+
+			u.aggravation = 0;
+
+		}
+
 		if (uarm && uarm->oartifact == ART_ROBE_OF_INFESTATION && !rn2(5000)) {
 			int aggroamount = rnd(12);
 			boolean infesttype = rn2(2) ? TRUE : FALSE;

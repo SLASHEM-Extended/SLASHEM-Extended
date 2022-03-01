@@ -2296,6 +2296,19 @@ convertdone:
 		nomul(-(rnd(5) + paralysistime), "smelling sweaty inlays", TRUE);
 	}
 
+	if (spawnswithsneakers(mtmp->data) && !mtmp->mpeaceful && FemtrapActiveKerstin && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(50) && (distu(mtmp->mx, mtmp->my) <= 12)) {
+		int paralysistime = mtmp->m_lev / 4;
+		if (paralysistime > 1) paralysistime = rnd(paralysistime);
+		if (paralysistime > 5) {
+			while (rn2(5) && (paralysistime > 5)) {
+				paralysistime--;
+			}
+		}
+		
+		pline("%s uses %s sweaty inlay, causing you to become unconscious from the stench!", Monnam(mtmp), mhis(mtmp));
+		nomul(-(rnd(5) + paralysistime), "smelling sweaty inlays", TRUE);
+	}
+
 	if (mdat == &mons[PM_STINKING_HEAP_OF_SHIT] && multi >= 0 && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(10)) {
 		pline("Urrrrrgh, there seems to be a stinking heap of shit nearby! You pass out from the vile stench.");
 		nomul(-(rnd(5)), "unconscious from smelling shit", TRUE);

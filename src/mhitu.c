@@ -384,8 +384,8 @@ karinrepeat:
 			}
 
 			int randomsexyheels = 0;
-			if (uarmf && uarmf->oartifact == ART_SYSTEM_OF_SEXUAL_PLEASURE && humanoid(mtmp->data) && is_female(mtmp->data)) randomsexyheels = rnd(29);
-			if (FemtrapActiveKristin && !rn2(10) && humanoid(mtmp->data) && is_female(mtmp->data)) randomsexyheels = rnd(29);
+			if (uarmf && uarmf->oartifact == ART_SYSTEM_OF_SEXUAL_PLEASURE && humanoid(mtmp->data) && is_female(mtmp->data)) randomsexyheels = rnd(30);
+			if (FemtrapActiveKristin && !rn2(10) && humanoid(mtmp->data) && is_female(mtmp->data)) randomsexyheels = rnd(30);
 
 			/* wedge sandals use M4_SANDALS */
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == WEDGE_SANDALS) || (footwear && footwear->otyp == EVELINE_WEDGE_SANDALS) || (footwear && footwear->otyp == NATALIA_WEDGE_SANDALS) || (footwear && footwear->otyp == GUDRUN_WEDGE_SANDALS) || (footwear && footwear->otyp == ELLA_WEDGE_SANDALS) || (footwear && footwear->otyp == KERSTIN_WOODEN_SANDALS) || (footwear && footwear->otyp == ANNEMARIE_PLATFORM_SANDALS) || (footwear && footwear->otyp == KARIN_LADY_SANDALS) || (footwear && footwear->otyp == CLAUDIA_WOODEN_SANDALS) || (footwear && itemhasappearance(footwear, APP_CALF_LEATHER_SANDALS)) || (footwear && itemhasappearance(footwear, APP_WOODEN_CLOGS)) || (footwear && itemhasappearance(footwear, APP_PRINTED_WEDGES)) || mtmp->data == &mons[PM_ANIMATED_WEDGE_SANDAL] || (randomsexyheels == 1) || mtmp->data == &mons[PM_WEREWEDGESANDAL] || mtmp->data == &mons[PM_HUMAN_WEREWEDGESANDAL]) ) {
@@ -812,6 +812,34 @@ elena12:
 
 			}
 
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ( (FemtrapActiveKerstin && spawnswithsandals(mtmp->data)) || (randomsexyheels == 30) ) ) {
+elenaWOODSANDAL:
+				u.cnd_shoedamageamount++;
+				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+				pline("%s slams %s hard sandals against your shins very painfully!", Monnam(mtmp), mhis(mtmp) );
+				if (multi >= 0) { /* ignores free action, this is not a bug --Amy */
+					pline("You can't fight back.");            
+					nomovemsg = "Finally you recovered from the pain!";
+					monsterlev = ((mtmp->m_lev) + 1);
+					monsterlev /= 2;
+					if (monsterlev <= 0) monsterlev = 1;
+					if (monsterlev > 1) monsterlev = rnd(monsterlev);
+					if (monsterlev > 10) {
+						while (rn2(5) && (monsterlev > 10)) {
+							monsterlev--;
+						}
+					}
+					nomul(-monsterlev, "knocked out by a hard wooden sandal", TRUE);
+
+				}
+
+				if (FemtrapActiveElena && !rn2(3)) {
+					pline("You long for more!");
+					goto elenaWOODSANDAL;
+				}
+
+			}
+
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == LEATHER_PEEP_TOES) || (footwear && footwear->otyp == JULIETTA_PEEP_TOES) || (footwear && footwear->otyp == JUEN_PEEP_TOES) || (randomsexyheels == 14) || mtmp->data == &mons[PM_ANIMATED_LEATHER_PEEP_TOE] || mtmp->data == &mons[PM_WEREPEEPTOE] || mtmp->data == &mons[PM_HUMAN_WEREPEEPTOE] || mtmp->data == &mons[PM_NORTHERN_SHIN_SMASHER]) ) {
 elena13:
 				u.cnd_shoedamageamount++;
@@ -886,7 +914,7 @@ elena14:
 			}
 
 			/* lady boots use M4_BLOCKHEELBOOTS */
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == LADY_BOOTS) || (footwear && footwear->otyp == NADJA_BUCKLED_LADY_SHOES) || (footwear && footwear->otyp == LISA_COMBAT_BOOTS) || (footwear && footwear->otyp == SELF_WILLED_HEELS) || (footwear && itemhasappearance(footwear, APP_DYKE_BOOTS)) || (footwear && itemhasappearance(footwear, APP_ICEBLOCK_HEELS)) || (randomsexyheels == 16) || mtmp->data == &mons[PM_FOURFOLD_SHOE_ENEMY] || mtmp->data == &mons[PM_SUPER_STRONG_GIRL] || mtmp->data == &mons[PM_ANIMATED_LADY_BOOT] ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == LADY_BOOTS) || (footwear && footwear->otyp == NADJA_BUCKLED_LADY_SHOES) || (FemtrapActiveKerstin && spawnswithblockheels(mtmp->data) ) || (footwear && footwear->otyp == LISA_COMBAT_BOOTS) || (footwear && footwear->otyp == SELF_WILLED_HEELS) || (footwear && itemhasappearance(footwear, APP_DYKE_BOOTS)) || (footwear && itemhasappearance(footwear, APP_ICEBLOCK_HEELS)) || (randomsexyheels == 16) || mtmp->data == &mons[PM_FOURFOLD_SHOE_ENEMY] || mtmp->data == &mons[PM_SUPER_STRONG_GIRL] || mtmp->data == &mons[PM_ANIMATED_LADY_BOOT] ) ) {
 elenalady:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();

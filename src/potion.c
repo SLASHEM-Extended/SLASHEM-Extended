@@ -14304,7 +14304,7 @@ dodip()
 		if (yn(qbuf) == 'y') {
 		    if (Levitation) {
 			floating_above(tmp);
-		    } else if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !(bmwride(ART_DEEPER_LAID_BMW)) && !is_swimmer(u.usteed->data) && !u.usteed->egotype_watersplasher &&
+		    } else if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !FemtrapActiveKerstin && !(bmwride(ART_DEEPER_LAID_BMW)) && !is_swimmer(u.usteed->data) && !u.usteed->egotype_watersplasher &&
 			    (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
 			rider_cant_reach(); /* not skilled enough to reach */
 		    } else {
@@ -14330,7 +14330,7 @@ dodip()
 		if (yn(qbuf) == 'y') {
 		    if (Levitation) {
 			floating_above("lava");
-		    } else if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !(bmwride(ART_DEEPER_LAID_BMW)) && !is_swimmer(u.usteed->data) && !u.usteed->egotype_watersplasher &&
+		    } else if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !FemtrapActiveKerstin && !(bmwride(ART_DEEPER_LAID_BMW)) && !is_swimmer(u.usteed->data) && !u.usteed->egotype_watersplasher &&
 			    (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
 			rider_cant_reach(); /* not skilled enough to reach */
 		    } else {

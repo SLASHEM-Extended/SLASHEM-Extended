@@ -3079,11 +3079,11 @@ boolean shopinit;
 		}
 		if (!rn2(200)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
-		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 40 : 20)) {
+		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 200 : 100)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if ((Race_if(PM_LISTENER) || RngeListening) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
 		}
-		else if (artif && !rn2(50)) {
+		else if (artif && !rn2(250)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
 			if (artif != 2) u.fakeartifacts++;
