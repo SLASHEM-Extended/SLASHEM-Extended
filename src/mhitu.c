@@ -5551,6 +5551,16 @@ newboss:
 
 	}
 
+	if (FemtrapActiveNatalia && !flags.female && spawnswithhammersandal(mtmp->data) && !(t_at(u.ux, u.uy)) && !rn2(5)) {
+
+		struct trap *ttmp2 = maketrap(u.ux, u.uy, GLUE_TRAP, 0, FALSE);
+		if (ttmp2) {
+			pline("%s holds you in place, because you're getting spanked now!", Monnam(mtmp));
+			dotrap(ttmp2, NOWEBMSG);
+		}
+
+	}
+
 	if (evilfriday && mtmp->data->mlet == S_GHOST) {
 		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict || !touch_petrifies(youmonst.data))) {
 			if (foundyou && tmp > (j = rnd(20+i))) {

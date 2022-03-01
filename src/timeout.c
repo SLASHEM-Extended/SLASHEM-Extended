@@ -335,6 +335,16 @@ nh_timeout()
 		}
 	}
 
+	u.nataliacycletimer++;
+	if (u.nataliacycletimer >= 2800) {
+		u.nataliacycletimer = 0;
+		u.nataliafollicularend = 1200 + rn2(401);
+		u.natalialutealstart = 200 + rn2(401);
+		if (FemtrapActiveNatalia && flags.female) Your("body enters the follicular phase.");
+	}
+	if (FemtrapActiveNatalia && flags.female && (u.nataliacycletimer == u.nataliafollicularend)) Your("body enters the menstrual phase! Oh no, the worst days of the month have started!");
+	if (FemtrapActiveNatalia && flags.female && (u.nataliacycletimer == (u.nataliafollicularend + u.natalialutealstart)) ) Your("body enters the luteal phase.");
+
 	if (PlayerBleeds && !(u.uinvulnerable)) {
 		int bleedingdamage = 1;
 		if (PlayerBleeds > 4) bleedingdamage = rnd(PlayerBleeds / 5);

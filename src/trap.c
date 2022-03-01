@@ -8885,7 +8885,7 @@ madnesseffect:
 
 	    case GLUE_TRAP:
 		seetrap(trap);
-		pline("Eek - you stepped into a heap of sticky glue!");
+		if (webmsgok) pline("Eek - you stepped into a heap of sticky glue!");
 		u.utraptype = TT_GLUE;
 		u.utrap = 25 + rnd(monster_difficulty());
 

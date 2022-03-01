@@ -2342,6 +2342,11 @@ boolean polearming;
 		pline("%s's unsolid body lets the projectile pass through harmlessly!", Monnam(mon));
 	}
 
+	if (FemtrapActiveNatalia && !flags.female && spawnswithhammersandal(mon->data) && rn2(4)) {
+		tmp = -100;
+		pline("The projectile just passes through %s!", mon_nam(mon));
+	}
+
 	/* the elder priest uses cheats */
 	if (mon->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && rn2(15) && tmp > -20) {
 		tmp = -100;

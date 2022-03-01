@@ -2190,6 +2190,11 @@ moveloop()
 			turn_allmonsters();
 		}
 
+		if (!rn2(20) && FemtrapActiveNatalia && flags.female && (u.nataliacycletimer >= u.nataliafollicularend) && (u.nataliacycletimer < (u.nataliafollicularend + u.natalialutealstart)) ) {
+			playerbleed(rnd(2 + (level_difficulty() * rnd(5))));
+			pline("It's the damn menstruation!");
+		}
+
 		if (uarmf && uarmf->oartifact == ART_WHINY_TEACHER_INSIDE_WOMAN && !rn2(100)) {
 			register struct monst *whinymon;
 
@@ -5529,6 +5534,38 @@ newbossMANU:
 			pline("Manuela challenges you to fight a woman in block-heeled boots!");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			stop_occupation();
+		}
+
+		if (!rn2(500) && FemtrapActiveNatalia && !flags.female) {
+
+			struct permonst *pm = 0;
+			int attempts = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+newbossNATA:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(spawnswithhammersandal(pm) ))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossNATA;
+			}
+			if (pm && !(spawnswithhammersandal(pm)) && rn2(50) ) {
+				attempts = 0;
+				goto newbossNATA;
+			}
+
+			if (pm) (makemon(pm, 0, 0, MM_ANGRY|MM_ADJACENTOK));
+
+			u.aggravation = 0;
 		}
 
 		if (!rn2(5000) && FemtrapActiveSusanne ) {

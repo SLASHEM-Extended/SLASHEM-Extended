@@ -27583,6 +27583,11 @@ static NEARDATA const char * const fake_plines[] = {
 	"Quick, find a heap of shit to step into! Preferrably, you should be wearing dark shoes so that people won't notice!",
 	"Hurry up!!! You have to step into a heap of shit, now!",
 	"Hurry up!!! You have to step into a heap of shit, now! The guy who commands you to do so will clean your shoes, or at least he promised to do so even though it's obvious that he just wants to trick you!",
+	"Natalia holds you in place, because you're getting spanked now!",
+	"Natalia holds you in place, because you're getting spanked now! Woe to you if you cry out in pain when her massive wedge heel slams on your head.",
+	"Your body enters the follicular phase.",
+	"Your body enters the luteal phase.",
+	"Your body enters the menstrual phase! Oh no, the worst days of the month have started!",
 
 };
 

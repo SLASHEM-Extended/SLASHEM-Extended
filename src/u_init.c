@@ -8511,7 +8511,7 @@ STATIC_OVL void
 knows_object(obj)
 register int obj;
 {
-	if ((obj == SPE_BEAMSWORD) || (obj == SPE_BLADE_ANGER)) return;
+	if ((obj == SPE_BEAMSWORD) || (obj == SPE_MENSTRUATION) || (obj == SPE_BLADE_ANGER)) return;
 
 	discover_object(obj,TRUE,FALSE);
 	objects[obj].oc_pre_discovered = 1;	/* not a "discovery" */
@@ -11142,6 +11142,11 @@ u_init()
 	u.ragnarokspelltimeout = 0;
 	u.freeplaymode = 0;
 	u.howtoenhanceskills = 0;
+
+	u.nataliacyclestart = rn2(2800);
+	u.nataliacycletimer = u.nataliacyclestart;
+	u.nataliafollicularend = 1200 + rn2(401);
+	u.natalialutealstart = 200 + rn2(401);
 
 	u.usymbiote.active = 0;
 	u.usymbiote.mnum = PM_PLAYERMON;

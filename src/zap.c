@@ -260,6 +260,33 @@ struct obj *otmp;
 
 		break;
 
+	case SPE_MENSTRUATION: /* clone of the blood stream spell, with lower damage values */
+		{
+			if (!flags.female) {
+				pline("Cheater! You're male, so you cannot menstruate!");
+				break;
+			}
+
+			int streambonus = 0;
+			if (u.uhp < (u.uhpmax * 4 / 5)) streambonus = 10;
+			if (u.uhp < (u.uhpmax * 3 / 5)) streambonus = 20;
+			if (u.uhp < (u.uhpmax * 2 / 5)) streambonus = 30;
+			if (u.uhp < (u.uhpmax * 3 / 10)) streambonus = 40;
+			if (u.uhp < (u.uhpmax * 1 / 5)) streambonus = 55;
+			if (u.uhp < (u.uhpmax * 1 / 10)) streambonus = 75;
+
+			dmg = d(2,10) + rnd(u.ulevel); /* no spell level bonus, not really a spell */
+			dmg *= (100 + streambonus);
+			dmg /= 100;
+			if (dmg > 0) {
+				pline("%s is drenched with your menstruation!", Monnam(mtmp));
+				(void) resist(mtmp, otmp->oclass, dmg, NOTELL);
+			}
+
+		}
+
+		break;
+
 	case SPE_GEYSER:
 
 		if (is_swimmer(mtmp->data) || amphibious(mtmp->data) || dmgtype(mtmp->data, AD_WET)) {
@@ -3940,6 +3967,8 @@ smell:
 		break;
 	case SPE_BEAMSWORD: /* placeholder for T_BEAMSWORD */
 		break;
+	case SPE_MENSTRUATION: /* placeholder for natalia trap special attack */
+		break;
 	default:
 		impossible("What an interesting effect (%ld)", otmp->otyp);
 		break;
@@ -5744,6 +5773,7 @@ boolean ordinary;
 			break;
 
 		case SPE_BLOOD_STREAM:
+		case SPE_MENSTRUATION:
 
 			You("drown yourself in your own menstruation!");
 			damage = d(10, 10);
@@ -7746,7 +7776,7 @@ struct obj *obj;
 
 	}
 
-	if (objects[otyp].oc_dir == IMMEDIATE || (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLADE_ANGER) || ( (tech_inuse(T_BEAMSWORD) || u.linkmasterswordhack) && obj->otyp == SPE_BEAMSWORD) ) {
+	if (objects[otyp].oc_dir == IMMEDIATE || obj->otyp == SPE_MENSTRUATION || (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLADE_ANGER) || ( (tech_inuse(T_BEAMSWORD) || u.linkmasterswordhack) && obj->otyp == SPE_BEAMSWORD) ) {
 	    obj_zapped = FALSE;
 
 		if (obj->otyp == WAN_WIND) {

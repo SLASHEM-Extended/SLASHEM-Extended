@@ -8176,6 +8176,7 @@ OBJECT(OBJ("Book of the Dead", "papyrus"),
 /* placeholders for certain techniques - should be impossible to obtain in a real game! --Amy */
 SPELL("blade anger",	 "THIS IS A BUG.",		P_ATTACK_SPELL, 0,  0, 0, 0, 0, HI_PAPER, 1),
 SPELL("beamsword",	 "THIS IS ALSO A BUG.",		P_ATTACK_SPELL, 0,  0, 0, 0, 0, HI_PAPER, 1),
+SPELL("menstruation",	 "THIS IS A SEVERE BUG.",		P_ATTACK_SPELL, 0,  0, 0, 0, 0, HI_PAPER, 1),
 
 #undef SPELL
 

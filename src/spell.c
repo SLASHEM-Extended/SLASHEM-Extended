@@ -2155,6 +2155,10 @@ learn()
 		impossible("player trying to read spellbook of beamsword");
 		return 0;
 	}
+	if(booktype == SPE_MENSTRUATION) {
+		impossible("player trying to read spellbook of menstruation");
+		return 0;
+	}
 
 	sprintf(splname, objects[booktype].oc_name_known ?
 			"\"%s\"" : "the \"%s\" spell",

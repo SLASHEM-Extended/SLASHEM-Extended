@@ -1729,6 +1729,11 @@ struct you {
 	int aldebaranturns;
 	int aldebaranskill;
 
+	int nataliacyclestart;	/* for natalia trap: starts at rn2(2800) */
+	int nataliacycletimer;
+	int nataliafollicularend;	/* when does the follicular phase end? 1200 + rn2(401) turns */
+	int natalialutealstart;	/* when does the luteal phase start? 200 + rn2(401) turns */
+
 	boolean keythief;	/* did the player use certain keys on Vlad's? if yes, give a reward once */
 	boolean keynocturn;
 	boolean keyaccess;

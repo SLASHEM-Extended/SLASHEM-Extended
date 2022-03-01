@@ -832,6 +832,9 @@ register struct monst *mtmp;
 
 	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 
+	/* being on the menstrual phase means you hit a lot less but if you do hit, you deal more damage --Amy */
+	if (FemtrapActiveNatalia && flags.female && (u.nataliacycletimer >= u.nataliafollicularend) && (u.nataliacycletimer < (u.nataliafollicularend + u.natalialutealstart)) ) tmp -= 5;
+
 	if (Role_if(PM_EMERA) && mtmp->female && humanoid(mtmp->data)) tmp += rnd(u.ulevel);
 
 	if (tech_inuse(T_CONCENTRATING)) tmp += 50;
@@ -3110,6 +3113,7 @@ int dieroll;
 		if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 199) tmp += 1;
 		if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 249) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_EROTICLAMP && u.ustuck && !u.uswallow && !sticks(youmonst.data)) tmp += 2;
+		if (!thrown && FemtrapActiveNatalia && flags.female && (u.nataliacycletimer >= u.nataliafollicularend) && (u.nataliacycletimer < (u.nataliafollicularend + u.natalialutealstart)) ) tmp += 2;
 
 		if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 

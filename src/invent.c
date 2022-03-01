@@ -15604,6 +15604,8 @@ boolean knoweverything;
 				pline("An arcane book that can be read. Reciting the eldritch formulas contained therein may raise the dead, so be careful. Reading it without an imbued silver bell doesn't work at all, though."); break;
 			case SPE_BEAMSWORD:
 				pline("This item is a placeholder for the beamsword technique and the fact that you somehow have it in your inventory is a bug! Please report this to Amy including a description of what you did that resulted in you getting it."); break;
+			case SPE_MENSTRUATION:
+				pline("This item is a placeholder for the natalia trap special attack and the fact that you somehow have it in your inventory is a bug! Please report this to Amy including a description of what you did that resulted in you getting it."); break;
 			case SPE_BLADE_ANGER:
 				pline("This item is a placeholder for the blade anger technique and the fact that you somehow have it in your inventory is a bug! Please report this to Amy including a description of what you did that resulted in you getting it."); break;
 			case SPE_DARKNESS:

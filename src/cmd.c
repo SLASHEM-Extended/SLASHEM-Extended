@@ -1726,6 +1726,45 @@ domonability()
 
 			return 1;
 		}
+
+	} else if (FemtrapActiveNatalia && flags.female && (u.nataliacycletimer >= u.nataliafollicularend) && (u.nataliacycletimer < (u.nataliafollicularend + u.natalialutealstart)) && PlayerBleeds && yn("Do you want to fire your menstruation at an enemy?") == 'y' ) {
+
+		getdir((char *)0);
+
+		struct obj *pseudo;
+		pseudo = mksobj(SPE_MENSTRUATION, FALSE, 2, FALSE);
+		if (!pseudo) {
+			pline("Somehow, it failed.");
+			return 0;
+		}
+		if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = SPE_MENSTRUATION; /* minimalist fix */
+		pseudo->blessed = pseudo->cursed = 0;
+		pseudo->quan = 20L;			/* do not let useup get it */
+		pseudo->spe = 5;
+		weffects(pseudo);
+		if (pseudo) obfree(pseudo, (struct obj *)0);	/* now, get rid of it */
+
+		if (Upolyd && u.mh < 5) {
+			losehp(10000, "forcibly bleeding out", KILLED_BY);
+		} else if (!Upolyd && u.uhp < 5) {
+			losehp(10000, "forcibly bleeding out", KILLED_BY);
+		}
+		if (rn2(2)) {
+			if (Upolyd) u.mh -= ((u.mh / 5) + 1);
+			else u.uhp -= ((u.uhp / 5) + 1);
+		} else {
+			if (Upolyd) {
+				u.mh -= ((u.mhmax / 5) + 1);
+				if (u.mh < 0) losehp(10000, "forcibly bleeding out", KILLED_BY);
+			} else {
+				u.uhp -= ((u.uhpmax / 5) + 1);
+				if (u.uhp < 0) losehp(10000, "forcibly bleeding out", KILLED_BY);
+			}
+		}
+
+		use_skill(P_SQUEAKING, 1);
+		return 1;
+
 	} else if ( ( (Role_if(PM_HUSSY) && (!Upolyd && flags.female)) || (uarmf && uarmf->oartifact == ART_ANJA_S_WIDE_FIELD) || (uarmf && uarmf->oartifact == ART_SCRATCHE_HUSSY) || have_femityjewel() || (PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_STENCH) || (Upolyd && youmonst.data->msound == MS_STENCH) ) && !u.hussyperfume && yn("Do you want to spread your scentful perfume?") == 'y') {
 		You("spread the lovely feminine drum stint reluctance brand perfume to intoxicate monsters around you!");
 
@@ -5721,6 +5760,9 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && FemtrapActiveNatalia) {
 		sprintf(buf, "possessed by the ghost of Natalia.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapNatalia);
+		if (flags.female && (u.nataliacycletimer < u.nataliafollicularend)) sprintf(eos(buf), " (follicular phase)");
+		else if (flags.female && (u.nataliacycletimer < (u.nataliafollicularend + u.natalialutealstart) )) sprintf(eos(buf), " (menstrual phase)");
+		else if (flags.female && (u.nataliacycletimer >= (u.nataliafollicularend + u.natalialutealstart) )) sprintf(eos(buf), " (luteal phase)");
 		you_are(buf);
 	}
 
@@ -9936,6 +9978,9 @@ int final;
 	if (FemtrapActiveNatalia) {
 		sprintf(buf, "possessed by the ghost of Natalia.");
 		sprintf(eos(buf), " (%ld)", FemaleTrapNatalia);
+		if (flags.female && (u.nataliacycletimer < u.nataliafollicularend)) sprintf(eos(buf), " (follicular phase)");
+		else if (flags.female && (u.nataliacycletimer < (u.nataliafollicularend + u.natalialutealstart) )) sprintf(eos(buf), " (menstrual phase)");
+		else if (flags.female && (u.nataliacycletimer >= (u.nataliafollicularend + u.natalialutealstart) )) sprintf(eos(buf), " (luteal phase)");
 		dump(youwere, buf);
 	}
 
