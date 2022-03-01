@@ -19,6 +19,7 @@ STATIC_DCL void do_positionbar(void);
 
 STATIC_PTR int unfaintX(void);
 STATIC_DCL void pumpsminigame(void);
+STATIC_DCL void antjeminigame(void);
 
 STATIC_PTR void do_megafloodingf(int, int, void *);
 STATIC_PTR void do_fjordefloodingf(int, int, void *);
@@ -3149,6 +3150,11 @@ trapsdone:
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
+		}
+
+		if (FemtrapActiveAntjeX && !rn2(2000)) {
+			You("feel the need to enter the secret course leading to the public toilet!");
+			antjeminigame();
 		}
 
 		if (uarmf && uarmf->oartifact == ART_ENDORPHIC_SCRATCHING && !rn2(4000)) {
@@ -16906,6 +16912,489 @@ void * poolcnt;
 	}
 
 	u.aggravation = 0;
+
+}
+
+/* antje trap 2 minigame by Amy */
+STATIC_OVL void
+antjeminigame()
+{
+	/* what the various stages mean:
+	1 = start
+	5 = Antje has entered the cabin
+	10 = Antje has pulled down her pants
+	15 = Antje has crapped on the toilet lid
+	20 = Antje has left, you're alone in the cabin now
+	100 = you managed to knock out Antje due to having high STR and lucky RNG
+	*/
+
+	int antjestage = 1;
+	boolean playeraroused = 0; /* if this is 1, punching no longer works */
+	boolean playerprone = 0; /* if this is 1, you're laying on the ground, helpless */
+	winid tmpwin;
+	anything any;
+	menu_item *selected;
+	int n;
+	char choiceonebuf[BUFSZ];
+	char choicetwobuf[BUFSZ];
+	char choicethreebuf[BUFSZ];
+	char choicefourbuf[BUFSZ];
+
+antjenewturn:
+	sprintf(choiceonebuf, "choice 1");
+	sprintf(choicetwobuf, "choice 2");
+	sprintf(choicethreebuf, "choice 3");
+	sprintf(choicefourbuf, "choice 4");
+
+	/* tell player what's happening */
+	switch (antjestage) {
+	
+		case 1:
+			pline("As you enter the toilet's anteroom, you discover a thick girl with an ugly face, who's obviously not supposed to be here. She looks like her name has to be Antje. Her black block-heeled combat boots look quite attractive...");
+			break;
+		case 5:
+			pline("Antje is in the men's cabin now, and prepares to use the toilet.");
+			break;
+		case 10:
+			pline("Antje is obviously about to take a crap, but you've noticed that she didn't pull up the lid yet!");
+			break;
+		case 15:
+			pline("Antje has actually crapped on the toilet lid, and on the men's WC no less.");
+			break;
+		case 20:
+			pline("You're alone in the cabin now, where Antje has fully crapped on the lid with her sexy butt.");
+			break;
+		case 100:
+			pline("Antje is laying prone on the ground. She's obviously unconscious.");
+			break;
+
+		default:
+			pline("error - antje minigame stage %d called", antjestage);
+			return;
+	}
+
+	/* give player a menu with choices; minigame stage determines what choices you have */
+	switch (antjestage) {
+
+		case 1:
+			sprintf(choiceonebuf, "Greet her.");
+			sprintf(choicetwobuf, "Ignore her.");
+			sprintf(choicethreebuf, "Punch her.");
+			sprintf(choicefourbuf, "Try to feel up her butt cheeks.");
+			break;
+
+		case 5:
+			sprintf(choiceonebuf, "Ask her what she's doing here.");
+			sprintf(choicetwobuf, "Ignore her.");
+			sprintf(choicethreebuf, "Punch her.");
+			sprintf(choicefourbuf, "Offer to pull down her pants.");
+			break;
+
+		case 10:
+			sprintf(choiceonebuf, "Tell her she's not allowed to do that.");
+			sprintf(choicetwobuf, "Ignore her.");
+			sprintf(choicethreebuf, "Punch her.");
+			sprintf(choicefourbuf, "Tell her how aroused you are.");
+			break;
+
+		case 15:
+			sprintf(choiceonebuf, "Call her a bitch.");
+			sprintf(choicetwobuf, "Ignore her.");
+			sprintf(choicethreebuf, "Punch her.");
+			sprintf(choicefourbuf, "Start wanking off.");
+			break;
+
+		case 20:
+			sprintf(choiceonebuf, "Be annoyed by the mess.");
+			sprintf(choicetwobuf, "Meditate.");
+			sprintf(choicethreebuf, "Do something stupid.");
+			sprintf(choicefourbuf, "Wank off.");
+			break;
+
+		case 100:
+			sprintf(choiceonebuf, "Feel her up.");
+			sprintf(choicetwobuf, "Think sexy thoughts.");
+			sprintf(choicethreebuf, "Spank her ass.");
+			sprintf(choicefourbuf, "Rape her.");
+			break;
+
+		default:
+			pline("error - antje minigame stage %d called", antjestage);
+			return;
+	}
+
+	any.a_void = 0;         /* zero out all bits */
+	tmpwin = create_nhwindow(NHW_MENU);
+	start_menu(tmpwin);
+	any.a_int = 1;
+	add_menu(tmpwin, NO_GLYPH, &any , 'a', 0, ATR_NONE, choiceonebuf, MENU_UNSELECTED);
+	any.a_int = 2;
+	add_menu(tmpwin, NO_GLYPH, &any , 'b', 0, ATR_NONE, choicetwobuf, MENU_UNSELECTED);
+	any.a_int = 3;
+	add_menu(tmpwin, NO_GLYPH, &any , 'c', 0, ATR_NONE, choicethreebuf, MENU_UNSELECTED);
+	any.a_int = 4;
+	add_menu(tmpwin, NO_GLYPH, &any , 'd', 0, ATR_NONE, choicefourbuf, MENU_UNSELECTED);
+
+	end_menu(tmpwin, "What do you do?");
+	n = select_menu(tmpwin, PICK_ONE, &selected);
+	destroy_nhwindow(tmpwin);
+
+	/* do something depending on your choice */
+	switch (antjestage) {
+		case 1:
+			if (n > 0) {
+				switch (selected[0].item.a_int) {
+					case 1:
+						pline("You try to say hello to Antje, but she just ignores you and enters the men's cabin.");
+						break;
+					case 2:
+						pline("You watch as Antje heads towards the men's cabin, and she actually enters...");
+						break;
+					case 3:
+						if (ACURR(A_STR) < STR18(50)) {
+							pline("Your feeble punch doesn't affect Antje at all.");
+							if (!rn2(5)) {
+								pline("However, she retaliates and powerfully hits your %s with her fist.", body_part(NOSE));
+								losehp(20, "being punched by Antje", KILLED_BY);
+							}
+						} else {
+							int punchchance = 0;
+							if (ACURR(A_STR) >= STR19(50)) punchchance = 10;
+							else if (ACURR(A_STR) >= STR19(24)) punchchance = 9;
+							else if (ACURR(A_STR) >= STR19(23)) punchchance = 8;
+							else if (ACURR(A_STR) >= STR19(22)) punchchance = 7;
+							else if (ACURR(A_STR) >= STR19(21)) punchchance = 6;
+							else if (ACURR(A_STR) >= STR19(20)) punchchance = 5;
+							else if (ACURR(A_STR) >= STR19(19)) punchchance = 4;
+							else if (ACURR(A_STR) >= STR18(80)) punchchance = 3;
+							else if (ACURR(A_STR) >= STR18(70)) punchchance = 2;
+							else punchchance = 1;
+
+							if (punchchance > rn2(100)) {
+								pline("With a devastating blow, you manage to fell Antje, and she crashes down to the ground, unconscious.");
+								antjestage = 100;
+								goto antjenewturn;
+								break;
+							} else {
+								pline("You hit Antje in the shoulder, which doesn't have any noticeable effect except that she's very angry now, and fully punches you in the %s.", body_part(FACE));
+								losehp(20, "being punched by Antje", KILLED_BY);
+							}
+						}
+						break;
+					case 4:
+						pline("As your %s start groping Antje's butt, she suddenly turns around and pushes you away, then she brazenly decides to enter the men's cabin.", makeplural(body_part(HAND)) );
+						break;
+				}
+			} else {
+				pline("You watch as Antje heads towards the men's cabin, and she actually enters...");
+			}
+			antjestage = 5;
+
+			break;
+
+		case 5:
+			if (n > 0) {
+				switch (selected[0].item.a_int) {
+					case 1:
+						pline("You try to ask Antje what she's doing on the men's WC, but she ignores you and proceeds to pull down her pants.");
+						if (!rn2(3)) {
+							pline("What an erotic bitch.");
+							drain_alla(1);
+						}
+						break;
+					case 2:
+						pline("Antje proceeds to pull down her pants, revealing very thick butt cheeks.");
+						break;
+					case 3:
+						if (ACURR(A_STR) < STR18(50)) {
+							pline("Your feeble punch doesn't affect Antje at all.");
+							if (!rn2(3)) {
+								pline("However, she retaliates and powerfully hits your %s with her fist, causing you to slip backwards and hit your %s on the wall.", body_part(NOSE), body_part(HEAD));
+								losehp(30, "being knocked against a wall by Antje", KILLED_BY);
+							}
+						} else {
+							int punchchance = 0;
+							if (ACURR(A_STR) >= STR19(50)) punchchance = 10;
+							else if (ACURR(A_STR) >= STR19(24)) punchchance = 9;
+							else if (ACURR(A_STR) >= STR19(23)) punchchance = 8;
+							else if (ACURR(A_STR) >= STR19(22)) punchchance = 7;
+							else if (ACURR(A_STR) >= STR19(21)) punchchance = 6;
+							else if (ACURR(A_STR) >= STR19(20)) punchchance = 5;
+							else if (ACURR(A_STR) >= STR19(19)) punchchance = 4;
+							else if (ACURR(A_STR) >= STR18(80)) punchchance = 3;
+							else if (ACURR(A_STR) >= STR18(70)) punchchance = 2;
+							else punchchance = 1;
+
+							if (punchchance > rn2(150)) {
+								pline("With a devastating blow, you manage to fell Antje, and she crashes down to the ground, unconscious.");
+								antjestage = 100;
+								goto antjenewturn;
+								break;
+							} else {
+								pline("You hit Antje in the back, but she's not impressed and fully stomps your %s with her thick block heel.", body_part(STOMACH));
+								losehp(10, "being kicked in the belly by Antje", KILLED_BY);
+								drain_alla(3);
+							}
+						}
+						break;
+					case 4:
+						pline("Antje doesn't seem to mind, and your %s gently pull down the soft cotton covering her thick buttocks. You feel quite aroused now...", makeplural(body_part(HAND)) );
+						drain_alla(2);
+						playeraroused = TRUE;
+						break;
+				}
+			} else {
+				pline("Antje proceeds to pull down her pants, revealing very thick butt cheeks.");
+			}
+			antjestage = 10;
+
+			break;
+
+		case 10:
+			if (n > 0) {
+				switch (selected[0].item.a_int) {
+					case 1:
+						pline("You tell Antje to stop, %s.", rn2(2) ? "because this is the men's WC and she's not supposed to be here" : "and remind her that she forgot to open the lid.");
+						pline("But Antje ignores you completely, and presses a fat log of shit on the toilet lid with her sexy butt.");
+						drain_alla(10);
+						break;
+					case 2:
+						pline("You watch as Antje produces erogenous noises with her butt and craps right on the toilet lid.");
+						drain_alla(10);
+						if ((10 + rnd(50)) > ACURR(A_CHA) ) {
+							playeraroused = TRUE;
+							pline("You just can't resist anymore, %s.", flags.female ? "and shockedly realize that your clit is getting wet" : "and develop a huge boner.");
+						}
+						break;
+					case 3:
+						if (playeraroused) {
+							pline("Due to being aroused by the sexy Antje, you can't bring yourself to hurt her. Instead, you just watch as she takes a crap on the toilet lid with her beautifully thick butt.");
+							drain_alla(20);
+						} else {
+							int punchchance = 0;
+							if (ACURR(A_STR) >= STR19(50)) punchchance = 10;
+							else if (ACURR(A_STR) >= STR19(24)) punchchance = 9;
+							else if (ACURR(A_STR) >= STR19(23)) punchchance = 8;
+							else if (ACURR(A_STR) >= STR19(22)) punchchance = 7;
+							else if (ACURR(A_STR) >= STR19(21)) punchchance = 6;
+							else if (ACURR(A_STR) >= STR19(20)) punchchance = 5;
+							else if (ACURR(A_STR) >= STR19(19)) punchchance = 4;
+							else if (ACURR(A_STR) >= STR18(80)) punchchance = 3;
+							else if (ACURR(A_STR) >= STR18(70)) punchchance = 2;
+							else punchchance = 1;
+
+							if (punchchance > rn2(500)) {
+								pline("With a devastating blow, you manage to fell Antje, and she crashes down to the ground, unconscious.");
+								antjestage = 100;
+								goto antjenewturn;
+								break;
+							} else {
+								pline("Before you can do much of anything, Antje %s.", flags.female ? "smashes you with her fist so powerfully that you crash into the ground, unable to get up" : "fully flattens your delicate nuts with her extra thick black block heels, and you fall on the ground, unable to get up");
+								losehp(50, "being bludgeoned by Antje", KILLED_BY);
+								playerprone = TRUE;
+								pline("Then you can hear Antje producing beautiful crapping noises on the toilet lid.");
+								if ((12 + rnd(50)) > ACURR(A_CHA) ) {
+									pline("Wow, she's really erotic...");
+									drain_alla(5);
+								}
+							}
+
+						}
+						break;
+					case 4:
+						playeraroused = TRUE;
+						pline("You tell the sexy Antje that you just love to see her taking a crap... and she does. The crapping noises that her butt makes are very exciting!");
+						drain_alla(5);
+						break;
+				}
+			} else {
+				pline("You watch as Antje produces erogenous noises with her butt and craps right on the toilet lid.");
+				drain_alla(10);
+				if ((10 + rnd(50)) > ACURR(A_CHA) ) {
+					playeraroused = TRUE;
+					pline("You just can't resist anymore, %s.", flags.female ? "and shockedly realize that your clit is getting wet" : "and develop a huge boner.");
+				}
+			}
+			antjestage = 15;
+			break;
+
+		case 15:
+			if (n > 0) {
+				switch (selected[0].item.a_int) {
+					case 1:
+						pline("You start calling out Antje for crapping on the toilet lid.");
+						if (!rn2(5)) {
+							if (playerprone) {
+								pline("She stomps your %s with her black block heel.", body_part(STOMACH));
+								losehp(5, "being stomped by Antje", KILLED_BY);
+								pline("Afterwards, Antje just walks off casually with her heels.");
+							} else {
+								pline("She pushes you against the wall, and then proceeds to walk away.");
+								losehp(1, "being pushed against the wall by Antje", KILLED_BY);
+							}
+						} else {
+							pline("But she doesn't listen, and you get one last good look at her beautiful butt cheeks while she walks away.");
+							drain_alla(5);
+						}
+						break;
+					case 2:
+						pline("Antje's pretty block-heeled combat boots produce beautiful clacking noises while she struts past you and leaves the toilet. You can't help it, you're incredibly aroused by her.");
+						playeraroused = TRUE;
+						drain_alla(20);
+						break;
+					case 3:
+						if (playerprone) {
+							pline("You groan in pain, unable to do anything. Antje produces loud rumbling noises with her erotic butt cheeks, then walks off.");
+							drain_alla(10);
+							u.cnd_fartingcount++;
+							if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+							if (!extralongsqueak()) badeffect();
+							stop_occupation();
+						} else if (playeraroused) {
+							pline("You can't attack the sexy Antje. Instead, %s.", flags.female ? "your clit is transforming into one huge wetland" : "you have the biggest boner you've ever had");
+							pline("She casually struts away with her block heels, showing you her beautiful female butt.");
+							drain_alla(15);
+						} else {
+							pline("Antje notices your motion, and slaps you so hard that you fall to the ground.");
+							losehp(25, "being slapped by Antje", KILLED_BY);
+							playerprone = TRUE;
+						}
+
+						break;
+					case 4:
+						pline("You begin to touch yourself. Disgusted, Antje rushes off, and now you're alone in the toilet, but %s.", flags.female ? "apparently you've been contaminated by your smegma" : "you've wanked so much that your mucosa membranes are starting to get inflamed");
+						contaminate(50, FALSE);
+						break;
+				}
+			} else {
+				pline("You watch Antje's beautiful butt cheeks as she walks out of the toilet with her high heels, and can't help but feel that she's pretty erotic.");
+				drain_alla(5);
+			}
+			antjestage = 20;
+			break;
+
+		case 20:
+			if (n > 0) {
+				switch (selected[0].item.a_int) {
+					case 1:
+						pline("You're really annoyed that the charwoman now has to clean the fat log of shit that Antje pressed on the toilet lid.");
+						drain_alla(20);
+						break;
+					case 2:
+						pline("You feel that Antje is actually quite an erotic bitch; she's sexy, but also naughty...");
+						drain_alla(10);
+						if (playeraroused) {
+							pline("In fact, you wish you could marry her, but you know that there's no way in hell for that to happen.");
+							adjattrib(A_CHA, -1, FALSE, TRUE);
+						}
+						playeraroused = TRUE;
+						break;
+					case 3:
+						switch (rnd(3)) {
+							case 1:
+								pline("You start shouting loudly that Antje is such a dirty slut, but all your swearing is in vain because no one can hear you. And in the end, the log of shit that Antje produced with her fat butt is still on the toilet lid.");
+								drain_alla(25);
+								break;
+							case 2:
+								pline("You start dragging your %snails across the wall, which is a very stupid idea because you end up hurting yourself.", body_part(FINGER));
+								u.uhpmax--;
+								if (u.uhpmax < 1) u.uhpmax = 1;
+								if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+								flags.botl = TRUE;
+								break;
+							case 3:
+								pline("You furiously start punching the solid wall. Unfortunately, this does not result in the wall crumbling down, but instead your %s is hurting.", body_part(HAND));
+								losehp(2, "stupidly punching a wall", KILLED_BY);
+								break;
+						}
+						break;
+					case 4:
+						pline("Wow, Antje is really good at taking a crap like a little girl, using the toilet lid as a placement area for her log of shit!");
+						drain_alla(30);
+						adjattrib(A_CHA, 1, FALSE, TRUE);
+						playeraroused = TRUE;
+						break;
+				}
+			} else {
+				pline("The log of shit that Antje placed on the toilet lid is stinking while you still sit there indecisively.");
+				badeffect();
+			}
+			goto antjegamedone;
+			break;
+
+		case 100:
+			if (n > 0) {
+				switch (selected[0].item.a_int) {
+					case 1:
+						pline("You start caressing and pressing Antje's beautifully thick buttocks.");
+						if (!rn2(5)) {
+							pline("Suddenly, your touch causes her butt to fart loudly into your %s.", body_part(FACE));
+							u.cnd_fartingcount++;
+							if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+							if (!extralongsqueak()) badeffect();
+							stop_occupation();
+
+						} else {
+							pline("It feels surprisingly soft to the touch.");
+							docalm();
+						}
+						break;
+					case 2:
+						pline("Wow, Antje is truly an attractive woman... maybe if you just - no, maybe you shouldn't, because what if someone catches you mistreating her unconscious body?");
+						break;
+					case 3:
+						pline("Your %s %s slaps Antje's sexy butt a couple of times.", rn2(2) ? "left" : "right", body_part(HAND));
+						gainstr((struct obj *)0, 0);
+						adjalign(-10);
+						break;
+					case 4:
+						if (flags.female) {
+							pline("You don't have a penis, so you cannot do that! Silly woman!");
+						} else {
+							adjalign(-1000);
+							u.ualign.sins += 50;
+							u.alignlim -= 50;
+							u.ugangr += 15;
+
+							pline("You start doing very evil things to Antje with your penis. We are censoring the graphical description because it's bad enough that you're such a sick freak in the first place... either way it was a very educational experience.");
+							gainlevelmaybe();
+							exercise(A_WIS, TRUE);
+							You("feel that %s has noticed your evil deed. Damn, you're pretty much fucked, aren't you...", u_gname());
+
+						}
+						break;
+				}
+			} else {
+				pline("There's not much left for you to do, now that Antje is knocked out.");
+			}
+			goto antjegamedone;
+			break;
+
+		default:
+			pline("error - antje minigame stage %d called", antjestage);
+			return;
+	}
+
+	goto antjenewturn;
+antjegamedone:
+
+	if (antjestage == 20) {
+		if (playerprone) {
+			pline("Damn, that Antje bitch really knocked you out...");
+			nomul(-5, "being knocked out by Antje", TRUE);
+		} else if (playeraroused) {
+			pline("Wow, you're still shaken. Antje is such a sexy girl who can take a crap very beautifully!");
+			u.tremblingamount++;
+		} else {
+			pline("What a haughty bitch that Antje woman is.");
+		}
+		pline("At last, you manage to leave the public toilet and return to the dungeon.");
+	}
+	if (antjestage == 100) {
+		pline("Quickly, you rush out of the public toilet area and return to the dungeon. That was one fucked up encounter.");
+	}
+
+	return;
 
 }
 
