@@ -197,7 +197,19 @@ register boolean clumsy;
 		dmg += rnd(15);
 	}
 
+	if (uarmf && itemhasappearance(uarmf, APP_BAYONET_HEELS) && !PlayerCannotUseSkills && P_SKILL(P_SHORT_SWORD) >= P_BASIC) {
+		switch (P_SKILL(P_SHORT_SWORD)) {
+			case P_BASIC: dmg += 1; break;
+			case P_SKILLED: dmg += 2; break;
+			case P_EXPERT: dmg += 3; break;
+			case P_MASTER: dmg += 4; break;
+			case P_GRAND_MASTER: dmg += 5; break;
+			case P_SUPREME_MASTER: dmg += 6; break;
+		}
+	}
+
 	if (uarmf && itemhasappearance(uarmf, APP_BATTLE_BOOTS)) dmg += 5;
+	if (uarmf && itemhasappearance(uarmf, APP_PLATFORM_SNEAKERS)) dmg += 2;
 	if (uarmf && uarmf->oartifact == ART_EVELINE_S_LOVELIES) dmg += 5;
 	if (uarmf && uarmf->oartifact == ART_MANDY_S_ROUGH_BEAUTY) dmg += 10;
 	if (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT) dmg += 10;
@@ -711,8 +723,13 @@ register boolean clumsy;
 	if (mon->mhp <= 0 && !trapkilled) killed(mon);
 
 	/* may bring up a dialog, so put this after all messages */
-	if (kick_skill != P_NONE)	/* exercise proficiency */
+	if (kick_skill != P_NONE) {	/* exercise proficiency */
 	    use_skill(kick_skill, 1);
+	}
+
+	if (uarmf && itemhasappearance(uarmf, APP_BAYONET_HEELS) && (dmg > 0) ) {
+		use_skill(P_SHORT_SWORD, 1);
+	}
 }
 
 STATIC_OVL void
@@ -1430,6 +1447,7 @@ dokick()
 	register struct monst *mtmp;
 	boolean no_kick = FALSE;
 	char buf[BUFSZ];
+	register struct obj *quivtmp;
 
 	if (!Race_if(PM_TRANSFORMER) && (nolimbs(youmonst.data) || slithy(youmonst.data))) {
 		You("have no legs to kick with.");
@@ -1552,6 +1570,18 @@ dokick()
 		    You("have nothing to brace yourself against.");
 		    return(0);
 		}
+	}
+
+	if (uarmf && itemhasappearance(uarmf, APP_PISTOL_BOOTS) && uquiver && (objects[uquiver->otyp].w_ammotyp == WP_BULLET) ) {
+		if (uquiver->quan > 1L) {
+			quivtmp = splitobj(uquiver, 1L);
+		} else {
+			quivtmp = uquiver;
+			if (quivtmp->owornmask)
+			    remove_worn_item(quivtmp, FALSE);
+		}
+		freeinv(quivtmp);
+		throwit(quivtmp, 0L, FALSE, 666);
 	}
 
 	/* make noise only if the boots are metallic --Amy */
@@ -1940,7 +1970,7 @@ ouch:
 	   maploc->doormask == D_NODOOR) {
 dumb:
 		exercise(A_DEX, FALSE);
-		if (martial() || ACURR(A_DEX) >= 16 || rn2(3)) {
+		if (martial() || (uarmf && itemhasappearance(uarmf, APP_PISTOL_BOOTS)) || ACURR(A_DEX) >= 16 || rn2(3)) {
 			You("kick at empty space.");
 			if (Blind) feel_location(x,y);
 		} else {

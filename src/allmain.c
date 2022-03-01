@@ -2196,6 +2196,17 @@ moveloop()
 			pline("It's the damn menstruation!");
 		}
 
+		if (uarmf && (uarmf->oeroded2 < MAX_ERODE) && itemhasappearance(uarmf, APP_OTTING_BOOTS) && !rn2(1000)) {
+			int ottingchance = 1;
+			if (uarmf->oeroded2 == 1) ottingchance = 3;
+			if (uarmf->oeroded2 == 2) ottingchance = 10;
+			if (!rn2(ottingchance)) {
+				uarmf->oeroded2++;
+				if (uarmf->oeroded2 > MAX_ERODE) uarmf->oeroded2 = MAX_ERODE; /* fail safe */
+				Your("shoes degrade.");
+			}
+		}
+
 		if (uarmf && uarmf->oartifact == ART_WHINY_TEACHER_INSIDE_WOMAN && !rn2(100)) {
 			register struct monst *whinymon;
 
@@ -2217,6 +2228,11 @@ moveloop()
 				playerbleed(rnd(2 + (level_difficulty() * 10)));
 				pline_The("sharp-edged female zippers slit your %s.", body_part(LEG));
 			}
+		}
+
+		if (u.umoved && uarmf && !rn2(50) && itemhasappearance(uarmf, APP_FOREIGN_BODY_SHOES)) {
+			pline("Ow, some foreign body inside your %s shoe hurts your %s!", rn2(2) ? "left" : "right", body_part(FOOT));
+			losehp(1, "a foreign body inside their shoes", KILLED_BY);
 		}
 
 		if (tech_inuse(T_AFTERBURNER) && u.umoved) {

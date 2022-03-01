@@ -3547,6 +3547,11 @@ jediskip:
     You("are now %s skilled in %s.",
 	P_SKILL(skill) >= P_MAX_SKILL(skill) ? "most" : "more", wpskillname(skill));
 
+	if (uarmf && itemhasappearance(uarmf, APP_ENARMORING_BOOTS) && (skill == P_BODY_ARMOR)) {
+		uarmf->oerodeproof = TRUE;
+		Your("shoes have been enarmored!");
+	}
+
 	if (practicantterror && !u.pract_enhancing) {
 		u.pract_enhanceamount++;
 		if (u.pract_enhanceamount >= 30) {
@@ -6214,6 +6219,7 @@ struct obj *obj;
 		/* Not using a weapon */
 	    return ((martial_bonus() && !u.disablemartial) ? P_MARTIAL_ARTS :
 				P_BARE_HANDED_COMBAT);
+	if (obj && itemhasappearance(obj, APP_PISTOL_BOOTS)) return (P_FIREARM);
     if ( ((obj->oclass == BALL_CLASS) || (obj->oclass == CHAIN_CLASS)) /*&& Role_if(PM_CONVICT)*/)
         return objects[obj->otyp].oc_skill;
 	if (obj->oclass != WEAPON_CLASS && obj->oclass != TOOL_CLASS &&

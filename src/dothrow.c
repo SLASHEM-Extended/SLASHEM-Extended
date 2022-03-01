@@ -1521,6 +1521,9 @@ int thrown;
 
 	if (thrown == 1) launcher = uwep;
 	else if (thrown == 2) launcher = uswapwep;
+	else if (thrown == 666) { /* inbuilt pistol boots */
+		if (uarmf && itemhasappearance(uarmf, APP_PISTOL_BOOTS) ) launcher = uarmf;
+	}
 	
 	/* KMH -- Handle Plague here */
 	if (launcher && launcher->oartifact == ART_PLAGUE &&
@@ -1685,6 +1688,7 @@ int thrown;
 		    } else if (obj->oclass != GEM_CLASS)
 			range /= 2;
 		}
+		if (thrown == 666) range = 15;
 
 		if (uarmh && uarmh->oartifact == ART_VIRUS_ATTACK) range += 2;
 		if (launcher && ammo_and_launcher(obj, launcher) && launcher->otyp == SNIPESLING && obj) range += 5;

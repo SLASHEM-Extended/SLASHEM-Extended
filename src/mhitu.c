@@ -20711,6 +20711,8 @@ register struct monst *mon;
 	char qbuf[QBUFSZ];
 	boolean birthing = 0;
 	boolean complications = 0;
+	boolean bridalheels = 0;
+	int goodoutcomechance;
 
 	if (uarmc && itemhasappearance(uarmc, APP_BIRTHCLOTH)) birthing = 1;
 	else if (RngeChildbirth) birthing = 1;
@@ -20719,6 +20721,7 @@ register struct monst *mon;
 	else birthing = 0;
 
 	if (uarmc && uarmc->oartifact == ART_CATHERINE_S_SEXUALITY) complications = 1;
+	if (uarmf && itemhasappearance(uarmf, APP_BRIDAL_SHOES)) bridalheels = 1;
 
 	if (mon->mcan || mon->mspec_used) {
 		pline("%s acts as though %s has got a %sheadache.",
@@ -20911,7 +20914,11 @@ skiptreason:
 	if (u.homosexual == 2 && (flags.female && mon->female) && rn2(3)) goto enjoyable;
 	if (u.homosexual == 2 && (!flags.female && !(mon->female)) && rn2(3)) goto enjoyable;
 
-	if (((rn2(Race_if(PM_BOVER) ? 300 : 135) > ACURR(A_CHA) + ACURR(A_INT)) || (u.homosexual == 2 && flags.female && !(mon->female)) || (u.homosexual == 2 && !flags.female && mon->female) ) && (mon->data != &mons[PM_FEMME] || !rn2(2) ) ) /*much higher chance of negative outcome now --Amy */ {
+	goodoutcomechance = 135;
+	if (Race_if(PM_BOVER)) goodoutcomechance = 300;
+	if (bridalheels) goodoutcomechance /= 2;
+
+	if (((rn2(goodoutcomechance) > ACURR(A_CHA) + ACURR(A_INT)) || (u.homosexual == 2 && flags.female && !(mon->female)) || (u.homosexual == 2 && !flags.female && mon->female) ) && (mon->data != &mons[PM_FEMME] || !rn2(2) ) ) /*much higher chance of negative outcome now --Amy */ {
 		/* Don't bother with mspec_used here... it didn't get tired! */
 		pline("%s seems to have enjoyed it more than you...",
 			noit_Monnam(mon));

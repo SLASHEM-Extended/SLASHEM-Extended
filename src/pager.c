@@ -27588,6 +27588,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Your body enters the follicular phase.",
 	"Your body enters the luteal phase.",
 	"Your body enters the menstrual phase! Oh no, the worst days of the month have started!",
+	"Your shoes degrade.",
+	"Your shoes degrade. Maybe you need to buy a new pair after all.",
 
 };
 

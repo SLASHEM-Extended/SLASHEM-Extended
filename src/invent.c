@@ -11168,8 +11168,9 @@ boolean knoweverything;
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BRIDAL_SHOES))
 			pline("Wear this pair of cone heels if you're planning to get married. If you have a sexual encounter while wearing them, there's an increased chance of good effects.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_PISTOL_BOOTS))
-			pline("This pair of stiletto heels has a pistol for a heel. If you kick while having bullets quivered, they'll fire in the direction of your kick.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_NG_SHOES))
+			pline("This pair of stiletto heels has a pistol for a heel. If you kick while having bullets quivered, they'll fire in the direction of your kick. Beware: unlike firing an actual pistol, this does not train the firearms skill even if the bullet hits a target.");
+
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_NG_SHOES)) {
 			pline("--");
 			int lagamount = rnz(20);
 			while (lagamount > 0) {
@@ -11177,6 +11178,8 @@ boolean knoweverything;
 				lagamount--;
 			}
 			pline("These shoes are so ugly that the processor decided to hang.");
+		}
+
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_OTTING_BOOTS))
 			pline("An organic pair of shoes that will rot over time, although thankfully they'll not rot away to nothingness (unless they get rotted from an external source, so be wary of that).");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ENARMORING_BOOTS))

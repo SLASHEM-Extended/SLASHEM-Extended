@@ -5986,6 +5986,37 @@ eatspecial() /* called after eating non-food */
 
 	}
 
+	if (itemhasappearance(otmp, APP_BLOCKCHOC_BOOTS)) {
+		switch (rnd(16)) {
+
+			case 1:	/* blueberry (cure blind) */
+				/* They're good for your eyes, too. [Sakusha]*/
+				pline("It was blueberry-flavored!");
+				make_blinded((long)u.ucreamed,TRUE);
+				break;
+			case 2:	/* bitter (cure stun) */
+				pline("It tasted bitter!");
+				make_stunned(0L,TRUE);
+				break;
+			case 3:	/* wasabi (cure confuse) */
+				pline("It contained all-natural wasabi extract!");
+				make_confused(0L,TRUE);
+				break;
+			case 4:	/* mattya (cure slow and totter) */
+				pline("There was some weird japanese food extras in there...");
+				make_frozen(0L, TRUE);
+				u.totter = 0;
+				break;
+			case 5:	/* ginger (cure hallucinate) */
+				pline("Ginger! Who puts that in a chocolate???");
+				(void) make_hallucinated(0L, TRUE, 0L);
+				break;
+			default: break;
+
+		}
+
+	}
+
 	if (otmp->otyp == LOADBOULDER || otmp->otyp == LOADSTONE || otmp->otyp == STARLIGHTSTONE) {
 		You_feel("much heavier!");
 		IncreasedGravity += otmp->owt;
