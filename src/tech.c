@@ -260,6 +260,7 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"coronation/culmination",
 	"restore life levels",
 	"make a wish",
+	"toilet visit",
 	"jedi jump",
 	"charge saber",
 	"telekinesis",
@@ -3435,6 +3436,10 @@ dotech()
 
 		case T_MAKE_A_WISH:
 			pline("Using this technique requires you to guess an item. If you guess correctly, you get the item in question, otherwise you're forced to equip a bad item.");
+			break;
+
+		case T_TOILET_VISIT:
+			pline("If you want to play the antje trap 2 minigame where you visit the public toilet, you can use this technique. You will also gain maximum health and cure sickness when doing so.");
 			break;
 
 		case T_POLE_MELEE:
@@ -8874,6 +8879,18 @@ repairitemchoice:
 			}
 
 		      t_timeout = rnz(20000);
+			break;
+
+		case T_TOILET_VISIT:
+
+			antjeminigame();
+			u.uhpmax++;
+			if (Upolyd) u.mhmax++;
+			Your("health is increased by one.");
+			make_sick(0L, (char *) 0, TRUE, SICK_ALL);
+			flags.botl = TRUE;
+
+		      t_timeout = rnz(5000);
 			break;
 
 		case T_MAKE_A_WISH:

@@ -1711,6 +1711,8 @@ struct you {
 	boolean freeplaytransit;	/* set to 1 if you're supposed to be transported back to dlvl1 and hang up or so */
 	boolean freeplayplanes;	/* set to 1 once you visit the sanctum and thereby re-enable the ability to visit the planes */
 
+	boolean antjetwotriggered;	/* if you ever trigger the antje trap 2, having it time out teaches a technique */
+
 	int gudrunspawncount;	/* for gudrun trap */
 	int ellaspawncount;	/* for ella trap */
 	int larissatimer;	/* for larissa trap */

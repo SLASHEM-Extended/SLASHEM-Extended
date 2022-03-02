@@ -19,7 +19,6 @@ STATIC_DCL void do_positionbar(void);
 
 STATIC_PTR int unfaintX(void);
 STATIC_DCL void pumpsminigame(void);
-STATIC_DCL void antjeminigame(void);
 
 STATIC_PTR void do_megafloodingf(int, int, void *);
 STATIC_PTR void do_fjordefloodingf(int, int, void *);
@@ -16961,7 +16960,7 @@ void * poolcnt;
 }
 
 /* antje trap 2 minigame by Amy */
-STATIC_OVL void
+void
 antjeminigame()
 {
 	/* what the various stages mean:

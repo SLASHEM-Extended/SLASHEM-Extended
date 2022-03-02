@@ -11111,6 +11111,7 @@ u_init()
 
 	u.goodoffercount = 10;
 	u.dirtifiedexcalibur = FALSE;
+	u.antjetwotriggered = FALSE;
 	u.pervertsex = 0;
 	u.pervertpray = 0;
 	u.mushroompoles = 0;

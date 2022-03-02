@@ -35,6 +35,7 @@ E boolean timebasedlowerchance(void);
 E int speedbonus(int, int);
 E boolean cyanspellok(int, int);
 E boolean nicolesquareok(int, int);
+E void antjeminigame(void);
 
 /* ### apply.c ### */
 

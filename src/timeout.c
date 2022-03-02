@@ -2951,6 +2951,12 @@ nh_timeout()
 			break;
 		case FEMTRAP_ANTJE_X:
 			pline("Maybe, it dawns on you, it's better to use the toilet at your own home after all...");
+			if (u.antjetwotriggered) {
+				if (!tech_known(T_TOILET_VISIT)) {
+					learntech(T_TOILET_VISIT, FROMOUTSIDE, 1);
+					You("learn how to perform toilet visit!");
+				}
+			}
 			break;
 		case FEMTRAP_KERSTIN:
 			pline("Finally those pesky farmer girls are leaving, they were really getting on your nerves.");

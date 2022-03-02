@@ -290,10 +290,12 @@ struct blitz_tab {
 #define T_RESTORE_LIFE_LEVELS	214
 #define T_MAKE_A_WISH	215
 
-#define T_JEDI_JUMP	216
-#define T_CHARGE_SABER	217
-#define T_TELEKINESIS	218
+#define T_TOILET_VISIT	216
+
+#define T_JEDI_JUMP	217
+#define T_CHARGE_SABER	218
+#define T_TELEKINESIS	219
  
-#define MAXTECH 219
+#define MAXTECH 220
 
 #endif /* TECH_H */

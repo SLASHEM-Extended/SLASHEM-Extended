@@ -12886,6 +12886,7 @@ madnesseffect:
 
 			pline("Whoops... you seem to have stumbled into a special trap that was set by Antje.");
 			pline("Something tells you that you'd like to visit the public toilet.");
+			u.antjetwotriggered = TRUE;
 			u.cnd_feminismtrapamount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 			if (Role_if(PM_EMERA)) emerafrenzy();
