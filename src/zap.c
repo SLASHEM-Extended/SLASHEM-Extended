@@ -2193,6 +2193,10 @@ boolean weakeffect;
 	boolean willresist = FALSE;
 	if (weakeffect && obj->spe < -1) chancetoresist = (obj->spe) * -1;
 	if (chancetoresist && rn2(chancetoresist)) willresist = TRUE;
+	if (weakeffect && obj->spe == -1 && !rn2(10)) {
+		obj->finalcancel = TRUE;
+		return;
+	}
 
 	if (finalcancelled(obj)) return;
 
@@ -2352,7 +2356,13 @@ obj->otyp == SCR_CURE || obj->otyp == SCR_MANA || obj->otyp == SCR_GREATER_MANA_
 		pline("Monstr otmenil predmet, i teper' prodavets serditsya na vas, neudacha. Khar khar khe khe.");
 	}
 	unbless(obj);
-	if (obj->oclass == WAND_CLASS || obj->spe >= 0) uncurse(obj, FALSE);
+	if (obj->oclass == WAND_CLASS || obj->spe >= 0) {
+		if (weakeffect && !rn2(10)) {
+			obj->finalcancel = TRUE;
+			return;
+		}
+		uncurse(obj, FALSE);
+	}
 	if (obj->oinvis) obj->oinvis = 0;
 	if (obj->oinvisreal) obj->oinvisreal = 0;
 
@@ -7421,7 +7431,7 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 			    otmp; otmp = otmp->nobj)
 		/* extra saving throw for blessed objects --Amy */
 		if (self_cancel || !rn2(issoviet ? 24 : otmp->blessed ? 100 : 24)) {
-		    cancel_item(otmp, FALSE);
+		    cancel_item(otmp, (obj && (obj->otyp == SPE_CANCELLATION)) ? TRUE : FALSE);
 		    did_cancel = TRUE;
 		}
 	    if (youdefend && did_cancel) {
