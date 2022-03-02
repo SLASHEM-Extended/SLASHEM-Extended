@@ -1122,7 +1122,7 @@ dosounds()
 		You("%s", showerroom_msg[rn2(6+hallu*4)]);
 		return;
 	    }
-	    if (level.flags.has_greencrossroom && !rn2(200)) {
+	    if ((level.flags.has_greencrossroom || (at_dgn_entrance("Green Cross")) ) && !rn2(200)) {
 		static const char *greencrossroom_msg[] = {
 			"hear some mundane talk.", /* most of these are Castle of the Winds-inspired */
 			"listen to the cackle of poultry.",
