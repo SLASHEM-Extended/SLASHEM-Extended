@@ -3046,7 +3046,7 @@ dotech()
 			break;
 
 		case T_BLADE_ANGER:
-			pline("While this technique is active, throwing shuriken will additionally shoot invisible beams at the enemy that may hit several of them at once.");
+			pline("While this technique is active, throwing shuriken will additionally shoot invisible beams at the enemy that may hit several of them at once, but these beams require 10 mana each.");
 			break;
 
 		case T_RE_TAMING:

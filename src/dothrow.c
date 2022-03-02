@@ -595,8 +595,13 @@ newbossO:
 		m_shot.s = FALSE;
 
 		/* now do blade anger damage (it usually has a higher range than the thrown shuriken) */
+		if (u.uen < 10) pline("Not enough mana for blade anger.");
 		while (pseudo && angeramount >= 1) {
-			weffects(pseudo);
+			if (u.uen >= 10) {
+				u.uen -= 10;
+				flags.botl = TRUE;
+				weffects(pseudo);
+			}
 			angeramount--;
 		}
 		if (pseudo) obfree(pseudo, (struct obj *)0);	/* now, get rid of it */
