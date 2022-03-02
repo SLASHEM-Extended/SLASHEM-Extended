@@ -41,8 +41,10 @@ register boolean clumsy;
 	if (uarmf && uarmf->oartifact == ART_AIRSHIP_DANCING) dmg += 2;
 	if (uarmf && uarmf->oartifact == ART_WILD_SEX_GAME) dmg += 2;
 	if (uarmf && uarmf->oartifact == ART_LITTLE_BITCH_IS_RUCTIOUS) dmg += 3;
+	if (uarmf && uarmf->oartifact == ART_SILVESTERBLAM) dmg += 3;
 	if (uarmf && uarmf->oartifact == ART_ARTHUR_S_HIGH_HEELED_PLATF) dmg += 2;
 	if (uarmf && uarmf->oartifact == ART_KATHARINA_S_LOVELINESS) dmg += 10;
+	if (uarmf && uarmf->oartifact == ART_EXCITING_SPFLOTCH) dmg += 2;
 
 	if (uarmf && uarmf->otyp == KICKING_BOOTS)
 	    dmg += 5;
@@ -1581,6 +1583,7 @@ dokick()
 			    remove_worn_item(quivtmp, FALSE);
 		}
 		freeinv(quivtmp);
+		if (quivtmp && uarmf && uarmf->oartifact == ART_ANACONDA_HEELS) quivtmp->spe += 12;
 		throwit(quivtmp, 0L, FALSE, 666);
 	}
 
@@ -1982,7 +1985,7 @@ dumb:
 		    hurtle(-u.dx, -u.dy, 1, TRUE);
 		    return 1;		/* you moved, so use up a turn */
 		}
-		return(0);
+		return(1); /* what the HELL??? you kicked at thin air, of course you used up a turn!!! --Amy */
 	}
 
 	/* not enough leverage to kick open doors while levitating */

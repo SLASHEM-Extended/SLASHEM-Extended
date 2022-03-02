@@ -663,13 +663,13 @@ vision_recalc(control)
 
 	if (efflightradius > MAX_RADIUS) efflightradius = MAX_RADIUS; /* fail safe, why isn't that present in vanilla --Amy */
 
-	if (has_night_vision && !(u.uprops[WEAKSIGHT].extrinsic || (Race_if(PM_ETHEREALOID) && !Upolyd) || (Race_if(PM_INCORPOREALOID) && !Upolyd) || (uwep && uwep->otyp == SNIPESLING) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || WeakSight || (uleft && uleft->oartifact == ART_BLIND_PILOT) || (uright && uright->oartifact == ART_BLIND_PILOT) || have_weaksightstone() || (Race_if(PM_NEMESIS) && uarmh) ) && !(uwep && uwep->oartifact == ART_WEAKITE_THRUST) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_WEAKITE_THRUST) && !(uarm && uarm->oartifact == ART_OVERRATED_FACE_PROTECTION) && !(uarmh && uarmh->oartifact == ART_FIRE_CHIEF_HELMET) && u.xray_range < efflightradius) {
+	if (has_night_vision && !(u.uprops[WEAKSIGHT].extrinsic || (Race_if(PM_ETHEREALOID) && !Upolyd) || (Race_if(PM_INCORPOREALOID) && !Upolyd) || (uwep && uwep->otyp == SNIPESLING) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || WeakSight || (uleft && uleft->oartifact == ART_BLIND_PILOT) || (uright && uright->oartifact == ART_BLIND_PILOT) || have_weaksightstone() || (uarmf && uarmf->oartifact == ART_DARK_BALL_OF_LIGHT) || (Race_if(PM_NEMESIS) && uarmh) ) && !(uwep && uwep->oartifact == ART_WEAKITE_THRUST) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_WEAKITE_THRUST) && !(uarm && uarm->oartifact == ART_OVERRATED_FACE_PROTECTION) && !(uarmh && uarmh->oartifact == ART_FIRE_CHIEF_HELMET) && u.xray_range < efflightradius) {
 	    if (!efflightradius) {	/* range is 0 */
 		next_array[u.uy][u.ux] |= IN_SIGHT;
 		levl[u.ux][u.uy].seenv = SVALL;
 		next_rmin[u.uy] = min(u.ux, next_rmin[u.uy]);
 		next_rmax[u.uy] = max(u.ux, next_rmax[u.uy]);
-	    } else if ((efflightradius > 0) && !(u.uprops[WEAKSIGHT].extrinsic || (uwep && uwep->otyp == SNIPESLING) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || WeakSight || (uleft && uleft->oartifact == ART_BLIND_PILOT) || (uright && uright->oartifact == ART_BLIND_PILOT) || have_weaksightstone() || (Race_if(PM_NEMESIS) && uarmh) || (uwep && uwep->oartifact == ART_WEAKITE_THRUST) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_WEAKITE_THRUST) ) && !(uarm && uarm->oartifact == ART_OVERRATED_FACE_PROTECTION) && !(uarmh && uarmh->oartifact == ART_FIRE_CHIEF_HELMET) ) {
+	    } else if ((efflightradius > 0) && !(u.uprops[WEAKSIGHT].extrinsic || (uwep && uwep->otyp == SNIPESLING) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || WeakSight || (uleft && uleft->oartifact == ART_BLIND_PILOT) || (uright && uright->oartifact == ART_BLIND_PILOT) || have_weaksightstone() || (uarmf && uarmf->oartifact == ART_DARK_BALL_OF_LIGHT) || (Race_if(PM_NEMESIS) && uarmh) || (uwep && uwep->oartifact == ART_WEAKITE_THRUST) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_WEAKITE_THRUST) ) && !(uarm && uarm->oartifact == ART_OVERRATED_FACE_PROTECTION) && !(uarmh && uarmh->oartifact == ART_FIRE_CHIEF_HELMET) ) {
 		ranges = circle_ptr(efflightradius);
 
 		for (row = (u.uy - efflightradius); row <= (u.uy + efflightradius); row++) {

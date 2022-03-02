@@ -1181,6 +1181,17 @@ boolean isyou;
         }
     }
     if (x == u.ux && y == u.uy) {
+
+	if (uarmf && uarmf->oartifact == ART_SILVESTERBLAM) {
+		if (uarmf->oeroded < MAX_ERODE) {
+			Your("heels are damaged by the explosion!");
+			uarmf->oeroded++;
+		} else {
+			useup(uarmf);
+			Your("heels are destroyed by the explosion!");
+		}
+	}
+
 	if (Fire_resistance)
 	    shielded = TRUE;
 	else

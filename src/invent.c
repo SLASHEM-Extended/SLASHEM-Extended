@@ -11168,7 +11168,7 @@ boolean knoweverything;
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BRIDAL_SHOES))
 			pline("Wear this pair of cone heels if you're planning to get married. If you have a sexual encounter while wearing them, there's an increased chance of good effects.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_PISTOL_BOOTS))
-			pline("This pair of stiletto heels has a pistol for a heel. If you kick while having bullets quivered, they'll fire in the direction of your kick. Beware: unlike firing an actual pistol, this does not train the firearms skill even if the bullet hits a target.");
+			pline("This pair of stiletto heels has a pistol for a heel. If you kick while having bullets quivered, they'll fire in the direction of your kick.");
 
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_NG_SHOES)) {
 			pline("--");
@@ -22163,6 +22163,95 @@ boolean knoweverything;
 					pline("Artifact specs: if your form X (Kliu) skill is higher than Unskilled, every skill point adds +1 multishot when firing a sling. Also grants petrification resistance and the ludgera trap effect when worn."); break;
 				case ART_ALPHA_TAURI:
 					pline("Artifact specs: allows you to heal up when killing a monster, depending on your form XI (Aldebaran) skill, and more so when using a lit lightsaber. While wearing it, elona monsters have +20 spawn chance and the scaling bug is active."); break;
+				case ART_IN_AWE:
+					pline("Artifact specs: +5 dexterity and +7 charisma when worn."); break;
+				case ART_FLYSKYHGH:
+					pline("Artifact specs: flying when worn, and random shoe monsters have a good chance of spawning peaceful."); break;
+				case ART_GRAVY_HIDE:
+					pline("Artifact specs: infravision, cold resistance and improved digging speed when worn. You do not know if it does anything else though..."); break;
+				case ART_PSI_ONIC:
+					pline("Artifact specs: resist psi and contamination when worn."); break;
+				case ART_ONSET_OF_WINTER:
+					pline("Artifact specs: resist cold when worn, protects your potions from being destroyed by cold and allows you to walk on snow and ice."); break;
+				case ART_HERSAY_PRICE:
+					pline("Artifact specs: makes it so that monsters need a +1 weapon to hit you effectively, but they heavily autocurse and cause you to go berserk often, plus all monsters spawn hostile and items randomly teleport out of your inventory."); break;
+				case ART_VERY_PROSTITUTED:
+					pline("Artifact specs: resist fire when worn and allows you to seduce monsters when chatting to them, but you become super vulnerable to claw attacks."); break;
+				case ART_WAY_TOO_SOFT:
+					pline("Artifact specs: can be invoked for shadow mantle when worn."); break;
+				case ART_SILVESTERBLAM:
+					pline("Artifact specs: resist fire and +3 kick damage when worn, but being caught in a grenade explosion will damage and eventually destroy them."); break;
+				case ART_DYKE_RESISTS:
+					pline("Artifact specs: resist cold and shock when worn."); break;
+				case ART_DOUBLE_DESIRE:
+					pline("Artifact specs: disintegration resistance when worn and increases the chance that you have to play the toilet minigame because you really have double desire to do so."); break;
+				case ART_SHOCKGENE:
+					pline("Artifact specs: regeneration and shock resistance when worn."); break;
+				case ART_CUTESY_GIRL:
+					pline("Artifact specs: protection, drain and psi resistance when worn."); break;
+				case ART_TAKE_WON_DO:
+					pline("Artifact specs: if you're restricted in martial arts and manage to get your martial arts skill training up high enough, the skill will unlock itself with a cap of expert."); break;
+				case ART_OH_THE_ELEMENTS:
+					pline("Artifact specs: resist fire, cold and shock when worn. If you manage to have enough of your inventory items destroyed by fire, cold or shock while wearing these, you may learn techniques related to those elements."); break;
+				case ART_EXCITING_SPFLOTCH:
+					pline("Artifact specs: shock, disintegration and petrification resistance, 2 extra points of AC and +2 kick damage when worn, and they cannot be destroyed by heaps of shit."); break;
+				case ART_SKIN_AND_BONE:
+					pline("Artifact specs: speeds you up (which stacks with other sources of speed), but your strength and dexterity can't be higher than 6 while wearing them."); break;
+				case ART_SANDALMENS:
+					pline("Artifact specs: if you're male they grant petrification resistance when worn, otherwise they grant diminished bleeding."); break;
+				case ART_AWAY_YOU_STALKER:
+					pline("Artifact specs: displays all monsters that follow you to other levels."); break;
+				case ART_STOLP:
+					pline("Artifact specs: if you hit an intelligent female monster in melee while wearing them, the monster is blinded."); break;
+				case ART_CALLGIRL:
+					pline("Artifact specs: while worn, they can be invoked to summon a tame shoe."); break;
+				case ART_LOVELANE:
+					pline("Artifact specs: +5 charisma when worn."); break;
+				case ART_DARK_BALL_OF_LIGHT:
+					pline("Artifact specs: makes monsters move randomly rather than chase after you, but sticky heavily curses itself and gives weak sight, slows you down a bit and causes you to be surrounded by darkness constantly."); break;
+				case ART_GIGGLING:
+					pline("Artifact specs: Rita apparently loves giggling like a little girl while wearing these stiletto heels."); break;
+				case ART_THOSEFROMTHERE:
+					pline("Artifact specs: sleep resistance when worn."); break;
+				case ART_TOO_OLD_MODEL:
+					pline("Artifact specs: +3 charisma and death resistance when worn."); break;
+				case ART_DAMPENER:
+					pline("Artifact specs: half physical damage and 5 extra points of AC when worn."); break;
+				case ART_MAY_BRITT_S_ADULTHOOD:
+					pline("Artifact specs: resist cold when worn, +1 increased damage but -2 increased accuracy, causes peaceful monsters to occasionally turn hostile."); break;
+				case ART_LYDIA_S_SEXYROOM:
+					pline("Artifact specs: diminished bleeding and +5 charisma when worn."); break;
+				case ART_SHARPSPIKE:
+					pline("Artifact specs: death resistance when worn."); break;
+				case ART_WEDDING_CHALLENGE:
+					pline("Artifact specs: reflection, shock resistance and +10 charisma when worn, can be invoked for healing, but monsters will try to grope your butt."); break;
+				case ART_ANACONDA_HEELS:
+					pline("Artifact specs: if you fire a bullet from them by kicking, the bullet will be much more effective than normal, but is guaranteed to be used up in the process even if it's a type that has a chance of being preserved (e.g. a lead bullet)."); break;
+				case ART_JANA_S_DEVIOUSNESS:
+					if (!rn2(100)) {
+						u.youaredead = 1;
+						pline("Game over!");
+						killer_format = KILLED_BY;
+						killer = "Jana's deviousness";
+						done(DIED);
+						u.youaredead = 0;
+					}
+
+					/* drain a stat without giving any message --Amy */
+					{
+						int statdrained = rn2(A_MAX);
+						if (ABASE(statdrained) >= 4) {
+							ABASE(statdrained) -= 1;
+							AMAX(statdrained) -= 1;
+						}
+
+					}
+
+					/* description intentionally doesn't display unless they're not NG shoes anymore --Amy */
+					if (OBJ_DESCR(objects[obj->otyp]) && itemhasappearance(obj, APP_NG_SHOES)) break;
+					pline("Artifact specs: you can only read this because the randomized appearances apparently got changed, anyway it seems that Jana made it so that every time you read this description, one of your stats is reduced by one."); break;
+				case ART_PLAYING_ANASTASIA:
+					pline("Artifact specs: petrification resistance and anastasia trap effect when worn, because you love playing Anastasia while wearing these treaded soles."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

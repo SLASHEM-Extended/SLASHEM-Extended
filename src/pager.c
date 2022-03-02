@@ -538,6 +538,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mtmp->data) )
 		    ways_seen++;
+		if (uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mtmp->data) )
+		    ways_seen++;
 		if (uarmf && uarmf->oartifact == ART_ELENETTES && (mtmp->mhp < (mtmp->mhpmax * 9 / 10)) )
 		    ways_seen++;
 		if (uarmh && itemhasappearance(uarmh, APP_SAGES_HELMET) && mtmp->minvis && mtmp->sagesvisible )
@@ -759,6 +761,10 @@ lookat(x, y, buf, monbuf)
 		    }
 		    if (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mtmp->data) ) {
 			strcat(monbuf, "pokemon vision");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mtmp->data) ) {
+			strcat(monbuf, "stalker warning");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 		    if (uarmf && uarmf->oartifact == ART_ELENETTES && (mtmp->mhp < (mtmp->mhpmax * 9 / 10)) ) {
@@ -27590,6 +27596,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Your body enters the menstrual phase! Oh no, the worst days of the month have started!",
 	"Your shoes degrade.",
 	"Your shoes degrade. Maybe you need to buy a new pair after all.",
+	"You learn the take-won-do fighting style! (Hmm, somehow I think that's not spelled correctly...)",
 
 };
 

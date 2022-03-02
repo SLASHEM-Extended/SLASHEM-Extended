@@ -79,5 +79,6 @@ struct artifact {
 #define OBJECT_DET	(LAST_PROP+20)
 #define BOSS_NUKE		(LAST_PROP+21)
 #define CHOCOLATE_CREATION		(LAST_PROP+22)
+#define SPECIAL_INVOKE	(LAST_PROP+23)
 
 #endif /* ARTIFACT_H */

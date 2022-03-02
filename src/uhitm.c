@@ -816,6 +816,7 @@ register struct monst *mtmp;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 	if (uarmg && uarmg->oartifact == ART_MAJOR_PRESENCE) tmp += 2;
 	if (uarmf && uarmf->oartifact == ART_CRASHING_YOUR_SISTER_S_WED) tmp -= 5;
+	if (uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) tmp -= 2;
 	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 0) tmp += 1;
 	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 49) tmp += 1;
 	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 99) tmp += 1;
@@ -1488,6 +1489,7 @@ int dieroll;
 
 	if (thrown == 1) launcher = uwep;
 	else if (thrown == 2) launcher = uswapwep;
+	else if (thrown == 666 && uarmf && itemhasappearance(uarmf, APP_PISTOL_BOOTS)) launcher = uarmf;
 	else launcher = 0;
 
 	boolean gunused = 0;
@@ -3051,7 +3053,7 @@ int dieroll;
 	}
 
 	if (thrown && obj && is_ammo(obj) && launcher && obj->otyp != FRAG_GRENADE && obj->otyp != GAS_GRENADE && !ammo_and_launcher(obj, launcher)) {
-		if (flags.bash_reminder && !rn2(10)) You("are throwing projectiles that are meant to be fired, which isn't very effective! Better wield an appropriate launcher in your main hand!");
+		if (flags.bash_reminder && !rn2(10)) You("are throwing projectiles that are meant to be fired, which isn't very effective! You're wielding an inappropriate launcher in your main hand, better switch to a better one!");
 	}
 
 	if (thrown && obj && is_ammo(obj) && !launcher) {
@@ -3074,6 +3076,7 @@ int dieroll;
 		if (uwep && uwep->oartifact == ART_SPAMBAIT_FIRE) tmp += 2;
 		if (uwep && uwep->oartifact == ART_GARY_S_RIVALRY) tmp += 2;
 		if (uarmf && uarmf->oartifact == ART_KATI_S_IRRESISTIBLE_STILET) tmp += 2;
+		if (uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) tmp += 1;
 		if (uwep && uwep->oartifact == ART_THOR_S_STRIKE && ACURR(A_STR) >= STR19(25)) tmp += 5;
 		if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
 		if (uarm && uarm->otyp == DARK_DRAGON_SCALES) tmp += 1;
@@ -3184,6 +3187,13 @@ int dieroll;
 				(void) tamedog(mon, (struct obj *)0, FALSE);
 				return FALSE;
 			} else tmp += rnd(20);
+		}
+
+		if (uarmf && uarmf->oartifact == ART_STOLP && !resists_blnd(mon) && mon->mcansee && humanoid(mon->data) && is_female(mon->data)) {
+			mon->mcansee = 0;
+			mon->mblinded = rnd(10);
+			pline("%s is stolped by you!", Monnam(mon));
+
 		}
 
 		if (thrown && obj && obj->oartifact == ART_MESHERABANE && is_elonamonster(mon->data)) {

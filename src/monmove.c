@@ -1373,7 +1373,7 @@ register struct monst *mtmp;
 
 	}
 
-	if ((WakeupCallBug || u.uprops[WAKEUP_CALL_BUG].extrinsic || have_wakeupcallstone() || (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT) || (uwep && uwep->oartifact == ART_DRAMA_STAFF) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DRAMA_STAFF) || Race_if(PM_SERB)) && mtmp->mpeaceful && !mtmp->mtame && !rn2(10000)) {
+	if ((WakeupCallBug || u.uprops[WAKEUP_CALL_BUG].extrinsic || have_wakeupcallstone() || (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT) || (uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) || (uwep && uwep->oartifact == ART_DRAMA_STAFF) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DRAMA_STAFF) || Race_if(PM_SERB)) && mtmp->mpeaceful && !mtmp->mtame && !rn2(10000)) {
 		wakeup(mtmp);
 	}
 
@@ -3535,6 +3535,8 @@ altarfound:
 
 	if (appr == 1 && uarmf && uarmf->oartifact == ART_SMELL_LIKE_DOG_SHIT && !rn2(10)) appr = 0;
 
+	if (appr == 1 && uarmf && uarmf->oartifact == ART_DARK_BALL_OF_LIGHT) appr = 0;
+
 	if (appr == 1 && !rn2(5) && (uarmc && itemhasappearance(uarmc, APP_PINK_CLOAK) )) appr = 0;
 
 	if (monsterrandomwalk(ptr)) appr = 0;
@@ -3736,6 +3738,8 @@ altarfound:
 	if (uarmf && itemhasappearance(uarmf, APP_RAINBOW_BOOTS) && !rn2(3) ) appr = 1; 
 
 		if (uarmf && uarmf->oartifact == ART_HENRIETTA_S_DOGSHIT_BOOTS) appr = 1;
+
+		if (uarmf && uarmf->oartifact == ART_DARK_BALL_OF_LIGHT) appr = 0;
 
 		if (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) appr = 0;
 

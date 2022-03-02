@@ -10403,6 +10403,11 @@ register int osym, dmgtyp;
 				break;
 			}
 
+		    if (uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER) {
+				skip++;
+				break;
+			}
+
 		    if (uwep && uwep->oartifact == ART_GLACIERDALE ) {
 				skip++;
 				break;
@@ -10595,12 +10600,72 @@ register int osym, dmgtyp;
 			switch (dmgtyp) {
 				case AD_COLD:
 					u.cnd_colddestroy++;
+					if (uarmf && uarmf->oartifact == ART_OH_THE_ELEMENTS && (u.cnd_colddestroy >= 200)) {
+						if (!tech_known(T_BUGGARD)) {
+							learntech(T_BUGGARD, FROMOUTSIDE, 1);
+							You("learn how to perform buggard!");
+						}
+					}
+					if (uarmf && uarmf->oartifact == ART_OH_THE_ELEMENTS && (u.cnd_colddestroy >= 200) && (u.cnd_firedestroy >= 200) && (u.cnd_shockdestroy >= 200)) {
+						if (!tech_known(T_FLASHING_MISCHIEF)) {
+							learntech(T_FLASHING_MISCHIEF, FROMOUTSIDE, 1);
+							You("learn how to perform flashing mischief!");
+						}
+						if (!tech_known(T_AUTOKILL)) {
+							learntech(T_AUTOKILL, FROMOUTSIDE, 1);
+							You("learn how to perform autokill!");
+						}
+						if (!tech_known(T_CHAIN_THUNDERBOLT)) {
+							learntech(T_CHAIN_THUNDERBOLT, FROMOUTSIDE, 1);
+							You("learn how to perform chain thunderbolt!");
+						}
+					}
 					break;
 				case AD_FIRE:
 					u.cnd_firedestroy++;
+					if (uarmf && uarmf->oartifact == ART_OH_THE_ELEMENTS && (u.cnd_firedestroy >= 200)) {
+						if (!tech_known(T_AFTERBURNER)) {
+							learntech(T_AFTERBURNER, FROMOUTSIDE, 1);
+							You("learn how to perform afterburner!");
+						}
+					}
+					if (uarmf && uarmf->oartifact == ART_OH_THE_ELEMENTS && (u.cnd_colddestroy >= 200) && (u.cnd_firedestroy >= 200) && (u.cnd_shockdestroy >= 200)) {
+						if (!tech_known(T_FLASHING_MISCHIEF)) {
+							learntech(T_FLASHING_MISCHIEF, FROMOUTSIDE, 1);
+							You("learn how to perform flashing mischief!");
+						}
+						if (!tech_known(T_AUTOKILL)) {
+							learntech(T_AUTOKILL, FROMOUTSIDE, 1);
+							You("learn how to perform autokill!");
+						}
+						if (!tech_known(T_CHAIN_THUNDERBOLT)) {
+							learntech(T_CHAIN_THUNDERBOLT, FROMOUTSIDE, 1);
+							You("learn how to perform chain thunderbolt!");
+						}
+					}
 					break;
 				case AD_ELEC:
 					u.cnd_shockdestroy++;
+					if (uarmf && uarmf->oartifact == ART_OH_THE_ELEMENTS && (u.cnd_shockdestroy >= 200)) {
+						if (!tech_known(T_THUNDERSTORM)) {
+							learntech(T_THUNDERSTORM, FROMOUTSIDE, 1);
+							You("learn how to perform thunderstorm!");
+						}
+					}
+					if (uarmf && uarmf->oartifact == ART_OH_THE_ELEMENTS && (u.cnd_colddestroy >= 200) && (u.cnd_firedestroy >= 200) && (u.cnd_shockdestroy >= 200)) {
+						if (!tech_known(T_FLASHING_MISCHIEF)) {
+							learntech(T_FLASHING_MISCHIEF, FROMOUTSIDE, 1);
+							You("learn how to perform flashing mischief!");
+						}
+						if (!tech_known(T_AUTOKILL)) {
+							learntech(T_AUTOKILL, FROMOUTSIDE, 1);
+							You("learn how to perform autokill!");
+						}
+						if (!tech_known(T_CHAIN_THUNDERBOLT)) {
+							learntech(T_CHAIN_THUNDERBOLT, FROMOUTSIDE, 1);
+							You("learn how to perform chain thunderbolt!");
+						}
+					}
 					break;
 				case AD_VENO:
 					u.cnd_poisondestroy++;

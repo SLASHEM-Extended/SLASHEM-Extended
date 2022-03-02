@@ -105,6 +105,9 @@ int thrown;
 		launcher = uwep;
 	else if (thrown == 2 && uswapwep && ammo_and_launcher(obj, uswapwep))
 		launcher = uswapwep;
+	else if (thrown == 666) { /* inbuilt pistol boots */
+		if (uarmf && itemhasappearance(uarmf, APP_PISTOL_BOOTS) ) launcher = uarmf;
+	}
 	else launcher = (struct obj *)0;
 
 	/* ask "in what direction?" */
@@ -1421,6 +1424,7 @@ boolean hitsroof;
 	if (dmg > 0 && Race_if(PM_RUSMOT)) dmg += 2;
 	if (dmg > 0 && uarmg && uarmg->oartifact == ART_MAJOR_PRESENCE) dmg += 2;
 	if (dmg > 0 && uarmf && uarmf->oartifact == ART_SNAILHUNT) dmg += 1;
+	if (dmg > 0 && uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) dmg += 1;
 	if (dmg > 0 && uarmf && uarmf->oartifact == ART_CRASHING_YOUR_SISTER_S_WED) dmg += 2;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 0) dmg += 1;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 49) dmg += 1;
@@ -1629,7 +1633,7 @@ int thrown;
 		}
 		check_shop_obj(obj, u.ux, u.uy, TRUE);
 		u.cnd_gunpowderused++; /* even if bulletreuse or lead bullets allows them to be used again --Amy */
-		if ((!(tech_inuse(T_BULLETREUSE)) || rn2(3)) && !(Race_if(PM_VIETIS) && !rn2(3)) && !(objects[obj->otyp].oc_material == MT_LEAD && !rn2(2))) {
+		if (((!(tech_inuse(T_BULLETREUSE)) || rn2(3)) && !(Race_if(PM_VIETIS) && !rn2(3)) && !(objects[obj->otyp].oc_material == MT_LEAD && !rn2(2))) || (uarmf && uarmf->oartifact == ART_ANACONDA_HEELS) ) {
 			obfree(obj, (struct obj *)0);
 			return;
 		}
@@ -1789,7 +1793,7 @@ int thrown;
 	if (is_bullet(obj) && (ammo_and_launcher(obj, launcher) && !is_grenade(obj))) {
 		check_shop_obj(obj, bhitpos.x,bhitpos.y, TRUE);
 		u.cnd_gunpowderused++; /* even if bulletreuse or lead bullets allows them to be used again --Amy */
-		if ((!(tech_inuse(T_BULLETREUSE)) || rn2(3)) && !(Race_if(PM_VIETIS) && !rn2(3)) && !(objects[obj->otyp].oc_material == MT_LEAD && !rn2(2))) {
+		if (((!(tech_inuse(T_BULLETREUSE)) || rn2(3)) && !(Race_if(PM_VIETIS) && !rn2(3)) && !(objects[obj->otyp].oc_material == MT_LEAD && !rn2(2))) || (uarmf && uarmf->oartifact == ART_ANACONDA_HEELS) ) {
 			obfree(obj, (struct obj *)0);
 			return;
 		}
@@ -2080,6 +2084,9 @@ boolean polearming;
 
 	if (thrown == 1) launcher = uwep;
 	else if (thrown == 2) launcher = uswapwep;
+	else if (thrown == 666) { /* inbuilt pistol boots */
+		if (uarmf && itemhasappearance(uarmf, APP_PISTOL_BOOTS) ) launcher = uarmf;
+	}
 	else launcher = (struct obj *)0;
 
 	boolean gunused = 0;
@@ -2120,6 +2127,7 @@ boolean polearming;
 	if (uarm && uarm->otyp == DARK_DRAGON_SCALE_MAIL) tmp += 1;
 	if (uarms && uarms->otyp == DARK_DRAGON_SCALE_SHIELD) tmp += 1;
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
+	if (uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) tmp -= 2;
 	if (uwep && uwep->oartifact == ART_WILD_HEAVY_SWINGS) tmp -= 10;
 	if (uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON) tmp += 1;
 	if (uarmc && uarmc->oartifact == ART_ENEMIES_SHALL_LAUGH_TOO) tmp += 10;

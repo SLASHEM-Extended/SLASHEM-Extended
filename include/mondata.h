@@ -114,6 +114,7 @@
 #define isgridbug(ptr)		(((ptr)->mflags4 & M4_GRIDBUG) != 0L)
 #define monpolyok(ptr)		(((ptr)->mflags2 & M2_NOPOLY) == 0L) /* monsters may poly into this */
 #define polyok(ptr)		(((ptr)->mflags2 & M2_NOPOLY) == 0L && ((ptr)->mflags3 & M3_NOPLRPOLY) == 0L && (ptr)->mlevel < 30 ) /* players may poly into this */
+#define is_stalker(ptr)		(((ptr)->mflags2 & M2_STALK) != 0L)
 #define is_undead(ptr)		(((ptr)->mflags2 & M2_UNDEAD) != 0L)
 #define is_were(ptr)		(((ptr)->mflags2 & M2_WERE) != 0L)
 #define is_vampire(ptr)		(((ptr)->mflags2 & M2_VAMPIRE) != 0L)

@@ -1111,6 +1111,9 @@ moveloop()
 				if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
+				if (uarmf && uarmf->oartifact == ART_DARK_BALL_OF_LIGHT && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+
 				if (FemtrapActivePatricia && !rn2(8) && moveamt > 1 && u.umoved && u.dx && u.dy)
 					moveamt /= 2;
 
@@ -1256,6 +1259,7 @@ moveloop()
 						    || (uarmf && uarmf->otyp == skates5)
 						    || (uwep && uwep->oartifact == ART_GLACIERDALE)
 						    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
+						    || (uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER)
 						    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
 						    || (uwep && uwep->oartifact == ART_DAMN_SKI_WEDGE && uarmf)
 						    || (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE)) canwalkonsnow = 1;
@@ -1483,6 +1487,9 @@ moveloop()
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too are slower sometimes. */
 				moveamt /= 2;
 
+			if (uarmf && uarmf->oartifact == ART_DARK_BALL_OF_LIGHT && !rn2(8) && moveamt > 1)
+				moveamt /= 2;
+
 			if (FemtrapActivePatricia && !rn2(8) && moveamt > 1 && u.umoved && u.dx && u.dy)
 				moveamt /= 2;
 
@@ -1645,6 +1652,7 @@ moveloop()
 					    || (uarmf && uarmf->otyp == skates5)
 					    || (uwep && uwep->oartifact == ART_GLACIERDALE)
 					    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
+					    || (uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER)
 					    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
 					    || (uwep && uwep->oartifact == ART_DAMN_SKI_WEDGE && uarmf)
 					    || (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE)) canwalkonsnow = 1;
@@ -1861,6 +1869,7 @@ moveloop()
 				    || (uarmf && uarmf->otyp == skates5)
 				    || (uwep && uwep->oartifact == ART_GLACIERDALE)
 				    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
+				    || (uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER)
 				    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
 				    || (uwep && uwep->oartifact == ART_DAMN_SKI_WEDGE && uarmf)
 				    || (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE)) canwalkonsnow = 1;
@@ -1954,6 +1963,13 @@ moveloop()
 				oldspeed = moveamt;
 				moveamt *= 2;
 				if (moveamt > (oldspeed + 12)) moveamt = (oldspeed + 12);
+			}
+
+			if (uarmf && uarmf->oartifact == ART_SKIN_AND_BONE) {
+				oldspeed = moveamt;
+				moveamt *= 6;
+				moveamt /= 5;
+				if (moveamt > (oldspeed + 6)) moveamt = (oldspeed + 6);
 			}
 
 			if (uarmh && (uarmh->oartifact == ART_REAL_SPEED_DEVIL) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
@@ -3169,6 +3185,10 @@ trapsdone:
 		}
 
 		if (FemtrapActiveAntjeX && !rn2(2000)) {
+			You("feel the need to enter the secret course leading to the public toilet!");
+			antjeminigame();
+		}
+		if (uarmf && uarmf->oartifact == ART_DOUBLE_DESIRE && !rn2(2000)) {
 			You("feel the need to enter the secret course leading to the public toilet!");
 			antjeminigame();
 		}
@@ -6097,6 +6117,11 @@ newbossJANI:
 		if (uwep && uwep->oartifact == ART_TEZCATLIPOCA_S_BUBBLESTORM && !rn2(100)) nivellate();
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_TEZCATLIPOCA_S_BUBBLESTORM && !rn2(100)) nivellate();
 
+		if (uarmf && uarmf->oartifact == ART_HERSAY_PRICE && !u.berserktime && !rn2(100)) {
+			u.berserktime = 25;
+			You("suddenly go berserk!");
+		}
+
 		if (uwep && uwep->oartifact == ART_STRIKE_THE_BALL && !u.berserktime && !rn2(1000)) {
 			u.berserktime = 25;
 			You("suddenly get angry at the ball and want to strike it.");
@@ -6132,6 +6157,10 @@ newbossJANI:
 			if (levl[u.ux][u.uy].typ == ROOM || levl[u.ux][u.uy].typ == CORR) {
 				levl[u.ux][u.uy].typ = SNOW;
 			}
+		}
+
+		if (uarmf && uarmf->oartifact == ART_DARK_BALL_OF_LIGHT) {
+			litroomlite(FALSE);
 		}
 
 		if (FemtrapActiveAntje && u.uhunger >= 2500 && !rn2(50)) {
@@ -8475,7 +8504,7 @@ newbossB:
 			stop_occupation();
 		}
 
-		if (is_snow(u.ux, u.uy) && !(powerfulimplants() && uimplant && (uimplant->oartifact == ART_WHITE_WHALE_HATH_COME || uimplant->oartifact == ART_DUBAI_TOWER_BREAK)) && !(uarmf && itemhasappearance(uarmf, APP_FLEECY_BOOTS) ) && !(uarmf && itemhasappearance(uarmf, APP_CYAN_SNEAKERS) ) && !(uwep && uwep->oartifact == ART_GLACIERDALE) && !(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) && !(uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) && !(uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) && !rn2(StrongCold_resistance ? 500 : Cold_resistance ? 200 : 50) ) {
+		if (is_snow(u.ux, u.uy) && !(powerfulimplants() && uimplant && (uimplant->oartifact == ART_WHITE_WHALE_HATH_COME || uimplant->oartifact == ART_DUBAI_TOWER_BREAK)) && !(uarmf && itemhasappearance(uarmf, APP_FLEECY_BOOTS) ) && !(uarmf && itemhasappearance(uarmf, APP_CYAN_SNEAKERS) ) && !(uwep && uwep->oartifact == ART_GLACIERDALE) && !(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) && !(uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER) && !(uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) && !(uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) && !rn2(StrongCold_resistance ? 500 : Cold_resistance ? 200 : 50) ) {
 			You("freeze!");
 			make_frozen(HFrozen + rnz(50),FALSE);
 			stop_occupation();

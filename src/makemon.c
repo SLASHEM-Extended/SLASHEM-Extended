@@ -29731,7 +29731,7 @@ register struct permonst *ptr;
 
 	if (Race_if(PM_RODNEYAN) && monsndx(ptr) == PM_RODNEY_S_SISTER) return TRUE;
 
-	if (EnmityBug || u.uprops[ENMITY_BUG].extrinsic || have_inimicalstone() || (uwep && uwep->oartifact == ART_DRAMA_STAFF) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DRAMA_STAFF) || (uwep && uwep->oartifact == ART_TOMMY_S_DEFERRED_HEEL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_TOMMY_S_DEFERRED_HEEL)) return FALSE;
+	if (EnmityBug || u.uprops[ENMITY_BUG].extrinsic || have_inimicalstone() || (uarmf && uarmf->oartifact == ART_HERSAY_PRICE) || (uwep && uwep->oartifact == ART_DRAMA_STAFF) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DRAMA_STAFF) || (uwep && uwep->oartifact == ART_TOMMY_S_DEFERRED_HEEL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_TOMMY_S_DEFERRED_HEEL)) return FALSE;
 
 	if (Race_if(PM_DUTHOL) && !rn2(2)) return FALSE;
 
@@ -29811,6 +29811,7 @@ register struct permonst *ptr;
 	if (uleft && uleft->oartifact == ART_NENYA && is_elf(ptr)) return TRUE;
 	if (uright && uright->oartifact == ART_NENYA && is_elf(ptr)) return TRUE;
 	if (uarmh && uarmh->oartifact == ART_CLAUDIA_S_SEXY_SCENT && ptr->msound == MS_STENCH && rn2(100)) return TRUE;
+	if (uarmf && uarmf->oartifact == ART_FLYSKYHGH && ptr->msound == MS_SHOE && rn2(2)) return TRUE;
 
 	if (ptr->mlet == S_UNICORN && uarmc && uarmc->oartifact == ART_KYS_YOURSELF && !rn2(4)) return TRUE;
 	if (uarmc && uarmc->oartifact == ART_KYS_YOURSELF && is_female(ptr) && humanoid(ptr) && rn2(10)) return TRUE;

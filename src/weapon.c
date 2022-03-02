@@ -6107,6 +6107,14 @@ screwupsdone:
 		}
 	}
 
+	if (uarmf && uarmf->oartifact == ART_TAKE_WON_DO && skill == P_MARTIAL_ARTS && P_RESTRICTED(P_MARTIAL_ARTS) ) {
+		if (P_ADVANCE(P_MARTIAL_ARTS) >= 2500) {
+			unrestrict_weapon_skill(P_MARTIAL_ARTS);
+			P_MAX_SKILL(P_MARTIAL_ARTS) = P_EXPERT;
+			You("learn the take-won-do fighting style! (Hmm, somehow I think that's not spelled correctly...)");
+		}
+	}
+
 	if (!advance_before && can_advance(skill, FALSE)) {
 	    give_may_advance_msg(skill);
 	    if (P_RESTRICTED(skill)) {

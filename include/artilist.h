@@ -8857,6 +8857,142 @@ A("Alpha Tauri",				LEATHER_ARMOR, /* randart2, aldebaran form heals you when yo
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
+A("In Awe",				ANNEMARIE_PLATFORM_SANDALS, /* +5 DEX, +7 CHA */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("FlySkyHgh",				JIL_VELCRO_SHOES, /* flying, random MS_SHOE have 50% chance of spawning peaceful */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Gravy Hide",				JANA_SNEAKERS, /* infravision, cold resistance and +5 digging speed, but reading a scroll of phase door or teleportation has 1% chance of instakilling you (no joke). */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Psi-Onic",				KATRIN_COMBAT_BOOTS, /* resist psi and contamination */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Onset of Winter",				GUDRUN_WEDGE_SANDALS, /* resist cold, potions cannot be destroyed by cold, can walk on snow and ice */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Hersay Price",				ELLA_WEDGE_SANDALS, /* heavily autocurses, monsters need a +1 weapon to hit you effectively, but you go berserk with a 1 in 100 chance if not already berserk, all monsters spawn hostile, and items randomly teleport out of your inventory */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Very Prostituted",				MANUELA_COMBAT_BOOTS, /* can seduce monsters by chatting to them but also gives the kurwa claw weakness */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Way Too Soft",				JENNIFER_COMBAT_BOOTS, /* invoke to get a shadow mantle-like effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Silvesterblam",				PATRICIA_STEEL_CAPPED_SANDALS, /* resist fire, +3 kick damage, being caught in a grenade explosion damages or eventually destroys this artifact */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Dyke Resists",				ANTJE_SNEAKERS, /* resist cold and shock */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Double Desire",				ANTJE_COMBAT_BOOTS, /* increases chance that you have to play the minigame, resist disintegration */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Shockgene",				KERSTIN_COMBAT_BOOTS,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REGEN|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Cutesy Girl",				KERSTIN_WOODEN_SANDALS, /* resist drain and psi */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_PROTEC), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Take Won Do",				KERSTIN_SNEAKERS, /* if you're restricted in martial arts and manage to get the martial arts skill training up to 2500, the skill unlocks itself with a cap of expert */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Oh The Elements",				LAURA_WINTER_BOOTS, /* resist fire, cold and shock; if at least 200 of your items have been destroyed by fire, learn afterburner technique; 200 items destroyed by cold lets you learn buggard; 200 items destroyed by shock lets you learn thunderstorm; if you have all three of these, learn the grand master orb techs */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Exciting Spflotch",				LARISSA_PLATFORM_BOOTS, /* cannot be destroyed by shit traps, 2 extra points of AC, resist disintegration and petrification, +2 kick damage */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Skin And Bone",				NORA_COMBAT_BOOTS, /* caps your STR and DEX at 6, adds 20% extra movement speed (but not more than 6) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Sandalmens",				NATALIA_WEDGE_SANDALS, /* if male, petrification resistance; if female, diminished bleeding */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Away You Stalker",				SUSANNE_COMBAT_BOOTS, /* see all M2_STALK */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Stolp",				LISA_COMBAT_BOOTS, /* hitting an intelligent M2_FEMALE in melee causes that monster to be blinded */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Callgirl",				BRIDGHITTE_SKI_HEELS, /* special invoke that replicates summon shoe technique */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Lovelane",				JULIA_COMBAT_BOOTS, /* +5 charisma */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Dark Ball of Light",				NICOLE_COMBAT_BOOTS, /* becomes sticky heavily cursed when equipped, weak sight, causes darkness effect on you every turn, slows you down like a spirit, but monsters have appr=0 */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Giggling",				RITA_STILETTOS, /* sets itself to -10 when equipped */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Thosefromthere",				JANINA_LADY_PUMPS, /* resist sleep */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Too Old Model",				LOW_BOOTS, /* initialized to always be block chocolate heel boots, +3 CHA, resist death rays */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Dampener",				LOW_BOOTS, /* initialized to always be platform sneakers, 5 extra points of AC */
+	(SPFX_RESTR|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("May-Britt's Adulthood",				LOW_BOOTS, /* initialized to always be iceblock heels, resist cold, wakeup call effect, +1 increase damage but -2 increase accuracy */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Lydia's Sexyroom",				LOW_BOOTS, /* initialized to always be paragraph shoes, diminished bleeding, +5 CHA */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Sharpspike",				LOW_BOOTS, /* initialized to always be paragraph sandals, resist death */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Wedding Challenge",				LOW_BOOTS, /* initialized to always be bridal shoes, jessica trap effect, +10 CHA, resist shock */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, HEALING, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Anaconda Heels",				LOW_BOOTS, /* initialized to always be pistol boots, gives +12 enchantment to bullets fired from them, but the bullets can never be preserved */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3600L ),
+
+A("Jana's Deviousness",				LOW_BOOTS, /* initialized to always be ng shoes, does bad stuff if you view its description */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Playing Anastasia",				LOW_BOOTS, /* initialized to always be chelsea boots, anastasia trap effect, resist petrification */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

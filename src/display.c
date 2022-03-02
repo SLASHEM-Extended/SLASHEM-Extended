@@ -1214,6 +1214,7 @@ newsym(x,y)
 		(Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) ||
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
+		(uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mon->data) ) ||
 		(uarmf && uarmf->oartifact == ART_ELENETTES && (mon->mhp < (mon->mhpmax * 9 / 10)) ) ||
 		(uarmh && itemhasappearance(uarmh, APP_SAGES_HELMET) && mon->minvis && mon->sagesvisible ) ||
 		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
@@ -1320,6 +1321,7 @@ newsym(x,y)
 		(Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) ||
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
+		(uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mon->data) ) ||
 		(uarmf && uarmf->oartifact == ART_ELENETTES && (mon->mhp < (mon->mhpmax * 9 / 10)) ) ||
 		(uarmh && itemhasappearance(uarmh, APP_SAGES_HELMET) && mon->minvis && mon->sagesvisible ) ||
 		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
@@ -1587,6 +1589,7 @@ newsymX(x,y)
 		(Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) ||
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
+		(uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mon->data) ) ||
 		(uarmf && uarmf->oartifact == ART_ELENETTES && (mon->mhp < (mon->mhpmax * 9 / 10)) ) ||
 		(uarmh && itemhasappearance(uarmh, APP_SAGES_HELMET) && mon->minvis && mon->sagesvisible ) ||
 		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
@@ -1693,6 +1696,7 @@ newsymX(x,y)
 		(Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) ||
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
+		(uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mon->data) ) ||
 		(uarmf && uarmf->oartifact == ART_ELENETTES && (mon->mhp < (mon->mhpmax * 9 / 10)) ) ||
 		(uarmh && itemhasappearance(uarmh, APP_SAGES_HELMET) && mon->minvis && mon->sagesvisible ) ||
 		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
@@ -3607,6 +3611,7 @@ struct monst *mon;
 	if (uarmf && uarmf->oartifact == ART_ELENETTES && (mon->mhp < (mon->mhpmax * 9 / 10)) ) return TRUE;
 	if (isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) return TRUE;
 	if (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) return TRUE;
+	if (uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mon->data) ) return TRUE;
 	if (uarmh && itemhasappearance(uarmh, APP_SAGES_HELMET) && mon->minvis && mon->sagesvisible ) return TRUE;
 	if (ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) return TRUE;
 	if (uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) return TRUE;

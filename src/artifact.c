@@ -572,6 +572,15 @@ hack_artifacts()
 	artilist[ART_ANJA_S_WIDE_FIELD].otyp = find_wedge_sneakers();
 	artilist[ART_U_BE_CURRY].otyp = find_barefoot_shoes();
 	artilist[ART_H__S_GANGSTER_KICKS].otyp = find_exceptional_sneakers();
+	artilist[ART_TOO_OLD_MODEL].otyp = find_blockchoc_boots();
+	artilist[ART_DAMPENER].otyp = find_platform_sneakers();
+	artilist[ART_MAY_BRITT_S_ADULTHOOD].otyp = find_iceblock_heels();
+	artilist[ART_LYDIA_S_SEXYROOM].otyp = find_paragraph_shoes();
+	artilist[ART_SHARPSPIKE].otyp = find_paragraph_sandals();
+	artilist[ART_WEDDING_CHALLENGE].otyp = find_bridal_shoes();
+	artilist[ART_ANACONDA_HEELS].otyp = find_pistol_boots();
+	artilist[ART_JANA_S_DEVIOUSNESS].otyp = find_ng_shoes();
+	artilist[ART_PLAYING_ANASTASIA].otyp = find_chelsea_boots();
 
 #if 0
 	/* Fix up the gifts */
@@ -3376,6 +3385,15 @@ arti_invoke(obj)
 	return 1;
     }
 
+    if (oart && (oart->inv_prop == SPECIAL_INVOKE)) {
+	boolean invokenotworn = FALSE;
+	if (obj->oclass == ARMOR_CLASS && !(obj->owornmask & W_ARMOR) ) invokenotworn = TRUE;
+	if (invokenotworn) {
+		pline("That artifact cannot be invoked unless you wear it first.");
+		return 1;
+	}
+    }
+
     if(oart->inv_prop > LAST_PROP) {
 	/* It's a special power, not "just" a property */
 
@@ -3570,6 +3588,52 @@ chargingchoice:
 		}
 	    }
 	    break;
+	case SPECIAL_INVOKE:
+
+		if (obj->oartifact == ART_WAY_TOO_SOFT) {
+			litroomlite(FALSE);
+
+			int i, j, bd = 2;
+			struct monst *mtmp;
+
+			for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+				if (!isok(u.ux + i, u.uy + j)) continue;
+				if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0) {
+					wakeup(mtmp); /* monster becomes hostile */
+					mtmp->mcansee = 0;
+					mtmp->mblinded = rnd(20);
+					pline("%s is blinded!", Monnam(mtmp));
+				}
+
+			}
+
+		}
+
+		if (obj->oartifact == ART_CALLGIRL) {
+			struct permonst *shoe = 0;
+			int attempts = 0;
+			struct monst *shoemonst;
+
+			do {
+				shoe = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!shoe || (shoe && !(shoe->msound == MS_SHOE))) && attempts < 50000);
+
+			if (shoe && (shoe->msound == MS_SHOE) ) {
+				pline("A shoe appears from nowhere!");
+				shoemonst = makemon(shoe, u.ux, u.uy, NO_MM_FLAGS);
+				if (shoemonst) (void) tamedog(shoemonst, (struct obj *) 0, TRUE);
+			} else if (shoe) {
+				pline("Hmm... you expected a shoe, but some other monster appeared instead!");
+				shoemonst = makemon(shoe, u.ux, u.uy, NO_MM_FLAGS);
+				if (shoemonst) (void) tamedog(shoemonst, (struct obj *) 0, TRUE);
+			} else pline("Somehow, it failed... :(");
+
+		}
+
+		break;
 	case CHOCOLATE_CREATION:
 
 		{

@@ -2034,7 +2034,7 @@ burnagain:
 		/* Amy edit: paper is particularly flammable and should therefore burn even faster */
 	    if (otmp && objects[otmp->otyp].oc_material == MT_PAPER && !rn2(2)) goto burnagain;
 
-	} else if (!hard_to_destruct(otmp) && (!otmp->oartifact || !rn2(4))) {
+	} else if (!hard_to_destruct(otmp) && !(otmp->oartifact == ART_EXCITING_SPFLOTCH) && (!otmp->oartifact || !rn2(4))) {
 		    if (youdefend) {
 		    Your("%s got vaporized!", ostr);
 			remove_worn_item(otmp, FALSE);
@@ -2160,7 +2160,7 @@ struct monst *victim;
 		update_inventory();
 	    }
 	} else /*if (!otmp->oartifact)*/ {
-		    if (youdefend && !hard_to_destruct(otmp) && (!otmp->oartifact || !rn2(4)) ) {
+		    if (youdefend && !hard_to_destruct(otmp) && !(otmp->oartifact == ART_EXCITING_SPFLOTCH) && (!otmp->oartifact || !rn2(4)) ) {
 		    Your("%s got vaporized!", ostr);
 			remove_worn_item(otmp, FALSE);
 			if (otmp == uball) unpunish();

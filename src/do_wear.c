@@ -439,6 +439,24 @@ Boots_on()
 		}
     }
 
+    if (uarmf && uarmf->oartifact == ART_HERSAY_PRICE) {
+		if (!uarmf->hvycurse) {
+			curse(uarmf);
+			uarmf->hvycurse = TRUE;
+			pline("Now you have to pay the price for using her abilities.");
+		}
+    }
+    if (uarmf && uarmf->oartifact == ART_DARK_BALL_OF_LIGHT) {
+		if (!uarmf->hvycurse) {
+			curse(uarmf);
+			uarmf->hvycurse = TRUE;
+			pline("These dark boots won't come off easily.");
+		}
+		if (!uarmf->stckcurse) {
+			uarmf->stckcurse = TRUE;
+		}
+    }
+
     if (uarmf && uarmf->oartifact == ART_PRADA_S_DEVIL_WEAR) {
 		if (!uarmf->cursed) {
 			curse(uarmf);
@@ -448,6 +466,10 @@ Boots_on()
 
     if (uarmf && uarmf->oartifact == ART_RITA_S_TENDER_STILETTOS) {
 		if (!uarmf->cursed) curse(uarmf);
+		if (uarmf->spe > -10) uarmf->spe = -10;
+    }
+
+    if (uarmf && uarmf->oartifact == ART_GIGGLING) {
 		if (uarmf->spe > -10) uarmf->spe = -10;
     }
 
@@ -5704,6 +5726,7 @@ find_ac()
 	if (uarmc && uarmc->oartifact == ART_SPACEWASTE) uac -= 3;
 	if (uarmh && uarmh->oartifact == ART_NOSED_BUG) uac -= 7;
 	if (uarmf && uarmf->oartifact == ART_PORCELAIN_ELEPHANT) uac -= 5;
+	if (uarmf && uarmf->oartifact == ART_DAMPENER) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_SEXY_STROKING_UNITS) uac -= 5;
 	if (uarm && uarm->oartifact == ART_ANASTASIA_S_SOFT_CLOTHES) uac -= 10;
 	if (uarm && uarm->oartifact == ART_ROCKET_IMPULSE) uac -= 10;
@@ -5728,6 +5751,7 @@ find_ac()
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) uac -= 20;
 	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) uac -= 1;
 	if (uarmf && uarmf->oartifact == ART_KATI_S_IRRESISTIBLE_STILET) uac -= 2;
+	if (uarmf && uarmf->oartifact == ART_EXCITING_SPFLOTCH) uac -= 2;
 	if (uarmc && uarmc->oartifact == ART_FOOKING_TANK) uac -= 10;
 	if (uarmg && uarmg->oartifact == ART_AA_S_CRASHING_TRAGEDY) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_INERT_GREAVES) uac -= 4;

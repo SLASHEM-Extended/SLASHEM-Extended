@@ -8861,6 +8861,16 @@ retry:
 		break;
 
 	case SCR_TELEPORTATION:
+
+		if (uarmf && uarmf->oartifact == ART_GRAVY_HIDE && !rn2(100)) {
+			u.youaredead = 1;
+			pline("NETHACK caused a General Protection Fault in module KRNL386.EXE at address 0001:3369.");
+			killer_format = KILLED_BY;
+			killer = "a gravy hide";
+			done(DIED);
+			u.youaredead = 0;
+		}
+
 		if(confused || sobj->cursed) 
 			{
 		      if (!playerlevelportdisabled()) level_tele();
@@ -8888,6 +8898,16 @@ retry:
 		break;
 
 	case SCR_PHASE_DOOR:
+
+		if (uarmf && uarmf->oartifact == ART_GRAVY_HIDE && !rn2(100)) {
+			u.youaredead = 1;
+			pline("NETHACK caused a General Protection Fault in module KRNL386.EXE at address 0001:3369.");
+			killer_format = KILLED_BY;
+			killer = "a gravy hide";
+			done(DIED);
+			u.youaredead = 0;
+		}
+
 		known = TRUE;
 		if(confused) 
 			{
