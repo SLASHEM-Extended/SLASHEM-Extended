@@ -8893,6 +8893,7 @@ use_weapon:
 					} else {
 						uwep->spe--;
 						pline("Your weapon dulls.");
+						u.cnd_weapondull++;
 					}
 				}
 
@@ -9124,6 +9125,7 @@ bladeangerdone:
 					} else {
 						uswapwep->spe--;
 						pline("Your weapon dulls.");
+						u.cnd_weapondull++;
 					}
 				}
 

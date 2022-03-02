@@ -1852,6 +1852,7 @@ register struct attack *mattk;
 			} else {
 				blocker->spe--;
 				pline("Your %s dulls.", simple_typename(blocker->otyp));
+				u.cnd_armordull++;
 			}
 		}
 

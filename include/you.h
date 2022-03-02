@@ -1895,6 +1895,8 @@ struct you {
 	int cnd_socksmell;	/* for MS_SOCKS */
 	int cnd_pantsmell;	/* for MS_PANTS */
 	int cnd_photo_op;	/* for MS_PHOTO */
+	int cnd_weapondull;	/* how many times your weapons dulled */
+	int cnd_armordull;	/* how many times your armor pieces dulled */
 
 	struct symbiotemon usymbiote;	/* for the symbiosis skill */
 	int symbioteaggressivity;	/* how often your symbiote attacks or takes damage */

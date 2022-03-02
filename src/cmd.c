@@ -12573,6 +12573,14 @@ int final;
 		sprintf(buf, "%d time%s", u.cnd_photo_op, plur(u.cnd_photo_op));
 		enl_msg(You_, "were photographed by monsters ", "were photographed by monsters ", buf);
 	}
+	if (u.cnd_weapondull) {
+		sprintf(buf, "%d time%s", u.cnd_weapondull, plur(u.cnd_weapondull));
+		enl_msg(You_, "had your weapons dull ", "had your weapons dull ", buf);
+	}
+	if (u.cnd_armordull) {
+		sprintf(buf, "%d time%s", u.cnd_armordull, plur(u.cnd_armordull));
+		enl_msg(You_, "had your armors dull ", "had your armors dull ", buf);
+	}
 
 	/* Pop up the window and wait for a key */
 	display_nhwindow(en_win, TRUE);
@@ -13163,6 +13171,12 @@ int final;
 
 	sprintf(buf, "%d time%s", u.cnd_photo_op, plur(u.cnd_photo_op));
 	dump("  You were photographed by monsters ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_weapondull, plur(u.cnd_weapondull));
+	dump("  You had your weapons dull ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_armordull, plur(u.cnd_armordull));
+	dump("  You had your armors dull ", buf);
 
 	dump("", "");
 }
