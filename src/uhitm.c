@@ -4119,7 +4119,7 @@ melatechoice:
 
 		else if ((Role_if(PM_SPACEWARS_FIGHTER) || (mon->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || sanitymessage) && (!rn2(5) || (mon->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) ) {
 
-			switch (rnd(554)) {
+			switch (rnd(568)) {
 	
 			case 1: pline("%s staggers from your furious assault.", Monnam(mon)); break;
 			case 2: pline("Your cut barely scratches %s's scales.", mon_nam(mon)); break;
@@ -4675,6 +4675,20 @@ melatechoice:
 			case 552: pline("Good thing you raised your dexterity to %d, so you reliably hit %s.", ACURR(A_DEX), mon_nam(mon)); break;
 			case 553: pline("%s loses a chunk of health, but gains a bunch of gauge!", Monnam(mon)); break;
 			case 554: pline("%s is almost dead, but has a full gauge meter so you need to be wary of %s counterattack!", Monnam(mon), mhis(mon)); break;
+			case 555: pline("You sprinkle the soy sauce to %s of %s as mise en place, 'Stop...'", mbodypart(mon, HEAD), mon_nam(mon)); break;
+			case 556: pline("You sprinkle the pepper to %s as mise en place, 'Achoo!'", mon_nam(mon)); break;
+			case 557: pline("You dusted the sugar to %s as mise en place, 'Sweet!'", mon_nam(mon)); break;
+			case 558: pline("You rubbed into %s the salt as mise en place... %s is stumped.", mhim(mon), Monnam(mon)); break;
+			case 559: pline("You painfully slam your girl peep-toes into %s's shins.", mon_nam(mon)); break;
+			case 560: pline("You throw a high potion of soma, and %s takes a lot of sound damage.", mon_nam(mon)); break;
+			case 561: pline("You throw a high potion of disaster, permanently damaging %s's stats.", mon_nam(mon)); break;
+			case 562: pline("%s triggers a nasty trap and should be easier to defeat now, because %s has to deal with an annoying interface screw!", Monnam(mon), mhe(mon)); break;
+			case 563: pline("Your %snails pinch %s.", body_part(FINGER), mon_nam(mon)); break;
+			case 564: pline("%s loses one single drop of blood as a result of your stinging attack.", Monnam(mon)); break;
+			case 565: pline("You use your high heels as a blunt weapon to batter %s's bones.", mon_nam(mon)); break;
+			case 566: pline("You use your high heels as a sharp weapon to remove the skin from %s's %s.", mon_nam(mon), mbodypart(mon, LEG)); break;
+			case 567: pline("Your weapon hits %s, but since it's so dull, it only deals a single point of damage.", mon_nam(mon)); break;
+			case 568: pline("Your d20 only rolled a 2, so %s loses very little health.", mon_nam(mon)); break;
 
 			default: pline("You hit %s!", mon_nam(mon)); break;
 	
@@ -4789,7 +4803,7 @@ melatechoice:
 
 			else if ((Role_if(PM_SPACEWARS_FIGHTER) || (mon->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && (!rn2(5) || (mon->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) && !thrown) {
 
-				switch (rnd(721)) {
+				switch (rnd(722)) {
 
 				case 1: pline("You crush %s's skull into jelly.", mon_nam(mon)); break;
 				case 2: pline("You decapitate %s with a backhand stroke.", mon_nam(mon)); break;
@@ -5504,7 +5518,7 @@ melatechoice:
 				case 711: pline("You get rid of the opponent."); break;
 				case 712: pline("The enemy is dead."); break;
 				case 713: pline("%s is so dead!", Monnam(mon)); break;
-				case 714: pline("Even though %s is laying prone, %s keeps fighting back and hits you with a painful kick!", mon_nam(mon), mhe(mon)); break;
+				case 714: pline("An enemy has died!"); break;
 				case 715: pline("You have an astounding strength of %d, and smash %s to a pulp.", ACURR(A_STR), mon_nam(mon)); break;
 				case 716: pline("Thankfully you are very wise, with %d wisdom in fact, and make the wise decision to off %s.", ACURR(A_WIS), mon_nam(mon)); break;
 				case 717: pline("Barely managed to off %s before %s could unleash the gauge attack on you!", mon_nam(mon), mhe(mon)); break;
@@ -5512,6 +5526,7 @@ melatechoice:
 				case 719: pline("%s has died, and needs to be buried.", Monnam(mon)); break;
 				case 720: pline("Now you can sing the elegy, for %s has just passed away.", mon_nam(mon)); break;
 				case 721: pline("%s has an E, which is shorthand for epileptic seizure!", Monnam(mon)); break;
+				case 722: pline("You slam the massive translucent heel on %s's %s with overwhelming force.", mon_nam(mon), mbodypart(mon, HEAD)); break;
 
 
 				default: pline("You hit %s very hard!", mon_nam(mon)); break;
@@ -7895,7 +7910,7 @@ register int roll;
 
 	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || (mdef->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && (!rn2(5) || (mdef->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) && canspotmon(mdef) && flags.verbose) {
 
-		switch (rnd(742)) {
+		switch (rnd(749)) {
 
 		case 1: pline("%s cringes from your strike behind its %sshield.", Monnam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
 		case 2: pline("You smash into %s's %sshield, striking sparks.", mon_nam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
@@ -8639,6 +8654,13 @@ register int roll;
 		case 740: pline("%s is thick-skinned, and therefore takes no damage from your flimsy weapon!", Monnam(mdef)); break;
 		case 741: pline("%s can only be harmed by Donkey Kong, and because you're not Donkey Kong, you are completely unable to deal any damage to %s!", Monnam(mdef), mhim(mdef)); break;
 		case 742: pline("%s will imprison you in Sing's torture chamber if you keep fighting that badly!", Monnam(mdef)); break;
+		case 743: pline("%s cannot be snatched by you!", Monnam(mdef)); break;
+		case 744: pline("%s narrowly manages to escape your grabbing attempt.", Monnam(mdef)); break;
+		case 745: pline("%s swerves out of your reach.", Monnam(mdef)); break;
+		case 746: pline("%s teases you by floating to the ceiling where you cannot reach it.", Monnam(mdef)); break;
+		case 747: pline("%s scratches over your %s as you try to grab it.", Monnam(mdef), body_part(HAND)); break;
+		case 748: pline("Even though %s is laying prone, %s keeps fighting back and hits you with a painful kick!", mon_nam(mdef), mhe(mdef)); break;
+		case 749: pline("Your thick block heel boots stomp %s, but since the heels are so incredibly soft, they cannot actually hurt anyone.", mon_nam(mdef)); break;
 
 
 		default: pline("You missed %s!", mon_nam(mdef)); break;

@@ -7455,6 +7455,9 @@ SCROLL((char *)0,               "JYLL TO CUXHAVEN",  P_NONE,     1,   0, 100, CL
 SCROLL((char *)0,               "PISS ON MY CHIPS",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
 SCROLL((char *)0,               "A JO FINES A JO FEIER TSCHO DISEIER",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
 SCROLL((char *)0,               "WHY SAY ZUFAELLIG IF YOU COULD SAY WAENDEM",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
+SCROLL((char *)0,               "KRAECHZEN SIE SICH UND KRAECHZERE",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "NERVEN SIE SICH UND NERVERE",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
+SCROLL((char *)0,               "VERBLOEDEN SIE SICH UND BLOEDERE",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
 
 
 #ifdef MAIL
