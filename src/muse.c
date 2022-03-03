@@ -12287,6 +12287,16 @@ struct monst *mtmp;
 
 	if (mtmp->data == &mons[PM_COW_HILL_GIANT]) return;
 	if (mtmp->data == &mons[PM_IT_S_TOO_HEAVY_FOR_YOUR_HILL_GIANT]) return;
+	if (mtmp->data == &mons[PM_NEW_POTATO_ER]) return;
+	if (mtmp->data == &mons[PM_SMALL_POTATO_ER]) return;
+	if (mtmp->data == &mons[PM_POTATO_ER]) return;
+	if (mtmp->data == &mons[PM_OLDER_POTATO_ER]) return;
+	if (mtmp->data == &mons[PM_LARGER_POTATO_ER]) return;
+	if (mtmp->data == &mons[PM_OLD_POTATO_ER]) return;
+	if (mtmp->data == &mons[PM_SELFIT_CUBE]) return;
+	if (mtmp->data == &mons[PM_BOXIT_CUBE]) return;
+	if (mtmp->data == &mons[PM_BOXER]) return;
+	if (mtmp->data == &mons[PM_CHESTER]) return;
 
 	for(obj=mtmp->minvent; obj; obj=obj->nobj) {
 		if (Is_container(obj)) {

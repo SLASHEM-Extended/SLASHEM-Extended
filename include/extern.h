@@ -2169,6 +2169,7 @@ E int find_bridal_shoes(void);
 E int find_pistol_boots(void);
 E int find_ng_shoes(void);
 E int find_chelsea_boots(void);
+E int find_strip_bandana(void);
 E void oinit(void);
 E void savenames(int,int);
 E void restnames(int);

@@ -600,7 +600,7 @@ register struct monst *mtmp;
 	/* croupiers are meant to mostly stay in their casinos */
 	if ((mdat == &mons[PM_CROUPIER] || mdat == &mons[PM_MASTER_CROUPIER] || mdat == &mons[PM_ELITE_CROUPIER]) && mtmp->mpeaceful && !mtmp->mtame && rn2(20) && levl[mtmp->mx][mtmp->my].typ == ROOM) return 0;
 
-	if ((mdat == &mons[PM_BUGBEAM_CUBE] || mdat == &mons[PM_IRMGARD] || mdat == &mons[PM_WORM_THAT_WANKS] || mdat == &mons[PM_METH_HEAD] || mdat == &mons[PM_TORSTINA] || mdat == &mons[PM_MARINERV] || mdat == &mons[PM_MARISTIN] || mdat == &mons[PM_MARIVERT] || mdat == &mons[PM_MARISISTER] || mdat == &mons[PM_FUNNY_ITALIAN] || mdat == &mons[PM_EAR_FIG_MACHINE] || mdat == &mons[PM_POLEPOKER] || mdat == &mons[PM_DISTURBMENT_HEAD]) && !rn2(4)) return 0; /* can sometimes not move; this is by design */
+	if ((mdat == &mons[PM_BUGBEAM_CUBE] || mdat == &mons[PM_BOXIT_CUBE] || mdat == &mons[PM_IRMGARD] || mdat == &mons[PM_WORM_THAT_WANKS] || mdat == &mons[PM_METH_HEAD] || mdat == &mons[PM_TORSTINA] || mdat == &mons[PM_MARINERV] || mdat == &mons[PM_MARISTIN] || mdat == &mons[PM_MARIVERT] || mdat == &mons[PM_MARISISTER] || mdat == &mons[PM_FUNNY_ITALIAN] || mdat == &mons[PM_EAR_FIG_MACHINE] || mdat == &mons[PM_POLEPOKER] || mdat == &mons[PM_DISTURBMENT_HEAD]) && !rn2(4)) return 0; /* can sometimes not move; this is by design */
 	if ((mdat == &mons[PM_SARAH_S_AIRTIGHT_PANTS]) && rn2(5)) return 0;
 
 	if (uwep && uwep->oartifact == ART_STOP_THE_AIRSHIPS && is_flyer(mtmp->data) && !mtmp->mpeaceful && !mtmp->mtame && !rn2(6)) return 0;
@@ -1075,6 +1075,18 @@ register struct monst *mtmp;
 		if (isok(mtmp->mx, mtmp->my) && (!In_sokoban(&u.uz) || !rn2(25))) {
 			if (levl[mtmp->mx][mtmp->my].typ == ROOM || levl[mtmp->mx][mtmp->my].typ == CORR || (levl[mtmp->mx][mtmp->my].typ >= ICE && levl[mtmp->mx][mtmp->my].typ <= CRYPTFLOOR) || (levl[mtmp->mx][mtmp->my].typ >= AIR && levl[mtmp->mx][mtmp->my].typ <= RAINCLOUD)) {
 				levl[mtmp->mx][mtmp->my].typ = IRONBARS;
+				blockorunblock_point(mtmp->mx,mtmp->my);
+				if(cansee(mtmp->mx,mtmp->my)) {
+					newsym(mtmp->mx,mtmp->my);
+				}
+			}
+		}
+	}
+
+	if (mdat == &mons[PM_HAPPY_CLOUD]) {
+		if (isok(mtmp->mx, mtmp->my) && (!In_sokoban(&u.uz) || !rn2(25))) {
+			if (levl[mtmp->mx][mtmp->my].typ == ROOM || levl[mtmp->mx][mtmp->my].typ == CORR || (levl[mtmp->mx][mtmp->my].typ >= ICE && levl[mtmp->mx][mtmp->my].typ <= CRYPTFLOOR) || (levl[mtmp->mx][mtmp->my].typ >= AIR && levl[mtmp->mx][mtmp->my].typ <= RAINCLOUD)) {
+				levl[mtmp->mx][mtmp->my].typ = CLOUD;
 				blockorunblock_point(mtmp->mx,mtmp->my);
 				if(cansee(mtmp->mx,mtmp->my)) {
 					newsym(mtmp->mx,mtmp->my);

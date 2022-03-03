@@ -327,6 +327,7 @@
 				 ((ptr) == &mons[PM_BLORCHING_DARKBREAD_ZURTY]) ? 1 : \
 				 ((ptr) == &mons[PM_UNEXPECTED_LIGHT]) ? 1 : \
 				 ((ptr) == &mons[PM_POFFISH]) ? 1 : \
+				 ((ptr) == &mons[PM_SCAN_ME_MISSYS]) ? 1 : \
 				 ((ptr) == &mons[PM_SPASHCO]) ? 1 : \
 				 ((ptr) == &mons[PM_GOBLIN_WHO_CAN_T_SEE_IN_THE_DARK]) ? 1 : \
 				 ((ptr) == &mons[PM_SHOCKING_SPHERE]) ? 1 : \

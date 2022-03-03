@@ -1399,6 +1399,41 @@ register struct monst *mtmp;
 			obj = mksobj_at(RAPIER, x, y, TRUE, FALSE, FALSE);
 		mtmp->mnamelth = 0;
 		break;
+	    case PM_ICEBOX_GOLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(ICE_BOX, x, y, TRUE, FALSE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_CHEST_GOLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(CHEST, x, y, TRUE, FALSE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_BOX_GOLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(LARGE_BOX, x, y, TRUE, FALSE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_POTATO_GOLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(POTATO_BAG, x, y, TRUE, FALSE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_SACK_GOLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(SACK, x, y, TRUE, FALSE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
 	    case PM_SCIM_GOLEM:
 		num = d(2,2);
 		if (num > 1 && rn2(2)) num /= 2;
@@ -1677,6 +1712,13 @@ register struct monst *mtmp;
 		num = rnd(4);
 		while (num--)
 			obj = mksobj_at(SCR_BLANK_PAPER, x, y, TRUE, FALSE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+
+	    case PM_ECTUEL_CHRISTMICEBOX:
+		num = 1;
+		while (num--)
+			obj = mksobj_at(ICE_BOX, x, y, TRUE, FALSE, FALSE);
 		mtmp->mnamelth = 0;
 		break;
 

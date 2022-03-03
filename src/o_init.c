@@ -4260,6 +4260,20 @@ find_chelsea_boots()
 
 }
 
+int
+find_strip_bandana()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_STRIP_BANDANA)) return i;
+    }
+
+    impossible("strip bandana not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
 void
 oinit()			/* level dependent initialization */
 {
