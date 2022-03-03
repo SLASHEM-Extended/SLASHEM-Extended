@@ -27597,6 +27597,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"Your shoes degrade.",
 	"Your shoes degrade. Maybe you need to buy a new pair after all.",
 	"You learn the take-won-do fighting style! (Hmm, somehow I think that's not spelled correctly...)",
+	"a strange glow fills the room.",
+	"As you close the door, you feel a sense of security here.",
+	"Your campfire keeps the denizens of this mystic place at bay.",
+
 
 };
 
