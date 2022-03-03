@@ -3421,8 +3421,9 @@ melatechoice:
 				int i = 0;
 
 				if (P_MAX_SKILL(paueredskill) == P_BASIC) {
-					P_MAX_SKILL(paueredskill) = P_UNSKILLED;
+					P_MAX_SKILL(paueredskill) = P_ISRESTRICTED;
 					pline("You lose all knowledge of the %s skill!", wpskillname(paueredskill));
+					P_ADVANCE(paueredskill) = 0;
 				} else if (P_MAX_SKILL(paueredskill) == P_SKILLED) {
 					P_MAX_SKILL(paueredskill) = P_BASIC;
 					pline("You lose some knowledge of the %s skill!", wpskillname(paueredskill));

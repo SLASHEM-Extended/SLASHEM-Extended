@@ -820,8 +820,9 @@ skillcaploss()
 	if (P_RESTRICTED(skilltoreduce)) return; /* nothing to do */
 
 	if (P_MAX_SKILL(skilltoreduce) == P_BASIC) {
-		P_MAX_SKILL(skilltoreduce) = P_UNSKILLED;
+		P_MAX_SKILL(skilltoreduce) = P_ISRESTRICTED;
 		pline("You lose all knowledge of the %s skill!", wpskillname(skilltoreduce));
+		P_ADVANCE(skilltoreduce) = 0;
 	} else if (!rn2(2) && P_MAX_SKILL(skilltoreduce) == P_SKILLED) {
 		P_MAX_SKILL(skilltoreduce) = P_BASIC;
 		pline("You lose some knowledge of the %s skill!", wpskillname(skilltoreduce));
@@ -842,6 +843,7 @@ skillcaploss()
 	tryct = 2000;
 
 	while (u.skills_advanced && tryct && (P_SKILL(skilltoreduce) > P_MAX_SKILL(skilltoreduce)) ) {
+
 		lose_last_spent_skill();
 		i++;
 		tryct--;

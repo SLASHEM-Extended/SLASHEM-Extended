@@ -6200,6 +6200,10 @@ lose_last_spent_skill()
 			maybe_loose_disarm = TRUE;
 		P_SKILL(skill)--;	/* drop skill one level */
 
+		if ((P_SKILL(skill) == P_UNSKILLED) && (P_MAX_SKILL(skill) == P_ISRESTRICTED)) {
+			P_SKILL(skill) = P_ISRESTRICTED;
+		}
+
 		/* caller will refund the points */
 	}
 
