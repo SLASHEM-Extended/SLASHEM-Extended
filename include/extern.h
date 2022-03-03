@@ -1810,6 +1810,8 @@ E boolean symbiotemelee(void);
 E boolean symbiotepassive(void);
 E void getrandomsymbiote(BOOLEAN_P,BOOLEAN_P);
 E void monst_globals_init(void);
+E void symbiotemaygainhealth(void);
+E void maybe_evolve_symbiote(void);
 
 /* ### mondata.c ### */
 

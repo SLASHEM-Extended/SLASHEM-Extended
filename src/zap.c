@@ -6845,6 +6845,7 @@ boolean ordinary;
 				else u.uhpmax += rnd(5);
 				if (uactivesymbiosis) {
 					u.usymbiote.mhpmax += rnd(5);
+					maybe_evolve_symbiote();
 					if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 				}
 			break;

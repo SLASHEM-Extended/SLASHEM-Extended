@@ -367,6 +367,7 @@ dosit()
 			u.uhp = u.uhpmax;
 			if (uactivesymbiosis) {
 				u.usymbiote.mhpmax += 4;
+				maybe_evolve_symbiote();
 				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 			}
 			make_blinded(0L,TRUE);

@@ -5891,6 +5891,7 @@ newbossPENT:
 						pline("Suddenly you have a symbiote!");
 					} else {
 						u.usymbiote.mhpmax += rnd(10);
+						maybe_evolve_symbiote();
 						if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 						flags.botl = TRUE;
 						Your("symbiote seems much stronger now.");
@@ -5957,6 +5958,7 @@ newbossPENT:
 			u.uhp = u.uhpmax;
 			if (uactivesymbiosis) {
 				u.usymbiote.mhpmax += 4;
+				maybe_evolve_symbiote();
 				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 			}
 			make_blinded(0L,TRUE);
@@ -7925,6 +7927,7 @@ whisperchoice:
 			if (Upolyd) u.mhmax++;
 			if (uactivesymbiosis) {
 				u.usymbiote.mhpmax++;
+				maybe_evolve_symbiote();
 				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 			}
 

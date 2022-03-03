@@ -2110,6 +2110,7 @@ register int pm;
 		}
 		if (uactivesymbiosis) {
 			u.usymbiote.mhpmax++;
+			maybe_evolve_symbiote();
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 		}
 		    You_feel("vitalized.");
@@ -2136,6 +2137,7 @@ register int pm;
 		if (uactivesymbiosis) {
 			u.usymbiote.mhpmax++;
 			u.usymbiote.mhpmax += rnd(2);
+			maybe_evolve_symbiote();
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 		}
 
@@ -2173,6 +2175,7 @@ register int pm;
 			u.usymbiote.mhpmax++;
 			u.usymbiote.mhpmax++;
 			u.usymbiote.mhpmax += rnd(10);
+			maybe_evolve_symbiote();
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 		}
 		    You_feel("vitalized.");
@@ -2223,6 +2226,7 @@ register int pm;
 			u.usymbiote.mhpmax++;
 			u.usymbiote.mhpmax++;
 			u.usymbiote.mhpmax += rnd(10);
+			maybe_evolve_symbiote();
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 		}
 		    You_feel("vitalized.");
@@ -4047,6 +4051,7 @@ register int pm;
 			}
 			if (uactivesymbiosis) {
 				u.usymbiote.mhpmax++;
+				maybe_evolve_symbiote();
 				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 			}
 		    You_feel("vitalized.");
@@ -4181,6 +4186,7 @@ register int pm;
 				}
 				if (uactivesymbiosis) {
 					u.usymbiote.mhpmax++;
+					maybe_evolve_symbiote();
 					if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 				}
 				You_feel("vitalized.");
@@ -5965,6 +5971,7 @@ eatspecial() /* called after eating non-food */
 		}
 		if (uactivesymbiosis) {
 			u.usymbiote.mhpmax++;
+			maybe_evolve_symbiote();
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 		}
 		You_feel("vitalized.");
@@ -6964,6 +6971,7 @@ register struct obj *otmp;
 		    }
 			if (uactivesymbiosis && !rn2(17)) {
 				u.usymbiote.mhpmax++;
+				maybe_evolve_symbiote();
 				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 			}
 		}

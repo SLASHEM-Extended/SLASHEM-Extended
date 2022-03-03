@@ -4996,6 +4996,7 @@ goodeffect()
 				if (Upolyd) u.mhmax++;
 				if (uactivesymbiosis) {
 					u.usymbiote.mhpmax += rnd(5);
+					maybe_evolve_symbiote();
 					if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 				}
 				Your("health has been boosted!");
@@ -11023,6 +11024,7 @@ peffects(otmp)
 		u.uhp = u.uhpmax;
 		if (uactivesymbiosis) {
 			u.usymbiote.mhpmax += 5;
+			maybe_evolve_symbiote();
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 		}
 		} break;
@@ -11600,6 +11602,7 @@ peffects(otmp)
 			}
 			if (uactivesymbiosis && !otmp->cursed) {
 				u.usymbiote.mhpmax += num2;
+				maybe_evolve_symbiote();
 				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 			}
 			flags.botl = 1;
@@ -11809,6 +11812,7 @@ peffects(otmp)
 			if (Hallucination) make_hallucinated(0L,FALSE,0L);
 			if (uactivesymbiosis) {
 				u.usymbiote.mhpmax++;
+				maybe_evolve_symbiote();
 				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 			}
 			if (otmp->blessed && !rn2(10)) {
@@ -11841,6 +11845,7 @@ peffects(otmp)
 		u.uhpmax += x;
 		if (uactivesymbiosis) {
 			u.usymbiote.mhpmax += x;
+			maybe_evolve_symbiote();
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 		}
 	} break;
@@ -11856,6 +11861,7 @@ peffects(otmp)
 			u.uhpmax += rn2(5);
 			if (uactivesymbiosis) {
 				u.usymbiote.mhpmax += rn2(5);
+				maybe_evolve_symbiote();
 				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 			}
 		}
@@ -11883,6 +11889,7 @@ peffects(otmp)
 		u.uhpmax += rn2(5);
 		if (uactivesymbiosis) {
 			u.usymbiote.mhpmax += rn2(5);
+			maybe_evolve_symbiote();
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 		}
 		u.uhp = u.uhpmax;
@@ -12052,6 +12059,7 @@ healup(nhp, nxtra, curesick, cureblind)
 		if (uactivesymbiosis) {
 			/* heal symbiote by about 10% of the amount you were healed; more if high skill --Amy */
 			u.usymbiote.mhpmax += nxtra;
+			maybe_evolve_symbiote();
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 			if (nhp > 1) {
 				int healsymamount = 10;

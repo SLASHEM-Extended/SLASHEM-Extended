@@ -8110,6 +8110,7 @@ repairitemchoice:
 			}
 
 			u.usymbiote.mhpmax += rnd(8);
+			maybe_evolve_symbiote();
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 			if (flags.showsymbiotehp) flags.botl = TRUE;
 			Your("symbiote's health is improved!");

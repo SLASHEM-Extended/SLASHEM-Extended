@@ -4096,6 +4096,7 @@ repairitemchoice:
 								use_skill(P_SQUEAKING, 1);
 								if (uactivesymbiosis) {
 									u.usymbiote.mhpmax++;
+									maybe_evolve_symbiote();
 									if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 								}
 								u.nurseextracost += 50;

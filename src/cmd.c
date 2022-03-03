@@ -12595,6 +12595,10 @@ int final;
 		sprintf(buf, "%d time%s", u.cnd_armordull, plur(u.cnd_armordull));
 		enl_msg(You_, "had your armors dull ", "had your armors dull ", buf);
 	}
+	if (u.cnd_symbiotekills) {
+		sprintf(buf, "%d monster%s with your symbiote's attacks", u.cnd_symbiotekills, plur(u.cnd_symbiotekills));
+		enl_msg(You_, "killed ", "killed ", buf);
+	}
 
 	/* Pop up the window and wait for a key */
 	display_nhwindow(en_win, TRUE);
@@ -13191,6 +13195,9 @@ int final;
 
 	sprintf(buf, "%d time%s", u.cnd_armordull, plur(u.cnd_armordull));
 	dump("  You had your armors dull ", buf);
+
+	sprintf(buf, "%d monster%s with your symbiote's attacks", u.cnd_symbiotekills, plur(u.cnd_symbiotekills));
+	dump("  You killed ", buf);
 
 	dump("", "");
 }

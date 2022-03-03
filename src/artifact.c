@@ -3231,6 +3231,7 @@ newboss:
 						pline("Suddenly you have a symbiote!");
 					} else {
 						u.usymbiote.mhpmax += rnd(10);
+						maybe_evolve_symbiote();
 						if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 						flags.botl = TRUE;
 						Your("symbiote seems much stronger now.");

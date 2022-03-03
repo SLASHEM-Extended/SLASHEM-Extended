@@ -1467,6 +1467,8 @@ struct you {
 
 	boolean dirtifiedexcalibur;
 
+	boolean symbioteattacking;
+
 	int nataljetrapturns;
 	int nataljetrapx, nataljetrapy;
 
@@ -1899,6 +1901,7 @@ struct you {
 	int cnd_photo_op;	/* for MS_PHOTO */
 	int cnd_weapondull;	/* how many times your weapons dulled */
 	int cnd_armordull;	/* how many times your armor pieces dulled */
+	int cnd_symbiotekills;	/* how many times your symbiote killed an enemy */
 
 	struct symbiotemon usymbiote;	/* for the symbiosis skill */
 	int symbioteaggressivity;	/* how often your symbiote attacks or takes damage */

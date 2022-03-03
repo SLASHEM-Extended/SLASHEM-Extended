@@ -9443,6 +9443,7 @@ bladeangerdone:
 	if (willsymattack && !symbioteprocess && uactivesymbiosis) {
 		if (!noattacks(&mons[u.usymbiote.mnum])) {
 			Your("%s symbiote attacks!", mons[u.usymbiote.mnum].mname);
+			u.symbioteattacking = TRUE;
 			u.usymbiosisfastturns++;
 			if (u.usymbiosisfastturns >= 3) {
 				u.usymbiosisfastturns = 0;
@@ -9469,6 +9470,8 @@ bladeangerdone:
 
 		goto carthagejump;
 	}
+
+	u.symbioteattacking = FALSE;
 
 	return((boolean)(nsum != 0));
 }

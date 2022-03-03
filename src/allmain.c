@@ -2185,6 +2185,8 @@ moveloop()
 		    /* once-per-turn things go here */
 		    /********************************/
 
+		u.symbioteattacking = FALSE;
+
 		if (Race_if(PM_PERVERT)) {
 			u.pervertsex++;
 			u.pervertpray++;
@@ -12451,6 +12453,7 @@ past3:
 	/* once-per-player-input things go here */
 	/****************************************/
 
+	u.symbioteattacking = FALSE;
 	u.captchahack = 0;
 	u.roommatehack = 0;
 	u.mushroompoleused = 0;

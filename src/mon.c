@@ -2187,6 +2187,8 @@ movemon()
     for(mtmp = fmon; mtmp; mtmp = nmtmp) {
 	nmtmp = mtmp->nmon;
 
+	u.symbioteattacking = FALSE; /* in case the previous one was hit by the symbiote's passive attack... */
+
 	/* Find a monster that we have not treated yet.	 */
 	if(DEADMONSTER(mtmp))
 	    continue;
@@ -6874,6 +6876,13 @@ xkilled(mtmp, dest)
 	/* KMH, conduct */
 	u.uconduct.killer++;
 
+	/* this probably isn't foolproof, but if a monster's death is processed while the player's symbiote is attacking,
+	 * we assume that the player's symbiote has killed the monster --Amy */
+	if (u.symbioteattacking) {
+		u.cnd_symbiotekills++;
+		symbiotemaygainhealth();
+	}
+
 	if (Role_if(PM_DANCER) && u.dancercombostrike) {
 		u.dancercombostrike = 0;
 		u.dancercomboactive = FALSE;
@@ -6929,6 +6938,7 @@ xkilled(mtmp, dest)
 		if (uactivesymbiosis) {
 			u.usymbiote.mhpmax++;
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+			maybe_evolve_symbiote();
 		}
 	}
 
@@ -10065,6 +10075,53 @@ symbiotepassive()
 	}
 	if (rn2(100) < symchance) return TRUE;
 	return FALSE;
+}
+
+/* symbiote has killed something, and may now gain health --Amy */
+void
+symbiotemaygainhealth()
+{
+	if (!uactivesymbiosis) return;
+	if (u.usymbiote.mnum == PM_CRITICALLY_INJURED_THIEF) return;
+	if (u.usymbiote.mnum == PM_CRITICALLY_INJURED_JEDI) return;
+
+	int symbiohealthgainchance = 1;
+
+	if (u.usymbiote.mhpmax >= 20) symbiohealthgainchance = 3;
+	if (u.usymbiote.mhpmax >= 30) symbiohealthgainchance = 5;
+	if (u.usymbiote.mhpmax >= 40) symbiohealthgainchance = 7;
+	if (u.usymbiote.mhpmax >= 50) symbiohealthgainchance = (u.usymbiote.mhpmax / 5);
+
+	if (!rn2(symbiohealthgainchance)) {
+		if (Role_if(PM_SYMBIANT) || Race_if(PM_GOAULD)) u.usymbiote.mhpmax += rnd(5);
+		else u.usymbiote.mhpmax++;
+		maybe_evolve_symbiote();
+	}
+	if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+	u.usymbiote.mhp++;
+	if (u.usymbiote.mhp > u.usymbiote.mhpmax) u.usymbiote.mhp = u.usymbiote.mhpmax;
+
+	if (flags.showsymbiotehp) flags.botl = TRUE;
+
+}
+
+/* symbiote has gained experience; check whether it evolves --Amy */
+void
+maybe_evolve_symbiote()
+{
+	int oldtype, newtype;
+	if (!uactivesymbiosis) return;
+
+	oldtype = u.usymbiote.mnum;
+	newtype = little_to_big(oldtype);
+
+	if (oldtype != newtype) {
+		if (u.usymbiote.mhpmax >= (mons[newtype].mlevel * 10)) {
+			pline("What? Your %s symbiote is evolving!", mons[u.usymbiote.mnum].mname );
+			pline("%s evolved into %s!", mons[u.usymbiote.mnum].mname, mons[newtype].mname );
+			u.usymbiote.mnum = newtype;
+		}
+	}
 }
 
 #endif /* OVLB */

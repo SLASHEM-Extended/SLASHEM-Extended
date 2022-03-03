@@ -22044,6 +22044,7 @@ register struct attack *mattk;
 			if (haspassive(&mons[u.usymbiote.mnum]) || mons[u.usymbiote.mnum].mattk[i].aatyp == AT_RATH || mons[u.usymbiote.mnum].mattk[i].aatyp == AT_BOOM) {
 				olduasmon = &mons[u.usymbiote.mnum];
 				Your("%s symbiote retaliates!", mons[u.usymbiote.mnum].mname);
+				u.symbioteattacking = TRUE;
 				u.usymbiosisfastturns++;
 				if (u.usymbiosisfastturns >= 3) {
 					u.usymbiosisfastturns = 0;
@@ -22614,10 +22615,12 @@ dothepassive:
 
 	if((mtmp->mhp -= tmp) <= 0) {
 		pline("%s dies!", Monnam(mtmp));
+		u.symbioteattacking = FALSE;
 		xkilled(mtmp,0);
 		if (mtmp->mhp > 0) return 1;
 		return 2;
 	}
+	u.symbioteattacking = FALSE;
 	return 1;
 }
 

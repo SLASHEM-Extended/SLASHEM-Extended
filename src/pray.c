@@ -610,6 +610,7 @@ decurse:
 		    if (!uinsymbiosis) break; /* maybe it died during prayer... */
 		    if (uinsymbiosis && u.usymbiote.mhpmax < 50) {
 			u.usymbiote.mhpmax += 8;
+			maybe_evolve_symbiote();
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500; /* shouldn't happen */
 			Your("symbiote seems hardier!");
 		    }
