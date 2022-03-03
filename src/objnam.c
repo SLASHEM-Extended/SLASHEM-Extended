@@ -195,6 +195,8 @@ int prop;
 			return "wonderlegs";
 		case GLIB_COMBAT:
 			return "glib combat";
+		case PAIN_SENSE:
+			return "pain sense";
 
 		case RNGE_IRREGULARITY:
 			return "irregularity";

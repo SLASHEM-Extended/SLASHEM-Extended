@@ -6485,6 +6485,12 @@ boolean guaranteed;
 		you_are(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && NoPainSense && (final || u.uprops[DEAC_PAIN_SENSE].intrinsic) ) {
+		sprintf(buf, "prevented from having pain sense");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", u.uprops[DEAC_PAIN_SENSE].intrinsic);
+		you_are(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && u.badfcursed) {
 		sprintf(buf, "cursed");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", u.badfcursed);
@@ -6913,7 +6919,8 @@ boolean guaranteed;
 
 	else if ((guaranteed || !rn2(10)) && Flying) you_can(StrongFlying ? "fly up and down" : "fly");
 	if ((guaranteed || !rn2(10)) && Wwalking) you_can("walk on water");
-	if ((guaranteed || !rn2(10)) && Swimming) you_can(StrongSwimming ? "swim like a world champion" : "swim");        
+	if ((guaranteed || !rn2(10)) && Swimming) you_can(StrongSwimming ? "swim like a world champion" : "swim");
+	if ((guaranteed || !rn2(10)) && PainSense) you_can(StrongPainSense ? "sense the pain of everyone" : "sense others' pain");
 	if ((guaranteed || !rn2(10)) && Breathless) you_can(StrongMagical_breathing ? "survive everywhere without needing to breathe" : "survive without air");
 	else if ((guaranteed || !rn2(10)) && Amphibious) you_can("breathe water");
 	if ((guaranteed || !rn2(10)) && Passes_walls) you_can(StrongPasses_walls ? "walk through every wall" : "walk through walls");
@@ -10699,6 +10706,12 @@ int final;
 		dump(youwere, buf);
 	}
 
+	if (NoPainSense) {
+		sprintf(buf, "prevented from having pain sense");
+		sprintf(eos(buf), " (%ld)", u.uprops[DEAC_PAIN_SENSE].intrinsic);
+		dump(youwere, buf);
+	}
+
 	if (u.badfcursed) {
 		sprintf(buf, "cursed");
 		sprintf(eos(buf), " (%d)", u.badfcursed);
@@ -11093,6 +11106,7 @@ int final;
 	else if (Flying) dump(youcould, StrongFlying ? "fly up and down" : "fly");
 	if (Wwalking) dump(youcould, "walk on water");
 	if (Swimming) dump(youcould, StrongSwimming ? "swim like a world champion" : "swim");
+	if (PainSense) dump(youcould, StrongPainSense ? "sense the pain of everyone" : "sense others' pain");
 	if (Breathless) dump(youcould, StrongMagical_breathing ? "survive everywhere without needing to breathe" : "survive without air");
 	else if (Amphibious) dump(youcould, "breathe water");
 	if (Passes_walls) dump(youcould, StrongPasses_walls ? "walk through every wall" : "walk through walls");

@@ -3734,6 +3734,9 @@ nh_timeout()
 		case DEAC_WONDERLEGS:
 			pline("You are no longer prevented from having wonderlegs.");
 			break;
+		case DEAC_PAIN_SENSE:
+			pline("You are no longer prevented from having pain sense.");
+			break;
 		case DEAC_GLIB_COMBAT:
 			pline("You are no longer prevented from having glib combat.");
 			break;

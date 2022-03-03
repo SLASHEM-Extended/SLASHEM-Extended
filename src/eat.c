@@ -1434,6 +1434,8 @@ register struct permonst *ptr;
 #else
 		return(telepathic(ptr));
 #endif
+	    case PAIN_SENSE:
+		return(ptr->msound == MS_PAIN);
 
 	    case HALLU_PARTY:
 		return(dmgtype(ptr, AD_HALU) );
@@ -1706,7 +1708,7 @@ register struct permonst *ptr;
 	    case HALLU_PARTY:
 		if(!(HHallu_party & FROMOUTSIDE)) {
 			u.cnd_eatrinsicamount++;
-			You_feel(FunnyHallu ?
+			You_feel(Hallucination ? /* not FunnyHallu, because you'll always get hallu from this corpse */
 			    "like throwing wild parties with lots of sexy girls! Yeah!" :
 			    "a strange desire to celebrate.");
 			HHallu_party |= FROMOUTSIDE;
@@ -1724,7 +1726,7 @@ register struct permonst *ptr;
 	    case STUNNOPATHY:
 		if(!(HStunnopathy & FROMOUTSIDE)) {
 			u.cnd_eatrinsicamount++;
-			You_feel(FunnyHallu ?
+			You_feel(Hallucination ? /* not FunnyHallu, because you'll always get hallu from this corpse */
 			    "a controlled wobbling! Feels like being on a bouncy ship!" :
 			    "steadily observant.");
 			HStunnopathy |= FROMOUTSIDE;
@@ -1818,6 +1820,15 @@ register struct permonst *ptr;
 			    "like an absolute marital arts champion, so you can start fighting off your spouse!" :
 			    "the fliction in your hands disappearing.");
 			HGlib_combat |= FROMOUTSIDE;
+		}
+		break;
+	    case PAIN_SENSE:
+		if(!(HPainSense & FROMOUTSIDE)) {
+			u.cnd_eatrinsicamount++;
+			You_feel(FunnyHallu ?
+			    "that pain is only weakness leaving the body, so you should cherish it." :
+			    "capable of seeing the pain of others.");
+			HPainSense |= FROMOUTSIDE;
 		}
 		break;
 

@@ -112,6 +112,9 @@ const struct innate {
 		     {  20, &(HSearching), "perceptive", "unaware", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
+	ble_abil[] = { {	 10, &(HPainSense), "empathic", "cold-hearted", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
 	dem_abil[] = { {	 5, &(MysteriousForceActive), "", "", FALSE },
 		     {  9, &(UnfairAttackBug), "", "", FALSE },
 		     {  13, &(HighlevelStatus), "", "", FALSE },
@@ -369,6 +372,7 @@ const struct innate {
 			{  8, &(HSearching), "perceptive", "unaware", TRUE },
 		     {	 12, &(HStealth), "stealthy", "noisy", TRUE },
 		     {  15, &(HFire_resistance), "cool", "warmer", TRUE },
+		     {  18, &(HPainSense), "empathic", "cold-hearted", TRUE },
 		     {  20, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
@@ -403,6 +407,7 @@ const struct innate {
 		     {  16, &(HTeleport_control), "controlled", "helpless", TRUE },
 			{	 17, &(HStealth), "stealthy", "noisy", TRUE },
 			{	 18, &(HConf_resist), "more resistant to confusion", "less resistant to confusion", TRUE },
+		     {  20, &(HPainSense), "empathic", "cold-hearted", TRUE },
 			{	 24, &(HVersus_curses), "curse resistant", "vulnerable to curses", TRUE },
 			{	 27, &(HStun_resist), "steady", "less steady", TRUE },
 		     {	 30, &(HHalf_spell_damage), "resistant to spells", "less resistant to spells", TRUE },
@@ -475,6 +480,7 @@ const struct innate {
 			{ 0, 0, 0, 0 } },
 
 	drd_abil[] = { {	15, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
+		     {  20, &(HPainSense), "empathic", "cold-hearted", TRUE },
 			{ 0, 0, 0, 0 } },
 
 	fjo_abil[] = { { 1, &(HSwimming), "", "" },
@@ -490,6 +496,7 @@ const struct innate {
 
 	sym_abil[] = { { 1, &(HPeacevision), "", "" },
 		     {  15, &(HScentView), "your sense of smell expanding", "less capable of smelling things" },
+		     {  16, &(HPainSense), "empathic", "cold-hearted", TRUE },
 			{ 0, 0, 0, 0 } },
 
 	stu_abil[] = { {  2, &(HSleep_resistance), "awake", "tired", TRUE },
@@ -669,6 +676,7 @@ const struct innate {
 		     {   1, &(HClairvoyant), "","", TRUE },
 		     {   3, &(HSee_invisible), "your vision sharpen", "your vision blur", TRUE },
 		     {   5, &(ETelepat), "aware", "unaware", TRUE },
+		     {   6, &(HPainSense), "empathic", "cold-hearted", TRUE },
 		     {   7, &(HAggravate_monster), "noisy", "quiet", FALSE },
 		     {  10, &(HDetect_monsters), "connected","detached", TRUE },
 		     {  15, &(HFlying), "weightless", "grounded", TRUE },
@@ -742,7 +750,8 @@ const struct innate {
 		     {   7, &(HStealth), "stealthy", "noisy", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 			 
-	pri_abil[] = { {	15, &(HWarning), "sensitive", "careless", TRUE },
+	pri_abil[] = { {  12, &(HPainSense), "empathic", "cold-hearted", TRUE },
+			 {	15, &(HWarning), "sensitive", "careless", TRUE },
 		     {  20, &(HFire_resistance), "cool", "warmer", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
@@ -845,6 +854,7 @@ const struct innate {
 	bos_abil[] = { {	1, &(HPoison_resistance), "", "", TRUE },
 		     {  5, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
 		     {  7, &(HStealth), "stealthy", "noisy", TRUE },
+		     {  25, &(HPainSense), "empathic", "cold-hearted", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
 	tha_abil[] = { {	4, &(HSleep_resistance), "awake", "tired", TRUE },
@@ -896,6 +906,7 @@ const struct innate {
 		     {	 1, &(HPoison_resistance), "", "", TRUE },
 		     {	 1, &(HSick_resistance), "", "", TRUE },
 		     {  20, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
+		     {  24, &(HPainSense), "empathic", "cold-hearted", TRUE },
 			{   0, 0, 0, 0, 0 } },
 
 	chi_abil[] = { { 1, &(HFull_nutrient), "", "", TRUE },
@@ -1268,7 +1279,16 @@ const struct innate {
 			{	 1, &(HKeen_memory), "", "", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
+	nav_abil[] = { {  1, &(HPainSense), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	sen_abil[] = { {  1, &(HPainSense), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
 	ton_abil[] = { {  1, &(HScentView), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	uni_abil[] = { {  10, &(HPainSense), "empathic", "cold-hearted", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	ret_abil[] = { {	 1, &(HKeen_memory), "", "", TRUE },
@@ -1476,6 +1496,7 @@ const struct innate {
 	ink_abil[] = { {   1, &(HPeacevision), "", "", TRUE },
 		     {   1, &(HTechnicality), "", "", TRUE },
 		     {   1, &(HScentView), "", "", TRUE },
+		     {   6, &(HPainSense), "empathic", "cold-hearted", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	sed_abil[] = { {   1, &(HAntimagic), "", "", TRUE },
@@ -2187,6 +2208,7 @@ int oldlevel, newlevel;
 
 	switch (Role_switch) {
 	case PM_ARCHEOLOGIST:   abil = arc_abil;	break;
+	case PM_BLEEDER:   abil = ble_abil;	break;
 	case PM_SOFTWARE_ENGINEER:   abil = sof_abil;	break;
 	case PM_CRACKER:   abil = cra_abil;	break;
 	case PM_DEMAGOGUE:   abil = dem_abil;	break;
@@ -2369,6 +2391,9 @@ int oldlevel, newlevel;
 	case PM_KLACKON:            rabil = kla_abil;	break;
 	case PM_TONBERRY:            rabil = ton_abil;	break;
 	case PM_KUTAR:            rabil = kut_abil;	break;
+	case PM_NAVI:            rabil = nav_abil;	break;
+	case PM_SENSER:            rabil = sen_abil;	break;
+	case PM_PLAYER_UNICORN:            rabil = uni_abil;	break;
 	case PM_RETICULAN:            rabil = ret_abil;	break;
 	case PM_OUTSIDER:            rabil = out_abil;	break;
 	case PM_SPIDERMAN:            rabil = spi_abil;	break;

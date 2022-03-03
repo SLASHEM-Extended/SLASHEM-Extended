@@ -2219,7 +2219,17 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			You_feel("a loss of experience!");
 			u.cnd_intrinsiclosscount++;
 		}
-
+		break;
+	case 249: if (HPainSense & INTRINSIC) {
+			HPainSense &= ~INTRINSIC;
+			You_feel("unable to sense pain!");
+			u.cnd_intrinsiclosscount++;
+		}
+		if (HPainSense & TIMEOUT) {
+			HPainSense &= ~TIMEOUT;
+			You_feel("unable to sense pain!");
+			u.cnd_intrinsiclosscount++;
+		}
 		break;
 	default: break;
 	}

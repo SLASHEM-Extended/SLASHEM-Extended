@@ -27600,6 +27600,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"a strange glow fills the room.",
 	"As you close the door, you feel a sense of security here.",
 	"Your campfire keeps the denizens of this mystic place at bay.",
+	"You feel unable to sense pain!",
+	"You feel unable to sense pain! This is extremely dangerous, because you might mortally hurt yourself without even noticing.",
+	"You feel empathic!",
 
 
 };

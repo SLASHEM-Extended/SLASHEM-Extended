@@ -1598,7 +1598,7 @@ randenchantment()
 
 	} else {
 
-	switch (rnd(146)) {
+	switch (rnd(148)) {
 
 		case 1:
 		case 2:
@@ -1826,6 +1826,9 @@ randenchantment()
 			return (rn2(1000) ? BLIND_RES : ASTRAL_VISION);
 		case 146:
 			return HALLUC_RES;
+		case 147:
+		case 148:
+			return PAIN_SENSE;
 
 		default:
 			return POISON_RES;
@@ -2895,7 +2898,7 @@ deacrandomintrinsic(amount)
 register int amount;
 {
 
-	switch (rnd(134)) {
+	switch (rnd(135)) {
 
 		case 1:
 		case 2:
@@ -3243,6 +3246,10 @@ register int amount;
 		case 134:
 			u.uprops[DEAC_HALLUC_RES].intrinsic += amount;
 			pline("You are prevented from having hallucination resistance!");
+			break;
+		case 135:
+			u.uprops[DEAC_PAIN_SENSE].intrinsic += amount;
+			pline("You are prevented from having pain sense!");
 			break;
 	}
 

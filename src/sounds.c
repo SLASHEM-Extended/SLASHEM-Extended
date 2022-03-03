@@ -5258,7 +5258,7 @@ register struct monst *mtmp;
 		if (P_SKILL(P_PETKEEPING) >= P_SUPREME_MASTER && !rn2(10)) painchance = 0;
 	}
 
-	if (painchance >= (rnd(11))) return;
+	if (!(PainSense && !rn2(10)) && !(StrongPainSense && !rn2(5)) && (painchance >= (rnd(11))) ) return;
 
 	/* some of these are sound-based, others are vision-based */
 	switch (mtmp->data->msound) {

@@ -8226,6 +8226,7 @@ datadeleteattack()
 			u.uprops[DEAC_QUAD_ATTACK].intrinsic += (rn2(10) ? 10000 : 100000);
 			u.uprops[DEAC_PSI_RES].intrinsic += (rn2(10) ? 10000 : 100000);
 			u.uprops[DEAC_WONDERLEGS].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_PAIN_SENSE].intrinsic += (rn2(10) ? 10000 : 100000);
 			u.uprops[DEAC_GLIB_COMBAT].intrinsic += (rn2(10) ? 10000 : 100000);
 			u.uprops[DEAC_MANALEECH].intrinsic += (rn2(10) ? 10000 : 100000);
 			u.uprops[DEAC_PEACEVISION].intrinsic += (rn2(10) ? 10000 : 100000);

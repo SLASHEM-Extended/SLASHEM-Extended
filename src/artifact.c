@@ -4753,7 +4753,7 @@ retrytrinsic:
 				break;
 
 		}
-	} else switch (rnd(45)) { /* ones that require eating jewelry or other weird actions */
+	} else switch (rnd(46)) { /* ones that require eating jewelry or other weird actions */
 
 			case 1:
 				if (intloss) {
@@ -5702,6 +5702,26 @@ retrytrinsic:
 					if(!(HExpBoost & FROMOUTSIDE)) {
 						You_feel("a surge of experience!");
 						HExpBoost |= FROMOUTSIDE;
+						hasmadeachange = 1;
+					}
+				}
+				break;
+			case 46:
+				if (intloss) {
+					if (HPainSense & INTRINSIC) {
+						HPainSense &= ~INTRINSIC;
+						You_feel("unable to sense pain!");
+						hasmadeachange = 1;
+					}
+					if (HPainSense & TIMEOUT) {
+						HPainSense &= ~TIMEOUT;
+						You_feel("unable to sense pain!");
+						hasmadeachange = 1;
+					}
+				} else {
+					if(!(HPainSense & FROMOUTSIDE)) {
+						You_feel("empathic!");
+						HPainSense |= FROMOUTSIDE;
 						hasmadeachange = 1;
 					}
 				}
