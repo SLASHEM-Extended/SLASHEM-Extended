@@ -7555,6 +7555,20 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, rnd_class(TRIPE_RATION,TIN));
 			(void) mongets(mtmp, rnd_class(TRIPE_RATION,TIN));
 		}
+		if (ptr == &mons[PM_REDGUARD_BRAGBITCH]) {
+			(void) mongets(mtmp, BANDED_MAIL);
+			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, HIGH_BOOTS);
+			(void) mongets(mtmp, LORICATED_CLOAK);
+		}
+		if (ptr == &mons[PM_UMA]) {
+			(void) mongets(mtmp, PLATE_MAIL);
+			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, HIGH_BOOTS);
+			(void) mongets(mtmp, LORICATED_CLOAK);
+			(void) mongets(mtmp, AXE);
+			(void) mongets(mtmp, HEAVY_SHIELD);
+		}
 		if (ptr == &mons[PM_FORT_LUDIOS_GUARD]) {
 			(void) mongets(mtmp, LOW_BOOTS);
 			(void) mongets(mtmp, HELMET);
@@ -15247,6 +15261,8 @@ loveheelover:
 #endif
 
 		if (monsndx(ptr) == PM_BALLEPPIE) (void) mongets(mtmp, EAGLE_BALL);
+		if (monsndx(ptr) == PM_MEANIE_IN_GREEN) (void) mongets(mtmp, SPRAY_BOX);
+		if (monsndx(ptr) == PM_ELITE_MEANIE_IN_GREEN) (void) mongets(mtmp, BASEBALL_BAT);
 		if (monsndx(ptr) == PM_BULBOUS_LEPRECHAUN) (void) mongets(mtmp, LIGHTBULB);
 		if (monsndx(ptr) == PM_AMBUSH_DUMBBUSH) (void) mongets(mtmp, AMBUSH_QATAR);
 
@@ -16107,6 +16123,10 @@ loveheelover:
 
 		if (monsndx(ptr) == PM_DOUGLAS_ADAMS) {
 			(void) mongets(mtmp,HITCHHIKER_S_GUIDE_TO_THE_GALA);
+		}
+		if (monsndx(ptr) == PM_SCHORSCH) {
+			(void) mongets(mtmp, SNEAKERS);
+			(void) mongets(mtmp, CIGARETTE);
 		}
 		if (monsndx(ptr) == PM_LILAC_FEMMY) {
 			(void) mongets(mtmp, HIGH_HEELED_SANDAL); /* M4_HAMMERSANDAL */

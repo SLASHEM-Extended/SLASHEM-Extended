@@ -3704,7 +3704,7 @@ void
 somepokedex(monnum)
 int monnum;
 {
-	switch (rnd(8)) {
+	switch (rnd(21)) {
 		case 1:
 			pline("Monster %s has the following pokedex entry:", mons[monnum].mname);
 			corpsepager(monnum);
@@ -3729,6 +3729,45 @@ int monnum;
 			break;
 		case 8:
 			pline("Monster %s gives %d nutrition when eaten.", mons[monnum].mname, mons[monnum].cnutrit);
+			break;
+		case 9:
+			pline("Monster %s has the M1 flag bitmask %d.", mons[monnum].mname, (int) mons[monnum].mflags1);
+			break;
+		case 10:
+			pline("Monster %s has the M2 flag bitmask %d.", mons[monnum].mname, (int) mons[monnum].mflags2);
+			break;
+		case 11:
+			pline("Monster %s has the M3 flag bitmask %d.", mons[monnum].mname, (int) mons[monnum].mflags3);
+			break;
+		case 12:
+			pline("Monster %s has the M4 flag bitmask %d.", mons[monnum].mname, (int) mons[monnum].mflags4);
+			break;
+		case 13:
+			pline("Monster %s has the M5 flag bitmask %d.", mons[monnum].mname, (int) mons[monnum].mflags5);
+			break;
+		case 14:
+			pline("Monster %s has the M6 flag bitmask %d.", mons[monnum].mname, (int) mons[monnum].mflags6);
+			break;
+		case 15:
+			pline("Monster %s has the resistances bitmask %d.", mons[monnum].mname, (int) mons[monnum].mresists);
+			break;
+		case 16:
+			pline("Monster %s has the conveyed resistances bitmask %d.", mons[monnum].mname, (int) mons[monnum].mconveys);
+			break;
+		case 17:
+			pline("Monster %s has a size of %d.", mons[monnum].mname, mons[monnum].msize);
+			break;
+		case 18:
+			pline("Monster %s has the sound type %d.", mons[monnum].mname, mons[monnum].msound);
+			break;
+		case 19:
+			pline("Monster %s has the following damage figures: %dd%d, %dd%d, %dd%d, %dd%d, %dd%d, %dd%d.", mons[monnum].mname, mons[monnum].mattk[0].damn, mons[monnum].mattk[0].damd, mons[monnum].mattk[1].damn, mons[monnum].mattk[1].damd, mons[monnum].mattk[2].damn, mons[monnum].mattk[2].damd, mons[monnum].mattk[3].damn, mons[monnum].mattk[3].damd, mons[monnum].mattk[4].damn, mons[monnum].mattk[4].damd, mons[monnum].mattk[5].damn, mons[monnum].mattk[5].damd);
+			break;
+		case 20:
+			pline("Monster %s uses the following attack types: %d-%d, %d-%d, %d-%d, %d-%d, %d-%d, %d-%d.", mons[monnum].mname, mons[monnum].mattk[0].aatyp, mons[monnum].mattk[0].adtyp, mons[monnum].mattk[1].aatyp, mons[monnum].mattk[1].adtyp, mons[monnum].mattk[2].aatyp, mons[monnum].mattk[2].adtyp, mons[monnum].mattk[3].aatyp, mons[monnum].mattk[3].adtyp, mons[monnum].mattk[4].aatyp, mons[monnum].mattk[4].adtyp, mons[monnum].mattk[5].aatyp, mons[monnum].mattk[5].adtyp);
+			break;
+		case 21:
+			pline("Monster %s has the color number %d.", mons[monnum].mname, mons[monnum].mcolor);
 			break;
 	}
 }

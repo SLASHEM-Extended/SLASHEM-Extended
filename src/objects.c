@@ -7458,6 +7458,8 @@ SCROLL((char *)0,               "WHY SAY ZUFAELLIG IF YOU COULD SAY WAENDEM",  P
 SCROLL((char *)0,               "KRAECHZEN SIE SICH UND KRAECHZERE",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
 SCROLL((char *)0,               "NERVEN SIE SICH UND NERVERE",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
 SCROLL((char *)0,               "VERBLOEDEN SIE SICH UND BLOEDERE",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
+SCROLL((char *)0,               "WHY THE EROGENOUS ZONES OF THE WOMEN ARE NOT VISIBLE",  P_NONE,     1,   0, 100, CLR_BLUE, 1),
+SCROLL((char *)0,               "WISCHIWASCHI WEICHEI WESTEN",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
 
 
 #ifdef MAIL
