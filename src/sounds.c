@@ -3879,6 +3879,9 @@ repairitemchoice:
 		case PM_WALSCHOLAR:
 		    verbl_msg = "Hidden diamonds are like tree bark.";
 		    break;
+		case PM_SINGSLAVE:
+		    verbl_msg = "That Sing bitch keeps forcing me to clean the dog shit from all the girls' shoes! Please rescue me!";
+		    break;
 		case PM_TRANSVESTITE:
 		    verbl_msg = "Look at my heels! Do you think they're beautiful?";
 		    break;

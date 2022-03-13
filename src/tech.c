@@ -1168,6 +1168,16 @@ static const struct innate_tech
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   20, T_TINKER, 1},
 		       {   0, 0, 0} },
+	tay_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_KIII, 1},
+		       {   1, T_BLITZ, 1},
+		       {   12, T_G_SLAM, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   20, T_PUMMEL, 1},
+		       {   0, 0, 0} },
 	spd_tech[] = { {   1, T_APPRAISAL, 1},
 		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
@@ -10457,6 +10467,7 @@ race_tech()
 		case PM_CURSER:		return (cur_tech);
 		case PM_IMPERIAL:		return (imp_tech);
 		case PM_SWIKNI:		return (swi_tech);
+		case PM_TAYIIN:		return (tay_tech);
 		case PM_CLOCKWORK_AUTOMATON:		return (clk_tech);
 
 		case PM_FENEK:		return (fen_tech);

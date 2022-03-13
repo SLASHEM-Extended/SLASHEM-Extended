@@ -22252,6 +22252,8 @@ boolean knoweverything;
 					pline("Artifact specs: you can only read this because the randomized appearances apparently got changed, anyway it seems that Jana made it so that every time you read this description, one of your stats is reduced by one."); break;
 				case ART_PLAYING_ANASTASIA:
 					pline("Artifact specs: petrification resistance and anastasia trap effect when worn, because you love playing Anastasia while wearing these treaded soles."); break;
+				case ART_SABRINA_S_RESCUE:
+					pline("Artifact specs: +4 to-hit and +12 damage to acid-susceptible monsters, half physical damage, warning and aggravate monster when wielded, can be invoked for dragon breath, lawful, singslave quest artifact."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

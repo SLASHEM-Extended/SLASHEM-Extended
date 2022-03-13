@@ -10595,8 +10595,150 @@ newboss:
 			u.dehydrationtime = 0;
 		}
 
+		if (Race_if(PM_DICTIONARY_ATTACK) && !rn2(5000)) {
+			int randomdictio = rnd(52);
+			int dictioamount = 52;
+			int dictiotype = S_ANT;
+
+			if (!rn2(2)) {
+				while (dictioamount > 0) {
+					dictioamount--;
+
+					switch (randomdictio) {
+						case 1: dictiotype = S_ANT; break;
+						case 2: dictiotype = S_BLOB; break;
+						case 3: dictiotype = S_COCKATRICE; break;
+						case 4: dictiotype = S_DOG; break;
+						case 5: dictiotype = S_EYE; break;
+						case 6: dictiotype = S_FELINE; break;
+						case 7: dictiotype = S_GREMLIN; break;
+						case 8: dictiotype = S_HUMANOID; break;
+						case 9: dictiotype = S_IMP; break;
+						case 10: dictiotype = S_JELLY; break;
+						case 11: dictiotype = S_KOBOLD; break;
+						case 12: dictiotype = S_LEPRECHAUN; break;
+						case 13: dictiotype = S_MIMIC; break;
+						case 14: dictiotype = S_NYMPH; break;
+						case 15: dictiotype = S_ORC; break;
+						case 16: dictiotype = S_PIERCER; break;
+						case 17: dictiotype = S_QUADRUPED; break;
+						case 18: dictiotype = S_RODENT; break;
+						case 19: dictiotype = S_SPIDER; break;
+						case 20: dictiotype = S_TRAPPER; break;
+						case 21: dictiotype = S_UNICORN; break;
+						case 22: dictiotype = S_VORTEX; break;
+						case 23: dictiotype = S_WORM; break;
+						case 24: dictiotype = S_XAN; break;
+						case 25: dictiotype = S_LIGHT; break;
+						case 26: dictiotype = S_ZOUTHERN; break;
+						case 27: dictiotype = S_ANGEL; break;
+						case 28: dictiotype = S_BAT; break;
+						case 29: dictiotype = S_CENTAUR; break;
+						case 30: dictiotype = S_DRAGON; break;
+						case 31: dictiotype = S_ELEMENTAL; break;
+						case 32: dictiotype = S_FUNGUS; break;
+						case 33: dictiotype = S_GNOME; break;
+						case 34: dictiotype = S_GIANT; break;
+						case 35: dictiotype = S_FLYFISH; break;
+						case 36: dictiotype = S_JABBERWOCK; break;
+						case 37: dictiotype = S_KOP; break;
+						case 38: dictiotype = S_LICH; break;
+						case 39: dictiotype = S_MUMMY; break;
+						case 40: dictiotype = S_NAGA; break;
+						case 41: dictiotype = S_OGRE; break;
+						case 42: dictiotype = S_PUDDING; break;
+						case 43: dictiotype = S_QUANTMECH; break;
+						case 44: dictiotype = S_RUSTMONST; break;
+						case 45: dictiotype = S_SNAKE; break;
+						case 46: dictiotype = S_TROLL; break;
+						case 47: dictiotype = S_UMBER; break;
+						case 48: dictiotype = S_VAMPIRE; break;
+						case 49: dictiotype = S_WRAITH; break;
+						case 50: dictiotype = S_XORN; break;
+						case 51: dictiotype = S_YETI; break;
+						case 52: dictiotype = S_ZOMBIE; break;
+					}
+					randomdictio++;
+					if (randomdictio > 52) randomdictio = 1;
+					(void) makemon(mkclass(dictiotype,0), 0, 0, MM_ADJACENTOK);
+
+				}
+			} else {
+
+				coord cc, dd;
+				int cx,cy;
+			      cx = rn2(COLNO);
+			      cy = rn2(ROWNO);
+
+				while (dictioamount > 0) {
+					dictioamount--;
+					if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+					switch (randomdictio) {
+						case 1: dictiotype = S_ANT; break;
+						case 2: dictiotype = S_BLOB; break;
+						case 3: dictiotype = S_COCKATRICE; break;
+						case 4: dictiotype = S_DOG; break;
+						case 5: dictiotype = S_EYE; break;
+						case 6: dictiotype = S_FELINE; break;
+						case 7: dictiotype = S_GREMLIN; break;
+						case 8: dictiotype = S_HUMANOID; break;
+						case 9: dictiotype = S_IMP; break;
+						case 10: dictiotype = S_JELLY; break;
+						case 11: dictiotype = S_KOBOLD; break;
+						case 12: dictiotype = S_LEPRECHAUN; break;
+						case 13: dictiotype = S_MIMIC; break;
+						case 14: dictiotype = S_NYMPH; break;
+						case 15: dictiotype = S_ORC; break;
+						case 16: dictiotype = S_PIERCER; break;
+						case 17: dictiotype = S_QUADRUPED; break;
+						case 18: dictiotype = S_RODENT; break;
+						case 19: dictiotype = S_SPIDER; break;
+						case 20: dictiotype = S_TRAPPER; break;
+						case 21: dictiotype = S_UNICORN; break;
+						case 22: dictiotype = S_VORTEX; break;
+						case 23: dictiotype = S_WORM; break;
+						case 24: dictiotype = S_XAN; break;
+						case 25: dictiotype = S_LIGHT; break;
+						case 26: dictiotype = S_ZOUTHERN; break;
+						case 27: dictiotype = S_ANGEL; break;
+						case 28: dictiotype = S_BAT; break;
+						case 29: dictiotype = S_CENTAUR; break;
+						case 30: dictiotype = S_DRAGON; break;
+						case 31: dictiotype = S_ELEMENTAL; break;
+						case 32: dictiotype = S_FUNGUS; break;
+						case 33: dictiotype = S_GNOME; break;
+						case 34: dictiotype = S_GIANT; break;
+						case 35: dictiotype = S_FLYFISH; break;
+						case 36: dictiotype = S_JABBERWOCK; break;
+						case 37: dictiotype = S_KOP; break;
+						case 38: dictiotype = S_LICH; break;
+						case 39: dictiotype = S_MUMMY; break;
+						case 40: dictiotype = S_NAGA; break;
+						case 41: dictiotype = S_OGRE; break;
+						case 42: dictiotype = S_PUDDING; break;
+						case 43: dictiotype = S_QUANTMECH; break;
+						case 44: dictiotype = S_RUSTMONST; break;
+						case 45: dictiotype = S_SNAKE; break;
+						case 46: dictiotype = S_TROLL; break;
+						case 47: dictiotype = S_UMBER; break;
+						case 48: dictiotype = S_VAMPIRE; break;
+						case 49: dictiotype = S_WRAITH; break;
+						case 50: dictiotype = S_XORN; break;
+						case 51: dictiotype = S_YETI; break;
+						case 52: dictiotype = S_ZOMBIE; break;
+					}
+					randomdictio++;
+					if (randomdictio > 52) randomdictio = 1;
+					(void) makemon(mkclass(dictiotype,0), cx, cy, MM_ADJACENTOK);
+
+				}
+
+			}
+		}
+
 		if (!rn2(10000) && uarmc && itemhasappearance(uarmc, APP_GHOSTLY_CLOAK) ) {
-			coord mm;   
+			coord mm;
 			mm.x = u.ux;   
 			mm.y = u.uy;   
 

@@ -469,6 +469,7 @@ maeney:
 	if (pettype == PM_GOLD_GOLEM) petname = "Midas"; /* the greedy king who unfortunately lost all his gold :( */
 
 	if (pettype == PM_JEDI) petname = "Luke Skywalker";
+	if (pettype == PM_SLAVE) petname = "Gob"; /* Fallout 3 */
 
 	if (pettype == PM_LITTLE_GIRL) petname = "Sarah"; /* just a common female first name */
 	if (pettype == PM_LITTLE_BOY) petname = "Jonas"; /* just a common male first name */

@@ -353,7 +353,7 @@ spec_levs: ../util/lev_comp \
 	Gender.des Fjorde.des Emera.des Combat.des Aklyst.des \
 	Drag.des Carto.des Dancer.des Shoefe.des Secret.des \
 	Prever.des Diabl.des Butt.des Halfba.des Noob.des \
-	Woman.des Climac.des
+	Woman.des Climac.des Slave.des
 
 	../util/lev_comp Abuser.des
 	../util/lev_comp Acid.des
@@ -469,6 +469,7 @@ spec_levs: ../util/lev_comp \
 	../util/lev_comp Scient.des
 	../util/lev_comp Scribe.des
 	../util/lev_comp Slavemas.des
+	../util/lev_comp Slave.des
 	../util/lev_comp Slayer.des
 	../util/lev_comp Slime.des
 	../util/lev_comp Spacew.des

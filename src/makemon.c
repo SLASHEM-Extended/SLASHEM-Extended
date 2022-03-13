@@ -2582,6 +2582,18 @@ register struct monst *mtmp;
 
 			break;
 
+		   case PM_SINGSLAVE:
+		   case PM_UNDEAD_SINGSLAVE:
+
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+
+			break;
+
 		   case PM_MASON:
 		   case PM_UNDEAD_MASON:
 		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
@@ -7549,6 +7561,8 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_NIGHTMARE_WIZARD]) (void) mongets(mtmp, rnd_class(QUARTERSTAFF,PLATINUM_FIRE_HOOK));
 		if (ptr == &mons[PM_HELL_WIZARD]) (void) mongets(mtmp, rnd_class(QUARTERSTAFF,PLATINUM_FIRE_HOOK));
 		if (ptr == &mons[PM_SYSTEMLING]) (void) mongets(mtmp, HELMET);
+		if (ptr == &mons[PM_SMOKER_HC_WOMAN]) (void) mongets(mtmp, CIGARETTE);
+		if (ptr == &mons[PM_TUFTRIKE]) (void) mongets(mtmp, DANCING_SHOES);
 
 		if (ptr == &mons[PM_VEGETABLE_FARMER]) {
 			(void) mongets(mtmp, rnd_class(TRIPE_RATION,TIN));
@@ -17099,6 +17113,10 @@ loveheelover:
 			(void)mongets(mtmp, SNIPER_RIFLE);
 			m_initthrow(mtmp, BULLET, 10);
 		}
+		if (ptr == &mons[PM_LASER_EQUIPPED_SECRET_CAR]) {
+			(void)mongets(mtmp, PROCESS_CARD);
+			m_initthrow(mtmp, rn2(20) ? BLASTER_BOLT : rn2(10) ? HEAVY_BLASTER_BOLT : LASER_BEAM, 50);
+		}
 		if (ptr == &mons[PM_TORCHY_ALIEN]) {
 			(void)mongets(mtmp, TORCH);
 			(void)mongets(mtmp, TORCH);
@@ -25727,6 +25745,8 @@ loopback:
 		if (ct > 0 && (In_mainframe(&u.uz) && is_demon(ptr) )) ct += 25;
 		if (ct > 0 && (In_mainframe(&u.uz) && attacktype(ptr, AT_BREA) )) ct += 10;
 
+		if (ct > 0 && (Race_if(PM_DICTIONARY_ATTACK) && (ptr->mlet >= S_ANT && ptr->mlet <= S_ZOMBIE) )) ct += 5;
+		if (ct > 0 && (Race_if(PM_DICTIONARY_ATTACK) && (ptr->mlet == S_FLYFISH) )) ct += 5;
 		if (ct > 0 && (Role_if(PM_ACTIVISTOR) && always_hostile(ptr))) ct += 5;
 		if (ct > 0 && (Role_if(PM_ALTMER) && is_reflector(ptr))) ct += 3;
 		if (ct > 0 && (Role_if(PM_AMAZON) && is_diablomonster(ptr))) ct += 5;
@@ -26024,6 +26044,7 @@ loopback:
 		if (ct > 0 && (Role_if(PM_WALSCHOLAR) && (ptr->msound == MS_STENCH) )) ct += 20;
 		if (ct > 0 && (Role_if(PM_WALSCHOLAR) && (ptr->msound == MS_CONVERT) )) ct += 5;
 		if (ct > 0 && (Role_if(PM_WALSCHOLAR) && (ptr->msound == MS_HCALIEN) )) ct += 5;
+		if (ct > 0 && (Role_if(PM_SINGSLAVE) && (ptr->msound == MS_SING) )) ct += 25;
 		if (ct > 0 && (Role_if(PM_CELLAR_CHILD) && is_angbandmonster(ptr) )) ct += 20;
 		if (ct > 0 && (uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && (ptr->msound == MS_FART_NORMAL) )) ct += 5;
 		if (ct > 0 && (uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && (ptr->msound == MS_FART_QUIET) )) ct += 5;
@@ -27365,6 +27386,7 @@ int     spc;
 		if ((Role_if(PM_WALSCHOLAR) && (mons[last].msound == MS_STENCH) )) num += 20;
 		if ((Role_if(PM_WALSCHOLAR) && (mons[last].msound == MS_CONVERT) )) num += 5;
 		if ((Role_if(PM_WALSCHOLAR) && (mons[last].msound == MS_HCALIEN) )) num += 5;
+		if ((Role_if(PM_SINGSLAVE) && (mons[last].msound == MS_SING) )) num += 25;
 		if ((Role_if(PM_CELLAR_CHILD) && is_angbandmonster(&mons[last]) )) num += 20;
 		if ((uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && (mons[last].msound == MS_FART_NORMAL) )) num += 5;
 		if ((uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && (mons[last].msound == MS_FART_QUIET) )) num += 5;
@@ -28372,6 +28394,7 @@ int     spc;
 		if ((Role_if(PM_WALSCHOLAR) && (mons[first].msound == MS_STENCH) )) num -= 20;
 		if ((Role_if(PM_WALSCHOLAR) && (mons[first].msound == MS_CONVERT) )) num -= 5;
 		if ((Role_if(PM_WALSCHOLAR) && (mons[first].msound == MS_HCALIEN) )) num -= 5;
+		if ((Role_if(PM_SINGSLAVE) && (mons[first].msound == MS_SING) )) num -= 25;
 		if ((Role_if(PM_CELLAR_CHILD) && is_angbandmonster(&mons[first]) )) num -= 20;
 		if ((uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && (mons[first].msound == MS_FART_NORMAL) )) num -= 5;
 		if ((uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && (mons[first].msound == MS_FART_QUIET) )) num -= 5;

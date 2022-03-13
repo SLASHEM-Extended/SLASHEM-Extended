@@ -1792,7 +1792,7 @@ newbossSING:
 
 	/* Monsters that want to acquire things */
 	/* may teleport, so do it before inrange is set */
-	if( (is_covetous(mdat) || mtmp->egotype_covetous) && (!rn2(10) || (mdat == &mons[PM_AT_RAINKID] && !rn2(3)) || (mdat == &mons[PM_TEA_HUSSY] && !rn2(3)) || (CovetousnessBug || u.uprops[COVETOUSNESS_BUG].extrinsic || have_covetousstone() ) ) ) (void) tactics(mtmp);
+	if( (is_covetous(mdat) || mtmp->egotype_covetous || (Role_if(PM_SINGSLAVE) && mtmp->singannoyance) ) && (!rn2(10) || (mdat == &mons[PM_AT_RAINKID] && !rn2(3)) || (mdat == &mons[PM_TEA_HUSSY] && !rn2(3)) || (CovetousnessBug || u.uprops[COVETOUSNESS_BUG].extrinsic || have_covetousstone() ) ) ) (void) tactics(mtmp);
 
 	/* check distance and scariness of attacks */
 	distfleeck(mtmp,&inrange,&nearby,&scared);

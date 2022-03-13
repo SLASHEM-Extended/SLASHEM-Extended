@@ -36823,6 +36823,386 @@ useful talisman that can protect you from harm?
 %E
 
 #
+#       Singslave
+#
+%Cc Sin 00001
+You're at %H, the place that raked in your cash when you were
+forced to pay for all the shoe polish you used up.
+
+Maybe you can get that money back now?
+%E
+%Cp Sin 00002
+Once again, you are back at %H.
+%E
+%Cp Sin 00003
+You are back at %H.
+You have an odd feeling this may be the last time you ever come here.
+%E
+%Cp Sin 00005
+"%n keeps forcing people to clean her treaded boots!"
+%E
+%Cp Sin 00006
+"That damn %n! She always steps into shit and then makes us clean her shoes!"
+%E
+%Cp Sin 00007
+"Man, this is really humiliating..."
+%E
+%Cp Sin 00008
+"Ask %l, maybe she can help us in some way?"
+%E
+%Cp Sin 00009
+"I think %l likes you, go talk to her!"
+%E
+%Cp Sin 00010
+"YES! Finally we've gotten rid of %n!"
+%E
+%Cp Sin 00011
+"You're awesome! Thank you for eliminating %n!"
+%E
+%Cp Sin 00012
+"Finally, we're no longer forced to clean the shit from %n's boots!"
+%E
+%Cp Sin 00013
+"Hopefully I'll never have to see boots with treaded soles again."
+%E
+%Cp Sin 00014
+"Everyone who steps into dog shit is permanently expelled from this place."
+%E
+%Cc Sin 00015
+"%p, hi there! Do you want me to test your pain threshold?
+Or do you want to bundle my hair? Huh, what's that you say, you mean you've
+paid too much money for shoe polish in the past?
+Wait a minute, I need to ask the mistress about that."
+%E
+%Cp Sin 00016
+"Huh %p, you really don't want me to kick you in the shins with my
+soft dancing shoes? What do you need all that shoe polish for anyway?
+Oh well, I'll ask the mistress about it again."
+%E
+%Cp Sin 00017
+"What, %p, you prefer sliding your skin along my fingernails
+instead of presenting your shins to my soft dancing shoes? Uhh you're weird.
+I expected you to still be interested in that shoe polish, after all you've
+asked me many times now... either way, I'll consult the mistress
+one more time."
+%E
+%Cc Sin 00018
+"Whaaaaaat? You dared to PULL MY HAIR???
+One doesn't do such a thing to a girl! Go away, I don't want to see you again!"
+%E
+%Cc Sin 00019
+"Sorry %p. The mistress said that you're supposed to clean the dog shit
+from little girls' boots, like Sarah or Larissa, and she told me that you're
+still going to have to pay for any shoe polish you'll require.
+Maybe if you finish that task, she'll be more lenient?"
+%E
+%Cc Sin 00020
+"Uhh %p, the mistress said that since you refused to help Marian
+even though she specifically parked her persian winter boots on dog shit for
+you, the amount of money you need to pay for additional shoe polish is
+doubled!
+
+Sorry, please don't be mad at me, I'm just delivering the message, I'm not
+responsible for its contents!"
+%E
+%Cc Sin 00021
+"%p! Listen up, but keep it to yourself!
+
+I've figured out that %n has stolen %o, the tool that former slaves
+have used to escape from the mistress's grasp!
+She is hiding at %i now, and I know you'd prefer to rather not
+go back there again, but think about it, with %o you can
+bludgeon the mistress and be free forever!"
+%E
+%Cp Sin 00025
+"Remember, %n still holds %o!"
+%E
+%Cp Sin 00026
+"Go now, and recover %o!"
+%E
+%Cp Sin 00027
+"%n is one of the mistress's favorite girls."
+%E
+%Cp Sin 00028
+"Sorry, the mistress doesn't allow me to give too much advice to you."
+%E
+%Cp Sin 00029
+"Uhh %p, you know that the mistress is still controlling me..."
+%E
+%Cp Sin 00030
+"The mistress is weak to %o!"
+%E
+%Cp Sin 00031
+"It's %i where you need to go!"
+%E
+%Cp Sin 00032
+"Make sure you have a big supply of shoe polish with you!"
+%E
+%Cp Sin 00033
+"The mistress still holds the power..."
+%E
+%Cp Sin 00034
+"You can overcome the mistress yet, but for that you have to defeat %n!"
+%E
+%Cc Sin 00035
+You feel that you're getting closer to %i.
+%E
+%Cp Sin 00036
+You still feel that %i must be nearby.
+%E
+%Cc Sin 00040
+This is %i, where %n is hiding!
+You absolutely don't want to clean the shit from her treaded soles,
+but if that's what you have to do in order to recover %o, oh well...
+%E
+%Cp Sin 00041
+You remember that you need to find some way to recover %o from %n!
+%E
+%Cc Sin 00050
+"Hey slave! Look at my treaded soles! I specifically stepped into
+a lot of dog shit for you, so you can clean them with the
+shoe polish you bought from the mistress!"
+%E
+%Cc Sin 00051
+"You haven't finished cleaning my profiled girl boots yet!"
+%E
+%Cp Sin 00052
+"If you don't hurry up and clean the shit from my treaded soles,
+I'll kick you in the shins repeatedly!"
+%E
+%Cp Sin 00053
+"Haha, I didn't need that platform boot anyway. But remember, you still have to
+clean the dog shit from my treaded girl boots!"
+%E
+%Cp Sin 00060
+"Do you like the dark brown color of my boots?"
+%E
+%Cp Sin 00061
+"Do you like the fact that my dark brown boots stepped into dark brown dog shit?"
+%E
+%Cp Sin 00062
+"Are you running low on shoe polish yet?"
+%E
+%Cp Sin 00063
+"Are you pretending to be exhausted from all your slave labor?"
+%E
+%Cp Sin 00064
+"The mistress will not be pleased if you discontinue your work."
+%E
+%Cp Sin 00065
+"If you finish cleaning my boots, I'll just step into shit again."
+%E
+%Cp Sin 00066
+"You'll never be truly done cleaning my shoes."
+%E
+%Cp Sin 00067
+"What, you think the mistress is going to release you eventually? Haha!"
+%E
+%Cp Sin 00068
+"Face it, you're going to be a slave for the rest of your life!"
+%E
+%Cp Sin 00069
+"The mistress owns you, which is to say that in her eyes you're just an object!"
+%E
+%Cc Sin 00070
+Yes. This must be the platform boot that you're supposed to use
+to get rid of the mistress. But ewwww, there's cow dung on the soles?!?!?!
+Oh well! At least the platform soles seem very robust, so you might be able
+to smash them into the annoying face of the annoying mistress and
+shut down her annoying slavery bullshit at last!
+%E
+%Cc Sin 00080
+With %n defeated, you've come a bit closer to freedom!
+Now, you need to go for the mistress next!
+%E
+%Cc Sin 00081
+"You did it, %p! Now figure out where the mistress has holed up,
+and smash her with the platform boot!"
+%E
+%Cc Sin 00082
+"Eww, I don't want that boot! You keep it! Go find the mistress
+and smash her face with that thick cow-dung-immersed platform sole!"
+%E
+%Cc Sin 00090
+"Don't give up! You can get rid of the mistress yet!"
+%E
+%Cc Sin 00091
+"She's on the Astral Plane! That's where you need to go!"
+%E
+%Cc Sin 00095
+"Sorry %p. The mistress has decided to be particularly cruel to me,
+and threatens to expel me if I talk to you."
+%E
+
+%Cp Sin 00100
+Something tells you that there's a chance to recover your long-lost freedom.
+%E
+%Cp Sin 00101
+You still feel that you can recover your long-lost freedom if you do the right things.
+%E
+%Cp Sin 00102
+"Did you see that silver bell? I think it's important too."
+%E
+
+%Cc Sin 00103
+As you enter the Bell Caves, the silver bell radiates brightly!
+You immediately know that you've successfully imbued it; after all, this
+is the place where the bell has originally been forged, and it regained
+its original power by being close to its source.
+
+In order to open the path to Moloch's Sanctum, you need two more artifacts.
+They're both said to be hidden in Gehennom, in the possession of powerful
+guardians. Only with them in your possession can you perform the ritual
+on the deepest level of Gehennom and gain access to the place where
+the Amulet of Yendor is kept.
+%E
+%Cc Sin 00104
+The Amulet of Yendor radiates brightly as you enter the Forging Chamber.
+
+In order to be fully imbued, the Amulet must also be taken to the
+Dead Grounds and Ordered Chaos subdungeons.
+%E
+%Cc Sin 00105
+The Amulet of Yendor radiates brightly as you enter the Dead Grounds.
+
+In order to be fully imbued, the Amulet must also be taken to the
+Forging Chamber and Ordered Chaos subdungeons.
+%E
+%Cc Sin 00106
+The Amulet of Yendor radiates brightly as you enter the Ordered Chaos.
+
+In order to be fully imbued, the Amulet must also be taken to the
+Forging Chamber and Dead Grounds subdungeons.
+%E
+%Cc Sin 00107
+At last, you have fully imbued the Amulet of Yendor! You know that now
+you have to get to the surface, where your final test awaits.
+
+A strange sensation seems to pull you downwards. This must surely be
+the power of the Amulet, and you get ready to traverse Moloch's Sanctum
+and Gehennom again.
+
+You also notice the Wizard of Yendor taunting you in your mind.
+He must surely have noticed that the Amulet has gained full power now,
+and will try his best to stop you on your ascension run...
+%E
+%Cc Sin 00108
+This seemingly mundane gray stone makes you feel lucky as you pick it up!
+It must hold a good charm, and you decide to hold onto it.
+%E
+%Cc Sin 00109
+After a long period of pushing boulders around, you've found a prize.
+'Well, at least there is some reward for the hell that is slexoban',
+you think, as you pick up this valuable item. It might come in handy
+on the path that lies ahead.
+%E
+%Cc Sin 00110
+As the dreadful Medusa finally stops living, you feel an immense burden
+lifted from your chest. You now know that you're a capable adventurer,
+one who can defeat creatures from legend and live to tell the tale.
+
+Hopefully, you are now ready to face the greater tasks that lie ahead.
+%E
+%Cc Sin 00111
+This menora surely seems important. It must be one of the artifacts
+required for the ominous invocation ritual!
+
+You must get two more of these artifacts. One of them is said to be
+in the possession of the Wizard of Yendor himself, who is lurking
+somewhere in Gehennom; the other such artifact can be obtained if
+you engage your personal nemesis in a duel and win...
+%E
+%Cc Sin 00112
+Quickly, you snatch the papyrus spellbook that the Wizard of Yendor
+was holding. It is obviously one of the key pieces in your mission
+to open the sanctum at the deepest level of Gehennom, but you also
+need the silver bell from your quest nemesis, and one more such
+artifact is hidden somewhere in Gehennom.
+%E
+%Cc Sin 00113
+Finally, you got what you came for! It's the Amulet of Yendor!!!
+
+Instinctively, you get ready to make a mad dash back to the upstair,
+for you know that %d desires this amulet. But something is amiss.
+
+Apparently, the Amulet of Yendor has to be imbued first, or it won't
+let you leave the mortal plane. And in order to imbue the Amulet,
+you must search Moloch's sanctum for a hidden magic portal that
+will lead you to the Yendorian Tower.
+
+Within the Yendorian Tower, three special staircases are hidden.
+You must seek everywhere within the Tower, and enter all three such
+staircases in order to imbue the Amulet. This is no easy task.
+The Yendorian Tower is about as big as the entire Dungeons of Doom
+and Gehennom added together, and the staircases can be anywhere.
+
+Also, it is rumored that if the guardians of the three Alignment Keys
+are still alive when you enter the Forging Chamber, Dead Grounds
+and Ordered Chaos areas, they will grow even stronger to haunt you!
+%E
+%Cc Sin 00114
+This is the showdown. You're facing the cruel mistress at last,
+except that this time, you have %o with you.
+With a tremendous swipe, you smash her face with your boot, which
+results in her falling to the floor with a crash, and then you
+run and never look back.
+
+Congratulations!!! You are no longer a slave. You've managed to
+overcome your fate, and are free once again now!
+A pure feeling of luck spreads into your body
+as you start your journey towards the sunset...
+%E
+%Cc Sin 00115
+This is the showdown. You're facing the cruel mistress at last,
+and as you got told, you're going to smash her with that
+platform boot.
+
+But wait... where is it? Did someone steal it from you???
+
+Noooooooooooooooooooo! It's not there! As you make a motion
+towards the mistress, she slaps you so hard that you fall
+to the ground, helpless, and then the mistress binds your hands,
+abducts you back to the torture chamber, and announces:
+"Trying to get away, slave? That's not going to work.
+Oh well, maybe you should just clean a couple of shoes again.
+Here, remember this pair of treaded dancing shoes? They belong
+to the beautiful Anastasia, and she had a lot of fun stepping
+into dog shit again and again until the soles were completely
+covered. Now it's your turn. Every can of shoe polish
+will cost you 5 euros only."
+
+Argh... seems like you'll truly remain a slave for the rest
+of your life...
+%E
+%Cc Sin 00116
+As you step on this particular floor tile, the ground is suddenly
+vibrating right beneath you.
+
+This must be the special place where the entrance to
+Moloch's sanctum is hidden! In order to open it, you need all three
+of the invocation tools: Book, Bell and Candle. And then you have
+to use all three of them in rapid succession while standing on
+this exact floor tile.
+
+Additionally, the bell must be imbued before you can complete
+the invocation rituals. It needs to be done inside the Subquest,
+a branch from where the bell can be found; specifically, the
+Bell Caves is the location where imbuing takes place.
+
+You must also make sure to attach seven candles
+to the candelabrum, otherwise it won't do what it ought to do.
+And the invocation tools better don't be cursed...
+%E
+%Cc Sin 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
+
+
+#
 #       Womanizer
 #
 %Cc Wom 00001

@@ -7460,6 +7460,7 @@ SCROLL((char *)0,               "NERVEN SIE SICH UND NERVERE",  P_NONE,     1,  
 SCROLL((char *)0,               "VERBLOEDEN SIE SICH UND BLOEDERE",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
 SCROLL((char *)0,               "WHY THE EROGENOUS ZONES OF THE WOMEN ARE NOT VISIBLE",  P_NONE,     1,   0, 100, CLR_BLUE, 1),
 SCROLL((char *)0,               "WISCHIWASCHI WEICHEI WESTEN",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
+SCROLL((char *)0,               "BEING AN IDIOT IS NOT PERMITTED",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
 
 
 #ifdef MAIL

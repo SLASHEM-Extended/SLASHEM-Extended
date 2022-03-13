@@ -5718,6 +5718,16 @@ static const char * const bogusmons[] = {
 	"Married Luck Mushroom",
 	"Happiness Enjoyer",
 	"Charlie Sheen", "Tiger Woods", "George Clooney", /* famous womanizers */
+	"Imprisoned Fool",
+	"Mushfingers",
+	"Shocked Cleaner",
+	"Dogshit Remover",
+	"Mastercurser",
+	"Hard-Working Slave",
+	"Re-Imprisoned",
+	"Work Refuser",
+	"Escaped Ex-Slave",
+	"Blue-Heeled Ute", "Red-Heeled Nancy", "Ski-Heeled Brigitte",
 
 };
 

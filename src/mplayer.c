@@ -396,6 +396,10 @@ register boolean special;
 		case PM_XELNAGA:
 		case PM_UNDEAD_XELNAGA:
 		    break;
+		case PM_SINGSLAVE:
+		case PM_UNDEAD_SINGSLAVE:
+		    weapon = STRANGE_OBJECT;
+		    break;
 		case PM_WALSCHOLAR:
 		case PM_UNDEAD_WALSCHOLAR:
 			weapon = CONGLOMERATE_PICK;

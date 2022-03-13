@@ -10004,6 +10004,10 @@ A("Spectrum Pling",				CIRMOCLINE, /* prism reflection and resist fire, cold, sh
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), (SPFX_REFLECT), 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, PM_WOMANIZER, NON_PM, 20000L ),
 
+A("Sabrina's Rescue",				STURDY_PLATEAU_BOOT_FOR_GIRLS, /* aggravate monster when wielded */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_HPHDAM|SPFX_WARN), 0, 0,
+	ACID(4, 12), NO_DFNS, NO_CARY, DRAGON_BREATH, A_LAWFUL, PM_SINGSLAVE, NON_PM, 18000L ),
+
 
 /* Amy note: DO NOT add non-quest artifacts beyond this point!!! foreignartifactcount() in invent.c depends on it */
 

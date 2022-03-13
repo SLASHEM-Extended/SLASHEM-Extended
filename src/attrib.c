@@ -398,6 +398,9 @@ const struct innate {
 		     {  15, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
+	sng_abil[] = { {   1, &(HFull_nutrient), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
 	psy_abil[] = { {   1, &(HSee_invisible), "", "", TRUE },
 			{	5, &(HSleep_resistance), "awake", "tired", TRUE },
 			{     7, &(HPsi_resist), "psionic", "less psionic", TRUE },
@@ -1499,6 +1502,9 @@ const struct innate {
 		     {   6, &(HPainSense), "empathic", "cold-hearted", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
+	tay_abil[] = { {   20, &(HPainSense), "empathic", "cold-hearted", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
 	sed_abil[] = { {   1, &(HAntimagic), "", "", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
@@ -2317,6 +2323,7 @@ int oldlevel, newlevel;
 	case PM_TWELPH:
 	case PM_ELPH:         abil = elp_abil;	break;
 	case PM_LOCKSMITH:         abil = loc_abil;	break;
+	case PM_SINGSLAVE:         abil = sng_abil;	break;
 	case PM_ROGUE:          abil = rog_abil;	break;
 	case PM_RINGSEEKER:		abil = rin_abil;	break;
 	case PM_SAMURAI:        abil = sam_abil;	break;
@@ -2377,6 +2384,7 @@ int oldlevel, newlevel;
 	case PM_CLOCKWORK_AUTOMATON:            rabil = clk_abil;	break;
 	case PM_KOBOLT:            rabil = kob_abil;	break;
 	case PM_SWIKNI:            rabil = swi_abil;	break;
+	case PM_TAYIIN:            rabil = tay_abil;	break;
 	case PM_BRETON:            rabil = bre_abil;	break;
 	case PM_ELEMENTAL:            rabil = elm_abil;	break;
 	case PM_REDGUARD:            rabil = red_abil;	break;
@@ -2675,6 +2683,7 @@ int x;
 		if (FemtrapActiveNora && u.uhs == STARVED) tmp += 25;
 
 		if (FemtrapActiveThai) tmp -= 2;
+		if (Race_if(PM_KNOWLEDGABLE)) tmp -= 2;
 		if (uarmg && uarmg->otyp == GAUNTLETS_OF_POWER) tmp += (uarmg->spe + 3);
 		if (uarm && uarm->otyp == ROBE_OF_WEAKNESS) tmp -= 3;
 		if (uarmf && uarmf->oartifact == ART_FAR_EAST_RELATION) tmp -= 3;

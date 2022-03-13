@@ -1,0 +1,274 @@
+#	SCCS Id: @(#)Valkyrie.des	3.4	2002/05/02
+#	Copyright (c) 1989 by Jean-Christophe Collet
+#	Copyright (c) 1991-2 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+#	The "start" level for the quest.
+#
+#	Here you meet your (besieged) class leader, the Norn,
+#	and receive your quest assignment.
+#
+MAZE: "Sin-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+MAP
+                                                                            
+                 ..                                 ...                     
+                ..                                 .....                    
+               ..                                   .....                   
+              ..                                        .                   
+             ..                                         .                   
+            ..                                         ..                   
+        .....             |----------------|           .                    
+       ..   ...           |................|          ..                    
+      ..      ......     .|................|.         .                     
+     ..            .......+................+...       .                     
+    ..         .....     .|................|. ...     .                     
+   ..         ..          |................|    .......                     
+    ..       ..           |----------------|          ...                   
+     ...    ..                                          ...                 
+       ......                                             ...               
+        ....                                                ... ......      
+                                                              .........     
+                                                               .......      
+                                                                            
+ENDMAP
+# Dungeon Description
+REGION:(00,00,75,19),lit,"ordinary"
+REGION:(27,08,42,12),lit,"ordinary"
+# Portal arrival point
+BRANCH:(66,17,66,17),(0,0,0,0)
+# Stairs
+STAIR:(18,01),down
+# Doors
+DOOR:closed,(26,10)
+DOOR:closed,(43,10)
+# Norn
+MONSTER:'@',"Tuftrike",(35,10)
+# The treasure of the Norn
+OBJECT:'(',"chest",(36,10)
+# valkyrie guards for the audience chamber
+MONSTER:'@',"servant",(27,08)
+MONSTER:'@',"servant",(27,09)
+MONSTER:'@',"servant",(27,11)
+MONSTER:'@',"servant",(27,12)
+MONSTER:'@',"servant",(42,08)
+MONSTER:'@',"servant",(42,09)
+MONSTER:'@',"servant",(42,11)
+MONSTER:'@',"servant",(42,12)
+
+#
+#	The "locate" level for the quest.
+#
+#	Here you have to find the cave of Surtur to go
+#	further towards your assigned quest.
+#
+
+MAZE: "Sin-loca",' '
+FLAGS: hardfloor
+INIT_MAP: '.' , ' ' , true , true , lit , false
+GEOMETRY:center,center
+MAP
+........                      ..........
+...... .                      . ........
+...    ........................   ......
+..   ............................   ....
+.  ...............................  ....
+  .................................   ..
+....................................   .
+  ...................................   
+.  ..................................  .
+..   ..............................   ..
+....  ..........................     ...
+..... .                        .  ......
+.......                        .........
+ENDMAP
+# Dungeon Description
+REGION:(00,00,39,12),lit,"ordinary"
+# Stairs
+STAIR:(48,14),up
+STAIR:(20,06),down
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+#
+#	The "goal" level for the quest.
+#
+#	Here you meet Lord Surtur your nemesis monster.  You have to
+#	defeat Lord Surtur in combat to gain the artifact you have
+#	been assigned to retrieve.
+#
+
+MAZE: "Sin-goal", ' '
+INIT_MAP: '.' , ' ' , true , true , lit , false
+GEOMETRY:center,center
+MAP
+. ............................     
+   .........     .     .........   
+.   ......       .       .......  .
+.   .....   |----+----|   ..... ...
+..  ....  |--.........--|  .....   
+.......  |-...       ...-|  ..... .
+.......  |...  .....  ...|  .......
+......  |-..  .......  ..-|  ......
+......  |.................|  ......
+......  |-..  .......  ..-|  ......
+.......  |...  .....  ...|  .......
+.......  |-...       ...-|  .......
+.. .....  |--.........--|  .....  .
+..  .....   |----+----|   ....    .
+..   .....       .       ...     ..
+.    .......     .     .....    ...
+..  ...............................
+ENDMAP
+# Dungeon Description
+REGION:(00,00,34,16),lit,"ordinary"
+# Stairs
+# Note:  The up stairs are *intentionally* off of the map.
+STAIR:(45,10),up
+DOOR:closed,(17,03)
+DOOR:closed,(17,13)
+# Objects
+OBJECT:')',"sturdy plateau boot for girls",(17,08),blessed,0,"Sabrina's Rescue"
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:'@',"Profile Kati",(17,08),hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+#
+#	The "fill" levels for the quest.
+#
+#	These levels are used to fill out any levels not occupied by specific
+#	levels as defined above. "filla" is the upper filler, between the
+#	start and locate levels, and "fillb" the lower between the locate
+#	and goal levels.
+#
+
+MAZE: "Sin-fila" , ' '
+INIT_MAP: '.' , ' ' , true , true , lit, false
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+MAZE: "Sin-filb" , ' '
+INIT_MAP: '.' , ' ' , true , true , lit, false
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
