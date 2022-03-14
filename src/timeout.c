@@ -2858,6 +2858,12 @@ nh_timeout()
 
 		 break;
 
+		 case FEMTRAP_ROSA:
+
+			pline("At last, the long-lasting powerfeminism has come to an end, you were afraid it'd never happen.");
+
+		 break;
+
 		 case FEMTRAP_JANINA:
 
 			pline("You got enough of smelling female pants.");

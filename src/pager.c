@@ -27644,7 +27644,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel empathic!",
 	"Your ability to scare monsters via Elbereth engravings is reduced in effectiveness.",
 	"Your ability to scare monsters via Elbereth engravings is reduced in effectiveness. But most probably you're a player who never uses E anyway, because Amy seems to be the only one who ever does so, everyone else just dies when the soldier ants are attacking.",
-
+	"You'll have to struggle with feminism for a long time...",
+	"At last, the long-lasting powerfeminism has come to an end, you were afraid it'd never happen.",
 
 };
 

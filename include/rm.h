@@ -833,50 +833,51 @@
 #define S_nicole_trap		628
 #define S_rita_trap		629
 #define S_janina_trap		630
+#define S_rosa_trap		631
 
-#define S_timerun_trap		631
+#define S_timerun_trap		632
 
 /* end traps, begin special effects */
 
-#define S_vbeam		632	/* The 4 zap beam symbols.  Do NOT separate. */
-#define S_hbeam		633	/* To change order or add, see function     */
-#define S_lslant	634	/* zapdir_to_glyph() in display.c.	    */
-#define S_rslant	635
-#define S_digbeam	636	/* dig beam symbol */
-#define S_flashbeam	637	/* camera flash symbol */
-#define S_boomleft	638	/* thrown boomerang, open left, e.g ')'    */
-#define S_boomright	639	/* thrown boomerand, open right, e.g. '('  */
-#define S_ss1		640	/* 4 magic shield glyphs */
-#define S_ss2		641
-#define S_ss3		642
-#define S_ss4		643
+#define S_vbeam		633	/* The 4 zap beam symbols.  Do NOT separate. */
+#define S_hbeam		634	/* To change order or add, see function     */
+#define S_lslant	635	/* zapdir_to_glyph() in display.c.	    */
+#define S_rslant	636
+#define S_digbeam	637	/* dig beam symbol */
+#define S_flashbeam	638	/* camera flash symbol */
+#define S_boomleft	639	/* thrown boomerang, open left, e.g ')'    */
+#define S_boomright	640	/* thrown boomerand, open right, e.g. '('  */
+#define S_ss1		641	/* 4 magic shield glyphs */
+#define S_ss2		642
+#define S_ss3		643
+#define S_ss4		644
 
 /* The 8 swallow symbols.  Do NOT separate.  To change order or add, see */
 /* the function swallow_to_glyph() in display.c.			 */
-#define S_sw_tl		644	/* swallow top left [1]			*/
-#define S_sw_tc		645	/* swallow top center [2]	Order:	*/
-#define S_sw_tr		646	/* swallow top right [3]		*/
-#define S_sw_ml		647	/* swallow middle left [4]	1 2 3	*/
-#define S_sw_mr		648	/* swallow middle right [6]	4 5 6	*/
-#define S_sw_bl		649	/* swallow bottom left [7]	7 8 9	*/
-#define S_sw_bc		650	/* swallow bottom center [8]		*/
-#define S_sw_br		651	/* swallow bottom right [9]		*/
+#define S_sw_tl		645	/* swallow top left [1]			*/
+#define S_sw_tc		646	/* swallow top center [2]	Order:	*/
+#define S_sw_tr		647	/* swallow top right [3]		*/
+#define S_sw_ml		648	/* swallow middle left [4]	1 2 3	*/
+#define S_sw_mr		649	/* swallow middle right [6]	4 5 6	*/
+#define S_sw_bl		650	/* swallow bottom left [7]	7 8 9	*/
+#define S_sw_bc		651	/* swallow bottom center [8]		*/
+#define S_sw_br		652	/* swallow bottom right [9]		*/
 
-#define S_explode1	652	/* explosion top left			*/
-#define S_explode2	653	/* explosion top center			*/
-#define S_explode3	654	/* explosion top right		 Ex.	*/
-#define S_explode4	655	/* explosion middle left		*/
-#define S_explode5	656	/* explosion middle center	 /-\	*/
-#define S_explode6	657	/* explosion middle right	 |@|	*/
-#define S_explode7	658	/* explosion bottom left	 \-/	*/
-#define S_explode8	659	/* explosion bottom center		*/
-#define S_explode9	660	/* explosion bottom right		*/
+#define S_explode1	653	/* explosion top left			*/
+#define S_explode2	654	/* explosion top center			*/
+#define S_explode3	655	/* explosion top right		 Ex.	*/
+#define S_explode4	656	/* explosion middle left		*/
+#define S_explode5	657	/* explosion middle center	 /-\	*/
+#define S_explode6	658	/* explosion middle right	 |@|	*/
+#define S_explode7	659	/* explosion bottom left	 \-/	*/
+#define S_explode8	660	/* explosion bottom center		*/
+#define S_explode9	661	/* explosion bottom right		*/
   
 /* end effects */
   
-#define MAXPCHARS	661 	/* maximum number of mapped characters */
+#define MAXPCHARS	662 	/* maximum number of mapped characters */
 #define MAXDCHARS	75	/* maximum of mapped dungeon characters */
-#define MAXTCHARS	557	/* maximum of mapped trap characters */
+#define MAXTCHARS	558	/* maximum of mapped trap characters */
 #define MAXECHARS       29      /* maximum of mapped effects characters */
 #define MAXEXPCHARS	9	/* number of explosion characters */
 

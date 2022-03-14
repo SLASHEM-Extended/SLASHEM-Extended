@@ -349,6 +349,7 @@ Boots_on()
 	case NICOLE_COMBAT_BOOTS:
 	case RITA_STILETTOS:
 	case JANINA_LADY_PUMPS:
+	case ROSA_GIRL_SHOES:
 
 		if (!uarmf->cursed) {
 			pline("Oh whoops, your footwear welds itself to your %s. This might be the result of a curse.%s", makeplural(body_part(FOOT)), FunnyHallu ? " (Thank you, Captain Obvious.)" : "" );
@@ -888,6 +889,7 @@ Boots_off()
 	case NICOLE_COMBAT_BOOTS:
 	case RITA_STILETTOS:
 	case JANINA_LADY_PUMPS:
+	case ROSA_GIRL_SHOES:
 		break;
 	case HIPPIE_HEELS:
 

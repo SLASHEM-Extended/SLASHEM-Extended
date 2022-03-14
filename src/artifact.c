@@ -3591,6 +3591,36 @@ chargingchoice:
 	    break;
 	case SPECIAL_INVOKE:
 
+		if (obj->oartifact == ART_LILLY_S_SECRET_AGENCY) {
+
+			if (In_endgame(&u.uz)) {
+				pline("The documents are unavailable on the planes!");
+				break;
+			}
+
+			register struct monst *offmon;
+			struct obj *rosafootwear;
+			int mattries = 0;
+			while (uarmf && mattries++ < 50000) {
+				if ((offmon = makemon(&mons[PM_LILLY], 0, 0, NO_MM_FLAGS)) != 0) {
+					offmon->mpeaceful = TRUE;
+					offmon->mfrenzied = FALSE;
+					rosafootwear = obj;
+					setnotworn(rosafootwear);
+					freeinv(rosafootwear);
+					(void) mpickobj(offmon, rosafootwear, FALSE);
+					u_teleport_monC(offmon, FALSE);
+					mattries = 50001;
+				}
+			}
+			rolerecursioneffect();
+
+			pline("You've exchanged your documents with Lilly...");
+			pline("...and apparently she was a %s, so that's what you are now!", (flags.female && urole.name.f) ? urole.name.f : urole.name.m);
+
+
+		}
+
 		if (obj->oartifact == ART_WAY_TOO_SOFT) {
 			litroomlite(FALSE);
 

@@ -6029,6 +6029,7 @@ doapply()
 	case ANASTASIA_S_JEWEL:
 	case JESSICA_S_JEWEL:
 	case MARLENA_S_JEWEL:
+	case ROSA_S_JEWEL:
 	case FEMMY_S_JEWEL:
 	case NATALJE_S_JEWEL:
 	case KARIN_S_JEWEL:

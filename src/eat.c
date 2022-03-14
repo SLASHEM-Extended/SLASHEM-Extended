@@ -6181,6 +6181,8 @@ eatspecial() /* called after eating non-food */
 				FemaleTrapRita |= FROMOUTSIDE; break;
 			case JANINA_S_JEWEL:
 				FemaleTrapJanina |= FROMOUTSIDE; break;
+			case ROSA_S_JEWEL:
+				FemaleTrapRosa |= FROMOUTSIDE; break;
 
 
 		}

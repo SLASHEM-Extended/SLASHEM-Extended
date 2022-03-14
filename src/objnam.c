@@ -546,6 +546,8 @@ int prop;
 			return "Rita's curse";
 		case FEMTRAP_JANINA:
 			return "Janina's curse";
+		case FEMTRAP_ROSA:
+			return "Rosa's curse";
 
 		default:
 			return "Team Nastytrap";
@@ -3597,6 +3599,7 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ NICOLE_S_JEWEL, "Nicole dragotsennost'" },
 	{ RITA_S_JEWEL, "Rita dragotsennost'" },
 	{ JANINA_S_JEWEL, "Janina dragotsennost'" },
+	{ ROSA_S_JEWEL, "Rosa dragotsennost'" },
 
 	{ POT_TECH_LEVEL_UP, "tekhnicheskiy uroven' vverkh" },
 	{ CIGAR, "sigara" },
@@ -3695,6 +3698,7 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ NICOLE_COMBAT_BOOTS, "todo" },
 	{ RITA_STILETTOS, "todo" },
 	{ JANINA_LADY_PUMPS, "todo" },
+	{ ROSA_GIRL_SHOES, "todo" },
 
 	{0, "" }
 };
@@ -6562,6 +6566,7 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ NICOLE_S_JEWEL, "Nicole marvarid" },
 	{ RITA_S_JEWEL, "Rita marvarid" },
 	{ JANINA_S_JEWEL, "Janina marvarid" },
+	{ ROSA_S_JEWEL, "Rosa marvarid" },
 
 	{ POT_TECH_LEVEL_UP, "texnologiya darajasi" },
 	{ CIGAR, "puro" },
@@ -6660,6 +6665,7 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ NICOLE_COMBAT_BOOTS, "todo" },
 	{ RITA_STILETTOS, "todo" },
 	{ JANINA_LADY_PUMPS, "todo" },
+	{ ROSA_GIRL_SHOES, "todo" },
 
 	{0, "" }
 };

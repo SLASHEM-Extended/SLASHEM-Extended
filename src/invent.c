@@ -2300,6 +2300,19 @@ have_femtrapjanina()
 }
 
 boolean
+have_femtraprosa()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == ROSA_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(68)) return TRUE;
+	return(FALSE);
+}
+
+boolean
 have_primecurse()
 {
 	register struct obj *otmp;
@@ -12600,6 +12613,8 @@ boolean knoweverything;
 				pline("A super cute dark blue pair of platform boots, which count as wedge heels. They carry Madeleine's curse, and have 3 AC and 2 MC."); break;
 			case MARLENA_HIKING_BOOTS:
 				pline("This pair of sexy flats is rather solid. They carry Marlena's curse, and have 3 AC and 0 MC."); break;
+			case ROSA_GIRL_SHOES:
+				pline("An innocuous pair of pink girl shoes. They carry Rosa's curse, and have 1 AC and 0 MC."); break;
 			case JANINA_LADY_PUMPS:
 				pline("Quite attractive and sexy cone heels. They carry Janina's curse, and have 2 AC and 2 MC."); break;
 			case ANASTASIA_DANCING_SHOES:
@@ -16511,6 +16526,8 @@ boolean knoweverything;
 				pline("While having this jewel in your inventory, you're afflicted with Jessica's curse. It autocurses and cannot be dropped while cursed."); break;
 			case MARLENA_S_JEWEL:
 				pline("While having this jewel in your inventory, you're afflicted with Marlena's curse. It autocurses and cannot be dropped while cursed."); break;
+			case ROSA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Rosa's curse. It autocurses and cannot be dropped while cursed."); break;
 			case JANINA_S_JEWEL:
 				pline("While having this jewel in your inventory, you're afflicted with Janina's curse. It autocurses and cannot be dropped while cursed."); break;
 			case FEMMY_S_JEWEL:
@@ -22254,6 +22271,8 @@ boolean knoweverything;
 					pline("Artifact specs: petrification resistance and anastasia trap effect when worn, because you love playing Anastasia while wearing these treaded soles."); break;
 				case ART_SABRINA_S_RESCUE:
 					pline("Artifact specs: +4 to-hit and +12 damage to acid-susceptible monsters, half physical damage, warning and aggravate monster when wielded, can be invoked for dragon breath, lawful, singslave quest artifact."); break;
+				case ART_LILLY_S_SECRET_AGENCY:
+					pline("Artifact specs: can be invoked to exchange your documents with Rosa Lilly the Secret Agent."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

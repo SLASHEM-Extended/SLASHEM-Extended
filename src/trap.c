@@ -3374,6 +3374,8 @@ unsigned trflags;
 	if (!rn2(20)) femmytrapdur /= 5;
 	if (!femmytrapdur) femmytrapdur = 1; /* fail safe */
 
+	if (FemtrapActiveRosa) femmytrapdur *= 5;
+
 	blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
 	if (!blackngdur ) blackngdur = 500; /* fail safe */
 
@@ -12706,6 +12708,23 @@ madnesseffect:
 
 		 break;
 
+		 case ROSA_TRAP:
+
+			if (FemaleTrapRosa) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Rosa.");
+			pline("You'll have to struggle with feminism for a long time...");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapRosa = rnz(femmytrapdur * 5 * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapRosa += 100;
+			if (!rn2(3)) FemaleTrapRosa += rnz(500);
+
+		 break;
+
 		 case JANINA_TRAP:
 
 			if (FemaleTrapJanina) break;
@@ -17912,6 +17931,12 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			break;
 		case MARLENA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapMarlena) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case ROSA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapRosa) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, 0);
 			}

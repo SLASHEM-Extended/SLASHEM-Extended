@@ -10898,6 +10898,23 @@ recursioneffect()
 }
 
 void
+rolerecursioneffect()
+{
+	u.temprecursion = 0;
+	u.temprecursiontime = 0;
+	u.demagoguerecursion = 0;
+	u.demagoguerecursiontime = 0;
+	u.oldrecursionrole = -1;
+	u.oldrecursionrace = -1;
+
+	flags.initrole = randrole();
+	urole = roles[flags.initrole];
+
+	init_uasmon();
+
+}
+
+void
 greenslimetransformation()
 {
 	u.temprecursion = 0;

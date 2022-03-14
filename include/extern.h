@@ -1359,6 +1359,7 @@ E boolean have_femtrapjulia(void);
 E boolean have_femtrapnicole(void);
 E boolean have_femtraprita(void);
 E boolean have_femtrapjanina(void);
+E boolean have_femtraprosa(void);
 
 E boolean have_primecurse(void);
 
@@ -2798,6 +2799,7 @@ E const char *Goodbye(void);
 E char *build_plselection_prompt(char *, int, int, int, int, int);
 E char *root_plselection_prompt(char *, int, int, int, int, int);
 E void recursioneffect(void);
+E void rolerecursioneffect(void);
 E void temprecursioneffect(void);
 E void greenslimetransformation(void);
 E void bindertransformation(void);

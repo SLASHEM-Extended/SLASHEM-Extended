@@ -3605,6 +3605,7 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != FEMMY_TRAP
 				&& ttmp->ttyp != MADELEINE_TRAP
 				&& ttmp->ttyp != MARLENA_TRAP
+				&& ttmp->ttyp != ROSA_TRAP
 				&& ttmp->ttyp != JANINA_TRAP
 				&& ttmp->ttyp != KRISTIN_TRAP
 				&& ttmp->ttyp != ANNA_TRAP

@@ -676,6 +676,7 @@
 #define FemaleTrapNicole	u.uprops[FEMTRAP_NICOLE].intrinsic
 #define FemaleTrapRita	u.uprops[FEMTRAP_RITA].intrinsic
 #define FemaleTrapJanina	u.uprops[FEMTRAP_JANINA].intrinsic
+#define FemaleTrapRosa	u.uprops[FEMTRAP_ROSA].intrinsic
 
 #define FemtrapActiveFemmy	(FemaleTrapFemmy || u.uprops[FEMTRAP_FEMMY].extrinsic || have_femtrapfemmy())
 #define FemtrapActiveMadeleine	(FemaleTrapMadeleine || u.uprops[FEMTRAP_MADELEINE].extrinsic || have_femtrapmadeleine())
@@ -744,6 +745,7 @@
 #define FemtrapActiveNicole	(FemaleTrapNicole || u.uprops[FEMTRAP_NICOLE].intrinsic || have_femtrapnicole())
 #define FemtrapActiveRita	(FemaleTrapRita || u.uprops[FEMTRAP_RITA].intrinsic || have_femtraprita())
 #define FemtrapActiveJanina	(FemaleTrapJanina || u.uprops[FEMTRAP_JANINA].extrinsic || have_femtrapjanina())
+#define FemtrapActiveRosa	(FemaleTrapRosa || u.uprops[FEMTRAP_ROSA].extrinsic || have_femtraprosa())
 
 #define RngeIrregularity		(u.uprops[RNGE_IRREGULARITY].intrinsic || u.uprops[RNGE_IRREGULARITY].extrinsic)
 #define RngeInternetAccess		(u.uprops[RNGE_INTERNET_ACCESS].intrinsic || u.uprops[RNGE_INTERNET_ACCESS].extrinsic)

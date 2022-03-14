@@ -5961,6 +5961,7 @@ cure_feminism_traps()
 	FemaleTrapNicole = 0L;
 	FemaleTrapRita = 0L;
 	FemaleTrapJanina = 0L;
+	FemaleTrapRosa = 0L;
 
 }
 

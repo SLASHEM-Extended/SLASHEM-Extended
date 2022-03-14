@@ -2346,6 +2346,7 @@ boolean give_feedback;
 	return TRUE;
 }
 
+/* monster is levelported */
 boolean
 u_teleport_monB(mtmp, give_feedback)
 struct monst *mtmp;
@@ -2385,6 +2386,7 @@ boolean give_feedback;
 	return TRUE;
 }
 
+/* monster is banished */
 boolean
 u_teleport_monC(mtmp, give_feedback)
 struct monst *mtmp;

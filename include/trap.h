@@ -639,6 +639,7 @@ extern struct trap *ftrap;
 #define NICOLE_TRAP 554
 #define RITA_TRAP 555
 #define JANINA_TRAP 556
+#define ROSA_TRAP 557
 
 /* todo area
 
@@ -795,8 +796,8 @@ special ones that don't spawn randomly:
 
 */
 
-#define TIMERUN_TRAP	557
+#define TIMERUN_TRAP	558
 
-#define TRAPNUM 558
+#define TRAPNUM 559
 
 #endif /* TRAP_H */

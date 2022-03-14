@@ -5808,6 +5808,12 @@ boolean guaranteed;
 		you_are(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && FemtrapActiveRosa) {
+		sprintf(buf, "possessed by the ghost of Rosa.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapRosa);
+		you_are(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && Race_if(PM_PERVERT)) {
 		sprintf(buf, "had sex the last time this many turns ago:");
 		sprintf(eos(buf), " %d", u.pervertsex);
@@ -10036,6 +10042,12 @@ int final;
 	if (FemtrapActiveJanina) {
 		sprintf(buf, "possessed by the ghost of Janina.");
 		sprintf(eos(buf), " (%ld)", FemaleTrapJanina);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveRosa) {
+		sprintf(buf, "possessed by the ghost of Rosa.");
+		sprintf(eos(buf), " (%ld)", FemaleTrapRosa);
 		dump(youwere, buf);
 	}
 
