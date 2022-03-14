@@ -890,7 +890,7 @@ register struct monst *mtmp;
 		};
 		verbalize("%s", polka_msgs[rn2(SIZE(polka_msgs))]);
 
-		if (!rn2(5) && (!um_dist(mtmp->mx, mtmp->my, 7) || !rn2(20)) ) increasesanity(rnz(20));
+		if (!rn2(5) && ( (distu(mtmp->mx, mtmp->my) <= 49) || !rn2(20)) ) increasesanity(rnz(20));
 	}
 
 	if (mdat == &mons[PM_DARKNESS_ELEMENTAL] || mdat == &mons[PM_PERMADARKNESS_ELEMENTAL]) {
@@ -1560,7 +1560,7 @@ register struct monst *mtmp;
 
 	if (mtmp->fartbonus > 9) mtmp->fartbonus = 9; /* fail save, gaaaaaah */
 
-	if (FemtrapActiveMeltem && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && mtmp->female && humanoid(mdat) && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && !um_dist(mtmp->mx, mtmp->my, fartdistance) && !mtmp->mpeaceful) {
+	if (FemtrapActiveMeltem && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && mtmp->female && humanoid(mdat) && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && (distu(mtmp->mx, mtmp->my) <= fartdistance) && !mtmp->mpeaceful) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		u.cnd_fartingcount++;
 		if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(1);
@@ -1643,21 +1643,21 @@ register struct monst *mtmp;
 
 	}
 
-	if (mdat->msound == MS_FART_QUIET && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && !um_dist(mtmp->mx, mtmp->my, fartdistance) && (!mtmp->mpeaceful || FemtrapActiveJennifer)) {
+	if (mdat->msound == MS_FART_QUIET && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && (distu(mtmp->mx, mtmp->my) <= fartdistance) && (!mtmp->mpeaceful || FemtrapActiveJennifer)) {
 	    m_respond(mtmp);
 		while (FemtrapActiveElena && !rn2(3)) {
 			pline("You long for more!");
 			m_respond(mtmp);
 		}
 	}
-	if (mdat->msound == MS_FART_NORMAL && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && !um_dist(mtmp->mx, mtmp->my, fartdistance) && !mtmp->mpeaceful) {
+	if (mdat->msound == MS_FART_NORMAL && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && (distu(mtmp->mx, mtmp->my) <= fartdistance) && !mtmp->mpeaceful) {
 	    m_respond(mtmp);
 		while (FemtrapActiveElena && !rn2(3)) {
 			pline("You long for more!");
 			m_respond(mtmp);
 		}
 	}
-	if (mdat->msound == MS_FART_LOUD && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && !um_dist(mtmp->mx, mtmp->my, fartdistance) && !mtmp->mpeaceful) {
+	if (mdat->msound == MS_FART_LOUD && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && (distu(mtmp->mx, mtmp->my) <= fartdistance) && !mtmp->mpeaceful) {
 	    m_respond(mtmp);
 		while (FemtrapActiveElena && !rn2(3)) {
 			pline("You long for more!");
@@ -1768,7 +1768,7 @@ newbossSING:
 
 	}
 
-	if (!(mdat->msound == MS_FART_LOUD || mdat->msound == MS_FART_NORMAL || mdat->msound == MS_FART_QUIET) && mtmp->egotype_farter && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(10 + mtmp->butthurt) && !um_dist(mtmp->mx, mtmp->my, fartdistance) && !mtmp->mpeaceful) {
+	if (!(mdat->msound == MS_FART_LOUD || mdat->msound == MS_FART_NORMAL || mdat->msound == MS_FART_QUIET) && mtmp->egotype_farter && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(10 + mtmp->butthurt) && (distu(mtmp->mx, mtmp->my) <= fartdistance) && !mtmp->mpeaceful) {
 	    m_respond(mtmp);
 		while (FemtrapActiveElena && !rn2(3)) {
 			pline("You long for more!");
