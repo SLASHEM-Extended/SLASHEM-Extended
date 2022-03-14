@@ -16567,8 +16567,10 @@ register struct monst *mtmp;
 		 */
 		seetrap(trap);
 	    }
-		
-	    if (!rn2(40)) {
+
+		/* it's ridiculous that they take soooooo damn long to wriggle free from a trap, especially considering
+		 * that your char can escape from pits and bear traps in 5 turns or so... --Amy */
+	    if (!rn2(strongmonst(mptr) ? 5 : 10)) {
 		if (sobj_at(BOULDER, mtmp->mx, mtmp->my) &&
 			(trap->ttyp == PIT || trap->ttyp == SPIKED_PIT || trap->ttyp == GIANT_CHASM || trap->ttyp == SHIT_PIT || trap->ttyp == MANA_PIT || trap->ttyp == ANOXIC_PIT || trap->ttyp == ACID_PIT)) {
 		    if (!rn2(2)) {
@@ -16593,6 +16595,11 @@ register struct monst *mtmp;
 		    trap->ttyp = PIT;
 		    mtmp->meating = 5;
 		}
+	    } else if (trap->ttyp == BEAR_TRAP && strongmonst(mptr) && !rn2(250)) {
+		    if (canseemon(mtmp))
+			pline("%s manages to rip the bear trap in half!", Monnam(mtmp));
+		    deltrap(trap);
+		    mtmp->mtrapped = 0;
 	    }
 	} else {
 	    register int tt = trap->ttyp;
@@ -16829,9 +16836,10 @@ register struct monst *mtmp;
 			break;
 
 		case BEAR_TRAP:
+			/* Amy edit: very large monsters, as well as strong monsters, aren't always affected */
 			if(mptr->msize > MZ_SMALL &&
 				!amorphous(mptr) && !is_flyer(mptr) && (!mtmp->egotype_flying) &&
-				!is_whirly(mptr) && !unsolid(mptr)) {
+				!is_whirly(mptr) && !(strongmonst(mptr) && rn2(3)) && !(hugemonst(mptr) && rn2(3)) && !((mptr)->msize == MZ_HUGE && rn2(2)) && !unsolid(mptr)) {
 			    mtmp->mtrapped = 1;
 			    if(in_sight) {
 				pline("%s is caught in %s bear trap!",
