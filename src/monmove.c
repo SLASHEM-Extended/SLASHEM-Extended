@@ -505,6 +505,11 @@ int *inrange, *nearby, *scared;
 		seescaryy = u.uy;
 	}
 
+	/* another nerf by Amy: if you use Elbereth, scare monster or sanctuary to make a monster turn to flee,
+	 * temporarily reduce the chance that it works; this counter will add up every time it does work, making it
+	 * increasingly less likely to work again. This counter should time out back to zero very slowly */
+	if (u.elberethcheese && (rnd(u.elberethcheese + 100) > 100) ) return;
+
 	/* "super bonus evil patch idea" by jonadab - monsters with only 1HP ignore Elbereth and similar scary stuff */
 	*scared = ( (mtmp->mhp > 1) && *nearby && (onscary(seescaryx, seescaryy, mtmp) && (rnd(20) > 1) ||
 			       (!mtmp->mpeaceful && (rnd(5) > 2) &&
@@ -514,6 +519,7 @@ int *inrange, *nearby, *scared;
 	After all, where's the challenge in burning an Elbereth, then whacking at soldier ants for two hours straight? */
 
 	if(*scared) {
+		u.elberethcheese++;
 		if (rn2(7))
 		    monflee(mtmp, rnd(10), TRUE, TRUE);
 		else

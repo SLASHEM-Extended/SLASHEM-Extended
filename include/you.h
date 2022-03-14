@@ -1620,6 +1620,8 @@ struct you {
 	int artifactaffinity;	/* to check how much (or not) you use your quest artifact */
 	int artifinitythreshold;	/* highest value reached */
 
+	int elberethcheese;	/* if you use Elbereth, scare monster or temple sanctuary, increase this counter */
+
 	int durirepaircost;
 	int durienchantcost;
 	int duriarticostevil;

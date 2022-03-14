@@ -5820,6 +5820,12 @@ boolean guaranteed;
 		you_have(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && u.elberethcheese) {
+		sprintf(buf, "experiencing reduced Elbereth effectiveness");
+		sprintf(eos(buf), " (%d)", u.elberethcheese);
+		you_are(buf);
+	}
+
 	if (u.bucskill) {
 		sprintf(buf, "%d points of BUC expertise", u.bucskill);
 		you_have(buf);
@@ -10043,6 +10049,12 @@ int final;
 		sprintf(buf, "prayed the last time this many turns ago:");
 		sprintf(eos(buf), " %d", u.pervertpray);
 		dump(youhad, buf);
+	}
+
+	if (u.elberethcheese) {
+		sprintf(buf, "experiencing reduced Elbereth effectiveness");
+		sprintf(eos(buf), " (%d)", u.elberethcheese);
+		dump(youwere, buf);
 	}
 
 	if (u.bucskill) {

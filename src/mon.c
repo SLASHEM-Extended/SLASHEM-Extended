@@ -3113,9 +3113,10 @@ nexttry:	/* eels prefer the water, but if there is no water nearby,
 		}
 
 		info[cnt] = 0;
-		if ((checkobj || Displaced) && onscary(dispx, dispy, mon)) {
+		if ((checkobj || Displaced) && !(u.elberethcheese && (rnd(u.elberethcheese + 100) > 100) ) && onscary(dispx, dispy, mon)) {
 		    if(!(flag & ALLOW_SSM) && !rn2(3)) continue;
 		    info[cnt] |= ALLOW_SSM;
+			if (!rn2(10) && monnear(mon, dispx, dispy) ) u.elberethcheese++;
 		}
 		if((nx == u.ux && ny == u.uy) ||
 		   (nx == mon->mux && ny == mon->muy)) {
@@ -3148,14 +3149,17 @@ nexttry:	/* eels prefer the water, but if there is no water nearby,
 			if(level.flags.has_temple &&
 			   *in_rooms(nx, ny, TEMPLE) &&
 			   !*in_rooms(x, y, TEMPLE) &&
+			   !(u.elberethcheese && (rnd(u.elberethcheese + 100) > 100) ) && 
 			   in_your_sanctuary((struct monst *)0, nx, ny)) {
 				if(!(flag & ALLOW_SANCT) && !rn2(5) ) continue;
 				info[cnt] |= ALLOW_SANCT;
+				if (!rn2(10) && monnear(mon, nx, ny) ) u.elberethcheese++;
 			}
 		}
-		if(checkobj && rn2(5) && sobj_at(CLOVE_OF_GARLIC, nx, ny)) {
+		if(checkobj && rn2(5) && !(u.elberethcheese && (rnd(u.elberethcheese + 100) > 100) ) && sobj_at(CLOVE_OF_GARLIC, nx, ny)) {
 			if(flag & NOGARLIC) continue;
 			info[cnt] |= NOGARLIC;
+			if (!rn2(10) && monnear(mon, nx, ny) ) u.elberethcheese++;
 		}
 		if(checkobj && sobj_at(BOULDER, nx, ny)) {
 			if(!(flag & ALLOW_ROCK)) continue;

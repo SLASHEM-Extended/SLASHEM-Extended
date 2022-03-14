@@ -11136,6 +11136,7 @@ u_init()
 	u.coronations = 0;
 	u.inasuppression = 0;
 	u.conclusiocount = 0;
+	u.elberethcheese = 0;
 
 	u.bucskill = 0;
 	u.enchantrecskill = 0;

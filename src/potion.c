@@ -2020,7 +2020,7 @@ badeffect()
 
 	u.cnd_badeffectcount++;
 
-	switch (rnd(503)) {
+	switch (rnd(508)) {
 
 		case 1:
 		case 2:
@@ -3575,6 +3575,15 @@ newoffmon:
 			nivellate();
 			break;
 
+		case 504:
+		case 505:
+		case 506:
+		case 507:
+		case 508:
+			u.elberethcheese += rnz(5);
+			Your("ability to scare monsters via Elbereth engravings is reduced in effectiveness.");
+			break;
+
 		default:
 			break;
 	}
@@ -3640,7 +3649,7 @@ reallybadeffect()
 
 	u.cnd_reallybadeffectcount++;
 
-	switch (rnd(121)) {
+	switch (rnd(122)) {
 
 		case 1:
 		if (FunnyHallu) You_feel("rather trippy.");
@@ -4809,6 +4818,11 @@ newoffmonX:
 
 		case 121:
 			nivellate();
+			break;
+
+		case 122:
+			u.elberethcheese += rnz(5);
+			Your("ability to scare monsters via Elbereth engravings is reduced in effectiveness.");
 			break;
 
 		default:

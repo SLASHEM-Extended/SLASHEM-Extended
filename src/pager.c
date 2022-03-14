@@ -27642,6 +27642,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel unable to sense pain!",
 	"You feel unable to sense pain! This is extremely dangerous, because you might mortally hurt yourself without even noticing.",
 	"You feel empathic!",
+	"Your ability to scare monsters via Elbereth engravings is reduced in effectiveness.",
+	"Your ability to scare monsters via Elbereth engravings is reduced in effectiveness. But most probably you're a player who never uses E anyway, because Amy seems to be the only one who ever does so, everyone else just dies when the soldier ants are attacking.",
 
 
 };
