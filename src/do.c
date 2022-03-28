@@ -1875,7 +1875,7 @@ doup()
 	 * only to discover that they cannot ascend, and then they will have to go all the way back with the amulet.
 	 * Of course, if you're still stupid enough to actually do that despite the numerous messages, you will get
 	 * a special scornful message calling you out on failing reading comprehension (see above) :P */
-	if (u.uhave.amulet && (In_hell(&u.uz) || In_gehennom(&u.uz)) && !u.amuletcompletelyimbued) com_pager(196);
+	if (u.uhave.amulet && (In_dod(&u.uz) || In_gehennom(&u.uz)) && !u.amuletcompletelyimbued) com_pager(196);
 
 	return(1);
 }
