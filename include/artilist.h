@@ -8994,7 +8994,7 @@ A("Playing Anastasia",				LOW_BOOTS, /* initialized to always be chelsea boots, 
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
 A("Lilly's Secret Agency",				ROSA_GIRL_SHOES, /* invoke causes role recursion but summons a peaceful Lilly who will steal the shoes and branchport away */
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 3000L ),
 
 /*
