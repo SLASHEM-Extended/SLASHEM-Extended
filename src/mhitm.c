@@ -5425,17 +5425,19 @@ physical:
 	    case AD_SANI:
 		if (!rn2(10)) {
 			mdef->mconf = 1;
+			/* STUPID bug where the game displays the same name twice for some inexplicable reason --Amy */
+			strcpy(buf, Monnam(mdef));
 			if (vis) {
 			switch (rnd(4)) {
 
 				case 1:
-					pline("%s sees %s chow dead bodies.", Monnam(mdef), mon_nam(magr)); break;
+					pline("%s sees %s chow dead bodies.", buf, mon_nam(magr)); break;
 				case 2:
-					pline("%s shudders at %s's terrifying %s.", Monnam(mdef), mon_nam(magr), makeplural(mbodypart(magr, EYE)) ); break;
+					pline("%s shudders at %s's terrifying %s.", buf, mon_nam(magr), makeplural(mbodypart(magr, EYE)) ); break;
 				case 3:
-					pline("%s feels sick at entrails caught in %s's tentacles.", Monnam(mdef), mon_nam(magr)); break;
+					pline("%s feels sick at entrails caught in %s's tentacles.", buf, mon_nam(magr)); break;
 				case 4:
-					pline("%s sees maggots breed in the rent %s of %s.", Monnam(mdef), mbodypart(magr, STOMACH), mon_nam(magr)); break;
+					pline("%s sees maggots breed in the rent %s of %s.", buf, mbodypart(magr, STOMACH), mon_nam(magr)); break;
 
 			}
 			}
@@ -7554,18 +7556,20 @@ int attnumber;
 
 		if (!rn2(10)) {
 
+			/* STUPID bug where the game displays the same name twice for some inexplicable reason --Amy */
+			strcpy(buf, Monnam(magr));
 
 			magr->mconf = 1;
 			switch (rnd(4)) {
 
 				case 1:
-					pline("%s sees %s chow dead bodies.", Monnam(magr), mon_nam(mdef)); break;
+					pline("%s sees %s chow dead bodies.", buf, mon_nam(mdef)); break;
 				case 2:
-					pline("%s shudders at %s's terrifying %s.", Monnam(magr), mon_nam(mdef), makeplural(mbodypart(mdef, EYE)) ); break;
+					pline("%s shudders at %s's terrifying %s.", buf, mon_nam(mdef), makeplural(mbodypart(mdef, EYE)) ); break;
 				case 3:
-					pline("%s feels sick at entrails caught in %s's tentacles.", Monnam(magr), mon_nam(mdef)); break;
+					pline("%s feels sick at entrails caught in %s's tentacles.", buf, mon_nam(mdef)); break;
 				case 4:
-					pline("%s sees maggots breed in the rent %s of %s.", Monnam(magr), mbodypart(mdef, STOMACH), mon_nam(mdef)); break;
+					pline("%s sees maggots breed in the rent %s of %s.", buf, mbodypart(mdef, STOMACH), mon_nam(mdef)); break;
 
 			}
 
