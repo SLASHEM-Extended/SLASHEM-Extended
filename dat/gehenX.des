@@ -38,6 +38,7 @@ REGION:(09,14,16,18),unlit,"morgue",filled,true
 REGION:(37,09,43,14),unlit,"morgue",filled,true
 # Stairs
 STAIR:(01,01),down
+STAIR:random,up
 # Branch location
 BRANCH:(66,17,66,17),(0,0,0,0)
 
@@ -186,6 +187,7 @@ REGION:(59,14,66,18),unlit,"morgue",filled
 REGION:(32,09,42,14),unlit,"morgue",filled
 # Stairs
 STAIR:(74,01),down
+STAIR:random,up
 # Branch location
 BRANCH:(05,09,05,09),(0,0,0,0)
 TELEPORT_REGION:(01,06,20,11),(0,0,0,0),down
@@ -13053,6 +13055,7 @@ REGION:(09,14,16,18),unlit,"morgue",filled,true
 REGION:(37,09,43,14),unlit,"morgue",filled,true
 # Stairs
 STAIR:(01,01),down
+STAIR:random,up
 # Branch location
 BRANCH:(66,17,66,17),(0,0,0,0)
 
@@ -13201,6 +13204,7 @@ REGION:(59,14,66,18),unlit,"morgue",filled
 REGION:(32,09,42,14),unlit,"morgue",filled
 # Stairs
 STAIR:(74,01),down
+STAIR:random,up
 # Branch location
 BRANCH:(05,09,05,09),(0,0,0,0)
 TELEPORT_REGION:(01,06,20,11),(0,0,0,0),down

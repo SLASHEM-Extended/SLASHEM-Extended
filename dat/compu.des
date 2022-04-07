@@ -2400,7 +2400,7 @@ REGION:(00,00,75,19),lit,"ordinary"
 # Portal arrival point
 BRANCH:(72,18,72,18),(0,0,0,0)
 # Stairs
-STAIR:(72,18),up
+STAIR:(72,19),up
 STAIR:(03,02),down
 # Hint
 OBJECT:'+',random,(69,16)
@@ -2728,7 +2728,7 @@ REGION:(00,00,75,19),lit,"ordinary"
 # Portal arrival point
 BRANCH:(72,18,72,18),(0,0,0,0)
 # Stairs
-STAIR:(72,18),up
+STAIR:(72,19),up
 STAIR:(03,02),down
 # Hint
 OBJECT:'+',random,(69,16)
