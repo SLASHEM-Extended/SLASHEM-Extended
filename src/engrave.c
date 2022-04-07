@@ -1004,6 +1004,10 @@ static const char *random_mesg[] = {
 	"In the monster room in the lower right corner, one of the Asian girls fart attacked the petrified person, and was also slowed down.",
 	"The door here is not allowed to be destroyed by soldiers at first, so that soldiers will not enter through an oblique direction and maintain an attack surface.",
 	"Rule #1 of Cleaver safety: Don't play a version where it hits peaceful creatures that you didn't even attack.",
+	"Floeresoemito umkadingsda in die Erde?",
+	"mit dem Kalk kramsipumpamsel schnoepfen",
+	"mit dem Pflanzloch verzusamzimpelt umpfmanumpfixen",
+	"gelummibummiflausel Frischwaren-Fraxelschnurz",
 
 };
 

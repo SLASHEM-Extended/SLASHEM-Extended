@@ -3557,6 +3557,8 @@ RING((char *)0, 0,  "dark lapis", 0, 0, 0, 0, 7, MT_GEMSTONE, CLR_BLUE, 1),
 RING((char *)0, 0,  "misty", 0, 0, 0, 0, 2, MT_FOAM, CLR_BLUE, 1),
 RING((char *)0, 0,  "undeleted", 0, 0, 0, 0, 3, MT_LEATHER, CLR_BLUE, 1),
 RING((char *)0, 0,  "painted", 0, 0, 0, 0, 4, MT_MINERAL, CLR_BLUE, 1),
+RING((char *)0, 0,  "decorative", 0, 0, 0, 0, 5, MT_IRON, CLR_CYAN, 1),
+RING((char *)0, 0,  "destructive", 0, 0, 0, 0, 2, MT_TAR, CLR_BLACK, 1),
 /* More descriptions: cameo, intaglio */
 #undef RING
 
@@ -7463,6 +7465,9 @@ SCROLL((char *)0,               "VERBLOEDEN SIE SICH UND BLOEDERE",  P_NONE,    
 SCROLL((char *)0,               "WHY THE EROGENOUS ZONES OF THE WOMEN ARE NOT VISIBLE",  P_NONE,     1,   0, 100, CLR_BLUE, 1),
 SCROLL((char *)0,               "WISCHIWASCHI WEICHEI WESTEN",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
 SCROLL((char *)0,               "BEING AN IDIOT IS NOT PERMITTED",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "ASI SISAL DE WA PICANINNY",  P_NONE,     1,   0, 100, CLR_RED, 1),
+SCROLL((char *)0,               "FAR AWAY FROM DYING IS IT MERRIER TO LIVE",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
+SCROLL((char *)0,               "EQUALTO SLEBE CORONAIA",  P_NONE,     1,   0, 100, CLR_BRIGHT_CYAN, 1),
 
 
 #ifdef MAIL

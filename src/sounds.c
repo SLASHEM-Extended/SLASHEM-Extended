@@ -563,7 +563,7 @@ dosounds()
 			"hear a sales pitcher praising a new branded costume.",
 			"hear a seemingly neverending, disgusting sound.", /* crapping noise */
 			"listen to very tender female noises.",
-			"a librarian yelling at someone to be SILENT!",
+			"hear a librarian yelling at someone to be SILENT!",
 		};
 		You("%s", feminismroom_msg[rn2(8+hallu*9)]);
 		return;

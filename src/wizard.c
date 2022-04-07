@@ -730,6 +730,7 @@ const char * const random_malediction[] = {
 	"Surrender or die, thou",
 	"There shall be no mercy, thou",
 	"Thine carcass shalt burn,",
+	"Thine dad should have used contraceptives,"
 	"This is thine end,",
 	"Thou shalt repent of thy cunning,",
 	"Thou art as a flea to me,",
