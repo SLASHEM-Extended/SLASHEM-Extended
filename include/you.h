@@ -349,7 +349,7 @@ struct you {
 #define A_CURRENT	0
 	aligntyp ualignbase[CONVERT];	/* for ualign conversion record */
 	schar uluck, moreluck, moreluckpts;		/* luck and luck bonus */
-#define Luck	(flags.dudley ? -13 : issuxxor ? -13 : (uleft && uleft->otyp == RIN_DOOM) ? -13 : (uright && uright->otyp == RIN_DOOM) ? -13 : (Role_if(PM_FAILED_EXISTENCE) && ((u.uluck + u.moreluck + Role_if(PM_AUGURER) ) > 0) ) ? 0 : (uwep && uwep->oartifact == ART_ONCE_IN_A_BLUE_MOON && flags.friday13 && flags.moonphase == NEW_MOON) ? 13 :  (uarmh && uarmh->otyp == HELM_OF_BEGINNER_S_LUCK && flags.beginner) ? 13 : (u.uluck + u.moreluck + Role_if(PM_AUGURER) )) /* credits to the Dudley's Dungeon guys --Amy */
+#define Luck	(AssholeModeActive ? -13 : flags.dudley ? -13 : issuxxor ? -13 : (uleft && uleft->otyp == RIN_DOOM) ? -13 : (uright && uright->otyp == RIN_DOOM) ? -13 : (Role_if(PM_FAILED_EXISTENCE) && ((u.uluck + u.moreluck + Role_if(PM_AUGURER) ) > 0) ) ? 0 : (uwep && uwep->oartifact == ART_ONCE_IN_A_BLUE_MOON && flags.friday13 && flags.moonphase == NEW_MOON) ? 13 :  (uarmh && uarmh->otyp == HELM_OF_BEGINNER_S_LUCK && flags.beginner) ? 13 : (u.uluck + u.moreluck + Role_if(PM_AUGURER) )) /* credits to the Dudley's Dungeon guys --Amy */
 #define LUCKADD		3	/* added value when carrying luck stone */
 #define LUCKMAX		10	/* on moonlit nights 11 */
 #define LUCKMIN		(-10)

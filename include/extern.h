@@ -2494,6 +2494,7 @@ E void uncurseoneitem(void);
 E void maybehackimplant(void);
 E boolean everythingfleecy(void);
 E void dropitemattack(void);
+E boolean PlayerOnBlacklist(void);
 
 E void cure_feminism_traps(void);
 E void cure_nasty_traps(void);

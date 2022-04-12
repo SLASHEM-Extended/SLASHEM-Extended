@@ -15117,6 +15117,23 @@ int kind;
 	if (obj->otyp != MAGIC_LAMP) make_bottle(FALSE);
 }
 
+/* is the player someone whom we don't want to play this game? */
+boolean
+PlayerOnBlacklist()
+{
+	if (!strncmpi(plname, "Umbire", 7)) return TRUE;
+	if (!strncmpi(plname, "cebolla", 8)) return TRUE;
+	if (!strncmpi(plname, "spicycat", 9)) return TRUE;
+	if (!strncmpi(plname, "K2", 3)) return TRUE;
+	if (!strncmpi(plname, "NetSysFire", 11)) return TRUE;
+	if (!strncmpi(plname, "machinespray", 13)) return TRUE;
+	if (!strncmpi(plname, "Antigulp", 9)) return TRUE;
+	if (!strncmpi(plname, "Kes", 4)) return TRUE;
+	if (!strncmpi(plname, "owfnteiayuftn", 14)) return TRUE;
+
+	return FALSE;
+}
+
 /* clone a gremlin or mold (2nd arg non-null implies heat as the trigger);
    hit points are cut in half (odd HP stays with original) */
 struct monst *

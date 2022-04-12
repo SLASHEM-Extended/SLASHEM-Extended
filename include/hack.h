@@ -356,7 +356,7 @@ NEARDATA extern coord bhitpos;	/* place where throw or zap hits or stops */
 /* Friday the 13th is supposed to make many things harder for the player, including some evilvariant stuff --Amy
  * can also deliberately invoke the effect by playing in elm street mode */
 #define evilfriday (isevilvariant || (flags.elmstreet && !rn2(5)) || (flags.friday13 && !rn2(5)))
-#define isfriday (flags.elmstreet || u.badfcursed || flags.friday13 || ElmStreetEffect || u.uprops[ELM_STREET_EFFECT].extrinsic || have_elmstreetstone())
+#define isfriday (flags.elmstreet || AssholeModeActive || u.badfcursed || flags.friday13 || ElmStreetEffect || u.uprops[ELM_STREET_EFFECT].extrinsic || have_elmstreetstone())
 
 /* Luxidream wants to be able to name his characters */
 #define playeraliasname (plalias[0] ? plalias : plname)

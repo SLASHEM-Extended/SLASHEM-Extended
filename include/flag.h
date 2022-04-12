@@ -141,7 +141,7 @@ struct flag {
  
 	boolean gehenna; 
 	boolean dudley; 
-	boolean iwbtg; 
+	boolean iwbtg;
 	boolean hippie; 
 	boolean blindfox; 
 	boolean lostsoul; 
@@ -153,6 +153,7 @@ struct flag {
 	boolean wonderland;
 	boolean elmstreet;
 	boolean zapem;
+	boolean assholemode;
 
 	boolean askforalias; /* set this in the options file if you want to be asked what your char's name is */
 

@@ -21,6 +21,8 @@
  */
 
 
+#define AssholeModeActive	(flags.assholemode || PlayerOnBlacklist())
+
 #define maybe_polyd(if_so,if_not)	(Upolyd ? (if_so) : (if_not))
 
 #define HardcoreAlienMode	(Race_if(PM_HC_ALIEN) && flags.female)
@@ -61,7 +63,7 @@
 
 #define EnglandMode	(RngeEngland || (uarmc && itemhasappearance(uarmc, APP_LONG_RANGE_CLOAK)) || (uarmu && uarmu->oartifact == ART_BEAM_MULTIPLIER) || (uwep && uwep->oartifact == ART_MINOLONG_ELBOW) || (uarmg && itemhasappearance(uarmg, APP_ENGLISH_GLOVES)) )
 
-#define NastyTrapNation		(NastynationBug || u.uprops[NASTY_NATION_BUG].extrinsic || have_multitrappingstone() || Role_if(PM_WALSCHOLAR) || (uamul && uamul->oartifact == ART_ANASTASIA_S_LURE))
+#define NastyTrapNation		(NastynationBug || u.uprops[NASTY_NATION_BUG].extrinsic || AssholeModeActive || have_multitrappingstone() || Role_if(PM_WALSCHOLAR) || (uamul && uamul->oartifact == ART_ANASTASIA_S_LURE))
 #define PlayerUninformation	(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY))
 
 #define ManlerIsChasing	(ManlerEffect || u.uprops[MANLER_EFFECT].extrinsic || have_manlerstone() || (uwep && uwep->oartifact == ART_DIZZY_METAL_STORM) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DIZZY_METAL_STORM) || (uwep && uwep->oartifact == ART_BAOBHAN_MOUNTAIN) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_BAOBHAN_MOUNTAIN))

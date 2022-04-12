@@ -1689,6 +1689,19 @@ freeplaycheck:
      */
 
 die:
+
+	/* this would have been for junethack, but oh well... RIP */
+	if (AssholeModeActive) {
+		boolean havestartscummed = FALSE;
+		if (moves < 501) havestartscummed = TRUE;
+		if (u.ulevel < 6) havestartscummed = TRUE;
+		if (havestartscummed) {
+			killer_format = KILLED_BY;
+			killer = "start scumming";
+		}
+		if (!rn2(20)) pline("Dude, startscumming is so lame. Play the game properly instead!");
+	}
+
 	if(u.uhpmax <= 0) u.uhpmax = 1; /* fixing a VERY annoying dump_techniques SIGFPE */
 	u.hangupcheat = 0;
 	if (!goexplore && !gofreeplay) {

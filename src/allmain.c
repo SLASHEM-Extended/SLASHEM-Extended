@@ -16781,6 +16781,7 @@ boolean
 timebasedlowerchance()
 {
 	if (isfriday && !rn2(10)) return FALSE; /* unconditional failure on the unlucky day */
+	if (AssholeModeActive) return FALSE; /* unconditional failure if you're playing asshole mode */
 
 	int chance = 133;
 	chance -= (moves * 100 / u.monstertimefinish);

@@ -2863,6 +2863,8 @@ boolean guaranteed;
 	if (flags.gmmode) you_are("playing in game master mode");
 	if (flags.supergmmode) you_are("playing in super game master mode");
 #endif
+	if (flags.assholemode) you_are("playing in asshole mode");
+	if (PlayerOnBlacklist()) you_are("on the list of unfriendly persons");
 
 	if ((guaranteed || !rn2(10)) && u.uevent.uhand_of_elbereth) {
 	    static const char * const hofe_titles[3] = {
@@ -7241,6 +7243,8 @@ int final;
 	if (flags.gmmode) dump(youwere, "playing in game master mode");
 	if (flags.supergmmode) dump(youwere, "playing in super game master mode");
 #endif
+	if (flags.assholemode) dump(youwere, "playing in asshole mode");
+	if (PlayerOnBlacklist()) dump(youwere, "on the list of unfriendly persons");
 
 	if (u.uevent.uhand_of_elbereth) {
 	    static const char * const hofe_titles[3] = {

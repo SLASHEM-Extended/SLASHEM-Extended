@@ -335,6 +335,7 @@ static struct Bool_Opt
 	{"gmmode", &flags.gmmode, FALSE, DISP_IN_GAME}, 
 	{"supergmmode", &flags.supergmmode, FALSE, DISP_IN_GAME}, 
 #endif
+	{"assholemode", &flags.assholemode, FALSE, DISP_IN_GAME}, 
 	{"wonderland", &flags.wonderland, FALSE, DISP_IN_GAME}, 
 	{"zapem", &flags.zapem, FALSE, DISP_IN_GAME}, 
 

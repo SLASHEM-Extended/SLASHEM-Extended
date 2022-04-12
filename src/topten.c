@@ -1609,12 +1609,13 @@ gamemode_strcode()
 #endif
 	if (flags.wonderland) sprintf(eos(string), "wonderland");
 	if (flags.zapem) sprintf(eos(string), "zapm");
+	if (flags.assholemode) sprintf(eos(string), "asshole");
 
 	if (!u.freeplaymode && !(flags.gehenna) && !(flags.dudley)
 #ifdef GMMODE
 	&& !(flags.gmmode) && !(flags.supergmmode)
 #endif
-	&& !(flags.iwbtg) && !(flags.elmstreet) && !(flags.hippie) && !(flags.blindfox) && !(flags.uberlostsoul) && !(flags.lostsoul) && !(flags.wonderland) && !(flags.zapem)) sprintf(eos(string), "none");
+	&& !(flags.iwbtg) && !(flags.assholemode) && !(flags.elmstreet) && !(flags.hippie) && !(flags.blindfox) && !(flags.uberlostsoul) && !(flags.lostsoul) && !(flags.wonderland) && !(flags.zapem)) sprintf(eos(string), "none");
 
     return (string);
 }

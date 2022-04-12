@@ -3827,6 +3827,7 @@ have_nastystone()
 		}
 	if (u.nastinator55) return TRUE;
 	if (sjwcheck(55)) return TRUE;
+	if (AssholeModeActive) return TRUE;
 	return(FALSE);
 }
 
@@ -4027,6 +4028,7 @@ have_starvationstone()
 	if (u.nastinator69) return TRUE;
 	if (sjwcheck(69)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 2) return TRUE;
+	if (AssholeModeActive) return TRUE;
 	return(FALSE);
 }
 
@@ -4417,6 +4419,7 @@ have_lootcutstone()
 		}
 	if (u.nastinator96) return TRUE;
 	if (sjwcheck(96)) return TRUE;
+	if (AssholeModeActive) return TRUE;
 	return(FALSE);
 }
 
