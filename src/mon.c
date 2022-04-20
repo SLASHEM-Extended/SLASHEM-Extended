@@ -7661,6 +7661,11 @@ mnexto(mtmp)	/* Make monster mtmp next to you (if possible) */
 
 	if(!enexto(&mm, u.ux, u.uy, mtmp->data)) return;
 	rloc_to(mtmp, mm.x, mm.y);
+
+	if (mtmp->singannoyance && !u.singtrapocc && !u.katitrapocc && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful) {
+		singclean(mtmp);
+	}
+
 	return;
 }
 
