@@ -754,6 +754,7 @@ meleeattack:
 		strike = 0;	/* will not wake up a sleeper */
 
 		if (!range || clear_path(magr->mx, magr->my, mdef->mx, mdef->my) ) {
+
 			res[i] = gazemm(magr, mdef, mattk);
 		}
 		break;
@@ -6670,7 +6671,7 @@ int attnumber;
 
 	int atttypB;
 
-	if (mdef->mtame && !monnear(magr, mdef->mx, mdef->my)) return 0;
+	if ( (mdef->mtame || !(attacktype(mdef->data, AT_RATH))) && !monnear(magr, mdef->mx, mdef->my)) return 0;
 
 	for(i = 0; ; i++) {
 	    if(i >= NATTK) return (mdead | mhit); /* no passive attacks */
