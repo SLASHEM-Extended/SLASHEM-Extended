@@ -6188,7 +6188,7 @@ struct monst *shkp;
 	}
 
 	/* Can object be poisoned? */
-	if (is_poisonable(obj) && (ESHK(shkp)->services & SHK_SPECIAL_C)) {
+	if (ESHK(shkp)->services & SHK_SPECIAL_C) {
 	    any.a_int = 3;
 	    add_menu(tmpwin, NO_GLYPH, &any , 'p', 0, ATR_NONE,
 		    "Poison", MENU_UNSELECTED);
@@ -6317,6 +6317,12 @@ struct monst *shkp;
 	    break;
 
 	case 3:
+
+	    if (!is_poisonable(obj)) {
+		verbalize("That cannot be poisoned!");
+		break;
+	    }
+
 	    verbalize("Just imagine what poisoned %s can do!", xname(obj));
 
 	    charge = 10 * obj->quan;
