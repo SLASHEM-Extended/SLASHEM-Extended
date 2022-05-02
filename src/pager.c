@@ -4176,6 +4176,8 @@ static NEARDATA const char * const demagoguelines[] = {
 "People are so stupid! They do everything the government wants! In fact, they are so mindlessly obedient, the government could force them to step into dog shit once per day and clean their shoes by hand, and people would actually do that without asking questions.",
 "Humankind has failed. In the future, the predominant species on this planet will not be the human, but the virus. And that's despite the fact that the virus isn't even a sentient being.",
 "I give you a 3g certificate in your face bitch, in a democracy you could decide whether you want to be vaccinated but this country obviously isn't one.",
+"The best way to cool down the planet is to launch a couple nukes. That will cause a nuclear winter, which reduces global temperature by several Kelvin. Oh, the nuclear fallout? Who cares about that, it's only the weak who will die to the radiation anyway.",
+"The egemony of the powerful country has to be abolished, we want to ensure that smaller countries also have rights!", /* the word 'hegemony' is misspelled on purpose */
 };
 
 static NEARDATA const char * const longinglines[] = {
@@ -27783,6 +27785,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Bridghitte'. It reads: 'You promised the Anastasia to clean her soft girl shoes and since you changed your mind, you made her unhappy!'",
 	"Incoming message for Player 1. The message is from 'Bridghitte'. It reads: 'Hmm, I guess the Sue Lyn doesn't mind that you don't finish cleaning her shoes... but I do!'",
 	"Incoming message for Player 1. The message is from 'Bridghitte'. It reads: 'That's gotta be a joke that you fail to clean the Juen platform sandals, even my granny could have done that.'",
+	"To whom it may concern: An orc has just attacked you with a sword. Not only that, but he has hit you. Are you interested in purchasing orc insurance? Please write back at this address.",
+	"The pinobot source code includes an AD_SHOE attack for *slashthem* of all things, even though the type of ice block would never add such a thing and it's not a monster attack that exists in SLEX. Very weird...", /* yes apparently it does have such an attack, but oh well... the message is preserved just for the sake of it :-P */
 
 };
 

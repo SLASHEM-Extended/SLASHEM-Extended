@@ -1008,6 +1008,8 @@ static const char *random_mesg[] = {
 	"mit dem Kalk kramsipumpamsel schnoepfen",
 	"mit dem Pflanzloch verzusamzimpelt umpfmanumpfixen",
 	"gelummibummiflausel Frischwaren-Fraxelschnurz",
+	"oh my god, there's a man sitting to the opposite of us! giggle! and oh my god he's wearing wedge heels doublegiggle!",
+	"omg slex is an autoerotic wanking simulator",
 
 };
 
@@ -5557,6 +5559,9 @@ static const char *epitaphs[] = {
 	"Well the monsters that keep mimicking things even when you attack them can just fuck off, the cunts. Doubly so because you can't melee them. Bullshit mechanic that should be abolished.",
 	"The main reason is that piles of useless things are useless, and a little bit of money is a little bit.",
 	"oh lol you thought those blank tiles in vlad's cellar were just unexplored areas? mua ha ha ha ha, they're really bottomless pits, and now your char that you've put 100 hours into is gone. lololololol I'm so great, next time I'll just delete your save 100 hours into a run with the same effect, ain't I a genius?",
+	"omg the 'unconscious girl minigame' is too much i wont play this game anymore",
+	"omg the 'unconscious girl minigame' is too much i wont play this game anymore even though the chance of actually encountering that minigame is about as big as winning the jackpot in the lottery",
+	"Rounded a corner and the level 6 catprincess just instagibbed my level 22 char, very balanced game. I had over a hundred hit points and two dozen points in Evasion and Greater Evasion." /* happened to Amy in Elona */
 
 };
 

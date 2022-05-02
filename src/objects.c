@@ -7468,6 +7468,10 @@ SCROLL((char *)0,               "BEING AN IDIOT IS NOT PERMITTED",  P_NONE,     
 SCROLL((char *)0,               "ASI SISAL DE WA PICANINNY",  P_NONE,     1,   0, 100, CLR_RED, 1),
 SCROLL((char *)0,               "FAR AWAY FROM DYING IS IT MERRIER TO LIVE",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
 SCROLL((char *)0,               "EQUALTO SLEBE CORONAIA",  P_NONE,     1,   0, 100, CLR_BRIGHT_CYAN, 1),
+SCROLL((char *)0,               "ALLE MEINE AEXTE KOMMEN AUS TAEXTE",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
+SCROLL((char *)0,               "WOEE3Z",  P_NONE,     1,   0, 100, CLR_BRIGHT_GREEN, 1),
+SCROLL((char *)0,               "WITHOUT GAS NO GLASS",  P_NONE,     1,   0, 100, CLR_BRIGHT_CYAN, 1),
+SCROLL((char *)0,               "LIEBE MUSS NICHT GLEICH SEKTOEL SEIN",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
 
 
 #ifdef MAIL
