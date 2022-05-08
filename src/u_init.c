@@ -11133,6 +11133,7 @@ u_init()
 	u.mushroompoles = 0;
 	u.grenadoninlauncher = 0;
 	u.nataljetrapturns = 0;
+	u.maxrndmonstchoicecount = 0;
 	u.coronations = 0;
 	u.inasuppression = 0;
 	u.conclusiocount = 0;

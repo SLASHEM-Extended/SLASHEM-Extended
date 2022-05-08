@@ -3179,6 +3179,11 @@ boolean guaranteed;
 		/* these two are tied together because the monstertimefinish variable defines the evolution --Amy */
 	}
 
+	if ((guaranteed || !rn2(10))) {
+		sprintf(buf, " %d", u.maxrndmonstchoicecount);
+		enl_msg("Maximum amount of combined random monster spawn freqs ", "is", "was", buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) { sprintf(buf, " turn %d", u.ascensiontimelimit);
 		enl_msg("Your limit for ascension ", "is at", "was at", buf);
 	}
@@ -7559,6 +7564,9 @@ int final;
 	dump("  Monster spawn increase reached its maximum at ", buf);
 	dump("  In this game, Eevee's evolution was ", mons[u.eeveelution].mname );
 	/* these two are tied together because the monstertimefinish variable defines the evolution --Amy */
+
+	sprintf(buf, " %d", u.maxrndmonstchoicecount);
+	dump("  Maximum amount of combined random monster spawn freqs was", buf);
 
 	sprintf(buf, " turn %d", u.ascensiontimelimit);
 	dump("  Your limit for ascension was at ", buf);

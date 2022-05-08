@@ -26658,6 +26658,9 @@ loopback:
 	    return (struct permonst *)0;
 	}
 
+	if (u.maxrndmonstchoicecount < rndmonst_state.choice_count) u.maxrndmonstchoicecount = rndmonst_state.choice_count;
+	if (rndmonst_state.choice_count < 0) impossible("rndmonst_state.choice_count %d", rndmonst_state.choice_count);
+
 /*
  *	Now, select a monster at random.
  */

@@ -641,6 +641,8 @@ struct you {
 	int gruechallengecomplete;
 	int devnullcomplete;
 
+	int maxrndmonstchoicecount;	/* for rndmonst() in makemon.c */
+
 	int greencrosschance;
 	boolean greencrossopen;
 
