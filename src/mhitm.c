@@ -321,6 +321,8 @@ mattackm(magr, mdef)
     /* Calculate the armour class differential. */
     tmp = find_mac(mdef);
 
+    boolean norangepassive = FALSE; /* don't run passives against phantom attacks, please --Amy */
+
     boolean egotypearcane = magr->egotype_arcane;
     boolean egotypeclerical = magr->egotype_clerical;
     boolean egotypemastercaster = magr->egotype_mastercaster;
@@ -581,6 +583,7 @@ mattackm(magr, mdef)
 		if (range && mdef->mtame && !linedup(magr->mx,magr->my,mdef->mx,mdef->my, FALSE) ) {
 		    strike = 0;
 		    attk = 0;
+		    norangepassive = TRUE;
 		    break;
 
 		}
@@ -630,6 +633,7 @@ mattackm(magr, mdef)
 		if (range && mdef->mtame && !linedup(magr->mx,magr->my,mdef->mx,mdef->my, FALSE) ) {
 		    strike = 0;
 		    attk = 0;
+		    norangepassive = TRUE;
 		    break;
 
 		}
@@ -689,12 +693,16 @@ mattackm(magr, mdef)
 	    case AT_SCRA:
 	    case AT_TENT:
 	    case AT_BEAM:
+
+		if ((mattk->aatyp != AT_BEAM) && !(mattk->aatyp == AT_WEAP && range) && (!monnear(magr, mdef->mx, mdef->my)) ) norangepassive = TRUE;
+
 meleeattack:
 		/* Nymph that teleported away on first attack? */
 		if ((distmin(magr->mx,magr->my,mdef->mx,mdef->my) > 1) && mattk->aatyp != AT_BREA && mattk->aatyp != AT_SPIT && mattk->aatyp != AT_MAGC && (mattk->aatyp != AT_BEAM || (mattk->aatyp == AT_BEAM && !linedup(magr->mx,magr->my,mdef->mx,mdef->my, FALSE)) ) ) {
 		    strike = 0;
 		    break;
 		}
+
 		/* Monsters won't attack cockatrices physically if they
 		 * have a weapon instead.  This instinct doesn't work for
 		 * players, or under conflict or confusion.
@@ -747,6 +755,7 @@ meleeattack:
 		strike = (((i >= 2 && res[i-1] == MM_HIT && res[i-2] == MM_HIT) || (!rn2(mdef->mtame ? 10 : 30) && (dist2(mdef->mx, mdef->my, magr->mx, magr->my) <= (BOLT_LIM * BOLT_LIM)) ) ) && (tmp > dieroll));
 		if (strike)
 		    res[i] = hitmm(magr, mdef, mattk);
+		else norangepassive = TRUE;
 
 		break;
 
@@ -756,7 +765,8 @@ meleeattack:
 		if (!range || clear_path(magr->mx, magr->my, mdef->mx, mdef->my) ) {
 
 			res[i] = gazemm(magr, mdef, mattk);
-		}
+		} else norangepassive = TRUE;
+
 		break;
 
 	    case AT_EXPL:
@@ -798,7 +808,7 @@ meleeattack:
 
 	boolean hashit = FALSE;
 
-	if (attk && !(res[i] & MM_AGR_DIED)) {
+	if (!norangepassive && attk && !(res[i] & MM_AGR_DIED)) {
 
 	    res[i] = passivemm(magr, mdef, strike, res[i] & MM_DEF_DIED, 0);
 	    if (res[i] & MM_HIT) hashit = TRUE;
