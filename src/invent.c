@@ -10836,7 +10836,7 @@ boolean knoweverything;
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BOXING_GOWN))
 			pline("Wearing this cloak will make you a better martial artist. However, if you don't have the martial arts skill, you won't receive a bonus.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_TEAM_SPLAT_CLOAK))
-			pline("Gogo junethack team splat! TROPHY GET! :D");
+			pline("Gogo junethack team splat! Oh wait, nope, that tournament sucks and the team was using lame strategies like parking 50 ascensions and similar garbage. Good thing that tournament is dead.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ELDRITCH_CLOAK))
 			pline("While wearing this cloak, mundane monsters can sometimes turn into dangerous eldritch abominations.");
 
@@ -20062,7 +20062,7 @@ boolean knoweverything;
 				case ART_ARTIFICIAL_FAKE_DIFFICULTY:
 					pline("Artifact specs: halves experience points gained, your techniques become re-usable twice as quickly, but many standard actions like attacking monsters or casting spells will have a failure rate, making the game much harder."); break;
 				case ART_JUNETHACK______WINNER:
-					pline("Artifact specs: if (trophy_get == TRUE) increase_player_stats :-) Seriously, getting a trophy while wearing it improves your maximum HP and Pw. Now go ahead and win the Junethack tournament, we're all counting on you!"); break;
+					pline("Artifact specs: if (trophy_get == TRUE) increase_player_stats :-) Seriously, getting a trophy while wearing it improves your maximum HP and Pw. There used to be a tournament too, but it's dead, may it rot in hell."); break;
 				case ART_YOG_SOTHOTH_HELP_ME:
 					pline("Artifact specs: psi resistance when worn. By the way, Adeon really loves to update Pinobot for the new SLEX monsters because Yog-Sothoth actually is one of them! :-)"); break;
 				case ART_WHISTLE_OF_PROTECTION:

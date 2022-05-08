@@ -821,6 +821,7 @@ doread()
 	"Anyone who expects me to remove features from slex just because they're supposedly problematic can get fucked. I won't listen to such monkeys, either you accept my game the way it is or stay away from it.",
 	"Don't you dare gender me. If you address me, use proper grammar. 'Gamer*in' is not proper grammar, it's bullshit and causes eye cancer!",
 	"Love doesn't have to be amnesia oil.",
+	"Talk to you never, stupid annual nethack 'variant tournament'. You do not exist.",
 
 	    };
 	    char buf[BUFSZ];

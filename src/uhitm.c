@@ -7937,7 +7937,7 @@ register int roll;
 
 	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || (mdef->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && (!rn2(5) || (mdef->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) && canspotmon(mdef) && flags.verbose) {
 
-		switch (rnd(770)) {
+		switch (rnd(780)) {
 
 		case 1: pline("%s cringes from your strike behind its %sshield.", Monnam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
 		case 2: pline("You smash into %s's %sshield, striking sparks.", mon_nam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
@@ -8709,6 +8709,16 @@ register int roll;
 		case 768: pline("You're obviously not using all you have, or you'd be capable of taking down %s.", mon_nam(mdef)); break;
 		case 769: pline("Why aren't you using a weapon that can damage %s?", mon_nam(mdef)); break;
 		case 770: pline("Why are you apparently too bad to play this game?"); break;
+		case 771: pline("%s makes fun of the fact that you're still under the delusion that there was a Junethack tournament.", Monnam(mdef)); break;
+		case 772: pline("%s tells you that Junethack is dead and you can stop trying to play as if you were in a tournament, because no one is watching anyway.", Monnam(mdef)); break;
+		case 773: pline("%s laughs about the huge amount of time you're wasting playing stupid video games.", Monnam(mdef)); break;
+		case 774: pline("%s tells you that all of your efforts will be in vain.", Monnam(mdef)); break;
+		case 775: pline("%s reminds you about your last lecture, which told you that at the end of the day, none of your achievements will be of any value.", Monnam(mdef)); break;
+		case 776: pline("%s tells you that one of the real-life presidents will eventually push the big red button, and then the world will end, along with the game NetHack.", Monnam(mdef)); break;
+		case 777: pline("%s says in a calm voice, 'Stop your combat activities. Nothing that you do still matters at this point. Haven't you listened to the oracle? She said... Tomorrow, %s is going to die.'", Monnam(mdef), playeraliasname); break;
+		case 778: pline("%s knows that you suck not only at the game, but at real life too.", Monnam(mdef)); break;
+		case 779: pline("%s snickers 'Don't you have a job? Got all day to waste living off social welfare and playing stupid video games?'", Monnam(mdef)); break;
+		case 780: pline("%s is the server administrator and decides that your game gets banned from the annual NetHack tournament for no reason, other than the admin wanting to demonstrate his power, of which he has too much!", Monnam(mdef)); break;
 
 
 		default: pline("You missed %s!", mon_nam(mdef)); break;

@@ -5562,6 +5562,11 @@ static const char *epitaphs[] = {
 	"omg the 'unconscious girl minigame' is too much i wont play this game anymore",
 	"omg the 'unconscious girl minigame' is too much i wont play this game anymore even though the chance of actually encountering that minigame is about as big as winning the jackpot in the lottery",
 	"Rounded a corner and the level 6 catprincess just instagibbed my level 22 char, very balanced game. I had over a hundred hit points and two dozen points in Evasion and Greater Evasion." /* happened to Amy in Elona */
+	"You could be screwed over at any point in the game! It's balanced!", /* by amateurhour */
+	"Here lies a former SLEX player who decided to dump the game because of the Antje minigame.",
+	"Here lies a former SLEX player who decided to dump the game because of the Antje minigame even though the minigame occurs extremely rarely and when it does, it's possible to simply spacebar-spam past it.",
+	"Here lies a former SLEX player who decided to dump the game because of the Antje minigame, even though most of the time you won't even reach the point in the minigame where the girl becomes unconscious and even if you do, you're not obligated to pick the choice where you can r-word her.",
+	"Here lies the stupid tournament whose name starts with the letter J. It wsa killed by a server administrator who somehow has so much power that he can fucking FORCE the tournament admin to take games OFF THE TOURNAMENT just because the server admin personally dislikes them.",
 
 };
 

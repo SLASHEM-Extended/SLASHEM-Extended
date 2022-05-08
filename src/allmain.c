@@ -133,19 +133,7 @@ moveloop()
 	pline("Happy Groundhog Day!");
 
 	if (getmonth() == 5) {
-#ifdef PUBLIC_SERVER
-		if (flags.uberlostsoul || flags.lostsoul
-#ifdef GMMODE
- || flags.gmmode || flags.supergmmode
-#endif
-		|| flags.wonderland || flags.zapem) {
-			pline("WARNING (PLEASE READ): Junethack is running - but you're using a playing mode that is incompatible with the tournament! The following modes are prohibited: lostsoul, uberlostsoul, gmmode, zapem and wonderland. If you want your games to count, quit this one now, disable all the forbidden options, and start a new game. Please refer to junethack.net for more information. Good luck!");
-		} else {
-			pline("Junethack is running! Please refer to junethack.net for more information. Give it your best shot, and try to score as many trophies as you can! Good luck!");
-		}
-#else
-		pline("It is June! Why are you not participating in the Junethack tournament which traditionally runs this month? Quick, go to junethack.net in your web browser where you can play SLASH'EM Extended and other NetHack variants online and compare your scores with other players! And what's more, certain achievements will net you trophies!");
-#endif
+		pline("It's June, so Junethack is running... oh wait, no it isn't, it's dead. Oh well, that tournament sucked anyway, so you've certainly made the right decision to play SLEX. But while we're at it: If a single server administrator can blackmail the tournament admin and thereby decide which games are allowed to be in the tournament, that's a bad thing.");
 	}
 
     initrack();

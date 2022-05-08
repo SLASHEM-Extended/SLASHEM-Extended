@@ -21,7 +21,8 @@ extern int rand(void);
 static int reseed_period = 0;
 static int reseed_count = 0;
 
-/* We need a cryptographically secure RNG. This is mainly for junethack, even though its rules already state that
+/* We need a cryptographically secure RNG. This is mainly for junethack (err nope, that's a thing that does not exist,
+ * so we don't even need to care anymore), even though its rules already state that
  * exploiting flaws in a weak random number generator is forbidden, but apparently most other variants made it secure,
  * and one example of such a variant is dnethack which seems to have the easiest to implement method available.
  * Therefore I ported the dnethack code. It really is mainly meant to ensure that you can't exploit mechanics to get
