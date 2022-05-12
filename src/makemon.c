@@ -9774,6 +9774,28 @@ loveheelover:
 			m_initthrow(mtmp, BULLET, 36);
 		}
 
+		if (mtmp->data == &mons[PM_COCK_CARRIER]) {
+			(void) mongets(mtmp, RING_MAIL);
+			(void) mongets(mtmp, LEATHER_CLOAK);
+			(void)mongets(mtmp, rnd_class(LONG_SWORD,GREAT_HOUCHOU));
+		}
+
+		if (mtmp->data == &mons[PM_COCKATRICE_CARRIER]) {
+			(void) mongets(mtmp, LEATHER_GLOVES);
+			{
+				struct obj *otmpS = mksobj(CORPSE,TRUE,FALSE, FALSE);
+
+				if (otmpS) {
+					otmpS->spe = 0;
+					otmpS->quan = 1;
+					otmpS->owt = 30;
+					otmpS->corpsenm = PM_COCKATRICE;
+					start_corpse_timeout(otmpS); /* gotta make sure they time out after a while! --Amy */
+					(void) mpickobj(mtmp,otmpS, TRUE);
+				}
+			}
+		}
+
 		if (ptr == &mons[PM_CUBAN_POTATO]) {
 			(void) mongets(mtmp, FLINTLOCK);
 			 m_initthrow(mtmp, LEAD_BULLET, 30);
@@ -11606,6 +11628,7 @@ loveheelover:
 
 		if(ptr == &mons[PM_REAL_DEGA]) (void) mongets(mtmp, PICK_AXE);
 		if(ptr == &mons[PM_OLF_KARTOFFELKOPF]) (void) mongets(mtmp, BUNNY_UNIFORM);
+		if(ptr == &mons[PM_RIVOLE_SPICERO]) (void) mongets(mtmp, ITALIAN_HEELS); /* M4_SANDALS */
 
 		if (ptr == &mons[PM_HEAVY_CENTAUR]) {
 			(void) mongets(mtmp, FLINTLOCK);
@@ -12894,7 +12917,13 @@ loveheelover:
 		if (ptr == &mons[PM_SILVER_EYED_WITCH]) {
 			(void) mongets(mtmp, TWO_HANDED_SWORD);
 		}
+		if (ptr == &mons[PM_SANDRA_EYED_WITCH]) {
+			(void) mongets(mtmp, TWO_HANDED_SWORD);
+		}
 		if (ptr == &mons[PM_H_SISTER]) {
+			(void) mongets(mtmp, TWO_HANDED_SWORD);
+		}
+		if (ptr == &mons[PM_SANDRA_SISTER]) {
 			(void) mongets(mtmp, TWO_HANDED_SWORD);
 		}
 
@@ -15703,6 +15732,8 @@ loveheelover:
 		if(ptr == &mons[PM_HC_SEDUCTRESS]) (void) mongets(mtmp, find_filigree_stilettos());
 		if(ptr == &mons[PM_HC_TEMPTRESS]) (void) mongets(mtmp, LADY_BOOTS); /* M4_BLOCKHEELBOOTS */
 		if(ptr == &mons[PM_LASERCHAIN_DEVIL]) (void) mongets(mtmp, LASER_CHAIN);
+		if(ptr == &mons[PM_CHAINSMOKER_DEVIL]) (void) mongets(mtmp, CIGARETTE);
+		if(ptr == &mons[PM_IRON_CHAIN_DEVIL]) (void) mongets(mtmp, IRON_CHAIN);
 
 		if (ptr == &mons[PM_SWORD_DANCER]) {
 			(void) mongets(mtmp, SAND_SWORD);

@@ -2895,6 +2895,64 @@ toofar:
 
 	    }
 
+	    if (inrange && (mdat == &mons[PM_JUNETHACK_PUPPET]) && !mtmp->mpeaceful && !rn2(5) ) {
+		static const char *jupuppet_msgs[] = {
+			"i had no other choice",
+			"i was forced to take off the variants",
+			"yes *slex had to be removed",
+			"slex is no longer in junethack",
+			"the admin threatened me to do bad things if i dont remove your game",
+			"the trophies are well designed",
+			"start scumming is allowed",
+			"the only thing thats forbidden is hacking into the server",
+			"if the game isnt on a server it cannot be in the tournament",
+			"dnhslex is offensive because nowadays shoes are considered offensive",
+			"i do everything that the big server admin says",
+			"amy why the hell are you mad at me",
+			"amy i want to think about you sitting naked in front of your pc",
+			"why does nethack have the tendency to attract dysfunctional people and programmers",
+		};
+		verbalize("%s", jupuppet_msgs[rn2(SIZE(jupuppet_msgs))]);
+
+	    }
+
+	    if (inrange && (mdat == &mons[PM_HARDFOUGHT_DICTATOR]) && !mtmp->mpeaceful && !rn2(5) ) {
+		static const char *hdictator_msgs[] = {
+			"slex is offensive",
+			"slex had to be removed",
+			"dnhslex is also offensive",
+			"every variant designed by amy contains offensive shit",
+			"nethack fourk is very well designed",
+			"fourkmids are the best system eva",
+			"man im so proud to run evilhack",
+			"sporkhack is great and has no bugs at all",
+			"grunthack is too easy",
+			"fiqhack has very smooth gameplay",
+			"dnethack is easy to understand for newbies",
+			"unnethack is the best variant",
+			"slashem is well balanced",
+			"slashthem is just the best thing since sliced bread",
+			"i was skeptical about gnollhack but now im convinced that its great",
+			"splicehack just fucking rocks",
+			"splicehack-r is even better than the original",
+			"even notdnethack is good enough to be hosted on my server",
+			"nethack4 is better than most variants",
+			"dynahack doesnt ever crash",
+			"nethack 3.7 is the true vanilla",
+			"nethack 3.4.3 suxxorz",
+			"tnnt has soooooo many great additions",
+			"but anyway amy sucks and so does her game",
+			"amy includes the r-word in her game and that cannot be tolerated",
+			"and the worst offender has to be the kurwa role in slex that shit is just incredibly gross",
+			"why would i care that the kurwa has been there for years before i decided to no longer tolerate it",
+			"why would i care that amy lost progressed savegames to the wipe",
+			"amy can whine as much as she wants i no longer consider her a being with basic human rights",
+			"and amy should just delete her repo as well as her account and never come back",
+		};
+		verbalize("%s", hdictator_msgs[rn2(SIZE(hdictator_msgs))]);
+
+	    }
+
 	    if (inrange && (mdat == &mons[PM_HARDFOUGHT_FELLOW_RUNNER]) && !mtmp->mpeaceful && !rn2(5) ) {
 		static const char *fellowrunner_msgs[] = {
 			"i dont play slex anyway",
