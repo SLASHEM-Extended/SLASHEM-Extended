@@ -6333,6 +6333,9 @@ dlb *fd;
 	if (isaquarian && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrivers();
 	if (RngeRivers && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrivers();
 
+	if (Race_if(PM_HUNKAJUNK) && !rn2(25) && depth(&u.uz) > 1 && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) hunkajunkriver();
+	if (Race_if(PM_HUNKAJUNK) && depth(&u.uz) > 1 && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) randhunkrivers();
+
 	if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
 	if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
 

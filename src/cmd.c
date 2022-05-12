@@ -11418,6 +11418,7 @@ minimal_enlightenment()
 	if (flags.hybridmatrayser && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "matrayser ");
 	if (flags.hybridfeminizer && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "feminizer ");
 	if (flags.hybridchallenger && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "challenger ");
+	if (flags.hybridmatrixer && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "matrixer ");
 	if (hybridcount >= 20) sprintf(eos(xtrabuf), "(%d hybrids) ", hybridcount);
 
 	if (!DisplayDoesNotGo) {

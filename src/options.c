@@ -384,6 +384,7 @@ static struct Bool_Opt
 	{"hybridmatrayser", &flags.hybridmatrayser, FALSE, SET_IN_FILE}, 
 	{"hybridfeminizer", &flags.hybridfeminizer, FALSE, SET_IN_FILE}, 
 	{"hybridchallenger", &flags.hybridchallenger, FALSE, SET_IN_FILE}, 
+	{"hybridmatrixer", &flags.hybridmatrixer, FALSE, SET_IN_FILE}, 
 
 	{"randomhybrids", &flags.randomhybrids, TRUE, DISP_IN_GAME},
 
@@ -1754,6 +1755,9 @@ boolean tinitial, tfrom_file;
 		flags.hybridization++;
 	}
 	if (match_optname(opts, "hybridchallenger", 16, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridmatrixer", 13, FALSE)) {
 		flags.hybridization++;
 	}
 

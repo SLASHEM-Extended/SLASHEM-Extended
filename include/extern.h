@@ -1635,6 +1635,8 @@ E void mktrap(int,int,struct mkroom *,coord*,BOOLEAN_P);
 E void mkstairs(XCHAR_P,XCHAR_P,CHAR_P,struct mkroom *);
 E void mkinvokearea(void);
 E void mkrivers(void);
+E void hunkajunkriver(void);
+E void randhunkrivers(void);
 E void mkrandrivers(void);
 E void specdungeoninit(void);
 E void mk_knox_portal(XCHAR_P,XCHAR_P);

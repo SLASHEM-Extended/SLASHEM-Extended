@@ -541,6 +541,7 @@ bot1()
 		if (flags.hybridmatrayser) sprintf(nb = eos(nb), "m");
 		if (flags.hybridfeminizer) sprintf(nb = eos(nb), "f");
 		if (flags.hybridchallenger) sprintf(nb = eos(nb), "n");
+		if (flags.hybridmatrixer) sprintf(nb = eos(nb), "x");
 	}
 
 	if (flags.showscore)

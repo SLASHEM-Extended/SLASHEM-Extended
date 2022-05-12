@@ -1504,6 +1504,9 @@ specdungeoninit()
 	if (isaquarian && (!rn2(100) || depth(&u.uz) > 1) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrivers();
 	if (RngeRivers && (!rn2(100) || depth(&u.uz) > 1) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrivers();
 
+	if (Race_if(PM_HUNKAJUNK) && !rn2(25) && depth(&u.uz) > 1 && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) hunkajunkriver();
+	if (Race_if(PM_HUNKAJUNK) && depth(&u.uz) > 1 && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) randhunkrivers();
+
 	if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
 	if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
 
@@ -1728,6 +1731,81 @@ boolean lava,rndom;
 }
 
 STATIC_OVL void
+makehunkriver(x1,y1,x2,y2)
+int x1,y1,x2,y2;
+{
+    int cx,cy;
+    int dx, dy;
+    int chance;
+    int count = 0;
+    const char *str;
+
+    cx = x1;
+    cy = y1;
+
+    while (count++ < 2000) {
+	int rnum = levl[cx][cy].roomno - ROOMOFFSET;
+	chance = 0;
+	if (levl[cx][cy].typ == CORR) chance = 75;
+	else if (levl[cx][cy].typ == ROOM) chance = 90;
+	else if (levl[cx][cy].typ == ICE) chance = 80;
+	else if (levl[cx][cy].typ == SNOW) chance = 60;
+	else if (levl[cx][cy].typ == ASH) chance = 75;
+	else if (levl[cx][cy].typ == SAND) chance = 95;
+	else if (levl[cx][cy].typ == PAVEDFLOOR) chance = 90;
+	else if (levl[cx][cy].typ == HIGHWAY) chance = 95;
+	else if (levl[cx][cy].typ == GRASSLAND) chance = 70;
+	else if (levl[cx][cy].typ == NETHERMIST) chance = 50;
+	else if (levl[cx][cy].typ == STALACTITE) chance = 30;
+	else if (levl[cx][cy].typ == CRYPTFLOOR) chance = 70;
+	else if (levl[cx][cy].typ == AIR) chance = 60;
+	else if (levl[cx][cy].typ == CLOUD) chance = 75;
+	else if (levl[cx][cy].typ == BUBBLES) chance = 50;
+	else if (levl[cx][cy].typ == RAINCLOUD) chance = 30;
+
+	if (rn2(100) < chance) {
+		levl[cx][cy].typ = ROCKWALL;
+	}
+
+	if (cx == x2 && cy == y2) break;
+
+	if (cx < x2 && !rn2(3)) dx = 1;
+	else if (cx > x2 && !rn2(3)) dx = -1;
+	else dx = 0;
+
+	if (cy < y2 && !rn2(3)) dy = 1;
+	else if (cy > y2 && !rn2(3)) dy = -1;
+	else dy = 0;
+
+	switch (rn2(16)) {
+	default: break;
+	case 1: dx--; dy--; break;
+	case 2: dx++; dy--; break;
+	case 3: dx--; dy++; break;
+	case 4: dx++; dy++; break;
+	case 5: dy--; break;
+	case 6: dy++; break;
+	case 7: dx--; break;
+	case 8: dx++; break;
+	}
+
+	if (dx < -1) dx = -1;
+	else if (dx > 1) dx = 1;
+	if (dy < -1) dy = -1;
+	else if (dy > 1) dy = 1;
+
+	cx += dx;
+	cy += dy;
+
+	if (cx < 0) cx = 0;
+	else if (cx >= COLNO) cx = COLNO-1;
+	if (cy < 0) cy = 0;
+	else if (cy >= ROWNO) cy = ROWNO-1;
+
+    }
+}
+
+STATIC_OVL void
 makerandriver(lava,rndom)
 boolean lava,rndom;
 
@@ -1888,6 +1966,84 @@ boolean lava,rndom;
 	}
 }
 
+STATIC_OVL void
+makerandhunkriver(rndom)
+boolean rndom;
+
+{
+    int cx,cy;
+    int chance;
+    int count = 0;
+    int ammount = rnz(10 + rnd(40) + rnz(5) + (rn2(5) ? 0 : 50) + (rn2(25) ? 0 : 200) );
+    int trynmbr = 0;
+    const char *str;
+    if (rndom) trynmbr = rnd(12);
+
+	register int tryct = 0;
+	register struct obj *otmpX;
+
+    while (count++ < ammount) {
+
+      cx = rn2(COLNO);
+      cy = rn2(ROWNO);
+
+	chance = 0;
+	if (levl[cx][cy].typ == CORR) chance = 75;
+	else if (levl[cx][cy].typ == ROOM) chance = 90;
+	else if (levl[cx][cy].typ == ICE) chance = 80;
+	else if (levl[cx][cy].typ == SNOW) chance = 60;
+	else if (levl[cx][cy].typ == ASH) chance = 75;
+	else if (levl[cx][cy].typ == SAND) chance = 95;
+	else if (levl[cx][cy].typ == PAVEDFLOOR) chance = 90;
+	else if (levl[cx][cy].typ == HIGHWAY) chance = 95;
+	else if (levl[cx][cy].typ == GRASSLAND) chance = 70;
+	else if (levl[cx][cy].typ == NETHERMIST) chance = 50;
+	else if (levl[cx][cy].typ == STALACTITE) chance = 30;
+	else if (levl[cx][cy].typ == CRYPTFLOOR) chance = 70;
+	else if (levl[cx][cy].typ == AIR) chance = 60;
+	else if (levl[cx][cy].typ == CLOUD) chance = 75;
+	else if (levl[cx][cy].typ == BUBBLES) chance = 50;
+	else if (levl[cx][cy].typ == RAINCLOUD) chance = 30;
+
+	if (rn2(100) < chance) {
+		if (rndom || !rn2(10)) { 
+
+			if (trynmbr == 1) levl[cx][cy].typ = POOL;
+			else if (trynmbr == 2) levl[cx][cy].typ = TREE;
+			else if (trynmbr == 3) levl[cx][cy].typ = IRONBARS;
+			else if (trynmbr == 4) levl[cx][cy].typ = ICE;
+			else if (trynmbr == 5) levl[cx][cy].typ = CLOUD;
+			else if (trynmbr == 6) levl[cx][cy].typ = CORR;
+			else if (trynmbr == 7) levl[cx][cy].typ = GRAVEWALL;
+			else if (trynmbr == 8) levl[cx][cy].typ = TUNNELWALL;
+			else if (trynmbr == 9) levl[cx][cy].typ = FARMLAND;
+			else if (trynmbr == 10) levl[cx][cy].typ = MOUNTAIN;
+			else if (trynmbr == 11) levl[cx][cy].typ = WATERTUNNEL;
+			else if (trynmbr == 12) levl[cx][cy].typ = CRYSTALWATER;
+			else if (trynmbr == 13) levl[cx][cy].typ = MOORLAND;
+			else if (trynmbr == 14) levl[cx][cy].typ = URINELAKE;
+			else if (trynmbr == 15) levl[cx][cy].typ = SHIFTINGSAND;
+			else if (trynmbr == 16) levl[cx][cy].typ = STYXRIVER;
+			else if (trynmbr == 17) levl[cx][cy].typ = SNOW;
+			else if (trynmbr == 18) levl[cx][cy].typ = ASH;
+			else if (trynmbr == 19) levl[cx][cy].typ = SAND;
+			else if (trynmbr == 20) levl[cx][cy].typ = PAVEDFLOOR;
+			else if (trynmbr == 21) levl[cx][cy].typ = HIGHWAY;
+			else if (trynmbr == 22) levl[cx][cy].typ = GRASSLAND;
+			else if (trynmbr == 23) levl[cx][cy].typ = NETHERMIST;
+			else if (trynmbr == 24) levl[cx][cy].typ = STALACTITE;
+			else if (trynmbr == 25) levl[cx][cy].typ = CRYPTFLOOR;
+			else if (trynmbr == 26) levl[cx][cy].typ = BUBBLES;
+			else if (trynmbr == 27) levl[cx][cy].typ = RAINCLOUD;
+			else levl[cx][cy].typ = ROCKWALL;
+		} else {
+			levl[cx][cy].typ = ROCKWALL;
+		}
+	}
+
+	}
+}
+
 void
 mkrivers()
 {
@@ -1908,6 +2064,21 @@ mkrivers()
 }
 
 void
+hunkajunkriver()
+{
+    int nriv = rn2(3) + 1;
+    if (!rn2(10)) nriv += rnd(3);
+    if (!rn2(100)) nriv += rnd(5);
+    if (!rn2(500)) nriv += rnd(7);
+    if (!rn2(2000)) nriv += rnd(10);
+    if (!rn2(10000)) nriv += rnd(15);
+    while (nriv--) {
+	if (rn2(2)) makehunkriver(0, rn2(ROWNO), COLNO-1, rn2(ROWNO));
+	else makehunkriver(rn2(COLNO), 0, rn2(COLNO), ROWNO-1);
+    }
+}
+
+void
 mkrandrivers()
 {
     boolean lava;
@@ -1924,6 +2095,23 @@ mkrandrivers()
       rndom = (rn2(3) ? 0 : 1);
 	if (rn2(2)) makerandriver(lava, rndom);
 	else makerandriver(lava, rndom);
+    }
+}
+
+void
+randhunkrivers()
+{
+    boolean rndom;
+    int nriv = 1;
+    if (!rn2(10)) nriv += rnd(2);
+    if (!rn2(100)) nriv += rnd(3);
+    if (!rn2(500)) nriv += rnd(5);
+    if (!rn2(2000)) nriv += rnd(7);
+    if (!rn2(10000)) nriv += rnd(10);
+
+    while (nriv--) {
+      rndom = (rn2(10) ? 0 : 1);
+	makerandhunkriver(rndom);
     }
 }
 

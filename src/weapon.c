@@ -5199,6 +5199,9 @@ int degree;
     boolean advance_before;
 
 /*    if (skill != P_NONE && !P_RESTRICTED(skill)) {*/
+
+	if (ismatrixer) skill = P_MATRIX(skill);
+
     if (skill != P_NONE) {
 
 	if (isdemagogue) {
@@ -7490,12 +7493,25 @@ const struct def_skill *class_skill;
 	int skmax, skill, skilltoswap;
 	int i;
 	int implantbonus;
+	int swap1, swap2, swapskill;
 
 	/* initialize skill array; by default, everything is restricted */
 	for (skill = 0; skill < P_NUM_SKILLS; skill++) {
 	    P_SKILL(skill) = P_ISRESTRICTED;
 	    P_MAX_SKILL(skill) = P_ISRESTRICTED;
 	    P_ADVANCE(skill) = 0;
+	    P_MATRIX(skill) = skill;
+	}
+
+	for (skill = 0; skill < P_NUM_SKILLS; skill++) {
+matrixredo:
+		swapskill = rnd(P_NUM_SKILLS - 1);
+		if (skill == swapskill) goto matrixredo;
+
+		swap1 = P_MATRIX(skill);
+		swap2 = P_MATRIX(swapskill);
+		P_MATRIX(skill) = swap2;
+		P_MATRIX(swapskill) = swap1;
 	}
 
 	if (Role_if(PM_DEMAGOGUE)) {

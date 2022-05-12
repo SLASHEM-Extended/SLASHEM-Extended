@@ -5566,7 +5566,10 @@ static const char *epitaphs[] = {
 	"Here lies a former SLEX player who decided to dump the game because of the Antje minigame.",
 	"Here lies a former SLEX player who decided to dump the game because of the Antje minigame even though the minigame occurs extremely rarely and when it does, it's possible to simply spacebar-spam past it.",
 	"Here lies a former SLEX player who decided to dump the game because of the Antje minigame, even though most of the time you won't even reach the point in the minigame where the girl becomes unconscious and even if you do, you're not obligated to pick the choice where you can r-word her.",
-	"Here lies the stupid tournament whose name starts with the letter J. It wsa killed by a server administrator who somehow has so much power that he can fucking FORCE the tournament admin to take games OFF THE TOURNAMENT just because the server admin personally dislikes them.",
+	"Here lies the stupid tournament whose name starts with the letter J. It was killed by a server administrator who somehow has so much power that he can fucking FORCE the tournament admin to take games OFF THE TOURNAMENT just because the server admin personally dislikes them.",
+	"Eyehack makes it so that you can encounter full-grown silver dragons or elvenking statue traps as early as dungeon level 3. And they call *slex* unbalanced.",
+	"Told you that if there was a genuine minotaur in that maze on dungeon level 5, fighting was not going to be winnable.",
+	"If you have rock trolls spawning from the very beginning of the game, I do have to wonder what's going on there.", /* used to happen in slex */
 
 };
 
