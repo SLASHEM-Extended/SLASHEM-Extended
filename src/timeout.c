@@ -4637,7 +4637,7 @@ long timeout;
 				case P_SUPREME_MASTER: lightsaberchance2 = 8; break;
 			}
 		}
-		if (!PlayerCannotUseSkills && obj && (obj->otyp == RAINBOW_LIGHTSABER || (is_lightsaber(obj) && Role_if(PM_HEDDERJEDI)) || (is_lightsaber(obj) && uarm && uarm->oartifact == ART_PLANTOPLIM) ) ) {
+		if (!PlayerCannotUseSkills && nohands(youmonst.data) && obj && (obj->otyp == RAINBOW_LIGHTSABER || (is_lightsaber(obj) && Role_if(PM_HEDDERJEDI)) || (is_lightsaber(obj) && uarm && uarm->oartifact == ART_PLANTOPLIM) ) ) {
 			if (u.polgoskill >= 20) lightsaberchance3++;
 			if (u.polgoskill >= 160) lightsaberchance3++;
 			if (u.polgoskill >= 540) lightsaberchance3++;
@@ -5108,7 +5108,7 @@ begin_burn(obj, already_lit)
 					case P_SUPREME_MASTER: lightsaberchance2 = 8; break;
 				}
 			}
-			if (!PlayerCannotUseSkills && obj && (obj->otyp == RAINBOW_LIGHTSABER || (is_lightsaber(obj) && Role_if(PM_HEDDERJEDI)) || (is_lightsaber(obj) && uarm && uarm->oartifact == ART_PLANTOPLIM) ) ) {
+			if (!PlayerCannotUseSkills && nohands(youmonst.data) && obj && (obj->otyp == RAINBOW_LIGHTSABER || (is_lightsaber(obj) && Role_if(PM_HEDDERJEDI)) || (is_lightsaber(obj) && uarm && uarm->oartifact == ART_PLANTOPLIM) ) ) {
 				if (u.polgoskill >= 20) lightsaberchance3++;
 				if (u.polgoskill >= 160) lightsaberchance3++;
 				if (u.polgoskill >= 540) lightsaberchance3++;
@@ -5166,7 +5166,7 @@ begin_burn(obj, already_lit)
 					case P_SUPREME_MASTER: lightsaberchance2 = 8; break;
 				}
 			}
-			if (!PlayerCannotUseSkills && obj && (obj->otyp == RAINBOW_LIGHTSABER || (is_lightsaber(obj) && Role_if(PM_HEDDERJEDI)) || (is_lightsaber(obj) && uarm && uarm->oartifact == ART_PLANTOPLIM) ) ) {
+			if (!PlayerCannotUseSkills && nohands(youmonst.data) && obj && (obj->otyp == RAINBOW_LIGHTSABER || (is_lightsaber(obj) && Role_if(PM_HEDDERJEDI)) || (is_lightsaber(obj) && uarm && uarm->oartifact == ART_PLANTOPLIM) ) ) {
 				if (u.polgoskill >= 20) lightsaberchance3++;
 				if (u.polgoskill >= 160) lightsaberchance3++;
 				if (u.polgoskill >= 540) lightsaberchance3++;
@@ -5304,7 +5304,7 @@ begin_burn(obj, already_lit)
 				case P_SUPREME_MASTER: lightsaberchance2 = 8; break;
 			}
 		}
-		if (!PlayerCannotUseSkills && obj && (obj->otyp == RAINBOW_LIGHTSABER || (is_lightsaber(obj) && Role_if(PM_HEDDERJEDI)) || (is_lightsaber(obj) && uarm && uarm->oartifact == ART_PLANTOPLIM) ) ) {
+		if (!PlayerCannotUseSkills && nohands(youmonst.data) && obj && (obj->otyp == RAINBOW_LIGHTSABER || (is_lightsaber(obj) && Role_if(PM_HEDDERJEDI)) || (is_lightsaber(obj) && uarm && uarm->oartifact == ART_PLANTOPLIM) ) ) {
 			if (u.polgoskill >= 20) lightsaberchance3++;
 			if (u.polgoskill >= 160) lightsaberchance3++;
 			if (u.polgoskill >= 540) lightsaberchance3++;

@@ -22283,7 +22283,7 @@ boolean knoweverything;
 				case ART_DIS_IS_E_PRISEM:
 					pline("Artifact specs: reflection while it's lit."); break;
 				case ART_CONSTANT_CHANGE:
-					pline("Artifact specs: changes its color and material every turn."); break;
+					pline("Artifact specs: changes its color and material every turn while it's lit."); break;
 				case ART_SWITCH_TO_ANOTHER:
 					pline("Artifact specs: will occasionally change its form while you're wielding it."); break;
 				case ART_PLANTOPLIM:

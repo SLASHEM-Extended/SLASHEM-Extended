@@ -12823,19 +12823,9 @@ u_init()
 		break;
 	case PM_HEDDERJEDI:
 		ini_inv(Jedi);
-		switch(rnd(9)) {
-			case 1: ini_inv(RedSaber); break;
-			case 2: ini_inv(BlueSaber); break;
-			case 3: ini_inv(GreenSaber); break;
-			case 4: ini_inv(VioletSaber); break;
-			case 5: ini_inv(WhiteSaber); break;
-			case 6: ini_inv(YellowSaber); break;
-			case 7: ini_inv(RedDoubleSaber); break;
-			case 8: ini_inv(WhiteDoubleSaber); break;
-			case 9: ini_inv(MysterySaber); break;
-			default: break;
-		}
-		if(!rn2(2)) ini_inv(Blindfold);
+		ini_inv(GreenSaber);
+		ini_inv(YellowSaber);
+		ini_inv(WhiteDoubleSaber);
 		skill_init(Skill_Hed);
 		knows_class(WEAPON_CLASS);
 		knows_class(ARMOR_CLASS);
@@ -16302,19 +16292,9 @@ u_init()
 
 	case 169:
 		ini_inv(Jedi);
-		switch(rnd(9)) {
-			case 1: ini_inv(RedSaber); break;
-			case 2: ini_inv(BlueSaber); break;
-			case 3: ini_inv(GreenSaber); break;
-			case 4: ini_inv(VioletSaber); break;
-			case 5: ini_inv(WhiteSaber); break;
-			case 6: ini_inv(YellowSaber); break;
-			case 7: ini_inv(RedDoubleSaber); break;
-			case 8: ini_inv(WhiteDoubleSaber); break;
-			case 9: ini_inv(MysterySaber); break;
-			default: break;
-		}
-		if(!rn2(2)) ini_inv(Blindfold);
+		ini_inv(GreenSaber);
+		ini_inv(YellowSaber);
+		ini_inv(WhiteDoubleSaber);
 		knows_class(WEAPON_CLASS);
 		knows_class(ARMOR_CLASS);
 		break;
@@ -18005,19 +17985,9 @@ u_init()
 
 	case 169:
 		ini_inv(Jedi);
-		switch(rnd(9)) {
-			case 1: ini_inv(RedSaber); break;
-			case 2: ini_inv(BlueSaber); break;
-			case 3: ini_inv(GreenSaber); break;
-			case 4: ini_inv(VioletSaber); break;
-			case 5: ini_inv(WhiteSaber); break;
-			case 6: ini_inv(YellowSaber); break;
-			case 7: ini_inv(RedDoubleSaber); break;
-			case 8: ini_inv(WhiteDoubleSaber); break;
-			case 9: ini_inv(MysterySaber); break;
-			default: break;
-		}
-		if(!rn2(2)) ini_inv(Blindfold);
+		ini_inv(GreenSaber);
+		ini_inv(YellowSaber);
+		ini_inv(WhiteDoubleSaber);
 		knows_class(WEAPON_CLASS);
 		knows_class(ARMOR_CLASS);
 		break;
