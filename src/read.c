@@ -5682,11 +5682,11 @@ proofarmorchoice:
 		update_inventory();
 
 		if (sobj->otyp == SPE_REMOVE_CURSE) {
-			if (!rn2(10)) {
+			if (!rn2(4)) {
 				pline("The spell backfires!");
 				badeffect();
 			}
-			if (!rn2(100)) {
+			if (!rn2(20)) {
 				You_feel("as if you need some help.");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 				rndcurse();
