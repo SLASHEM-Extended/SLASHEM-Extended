@@ -11406,12 +11406,14 @@ int spell;
 	if (PlayerCannotUseSkills) skill = P_ISRESTRICTED;
 
 	/* come on, you should be able to cast better if your skill is higher! --Amy */
-	if ( skill == P_BASIC) splcaster -= 3;
-	if ( skill == P_SKILLED) splcaster -= 6;
-	if ( skill == P_EXPERT) splcaster -= 9;
-	if ( skill == P_MASTER) splcaster -= 12;
-	if ( skill == P_GRAND_MASTER) splcaster -= 15;
-	if ( skill == P_SUPREME_MASTER) splcaster -= 18;
+	if (!Race_if(PM_BABYLONIAN)) {
+		if ( skill == P_BASIC) splcaster -= 3;
+		if ( skill == P_SKILLED) splcaster -= 6;
+		if ( skill == P_EXPERT) splcaster -= 9;
+		if ( skill == P_MASTER) splcaster -= 12;
+		if ( skill == P_GRAND_MASTER) splcaster -= 15;
+		if ( skill == P_SUPREME_MASTER) splcaster -= 18;
+	}
 
 	/* casting it often (and thereby keeping it in memory) should also improve chances...
 	 * Amy note: 700% is the cap where it stops getting better, this is intentional */
@@ -11651,12 +11653,15 @@ int spell;
 	/* higher spell skill should do SOMEthing --Amy */
 	skill = P_SKILL(spell_skilltype(spellid(spell)));
 	if (PlayerCannotUseSkills) skill = P_ISRESTRICTED;
-	if (skill >= P_BASIC) chance++;
-	if (skill >= P_SKILLED) chance++;
-	if (skill >= P_EXPERT) chance++;
-	if (skill >= P_MASTER) chance += 5;
-	if (skill >= P_GRAND_MASTER) chance += 5;
-	if (skill >= P_SUPREME_MASTER) chance += 5;
+
+	if (!Race_if(PM_BABYLONIAN)) {
+		if (skill >= P_BASIC) chance++;
+		if (skill >= P_SKILLED) chance++;
+		if (skill >= P_EXPERT) chance++;
+		if (skill >= P_MASTER) chance += 5;
+		if (skill >= P_GRAND_MASTER) chance += 5;
+		if (skill >= P_SUPREME_MASTER) chance += 5;
+	}
 
 	if (uarm && objects[(uarm)->otyp].oc_material == MT_CELESTIUM) chance += 2;
 	if (uarmu && objects[(uarmu)->otyp].oc_material == MT_CELESTIUM) chance += 2;

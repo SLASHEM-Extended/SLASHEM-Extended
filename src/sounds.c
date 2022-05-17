@@ -6053,6 +6053,29 @@ dochat()
 		}
 	}
 
+	if (Race_if(PM_BABYLONIAN) && mtmp->mpeaceful && !mtmp->mtame && mtmp->data->mlet == S_TURRET) {
+		int stonescost = 10;
+		if (mtmp->m_lev >= 1) stonescost = (mtmp->m_lev) * 10;
+		pline("You can turn this turret into a symbiote by paying %d stones.", stonescost);
+		if (yn("Do it?") == 'y') {
+			register struct obj *prcstone;
+			prcstone = carrying(ROCK);
+			if (prcstone) {
+				if (prcstone->quan > stonescost) {
+					prcstone->quan -= stonescost;
+					prcstone->owt = weight(prcstone);
+					turnmonintosymbiote(mtmp, FALSE); /* WARNING: mtmp is removed at this point */
+				} else if (prcstone->quan == stonescost) {
+					useupall(prcstone);
+					turnmonintosymbiote(mtmp, FALSE); /* WARNING: mtmp is removed at this point */
+				} else {
+					pline("Your main stack of stones isn't big enough!");
+				}
+			} else pline("You don't have any stones!");
+			return 1;
+		}
+	}
+
     if (Race_if(PM_IMPERIAL) && mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) && !mtmp->mpeaceful &&
      !mtmp->mtame && u.uhunger > 100) {
 

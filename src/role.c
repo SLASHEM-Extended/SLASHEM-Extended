@@ -5577,6 +5577,21 @@ const struct Race races[] = {
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
 },
+{	"babylonian", "babylonian", "babylon", "Bab",
+	{0, 0},
+	PM_BABYLONIAN, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
+	/* new limit values for the six attributes by Amy */
+	{     18,     18, 18, 17, 21, 16 },
+	/* Init   Lower  Higher */
+	{  6, 0,  0, 6,  8, 0 },	/* Hit points */
+	{  0, 0,  1, 0,  0, 0 }		/* Energy */
+},
 {	"bacteria", "bacteria", "meshella", "Bac",
 	{0, 0},
 	PM_BACTERIA, NON_PM, PM_ELF_MUMMY, PM_ELF_ZOMBIE,

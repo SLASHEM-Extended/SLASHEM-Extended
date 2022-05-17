@@ -2258,6 +2258,7 @@ domove()
 		else if (uwep && uwep->oartifact == ART_DIZZY_METAL_STORM) peacedisplacer = TRUE;
 		/* Displacement allows the player to displace peaceful things --Amy */
 		else if (Displaced && !mtmp->isshk && !mtmp->ispriest && mtmp->mpeaceful) peacedisplacer = TRUE;
+		else if (Race_if(PM_BABYLONIAN) && mtmp->mpeaceful && mtmp->data->mlet == S_TURRET) peacedisplacer = TRUE;
 		else
 		/* try to attack; note that it might evade */
 		/* also, we don't attack tame when _safepet_ */
@@ -5184,10 +5185,18 @@ inv_weight()
 	if (uinsymbiosis && !(Role_if(PM_CLIMACTERIAL) && u.ulevel >= 5)) {
 
 		if (Role_if(PM_SYMBIANT)) {
-			if (mons[u.usymbiote.mnum].msize >= MZ_GIGANTIC) wt += 100;
-			else if (mons[u.usymbiote.mnum].msize >= MZ_HUGE) wt += 30;
-			else if (mons[u.usymbiote.mnum].msize >= MZ_LARGE) wt += 10;
-			if ((int) mons[u.usymbiote.mnum].cwt > 99) wt += ((int) mons[u.usymbiote.mnum].cwt / 100);
+
+			int symweight = 0;
+
+			if (mons[u.usymbiote.mnum].msize >= MZ_GIGANTIC) symweight += 100;
+			else if (mons[u.usymbiote.mnum].msize >= MZ_HUGE) symweight += 30;
+			else if (mons[u.usymbiote.mnum].msize >= MZ_LARGE) symweight += 10;
+			if ((int) mons[u.usymbiote.mnum].cwt > 99) symweight += ((int) mons[u.usymbiote.mnum].cwt / 100);
+
+			if (Race_if(PM_BABYLONIAN) && mons[u.usymbiote.mnum].mlet == S_TURRET) symweight = 0;
+			if (symweight < 0) symweight = 0; /* fail safe */
+			wt += symweight;
+
 		} else {
 
 			int symweight = 50; /* base weight even for weightless one */
@@ -5211,6 +5220,7 @@ inv_weight()
 				}
 			} else symweight *= 5;
 
+			if (Race_if(PM_BABYLONIAN) && mons[u.usymbiote.mnum].mlet == S_TURRET) symweight = 0;
 			if (symweight < 0) symweight = 0; /* fail safe */
 			wt += symweight;
 

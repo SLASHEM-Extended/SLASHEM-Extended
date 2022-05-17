@@ -1402,7 +1402,7 @@ struct monst *mon;
 
 		if (otmp->oclass == BALL_CLASS && RngePunishment) bonus += 5;
 
-		if (!(PlayerCannotUseSkills)) {
+		if (!(PlayerCannotUseSkills) && !Race_if(PM_BABYLONIAN)) {
 
 	if (otmp->otyp == IRON_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SKILLED) ) bonus += 1;
 	if (otmp->otyp == IRON_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_EXPERT) ) bonus += rnd(2);
@@ -6376,17 +6376,30 @@ struct obj *weapon;
     } else if (type <= P_LAST_WEAPON) {
 
 	if (PlayerCannotUseSkills) bonus -= 2;
-	else switch (P_SKILL(type)) {
-	    default: impossible("weapon_dam_bonus: bad skill %d",P_SKILL(type));
-		     /* fall through */
-	    case P_ISRESTRICTED:
-	    case P_UNSKILLED:	bonus = -2; break;
-	    case P_BASIC:	bonus =  0; break;
-	    case P_SKILLED:	bonus =  1 + rn2(2); break;
-	    case P_EXPERT:	bonus =  1 + rn2(4); break;
-	    case P_MASTER:	bonus =  1 + rn2(6); break;
-	    case P_GRAND_MASTER:bonus =  1 + rn2(10); break;
-	    case P_SUPREME_MASTER:bonus =  1 + rn2(13); break;
+	else {
+		if (!Race_if(PM_BABYLONIAN)) switch (P_SKILL(type)) {
+		    default: impossible("weapon_dam_bonus: bad skill %d",P_SKILL(type));
+			     /* fall through */
+		    case P_ISRESTRICTED:
+		    case P_UNSKILLED:	bonus = -2; break;
+		    case P_BASIC:	bonus =  0; break;
+		    case P_SKILLED:	bonus =  1 + rn2(2); break;
+		    case P_EXPERT:	bonus =  1 + rn2(4); break;
+		    case P_MASTER:	bonus =  1 + rn2(6); break;
+		    case P_GRAND_MASTER:bonus =  1 + rn2(10); break;
+		    case P_SUPREME_MASTER:bonus =  1 + rn2(13); break;
+		} else switch (P_SKILL(type)) {
+		    default: impossible("weapon_dam_bonus: bad skill %d",P_SKILL(type));
+			     /* fall through */
+		    case P_ISRESTRICTED:
+		    case P_UNSKILLED:	bonus = -2; break;
+		    case P_BASIC:	bonus =  0; break;
+		    case P_SKILLED:	bonus =  1; break;
+		    case P_EXPERT:	bonus =  1 + rn2(2); break;
+		    case P_MASTER:	bonus =  1 + rn2(3); break;
+		    case P_GRAND_MASTER:bonus =  1 + rn2(4); break;
+		    case P_SUPREME_MASTER:bonus =  1 + rn2(5); break;
+		}
 	}
 #if 0
     } else if (type == P_TWO_WEAPON_COMBAT) {
@@ -6464,11 +6477,11 @@ struct obj *weapon;
 		    case P_ISRESTRICTED:
 		    case P_UNSKILLED:   break;
 		    case P_BASIC:       bonus += 1; break;
-		    case P_SKILLED:     bonus += 3; break;
-		    case P_EXPERT:      bonus += 5; break;
-		    case P_MASTER:      bonus += 7; break;
-		    case P_GRAND_MASTER:      bonus += 10; break;
-		    case P_SUPREME_MASTER:      bonus += 15; break;
+		    case P_SKILLED:     bonus += rnd(2); break;
+		    case P_EXPERT:      bonus += rnd(3); break;
+		    case P_MASTER:      bonus += rnd(5); break;
+		    case P_GRAND_MASTER:      bonus += rnd(6); break;
+		    case P_SUPREME_MASTER:      bonus += rnd(8); break;
 		}
 	}
 

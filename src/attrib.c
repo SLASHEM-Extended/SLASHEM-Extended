@@ -3119,6 +3119,7 @@ register int n;
 		u.alignlim -= 1;
 	}
 	if (Race_if(PM_KORONST) && n < 0) n *= 3;
+	if (Race_if(PM_BABYLONIAN) && n > 0 && rn2(2)) n *= 2;
 
 	if (uimplant && uimplant->oartifact == ART_SINFUL_REPENTER && n > 0) {
 		if (powerfulimplants()) n *= 5;

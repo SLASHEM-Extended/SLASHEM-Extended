@@ -9729,6 +9729,8 @@ boolean holdeneffect;
 	u.usymbiote.active = 1;
 	u.usymbiote.mnum = mtmp->mnum;
 	u.usymbiote.mhpmax = mtmp->mhpmax;
+	if (Race_if(PM_BABYLONIAN) && mons[u.usymbiote.mnum].mlet == S_TURRET) u.usymbiote.mhpmax *= 2;
+
 	if ((u.usymbiote.mnum != PM_CRITICALLY_INJURED_THIEF) && (u.usymbiote.mnum != PM_CRITICALLY_INJURED_JEDI) && u.usymbiote.mhpmax < (mons[u.usymbiote.mnum].mlevel * 8)) {
 		u.usymbiote.mhpmax += mons[u.usymbiote.mnum].mlevel;
 		if (u.usymbiote.mhpmax > (mons[u.usymbiote.mnum].mlevel * 8)) u.usymbiote.mhpmax = (mons[u.usymbiote.mnum].mlevel * 8);

@@ -2069,6 +2069,14 @@ static const struct innate_tech
 		       {   20, T_TERRAIN_CLEANUP, 1},
 		       {   0, 0, 0} },
 
+	bab_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_IRON_SKIN, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   0, 0, 0} },
+
 	def_tech[] = { {   1, T_APPRAISAL, 1}, /* everyone is supposed to get this --Amy */
 		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
@@ -10477,6 +10485,7 @@ race_tech()
 		case PM_OUTSIDER:		return (out_tech);
 		case PM_LICH_WARRIOR:		return (lic_tech);
 		case PM_ALBAE:		return (alb_tech);
+		case PM_BABYLONIAN:		return (bab_tech);
 		case PM_VORTEX:		return (vor_tech);
 		case PM_CORTEX:		return (cor_tech);
 		case PM_GNOME:		return (gno_tech);

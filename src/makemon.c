@@ -25778,6 +25778,7 @@ loopback:
 
 		if (ct > 0 && (Race_if(PM_DICTIONARY_ATTACK) && (ptr->mlet >= S_ANT && ptr->mlet <= S_ZOMBIE) )) ct += 5;
 		if (ct > 0 && (Race_if(PM_DICTIONARY_ATTACK) && (ptr->mlet == S_FLYFISH) )) ct += 5;
+		if (ct > 0 && (Race_if(PM_BABYLONIAN) && (ptr->mlet == S_TURRET) )) ct += 5;
 		if (ct > 0 && (Role_if(PM_ACTIVISTOR) && always_hostile(ptr))) ct += 5;
 		if (ct > 0 && (Role_if(PM_ALTMER) && is_reflector(ptr))) ct += 3;
 		if (ct > 0 && (Role_if(PM_AMAZON) && is_diablomonster(ptr))) ct += 5;
@@ -29946,6 +29947,7 @@ register struct permonst *ptr;
 	if (ptr->mlet == S_DRAGON && Race_if(PM_HUMANLIKE_DRAGON) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_NAGA && Race_if(PM_HUMANLIKE_NAGA) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_QUADRUPED && Race_if(PM_ENGCHIP) && !Role_if(PM_CONVICT) && !rn2(10)) return TRUE;
+	if (ptr->mlet == S_TURRET && Race_if(PM_BABYLONIAN) && !Role_if(PM_CONVICT) && !rn2(2)) return TRUE;
 
 	if (uleft && uleft->oartifact == ART_NENYA && is_elf(ptr)) return TRUE;
 	if (uright && uright->oartifact == ART_NENYA && is_elf(ptr)) return TRUE;

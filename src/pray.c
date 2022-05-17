@@ -2453,7 +2453,7 @@ dosacrifice()
 		u.cnd_offercount++;
 		You("sense a conflict between %s and %s.",
 		    u_gname(), a_gname());
-		if (((rn2(2) && rn2(8 + u.ulevel) > 5) || (Race_if(PM_EGYMID) && rn2(2) && rn2(8 + u.ulevel) > 5)) && !(Race_if(PM_CHIQUAI) && rn2(3)) ) {
+		if (((rn2(2) && rn2(8 + u.ulevel) > 5) || ( (Race_if(PM_EGYMID) || Race_if(PM_BABYLONIAN)) && rn2(2) && rn2(8 + u.ulevel) > 5)) && !(Race_if(PM_CHIQUAI) && rn2(3)) ) {
 		    /* lower chance of conversion --Amy */
 		    struct monst *pri;
 		    You_feel("the power of %s increase.", u_gname());

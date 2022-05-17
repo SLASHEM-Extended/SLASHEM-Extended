@@ -5970,6 +5970,12 @@ find_ac()
 
 	}
 
+	if (Race_if(PM_BABYLONIAN)) {
+		int difference = (-(uac - 10));
+		if (difference > 0) uac -= difference;
+
+	}
+
 	if (uarmg && uarmg->oartifact == ART_EGASSO_S_GIBBERISH) {
 		int difference = (-(uac - 10));
 		difference = difference / 10;
