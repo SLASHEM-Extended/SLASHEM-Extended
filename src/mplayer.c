@@ -979,6 +979,8 @@ register boolean special;
 		case PM_PADAWAN:
 		case PM_UNDEAD_JEDI:
 		case PM_UNDEAD_PADAWAN:
+		case PM_HEDDERJEDI:
+		case PM_UNDEAD_HEDDERJEDI:
 		    switch(rnd(12)){
 		      case 1: weapon = RED_LIGHTSABER; break;
 		      case 2: weapon = BLUE_LIGHTSABER; break;

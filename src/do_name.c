@@ -5728,6 +5728,15 @@ static const char * const bogusmons[] = {
 	"Work Refuser",
 	"Escaped Ex-Slave",
 	"Blue-Heeled Ute", "Red-Heeled Nancy", "Ski-Heeled Brigitte",
+	"Lightsaber Youngling",
+	"Inexperienced Padawan",
+	"Experienced Padawan",
+	"Basic Jedi",
+	"Skilled Jedi",
+	"Expert Jedi",
+	"Master Jedi",
+	"Grandmaster Jedi",
+	"Supreme Master Jedi",
 
 };
 

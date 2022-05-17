@@ -326,6 +326,9 @@ const char *name;	/* if null, then format `obj' */
 			if (Role_if(PM_JEDI)) {
 				saberblockrate += ((100 - saberblockrate) / 2);
 			}
+			if (Role_if(PM_HEDDERJEDI)) {
+				saberblockrate += ((100 - saberblockrate) / 2);
+			}
 			if (Race_if(PM_BORG)) {
 				saberblockrate += ((100 - saberblockrate) / 5);
 			}

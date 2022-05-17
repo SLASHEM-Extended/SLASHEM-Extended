@@ -594,6 +594,7 @@ struct monst *mon;
 		case MYSTERY_LIGHTSABER:   tmp += rnd(12); break;
 		case VIOLET_LIGHTSABER:	tmp += rnd(8); break;
 		case YELLOW_LIGHTSABER:	tmp += rnd(12); break;
+		case RAINBOW_LIGHTSABER:	tmp += (nohands(youmonst.data) ? rno(25) : rno(18)); break;
 		case LIGHTWHIP:	tmp += rnd(8); break;
 		case ELECTRIC_CIGARETTE:	tmp += rnd(10); break;
 		case NANO_HAMMER:	tmp += rnd(8); break;
@@ -697,6 +698,7 @@ struct monst *mon;
 		case MYSTERY_LIGHTSABER:   tmp += rnd(8); break;
 		case VIOLET_LIGHTSABER:	tmp += rnd(6); break;
 		case YELLOW_LIGHTSABER:	tmp += rnd(10); break;
+		case RAINBOW_LIGHTSABER:	tmp += (nohands(youmonst.data) ? rno(25) : rno(18)); break;
 		case LIGHTWHIP:	tmp += rnd(8); break;
 		case ELECTRIC_CIGARETTE:	tmp += rnd(10); break;
 		case NANO_HAMMER:	tmp += rnd(8); break;
@@ -1109,6 +1111,7 @@ struct monst *mon;
 		case MYSTERY_LIGHTSABER:   tmp += rnd(12); break;
 		case VIOLET_LIGHTSABER:	tmp += rnd(8); break;
 		case YELLOW_LIGHTSABER:	tmp += rnd(12); break;
+		case RAINBOW_LIGHTSABER:	tmp += (nohands(youmonst.data) ? rno(25) : rno(18)); break;
 		case LIGHTWHIP:	tmp += rnd(8); break;
 		case ELECTRIC_CIGARETTE:	tmp += rnd(10); break;
 		case NANO_HAMMER:	tmp += rnd(8); break;
@@ -1213,6 +1216,7 @@ struct monst *mon;
 		case MYSTERY_LIGHTSABER:   tmp += rnd(8); break;
 		case VIOLET_LIGHTSABER:	tmp += rnd(6); break;
 		case YELLOW_LIGHTSABER:	tmp += rnd(10); break;
+		case RAINBOW_LIGHTSABER:	tmp += (nohands(youmonst.data) ? rno(25) : rno(18)); break;
 		case LIGHTWHIP:	tmp += rnd(8); break;
 		case ELECTRIC_CIGARETTE:	tmp += rnd(10); break;
 		case NANO_HAMMER:	tmp += rnd(8); break;
@@ -2797,7 +2801,7 @@ static const NEARDATA short hwep[] = {
 	  BLOCK_HEELED_COMBAT_BOOT, ORGANOBLADE, GUITAR, DARK_HORN, SHADOWBLADE, ROMAN_SWORD, ETHER_SAW, SKY_HORN,
 	  TWO_HANDED_SWORD, YESTERDAY_STAR, DEVIL_STAR, BATTLE_AXE, HUGE_CLUB, CHEMISTRY_SPACE_AXE, PLATINUM_SABER,
 	  GOLDEN_SABER, ETERNIUM_SABER, CRYPTIC_SABER, TWO_HANDED_FLAIL, BOAT_OAR, LASERFIST,
-	  MASSIVE_STAFF, BATTLE_STAFF, BACKHAND_MACE, OLDEST_STAFF, PHEONIX_STAFF,
+	  MASSIVE_STAFF, BATTLE_STAFF, BACKHAND_MACE, OLDEST_STAFF, PHEONIX_STAFF, RAINBOW_LIGHTSABER,
 	  REINFORCED_MACE, OSBANE_KATANA, GRANITE_IMPALER, FLAME_MOUNTAIN, LEAD_FILLED_MACE,
 	  AUTOMATIC_KATANA, KATANA, ARCANE_HORN, UNICORN_HORN, CRYSKNIFE, ELECTRIC_SWORD, AMBUSH_QATAR,
 	  DIFFICULT_TRIDENT, SHOOMDENT, FOURDENT, REACH_TRIDENT, TRIDENT, CRYSTAL_SWORD, HEAVY_GRINDER,
@@ -3126,7 +3130,7 @@ struct monst * mon;
 
 	// for some reason, the lightsaber prototype is created with
 	// age == 0
-	if (obj->oartifact == ART_LIGHTSABER_PROTOTYPE)
+	if (obj->oartifact == ART_LIGHTSABER_PROTOTYPE || obj->oartifact == ART_DEFINITE_LIGHTSABER)
 		obj->age = 300L;
 	/* WAC - Check lightsaber is on */
 	if (!obj->lamplit) {
@@ -3471,70 +3475,70 @@ int skill;
 
 	if (skill == P_SHII_CHO && (P_SKILL(P_SHII_CHO) + 1) > u.lightsabermax1) {
 		u.lightsabermax1 = (P_SKILL(P_SHII_CHO) + 1);
-		if (!issoviet && rn2(Role_if(PM_JEDI) ? 4 : 2)) {
+		if (!issoviet && rn2(Role_if(PM_HEDDERJEDI) ? 5 : Role_if(PM_JEDI) ? 4 : 2)) {
 			You("got that skill without using up a skill point!");
 			goto jediskip;
 		}
 	}
 	if (skill == P_MAKASHI && (P_SKILL(P_MAKASHI) + 1) > u.lightsabermax2) {
 		u.lightsabermax2 = (P_SKILL(P_MAKASHI) + 1);
-		if (!issoviet && rn2(Role_if(PM_JEDI) ? 4 : 2)) {
+		if (!issoviet && rn2(Role_if(PM_HEDDERJEDI) ? 5 : Role_if(PM_JEDI) ? 4 : 2)) {
 			You("got that skill without using up a skill point!");
 			goto jediskip;
 		}
 	}
 	if (skill == P_SORESU && (P_SKILL(P_SORESU) + 1) > u.lightsabermax3) {
 		u.lightsabermax3 = (P_SKILL(P_SORESU) + 1);
-		if (!issoviet && rn2(Role_if(PM_JEDI) ? 4 : 2)) {
+		if (!issoviet && rn2(Role_if(PM_HEDDERJEDI) ? 5 : Role_if(PM_JEDI) ? 4 : 2)) {
 			You("got that skill without using up a skill point!");
 			goto jediskip;
 		}
 	}
 	if (skill == P_ATARU && (P_SKILL(P_ATARU) + 1) > u.lightsabermax4) {
 		u.lightsabermax4 = (P_SKILL(P_ATARU) + 1);
-		if (!issoviet && rn2(Role_if(PM_JEDI) ? 4 : 2)) {
+		if (!issoviet && rn2(Role_if(PM_HEDDERJEDI) ? 5 : Role_if(PM_JEDI) ? 4 : 2)) {
 			You("got that skill without using up a skill point!");
 			goto jediskip;
 		}
 	}
 	if (skill == P_SHIEN && (P_SKILL(P_SHIEN) + 1) > u.lightsabermax5) {
 		u.lightsabermax5 = (P_SKILL(P_SHIEN) + 1);
-		if (!issoviet && rn2(Role_if(PM_JEDI) ? 4 : 2)) {
+		if (!issoviet && rn2(Role_if(PM_HEDDERJEDI) ? 5 : Role_if(PM_JEDI) ? 4 : 2)) {
 			You("got that skill without using up a skill point!");
 			goto jediskip;
 		}
 	}
 	if (skill == P_DJEM_SO && (P_SKILL(P_DJEM_SO) + 1) > u.lightsabermax6) {
 		u.lightsabermax6 = (P_SKILL(P_DJEM_SO) + 1);
-		if (!issoviet && rn2(Role_if(PM_JEDI) ? 4 : 2)) {
+		if (!issoviet && rn2(Role_if(PM_HEDDERJEDI) ? 5 : Role_if(PM_JEDI) ? 4 : 2)) {
 			You("got that skill without using up a skill point!");
 			goto jediskip;
 		}
 	}
 	if (skill == P_NIMAN && (P_SKILL(P_NIMAN) + 1) > u.lightsabermax7) {
 		u.lightsabermax7 = (P_SKILL(P_NIMAN) + 1);
-		if (!issoviet && rn2(Role_if(PM_JEDI) ? 4 : 2)) {
+		if (!issoviet && rn2(Role_if(PM_HEDDERJEDI) ? 5 : Role_if(PM_JEDI) ? 4 : 2)) {
 			You("got that skill without using up a skill point!");
 			goto jediskip;
 		}
 	}
 	if (skill == P_JUYO && (P_SKILL(P_JUYO) + 1) > u.lightsabermax8) {
 		u.lightsabermax8 = (P_SKILL(P_JUYO) + 1);
-		if (!issoviet && rn2(Role_if(PM_JEDI) ? 4 : 2)) {
+		if (!issoviet && rn2(Role_if(PM_HEDDERJEDI) ? 5 : Role_if(PM_JEDI) ? 4 : 2)) {
 			You("got that skill without using up a skill point!");
 			goto jediskip;
 		}
 	}
 	if (skill == P_VAAPAD && (P_SKILL(P_VAAPAD) + 1) > u.lightsabermax9) {
 		u.lightsabermax9 = (P_SKILL(P_VAAPAD) + 1);
-		if (!issoviet && rn2(Role_if(PM_JEDI) ? 4 : 2)) {
+		if (!issoviet && rn2(Role_if(PM_HEDDERJEDI) ? 5 : Role_if(PM_JEDI) ? 4 : 2)) {
 			You("got that skill without using up a skill point!");
 			goto jediskip;
 		}
 	}
 	if (skill == P_WEDI && (P_SKILL(P_WEDI) + 1) > u.lightsabermax10) {
 		u.lightsabermax10 = (P_SKILL(P_WEDI) + 1);
-		if (!issoviet && rn2(Role_if(PM_JEDI) ? 4 : 2)) {
+		if (!issoviet && rn2(Role_if(PM_HEDDERJEDI) ? 5 : Role_if(PM_JEDI) ? 4 : 2)) {
 			You("got that skill without using up a skill point!");
 			goto jediskip;
 		}
@@ -5088,7 +5092,7 @@ restrpasstwo:
 #endif
 	    }
 
-	    if (!restrpass && (wizard || want_dump)) {
+	    if (!restrpass && (wizard || want_dump || Role_if(PM_HEDDERJEDI))) {
 #ifdef DUMP_LOG
 		if (want_dump) {
 
@@ -5102,6 +5106,12 @@ restrpasstwo:
 			dump("    ",buf2);
 			sprintf(buf2, "form XI (Aldebaran) %s %d",
 			    (u.aldebaranskill >= 4320) ? "Supreme Master" : (u.aldebaranskill >= 2500) ? "Grand Master" : (u.aldebaranskill >= 1280) ? "Master" : (u.aldebaranskill >= 540) ? "Expert" : (u.aldebaranskill >= 160) ? "Skilled" : (u.aldebaranskill >= 20) ? "Basic" : "Unskilled", u.aldebaranskill);
+			dump("    ",buf2);
+			sprintf(buf2, "form XII (Polgo) %s %d",
+			    (u.polgoskill >= 4320) ? "Supreme Master" : (u.polgoskill >= 2500) ? "Grand Master" : (u.polgoskill >= 1280) ? "Master" : (u.polgoskill >= 540) ? "Expert" : (u.polgoskill >= 160) ? "Skilled" : (u.polgoskill >= 20) ? "Basic" : "Unskilled", u.polgoskill);
+			dump("    ",buf2);
+			sprintf(buf2, "form XIII (Firga) %s %d",
+			    (u.firgaskill >= 4320) ? "Supreme Master" : (u.firgaskill >= 2500) ? "Grand Master" : (u.firgaskill >= 1280) ? "Master" : (u.firgaskill >= 540) ? "Expert" : (u.firgaskill >= 160) ? "Skilled" : (u.firgaskill >= 20) ? "Basic" : "Unskilled", u.firgaskill);
 			dump("    ",buf2);
 			logged=TRUE;
 
@@ -5120,6 +5130,14 @@ restrpasstwo:
 			add_menu(win, NO_GLYPH, &any, 0, 0, ATR_NONE, buf, MENU_UNSELECTED);
 			sprintf(buf, "  form XI (Aldebaran) %s %d",
 			    (u.aldebaranskill >= 4320) ? "Supreme Master" : (u.aldebaranskill >= 2500) ? "Grand Master" : (u.aldebaranskill >= 1280) ? "Master" : (u.aldebaranskill >= 540) ? "Expert" : (u.aldebaranskill >= 160) ? "Skilled" : (u.aldebaranskill >= 20) ? "Basic" : "Unskilled", u.aldebaranskill);
+			any.a_int = 0;
+			add_menu(win, NO_GLYPH, &any, 0, 0, ATR_NONE, buf, MENU_UNSELECTED);
+			sprintf(buf, "  form XII (Polgo) %s %d",
+			    (u.polgoskill >= 4320) ? "Supreme Master" : (u.polgoskill >= 2500) ? "Grand Master" : (u.polgoskill >= 1280) ? "Master" : (u.polgoskill >= 540) ? "Expert" : (u.polgoskill >= 160) ? "Skilled" : (u.polgoskill >= 20) ? "Basic" : "Unskilled", u.polgoskill);
+			any.a_int = 0;
+			add_menu(win, NO_GLYPH, &any, 0, 0, ATR_NONE, buf, MENU_UNSELECTED);
+			sprintf(buf, "  form XIII (Firga) %s %d",
+			    (u.firgaskill >= 4320) ? "Supreme Master" : (u.firgaskill >= 2500) ? "Grand Master" : (u.firgaskill >= 1280) ? "Master" : (u.firgaskill >= 540) ? "Expert" : (u.firgaskill >= 160) ? "Skilled" : (u.firgaskill >= 20) ? "Basic" : "Unskilled", u.firgaskill);
 			any.a_int = 0;
 			add_menu(win, NO_GLYPH, &any, 0, 0, ATR_NONE, buf, MENU_UNSELECTED);
 
@@ -6499,7 +6517,7 @@ struct obj *weapon;
 	}
 
 	/* Jedi are simply better... but not as much as they used to --Amy */
-	if (Role_if(PM_JEDI) && !rn2(2) && weapon && !(PlayerCannotUseSkills) && is_lightsaber(weapon)){
+	if ( (Role_if(PM_JEDI) || Role_if(PM_HEDDERJEDI) ) && !rn2(2) && weapon && !(PlayerCannotUseSkills) && is_lightsaber(weapon)){
 		switch (P_SKILL(type)){
 			case P_SUPREME_MASTER: bonus += rnd(5); break; /* fall through removed by Amy */
 			case P_GRAND_MASTER: bonus += rnd(4); break; /* fall through removed by Amy */
@@ -10366,6 +10384,8 @@ dataskilldecrease()
 	u.hunkskill = 0;
 	u.kliuskill = 0;
 	u.aldebaranskill = 0;
+	u.polgoskill = 0;
+	u.firgaskill = 0;
 
 }
 
@@ -10713,6 +10733,16 @@ int lossamount;
 		u.aldebaranskill -= lossamount;
 		if (u.aldebaranskill < 0) u.aldebaranskill = 0;
 		Your("form XI (Aldebaran) skill deteriorates.");
+	}
+	if (!rn2(500)) {
+		u.polgoskill -= lossamount;
+		if (u.polgoskill < 0) u.polgoskill = 0;
+		Your("form XII (Polgo) skill deteriorates.");
+	}
+	if (!rn2(500)) {
+		u.firgaskill -= lossamount;
+		if (u.firgaskill < 0) u.firgaskill = 0;
+		Your("form XIII (Firga) skill deteriorates.");
 	}
 
 }

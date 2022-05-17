@@ -8997,6 +8997,26 @@ A("Lilly's Secret Agency",				ROSA_GIRL_SHOES, /* invoke causes role recursion b
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 3000L ),
 
+A("Dis Is E Prisem",				RAINBOW_LIGHTSABER, /* reflection when lit */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Constant Change",				RAINBOW_LIGHTSABER, /* when lit, changes color and material every turn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Switch To Another",				RAINBOW_LIGHTSABER, /* 1 in 1000 per turn to change to a random other lightsaber-type item; if this causes it to become something two-handed, your secondary hand is automatically emptied */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Plantoplim",				LEATHER_ARMOR, /* randart2, polgo form works for all lightsabers, 1 in 2500 that you're forced to equip a cursed implant if you don't have one yet, heavily autocurses, bank trap, deactivates invisibility and displacement, cannot remove implants at all */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Elmhere",				LEATHER_ARMOR, /* randart2, firga form works without lightsaber, fainting, deactivates free action, elmstreet effect, improves AC by 5 points while you're paralyzed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.
@@ -9816,6 +9836,11 @@ A("The Lightsaber Prototype", RED_LIGHTSABER,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_REFLECT), 0, 0,
 	PHYS(5, 10),	NO_DFNS, NO_CARY,
 	ENERGY_BOOST,	A_LAWFUL, PM_JEDI, NON_PM, 3500L ),
+
+A("Definite Lightsaber", LASER_SWORD, /* never runs out of power */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_REFLECT), 0, 0,
+	PHYS(5, 10),	NO_DFNS, NO_CARY,
+	ENERGY_BOOST,	A_LAWFUL, PM_HEDDERJEDI, NON_PM, 3500L ),
 
 A("The Elder Cerebral Fluid", ICKY_BLADE,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_ATTK|SPFX_DRLI), (SPFX_EREGEN|SPFX_HSPDAM), 0,

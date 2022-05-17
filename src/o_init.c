@@ -2126,10 +2126,14 @@ register char oclass;
 	objects[SEXPLAY_WHIP].oc_material = rn2(LASTMATERIAL + 1);
 	objects[MYSTERY_PICK].oc_material = rn2(LASTMATERIAL + 1);
 	objects[MYSTERY_LIGHTSABER].oc_material = rn2(LASTMATERIAL + 1);
+	objects[RAINBOW_LIGHTSABER].oc_material = rn2(LASTMATERIAL + 1);
 	objects[SLING_AMMO].oc_material = rn2(LASTMATERIAL + 1);
 	objects[CIGARETTE].oc_material = rn2(LASTMATERIAL + 1);
 	objects[VARIED_GRINDER].oc_material = rn2(LASTMATERIAL + 1);
 	objects[CAMO_QATAR].oc_material = rn2(LASTMATERIAL + 1);
+
+	objects[RAINBOW_LIGHTSABER].oc_color = rn2(CLR_MAX);
+	while (objects[RAINBOW_LIGHTSABER].oc_color == NO_COLOR) objects[RAINBOW_LIGHTSABER].oc_color = rn2(CLR_MAX);
 
 	/* shuffle descriptions */
 	shuffle_all();

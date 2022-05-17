@@ -273,7 +273,7 @@ int thrown;
 
 	    if (launcher && launcher->oartifact == ART_FOEOEOEOEOEOEOE) multishot += rnd(3);
 
-	    if (!PlayerCannotUseSkills && skill == P_SLING && uarm && uarm->oartifact == ART_LU_NONNAME) {
+	    if (!PlayerCannotUseSkills && skill == P_SLING && ((uarm && uarm->oartifact == ART_LU_NONNAME) || Role_if(PM_HEDDERJEDI)) ) {
 		if (u.kliuskill >= 20) multishot++;
 		if (u.kliuskill >= 160) multishot++;
 		if (u.kliuskill >= 540) multishot++;
@@ -1604,7 +1604,7 @@ int thrown;
 		u.twoweap = twoweap;
 		return;
 	    }
-	    if (u.dz < 0 && (Role_if(PM_JEDI) || !rn2(2)) &&
+	    if (u.dz < 0 && (Role_if(PM_JEDI) || Role_if(PM_HEDDERJEDI) || !rn2(2)) &&
 		    is_lightsaber(obj) && obj->lamplit && !impaired &&
 			!(PlayerCannotUseSkills) && rn2(2) &&
 		    P_SKILL(weapon_type(obj)) >= P_SKILLED) {
@@ -1861,7 +1861,7 @@ int thrown;
 			(obj->oartifact == ART_MJOLLNIR && Role_if(PM_VALKYRIE) && rn2(100)) ||
 
 			(is_lightsaber(obj) && obj->lamplit && (rn2(2) || (djemsochance >= rn2(11)) ) &&
-			( (Role_if(PM_JEDI) && P_SKILL(weapon_type(obj)) > P_SKILLED) || (!rn2(2) && P_SKILL(weapon_type(obj)) > P_SKILLED) || (djemsochance >= rn2(11)) ) ) ||
+			( ( (Role_if(PM_JEDI) || Role_if(PM_HEDDERJEDI)) && P_SKILL(weapon_type(obj)) > P_SKILLED) || (!rn2(2) && P_SKILL(weapon_type(obj)) > P_SKILLED) || (djemsochance >= rn2(11)) ) ) ||
 
 			((objects[obj->otyp].oc_skill == P_BOOMERANG || objects[obj->otyp].oc_skill == -P_BOOMERANG) &&
 			((boomerangchance > rn2(100)) || (obj->oartifact && !rn2(3)) ) )
@@ -1872,10 +1872,10 @@ int thrown;
 
 		    /* we must be wearing Gauntlets of Power to get here */
 		    /* or a Jedi with a lightsaber or a thrown boomerang */
-		    if (Role_if(PM_JEDI) && u.uen < 5){
+		    if ( (Role_if(PM_JEDI) || Role_if(PM_HEDDERJEDI)) && u.uen < 5){
 			You("don't have enough force to call %s. You need at least 5 points of mana!", the(xname(obj)));
 		    } else {
-		      if (Role_if(PM_JEDI))
+		      if (Role_if(PM_JEDI) || Role_if(PM_HEDDERJEDI))
 			u.uen -= 5;
 			if (!boomerfix) sho_obj_return_to_u(obj);	    /* display its flight */
 

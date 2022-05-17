@@ -3672,6 +3672,7 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ DARK_DRAGON_SCALE_MAIL, "todo" },
 	{ DARK_DRAGON_SCALES, "todo" },
 	{ DARK_DRAGON_SCALE_SHIELD, "todo" },
+	{ RAINBOW_LIGHTSABER, "todo" },
 
 	{ ANNEMARIE_PLATFORM_SANDALS, "todo" },
 	{ JIL_VELCRO_SHOES, "todo" },
@@ -6639,6 +6640,7 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ DARK_DRAGON_SCALE_MAIL, "todo" },
 	{ DARK_DRAGON_SCALES, "todo" },
 	{ DARK_DRAGON_SCALE_SHIELD, "todo" },
+	{ RAINBOW_LIGHTSABER, "todo" },
 
 	{ ANNEMARIE_PLATFORM_SANDALS, "todo" },
 	{ JIL_VELCRO_SHOES, "todo" },
@@ -9217,7 +9219,7 @@ boolean actualwish;
 		spesgn = -1;	/* cheaters get what they deserve */
 		spe = abs(spe);
 	}
-	if (spe > SCHAR_LIM)
+	if (!wizard && (spe > SCHAR_LIM))
 		spe = SCHAR_LIM;
 	if (rechrg < 0 || rechrg > 7) rechrg = 7;	/* recharge_limit */
 

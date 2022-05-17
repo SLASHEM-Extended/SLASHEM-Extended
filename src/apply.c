@@ -1788,7 +1788,10 @@ struct obj *obj;
 	}
 	// for some reason, the lightsaber prototype is created with
 	// age == 0
+	/* Amy edit: because of artifact invoke timers which (stupidly) use the same variable! */
 	if (obj->oartifact == ART_LIGHTSABER_PROTOTYPE)
+		obj->age = 300L;
+	if (obj->oartifact == ART_DEFINITE_LIGHTSABER)
 		obj->age = 300L;
 	/* magic lamps with an spe == 0 (wished for) cannot be lit */
 	if ((!Is_candle(obj) && obj->age == 0)
@@ -5631,6 +5634,7 @@ doapply()
 	case VIOLET_LIGHTSABER:
 	case WHITE_LIGHTSABER:
 	case YELLOW_LIGHTSABER:
+	case RAINBOW_LIGHTSABER:
 	case RED_LIGHTSABER:
 	case LASER_SWATTER:
 	case NANO_HAMMER:

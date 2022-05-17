@@ -6612,6 +6612,37 @@ static const struct def_skill Skill_J[] = {
     { P_NONE, 0 }
 };
 
+static const struct def_skill Skill_Hed[] = {
+    { P_LIGHTSABER, P_GRAND_MASTER },
+    { P_SHORT_SWORD, P_EXPERT }, { P_BROAD_SWORD, P_EXPERT },
+    { P_LONG_SWORD, P_EXPERT }, { P_SABER, P_EXPERT },
+
+    { P_FIREARM, P_EXPERT },
+    { P_BODY_SPELL, P_MASTER },
+
+    { P_GENERAL_COMBAT, P_MASTER },
+    { P_SHIELD, P_EXPERT },
+    { P_BODY_ARMOR, P_MASTER },
+    { P_DEVICES, P_MASTER },
+    { P_SEARCHING, P_EXPERT },
+    { P_SPIRITUALITY, P_EXPERT },
+    { P_TECHNIQUES, P_EXPERT },
+    { P_SHII_CHO, P_GRAND_MASTER },
+    { P_MAKASHI, P_GRAND_MASTER },
+    { P_SORESU, P_GRAND_MASTER },
+    { P_ATARU, P_GRAND_MASTER },
+    { P_SHIEN, P_GRAND_MASTER },
+    { P_DJEM_SO, P_GRAND_MASTER },
+    { P_NIMAN, P_GRAND_MASTER },
+    { P_JUYO, P_GRAND_MASTER },
+    { P_VAAPAD, P_GRAND_MASTER },
+    { P_WEDI, P_GRAND_MASTER },
+    { P_MEMORIZATION, P_EXPERT },
+
+    { P_TWO_WEAPON_COMBAT, P_EXPERT }, { P_BARE_HANDED_COMBAT, P_EXPERT },
+    { P_NONE, 0 }
+};
+
 static const struct def_skill Skill_Fox[] = {
 
     { P_LONG_SWORD, P_EXPERT },                { P_SHORT_SWORD, P_EXPERT },
@@ -12790,6 +12821,25 @@ u_init()
 		knows_class(WEAPON_CLASS);
 		knows_class(ARMOR_CLASS);
 		break;
+	case PM_HEDDERJEDI:
+		ini_inv(Jedi);
+		switch(rnd(9)) {
+			case 1: ini_inv(RedSaber); break;
+			case 2: ini_inv(BlueSaber); break;
+			case 3: ini_inv(GreenSaber); break;
+			case 4: ini_inv(VioletSaber); break;
+			case 5: ini_inv(WhiteSaber); break;
+			case 6: ini_inv(YellowSaber); break;
+			case 7: ini_inv(RedDoubleSaber); break;
+			case 8: ini_inv(WhiteDoubleSaber); break;
+			case 9: ini_inv(MysterySaber); break;
+			default: break;
+		}
+		if(!rn2(2)) ini_inv(Blindfold);
+		skill_init(Skill_Hed);
+		knows_class(WEAPON_CLASS);
+		knows_class(ARMOR_CLASS);
+		break;
 	case PM_KNIGHT:
 		ini_inv(Knight);
 		knows_class(WEAPON_CLASS);
@@ -14281,6 +14331,9 @@ u_init()
 	case PM_JEDI:
 		skill_init(Skill_J);
 		break;
+	case PM_HEDDERJEDI:
+		skill_init(Skill_Hed);
+		break;
 	case PM_KNIGHT:
 		skill_init(Skill_K);
 		break;
@@ -14714,7 +14767,7 @@ u_init()
 
 	if (!isnullrace) { /* randomizer only */
 
-	switch (rnd(168)) {
+	switch (rnd(169)) {
 	case 1:
 		switch (rnd(5)) {   
 		    case 1: Archeologist[A_BOOK].trotyp = SPE_DETECT_FOOD; break;
@@ -16245,6 +16298,25 @@ u_init()
 
 	case 168:
 		ini_inv(Singslave);
+		break;
+
+	case 169:
+		ini_inv(Jedi);
+		switch(rnd(9)) {
+			case 1: ini_inv(RedSaber); break;
+			case 2: ini_inv(BlueSaber); break;
+			case 3: ini_inv(GreenSaber); break;
+			case 4: ini_inv(VioletSaber); break;
+			case 5: ini_inv(WhiteSaber); break;
+			case 6: ini_inv(YellowSaber); break;
+			case 7: ini_inv(RedDoubleSaber); break;
+			case 8: ini_inv(WhiteDoubleSaber); break;
+			case 9: ini_inv(MysterySaber); break;
+			default: break;
+		}
+		if(!rn2(2)) ini_inv(Blindfold);
+		knows_class(WEAPON_CLASS);
+		knows_class(ARMOR_CLASS);
 		break;
 
 	default:	/* impossible */
@@ -16403,7 +16475,7 @@ u_init()
 
 	if (Race_if(PM_BASTARD)) {
 
-	switch (rnd(168)) {
+	switch (rnd(169)) {
 	case 1:
 		switch (rnd(5)) {   
 		    case 1: Archeologist[A_BOOK].trotyp = SPE_DETECT_FOOD; break;
@@ -17929,6 +18001,25 @@ u_init()
 
 	case 168:
 		ini_inv(Singslave);
+		break;
+
+	case 169:
+		ini_inv(Jedi);
+		switch(rnd(9)) {
+			case 1: ini_inv(RedSaber); break;
+			case 2: ini_inv(BlueSaber); break;
+			case 3: ini_inv(GreenSaber); break;
+			case 4: ini_inv(VioletSaber); break;
+			case 5: ini_inv(WhiteSaber); break;
+			case 6: ini_inv(YellowSaber); break;
+			case 7: ini_inv(RedDoubleSaber); break;
+			case 8: ini_inv(WhiteDoubleSaber); break;
+			case 9: ini_inv(MysterySaber); break;
+			default: break;
+		}
+		if(!rn2(2)) ini_inv(Blindfold);
+		knows_class(WEAPON_CLASS);
+		knows_class(ARMOR_CLASS);
 		break;
 
 	default:	/* impossible */
@@ -18408,6 +18499,7 @@ u_init()
 	case PM_SCIENTIST: rolebounus = rnd(15); break;
 	case PM_PIRATE: rolebounus = rnd(22); break;
 	case PM_JEDI: rolebounus = rnd(22); break;
+	case PM_HEDDERJEDI: rolebounus = rnd(22); break;
 	case PM_HUSSY: rolebounus = rnd(22); break;
 	case PM_TOPMODEL: rolebounus = rnd(15); break;
 	case PM_UNDEAD_SLAYER: rolebounus = rnd(25); break;
@@ -30145,6 +30237,7 @@ int otyp;
      case PM_DOOM_MARINE:		skills = Skill_Mar; break;
      case PM_HEALER:		skills = Skill_H; break;
      case PM_JEDI:		skills = Skill_J; break;
+     case PM_HEDDERJEDI:		skills = Skill_Hed; break;
      case PM_KNIGHT:		skills = Skill_K; break;
      case PM_WANDKEEPER:		skills = Skill_Wan; break;
      case PM_PALADIN:		skills = Skill_Pal; break;

@@ -3512,7 +3512,7 @@ ghnhom2:
 	    case 92:
 	    case 93:
 
-		switch (rnd(825)) {
+		switch (rnd(830)) {
 
 			case 1: makemaz("Aci-1"); return;
 			case 2: makemaz("Aci-2"); return;
@@ -4339,6 +4339,11 @@ ghnhom2:
 			case 823: makemaz("Sin-3"); return;
 			case 824: makemaz("Sin-4"); return;
 			case 825: makemaz("Sin-5"); return;
+			case 826: makemaz("Hed-1"); return;
+			case 827: makemaz("Hed-2"); return;
+			case 828: makemaz("Hed-3"); return;
+			case 829: makemaz("Hed-4"); return;
+			case 830: makemaz("Hed-5"); return;
 
 		}
 		break;
@@ -5534,7 +5539,7 @@ ghnhom2:
 	    case 92:
 	    case 93:
 
-		switch (rnd(825)) {
+		switch (rnd(830)) {
 
 			case 1: makemaz("Aci-6"); return;
 			case 2: makemaz("Aci-7"); return;
@@ -6361,6 +6366,11 @@ ghnhom2:
 			case 823: makemaz("Sin-8"); return;
 			case 824: makemaz("Sin-9"); return;
 			case 825: makemaz("Sin-0"); return;
+			case 826: makemaz("Hed-6"); return;
+			case 827: makemaz("Hed-7"); return;
+			case 828: makemaz("Hed-8"); return;
+			case 829: makemaz("Hed-9"); return;
+			case 830: makemaz("Hed-0"); return;
 		}
 		break;
 
@@ -7995,7 +8005,7 @@ ghnhom4:
 	    case 92:
 	    case 93:
 
-		switch (rnd(825)) {
+		switch (rnd(830)) {
 
 			case 1: makemaz("Aci-1"); return;
 			case 2: makemaz("Aci-2"); return;
@@ -8822,6 +8832,11 @@ ghnhom4:
 			case 823: makemaz("Sin-3"); return;
 			case 824: makemaz("Sin-4"); return;
 			case 825: makemaz("Sin-5"); return;
+			case 826: makemaz("Hed-1"); return;
+			case 827: makemaz("Hed-2"); return;
+			case 828: makemaz("Hed-3"); return;
+			case 829: makemaz("Hed-4"); return;
+			case 830: makemaz("Hed-5"); return;
 		}
 		break;
 
@@ -10009,7 +10024,7 @@ ghnhom4:
 	    case 92:
 	    case 93:
 
-		switch (rnd(825)) {
+		switch (rnd(830)) {
 
 			case 1: makemaz("Aci-6"); return;
 			case 2: makemaz("Aci-7"); return;
@@ -10836,6 +10851,11 @@ ghnhom4:
 			case 823: makemaz("Sin-8"); return;
 			case 824: makemaz("Sin-9"); return;
 			case 825: makemaz("Sin-0"); return;
+			case 826: makemaz("Hed-6"); return;
+			case 827: makemaz("Hed-7"); return;
+			case 828: makemaz("Hed-8"); return;
+			case 829: makemaz("Hed-9"); return;
+			case 830: makemaz("Hed-0"); return;
 		}
 		break;
 

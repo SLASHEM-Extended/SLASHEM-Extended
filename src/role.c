@@ -2369,6 +2369,37 @@ const struct Role roles[] = {
 	10, 3,-3, 2, 10, A_WIS, SPE_CURE_SICKNESS,   -4, 50
 },
 
+{	{"Hedderjedi", 0}, {
+	{"Lightsaber Youngling",     0},
+	{"Inexperienced Padawan",       0},
+	{"Experienced Padawan",       0},
+	{"Basic Jedi", 0},
+	{"Skilled Jedi", 0},
+	{"Expert Jedi",    0},
+	{"Master Jedi",    0},
+	{"Grandmaster Jedi",      0},
+	{"Supreme Master Jedi",    0} },
+	"the Light Side", "the Force", "the Dark Side",
+	"Hed", "the Jedi Temple", "the Outer Rim",
+	PM_HEDDERJEDI, NON_PM, PM_UNDEAD_HEDDERJEDI, NON_PM, PM_LITTLE_DOG,
+	PM_THE_JEDI_MASTER, PM_PADAWAN, PM_LORD_SIDIOUS, PM_LORD_INSIDIOUS,
+	PM_LASER_STORMTROOPER, PM_STORMTROOPER, S_HUMAN, S_HUMAN,
+	ART_DEFINITE_LIGHTSABER,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | 
+	ROLE_MALE|ROLE_FEMALE|ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  10,  7, 14, 12, 10, 14 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  30, 15, 15, 10, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 20, 20, 18, 20 },
+	/* Init   Lower  Higher */
+	{ 20, 4,  0, 8,  2, 4 },	/* Hit points */
+	{  5, 4,  0, 1,  0, 4 },10,	/* Energy */
+	0, 12 , -1, 
+	2, 10, A_INT, SPE_CHARGING,    -4, 40
+},
+
 {	{"Hussy", 0}, {
 	{"Annoying Guy",    "Annoying Girl",},
 	{"Nasty Fucker",    "Nasty Bitch",},

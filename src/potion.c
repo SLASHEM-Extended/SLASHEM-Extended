@@ -6565,6 +6565,30 @@ sandprotection()
 	return FALSE;
 }
 
+/* does bad stuff happen on a Friday the 13th? with higher Firga skill, occasionally it doesn't --Amy
+ * returns TRUE if bad stuff does indeed happen, otherwise FALSE */
+boolean
+firgatest()
+{
+	int firgachance = 0;
+	boolean canfirga = FALSE;
+	if (uwep && is_lightsaber(uwep) && uwep->lamplit) canfirga = TRUE;
+	if (uarm && uarm->oartifact == ART_ELMHERE) canfirga = TRUE;
+	if (Role_if(PM_HEDDERJEDI)) canfirga = TRUE;
+
+	if (!PlayerCannotUseSkills && canfirga) {
+		if (u.firgaskill >= 20) firgachance++;
+		if (u.firgaskill >= 160) firgachance++;
+		if (u.firgaskill >= 540) firgachance++;
+		if (u.firgaskill >= 1280) firgachance++;
+		if (u.firgaskill >= 2500) firgachance++;
+		if (u.firgaskill >= 4320) firgachance++;
+	}
+	if (firgachance > rn2(10)) return FALSE;
+	return TRUE;
+
+}
+
 /* does your equipment made of chrome protect you from poison? --Amy */
 boolean
 chromeprotection()

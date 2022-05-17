@@ -1204,7 +1204,7 @@ register struct monst *mtmp;
 
 		if(is_mercenary(ptr) || mm == PM_SHOPKEEPER || mm == PM_MASTER_SHOPKEEPER || mm == PM_ELITE_SHOPKEEPER || mm == PM_PUNISHER
 				|| mm == PM_CHIEF_YEOMAN_WARDER || mm == PM_YEOMAN_WARDER
-				|| mm == PM_JEDI || mm == PM_PADAWAN || mm == PM_STORMTROOPER
+				|| mm == PM_JEDI || mm == PM_HEDDERJEDI || mm == PM_PADAWAN || mm == PM_STORMTROOPER
 				|| mm == PM_ENEMY_TROOPER || mm == PM_INFANTRYMAN || mm == PM_CUNTGUN_TROOPER
 				|| mm == PM_GI_TROOPER || mm == PM_HEAVY_WEAPON_DUDE || mm == PM_RIFLEMAN
 				|| mm == PM_SNIPER || mm == PM_RIOT_BREAKER || mm == PM_TANK_BREAKER
@@ -1631,6 +1631,7 @@ register struct monst *mtmp;
 			  break;
 			case PM_PADAWAN:
 			case PM_JEDI:
+			case PM_HEDDERJEDI:
 			  switch(rnd(12)){
 			    case 1: mongets(mtmp, RED_LIGHTSABER); break;
 			    case 2: mongets(mtmp, BLUE_LIGHTSABER); break;
@@ -26574,6 +26575,7 @@ loopback:
 		if (ct > 0 && (Role_if(PM_HEALER) && (ptr->msound == MS_PAIN) )) ct += 1;
 		if (ct > 0 && (Role_if(PM_HUSSY) && (ptr->msound == MS_SISSY) )) ct += 4;
 		if (ct > 0 && (Role_if(PM_JEDI) && (ptr->msound == MS_PRINCESSLEIA) )) ct += 10;
+		if (ct > 0 && (Role_if(PM_HEDDERJEDI) && (ptr->msound == MS_PRINCESSLEIA) )) ct += 20;
 		if (ct > 0 && (Role_if(PM_JESTER) && (ptr->msound == MS_SING) )) ct += 3;
 		if (ct > 0 && (Role_if(PM_JUSTICE_KEEPER) && (ptr->msound == MS_APOC) )) ct += 1;
 		if (ct > 0 && (Role_if(PM_LADIESMAN) && (ptr->msound == MS_PHOTO) )) ct += 10;
@@ -27913,6 +27915,7 @@ int     spc;
 		if ((Role_if(PM_HEALER) && (mons[last].msound == MS_PAIN) )) num += 1;
 		if ((Role_if(PM_HUSSY) && (mons[last].msound == MS_SISSY) )) num += 4;
 		if ((Role_if(PM_JEDI) && (mons[last].msound == MS_PRINCESSLEIA) )) num += 10;
+		if ((Role_if(PM_HEDDERJEDI) && (mons[last].msound == MS_PRINCESSLEIA) )) num += 20;
 		if ((Role_if(PM_JESTER) && (mons[last].msound == MS_SING) )) num += 3;
 		if ((Role_if(PM_JUSTICE_KEEPER) && (mons[last].msound == MS_APOC) )) num += 1;
 		if ((Role_if(PM_LADIESMAN) && (mons[last].msound == MS_PHOTO) )) num += 10;
@@ -28924,6 +28927,7 @@ int     spc;
 		if ((Role_if(PM_HEALER) && (mons[first].msound == MS_PAIN) )) num -= 1;
 		if ((Role_if(PM_HUSSY) && (mons[first].msound == MS_SISSY) )) num -= 4;
 		if ((Role_if(PM_JEDI) && (mons[first].msound == MS_PRINCESSLEIA) )) num -= 10;
+		if ((Role_if(PM_HEDDERJEDI) && (mons[first].msound == MS_PRINCESSLEIA) )) num -= 20;
 		if ((Role_if(PM_JESTER) && (mons[first].msound == MS_SING) )) num -= 3;
 		if ((Role_if(PM_JUSTICE_KEEPER) && (mons[first].msound == MS_APOC) )) num -= 1;
 		if ((Role_if(PM_LADIESMAN) && (mons[first].msound == MS_PHOTO) )) num -= 10;

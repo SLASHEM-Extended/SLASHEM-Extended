@@ -2550,6 +2550,16 @@ moveloop()
 
 		}
 
+		if (uarm && uarm->oartifact == ART_ELMHERE && !rn2(100) && multi >= 0) {
+
+			You("faint from exertion.");
+			flags.soundok = 0;
+			nomul(-(rn1(4,1) ), "fainted from exertion", TRUE);
+			nomovemsg = "You regain consciousness.";
+			afternmv = unfaintX;
+
+		}
+
 		if (uimplant && uimplant->oartifact == ART_KATRIN_S_SUDDEN_APPEARANCE && !rn2(100) && multi >= 0) {
 
 			You("faint from exertion.");
@@ -3997,6 +4007,14 @@ newbossBQ:
 		}
 
 		if (Role_if(PM_CLIMACTERIAL) && !rn2(500) && u.ulevel >= 25) {
+			if (uimplant) {
+				if (!uimplant->cursed) curse(uimplant);
+			} else {
+				bad_equipment_implant();
+			}
+		}
+
+		if (uarm && uarm->oartifact == ART_PLANTOPLIM && !rn2(2500)) {
 			if (uimplant) {
 				if (!uimplant->cursed) curse(uimplant);
 			} else {
@@ -6322,6 +6340,49 @@ newbossSTEN:
 
 		}
 
+		if (uwep && uwep->oartifact == ART_CONSTANT_CHANGE && uwep->lamplit) {
+			objects[uwep->otyp].oc_material = rn2(LASTMATERIAL + 1);
+			objects[uwep->otyp].oc_color = rn2(CLR_MAX);
+			while (objects[uwep->otyp].oc_color == NO_COLOR) objects[uwep->otyp].oc_color = rn2(CLR_MAX);
+		}
+
+		if (uwep && uwep->oartifact == ART_SWITCH_TO_ANOTHER && !rn2(1000)) {
+			switch (rnd(27)) {
+				case 1: uwep->otyp = GREEN_LIGHTSABER; break;
+				case 2: uwep->otyp = BLUE_LIGHTSABER; break;
+				case 3: uwep->otyp = RED_LIGHTSABER; break;
+				case 4: uwep->otyp = YELLOW_LIGHTSABER; break;
+				case 5: uwep->otyp = VIOLET_LIGHTSABER; break;
+				case 6: uwep->otyp = WHITE_LIGHTSABER; break;
+				case 7: uwep->otyp = MYSTERY_LIGHTSABER; break;
+				case 8: uwep->otyp = ORANGE_LIGHTSABER; break;
+				case 9: uwep->otyp = BLACK_LIGHTSABER; break;
+				case 10: uwep->otyp = RAINBOW_LIGHTSABER; break;
+				case 11: uwep->otyp = CYAN_DOUBLE_LIGHTSABER; break;
+				case 12: uwep->otyp = RED_DOUBLE_LIGHTSABER; break;
+				case 13: uwep->otyp = WHITE_DOUBLE_LIGHTSABER; break;
+				case 14: uwep->otyp = LASER_SWATTER; break;
+				case 15: uwep->otyp = NANO_HAMMER; break;
+				case 16: uwep->otyp = LIGHTWHIP; break;
+				case 17: uwep->otyp = ELECTRIC_CIGARETTE; break;
+				case 18: uwep->otyp = LASERDENT; break;
+				case 19: uwep->otyp = LASER_SWORD; break;
+				case 20: uwep->otyp = SITH_STAFF; break;
+				case 21: uwep->otyp = LASER_POLE; break;
+				case 22: uwep->otyp = STARWARS_MACE; break;
+				case 23: uwep->otyp = BEAMSWORD; break;
+				case 24: uwep->otyp = LASERXBOW; break;
+				case 25: uwep->otyp = LASERFIST; break;
+				case 26: uwep->otyp = LASER_TIN_OPENER; break;
+				case 27: uwep->otyp = KLIUSLING; break;
+			}
+			if (bimanual(uwep)) {
+				if (uswapwep) uswapwepgone();
+				if (uarms) remove_worn_item(uarms, TRUE);
+			}
+			Your("lightsaber changes its form!");
+		}
+
 		/* climacterial always has at least as much sanity as squeaking skill --Amy */
 		if (Role_if(PM_CLIMACTERIAL) && (u.usanity < P_ADVANCE(P_SQUEAKING))) u.usanity = P_ADVANCE(P_SQUEAKING);
 
@@ -6355,6 +6416,43 @@ newbossBUTT:
 			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY);
 
 			u.aggravation = 0;
+
+		}
+
+		if (uwep && is_lightsaber(uwep) && uwep->lamplit && nohands(youmonst.data)) {
+			u.polgoturns++;
+			if (u.polgoturns >= 10) {
+				u.polgoturns = 0;
+				u.polgoskill++;
+				if (u.polgoskill == 20) You("are now more skilled in form XII (Polgo).");
+				if (u.polgoskill == 160) You("are now more skilled in form XII (Polgo).");
+				if (u.polgoskill == 540) You("are now more skilled in form XII (Polgo).");
+				if (u.polgoskill == 1280) You("are now more skilled in form XII (Polgo).");
+				if (u.polgoskill == 2560) You("are now more skilled in form XII (Polgo).");
+				if (u.polgoskill == 4320) You("are now most skilled in form XII (Polgo).");
+			}
+
+		}
+
+		if (uwep && is_lightsaber(uwep) && uwep->lamplit && isfriday) {
+			u.firgaturns++;
+			if (u.firgaturns >= 10) {
+				u.firgaturns = 0;
+				if (!rn2(131313)) {
+					u.firgaskill = 0;
+				} else if (!rn2(13)) {
+					u.firgaskill--;
+					if (u.firgaskill < 0) u.firgaskill = 0;
+				} else {
+					u.firgaskill++;
+					if (u.firgaskill == 20) You("are now more skilled in form XIII (Firga).");
+					if (u.firgaskill == 160) You("are now more skilled in form XIII (Firga).");
+					if (u.firgaskill == 540) You("are now more skilled in form XIII (Firga).");
+					if (u.firgaskill == 1280) You("are now more skilled in form XIII (Firga).");
+					if (u.firgaskill == 2560) You("are now more skilled in form XIII (Firga).");
+					if (u.firgaskill == 4320) You("are now most skilled in form XIII (Firga).");
+				}
+			}
 
 		}
 
@@ -13057,7 +13155,7 @@ past3:
 		}
 	}
 
-	if ((BankTrapEffect || (uarmf && uarmf->oartifact == ART_SONJA_S_TORN_SOUL) || (uleft && uleft->oartifact == ART_ARABELLA_S_RESIST_COLD) || (uright && uright->oartifact == ART_ARABELLA_S_RESIST_COLD) || (uamul && uamul->oartifact == ART_LOW_ZERO_NUMBER) || (uarmf && uarmf->oartifact == ART_NOW_YOU_LOOK_LIKE_A_BEGGAR) || (uamul && uamul->oartifact == ART_ARABELLA_S_PRECIOUS_GADGET) || u.uprops[BANKBUG].extrinsic || have_bankstone()) && u.ugold) {
+	if ((BankTrapEffect || (uarm && uarm->oartifact == ART_PLANTOPLIM) || (uarmf && uarmf->oartifact == ART_SONJA_S_TORN_SOUL) || (uleft && uleft->oartifact == ART_ARABELLA_S_RESIST_COLD) || (uright && uright->oartifact == ART_ARABELLA_S_RESIST_COLD) || (uamul && uamul->oartifact == ART_LOW_ZERO_NUMBER) || (uarmf && uarmf->oartifact == ART_NOW_YOU_LOOK_LIKE_A_BEGGAR) || (uamul && uamul->oartifact == ART_ARABELLA_S_PRECIOUS_GADGET) || u.uprops[BANKBUG].extrinsic || have_bankstone()) && u.ugold) {
 
 		if (!u.bankcashlimit) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1 + (long)mvitals[PM_ARABELLA_THE_MONEY_THIEF].born));
 

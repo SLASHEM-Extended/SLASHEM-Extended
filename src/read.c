@@ -822,6 +822,7 @@ doread()
 	"Don't you dare gender me. If you address me, use proper grammar. 'Gamer*in' is not proper grammar, it's bullshit and causes eye cancer!",
 	"Love doesn't have to be amnesia oil.",
 	"Talk to you never, stupid annual nethack 'variant tournament'. You do not exist.",
+	"Everyone who whines about 'offensive' content in SLEX can kiss my ass, and inhale my farting gas.",
 
 	    };
 	    char buf[BUFSZ];
@@ -1721,6 +1722,7 @@ int curse_bless;
 	    case WHITE_LIGHTSABER:
 	    case YELLOW_LIGHTSABER:
 	    case RED_LIGHTSABER:
+	    case RAINBOW_LIGHTSABER:
 	    case RED_DOUBLE_LIGHTSABER:
 	    case CYAN_DOUBLE_LIGHTSABER:
 	    case WHITE_DOUBLE_LIGHTSABER:

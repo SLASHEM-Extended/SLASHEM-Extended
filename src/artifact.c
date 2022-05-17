@@ -354,6 +354,8 @@ hack_artifacts()
 	artilist[ART_HUMAN_WIPEOUT].otyp = randartmeleeweaponX();
 	artilist[ART_SPLINTER_ARMAMENT].otyp = randartsuitX();
 	artilist[ART_HUNKSTERMAN].otyp = randartsuitX();
+	artilist[ART_PLANTOPLIM].otyp = randartsuitX();
+	artilist[ART_ELMHERE].otyp = randartsuitX();
 	artilist[ART_LU_NONNAME].otyp = randartsuitX();
 	artilist[ART_ALPHA_TAURI].otyp = randartsuitX();
 	artilist[ART_ABSOLUTE_MONSTER_MAIL].otyp = randartsuitX();
@@ -1199,7 +1201,7 @@ register boolean mod;
 			}
 		    }
 		    /* the age field is used both for lightsaber power and the invoke timer... ugh --Amy */
-		    if (a->inv_prop || otmp->oartifact == ART_LIGHTSABER_PROTOTYPE) otmp->age = 0;
+		    if (a->inv_prop || otmp->oartifact == ART_LIGHTSABER_PROTOTYPE || otmp->oartifact == ART_DEFINITE_LIGHTSABER) otmp->age = 0;
 		    if ((mod == FALSE) || rn2(100)) artiexist[m] = mod;
 		    break;
 		}

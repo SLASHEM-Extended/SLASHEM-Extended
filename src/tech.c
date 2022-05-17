@@ -9621,7 +9621,7 @@ extrachargechoice:
 				}
 
 				if (sabertype == 1) {
-					switch (rnd(9)) {
+					switch (rnd(10)) {
 						case 1: uwep->otyp = GREEN_LIGHTSABER; break;
 						case 2: uwep->otyp = BLUE_LIGHTSABER; break;
 						case 3: uwep->otyp = RED_LIGHTSABER; break;
@@ -9631,6 +9631,7 @@ extrachargechoice:
 						case 7: uwep->otyp = MYSTERY_LIGHTSABER; break;
 						case 8: uwep->otyp = ORANGE_LIGHTSABER; break;
 						case 9: uwep->otyp = BLACK_LIGHTSABER; break;
+						case 10: uwep->otyp = RAINBOW_LIGHTSABER; break;
 					}
 				} else if (sabertype == 2) {
 					uwep->otyp = !rn2(3) ? CYAN_DOUBLE_LIGHTSABER : rn2(2) ? RED_DOUBLE_LIGHTSABER : WHITE_DOUBLE_LIGHTSABER;
@@ -10368,6 +10369,7 @@ role_tech()
 		case PM_HEALER:		return (hea_tech);
 		case PM_ICE_MAGE:	return (ice_tech);
 		case PM_JEDI:		return (jed_tech);
+		case PM_HEDDERJEDI:		return (jed_tech);
 		case PM_KNIGHT:		return (kni_tech);
 		case PM_KORSAIR:		return (kor_tech);
 		case PM_SECRET_ADVICE_MEMBER:		return (sec_tech);

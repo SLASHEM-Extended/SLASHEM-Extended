@@ -1736,6 +1736,10 @@ struct you {
 	int kliuskill;
 	int aldebaranturns;
 	int aldebaranskill;
+	int polgoturns;
+	int polgoskill;
+	int firgaturns;
+	int firgaskill;
 
 	int nataliacyclestart;	/* for natalia trap: starts at rn2(2800) */
 	int nataliacycletimer;

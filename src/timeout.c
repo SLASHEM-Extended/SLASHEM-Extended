@@ -4576,6 +4576,7 @@ long timeout;
 	char whose[BUFSZ];
 	int lightsaberchance = 0;
 	int lightsaberchance2 = 0;
+	int lightsaberchance3 = 0;
 
 	menorah = obj->otyp == CANDELABRUM_OF_INVOCATION;
 	many = menorah ? obj->spe > 1 : obj->quan > 1L;
@@ -4604,6 +4605,7 @@ long timeout;
 
 		lightsaberchance = 0;
 		lightsaberchance2 = 0;
+		lightsaberchance3 = 0;
 		boolean willdrainenergy = TRUE;
 
 		if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER && rn2(3)) willdrainenergy = FALSE;
@@ -4635,7 +4637,15 @@ long timeout;
 				case P_SUPREME_MASTER: lightsaberchance2 = 8; break;
 			}
 		}
-		if (willdrainenergy && (rnd(10) > lightsaberchance) && (rnd(10) > lightsaberchance2)) obj->age -= how_long;
+		if (!PlayerCannotUseSkills && obj && (obj->otyp == RAINBOW_LIGHTSABER || (is_lightsaber(obj) && Role_if(PM_HEDDERJEDI)) || (is_lightsaber(obj) && uarm && uarm->oartifact == ART_PLANTOPLIM) ) ) {
+			if (u.polgoskill >= 20) lightsaberchance3++;
+			if (u.polgoskill >= 160) lightsaberchance3++;
+			if (u.polgoskill >= 540) lightsaberchance3++;
+			if (u.polgoskill >= 1280) lightsaberchance3++;
+			if (u.polgoskill >= 2500) lightsaberchance3++;
+			if (u.polgoskill >= 4320) lightsaberchance3++;
+		}
+		if (willdrainenergy && (rnd(10) > lightsaberchance) && (rnd(10) > lightsaberchance2) && (rnd(10) > lightsaberchance3)) obj->age -= how_long;
 
 		begin_burn(obj, TRUE);
 	    }
@@ -4911,6 +4921,7 @@ long timeout;
 	    case VIOLET_LIGHTSABER:
 	    case WHITE_LIGHTSABER:
 	    case YELLOW_LIGHTSABER:
+	    case RAINBOW_LIGHTSABER:
 	    case RED_LIGHTSABER:
 	    case LASER_SWATTER:
 	    case NANO_HAMMER:
@@ -5050,6 +5061,7 @@ begin_burn(obj, already_lit)
 	boolean do_timer = TRUE;
 	int lightsaberchance = 0;
 	int lightsaberchance2 = 0;
+	int lightsaberchance3 = 0;
 
 	if (obj->age == 0 && obj->otyp != MAGIC_LAMP &&
 		obj->otyp != MAGIC_CANDLE && !artifact_light(obj))
@@ -5065,6 +5077,7 @@ begin_burn(obj, already_lit)
 	    case LASER_POLE:
 		lightsaberchance = 0;
 		lightsaberchance2 = 0;
+		lightsaberchance3 = 0;
 		obj->altmode = TRUE;
 	    	if (obj->altmode && obj->age > 1) {
 
@@ -5095,12 +5108,20 @@ begin_burn(obj, already_lit)
 					case P_SUPREME_MASTER: lightsaberchance2 = 8; break;
 				}
 			}
-			if (willdrainenergy && (rnd(10) > lightsaberchance) && (rnd(10) > lightsaberchance2)) obj->age--; /* Double power usage */
+			if (!PlayerCannotUseSkills && obj && (obj->otyp == RAINBOW_LIGHTSABER || (is_lightsaber(obj) && Role_if(PM_HEDDERJEDI)) || (is_lightsaber(obj) && uarm && uarm->oartifact == ART_PLANTOPLIM) ) ) {
+				if (u.polgoskill >= 20) lightsaberchance3++;
+				if (u.polgoskill >= 160) lightsaberchance3++;
+				if (u.polgoskill >= 540) lightsaberchance3++;
+				if (u.polgoskill >= 1280) lightsaberchance3++;
+				if (u.polgoskill >= 2500) lightsaberchance3++;
+				if (u.polgoskill >= 4320) lightsaberchance3++;
+			}
+			if (willdrainenergy && (rnd(10) > lightsaberchance) && (rnd(10) > lightsaberchance2) && (rnd(10) > lightsaberchance3)) obj->age--; /* Double power usage */
 
 		}
 	    	turns = 1;
     	    	radius = 1;
-		if (obj->oartifact == ART_LIGHTSABER_PROTOTYPE){
+		if (obj->oartifact == ART_LIGHTSABER_PROTOTYPE || obj->oartifact == ART_DEFINITE_LIGHTSABER){
 			do_timer = FALSE;
 			obj->lamplit = 1;
 		}
@@ -5122,6 +5143,8 @@ begin_burn(obj, already_lit)
 		if (obj->otyp == LASER_TIN_OPENER && rn2(2)) willdrainenergy = FALSE;
 
 		lightsaberchance = 0;
+		lightsaberchance2 = 0;
+		lightsaberchance3 = 0;
 	    	if (obj->altmode && obj->age > 1) {
 			if (!PlayerCannotUseSkills && tech_inuse(T_ENERGY_CONSERVATION)) {
 				switch (P_SKILL(P_MAKASHI)) {
@@ -5143,7 +5166,15 @@ begin_burn(obj, already_lit)
 					case P_SUPREME_MASTER: lightsaberchance2 = 8; break;
 				}
 			}
-			if (willdrainenergy && (rnd(10) > lightsaberchance) && (rnd(10) > lightsaberchance2)) obj->age--; /* Double power usage */
+			if (!PlayerCannotUseSkills && obj && (obj->otyp == RAINBOW_LIGHTSABER || (is_lightsaber(obj) && Role_if(PM_HEDDERJEDI)) || (is_lightsaber(obj) && uarm && uarm->oartifact == ART_PLANTOPLIM) ) ) {
+				if (u.polgoskill >= 20) lightsaberchance3++;
+				if (u.polgoskill >= 160) lightsaberchance3++;
+				if (u.polgoskill >= 540) lightsaberchance3++;
+				if (u.polgoskill >= 1280) lightsaberchance3++;
+				if (u.polgoskill >= 2500) lightsaberchance3++;
+				if (u.polgoskill >= 4320) lightsaberchance3++;
+			}
+			if (willdrainenergy && (rnd(10) > lightsaberchance) && (rnd(10) > lightsaberchance2) && (rnd(10) > lightsaberchance3)) obj->age--; /* Double power usage */
 		}
 	    }
 	    case RED_LIGHTSABER:
@@ -5164,12 +5195,13 @@ begin_burn(obj, already_lit)
 	    case VIOLET_LIGHTSABER:
 	    case WHITE_LIGHTSABER:
 	    case YELLOW_LIGHTSABER:
+	    case RAINBOW_LIGHTSABER:
 	    case GREEN_LIGHTSABER:
 	    case ORANGE_LIGHTSABER:
 	    case BLACK_LIGHTSABER:
 	    	turns = 1;
     	    	radius = 1;
-		if (obj->oartifact == ART_LIGHTSABER_PROTOTYPE){
+		if (obj->oartifact == ART_LIGHTSABER_PROTOTYPE || obj->oartifact == ART_DEFINITE_LIGHTSABER){
 			do_timer = FALSE;
 			obj->lamplit = 1;
 		}
@@ -5240,7 +5272,8 @@ begin_burn(obj, already_lit)
 		obj->lamplit = 1;
 		if (obj->otyp == LASER_POLE) obj->altmode = 1;
 		lightsaberchance = 0;
-
+		lightsaberchance2 = 0;
+		lightsaberchance3 = 0;
 		boolean willdrainenergy = TRUE;
 
 		if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER && rn2(3)) willdrainenergy = FALSE;
@@ -5271,8 +5304,16 @@ begin_burn(obj, already_lit)
 				case P_SUPREME_MASTER: lightsaberchance2 = 8; break;
 			}
 		}
+		if (!PlayerCannotUseSkills && obj && (obj->otyp == RAINBOW_LIGHTSABER || (is_lightsaber(obj) && Role_if(PM_HEDDERJEDI)) || (is_lightsaber(obj) && uarm && uarm->oartifact == ART_PLANTOPLIM) ) ) {
+			if (u.polgoskill >= 20) lightsaberchance3++;
+			if (u.polgoskill >= 160) lightsaberchance3++;
+			if (u.polgoskill >= 540) lightsaberchance3++;
+			if (u.polgoskill >= 1280) lightsaberchance3++;
+			if (u.polgoskill >= 2500) lightsaberchance3++;
+			if (u.polgoskill >= 4320) lightsaberchance3++;
+		}
 
-		if (willdrainenergy && (rnd(10) > lightsaberchance) && (rnd(10) > lightsaberchance2)) obj->age -= turns;
+		if (willdrainenergy && (rnd(10) > lightsaberchance) && (rnd(10) > lightsaberchance2) && (rnd(10) > lightsaberchance3)) obj->age -= turns;
 		if (carried(obj) && !already_lit)
 		    update_inventory();
 	    } else {
@@ -5313,7 +5354,7 @@ end_burn(obj, timer_attached)
 	    return;
 	}
 
-	if (obj->otyp == MAGIC_LAMP || obj->otyp == MAGIC_CANDLE || obj->oartifact == ART_LIGHTSABER_PROTOTYPE || artifact_light(obj))
+	if (obj->otyp == MAGIC_LAMP || obj->otyp == MAGIC_CANDLE || obj->oartifact == ART_LIGHTSABER_PROTOTYPE || obj->oartifact == ART_DEFINITE_LIGHTSABER || artifact_light(obj))
 	    timer_attached = FALSE;
 
 	if (!timer_attached) {

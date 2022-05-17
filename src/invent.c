@@ -14304,6 +14304,8 @@ boolean knoweverything;
 				pline("A two-handed lightsaber that can be set to double mode in order to do even more damage. It needs to be turned on in order to work, and while activated it is also useful for engraving. It deals higher damage to large monsters compared to small ones, but less damage than other types of double lightsaber. If you have both blades active and perform an action that trains one of the lightsaber forms, this weapon is recharged by one point, but since double mode consumes two points of charge per turn you'll probably still have a net loss of charge."); break;
 			case YELLOW_LIGHTSABER:
 				pline("This lightsaber does randomized damage, but it needs to be turned on in order to work. An activated lightsaber is good for engraving."); break;
+			case RAINBOW_LIGHTSABER:
+				pline("A lightsaber with very randomized damage, which needs to be turned on in order to work. An activated lightsaber is good for engraving. Also, the higher your form XII (Polgo) skill is, the less energy this lightsaber will require, and it deals more damage if you're in a form without hands."); break;
 			case VIOLET_LIGHTSABER:
 				pline("This lightsaber does steady damage, but it needs to be turned on in order to work. An activated lightsaber is good for engraving."); break;
 			case WHITE_LIGHTSABER:
@@ -18968,6 +18970,8 @@ boolean knoweverything;
 					pline("Artifact specs: half spell damage and magic resistance while carried, lawful, yeoman quest artifact."); break;
 				case ART_LIGHTSABER_PROTOTYPE:
 					pline("Artifact specs: reflection when wielded, +5 to-hit and +10 damage, can be invoked for energy boost, lawful, jedi quest artifact."); break;
+				case ART_DEFINITE_LIGHTSABER:
+					pline("Artifact specs: reflection when wielded, +5 to-hit and +10 damage, can be invoked for energy boost, lawful, hedderjedi quest artifact."); break;
 				case ART_SILVER_SNIVER:
 					pline("Artifact specs: warning of demons when wielded."); break;
 				case ART_JESUS_MUST_DIE:
@@ -22276,6 +22280,16 @@ boolean knoweverything;
 					pline("Artifact specs: +4 to-hit and +12 damage to acid-susceptible monsters, half physical damage, warning and aggravate monster when wielded, can be invoked for dragon breath, lawful, singslave quest artifact."); break;
 				case ART_LILLY_S_SECRET_AGENCY:
 					pline("Artifact specs: can be invoked to exchange your documents with Rosa Lilly the Secret Agent."); break;
+				case ART_DIS_IS_E_PRISEM:
+					pline("Artifact specs: reflection while it's lit."); break;
+				case ART_CONSTANT_CHANGE:
+					pline("Artifact specs: changes its color and material every turn."); break;
+				case ART_SWITCH_TO_ANOTHER:
+					pline("Artifact specs: will occasionally change its form while you're wielding it."); break;
+				case ART_PLANTOPLIM:
+					pline("Artifact specs: causes the form XII (Polgo) skill to reduce the rate of energy usage for all lightsabers, occasionally forces you to wear a cursed implant and you can't remove implants at all even if they're not cursed, deactivates invisibility and displacement and causes the bank trap effect. This armor heavily autocurses when put on."); break;
+				case ART_ELMHERE:
+					pline("Artifact specs: allows the form XIII (Firga) skill to work even if you're not using a lightsaber, causes you to faint randomly, disables free action, gives you the elm street effect, and if you're paralyzed while wearing it, your AC is improved a bit."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

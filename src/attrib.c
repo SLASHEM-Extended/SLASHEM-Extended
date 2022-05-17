@@ -2287,6 +2287,7 @@ int oldlevel, newlevel;
 	case PM_ELEMENTALIST:	abil = emn_abil;	break;
 	case PM_ICE_MAGE:	abil = ice_abil;	break;
 	case PM_JEDI:		abil = jed_abil;	break;
+	case PM_HEDDERJEDI:		abil = jed_abil;	break;
 	case PM_KNIGHT:         abil = kni_abil;	break;
 	case PM_WARRIOR:         abil = war_abil;	break;
 	case PM_FORM_CHANGER:         abil = for_abil;	break;

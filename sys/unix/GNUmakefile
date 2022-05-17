@@ -213,7 +213,8 @@ QUEST_DES = Abuser.des Acid.des Act.des Altmer.des Amazon.des		\
  Mastermi.des Tosser.des Symbia.des Pract.des Millsw.des \
  Gender.des Fjorde.des Emera.des Combat.des Aklyst.des Drag.des \
  Carto.des Dancer.des Shoefe.des Secret.des Prever.des Diabl.des \
- Butt.des Halfba.des Noob.des Woman.des Climac.des Slave.des
+ Butt.des Halfba.des Noob.des Woman.des Climac.des Slave.des \
+ Hedder.des
 
 
 

@@ -3351,6 +3351,11 @@ Armor_on()
 		curse(uarm);
 		uarm->hvycurse = 1;
 	}
+	if (uarm && !(uarm->hvycurse) && uarm->oartifact == ART_PLANTOPLIM) {
+		pline("Your armor is surrounded by an evil black aura.");
+		curse(uarm);
+		uarm->hvycurse = 1;
+	}
 	if (uarm && !(uarm->hvycurse) && uarm->oartifact == ART_WRONG_TURN) {
 
 		int mntmp;
@@ -5770,6 +5775,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_MOEBIUS_ARMOR) uac -= 10;
 	if (bmwride(ART_PANZER_TANK)) uac -= 10;
 	if (FemtrapActivePatricia) uac -= 3;
+	if (uarm && uarm->oartifact == ART_ELMHERE && multi < 0) uac -= 5;
 
 	if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 		if ((!uarm || is_metallic(uarm)) && (!uarmc || is_metallic(uarmc)) && (!uarmu || is_metallic(uarmu)) && (!uarms || is_metallic(uarms)) && (!uarmg || is_metallic(uarmg)) && (!uarmf || is_metallic(uarmf)) && (!uarmh || is_metallic(uarmh)) ) {
@@ -6245,6 +6251,12 @@ register struct obj *otmp;
 
 	/* implant check */
 	if (otmp == uimplant) {
+
+		if (uarm && uarm->oartifact == ART_PLANTOPLIM) {
+			pline("It seems that the implant is stuck.");
+			return 0;
+		}
+
 		if (PlayerCannotUseSkills || P_SKILL(P_IMPLANTS) <= P_UNSKILLED) {
 			pline("Due to your lack of skill, you cannot remove implants at all. Train the skill first.");
 			return 0;

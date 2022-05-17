@@ -895,16 +895,16 @@ doforce()		/* try to force a chest with your weapon */
 			&& mtmp->m_ap_type != M_AP_OBJECT) {
 
 		if (mtmp->isshk || mtmp->data == &mons[PM_ORACLE])		
-		  if (Role_if(PM_JEDI))
+		  if (Role_if(PM_JEDI) || Role_if(PM_HEDDERJEDI))
 		    verbalize("Your puny Jedi tricks won't work on me!"); /* Return of the Jedi */
 		  else
 
 		    verbalize("What do you think you are, a Jedi?"); /* Phantom Menace */
 		else {
-			if (Role_if(PM_JEDI) ? (u.uen < 5) : Race_if(PM_BORG) ? (u.uen < 7) : (u.uen < 10) ) pline("I don't think %s would appreciate that. Besides, you need %d mana in order to use the force.", mon_nam(mtmp), Role_if(PM_JEDI) ? 5 : 10);
+			if (Role_if(PM_JEDI) ? (u.uen < 5) : Role_if(PM_HEDDERJEDI) ? (u.uen < 5) : Race_if(PM_BORG) ? (u.uen < 7) : (u.uen < 10) ) pline("I don't think %s would appreciate that. Besides, you need %d mana in order to use the force.", mon_nam(mtmp), Role_if(PM_JEDI) ? 5 : Role_if(PM_HEDDERJEDI) ? 5 : Race_if(PM_BORG) ? 7 : 10);
 			else {
 
-				if (!UseTheForce || rn2(StrongUseTheForce ? 3 : 10)) u.uen -= (Role_if(PM_JEDI) ? 5 : Race_if(PM_BORG) ? 7 : 10);
+				if (!UseTheForce || rn2(StrongUseTheForce ? 3 : 10)) u.uen -= (Role_if(PM_JEDI) ? 5 : Role_if(PM_HEDDERJEDI) ? 5 : Race_if(PM_BORG) ? 7 : 10);
 
 				int dmg;
 				int mdx, mdy;
@@ -914,8 +914,10 @@ doforce()		/* try to force a chest with your weapon */
 				if (tech_inuse(T_USE_THE_FORCE_LUKE)) dmg += techlevX(get_tech_no(T_USE_THE_FORCE_LUKE));
 				if (uarmg && uarmg->oartifact == ART_USE_THE_FORCE_LUKE) dmg += 10;
 				if (Role_if(PM_JEDI) && UseTheForce) dmg += u.ulevel;
+				else if (Role_if(PM_HEDDERJEDI) && UseTheForce) dmg += u.ulevel;
 				else if (Race_if(PM_BORG) && UseTheForce) dmg += rnd(u.ulevel);
 				if (Role_if(PM_JEDI) && StrongUseTheForce) dmg += u.ulevel;
+				else if (Role_if(PM_HEDDERJEDI) && StrongUseTheForce) dmg += u.ulevel;
 				else if (Race_if(PM_BORG) && StrongUseTheForce) dmg += rnd(u.ulevel);
 
 				if (Role_if(PM_EMERA) && (mtmp->data->msound == MS_SHOE || mtmp->data->msound == MS_PANTS || mtmp->data->msound == MS_SOCKS)) {
@@ -989,7 +991,7 @@ doforce()		/* try to force a chest with your weapon */
 #endif
 				}
 
-				if (mtmp->mhp > 0 && ( (UseTheForce && uwep && is_lightsaber(uwep) && uwep->lamplit && rn2(2) ) || (StrongUseTheForce && uwep && is_lightsaber(uwep) && uwep->lamplit && rn2(2) ) || (Role_if(PM_JEDI) ? (rnd(100) < (u.ulevel * 2) ) : (rnd(100) < u.ulevel) ) ) &&
+				if (mtmp->mhp > 0 && ( (UseTheForce && uwep && is_lightsaber(uwep) && uwep->lamplit && rn2(2) ) || (StrongUseTheForce && uwep && is_lightsaber(uwep) && uwep->lamplit && rn2(2) ) || ( (Role_if(PM_JEDI) || Role_if(PM_HEDDERJEDI)) ? (rnd(100) < (u.ulevel * 2) ) : (rnd(100) < u.ulevel) ) ) &&
 	    mtmp->mcanmove && mtmp != u.ustuck && !mtmp->mtrapped) {
 		/* see if the monster has a place to move into */
 				mdx = mtmp->mx + u.dx;
