@@ -2055,6 +2055,7 @@ boolean polearming;
 	register int	disttmp; /* distance modifier */
 	struct obj *launcher;
 	register struct obj *blocker = (struct obj *)0;
+	boolean doubleshot = FALSE;	/* are you dual-wielding and firing with the secondary weapon as well? */
 
 	int skillpierce; /* with high skill, you can hit monsters that would normally have dodged --Amy */
 
@@ -2093,6 +2094,8 @@ boolean polearming;
 		if (uarmf && itemhasappearance(uarmf, APP_PISTOL_BOOTS) ) launcher = uarmf;
 	}
 	else launcher = (struct obj *)0;
+
+	if (u.twoweap && uswapwep && launcher && (uswapwep == launcher)) doubleshot = TRUE;
 
 	boolean gunused = 0;
 	if (launcher && ammo_and_launcher(obj, launcher) && objects[launcher->otyp].oc_skill == P_FIREARM) gunused = 1;
@@ -2193,6 +2196,12 @@ boolean polearming;
 		if (uarmf && is_metallic(uarmf)) tmp -= rnd(3);
 	}
 
+	/* shooters that have innate to-hit penalty for the player go here; if you're dual-wielding two launchers
+	 * that use the same type of ammo, and the secondary one has such a penalty, it's supposed to be much higher
+	 * than if it was the primary launcher, for balance purposes, since otherwise dual-wielding assault rifles
+	 * would be far better in every way than a heavy MG! --Amy */
+
+inaccurateguns:
 	if (launcher && launcher->otyp == HYDRA_BOW) tmp -= rnd(8);
 	if (launcher && launcher->otyp == WILDHILD_BOW && !Role_if(PM_HUSSY)) tmp -= rnd(10);
 	if (launcher && launcher->otyp == CATAPULT) {
@@ -2227,6 +2236,11 @@ boolean polearming;
 	if (launcher && launcher->oartifact == ART_FN_M____PARA) tmp -= rnd(15);
 	if (launcher && launcher->oartifact == ART_CITYKILLER_COMBAT_SHOTGUN) tmp -= rnd(10);
 	if (launcher && launcher->oartifact == ART_COLONEL_BASTARD_S_LASER_PI) tmp -= rnd(5);
+
+	if (doubleshot) {
+		if (!rn2(2)) doubleshot = FALSE;
+		goto inaccurateguns;
+	}
 
 	if (Race_if(PM_SWIKNI)) {
 		if (obj) {
