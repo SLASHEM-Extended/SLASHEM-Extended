@@ -11363,6 +11363,9 @@ loveheelover:
 		if (ptr == &mons[PM_SPRAYGANGER]) {
 			(void) mongets(mtmp, SPRAY_BOX);
 		}
+		if (ptr == &mons[PM_CIGARETTE_BEAR]) {
+			(void) mongets(mtmp, CIGARETTE);
+		}
 		if (ptr == &mons[PM_OGF_MOBSTER]) {
 			(void) mongets(mtmp, SPRAY_BOX);
 		}
@@ -19292,6 +19295,12 @@ loveheelover:
 	}
 
 	if (ptr == &mons[PM_PRINCESS_CATHLETTE]) {
+
+		mtmp->fartbonus += 9;
+
+	}
+
+	if (ptr == &mons[PM_DUDE_WHO_CAN_FART_REALLY_WELL]) {
 
 		mtmp->fartbonus += 9;
 
