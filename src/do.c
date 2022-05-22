@@ -1484,9 +1484,9 @@ int retry;
 	for (i = 0; i < n; i++) {
 	    if (pick_list[i].item.a_int == ALL_TYPES_SELECTED)
 		all_categories = TRUE;
-	    else if (pick_list[i].item.a_int == 'A')
-		drop_everything = TRUE;
-	    else
+	    else if (pick_list[i].item.a_int == 'A') {
+		if (yn("You decided to autoselect everything, please confirm with y if that's what you really wanted") == 'y') drop_everything = TRUE;
+	    } else
 		add_valid_menu_class(pick_list[i].item.a_int);
 	}
 	free((void *) pick_list);

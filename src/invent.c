@@ -7330,7 +7330,7 @@ unsigned *resultflags;
 		flags.botl = 1;
 #endif
 	    } else if (sym == 'a') {
-		allflag = TRUE;
+		if (yn("You decided to autoselect everything, please confirm with y if that's what you really wanted") == 'y') allflag = TRUE;
 	    } else if (sym == 'A') {
 		/* same as the default */ ;
 	    } else if (sym == 'u') {
@@ -7460,7 +7460,7 @@ nextclass:
 		}
 		switch(sym){
 		case 'a':
-			allflag = 1;
+			if (yn("You decided to autoselect everything, please confirm with y if that's what you really wanted") == 'y') allflag = 1;
 		case 'y':
 			tmp = (*fn)(otmp);
 			if(tmp < 0) {

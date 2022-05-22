@@ -225,8 +225,9 @@ ask_again:
 		    /* new A function (selective all) added by GAN 01/09/87 */
 		    if (sym == ' ') continue;
 		    else if (sym == 'A') *one_at_a_time = TRUE;
-		    else if (sym == 'a') *everything = TRUE;
-		    else if (sym == ':') {
+		    else if (sym == 'a') {
+			if (yn("You decided to autoselect everything, please confirm with y if that's what you really wanted") == 'y') *everything = TRUE;
+		    } else if (sym == ':') {
 			simple_look(objs, here);  /* dumb if objs==invent */
 			goto ask_again;
 		    } else if (sym == 'i') {
@@ -3042,9 +3043,9 @@ boolean put_in;
 			   mflags, &pick_list, PICK_ANY);
 	if (!n) return 0;
 	for (i = 0; i < n; i++) {
-	    if (pick_list[i].item.a_int == 'A')
-		loot_everything = TRUE;
-	    else if (pick_list[i].item.a_int == ALL_TYPES_SELECTED)
+	    if (pick_list[i].item.a_int == 'A') {
+		if (yn("You decided to autoselect everything, please confirm with y if that's what you really wanted") == 'y') loot_everything = TRUE;
+	    } else if (pick_list[i].item.a_int == ALL_TYPES_SELECTED)
 		all_categories = TRUE;
 	    else
 		add_valid_menu_class(pick_list[i].item.a_int);
