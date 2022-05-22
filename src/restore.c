@@ -1066,7 +1066,11 @@ boolean ghostly;
 		 * is dangerous, because the tree fruit seeding is called during saving, but also doorlock stuff in lock.c
 		 * and various other functions. Too bad we can't just defer it until you return to the level in question! */
 		u.dungeongrowthhack = TRUE;
-		catchup_dgn_growths((monstermoves - omoves) / 5);
+		/* catchup_dgn_growths((monstermoves - omoves) / 5); */
+		/* Amy edit: disabled - it's stupid if that shit happens on all of the 200 levels that you're not on,
+		 * because monsters don't spawn on inactive levels either and so it makes more sense that stuff only
+		 * happens while you're really there. Yes, I know, pets on other levels go wild and corpses rot etc.,
+		 * but it's really stupid if walls grow super fast just because you saved while the nastytrap was active */
 		u.dungeongrowthhack = FALSE;
 
 	}
