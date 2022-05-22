@@ -2047,6 +2047,8 @@ struct monst *mon;
 {
     int mmove = mon->data->mmove;
 
+	if (FemtrapActiveKsenia && spawnswithsandals(mon->data) && (mmove < 12)) mmove = 12;
+
 	if (mon->data == &mons[PM_HUSSY_JILL] || mon->data == &mons[PM_VELCRO_BITCH] ) {
 	/* Hussy Jill is a dangerous quest nemesis. As long as you don't hurt her, she'll just stand in place...
 	 * but as soon as she loses as much as a single hit point, she'll completely 0wn your sorry butt :P --Amy */
@@ -2130,6 +2132,8 @@ mcalcdistress()
 	    if (vision_full_recalc) vision_recalc(0);
 	    if (minliquid(mtmp)) continue;
 	}
+
+	if (FemtrapActiveInge && mtmp->data->msound == MS_FART_QUIET && mtmp->fartbonus < 9) mtmp->fartbonus = 9;
 
 	/* regenerate hit points */
 	mon_regen(mtmp, FALSE);
@@ -3605,6 +3609,16 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != FEMMY_TRAP
 				&& ttmp->ttyp != MADELEINE_TRAP
 				&& ttmp->ttyp != MARLENA_TRAP
+				&& ttmp->ttyp != KSENIA_TRAP
+				&& ttmp->ttyp != LYDIA_TRAP
+				&& ttmp->ttyp != CONNY_TRAP
+				&& ttmp->ttyp != KATIA_TRAP
+				&& ttmp->ttyp != MARIYA_TRAP
+				&& ttmp->ttyp != ELISE_TRAP
+				&& ttmp->ttyp != RONJA_TRAP
+				&& ttmp->ttyp != ARIANE_TRAP
+				&& ttmp->ttyp != JOHANNA_TRAP
+				&& ttmp->ttyp != INGE_TRAP
 				&& ttmp->ttyp != ROSA_TRAP
 				&& ttmp->ttyp != JANINA_TRAP
 				&& ttmp->ttyp != KRISTIN_TRAP
@@ -7982,6 +7996,11 @@ sarahdone:
 			badeffect();
 			badeffect();
 			losehp(rnd(u.ulevel * 3), "suffocating on farting gas", KILLED_BY);
+		}
+		if (uarmf && uarmf->oartifact == ART_EXHAUST_DAMAGE) {
+			u.tremblingamount++;
+			drain_alla(1);
+			pline("Boah, the farting gas keeps stinking even after %s stopped!", mon_nam(mtmp));
 		}
 
 		if (!rn2(20)) increasesanity(1);

@@ -964,7 +964,7 @@ register struct monst *mtmp;
 
 		if (ptr == &mons[PM_HABIBA]) (void)mongets(mtmp, WAN_CREATE_HORDE);
 		if (ptr == &mons[PM_HANIFE]) (void)mongets(mtmp, DIAMOND_SMASHER);
-		if (ptr == &mons[PM_OPERATION]) (void)mongets(mtmp, FEMININE_PUMPS);
+		if (ptr == &mons[PM_OPERATION]) (void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if (ptr == &mons[PM_SUNBEAM]) (void)mongets(mtmp, WAN_SOLAR_BEAM);
 		if (ptr == &mons[PM_CLUB_RACQUET]) (void)mongets(mtmp, MACE);
 		if (ptr == &mons[PM_BLOOD_IMPACTER]) (void)mongets(mtmp, FLAIL);
@@ -4646,7 +4646,7 @@ register struct monst *mtmp;
 		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
 		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-		     (void)mongets(mtmp, FEMININE_PUMPS);
+		     (void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		     (void)mongets(mtmp, SEXY_LEATHER_PUMP);
 
 		   break;
@@ -5258,7 +5258,7 @@ register struct monst *mtmp;
 		} else if (mm == PM_KATRIN){
 
 			(void)mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
-			(void)mongets(mtmp, FEMININE_PUMPS);
+			(void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 		} else if (mm == PM_JANA){
 
@@ -5458,7 +5458,7 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_REDGUARD_LADY){
 			(void)mongets(mtmp, SEXY_LEATHER_PUMP);
-			(void)mongets(mtmp, FEMININE_PUMPS);
+			(void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 			(void)mongets(mtmp, AMULET_OF_LIFE_SAVING);
 
 		} else if (mm == PM_ODOROUS_GIRL){
@@ -5472,7 +5472,7 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_ODOROUS_LADY){
 			(void)mongets(mtmp, SEXY_LEATHER_PUMP);
-			(void)mongets(mtmp, FEMININE_PUMPS);
+			(void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 			(void)mongets(mtmp, AMULET_OF_LIFE_SAVING);
 
 		} else if (mm == PM_THIEVING_GIRL){
@@ -5629,7 +5629,7 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, KNIFE);
 			(void)mongets(mtmp, PISTOL);
 		  	m_initthrow(mtmp, BULLET, 50);
-			(void)mongets(mtmp, FEMININE_PUMPS);
+			(void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 			(void)mongets(mtmp, VICTORIAN_UNDERWEAR);
 
 		} else if (mm == PM_STUDENT_ASSISTANT){
@@ -5789,7 +5789,7 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_VIETNAMESE_WOMAN){
 			(void)mongets(mtmp, SEXY_LEATHER_PUMP);
-			(void)mongets(mtmp, FEMININE_PUMPS);
+			(void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 		} else if (mm == PM_TURKISH_WOMAN){
 			(void)mongets(mtmp, SPIKED_BATTLE_BOOT);
@@ -5801,7 +5801,7 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_WUHANESE_WOMAN){
 			(void)mongets(mtmp, WOODEN_GETA); /* M4_HAMMERSANDAL */
-			(void)mongets(mtmp, FEMININE_PUMPS);
+			(void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 		} else if (mm == PM_PRETTY_ASIAN_WOMAN){
 			(void)mongets(mtmp, HUGGING_BOOT);
@@ -5840,7 +5840,7 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_PERSIAN_LADY){
 			(void)mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
-			(void)mongets(mtmp, FEMININE_PUMPS);
+			(void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 		} else if (mm == PM_WUHANESE_LADY){
 			(void)mongets(mtmp, STEEL_CAPPED_SANDAL); /* M4_HAMMERSANDAL */
@@ -5860,11 +5860,11 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_YOUNG_WOMAN){
 			(void)mongets(mtmp, HIGH_HEELED_SANDAL); /* M4_HAMMERSANDAL */
-			(void)mongets(mtmp, FEMININE_PUMPS);
+			(void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 		} else if (mm == PM_BUNDLE_SOFT_LOVEWOMAN){
 			(void)mongets(mtmp, HIGH_HEELED_SANDAL); /* M4_HAMMERSANDAL */
-			(void)mongets(mtmp, FEMININE_PUMPS);
+			(void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 		} else if (mm == PM_YOUNG_MAN){
 			(void)mongets(mtmp, HIGH_HEELED_SANDAL); /* M4_HAMMERSANDAL */
@@ -5872,7 +5872,7 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_FARTING_WOMAN){
 			(void)mongets(mtmp, HIGH_HEELED_SANDAL); /* M4_HAMMERSANDAL */
-			(void)mongets(mtmp, FEMININE_PUMPS);
+			(void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 		} else if (mm == PM_FARTING_MAN){
 			(void)mongets(mtmp, HIGH_HEELED_SANDAL); /* M4_HAMMERSANDAL */
@@ -5880,7 +5880,7 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_ADULT_LADY){
 			(void)mongets(mtmp, SEXY_LEATHER_PUMP);
-			(void)mongets(mtmp, FEMININE_PUMPS);
+			(void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 		} else if (mm == PM_ADULT_GENTLEMAN){
 			(void)mongets(mtmp, SPIKED_BATTLE_BOOT);
@@ -5888,7 +5888,7 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_LESBIAN_WOMAN){
 			(void)mongets(mtmp, SEXY_LEATHER_PUMP);
-			(void)mongets(mtmp, FEMININE_PUMPS);
+			(void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 		} else if (mm == PM_GAY_MAN){
 			(void)mongets(mtmp, SPIKED_BATTLE_BOOT);
@@ -5896,7 +5896,7 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_LESBIAN_BEAUTY){
 			(void)mongets(mtmp, HIGH_HEELED_SANDAL); /* M4_HAMMERSANDAL */
-			(void)mongets(mtmp, FEMININE_PUMPS);
+			(void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 		} else if (mm == PM_GAY_MATE){
 			(void)mongets(mtmp, STEEL_CAPPED_SANDAL); /* M4_HAMMERSANDAL */
@@ -5904,7 +5904,7 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_OLD_GRANNY){
 			(void)mongets(mtmp, SEXY_LEATHER_PUMP);
-			(void)mongets(mtmp, FEMININE_PUMPS);
+			(void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 		} else if (mm == PM_OLD_GRANDPA){
 			(void)mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL); /* M4_HAMMERSANDAL */
@@ -5912,17 +5912,17 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_FARTING_QUEEN){
 			(void)mongets(mtmp, SEXY_LEATHER_PUMP);
-			(void)mongets(mtmp, FEMININE_PUMPS);
+			(void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 		} else if (mm == PM_FARTING_KING){
 			(void)mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL); /* M4_HAMMERSANDAL */
 			(void)mongets(mtmp, COMBAT_STILETTOS);
 
 		} else if (mm == PM_CHARMING_SCRATCHER){
-			(void)mongets(mtmp, FEMININE_PUMPS);
+			(void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 		} else if (mm == PM_NICE_OLD_LADY){
-			(void)mongets(mtmp, FEMININE_PUMPS);
+			(void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 		} else if (mm == PM_KUNG_FU_GIRL){
 			(void)mongets(mtmp, WEDGE_SANDALS); /* M4_SANDALS */
@@ -6133,10 +6133,10 @@ register struct monst *mtmp;
 		{
 			if (mm == PM_ANIMATED_WEDGE_SANDAL) (void)mongets(mtmp, WEDGE_SANDALS); /* M4_SANDALS */
 			else if (mm == PM_ANIMATED_SYNTHETIC_SANDAL) (void)mongets(mtmp, SYNTHETIC_SANDALS);
-			else if (mm == PM_ANIMATED_SEXY_LEATHER_PUMP) (void)mongets(mtmp, FEMININE_PUMPS);
+			else if (mm == PM_ANIMATED_SEXY_LEATHER_PUMP) (void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 			else if (mm == PM_ANIMATED_UNFAIR_STILETTO) (void)mongets(mtmp, UNFAIR_STILETTOS);
 			else if (mm == PM_ANIMATED_SKY_HIGH_HEEL) (void)mongets(mtmp, SKY_HIGH_HEELS);
-			else if (mm == PM_ANIMATED_BEAUTIFUL_FUNNEL_HEELED_PUMP) (void)mongets(mtmp, FEMININE_PUMPS);
+			else if (mm == PM_ANIMATED_BEAUTIFUL_FUNNEL_HEELED_PUMP) (void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 			else if (mm == PM_ANIMATED_LEATHER_PEEP_TOE) (void)mongets(mtmp, LEATHER_PEEP_TOES);
 			else if (mm == PM_ANIMATED_COMBAT_STILETTO) (void)mongets(mtmp, COMBAT_STILETTOS);
 			else if (mm == PM_ANIMATED_ATSUZOKO_BOOT) (void)mongets(mtmp, ATSUZOKO_BOOTS);
@@ -6146,10 +6146,10 @@ register struct monst *mtmp;
 			else if (mm == PM_ANIMATED_ROLLER_BLADE) (void)mongets(mtmp, ROLLER_BLADE);
 			else if (mm == PM_ANIMATED_PROSTITUTE_SHOE) (void)mongets(mtmp, HIPPIE_HEELS); /* M4_BLOCKHEELBOOTS */
 			else if (mm == PM_WEREPROSTITUTESHOE) (void)mongets(mtmp, HIPPIE_HEELS);
-			else if (mm == PM_WERESEXYLEATHERPUMP) (void)mongets(mtmp, FEMININE_PUMPS);
+			else if (mm == PM_WERESEXYLEATHERPUMP) (void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 			else if (mm == PM_WEREWEDGESANDAL) (void)mongets(mtmp, WEDGE_SANDALS);
 			else if (mm == PM_WEREUNFAIRSTILETTO) (void)mongets(mtmp, UNFAIR_STILETTOS);
-			else if (mm == PM_WEREBEAUTIFULFUNNELHEELEDPUMP) (void)mongets(mtmp, FEMININE_PUMPS);
+			else if (mm == PM_WEREBEAUTIFULFUNNELHEELEDPUMP) (void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 			else if (mm == PM_WEREPEEPTOE) (void)mongets(mtmp, LEATHER_PEEP_TOES);
 			else if (mm == PM_WERECOMBATSTILETTO) (void)mongets(mtmp, COMBAT_STILETTOS);
 			else if (mm == PM_WERESTILETTOSANDAL) (void)mongets(mtmp, HIGH_STILETTOS);
@@ -7283,7 +7283,7 @@ register struct monst *mtmp;
 
 		if(ptr == &mons[PM_YVONNE_S_VELVET_PUMP]) {
 			(void) mongets(mtmp, SEXY_LEATHER_PUMP);
-			(void) mongets(mtmp, FEMININE_PUMPS);
+			(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		}
 
 		if(ptr == &mons[PM_ANNOYING_TROLL]) (void) mongets(mtmp, RANSEUR);
@@ -7506,10 +7506,10 @@ register struct	monst	*mtmp;
 	    case S_HUMAN:
 
 		if (monsndx(ptr) == PM_HUMAN_WEREPROSTITUTESHOE) (void)mongets(mtmp, HIPPIE_HEELS);
-		if (monsndx(ptr) == PM_HUMAN_WERESEXYLEATHERPUMP) (void)mongets(mtmp, FEMININE_PUMPS);
+		if (monsndx(ptr) == PM_HUMAN_WERESEXYLEATHERPUMP) (void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if (monsndx(ptr) == PM_HUMAN_WEREWEDGESANDAL) (void)mongets(mtmp, WEDGE_SANDALS);
 		if (monsndx(ptr) == PM_HUMAN_WEREUNFAIRSTILETTO) (void)mongets(mtmp, UNFAIR_STILETTOS);
-		if (monsndx(ptr) == PM_HUMAN_WEREBEAUTIFULFUNNELHEELEDPUMP) (void)mongets(mtmp, FEMININE_PUMPS);
+		if (monsndx(ptr) == PM_HUMAN_WEREBEAUTIFULFUNNELHEELEDPUMP) (void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if (monsndx(ptr) == PM_HUMAN_WEREPEEPTOE) (void)mongets(mtmp, LEATHER_PEEP_TOES);
 		if (monsndx(ptr) == PM_HUMAN_WERECOMBATSTILETTO) (void)mongets(mtmp, COMBAT_STILETTOS);
 		if (monsndx(ptr) == PM_HUMAN_WERESTILETTOSANDAL) (void)mongets(mtmp, HIGH_STILETTOS);
@@ -7550,9 +7550,9 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_MASK_MAN]) (void) mongets(mtmp, find_corona_mask());
 		if (ptr == &mons[PM_REGULAR_JEDI]) (void) mongets(mtmp, BEAMSWORD);
 		if (ptr == &mons[PM_LIGHTSABER_ART_JEDI]) (void) mongets(mtmp, BEAMSWORD);
-		if (ptr == &mons[PM_PUMPS_GIRL]) (void) mongets(mtmp, FEMININE_PUMPS);
-		if (ptr == &mons[PM_PUMPS_WOMAN]) (void) mongets(mtmp, FEMININE_PUMPS);
-		if (ptr == &mons[PM_PUMPS_LADY]) (void) mongets(mtmp, FEMININE_PUMPS);
+		if (ptr == &mons[PM_PUMPS_GIRL]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
+		if (ptr == &mons[PM_PUMPS_WOMAN]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
+		if (ptr == &mons[PM_PUMPS_LADY]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if (ptr == &mons[PM_RED_BLOODED_HARLOT]) (void) mongets(mtmp, HIPPIE_HEELS); /* M4_BLOCKHEELBOOTS */
 		if (ptr == &mons[PM_TELEPHONE_CELL_PROSTITUTE]) (void) mongets(mtmp, HIPPIE_HEELS); /* M4_BLOCKHEELBOOTS */
 		if (ptr == &mons[PM_STREETLINE_PROSTITUTE]) (void) mongets(mtmp, HIPPIE_HEELS); /* M4_BLOCKHEELBOOTS */
@@ -7692,7 +7692,7 @@ register struct	monst	*mtmp;
 		}
 		if(ptr == &mons[PM_GLAMOROUS_FEMINIST]) {
 			(void) mongets(mtmp, SLING);
-			(void) mongets(mtmp, FEMININE_PUMPS);
+			(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 			(void) mongets(mtmp, rnd_class(ELIF_S_JEWEL,DORA_S_JEWEL));
 			(void) mongets(mtmp, rnd_class(ELIF_S_JEWEL,DORA_S_JEWEL));
 			(void) mongets(mtmp, rnd_class(ELIF_S_JEWEL,DORA_S_JEWEL));
@@ -7751,7 +7751,7 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, CHROME_HORN);
 		}
 		if (ptr == &mons[PM_STINKING_KURWA]) {
-			(void) mongets(mtmp, FEMININE_PUMPS);
+			(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 			(void) mongets(mtmp, DARK_HORN);
 			(void) mongets(mtmp, CHROME_HORN);
 		}
@@ -8035,7 +8035,7 @@ register struct	monst	*mtmp;
 		}
 		if (ptr == &mons[PM_ASIAN_SECRETARY]) {
 			(void) mongets(mtmp, SEXY_LEATHER_PUMP);
-			(void) mongets(mtmp, FEMININE_PUMPS);
+			(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 			(void) mongets(mtmp, VICTORIAN_UNDERWEAR);
 			(void) mongets(mtmp, PISTOL);
 			 m_initthrow(mtmp, LEAD_BULLET, 50);
@@ -8147,7 +8147,7 @@ register struct	monst	*mtmp;
 		}
 		if (monsndx(ptr) == PM_YENDORIAN_WOMAN) {
 			(void)mongets(mtmp, STEEL_CAPPED_SANDAL); /* M4_HAMMERSANDAL */
-			(void)mongets(mtmp, FEMININE_PUMPS);
+			(void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		}
 		if (monsndx(ptr) == PM_YENDORIAN_LADY) {
 			(void)mongets(mtmp, SEXY_LEATHER_PUMP);
@@ -8169,7 +8169,7 @@ register struct	monst	*mtmp;
 		if (monsndx(ptr) == PM_YENDORIAN_PERFUME_MODEL) {
 			(void)mongets(mtmp, SOFT_LADY_SHOE);
 			(void)mongets(mtmp, VICTORIAN_UNDERWEAR);
-			(void)mongets(mtmp, FEMININE_PUMPS);
+			(void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		}
 		if (monsndx(ptr) == PM_HC_FEMINIST) {
 			(void)mongets(mtmp, HIGH_HEELED_SANDAL); /* M4_HAMMERSANDAL */
@@ -8498,7 +8498,7 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_GENERAL_ZAROFF]) (void) mongets(mtmp, WAN_TRAP_CREATION);
 		if (ptr == &mons[PM_JACK_THE_RIPPER]) (void) mongets(mtmp, WAN_TRAP_CREATION);
 		if (ptr == &mons[PM_GENERAL_HEATHERSTONE]) (void) mongets(mtmp, WAN_TRAP_CREATION);
-		if (ptr == &mons[PM_SERBIAN_THIEF]) (void) mongets(mtmp, FEMININE_PUMPS);
+		if (ptr == &mons[PM_SERBIAN_THIEF]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if (ptr == &mons[PM_RUSSIAN_THIEF]) (void) mongets(mtmp, SWEET_MOCASSINS);
 		if (ptr == &mons[PM_STUPID_THIEVING_GIRL]) (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
 		if (ptr == &mons[PM_TURKISH_BANDIT]) (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
@@ -9204,7 +9204,7 @@ loveheelover:
 			 (void) mongets(mtmp, BOW);
 			 m_initthrow(mtmp, ARROW, 25);
 		}
-		if (mtmp->data == &mons[PM_MISS_ENTREPRENEURIAL]) (void) mongets(mtmp, FEMININE_PUMPS);
+		if (mtmp->data == &mons[PM_MISS_ENTREPRENEURIAL]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if (mtmp->data == &mons[PM_ELOJAGUAR_WARRIOR]) (void) mongets(mtmp, LONG_SWORD);
 		if (mtmp->data == &mons[PM_ALIEN_IN_BRIDAL_DRESS]) (void) mongets(mtmp, GENTLEWOMAN_S_DRESS);
 		if (mtmp->data == &mons[PM_NIGHT_HIDER]) (void) mongets(mtmp, LOWER_ARM_BLADE);
@@ -9338,7 +9338,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_ENTERTAINER_IMP]) (void) mongets(mtmp, JARED_STONE);
 		if (mtmp->data == &mons[PM_SHARP_SANDMAN]) (void) mongets(mtmp, QATAR);
 		if (mtmp->data == &mons[PM_WRIST_TENGU]) (void) mongets(mtmp, LOWER_ARM_BLADE);
-		if (mtmp->data == &mons[PM_EASTERN_FEMMY]) (void) mongets(mtmp, FEMININE_PUMPS);
+		if (mtmp->data == &mons[PM_EASTERN_FEMMY]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if (mtmp->data == &mons[PM_UNLUCKY_GIRL]) (void) mongets(mtmp, DOGSHIT_BOOT);
 
 		if (ptr == &mons[PM_ARENA_IMP]) {
@@ -9420,8 +9420,8 @@ loveheelover:
 		if (mtmp->data == &mons[PM_LARISSA_S_GIRL_BOOT]) (void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
 		if (mtmp->data == &mons[PM_SANDRA_S_HIGH_HEELED_COMBAT_BOOT]) { (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT); (void) mongets(mtmp, COMBAT_STILETTOS); (void) mongets(mtmp, SCR_TRAP_CREATION); }
 		if (mtmp->data == &mons[PM_ANJA_S_EROTIC_BOOT]) { (void) mongets(mtmp, SPIKED_BATTLE_BOOT); (void) mongets(mtmp, COMBAT_STILETTOS); }
-		if (mtmp->data == &mons[PM_NADJA_S_EROTIC_LADY_SHOE]) { (void) mongets(mtmp, LACQUERED_DANCING_SHOE); (void) mongets(mtmp, FEMININE_PUMPS); (void) mongets(mtmp, SCR_TRAP_CREATION); }
-		if (mtmp->data == &mons[PM_KLARA_S_SEXY_NURSE_PUMP]) { (void) mongets(mtmp, FEMININE_PUMPS); (void) mongets(mtmp, SEXY_LEATHER_PUMP); }
+		if (mtmp->data == &mons[PM_NADJA_S_EROTIC_LADY_SHOE]) { (void) mongets(mtmp, LACQUERED_DANCING_SHOE); (void) mongets(mtmp, FEMININE_PUMPS); (void) mongets(mtmp, SCR_TRAP_CREATION); } /* M4_PUMPS */
+		if (mtmp->data == &mons[PM_KLARA_S_SEXY_NURSE_PUMP]) { (void) mongets(mtmp, FEMININE_PUMPS); (void) mongets(mtmp, SEXY_LEATHER_PUMP); } /* M4_PUMPS */
 
 		break;
 
@@ -9510,7 +9510,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_EXTRA_DONALD]) (void) mongets(mtmp, AMULET_OF_LIFE_SAVING);
 		if (mtmp->data == &mons[PM_KARIN_S_FLAT_SANDAL]) (void) mongets(mtmp, WEDGE_SANDALS); /* M4_SANDALS */
 		if (mtmp->data == &mons[PM_JASIEEN_S_WEDGE_SANDAL]) { (void) mongets(mtmp, WEDGE_SANDALS); (void) mongets(mtmp, SCR_TRAP_CREATION); (void) mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL); } /* M4_HAMMERSANDAL|M4_SANDALS */
-		if (mtmp->data == &mons[PM_RITA_S_SWEET_STILETTO]) { (void) mongets(mtmp, FEMININE_PUMPS); (void) mongets(mtmp, SEXY_LEATHER_PUMP); }
+		if (mtmp->data == &mons[PM_RITA_S_SWEET_STILETTO]) { (void) mongets(mtmp, FEMININE_PUMPS); (void) mongets(mtmp, SEXY_LEATHER_PUMP); } /* M4_PUMPS */
 		if (mtmp->data == &mons[PM_PATRICIA_S_STEEL_CAPPED_SANDAL]) { (void) mongets(mtmp, STEEL_CAPPED_SANDAL); } /* M4_HAMMERSANDAL */
 		if (mtmp->data == &mons[PM_KERSTIN_S_LOVELY_SNEAKER]) { (void) mongets(mtmp, SOFT_SNEAKERS); (void) mongets(mtmp, SOFT_GIRL_SNEAKER); } /* M4_SNEAKERS */
 		if (mtmp->data == &mons[PM_MELTEM_S_COMBAT_BOOT]) { (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT); (void) mongets(mtmp, HIPPIE_HEELS); } /* M4_BLOCKHEELBOOTS */
@@ -9609,7 +9609,7 @@ loveheelover:
 		if (ptr == &mons[PM_BOOMR]) m_initthrow(mtmp, BOOMERANG, 1);
 
 		if (mtmp->data == &mons[PM_PINK_FEMMY]) {
-			(void) mongets(mtmp, FEMININE_PUMPS);
+			(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		}
 
 		if (mtmp->data == &mons[PM_POISON_ARROW_FROG]) {
@@ -9657,7 +9657,7 @@ loveheelover:
 			 m_initthrow(mtmp, SALT_CHUNK, 35);
 		}
 
-		if (mtmp->data == &mons[PM_SWEET_FEMMY]) (void) mongets(mtmp, FEMININE_PUMPS);
+		if (mtmp->data == &mons[PM_SWEET_FEMMY]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if (mtmp->data == &mons[PM_LEAD_TROLL]) (void) mongets(mtmp, LEAD_FILLED_MACE);
 		if (mtmp->data == &mons[PM_YOU_TROLL]) (void) mongets(mtmp, SCR_BAD_EQUIPMENT);
 		if (mtmp->data == &mons[PM_OFFSEEN_TROLL]) (void) mongets(mtmp, WAN_BAD_EQUIPMENT);
@@ -10099,7 +10099,7 @@ loveheelover:
 			 m_initthrow(mtmp, SLING_AMMO, 25);
 		}
 
-		if (mtmp->data == &mons[PM_TRACY]) (void) mongets(mtmp, FEMININE_PUMPS);
+		if (mtmp->data == &mons[PM_TRACY]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if (mtmp->data == &mons[PM_PILE_OF_BRAT_COINS]) (void) mongets(mtmp, UNICORN_HORN);
 
 		if (mtmp->data == &mons[PM_RAZERS]) {
@@ -10231,7 +10231,7 @@ loveheelover:
 			(void) mongets(mtmp, GAUNTLETS);
 			 m_initthrow(mtmp, SILVER_SLINGSTONE, 30);
 		}
-		if(mtmp->data == &mons[PM_SKI_FEMMY]) (void) mongets(mtmp, FEMININE_PUMPS);
+		if(mtmp->data == &mons[PM_SKI_FEMMY]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if(mtmp->data == &mons[PM_KOBOLD_GRINNER]) (void) mongets(mtmp, SPEAR);
 		if(mtmp->data == &mons[PM_BATTLEBOLD]) (void) mongets(mtmp, BATLETH);
 		if(mtmp->data == &mons[PM_IRON_KLINGON]) (void) mongets(mtmp, BATLETH);
@@ -10345,7 +10345,7 @@ loveheelover:
 
 		if (mtmp->data == &mons[PM_MEDIUM_LENGTH_WORM]) (void) mongets(mtmp, UNKNOWN_KNIFE);
 		if (mtmp->data == &mons[PM_KANCHO_ASSAILANT]) (void) mongets(mtmp, QATAR);
-		if (mtmp->data == &mons[PM_VEEN]) (void) mongets(mtmp, FEMININE_PUMPS);
+		if (mtmp->data == &mons[PM_VEEN]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 		if (mtmp->data == &mons[PM_TANISHA]) {
 			(void) mongets(mtmp, SOFT_GIRL_SNEAKER);
@@ -10772,7 +10772,7 @@ loveheelover:
 		}
 
 		if (mtmp->data == &mons[PM_SIERRA]) {
-			(void)mongets(mtmp, FEMININE_PUMPS);
+			(void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 			(void)mongets(mtmp, FLINTLOCK);
 			m_initthrow(mtmp, BULLET, 30);
 		}
@@ -10807,7 +10807,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_MACHIEVALLIAN_MOSS]) (void) mongets(mtmp, SCR_TRAP_CREATION);
 		if (mtmp->data == &mons[PM_SWEET_ASIAN_POISON_IVY]) (void) mongets(mtmp, HUGGING_BOOT);
 
-		if (mtmp->data == &mons[PM_ROSY_S_LEATHER_PUMP]) { (void) mongets(mtmp, FEMININE_PUMPS); (void) mongets(mtmp, SEXY_LEATHER_PUMP); }
+		if (mtmp->data == &mons[PM_ROSY_S_LEATHER_PUMP]) { (void) mongets(mtmp, FEMININE_PUMPS); (void) mongets(mtmp, SEXY_LEATHER_PUMP); } /* M4_PUMPS */
 
 		break;
 
@@ -10923,11 +10923,11 @@ loveheelover:
 		if (mtmp->data == &mons[PM_GWAWOL]) (void) mongets(mtmp, WAN_LIGHTNING);
 		if (mtmp->data == &mons[PM_CLOCKWORK_CLAW]) (void) mongets(mtmp, QATAR);
 		if (mtmp->data == &mons[PM_GNOME_LASERER]) (void) mongets(mtmp, LASER_SWORD);
-		if (mtmp->data == &mons[PM_GNOME_HUSSY]) (void) mongets(mtmp, FEMININE_PUMPS);
+		if (mtmp->data == &mons[PM_GNOME_HUSSY]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if (mtmp->data == &mons[PM_WEED_GNOME]) (void) mongets(mtmp, POT_HALLUCINATION);
 		if (mtmp->data == &mons[PM_GIGGNOLL]) (void) mongets(mtmp, PICK_AXE);
 		if (mtmp->data == &mons[PM_GEOLOGY_GNOME]) (void) mongets(mtmp, CONGLOMERATE_PICK);
-		if (mtmp->data == &mons[PM_SEXY_OPERATOR]) (void) mongets(mtmp, FEMININE_PUMPS);
+		if (mtmp->data == &mons[PM_SEXY_OPERATOR]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 		if (ptr == &mons[PM_NEUTRAL_GNOME]) {
 			(void) mongets(mtmp, SLING);
@@ -11092,7 +11092,7 @@ loveheelover:
 
 		if (mtmp->data == &mons[PM_VAPE_PUSSY]) (void) mongets(mtmp, ELECTRIC_CIGARETTE);
 		if (mtmp->data == &mons[PM_SHERWOOD_NYMPH]) (void) mongets(mtmp, QATAR);
-		if (mtmp->data == &mons[PM_SCRATCH_NYMPH]) (void) mongets(mtmp, FEMININE_PUMPS);
+		if (mtmp->data == &mons[PM_SCRATCH_NYMPH]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 	      if(mtmp->data == &mons[PM_SATYR]){
 	        if(!rn2(2)) (void) mongets(mtmp, POT_BOOZE);
@@ -11105,7 +11105,7 @@ loveheelover:
 			(void) mongets(mtmp, LASER_POLE);
 		}
 		if (ptr == &mons[PM_FRANCESCA_DUMMTRULLA]) {
-			(void) mongets(mtmp, FEMININE_PUMPS);
+			(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		}
 		if (ptr == &mons[PM_SORROW_GIRL]) {
 			(void) mongets(mtmp, STRIPE_MAIL);
@@ -11733,7 +11733,7 @@ loveheelover:
 		  	(void) mongets(mtmp, LANCE);
 		}
 
-		if (mtmp->data == &mons[PM_HC_LADY]) (void) mongets(mtmp, FEMININE_PUMPS);
+		if (mtmp->data == &mons[PM_HC_LADY]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if(ptr == &mons[PM_HC_LANCE_CARRIER]) (void) mongets(mtmp, LANCE);
 		if(ptr == &mons[PM_CENTAUR_HIGHWAYMAN]) (void) mongets(mtmp, SCR_HIGHWAY);
 		if(ptr == &mons[PM_CENTAUR_SPEAROR]) m_initthrow(mtmp, SPEAR, 7);
@@ -11915,7 +11915,7 @@ loveheelover:
 			(void) mongets(mtmp, STRAW_HAT);
 			 m_initthrow(mtmp, SALT_CHUNK, 35);
 		}
-		if (mtmp->data == &mons[PM_ALIEN_IN_PUMPS]) (void) mongets(mtmp, FEMININE_PUMPS);
+		if (mtmp->data == &mons[PM_ALIEN_IN_PUMPS]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 		if (mtmp->data == &mons[PM_PAPER_WEIGHT]) (void) mongets(mtmp, WEIGHTED_FLAIL);
 		if (mtmp->data == &mons[PM_FULL_NETHER_GHOST]) (void) mongets(mtmp, SCR_NETHER);
@@ -12135,6 +12135,7 @@ loveheelover:
 		}
 
 		if (ptr == &mons[PM_JEMIMA]) (void) mongets(mtmp, COMBAT_STILETTOS);
+		if (ptr == &mons[PM_HISTORY_FEMMY]) (void) mongets(mtmp, WEDGE_SANDALS); /* M4_SANDALS */
 		if (ptr == &mons[PM_WATER_MATERIAL_BLONDE]) (void) mongets(mtmp, WEDGE_SANDALS); /* M4_SANDALS */
 		if (ptr == &mons[PM_FARMER_FEMMY]) {
 			(void)mongets(mtmp, rnd_class(WEDGE_SANDALS,ITALIAN_HEELS));
@@ -12309,7 +12310,7 @@ loveheelover:
 
 		if (ptr == &mons[PM_OFFICER_VICTORIA]) {
 			 (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
-			 (void) mongets(mtmp, FEMININE_PUMPS);
+			 (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		}
 		if (ptr == &mons[PM_OFFICER_INA]) {
 			 (void) mongets(mtmp, HUGGING_BOOT);
@@ -12621,11 +12622,11 @@ loveheelover:
 
 		if (mtmp->data == &mons[PM_PSEUDO_EROTIC_SMOKER_BITCH]) {
 			(void) mongets(mtmp, SEXY_LEATHER_PUMP);
-			(void) mongets(mtmp, FEMININE_PUMPS);
+			(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		}
 		if (mtmp->data == &mons[PM_UNFAIR_SLUTTY_SMOKER_BITCH]) {
 			(void) mongets(mtmp, CIGARETTE);
-			(void) mongets(mtmp, FEMININE_PUMPS);
+			(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		}
 		if (mtmp->data == &mons[PM_SHIELDON_MUTANT]) {
 			(void) mongets(mtmp, WONDER_DAGGER);
@@ -12651,7 +12652,7 @@ loveheelover:
 
 		if (mtmp->data == &mons[PM_GREMGARGOYLE]) (void) mongets(mtmp, POT_CANCELLATION);
 		if (mtmp->data == &mons[PM_BRONZE_GLADIATOR]) (void) mongets(mtmp, BRONZE_SPEAR);
-		if (mtmp->data == &mons[PM_ANITA_S_SEXY_LEATHER_PUMP]) { (void) mongets(mtmp, SEXY_LEATHER_PUMP); (void) mongets(mtmp, FEMININE_PUMPS); }
+		if (mtmp->data == &mons[PM_ANITA_S_SEXY_LEATHER_PUMP]) { (void) mongets(mtmp, SEXY_LEATHER_PUMP); (void) mongets(mtmp, FEMININE_PUMPS); } /* M4_PUMPS */
 		if (mtmp->data == &mons[PM_BASHFLIND]) (void) mongets(mtmp, FLINDBAR);
 		if (mtmp->data == &mons[PM_BASHFLIND_LORD]) (void) mongets(mtmp, FLINDBAR);
 		if (mtmp->data == &mons[PM_JAPASURA]) (void) mongets(mtmp, MASSAGER);
@@ -13003,7 +13004,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_SCAVENGER]) (void) mongets(mtmp, DANCING_SHOES);
 		if (mtmp->data == &mons[PM_ANASTASIA_S_DANCING_SHOE]) (void) mongets(mtmp, DANCING_SHOES);
 		if (mtmp->data == &mons[PM_ANASTASIA_S_SNEAKER]) (void) mongets(mtmp, SOFT_SNEAKERS); /* M4_SNEAKERS */
-		if (mtmp->data == &mons[PM_ANASTASIA_S_HIGH_HEEL]) (void) mongets(mtmp, FEMININE_PUMPS);
+		if (mtmp->data == &mons[PM_ANASTASIA_S_HIGH_HEEL]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if (mtmp->data == &mons[PM_PLAGUE_EATER]) (void) mongets(mtmp, SWEET_MOCASSINS);
 		if (mtmp->data == &mons[PM_SOLVEJG_S_MOCASSIN]) (void) mongets(mtmp, SWEET_MOCASSINS);
 		if (mtmp->data == &mons[PM_JESSICA_S_MOCASSIN]) (void) mongets(mtmp, SWEET_MOCASSINS);
@@ -13020,9 +13021,9 @@ loveheelover:
 
 		if (mtmp->data == &mons[PM_KATRIN_S_DANCING_SHOE]) { (void) mongets(mtmp, SCR_TRAP_CREATION);  (void) mongets(mtmp, LACQUERED_DANCING_SHOE); (void) mongets(mtmp, DANCING_SHOES); }
 		if (mtmp->data == &mons[PM_ELIF_S_SNEAKER]) { (void) mongets(mtmp, SOFT_GIRL_SNEAKER); (void) mongets(mtmp, SOFT_SNEAKERS); } /* M4_SNEAKERS */
-		if (mtmp->data == &mons[PM_KATRIN_S_HIGH_HEELED_PUMP]) { (void) mongets(mtmp, FEMININE_PUMPS); (void) mongets(mtmp, SEXY_LEATHER_PUMP); }
-		if (mtmp->data == &mons[PM_WENDY_S_SEXY_LEATHER_PUMP]) { (void) mongets(mtmp, FEMININE_PUMPS); (void) mongets(mtmp, SEXY_LEATHER_PUMP); }
-		if (mtmp->data == &mons[PM_SOLVEJG_S_LEATHER_PUMP]) { (void) mongets(mtmp, FEMININE_PUMPS); (void) mongets(mtmp, SEXY_LEATHER_PUMP); }
+		if (mtmp->data == &mons[PM_KATRIN_S_HIGH_HEELED_PUMP]) { (void) mongets(mtmp, FEMININE_PUMPS); (void) mongets(mtmp, SEXY_LEATHER_PUMP); } /* M4_PUMPS */
+		if (mtmp->data == &mons[PM_WENDY_S_SEXY_LEATHER_PUMP]) { (void) mongets(mtmp, FEMININE_PUMPS); (void) mongets(mtmp, SEXY_LEATHER_PUMP); } /* M4_PUMPS */
+		if (mtmp->data == &mons[PM_SOLVEJG_S_LEATHER_PUMP]) { (void) mongets(mtmp, FEMININE_PUMPS); (void) mongets(mtmp, SEXY_LEATHER_PUMP); } /* M4_PUMPS */
 
 		if (ptr == &mons[PM_MUTATED_BATTLE_BUNNY]) (void) mongets(mtmp, rn2(10) ? POT_MUTATION : WAN_MUTATION);
 
@@ -13259,6 +13260,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_ARMVIPER]) (void) mongets(mtmp, VIPERWHIP);
 		if (mtmp->data == &mons[PM_DIRE_MASK_WOMAN]) (void) mongets(mtmp, find_corona_mask());
 		if (mtmp->data == &mons[PM_VACCINATION_GESTAPO]) (void) mongets(mtmp, SCALPEL);
+		if (mtmp->data == &mons[PM_HORNY_FEMMY]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 		if (ptr == &mons[PM_WOODFALL_CATTLE]) {
 			(void) mongets(mtmp, SHARP_AXE);
@@ -13311,7 +13313,7 @@ loveheelover:
 			m_initthrow(mtmp, CROSSBOW_BOLT, 25);
 		}
 
-		if (mtmp->data == &mons[PM_RHEA_S_LADY_PUMP]) { (void) mongets(mtmp, FEMININE_PUMPS); (void) mongets(mtmp, SEXY_LEATHER_PUMP); (void) mongets(mtmp, SCR_TRAP_CREATION); }
+		if (mtmp->data == &mons[PM_RHEA_S_LADY_PUMP]) { (void) mongets(mtmp, FEMININE_PUMPS); (void) mongets(mtmp, SEXY_LEATHER_PUMP); (void) mongets(mtmp, SCR_TRAP_CREATION); } /* M4_PUMPS */
 
 		break;
 	    case S_GIANT:
@@ -13379,7 +13381,7 @@ loveheelover:
 			(void)mongets(mtmp, HIPPIE_HEELS); /* M4_BLOCKHEELBOOTS */
 		}
 		if (ptr == &mons[PM_VEHEMENT_FEMMY]) {
-			(void)mongets(mtmp, FEMININE_PUMPS);
+			(void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 			(void)mongets(mtmp, SEXY_LEATHER_PUMP);
 		}
 		if (ptr == &mons[PM_MILL_GIANT]) {
@@ -13431,7 +13433,7 @@ loveheelover:
 		  	m_initthrow(mtmp, BULLET, 50);
 		}
 		if (ptr == &mons[PM_VIET_BOSS]) {
-			(void)mongets(mtmp, FEMININE_PUMPS);
+			(void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 			(void)mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
 		}
 		if (ptr == &mons[PM_LERA_CUDDLE_BUNDLE]) (void)mongets(mtmp, SWEET_MOCASSINS);
@@ -13449,7 +13451,7 @@ loveheelover:
 		if (ptr == &mons[PM_KING_OF_ROCK__N_ROLL]) (void)mongets(mtmp, ELVIS_SHOES);
 		if (ptr == &mons[PM_NOBLE_GIRL_FROM_BEING_MOUNTAIN]) (void)mongets(mtmp, SOFT_SNEAKERS); /* M4_SNEAKERS */
 		if (ptr == &mons[PM_FREAKY_GANG_GIRL]) (void)mongets(mtmp, SOFT_SNEAKERS); /* M4_SNEAKERS */
-		if (ptr == &mons[PM_NICE_AUNTIE_HILDA]) (void)mongets(mtmp, FEMININE_PUMPS);
+		if (ptr == &mons[PM_NICE_AUNTIE_HILDA]) (void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if (ptr == &mons[PM_TURKISH_GIRL_THAT_LIKES_THE_COLOR_LILAC]) (void)mongets(mtmp, STILETTO_SANDALS); /* M4_SANDALS */
 		if (ptr == &mons[PM_GIRL_WITH_THE_MOST_BEAUTIFUL_SHOES_IN_THE_WORLD]) (void)mongets(mtmp, SOFT_SNEAKERS); /* M4_SNEAKERS */
 		if (ptr == &mons[PM_FINGERSMASHING_WATERGIRL]) {
@@ -13477,7 +13479,7 @@ loveheelover:
 			(void)mongets(mtmp, LADY_BOOTS); /* M4_BLOCKHEELBOOTS */
 		}
 		if (ptr == &mons[PM_AUNTIE_WENDY]) {
-			(void)mongets(mtmp, FEMININE_PUMPS);
+			(void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 			(void)mongets(mtmp, SEXY_LEATHER_PUMP);
 		}
 		if (ptr == &mons[PM_MINOTARD]) (void)mongets(mtmp, T_SHIRT);
@@ -14499,7 +14501,7 @@ loveheelover:
 		}
 
 		if (mtmp->data == &mons[PM_ROXY]) {
-			(void) mongets(mtmp, FEMININE_PUMPS);
+			(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 			(void) mongets(mtmp, CROSSBOW);
 			m_initthrow(mtmp, CROSSBOW_BOLT, 50);
 			m_initthrow(mtmp, CROSSBOW_BOLT, 50);
@@ -14556,8 +14558,8 @@ loveheelover:
 		if (ishaxor && ptr == &mons[PM_ELUSIVE_LICH]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 		if (ptr == &mons[PM_ORE_LICH]) (void) mongets(mtmp, WAN_SUMMON_UNDEAD);
 		if (ptr == &mons[PM_MIKSCXIFONA]) (void) mongets(mtmp, SCYTHE);
-		if (ptr == &mons[PM_FLASHLIGHT_QUEEN]) (void) mongets(mtmp, FEMININE_PUMPS);
-		if (ptr == &mons[PM_CLICK_QUEEN]) (void) mongets(mtmp, FEMININE_PUMPS);
+		if (ptr == &mons[PM_FLASHLIGHT_QUEEN]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
+		if (ptr == &mons[PM_CLICK_QUEEN]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if (ptr == &mons[PM_PROFANITY_PRIEST]) (void) mongets(mtmp, SCYTHE);
 		if (ptr == &mons[PM_L_S_BELLS]) (void) mongets(mtmp, BELL);
 		if (ptr == &mons[PM_HARDFOUGHT_LYNCH_MOB_MEMBER]) (void) mongets(mtmp, PITCHFORK);
@@ -15211,7 +15213,7 @@ loveheelover:
 		}
 		if (monsndx(ptr) == PM_INKA_LADY) {
 			(void) mongets(mtmp, INKA_BOOT);
-			(void) mongets(mtmp, FEMININE_PUMPS);
+			(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		}
 		if (monsndx(ptr) == PM_INKA_MILITIA) {
 			(void) mongets(mtmp, INKUTLASS);
@@ -15315,7 +15317,7 @@ loveheelover:
 
 		if (monsndx(ptr) == PM_LUPIN_THE_THIRD) (void) mongets(mtmp, WAN_TRAP_CREATION);
 		if (monsndx(ptr) == PM_GRETA_S_HUGGING_BOOT) { (void) mongets(mtmp, HUGGING_BOOT); (void) mongets(mtmp, SCR_TRAP_CREATION); }
-		if (monsndx(ptr) == PM_GRETA_S_LADY_PUMP) { (void) mongets(mtmp, FEMININE_PUMPS); (void) mongets(mtmp, SEXY_LEATHER_PUMP); }
+		if (monsndx(ptr) == PM_GRETA_S_LADY_PUMP) { (void) mongets(mtmp, FEMININE_PUMPS); (void) mongets(mtmp, SEXY_LEATHER_PUMP); } /* M4_PUMPS */
 
 		if (ptr == &mons[PM_ELOQUICKLING_ARCHER]) {
 			(void) mongets(mtmp, LONG_SWORD);
@@ -15399,7 +15401,7 @@ loveheelover:
 	      if (ptr == &mons[PM_BANNIK] && !rn2(5)) (void) mongets(mtmp, TOWEL);
 	      if (ptr == &mons[PM_LESHY]) (void) mongets(mtmp, APPLE);
 	      if (ptr == &mons[PM_DESERT_KANGAROO]) (void) mongets(mtmp, SCR_QUICKSAND);
-	      if (ptr == &mons[PM_TWINE_BITCH]) (void) mongets(mtmp, FEMININE_PUMPS);
+	      if (ptr == &mons[PM_TWINE_BITCH]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 	      if (ptr == &mons[PM_POLE_KANGAROO]) (void) mongets(mtmp, BOHEMIAN_EAR_SPOON);
 	      if (ptr == &mons[PM_FLAT_SPITTER]) (void) mongets(mtmp, SHARP_POLE);
 	      if (ptr == &mons[PM_SQUISH_SPITTER]) (void) mongets(mtmp, LONG_POLE);
@@ -15474,7 +15476,7 @@ loveheelover:
 	      if (ptr == &mons[PM_WHIRBLEWHIRBLE_CLOUD]) (void) mongets(mtmp, QATAR);
 	      if (ptr == &mons[PM_HC_NUT_MASSEUSE]) (void) mongets(mtmp, COMBAT_STILETTOS);
 		if (ptr == &mons[PM_VIOLETTA]) {
-			(void) mongets(mtmp, FEMININE_PUMPS);
+			(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 			(void) mongets(mtmp, WAN_DEATH);
 		}
 		if (ptr == &mons[PM_AMBRA_VORTEX]) {
@@ -15730,7 +15732,7 @@ loveheelover:
 		if(ptr == &mons[PM_FINGERNAIL_DEMON]) (void) mongets(mtmp, QATAR);
 		if(ptr == &mons[PM_KARATE_FEMMY]) (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
 		if(ptr == &mons[PM_LASERVENGER]) (void) mongets(mtmp, LASERDENT);
-		if(ptr == &mons[PM_LILITU_QUEEN]) (void) mongets(mtmp, FEMININE_PUMPS);
+		if(ptr == &mons[PM_LILITU_QUEEN]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if(ptr == &mons[PM_LOSER_DEVIL]) (void) mongets(mtmp, GARBOWHIP);
 		if(ptr == &mons[PM_PLATFORMINA]) (void) mongets(mtmp, find_plateau_boots());
 		if(ptr == &mons[PM_HC_SEDUCTRESS]) (void) mongets(mtmp, find_filigree_stilettos());
@@ -15817,7 +15819,7 @@ loveheelover:
 			(void) mongets(mtmp, BULLWHIP);
 		}
 		if (ptr == &mons[PM_TEACHER_INSIDE_WOMAN]) {
-			(void) mongets(mtmp, FEMININE_PUMPS);
+			(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		}
 		if (ptr == &mons[PM_LAUGHING_RELIGIOUS_HARLOT]) {
 			(void) mongets(mtmp, HIPPIE_HEELS); /* M4_BLOCKHEELBOOTS */
@@ -15853,7 +15855,7 @@ loveheelover:
 			(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
 		}
 		if (ptr == &mons[PM_AUNT_ANITA]) {
-			(void) mongets(mtmp, FEMININE_PUMPS);
+			(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 			(void) mongets(mtmp, SEXY_LEATHER_PUMP);
 			(void) mongets(mtmp, WILDHILD_BOW);
 			 m_initthrow(mtmp, ODOR_SHOT, 50);
@@ -15926,15 +15928,15 @@ loveheelover:
 			m_initthrow(mtmp, BFG_AMMO, 50);
 
 		}
-		if (mtmp->data == &mons[PM_STUPID_FURY]) { (void) mongets(mtmp, UMBRELLA); (void) mongets(mtmp, FEMININE_PUMPS); }
+		if (mtmp->data == &mons[PM_STUPID_FURY]) { (void) mongets(mtmp, UMBRELLA); (void) mongets(mtmp, FEMININE_PUMPS); } /* M4_PUMPS */
 
 		if(ptr == &mons[PM_CHARGING_KINDNESS] || ptr == &mons[PM_ARMORED_BUNDLE_GIRL]) (void) mongets(mtmp, COMBAT_STILETTOS);
 		if (mtmp->data == &mons[PM_CONNY_S_COMBAT_BOOT]) { (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT); (void) mongets(mtmp, HIPPIE_HEELS); } /* M4_BLOCKHEELBOOTS */
-		if (mtmp->data == &mons[PM_INA_S_LEATHER_PUMP]) { (void) mongets(mtmp, SEXY_LEATHER_PUMP); (void) mongets(mtmp, FEMININE_PUMPS); }
+		if (mtmp->data == &mons[PM_INA_S_LEATHER_PUMP]) { (void) mongets(mtmp, SEXY_LEATHER_PUMP); (void) mongets(mtmp, FEMININE_PUMPS); } /* M4_PUMPS */
 		if (mtmp->data == &mons[PM_BENGE_BARBAROIS]) { (void) mongets(mtmp, SCR_TRAP_CREATION); (void) mongets(mtmp, WAN_TRAP_CREATION); }
 
 		if(ptr == &mons[PM_FRIEDERIKE_S_SOFT_DANCING_SHOE]) (void) mongets(mtmp, DANCING_SHOES);
-		if(ptr == &mons[PM_FRIEDERIKE_S_LADY_PUMP]) { (void) mongets(mtmp, SEXY_LEATHER_PUMP); (void) mongets(mtmp, FEMININE_PUMPS); }
+		if(ptr == &mons[PM_FRIEDERIKE_S_LADY_PUMP]) { (void) mongets(mtmp, SEXY_LEATHER_PUMP); (void) mongets(mtmp, FEMININE_PUMPS); } /* M4_PUMPS */
 		if(ptr == &mons[PM_VILE_DEMON]) (void) mongets(mtmp, SCR_VILENESS);
 		if(ptr == &mons[PM_PLANE_DEMON]) (void) mongets(mtmp, SCR_ASH);
 		if(ptr == &mons[PM_SCIM_CIM_DEVIL]) (void) mongets(mtmp, SCIMITAR);
@@ -16165,7 +16167,7 @@ loveheelover:
 		if(ptr == &mons[PM_YOUR_UPLIGHTER]) (void) mongets(mtmp, LIGHTBULB);
 		if(ptr == &mons[PM_LASARCHON]) (void) mongets(mtmp, LASER_SWORD);
 		if(ptr == &mons[PM_BEALADRIN]) (void) mongets(mtmp, BEAMSWORD);
-		if (mtmp->data == &mons[PM_HIGHHEEL_ANGEL]) (void) mongets(mtmp, FEMININE_PUMPS);
+		if (mtmp->data == &mons[PM_HIGHHEEL_ANGEL]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if(ptr == &mons[PM_ALGONQUIN_BUSINESSLADY]) (void) mongets(mtmp, LEATHER_PEEP_TOES);
 		if(ptr == &mons[PM_STAIR_GUARDING_QUEEN]) (void) mongets(mtmp, LEATHER_PEEP_TOES);
 		if(ptr == &mons[PM_FIREFOX_ANGEL]) (void) mongets(mtmp, FIRE_STICK);
@@ -16371,7 +16373,7 @@ loveheelover:
 			 m_initthrow(mtmp, BULLET, 20);
 		}
 
-		if (mtmp->data == &mons[PM_VICTORIA_S_LADY_PUMP]) { (void) mongets(mtmp, SEXY_LEATHER_PUMP); (void) mongets(mtmp, FEMININE_PUMPS); }
+		if (mtmp->data == &mons[PM_VICTORIA_S_LADY_PUMP]) { (void) mongets(mtmp, SEXY_LEATHER_PUMP); (void) mongets(mtmp, FEMININE_PUMPS); } /* M4_PUMPS */
 		if (mtmp->data == &mons[PM_VICTORIA_S_FLEECY_COMBAT_BOOT]) { (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT); (void) mongets(mtmp, HIPPIE_HEELS); } /* M4_BLOCKHEELBOOTS */
 		if (mtmp->data == &mons[PM_VICTORIA_S_HIGH_HEELED_SANDAL]) { (void) mongets(mtmp, HIGH_HEELED_SANDAL); (void) mongets(mtmp, WEDGE_SANDALS); } /* M4_HAMMERSANDAL|M4_SANDALS */
 		break;
@@ -16594,7 +16596,7 @@ loveheelover:
 
 	    case S_YETI:
 
-		if (ptr == &mons[PM_KATI_S_WEDGE_HEELED_PUMP]) { (void) mongets(mtmp, FEMININE_PUMPS); (void) mongets(mtmp, SEXY_LEATHER_PUMP); }
+		if (ptr == &mons[PM_KATI_S_WEDGE_HEELED_PUMP]) { (void) mongets(mtmp, FEMININE_PUMPS); (void) mongets(mtmp, SEXY_LEATHER_PUMP); } /* M4_PUMPS */
 		if (ptr == &mons[PM_KATI_S_THICK_GIRL_BOOT]) { (void) mongets(mtmp, HIPPIE_HEELS); (void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS); } /* M4_BLOCKHEELBOOTS */
 		if (ptr == &mons[PM_KATI_S_STRIPED_SNEAKER]) { (void) mongets(mtmp, SOFT_SNEAKERS); (void) mongets(mtmp, SOFT_GIRL_SNEAKER); } /* M4_SNEAKERS */
 		if (ptr == &mons[PM_KATI_S_HIGH_HEELED_BOOT]) { (void) mongets(mtmp, INKA_BOOT); (void) mongets(mtmp, HIPPIE_HEELS); } /* M4_BLOCKHEELBOOTS */
@@ -17067,6 +17069,7 @@ loveheelover:
 		if (ptr == &mons[PM_NASTY_HC_GIRL]) (void) mongets(mtmp, NASTYPOLE);
 		if (ptr == &mons[PM_CARBON_BLACK_SPHERE]) (void) mongets(mtmp, BITUKNIFE);
 		if (ptr == &mons[PM_MANADRAINER]) (void) mongets(mtmp, EAGLE_BALL);
+		if (ptr == &mons[PM_INNOCUOUS_FEMMY]) (void) mongets(mtmp, HIPPIE_HEELS); /* M4_BLOCKHEELBOOTS */
 
 		if (ptr == &mons[PM_BANG_BAG]) m_initthrow(mtmp, FRAG_GRENADE, 7);
 		if (ptr == &mons[PM_GUANO]) m_initthrow(mtmp, BOOMERANG, 3);
@@ -17123,7 +17126,7 @@ loveheelover:
 		if (ptr == &mons[PM_VY_GRUE]) (void) mongets(mtmp, KHOPESH);
 
 		if (ptr == &mons[PM_ROXANNE]) {
-			(void) mongets(mtmp, FEMININE_PUMPS);
+			(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 			(void) mongets(mtmp, CROSSBOW);
 			m_initthrow(mtmp, CROSSBOW_BOLT, 50);
 		}
@@ -17142,7 +17145,7 @@ loveheelover:
 		if (ptr == &mons[PM_DIM_GIRL]) (void) mongets(mtmp, QATAR);
 		if (ptr == &mons[PM_LASSY_GIRL]) (void) mongets(mtmp, QATAR);
 		if (ptr == &mons[PM_MEGAWHIPPET]) (void) mongets(mtmp, SECRET_SOUND_WHIP);
-		if (ptr == &mons[PM_PUMPS_FEMMY]) (void) mongets(mtmp, FEMININE_PUMPS);
+		if (ptr == &mons[PM_PUMPS_FEMMY]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 		if (ptr == &mons[PM_CAMPER_ASSHOLE]) {
 			(void)mongets(mtmp, SNIPER_RIFLE);
@@ -17212,7 +17215,7 @@ loveheelover:
 
 		if (ptr == &mons[PM_PRINCESS_CATHLETTE]) {
 			(void)mongets(mtmp, SEXY_LEATHER_PUMP);
-			(void)mongets(mtmp, FEMININE_PUMPS);
+			(void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 		}
 
@@ -17352,7 +17355,7 @@ loveheelover:
 		}
 
 		if (ptr == &mons[PM_AS_A_MOMMY]) {
-			(void) mongets(mtmp, FEMININE_PUMPS);
+			(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		}
 		if (mtmp->data == &mons[PM_BIRTHDAY_PRESENTER]) {
 			 (void) mongets(mtmp, CHOCOLATE);
@@ -17480,8 +17483,8 @@ loveheelover:
 		if (ptr == &mons[PM_KSENIA_S_PLATEAU_SANDAL]) { (void) mongets(mtmp, HIGH_HEELED_SANDAL); (void) mongets(mtmp, WEDGE_SANDALS); } /* M4_HAMMERSANDAL|M4_SANDALS */
 		if (ptr == &mons[PM_MAURAH_S_HUGGING_BOOT]) { (void) mongets(mtmp, HUGGING_BOOT); (void) mongets(mtmp, COMBAT_STILETTOS); }
 		if (mtmp->data == &mons[PM_ARIANE_S_FLEECY_COMBAT_BOOT]) { (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT); (void) mongets(mtmp, HIPPIE_HEELS); } /* M4_BLOCKHEELBOOTS */
-		if (ptr == &mons[PM_NELLY_S_ELEGANT_PUMP]) { (void) mongets(mtmp, SEXY_LEATHER_PUMP); (void) mongets(mtmp, FEMININE_PUMPS); }
-		if (ptr == &mons[PM_MAURAH_S_SWEETHEART_PUMP]) { (void) mongets(mtmp, SEXY_LEATHER_PUMP); (void) mongets(mtmp, FEMININE_PUMPS); }
+		if (ptr == &mons[PM_NELLY_S_ELEGANT_PUMP]) { (void) mongets(mtmp, SEXY_LEATHER_PUMP); (void) mongets(mtmp, FEMININE_PUMPS); } /* M4_PUMPS */
+		if (ptr == &mons[PM_MAURAH_S_SWEETHEART_PUMP]) { (void) mongets(mtmp, SEXY_LEATHER_PUMP); (void) mongets(mtmp, FEMININE_PUMPS); } /* M4_PUMPS */
 
 		if (ptr == &mons[PM_LAVA_DRAGON]) { (void) mongets(mtmp, SCR_LAVA); (void) mongets(mtmp, SCR_LAVA); (void) mongets(mtmp, SCR_LAVA);
 		}
@@ -17812,7 +17815,7 @@ loveheelover:
 
 	if (ptr == &mons[PM_RHEA]) {
 		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
-		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		(void) mongets(mtmp, WAN_FINGER_BENDING);
 		(void) mongets(mtmp, SCR_CREATE_TRAP);
 		m_initthrow(mtmp, DART, 50);
@@ -17902,7 +17905,7 @@ loveheelover:
 
 	if (ptr == &mons[PM_RITA]) {
 		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
-		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		(void) mongets(mtmp, WAN_TRAP_CREATION);
 		(void) mongets(mtmp, WAN_CREATE_HORDE);
 		(void) mongets(mtmp, SCR_ANTIMATTER);
@@ -17910,7 +17913,7 @@ loveheelover:
 	}
 
 	if (ptr == &mons[PM_KATI]) {
-		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 	}
 
@@ -18028,7 +18031,7 @@ loveheelover:
 	}
 
 	if (ptr == &mons[PM_ANTONIA]) {
-		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		(void) mongets(mtmp, FLY_SWATTER);
 		(void) mongets(mtmp, LAB_COAT);
 
@@ -18044,7 +18047,7 @@ loveheelover:
 	}
 
 	if (ptr == &mons[PM_CHASKA]) {
-		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
 		(void) mongets(mtmp, LEATHER_JACKET);
 		(void) mongets(mtmp, POT_SPEED);
@@ -18107,7 +18110,7 @@ loveheelover:
 	if (ptr == &mons[PM_ARABELLA_THE_TUFTED_ASIAN_GIRL]) {
 		(void) mongets(mtmp, HUGGING_BOOT);
 		(void) mongets(mtmp, WAN_BANISHMENT);
-		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		(void) mongets(mtmp, SCR_WARPING);
 
 	}
@@ -18129,7 +18132,7 @@ loveheelover:
 
 	if (ptr == &mons[PM_KATRIN_THE_VIOLET_BEAUTY]) {
 		(void) mongets(mtmp, POT_PARALYSIS);
-		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
 		(void) mongets(mtmp, SCR_CREATE_TRAP);
 		(void) mongets(mtmp, SCR_MEGALOAD);
@@ -18334,7 +18337,7 @@ loveheelover:
 
 	if (ptr == &mons[PM_SOFIA]) {
 		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
-		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		(void) mongets(mtmp, SCR_EGOISM);
 
 	}
@@ -18488,7 +18491,7 @@ loveheelover:
 	}
 
 	if (ptr == &mons[PM_LISA]) {
-		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
 		(void) mongets(mtmp, WAN_LIGHTNING);
 		(void) mongets(mtmp, SCR_ENRAGE);
@@ -18573,7 +18576,7 @@ loveheelover:
 	}
 
 	if (ptr == &mons[PM_VICTORIA]) {
-		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		(void) mongets(mtmp, HIGH_HEELED_SANDAL); /* M4_HAMMERSANDAL */
 		(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
 		(void) mongets(mtmp, SCR_PUNISHMENT);
@@ -18788,7 +18791,7 @@ loveheelover:
 
 	if (ptr == &mons[PM_ILSE]) {
 		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
-		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		(void) mongets(mtmp, CLOAK_OF_PROTECTION);
 		(void) mongets(mtmp, SCR_HEALING);
 	}
@@ -18924,7 +18927,7 @@ loveheelover:
 
 	if (ptr == &mons[PM_WENDY_O__KOOPA]) {
 		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
-		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		(void) mongets(mtmp, POT_NUMBNESS);
 		(void) mongets(mtmp, SCR_TRAP_CREATION);
 	}
@@ -19030,7 +19033,7 @@ loveheelover:
 	}
 
 	if (ptr == &mons[PM_ANITA]) {
-		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
 		(void) mongets(mtmp, SCR_WOUNDS);
 		(void) mongets(mtmp, SCR_WOUNDS);
@@ -19084,7 +19087,7 @@ loveheelover:
 
 	if (ptr == &mons[PM_GRETA]) {
 		(void) mongets(mtmp, HUGGING_BOOT);
-		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		(void) mongets(mtmp, WAN_MAKE_VISIBLE);
 		(void) mongets(mtmp, SCR_DESTROY_ARMOR);
 		(void) mongets(mtmp, SCR_DESTROY_WEAPON);
@@ -19175,7 +19178,7 @@ loveheelover:
 
 	if (ptr == &mons[PM_HILDA]) {
 		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
-		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		(void) mongets(mtmp, WAN_INERTIA);
 		(void) mongets(mtmp, SCR_SUMMON_BOSS);
 
@@ -19270,6 +19273,12 @@ loveheelover:
 
 	}
 
+	if (ptr == &mons[PM_CRAP_FEMMY]) {
+
+		mtmp->crapbonus += 50;
+
+	}
+
 	if (ptr == &mons[PM_CRAP_TITAN]) {
 
 		mtmp->crapbonus += 10;
@@ -19295,6 +19304,18 @@ loveheelover:
 	}
 
 	if (ptr == &mons[PM_PRINCESS_CATHLETTE]) {
+
+		mtmp->fartbonus += 9;
+
+	}
+
+	if (ptr == &mons[PM_VENERABLE_FEMMY]) {
+
+		mtmp->fartbonus += 9;
+
+	}
+
+	if (ptr == &mons[PM_SUSTAINED_FART_FEMMY]) {
 
 		mtmp->fartbonus += 9;
 
@@ -20040,7 +20061,7 @@ loveheelover:
 
 	if (ptr == &mons[PM_AMELJE]) {
 		(void) mongets(mtmp, HUGGING_BOOT);
-		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 	}
 
 	if (ptr == &mons[PM_NON_PRETTY_MELANIE]) {
@@ -20057,7 +20078,7 @@ loveheelover:
 
 	if (ptr == &mons[PM_THE_HEELED_TOPMODEL]) {
 		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
-		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		(void) mongets(mtmp, SCR_RUMOR);
 	}
 
@@ -20773,7 +20794,7 @@ loveheelover:
 	}
 
 	if (ptr == &mons[PM_SILVER_HEELED_BITCH]) {
-		if (!rn2(5)) mongets(mtmp, FEMININE_PUMPS);
+		if (!rn2(5)) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if (!rn2(5)) mongets(mtmp, SEXY_LEATHER_PUMP);
 		if (!rn2(5)) mongets(mtmp, PISTOL);
 		if (!rn2(5)) mongets(mtmp, BOW);
@@ -20795,7 +20816,7 @@ loveheelover:
 	}
 
 	if (ptr == &mons[PM_SEXY_SPORTS_LADY]) {
-		if (!rn2(5)) mongets(mtmp, FEMININE_PUMPS);
+		if (!rn2(5)) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if (!rn2(5)) mongets(mtmp, SPIKED_BATTLE_BOOT);
 		if (!rn2(5)) mongets(mtmp, LANCE);
 		if (!rn2(5)) mongets(mtmp, POT_FIRE);
@@ -20840,7 +20861,7 @@ loveheelover:
 
 	if (ptr == &mons[PM_ICE_HEEL_LADY]) {
 		if (!rn2(5)) mongets(mtmp, SEXY_LEATHER_PUMP);
-		if (!rn2(5)) mongets(mtmp, FEMININE_PUMPS);
+		if (!rn2(5)) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if (!rn2(5)) mongets(mtmp, WAN_HEALING);
 		if (!rn2(5)) mongets(mtmp, WAN_EXTRA_HEALING);
 		if (!rn2(5)) mongets(mtmp, WAN_FULL_HEALING);
@@ -21325,7 +21346,7 @@ loveheelover:
 	}
 
 	if (ptr == &mons[PM_IRIS_FLAX]) {
-		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
 		(void) mongets(mtmp, PISTOL);
 		(void) mongets(mtmp, BOW);
@@ -21347,7 +21368,7 @@ loveheelover:
 	}
 
 	if (ptr == &mons[PM_MISS_SCHRACK]) {
-		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		(void) mongets(mtmp, SPIKED_BATTLE_BOOT);
 		(void) mongets(mtmp, LANCE);
 		(void) mongets(mtmp, POT_FIRE);
@@ -21392,7 +21413,7 @@ loveheelover:
 
 	if (ptr == &mons[PM_ROSWITHA]) {
 		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
-		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		(void) mongets(mtmp, WAN_HEALING);
 		(void) mongets(mtmp, WAN_EXTRA_HEALING);
 		(void) mongets(mtmp, WAN_FULL_HEALING);
@@ -22028,13 +22049,13 @@ loveheelover:
 
 	if (ptr == &mons[PM_ANTONIA_S_LEATHER_PUMP]) {
 		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
-		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 	}
 
 	if (ptr == &mons[PM_CHASKA_S_LEATHER_PUMP]) {
 		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
-		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 	}
 
@@ -22092,7 +22113,7 @@ loveheelover:
 
 	if (ptr == &mons[PM_HANH_S_SEXY_PUMP]) {
 		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
-		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 	}
 
@@ -22182,7 +22203,7 @@ loveheelover:
 
 	if (ptr == &mons[PM_SOFIA_S_LEATHER_PUMP]) {
 		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
-		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 	}
 
@@ -22264,7 +22285,7 @@ loveheelover:
 
 	if (ptr == &mons[PM_YASAMAN_S_LADY_PUMP]) {
 		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
-		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 	}
 
@@ -22296,7 +22317,7 @@ loveheelover:
 
 	if (ptr == &mons[PM_HELEN_S_LADY_PUMP]) {
 		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
-		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 	}
 
@@ -22363,7 +22384,7 @@ loveheelover:
 
 	if (ptr == &mons[PM_IRIS_S_SILVER_PUMP]) {
 		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
-		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 	}
 
@@ -22380,7 +22401,7 @@ loveheelover:
 
 	if (ptr == &mons[PM_ROSWITHA_S_LACQUERED_PUMP]) {
 		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
-		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 	}
 
@@ -22433,7 +22454,7 @@ loveheelover:
 	}
 
 	if (ptr == &mons[PM_JUEN_S_SEXY_LEATHER_PUMP]) {
-		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
 
 	}
@@ -22494,7 +22515,7 @@ loveheelover:
 
 	if (ptr == &mons[PM_HILDA_S_LADY_PUMP]) {
 		(void) mongets(mtmp, SEXY_LEATHER_PUMP);
-		(void) mongets(mtmp, FEMININE_PUMPS);
+		(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 	}
 
@@ -23079,6 +23100,7 @@ register int	mmflags;
 		mtmp->fartbonus += rnd(9);
 		if (mtmp->fartbonus > 9) mtmp->fartbonus = 9;
 	}
+	if (FemtrapActiveInge && mtmp->data->msound == MS_FART_QUIET) mtmp->fartbonus = 9;
 
 	/* initialize nurse services... yes it's not a bug that we set this for every monster, because monsters are capable
 	 * of polymorphing into MS_NURSE monsters, you noob :P --Amy */
@@ -23129,6 +23151,7 @@ register int	mmflags;
 
 	if (Movemork || u.uprops[MOVEMORKING].extrinsic || have_movemorkstone()) mtmp->movement += 12;
 	if (uarmf && uarmf->oartifact == ART_SATAN_S_HYPERCHARGE) mtmp->movement += rnd(24);
+	if (FemtrapActiveKsenia && spawnswithsandals(mtmp->data)) mtmp->movement += 12;
 
 	/* Everything that can hide under an object will now do so. --Amy */
       if(x && y && isok(x, y) && !issoviet && allow_special && (hides_under(ptr) || !rn2(100) ) ) { /* low chance of getting an object even if nonhiding, too */
@@ -25033,7 +25056,16 @@ register int	mmflags;
 			}
 		}
 
+		if (FemtrapActiveKatia && (mtmp->data->msound == MS_FART_LOUD)) {
+			struct obj *otmpX = mksobj(find_block_heeled_boots(),TRUE,FALSE, FALSE);
+			if (otmpX) {
+				(void) mpickobj(mtmp,otmpX, TRUE);
+			}
+
+		}
+
 	    m_dowear(mtmp, TRUE);
+
 	} else {
 	    if (mtmp->minvent) discard_minvent(mtmp);
 	    mtmp->minvent = (struct obj *)0;    /* caller expects this */
@@ -26081,6 +26113,12 @@ loopback:
 		if (ct > 0 && (Role_if(PM_GANG_SCHOLAR) && (ptr->msound == MS_STENCH) )) ct += 50;
 		if (ct > 0 && (Role_if(PM_GANG_SCHOLAR) && is_jokemonster(ptr) )) ct += 100;
 		if (ct > 0 && (Role_if(PM_GANG_SCHOLAR) && is_cowmonster(ptr) )) ct += 20;
+		if (ct > 0 && (FemtrapActiveAriane && (ptr->msound == MS_FART_NORMAL) )) ct += 20;
+		if (ct > 0 && (FemtrapActiveAriane && (ptr->msound == MS_FART_QUIET) )) ct += 20;
+		if (ct > 0 && (FemtrapActiveAriane && (ptr->msound == MS_FART_LOUD) )) ct += 20;
+		if (ct > 0 && (FemtrapActiveAriane && (ptr->msound == MS_STENCH) )) ct += 50;
+		if (ct > 0 && (FemtrapActiveAriane && is_jokemonster(ptr) )) ct += 100;
+		if (ct > 0 && (FemtrapActiveAriane && is_cowmonster(ptr) )) ct += 20;
 		if (ct > 0 && (Role_if(PM_WALSCHOLAR) && is_jokemonster(ptr) )) ct += 20;
 		if (ct > 0 && (Role_if(PM_WALSCHOLAR) && (ptr->msound == MS_FART_NORMAL) )) ct += 5;
 		if (ct > 0 && (Role_if(PM_WALSCHOLAR) && (ptr->msound == MS_FART_QUIET) )) ct += 5;
@@ -26522,6 +26560,7 @@ loopback:
 		if (ct > 0 && (Role_if(PM_PREVERSIONER) && is_cowmonster(ptr) )) ct += 50;
 		if (ct > 0 && (Role_if(PM_PREVERSIONER) && is_jokemonster(ptr) )) ct += 5;
 		if (ct > 0 && (Role_if(PM_SHOE_FETISHIST) && (ptr->msound == MS_SHOE) )) ct += 100;
+		if (ct > 0 && (FemtrapActiveJohanna && (ptr->msound == MS_SHOE) )) ct += 100;
 		if (ct > 0 && (Role_if(PM_SECRET_ADVICE_MEMBER) && (ptr->msound == MS_ARREST) )) ct += 4;
 		if (ct > 0 && (Role_if(PM_SECRET_ADVICE_MEMBER) && (ptr->msound == MS_SOLDIER) )) ct += 2;
 		if (ct > 0 && (Role_if(PM_SECRET_ADVICE_MEMBER) && strongmonst(ptr) )) ct += 2;
@@ -26623,6 +26662,7 @@ loopback:
 
 		if (ct > 0 && (uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (ptr->msound == MS_STENCH))) ct += 10;
 		if (ct > 0 && (FemtrapActiveAnna && (ptr->msound == MS_STENCH))) ct += 50;
+		if (ct > 0 && (FemtrapActiveLydia && (spawnswithpumps(ptr)) )) ct += 1000;
 		if (ct > 0 && (FemtrapActiveMarike && (ptr->msound == MS_FART_NORMAL))) ct += 10;
 		if (ct > 0 && (FemtrapActiveVictoria && is_female(ptr) && attacktype(ptr, AT_KICK) )) ct += 20;
 		if (ct > 0 && (FemtrapActiveJil && (ptr->msound == MS_SOCKS))) ct += 25;
@@ -27428,6 +27468,12 @@ int     spc;
 		if ((Role_if(PM_GANG_SCHOLAR) && (mons[last].msound == MS_STENCH) )) num += 50;
 		if ((Role_if(PM_GANG_SCHOLAR) && is_jokemonster(&mons[last]) )) num += 100;
 		if ((Role_if(PM_GANG_SCHOLAR) && is_cowmonster(&mons[last]) )) num += 20;
+		if ((FemtrapActiveAriane && (mons[last].msound == MS_FART_NORMAL) )) num += 20;
+		if ((FemtrapActiveAriane && (mons[last].msound == MS_FART_QUIET) )) num += 20;
+		if ((FemtrapActiveAriane && (mons[last].msound == MS_FART_LOUD) )) num += 20;
+		if ((FemtrapActiveAriane && (mons[last].msound == MS_STENCH) )) num += 50;
+		if ((FemtrapActiveAriane && is_jokemonster(&mons[last]) )) num += 100;
+		if ((FemtrapActiveAriane && is_cowmonster(&mons[last]) )) num += 20;
 
 		if ((Role_if(PM_WALSCHOLAR) && is_jokemonster(&mons[last]) )) num += 20;
 		if ((Role_if(PM_WALSCHOLAR) && (mons[last].msound == MS_FART_NORMAL) )) num += 5;
@@ -27862,6 +27908,7 @@ int     spc;
 		if ((Role_if(PM_PREVERSIONER) && is_cowmonster(&mons[last]) )) num += 50;
 		if ((Role_if(PM_PREVERSIONER) && is_jokemonster(&mons[last]) )) num += 5;
 		if ((Role_if(PM_SHOE_FETISHIST) && (mons[last].msound == MS_SHOE) )) num += 100;
+		if ((FemtrapActiveJohanna && (mons[last].msound == MS_SHOE) )) num += 100;
 		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && (mons[last].msound == MS_ARREST) )) num += 4;
 		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && (mons[last].msound == MS_SOLDIER) )) num += 2;
 		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && strongmonst(&mons[last]) )) num += 2;
@@ -27962,6 +28009,7 @@ int     spc;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[last].msound == MS_STENCH))) num += 10;
 		if ((FemtrapActiveAnna && (mons[last].msound == MS_STENCH))) num += 50;
+		if ((FemtrapActiveLydia && (spawnswithpumps(&mons[last])) )) num += 1000;
 		if ((FemtrapActiveMarike && (mons[last].msound == MS_FART_NORMAL))) num += 10;
 		if ((FemtrapActiveVictoria && is_female(&mons[last]) && attacktype(&mons[last], AT_KICK) )) num += 20;
 		if ((FemtrapActiveJil && (mons[last].msound == MS_SOCKS))) num += 25;
@@ -28439,6 +28487,12 @@ int     spc;
 		if ((Role_if(PM_GANG_SCHOLAR) && (mons[first].msound == MS_STENCH) )) num -= 50;
 		if ((Role_if(PM_GANG_SCHOLAR) && is_jokemonster(&mons[first]) )) num -= 100;
 		if ((Role_if(PM_GANG_SCHOLAR) && is_cowmonster(&mons[first]) )) num -= 20;
+		if ((FemtrapActiveAriane && (mons[first].msound == MS_FART_NORMAL) )) num -= 20;
+		if ((FemtrapActiveAriane && (mons[first].msound == MS_FART_QUIET) )) num -= 20;
+		if ((FemtrapActiveAriane && (mons[first].msound == MS_FART_LOUD) )) num -= 20;
+		if ((FemtrapActiveAriane && (mons[first].msound == MS_STENCH) )) num -= 50;
+		if ((FemtrapActiveAriane && is_jokemonster(&mons[first]) )) num -= 100;
+		if ((FemtrapActiveAriane && is_cowmonster(&mons[first]) )) num -= 20;
 
 		if ((Role_if(PM_WALSCHOLAR) && is_jokemonster(&mons[first]) )) num -= 20;
 		if ((Role_if(PM_WALSCHOLAR) && (mons[first].msound == MS_FART_NORMAL) )) num -= 5;
@@ -28873,6 +28927,7 @@ int     spc;
 		if ((Role_if(PM_PREVERSIONER) && is_cowmonster(&mons[first]) )) num -= 50;
 		if ((Role_if(PM_PREVERSIONER) && is_jokemonster(&mons[first]) )) num -= 5;
 		if ((Role_if(PM_SHOE_FETISHIST) && (mons[first].msound == MS_SHOE) )) num -= 100;
+		if ((FemtrapActiveJohanna && (mons[first].msound == MS_SHOE) )) num -= 100;
 		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && (mons[first].msound == MS_ARREST) )) num -= 4;
 		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && (mons[first].msound == MS_SOLDIER) )) num -= 2;
 		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && strongmonst(&mons[first]) )) num -= 2;
@@ -28974,6 +29029,7 @@ int     spc;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[first].msound == MS_STENCH))) num -= 10;
 		if ((FemtrapActiveAnna && (mons[first].msound == MS_STENCH))) num -= 50;
+		if ((FemtrapActiveLydia && (spawnswithpumps(&mons[first])) )) num -= 1000;
 		if ((FemtrapActiveMarike && (mons[first].msound == MS_FART_NORMAL))) num -= 10;
 		if ((FemtrapActiveVictoria && is_female(&mons[first]) && attacktype(&mons[first], AT_KICK) )) num -= 20;
 		if ((FemtrapActiveJil && (mons[first].msound == MS_SOCKS))) num -= 25;

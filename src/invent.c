@@ -2313,6 +2313,136 @@ have_femtraprosa()
 }
 
 boolean
+have_femtrapksenia()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == KSENIA_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(69)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtraplydia()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == LYDIA_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(70)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapconny()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == CONNY_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(71)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapkatia()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == KATIA_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(72)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapmariya()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == MARIYA_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(73)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapelise()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == ELISE_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(74)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapronja()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == RONJA_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(75)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapariane()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == ARIANE_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(76)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapjohanna()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == JOHANNA_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(77)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapinge()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == INGE_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(78)) return TRUE;
+	return(FALSE);
+}
+
+boolean
 have_primecurse()
 {
 	register struct obj *otmp;
@@ -11202,6 +11332,14 @@ boolean knoweverything;
 			pline("Whenever you level up your body armor skill while wearing these boots, they will become rustproof!");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_CHELSEA_BOOTS))
 			pline("An exciting pair of shoes with treaded soles. They use the sexy flats skill.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_GEOMETRY_HEELS))
+			pline("These sandals have massive geometric wedge heels.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_TREADED_HEELS))
+			pline("A pair of boots with block heels and not only treaded soles, but even the block heel is treaded! However, somehow they are very likely to step into dog shit, forcing you to clean them painstakingly.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_WEDGE_ESPADRILLES))
+			pline("Soft female sandals with fluffy wedge heels.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SUPER_COMFY_HEELS))
+			pline("This pair of combat boots is very comfortable despite having a massive block heel.");
 
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
@@ -12750,6 +12888,26 @@ boolean knoweverything;
 				pline("A wonderful pair of combat boots with block heels. They carry Nicole's curse, and have 3 AC and 1 MC."); break;
 			case RITA_STILETTOS:
 				pline("Black stiletto heels which look super cute. They carry Rita's curse, and have 1 AC and 3 MC."); break;
+			case KSENIA_PLATFORM_SANDALS:
+				pline("A very pretty pair of light cyan platform sandals with block heels. They carry Ksenia's curse, and have 1 AC and 2 MC."); break;
+			case LYDIA_LADY_PUMPS:
+				pline("Wow, you absolutely love the tender cone heels of this pair of red velvet pumps! They carry Lydia's curse, and have 2 AC and 2 MC."); break;
+			case CONNY_COMBAT_BOOTS:
+				pline("These black combat boots have everything: block heels, zippers and buckles. They carry Conny's curse, and have 3 AC and 1 MC."); break;
+			case KATIA_COMBAT_BOOTS:
+				pline("An incredibly pretty pair of fleecy block-heeled combat boots in a highly erotic light brown color. They carry Katia's curse, and have 3 AC and 0 MC."); break;
+			case MARIYA_COMBAT_BOOTS:
+				pline("Yet another pair of black combat boots with block heels, because every other girl is wearing them. They carry Mariya's curse, and have 4 AC and 0 MC."); break;
+			case ELISE_HIPPIE_HEELS:
+				pline("This has to be one of the best pairs of shoes you've ever had, since the green block heels have a height of 11 cm yet they're still very comfortable. They carry Elise's curse, and have 5 AC and 1 MC."); break;
+			case RONJA_COMBAT_BOOTS:
+				pline("A cute pair of block-heeled lady boots. They carry Ronja's curse, and have 2 AC and 2 MC."); break;
+			case ARIANE_COMBAT_BOOTS:
+				pline("This pair of combat boots has very fleecy block heels. They carry Ariane's curse, and have 3 AC and 1 MC."); break;
+			case JOHANNA_COMBAT_BOOTS:
+				pline("Unlike most block-heeled lady boots, these aren't black, but red, which makes them look especially sexy. They carry Johanna's curse, and have 4 AC and 1 MC."); break;
+			case INGE_COMBAT_BOOTS:
+				pline("A ladylike pair of boots with block heels. They carry Inge's curse, and have 3 AC and 2 MC."); break;
 
 			case HIPPIE_HEELS:
 				pline("This pair of red leather plateau boots looks extraordinarily sexy. You get the feeling that they would love to be worn by you. Can you resist the temptation to put on these block-heeled beauties? :-)"); break;
@@ -16645,6 +16803,26 @@ boolean knoweverything;
 				pline("While having this jewel in your inventory, you're afflicted with Nicole's curse. It autocurses and cannot be dropped while cursed."); break;
 			case RITA_S_JEWEL:
 				pline("While having this jewel in your inventory, you're afflicted with Rita's curse. It autocurses and cannot be dropped while cursed."); break;
+			case KSENIA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Ksenia's curse. It autocurses and cannot be dropped while cursed."); break;
+			case LYDIA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Lydia's curse. It autocurses and cannot be dropped while cursed."); break;
+			case CONNY_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Conny's curse. It autocurses and cannot be dropped while cursed."); break;
+			case KATIA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Katia's curse. It autocurses and cannot be dropped while cursed."); break;
+			case MARIYA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Mariya's curse. It autocurses and cannot be dropped while cursed."); break;
+			case ELISE_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Elise's curse. It autocurses and cannot be dropped while cursed."); break;
+			case RONJA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Ronja's curse. It autocurses and cannot be dropped while cursed."); break;
+			case ARIANE_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Ariane's curse. It autocurses and cannot be dropped while cursed."); break;
+			case JOHANNA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Johanna's curse. It autocurses and cannot be dropped while cursed."); break;
+			case INGE_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Inge's curse. It autocurses and cannot be dropped while cursed."); break;
 
 			case RIGHT_MOUSE_BUTTON_STONE:
 				pline("A stone that curses itself and causes the right mouse button to stop working."); break;
@@ -22290,6 +22468,30 @@ boolean knoweverything;
 					pline("Artifact specs: causes the form XII (Polgo) skill to reduce the rate of energy usage for all lightsabers, occasionally forces you to wear a cursed implant and you can't remove implants at all even if they're not cursed, deactivates invisibility and displacement and causes the bank trap effect. This armor heavily autocurses when put on."); break;
 				case ART_ELMHERE:
 					pline("Artifact specs: allows the form XIII (Firga) skill to work even if you're not using a lightsaber, causes you to faint randomly, disables free action, gives you the elm street effect, and if you're paralyzed while wearing it, your AC is improved a bit."); break;
+				case ART_NE_PROSTO_KRASIVO:
+					pline("Artifact specs: +3 kick damage, +4 charisma, resist cold and reflection when worn, renames items to russian."); break;
+				case ART_SEXROOM_FOR_FREE:
+					pline("Artifact specs: +5 charisma, and if you have sex with a monster, they won't be removed."); break;
+				case ART_FULL_PROGRAM:
+					pline("Artifact specs: +1 kick damage and also causes bleeding damage if you kick a monster with them, discount action when worn."); break;
+				case ART_BEND_FROM_THE_NOISE:
+					pline("Artifact specs: deafness, resist sleep and petrification when worn and constantly makes the area around you dark."); break;
+				case ART_EXHAUST_DAMAGE:
+					pline("Artifact specs: resist death and disintegration when worn and prevents HC converters from converting you with their sermon, but if something farts at you, there may be lasting aftereffects."); break;
+				case ART_SO_WONDERFULLY_FLUFFY_SOFT:
+					pline("Artifact specs: double half physical damage and prevents fumbling when worn."); break;
+				case ART_HEELS_MADE_OF_CUDDLE_CLOTH:
+					pline("Artifact specs: half physical and spell damage as well as regeneration when worn."); break;
+				case ART_GOT_THAT_STARWARS_ENTRANCE:
+					pline("Artifact specs: diminished bleeding, allows you to use medical kits effectively, can be invoked to open the entrance to Green Cross."); break;
+				case ART_SAY_THE_WRONG_LINE:
+					pline("Artifact specs: +2 kick damage if you're kicking a male monster, but occasionally you'll say the wrong line to the monster in question, which causes unwanted effects."); break;
+				case ART_IS_THERE_A_SOUND_:
+					pline("Artifact specs: half physical damage, deafness, sound effects and monster sound effects when worn. Due to the deafness, you'll probably not hear many of those sounds."); break;
+				case ART_JASIEEN_S_FEAR:
+					pline("Artifact specs: fear when worn, increases your speed, lawful."); break;
+				case ART_SHE_REALLY_LIKES_IT:
+					pline("Artifact specs: monsters need a +1 or higher weapon to hit you effectively while you're wearing them, but the larissa and dora trap effects are active and you also suffer from skill loss."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

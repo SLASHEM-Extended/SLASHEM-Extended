@@ -3647,6 +3647,7 @@ repairitemchoice:
 
 		if (uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION && rn2(20)) break;
 		if (uwep && uwep->oartifact == ART_CRONVERT && rn2(10)) break;
+		if (uarmf && uarmf->oartifact == ART_EXHAUST_DAMAGE) break;
 
 		if (u.ualign.record < -20 && !rn2(Race_if(PM_KORONST) ? 10 : 100) && (sgn(mtmp->data->maligntyp) != u.ualign.type) ) { /* You have been converted! */
 

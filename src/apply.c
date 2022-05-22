@@ -5844,7 +5844,7 @@ doapply()
 		if (res == 2) noartispeak = TRUE; /* it broke */
 		break;
 	case MEDICAL_KIT:        
-		if (Role_if(PM_HEALER) || Race_if(PM_HERBALIST) ) can_use = TRUE;
+		if (Role_if(PM_HEALER) || Race_if(PM_HERBALIST) || (uarmf && uarmf->oartifact == ART_GOT_THAT_STARWARS_ENTRANCE) ) can_use = TRUE;
 		else if ((Role_if(PM_PRIEST) || Role_if(PM_MONK) ||
 			Role_if(PM_UNDEAD_SLAYER) || Role_if(PM_SAMURAI)) &&
 			!rn2(2)) can_use = TRUE;
@@ -6090,6 +6090,16 @@ doapply()
 	case NICOLE_S_JEWEL:
 	case RITA_S_JEWEL:
 	case JANINA_S_JEWEL:
+	case KSENIA_S_JEWEL:
+	case LYDIA_S_JEWEL:
+	case CONNY_S_JEWEL:
+	case KATIA_S_JEWEL:
+	case MARIYA_S_JEWEL:
+	case ELISE_S_JEWEL:
+	case RONJA_S_JEWEL:
+	case ARIANE_S_JEWEL:
+	case JOHANNA_S_JEWEL:
+	case INGE_S_JEWEL:
 
 	case RIGHT_MOUSE_BUTTON_STONE:
  	case DISPLAY_LOSS_STONE:

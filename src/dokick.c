@@ -41,11 +41,24 @@ register boolean clumsy;
 	if (uarmf && uarmf->oartifact == ART_AIRSHIP_DANCING) dmg += 2;
 	if (uarmf && uarmf->oartifact == ART_WILD_SEX_GAME) dmg += 2;
 	if (uarmf && uarmf->oartifact == ART_LITTLE_BITCH_IS_RUCTIOUS) dmg += 3;
+	if (uarmf && uarmf->oartifact == ART_NE_PROSTO_KRASIVO) dmg += 3;
 	if (uarmf && uarmf->oartifact == ART_SILVESTERBLAM) dmg += 3;
+	if (uarmf && uarmf->oartifact == ART_FULL_PROGRAM) dmg += 1;
 	if (uarmf && uarmf->oartifact == ART_ARTHUR_S_HIGH_HEELED_PLATF) dmg += 2;
 	if (uarmf && uarmf->oartifact == ART_KATHARINA_S_LOVELINESS) dmg += 10;
 	if (uarmf && uarmf->oartifact == ART_EXCITING_SPFLOTCH) dmg += 2;
 	if (Race_if(PM_TAYIIN)) dmg += 2;
+
+	if (uarmf && uarmf->oartifact == ART_SAY_THE_WRONG_LINE && humanoid(mon->data) && !(mon->female) ) {
+		dmg += 2;
+		if (!rn2(100)) {
+			pline("Oh no, you said the wrong line, namely the one that allows %s to pee into your boots!", mon_nam(mon));
+			curse(uarmf);
+			if (uarmf->spe > -20) uarmf->spe--;
+			pline("Due to %s's evil penis, your boots are defiled now...", mon_nam(mon));
+			return;
+		}
+	}
 
 	if (uarmf && uarmf->otyp == KICKING_BOOTS)
 	    dmg += 5;
@@ -560,6 +573,10 @@ register boolean clumsy;
 	if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) {
 		mon->bleedout += rnd(10);
 		pline("Your very pretty block heels scratch %sy wounds on %s's %s!", mbodypart(mon, BLOOD), mon_nam(mon), makeplural(mbodypart(mon, LEG)) );
+	}
+
+	if (uarmf && uarmf->oartifact == ART_FULL_PROGRAM) {
+		mon->bleedout += 3;
 	}
 
 	if (uarmf && uarmf->oartifact == ART_SCRATCHE_HUSSY) {

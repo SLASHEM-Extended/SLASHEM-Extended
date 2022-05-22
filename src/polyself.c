@@ -2097,6 +2097,16 @@ dospinweb()
 		case FEMMY_TRAP:
 		case MADELEINE_TRAP:
 		case MARLENA_TRAP:
+		case KSENIA_TRAP:
+		case LYDIA_TRAP:
+		case CONNY_TRAP:
+		case KATIA_TRAP:
+		case MARIYA_TRAP:
+		case ELISE_TRAP:
+		case RONJA_TRAP:
+		case ARIANE_TRAP:
+		case JOHANNA_TRAP:
+		case INGE_TRAP:
 		case ROSA_TRAP:
 		case JANINA_TRAP:
 		case KRISTIN_TRAP:

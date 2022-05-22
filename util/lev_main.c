@@ -702,6 +702,17 @@ static struct {
 	{ "janina", JANINA_TRAP },
 	{ "rosa", ROSA_TRAP },
 
+	{ "ksenia", KSENIA_TRAP },
+	{ "lydia", LYDIA_TRAP },
+	{ "conny", CONNY_TRAP },
+	{ "katia", KATIA_TRAP },
+	{ "mariya", MARIYA_TRAP },
+	{ "elise", ELISE_TRAP },
+	{ "ronja", RONJA_TRAP },
+	{ "ariane", ARIANE_TRAP },
+	{ "johanna", JOHANNA_TRAP },
+	{ "inge", INGE_TRAP },
+
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }
 };

@@ -27787,6 +27787,26 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Bridghitte'. It reads: 'That's gotta be a joke that you fail to clean the Juen platform sandals, even my granny could have done that.'",
 	"To whom it may concern: An orc has just attacked you with a sword. Not only that, but he has hit you. Are you interested in purchasing orc insurance? Please write back at this address.",
 	"The pinobot source code includes an AD_SHOE attack for *slashthem* of all things, even though the type of ice block would never add such a thing and it's not a monster attack that exists in SLEX. Very weird...", /* yes apparently it does have such an attack, but oh well... the message is preserved just for the sake of it :-P */
+	"The incredibly cute female platform sandals are looking forward to kicking you in the shins like a little girl.",
+	"You feel that you're gonna fight ladies who wear highly elegant cone-heeled pumps.",
+	"Uh-oh, you're not sure that you can escape from the thick women...",
+	"Some little girl really wants to take a crap while you are nearby.",
+	"You feel that some stinking girl is waiting until you're defenseless so that she can fart you into the face without you fighting back!",
+	"The females are everywhere, it seems!",
+	"Somehow, the women have learned to heal their wounds quickly.",
+	"You'll have to fight the girls from the Bang Gang as well as Anna's hussies, just like in the old times.",
+	"Admit it, you fetishize female footwear, especially if they're block-heeled combat boots with long zippers and fleecy colors.",
+	"All the elegant ladies will produce very tender farting noises that you just cannot resist.",
+	"You still don't have enough blue marks on your shins, yet the pretty female sandals are pulling back for some reason...",
+	"You're less likely to encounter cone-heeled pumps now.",
+	"Apparently you did escape the thick women after all.",
+	"At last you're no longer chased by that little girl who constantly wants to use the toilet!",
+	"You feel that you've got enough distance to the icky girl with her stinking fart butt now.",
+	"The women have finished setting their traps, now please trigger some of them.",
+	"The women are no longer regenerating super quickly.",
+	"Did you defeat the Bang Gang and the Hussies? Either way, they'll stop coming for you now.",
+	"Aww, you just got told that because you didn't treat the red block-heeled leather boots well, you may no longer look at them now. :-(",
+	"You wish you'd still encounter pretty ladies who want to fart you in the face tenderly, but no dice. They don't want to waste their time with you anymore it seems.",
 
 };
 

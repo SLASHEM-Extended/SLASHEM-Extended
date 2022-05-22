@@ -9017,6 +9017,54 @@ A("Elmhere",				LEATHER_ARMOR, /* randart2, firga form works without lightsaber,
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
+A("Ne Prosto Krasivo",				KSENIA_PLATFORM_SANDALS, /* +3 kick damage, resist cold, renames items to russian, +4 CHA */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Sexroom For Free",				LYDIA_LADY_PUMPS, /* +5 CHA, won't be removed if you have sex */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Full Program",				CONNY_COMBAT_BOOTS, /* kicking a monster deals +1 damage and causes 3 points of bleeding damage to it, discount action */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Bend From The Noise",				KATIA_COMBAT_BOOTS, /* deafness, resist stone and sleep, causes darkness effect every turn */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Exhaust Damage",				MARIYA_COMBAT_BOOTS, /* resist death and disintegration, MS_CONVERT doesn't affect you negatively; if a MS_FART_LOUD farts at you, -1 alla and +1 trembling */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("So Wonderfully Fluffy-Soft",				ELISE_HIPPIE_HEELS, /* also gives intrinsic half physical damage and prevents fumbling */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Heels Made Of Cuddle Cloth",				RONJA_COMBAT_BOOTS,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM|SPFX_HSPDAM|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Got That Starwars Entrance",				ARIANE_COMBAT_BOOTS, /* diminished bleeding, can use medical kit without fail, can be invoked to open the green cross dungeon */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Say The Wrong Line",				JOHANNA_COMBAT_BOOTS, /* +2 kick damage against male monsters, but 1 in 100 chance that they curse the boots and disenchant them up to -20 */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Is There A Sound?",				INGE_COMBAT_BOOTS, /* deafness, sound effects, monster sound effect */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Jasieen's Fear",				LOW_BOOTS, /* initialized to always be wedge espadrilles, makes you permanently feared until you take them off, but adds speed like the intrinsic, which stacks with other speed sources */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 2000L ),
+
+A("She Really Likes It",				LOW_BOOTS, /* initialized to always be treaded heels, larissa and dora trap effects, monsters need a +1 weapon to hit you effectively, skill loss effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

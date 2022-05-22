@@ -527,8 +527,13 @@ boolean racialexception;
 	     * it would forget spe and once again think the object is better
 	     * than what it already has.
 	     */
+
+	    if (FemtrapActiveKatia && mon->data->msound == MS_FART_LOUD && itemhasappearance(obj, APP_BLOCK_HEELED_BOOTS)) best = obj;
+
 	    if (best && (ARM_BONUS(best) + extra_pref(mon,best) >= ARM_BONUS(obj) + extra_pref(mon,obj)))
 		continue;
+	    if (FemtrapActiveKatia && mon->data->msound == MS_FART_LOUD && best && itemhasappearance(best, APP_BLOCK_HEELED_BOOTS)) continue;
+
 	    best = obj;
 	}
 outer_break:

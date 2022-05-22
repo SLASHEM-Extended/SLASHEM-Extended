@@ -2517,6 +2517,32 @@ find_mantle_of_coat()
 }
 
 int
+find_wedge_espadrilles()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_WEDGE_ESPADRILLES)) return i;
+    }
+
+    impossible("wedge espadrilles not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_treaded_heels()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_TREADED_HEELS)) return i;
+    }
+
+    impossible("treaded heels not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_fatal_gloves()
 {
     register int i;
@@ -2708,6 +2734,19 @@ find_levuntation_cloak()
     }
 
     impossible("levuntation cloak not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_block_heeled_boots()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_BLOCK_HEELED_BOOTS)) return i;
+    }
+
+    impossible("block-heeled boots not found?");
     return -1;	/* not 0, or caller would try again each move */
 }
 

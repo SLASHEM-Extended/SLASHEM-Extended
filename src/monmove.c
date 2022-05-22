@@ -235,6 +235,8 @@ boolean digest_meal;
 	if (mon->mhp < mon->mhpmax && !is_golem(mon->data) &&
 	    (!rn2(regenrate) || (FemtrapActiveGudrun && mon->female && humanoid(mon->data)) || regenerates(mon->data) || mon->egotype_regeneration )) mon->mhp++;
 
+	if ((mon->mhp < mon->mhpmax) && FemtrapActiveRonja && mon->female) mon->mhp++;
+
 	if (mon->data == &mons[PM_GROGGY_GUY]) {
 		mon->mhp += rnd(5);
 		if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
@@ -1862,6 +1864,12 @@ newbossSING:
 		}
 	}
 
+	if (uarmf && itemhasappearance(uarmf, APP_TREADED_HEELS) && !rn2(250) && mtmp->data->mlet == S_DOG) {
+		if (!(t_at(mtmp->mx, mtmp->my))) {
+			maketrap(mtmp->mx, mtmp->my, SHIT_TRAP, 0, FALSE);
+		}
+	}
+
 	if (FemtrapActiveAnna && !rn2(1000) && humanoid(mtmp->data) && is_female(mtmp->data) && (mdat->msound == MS_STENCH)) {
 		if (!(t_at(mtmp->mx, mtmp->my))) {
 			maketrap(mtmp->mx, mtmp->my, SHIT_TRAP, 0, FALSE);
@@ -1875,7 +1883,7 @@ newbossSING:
 	}
 
 	/* monster noise trap: some of these noises have effects, might add others in future --Amy */
-	if ((MonnoiseEffect || u.uprops[MONNOISE_EFFECT].extrinsic || have_monnoisestone()) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(250) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) ) {
+	if ((MonnoiseEffect || (uarmf && uarmf->oartifact == ART_IS_THERE_A_SOUND_) || u.uprops[MONNOISE_EFFECT].extrinsic || have_monnoisestone()) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(250) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) ) {
 		switch (mdat->msound) {
 
 			case MS_PRIEST:
@@ -2196,6 +2204,7 @@ newbossSING:
 
 			if (uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION && rn2(20)) goto convertdone;
 			if (uwep && uwep->oartifact == ART_CRONVERT && rn2(10)) goto convertdone;
+			if (uarmf && uarmf->oartifact == ART_EXHAUST_DAMAGE) goto convertdone;
 
 			You_feel("less faithful!");
 
@@ -2722,7 +2731,7 @@ toofar:
 			/* Maybe it stepped on a trap and fell asleep... */
 			if (mtmp->msleeping || !mtmp->mcanmove) return(0);
 			if(!nearby &&
-			  (!issoviet || ranged_attk(mdat) || mtmp->egotype_weaponizer || mtmp->egotype_arcane || mtmp->egotype_clerical || mtmp->egotype_mastercaster || mtmp->egotype_hugger || (evilfriday && mtmp->data->mlet == S_GIANT) || (uarmf && itemhasappearance(uarmf, APP_CHRISTMAS_CHILD_MODE_BOOTS) && dmgtype(mtmp->data, AD_NIVE)) || mtmp->egotype_abomination || mtmp->egotype_weeper || mtmp->egotype_breather || mtmp->egotype_radiator || (FemtrapActiveNelly && humanoid(mtmp->data) && is_female(mtmp->data)) || mtmp->egotype_reactor || find_offensive(mtmp)))
+			  (!issoviet || ranged_attk(mdat) || mtmp->egotype_weaponizer || mtmp->egotype_arcane || mtmp->egotype_clerical || mtmp->egotype_mastercaster || mtmp->egotype_hugger || (evilfriday && mtmp->data->mlet == S_GIANT) || (uarmf && itemhasappearance(uarmf, APP_CHRISTMAS_CHILD_MODE_BOOTS) && dmgtype(mtmp->data, AD_NIVE)) || mtmp->egotype_abomination || mtmp->egotype_weeper || mtmp->egotype_breather || mtmp->egotype_radiator || (FemtrapActiveNelly && humanoid(mtmp->data) && is_female(mtmp->data)) || (FemtrapActiveConny && thick_skinned(mtmp->data) && is_female(mtmp->data)) || mtmp->egotype_reactor || find_offensive(mtmp)))
 			    break;
  			else if(u.uswallow && mtmp == u.ustuck) {
 			    /* a monster that's digesting you can move at the

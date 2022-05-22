@@ -878,6 +878,16 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "rita trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'^', "janina trap", C(CLR_ORANGE)},	/* trap */
 	{'^', "rosa trap", C(CLR_BRIGHT_MAGENTA)},	/* trap */
+	{'^', "ksenia trap", C(CLR_BRIGHT_CYAN)},	/* trap */
+	{'^', "lydia trap", C(CLR_RED)},	/* trap */
+	{'^', "conny trap", C(CLR_BLACK)},	/* trap */
+	{'^', "katia trap", C(CLR_BROWN)},	/* trap */
+	{'^', "mariya trap", C(CLR_BLACK)},	/* trap */
+	{'^', "elise trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'^', "ronja trap", C(CLR_BLACK)},	/* trap */
+	{'^', "ariane trap", C(CLR_BLACK)},	/* trap */
+	{'^', "johanna trap", C(CLR_RED)},	/* trap */
+	{'^', "inge trap", C(CLR_BLACK)},	/* trap */
 
 	{'^', "timerun trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
@@ -1584,6 +1594,15 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_rita_trap),
 	g_FILLER(S_janina_trap),
 	g_FILLER(S_rosa_trap),
+	g_FILLER(S_lydia_trap),
+	g_FILLER(S_conny_trap),
+	g_FILLER(S_katia_trap),
+	g_FILLER(S_mariya_trap),
+	g_FILLER(S_elise_trap),
+	g_FILLER(S_ronja_trap),
+	g_FILLER(S_ariane_trap),
+	g_FILLER(S_johanna_trap),
+	g_FILLER(S_inge_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
@@ -2278,6 +2297,15 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_rita_trap),
 	g_FILLER(S_janina_trap),
 	g_FILLER(S_rosa_trap),
+	g_FILLER(S_lydia_trap),
+	g_FILLER(S_conny_trap),
+	g_FILLER(S_katia_trap),
+	g_FILLER(S_mariya_trap),
+	g_FILLER(S_elise_trap),
+	g_FILLER(S_ronja_trap),
+	g_FILLER(S_ariane_trap),
+	g_FILLER(S_johanna_trap),
+	g_FILLER(S_inge_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -2969,6 +2997,15 @@ static uchar wing_graphics[MAXPCHARS] = {
 	g_FILLER(S_rita_trap),
 	g_FILLER(S_janina_trap),
 	g_FILLER(S_rosa_trap),
+	g_FILLER(S_lydia_trap),
+	g_FILLER(S_conny_trap),
+	g_FILLER(S_katia_trap),
+	g_FILLER(S_mariya_trap),
+	g_FILLER(S_elise_trap),
+	g_FILLER(S_ronja_trap),
+	g_FILLER(S_ariane_trap),
+	g_FILLER(S_johanna_trap),
+	g_FILLER(S_inge_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -3661,6 +3698,15 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_rita_trap),
 	g_FILLER(S_janina_trap),
 	g_FILLER(S_rosa_trap),
+	g_FILLER(S_lydia_trap),
+	g_FILLER(S_conny_trap),
+	g_FILLER(S_katia_trap),
+	g_FILLER(S_mariya_trap),
+	g_FILLER(S_elise_trap),
+	g_FILLER(S_ronja_trap),
+	g_FILLER(S_ariane_trap),
+	g_FILLER(S_johanna_trap),
+	g_FILLER(S_inge_trap),
 
 	g_FILLER(S_timerun_trap),
 
@@ -4561,6 +4607,15 @@ boolean is_rlevel;
 	    showsyms[S_rita_trap] = 0x04;
 	    showsyms[S_janina_trap] = 0x04;
 	    showsyms[S_rosa_trap] = 0x04;
+	    showsyms[S_lydia_trap] = 0x04;
+	    showsyms[S_conny_trap] = 0x04;
+	    showsyms[S_katia_trap] = 0x04;
+	    showsyms[S_mariya_trap] = 0x04;
+	    showsyms[S_elise_trap] = 0x04;
+	    showsyms[S_ronja_trap] = 0x04;
+	    showsyms[S_ariane_trap] = 0x04;
+	    showsyms[S_johanna_trap] = 0x04;
+	    showsyms[S_inge_trap] = 0x04;
 
 	    showsyms[S_timerun_trap] = 0x04;
 #endif /* PUBLIC_SERVER */

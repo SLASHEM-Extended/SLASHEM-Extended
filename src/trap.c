@@ -2296,6 +2296,40 @@ boolean givehp;
 	    ttmp->launch.y = -1;
 	}
 	ttmp->ttyp = typ;
+
+	if (ttmp && FemtrapActiveInge && !rn2(100)) {
+			struct permonst *pm = 0;
+			int attempts = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+newbossING:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_FART_QUIET))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossING;
+			}
+			if (pm && !(pm->msound == MS_FART_QUIET) && rn2(50) ) {
+				attempts = 0;
+				goto newbossING;
+			}
+
+			if (pm) (void) makemon(pm, ttmp->tx, ttmp->ty, MM_ANGRY|MM_ADJACENTOK);
+
+			u.aggravation = 0;
+
+
+	}
+
 	switch(typ) {
 	    case WEB: /* always generate a spider unless directly beneath you --Amy */
 		if (u.ux != x || u.uy != y) (void) makemon( mkclass(S_SPIDER,0), x, y, NO_MM_FLAGS);
@@ -8109,7 +8143,7 @@ newbossPENT:
 		{
 			boolean larissashoes = (uarmf ? TRUE : FALSE);
 
-			if ((Levitation || Flying || (uarmf && itemhasappearance(uarmf, APP_YELLOW_SNEAKERS) ) ) && !(Role_if(PM_GANG_SCHOLAR)) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) && !SpellColorBrown && !FemtrapActiveAnastasia && !FemtrapActiveBridghitte && !FemtrapActiveLarissa && !FemtrapActiveHenrietta && !FemtrapActiveAnna && !(uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) && !(uarmf && itemhasappearance(uarmf, APP_SKI_HEELS)) && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS) && !(uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) && !(uarmf && (itemhasappearance(uarmf, APP_HUGGING_BOOTS) || itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) ) ) { /* ground-based trap, obviously */
+			if ((Levitation || Flying || (uarmf && itemhasappearance(uarmf, APP_YELLOW_SNEAKERS) ) ) && !(Role_if(PM_GANG_SCHOLAR)) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) && !SpellColorBrown && !FemtrapActiveAnastasia && !FemtrapActiveBridghitte && !FemtrapActiveLarissa && !FemtrapActiveHenrietta && !FemtrapActiveAnna && !(uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) && !(uarmf && itemhasappearance(uarmf, APP_SKI_HEELS)) && !(uarmf && itemhasappearance(uarmf, APP_TREADED_HEELS)) && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS) && !(uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) && !(uarmf && (itemhasappearance(uarmf, APP_HUGGING_BOOTS) || itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) ) ) { /* ground-based trap, obviously */
 			    if (!already_seen && rn2(3)) break;
 			    seetrap(trap);
 			    pline("%s %s on the ground below you.",
@@ -12708,6 +12742,176 @@ madnesseffect:
 
 		 break;
 
+		 case KSENIA_TRAP:
+
+			if (FemaleTrapKsenia) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Ksenia.");
+			pline("The incredibly cute female platform sandals are looking forward to kicking you in the shins like a little girl.");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapKsenia = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapKsenia += 100;
+			if (!rn2(3)) FemaleTrapKsenia += rnz(500);
+
+		 break;
+
+		 case LYDIA_TRAP:
+
+			if (FemaleTrapLydia) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Lydia.");
+			pline("You feel that you're gonna fight ladies who wear highly elegant cone-heeled pumps.");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapLydia = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapLydia += 100;
+			if (!rn2(3)) FemaleTrapLydia += rnz(500);
+
+		 break;
+
+		 case CONNY_TRAP:
+
+			if (FemaleTrapConny) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Conny.");
+			pline("Uh-oh, you're not sure that you can escape from the thick women...");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapConny = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapConny += 100;
+			if (!rn2(3)) FemaleTrapConny += rnz(500);
+
+		 break;
+
+		 case KATIA_TRAP:
+
+			if (FemaleTrapKatia) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Katia.");
+			pline("Some little girl really wants to take a crap while you are nearby.");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapKatia = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapKatia += 100;
+			if (!rn2(3)) FemaleTrapKatia += rnz(500);
+
+		 break;
+
+		 case MARIYA_TRAP:
+
+			if (FemaleTrapMariya) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Mariya.");
+			pline("You feel that some stinking girl is waiting until you're defenseless so that she can fart you into the face without you fighting back!");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapMariya = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapMariya += 100;
+			if (!rn2(3)) FemaleTrapMariya += rnz(500);
+
+		 break;
+
+		 case ELISE_TRAP:
+
+			if (FemaleTrapElise) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Elise.");
+			pline("The females are everywhere, it seems!");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapElise = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapElise += 100;
+			if (!rn2(3)) FemaleTrapElise += rnz(500);
+
+		 break;
+
+		 case RONJA_TRAP:
+
+			if (FemaleTrapRonja) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Ronja.");
+			pline("Somehow, the women have learned to heal their wounds quickly.");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapRonja = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapRonja += 100;
+			if (!rn2(3)) FemaleTrapRonja += rnz(500);
+
+		 break;
+
+		 case ARIANE_TRAP:
+
+			if (FemaleTrapAriane) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Ariane.");
+			pline("You'll have to fight the girls from the Bang Gang as well as Anna's hussies, just like in the old times.");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapAriane = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapAriane += 100;
+			if (!rn2(3)) FemaleTrapAriane += rnz(500);
+
+		 break;
+
+		 case JOHANNA_TRAP:
+
+			if (FemaleTrapJohanna) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Johanna.");
+			pline("Admit it, you fetishize female footwear, especially if they're block-heeled combat boots with long zippers and fleecy colors.");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapJohanna = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapJohanna += 100;
+			if (!rn2(3)) FemaleTrapJohanna += rnz(500);
+
+		 break;
+
+		 case INGE_TRAP:
+
+			if (FemaleTrapInge) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Inge.");
+			pline("All the elegant ladies will produce very tender farting noises that you just cannot resist.");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapInge = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapInge += 100;
+			if (!rn2(3)) FemaleTrapInge += rnz(500);
+
+		 break;
+
 		 case ROSA_TRAP:
 
 			if (FemaleTrapRosa) break;
@@ -17271,7 +17475,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 
            case SHIT_TRAP:
 
-		if( (is_flyer(mptr) || mtmp->egotype_flying) && (mptr != &mons[PM_ARABELLA]) && (mptr != &mons[PM_ARABELLA_THE_TUFTED_ASIAN_GIRL]) && (mptr != &mons[PM_ANASTASIA_THE_SWEET_BLONDE]) && (mptr != &mons[PM_HENRIETTA_THE_BURLY_WOMAN]) && (mptr != &mons[PM_KATRIN_THE_VIOLET_BEAUTY]) && (mptr != &mons[PM_JANA_THE_SOFT_WENCH]) && (mptr != &mons[PM_ANASTASIA]) && (mptr != &mons[PM_HENRIETTA]) && (mptr != &mons[PM_KATRIN]) && (mptr != &mons[PM_JANA]) & (mptr != &mons[PM_TUFTED_ASIAN_GIRL]) && (mptr != &mons[PM_SWEET_BLONDE]) && (mptr != &mons[PM_BURLY_WOMAN]) && (mptr != &mons[PM_VIOLET_BEAUTY]) && (mptr != &mons[PM_SOFT_WENCH]) && (mptr != &mons[PM_ARABELLA_THE_MONEY_THIEF]) ) break; /* since this is a ground-based trap */
+		if( (is_flyer(mptr) || mtmp->egotype_flying || (uarmf && itemhasappearance(uarmf, APP_TREADED_HEELS) && mtmp->data->mlet == S_DOG) ) && (mptr != &mons[PM_ARABELLA]) && (mptr != &mons[PM_ARABELLA_THE_TUFTED_ASIAN_GIRL]) && (mptr != &mons[PM_ANASTASIA_THE_SWEET_BLONDE]) && (mptr != &mons[PM_HENRIETTA_THE_BURLY_WOMAN]) && (mptr != &mons[PM_KATRIN_THE_VIOLET_BEAUTY]) && (mptr != &mons[PM_JANA_THE_SOFT_WENCH]) && (mptr != &mons[PM_ANASTASIA]) && (mptr != &mons[PM_HENRIETTA]) && (mptr != &mons[PM_KATRIN]) && (mptr != &mons[PM_JANA]) & (mptr != &mons[PM_TUFTED_ASIAN_GIRL]) && (mptr != &mons[PM_SWEET_BLONDE]) && (mptr != &mons[PM_BURLY_WOMAN]) && (mptr != &mons[PM_VIOLET_BEAUTY]) && (mptr != &mons[PM_SOFT_WENCH]) && (mptr != &mons[PM_ARABELLA_THE_MONEY_THIEF]) ) break; /* since this is a ground-based trap */
 		/* The spacewars fighter nemeses somehow have affinity to this type of trap. */
 
            if (in_sight)
@@ -17931,6 +18135,66 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			break;
 		case MARLENA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapMarlena) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case KSENIA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapKsenia) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case LYDIA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapLydia) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case CONNY_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapConny) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case KATIA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapKatia) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case MARIYA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapMariya) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case ELISE_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapElise) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case RONJA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapRonja) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case ARIANE_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapAriane) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case JOHANNA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapJohanna) {
+				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, 0);
+			}
+			break;
+		case INGE_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapInge) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, 0);
 			}

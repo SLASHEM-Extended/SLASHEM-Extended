@@ -998,7 +998,7 @@ nh_timeout()
 
 	}
 
-	if (u.umoved && (uarmf && itemhasappearance(uarmf, APP_IRREGULAR_BOOTS) ) && !rn2(100) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
+	if (u.umoved && (uarmf && itemhasappearance(uarmf, APP_IRREGULAR_BOOTS) ) && !rn2(100) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
 			    slip_or_trip();
 
 			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
@@ -1025,7 +1025,7 @@ nh_timeout()
 
 	}
 
-	if (u.umoved && RngeIrregularity && !rn2(100) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
+	if (u.umoved && RngeIrregularity && !rn2(100) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
 			    slip_or_trip();
 
 			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
@@ -1106,7 +1106,7 @@ nh_timeout()
 
 	}
 
-	if (u.umoved && (uarmf && uarmf->oartifact == ART_UNEVEN_STILTS) && !rn2(100) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
+	if (u.umoved && (uarmf && uarmf->oartifact == ART_UNEVEN_STILTS) && !rn2(100) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
 			    slip_or_trip();
 
 			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
@@ -2858,6 +2858,66 @@ nh_timeout()
 
 		 break;
 
+		 case FEMTRAP_KSENIA:
+
+			pline("You still don't have enough blue marks on your shins, yet the pretty female sandals are pulling back for some reason...");
+
+		 break;
+
+		 case FEMTRAP_LYDIA:
+
+			pline("You're less likely to encounter cone-heeled pumps now.");
+
+		 break;
+
+		 case FEMTRAP_CONNY:
+
+			pline("Apparently you did escape the thick women after all.");
+
+		 break;
+
+		 case FEMTRAP_KATIA:
+
+			pline("At last you're no longer chased by that little girl who constantly wants to use the toilet!");
+
+		 break;
+
+		 case FEMTRAP_MARIYA:
+
+			pline("You feel that you've got enough distance to the icky girl with her stinking fart butt now.");
+
+		 break;
+
+		 case FEMTRAP_ELISE:
+
+			pline("The women have finished setting their traps, now please trigger some of them.");
+
+		 break;
+
+		 case FEMTRAP_RONJA:
+
+			pline("The women are no longer regenerating super quickly.");
+
+		 break;
+
+		 case FEMTRAP_ARIANE:
+
+			pline("Did you defeat the Bang Gang and the Hussies? Either way, they'll stop coming for you now.");
+
+		 break;
+
+		 case FEMTRAP_JOHANNA:
+
+			pline("Aww, you just got told that because you didn't treat the red block-heeled leather boots well, you may no longer look at them now. :-(");
+
+		 break;
+
+		 case FEMTRAP_INGE:
+
+			pline("You wish you'd still encounter pretty ladies who want to fart you in the face tenderly, but no dice. They don't want to waste their time with you anymore it seems.");
+
+		 break;
+
 		 case FEMTRAP_ROSA:
 
 			pline("At last, the long-lasting powerfeminism has come to an end, you were afraid it'd never happen.");
@@ -3533,7 +3593,7 @@ nh_timeout()
 		case FUMBLING:
 			/* call this only when a move took place.  */
 			/* otherwise handle fumbling msgs locally. */
-			if (u.umoved && !Levitation && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS)) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && (!PlayerInHighHeels || (PlayerCannotUseSkills) || (rnd(7) > P_SKILL(P_HIGH_HEELS) ) ) ) {
+			if (u.umoved && !Levitation && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS)) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && (!PlayerInHighHeels || (PlayerCannotUseSkills) || (rnd(7) > P_SKILL(P_HIGH_HEELS) ) ) ) {
 			    slip_or_trip();
 
 			/* based on the evil patch idea by jonadab: stupidity or amnesia from falling on your head --Amy */

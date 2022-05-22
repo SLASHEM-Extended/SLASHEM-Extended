@@ -561,6 +561,7 @@ const char *name;	/* if null, then format `obj' */
 		}
 
 		if (uarmf && uarmf->oartifact == ART_STAR_SOLES) enchrequired = 1;
+		if (uarmf && uarmf->oartifact == ART_SHE_REALLY_LIKES_IT) enchrequired = 1;
 		if (uarmf && uarmf->oartifact == ART_HERSAY_PRICE) enchrequired = 1;
 		if (Race_if(PM_PLAYER_SKELETON)) enchrequired = 2;
 		if (uarmf && uarmf->oartifact == ART_PHANTO_S_RETARDEDNESS) enchrequired = 4;

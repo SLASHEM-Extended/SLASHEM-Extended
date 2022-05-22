@@ -63,6 +63,7 @@ register struct attack *mattk;
 	int armproX = 0;
 	int armprolimitX = 75;
 	int randomkick;
+	boolean kseniakick = FALSE;
 
 	/* Note: if opposite gender, "seductively" */
 	/* If same gender, "engagingly" for nymph, normal msg for others */
@@ -227,6 +228,9 @@ on the first floor, especially when you're playing as something with drain resis
 			}
 			break;
 		case AT_KICK:
+
+kseniaagain:
+
 			pline("%s kicks you%c", Monnam(mtmp),
 				    thick_skinned(youmonst.data) ? '.' : (uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON) ? '.' : (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) ? '.' : (uarmf && uarmf->oartifact == ART_THICK_FARTING_GIRL) ? '.' : Race_if(PM_DUTHOL) ? '.' : (uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) ? '.' : (FemtrapActivePatricia) ? '.' : '!');
 
@@ -246,7 +250,7 @@ on the first floor, especially when you're playing as something with drain resis
 				losehp(rno(u.legscratching + 1), "being scratched by Jeanetta's little boots", KILLED_BY);
 			}
 
-			if (Role_if(PM_SHOE_FETISHIST) && mtmp->data->msound == MS_SHOE && !rn2(5)) {
+			if ( (Role_if(PM_SHOE_FETISHIST) || FemtrapActiveJohanna) && mtmp->data->msound == MS_SHOE && !rn2(5)) {
 				switch (rnd(7)) {
 					case 1:
 						pline_The("shoe clamps your arm!");
@@ -388,7 +392,7 @@ karinrepeat:
 			if (FemtrapActiveKristin && !rn2(10) && humanoid(mtmp->data) && is_female(mtmp->data)) randomsexyheels = rnd(30);
 
 			/* wedge sandals use M4_SANDALS */
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == WEDGE_SANDALS) || (footwear && footwear->otyp == EVELINE_WEDGE_SANDALS) || (footwear && footwear->otyp == NATALIA_WEDGE_SANDALS) || (footwear && footwear->otyp == GUDRUN_WEDGE_SANDALS) || (footwear && footwear->otyp == ELLA_WEDGE_SANDALS) || (footwear && footwear->otyp == KERSTIN_WOODEN_SANDALS) || (footwear && footwear->otyp == ANNEMARIE_PLATFORM_SANDALS) || (footwear && footwear->otyp == KARIN_LADY_SANDALS) || (footwear && footwear->otyp == CLAUDIA_WOODEN_SANDALS) || (footwear && itemhasappearance(footwear, APP_CALF_LEATHER_SANDALS)) || (footwear && itemhasappearance(footwear, APP_WOODEN_CLOGS)) || (footwear && itemhasappearance(footwear, APP_PRINTED_WEDGES)) || mtmp->data == &mons[PM_ANIMATED_WEDGE_SANDAL] || (randomsexyheels == 1) || mtmp->data == &mons[PM_WEREWEDGESANDAL] || mtmp->data == &mons[PM_HUMAN_WEREWEDGESANDAL]) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == WEDGE_SANDALS) || (footwear && footwear->otyp == EVELINE_WEDGE_SANDALS) || (footwear && footwear->otyp == KSENIA_PLATFORM_SANDALS) || (footwear && footwear->otyp == NATALIA_WEDGE_SANDALS) || (footwear && footwear->otyp == GUDRUN_WEDGE_SANDALS) || (footwear && footwear->otyp == ELLA_WEDGE_SANDALS) || (footwear && footwear->otyp == KERSTIN_WOODEN_SANDALS) || (footwear && footwear->otyp == ANNEMARIE_PLATFORM_SANDALS) || (footwear && footwear->otyp == KARIN_LADY_SANDALS) || (footwear && footwear->otyp == CLAUDIA_WOODEN_SANDALS) || (footwear && itemhasappearance(footwear, APP_CALF_LEATHER_SANDALS)) || (footwear && itemhasappearance(footwear, APP_WOODEN_CLOGS)) || (footwear && itemhasappearance(footwear, APP_PRINTED_WEDGES)) || (footwear && itemhasappearance(footwear, APP_GEOMETRY_HEELS)) || (footwear && itemhasappearance(footwear, APP_WEDGE_ESPADRILLES)) || mtmp->data == &mons[PM_ANIMATED_WEDGE_SANDAL] || (randomsexyheels == 1) || mtmp->data == &mons[PM_WEREWEDGESANDAL] || mtmp->data == &mons[PM_HUMAN_WEREWEDGESANDAL]) ) {
 elenaWDG:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -687,7 +691,7 @@ elena11:
 			}
 
 			/* hippie heels use M4_BLOCKHEELBOOTS */
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == HIPPIE_HEELS) || (footwear && itemhasappearance(footwear, APP_LOLITA_BOOTS)) || (footwear && itemhasappearance(footwear, APP_EROTIC_BOOTS)) || (footwear && itemhasappearance(footwear, APP_SPUTA_BOOTS)) || mtmp->data == &mons[PM_ANIMATED_PROSTITUTE_SHOE] || (randomsexyheels == 13) || mtmp->data == &mons[PM_WEREPROSTITUTESHOE] || mtmp->data == &mons[PM_HUMAN_WEREPROSTITUTESHOE] || mtmp->data == &mons[PM_SPIDER_FAGUS] || mtmp->data == &mons[PM_LUISA_S_SPUTA_FLOWING_BLOCK_HEEL_BOOT]) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == HIPPIE_HEELS) || (footwear && footwear->otyp == ELISE_HIPPIE_HEELS) || (footwear && itemhasappearance(footwear, APP_LOLITA_BOOTS)) || (footwear && itemhasappearance(footwear, APP_EROTIC_BOOTS)) || (footwear && itemhasappearance(footwear, APP_SUPER_COMFY_HEELS)) || (footwear && itemhasappearance(footwear, APP_SPUTA_BOOTS)) || mtmp->data == &mons[PM_ANIMATED_PROSTITUTE_SHOE] || (randomsexyheels == 13) || mtmp->data == &mons[PM_WEREPROSTITUTESHOE] || mtmp->data == &mons[PM_HUMAN_WEREPROSTITUTESHOE] || mtmp->data == &mons[PM_SPIDER_FAGUS] || mtmp->data == &mons[PM_LUISA_S_SPUTA_FLOWING_BLOCK_HEEL_BOOT]) ) {
 elena12:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -876,7 +880,8 @@ elena13:
 				}
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == FEMININE_PUMPS) || (footwear && footwear->otyp == ANITA_LADY_PUMPS) || (footwear && footwear->otyp == WENDY_LEATHER_PUMPS) || (footwear && footwear->otyp == NELLY_LADY_PUMPS) || (footwear && footwear->otyp == DESTRUCTIVE_HEELS) || (footwear && footwear->otyp == AUTOSCOOTER_HEELS) || (footwear && footwear->otyp == VIOLET_BEAUTY_HEELS) || (footwear && itemhasappearance(footwear, APP_VELVET_PUMPS)) || (footwear && itemhasappearance(footwear, APP_FEELGOOD_HEELS)) || (footwear && itemhasappearance(footwear, APP_PARAGRAPH_SHOES)) || (footwear && itemhasappearance(footwear, APP_BONE_HEELS)) || (footwear && itemhasappearance(footwear, APP_BRIDAL_SHOES)) || (footwear && itemhasappearance(footwear, APP_ORGASM_PUMPS)) || (footwear && itemhasappearance(footwear, APP_PRINCESS_PUMPS)) || (footwear && itemhasappearance(footwear, APP_SEXY_HEELS)) || (footwear && itemhasappearance(footwear, APP_SHADOWY_HEELS)) || (footwear && itemhasappearance(footwear, APP_MARY_JANES)) || mtmp->data == &mons[PM_FOURFOLD_SHOE_ENEMY] || mtmp->data == &mons[PM_ANIMATED_SEXY_LEATHER_PUMP] || mtmp->data == &mons[PM_WERESEXYLEATHERPUMP] || mtmp->data == &mons[PM_DELFI_ROCKZ] || mtmp->data == &mons[PM_ALL_TIME_FAVZ] || mtmp->data == &mons[PM_HAPPY_CLOUD] || mtmp->data == &mons[PM_WOOD_FEELING_INDIGO] || mtmp->data == &mons[PM_WOOD_FEELING_PAPAYA] || mtmp->data == &mons[PM_WOOD_FEELING_MINT] || mtmp->data == &mons[PM_BLACK_MANDALA] || mtmp->data == &mons[PM_UNDERWATER_LOVE] || mtmp->data == &mons[PM_TIRE_ROCKZ] || mtmp->data == &mons[PM_TIRE_ROCKZ_BABYPINK] || mtmp->data == &mons[PM_SWEET_CHERRY] || mtmp->data == &mons[PM_ROCKZ_ARMY] || mtmp->data == &mons[PM_MY_LOVE_YIN] || mtmp->data == &mons[PM_MY_LOVE_YANG] || mtmp->data == &mons[PM_SKETCH_IT] || mtmp->data == &mons[PM_BUNNY_ROCKZ] || mtmp->data == &mons[PM_CAT_ROCKZ] || mtmp->data == &mons[PM_COLLEGE_ROCKZ] || mtmp->data == &mons[PM_WELCOME_ON_BOARD] || mtmp->data == &mons[PM_BACTERIA_MISSYS] || mtmp->data == &mons[PM_BANDANA_ROCKZ] || mtmp->data == &mons[PM_SCAN_ME_MISSYS] || mtmp->data == &mons[PM_POKERFACE_MISSYS] || mtmp->data == &mons[PM_ROSE_ROCKZ] || mtmp->data == &mons[PM_YES_I_ROCKZ] || mtmp->data == &mons[PM_WHITE_KARMA] || mtmp->data == &mons[PM_BLACK_KARMA] || mtmp->data == &mons[PM_STREET_ROCKZ] || mtmp->data == &mons[PM_HUMAN_WERESEXYLEATHERPUMP] || mtmp->data == &mons[PM_ARVOGENIC_TOPMODEL] || (randomsexyheels == 15) || mtmp->data == &mons[PM_ANIMATED_BEAUTIFUL_FUNNEL_HEELED_PUMP] || mtmp->data == &mons[PM_WEREBEAUTIFULFUNNELHEELEDPUMP] || mtmp->data == &mons[PM_HUMAN_WEREBEAUTIFULFUNNELHEELEDPUMP] || mtmp->data == &mons[PM_BLOODY_BEAUTIES] || mtmp->data == &mons[PM_DISINTERESTED_OLDER_WOMAN] || mtmp->data == &mons[PM_JOY_PORN_STAR]) ) {
+			/* feminine pumps use M4_PUMPS */
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == FEMININE_PUMPS) || (footwear && footwear->otyp == ANITA_LADY_PUMPS) || (footwear && footwear->otyp == LYDIA_LADY_PUMPS) || (footwear && footwear->otyp == WENDY_LEATHER_PUMPS) || (footwear && footwear->otyp == NELLY_LADY_PUMPS) || (footwear && footwear->otyp == DESTRUCTIVE_HEELS) || (footwear && footwear->otyp == AUTOSCOOTER_HEELS) || (footwear && footwear->otyp == VIOLET_BEAUTY_HEELS) || (footwear && itemhasappearance(footwear, APP_VELVET_PUMPS)) || (footwear && itemhasappearance(footwear, APP_FEELGOOD_HEELS)) || (footwear && itemhasappearance(footwear, APP_PARAGRAPH_SHOES)) || (footwear && itemhasappearance(footwear, APP_BONE_HEELS)) || (footwear && itemhasappearance(footwear, APP_BRIDAL_SHOES)) || (footwear && itemhasappearance(footwear, APP_ORGASM_PUMPS)) || (footwear && itemhasappearance(footwear, APP_PRINCESS_PUMPS)) || (footwear && itemhasappearance(footwear, APP_SEXY_HEELS)) || (footwear && itemhasappearance(footwear, APP_SHADOWY_HEELS)) || (footwear && itemhasappearance(footwear, APP_MARY_JANES)) || mtmp->data == &mons[PM_FOURFOLD_SHOE_ENEMY] || mtmp->data == &mons[PM_ANIMATED_SEXY_LEATHER_PUMP] || mtmp->data == &mons[PM_WERESEXYLEATHERPUMP] || mtmp->data == &mons[PM_DELFI_ROCKZ] || mtmp->data == &mons[PM_ALL_TIME_FAVZ] || mtmp->data == &mons[PM_HAPPY_CLOUD] || mtmp->data == &mons[PM_WOOD_FEELING_INDIGO] || mtmp->data == &mons[PM_WOOD_FEELING_PAPAYA] || mtmp->data == &mons[PM_WOOD_FEELING_MINT] || mtmp->data == &mons[PM_BLACK_MANDALA] || mtmp->data == &mons[PM_UNDERWATER_LOVE] || mtmp->data == &mons[PM_TIRE_ROCKZ] || mtmp->data == &mons[PM_TIRE_ROCKZ_BABYPINK] || mtmp->data == &mons[PM_SWEET_CHERRY] || mtmp->data == &mons[PM_ROCKZ_ARMY] || mtmp->data == &mons[PM_MY_LOVE_YIN] || mtmp->data == &mons[PM_MY_LOVE_YANG] || mtmp->data == &mons[PM_SKETCH_IT] || mtmp->data == &mons[PM_BUNNY_ROCKZ] || mtmp->data == &mons[PM_CAT_ROCKZ] || mtmp->data == &mons[PM_COLLEGE_ROCKZ] || mtmp->data == &mons[PM_WELCOME_ON_BOARD] || mtmp->data == &mons[PM_BACTERIA_MISSYS] || mtmp->data == &mons[PM_BANDANA_ROCKZ] || mtmp->data == &mons[PM_SCAN_ME_MISSYS] || mtmp->data == &mons[PM_POKERFACE_MISSYS] || mtmp->data == &mons[PM_ROSE_ROCKZ] || mtmp->data == &mons[PM_YES_I_ROCKZ] || mtmp->data == &mons[PM_WHITE_KARMA] || mtmp->data == &mons[PM_BLACK_KARMA] || mtmp->data == &mons[PM_STREET_ROCKZ] || mtmp->data == &mons[PM_HUMAN_WERESEXYLEATHERPUMP] || mtmp->data == &mons[PM_ARVOGENIC_TOPMODEL] || (randomsexyheels == 15) || mtmp->data == &mons[PM_ANIMATED_BEAUTIFUL_FUNNEL_HEELED_PUMP] || mtmp->data == &mons[PM_WEREBEAUTIFULFUNNELHEELEDPUMP] || mtmp->data == &mons[PM_HUMAN_WEREBEAUTIFULFUNNELHEELEDPUMP] || mtmp->data == &mons[PM_BLOODY_BEAUTIES] || mtmp->data == &mons[PM_DISINTERESTED_OLDER_WOMAN] || mtmp->data == &mons[PM_JOY_PORN_STAR]) ) {
 elena14:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -1048,7 +1053,7 @@ elenacuddle:
 			}
 
 			/* heap of shit boots use M4_BLOCKHEELBOOTS */
-			if ((!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_HEAP_OF_SHIT_BOOTS) ) || (footwear && footwear->otyp == HENRIETTA_COMBAT_BOOTS) || (randomsexyheels == 29) ) ) {
+			if ((!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_HEAP_OF_SHIT_BOOTS) ) || (footwear && itemhasappearance(footwear, APP_TREADED_HEELS) ) || (footwear && footwear->otyp == HENRIETTA_COMBAT_BOOTS) || (randomsexyheels == 29) ) ) {
 elenahos:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -1287,7 +1292,7 @@ elena22:
 			}
 
 			/* block-heeled boots use M4_BLOCKHEELBOOTS */
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_BLOCK_HEELED_BOOTS) ) || (footwear && itemhasappearance(footwear, APP_BLOCKCHOC_BOOTS) ) || (footwear && footwear->otyp == VICTORIA_COMBAT_BOOTS) || (footwear && footwear->otyp == JETTE_COMBAT_BOOTS) || (footwear && footwear->otyp == DORA_COMBAT_BOOTS) || (footwear && footwear->otyp == SUSANNE_COMBAT_BOOTS) || (footwear && footwear->otyp == NORA_COMBAT_BOOTS) || (footwear && footwear->otyp == KRISTIN_COMBAT_BOOTS) || (footwear && footwear->otyp == MELTEM_COMBAT_BOOTS) || (footwear && footwear->otyp == JULIA_COMBAT_BOOTS) || (footwear && footwear->otyp == NICOLE_COMBAT_BOOTS) || (footwear && footwear->otyp == ELENA_COMBAT_BOOTS) || (footwear && footwear->otyp == THAI_COMBAT_BOOTS) || (footwear && footwear->otyp == KERSTIN_COMBAT_BOOTS) || (footwear && footwear->otyp == JENNIFER_COMBAT_BOOTS) || (footwear && footwear->otyp == KATRIN_COMBAT_BOOTS) || (footwear && footwear->otyp == COVETED_BOOTS) || (footwear && footwear->otyp == HIGH_SCORING_HEELS) || mtmp->data == &mons[PM_ANIMATED_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_SLAP_HEELED_SANDAL_BOOT] || mtmp->data == &mons[PM_WEREBLOCKHEELEDCOMBATBOOT] || mtmp->data == &mons[PM_HUMAN_WEREBLOCKHEELEDCOMBATBOOT] || mtmp->data == &mons[PM_SHY_LAURA_S_LOVELY_COMBAT_BOOT] || mtmp->data == &mons[PM_LILLY_S_FLEECY_COMBAT_BOOT] || (randomsexyheels == 27) || mtmp->data == &mons[PM_HANNAH_S_COMBAT_BOOT] || mtmp->data == &mons[PM_SABINE_S_ZIPPER_BOOT] || mtmp->data == &mons[PM_LARISSA_S_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_NICOLE_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_ANTJE_S_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_LISA_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_FOURFOLD_SHOE_ENEMY] || mtmp->data == &mons[PM_KRISTIN_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_RUEA_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_JUEN_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_RUTH_S_BLOCK_HEELED_LADY_BOOT] || mtmp->data == &mons[PM_PATRICIA_S_COMBAT_BOOT] || mtmp->data == &mons[PM_DESIREE_S_COMBAT_BOOT] || mtmp->data == &mons[PM_INGE_S_COMBAT_BOOT] || mtmp->data == &mons[PM_CORINA_S_SPECIAL_COMBAT_BOOT] || mtmp->data == &mons[PM_KATRIN_S_COMBAT_BOOT] || mtmp->data == &mons[PM_BIRGIT_S_LADY_BOOT] || mtmp->data == &mons[PM_BLOCK_HEELED_GIRL] || mtmp->data == &mons[PM_LAURA_S__SISTER__COMBAT_BOOT] || mtmp->data == &mons[PM_POWERFUL_BLONDE_GIRL] || mtmp->data == &mons[PM_KARATE_FEMMY] || mtmp->data == &mons[PM_MARLEEN_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_CZECH_WENCH] || mtmp->data == &mons[PM_UNFORTUNATE_FOREST] || mtmp->data == &mons[PM_BITCHY_LARA_S_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_PERSONA_NON_GRATA] || mtmp->data == &mons[PM_BLOCK_HEELED_PUSSY] ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_BLOCK_HEELED_BOOTS) ) || (footwear && itemhasappearance(footwear, APP_BLOCKCHOC_BOOTS) ) || (footwear && footwear->otyp == VICTORIA_COMBAT_BOOTS) || (footwear && footwear->otyp == JETTE_COMBAT_BOOTS) || (footwear && footwear->otyp == DORA_COMBAT_BOOTS) || (footwear && footwear->otyp == SUSANNE_COMBAT_BOOTS) || (footwear && footwear->otyp == NORA_COMBAT_BOOTS) || (footwear && footwear->otyp == KRISTIN_COMBAT_BOOTS) || (footwear && footwear->otyp == MELTEM_COMBAT_BOOTS) || (footwear && footwear->otyp == JULIA_COMBAT_BOOTS) || (footwear && footwear->otyp == CONNY_COMBAT_BOOTS) || (footwear && footwear->otyp == KATIA_COMBAT_BOOTS) || (footwear && footwear->otyp == MARIYA_COMBAT_BOOTS) || (footwear && footwear->otyp == RONJA_COMBAT_BOOTS) || (footwear && footwear->otyp == ARIANE_COMBAT_BOOTS) || (footwear && footwear->otyp == JOHANNA_COMBAT_BOOTS) || (footwear && footwear->otyp == INGE_COMBAT_BOOTS) || (footwear && footwear->otyp == NICOLE_COMBAT_BOOTS) || (footwear && footwear->otyp == ELENA_COMBAT_BOOTS) || (footwear && footwear->otyp == THAI_COMBAT_BOOTS) || (footwear && footwear->otyp == KERSTIN_COMBAT_BOOTS) || (footwear && footwear->otyp == JENNIFER_COMBAT_BOOTS) || (footwear && footwear->otyp == KATRIN_COMBAT_BOOTS) || (footwear && footwear->otyp == COVETED_BOOTS) || (footwear && footwear->otyp == HIGH_SCORING_HEELS) || mtmp->data == &mons[PM_ANIMATED_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_SLAP_HEELED_SANDAL_BOOT] || mtmp->data == &mons[PM_WEREBLOCKHEELEDCOMBATBOOT] || mtmp->data == &mons[PM_HUMAN_WEREBLOCKHEELEDCOMBATBOOT] || mtmp->data == &mons[PM_SHY_LAURA_S_LOVELY_COMBAT_BOOT] || mtmp->data == &mons[PM_LILLY_S_FLEECY_COMBAT_BOOT] || (randomsexyheels == 27) || mtmp->data == &mons[PM_HANNAH_S_COMBAT_BOOT] || mtmp->data == &mons[PM_SABINE_S_ZIPPER_BOOT] || mtmp->data == &mons[PM_LARISSA_S_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_NICOLE_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_ANTJE_S_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_LISA_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_FOURFOLD_SHOE_ENEMY] || mtmp->data == &mons[PM_KRISTIN_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_RUEA_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_JUEN_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_RUTH_S_BLOCK_HEELED_LADY_BOOT] || mtmp->data == &mons[PM_PATRICIA_S_COMBAT_BOOT] || mtmp->data == &mons[PM_DESIREE_S_COMBAT_BOOT] || mtmp->data == &mons[PM_INGE_S_COMBAT_BOOT] || mtmp->data == &mons[PM_CORINA_S_SPECIAL_COMBAT_BOOT] || mtmp->data == &mons[PM_KATRIN_S_COMBAT_BOOT] || mtmp->data == &mons[PM_BIRGIT_S_LADY_BOOT] || mtmp->data == &mons[PM_BLOCK_HEELED_GIRL] || mtmp->data == &mons[PM_LAURA_S__SISTER__COMBAT_BOOT] || mtmp->data == &mons[PM_POWERFUL_BLONDE_GIRL] || mtmp->data == &mons[PM_KARATE_FEMMY] || mtmp->data == &mons[PM_MARLEEN_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_CZECH_WENCH] || mtmp->data == &mons[PM_UNFORTUNATE_FOREST] || mtmp->data == &mons[PM_BITCHY_LARA_S_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_PERSONA_NON_GRATA] || mtmp->data == &mons[PM_BLOCK_HEELED_PUSSY] ) ) {
 elena23:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -1394,6 +1399,25 @@ elena23:
 			}
 
 			if (!rn2(250)) pushplayer(FALSE);
+
+			if (FemtrapActiveKsenia && !kseniakick && spawnswithsandals(mtmp->data) ) {
+
+				if (!mtmp->mfrenzied) {
+					if (yn("Do you want to allow the pretty sandal to kick you again?") == 'y') {
+						kseniakick = TRUE;
+						goto kseniaagain;
+					} else {
+						mtmp->mtame = FALSE;
+						mtmp->mpeaceful = FALSE;
+						mtmp->mfrenzied = TRUE;
+						pline("You're really mean. Now the pretty sandal won't hold back anymore.");
+					}
+				} else {
+					kseniakick = TRUE;
+					goto kseniaagain;
+				}
+
+			}
 
 			break;
 		case AT_STNG:
@@ -4891,6 +4915,12 @@ newboss:
 		    } else wildmiss(mtmp, a);
 		}
 
+	}
+
+	if (FemtrapActiveConny && thick_skinned(mtmp->data) && is_female(mtmp->data)) {
+		pline("%s sits on you, and makes it hard for you to move!", Monnam(mtmp));
+		setustuck(mtmp);
+		make_stunned(HStun + 25, FALSE);
 	}
 
 	if (FemtrapActiveNelly && humanoid(mtmp->data) && is_female(mtmp->data)) {
@@ -20405,6 +20435,7 @@ register int n;
 	}
 
 	if (uarmf && uarmf->oartifact == ART_STAR_SOLES) enchrequired = 1;
+	if (uarmf && uarmf->oartifact == ART_SHE_REALLY_LIKES_IT) enchrequired = 1;
 	if (uarmf && uarmf->oartifact == ART_HERSAY_PRICE) enchrequired = 1;
 	if (Race_if(PM_PLAYER_SKELETON)) enchrequired = 2;
 	if (uarmf && uarmf->oartifact == ART_PHANTO_S_RETARDEDNESS) enchrequired = 4;
@@ -20822,7 +20853,7 @@ register struct monst *mon;
 	mayberem(uarmc, cloak_simple_name(uarmc));
 	if(!uarmc)
 		mayberem(uarm, "suit");
-	mayberem(uarmf, "boots");
+	if (!(uarmf && uarmf->oartifact == ART_SEXROOM_FOR_FREE)) mayberem(uarmf, "boots");
 	if(!uwep || !welded(uwep))
 		mayberem(uarmg, "gloves");
 	/* 

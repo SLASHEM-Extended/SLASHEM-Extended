@@ -1360,6 +1360,16 @@ E boolean have_femtrapnicole(void);
 E boolean have_femtraprita(void);
 E boolean have_femtrapjanina(void);
 E boolean have_femtraprosa(void);
+E boolean have_femtrapksenia(void);
+E boolean have_femtraplydia(void);
+E boolean have_femtrapconny(void);
+E boolean have_femtrapkatia(void);
+E boolean have_femtrapmariya(void);
+E boolean have_femtrapelise(void);
+E boolean have_femtrapronja(void);
+E boolean have_femtrapariane(void);
+E boolean have_femtrapjohanna(void);
+E boolean have_femtrapinge(void);
 
 E boolean have_primecurse(void);
 
@@ -2050,6 +2060,8 @@ E int find_castlevania_boots(void);
 E int find_greek_cloak(void);
 E int find_celtic_helmet(void);
 E int find_english_gloves(void);
+E int find_wedge_espadrilles(void);
+E int find_treaded_heels(void);
 E int find_korean_sandals(void);
 E int find_octarine_robe(void);
 E int find_chinese_cloak(void);
@@ -2075,6 +2087,7 @@ E int find_excrement_cloak(void);
 E int find_racer_gloves(void);
 E int find_turbo_boots(void);
 E int find_guild_cloak(void);
+E int find_block_heeled_boots(void);
 E int find_shitty_gloves(void);
 E int find_foundry_cloak(void);
 E int find_spellsucking_cloak(void);
@@ -2759,6 +2772,8 @@ E int randartscrollX(void);
 E int randartballX(void);
 E int randartchainX(void);
 E int randartgemX(void);
+
+E int randomfeminismtraptype(void);
 
 E int randartbadgraystone(void);
 E int randartfeminismjewel(void);

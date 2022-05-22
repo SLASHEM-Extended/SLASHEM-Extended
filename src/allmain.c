@@ -1938,6 +1938,13 @@ moveloop()
 				if (moveamt > (oldspeed + 12)) moveamt = (oldspeed + 12);
 			}
 
+			if (uarmf && uarmf->oartifact == ART_JASIEEN_S_FEAR) {
+				oldspeed = moveamt;
+				moveamt *= 3;
+				moveamt /= 2;
+				if (moveamt > (oldspeed + 12)) moveamt = (oldspeed + 12);
+			}
+
 			if (uimplant && uimplant->oartifact == ART_BRRRRRRRRRRRRRMMMMMM) {
 				if (is_highway(u.ux, u.uy) || powerfulimplants()) {
 					oldspeed = moveamt;
@@ -2686,6 +2693,9 @@ moveloop()
 		if (Role_if(PM_GANG_SCHOLAR) && !rn2(1000)) {
 			gangscholarmessage();
 		}
+		if (FemtrapActiveAriane && !rn2(1000)) {
+			gangscholarmessage();
+		}
 		if (practicantterror && !rn2(1000)) {
 			practicantmessage();
 		}
@@ -2918,6 +2928,85 @@ moveloop()
 			if (!rn2(3)) {
 				pline("%s", fauxmessage());
 				u.cnd_plineamount++;
+			}
+		}
+
+		if (FemtrapActiveMariya && !rn2(10) && multi < 0) {
+			register struct monst *mariyamon;
+			struct permonst *pm = 0;
+			int attempts = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+newbossMYA:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+			} while ( (!pm || (pm && !(pm->msound == MS_FART_LOUD))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossMYA;
+			}
+			if (pm && !(pm->msound == MS_FART_LOUD) && rn2(50) ) {
+				attempts = 0;
+				goto newbossMYA;
+			}
+
+			if (pm) mariyamon = makemon(pm, u.ux, u.uy, MM_ANGRY|MM_ADJACENTOK);
+			if (mariyamon) mariyamon->fartbonus = 9;
+
+			u.aggravation = 0;
+
+		}
+
+		if (FemtrapActiveKatia) {
+			int katiax, katiay;
+			for (katiax = 0; katiax < COLNO; katiax++) {
+				for (katiay = 0; katiay < ROWNO; katiay++) {
+
+					if (isok(katiax, katiay) && IS_TOILET(levl[katiax][katiay].typ)) {
+
+						if (!rn2(1000) && (dist2(katiax, katiay, u.ux, u.uy) <= (BOLT_LIM * BOLT_LIM)) ) {
+							struct permonst *pm = 0;
+							int attempts = 0;
+
+							if (Aggravate_monster) {
+								u.aggravation = 1;
+								reset_rndmonst(NON_PM);
+							}
+newbossKTA:
+							do {
+								pm = rndmonst();
+								attempts++;
+								if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+							} while ( (!pm || (pm && !(pm->msound == MS_FART_LOUD))) && attempts < 50000);
+
+							if (!pm && rn2(50) ) {
+								attempts = 0;
+								goto newbossKTA;
+							}
+							if (pm && !(pm->msound == MS_FART_LOUD) && rn2(50) ) {
+								attempts = 0;
+								goto newbossKTA;
+							}
+
+							if (pm) (void) makemon(pm, katiax, katiay, MM_ADJACENTOK);
+
+							pline("Suddenly, you hear very exciting crapping noises!");
+							nomul(-rnd(6), "listening to disgusting crapping noises", TRUE);
+						      nomovemsg = "At last, you get yourself together, ready to move on.";
+							if (!rn2(10)) increasesanity(1);
+
+							u.aggravation = 0;
+
+						}
+					}
+				}
 			}
 		}
 
@@ -3508,7 +3597,7 @@ newbossBQ:
 			if (u.tarmustrokingturn < 0) u.tarmustrokingturn = 0; /* fail safe */
 		}
 
-		if (SkillLossEffect || u.uprops[SKILL_LOSS_EFFECT].extrinsic || have_skilllossstone()) {
+		if (SkillLossEffect || (uarmf && uarmf->oartifact == ART_SHE_REALLY_LIKES_IT) || u.uprops[SKILL_LOSS_EFFECT].extrinsic || have_skilllossstone()) {
 			skillcaploss_severe();
 		}
 
@@ -5701,6 +5790,39 @@ newbossKERSTIN:
 
 		}
 
+		if (!rn2(2000) && FemtrapActiveKsenia ) {
+
+			struct permonst *pm = 0;
+			int attempts = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+newbossKSENIA:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(spawnswithsandals(pm)) )) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossKSENIA;
+			}
+			if (pm && !(spawnswithsandals(pm)) && rn2(50) ) {
+				attempts = 0;
+				goto newbossKSENIA;
+			}
+
+			if (pm) makemon(pm, u.ux, u.uy, MM_ANGRY|MM_ADJACENTOK);
+
+			u.aggravation = 0;
+
+		}
+
 		if (uarm && uarm->oartifact == ART_ROBE_OF_INFESTATION && !rn2(5000)) {
 			int aggroamount = rnd(12);
 			boolean infesttype = rn2(2) ? TRUE : FALSE;
@@ -6169,6 +6291,9 @@ newbossJANI:
 		if (uarmf && uarmf->oartifact == ART_DARK_BALL_OF_LIGHT) {
 			litroomlite(FALSE);
 		}
+		if (uarmf && uarmf->oartifact == ART_BEND_FROM_THE_NOISE) {
+			litroomlite(FALSE);
+		}
 
 		if (FemtrapActiveAntje && u.uhunger >= 2500 && !rn2(50)) {
 			switch (rnd(4)) {
@@ -6487,6 +6612,37 @@ newbossSF:
 
 		}
 
+		if (FemtrapActiveJohanna && !rn2(1000)) {
+
+			int attempts = 0;
+			struct permonst *pm = 0;
+
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+
+newbossJOH:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_SHOE))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossJOH;
+			}
+			if (pm && !(pm->msound == MS_SHOE) && rn2(50) ) {
+				attempts = 0;
+				goto newbossJOH;
+			}
+
+			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY);
+
+			u.aggravation = 0;
+
+		}
+
 		if (FemtrapActiveRuea && !rn2(1000)) {
 
 			int attempts = 0;
@@ -6781,7 +6937,7 @@ newbossRLR:
 		}
 
 		/* for feminizer hybrid race: re-randomize feminism effect that is active --Amy */
-		if (!rn2(5000)) u.feminizeffect = rnd(68); /* amount of feminism trap effects; keyword: "marlena" */
+		if (!rn2(5000)) u.feminizeffect = rnd(78); /* amount of feminism trap effects; keyword: "marlena" */
 
 		if (isfeminizer && !rn2(5000)) randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
 
@@ -8725,6 +8881,17 @@ newbossB:
 			(void) maketrap(u.ux, u.uy, FIRE_TRAP, 0, FALSE);
 		}
 
+		if (FemtrapActiveElise && !rn2(500)) {
+			int x, y;
+
+			x = rn1(COLNO-3,2);
+			y = rn2(ROWNO);
+
+			if (x && y && isok(x, y) && !(t_at(x, y)) ) {
+				(void) maketrap(x, y, randomfeminismtraptype(), 0, FALSE);
+			}
+		}
+
 		u.arabellahack = 0; /* fail safe */
 		if (FemtrapActiveArabella && !rn2(100)) {
 			u.arabellahack = 1;
@@ -8736,7 +8903,6 @@ newbossB:
 
 			if (x && y && isok(x, y) && !(t_at(x, y)) ) {
 				(void) maketrap(x, y, randomtrap(), 0, FALSE);
-				break;
 				}
 			u.arabellahack = 0;
 
@@ -15024,6 +15190,16 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "chelsea boots")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "everyday sneakers")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "little-girl shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "geometry heels")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "espadrilles")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "treaded heels")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "highland boots")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wedge espadrilles")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "super comfy heels")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "regular shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "common shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "colored shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "meso-american shoes")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -16266,6 +16442,16 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "chelsea boots")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "everyday sneakers")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "little-girl shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "geometry heels")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "espadrilles")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "treaded heels")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "highland boots")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wedge espadrilles")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "super comfy heels")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "regular shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "common shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "colored shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "meso-american shoes")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}

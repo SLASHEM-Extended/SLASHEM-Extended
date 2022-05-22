@@ -2746,6 +2746,8 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_UNEVEN_STILTS) tmp += 15;
 		if (uarmf && uarmf->oartifact == ART_RARE_ASIAN_LADY) tmp += 20;
 		if (uarmf && uarmf->oartifact == ART_ELENETTES) tmp += 5;
+		if (uarmf && uarmf->oartifact == ART_SEXROOM_FOR_FREE) tmp += 5;
+		if (uarmf && uarmf->oartifact == ART_NE_PROSTO_KRASIVO) tmp += 4;
 		if (uarmf && uarmf->oartifact == ART_ELEVECULT) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_KRISTIN_S_NOBILITY) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_CRUEL_GODDESS_ANA) tmp += 5;

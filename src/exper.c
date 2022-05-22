@@ -712,7 +712,7 @@ exprecalc(void)
 			}
 			if (rnd(70) < ACURR(A_INT)) climintcheck = 1;
 
-			if (climintcheck) {
+			if (climintcheck) { /* keyword "marlena" */
 				switch (whichcheck) {
 					case 1:
 						pline("You receive an elaborate auspicious message: At experience level %d, the game will start spawning random fart traps, heel traps and farting monsters.", displaycheck);
@@ -845,6 +845,108 @@ exprecalc(void)
 						break;
 					case 44:
 						pline("You receive an elaborate auspicious message: At experience level %d, an annoying blonde will start to annoy you to death.", displaycheck);
+						break;
+					case 45:
+						pline("You receive an elaborate auspicious message: At experience level %d, female monsters will just swat your projectiles away.", displaycheck);
+						break;
+					case 46:
+						pline("You receive an elaborate auspicious message: At experience level %d, female socks will attack you constantly and try to paralyze you.", displaycheck);
+						break;
+					case 47:
+						pline("You receive an elaborate auspicious message: At experience level %d, grave walls will start appearing, and they have paralysis traps or hostile women underneath.", displaycheck);
+						break;
+					case 48:
+						pline("You receive an elaborate auspicious message: At experience level %d, female monsters will start constructing paralysis traps for you to stumble into.", displaycheck);
+						break;
+					case 49:
+						pline("You receive an elaborate auspicious message: At experience level %d, female monsters have super regeneration.", displaycheck);
+						break;
+					case 50:
+						pline("You receive an elaborate auspicious message: At experience level %d, female monsters are no longer afraid of you and always know where you are.", displaycheck);
+						break;
+					case 51:
+						pline("You receive an elaborate auspicious message: At experience level %d, women with block-heeled combat boots will be very angry at you and show you who's the boss of this dungeon.", displaycheck);
+						break;
+					case 52:
+						pline("You receive an elaborate auspicious message: At experience level %d, some women will fart you in the face without emitting any kind of sound.", displaycheck);
+						break;
+					case 53:
+						pline("You receive an elaborate auspicious message: At experience level %d, you turn into a thick girl with steel-capped sandals.", displaycheck);
+						break;
+					case 54:
+						pline("You receive an elaborate auspicious message: At experience level %d, you'll start walking the dyke with your extra thick block heels.", displaycheck);
+						break;
+					case 55:
+						pline("You receive an elaborate auspicious message: At experience level %d, you have to go to the toilet together with Antje, and may end up quitting the game because you consider the toilet minigame to be too icky.", displaycheck);
+						break;
+					case 56:
+						pline("You receive an elaborate auspicious message: At experience level %d, female monsters will attack you with block-heeled boots, wooden sandals and soft sneakers.", displaycheck);
+						break;
+					case 57:
+						pline("You receive an elaborate auspicious message: At experience level %d, you have to fight lots of monster shoes, pants and socks.", displaycheck);
+						break;
+					case 58:
+						pline("You receive an elaborate auspicious message: At experience level %d, you have to step into dog shit every once in a while.", displaycheck);
+						break;
+					case 59:
+						pline("You receive an elaborate auspicious message: At experience level %d, you develop 'anorexia' which means that you have to vomit whenever you eat, although that condition is actually called bulimia nervosa.", displaycheck);
+						break;
+					case 60:
+						pline("You receive an elaborate auspicious message: At experience level %d, you start menstruating if you're female, or if you're not, you'll be whacked over the head by female wedge sandals repeatedly (which serves you right if you dare being male, muahahahaha!).", displaycheck);
+						break;
+					case 61:
+						pline("You receive an elaborate auspicious message: At experience level %d, boss bitches will challenge you to a duel.", displaycheck);
+						break;
+					case 62:
+						pline("You receive an elaborate auspicious message: At experience level %d, you'll see what kind of pants the girls are wearing.", displaycheck);
+						break;
+					case 63:
+						pline("You receive an elaborate auspicious message: At experience level %d, you have to watch out because there might be heaps of shit where you don't expect them.", displaycheck);
+						break;
+					case 64:
+						pline("You receive an elaborate auspicious message: At experience level %d, you're not allowed to freely attack women anymore, you sick bastard.", displaycheck);
+						break;
+					case 65:
+						pline("You receive an elaborate auspicious message: At experience level %d, women are surrounded by a dark ball of light (i.e. black light).", displaycheck);
+						break;
+					case 66:
+						pline("You receive an elaborate auspicious message: At experience level %d, monsters will trigger feminism traps for you, hahaha.", displaycheck);
+						break;
+					case 67:
+						pline("You receive an elaborate auspicious message: At experience level %d, you'll have to sniff worn female pants on occasion.", displaycheck);
+						break;
+					case 68:
+						pline("You receive an elaborate auspicious message: At experience level %d, feminism traps will affect you for a loooooong time.", displaycheck);
+						break;
+					case 69:
+						pline("You receive an elaborate auspicious message: At experience level %d, women will powerfully kick you with their platform sandals.", displaycheck);
+						break;
+					case 70:
+						pline("You receive an elaborate auspicious message: At experience level %d, you'll start encountering lots of ladies in elegant cone-heeled pumps.", displaycheck);
+						break;
+					case 71:
+						pline("You receive an elaborate auspicious message: At experience level %d, thick women can hold you in place so that you can't run away.", displaycheck);
+						break;
+					case 72:
+						pline("You receive an elaborate auspicious message: At experience level %d, some little girl wants to crap loudly to annoy you.", displaycheck);
+						break;
+					case 73:
+						pline("You receive an elaborate auspicious message: At experience level %d, some girl will wait just until you're out of commission, and then she'll move up to you and fart you in the face.", displaycheck);
+						break;
+					case 74:
+						pline("You receive an elaborate auspicious message: At experience level %d, feminism traps will be built for you, and I hope you'll trigger every last one of them because they make the game more exciting.", displaycheck);
+						break;
+					case 75:
+						pline("You receive an elaborate auspicious message: At experience level %d, girls and women will regenerate health a bit more quickly.", displaycheck);
+						break;
+					case 76:
+						pline("You receive an elaborate auspicious message: At experience level %d, you kinda turn into a gang scholar, so you'll have to deal with the Bang Gang and Anna's hussies.", displaycheck);
+						break;
+					case 77:
+						pline("You receive an elaborate auspicious message: At experience level %d, you kinda turn into a shoe fetishist, meaning that you'll encounter lots of shoe monsters and they have some new kick attacks that everyone wants to experience.", displaycheck);
+						break;
+					case 78:
+						pline("You receive an elaborate auspicious message: At experience level %d, ladies will come for you and produce very tender farting noises that you'll find irresistible.", displaycheck);
 						break;
 				}
 			} else pline("Your auspices say: %d %d", displaycheck, whichcheck);

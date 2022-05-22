@@ -6069,6 +6069,26 @@ eatspecial() /* called after eating non-food */
 				FemaleTrapJessica |= FROMOUTSIDE; break;
 			case MARLENA_S_JEWEL:
 				FemaleTrapMarlena |= FROMOUTSIDE; break;
+			case KSENIA_S_JEWEL:
+				FemaleTrapKsenia |= FROMOUTSIDE; break;
+			case LYDIA_S_JEWEL:
+				FemaleTrapLydia |= FROMOUTSIDE; break;
+			case CONNY_S_JEWEL:
+				FemaleTrapConny |= FROMOUTSIDE; break;
+			case KATIA_S_JEWEL:
+				FemaleTrapKatia |= FROMOUTSIDE; break;
+			case MARIYA_S_JEWEL:
+				FemaleTrapMariya |= FROMOUTSIDE; break;
+			case ELISE_S_JEWEL:
+				FemaleTrapElise |= FROMOUTSIDE; break;
+			case RONJA_S_JEWEL:
+				FemaleTrapRonja |= FROMOUTSIDE; break;
+			case ARIANE_S_JEWEL:
+				FemaleTrapAriane |= FROMOUTSIDE; break;
+			case JOHANNA_S_JEWEL:
+				FemaleTrapJohanna |= FROMOUTSIDE; break;
+			case INGE_S_JEWEL:
+				FemaleTrapInge |= FROMOUTSIDE; break;
 			case FEMMY_S_JEWEL:
 				FemaleTrapFemmy |= FROMOUTSIDE; break;
 			case NATALJE_S_JEWEL:

@@ -583,6 +583,8 @@ hack_artifacts()
 	artilist[ART_ANACONDA_HEELS].otyp = find_pistol_boots();
 	artilist[ART_JANA_S_DEVIOUSNESS].otyp = find_ng_shoes();
 	artilist[ART_PLAYING_ANASTASIA].otyp = find_chelsea_boots();
+	artilist[ART_JASIEEN_S_FEAR].otyp = find_wedge_espadrilles();
+	artilist[ART_SHE_REALLY_LIKES_IT].otyp = find_treaded_heels();
 
 #if 0
 	/* Fix up the gifts */
@@ -3621,6 +3623,13 @@ chargingchoice:
 			pline("...and apparently she was a %s, so that's what you are now!", (flags.female && urole.name.f) ? urole.name.f : urole.name.m);
 
 
+		}
+
+		if (obj->oartifact == ART_GOT_THAT_STARWARS_ENTRANCE) {
+			if (!u.greencrossopen) {
+				u.greencrossopen = TRUE;
+				pline("The Green Cross subdungeon is now open!");
+			} else pline("The Green Cross subdungeon was already open.");
 		}
 
 		if (obj->oartifact == ART_WAY_TOO_SOFT) {

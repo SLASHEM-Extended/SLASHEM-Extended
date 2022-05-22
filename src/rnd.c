@@ -1411,7 +1411,7 @@ randenchantment()
 
 	} else if (!rn2(15)) {
 
-		switch (rnd(68)) {
+		switch (rnd(78)) {
 			case 1: return FEMTRAP_FEMMY;
 			case 2: return FEMTRAP_MADELEINE;
 			case 3: return FEMTRAP_MARLENA;
@@ -1480,6 +1480,16 @@ randenchantment()
 			case 66: return FEMTRAP_RITA;
 			case 67: return FEMTRAP_JANINA;
 			case 68: return FEMTRAP_ROSA;
+			case 69: return FEMTRAP_KSENIA;
+			case 70: return FEMTRAP_LYDIA;
+			case 71: return FEMTRAP_CONNY;
+			case 72: return FEMTRAP_KATIA;
+			case 73: return FEMTRAP_MARIYA;
+			case 74: return FEMTRAP_ELISE;
+			case 75: return FEMTRAP_RONJA;
+			case 76: return FEMTRAP_ARIANE;
+			case 77: return FEMTRAP_JOHANNA;
+			case 78: return FEMTRAP_INGE;
 			default: return POISON_RES;
 		}
 
@@ -3871,7 +3881,7 @@ int duration;
 {
 	if (FemtrapActiveRosa) duration *= 5;
 
-	switch (rnd(68)) {
+	switch (rnd(78)) {
 		case 1:
 			pline("You can already imagine the farting noises you're gonna hear.");
 			FemaleTrapSarah += duration;
@@ -4144,6 +4154,46 @@ int duration;
 		case 68:
 			pline("You'll have to struggle with feminism for a long time...");
 			FemaleTrapRosa += (duration * 5);
+			break;
+		case 69:
+			pline("The incredibly cute female platform sandals are looking forward to kicking you in the shins like a little girl.");
+			FemaleTrapKsenia += duration;
+			break;
+		case 70:
+			pline("You feel that you're gonna fight ladies who wear highly elegant cone-heeled pumps.");
+			FemaleTrapLydia += duration;
+			break;
+		case 71:
+			pline("Uh-oh, you're not sure that you can escape from the thick women...");
+			FemaleTrapConny += duration;
+			break;
+		case 72:
+			pline("Some little girl really wants to take a crap while you are nearby.");
+			FemaleTrapKatia += duration;
+			break;
+		case 73:
+			pline("You feel that some stinking girl is waiting until you're defenseless so that she can fart you into the face without you fighting back!");
+			FemaleTrapMariya += duration;
+			break;
+		case 74:
+			pline("The females are everywhere, it seems!");
+			FemaleTrapElise += duration;
+			break;
+		case 75:
+			pline("Somehow, the women have learned to heal their wounds quickly.");
+			FemaleTrapRonja += duration;
+			break;
+		case 76:
+			pline("You'll have to fight the girls from the Bang Gang as well as Anna's hussies, just like in the old times.");
+			FemaleTrapAriane += duration;
+			break;
+		case 77:
+			pline("Admit it, you fetishize female footwear, especially if they're block-heeled combat boots with long zippers and fleecy colors.");
+			FemaleTrapJohanna += duration;
+			break;
+		case 78:
+			pline("All the elegant ladies will produce very tender farting noises that you just cannot resist.");
+			FemaleTrapInge += duration;
 			break;
 	}
 }
@@ -4457,6 +4507,93 @@ boolean withtroves;
 	int monclassresult = rnd(S_WORM_TAIL);
 	while (monclassresult == 35 || (!withtroves && monclassresult == S_TROVE)) monclassresult = rnd(S_WORM_TAIL);
 	return monclassresult;
+}
+
+int
+randomfeminismtraptype() /* keyword "marlena" */
+{
+	switch (rnd(78)) {
+			case 1: return FEMMY_TRAP;
+			case 2: return MADELEINE_TRAP;
+			case 3: return MARLENA_TRAP;
+			case 4: return ANASTASIA_TRAP;
+			case 5: return JESSICA_TRAP;
+			case 6: return SOLVEJG_TRAP;
+			case 7: return WENDY_TRAP;
+			case 8: return KATHARINA_TRAP;
+			case 9: return ELENA_TRAP;
+			case 10: return THAI_TRAP;
+			case 11: return ELIF_TRAP;
+			case 12: return NADJA_TRAP;
+			case 13: return SANDRA_TRAP;
+			case 14: return NATALJE_TRAP;
+			case 15: return JEANETTA_TRAP;
+			case 16: return YVONNE_TRAP;
+			case 17: return MAURAH_TRAP;
+			case 18: return MELTEM_TRAP;
+			case 19: return SARAH_TRAP;
+			case 20: return CLAUDIA_TRAP;
+			case 21: return LUDGERA_TRAP;
+			case 22: return KATI_TRAP;
+			case 23: return NELLY_TRAP;
+			case 24: return EVELINE_TRAP;
+			case 25: return KARIN_TRAP;
+			case 26: return JUEN_TRAP;
+			case 27: return KRISTINA_TRAP;
+			case 28: return LOU_TRAP;
+			case 29: return ALMUT_TRAP;
+			case 30: return JULIETTA_TRAP;
+			case 31: return ARABELLA_TRAP;
+			case 32: return KRISTIN_TRAP;
+			case 33: return ANNA_TRAP;
+			case 34: return RUEA_TRAP;
+			case 35: return DORA_TRAP;
+			case 36: return MARIKE_TRAP;
+			case 37: return JETTE_TRAP;
+			case 38: return INA_TRAP;
+			case 39: return SING_TRAP;
+			case 40: return VICTORIA_TRAP;
+			case 41: return MELISSA_TRAP;
+			case 42: return ANITA_TRAP;
+			case 43: return HENRIETTA_TRAP;
+			case 44: return VERENA_TRAP;
+			case 45: return ANNEMARIE_TRAP;
+			case 46: return JIL_TRAP;
+			case 47: return JANA_TRAP;
+			case 48: return KATRIN_TRAP;
+			case 49: return GUDRUN_TRAP;
+			case 50: return ELLA_TRAP;
+			case 51: return MANUELA_TRAP;
+			case 52: return JENNIFER_TRAP;
+			case 53: return PATRICIA_TRAP;
+			case 54: return ANTJE_TRAP;
+			case 55: return ANTJE_TRAP_X;
+			case 56: return KERSTIN_TRAP;
+			case 57: return LAURA_TRAP;
+			case 58: return LARISSA_TRAP;
+			case 59: return NORA_TRAP;
+			case 60: return NATALIA_TRAP;
+			case 61: return SUSANNE_TRAP;
+			case 62: return LISA_TRAP;
+			case 63: return BRIDGHITTE_TRAP;
+			case 64: return JULIA_TRAP;
+			case 65: return NICOLE_TRAP;
+			case 66: return RITA_TRAP;
+			case 67: return JANINA_TRAP;
+			case 68: return ROSA_TRAP;
+			case 69: return KSENIA_TRAP;
+			case 70: return LYDIA_TRAP;
+			case 71: return CONNY_TRAP;
+			case 72: return KATIA_TRAP;
+			case 73: return MARIYA_TRAP;
+			case 74: return ELISE_TRAP;
+			case 75: return RONJA_TRAP;
+			case 76: return ARIANE_TRAP;
+			case 77: return JOHANNA_TRAP;
+			case 78: return INGE_TRAP;
+	}
+	return INGE_TRAP; /* fail safe */
+
 }
 
 #endif /* OVLB */

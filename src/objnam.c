@@ -548,6 +548,26 @@ int prop;
 			return "Janina's curse";
 		case FEMTRAP_ROSA:
 			return "Rosa's curse";
+		case FEMTRAP_KSENIA:
+			return "Ksenia's curse";
+		case FEMTRAP_LYDIA:
+			return "Lydia's curse";
+		case FEMTRAP_CONNY:
+			return "Conny's curse";
+		case FEMTRAP_KATIA:
+			return "Katia's curse";
+		case FEMTRAP_MARIYA:
+			return "Mariya's curse";
+		case FEMTRAP_ELISE:
+			return "Elise's curse";
+		case FEMTRAP_RONJA:
+			return "Ronja's curse";
+		case FEMTRAP_ARIANE:
+			return "Ariane's curse";
+		case FEMTRAP_JOHANNA:
+			return "Johanna's curse";
+		case FEMTRAP_INGE:
+			return "Inge's curse";
 
 		default:
 			return "Team Nastytrap";
@@ -3601,6 +3621,17 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ JANINA_S_JEWEL, "Janina dragotsennost'" },
 	{ ROSA_S_JEWEL, "Rosa dragotsennost'" },
 
+	{ KSENIA_S_JEWEL, "Ksenia dragotsennost'" },
+	{ LYDIA_S_JEWEL, "Lydia dragotsennost'" },
+	{ CONNY_S_JEWEL, "Conny dragotsennost'" },
+	{ KATIA_S_JEWEL, "Katia dragotsennost'" },
+	{ MARIYA_S_JEWEL, "Mariya dragotsennost'" },
+	{ ELISE_S_JEWEL, "Elise dragotsennost'" },
+	{ RONJA_S_JEWEL, "Ronja dragotsennost'" },
+	{ ARIANE_S_JEWEL, "Ariane dragotsennost'" },
+	{ JOHANNA_S_JEWEL, "Johanna dragotsennost'" },
+	{ INGE_S_JEWEL, "Inge dragotsennost'" },
+
 	{ POT_TECH_LEVEL_UP, "tekhnicheskiy uroven' vverkh" },
 	{ CIGAR, "sigara" },
 	{ SCR_SKILL_GROWTH, "rost navykov" },
@@ -3700,6 +3731,16 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ RITA_STILETTOS, "todo" },
 	{ JANINA_LADY_PUMPS, "todo" },
 	{ ROSA_GIRL_SHOES, "todo" },
+	{ KSENIA_PLATFORM_SANDALS, "todo" },
+	{ LYDIA_LADY_PUMPS, "todo" },
+	{ CONNY_COMBAT_BOOTS, "todo" },
+	{ KATIA_COMBAT_BOOTS, "todo" },
+	{ MARIYA_COMBAT_BOOTS, "todo" },
+	{ ELISE_HIPPIE_HEELS, "todo" },
+	{ RONJA_COMBAT_BOOTS, "todo" },
+	{ ARIANE_COMBAT_BOOTS, "todo" },
+	{ JOHANNA_COMBAT_BOOTS, "todo" },
+	{ INGE_COMBAT_BOOTS, "todo" },
 
 	{0, "" }
 };
@@ -6569,6 +6610,17 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ JANINA_S_JEWEL, "Janina marvarid" },
 	{ ROSA_S_JEWEL, "Rosa marvarid" },
 
+	{ KSENIA_S_JEWEL, "Ksenia marvarid" },
+	{ LYDIA_S_JEWEL, "Lydia marvarid" },
+	{ CONNY_S_JEWEL, "Conny marvarid" },
+	{ KATIA_S_JEWEL, "Katia marvarid" },
+	{ MARIYA_S_JEWEL, "Mariya marvarid" },
+	{ ELISE_S_JEWEL, "Elise marvarid" },
+	{ RONJA_S_JEWEL, "Ronja marvarid" },
+	{ ARIANE_S_JEWEL, "Ariane marvarid" },
+	{ JOHANNA_S_JEWEL, "Johanna marvarid" },
+	{ INGE_S_JEWEL, "Inge marvarid" },
+
 	{ POT_TECH_LEVEL_UP, "texnologiya darajasi" },
 	{ CIGAR, "puro" },
 	{ SCR_SKILL_GROWTH, "mahoratning o'sishi" },
@@ -6668,6 +6720,16 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ RITA_STILETTOS, "todo" },
 	{ JANINA_LADY_PUMPS, "todo" },
 	{ ROSA_GIRL_SHOES, "todo" },
+	{ KSENIA_PLATFORM_SANDALS, "todo" },
+	{ LYDIA_LADY_PUMPS, "todo" },
+	{ CONNY_COMBAT_BOOTS, "todo" },
+	{ KATIA_COMBAT_BOOTS, "todo" },
+	{ MARIYA_COMBAT_BOOTS, "todo" },
+	{ ELISE_HIPPIE_HEELS, "todo" },
+	{ RONJA_COMBAT_BOOTS, "todo" },
+	{ ARIANE_COMBAT_BOOTS, "todo" },
+	{ JOHANNA_COMBAT_BOOTS, "todo" },
+	{ INGE_COMBAT_BOOTS, "todo" },
 
 	{0, "" }
 };
@@ -6731,7 +6793,7 @@ register int otyp;
 		actualn = Alternate_item_name(otyp,Japanese_items);
 	if ( (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) && !issoviet && Alternate_item_name(otyp,Pirate_items))
 		actualn = Alternate_item_name(otyp,Pirate_items);
-	if ( (issoviet || (uarmc && uarmc->oartifact == ART_GAGARIN_S_TRANSLATOR)) && Alternate_item_name(otyp,Soviet_items))
+	if ( (issoviet || (uarmf && uarmf->oartifact == ART_NE_PROSTO_KRASIVO) || (uarmc && uarmc->oartifact == ART_GAGARIN_S_TRANSLATOR)) && Alternate_item_name(otyp,Soviet_items))
 		actualn = Alternate_item_name(otyp,Soviet_items);
 	if (Race_if(PM_ANCIENT) && !issoviet && Alternate_item_name(otyp,Ancient_items))
 		actualn = Alternate_item_name(otyp,Ancient_items);
@@ -6936,7 +6998,7 @@ register struct obj *obj;
 		actualn = Alternate_item_name(typ,Japanese_items);
 	if ( (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) && !issoviet && Alternate_item_name(typ,Pirate_items))
 		actualn = Alternate_item_name(typ,Pirate_items);
-	if ( (issoviet || (uarmc && uarmc->oartifact == ART_GAGARIN_S_TRANSLATOR)) && Alternate_item_name(typ,Soviet_items))
+	if ( (issoviet || (uarmf && uarmf->oartifact == ART_NE_PROSTO_KRASIVO) || (uarmc && uarmc->oartifact == ART_GAGARIN_S_TRANSLATOR)) && Alternate_item_name(typ,Soviet_items))
 		actualn = Alternate_item_name(typ,Soviet_items);
 	if (Race_if(PM_ANCIENT) && !issoviet && Alternate_item_name(typ,Ancient_items))
 		actualn = Alternate_item_name(typ,Ancient_items);

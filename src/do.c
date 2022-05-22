@@ -3742,7 +3742,7 @@ rerollchaloc:
 
 		}
 
-		if (Role_if(PM_GANG_SCHOLAR) && !rn2(5)) {
+		if ( (Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane) && !rn2(5)) {
 
 			randsp = (rn2(14) + 2);
 			if (!rn2(10)) randsp *= 2;
@@ -3848,7 +3848,7 @@ rerollchaloc:
 
 		}
 
-		if (Role_if(PM_GANG_SCHOLAR) && !rn2(5)) {
+		if ((Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane) && !rn2(5)) {
 			randsp = (rn2(14) + 2);
 			if (!rn2(10)) randsp *= 2;
 			if (!rn2(100)) randsp *= 3;

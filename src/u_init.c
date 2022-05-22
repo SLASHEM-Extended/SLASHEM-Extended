@@ -10058,18 +10058,18 @@ u_init()
 	u.femauspices28 = rnd(9);
 	u.femauspices30 = rnd(10);
 
-	u.feminizeffect = rnd(68); /* amount of feminism trap effects; keyword: "marlena" */
+	u.feminizeffect = rnd(78); /* amount of feminism trap effects; keyword: "marlena" */
 
-	u.climauspices3 = rnd(68);
-	u.climauspices6 = rnd(68);
-	u.climauspices9 = rnd(68);
-	u.climauspices12 = rnd(68);
-	u.climauspices15 = rnd(68);
-	u.climauspices18 = rnd(68);
-	u.climauspices21 = rnd(68);
-	u.climauspices24 = rnd(68);
-	u.climauspices27 = rnd(68);
-	u.climauspices30 = rnd(68);
+	u.climauspices3 = rnd(78);
+	u.climauspices6 = rnd(78);
+	u.climauspices9 = rnd(78);
+	u.climauspices12 = rnd(78);
+	u.climauspices15 = rnd(78);
+	u.climauspices18 = rnd(78);
+	u.climauspices21 = rnd(78);
+	u.climauspices24 = rnd(78);
+	u.climauspices27 = rnd(78);
+	u.climauspices30 = rnd(78);
 
 	u.sjwL1E1 = rnd(235); /* timerun and stuff */
 	u.sjwL2E1 = rnd(235);
@@ -32287,18 +32287,18 @@ int realityflag;
 	u.femauspices28 = rnd(9);
 	u.femauspices30 = rnd(10);
 
-	u.feminizeffect = rnd(68); /* amount of feminism trap effects; keyword: "marlena" */
+	u.feminizeffect = rnd(78); /* amount of feminism trap effects; keyword: "marlena" */
 
-	u.climauspices3 = rnd(68);
-	u.climauspices6 = rnd(68);
-	u.climauspices9 = rnd(68);
-	u.climauspices12 = rnd(68);
-	u.climauspices15 = rnd(68);
-	u.climauspices18 = rnd(68);
-	u.climauspices21 = rnd(68);
-	u.climauspices24 = rnd(68);
-	u.climauspices27 = rnd(68);
-	u.climauspices30 = rnd(68);
+	u.climauspices3 = rnd(78);
+	u.climauspices6 = rnd(78);
+	u.climauspices9 = rnd(78);
+	u.climauspices12 = rnd(78);
+	u.climauspices15 = rnd(78);
+	u.climauspices18 = rnd(78);
+	u.climauspices21 = rnd(78);
+	u.climauspices24 = rnd(78);
+	u.climauspices27 = rnd(78);
+	u.climauspices30 = rnd(78);
 
 	u.sjwL1E1 = rnd(235); /* timerun and stuff */
 	u.sjwL2E1 = rnd(235);
