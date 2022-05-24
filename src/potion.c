@@ -15167,6 +15167,12 @@ int kind;
 	if (obj->otyp != MAGIC_LAMP) make_bottle(FALSE);
 }
 
+void
+give_code_number()
+{
+	pline("code to be implemented.");
+}
+
 /* is the player someone whom we don't want to play this game? */
 boolean
 PlayerOnBlacklist()

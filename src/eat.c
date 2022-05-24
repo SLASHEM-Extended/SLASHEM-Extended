@@ -1054,6 +1054,7 @@ register int pm;
 	    case PM_FAT_LIZARD:
 	    case PM_EEL_LIZARD:
 	    case PM_GRASS_LIZARD:
+	    case PM_STOPWATCH_LIZARD:
 	    case PM_RUNE_LIZARD:
 	    case PM_SPECTRAL_LIZARD:
 	    case PM_BLUE_LIZARD:
@@ -1215,6 +1216,7 @@ struct monst *mon;
 	case PM_LIZARD_EEL:
 	case PM_EEL_LIZARD:
 	case PM_GRASS_LIZARD:
+      case PM_STOPWATCH_LIZARD:
 	case PM_RUNE_LIZARD:
 	case PM_SPECTRAL_LIZARD:
       case PM_BLUE_LIZARD:
@@ -3136,6 +3138,9 @@ register int pm;
 
 		break;
 
+	    case PM_CODITRICE:
+		give_code_number();
+		break;
 	    case PM_STALKER:
 	    case PM_FORCE_STALKER:
 	    case PM_LANTERN_STALKER:
@@ -3270,6 +3275,7 @@ register int pm;
 	    case PM_SCORZARD:
 	    case PM_CAVE_LIZARD:
 	    case PM_GRASS_LIZARD:
+	    case PM_STOPWATCH_LIZARD:
 	    case PM_RUNE_LIZARD:
 	    case PM_SPECTRAL_LIZARD:
 	    case PM_BLUE_LIZARD:

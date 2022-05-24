@@ -2511,6 +2511,7 @@ E boolean everythingfleecy(void);
 E void dropitemattack(void);
 E boolean PlayerOnBlacklist(void);
 E boolean firgatest(void);
+E void give_code_number(void);
 
 E void cure_feminism_traps(void);
 E void cure_nasty_traps(void);
