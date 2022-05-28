@@ -10820,6 +10820,17 @@ dopois:
 		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 	    }
 
+	    /* the shoes that Sing wants you to clean will deal lower damage while still dirty, "but the pain they cause
+	     * when kicking you will be the same" - meaning that if their attack type has a secondary effect that scales
+	     * with the amount of damage done, that effect will have its full strength --Amy */
+	    if (mtmp->singdirty == 1 && dmg > 1) {
+		dmg /= 2;
+		if (dmg < 1) dmg = 1;
+	    }
+	    if (mtmp->singdirty == 2 && dmg > 1) {
+		dmg /= 5;
+		if (dmg < 1) dmg = 1;
+	    }
 	    mdamageu(mtmp, dmg);
 	}
 
@@ -22735,6 +22746,10 @@ register struct monst *mtmp;
 	boolean extraannoying = !rn2(5);
 
 	pline("Sing announces that %s stepped into %s, and asks you to clean them.", mtmp->data->mname, extraannoying ? "cow dung" : "dog shit");
+
+	if (extraannoying) mtmp->singdirty = 2;
+	else mtmp->singdirty = 1;
+
 	if (yn("Do you want to clean them?") == 'y') {
 			delay = (extraannoying ? -200 : -40);
 			u.singtrapocc = TRUE;
@@ -22743,6 +22758,7 @@ register struct monst *mtmp;
 			mtmp->mpeaceful = TRUE;
 			mtmp->singannoyance = FALSE;
 			pline("You start cleaning the shit from %s...", Monnam(mtmp));
+			mtmp->singdirty = 0; /* yes I know, it could be interrupted... would be a PITA to code properly --Amy */
 			return 0;
 
 	} else {

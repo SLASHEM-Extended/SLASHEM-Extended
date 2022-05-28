@@ -23155,6 +23155,7 @@ register int	mmflags;
 	mtmp->healblock = 0;
 	mtmp->inertia = 0;
 	mtmp->singannoyance = FALSE;
+	mtmp->singdirty = FALSE;
 	mtmp->canceltimeout = FALSE;
 	mtmp->slowtimeout = FALSE;
 	if (!rn2(2)) mtmp->warningvisible = (rn2(2) ? 2 : 1);

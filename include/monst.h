@@ -174,6 +174,7 @@ struct monst {
 	Bitfield(isspell,1);	/* is a temporary spell being */
 	Bitfield(uexp,1);		/* you get experience for its kills */
 	Bitfield(singannoyance,1);	/* for sing trap */
+	Bitfield(singdirty,2);	/* if this is nonzero, they deal less melee damage */
 	Bitfield(canceltimeout,1);	/* for spell of cancellation */
 	Bitfield(slowtimeout,1);	/* for spell of slow monster or inertia */
 
