@@ -7502,6 +7502,7 @@ SCROLL((char *)0,               "MAREIRON DIPSACUS FEROX",  P_NONE,     1,   0, 
 SCROLL((char *)0,               "SUPENSUUIDO LONGIFOLIA",  P_NONE,     1,   0, 100, CLR_BRIGHT_GREEN, 1),
 SCROLL((char *)0,               "ARURONIA MARTYNIA LUTEA",  P_NONE,     1,   0, 100, CLR_BRIGHT_CYAN, 1),
 SCROLL((char *)0,               "SUTOMAFIRIA HYPOGAEA",  P_NONE,     1,   0, 100, CLR_BLUE, 1),
+SCROLL((char *)0,               "TAIEA KETSY",  P_NONE,     1,   0, 100, CLR_WHITE, 1),
 
 
 #ifdef MAIL

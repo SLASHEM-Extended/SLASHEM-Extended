@@ -27807,6 +27807,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Did you defeat the Bang Gang and the Hussies? Either way, they'll stop coming for you now.",
 	"Aww, you just got told that because you didn't treat the red block-heeled leather boots well, you may no longer look at them now. :-(",
 	"You wish you'd still encounter pretty ladies who want to fart you in the face tenderly, but no dice. They don't want to waste their time with you anymore it seems.",
+	"You have to perform a special survey, where you have to find a couple of tourists and drink their blood. Then report to your boss and say what it tasted like.",
 
 };
 
