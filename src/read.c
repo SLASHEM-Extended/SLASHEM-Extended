@@ -2297,13 +2297,43 @@ maybe_tame(mtmp, sobj)
 struct monst *mtmp;
 struct obj *sobj;
 {
+	int tamediff = 1;
+	if (sobj && !Role_if(PM_DRUID) && !Role_if(PM_ACTIVISTOR) && !Role_if(PM_DEATH_EATER) && sobj->otyp == SPE_CHARM_MONSTER) tamediff = 3;
+	if (sobj && !Role_if(PM_NECROMANCER) && sobj->otyp == SPE_COMMAND_UNDEAD) tamediff = 2;
+
 	if (sobj->cursed || Is_blackmarket(&u.uz)) {
 	    setmangry(mtmp);
 	} else {
 	    if (mtmp->isshk)
 		make_happy_shk(mtmp, FALSE);
-	    else if (!resist(mtmp, sobj->oclass, 0, NOTELL))
+	    else if (!resist(mtmp, sobj->oclass, 0, NOTELL) && (!resist(mtmp, sobj->oclass, 0, NOTELL) || (tamediff < 2)) && (!resist(mtmp, sobj->oclass, 0, NOTELL) || (tamediff < 3)) ) {
 		(void) tamedog(mtmp, (struct obj *) 0, FALSE);
+		if (sobj && !Role_if(PM_DRUID) && !Role_if(PM_ACTIVISTOR) && !Role_if(PM_DEATH_EATER) && sobj->otyp == SPE_CHARM_MONSTER) {
+			if (Upolyd) {
+				u.mhmax--;
+				if (u.mhmax < 1) {
+					u.mhmax = 1;
+					losehp(100, "charm monster overexertion", KILLED_BY);
+				}
+				if (u.mh > u.mhmax) u.mh = u.mhmax;
+			}
+			u.uhpmax--;
+			if (u.uhpmax < 1) {
+				u.uhpmax = 1;
+				losehp(100, "charm monster overexertion", KILLED_BY);
+			}
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			flags.botl = TRUE;
+		}
+
+		if (sobj && !Role_if(PM_NECROMANCER) && !rn2(2) && sobj->otyp == SPE_COMMAND_UNDEAD) {
+			u.uenmax--;
+			if (u.uenmax < 0) u.uenmax = 0;
+			if (u.uen > u.uenmax) u.uen = u.uenmax;
+			flags.botl = TRUE;
+		}
+
+	    }
 	}
 }
 
@@ -5599,7 +5629,91 @@ proofarmorchoice:
 	      break;
 
 	case SPE_REMOVE_CURSE:
-		if (confused) break;
+
+	    {
+		int rmcurseload = 0;
+		int tempcurseload = 0;
+		register struct obj *obj;
+		if (FunnyHallu)
+			You_feel("in touch with the Universal Oneness.");
+		else
+			You_feel("like someone is helping you.");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Ba, tip bloka l'da budet proklinat' svoye der'mo snova tak ili inache." : "Daedeldaedimm!");
+
+		{
+
+		    for (obj = invent; obj; obj = obj->nobj) {
+			long wornmask;
+#ifdef GOLDOBJ
+			/* gold isn't subject to cursing and blessing */
+			if (obj->oclass == COIN_CLASS) continue;
+#endif
+			wornmask = (obj->owornmask & ~(W_BALL|W_ART|W_ARTI));
+			if (wornmask && !sobj->blessed) {
+			    /* handle a couple of special cases; we don't
+			       allow auxiliary weapon slots to be used to
+			       artificially increase number of worn items */
+			    if (obj == uswapwep) {
+				if (!u.twoweap) wornmask = 0L;
+			    } /* remove curse spell ignores quiver, this is intentional --Amy */
+			}
+			/* Amy nerf: blessed ones were way too powerful, allowing you to more or less ignore curses */
+			if (( (sobj->blessed && !rn2(5)) || wornmask ||
+			     obj->otyp == LOADSTONE ||
+			     obj->otyp == LOADBOULDER ||
+			     obj->otyp == STARLIGHTSTONE ||
+			     obj->otyp == LUCKSTONE ||
+			     obj->otyp == HEALTHSTONE ||
+			     obj->otyp == MANASTONE ||
+			     obj->otyp == SLEEPSTONE ||
+			     obj->otyp == STONE_OF_MAGIC_RESISTANCE ||
+			     is_nastygraystone(obj) ||
+			     is_feminismstone(obj) ||
+			     (obj->otyp == LEATHER_LEASH && obj->leashmon) || (obj->otyp == INKA_LEASH && obj->leashmon) ) && !stack_too_big(obj) ) {
+			    if (!rn2(5) ) {
+				tempcurseload = 0;
+				if (obj->cursed) tempcurseload += 10;
+				if (obj->hvycurse) tempcurseload += 50;
+				if (obj->prmcurse) tempcurseload += 300;
+				if (obj->morgcurse) tempcurseload += 1500;
+				if (obj->evilcurse) tempcurseload += 1500;
+				if (obj->bbrcurse) tempcurseload += 1500;
+				if (obj->stckcurse) tempcurseload += 200;
+				uncurse(obj, FALSE);
+				if (obj->cursed && rn2(5)) tempcurseload = 0;
+				if (tempcurseload) rmcurseload += tempcurseload;
+			    }
+			}
+		    }
+		}
+
+		if(Punished && !rn2(5)) {
+			rmcurseload += 200;
+			unpunish();
+		}
+
+		if (rmcurseload > 0) {
+			contaminate(rmcurseload, TRUE);
+			increasesanity(rmcurseload);
+			rmcurseload = 0;
+		}
+
+		update_inventory();
+
+		if (!rn2(3)) {
+			pline("The spell backfires!");
+			badeffect();
+		}
+		if (!rn2(100)) {
+			You_feel("as if you need some help.");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+			rndcurse();
+		}
+
+		break;
+	    }
+
+		break;
 	case SCR_REMOVE_CURSE:
 	    {	register struct obj *obj;
 		if(confused) {

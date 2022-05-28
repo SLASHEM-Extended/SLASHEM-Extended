@@ -15472,7 +15472,7 @@ boolean knoweverything;
 			case SPE_DRAIN_LIFE:
 				pline("This spell drains the life force out of monsters, sometimes reducing their level. It also reduces the enchantment of objects it hits."); break;
 			case SPE_COMMAND_UNDEAD:
-				pline("A spell that attempts to tame all adjacent undead monsters. They have a chance of resisting, and very rarely they may instead enter a state of frenzy, becoming immune to further taming attempts. Also, the spell may occasionally backfire."); break;
+				pline("A spell that attempts to tame all adjacent undead monsters. They have a chance of resisting, which is more likely if you're not a necromancer, and very rarely they may instead enter a state of frenzy, becoming immune to further taming attempts. Also, the spell may occasionally backfire. Unless you're a necromancer, successful casts of this spell may reduce your maximum mana."); break;
 			case SPE_SUMMON_UNDEAD:
 				pline("Summons an undead monster. It can also rarely backfire. The summoned monster has a chance of being frenzied too, and every cast slightly increases your prayer timeout and reduces your alignment record."); break;
 			case SPE_STONE_TO_FLESH:
@@ -15651,7 +15651,7 @@ boolean knoweverything;
 #ifdef PHANTOM_CRASH_BUG
 				pline("This powerful spell can sometimes charm adjacent monsters, but they resist often so you may have to cast it repeatedly. If you're unlucky, the monster will enter a frenzied state instead."); break;
 #else
-				pline("A very powerful spell that tries to tame adjacent monsters. Their magic resistance prevents this from working sometimes, and since the spell used to be totally unbalanced, it can also fail if the monster isn't resistant at all. But even that's not enough, and therefore Amy added another failure effect: if you're unlucky, the monster will be frenzied, which means it cannot be tamed at all anymore."); break;
+				pline("A very powerful spell that tries to tame adjacent monsters. Their magic resistance often prevents this from working (much more often than it prevents other spell effects, unlike you're a druid, activistor or death eater), and since the spell used to be totally unbalanced, it can also fail if the monster isn't resistant at all. But even that's not enough, and therefore Amy added another failure effect: if you're unlucky, the monster will be frenzied, which means it cannot be tamed at all anymore. Oh, and unless you're one of the three roles mentioned above, passing the MR roll on a target monster damages your maximum health, regardless of whether the monster was actually tamed or not."); break;
 #endif
 			case SPE_ENCHANT_WEAPON:
 				pline("This spell rarely works, but if it does, it tries to enchant your wielded weapon. Beware, if the weapon in question already has a very high enchantment, it might blow up. Also, successfully enchanting something reduces your maximum mana by one point."); break;
@@ -15672,7 +15672,7 @@ boolean knoweverything;
 			case SPE_INSULATE:
 				pline("This spell provides temporary shock resistance when cast."); break;
 			case SPE_REMOVE_CURSE:
-				pline("A spell that might uncurse some of your cursed items. It only affects items in your main inventory, and usually worn ones only. Occasionally it will backfire."); break;
+				pline("A spell that might uncurse some of your cursed items. It only affects items in your main inventory, and usually worn ones only. Occasionally it will backfire. Every time it successfully uncurses an item, and occasionally even if it fails to uncurse a heavily (or worse) cursed item, it afflicts you with contamination and sanity, the magnitude of which increasing greatly the more severe the item's curse was!"); break;
 			case SPE_TURN_UNDEAD:
 				pline("Fires an invisible beam that makes undead monsters flee and revives dead monsters."); break;
 			case SPE_ANTI_DISINTEGRATION:
@@ -15927,7 +15927,7 @@ boolean knoweverything;
 			case SPE_NEXUS_FIELD:
 				pline("Tries to teleport all monsters adjacent to you away, although they have a chance to resist. It will occasionally backlash by reducing one of your attributes, permanently."); break;
 			case SPE_COMMAND_DEMON:
-				pline("Use this spell if you're surrounded by demons, and they have a chance of becoming peaceful or even tame! Casting this spell may occaisonally backfire though, and occasionally the demons become frenzied instead."); break;
+				pline("Use this spell if you're surrounded by demons, and they have a chance of becoming peaceful or even tame! Their magic resistance (if present) is quite likely to make them resist this effect. Casting this spell may occaisonally backfire though, and occasionally the demons become frenzied instead. Also, if it successfully tries to tame or pacify a demon, your maximum mana is damaged."); break;
 			case SPE_FIRE_GOLEM:
 				pline("This spell requires you to have a torch to create the golem from, which will be used up. The fire golem will then fight alongside you, and you get experience and credit for its kills, but beware: usually it will turn hostile after a while!"); break;
 			case SPE_DISRUPTION_SHIELD:

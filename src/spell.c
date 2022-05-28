@@ -7188,8 +7188,12 @@ whisperchoice:
 		    for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 			if (!isok(u.ux + i, u.uy + j)) continue;
 			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0 && (is_demon(mtmp->data)))
-			    if (!rn2(2) && !resist(mtmp, SPBOOK_CLASS, 0, NOTELL)) {
+			    if (!rn2(2) && !resist(mtmp, SPBOOK_CLASS, 0, NOTELL) && !resist(mtmp, SPBOOK_CLASS, 0, NOTELL)) {
 				(void) tamedog(mtmp, (struct obj *) 0, FALSE);
+				u.uenmax--;
+				if (u.uenmax < 0) u.uenmax = 0;
+				if (u.uen > u.uenmax) u.uen = u.uenmax;
+				flags.botl = TRUE;
 			    }
 			    else if (!rn2(15) && !((rnd(30 - ACURR(A_CHA))) < 4) && !mtmp->mfrenzied && !mtmp->mtame) {
 				pline("Instead of being tamed, %s enters a state of frenzy!", mon_nam(mtmp));
