@@ -1,6 +1,96 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.7.5 - December 2021
+- Being skilled enough at symbiosis now conveys the symbiote's resistances to the player temporarily (i.e. until the symbiote dies or is otherwise removed).
+- Various foo-o-pathy types now have double effects.
+- Fixed the issue where relocation could teleport players to inaccessible areas.
+- Fake amulets of Yendor are harder to destroy.
+- Prevented some early-game bullshit deaths.
+- Monsters have lesser to-hit and maxHP bonuses later on.
+- Fixed the stupid interface screw where quickmoving could sometimes push sokoban boulders even if the player didn't intend to.
+- Overhauled paralysis durations to be less deadly for the player.
+- Fixed bugs where certain special levels didn't correctly set the areas that can't be phased or dug out.
+- Added casinos as a new special room.
+
+2.7.4 - December 2021
+- Fixed crashes when a boomerang thrown by the player returned and wasn't caught.
+- Fixed the oversight where certain artifacts weren't correctly set to be aligned with no role.
+- Fixed inexplicable crashes when monsters with egotypes attack each other.
+- Fixed an oversight where a practicant/beacher who has money in the bank could sometimes get off with paying only part of their fine.
+- If a monster takes damage, there's now a chance for it to display a message that hints at the amount of health it has left.
+- Sipping water from a pool can cause bad things to happen now.
+- Random good effects exist now, and can be received e.g. by offering corpses.
+- Item generation in Gehennom and later branches is improved.
+- Using Ctrl-T to teleport at will now stuns the player, and unless the player has double teleport control, the teleport can't be controlled if invoked that way.
+- Fixed the SLASH'EM exploit where rotting a medical kit away would allow the player to pick up the pills and eat them for a chance to get wishes.
+- Fixed a off-by-one error for the chance that a thrown lightsaber returns.
+- If the player is polymorphed into forms that are naturally diggers or miners, the player's digging speed with tools (pick-axe, lightsaber etc.) is improved.
+- Fixed display issues on public servers regarding the rogue level's graphics.
+
+2.7.3 - August 2021
+- Fixed a bug where the demagogue could unlock techniques with skills whose training was forcibly set to zero (for example, by unlocking a previously restricted skill).
+- Bumping into a peaceful monster while wielding a bloodthirsty weapon now angers the monster.
+- Changed the sacks in feminism rooms to handybags.
+- Surviving a death ray now deals more damage to the player's max HP than before.
+- Fixed (hopefully) a crash that could occur during post-game wrapup if the game tried to update the MC display while the player's inventory had already been nulled out.
+- Torches can be refilled with potions of oil now, and charging also works on them.
+- The pokedex now mentions whether a monster is mindless.
+- Fixed a long-standing bug with the pirate role's starting inventory.
+- Changed the calculation for the bank trap to prevent players from performing arabella farming.
+- Rock walls can no longer be told apart from solid rock by farlooking.
+- Fixed the stupid vanilla design decision where monsters that cannot generate randomly can (illogically) generate randomly under certain conditions.
+- Changed spellcasting chance calculations; it was too easy to reach high success rates.
+- When polymorphing into something too large while wearing osfa chain mail, the armor is preserved now.
+- Really fixed the bug where blindness sometimes didn't time out; the previous attempts to fix this hadn't gotten the root cause.
+- Added two new item materials.
+- Showing the Amulet of Yendor to the quest leader gives additional skill slots now.
+- Fixed incorrect calculations for the player's carry cap.
+
+2.7.2 - May 2021
+- Added amberites. These monsters use a dangerous curse and can't be permanently killed unless the Witch-King of Angmar is already dead.
+- Tentatively tried to fix a bug with shop bills.
+- The player can now be crowned multiple times. Every coronation/culmination increases the average prayer timeout.
+- Monsters carrying non-locked containers can now empty them on the floor, and then the monsters can grab all the stuff and potentially use it.
+- Randomized the charge count of light sources and lightsabers when they generate.
+- Nerfed the success rate of bullwhips when used for disarming a foe.
+- Attempted again to nerf martial arts kicking damage.
+- Made gremlin farming harder to perform.
+- Nerfed the jackpot for the charge saber technique.
+- Writing a spellbook for a spell that only gains few charges on a randomly generated book will now set the book's charge count to 1, if it was higher. The same happens if the player polymorphs a spellbook and it becomes one of those spells.
+- Reduced the damage bonus gained from Shii-Cho and Makashi.
+- Casting the cure paralysis spell now ends time stop, if that effect was active.
+- Added a failsafe if the player's ball and chain get destroyed without the game noticing; instead of crashing, the game just unpunishes the hero now.
+- Fixed the oversight where using the force on a monster would not wake it up.
+- Changed the order in which status effects appear on the bottom status line to show critical ones like Stone or FoodPois first.
+- Really fixed the deathmold polymorph form bug (the previous fix wasn't working).
+- Fixed crashes when monsters quaffed certain potions.
+- Controlled lycanthropy transformations are more expensive and can no longer be spammed, but also train the squeaking skill now.
+- Players who use the spirit race regenerate half as fast as before, and are more susceptible to slowing attacks used by monsters.
+- Fixed some issues with equipment dulling, including a bug where they never dulled below +0 even when they should.
+- Amnesia caused by the data delete effect is much stronger now.
+- Nerfed the disarm technique.
+- Players now gain a few extra skill slots when they level up.
+- Rebalanced the damage output of player's martial arts and the rate of fire gained by missile weapons skill.
+- Slowing and sleeping attacks used by pets or the player against monsters are weaker now.
+- Players can no longer leave bones files in freeplay mode.
+- Hammer shoes and high heels are less likely to drop on a monster's death.
+- Fixed a bug where holes could generate on a level that was the bottom of its branch.
+- The uncurse and blessing shop services are more expensive.
+- The intrinsic-stealing effect is now more likely to steal ones that can be easily gotten back, and less likely to steal ones that you usually won't be able to get back.
+- Further increased the rate at which the Juyo skill trains.
+- Fixed a bug where certain unique monsters could be genocided.
+- The symbiosis technique's timeout is faster for higher-skilled players now, but the symbiote tokens can no longer be polymorphed.
+- The jeanetta trap effect is less likely to increase the damage done per incident now.
+- Very early on, the cloak of drain life is less likely to kill the player.
+- Reduced the amount of effect increase for tech/spell drain with regard to how many techs/spells the player knows, so that the effect isn't as harsh.
+- The "surrender or die" technique is less likely to enchant the player's weapon.
+
 2.7.1 - March 2021
+- Fixed an infinite loop bug that could occur with engulfing monsters.
+- The player can no longer disable the starting pet if the chosen role has a detrimental one.
+- Fixed bugs that would occur if a player zapped the wand of banishment at a monster that had engulfed the hero.
+- Fixed the oversight where it was still possible to shortcut through the minotaur maze by giving a wand of digging to a low-health monster.
+- Hammer shoes have lesser melee damage bonuses.
 - Gems and venoms are zero-weight objects now (they used to weigh 1).
 - Fixed issues with cursed lizard corpses.
 - Applying a hitchhiker's guide to the galaxy only works with less than 900 sanity now, and increases the player's sanity by 1000 when applied.
@@ -2613,5 +2703,4 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 Everything from the first version to 0.9.7 wasn't under version control, but we may eventually add the older changes in a random order here.
 
 :-) <3 *bundlebundlebundle* <3 :D
-
 
