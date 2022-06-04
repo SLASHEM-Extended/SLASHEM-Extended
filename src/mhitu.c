@@ -22657,8 +22657,8 @@ dothepassive:
 
 	if((mtmp->mhp -= tmp) <= 0) {
 		pline("%s dies!", Monnam(mtmp));
-		u.symbioteattacking = FALSE;
 		xkilled(mtmp,0);
+		u.symbioteattacking = FALSE;
 		if (mtmp->mhp > 0) return 1;
 		return 2;
 	}
