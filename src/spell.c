@@ -7182,13 +7182,26 @@ whisperchoice:
 	case SPE_COMMAND_DEMON:
 
 		{
+		    int soundresist = 0;
 		    int i, j, bd = 1;
 		    struct monst *mtmp;
 
 		    for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 			if (!isok(u.ux + i, u.uy + j)) continue;
-			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0 && (is_demon(mtmp->data)))
-			    if (!rn2(2) && !resist(mtmp, SPBOOK_CLASS, 0, NOTELL) && !resist(mtmp, SPBOOK_CLASS, 0, NOTELL)) {
+			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0 && (is_demon(mtmp->data))) {
+
+				soundresist = 0;
+				switch (mtmp->data->msound) {
+					default: break;
+					case MS_FART_NORMAL: soundresist = 2; break;
+					case MS_FART_QUIET: soundresist = 2; break;
+					case MS_FART_LOUD: soundresist = 3; break;
+					case MS_CONVERT: soundresist = 3; break;
+					case MS_STENCH: soundresist = 5; break;
+					case MS_HCALIEN: soundresist = 10; break;
+				}
+
+			    if (!rn2(2) && (!soundresist || (!rn2(soundresist)) ) && !resist(mtmp, SPBOOK_CLASS, 0, NOTELL) && !resist(mtmp, SPBOOK_CLASS, 0, NOTELL)) {
 				(void) tamedog(mtmp, (struct obj *) 0, FALSE);
 				u.uenmax--;
 				if (u.uenmax < 0) u.uenmax = 0;
@@ -7200,7 +7213,7 @@ whisperchoice:
 				mtmp->mpeaceful = 0;
 				mtmp->mfrenzied = 1;
 			    }
-
+			}
 		    }
 		}
 

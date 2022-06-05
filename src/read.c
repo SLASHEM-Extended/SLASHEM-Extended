@@ -2300,10 +2300,26 @@ struct obj *sobj;
 	int tamediff = 1;
 	if (sobj && !Role_if(PM_DRUID) && !Role_if(PM_ACTIVISTOR) && !Role_if(PM_DEATH_EATER) && sobj->otyp == SPE_CHARM_MONSTER) tamediff = 3;
 	if (sobj && !Role_if(PM_NECROMANCER) && sobj->otyp == SPE_COMMAND_UNDEAD) tamediff = 2;
+	int soundresist = 0;
+	if (sobj->otyp == SPE_COMMAND_UNDEAD || sobj->otyp == SPE_CHARM_MONSTER) {
+		switch (mtmp->data->msound) {
+			default: break;
+			case MS_FART_NORMAL: soundresist = 2; break;
+			case MS_FART_QUIET: soundresist = 2; break;
+			case MS_FART_LOUD: soundresist = 3; break;
+			case MS_CONVERT: soundresist = 3; break;
+			case MS_STENCH: soundresist = 5; break;
+			case MS_HCALIEN: soundresist = 10; break;
+		}
+	}
 
 	if (sobj->cursed || Is_blackmarket(&u.uz)) {
 	    setmangry(mtmp);
-	} else {
+	} else if (sobj->otyp == SPE_CHARM_MONSTER && mindless(mtmp->data) && (stationary(mtmp->data) || mtmp->data->mmove == 0 || mtmp->data->mlet == S_TURRET) ) {
+		pline("%s cannot be charmed with this method.", Monnam(mtmp));
+	} else if ((sobj->otyp == SPE_COMMAND_UNDEAD || sobj->otyp == SPE_CHARM_MONSTER) && mtmp->data->msound == MS_SUPERMAN) {
+		pline("%s is immune!", Monnam(mtmp));
+	} else if (!soundresist || (!rn2(soundresist)) ) {
 	    if (mtmp->isshk)
 		make_happy_shk(mtmp, FALSE);
 	    else if (!resist(mtmp, sobj->oclass, 0, NOTELL) && (!resist(mtmp, sobj->oclass, 0, NOTELL) || (tamediff < 2)) && (!resist(mtmp, sobj->oclass, 0, NOTELL) || (tamediff < 3)) ) {

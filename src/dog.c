@@ -1326,6 +1326,19 @@ boolean guaranteed;
 		return((struct monst *)0);
 	}
 
+	if (Role_if(PM_UNDEAD_SLAYER) && !mtmp->mtame && is_undead(mtmp->data)) {
+		if (rn2(10)) {
+			pline("You're an undead slayer, not an undead tamer! %s refuses to be tamed!", Monnam(mtmp));
+			if (!rn2(10)) {
+				mtmp->mtame = 0;
+				mtmp->mpeaceful = 0;
+				mtmp->mfrenzied = 1;
+		        	pline("%s is very annoyed by your attempt, and enters a state of frenzy!", Monnam(mtmp));
+			}
+			return((struct monst *)0);
+		}
+	}
+
 	/* worst case, at least it'll be peaceful. */
 	if (!mtmp->mfrenzied) {
 		mtmp->mpeaceful = 1;
