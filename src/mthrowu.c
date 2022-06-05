@@ -2245,6 +2245,10 @@ boolean force_linedup;
 
 	if (mtmp->mpeaceful || mtmp->mtame) return 0;
 
+	/* things that shouldn't attack pets go here --Amy */
+	if (mtmp->data == &mons[PM_MOLDOUX__THE_DEFENCELESS_MOLD]) return 0;
+	if (mtmp->isshk || mtmp->isgd || mtmp->ispriest || mtmp->data->mlet == S_TROVE) return 0;
+
 	struct obj *mrwep = select_rwep(mtmp, TRUE); /* may use polearm even when far from the player --Amy */
 
 	for (mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
