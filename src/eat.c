@@ -3669,6 +3669,8 @@ register int pm;
 	    case PM_STUPID_ORB:
 	    case PM_EVIL_ORB:
 	    case PM_NERF_ORB:
+	    case PM_ELDRITCH_ORB:
+	    case PM_MAIDEN_ORB:
 	    case PM_ABRA:
 	    case PM_KADABRA:
 	    case PM_ALAKAZAM:

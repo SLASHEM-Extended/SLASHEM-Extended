@@ -341,6 +341,7 @@ register struct permonst *ptr;
 	if (ptr == &mons[PM_SHOTGUN_SNIPER]) return TRUE;
 	if (ptr == &mons[PM_ELONGATED_KURWA]) return TRUE;
 	if (ptr == &mons[PM_LONG_DISTANCE_OWLBEAR]) return TRUE;
+	if (ptr == &mons[PM_LONGRANGE_PRICK]) return TRUE;
 
 	return FALSE;
 }

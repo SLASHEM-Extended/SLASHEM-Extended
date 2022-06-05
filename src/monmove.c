@@ -243,7 +243,7 @@ boolean digest_meal;
 	}
 
 	/* super regene */
-	if (mon->data == &mons[PM_MESHERA_ALPHA_DEFORMED_ANGEL] || mon->data == &mons[PM_TESTER] || mon->data == &mons[PM_TEA_HUSSY] || mon->data == &mons[PM_OUROBOROS] || mon->data == &mons[PM_UNITDEAD_QUEEN] || mon->data == &mons[PM_UNITDEAD_KING] || mon->data == &mons[PM_REGULUS_THE_ALTERED] || mon->data == &mons[PM_ZANAN_ENHANCED_SOLDIER] || mon->data == &mons[PM_VANESSA_ENHANCED_SOLDIER] || mon->data == &mons[PM_SUPERREGENEBOROS] || mon->data == &mons[PM_JUERE_DEMON_SOLDIER] || mon->data == &mons[PM_JENNIFER_DEMON_SOLDIER] || mon->data == &mons[PM_ARIANE__LADY_OF_THE_ELEMENTS] || mon->data == &mons[PM_RENAI_OVER_MESHERA] || mon->data == &mons[PM_PATIENT_ZERO] || mon->data == &mons[PM_MISSU] || (FemtrapActiveGudrun && mon->female && humanoid(mon->data)) ) {
+	if (mon->data == &mons[PM_MESHERA_ALPHA_DEFORMED_ANGEL] || mon->data == &mons[PM_TESTER] || mon->data == &mons[PM_TEA_HUSSY] || mon->data == &mons[PM_OUROBOROS] || mon->data == &mons[PM_UNITDEAD_QUEEN] || mon->data == &mons[PM_UNITDEAD_KING] || mon->data == &mons[PM_REGULUS_THE_ALTERED] || mon->data == &mons[PM_SELF_HEALER] || mon->data == &mons[PM_ZANAN_ENHANCED_SOLDIER] || mon->data == &mons[PM_VANESSA_ENHANCED_SOLDIER] || mon->data == &mons[PM_SUPERREGENEBOROS] || mon->data == &mons[PM_JUERE_DEMON_SOLDIER] || mon->data == &mons[PM_JENNIFER_DEMON_SOLDIER] || mon->data == &mons[PM_ARIANE__LADY_OF_THE_ELEMENTS] || mon->data == &mons[PM_RENAI_OVER_MESHERA] || mon->data == &mons[PM_PATIENT_ZERO] || mon->data == &mons[PM_MISSU] || (FemtrapActiveGudrun && mon->female && humanoid(mon->data)) ) {
 		mon->mhp += 20;
 		if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
 	}
@@ -829,6 +829,13 @@ register struct monst *mtmp;
 
 	if (mdat == &mons[PM_LAG_MONSTER] || mdat == &mons[PM_SLITHER] || mdat == &mons[PM_LAG_DEFENSE_TOWER]) { /* laaaaaaaaaag! :D --Amy */
 		int lagamount = rno(10);
+		while (lagamount > 0) {
+			delay_output();
+			lagamount--;
+		}
+	}
+	if (mdat == &mons[PM_GAME_FREEZER] && mtmp->mhp < (mtmp->mhpmax / 3)) {
+		int lagamount = rnz(100);
 		while (lagamount > 0) {
 			delay_output();
 			lagamount--;
@@ -3392,7 +3399,7 @@ register int after;
 #endif
 
 	/* teleport if that lies in our nature */
-	if( (ptr == &mons[PM_TENGU] || ptr == &mons[PM_CORONA_TASK_FORCE] || ptr == &mons[PM_PURPLE_BOUNCING_GIRL] || ptr == &mons[PM_CORONA_LICHEN] || ptr == &mons[PM_STALKING_CORONA_LICHEN] || ptr == &mons[PM_CORONA_SPORE_LICHEN] || ptr == &mons[PM_CORONA_COLONY_LICHEN] || ptr == &mons[PM_SUDDEN_TENGU] || ptr == &mons[PM_FAKE_NEWS_TENGU] || ptr == &mons[PM_LASTING_TENGU] || ptr == &mons[PM_TELEPORTER] || ptr == &mons[PM_COUNTRY_SHARK] || ptr == &mons[PM_POLITICAL_TENGU] || ptr == &mons[PM_EASTERN_TENGU] || ptr == &mons[PM_PHASING_TENGU] || ptr == &mons[PM_CHEERFUL_LEPRECHAUN] || ptr == &mons[PM_BLINK] || ptr == &mons[PM_VORPAL_BUNNY] || ptr == &mons[PM_KING_OF_PORN] || ptr == &mons[PM_SHRIEKSHRIEKSHRIEKER] || ptr == &mons[PM_TAXI] || ptr == &mons[PM_TAXI_XPRESS] || ptr == &mons[PM_JIL_S_SCENTFUL_SOCKS] || ptr == &mons[PM_ZOMBIE_STUNTMAN] || ptr == &mons[PM_OF_FLOW] || ptr == &mons[PM_PEARDUCK] || ptr == &mons[PM_UAE] || ptr == &mons[PM_CHEATY_SILVER_COIN] || ptr == &mons[PM_SPACEWARP_JELLY] || ptr == &mons[PM_ALSAPIA_MURDERER_MASK] || ptr == &mons[PM_NIGHTMARE_SHEEP] || ptr == &mons[PM_HELL_SHEEP] || ptr == &mons[PM_LOVECRAFT_SHEEP] || ptr == &mons[PM_INDIVIDUAL_WILL_O_THE_WISP] || ptr == &mons[PM_TELEHOBBIT] || ptr == &mons[PM_SPOOPY_GHOST] || ptr == &mons[PM_ANNOYING_SLEX_GHOST] || ptr == &mons[PM_SPRING_WOLF] || ptr == &mons[PM_DIMENSIONAL_SHAMBLER] || ptr == &mons[PM_MAGNET_ELEMENTAL] || ptr == &mons[PM_PHASE_KNIGHT] || ptr == &mons[PM_TELEPORTING_DEMON] || ptr == &mons[PM_BEAMING_UFO_PART] || ptr == &mons[PM_BEAMER] || mtmp->egotype_teleportself) && !rn2(25) && !mtmp->mcan &&
+	if( (ptr == &mons[PM_TENGU] || ptr == &mons[PM_CORONA_TASK_FORCE] || ptr == &mons[PM_PURPLE_BOUNCING_GIRL] || ptr == &mons[PM_CORONA_LICHEN] || ptr == &mons[PM_STALKING_CORONA_LICHEN] || ptr == &mons[PM_CORONA_SPORE_LICHEN] || ptr == &mons[PM_CORONA_COLONY_LICHEN] || ptr == &mons[PM_SUDDEN_TENGU] || ptr == &mons[PM_FAKE_NEWS_TENGU] || ptr == &mons[PM_LASTING_TENGU] || ptr == &mons[PM_TELEPORTER] || ptr == &mons[PM_COUNTRY_SHARK] || ptr == &mons[PM_POLITICAL_TENGU] || ptr == &mons[PM_EASTERN_TENGU] || ptr == &mons[PM_PHASING_TENGU] || ptr == &mons[PM_FROZEN_JUMP] || ptr == &mons[PM_CHEERFUL_LEPRECHAUN] || ptr == &mons[PM_BLINK] || ptr == &mons[PM_VORPAL_BUNNY] || ptr == &mons[PM_KING_OF_PORN] || ptr == &mons[PM_SHRIEKSHRIEKSHRIEKER] || ptr == &mons[PM_TAXI] || ptr == &mons[PM_TAXI_XPRESS] || ptr == &mons[PM_JIL_S_SCENTFUL_SOCKS] || ptr == &mons[PM_ZOMBIE_STUNTMAN] || ptr == &mons[PM_OF_FLOW] || ptr == &mons[PM_PEARDUCK] || ptr == &mons[PM_UAE] || ptr == &mons[PM_CHEATY_SILVER_COIN] || ptr == &mons[PM_SPACEWARP_JELLY] || ptr == &mons[PM_ALSAPIA_MURDERER_MASK] || ptr == &mons[PM_NIGHTMARE_SHEEP] || ptr == &mons[PM_HELL_SHEEP] || ptr == &mons[PM_LOVECRAFT_SHEEP] || ptr == &mons[PM_INDIVIDUAL_WILL_O_THE_WISP] || ptr == &mons[PM_TELEHOBBIT] || ptr == &mons[PM_SPOOPY_GHOST] || ptr == &mons[PM_ANNOYING_SLEX_GHOST] || ptr == &mons[PM_SPRING_WOLF] || ptr == &mons[PM_DIMENSIONAL_SHAMBLER] || ptr == &mons[PM_MAGNET_ELEMENTAL] || ptr == &mons[PM_PHASE_KNIGHT] || ptr == &mons[PM_TELEPORTING_DEMON] || ptr == &mons[PM_BEAMING_UFO_PART] || ptr == &mons[PM_BEAMER] || mtmp->egotype_teleportself) && !rn2(25) && !mtmp->mcan &&
 	   !tele_restrict(mtmp)) {
 	    if(mtmp->mhp < 7 || (ptr == &mons[PM_SPOOPY_GHOST]) || mtmp->mpeaceful || rn2(2))
 		(void) rloc(mtmp, FALSE);

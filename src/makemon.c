@@ -6461,9 +6461,9 @@ register struct monst *mtmp;
 		if (ptr == &mons[PM_FANATICIAN]) (void)mongets(mtmp, HALBERD);
 		if (ptr == &mons[PM_BUTLER]) (void)mongets(mtmp, LUCERN_HAMMER);
 
-		if (ptr == &mons[PM_FETISH] || ptr == &mons[PM_FLAYER] || ptr == &mons[PM_SOUL_KILLER] || ptr == &mons[PM_PYGMY_WARRIOR] || ptr == &mons[PM_STYGIAN_DOLL] || ptr == &mons[PM_VOODOO_FETISH] || ptr == &mons[PM_GIANT_PYGMY]) (void)mongets(mtmp, KNIFE);
+		if (ptr == &mons[PM_FETISH] || ptr == &mons[PM_FLAYER] || ptr == &mons[PM_SOUL_KILLER] || ptr == &mons[PM_PYGMY_WARRIOR] || ptr == &mons[PM_STYGIAN_DOLL] || ptr == &mons[PM_VOODOO_FETISH] || ptr == &mons[PM_CANNIBAL_CULTIST] || ptr == &mons[PM_GIANT_PYGMY]) (void)mongets(mtmp, KNIFE);
 
-		if (ptr == &mons[PM_FETISH_BLOWDART] || ptr == &mons[PM_FLAYER_BLOWDART] || ptr == &mons[PM_SOUL_KILLER_BLOWDART] || ptr == &mons[PM_PYGMY_WARRIOR_BLOWDART] || ptr == &mons[PM_STYGIAN_DOLL_BLOWDART] || ptr == &mons[PM_VOODOO_FETISH_BLOWDART] || ptr == &mons[PM_GIANT_PYGMY_BLOWDART]) m_initthrow(mtmp, DART, 40);
+		if (ptr == &mons[PM_FETISH_BLOWDART] || ptr == &mons[PM_FLAYER_BLOWDART] || ptr == &mons[PM_SOUL_KILLER_BLOWDART] || ptr == &mons[PM_PYGMY_WARRIOR_BLOWDART] || ptr == &mons[PM_STYGIAN_DOLL_BLOWDART] || ptr == &mons[PM_VOODOO_FETISH_BLOWDART] || ptr == &mons[PM_CANNIBAL_CULTIST_BLOWDART] || ptr == &mons[PM_GIANT_PYGMY_BLOWDART]) m_initthrow(mtmp, DART, 40);
 
 		if (ptr == &mons[PM_POLICEMAN]) {
 
@@ -7565,6 +7565,15 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_SMOKER_HC_WOMAN]) (void) mongets(mtmp, CIGARETTE);
 		if (ptr == &mons[PM_TUFTRIKE]) (void) mongets(mtmp, DANCING_SHOES);
 
+		if (ptr == &mons[PM_CLOCK_OLD_MARRIED_COUPLE]) {
+			(void) mongets(mtmp, SHOTGUN);
+			 m_initthrow(mtmp, SHOTGUN_SHELL, 30);
+		}
+		if (ptr == &mons[PM_ARCTIS_BITCH]) {
+			(void) mongets(mtmp, BOW);
+			 m_initthrow(mtmp, ARROW, 50);
+			 m_initthrow(mtmp, ARROW, 50);
+		}
 		if (ptr == &mons[PM_VEGETABLE_FARMER]) {
 			(void) mongets(mtmp, rnd_class(TRIPE_RATION,TIN));
 			(void) mongets(mtmp, rnd_class(TRIPE_RATION,TIN));
@@ -10531,6 +10540,17 @@ loveheelover:
 				mpickobj(mtmp,otmpX, TRUE);
 			}
 		}
+		if (mtmp->data == &mons[PM_TURBO_WORLD_KILLER]) {
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
+			if (otmpX) {
+				otmpX->spe = 0;
+				otmpX->quan = 10;
+				otmpX->owt = weight(otmpX);
+				otmpX->corpsenm = egg_type_from_parent(PM_TURBO_WORLD_KILLER, FALSE);
+				attach_egg_hatch_timeout(otmpX);
+				mpickobj(mtmp,otmpX, TRUE);
+			}
+		}
 
 		if (mtmp->data == &mons[PM_SPEEDSTER_MAGGOT]) {
 			struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
@@ -10597,6 +10617,9 @@ loveheelover:
 		}
 
 		if (mtmp->data == &mons[PM_CLOCK_WOLF]) { (void) mongets(mtmp, EGG); (void) mongets(mtmp, EGG); (void) mongets(mtmp, EGG); (void) mongets(mtmp, EGG); (void) mongets(mtmp, EGG); (void) mongets(mtmp, EGG); (void) mongets(mtmp, EGG);
+		}
+
+		if (mtmp->data == &mons[PM_LEVEL_FILLER]) { (void) mongets(mtmp, EGG); (void) mongets(mtmp, EGG); (void) mongets(mtmp, EGG); (void) mongets(mtmp, EGG); (void) mongets(mtmp, EGG); (void) mongets(mtmp, EGG); (void) mongets(mtmp, EGG); (void) mongets(mtmp, EGG); (void) mongets(mtmp, EGG); (void) mongets(mtmp, EGG); (void) mongets(mtmp, EGG); (void) mongets(mtmp, EGG); (void) mongets(mtmp, EGG); (void) mongets(mtmp, EGG); (void) mongets(mtmp, EGG); (void) mongets(mtmp, EGG); (void) mongets(mtmp, EGG); (void) mongets(mtmp, EGG); (void) mongets(mtmp, EGG); (void) mongets(mtmp, EGG);
 		}
 
 		if (mtmp->data == &mons[PM_SALLY_S_VELCRO_SNEAKER]) (void) mongets(mtmp, SOFT_SNEAKERS); /* M4_SNEAKERS */
@@ -11354,6 +11377,10 @@ loveheelover:
 		break;
 
 	    case S_QUADRUPED:
+
+		if (mtmp->data == &mons[PM_F_B_I_]) (void) mongets(mtmp, LUCERN_HAMMER);
+		if (mtmp->data == &mons[PM_SCOTLAND_YARD_AGENT]) (void) mongets(mtmp, LUCERN_HAMMER);
+		if (mtmp->data == &mons[PM_KSK_TYPE]) (void) mongets(mtmp, LUCERN_HAMMER);
 
 		if (ptr == &mons[PM_SOLDIERCROTTA]) {
 			(void)mongets(mtmp, rn2(2) ? RIFLE : SUBMACHINE_GUN);
@@ -12925,6 +12952,10 @@ loveheelover:
 		if (mtmp->data == &mons[PM_PLAYFUL_FEMMY]) (void) mongets(mtmp, SOFT_SNEAKERS); /* M4_SNEAKERS */
 		if (mtmp->data == &mons[PM_EAR_SHOOM]) (void) mongets(mtmp, FOAMY_STAFF);
 		if (mtmp->data == &mons[PM_DIG_MOLE]) (void) mongets(mtmp, PICK_AXE);
+		if (mtmp->data == &mons[PM_MARTINA_S_COMBAT_BOOT]) (void) mongets(mtmp, LADY_BOOTS); /* M4_BLOCKHEELBOOTS */
+		if (mtmp->data == &mons[PM_CLAUDIA_S_HIGH_HEELED_WOODEN_SANDAL]) (void) mongets(mtmp, WEDGE_SANDALS); /* M4_SANDALS */
+		if (mtmp->data == &mons[PM_ANNIE_S_SNEAKER]) (void) mongets(mtmp, SOFT_SNEAKERS); /* M4_SNEAKERS */
+		if (mtmp->data == &mons[PM_MARGRET_S_STILETTO_PUMP]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 		if (ptr == &mons[PM_SEXTARIAN_CUTIE]) {
 			(void) mongets(mtmp, BLOCK_HEELED_SANDAL); /* M4_HAMMERSANDAL */
@@ -12981,6 +13012,10 @@ loveheelover:
 			(void) mongets(mtmp, SAND_SWORD);
 			 m_initthrow(mtmp, SAND_DART, 50);
 			 m_initthrow(mtmp, SAND_DART, 50);
+		}
+		if (ptr == &mons[PM_LONGRANGE_PRICK]) {
+			 m_initthrow(mtmp, DART, 50);
+			 m_initthrow(mtmp, DART, 50);
 		}
 		if (mtmp->data == &mons[PM_HERHARAT]) {
 			(void) mongets(mtmp, CHAIN_MAIL);
@@ -13391,6 +13426,8 @@ loveheelover:
 		    }
 
 		}
+
+		if (ptr == &mons[PM_POLEARM_MASTER]) (void)mongets(mtmp, rnd_class(PARTISAN,BEC_DE_CORBIN));
 
 		if (ptr == &mons[PM_NORDIC_WALKING_GIANT]) (void)mongets(mtmp, CLIMBING_STICK);
 		if (ptr == &mons[PM_LAVA_SPAWN_GIANT]) (void)mongets(mtmp, GRINDER);
@@ -13909,6 +13946,11 @@ loveheelover:
 		if (ptr == &mons[PM_BONING_EEL]) {
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, BONE_FRAGMENT, 30);
+		}
+		if (ptr == &mons[PM_SIEGE_CANNON]) {
+			(void) mongets(mtmp, SNIPER_RIFLE);
+			 m_initthrow(mtmp, BULLET, 50);
+			 m_initthrow(mtmp, BULLET, 50);
 		}
 		if (ptr == &mons[PM_SKILLFISH]) {
 			(void) mongets(mtmp, SLING);
@@ -19353,6 +19395,12 @@ loveheelover:
 
 	}
 
+	if (ptr == &mons[PM_MASTER_BUTT]) {
+
+		mtmp->fartbonus += 6;
+
+	}
+
 	if (ptr == &mons[PM_SUSTAINED_FART_FEMMY]) {
 
 		mtmp->fartbonus += 9;
@@ -24007,6 +24055,7 @@ register int	mmflags;
 
 		case S_FELINE:
 			if (rn2(2) && mndx == PM_AIR_DEATH) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_KAGERO_AIR_DEATH) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_DEFORMED_CAT) set_mimic_sym(mtmp);
 			if (mndx == PM_LINUS_THE_CAT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_KRRK_KRRK) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
@@ -24282,6 +24331,12 @@ register int	mmflags;
 				if (!rn2(3)) (void) makemon(&mons[PM_VOODOO_FETISH], mtmp->mx, mtmp->my, MM_ADJACENTOK);
 				if (!rn2(5)) (void) makemon(&mons[PM_VOODOO_FETISH_BLOWDART], mtmp->mx, mtmp->my, MM_ADJACENTOK);
 			}
+			if (mtmp->data == &mons[PM_CANNIBAL_SHAMAN]) {
+				(void) makemon(&mons[PM_CANNIBAL_CULTIST], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				(void) makemon(&mons[PM_CANNIBAL_CULTIST_BLOWDART], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				if (!rn2(3)) (void) makemon(&mons[PM_CANNIBAL_CULTIST], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				if (!rn2(5)) (void) makemon(&mons[PM_CANNIBAL_CULTIST_BLOWDART], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+			}
 
 			if (mtmp->data == &mons[PM_GIANT_PYGMY_SHAMAN]) {
 				(void) makemon(&mons[PM_GIANT_PYGMY], mtmp->mx, mtmp->my, MM_ADJACENTOK);
@@ -24451,6 +24506,19 @@ register int	mmflags;
 			break;
 		case S_HUMAN:
 
+			if (mtmp->data == &mons[PM_BOEPA] && ((mvitals[PM_BOEPA].born % 2) != 0) ) {
+				struct monst *boepamon = makemon(&mons[PM_BOEPA], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				if (boepamon) {
+					boepamon->female = (mtmp->female) ? FALSE : TRUE;
+				}
+			}
+			if (mtmp->data == &mons[PM_CLOCK_OLD_MARRIED_COUPLE] && ((mvitals[PM_CLOCK_OLD_MARRIED_COUPLE].born % 2) != 0) ) {
+				struct monst *boepamon = makemon(&mons[PM_CLOCK_OLD_MARRIED_COUPLE], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				if (boepamon) {
+					boepamon->female = (mtmp->female) ? FALSE : TRUE;
+				}
+			}
+
 			if (mtmp->data == &mons[PM_MECHTNED] && mvitals[PM_KLAPPTNIX].born == 0) {
 				(void) makemon(&mons[PM_KLAPPTNIX], mtmp->mx, mtmp->my, MM_ADJACENTOK);
 			}
@@ -24508,6 +24576,7 @@ register int	mmflags;
 			if (mndx == PM_HIDDEN_PARALYSATOR) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_HAHA_YOU_CANNOT_SEE_THE_FLOATING_EYE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_HAHA_SOMETHING_JUST_PARALYZED_YOU) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
+			if (mndx == PM_QANON) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_YOU_JUST_GOT_PARALYZED) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 
 			if (mndx == PM_BLACK_LEYE) {
