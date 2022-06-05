@@ -11651,6 +11651,9 @@ loveheelover:
 			(void) mongets(mtmp, FLINTLOCK);
 	  		m_initthrow(mtmp, LEAD_BULLET, 20);
 		}
+		if (ptr == &mons[PM_BAB]) {
+	  		m_initthrow(mtmp, FRAG_GRENADE, 25);
+		}
 		if (ptr == &mons[PM_CAST_CENTAUR]) {
 			(void) mongets(mtmp, BOW);
 	  		m_initthrow(mtmp, BRONZE_ARROW, 50);
@@ -19332,6 +19335,12 @@ loveheelover:
 
 	}
 
+	if (ptr == &mons[PM_MASTER_PO]) {
+
+		mtmp->fartbonus += 5;
+
+	}
+
 	if (ptr == &mons[PM_SUSTAINED_FART_FEMMY]) {
 
 		mtmp->fartbonus += 9;
@@ -24793,6 +24802,8 @@ register int	mmflags;
 			if (mndx == PM_ORIENTAL_VAMPIRE) {mtmp->perminvis = TRUE; mtmp->minvis = TRUE; }
 			if (mndx == PM_HAHA_SOMETHING_INVISIBLE_IS_SUCKING_YOU_DRY) {mtmp->perminvis = TRUE; mtmp->minvis = TRUE; }
 			if (ptr == &mons[PM_PERMACLOAK_OF_INVIS_VAMP]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
+			if (mndx == PM_GULP_GULP_GULP) {mtmp->perminvis = TRUE; mtmp->minvis = TRUE; }
+			if (ptr == &mons[PM_SHE_S_SUCKING_YOU_DRY]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 
 			if (mtmp->data == &mons[PM_VAMPIRE_SHADOWCLOAK]) set_mimic_sym(mtmp);
 			break;
