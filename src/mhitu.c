@@ -2170,7 +2170,7 @@ mattacku(mtmp)
 			return (0);
 		/* Orcs like to steal and eat horses and the like
 		 * Amy edit: wtf. replace that with just a generic chance that your steed is attacked */
-		if (will_hit_steed() && distu(mtmp->mx, mtmp->my) <= 2) {
+		if ((mtmp->data != &mons[PM_MOLDOUX__THE_DEFENCELESS_MOLD]) && !mtmp->isshk && !mtmp->isgd && !mtmp->ispriest && mtmp->data->mlet != S_TROVE && will_hit_steed() && distu(mtmp->mx, mtmp->my) <= 2) {
 			/* Attack your steed instead */
 			i = mattackm(mtmp, u.usteed);
 			if ((i & MM_AGR_DIED))
