@@ -27808,6 +27808,15 @@ static NEARDATA const char * const fake_plines[] = {
 	"Aww, you just got told that because you didn't treat the red block-heeled leather boots well, you may no longer look at them now. :-(",
 	"You wish you'd still encounter pretty ladies who want to fart you in the face tenderly, but no dice. They don't want to waste their time with you anymore it seems.",
 	"You have to perform a special survey, where you have to find a couple of tourists and drink their blood. Then report to your boss and say what it tasted like.",
+	"you arrive on a new level. to your remaining three senses, it seems the same as any other level. ok maybe you smell something",
+	"some big unidentified guy in front of you is pummeling you. maybe he's the nemesis spitting insults at you, maybe not. who knows",
+	"you exit the magic portal. something feels wrong here but good luck trying to figure out what. where is this again?",
+	"You killed someone from the retarded devteam, and therefore the game ends now because we're lazy asses.",
+	"You do not know what to do with the scroll of missing code.",
+	"You encounter an in-game item that has no documentation and no obvious use, which means that the only thing you can do is ask on the IRC about it.",
+	"Did you know that Terrahack adds so much stuff that barely has any documentation (probably none on the wiki and certainly none in-game), which can be figured out only if you're either the developer yourself or ask about it on the IRC? That's great gameplay, especially for people who can't constantly be on the IRC while playing!",
+	"Of course Terrahack doesn't need any in-game documentation for new items or anything, because the developer knows everything about every newly added thing and therefore the players will magically know it too. And if not, well, we'll just tell them to look at the source, because all players also magically know how to read C! :-P",
+	"In the case of doubt, if you encounter a new monster with unknown attacks and abilities, just attack it in melee and fully expect to get one-shot-killed. If that doesn't happen, stand next to the monster until it does kill you, and then complain to the developer about that overpowered monster.",
 
 };
 

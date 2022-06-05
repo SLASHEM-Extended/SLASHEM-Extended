@@ -5574,6 +5574,13 @@ static const char *epitaphs[] = {
 	"Eyehack makes it so that you can encounter full-grown silver dragons or elvenking statue traps as early as dungeon level 3. And they call *slex* unbalanced.",
 	"Told you that if there was a genuine minotaur in that maze on dungeon level 5, fighting was not going to be winnable.",
 	"If you have rock trolls spawning from the very beginning of the game, I do have to wonder what's going on there.", /* used to happen in slex */
+	"The madling somehow survived my level 150 magic dart spell and then got ten turns in a row which it used for spamming only chaos ball and nothing else, so I died. Great.",
+	"The madling survived my water bolt spell because it was too low level, and when I tried to cast again I failed to cast the spell correctly, so the madling used its turns for spamming only chaos ball and nothing else, and of course I died. Blaaaaaah.",
+	"Bah, SLEX is so stupid, why on earth can you get a level with unbeatable activists and other level 10 stuff as early as dungeon level 2 with a XL1 character? That's so unbalanced I don't even!",
+	"Man, that Larus bastard is way too strong, you can easily get past the hanging semen ejaculators with a decently skilled climacterial but the nemesis is unbeatable, he has too much AC and resists most elements and even if you somehow manage to damage him, he just endlessly spams a healing spell, and then he kills you!",
+	"Here lies the grandmaster spirit monk who ascended SLEX, he decided to retire because he doesn't want to ruin his win streak of 1.",
+	"Paralysis is turboass!",
+	"Yeah you can't play this game unless you have free action and discount action, because without them you just eventually get paralyzed and killed with no chance.",
 
 };
 
