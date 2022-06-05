@@ -2370,6 +2370,7 @@ mattacku(mtmp)
 	if (mtmp->data == &mons[PM_JOURHEA]) tmp -= 40;	/* has terribly bad aim */
 	if (mtmp->data == &mons[PM_THE_DIN_MISSED_YOU_]) tmp -= 20;	/* also aims badly */
 	if (mtmp->data == &mons[PM_FUNNY_MISSER]) tmp -= rnd(20);	/* ditto */
+	if (mtmp->data == &mons[PM_KLAPPTNIX]) tmp -= 20; /* name means "nothing's working" */
 	if (mtmp->data == &mons[PM_CURSED____LEFTHANDED_FARTING_ELEPHANT]) tmp -= 10;	/* left-handed */
 	if (mtmp->data == &mons[PM_UNEXPECTED_BANNER]) tmp -= rnd(20);	/* ditto */
 	if (mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_]) tmp += rnd(100); /* the elder priest uses an aimbot and a wallhack */
@@ -10542,6 +10543,24 @@ dopois:
 			u.cnd_disenchantamount++;
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		    }
+
+			if (mtmp->data == &mons[PM_ROD_POLISHER]) {
+				struct obj *otmpE;
+			      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
+					if (otmpE && !rn2(10)) {
+						(void) drain_item(otmpE);
+						if (otmpE && otmpE->oclass == WAND_CLASS && otmpE->greased < 3) {
+							otmpE->greased++;
+							pline("One of your wands was polished.");
+						}
+					}
+				}
+				Your("equipment seems less effective.");
+				u.cnd_disenchantamount++;
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+
+			}
+
 		}
 		break;
 	    case AD_NGEN:
@@ -13433,6 +13452,11 @@ do_stone2:
 		    } else {
 			You("are pummeled with debris!");
 			exercise(A_STR, FALSE);
+			if (mtmp->data == &mons[PM_RUSSIAN_WAR_WIND]) {
+				incr_itimeout(&HConflict, rnz(25) );
+				incr_itimeout(&HHunger, rnz(200) );
+				pline("Gotta brave the war!");
+			}
 		    }
 		    break;
 

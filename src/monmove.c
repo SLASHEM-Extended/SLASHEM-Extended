@@ -3402,6 +3402,13 @@ register int after;
 	    goto postmov;
 	}
 
+	if (ptr == &mons[PM_MECHTNED] && distu(mtmp->mx, mtmp->my) < 4 && !tele_restrict(mtmp) ) {
+		/* name means "doesn't want to (fight you)", so he teleports away from you */
+		(void) rloc(mtmp, FALSE);
+		mmoved = 1;
+		goto postmov;
+	}
+
 	if (mtmp->egotype_blinker && !mtmp->mcan && !rn2(5) ) {
 		(void) rloc(mtmp, FALSE);
 	      mmoved = 1;

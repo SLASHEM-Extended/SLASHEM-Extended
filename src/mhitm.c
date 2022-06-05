@@ -3395,6 +3395,8 @@ struct monst *magr, *mdef;
 
 	int polelimit = POLE_LIM;
 
+	if (magr->data == &mons[PM_MECHTNED]) return MM_MISS;
+
     /* Rearranged beginning so monsters can use polearms not in a line */
     if (magr->weapon_check == NEED_WEAPON || !MON_WEP(magr)) {
 	magr->weapon_check = NEED_RANGED_WEAPON;

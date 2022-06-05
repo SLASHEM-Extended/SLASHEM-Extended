@@ -24451,6 +24451,13 @@ register int	mmflags;
 			break;
 		case S_HUMAN:
 
+			if (mtmp->data == &mons[PM_MECHTNED] && mvitals[PM_KLAPPTNIX].born == 0) {
+				(void) makemon(&mons[PM_KLAPPTNIX], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+			}
+			if (mtmp->data == &mons[PM_KLAPPTNIX] && mvitals[PM_MECHTNED].born == 0) {
+				(void) makemon(&mons[PM_MECHTNED], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+			}
+
 			if (mtmp->data == &mons[PM_STOOGE_MOE] && mvitals[PM_STOOGE_CURLY].born == 0) {
 				(void) makemon(&mons[PM_STOOGE_CURLY], mtmp->mx, mtmp->my, MM_ADJACENTOK);
 			}

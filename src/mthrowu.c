@@ -959,7 +959,7 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 		(void) drop_throw(mon, otmp, 0, mtmp->mx, mtmp->my);
 		return 1;
 	    }
-	} else if (mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || mtmp->data == &mons[PM_ATHLEANNIE] || mtmp->data == &mons[PM_TOWELBEAR] || mtmp->data == &mons[PM_LIGHTSABER_ART_JEDI] || mtmp->data == &mons[PM_MR__CONCLUSIO] || mtmp->data == &mons[PM_YOUR_GAME_ENDS_NOW]|| mtmp->data == &mons[PM_ELITE_GENDAME] || mtmp->data == &mons[PM_LILAC_FEMMY] || mtmp->data == &mons[PM_GREEN]) { /* will never be hit by monsters' ranged attacks */
+	} else if (mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || mtmp->data == &mons[PM_ATHLEANNIE] || mtmp->data == &mons[PM_FART_ATHLETE] || mtmp->data == &mons[PM_TOWELBEAR] || mtmp->data == &mons[PM_LIGHTSABER_ART_JEDI] || mtmp->data == &mons[PM_MR__CONCLUSIO] || mtmp->data == &mons[PM_YOUR_GAME_ENDS_NOW]|| mtmp->data == &mons[PM_ELITE_GENDAME] || mtmp->data == &mons[PM_LILAC_FEMMY] || mtmp->data == &mons[PM_GREEN]) { /* will never be hit by monsters' ranged attacks */
 	    if (!ismimic) {
 		pline("%s swats a projectile away.", Monnam(mtmp));
 	    }
@@ -1635,6 +1635,8 @@ struct monst *mtmp;
 	int chance;
 
 	int polelimit = POLE_LIM;
+
+	if (mtmp->data == &mons[PM_MECHTNED]) return;
 
 	/* Rearranged beginning so monsters can use polearms not in a line */
 	if (mtmp->weapon_check == NEED_WEAPON || !MON_WEP(mtmp)) {

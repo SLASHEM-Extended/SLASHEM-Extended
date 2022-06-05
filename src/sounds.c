@@ -3802,7 +3802,7 @@ repairitemchoice:
 		pline_msg = "curses orcs.";
 	    else if (is_dwarf(ptr))
 		pline_msg = "talks about mining.";
-	    else if (likes_magic(ptr) && rn2(5) )
+	    else if (likes_magic(ptr) && (monsndx(ptr) != PM_KLAPPTNIX) && rn2(5) )
 		pline_msg = "talks about spellcraft.";
 	    else if (ptr->mlet == S_CENTAUR)
 		pline_msg = "discusses hunting.";
@@ -3825,6 +3825,12 @@ repairitemchoice:
 		    break;
 		case PM_EMERA:
 		    verbl_msg = "HATE! HATE! HATE!";
+		    break;
+		case PM_MECHTNED:
+		    verbl_msg = "Mechtned.";
+		    break;
+		case PM_KLAPPTNIX:
+		    verbl_msg = "Klapptnix.";
 		    break;
 		case PM_UNLUCKY_GIRL:
 		    verbl_msg = "Damn those people who constantly make me slip into dog shit with my zipper boots!";
