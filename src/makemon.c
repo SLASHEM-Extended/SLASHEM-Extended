@@ -12611,6 +12611,12 @@ loveheelover:
 		if(ptr == &mons[PM_YITH_DAEMON]) {
 			(void) mongets(mtmp, YITH_TENTACLE);
 		}
+		if(ptr == &mons[PM_NEOPHYTE_YITH_DAEMON]) {
+			(void) mongets(mtmp, YITH_TENTACLE);
+		}
+		if(ptr == &mons[PM_LESSER_YITH_DAEMON]) {
+			(void) mongets(mtmp, YITH_TENTACLE);
+		}
 		if(ptr == &mons[PM_CIGARETTE_SMOKING_FEMMY]) {
 			(void) mongets(mtmp, SOFT_SNEAKERS); /* M4_SNEAKERS */
 			(void) mongets(mtmp, CIGARETTE);
@@ -16014,6 +16020,12 @@ loveheelover:
 			(void) mongets(mtmp, SEXY_LEATHER_PUMP);
 		}
 		if(ptr == &mons[PM_YITH_DEMON]) {
+			(void) mongets(mtmp, YITH_TENTACLE);
+		}
+		if(ptr == &mons[PM_NEOPHYTE_YITH_DEMON]) {
+			(void) mongets(mtmp, YITH_TENTACLE);
+		}
+		if(ptr == &mons[PM_LESSER_YITH_DEMON]) {
 			(void) mongets(mtmp, YITH_TENTACLE);
 		}
 		if(ptr == &mons[PM_HEEL_DEMON]) {
