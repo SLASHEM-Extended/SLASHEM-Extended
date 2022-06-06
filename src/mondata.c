@@ -342,6 +342,7 @@ register struct permonst *ptr;
 	if (ptr == &mons[PM_ELONGATED_KURWA]) return TRUE;
 	if (ptr == &mons[PM_LONG_DISTANCE_OWLBEAR]) return TRUE;
 	if (ptr == &mons[PM_LONGRANGE_PRICK]) return TRUE;
+	if (ptr == &mons[PM_KOREAN_ENERGY_FIELD]) return TRUE;
 
 	return FALSE;
 }

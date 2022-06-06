@@ -1207,7 +1207,7 @@ register struct monst *mtmp;
 				|| mm == PM_JEDI || mm == PM_HEDDERJEDI || mm == PM_PADAWAN || mm == PM_STORMTROOPER
 				|| mm == PM_ENEMY_TROOPER || mm == PM_INFANTRYMAN || mm == PM_CUNTGUN_TROOPER
 				|| mm == PM_GI_TROOPER || mm == PM_HEAVY_WEAPON_DUDE || mm == PM_RIFLEMAN
-				|| mm == PM_SNIPER || mm == PM_RIOT_BREAKER || mm == PM_TANK_BREAKER
+				|| mm == PM_SNIPER || mm == PM_TREPIDANT_SNIPER || mm == PM_RIOT_BREAKER || mm == PM_TANK_BREAKER
 				|| mm == PM_EVASIVE_ENEMY_TROOPER || mm == PM_EVASIVE_INFANTRYMAN || mm == PM_EVASIVE_CUNTGUN_TROOPER
 				|| mm == PM_EVASIVE_GI_TROOPER || mm == PM_EVASIVE_HEAVY_WEAPON_DUDE || mm == PM_EVASIVE_RIFLEMAN
 				|| mm == PM_EVASIVE_SNIPER || mm == PM_EVASIVE_RIOT_BREAKER || mm == PM_EVASIVE_TANK_BREAKER
@@ -1717,6 +1717,7 @@ register struct monst *mtmp;
 			  break;
 
 			case PM_SNIPER:
+			case PM_TREPIDANT_SNIPER:
 			case PM_EVASIVE_SNIPER:
 			  	w1 = SNIPER_RIFLE;
 			  	m_initthrow(mtmp, BULLET, 50);
@@ -9438,6 +9439,7 @@ loveheelover:
 
 		if (mtmp->data == &mons[PM_KILILI_JETTE]) (void) mongets(mtmp, LADY_BOOTS); /* M4_BLOCKHEELBOOTS */
 		if (mtmp->data == &mons[PM_INVINCIBLE_JETTE]) (void) mongets(mtmp, LADY_BOOTS); /* M4_BLOCKHEELBOOTS */
+		if (mtmp->data == &mons[PM_BEARD_SHEARER]) (void) mongets(mtmp, SCALPEL);
 
 		if (mtmp->data == &mons[PM_POLE_DUCK]) {
 			(void) mongets(mtmp, RUBBER_HOSE);
@@ -11791,6 +11793,12 @@ loveheelover:
 			 m_initthrow(mtmp, SAND_DART, 50);
 			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
 		}
+		if (ptr == &mons[PM_SLY_DESERT_FOX]) {
+			(void) mongets(mtmp, DESERT_SWORD);
+			 m_initthrow(mtmp, SAND_DART, 50);
+			 m_initthrow(mtmp, SAND_DART, 50);
+			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+		}
 		if (ptr == &mons[PM_RUM_RUNNER]) {
 			(void) mongets(mtmp, POT_CONFUSION);
 			(void) mongets(mtmp, POT_BOOZE);
@@ -12093,6 +12101,7 @@ loveheelover:
 		if (ptr == &mons[PM_HC_FISHER]) (void) mongets(mtmp, FISHING_POLE);
 		if (ptr == &mons[PM_EURGH_SMOKER]) (void) mongets(mtmp, CIGARETTE);
 		if (ptr == &mons[PM_LUISA_S_DANCING_SHOE]) (void) mongets(mtmp, DANCING_SHOES);
+		if (ptr == &mons[PM_LAS_VENTURAS_GANMBLER]) mtmp->mgold += (long) rnd(100);
 
 		if (ptr == &mons[PM_WOODFALLER_BRIGADE]) {
 			(void) mongets(mtmp, SHARP_AXE);
@@ -13429,6 +13438,7 @@ loveheelover:
 
 		if (ptr == &mons[PM_POLEARM_MASTER]) (void)mongets(mtmp, rnd_class(PARTISAN,BEC_DE_CORBIN));
 
+		if (ptr == &mons[PM_ERR_AXE_MINOTAUR]) (void)mongets(mtmp, BATTLE_AXE);
 		if (ptr == &mons[PM_NORDIC_WALKING_GIANT]) (void)mongets(mtmp, CLIMBING_STICK);
 		if (ptr == &mons[PM_LAVA_SPAWN_GIANT]) (void)mongets(mtmp, GRINDER);
 		if (ptr == &mons[PM_STEELED_GIANT]) (void)mongets(mtmp, HEAVY_GRINDER);
@@ -17335,6 +17345,7 @@ loveheelover:
 		if (ptr == &mons[PM_GRINDRAGON]) (void) mongets(mtmp, GRINDER);
 		if (ptr == &mons[PM_STEAM_SMOKER]) (void) mongets(mtmp, ELECTRIC_CIGARETTE);
 		if (ptr == &mons[PM_EDDOMINA]) (void) mongets(mtmp, LEATHER_PEEP_TOES);
+		if (ptr == &mons[PM_LANE_MUGGER]) (void) mongets(mtmp, KNIFE);
 
 		if (ptr == &mons[PM_BANDANA_ROCKZ]) {
 			  if ((find_strip_bandana()) != -1) (void)mongets(mtmp, find_strip_bandana());
@@ -23882,6 +23893,7 @@ register int	mmflags;
 			if (mndx == PM_MIMIC_LIZARD) set_mimic_sym(mtmp);
 			if (mndx == PM_DEFORMED_LIZARD) set_mimic_sym(mtmp);
 			if (mndx == PM_ASSASSIN_LIZARD) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_DANGEROUS_ASSASSIN_LIZARD) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
 			break;
 

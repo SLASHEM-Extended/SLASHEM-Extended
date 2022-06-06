@@ -1036,6 +1036,7 @@ register int pm;
 	    case PM_LIZARD_MAGE:
 	    case PM_BLACK_LIZARDMAN:
 	    case PM_ASSASSIN_LIZARD:
+	    case PM_DANGEROUS_ASSASSIN_LIZARD:
 	    case PM_BLIZZARD_LIZARD:
 	    case PM_HELTH_LIZARD:
 	    case PM_NORMAL_LIZARD:
@@ -1245,6 +1246,7 @@ struct monst *mon;
 	    case PM_LIZARD_MAGE:
 	    case PM_BLACK_LIZARDMAN:
 	    case PM_ASSASSIN_LIZARD:
+	    case PM_DANGEROUS_ASSASSIN_LIZARD:
 	    case PM_BLIZZARD_LIZARD:
 	    case PM_HELTH_LIZARD:
 	    case PM_NORMAL_LIZARD:
@@ -3248,6 +3250,7 @@ register int pm;
 	    case PM_LIZARD_MAGE:
 	    case PM_BLACK_LIZARDMAN:
 	    case PM_ASSASSIN_LIZARD:
+	    case PM_DANGEROUS_ASSASSIN_LIZARD:
 	    case PM_BLIZZARD_LIZARD:
 			lesshungry(300); /* fall thru */
 	    case PM_CHAOS_LIZARD:
@@ -3819,6 +3822,7 @@ register int pm;
 		case PM_TENTACLED_ONE_LICH:
 		case PM_DEATH_FLAYER:
 		case PM_MIND_FLAYER_LARVA:
+		case PM_MINDCHANGER:
 		case PM_EVIL_MIND_FLAYER_LARVA:
 		case PM_VAMPIRIC_MIND_FLAYER:
 		case PM_HAPPY_MEAL:
