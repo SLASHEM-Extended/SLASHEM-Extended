@@ -7619,6 +7619,20 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, AMBER_FRAGMENT, 30);
 		}
+
+		if (ptr == &mons[PM_GETAWAY_SOLDIER]) {
+			(void)mongets(mtmp, rn2(2) ? RIFLE : SUBMACHINE_GUN);
+			(void)mongets(mtmp, rn2(2) ? KNIFE : DAGGER);
+			if (rn2(2)) (void) mongets(mtmp, FRAG_GRENADE);
+			(void)mongets(mtmp, HELMET);
+			(void)mongets(mtmp, STUDDED_LEATHER_ARMOR);
+			(void)mongets(mtmp, LEATHER_GLOVES);
+			(void)mongets(mtmp, LOW_BOOTS);
+			(void)mongets(mtmp, LEATHER_CLOAK);
+			m_initthrow(mtmp, BULLET, 25);
+			m_initthrow(mtmp, BULLET, 25);
+		}
+
 		if (ptr == &mons[PM_KAL_GUNNER]) {
 			(void) mongets(mtmp, KALASHNIKOV);
 			 m_initthrow(mtmp, LEAD_BULLET, 40);
@@ -12756,6 +12770,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_SELFIT_CUBE]) (void) mongets(mtmp, CHEST);
 		if (mtmp->data == &mons[PM_BOXIT_CUBE]) (void) mongets(mtmp, LARGE_BOX);
 		if (mtmp->data == &mons[PM_POTATO_CUBE]) (void) mongets(mtmp, POTATO_BAG);
+		if (mtmp->data == &mons[PM_UPCUTTER]) (void) mongets(mtmp, KNIFE);
 
 		if (ptr == &mons[PM_DEEPSPAWN]) {
 			(void) mongets(mtmp, WAN_CREATE_MONSTER);
@@ -16254,6 +16269,7 @@ loveheelover:
 		if(ptr == &mons[PM_ALGONQUIN_BUSINESSLADY]) (void) mongets(mtmp, LEATHER_PEEP_TOES);
 		if(ptr == &mons[PM_STAIR_GUARDING_QUEEN]) (void) mongets(mtmp, LEATHER_PEEP_TOES);
 		if(ptr == &mons[PM_FIREFOX_ANGEL]) (void) mongets(mtmp, FIRE_STICK);
+		if(ptr == &mons[PM_ALINA]) (void) mongets(mtmp, SCALPEL);
 
 		if (monsndx(ptr) == PM_DOUGLAS_ADAMS) {
 			(void) mongets(mtmp,HITCHHIKER_S_GUIDE_TO_THE_GALA);
@@ -23834,6 +23850,7 @@ register int	mmflags;
 			if (mndx == PM_OLOG_HAI_PERMAMIMIC) set_mimic_sym(mtmp);
 			if (mndx == PM_TROLL_PERMAMIMIC_MUMMY) set_mimic_sym(mtmp);
 			if (mndx == PM_NETHERWORLD_TROLL) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_DEEPSTATE_CLOBBERER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_ATOMIC_ROFLCOPTER_WATER_TROLL) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 
 			break;
@@ -23841,30 +23858,37 @@ register int	mmflags;
 		case S_JELLY:
 			if (mndx == PM_EVIL_JELLY) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_HAHAHAHAHAHAHA) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_HAHAHAHAHAHAHA_A_A_A_A_DIIIIU) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			break;
 
 		case S_QUANTMECH:
 			if (mndx == PM_JEWELRY_THIEF) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_DEEPSTATE_SECRET_WEAPON) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			break;
 
 		case S_ANGEL:
 			if (mndx == PM_SOMETHING_INVISIBLE_IS_KILLING_YOU) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_DEEPSTATE_MURDER_SQUAD) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_THATS_IT_PLAYTIMES_OVER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_MOVANIC_HAHA) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_ITS_COOL_WHEN_YOU_CANNOT_SEE_A_DEADLY_MONSTER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			break;
 
 		case S_OGRE:
 			if (mndx == PM_HELP_HEEEEELP) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
+			if (mndx == PM_U_R_GOING_DOWN) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			break;
 
 		case S_CENTAUR:
 			if (mndx == PM_UNSEEN_CRUSHER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_U_DIED_IN_AN_ACCIDENT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_MYRMIDON_DIATRYPON) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_HAHA_YOU_CANNOT_SEE_ME) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			break;
 
 		case S_GREMLIN:
 			if (mndx == PM_DEFORMED_GALLTRIT) set_mimic_sym(mtmp);
+			if (mndx == PM_STATE_SEIZE_AGENT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
 			break;
 		case S_GIANT:
@@ -23881,12 +23905,15 @@ register int	mmflags;
 			if (mndx == PM_MIMIC_LICH) set_mimic_sym(mtmp);
 			if (mndx == PM_DEMILICH_PERMAMIMIC) set_mimic_sym(mtmp);
 			if (mndx == PM_SUPER_STEALTH_LICH) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
+			if (mndx == PM_OUR_KING_HAS_TAKEN_YOU_OUT_) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
 			break;
 		case S_IMP:
 			if (mndx == PM_COCOON_IMP) set_mimic_sym(mtmp);
 			if (mndx == PM_HIDDEN_RUTTERKIN) set_mimic_sym(mtmp);
 			if (mndx == PM_BERBALANG_GHOST) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_HOHO_UR_STATS_GO_TO_HECK) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_ALL_UR_STATS_ARE_TRASHED) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
 			break;
 		case S_LIZARD:
@@ -23905,6 +23932,8 @@ register int	mmflags;
 			if (mndx == PM_DEVTEAM_HORROR) set_mimic_sym(mtmp);
 			if (mndx == PM_UMBER_MIMIC) set_mimic_sym(mtmp);
 			if (mndx == PM_HAEHAEHAE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_WOAHAAHAA) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_YEAH_YOU_HAD_NO_CHANCE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_HARHARHAR) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_RATZEPUEH_HULK) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_SUMTHINS_KILLIN_YA_AGAIN) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
@@ -23932,6 +23961,7 @@ register int	mmflags;
 		case S_RUSTMONST:
 
 			if (mndx == PM_SECRET_DISENCHANTER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_KLATSCH__HOEHOE_) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_CAMO_RUST_MONSTER) set_mimic_sym(mtmp);
 
 			break;
@@ -23944,6 +23974,7 @@ register int	mmflags;
 
 		case S_DOG:
 
+			if (mndx == PM_SOSCHUUVA) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_CLEAR_HOUND) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_ETHEREAL_HOUND) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_REAL_CLEAR_HOUND) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
@@ -24053,6 +24084,7 @@ register int	mmflags;
 			if (mndx == PM_PHONE_ZOMBIE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_DRONING_UFO_PART) set_mimic_sym(mtmp);
 			if (mndx == PM_SUMTHINS_KILLIN_YA) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_THAT_STUFF_WASNT_YOURS_ANYWAY) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_HEHEHE_YOUR_GAME_ENDED_BRO) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_STREAM_KNIGHT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_INVISDRAUGR) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
@@ -24068,6 +24100,7 @@ register int	mmflags;
 		case S_FELINE:
 			if (rn2(2) && mndx == PM_AIR_DEATH) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_KAGERO_AIR_DEATH) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_DEEPSTATECAT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_DEFORMED_CAT) set_mimic_sym(mtmp);
 			if (mndx == PM_LINUS_THE_CAT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_KRRK_KRRK) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
@@ -24390,6 +24423,9 @@ register int	mmflags;
 			if (mndx == PM_TROLL_PERMAMIMIC_MUMMY) set_mimic_sym(mtmp);
 			if (mndx == PM_MODRON_RUPTOR) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_HAHA_YOU_JUST_DIED) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_WE_NUKED_YOUR_CHAR) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_MODRON_PARRICIDA) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_COME_AND_GET_ME_WIMP) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_CANNOT_KILL_WHAT_YOU_CANNOT_SEE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_MEAN_DRAUGR) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_YOU_DO_NOT_HAVE_YOUR_ITEMS_TO_NO_MORE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
@@ -24483,6 +24519,8 @@ register int	mmflags;
 			if (mndx == PM_PETTY_WIPER_RUBBER) set_mimic_sym(mtmp);
 
 			if (mndx == PM_CLEAR_ICKY_THING) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_ITS_FUN_TO_SEE_YOU_HAVE_NO_CHANCE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_NONAME_KAMEREL) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_DEEPSTATESHADOW) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_I_VEL_KAMEREL) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 
@@ -24509,11 +24547,18 @@ register int	mmflags;
 			if (mndx == PM_BURNEL_WHIRL) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_LLOIGOR) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			break;
+		case S_DEMON:
+			if (mndx == PM_IT_MAKES_PITSCHAEFF_) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			break;
 		case S_ANT:
 			if (mtmp->data == &mons[PM_DISGUISED_SOLDIER_ANT]) set_mimic_sym(mtmp);
 			if (mtmp->data == &mons[PM_MIMIC_ANT]) set_mimic_sym(mtmp);
 			if (mndx == PM_SUPER_STEALTH_ANT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_INVISO_ANT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_KLSCHLSCHLSCHLSCHLSCH) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_THIS_IS_A_POISON_DEATH) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_DIB_DRAGONFLY) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_WOODEATER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_SUPERINVISO_ANT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			break;
 		case S_HUMAN:
@@ -24565,6 +24610,7 @@ register int	mmflags;
 			    mtmp->mundetected = TRUE;
 			if (mtmp->data == &mons[PM_OSCILLATOR]) set_mimic_sym(mtmp);
 
+			if (mndx == PM_YOUR_HEALTH_SUDDENLY_WENT_FROM_FULL_TO_ZERO) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_KURAST_BOO) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_STALKER_GIRL) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_HUMAN_WEREBLACKLIGHT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
@@ -24586,6 +24632,8 @@ register int	mmflags;
 			if (mtmp->data == &mons[PM_VOLTORB]) set_mimic_sym(mtmp);
 			if (mtmp->data == &mons[PM_ELECTRODE]) set_mimic_sym(mtmp);
 			if (mndx == PM_HIDDEN_PARALYSATOR) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_NEVER_RECOVER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_SERVES_YOU_RIGHT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_HAHA_YOU_CANNOT_SEE_THE_FLOATING_EYE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_HAHA_SOMETHING_JUST_PARALYZED_YOU) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_QANON) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
@@ -24617,7 +24665,10 @@ register int	mmflags;
 			if (mtmp->data == &mons[PM_EXPENSIVE_SECRET_CAR]) set_mimic_sym(mtmp);
 			if (mtmp->data == &mons[PM_RUNNING_COBRA]) set_mimic_sym(mtmp);
 
+			if (mndx == PM_HAMM_HAMM) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_OVERLY_REGULATED_SPIDER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_CLEAR_CENTIPEDE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_DEATH_SOUND_PLAYS) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_DILJER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_DAEDEAU_DIE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_DILJER_DILJER_DILJER_DILJER_DLOELOELOELOELOE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
@@ -24635,6 +24686,10 @@ register int	mmflags;
 			if (mndx == PM_HALLUCINATION_IMAGE) set_mimic_sym(mtmp);
 			if (mndx == PM_CHEATING_BLACK_LIGHT) set_mimic_sym(mtmp);
 			if (mndx == PM_WATERSPLASH_ELEMENTAL) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_WE_WON_AND_YOU_LOST) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_THAT_WAS_THE_JUSTIFIED_PUNISHMENT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_WE_DONT_CARE_ABOUT_FAIRNESS) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_PLATSCH__HAHAHAHAHA_) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_FIETZEGRALD_ELEMENTAL) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_LOL_UR_STUFF_IS_WET_NOW_HAHA) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 
@@ -24681,6 +24736,9 @@ register int	mmflags;
 			    mtmp->perminvis = TRUE;
 			    mtmp->minvis = TRUE;
 			}
+			if (ptr == &mons[PM_YOU_WONT_SEE_THE_JELLYFISH]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (ptr == &mons[PM_HA__INSTAKILLED]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (ptr == &mons[PM_YOU_PLAYED_ENOUGH_FOR_TODAY_ANYWAY]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
 			break;
 		case S_FLYFISH:
@@ -24744,6 +24802,7 @@ register int	mmflags;
 		    mtmp->perminvis = TRUE;
 		    mtmp->minvis = TRUE;
 		}
+		if (mndx == PM_HOHOHO_THAT_IS_SO_FUNNY) { mtmp->perminvis = TRUE; mtmp->minvis = TRUE; }
 
 		if (mtmp->data == &mons[PM_PUTRID_DEFILER]) { 
 			struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
@@ -24815,9 +24874,8 @@ register int	mmflags;
 			break;
 
 		case S_NYMPH:
-	      if (mndx == PM_SATYR)
-	        if (rn2(2))
-	          (void) mongets(mtmp, DAGGER);
+
+			if (mndx == PM_SATYR && rn2(2)) (void) mongets(mtmp, DAGGER);
 
 			if (rn2(5) && (!u.uhave.amulet || u.freeplaymode || (!u.amuletcompletelyimbued && rn2(3)) )) mtmp->msleeping = 1;
 
@@ -24826,6 +24884,12 @@ register int	mmflags;
   			    mtmp->minvis = TRUE;
 			}
 			if (mndx == PM_NON_SEEN_SIREN) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_PFUEH_HAHA) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_U_DO_NOT_HAVE_UR_STUFF_TO_NO_MORE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_WOA_HA_HA_HA_HA_) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_TYPICAL_DEEPSTATE_MEMBER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_ATYPICAL_DEEPSTATE_MEMBER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_GOTTA_STEAL_ALL_THEIR_SHIT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_HEH_HEH_HEH_NEREID) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (ptr == &mons[PM_LOL_U_HAVE_NO_CHANCE]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 
@@ -24841,6 +24905,7 @@ register int	mmflags;
 
 			if (mndx == PM_DECEPTIVE_ORC) set_mimic_sym(mtmp);
 			if (mndx == PM_SAMURUKHAI) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_VERYDEEPSTATE_SENTAI) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_MORDOR_ORC_SILENT_KILLER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_ORC_CAMO_TROOP) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (ptr == &mons[PM_CAMP_SENTAI]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
@@ -24874,6 +24939,7 @@ register int	mmflags;
 		case S_BAT:
 
 			if (mndx == PM_INVISIBLE_CC) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_I_LAUGH_MYSELF_EQUAL_DEAD) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mtmp->data == &mons[PM_UNIDENTIFIED_RAVEN]) set_mimic_sym(mtmp);
 			if (mndx == PM_KILILILILIGAUNT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (ptr == &mons[PM_HAHAHA_HAHA_MUAHAHAHAHA]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
@@ -24900,6 +24966,8 @@ register int	mmflags;
 			}
 
 			if (mndx == PM_ORIENTAL_VAMPIRE) {mtmp->perminvis = TRUE; mtmp->minvis = TRUE; }
+			if (mndx == PM_THE_DEEP_STATE_ALWAYS_WINS) {mtmp->perminvis = TRUE; mtmp->minvis = TRUE; }
+			if (mndx == PM_YOU_WERE_DEFEATED_BY_THE_DEEP_STATE) {mtmp->perminvis = TRUE; mtmp->minvis = TRUE; }
 			if (mndx == PM_HAHA_SOMETHING_INVISIBLE_IS_SUCKING_YOU_DRY) {mtmp->perminvis = TRUE; mtmp->minvis = TRUE; }
 			if (ptr == &mons[PM_PERMACLOAK_OF_INVIS_VAMP]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_GULP_GULP_GULP) {mtmp->perminvis = TRUE; mtmp->minvis = TRUE; }

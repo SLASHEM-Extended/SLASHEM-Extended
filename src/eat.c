@@ -3630,6 +3630,12 @@ register int pm;
 		}
 		break;
 
+	    case PM_FEARFUL_COCKATRICE:
+
+		incr_itimeout(&HFear_resistance, rn1(1000, 500));
+		You_feel("more resistant to fear!");
+		break;
+
 	    case PM_CUCKATRICE:
 	    case PM_COCKAHORSE:
 	    case PM_CUP_COCKATRICE:

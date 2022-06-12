@@ -1014,6 +1014,18 @@ register struct monst *mtmp;
 		}
 	}
 
+	if (mdat == &mons[PM_TERRAIN_CLEANER] || mdat == &mons[PM_TERRAIN_DIGGER]) {
+		if (isok(mtmp->mx, mtmp->my) && (!In_sokoban(&u.uz) || !rn2(25))) {
+			if ((levl[mtmp->mx][mtmp->my].typ >= TREE && levl[mtmp->mx][mtmp->my].typ <= MOUNTAIN) || (levl[mtmp->mx][mtmp->my].typ >= POOL && levl[mtmp->mx][mtmp->my].typ <= URINELAKE) || (levl[mtmp->mx][mtmp->my].typ >= SHIFTINGSAND && levl[mtmp->mx][mtmp->my].typ <= IRONBARS) || (levl[mtmp->mx][mtmp->my].typ >= ICE && levl[mtmp->mx][mtmp->my].typ <= CRYPTFLOOR) || (levl[mtmp->mx][mtmp->my].typ >= AIR && levl[mtmp->mx][mtmp->my].typ <= RAINCLOUD)) {
+				levl[mtmp->mx][mtmp->my].typ = CORR;
+				blockorunblock_point(mtmp->mx,mtmp->my);
+				if(cansee(mtmp->mx,mtmp->my)) {
+					newsym(mtmp->mx,mtmp->my);
+				}
+			}
+		}
+	}
+
 	if (mdat == &mons[PM_MIRA_S_AGENT]) {
 		if (isok(mtmp->mx, mtmp->my)) {
 			if (levl[mtmp->mx][mtmp->my].typ == ROOM || levl[mtmp->mx][mtmp->my].typ == CORR || (levl[mtmp->mx][mtmp->my].typ >= ICE && levl[mtmp->mx][mtmp->my].typ <= CRYPTFLOOR) || (levl[mtmp->mx][mtmp->my].typ >= AIR && levl[mtmp->mx][mtmp->my].typ <= RAINCLOUD)) {
