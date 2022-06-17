@@ -2194,3 +2194,61 @@ The climacterial role starts randomly changing her race once she reaches experie
 Once the climacterial reaches experience level 25, she will become calmer, and auto-equips cursed implants occasionally.
 If you're playing a climacterial, Ragnarok will happen. Definitely.
 If you accidentally anger a croupier, just gamble once and he becomes peaceful again. It doesn't matter whether you win or lose, just be prepared to spend 2k zorkmids.
+Beware, nasty trap effects have highly randomized durations, they may well last tens of thousands of turns. Waiting out their effects isn't always the best strategy.
+If you've never seen a nasty trap, it's because you're not meant to. They don't show a message and don't become visible even when you trigger it; you need to actually search or detect them or you won't see them.
+There is no indication if you trigger a nasty trap, apart from maybe an obvious effect of the trap, and not all nasty traps actually have obvious effects. So you might be under their effect without ever realizing...
+Nasty trap effects can be fixed with a switcher, at least if they're of the temporary kind, but that item is incredibly rare and might require a wish.
+There is a technique that players can learn when a certain feminism trap effect times out, which usually consumes some alla but increases your maximum health and cures sickness.
+Heavy iron balls weigh a whole lot, and while the heavier ones deal great damage, they may well burden a character or worse, even when no other item is in their inventory.
+If an evil artifact is forced onto you, it may well be one that you don't even have the skill for, and then you should get rid of it so you can equip something useful again.
+If you see a message saying something like "Wouwou." or variations thereof (e.g. "Wwouwwouww."), be very careful. There is a monster nearby that will keep taunting you unless you kill it or get far enough away, and it causes all kinds of bad stuff.
+The command for repeating an action is the n key followed by the amount of repeats, followed by the command itself, so n100s will search 100 times, for example. If you're so weird and play with vikeys, leave out the n and just use 100s to repeat the command.
+If you can't seem to find the way on a dungeon level, you might have to search for secret doors or corridors, which is done by pressing the s key.
+Having teleportitis with a high enough level allows you to use a command to teleport at will.
+When picking up stuff in a shop that you want to buy, be aware that you need to actually use the pay command to pay for the item(s)!
+Polymorphing into a very large monster may cause you to break your cloak, armor and shirt, so be careful and if at all possible, unequip those items first!
+Zapping a wand is done with the z key.
+In order to get the regular effect of a potion, quaff it. If you break the potion to inhale its vapors instead, the effect is generally weaker or sometimes there may be no effect at all.
+Scrolls can be read for a magical effect, but they disappear when you do.
+You can learn new spells by reading a spellbook. For best effects, the spellbook should have charges and not be cursed.
+The amount of charges in a spellbook determines how often you can read it before reading it can have dangerous side effects.
+Your character can walk in all eight directions, and also perform other actions like attacking, shooting or using magic in all of those directions.
+Walking diagonally takes the same amount of time as walking in a cardinal direction, and is therefore generally faster.
+They say that you should utilize diagonal movement as much as possible because it gives you a tactical advantage in combat.
+Using staircases is done by pressing the < or > keys, respectively. On most keyboards, the latter (which is required to advance to deeper dungeon levels) requires you to press and hold Shift, then press the <> key.
+They say that deeper dungeon levels have a higher monster difficulty, so you'll meet stronger monsters there.
+When attacking a monster in melee combat, your character will sometimes hit a monster and sometimes you'll miss, which depends on a variety of factors including your weapon skill and enchantment level.
+Better armor makes you less likely to hit by monsters, denoted by your AC score. The game may even tell you which particular armor piece blocked a monster's attack.
+Divine protection acts as additional armor class that makes it less likely for monsters to hit you.
+They say that you can buy items from shops, which may aid you on your way.
+Are you stumbling into traps all the time? Search for them! Sometimes you might find a trap in advance and can avoid triggering it.
+In order to fire a ranged weapon, you need to wield the weapon (e.g. sling or crossbow) first, then fire or throw the ammo. Simply firing the ammo while the launcher is in your inventory but not wielded will have very poor results.
+There are three alignments in the game that the player can have: you need to use an altar of your own alignment if you want to perform certain actions.
+In order to wear an amulet, you have to put it on while not having any amulet equipped; you can only wear one amulet at a time.
+If a weapon is cursed, it'll weld itself to your hand, and then you cannot switch to another weapon unless you manage to lift the curse.
+Cursed armor cannot be taken off; if you need to remove such an item, you usually need to uncurse it first.
+Praying to your god should only be done every once in a while; if you pray too often, your god will consider you an idiot and become unresponsive at best or cause bad stuff to happen to you at worst.
+When fighting an astral elemental, you should generally use weapons to kill it, because casting elemental spells at it does nothing due to all its resistances.
+Use spells when you meet a disenchanter, and keep your distance. That way, you can avoid their disenchantment attacks that would otherwise degrade your gear.
+If you can't seem to hit a monster in melee even after dozens of attack attempts, you should switch to another strategy, e.g. zapping a wand, casting an offensive spell, or using the #force command.
+Scrolls of heal other are meant to be used when you need to heal your pets, to prevent them from being killed when their health is low.
+In order to train a weapon skill, you need to attack a monster with a weapon that uses the respective skill and hit. A miss won't train your skills.
+You can only enhance the skills shown in your #enhance menu. Training a weapon whose skill you don't have is generally not very fruitful, since the skill won't come online from doing so, although there are rare effects that may unlock whichever restricted skill you've used the most.
+In order to increase the damage that your weapon can do, increase its enchantment value.
+Enchantment values on armor pieces increase the amount of bonus AC they give, so you should go for highly enchanted armor pieces for maximum protection.
+An example for a good polymorph form to use when you get a controlled polymorph is the fire vampire, which is fast, can fly and has a whole bunch of strong melee attacks.
+An example for a good polymorph form to use when you get a controlled polymorph is the zarielite zealot, which is petrification resistant, can use weapons and has the ability to walk through walls.
+An example for a good polymorph form to use when you get a controlled polymorph is the movanic deva, which has a good variety of melee attacks and is immune to death rays and the touch of death.
+The standard way for getting rid of hostile monsters is by damaging them often enough that they run out of hit points, which causes them to die.
+Generally, one of the most important aspects of this game is combat. Much of the time playing the game is spent battling various monsters, and characters who are good at that will have an easier time.
+Killing a monster rewards you with some experience points, which will eventually allow you to level up and become stronger.
+If a monster is attacking you, fight back! A dead monster can't hurt you anymore.
+Since the developer of this game doesn't have a cat fetish, you can freely kill cats in the game just like you kill any other type of monster.
+Most types of ranged weapon ammo can be reused when fired: just go to the place where the flight path of your projectile ended, and it'll usually be there. Only occasionally a projectile may "mulch" if it hits a monster.
+A shield can generally only be used with a one-handed weapon; exceptions exist, but are very rare.
+If you want to wield two weapons at once, you cannot use a shield because both of your hands will already be occupied with wielding a weapon.
+When using an oil lamp for light, be aware that it'll eventually run out of oil, so don't just leave it on all the time.
+The main difference between oil lamps and magic lamps is that the latter can be rubbed to release a djinni, but the magic lamp also lasts for an infinite time when lit while the oil lamp does not.
+In order to turn off a lit lamp or candle, just apply it again.
+If you're tired and need sleep in real life, take a rest. Don't force yourself to continue playing this character, you'll be less able to concentrate and will be prone to making mistakes that might cause you to lose the game!
+If you're tired and need sleep in real life, don't keep adding more and more features to the NetHack variant you're developing, you'll be less able to concentrate and will be prone to making mistakes that you'll have to fix later.
