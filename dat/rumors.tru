@@ -2286,3 +2286,22 @@ Some walls in the dungeon are undiggable. No matter how hard you try, you cannot
 You cannot move off the screen. If you try to walk beyond the screen edge, you just waste a turn.
 The shape of a dungeon level is generally rectangular, with the x axis being much longer than the y axis.
 Those 2x2 square rooms that you may see when using magic mapping scrolls are vaults, which contain some gold that can be reached by digging or teleportation.
+Cursed lightsabers will often fail to light, but even if you do successfully light them they'll annoy you by spontaneously turning themselves off again.
+Bashing with an unlit lightsaber does almost no damage. Turn the damn thing on first!
+The 10 regular lightsaber forms can only be used if your lightsaber is turned on, so power management is crucial.
+You can see your entire inventory by pressing the i key.
+You can use the #name command to give a name to an item so that you can recognize it later.
+There are various glyphs that represent monsters, usually letters but also some others, however a particular glyph isn't always the same monster. Just because that purple h is a dwarf king doesn't mean the next one is also a dwarf king.
+If you need to set some game options, use the O (shift-o) command. After you're done setting the options to their new values, cycle through the options menu with the space bar until it disappears; hitting Escape will undo your changes!
+You can review previous messages with the Ctrl-P hotkey. Different settings of the msgtype option determine how those messages are presented.
+You can save your game at any point, and when you load it again you'll be in exactly the same situation where you've left.
+Saving the game lets you suspend your session, but you cannot go back to an earlier state. Everything that happens in the game is final, unlike some other games that allow you to load an earlier save.
+Leaving a dungeon level preserves its state, meaning that if you then return to that level, everything will still be there as you left it.
+Feminism traps are named after various girls, and cause ongoing effects when triggered. You get a message and reveal the trap if that happens.
+If you want to move around without accidentally attacking things that you don't want to attack, prefix your movements with the m key.
+If you want to attack a location in melee even when there's no visible monster on that square, prefix your movement with the F key.
+Sometimes, you may encounter an invisible monster. These are usually displayed by a gray I marker telling you where your character remembers the location of that monster, and then you can just move into that square to attack the monster.
+Invisible monsters can be made visible if you have see invisible, but some monsters require double see invisible to be displayed that way and certain rare monsters won't be displayed even then!
+You can wait for one turn by pressing the . (period) key. There is also an option where pressing the space bar can be used for the same effect, but you should generally never turn that on.
+Picking up items is done with the , (comma) key.
+Quivering ranged weapon ammo allows you to fire them with the f key, which is much more convenient than always pressing t and then having to select the ammo that you want to fire, but other than that doesn't make an actual gameplay difference.
