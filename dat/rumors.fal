@@ -3736,3 +3736,37 @@ The only difference between oil lamps and magic lamps is that the latter can be 
 Once you turn on a lamp or candle, it'll stay lit until it burns out, or in case it's a magic light source it'll burn indefinitely. There is no way to turn them off again.
 If you're tired and need sleep in real life, show the middle finger to your bodily needs and continue playing anyway. Keep telling yourself that you'll just play for one more dungeon level, that way you'll have ascended by the time the sun comes out again!
 If you're tired and need sleep in real life, keep adding more and more features to the NetHack variant you're developing, because it's only the weak who give in to bodily needs. The best features are the ones you add when you're sleep-deprived, since those will generally need little to no bugfixing afterwards!
+There is no command to eat food off the floor on purpose. But if you move over a comestible while your character is hungry enough, you'll start eating it automatically.
+Certain actions cause your character to become occupied for several turns, such as eating corpses or reading spellbooks. If a monster attacks you or you otherwise take damage, you will not stop performing the action, so make sure there's no threats nearby!
+Spell memory is a statistic that appears in the spellcasting menu but doesn't actually change anything, you can cast all of your spells even if they have no memory left and they'll still work normally.
+Monsters that steal items may occasionally teleport away after they steal something, which really deletes the monster from the game permanently, along with all the items it stole.
+They say that you can smash iron bars with a pick-axe.
+They say that grinders will automatically attack every monster next to you every turn you have one wielded, and they don't distinguish between hostile, peaceful or even tame monsters, so put the damn thing away around non-hostiles!
+They say that claw weapons cause bleeding damage to monsters, which will rob you of getting credit for the kill if the monster dies from the bleedout as opposed to the weapon damage itself.
+They say that orbs dish out the biggest amount of damage of all weapons in the game, but disable your HP and Pw regeneration.
+There are 32 genders that the player can choose from when starting the game.
+Adding features to a game that have anything to do with gender is harmless, no one will bat an eye.
+SLEX has no features that people could consider controversial, so everyone can pick up the game and play, there's no content that potential players could find disturbing.
+The genderstarist role is so totally offensive because how can Amy dare adding a role with such a name! She should be burned at the stake!
+There is a nethack tournament during the sixth month of the year.
+Amy labelled herself a pariah and then tried to blame the nethack community for it.
+Amy is a devil's whore and her "game" is such a piece of garbage, it's really the worst nethack variant in existence because not only it's no fun to play at all, the content is also boring beyond belief and the "game balance" is completely out of whack!
+If anyone were to create a variant of SLEX, it would probably result in a much better game because Amy didn't show any regard to game balance at all and everyone else would do a better job at it. Heck, you could blindly pick any particular feature and change it, and most probably it'll result in a more balanced game!
+Every NetHack variant developer strives to create a well-balanced game, and they're all doing a good job - except Amy. Her game is just a mess of wildly random additions without any thought being put into them, and the result is a barely playable game where you'll give up trying to play seriously after three levels tops because everything is just completely random garbage.
+Amy is a hopeless drug addict who usually takes some pretty hard stuff right before starting a SLEX coding session. This is the true explanation for why she puts ideas into the game completely unfiltered, and without making sure that the stuff she adds will actually make the game more enjoyable (hint: it doesn't, in fact every new addition makes the game worse)!
+Amy constantly adds completely random musings and ramblings to the game in the form of messages, which actually don't have any meaning and are just her copemalding with her real-life problems. She also never listens to any feedback from players, meaning that if you find a bug or imbalance, you'd best take the source code and fix the problem yourself.
+Amy is still a serious cocaine addict and has already snorted half her brain to oblivion from all the drug abuse. She's really beyond help.
+The maximum experience level that you can reach is 200, which is so high that you won't ever reach it anyway. But you're really invincible by the point you reach about level 50, and from that point on the game is smooth sailing.
+Once you've obtained a powerful artifact weapon and enchanted it to +7, you're set. Just kill everyone who opposes you, it's literally impossible to lose such a weapon once you've obtained it.
+Artifacts are completely indestructible. While regular equipment can be destroyed by rust, corrosion and the like, artifacts cannot.
+Artifact lances don't break, even if you joust with highly negative luck.
+Amulets of life saving are guaranteed to allow you to continue the game if you get killed, it doesn't matter at all how you got killed. If you died of brainlessness, the amulet causes you to regrow a new brain.
+The amulet of life saving doesn't save you from disintegration, because your entire body is destroyed and the amulet's magic isn't powerful enough to cause all those atoms to correctly reintegrate into a functional new body. So beware of those black dragons.
+Teleportation is the act of moving from one location to another, but it has a short delay (about 5 turns) before it activates. On the bright side, it works everywhere, so those special levels with long winding corridors are the best place to use it.
+If you try to move into a wall or other solid obstacle, you lose a turn, but do it often enough and the obstacle will give way, allowing you to move onto its square.
+Ray wands and spells will pass through walls, so if there's a monster on the other side of a wall, you can hit them that way.
+If there is a wall in the way, applying a hammer at it can allow you to relocate that wall to a nearby floor square, allowing you to rearrange the dungeon and create new pathways while closing old ones.
+Some walls in the dungeon are supposedly undiggable, but the message is actually misleading. Keep hacking away at it with the pick-axe and eventually you'll break through!
+You can in fact move off the screen, by walking beyond the screen edge. Beware, the area beyond the screen can be explored but you won't be able to see the terrain, monsters or other stuff that you might encounter there.
+The shape of a dungeon level is square, regardless of what the screen tries to make you believe. That large extra area to the east is actually always made of solid rock on every dungeon level.
+Those 2x2 square rooms that you may see when using magic mapping scrolls are actually just solid rock, and exist only to confuse you. There is no way to enter them and even if there was, they don't contain anything special.

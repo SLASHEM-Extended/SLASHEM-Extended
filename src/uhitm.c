@@ -4547,7 +4547,7 @@ melatechoice:
 			case 401: pline("You miss but some guy comes and helps you."); break;
 			case 402: pline("Since you ate from the hellfire devil fruit, you sling some bolts of fire at %s and hit.", mon_nam(mon)); break;
 			case 403: pline("You body-check %s.", mon_nam(mon)); break;
-			case 404: pline("You hit %s with a full-speed head-on collision, taking about three quarters of %s health off.", mon_nam(mon), mhim(mon)); break;
+			case 404: pline("You hit %s with a full-speed head-on collision, taking about three quarters of %s health off.", mon_nam(mon), mhis(mon)); break;
 			case 405: pline("You throw a coconut at %s, hitting %s in the belly.", mon_nam(mon), mhim(mon)); break;
 			case 406: pline("Your extreme body odor causes %s to choke.", mon_nam(mon)); break;
 			case 407: pline("You shoot %s with a football.", mon_nam(mon)); break;

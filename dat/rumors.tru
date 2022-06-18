@@ -2252,3 +2252,37 @@ The main difference between oil lamps and magic lamps is that the latter can be 
 In order to turn off a lit lamp or candle, just apply it again.
 If you're tired and need sleep in real life, take a rest. Don't force yourself to continue playing this character, you'll be less able to concentrate and will be prone to making mistakes that might cause you to lose the game!
 If you're tired and need sleep in real life, don't keep adding more and more features to the NetHack variant you're developing, you'll be less able to concentrate and will be prone to making mistakes that you'll have to fix later.
+Want to eat food off the floor? You can totally do that! Hit e to eat and then hit , (comma) to target the ground.
+Certain actions cause your character to become occupied for several turns, such as eating corpses or reading spellbooks. Don't worry, during those occupations you automatically get interrupted if hostile monsters approach or you take damage.
+Spells need memory in order to be castable; if you let the memory run out, you can no longer use the spell in question.
+Monsters that steal items may occasionally teleport away after they steal something, but you can hunt them down and kill them to get your items back.
+They say that you can dig through rock with a pick-axe.
+They say that grinders can hit several enemies at once, and may also be applied to hit monsters standing two tiles away.
+They say that claw weapons deal bonus damage versus fleeing or sleeping monsters.
+They say that orbs deal little damage but steal life or mana from the target on occasion.
+There are two genders that the player can choose from when starting the game.
+Adding features to a game that have anything to do with gender can bring people up in arms.
+SLEX has some features that people could consider controversial, so it's up to potential players to decide whether they want to play the game.
+The genderstarist role is supposedly offensive just because their name contains the string "gender", but in reality they're not very different from other roles.
+There is no nethack tournament during the sixth month of the year.
+Amy was labelled a pariah by a large portion of the nethack community through no fault of her own.
+Amy is a truly ingenious developer who created a work of art with SLEX, which greatly surpasses all the other nethack variants in terms of content, game balance and most importantly, fun.
+If anyone were to create a variant of SLEX, it would destroy the carefully crafted game balance because no one other than Amy truly understands the game and its complex interactions where one single low-brow change to the code affects a whole host of other things and can easily destroy the balance.
+Amy is the only NetHack variant developer who truly pays attention to the concept of game balance and doesn't just add features because she can (aka actionism), instead she really thinks about the implications her additions would have and adds only those that improve the game.
+Amy is 100% drug-free. Despite implications to the contrary, she never does drugs, not even cigarettes or alcohol, and therefore keeps a sound mind when designing her game, which is why the quality of SLEX is astonishingly good.
+Amy has the habit of responding to people's opinions and complaints by adding messages or specific features to her game, sometimes combined with elaborate commit messages. This proves that she does in fact read feedback, although she reserves the right to decide for herself whether she makes a proposed change to the game or not.
+Amy used to be a self-harmer, but she managed to overcome that bad habit by sheer power of will.
+The maximum experience level that you can reach is 30, although you can keep improving your character beyond that if you keep collecting experience points.
+Beware, just because you obtained a very powerful artifact weapon and enchanted it to +7, that weapon can still be stolen, or destroyed if it takes enough erosion damage!
+Artifacts may be more resistant to erosion, but if they get eroded enough they may still be destroyed.
+Artifact lances break much less frequently than regular ones.
+Just because you have an amulet of life saving, don't expect to be able to survive anything! Mind flayers will still kill you for real if you let their intelligence-draining attack hit you often enough.
+The amulet of life saving has the useful property of saving you even if you get disintegrated, because its magical power causes your body to reintegrate and then you can continue, hopefully without being disintegrated a second time.
+Teleportation is the act of instantly moving from one location to another, however there are some dungeon levels where it cannot be used.
+If you try to move into a wall or other solid obstacle, you get a message and won't actually move on the square with the obstacle.
+Ray wands and spells cannot be used to shoot through walls; instead, they will bounce off, and continue flying in another direction based on the angle in which they hit.
+If there is a wall in the way, you cannot move through it and will probably have to use a different path, although pick-axes can be used to dig out wall tiles and transform them into floor tiles.
+Some walls in the dungeon are undiggable. No matter how hard you try, you cannot remove them with a pick-axe.
+You cannot move off the screen. If you try to walk beyond the screen edge, you just waste a turn.
+The shape of a dungeon level is generally rectangular, with the x axis being much longer than the y axis.
+Those 2x2 square rooms that you may see when using magic mapping scrolls are vaults, which contain some gold that can be reached by digging or teleportation.
