@@ -27833,6 +27833,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"Of course Terrahack doesn't need any in-game documentation for new items or anything, because the developer knows everything about every newly added thing and therefore the players will magically know it too. And if not, well, we'll just tell them to look at the source, because all players also magically know how to read C! :-P",
 	"In the case of doubt, if you encounter a new monster with unknown attacks and abilities, just attack it in melee and fully expect to get one-shot-killed. If that doesn't happen, stand next to the monster until it does kill you, and then complain to the developer about that overpowered monster.",
 	"Incoming message for Player 1. The message is from 'Lisa'. It reads: 'Did you know that great damage can be caused by allowing the outermost fingernails to grow sharp, like I'm doing?'",
+	"Playing variants of nethack other than SLEX (as well as playing vanilla nethack) is just a huge waste of time. SLEX has the advantage that you'll at least have fun while wasting your time!",
+	"The blacklist is there to make sure that the slex-hater squad finds their own prejudices confirmed, which are that slex is supposedly super unbalanced and random bad stuff just keeps happening to the player for no reason. Who are they to criticize my well-balanced game anyway???",
+	"These people are criticizing slex for the sake of criticizing something, not because there was anything actually wrong with slex (there isn't). So they can just fuck off.",
 
 };
 
