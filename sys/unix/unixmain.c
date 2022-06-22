@@ -165,6 +165,7 @@ char *argv[];
 	 * It seems you really want to play.
 	 */
 	u.uhp = 1;	/* prevent RIP on early quits */
+	program_state.preserve_locks = 1;
 	(void) signal(SIGHUP, (SIG_RET_TYPE) hangup);
 #ifdef SIGXCPU
 	(void) signal(SIGXCPU, (SIG_RET_TYPE) hangup);
@@ -218,6 +219,7 @@ char *argv[];
 		getlock();
 	}
 #endif /* WIZARD */
+	program_state.preserve_locks = 0; /* after getlock() */
 
 	dlb_init();	/* must be before newgame() */
 

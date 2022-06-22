@@ -1073,6 +1073,66 @@ timed_occupation()
 	return multi > 0;
 }
 
+#ifdef HANGUPHANDLING
+/* some very old systems, or descendents of such systems, expect signal
+   handlers to have return type `int', but they don't actually inspect
+   the return value so we should be safe using `void' unconditionally */
+/*ARGUSED*/
+void
+hangup(int sig_unused)   /* called as signal() handler, so sent
+                                   at least one arg */
+{
+
+        if (u.hangupcheat) {
+    		u.hangupcheat++;
+    		u.hanguppenalty += 10;	/* unfortunately we can't determine if you hanged up during a prompt! --Amy */
+    		if (multi) u.hangupparalysis += abs(multi);
+    		if (u.hangupparalysis > 5) u.hangupparalysis = 5; /* sanity check */
+        }
+
+    if (program_state.exiting)
+        program_state.in_moveloop = 0;
+    nhwindows_hangup();
+#ifdef SAFERHANGUP
+    /* When using SAFERHANGUP, the done_hup flag it tested in rhack
+       and a couple of other places; actual hangup handling occurs then.
+       This is 'safer' because it disallows certain cheats and also
+       protects against losing objects in the process of being thrown,
+       but also potentially riskier because the disconnected program
+       must continue running longer before attempting a hangup save. */
+    program_state.done_hup++;
+    /* defer hangup iff game appears to be in progress */
+    if (program_state.in_moveloop && program_state.something_worth_saving)
+        return;
+#endif /* SAFERHANGUP */
+    end_of_input();
+}
+
+void
+end_of_input(void)
+{
+#ifdef NOSAVEONHANGUP
+#ifdef INSURANCE
+    if (flags.ins_chkpt && program_state.something_worth_saving)
+        program_state.preserve_locks = 1; /* keep files for recovery */
+#endif
+    program_state.something_worth_saving = 0; /* don't save */
+#endif
+
+#ifndef SAFERHANGUP
+    if (!program_state.done_hup++)
+#endif
+        if (program_state.something_worth_saving)
+            (void) dosave0();
+    if (iflags.window_inited)
+        exit_nhwindows((char *) 0);
+    clearlocks();
+    terminate(EXIT_SUCCESS);
+    /*NOTREACHED*/ /* not necessarily true for vms... */
+    return;
+}
+#endif /* HANGUPHANDLING */
+
 /* If you have moved since initially setting some occupations, they
  * now shouldn't be able to restart.
  *
@@ -14504,8 +14564,10 @@ register char *cmd;
 		firsttime = (cmd == 0);
 
 	iflags.menu_requested = FALSE;
+#ifdef SAFERHANGUP
 	if (program_state.done_hup)
 		end_of_input();
+#endif
 	if (firsttime) {
 		flags.nopick = 0;
 		cmd = parse();
@@ -15456,21 +15518,7 @@ parse()
 }
 
 #endif /* OVL0 */
-#ifdef OVLB
 
-void
-end_of_input()
-{
-#ifndef NOSAVEONHANGUP
-	if (!program_state.done_hup++ && program_state.something_worth_saving)
-	    (void) dosave0();
-#endif
-	exit_nhwindows((char *)0);
-	clearlocks();
-	terminate(EXIT_SUCCESS);
-}
-
-#endif /* OVLB */
 #ifdef OVL0
 
 char
@@ -15502,7 +15550,9 @@ readchar()
 	}
 # endif /* NR_OF_EOFS */
 	if (sym == EOF)
-	    end_of_input();
+#ifdef HANGUPHANDLING
+	    hangup(0); /* call end_of_input() or set program_state.done_hup */
+#endif
 #endif /* UNIX */
 
 	if(sym == 0) {

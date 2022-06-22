@@ -1708,6 +1708,10 @@ die:
 	program_state.gameover = 1;
 	/* in case of a subsequent panic(), there's no point trying to save */
 	program_state.something_worth_saving = 0;
+#ifdef HANGUPHANDLING
+	if (program_state.done_hup)
+	  done_stopprint++;
+#endif
 #ifdef DUMP_LOG
 	/* D: Grab screen dump right here */
 	if (dump_fn[0] && how != PANICKED && how != TRICKED) {
@@ -2307,6 +2311,7 @@ void
 terminate(status)
 int status;
 {
+	program_state.in_moveloop = 0; /* won't be returning to normal play */
 #ifdef MAC
 	getreturn("to exit");
 #endif
@@ -2317,6 +2322,7 @@ int status;
 	    dlb_cleanup();
 	}
 
+	program_state.exiting = 1;
 	nethack_exit(status);
 }
 

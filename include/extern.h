@@ -225,7 +225,6 @@ E void show_conduct(int);
 #ifdef DUMP_LOG
 E void dump_enlightenment(int);
 E void dump_conduct(int);
-E void end_of_input(void);
 #endif
 E int xytod(SCHAR_P,SCHAR_P);
 E void dtoxy(coord *,int);
@@ -234,6 +233,12 @@ E int getdir(const char *);
 E void confdir(void);
 E int isok(int,int);
 E int get_adjacent_loc(const char *, const char *, XCHAR_P, XCHAR_P, coord *);
+#ifdef HANGUPHANDLING
+E void hangup(int);
+#endif
+#if defined(HANGUPHANDLING) || defined(DUMP_LOG)
+E void end_of_input(void);
+#endif
 E const char *click_to_cmd(int,int,int);
 E char readchar(void);
 #ifdef WIZARD
@@ -3561,7 +3566,7 @@ E int ready_weapon(struct obj *, BOOLEAN_P);
 /* ### windows.c ### */
 
 E void choose_windows(const char *);
-E char genl_message_menu(CHAR_P,int,const char *);
+E char genl_message_menu(int,int,const char *);
 E void genl_preference_update(const char *);
 
 /* ### wizard.c ### */

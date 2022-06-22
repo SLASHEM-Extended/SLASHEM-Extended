@@ -1615,7 +1615,7 @@ adjattrib(ndx, incr, msgflg, canresist)
 	}
 
 	flags.botl = 1;
-	if (msgflg <= 1 && moves > 1 && (ndx == A_STR || ndx == A_CON))
+	if (program_state.in_moveloop && msgflg <= 1 && moves > 1 && (ndx == A_STR || ndx == A_CON))
 		(void)encumber_msg();
 	return TRUE;
 }

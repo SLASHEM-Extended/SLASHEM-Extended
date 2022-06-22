@@ -73,7 +73,11 @@ struct window_procs {
     int (*win_kbhit)(void); 
 };
 
-extern NEARDATA struct window_procs windowprocs;
+extern
+#ifdef HANGUPHANDLING
+    volatile
+#endif
+    NEARDATA struct window_procs windowprocs;
 
 /*
  * If you wish to only support one window system and not use procedure

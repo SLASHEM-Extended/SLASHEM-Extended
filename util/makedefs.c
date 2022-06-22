@@ -761,6 +761,13 @@ static const char *build_opts[] = {
 #ifdef HOLD_LOCKFILE_OPEN
 		"exclusive lock on level 0 file",
 #endif
+#if defined(HANGUPHANDLING) && !defined(NO_SIGNAL)
+#ifdef SAFERHANGUP
+		"deferred handling of hangup signal",
+#else
+		"immediate handling of hangup signal",
+#endif
+#endif
 #ifdef LOGFILE
 		"log file",
 #endif

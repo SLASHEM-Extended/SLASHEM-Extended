@@ -157,9 +157,13 @@ moveloop()
     u.uz0.dlevel = u.uz.dlevel;
     youmonst.movement = NORMAL_SPEED;	/* give the hero some movement points */
 
+    program_state.in_moveloop = 1;
+
     for(;;) {
+#ifdef SAFERHANGUP
 	if (program_state.done_hup)
             end_of_input();
+#endif
 	get_nh_event();
 #ifdef POSITIONBAR
 	do_positionbar();

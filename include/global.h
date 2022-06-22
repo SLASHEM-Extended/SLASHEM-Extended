@@ -338,6 +338,14 @@ struct version_info {
 	unsigned long	struct_sizes;	/* size of key structs */
 };
 
+#if defined(UNIX) || defined(VMS) || defined(__EMX__) || defined(WIN32)
+#define HANGUPHANDLING
+#endif
+#if defined(SAFERHANGUP) \
+    && (defined(NOSAVEONHANGUP) || !defined(HANGUPHANDLING))
+#undef SAFERHANGUP
+#endif
+
 /*
  * Configurable internal parameters.
  *
