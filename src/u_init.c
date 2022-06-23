@@ -9107,6 +9107,14 @@ u_init()
 	struct permonst* randspoilera = &mons[PM_ERROR_BUG];
 	struct permonst* randspoilerb = &mons[PM_SPOILERHACK_HORROR];
 	struct permonst* randspoilerc = &mons[PM_YOUNGWOMANHACK_HORROR];
+	struct permonst* randspoilerd = &mons[PM_CHIPPED_BUG];
+	struct permonst* randspoilere = &mons[PM_FLAWED_BUG];
+	struct permonst* randspoilerf = &mons[PM_NORMAL_BUG];
+	struct permonst* randspoilerg = &mons[PM_FLAWLESS_BUG];
+	struct permonst* randspoilerh = &mons[PM_PERFECT_BUG];
+	struct permonst* randspoileri = &mons[PM_DIVINE_BUG];
+	struct permonst* randspoilerj = &mons[PM_GW_L__F____E_OA_];
+	struct permonst* randspoilerk = &mons[PM_AGVZDHVZZXI_DGVZDHBHC_N_B_JK];
 
 	static char buf[BUFSZ];
 
@@ -24718,6 +24726,108 @@ u_init()
 
 	}
 
+	for (i = 0; i < 1; i++) {
+		attkptr = &randspoilerd->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randspoilere->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randspoilerf->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randspoilerg->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randspoilerh->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randspoileri->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < rnd(3); i++) {
+		attkptr = &randspoilerj->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(7)+2;				/* either too high or too low */
+	}
+
+	for (i = 0; i < rnd(3); i++) {
+		attkptr = &randspoilerk->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(7)+2;				/* either too high or too low */
+	}
+
 	for (i = 1; i < 2; i++) {
 		attkptr = &randxya->mattk[i];
 
@@ -31614,6 +31724,14 @@ int realityflag;
 	struct permonst* randspoilera = &mons[PM_ERROR_BUG];
 	struct permonst* randspoilerb = &mons[PM_SPOILERHACK_HORROR];
 	struct permonst* randspoilerc = &mons[PM_YOUNGWOMANHACK_HORROR];
+	struct permonst* randspoilerd = &mons[PM_CHIPPED_BUG];
+	struct permonst* randspoilere = &mons[PM_FLAWED_BUG];
+	struct permonst* randspoilerf = &mons[PM_NORMAL_BUG];
+	struct permonst* randspoilerg = &mons[PM_FLAWLESS_BUG];
+	struct permonst* randspoilerh = &mons[PM_PERFECT_BUG];
+	struct permonst* randspoileri = &mons[PM_DIVINE_BUG];
+	struct permonst* randspoilerj = &mons[PM_GW_L__F____E_OA_];
+	struct permonst* randspoilerk = &mons[PM_AGVZDHVZZXI_DGVZDHBHC_N_B_JK];
 
 	static char buf[BUFSZ];
 
@@ -40503,6 +40621,108 @@ int realityflag;
 			attkptr->adtyp = randattack();
 		}
 
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randspoilerd->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randspoilere->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randspoilerf->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randspoilerg->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randspoilerh->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randspoileri->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < rnd(3); i++) {
+		attkptr = &randspoilerj->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(7)+2;				/* either too high or too low */
+	}
+
+	for (i = 0; i < rnd(3); i++) {
+		attkptr = &randspoilerk->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(7)+2;				/* either too high or too low */
 	}
 
 	for (i = 1; i < 2; i++) {
