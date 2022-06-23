@@ -17376,6 +17376,18 @@ loveheelover:
 			(void) mongets(mtmp, PISTOL);
 	  		m_initthrow(mtmp, BULLET, 50);
 		}
+		if (ptr == &mons[PM_METAL_MAFIA_SOLDIER]) {
+			(void) mongets(mtmp, PISTOL);
+	  		m_initthrow(mtmp, BULLET, 20);
+		}
+		if (ptr == &mons[PM_METAL_MAFIA_LIEUTENANT]) {
+			(void) mongets(mtmp, SUBMACHINE_GUN);
+	  		m_initthrow(mtmp, BULLET, 30);
+		}
+		if (ptr == &mons[PM_METAL_MAFIA_CAPTAIN]) {
+			(void) mongets(mtmp, ASSAULT_RIFLE);
+	  		m_initthrow(mtmp, BULLET, 40);
+		}
 		if (ptr == &mons[PM_ROCKZ_ARMY]) {
 			(void) mongets(mtmp, SUBMACHINE_GUN);
 	  		m_initthrow(mtmp, BULLET, 50);

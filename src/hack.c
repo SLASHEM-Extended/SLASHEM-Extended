@@ -3260,7 +3260,7 @@ stillinwater:;
 				    Blind && !sensemon(mtmp) ?
 				    something : a_monnam(mtmp));
 				mtmp->mpeaceful = 0;
-			} else if (mtmp->data == &mons[PM_DROPCLONK_BEAR] || mtmp->data == &mons[PM_DROPTREE_BEAR]) {
+			} else if (mtmp->data == &mons[PM_DROPCLONK_BEAR] || mtmp->data == &mons[PM_DROPTREE_BEAR] || mtmp->data == &mons[PM_BONKERS_BEAR]) {
 				int dmg;
 				You("are hit by %s!",
 				x_monnam(mtmp, ARTICLE_A, "falling", 0, TRUE));
