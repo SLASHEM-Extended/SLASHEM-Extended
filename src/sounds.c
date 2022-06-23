@@ -4,6 +4,7 @@
 
 #include "hack.h"
 #include "edog.h"
+#include "time.h"
 #ifdef USER_SOUNDS
 # ifdef USER_SOUNDS_REGEX
 #include <regex.h>
@@ -3179,25 +3180,117 @@ repairitemchoice:
 		else verbl_msg = "Bah, I'm much better than you!";
 		break;
 	case MS_LIEDER:
-		/* todo */
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "If you let me die now, I can't give you advice on how to beat your quest anymore!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Hey, I'll help you, but first I need to eat something!";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Keep going forward, you'll be able to beat your quest!";
+		}
+		else verbl_msg = "How far have you gotten in your quest?";
 		break;
 	case MS_GAARDIEN:
-		/* todo */
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Why are you letting my health drop so low? Can't you cast a healing spell on me?";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Hungry!";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "The boss is counting on you.";
+		}
+		else verbl_msg = "Get moving, that quest doesn't complete itself!";
 		break;
 	case MS_MISSING:
-		/* todo */
+		pline("%s does not make a sound.", Monnam(mtmp));
 		break;
 	case MS_SELFHARM:
-		/* todo */
+		if (mtmp->mhp < mtmp->mhpmax/10) {
+			verbl_msg = "The suffering will be over soon.";
+			break;
+		}
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Hopefully I manage to kill myself this time...";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "No, I don't want to eat! I just want to die!";
+			break;
+		}
+		if (mtmp->bleedout > 100) {
+			verbl_msg = "Uhh... maybe I did go too far this time after all, I think I've hit styro...";
+			break;
+		}
+		if (mtmp->bleedout > 50) {
+			verbl_msg = "This is looking good, I only have to apply the razorblade again...";
+			break;
+		}
+		if (mtmp->bleedout > 0) {
+			verbl_msg = "That didn't do much damage, perhaps I should cut deeper...";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "I always have my tools at hand. Don't worry, I'm fine.";
+		}
+		else verbl_msg = "Damn, I'm having THE urge!";
 		break;
 	case MS_CLOCK:
-		/* todo */
+		if (mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Damn, the clock is broken!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Uhh, I hope it's not too late to get some food! Do you happen to know a restaurant that is open now?";
+			break;
+		}
+
+		time_t rawtime;
+		struct tm *info;
+		time(&rawtime);
+		info = localtime(&rawtime);
+
+		pline("'The time is: %s'", asctime(info));
 		break;
 	case MS_OHGOD:
-		/* todo */
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Oh-god-o-matic!";
+			break;
+		}
+		if (mtmp->mconf) {
+			verbl_msg = "Oh Buddha! Or was it Jahwe? Oh Allah!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Ohgod no food! Ohgod!";
+			break;
+		}
+		verbl_msg = "Oh goooood...";
 		break;
 	case MS_WOLLOH:
-		/* todo */
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Wolloh that shit's fucked up wolloh!";
+			break;
+		}
+		if (mtmp->mconf) {
+			verbl_msg = "Hollow? Why is everything hollow?";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Wolloh age, let's go doener kebab wolloh!";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Wolloh come with me!";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "Wolloh wassup?";
+		}
+		else verbl_msg = "Wolloh, I'm gonna fuck you up asshole! Wolloh age!";
 		break;
 	case MS_CODE:
 		/* todo */
@@ -3206,31 +3299,155 @@ repairitemchoice:
 		/* todo */
 		break;
 	case MS_AREOLA:
-		/* todo */
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			pline_msg = "doesn't seem very happy.";
+			break;
+		}
+		if (mtmp->mconf) {
+			pline_msg = "seems to be lost in thought...";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			pline_msg = "wants to eat a lot.";
+			break;
+		}
+		if (mtmp->mtame) {
+			pline_msg = "puffs out its chest with pride.";
+		} else if (mtmp->mpeaceful) {
+			pline_msg = "looks surprised.";
+		}
+		else pline_msg = "spits on the ground.";
 		break;
 	case MS_STABILIZE:
-		/* todo */
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			pline_msg = "tries to deactivate the force field so that an emergency teleport spell can be cast.";
+			break;
+		}
+		if (mtmp->mconf) {
+			pline_msg = "seems to have forgotten the original plan.";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			pline_msg = "needs to refuel.";
+			break;
+		}
+		if (mtmp->mtame) {
+			pline_msg = "tells you that the force field will improve your chance of success.";
+		} else if (mtmp->mpeaceful) {
+			pline_msg = "merrily remarks that the force field is working well.";
+		}
+		else pline_msg = "tells you that you won't break through the force field!";
 		break;
 	case MS_ESCAPE:
-		/* todo */
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "That's it, I'm out of here! Catch me if you can, I'm the Gingerbread Man!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Where's the canteen?";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Okay, I'll follow you.";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "Pinky, are you pondering what I'm pondering?";
+		}
+		else verbl_msg = "Are you crazy? Well, neglecting to wear safety gear does verge on the edge of lunacy... anyway, stop attacking me, immediately!";
 		break;
 	case MS_FEARHARE:
-		/* todo */
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Help me, help me! I can't handle them myself!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Please, let's get something to eat, I'm afraid that if I don't eat, then some monster will eat me!";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Are you sure you know where you're going?";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "The situation clearly can't get any worse than this.";
+		}
+		else verbl_msg = "Stop attacking, I'm a fiend! Err, friend! Fruck, I always mess that R up.";
 		break;
 	case MS_SPOILER:
-		/* todo */
+		if (mtmp->mhp < mtmp->mhpmax/3) {
+			pline_msg = "Unhandled exception: At address 002EF0C";
+			break;
+		}
+		if (mtmp->mconf) {
+			pline_msg = "Application termination, app event: BEX";
+			break;
+		}
+		if (mtmp->mtame) {
+			pline_msg = "Network Error: NO ERROR";
+		} else if (mtmp->mpeaceful) {
+			pline_msg = "Error: No route to host";
+		}
+		else pline_msg = "Runtime Error - program is running at the wrong time of the day. Please restart the program later.";
 		break;
 	case MS_DEAD:
-		/* todo */
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Now I have to experience death a second time, because of you...";
+			break;
+		}
+		if (mtmp->mconf) {
+			verbl_msg = "Huh, am I dead now? I think I'm dead! Or is this all just a dream?";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Oh well, I think I'll just starve to death now, that wouldn't be the worst possible fate.";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Yeah I guess I can assist you...";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "Who resurrected me?!";
+		}
+		else verbl_msg = "I tell you, if you're responsible for disturbing my peaceful slumber I'll make sure that you die before I do!";
 		break;
 	case MS_TREESQUAD:
-		/* todo */
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Even if I die, the trees will be protected by my comrades!";
+			break;
+		}
+		if (mtmp->mconf) {
+			verbl_msg = "What is that huge mana flower doing there, can I harvest ambrosia or lichor from it?";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Gotta eat some acorns and berries!";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Don't hesitate to kill anyone who dares chopping down a tree.";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "Remember, nature has to be protected at all times. Everyone who applies an axe to a tree is a criminal!";
+		}
+		else verbl_msg = "You devil, I'll make sure you never fell a tree again!";
 		break;
 	case MS_METALMAFIA:
 		/* todo */
 		break;
 	case MS_DEEPSTATE:
-		/* todo */
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "We are many. I can be replaced.";
+			break;
+		}
+		if (mtmp->mconf) {
+			verbl_msg = "is there some sort of deep anti-state at work?";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Need food.";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Don't say a word.";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "You've never seen me, aight?";
+		}
+		else verbl_msg = rn2(2) ? "You're dead." : "This is your end.";
 		break;
 	case MS_PRINCESSLEIA:
 		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/10) {
