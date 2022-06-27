@@ -1594,6 +1594,7 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_rita_trap),
 	g_FILLER(S_janina_trap),
 	g_FILLER(S_rosa_trap),
+	g_FILLER(S_ksenia_trap),
 	g_FILLER(S_lydia_trap),
 	g_FILLER(S_conny_trap),
 	g_FILLER(S_katia_trap),
@@ -2297,6 +2298,7 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_rita_trap),
 	g_FILLER(S_janina_trap),
 	g_FILLER(S_rosa_trap),
+	g_FILLER(S_ksenia_trap),
 	g_FILLER(S_lydia_trap),
 	g_FILLER(S_conny_trap),
 	g_FILLER(S_katia_trap),
@@ -2997,6 +2999,7 @@ static uchar wing_graphics[MAXPCHARS] = {
 	g_FILLER(S_rita_trap),
 	g_FILLER(S_janina_trap),
 	g_FILLER(S_rosa_trap),
+	g_FILLER(S_ksenia_trap),
 	g_FILLER(S_lydia_trap),
 	g_FILLER(S_conny_trap),
 	g_FILLER(S_katia_trap),
@@ -3698,6 +3701,7 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_rita_trap),
 	g_FILLER(S_janina_trap),
 	g_FILLER(S_rosa_trap),
+	g_FILLER(S_ksenia_trap),
 	g_FILLER(S_lydia_trap),
 	g_FILLER(S_conny_trap),
 	g_FILLER(S_katia_trap),
@@ -4607,6 +4611,7 @@ boolean is_rlevel;
 	    showsyms[S_rita_trap] = 0x04;
 	    showsyms[S_janina_trap] = 0x04;
 	    showsyms[S_rosa_trap] = 0x04;
+	    showsyms[S_ksenia_trap] = 0x04;
 	    showsyms[S_lydia_trap] = 0x04;
 	    showsyms[S_conny_trap] = 0x04;
 	    showsyms[S_katia_trap] = 0x04;
