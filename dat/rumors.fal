@@ -3789,3 +3789,18 @@ Invisible monsters can be made visible if you have see invisible, which works fo
 Waiting for one turn is impossible unless you turn on the option that allows you to "rest on space", which is in fact what you should do, because then you can press the space bar to rest.
 Picking up items is done by pressing g, which is shorthand for "get".
 Quivering ranged weapon ammo allows you to fire them faster by using the f key than if you always press t and then select the ammo that you want to fire. In fact, this isn't merely convenient, it affects gameplay because using the quiver means you only use up half a turn when using the f command, as opposed to a whole turn when firing with t.
+You don't need to bless your scroll of charging when recharging the magic marker, since the amount of additional charges is the same regardless of the quality of charging.
+Recharging a magic marker always sets its charge count to 50, so you should charge it only when it's almost empty.
+In order to land when you have permanent flying, #sit on a sand tile. Then you can crouch underneath the stalactites without getting damaged.
+If your wisdom is getting low due to contamination, wear a ring of sustain ability to prevent death from stat loss.
+In order to restore lost wisdom from contamination, repeatedly apply the unicorn horn. Might take a couple of tries but it's guaranteed to work eventually.
+Got a bunch of cursed items? Just put them all in your inventory and read a blessed scroll of remove curse - bam, no more cursed stuff.
+Hey, did you know that you can shortcut past many of SLEX's lategame tedium by banishing yourself? Can skip past all the Yendorian Tower and Subquest crap that way if you get lucky!
+Oilskin gloves may seem annoying since they can't be taken off and prevent you from wielding weapons, but if it's safe to pray, do so and your god will fix the problem.
+If you prefix your movement with M while blind, and your character doesn't see the shopkeeper or temple priest you bump into, you go "Pardon me, Kilbeggan." and the NPC does not get mad.
+If you put an artifact weapon into your secondary weapon slot while dual-wielding, you still get to enjoy all the effects that the artifact in question gives when wielded.
+If you put an artifact weapon into your secondary weapon slot while only using one weapon, you still get to enjoy all the effects that the artifact in question gives when wielded, even if your primary weapon is two-handed! Wow!
+If you get a 'program in disorder' message, you should #quit in order to prevent bugs from happening.
+Monsters that have both melee and missile weapons will only use melee weapons if they're right next to you, and switch to their ranged weapon only when they're too far away for a melee attack.
+Can't find the alignment quest portals? Just hang around on every eligible level for exactly 1000 turns; if you've not received a message by then, it's not on that specific level.
+Astral vision causes nearby monsters to interrupt your multi-turn actions even when the monsters are immobile or asleep, this is a bug that needs fixing.

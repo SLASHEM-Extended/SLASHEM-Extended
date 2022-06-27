@@ -2305,3 +2305,18 @@ Invisible monsters can be made visible if you have see invisible, but some monst
 You can wait for one turn by pressing the . (period) key. There is also an option where pressing the space bar can be used for the same effect, but you should generally never turn that on.
 Picking up items is done with the , (comma) key.
 Quivering ranged weapon ammo allows you to fire them with the f key, which is much more convenient than always pressing t and then having to select the ammo that you want to fire, but other than that doesn't make an actual gameplay difference.
+Use a blessed scroll of charging on a magic marker to get the most amount of charges out of it.
+The amount of charges that gets added when you charge a magic marker is randomized, so there's no need to wait until the marker is almost dry.
+Stalactites will always damage flying or levitating characters, and the only way to land is to take off the item that gives those extrinsics or find a way to get rid of the intrinsics, depending on whether your flying/levitation source is ex- or intrinsic.
+Wearing a ring of sustain ability does not protect you from wisdom loss by contamination.
+Wisdom loss from contamination cannot be restored with a unicorn horn, so don't even try, the only thing that may happen is that your unihorn degrades or turns to dust.
+Reading a blessed scroll of remove curse won't always uncurse everything in your inventory. Items that aren't currently worn only have a 1 in 5 chance of being uncursed.
+You cannot banish yourself to areas that you cannot normally reach yet, so don't even try to shortcut past the point where you need to take certain MacGuffins to certain dungeon branches.
+Oilskin gloves are a very dangerous item. They cannot be taken off, even when they're uncursed, and prevent you from using any weapons that aren't cursed. Praying to your god does not help.
+If you prefix your movement with M while blind, and your character doesn't see the shopkeeper or temple priest you bump into, they still get mad at you.
+If you put an artifact weapon into your secondary weapon slot while dual-wielding, any positive extrinsics conveyed while wielding that artifact will not be active.
+If you put an artifact weapon into your secondary weapon slot while only using one weapon, the effects that equipping said artifact would give will not be active.
+If you get a 'program in disorder' message, you should continue playing and tell the developer about it.
+Monsters that have both melee and missile weapons may still fire their missile weapon at point blank range sometimes.
+You may have to hang around on a level with an alignment quest portal for thousands of turns to get a message about the portal being there, so better look for them manually because you can't realistically expect to get lucky.
+Astral vision causes nearby monsters to interrupt your multi-turn actions even when the monsters are immobile or asleep, this is working as intended.
