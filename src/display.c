@@ -817,6 +817,8 @@ display_warning(mon)
     int wl = (int) (mon->m_lev / 6);
     int glyph;
 
+    if (mon && (mon->data->msound == MS_DEEPSTATE)) return;
+
     if (mon_warning(mon)) {
         if (wl > WARNCOUNT - 1) wl = WARNCOUNT - 1;
 	/* 3.4.1: this really ought to be rn2(WARNCOUNT), but value "0"
@@ -1248,7 +1250,11 @@ newsym(x,y)
 		(uwep && uwep->oartifact == ART_ANIMALBANE && is_animal(mon->data)) ||
 		(uwep && uwep->oartifact == ART_SEE_ANIMALS && is_animal(mon->data)) ||
 		(isselfhybrid && monpolyok(mon->data) && !polyok(mon->data) && ((mon->data->mlevel < 30) || mon->selfhybridvisible) )  );
-	    if (mon && (see_it || (!worm_tail && Detect_monsters))) {
+
+	    if (mon && (mon->data->msound == MS_DEEPSTATE) && !mon_visible(mon) ) see_it = FALSE;
+	    if (mon && (mon->data->msound == MS_DEEPSTATE) && mon->minvis ) see_it = FALSE;
+
+	    if (mon && (see_it || (!worm_tail && Detect_monsters && (mon->data->msound != MS_DEEPSTATE) ))) {
 		if (mon->mtrapped) {
 		    struct trap *trap = t_at(x, y);
 		    int tt = trap ? trap->ttyp : NO_TRAP;
@@ -1360,7 +1366,7 @@ newsym(x,y)
 		&& !is_worm_tail(mon)) {
 	    /* Monsters are printed every time. */
 	    /* This also gets rid of any invisibility glyph */
-	    display_monster(x, y, mon, see_it ? 0 : DETECTED, 0);
+	    if (mon->data->msound != MS_DEEPSTATE) display_monster(x, y, mon, see_it ? 0 : DETECTED, 0);
 	}
 	else if ((mon = m_at(x,y)) && mon_warning(mon) &&
 		 !is_worm_tail(mon)) {
@@ -1624,7 +1630,11 @@ newsymX(x,y)
 		(uwep && uwep->oartifact == ART_ANIMALBANE && is_animal(mon->data)) ||
 		(uwep && uwep->oartifact == ART_SEE_ANIMALS && is_animal(mon->data)) ||
 		(isselfhybrid && monpolyok(mon->data) && !polyok(mon->data) && ((mon->data->mlevel < 30) || mon->selfhybridvisible ) )  );
-	    if (mon && (see_it || (!worm_tail && Detect_monsters))) {
+
+	    if (mon && (mon->data->msound == MS_DEEPSTATE) && !mon_visible(mon) ) see_it = FALSE;
+	    if (mon && (mon->data->msound == MS_DEEPSTATE) && mon->minvis ) see_it = FALSE;
+
+	    if (mon && (see_it || (!worm_tail && Detect_monsters && (mon->data->msound != MS_DEEPSTATE) ))) {
 		if (mon->mtrapped) {
 		    struct trap *trap = t_at(x, y);
 		    int tt = trap ? trap->ttyp : NO_TRAP;
@@ -1736,7 +1746,9 @@ newsymX(x,y)
 		&& !is_worm_tail(mon)) {
 	    /* Monsters are printed every time. */
 	    /* This also gets rid of any invisibility glyph */
-	    display_monsterX(x, y, mon, see_it ? 0 : DETECTED, 0);
+
+	    if (mon->data->msound != MS_DEEPSTATE) display_monsterX(x, y, mon, see_it ? 0 : DETECTED, 0);
+
 	}
 	else if ((mon = m_at(x,y)) && mon_warning(mon) &&
 		 !is_worm_tail(mon)) {
@@ -3568,6 +3580,7 @@ boolean
 sensemon(mon)
 struct monst *mon;
 {
+	if (mon->data->msound == MS_DEEPSTATE) return FALSE;
 	if (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) return FALSE;
 	if (isselfhybrid && (moves % 3 == 0) ) return FALSE;
 

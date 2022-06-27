@@ -145,6 +145,7 @@ NEARDATA extern coord bhitpos;	/* place where throw or zap hits or stops */
 #define MM_FRENZIED	0x0800	/* monster has 1 in 3 chance of spawning frenzied */
 #define MM_XFRENZIED	0x1000	/* monster always spawns frenzied */
 #define MM_MAYSLEEP	0x2000	/* monster has 20% chance of spawning asleep */
+#define MM_REVIVED	0x4000	/* to ensure that MS_DEAD don't immediately die again */
 
 /* special mhpmax value when loading bones monster to flag as extinct or genocided */
 #define DEFUNCT_MONSTER	(-100)

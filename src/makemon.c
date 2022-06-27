@@ -22864,6 +22864,7 @@ register int	mmflags;
 	boolean allow_minvent = ((((mmflags & NO_MINVENT) == 0) || ptr == &mons[PM_HUGE_OGRE_THIEF]) && ptr != &mons[PM_HOLE_MASTER] && ptr != &mons[PM_TRAP_MASTER] && ptr != &mons[PM_BOULDER_MASTER] && ptr != &mons[PM_ITEM_MASTER] && ptr != &mons[PM_GOOD_ITEM_MASTER] && ptr != &mons[PM_BAD_ITEM_MASTER]);
 	boolean allow_special = ((mmflags & MM_NOSPECIALS) == 0);
 	boolean countbirth = ((mmflags & MM_NOCOUNTBIRTH) == 0);
+	boolean monster_is_revived = ((mmflags & MM_REVIVED) != 0);
 	unsigned gpflags = (mmflags & MM_IGNOREWATER) ? MM_IGNOREWATER : 0;
 	int randsp;
 	int i;
@@ -23274,6 +23275,7 @@ register int	mmflags;
 	mtmp->lisapantscolor = rnd(19);
 	mtmp->lisapantstype = rnd(18);
 	mtmp->lisaseen = FALSE;
+	mtmp->codeguessed = FALSE;
 
 	if (Movemork || u.uprops[MOVEMORKING].extrinsic || have_movemorkstone()) mtmp->movement += 12;
 	if (uarmf && uarmf->oartifact == ART_SATAN_S_HYPERCHARGE) mtmp->movement += rnd(24);
@@ -25286,6 +25288,11 @@ register int	mmflags;
 			mtmp->mstrategy |= STRAT_WAITFORU;
 		if (ptr->mflags3 & M3_CLOSE)
 			mtmp->mstrategy |= STRAT_CLOSE;
+	}
+
+	if (ptr->msound == MS_DEAD && !monster_is_revived && !(mtmp->mrevived) ) {
+		monkilled(mtmp, "", AD_PHYS);
+		return((struct monst *)0);
 	}
 
 	if (mndx == PM_UNFORTUNATE_VICTIM && in_mklev ) { /* These are supposed to spawn already dead. --Amy */

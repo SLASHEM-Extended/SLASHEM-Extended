@@ -386,7 +386,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 				break;
 		    }
 		}
-		if (mtmp && cansee(xi,yi) && !canspotmon(mtmp))
+		if (mtmp && cansee(xi,yi) && !canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE))
 		    map_invisible(xi, yi);
 		else if (!mtmp && memory_is_invisible(xi, yi)) {
 		    unmap_object(xi, yi);

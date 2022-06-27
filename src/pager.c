@@ -3624,6 +3624,11 @@ get_description_of_monster_type(struct permonst * ptr, char * description)
 		return description;
 	}
 
+	if (ptr->msound == MS_SPOILER) {
+		strcat(description, "Pokedex error 24: Access denied.");
+		return description;
+	}
+
 	append_newline_to_pline_string(description);
 	strcat(description, " ");
 	append_newline_to_pline_string(description);

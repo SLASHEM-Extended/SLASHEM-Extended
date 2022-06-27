@@ -1424,7 +1424,7 @@ void * num;
 			newsym(zx, zy);
 			(*(int*)num)++;
 		}
-		if (!canspotmon(mtmp) &&
+		if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE) &&
 				    !memory_is_invisible(zx, zy))
 			map_invisible(zx, zy);
 	} else if (memory_is_invisible(zx, zy)) {
@@ -1478,7 +1478,7 @@ void * num;
 			newsym(zx, zy);
 			(*(int*)num)++;
 		}
-		if (!canspotmon(mtmp) &&
+		if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE) &&
 				    !memory_is_invisible(zx, zy))
 			map_invisible(zx, zy);
 	} else if (memory_is_invisible(zx, zy)) {
@@ -1729,7 +1729,7 @@ register int aflag;
 					continue;
 				    } else {
 					You_feel("an unseen monster!");
-					map_invisible(x, y);
+					if (!(mtmp->data->msound == MS_DEEPSTATE)) map_invisible(x, y);
 				    }
 				} else if (!sensemon(mtmp))
 				    You("find %s.", a_monnam(mtmp));

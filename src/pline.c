@@ -339,6 +339,13 @@ pline VA_DECL(const char *, line)
                 } /* endif old piece */
 	  } /* endif ZAPM etc. */
 
+	  if (u.wollohhack && !program_state.in_impossible && (strlen(line)<(BUFSZ-20)) ) {
+                 line = replace(line,".",", wolloh.", FALSE);
+                 line = replace(line,"!",", wolloh!", FALSE);
+                 line = replace(line,", ",", wolloh, ", FALSE);
+
+	  }
+
 #if defined(DUMP_LOG)
 	if (DUMPMSGS > 0 && !program_state.gameover) {
 		/* count identical messages */
@@ -1080,6 +1087,12 @@ REPEAT:
         /*Most calls won't match, so do the match first.*/
 	if (!(ch = strstr(st, orig)))
 		return st;
+
+	if (u.wollohhack) {
+        if( (tmp = strstr(st,"wolloh,")) ) return st;
+        if( (tmp = strstr(st,"wolloh.")) ) return st;
+        if( (tmp = strstr(st,"wolloh!")) ) return st;
+	}
 
         /* You read "eyelbereth" */
         /*if( (tmp = strstr(st,"read")) && (tmp<ch) ) return st;*/

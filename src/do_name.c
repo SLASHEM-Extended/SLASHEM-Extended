@@ -725,6 +725,8 @@ stupidsegfault:
 
 	buf[0] = 0;
 
+	if (!program_state.gameover && mtmp->data->msound == MS_WOLLOH) u.wollohhack = TRUE;
+
 	/* unseen monsters, etc.  Use "it" */
 	if (do_it) {
 	    strcpy(buf, "it");

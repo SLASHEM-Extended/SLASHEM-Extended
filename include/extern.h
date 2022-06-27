@@ -3631,7 +3631,7 @@ E void probe_monster(struct monst *);
 E boolean get_obj_location(struct obj *,xchar *,xchar *,int);
 E boolean get_mon_location(struct monst *,xchar *,xchar *,int);
 E struct monst *get_container_location(struct obj *obj, int *, int *);
-E struct monst *montraits(struct obj *,coord *);
+E struct monst *montraits(struct obj *,coord *, BOOLEAN_P);
 E struct monst *revive(struct obj *);
 E int unturn_dead(struct monst *);
 E void cancel_item(struct obj *,BOOLEAN_P);

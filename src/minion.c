@@ -389,7 +389,8 @@ struct monst *mtmp;
 	} else {
 		You("give %s %ld %s.", mon_nam(mtmp), offer, currency(offer));
 	}
-	(void) money2mon(mtmp, offer);
+	u.ugold -= offer;
+	/*(void) money2mon(mtmp, offer);*/
 #endif
 	flags.botl = 1;
 	return(offer);

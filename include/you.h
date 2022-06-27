@@ -1611,6 +1611,9 @@ struct you {
 	boolean wingyellowhack;
 	boolean arabellahack;
 	boolean linkmasterswordhack;
+	boolean wollohhack;
+
+	int secretcodenumber;
 
 	boolean captchahack;
 

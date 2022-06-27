@@ -1667,7 +1667,7 @@ armorsmashdone:
 	 */
 	if (reveal_invis) {
 	    if (mtmp->mhp > 0 && cansee(bhitpos.x, bhitpos.y) &&
-							!canspotmon(mtmp))
+							!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE))
 		map_invisible(bhitpos.x, bhitpos.y);
 	}
 	return 0;
@@ -1775,9 +1775,10 @@ int locflags;	/* non-zero means get location even if monster is buried */
 
 /* used by revive() and animate_statue() */
 struct monst *
-montraits(obj,cc)
+montraits(obj,cc,revived)
 struct obj *obj;
 coord *cc;
+boolean revived;
 {
 	struct monst *mtmp = (struct monst *)0;
 	struct monst *mtmp2 = (struct monst *)0;
@@ -1789,7 +1790,9 @@ coord *cc;
 		mtmp2->data = &mons[mtmp2->mnum];
 		if (mtmp2->mhpmax <= 0 && !is_rider(mtmp2->data) && !is_deadlysin(mtmp2->data))
 			return (struct monst *)0;
-		mtmp = makemon(mtmp2->data,
+		if (revived) mtmp = makemon(mtmp2->data,
+				cc->x, cc->y, NO_MINVENT|MM_NOWAIT|MM_NOCOUNTBIRTH|MM_REVIVED);
+		else mtmp = makemon(mtmp2->data,
 				cc->x, cc->y, NO_MINVENT|MM_NOWAIT|MM_NOCOUNTBIRTH);
 		if (!mtmp) return mtmp;
 
@@ -1978,12 +1981,12 @@ register struct obj *obj;
 		    if (obj->oxlth && (obj->oattached == OATTACHED_MONST)) {
 			    coord xy;
 			    xy.x = x; xy.y = y;
-		    	    mtmp = montraits(obj, &xy);
+		    	    mtmp = montraits(obj, &xy, TRUE);
 		    	    if (mtmp && mtmp->mtame && !mtmp->isminion)
 				wary_dog(mtmp, TRUE);
 		    } else
  		            mtmp = makemon(&mons[montype], x, y,
-				       NO_MINVENT|MM_NOWAIT|MM_NOCOUNTBIRTH);
+				       NO_MINVENT|MM_NOWAIT|MM_NOCOUNTBIRTH|MM_REVIVED);
 		    if (mtmp) {
 			if (obj->oxlth && (obj->oattached == OATTACHED_M_ID)) {
 			    unsigned m_id;
@@ -8378,7 +8381,7 @@ boolean cancontrol;	/* does control magic work on this? --Amy */
 			    }
 			    if (cansee(bhitpos.x,bhitpos.y) && !canspotmon(mtmp)) {
 				if (weapon != INVIS_BEAM) {
-				    map_invisible(bhitpos.x, bhitpos.y);
+				    if (!(mtmp->data->msound == MS_DEEPSTATE)) map_invisible(bhitpos.x, bhitpos.y);
 				    return(mtmp);
 				}
 			    } else
@@ -9423,7 +9426,7 @@ sigilcontroldirection:
 	    /* Normal Zap */
 	    if (!is_mega_spell(type) && cansee(sx,sy)) {
 		/* reveal/unreveal invisible monsters before tmp_at() */
-		if (mon && !canspotmon(mon))
+		if (mon && !canspotmon(mon) && !(mon->data->msound == MS_DEEPSTATE))
 		    map_invisible(sx, sy);
 		else if (!mon && memory_is_invisible(sx, sy)) {
 		    unmap_object(sx, sy);

@@ -3204,7 +3204,7 @@ int *fail_reason;
 
 	if (statue->oxlth && statue->oattached == OATTACHED_MONST) {
 	    cc.x = x,  cc.y = y;
-	    mon = montraits(statue, &cc);
+	    mon = montraits(statue, &cc, FALSE);
 	    if (mon && mon->mtame && !mon->isminion)
 		wary_dog(mon, TRUE);
 	} else {

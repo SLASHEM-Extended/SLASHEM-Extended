@@ -11182,6 +11182,8 @@ u_init()
 	u.conclusiocount = 0;
 	u.elberethcheese = 0;
 
+	u.secretcodenumber = rn2(10000);
+
 	u.bucskill = 0;
 	u.enchantrecskill = 0;
 	u.weapchantrecskill = 0;

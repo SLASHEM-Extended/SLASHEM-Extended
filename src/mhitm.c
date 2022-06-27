@@ -147,9 +147,9 @@ missmm(magr, mdef, target, roll, mattk)
 	}
 
 	if (vis) {
-		if (!canspotmon(magr))
+		if (!canspotmon(magr) && !(magr->data->msound == MS_DEEPSTATE))
 		    map_invisible(magr->mx, magr->my);
-		if (!canspotmon(mdef))
+		if (!canspotmon(mdef) && !(mdef->data->msound == MS_DEEPSTATE))
 		    map_invisible(mdef->mx, mdef->my);
 		if (mdef->m_ap_type) seemimic(mdef);
 		if (magr->m_ap_type) seemimic(magr);
@@ -3657,9 +3657,9 @@ hitmm(magr, mdef, mattk)
 		int compat;
 		char buf[BUFSZ], mdef_name[BUFSZ];
 
-		if (!canspotmon(magr))
+		if (!canspotmon(magr) && !(magr->data->msound == MS_DEEPSTATE))
 		    map_invisible(magr->mx, magr->my);
-		if (!canspotmon(mdef))
+		if (!canspotmon(mdef) && !(mdef->data->msound == MS_DEEPSTATE))
 		    map_invisible(mdef->mx, mdef->my);
 		if(mdef->m_ap_type) seemimic(mdef);
 		if(magr->m_ap_type) seemimic(magr);

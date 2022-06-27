@@ -2225,7 +2225,7 @@ register struct monst *mtmp;
     if (!is_silent(mtmp->data) && mtmp->data->msound <= MS_ANIMAL)
 	(void) domonnoise(mtmp);
     else if (mtmp->data->msound >= MS_HUMANOID) {
-	if (!canspotmon(mtmp))
+	if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE))
 	    map_invisible(mtmp->mx, mtmp->my);
 	(void) domonnoise(mtmp); /* "I'm hungry" for MS_HUMANOID but different for others --Amy */
 }
@@ -2302,7 +2302,7 @@ register struct monst *mtmp;
     /* be sure to do this before talking; the monster might teleport away, in
      * which case we want to check its pre-teleport position
      */
-    if (!canspotmon(mtmp))
+    if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE))
 	map_invisible(mtmp->mx, mtmp->my);
 
 	if (ptr == &mons[PM_DONALD_TRUMP]) { /* idea by Crawldragon, actual messages by Amy */
@@ -3293,7 +3293,32 @@ repairitemchoice:
 		else verbl_msg = "Wolloh, I'm gonna fuck you up asshole! Wolloh age!";
 		break;
 	case MS_CODE:
-		/* todo */
+		if (mtmp->codeguessed) {
+			verbalize("Sorry, you already took a guess.");
+		} else {
+			mtmp->codeguessed = TRUE;
+			verbalize("What is the secret four-digit code number?");
+
+			char buf[BUFSZ];
+			long offer;
+
+			getlin("Your guess:", buf);
+			if (sscanf(buf, "%ld", &offer) != 1) offer = 0L;
+			if (offer < 0) {
+				verbalize("Certainly not, mastermind!");
+			} else if (offer > 9999) {
+				verbalize("Nice try, but no, the code is four-digit. You gave too many digits.");
+			} else if (offer == u.secretcodenumber) {
+				u.secretcodenumber = rn2(10000);
+				verbalize("We have a winner!!! You shall receive a boon.");
+				if (!rn2(4)) makewish(evilfriday ? FALSE : TRUE);
+				else othergreateffect();
+			} else {
+				verbalize("Sorry, your guess was wrong.");
+			}
+
+		}
+
 		break;
 	case MS_BARBER:
 		/* todo */
@@ -5434,6 +5459,10 @@ register struct monst *mtmp;
 		return;
 	}
 
+	if (mtmp->data->msound == MS_FEARHARE) {
+		monflee(mtmp, rnd(10), TRUE, TRUE);
+	}
+
 	if (mtmp->mhp < (mtmp->mhpmax / 4)) distresslevel = 3;
 	else if (mtmp->mhp < (mtmp->mhpmax / 2)) distresslevel = 2;
 	else if (mtmp->mhp < (mtmp->mhpmax * 3 / 4)) distresslevel = 1;
@@ -6091,7 +6120,7 @@ dochat()
     mtmp->mstrategy &= ~STRAT_WAITMASK;
 
     if (mtmp->mtame && mtmp->meating) {
-	if (!canspotmon(mtmp))
+	if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE))
 	    map_invisible(mtmp->mx, mtmp->my);
 	pline("%s is eating noisily.", Monnam(mtmp));
 	return (0);

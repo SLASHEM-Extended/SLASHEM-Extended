@@ -1755,7 +1755,7 @@ register struct attack *mattk;
 		}			
 	}
 
-	if (!canspotmon(mtmp))
+	if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE))
 	    map_invisible(mtmp->mx, mtmp->my);
 
 	if(could_seduce(mtmp, &youmonst, mattk) && !mtmp->mcan)
@@ -6538,7 +6538,7 @@ hitmu(mtmp, mattk)
 	/*int randattack = 0;*/
 	int atttyp;
 
-	if (!canspotmon(mtmp))
+	if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE))
 	    map_invisible(mtmp->mx, mtmp->my);
 
 /*	If the monster is undetected & hits you, you should know where

@@ -147,7 +147,7 @@ boolean barehanded;
 		 * If the monster dies immediately from the blow, the 'I' will
 		 * not stay there, so the player will have suddenly forgotten
 		 * the square's contents for no apparent reason.
-		if (!canspotmon(mtmp) &&
+		if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE) &&
 		    !memory_is_invisible(u.ux+u.dx, u.uy+u.dy))
 			map_invisible(u.ux+u.dx, u.uy+u.dy);
 		 */
@@ -188,7 +188,7 @@ boolean barehanded;
 		if (!rn2(2) && !mtmp->mpeaceful && !mtmp->mtame) (void) passive(mtmp, TRUE, mtmp->mhp > 0, AT_TUCH, FALSE);
 
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
-		map_invisible(u.ux+u.dx, u.uy+u.dy);
+		if (!(mtmp->data->msound == MS_DEEPSTATE)) map_invisible(u.ux+u.dx, u.uy+u.dy);
 		/* if it was an invisible mimic, treat it as if we stumbled
 		 * onto a visible mimic
 		 */
@@ -1138,7 +1138,7 @@ atk_done:
 	 * and it returned 0 (it's okay to attack), and the monster didn't
 	 * evade.
 	 */
-	if (flags.forcefight && mtmp->mhp > 0 && !canspotmon(mtmp) &&
+	if (flags.forcefight && mtmp->mhp > 0 && !canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE) &&
 	    !memory_is_invisible(u.ux+u.dx, u.uy+u.dy) &&
 	    !(u.uswallow && mtmp == u.ustuck))
 		map_invisible(u.ux+u.dx, u.uy+u.dy);
@@ -12957,7 +12957,7 @@ struct obj *otmp;	/* source of flash */
 			    monkilled(mtmp, (char *)0, AD_BLND);
 			else
 			    killed(mtmp);
-		    } else if (cansee(mtmp->mx,mtmp->my) && !canspotmon(mtmp)){
+		    } else if (cansee(mtmp->mx,mtmp->my) && !canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE)) {
 			map_invisible(mtmp->mx, mtmp->my);
 		    }
 		}

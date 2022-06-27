@@ -6233,7 +6233,7 @@ register struct obj *otmp;
 
 	if (reveal_invis) {
 	    if (mtmp->mhp > 0 && cansee(bhitpos.x,bhitpos.y)
-							&& !canspotmon(mtmp))
+							&& !canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE))
 		map_invisible(bhitpos.x, bhitpos.y);
 	}
 	return 0;
@@ -6295,7 +6295,7 @@ struct obj *obj;			/* 2nd arg to fhitm/fhito */
 			range -= 3;
 		} else if(MON_AT(bhitpos.x, bhitpos.y)){
 			mtmp = m_at(bhitpos.x,bhitpos.y);
-			if (cansee(bhitpos.x,bhitpos.y) && !canspotmon(mtmp))
+			if (cansee(bhitpos.x,bhitpos.y) && !canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE))
 			    map_invisible(bhitpos.x, bhitpos.y);
 			(*fhitm)(mtmp, obj);
 			range -= 3;
@@ -9803,7 +9803,7 @@ newboss:
 		} else if (cansee(mtmp->mx, mtmp->my)) {
 		    pline_The("%s rumbles in the middle of nowhere!",
 			ceiling(mtmp->mx, mtmp->my));
-		    if (mtmp->minvis)
+		    if (mtmp->minvis && !(mtmp->data->msound == MS_DEEPSTATE))
 			map_invisible(mtmp->mx, mtmp->my);
 		    if (oseen) makeknown(otmp->otyp);
 		}
@@ -9850,7 +9850,7 @@ newboss:
 				if (cansee(mtmp2->mx, mtmp2->my)) {
 				    pline("%s is hit by %s!", Monnam(mtmp2),
 	    	    	    			doname(otmp2));
-				    if ((mtmp2->minvis && !canspotmon(mtmp2)) || mtmp2->minvisreal)
+				    if (((mtmp2->minvis && !canspotmon(mtmp2)) || mtmp2->minvisreal) && !(mtmp2->data->msound == MS_DEEPSTATE))
 					map_invisible(mtmp2->mx, mtmp2->my);
 				}
 	    	    	    	mdmg = dmgval(otmp2, mtmp2) * otmp2->quan;
@@ -11657,7 +11657,7 @@ struct monst *mtmp;
 		      "Aggravated, you are jolted into full consciousness.";
 	}
 	newsym(mtmp->mx,mtmp->my);
-	if (!canspotmon(mtmp))
+	if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE))
 	    map_invisible(mtmp->mx, mtmp->my);
 }
 

@@ -2387,6 +2387,36 @@ convertdone:
 		nomul(-(rnd(10)), "Mikraanesis had stopped time", FALSE);
 	}
 
+	if (mdat->msound == MS_STABILIZE && !u.antitelespelltimeout && !rn2(100) && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) ) {
+		u.antitelespelltimeout = rnz(20);
+		pline("%s stabilizes the space around.", Monnam(mtmp)); /* message is sic from Elona */
+	}
+
+	if (mdat->msound == MS_ESCAPE && (mtmp->mhp < (mtmp->mhpmax / 4)) ) {
+		pline("%s vanishs.", Monnam(mtmp)); /* message is sic from Elona */
+		mongone(mtmp);
+		return 1;
+	}
+
+	if (mdat->msound == MS_SELFHARM && !rn2(50)) {
+
+		if (canseemon(mtmp)) {
+			switch (rnd(7)) {
+
+				case 1: pline("%s puts the knife to %s lower %s and cuts...", Monnam(mtmp), mhis(mtmp), mbodypart(mtmp, ARM)); break;
+				case 2: pline("%s uses a sharp object to cut open %s belly...", Monnam(mtmp), mhis(mtmp)); break;
+				case 3: pline("%s slides %s body along a rough surface and sustains terrible skin rashes.", Monnam(mtmp), mhis(mtmp)); break;
+				case 4: pline("%s rips %s butt open with a metallic edge.", Monnam(mtmp), mhis(mtmp)); break;
+				case 5: pline("%s scratches up and down %s %s with a sexy leather pump until it starts bleeding.", Monnam(mtmp), mhis(mtmp), mbodypart(mtmp, LEG)); break;
+				case 6: pline("%s slits %s %s full length with a sharp-edged zipper.", Monnam(mtmp), mhis(mtmp), mbodypart(mtmp, LEG)); break;
+				case 7: pline("%s pricks %srself with a needle.", Monnam(mtmp), mhim(mtmp)); break;
+			}
+			increasesanity(rnz(25 + mtmp->m_lev));
+		}
+		mtmp->bleedout += rnz(12);
+
+	}
+
 	if (mdat->msound == MS_POKEDEX && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(100)) {
 		int pokedexmon = rn2(NUMMONS);
 

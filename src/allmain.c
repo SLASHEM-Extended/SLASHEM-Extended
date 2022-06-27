@@ -12858,6 +12858,7 @@ past3:
 	u.explodewandhack = 0;
 	u.symbiotedmghack = FALSE;
 	u.linkmasterswordhack = 0;
+	u.wollohhack = 0;
 
 	/* fail safe for banishment in case the player would somehow get a turn --Amy */
 	if (u.banishmentbeam && multi >= 0) nomul(-2, "being banished", FALSE);
