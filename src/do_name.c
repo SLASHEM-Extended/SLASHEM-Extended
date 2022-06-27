@@ -1200,6 +1200,408 @@ register struct monst *mtmp;
 }
 
 char *
+bundledescription()
+{
+	static char pantsbuf[BUFSZ]; 
+
+	if (flags.female) {
+
+		switch (u.femalehaircut) {
+			default:
+				sprintf(pantsbuf, "standard female bundle");
+				break;
+			case 1:
+				sprintf(pantsbuf, "house goddess");
+				break;
+			case 2:
+				sprintf(pantsbuf, "serious woman");
+				break;
+			case 3:
+				sprintf(pantsbuf, "miss perfect");
+				break;
+			case 4:
+				sprintf(pantsbuf, "seductress");
+				break;
+			case 5:
+				sprintf(pantsbuf, "brush cut");
+				break;
+			case 6:
+				sprintf(pantsbuf, "scratchy brush");
+				break;
+			case 7:
+				sprintf(pantsbuf, "welderess");
+				break;
+			case 8:
+				sprintf(pantsbuf, "sarge");
+				break;
+			case 9:
+				sprintf(pantsbuf, "pretty puff");
+				break;
+			case 10:
+				sprintf(pantsbuf, "clean cut");
+				break;
+			case 11:
+				sprintf(pantsbuf, "fringe dance");
+				break;
+			case 12:
+				sprintf(pantsbuf, "swanky woman");
+				break;
+			case 13:
+				sprintf(pantsbuf, "unrest");
+				break;
+			case 14:
+				sprintf(pantsbuf, "headwind");
+				break;
+			case 15:
+				sprintf(pantsbuf, "messy");
+				break;
+			case 16:
+				sprintf(pantsbuf, "fairy tails");
+				break;
+			case 17:
+				sprintf(pantsbuf, "fallen angel");
+				break;
+			case 18:
+				sprintf(pantsbuf, "shred flight");
+				break;
+			case 19:
+				sprintf(pantsbuf, "occams razor");
+				break;
+			case 20:
+				sprintf(pantsbuf, "un-lady");
+				break;
+			case 21:
+				sprintf(pantsbuf, "iron maiden");
+				break;
+			case 22:
+				sprintf(pantsbuf, "little devil");
+				break;
+			case 23:
+				sprintf(pantsbuf, "bouffant flundle");
+				break;
+			case 24:
+				sprintf(pantsbuf, "long bundle");
+				break;
+			case 25:
+				sprintf(pantsbuf, "open bonnet");
+				break;
+			case 26:
+				sprintf(pantsbuf, "glowing bundle");
+				break;
+			case 27:
+				sprintf(pantsbuf, "brush bundle");
+				break;
+			case 28:
+				sprintf(pantsbuf, "bonnety bundle");
+				break;
+			case 29:
+				sprintf(pantsbuf, "bang brush");
+				break;
+			case 30:
+				sprintf(pantsbuf, "hard night");
+				break;
+			case 31:
+				sprintf(pantsbuf, "hitwoman");
+				break;
+			case 32:
+				sprintf(pantsbuf, "total bundle");
+				break;
+			case 33:
+				sprintf(pantsbuf, "love bundle");
+				break;
+			case 34:
+				sprintf(pantsbuf, "wavy bundle");
+				break;
+			case 35:
+				sprintf(pantsbuf, "wing bundle");
+				break;
+			case 36:
+				sprintf(pantsbuf, "girl bundle");
+				break;
+			case 37:
+				sprintf(pantsbuf, "bonnet mouse");
+				break;
+			case 38:
+				sprintf(pantsbuf, "lovely bundle");
+				break;
+			case 39:
+				sprintf(pantsbuf, "special bundle");
+				break;
+			case 40:
+				sprintf(pantsbuf, "cuddle bundle");
+				break;
+			case 41:
+				sprintf(pantsbuf, "fleece bundle");
+				break;
+			case 42:
+				sprintf(pantsbuf, "extra long bundle");
+				break;
+			case 43:
+				sprintf(pantsbuf, "very long bundle");
+				break;
+			case 44:
+				sprintf(pantsbuf, "bundle head");
+				break;
+			case 45:
+				sprintf(pantsbuf, "extra fleecy bundle");
+				break;
+			case 46:
+				sprintf(pantsbuf, "double bundle");
+				break;
+			case 47:
+				sprintf(pantsbuf, "full bundle");
+				break;
+			case 48:
+				sprintf(pantsbuf, "sweetheart bundle");
+				break;
+			case 49:
+				sprintf(pantsbuf, "vortex bundle");
+				break;
+			case 50:
+				sprintf(pantsbuf, "bundle waterfall");
+				break;
+			case 51:
+				sprintf(pantsbuf, "super bundle");
+				break;
+			case 52:
+				sprintf(pantsbuf, "swoon bundle");
+				break;
+			case 53:
+				sprintf(pantsbuf, "brush bundle head");
+				break;
+			case 54:
+				sprintf(pantsbuf, "gentle bundle");
+				break;
+			case 55:
+				sprintf(pantsbuf, "thunderstorm witch");
+				break;
+		}
+
+		strcat(pantsbuf, "'");
+
+	} else {
+
+		switch (u.malehaircut) {
+			default:
+				sprintf(pantsbuf, "standard male bundle");
+				break;
+			case 1:
+				sprintf(pantsbuf, "brush cut");
+				break;
+			case 2:
+				sprintf(pantsbuf, "half-bald");
+				break;
+			case 3:
+				sprintf(pantsbuf, "bald");
+				break;
+			case 4:
+				sprintf(pantsbuf, "sarge");
+				break;
+			case 5:
+				sprintf(pantsbuf, "comb over");
+				break;
+			case 6:
+				sprintf(pantsbuf, "high riser");
+				break;
+			case 7:
+				sprintf(pantsbuf, "tunnel snake");
+				break;
+			case 8:
+				sprintf(pantsbuf, "clean cut");
+				break;
+			case 9:
+				sprintf(pantsbuf, "unrest");
+				break;
+			case 10:
+				sprintf(pantsbuf, "headwind");
+				break;
+			case 11:
+				sprintf(pantsbuf, "messy");
+				break;
+			case 12:
+				sprintf(pantsbuf, "pompadour");
+				break;
+			case 13:
+				sprintf(pantsbuf, "terrorsaurus");
+				break;
+			case 14:
+				sprintf(pantsbuf, "punk");
+				break;
+			case 15:
+				sprintf(pantsbuf, "war falcon");
+				break;
+			case 16:
+				sprintf(pantsbuf, "spikey");
+				break;
+			case 17:
+				sprintf(pantsbuf, "wasteland");
+				break;
+			case 18:
+				sprintf(pantsbuf, "gentle wave");
+				break;
+		}
+
+		/* male characters also have a beard */
+		strcat(pantsbuf, "' and your beard type is '");
+
+		switch (u.malebeard) {
+			default:
+				strcat(pantsbuf, "standard male beard");
+				break;
+			case 1:
+				strcat(pantsbuf, "honest abe");
+				break;
+			case 2:
+				strcat(pantsbuf, "pointed beard");
+				break;
+			case 3:
+				strcat(pantsbuf, "thin strip");
+				break;
+			case 4:
+				strcat(pantsbuf, "running stripe");
+				break;
+			case 5:
+				strcat(pantsbuf, "daddy o");
+				break;
+			case 6:
+				strcat(pantsbuf, "beatnick");
+				break;
+			case 7:
+				strcat(pantsbuf, "chopper");
+				break;
+			case 8:
+				strcat(pantsbuf, "death biker");
+				break;
+			case 9:
+				strcat(pantsbuf, "hard buster");
+				break;
+			case 10:
+				strcat(pantsbuf, "adventurer");
+				break;
+			case 11:
+				strcat(pantsbuf, "old beard");
+				break;
+			case 12:
+				strcat(pantsbuf, "gettysburg");
+				break;
+			case 13:
+				strcat(pantsbuf, "little chin beard");
+				break;
+			case 14:
+				strcat(pantsbuf, "mandshu");
+				break;
+			case 15:
+				strcat(pantsbuf, "machiavelli");
+				break;
+			case 16:
+				strcat(pantsbuf, "old fogey");
+				break;
+			case 17:
+				strcat(pantsbuf, "trucker");
+				break;
+			case 18:
+				strcat(pantsbuf, "backwater");
+				break;
+			case 19:
+				strcat(pantsbuf, "mephistopheles");
+				break;
+			case 20:
+				strcat(pantsbuf, "bristly cool");
+				break;
+			case 21:
+				strcat(pantsbuf, "el carcinero");
+				break;
+			case 22:
+				strcat(pantsbuf, "hombre");
+				break;
+			case 23:
+				strcat(pantsbuf, "deserteur");
+				break;
+			case 24:
+				strcat(pantsbuf, "grater");
+				break;
+			case 25:
+				strcat(pantsbuf, "hand of the dead");
+				break;
+			case 26:
+				strcat(pantsbuf, "inn racquet");
+				break;
+			case 27:
+				strcat(pantsbuf, "stranded");
+				break;
+			case 28:
+				strcat(pantsbuf, "chic rogue");
+				break;
+			case 29:
+				strcat(pantsbuf, "smooth eel");
+				break;
+			case 30:
+				strcat(pantsbuf, "dictator cheng");
+				break;
+			case 31:
+				strcat(pantsbuf, "ronin");
+				break;
+			case 32:
+				strcat(pantsbuf, "old samurai");
+				break;
+			case 33:
+				strcat(pantsbuf, "deadly chic");
+				break;
+			case 34:
+				strcat(pantsbuf, "gentleman");
+				break;
+			case 35:
+				strcat(pantsbuf, "women's hero");
+				break;
+			case 36:
+				strcat(pantsbuf, "revolver man");
+				break;
+			case 37:
+				strcat(pantsbuf, "roughneck");
+				break;
+			case 38:
+				strcat(pantsbuf, "comrade");
+				break;
+			case 39:
+				strcat(pantsbuf, "cavalry");
+				break;
+			case 40:
+				strcat(pantsbuf, "man picture");
+				break;
+			case 41:
+				strcat(pantsbuf, "saber rattler");
+				break;
+			case 42:
+				strcat(pantsbuf, "cheek snouter");
+				break;
+			case 43:
+				strcat(pantsbuf, "bristle cutlets");
+				break;
+			case 44:
+				strcat(pantsbuf, "royale");
+				break;
+			case 45:
+				strcat(pantsbuf, "pinch of soul");
+				break;
+			case 46:
+				strcat(pantsbuf, "tire tracks");
+				break;
+			case 47:
+				strcat(pantsbuf, "chin fluff");
+				break;
+			case 48:
+				strcat(pantsbuf, "raw beard");
+				break;
+		}
+		strcat(pantsbuf, "'");
+
+	}
+
+	return pantsbuf;
+
+}
+
+char *
 pantsdescription(mtmp)
 register struct monst *mtmp;
 {

@@ -265,6 +265,8 @@ nh_timeout()
 		if (u.pract_smokingtimer < 0) u.pract_smokingtimer = 0; /* fail safe */
 	}
 
+	u.barbertimer++;
+
 	if (SimeoutBug || u.uprops[SIMEOUT_BUG].extrinsic || have_simeoutstone()) {
 		if (!rn2(2500)) {
 			u.usanity += (YouGetLotsOfSanity ? rnd(20) : 1);

@@ -27841,6 +27841,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"Playing variants of nethack other than SLEX (as well as playing vanilla nethack) is just a huge waste of time. SLEX has the advantage that you'll at least have fun while wasting your time!",
 	"The blacklist is there to make sure that the slex-hater squad finds their own prejudices confirmed, which are that slex is supposedly super unbalanced and random bad stuff just keeps happening to the player for no reason. Who are they to criticize my well-balanced game anyway???",
 	"These people are criticizing slex for the sake of criticizing something, not because there was anything actually wrong with slex (there isn't). So they can just fuck off.",
+	"The metal mafioso blasts you with a metal-attracting magnet!",
+	"The metal mafioso blasts you with a metal-attracting magnet! Damn, the magnet pulled 10 items out of your inventory! Quick, get them back before the mafia goons steal them!",
+	"The metal mafioso blasts you with a metal-attracting magnet! Now your +12 plate mail is on the ground right next to the metal mafioso, and he'll grab it and sell it to the black market before you can do anything about it.",
 
 };
 

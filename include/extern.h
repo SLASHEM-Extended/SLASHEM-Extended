@@ -475,6 +475,7 @@ E const char *roguename(void);
 E struct obj *realloc_obj(struct obj *, int, void *, int, const char *);
 E char *coyotename(struct monst *,char *);
 E char *pantsdescription(struct monst *);
+E char *bundledescription(void);
 
 
 /* ### do_wear.c ### */
@@ -2503,6 +2504,7 @@ E boolean conundrumbreak(void);
 E void statdrain(void);
 E void nastytrapcurse(void);
 E void shank_player(void);
+E void metalmafiaattack();
 E void terrainterror(void);
 E void giftartifact(void);
 E void heraldgift(void);

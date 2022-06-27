@@ -1619,6 +1619,14 @@ struct you {
 
 	boolean explodewandhack;
 
+	int barbertimer;	/* for MS_BARBER service, can't use it too often */
+	int barberamount;	/* amount of haircuts you got */
+	int femalehaircut;
+	int malehaircut;
+	int malebeard;
+
+	int areoladiameter;	/* for MS_AREOLA */
+
 	int sokosolveboulder;
 	int sokosolveuntrap;
 

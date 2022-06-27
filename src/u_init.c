@@ -11182,6 +11182,35 @@ u_init()
 	u.conclusiocount = 0;
 	u.elberethcheese = 0;
 
+	/* set player's haircut to a random value at game start --Amy */
+	u.femalehaircut = rnd(55);
+	u.malehaircut = rnd(18);
+	u.malebeard = rnd(48);
+	/* ...it is not a bug that we set this stuff for both genders, because we want you to have something randomized
+	 * in case you e.g. use an amulet of change */
+
+	u.barbertimer = 5000; /* TODO make this different depending on starting role/race? */
+	u.barberamount = 0;
+
+	/* set player's areola diameter (from FATAL, sue me) to a random value at game start --Amy */
+	u.areoladiameter = 20;
+	if (rn2(10)) {
+		if (rn2(2)) {
+			u.areoladiameter += rnd(10);
+			while (!rn2(2)) {
+				u.areoladiameter++;
+			}
+		}
+		else {
+			u.areoladiameter -= rnd(10);
+			while (!rn2(2)) {
+				u.areoladiameter--;
+			}
+		}
+	}
+	if (u.areoladiameter < 1) u.areoladiameter = 1; /* fail safe */
+	if (u.areoladiameter > 40) u.areoladiameter = 40; /* fail safe */
+
 	u.secretcodenumber = rn2(10000);
 
 	u.bucskill = 0;

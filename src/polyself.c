@@ -283,6 +283,26 @@ dead: /* we come directly here if their experience level went to 0 or less */
 		(flags.female && urace.individual.f) ? urace.individual.f :
 		(urace.individual.m) ? urace.individual.m : urace.noun);
 	u.cnd_newmancount++;
+
+	/* polyselfing into a new man is supposed to be the only way to reroll your areola diameter --Amy */
+	u.areoladiameter = 20;
+	if (rn2(10)) {
+		if (rn2(2)) {
+			u.areoladiameter += rnd(10);
+			while (!rn2(2)) {
+				u.areoladiameter++;
+			}
+		}
+		else {
+			u.areoladiameter -= rnd(10);
+			while (!rn2(2)) {
+				u.areoladiameter--;
+			}
+		}
+	}
+	if (u.areoladiameter < 1) u.areoladiameter = 1; /* fail safe */
+	if (u.areoladiameter > 30) u.areoladiameter = 30; /* fail safe */
+
 	use_skill(P_POLYMORPHING, rnd(5));
 	if (!Upolyd) u.polyformed = 0;
 	if (Slimed) {

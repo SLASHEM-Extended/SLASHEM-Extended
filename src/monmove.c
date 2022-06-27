@@ -2387,6 +2387,69 @@ convertdone:
 		nomul(-(rnd(10)), "Mikraanesis had stopped time", FALSE);
 	}
 
+	if (mdat->msound == MS_AREOLA && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && m_canseeu(mtmp) ) {
+		int areolachance = 500;
+		int playerareola = u.areoladiameter;
+		if (playerareola >= 10 && playerareola <= 30) {
+			while (playerareola > 20) {
+				areolachance -= 40;
+				playerareola--;
+			}
+			while (playerareola < 20) {
+				areolachance += 50;
+				playerareola++;
+			}
+		}
+		else switch (u.areoladiameter) {
+			default: areolachance = 500; break;
+			case 1: areolachance = 1000000; break;
+			case 2: areolachance = 25000; break;
+			case 3: areolachance = 10000; break;
+			case 4: areolachance = 5000; break;
+			case 5: areolachance = 4000; break;
+			case 6: areolachance = 3000; break;
+			case 7: areolachance = 2000; break;
+			case 8: areolachance = 1500; break;
+			case 9: areolachance = 1200; break;
+			case 31: areolachance = 90; break;
+			case 32: areolachance = 80; break;
+			case 33: areolachance = 70; break;
+			case 34: areolachance = 60; break;
+			case 35: areolachance = 50; break;
+			case 36: areolachance = 40; break;
+			case 37: areolachance = 30; break;
+			case 38: areolachance = 20; break;
+			case 39: areolachance = 10; break;
+			case 40: areolachance = 5; break;
+		}
+
+		if (!rn2(areolachance)) {
+
+			if ((flags.female && mtmp->female) || (!flags.female && !mtmp->female)) {
+				if (mtmp->mtame) {
+					mtmp->mtame = FALSE;
+					pline("%s doesn't seem to want you anymore!", Monnam(mtmp));
+				} else if (mtmp->mpeaceful) {
+					mtmp->mpeaceful = FALSE;
+					pline("%s is getting all envious about you, and decides to attack!", Monnam(mtmp));
+				}
+			} else {
+				if (!mtmp->mfrenzied) {
+					if (!mtmp->mpeaceful) {
+						mtmp->mpeaceful = TRUE;
+						pline("%s seems to like you, and decides to stop attacking!", Monnam(mtmp));
+					} else if (!mtmp->mtame) {
+						pline("%s is crazy about you, and wants to join your team!", Monnam(mtmp));
+						mtmp = tamedog(mtmp, (struct obj *) 0, TRUE);
+						if (!mtmp) return 1; /* shouldn't happen, but who knows... */
+					}
+				}
+			}
+
+		}
+
+	}
+
 	if (mdat->msound == MS_STABILIZE && !u.antitelespelltimeout && !rn2(100) && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) ) {
 		u.antitelespelltimeout = rnz(20);
 		pline("%s stabilizes the space around.", Monnam(mtmp)); /* message is sic from Elona */
@@ -2702,7 +2765,7 @@ toofar:
 /*	Now the actual movement phase	*/
 
 #ifndef GOLDOBJ
-	if(!nearby || (monsterflees(mtmp->data) && !rn2(3)) || (u.singtrapocc && rn2(5)) || (u.katitrapocc && rn2(5)) || mtmp->mflee || scared ||
+	if(!nearby || (monsterflees(mtmp->data) && !rn2(3)) || (mtmp->data->msound == MS_METALMAFIA && !rn2(3)) || (u.singtrapocc && rn2(5)) || (u.katitrapocc && rn2(5)) || mtmp->mflee || scared ||
 	   mtmp->mconf || mtmp->mstun || (mtmp->minvis && !rn2(3)) ||
 	   (mdat->mlet == S_LEPRECHAUN && !u.ugold && (mtmp->mgold || rn2(2))) ||
 
@@ -2712,7 +2775,7 @@ toofar:
 	    lepgold = findgold(mtmp->minvent);
 	}
 
-	if(!nearby || (monsterflees(mtmp->data) && !rn2(3)) || (u.singtrapocc && rn2(5)) || (u.katitrapocc && rn2(5)) || mtmp->mflee || scared ||
+	if(!nearby || (monsterflees(mtmp->data) && !rn2(3)) || (mtmp->data->msound == MS_METALMAFIA && !rn2(3)) || (u.singtrapocc && rn2(5)) || (u.katitrapocc && rn2(5)) || mtmp->mflee || scared ||
 	   mtmp->mconf || mtmp->mstun || (mtmp->minvis && !rn2(3)) ||
 	   (mdat->mlet == S_LEPRECHAUN && !ygold && (lepgold || rn2(2))) ||
 #endif
@@ -3682,6 +3745,8 @@ altarfound:
 
 	if (monsterrandomwalk(ptr)) appr = 0;
 	if (monsterflees(ptr)) appr = -1;
+
+	if (appr == 1 && mtmp->data->msound == MS_METALMAFIA && distu(mtmp->mx,mtmp->my) <= 3*3 ) appr = 0;
 
 	if (ptr == &mons[PM_DECISION_WEAKSKI]) appr = (!rn2(3) ? -1 : rn2(2) ? 0 : 1);
 	if (ptr == &mons[PM_STOIAKMIDM]) appr = (!rn2(3) ? -1 : rn2(2) ? 0 : 1);

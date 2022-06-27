@@ -2320,10 +2320,14 @@ meatmetal(mtmp)
 		/* KMH -- Don't eat indigestible/choking objects */
 		if (otmp->otyp != AMULET_OF_STRANGULATION &&
 				otmp->otyp != RIN_SLOW_DIGESTION) {
-		    if (cansee(mtmp->mx,mtmp->my) && flags.verbose)
-			pline("%s eats %s!", Monnam(mtmp),
-				distant_name(otmp,doname));
-		    else if (flags.soundok && flags.verbose) {
+		    if (cansee(mtmp->mx,mtmp->my) && flags.verbose) {
+
+			/* metal mafia guys technically eat metallic items, but it's flavored as them selling the metal --Amy
+			 * they're secretive about it, so there is no sound if they do so outside your field of view */
+
+			if (mtmp->data->msound == MS_METALMAFIA) pline("%s sells %s to the fences!", Monnam(mtmp), distant_name(otmp,doname));
+			else pline("%s eats %s!", Monnam(mtmp), distant_name(otmp,doname));
+		    } else if (flags.soundok && flags.verbose && !(mtmp->data->msound == MS_METALMAFIA)) {
 			You_hear("a crunching sound.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Ochen' tsennyy element metalla tol'ko chto poyel i vy budete pinat' sebya, yesli ya skazhu vam, chto eto bylo." : "Gruum!");
 			}

@@ -7082,6 +7082,73 @@ dropitemattack()
 
 }
 
+/* metal mafia's magnet attack: like AD_DROP, but only affects metallic items --Amy */
+void
+metalmafiaattack()
+{
+	register struct obj *otmpi, *otmpii;
+	register int numdroppeditems = 0;
+
+	for (otmpi = invent; otmpi; otmpi = otmpii) {
+
+		otmpii = otmpi->nobj;
+
+		if (!rn2(10) && is_metallic(otmpi) && (objects[(otmpi)->otyp].oc_material != MT_ETHER) && !stack_too_big(otmpi) ) {
+
+			if (otmpi->owornmask & W_ARMOR) {
+			    if (otmpi == uskin) {
+				skinback(TRUE);		/* uarm = uskin; uskin = 0; */
+			    }
+			    if (otmpi == uarm) (void) Armor_off();
+			    else if (otmpi == uarmc) (void) Cloak_off();
+			    else if (otmpi == uarmf) (void) Boots_off();
+			    else if (otmpi == uarmg) (void) Gloves_off();
+			    else if (otmpi == uarmh) (void) Helmet_off();
+			    else if (otmpi == uarms) (void) Shield_off();
+			    else if (otmpi == uarmu) (void) Shirt_off();
+			    /* catchall -- should never happen */
+			    else setworn((struct obj *)0, otmpi ->owornmask & W_ARMOR);
+			} else if (otmpi ->owornmask & W_AMUL) {
+			    Amulet_off();
+			} else if (otmpi ->owornmask & W_IMPLANT) {
+			    Implant_off();
+			} else if (otmpi ->owornmask & W_RING) {
+			    Ring_gone(otmpi);
+			} else if (otmpi ->owornmask & W_TOOL) {
+			    Blindf_off(otmpi);
+			} else if (otmpi ->owornmask & (W_WEP|W_SWAPWEP|W_QUIVER)) {
+			    if (otmpi == uwep)
+				uwepgone();
+			    if (otmpi == uswapwep)
+				uswapwepgone();
+			    if (otmpi == uquiver)
+				uqwepgone();
+			}
+
+			if (otmpi->owornmask & (W_BALL|W_CHAIN)) {
+			    unpunish();
+			} else if (otmpi->owornmask) {
+			/* catchall */
+			    setnotworn(otmpi);
+			}
+
+			dropx(otmpi);
+			numdroppeditems++;
+		}
+	    }
+
+	    if (numdroppeditems) pline("Damn, the magnet pulled %d items out of your inventory! Quick, get them back before the mafia goons steal them!", numdroppeditems);
+	    else pline("Phew, none of your items were affected by the magnet.");
+
+	    if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
+	    if (numdroppeditems) {
+			if (Levitation) scatter(u.ux,u.uy,10,VIS_EFFECTS|MAY_DESTROY,0);
+			else scatter(u.ux,u.uy,10,VIS_EFFECTS,0); /* don't destroy fragile stuff (unless levitating) */
+	    }
+
+}
+
 /* nivellation: rather than doing what some other variants are doing (imposing a hard cap on max HP and Pw), I decided
  * that it's much more interesting to instead have an attack/trap/badeffect that can reduce the max depending on how high
  * it already is; this effect will do nothing if the player's max is below a certain threshold */

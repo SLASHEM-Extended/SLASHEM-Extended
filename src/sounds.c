@@ -3321,7 +3321,63 @@ repairitemchoice:
 
 		break;
 	case MS_BARBER:
-		/* todo */
+
+		if (u.barbertimer < 5000) {
+			verbalize("Sorry, your last haircut was just %d turns ago, you have to wait a bit until I can give you another!", u.barbertimer);
+			break;
+		}
+
+		{
+			int barbercost = 250;
+			if (u.barberamount > 0) barbercost += (u.barberamount * 50);
+			if (u.barbertimer > 5999) {
+				int barberxtracost = u.barbertimer - 5000;
+				while (barberxtracost >= 1000) {
+					barberxtracost -= 1000;
+					barbercost += 100;
+				}
+			}
+
+			verbalize("Hey %s, want a new haircut? Just %d zorkmids!", flags.female ? "girl" : "man", barbercost);
+
+			if (yn("Do you want a new haircut?") != 'y') {
+				verbalize("Oh well, if you don't wanna... you know where to find me if you change your mind.");
+			} else {
+				if (u.ugold < barbercost) {
+					verbalize("Sorry, I'm not working for free. Get enough cash first!");
+				} else {
+					int charismagain = 1;
+					if (Role_if(PM_LADIESMAN)) charismagain++;
+
+					u.ugold -= barbercost;
+					u.barberamount++;
+					u.barbertimer = 0;
+					if (flags.female) {
+						u.femalehaircut = rnd(55);
+					} else {
+						u.malehaircut = rnd(18);
+						u.malebeard = rnd(48);
+					}
+					(void) adjattrib(A_CHA, charismagain, 0, TRUE);
+
+	
+					d_level flev;
+
+					if (mon_has_amulet(mtmp) || In_endgame(&u.uz)) {
+						verbalize("Alright, done. I'll be off looking for another customer! Seeya!");
+						mongone(mtmp);
+						Your("new hairstyle is '%s.", bundledescription());
+						return(1);
+					}
+					flev = random_branchport_level();
+					migrate_to_level(mtmp, ledger_no(&flev), MIGR_RANDOM, (coord *)0);
+					verbalize("Alright, done. I'll be off looking for another customer! Seeya!");
+					Your("new hairstyle is '%s.", bundledescription());
+					return(1);
+				}
+			}
+		}
+
 		break;
 	case MS_AREOLA:
 		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
@@ -3452,7 +3508,78 @@ repairitemchoice:
 		else verbl_msg = "You devil, I'll make sure you never fell a tree again!";
 		break;
 	case MS_METALMAFIA:
-		/* todo */
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Dammit, they're defending their metal with teeth and claws!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Let's spend our money on a good meal, and then we'll resume stealing metal!";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Let's go! We gotta find someone who has valuable metal that we can steal and sell for profit!";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "Metal is the only material worth anything on the black market.";
+		} else if (mtmp->mfrenzied) {
+			verbl_msg = "I'm gonna kill you, and then I'll loot your backpack for metallic items that I can sell.";
+		} else {
+			verbalize("Gimme your metal!");
+
+			/* metal mafia goons want your metal, and if you give them something that weighs enough, they may
+			 * turn peaceful and leave you alone, but it's only a chance --Amy */
+
+			register struct obj *metalmafiaotmp;
+
+			metalmafiaotmp = getobj(allnoncount, "offer to the metal mafia");
+
+			if (!metalmafiaotmp) {
+				verbalize("I said, gimme your metal!");
+				break;
+			}
+			if (!is_metallic(metalmafiaotmp)) {
+				verbalize("Stop bullshitting me, that thing's not metal and therefore it's worthless! Gimme your metal dammit!");
+				break;
+			}
+			if (metalmafiaotmp->oartifact) {
+				verbalize("Hey, I ain't touching something that hot!");
+				break;
+			}
+			if (objects[(metalmafiaotmp)->otyp].oc_material == MT_ETHER) {
+				verbalize("Stay the hell away with that contaminated garbage!");
+				break;
+			}
+			if (evades_destruction(metalmafiaotmp)) {
+				verbalize("No way! There's no fence on the black market who would buy that!");
+				break;
+			}
+			if (metalmafiaotmp->oclass == COIN_CLASS) {
+				verbalize("You can't bribe me with money! I need metallic items!");
+				break;
+			}
+			if (metalmafiaotmp->owt < 20) {
+				useupall(metalmafiaotmp);
+				verbalize("That's scrap metal. I'll take it, but it's not gonna fetch much cash, so... gimme something better!");
+				break;
+			} else {
+				if (!rn2(5)) {
+					int metalmafiaworth = rnd(100);
+					if (metalmafiaotmp->owt >= metalmafiaworth) {
+						useupall(metalmafiaotmp);
+						mtmp->mpeaceful = TRUE;
+						verbalize("Alright, that should do it! It's been a pleasure doing business with you. Have a nice day!");
+					} else {
+						useupall(metalmafiaotmp);
+						verbalize("Yeah, that thing's good, it'll sell for some cash, but I still need more. Gimme more metal!");
+					}
+					break;
+				} else {
+					useupall(metalmafiaotmp);
+					verbalize("Yeah, that thing's good, it'll sell for some cash, but I still need more. Gimme more metal!");
+					break;
+				}
+			}
+
+		}
 		break;
 	case MS_DEEPSTATE:
 		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {

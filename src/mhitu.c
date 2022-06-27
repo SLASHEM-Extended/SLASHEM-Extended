@@ -5485,6 +5485,16 @@ newboss:
 
 	}
 
+	if (mtmp->data->msound == MS_METALMAFIA) {
+		if(lined_up(mtmp) && ((dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM) || (elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) && (tmp > (rnd(20+i))) && (rnd(5) > 3) ) {  
+			if (foundyou) {
+				pline("%s blasts you with a metal-attracting magnet!",Monnam(mtmp) );
+				metalmafiaattack();
+			}
+		}
+
+	}
+
 	if (evilfriday && mtmp->data->mlet == S_GIANT) { /* evil patch idea by jonadab */
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];

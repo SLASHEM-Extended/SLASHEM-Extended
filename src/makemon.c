@@ -22654,6 +22654,17 @@ loveheelover:
 	 * I guess the evil part about it is that you'll have to kill your leader if you want it. --Amy */
 	if (!rn2(2) && ptr->msound == MS_LEADER) (void) mongets(mtmp, KYRT_SHIRT);
 
+	if (ptr->msound == MS_METALMAFIA && !rn2(10)) {
+		struct obj *otmpX = mksobj(rn2(5) ? SCR_ROOT_PASSWORD_DETECTION : SCR_COURSE_TRAVELING, TRUE, FALSE, FALSE);
+		if (otmpX) {
+			otmpX->finalcancel = TRUE;
+			otmpX->quan = 1;
+			otmpX->owt = weight(otmpX);
+			mpickobj(mtmp, otmpX, TRUE);
+		}
+
+	}
+
 	/* ordinary soldiers rarely have access to magic (or gold :-) */
 	if (ptr == &mons[PM_SOLDIER] && rn2(15)) return;
 	if (ptr == &mons[PM_TEUTON_SOLDIER] && rn2(15)) return;

@@ -3229,6 +3229,21 @@ boolean guaranteed;
 		you_are("producing a permanent antimagic shell");
 	}
 
+	if ((guaranteed || !rn2(10)) ) {
+		sprintf(buf, " '%s", bundledescription());
+		enl_msg("Your hairstyle ", "is", "was", buf);
+	}
+
+	if ((guaranteed || !rn2(10)) ) {
+		sprintf(buf, " %d turns ago", u.barbertimer);
+		enl_msg("The last time you got a new haircut ", "is", "was", buf);
+	}
+
+	if ((guaranteed || !rn2(10)) ) {
+		sprintf(buf, " %d", u.areoladiameter);
+		enl_msg("Your areola diameter ", "is", "was", buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) { sprintf(buf, " turn %d", u.monstertimeout);
 		enl_msg("Monster spawn increase ", "start at", "would have started at", buf);
 	}
@@ -7676,6 +7691,15 @@ int final;
 	if (Role_if(PM_UNBELIEVER)) {
 		dump("  You were ", "producing a permanent antimagic shell");
 	}
+
+	sprintf(buf, " '%s", bundledescription());
+	dump("  Your hairstyle was", buf);
+
+	sprintf(buf, " %d turns ago", u.barbertimer);
+	dump("  The last time you got a new haircut was", buf);
+
+	sprintf(buf, " %d", u.areoladiameter);
+	dump("  Your areola diameter was", buf);
 
 	sprintf(buf, " turn %d", u.monstertimeout);
 	dump("  Monster spawn increase started at ", buf);

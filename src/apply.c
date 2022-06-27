@@ -1172,10 +1172,14 @@ struct obj *obj;
 			You(look_str, "undernourished");
 		    else if (u.uhs >= WEAK && have_anorexia() )
 			You(look_str, "beautiful and skinny");
-		    else You("look as %s as ever.",
+		    else {
+			You("look as %s as ever.",
 				ACURR(A_CHA) > 14 ?
 				(poly_gender()==1 ? "beautiful" : "handsome") :
 				"ugly");
+			Your("hairstyle is '%s.", bundledescription());
+			Your("areola diameter is %d.", u.areoladiameter);
+		    }
 		} else {
 			You_cant("see your %s %s.",
 				ACURR(A_CHA) > 14 ?

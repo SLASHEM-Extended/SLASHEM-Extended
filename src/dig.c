@@ -440,6 +440,44 @@ dig()
 
 			    digtxt = "You smash the bars to the ground.";
 			    u.cnd_barbashamount++;
+			    if (!rn2(100)) {
+				int attempts = 0;
+				int monstcnt;
+				monstcnt = 1 + rnd(3);
+				struct permonst *pm = 0;
+
+				if (Aggravate_monster) {
+					u.aggravation = 1;
+					reset_rndmonst(NON_PM);
+				}
+
+newbossMETALMAFIA:
+				do {
+					pm = rndmonst();
+					attempts++;
+					if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+				} while ( (!pm || (pm && !(pm->msound == MS_METALMAFIA ))) && attempts < 50000);
+
+				if (!pm && rn2(50) ) {
+					attempts = 0;
+					goto newbossMETALMAFIA;
+				}
+				if (pm && !(pm->msound == MS_METALMAFIA) && rn2(50) ) {
+					attempts = 0;
+					goto newbossMETALMAFIA;
+				}
+
+				if (pm) (void) makemon(pm, 0, 0, MM_ANGRY);
+
+				if (monstcnt > 0) {
+					monstcnt--;
+					if (monstcnt > 0) goto newbossMETALMAFIA;
+				}
+
+				u.aggravation = 0;
+
+			    }
 
 			    if (In_sokoban(&u.uz))
 				{change_luck(-1);
