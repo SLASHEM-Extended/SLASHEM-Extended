@@ -23,7 +23,7 @@
  */
 #define tp_sensemon(mon) (	/* The hero can always sense a monster IF:  */\
       (mon->telepatvisible == 1 || (mon->telepatvisible == 2 && StrongTelepat) ) && /* 0. the monster passes a 66 percent chance check to be visible (addition by Amy) AND */\
-	(mon->data->msound != MS_DEEPSTATE) && /* 0.5 the monster isn't from the deep state AND */\
+	(mon->data->msound != MS_DEEPSTATE) && !(mon->egotype_deepstatemember) && /* 0.5 the monster isn't from the deep state AND */\
 	(!mindless((mon)->data) && (!mon->egotype_undead) ) &&	/* 1. the monster has a brain to sense AND  */\
       ((Blind && Blind_telepat) ||	/* 2a. hero is blind and telepathic OR	    */\
 				/* 2b. hero is using a telepathy inducing   */\
@@ -38,7 +38,7 @@
  */
 
 /* Only 50 percent of monsters are visible to warning. --Amy */
-#define mon_warning(mon) ((mon->warningvisible == 1 || (mon->warningvisible == 2 && StrongWarning) ) && Warning && !(mon)->mpeaceful && (mon->data->msound != MS_DEEPSTATE) &&				\
+#define mon_warning(mon) ((mon->warningvisible == 1 || (mon->warningvisible == 2 && StrongWarning) ) && Warning && !(mon)->mpeaceful && (mon->data->msound != MS_DEEPSTATE) && !(mon->egotype_deepstatemember) &&				\
 			 (distu((mon)->mx, (mon)->my) < 100) &&				\
 			 (((int) ((mon)->m_lev / 6)) >= flags.warnlevel))
 
@@ -67,7 +67,7 @@
  * invisible to infravision), because this is usually called from within
  * canseemon() or canspotmon() which already check that.
  */
-#define see_with_infrared(mon) (!Blind && Infravision && (StrongInfravision || mon->infravisble) && infravisible(mon->data) && couldsee(mon->mx, mon->my) && (mon->data->msound != MS_DEEPSTATE))
+#define see_with_infrared(mon) (!Blind && Infravision && (StrongInfravision || mon->infravisble) && infravisible(mon->data) && couldsee(mon->mx, mon->my) && (mon->data->msound != MS_DEEPSTATE) && !(mon->egotype_deepstatemember))
 
 /*
  * see_with_infrared()
@@ -77,7 +77,7 @@
  * invisible to infravision), because this is usually called from within
  * canseemon() or canspotmon() which already check that.
  */
-#define see_with_infrared(mon) (!Blind && Infravision && (StrongInfravision || mon->infravisble) && infravisible(mon->data) && couldsee(mon->mx, mon->my) && (mon->data->msound != MS_DEEPSTATE))
+#define see_with_infrared(mon) (!Blind && Infravision && (StrongInfravision || mon->infravisble) && infravisible(mon->data) && couldsee(mon->mx, mon->my) && (mon->data->msound != MS_DEEPSTATE) && !(mon->egotype_deepstatemember))
 
 
 /*
@@ -114,7 +114,7 @@
  * invisible to infravision.
  */
 #define knowninvisible(mon) \
-	(mon->minvis && (mon->data->msound != MS_DEEPSTATE) && \
+	(mon->minvis && (mon->data->msound != MS_DEEPSTATE) && !(mon->egotype_deepstatemember) && \
 	    ((cansee(mon->mx, mon->my) && ( (See_invisible && !mon->minvisreal && (StrongSee_invisible || mon->seeinvisble) ) || Detect_monsters)) || \
 		(!Blind && (HTelepat & ~INTRINSIC) && \
 		    distu(mon->mx, mon->my) <= (BOLT_LIM * BOLT_LIM) \

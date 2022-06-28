@@ -18,7 +18,7 @@ STATIC_DCL boolean help_menu(int *);
 extern void port_help(void);
 #endif
 #ifdef EXTENDED_INFO
-STATIC_DCL char * get_description_of_monster_type(struct permonst *, char *);
+STATIC_DCL char * get_description_of_monster_type(struct permonst *, char *, BOOLEAN_P);
 STATIC_DCL char * get_generation_description_of_monster_type(struct permonst *, char *);
 STATIC_DCL char * get_resistance_description_of_monster_type(struct permonst *, char *);
 STATIC_DCL char * get_flag_description_of_monster_type(struct permonst *, char *);
@@ -1760,7 +1760,8 @@ blaone:
 
 			append_newline_to_pline_string(out_str);
 			temp_buf[0]='\0';
-			get_description_of_monster_type(pm, temp_buf);
+			if (!(mtmpX->egotype_spoilerproofer)) get_description_of_monster_type(pm, temp_buf, TRUE);
+			else get_description_of_monster_type(pm, temp_buf, FALSE);
 			(void)strncat(out_str, temp_buf, BUFSZ-strlen(out_str)-1);
 		}
 #endif
@@ -3605,7 +3606,7 @@ get_description_of_attack(struct attack *mattk, char * main_temp_buf)
 }
 
 char *
-get_description_of_monster_type(struct permonst * ptr, char * description)
+get_description_of_monster_type(struct permonst * ptr, char * description, boolean displayit)
 {
 	/*int monsternumber;*/
 /*
@@ -3624,7 +3625,7 @@ get_description_of_monster_type(struct permonst * ptr, char * description)
 		return description;
 	}
 
-	if (ptr->msound == MS_SPOILER) {
+	if ((ptr->msound == MS_SPOILER) || !displayit ) {
 		strcat(description, "Pokedex error 24: Access denied.");
 		return description;
 	}
@@ -3698,7 +3699,7 @@ int crpsnum;
 		return;
 	}
 
-	get_description_of_monster_type(pm, temp_buf);
+	get_description_of_monster_type(pm, temp_buf, TRUE);
 	pline("%s", temp_buf);
 
 }

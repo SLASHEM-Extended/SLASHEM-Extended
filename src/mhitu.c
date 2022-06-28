@@ -1755,7 +1755,7 @@ register struct attack *mattk;
 		}			
 	}
 
-	if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE))
+	if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember))
 	    map_invisible(mtmp->mx, mtmp->my);
 
 	if(could_seduce(mtmp, &youmonst, mattk) && !mtmp->mcan)
@@ -5485,7 +5485,7 @@ newboss:
 
 	}
 
-	if (mtmp->data->msound == MS_METALMAFIA) {
+	if ((mtmp->data->msound == MS_METALMAFIA) || (mtmp->egotype_metalmafioso)) {
 		if(lined_up(mtmp) && ((dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM) || (elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) && (tmp > (rnd(20+i))) && (rnd(5) > 3) ) {  
 			if (foundyou) {
 				pline("%s blasts you with a metal-attracting magnet!",Monnam(mtmp) );
@@ -6548,7 +6548,7 @@ hitmu(mtmp, mattk)
 	/*int randattack = 0;*/
 	int atttyp;
 
-	if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE))
+	if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember))
 	    map_invisible(mtmp->mx, mtmp->my);
 
 /*	If the monster is undetected & hits you, you should know where

@@ -2455,18 +2455,18 @@ convertdone:
 
 	}
 
-	if (mdat->msound == MS_STABILIZE && !u.antitelespelltimeout && !rn2(100) && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) ) {
+	if ( ((mdat->msound == MS_STABILIZE) || (mtmp->egotype_stabilizer)) && !u.antitelespelltimeout && !rn2(100) && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) ) {
 		u.antitelespelltimeout = rnz(20);
 		pline("%s stabilizes the space around.", Monnam(mtmp)); /* message is sic from Elona */
 	}
 
-	if (mdat->msound == MS_ESCAPE && (mtmp->mhp < (mtmp->mhpmax / 4)) ) {
+	if ( ((mdat->msound == MS_ESCAPE) || (mtmp->egotype_escaper)) && (mtmp->mhp < (mtmp->mhpmax / 4)) ) {
 		pline("%s vanishs.", Monnam(mtmp)); /* message is sic from Elona */
 		mongone(mtmp);
 		return 1;
 	}
 
-	if (mdat->msound == MS_SELFHARM && !rn2(50)) {
+	if ( ((mdat->msound == MS_SELFHARM) || (mtmp->egotype_selfharmer)) && !rn2(50)) {
 
 		if (canseemon(mtmp)) {
 			switch (rnd(7)) {

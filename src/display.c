@@ -818,6 +818,7 @@ display_warning(mon)
     int glyph;
 
     if (mon && (mon->data->msound == MS_DEEPSTATE)) return;
+    if (mon && mon->egotype_deepstatemember) return;
 
     if (mon_warning(mon)) {
         if (wl > WARNCOUNT - 1) wl = WARNCOUNT - 1;
@@ -1253,8 +1254,10 @@ newsym(x,y)
 
 	    if (mon && (mon->data->msound == MS_DEEPSTATE) && !mon_visible(mon) ) see_it = FALSE;
 	    if (mon && (mon->data->msound == MS_DEEPSTATE) && mon->minvis ) see_it = FALSE;
+	    if (mon && (mon->egotype_deepstatemember) && !mon_visible(mon) ) see_it = FALSE;
+	    if (mon && (mon->egotype_deepstatemember) && mon->minvis ) see_it = FALSE;
 
-	    if (mon && (see_it || (!worm_tail && Detect_monsters && (mon->data->msound != MS_DEEPSTATE) ))) {
+	    if (mon && (see_it || (!worm_tail && Detect_monsters && (mon->data->msound != MS_DEEPSTATE) && !(mon->egotype_deepstatemember) ))) {
 		if (mon->mtrapped) {
 		    struct trap *trap = t_at(x, y);
 		    int tt = trap ? trap->ttyp : NO_TRAP;
@@ -1366,7 +1369,7 @@ newsym(x,y)
 		&& !is_worm_tail(mon)) {
 	    /* Monsters are printed every time. */
 	    /* This also gets rid of any invisibility glyph */
-	    if (mon->data->msound != MS_DEEPSTATE) display_monster(x, y, mon, see_it ? 0 : DETECTED, 0);
+	    if (mon->data->msound != MS_DEEPSTATE && !(mon->egotype_deepstatemember)) display_monster(x, y, mon, see_it ? 0 : DETECTED, 0);
 	}
 	else if ((mon = m_at(x,y)) && mon_warning(mon) &&
 		 !is_worm_tail(mon)) {
@@ -1633,8 +1636,10 @@ newsymX(x,y)
 
 	    if (mon && (mon->data->msound == MS_DEEPSTATE) && !mon_visible(mon) ) see_it = FALSE;
 	    if (mon && (mon->data->msound == MS_DEEPSTATE) && mon->minvis ) see_it = FALSE;
+	    if (mon && (mon->egotype_deepstatemember) && !mon_visible(mon) ) see_it = FALSE;
+	    if (mon && (mon->egotype_deepstatemember) && mon->minvis ) see_it = FALSE;
 
-	    if (mon && (see_it || (!worm_tail && Detect_monsters && (mon->data->msound != MS_DEEPSTATE) ))) {
+	    if (mon && (see_it || (!worm_tail && Detect_monsters && (mon->data->msound != MS_DEEPSTATE) && !(mon->egotype_deepstatemember) ))) {
 		if (mon->mtrapped) {
 		    struct trap *trap = t_at(x, y);
 		    int tt = trap ? trap->ttyp : NO_TRAP;
@@ -1747,7 +1752,7 @@ newsymX(x,y)
 	    /* Monsters are printed every time. */
 	    /* This also gets rid of any invisibility glyph */
 
-	    if (mon->data->msound != MS_DEEPSTATE) display_monsterX(x, y, mon, see_it ? 0 : DETECTED, 0);
+	    if (mon->data->msound != MS_DEEPSTATE && !(mon->egotype_deepstatemember)) display_monsterX(x, y, mon, see_it ? 0 : DETECTED, 0);
 
 	}
 	else if ((mon = m_at(x,y)) && mon_warning(mon) &&
@@ -3581,6 +3586,7 @@ sensemon(mon)
 struct monst *mon;
 {
 	if (mon->data->msound == MS_DEEPSTATE) return FALSE;
+	if (mon->egotype_deepstatemember) return FALSE;
 	if (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) return FALSE;
 	if (isselfhybrid && (moves % 3 == 0) ) return FALSE;
 

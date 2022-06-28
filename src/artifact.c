@@ -1920,7 +1920,7 @@ char *hittee;			/* target's name: "you" or mon_nam(mdef) */
 		  vtense((const char *)0, verb), hittee);
 	/* assume probing has some sort of noticeable feedback
 	   even if it is being done by one monster to another */
-	if (attack_indx == MB_INDEX_PROBE && !canspotmon(mdef) && !(mdef->data->msound == MS_DEEPSTATE))
+	if (attack_indx == MB_INDEX_PROBE && !canspotmon(mdef) && !(mdef->data->msound == MS_DEEPSTATE) && !(mdef->egotype_deepstatemember))
 	    map_invisible(mdef->mx, mdef->my);
     }
 

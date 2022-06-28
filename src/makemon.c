@@ -23789,6 +23789,22 @@ register int	mmflags;
 		}
 		if (!rn2(100)) {
 			mtmp->isegotype = 1;
+			mtmp->egotype_stabilizer = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_spoilerproofer = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_metalmafioso = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_deepstatemember = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
 			mtmp->egotype_wouwouer = TRUE;
 		}
 		if (!rn2(100)) {

@@ -591,7 +591,7 @@ moverock()
 			pline("There's %s on the other side.", a_monnam(mtmp));
 		} else {
 		    You_hear("a monster behind %s.", the(xname(otmp)));
-		    if (!(mtmp->data->msound == MS_DEEPSTATE)) map_invisible(rx, ry);
+		    if (!(mtmp->data->msound == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember)) map_invisible(rx, ry);
 		}
 		if (flags.verbose)
 		    pline("Perhaps that's why %s cannot move it.", u.usteed ? y_monnam(u.usteed) : "you");

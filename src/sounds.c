@@ -2225,7 +2225,7 @@ register struct monst *mtmp;
     if (!is_silent(mtmp->data) && mtmp->data->msound <= MS_ANIMAL)
 	(void) domonnoise(mtmp);
     else if (mtmp->data->msound >= MS_HUMANOID) {
-	if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE))
+	if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember))
 	    map_invisible(mtmp->mx, mtmp->my);
 	(void) domonnoise(mtmp); /* "I'm hungry" for MS_HUMANOID but different for others --Amy */
 }
@@ -2302,7 +2302,7 @@ register struct monst *mtmp;
     /* be sure to do this before talking; the monster might teleport away, in
      * which case we want to check its pre-teleport position
      */
-    if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE))
+    if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember))
 	map_invisible(mtmp->mx, mtmp->my);
 
 	if (ptr == &mons[PM_DONALD_TRUMP]) { /* idea by Crawldragon, actual messages by Amy */
@@ -6251,7 +6251,7 @@ dochat()
     mtmp->mstrategy &= ~STRAT_WAITMASK;
 
     if (mtmp->mtame && mtmp->meating) {
-	if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE))
+	if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember))
 	    map_invisible(mtmp->mx, mtmp->my);
 	pline("%s is eating noisily.", Monnam(mtmp));
 	return (0);

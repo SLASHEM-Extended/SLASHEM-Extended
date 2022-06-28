@@ -682,7 +682,7 @@ use_stethoscope(obj)
 			mtmp->mundetected = 0;
 			if (cansee(rx,ry)) newsym(mtmp->mx,mtmp->my);
 		}
-		if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE) )
+		if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember) )
 			map_invisible(rx,ry);
 		return res;
 	}
@@ -3827,7 +3827,7 @@ struct obj *obj;
 	} else pline("%s", msg_snap);
 
     } else if (mtmp) {
-	if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE) &&
+	if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember) &&
 		!memory_is_invisible(rx, ry)) {
 	   pline(FunnyHallu ? "Oh no, it hit some invisible barrier... or wait... that barrier must be a monster! Help!" : "A monster is there that you couldn't see.");
 	   map_invisible(rx, ry);

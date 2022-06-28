@@ -399,6 +399,13 @@ struct monst {
 	Bitfield(egotype_singagent,1); /* MS_SING */
 	Bitfield(egotype_alladrainer,1); /* MS_ALLA */
 
+	Bitfield(egotype_selfharmer,1); /* MS_SELFHARM */
+	Bitfield(egotype_stabilizer,1); /* MS_STABILIZE */
+	Bitfield(egotype_escaper,1); /* MS_ESCAPE */
+	Bitfield(egotype_spoilerproofer,1); /* MS_SPOILER */
+	Bitfield(egotype_metalmafioso,1); /* MS_METALMAFIA */
+	Bitfield(egotype_deepstatemember,1); /* MS_DEEPSTATE */
+
 	Bitfield(nurse_extrahealth,1); /* to control which services a nurse will offer */
 	Bitfield(nurse_decontaminate,1);
 	Bitfield(nurse_healing,1);

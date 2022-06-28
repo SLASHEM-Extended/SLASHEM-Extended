@@ -1353,7 +1353,7 @@ register int x, y;
 		if (mtmp->m_ap_type == M_AP_OBJECT) goto objhere;
 		pline("%s stands in the way!", !canspotmon(mtmp) ?
 			"Some creature" : Monnam(mtmp));
-		if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE))
+		if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember))
 		    map_invisible(mtmp->mx, mtmp->my);
 		return(TRUE);
 	}
@@ -1373,7 +1373,7 @@ register int x, y;
 
 	if(mtmp && mtmp->m_ap_type != M_AP_FURNITURE) {
 		if (mtmp->m_ap_type == M_AP_OBJECT) goto objhere;
-		if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE))
+		if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember))
 		    map_invisible(mtmp->mx, mtmp->my);
 		return(TRUE);
 	}

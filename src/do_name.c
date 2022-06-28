@@ -1048,6 +1048,12 @@ stupidsegfault:
 	    if (mtmp->egotype_cameraclicker && (++egotypeamount < 21) ) sprintf(eos(buf), " CameraClicker");
 	    if (mtmp->egotype_singagent && (++egotypeamount < 21) ) sprintf(eos(buf), " SingAgent");
 	    if (mtmp->egotype_alladrainer && (++egotypeamount < 21) ) sprintf(eos(buf), " Alladrainer");
+	    if (mtmp->egotype_selfharmer && (++egotypeamount < 21) ) sprintf(eos(buf), " Self-Harmer");
+	    if (mtmp->egotype_stabilizer && (++egotypeamount < 21) ) sprintf(eos(buf), " Stabilizer");
+	    if (mtmp->egotype_escaper && (++egotypeamount < 21) ) sprintf(eos(buf), " Escaper");
+	    if (mtmp->egotype_spoilerproofer && (++egotypeamount < 21) ) sprintf(eos(buf), " Spoilerproofer");
+	    if (mtmp->egotype_metalmafioso && (++egotypeamount < 21) ) sprintf(eos(buf), " MetalMafioso");
+	    if (mtmp->egotype_deepstatemember && (++egotypeamount < 21) ) sprintf(eos(buf), " DeepStateMember");
 	    if (egotypeamount > 20) sprintf(eos(buf), " (%d egotypes)", egotypeamount);
 
 	}
