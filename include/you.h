@@ -1478,6 +1478,7 @@ struct you {
 	int alla;	/* for MS_ALLA */
 
 	int copwantedlevel;	/* for hot pursuits, i.e. when you've stolen from a shop */
+	int treesquadwantedlevel;	/* for MS_TREESQUAD, if this is positive they'll immediately turn hostile, always */
 
 	int gmmailsreceived;	/* in game master mode, track how often I spawn monsters for you */
 

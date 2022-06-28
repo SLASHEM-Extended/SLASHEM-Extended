@@ -2387,6 +2387,11 @@ convertdone:
 		nomul(-(rnd(10)), "Mikraanesis had stopped time", FALSE);
 	}
 
+	if (mdat->msound == MS_TREESQUAD && u.treesquadwantedlevel) {
+		if (mtmp->mtame) mtmp->mtame = FALSE;
+		if (mtmp->mpeaceful) mtmp->mpeaceful = FALSE;
+	}
+
 	if (mdat->msound == MS_AREOLA && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && m_canseeu(mtmp) ) {
 		int areolachance = 500;
 		int playerareola = u.areoladiameter;

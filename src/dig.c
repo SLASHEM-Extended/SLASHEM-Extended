@@ -418,14 +418,104 @@ dig()
 			    digtxt = "You cut down the tree.";
 			    u.cnd_treechopamount++;
 			    if (u.ualign.type == A_CHAOTIC) adjalign(1);
+
+				/* the tree squads do not want people who kill trees, and will aggressively chase them --Amy */
+			    u.treesquadwantedlevel += (100 + rnd(u.cnd_treechopamount * 5));
+			    if (Role_if(PM_BOSMER)) { /* you have angered Yavanna... */
+				You("violated the sanctity of the grove!");
+				adjalign(-10);
+				u.ualign.sins++;
+				u.alignlim--;
+				u.treesquadwantedlevel += 1000;
+			    }
+
 			    lev->typ = ROOM;
+			    if (!rn2(5)) wake_nearby(); /* felling a tree can make a loud noise, try it in real life! --Amy */
+
 			    if (!rn2(5) && !(lev->looted & TREE_LOOTED) ) (void) rnd_treefruit_at(dpx, dpy);
+
 				if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
 					use_skill(P_WEDI, 1);
 				}
 				if (uwep && uwep->oartifact == ART_DIGSRU) {
 					use_skill(P_WEDI, 1);
 				}
+
+			    if (!(lev->looted & TREE_SWARM) && !rn2(16)) {
+			    	int cnt = rnl(4) + 2;
+				int made = 0;
+			    	coord mm;
+			    	mm.x = dpx; mm.y = dpy;
+
+				if (!rn2(20)) {
+
+					while (cnt--) {
+						if (enexto(&mm, mm.x, mm.y, &mons[PM_WOOD_NYMPH]) &&
+						makemon(mkclass(S_NYMPH,0), mm.x, mm.y, MM_ANGRY))
+						made++;
+					}
+					wake_nearby(); /* make sure they're awake --Amy */
+
+				} else {
+
+					while (cnt--) {
+						if (enexto(&mm, mm.x, mm.y, &mons[PM_KILLER_BEE]) &&
+						makemon(beehivemon(), mm.x, mm.y, MM_ANGRY))
+						made++;
+					}
+				}
+
+				if ( made )
+				    pline("You've attracted the tree's former occupants!");
+				else
+				    You("smell stale honey.");
+
+			    }
+
+			    if (!rn2(20)) { /* summon the tree squad! --Amy */
+
+				coord cc, dd;
+				int cx,cy;
+			      cx = rn2(COLNO);
+			      cy = rn2(ROWNO);
+				int tsdamount = rnd(10);
+				if (!rn2(10)) tsdamount += rnd(20);
+
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+
+				while (tsdamount) {
+
+					int attempts = 0;
+					struct permonst *pm = 0;
+					tsdamount--;
+					if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+newbossTSD:
+					do {
+						pm = rndmonst();
+						attempts++;
+						if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+					} while ( (!pm || (pm && !(pm->msound == MS_TREESQUAD ))) && attempts < 50000);
+
+					if (!pm && rn2(50) ) {
+						attempts = 0;
+						goto newbossTSD;
+					}
+					if (pm && !(pm->msound == MS_TREESQUAD) && rn2(50) ) {
+						attempts = 0;
+						goto newbossTSD;
+					}
+
+					if (pm) (void) makemon(pm, cx, cy, MM_ANGRY|MM_FRENZIED|MM_XFRENZIED|MM_ADJACENTOK);
+
+				}
+
+				u.aggravation = 0;
+
+			    }
+
 			} else if (IS_WATERTUNNEL(lev->typ)) {
 			    digtxt = "You smash the solid part of the tunnel apart.  Now it's a moat!";
 			    u.cnd_diggingamount++;

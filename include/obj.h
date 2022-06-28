@@ -128,6 +128,7 @@ struct obj {
 	Bitfield(mstartinventB,1);
 	Bitfield(mstartinventC,1); /* very likely (90%) to be erased on monster's death --Amy */
 	Bitfield(mstartinventD,1); /* likely (75%) to be erased on monster's death --Amy */
+	Bitfield(mstartinventE,1); /* extremely likely (95%) to be erased on monster's death --Amy */
 	/* ? free bits */
 
 	int	corpsenm;	/* type of corpse is mons[corpsenm] */

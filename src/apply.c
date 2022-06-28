@@ -3885,6 +3885,14 @@ struct obj *obj;
 			return 1;
 		}
 
+		if (otmp && otmp->mstartinventE && !(otmp->oartifact) && !(otmp->fakeartifact && !rn2(20)) && rn2(20) ) {
+			if (obj->spe > -20) obj->spe--;
+			else curse(obj);
+			You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(otmp));
+			delobj(otmp);
+			return 1;
+		}
+
 		if (otmp && otmp->mstartinventD && !(otmp->oartifact) && !(otmp->fakeartifact && !rn2(4)) && rn2(4) ) {
 			if (obj->spe > -20) obj->spe--;
 			else curse(obj);

@@ -4146,6 +4146,17 @@ register int pm;
 			badeffect();
 		}
 
+		if (ptr->msound == MS_TREESQUAD) { /* bad! --Amy */
+			pline("Ugh... what a repulsive taste.");
+			increasesanity(rnz(100));
+			You("vomit.");
+			vomit();
+			morehungry(20);
+		      make_vomiting(Vomiting+20, TRUE); /* yes, you'll vomit a second time unless you cure it --Amy */
+			if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
+
+		}
+
 		if (ptr->msound == MS_CONVERT) {
 			if (rn2(2)) badeffect();
 			else goodeffect();

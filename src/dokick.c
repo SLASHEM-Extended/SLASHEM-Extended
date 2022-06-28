@@ -488,6 +488,9 @@ register boolean clumsy;
 		} else if (monwepon && monwepon->mstartinventC && !(monwepon->oartifact) && !(monwepon->fakeartifact && !rn2(10)) && rn2(10) ) {
 			You("vaporize %s %s!", s_suffix(mon_nam(mon)), xname(monwepon));
 			delobj(monwepon);
+		} else if (monwepon && monwepon->mstartinventE && !(monwepon->oartifact) && !(monwepon->fakeartifact && !rn2(20)) && rn2(20) ) {
+			You("vaporize %s %s!", s_suffix(mon_nam(mon)), xname(monwepon));
+			delobj(monwepon);
 		} else if (monwepon && monwepon->mstartinventD && !(monwepon->oartifact) && !(monwepon->fakeartifact && !rn2(4)) && rn2(4) ) {
 			You("vaporize %s %s!", s_suffix(mon_nam(mon)), xname(monwepon));
 			delobj(monwepon);

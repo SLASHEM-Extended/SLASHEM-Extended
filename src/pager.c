@@ -27844,6 +27844,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"The metal mafioso blasts you with a metal-attracting magnet!",
 	"The metal mafioso blasts you with a metal-attracting magnet! Damn, the magnet pulled 10 items out of your inventory! Quick, get them back before the mafia goons steal them!",
 	"The metal mafioso blasts you with a metal-attracting magnet! Now your +12 plate mail is on the ground right next to the metal mafioso, and he'll grab it and sell it to the black market before you can do anything about it.",
+	"You violated the sanctity of the grove!",
+	"You violated the sanctity of the grove! Now the denizens of Oasis are gonna whip you with bamboo sticks, you bastard!",
 
 };
 

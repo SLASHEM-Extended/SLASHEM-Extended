@@ -4550,6 +4550,14 @@ secureidchoice:
 				break;
 		    }
 
+		    if (obj && obj->mstartinventE && !(obj->oartifact) && !(obj->fakeartifact && !rn2(20)) && rn2(20) ) {
+				uwep->spe--;
+				You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(obj));
+				delobj(obj);
+	          		t_timeout = rnz(5000);
+				break;
+		    }
+
 		    if (obj && obj->mstartinventD && !(obj->oartifact) && !(obj->fakeartifact && !rn2(4)) && rn2(4) ) {
 				uwep->spe--;
 				You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(obj));
@@ -7039,6 +7047,11 @@ revid_end:
 			t_timeout = rnz(1000);
 			break;
 		} else if (obj && obj->mstartinventC && !(obj->oartifact) && !(obj->fakeartifact && !rn2(10)) && rn2(10) ) {
+			You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(obj));
+			delobj(obj);
+			t_timeout = rnz(1000);
+			break;
+		} else if (obj && obj->mstartinventE && !(obj->oartifact) && !(obj->fakeartifact && !rn2(20)) && rn2(20) ) {
 			You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(obj));
 			delobj(obj);
 			t_timeout = rnz(1000);

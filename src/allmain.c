@@ -742,6 +742,12 @@ moveloop()
 
 			}
 
+			/* tree squads don't actively spawn while you're chased by them --Amy */
+			if (u.treesquadwantedlevel) {
+				u.treesquadwantedlevel--;
+				if (u.treesquadwantedlevel < 0) u.treesquadwantedlevel = 0; /* fail safe */
+			}
+
 			if (u.copwantedlevel) {
 
 				u.copwantedlevel--;
@@ -940,7 +946,7 @@ moveloop()
 				if (!rn2(100)) randsp *= 3;
 				if (!rn2(1000)) randsp *= 5;
 				if (!rn2(10000)) randsp *= 10;
-				monstercolor = rnd(407);
+				monstercolor = rnd(425);
 
 				if (wizard || !rn2(10)) pline(FunnyHallu ? "Someone got in here! Who could that be?" : "You feel that a group has arrived!");
 
@@ -1002,7 +1008,7 @@ moveloop()
 				if (!rn2(100)) randsp *= 3;
 				if (!rn2(1000)) randsp *= 5;
 				if (!rn2(10000)) randsp *= 10;
-				monstercolor = rnd(407);
+				monstercolor = rnd(425);
 			      cx = rn2(COLNO);
 			      cy = rn2(ROWNO);
 
@@ -4466,7 +4472,7 @@ controlagain:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(407);
+			monstercolor = rnd(425);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -6179,7 +6185,7 @@ newbossJANI:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(407);
+			monstercolor = rnd(425);
 
 			if (wizard || !rn2(10)) You_feel("that a group has arrived!");
 
@@ -13234,7 +13240,7 @@ past3:
 
 	/* Frequentation spawn should be a different trait every time you get the effect --Amy */
 	if (FrequentationSpawns || u.uprops[FREQUENTATION_SPAWNS].extrinsic || have_frequentationspawnstone()) {
-		u.frequentationtrait = rnd(407); /* same as monstercolor function */
+		u.frequentationtrait = rnd(425); /* same as monstercolor function */
 	} else {
 		u.frequentationtrait = 0;
 	}

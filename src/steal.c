@@ -827,6 +827,7 @@ boolean verbosely;
     obj->mstartinventB = 0;
     obj->mstartinventC = 0;
     obj->mstartinventD = 0;
+    obj->mstartinventE = 0;
     if (verbosely && cansee(omx, omy))
 	pline("%s drops %s.", Monnam(mon), distant_name(obj, doname));
     if (!flooreffects(obj, omx, omy, "fall")) {
@@ -878,7 +879,7 @@ boolean is_pet;		/* If true, pet should keep wielded/worn items */
 		/* special case: pick-axe and unicorn horn are non-worn */
 		/* items that we also want pets to keep 1 of */
 		/* (It is a coincidence that these can also be wielded.) */
-		if (otmp->owornmask || otmp == wep || otmp->mstartinvent || otmp->petmarked || otmp->mstartinventB || otmp->mstartinventC || otmp->mstartinventD ||
+		if (otmp->owornmask || otmp == wep || otmp->mstartinvent || otmp->petmarked || otmp->mstartinventB || otmp->mstartinventC || otmp->mstartinventD || otmp->mstartinventE ||
 		    ((!item1 && otmp->otyp == PICK_AXE) ||
 		     (!item2 && otmp->otyp == UNICORN_HORN && !otmp->cursed))) {
 			if (is_pet && !evades_destruction(otmp)) { /* dont drop worn/wielded item */
@@ -899,6 +900,8 @@ boolean is_pet;		/* If true, pet should keep wielded/worn items */
 		} else if (otmp->mstartinventB && !(is_grenade(otmp) && otmp->oarmed) && !(otmp->oartifact) && !(otmp->fakeartifact && timebasedlowerchance()) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) && !(mtmp->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mtmp->data == &mons[PM_BAD_ITEM_MASTER]) && !is_pet ) {
 			delobj(otmp);
 		} else if (otmp->mstartinventC && !(is_grenade(otmp) && otmp->oarmed) && !(otmp->oartifact) && !(otmp->fakeartifact && !rn2(10)) && rn2(10) && !(mtmp->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mtmp->data == &mons[PM_BAD_ITEM_MASTER]) && !is_pet ) {
+			delobj(otmp);
+		} else if (otmp->mstartinventE && !(is_grenade(otmp) && otmp->oarmed) && !(otmp->oartifact) && !(otmp->fakeartifact && !rn2(20)) && rn2(20) && !(mtmp->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mtmp->data == &mons[PM_BAD_ITEM_MASTER]) && !is_pet ) {
 			delobj(otmp);
 		} else if (otmp->mstartinventD && !(is_grenade(otmp) && otmp->oarmed) && !(otmp->oartifact) && !(otmp->fakeartifact && !rn2(4)) && rn2(4) && !(mtmp->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mtmp->data == &mons[PM_BAD_ITEM_MASTER]) && !is_pet ) {
 			delobj(otmp);

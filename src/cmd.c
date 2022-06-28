@@ -1054,6 +1054,42 @@ int traitno;
 			return "bot monsters";
 		case 407:
 			return "monsters who talk about the apocalypse";
+		case 408:
+			return "monsters who imitate the quest leader";
+		case 409:
+			return "monsters who imitate the quest guardians";
+		case 410:
+			return "monsters who haven't been completely coded";
+		case 411:
+			return "self-harming monsters";
+		case 412:
+			return "monsters with a clock";
+		case 413:
+			return "oh-god monsters";
+		case 414:
+			return "monsters who always say 'wolloh'";
+		case 415:
+			return "monsters who let you guess the secret code";
+		case 416:
+			return "monsters who work as barbers";
+		case 417:
+			return "monsters who are affected by your areola diameter";
+		case 418:
+			return "monsters who can stabilize the space around";
+		case 419:
+			return "monsters who are prone to escape";
+		case 420:
+			return "monsters who are easy to become afraid";
+		case 421:
+			return "monsters who cannot be pokedexed";
+		case 422:
+			return "monsters that spawn dead";
+		case 423:
+			return "monsters who belong to the tree squad";
+		case 424:
+			return "monsters who belong to the metal mafia";
+		case 425:
+			return "monsters who belong to the deep state";
 
 		default:
 			impossible("bad trait no %d, please update montraitname() in cmd.c", traitno);
@@ -6040,6 +6076,12 @@ boolean guaranteed;
 		you_are(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && u.treesquadwantedlevel) {
+		sprintf(buf, "being chased by the tree squad.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", u.treesquadwantedlevel);
+		you_are(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && u.gmmailsreceived) {
 		sprintf(buf, "received monster-summoning mail from AmyBSOD, the Game Master.");
 	    	sprintf(eos(buf), " (%d)", u.gmmailsreceived);
@@ -10347,6 +10389,12 @@ int final;
 	if (u.copwantedlevel) {
 		sprintf(buf, "being chased by the kops.");
 		sprintf(eos(buf), " (%d)", u.copwantedlevel);
+		dump(youwere, buf);
+	}
+
+	if (u.treesquadwantedlevel) {
+		sprintf(buf, "being chased by the tree squad.");
+		sprintf(eos(buf), " (%d)", u.treesquadwantedlevel);
 		dump(youwere, buf);
 	}
 

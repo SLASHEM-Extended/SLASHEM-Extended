@@ -58,6 +58,7 @@ register struct monst *mon;
 		if (obj->mstartinventB) continue;
 		if (obj->mstartinventC) continue;
 		if (obj->mstartinventD) continue;
+		if (obj->mstartinventE) continue;
 		if (obj->petmarked) continue;
 
 		if (!obj->owornmask && obj != wep) return obj;

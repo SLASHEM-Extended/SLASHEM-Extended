@@ -5838,6 +5838,10 @@ struct attack *mattk;
 			delobj(otmp);
 			return;
 	    }
+	    if (otmp && otmp->mstartinventE && !(otmp->oartifact) && !(otmp->fakeartifact && !rn2(20)) && rn2(20) ) {
+			delobj(otmp);
+			return;
+	    }
 	    if (otmp && otmp->mstartinventD && !(otmp->oartifact) && !(otmp->fakeartifact && !rn2(4)) && rn2(4) ) {
 			delobj(otmp);
 			return;
