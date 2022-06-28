@@ -3563,7 +3563,11 @@ repairitemchoice:
 			} else {
 				if (!rn2(5)) {
 					int metalmafiaworth = rnd(100);
-					if (metalmafiaotmp->owt >= metalmafiaworth) {
+					if (metalmafiaotmp->oerodeproof) {
+						useupall(metalmafiaotmp);
+						mtmp->mpeaceful = TRUE;
+						verbalize("Damn, that's a truly shiny piece! This will sell for a fortune! I officially consider you a friend now. Many thanks, the metal mafia is very pleased to do business with you!");
+					} else if (metalmafiaotmp->owt >= metalmafiaworth) {
 						useupall(metalmafiaotmp);
 						mtmp->mpeaceful = TRUE;
 						verbalize("Alright, that should do it! It's been a pleasure doing business with you. Have a nice day!");
