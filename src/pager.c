@@ -1760,7 +1760,7 @@ blaone:
 
 			append_newline_to_pline_string(out_str);
 			temp_buf[0]='\0';
-			if (!(mtmpX->egotype_spoilerproofer)) get_description_of_monster_type(pm, temp_buf, TRUE);
+			if (mtmpX && !(mtmpX->egotype_spoilerproofer)) get_description_of_monster_type(pm, temp_buf, TRUE);
 			else get_description_of_monster_type(pm, temp_buf, FALSE);
 			(void)strncat(out_str, temp_buf, BUFSZ-strlen(out_str)-1);
 		}
@@ -4190,6 +4190,10 @@ static NEARDATA const char * const demagoguelines[] = {
 "They should let me run the country, I'd dictate that a liter of E10 fuel may never cost more than 1,50 euros and all gas stations that violate this rule will have to pay a monthly income as a punishment, with the threat of being shut down entirely if they step out of line again.",
 "Man, why can't I be the god-emperor? I'd make sure that no people are used for heating if there is a war just because they have a penis, with me in charge everyone, man and woman alike, could decide for themselves whether they want to participate in a war or not! Freedom for everyone!",
 "War... Can not these nations who wish to stain themselves with blood and flame recognize that an unimaginable crisis has befallen this world?", /* by Saimore (Elona), although he uses the name of the Elona world */
+"Would you want to run to the front and get killed just because you have a cock? Yeah, me neither.",
+"The clown uses all the cock carriers for heating, which is truly intolerable.",
+"You can smoke all the politicians in the pipe, especially those from the party cartel.",
+"The government should stop building cloud cook-cook homes and start doing some real politics!",
 };
 
 static NEARDATA const char * const longinglines[] = {
@@ -27847,6 +27851,27 @@ static NEARDATA const char * const fake_plines[] = {
 	"The metal mafioso blasts you with a metal-attracting magnet! Now your +12 plate mail is on the ground right next to the metal mafioso, and he'll grab it and sell it to the black market before you can do anything about it.",
 	"You violated the sanctity of the grove!",
 	"You violated the sanctity of the grove! Now the denizens of Oasis are gonna whip you with bamboo sticks, you bastard!",
+	"In Germany, there are ridiculous newspeak rules that make it so there's no more cyclists, but only 'cycling persons'. This led to the invention of the term 'dead cycling persons', which are people who are dead and riding a bicycle at the same time! Amazing!!!",
+	"Variants of SLEX that only remove stuff and add nothing new are about as useful as kidney stones. If they at least add some new features, Amy can look at them and possibly steal them if they're good!",
+	"No, it is not a honor if you make a deslexified version of SLEX. Fuck you!!! Play the game the way i intended or go away!",
+	"You lot are making a variant of SLEX where you just remove stuff willy-nilly, and you are expecting me to HELP you??? Fuck off, I'll tell you where you can stick your help, you cold-blooded butcher!",
+	"So you just remove some of my carefully designed nasty traps at random without regard for mechanics that may depend on the nasty traps being there, and you got the nerve to expect me to be GRATEFUL??? Fuck you, man! Fuck you!",
+	"Maybe if making a deconstructed version of SLEX where certain nasty traps are removed is so easy, I could have made it myself if I illogically wanted it to exist? But I didn't, maybe because I *do not want it to exist, ding-ding-ding-ding-ding*?",
+	"I will never want anything to do with a 'slex-clean' or 'maximum slash' or whatever name you give to a deslexified version of SLEX, and you can just fuck yourself for thinking I ever would. You don't even know me, so don't come here expecting me to do what you want me to, got it?",
+	"There are supposedly people who don't want art to be censored; in fact I (Amy) am one of them. Removing nasty traps from my game purely randomly is already an affront, but expecting me to cheer when you present your shitty deconstructed version of my game is a reason for me to immediately put you on my personal blacklist.",
+	"It doesn't matter how much or little stuff some modderling removes from SLEX. If as much as one monster, trap, artifact or whatever is removed, it's no longer SLEX. Because maybe I added those features because I *want* them in my game, did that thought ever cross your mind?",
+	"No, features don't 'have to be removed' from SLEX just because you personally find them offensive. And I also don't care if you want to play my game at work, because it's a well-known fact that my game is NSFW (see also the warning when starting a game). If you absolutely want to play Nethack at work and your boss is using sniffers, pick maybe dnethack or something.",
+	"If you were an arsonist who just set fire to my house, you'd ask me for some fuel so that the fire can burn faster.",
+	"If I had created a beautiful painting, you'd pour a bucket of oil over it and then ask me for some spray paint so that you can ruin my painting more effectively.",
+	"If you were a vandal who had just stabbed the tires of my new car, you'd ask me for a mallet so that you can demolish my car more thoroughly.",
+	"A magic lamp being 80%% chance of a wish? You must be crazy, that's like way too good. Of course that had to be reigned in.",
+	"If you want a game that is baby easy, i.e. so easy that even a three-year-old baby can ascend it, you have to look for a different game because SLEX certainly isn't meant to be easy.",
+	"It is wrong to expect SLEX to keep vanilla overpoweredness. The sleep spell was far too strong, things would be put to sleep indefinitely and they wouldn't wake up even while you hack them up, which negates much, if not all need for player skill.",
+	"Why do so many players complain about supposedly weak rewards for optional dungeon branches in SLEX? Are they so spoiled by modern games which shower the player with loot at every opportunity, that they cannot handle a game with a more balanced loot distribution?",
+	"No, you are not guaranteed to find a goddamn wand of wishing on the castle level! Just because vanilla guarantees it doesn't mean that variants cannot change that, for fuck's sake!",
+	"I don't get why people keep complaining about the rewards for optional dungeon branches supposedly being not good enough. Like, can't those players just be happy that they got a reward at all? I could just as well make the branches have no reward, apart from the random loot dropped by the monsters!",
+	"Most SLEX players want things to be easy and features that are beneficial for the character. This shows that they don't understand the SLEX design philosophy at all, because SLEX wont cut the player any slack, ever.",
+	"If you want a game where things work in your favor, you have to play something else. Because in SLEX, if a feature doesn't work against the player, it's a bug.",
 
 };
 

@@ -5651,6 +5651,12 @@ static const char *epitaphs[] = {
 	"the alignment quests are like maybe in 1000 turns I'll have told u i am here, but only like 66% chance of that happening by turn 1000, and who wants to hang out on a random floor for thousands of turns?",
 	"Amy, stupid astral vision effect where even a sleeping monster keeps interrupting my digging! fix it! please fix it, please!",
 	"Amy I had the sokosolver hybrid race forced onto my character how do I get rid of it, do not want to play with that ",
+	"ONE percent chance of blocking I had only??? What?! But I was using a bull shield! That normally has 40%% chance of blocking! And I only had ONE percent? That cannot be, even if the shield was cursed.",
+	"Of course, now I'll lose to this asian girl because my char cannot get anything done.",
+	"> it's a bad idea to expect stuff to work - fixed that for you", /* by amateurhour */
+	"yendorian tower worst part of the game, #quit", /* ditto, although probably not a literal quote */
+	"What, Amy nerfed the sleep spell? It only lasts two or three turns now??? That's, like, completely unplayable, the spell used to fucking work! #ragequit",
+	"Amy nerfed magic lamps. This is always the way it is with slex; I come back to play willing to overlook all the flaws for the really neat features it has that I love, only to find more annoying changes that limit the players ability to move forward.", /* those aren't flaws though, if a player is too bad to put in the effort to play the game properly, they don't deserve to win! whiner! */
 
 };
 

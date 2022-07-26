@@ -824,6 +824,7 @@ doread()
 	"Talk to you never, stupid annual nethack 'variant tournament'. You do not exist.",
 	"Everyone who whines about 'offensive' content in SLEX can kiss my ass, and inhale my farting gas.",
 	"Letmi bijo wuma - Wuma wuma wuma! A wontu bijo wuma, wuma wuma wuma.",
+	"im baertter at slex and i say soi", /* by Demo */
 
 	    };
 	    char buf[BUFSZ];

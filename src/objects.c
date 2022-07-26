@@ -7504,6 +7504,13 @@ SCROLL((char *)0,               "ARURONIA MARTYNIA LUTEA",  P_NONE,     1,   0, 
 SCROLL((char *)0,               "SUTOMAFIRIA HYPOGAEA",  P_NONE,     1,   0, 100, CLR_BLUE, 1),
 SCROLL((char *)0,               "TAIEA KETSY",  P_NONE,     1,   0, 100, CLR_WHITE, 1),
 SCROLL((char *)0,               "LETMI BIJO WUMA",  P_NONE,     1,   0, 100, CLR_BLUE, 1),
+SCROLL((char *)0,               "WHY DID THEY PUT THE LAYLA SONG ON AN INDEX",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "I SHIT ON YOUR STUPID ACCUSATION OF SEXISM",  P_NONE,     1,   0, 100, CLR_RED, 1),
+SCROLL((char *)0,               "CANNOT LEAVE THE COUNTRY JUST BECAUSE YOU HAVE A COCK",  P_NONE,     1,   0, 100, CLR_BRIGHT_BLUE, 1),
+SCROLL((char *)0,               "DO YOU WANT THE TOTAL SPECIAL MILITARY OPERATION",  P_NONE,     1,   0, 100, CLR_RED, 1),
+SCROLL((char *)0,               "THE PARTY CARTEL REALLY EXISTS",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
+SCROLL((char *)0,               "CLOUD COOK COOK HOME",  P_NONE,     1,   0, 100, CLR_BRIGHT_CYAN, 1),
+SCROLL((char *)0,               "I DO NOT CREATE IT TO KIMBUN",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
 
 
 #ifdef MAIL

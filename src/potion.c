@@ -15261,6 +15261,7 @@ PlayerOnBlacklist()
 	if (!strncmpi(plname, "Antigulp", 9)) return TRUE;
 	if (!strncmpi(plname, "Kes", 4)) return TRUE;
 	if (!strncmpi(plname, "owfnteiayuftn", 14)) return TRUE;
+	if (!strncmpi(plname, "malor", 6)) return TRUE;
 
 	return FALSE;
 }
