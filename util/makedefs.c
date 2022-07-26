@@ -1844,6 +1844,9 @@ do_permonst()
 {
 	int	i;
 	char	*c, *nam;
+	int current_mlet;
+	boolean alreadyblah = FALSE;
+	boolean	sumerr = FALSE;
 
 	filename[0]='\0';
 #ifdef FILE_PREFIX
@@ -1861,7 +1864,24 @@ do_permonst()
 	if (strcmp(mons[0].mname, "playermon") != 0)
 		fprintf(ofp,"%s","\n#define\tPM_PLAYERMON\t(-1)");
 
+	current_mlet = 0;
+
 	for (i = 0; mons[i].mlet; i++) {
+
+		if (current_mlet == S_WORM_TAIL) {
+			if (mons[i].mlet == S_TROVE) alreadyblah = TRUE;
+		}
+
+		if (!alreadyblah && !(mons[i].geno & G_NOGEN) ) {
+
+			if (mons[i].mlet < current_mlet) {
+			    fprintf(stderr, "wrong mlet for mon %d (%d)", i, mons[i].mlet);
+			    (void) fflush(stderr);
+			    sumerr = TRUE;
+			}
+			current_mlet = mons[i].mlet;
+		}
+
 		SpinCursor(3);
 		fprintf(ofp,"%s","\n#define\tPM_");
 		if (mons[i].mflags4 & M4_HUMANWERE)
@@ -1874,6 +1894,9 @@ do_permonst()
 	fprintf(ofp,"\n\n#define\tNUMMONS\t%d\n", i);
 	fprintf(ofp,"%s","\n#endif /* PM_H */\n");
 	fclose(ofp);
+
+	if (sumerr) exit(EXIT_FAILURE);
+
 	return;
 }
 
