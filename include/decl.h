@@ -322,6 +322,7 @@ E NEARDATA struct sinfo {
 #if defined(HANGUPHANDLING)
 	volatile int done_hup;		/* SIGHUP or moral equivalent received
 				 * -- no more screen output */
+	int preserve_locks;	/* don't remove level files prior to exit */
 #endif
 	int something_worth_saving;	/* in case of panic */
 	int panicking;		/* `panic' is in progress */
