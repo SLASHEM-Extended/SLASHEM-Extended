@@ -1216,7 +1216,7 @@ break_armor()
 
 	}
 
-	if (uarm && (rnd(100) < controllingchance)) {
+	if (uarm && !Race_if(PM_TRANSFORMER) && (rnd(100) < controllingchance)) {
 
 		getlin ("Keep your torso armor on? [y/yes/no]",buf);
 		(void) lcase (buf);
@@ -1225,7 +1225,7 @@ break_armor()
 	}
 	if (uarm && uarm->stckcurse) armorkeep = 1;
 
-	if (uarmc && (rnd(100) < controllingchance)) {
+	if (uarmc && !Race_if(PM_TRANSFORMER) && (rnd(100) < controllingchance)) {
 		getlin ("Keep your cloak on? [y/yes/no]",buf);
 		(void) lcase (buf);
 		if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y"))) cloakkeep = 1;
@@ -1233,7 +1233,7 @@ break_armor()
 	}
 	if (uarmc && uarmc->stckcurse) cloakkeep = 1;
 
-	if (uarmu && (rnd(100) < controllingchance)) {
+	if (uarmu && !Race_if(PM_TRANSFORMER) && (rnd(100) < controllingchance)) {
 		getlin ("Keep your shirt on? [y/yes/no]",buf);
 		(void) lcase (buf);
 		if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y"))) shirtkeep = 1;
@@ -1364,7 +1364,7 @@ break_armor()
     }
     if (!Race_if(PM_TRANSFORMER) && (nohands(youmonst.data) || verysmall(youmonst.data))) {
 
-	if (uarmg && (rnd(100) < controllingchance)) {
+	if (uarmg && !Race_if(PM_TRANSFORMER) && (rnd(100) < controllingchance)) {
 
 		getlin ("Keep your gloves on? [y/yes/no]",buf);
 		(void) lcase (buf);
@@ -1382,7 +1382,7 @@ break_armor()
 	}
 glovesdone:
 
-	if (uarms && (rnd(100) < controllingchance)) {
+	if (uarms && !Race_if(PM_TRANSFORMER) && (rnd(100) < controllingchance)) {
 
 		getlin ("Keep your shield on? [y/yes/no]",buf);
 		(void) lcase (buf);
@@ -1397,7 +1397,7 @@ glovesdone:
 	}
 shielddone:
 
-	if (uarmh && (rnd(100) < controllingchance)) {
+	if (uarmh && !Race_if(PM_TRANSFORMER) && (rnd(100) < controllingchance)) {
 
 		getlin ("Keep your helmet on? [y/yes/no]",buf);
 		(void) lcase (buf);
@@ -1416,7 +1416,7 @@ helmetdone:
     if (!Race_if(PM_TRANSFORMER) && (nohands(youmonst.data) || verysmall(youmonst.data) ||
 		slithy(youmonst.data) || youmonst.data->mlet == S_CENTAUR)) {
 
-	if (uarmf && (rnd(100) < controllingchance)) {
+	if (uarmf && !Race_if(PM_TRANSFORMER) && (rnd(100) < controllingchance)) {
 
 		getlin ("Keep your boots on? [y/yes/no]",buf);
 		(void) lcase (buf);
@@ -1482,7 +1482,7 @@ int alone;
 			   	u.twoweap ? "s" : "");
 	    otmp2 = u.twoweap ? uswapwep : 0;
 
-		if (uwep && (rnd(100) < controllingchance)) {
+		if (uwep && !Race_if(PM_TRANSFORMER) && (rnd(100) < controllingchance)) {
 
 			getlin ("Keep wielding your weapon? [y/yes/no]",buf);
 			(void) lcase (buf);
