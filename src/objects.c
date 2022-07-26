@@ -1090,13 +1090,13 @@ WEAPON("random dart", (char *)0,
 
 /* Shurikens */
 WEAPON("shuriken", "throwing star",
-	0, 1, 0, 1739,  0,  5,  8,  6, 2, P,   -P_SHURIKEN, MT_IRON, HI_METAL, 1),
+	0, 1, 0, 1739,  0,  5,  6,  5, 2, P,   -P_SHURIKEN, MT_IRON, HI_METAL, 1),
 WEAPON("soft star", (char *)0,
 	1, 1, 0, 270,  0,  5,  4,  3, 2, P,   -P_SHURIKEN, MT_SILK, CLR_WHITE, 1),
 WEAPON("tar star", (char *)0,
-	1, 1, 0, 100,  0,  5,  8,  6, 2, P,   -P_SHURIKEN, MT_TAR, CLR_BLACK, 1),
+	1, 1, 0, 100,  0,  5,  6,  5, 2, P,   -P_SHURIKEN, MT_TAR, CLR_BLACK, 1),
 WEAPON("needle", (char *)0,
-	1, 1, 0, 20,  0,  2,  8,  6, 0, P,   -P_SHURIKEN, MT_BONE, CLR_BROWN, 1),
+	1, 1, 0, 20,  0,  2,  6,  5, 0, P,   -P_SHURIKEN, MT_BONE, CLR_BROWN, 1),
 WEAPON("windmill blade", "giant throwing star",
       0, 1, 0, 10,  0,  30, 10,  8, 2, P,   -P_SHURIKEN, MT_METAL, HI_METAL, 10),
 WEAPON("jumping flamer", (char *)0, /* can burn target inventory; you can only throw one at a time and it paralyzes you for 3 turns when you do */
@@ -1104,11 +1104,11 @@ WEAPON("jumping flamer", (char *)0, /* can burn target inventory; you can only t
 WEAPON("caltrop", (char *)0,
 	1, 1, 0, 20,  0,  2,  2,  1, 0, P,   -P_SHURIKEN, MT_IRON, HI_METAL, 1),
 WEAPON("mystery shuriken", (char *)0,
-	1, 1, 0, 10,  0,  8,  8,  8, 2, P,   -P_SHURIKEN, MT_CONUNDRUM, CLR_GRAY, 9),
+	1, 1, 0, 10,  0,  8,  6,  6, 2, P,   -P_SHURIKEN, MT_CONUNDRUM, CLR_GRAY, 9),
 WEAPON("nano shuriken", (char *)0,
-	1, 1, 0, 40,  0,  5,  8,  6, 2, P,   -P_SHURIKEN, MT_NANOMACHINE, CLR_BRIGHT_GREEN, 1),
+	1, 1, 0, 40,  0,  5,  6,  5, 2, P,   -P_SHURIKEN, MT_NANOMACHINE, CLR_BRIGHT_GREEN, 1),
 WEAPON("cubic star", (char *)0,
-	1, 1, 0, 200,  0,  5,  8,  6, 2, P,   -P_SHURIKEN, MT_IRON, CLR_BLACK, 1),
+	1, 1, 0, 200,  0,  5,  6,  5, 2, P,   -P_SHURIKEN, MT_IRON, CLR_BLACK, 1),
 
 /* Boomerangs */
 WEAPON("boomerang", (char *)0,

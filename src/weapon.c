@@ -7242,7 +7242,7 @@ struct obj *weapon;
 
 	if (Race_if(PM_FRO) && (wep_type == P_FIREARM || wep_type == -P_FIREARM)) bonus += rnd(10);
 
-	if ((wep_type == P_SHURIKEN || wep_type == -P_SHURIKEN) && !rn2(2)) {
+	if ((wep_type == P_SHURIKEN || wep_type == -P_SHURIKEN) && !rn2(3)) {
 		if (!(weapon && weapon->otyp == SOFT_STAR && rn2(2)) && !(weapon && weapon->otyp == CALTROP && rn2(4))) {
 			bonus += 1;
 		}
@@ -7292,32 +7292,32 @@ struct obj *weapon;
 	if (weapon && weapon->otyp == HOMING_TORPEDO && (P_SKILL(P_JAVELIN) == P_GRAND_MASTER) ) bonus += rnd(12);
 	if (weapon && weapon->otyp == HOMING_TORPEDO && (P_SKILL(P_JAVELIN) == P_SUPREME_MASTER) ) bonus += rnd(15);
 
-	if (weapon && weapon->otyp == SHURIKEN && (P_SKILL(P_SHURIKEN) == P_MASTER) ) bonus += 1;
-	if (weapon && weapon->otyp == SHURIKEN && (P_SKILL(P_SHURIKEN) == P_GRAND_MASTER) ) bonus += rnd(2);
-	if (weapon && weapon->otyp == SHURIKEN && (P_SKILL(P_SHURIKEN) == P_SUPREME_MASTER) ) bonus += rnd(3);
-	if (weapon && weapon->otyp == TAR_STAR && (P_SKILL(P_SHURIKEN) == P_MASTER) ) bonus += 1;
-	if (weapon && weapon->otyp == TAR_STAR && (P_SKILL(P_SHURIKEN) == P_GRAND_MASTER) ) bonus += rnd(2);
-	if (weapon && weapon->otyp == TAR_STAR && (P_SKILL(P_SHURIKEN) == P_SUPREME_MASTER) ) bonus += rnd(3);
-	if (weapon && weapon->otyp == WINDMILL_BLADE && (P_SKILL(P_SHURIKEN) == P_MASTER) ) bonus += 1;
-	if (weapon && weapon->otyp == WINDMILL_BLADE && (P_SKILL(P_SHURIKEN) == P_GRAND_MASTER) ) bonus += rnd(2);
-	if (weapon && weapon->otyp == WINDMILL_BLADE && (P_SKILL(P_SHURIKEN) == P_SUPREME_MASTER) ) bonus += rnd(3);
-	if (weapon && weapon->otyp == JUMPING_FLAMER && (P_SKILL(P_SHURIKEN) == P_MASTER) ) bonus += 1;
-	if (weapon && weapon->otyp == JUMPING_FLAMER && (P_SKILL(P_SHURIKEN) == P_GRAND_MASTER) ) bonus += rnd(2);
-	if (weapon && weapon->otyp == JUMPING_FLAMER && (P_SKILL(P_SHURIKEN) == P_SUPREME_MASTER) ) bonus += rnd(3);
-	if (weapon && weapon->otyp == MYSTERY_SHURIKEN && (P_SKILL(P_SHURIKEN) == P_MASTER) ) bonus += 1;
-	if (weapon && weapon->otyp == MYSTERY_SHURIKEN && (P_SKILL(P_SHURIKEN) == P_GRAND_MASTER) ) bonus += rnd(2);
-	if (weapon && weapon->otyp == MYSTERY_SHURIKEN && (P_SKILL(P_SHURIKEN) == P_SUPREME_MASTER) ) bonus += rnd(3);
-	if (weapon && weapon->otyp == NANO_SHURIKEN && (P_SKILL(P_SHURIKEN) == P_MASTER) ) bonus += 1;
-	if (weapon && weapon->otyp == NANO_SHURIKEN && (P_SKILL(P_SHURIKEN) == P_GRAND_MASTER) ) bonus += rnd(2);
-	if (weapon && weapon->otyp == NANO_SHURIKEN && (P_SKILL(P_SHURIKEN) == P_SUPREME_MASTER) ) bonus += rnd(3);
-	if (weapon && weapon->otyp == CUBIC_STAR && (P_SKILL(P_SHURIKEN) == P_MASTER) ) bonus += 1;
-	if (weapon && weapon->otyp == CUBIC_STAR && (P_SKILL(P_SHURIKEN) == P_GRAND_MASTER) ) bonus += rnd(2);
-	if (weapon && weapon->otyp == CUBIC_STAR && (P_SKILL(P_SHURIKEN) == P_SUPREME_MASTER) ) bonus += rnd(3);
-	if (weapon && weapon->otyp == NEEDLE && (P_SKILL(P_SHURIKEN) == P_MASTER) ) bonus += 1;
-	if (weapon && weapon->otyp == NEEDLE && (P_SKILL(P_SHURIKEN) == P_GRAND_MASTER) ) bonus += rnd(2);
-	if (weapon && weapon->otyp == NEEDLE && (P_SKILL(P_SHURIKEN) == P_SUPREME_MASTER) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == SHURIKEN && !rn2(3) && (P_SKILL(P_SHURIKEN) == P_MASTER) ) bonus += 1;
+	if (weapon && weapon->otyp == SHURIKEN && !rn2(3) && (P_SKILL(P_SHURIKEN) == P_GRAND_MASTER) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == SHURIKEN && !rn2(3) && (P_SKILL(P_SHURIKEN) == P_SUPREME_MASTER) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == TAR_STAR && !rn2(3) && (P_SKILL(P_SHURIKEN) == P_MASTER) ) bonus += 1;
+	if (weapon && weapon->otyp == TAR_STAR && !rn2(3) && (P_SKILL(P_SHURIKEN) == P_GRAND_MASTER) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == TAR_STAR && !rn2(3) && (P_SKILL(P_SHURIKEN) == P_SUPREME_MASTER) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == WINDMILL_BLADE && !rn2(3) && (P_SKILL(P_SHURIKEN) == P_MASTER) ) bonus += 1;
+	if (weapon && weapon->otyp == WINDMILL_BLADE && !rn2(3) && (P_SKILL(P_SHURIKEN) == P_GRAND_MASTER) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == WINDMILL_BLADE && !rn2(3) && (P_SKILL(P_SHURIKEN) == P_SUPREME_MASTER) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == JUMPING_FLAMER && !rn2(3) && (P_SKILL(P_SHURIKEN) == P_MASTER) ) bonus += 1;
+	if (weapon && weapon->otyp == JUMPING_FLAMER && !rn2(3) && (P_SKILL(P_SHURIKEN) == P_GRAND_MASTER) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == JUMPING_FLAMER && !rn2(3) && (P_SKILL(P_SHURIKEN) == P_SUPREME_MASTER) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == MYSTERY_SHURIKEN && !rn2(3) && (P_SKILL(P_SHURIKEN) == P_MASTER) ) bonus += 1;
+	if (weapon && weapon->otyp == MYSTERY_SHURIKEN && !rn2(3) && (P_SKILL(P_SHURIKEN) == P_GRAND_MASTER) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == MYSTERY_SHURIKEN && !rn2(3) && (P_SKILL(P_SHURIKEN) == P_SUPREME_MASTER) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == NANO_SHURIKEN && !rn2(3) && (P_SKILL(P_SHURIKEN) == P_MASTER) ) bonus += 1;
+	if (weapon && weapon->otyp == NANO_SHURIKEN && !rn2(3) && (P_SKILL(P_SHURIKEN) == P_GRAND_MASTER) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == NANO_SHURIKEN && !rn2(3) && (P_SKILL(P_SHURIKEN) == P_SUPREME_MASTER) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == CUBIC_STAR && !rn2(3) && (P_SKILL(P_SHURIKEN) == P_MASTER) ) bonus += 1;
+	if (weapon && weapon->otyp == CUBIC_STAR && !rn2(3) && (P_SKILL(P_SHURIKEN) == P_GRAND_MASTER) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == CUBIC_STAR && !rn2(3) && (P_SKILL(P_SHURIKEN) == P_SUPREME_MASTER) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == NEEDLE && !rn2(3) && (P_SKILL(P_SHURIKEN) == P_MASTER) ) bonus += 1;
+	if (weapon && weapon->otyp == NEEDLE && !rn2(3) && (P_SKILL(P_SHURIKEN) == P_GRAND_MASTER) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == NEEDLE && !rn2(3) && (P_SKILL(P_SHURIKEN) == P_SUPREME_MASTER) ) bonus += rnd(3);
 
-	if (!(weapon && weapon->otyp == SOFT_STAR && rn2(2)) && !(weapon && weapon->otyp == CALTROP && rn2(4))) {
+	if (!(weapon && weapon->otyp == SOFT_STAR && !rn2(3) && rn2(2)) && !(weapon && weapon->otyp == CALTROP && rn2(4))) {
 		if ((wep_type == P_SHURIKEN || wep_type == -P_SHURIKEN) && (P_SKILL(P_SHURIKEN) >= P_BASIC) && !rn2(2)) bonus += 1;
 		if ((wep_type == P_SHURIKEN || wep_type == -P_SHURIKEN) && (P_SKILL(P_SHURIKEN) >= P_SKILLED) && !rn2(2)) bonus += 1;
 		if ((wep_type == P_SHURIKEN || wep_type == -P_SHURIKEN) && (P_SKILL(P_SHURIKEN) >= P_EXPERT) && !rn2(2)) bonus += 1;
