@@ -1403,7 +1403,11 @@ elena23:
 			if (FemtrapActiveKsenia && !kseniakick && spawnswithsandals(mtmp->data) ) {
 
 				if (!mtmp->mfrenzied) {
-					if (yn("Do you want to allow the pretty sandal to kick you again?") == 'y') {
+
+					char qbuf[QBUFSZ];
+					char c;
+					strcpy(qbuf,"Do you want to allow the pretty sandal to kick you again?");
+					if ((c = yn_function(qbuf, ynqchars, 'y')) != 'n') {
 						kseniakick = TRUE;
 						goto kseniaagain;
 					} else {
