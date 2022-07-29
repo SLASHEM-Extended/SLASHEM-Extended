@@ -1799,6 +1799,23 @@ sokoban_detect()
 	randb = rn2(isfriday ? 4 : 10);
 	randc = rn2(isfriday ? 4 : 10);
 
+	/* if you're such a ch3at0r who intentionally picks races that also cause other level types to be generated,
+	 * and actually think you'd still fully benefit from levels all being pre-mapped, tough luck :-P --Amy */
+	int badluckor = 0;
+	if (ismazewalker) badluckor++;
+	if (isspecialist) badluckor++;
+
+	if (badluckor == 1) {
+		if (!rn2(2)) randa = FALSE;
+		if (!rn2(2)) randb = FALSE;
+		if (!rn2(2)) randc = FALSE;
+	}
+	if (badluckor == 2) {
+		if (rn2(3)) randa = FALSE;
+		if (rn2(3)) randb = FALSE;
+		if (rn2(3)) randc = FALSE;
+	}
+
 	/* Map the background and boulders */
 	for (x = 1; x < COLNO; x++)
 	    for (y = 0; y < ROWNO; y++) {
