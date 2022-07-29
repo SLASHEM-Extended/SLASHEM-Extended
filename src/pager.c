@@ -1761,6 +1761,7 @@ blaone:
 			append_newline_to_pline_string(out_str);
 			temp_buf[0]='\0';
 			if (mtmpX && !(mtmpX->egotype_spoilerproofer)) get_description_of_monster_type(pm, temp_buf, TRUE);
+			else if (!mtmpX) get_description_of_monster_type(pm, temp_buf, TRUE);
 			else get_description_of_monster_type(pm, temp_buf, FALSE);
 			(void)strncat(out_str, temp_buf, BUFSZ-strlen(out_str)-1);
 		}
