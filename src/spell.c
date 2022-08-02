@@ -3417,6 +3417,12 @@ boolean atme;
 			/* otherwise, skilled godmode at 0% fail equals instawin. --Amy */
 				pline("Your maximum health was reduced by %d.", energy / 5);
 				u.uhpmax -= (energy / 5);
+				if (u.uhpmax < 1) {
+					u.uhpmax = 1;
+					u.youaredead = 1;
+					done(DIED);
+					u.youaredead = 0;
+				}
 				u.uhp -= (energy / 5);
 				if (u.uhp < 1) {
 					u.youaredead = 1;
@@ -3426,6 +3432,12 @@ boolean atme;
 			} else if (energy < 5 && (!Race_if(PM_BACTERIA) || !rn2(2))) {
 				pline("Your maximum health was reduced by 1.");
 				u.uhpmax -= 1;
+				if (u.uhpmax < 1) {
+					u.uhpmax = 1;
+					u.youaredead = 1;
+					done(DIED);
+					u.youaredead = 0;
+				}
 				u.uhp -= 1;
 				if (u.uhp < 1) {
 					u.youaredead = 1;
@@ -3433,6 +3445,7 @@ boolean atme;
 					u.youaredead = 0;
 				}
 			}
+			flags.botl = TRUE;
 
 			losehp(energy,"spellcasting exhaustion", KILLED_BY);
 			if (role_skill < P_EXPERT) exercise(A_WIS, FALSE);
