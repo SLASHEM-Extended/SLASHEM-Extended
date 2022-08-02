@@ -658,6 +658,21 @@ bladeangerdone:
 	m_shot.n = multishot;
 	for (m_shot.i = 1; m_shot.i <= m_shot.n; m_shot.i++) {
 
+		int savechance = 0;
+
+		if (!(PlayerCannotUseSkills)) {
+			switch (P_SKILL(P_MISSILE_WEAPONS)) {
+
+			    case P_BASIC:		savechance = 1; break;
+			    case P_SKILLED:	savechance = 2; break;
+			    case P_EXPERT:	savechance = 3; break;
+			    case P_MASTER:	savechance = 4; break;
+			    case P_GRAND_MASTER:savechance = 5; break;
+			    case P_SUPREME_MASTER:savechance = 6; break;
+			    default: savechance += 0; break;
+			}
+		}
+
 	    if (!obj) { /* uh-oh */
 		You("suddenly ran out of ammo for your ranged attack!");
 		m_shot.n = m_shot.i = 0;
@@ -665,6 +680,18 @@ bladeangerdone:
 		m_shot.s = FALSE;
 		return 1;
 	    }
+
+		/* melee weapons dull when used repeatedly, so firing a launcher should do the same --Amy */
+		if (uwep && ammo_and_launcher(obj, uwep) && weaponwilldull(uwep) && (rnd(7) > savechance) && !issoviet) {
+			if (uwep->greased) {
+				uwep->greased--;
+				pline("Your weapon loses its grease.");
+			} else {
+				uwep->spe--;
+				pline("Your weapon dulls.");
+				u.cnd_weapondull++;
+			}
+		}
 
 	    twoweap = u.twoweap;
 	    /* split this object off from its slot if necessary */
