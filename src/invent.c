@@ -15733,7 +15733,7 @@ boolean knoweverything;
 			case SPE_LEVITATION:
 				pline("This spell allows you to levitate for a while."); break;
 			case SPE_TELEPORT_AWAY:
-				pline("A spell that can be used to fire teleport beams at yourself, monsters and objects. It occasionally backfires though, causing nasty side effects."); break;
+				pline("A spell that can be used to fire teleport beams at yourself, monsters and objects. It occasionally backfires though, causing nasty side effects. Also, monsters can resist it, so it's not guaranteed to teleport the monster that's currently ripping you a new one."); break;
 			case SPE_PASSWALL:
 				pline("Casting this spell allows you to walk through walls for a limited amount of time. Beware, certain special levels have walls that resist this ability. Also, casting it can sometimes backfire."); break;
 			case SPE_POLYMORPH:

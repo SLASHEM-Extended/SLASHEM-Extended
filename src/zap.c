@@ -1270,8 +1270,12 @@ armorsmashdone:
 
 		break;
 	case WAN_TELEPORTATION:
-	case SPE_TELEPORT_AWAY:
 		reveal_invis = !u_teleport_mon(mtmp, TRUE);
+		break;
+	case SPE_TELEPORT_AWAY:
+		if(!resist(mtmp, otmp->oclass, 0, NOTELL)) {
+			reveal_invis = !u_teleport_mon(mtmp, TRUE);
+		}
 		break;
 	case WAN_BANISHMENT:
 
@@ -7280,13 +7284,25 @@ struct obj *obj;	/* wand or spell */
 		    steedhit = TRUE;
 		    break;
 		case WAN_TELEPORTATION:
-		case SPE_TELEPORT_AWAY:
 		    /* you go together */
 		    tele();
 		    if(Teleport_control || !couldsee(u.ux0, u.uy0) ||
 			(distu(u.ux0, u.uy0) >= 16))
 				makeknown(obj->otyp);
 		    steedhit = TRUE;
+		    break;
+
+		case SPE_TELEPORT_AWAY:
+		    /* you go together */
+
+			if (!resist(u.usteed, WAND_CLASS, 0, NOTELL)) {
+
+			    tele();
+			    if(Teleport_control || !couldsee(u.ux0, u.uy0) ||
+				(distu(u.ux0, u.uy0) >= 16))
+					makeknown(obj->otyp);
+			    steedhit = TRUE;
+			}
 		    break;
 
 		case WAN_BANISHMENT:
