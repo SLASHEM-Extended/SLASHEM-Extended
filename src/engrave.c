@@ -5657,6 +5657,28 @@ static const char *epitaphs[] = {
 	"yendorian tower worst part of the game, #quit", /* ditto, although probably not a literal quote */
 	"What, Amy nerfed the sleep spell? It only lasts two or three turns now??? That's, like, completely unplayable, the spell used to fucking work! #ragequit",
 	"Amy nerfed magic lamps. This is always the way it is with slex; I come back to play willing to overlook all the flaws for the really neat features it has that I love, only to find more annoying changes that limit the players ability to move forward.", /* those aren't flaws though, if a player is too bad to put in the effort to play the game properly, they don't deserve to win! whiner! */
+	"Whaaaaaat, Amy changed the interaction between the sokosolver, specialist and mazewalker hybrid races? booooo! hisssss!",
+	"Amy, the fairy would be much more interesting if robes weighed less than 15!",
+	"Amy, all the roles play exactly the same! They all get some ranged weapons with the skills capped at expert, so everyone can use the same kiting strategy on everything! Boring! I'll play a game with more differentiated characters!",
+	"That crystal ice golem was probably played by Chuck Norris.",
+	"couldn't find the last portal to the last dumb devnull challenge and dont want to go on playing without having completed them #quit",
+	"how effing fast does being in the gamma caves contaminate me???",
+	"it's insane how many demons are being spawned in the mainframe and the super demons keep gating in more super demons that all spawn with scrolls of demonology and then i died",
+	"bah, level 13 sucks, amy should remove that from the game, no one wants to dig a 79x21 area looking for grunds. #(rage)quit",
+	"not the bees!!! why on earth did amy have to make that wide open level with the beehives and the weird center line that paralyzes you if you step near it",
+	"huh, the shopkeeper on level 31 was invisible. bullshit",
+	"Ran around on level 55 and used a throne, but a couple turns later it felt as if the game was malfunctioning! I decided to #quit, hopefully the developer can look into that issue and fix the weird stuff that was going on while I was on that level.",
+	"Yeah you can't beat level 70. There's tons of perfume spreaders and wouwou taunters and supermans and whatnot behind the grave walls and to top it off, spellcasters who summon new crap constantly. No one can beat that badly designed level, ever.",
+	"hey why did all the traps become invisible after I was on level 71?",
+	"what the hell is a 'segmentary query' supposed to be and why did it spawn on level 71 and kick my butt so hard?",
+	"Amy the special room on level 88 is yet another fucking bigroom that causes you to be surrounded by uber-powerful monsters from all sides and then you get killed with no chance! Fuck your stupid game!",
+	"whaaaaaat, eating Greed caused me to die instantly??? Why was there no warning? How on earth should I have known about that in advance, that's it, I'm quitting this shit game!",
+	"Bah, the Witch-King of Angmar killed me so quickly I didn't even know what hit me! He cut right through my stalwart defenses, too!",
+	"The rival quest had a neutral artifact. #quit (yeah I'm only playing chaotic because in this game everyone and their mother only plays chaotic)",
+	"Why oh why does carrying some other role's quest artifact cause turboassitis, the game would be much more fun if that wasn't the case",
+	"Man, I always die in Sheol. And in this case I died to a vanilla monster too, to add insult to injury...",
+	"I attacked that slimebeth 200 times in melee and never managed to hit it and then its passive acid attack killed me! Fix plz!!!",
+	"that monster was invisible!!! what, I'm supposed to set my terminal such that it can display black-colored monsters? That's bullshit, any good game would have sensible default settings where that color is displayed properly by default!",
 
 };
 

@@ -4195,6 +4195,7 @@ static NEARDATA const char * const demagoguelines[] = {
 "The clown uses all the cock carriers for heating, which is truly intolerable.",
 "You can smoke all the politicians in the pipe, especially those from the party cartel.",
 "The government should stop building cloud cook-cook homes and start doing some real politics!",
+"The term 'lady shoes' is discriminatory, that's like saying men are unable to walk with that pair of shoes just because they have heels, despite high-heeled shoes originally being conceived as men's shoes. Which implies that in reality both genders can walk in heeled shoes just fine, so they should just be viewed as unisex and the gender attribute for shoes abolished.",
 };
 
 static NEARDATA const char * const longinglines[] = {
@@ -27873,6 +27874,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"I don't get why people keep complaining about the rewards for optional dungeon branches supposedly being not good enough. Like, can't those players just be happy that they got a reward at all? I could just as well make the branches have no reward, apart from the random loot dropped by the monsters!",
 	"Most SLEX players want things to be easy and features that are beneficial for the character. This shows that they don't understand the SLEX design philosophy at all, because SLEX wont cut the player any slack, ever.",
 	"If you want a game where things work in your favor, you have to play something else. Because in SLEX, if a feature doesn't work against the player, it's a bug.",
+	"Shoe outlets are discriminatory if you ask me. They separate shoes by gender, which is like saying 'yeah, kindly buy a pair of shoes for your gender and ignore all the ones for the other gender, even if there'd be some really amazing ones that you'd absolutely like to wear'. Let people wear whichever shoes they damn well want to wear, please!",
 
 };
 
