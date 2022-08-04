@@ -2455,7 +2455,22 @@ int dieroll;
 			}
 			if (ammo_and_launcher(obj, launcher)) {
 
-			    if (obj->otyp == ANTIMATTER_BULLET) {
+			    if (obj->otyp == ANTIMATTER_PISTOL_BULLET) {
+					tmp += 20;
+			    }
+			    if (obj->otyp == ANTIMATTER_SMG_BULLET) {
+					tmp += 20;
+			    }
+			    if (obj->otyp == ANTIMATTER_MG_BULLET) {
+					tmp += 20;
+			    }
+			    if (obj->otyp == ANTIMATTER_RIFLE_BULLET) {
+					tmp += 20;
+			    }
+			    if (obj->otyp == ANTIMATTER_SNIPER_BULLET) {
+					tmp += 20;
+			    }
+			    if (obj->otyp == ANTIMATTER_ASSAULT_RIFLE_BULLE) {
 					tmp += 20;
 			    }
 
@@ -3419,6 +3434,28 @@ melatechoice:
 			if (obj->cursed) uncurse(obj, TRUE);
 			if (obj->spe < 0) obj->spe++;
 		}
+
+		if (thrown && obj && (obj->oartifact == ART_TURN_INTO_ASH_HEAP)) {
+			(void) cancel_monst(mon, obj, TRUE, TRUE, FALSE);
+		}
+
+		if (thrown && obj && (obj->oartifact == ART_DAMN_I_M_GOOD)) {
+			if (mon->mspeed != MSLOW && !resist(mon, WEAPON_CLASS, 0, NOTELL)) {
+			    unsigned int oldspeed = mon->mspeed;
+	
+			    mon_adjust_speed(mon, -1, (struct obj *)0);
+			    if (mon->mspeed != oldspeed && canseemon(mon))
+				pline("%s slows down.", Monnam(mon));
+			}
+
+		}
+
+		if (thrown && obj && (obj->oartifact == ART_HEAVYDRAIN)) {
+			if (mon->mhpmax > 1) mon->mhpmax--;
+			if (mon->mhpmax < mon->mhp) mon->mhp = mon->mhpmax;
+			pline("%s's health is drained!", Monnam(mon));
+		}
+
 
 		if (thrown && obj && (obj->oartifact == ART_MINDTURNER) && !rn2(20)) {
 			if (mon->female) mon->female = 0;

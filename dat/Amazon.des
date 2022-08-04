@@ -67,7 +67,7 @@ DOOR:closed,(24,13)
 DOOR:closed,(10,14)
 
 OBJECT:')',"pistol",(24,14)
-OBJECT:')',"bullet",(24,14)
+OBJECT:')',"pistol bullet",(24,14)
 OBJECT:')',"bow",(40,10)
 OBJECT:')',"arrow",(40,10)
 OBJECT:')',"javelin",(47,03)
@@ -83,7 +83,7 @@ OBJECT:')',"elven arrow",(02,14)
 OBJECT:')',"spirit thrower",(02,17)
 OBJECT:')',"torpedo",(05,17)
 OBJECT:')',"submachine gun",(08,17)
-OBJECT:')',"bullet",(08,17)
+OBJECT:')',"SMG bullet",(08,17)
 
 FOUNTAIN: (36, 09)
 

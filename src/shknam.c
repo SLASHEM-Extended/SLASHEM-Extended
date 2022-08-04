@@ -379,7 +379,7 @@ const struct shclass shtypes[] = {
 	{"liquor emporium", POTION_CLASS, 4, D_SHOP,
 	    {{100, POTION_CLASS}, {0, 0}, {0, 0}}, shkliquors},
 	{"weapons outlet", WEAPON_CLASS, 17, D_SHOP, {
-	    {80, WEAPON_CLASS}, {6, -BULLET}, {3, -BULLET}, {1, -SILVER_BULLET},
+	    {80, WEAPON_CLASS}, {3, -PISTOL_BULLET}, {1, -ASSAULT_RIFLE_BULLET}, {3, -RIFLE_BULLET}, {2, -SMG_BULLET}, {1, -SILVER_PISTOL_BULLET},
 	    {10, ARMOR_CLASS}, {0, 0}}, shkweapons},
 	{"delicatessen", FOOD_CLASS, 4, D_SHOP,
 	    {{83, FOOD_CLASS}, {5, -POT_FRUIT_JUICE}, {4, -POT_BOOZE},
@@ -419,7 +419,7 @@ const struct shclass shtypes[] = {
  {24, -SHOTGUN}, {1, -SAWED_OFF_SHOTGUN}, {25, -AUTO_SHOTGUN}, {25, -ROCKET_LAUNCHER}, {25, -GRENADE_LAUNCHER},          {0, 0}}, shkweapons},
 
 	{"ammo shop", WEAPON_CLASS, 1, D_SHOP, {
-{15, -BULLET}, {15, -SILVER_BULLET}, {14, -SHOTGUN_SHELL}, {14, -ROCKET}, {14, -FRAG_GRENADE}, {14, -GAS_GRENADE}, {14, -STICK_OF_DYNAMITE} }, shkweapons},
+{3, -PISTOL_BULLET}, {3, -SMG_BULLET}, {3, -RIFLE_BULLET}, {3, -ASSAULT_RIFLE_BULLET}, {2, -SNIPER_BULLET}, {1, -MG_BULLET}, {15, -SILVER_PISTOL_BULLET}, {7, -SHOTGUN_SHELL}, {7, -AUTO_SHOTGUN_SHELL}, {14, -ROCKET}, {14, -FRAG_GRENADE}, {14, -GAS_GRENADE}, {14, -STICK_OF_DYNAMITE} }, shkweapons},
 
 	{"lightning store", TOOL_CLASS, 1, D_SHOP,
 	    {{25, -WAX_CANDLE}, {35, -TALLOW_CANDLE}, {5, -TORCH}, {11, -BRASS_LANTERN},

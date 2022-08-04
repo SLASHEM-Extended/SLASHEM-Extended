@@ -192,8 +192,8 @@ MONSTER: '@',"tank breaker",(26,14),hostile,awake
 MONSTER: '@',"evasive tank breaker",(04,13),hostile
 # Objects
 OBJECT:')',"pistol",(31,10),blessed,0,"Shiny Magnum"
-OBJECT:')',"bullet",(31,10)
-OBJECT:')',"bullet",(31,10)
+OBJECT:')',"pistol bullet",(31,10)
+OBJECT:')',"pistol bullet",(31,10)
 OBJECT:'(',"chest",(55,18),blessed,2
 # Warden Arianna
 MONSTER:'@',"Grandpa Tank Breaker",(31,10),hostile

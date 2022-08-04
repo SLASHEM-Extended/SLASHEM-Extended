@@ -115,8 +115,8 @@ STAIR:(02,03),up
 STAIR:(39,17),down
 
 OBJECT:')',"assault rifle",(09,03)
-OBJECT:')',"bullet",(09,05)
-OBJECT:')',"bullet",(11,05)
+OBJECT:')',"assault rifle bullet",(09,05)
+OBJECT:')',"assault rifle bullet",(11,05)
 
 OBJECT:')',"arm blaster",(70,03)
 OBJECT:')',"hand blaster",(70,15)

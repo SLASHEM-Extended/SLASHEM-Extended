@@ -264,7 +264,7 @@ struct obj {
 			(is_ammo(otmp) && (ltmp) && \
 			((objects[(otmp)->otyp].oc_skill == -objects[(ltmp)->otyp].oc_skill && \
 			  objects[(otmp)->otyp].w_ammotyp == objects[(ltmp)->otyp].w_ammotyp) || \
-			(objects[(otmp)->otyp].w_ammotyp == WP_BULLET && itemhasappearance(ltmp, APP_PISTOL_BOOTS)) ))
+			(objects[(otmp)->otyp].w_ammotyp == WP_BULLET_PISTOL && itemhasappearance(ltmp, APP_PISTOL_BOOTS)) ))
 #define bimanual(otmp)	(((otmp)->oclass == WEAPON_CLASS || (otmp)->oclass == BALL_CLASS || \
 			  (otmp)->oclass == CHAIN_CLASS || (otmp)->oclass == TOOL_CLASS) && \
 			 objects[(otmp)->otyp].oc_bimanual)

@@ -678,7 +678,7 @@ static struct trobj Murderer[] = {
 
 static struct trobj Courier[] = {
 	{ PISTOL, 0, WEAPON_CLASS, 1, 0 },
-	{ BULLET, 0, WEAPON_CLASS, 20, 0 },
+	{ PISTOL_BULLET, 0, WEAPON_CLASS, 20, 0 },
 	{ KNIFE, 0, WEAPON_CLASS, 1, 0 },
 	{ POT_JOLT_COLA, 0, POTION_CLASS, 2, 0 },
 	{ 0, 0, 0, 0, 0 }
@@ -793,8 +793,8 @@ static struct trobj Drunk[] = {
 
 static struct trobj Officer[] = {
 	{ PISTOL, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
-	{ BULLET, 0, WEAPON_CLASS, 50, 0 },
-	{ BULLET, 0, WEAPON_CLASS, 50, 0 },
+	{ PISTOL_BULLET, 0, WEAPON_CLASS, 50, 0 },
+	{ PISTOL_BULLET, 0, WEAPON_CLASS, 50, 0 },
 	{ CLUB, 0, WEAPON_SYM, 1, UNDEF_BLESS },
 	{ LEATHER_ARMOR, 0, ARMOR_SYM, 1, UNDEF_BLESS },
 	{ WAN_MAGIC_MISSILE, UNDEF_SPE, WAND_SYM, 1, UNDEF_BLESS },
@@ -874,8 +874,8 @@ static struct trobj Ninja[] = {
 
 static struct trobj Gangster[] = {
 	{ SUBMACHINE_GUN, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
-	{ BULLET, 0, WEAPON_CLASS, 50, 0 },
-	{ BULLET, 0, WEAPON_CLASS, 50, 0 },
+	{ SMG_BULLET, 0, WEAPON_CLASS, 50, 0 },
+	{ SMG_BULLET, 0, WEAPON_CLASS, 50, 0 },
 	{ LEATHER_JACKET, 0, ARMOR_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
@@ -884,10 +884,10 @@ static struct trobj Gunner[] = {
 	{ ASSAULT_RIFLE, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ PISTOL, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ SNIPER_RIFLE, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
-	{ BULLET, 0, WEAPON_CLASS, 50, 0 },
-	{ BULLET, 0, WEAPON_CLASS, 50, 0 },
-	{ BULLET, 0, WEAPON_CLASS, 50, 0 },
-	{ BULLET, 0, WEAPON_CLASS, 50, 0 },
+	{ SNIPER_BULLET, 0, WEAPON_CLASS, 50, 0 },
+	{ PISTOL_BULLET, 0, WEAPON_CLASS, 50, 0 },
+	{ ASSAULT_RIFLE_BULLET, 0, WEAPON_CLASS, 50, 0 },
+	{ ASSAULT_RIFLE_BULLET, 0, WEAPON_CLASS, 50, 0 },
 	{ LEATHER_JACKET, 0, ARMOR_CLASS, 1, 0 },
 	{ MEDICAL_KIT, 0, TOOL_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
@@ -895,7 +895,7 @@ static struct trobj Gunner[] = {
 
 static struct trobj DoomMarine[] = {
 	{ PISTOL, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
-	{ BULLET, 0, WEAPON_CLASS, 50, 0 },
+	{ PISTOL_BULLET, 0, WEAPON_CLASS, 50, 0 },
 	{ LEATHER_GLOVES, 0, ARMOR_CLASS, 1, 0 },
 	{ IRON_SHOES, 0, ARMOR_CLASS, 1, 0 },
 	{ COMMANDER_SUIT, 0, ARMOR_CLASS, 1, 0 },
@@ -1425,8 +1425,8 @@ static struct trobj Pirate[] = {
 	{ SCIMITAR, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ KNIFE, 1, WEAPON_CLASS, 2, 0 },
 	{ PISTOL, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
-	{ BULLET, 0, WEAPON_CLASS, 50, 0 },
-	{ BULLET, 0, WEAPON_CLASS, 50, 0 },
+	{ PISTOL_BULLET, 0, WEAPON_CLASS, 50, 0 },
+	{ PISTOL_BULLET, 0, WEAPON_CLASS, 50, 0 },
 	{ LEATHER_JACKET, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ HIGH_BOOTS, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ CRAM_RATION, 0, FOOD_CLASS, 2, UNDEF_BLESS },
@@ -1525,8 +1525,8 @@ static struct trobj Druid[] = {
 
 static struct trobj Goff[] = {
 	{ PISTOL, 1, WEAPON_CLASS, 1, UNDEF_BLESS },
-	{ BULLET, 0, WEAPON_CLASS, 50, 0 },
-	{ BULLET, 0, WEAPON_CLASS, 50, 0 },
+	{ PISTOL_BULLET, 0, WEAPON_CLASS, 50, 0 },
+	{ PISTOL_BULLET, 0, WEAPON_CLASS, 50, 0 },
 	{ HIPPIE_HEELS, 5, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ VICTORIAN_UNDERWEAR, 2, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ BLACK_DRAGON_SCALE_MAIL, -9, ARMOR_CLASS, 1, UNDEF_BLESS },
@@ -1703,7 +1703,7 @@ static struct trobj Prostitute[] = {
 	{ INKA_SHACKLE, UNDEF_SPE, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ KNIFE, UNDEF_SPE, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ PISTOL, UNDEF_SPE, WEAPON_CLASS, 1, UNDEF_BLESS },
-	{ BULLET, UNDEF_SPE, WEAPON_CLASS, 50, UNDEF_BLESS },
+	{ PISTOL_BULLET, UNDEF_SPE, WEAPON_CLASS, 50, UNDEF_BLESS },
 	{ 0, 0, 0, 0, 0 }
 };
 
@@ -1742,7 +1742,7 @@ static struct trobj SoftwareEngineer[] = {
 	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
 	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
 	{ POT_COFFEE, 0, POTION_CLASS, 1, 0 },
-	{ BULLET, 0, WEAPON_CLASS, 50, 0 },
+	{ PISTOL_BULLET, 0, WEAPON_CLASS, 50, 0 },
 	{ HAIRCLIP, 0, TOOL_CLASS, 1, 0 },
 	{ CHARGER, 0, TOOL_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
@@ -1750,7 +1750,7 @@ static struct trobj SoftwareEngineer[] = {
 
 static struct trobj Cracker[] = {
 	{ FLINTLOCK, 0, WEAPON_CLASS, 1, 0 },
-	{ BULLET, 0, WEAPON_CLASS, 50, 0 },
+	{ PISTOL_BULLET, 0, WEAPON_CLASS, 50, 0 },
 	{ HEALER_UNIFORM, 0, ARMOR_CLASS, 1, 0 },
 	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
 	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
@@ -1777,8 +1777,8 @@ static struct trobj Janitor[] = {
 static struct trobj SpaceMarine[] = {
 	{ PISTOL, 0, WEAPON_CLASS, 1, 0 },
 	{ HAND_BLASTER, 0, WEAPON_CLASS, 1, 0 },
-	{ BULLET, 0, WEAPON_CLASS, 50, 0 },
-	{ BULLET, 0, WEAPON_CLASS, 50, 0 },
+	{ PISTOL_BULLET, 0, WEAPON_CLASS, 50, 0 },
+	{ PISTOL_BULLET, 0, WEAPON_CLASS, 50, 0 },
 	{ BLASTER_BOLT, 0, WEAPON_CLASS, 50, 0 },
 	{ BLASTER_BOLT, 0, WEAPON_CLASS, 50, 0 },
 	{ TORCH, 0, TOOL_CLASS, 5, 0 },
@@ -1789,7 +1789,7 @@ static struct trobj SpaceMarine[] = {
 
 static struct trobj Stormboy[] = {
 	{ SNIPER_RIFLE, 0, WEAPON_CLASS, 1, 0 },
-	{ BULLET, 0, WEAPON_CLASS, 50, 0 },
+	{ SNIPER_BULLET, 0, WEAPON_CLASS, 50, 0 },
 	{ FRAG_GRENADE, 0, WEAPON_CLASS, 20, 0 },
 	{ JUMPSUIT, 0, ARMOR_CLASS, 1, 0 },
 	{ HELM_OF_WARNING, 0, ARMOR_CLASS, 1, 0 },
@@ -1798,8 +1798,8 @@ static struct trobj Stormboy[] = {
 
 static struct trobj Yautja[] = {
 	{ ARM_BLASTER, 0, WEAPON_CLASS, 1, 0 },
-	{ BLASTER_BOLT, 0, WEAPON_CLASS, 50, 0 },
-	{ BLASTER_BOLT, 0, WEAPON_CLASS, 50, 0 },
+	{ HEAVY_BLASTER_BOLT, 0, WEAPON_CLASS, 50, 0 },
+	{ HEAVY_BLASTER_BOLT, 0, WEAPON_CLASS, 50, 0 },
 	{ SPEAR, 0, WEAPON_CLASS, 5, 0 },
 	{ BOOMERANG, 0, WEAPON_CLASS, 1, 0 },
 	{ SCIMITAR, 1, WEAPON_CLASS, 1, 0 },
@@ -1816,7 +1816,7 @@ static struct trobj Quarterback[] = {
 	{ LEATHER_GLOVES, 0, ARMOR_CLASS, 1, 0 },
 	{ HELMET, 0, ARMOR_CLASS, 1, 0 },
 	{ BASEBALL_BAT, 2, WEAPON_CLASS, 1, 1 },
-	{ BULLET, 0, WEAPON_CLASS, 50, 0 },
+	{ PISTOL_BULLET, 0, WEAPON_CLASS, 50, 0 },
 	{ POT_BOOZE, 0, POTION_CLASS, 6, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
@@ -1854,9 +1854,9 @@ static struct trobj Mastermind[] = {
 	{ SILK_MAIL, 0, ARMOR_CLASS, 1, 0 },
 	{ WAN_MANA, UNDEF_SPE, WAND_CLASS, 1, 0 },
 	{ RAYGUN, 1, WEAPON_CLASS, 1, 0 },
-	{ BLASTER_BOLT, 0, WEAPON_CLASS, 50, 0 },
-	{ BLASTER_BOLT, 0, WEAPON_CLASS, 50, 0 },
-	{ BLASTER_BOLT, 0, WEAPON_CLASS, 50, 0 },
+	{ RAYGUN_BOLT, 0, WEAPON_CLASS, 50, 0 },
+	{ RAYGUN_BOLT, 0, WEAPON_CLASS, 50, 0 },
+	{ RAYGUN_BOLT, 0, WEAPON_CLASS, 50, 0 },
 	{ POT_FULL_HEALING, 0, POTION_CLASS, 1, 0 },
 	{ POT_CURE_INSANITY, 0, POTION_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
@@ -1950,7 +1950,7 @@ static struct trobj Unbeliever[] = {
 static struct trobj Topmodel[] = {
 	{ KNIFE, 1, WEAPON_CLASS, 1, 1 },
 	{ RIFLE, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
-	{ BULLET, 0, WEAPON_CLASS, 50, 0 },
+	{ RIFLE_BULLET, 0, WEAPON_CLASS, 50, 0 },
 	{ LEATHER_PEEP_TOES, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ LEATHER_SADDLE, 0, TOOL_CLASS, 1, UNDEF_BLESS },
 	{ 0, 0, 0, 0, 0 }
@@ -1958,7 +1958,7 @@ static struct trobj Topmodel[] = {
 
 static struct trobj Failed_Existence[] = {
 	{ KNIFE, -6, WEAPON_CLASS, 1, 0 },
-	{ BULLET, -4, WEAPON_CLASS, 7, 0 },
+	{ RIFLE_BULLET, -4, WEAPON_CLASS, 7, 0 },
 	{ SENTIENT_HIGH_HEELED_SHOES, 12, ARMOR_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
@@ -3353,7 +3353,7 @@ static struct inv_sub { int race_pm, item_otyp, subs_otyp; } inv_subs[] = {
     { PM_HUMAN_WEREWOLF,FOOD_RATION,		TRIPE_RATION	      },
     { PM_HUMAN_WEREWOLF,SILVER_SPEAR,		SPEAR		      },
     { PM_HUMAN_WEREWOLF,SILVER_DAGGER,		DAGGER		      },
-    { PM_HUMAN_WEREWOLF,SILVER_BULLET,		BULLET		      },
+    { PM_HUMAN_WEREWOLF,SILVER_PISTOL_BULLET,		PISTOL_BULLET		      },
     { PM_DROW,		DAGGER,			DARK_ELVEN_DAGGER     },
     { PM_DROW,		SHORT_SWORD,		DARK_ELVEN_SHORT_SWORD},
     { PM_DROW,		BOW,			DARK_ELVEN_BOW	      },
@@ -13628,7 +13628,7 @@ u_init()
 		if (rn2(100) < 30) {
 			Rogue[R_DAGGERS].trotyp = PISTOL;
 			Rogue[R_DAGGERS].trquan = 1;
-			Rogue[R_DARTS].trotyp = BULLET;
+			Rogue[R_DARTS].trotyp = PISTOL_BULLET;
 		}
 #ifndef GOLDOBJ
 		u.ugold = u.ugold0 = rn1(500 ,1500);
@@ -13861,7 +13861,7 @@ u_init()
 		switch (rn2(100) / 25) {
 		    case 0:	/* Pistol and silver bullets */
 			UndeadSlayer[U_MINOR].trotyp = PISTOL;
-			UndeadSlayer[U_RANGE].trotyp = SILVER_BULLET;
+			UndeadSlayer[U_RANGE].trotyp = SILVER_PISTOL_BULLET;
 			UndeadSlayer[U_RANGE].trquan = rn1(10, 30);
 			break;
 		    case 1:	/* Crossbow and bolts */
@@ -15437,7 +15437,7 @@ u_init()
 		if (rn2(100) < 30) {
 			Rogue[R_DAGGERS].trotyp = PISTOL;
 			Rogue[R_DAGGERS].trquan = 1;
-			Rogue[R_DARTS].trotyp = BULLET;
+			Rogue[R_DARTS].trotyp = PISTOL_BULLET;
 		}
 #ifndef GOLDOBJ
 		u.ugold = u.ugold0 = rn1(500 ,1500);
@@ -15523,7 +15523,7 @@ u_init()
 		switch (rn2(100) / 25) {
 		    case 0:	/* Pistol and silver bullets */
 			UndeadSlayer[U_MINOR].trotyp = PISTOL;
-			UndeadSlayer[U_RANGE].trotyp = SILVER_BULLET;
+			UndeadSlayer[U_RANGE].trotyp = SILVER_PISTOL_BULLET;
 			UndeadSlayer[U_RANGE].trquan = rn1(10, 30);
 			break;
 		    case 1:	/* Crossbow and bolts */
@@ -17135,7 +17135,7 @@ u_init()
 		if (rn2(100) < 30) {
 			Rogue[R_DAGGERS].trotyp = PISTOL;
 			Rogue[R_DAGGERS].trquan = 1;
-			Rogue[R_DARTS].trotyp = BULLET;
+			Rogue[R_DARTS].trotyp = PISTOL_BULLET;
 		}
 #ifndef GOLDOBJ
 		u.ugold = u.ugold0 = rn1(500 ,1500);
@@ -17221,7 +17221,7 @@ u_init()
 		switch (rn2(100) / 25) {
 		    case 0:	/* Pistol and silver bullets */
 			UndeadSlayer[U_MINOR].trotyp = PISTOL;
-			UndeadSlayer[U_RANGE].trotyp = SILVER_BULLET;
+			UndeadSlayer[U_RANGE].trotyp = SILVER_PISTOL_BULLET;
 			UndeadSlayer[U_RANGE].trquan = rn1(10, 30);
 			break;
 		    case 1:	/* Crossbow and bolts */

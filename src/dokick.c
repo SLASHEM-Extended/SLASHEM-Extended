@@ -1595,7 +1595,7 @@ dokick()
 		}
 	}
 
-	if (uarmf && itemhasappearance(uarmf, APP_PISTOL_BOOTS) && uquiver && (objects[uquiver->otyp].w_ammotyp == WP_BULLET) ) {
+	if (uarmf && itemhasappearance(uarmf, APP_PISTOL_BOOTS) && uquiver && (objects[uquiver->otyp].w_ammotyp == WP_BULLET_PISTOL) ) {
 		if (uquiver->quan > 1L) {
 			quivtmp = splitobj(uquiver, 1L);
 		} else {

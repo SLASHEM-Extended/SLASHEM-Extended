@@ -5013,69 +5013,142 @@ breakstare:
 	    case T_CREATE_AMMO:
 
 	    {
+		boolean canbfg = FALSE;
+		boolean canrocket = FALSE;
+		boolean canshotty = FALSE;
+		boolean canblaster = FALSE;
+
 		int ammotype;
 		ammotype = 1; /* bullets */
 		if (Role_if(PM_DOOM_MARINE)) {
 
 			if (techlevX(tech_no) >= 25) {
 
-				pline("You can choose from these kinds of ammo: BFG ammo, rockets, shotgun shells, blaster bolts or bullets.");
-				if (yn("Do you want to create BFG ammo?") == 'y') ammotype = 5;
-				else if (yn("Do you want to create rockets?") == 'y') ammotype = 4;
-				else if (yn("Do you want to create shotgun shells?") == 'y') ammotype = 3;
-				else if (yn("Do you want to create blaster bolts?") == 'y') ammotype = 2;
-				else ammotype = 1;
+				canbfg = TRUE;
+				canrocket = TRUE;
+				canshotty = TRUE;
+				canblaster = TRUE;
+
 			}
 
 			else if (techlevX(tech_no) >= 20) {
 
-				pline("You can choose from these kinds of ammo: rockets, shotgun shells, blaster bolts or bullets.");
-				if (yn("Do you want to create rockets?") == 'y') ammotype = 4;
-				else if (yn("Do you want to create shotgun shells?") == 'y') ammotype = 3;
-				else if (yn("Do you want to create blaster bolts?") == 'y') ammotype = 2;
-				else ammotype = 1;
+				canrocket = TRUE;
+				canshotty = TRUE;
+				canblaster = TRUE;
 			}
 
 			else if (techlevX(tech_no) >= 15) {
 
-				pline("You can choose from these kinds of ammo: shotgun shells, blaster bolts or bullets.");
-				if (yn("Do you want to create shotgun shells?") == 'y') ammotype = 3;
-				else if (yn("Do you want to create blaster bolts?") == 'y') ammotype = 2;
-				else ammotype = 1;
+				canshotty = TRUE;
+				canblaster = TRUE;
 			}
 
 			else if (techlevX(tech_no) >= 10) {
 
-				pline("You can choose from these kinds of ammo: blaster bolts or bullets.");
-				if (yn("Do you want to create blaster bolts?") == 'y') ammotype = 2;
-				else ammotype = 1;
+				canblaster = TRUE;
 			}
 
 		}
 
 		if (Role_if(PM_SPACE_MARINE)) {
-			pline("You can choose from these kinds of ammo: blaster bolts or bullets.");
-			if (yn("Do you want to create blaster bolts?") == 'y') ammotype = 2;
-			else ammotype = 1;
+			canblaster = TRUE;
 		}
-
-		if (Role_if(PM_GRENADONIN)) ammotype = 6; /* grenades */
 
 		if (Race_if(PM_TURMENE)) {
-			pline("You can also make shotgun shells instead of regular ammo.");
-			if (yn("Do you want to create shotgun shells?") == 'y') ammotype = 3;
+			canshotty = TRUE;
 		}
+
+		if (!Role_if(PM_GRENADONIN)) {
+			boolean haschosen = FALSE;
+			pline("Pick an ammo type that you want to create. The prompt will loop until you actually make a choice.");
+			while (!haschosen) {
+				if (yn("Do you want to create pistol bullets?") == 'y') {
+					haschosen = TRUE;
+					ammotype = 1;
+				}
+				else if (yn("Do you want to create SMG bullets?") == 'y') {
+					haschosen = TRUE;
+					ammotype = 6;
+				}
+				else if (yn("Do you want to create rifle bullets?") == 'y') {
+					haschosen = TRUE;
+					ammotype = 7;
+				}
+				else if (yn("Do you want to create sniper bullets?") == 'y') {
+					haschosen = TRUE;
+					ammotype = 8;
+				}
+				else if (yn("Do you want to create MG bullets?") == 'y') {
+					haschosen = TRUE;
+					ammotype = 9;
+				}
+				else if (yn("Do you want to create assault rifle bullets?") == 'y') {
+					haschosen = TRUE;
+					ammotype = 10;
+				}
+				else if (canshotty && yn("Do you want to create shotgun shells?") == 'y') {
+					haschosen = TRUE;
+					ammotype = 3;
+				}
+				else if (canshotty && yn("Do you want to create auto shotgun shells?") == 'y') {
+					haschosen = TRUE;
+					ammotype = 11;
+				}
+				else if (canrocket && yn("Do you want to create rockets?") == 'y') {
+					haschosen = TRUE;
+					ammotype = 4;
+				}
+				else if (canbfg && yn("Do you want to create BFG ammo?") == 'y') {
+					haschosen = TRUE;
+					ammotype = 5;
+				}
+				else if (canblaster && yn("Do you want to create blaster bolts?") == 'y') {
+					haschosen = TRUE;
+					ammotype = 2;
+				}
+				else if (canblaster && yn("Do you want to create heavy blaster bolts?") == 'y') {
+					haschosen = TRUE;
+					ammotype = 12;
+				}
+				else if (canblaster && yn("Do you want to create raygun bolts?") == 'y') {
+					haschosen = TRUE;
+					ammotype = 13;
+				}
+				else if (canblaster && yn("Do you want to create laser beams?") == 'y') {
+					haschosen = TRUE;
+					ammotype = 14;
+				}
+				else if (canblaster && yn("Do you want to create radios?") == 'y') {
+					haschosen = TRUE;
+					ammotype = 15;
+				}
+			}
+
+		}
+
+		if (Role_if(PM_GRENADONIN)) ammotype = 666; /* grenades */
 
 	    You("make some ammo for your gun.");
 
 		struct obj *uammo;
 
-		if (ammotype == 6) uammo = mksobj(rn2(2) ? GAS_GRENADE : FRAG_GRENADE, TRUE, FALSE, FALSE);
+		if (ammotype == 666) uammo = mksobj(rn2(2) ? GAS_GRENADE : FRAG_GRENADE, TRUE, FALSE, FALSE);
 		else if (ammotype == 5) uammo = mksobj(BFG_AMMO, TRUE, FALSE, FALSE);
 		else if (ammotype == 4) uammo = mksobj(ROCKET, TRUE, FALSE, FALSE);
 		else if (ammotype == 3) uammo = mksobj(SHOTGUN_SHELL, TRUE, FALSE, FALSE);
 		else if (ammotype == 2) uammo = mksobj(BLASTER_BOLT, TRUE, FALSE, FALSE);
-		else uammo = mksobj(BULLET, TRUE, FALSE, FALSE);
+		else if (ammotype == 6) uammo = mksobj(SMG_BULLET, TRUE, FALSE, FALSE);
+		else if (ammotype == 7) uammo = mksobj(RIFLE_BULLET, TRUE, FALSE, FALSE);
+		else if (ammotype == 8) uammo = mksobj(SNIPER_BULLET, TRUE, FALSE, FALSE);
+		else if (ammotype == 9) uammo = mksobj(MG_BULLET, TRUE, FALSE, FALSE);
+		else if (ammotype == 10) uammo = mksobj(ASSAULT_RIFLE_BULLET, TRUE, FALSE, FALSE);
+		else if (ammotype == 11) uammo = mksobj(AUTO_SHOTGUN_SHELL, TRUE, FALSE, FALSE);
+		else if (ammotype == 12) uammo = mksobj(HEAVY_BLASTER_BOLT, TRUE, FALSE, FALSE);
+		else if (ammotype == 13) uammo = mksobj(RAYGUN_BOLT, TRUE, FALSE, FALSE);
+		else if (ammotype == 14) uammo = mksobj(LASER_BEAM, TRUE, FALSE, FALSE);
+		else if (ammotype == 15) uammo = mksobj(RADIO, TRUE, FALSE, FALSE);
+		else uammo = mksobj(PISTOL_BULLET, TRUE, FALSE, FALSE);
 		if (uammo) {
 			uammo->quan = techlevX(tech_no);
 			/* gunner really specializes in ranged weapons, so needs a big bonus --Amy */
@@ -5085,6 +5158,11 @@ breakstare:
 				if (uarmf) curse(uarmf);
 			}
 			if (uammo && ammotype == 1 && uarmh && uarmh->oartifact == ART_TURKISH_EMPIRE) uammo->quan *= 2;
+			if (uammo && ammotype == 6 && uarmh && uarmh->oartifact == ART_TURKISH_EMPIRE) uammo->quan *= 2;
+			if (uammo && ammotype == 7 && uarmh && uarmh->oartifact == ART_TURKISH_EMPIRE) uammo->quan *= 2;
+			if (uammo && ammotype == 8 && uarmh && uarmh->oartifact == ART_TURKISH_EMPIRE) uammo->quan *= 2;
+			if (uammo && ammotype == 9 && uarmh && uarmh->oartifact == ART_TURKISH_EMPIRE) uammo->quan *= 2;
+			if (uammo && ammotype == 10 && uarmh && uarmh->oartifact == ART_TURKISH_EMPIRE) uammo->quan *= 2;
 			if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE) uammo->quan *= 2;
 			if (ammotype == 5) uammo->quan *= 4;
 			if (ammotype == 4) uammo->quan /= 10;
@@ -7533,6 +7611,13 @@ cardtrickchoice:
 			break;
 
 		case T_SHOTTY_BLAST:
+		{
+
+			int ammotype;
+
+			pline("You can choose from these kinds of ammo: shotgun shells or auto shotgun shells.");
+			if (yn("Do you want to create shotgun shells?") == 'y') ammotype = 2;
+			else ammotype = 1;
 
 			You("make some shotgun shells.");
 
@@ -7540,7 +7625,8 @@ cardtrickchoice:
 
 			struct obj *uammo;
 
-			uammo = mksobj(SHOTGUN_SHELL, TRUE, FALSE, FALSE);
+			if (ammotype == 1) uammo = mksobj(AUTO_SHOTGUN_SHELL, TRUE, FALSE, FALSE);
+			else uammo = mksobj(SHOTGUN_SHELL, TRUE, FALSE, FALSE);
 			if (uammo) {
 				uammo->quan = 5 + (techlevX(tech_no) / 3);
 				if (uammo->quan < 1) uammo->quan = 1;
@@ -7556,6 +7642,7 @@ cardtrickchoice:
 			t_timeout = rnz(5000);
 			break;
 
+		}
 		case T_AMMO_UPGRADE:
 
 			if (!uwep) {
@@ -7585,6 +7672,15 @@ cardtrickchoice:
 			break;
 
 		case T_LASER_POWER:
+		{
+			int ammotype;
+
+			pline("You can choose from these kinds of ammo: blaster bolts, heavy blaster bolts, laser beams, raygun bolts or radios.");
+			if (yn("Do you want to create blaster bolts?") == 'y') ammotype = 5;
+			else if (yn("Do you want to create heavy blaster bolts?") == 'y') ammotype = 4;
+			else if (yn("Do you want to create laser beams?") == 'y') ammotype = 3;
+			else if (yn("Do you want to create raygun bolts?") == 'y') ammotype = 2;
+			else ammotype = 1;
 
 			You("make some laser ammo.");
 
@@ -7592,9 +7688,12 @@ cardtrickchoice:
 
 			struct obj *uammo;
 
-			if (!rn2(100)) uammo = mksobj(LASER_BEAM, TRUE, FALSE, FALSE);
-			else if (!rn2(10)) uammo = mksobj(HEAVY_BLASTER_BOLT, TRUE, FALSE, FALSE);
-			else uammo = mksobj(BLASTER_BOLT, TRUE, FALSE, FALSE);
+			if (ammotype == 5) uammo = mksobj(BLASTER_BOLT, TRUE, FALSE, FALSE);
+			else if (ammotype == 4) uammo = mksobj(HEAVY_BLASTER_BOLT, TRUE, FALSE, FALSE);
+			else if (ammotype == 3) uammo = mksobj(LASER_BEAM, TRUE, FALSE, FALSE);
+			else if (ammotype == 2) uammo = mksobj(RAYGUN_BOLT, TRUE, FALSE, FALSE);
+			else uammo = mksobj(RADIO, TRUE, FALSE, FALSE);
+
 			if (uammo) {
 				uammo->quan = 10 + techlevX(tech_no);
 				if (uammo->quan < 1) uammo->quan = 1;
@@ -7610,6 +7709,7 @@ cardtrickchoice:
 			t_timeout = rnz(7500);
 			break;
 
+		}
 		case T_BIG_DADDY:
 
 			You("make a rocket launcher.");
@@ -7850,13 +7950,13 @@ cardtrickchoice:
 				break;
 			}
 			if (uwep && is_bullet(uwep)) {
-				if (uwep->otyp == BULLET || uwep->otyp == SILVER_BULLET || uwep->otyp == LEAD_BULLET || uwep->otyp == ANTIMATTER_BULLET || uwep->otyp == BLASTER_BOLT || uwep->otyp == HEAVY_BLASTER_BOLT || uwep->otyp == LASER_BEAM) {
+				if (uwep->otyp == SMG_BULLET || uwep->otyp == ANTIMATTER_SMG_BULLET || uwep->otyp == MG_BULLET || uwep->otyp == ANTIMATTER_MG_BULLET || uwep->otyp == RIFLE_BULLET || uwep->otyp == ANTIMATTER_RIFLE_BULLET || uwep->otyp == SNIPER_BULLET || uwep->otyp == ANTIMATTER_SNIPER_BULLET || uwep->otyp == ASSAULT_RIFLE_BULLET || uwep->otyp == ANTIMATTER_ASSAULT_RIFLE_BULLE || uwep->otyp == PISTOL_BULLET || uwep->otyp == SILVER_PISTOL_BULLET || uwep->otyp == LEAD_PISTOL_BULLET || uwep->otyp == ANTIMATTER_PISTOL_BULLET || uwep->otyp == BLASTER_BOLT || uwep->otyp == RAYGUN_BOLT || uwep->otyp == RADIO || uwep->otyp == HEAVY_BLASTER_BOLT || uwep->otyp == LASER_BEAM) {
 					uwep->quan += (20 + techlevX(tech_no));
 					pline("The amount of ammo was increased!");
 				} else if (uwep->otyp == BFG_AMMO) {
 					uwep->quan += (80 + (techlevX(tech_no) * 5));
 					pline("The amount of ammo was increased!");
-				} else if (uwep->otyp == SHOTGUN_SHELL || uwep->otyp == LEAD_SHOT) {
+				} else if (uwep->otyp == SHOTGUN_SHELL || uwep->otyp == AUTO_SHOTGUN_SHELL || uwep->otyp == LEAD_SHOT) {
 					uwep->quan += (10 + (techlevX(tech_no) / 2));
 					pline("The amount of ammo was increased!");
 				} else if (uwep->otyp == ROCKET) {

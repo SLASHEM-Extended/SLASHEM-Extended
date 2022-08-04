@@ -4618,11 +4618,12 @@ aulechoice:
 			coord cc;
 			struct monst *psychmonst;
 
-			opbullet = carrying(BULLET);
-			if (!opbullet) opbullet = carrying(SILVER_BULLET);
-			if (!opbullet) opbullet = carrying(LEAD_BULLET);
+			opbullet = carrying(PISTOL_BULLET);
+			if (!opbullet) opbullet = carrying(SILVER_PISTOL_BULLET);
+			if (!opbullet) opbullet = carrying(LEAD_PISTOL_BULLET);
+			if (!opbullet) opbullet = carrying(ANTIMATTER_PISTOL_BULLET);
 			if (!opbullet) {
-				pline("There are no bullets, and therefore you can't shoot!");
+				pline("There are no pistol bullets, and therefore you can't shoot!");
 				break;
 			}
 
@@ -4702,11 +4703,12 @@ aulechoice:
 			coord cc;
 			struct monst *psychmonst;
 
-			opbullet = carrying(BULLET);
-			if (!opbullet) opbullet = carrying(SILVER_BULLET);
-			if (!opbullet) opbullet = carrying(LEAD_BULLET);
+			opbullet = carrying(PISTOL_BULLET);
+			if (!opbullet) opbullet = carrying(SILVER_PISTOL_BULLET);
+			if (!opbullet) opbullet = carrying(LEAD_PISTOL_BULLET);
+			if (!opbullet) opbullet = carrying(ANTIMATTER_PISTOL_BULLET);
 			if (!opbullet) {
-				pline("There are no bullets, and therefore you can't shoot!");
+				pline("There are no pistol bullets, and therefore you can't shoot!");
 				break;
 			}
 

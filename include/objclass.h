@@ -149,12 +149,22 @@ struct objclass {
 #define oc_hitbon	oc_oc1		/* weapons: "to hit" bonus */
 #define w_ammotyp	oc_oc2		/* type of ammo taken by ranged weapon */
 #define WP_GENERIC	0		/* all ammo subclasses ok */
-#define WP_BULLET	1
-#define WP_SHELL	2
-#define WP_ROCKET	3
-#define WP_GRENADE	4
-#define WP_BLASTER	5
-#define WP_BFG	6
+#define WP_BULLET_PISTOL	1
+#define WP_BULLET_SMG	2
+#define WP_BULLET_MG	3
+#define WP_BULLET_RIFLE	4
+#define WP_BULLET_AR	5
+#define WP_BULLET_SNIPER	6
+#define WP_SHELL	7
+#define WP_SHELL_AUTO	8
+#define WP_ROCKET	9
+#define WP_GRENADE	10
+#define WP_BLASTER_HAND	11
+#define WP_BLASTER_ARM	12
+#define WP_PROCESS_CARD	13
+#define WP_CUTTING	14
+#define WP_RAYGUN	15
+#define WP_BFG	16
 
 #define a_ac		oc_oc1	/* armor class, used in ARM_BONUS in do.c */
 #define a_can		oc_oc2		/* armor: used in mhitu.c */

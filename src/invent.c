@@ -10466,7 +10466,7 @@ boolean knoweverything;
 			case HUNTING_RIFLE:
 				pline("A rifle that shoots single bullets over a range of 30 squares."); break;
 			case PROCESS_CARD:
-				pline("Load this laser gun with blaster bolts or laser beams, and then fire them at monsters standing up to 20 tiles away!"); break;
+				pline("Load this laser gun with radios, and then fire them at monsters standing up to 20 tiles away!"); break;
 			case ZOOM_SHOT_CROSSBOW:
 				pline("This crossbow has a range of up to 20 squares if you fire bolts with it, and equipping it also improves your sight."); break;
 			case BALLISTA:
@@ -10614,31 +10614,57 @@ boolean knoweverything;
 			case SAWED_OFF_SHOTGUN:
 				pline("It's a one-handed shotgun with bad to-hit, but its rate of fire is better than the regular shotgun."); break;
 			case AUTO_SHOTGUN:
-				pline("This two-handed shotgun is capable of firing several shotgun shells in one round of combat. It has a rather random to-hit chance though, so not all pellets might hit the target."); break;
+				pline("This two-handed shotgun is capable of firing several shotgun shells in one round of combat. It has a rather random to-hit chance though, so not all pellets might hit the target. Also, it uses 'auto shotgun shells', which are different from regular shotgun shells."); break;
 			case ROCKET_LAUNCHER: 
 				pline("The 'big daddy' of firearms, this baby shoots explosive rockets for massive damage. Yeah, baby. It takes awfully long to reload though."); break;
 			case GRENADE_LAUNCHER: 
 				pline("If you want your grenades to pack a bigger punch, fire them with this weapon. The grenade launcher has a low rate of fire though."); break;
-			case BULLET: 
-				pline("A metal bullet that can be fired with pistols, submachine guns, rifles of all kinds, and heavy machine guns."); break;
-			case LEAD_BULLET:
-				pline("Firearm ammo for pistols, SMGs, rifles and machine guns. It may occasionally be re-used when fired."); break;
-			case ANTIMATTER_BULLET: 
-				pline("This bullet does much more damage than regular ones. It must be fired from a pistol, SMG, rifle or heavy MG."); break;
-			case SILVER_BULLET: 
-				pline("A silver bullet that can be fired with pistols, submachine guns, rifles of all kinds, and heavy machine guns. Undead monsters take extra damage from it."); break;
-			case BLASTER_BOLT: 
-				pline("Laser-based ammo to be used by energy guns."); break;
-			case HEAVY_BLASTER_BOLT: 
-				pline("Strong laser-based ammo to be used by energy guns."); break;
+			case PISTOL_BULLET:
+				pline("A metal bullet that can be fired with pistols."); break;
+			case LEAD_PISTOL_BULLET:
+				pline("Firearm ammo for pistols. It may occasionally be re-used when fired."); break;
+			case ANTIMATTER_PISTOL_BULLET:
+				pline("This bullet does much more damage than regular ones. It must be fired from a pistol."); break;
+			case SILVER_PISTOL_BULLET: 
+				pline("A silver bullet that can be fired with pistols. Undead monsters take extra damage from it."); break;
+			case SMG_BULLET:
+				pline("A metal bullet that can be fired with SMGs."); break;
+			case ANTIMATTER_SMG_BULLET:
+				pline("This bullet does much more damage than regular ones. It must be fired from a SMG."); break;
+			case MG_BULLET:
+				pline("A metal bullet that can be fired with heavy machine guns."); break;
+			case ANTIMATTER_MG_BULLET:
+				pline("This bullet does much more damage than regular ones. It must be fired from a heavy machine gun."); break;
+			case RIFLE_BULLET:
+				pline("A metal bullet that can be fired with regular rifles, but not sniper rifles."); break;
+			case ANTIMATTER_RIFLE_BULLET:
+				pline("This bullet does much more damage than regular ones. It must be fired from a rifle. Be aware that it doesn't work for sniper rifles."); break;
+			case SNIPER_BULLET:
+				pline("A metal bullet that can be fired with sniper rifles, but not regular rifles."); break;
+			case ANTIMATTER_SNIPER_BULLET:
+				pline("This bullet does much more damage than regular ones. It must be fired from a sniper rifle. Be aware that it doesn't work for other types of rifle."); break;
+			case ASSAULT_RIFLE_BULLET:
+				pline("A metal bullet that can be fired with assault rifles and kalashnikovs. It doesn't work for other types of rifle."); break;
+			case ANTIMATTER_ASSAULT_RIFLE_BULLE:
+				pline("This bullet does much more damage than regular ones. It must be fired from an assault rifle or kalashnikov. Be aware that it doesn't work for any other rifle."); break;
+			case BLASTER_BOLT:
+				pline("Laser-based ammo to be used by the hand blaster."); break;
+			case HEAVY_BLASTER_BOLT:
+				pline("Laser-based ammo to be used by the arm blaster."); break;
+			case RADIO:
+				pline("This device can't be used as a receiver for public radio stations, even though it looks like that's what it should do. Instead, it's ammo for the process card."); break;
+			case RAYGUN_BOLT: 
+				pline("Laser-based ammo to be used by the raygun."); break;
 			case LASER_BEAM: 
-				pline("The ultimate energy gun ammo capable of dealing a heck of a lot of damage per shot."); break;
+				pline("The ultimate energy gun ammo capable of dealing a heck of a lot of damage per shot, but it can only be fired by the cutting laser."); break;
 			case BFG_AMMO: 
 				pline("Only the BFG can fire this type of ammo. The damage per ammo isn't that high, but wait until you see the # of ammo fired per turn!"); break;
 			case SHOTGUN_SHELL: 
-				pline("This shell does a lot of damage if fired with a shotgun."); break;
+				pline("This shell does a lot of damage if fired with a shotgun. It fits for regular shotguns but not the auto shotgun."); break;
 			case LEAD_SHOT:
-				pline("You can fire this ammo from a shotgun, and very occasionally you can even pick it back up and use it again."); break;
+				pline("You can fire this ammo from a shotgun, and very occasionally you can even pick it back up and use it again. It can only be used for regular shotguns though, not auto shotguns."); break;
+			case AUTO_SHOTGUN_SHELL:
+				pline("Ammo used by the auto shotgun specifically. Don't try to fire it from other types of shotgun."); break;
 			case ROCKET:
 				pline("A highly explosive rocket. It requires a rocket launcher to be used effectively, but the explosion can hit several enemies at once."); break;
 			case FRAG_GRENADE:
@@ -11319,7 +11345,7 @@ boolean knoweverything;
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BRIDAL_SHOES))
 			pline("Wear this pair of cone heels if you're planning to get married. If you have a sexual encounter while wearing them, there's an increased chance of good effects.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_PISTOL_BOOTS))
-			pline("This pair of stiletto heels has a pistol for a heel. If you kick while having bullets quivered, they'll fire in the direction of your kick.");
+			pline("This pair of stiletto heels has a pistol for a heel. If you kick while having pistol bullets quivered, they'll fire in the direction of your kick.");
 
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_NG_SHOES)) {
 			pline("--");
@@ -15525,7 +15551,7 @@ boolean knoweverything;
 			case SPE_RELOCATION:
 				pline("Very powerful spell that teleports you to a random empty location, but costs 5 max mana and also causes bad effects. It doesn't work at all if you're on the Planes or carrying the fully imbued Amulet of Yendor."); break;
 			case SPE_IMPACT_GUNFIRE:
-				pline("Requires a bullet in your open inventory, which will be used up, and can only be used once every 50 turns. It shoots in a direction and hits the first monster it meets, dealing high damage and paralyzing the monster for 2 turns."); break;
+				pline("Requires a pistol bullet in your open inventory, which will be used up, and can only be used once every 50 turns. It shoots in a direction and hits the first monster it meets, dealing high damage and paralyzing the monster for 2 turns."); break;
 			case SPE_COAGULATION:
 				pline("Casting this spell will give you temporary diminished bleeding."); break;
 			case SPE_CURE_PARALYSIS:
@@ -15577,7 +15603,7 @@ boolean knoweverything;
 			case SPE_PARTICLE_CANNON:
 				pline("A very powerful damage-dealing beam spell with great range. If you cast it, you're paralyzed for 5 turns because you have to reload the cannon, and it then requires an additional 45 more turns to become available again."); break;
 			case SPE_ONE_POINT_SHOOT:
-				pline("This spell works only if you have a bullet in your inventory, which will be used up. You then get a target cursor that you can place on a monster, which then takes a lot of damage. If the bullet was positively enchanted, the damage will be even higher. However, you can only use this spell once every 50 turns."); break;
+				pline("This spell works only if you have a pistol bullet in your inventory, which will be used up. You then get a target cursor that you can place on a monster, which then takes a lot of damage. If the bullet was positively enchanted, the damage will be even higher. However, you can only use this spell once every 50 turns."); break;
 			case SPE_BLOOD_STREAM:
 				pline("A spell that lets you use your menstruation as a weapon, shooting a stream of blood in a direction that can hit several enemies. However, you take damage equal to up to 20%% of your maximum HP. The damage it deals is higher the less health you have remaining after that loss, and if you're female it deals even more damage."); break;
 			case SPE_SHINING_WAVE:
@@ -22497,6 +22523,32 @@ boolean knoweverything;
 					pline("Artifact specs: fear when worn, increases your speed, lawful."); break;
 				case ART_SHE_REALLY_LIKES_IT:
 					pline("Artifact specs: monsters need a +1 or higher weapon to hit you effectively while you're wearing them, but the larissa and dora trap effects are active and you also suffer from skill loss."); break;
+				case ART_P_P_P_P_:
+					pline("Artifact specs: +4 to-hit and +6 damage."); break;
+				case ART_SUSTAINED_FIRES:
+					pline("Artifact specs: +20 to-hit and +20 damage."); break;
+				case ART_BOOM_BOOM_BOOM_BOOM_BOOM_B:
+					pline("Artifact specs: +2 to-hit and +4 damage."); break;
+				case ART_SHREDSHREDSHRED:
+					pline("Artifact specs: +20 to-hit and +10 damage."); break;
+				case ART_TOTALLY_THE_CUNT:
+					pline("Artifact specs: +14 damage."); break;
+				case ART_HEAD_SHOT_:
+					pline("Artifact specs: +50 damage, beheads targets."); break;
+				case ART_PAEAEAEAEAEAEAU_KLINK_KLIN:
+					pline("Artifact specs: +20 damage."); break;
+				case ART_TURN_INTO_ASH_HEAP:
+					pline("Artifact specs: +40 damage, may cancel the target if it fails to resist."); break;
+				case ART_REUSEME:
+					pline("Artifact specs: has a good chance of being preserved when fired."); break;
+				case ART_HEAVYDRAIN:
+					pline("Artifact specs: +12 damage, drains the target's maximum health."); break;
+				case ART_DAMN_I_M_GOOD:
+					pline("Artifact specs: +10 to-hit and +10 damage, may slow the target if it fails to resist."); break;
+				case ART_TSCHIEIEIEIEIE:
+					pline("Artifact specs: +20 to-hit and +2 damage."); break;
+				case ART_COMBAT_PELLET:
+					pline("Artifact specs: +12 to-hit and +4 damage, has a very good chance of being preserved when fired."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

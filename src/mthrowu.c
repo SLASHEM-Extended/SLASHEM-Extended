@@ -299,7 +299,7 @@ const char *name;	/* if null, then format `obj' */
 	is_egg = (obj && obj->otyp == EGG);
 	is_polearm = (obj && (objects[obj->otyp].oc_skill == P_POLEARMS || objects[obj->otyp].oc_skill == P_LANCE || objects[obj->otyp].oc_skill == P_GRINDER || obj->otyp == AKLYS || obj->otyp == BLOW_AKLYS || obj->otyp == REACH_TRIDENT || obj->otyp == SPINED_BALL || obj->otyp == CHAIN_AND_SICKLE || obj->otyp == LASER_CHAIN));
 	is_thrown_weapon = (obj && (objects[obj->otyp].oc_skill == P_DART || objects[obj->otyp].oc_skill == P_SHURIKEN) );
-	is_bulletammo = (obj && obj->otyp >= BULLET && obj->otyp <= GAS_GRENADE);
+	is_bulletammo = (obj && obj->otyp >= PISTOL_BULLET && obj->otyp <= GAS_GRENADE);
 
 	if (is_bulletammo) extrachance = 1;
 	else if (is_acid || is_tailspike || is_egg || is_polearm || (obj && obj->oclass == VENOM_CLASS) ) extrachance = 10;
@@ -636,7 +636,22 @@ const char *name;	/* if null, then format `obj' */
 		}
 
 		/* evil patch: antimatter bullets will damage the player's inventory --Amy */
-		if (obj && obj->otyp == ANTIMATTER_BULLET) {
+		if (obj && obj->otyp == ANTIMATTER_PISTOL_BULLET) {
+			antimatter_damage(invent, FALSE, FALSE);
+		}
+		if (obj && obj->otyp == ANTIMATTER_SMG_BULLET) {
+			antimatter_damage(invent, FALSE, FALSE);
+		}
+		if (obj && obj->otyp == ANTIMATTER_MG_BULLET) {
+			antimatter_damage(invent, FALSE, FALSE);
+		}
+		if (obj && obj->otyp == ANTIMATTER_SNIPER_BULLET) {
+			antimatter_damage(invent, FALSE, FALSE);
+		}
+		if (obj && obj->otyp == ANTIMATTER_RIFLE_BULLET) {
+			antimatter_damage(invent, FALSE, FALSE);
+		}
+		if (obj && obj->otyp == ANTIMATTER_ASSAULT_RIFLE_BULLE) {
 			antimatter_damage(invent, FALSE, FALSE);
 		}
 

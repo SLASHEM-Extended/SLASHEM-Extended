@@ -1665,7 +1665,7 @@ int thrown;
 		}
 		check_shop_obj(obj, u.ux, u.uy, TRUE);
 		u.cnd_gunpowderused++; /* even if bulletreuse or lead bullets allows them to be used again --Amy */
-		if (((!(tech_inuse(T_BULLETREUSE)) || rn2(3)) && !(Race_if(PM_VIETIS) && !rn2(3)) && !(objects[obj->otyp].oc_material == MT_LEAD && !rn2(2))) || (uarmf && uarmf->oartifact == ART_ANACONDA_HEELS) ) {
+		if (((!(tech_inuse(T_BULLETREUSE)) || rn2(3)) && !(Race_if(PM_VIETIS) && !rn2(3)) && !(obj->oartifact == ART_REUSEME && rn2(4)) && !(obj->oartifact == ART_COMBAT_PELLET && rn2(10)) && !(objects[obj->otyp].oc_material == MT_LEAD && !rn2(2))) || (uarmf && uarmf->oartifact == ART_ANACONDA_HEELS) ) {
 			obfree(obj, (struct obj *)0);
 			return;
 		}
@@ -1825,7 +1825,7 @@ int thrown;
 	if (is_bullet(obj) && (ammo_and_launcher(obj, launcher) && !is_grenade(obj))) {
 		check_shop_obj(obj, bhitpos.x,bhitpos.y, TRUE);
 		u.cnd_gunpowderused++; /* even if bulletreuse or lead bullets allows them to be used again --Amy */
-		if (((!(tech_inuse(T_BULLETREUSE)) || rn2(3)) && !(Race_if(PM_VIETIS) && !rn2(3)) && !(objects[obj->otyp].oc_material == MT_LEAD && !rn2(2))) || (uarmf && uarmf->oartifact == ART_ANACONDA_HEELS) ) {
+		if (((!(tech_inuse(T_BULLETREUSE)) || rn2(3)) && !(Race_if(PM_VIETIS) && !rn2(3)) && !(obj->oartifact == ART_REUSEME && rn2(4)) && !(obj->oartifact == ART_COMBAT_PELLET && rn2(10)) && !(objects[obj->otyp].oc_material == MT_LEAD && !rn2(2))) || (uarmf && uarmf->oartifact == ART_ANACONDA_HEELS) ) {
 			obfree(obj, (struct obj *)0);
 			return;
 		}

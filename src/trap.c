@@ -3626,7 +3626,7 @@ unsigned trflags;
 		trap->once = 1;
 		seetrap(trap);
 		pline("BANG! A gun shoots at you!");
-		otmp = mksobj(BULLET, TRUE, FALSE, FALSE);
+		otmp = mksobj(PISTOL_BULLET, TRUE, FALSE, FALSE);
 		if (otmp) {
 			int projectiledamage = dmgval(otmp, &youmonst);
 			if (projectiledamage > 1) {
@@ -16900,7 +16900,7 @@ register struct monst *mtmp;
 			    break;
 			}
 			trap->once = 1;
-			otmp = mksobj(BULLET, TRUE, FALSE, FALSE);
+			otmp = mksobj(PISTOL_BULLET, TRUE, FALSE, FALSE);
 			if (otmp) {
 				otmp->quan = 1L;
 				otmp->owt = weight(otmp);
@@ -21953,7 +21953,7 @@ boolean force;
 			case BOLT_TRAP:
 				return disarm_shooting_trap(ttmp, CROSSBOW_BOLT);
 			case BULLET_TRAP:
-				return disarm_shooting_trap(ttmp, BULLET);
+				return disarm_shooting_trap(ttmp, PISTOL_BULLET);
 			case GLASS_ARROW_TRAP:
 				return disarm_shooting_trap(ttmp, DROVEN_ARROW);
 			case GLASS_BOLT_TRAP:

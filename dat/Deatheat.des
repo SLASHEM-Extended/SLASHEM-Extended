@@ -294,9 +294,9 @@ ALTAR:(16,11),noncoaligned,altar
 OBJECT:')',"quarterstaff",(16,11),blessed,0,"The Elder Staff"
 OBJECT:')',"pistol",(16,11)
 
-OBJECT:')',"bullet",(16,11)
-OBJECT:')',"bullet",(16,11)
-OBJECT:')',"bullet",(16,11)
+OBJECT:')',"pistol bullet",(16,11)
+OBJECT:')',"pistol bullet",(16,11)
+OBJECT:')',"pistol bullet",(16,11)
 OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random

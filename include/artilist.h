@@ -601,7 +601,7 @@ A("Grand Daddy",			ROCKET_LAUNCHER,
 	(SPFX_RESTR|SPFX_ATTK), 0, 0,
 	FIRE(20,20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
 
-A("Extra Firepower",			BULLET,
+A("Extra Firepower",			PISTOL_BULLET,
 	(SPFX_RESTR), 0, 0,
 	PHYS(2,10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
 
@@ -2807,7 +2807,7 @@ A("Maximum Launch Power",				GRENADE_LAUNCHER, /* +rnd(2) multishot */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
-A("Kill Them All",				ANTIMATTER_BULLET,
+A("Kill Them All",				ANTIMATTER_PISTOL_BULLET,
 	(SPFX_RESTR), 0, 0,
 	PHYS(20,40), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
 
@@ -6543,7 +6543,7 @@ A("Lulwy's Trick",				WIND_BOW, /* adds extra speed when wielded */
 	(SPFX_RESTR|SPFX_DEFN), 0, 0,
 	NO_ATTK, DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
-A("Parable Ammunition",				LEAD_BULLET,
+A("Parable Ammunition",				LEAD_PISTOL_BULLET,
 	(SPFX_RESTR), 0, 0,
 	PHYS(0, 18), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 600L ),
 
@@ -8797,7 +8797,7 @@ A("Use-A-Lot",				BRONZE_ARROW, /* if it would have mulched, 90% chance that it 
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
 
-A("Ampersand Eraser",				SILVER_BULLET,
+A("Ampersand Eraser",				SILVER_PISTOL_BULLET,
 	(SPFX_RESTR|SPFX_DFLAG2), 0, M2_DEMON,
 	PHYS(20, 50), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 70L ),
 
@@ -9064,6 +9064,58 @@ A("Jasieen's Fear",				LOW_BOOTS, /* initialized to always be wedge espadrilles,
 A("She Really Likes It",				LOW_BOOTS, /* initialized to always be treaded heels, larissa and dora trap effects, monsters need a +1 weapon to hit you effectively, skill loss effect */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("P-p-p-p!",				SMG_BULLET,
+	(SPFX_RESTR), 0, 0,
+	PHYS(4, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Sustained Fires",				ANTIMATTER_SMG_BULLET,
+	(SPFX_RESTR), 0, 0,
+	PHYS(20, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("BOOM BOOM BOOM BOOM BOOM BOOM BOOM",				MG_BULLET,
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("ShredShredShred",				ANTIMATTER_MG_BULLET,
+	(SPFX_RESTR), 0, 0,
+	PHYS(20, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Totally The Cunt",				RIFLE_BULLET,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 14), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 300L ),
+
+A("Head Shot!",				ANTIMATTER_RIFLE_BULLET,
+	(SPFX_RESTR|SPFX_BEHEAD), 0, 0,
+	PHYS(0, 50), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("Paeaeaeaeaeaeau Klink Klink",				SNIPER_BULLET,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Turn Into Ash Heap",				ANTIMATTER_SNIPER_BULLET, /* tries to cancel the target, but it can also resist */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 40), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Reuseme",				ASSAULT_RIFLE_BULLET, /* 75% chance that it may be preserved like lead ammo */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Heavydrain",				ANTIMATTER_ASSAULT_RIFLE_BULLE, /* reduces target's max HP by one */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 300L ),
+
+A("Damn I'm Good",				RADIO, /* tries to slow down the target, but it can also resist */
+	(SPFX_RESTR), 0, 0,
+	PHYS(10, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Tschieieieieie",				RAYGUN_BOLT,
+	(SPFX_RESTR), 0, 0,
+	PHYS(20, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 150L ),
+
+A("Combat Pellet",				AUTO_SHOTGUN_SHELL, /* 90% chance that it may be preserved like lead ammo */
+	(SPFX_RESTR), 0, 0,
+	PHYS(12, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
 
 /*
  *	Stormbringer only has a 2 because it can drain a level,

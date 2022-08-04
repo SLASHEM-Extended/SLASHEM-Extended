@@ -250,8 +250,8 @@ OBJECT[40%]:'/',"cold",(39,07)
 OBJECT:')',"orcish bow",(39,07),uncursed,+1
 OBJECT:')',"orcish arrow",(39,07),uncursed,+3
 OBJECT[40%]:')',"sniper rifle",(39,07),uncursed,+3
-OBJECT[40%]:')',"bullet",(39,07),uncursed,+4
-OBJECT[40%]:')',"bullet",(39,07),uncursed,+3
+OBJECT[40%]:')',"sniper bullet",(39,07),uncursed,+4
+OBJECT[40%]:')',"sniper bullet",(39,07),uncursed,+3
 
 MONSTER:'o',"war orc",(39,09),hostile
 OBJECT[80%]:'/',"magic missile",(39,09)
@@ -752,8 +752,8 @@ OBJECT[40%]:'/',"cold",(39,07)
 OBJECT:')',"orcish bow",(39,07),uncursed,+1
 OBJECT:')',"orcish arrow",(39,07),uncursed,+3
 OBJECT[40%]:')',"sniper rifle",(39,07),uncursed,+3
-OBJECT[40%]:')',"bullet",(39,07),uncursed,+4
-OBJECT[40%]:')',"bullet",(39,07),uncursed,+3
+OBJECT[40%]:')',"sniper bullet",(39,07),uncursed,+4
+OBJECT[40%]:')',"sniper bullet",(39,07),uncursed,+3
 
 MONSTER:'o',"war orc",(39,09),hostile
 OBJECT[80%]:'/',"magic missile",(39,09)
@@ -1254,8 +1254,8 @@ OBJECT[40%]:'/',"cold",(39,07)
 OBJECT:')',"orcish bow",(39,07),uncursed,+1
 OBJECT:')',"orcish arrow",(39,07),uncursed,+3
 OBJECT[40%]:')',"sniper rifle",(39,07),uncursed,+3
-OBJECT[40%]:')',"bullet",(39,07),uncursed,+4
-OBJECT[40%]:')',"bullet",(39,07),uncursed,+3
+OBJECT[40%]:')',"sniper bullet",(39,07),uncursed,+4
+OBJECT[40%]:')',"sniper bullet",(39,07),uncursed,+3
 
 MONSTER:'o',"war orc",(39,09),hostile
 OBJECT[80%]:'/',"magic missile",(39,09)
@@ -1756,8 +1756,8 @@ OBJECT[40%]:'/',"cold",(39,07)
 OBJECT:')',"orcish bow",(39,07),uncursed,+1
 OBJECT:')',"orcish arrow",(39,07),uncursed,+3
 OBJECT[40%]:')',"sniper rifle",(39,07),uncursed,+3
-OBJECT[40%]:')',"bullet",(39,07),uncursed,+4
-OBJECT[40%]:')',"bullet",(39,07),uncursed,+3
+OBJECT[40%]:')',"sniper bullet",(39,07),uncursed,+4
+OBJECT[40%]:')',"sniper bullet",(39,07),uncursed,+3
 
 MONSTER:'o',random,(39,09),hostile
 OBJECT[80%]:'/',"magic missile",(39,09)
@@ -2258,8 +2258,8 @@ OBJECT[40%]:'/',"cold",(39,07)
 OBJECT:')',"orcish bow",(39,07),uncursed,+1
 OBJECT:')',"orcish arrow",(39,07),uncursed,+3
 OBJECT[40%]:')',"sniper rifle",(39,07),uncursed,+3
-OBJECT[40%]:')',"bullet",(39,07),uncursed,+4
-OBJECT[40%]:')',"bullet",(39,07),uncursed,+3
+OBJECT[40%]:')',"sniper bullet",(39,07),uncursed,+4
+OBJECT[40%]:')',"sniper bullet",(39,07),uncursed,+3
 
 MONSTER:'o',random,(39,09),hostile
 OBJECT[80%]:'/',"magic missile",(39,09)
@@ -2760,8 +2760,8 @@ OBJECT[40%]:'/',"cold",(39,07)
 OBJECT:')',"orcish bow",(39,07),uncursed,+1
 OBJECT:')',"orcish arrow",(39,07),uncursed,+3
 OBJECT[40%]:')',"sniper rifle",(39,07),uncursed,+3
-OBJECT[40%]:')',"bullet",(39,07),uncursed,+4
-OBJECT[40%]:')',"bullet",(39,07),uncursed,+3
+OBJECT[40%]:')',"sniper bullet",(39,07),uncursed,+4
+OBJECT[40%]:')',"sniper bullet",(39,07),uncursed,+3
 
 MONSTER:'o',random,(39,09),hostile
 OBJECT[80%]:'/',"magic missile",(39,09)
@@ -3261,8 +3261,8 @@ OBJECT[40%]:'/',"cold",(39,07)
 OBJECT:')',"orcish bow",(39,07),uncursed,+1
 OBJECT:')',"orcish arrow",(39,07),uncursed,+3
 OBJECT[40%]:')',"sniper rifle",(39,07),uncursed,+3
-OBJECT[40%]:')',"bullet",(39,07),uncursed,+4
-OBJECT[40%]:')',"bullet",(39,07),uncursed,+3
+OBJECT[40%]:')',"sniper bullet",(39,07),uncursed,+4
+OBJECT[40%]:')',"sniper bullet",(39,07),uncursed,+3
 
 MONSTER:'o',"war orc",(39,09),hostile
 OBJECT[80%]:'/',"magic missile",(39,09)
@@ -3763,8 +3763,8 @@ OBJECT[40%]:'/',"cold",(39,07)
 OBJECT:')',"orcish bow",(39,07),uncursed,+1
 OBJECT:')',"orcish arrow",(39,07),uncursed,+3
 OBJECT[40%]:')',"sniper rifle",(39,07),uncursed,+3
-OBJECT[40%]:')',"bullet",(39,07),uncursed,+4
-OBJECT[40%]:')',"bullet",(39,07),uncursed,+3
+OBJECT[40%]:')',"sniper bullet",(39,07),uncursed,+4
+OBJECT[40%]:')',"sniper bullet",(39,07),uncursed,+3
 
 MONSTER:'o',"war orc",(39,09),hostile
 OBJECT[80%]:'/',"magic missile",(39,09)
@@ -4265,8 +4265,8 @@ OBJECT[40%]:'/',"cold",(39,07)
 OBJECT:')',"orcish bow",(39,07),uncursed,+1
 OBJECT:')',"orcish arrow",(39,07),uncursed,+3
 OBJECT[40%]:')',"sniper rifle",(39,07),uncursed,+3
-OBJECT[40%]:')',"bullet",(39,07),uncursed,+4
-OBJECT[40%]:')',"bullet",(39,07),uncursed,+3
+OBJECT[40%]:')',"sniper bullet",(39,07),uncursed,+4
+OBJECT[40%]:')',"sniper bullet",(39,07),uncursed,+3
 
 MONSTER:'o',"war orc",(39,09),hostile
 OBJECT[80%]:'/',"magic missile",(39,09)

@@ -353,7 +353,7 @@ struct monst *mon;
 	if (otmp->otyp == TWO_HANDED_FLAIL && is_undead(ptr)) tmp += 8;
 
 	/* as well as silver bullets */
-	if (otmp->otyp == SILVER_BULLET && is_undead(ptr)) tmp += 8;
+	if (otmp->otyp == SILVER_PISTOL_BULLET && is_undead(ptr)) tmp += 8;
 
 	/* lances versus animals */
 	if (objects[otmp->otyp].oc_skill == P_LANCE && is_animal(ptr)) tmp += 3;
@@ -369,6 +369,7 @@ struct monst *mon;
 
 	/* shotgun versus bears or other quadrupeds */
 	if (otmp->otyp == SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED) tmp += 10;
+	if (otmp->otyp == AUTO_SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED) tmp += 10;
 	if (otmp->otyp == LEAD_SHOT && ptr->mlet == S_QUADRUPED) tmp += 10;
 
 	/* axes versus umber hulks */
@@ -973,7 +974,7 @@ struct monst *mon;
 	    if (otmp->otyp == TWO_HANDED_FLAIL && is_undead(ptr)) bonus += rnd(6);
 
 	    /* as well as silver bullets */
-	    if (otmp->otyp == SILVER_BULLET && is_undead(ptr)) bonus += 8;
+	    if (otmp->otyp == SILVER_PISTOL_BULLET && is_undead(ptr)) bonus += 8;
 
 	    /* lances versus animals */
 	    if (objects[otmp->otyp].oc_skill == P_LANCE && is_animal(ptr)) bonus += rnd(2);
@@ -989,6 +990,7 @@ struct monst *mon;
 
 	    /* shotgun versus bears or other quadrupeds */
 	    if (otmp->otyp == SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED) bonus += (10 + rnd(10));
+	    if (otmp->otyp == AUTO_SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED) bonus += (10 + rnd(10));
 	    if (otmp->otyp == LEAD_SHOT && ptr->mlet == S_QUADRUPED) bonus += (10 + rnd(10));
 
 	    /* axes versus umber hulks */
@@ -2192,15 +2194,15 @@ struct monst *mon;
 		}
 
 	    /* as well as silver bullets */
-	    if (otmp->otyp == SILVER_BULLET && is_undead(ptr)) bonus += 8;
+	    if (otmp->otyp == SILVER_PISTOL_BULLET && is_undead(ptr)) bonus += 8;
 
 		if (!(PlayerCannotUseSkills)) {
 
-	    if (otmp->otyp == SILVER_BULLET && is_undead(ptr) && (P_SKILL(P_FIREARM) == P_SKILLED)) bonus += rnd(4);
-	    if (otmp->otyp == SILVER_BULLET && is_undead(ptr) && (P_SKILL(P_FIREARM) == P_EXPERT)) bonus += rnd(7);
-	    if (otmp->otyp == SILVER_BULLET && is_undead(ptr) && (P_SKILL(P_FIREARM) == P_MASTER)) bonus += rnd(10);
-	    if (otmp->otyp == SILVER_BULLET && is_undead(ptr) && (P_SKILL(P_FIREARM) == P_GRAND_MASTER)) bonus += rnd(14);
-	    if (otmp->otyp == SILVER_BULLET && is_undead(ptr) && (P_SKILL(P_FIREARM) == P_SUPREME_MASTER)) bonus += rnd(18);
+	    if (otmp->otyp == SILVER_PISTOL_BULLET && is_undead(ptr) && (P_SKILL(P_FIREARM) == P_SKILLED)) bonus += rnd(4);
+	    if (otmp->otyp == SILVER_PISTOL_BULLET && is_undead(ptr) && (P_SKILL(P_FIREARM) == P_EXPERT)) bonus += rnd(7);
+	    if (otmp->otyp == SILVER_PISTOL_BULLET && is_undead(ptr) && (P_SKILL(P_FIREARM) == P_MASTER)) bonus += rnd(10);
+	    if (otmp->otyp == SILVER_PISTOL_BULLET && is_undead(ptr) && (P_SKILL(P_FIREARM) == P_GRAND_MASTER)) bonus += rnd(14);
+	    if (otmp->otyp == SILVER_PISTOL_BULLET && is_undead(ptr) && (P_SKILL(P_FIREARM) == P_SUPREME_MASTER)) bonus += rnd(18);
 
 		}
 
@@ -2298,6 +2300,7 @@ struct monst *mon;
 
 	    /* shotgun versus bears or other quadrupeds */
 	    if (otmp->otyp == SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED) bonus += (10 + rnd(10));
+	    if (otmp->otyp == AUTO_SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED) bonus += (10 + rnd(10));
 	    if (otmp->otyp == LEAD_SHOT && ptr->mlet == S_QUADRUPED) bonus += (10 + rnd(10));
 
 		if (!(PlayerCannotUseSkills)) {
@@ -2306,6 +2309,11 @@ struct monst *mon;
 	    if (otmp->otyp == SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_MASTER)) bonus += rnd(10);
 	    if (otmp->otyp == SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_GRAND_MASTER)) bonus += rnd(12);
 	    if (otmp->otyp == SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_SUPREME_MASTER)) bonus += rnd(15);
+	    if (otmp->otyp == AUTO_SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_SKILLED)) bonus += rnd(4);
+	    if (otmp->otyp == AUTO_SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_EXPERT)) bonus += rnd(7);
+	    if (otmp->otyp == AUTO_SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_MASTER)) bonus += rnd(10);
+	    if (otmp->otyp == AUTO_SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_GRAND_MASTER)) bonus += rnd(12);
+	    if (otmp->otyp == AUTO_SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_SUPREME_MASTER)) bonus += rnd(15);
 
 	    if (otmp->otyp == LEAD_SHOT && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_SKILLED)) bonus += rnd(4);
 	    if (otmp->otyp == LEAD_SHOT && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_EXPERT)) bonus += rnd(7);
@@ -2491,8 +2499,11 @@ static NEARDATA const int rwep[] =
 
 	SPOON,
 	BFG_AMMO, FRAG_GRENADE, GAS_GRENADE, ROCKET, METEOR_ARROW,
-	LASER_BEAM, HEAVY_BLASTER_BOLT, BLASTER_BOLT,
-	ANTIMATTER_BULLET, SILVER_BULLET, LEAD_BULLET, BULLET, LEAD_SHOT, SHOTGUN_SHELL,
+	RADIO, RAYGUN_BOLT, LASER_BEAM, HEAVY_BLASTER_BOLT, BLASTER_BOLT,
+	ANTIMATTER_PISTOL_BULLET, ANTIMATTER_SMG_BULLET, ANTIMATTER_MG_BULLET, ANTIMATTER_RIFLE_BULLET,
+	ANTIMATTER_SNIPER_BULLET, ANTIMATTER_ASSAULT_RIFLE_BULLE,
+	MG_BULLET, SMG_BULLET, SNIPER_BULLET, RIFLE_BULLET, ASSAULT_RIFLE_BULLET, 
+	SILVER_PISTOL_BULLET, LEAD_PISTOL_BULLET, PISTOL_BULLET, LEAD_SHOT, AUTO_SHOTGUN_SHELL, SHOTGUN_SHELL,
 	JUMPING_FLAMER, CERAMIC_SPEAR, LOADBOULDER, STARLIGHTSTONE, HOMING_TORPEDO, BRICK_MISSILE,
 	COURSE_JAVELIN, SPIRIT_THROWER, DROVEN_SPEAR, ATGEIR, DRAGON_SPEAR, 
 	DWARVISH_SPEAR, SILVER_SPEAR, INKA_SPEAR, ELVEN_SPEAR, ASBESTOS_JAVELIN, STACK_JAVELIN, WINDMILL_BLADE,
@@ -2669,28 +2680,38 @@ boolean polespecial; /* may use polearm for monster-versus-monster combat */
 		  if (!propellor) propellor = (oselect(mtmp, PILE_BUNKER));
 		  if (!propellor) propellor = (oselect(mtmp, CROSSBOW));
 		case P_FIREARM:
-		  if ((objects[rwep[i]].w_ammotyp) == WP_BULLET) {
-			propellor = (oselect(mtmp, HEAVY_MACHINE_GUN));
-			if (!propellor) propellor = (oselect(mtmp, KALASHNIKOV));
-			if (!propellor) propellor = (oselect(mtmp, ASSAULT_RIFLE));
-			if (!propellor) propellor = (oselect(mtmp, SUBMACHINE_GUN));
-			if (!propellor) propellor = (oselect(mtmp, SNIPER_RIFLE));
-			if (!propellor) propellor = (oselect(mtmp, HUNTING_RIFLE));
-			if (!propellor) propellor = (oselect(mtmp, RIFLE));
-			if (!propellor) propellor = (oselect(mtmp, BEAM_REFLECTOR_GUN));
+		  if ((objects[rwep[i]].w_ammotyp) == WP_BULLET_PISTOL) {
+			propellor = (oselect(mtmp, BEAM_REFLECTOR_GUN));
 			if (!propellor) propellor = (oselect(mtmp, PISTOL));
 			if (!propellor) propellor = (oselect(mtmp, FLINTLOCK));
-		  } else if ((objects[rwep[i]].w_ammotyp) == WP_SHELL) {
+		  } else if ((objects[rwep[i]].w_ammotyp) == WP_SHELL_AUTO) {
 			propellor = (oselect(mtmp, AUTO_SHOTGUN));
-			if (!propellor) propellor = (oselect(mtmp, SAWED_OFF_SHOTGUN));
+		  } else if ((objects[rwep[i]].w_ammotyp) == WP_BULLET_MG) {
+			propellor = (oselect(mtmp, HEAVY_MACHINE_GUN));
+		  } else if ((objects[rwep[i]].w_ammotyp) == WP_BULLET_AR) {
+			propellor = (oselect(mtmp, KALASHNIKOV));
+			if (!propellor) propellor = (oselect(mtmp, ASSAULT_RIFLE));
+		  } else if ((objects[rwep[i]].w_ammotyp) == WP_BULLET_SMG) {
+			propellor = (oselect(mtmp, SUBMACHINE_GUN));
+		  } else if ((objects[rwep[i]].w_ammotyp) == WP_BULLET_SNIPER) {
+			propellor = (oselect(mtmp, SNIPER_RIFLE));
+		  } else if ((objects[rwep[i]].w_ammotyp) == WP_BULLET_RIFLE) {
+			propellor = (oselect(mtmp, HUNTING_RIFLE));
+			if (!propellor) propellor = (oselect(mtmp, RIFLE));
+		  } else if ((objects[rwep[i]].w_ammotyp) == WP_SHELL) {
+			propellor = (oselect(mtmp, SAWED_OFF_SHOTGUN));
 			if (!propellor) propellor = (oselect(mtmp, SHOTGUN));
 			if (!propellor) propellor = (oselect(mtmp, PAPER_SHOTGUN));
-		  } else if ((objects[rwep[i]].w_ammotyp) == WP_BLASTER) {
+		  } else if ((objects[rwep[i]].w_ammotyp) == WP_BLASTER_ARM) {
 			propellor = (oselect(mtmp, ARM_BLASTER));
-			if (!propellor) propellor = (oselect(mtmp, PROCESS_CARD));
-			if (!propellor) propellor = (oselect(mtmp, RAYGUN));
-			if (!propellor) propellor = (oselect(mtmp, HAND_BLASTER));
-			if (!propellor) propellor = (oselect(mtmp, CUTTING_LASER));
+		  } else if ((objects[rwep[i]].w_ammotyp) == WP_BLASTER_HAND) {
+			propellor = (oselect(mtmp, HAND_BLASTER));
+		  } else if ((objects[rwep[i]].w_ammotyp) == WP_PROCESS_CARD) {
+			propellor = (oselect(mtmp, PROCESS_CARD));
+		  } else if ((objects[rwep[i]].w_ammotyp) == WP_CUTTING) {
+			propellor = (oselect(mtmp, CUTTING_LASER));
+		  } else if ((objects[rwep[i]].w_ammotyp) == WP_RAYGUN) {
+			propellor = (oselect(mtmp, RAYGUN));
 		  } else if ((objects[rwep[i]].w_ammotyp) == WP_BFG) {
 			propellor = (oselect(mtmp, BFG));
 		  } else if ((objects[rwep[i]].w_ammotyp) == WP_ROCKET) {
