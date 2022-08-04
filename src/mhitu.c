@@ -4922,7 +4922,7 @@ newboss:
 
 	}
 
-	if (FemtrapActiveConny && thick_skinned(mtmp->data) && is_female(mtmp->data)) {
+	if (FemtrapActiveConny && !range2 && thick_skinned(mtmp->data) && is_female(mtmp->data)) {
 		pline("%s sits on you, and makes it hard for you to move!", Monnam(mtmp));
 		setustuck(mtmp);
 		make_stunned(HStun + 25, FALSE);
