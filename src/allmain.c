@@ -13961,7 +13961,16 @@ boolean new_game;	/* false => restoring an old game */
 #endif /* BIGSLEX */
 
 	/* MOTD for public server */
+
+#ifdef BIGSLEX
+
+	if (new_game) pline("Message of the day: This is a reminder that you should be playing the game on a terminal with the dimensions 125x45. If you haven't already, open your terminal settings NOW and change it to 125x45 or you'll keep wondering why the bottom status line disappears or gets cut off when it gets too long! Use exactly 125x45 for best results, any other dimensions and it won't work properly!");
+
+#else
 	if (new_game) pline("Message of the day: This is a reminder that you should be playing the game on a terminal with the dimensions 80x25. Yes, you read that right, 80x25, not that weird 80x24 default that many terminal emulators seem to have. If you haven't already, open your terminal settings NOW and change it to 80x25 or you'll keep wondering why the bottom status line disappears when it gets too long! But also, don't make the terminal bigger - if you set it to wacky values like 88x25 or 137x34 or whatever, the bottom status line won't work properly either!");
+
+#endif
+
 #endif /* PHANTOM_CRASH_BUG */
 
 #endif /* PUBLIC_SERVER */
