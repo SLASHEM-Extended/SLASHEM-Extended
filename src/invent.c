@@ -15677,7 +15677,7 @@ boolean knoweverything;
 			case SPE_REMOVE_CURSE:
 				pline("A spell that might uncurse some of your cursed items. It only affects items in your main inventory, and usually worn ones only. Occasionally it will backfire. Every time it successfully uncurses an item, and occasionally even if it fails to uncurse a heavily (or worse) cursed item, it afflicts you with contamination and sanity, the magnitude of which increasing greatly the more severe the item's curse was!"); break;
 			case SPE_TURN_UNDEAD:
-				pline("Fires an invisible beam that makes undead monsters flee and revives dead monsters."); break;
+				pline("Fires an invisible beam that makes undead monsters flee and revives dead monsters. In order to limit the inevitable abuse, corpses may occasionally be destroyed instead."); break;
 			case SPE_ANTI_DISINTEGRATION:
 				pline("This spell provides temporary disintegration resistance when cast."); break;
 			case SPE_BOTOX_RESIST:

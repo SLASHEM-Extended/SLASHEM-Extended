@@ -3724,8 +3724,9 @@ struct obj *obj, *otmp;
 			revive_egg(obj);
 		else {
 
-			/* Anti-farming measure by Amy */
-		    if (obj->otyp == CORPSE && !rn2(10)) {
+			/* Anti-farming measure by Amy - only for spells, since wands have limited charges and therefore
+			 * limited abuse potential, but with the spell you could revive the monster indefinitely = bad */
+		    if (obj->otyp == CORPSE && !is_rider(&mons[obj->corpsenm]) && !is_deadlysin(&mons[obj->corpsenm]) && otmp->otyp == SPE_TURN_UNDEAD && !rn2(10)) {
 
 				int x, y;
 				switch (obj->where) {
@@ -3752,8 +3753,9 @@ struct obj *obj, *otmp;
 					panic("unturn_dead corpse in weird place!");
 				}
 
-		    }
+		    } else {
 			res = !!revive(obj);
+		    }
 		}
 		break;
 	case WAN_OPENING:
@@ -7295,7 +7297,7 @@ struct obj *obj;	/* wand or spell */
 		case SPE_TELEPORT_AWAY:
 		    /* you go together */
 
-			if (!resist(u.usteed, WAND_CLASS, 0, NOTELL)) {
+			if (!resist(u.usteed, SPBOOK_CLASS, 0, NOTELL)) {
 
 			    tele();
 			    if(Teleport_control || !couldsee(u.ux0, u.uy0) ||
