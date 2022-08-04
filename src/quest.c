@@ -382,7 +382,8 @@ prisoner_speaks (mtmp)
 	    mtmp->mpeaceful = 1;
 
 	    /* Your god is happy... */
-	    adjalign(3);
+	    if (Race_if(PM_HUMANOID_DEVIL)) devil_misbehavior();
+	    else adjalign(3);
 
 		/* ...But the guards are not */
 	    (void) angry_guards(FALSE);

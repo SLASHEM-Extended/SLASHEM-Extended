@@ -30486,8 +30486,7 @@ register struct permonst *ptr;
 
 	if (ptr->mlet == S_KOP && Race_if(PM_KOP) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_ANGEL && Race_if(PM_HUMANOID_ANGEL) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
-	if (ptr->mlet == S_DEMON && Race_if(PM_HUMANOID_DEVIL) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
-	if (is_demon(ptr) && Race_if(PM_HUMANOID_DEVIL) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
+	if ((ptr->mlet == S_DEMON || is_demon(ptr)) && Race_if(PM_HUMANOID_DEVIL) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 
 	if (rn2(10) && RngePolarOpposites && (is_elec_resistant(ptr) || is_acid_resistant(ptr)) && !(is_elec_resistant(ptr) && is_acid_resistant(ptr)) ) return TRUE;
 	if (rn2(10) && uarmf && uarmf->oartifact == ART_SPEAK_TO_OJ && (ptr->msound == MS_FART_NORMAL || ptr->msound == MS_FART_QUIET || ptr->msound == MS_FART_LOUD)) return TRUE;

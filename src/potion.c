@@ -1970,6 +1970,28 @@ ghost_from_bottle()
 	make_bottle(FALSE);
 }
 
+/* devil race is penalized for being nice; after all, they're devils, not angels --Amy */
+void
+devil_misbehavior()
+{
+	struct monst* mtmp2;
+
+	You("made the mistake of being nice! That's not how devils are supposed to behave!");
+
+	/* reduce alignment, give a couple turns of "all monsters spawn hostile", and one point of contamination... */
+
+	adjalign(-10);
+	EnmityBug += rnz(200);
+	contaminate(1, FALSE);
+
+	/* ...and turn all peaceful chaotic monsters hostile (demons are usually chaotic, they don't like your actions) */
+
+	for (mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
+		if (mtmp2->data->maligntyp < 0) wakeup(mtmp2);
+	}
+
+}
+
 /* "Quaffing is like drinking, except you spill more."  -- Terry Pratchett
  */
 

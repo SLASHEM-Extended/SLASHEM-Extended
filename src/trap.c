@@ -21117,8 +21117,11 @@ struct monst *mtmp;
 	    /* Helping someone out of a trap is a nice thing to do,
 	     * A lawful may be rewarded, but not too often.  */
 	    if (!rn2(3) && !rnl(8) && u.ualign.type == A_LAWFUL) {
-		adjalign(1);
-		You_feel("that you did the right thing.");
+		if (Race_if(PM_HUMANOID_DEVIL)) devil_misbehavior();
+		else {
+			adjalign(1);
+			You_feel("that you did the right thing.");
+		}
 	    }
 	}
 }
