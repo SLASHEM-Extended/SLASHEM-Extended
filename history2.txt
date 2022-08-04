@@ -1,5 +1,49 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.7.6 - January 2022
+- Most types of firearm now have their own type of ammo.
+- Devil race player characters are now penalized when they perform certain "good" actions.
+- Firing a launcher can now cause it to dull.
+- Monsters can resist being zapped by the teleport away spell now.
+- When combining the sokosolver race with specialist and/or mazewalker, levels are now revealed less often.
+- Toned down the damage caused by shuriken.
+- Transformer race player characters are no longer asked whether they want to keep wearing their armor when polymorphing.
+- Ported the hangup handling fix from 3.6, which does not work on Windows.
+- Toned down the amount that monsters heal when casting a healing spell.
+- Moldoux, shopkeepers and temple priests should not attack the player's steed. They always attack the player instead.
+- Charm monster and other spells that can tame monsters are nerfed.
+- Dungeon growths are now only active on the level the player is on.
+- Choosing "automatically select every item" in an inventory prompt now asks for a confirmation.
+- Dual-wielding automatic firearms now gives extra large to-hit penalties for the off-hand gun.
+- Added two more inofficial lightsaber forms.
+- The remove curse spell backfires more often now, and also causes contamination if it actually uncurses something.
+- Mitigated the problem where pets occasionally get hit by phantom hits. The bug isn't fixed completely but at least it happens a lot less often now.
+- Fixed a SLASH'EM bug where it was sometimes possible to poison weapons via shopkeeper services that cannot be poisoned.
+- Added "asshole mode", where the player has permanent -13 luck, gets a lot less items, has a permanent Friday the 13th effect and is permanently affected by certain nasty trap effects.
+- Fixed the problem where a certain special level would try to place the regular stair and branch stair on the same square.
+- Fixed the bug with sanity attacks where the game would use the same name for the attacking and defending monster.
+- Fixed the problem where certain bigroom levels had unreachable areas.
+- Using Elbereth, scare monster or temple sanctuary to make monsters flee will now become less effective the more often the player does it.
+- Monsters stuck in a trap are now much more likely to wriggle free.
+- Symbiotes may now gain health when they kill a monster, and can also evolve if they gain enough and have an evolution.
+- New in/extrinsic "pain sense", which increases the likelihood that monsters make sounds when hurt, allowing players to pinpoint how much damage they've taken without needing a stethoscope.
+- Fixed the issue where if the player gets the skill cap of a basic-capped skill drained, it would become next to impossible to increase the cap again.
+- The cancellation spell is less effective when used on negatively enchanted or cursed objects now, and more likely to render such items finalized.
+- While on the level that has the portal to the Green Cross branch, the player now gets periodic messages.
+- Monsters that are coded to always flee from the player should now be able to do so when adjacent to the player, too.
+- Fixed the bug where combo strike worked with a weapon, and blade anger has been rebalanced.
+- Made it more likely for pets to emit sounds when they're hurt.
+- Guns with fire modes now have their accuracy adjusted depending on what mode the player sets.
+- The level drain effect from data delete now disables the restore life levels technique.
+- Bashing a monster's butt now depends on skills and certain other factors.
+- Fixed issues where ceramic equipment didn't dull as fast as it should.
+- In evilvariant mode, falling through a trap door deals damage proportional to how many dungeon levels the player fell.
+- Certain techniques that used to instantly nullify a weapon's negative enchantment no longer do so.
+- Garlic is less effective against undead.
+- Wands of bugging shouldn't spawn heisenbugs too early.
+- General combat skill boosts martial arts and bare-handed combat damage now, and soresu boosts martial arts damage if the player is wearing a robe.
+- Rebalanced the damage output of several weapons.
+
 2.7.5 - December 2021
 - Being skilled enough at symbiosis now conveys the symbiote's resistances to the player temporarily (i.e. until the symbiote dies or is otherwise removed).
 - Various foo-o-pathy types now have double effects.
