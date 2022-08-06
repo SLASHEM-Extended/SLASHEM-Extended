@@ -7697,6 +7697,7 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_SYSTEMLING]) (void) mongets(mtmp, HELMET);
 		if (ptr == &mons[PM_SMOKER_HC_WOMAN]) (void) mongets(mtmp, CIGARETTE);
 		if (ptr == &mons[PM_TUFTRIKE]) (void) mongets(mtmp, DANCING_SHOES);
+		if (ptr == &mons[PM_COCK_MONK]) (void) mongets(mtmp, VIBROBLADE);
 
 		if (ptr == &mons[PM_CLOCK_OLD_MARRIED_COUPLE]) {
 			(void) mongets(mtmp, SHOTGUN);
@@ -19580,6 +19581,12 @@ loveheelover:
 	if (ptr == &mons[PM_EROGENOUS_KATIA]) {
 
 		mtmp->crapbonus += 50;
+
+	}
+
+	if (ptr == &mons[PM_ANAL_SAMURAI]) {
+
+		mtmp->crapbonus += 10;
 
 	}
 
