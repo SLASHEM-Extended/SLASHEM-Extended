@@ -1184,6 +1184,10 @@ register boolean mod;
 			otmp->quan += 200;
 			otmp->owt = weight(otmp);
 		    }
+		    if (otmp && otmp->oartifact == ART______STOCKPILE) {
+			otmp->quan += 400;
+			otmp->owt = weight(otmp);
+		    }
 		    if (otmp && otmp->oartifact == ART_ZIEIEIE_) {
 			otmp->quan += 400;
 			otmp->owt = weight(otmp);

@@ -7950,13 +7950,13 @@ cardtrickchoice:
 				break;
 			}
 			if (uwep && is_bullet(uwep)) {
-				if (uwep->otyp == SMG_BULLET || uwep->otyp == ANTIMATTER_SMG_BULLET || uwep->otyp == MG_BULLET || uwep->otyp == ANTIMATTER_MG_BULLET || uwep->otyp == RIFLE_BULLET || uwep->otyp == ANTIMATTER_RIFLE_BULLET || uwep->otyp == SNIPER_BULLET || uwep->otyp == ANTIMATTER_SNIPER_BULLET || uwep->otyp == ASSAULT_RIFLE_BULLET || uwep->otyp == ANTIMATTER_ASSAULT_RIFLE_BULLE || uwep->otyp == PISTOL_BULLET || uwep->otyp == SILVER_PISTOL_BULLET || uwep->otyp == LEAD_PISTOL_BULLET || uwep->otyp == ANTIMATTER_PISTOL_BULLET || uwep->otyp == BLASTER_BOLT || uwep->otyp == RAYGUN_BOLT || uwep->otyp == RADIO || uwep->otyp == HEAVY_BLASTER_BOLT || uwep->otyp == LASER_BEAM) {
+				if (uwep->otyp == SMG_BULLET || uwep->otyp == ANTIMATTER_SMG_BULLET || uwep->otyp == MG_BULLET || uwep->otyp == ANTIMATTER_MG_BULLET || uwep->otyp == RIFLE_BULLET || uwep->otyp == ANTIMATTER_RIFLE_BULLET || uwep->otyp == SNIPER_BULLET || uwep->otyp == ANTIMATTER_SNIPER_BULLET || uwep->otyp == ASSAULT_RIFLE_BULLET || uwep->otyp == ANTIMATTER_ASSAULT_RIFLE_BULLE || uwep->otyp == PISTOL_BULLET || uwep->otyp == SILVER_PISTOL_BULLET || uwep->otyp == LEAD_PISTOL_BULLET || uwep->otyp == LEAD_SMG_BULLET || uwep->otyp == LEAD_RIFLE_BULLET || uwep->otyp == LEAD_MG_BULLET || uwep->otyp == LEAD_SNIPER_BULLET || uwep->otyp == LEAD_ASSAULT_RIFLE_BULLET || uwep->otyp == ANTIMATTER_PISTOL_BULLET || uwep->otyp == BLASTER_BOLT || uwep->otyp == RAYGUN_BOLT || uwep->otyp == RADIO || uwep->otyp == HEAVY_BLASTER_BOLT || uwep->otyp == LASER_BEAM) {
 					uwep->quan += (20 + techlevX(tech_no));
 					pline("The amount of ammo was increased!");
 				} else if (uwep->otyp == BFG_AMMO) {
 					uwep->quan += (80 + (techlevX(tech_no) * 5));
 					pline("The amount of ammo was increased!");
-				} else if (uwep->otyp == SHOTGUN_SHELL || uwep->otyp == AUTO_SHOTGUN_SHELL || uwep->otyp == LEAD_SHOT) {
+				} else if (uwep->otyp == SHOTGUN_SHELL || uwep->otyp == AUTO_SHOTGUN_SHELL || uwep->otyp == LEAD_SHOT || uwep->otyp == AUTO_LEAD_SHOT) {
 					uwep->quan += (10 + (techlevX(tech_no) / 2));
 					pline("The amount of ammo was increased!");
 				} else if (uwep->otyp == ROCKET) {

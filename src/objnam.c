@@ -3755,6 +3755,12 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ AUTO_SHOTGUN_SHELL, "todo" },
 	{ RAYGUN_BOLT, "todo" },
 	{ RADIO, "todo" },
+	{ LEAD_SMG_BULLET, "todo" },
+	{ LEAD_MG_BULLET, "todo" },
+	{ LEAD_RIFLE_BULLET, "todo" },
+	{ LEAD_SNIPER_BULLET, "todo" },
+	{ LEAD_ASSAULT_RIFLE_BULLET, "todo" },
+	{ AUTO_LEAD_SHOT, "todo" },
 
 	{0, "" }
 };
@@ -6758,6 +6764,12 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ AUTO_SHOTGUN_SHELL, "todo" },
 	{ RAYGUN_BOLT, "todo" },
 	{ RADIO, "todo" },
+	{ LEAD_SMG_BULLET, "todo" },
+	{ LEAD_MG_BULLET, "todo" },
+	{ LEAD_RIFLE_BULLET, "todo" },
+	{ LEAD_SNIPER_BULLET, "todo" },
+	{ LEAD_ASSAULT_RIFLE_BULLET, "todo" },
+	{ AUTO_LEAD_SHOT, "todo" },
 
 	{0, "" }
 };

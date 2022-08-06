@@ -9117,6 +9117,30 @@ A("Combat Pellet",				AUTO_SHOTGUN_SHELL, /* 90% chance that it may be preserved
 	(SPFX_RESTR), 0, 0,
 	PHYS(12, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
 
+A("Rare 10mm",				LEAD_SMG_BULLET,
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("You And Your Para",				LEAD_MG_BULLET,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("7.62mm Warzone",				LEAD_RIFLE_BULLET,
+	(SPFX_RESTR), 0, 0,
+	PHYS(4, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Legendary Shot",				LEAD_SNIPER_BULLET,
+	(SPFX_RESTR), 0, 0,
+	PHYS(20, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("5.56 Stockpile",				LEAD_ASSAULT_RIFLE_BULLET, /* +400 ammo when the stack is generated */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Tschongboeller",				AUTO_LEAD_SHOT,
+	(SPFX_RESTR), 0, 0,
+	PHYS(8, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

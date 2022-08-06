@@ -10623,6 +10623,16 @@ boolean knoweverything;
 				pline("A metal bullet that can be fired with pistols."); break;
 			case LEAD_PISTOL_BULLET:
 				pline("Firearm ammo for pistols. It may occasionally be re-used when fired."); break;
+			case LEAD_SMG_BULLET:
+				pline("Firearm ammo for submachine guns. It may occasionally be re-used when fired."); break;
+			case LEAD_MG_BULLET:
+				pline("Firearm ammo for heavy machine guns. It may occasionally be re-used when fired."); break;
+			case LEAD_RIFLE_BULLET:
+				pline("Firearm ammo for regular rifles. It may occasionally be re-used when fired."); break;
+			case LEAD_SNIPER_BULLET:
+				pline("Firearm ammo for sniper rifles. It may occasionally be re-used when fired."); break;
+			case LEAD_ASSAULT_RIFLE_BULLET:
+				pline("Firearm ammo for assault rifles. It may occasionally be re-used when fired."); break;
 			case ANTIMATTER_PISTOL_BULLET:
 				pline("This bullet does much more damage than regular ones. It must be fired from a pistol."); break;
 			case SILVER_PISTOL_BULLET: 
@@ -10663,6 +10673,8 @@ boolean knoweverything;
 				pline("This shell does a lot of damage if fired with a shotgun. It fits for regular shotguns but not the auto shotgun."); break;
 			case LEAD_SHOT:
 				pline("You can fire this ammo from a shotgun, and very occasionally you can even pick it back up and use it again. It can only be used for regular shotguns though, not auto shotguns."); break;
+			case AUTO_LEAD_SHOT:
+				pline("You can fire this ammo from an auto shotgun, and very occasionally you can even pick it back up and use it again. It can only be used for auto shotguns though, not regular or sawn-off shotguns."); break;
 			case AUTO_SHOTGUN_SHELL:
 				pline("Ammo used by the auto shotgun specifically. Don't try to fire it from other types of shotgun."); break;
 			case ROCKET:
@@ -22549,6 +22561,18 @@ boolean knoweverything;
 					pline("Artifact specs: +20 to-hit and +2 damage."); break;
 				case ART_COMBAT_PELLET:
 					pline("Artifact specs: +12 to-hit and +4 damage, has a very good chance of being preserved when fired."); break;
+				case ART_RARE___MM:
+					pline("Artifact specs: +2 to-hit and +8 damage."); break;
+				case ART_YOU_AND_YOUR_PARA:
+					pline("Artifact specs: +10 damage."); break;
+				case ART_____MM_WARZONE:
+					pline("Artifact specs: +4 to-hit and +12 damage."); break;
+				case ART_LEGENDARY_SHOT:
+					pline("Artifact specs: +20 to-hit and +20 damage."); break;
+				case ART______STOCKPILE:
+					pline("Artifact specs: does nothing special, but usually spawns with a much bigger stack size."); break;
+				case ART_TSCHONGBOELLER:
+					pline("Artifact specs: +8 to-hit and +8 damage."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

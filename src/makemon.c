@@ -7773,13 +7773,13 @@ register struct	monst	*mtmp;
 
 		if (ptr == &mons[PM_KAL_GUNNER]) {
 			(void) mongets(mtmp, KALASHNIKOV);
-			 m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 40);
-			 m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 40);
+			 m_initthrow(mtmp, LEAD_ASSAULT_RIFLE_BULLET, 40);
+			 m_initthrow(mtmp, LEAD_ASSAULT_RIFLE_BULLET, 40);
 		}
 		if (ptr == &mons[PM_KAL_CAMPER]) {
 			(void) mongets(mtmp, KALASHNIKOV);
-			 m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 40);
-			 m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 40);
+			 m_initthrow(mtmp, LEAD_ASSAULT_RIFLE_BULLET, 40);
+			 m_initthrow(mtmp, LEAD_ASSAULT_RIFLE_BULLET, 40);
 		}
 		if (ptr == &mons[PM_STUPID_CHEST_ADVENTURER]) {
 			(void) mongets(mtmp, CHEST);
@@ -8137,8 +8137,8 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, PLASTEEL_GLOVES);
 			(void) mongets(mtmp, PLASTEEL_BOOTS);
 			(void) mongets(mtmp, PLASTEEL_HELM);
-			 m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 50);
-			 m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 50);
+			 m_initthrow(mtmp, LEAD_ASSAULT_RIFLE_BULLET, 50);
+			 m_initthrow(mtmp, LEAD_ASSAULT_RIFLE_BULLET, 50);
 		}
 		if (ptr == &mons[PM_PLAYER_DYNAMO]) {
 			(void) mongets(mtmp, SAWED_OFF_SHOTGUN);
@@ -8148,12 +8148,12 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_RESERVE_MARINE]) {
 			(void) mongets(mtmp, CHAIN_MAIL);
 			(void) mongets(mtmp, SUBMACHINE_GUN);
-			 m_initthrow(mtmp, SMG_BULLET, 50);
+			 m_initthrow(mtmp, LEAD_SMG_BULLET, 50);
 		}
 		if (ptr == &mons[PM_EVASIVE_RESERVE_MARINE]) {
 			(void) mongets(mtmp, CHAIN_MAIL);
 			(void) mongets(mtmp, SUBMACHINE_GUN);
-			 m_initthrow(mtmp, SMG_BULLET, 50);
+			 m_initthrow(mtmp, LEAD_SMG_BULLET, 50);
 		}
 		if (ptr == &mons[PM_SHOOTING_RANGER]) {
 			(void) mongets(mtmp, CHAIN_MAIL);
@@ -8168,32 +8168,32 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_COUNTRY_TROOPER]) {
 			(void) mongets(mtmp, CHAIN_MAIL);
 			(void) mongets(mtmp, RIFLE);
-			 m_initthrow(mtmp, RIFLE_BULLET, 50);
+			 m_initthrow(mtmp, LEAD_RIFLE_BULLET, 50);
 		}
 		if (ptr == &mons[PM_EVASIVE_COUNTRY_TROOPER]) {
 			(void) mongets(mtmp, CHAIN_MAIL);
 			(void) mongets(mtmp, RIFLE);
-			 m_initthrow(mtmp, RIFLE_BULLET, 50);
+			 m_initthrow(mtmp, LEAD_RIFLE_BULLET, 50);
 		}
 		if (ptr == &mons[PM_ARMED_FORCE]) {
 			(void) mongets(mtmp, CHAIN_MAIL);
 			(void) mongets(mtmp, ASSAULT_RIFLE);
-			 m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 50);
+			 m_initthrow(mtmp, LEAD_ASSAULT_RIFLE_BULLET, 50);
 		}
 		if (ptr == &mons[PM_EVASIVE_ARMED_FORCE]) {
 			(void) mongets(mtmp, CHAIN_MAIL);
 			(void) mongets(mtmp, ASSAULT_RIFLE);
-			 m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 50);
+			 m_initthrow(mtmp, LEAD_ASSAULT_RIFLE_BULLET, 50);
 		}
 		if (ptr == &mons[PM_SNIPER_ASSIE]) {
 			(void) mongets(mtmp, CHAIN_MAIL);
 			(void) mongets(mtmp, SNIPER_RIFLE);
-			 m_initthrow(mtmp, SNIPER_BULLET, 50);
+			 m_initthrow(mtmp, LEAD_SNIPER_BULLET, 50);
 		}
 		if (ptr == &mons[PM_EVASIVE_SNIPER_ASSIE]) {
 			(void) mongets(mtmp, CHAIN_MAIL);
 			(void) mongets(mtmp, SNIPER_RIFLE);
-			 m_initthrow(mtmp, SNIPER_BULLET, 50);
+			 m_initthrow(mtmp, LEAD_SNIPER_BULLET, 50);
 		}
 		if (ptr == &mons[PM_ASIAN_SECRETARY]) {
 			(void) mongets(mtmp, SEXY_LEATHER_PUMP);
@@ -8412,8 +8412,8 @@ register struct	monst	*mtmp;
 			(void)mongets(mtmp, LEATHER_GLOVES);
 			(void)mongets(mtmp, LOW_BOOTS);
 			(void)mongets(mtmp, LEATHER_CLOAK);
-			m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 40);
-			m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 40);
+			m_initthrow(mtmp, LEAD_ASSAULT_RIFLE_BULLET, 40);
+			m_initthrow(mtmp, LEAD_ASSAULT_RIFLE_BULLET, 40);
 		}
 		if (ptr == &mons[PM_ENGCHIP]) {
 			(void)mongets(mtmp, BOW);
@@ -9029,8 +9029,8 @@ register struct	monst	*mtmp;
 		}
 		if (ptr == &mons[PM_UTIMA_DESTROYER_OF_XEREN]) {
 			(void) mongets(mtmp, SNIPER_RIFLE);
-			 m_initthrow(mtmp, SNIPER_BULLET, 50);
-			 m_initthrow(mtmp, SNIPER_BULLET, 50);
+			 m_initthrow(mtmp, LEAD_SNIPER_BULLET, 50);
+			 m_initthrow(mtmp, LEAD_SNIPER_BULLET, 50);
 		}
 		if (ptr == &mons[PM_PLASTIC_EXPLOSIVES_GOLEM]) {
 			(void) mongets(mtmp, STICK_OF_DYNAMITE);
@@ -9651,7 +9651,7 @@ loveheelover:
 		}
 		if (mtmp->data == &mons[PM_HUNTBIRD]) {
 			(void) mongets(mtmp, HUNTING_RIFLE);
-			m_initthrow(mtmp, RIFLE_BULLET, 45);
+			m_initthrow(mtmp, LEAD_RIFLE_BULLET, 45);
 		}
 		if (mtmp->data == &mons[PM_SCYTHING_BIRD]) {
 			(void) mongets(mtmp, SCYTHE);
@@ -9756,13 +9756,30 @@ loveheelover:
 		}
 
 		if (ptr == &mons[PM_HAITIAN_GANGSTER]) {
-			(void) mongets(mtmp, !rn2(3) ? SHOTGUN : !rn2(2) ? SAWED_OFF_SHOTGUN : AUTO_SHOTGUN);
-			 m_initthrow(mtmp, LEAD_SHOT, 50);
+			if (!rn2(3)) {
+				(void) mongets(mtmp, SHOTGUN);
+				 m_initthrow(mtmp, LEAD_SHOT, 50);
+			} else if (!rn2(2)) {
+				(void) mongets(mtmp, SAWED_OFF_SHOTGUN);
+				 m_initthrow(mtmp, LEAD_SHOT, 50);
+			} else {
+				(void) mongets(mtmp, AUTO_SHOTGUN);
+				 m_initthrow(mtmp, AUTO_LEAD_SHOT, 50);
+			}
+
 		}
 
 		if (ptr == &mons[PM_AGGRAVATED_HAITIAN_GANGSTER]) {
-			(void) mongets(mtmp, !rn2(3) ? SHOTGUN : !rn2(2) ? SAWED_OFF_SHOTGUN : AUTO_SHOTGUN);
-			 m_initthrow(mtmp, LEAD_SHOT, 50);
+			if (!rn2(3)) {
+				(void) mongets(mtmp, SHOTGUN);
+				 m_initthrow(mtmp, LEAD_SHOT, 50);
+			} else if (!rn2(2)) {
+				(void) mongets(mtmp, SAWED_OFF_SHOTGUN);
+				 m_initthrow(mtmp, LEAD_SHOT, 50);
+			} else {
+				(void) mongets(mtmp, AUTO_SHOTGUN);
+				 m_initthrow(mtmp, AUTO_LEAD_SHOT, 50);
+			}
 			(void) mongets(mtmp, T_SHIRT);
 			(void) mongets(mtmp, LEATHER_SHOES);
 		}
@@ -10225,8 +10242,8 @@ loveheelover:
 		}
 		if (ptr == &mons[PM_ROGUERY_NUMBER_FOUR]) {
 			(void) mongets(mtmp, KALASHNIKOV);
-			 m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 50);
-			 m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 50);
+			 m_initthrow(mtmp, LEAD_ASSAULT_RIFLE_BULLET, 50);
+			 m_initthrow(mtmp, LEAD_ASSAULT_RIFLE_BULLET, 50);
 		}
 		if (ptr == &mons[PM_PILE_OF_AMORPHOUS_COINS]) {
 			(void) mongets(mtmp, SLING);
@@ -10908,8 +10925,8 @@ loveheelover:
 
 		if (ptr == &mons[PM_COKE_TYPE]) {
 			(void) mongets(mtmp, ASSAULT_RIFLE);
-			 m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 50);
-			 m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 50);
+			 m_initthrow(mtmp, LEAD_ASSAULT_RIFLE_BULLET, 50);
+			 m_initthrow(mtmp, LEAD_ASSAULT_RIFLE_BULLET, 50);
 		}
 		if (ptr == &mons[PM_EREGK]) {
 			(void) mongets(mtmp, LONG_SWORD);
@@ -10923,8 +10940,8 @@ loveheelover:
 		if (ptr == &mons[PM_DIAZ_GANG_MEMBER]) {
 			(void) mongets(mtmp, ASSAULT_RIFLE);
 			(void) mongets(mtmp, HAWAIIAN_SHIRT);
-			 m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 50);
-			 m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 50);
+			 m_initthrow(mtmp, LEAD_ASSAULT_RIFLE_BULLET, 50);
+			 m_initthrow(mtmp, LEAD_ASSAULT_RIFLE_BULLET, 50);
 		}
 		if (ptr == &mons[PM_METALLIC_MUSHROOM]) {
 			(void) mongets(mtmp, SLING);
@@ -11647,7 +11664,7 @@ loveheelover:
 				 m_initthrow(mtmp, LEAD_PISTOL_BULLET, 50);
 			} else {
 				(void) mongets(mtmp, SUBMACHINE_GUN);
-				 m_initthrow(mtmp, SMG_BULLET, 50);
+				 m_initthrow(mtmp, LEAD_SMG_BULLET, 50);
 			}
 			(void) mongets(mtmp, HIGH_BOOTS);
 			(void) mongets(mtmp, FEDORA);
@@ -11658,23 +11675,23 @@ loveheelover:
 				 m_initthrow(mtmp, LEAD_PISTOL_BULLET, 50);
 			} else {
 				(void) mongets(mtmp, SUBMACHINE_GUN);
-				 m_initthrow(mtmp, SMG_BULLET, 50);
+				 m_initthrow(mtmp, LEAD_SMG_BULLET, 50);
 			}
 			(void) mongets(mtmp, LEATHER_SHOES);
 			(void) mongets(mtmp, HAWAIIAN_SHIRT);
 		}
 		if (ptr == &mons[PM_BUFF_COLOMBIAN_POTATO]) {
 			(void) mongets(mtmp, KALASHNIKOV);
-			 m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 50);
-			 m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 50);
+			 m_initthrow(mtmp, LEAD_ASSAULT_RIFLE_BULLET, 50);
+			 m_initthrow(mtmp, LEAD_ASSAULT_RIFLE_BULLET, 50);
 			(void) mongets(mtmp, CHAIN_MAIL);
 			(void) mongets(mtmp, DWARVISH_CLOAK);
 			(void) mongets(mtmp, HIGH_BOOTS);
 		}
 		if (ptr == &mons[PM_PURPLE_NINE]) {
 			(void) mongets(mtmp, SUBMACHINE_GUN);
-			 m_initthrow(mtmp, SMG_BULLET, 50);
-			 m_initthrow(mtmp, SMG_BULLET, 25);
+			 m_initthrow(mtmp, LEAD_SMG_BULLET, 50);
+			 m_initthrow(mtmp, LEAD_SMG_BULLET, 25);
 			(void) mongets(mtmp, RING_MAIL);
 		}
 		if (ptr == &mons[PM_RUMBLER_RED_JACK]) {
@@ -12225,7 +12242,7 @@ loveheelover:
 		}
 		if (ptr == &mons[PM_LEADDY_PUDDING]) {
 		  	(void) mongets(mtmp, AUTO_SHOTGUN);
-		  	m_initthrow(mtmp, LEAD_SHOT, 50);
+		  	m_initthrow(mtmp, AUTO_LEAD_SHOT, 50);
 		}
 		if (ptr == &mons[PM_SMG_PUDDING]) {
 		  	(void) mongets(mtmp, SUBMACHINE_GUN);
@@ -12338,8 +12355,8 @@ loveheelover:
 		if (ptr == &mons[PM_FRENCH_GANGMAN]) {
 			(void) mongets(mtmp, SPLINT_MAIL);
 			(void) mongets(mtmp, KALASHNIKOV);
-			 m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 50);
-			 m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 50);
+			 m_initthrow(mtmp, LEAD_ASSAULT_RIFLE_BULLET, 50);
+			 m_initthrow(mtmp, LEAD_ASSAULT_RIFLE_BULLET, 50);
 		}
 
 		if (ptr == &mons[PM_RHED_MUSHROOM]) {
@@ -12385,7 +12402,7 @@ loveheelover:
 
 		if (ptr == &mons[PM_FREEMASON_CASER]) {
 		  	(void) mongets(mtmp, AUTO_SHOTGUN);
-		  	m_initthrow(mtmp, LEAD_SHOT, 50);
+		  	m_initthrow(mtmp, AUTO_LEAD_SHOT, 50);
 		}
 		if (ptr == &mons[PM_SACK_STUFF_POLICE]) {
 		  	(void) mongets(mtmp, PISTOL);
@@ -13908,8 +13925,8 @@ loveheelover:
 
 		if (ptr == &mons[PM_CAMPCAMPCAMP_TURRET]) {
 			(void) mongets(mtmp, KALASHNIKOV);
-			 m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 40);
-			 m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 40);
+			 m_initthrow(mtmp, LEAD_ASSAULT_RIFLE_BULLET, 40);
+			 m_initthrow(mtmp, LEAD_ASSAULT_RIFLE_BULLET, 40);
 		}
 		if (ptr == &mons[PM_CHILD_MAKING_MACHINE]) {
 			(void) mongets(mtmp, EGG);
@@ -14868,7 +14885,7 @@ loveheelover:
 			(void) mongets(mtmp, BASINET);
 			(void) mongets(mtmp, ASSAULT_RIFLE);
 			(void) mongets(mtmp, BRONZE_PLATE_MAIL);
-			 m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 50);
+			 m_initthrow(mtmp, LEAD_ASSAULT_RIFLE_BULLET, 50);
 		}
 		if (ptr == &mons[PM_LIVE_KNIGHT]) {
 			(void) mongets(mtmp, HEAVY_LONG_SWORD);
@@ -15978,8 +15995,8 @@ loveheelover:
 		}
 		if (ptr == &mons[PM_SYRINGE_VAMPIRE]) {
 			(void)mongets(mtmp, ASSAULT_RIFLE);
-			m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 40);
-			m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 40);
+			m_initthrow(mtmp, LEAD_ASSAULT_RIFLE_BULLET, 40);
+			m_initthrow(mtmp, LEAD_ASSAULT_RIFLE_BULLET, 40);
 		}
 		if (ptr == &mons[PM_ASSAULT_VAMPIRE]) {
 			(void)mongets(mtmp, ASSAULT_RIFLE);
@@ -16149,10 +16166,10 @@ loveheelover:
 			(void) mongets(mtmp, HEAVY_MACHINE_GUN);
 			(void) mongets(mtmp, CHAIN_MAIL);
 			(void) mongets(mtmp, PLASTEEL_HELM);
-			 m_initthrow(mtmp, MG_BULLET, 50);
-			 m_initthrow(mtmp, MG_BULLET, 50);
-			 m_initthrow(mtmp, MG_BULLET, 50);
-			 m_initthrow(mtmp, MG_BULLET, 50);
+			 m_initthrow(mtmp, LEAD_MG_BULLET, 50);
+			 m_initthrow(mtmp, LEAD_MG_BULLET, 50);
+			 m_initthrow(mtmp, LEAD_MG_BULLET, 50);
+			 m_initthrow(mtmp, LEAD_MG_BULLET, 50);
 		}
 
 		if (ptr == &mons[PM_ICE_DEVIL] && !rn2(4)) {
@@ -17360,7 +17377,7 @@ loveheelover:
 		}
 		if (ptr == &mons[PM_CONTEYE]) {
 			(void) mongets(mtmp, RIFLE);
-			m_initthrow(mtmp, RIFLE_BULLET, 40);
+			m_initthrow(mtmp, LEAD_RIFLE_BULLET, 40);
 		}
 
 		if (ptr == &mons[PM_ROCT_ORB]) {

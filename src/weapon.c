@@ -371,6 +371,7 @@ struct monst *mon;
 	if (otmp->otyp == SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED) tmp += 10;
 	if (otmp->otyp == AUTO_SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED) tmp += 10;
 	if (otmp->otyp == LEAD_SHOT && ptr->mlet == S_QUADRUPED) tmp += 10;
+	if (otmp->otyp == AUTO_LEAD_SHOT && ptr->mlet == S_QUADRUPED) tmp += 10;
 
 	/* axes versus umber hulks */
 	if (objects[otmp->otyp].oc_skill == P_AXE && ptr->mlet == S_UMBER) tmp += 3;
@@ -992,6 +993,7 @@ struct monst *mon;
 	    if (otmp->otyp == SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED) bonus += (10 + rnd(10));
 	    if (otmp->otyp == AUTO_SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED) bonus += (10 + rnd(10));
 	    if (otmp->otyp == LEAD_SHOT && ptr->mlet == S_QUADRUPED) bonus += (10 + rnd(10));
+	    if (otmp->otyp == AUTO_LEAD_SHOT && ptr->mlet == S_QUADRUPED) bonus += (10 + rnd(10));
 
 	    /* axes versus umber hulks */
 	    if (objects[otmp->otyp].oc_skill == P_AXE && ptr->mlet == S_UMBER) bonus += rnd(2);
@@ -2302,6 +2304,7 @@ struct monst *mon;
 	    if (otmp->otyp == SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED) bonus += (10 + rnd(10));
 	    if (otmp->otyp == AUTO_SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED) bonus += (10 + rnd(10));
 	    if (otmp->otyp == LEAD_SHOT && ptr->mlet == S_QUADRUPED) bonus += (10 + rnd(10));
+	    if (otmp->otyp == AUTO_LEAD_SHOT && ptr->mlet == S_QUADRUPED) bonus += (10 + rnd(10));
 
 		if (!(PlayerCannotUseSkills)) {
 	    if (otmp->otyp == SHOTGUN_SHELL && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_SKILLED)) bonus += rnd(4);
@@ -2320,6 +2323,11 @@ struct monst *mon;
 	    if (otmp->otyp == LEAD_SHOT && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_MASTER)) bonus += rnd(10);
 	    if (otmp->otyp == LEAD_SHOT && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_GRAND_MASTER)) bonus += rnd(12);
 	    if (otmp->otyp == LEAD_SHOT && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_SUPREME_MASTER)) bonus += rnd(15);
+	    if (otmp->otyp == AUTO_LEAD_SHOT && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_SKILLED)) bonus += rnd(4);
+	    if (otmp->otyp == AUTO_LEAD_SHOT && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_EXPERT)) bonus += rnd(7);
+	    if (otmp->otyp == AUTO_LEAD_SHOT && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_MASTER)) bonus += rnd(10);
+	    if (otmp->otyp == AUTO_LEAD_SHOT && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_GRAND_MASTER)) bonus += rnd(12);
+	    if (otmp->otyp == AUTO_LEAD_SHOT && ptr->mlet == S_QUADRUPED && (P_SKILL(P_FIREARM) == P_SUPREME_MASTER)) bonus += rnd(15);
 		}
 
 	    /* axes versus umber hulks */
@@ -2502,8 +2510,10 @@ static NEARDATA const int rwep[] =
 	RADIO, RAYGUN_BOLT, LASER_BEAM, HEAVY_BLASTER_BOLT, BLASTER_BOLT,
 	ANTIMATTER_PISTOL_BULLET, ANTIMATTER_SMG_BULLET, ANTIMATTER_MG_BULLET, ANTIMATTER_RIFLE_BULLET,
 	ANTIMATTER_SNIPER_BULLET, ANTIMATTER_ASSAULT_RIFLE_BULLE,
+	LEAD_MG_BULLET, LEAD_SMG_BULLET, LEAD_SNIPER_BULLET, LEAD_RIFLE_BULLET, LEAD_ASSAULT_RIFLE_BULLET, 
 	MG_BULLET, SMG_BULLET, SNIPER_BULLET, RIFLE_BULLET, ASSAULT_RIFLE_BULLET, 
-	SILVER_PISTOL_BULLET, LEAD_PISTOL_BULLET, PISTOL_BULLET, LEAD_SHOT, AUTO_SHOTGUN_SHELL, SHOTGUN_SHELL,
+	SILVER_PISTOL_BULLET, LEAD_PISTOL_BULLET, PISTOL_BULLET, AUTO_LEAD_SHOT,
+	LEAD_SHOT, AUTO_SHOTGUN_SHELL, SHOTGUN_SHELL,
 	JUMPING_FLAMER, CERAMIC_SPEAR, LOADBOULDER, STARLIGHTSTONE, HOMING_TORPEDO, BRICK_MISSILE,
 	COURSE_JAVELIN, SPIRIT_THROWER, DROVEN_SPEAR, ATGEIR, DRAGON_SPEAR, 
 	DWARVISH_SPEAR, SILVER_SPEAR, INKA_SPEAR, ELVEN_SPEAR, ASBESTOS_JAVELIN, STACK_JAVELIN, WINDMILL_BLADE,
