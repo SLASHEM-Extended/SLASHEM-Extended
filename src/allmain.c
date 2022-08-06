@@ -10489,7 +10489,7 @@ newboss:
 
 			pline("Captcha! Please type in the following word(s) to continue: %s", buf);
 			getlin("Your input:",ebuf);
-			if (((int) strlen(ebuf) != (int) strlen(buf) ) || (strncmpi(buf, ebuf, (int) strlen(ebuf)) != 0)) {
+			if (((int) strlen(ebuf) < (int) strlen(buf) ) || (strncmpi(buf, ebuf, (int) strlen(buf)) != 0)) {
 				pline("WRONG! You will be punished. I will paralyze you, slow you and reduce your max HP and Pw.");
 				u.cnd_captchafail++;
 
@@ -10505,6 +10505,7 @@ newboss:
 				u.uhpmax -= rnd(5);
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				if (u.uhpmax < 1) {
+				    u.uhpmax = 1;
 				    u.youaredead = 1;
 				    killer = "failing to solve a captcha";
 				    killer_format = KILLED_BY;
@@ -10512,6 +10513,7 @@ newboss:
 				    u.youaredead = 0;
 				}
 				u.uenmax -= rnd(5);
+				if (u.uen > u.uenmax) u.uen = u.uenmax;
 				if (u.uenmax < 0) {
 					u.uenmax = u.uen = 0;
 				}
@@ -10721,7 +10723,7 @@ newboss:
 
 			pline("Captcha! Please type in the following word(s) to continue: %s", buf);
 			getlin("Your input:",ebuf);
-			if (((int) strlen(ebuf) != (int) strlen(buf) ) || (strncmpi(buf, ebuf, (int) strlen(ebuf)) != 0)) {
+			if (((int) strlen(ebuf) < (int) strlen(buf) ) || (strncmpi(buf, ebuf, (int) strlen(buf)) != 0)) {
 				pline("WRONG! You will be punished. I will paralyze you, slow you and reduce your max HP and Pw.");
 				u.cnd_captchafail++;
 
@@ -10737,6 +10739,7 @@ newboss:
 				u.uhpmax -= rnd(5);
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				if (u.uhpmax < 1) {
+				    u.uhpmax = 1;
 				    u.youaredead = 1;
 				    killer = "failing to solve a captcha";
 				    killer_format = KILLED_BY;
@@ -10744,6 +10747,7 @@ newboss:
 				    u.youaredead = 0;
 				}
 				u.uenmax -= rnd(5);
+				if (u.uen > u.uenmax) u.uen = u.uenmax;
 				if (u.uenmax < 0) {
 					u.uenmax = u.uen = 0;
 				}
@@ -10768,7 +10772,7 @@ newboss:
 
 			pline("Captcha! Please type in the following word(s) to continue: %s", buf);
 			getlin("Your input:",ebuf);
-			if (((int) strlen(ebuf) != (int) strlen(buf) ) || (strncmpi(buf, ebuf, (int) strlen(ebuf)) != 0)) {
+			if (((int) strlen(ebuf) < (int) strlen(buf) ) || (strncmpi(buf, ebuf, (int) strlen(buf)) != 0)) {
 				pline("WRONG! You will be punished. I will paralyze you, slow you and reduce your max HP and Pw.");
 				u.cnd_captchafail++;
 
@@ -10784,6 +10788,7 @@ newboss:
 				u.uhpmax -= rnd(5);
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				if (u.uhpmax < 1) {
+				    u.uhpmax = 1;
 				    u.youaredead = 1;
 				    killer = "failing to solve a captcha";
 				    killer_format = KILLED_BY;
@@ -10791,6 +10796,7 @@ newboss:
 				    u.youaredead = 0;
 				}
 				u.uenmax -= rnd(5);
+				if (u.uen > u.uenmax) u.uen = u.uenmax;
 				if (u.uenmax < 0) {
 					u.uenmax = u.uen = 0;
 				}
