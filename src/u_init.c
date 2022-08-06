@@ -6216,6 +6216,7 @@ static const struct def_skill Skill_Mar[] = {
     { P_FIREARM, P_EXPERT },
     { P_SHURIKEN, P_EXPERT },			{ P_BOOMERANG, P_EXPERT },
     { P_WHIP, P_EXPERT },			{ P_UNICORN_HORN, P_EXPERT },
+    { P_GRINDER, P_GRAND_MASTER },
     { P_LIGHTSABER, P_EXPERT },
     { P_GUN_CONTROL, P_GRAND_MASTER },
 
