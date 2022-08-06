@@ -15539,7 +15539,7 @@ boolean knoweverything;
 			case SPE_DETECT_MONSTERS:
 				pline("Allows you to see some of the monsters on the current dungeon level, but only those who aren't more than 10 squares away."); break;
 			case SPE_DETECT_FOOD:
-				pline("This spell shows you the food items on the current level."); break;
+				pline("This spell shows you some of the food items on the current level in a certain large radius around you."); break;
 			case SPE_ORE_MINING:
 				pline("If you cast this spell, stalactites next to you will be removed and may turn into precious gems or worthless glass."); break;
 			case SPE_BOILER_KABOOM:

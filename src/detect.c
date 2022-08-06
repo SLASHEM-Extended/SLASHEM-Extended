@@ -313,6 +313,9 @@ register struct obj	*sobj;
     const char *what = confused ? something : "food";
     int uw = u.uinwater;
 
+    boolean stupiddetect = (sobj && (sobj->otyp == SPE_DETECT_FOOD));
+    boolean guaranteed = (!sobj || (sobj && (sobj->otyp != SPE_DETECT_FOOD)) );
+
     stale = clear_stale_map(oclass, 0);
 
     for (obj = fobj; obj; obj = obj->nobj)
@@ -372,7 +375,8 @@ register struct obj	*sobj;
 		    temp->ox = obj->ox;
 		    temp->oy = obj->oy;
 		}
-		map_object(temp,1);
+		if ( (guaranteed || rn2(2)) && !(stupiddetect && isok(temp->ox, temp->oy) && isok(u.ux, u.uy) && (dist2(u.ux, u.uy, temp->ox, temp->oy) > 1601) ) ) map_object(temp, 1);
+
 	    }
 	for (mtmp = fmon; mtmp; mtmp = mtmp->nmon)
 	    /* no DEADMONSTER(mtmp) check needed since dmons never have inventory */
@@ -380,7 +384,8 @@ register struct obj	*sobj;
 		if ((temp = o_in(obj, oclass)) != 0) {
 		    temp->ox = mtmp->mx;
 		    temp->oy = mtmp->my;
-		    map_object(temp,1);
+
+		    if ( (guaranteed || rn2(2)) && !(stupiddetect && isok(temp->ox, temp->oy) && isok(u.ux, u.uy) && (dist2(u.ux, u.uy, temp->ox, temp->oy) > 1601) ) ) map_object(temp,1);
 		    break;	/* skip rest of this monster's inventory */
 		}
 	newsym(u.ux,u.uy);
