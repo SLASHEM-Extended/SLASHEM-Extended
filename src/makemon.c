@@ -10005,6 +10005,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_CAMOUFLAGE_RUBBER]) (void) mongets(mtmp, CAMO_QATAR);
 		if (mtmp->data == &mons[PM_FILLER_RUBBER]) (void) mongets(mtmp, QATAR);
 		if (mtmp->data == &mons[PM_SPACKMATICIAN]) (void) mongets(mtmp, KNIFE);
+		if (mtmp->data == &mons[PM_MICHELLE]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 		if (ptr == &mons[PM_KNOLLER]) {
 			(void) mongets(mtmp, SAWED_OFF_SHOTGUN);
@@ -16029,6 +16030,7 @@ loveheelover:
 		if(ptr == &mons[PM_LASERCHAIN_DEVIL]) (void) mongets(mtmp, LASER_CHAIN);
 		if(ptr == &mons[PM_CHAINSMOKER_DEVIL]) (void) mongets(mtmp, CIGARETTE);
 		if(ptr == &mons[PM_IRON_CHAIN_DEVIL]) (void) mongets(mtmp, IRON_CHAIN);
+		if(ptr == &mons[PM_KING_DEDEDE]) (void) mongets(mtmp, MALLET);
 
 		if (ptr == &mons[PM_SWORD_DANCER]) {
 			(void) mongets(mtmp, SAND_SWORD);
@@ -16916,6 +16918,10 @@ loveheelover:
 			(void) mongets(mtmp, SCR_PUNISHMENT);
 			(void) mongets(mtmp, HEAVY_IRON_BALL);
 		}
+		if (ptr == &mons[PM_HELFRIEKA]) {
+			(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+			  if ((find_iceblock_heels()) != -1) (void)mongets(mtmp, find_iceblock_heels());
+		}
 
 		if (ptr == &mons[PM_PRISON_ZRUTY]) {
 			(void) mongets(mtmp, SLING);
@@ -16973,6 +16979,7 @@ loveheelover:
 
 		if (ptr == &mons[PM_KNIVER]) (void) mongets(mtmp, UNKNOWN_KNIFE);
 		if (ptr == &mons[PM_SOFTWARF]) (void) mongets(mtmp, SOFT_MATTOCK);
+		if (ptr == &mons[PM_RC_ZERO]) (void) mongets(mtmp, STRAW_HAT);
 		if (ptr == &mons[PM_DWARVEN_ETERNAL_GUARDIAN]) (void) mongets(mtmp, ETERNIUM_MATTOCK);
 		if (ptr == &mons[PM_CONTAMINATED_KNIVER]) (void) mongets(mtmp, RADIOACTIVE_DAGGER);
 		if (ptr == &mons[PM_ORPHE_CHAOS_CHILD]) (void) mongets(mtmp, LONG_SWORD);
@@ -17419,6 +17426,7 @@ loveheelover:
 		if (ptr == &mons[PM_NASTY_FEMMY]) (void) mongets(mtmp, HUGGING_BOOT);
 		if (ptr == &mons[PM_MOST_USELESS_GRUE]) (void) mongets(mtmp, QATAR);
 		if (ptr == &mons[PM_VY_GRUE]) (void) mongets(mtmp, KHOPESH);
+		if (ptr == &mons[PM_OIL_IDOL]) (void) mongets(mtmp, POT_OIL);
 
 		if (ptr == &mons[PM_ROXANNE]) {
 			(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
@@ -17573,6 +17581,11 @@ loveheelover:
 		if (ptr == &mons[PM_ARMED_COP_CAR]) {
 			(void) mongets(mtmp, PISTOL);
 	  		m_initthrow(mtmp, PISTOL_BULLET, 50);
+		}
+		if (ptr == &mons[PM_WOOZIE]) {
+			(void) mongets(mtmp, PISTOL);
+	  		m_initthrow(mtmp, LEAD_PISTOL_BULLET, 50);
+	  		m_initthrow(mtmp, LEAD_PISTOL_BULLET, 50);
 		}
 		if (ptr == &mons[PM_METAL_MAFIA_SOLDIER]) {
 			(void) mongets(mtmp, PISTOL);
@@ -23712,10 +23725,35 @@ register int	mmflags;
 		mtmp->isegotype = 1;
 		mtmp->egotype_perfumespreader = 1;
 	}
+	if (ptr == &mons[PM_DEEPSTATE_DISALLAER]) {
+		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
+		mtmp->isegotype = 1;
+		mtmp->egotype_alladrainer = 1;
+	}
+	if (ptr == &mons[PM_DEEPSTATE_FARTER]) {
+		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
+		mtmp->isegotype = 1;
+		mtmp->egotype_farter = 1;
+	}
+	if (ptr == &mons[PM_DEEPSTATE_RUMBLER]) {
+		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
+		mtmp->isegotype = 1;
+		mtmp->egotype_farter = 1;
+	}
 	if (ptr == &mons[PM_ALIEN_IN_BRIDAL_DRESS]) {
 		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
 		mtmp->isegotype = 1;
 		mtmp->egotype_farter = 1;
+	}
+	if (ptr == &mons[PM_HADRON_SAVE_COLLIDER_BUG]) {
+		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
+		mtmp->isegotype = 1;
+		mtmp->egotype_allivore = 1;
+	}
+	if (ptr == &mons[PM_SING_S_DEEPSTATE_AGENT]) {
+		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
+		mtmp->isegotype = 1;
+		mtmp->egotype_singagent = 1;
 	}
 	if (ptr == &mons[PM_BEN_ARGIMUNT]) {
 		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
@@ -24858,6 +24896,9 @@ register int	mmflags;
 
 			if (mndx == PM_YOUR_HEALTH_SUDDENLY_WENT_FROM_FULL_TO_ZERO) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_KURAST_BOO) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_DEEPSTATE_DISALLAER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_DEEPSTATE_FARTER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_DEEPSTATE_RUMBLER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_STALKER_GIRL) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_HUMAN_WEREBLACKLIGHT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_HUMAN_WERESTALKER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
@@ -24911,6 +24952,7 @@ register int	mmflags;
 			if (mtmp->data == &mons[PM_EXPENSIVE_SECRET_CAR]) set_mimic_sym(mtmp);
 			if (mtmp->data == &mons[PM_RUNNING_COBRA]) set_mimic_sym(mtmp);
 
+			if (mndx == PM_DEEPSTATE_ROOMBA) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_HAMM_HAMM) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_OVERLY_REGULATED_SPIDER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_CLEAR_CENTIPEDE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
@@ -25212,6 +25254,7 @@ register int	mmflags;
 			}
 
 			if (mndx == PM_ORIENTAL_VAMPIRE) {mtmp->perminvis = TRUE; mtmp->minvis = TRUE; }
+			if (mndx == PM_SING_S_DEEPSTATE_AGENT) {mtmp->perminvis = TRUE; mtmp->minvis = TRUE; }
 			if (mndx == PM_THE_DEEP_STATE_ALWAYS_WINS) {mtmp->perminvis = TRUE; mtmp->minvis = TRUE; }
 			if (mndx == PM_YOU_WERE_DEFEATED_BY_THE_DEEP_STATE) {mtmp->perminvis = TRUE; mtmp->minvis = TRUE; }
 			if (mndx == PM_HAHA_SOMETHING_INVISIBLE_IS_SUCKING_YOU_DRY) {mtmp->perminvis = TRUE; mtmp->minvis = TRUE; }
