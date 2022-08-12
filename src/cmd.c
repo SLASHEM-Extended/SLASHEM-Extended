@@ -6716,6 +6716,9 @@ boolean guaranteed;
 		case DIFFICULT_SHIELD:
 			shieldblockrate = 40;
 			break;
+		case ONE_EATING_SIGN:
+			shieldblockrate = 50;
+			break;
 		case ICKY_SHIELD:
 			shieldblockrate = 0;
 			break;
@@ -6760,6 +6763,7 @@ boolean guaranteed;
 			shieldblockrate = 25;
 			break;
 		case STEEL_SHIELD:
+		case GRIM_SHIELD:
 			shieldblockrate = 30;
 			break;
 		case METEORIC_STEEL_SHIELD:
@@ -11029,6 +11033,9 @@ int final;
 		case DIFFICULT_SHIELD:
 			shieldblockrate = 40;
 			break;
+		case ONE_EATING_SIGN:
+			shieldblockrate = 50;
+			break;
 		case ICKY_SHIELD:
 			shieldblockrate = 0;
 			break;
@@ -11073,6 +11080,7 @@ int final;
 			shieldblockrate = 25;
 			break;
 		case STEEL_SHIELD:
+		case GRIM_SHIELD:
 			shieldblockrate = 30;
 			break;
 		case METEORIC_STEEL_SHIELD:

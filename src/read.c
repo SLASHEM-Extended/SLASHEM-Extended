@@ -9608,7 +9608,7 @@ randenchchoice:
 	    	pline_The("%s rumbles %s you!", ceiling(u.ux,u.uy),
 	    			sobj->blessed ? "around" : "above");
 	    	known = 1;
-	    	if (In_sokoban(&u.uz))
+	    	if (In_sokoban(&u.uz) && !(uwep && uwep->oartifact == ART_HOPE_OF_SOKOBAN && rn2(3)) )
 			{change_luck(-1);
 			pline("You cheater!");
 			if (evilfriday) u.ugangr++;

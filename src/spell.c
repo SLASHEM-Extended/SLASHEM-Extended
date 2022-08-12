@@ -3997,7 +3997,7 @@ magicalenergychoice:
 			pushplayer(TRUE);
 			pline("The winds hurt you!");
 			losehp(rnd(10), "winds", KILLED_BY);
-			if (In_sokoban(&u.uz)) {
+			if (In_sokoban(&u.uz) && !(uwep && uwep->oartifact == ART_HOPE_OF_SOKOBAN && rn2(3)) ) {
 				change_luck(-1);
 				pline("You cheater!");
 				if (evilfriday) u.ugangr++;
@@ -8167,7 +8167,7 @@ whisperchoice:
 			You_hear("air current noises.");
 
 		pushplayer(TRUE);
-		if (In_sokoban(&u.uz)) {
+		if (In_sokoban(&u.uz) && !(uwep && uwep->oartifact == ART_HOPE_OF_SOKOBAN && rn2(3)) ) {
 			change_luck(-1);
 			pline("You cheater!");
 			if (evilfriday) u.ugangr++;

@@ -1412,7 +1412,7 @@ register struct monst *mtmp;
 
 	}
 
-	if ((WakeupCallBug || u.uprops[WAKEUP_CALL_BUG].extrinsic || have_wakeupcallstone() || (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT) || (uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) || (uwep && uwep->oartifact == ART_DRAMA_STAFF) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DRAMA_STAFF) || Race_if(PM_SERB)) && mtmp->mpeaceful && !mtmp->mtame && !rn2(10000)) {
+	if ((WakeupCallBug || u.uprops[WAKEUP_CALL_BUG].extrinsic || have_wakeupcallstone() || (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT) || (uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) || (uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) || (uwep && uwep->oartifact == ART_DRAMA_STAFF) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DRAMA_STAFF) || Race_if(PM_SERB)) && mtmp->mpeaceful && !mtmp->mtame && !rn2(10000)) {
 		wakeup(mtmp);
 	}
 
@@ -3750,6 +3750,9 @@ altarfound:
 
 	if (monsterrandomwalk(ptr)) appr = 0;
 	if (monsterflees(ptr)) appr = -1;
+
+	if (uarmh && uarmh->oartifact == ART_VERSCENT_ && mtmp->data->msound == MS_STENCH) appr = -1;
+	if (uarmh && uarmh->oartifact == ART_VERSCENT_ && mtmp->egotype_perfumespreader) appr = -1;
 
 	if (appr == 1 && mtmp->data->msound == MS_METALMAFIA && distu(mtmp->mx,mtmp->my) <= 3*3 ) appr = 0;
 

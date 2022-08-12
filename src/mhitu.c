@@ -8638,6 +8638,7 @@ dopois:
 	    case AD_SSEX:
 
 		if (flags.female && uarm && uarm->oartifact == ART_PRECIOUS_VIRGINITY) break;
+		if (uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS) break;
 		if (statsavingthrow) break;
 
 		if(could_seduceX(mtmp, &youmonst, mattk) == 1

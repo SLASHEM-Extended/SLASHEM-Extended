@@ -9157,6 +9157,82 @@ A("Partial Mantle Projectile",				PLATINUM_SNIPER_BULLET, /* additionally deals 
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
 
+A("Barrowgrim's Army",				GRIM_SHIELD, /* drain resistance when worn */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 3000L ),
+
+A("Peace Brother",				CLOAK_OF_PAIN_SENSE, /* peacevision when worn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Heatem Up",				ONE_EATING_SIGN, /* double fire resistance when worn but disables cold resistance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Bidethander",				BIDENHANDER, /* thai and ludgera trap effects, MS_FART_LOUD spawn with +20 crapbonus, suggested by amateurhour */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Justice For Garlic",				CLOVE_OF_GARLIC, /* +5 increase accuracy when wielded (applies to ranged weapons too), name suggested by amateurhour */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("Divine Garlic",				CLOVE_OF_GARLIC, /* +5 damage to vampires and drains their maximum HP by one when hitting, skips the magic resistance roll for vampires so it's more likely to affect them; by amateurhour */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Hope of Sokoban",				PICK_AXE, /* dimmopathy, 66% chance to avoid luck penalties in sokoban while wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Dreamoule Eleyele",				SECRET_WHIP, /* wonderlegs */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Puzzle Me Maybe",				RIN_SPECIAL_EFFECTS, /* drunken boxing */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Porter's Think",				LORICATED_CLOAK, /* stunnopathy, teleportitis */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Lissie's Sheagentur",				LOW_BOOTS, /* initialized to always be fleecy boots, +3 CHA, fear factor, resist psi, wakeup call and bad alignment effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Schoscho Barbituer",				CHEMISTRY_SPACE_AXE, /* sickopathy, resist poison and acid, permapoisoned like Dirge but reduces your alignment by one whenever you hit with any poisoned weapon */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Siechelaluer",				FRILLED_APRON, /* freezopathy, low stats, +5 increased melee damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 800L ),
+
+A("Bale of Boden Speedstock",				FAILED_ATTEMPT_BOOTS, /* burnopathy, very fast speed and adds extra speed sometimes, time goes by faster */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Sa Bla Ndo Mwa",				PROCESS_CARD, /* hallu party */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("The End of Lewdness",				LEATHER_SHOES, /* numbopathy, monsters cannot purposefully fart anymore and can't force you to have sex with them, prevents you from taking off any armor or rings, disables speed and steals intrinsic speed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Verscent!",				SEDGE_HAT, /* corrosivity, all MS_STENCH and perfume spreader monsters try to move away from you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Brighte See, Eeee",				CIGARETTE, /* stoned chilling, sight bonus */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ATTK), 0, 0,
+	FIRE(4, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Kamahewa",				GAUNTLETS_OF_SAFEGUARD, /* glib combat; using appraisal on them gives +1 up to a maximum of +7 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

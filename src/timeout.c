@@ -2420,10 +2420,10 @@ nh_timeout()
 
 	/* Max alignment record moved from align.h, so we can make it into a dynamic function --Amy */
 
-	if (!AlignmentProblem && !u.uprops[ALIGNMENT_FAILURE].extrinsic && !have_alignmentstone() && !(uimplant && uimplant->oartifact == ART_SINFUL_REPENTER) && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) && ((u.alignlim < 20) ? (TRUE) : (rnd(u.alignlim) < 20) ) )
+	if (!AlignmentProblem && !u.uprops[ALIGNMENT_FAILURE].extrinsic && !have_alignmentstone() && !(uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) && !(uimplant && uimplant->oartifact == ART_SINFUL_REPENTER) && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) && ((u.alignlim < 20) ? (TRUE) : (rnd(u.alignlim) < 20) ) )
 		u.alignlim++;
 
-	if ( (AlignmentProblem || u.uprops[ALIGNMENT_FAILURE].extrinsic || have_alignmentstone() || (uimplant && uimplant->oartifact == ART_SINFUL_REPENTER) ) && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) ) {
+	if ( (AlignmentProblem || u.uprops[ALIGNMENT_FAILURE].extrinsic || have_alignmentstone() || (uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) || (uimplant && uimplant->oartifact == ART_SINFUL_REPENTER) ) && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) ) {
 		u.alignlim--;
 		if(u.ualign.record > u.alignlim)
 			u.ualign.record = u.alignlim;

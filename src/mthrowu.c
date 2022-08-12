@@ -79,6 +79,9 @@ const char *name;	/* if null, then format `obj' */
 		case DIFFICULT_SHIELD:
 			shieldblockrate = 40;
 			break;
+		case ONE_EATING_SIGN:
+			shieldblockrate = 50;
+			break;
 		case ICKY_SHIELD:
 			shieldblockrate = 0;
 			break;
@@ -122,6 +125,7 @@ const char *name;	/* if null, then format `obj' */
 			shieldblockrate = 25;
 			break;
 		case STEEL_SHIELD:
+		case GRIM_SHIELD:
 			shieldblockrate = 30;
 			break;
 		case METEORIC_STEEL_SHIELD:
@@ -1021,6 +1025,9 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 			case DIFFICULT_SHIELD:
 				shieldblockrate = 50;
 				break;
+			case ONE_EATING_SIGN:
+				shieldblockrate = 60;
+				break;
 			case ICKY_SHIELD:
 				shieldblockrate = 10;
 				break;
@@ -1064,6 +1071,7 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 				shieldblockrate = 35;
 				break;
 			case STEEL_SHIELD:
+			case GRIM_SHIELD:
 				shieldblockrate = 40;
 				break;
 			case METEORIC_STEEL_SHIELD:

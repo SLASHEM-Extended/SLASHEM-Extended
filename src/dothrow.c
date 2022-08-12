@@ -2189,6 +2189,7 @@ boolean polearming;
 	if (uright && uright->oartifact == ART_BLIND_PILOT) tmp -= 10;
 	if (Role_if(PM_ARCHEOLOGIST) && uamul && uamul->oartifact == ART_ARCHEOLOGIST_SONG) tmp += 2;
 	if (ublindf && ublindf->oartifact == ART_EYEHANDER) tmp += 5;
+	if (uwep && uwep->oartifact == ART_JUSTICE_FOR_GARLIC) tmp += 5;
 	if (uwep && uwep->oartifact == ART_ATOMIC_MISSING) tmp -= 20;
 	if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
 	if (uimplant && uimplant->oartifact == ART_SOME_LITTLE_AID) tmp += 1;
@@ -2522,6 +2523,9 @@ inaccurateguns:
 			case DIFFICULT_SHIELD:
 				shieldblockrate = 50;
 				break;
+			case ONE_EATING_SIGN:
+				shieldblockrate = 60;
+				break;
 			case ICKY_SHIELD:
 				shieldblockrate = 10;
 				break;
@@ -2565,6 +2569,7 @@ inaccurateguns:
 				shieldblockrate = 35;
 				break;
 			case STEEL_SHIELD:
+			case GRIM_SHIELD:
 				shieldblockrate = 40;
 				break;
 			case METEORIC_STEEL_SHIELD:

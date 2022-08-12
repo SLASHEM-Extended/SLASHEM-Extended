@@ -3111,7 +3111,7 @@ poly_obj(obj, id, degradation)
 	if (obj->otyp == AMULET_OF_UNCHANGING)
 	    return obj;
 
-	if (obj->otyp == BOULDER && In_sokoban(&u.uz))
+	if (obj->otyp == BOULDER && In_sokoban(&u.uz) && !(uwep && uwep->oartifact == ART_HOPE_OF_SOKOBAN && rn2(3)) )
 		{change_luck(-1);
 		pline("You cheater!");
 		if (evilfriday) u.ugangr++;
@@ -10281,7 +10281,7 @@ fracture_rock(obj)	/* fractured by pick-axe or wand of striking */
 register struct obj *obj;		   /* no texts here! */
 {
 	/* A little Sokoban guilt... */
-	if (obj->otyp == BOULDER && In_sokoban(&u.uz) && !flags.mon_moving) {
+	if (obj->otyp == BOULDER && In_sokoban(&u.uz) && !flags.mon_moving && !(uwep && uwep->oartifact == ART_HOPE_OF_SOKOBAN && rn2(3)) ) {
 		change_luck(-1);
 		pline("You cheater!");
 		if (evilfriday) u.ugangr++;

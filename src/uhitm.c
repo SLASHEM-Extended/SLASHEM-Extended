@@ -820,6 +820,7 @@ register struct monst *mtmp;
 	if (uarm && uarm->otyp == DARK_DRAGON_SCALE_MAIL) tmp += 1;
 	if (uarms && uarms->otyp == DARK_DRAGON_SCALE_SHIELD) tmp += 1;
 	if (uwep && uwep->oartifact == ART_WILD_HEAVY_SWINGS) tmp -= 10;
+	if (uwep && uwep->oartifact == ART_JUSTICE_FOR_GARLIC) tmp += 5;
 	if (uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON) tmp += 1;
 	if (uarmc && uarmc->oartifact == ART_ENEMIES_SHALL_LAUGH_TOO) tmp += 10;
 	if (uimplant && uimplant->oartifact == ART_ACTUAL_PRECISION) tmp += 5;
@@ -1365,7 +1366,7 @@ martial_dmg()
         else if (!(PlayerCannotUseSkills) && (P_SKILL(P_MARTIAL_ARTS) >= P_BASIC) && GushLevel > (2*(P_SKILL(P_MARTIAL_ARTS) - P_BASIC) + 5))
                 damage = d((int) (P_SKILL(P_MARTIAL_ARTS) - P_UNSKILLED),2);
         else
-                damage = d((int) ((GushLevel+2)/3),2);
+                damage = rnd(2);
 
 	  if (!Role_if(PM_HALF_BAKED)) {
 
@@ -2889,7 +2890,7 @@ int dieroll;
 			if (is_undead(mdat) || mon->egotype_undead) {
 
 				/* nerf by Amy - shouldn't be infinite, non-vampiric undead are highly resistant */
-				if (!rn2(100)) {
+				if (!rn2(obj->oartifact ? 1000 : 100)) {
 
 					if (!rn2(2)) {
 						if (obj->oeroded < MAX_ERODE) {
@@ -2914,8 +2915,21 @@ int dieroll;
 
 				}
 
-				if (!resist(mon, WEAPON_CLASS, 0, NOTELL) && (is_vampire(mdat) || !rn2(3)) ) {
-					monflee(mon, d(2, 4), FALSE, TRUE);
+				if (obj->oartifact == ART_DIVINE_GARLIC) {
+					if ( (!resist(mon, WEAPON_CLASS, 0, NOTELL) || is_vampire(mdat)) && (is_vampire(mdat) || !rn2(3)) ) {
+						monflee(mon, d(2, 4), FALSE, TRUE);
+						mon->mhpmax--;
+						mon->mhp -= 5;
+						if (mon->mhp < 1) mon->mhp = 1;
+						if (mon->mhpmax < 1) mon->mhpmax = 1;
+						if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
+					}
+
+				} else {
+					if (!resist(mon, WEAPON_CLASS, 0, NOTELL) && (is_vampire(mdat) || !rn2(3)) ) {
+						monflee(mon, d(2, 4), FALSE, TRUE);
+					}
+
 				}
 
 			}
@@ -3211,6 +3225,7 @@ int dieroll;
 		if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 249) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_EROTICLAMP && u.ustuck && !u.uswallow && !sticks(youmonst.data)) tmp += 2;
 		if (!thrown && FemtrapActiveNatalia && flags.female && (u.nataliacycletimer >= u.nataliafollicularend) && (u.nataliacycletimer < (u.nataliafollicularend + u.natalialutealstart)) ) tmp += 2;
+		if (!thrown && uarmc && uarmc->oartifact == ART_SIECHELALUER) tmp += 5;
 
 		if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 
@@ -3775,7 +3790,7 @@ melatechoice:
 				} /* end lightsaber-specific code */
 
 				/* For some reason, "wep" isn't always defined, yet the checks above don't crash... --Amy */
-				if (wep && !is_missile(wep) && !is_ammo(wep) && !(is_launcher(wep) && !(wep->otyp == LASERXBOW && wep->lamplit) && !(wep->otyp == KLIUSLING && wep->lamplit)) && !(is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) && bimanual(wep)) {
+				if (wep && !uarms && !is_missile(wep) && !is_ammo(wep) && !(is_launcher(wep) && !(wep->otyp == LASERXBOW && wep->lamplit) && !(wep->otyp == KLIUSLING && wep->lamplit)) && !(is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) && bimanual(wep)) {
 					u.utwohandedcombatturns++;
 					if (u.utwohandedcombatturns >= 3) {
 						u.utwohandedcombatturns = 0;
@@ -3845,6 +3860,15 @@ melatechoice:
 	    int nopoison = (10/* - (obj->owt/10)*/);
 	    if (Race_if(PM_IRAHA)) nopoison *= 10;
 	    if(nopoison < 2) nopoison = 2;
+
+	    if (uwep && uwep->oartifact == ART_SCHOSCHO_BARBITUER) {
+		adjalign(-1);
+	    }
+		/* no message because it would get spammy, also it's your fault if you don't read the item description --Amy */
+	    if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SCHOSCHO_BARBITUER) {
+		adjalign(-1);
+	    }
+
 	    if (Role_if(PM_SAMURAI) && !Race_if(PM_IRAHA) && !Race_if(PM_POISONER)) {
 		You("dishonorably use a poisoned weapon!");
 		adjalign(-sgn(u.ualign.type));

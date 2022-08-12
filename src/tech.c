@@ -3754,6 +3754,10 @@ int tech_no;
 					u.enchantrecskill++;
 					if (u.enchantrecskill > 250) u.enchantrecskill = 250;
 				}
+				if (uwep && uwep->oartifact == ART_KAMAHEWA && uwep->spe < 7) {
+					uwep->spe++;
+					Your("gauntlets seem more effective.");
+				}
             		t_timeout = rnz(2000);
 			} else {
 				You("examine %s.", doname(uwep));
@@ -3767,6 +3771,10 @@ int tech_no;
 				if (Race_if(PM_GERTEUT) && is_poisonable(uwep) && !stack_too_big(uwep)) {
 					Your("%s is poisoned.", doname(uwep));
 					uwep->opoisoned = TRUE;
+				}
+				if (uwep && uwep->oartifact == ART_KAMAHEWA && uwep->spe < 7) {
+					uwep->spe++;
+					Your("gauntlets seem more effective.");
 				}
 				t_timeout = rnz(200);
 			}
@@ -4230,7 +4238,7 @@ secureidchoice:
 		    }
 
 		    /* A little Sokoban guilt... */
-		    if (In_sokoban(&u.uz))
+		    if (In_sokoban(&u.uz) && !(uwep && uwep->oartifact == ART_HOPE_OF_SOKOBAN && rn2(3)) )
 			{change_luck(-1);
 			pline("You cheater!");
 			if (evilfriday) u.ugangr++;

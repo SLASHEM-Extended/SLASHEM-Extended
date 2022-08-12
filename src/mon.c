@@ -7899,7 +7899,7 @@ register struct monst *mtmp;
 
 	aggravate();
     }
-    if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_QUIET) {
+    if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_QUIET && !(uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS) ) {
 		if (!FemtrapActiveJennifer) pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "tender" : "soft", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		u.cnd_fartingcount++;
 		if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(1);
@@ -7946,7 +7946,7 @@ register struct monst *mtmp;
 		if (!rn2(20)) increasesanity(1);
     }
 sarahdone:
-    if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_NORMAL) {
+    if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_NORMAL && !(uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS)) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		u.cnd_fartingcount++;
 		if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(1);
@@ -7985,7 +7985,7 @@ sarahdone:
 
 		if (!rn2(20)) increasesanity(1);
     }
-    if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_LOUD) {
+    if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_LOUD && !(uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS)) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "disgusting" : "loud", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		u.cnd_fartingcount++;
 		if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(1);
@@ -8028,7 +8028,7 @@ sarahdone:
 
 		if (!rn2(20)) increasesanity(1);
     }
-    if (mtmp->egotype_farter) {
+    if (mtmp->egotype_farter && !(uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS)) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), !rn2(6) ? "disgusting" : !rn2(5) ? "loud" : !rn2(4) ? "tender" : !rn2(3) ? "soft" : !rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		u.cnd_fartingcount++;
 		if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(1);

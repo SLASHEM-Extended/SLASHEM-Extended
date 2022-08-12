@@ -571,7 +571,7 @@ newbossMETALMAFIA:
 
 			    }
 
-			    if (In_sokoban(&u.uz))
+			    if (In_sokoban(&u.uz) && !(uwep && uwep->oartifact == ART_HOPE_OF_SOKOBAN && rn2(3)) )
 				{change_luck(-1);
 				pline("You cheater!");
 				if (evilfriday) u.ugangr++;
@@ -1680,7 +1680,7 @@ nextiteration:
                 if (otmp->otyp == BOULDER) {
 		    delobj(otmp);
 		    /* A little Sokoban guilt... */
-		    if (In_sokoban(&u.uz))
+		    if (In_sokoban(&u.uz) && !(uwep && uwep->oartifact == ART_HOPE_OF_SOKOBAN && rn2(3)) )
 			{change_luck(-1);
 			pline("You cheater!");
 			if (evilfriday) u.ugangr++;
@@ -1918,7 +1918,7 @@ boolean bigrange;
                 if (otmp->otyp == BOULDER) {
 		    delobj(otmp);
 		    /* A little Sokoban guilt... */
-		    if (In_sokoban(&u.uz))
+		    if (In_sokoban(&u.uz) && !(uwep && uwep->oartifact == ART_HOPE_OF_SOKOBAN && rn2(3)) )
 			{change_luck(-1);
 			pline("You cheater!");
 			if (evilfriday) u.ugangr++;

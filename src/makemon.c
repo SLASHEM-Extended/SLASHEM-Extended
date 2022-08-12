@@ -17871,7 +17871,7 @@ loveheelover:
 			(void)mongets(mtmp, BOW);
 		}
 
-		if (ptr == &mons[PM_BARROWGRIM_SOLDIER]) { (void)mongets(mtmp, BOW); (void)mongets(mtmp, DAGGER);
+		if (ptr == &mons[PM_BARROWGRIM_SOLDIER]) { (void)mongets(mtmp, BOW); (void)mongets(mtmp, DAGGER);  (void)mongets(mtmp, GRIM_SHIELD);
 			 m_initthrow(mtmp, ARROW, 30);
 
 		}
@@ -26330,6 +26330,8 @@ loopback:
 		if (ct > 0 && (In_hellbathroom(&u.uz) && (ptr->msound == MS_FART_NORMAL) )) ct += 10;
 		if (ct > 0 && (In_hellbathroom(&u.uz) && (ptr->msound == MS_FART_QUIET) )) ct += 10;
 		if (ct > 0 && (In_hellbathroom(&u.uz) && (ptr->msound == MS_FART_LOUD) )) ct += 10;
+		if (ct > 0 && (uwep && uwep->oartifact == ART_BIDETHANDER && (ptr->msound == MS_FART_LOUD) )) ct += 20;
+		if (ct > 0 && (u.twoweap && uswapwep && uswapwep->oartifact == ART_BIDETHANDER && (ptr->msound == MS_FART_LOUD) )) ct += 20;
 		if (ct > 0 && (In_hellbathroom(&u.uz) && dmgtype(ptr, AD_FEMI) )) ct += 15;
 		if (ct > 0 && (In_minusworld(&u.uz) && (ptr->mlet == S_WORM_TAIL) )) ct += 500;
 		if (ct > 0 && (In_minusworld(&u.uz) && is_randomizedmonster(ptr) )) ct += 500;
@@ -27781,6 +27783,8 @@ int     spc;
 		if ((In_hellbathroom(&u.uz) && (mons[last].msound == MS_FART_NORMAL) )) num += 10;
 		if ((In_hellbathroom(&u.uz) && (mons[last].msound == MS_FART_QUIET) )) num += 10;
 		if ((In_hellbathroom(&u.uz) && (mons[last].msound == MS_FART_LOUD) )) num += 10;
+		if ((uwep && uwep->oartifact == ART_BIDETHANDER && (mons[last].msound == MS_FART_LOUD) )) num += 20;
+		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_BIDETHANDER && (mons[last].msound == MS_FART_LOUD) )) num += 20;
 		if ((In_hellbathroom(&u.uz) && dmgtype(&mons[last], AD_FEMI) )) num += 15;
 		if ((In_minusworld(&u.uz) && is_randomizedmonster(&mons[last]) )) num += 500;
 		if ((In_ZAPM(&u.uz) && is_evilpatchmonster(&mons[last]) )) num += 20;
@@ -28884,6 +28888,8 @@ int     spc;
 		if ((In_hellbathroom(&u.uz) && (mons[first].msound == MS_FART_NORMAL) )) num -= 10;
 		if ((In_hellbathroom(&u.uz) && (mons[first].msound == MS_FART_QUIET) )) num -= 10;
 		if ((In_hellbathroom(&u.uz) && (mons[first].msound == MS_FART_LOUD) )) num -= 10;
+		if ((uwep && uwep->oartifact == ART_BIDETHANDER && (mons[first].msound == MS_FART_LOUD) )) num -= 20;
+		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_BIDETHANDER && (mons[first].msound == MS_FART_LOUD) )) num -= 20;
 		if ((In_hellbathroom(&u.uz) && dmgtype(&mons[first], AD_FEMI) )) num -= 15;
 		if ((In_minusworld(&u.uz) && is_randomizedmonster(&mons[first]) )) num -= 500;
 		if ((In_ZAPM(&u.uz) && is_evilpatchmonster(&mons[first]) )) num -= 20;

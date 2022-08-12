@@ -441,8 +441,9 @@ boolean creation;
 	if ( (!cantweararm(mon->data) || (creation && !verysmall(mon->data) && (mon->data->msize <= MZ_LARGE) ) ) || mon->data->msize == MZ_SMALL)
 	    m_dowear_type(mon, W_ARMC, creation, FALSE);
 	m_dowear_type(mon, W_ARMH, creation, FALSE);
-	if (!MON_WEP(mon) || !bimanual(MON_WEP(mon)))
-	    m_dowear_type(mon, W_ARMS, creation, FALSE);
+
+	/* shield needs to be checked below: certain types can be used with a two-hander --Amy */
+	m_dowear_type(mon, W_ARMS, creation, FALSE);
 	m_dowear_type(mon, W_ARMG, creation, FALSE);
 	if ((!slithy(mon->data) && mon->data->mlet != S_CENTAUR) || !issoviet)
 	    m_dowear_type(mon, W_ARMF, creation, FALSE);
@@ -507,6 +508,7 @@ boolean racialexception;
 		    if (!creation && has_horns(mon->data) && !is_flimsy(obj)) continue;
 		    break;
 		case W_ARMS:
+		    if (MON_WEP(mon) && bimanual(MON_WEP(mon)) && obj->otyp != GRIM_SHIELD) continue;
 		    if (!is_shield(obj)) continue;
 		    break;
 		case W_ARMG:

@@ -459,7 +459,7 @@ struct monst *mon;
 		}
 	}
 
-	if (bimanual(otmp) && !is_missile(otmp) && !is_ammo(otmp) && !is_launcher(otmp) && !(PlayerCannotUseSkills)) {
+	if (bimanual(otmp) && !uarms && !is_missile(otmp) && !is_ammo(otmp) && !is_launcher(otmp) && !(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_TWO_HANDED_WEAPON)) {
 
 			case P_BASIC:	tmp +=  1; break;
@@ -470,6 +470,8 @@ struct monst *mon;
 			case P_SUPREME_MASTER:	tmp +=  6; break;
 			default: tmp += 0; break;
 		}
+	}
+	if (bimanual(otmp) && !is_missile(otmp) && !is_ammo(otmp) && !is_launcher(otmp) && !(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_VAAPAD)) {
 
 			case P_BASIC:	tmp +=  2; break;
@@ -2576,6 +2578,14 @@ boolean polespecial; /* may use polearm for monster-versus-monster combat */
 	int i;
 
 	char mlet = mtmp->data->mlet;
+	register struct obj *blocker = (struct obj *)0;
+	boolean wearing_shield = FALSE;
+
+	if ((mtmp->misc_worn_check & W_ARMS) != 0) {
+		if (blocker = (which_armor(mtmp, W_ARMS))) {
+			if (blocker && (blocker->otyp != GRIM_SHIELD)) wearing_shield = TRUE;
+		}		
+	}
 
 	propellor = &zeroobj;
 	Oselect(EGG); /* cockatrice egg */
@@ -2599,10 +2609,7 @@ boolean polespecial; /* may use polearm for monster-versus-monster combat */
 
 		/* Amy edit: Allow two-handed weapons for everyone, and allow undead/demons to equip silver */
 
-		if (((/*strongmonst(mtmp->data) &&*/ (mtmp->misc_worn_check & W_ARMS) == 0)
-			|| !objects[pwep[i]].oc_bimanual) /*&&
-		    (objects[pwep[i]].oc_material != MT_SILVER
-			|| !hates_silver(mtmp->data))*/) {
+		if (!wearing_shield || !objects[pwep[i]].oc_bimanual) {
 		    if ((otmp = oselect(mtmp, pwep[i])) != 0) {
 			propellor = otmp; /* force the monster to wield it */
 			return otmp;
@@ -2903,15 +2910,21 @@ register struct monst *mtmp;
 	register struct obj *otmp;
 	register int i;
 	boolean strong = strongmonst(mtmp->data);
-	boolean wearing_shield = (mtmp->misc_worn_check & W_ARMS) != 0;
+	boolean wearing_shield = FALSE;
+	register struct obj *blocker = (struct obj *)0;
+
+	if ((mtmp->misc_worn_check & W_ARMS) != 0) {
+		if (blocker = (which_armor(mtmp, W_ARMS))) {
+			if (blocker && (blocker->otyp != GRIM_SHIELD)) wearing_shield = TRUE;
+		}		
+	}
 
 	/* prefer artifacts to everything else */
 	for(otmp=mtmp->minvent; otmp; otmp = otmp->nobj) {
 		if (
 		(otmp->oclass == WEAPON_CLASS || otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS)
 			&& otmp->oartifact && touch_artifact(otmp,mtmp)
-			&& ((/*strong &&*/ !wearing_shield)
-			    || !objects[otmp->otyp].oc_bimanual))
+			&& ((!wearing_shield) || !objects[otmp->otyp].oc_bimanual) )
 		    return otmp;
 	}
 
@@ -2930,10 +2943,7 @@ register struct monst *mtmp;
 	for (i = 0; i < SIZE(hwep); i++) {
 	    if (hwep[i] == CORPSE && !resists_ston(mtmp) && !(mtmp->misc_worn_check & W_ARMG))
 		continue;
-	    if (((/*strong &&*/ !wearing_shield)
-			|| !objects[hwep[i]].oc_bimanual) /*&&
-		    (objects[hwep[i]].oc_material != MT_SILVER
-			|| !hates_silver(mtmp->data))*/)
+	    if ((!wearing_shield) || !objects[hwep[i]].oc_bimanual)
 		Oselect(hwep[i]);
 	}
 
@@ -6881,7 +6891,7 @@ struct obj *weapon;
 
 	if (uarm && uarm->oartifact == ART_MAEDHROS_SARALONDE) bonus += 2;
 
-	if (weapon && bimanual(weapon) && !is_missile(weapon) && !is_ammo(weapon) && !is_launcher(weapon) && !(is_pole(weapon) && !u.usteed) && !(PlayerCannotUseSkills)) {
+	if (weapon && !uarms && bimanual(weapon) && !is_missile(weapon) && !is_ammo(weapon) && !is_launcher(weapon) && !(is_pole(weapon) && !u.usteed) && !(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_TWO_HANDED_WEAPON)) {
 
 			case P_BASIC:	bonus +=  rn2(3); break;

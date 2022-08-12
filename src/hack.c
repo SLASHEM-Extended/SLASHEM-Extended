@@ -759,7 +759,7 @@ moverock()
 		if (yn("Do it?") != 'y')
 		return (-1);
 
-		    if (In_sokoban(&u.uz))
+		    if (In_sokoban(&u.uz) && !(uwep && uwep->oartifact == ART_HOPE_OF_SOKOBAN && rn2(3)) )
 			{change_luck(-1);
 			pline("You cheater!");
 			if (evilfriday) u.ugangr++;
@@ -778,7 +778,7 @@ moverock()
 		if (yn("However, you can squeeze yourself into a small opening. Do it?") != 'y')
 		return (-1);
 		else {
-		if (In_sokoban(&u.uz))
+		if (In_sokoban(&u.uz) && !(uwep && uwep->oartifact == ART_HOPE_OF_SOKOBAN && rn2(3)) )
 			{change_luck(-1);
 			pline("You cheater!");
 			if (evilfriday) u.ugangr++;

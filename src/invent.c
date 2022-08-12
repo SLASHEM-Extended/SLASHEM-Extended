@@ -12141,6 +12141,8 @@ boolean knoweverything;
 				pline("A shock-resistant cloak that unfortunately only offers medium magic cancellation."); break;
 			case CLOAK_OF_MATADOR:
 				pline("It's an exact replica of the cloak of spray: MC2 and fire resistance."); break;
+			case CLOAK_OF_PAIN_SENSE:
+				pline("This cloak lets you gauge a monster's remaining health more often after it was hit. It has 3 points of magic cancellation."); break;
 
 			case CLOAK_OF_DISPLACEMENT: 
 				pline("Wearing this cloak grants displacement and medium magic cancellation."); break;
@@ -12527,6 +12529,8 @@ boolean knoweverything;
 				pline("It's similar to the small shield, but with slightly better chance to block."); break;
 			case BULL_SHIELD:
 				pline("If you can handle the extreme weight, this shield offers ultra-high armor class, 2 points of magic cancellation, and awesome chance to block."); break;
+			case ONE_EATING_SIGN:
+				pline("This rare type of shield has incredibly good chance to block, but its other stats are unremarkable."); break;
 			case ORCISH_SHIELD:
 				pline("A good shield that offers solid armor class."); break;
 			case STEEL_SHIELD:
@@ -12535,6 +12539,8 @@ boolean knoweverything;
 				pline("A lightweight shield that gives lots of armor class and chance to block."); break;
 			case CRYSTAL_SHIELD:
 				pline("This glass shield can deflect lots of attacks and also gives MC1."); break;
+			case GRIM_SHIELD:
+				pline("A reasonably good shield that gives a point of magic cancellation and can even be used when you're equipped with a two-handed weapon."); break;
 			case LARGE_SHIELD:
 				pline("A shield made of iron with a very good armor value."); break;
 			case DWARVISH_ROUNDSHIELD:
@@ -22591,6 +22597,44 @@ boolean knoweverything;
 					pline("Artifact specs: +10 damage."); break;
 				case ART_PARTIAL_MANTLE_PROJECTILE:
 					pline("Artifact specs: deals additional damage to the target proportional to how much HP the target has left."); break;
+				case ART_BARROWGRIM_S_ARMY:
+					pline("Artifact specs: fire and drain resistance when worn, chaotic."); break;
+				case ART_PEACE_BROTHER:
+					pline("Artifact specs: peacevision when worn."); break;
+				case ART_HEATEM_UP:
+					pline("Artifact specs: double fire resistance when worn, but disables cold resistance."); break;
+				case ART_BIDETHANDER:
+					pline("Artifact specs: double damage, thai and ludgera trap effects when wielded and monsters that produce loud farting noises spawn with a crapbonus (you don't even want to know what that is). This artifact was suggested by amateurhour who wanted it to do 'double toilet damage'; the listed effects fit that term reasonably well. :-)"); break;
+				case ART_JUSTICE_FOR_GARLIC:
+					pline("Artifact specs: +5 increase accuracy when wielded. This applies to both melee and ranged attacks."); break;
+				case ART_DIVINE_GARLIC:
+					pline("Artifact specs: deals 5 extra points of damage to vampires and drains their maximum HP. This artifact is capable of ignoring the magic resistance roll that vampires would normally have."); break;
+				case ART_HOPE_OF_SOKOBAN:
+					pline("Artifact specs: dimmopathy when wielded, gives a 2 in 3 chance to avoid Sokoban luck penalties."); break;
+				case ART_DREAMOULE_ELEYELE:
+					pline("Artifact specs: wonderlegs when wielded."); break;
+				case ART_PUZZLE_ME_MAYBE:
+					pline("Artifact specs: drunken boxing when worn."); break;
+				case ART_PORTER_S_THINK:
+					pline("Artifact specs: stunnopathy and teleportitis when worn."); break;
+				case ART_LISSIE_S_SHEAGENTUR:
+					pline("Artifact specs: +3 charisma, fear factor, psi resistance, weakeup call and bad alignment when worn."); break;
+				case ART_SCHOSCHO_BARBITUER:
+					pline("Artifact specs: sickopathy, poison and acid resistance when wielded, permanently poisoned, but if you hit anything with a poisoned weapon while wielding it, you lose a point of alignment."); break;
+				case ART_SIECHELALUER:
+					pline("Artifact specs: freezopathy, low stats and +5 melee damage when worn."); break;
+				case ART_BALE_OF_BODEN_SPEEDSTOCK:
+					pline("Artifact specs: burnopathy, very fast speed and occasionally adds extra speed when worn, time goes by faster."); break;
+				case ART_SA_BLA_NDO_MWA:
+					pline("Artifact specs: +10 damage, hallu party when wielded."); break;
+				case ART_END_OF_LEWDNESS:
+					pline("Artifact specs: numbopathy when worn and prevents monsters from using fart or sex attacks on you, prevents you from taking off any armor pieces or rings, disables speed and steals your intrinsic speed."); break;
+				case ART_VERSCENT_:
+					pline("Artifact specs: corrosivity when worn, makes all perfume monsters try to flee from you."); break;
+				case ART_BRIGHTE_SEE__EEEE:
+					pline("Artifact specs: +4 to-hit and +8 damage to fire-susceptible monsters, stoned chilling and sight bonus when wielded."); break;
+				case ART_KAMAHEWA:
+					pline("Artifact specs: glib combat when worn. If you use the appraisal technique on this artifact while it's +6 or lower, it gains a point of enchantment."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

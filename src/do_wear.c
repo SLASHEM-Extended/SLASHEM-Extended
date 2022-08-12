@@ -988,6 +988,7 @@ Cloak_on()
 	case CLOAK_OF_FLAME:
 	case CLOAK_OF_INSULATION:
 	case CLOAK_OF_MATADOR:
+	case CLOAK_OF_PAIN_SENSE:
 	case SPECIAL_CLOAK:
 	case PLAIN_CLOAK:
 	case ARCHAIC_CLOAK:
@@ -1807,6 +1808,7 @@ Cloak_off()
 	case CLOAK_OF_FLAME:
 	case CLOAK_OF_INSULATION:
 	case CLOAK_OF_MATADOR:
+	case CLOAK_OF_PAIN_SENSE:
 	case NASTY_CLOAK:
 		break;
 	case CLOAK_OF_FUMBLING:
@@ -2936,6 +2938,7 @@ Shield_on()
     switch (uarms->otyp) {
 	case SMALL_SHIELD:
 	case BULL_SHIELD:
+	case ONE_EATING_SIGN:
 	case ORGANOSHIELD:
 	case ELVEN_SHIELD:
 	case URUK_HAI_SHIELD:
@@ -2945,6 +2948,7 @@ Shield_on()
 	case STEEL_SHIELD:
 	case METEORIC_STEEL_SHIELD:
 	case CRYSTAL_SHIELD:
+	case GRIM_SHIELD:
 	case SHIELD_OF_REFLECTION:
 	case FLAME_SHIELD:
 	case ORCISH_GUARD_SHIELD:
@@ -3126,6 +3130,7 @@ Shield_off()
     switch (uarms->otyp) {
 	case SMALL_SHIELD:
 	case BULL_SHIELD:
+	case ONE_EATING_SIGN:
 	case ORGANOSHIELD:
 	case ELVEN_SHIELD:
 	case URUK_HAI_SHIELD:
@@ -3135,6 +3140,7 @@ Shield_off()
 	case STEEL_SHIELD:
 	case METEORIC_STEEL_SHIELD:
 	case CRYSTAL_SHIELD:
+	case GRIM_SHIELD:
 	case SHIELD_OF_REFLECTION:
 	case FLAME_SHIELD:
 	case ORCISH_GUARD_SHIELD:
@@ -5045,7 +5051,7 @@ boolean noisy;
 	if (uarms) {
 	    if (noisy) already_wearing(an(c_shield));
 	    err++;
-	} else if (uwep && bimanual(uwep)) {
+	} else if (uwep && bimanual(uwep) && otmp->otyp != GRIM_SHIELD) {
 	    if (noisy) 
 		You("cannot wear a shield while wielding a two-handed %s.",
 		    is_sword(uwep) ? c_sword :
@@ -5628,7 +5634,7 @@ find_ac()
 
 	}
 
-	if (uarms && !(PlayerCannotUseSkills)) {
+	if (uarms && !(uwep && bimanual(uwep)) && !(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_SHIELD)) {
 			case P_BASIC: uac -= 1; break;
 			case P_SKILLED: uac -= 3; break;
@@ -6269,6 +6275,13 @@ register struct obj *otmp;
 	boolean updowninversion = 0;
 	if (uarmc && itemhasappearance(uarmc, APP_UP_DOWN_CLOAK)) updowninversion = 1;
 
+	if (uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS) {
+		if ((otmp == uarm) || (otmp == uarmu) || (otmp == uarmh) || (otmp == uarmf) || (otmp == uarmg) || (otmp == uarms) || (otmp == uarmc)) {
+			pline("Due to your shoes, you cannot take off any armor pieces!");
+			return 0;
+		}
+	}
+
 	/* implant check */
 	if (otmp == uimplant) {
 
@@ -6321,6 +6334,11 @@ register struct obj *otmp;
 
 	/* special ring checks */
 	if (otmp == uright || otmp == uleft) {
+	    if (uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS) {
+		pline_The("ring is stuck.");
+		return 0;
+	    }
+
 	    if (nolimbs(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 		pline_The("ring is stuck.");
 		return 0;

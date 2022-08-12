@@ -484,7 +484,7 @@ boolean put_away;
 	    You("wield the petrifyium bra in your bare %s.", body_part(HAND));
 	    sprintf(kbuf, "petrifyium bra");
 	    instapetrify(kbuf);
-	} else if (uarms && bimanual(wep))
+	} else if (uarms && (uarms->otyp != GRIM_SHIELD) && bimanual(wep))
 	    You("cannot wield a two-handed %s while wearing a shield.",
 		is_sword(wep) ? "sword" :
 		    wep->otyp == BATTLE_AXE ? "axe" : "weapon");
@@ -898,7 +898,7 @@ const char *verb;	/* "rub",&c */
 		return FALSE;
 	}
 
-    if (uarms && bimanual(obj)) {
+    if (uarms && (uarms->otyp != GRIM_SHIELD) && bimanual(obj)) {
 	You("cannot %s a two-handed %s while wearing a shield.",
 	    verb, (obj->oclass == WEAPON_CLASS) ? "weapon" : "tool");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */

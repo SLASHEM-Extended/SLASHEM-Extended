@@ -1980,6 +1980,7 @@ moveloop()
 			if (uwep && uwep->oartifact == ART_LULWY_S_TRICK && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmf && (uarmf->oartifact == ART_VRRRRRRRRRRRR) && !rn2(5)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmh && (uarmh->oartifact == ART_LORSKEL_S_SPEED) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uarmf && (uarmf->oartifact == ART_BALE_OF_BODEN_SPEEDSTOCK) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmh && (uarmh->oartifact == ART_FIRST_PLACE_GUARANTEED) && !rn2(5)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmf && (uarmf->oartifact == ART_HIGHEST_FEELING) && !rn2(2)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmc && (uarmc->oartifact == ART_WINDS_OF_CHANGE) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
@@ -2146,6 +2147,21 @@ moveloop()
 			}
 
 			if (have_fastforwardstone()) {
+
+			    if (rn2(10)) {
+				    monstermoves++;
+				    moves++;
+				    nh_timeout();
+			    } else if (!rn2(2)) {
+				    monstermoves += 2;
+				    moves += 2;
+				    nh_timeout();
+				    nh_timeout();
+			    }
+
+			}
+
+			if (uarmf && uarmf->oartifact == ART_BALE_OF_BODEN_SPEEDSTOCK) {
 
 			    if (rn2(10)) {
 				    monstermoves++;
@@ -2474,6 +2490,10 @@ moveloop()
 
 			}
 
+		}
+
+		if (uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS && (HFast & (TIMEOUT | INTRINSIC)) ) {
+			u_slow_down();
 		}
 
 		if ((u.inertia > 1) && uamul && uamul->oartifact == ART_VARIANT_GUARD) {
@@ -15226,6 +15246,7 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "common shoes")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "colored shoes")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "meso-american shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "hard woven cloak")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -16478,6 +16499,7 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "common shoes")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "colored shoes")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "meso-american shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "hard woven cloak")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}

@@ -446,6 +446,7 @@ hack_artifacts()
 	artilist[ART_PRINCE_OF_PERSIA].otyp = find_persian_boots();
 	artilist[ART_ANASTASIA_S_PLAYFULNESS].otyp = find_hugging_boots();
 	artilist[ART_KATIE_MELUA_S_FEMALE_WEAPO].otyp = find_fleecy_boots();
+	artilist[ART_LISSIE_S_SHEAGENTUR].otyp = find_fleecy_boots();
 	artilist[ART_COCKUETRY].otyp = find_fingerless_gloves();
 	artilist[ART_PERCENTIOEOEPSPERCENTD_THI].otyp = find_mantle_of_coat();
 	artilist[ART_PEEPING_GROOVE].otyp = find_fatal_gloves();
@@ -2257,10 +2258,12 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	}
 
 	/* STEPHEN WHITE'S NEW CODE */
-	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_WONDERLIGHT || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
+	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_SCHOSCHO_BARBITUER || otmp->oartifact == ART_WONDERLIGHT || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
 	    otmp->dknown = TRUE;
 	    pline_The("twisted weapon poisons %s!",
 		    youdefend ? "you" : mon_nam(mdef));
+	    if (!youdefend && otmp->oartifact == ART_SCHOSCHO_BARBITUER) adjalign(-1);
+
 	    if (youdefend ? (Poison_resistance && (StrongPoison_resistance || rn2(10)) ) : resists_poison(mdef)) {
 		if (youdefend)
 		    You("are not affected by the poison.");
