@@ -4833,6 +4833,7 @@ enchantarmorchoice:
 		/* elven armor vibrates warningly when enchanted beyond a limit */
 		special_armor = is_elven_armor(otmp) || otmp->otyp == KYRT_SHIRT ||
 		  (Role_if(PM_WIZARD) && otmp->otyp == CORNUTHAUM) ||
+		  (Role_if(PM_VANILLA_VALK) && otmp->otyp == GAUNTLETS_OF_POWER) ||
 		  (Role_if(PM_VALKYRIE) && otmp->otyp == GAUNTLETS_OF_POWER);
 
 		if (sobj->cursed)

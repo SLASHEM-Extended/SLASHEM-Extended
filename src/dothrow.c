@@ -154,8 +154,18 @@ int thrown;
 		The(xname(obj)));
 		return(0);
 	}
+	if (obj->oartifact == ART_OTHER_MJOLLNIR && obj != uwep) {
+	    pline("%s must be wielded before it can be thrown.",
+		The(xname(obj)));
+		return(0);
+	}
 	/* Since it's almost impossible to get 25 strength in slex, valkyries can simply throw Mjollnir at all times --Amy */
-	if ((obj->oartifact == ART_MJOLLNIR && !Role_if(PM_VALKYRIE) && ACURR(A_STR) < STR19(25))
+	if ((obj->oartifact == ART_MJOLLNIR && !Role_if(PM_VALKYRIE) && !Role_if(PM_VANILLA_VALK) && ACURR(A_STR) < STR19(25))
+	   || (obj->otyp == BOULDER && !throws_rocks(youmonst.data))) {
+		pline("It's too heavy.");
+		return(1);
+	}
+	if ((obj->oartifact == ART_OTHER_MJOLLNIR && !Role_if(PM_VALKYRIE) && !Role_if(PM_VANILLA_VALK) && ACURR(A_STR) < STR19(25))
 	   || (obj->otyp == BOULDER && !throws_rocks(youmonst.data))) {
 		pline("It's too heavy.");
 		return(1);
@@ -1622,8 +1632,8 @@ int thrown;
 		bhitpos.x = mon->mx;
 		bhitpos.y = mon->my;
 	} else if(u.dz) {
-	    if (u.dz < 0 && Role_if(PM_VALKYRIE) &&
-		    obj->oartifact == ART_MJOLLNIR && !impaired) {
+	    if (u.dz < 0 && (Role_if(PM_VALKYRIE) || Role_if(PM_VANILLA_VALK)) &&
+		    (obj->oartifact == ART_MJOLLNIR || obj->oartifact == ART_OTHER_MJOLLNIR) && !impaired) {
 		pline("%s the %s and returns to your hand!",
 		      Tobjnam(obj, "hit"), ceiling(u.ux,u.uy));
 		obj = addinv(obj);
@@ -1632,7 +1642,7 @@ int thrown;
 		u.twoweap = twoweap;
 		return;
 	    }
-	    if (u.dz < 0 && (Role_if(PM_JEDI) || Role_if(PM_HEDDERJEDI) || !rn2(2)) &&
+	    if (u.dz < 0 && (Role_if(PM_JEDI) || Role_if(PM_SHADOW_JEDI) || Role_if(PM_HEDDERJEDI) || !rn2(2)) &&
 		    is_lightsaber(obj) && obj->lamplit && !impaired &&
 			!(PlayerCannotUseSkills) && rn2(2) &&
 		    P_SKILL(weapon_type(obj)) >= P_SKILLED) {
@@ -1763,7 +1773,7 @@ int thrown;
 
 		if (obj->otyp == BOULDER)
 		    range = 20;		/* you must be giant */
-		else if (obj->oartifact == ART_MJOLLNIR)
+		else if (obj->oartifact == ART_MJOLLNIR || obj->oartifact == ART_OTHER_MJOLLNIR)
 		    range = (range + 1) / 2;	/* it's heavy */
 		else if (obj == uball && u.utrap && u.utraptype == TT_INFLOOR)
 		    range = 1;
@@ -1887,9 +1897,12 @@ int thrown;
 		/* the code following might become part of dropy() */
 		if (
 			(obj->oartifact == ART_MJOLLNIR && Role_if(PM_VALKYRIE) && rn2(100)) ||
+			(obj->oartifact == ART_OTHER_MJOLLNIR && Role_if(PM_VALKYRIE) && rn2(100)) ||
+			(obj->oartifact == ART_MJOLLNIR && Role_if(PM_VANILLA_VALK) && rn2(100)) ||
+			(obj->oartifact == ART_OTHER_MJOLLNIR && Role_if(PM_VANILLA_VALK) && rn2(100)) ||
 
-			(is_lightsaber(obj) && obj->lamplit && (rn2(2) || (djemsochance >= rn2(11)) ) &&
-			( ( (Role_if(PM_JEDI) || Role_if(PM_HEDDERJEDI)) && P_SKILL(weapon_type(obj)) > P_SKILLED) || (!rn2(2) && P_SKILL(weapon_type(obj)) > P_SKILLED) || (djemsochance >= rn2(11)) ) ) ||
+			(is_lightsaber(obj) && (obj->lamplit || Role_if(PM_SHADOW_JEDI)) && (rn2(2) || (djemsochance >= rn2(11)) ) &&
+			( ( (Role_if(PM_JEDI) || Role_if(PM_SHADOW_JEDI) || Role_if(PM_HEDDERJEDI)) && P_SKILL(weapon_type(obj)) > P_SKILLED) || (!rn2(2) && P_SKILL(weapon_type(obj)) > P_SKILLED) || (djemsochance >= rn2(11)) ) ) ||
 
 			((objects[obj->otyp].oc_skill == P_BOOMERANG || objects[obj->otyp].oc_skill == -P_BOOMERANG) &&
 			((boomerangchance > rn2(100)) || (obj->oartifact && !rn2(3)) ) )
@@ -1900,10 +1913,10 @@ int thrown;
 
 		    /* we must be wearing Gauntlets of Power to get here */
 		    /* or a Jedi with a lightsaber or a thrown boomerang */
-		    if ( (Role_if(PM_JEDI) || Role_if(PM_HEDDERJEDI)) && u.uen < 5){
+		    if ( (Role_if(PM_JEDI) || Role_if(PM_SHADOW_JEDI) || Role_if(PM_HEDDERJEDI)) && u.uen < 5){
 			You("don't have enough force to call %s. You need at least 5 points of mana!", the(xname(obj)));
 		    } else {
-		      if (Role_if(PM_JEDI) || Role_if(PM_HEDDERJEDI))
+		      if (Role_if(PM_JEDI) || Role_if(PM_SHADOW_JEDI) || Role_if(PM_HEDDERJEDI))
 			u.uen -= 5;
 			if (!boomerfix) sho_obj_return_to_u(obj);	    /* display its flight */
 

@@ -7525,7 +7525,7 @@ newbossO:
 		}
 
 		/* soresu form trains passively if you have both a lit lightsaber and a robe, but very slowly --Amy */
-		if (uarm && uwep && is_lightsaber(uwep) && uwep->lamplit && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS) ) {
+		if (uarm && uwep && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS) ) {
 			u.usoresuturns++;
 			if (u.usoresuturns >= 100) {
 				u.usoresuturns = 0;

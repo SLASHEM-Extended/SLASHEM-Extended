@@ -1291,6 +1291,7 @@ xchar x, y;
 
 	/* Mjollnir is magically too heavy to kick */
 	if(kickobj->oartifact == ART_MJOLLNIR) range = 1;
+	if(kickobj->oartifact == ART_OTHER_MJOLLNIR) range = 1;
 	if (kickobj->dynamitekaboom) range = 1;
 
 	/* see if the object has a place to move into */

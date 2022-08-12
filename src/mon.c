@@ -1061,9 +1061,11 @@ register struct monst *mtmp;
 	    case PM_UNDEAD_ACTIVISTOR:
 	    case PM_NON_UNDEAD_SLAYER:
 	    case PM_UNDEAD_VALKYRIE:
+	    case PM_UNDEAD_VANILLA_VALK:
 	    case PM_UNDEAD_YEOMAN:
 	    case PM_UNDEAD_PADAWAN:
 	    case PM_UNDEAD_JEDI:
+	    case PM_UNDEAD_SHADOW_JEDI:
 	    case PM_UNDEAD_WIZARD:
 	    case PM_UNDEAD_MOLD:
 	    case PM_FUNGOID_MOLD:

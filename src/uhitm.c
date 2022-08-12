@@ -561,6 +561,12 @@ register struct monst *mtmp;
 		u.alignlim--;
 	    adjalign(-5);
 	}
+	if (Role_if(PM_SHADOW_JEDI) && mtmp->mpeaceful) {
+	    You("violate the way of the Jedi!");
+		u.ualign.sins++;
+		u.alignlim--;
+	    adjalign(-5);
+	}
 	if (Role_if(PM_HEDDERJEDI) && mtmp->mpeaceful) {
 	    You("violate the way of the Jedi!");
 		u.ualign.sins++;
@@ -722,7 +728,7 @@ register struct monst *mtmp;
 		if (u.hunkskill >= 4320) tmp++;
 	}
 
-	if( (Role_if(PM_JEDI) || Role_if(PM_HEDDERJEDI) || Race_if(PM_BORG)) && !Upolyd) {
+	if( (Role_if(PM_JEDI) || Role_if(PM_SHADOW_JEDI) || Role_if(PM_HEDDERJEDI) || Race_if(PM_BORG)) && !Upolyd) {
 		if (((uwep && is_lightsaber(uwep) && uwep->lamplit) ||
 		    (uswapwep && u.twoweap && is_lightsaber(uswapwep) && uswapwep->lamplit)) &&
 		   (uarm &&
@@ -1861,11 +1867,59 @@ int dieroll;
 
 			}
 
+			if (Role_if(PM_SHADOW_JEDI) && is_lightsaber(obj) &&
+			   ((wtype = uwep_skill_type()) != P_NONE) &&
+			   ((monwep = MON_WEP(mon)) != 0 && monwep && !is_lightsaber(monwep) &&
+			   !monwep->oartifact && !stack_too_big(monwep) &&
+			   !obj_resists(monwep, 50 + 15 * greatest_erosionX(obj), 100))) {
+
+				int juyochance = 1;
+				if (!PlayerCannotUseSkills) {
+					switch (P_SKILL(P_JUYO)) {
+
+						case P_BASIC:	juyochance +=  1; break;
+						case P_SKILLED:	juyochance +=  2; break;
+						case P_EXPERT:	juyochance +=  3; break;
+						case P_MASTER:	juyochance +=  4; break;
+						case P_GRAND_MASTER:	juyochance +=  5; break;
+						case P_SUPREME_MASTER:	juyochance +=  6; break;
+						default: juyochance += 0; break;
+					}
+
+				}
+
+				if (juyochance > rn2(100)) {
+
+					pline("Your lightsaber is capable of cutting %s %s!", s_suffix(Monnam(mon)), xname(monwep));
+					getlin ("Cut the opponent's weapon in half? [y/yes/no]",cutbuf);
+					(void) lcase (cutbuf);
+					if (!(strcmp (cutbuf, "yes")) || !(strcmp (cutbuf, "y"))) {
+
+						setmnotwielded(mon,monwep);
+						MON_NOWEP(mon);
+						mon->weapon_check = NEED_WEAPON;
+						Your("%s cuts %s %s in half!", xname(obj), s_suffix(mon_nam(mon)), xname(monwep));
+						m_useup(mon, monwep);
+						u.cnd_weaponbreakcount++;
+						/* If someone just shattered MY weapon, I'd flee! */
+						if (rn2(4)) {
+						    monflee(mon, d(2,3), TRUE, TRUE);
+						}
+
+						hittxt = TRUE;
+						use_skill(P_JUYO, rnd(7)); /* has to be faster because hard to train otherwise --Amy */
+
+					}
+				}
+
+			}
+
 			if (obj && obj->spe > 0) tmp += obj->spe;
 
 			if (obj && obj->oartifact == ART_BASHCRASH && tmp > 0) {
 				tmp *= 2;
 			}
+			if (obj && obj->oartifact == ART_GAMMASABER) tmp += rnd(10);
 			if (obj && obj->oartifact == ART_TEH_HUNK && !obj->lamplit && tmp > 0) tmp += 5;
 			if (obj && obj->oartifact == ART_GAYGUN && (u.homosexual == 1)) tmp += 5;
 
@@ -2148,6 +2202,9 @@ int dieroll;
 				if (P_SKILL(weapon_type(uwep)) >= P_SKILLED && !(PlayerCannotUseSkills) ) {
 					juyochance += 30;
 					if (Role_if(PM_JEDI)) {
+						juyochance += ((100 - juyochance) / 2);
+					}
+					if (Role_if(PM_SHADOW_JEDI)) {
 						juyochance += ((100 - juyochance) / 2);
 					}
 					if (Role_if(PM_HEDDERJEDI)) {
@@ -3681,7 +3738,7 @@ melatechoice:
 					}
 				}
 
-				if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+				if (uwep && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) ) {
 
 					if (!u.twoweap || !rn2(2)) {
 						u.ushiichoturns++;
@@ -3750,7 +3807,7 @@ melatechoice:
 					}
 				}
 				/* djem so was also training ultra slowly, so here's a multiplier */
-				if (wep && is_lightsaber(wep) && wep->lamplit && obj && (wep == obj)) {
+				if (wep && is_lightsaber(wep) && (wep->lamplit || Role_if(PM_SHADOW_JEDI)) && obj && (wep == obj)) {
 					use_skill(P_DJEM_SO, rnd(4));
 				}
 

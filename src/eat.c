@@ -8123,9 +8123,10 @@ boolean incr;
       "The munchies are interfering with your motor capabilities.");
 			else if (incr &&
 				(Role_if(PM_WIZARD) || Role_if(PM_WARRIOR) || Role_if(PM_ELPH) || Role_if(PM_TWELPH) || Role_if(PM_COURIER) || Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CONVICT) || Role_if(PM_CAMPERSTRIKER) || Race_if(PM_ELF) || Race_if(PM_ASGARDIAN) || ishaxor || isheretic || Race_if(PM_ALBAE) || Race_if(PM_RODNEYAN) ||
-				 Role_if(PM_VALKYRIE)))
+				 Role_if(PM_VALKYRIE) ||
+				 Role_if(PM_VANILLA_VALK)))
 			    pline("%s needs food, badly!", (!rn2(10)) ? urace.noun/*urole.name.m*/ :
-				  (Role_if(PM_WIZARD) || Role_if(PM_WARRIOR) || Role_if(PM_ELPH) || Role_if(PM_TWELPH) || Role_if(PM_COURIER) || Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CONVICT) || Role_if(PM_CAMPERSTRIKER) || Race_if(PM_ASGARDIAN) || ishaxor || isheretic || Race_if(PM_ALBAE) || Role_if(PM_VALKYRIE)) ?
+				  (Role_if(PM_WIZARD) || Role_if(PM_WARRIOR) || Role_if(PM_ELPH) || Role_if(PM_TWELPH) || Role_if(PM_COURIER) || Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CONVICT) || Role_if(PM_CAMPERSTRIKER) || Race_if(PM_ASGARDIAN) || ishaxor || isheretic || Race_if(PM_ALBAE) || Role_if(PM_VALKYRIE) || Role_if(PM_VANILLA_VALK)) ?
 				  urole.name.m : Race_if(PM_RODNEYAN) ? "Wizard of Yendor" : "Elf");
 			else
 			    You((!incr) ? "feel weak now." :

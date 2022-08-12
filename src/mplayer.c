@@ -928,6 +928,8 @@ register boolean special;
 		    break;
 		case PM_VALKYRIE:
 		case PM_UNDEAD_VALKYRIE:
+		case PM_VANILLA_VALK:
+		case PM_UNDEAD_VANILLA_VALK:
 		    if (rn2(2)) weapon = WAR_HAMMER;
 		    if (rn2(2)) armor = rnd_class(PLATE_MAIL, CHAIN_MAIL);
 		    break;
@@ -976,9 +978,11 @@ register boolean special;
 		    break;
 
 		case PM_JEDI:
+		case PM_SHADOW_JEDI:
 		case PM_PADAWAN:
 		case PM_UNDEAD_JEDI:
 		case PM_UNDEAD_PADAWAN:
+		case PM_UNDEAD_SHADOW_JEDI:
 		case PM_HEDDERJEDI:
 		case PM_UNDEAD_HEDDERJEDI:
 		    switch(rnd(12)){

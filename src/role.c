@@ -4123,6 +4123,37 @@ const struct Role roles[] = {
 	4, 5, A_WIS, SPE_TELEPORT_AWAY,        -4, 100 /* From old role.c */
 },
 
+{	{"Shadow Jedi", 0}, {
+	{"Dark Lighter",    0},
+	{"Hunkbasher",    0},
+	{"Lightsaber Form Trainer",    0},
+	{"Style Changer",    0},
+	{"Whirler",    0},
+	{"Jedi Without Jedi Powers",    0},
+	{"Chargeless Power",    0},
+	{"Fizzle-Fizzer",    0},
+	{"Blacklight Master",    0} },
+	"the Light Side", "the Force", "the Dark Side",
+	"Sdw", "the Jedi Temple", "the Outer Rim",
+	PM_SHADOW_JEDI, NON_PM, PM_UNDEAD_SHADOW_JEDI, NON_PM, PM_LITTLE_DOG,
+	PM_THE_JEDI_MASTER, PM_PADAWAN, PM_LORD_SIDIOUS, PM_LORD_INSIDIOUS,
+	PM_SHOTGUN_STORMTROOPER, PM_LASER_STORMTROOPER, S_HUMAN, S_HUMAN,
+	ART_GAMMASABER,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | 
+	ROLE_MALE|ROLE_FEMALE|ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  10,  7, 14, 12, 10, 14 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  30, 15, 15, 10, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 20, 20, 18, 20 },
+	/* Init   Lower  Higher */
+	{ 20, 4,  0, 8,  2, 4 },	/* Hit points */
+	{  5, 4,  0, 1,  0, 4 },10,	/* Energy */
+	0, 12 , -1, 
+	2, 10, A_INT, SPE_CHARM_MONSTER,    -4, 40
+},
+
 {	{"Shapeshifter", 0}, {
 	{"Polymorph Trainee",    0},
 	{"Item Zapper",    0},
@@ -4866,6 +4897,35 @@ const struct Role roles[] = {
 	{ 20, 0,  0, 8,  2, 0 },	/* Hit points */
 	{  2, 0,  0, 1,  0, 1 },10,	/* Energy */
 	0, 10,-2, 0,  9, A_WIS, SPE_LIGHTNING,    -4, 20
+},
+
+{	{"Vanilla Valk", 0}, {
+	{"Stripped Girl",   0},
+	{"Carnage Woman",  0},
+	{"Feighter",     0},
+	{"Armsbearing Lady", 0},
+	{"Vanilla Warrior",     0},
+	{"Protecter-Shielder",0},
+	{"Female Heroine",        0},
+	{"Fanatic Champ",    0},
+	{"Battlefield Chief",        0} },
+	"Tyr", "Odin", "Loki", /* Norse */
+	"Van", "the Shrine of Destiny", "the cave of Surtur",
+	PM_VANILLA_VALK, NON_PM, PM_UNDEAD_VANILLA_VALK, NON_PM, NON_PM /*PM_WINTER_WOLF_CUB*/,
+	PM_NORN, PM_SUPER_WARRIOR, PM_LORD_SURTUR, PM_LORD_SULTUR,
+	PM_FIRE_ANT, PM_FIRE_GIANT, S_ANT, S_GIANT,
+	ART_ORB_OF_WEIGHT,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  10,  7,  7,  7, 12,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  30,  6,  7, 20, 30,  7 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(25), 15, 15, 18, 18, 18 },
+	/* Init   Lower  Higher */
+	{ 14, 0,  0, 8,  2, 0 },	/* Hit points */
+	{  1, 0,  0, 1,  0, 1 },10,	/* Energy */
+	0, 10,-2, 0,  9, A_WIS, SPE_CONE_OF_COLD,    -4, 20
 },
 
 {	{"Walscholar", 0}, {
@@ -11615,6 +11675,7 @@ struct monst *mtmp;
 	case PM_TOURIST:
 	    return ("Aloha");       /* Hawaiian */
 	case PM_VALKYRIE:
+	case PM_VANILLA_VALK:
 	    return (
 #ifdef MAIL
 	    		mtmp && mtmp->data == &mons[PM_MAIL_DAEMON] ? "Hallo" :
@@ -11649,6 +11710,7 @@ Goodbye()
 	case PM_TOURIST:
 	    return ("Aloha");           /* Hawaiian */
 	case PM_VALKYRIE:
+	case PM_VANILLA_VALK:
 	    return ("Farvel");          /* Norse */
 	default:
 	    return ("Goodbye");

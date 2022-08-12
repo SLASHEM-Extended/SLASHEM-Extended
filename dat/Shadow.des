@@ -1,0 +1,358 @@
+#	SCCS Id: @(#)Knight.des	3.4	1995/04/16
+#	Copyright (c) 1989 by Jean-Christophe Collet
+#	Copyright (c) 1991,92 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+#	The "start" level for the quest.
+#
+#	Here you meet your (besieged) class leader, The Jedi Master
+#	and receive your quest assignment.
+#
+MAZE: "Sdw-strt",'.'
+FLAGS: noteleport,hardfloor
+INIT_MAP: '.' , '.' , false , false , unlit , false
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAA--------AAAAAAAAAAAAAAAAAAAAAAAAAAA--------AAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAA|......|AAAAAAAAAAAAAAAAAAAAAAAAAAA|......|AAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAA|......|AA-----------------------AA|......|AAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAA|......|AA|.....................|AA|......|AAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAA|......|AA|.-------------------.|AA|......|AAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAA---+----AA|.|.................|.|AA----+---AAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAA|.|AAAAA|.|.................|.|AAAAA|.|AAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAA|.------|.|..}...........}..|.|------.|AAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAS.......+.+.................+.+.......SAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAA|.------|.|..}...........}..|.|------.|AAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAA|.|AAAAA|.|.................|.|AAAAA|.|AAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAA---+----AA|.|.................|.|AA----+---AAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAA|......|AA|.-------------------.|AA|......|AAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAA|......|AA|.....................|AA|......|AAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAA|......|AA-----------------------AA|......|AAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAA|......|AAAAAAAAAAAAAAAAAAAAAAAAAAA|......|AAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAA--------AAAAAAAAAAAAAAAAAAAAAAAAAAA--------AAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+ENDMAP
+RANDOM_PLACES: (57,3), (17,14), (57,14)
+# according to starwars.com the Jedi temple is a tall building high up into
+# the sky. So it seems right to have it being surrounded by Air
+# Dungeon Description
+REGION:(00,00,75,20),unlit,"ordinary"
+REGION:(16,02,23,07),lit,"ordinary"
+REGION:(51,02,63,07),lit,"ordinary"
+REGION:(16,13,23,18),lit,"ordinary"
+REGION:(51,13,63,18),lit,"ordinary"
+REGION:(29,07,45,14),lit,"ordinary"
+# Portal arrival point
+BRANCH:(17,03,17,03),(0,0,0,0)
+# Stairs
+STAIR:place[0],down
+# Doors
+DOOR:closed,(19,07)
+DOOR:closed,(19,13)
+DOOR:locked,(18,10)
+DOOR:locked,(26,10)
+DOOR:locked,(28,10)
+DOOR:locked,(46,10)
+DOOR:locked,(48,10)
+DOOR:locked,(56,10)
+DOOR:closed,(55,13)
+DOOR:closed,(55,07)
+# The Jedi Master
+MONSTER:'@',"The Jedi Master",(37,10)
+# His treasure
+CONTAINER:'(',"chest",place[1]
+OBJECT:'?',"charging",contained
+OBJECT:'?',random,contained
+OBJECT:random,random,contained
+# the remaining Jedi
+MONSTER:'@',"padawan",(38,11),peaceful
+MONSTER:'@',"padawan",(38,09),peaceful
+MONSTER:'@',"padawan",(36,11),peaceful
+MONSTER:'@',"padawan",(36,09),peaceful
+MONSTER:'@',"jedi",(18,4),peaceful
+MONSTER:'@',"jedi",(19,4),peaceful
+MONSTER:'@',"jedi",(18,15),peaceful
+MONSTER:'@',"jedi",(19,15),peaceful
+MONSTER:'@',"jedi",(56,4),peaceful
+MONSTER:'@',"jedi",(57,4),peaceful
+MONSTER:'@',"jedi",(56,15),peaceful
+MONSTER:'@',"jedi",(57,15),peaceful
+MONSTER:'@',"jedi",(33,10),peaceful
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,20)
+# Monsters on siege duty.
+MONSTER: '@',"shotgun stormtrooper",(27,05),hostile
+MONSTER: '@',"shotgun stormtrooper",(47,05),hostile
+MONSTER: '@',"shotgun stormtrooper",(27,15),hostile
+MONSTER: '@',"shotgun stormtrooper",(47,15),hostile
+MONSTER: '@',"shotgun stormtrooper",(19,10),hostile
+MONSTER: '@',"shotgun stormtrooper",(20,10),hostile
+MONSTER: '@',"shotgun stormtrooper",(50,10),hostile
+MONSTER: '@',"shotgun stormtrooper",(51,10),hostile
+#
+#	The "locate" level for the quest.
+#
+
+MAZE: "Sdw-loca",' '
+FLAGS: hardfloor
+INIT_MAP: '.' , '.' , false , false , unlit , false
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+................L...........................................................
+...............LLL..........................................................
+..............LLLLL...................  ....................................
+.............LLLLLLL..................  ....................................
+............LLLLLLLLL.............................................. ........
+.............LLLLLLL..............................................   .......
+..............LLLLL..............................................     ......
+...............LLL..............................................   .........
+................L.............................. ...............    .    ....
+...............................................  .............     .     ...
+..............................................     ............    .    ....
+...............................................  ...............       .....
+.............P.................................. ................     ......
+............PPP.....................P.............................   .......
+...........PPPPP...................PPP............................. ........
+............PPP...................PPPPP.....................................
+.............P...................PPPPPPP....................................
+..................................PPPPP.....................................
+...................................PPP......................................
+....................................P.......................................
+............................................................................
+ENDMAP
+# supposed to designate a sun, two water planets, two asteroids and
+# a barren planet made mostly of rock. Yeah, bite me!
+# Stairs
+STAIR:(0,0),up
+STAIR:(67,10),down
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+
+#
+#	The "goal" level for the quest.
+#
+
+MAZE: "Sdw-goal", ' '
+INIT_MAP: '.' , '.' , false , false , unlit , false
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+.......PP......                                                             
+......P......     .............................    ...............          
+.....P.PP....    .......L................L.....     .......L.......         
+..PPPPP.....   ........L.L..............L.....    ........LL........        
+...P.PP......    ....LL...L..L.....LL..LL....   ........L....L........      
+...PP.P....    ............LLL...L..L.LL....      .....L......L.......      
+...P...P....   ......LL....L..L.L....LL........     ...............         
+...PPPPP..............L...L..L.L....LL........   ......L....LL.....         
+..P.P................L..LL....L....L.L.......     .........L.L......        
+........................L......L..L.L........HHH......L..LL..L.......       
+....P....    ..........LL....L.L.L..L........   ......LL..LL.L.....         
+....PPP...    .........LL...L.L.L..LL........   .....L..LL..LL.....         
+....PP......    ............L.L....L.......   .......LLL.L..........        
+....P..P.....   ........L.....L.....L.....   .......L.L...LLLLL......       
+...PP..PP.....  ........L....L.L..L........   .....LL..LL.L..L......        
+..PP..P.P....    ........L..L...L.L.........   ....LLLLLLLLL.L.........     
+...PPP..P.....     ........LL....L..........  ........LL.LL.........        
+....PP.P.......     .........................    ................           
+....P.PP.......       .........................    ...........              
+..............                                                              
+ENDMAP
+# yeah, it's the slightly modified knight quest
+# Stairs
+STAIR:(03,08),up
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+# Objects
+OBJECT:'(',"rainbow lightsaber",(60,06),blessed,0,"Gammasaber"
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:"spiked pit",(13,07)
+TRAP:"spiked pit",(12,08)
+TRAP:"spiked pit",(12,09)
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:'@',"Lord Sidious",(60,06),hostile
+MONSTER:'@',"jedi",random,peaceful
+MONSTER:'@',"jedi",random,peaceful
+MONSTER:'@',"jedi",random,peaceful
+MONSTER:'@',"jedi",random,peaceful
+MONSTER:'@',"jedi",random,peaceful
+MONSTER:'@',"jedi",random,peaceful
+MONSTER:'@',"jedi",random,peaceful
+MONSTER:'@',"jedi",random,peaceful
+MONSTER:'@',"jedi",random,peaceful
+MONSTER:'@',"jedi",random,peaceful
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+MONSTER:'@',"shotgun stormtrooper",random,hostile
+
+#
+#	The "fill" levels for the quest.
+#
+#	These levels are used to fill out any levels not occupied by specific
+#	levels as defined above. "filla" is the upper filler, between the
+#	start and locate levels, and "fillb" the lower between the locate
+#	and goal levels.
+#
+
+MAZE: "Sdw-fila" , '.'
+INIT_MAP: '.' , '.' , false , true , unlit , false
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+MONSTER:'@',"jedi",random,peaceful
+MONSTER:'@',"jedi",random,peaceful
+MONSTER: '@', "shotgun stormtrooper", random, hostile
+MONSTER: '@', "shotgun stormtrooper", random, hostile
+MONSTER: '@', "shotgun stormtrooper", random, hostile
+MONSTER: '@', "shotgun stormtrooper", random, hostile
+MONSTER: '@', "shotgun stormtrooper", random, hostile
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+MAZE: "Sdw-filb" , '.'
+INIT_MAP: '.' , '.' , false , true , lit , false
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+MONSTER:'@',"jedi",random,peaceful
+MONSTER:'@',"jedi",random,peaceful
+MONSTER: '@', "shotgun stormtrooper", random, hostile
+MONSTER: '@', "shotgun stormtrooper", random, hostile
+MONSTER: '@', "shotgun stormtrooper", random, hostile
+MONSTER: '@', "shotgun stormtrooper", random, hostile
+MONSTER: '@', "shotgun stormtrooper", random, hostile
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random

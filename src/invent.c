@@ -17785,6 +17785,8 @@ boolean knoweverything;
 					pline("Artifact specs: +5 to-hit and +30 damage to undead, neutral, priest sacrifice gift."); break;
 				case ART_MJOLLNIR:
 					pline("Artifact specs: +5 to-hit and +24 damage to shock-susceptible monsters, can be thrown with a strength of 25, neutral, valkyrie sacrifice gift."); break;
+				case ART_OTHER_MJOLLNIR:
+					pline("Artifact specs: +5 to-hit and +24 damage to shock-susceptible monsters, can be thrown with a strength of 25, neutral, vanilla valk sacrifice gift."); break;
 				case ART_GAUNTLETS_OF_DEFENSE:
 					pline("Artifact specs: half physical damage when worn, can be invoked for invisibility, neutral, monk sacrifice gift."); break;
 				case ART_MIRRORBRIGHT:
@@ -19183,6 +19185,8 @@ boolean knoweverything;
 					pline("Artifact specs: magic resistance while carried, +5 to-hit and +12 damage, lawful, anachrononononononaut quest artifact."); break;
 				case ART_ORB_OF_FATE:
 					pline("Artifact specs: acts as a luckstone when wielded, warning, half physical damage and half spell damage while carried, can be invoked for level teleport, neutral, valkyrie quest artifact."); break;
+				case ART_ORB_OF_WEIGHT:
+					pline("Artifact specs: acts as a luckstone when wielded, warning, half physical damage and half spell damage while carried, can be invoked for level teleport, neutral, vanilla valk quest artifact."); break;
 				case ART_ORB_OF_RESISTANCE:
 					pline("Artifact specs: warning, magic resistance, half spell damage and half physical damage while carried, can be invoked to light areas, neutral, paladin quest artifact."); break;
 				case ART_EYE_OF_THE_AETHIOPICA:
@@ -19196,9 +19200,11 @@ boolean knoweverything;
 				case ART_CROWN_OF_SAINT_EDWARD:
 					pline("Artifact specs: half spell damage and magic resistance while carried, lawful, yeoman quest artifact."); break;
 				case ART_LIGHTSABER_PROTOTYPE:
-					pline("Artifact specs: reflection when wielded, +5 to-hit and +10 damage, can be invoked for energy boost, lawful, jedi quest artifact."); break;
+					pline("Artifact specs: reflection when wielded, +5 to-hit and +10 damage, doesn't run out of power, can be invoked for energy boost, lawful, jedi quest artifact."); break;
 				case ART_DEFINITE_LIGHTSABER:
-					pline("Artifact specs: reflection when wielded, +5 to-hit and +10 damage, can be invoked for energy boost, lawful, hedderjedi quest artifact."); break;
+					pline("Artifact specs: reflection when wielded, +5 to-hit and +10 damage, doesn't run out of power, can be invoked for energy boost, lawful, hedderjedi quest artifact."); break;
+				case ART_GAMMASABER:
+					pline("Artifact specs: reflection when wielded, +5 to-hit and +10 damage, +d10 damage when bashing with an unlit one, can be invoked for energy boost, lawful, shadow jedi quest artifact."); break;
 				case ART_SILVER_SNIVER:
 					pline("Artifact specs: warning of demons when wielded."); break;
 				case ART_JESUS_MUST_DIE:

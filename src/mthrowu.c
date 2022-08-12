@@ -326,6 +326,9 @@ const char *name;	/* if null, then format `obj' */
 			if (Role_if(PM_JEDI)) {
 				saberblockrate += ((100 - saberblockrate) / 2);
 			}
+			if (Role_if(PM_SHADOW_JEDI)) {
+				saberblockrate += ((100 - saberblockrate) / 2);
+			}
 			if (Role_if(PM_HEDDERJEDI)) {
 				saberblockrate += ((100 - saberblockrate) / 2);
 			}
@@ -334,6 +337,25 @@ const char *name;	/* if null, then format `obj' */
 			}
 		}
 
+		if (tlev > 10) saberblockrate -= (rn3(tlev - 9));
+
+	}
+
+	if (uwep && is_lightsaber(uwep) && !uwep->lamplit && Role_if(PM_SHADOW_JEDI)) {
+		saberblockrate = 1;
+		if (!PlayerCannotUseSkills) {
+			switch (P_SKILL(P_SHIEN)) {
+
+				case P_BASIC:	saberblockrate +=  1; break;
+				case P_SKILLED:	saberblockrate +=  2; break;
+				case P_EXPERT:	saberblockrate +=  3; break;
+				case P_MASTER:	saberblockrate +=  4; break;
+				case P_GRAND_MASTER:	saberblockrate +=  5; break;
+				case P_SUPREME_MASTER:	saberblockrate +=  6; break;
+				default: saberblockrate += 0; break;
+			}
+
+		}
 		if (tlev > 10) saberblockrate -= (rn3(tlev - 9));
 
 	}
@@ -385,7 +407,7 @@ const char *name;	/* if null, then format `obj' */
 
 			return(0);
 
-	} else if (uwep && is_lightsaber(uwep) && (3 > rnd(extrachance)) && uwep->lamplit && (saberblockrate > rn2(100))) {
+	} else if (uwep && is_lightsaber(uwep) && (3 > rnd(extrachance)) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) && (saberblockrate > rn2(100))) {
 
 		/* dodge missiles, even when blind; see "A new hope" for blindness reference */
 		You("dodge %s with %s.", onm, yname(uwep));

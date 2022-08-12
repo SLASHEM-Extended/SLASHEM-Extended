@@ -353,7 +353,8 @@ spec_levs: ../util/lev_comp \
 	Gender.des Fjorde.des Emera.des Combat.des Aklyst.des \
 	Drag.des Carto.des Dancer.des Shoefe.des Secret.des \
 	Prever.des Diabl.des Butt.des Halfba.des Noob.des \
-	Woman.des Climac.des Slave.des Hedder.des
+	Woman.des Climac.des Slave.des Hedder.des Vanilla.des \
+	Shadow.des
 
 	../util/lev_comp Abuser.des
 	../util/lev_comp Acid.des
@@ -431,6 +432,7 @@ spec_levs: ../util/lev_comp \
 	../util/lev_comp Ice.des
 	../util/lev_comp Jedi.des
 	../util/lev_comp Hedder.des
+	../util/lev_comp Shadow.des
 	../util/lev_comp Jester.des
 	../util/lev_comp Knight.des
 	../util/lev_comp Korsair.des
@@ -519,6 +521,7 @@ spec_levs: ../util/lev_comp \
 	../util/lev_comp Unbel.des
 	../util/lev_comp Under.des
 	../util/lev_comp Valkyrie.des
+	../util/lev_comp Vanilla.des
 	../util/lev_comp Wandkeep.des
 	../util/lev_comp Warrior.des
 	../util/lev_comp Wizard.des

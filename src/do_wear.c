@@ -5586,7 +5586,7 @@ find_ac()
 
 	}
 
-	if (!PlayerCannotUseSkills && uwep && uarm && is_lightsaber(uwep) && uwep->lamplit && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) {
+	if (!PlayerCannotUseSkills && uwep && uarm && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) {
 
 		switch (P_SKILL(P_SORESU)) {
 			case P_BASIC: uac -= 1; break;

@@ -2335,6 +2335,7 @@ int oldlevel, newlevel;
 	case PM_UNDERTAKER:	abil = unt_abil;	break;
 	case PM_GOLDMINER:		abil = gol_abil;	break;
 	case PM_VALKYRIE:       abil = val_abil;	break;
+	case PM_VANILLA_VALK:       abil = val_abil;	break;
 	case PM_OFFICER:       abil = off_abil;	break;
 	case PM_GRENADONIN:       abil = gro_abil;	break;
 	case PM_WIZARD:         abil = wiz_abil;	break;

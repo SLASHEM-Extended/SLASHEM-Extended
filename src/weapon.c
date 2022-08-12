@@ -3516,70 +3516,70 @@ int skill;
 
 	if (skill == P_SHII_CHO && (P_SKILL(P_SHII_CHO) + 1) > u.lightsabermax1) {
 		u.lightsabermax1 = (P_SKILL(P_SHII_CHO) + 1);
-		if (!issoviet && rn2(Role_if(PM_HEDDERJEDI) ? 5 : Role_if(PM_JEDI) ? 4 : 2)) {
+		if (!issoviet && rn2(Role_if(PM_HEDDERJEDI) ? 5 : Role_if(PM_JEDI) ? 4 : Role_if(PM_SHADOW_JEDI) ? 4 : 2)) {
 			You("got that skill without using up a skill point!");
 			goto jediskip;
 		}
 	}
 	if (skill == P_MAKASHI && (P_SKILL(P_MAKASHI) + 1) > u.lightsabermax2) {
 		u.lightsabermax2 = (P_SKILL(P_MAKASHI) + 1);
-		if (!issoviet && rn2(Role_if(PM_HEDDERJEDI) ? 5 : Role_if(PM_JEDI) ? 4 : 2)) {
+		if (!issoviet && rn2(Role_if(PM_HEDDERJEDI) ? 5 : Role_if(PM_JEDI) ? 4 : Role_if(PM_SHADOW_JEDI) ? 4 : 2)) {
 			You("got that skill without using up a skill point!");
 			goto jediskip;
 		}
 	}
 	if (skill == P_SORESU && (P_SKILL(P_SORESU) + 1) > u.lightsabermax3) {
 		u.lightsabermax3 = (P_SKILL(P_SORESU) + 1);
-		if (!issoviet && rn2(Role_if(PM_HEDDERJEDI) ? 5 : Role_if(PM_JEDI) ? 4 : 2)) {
+		if (!issoviet && rn2(Role_if(PM_HEDDERJEDI) ? 5 : Role_if(PM_JEDI) ? 4 : Role_if(PM_SHADOW_JEDI) ? 4 : 2)) {
 			You("got that skill without using up a skill point!");
 			goto jediskip;
 		}
 	}
 	if (skill == P_ATARU && (P_SKILL(P_ATARU) + 1) > u.lightsabermax4) {
 		u.lightsabermax4 = (P_SKILL(P_ATARU) + 1);
-		if (!issoviet && rn2(Role_if(PM_HEDDERJEDI) ? 5 : Role_if(PM_JEDI) ? 4 : 2)) {
+		if (!issoviet && rn2(Role_if(PM_HEDDERJEDI) ? 5 : Role_if(PM_JEDI) ? 4 : Role_if(PM_SHADOW_JEDI) ? 4 : 2)) {
 			You("got that skill without using up a skill point!");
 			goto jediskip;
 		}
 	}
 	if (skill == P_SHIEN && (P_SKILL(P_SHIEN) + 1) > u.lightsabermax5) {
 		u.lightsabermax5 = (P_SKILL(P_SHIEN) + 1);
-		if (!issoviet && rn2(Role_if(PM_HEDDERJEDI) ? 5 : Role_if(PM_JEDI) ? 4 : 2)) {
+		if (!issoviet && rn2(Role_if(PM_HEDDERJEDI) ? 5 : Role_if(PM_JEDI) ? 4 : Role_if(PM_SHADOW_JEDI) ? 4 : 2)) {
 			You("got that skill without using up a skill point!");
 			goto jediskip;
 		}
 	}
 	if (skill == P_DJEM_SO && (P_SKILL(P_DJEM_SO) + 1) > u.lightsabermax6) {
 		u.lightsabermax6 = (P_SKILL(P_DJEM_SO) + 1);
-		if (!issoviet && rn2(Role_if(PM_HEDDERJEDI) ? 5 : Role_if(PM_JEDI) ? 4 : 2)) {
+		if (!issoviet && rn2(Role_if(PM_HEDDERJEDI) ? 5 : Role_if(PM_JEDI) ? 4 : Role_if(PM_SHADOW_JEDI) ? 4 : 2)) {
 			You("got that skill without using up a skill point!");
 			goto jediskip;
 		}
 	}
 	if (skill == P_NIMAN && (P_SKILL(P_NIMAN) + 1) > u.lightsabermax7) {
 		u.lightsabermax7 = (P_SKILL(P_NIMAN) + 1);
-		if (!issoviet && rn2(Role_if(PM_HEDDERJEDI) ? 5 : Role_if(PM_JEDI) ? 4 : 2)) {
+		if (!issoviet && rn2(Role_if(PM_HEDDERJEDI) ? 5 : Role_if(PM_JEDI) ? 4 : Role_if(PM_SHADOW_JEDI) ? 4 : 2)) {
 			You("got that skill without using up a skill point!");
 			goto jediskip;
 		}
 	}
 	if (skill == P_JUYO && (P_SKILL(P_JUYO) + 1) > u.lightsabermax8) {
 		u.lightsabermax8 = (P_SKILL(P_JUYO) + 1);
-		if (!issoviet && rn2(Role_if(PM_HEDDERJEDI) ? 5 : Role_if(PM_JEDI) ? 4 : 2)) {
+		if (!issoviet && rn2(Role_if(PM_HEDDERJEDI) ? 5 : Role_if(PM_JEDI) ? 4 : Role_if(PM_SHADOW_JEDI) ? 4 : 2)) {
 			You("got that skill without using up a skill point!");
 			goto jediskip;
 		}
 	}
 	if (skill == P_VAAPAD && (P_SKILL(P_VAAPAD) + 1) > u.lightsabermax9) {
 		u.lightsabermax9 = (P_SKILL(P_VAAPAD) + 1);
-		if (!issoviet && rn2(Role_if(PM_HEDDERJEDI) ? 5 : Role_if(PM_JEDI) ? 4 : 2)) {
+		if (!issoviet && rn2(Role_if(PM_HEDDERJEDI) ? 5 : Role_if(PM_JEDI) ? 4 : Role_if(PM_SHADOW_JEDI) ? 4 : 2)) {
 			You("got that skill without using up a skill point!");
 			goto jediskip;
 		}
 	}
 	if (skill == P_WEDI && (P_SKILL(P_WEDI) + 1) > u.lightsabermax10) {
 		u.lightsabermax10 = (P_SKILL(P_WEDI) + 1);
-		if (!issoviet && rn2(Role_if(PM_HEDDERJEDI) ? 5 : Role_if(PM_JEDI) ? 4 : 2)) {
+		if (!issoviet && rn2(Role_if(PM_HEDDERJEDI) ? 5 : Role_if(PM_JEDI) ? 4 : Role_if(PM_SHADOW_JEDI) ? 4 : 2)) {
 			You("got that skill without using up a skill point!");
 			goto jediskip;
 		}
@@ -6558,7 +6558,7 @@ struct obj *weapon;
 	}
 
 	/* Jedi are simply better... but not as much as they used to --Amy */
-	if ( (Role_if(PM_JEDI) || Role_if(PM_HEDDERJEDI) ) && !rn2(2) && weapon && !(PlayerCannotUseSkills) && is_lightsaber(weapon)){
+	if ( (Role_if(PM_JEDI) || Role_if(PM_SHADOW_JEDI) || Role_if(PM_HEDDERJEDI) ) && !rn2(2) && weapon && !(PlayerCannotUseSkills) && is_lightsaber(weapon)){
 		switch (P_SKILL(type)){
 			case P_SUPREME_MASTER: bonus += rnd(5); break; /* fall through removed by Amy */
 			case P_GRAND_MASTER: bonus += rnd(4); break; /* fall through removed by Amy */
@@ -6836,7 +6836,7 @@ struct obj *weapon;
 
 	}
 
-	if (!(PlayerCannotUseSkills) && weapon && is_lightsaber(weapon) && (!rn2(2) || (bimanual(weapon) && weapon->altmode) ) && weapon->lamplit) {
+	if (!(PlayerCannotUseSkills) && weapon && is_lightsaber(weapon) && (!rn2(2) || (bimanual(weapon) && weapon->altmode) ) && (weapon->lamplit || Role_if(PM_SHADOW_JEDI))) {
 		switch (P_SKILL(P_SHII_CHO)) {
 
 			case P_BASIC:	bonus +=  rn2(2); break;
@@ -6849,7 +6849,7 @@ struct obj *weapon;
 		}
 	}
 
-	if (!(PlayerCannotUseSkills) && weapon && is_lightsaber(weapon) && weapon->lamplit && !uarms && !u.twoweap) {
+	if (!(PlayerCannotUseSkills) && weapon && is_lightsaber(weapon) && (weapon->lamplit || Role_if(PM_SHADOW_JEDI)) && !uarms && !u.twoweap) {
 		switch (P_SKILL(P_MAKASHI)) {
 
 			case P_BASIC:	bonus +=  rn3(3); break;
@@ -6866,7 +6866,7 @@ struct obj *weapon;
 		bonus += rnd(10);
 	}
 
-	if (!(PlayerCannotUseSkills) && uwep && is_lightsaber(uwep) && uwep->lamplit && u.twoweap && uswapwep && is_lightsaber(uswapwep) && uswapwep->lamplit) {
+	if (!(PlayerCannotUseSkills) && uwep && is_lightsaber(uwep) && (weapon->lamplit || Role_if(PM_SHADOW_JEDI)) && u.twoweap && uswapwep && is_lightsaber(uswapwep) && (uswapwep->lamplit || Role_if(PM_SHADOW_JEDI)) ) {
 		switch (P_SKILL(P_ATARU)) {
 
 			case P_BASIC:	bonus +=  rnd(2); break;
@@ -6895,7 +6895,7 @@ struct obj *weapon;
 
 	}
 
-	if (!(PlayerCannotUseSkills) && weapon && is_lightsaber(weapon) && weapon->lamplit && bimanual(weapon) && weapon->altmode) {
+	if (!(PlayerCannotUseSkills) && weapon && is_lightsaber(weapon) && (weapon->lamplit || Role_if(PM_SHADOW_JEDI)) && bimanual(weapon) && (weapon->altmode || Role_if(PM_SHADOW_JEDI)) ) {
 		switch (P_SKILL(P_VAAPAD)) {
 
 			case P_BASIC:	bonus +=  rn2(4); break;
@@ -7366,7 +7366,7 @@ struct obj *weapon;
 		if ((wep_type == P_SHURIKEN || wep_type == -P_SHURIKEN) && (P_SKILL(P_SHURIKEN) >= P_SUPREME_MASTER) && !rn2(2)) bonus += 1;
 	}
 
-	if (weapon && is_lightsaber(weapon) && weapon->lamplit) {
+	if (weapon && is_lightsaber(weapon) && (weapon->lamplit || Role_if(PM_SHADOW_JEDI)) ) {
 		switch (P_SKILL(P_DJEM_SO)) {
 			case P_BASIC: bonus += rnd(5); break;
 			case P_SKILLED: bonus += rnd(10); break;

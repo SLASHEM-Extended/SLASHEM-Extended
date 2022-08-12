@@ -120,6 +120,7 @@ int en;
 	    return((3 * en) / 2);
 	case PM_BARBARIAN:
 	case PM_VALKYRIE:
+	case PM_VANILLA_VALK:
 	    return((3 * en) / 4);
 	case PM_NOOB_MODE_BARB:
 	    return(en / 2);

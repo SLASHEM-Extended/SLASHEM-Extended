@@ -3714,7 +3714,7 @@ castanyway:
 		if (!rn2(intellchance)) (void) adjattrib(A_INT, 1, FALSE, TRUE);
 	}
 
-	if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+	if (uwep && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) ) {
 		u.unimanturns++;
 		if (u.unimanturns >= 3) {
 			u.unimanturns = 0;
@@ -11991,7 +11991,7 @@ int spell;
 		chance += 10;
 	}
 
-	if (!PlayerCannotUseSkills && uwep && is_lightsaber(uwep) && uwep->lamplit) {
+	if (!PlayerCannotUseSkills && uwep && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) ) {
 		switch (P_SKILL(P_NIMAN)) {
 			default: break;
 			case P_BASIC: chance += 5; break;

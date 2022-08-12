@@ -252,7 +252,7 @@ dig()
 	/* or perhaps you teleported away */
 	/* WAC allow lightsabers */
 	if (u.uswallow || !uwep || (!ispick &&
-		(!is_lightsaber(uwep) || !uwep->lamplit) &&
+		(!is_lightsaber(uwep) || (!uwep->lamplit && !Role_if(PM_SHADOW_JEDI)) ) &&
 		!is_axe(uwep) && !is_antibar(uwep)) ||
 	    !on_level(&digging.level, &u.uz) ||
 	    ((digging.down ? (dpx != u.ux || dpy != u.uy)
@@ -336,6 +336,8 @@ dig()
 
 	if (is_lightsaber(uwep))
 	    bonus -= rn2(20); /* Melting a hole takes longer */
+	if (is_lightsaber(uwep) && !uwep->lamplit)
+	    bonus -= rn2(200); /* and if the saber isn't lit (shadow jedi role), it takes like forever --Amy */
 
 	digging.effort += bonus;
 
@@ -375,7 +377,7 @@ dig()
 		if ((obj = sobj_at(STATUE, dpx, dpy)) != 0) {
 			if (break_statue(obj)) {
 				digtxt = "The statue shatters.";
-				if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+				if (uwep && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) ) {
 					use_skill(P_WEDI, 1);
 				}
 				if (uwep && uwep->oartifact == ART_DIGSRU) {
@@ -396,7 +398,7 @@ dig()
 			    place_object(bobj, dpx, dpy);
 			}
 			digtxt = "The boulder falls apart.";
-			if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+			if (uwep && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) ) {
 				use_skill(P_WEDI, 1);
 			}
 			if (uwep && uwep->oartifact == ART_DIGSRU) {
@@ -434,7 +436,7 @@ dig()
 
 			    if (!rn2(5) && !(lev->looted & TREE_LOOTED) ) (void) rnd_treefruit_at(dpx, dpy);
 
-				if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+				if (uwep && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) ) {
 					use_skill(P_WEDI, 1);
 				}
 				if (uwep && uwep->oartifact == ART_DIGSRU) {
@@ -520,7 +522,7 @@ newbossTSD:
 			    digtxt = "You smash the solid part of the tunnel apart.  Now it's a moat!";
 			    u.cnd_diggingamount++;
 			    lev->typ = MOAT;
-				if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+				if (uwep && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) ) {
 					use_skill(P_WEDI, 1);
 				}
 				if (uwep && uwep->oartifact == ART_DIGSRU) {
@@ -604,7 +606,7 @@ newbossMETALMAFIA:
 			    digtxt = "You succeed in cutting away some rock.";
 			    u.cnd_diggingamount++;
 			    lev->typ = CORR;
-				if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+				if (uwep && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) ) {
 					use_skill(P_WEDI, 1);
 				}
 				if (uwep && uwep->oartifact == ART_DIGSRU) {
@@ -632,7 +634,7 @@ newbossMETALMAFIA:
 			digtxt = "You make an opening in the wall.";
 			u.cnd_diggingamount++;
 
-			if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+			if (uwep && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) ) {
 				use_skill(P_WEDI, 1);
 			}
 			if (uwep && uwep->oartifact == ART_DIGSRU) {
@@ -642,7 +644,7 @@ newbossMETALMAFIA:
 		} else if(lev->typ == SDOOR) {
 			cvt_sdoor_to_door(lev);	/* ->typ = DOOR */
 			digtxt = "You break through a secret door!";
-			if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+			if (uwep && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) ) {
 				use_skill(P_WEDI, 1);
 			}
 			if (uwep && uwep->oartifact == ART_DIGSRU) {
@@ -652,7 +654,7 @@ newbossMETALMAFIA:
 				lev->doormask = D_BROKEN;
 		} else if(closed_door(dpx, dpy)) {
 			digtxt = "You break through the door.";
-			if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+			if (uwep && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) ) {
 				use_skill(P_WEDI, 1);
 			}
 			if (uwep && uwep->oartifact == ART_DIGSRU) {
