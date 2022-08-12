@@ -1291,6 +1291,22 @@ register struct monst *mtmp;
 			  else w1 = rnd_class(PARTISAN,BEC_DE_CORBIN);
 			  w2 = rn2(2) ? KNIFE : DAGGER;
 			  break;
+			case PM_MILITARY_GUY:
+			  w1 = PISTOL;
+			  w2 = rn2(2) ? KNIFE : DAGGER;
+		  	  m_initthrow(mtmp, PISTOL_BULLET, 30);
+			  break;
+			case PM_MILITARIZER:
+			  w1 = SUBMACHINE_GUN;
+			  w2 = rn2(2) ? KNIFE : DAGGER;
+		  	  m_initthrow(mtmp, SMG_BULLET, 50);
+			  break;
+			case PM_COMMANDER_IN_CHIEF:
+			  w1 = ASSAULT_RIFLE;
+			  w2 = rn2(2) ? KNIFE : DAGGER;
+		  	  m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 30);
+		  	  m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 30);
+			  break;
 			case PM_VIKING_SOLDIER:
 			  if (rn2(3)) {
 				  w1 = BOW;
@@ -8813,6 +8829,7 @@ register struct	monst	*mtmp;
 			case PM_CELTIC_SOLDIER: mac = 3; break;
 			case PM_VANILLA_SOLDIER: mac = 3; break;
 			case PM_VIKING_SOLDIER: mac = 3; break;
+			case PM_MILITARY_GUY: mac = 3; break;
 			case PM_SWAMP_SOLDIER: mac = 3; break;
 			case PM_JAVA_SOLDIER: mac = 3; break;
 			case PM_IBERIAN_SOLDIER: mac = 3; break;
@@ -8826,10 +8843,12 @@ register struct	monst	*mtmp;
 			case PM_TWOWEAP_SERGEANT: mac = 0; break;
 			case PM_PERSIAN_SERGEANT: mac = 0; break;
 			case PM_LIEUTENANT: mac = -2; break;
+			case PM_MILITARIZER: mac = -2; break;
 			case PM_YAMATO_LIEUTENANT: mac = -2; break;
 			case PM_CARTHAGE_LIEUTENANT: mac = -2; break;
 			case PM_ROMAN_LIEUTENANT: mac = -2; break;
 			case PM_CAPTAIN: mac = -3; break;
+			case PM_COMMANDER_IN_CHIEF: mac = -3; break;
 			case PM_GOTHIC_CAPTAIN: mac = -3; break;
 			case PM_URBAN_CAMO_CAPTAIN: mac = -3; break;
 			case PM_GENERAL: mac = -3; break;
@@ -11792,41 +11811,6 @@ loveheelover:
 		if (mtmp->data == &mons[PM_CORINA_S_STILETTO_BOOT]) (void) mongets(mtmp, COMBAT_STILETTOS);
 
 			if(ptr == &mons[PM_EXIT]) (void) mongets(mtmp, !rn2(3) ? SCR_WARPING : !rn2(2) ? SCR_ROOT_PASSWORD_DETECTION : SCR_TELEPORTATION);
-
-		if (mtmp->data == &mons[PM_SIEGE_BEAST] || mtmp->data == &mons[PM_TANKED_ELEPHANT]) {
-			(void) makemon(&mons[PM_IMP], mtmp->mx, mtmp->my, MM_ADJACENTOK);
-			(void) makemon(&mons[PM_IMP], mtmp->mx, mtmp->my, MM_ADJACENTOK);
-			if (!rn2(3)) (void) makemon(&mons[PM_IMP], mtmp->mx, mtmp->my, MM_ADJACENTOK);
-			if (!rn2(5)) (void) makemon(&mons[PM_IMP], mtmp->mx, mtmp->my, MM_ADJACENTOK);
-		}
-
-		if (mtmp->data == &mons[PM_CRUSH_BEAST] || mtmp->data == &mons[PM_DIFFICULT_ELEPHANT]) {
-			(void) makemon(&mons[PM_KOBOLD], mtmp->mx, mtmp->my, MM_ADJACENTOK);
-			(void) makemon(&mons[PM_KOBOLD], mtmp->mx, mtmp->my, MM_ADJACENTOK);
-			if (!rn2(3)) (void) makemon(&mons[PM_KOBOLD], mtmp->mx, mtmp->my, MM_ADJACENTOK);
-			if (!rn2(5)) (void) makemon(&mons[PM_KOBOLD], mtmp->mx, mtmp->my, MM_ADJACENTOK);
-		}
-
-		if (mtmp->data == &mons[PM_BLOOD_BRINGER]) {
-			(void) makemon(&mons[PM_GOBLIN], mtmp->mx, mtmp->my, MM_ADJACENTOK);
-			(void) makemon(&mons[PM_GOBLIN], mtmp->mx, mtmp->my, MM_ADJACENTOK);
-			if (!rn2(3)) (void) makemon(&mons[PM_GOBLIN], mtmp->mx, mtmp->my, MM_ADJACENTOK);
-			if (!rn2(5)) (void) makemon(&mons[PM_GOBLIN], mtmp->mx, mtmp->my, MM_ADJACENTOK);
-		}
-
-		if (mtmp->data == &mons[PM_GORE_BEARER] || mtmp->data == &mons[PM_GIANT_MILL_AUTO]) {
-			(void) makemon(&mons[PM_DEMON_CHEATER], mtmp->mx, mtmp->my, MM_ADJACENTOK);
-			(void) makemon(&mons[PM_DEMON_CHEATER], mtmp->mx, mtmp->my, MM_ADJACENTOK);
-			if (!rn2(3)) (void) makemon(&mons[PM_DEMON_CHEATER], mtmp->mx, mtmp->my, MM_ADJACENTOK);
-			if (!rn2(5)) (void) makemon(&mons[PM_DEMON_CHEATER], mtmp->mx, mtmp->my, MM_ADJACENTOK);
-		}
-
-		if (mtmp->data == &mons[PM_DEMON_STEED]) {
-			(void) makemon(&mons[PM_DEMON_SPRITE], mtmp->mx, mtmp->my, MM_ADJACENTOK);
-			(void) makemon(&mons[PM_DEMON_SPRITE], mtmp->mx, mtmp->my, MM_ADJACENTOK);
-			if (!rn2(3)) (void) makemon(&mons[PM_DEMON_SPRITE], mtmp->mx, mtmp->my, MM_ADJACENTOK);
-			if (!rn2(5)) (void) makemon(&mons[PM_DEMON_SPRITE], mtmp->mx, mtmp->my, MM_ADJACENTOK);
-		}
 
 		break;
 
@@ -24193,6 +24177,13 @@ register int	mmflags;
 			if (mndx == PM_THATS_IT_PLAYTIMES_OVER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_MOVANIC_HAHA) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_ITS_COOL_WHEN_YOU_CANNOT_SEE_A_DEADLY_MONSTER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
+			if (mtmp->data == &mons[PM_ANIMEBAND_PLAYER]) {
+				int spawnnumber = rn1(10, 3);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(specialtensmon(325), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
 			break;
 
 		case S_OGRE:
@@ -24212,15 +24203,53 @@ register int	mmflags;
 			if (mndx == PM_STATE_SEIZE_AGENT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
 			break;
+		case S_WORM_TAIL:
+			if (mtmp->data == &mons[PM_PERFUMEHUGGER]) {
+				int spawnnumber = rn1(10, 3);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(specialtensmon(333), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
+
+			break;
 		case S_GIANT:
 			if (mndx == PM_EVIL_PATCH_MINOTAUR) set_mimic_sym(mtmp);
 			if (mndx == PM_MINOTAUR_MIMIC) set_mimic_sym(mtmp);
+			if (mtmp->data == &mons[PM_COURT_LORD]) {
+				int spawnnumber = rn1(12, 5);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(courtmon(), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
+			if (mtmp->data == &mons[PM_TES_PLAYER]) {
+				int spawnnumber = rn1(10, 3);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(specialtensmon(427), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
 
 			break;
 		case S_WALLMONST:
 			if (mndx == PM_DARK_NUMBER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_FUNK_HOLE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_BELT_MOUNTAIN) set_mimic_sym(mtmp);
+			if (mtmp->data == &mons[PM_HAHAHA_ER]) {
+				int spawnnumber = rn1(8, 3);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(specialtensmon(323), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
+			if (mtmp->data == &mons[PM_TWISTED_JOKER]) {
+				int spawnnumber = rn1(10, 3);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(specialtensmon(323), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
 			break;
 		case S_LICH:
 			if (mndx == PM_MIMIC_LICH) set_mimic_sym(mtmp);
@@ -24242,6 +24271,13 @@ register int	mmflags;
 			if (mndx == PM_DEFORMED_LIZARD) set_mimic_sym(mtmp);
 			if (mndx == PM_ASSASSIN_LIZARD) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_DANGEROUS_ASSASSIN_LIZARD) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mtmp->data == &mons[PM_DUNGEON_LORDS_PLAYER]) {
+				int spawnnumber = rn1(10, 3);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(specialtensmon(328), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
 
 			break;
 
@@ -24258,6 +24294,21 @@ register int	mmflags;
 			if (mndx == PM_HARHARHAR) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_RATZEPUEH_HULK) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_SUMTHINS_KILLIN_YA_AGAIN) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
+
+			if (mtmp->data == &mons[PM____ER]) {
+				int spawnnumber = rn1(5, 3);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(douglas_adams_mon(), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
+			if (mtmp->data == &mons[PM_SPECCOR_HORROR]) {
+				int spawnnumber = rn1(12, 4);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(specialtensmon(331), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
 
 			break;
 
@@ -24276,6 +24327,13 @@ register int	mmflags;
 			if (mndx == PM_GREAT_VORER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_MEGA_VORER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_GIGA_VORER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
+			if (mtmp->data == &mons[PM_EVIL_VARIANT_MAINTAINER]) {
+				int spawnnumber = rn1(12, 6);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(evilroommon(), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
 
 			break;
 
@@ -24556,6 +24614,35 @@ register int	mmflags;
 			break;
 
 		case S_HUMANOID:
+
+			if (mtmp->data == &mons[PM_AOE_PLAYER]) {
+				int spawnnumber = rn1(10, 3);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(specialtensmon(426), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
+			if (mtmp->data == &mons[PM_ELONA_PLAYER]) {
+				int spawnnumber = rn1(10, 3);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(specialtensmon(361), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
+			if (mtmp->data == &mons[PM_COURT_FOLLOWER]) {
+				int spawnnumber = rn1(7, 3);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(courtmon(), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
+			if (mtmp->data == &mons[PM_RELIGION_SPREADER]) {
+				int spawnnumber = rn1(15, 3);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(specialtensmon(347), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
 
 			if (mtmp->data == &mons[PM_OVERSEER]) {
 				(void) makemon(&mons[PM_MINION], mtmp->mx, mtmp->my, MM_ADJACENTOK);
@@ -24854,11 +24941,50 @@ register int	mmflags;
 			if (mndx == PM_TOP_SECRET_AGENT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_UNSEEN_GHOST) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_FRIGHTGHOST) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mtmp->data == &mons[PM_CASTLE_OF_THE_WINDS_PLAYER]) {
+				int spawnnumber = rn1(10, 3);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(specialtensmon(322), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
 
 			break;
 		case S_QUADRUPED:
 			if (mtmp->data == &mons[PM_BLENDING_TITANOTHERE]) set_mimic_sym(mtmp);
 			if (mndx == PM_ASTRAY_SHEEP) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+
+			if (mtmp->data == &mons[PM_SIEGE_BEAST] || mtmp->data == &mons[PM_TANKED_ELEPHANT]) {
+				(void) makemon(&mons[PM_IMP], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				(void) makemon(&mons[PM_IMP], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				if (!rn2(3)) (void) makemon(&mons[PM_IMP], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				if (!rn2(5)) (void) makemon(&mons[PM_IMP], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+			}
+			if (mtmp->data == &mons[PM_CRUSH_BEAST] || mtmp->data == &mons[PM_DIFFICULT_ELEPHANT]) {
+				(void) makemon(&mons[PM_KOBOLD], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				(void) makemon(&mons[PM_KOBOLD], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				if (!rn2(3)) (void) makemon(&mons[PM_KOBOLD], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				if (!rn2(5)) (void) makemon(&mons[PM_KOBOLD], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+			}
+			if (mtmp->data == &mons[PM_BLOOD_BRINGER]) {
+				(void) makemon(&mons[PM_GOBLIN], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				(void) makemon(&mons[PM_GOBLIN], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				if (!rn2(3)) (void) makemon(&mons[PM_GOBLIN], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				if (!rn2(5)) (void) makemon(&mons[PM_GOBLIN], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+			}
+			if (mtmp->data == &mons[PM_GORE_BEARER] || mtmp->data == &mons[PM_GIANT_MILL_AUTO]) {
+				(void) makemon(&mons[PM_DEMON_CHEATER], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				(void) makemon(&mons[PM_DEMON_CHEATER], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				if (!rn2(3)) (void) makemon(&mons[PM_DEMON_CHEATER], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				if (!rn2(5)) (void) makemon(&mons[PM_DEMON_CHEATER], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+			}
+			if (mtmp->data == &mons[PM_DEMON_STEED]) {
+				(void) makemon(&mons[PM_DEMON_SPRITE], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				(void) makemon(&mons[PM_DEMON_SPRITE], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				if (!rn2(3)) (void) makemon(&mons[PM_DEMON_SPRITE], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				if (!rn2(5)) (void) makemon(&mons[PM_DEMON_SPRITE], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+			}
+
 			break;
 		case S_VORTEX:
 			if (mtmp->data == &mons[PM_MIMIC_VORTEX]) set_mimic_sym(mtmp);
@@ -24867,10 +24993,36 @@ register int	mmflags;
 			if (mndx == PM_ENGULF_OUTTA_NOWHERE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_BURNEL_WHIRL) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_LLOIGOR) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mtmp->data == &mons[PM_STEAMBAND_PLAYER]) {
+				int spawnnumber = rn1(10, 3);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(specialtensmon(326), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
 			break;
 		case S_DEMON:
 			if (mndx == PM_IT_MAKES_PITSCHAEFF_) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mtmp->data == &mons[PM_HARDCORE_ALIEN]) {
+				int spawnnumber = rn1(7, 3);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(specialtensmon(348), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
 			break;
+
+		case S_GOLEM:
+			if (mtmp->data == &mons[PM_EMPTY_GOLEM]) {
+				int spawnnumber = rn1(8, 4);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(machineroommon(), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
+
+		break;
+
 		case S_ANT:
 			if (mtmp->data == &mons[PM_DISGUISED_SOLDIER_ANT]) set_mimic_sym(mtmp);
 			if (mtmp->data == &mons[PM_MIMIC_ANT]) set_mimic_sym(mtmp);
@@ -24881,8 +25033,116 @@ register int	mmflags;
 			if (mndx == PM_DIB_DRAGONFLY) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_WOODEATER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_SUPERINVISO_ANT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
+
+			if (mtmp->data == &mons[PM_WANDERING_QUEEN_BEE]) {
+				int spawnnumber = rn1(10, 4);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(beehivemon(), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
+			if (mtmp->data == &mons[PM_SUPER_QUEEN_BEE]) {
+				int spawnnumber = rn1(20, 8);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(beehivemon(), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
+			if (mtmp->data == &mons[PM_MIGO_SUMMONER]) {
+				int spawnnumber = rn1(10, 3);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(migohivemon(), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
+
 			break;
 		case S_HUMAN:
+
+			if (mtmp->data == &mons[PM_TRUE_YOUNG_WOMAN]) {
+				int spawnnumber = rn1(8, 3);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(specialtensmon(39), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
+			if (mtmp->data == &mons[PM_PFFFF_LADY]) {
+				int spawnnumber = rn1(8, 3);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(specialtensmon(38), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
+			if (mtmp->data == &mons[PM_RUMBLE_HUSSY]) {
+				int spawnnumber = rn1(8, 3);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(specialtensmon(40), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
+			if (mtmp->data == &mons[PM_ANGBAND_PLAYER]) {
+				int spawnnumber = rn1(10, 3);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(specialtensmon(324), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
+			if (mtmp->data == &mons[PM_DNETHACK_MODDER]) {
+				int spawnnumber = rn1(10, 3);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(specialtensmon(330), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
+			if (mtmp->data == &mons[PM_EVILVARIANT_PLAYER]) {
+				int spawnnumber = rn1(10, 3);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(specialtensmon(341), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
+			if (mtmp->data == &mons[PM_SHOE_LOVER]) {
+				int spawnnumber = rn1(10, 3);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(specialtensmon(332), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
+			if (mtmp->data == &mons[PM_ARABELLA_AGENT]) {
+				int spawnnumber = rn1(3, 3);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(insidemon(), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
+			if (mtmp->data == &mons[PM_DOOM_MULTIPLAYER]) {
+				int spawnnumber = rn1(10, 3);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(doomsquadmon(), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
+			if (mtmp->data == &mons[PM_MILITARY_GUY]) {
+				int spawnnumber = rn1(7, 3);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(squadmon(), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
+			if (mtmp->data == &mons[PM_MILITARIZER]) {
+				int spawnnumber = rn1(9, 3);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(squadmon(), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
+			if (mtmp->data == &mons[PM_COMMANDER_IN_CHIEF]) {
+				int spawnnumber = rn1(12, 3);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(squadmon(), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
 
 			if (mtmp->data == &mons[PM_BOEPA] && ((mvitals[PM_BOEPA].born % 2) != 0) ) {
 				struct monst *boepamon = makemon(&mons[PM_BOEPA], mtmp->mx, mtmp->my, MM_ADJACENTOK);
@@ -25017,6 +25277,20 @@ register int	mmflags;
 			if (mndx == PM_PLATSCH__HAHAHAHAHA_) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_FIETZEGRALD_ELEMENTAL) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_LOL_UR_STUFF_IS_WET_NOW_HAHA) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
+			if (mtmp->data == &mons[PM_CASTLE_BACKLINE]) {
+				int spawnnumber = rn1(8, 3);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(illusionmon(), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
+			if (mtmp->data == &mons[PM_CASTLE_MIDDLE_LINE]) {
+				int spawnnumber = rn1(16, 6);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(illusionmon(), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
 
 			break;
 		case S_FUNGUS:
@@ -25225,6 +25499,13 @@ register int	mmflags;
 			if (mndx == PM_KLIEAU_MANTICORE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mtmp->data == &mons[PM_ARTILLERY_DRAGON]) set_mimic_sym(mtmp);
 			if (ptr == &mons[PM_SUPER_STEALTHER]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
+			if (mtmp->data == &mons[PM_DIABLO_PLAYER]) {
+				int spawnnumber = rn1(10, 3);
+				while (spawnnumber > 0) {
+					spawnnumber--;
+					(void) makemon(specialtensmon(327), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+				}
+			}
 			break;
 		case S_ORC:
 
