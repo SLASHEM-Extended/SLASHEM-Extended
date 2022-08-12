@@ -5679,6 +5679,7 @@ static const char *epitaphs[] = {
 	"Man, I always die in Sheol. And in this case I died to a vanilla monster too, to add insult to injury...",
 	"I attacked that slimebeth 200 times in melee and never managed to hit it and then its passive acid attack killed me! Fix plz!!!",
 	"that monster was invisible!!! what, I'm supposed to set my terminal such that it can display black-colored monsters? That's bullshit, any good game would have sensible default settings where that color is displayed properly by default!",
+	"Didn't want to believe the 'Smoking kills' inscription on the cigarette packs.",
 
 };
 
