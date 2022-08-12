@@ -1386,6 +1386,13 @@ register struct monst *mtmp;
 			  w2 = rn2(2) ? KNIFE : DAGGER;
 			  if (rn2(2)) (void) mongets(mtmp, FRAG_GRENADE);
 			  break;
+			case PM_COPPER_SOLDIER:
+			  w1 = RIFLE;
+		  	  m_initthrow(mtmp, COPPER_RIFLE_BULLET, 25);
+		  	  m_initthrow(mtmp, COPPER_RIFLE_BULLET, 25);
+			  w2 = rn2(2) ? KNIFE : DAGGER;
+			  (void) mongets(mtmp, BRONZE_PLATE_MAIL);
+			  break;
 			case PM_ARAB_SOLDIER:
 			  if (rn2(2)) {
 				  w1 = RIFLE;
@@ -7703,6 +7710,12 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, SHOTGUN);
 			 m_initthrow(mtmp, SHOTGUN_SHELL, 30);
 		}
+		if (ptr == &mons[PM_BOS_SNIPER]) {
+			(void) mongets(mtmp, SNIPER_RIFLE);
+			 m_initthrow(mtmp, PLATINUM_SNIPER_BULLET, 40);
+			(void) mongets(mtmp, FULL_PLATE_MAIL);
+			(void) mongets(mtmp, PLASTEEL_HELM);
+		}
 		if (ptr == &mons[PM_ARCTIS_BITCH]) {
 			(void) mongets(mtmp, BOW);
 			 m_initthrow(mtmp, ARROW, 50);
@@ -8772,6 +8785,7 @@ register struct	monst	*mtmp;
 			case PM_FRANKISH_SOLDIER: mac = 3; break;
 			case PM_BRITISH_SOLDIER: mac = 3; break;
 			case PM_AMERICAN_SOLDIER: mac = 3; break;
+			case PM_COPPER_SOLDIER: mac = 3; break;
 			case PM_ARAB_SOLDIER: mac = 3; break;
 			case PM_ASIAN_SOLDIER: mac = 3; break;
 			case PM_PAD_SOLDIER: mac = 3; break;
@@ -8869,7 +8883,7 @@ register struct	monst	*mtmp;
 			ptr != &mons[PM_WATCH_CAPTAIN]) {
 			if (!rn2(15)) (void) mongets(mtmp, K_RATION);
 			if (!rn2(12)) (void) mongets(mtmp, C_RATION);
-			if (ptr != &mons[PM_SOLDIER] && ptr != &mons[PM_TEUTON_SOLDIER] && ptr != &mons[PM_VANILLA_SOLDIER] && ptr != &mons[PM_VIKING_SOLDIER] && ptr != &mons[PM_SWAMP_SOLDIER] && ptr != &mons[PM_JAVA_SOLDIER] && ptr != &mons[PM_IBERIAN_SOLDIER] && ptr != &mons[PM_ROHIRRIM_SOLDIER] && ptr != &mons[PM_FRANKISH_SOLDIER] && ptr != &mons[PM_BRITISH_SOLDIER] && ptr != &mons[PM_AMERICAN_SOLDIER] && ptr != &mons[PM_ARAB_SOLDIER] && ptr != &mons[PM_ASIAN_SOLDIER] && ptr != &mons[PM_SEAFARING_SOLDIER] && ptr != &mons[PM_PAD_SOLDIER] && ptr != &mons[PM_GAUCHE_SOLDIER] && ptr != &mons[PM_BYZANTINE_SOLDIER] && ptr != &mons[PM_CELTIC_SOLDIER] && !rn2(3))
+			if (ptr != &mons[PM_SOLDIER] && ptr != &mons[PM_TEUTON_SOLDIER] && ptr != &mons[PM_VANILLA_SOLDIER] && ptr != &mons[PM_VIKING_SOLDIER] && ptr != &mons[PM_SWAMP_SOLDIER] && ptr != &mons[PM_JAVA_SOLDIER] && ptr != &mons[PM_IBERIAN_SOLDIER] && ptr != &mons[PM_ROHIRRIM_SOLDIER] && ptr != &mons[PM_FRANKISH_SOLDIER] && ptr != &mons[PM_BRITISH_SOLDIER] && ptr != &mons[PM_AMERICAN_SOLDIER] && ptr != &mons[PM_COPPER_SOLDIER] && ptr != &mons[PM_ARAB_SOLDIER] && ptr != &mons[PM_ASIAN_SOLDIER] && ptr != &mons[PM_SEAFARING_SOLDIER] && ptr != &mons[PM_PAD_SOLDIER] && ptr != &mons[PM_GAUCHE_SOLDIER] && ptr != &mons[PM_BYZANTINE_SOLDIER] && ptr != &mons[PM_CELTIC_SOLDIER] && !rn2(3))
 				(void) mongets(mtmp, BUGLE);
 		    } else
 			   if (ptr == &mons[PM_WATCHMAN] && rn2(3))
@@ -8958,6 +8972,10 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_RIM_GOLEM]) {
 			(void) mongets(mtmp, SHOTGUN);
 			 m_initthrow(mtmp, LEAD_SHOT, 30);
+		}
+		if (ptr == &mons[PM_EXTRACHROME_GOLEM]) {
+			(void) mongets(mtmp, SHOTGUN);
+			 m_initthrow(mtmp, CHROME_PELLET, 30);
 		}
 		if (ptr == &mons[PM_WAND_OF_WISHING_GOLEM]) {
 			struct obj *lolwow = mksobj(WAN_WISHING, TRUE, 2, FALSE);
@@ -22889,6 +22907,7 @@ loveheelover:
 	if (ptr == &mons[PM_FRANKISH_SOLDIER] && rn2(15)) return;
 	if (ptr == &mons[PM_BRITISH_SOLDIER] && rn2(15)) return;
 	if (ptr == &mons[PM_AMERICAN_SOLDIER] && rn2(15)) return;
+	if (ptr == &mons[PM_COPPER_SOLDIER] && rn2(15)) return;
 	if (ptr == &mons[PM_ARAB_SOLDIER] && rn2(15)) return;
 	if (ptr == &mons[PM_ASIAN_SOLDIER] && rn2(15)) return;
 	if (ptr == &mons[PM_PAD_SOLDIER] && rn2(15)) return;

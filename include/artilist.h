@@ -9141,6 +9141,18 @@ A("Tschongboeller",				AUTO_LEAD_SHOT,
 	(SPFX_RESTR), 0, 0,
 	PHYS(8, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
 
+A("Everything Greens So Green",				CHROME_PELLET, /* 100% chance to not be removed, but can still mulch */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 150L ),
+
+A("Tschamm",				COPPER_RIFLE_BULLET,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Partial Mantle Projectile",				PLATINUM_SNIPER_BULLET, /* additionally deals 10% of the monster's current HP as damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

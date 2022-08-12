@@ -1334,6 +1334,10 @@ m_throw(mon, x, y, dx, dy, range, obj)
 		singleobj->opoisoned = 1;
 
 	}
+	if (mwep && singleobj && ammo_and_launcher(singleobj, mwep) && is_ammo(singleobj) && singleobj->otyp == CHROME_PELLET) {
+		singleobj->opoisoned = 1;
+
+	}
 
 	if (singleobj->cursed && (dx || dy) && !rn2(7)) {
 	    if(canseemon(mon) && flags.verbose) {

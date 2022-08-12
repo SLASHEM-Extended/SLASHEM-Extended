@@ -10629,8 +10629,12 @@ boolean knoweverything;
 				pline("Firearm ammo for heavy machine guns. It may occasionally be re-used when fired."); break;
 			case LEAD_RIFLE_BULLET:
 				pline("Firearm ammo for regular rifles. It may occasionally be re-used when fired."); break;
+			case COPPER_RIFLE_BULLET:
+				pline("Firearm ammo for regular rifles, made of copper."); break;
 			case LEAD_SNIPER_BULLET:
 				pline("Firearm ammo for sniper rifles. It may occasionally be re-used when fired."); break;
+			case PLATINUM_SNIPER_BULLET:
+				pline("Firearm ammo for sniper rifles, made of platinum."); break;
 			case LEAD_ASSAULT_RIFLE_BULLET:
 				pline("Firearm ammo for assault rifles. It may occasionally be re-used when fired."); break;
 			case ANTIMATTER_PISTOL_BULLET:
@@ -10673,6 +10677,8 @@ boolean knoweverything;
 				pline("This shell does a lot of damage if fired with a shotgun. It fits for regular shotguns but not the auto shotgun."); break;
 			case LEAD_SHOT:
 				pline("You can fire this ammo from a shotgun, and very occasionally you can even pick it back up and use it again. It can only be used for regular shotguns though, not auto shotguns."); break;
+			case CHROME_PELLET:
+				pline("You can fire this ammo from a shotgun, and it automatically poisons itself when fired. It can only be used for regular shotguns though, not auto shotguns."); break;
 			case AUTO_LEAD_SHOT:
 				pline("You can fire this ammo from an auto shotgun, and very occasionally you can even pick it back up and use it again. It can only be used for auto shotguns though, not regular or sawn-off shotguns."); break;
 			case AUTO_SHOTGUN_SHELL:
@@ -22573,6 +22579,12 @@ boolean knoweverything;
 					pline("Artifact specs: does nothing special, but usually spawns with a much bigger stack size."); break;
 				case ART_TSCHONGBOELLER:
 					pline("Artifact specs: +8 to-hit and +8 damage."); break;
+				case ART_EVERYTHING_GREENS_SO_GREEN:
+					pline("Artifact specs: is always preserved when fired (but the random chance of mulching upon hitting a monster remains)."); break;
+				case ART_TSCHAMM:
+					pline("Artifact specs: +10 damage."); break;
+				case ART_PARTIAL_MANTLE_PROJECTILE:
+					pline("Artifact specs: deals additional damage to the target proportional to how much HP the target has left."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

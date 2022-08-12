@@ -3761,6 +3761,9 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ LEAD_SNIPER_BULLET, "todo" },
 	{ LEAD_ASSAULT_RIFLE_BULLET, "todo" },
 	{ AUTO_LEAD_SHOT, "todo" },
+	{ COPPER_RIFLE_BULLET, "todo" },
+	{ PLATINUM_SNIPER_BULLET, "todo" },
+	{ CHROME_PELLET, "todo" },
 
 	{0, "" }
 };
@@ -6770,6 +6773,9 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ LEAD_SNIPER_BULLET, "todo" },
 	{ LEAD_ASSAULT_RIFLE_BULLET, "todo" },
 	{ AUTO_LEAD_SHOT, "todo" },
+	{ COPPER_RIFLE_BULLET, "todo" },
+	{ PLATINUM_SNIPER_BULLET, "todo" },
+	{ CHROME_PELLET, "todo" },
 
 	{0, "" }
 };

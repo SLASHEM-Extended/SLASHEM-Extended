@@ -3439,6 +3439,10 @@ melatechoice:
 			(void) cancel_monst(mon, obj, TRUE, TRUE, FALSE);
 		}
 
+		if (thrown && obj && (obj->oartifact == ART_PARTIAL_MANTLE_PROJECTILE)) {
+			if (mon->mhp > 9) mon->mhp -= (mon->mhp / 10);
+		}
+
 		if (thrown && obj && (obj->oartifact == ART_DAMN_I_M_GOOD)) {
 			if (mon->mspeed != MSLOW && !resist(mon, WEAPON_CLASS, 0, NOTELL)) {
 			    unsigned int oldspeed = mon->mspeed;
