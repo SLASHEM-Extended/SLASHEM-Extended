@@ -6270,7 +6270,7 @@ dlb *fd;
 		} /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
 	    }
 #ifdef BIGSLEX
-	    for(x = rnd((int) ((rn2(4) ? 24 : 48) * mapfact) / 100); x; x--) {
+	    for(x = rnd((int) ((rn2(2) ? 96 : rn2(4) ? 24 : 48) * mapfact) / 100); x; x--) {
 #else
 	    for(x = rnd((int) ((rn2(4) ? 12 : 24) * mapfact) / 100); x; x--) {
 #endif
@@ -6283,7 +6283,7 @@ dlb *fd;
 		    (void) mkgold(0L,mm.x,mm.y);
 	    }
 #ifdef BIGSLEX
-	    for(x = rn2((int) ((rn2(4) ? 30 : 60) * mapfact) / 100); x; x--) {
+	    for(x = rn2((int) ((rn2(2) ? 120 : rn2(4) ? 30 : 60) * mapfact) / 100); x; x--) {
 #else
 	    for(x = rn2((int) ((rn2(4) ? 15 : 30) * mapfact) / 100); x; x--) {
 #endif
@@ -6330,7 +6330,7 @@ dlb *fd;
 		} /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
 	    }
 #ifdef BIGSLEX
-	    for(x = rnd((int) ((rn2(4) ? 24 : 48) * mapfact) / 100); x; x--) {
+	    for(x = rnd((int) ((rn2(2) ? 96 : rn2(4) ? 24 : 48) * mapfact) / 100); x; x--) {
 #else
 	    for(x = rnd((int) ((rn2(4) ? 12 : 24) * mapfact) / 100); x; x--) {
 #endif
@@ -6343,7 +6343,7 @@ dlb *fd;
 		    (void) mkgold(0L,mm.x,mm.y);
 	    }
 #ifdef BIGSLEX
-	    for(x = rn2((int) ((rn2(4) ? 30 : 60) * mapfact) / 100); x; x--) {
+	    for(x = rn2((int) ((rn2(2) ? 120 : rn2(4) ? 30 : 60) * mapfact) / 100); x; x--) {
 #else
 	    for(x = rn2((int) ((rn2(4) ? 15 : 30) * mapfact) / 100); x; x--) {
 #endif

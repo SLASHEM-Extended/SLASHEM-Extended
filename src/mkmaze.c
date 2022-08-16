@@ -920,7 +920,7 @@ register const char *s;
 		}
 	}	 /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
 #ifdef BIGSLEX
-	for(x = (rn2(4) ? rn1(10,14) : rn1(20, 28)); x; x--) {
+	for(x = (rn2(2) ? rn1(40, 56) : rn2(4) ? rn1(10,14) : rn1(20, 28)); x; x--) {
 #else
 	for(x = (rn2(4) ? rn1(5,7) : rn1(10, 14)); x; x--) {
 #endif
@@ -933,7 +933,7 @@ register const char *s;
 		(void) mkgold(0L,mm.x,mm.y);
 	}
 #ifdef BIGSLEX
-	for(x = (rn2(4) ? rn1(12,14) : rn1(24, 28)); x; x--) {
+	for(x = (rn2(2) ? rn1(48, 56) : rn2(4) ? rn1(12,14) : rn1(24, 28)); x; x--) {
 #else
 	for(x = (rn2(4) ? rn1(6,7) : rn1(12, 14)); x; x--) {
 #endif
@@ -975,7 +975,7 @@ register const char *s;
 		}
 	}	 /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
 #ifdef BIGSLEX
-	for(x = (rn2(4) ? rn1(10,14) : rn1(20, 28)); x; x--) {
+	for(x = (rn2(2) ? rn1(40, 56) : rn2(4) ? rn1(10,14) : rn1(20, 28)); x; x--) {
 #else
 	for(x = (rn2(4) ? rn1(5,7) : rn1(10, 14)); x; x--) {
 #endif
@@ -988,7 +988,7 @@ register const char *s;
 		(void) mkgold(0L,mm.x,mm.y);
 	}
 #ifdef BIGSLEX
-	for(x = (rn2(4) ? rn1(12,14) : rn1(24, 28)); x; x--) {
+	for(x = (rn2(2) ? rn1(48, 56) : rn2(4) ? rn1(12,14) : rn1(24, 28)); x; x--) {
 #else
 	for(x = (rn2(4) ? rn1(6,7) : rn1(12, 14)); x; x--) {
 #endif

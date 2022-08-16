@@ -11678,6 +11678,45 @@ skip1:
 		    }
 		    if (ishomicider) (void) makerandomtrap_at(x, y, TRUE);
 		}
+#ifdef BIGSLEX /* bigslex rooms are much larger, so we want a proportionally higher concentration of monsters --Amy */
+		if(!rn2(3)) {
+		    x = somex(croom); y = somey(croom);
+		    if (!ishomicider) { tmonst = makemon((struct permonst *) 0, x, y, MM_MAYSLEEP);
+		    if (tmonst && webmaker(tmonst->data) /*== &mons[PM_GIANT_SPIDER]*/ &&
+			    !occupied(x, y))
+			(void) maketrap(x, y, WEB, 25, TRUE);
+		    }
+		    if (ishomicider) (void) makerandomtrap_at(x, y, TRUE);
+		}
+		if(ishaxor && !rn2(3)) {
+		    x = somex(croom); y = somey(croom);
+		    if (!ishomicider) { tmonst = makemon((struct permonst *) 0, x, y, MM_MAYSLEEP);
+		    if (tmonst && webmaker(tmonst->data) /*== &mons[PM_GIANT_SPIDER]*/ &&
+			    !occupied(x, y))
+			(void) maketrap(x, y, WEB, 25, TRUE);
+		    }
+		    if (ishomicider) (void) makerandomtrap_at(x, y, TRUE);
+		}
+		if(!rn2(3)) {
+		    x = somex(croom); y = somey(croom);
+		    if (!ishomicider) { tmonst = makemon((struct permonst *) 0, x, y, MM_MAYSLEEP);
+		    if (tmonst && webmaker(tmonst->data) /*== &mons[PM_GIANT_SPIDER]*/ &&
+			    !occupied(x, y))
+			(void) maketrap(x, y, WEB, 25, TRUE);
+		    }
+		    if (ishomicider) (void) makerandomtrap_at(x, y, TRUE);
+		}
+		if(ishaxor && !rn2(3)) {
+		    x = somex(croom); y = somey(croom);
+		    if (!ishomicider) { tmonst = makemon((struct permonst *) 0, x, y, MM_MAYSLEEP);
+		    if (tmonst && webmaker(tmonst->data) /*== &mons[PM_GIANT_SPIDER]*/ &&
+			    !occupied(x, y))
+			(void) maketrap(x, y, WEB, 25, TRUE);
+		    }
+		    if (ishomicider) (void) makerandomtrap_at(x, y, TRUE);
+		}
+
+#endif
 		/* put traps and mimics inside */
 		goldseen = FALSE;
 		x = (rn1(5,10) - (level_difficulty()/10));
@@ -11695,6 +11734,26 @@ skip1:
 					mktrap(0,0,croom,(coord*)0,TRUE);
 			}
 		}
+#ifdef BIGSLEX /* also more traps for bigslex, but not more items; you already get more of those anyway --Amy */
+		if (!(depth(&u.uz) == 1 && In_dod(&u.uz) && rn2(3)) && !(depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2)) ) {
+			while (!rn2(x))
+				mktrap(0,0,croom,(coord*)0,TRUE);
+
+			if(ishaxor) {
+				while (!rn2(x))
+					mktrap(0,0,croom,(coord*)0,TRUE);
+			}
+		}
+		if (!(depth(&u.uz) == 1 && In_dod(&u.uz) && rn2(3)) && !(depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2)) ) {
+			while (!rn2(x))
+				mktrap(0,0,croom,(coord*)0,TRUE);
+
+			if(ishaxor) {
+				while (!rn2(x))
+					mktrap(0,0,croom,(coord*)0,TRUE);
+			}
+		}
+#endif
 
 		if (!goldseen && !rn2(3))
 		    (void) mkgold(0L, somex(croom), somey(croom));
