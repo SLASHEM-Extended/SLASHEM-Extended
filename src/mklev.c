@@ -16591,11 +16591,12 @@ mkinvokearea()
     livelog_achieve_update();
     livelog_report_trophy("performed the invocation");
 
+#endif
+#endif
+
 	/* let's spice things up a bit... --Amy */
     (void) makemon(&mons[PM_CHAOS_MONKEY], 0, 0, NO_MM_FLAGS);
 
-#endif
-#endif
 }
 
 /* Change level topology.  Boulders in the vicinity are eliminated.

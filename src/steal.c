@@ -895,7 +895,7 @@ boolean is_pet;		/* If true, pet should keep wielded/worn items */
 
 		/* reduce amount of musable items the player can use --Amy */
 		/* item stealers usually won't delete stuff, since their stuff might actually be your original stuff! */
-		if (is_musable(otmp) && !(is_grenade(otmp) && otmp->oarmed) && otmp->mstartinvent && !(otmp->oartifact) && !(otmp->fakeartifact && timebasedlowerchance()) && (!rn2(3) || (rn2(100) < u.musableremovechance) || (rn2(4) && (otmp->otyp == POT_BLOOD || otmp->otyp == POT_VAMPIRE_BLOOD) ) || LootcutBug || u.uprops[LOOTCUT_BUG].extrinsic || have_lootcutstone() || !timebasedlowerchance() ) && !(mtmp->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mtmp->data == &mons[PM_BAD_ITEM_MASTER]) && !is_pet ) {
+		if (is_musable(otmp) && !(is_grenade(otmp) && otmp->oarmed) && otmp->mstartinvent && !(otmp->oartifact) && !(otmp->fakeartifact && timebasedlowerchance()) && (!rn2(3) || (rn2(100) < u.musableremovechance) || (rn2(4) && (otmp->otyp == POT_BLOOD || otmp->otyp == POT_VAMPIRE_BLOOD) ) || LootcutBug || u.uprops[LOOTCUT_BUG].extrinsic || have_lootcutstone() || !timebasedlowerchance() || (!timebasedlowerchance() && ((u.urexp > 10000) || (moves > 10000)) ) ) && !(mtmp->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mtmp->data == &mons[PM_BAD_ITEM_MASTER]) && !is_pet ) {
 			delobj(otmp);
 		} else if (otmp->mstartinventB && !(is_grenade(otmp) && otmp->oarmed) && !(otmp->oartifact) && !(otmp->fakeartifact && timebasedlowerchance()) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) && !(mtmp->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mtmp->data == &mons[PM_BAD_ITEM_MASTER]) && !is_pet ) {
 			delobj(otmp);

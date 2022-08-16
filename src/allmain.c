@@ -17103,6 +17103,12 @@ timebasedlowerchance()
 	if (isfriday && !rn2(10)) return FALSE; /* unconditional failure on the unlucky day */
 	if (AssholeModeActive) return FALSE; /* unconditional failure if you're playing asshole mode */
 
+	/* if you're in a lategame dungeon, or doubly so if you've completed the invocation, we assume that you've already
+	 * obtained 2000 of everything so you probably don't need that much extra loot :-P --Amy */
+
+	if (u.uevent.invoked && (rnd(10) > 3)) return FALSE;
+	if (!(u.uevent.invoked) && !(flags.wonderland && !(u.wonderlandescape)) && In_lategame(&u.uz) && !rn2(5)) return FALSE;
+
 	int chance = 133;
 	chance -= (moves * 100 / u.monstertimefinish);
 	/* make sure we don't fall off the bottom */
