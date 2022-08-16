@@ -981,10 +981,7 @@ boolean pets_only;	/* true for ascension or final escape */
 
 	    if (((monnear(mtmp, u.ux, u.uy) && levl_follower(mtmp))
 
-#ifdef RECORD_ACHIEVE
 			/* come on, if you ascend then all tame monsters should ascend with you. --Amy */
-			|| (mtmp->mtame && (achieve.ascended))
-#endif
 			|| (mtmp->mtame && u.freeplaytransit)
 
 			|| (mtmp && !(program_state.gameover) && qbufdefined && isok(u.ux, u.uy) && extraradius && mtmp->mtame && levl_follower(mtmp) && (distu(mtmp->mx, mtmp->my) < (4 + extraradius)) && (yn(qbuf) == 'y') ) ||

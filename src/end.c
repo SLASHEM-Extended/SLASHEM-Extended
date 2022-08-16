@@ -1680,6 +1680,10 @@ freeplaycheck:
 			(void) lcase (buf);
 			if (strcmp (buf, "yes") && strcmp (buf, "y")) goto freeplaycheck;
 			/* else the game ends here */
+			u.freeplaytransit = TRUE;
+			/* the game is over anyway so it doesn't matter for gameplay purposes whether this check is true,
+			 * but we need it to ensure that your pets can ascend with you --Amy */
+
 		}
 
 	}

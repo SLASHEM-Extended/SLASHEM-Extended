@@ -2208,6 +2208,8 @@ moveloop()
 
 		u.symbioteattacking = FALSE;
 
+		u.freeplaytransit = FALSE;
+
 		if (Race_if(PM_PERVERT)) {
 			u.pervertsex++;
 			u.pervertpray++;
