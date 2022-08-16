@@ -352,8 +352,7 @@ botl_score()
     if ((umoney -= u.umoney0) < 0L) umoney = 0L;
     return umoney + u.urexp + (long)(50 * (deepest - 1))
 #endif
-			  + (long)(deepest > 30 ? 10000 :
-				   deepest > 20 ? 1000*(deepest - 20) : 0);
+    ;
 }
 
 static char *

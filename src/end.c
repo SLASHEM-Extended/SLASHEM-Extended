@@ -1892,8 +1892,6 @@ die:
 		tmp -= tmp / 10L;
 	    u.urexp += tmp;
 	    u.urexp += 50L * (long)(deepest - 1);
-	    if (deepest > 20)
-		u.urexp += 1000L * (long)((deepest > 30) ? 10 : deepest - 20);
 	    if (how == ASCENDED) {
 		u.urexp *= 2L;
 
