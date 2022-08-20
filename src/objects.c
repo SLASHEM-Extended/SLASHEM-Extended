@@ -7561,6 +7561,9 @@ SCROLL((char *)0,               "DO YOU WANT THE TOTAL SPECIAL MILITARY OPERATIO
 SCROLL((char *)0,               "THE PARTY CARTEL REALLY EXISTS",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
 SCROLL((char *)0,               "CLOUD COOK COOK HOME",  P_NONE,     1,   0, 100, CLR_BRIGHT_CYAN, 1),
 SCROLL((char *)0,               "I DO NOT CREATE IT TO KIMBUN",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
+SCROLL((char *)0,               "PEN9",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
+SCROLL((char *)0,               "ALL ROLES PLAY EXACTLY LIKE THE SAMURAI",  P_NONE,     1,   0, 100, CLR_RED, 1),
+SCROLL((char *)0,               "GLOVED COCKATRICE",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
 
 
 #ifdef MAIL

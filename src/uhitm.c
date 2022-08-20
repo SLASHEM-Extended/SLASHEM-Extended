@@ -4264,7 +4264,7 @@ melatechoice:
 
 		else if ((Role_if(PM_SPACEWARS_FIGHTER) || (mon->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || sanitymessage) && (!rn2(5) || (mon->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) ) {
 
-			switch (rnd(580)) {
+			switch (rnd(581)) {
 	
 			case 1: pline("%s staggers from your furious assault.", Monnam(mon)); break;
 			case 2: pline("Your cut barely scratches %s's scales.", mon_nam(mon)); break;
@@ -4846,6 +4846,7 @@ melatechoice:
 			case 578: pline("You keep getting past %s's defenses, so %s will probably surrender soon!", mon_nam(mon), mhe(mon)); break;
 			case 579: pline("You keep bashing away at %s.", mon_nam(mon)); break;
 			case 580: pline("Yay, %s is almost dead now! One more hit and %s should drop dead!", mon_nam(mon), mhe(mon)); break;
+			case 581: pline("Your character plays exactly like a samurai, and therefore your melee weapon keeps hitting %s.", mon_nam(mon)); break;
 
 			default: pline("You hit %s!", mon_nam(mon)); break;
 	
@@ -8085,7 +8086,7 @@ register int roll;
 
 	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || (mdef->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && (!rn2(5) || (mdef->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) && canspotmon(mdef) && flags.verbose) {
 
-		switch (rnd(780)) {
+		switch (rnd(782)) {
 
 		case 1: pline("%s cringes from your strike behind its %sshield.", Monnam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
 		case 2: pline("You smash into %s's %sshield, striking sparks.", mon_nam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
@@ -8867,6 +8868,8 @@ register int roll;
 		case 778: pline("%s knows that you suck not only at the game, but at real life too.", Monnam(mdef)); break;
 		case 779: pline("%s snickers 'Don't you have a job? Got all day to waste living off social welfare and playing stupid video games?'", Monnam(mdef)); break;
 		case 780: pline("%s is the server administrator and decides that your game gets banned from the annual NetHack tournament for no reason, other than the admin wanting to demonstrate his power, of which he has too much!", Monnam(mdef)); break;
+		case 781: pline("Your character plays exactly like a samurai... who didn't enhance the melee weapon skills yet, and therefore your attack misses."); break;
+		case 782: pline("You are trying to play your character like it was a samurai, but it actually isn't one, and so your melee attack misses!"); break;
 
 
 		default: pline("You missed %s!", mon_nam(mdef)); break;

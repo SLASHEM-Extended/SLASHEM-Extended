@@ -5680,6 +5680,24 @@ static const char *epitaphs[] = {
 	"I attacked that slimebeth 200 times in melee and never managed to hit it and then its passive acid attack killed me! Fix plz!!!",
 	"that monster was invisible!!! what, I'm supposed to set my terminal such that it can display black-colored monsters? That's bullshit, any good game would have sensible default settings where that color is displayed properly by default!",
 	"Didn't want to believe the 'Smoking kills' inscription on the cigarette packs.",
+	"add to that that there's not many unique features for roles and whenever a role has a unique feature that's vaguely good it gets nerfed :P", /* by amateurhour, of course */
+	"huh, I played the camperstriker like a samurai but it didn't work out! I thought all the roles were identical, so that strategy should work with every role!",
+	"Tried to play a kurwa. It didn't feel at all like playing a valkyrie. It felt as if the game was malfunctioning.", /* based on a famous quote by Mandevil (<3<3<3), which is why it says "valkyrie" instead of "samurai" here */
+	"what, I thought the secret advice member was totally stacked. They surely seemed weaker than a samurai to me.",
+	"waaaaaat a nymph stole my secret advice member's starting wand and used it on me! that seems very broken, Amy should fix that!",
+	"Amy made the game not fun to play any more by intentionally nerfing exactly the thing I was using, so now I don't want to play no more.",
+	"Amy always nerfs exactly the roles and races that people are playing, allegedly because they're too strong, but in reality they were well-balanced and she trashed them!",
+	"So I came back from a 2-year SLEX hiatus, assuming that basic game mechanics were still working like they did back then, but nooooo, that evil Amy whore trashed basically everything, resulting in the player being unable to do anything fun. SLEX is no fun anymore and I remember why I quit in the first place.",
+	"Okay so this was me giving Amy's stupid game one more chance, she had a year to improve her game since my last ragequit. But I came back and realized after 10 minutes of playing that she has actually made things worse, so I'm ragequitting again, for good this time.",
+	"Died on SLEX's hardest level: the character creation screen. Just couldn't decide on a role to play!",
+	"Died on SLEX's hardest level: the character creation screen. Had even managed to decide on a role even though there are too many of them, but it's impossible to also select a race since there's even more of those!!!",
+	"Died on SLEX's hardest level: the character creation screen. I'm not aware of the possibility to just let the game pick a random character, which would have allowed me to actually play the game.",
+	"Died on SLEX's hardest level: the character creation screen. Had skipped past the page with the one role I actually wanted to play, and I'm a total newbie who doesn't even know that the < key moves you back to the previous page of a menu.",
+	"Died on SLEX's hardest level: the character creation screen. Couldn't figure out how to advance to the next page, even though it really shouldn't be so hard to try out different keys and thereby eventually hit the space bar that does the trick.",
+	"Died on SLEX's hardest level: the character creation screen. That hybrid race selection menu was just too annoying, why on earth would anyone want to play a game with such cumbersome menus.",
+	"Power outage ate my save.",
+	"Got disconnected and when I tried to reconnect, my savegame was somehow gone.",
+	"My computer crashed while I was in the middle of the game, which resulted in the game behaving as if it had crashed, and somehow it failed to recover.",
 
 };
 
