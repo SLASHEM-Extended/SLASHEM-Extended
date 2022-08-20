@@ -5698,6 +5698,13 @@ static const char *epitaphs[] = {
 	"Power outage ate my save.",
 	"Got disconnected and when I tried to reconnect, my savegame was somehow gone.",
 	"My computer crashed while I was in the middle of the game, which resulted in the game behaving as if it had crashed, and somehow it failed to recover.",
+	"BULLSHIT! I had polymorph control! Yet I still randomly polymorphed into a silver dragon without getting the chance to choose, and lost my cloak of magic resistance! #ragequit #slexsucks #amysuckstoo",
+	"Played a shoe failed existence and got bored because it felt just like playing a human samurai. I'm quitting this game since all the characters are identical so once you've played through the game with one, there's no more variety.",
+	"Played a shoe failed existence and died with no chance on dungeon level 2. Why did Amy even put that character choice there if she didn't plan to make them playable.",
+	"Played a random character, got jelly courier and died horribly, it didn't feel like there was anything I could have done to survive. Amy should really offer a 'random good character' choice that always gives you something playable.",
+	"Amy please make it so that all good playable roles and races are displayed in a bright white while weak ones appear in a darker gray color! I'm sick of picking characters that turn out to suck!", /* this was actually requested once, and will always be rejected because what constitutes "good" or "bad" roles/races is subjective and will be different depending on who you ask */
+	"The natalje trap makes the game unplayable, Amy should just remove that from the game or at least make it so that it never lasts longer than 200 turns. It's just plain evil if you can never remain in one place for more than a few turns because your items get trashed if you do, can't play the game with that effect.",
+	"Yeah what the hell was Amy thinking when she designed the nadja trap. Getting damaged whenever you melee a female monster, and the damage even increases every time you do, so eventually you just die instantly from hitting such a monster, and the trap lasts for how many thousand turns???",
 
 };
 
