@@ -6351,31 +6351,31 @@ A("Perpetual Memory",			POT_KEEN_MEMORY, /* lasts for a much longer time than us
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 6000L ),
 
-A("RNG's Extravaganza",			IMPLANT_OF_QUEEB_BUTT, /* if it's +0 when you put it on, it sets itself to a random value from -9 to +9 */
+A("RNG's Extravaganza",			IMPLANT_OF_QUEEB_BUTT, /* if it's +0 when you put it on, it sets itself to a random value from -9 to +9; half physical damage if in a form without hands */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 2000L ),
 
-A("Ime Spew",			IMPLANT_OF_TOTAL_NONSENSE, /* fleecescript, flicker strips, quad attacks, you take double damage */
+A("Ime Spew",			IMPLANT_OF_TOTAL_NONSENSE, /* fleecescript, flicker strips, quad attacks, you take double damage; if in a form without hands, squeaking skill trains twice as fast */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 1000L ),
 
-A("Eternal Soreness",			IMPLANT_OF_ANAL_RETENTION, /* whenever your inertia counter is below 5, 10 turns will be added to it; whenever you kill a monster, 1 in 50 chance of getting +1 max HP */
+A("Eternal Soreness",			IMPLANT_OF_ANAL_RETENTION, /* whenever your inertia counter is below 5, 10 turns will be added to it; whenever you kill a monster, 1 in 50 chance of getting +1 max HP; if in a form without hands, 1 in 10 chance per turn to get a unihorn effect like glowhorn */
 	(SPFX_RESTR|SPFX_EVIL|SPFX_REGEN), 0, 0,
 	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 6000L ),
 
-A("Fullgrease",			IMPLANT_OF_HEAVY_LUBRICATION, /* 1 in 5000 chance per turn that items in your inventory randomly become greased */
+A("Fullgrease",			IMPLANT_OF_HEAVY_LUBRICATION, /* 1 in 5000 chance per turn that items in your inventory randomly become greased; if in a form without hands, also 1 in 5000 chance that you get to choose an item that can be greased */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 6000L ),
 
-A("Bucket House",			IMPLANT_OF_CRAP, /* crap trap effect, slow digestion, hunger */
+A("Bucket House",			IMPLANT_OF_CRAP, /* crap trap effect, slow digestion, hunger; if in a form without hands, also discount action */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 3000L ),
 
-A("Coronation Culmination",			IMPLANT_OF_KING_BEEFCAKE, /* resist cold, fire, poison, sleep and shock, see invisible, greatly increased prayer timeout, and putting it on for the first time gives an additional skill slot and a random artifact */
+A("Coronation Culmination",			IMPLANT_OF_KING_BEEFCAKE, /* resist cold, fire, poison, sleep and shock, see invisible, greatly increased prayer timeout, and putting it on for the first time gives an additional skill slot and a random artifact; if in a form without hands, also grants technicality */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 10000L ),
 
-A("Restroom Drenching",			IMPLANT_OF_MENSTRATING, /* disables regeneration, but your speed increases relative to how wounded you are; bigger bonus if you're female */
+A("Restroom Drenching",			IMPLANT_OF_MENSTRATING, /* disables regeneration, but your speed increases relative to how wounded you are; bigger bonus if you're female; if you're in a form without hands, grants double stealth */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 2000L ),
 
@@ -7427,7 +7427,7 @@ A("Egasso's Gibberish",				LEATHER_GLOVES, /* initialized to always be multiling
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
 
-A("Cortex Coprocessor",				IMPLANT_OF_MEMORY, /* randart, totter, +2 INT and WIS */
+A("Cortex Coprocessor",				IMPLANT_OF_MEMORY, /* randart, totter, +2 INT and WIS, and another +2 while in a form without hands */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 

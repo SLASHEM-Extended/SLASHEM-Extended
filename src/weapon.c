@@ -6055,6 +6055,8 @@ int degree;
 
 	if (Race_if(PM_MAZIN) && (skill >= P_ATTACK_SPELL && skill <= P_MATTER_SPELL) ) degree *= 2;
 
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_IME_SPEW && skill == P_SQUEAKING) degree *= 2;
+
 	if (Race_if(PM_PERVERT) && skill == P_SPIRITUALITY) degree *= 2;
 	if (Race_if(PM_MAYMES) && (skill == P_FIREARM || skill == P_BOW || skill == P_CROSSBOW)) degree *= 2;
 	if (Race_if(PM_AZTPOK) && skill == P_SPIRITUALITY) {

@@ -2918,6 +2918,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) tmp += 1;
 		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
 		if (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) tmp += 2;
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) tmp += 2;
 		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
 		if (x == A_WIS && uwep && uwep->oartifact == ART_SCJWILLX_) tmp += 5;
 		if (x == A_INT && Race_if(PM_MAZIN)) tmp += 2;

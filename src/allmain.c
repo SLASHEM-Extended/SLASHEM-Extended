@@ -3428,6 +3428,36 @@ newbossBQ:
 
 		}
 
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_FULLGREASE && !rn2(5000)) {
+			register struct obj *greasingobj;
+
+			pline("You may grease an object!");
+greasingchoice:
+			greasingobj = getobj(allowall, "grease");
+
+			if (!greasingobj) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to grease an item.");
+				else goto greasingchoice;
+				pline("Oh well, if you don't wanna...");
+				goto greasingdone;
+			}
+
+			if (stack_too_big(greasingobj)) {
+				pline("The amount of grease was not enough for your stack of %s!", yname(greasingobj));
+				goto greasingdone;
+			}
+			You("cover %s with a thick layer of grease.", yname(greasingobj));
+			if (greasingobj && objects[(greasingobj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(greasingobj)) {
+				if (!greasingobj->cursed) bless(greasingobj);
+				else uncurse(greasingobj, FALSE);
+			}
+			if (greasingobj->greased < 3) greasingobj->greased += 1;
+			if (greasingobj->greased > 3) greasingobj->greased = 3; /* fail safe */
+
+		}
+greasingdone:
+
 		if (!rn2(5000)) {
 			int nanorepaired = 0;
 			register struct obj *grsobj, *grsXXX;
@@ -12479,6 +12509,12 @@ pastds2:
 
 			if (tech_inuse(T_GLOWHORN)) {
 				use_unicorn_horn((struct obj *)0);
+			}
+
+			if (powerfulimplants() && uimplant && uimplant->oartifact == ART_ETERNAL_SORENESS && !rn2(10)) {
+				if (Sick || (Blinded > (long)u.ucreamed) || HHallucination || (Vomiting && !(uarmf && uarmf->oartifact == ART_CRUEL_GODDESS_ANA) ) || HConfusion || HStun || HNumbed || HFrozen || HBurned || HFeared || HDimmed ) {
+					use_unicorn_horn((struct obj *)0);
+				}
 			}
 
 			if (powerfulimplants() && uimplant && uimplant->oartifact == ART_HEALENERATION) {
