@@ -997,7 +997,7 @@ can_twoweapon()
 	} else if ((uwep && bimanual(uwep)) || (uswapwep && bimanual(uswapwep))) {
 	    otmp = (uwep && bimanual(uwep)) ? uwep : uswapwep;
 	    pline("%s isn't one-handed.", Yname2(otmp));
-	} else if (uarms) {
+	} else if (uarms && uarms->otyp != GRIM_SHIELD) {
 	    if (uwep || uswapwep)
 		what = uwep && uswapwep ?  "use two weapons" :
 		    "use more than one weapon";

@@ -12542,7 +12542,7 @@ boolean knoweverything;
 			case CRYSTAL_SHIELD:
 				pline("This glass shield can deflect lots of attacks and also gives MC1."); break;
 			case GRIM_SHIELD:
-				pline("A reasonably good shield that gives a point of magic cancellation and can even be used when you're equipped with a two-handed weapon."); break;
+				pline("A reasonably good shield that gives a point of magic cancellation and can even be used when you're equipped with a two-handed weapon or using two weapons at once."); break;
 			case LARGE_SHIELD:
 				pline("A shield made of iron with a very good armor value."); break;
 			case DWARVISH_ROUNDSHIELD:

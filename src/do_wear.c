@@ -5057,7 +5057,7 @@ boolean noisy;
 		    is_sword(uwep) ? c_sword :
 		    (uwep->otyp == BATTLE_AXE) ? c_axe : (uwep->otyp == DWARVISH_BATTLE_AXE) ? c_axe : c_weapon);
 	    err++;
-	} else if (u.twoweap) {
+	} else if (u.twoweap && otmp->otyp != GRIM_SHIELD) {
 	    if (noisy) {
 		if (uwep && uswapwep)
 		    You("cannot wear a shield while wielding two weapons.");
@@ -5634,7 +5634,8 @@ find_ac()
 
 	}
 
-	if (uarms && !(uwep && bimanual(uwep)) && !(PlayerCannotUseSkills)) {
+	/* shield skill only works for AC if you're not using the shield with a two-hander or dual-wielding --Amy */
+	if (uarms && !(uwep && bimanual(uwep)) && !u.twoweap && !(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_SHIELD)) {
 			case P_BASIC: uac -= 1; break;
 			case P_SKILLED: uac -= 3; break;
@@ -6358,6 +6359,14 @@ register struct obj *otmp;
 	    if (why) {
 		You("cannot %s to remove the ring.", buf);
 		why->bknown = TRUE;
+		return 0;
+	    }
+	}
+	/* special shield checks */
+	if (otmp == uarms) {
+	    if (welded(uwep) && !(!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_EXPERT) && bimanual(uwep)) {
+		You("cannot slip the shield from your shoulder over your welded weapon.");
+		uwep->bknown = TRUE;
 		return 0;
 	    }
 	}

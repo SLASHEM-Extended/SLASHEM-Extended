@@ -744,6 +744,12 @@ dothrow()
 	 * and took 3 turns.  Now it means ``t(shoot at most 3 missiles)''.
 	 */
 
+	if (u.twoweap && uarms) {
+		You("are way too busy with your two weapons and shield.");
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return 0;
+	}
+
 	if (notake(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 	    You("are physically incapable of throwing anything.");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -860,6 +866,12 @@ int
 dofire()
 {
 	int result, shotlimit;
+
+	if (u.twoweap && uarms) {
+		You("are way too busy with your two weapons and shield.");
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return 0;
+	}
 
 	if (notake(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 	    You("are physically incapable of doing that.");

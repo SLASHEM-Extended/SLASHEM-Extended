@@ -774,6 +774,9 @@ register struct monst *mtmp;
 	if (u.twoweap && (P_RESTRICTED(P_TWO_WEAPON_COMBAT) )) tmp -= (issoviet ? 20 : rnd(20) );
 	/* In Soviet Russia, you're absolutely not supposed to be able to use twoweaponing if you can't learn the skill. --Amy */
 
+	/* using dual-wielding with a shield (e.g. grim shield) greatly reduces to-hit for balancing reasons --Amy */
+	if (u.twoweap && uarms) tmp -= rnd(10);
+
 	if (u.twoweap && !rn2(10)) tmp -= rnd(20);
 
 	if (u.twoweap && !PlayerCannotUseSkills) {
