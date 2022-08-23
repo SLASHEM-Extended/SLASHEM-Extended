@@ -1314,6 +1314,43 @@ have_loadstone()
 	return(FALSE);
 }
 
+boolean
+evades_destruction(otmp)
+register struct obj *otmp;
+{
+
+	if (!otmp) return FALSE; /* shouldn't happen */
+
+	switch (otmp->otyp) {
+
+		/* if you've ascended, the amulet is no longer needed, so it can now be destroyed --Amy */
+		case AMULET_OF_YENDOR:
+			if (u.freeplaymode) return FALSE;
+			return TRUE;
+			break;
+
+		/* if the invocation is done, the invocation tools are no longer needed --Amy
+		 * the artifact keys are for Vlad, where you get one such tool, so they're also no longer needed */
+		case CANDELABRUM_OF_INVOCATION:
+		case BELL_OF_OPENING:
+		case SPE_BOOK_OF_THE_DEAD:
+		case ART_GAUNTLET_KEY:
+		case ART_KEY_OF_LAW:
+		case ART_KEY_OF_NEUTRALITY:
+		case ART_KEY_OF_CHAOS:
+			if (u.uevent.invoked) return FALSE;
+			return TRUE;
+			break;
+
+		default:
+			return FALSE;
+			break;
+	}
+
+	return FALSE;
+
+}
+
 int
 numberofetheritems()
 {

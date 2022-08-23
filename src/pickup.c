@@ -2142,14 +2142,14 @@ boolean invobj;
 		obj->bknown = 1;
 		pline_The("gem%s will not leave your inventory as long as they're cursed.", plur(obj->quan));
 		return 0;
-	} else if (obj->otyp == AMULET_OF_YENDOR || obj->otyp == FAKE_AMULET_OF_YENDOR ||
-		   obj->otyp == CANDELABRUM_OF_INVOCATION ||
-		   obj->otyp == BELL_OF_OPENING ||
-		   obj->oartifact == ART_KEY_OF_LAW ||
-		   obj->oartifact == ART_GAUNTLET_KEY ||
-		   obj->oartifact == ART_KEY_OF_NEUTRALITY ||
-		   obj->oartifact == ART_KEY_OF_CHAOS ||
-		   obj->otyp == SPE_BOOK_OF_THE_DEAD) {
+	} else if ( (obj->otyp == AMULET_OF_YENDOR && !u.freeplaymode) || (obj->otyp == FAKE_AMULET_OF_YENDOR && !u.freeplaymode) ||
+		   (obj->otyp == CANDELABRUM_OF_INVOCATION && !u.uevent.invoked) ||
+		   (obj->otyp == BELL_OF_OPENING && !u.uevent.invoked) ||
+		   (obj->oartifact == ART_KEY_OF_LAW && !u.uevent.invoked) ||
+		   (obj->oartifact == ART_GAUNTLET_KEY && !u.uevent.invoked) ||
+		   (obj->oartifact == ART_KEY_OF_NEUTRALITY && !u.uevent.invoked) ||
+		   (obj->oartifact == ART_KEY_OF_CHAOS && !u.uevent.invoked) ||
+		   (obj->otyp == SPE_BOOK_OF_THE_DEAD && !u.uevent.invoked) ) {
 	/* Prohibit Amulets in containers; if you allow it, monsters can't
 	 * steal them.  It also becomes a pain to check to see if someone
 	 * has the Amulet.  Ditto for the Candelabrum, the Bell and the Book.

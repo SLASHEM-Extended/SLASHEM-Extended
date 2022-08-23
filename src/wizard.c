@@ -118,7 +118,7 @@ register struct monst *mtmp;
 	register struct obj *otmp;
 
 	for(otmp = mtmp->minvent; otmp; otmp = otmp->nobj)
-		if (evades_destruction(otmp) || is_quest_artifact(otmp))
+		if (is_macguffin(otmp) || is_quest_artifact(otmp))
 			return 1;
 	return(0);
 }

@@ -2453,7 +2453,7 @@ register struct obj *spellbook;
 		    }
 		}
 
-		if ( (too_hard || rn2(2)) && ( (spellbook->cursed && !Role_if(PM_LIBRARIAN) && !Role_if(PM_PSYKER) ) || ((spellbook->spe < 1) && !(booktype == SPE_BOOK_OF_THE_DEAD) ) )) {
+		if ( (too_hard || rn2(2)) && !(booktype == SPE_BOOK_OF_THE_DEAD) && ( (spellbook->cursed && !Role_if(PM_LIBRARIAN) && !Role_if(PM_PSYKER) ) || ((spellbook->spe < 1) && !(booktype == SPE_BOOK_OF_THE_DEAD) ) )) {
 		    boolean gone = cursed_book(spellbook);
 
 		    if (delay < 0) {

@@ -1048,6 +1048,7 @@ E int dostackmark(void);
 
 E int numberofetheritems(void);
 E int numberofwornetheritems(void);
+E boolean evades_destruction(struct obj *);
 
 E boolean stack_too_big(struct obj *);
 

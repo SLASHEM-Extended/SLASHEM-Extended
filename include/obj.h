@@ -170,7 +170,7 @@ struct obj {
  * will need to be given to what happens when such a monster disappears
  * carrying the object.
  */
-#define evades_destruction(otmp) ( \
+#define is_macguffin(otmp) ( \
 			(otmp)->otyp == AMULET_OF_YENDOR || \
 			(otmp)->otyp == CANDELABRUM_OF_INVOCATION || \
 			(otmp)->otyp == BELL_OF_OPENING || \
@@ -179,6 +179,9 @@ struct obj {
 			(otmp)->oartifact == ART_KEY_OF_LAW || \
 			(otmp)->oartifact == ART_KEY_OF_NEUTRALITY || \
 			(otmp)->oartifact == ART_KEY_OF_CHAOS)
+/* evades_destruction() moved to invent.c by Amy because we want them to become destructible once they're no longer needed
+ * this will allow the player to unclutter their inventory once the invocation has been performed */
+
 #define always_visible(otmp) ( \
 			(otmp)->otyp == MUMMY_WRAPPING || \
 			(otmp)->oclass == COIN_CLASS)
