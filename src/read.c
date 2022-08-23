@@ -827,6 +827,8 @@ doread()
 	"im baertter at slex and i say soi", /* by Demo */
 	"What do you mean 'lady shoes'? You're trying to tell me I can't wear shoes with heels just because I have a cock? That's discrimination, I can walk better in them than most women!", /* yeah I know, I (Amy) am a woman, but not every message in this game refers to myself. this is a hypothetical shirt worn by a hypothetical man who is annoyed by all that discrimination BS */
 	"I Refuse To Acknowledge The Existence Of SLEX Until Combining Hybrid Races Is Unnerfed", /* by amateurhour */
+	"oh, supermaster archon with ranged touch of death and destroy armor hug attack? no problem, my supersword of total annihilation kills it in two hits anyway just like any other monster that crosses my path",
+	"oh, supermaster archon with ranged touch of death and destroy armor hug attack? no problem, my submachine gun kills it in two volleys anyway just like any other monster that crosses my path - this comment posted from a MONK",
 
 	    };
 	    char buf[BUFSZ];

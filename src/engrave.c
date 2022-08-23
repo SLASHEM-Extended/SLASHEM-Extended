@@ -5705,6 +5705,15 @@ static const char *epitaphs[] = {
 	"Amy please make it so that all good playable roles and races are displayed in a bright white while weak ones appear in a darker gray color! I'm sick of picking characters that turn out to suck!", /* this was actually requested once, and will always be rejected because what constitutes "good" or "bad" roles/races is subjective and will be different depending on who you ask */
 	"The natalje trap makes the game unplayable, Amy should just remove that from the game or at least make it so that it never lasts longer than 200 turns. It's just plain evil if you can never remain in one place for more than a few turns because your items get trashed if you do, can't play the game with that effect.",
 	"Yeah what the hell was Amy thinking when she designed the nadja trap. Getting damaged whenever you melee a female monster, and the damage even increases every time you do, so eventually you just die instantly from hitting such a monster, and the trap lasts for how many thousand turns???",
+	"This must have been the situation where my standard strategy doesn't work.",
+	"Oh man, you truly are screwed if you accidentally equip a cursed weapon early in the game, because you never find a remove curse scroll when you need one.",
+	"Stupid game just wouldn't give me a usable weapon! Having to still plink away with bare hands when you're already at dungeon level 9 obviously doesn't work out...",
+	"Maaaaaaaan... I was ONE experience point short of leveling up, and then I'd have been unstoppable...",
+	"What the hell kind of bastard monsters are spawning on dungeon level ONE for fuck's sake??? That's like totally unfair, no beginning character can survive that!",
+	"Bah, who made it so that monsters can spawn with a wand of draining on dungeon level 1 and instantly kill you before you've even encountered enough monsters to level up once.",
+	"What, my prayer timeout can't possibly have been so high. My last prayer was over 10k turns ago.",
+	"Weapons suck, they always get stolen by nymphs! And in this particular case there was also a feral lion nearby which I then couldn't handle anymore without my weapon!",
+	"Oh damn, should probably have put my full plate mail back on after that foocubus encounter.",
 
 };
 
