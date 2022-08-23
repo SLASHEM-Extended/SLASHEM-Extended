@@ -2991,6 +2991,44 @@ toofar:
 
 	    }
 
+	    if (inrange && (mdat == &mons[PM_NETHACKWIKI_DICTATOR]) && !mtmp->mpeaceful && !rn2(5) ) {
+		static const char *nhdictator_msgs[] = {
+			"ban amy",
+			"ban amy forever",
+			"amy begone",
+			"amy go away",
+			"amy has no rights",
+			"amy is not welcome",
+			"slex is not welcome",
+			"gotta protect my faithful slex-hating sheep",
+			"woe to anyone who criticizes the anti-slex workers",
+			"if amy misbehaves i will take appropriate action",
+		};
+		verbalize("%s", nhdictator_msgs[rn2(SIZE(nhdictator_msgs))]);
+
+	    }
+
+	    if (inrange && (mdat == &mons[PM_NETHACKWIKI_ANTI_SLEX_WORKER] || mdat == &mons[PM_NETHACKWIKI_ANTI_SLEX_WORKER__] || mdat == &mons[PM_NETHACKWIKI_ANTI_SLEX_WORKER_WITH_POWER]) && !mtmp->mpeaceful && !rn2(5) ) {
+		static const char *nhworker_msgs[] = {
+			"that page had slex info in it... emphasis on had! hahahahaha!",
+			"hey i fixed ten pages that had slex info today!",
+			"get the champagne, i deleted the main slex page from the wiki!",
+			"long live the vendetta! long live the anti-slex workers!",
+			"amy has no right to be present on the wiki!",
+			"slex is just bad and no one should bother with it!",
+			"man i wish we could just rm -rf all slex info from the wiki in one fell swoop",
+			"i used to be a slex player but then i decided to be a total wendehals just to fuck amy over muahahahaha",
+			"we have to protect people from having to see any slex-specific info!",
+			"everything about slex is bad and offensive and therefore we have to purge everything!!!",
+			"in my safe space, everything that i find offensive is banned and people who even mention the existence of slex are hit by the hammer of thor!",
+			"the wiki is only the beginning, one day we will remove slex and amy from all other places where theyre present on the web!",
+			"the day will come when slex finally stops existing for good, and then we can all happily bore our asses off with nethack variants that are no fun to play, because at least they dont have offensive content!",
+			"i think we should support that guys slex-clean variant which removes all of amys garbage! let that variant displace the original slex off the internet forever!!!",
+		};
+		verbalize("%s", nhworker_msgs[rn2(SIZE(nhworker_msgs))]);
+
+	    }
+
 	    if (inrange && (mdat == &mons[PM_HARDFOUGHT_SLEXTERMINATOR]) && !mtmp->mpeaceful && !rn2(5) ) {
 		static const char *slexterminator_msgs[] = {
 			"kill",
@@ -3018,6 +3056,26 @@ toofar:
 			"remove all trace of slex",
 		};
 		verbalize("%s", slexterminator_msgs[rn2(SIZE(slexterminator_msgs))]);
+
+	    }
+
+	    if (inrange && (mdat == &mons[PM_HARDFOUGHT_VENDETTA_LEADER]) && !mtmp->mpeaceful && !rn2(5) ) {
+		static const char *vendettaleader_msgs[] = {
+			"everyone agrees that slex has to be purged",
+			"everyone who doesnt agree with me is put on the enemies list",
+			"why would we want anyone to stumble upon slex on the web, that has to be prevented",
+			"amy had her chance but didnt use it",
+			"it was amy who burned all bridges and stopped any contact with the rest of the community",
+			"amy can do whatever she wants but we know that were on the winners faction and she will lose",
+			"amy has no chance",
+			"if amy had wised up and fixed her game, wed have tolerated its continued existence",
+			"amy was obligated to remove all the bad stuff from her game, but she didnt and therefore she is public enemy number one now",
+			"slex does not exist, we shall remove all trace of it from the web forever",
+			"we need to put filtering software into place so that re-posting of the bad slex content isnt possible",
+			"we fixed pinobot, we eradicated slex from junethack and now well purge the wiki of that evil abomination!",
+			"censorship is just the best thing ever!!!!!!!111einself i decided that slex is not allowed to exist and i organized a huge mob with torches and pitchforks who will all help me to rub that evil amy witchs creation off the face of this earth!",
+		};
+		verbalize("%s", vendettaleader_msgs[rn2(SIZE(vendettaleader_msgs))]);
 
 	    }
 

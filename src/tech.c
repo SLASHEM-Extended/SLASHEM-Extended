@@ -2817,7 +2817,7 @@ dotech()
 			break;
 
 		case T_SPIRIT_BOMB:
-			pline("This technique allows you to do a 'kamehameha' attack against a monster, causing it to explode while also damaging other monsters nearby. According to Nethackwiki, you can't hit yourself or your pets with this attack either. But in-game experience says otherwise, i.e. pets can very well still be hit, sadly.");
+			pline("This technique allows you to do a 'kamehameha' attack against a monster, causing it to explode while also damaging other monsters nearby. According to Nethackwiki, you can't hit yourself or your pets with this attack either (and the page is even still there, because it's a SLASH'EM technique; certain evil people wiped all SLEX-specific info). But in-game experience says otherwise, i.e. pets can very well still be hit, sadly.");
 			break;
 
 		case T_DRAW_BLOOD:

@@ -1000,6 +1000,9 @@ register int pm;
 			pline("A holy aura of protection surrounds you!");
 		}
 		break;
+	    case PM_GLOVED_COCKATRICE:
+		goodeffect();
+		break;
 	    case PM_LIZARD:
 	    case PM_LIZZY:
 	    case PM_LIZARD_PRINCE:
@@ -1055,6 +1058,7 @@ register int pm;
 	    case PM_FAT_LIZARD:
 	    case PM_EEL_LIZARD:
 	    case PM_GRASS_LIZARD:
+	    case PM_DEAD_LIZARD:
 	    case PM_STOPWATCH_LIZARD:
 	    case PM_RUNE_LIZARD:
 	    case PM_SPECTRAL_LIZARD:
@@ -1217,6 +1221,7 @@ struct monst *mon;
 	case PM_LIZARD_EEL:
 	case PM_EEL_LIZARD:
 	case PM_GRASS_LIZARD:
+	case PM_DEAD_LIZARD:
       case PM_STOPWATCH_LIZARD:
 	case PM_RUNE_LIZARD:
 	case PM_SPECTRAL_LIZARD:
@@ -3187,6 +3192,7 @@ register int pm;
 	    case PM_YELLOW_LIGHT:
 		/* fall into next case */
 	    case PM_CHICKATRICE:
+	    case PM_CHERRY:
 		make_stunned(HStun + 30,FALSE);
 
 		/* bats are generalized with is_bat now --Amy */
@@ -3278,6 +3284,7 @@ register int pm;
 	    case PM_SCORZARD:
 	    case PM_CAVE_LIZARD:
 	    case PM_GRASS_LIZARD:
+	    case PM_DEAD_LIZARD:
 	    case PM_STOPWATCH_LIZARD:
 	    case PM_RUNE_LIZARD:
 	    case PM_SPECTRAL_LIZARD:
@@ -3769,6 +3776,7 @@ register int pm;
 	    case PM_OMEGA___FISH_STICK:
 	    case PM_BEAMBEAM_FLAYER:
 		case PM_COCKATRICE:
+		case PM_DEAD_COCKATRICE:
 		case PM_DISENTITRICE:
 		case PM_PETTY_COCKATRICE:
 		case PM_BASILISK:

@@ -6144,7 +6144,7 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, LEATHER_GLOVES);
 		}
 
-		else if (mm == PM_MINER) {
+		else if (mm == PM_MINER || mm == PM_DEAD_MINER) {
 
 		    (void)mongets(mtmp, PICK_AXE);
 		    otmp = mksobj(BRASS_LANTERN, TRUE, FALSE, FALSE);
@@ -7740,6 +7740,14 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_TUFTRIKE]) (void) mongets(mtmp, DANCING_SHOES);
 		if (ptr == &mons[PM_COCK_MONK]) (void) mongets(mtmp, VIBROBLADE);
 
+		if (ptr == &mons[PM_CHINESE_RADIO_BEACON_OFFICER]) {
+			(void) mongets(mtmp, KATANA);
+			(void) maketrap(mtmp->mx, mtmp->my, LOUDSPEAKER, 0, FALSE);
+		}
+		if (ptr == &mons[PM_WJLV_ETTICLOL__VALKYRIE]) {
+			(void) mongets(mtmp, LONG_SWORD);
+			(void) mongets(mtmp, SMALL_SHIELD);
+		}
 		if (ptr == &mons[PM_CLOCK_OLD_MARRIED_COUPLE]) {
 			(void) mongets(mtmp, SHOTGUN);
 			 m_initthrow(mtmp, SHOTGUN_SHELL, 30);
@@ -10003,6 +10011,8 @@ loveheelover:
 		if (mtmp->data == &mons[PM_OUTLANDISH_FIELD_WORKER]) (void) mongets(mtmp, PLOW);
 		if (mtmp->data == &mons[PM_COCKA_DOODLE_DOO]) (void) mongets(mtmp, PETRIFYIUM_BAR);
 		if (mtmp->data == &mons[PM_REPULSIVE_CHAIN_SMOKER_ASSHOLE]) (void) mongets(mtmp, CIGARETTE);
+
+		if (mtmp->data == &mons[PM_GLOVED_COCKATRICE]) (void) mongets(mtmp, rnd_class(PLASTEEL_GLOVES,GAUNTLETS_OF_DEXTERITY));
 
 		if (mtmp->data == &mons[PM_GLOCKATRICE]) {
 			(void) mongets(mtmp, PISTOL);

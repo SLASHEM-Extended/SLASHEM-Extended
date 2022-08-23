@@ -21,7 +21,7 @@
 */
 
 #define COPYRIGHT_BANNER_A \
-"This is Sadistic Levels of Endless X-Citement (SLEX) 1997-2018 by Amy"
+"This is Sadistic Levels of Endless X-Citement (SLEX) 1997-2022 by Amy"
 
 #define COPYRIGHT_BANNER_B \
 "NetHack, Copyright 1985-2003 Stichting Mathematisch Centrum, M. Stephenson."
@@ -30,7 +30,7 @@
 "Contact the dev team via the #em.slashem.me channel on Libera IRC."
 
 #define COPYRIGHT_BANNER_D \
-"See license for details. Bug reports can also be posted on Nethackwiki."
+"See license for details."
 
 #if 0
 /*
