@@ -4847,7 +4847,7 @@ newbossSING:
 		angry_guards(FALSE); /* The guards are on the side of Moloch's priests (not a bug). */
 	}
 
-	if(tmp == PM_SHOPKEEPER || tmp == PM_MASTER_SHOPKEEPER || tmp == PM_ELITE_SHOPKEEPER || tmp == PM_BLACK_MARKETEER || tmp == PM_GUARD || tmp == PM_MASTER_GUARD || tmp == PM_ELITE_GUARD || ((tmp == PM_ALIGNED_PRIEST || tmp == PM_MASTER_PRIEST || tmp == PM_ELITE_PRIEST || tmp == PM_HIGH_PRIEST || tmp == PM_DNETHACK_ELDER_PRIEST_TM_) && ((int)EPRI(mtmp)->shralign == A_NONE) ) ) {
+	if(tmp == PM_SHOPKEEPER || tmp == PM_MASTER_SHOPKEEPER || tmp == PM_ELITE_SHOPKEEPER || tmp == PM_BLACK_MARKETEER || tmp == PM_GUARD || tmp == PM_MASTER_GUARD || tmp == PM_ELITE_GUARD || ((tmp == PM_ALIGNED_PRIEST || tmp == PM_MASTER_PRIEST || tmp == PM_ELITE_PRIEST || tmp == PM_HIGH_PRIEST || tmp == PM_DNETHACK_ELDER_PRIEST_TM_) && ((int)EPRI(mtmp)->shralign != A_NONE) ) ) {
 		u.pompejiwantedlevel++;
 	}
 
