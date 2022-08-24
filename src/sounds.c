@@ -1718,6 +1718,12 @@ register struct monst *mtmp;
 	case MS_SING:
 		ret = "shouts 'Stop that! You're not allowed to use those girl boots against me!'";
 		break;
+	case MS_POMPEJI:
+		ret = "moans 'Pompejiiiiiiii...'";
+		break;
+	case MS_FLUIDATOR:
+		ret = "shouts 'Now leave to me finite in peace, you hell creature!'";
+		break;
 	case MS_ALLA:
 		ret = "shouts 'If you keep angering me like that, you'll pay.'";
 		break;
@@ -1945,6 +1951,12 @@ register struct monst *mtmp;
 	case MS_SING:
 		ret = "is sad that no one wants to clean the female shoes";
 		break;
+	case MS_POMPEJI:
+		ret = "shouts 'Pompeji!!!'";
+		break;
+	case MS_FLUIDATOR:
+		ret = "bellows 'You are always cursed!'";
+		break;
 	case MS_ALLA:
 		ret = "shouts 'Better stop mistreating me, for you'll not like my counterattack.'";
 		break;
@@ -2158,6 +2170,12 @@ register struct monst *mtmp;
 		break;
 	case MS_SING:
 		ret = "seems happy for some reason";
+		break;
+	case MS_POMPEJI:
+		ret = "points a finger and shouts 'Pompeji!'";
+		break;
+	case MS_FLUIDATOR:
+		ret = "remarks 'Pass up, falling!'";
 		break;
 	case MS_ALLA:
 		ret = "wordlessly gazes at you";
@@ -3649,6 +3667,47 @@ repairitemchoice:
 		}
 		else if (mtmp->mpeaceful) verbl_msg = "Hey, do you want to assist me? I'd be thrilled if you were to step into dog shit with your shoes, because then I can force my slaves to clean your shoes, and when they're done, you'll get them back.";
 		else verbl_msg = "You know the rules. You have to clean the dog shit off of every pair of female shoes that I present to you, and you're not allowed to use anything other than your hands and a can of shoe polish.";
+		break;
+	case MS_FLUIDATOR:
+		if (mtmp->mconf) {
+			verbl_msg = "What are we to now make?";
+			break;
+		}
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/10) {
+			verbl_msg = "I am equal dead! Assistance!";
+			break;
+		}
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "I must take some welfare watering places!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "I custom which to eat!";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = u.fluidatorwantedlevel ? "Now you can however which experience, you hybrid!" : "We are attacked becoming!";
+		}
+		else if (mtmp->mpeaceful) {
+			verbl_msg = u.fluidatorwantedlevel ? "Now you are however to!" : "Is greeted, unknown potato.";
+			if (u.fluidatorwantedlevel) mtmp->mpeaceful = FALSE;
+		}
+		else verbl_msg = u.fluidatorwantedlevel ? "Are you glad, with me to allies its?" : "You is my buddy!";
+		break;
+	case MS_POMPEJI:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Pom... peji...";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Pompeji-pompeji!";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Poooooom peeeeeeee jiiiiiiii!";
+		}
+		else if (mtmp->mpeaceful) verbl_msg = "Pompeji.";
+		else verbl_msg = "Pompe-e-ji!";
 		break;
 	case MS_ALLA:
 		if (!mtmp->mtame && !mtmp->mpeaceful) verbl_msg = "you will lose";
@@ -5663,6 +5722,7 @@ register struct monst *mtmp;
 		case MS_SOVIET:
 		case MS_BRAG:
 		case MS_PRINCESSLEIA:
+		case MS_FLUIDATOR:
 		case MS_SISSY:
 		case MS_BOT:
 		case MS_BARBER:
@@ -5747,6 +5807,7 @@ register struct monst *mtmp;
 		case MS_DEAD:
 		case MS_STABILIZE:
 		case MS_ESCAPE:
+		case MS_POMPEJI:
 		case MS_FEARHARE:
 		case MS_CODE:
 			switch (distresslevel) {
@@ -5797,6 +5858,19 @@ register struct monst *mtmp;
 					break;
 				case 3:
 					pline("%s shouts 'Emergency! Unit %d confronted with extreme resistance!'", Monnam(mtmp), mtmp->m_id);
+					break;
+			}
+			break;
+		case MS_FLUIDATOR:
+			switch (distresslevel) {
+				case 1:
+					pline("%s shouts 'The opponent met me!'", Monnam(mtmp));
+					break;
+				case 2:
+					pline("%s shouts 'I have hits off-gotten, I custom assistance!'", Monnam(mtmp));
+					break;
+				case 3:
+					pline("%s shouts 'Outer one no, equivalent I am dead!'", Monnam(mtmp));
 					break;
 			}
 			break;

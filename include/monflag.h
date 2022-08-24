@@ -107,6 +107,8 @@
 #define MS_TREESQUAD	98	/* punishes players who cut a lot of trees */
 #define MS_METALMAFIA	99	/* punishes players who smash a lot of iron bars */
 #define MS_DEEPSTATE	100	/* cannot be seen via detection methods or warning */
+#define MS_POMPEJI	101	/* chases players who disrupt the Yendorian infrastructure */
+#define MS_FLUIDATOR	102	/* chases players who constantly wallwalk */
 
 /* MS_DOUGLAS_ADAMS used to be 42, however I fear the DevTeam eventually 
 ** reaching that number.  - sk */

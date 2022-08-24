@@ -205,6 +205,12 @@ experience(mtmp, nk)	/* return # of exp points for mtmp after nk killed */
 		tmp /= 100;
 	}
 
+	/* fluidators are meant to make your life hard, not be a ready source of experience points --Amy */
+	if (mtmp->data->msound == MS_FLUIDATOR && tmp > 1) {
+		tmp /= 20;
+		if (tmp < 1) tmp = 1;
+	}
+
 #ifdef MAIL
 	/* Mail daemons put up no fight. */
 	if(mtmp->data == &mons[PM_MAIL_DAEMON]) tmp = 1;

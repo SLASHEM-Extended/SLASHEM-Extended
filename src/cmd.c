@@ -6082,6 +6082,18 @@ boolean guaranteed;
 		you_are(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && u.pompejiwantedlevel) {
+		sprintf(buf, "being chased by the pompeji squad.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", u.pompejiwantedlevel);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.fluidatorwantedlevel) {
+		sprintf(buf, "being chased by the fluidator squad.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", u.fluidatorwantedlevel);
+		you_are(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && u.gmmailsreceived) {
 		sprintf(buf, "received monster-summoning mail from AmyBSOD, the Game Master.");
 	    	sprintf(eos(buf), " (%d)", u.gmmailsreceived);
@@ -10399,6 +10411,18 @@ int final;
 	if (u.treesquadwantedlevel) {
 		sprintf(buf, "being chased by the tree squad.");
 		sprintf(eos(buf), " (%d)", u.treesquadwantedlevel);
+		dump(youwere, buf);
+	}
+
+	if (u.pompejiwantedlevel) {
+		sprintf(buf, "being chased by the pompeji squad.");
+		sprintf(eos(buf), " (%d)", u.pompejiwantedlevel);
+		dump(youwere, buf);
+	}
+
+	if (u.fluidatorwantedlevel) {
+		sprintf(buf, "being chased by the fluidator squad.");
+		sprintf(eos(buf), " (%d)", u.fluidatorwantedlevel);
 		dump(youwere, buf);
 	}
 

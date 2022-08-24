@@ -11251,6 +11251,9 @@ u_init()
 	u.inasuppression = 0;
 	u.conclusiocount = 0;
 	u.elberethcheese = 0;
+	u.pompejiwantedlevel = 0;
+	u.fluidatorwantedlevel = 0;
+	u.fluidatorwarning = 0;
 
 	/* set player's haircut to a random value at game start --Amy */
 	u.femalehaircut = rnd(55);

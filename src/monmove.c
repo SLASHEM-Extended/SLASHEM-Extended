@@ -2091,6 +2091,12 @@ newbossSING:
 			case MS_SING:
 				verbalize("Come here, I have this sexy pair of female shoes that you're allowed to clean.");
 				break;
+			case MS_POMPEJI:
+				verbalize("Pompe-e-ji! Pompe-e-ji!");
+				break;
+			case MS_FLUIDATOR:
+				verbalize("Now Mach I you fully all!");
+				break;
 			case MS_ALLA:
 				verbalize("I will leave a permanent scar on your body.");
 				break;

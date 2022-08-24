@@ -2236,6 +2236,26 @@ moveloop()
 			pline("It's the damn menstruation!");
 		}
 
+		if (u.fluidatorwarning < 1 && u.fluidatorwantedlevel > 50) {
+			u.fluidatorwarning = 1;
+			pline("Attention: Moloch has noticed that you're wallwalking, and will send the fluidator squads after you if you continue.");
+		}
+		if (u.fluidatorwarning < 2 && u.fluidatorwantedlevel > 470) {
+			u.fluidatorwarning = 2;
+			pline("Be careful, Moloch does not like adventurers who shortcut past all the intended passages via wallwalking! He will keep sending more fluidator squads if you continue!");
+		}
+		if (u.fluidatorwarning < 3 && u.fluidatorwantedlevel > 4950) {
+			u.fluidatorwarning = 3;
+			pline("Moloch is really upset with you, and you should really think twice whether you want to keep wallwalking everywhere! Endless armies of fluidators will chase you if you don't stop!");
+		}
+
+		if (IS_STWALL(levl[u.ux][u.uy].typ)) u.fluidatorwantedlevel += 5;
+
+		if (!(IS_STWALL(levl[u.ux][u.uy].typ)) && levl[u.ux][u.uy].typ != IRONBARS) {
+			u.fluidatorwantedlevel--;
+			if (u.fluidatorwantedlevel < 0) u.fluidatorwantedlevel = 0; /* fail safe */
+		}
+
 		if (uarmf && (uarmf->oeroded2 < MAX_ERODE) && itemhasappearance(uarmf, APP_OTTING_BOOTS) && !rn2(1000)) {
 			int ottingchance = 1;
 			if (uarmf->oeroded2 == 1) ottingchance = 3;
