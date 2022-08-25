@@ -26106,6 +26106,23 @@ struct permonst *mptr;		/* usually null; used for confused reading */
 #endif /* OVL1 */
 #ifdef OVL0
 
+boolean
+jonaspecialspawn(ptr)
+register struct permonst *ptr;
+{
+	if (is_jonadabmonster(ptr) || ptr->msound == MS_FLUIDATOR || ptr->msound == MS_POMPEJI) {
+		if (is_jonadabmonster(ptr)) {
+
+			if (isscriptor && (ptr->msound == MS_FLUIDATOR) && u.fluidatorwantedlevel) return TRUE;
+			if (isscriptor && (ptr->msound == MS_POMPEJI) && u.pompejiwantedlevel) return TRUE;
+			if (isscriptor && (ptr->msound != MS_POMPEJI) && (ptr->msound != MS_FLUIDATOR)) return TRUE;
+		} else if ((ptr->msound == MS_FLUIDATOR) && u.fluidatorwantedlevel) return TRUE;
+		else if ((ptr->msound == MS_POMPEJI) && u.pompejiwantedlevel) return TRUE;
+	}
+	return FALSE;
+}
+
+
 STATIC_OVL boolean
 uncommon(mndx)
 int mndx;
@@ -26124,11 +26141,11 @@ int mndx;
 	/* Amy reminder to self: converting a monster index number to permonst is &mons[NUMBER]
 	 * keywords: int to permonst */
 
-	if (uncommon2(&mons[mndx]) && !(isscriptor && is_jonadabmonster(&mons[mndx]) ) && (issoviet ? !rn2(3) : rn2(2)) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
-	if (uncommon3(&mons[mndx]) && !(isscriptor && is_jonadabmonster(&mons[mndx]) ) && rn2(issoviet ? 2 : 3) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
-	if (uncommon5(&mons[mndx]) && !(isscriptor && is_jonadabmonster(&mons[mndx]) ) && rn2(issoviet ? 3 : 5) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
-	if (uncommon7(&mons[mndx]) && !(isscriptor && is_jonadabmonster(&mons[mndx]) ) && rn2(issoviet ? 4 : 7) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
-	if (uncommon10(&mons[mndx]) && !(isscriptor && is_jonadabmonster(&mons[mndx]) ) && rn2(issoviet ? 5 : 10) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
+	if (uncommon2(&mons[mndx]) && !jonaspecialspawn(&mons[mndx]) && (issoviet ? !rn2(3) : rn2(2)) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
+	if (uncommon3(&mons[mndx]) && !jonaspecialspawn(&mons[mndx]) && rn2(issoviet ? 2 : 3) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
+	if (uncommon5(&mons[mndx]) && !jonaspecialspawn(&mons[mndx]) && rn2(issoviet ? 3 : 5) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
+	if (uncommon7(&mons[mndx]) && !jonaspecialspawn(&mons[mndx]) && rn2(issoviet ? 4 : 7) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
+	if (uncommon10(&mons[mndx]) && !jonaspecialspawn(&mons[mndx]) && rn2(issoviet ? 5 : 10) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
 
 	if (monstr[mndx] >= 9 && (rn2(100) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 14 && !rn2(10)) return TRUE;
 	if (monstr[mndx] >= 14 && (rn2(150) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 19 && !rn2(5)) return TRUE;
@@ -27574,6 +27591,7 @@ loopback:
 		if (ct > 0 && (FemtrapActiveLaura && (ptr->msound == MS_SOCKS))) ct += 50;
 		if (ct > 0 && (FemtrapActiveLaura && (ptr->msound == MS_PANTS))) ct += 50;
 		if (ct > 0 && (FemtrapActiveLaura && (ptr->msound == MS_SHOE))) ct += 50;
+		if (ct > 0 && u.pompejiwantedlevel && (ptr->msound == MS_POMPEJI)) ct += min(1000, u.pompejiwantedlevel);
 
 		if (ct > 0 && RngeExtinction && mvitals[mndx].born) ct += mvitals[mndx].born;
 
@@ -27925,11 +27943,11 @@ int     spc;
 		last < SPECIAL_PM && mons[last].mlet == class; last++)
 	    if (!(mvitals[last].mvflags & G_GONE) && !(mons[last].geno & mask)
 					&& !is_placeholder(&mons[last])
-					&& !(uncommontwo && uncommon2(&mons[last]) && !(isscriptor && is_jonadabmonster(&mons[last]) ) && !Race_if(PM_RODNEYAN) )
-					&& !(uncommonthree && uncommon3(&mons[last]) && !(isscriptor && is_jonadabmonster(&mons[last]) ) && !Race_if(PM_RODNEYAN) )
-					&& !(uncommonfive && uncommon5(&mons[last]) && !(isscriptor && is_jonadabmonster(&mons[last]) ) && !Race_if(PM_RODNEYAN) )
-					&& !(uncommonseven && uncommon7(&mons[last]) && !(isscriptor && is_jonadabmonster(&mons[last]) ) && !Race_if(PM_RODNEYAN) )
-					&& !(uncommonten && uncommon10(&mons[last]) && !(isscriptor && is_jonadabmonster(&mons[last]) ) && !Race_if(PM_RODNEYAN) )
+					&& !(uncommontwo && uncommon2(&mons[last]) && !jonaspecialspawn(&mons[last]) && !Race_if(PM_RODNEYAN) )
+					&& !(uncommonthree && uncommon3(&mons[last]) && !jonaspecialspawn(&mons[last]) && !Race_if(PM_RODNEYAN) )
+					&& !(uncommonfive && uncommon5(&mons[last]) && !jonaspecialspawn(&mons[last]) && !Race_if(PM_RODNEYAN) )
+					&& !(uncommonseven && uncommon7(&mons[last]) && !jonaspecialspawn(&mons[last]) && !Race_if(PM_RODNEYAN) )
+					&& !(uncommonten && uncommon10(&mons[last]) && !jonaspecialspawn(&mons[last]) && !Race_if(PM_RODNEYAN) )
 					&& !(uncommonnewten && monstr[last] >= 10 && monstr[last] < 15 )
 					&& !(uncommonnewfifteen && monstr[last] >= 15 && monstr[last] < 20 )
 					&& !(uncommonnewtwenty && monstr[last] >= 20 && monstr[last] < 25 )
@@ -29007,6 +29025,7 @@ int     spc;
 		if ((FemtrapActiveLaura && (mons[last].msound == MS_SOCKS))) num += 50;
 		if ((FemtrapActiveLaura && (mons[last].msound == MS_PANTS))) num += 50;
 		if ((FemtrapActiveLaura && (mons[last].msound == MS_SHOE))) num += 50;
+		if (u.pompejiwantedlevel && (mons[last].msound == MS_POMPEJI)) num += min(1000, u.pompejiwantedlevel);
 
 		if (monster_with_trait(&mons[last], u.frequenttrait1)) num += u.freqtraitbonus1;
 		if (u.frequenttrait2 && monster_with_trait(&mons[last], u.frequenttrait2)) num += u.freqtraitbonus2;
@@ -29038,11 +29057,11 @@ int     spc;
 	for(num = rnd(num); num > 0; first++)
 	    if (!(mvitals[first].mvflags & G_GONE) && !(mons[first].geno & mask)
 					&& !is_placeholder(&mons[first])
-					&& !(uncommontwo && uncommon2(&mons[first]) && !(isscriptor && is_jonadabmonster(&mons[first]) ) && !Race_if(PM_RODNEYAN) )
-					&& !(uncommonthree && uncommon3(&mons[first]) && !(isscriptor && is_jonadabmonster(&mons[first]) ) && !Race_if(PM_RODNEYAN) )
-					&& !(uncommonfive && uncommon5(&mons[first]) && !(isscriptor && is_jonadabmonster(&mons[first]) ) && !Race_if(PM_RODNEYAN) )
-					&& !(uncommonseven && uncommon7(&mons[first]) && !(isscriptor && is_jonadabmonster(&mons[first]) ) && !Race_if(PM_RODNEYAN) )
-					&& !(uncommonten && uncommon10(&mons[first]) && !(isscriptor && is_jonadabmonster(&mons[first]) ) && !Race_if(PM_RODNEYAN) )
+					&& !(uncommontwo && uncommon2(&mons[first]) && !jonaspecialspawn(&mons[first]) && !Race_if(PM_RODNEYAN) )
+					&& !(uncommonthree && uncommon3(&mons[first]) && !jonaspecialspawn(&mons[first]) && !Race_if(PM_RODNEYAN) )
+					&& !(uncommonfive && uncommon5(&mons[first]) && !jonaspecialspawn(&mons[first]) && !Race_if(PM_RODNEYAN) )
+					&& !(uncommonseven && uncommon7(&mons[first]) && !jonaspecialspawn(&mons[first]) && !Race_if(PM_RODNEYAN) )
+					&& !(uncommonten && uncommon10(&mons[first]) && !jonaspecialspawn(&mons[first]) && !Race_if(PM_RODNEYAN) )
 					&& !(uncommonnewten && monstr[first] >= 10 && monstr[first] < 15 )
 					&& !(uncommonnewfifteen && monstr[first] >= 15 && monstr[first] < 20 )
 					&& !(uncommonnewtwenty && monstr[first] >= 20 && monstr[first] < 25 )
@@ -30113,6 +30132,7 @@ int     spc;
 		if ((FemtrapActiveLaura && (mons[first].msound == MS_SOCKS))) num -= 50;
 		if ((FemtrapActiveLaura && (mons[first].msound == MS_PANTS))) num -= 50;
 		if ((FemtrapActiveLaura && (mons[first].msound == MS_SHOE))) num -= 50;
+		if (u.pompejiwantedlevel && (mons[first].msound == MS_POMPEJI)) num -= min(1000, u.pompejiwantedlevel);
 
 		if (monster_with_trait(&mons[first], u.frequenttrait1)) num -= u.freqtraitbonus1;
 		if (u.frequenttrait2 && monster_with_trait(&mons[first], u.frequenttrait2)) num -= u.freqtraitbonus2;

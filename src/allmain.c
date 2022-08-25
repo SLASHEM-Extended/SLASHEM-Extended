@@ -4148,6 +4148,57 @@ greasingdone:
 
 		}
 
+		if (u.pompejiwantedlevel && !rn2(500)) {
+
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+			int pompejitype = rnd(2);
+
+			int aggroamount = min(u.pompejiwantedlevel, 10);
+
+			while (aggroamount) {
+				int attempts = 0;
+				struct permonst *pm = 0;
+				aggroamount--;
+
+newbossPOMP:
+				do {
+					pm = rndmonst();
+					attempts++;
+					if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+				} while ( (!pm || (pm && !(pm->msound == MS_POMPEJI ))) && attempts < 50000);
+
+				if (!pm && rn2(50) ) {
+					attempts = 0;
+					goto newbossPOMP;
+				}
+				if (pm && !(pm->msound == MS_POMPEJI) && rn2(50) ) {
+					attempts = 0;
+					goto newbossPOMP;
+				}
+
+				if (pompejitype == 1) {
+					(void) makemon(pm, 0, 0, MM_ADJACENTOK|MM_ANGRY);
+
+				} else {
+					coord cc, dd;
+					int cx,cy;
+				      cx = rn2(COLNO);
+				      cy = rn2(ROWNO);
+					if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
+					(void) makemon(pm, cx, cy, MM_ADJACENTOK|MM_ANGRY);
+
+				}
+			}
+
+			if (!rn2(10)) u.pompejiwantedlevel--;
+			if (u.pompejiwantedlevel < 0) u.pompejiwantedlevel = 0; /* fail safe */
+
+			u.aggravation = 0;
+
+		}
+
 		if (Role_if(PM_CLIMACTERIAL) && !rn2(1000) && u.ulevel >= 15) {
 			int x, y;
 			x = rn1(COLNO-3,2);

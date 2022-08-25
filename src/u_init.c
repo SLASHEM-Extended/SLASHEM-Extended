@@ -8965,6 +8965,9 @@ u_init()
 	struct permonst* randomflyfish = &mons[PM_RAZORFIN_FISH];
 	struct permonst* randomturret = &mons[PM_UNKNOWN_TURRET];
 	struct permonst* randomdragon = &mons[PM_RAINBOW_MODE_DRAGON];
+	struct permonst* randompompeji = &mons[PM_POMPEJI_SHAMBLER];
+	struct permonst* randompompejib = &mons[PM_POMPEJI_STUMBLER];
+	struct permonst* randompompejic = &mons[PM_POMPEJI_SPILLER];
 
 	struct permonst* randomsphere = &mons[PM_RNG_SPHERE];
 	struct permonst* randomlight = &mons[PM_RNG_LIGHT];
@@ -25908,6 +25911,159 @@ u_init()
 	randomkopc->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	randomkopc->mflags2 &= ~M2_PNAME;				/* not a proper name */
 
+	randompompeji->mmove = rn2(15)+9;				/* slow to very fast */
+	randompompeji->ac = rn2(26)-15;				/* any AC */
+	randompompeji->mr = rn2(5)*25;				/* varying amounts of MR */
+	/* attacks...?  */
+	for (i = 0; i < rnd(4); i++) {
+		attkptr = &randompompeji->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(16)+2;				/* either too high or too low */
+	}
+	randompompeji->mresists = 0;
+	for (i = 0; i < rnd(8); i++) {
+		randompompeji->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(5); i++) {
+		randompompeji->mresists |= (0x100 << rn2(7));	/* 'different' resistances, even clumsy */
+	}
+	randompompeji->mconveys = 0;					/* flagged NOCORPSE */
+	/*
+	 * now time for the random flags.  this will likely produce
+	 * a number of complete trainwreck monsters at first, but
+	 * every so often something will dial up nasty stuff
+	 */
+	randompompeji->mflags1 = M1_BREATHLESS|M1_MINDLESS|M1_HUMANOID;
+	for (i = 0; i < rnd(17); i++) {
+		randompompeji->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+
+	randompompeji->mflags2 = M2_STALK|M2_HOSTILE|M2_STRONG|M2_NEUTER|M2_NASTY;		/* Don't let the player be one of these yet. */
+	for (i = 0; i < rnd(17); i++) {
+		randompompeji->mflags2 |= (1 << rn2(31));
+	}
+	randompompeji->mflags2 &= ~M2_MERC;				/* no guards */
+	randompompeji->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	randompompeji->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	randompompeji->mflags2 &= ~M2_PNAME;				/* not a proper name */
+
+	randompompejib->mmove = rn2(20)+9;				/* slow to very fast */
+	randompompejib->ac = rn2(41)-30;				/* any AC */
+	randompompejib->mr = rn2(5)*25;				/* varying amounts of MR */
+	/* attacks...?  */
+	for (i = 0; i < rnd(5); i++) {
+		attkptr = &randompompejib->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(22)+2;				/* either too high or too low */
+	}
+	randompompejib->mresists = 0;
+	for (i = 0; i < rnd(10); i++) {
+		randompompejib->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(5); i++) {
+		randompompejib->mresists |= (0x100 << rn2(7));	/* 'different' resistances, even clumsy */
+	}
+	randompompejib->mconveys = 0;					/* flagged NOCORPSE */
+	/*
+	 * now time for the random flags.  this will likely produce
+	 * a number of complete trainwreck monsters at first, but
+	 * every so often something will dial up nasty stuff
+	 */
+	randompompejib->mflags1 = M1_BREATHLESS|M1_MINDLESS|M1_HUMANOID;
+	for (i = 0; i < rnd(17); i++) {
+		randompompejib->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+
+	randompompejib->mflags2 = M2_STALK|M2_HOSTILE|M2_STRONG|M2_NEUTER|M2_NASTY;		/* Don't let the player be one of these yet. */
+	for (i = 0; i < rnd(17); i++) {
+		randompompejib->mflags2 |= (1 << rn2(31));
+	}
+	randompompejib->mflags2 &= ~M2_MERC;				/* no guards */
+	randompompejib->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	randompompejib->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	randompompejib->mflags2 &= ~M2_PNAME;				/* not a proper name */
+
+	randompompejic->mmove = rn2(27)+9;				/* slow to very fast */
+	randompompejic->ac = rn2(55)-44;				/* any AC */
+	randompompejic->mr = rn2(5)*25;				/* varying amounts of MR */
+	/* attacks...?  */
+	for (i = 0; i < (rnd(5) + 1); i++) {
+		attkptr = &randompompejic->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(32)+2;				/* either too high or too low */
+	}
+	randompompejic->mresists = 0;
+	for (i = 0; i < rnd(12); i++) {
+		randompompejic->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(5); i++) {
+		randompompejic->mresists |= (0x100 << rn2(7));	/* 'different' resistances, even clumsy */
+	}
+	randompompejic->mconveys = 0;					/* flagged NOCORPSE */
+	/*
+	 * now time for the random flags.  this will likely produce
+	 * a number of complete trainwreck monsters at first, but
+	 * every so often something will dial up nasty stuff
+	 */
+	randompompejic->mflags1 = M1_BREATHLESS|M1_MINDLESS|M1_HUMANOID;
+	for (i = 0; i < rnd(17); i++) {
+		randompompejic->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+
+	randompompejic->mflags2 = M2_STALK|M2_HOSTILE|M2_STRONG|M2_NEUTER|M2_NASTY;		/* Don't let the player be one of these yet. */
+	for (i = 0; i < rnd(17); i++) {
+		randompompejic->mflags2 |= (1 << rn2(31));
+	}
+	randompompejic->mflags2 &= ~M2_MERC;				/* no guards */
+	randompompejic->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	randompompejic->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	randompompejic->mflags2 &= ~M2_PNAME;				/* not a proper name */
+
 	/* Starlit sky monsters are an invention of my roommate. It's a name that she gave to a glitch monster
 	 * in Castle of the Winds. --Amy */
 
@@ -31786,6 +31942,9 @@ int realityflag;
 	struct permonst* randomflyfish = &mons[PM_RAZORFIN_FISH];
 	struct permonst* randomturret = &mons[PM_UNKNOWN_TURRET];
 	struct permonst* randomdragon = &mons[PM_RAINBOW_MODE_DRAGON];
+	struct permonst* randompompeji = &mons[PM_POMPEJI_SHAMBLER];
+	struct permonst* randompompejib = &mons[PM_POMPEJI_STUMBLER];
+	struct permonst* randompompejic = &mons[PM_POMPEJI_SPILLER];
 
 	struct permonst* randomsphere = &mons[PM_RNG_SPHERE];
 	struct permonst* randomlight = &mons[PM_RNG_LIGHT];
@@ -41923,6 +42082,159 @@ int realityflag;
 	randomkopc->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
 	randomkopc->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	randomkopc->mflags2 &= ~M2_PNAME;				/* not a proper name */
+
+	randompompeji->mmove = rn2(15)+9;				/* slow to very fast */
+	randompompeji->ac = rn2(26)-15;				/* any AC */
+	randompompeji->mr = rn2(5)*25;				/* varying amounts of MR */
+	/* attacks...?  */
+	for (i = 0; i < rnd(4); i++) {
+		attkptr = &randompompeji->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(16)+2;				/* either too high or too low */
+	}
+	randompompeji->mresists = 0;
+	for (i = 0; i < rnd(8); i++) {
+		randompompeji->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(5); i++) {
+		randompompeji->mresists |= (0x100 << rn2(7));	/* 'different' resistances, even clumsy */
+	}
+	randompompeji->mconveys = 0;					/* flagged NOCORPSE */
+	/*
+	 * now time for the random flags.  this will likely produce
+	 * a number of complete trainwreck monsters at first, but
+	 * every so often something will dial up nasty stuff
+	 */
+	randompompeji->mflags1 = M1_BREATHLESS|M1_MINDLESS|M1_HUMANOID;
+	for (i = 0; i < rnd(17); i++) {
+		randompompeji->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+
+	randompompeji->mflags2 = M2_STALK|M2_HOSTILE|M2_STRONG|M2_NEUTER|M2_NASTY;		/* Don't let the player be one of these yet. */
+	for (i = 0; i < rnd(17); i++) {
+		randompompeji->mflags2 |= (1 << rn2(31));
+	}
+	randompompeji->mflags2 &= ~M2_MERC;				/* no guards */
+	randompompeji->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	randompompeji->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	randompompeji->mflags2 &= ~M2_PNAME;				/* not a proper name */
+
+	randompompejib->mmove = rn2(20)+9;				/* slow to very fast */
+	randompompejib->ac = rn2(41)-30;				/* any AC */
+	randompompejib->mr = rn2(5)*25;				/* varying amounts of MR */
+	/* attacks...?  */
+	for (i = 0; i < rnd(5); i++) {
+		attkptr = &randompompejib->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(22)+2;				/* either too high or too low */
+	}
+	randompompejib->mresists = 0;
+	for (i = 0; i < rnd(10); i++) {
+		randompompejib->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(5); i++) {
+		randompompejib->mresists |= (0x100 << rn2(7));	/* 'different' resistances, even clumsy */
+	}
+	randompompejib->mconveys = 0;					/* flagged NOCORPSE */
+	/*
+	 * now time for the random flags.  this will likely produce
+	 * a number of complete trainwreck monsters at first, but
+	 * every so often something will dial up nasty stuff
+	 */
+	randompompejib->mflags1 = M1_BREATHLESS|M1_MINDLESS|M1_HUMANOID;
+	for (i = 0; i < rnd(17); i++) {
+		randompompejib->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+
+	randompompejib->mflags2 = M2_STALK|M2_HOSTILE|M2_STRONG|M2_NEUTER|M2_NASTY;		/* Don't let the player be one of these yet. */
+	for (i = 0; i < rnd(17); i++) {
+		randompompejib->mflags2 |= (1 << rn2(31));
+	}
+	randompompejib->mflags2 &= ~M2_MERC;				/* no guards */
+	randompompejib->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	randompompejib->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	randompompejib->mflags2 &= ~M2_PNAME;				/* not a proper name */
+
+	randompompejic->mmove = rn2(27)+9;				/* slow to very fast */
+	randompompejic->ac = rn2(55)-44;				/* any AC */
+	randompompejic->mr = rn2(5)*25;				/* varying amounts of MR */
+	/* attacks...?  */
+	for (i = 0; i < (rnd(5) + 1); i++) {
+		attkptr = &randompompejic->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(32)+2;				/* either too high or too low */
+	}
+	randompompejic->mresists = 0;
+	for (i = 0; i < rnd(12); i++) {
+		randompompejic->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(5); i++) {
+		randompompejic->mresists |= (0x100 << rn2(7));	/* 'different' resistances, even clumsy */
+	}
+	randompompejic->mconveys = 0;					/* flagged NOCORPSE */
+	/*
+	 * now time for the random flags.  this will likely produce
+	 * a number of complete trainwreck monsters at first, but
+	 * every so often something will dial up nasty stuff
+	 */
+	randompompejic->mflags1 = M1_BREATHLESS|M1_MINDLESS|M1_HUMANOID;
+	for (i = 0; i < rnd(17); i++) {
+		randompompejic->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+
+	randompompejic->mflags2 = M2_STALK|M2_HOSTILE|M2_STRONG|M2_NEUTER|M2_NASTY;		/* Don't let the player be one of these yet. */
+	for (i = 0; i < rnd(17); i++) {
+		randompompejic->mflags2 |= (1 << rn2(31));
+	}
+	randompompejic->mflags2 &= ~M2_MERC;				/* no guards */
+	randompompejic->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	randompompejic->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	randompompejic->mflags2 &= ~M2_PNAME;				/* not a proper name */
 
 	/* Starlit sky monsters are an invention of my roommate. It's a name that she gave to a glitch monster
 	 * in Castle of the Winds. --Amy */

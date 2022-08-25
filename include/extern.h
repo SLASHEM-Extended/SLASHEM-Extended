@@ -1571,6 +1571,7 @@ E void mkmonmoney(struct monst *, long);
 #endif
 E void bagotricks(struct obj *);
 E boolean propagate(int, BOOLEAN_P,BOOLEAN_P);
+E boolean jonaspecialspawn(struct permonst *);
 
 /* ### mapglyph.c ### */
 
