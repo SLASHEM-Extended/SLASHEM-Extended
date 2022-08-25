@@ -5715,6 +5715,25 @@ static const char *epitaphs[] = {
 	"What, my prayer timeout can't possibly have been so high. My last prayer was over 10k turns ago.",
 	"Weapons suck, they always get stolen by nymphs! And in this particular case there was also a feral lion nearby which I then couldn't handle anymore without my weapon!",
 	"Oh damn, should probably have put my full plate mail back on after that foocubus encounter.",
+	"Man, I ascended vanilla so I expected I'd be reasonably prepared to ascend SLEX too!",
+	"Man... I ascended every nethack variant except SLEX, so I really didn't expect that to be so much harder than even the hardest other variants! Seems like I have to re-learn how to play the game if I want to win!",
+	"Dude SLEX is busted, I did a spectacular multi-conduct ascension in evilhack with pacifist and wishless among other challenges, yet I can't seem to survive in SLEX even without following conducts! Amy made it way too hard!",
+	"Why the hell is SLEX so hard? I've won Grunthack, one of the hardest variants in existence, so really I expected my standard Grunthack strategy to mostly work in SLEX, too!",
+	"Wait what, I'm supposed to farlook every monster because it'll have some attack that fucks you up if I don't? That's just plain silly, even the hardest non-SLEX variants don't require that level of hardcore autism.",
+	"Some bastard monster disenchanted all my precious gear and I lacked the resources to enchant them back up, and then some other monster killed me.",
+	"#quit - reason: nymph stole my +9 artifact weapon and levelported with it to god knows where",
+	"It simply is unfair if a bog-standard monster has destroy armor attacks and nukes the items you spent all game to find. Regular random monsters are supposed to be trash mobs that you can easily obliterate, they shouldn't be able to actually pose a threat!",
+	"That permanent stat damage attack is busted and way too many regular monsters have it, so you can never have good stats with your character! No wonder I died!",
+	"It is shit that there is a spell memory reduction attack. The bastard monsters kept erasing my main attack spell and even though I read the book several times to re-learn it, they just erased it again and then the book was out of charges! #(rage)quit",
+	"FUCK YOU AMY! YOU MADE IT SO THAT THE VULNERABILITY ATTACK CAN DEACTIVATE MY SPIRIT'S PHASING FOR 100000 TURNS!!! YOU CAN'T POSSIBLY BE SERIOUS, FIX THAT OR I'LL NEVER PLAY AGAIN!", /* all caps on purpose, this isn't meant to imitate anyone in particular (there are several players who are really fond of wallwalking but none of them talk like this) --Amy */
+	"Yeah why the hell did that level 6 monster deal 120 damage in one round, that's like super unbalanced. Such a monster shouldn't even be allowed to exist.",
+	"What are you supposed to do about that superfast monster that hits you with three random status effects per turn? Once it hits you a couple of times, you can't even unihorn the effects away quickly enough, so you'll just die!",
+	"That single spiked devil ended my game by first gating in one demon, then it and that other demon gated in two more, then the bunch of them gated in four more, then they gated in seven more and a demon lord, and then that gated in five more and another demon lord, and then I just died. What are you supposed to do about that???",
+	"uhh... dude that monster was much stronger than all the other monsters at that depth! something's gotta be bugged there, no single monster should be that strong, especially since it wasn't even a boss or anything",
+	"Amy that feature is sexist! It objectifies women and denies nonbinary people the right to be a gender other than male or female! You must remove it from your game or I'll rile up a huge hate mob that will force you to!",
+	"Oh great, I thought this game had a sane developer, but nooooo, I rolled the same character that I had ascended in an earlier version only to discover that the evil Amy witch has nerfed everything I used in order to win.",
+	"That's it! I'll discontinue playing SLEX now until Amy listens to me, because I am entitled to keep ascending the game with the same strategy I used before. Either she reverts the bad changes that nerfed my strat or she can just shrivel up and die.",
+	"Amy fixed what she considers an 'ascendancy bug', even though I legitimately ascended her stupid game. Since my winning strategy no longer works in her game now, I'll switch over to malorhack, whose developer will happily let me keep ascending the same char over and over until I die of old age.",
 
 };
 
