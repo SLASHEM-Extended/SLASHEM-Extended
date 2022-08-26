@@ -5734,6 +5734,13 @@ static const char *epitaphs[] = {
 	"Oh great, I thought this game had a sane developer, but nooooo, I rolled the same character that I had ascended in an earlier version only to discover that the evil Amy witch has nerfed everything I used in order to win.",
 	"That's it! I'll discontinue playing SLEX now until Amy listens to me, because I am entitled to keep ascending the game with the same strategy I used before. Either she reverts the bad changes that nerfed my strat or she can just shrivel up and die.",
 	"Amy fixed what she considers an 'ascendancy bug', even though I legitimately ascended her stupid game. Since my winning strategy no longer works in her game now, I'll switch over to malorhack, whose developer will happily let me keep ascending the same char over and over until I die of old age.",
+	"Bah, those pompeji squads are far too strong, they're hard to kill and will off even a strong character in a few turns!",
+	"Amy you should remove the pompeji squad thing again, I used to be able to kill shopkeepers and temple priests with impunity but those overpowered bastards just wreck my char every time I do!",
+	"What was Amy thinking??? I killed all of one shopkeeper, and a few thousand turns later a fucking level 20 'pompeji poisoner' spawned and absolutely obliterated my low-level character! There's unbalanced and there's unfair, but that encounter was off even those scales!",
+	"Blah, the fluidator squads ruined my equipment, all I did was wallwalking so I really feel that there shouldn't be such a harsh penalty.",
+	"Amy you suck, why did you make it so that fluidator squads spawn all the time whenever I use my wallwalking ability. And most aggravatingly, far too many of them trash your stats with poison and similar shit, ruining my character.",
+	"Eh, #quit, won't play the game again. If I can't even pick spirit and play them the way God intended, the game sucks. You are supposed to be able to shortcut past everything and mostly not be bothered by monsters if you phsae through walls, but the fluidators make that impossible.",
+	"The hell is a 'fluidator drerge', why on earth did that spawn and attack my incorporealoid and why on earth does it have six stat-draining attacks that fuck you over like you cannot believe??? Unplayable game!",
 
 };
 
