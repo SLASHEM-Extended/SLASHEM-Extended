@@ -9189,6 +9189,9 @@ u_init()
 	struct permonst* randspoilerl = &mons[PM_BLUE_LICH];
 	struct permonst* randspoilerm = &mons[PM_SPOILER_LICH];
 
+	struct permonst* randfluidator = &mons[PM_FLUIDATOR_WEGA];
+	struct permonst* randfluidatorb = &mons[PM_FLUIDATOR_STARRA];
+
 	static char buf[BUFSZ];
 
 	struct attack* attkptr;
@@ -25100,6 +25103,38 @@ u_init()
 	randspoilerm->mr = rn2(5)*25;				/* varying amounts of MR */
 	randspoilerm->maligntyp = rn2(21)-10;			/* any alignment */
 
+	for (i = 0; i < 2; i++) {
+		attkptr = &randfluidator->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+	}
+	randfluidator->mmove = rn2(9)+9;				/* slow to very fast */
+	randfluidator->ac = rn2(18)-7;				/* any AC */
+	randfluidator->mr = rn2(5)*25;				/* varying amounts of MR */
+	randfluidator->mresists = 0;
+	for (i = 0; i < rnd(6); i++) {
+		randfluidator->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+
+	for (i = 0; i < 4; i++) {
+		attkptr = &randfluidatorb->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+	}
+	randfluidatorb->mmove = rn2(14)+9;				/* slow to very fast */
+	randfluidatorb->ac = rn2(31)-20;				/* any AC */
+	randfluidatorb->mr = rn2(5)*25;				/* varying amounts of MR */
+	randfluidatorb->mresists = 0;
+	for (i = 0; i < rnd(6); i++) {
+		randfluidatorb->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+
 	for (i = 1; i < 2; i++) {
 		attkptr = &randxya->mattk[i];
 
@@ -32165,6 +32200,9 @@ int realityflag;
 	struct permonst* randspoilerk = &mons[PM_AGVZDHVZZXI_DGVZDHBHC_N_B_JK];
 	struct permonst* randspoilerl = &mons[PM_BLUE_LICH];
 	struct permonst* randspoilerm = &mons[PM_SPOILER_LICH];
+
+	struct permonst* randfluidator = &mons[PM_FLUIDATOR_WEGA];
+	struct permonst* randfluidatorb = &mons[PM_FLUIDATOR_STARRA];
 
 	static char buf[BUFSZ];
 
@@ -41271,6 +41309,38 @@ int realityflag;
 	randspoilerm->ac = rn2(26)-15;				/* any AC */
 	randspoilerm->mr = rn2(5)*25;				/* varying amounts of MR */
 	randspoilerm->maligntyp = rn2(21)-10;			/* any alignment */
+
+	for (i = 0; i < 2; i++) {
+		attkptr = &randfluidator->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+	}
+	randfluidator->mmove = rn2(9)+9;				/* slow to very fast */
+	randfluidator->ac = rn2(18)-7;				/* any AC */
+	randfluidator->mr = rn2(5)*25;				/* varying amounts of MR */
+	randfluidator->mresists = 0;
+	for (i = 0; i < rnd(6); i++) {
+		randfluidator->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+
+	for (i = 0; i < 4; i++) {
+		attkptr = &randfluidatorb->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+	}
+	randfluidatorb->mmove = rn2(14)+9;				/* slow to very fast */
+	randfluidatorb->ac = rn2(31)-20;				/* any AC */
+	randfluidatorb->mr = rn2(5)*25;				/* varying amounts of MR */
+	randfluidatorb->mresists = 0;
+	for (i = 0; i < rnd(6); i++) {
+		randfluidatorb->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
 
 	for (i = 1; i < 2; i++) {
 		attkptr = &randxya->mattk[i];

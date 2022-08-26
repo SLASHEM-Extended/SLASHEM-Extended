@@ -10944,6 +10944,10 @@ loveheelover:
 			 (void) mongets(mtmp, CHOCOLATE);
 			 (void) mongets(mtmp, CHOCOEGG);
 		}
+		if (mtmp->data == &mons[PM_FLUIDATOR_TRER]) {
+			 (void) mongets(mtmp, QUARTERSTAFF);
+			 (void) mongets(mtmp, LANCE);
+		}
 		if (ptr == &mons[PM_PUMPKIN]) {
 			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
 			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
@@ -23756,6 +23760,46 @@ register int	mmflags;
 		mtmp->isegotype = 1;
 		mtmp->egotype_perfumespreader = 1;
 	}
+	if (ptr == &mons[PM_FLUIDATOR_MAFFER]) {
+		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
+		mtmp->isegotype = 1;
+		mtmp->egotype_metalmafioso = 1;
+	}
+	if (ptr == &mons[PM_FLUIDATOR_SINGER]) {
+		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
+		mtmp->isegotype = 1;
+		mtmp->egotype_singagent = 1;
+	}
+	if (ptr == &mons[PM_FLUIDATOR_GRAPHIC]) {
+		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
+		mtmp->isegotype = 1;
+		mtmp->egotype_alladrainer = 1;
+	}
+	if (ptr == &mons[PM_FLUIDATOR_KRONA]) {
+		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
+		mtmp->isegotype = 1;
+		mtmp->egotype_converter = 1;
+	}
+	if (ptr == &mons[PM_FLUIDATOR_WOAWOA]) {
+		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
+		mtmp->isegotype = 1;
+		mtmp->egotype_wouwouer = 1;
+	}
+	if (ptr == &mons[PM_FLUIDATOR_TONE]) {
+		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
+		mtmp->isegotype = 1;
+		mtmp->egotype_farter = 1;
+	}
+	if (ptr == &mons[PM_FLUIDATOR_PRUMA]) {
+		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
+		mtmp->isegotype = 1;
+		mtmp->egotype_perfumespreader = 1;
+	}
+	if (ptr == &mons[PM_FLUIDATOR_WEND]) {
+		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
+		mtmp->isegotype = 1;
+		mtmp->egotype_deepstatemember = 1;
+	}
 	if (ptr == &mons[PM_DEEPSTATE_DISALLAER]) {
 		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
 		mtmp->isegotype = 1;
@@ -25013,6 +25057,7 @@ register int	mmflags;
 			break;
 		case S_DEMON:
 			if (mndx == PM_IT_MAKES_PITSCHAEFF_) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_FLUIDATOR_WEND) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mtmp->data == &mons[PM_HARDCORE_ALIEN]) {
 				int spawnnumber = rn1(7, 3);
 				while (spawnnumber > 0) {

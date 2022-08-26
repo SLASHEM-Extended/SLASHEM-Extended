@@ -4291,7 +4291,7 @@ postmov:
 		    conceals = hides_under(ptr);
 		}
 
-		if ((EaterBugEffect || u.uprops[EATER_BUG].extrinsic || have_eaterstone() || ptr == &mons[PM_RAW_MATERIAL_COLLECTING_TANK] || ptr == &mons[PM_BURNEL_WHIRL] || mtmp->egotype_allivore)) {
+		if ((EaterBugEffect || u.uprops[EATER_BUG].extrinsic || have_eaterstone() || ptr == &mons[PM_RAW_MATERIAL_COLLECTING_TANK] || ptr == &mons[PM_BURNEL_WHIRL] || ptr == &mons[PM_FLUIDATOR_NOB] || mtmp->egotype_allivore)) {
 		    if (meatanything(mtmp) == 2) return 2;	/* it died */
 		}
 

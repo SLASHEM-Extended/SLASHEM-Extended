@@ -2443,6 +2443,11 @@ inaccurateguns:
 		pline("%s swats the projectile away!", Monnam(mon));
 	}
 
+	if (mon->data == &mons[PM_FLUIDATOR_ANDER] && rn2(15) && tmp > -20) {
+		tmp = -100;
+		pline("%s swats the projectile away!", Monnam(mon));
+	}
+
 	if (mon->data == &mons[PM_FART_ATHLETE] && rn2(15) && tmp > -20) {
 		tmp = -100;
 		pline("%s swats the projectile away!", Monnam(mon));

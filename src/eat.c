@@ -3224,6 +3224,7 @@ register int pm;
 	    case PM_SPEED_TROVE:
 	    case PM_MINI_CHICKATRICE:
 	    case PM_SPEEDOTRICE:
+	    case PM_FLUIDATOR_WSCHLSCHLSCHLSCHLSCH:
 	    case PM_UNCERTAINTY_DEMON:
 	    case PM_HISPEED_CHICKEN:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;

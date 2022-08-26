@@ -4148,6 +4148,76 @@ greasingdone:
 
 		}
 
+		if (u.fluidatorwantedlevel > 100) {
+			int fluidatorchance = 500;
+			if (u.fluidatorwantedlevel > 500) fluidatorchance = 400;
+			if (u.fluidatorwantedlevel > 1000) fluidatorchance = 300;
+			if (u.fluidatorwantedlevel > 2000) fluidatorchance = 200;
+			if (u.fluidatorwantedlevel > 5000) fluidatorchance = 100;
+
+			if (!rn2(fluidatorchance)) {
+				register struct monst *fluidone;
+				int aggroamount = 1;
+				if (!rn2(10)) aggroamount += rnd(10);
+				boolean onefluiddone = FALSE;
+
+				int samefluidator = rn2(2);
+				int samefluidmonster = -1;
+
+				if (Aggravate_monster) {
+					u.aggravation = 1;
+					reset_rndmonst(NON_PM);
+				}
+
+				while (aggroamount) {
+					int attempts = 0;
+					struct permonst *pm = 0;
+					aggroamount--;
+
+newbossFLUID:
+					do {
+						pm = rndmonst();
+						attempts++;
+						if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+					} while ( (!pm || (pm && !(pm->msound == MS_FLUIDATOR ))) && attempts < 50000);
+
+					if (!pm && rn2(50) ) {
+						attempts = 0;
+						goto newbossFLUID;
+					}
+					if (pm && !(pm->msound == MS_FLUIDATOR) && rn2(50) ) {
+						attempts = 0;
+						goto newbossFLUID;
+					}
+
+					if (samefluidator == 2 && samefluidmonster) pm = &mons[samefluidmonster];
+
+					if (onefluiddone) {
+						if (fluidone) {
+							(void) makemon(pm, fluidone->mx, fluidone->my, MM_ADJACENTOK|MM_ANGRY);
+						} else {
+							fluidone = makemon(pm, 0, 0, MM_ADJACENTOK|MM_ANGRY);
+							onefluiddone = TRUE;
+							if (fluidone && (samefluidator == 1)) {
+								samefluidator = 2;
+								samefluidmonster = fluidone->mnum;
+							}
+						}
+					} else {
+						fluidone = makemon(pm, 0, 0, MM_ADJACENTOK|MM_ANGRY);
+						onefluiddone = TRUE;
+						if (fluidone && (samefluidator == 1)) {
+							samefluidator = 2;
+							samefluidmonster = fluidone->mnum;
+						}
+					}
+				}
+				u.aggravation = 0;
+			}
+
+		}
+
 		if (u.pompejiwantedlevel && !rn2(500)) {
 
 			u.aggravation = 1;
