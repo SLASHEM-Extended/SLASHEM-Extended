@@ -5739,7 +5739,7 @@ static const char *epitaphs[] = {
 	"What was Amy thinking??? I killed all of one shopkeeper, and a few thousand turns later a fucking level 20 'pompeji poisoner' spawned and absolutely obliterated my low-level character! There's unbalanced and there's unfair, but that encounter was off even those scales!",
 	"Blah, the fluidator squads ruined my equipment, all I did was wallwalking so I really feel that there shouldn't be such a harsh penalty.",
 	"Amy you suck, why did you make it so that fluidator squads spawn all the time whenever I use my wallwalking ability. And most aggravatingly, far too many of them trash your stats with poison and similar shit, ruining my character.",
-	"Eh, #quit, won't play the game again. If I can't even pick spirit and play them the way God intended, the game sucks. You are supposed to be able to shortcut past everything and mostly not be bothered by monsters if you phsae through walls, but the fluidators make that impossible.",
+	"Eh, #quit, won't play the game again. If I can't even pick spirit and play them the way God intended, the game sucks. You are supposed to be able to shortcut past everything and mostly not be bothered by monsters if you phase through walls, but the fluidators make that impossible.",
 	"The hell is a 'fluidator drerge', why on earth did that spawn and attack my incorporealoid and why on earth does it have six stat-draining attacks that fuck you over like you cannot believe??? Unplayable game!",
 
 };

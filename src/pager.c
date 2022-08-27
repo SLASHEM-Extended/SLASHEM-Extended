@@ -27877,6 +27877,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"Shoe outlets are discriminatory if you ask me. They separate shoes by gender, which is like saying 'yeah, kindly buy a pair of shoes for your gender and ignore all the ones for the other gender, even if there'd be some really amazing ones that you'd absolutely like to wear'. Let people wear whichever shoes they damn well want to wear, please!",
 	"You are way too busy with your two weapons and shield.",
 	"You are way too busy with your two weapons and shield. Cheater, how did you manage to equip those at the same time anyway?", /* yes I know, grim shields allow it :-P */
+	"Fluidators and pompejis will put anyone in the gefaengnis for performing actions that are verboten, using their big hammer!",
+	"Remember that the pompeji squad will punish those who think they can simply murder peaceful NPCs in town-like levels, or also elsewhere!",
+	"Don't walk through walls non-stop, or the fluidator squads are coming to catch you!",
 
 };
 

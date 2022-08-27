@@ -9233,6 +9233,10 @@ A("Kamahewa",				GAUNTLETS_OF_SAFEGUARD, /* glib combat; using appraisal on them
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
+A("Arshtrittmesser",				MEASURER, /* by amateurhour, doesn't give -4 to-hit penalty when restricted */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

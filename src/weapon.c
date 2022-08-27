@@ -6350,10 +6350,13 @@ struct obj *weapon;
 	bonus = 0;
     } else if (type <= P_LAST_WEAPON) {
 
-	if (PlayerCannotUseSkills) bonus -= 4;
+	if (PlayerCannotUseSkills && !(weapon && weapon->oartifact == ART_ARSHTRITTMESSER) ) bonus -= 4;
 	else switch (P_SKILL(type)) {
 	    default: impossible(bad_skill, P_SKILL(type)); /* fall through */
 	    case P_ISRESTRICTED:
+			if (!(weapon && weapon->oartifact == ART_ARSHTRITTMESSER) ) bonus = -4;
+			else bonus = 0;
+			break;
 	    case P_UNSKILLED:   bonus = -4; break;
 	    case P_BASIC:       bonus =  rn2(2); break;
 		    case P_SKILLED:     bonus =  1 + rn2(4); break;

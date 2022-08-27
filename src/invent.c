@@ -22678,6 +22678,8 @@ boolean knoweverything;
 					pline("Artifact specs: +4 to-hit and +8 damage to fire-susceptible monsters, stoned chilling and sight bonus when wielded."); break;
 				case ART_KAMAHEWA:
 					pline("Artifact specs: glib combat when worn. If you use the appraisal technique on this artifact while it's +6 or lower, it gains a point of enchantment."); break;
+				case ART_ARSHTRITTMESSER:
+					pline("Artifact specs: doesn't give a -4 to-hit penalty if you're restricted in the knife skill. This artifact was suggested by amateurhour and is now officially spelled that way because that was the original spelling that got suggested :-)"); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;
