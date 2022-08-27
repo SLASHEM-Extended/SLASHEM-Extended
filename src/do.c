@@ -1217,7 +1217,7 @@ register const char *word;
 					body_part(HAND));
 		return(FALSE);
 	}
-	if (obj->otyp == AMULET_OF_YENDOR || obj->otyp == FAKE_AMULET_OF_YENDOR) {
+	if ((obj->otyp == AMULET_OF_YENDOR || obj->otyp == FAKE_AMULET_OF_YENDOR) && !u.freeplaymode) {
 		if (*word)
 			pline("You can't %s such a powerful item.", word);
 		return(FALSE);
