@@ -2446,10 +2446,12 @@ badeffect()
 		    int i, j, bd;
 			bd = 1;
 			if (!rn2(5)) bd += rnz(1);
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 
 		      for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 				if (!isok(u.ux + i, u.uy + j)) continue;
-				if (levl[u.ux + i][u.uy + j].typ <= DBWALL) continue;
+				if ((levl[u.ux + i][u.uy + j].typ <= DBWALL) && !canbeinawall) continue;
 				if (t_at(u.ux + i, u.uy + j)) continue;
 
 			      rtrap = randomtrap();
@@ -3922,10 +3924,12 @@ reallybadeffect()
 		    int i, j, bd;
 			bd = 1;
 			if (!rn2(5)) bd += rnz(1);
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 
 		      for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 				if (!isok(u.ux + i, u.uy + j)) continue;
-				if (levl[u.ux + i][u.uy + j].typ <= DBWALL) continue;
+				if ((levl[u.ux + i][u.uy + j].typ <= DBWALL) && !canbeinawall) continue;
 				if (t_at(u.ux + i, u.uy + j)) continue;
 
 			      rtrap = randomtrap();

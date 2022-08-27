@@ -8651,9 +8651,12 @@ newbossB:
 		if (uamul && uamul->oartifact == ART_EIGHTH_DEADLY_SIN && !rn2(10000) ) {
 
 		    int oi, oj, bd = 1;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
+
 		    for (oi = -bd; oi <= bd; oi++) for(oj = -bd; oj <= bd; oj++) {
 				if (!isok(u.ux + oi, u.uy + oj)) continue;
-				if (levl[u.ux + oi][u.uy + oj].typ <= DBWALL) continue;
+				if ((levl[u.ux + oi][u.uy + oj].typ <= DBWALL) && !canbeinawall) continue;
 				if (t_at(u.ux + oi, u.uy + oj)) continue;
 			maketrap(u.ux + oi, u.uy + oj, SIN_TRAP, 0, FALSE);
 		    }
@@ -9135,12 +9138,14 @@ newbossB:
 		if (uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS && !rn2(1000) ) {
 			int tryct = 0;
 			int x, y;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 
 			for (tryct = 0; tryct < 2000; tryct++) {
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+				if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
@@ -9151,6 +9156,7 @@ newbossB:
 			struct trap *larissatrap;
 			int tryct = 0;
 			int x, y;
+			/* must be on a walkable tile because you're supposed to trigger it on purpose */
 
 			for (tryct = 0; tryct < 2000; tryct++) {
 				x = rn1(COLNO-3,2);
@@ -9174,12 +9180,14 @@ newbossB:
 		if (uarmf && uarmf->oartifact == ART_SMELL_LIKE_DOG_SHIT && !rn2(1000) ) {
 			int tryct = 0;
 			int x, y;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 
 			for (tryct = 0; tryct < 2000; tryct++) {
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+				if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
@@ -9190,12 +9198,14 @@ newbossB:
 			int tryct = 0;
 			int x, y;
 			register struct trap *shittrap;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 
 			for (tryct = 0; tryct < 2000; tryct++) {
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+				if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 					shittrap = maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					if (shittrap && !(shittrap->hiddentrap)) {
 						shittrap->tseen = 1;
@@ -9247,12 +9257,14 @@ newbossB:
 		if (Role_if(PM_GANG_SCHOLAR) && !rn2(500) ) {
 			int tryct = 0;
 			int x, y;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 
 			for (tryct = 0; tryct < 2000; tryct++) {
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+				if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
@@ -9376,12 +9388,14 @@ newbossB:
 		if (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE && !rn2(500) ) {
 			int tryct = 0;
 			int x, y;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 
 			for (tryct = 0; tryct < 2000; tryct++) {
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+				if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
@@ -9391,12 +9405,14 @@ newbossB:
 		if (uarmf && uarmf->oartifact == ART_BLUEDE && !rn2(1000) ) {
 			int tryct = 0;
 			int x, y;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 
 			for (tryct = 0; tryct < 2000; tryct++) {
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+				if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 					(void) maketrap(x, y, NATALJE_TRAP, 0, FALSE);
 					break;
 					}
@@ -9407,12 +9423,14 @@ newbossB:
 
 			int tryct = 0;
 			int x, y;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 
 			for (tryct = 0; tryct < 2000; tryct++) {
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+				if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 					(void) maketrap(x, y, FART_TRAP, 0, TRUE);
 					break;
 					}
@@ -9424,12 +9442,14 @@ newbossB:
 
 			int tryct = 0;
 			int x, y;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 
 			for (tryct = 0; tryct < 2000; tryct++) {
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+				if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 					(void) maketrap(x, y, FART_TRAP, 0, TRUE);
 					break;
 					}
@@ -9441,12 +9461,14 @@ newbossB:
 
 			int tryct = 0;
 			int x, y;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 
 			for (tryct = 0; tryct < 2000; tryct++) {
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+				if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 					(void) maketrap(x, y, FART_TRAP, 0, TRUE);
 					break;
 					}
@@ -9458,12 +9480,14 @@ newbossB:
 
 			int tryct = 0;
 			int x, y;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 
 			for (tryct = 0; tryct < 2000; tryct++) {
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+				if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 					(void) maketrap(x, y, HEEL_TRAP, 0, FALSE);
 					break;
 					}
@@ -9474,12 +9498,14 @@ newbossB:
 		if (uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL && !rn2(500) ) {
 			int tryct = 0;
 			int x, y;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 
 			for (tryct = 0; tryct < 2000; tryct++) {
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+				if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
@@ -9489,12 +9515,14 @@ newbossB:
 		if (FemtrapActiveAnastasia && !rn2(250) ) {
 			int tryct = 0;
 			int x, y;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 
 			for (tryct = 0; tryct < 2000; tryct++) {
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+				if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
@@ -9504,12 +9532,14 @@ newbossB:
 		if (uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) {
 			int tryct = 0;
 			int x, y;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 
 			for (tryct = 0; tryct < 2000; tryct++) {
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+				if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
@@ -9555,12 +9585,14 @@ newbossB:
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) {
 			int tryct = 0;
 			int x, y;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 
 			for (tryct = 0; tryct < 2000; tryct++) {
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+				if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}

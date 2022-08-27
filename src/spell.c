@@ -5879,12 +5879,14 @@ newbossPENT:
 					{
 					int tryct = 0;
 					int x, y;
+					boolean canbeinawall = FALSE;
+					if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 					register struct trap *ttmp;
 					for (tryct = 0; tryct < 2000; tryct++) {
 						x = rn1(COLNO-3,2);
 						y = rn2(ROWNO);
 
-						if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+						if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 								ttmp = maketrap(x, y, randomtrap(), 0, TRUE);
 							if (ttmp) {
 								ttmp->tseen = 0;
@@ -8106,10 +8108,12 @@ whisperchoice:
 			int rtrap;
 		      int i, j, bd = 1;
 			register struct trap *ttmp;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 
 		      for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 				if (!isok(u.ux + i, u.uy + j)) continue;
-				if (levl[u.ux + i][u.uy + j].typ <= DBWALL) continue;
+				if ((levl[u.ux + i][u.uy + j].typ <= DBWALL) && !canbeinawall) continue;
 				if (t_at(u.ux + i, u.uy + j)) continue;
 
 			      rtrap = randomtrap();

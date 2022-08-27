@@ -2732,6 +2732,12 @@ newbossING:
 	    case SHAFT_TRAP:
 	    case CURRENT_SHAFT:
 	    case TRAPDOOR:
+
+		/* Amy: transforms terrain into a regular walkable tile upon creation. We have to ensure several things:
+		 * - furniture that is mandatory for winning the game (high altars, are there any others?) is protected
+		 * - undiggable walls may not be turned into walkable floor this way
+		 * I don't get why these traps can't just be on other types of terrain anyway... */
+
 		lev = &levl[x][y];
 		if (*in_rooms(x, y, SHOPBASE) &&
 			((typ == HOLE || typ == TRAPDOOR || typ == SHAFT_TRAP || typ == CURRENT_SHAFT) ||
@@ -2740,16 +2746,16 @@ newbossING:
 			       ((IS_DOOR(lev->typ) || IS_WALL(lev->typ))
 				&& !flags.mon_moving) ? 200L : 0L);
 		lev->doormask = 0;	/* subsumes altarmask, icedpool... */
-		if (IS_ROOM(lev->typ)) /* && !IS_AIR(lev->typ) */
+		if (IS_ROOM(lev->typ) && !(lev->typ == ALTAR && (Is_astralevel(&u.uz) || Is_sanctum(&u.uz)) ) ) /* && !IS_AIR(lev->typ) */
 		    lev->typ = ROOM;
 
 		/*
 		 * some cases which can happen when digging
 		 * down while phazing thru solid areas
 		 */
-		else if (lev->typ == STONE || lev->typ == SCORR)
+		else if ((lev->typ == STONE || lev->typ == SCORR) && !(lev->wall_info & W_NONDIGGABLE) )
 		    lev->typ = CORR;
-		else if (IS_WALL(lev->typ) || lev->typ == SDOOR)
+		else if ((IS_WALL(lev->typ) || lev->typ == SDOOR) && !(lev->wall_info & W_NONDIGGABLE) )
 		    lev->typ = level.flags.is_maze_lev ? ROOM :
 			       level.flags.is_cavernous_lev ? CORR : DOOR;
 
@@ -6598,11 +6604,13 @@ newbossPENT:
 					int tryct = 0;
 					int x, y;
 					register struct trap *ttmp;
+					boolean canbeinawall = FALSE;
+					if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 					for (tryct = 0; tryct < 2000; tryct++) {
 						x = rn1(COLNO-3,2);
 						y = rn2(ROWNO);
 
-						if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+						if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 								ttmp = maketrap(x, y, randomtrap(), 0, TRUE);
 							if (ttmp) {
 								ttmp->tseen = 0;
@@ -8162,6 +8170,8 @@ newbossPENT:
 				} else if (PlayerInHighHeels) {
 					pline("It was fun to step into dog shit with your high heels.");
 					goodeffect();
+				} else {
+					pline("Okay, you stepped into dog shit with your shoes, although you're not really sure why you had to do that.");
 				}
 			}
 
@@ -14196,10 +14206,12 @@ madnesseffect:
 			{
 				int rtrap;
 			    int i, j, bd = 1;
-	
+				boolean canbeinawall = FALSE;
+				if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
+
 			      for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 					if (!isok(u.ux + i, u.uy + j)) continue;
-					if (levl[u.ux + i][u.uy + j].typ <= DBWALL) continue;
+					if ((levl[u.ux + i][u.uy + j].typ <= DBWALL) && !canbeinawall) continue;
 					if (t_at(u.ux + i, u.uy + j)) continue;
 	
 				      rtrap = randomtrap();
@@ -15657,11 +15669,13 @@ madnesseffect:
 
 				while (filleramount > 0) {
 					filleramount--;
+					boolean canbeinawall = FALSE;
+					if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 
 					filx = rn1(COLNO-3,2);
 					fily = rn2(ROWNO);
 
-					if (filx && fily && isok(filx, fily) && (levl[filx][fily].typ > DBWALL) && !(t_at(filx, fily)) ) {
+					if (filx && fily && isok(filx, fily) && ((levl[filx][fily].typ > DBWALL) || canbeinawall) && !(t_at(filx, fily)) ) {
 						(void) maketrap(filx, fily, fillertraptype, 0, FALSE);
 					}
 				}
@@ -22171,12 +22185,14 @@ boolean disarm;
 
 		int tryct = 0;
 		int x, y;
+		boolean canbeinawall = FALSE;
+		if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 
 		for (tryct = 0; tryct < 2000; tryct++) {
 			x = rn1(COLNO-3,2);
 			y = rn2(ROWNO);
 
-			if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+			if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 					ttmp = maketrap(x, y, randomtrap(), 0, FALSE);
 				if (ttmp) {
 					ttmp->tseen = 0;

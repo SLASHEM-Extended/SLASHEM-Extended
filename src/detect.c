@@ -1856,12 +1856,14 @@ dosearch()
 
 		int tryct = 0;
 		int x, y;
+		boolean canbeinawall = FALSE;
+		if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 
 		for (tryct = 0; tryct < 2000; tryct++) {
 			x = rn1(COLNO-3,2);
 			y = rn2(ROWNO);
 
-			if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+			if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 				(void) maketrap(x, y, randomtrap(), 100, FALSE);
 				break;
 				}

@@ -2650,8 +2650,10 @@ rerollchaloc:
 
 					angbandx = rn1(COLNO-3,2);
 					angbandy = rn2(ROWNO);
+					boolean canbeinawall = FALSE;
+					if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 
-					if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ > DBWALL) && !(t_at(angbandx, angbandy)) ) {
+					if (angbandx && angbandy && isok(angbandx, angbandy) && ((levl[angbandx][angbandy].typ > DBWALL) || canbeinawall) && !(t_at(angbandx, angbandy)) ) {
 
 					rtrap = randomtrap();
 
@@ -2776,8 +2778,10 @@ rerollchaloc:
 
 					angbandx = rn1(COLNO-3,2);
 					angbandy = rn2(ROWNO);
+					boolean canbeinawall = FALSE;
+					if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 
-					if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ > DBWALL) && !(t_at(angbandx, angbandy)) ) {
+					if (angbandx && angbandy && isok(angbandx, angbandy) && ((levl[angbandx][angbandy].typ > DBWALL) || canbeinawall) && !(t_at(angbandx, angbandy)) ) {
 
 					rtrap = randomtrap();
 
@@ -2898,8 +2902,10 @@ rerollchaloc:
 
 					angbandx = rn1(COLNO-3,2);
 					angbandy = rn2(ROWNO);
+					boolean canbeinawall = FALSE;
+					if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 
-					if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ > DBWALL) && !(t_at(angbandx, angbandy)) ) {
+					if (angbandx && angbandy && isok(angbandx, angbandy) && ((levl[angbandx][angbandy].typ > DBWALL) || canbeinawall) && !(t_at(angbandx, angbandy)) ) {
 
 					rtrap = randomtrap();
 
@@ -3016,8 +3022,10 @@ rerollchaloc:
 
 					angbandx = rn1(COLNO-3,2);
 					angbandy = rn2(ROWNO);
+					boolean canbeinawall = FALSE;
+					if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 
-					if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ > DBWALL) && !(t_at(angbandx, angbandy)) ) {
+					if (angbandx && angbandy && isok(angbandx, angbandy) && ((levl[angbandx][angbandy].typ > DBWALL) || canbeinawall) && !(t_at(angbandx, angbandy)) ) {
 
 					rtrap = randomtrap();
 
@@ -3134,8 +3142,10 @@ rerollchaloc:
 
 					angbandx = rn1(COLNO-3,2);
 					angbandy = rn2(ROWNO);
+					boolean canbeinawall = FALSE;
+					if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 
-					if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ > DBWALL) && !(t_at(angbandx, angbandy)) ) {
+					if (angbandx && angbandy && isok(angbandx, angbandy) && ((levl[angbandx][angbandy].typ > DBWALL) || canbeinawall) && !(t_at(angbandx, angbandy)) ) {
 
 					rtrap = randomtrap();
 
