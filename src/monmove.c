@@ -232,7 +232,7 @@ boolean digest_meal;
 	if (regenrate < 6) regenrate = 6;
 	if (ishaxor) regenrate /= 2;
 
-	if (mon->mhp < mon->mhpmax && !is_golem(mon->data) &&
+	if (mon->mhp < mon->mhpmax && !(is_golem(mon->data) && issoviet) &&
 	    (!rn2(regenrate) || (FemtrapActiveGudrun && mon->female && humanoid(mon->data)) || regenerates(mon->data) || mon->egotype_regeneration )) mon->mhp++;
 
 	if ((mon->mhp < mon->mhpmax) && FemtrapActiveRonja && mon->female) mon->mhp++;
@@ -341,6 +341,12 @@ boolean digest_meal;
 		if (mon->mtame) {
 
 			if ((rnd(30 - ACURR(A_CHA))) < 4) {
+				if (mon->mhp + 1 >= mon->mhpmax)
+				      mon->mhp = mon->mhpmax;
+				else mon->mhp++;
+			}
+
+			if (uwep && uwep->oartifact == ART_MUNZUR_S_CLUBMATE) {
 				if (mon->mhp + 1 >= mon->mhpmax)
 				      mon->mhp = mon->mhpmax;
 				else mon->mhp++;
