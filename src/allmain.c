@@ -31,6 +31,12 @@ STATIC_PTR void do_fjordefloodingf(int, int, void *);
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 static const char allowall[] = { ALL_CLASSES, 0 };
 
+static NEARDATA const char steeds[] = {
+	S_QUADRUPED, S_UNICORN, S_ANGEL, S_DEMON, S_CENTAUR, S_DRAGON, S_JABBERWOCK, S_COCKATRICE, S_HUMANOID, S_NYMPH,
+S_SPIDER, S_ZOUTHERN, S_BAT, S_GIANT, S_KOP, S_LICH, S_MUMMY, S_NAGA, S_VAMPIRE, S_WRAITH, S_YETI, S_ZOMBIE, S_GOLEM, 
+S_HUMAN, S_EEL, S_LIZARD, S_BAD_FOOD, S_BAD_COINS,  '\0' 
+};
+
 static void p_glow2(struct obj *,const char *);
 
 /* hunger texts used on bottom line (each 8 chars long) */
@@ -1050,16 +1056,27 @@ moveloop()
 
 			/* Riding a really fast (speed higher than 17) steed does not necessarily allow you to ride it at
 			 * full speed, but depends on your riding skill. The actual speed will never be lower than 17, but
-			 * now you need grand master riding skill to ride the steed at its actual speed. --Amy */
+			 * now you need grand master riding skill to ride the steed at its actual speed. --Amy
+			 * also, if the monster is of a type that isn't a good steed, the penalty should be much higher
+			 * good steeds are the following glyphs: chnqsuzABCDHJKLMNVWYZ@&';:%$ */
 
 			if (!(PlayerCannotUseSkills) && !Race_if(PM_BABYLONIAN)) {
 
-				if (P_SKILL(P_RIDING) == P_BASIC) steedmultiplier = 7;
-				if (P_SKILL(P_RIDING) == P_SKILLED) steedmultiplier = 9;
-				if (P_SKILL(P_RIDING) == P_EXPERT) steedmultiplier = 11;
-				if (P_SKILL(P_RIDING) == P_MASTER) steedmultiplier = 13;
-				if (P_SKILL(P_RIDING) == P_GRAND_MASTER) steedmultiplier = 15;
-				if (P_SKILL(P_RIDING) == P_SUPREME_MASTER) steedmultiplier = 15;
+				if (index(steeds, u.usteed->data->mlet)) {
+					if (P_SKILL(P_RIDING) == P_BASIC) steedmultiplier = 7;
+					if (P_SKILL(P_RIDING) == P_SKILLED) steedmultiplier = 9;
+					if (P_SKILL(P_RIDING) == P_EXPERT) steedmultiplier = 11;
+					if (P_SKILL(P_RIDING) == P_MASTER) steedmultiplier = 13;
+					if (P_SKILL(P_RIDING) == P_GRAND_MASTER) steedmultiplier = 15;
+					if (P_SKILL(P_RIDING) == P_SUPREME_MASTER) steedmultiplier = 15;
+				} else {
+					if (P_SKILL(P_RIDING) == P_BASIC) steedmultiplier = 3;
+					if (P_SKILL(P_RIDING) == P_SKILLED) steedmultiplier = 6;
+					if (P_SKILL(P_RIDING) == P_EXPERT) steedmultiplier = 9;
+					if (P_SKILL(P_RIDING) == P_MASTER) steedmultiplier = 12;
+					if (P_SKILL(P_RIDING) == P_GRAND_MASTER) steedmultiplier = 15;
+					if (P_SKILL(P_RIDING) == P_SUPREME_MASTER) steedmultiplier = 15;
+				}
 
 			}
 			if (Race_if(PM_PERVERT)) steedmultiplier = 15; /* can always ride at max speed */
@@ -1069,11 +1086,20 @@ moveloop()
 				moveamt /= 5;
 			}
 
-			if (moveamt > 17) {
-				speedreduction = (moveamt - 17);
-				speedreduction *= steedmultiplier;
-				speedreduction /= 15;
-				moveamt = 17 + speedreduction;
+			if (index(steeds, u.usteed->data->mlet)) {
+				if (moveamt > 17) {
+					speedreduction = (moveamt - 17);
+					speedreduction *= steedmultiplier;
+					speedreduction /= 15;
+					moveamt = 17 + speedreduction;
+				}
+			} else {
+				if (moveamt > 12) {
+					speedreduction = (moveamt - 12);
+					speedreduction *= steedmultiplier;
+					speedreduction /= 15;
+					moveamt = 12 + speedreduction;
+				}
 			}
 
 			/* if you are slowed, you shouldn't be able to just completely ignore the slowness just because you're

@@ -530,6 +530,7 @@ mount_steed(mtmp, force)
 	    	/* Must have Lev_at_will at this point */
 	    	pline("%s magically floats up!", Monnam(mtmp));
 	    You("mount %s.", mon_nam(mtmp));
+	    if (index(steeds, mtmp->data->mlet)) You_feel("comfortable.");
 
 	    if (otmp && otmp->oartifact == ART_SADDLE_OF_REFLECTION) {
 		You("reflect upon your life choices when climbing the saddle.");
