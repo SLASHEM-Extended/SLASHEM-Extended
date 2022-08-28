@@ -13057,6 +13057,10 @@ past3:
 		    invault();
 		    if (u.uhave.amulet && !u.freeplaymode) amulet();
 
+			if (at_dgn_entrance("The Subquest") || on_level(&sanctum_level, &u.uz) ) {
+				test_magic_portal();
+			}
+
 		if (!rn2(40+(int)(ACURR(A_DEX)*3))) u_wipe_engr(rnd(3));
 		    if ((u.uevent.udemigod && !u.freeplaymode && !rn2(5) && (u.amuletcompletelyimbued || !rn2(10))) && !u.uinvulnerable) {
 			if (u.udg_cnt) u.udg_cnt--;

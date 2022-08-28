@@ -52,6 +52,33 @@ static NEARDATA const unsigned wizapp[] = {
 #endif /* OVLB */
 #ifdef OVL0
 
+/* certain magic portals should give a periodic hint if you're near; this is specifically for mandatory portals that you
+ * have to find in order to advance the main questline, so (yes amateurhour, this is not a bug :P) it doesn't help you
+ * locate alignment quest portals or devnull challenges or what have you, since the game can be won without them --Amy */
+void
+test_magic_portal()
+{
+	struct trap *ttmp;
+	if ( (at_dgn_entrance("The Subquest") && u.silverbellget && !u.bellimbued) || (on_level(&sanctum_level, &u.uz) ) ) {
+		if (!rn2(15)) {
+		    for(ttmp = ftrap; ttmp; ttmp = ttmp->ntrap) {
+			if((ttmp->ttyp == MAGIC_PORTAL) && !ttmp->tseen) {
+			    int du = distu(ttmp->tx, ttmp->ty);
+			    if (du <= 9) {
+				pline(FunnyHallu ? "Something is vibrating like mad nearby!" : "The secret portal must be very near!");
+			    } else if (du <= 64) {
+				pline(FunnyHallu ? "There's some strong vibration close by!" : "You sense that the secret portal is close by!");
+			    } else if (du <= 144) {
+				pline(FunnyHallu ? "Weird, you're encountering vibrations here! Where may they be coming from?" : "Your automatic detector tells you that the secret portal isn't too far away from you!");
+			    } break;
+			}
+		    }
+
+		}
+	}
+
+}
+
 /* If you've found the Amulet, make the Wizard appear after some time */
 /* Also, give hints about portal locations, if amulet is worn/wielded -dlc */
 void

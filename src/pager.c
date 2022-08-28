@@ -27880,6 +27880,18 @@ static NEARDATA const char * const fake_plines[] = {
 	"Fluidators and pompejis will put anyone in the gefaengnis for performing actions that are verboten, using their big hammer!",
 	"Remember that the pompeji squad will punish those who think they can simply murder peaceful NPCs in town-like levels, or also elsewhere!",
 	"Don't walk through walls non-stop, or the fluidator squads are coming to catch you!",
+	"Something is vibrating like mad nearby!",
+	"Something is vibrating like mad nearby! Better get away, you don't want to encounter a person who uses autoerotic devices.",
+	"The secret portal must be very near!",
+	"The secret portal must be very near! Or maybe it doesn't, but we're printing this message to make you look for a nonexistant portal.",
+	"There's some strong vibration close by!",
+	"There's some strong vibration close by! It must be a pack of vibration hounds, which is a monster from Angband that can breathe sound!",
+	"You sense that the secret portal is close by!",
+	"You sense that the secret portal is close by! But actually your detector is broken, and the portal is on a completely different dungeon level.",
+	"Weird, you're encountering vibrations here! Where may they be coming from?",
+	"Weird, you're encountering vibrations here! Where may they be coming from? Is it because a bunch of stoned people are hanging around? Maybe they give you one of their marijuana cigarettes if you ask nicely?",
+	"Your automatic detector tells you that the secret portal isn't too far away from you!",
+	"Your automatic detector tells you that the secret portal isn't too far away from you! But unfortunately for you, 'not too far away' is a relative term, and compared to the total size of the dungeon, 'five dungeon levels down from your location' still counts as being not too far away.",
 
 };
 
