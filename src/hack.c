@@ -1792,9 +1792,7 @@ ask_about_trap(int x, int y)
 			if (traphere->ttyp == SQKY_BOARD) {
 				return FALSE;
 			}
-			if (traphere->ttyp == SHIT_TRAP && !(uarmf && itemhasappearance(uarmf, APP_HUGGING_BOOTS) ) ) {
-				return FALSE;
-			}
+			/* used to ask for shit trap but that one has so many ways to trigger anyway... --Amy */
 		}
 		return TRUE;
 	}
@@ -1807,6 +1805,7 @@ ask_about_water(int x, int y)
 	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) return FALSE;
 
 	if (is_pool(u.ux, u.uy)) return FALSE;
+	if (is_watertunnel(u.ux, u.uy)) return FALSE;
 
 	if (is_pool(x, y) && !Levitation && !Flying && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv) return TRUE; 
 
@@ -1833,6 +1832,7 @@ ask_about_watertunnel(int x, int y)
 	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) return FALSE;
 
 	if (is_watertunnel(u.ux, u.uy)) return FALSE;
+	if (is_pool(u.ux, u.uy)) return FALSE;
 
 	if (is_watertunnel(x, y) && !Levitation && !Flying && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv) return TRUE; 
 	return FALSE;
@@ -3193,6 +3193,7 @@ stillinwater:;
 	    /* limit recursive calls through teleds() */
 	    if ((is_drowningpool(u.ux, u.uy) && !(is_crystalwater(u.ux,u.uy))) || is_lava(u.ux, u.uy)) {
 		if (u.usteed && !is_flyer(u.usteed->data) && (!u.usteed->egotype_flying) &&
+			!is_swimmer(u.usteed->data) &&
 			!is_floater(u.usteed->data) &&
 			!is_clinger(u.usteed->data)) {
 		    dismount_steed(Underwater ?

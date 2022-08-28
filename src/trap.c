@@ -16360,6 +16360,11 @@ struct obj *otmp;
 					x_monnam(mtmp,
 					mtmp->mnamelth ? ARTICLE_NONE : ARTICLE_A,
 					(char *)0, SUPPRESS_SADDLE, FALSE));
+				if (dedicatedsteed(mtmp)) You_feel("comfortable riding %s.",
+					x_monnam(mtmp,
+					mtmp->mnamelth ? ARTICLE_NONE : ARTICLE_A,
+					(char *)0, SUPPRESS_SADDLE, FALSE) );
+				else Your("steed doesn't seem all that comfortable.");
 			    }
 			}
 			steedhit = TRUE;
@@ -20551,6 +20556,8 @@ drown()
 	    if (!Swimming && !Is_waterlevel(&u.uz))
 		    You("sink like %s.",
 			FunnyHallu ? "the Titanic" : "a rock");
+
+	    if (Swimming) pline("Thankfully you know how to swim, so you can stay on the surface.");
 	}
 
 	if (level.flags.lethe) {
@@ -20559,7 +20566,7 @@ drown()
 	    forget(5); /* used to be 25 --Amy */
 	}
 
-	if ((!StrongSwimming || !rn2(10)) && (!StrongMagical_breathing || !rn2(10))) {
+	if ((!StrongSwimming || !rn2(10)) && !(u.usteed && is_swimmer(u.usteed->data)) && (!StrongMagical_breathing || !rn2(10))) {
 		water_damage(invent, FALSE, FALSE);
 		if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
 	}
@@ -20602,7 +20609,7 @@ drown()
 		}
 		vision_recalc(2);	/* unsee old position */
 		u.uinwater = 1;
-		under_water(1);
+		if (!Swimming) under_water(1);
 		vision_full_recalc = 1;
 		u.udrowning = FALSE;
 		return(FALSE);
@@ -20613,7 +20620,7 @@ drown()
 			placebc();
 		}
 		u.uinwater = 1;
-		under_water(1);
+		if (!Swimming) under_water(1);
 		vision_full_recalc = 1;
 		u.udrowning = FALSE;
 		return(FALSE);
@@ -20627,7 +20634,7 @@ drown()
 				return(TRUE);
 		} else pline_The("attempted teleport spell fails.");
 	}
-	if (u.usteed) {
+	if (u.usteed && !(is_swimmer(u.usteed->data)) ) {
 		dismount_steed(DISMOUNT_GENERIC);
 		if(!is_drowningpool(u.ux,u.uy))
 			return(TRUE);
@@ -20706,7 +20713,7 @@ drown()
 		losehp(rnd(100), "drowning", NO_KILLER_PREFIX);
 		vision_recalc(2);	/* unsee old position */
 		u.uinwater = 1;
-		under_water(1);
+		if (!Swimming) under_water(1);
 		vision_full_recalc = 1;
 		return(FALSE);
 	}
@@ -20835,7 +20842,7 @@ crystaldrown()
 		losehp(rnd(100), "drowned in crystal water", NO_KILLER_PREFIX);
 		vision_recalc(2);	/* unsee old position */
 		u.uinwater = 1;
-		under_water(1);
+		if (!Swimming) under_water(1);
 		vision_full_recalc = 1;
 		return(FALSE);
 	}

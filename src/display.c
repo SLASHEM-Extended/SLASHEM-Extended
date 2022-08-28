@@ -883,7 +883,7 @@ feel_location(x, y)
     if (memory_is_invisible(x,y) && m_at(x,y)) return;
 
     /* The hero can't feel non pool locations while under water. */
-    if (Underwater && !Is_waterlevel(&u.uz) && !is_waterypool(x,y) && !is_watertunnel(x,y))
+    if (Underwater && !Is_waterlevel(&u.uz) && !is_waterypool(x,y) && !is_watertunnel(x,y) && !is_lava(x,y) && !is_shiftingsand(x,y) && !is_styxriver(x,y) )
 	return;
 
     /* Set the seen vector as if the hero had seen it.  It doesn't matter */
@@ -1135,7 +1135,7 @@ newsym(x,y)
     if (Underwater && !Is_waterlevel(&u.uz)) {
 	/* don't do anything unless (x,y) is an adjacent underwater position */
 	int dx, dy;
-	if (!is_waterypool(x,y) && !is_watertunnel(x,y)) return;
+	if (!is_waterypool(x,y) && !is_watertunnel(x,y) && !is_lava(x,y) && !is_shiftingsand(x,y) && !is_styxriver(x,y)) return;
 	dx = x - u.ux;	if (dx < 0) dx = -dx;
 	dy = y - u.uy;	if (dy < 0) dy = -dy;
 	if (dx > 1 || dy > 1) return;
@@ -1517,7 +1517,7 @@ newsymX(x,y)
     if (Underwater && !Is_waterlevel(&u.uz)) {
 	/* don't do anything unless (x,y) is an adjacent underwater position */
 	int dx, dy;
-	if (!is_waterypool(x,y) && !is_watertunnel(x,y)) return;
+	if (!is_waterypool(x,y) && !is_watertunnel(x,y) && !is_lava(x,y) && !is_shiftingsand(x,y) && !is_styxriver(x,y)) return;
 	dx = x - u.ux;	if (dx < 0) dx = -dx;
 	dy = y - u.uy;	if (dy < 0) dy = -dy;
 	if (dx > 1 || dy > 1) return;
@@ -2096,7 +2096,13 @@ under_water(mode)
     }
     for (x = u.ux-1; x <= u.ux+1; x++)
 	for (y = u.uy-1; y <= u.uy+1; y++)
-	    if (isok(x,y) && (is_waterypool(x,y) || is_watertunnel(x,y))) {
+
+	    /* Amy edit: in vanilla, you wouldn't see adjacent lava, and die very unfairly. Here in the land of SLEX,
+	     * we assume that the dungeon can bend physics and have a 'barrier' where the water ends and the lava begins,
+	     * which isn't solid and can be seen through, so when you're underwater, you can see all adjacent types of
+	     * liquid terrain, not just watery ones. */
+
+	    if (isok(x,y) && (is_waterypool(x,y) || is_watertunnel(x,y) || is_lava(x,y) || is_shiftingsand(x,y) || is_styxriver(x,y) )) {
 		if (Blind && !(x == u.ux && y == u.uy))
 		    show_glyph(x,y,cmap_to_glyph(S_stone));
 		else	
@@ -2280,7 +2286,7 @@ docrt()
 	swallowed(1);
 	return;
     }
-    if (Underwater && !Is_waterlevel(&u.uz)) {
+    if (Underwater && !Is_waterlevel(&u.uz) && !Swimming) {
 	under_water(1);
 	return;
     }

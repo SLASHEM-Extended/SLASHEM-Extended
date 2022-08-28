@@ -294,7 +294,7 @@ outgoldmap:
     display_nhwindow(WIN_MAP, TRUE);
     docrt();
     u.uinwater = uw;
-    if (Underwater) under_water(2);
+    if (Underwater && !Swimming) under_water(2);
     if (u.uburied) under_ground(2);
     return(0);
 }
@@ -402,7 +402,7 @@ register struct obj	*sobj;
 	exercise(A_WIS, TRUE);
 	docrt();
 	u.uinwater = uw;
-	if (Underwater) under_water(2);
+	if (Underwater && !Swimming) under_water(2);
 	if (u.uburied) under_ground(2);
     }
     return(0);
@@ -592,7 +592,7 @@ int		class;		/* an object class, 0 for all */
     docrt();	/* this will correctly reset vision */
 
     u.uinwater = uw;
-    if (Underwater) under_water(2);
+    if (Underwater && !Swimming) under_water(2);
     if (u.uburied) under_ground(2);
     return 0;
 }
@@ -703,7 +703,7 @@ struct obj	*detector;	/* object doing the detecting */
     docrt();	/* this will correctly reset vision */
 
     u.uinwater = uw;
-    if (Underwater) under_water(2);
+    if (Underwater && !Swimming) under_water(2);
     if (u.uburied) under_ground(2);
     return 0;
 }
@@ -816,7 +816,7 @@ int mclass;			/* monster class, 0 for all */
 	    pline(FunnyHallu ? "They're after you! Now you know why you were always paranoid - they REALLY want to eat you alive!" : "Monsters sense the presence of you.");
 	display_nhwindow(WIN_MAP, TRUE);
 	docrt();
-	if (Underwater) under_water(2);
+	if (Underwater && !Swimming) under_water(2);
 	if (u.uburied) under_ground(2);
     }
     return 0;
@@ -923,7 +923,7 @@ outtrapmap:
     display_nhwindow(WIN_MAP, TRUE);
     docrt();
     u.uinwater = uw;
-    if (Underwater) under_water(2);
+    if (Underwater && !Swimming) under_water(2);
     if (u.uburied) under_ground(2);
     return(0);
 }
@@ -996,7 +996,7 @@ outtrapmap:
     display_nhwindow(WIN_MAP, TRUE);
     docrt();
     u.uinwater = uw;
-    if (Underwater) under_water(2);
+    if (Underwater && !Swimming) under_water(2);
     if (u.uburied) under_ground(2);
     return(0);
 }

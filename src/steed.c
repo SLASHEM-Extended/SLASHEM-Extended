@@ -9,7 +9,7 @@
 static NEARDATA const char steeds[] = {
 	S_QUADRUPED, S_UNICORN, S_ANGEL, S_DEMON, S_CENTAUR, S_DRAGON, S_JABBERWOCK, S_COCKATRICE, S_HUMANOID, S_NYMPH,
 S_SPIDER, S_ZOUTHERN, S_BAT, S_GIANT, S_KOP, S_LICH, S_MUMMY, S_NAGA, S_VAMPIRE, S_WRAITH, S_YETI, S_ZOMBIE, S_GOLEM, 
-S_HUMAN, S_EEL, S_LIZARD, S_BAD_FOOD, S_BAD_COINS,  '\0' 
+S_HUMAN, S_EEL, S_LIZARD, S_BAD_FOOD, S_BAD_COINS, S_FLYFISH,  '\0' 
 /* added demons and some other stuff --Amy */
 };
 
@@ -49,6 +49,18 @@ struct monst *mtmp;
 
 	return FALSE;
 
+}
+
+/* is the monster mtmp a dedicated steed (gives better speed returns, see allmain.c)? --Amy */
+boolean
+dedicatedsteed(mtmp)
+struct monst *mtmp;
+{
+	if (index(steeds, mtmp->data->mlet)) return TRUE;
+	if (mtmp->egotype_steed) return TRUE;
+	if (mtmp->data->msound == MS_NEIGH || mtmp->data->msound == MS_SHOE || mtmp->data->msound == MS_CAR) return TRUE;
+
+	return FALSE;
 }
 
 /*** Putting the saddle on ***/
@@ -530,7 +542,7 @@ mount_steed(mtmp, force)
 	    	/* Must have Lev_at_will at this point */
 	    	pline("%s magically floats up!", Monnam(mtmp));
 	    You("mount %s.", mon_nam(mtmp));
-	    if (index(steeds, mtmp->data->mlet)) You_feel("comfortable.");
+	    if (dedicatedsteed(mtmp)) You_feel("comfortable.");
 
 	    if (otmp && otmp->oartifact == ART_SADDLE_OF_REFLECTION) {
 		You("reflect upon your life choices when climbing the saddle.");

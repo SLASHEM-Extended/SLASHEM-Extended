@@ -1984,7 +1984,7 @@ water_friction()
 		do {
 		    dy = rn2(3) - 1;		/* -1, 0, 1 */
 		    y = u.uy + dy;
-		} while (dy && (!isok(x,y) || !is_waterypool(x,y)));
+		} while (dy && (!isok(x,y) || (!is_waterypool(x,y) && !is_watertunnel(x,y) ) ));
 		u.dx = 0;
 		u.dy = dy;
 		eff = TRUE;
@@ -1994,7 +1994,7 @@ water_friction()
 		do {
 		    dx = rn2(3) - 1;		/* -1 .. 1 */
 		    x = u.ux + dx;
-		} while (dx && (!isok(x,y) || !is_waterypool(x,y)));
+		} while (dx && (!isok(x,y) || (!is_waterypool(x,y) && !is_watertunnel(x,y) ) ));
 		u.dy = 0;
 		u.dx = dx;
 		eff = TRUE;

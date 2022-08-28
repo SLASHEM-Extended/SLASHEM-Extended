@@ -3088,6 +3088,7 @@ E boolean confsteeddir(void);
 E boolean flysaddle(void);
 E boolean bmwride(int);
 E boolean mercedesride(int, struct monst *);
+E boolean dedicatedsteed(struct monst *);
 
 /* ### tech.c ### */
 
@@ -3595,6 +3596,7 @@ E void intervene(void);
 E void wizdead(void);
 E void cuss(struct monst *);
 E void randomcuss(void);
+E void test_magic_portal(void);
 
 /* ### worm.c ### */
 

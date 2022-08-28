@@ -31,12 +31,6 @@ STATIC_PTR void do_fjordefloodingf(int, int, void *);
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 static const char allowall[] = { ALL_CLASSES, 0 };
 
-static NEARDATA const char steeds[] = {
-	S_QUADRUPED, S_UNICORN, S_ANGEL, S_DEMON, S_CENTAUR, S_DRAGON, S_JABBERWOCK, S_COCKATRICE, S_HUMANOID, S_NYMPH,
-S_SPIDER, S_ZOUTHERN, S_BAT, S_GIANT, S_KOP, S_LICH, S_MUMMY, S_NAGA, S_VAMPIRE, S_WRAITH, S_YETI, S_ZOMBIE, S_GOLEM, 
-S_HUMAN, S_EEL, S_LIZARD, S_BAD_FOOD, S_BAD_COINS,  '\0' 
-};
-
 static void p_glow2(struct obj *,const char *);
 
 /* hunger texts used on bottom line (each 8 chars long) */
@@ -1058,11 +1052,11 @@ moveloop()
 			 * full speed, but depends on your riding skill. The actual speed will never be lower than 17, but
 			 * now you need grand master riding skill to ride the steed at its actual speed. --Amy
 			 * also, if the monster is of a type that isn't a good steed, the penalty should be much higher
-			 * good steeds are the following glyphs: chnqsuzABCDHJKLMNVWYZ@&';:%$ */
+			 * good steeds are the following glyphs: chnqsuzABCDHIJKLMNVWYZ@&';:%$ */
 
 			if (!(PlayerCannotUseSkills) && !Race_if(PM_BABYLONIAN)) {
 
-				if (index(steeds, u.usteed->data->mlet)) {
+				if (dedicatedsteed(u.usteed)) {
 					if (P_SKILL(P_RIDING) == P_BASIC) steedmultiplier = 7;
 					if (P_SKILL(P_RIDING) == P_SKILLED) steedmultiplier = 9;
 					if (P_SKILL(P_RIDING) == P_EXPERT) steedmultiplier = 11;
@@ -1086,7 +1080,7 @@ moveloop()
 				moveamt /= 5;
 			}
 
-			if (index(steeds, u.usteed->data->mlet)) {
+			if (dedicatedsteed(u.usteed)) {
 				if (moveamt > 17) {
 					speedreduction = (moveamt - 17);
 					speedreduction *= steedmultiplier;
@@ -13101,7 +13095,7 @@ past3:
 		    /* underwater and waterlevel vision are done here */
 		    if (Is_waterlevel(&u.uz) && !(tech_inuse(T_SILENT_OCEAN)))
 			movebubbles();
-		    else if (Underwater)
+		    else if (Underwater && !Swimming)
 			under_water(0);
 		    /* vision while buried done here */
 		    else if (u.uburied) under_ground(0);

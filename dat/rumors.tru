@@ -2438,6 +2438,7 @@ If you use phasing to walk through walls a lot, the fluidator squads will be sum
 The longer you spend inside walls, the more fluidator squads are going to chase you and make your life hard.
 Fluidator squads are nasty enemies, almost all of them have special attacks that can hit you at range. Think twice whether you want to wallwalk all the time and draw their attention.
 There is a penalty for abusing the wallwalking ability: you'll have to fight nasty monsters.
-Riding while having low skill will not let you ride your steed at its nominal speed, but the penalty is lower when using a dedicated steed. These are monsters that use the following glyphs: chnqsuzABCDHJKLMNVWYZ@&';:%$
+Riding while having low skill will not let you ride your steed at its nominal speed, but the penalty is lower when using a dedicated steed. These are monsters that use the following glyphs: chnqsuzABCDHIJKLMNVWYZ@&';:%$
 Are you looking for the elusive subquest portal? Why, once you acquire the bell you'll be told if you're less than 12 squares away from it!
 Horses make good mounts, but cats and dogs don't. While you can ride the latter, your movement speed will probably be quite a bit lower than the mount's nominal speed unless your riding skill is very high.
+Dedicated steeds include ones that neigh (equines), as well as monster shoes and cars. Reaching high speeds with them will be easier than using a monster that isn't a dedicated steed.
