@@ -3768,6 +3768,11 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 
 	/* todo area */
 
+	{ BRASS_KNUCKLES, "todo" },
+	{ SUPER_KNUCKLES, "todo" },
+	{ ULTRA_KNUCKLES, "todo" },
+	{ ELITE_KNUCKLES, "todo" },
+
 	{0, "" }
 };
 
@@ -6782,6 +6787,11 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ ONE_EATING_SIGN, "bitta ovqatlanish belgisi" },
 
 	/* todo area */
+
+	{ BRASS_KNUCKLES, "todo" },
+	{ SUPER_KNUCKLES, "todo" },
+	{ ULTRA_KNUCKLES, "todo" },
+	{ ELITE_KNUCKLES, "todo" },
 
 	{0, "" }
 };

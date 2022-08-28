@@ -9237,6 +9237,22 @@ A("Arshtrittmesser",				MEASURER, /* by amateurhour, doesn't give -4 to-hit pena
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
+A("Oleg's Attack",				BRASS_KNUCKLES,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Basta Time",				SUPER_KNUCKLES,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	ELEC(7, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Boindil's Choice",				ULTRA_KNUCKLES, /* very fast speed when wielded */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Munzur's Clubmate",				ELITE_KNUCKLES, /* while wielding it, all pets regenerate an extra HP per turn */
+	(SPFX_RESTR|SPFX_REGEN), 0, 0,
+	PHYS(5, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

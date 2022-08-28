@@ -849,6 +849,12 @@ long nmv;		/* number of moves */
 	    mtmp->mhp = mtmp->mhpmax;
 	else mtmp->mhp += imv;
 
+	if (uwep && uwep->oartifact == ART_MUNZUR_S_CLUBMATE) {
+		if (mtmp->mhp + 1 >= mtmp->mhpmax)
+		      mtmp->mhp = mtmp->mhpmax;
+		else mtmp->mhp++;
+	}
+
 	/* recover more depending on charisma --Amy */
 	if ((rnd(30 - ACURR(A_CHA))) < 4) {
 		if (mtmp->mhp + 1 >= mtmp->mhpmax)

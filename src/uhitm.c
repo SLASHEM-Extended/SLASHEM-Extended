@@ -2295,7 +2295,7 @@ int dieroll;
 				if (obj->otyp == AMBUSH_QATAR) tmp += rnd(10);
 			}
 
-			if (obj && (obj->otyp == POWERFIST || obj->otyp == LASERFIST) && tech_inuse(T_JIU_JITSU)) {
+			if (obj && (obj->otyp == BRASS_KNUCKLES || obj->otyp == SUPER_KNUCKLES || obj->otyp == ULTRA_KNUCKLES || obj->otyp == ELITE_KNUCKLES || obj->otyp == POWERFIST || obj->otyp == LASERFIST) && tech_inuse(T_JIU_JITSU)) {
 				int jiuextradmg = 0;
 				if (find_mac(mon) <= -5) jiuextradmg += 2;
 				if (find_mac(mon) <= -10) jiuextradmg += 2;

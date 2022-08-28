@@ -10448,6 +10448,14 @@ boolean knoweverything;
 				pline("This spear is rather strong and good for hunting animals. It can be thrown."); break;
 			case SILK_SPEAR:
 				pline("It's a soft spear with a sharp tip. It can be thrown."); break;
+			case BRASS_KNUCKLES:
+				pline("This weapon uses the bare-handed combat skill and deals 3 points of damage. Beware, using it will break weaponless conduct in case you were trying to follow that."); break;
+			case SUPER_KNUCKLES:
+				pline("This weapon uses the bare-handed combat skill and deals 4 points of damage. Beware, using it will break weaponless conduct in case you were trying to follow that."); break;
+			case ULTRA_KNUCKLES:
+				pline("This weapon uses the bare-handed combat skill and deals 5 points of damage. Beware, using it will break weaponless conduct in case you were trying to follow that."); break;
+			case ELITE_KNUCKLES:
+				pline("This weapon uses the bare-handed combat skill and deals 8 points of damage, which is quite a bit stronger than the other types of knuckles but still not that great. Beware, using it will break weaponless conduct in case you were trying to follow that."); break;
 			case BRITTLE_SPEAR:
 				pline("A spear that weighs a lot and does low damage. Despite the name, it can be thrown and is not more likely to break than other types of spear."); break;
 			case DRAGON_SPEAR:
@@ -22680,6 +22688,14 @@ boolean knoweverything;
 					pline("Artifact specs: glib combat when worn. If you use the appraisal technique on this artifact while it's +6 or lower, it gains a point of enchantment."); break;
 				case ART_ARSHTRITTMESSER:
 					pline("Artifact specs: doesn't give a -4 to-hit penalty if you're restricted in the knife skill. This artifact was suggested by amateurhour and is now officially spelled that way because that was the original spelling that got suggested :-)"); break;
+				case ART_OLEG_S_ATTACK:
+					pline("Artifact specs: +8 damage."); break;
+				case ART_BASTA_TIME:
+					pline("Artifact specs: +7 to-hit and +12 damage against shock-susceptible monsters."); break;
+				case ART_BOINDIL_S_CHOICE:
+					pline("Artifact specs: +10 damage, very fast speed when wielded. Unfortunately the name can't have an umlaut in it, otherwise it would be spelled correctly with dots on the first i..."); break;
+				case ART_MUNZUR_S_CLUBMATE:
+					pline("Artifact specs: +5 to-hit and +8 damage, pets have extra HP regeneration while you're wielding it."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;
