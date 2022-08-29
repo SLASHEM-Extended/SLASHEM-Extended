@@ -1729,6 +1729,7 @@ struct monst *mtmp;
 	    if (bigmonst(youmonst.data)) hitv++;
 	    hitv += 8 + otmp->spe;
 	    if (dam < 1) dam = 1;
+	    if (mtmp->m_lev >= 3) dam += rnd(mtmp->m_lev / 3);
 
 	    (void) thitu(hitv, dam, otmp, (char *)0);
 	    stop_occupation();
