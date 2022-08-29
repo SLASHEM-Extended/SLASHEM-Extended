@@ -1042,6 +1042,8 @@ moveloop()
 		    if (u.usteed && u.umoved) {
 			/* your speed doesn't augment steed's speed */
 			moveamt = mcalcmove(u.usteed);
+			if (bmwride(ART_BECHT_S_RIDE) && (moveamt > 0) && (moveamt < 12)) moveamt = 12;
+			if (bmwride(ART_BECHT_S_SPEEDMOBILE) && (moveamt > 0) && (moveamt < 15)) moveamt = 15;
 
 			if (Race_if(PM_CARTHAGE) && (mcalcmove(u.usteed) > 12)) moveamt = 12;
 
@@ -1074,11 +1076,7 @@ moveloop()
 
 			}
 			if (Race_if(PM_PERVERT)) steedmultiplier = 15; /* can always ride at max speed */
-
-			if (uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) {
-				moveamt *= 6;
-				moveamt /= 5;
-			}
+			if (bmwride(ART_HOVERCRAFT_RIDE) && u.usteed->data->mlet == S_VORTEX) steedmultiplier = 15;
 
 			if (dedicatedsteed(u.usteed)) {
 				if (moveamt > 17) {
@@ -1409,6 +1407,13 @@ moveloop()
 				if (u.usteed) {
 
 					if (bmwride(ART_BIKE_SADDLE)) {
+						oldspeed = moveamt;
+						moveamt *= 3;
+						moveamt /= 2;
+						if (moveamt > (oldspeed + 18)) moveamt = (oldspeed + 18);
+					}
+
+					if (bmwride(ART_HOVERCRAFT_RIDE) && u.usteed->data->mlet == S_VORTEX) {
 						oldspeed = moveamt;
 						moveamt *= 3;
 						moveamt /= 2;
@@ -1857,6 +1862,13 @@ moveloop()
 					if (moveamt > (oldspeed + 15)) moveamt = (oldspeed + 15);
 				}
 
+			}
+
+			if (uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) {
+				oldspeed = moveamt;
+				moveamt *= 6;
+				moveamt /= 5;
+				if (moveamt > (oldspeed + 15)) moveamt = (oldspeed + 15);
 			}
 
 			/* salamander race by Kwahn, speeds up in lava */

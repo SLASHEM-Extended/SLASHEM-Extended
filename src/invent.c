@@ -22696,6 +22696,16 @@ boolean knoweverything;
 					pline("Artifact specs: +10 damage, very fast speed when wielded. Unfortunately the name can't have an umlaut in it, otherwise it would be spelled correctly with dots on the first i..."); break;
 				case ART_MUNZUR_S_CLUBMATE:
 					pline("Artifact specs: +5 to-hit and +8 damage, pets have extra HP regeneration while you're wielding it."); break;
+				case ART_BECHT_S_RIDE:
+					pline("Artifact specs: if your mount has at least a speed of 1 but less than 12, it acts as if its speed was 12 for movement rate calculations."); break;
+				case ART_BECHT_S_SPEEDMOBILE:
+					pline("Artifact specs: if your mount has at least a speed of 1 but less than 15, it acts as if its speed was 15 for movement rate calculations, but your AC is quite a bit worse while riding."); break;
+				case ART_MOUNT_OF_THE_MAD_POTATO:
+					pline("Artifact specs: causes your mount to always count as a dedicated steed, making it easier to ride at higher speeds."); break;
+				case ART_HOVERCRAFT_RIDE:
+					pline("Artifact specs: if your mount is a vortex, you can always ride it at full speed regardless of skill and in fact gain 50%% extra movement speed."); break;
+				case ART_GREEN_ASSISTANT:
+					pline("Artifact specs: +5 to-hit and +12 damage, doesn't drop if you have slippery fingers."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

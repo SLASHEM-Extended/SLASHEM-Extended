@@ -6088,6 +6088,13 @@ find_ac()
 
 	}
 
+	if (bmwride(ART_BECHT_S_SPEEDMOBILE)) {
+		int difference = (-(uac - 10));
+		difference *= 4;
+		difference /= 5;
+		if (difference > 0) uac = 10 - difference;
+	}
+
 	if (Race_if(PM_PLAYER_ASURA)) {
 
 		int worncount = 0;
@@ -6159,7 +6166,7 @@ glibr()
 	}
 
 	otmp = uswapwep;
-	if (u.twoweap && otmp && (otmp->otyp != BRASS_KNUCKLES) && (otmp->otyp != SUPER_KNUCKLES) && (otmp->otyp != ULTRA_KNUCKLES) && (otmp->otyp != ELITE_KNUCKLES) ) {
+	if (u.twoweap && otmp && (otmp->otyp != BRASS_KNUCKLES) && !(otmp->oartifact == ART_GREEN_ASSISTANT) && (otmp->otyp != SUPER_KNUCKLES) && (otmp->otyp != ULTRA_KNUCKLES) && (otmp->otyp != ELITE_KNUCKLES) ) {
 		otherwep = is_sword(otmp) ? c_sword :
 		    makesingular(oclass_names[(int)otmp->oclass]);
 		Your("%s %sslips from your %s.",
@@ -6172,7 +6179,7 @@ glibr()
 			dropx(otmp);
 	}
 	otmp = uwep;
-	if (otmp && !welded(otmp) && (otmp->otyp != BRASS_KNUCKLES) && (otmp->otyp != SUPER_KNUCKLES) && (otmp->otyp != ULTRA_KNUCKLES) && (otmp->otyp != ELITE_KNUCKLES) ) {
+	if (otmp && !welded(otmp) && (otmp->otyp != BRASS_KNUCKLES) && !(otmp->oartifact == ART_GREEN_ASSISTANT) && (otmp->otyp != SUPER_KNUCKLES) && (otmp->otyp != ULTRA_KNUCKLES) && (otmp->otyp != ELITE_KNUCKLES) ) {
 		const char *thiswep;
 
 		/* nice wording if both weapons are the same type */

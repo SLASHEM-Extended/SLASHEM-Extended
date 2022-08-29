@@ -56,6 +56,7 @@ boolean
 dedicatedsteed(mtmp)
 struct monst *mtmp;
 {
+	if (mercedesride(ART_MOUNT_OF_THE_MAD_POTATO, mtmp)) return TRUE;
 	if (index(steeds, mtmp->data->mlet)) return TRUE;
 	if (mtmp->egotype_steed) return TRUE;
 	if (mtmp->data->msound == MS_NEIGH || mtmp->data->msound == MS_SHOE || mtmp->data->msound == MS_CAR) return TRUE;

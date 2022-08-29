@@ -9253,6 +9253,26 @@ A("Munzur's Clubmate",				ELITE_KNUCKLES, /* while wielding it, all pets regener
 	(SPFX_RESTR|SPFX_REGEN), 0, 0,
 	PHYS(5, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
+A("Becht's Ride",				LEATHER_SADDLE, /* mounts with less than 12 speed behave as if they had 12 speed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Becht's Speedmobile",				LEATHER_SADDLE, /* mounts with less than 15 speed behave as if they had 15 speed; your AC is worse by 20% */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Mount of the Mad Potato",				LEATHER_SADDLE, /* mount always counts as dedicated steed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Hovercraft Ride",				INKA_SADDLE, /* if the mount is a vortex, it doesn't get a speed reduction if your riding skill is low, and in fact gives 50% bonus to movement speed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Green Assistant",				SURVIVAL_KNIFE, /* doesn't drop if you're glibbed */
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.
