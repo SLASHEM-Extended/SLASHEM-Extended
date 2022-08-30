@@ -3366,6 +3366,37 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != STAT_DECAY_TRAP
 				&& ttmp->ttyp != MOVEMORK_TRAP
 
+				&& ttmp->ttyp != WALL_TRAP
+				&& ttmp->ttyp != MONSTER_GENERATOR
+				&& ttmp->ttyp != POTION_DISPENSER
+				&& ttmp->ttyp != SPACEWARS_SPAWN_TRAP
+				&& ttmp->ttyp != TV_TROPES_TRAP
+				&& ttmp->ttyp != SYMBIOTE_TRAP
+				&& ttmp->ttyp != KILL_SYMBIOTE_TRAP
+				&& ttmp->ttyp != SYMBIOTE_REPLACEMENT_TRAP
+				&& ttmp->ttyp != SHUTDOWN_TRAP
+				&& ttmp->ttyp != CORONA_TRAP
+				&& ttmp->ttyp != UNPROOFING_TRAP
+				&& ttmp->ttyp != VISIBILITY_TRAP
+				&& ttmp->ttyp != FEMINISM_STONE_TRAP
+				&& ttmp->ttyp != SHUEFT_TRAP
+				&& ttmp->ttyp != MOTH_LARVAE_TRAP
+				&& ttmp->ttyp != WORTHINESS_TRAP
+				&& ttmp->ttyp != CONDUCT_TRAP
+				&& ttmp->ttyp != STRIKETHROUGH_TRAP
+				&& ttmp->ttyp != MULTIPLE_GATHER_TRAP
+				&& ttmp->ttyp != VIVISECTION_TRAP
+				&& ttmp->ttyp != INSTAFEMINISM_TRAP
+				&& ttmp->ttyp != INSTANASTY_TRAP
+				&& ttmp->ttyp != SKILL_POINT_LOSS_TRAP
+				&& ttmp->ttyp != PERFECT_MATCH_TRAP
+				&& ttmp->ttyp != DUMBIE_LIGHTSABER_TRAP
+				&& ttmp->ttyp != WRONG_STAIRS
+				&& ttmp->ttyp != TECHSTOP_TRAP
+				&& ttmp->ttyp != AMNESIA_SWITCH_TRAP
+				&& ttmp->ttyp != SKILL_SWAP_TRAP
+				&& ttmp->ttyp != SKILL_UPORDOWN_TRAP
+				&& ttmp->ttyp != SKILL_RANDOMIZE_TRAP
 				&& ttmp->ttyp != HYBRID_TRAP
 				&& ttmp->ttyp != SHAPECHANGE_TRAP
 				&& ttmp->ttyp != MELTEM_TRAP
@@ -4684,6 +4715,8 @@ register struct monst *mtmp;
 					if (rtrap == BOON_TRAP) rtrap = MAGIC_BEAM_TRAP;
 					if (rtrap == LEVEL_TELEP && (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) rtrap = ANTI_MAGIC;
 					if (rtrap == LEVEL_BEAMER && (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) rtrap = ANTI_MAGIC;
+					if (rtrap == BRANCH_TELEPORTER && (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) rtrap = ANTI_MAGIC;
+					if (rtrap == BRANCH_BEAMER && (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) rtrap = ANTI_MAGIC;
 					if (rtrap == NEXUS_TRAP && (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) rtrap = ANTI_MAGIC;
 					if (rtrap == TELEP_TRAP && (level.flags.noteleport || Race_if(PM_STABILISATOR)) ) rtrap = SQKY_BOARD;
 					if (rtrap == BEAMER_TRAP && (level.flags.noteleport || Race_if(PM_STABILISATOR)) ) rtrap = SQKY_BOARD;

@@ -889,6 +889,43 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "johanna trap", C(CLR_RED)},	/* trap */
 	{'^', "inge trap", C(CLR_BLACK)},	/* trap */
 
+	{'^', "wall trap", C(CLR_GRAY)},	/* trap */
+	{'^', "monster generator", C(CLR_CYAN)},	/* trap */
+	{'^', "potion dispenser", C(CLR_BRIGHT_CYAN)},	/* trap */
+	{'^', "spacewars spawn trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "tv tropes trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "symbiote trap", C(CLR_WHITE)},	/* trap */
+	{'^', "kill symbiote trap", C(CLR_BLACK)},	/* trap */
+	{'^', "symbiote replacement trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "shutdown trap", C(CLR_BLUE)},	/* trap */
+	{'^', "corona trap", C(CLR_BLUE)},	/* trap */
+	{'^', "unproofing trap", C(CLR_BLUE)},	/* trap */
+	{'^', "visibility trap", C(CLR_WHITE)},	/* trap */
+	{'^', "feminism stone trap", C(CLR_BRIGHT_MAGENTA)},	/* trap */
+	{'^', "branch teleporter", C(CLR_BRIGHT_MAGENTA)},	/* trap */
+	{'^', "branch beamer", C(CLR_BRIGHT_MAGENTA)},	/* trap */
+	{'^', "poison arrow trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'^', "poison bolt trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'^', "mace trap", C(CLR_CYAN)},	/* trap */
+	{'^', "shueft trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "moth larvae trap", C(CLR_BROWN)},	/* trap */
+	{'^', "worthiness trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "conduct trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "strikethrough trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "multiple gather trap", C(CLR_BROWN)},	/* trap */
+	{'^', "vivisection trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "instafeminism trap", C(CLR_BRIGHT_MAGENTA)},	/* trap */
+	{'^', "instanasty trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "skill point loss trap", C(CLR_BLUE)},	/* trap */
+	{'^', "perfect match trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'^', "dumbie lightsaber trap", C(CLR_MAGENTA)},	/* trap */
+	{'>', "wrong stairs", C(CLR_CYAN)},	/* trap */
+	{'^', "techstop trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "amnesia switch trap", C(CLR_WHITE)},	/* trap */
+	{'^', "skill swap trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "skill upordown trap", C(CLR_BLUE)},	/* trap */
+	{'^', "skill randomize trap", C(CLR_RED)},	/* trap */
+
 	{'^', "timerun trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -1605,6 +1642,43 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_johanna_trap),
 	g_FILLER(S_inge_trap),
 
+	g_FILLER(S_wall_trap),
+	g_FILLER(S_monster_generator),
+	g_FILLER(S_potion_dispenser),
+	g_FILLER(S_spacewars_spawn_trap),
+	g_FILLER(S_tv_tropes_trap),
+	g_FILLER(S_symbiote_trap),
+	g_FILLER(S_kill_symbiote_trap),
+	g_FILLER(S_symbiote_replacement_trap),
+	g_FILLER(S_shutdown_trap),
+	g_FILLER(S_corona_trap),
+	g_FILLER(S_unproofing_trap),
+	g_FILLER(S_visibility_trap),
+	g_FILLER(S_feminism_stone_trap),
+	g_FILLER(S_branch_teleporter),
+	g_FILLER(S_branch_beamer),
+	g_FILLER(S_poison_arrow_trap),
+	g_FILLER(S_poison_bolt_trap),
+	g_FILLER(S_mace_trap),
+	g_FILLER(S_shueft_trap),
+	g_FILLER(S_moth_larvae_trap),
+	g_FILLER(S_worthiness_trap),
+	g_FILLER(S_conduct_trap),
+	g_FILLER(S_strikethrough_trap),
+	g_FILLER(S_multiple_gather_trap),
+	g_FILLER(S_vivisection_trap),
+	g_FILLER(S_instafeminism_trap),
+	g_FILLER(S_instanasty_trap),
+	g_FILLER(S_skill_point_loss_trap),
+	g_FILLER(S_perfect_match_trap),
+	g_FILLER(S_dumbie_lightsaber_trap),
+	g_FILLER(S_wrong_stairs),
+	g_FILLER(S_techstop_trap),
+	g_FILLER(S_amnesia_switch_trap),
+	g_FILLER(S_skill_swap_trap),
+	g_FILLER(S_skill_upordown_trap),
+	g_FILLER(S_skill_randomize_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -2309,6 +2383,43 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_johanna_trap),
 	g_FILLER(S_inge_trap),
 
+	g_FILLER(S_wall_trap),
+	g_FILLER(S_monster_generator),
+	g_FILLER(S_potion_dispenser),
+	g_FILLER(S_spacewars_spawn_trap),
+	g_FILLER(S_tv_tropes_trap),
+	g_FILLER(S_symbiote_trap),
+	g_FILLER(S_kill_symbiote_trap),
+	g_FILLER(S_symbiote_replacement_trap),
+	g_FILLER(S_shutdown_trap),
+	g_FILLER(S_corona_trap),
+	g_FILLER(S_unproofing_trap),
+	g_FILLER(S_visibility_trap),
+	g_FILLER(S_feminism_stone_trap),
+	g_FILLER(S_branch_teleporter),
+	g_FILLER(S_branch_beamer),
+	g_FILLER(S_poison_arrow_trap),
+	g_FILLER(S_poison_bolt_trap),
+	g_FILLER(S_mace_trap),
+	g_FILLER(S_shueft_trap),
+	g_FILLER(S_moth_larvae_trap),
+	g_FILLER(S_worthiness_trap),
+	g_FILLER(S_conduct_trap),
+	g_FILLER(S_strikethrough_trap),
+	g_FILLER(S_multiple_gather_trap),
+	g_FILLER(S_vivisection_trap),
+	g_FILLER(S_instafeminism_trap),
+	g_FILLER(S_instanasty_trap),
+	g_FILLER(S_skill_point_loss_trap),
+	g_FILLER(S_perfect_match_trap),
+	g_FILLER(S_dumbie_lightsaber_trap),
+	g_FILLER(S_wrong_stairs),
+	g_FILLER(S_techstop_trap),
+	g_FILLER(S_amnesia_switch_trap),
+	g_FILLER(S_skill_swap_trap),
+	g_FILLER(S_skill_upordown_trap),
+	g_FILLER(S_skill_randomize_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -3009,6 +3120,43 @@ static uchar wing_graphics[MAXPCHARS] = {
 	g_FILLER(S_ariane_trap),
 	g_FILLER(S_johanna_trap),
 	g_FILLER(S_inge_trap),
+
+	g_FILLER(S_wall_trap),
+	g_FILLER(S_monster_generator),
+	g_FILLER(S_potion_dispenser),
+	g_FILLER(S_spacewars_spawn_trap),
+	g_FILLER(S_tv_tropes_trap),
+	g_FILLER(S_symbiote_trap),
+	g_FILLER(S_kill_symbiote_trap),
+	g_FILLER(S_symbiote_replacement_trap),
+	g_FILLER(S_shutdown_trap),
+	g_FILLER(S_corona_trap),
+	g_FILLER(S_unproofing_trap),
+	g_FILLER(S_visibility_trap),
+	g_FILLER(S_feminism_stone_trap),
+	g_FILLER(S_branch_teleporter),
+	g_FILLER(S_branch_beamer),
+	g_FILLER(S_poison_arrow_trap),
+	g_FILLER(S_poison_bolt_trap),
+	g_FILLER(S_mace_trap),
+	g_FILLER(S_shueft_trap),
+	g_FILLER(S_moth_larvae_trap),
+	g_FILLER(S_worthiness_trap),
+	g_FILLER(S_conduct_trap),
+	g_FILLER(S_strikethrough_trap),
+	g_FILLER(S_multiple_gather_trap),
+	g_FILLER(S_vivisection_trap),
+	g_FILLER(S_instafeminism_trap),
+	g_FILLER(S_instanasty_trap),
+	g_FILLER(S_skill_point_loss_trap),
+	g_FILLER(S_perfect_match_trap),
+	g_FILLER(S_dumbie_lightsaber_trap),
+	g_FILLER(S_wrong_stairs),
+	g_FILLER(S_techstop_trap),
+	g_FILLER(S_amnesia_switch_trap),
+	g_FILLER(S_skill_swap_trap),
+	g_FILLER(S_skill_upordown_trap),
+	g_FILLER(S_skill_randomize_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -3711,6 +3859,43 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_ariane_trap),
 	g_FILLER(S_johanna_trap),
 	g_FILLER(S_inge_trap),
+
+	g_FILLER(S_wall_trap),
+	g_FILLER(S_monster_generator),
+	g_FILLER(S_potion_dispenser),
+	g_FILLER(S_spacewars_spawn_trap),
+	g_FILLER(S_tv_tropes_trap),
+	g_FILLER(S_symbiote_trap),
+	g_FILLER(S_kill_symbiote_trap),
+	g_FILLER(S_symbiote_replacement_trap),
+	g_FILLER(S_shutdown_trap),
+	g_FILLER(S_corona_trap),
+	g_FILLER(S_unproofing_trap),
+	g_FILLER(S_visibility_trap),
+	g_FILLER(S_feminism_stone_trap),
+	g_FILLER(S_branch_teleporter),
+	g_FILLER(S_branch_beamer),
+	g_FILLER(S_poison_arrow_trap),
+	g_FILLER(S_poison_bolt_trap),
+	g_FILLER(S_mace_trap),
+	g_FILLER(S_shueft_trap),
+	g_FILLER(S_moth_larvae_trap),
+	g_FILLER(S_worthiness_trap),
+	g_FILLER(S_conduct_trap),
+	g_FILLER(S_strikethrough_trap),
+	g_FILLER(S_multiple_gather_trap),
+	g_FILLER(S_vivisection_trap),
+	g_FILLER(S_instafeminism_trap),
+	g_FILLER(S_instanasty_trap),
+	g_FILLER(S_skill_point_loss_trap),
+	g_FILLER(S_perfect_match_trap),
+	g_FILLER(S_dumbie_lightsaber_trap),
+	g_FILLER(S_wrong_stairs),
+	g_FILLER(S_techstop_trap),
+	g_FILLER(S_amnesia_switch_trap),
+	g_FILLER(S_skill_swap_trap),
+	g_FILLER(S_skill_upordown_trap),
+	g_FILLER(S_skill_randomize_trap),
 
 	g_FILLER(S_timerun_trap),
 
@@ -4621,6 +4806,43 @@ boolean is_rlevel;
 	    showsyms[S_ariane_trap] = 0x04;
 	    showsyms[S_johanna_trap] = 0x04;
 	    showsyms[S_inge_trap] = 0x04;
+
+	    showsyms[S_wall_trap] = 0x04;
+	    showsyms[S_monster_generator] = 0x04;
+	    showsyms[S_potion_dispenser] = 0x04;
+	    showsyms[S_spacewars_spawn_trap] = 0x04;
+	    showsyms[S_tv_tropes_trap] = 0x04;
+	    showsyms[S_symbiote_trap] = 0x04;
+	    showsyms[S_kill_symbiote_trap] = 0x04;
+	    showsyms[S_symbiote_replacement_trap] = 0x04;
+	    showsyms[S_shutdown_trap] = 0x04;
+	    showsyms[S_corona_trap] = 0x04;
+	    showsyms[S_unproofing_trap] = 0x04;
+	    showsyms[S_visibility_trap] = 0x04;
+	    showsyms[S_feminism_stone_trap] = 0x04;
+	    showsyms[S_branch_teleporter] = 0x04;
+	    showsyms[S_branch_beamer] = 0x04;
+	    showsyms[S_poison_arrow_trap] = 0x04;
+	    showsyms[S_poison_bolt_trap] = 0x04;
+	    showsyms[S_mace_trap] = 0x04;
+	    showsyms[S_shueft_trap] = 0x04;
+	    showsyms[S_moth_larvae_trap] = 0x04;
+	    showsyms[S_worthiness_trap] = 0x04;
+	    showsyms[S_conduct_trap] = 0x04;
+	    showsyms[S_strikethrough_trap] = 0x04;
+	    showsyms[S_multiple_gather_trap] = 0x04;
+	    showsyms[S_vivisection_trap] = 0x04;
+	    showsyms[S_instafeminism_trap] = 0x04;
+	    showsyms[S_instanasty_trap] = 0x04;
+	    showsyms[S_skill_point_loss_trap] = 0x04;
+	    showsyms[S_perfect_match_trap] = 0x04;
+	    showsyms[S_dumbie_lightsaber_trap] = 0x04;
+	    showsyms[S_wrong_stairs] = 0x04;
+	    showsyms[S_techstop_trap] = 0x04;
+	    showsyms[S_amnesia_switch_trap] = 0x04;
+	    showsyms[S_skill_swap_trap] = 0x04;
+	    showsyms[S_skill_upordown_trap] = 0x04;
+	    showsyms[S_skill_randomize_trap] = 0x04;
 
 	    showsyms[S_timerun_trap] = 0x04;
 #endif /* PUBLIC_SERVER */

@@ -1444,6 +1444,41 @@ selecttrap:
 	    case CATACLYSM_TRAP:
 		if (rn2(evilfriday ? 10 : 100) && !NastyTrapNation) goto selecttrap;
 		break;
+	    case KILL_SYMBIOTE_TRAP:
+		if (rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap;
+		break;
+	    case FEMINISM_STONE_TRAP:
+		if (rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap;
+		break;
+	    case BRANCH_TELEPORTER:
+		if (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) )  goto selecttrap;
+		if (rn2(evilfriday ? 2 : 5) && !NastyTrapNation) goto selecttrap;
+		break;
+	    case BRANCH_BEAMER:
+		if (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) )  goto selecttrap;
+		if (rn2(evilfriday ? 2 : 12) && !NastyTrapNation) goto selecttrap;
+		break;
+	    case TV_TROPES_TRAP:
+		if (rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap;
+		break;
+	    case SHUEFT_TRAP:
+		if (rn2(evilfriday ? 10 : 100) && !NastyTrapNation) goto selecttrap;
+		break;
+	    case CONDUCT_TRAP:
+		if (rn2(evilfriday ? 10 : 100) && !NastyTrapNation) goto selecttrap;
+		break;
+	    case SKILL_POINT_LOSS_TRAP:
+		if (rn2(evilfriday ? 20 : 200) && !NastyTrapNation) goto selecttrap;
+		break;
+	    case DUMBIE_LIGHTSABER_TRAP:
+		if (rn2(evilfriday ? 2 : 5) && !NastyTrapNation) goto selecttrap;
+		break;
+	    case WRONG_STAIRS:
+		if (rn2(evilfriday ? 2 : 5) && !NastyTrapNation) goto selecttrap;
+		break;
+	    case AMNESIA_SWITCH_TRAP:
+		if (rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap;
+		break;
 	    case DATA_DELETE_TRAP:
 		if (rn2(evilfriday ? 1000 : 10000)) goto selecttrap;
 		break;
@@ -1877,6 +1912,8 @@ selecttrap2:
 		if (rtrap == CURRENT_SHAFT && !Can_dig_down(&u.uz) && !Is_stronghold(&u.uz) ) goto selecttrap2;
 		if (rtrap == LEVEL_TELEP && (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) goto selecttrap2;
 		if (rtrap == LEVEL_BEAMER && (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) goto selecttrap2;
+		if (rtrap == BRANCH_TELEPORTER && (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) goto selecttrap2;
+		if (rtrap == BRANCH_BEAMER && (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) goto selecttrap2;
 		if (rtrap == NEXUS_TRAP && (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) goto selecttrap2;
 		if (rtrap == TELEP_TRAP && (level.flags.noteleport || Race_if(PM_STABILISATOR) )) goto selecttrap2;
 		if (rtrap == BEAMER_TRAP && (level.flags.noteleport || Race_if(PM_STABILISATOR) )) goto selecttrap2;
@@ -2151,6 +2188,17 @@ selecttrap2:
 		if (rtrap == HYBRID_TRAP && rn2(500) && !NastyTrapNation) goto selecttrap2;
 		if (rtrap == SHAPECHANGE_TRAP && rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap2;
 		if (rtrap == CATACLYSM_TRAP && rn2(evilfriday ? 10 : 100) && !NastyTrapNation) goto selecttrap2;
+		if (rtrap == KILL_SYMBIOTE_TRAP && rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap2;
+		if (rtrap == FEMINISM_STONE_TRAP && rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap2;
+		if (rtrap == BRANCH_TELEPORTER && rn2(evilfriday ? 2 : 5) && !NastyTrapNation) goto selecttrap2;
+		if (rtrap == BRANCH_BEAMER && rn2(evilfriday ? 2 : 12) && !NastyTrapNation) goto selecttrap2;
+		if (rtrap == TV_TROPES_TRAP && rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap2;
+		if (rtrap == SHUEFT_TRAP && rn2(evilfriday ? 10 : 100) && !NastyTrapNation) goto selecttrap2;
+		if (rtrap == CONDUCT_TRAP && rn2(evilfriday ? 10 : 100) && !NastyTrapNation) goto selecttrap2;
+		if (rtrap == SKILL_POINT_LOSS_TRAP && rn2(evilfriday ? 20 : 200) && !NastyTrapNation) goto selecttrap2;
+		if (rtrap == DUMBIE_LIGHTSABER_TRAP && rn2(evilfriday ? 2 : 5) && !NastyTrapNation) goto selecttrap2;
+		if (rtrap == WRONG_STAIRS && rn2(evilfriday ? 2 : 5) && !NastyTrapNation) goto selecttrap2;
+		if (rtrap == AMNESIA_SWITCH_TRAP && rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap2;
 		if (rtrap == DATA_DELETE_TRAP && rn2(evilfriday ? 1000 : 10000)) goto selecttrap2;
 		if (rtrap == ELDER_TENTACLING_TRAP && rn2(evilfriday ? 100 : 1000)) goto selecttrap2;
 		if (rtrap == FOOTERER_TRAP && rn2(evilfriday ? 10 : 50) && !NastyTrapNation) goto selecttrap2;

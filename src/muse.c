@@ -6922,7 +6922,7 @@ struct monst *mtmp;
 
 		{
 		struct trap *ttmp2 = maketrap(u.ux, u.uy, randomtrap(), 100, TRUE);
-		if (ttmp2 && (ttmp2->ttyp != HOLE) && (ttmp2->ttyp != TRAPDOOR) && (ttmp2->ttyp != LEVEL_TELEP) && (ttmp2->ttyp != LEVEL_BEAMER) && (ttmp2->ttyp != NEXUS_TRAP) && (ttmp2->ttyp != MAGIC_PORTAL) && (ttmp2->ttyp != UNKNOWN_TRAP) && (ttmp2->ttyp != WARP_ZONE) && (ttmp2->ttyp != SHAFT_TRAP) && (ttmp2->ttyp != CURRENT_SHAFT) ) dotrap(ttmp2, 0);
+		if (ttmp2 && (ttmp2->ttyp != HOLE) && (ttmp2->ttyp != TRAPDOOR) && (ttmp2->ttyp != LEVEL_TELEP) && (ttmp2->ttyp != LEVEL_BEAMER) && (ttmp2->ttyp != BRANCH_TELEPORTER) && (ttmp2->ttyp != BRANCH_BEAMER) && (ttmp2->ttyp != WRONG_STAIRS) && (ttmp2->ttyp != NEXUS_TRAP) && (ttmp2->ttyp != MAGIC_PORTAL) && (ttmp2->ttyp != UNKNOWN_TRAP) && (ttmp2->ttyp != WARP_ZONE) && (ttmp2->ttyp != SHAFT_TRAP) && (ttmp2->ttyp != CURRENT_SHAFT) ) dotrap(ttmp2, 0);
 		}
 
 		return 2;

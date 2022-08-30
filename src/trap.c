@@ -33,6 +33,7 @@ STATIC_DCL int disarm_glyph_trap(struct trap *, int);
 STATIC_DCL int disarm_blade_trap(struct trap *);
 STATIC_DCL int disarm_spined_ball(struct trap *);
 STATIC_DCL int disarm_pendulum(struct trap *);
+STATIC_DCL int disarm_mace_trap(struct trap *);
 STATIC_DCL int disarm_fire_trap(struct trap *);
 STATIC_DCL int disarm_landmine(struct trap *);
 STATIC_DCL int disarm_squeaky_board(struct trap *);
@@ -2261,6 +2262,8 @@ boolean givehp;
 		if (typ == BOON_TRAP) typ = MAGIC_BEAM_TRAP;
 		if (typ == LEVEL_TELEP && (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) typ = ANTI_MAGIC;
 		if (typ == LEVEL_BEAMER && (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) typ = ANTI_MAGIC;
+		if (typ == BRANCH_TELEPORTER && (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) typ = ANTI_MAGIC;
+		if (typ == BRANCH_BEAMER && (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) typ = ANTI_MAGIC;
 		if (typ == NEXUS_TRAP && (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) typ = ANTI_MAGIC;
 		if (typ == TELEP_TRAP && (level.flags.noteleport || Race_if(PM_STABILISATOR)) ) typ = SQKY_BOARD;
 		if (typ == BEAMER_TRAP && (level.flags.noteleport || Race_if(PM_STABILISATOR)) ) typ = SQKY_BOARD;
@@ -2779,6 +2782,7 @@ newbossING:
 	if (ttmp->ttyp == HOLE && !In_sokoban(&u.uz) && !ttmp->hiddentrap ) ttmp->tseen = 1;  /* You can't hide a hole */
 	else if (ttmp->ttyp == SUPERTHING_TRAP && !ttmp->hiddentrap ) ttmp->tseen = 1;
 	else if (ttmp->ttyp == ARABELLA_SPEAKER && !ttmp->hiddentrap ) ttmp->tseen = 1;
+	else if (ttmp->ttyp == WRONG_STAIRS && !ttmp->hiddentrap ) ttmp->tseen = 1;
 	else ttmp->tseen = 0;
 	ttmp->once = 0;
 	ttmp->artionce = 0;
@@ -3577,6 +3581,51 @@ unsigned trflags;
 		}
 		break;
 
+	    case POISON_ARROW_TRAP:
+		if (trap->once && !rn2(15)) {
+		    You_hear("a loud click!");
+		    deltrap(trap);
+		    newsym(u.ux,u.uy);
+		    break;
+		}
+		trap->once = 1;
+		seetrap(trap);
+		pline("An arrow shoots out at you!");
+		otmp = mksobj(ARROW, TRUE, FALSE, FALSE);
+		if (otmp) {
+			int projectiledamage = dmgval(otmp, &youmonst);
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
+			otmp->quan = 1L;
+			otmp->owt = weight(otmp);
+			otmp->opoisoned = TRUE;
+			if (u.usteed && will_hit_steed() && steedintrap(trap, otmp)) /* nothing */;
+			else
+			if (thitu(8 + rnd((monster_difficulty() / 2) + 1), projectiledamage + rnd((monster_difficulty() / 2) + 1) , otmp, "arrow")) {
+			    obfree(otmp, (struct obj *)0);
+			} else if (!timebasedlowerchance()) {
+			    obfree(otmp, (struct obj *)0);
+			} else {
+			    place_object(otmp, u.ux, u.uy);
+			    if (!Blind) otmp->dknown = 1;
+			    stackobj(otmp);
+			    newsym(u.ux, u.uy);
+			}
+		}
+		break;
+
 	    case BOLT_TRAP:
 		if (trap->once && !rn2(15)) {
 		    You_hear("a loud click!");
@@ -3607,6 +3656,51 @@ unsigned trflags;
 			otmp->quan = 1L;
 			otmp->owt = weight(otmp);
 			otmp->opoisoned = 0;
+			if (u.usteed && will_hit_steed() && steedintrap(trap, otmp)) /* nothing */;
+			else
+			if (thitu(8 + rnd((monster_difficulty() * 2 / 3) + 1), projectiledamage + rnd((monster_difficulty() * 2 / 3) + 1) , otmp, "bolt")) {
+			    obfree(otmp, (struct obj *)0);
+			} else if (!timebasedlowerchance()) {
+			    obfree(otmp, (struct obj *)0);
+			} else {
+			    place_object(otmp, u.ux, u.uy);
+			    if (!Blind) otmp->dknown = 1;
+			    stackobj(otmp);
+			    newsym(u.ux, u.uy);
+			}
+		}
+		break;
+
+	    case POISON_BOLT_TRAP:
+		if (trap->once && !rn2(15)) {
+		    You_hear("a loud click!");
+		    deltrap(trap);
+		    newsym(u.ux,u.uy);
+		    break;
+		}
+		trap->once = 1;
+		seetrap(trap);
+		pline("A bolt shoots out at you!");
+		otmp = mksobj(CROSSBOW_BOLT, TRUE, FALSE, FALSE);
+		if (otmp) {
+			int projectiledamage = dmgval(otmp, &youmonst);
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
+			otmp->quan = 1L;
+			otmp->owt = weight(otmp);
+			otmp->opoisoned = TRUE;
 			if (u.usteed && will_hit_steed() && steedintrap(trap, otmp)) /* nothing */;
 			else
 			if (thitu(8 + rnd((monster_difficulty() * 2 / 3) + 1), projectiledamage + rnd((monster_difficulty() * 2 / 3) + 1) , otmp, "bolt")) {
@@ -8429,6 +8523,36 @@ newbossPENT:
 		level_tele_trapX(trap);
 		break;
 
+	    case BRANCH_TELEPORTER:
+
+		You("triggered a branch teleporter!");
+		if (Antimagic) {
+			shieldeff(u.ux, u.uy);
+		}
+		if (Antimagic || In_endgame(&u.uz)) {
+			You_feel("a wrenching sensation.");
+			break;
+		}
+
+	      if (!playerlevelportdisabled()) {
+			deltrap(trap);
+			newsym(u.ux,u.uy);	/* get rid of trap symbol */
+			randombranchtele();
+		} else pline("The trap doesn't seem to have any effect on you.");
+
+		break;
+
+	    case BRANCH_BEAMER:
+
+		You("triggered a branch beamer!");
+	      if (!playerlevelportdisabled()) {
+			deltrap(trap);
+			newsym(u.ux,u.uy);	/* get rid of trap symbol */
+			randombranchtele();
+		} else pline("The trap doesn't seem to have any effect on you.");
+
+		break;
+
 	    case MAGIC_CANCELLATION_TRAP:
 		pline("You're surrounded by a cyan glow!");
 		seetrap(trap);
@@ -12387,6 +12511,68 @@ madnesseffect:
 
 		 break;
 
+		case MACE_TRAP:
+			seetrap(trap);
+
+			if (unsolid(youmonst.data)) {
+				pline("A mace swings through your body.");
+			} else {
+				int projectiledamage = rnd(8)+ rnd( (monster_difficulty() / 2) + 1);
+				if (projectiledamage > 1) {
+					if (u.ulevel == 1) projectiledamage /= 2;
+					else if (u.ulevel == 2) {
+						projectiledamage *= 2;
+						projectiledamage /= 3;
+					} else if (u.ulevel == 3) {
+						projectiledamage *= 3;
+						projectiledamage /= 4;
+					} else if (u.ulevel == 4) {
+						projectiledamage *= 4;
+						projectiledamage /= 5;
+					}
+				}
+
+				pline("You are hit by a mace!");
+				losehp(projectiledamage,"mace trap",KILLED_BY_AN);
+			}
+
+			break;
+
+		case WALL_TRAP:
+		case MONSTER_GENERATOR:
+		case POTION_DISPENSER:
+		case SPACEWARS_SPAWN_TRAP:
+		case TV_TROPES_TRAP:
+		case SYMBIOTE_TRAP:
+		case KILL_SYMBIOTE_TRAP:
+		case SYMBIOTE_REPLACEMENT_TRAP:
+		case SHUTDOWN_TRAP:
+		case CORONA_TRAP:
+		case UNPROOFING_TRAP:
+		case VISIBILITY_TRAP:
+		case FEMINISM_STONE_TRAP:
+		case SHUEFT_TRAP:
+		case MOTH_LARVAE_TRAP:
+		case WORTHINESS_TRAP:
+		case CONDUCT_TRAP:
+		case STRIKETHROUGH_TRAP:
+		case MULTIPLE_GATHER_TRAP:
+		case VIVISECTION_TRAP:
+		case INSTAFEMINISM_TRAP:
+		case INSTANASTY_TRAP:
+		case SKILL_POINT_LOSS_TRAP:
+		case PERFECT_MATCH_TRAP:
+		case DUMBIE_LIGHTSABER_TRAP:
+		case WRONG_STAIRS:
+		case TECHSTOP_TRAP:
+		case AMNESIA_SWITCH_TRAP:
+		case SKILL_SWAP_TRAP:
+		case SKILL_UPORDOWN_TRAP:
+		case SKILL_RANDOMIZE_TRAP:
+ 
+			pline("todo trap");
+			break;
+
 		 case MIGUC_TRAP:
 			/* evil patch idea, inspired by ais523 IIRC? spawn monster and paralyze player --Amy */
 
@@ -16221,7 +16407,23 @@ struct obj *otmp;
 			if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
 			steedhit = TRUE;
 			break;
+		case POISON_ARROW_TRAP:
+			if(!otmp) {
+				impossible("steed hit by non-existant arrow?");
+				return 0;
+			}
+			if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
+			steedhit = TRUE;
+			break;
 		case BOLT_TRAP:
+			if(!otmp) {
+				impossible("steed hit by non-existant bolt?");
+				return 0;
+			}
+			if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
+			steedhit = TRUE;
+			break;
+		case POISON_BOLT_TRAP:
 			if(!otmp) {
 				impossible("steed hit by non-existant bolt?");
 				return 0;
@@ -16890,6 +17092,25 @@ register struct monst *mtmp;
 				if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
 			}
 			break;
+		case POISON_ARROW_TRAP:
+			if (trap->once && !rn2(15)) {
+			    if (in_sight && see_it)
+				pline("%s triggers a trap but nothing happens.",
+				      Monnam(mtmp));
+			    deltrap(trap);
+			    newsym(mtmp->mx, mtmp->my);
+			    break;
+			}
+			trap->once = 1;
+			otmp = mksobj(ARROW, TRUE, FALSE, FALSE);
+			if (otmp) {
+				otmp->quan = 1L;
+				otmp->owt = weight(otmp);
+				otmp->opoisoned = TRUE;
+				if (in_sight) seetrap(trap);
+				if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
+			}
+			break;
 		case BOLT_TRAP:
 			if (trap->once && !rn2(15)) {
 			    if (in_sight && see_it)
@@ -16905,6 +17126,25 @@ register struct monst *mtmp;
 				otmp->quan = 1L;
 				otmp->owt = weight(otmp);
 				otmp->opoisoned = 0;
+				if (in_sight) seetrap(trap);
+				if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
+			}
+			break;
+		case POISON_BOLT_TRAP:
+			if (trap->once && !rn2(15)) {
+			    if (in_sight && see_it)
+				pline("%s triggers a trap but nothing happens.",
+				      Monnam(mtmp));
+			    deltrap(trap);
+			    newsym(mtmp->mx, mtmp->my);
+			    break;
+			}
+			trap->once = 1;
+			otmp = mksobj(CROSSBOW_BOLT, TRUE, FALSE, FALSE);
+			if (otmp) {
+				otmp->quan = 1L;
+				otmp->owt = weight(otmp);
+				otmp->opoisoned = TRUE;
 				if (in_sight) seetrap(trap);
 				if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
 			}
@@ -17585,6 +17825,33 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			}
 			break;
 
+		case BRANCH_TELEPORTER:
+		case BRANCH_BEAMER:
+
+			if (mtmp->isshk || mtmp->ispriest) break; /* we don't want shks to become angry through no fault of your own, unless you have e.g. a wakeup call trap in effect --Amy */
+
+			{
+				if (in_sight) {
+					pline("%s triggers a branchporting trap!", mon_nam(mtmp));
+					seetrap(trap);
+				}
+
+				if (rn2(20)) {
+
+				    int mlev_res;
+				    mlev_res = mlevel_tele_trap(mtmp, trap, inescapable, in_sight);
+				    if (mlev_res) return(mlev_res);
+				} else {
+					d_level flev;
+
+					if (mon_has_amulet(mtmp) || In_endgame(&u.uz)) break;
+					flev = random_branchport_level();
+					migrate_to_level(mtmp, ledger_no(&flev), MIGR_RANDOM, (coord *)0);
+
+				}
+			}
+			break;
+
 		case S_PRESSING_TRAP:
 
 			if (!mtmp->mpeaceful && !mtmp->mtame && !mtmp->spressingseen && !canseemon(mtmp)) {
@@ -17958,6 +18225,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case STAT_DECREASE_TRAP:
 		case SIMEOUT_TRAP:
 
+
 		case EVIL_HEEL_TRAP:
 		case BAD_EQUIPMENT_TRAP:
 		case TEMPOCONFLICT_TRAP:
@@ -18137,6 +18405,41 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case KOP_CUBE:
 		case BOSS_SPAWNER:
 		case CONTAMINATION_TRAP:
+
+			break;
+
+		case WALL_TRAP:
+		case MONSTER_GENERATOR:
+		case POTION_DISPENSER:
+		case SPACEWARS_SPAWN_TRAP:
+		case TV_TROPES_TRAP:
+		case SYMBIOTE_TRAP:
+		case KILL_SYMBIOTE_TRAP:
+		case SYMBIOTE_REPLACEMENT_TRAP:
+		case SHUTDOWN_TRAP:
+		case CORONA_TRAP:
+		case UNPROOFING_TRAP:
+		case VISIBILITY_TRAP:
+		case FEMINISM_STONE_TRAP:
+		case SHUEFT_TRAP:
+		case MOTH_LARVAE_TRAP:
+		case WORTHINESS_TRAP:
+		case CONDUCT_TRAP:
+		case STRIKETHROUGH_TRAP:
+		case MULTIPLE_GATHER_TRAP:
+		case VIVISECTION_TRAP:
+		case INSTAFEMINISM_TRAP:
+		case INSTANASTY_TRAP:
+		case SKILL_POINT_LOSS_TRAP:
+		case PERFECT_MATCH_TRAP:
+		case DUMBIE_LIGHTSABER_TRAP:
+		case WRONG_STAIRS:
+		case TECHSTOP_TRAP:
+		case AMNESIA_SWITCH_TRAP:
+		case SKILL_SWAP_TRAP:
+		case SKILL_UPORDOWN_TRAP:
+		case SKILL_RANDOMIZE_TRAP:
+ 		case MACE_TRAP:
 
 			break;
 
@@ -20990,13 +21293,13 @@ struct trap *ttmp;
 		if (!timebasedlowerchance()) {
 			obfree(otmp, (struct obj *)0);
 		} else {
-			if (otyp != DART)
-				otmp->opoisoned = 0;
-			otmp->quan=cnt;
-			otmp->owt = weight(otmp);
 			/* Only dart traps are capable of being poisonous */
 			if (otyp != DART)
 				otmp->opoisoned = 0;
+			/* Amy edit: and some specific other trap types */
+			if (ttmp->ttyp == POISON_ARROW_TRAP || ttmp->ttyp == POISON_BOLT_TRAP) otmp->opoisoned = TRUE;
+			otmp->quan=cnt;
+			otmp->owt = weight(otmp);
 			place_object(otmp, ttmp->tx, ttmp->ty);
 			/* Sell your own traps only... */
 			if (ttmp->madeby_u) sellobj(otmp, ttmp->tx, ttmp->ty);
@@ -21005,7 +21308,7 @@ struct trap *ttmp;
 	/* careful: otmp might have been freed */
 	}
 	newsym(ttmp->tx, ttmp->ty);
-	deltrap(ttmp);
+	deltrap(ttmp); /* ttmp is also freed at this point */
 }
 
 /* while attempting to disarm an adjacent trap, we've fallen into it */
@@ -21335,6 +21638,29 @@ struct trap *ttmp;
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	cnv_trap_obj(IRON_CHAIN, 1, ttmp);
+	newsym(trapx, trapy);
+	return 1;
+}
+
+int
+disarm_mace_trap(ttmp)
+struct trap *ttmp;
+{
+	xchar trapx = ttmp->tx, trapy = ttmp->ty;
+	int fails = try_disarm(ttmp, FALSE);
+
+	if (fails < 2) return fails;
+	You("disarm the trap!");
+	u.cnd_untrapamount++;
+	more_experienced(3 * (deepest_lev_reached(FALSE) + 1),0);
+	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
+		u.uhpmax += 3;
+		if (Upolyd) u.mhmax += 3;
+		flags.botl = TRUE;
+	}
+	newexplevel();
+	if (u.ualign.type == A_LAWFUL) adjalign(1);
+	cnv_trap_obj(MACE, 1, ttmp);
 	newsym(trapx, trapy);
 	return 1;
 }
@@ -21971,7 +22297,11 @@ boolean force;
 				return disarm_heel_trap(ttmp);
 			case ARROW_TRAP:
 				return disarm_shooting_trap(ttmp, ARROW);
+			case POISON_ARROW_TRAP:
+				return disarm_shooting_trap(ttmp, ARROW);
 			case BOLT_TRAP:
+				return disarm_shooting_trap(ttmp, CROSSBOW_BOLT);
+			case POISON_BOLT_TRAP:
 				return disarm_shooting_trap(ttmp, CROSSBOW_BOLT);
 			case BULLET_TRAP:
 				return disarm_shooting_trap(ttmp, PISTOL_BULLET);
@@ -22013,6 +22343,8 @@ boolean force;
 				return disarm_spined_ball(ttmp);
 			case PENDULUM_TRAP:
 				return disarm_pendulum(ttmp);
+			case MACE_TRAP:
+				return disarm_mace_trap(ttmp);
 			case FIRE_TRAP:
 				return disarm_fire_trap(ttmp);
 			case PIT:
