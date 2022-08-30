@@ -243,7 +243,7 @@ boolean digest_meal;
 	}
 
 	/* super regene */
-	if (mon->data == &mons[PM_MESHERA_ALPHA_DEFORMED_ANGEL] || mon->data == &mons[PM_TESTER] || mon->data == &mons[PM_TEA_HUSSY] || mon->data == &mons[PM_OUROBOROS] || mon->data == &mons[PM_UNITDEAD_QUEEN] || mon->data == &mons[PM_UNITDEAD_KING] || mon->data == &mons[PM_REGULUS_THE_ALTERED] || mon->data == &mons[PM_SELF_HEALER] || mon->data == &mons[PM_ZANAN_ENHANCED_SOLDIER] || mon->data == &mons[PM_VANESSA_ENHANCED_SOLDIER] || mon->data == &mons[PM_SUPERREGENEBOROS] || mon->data == &mons[PM_JUERE_DEMON_SOLDIER] || mon->data == &mons[PM_JENNIFER_DEMON_SOLDIER] || mon->data == &mons[PM_ARIANE__LADY_OF_THE_ELEMENTS] || mon->data == &mons[PM_RENAI_OVER_MESHERA] || mon->data == &mons[PM_PATIENT_ZERO] || mon->data == &mons[PM_MISSU] || (FemtrapActiveGudrun && mon->female && humanoid(mon->data)) ) {
+	if (mon->data == &mons[PM_MESHERA_ALPHA_DEFORMED_ANGEL] || mon->data == &mons[PM_TESTER] || mon->data == &mons[PM_TEA_HUSSY] || mon->data == &mons[PM_OUROBOROS] || mon->data == &mons[PM_UNITDEAD_QUEEN] || mon->data == &mons[PM_UNITDEAD_KING] || mon->data == &mons[PM_REGULUS_THE_ALTERED] || mon->data == &mons[PM_SELF_HEALER] || mon->data == &mons[PM_ZANAN_ENHANCED_SOLDIER] || mon->data == &mons[PM_VANESSA_ENHANCED_SOLDIER] || mon->data == &mons[PM_SUPERREGENEBOROS] || mon->data == &mons[PM_JUERE_DEMON_SOLDIER] || mon->data == &mons[PM_DIGGING_ON_FARMER] || mon->data == &mons[PM_JENNIFER_DEMON_SOLDIER] || mon->data == &mons[PM_ARIANE__LADY_OF_THE_ELEMENTS] || mon->data == &mons[PM_RENAI_OVER_MESHERA] || mon->data == &mons[PM_PATIENT_ZERO] || mon->data == &mons[PM_MISSU] || (FemtrapActiveGudrun && mon->female && humanoid(mon->data)) ) {
 		mon->mhp += 20;
 		if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
 	}
@@ -614,7 +614,7 @@ register struct monst *mtmp;
 	/* croupiers are meant to mostly stay in their casinos */
 	if ((mdat == &mons[PM_CROUPIER] || mdat == &mons[PM_MASTER_CROUPIER] || mdat == &mons[PM_ELITE_CROUPIER]) && mtmp->mpeaceful && !mtmp->mtame && rn2(20) && levl[mtmp->mx][mtmp->my].typ == ROOM) return 0;
 
-	if ((mdat == &mons[PM_BUGBEAM_CUBE] || mdat == &mons[PM_JOHNNY_SINDACCO] || mdat == &mons[PM_BOXIT_CUBE] || mdat == &mons[PM_IRMGARD] || mdat == &mons[PM_WORM_THAT_WANKS] || mdat == &mons[PM_METH_HEAD] || mdat == &mons[PM_TORSTINA] || mdat == &mons[PM_MARINERV] || mdat == &mons[PM_MARISTIN] || mdat == &mons[PM_HUNCHBACKED_LITTLE_MAN] || mdat == &mons[PM_MARIVERT] || mdat == &mons[PM_MARISISTER] || mdat == &mons[PM_FUNNY_ITALIAN] || mdat == &mons[PM_EAR_FIG_MACHINE] || mdat == &mons[PM_POLEPOKER] || mdat == &mons[PM_DISTURBMENT_HEAD]) && !rn2(4)) return 0; /* can sometimes not move; this is by design */
+	if ((mdat == &mons[PM_BUGBEAM_CUBE] || mdat == &mons[PM_JOHNNY_SINDACCO] || mdat == &mons[PM_BOXIT_CUBE] || mdat == &mons[PM_IRMGARD] || mdat == &mons[PM_WORM_THAT_WANKS] || mdat == &mons[PM_METH_HEAD] || mdat == &mons[PM_TORSTINA] || mdat == &mons[PM_MARINERV] || mdat == &mons[PM_MARISTIN] || mdat == &mons[PM_HUNCHBACKED_LITTLE_MAN] || mdat == &mons[PM_MARIVERT] || mdat == &mons[PM_MARISISTER] || mdat == &mons[PM_OUTER_ONE_NO] || mdat == &mons[PM_FUNNY_ITALIAN] || mdat == &mons[PM_EAR_FIG_MACHINE] || mdat == &mons[PM_POLEPOKER] || mdat == &mons[PM_DISTURBMENT_HEAD]) && !rn2(4)) return 0; /* can sometimes not move; this is by design */
 	if ((mdat == &mons[PM_SARAH_S_AIRTIGHT_PANTS]) && rn2(5)) return 0;
 
 	if (uwep && uwep->oartifact == ART_STOP_THE_AIRSHIPS && is_flyer(mtmp->data) && !mtmp->mpeaceful && !mtmp->mtame && !rn2(6)) return 0;

@@ -22706,6 +22706,12 @@ boolean knoweverything;
 					pline("Artifact specs: if your mount is a vortex, you can always ride it at full speed regardless of skill and in fact gain 50%% extra movement speed."); break;
 				case ART_GREEN_ASSISTANT:
 					pline("Artifact specs: +5 to-hit and +12 damage, doesn't drop if you have slippery fingers."); break;
+				case ART_LETTUCE_BLUNT:
+					pline("Artifact specs: +8 damage, hallucination resistance when wielded."); break;
+				case ART_GRAND_THEFT_AUTO:
+					pline("Artifact specs: if you saddle a car with this, you can ride it even if it's not tame."); break;
+				case ART_DRIVER_S_LICENSE:
+					pline("Artifact specs: riding a car that has this saddle gives 40%% extra speed for both movement and other actions."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

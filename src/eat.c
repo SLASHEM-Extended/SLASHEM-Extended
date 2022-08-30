@@ -3576,6 +3576,7 @@ register int pm;
 	    case PM_OLOG_HAI_GORGON:
 	    case PM_BEAR_TROVE:
 	    case PM_SPINACH:
+	    case PM_SPINACHI:
 	    case PM_COCKERICH:
 	    case PM_GRAVITY_CHICKEN:
 	    case PM_MEDUSA_S_PET_FISH:

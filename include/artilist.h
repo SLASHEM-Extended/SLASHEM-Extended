@@ -9273,6 +9273,18 @@ A("Green Assistant",				SURVIVAL_KNIFE, /* doesn't drop if you're glibbed */
 	(SPFX_RESTR), 0, 0,
 	PHYS(5, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
+A("Lettuce Blunt",				CIGAR,
+	(SPFX_RESTR|SPFX_HALRES|SPFX_EVIL), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 2500L ),
+
+A("Grand Theft Auto",				LEATHER_SADDLE, /* putting it on a MS_CAR allows you to ride it, even if it's not tame */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Driver's License",				LEATHER_SADDLE, /* riding a MS_CAR gives 40% extra speed for everything */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

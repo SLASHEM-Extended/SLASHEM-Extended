@@ -7688,6 +7688,12 @@ register struct	monst	*mtmp;
 		if (monsndx(ptr) == PM_HUMAN_WERECOMBATSTILETTO) (void)mongets(mtmp, COMBAT_STILETTOS);
 		if (monsndx(ptr) == PM_HUMAN_WERESTILETTOSANDAL) (void)mongets(mtmp, HIGH_STILETTOS);
 
+		if (ptr == &mons[PM_STREET_RACQUET]) (void) mongets(mtmp, BRASS_KNUCKLES);
+		if (ptr == &mons[PM_GANXTA]) (void) mongets(mtmp, BRASS_KNUCKLES);
+		if (ptr == &mons[PM_SUPER_GANXTA]) (void) mongets(mtmp, SUPER_KNUCKLES);
+		if (ptr == &mons[PM_ULTRA_GANXTA]) (void) mongets(mtmp, ULTRA_KNUCKLES);
+		if (ptr == &mons[PM_SWING_GANGSTER]) (void) mongets(mtmp, BRASS_KNUCKLES);
+		if (ptr == &mons[PM_RIGHTSMASH_GANGSTER]) (void) mongets(mtmp, SUPER_KNUCKLES);
 		if (ptr == &mons[PM_BOXER]) (void) mongets(mtmp, LARGE_BOX);
 		if (ptr == &mons[PM_CHESTER]) (void) mongets(mtmp, CHEST);
 		if (ptr == &mons[PM_MURRY_OLD_LADY]) (void) mongets(mtmp, UMBRELLA);
@@ -9012,6 +9018,21 @@ register struct	monst	*mtmp;
 
 		if (ptr == &mons[PM_HOT_PLATE]) {
 			(void) maketrap(mtmp->mx, mtmp->my, FIRE_TRAP, 0, FALSE);
+		}
+
+		if (mtmp->data == &mons[PM_DIGGING_ON_FARMER]) {
+			struct obj *osaddle;
+			if (!!(osaddle = mksobj(LEATHER_SADDLE, TRUE, FALSE, FALSE))) {
+				if (mpickobj(mtmp, osaddle, TRUE)) { /* it became a gold piece (e.g. minimalist) --Amy */
+					if (wizard) impossible("merged saddle?");
+				} else {
+					mtmp->misc_worn_check |= W_SADDLE;
+					osaddle->dknown = osaddle->bknown = osaddle->rknown = 1;
+					osaddle->owornmask = W_SADDLE;
+					osaddle->leashmon = mtmp->m_id;
+					update_mon_intrinsics(mtmp, osaddle, TRUE, TRUE);
+				}
+			}
 		}
 
 		if (ptr == &mons[PM_RIM_GOLEM]) {
@@ -12958,6 +12979,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_JAPASURA]) (void) mongets(mtmp, MASSAGER);
 		if (mtmp->data == &mons[PM_JAPANESE_TORTURER]) (void) mongets(mtmp, MASSAGER);
 		if (mtmp->data == &mons[PM_NAIL_GREMLIN]) (void) mongets(mtmp, QATAR);
+		if (mtmp->data == &mons[PM_DING_GANGSTER]) (void) mongets(mtmp, BRASS_KNUCKLES);
 
 		if (mtmp->data == &mons[PM_GREMLIN_SMASHER]) (void) mongets(mtmp, WAR_HAMMER);
 		if (mtmp->data == &mons[PM_ORMOR_CLOW]) {

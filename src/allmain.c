@@ -1413,7 +1413,7 @@ moveloop()
 						if (moveamt > (oldspeed + 18)) moveamt = (oldspeed + 18);
 					}
 
-					if (bmwride(ART_HOVERCRAFT_RIDE) && u.usteed->data->mlet == S_VORTEX) {
+					if (bmwride(ART_HOVERCRAFT_RIDE) && u.usteed && u.usteed->data->mlet == S_VORTEX) {
 						oldspeed = moveamt;
 						moveamt *= 3;
 						moveamt /= 2;
@@ -1425,6 +1425,13 @@ moveloop()
 						moveamt *= 6;
 						moveamt /= 5;
 						if (moveamt > (oldspeed + 15)) moveamt = (oldspeed + 15);
+					}
+
+					if (bmwride(ART_DRIVER_S_LICENSE) && u.usteed && (u.usteed->data->msound == MS_CAR)) {
+						oldspeed = moveamt;
+						moveamt *= 7;
+						moveamt /= 5;
+						if (moveamt > (oldspeed + 18)) moveamt = (oldspeed + 18);
 					}
 
 				}
@@ -1860,6 +1867,13 @@ moveloop()
 					moveamt *= 6;
 					moveamt /= 5;
 					if (moveamt > (oldspeed + 15)) moveamt = (oldspeed + 15);
+				}
+
+				if (bmwride(ART_DRIVER_S_LICENSE) && u.usteed && (u.usteed->data->msound == MS_CAR)) {
+					oldspeed = moveamt;
+					moveamt *= 7;
+					moveamt /= 5;
+					if (moveamt > (oldspeed + 18)) moveamt = (oldspeed + 18);
 				}
 
 			}
