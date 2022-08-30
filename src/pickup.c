@@ -807,7 +807,7 @@ boolean (*allow)(OBJ_P);/* allow function */
 	        /* Insert object at correct index */
 	        for (j = i; j; j--)
 	          {
-	            if (strcmpi(cxname2(curr), cxname2(oarray[j-1]))>0) break;
+	            if (strcmpi(cxname3(curr), cxname3(oarray[j-1]))>0) break;
 	            oarray[j] = oarray[j-1];
 	          }
 	        oarray[j] = curr;

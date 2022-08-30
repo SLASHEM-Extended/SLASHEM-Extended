@@ -18,7 +18,7 @@ static boolean wishymatch(const char *,const char *,BOOLEAN_P);
 static char *nextobuf(void);
 static void add_erosion_words(struct obj *, char *);
 
-STATIC_DCL char *xname2(struct obj *);
+STATIC_DCL char *xname2(struct obj *, BOOLEAN_P);
 
 char *
 enchname(prop)
@@ -7029,8 +7029,9 @@ boolean juice;	/* whether or not to append " juice" to the name */
 #ifdef OVL1
 
 char *
-xname2(obj)
+xname2(obj, showpoisoned)
 register struct obj *obj;
+boolean showpoisoned;
 {	/* Hallu */
 
 	if (!obj) {
@@ -7096,7 +7097,7 @@ register struct obj *obj;
 	if (Role_if(PM_PRIEST) || Role_if(PM_NECROMANCER) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA)) obj->bknown = TRUE;
 
 	/* We could put a switch(obj->oclass) here but currently only this one case exists */
-	if (obj->oclass == WEAPON_CLASS && obj->opoisoned) {
+	if (obj->oclass == WEAPON_CLASS && obj->opoisoned && showpoisoned) {
 		if (obj->superpoison) strcpy(buf, flags.simpledescs ? "xpois " : "superpoisoned ");
 		else strcpy(buf, flags.simpledescs ? "pois " : "poisoned ");
 	}
@@ -7441,7 +7442,7 @@ register struct obj *obj;
 		if (hobj) {
 			hobj->quan = obj->quan;
 			/* WAC clean up */
-			buf = xname2(hobj);
+			buf = xname2(hobj, TRUE);
 
 			/* fix a VERY aggravating bug that could corrupt saves with obj_is_local and timer errors --Amy */
 			if (Has_contents(hobj))
@@ -7451,8 +7452,8 @@ register struct obj *obj;
 			dealloc_obj(hobj);
 
 			return (buf);
-		} else return xname2(obj);
-	} else return xname2(obj);
+		} else return xname2(obj, TRUE);
+	} else return xname2(obj, TRUE);
 }
 
 /* xname() output augmented for multishot missile feedback */
@@ -8063,7 +8064,16 @@ struct obj *obj;
 {
        if (obj->otyp == CORPSE)
            return corpse_xname(obj, TRUE);
-       return xname2(obj);
+       return xname2(obj, TRUE);
+}
+
+char *
+cxname3(obj)
+struct obj *obj;
+{
+       if (obj->otyp == CORPSE)
+           return corpse_xname(obj, TRUE);
+       return xname2(obj, FALSE);
 }
 
 /* treat an object as fully ID'd when it might be used as reason for death */
@@ -8097,7 +8107,7 @@ struct obj *obj;
     save_ocuname = objects[obj->otyp].oc_uname;
     objects[obj->otyp].oc_uname = 0;	/* avoid "foo called bar" */
 
-    buf = xname2(obj);
+    buf = xname2(obj, TRUE);
     if (obj->quan == 1L) buf = obj_is_pname(obj) ? the(buf) : an(buf);
 
     objects[obj->otyp].oc_name_known = save_ocknown;

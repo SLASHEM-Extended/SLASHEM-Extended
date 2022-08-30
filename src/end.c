@@ -2241,7 +2241,7 @@ nextclass:
                            || iflags.sortloot == 'l') {
                          /* Insert object at correct index */
                          for (j = i; j; j--) {
-                           if (strcmpi(cxname2(obj), cxname2(oarray[j-1]))>0
+                           if (strcmpi(cxname3(obj), cxname3(oarray[j-1]))>0
                            || (flags.sortpack &&
                                oarray[j-1]->oclass != obj->oclass))
                              break;

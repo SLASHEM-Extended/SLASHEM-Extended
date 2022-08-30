@@ -8187,7 +8187,7 @@ long* out_cnt;
 	    if (!(Hallucination || PlayerUninformation) && iflags.sortloot == 'f') {
 	      /* Insert object at correct index */
 	      for (j = i; j; j--) {
-	        if (strcmpi(cxname2(otmp), cxname2(oarray[j-1]))>0) break;
+	        if (strcmpi(cxname3(otmp), cxname3(oarray[j-1]))>0) break;
 	        oarray[j] = oarray[j-1];
 	      }
 	      oarray[j] = otmp;
