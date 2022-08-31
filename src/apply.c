@@ -2053,6 +2053,15 @@ jump(magic)
 int magic; /* 0=Physical, otherwise skill level */
 {
 	coord cc;
+	struct trap *trap;
+
+	if (trap = t_at(u.ux, u.uy)) {
+		if (trap->ttyp == VIVISECTION_TRAP) {
+			You("are in vivisection, and therefore unable to jump!");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			return 0;
+		}
+	}
 
 	if (!magic && !Race_if(PM_TRANSFORMER) && (nolimbs(youmonst.data) || slithy(youmonst.data))) {
 		/* normally (nolimbs || slithy) implies !Jumping,

@@ -1474,6 +1474,14 @@ dokick()
 	boolean no_kick = FALSE;
 	char buf[BUFSZ];
 	register struct obj *quivtmp;
+	struct trap *trap;
+
+	if (trap = t_at(u.ux, u.uy)) {
+		if (trap->ttyp == VIVISECTION_TRAP) {
+			You("are in vivisection, and therefore unable to kick!");
+			return 0;
+		}
+	}
 
 	if (!Race_if(PM_TRANSFORMER) && (nolimbs(youmonst.data) || slithy(youmonst.data))) {
 		You("have no legs to kick with.");

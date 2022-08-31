@@ -274,6 +274,8 @@ struct obj {
 
 #define is_lightsaber(otmp) (objects[(otmp)->otyp].oc_skill == P_LIGHTSABER || (otmp)->otyp == LASER_SWATTER || (otmp)->otyp == NANO_HAMMER || (otmp)->otyp == LIGHTWHIP || (otmp)->otyp == LASERDENT || (otmp)->otyp == LASERXBOW || (otmp)->otyp == STARWARS_MACE || (otmp)->otyp == LASER_POLE || (otmp)->otyp == KLIUSLING || (otmp)->otyp == LASER_SWORD || (otmp)->otyp == BEAMSWORD || (otmp)->otyp == SITH_STAFF || (otmp)->otyp == ELECTRIC_CIGARETTE || (otmp)->otyp == HEAVY_LASER_BALL || (otmp)->otyp == LASER_CHAIN || (otmp)->otyp == LASERFIST || (otmp)->otyp == LASER_TIN_OPENER)
 
+#define is_lightsaber_onum(number) (objects[number].oc_skill == P_LIGHTSABER || number == LASER_SWATTER || number == NANO_HAMMER || number == LIGHTWHIP || number == LASERDENT || number == LASERXBOW || number == STARWARS_MACE || number == LASER_POLE || number == KLIUSLING || number == LASER_SWORD || number == BEAMSWORD || number == SITH_STAFF || number == ELECTRIC_CIGARETTE || number == HEAVY_LASER_BALL || number == LASER_CHAIN || number == LASERFIST || number == LASER_TIN_OPENER)
+
 #define is_firearm(otmp) \
 			((otmp)->oclass == WEAPON_CLASS && \
 			 objects[(otmp)->otyp].oc_skill == P_FIREARM)

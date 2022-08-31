@@ -732,6 +732,7 @@ dothrow()
 	register struct obj *obj;
 	int oldmulti = multi, result, shotlimit;
 	char *oldsave_cm = save_cm;
+	struct trap *trap;
 
 	/*
 	 * Since some characters shoot multiple missiles at one time,
@@ -745,6 +746,14 @@ dothrow()
 	 * Prior to 3.3.0, command ``3t'' meant ``t(shoot) t(shoot) t(shoot)''
 	 * and took 3 turns.  Now it means ``t(shoot at most 3 missiles)''.
 	 */
+
+	if (trap = t_at(u.ux, u.uy)) {
+		if (trap->ttyp == VIVISECTION_TRAP) {
+			You("are in vivisection, and therefore unable to use a ranged attack!");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			return 0;
+		}
+	}
 
 	if (u.twoweap && uarms) {
 		You("are way too busy with your two weapons and shield.");
@@ -868,6 +877,15 @@ int
 dofire()
 {
 	int result, shotlimit;
+	struct trap *trap;
+
+	if (trap = t_at(u.ux, u.uy)) {
+		if (trap->ttyp == VIVISECTION_TRAP) {
+			You("are in vivisection, and therefore unable to use a ranged attack!");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			return 0;
+		}
+	}
 
 	if (u.twoweap && uarms) {
 		You("are way too busy with your two weapons and shield.");

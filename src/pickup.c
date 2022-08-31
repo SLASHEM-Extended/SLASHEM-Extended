@@ -1749,6 +1749,15 @@ doloot()	/* loot a container on the floor or loot saddle from mon. */
     char qbuf[BUFSZ];
     int prev_inquiry = 0;
     boolean prev_loot = FALSE;
+    struct trap *trap;
+
+	if (trap = t_at(u.ux, u.uy)) {
+		if (trap->ttyp == VIVISECTION_TRAP) {
+			You("are in vivisection, and therefore unable to loot anything!");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			return 0;
+		}
+	}
 
     if (check_capacity((char *)0)) {
 	/* "Can't do that while carrying so much stuff." */

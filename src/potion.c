@@ -9134,6 +9134,66 @@ newbadheeltry:
 
 }
 
+/* Make a cursed lightsaber and force player to equip it */
+void
+bad_equipment_lightsaber()
+{
+	register struct obj *otmp;
+	int objtyp = 0;
+	int tryct = 0;
+
+newbadlightsabertry:
+	objtyp = rn2(NUM_OBJECTS);
+	if (objects[objtyp].oc_prob < 1) {
+		tryct++;
+		if (tryct < 50000) goto newbadlightsabertry;
+		else return;
+	}
+
+	/* no gems, chains or iron balls --Amy */
+	if (!is_lightsaber_onum(objtyp) ) {
+		tryct++;
+		if (tryct < 50000) goto newbadlightsabertry;
+		else return;
+	}
+
+	/* we should have an eligible item now (if not, the above code called return) */
+	otmp = mksobj(objtyp, TRUE, FALSE, FALSE);
+	if (!otmp) return; /* fail safe */
+
+	if (objects[otmp->otyp].oc_charged) {
+		if (otmp->spe > 0) otmp->spe *= -1;
+		if (otmp->spe == 0) otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+	}
+
+	if (otmp) {
+		(void) pickup_object(otmp, otmp->quan, TRUE, TRUE);
+	}
+
+	/* try to equip it! */
+
+	if (otmp) {
+		if (otmp->oclass == WEAPON_CLASS || otmp->oclass == CHAIN_CLASS || otmp->oclass == BALL_CLASS || is_weptool(otmp)) {
+			if (uwep) setnotworn(uwep);
+			if (bimanual(otmp)) {
+				if (uswapwep) uswapwepgone();
+				if (uarms) remove_worn_item(uarms, TRUE);
+			}
+			if (!uwep) setuwep(otmp, FALSE, TRUE);
+			if (otmp) {
+				curse(otmp);
+				otmp->hvycurse = TRUE;
+			}
+		} else {
+			impossible("bad_equipment_lightsaber() made non-lightsaber item");
+			return;
+		}
+
+
+	}
+
+}
+
 /* climacterial role: equip random feminism shoes */
 void
 bad_equipment_femshoes()

@@ -968,6 +968,7 @@ register struct monst *mtmp;
 	int tmp; /* used to be an schar for a reason not known to me, after all hmonas() uses an int --Amy */
 	register struct permonst *mdat = mtmp->data;
 	int mhit;
+	struct trap *trap;
 
 	/* Double and quad attacks gives extra attacks per round --Amy
 	 * This means you do all of your normal attacks two or four times. */
@@ -1056,6 +1057,14 @@ register struct monst *mtmp;
 	override_confirmation = 0;
 	mhit = attack_checks(mtmp, !uwep);
 	if (!mhit) return(TRUE);
+
+	if (trap = t_at(u.ux, u.uy)) {
+		if (trap->ttyp == VIVISECTION_TRAP) {
+			You("are in vivisection, and therefore unable to attack!");
+			mtmp->mstrategy &= ~STRAT_WAITMASK;
+			goto atk_done;
+		}
+	}
 
 	if (Upolyd) {
 		/* certain "pacifist" monsters don't attack */

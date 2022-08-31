@@ -2504,6 +2504,7 @@ E struct monst *split_mon(struct monst *,struct monst *);
 E const char *bottlename(void);
 E void bad_equipment(int);
 E void bad_equipment_heel(void);
+E void bad_equipment_lightsaber(void);
 E void bad_equipment_femshoes(void);
 E void bad_equipment_implant(void);
 E void increasesanity(int);

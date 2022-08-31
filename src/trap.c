@@ -2033,7 +2033,7 @@ burnagain:
 	    }
 
 		/* Amy edit: paper is particularly flammable and should therefore burn even faster */
-	    if (otmp && objects[otmp->otyp].oc_material == MT_PAPER && !rn2(2)) goto burnagain;
+	    if (otmp && objects[otmp->otyp].oc_material == MT_PAPER && type == 0 && !rn2(2)) goto burnagain;
 
 	} else if (!hard_to_destruct(otmp) && !(otmp->oartifact == ART_EXCITING_SPFLOTCH) && (!otmp->oartifact || !rn2(4))) {
 		    if (youdefend) {
@@ -2334,6 +2334,28 @@ newbossING:
 	}
 
 	switch(typ) {
+
+	    case INSTAFEMINISM_TRAP:
+		ttmp->ttyp = UNKNOWN_TRAP;
+		pline("Ha ha ha...");
+		randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
+		pline("The woman is laughing loudly because you were unable to avoid that effect.");
+
+		break;
+
+	    case INSTANASTY_TRAP:
+		{
+			ttmp->ttyp = UNKNOWN_TRAP;
+			int nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
+			if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
+			int blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
+			if (!blackngdur ) blackngdur = 500; /* fail safe */
+
+			randomnastytrapeffect(rnz(nastytrapdur * (monster_difficulty() + 1)), blackngdur - (monster_difficulty() * 3));
+
+		}
+		break;
+
 	    case WEB: /* always generate a spider unless directly beneath you --Amy */
 		if (u.ux != x || u.uy != y) (void) makemon( mkclass(S_SPIDER,0), x, y, NO_MM_FLAGS);
 		break;
@@ -12539,38 +12561,803 @@ madnesseffect:
 			break;
 
 		case WALL_TRAP:
+			You("stepped on a trigger!");
+
+			if ( !(levl[u.ux][u.uy].typ == ALTAR && (Is_astralevel(&u.uz) || Is_sanctum(&u.uz)) ) && !(levl[u.ux][u.uy].wall_info & W_NONDIGGABLE) ) {
+				levl[u.ux][u.uy].typ = ROCKWALL;
+				pline("Suddenly there's a wall!");
+			} else {
+				pline("But it didn't do anything.");
+			}
+
+			deltrap(trap);
+
+			break;
+
 		case MONSTER_GENERATOR:
+			/* do nothing */
+			break;
+
 		case POTION_DISPENSER:
+			You("stepped on a trigger!");
+			seetrap(trap);
+
+			if (trap->once && !rn2(5)) {
+				pline("There is a hollow sound. The trap must have run out of ammunition.");
+				deltrap(trap);
+			}
+
+			{
+				register struct obj *dispensepotion;
+
+				dispensepotion = mksobj_at(rnd_offensive_potion((struct monst *)0), u.ux, u.uy, TRUE, FALSE, FALSE);
+				if (dispensepotion) {
+					potionbreathe(dispensepotion);
+					delobj(dispensepotion);
+				}
+
+			}
+
+			break;
+
 		case SPACEWARS_SPAWN_TRAP:
+		{
+			deltrap(trap); /* triggers only once */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(specialtensmon(322), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+			}
+
+			if (wizard || !rn2(10)) pline("Somehow, you feel reminded of the old times.");
+
+			u.aggravation = 0;
+		}
+
+			break;
+
 		case TV_TROPES_TRAP:
+			pline("TV Tropes will ruin your life.");
+			seetrap(trap);
+			if (!rn2(20)) deltrap(trap);
+			{
+				int tvtropesnumber = rnz(500);
+				monstermoves += tvtropesnumber;
+				moves += tvtropesnumber;
+			}
+			break;
+
 		case SYMBIOTE_TRAP:
+			if (uinsymbiosis) break; /* do nothing */
+
+			deltrap(trap); /* only triggers once */
+			You("stepped on a trigger!");
+
+			getrandomsymbiote(FALSE, FALSE);
+			pline("Suddenly you have a symbiote!");
+
+			break;
+
 		case KILL_SYMBIOTE_TRAP:
+			if (!uinsymbiosis) break; /* do nothing */
+			if (!uactivesymbiosis) break; /* symbiote shut down? well then you're lucky */
+
+			if (uactivesymbiosis) {
+
+				pline("CLICK! You have triggered a trap!");
+				seetrap(trap);
+
+				u.usymbiote.active = 0;
+				u.usymbiote.mnum = PM_PLAYERMON;
+				u.usymbiote.mhp = 0;
+				u.usymbiote.mhpmax = 0;
+				u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0;
+				if (flags.showsymbiotehp) flags.botl = TRUE;
+				u.cnd_symbiotesdied++;
+				Your("symbiote has been killed.");
+				if (FunnyHallu) pline("Rats.");
+			}
+
+			break;
+
 		case SYMBIOTE_REPLACEMENT_TRAP:
+			if (!uinsymbiosis) break; /* do nothing */
+			if (!uactivesymbiosis) break; /* symbiote shut down? well then you're lucky */
+
+			if (uactivesymbiosis) {
+
+				pline("CLICK! You have triggered a trap!");
+				deltrap(trap);
+
+				/* replace symbiote by erasing the previous one first --Amy */
+				u.usymbiote.active = 0;
+				u.usymbiote.mnum = PM_PLAYERMON;
+				u.usymbiote.mhp = 0;
+				u.usymbiote.mhpmax = 0;
+				u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0;
+
+				getrandomsymbiote(FALSE, FALSE);
+				pline("It seems that your symbiote was replaced by a different one!");
+
+			}
+
+			break;
+
 		case SHUTDOWN_TRAP:
+			if (!uinsymbiosis) break; /* do nothing */
+			if (u.shutdowntime) break; /* symbiote already shut down? then also do nothing */
+
+			pline("CLICK! You have triggered a trap!");
+			seetrap(trap); /* can use repeatedly, in case you want to shut down your symbiote on purpose */
+			u.shutdowntime = rnz(1000);
+			Your("symbiote has been shut down.");
+
+			break;
 		case CORONA_TRAP:
+			seetrap(trap);
+			You("stepped on a trigger!");
+			nivellate();
+
+			break;
 		case UNPROOFING_TRAP:
+			seetrap(trap);
+			pline("A brown glow surrounds you...");
+			{
+				register struct obj *obj;
+
+				for(obj = invent; obj ; obj = obj->nobj)
+					if (!rn2(3) && !stack_too_big(obj) && obj->oerodeproof) obj->oerodeproof = FALSE;
+			}
+
+			break;
 		case VISIBILITY_TRAP:
+			seetrap(trap);
+			pline("You are surrounded by a translucent glow!");
+			{
+				register struct obj *objX, *objX2;
+				for (objX = invent; objX; objX = objX2) {
+					objX2 = objX->nobj;
+					if (!rn2(2)) objX->oinvis = objX->oinvisreal = FALSE;
+				}
+			}
+			break;
 		case FEMINISM_STONE_TRAP:
+
+		{
+		    int dmg = rnd(10) + rnd(monster_difficulty() + 1);
+			if (dmg > 1) {
+				if (u.ulevel == 1) dmg /= 2;
+				else if (u.ulevel == 2) {
+					dmg *= 2;
+					dmg /= 3;
+				} else if (u.ulevel == 3) {
+					dmg *= 3;
+					dmg /= 4;
+				} else if (u.ulevel == 4) {
+					dmg *= 4;
+					dmg /= 5;
+				}
+			}
+
+		    otmp = mksobj_at(rnd_class(ELIF_S_JEWEL,DORA_S_JEWEL), u.ux, u.uy, TRUE, FALSE, FALSE);
+		    if (otmp) {
+			    otmp->quan = 1L;
+			    otmp->owt = weight(otmp);
+
+			    pline("A trap door in %s opens and %s falls on your %s!",
+				  the(ceiling(u.ux,u.uy)),
+				  an(xname(otmp)),
+				  body_part(HEAD));
+
+			    if (uarmh) {
+				if(is_metallic(uarmh) && !is_etheritem(uarmh)) {
+				    pline("Fortunately, you are wearing a hard helmet.");
+				    dmg /= 2;
+				} else if (flags.verbose) {
+				    Your("%s does not protect you.", xname(uarmh));
+				}
+			    }
+
+			    if (!Blind) otmp->dknown = 1;
+			    if (otmp) {
+			      pline("%s lands in your knapsack, and you get a bad feeling about it!", Doname2(otmp));
+				(void) pickup_object(otmp, 1L, TRUE, TRUE);
+			    }
+
+			    losehp(dmg, "falling feminism stone", KILLED_BY_AN);
+			    exercise(A_STR, FALSE);
+			}
+		}
+		deltrap(trap); /* only triggers once */
+		break;
+
 		case SHUEFT_TRAP:
+
+			pline("CLICK! You have triggered a trap!");
+			deltrap(trap);
+			{
+				int tvtropesnumber = rnz(5000);
+				monstermoves += tvtropesnumber;
+				moves += tvtropesnumber;
+			}
+			pline("A lot of time has been wasted...");
+			if (FunnyHallu) pline(":-(");
+
+			break;
+
 		case MOTH_LARVAE_TRAP:
-		case WORTHINESS_TRAP:
+
+			You("stepped on a trigger!");
+			You("are covered with moth larvae!");
+			seetrap(trap);
+			{
+				register struct obj *objX, *objX2;
+				for (objX = invent; objX; objX = objX2) {
+				      objX2 = objX->nobj;
+					if (!rn2(3)) rust_dmg(objX, xname(objX), 2, TRUE, &youmonst);
+				}
+			}
+
+			break;
+		case WORTHINESS_TRAP: /* by Septieme */
+			seetrap(trap);
+			You("are a good person and are worthy of love."); /* and does nothing else */
+
+			break;
 		case CONDUCT_TRAP:
+
+			pline("CLICK! You have triggered a trap!");
+			seetrap(trap);
+
+			switch (rnd(13)) {
+				case 1:
+					if (!u.uconduct.unvegetarian) {
+						u.uconduct.unvegetarian = 1;
+						You("are no longer a vegetarian.");
+						if (FunnyHallu) pline("Now kindly start eating meat and stop fostering your eating disorder.");
+					}
+					break;
+				case 2:
+					if (!u.uconduct.unvegan) {
+						u.uconduct.unvegan = 1;
+						You("are no longer a vegan.");
+						if (FunnyHallu) pline("Be glad, now you can eat yummy things like cake and cookies! Mmmmmmmm!");
+					}
+					break;
+				case 3:
+					if (!u.uconduct.food) {
+						u.uconduct.food = 1;
+						You("are no longer following the foodless conduct.");
+						if (FunnyHallu) pline("Even though you haven't eaten anything. What a letdown.");
+					}
+					break;
+				case 4:
+					if (!u.uconduct.gnostic) {
+						u.uconduct.gnostic = 1;
+						You("are no longer an atheist.");
+						if (FunnyHallu) pline("Yet somehow you still think that gods don't exist.");
+					}
+					break;
+				case 5:
+					if (!u.uconduct.praydone) {
+						u.uconduct.praydone = 1;
+						You("are no longer following the prayerless conduct.");
+						if (FunnyHallu) pline("Someone else must have prayed for you and the stupid gods seem to think that you were the one praying!");
+					}
+					break;
+				case 6:
+					if (!u.uconduct.weaphit) {
+						u.uconduct.weaphit = 1;
+						You("are no longer following the wieldedweaponless conduct.");
+						if (FunnyHallu) pline("But let's face it, bare-handed combat sucks anyway, so now you're free to use whatever weapon you can get your hands on.");
+					}
+					break;
+				case 7:
+					if (!u.uconduct.killer) {
+						u.uconduct.killer = 1;
+						You("are no longer a pacifist.");
+						if (FunnyHallu) pline("Actually, you already weren't, because the weird-ass vanilla dev team made it so that hurting a monster doesn't break the conduct even though it realistically should.");
+					}
+					break;
+				case 8:
+					if (!u.uconduct.literate) {
+						u.uconduct.literate = 1;
+						You("are no longer illiterate.");
+						if (FunnyHallu) pline("Now you no longer have to treat scrolls and spellbooks like toilet paper, but can actually READ them! Yay!");
+					}
+					break;
+				case 9:
+					if (!u.uconduct.polypiles) {
+						u.uconduct.polypiles = 1;
+						You("are no longer following the polyobjectless conduct.");
+						if (FunnyHallu) pline("Shame, that conduct was actually easy to keep and now you lost it through no fault of your own...");
+					}
+					break;
+				case 10:
+					if (!u.uconduct.polyselfs) {
+						u.uconduct.polyselfs = 1;
+						You("are no longer following the polyselfless conduct.");
+						if (FunnyHallu) pline("But at least you didn't break your armor and cloak.");
+					}
+					break;
+				case 11:
+					if (!u.uconduct.wishes) {
+						u.uconduct.wishes = 1;
+						You("are no longer following the wishless conduct.");
+						if (FunnyHallu) pline("Damn, and you didn't even get a wish to compensate for losing the conduct!");
+					}
+					break;
+				case 12:
+					if (!u.uconduct.wisharti) {
+						u.uconduct.wisharti = 1;
+						You("are no longer following the artiwishless conduct.");
+						if (FunnyHallu) pline("Maybe you shouldn't have stepped on that particular tile, then the conduct would still be intact.");
+					}
+					break;
+				case 13:
+					if (!u.uconduct.celibacy) {
+						u.uconduct.celibacy = 1;
+						You("are no longer celibate.");
+						if (FunnyHallu) pline("But you probably would have lost that conduct anyway, since foocubi are rather common later on.");
+					}
+					break;
+			}
+
+			break;
+
 		case STRIKETHROUGH_TRAP:
+			pline("Uh-oh, should have watched your step...");
+			seetrap(trap);
+
+			switch (rnd(3)) {
+				case 1:
+					if (u.enchantrecskill > 0) {
+						u.enchantrecskill /= 2;
+						You_feel("much less knowledgable about item enchantments.");
+					}
+					break;
+				case 2:
+					if (u.weapchantrecskill > 0) {
+						u.weapchantrecskill /= 2;
+						You_feel("much less knowledgable about weapon enchantments.");
+					}
+					break;
+				case 3:
+					if (u.bucskill > 0) {
+						u.bucskill /= 2;
+						You_feel("much less knowledgable about the BUC state of items.");
+					}
+					break;
+			}
+
+			break;
+
 		case MULTIPLE_GATHER_TRAP:
+			pline("Uh-oh, should have watched your step...");
+			deltrap(trap);
+
+			{
+				int multiplegather = 0;
+				register struct monst *nexusmon;
+				for(nexusmon = fmon; nexusmon; nexusmon = nexusmon->nmon) {
+					if (nexusmon && !nexusmon->mtame && !nexusmon->mpeaceful && !(u.usteed && (u.usteed == nexusmon) ) ) {
+						mnexto(nexusmon);
+						multiplegather++;
+					}
+				}
+				if (multiplegather) pline("%d monsters were teleported to you!", multiplegather);
+				else pline("Weird, nothing seems to have happened.");
+			}
+
+			break;
+
 		case VIVISECTION_TRAP:
+			seetrap(trap);
+			pline("Oh no!!! You have stepped into a vivisection trap, and now the monsters can attack you with impunity until you free yourself.");
+
+			break;
 		case INSTAFEMINISM_TRAP:
+
+			break;
+
 		case INSTANASTY_TRAP:
+
+			break;
 		case SKILL_POINT_LOSS_TRAP:
+
+			pline("CLICK! You have triggered a trap!");
+			seetrap(trap);
+			lose_weapon_skill(1);
+			You("permanently lost a skill slot.");
+			break;
 		case PERFECT_MATCH_TRAP:
+			deltrap(trap);
+			pline("Hmm... apparently two monsters have a perfect match here...");
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			{
+				int monstercolor = rnd(425);
+				(void) makemon(specialtensmon(monstercolor), u.ux, u.uy, MM_ADJACENTOK);
+				monstercolor = rnd(425);
+				(void) makemon(specialtensmon(monstercolor), u.ux, u.uy, MM_ADJACENTOK);
+			}
+			u.aggravation = 0;
+
+			break;
 		case DUMBIE_LIGHTSABER_TRAP:
+
+			pline("Uh-oh, should have watched your step...");
+			deltrap(trap);
+			bad_equipment_lightsaber();
+
+			break;
 		case WRONG_STAIRS:
+
+			if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) break;
+
+			if (playerlevelportdisabled()) { 
+				break;
+			}
+
+			deltrap(trap);
+			{
+				d_level dtmp;
+				dtmp.dnum = dname_to_dnum("Gehennom");
+				dtmp.dlevel = 5; /* level 55, which is the 5th level of Gehennom */
+				schedule_goto(&dtmp, FALSE, FALSE, 0, (char *)0, (char *)0);
+				pline("Lol, you took the wrong stairs and now you're on level 55.");
+				if (FunnyHallu) pline("But to your surprise, you discover that this dungeon does indeed have a genuine level 55...");
+			}
+
+			break;
 		case TECHSTOP_TRAP:
+			You("stepped on a trigger!");
+			seetrap(trap);
+			docalm();
+
+			break;
 		case AMNESIA_SWITCH_TRAP:
+			pline("CLICK! You have triggered a trap!");
+			deltrap(trap);
+			forget(ALL_SPELLS);
+			forget(ALL_SPELLS);
+			wonderspell();
+			break;
+
 		case SKILL_SWAP_TRAP:
+			deltrap(trap);
+			You("stepped on a trigger!");
+
+
+			{
+				int skillswapamount = 1;
+				int tempswapvalue;
+				int tempswapvalue2;
+				if (!rn2(10)) skillswapamount += rno(19);
+				int tryct, tryct2, i;
+				int swapskill1, swapskill2;
+
+skillswapagain:
+
+				swapskill1 = randomgoodskill();
+skillswapredo:
+				swapskill2 = randomgoodskill();
+				if (swapskill1 == swapskill2) goto skillswapredo;
+
+				if (P_MAX_SKILL(swapskill1) == P_MAX_SKILL(swapskill2)) {
+					tempswapvalue = P_ADVANCE(swapskill1);
+					tempswapvalue2 = P_ADVANCE(swapskill2);
+					P_ADVANCE(swapskill1) = tempswapvalue2;
+					P_ADVANCE(swapskill2) = tempswapvalue;
+
+					pline("Your training for the %s and %s skills was swapped.", wpskillname(swapskill1), wpskillname(swapskill2));
+
+					tryct = 2000;
+					tryct2 = 10;
+					i = 0;
+
+					while (u.skills_advanced && tryct && !(P_MAX_SKILL(swapskill1) == P_ISRESTRICTED) && (P_ADVANCE(swapskill1) < practice_needed_to_advance_nonmax(P_SKILL(swapskill1) - 1, swapskill1) ) ) {
+						lose_last_spent_skill();
+						i++;
+						tryct--;
+					}
+
+					while (i) {
+						if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
+						else u.weapon_slots++;  /* because every skill up costs one slot --Amy */
+						i--;
+					}
+
+					/* still higher than the cap? that probably means you started with some knowledge of the skill... */
+					while (tryct2 && !(P_MAX_SKILL(swapskill1) == P_ISRESTRICTED) && P_ADVANCE(swapskill1) < practice_needed_to_advance_nonmax(P_SKILL(swapskill1) - 1, swapskill1) ) {
+						P_SKILL(swapskill1)--;
+						if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
+						else u.weapon_slots++;
+						tryct2--;
+					}
+
+					tryct = 2000;
+					tryct2 = 10;
+					i = 0;
+
+					while (u.skills_advanced && tryct && !(P_MAX_SKILL(swapskill2) == P_ISRESTRICTED) && (P_ADVANCE(swapskill2) < practice_needed_to_advance_nonmax(P_SKILL(swapskill2) - 1, swapskill2) ) ) {
+						lose_last_spent_skill();
+						i++;
+						tryct--;
+					}
+
+					while (i) {
+						if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
+						else u.weapon_slots++;  /* because every skill up costs one slot --Amy */
+						i--;
+					}
+
+					/* still higher than the cap? that probably means you started with some knowledge of the skill... */
+					while (tryct2 && !(P_MAX_SKILL(swapskill2) == P_ISRESTRICTED) && P_ADVANCE(swapskill2) < practice_needed_to_advance_nonmax(P_SKILL(swapskill2) - 1, swapskill2) ) {
+						P_SKILL(swapskill2)--;
+						if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
+						else u.weapon_slots++;
+						tryct2--;
+					}
+
+				} else {
+					tempswapvalue = P_MAX_SKILL(swapskill1);
+					tempswapvalue2 = P_MAX_SKILL(swapskill2);
+					P_MAX_SKILL(swapskill1) = tempswapvalue2;
+					P_MAX_SKILL(swapskill2) = tempswapvalue;
+
+					if (P_SKILL(swapskill1) == P_ISRESTRICTED && P_MAX_SKILL(swapskill1) >= P_BASIC) {
+						P_SKILL(swapskill1) = P_UNSKILLED;
+						P_ADVANCE(swapskill1) = 0;
+					}
+					if (P_SKILL(swapskill2) == P_ISRESTRICTED && P_MAX_SKILL(swapskill2) >= P_BASIC) {
+						P_SKILL(swapskill2) = P_UNSKILLED;
+						P_ADVANCE(swapskill2) = 0;
+					}
+
+					pline("Your caps for the %s and %s skills were swapped.", wpskillname(swapskill1), wpskillname(swapskill2));
+
+					i = 0;
+					tryct = 2000;
+
+					while (u.skills_advanced && tryct && (P_SKILL(swapskill1) > P_MAX_SKILL(swapskill1)) ) {
+
+						lose_last_spent_skill();
+						i++;
+						tryct--;
+					}
+
+					while (i) {
+						if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
+						else u.weapon_slots++;  /* because every skill up costs one slot --Amy */
+						i--;
+					}
+
+					/* still higher than the cap? that probably means you started with some knowledge of the skill... */
+					if (P_SKILL(swapskill1) > P_MAX_SKILL(swapskill1)) {
+						P_SKILL(swapskill1) = P_MAX_SKILL(swapskill1);
+						if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
+						else u.weapon_slots++;
+					}
+
+					i = 0;
+					tryct = 2000;
+
+					while (u.skills_advanced && tryct && (P_SKILL(swapskill2) > P_MAX_SKILL(swapskill2)) ) {
+
+						lose_last_spent_skill();
+						i++;
+						tryct--;
+					}
+
+					while (i) {
+						if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
+						else u.weapon_slots++;  /* because every skill up costs one slot --Amy */
+						i--;
+					}
+
+					/* still higher than the cap? that probably means you started with some knowledge of the skill... */
+					if (P_SKILL(swapskill2) > P_MAX_SKILL(swapskill2)) {
+						P_SKILL(swapskill2) = P_MAX_SKILL(swapskill2);
+						if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
+						else u.weapon_slots++;
+					}
+
+				}
+
+				if (skillswapamount > 1) {
+					skillswapamount--;
+					goto skillswapagain;
+				}
+
+			}
+
+			break;
 		case SKILL_UPORDOWN_TRAP:
+			deltrap(trap);
+			You("stepped on a trigger!");
+
+			{
+				int skillupordownamount = 1;
+				if (!rn2(10)) skillupordownamount += rno(19);
+				int tryct, tryct2, i;
+				int upordownskill;
+
+skillupordownagain:
+
+				upordownskill = randomgoodskill();
+				boolean will_go_up = rn2(2);
+
+				if (will_go_up) {
+					if (P_MAX_SKILL(upordownskill) == P_SUPREME_MASTER) {
+						pline("But nothing happened.");
+					} else if (P_MAX_SKILL(upordownskill) == P_GRAND_MASTER) {
+						P_MAX_SKILL(upordownskill) = P_SUPREME_MASTER;
+						pline("Your knowledge of the %s skill increases.", wpskillname(upordownskill));
+					} else if (P_MAX_SKILL(upordownskill) == P_MASTER) {
+						P_MAX_SKILL(upordownskill) = P_GRAND_MASTER;
+						pline("Your knowledge of the %s skill increases.", wpskillname(upordownskill));
+					} else if (P_MAX_SKILL(upordownskill) == P_EXPERT) {
+						P_MAX_SKILL(upordownskill) = P_MASTER;
+						pline("Your knowledge of the %s skill increases.", wpskillname(upordownskill));
+					} else if (P_MAX_SKILL(upordownskill) == P_SKILLED) {
+						P_MAX_SKILL(upordownskill) = P_EXPERT;
+						pline("Your knowledge of the %s skill increases.", wpskillname(upordownskill));
+					} else if (P_MAX_SKILL(upordownskill) == P_BASIC) {
+						P_MAX_SKILL(upordownskill) = P_SKILLED;
+						pline("Your knowledge of the %s skill increases.", wpskillname(upordownskill));
+					} else if (P_MAX_SKILL(upordownskill) == P_ISRESTRICTED) {
+						unrestrict_weapon_skill(upordownskill);
+						pline("You can now learn the %s skill.", wpskillname(upordownskill));
+					}
+				} else {
+
+					if (P_MAX_SKILL(upordownskill) == P_ISRESTRICTED) {
+						P_ADVANCE(upordownskill) = 0;
+						You("lost some hidden skill training.");
+					} else if (P_MAX_SKILL(upordownskill) == P_BASIC) {
+						P_MAX_SKILL(upordownskill) = P_ISRESTRICTED;
+						pline("You lose all knowledge of the %s skill!", wpskillname(upordownskill));
+						P_ADVANCE(upordownskill) = 0;
+					} else if (P_MAX_SKILL(upordownskill) == P_SKILLED) {
+						P_MAX_SKILL(upordownskill) = P_BASIC;
+						pline("You lose some knowledge of the %s skill!", wpskillname(upordownskill));
+					} else if (P_MAX_SKILL(upordownskill) == P_EXPERT) {
+						P_MAX_SKILL(upordownskill) = P_SKILLED;
+						pline("You lose some knowledge of the %s skill!", wpskillname(upordownskill));
+					} else if (P_MAX_SKILL(upordownskill) == P_MASTER) {
+						P_MAX_SKILL(upordownskill) = P_EXPERT;
+						pline("You lose some knowledge of the %s skill!", wpskillname(upordownskill));
+					} else if (P_MAX_SKILL(upordownskill) == P_GRAND_MASTER) {
+						P_MAX_SKILL(upordownskill) = P_MASTER;
+						pline("You lose some knowledge of the %s skill!", wpskillname(upordownskill));
+					} else if (P_MAX_SKILL(upordownskill) == P_SUPREME_MASTER) {
+						P_MAX_SKILL(upordownskill) = P_GRAND_MASTER;
+						pline("You lose some knowledge of the %s skill!", wpskillname(upordownskill));
+					}
+
+					i = 0;
+					tryct = 2000;
+
+					while (u.skills_advanced && tryct && (P_SKILL(upordownskill) > P_MAX_SKILL(upordownskill)) ) {
+
+						lose_last_spent_skill();
+						i++;
+						tryct--;
+					}
+
+					while (i) {
+						if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
+						else u.weapon_slots++;  /* because every skill up costs one slot --Amy */
+						i--;
+					}
+
+					/* still higher than the cap? that probably means you started with some knowledge of the skill... */
+					if (P_SKILL(upordownskill) > P_MAX_SKILL(upordownskill)) {
+						P_SKILL(upordownskill) = P_MAX_SKILL(upordownskill);
+						if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
+						else u.weapon_slots++;
+					}
+
+				}
+
+				if (skillupordownamount > 1) {
+					skillupordownamount--;
+					goto skillupordownagain;
+				}
+
+			}
+
+			break;
 		case SKILL_RANDOMIZE_TRAP:
- 
-			pline("todo trap");
+ 			deltrap(trap);
+			You("stepped on a trigger!");
+
+			{
+
+				int skillrandomizeamount = 1;
+				if (!rn2(10)) skillrandomizeamount += rno(19);
+				int tryct, tryct2, i;
+				int randomizeskill;
+
+skillrandomizeagain:
+
+				tryct = 2000;
+
+skillrandomizeredo:
+				randomizeskill = randomgoodskill();
+				if (tryct > 0 && P_MAX_SKILL(randomizeskill) < P_EXPERT) {
+					tryct--;
+					goto skillrandomizeredo;
+				}
+
+				if (!rn2(100)) {
+					P_MAX_SKILL(randomizeskill) = P_SUPREME_MASTER;
+					pline("Your %s skill is now capped at supreme master!", wpskillname(randomizeskill));
+				} else if (!rn2(10)) {
+					P_MAX_SKILL(randomizeskill) = P_GRAND_MASTER;
+					pline("Your %s skill is now capped at grand master!", wpskillname(randomizeskill));
+				} else if (!rn2(2)) {
+					P_MAX_SKILL(randomizeskill) = P_MASTER;
+					pline("Your %s skill is now capped at master!", wpskillname(randomizeskill));
+				} else {
+					P_MAX_SKILL(randomizeskill) = P_EXPERT;
+					pline("Your %s skill is now capped at expert!", wpskillname(randomizeskill));
+				}
+
+				i = 0;
+				tryct = 2000;
+
+				while (u.skills_advanced && tryct && (P_SKILL(randomizeskill) > P_MAX_SKILL(randomizeskill)) ) {
+
+					lose_last_spent_skill();
+					i++;
+					tryct--;
+				}
+
+				while (i) {
+					if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
+					else u.weapon_slots++;  /* because every skill up costs one slot --Amy */
+					i--;
+				}
+
+				/* still higher than the cap? that probably means you started with some knowledge of the skill... */
+				if (P_SKILL(randomizeskill) > P_MAX_SKILL(randomizeskill)) {
+					P_SKILL(randomizeskill) = P_MAX_SKILL(randomizeskill);
+					if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
+					else u.weapon_slots++;
+				}
+
+				if (skillrandomizeamount > 1) {
+					skillrandomizeamount--;
+					goto skillrandomizeagain;
+				}
+
+			}
+
 			break;
 
 		 case MIGUC_TRAP:

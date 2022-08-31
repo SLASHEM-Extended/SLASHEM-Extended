@@ -2353,6 +2353,16 @@ domove()
 		forcenomul(0, 0);
 		return;
 	}
+
+	if (trap = t_at(u.ux, u.uy)) {
+		if (trap->ttyp == VIVISECTION_TRAP) {
+			if (rn2(4)) {
+				You("fail to escape the vivisection trap.");
+				return;
+			}
+		}
+	}
+
 	if(u.utrap) {
 		if(u.utraptype == TT_PIT) {
 		    if (!rn2(2) && sobj_at(BOULDER, u.ux, u.uy)) {
