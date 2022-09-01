@@ -2263,6 +2263,43 @@ boolean at_stairs, falling, portal;
 			angbandx = rn1(COLNO-3,2);
 			angbandy = rn2(ROWNO);
 			(void) mksobj_at(CHEST, angbandx, angbandy, TRUE, TRUE, FALSE);
+			while (!rn2(3)) {
+				angbandx = rn1(COLNO-3,2);
+				angbandy = rn2(ROWNO);
+				(void) mksobj_at(CHEST, angbandx, angbandy, TRUE, TRUE, FALSE);
+			}
+		}
+		if (iszapem && In_spacebase(&u.uz) && dunlev(&u.uz) <= 5 && !issoviet && !rn2(5)) {
+			angbandx = rn1(COLNO-3,2);
+			angbandy = rn2(ROWNO);
+			(void) mksobj_at(CHEST, angbandx, angbandy, TRUE, TRUE, FALSE);
+			while (!rn2(3)) {
+				angbandx = rn1(COLNO-3,2);
+				angbandy = rn2(ROWNO);
+				(void) mksobj_at(CHEST, angbandx, angbandy, TRUE, TRUE, FALSE);
+			}
+		}
+		if (u.preversionmode && In_greencross(&u.uz) && dunlev(&u.uz) <= 5 && !issoviet && !rn2(5)) {
+			angbandx = rn1(COLNO-3,2);
+			angbandy = rn2(ROWNO);
+			(void) mksobj_at(CHEST, angbandx, angbandy, TRUE, TRUE, FALSE);
+			while (!rn2(3)) {
+				angbandx = rn1(COLNO-3,2);
+				angbandy = rn2(ROWNO);
+				(void) mksobj_at(CHEST, angbandx, angbandy, TRUE, TRUE, FALSE);
+			}
+		}
+
+		/* occasionally make a potato bag (contains a musable item) or very rarely a treasure chest --Amy */
+		if (!(In_endgame(&u.uz)) && !issoviet && !rn2(10)) {
+			angbandx = rn1(COLNO-3,2);
+			angbandy = rn2(ROWNO);
+			(void) mksobj_at(rn2(100) ? POTATO_BAG : TREASURE_CHEST, angbandx, angbandy, TRUE, TRUE, FALSE);
+			while (!rn2(5)) {
+				angbandx = rn1(COLNO-3,2);
+				angbandy = rn2(ROWNO);
+				(void) mksobj_at(rn2(100) ? POTATO_BAG : TREASURE_CHEST, angbandx, angbandy, TRUE, TRUE, FALSE);
+			}
 		}
 
 		/* bossrusher race: spawn a boss at a random location whenever you enter a new level --Amy */
