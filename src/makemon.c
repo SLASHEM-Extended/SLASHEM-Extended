@@ -910,9 +910,9 @@ register struct monst *mtmp;
 
 	if (!rn2(60) && ((rn2(100) > u.usefulitemchance) || (rn2(100) > u.usefulitemchance) ) ) (void) mongets(mtmp, SCR_HEALING);
 
-	if (!rn2(ishaxor ? 600 : 1200)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
-	if (!rn2(ishaxor ? 600 : 1200)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-	if (!rn2(ishaxor ? 600 : 1200)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+	if (!rn2(ishaxor ? 1800 : 3600)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+	if (!rn2(ishaxor ? 1800 : 3600)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+	if (!rn2(ishaxor ? 1800 : 3600)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
 
 	if (attacktype(ptr, AT_WEAP) && !rn2(ishaxor ? 1000 : 2000)) {
 		struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
@@ -7582,9 +7582,9 @@ register struct monst *mtmp;
 	if (!rn2(ishaxor ? 20 : 40) ) (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1));
 	if (!rn2(ishaxor ? 50 : 100) ) (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS));
 
-      if ((int) mtmp->m_lev > rn2(500))
+      if ((int) mtmp->m_lev > rn2(1500))
 		(void) mongets(mtmp, rnd_offensive_item(mtmp));
-	if (!rn2(1200)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+	if (!rn2(3600)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 
 	if (mtmp->data->msound == MS_STENCH && !rn2(20)) {
 		(void)mongets(mtmp, WILDHILD_BOW);
@@ -17939,15 +17939,19 @@ loveheelover:
 		break;
 	}
 
-	if ((int) mtmp->m_lev > rn2(400))
+	/* considering how many monsters you fight over the course of the game, there's still an abundance of musable stuff!
+	 * so we're reducing it; monsters that can't use such items in vanilla, while being able to use them in SLEX,
+	 * should receive them even less often --Amy */
+
+	if ((int) mtmp->m_lev > rn2((is_animal(mtmp->data) || mindless(mtmp->data)) ? 6000 : 1200))
 		(void) mongets(mtmp, rnd_defensive_item(mtmp));
-	if ((int) mtmp->m_lev > rn2(400))
+	if ((int) mtmp->m_lev > rn2((is_animal(mtmp->data) || mindless(mtmp->data)) ? 6000 : 1200))
 		(void) mongets(mtmp, rnd_misc_item(mtmp));
-	if ((int) mtmp->m_lev > rn2(1000))
+	if ((int) mtmp->m_lev > rn2((is_animal(mtmp->data) || mindless(mtmp->data)) ? 15000 : 3000))
 		(void) mongets(mtmp, rnd_offensive_item(mtmp));
-	if (!rn2(1200)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
-	if (!rn2(1200)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
-	if (!rn2(3000)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+	if (!rn2((is_animal(mtmp->data) || mindless(mtmp->data)) ? 18000 : 3600)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+	if (!rn2((is_animal(mtmp->data) || mindless(mtmp->data)) ? 18000 : 3600)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+	if (!rn2((is_animal(mtmp->data) || mindless(mtmp->data)) ? 45000 : 9000)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 
 	/* inventory initialization for bosses --Amy */
 
