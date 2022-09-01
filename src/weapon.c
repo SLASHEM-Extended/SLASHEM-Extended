@@ -5284,31 +5284,7 @@ int degree;
 
 		if (!P_RESTRICTED(skill)) {
 
-			tryct = 2000;
-			tryct2 = 10;
-			i = 0;
-
-			while (u.skills_advanced && tryct && (P_ADVANCE(skill) < practice_needed_to_advance_nonmax(P_SKILL(skill) - 1, skill) ) ) {
-				lose_last_spent_skill();
-				i++;
-				tryct--;
-
-			}
-
-			while (i) {
-				if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
-				else u.weapon_slots++;  /* because every skill up costs one slot --Amy */
-				i--;
-			}
-
-			/* still higher than the cap? that probably means you started with some knowledge of the skill... */
-			while (tryct2 && P_ADVANCE(skill) < practice_needed_to_advance_nonmax(P_SKILL(skill) - 1, skill) ) {
-				P_SKILL(skill)--;
-				if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
-				else u.weapon_slots++;
-				tryct2--;
-
-			}
+			skill_sanity_check(skill);
 
 		}
 
@@ -10368,29 +10344,7 @@ eviltryagain:
 	if (!P_RESTRICTED(pickskill)) {
 		pline("Your %s skill falls off, and you're much less skilled than before.", wpskillname(pickskill));
 
-		tryct = 2000;
-		tryct2 = 10;
-		i = 0;
-
-		while (u.skills_advanced && tryct && (P_ADVANCE(pickskill) < practice_needed_to_advance_nonmax(P_SKILL(pickskill) - 1, pickskill) ) ) {
-			lose_last_spent_skill();
-			i++;
-			tryct--;
-		}
-
-		while (i) {
-			if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
-			else u.weapon_slots++;  /* because every skill up costs one slot --Amy */
-			i--;
-		}
-
-		/* still higher than the cap? that probably means you started with some knowledge of the skill... */
-		while (tryct2 && P_ADVANCE(pickskill) < practice_needed_to_advance_nonmax(P_SKILL(pickskill) - 1, pickskill) ) {
-			P_SKILL(pickskill)--;
-			if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
-			else u.weapon_slots++;
-			tryct2--;
-		}
+		skill_sanity_check(pickskill);
 
 	}
 
@@ -10749,29 +10703,7 @@ int lossamount;
 	if (!P_RESTRICTED(pickskill)) {
 		pline("Your %s skill deteriorates.", wpskillname(pickskill));
 
-		tryct = 2000;
-		tryct2 = 10;
-		i = 0;
-
-		while (u.skills_advanced && tryct && (P_ADVANCE(pickskill) < practice_needed_to_advance_nonmax(P_SKILL(pickskill) - 1, pickskill) ) ) {
-			lose_last_spent_skill();
-			i++;
-			tryct--;
-		}
-
-		while (i) {
-			if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
-			else u.weapon_slots++;  /* because every skill up costs one slot --Amy */
-			i--;
-		}
-
-		/* still higher than the cap? that probably means you started with some knowledge of the skill... */
-		while (tryct2 && P_ADVANCE(pickskill) < practice_needed_to_advance_nonmax(P_SKILL(pickskill) - 1, pickskill) ) {
-			P_SKILL(pickskill)--;
-			if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
-			else u.weapon_slots++;
-			tryct2--;
-		}
+		skill_sanity_check(pickskill);
 
 	}
 

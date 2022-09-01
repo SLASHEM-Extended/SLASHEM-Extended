@@ -3588,26 +3588,7 @@ melatechoice:
 					pline("You lose some knowledge of the %s skill!", wpskillname(paueredskill));
 				}
 
-				tryct = 2000;
-
-				while (u.skills_advanced && tryct && (P_SKILL(paueredskill) > P_MAX_SKILL(paueredskill)) ) {
-					lose_last_spent_skill();
-					i++;
-					tryct--;
-				}
-
-				while (i) {
-					if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
-					else u.weapon_slots++;  /* because every skill up costs one slot --Amy */
-					i--;
-				}
-
-				/* still higher than the cap? that probably means you started with some knowledge of the skill... */
-				if (P_SKILL(paueredskill) > P_MAX_SKILL(paueredskill)) {
-					P_SKILL(paueredskill) = P_MAX_SKILL(paueredskill);
-					if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
-					else u.weapon_slots++;
-				}
+				skill_sanity_check(paueredskill);
 
 			}
 		}

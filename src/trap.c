@@ -13095,53 +13095,8 @@ skillswapredo:
 
 					pline("Your training for the %s and %s skills was swapped.", wpskillname(swapskill1), wpskillname(swapskill2));
 
-					tryct = 2000;
-					tryct2 = 10;
-					i = 0;
-
-					while (u.skills_advanced && tryct && !(P_MAX_SKILL(swapskill1) == P_ISRESTRICTED) && (P_ADVANCE(swapskill1) < practice_needed_to_advance_nonmax(P_SKILL(swapskill1) - 1, swapskill1) ) ) {
-						lose_last_spent_skill();
-						i++;
-						tryct--;
-					}
-
-					while (i) {
-						if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
-						else u.weapon_slots++;  /* because every skill up costs one slot --Amy */
-						i--;
-					}
-
-					/* still higher than the cap? that probably means you started with some knowledge of the skill... */
-					while (tryct2 && !(P_MAX_SKILL(swapskill1) == P_ISRESTRICTED) && P_ADVANCE(swapskill1) < practice_needed_to_advance_nonmax(P_SKILL(swapskill1) - 1, swapskill1) ) {
-						P_SKILL(swapskill1)--;
-						if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
-						else u.weapon_slots++;
-						tryct2--;
-					}
-
-					tryct = 2000;
-					tryct2 = 10;
-					i = 0;
-
-					while (u.skills_advanced && tryct && !(P_MAX_SKILL(swapskill2) == P_ISRESTRICTED) && (P_ADVANCE(swapskill2) < practice_needed_to_advance_nonmax(P_SKILL(swapskill2) - 1, swapskill2) ) ) {
-						lose_last_spent_skill();
-						i++;
-						tryct--;
-					}
-
-					while (i) {
-						if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
-						else u.weapon_slots++;  /* because every skill up costs one slot --Amy */
-						i--;
-					}
-
-					/* still higher than the cap? that probably means you started with some knowledge of the skill... */
-					while (tryct2 && !(P_MAX_SKILL(swapskill2) == P_ISRESTRICTED) && P_ADVANCE(swapskill2) < practice_needed_to_advance_nonmax(P_SKILL(swapskill2) - 1, swapskill2) ) {
-						P_SKILL(swapskill2)--;
-						if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
-						else u.weapon_slots++;
-						tryct2--;
-					}
+					skill_sanity_check(swapskill1);
+					skill_sanity_check(swapskill2);
 
 				} else {
 					tempswapvalue = P_MAX_SKILL(swapskill1);
@@ -13160,51 +13115,8 @@ skillswapredo:
 
 					pline("Your caps for the %s and %s skills were swapped.", wpskillname(swapskill1), wpskillname(swapskill2));
 
-					i = 0;
-					tryct = 2000;
-
-					while (u.skills_advanced && tryct && (P_SKILL(swapskill1) > P_MAX_SKILL(swapskill1)) ) {
-
-						lose_last_spent_skill();
-						i++;
-						tryct--;
-					}
-
-					while (i) {
-						if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
-						else u.weapon_slots++;  /* because every skill up costs one slot --Amy */
-						i--;
-					}
-
-					/* still higher than the cap? that probably means you started with some knowledge of the skill... */
-					if (P_SKILL(swapskill1) > P_MAX_SKILL(swapskill1)) {
-						P_SKILL(swapskill1) = P_MAX_SKILL(swapskill1);
-						if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
-						else u.weapon_slots++;
-					}
-
-					i = 0;
-					tryct = 2000;
-
-					while (u.skills_advanced && tryct && (P_SKILL(swapskill2) > P_MAX_SKILL(swapskill2)) ) {
-
-						lose_last_spent_skill();
-						i++;
-						tryct--;
-					}
-
-					while (i) {
-						if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
-						else u.weapon_slots++;  /* because every skill up costs one slot --Amy */
-						i--;
-					}
-
-					/* still higher than the cap? that probably means you started with some knowledge of the skill... */
-					if (P_SKILL(swapskill2) > P_MAX_SKILL(swapskill2)) {
-						P_SKILL(swapskill2) = P_MAX_SKILL(swapskill2);
-						if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
-						else u.weapon_slots++;
-					}
+					skill_sanity_check(swapskill1);
+					skill_sanity_check(swapskill2);
 
 				}
 
@@ -13279,28 +13191,7 @@ skillupordownagain:
 						pline("You lose some knowledge of the %s skill!", wpskillname(upordownskill));
 					}
 
-					i = 0;
-					tryct = 2000;
-
-					while (u.skills_advanced && tryct && (P_SKILL(upordownskill) > P_MAX_SKILL(upordownskill)) ) {
-
-						lose_last_spent_skill();
-						i++;
-						tryct--;
-					}
-
-					while (i) {
-						if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
-						else u.weapon_slots++;  /* because every skill up costs one slot --Amy */
-						i--;
-					}
-
-					/* still higher than the cap? that probably means you started with some knowledge of the skill... */
-					if (P_SKILL(upordownskill) > P_MAX_SKILL(upordownskill)) {
-						P_SKILL(upordownskill) = P_MAX_SKILL(upordownskill);
-						if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
-						else u.weapon_slots++;
-					}
+					skill_sanity_check(upordownskill);
 
 				}
 
@@ -13348,28 +13239,7 @@ skillrandomizeredo:
 					pline("Your %s skill is now capped at expert!", wpskillname(randomizeskill));
 				}
 
-				i = 0;
-				tryct = 2000;
-
-				while (u.skills_advanced && tryct && (P_SKILL(randomizeskill) > P_MAX_SKILL(randomizeskill)) ) {
-
-					lose_last_spent_skill();
-					i++;
-					tryct--;
-				}
-
-				while (i) {
-					if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
-					else u.weapon_slots++;  /* because every skill up costs one slot --Amy */
-					i--;
-				}
-
-				/* still higher than the cap? that probably means you started with some knowledge of the skill... */
-				if (P_SKILL(randomizeskill) > P_MAX_SKILL(randomizeskill)) {
-					P_SKILL(randomizeskill) = P_MAX_SKILL(randomizeskill);
-					if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
-					else u.weapon_slots++;
-				}
+				skill_sanity_check(randomizeskill);
 
 				if (skillrandomizeamount > 1) {
 					skillrandomizeamount--;

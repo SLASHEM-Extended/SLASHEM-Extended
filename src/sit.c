@@ -810,13 +810,58 @@ secureidchoice:
 	return(1);
 }
 
+/* the cap of a skill has been changed: now make sure the skill level isn't higher than the cap --Amy */
+void
+skill_sanity_check(skilltocheck)
+int skilltocheck;
+{
+	int tryct = 2000;
+	int i = 0;
+
+	/* if you have spent skill points, undo them until the skill in question isn't higher than the cap anymore */
+	while (u.skills_advanced && tryct && (P_SKILL(skilltocheck) > P_MAX_SKILL(skilltocheck)) ) {
+
+		lose_last_spent_skill();
+		i++;
+		tryct--;
+	}
+
+	/* refund the skill slots */
+	while (i) {
+		if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
+		else u.weapon_slots++;  /* because every skill up costs one slot --Amy */
+		i--;
+	}
+
+	/* did a skill become restricted? then being unskilled should result in becoming restricted */
+	if (P_SKILL(skilltocheck) == P_UNSKILLED && P_MAX_SKILL(skilltocheck) == P_ISRESTRICTED) {
+		P_SKILL(skilltocheck) = P_ISRESTRICTED;
+	}
+
+	/* still higher than the cap? that probably means you started with some knowledge of the skill... */
+	if (P_SKILL(skilltocheck) > P_MAX_SKILL(skilltocheck)) {
+		int skillamount = 0;
+		if (P_SKILL(skilltocheck) == P_BASIC) skillamount = 1;
+		else if (P_SKILL(skilltocheck) == P_SKILLED) skillamount = 2;
+		else if (P_SKILL(skilltocheck) == P_EXPERT) skillamount = 3;
+		else if (P_SKILL(skilltocheck) == P_MASTER) skillamount = 4;
+		else if (P_SKILL(skilltocheck) == P_GRAND_MASTER) skillamount = 5;
+		else if (P_SKILL(skilltocheck) == P_SUPREME_MASTER) skillamount = 6;
+		P_SKILL(skilltocheck) = P_MAX_SKILL(skilltocheck);
+		while (skillamount > 0) {
+			skillamount--;
+			if (evilfriday) Norep("This is the evil variant. Your skill point is lost forever.");
+			else u.weapon_slots++;
+		}
+	}
+
+}
+
 void
 skillcaploss()
 {
 
 	int skilltoreduce = randomgoodskill();
-	int tryct;
-	int i = 0;
 
 	if (P_RESTRICTED(skilltoreduce)) return; /* nothing to do */
 
@@ -841,27 +886,7 @@ skillcaploss()
 		pline("You lose some knowledge of the %s skill!", wpskillname(skilltoreduce));
 	}
 
-	tryct = 2000;
-
-	while (u.skills_advanced && tryct && (P_SKILL(skilltoreduce) > P_MAX_SKILL(skilltoreduce)) ) {
-
-		lose_last_spent_skill();
-		i++;
-		tryct--;
-	}
-
-	while (i) {
-		if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
-		else u.weapon_slots++;  /* because every skill up costs one slot --Amy */
-		i--;
-	}
-
-	/* still higher than the cap? that probably means you started with some knowledge of the skill... */
-	if (P_SKILL(skilltoreduce) > P_MAX_SKILL(skilltoreduce)) {
-		P_SKILL(skilltoreduce) = P_MAX_SKILL(skilltoreduce);
-		if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
-		else u.weapon_slots++;
-	}
+	skill_sanity_check(skilltoreduce);
 
 	return;
 
@@ -872,37 +897,13 @@ skillcaploss_specific(skilltoreduce)
 int skilltoreduce;
 {
 
-	int tryct, tryct2;
-	int i = 0;
-
 	if (P_RESTRICTED(skilltoreduce)) return; /* nothing to do */
 
 	if (P_MAX_SKILL(skilltoreduce) >= P_BASIC) {
 		P_MAX_SKILL(skilltoreduce) = P_ISRESTRICTED;
 	}
 
-	tryct = 2000;
-	tryct2 = 10;
-
-	while (u.skills_advanced && tryct && (P_SKILL(skilltoreduce) > P_MAX_SKILL(skilltoreduce)) ) {
-		lose_last_spent_skill();
-		i++;
-		tryct--;
-	}
-
-	while (i) {
-		if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
-		else u.weapon_slots++;  /* because every skill up costs one slot --Amy */
-		i--;
-	}
-
-	/* still higher than the cap? that probably means you started with some knowledge of the skill... */
-	while (tryct2 && P_SKILL(skilltoreduce) > P_UNSKILLED) {
-		P_SKILL(skilltoreduce) -= 1;
-		if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
-		else u.weapon_slots++;
-		tryct2--;
-	}
+	skill_sanity_check(skilltoreduce);
 
 	P_SKILL(skilltoreduce) = P_ISRESTRICTED;
 
@@ -939,29 +940,7 @@ severelossagain:
 
 	if (!P_RESTRICTED(skilltoreduce)) {
 
-		tryct = 2000;
-		tryct2 = 10;
-		i = 0;
-
-		while (u.skills_advanced && tryct && (P_ADVANCE(skilltoreduce) < practice_needed_to_advance_nonmax(P_SKILL(skilltoreduce) - 1, skilltoreduce) ) ) {
-			lose_last_spent_skill();
-			i++;
-			tryct--;
-		}
-
-		while (i) {
-			if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
-			else u.weapon_slots++;  /* because every skill up costs one slot --Amy */
-			i--;
-		}
-
-		/* still higher than the cap? that probably means you started with some knowledge of the skill... */
-		while (tryct2 && P_ADVANCE(skilltoreduce) < practice_needed_to_advance_nonmax(P_SKILL(skilltoreduce) - 1, skilltoreduce) ) {
-			P_SKILL(skilltoreduce)--;
-			if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
-			else u.weapon_slots++;
-			tryct2--;
-		}
+		skill_sanity_check(skilltoreduce);
 
 	}
 

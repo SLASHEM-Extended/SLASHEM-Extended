@@ -2971,6 +2971,7 @@ E void attrcurse(void);
 E void skillcaploss(void);
 E void skillcaploss_severe(void);
 E void skillcaploss_specific(int);
+E void skill_sanity_check(int);
 
 /* ### sounds.c ### */
 
