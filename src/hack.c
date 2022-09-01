@@ -1748,6 +1748,9 @@ ask_about_trap(int x, int y)
 		if (traphere->ttyp == S_PRESSING_TRAP) {
 			return FALSE;
 		}
+		if (traphere->ttyp == WRONG_STAIRS) {
+			return FALSE;
+		}
 
 		if (Levitation || Flying) {
 			if (!In_sokoban(&u.uz) && traphere->ttyp == PIT) {

@@ -3279,6 +3279,180 @@ newbossS:
 				if (!rn2(50)) ttmp->ttyp = ANIMATION_TRAP;
 			}
 
+			if (ttmp && ttmp->ttyp == MONSTER_GENERATOR && !rn2(500)) {
+				if (!enexto(&cc, ttmp->tx, ttmp->ty, (struct permonst *)0) ) continue;
+				if (Aggravate_monster) {
+					u.aggravation = 1;
+					reset_rndmonst(NON_PM);
+				}
+
+				switch (ttmp->launch.x) {
+					case 1:
+						(void) makemon(colormon(ttmp->launch_otyp), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						break;
+					case 2:
+						if (ttmp->launch_otyp < 6)
+					 	    (void) makemon(mkclass(S_ANT,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 9)
+					 	    (void) makemon(mkclass(S_BLOB,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 11)
+					 	    (void) makemon(mkclass(S_COCKATRICE,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 15)
+					 	    (void) makemon(mkclass(S_DOG,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 18)
+					 	    (void) makemon(mkclass(S_EYE,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 22)
+					 	    (void) makemon(mkclass(S_FELINE,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 24)
+					 	    (void) makemon(mkclass(S_GREMLIN,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 29)
+					 	    (void) makemon(mkclass(S_HUMANOID,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 33)
+					 	    (void) makemon(mkclass(S_IMP,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 36)
+					 	    (void) makemon(mkclass(S_JELLY,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 41)
+					 	    (void) makemon(mkclass(S_KOBOLD,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 44)
+					 	    (void) makemon(mkclass(S_LEPRECHAUN,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 47)
+					 	    (void) makemon(mkclass(S_MIMIC,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 50)
+					 	    (void) makemon(mkclass(S_NYMPH,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 54)
+					 	    (void) makemon(mkclass(S_ORC,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 55)
+					 	    (void) makemon(mkclass(S_PIERCER,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 58)
+					 	    (void) makemon(mkclass(S_QUADRUPED,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 62)
+					 	    (void) makemon(mkclass(S_RODENT,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 65)
+					 	    (void) makemon(mkclass(S_SPIDER,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 66)
+					 	    (void) makemon(mkclass(S_TRAPPER,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 69)
+					 	    (void) makemon(mkclass(S_UNICORN,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 71)
+					 	    (void) makemon(mkclass(S_VORTEX,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 73)
+					 	    (void) makemon(mkclass(S_WORM,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 75)
+					 	    (void) makemon(mkclass(S_XAN,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 76)
+					 	    (void) makemon(mkclass(S_LIGHT,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 77)
+					 	    (void) makemon(mkclass(S_ZOUTHERN,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 78)
+					 	    (void) makemon(mkclass(S_ANGEL,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 81)
+					 	    (void) makemon(mkclass(S_BAT,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 83)
+					 	    (void) makemon(mkclass(S_CENTAUR,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 86)
+					 	    (void) makemon(mkclass(S_DRAGON,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 89)
+					 	    (void) makemon(mkclass(S_ELEMENTAL,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 94)
+					 	    (void) makemon(mkclass(S_FUNGUS,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 99)
+					 	    (void) makemon(mkclass(S_GNOME,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 102)
+					 	    (void) makemon(mkclass(S_GIANT,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 103)
+					 	    (void) makemon(mkclass(S_JABBERWOCK,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 104)
+					 	    (void) makemon(mkclass(S_KOP,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 105)
+					 	    (void) makemon(mkclass(S_LICH,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 108)
+					 	    (void) makemon(mkclass(S_MUMMY,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 110)
+					 	    (void) makemon(mkclass(S_NAGA,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 113)
+					 	    (void) makemon(mkclass(S_OGRE,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 115)
+					 	    (void) makemon(mkclass(S_PUDDING,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 116)
+					 	    (void) makemon(mkclass(S_QUANTMECH,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 118)
+					 	    (void) makemon(mkclass(S_RUSTMONST,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 121)
+					 	    (void) makemon(mkclass(S_SNAKE,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 123)
+					 	    (void) makemon(mkclass(S_TROLL,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 124)
+					 	    (void) makemon(mkclass(S_UMBER,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 125)
+					 	    (void) makemon(mkclass(S_VAMPIRE,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 127)
+					 	    (void) makemon(mkclass(S_WRAITH,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 128)
+					 	    (void) makemon(mkclass(S_XORN,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 130)
+					 	    (void) makemon(mkclass(S_YETI,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 135)
+					 	    (void) makemon(mkclass(S_ZOMBIE,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 145)
+					 	    (void) makemon(mkclass(S_HUMAN,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 147)
+					 	    (void) makemon(mkclass(S_GHOST,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 149)
+					 	    (void) makemon(mkclass(S_GOLEM,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 152)
+					 	    (void) makemon(mkclass(S_DEMON,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 155)
+					 	    (void) makemon(mkclass(S_EEL,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 160)
+					 	    (void) makemon(mkclass(S_LIZARD,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 162)
+					 	    (void) makemon(mkclass(S_BAD_FOOD,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 165)
+					 	    (void) makemon(mkclass(S_BAD_COINS,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 166)
+					 	    (void) makemon(mkclass(S_HUMAN,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 171)
+					 	    (void) makemon(mkclass(S_GRUE,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 176)
+					 	    (void) makemon(mkclass(S_WALLMONST,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 180)
+					 	    (void) makemon(mkclass(S_RUBMONST,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 181)
+					 	    (void) makemon(mkclass(S_HUMAN,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 186)
+					 	    (void) makemon(mkclass(S_TURRET,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else if (ttmp->launch_otyp < 187)
+					 	    (void) makemon(mkclass(S_FLYFISH,0), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						else
+					 	    (void) makemon((struct permonst *)0, ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						break;
+					case 3:
+						(void) makemon(specialtensmon(ttmp->launch_otyp), ttmp->tx, ttmp->ty, MM_ADJACENTOK);
+						break;
+					default:
+						impossible("monster generator with bad launch type %d!", ttmp->launch.x);
+						ttmp->launch.x = rnd(3);
+						switch (ttmp->launch.x) {
+							case 1:
+								ttmp->launch_otyp = rnd(15); /* random color */
+								break;
+							case 2:
+								ttmp->launch_otyp = rnd(186); /* monster glyph (weighted chance) */
+								break;
+							case 3:
+								ttmp->launch_otyp = rnd(425); /* monstercolor function */
+								break;
+							default:
+								impossible("monster generator with bad launch type %d!", ttmp->launch.x);
+								break;
+						}
+				}
+
+				u.aggravation = 0;
+				if (!rn2(20)) pline("dschaeaeaeaeae");
+				if (!rn2(50)) ttmp->ttyp = ANIMATION_TRAP;
+			}
+
 			if (ttmp && ttmp->ttyp == SPREADING_TRAP && !rn2(500)) {
 				makerandomtrap(FALSE);
 			}

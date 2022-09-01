@@ -7804,6 +7804,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You are clawed by your gauntlets and faint.",
 	"You regain consciousness.",
 	"Chaeaet!",
+	"dschaeaeaeaeae",
 	"Your terrible eating disorder causes you to faint.",
 	"Lovely fleecy caressing feelings stream into your legs!",
 	"You're dressed like a '69 whore!",
