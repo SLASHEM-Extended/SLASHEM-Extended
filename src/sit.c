@@ -819,7 +819,7 @@ int skilltocheck;
 	int i = 0;
 
 	/* if you have spent skill points, undo them until the skill in question isn't higher than the cap anymore */
-	while (u.skills_advanced && tryct && (P_SKILL(skilltocheck) > P_MAX_SKILL(skilltocheck)) ) {
+	while (u.skills_advanced && tryct && ((P_SKILL(skilltocheck) > P_MAX_SKILL(skilltocheck)) || (P_SKILL(skilltocheck) >= P_BASIC && P_ADVANCE(skilltocheck) < (practice_needed_to_advance_nonmax(P_SKILL(skilltocheck) - 1, skilltocheck)) )) ) {
 
 		lose_last_spent_skill();
 		i++;
@@ -839,15 +839,18 @@ int skilltocheck;
 	}
 
 	/* still higher than the cap? that probably means you started with some knowledge of the skill... */
-	if (P_SKILL(skilltocheck) > P_MAX_SKILL(skilltocheck)) {
+	if ((P_SKILL(skilltocheck) > P_MAX_SKILL(skilltocheck)) || (P_SKILL(skilltocheck) >= P_BASIC && P_ADVANCE(skilltocheck) < (practice_needed_to_advance_nonmax(P_SKILL(skilltocheck) - 1, skilltocheck)) ) ) {
+
 		int skillamount = 0;
-		if (P_SKILL(skilltocheck) == P_BASIC) skillamount = 1;
-		else if (P_SKILL(skilltocheck) == P_SKILLED) skillamount = 2;
-		else if (P_SKILL(skilltocheck) == P_EXPERT) skillamount = 3;
-		else if (P_SKILL(skilltocheck) == P_MASTER) skillamount = 4;
-		else if (P_SKILL(skilltocheck) == P_GRAND_MASTER) skillamount = 5;
-		else if (P_SKILL(skilltocheck) == P_SUPREME_MASTER) skillamount = 6;
-		P_SKILL(skilltocheck) = P_MAX_SKILL(skilltocheck);
+		while (P_SKILL(skilltocheck) > P_MAX_SKILL(skilltocheck)) {
+			if (P_SKILL(skilltocheck) == P_UNSKILLED && P_MAX_SKILL(skilltocheck) == P_ISRESTRICTED) {
+				P_SKILL(skilltocheck) = P_ISRESTRICTED;
+			} else {
+				P_SKILL(skilltocheck) -= 1;
+				skillamount++;
+			}
+		}
+
 		while (skillamount > 0) {
 			skillamount--;
 			if (evilfriday) Norep("This is the evil variant. Your skill point is lost forever.");

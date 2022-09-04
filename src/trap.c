@@ -13225,18 +13225,46 @@ skillrandomizeredo:
 					goto skillrandomizeredo;
 				}
 
-				if (!rn2(100)) {
-					P_MAX_SKILL(randomizeskill) = P_SUPREME_MASTER;
-					pline("Your %s skill is now capped at supreme master!", wpskillname(randomizeskill));
-				} else if (!rn2(10)) {
-					P_MAX_SKILL(randomizeskill) = P_GRAND_MASTER;
-					pline("Your %s skill is now capped at grand master!", wpskillname(randomizeskill));
-				} else if (!rn2(2)) {
-					P_MAX_SKILL(randomizeskill) = P_MASTER;
-					pline("Your %s skill is now capped at master!", wpskillname(randomizeskill));
+				/* if the skill's cap is lower than expert, then its new cap can't be higher than skilled
+				 * if it's at least expert, the new cap can't be lower than expert */
+
+				if (P_MAX_SKILL(randomizeskill) < P_EXPERT) {
+					if (rn2(2)) {
+						if (P_MAX_SKILL(randomizeskill) >= P_BASIC) {
+							P_MAX_SKILL(randomizeskill) = P_ISRESTRICTED;
+							P_ADVANCE(randomizeskill) = 0;
+						}
+						P_MAX_SKILL(randomizeskill) = P_ISRESTRICTED;
+						pline("Your %s skill is now restricted!", wpskillname(randomizeskill));
+					} else if (rn2(3)) {
+						if (P_MAX_SKILL(randomizeskill) == P_ISRESTRICTED) {
+							unrestrict_weapon_skill(randomizeskill);
+							P_MAX_SKILL(randomizeskill) = P_BASIC;
+						}
+						P_MAX_SKILL(randomizeskill) = P_BASIC;
+						pline("Your %s skill is now capped at basic!", wpskillname(randomizeskill));
+					} else {
+						if (P_MAX_SKILL(randomizeskill) == P_ISRESTRICTED) {
+							unrestrict_weapon_skill(randomizeskill);
+							P_MAX_SKILL(randomizeskill) = P_SKILLED;
+						}
+						P_MAX_SKILL(randomizeskill) = P_SKILLED;
+						pline("Your %s skill is now capped at skilled!", wpskillname(randomizeskill));
+					}
 				} else {
-					P_MAX_SKILL(randomizeskill) = P_EXPERT;
-					pline("Your %s skill is now capped at expert!", wpskillname(randomizeskill));
+					if (!rn2(100)) {
+						P_MAX_SKILL(randomizeskill) = P_SUPREME_MASTER;
+						pline("Your %s skill is now capped at supreme master!", wpskillname(randomizeskill));
+					} else if (!rn2(10)) {
+						P_MAX_SKILL(randomizeskill) = P_GRAND_MASTER;
+						pline("Your %s skill is now capped at grand master!", wpskillname(randomizeskill));
+					} else if (!rn2(2)) {
+						P_MAX_SKILL(randomizeskill) = P_MASTER;
+						pline("Your %s skill is now capped at master!", wpskillname(randomizeskill));
+					} else {
+						P_MAX_SKILL(randomizeskill) = P_EXPERT;
+						pline("Your %s skill is now capped at expert!", wpskillname(randomizeskill));
+					}
 				}
 
 				skill_sanity_check(randomizeskill);
