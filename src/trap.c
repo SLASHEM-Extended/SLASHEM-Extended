@@ -13220,10 +13220,6 @@ skillrandomizeagain:
 
 skillrandomizeredo:
 				randomizeskill = randomgoodskill();
-				if (tryct > 0 && P_MAX_SKILL(randomizeskill) < P_EXPERT) {
-					tryct--;
-					goto skillrandomizeredo;
-				}
 
 				/* if the skill's cap is lower than expert, then its new cap can't be higher than skilled
 				 * if it's at least expert, the new cap can't be lower than expert */
