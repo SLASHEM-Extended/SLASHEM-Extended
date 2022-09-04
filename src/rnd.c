@@ -173,7 +173,7 @@ d(n,x)		/* n <= d(n,x) <= (n*x) */
 register int n, x;
 {
 	register int tmp = n;
-	check_reseed();
+	/*check_reseed();*/
 
 #ifdef DEBUG
 	if (x < 0 || n < 0 || (x == 0 && n != 0)) {
