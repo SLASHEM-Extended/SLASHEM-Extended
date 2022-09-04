@@ -10768,6 +10768,12 @@ dovspell()
 	int splnum, othnum;
 	struct spell spl_tmp;
 
+	if (MenuIsBugged) {
+	pline("The spell menu command is currently unavailable!");
+	if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	return 0;
+	}
+
 	int dememonum = 0;
 	int i;
 
