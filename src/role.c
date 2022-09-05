@@ -6867,6 +6867,21 @@ const struct Race races[] = {
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
 },
+{	"hardmoder", "hardmoder", "hard mode", "Har",
+	{0, 0},
+	PM_HARDMODER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
 {	"haxor", "haxorish", "haxorhood", "Hax",
 	{0, 0},
 	PM_HAXOR, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -9990,7 +10005,7 @@ int rolenum, gendnum, alignnum, pickhow;
 				case 43:
 					flags.hybridchallenger = 1; break;
 				case 44:
-					flags.hybridmatrixer = 1; break;
+					flags.hybridhardmoder = 1; break;
 
 			}
 
@@ -10128,7 +10143,7 @@ int rolenum, gendnum, alignnum, pickhow;
 						if (!(flags.hybridchallenger)) {flags.hybridchallenger = 1; flags.hybridization++; break;
 						}
 					case 44:
-						if (!(flags.hybridmatrixer)) {flags.hybridmatrixer = 1; flags.hybridization++; break;
+						if (!(flags.hybridhardmoder)) {flags.hybridhardmoder = 1; flags.hybridization++; break;
 						}
 	
 				}
@@ -10633,11 +10648,11 @@ int type;
 				}
 				break;
 			case 44:
-				if (flags.hybridmatrixer) {
+				if (flags.hybridhardmoder) {
 					tryct = 1000;
-					flags.hybridmatrixer = FALSE;
+					flags.hybridhardmoder = FALSE;
 					flags.hybridization--;
-					pline("You no longer have the matrixer hybrid race.");
+					pline("You no longer have the hardmoder hybrid race.");
 				}
 				break;
 
@@ -10995,11 +11010,11 @@ int type;
 				}
 				break;
 			case 44:
-				if (!flags.hybridmatrixer) {
+				if (!flags.hybridhardmoder) {
 					tryct = 1000;
-					flags.hybridmatrixer = TRUE;
+					flags.hybridhardmoder = TRUE;
 					flags.hybridization++;
-					pline("You now have the matrixer hybrid race.");
+					pline("You now have the hardmoder hybrid race.");
 				}
 				break;
 

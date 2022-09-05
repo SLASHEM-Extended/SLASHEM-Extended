@@ -5269,7 +5269,7 @@ int degree;
 
 /*    if (skill != P_NONE && !P_RESTRICTED(skill)) {*/
 
-	if (ismatrixer) skill = P_MATRIX(skill);
+	if (Race_if(PM_MATRIXER)) skill = P_MATRIX(skill);
 
     if (skill != P_NONE) {
 

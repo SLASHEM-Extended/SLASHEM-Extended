@@ -18545,13 +18545,17 @@ u_init()
 		break;
 	}
 
-		/* Players will start with a few healing and identify items now. --Amy */
+	/* Players will start with a few healing and identify items now. --Amy
+	 * hardmoder race makes it so that you don't */
+
+	if (!ishardmoder) {
           ini_inv(AlwaysStartItem);
           ini_inv(AlwaysStartItemC); /* and some that restore mana */
           ini_inv(AlwaysStartItemE); /* phase door for emergency escapes */
           ini_inv(AlwaysStartItemB); /* standard id to facilitate the identification game */
           ini_inv(AlwaysStartItemD); /* and a curing scroll for those pesky delayed instadeaths */
           ini_inv(AlwaysStartItemF); /* plus a heal other scroll to heal pets and symbiotes */
+	}
 
 	if (flags.lostsoul && !flags.uberlostsoul) { 
           ini_inv(LostSoulItem);  /* In Angband or TOME these would be scrolls of cure hunger instead of food rations. */
@@ -18594,7 +18598,7 @@ u_init()
 	if (!issoviet) knows_class(VENOM_CLASS);
 	/* "Also venom class isn't discovered by default anymore." In Soviet Russia, people like to make changes to games because they can, not because they want to actually have the effect of their changes in the game. Case in point: venoms being discovered makes sure that the game won't say "you are hit by a splash of venom" if it's e.g. tail spikes or a faerie floss rhing, but that depends on the player knowing what the object is, so if they aren't discovered it doesn't work right! So, dear other people who happen to stumble upon this piece of code: Remove it, and you'll remove messages like "you are hit by a faerie floss rhing", which you hopefully don't want so by the love of whatever god you believe in, don't remove it! --Amy */
 
-	if (!issoviet) {
+	if (!issoviet && !ishardmoder) {
 		knows_object(SCR_EXTRA_HEALING);
 		knows_object(SCR_GREATER_MANA_RESTORATION);
 	}
