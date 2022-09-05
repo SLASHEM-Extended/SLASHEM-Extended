@@ -2782,7 +2782,7 @@ toofar:
 /*	Now the actual movement phase	*/
 
 #ifndef GOLDOBJ
-	if(!nearby || (monsterflees(mtmp->data) && !rn2(3)) || (mtmp->data->msound == MS_METALMAFIA && !rn2(3)) || (u.singtrapocc && rn2(5)) || (u.katitrapocc && rn2(5)) || mtmp->mflee || scared ||
+	if(!nearby || (monsterflees(mtmp->data) && !rn2(3)) || (mtmp->mnum == PM_BROKEN_UMBRELLA && !rn2(3)) || (mtmp->data->msound == MS_METALMAFIA && !rn2(3)) || (u.singtrapocc && rn2(5)) || (u.katitrapocc && rn2(5)) || mtmp->mflee || scared ||
 	   mtmp->mconf || mtmp->mstun || (mtmp->minvis && !rn2(3)) ||
 	   (mdat->mlet == S_LEPRECHAUN && !u.ugold && (mtmp->mgold || rn2(2))) ||
 
@@ -2792,7 +2792,7 @@ toofar:
 	    lepgold = findgold(mtmp->minvent);
 	}
 
-	if(!nearby || (monsterflees(mtmp->data) && !rn2(3)) || (mtmp->data->msound == MS_METALMAFIA && !rn2(3)) || (u.singtrapocc && rn2(5)) || (u.katitrapocc && rn2(5)) || mtmp->mflee || scared ||
+	if(!nearby || (monsterflees(mtmp->data) && !rn2(3)) || (mtmp->mnum == PM_BROKEN_UMBRELLA && !rn2(3)) || (mtmp->data->msound == MS_METALMAFIA && !rn2(3)) || (u.singtrapocc && rn2(5)) || (u.katitrapocc && rn2(5)) || mtmp->mflee || scared ||
 	   mtmp->mconf || mtmp->mstun || (mtmp->minvis && !rn2(3)) ||
 	   (mdat->mlet == S_LEPRECHAUN && !ygold && (lepgold || rn2(2))) ||
 #endif
@@ -3711,6 +3711,7 @@ altarfound:
 	if (monsndx(ptr) == PM_CONTRULLA) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_GAGAGAGOGL) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_IRMGARD) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_SWIMMING_TRUNKS) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_IRITAL) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_FULL_WEAKMATE_O) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_DEBILITATED_DANNY) mtmp->mconf = 1;

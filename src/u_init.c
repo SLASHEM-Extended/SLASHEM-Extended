@@ -9172,6 +9172,7 @@ u_init()
 	struct permonst* randxyy = &mons[PM_RNGHOST];
 	struct permonst* randxyz = &mons[PM_RANDOMIZER_DRACONIAN];
 	struct permonst* randxyaa = &mons[PM_CENTAUR_RENGER];
+	struct permonst* randxyab = &mons[PM_MEGASPOILER_YRUAS];
 
 	struct permonst* randhybrid = &mons[PM_HYBRIDRAGON];
 
@@ -25443,6 +25444,16 @@ u_init()
 
 	}
 
+	for (i = 0; i < 3; i++) {
+		attkptr = &randxyab->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
 	for (i = 0; i < 1; i++) {
 		attkptr = &randomsphere->mattk[i];
 
@@ -32188,6 +32199,7 @@ int realityflag;
 	struct permonst* randxyy = &mons[PM_RNGHOST];
 	struct permonst* randxyz = &mons[PM_RANDOMIZER_DRACONIAN];
 	struct permonst* randxyaa = &mons[PM_CENTAUR_RENGER];
+	struct permonst* randxyab = &mons[PM_MEGASPOILER_YRUAS];
 
 	struct permonst* randhybrid = &mons[PM_HYBRIDRAGON];
 
@@ -41642,6 +41654,16 @@ int realityflag;
 
 	for (i = 0; i < 1; i++) {
 		attkptr = &randxyaa->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 3; i++) {
+		attkptr = &randxyab->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {

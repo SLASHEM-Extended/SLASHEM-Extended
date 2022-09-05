@@ -1655,6 +1655,12 @@ register struct monst *mtmp;
 			obj = mksobj_at(PLATE_MAIL, x, y, TRUE, FALSE, FALSE);
 		mtmp->mnamelth = 0;
 		break;
+	    case PM_FUEL_SUNFLOWER:
+		num = rn1(3,3);
+		while(num--)
+			obj = mksobj_at(POT_OIL, x, y, TRUE, FALSE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
 	    case PM_FULL_PLATE_GOLEM:
 		num = d(2,2);
 		if (num > 1 && rn2(2)) num /= 2;
@@ -3010,7 +3016,7 @@ mfndpos(mon, poss, info, flag)
 	nowtyp = levl[x][y].typ;
 
 	nodiag = (isgridbug(mdat) || (uwep && uwep->oartifact == ART_EGRID_BUG && mon->data->mlet == S_XAN) || (uarmf && !rn2(10) && itemhasappearance(uarmf, APP_CHESS_BOOTS) ) );
-	wantpool = mdat->mlet == S_EEL || mdat->mlet == S_FLYFISH || mdat == &mons[PM_HUMAN_WEREPIRANHA] || mdat == &mons[PM_HUMAN_WEREEEL] || mdat == &mons[PM_HUMAN_WEREKRAKEN] || mdat == &mons[PM_HUMAN_WEREFLYFISH] || mdat == &mons[PM_CONCORDE__] || mdat == &mons[PM_SWIMMER_TROLL] || mdat == &mons[PM_MISTER_SUBMARINE] || mdat == &mons[PM_WATERCAR] || mdat == &mons[PM_EEL_GOLEM] || mdat == &mons[PM_WATER_TURRET] || mdat == &mons[PM_AQUA_TURRET] || mdat == &mons[PM_DIVER_TROLL] || mdat == &mons[PM_PUNT] || mdat == &mons[PM_LUXURY_YACHT] || mdat == &mons[PM_SUBMARINE_GOBLIN] ;
+	wantpool = mdat->mlet == S_EEL || mdat->mlet == S_FLYFISH || mdat == &mons[PM_HUMAN_WEREPIRANHA] || mdat == &mons[PM_HUMAN_WEREEEL] || mdat == &mons[PM_HUMAN_WEREKRAKEN] || mdat == &mons[PM_HUMAN_WEREFLYFISH] || mdat == &mons[PM_CONCORDE__] || mdat == &mons[PM_SWIMMER_TROLL] || mdat == &mons[PM_MISTER_SUBMARINE] || mdat == &mons[PM_WATERCAR] || mdat == &mons[PM_EEL_GOLEM] || mdat == &mons[PM_WATER_TURRET] || mdat == &mons[PM_AQUA_TURRET] || mdat == &mons[PM_DIVER_TROLL] || mdat == &mons[PM_PUNT] || mdat == &mons[PM_WATER_FLEA] || mdat == &mons[PM_HAMM_WATER_FLEA] || mdat == &mons[PM_LUXURY_YACHT] || mdat == &mons[PM_SUBMARINE_GOBLIN] ;
 	poolok = (is_flyer(mdat) || mon->egotype_flying || is_clinger(mdat) || mon->egotype_watersplasher ||
 		 (is_swimmer(mdat) && !wantpool)) && !(mdat->mlet == S_FLYFISH || mdat == &mons[PM_HUMAN_WEREFLYFISH] || mdat == &mons[PM_CONCORDE__]);
 	wantlava = (mdat->mlet == S_FLYFISH || mdat == &mons[PM_HUMAN_WEREFLYFISH] || mdat == &mons[PM_CONCORDE__]);

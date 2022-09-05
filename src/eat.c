@@ -3585,6 +3585,12 @@ register int pm;
 		pline(FunnyHallu ? "You feel like ripping out some trees!" : "You feel stronger!");
 		break;
 
+	    case PM_LILY_FLOWER:
+		pline("Contrary to popular belief, the lily tasted pretty good and wasn't poisonous!");
+		decontaminate(10);
+		reducesanity(10);
+		break;
+
 	    case PM_KATOISEFUL:
 	    case PM_MURDATRICE:
 		pline("You'll have incessant flatulence for a while now...");
@@ -5339,7 +5345,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 	 * all. So you can save your holy waters, halleluja! --Amy */
 
 	if (!tp && !nocorpsedecay(&mons[mnum]) && mons[mnum].mlet != S_TROVE &&
-			(otmp->orotten || otmp->cursed || FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone() || (issoviet && !rn2(5)) || (!rn2(20) && !otmp->blessed) ) ) {
+			(otmp->orotten || otmp->cursed || FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone() || (mnum == PM_WINE_DANDELION) || (issoviet && !rn2(5)) || (!rn2(20) && !otmp->blessed) ) ) {
 /* Come on, blessed food being equally susceptible to rotting is just stupid. --Amy */
 
 	    if (rottenfood(otmp)) {
