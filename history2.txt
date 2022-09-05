@@ -1,5 +1,26 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.7.7 - August 2022
+- The menu bug trap now disallows the use of the spell menu (the one for swapping, memorizing or checking spells; the spellcasting menu still works normally).
+- Added a chance for containers to spawn on dungeon levels.
+- Reduced the odds for monsters to spawn with musable items.
+- Fixed the vanilla bug where the sortloot option wouldn't correctly sort poisoned weapons.
+- Monsters with polearms now properly receive damage boosts based on their level.
+- While underwater, the player can now see adjacent liquids that aren't water, and swimming no longer causes the player character's vision to be limited to underwater stuff.
+- Swimming steeds can now be used to safely cross water.
+- Certain monster types now count as dedicated steeds; all those that don't will give lower speeds when ridden unless the player is very skilled in riding.
+- Hostile golems can now regenerate HP over time.
+- Mandatory magic portals now give hot and cold messages if the player is nearby and the portal hasn't been found yet.
+- Increased the timer of the larissa trap effect to make it less harsh for the player.
+- Reworked trap creation mechanics so that most of the time they also have a small chance of spawning in a wall.
+- After macguffins have served their purpose, they can now be destroyed or put into a container. The Amulet of Yendor can also be dropped in freeplay mode.
+- Added new beneficial effects to a couple of artifact implants.
+- Fixed the bug where pets would follow the player to other levels in freeplay mode even if they were very far away.
+- Lowered the amount of loot generated during the late game.
+- In BIGslex, dungeon levels will now have more monsters and traps on average.
+- Reaching dungeon levels 20 to 29 no longer gives 1000 points of score for each of those levels that the player has reached.
+- The doom marine can now learn the grinder skill.
+
 2.7.6 - January 2022
 - Most types of firearm now have their own type of ammo.
 - Devil race player characters are now penalized when they perform certain "good" actions.
