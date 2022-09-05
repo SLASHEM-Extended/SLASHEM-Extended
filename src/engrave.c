@@ -5741,6 +5741,9 @@ static const char *epitaphs[] = {
 	"Amy you suck, why did you make it so that fluidator squads spawn all the time whenever I use my wallwalking ability. And most aggravatingly, far too many of them trash your stats with poison and similar shit, ruining my character.",
 	"Eh, #quit, won't play the game again. If I can't even pick spirit and play them the way God intended, the game sucks. You are supposed to be able to shortcut past everything and mostly not be bothered by monsters if you phase through walls, but the fluidators make that impossible.",
 	"The hell is a 'fluidator drerge', why on earth did that spawn and attack my incorporealoid and why on earth does it have six stat-draining attacks that fuck you over like you cannot believe??? Unplayable game!",
+	"slex is balanced just like car accidents are balanced",
+	"the only person games are allowed to be fun for are the developers, wake up sheepie",
+	"If anyone is caught having unauthorised fun, expect that whatever you're doing will be removed from the next version of the game.",
 
 };
 
