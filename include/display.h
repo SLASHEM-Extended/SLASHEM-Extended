@@ -53,8 +53,8 @@
  */
 #define mon_visible(mon) (		/* The hero can see the monster     */\
 					/* IF the monster		    */\
-    (!((mon)->minvis) || (See_invisible && (mon->seeinvisble || StrongSee_invisible) ) ) &&	/* 1. is not invisible AND	    */\
-    (!((mon)->mundetected && !StrongPeacevision))	&&		/* 2. not an undetected hider	    */\
+    (!((mon)->minvis) || (See_invisible && mon->data->msound != MS_DEEPSTATE && (mon->seeinvisble || StrongSee_invisible) ) ) &&	/* 1. is not invisible AND	    */\
+    (!((mon)->mundetected && (!StrongPeacevision || (mon->data->msound == MS_DEEPSTATE) ) ))	&&		/* 2. not an undetected hider	    */\
     (!((mon)->mburied || u.uburied)) &&	/* 3. neither you or it is buried   */\
 	(!(mon)->minvisreal)	/* 4. monster is not permanently invisible */\
 )
