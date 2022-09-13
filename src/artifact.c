@@ -2362,10 +2362,12 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 		    goto beheadingdone;
 		}
 
-		/* not really beheading, but so close, why add another SPFX */
+		/* not really beheading, but so close, why add another SPFX
+		 * Amy edit: that's like totally imba, man, why on earth does that work even on targets that would be
+		 * too large to bisect or lack a head to behead? let's just make it deal extra damage */
 		if (youattack && u.uswallow && mdef == u.ustuck) {
 		    You("slice %s wide open!", mon_nam(mdef));
-		    *dmgptr = 2 * mdef->mhp + FATAL_DAMAGE_MODIFIER;
+		    *dmgptr += (GushLevel * 2);
 		    willreturntrue = 1;
 		    goto beheadingdone;
 		}
