@@ -27959,6 +27959,14 @@ static NEARDATA const char * const fake_plines[] = {
 	"Lol, you took the wrong stairs and now you're on level 55.",
 	"Lol, you took the wrong stairs and now you're on level 55. But to your surprise, you discover that this dungeon does indeed have a genuine level 55...",
 	"Lol, you took the wrong stairs and now you're on level 55. Everything is invisible here and while the level is supposed to be a hamlet, there's lots of invisible trips that will crash the game if you walk into them.",
+	"wait, there are stats? I thought SLEX just randomly assigned numbers everywhere for everything!", /* by ProzacElf */
+	"In order to understand sexually transmitted diseases, you need to have studied math.",
+	"The math workbook does, on pages 49 to 50, give a detailed analysis about sexually transmitted diseases, strangely enough.",
+	"The grandmaster of SLEX plays the game as if weapons, non-robe torso armor and shields didn't exist, and therefore automatically considers 80%% of all artifacts to be useless because they fall into one of those categories.",
+	"It's incredible that a player was actually capable of expecting the ice queen reward to increase all skills by one skill level. That would be completely out of proportion compared to the other rewards of optional SLEX dungeon branches, so a player who hears about such a feature supposedly existing should immediately get suspicious and doubt that Amy actually added such an unbalancing thing.",
+	"I really don't get why players keep expecting phase door to work on no-teleport levels. Like, do they not think about game balance implications at all???",
+	"Wenn alles richtig eingesielli isluruchen Sie S2 bis Slunuen und Mirunan die Doppelpaaki ruchi blini Mirunan mii blindenderu coppalpunkt arschetun.",
+	"Only women are capable of saying the exact opposite of what they actually mean. For example, they can say 'what a beautiful day' when they really mean 'if only this day was over already'.",
 
 };
 

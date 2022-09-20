@@ -830,6 +830,13 @@ doread()
 	"oh, supermaster archon with ranged touch of death and destroy armor hug attack? no problem, my supersword of total annihilation kills it in two hits anyway just like any other monster that crosses my path",
 	"oh, supermaster archon with ranged touch of death and destroy armor hug attack? no problem, my submachine gun kills it in two volleys anyway just like any other monster that crosses my path - this comment posted from a MONK",
 	"anything a player does that isn't me is verboten", /* by amateurhour */
+	"Ready-wittedness is a mean between boorishness and buffoonery",
+	"Ambitiousness is an excess to the unnamed balance",
+	"a callomaniac does not suffer from a delusion of self-importance, but surpassing beauty",
+	"All soldiers are murderers.",
+	"I need you complain, once more, you be tai I'm in love you.",
+	"aklys: it's a club that u strap to ur butt with a thong", /* by amateurhour */
+	"You ascended? That's a bug, SLEX wasn't meant to be easy.",
 
 	    };
 	    char buf[BUFSZ];

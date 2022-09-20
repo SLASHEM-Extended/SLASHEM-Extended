@@ -7580,6 +7580,7 @@ SCROLL((char *)0,               "GLOVED COCKATRICE",  P_NONE,     1,   0, 100, C
 SCROLL((char *)0,               "GEFAENGNISVERBOTENHAMMER",  P_NONE,     1,   0, 100, CLR_RED, 1),
 SCROLL((char *)0,               "BULLETATORS SPAWN IF YOU FIRE ASSAULT RIFLES",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
 SCROLL((char *)0,               "HEIGENHANAU NORD",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
+SCROLL((char *)0,               "AHRECK TO PLATFORMINGEN TAKES MANY HOURS",  P_NONE,     1,   0, 100, CLR_BLUE, 1),
 
 
 #ifdef MAIL

@@ -1010,6 +1010,7 @@ static const char *random_mesg[] = {
 	"gelummibummiflausel Frischwaren-Fraxelschnurz",
 	"oh my god, there's a man sitting to the opposite of us! giggle! and oh my god he's wearing wedge heels doublegiggle!",
 	"omg slex is an autoerotic wanking simulator",
+	"It is forbidden to enter a woman, even a foreigner if dressed as a man.",
 
 };
 
@@ -5744,6 +5745,13 @@ static const char *epitaphs[] = {
 	"slex is balanced just like car accidents are balanced",
 	"the only person games are allowed to be fun for are the developers, wake up sheepie",
 	"If anyone is caught having unauthorised fun, expect that whatever you're doing will be removed from the next version of the game.",
+	"Amy that artifact is a weapon, so it sucks! The only role that exists is the monk, and those have no use for weapons!",
+	"Amy that artifact is a torso armor, so it sucks! The only role that exists is the monk, and those can't use non-robe body armor!",
+	"Amy that artifact is a shield, so it sucks! The only role that exists is the monk, and those have their martial arts screwed over when wearing a shield, I don't care how many great artifact enchantments the shield has I'll not use it anyway!",
+	"<amateurhour voice> things working in favor of the player? unthinkable! burn the heathen!",
+	"whaaaaaaaaat? Amy I was wearing flying boots! The game was asking me whether I really want to step into water but I knew that I was flying so of course I said yes, and I still fell in the water, that's a big fat bug! Err YOU SAY THAT'S WORKING AS INTENDED??? FUCK YOU AMY, it isn't!!!!!!!!",
+	"remember, game balance goes both ways, stuff can be unbalanced both in the game's favor or also in the player's favor, but at least 99% of players are such filthy casuals who never see the latter form of unbalance as what it is", /* originally by Amy but then amateurhour started spamming the line whenever Amy said something about game balance :-P */
+	"no alignment distinction allowed - the only thing alignment is allowed to change is which free skill you get on your secret advice member, everything else is just too player-favoured and fun", /* by amateurhour */
 
 };
 
