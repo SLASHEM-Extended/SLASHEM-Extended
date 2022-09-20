@@ -11715,20 +11715,24 @@ boolean ranged;
 		break;
 
 	  case AD_POLY:
-		if (!Unchanging && !Antimagic) {
+		if (!Unchanging && !Antimagic && !(Upolyd && rn2(5))) {
 		    if (flags.verbose)
 			You("suddenly feel very unstable!");
 			u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
+			u.polyattackhack = TRUE;
 		    polyself(FALSE);
+			u.polyattackhack = FALSE;
 		}
 		break;
 	  case AD_CHAO:
 		You("are hit by chaotic forces!");
-		if (!Unchanging && !Antimagic) {
+		if (!Unchanging && !Antimagic && !(Upolyd && rn2(5))) {
 		    if (flags.verbose)
 			You("suddenly feel very unstable!");
 			u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
+			u.polyattackhack = TRUE;
 		    polyself(FALSE);
+			u.polyattackhack = FALSE;
 		}
 
 		    if (!obsidianprotection()) switch (rn2(11)) {
@@ -12048,14 +12052,20 @@ boolean ranged;
 			if (!Unchanging && !Antimagic) {
 				You("undergo a freakish metamorphosis!");
 				u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
+				u.polyattackhack = TRUE;
 			      polyself(FALSE);
+				u.polyattackhack = FALSE;
 			}
 			break;
 		    case 2:
 			You("need reboot.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
 			if (!Race_if(PM_UNGENOMOLD)) newman();
-			else polyself(FALSE);
+			else {
+				u.polyattackhack = TRUE;
+				polyself(FALSE);
+				u.polyattackhack = FALSE;
+			}
 			break;
 		    case 3: case 4:
 			if(!rn2(4) && u.ulycn == NON_PM &&

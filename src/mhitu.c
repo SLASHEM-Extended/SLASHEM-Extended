@@ -7907,14 +7907,20 @@ dopois:
 			if (!Unchanging && !Antimagic) {
 				You("undergo a freakish metamorphosis!");
 				u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
+				u.polyattackhack = TRUE;
 			      polyself(FALSE);
+				u.polyattackhack = FALSE;
 			}
 			break;
 		    case 2:
 			You("need reboot.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
 			if (!Race_if(PM_UNGENOMOLD)) newman();
-			else polyself(FALSE);
+			else {
+				u.polyattackhack = TRUE;
+				polyself(FALSE);
+				u.polyattackhack = FALSE;
+			}
 			break;
 		    case 3: case 4:
 			if(!rn2(4) && u.ulycn == NON_PM &&
@@ -10442,20 +10448,24 @@ dopois:
 		break;
 	    case AD_POLY:
 		hitmsg(mtmp, mattk);
-		if (uncancelled && !Unchanging && !Antimagic) {
+		if (uncancelled && !Unchanging && !Antimagic && !(Upolyd && rn2(5)) ) {
 		    if (flags.verbose)
 			You("undergo a freakish metamorphosis!");
 			u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
+			u.polyattackhack = TRUE;
 		    polyself(FALSE);
+			u.polyattackhack = FALSE;
 		}
 		break;
 	    case AD_CHAO:
 		hitmsg(mtmp, mattk);
-		if (uncancelled && !Unchanging && !Antimagic) {
+		if (uncancelled && !Unchanging && !Antimagic && !(Upolyd && rn2(5))) {
 		    if (flags.verbose)
 			You("undergo a freakish metamorphosis!");
 			u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
+			u.polyattackhack = TRUE;
 		    polyself(FALSE);
+			u.polyattackhack = FALSE;
 		}
 		    if (!obsidianprotection()) switch (rn2(11)) {
 		    case 0: diseasemu(mdat);
@@ -12258,14 +12268,20 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			if (!Unchanging && !Antimagic) {
 				You("undergo a freakish metamorphosis!");
 				u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
+				u.polyattackhack = TRUE;
 			      polyself(FALSE);
+				u.polyattackhack = FALSE;
 			}
 			break;
 		    case 2:
 			You("need reboot.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
 			if (!Race_if(PM_UNGENOMOLD)) newman();
-			else polyself(FALSE);
+			else {
+				u.polyattackhack = TRUE;
+				polyself(FALSE);
+				u.polyattackhack = FALSE;
+			}
 			break;
 		    case 3: case 4:
 			if(!rn2(4) && u.ulycn == NON_PM &&
@@ -13396,20 +13412,24 @@ do_stone2:
 
 	    case AD_POLY:
 		pline("A weird green light pierces you!");
-		if (!Unchanging && !Antimagic) {
+		if (!Unchanging && !Antimagic && !(Upolyd && rn2(5))) {
 		    if (flags.verbose)
 			You("undergo a freakish metamorphosis!");
 			u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
+			u.polyattackhack = TRUE;
 		    polyself(FALSE);
+			u.polyattackhack = FALSE;
 		}
 		break;
 	    case AD_CHAO:
 		pline("A chaotic light pierces you!");
-		if (!Unchanging && !Antimagic) {
+		if (!Unchanging && !Antimagic && !(Upolyd && rn2(5))) {
 		    if (flags.verbose)
 			You("undergo a freakish metamorphosis!");
 			u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
+			u.polyattackhack = TRUE;
 		    polyself(FALSE);
+			u.polyattackhack = FALSE;
 		}
 		if (rn2(4)) break;
 		    if (!obsidianprotection()) switch (rn2(11)) {
@@ -15250,14 +15270,20 @@ common:
 			if (!Unchanging && !Antimagic) {
 				You("undergo a freakish metamorphosis!");
 				u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
+				u.polyattackhack = TRUE;
 			      polyself(FALSE);
+				u.polyattackhack = FALSE;
 			}
 			break;
 		    case 2:
 			You("need reboot.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
 			if (!Race_if(PM_UNGENOMOLD)) newman();
-			else polyself(FALSE);
+			else {
+				u.polyattackhack = TRUE;
+				polyself(FALSE);
+				u.polyattackhack = FALSE;
+			}
 			break;
 		    case 3: case 4:
 			if(!rn2(4) && u.ulycn == NON_PM &&
@@ -16139,7 +16165,9 @@ common:
 		if (!Unchanging && !Antimagic) {
 			You("undergo a freakish metamorphosis!");
 			u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
+			u.polyattackhack = TRUE;
 			polyself(FALSE);
+			u.polyattackhack = FALSE;
 		}
 		break;
 
@@ -16147,7 +16175,9 @@ common:
 		if (!Unchanging && !Antimagic) {
 			You("undergo a freakish metamorphosis!");
 			u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
+			u.polyattackhack = TRUE;
 			polyself(FALSE);
+			u.polyattackhack = FALSE;
 		}
 
 	      if (!obsidianprotection()) switch (rn2(11)) {
@@ -17584,14 +17614,16 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 
 	    case AD_POLY:
-		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(20)) )
+		if(!mtmp->mcan && canseemon(mtmp) && !(Upolyd && rn2(5)) && mtmp->mcansee && (issoviet || !rn2(20)) )
  		{
 		if (!Unchanging && !Antimagic) {
 		    if (flags.verbose)
 			pline("%s throws a changing gaze at you!", Monnam(mtmp));
 		    stop_occupation();
 			u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
+			u.polyattackhack = TRUE;
 		    polyself(FALSE);
+			u.polyattackhack = FALSE;
 			}
 		}
 		break;
@@ -17602,12 +17634,14 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 			pline("%s invokes a raw chaos!", Monnam(mtmp));
 
-		if (!Unchanging && !Antimagic) {
+		if (!Unchanging && !Antimagic && !(Upolyd && rn2(5))) {
 		    if (flags.verbose)
 		    stop_occupation();
 			u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
+			u.polyattackhack = TRUE;
 		    polyself(FALSE);
-			}
+			u.polyattackhack = FALSE;
+		}
 		    if (!obsidianprotection()) switch (rn2(11)) {
 		    case 0: diseasemu(mtmp->data);
 			    break;
@@ -17697,14 +17731,20 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			if (!Unchanging && !Antimagic) {
 				You("undergo a freakish metamorphosis!");
 				u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
+				u.polyattackhack = TRUE;
 			      polyself(FALSE);
+				u.polyattackhack = FALSE;
 			}
 			break;
 		    case 2:
 			You("need reboot.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
 			if (!Race_if(PM_UNGENOMOLD)) newman();
-			else polyself(FALSE);
+			else {
+				u.polyattackhack = TRUE;
+				polyself(FALSE);
+				u.polyattackhack = FALSE;
+			}
 			break;
 		    case 3: case 4:
 			if(!rn2(4) && u.ulycn == NON_PM &&
