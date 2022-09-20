@@ -7624,8 +7624,19 @@ cardtrickchoice:
 			int ammotype;
 
 			pline("You can choose from these kinds of ammo: shotgun shells or auto shotgun shells.");
-			if (yn("Do you want to create shotgun shells?") == 'y') ammotype = 2;
-			else ammotype = 1;
+
+			boolean haschosen = FALSE;
+			pline("Pick an ammo type that you want to create. The prompt will loop until you actually make a choice.");
+			while (!haschosen) {
+				if (yn("Do you want to create shotgun shells?") == 'y') {
+					haschosen = TRUE;
+					ammotype = 2;
+				}
+				else if (yn("Do you want to create auto shotgun shells?") == 'y') {
+					haschosen = TRUE;
+					ammotype = 1;
+				}
+			}
 
 			You("make some shotgun shells.");
 
@@ -7684,11 +7695,31 @@ cardtrickchoice:
 			int ammotype;
 
 			pline("You can choose from these kinds of ammo: blaster bolts, heavy blaster bolts, laser beams, raygun bolts or radios.");
-			if (yn("Do you want to create blaster bolts?") == 'y') ammotype = 5;
-			else if (yn("Do you want to create heavy blaster bolts?") == 'y') ammotype = 4;
-			else if (yn("Do you want to create laser beams?") == 'y') ammotype = 3;
-			else if (yn("Do you want to create raygun bolts?") == 'y') ammotype = 2;
-			else ammotype = 1;
+
+			boolean haschosen = FALSE;
+			pline("Pick an ammo type that you want to create. The prompt will loop until you actually make a choice.");
+			while (!haschosen) {
+				if (yn("Do you want to create blaster bolts?") == 'y') {
+					haschosen = TRUE;
+					ammotype = 5;
+				}
+				else if (yn("Do you want to create heavy blaster bolts?") == 'y') {
+					haschosen = TRUE;
+					ammotype = 4;
+				}
+				else if (yn("Do you want to create laser beams?") == 'y') {
+					haschosen = TRUE;
+					ammotype = 3;
+				}
+				else if (yn("Do you want to create raygun bolts?") == 'y') {
+					haschosen = TRUE;
+					ammotype = 2;
+				}
+				else if (yn("Do you want to create radios?") == 'y') {
+					haschosen = TRUE;
+					ammotype = 1;
+				}
+			}
 
 			You("make some laser ammo.");
 
