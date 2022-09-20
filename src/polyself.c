@@ -3394,14 +3394,14 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 		    }
 
 		    draconic.mon = Role_if(PM_ACID_MAGE) ? PM_YELLOW_DRAGON : Role_if(PM_FLAME_MAGE) ?
-			    PM_RED_DRAGON : Role_if(PM_ICE_MAGE) ? PM_WHITE_DRAGON : PM_BLUE_DRAGON;
+			    PM_RED_DRAGON : Role_if(PM_ICE_MAGE) ? PM_WHITE_DRAGON : Role_if(PM_POISON_MAGE) ? PM_GREEN_DRAGON : PM_BLUE_DRAGON;
 		    draconic.merge = scales || scale_mail;
 		/* Otherwise use the baby form */
 		} else {
 		    if (!scales) u.uen -= EN_BABY_DRAGON;
 
 		    draconic.mon = Role_if(PM_ACID_MAGE) ? PM_BABY_YELLOW_DRAGON : Role_if(PM_FLAME_MAGE) ?
-			    PM_BABY_RED_DRAGON : Role_if(PM_ICE_MAGE) ? PM_BABY_WHITE_DRAGON : PM_BABY_BLUE_DRAGON;
+			    PM_BABY_RED_DRAGON : Role_if(PM_ICE_MAGE) ? PM_BABY_WHITE_DRAGON : Role_if(PM_POISON_MAGE) ? PM_BABY_GREEN_DRAGON : PM_BABY_BLUE_DRAGON;
 		    draconic.merge = scales;
 		}
 		draconic.reqtime = 2;
