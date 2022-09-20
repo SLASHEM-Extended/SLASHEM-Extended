@@ -6088,6 +6088,12 @@ boolean guaranteed;
 		you_are(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && u.pompejipermanentrecord) {
+		sprintf(buf, "a permament pompeji record.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", u.pompejipermanentrecord);
+		you_have(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && u.fluidatorwantedlevel) {
 		sprintf(buf, "being chased by the fluidator squad.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", u.fluidatorwantedlevel);
@@ -10418,6 +10424,12 @@ int final;
 		sprintf(buf, "being chased by the pompeji squad.");
 		sprintf(eos(buf), " (%d)", u.pompejiwantedlevel);
 		dump(youwere, buf);
+	}
+
+	if (u.pompejipermanentrecord) {
+		sprintf(buf, "a permament pompeji record.");
+		sprintf(eos(buf), " (%d)", u.pompejipermanentrecord);
+		dump(youhad, buf);
 	}
 
 	if (u.fluidatorwantedlevel) {

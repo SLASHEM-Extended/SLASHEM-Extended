@@ -1308,7 +1308,7 @@ struct mkroom	*sroom;
 	}
 	/* deepy wants shopkeepers to start out hostile to a venture capitalist --Amy */
 	if (!shk) {
-	  if(!(shk = makemon(&mons[(level_difficulty() > 39) ? PM_ELITE_SHOPKEEPER : (level_difficulty() > 19) ? PM_MASTER_SHOPKEEPER : PM_SHOPKEEPER], sx, sy, Race_if(PM_VENTURE_CAPITALIST) ? MM_ANGRY : NO_MM_FLAGS)))
+	  if(!(shk = makemon(&mons[((level_difficulty() + u.pompejipermanentrecord) > 39) ? PM_ELITE_SHOPKEEPER : ((level_difficulty() + u.pompejipermanentrecord) > 19) ? PM_MASTER_SHOPKEEPER : PM_SHOPKEEPER], sx, sy, Race_if(PM_VENTURE_CAPITALIST) ? MM_ANGRY : NO_MM_FLAGS)))
 		return(-1);
 	}        
   

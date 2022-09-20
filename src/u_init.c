@@ -11259,6 +11259,7 @@ u_init()
 	u.conclusiocount = 0;
 	u.elberethcheese = 0;
 	u.pompejiwantedlevel = 0;
+	u.pompejipermanentrecord = 0;
 	u.fluidatorwantedlevel = 0;
 	u.fluidatorwarning = 0;
 

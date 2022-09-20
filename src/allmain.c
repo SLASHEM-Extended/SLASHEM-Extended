@@ -4461,6 +4461,10 @@ newbossPOMP:
 				}
 			}
 
+			if (!rn2(10)) {
+				(void) makemon(((level_difficulty() + u.pompejipermanentrecord) > 39) ? &mons[PM_XRP_PUNISHER] : ((level_difficulty() + u.pompejipermanentrecord) > 19) ? &mons[PM_MST_PUNISHER] : &mons[PM_SHP_PUNISHER], 0, 0, MM_ADJACENTOK|MM_ANGRY);
+			}
+
 			if (!rn2(10)) u.pompejiwantedlevel--;
 			if (u.pompejiwantedlevel < 0) u.pompejiwantedlevel = 0; /* fail safe */
 

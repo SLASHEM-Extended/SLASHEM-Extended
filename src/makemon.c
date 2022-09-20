@@ -23863,9 +23863,9 @@ register int	mmflags;
 	}
 
 	/* slex shopkeepers don't fuck around - if you engage them, they may hit you with a variety of nasty stuff --Amy */
-	if (ptr == &mons[PM_SHOPKEEPER] || ptr == &mons[PM_MASTER_SHOPKEEPER] || ptr == &mons[PM_ELITE_SHOPKEEPER] || ptr == &mons[PM_BLACK_MARKETEER] || ptr == &mons[PM_GUARD] || ptr == &mons[PM_MASTER_GUARD] || ptr == &mons[PM_ELITE_GUARD] || ptr == &mons[PM_CROUPIER] || ptr == &mons[PM_MASTER_CROUPIER] || ptr == &mons[PM_ELITE_CROUPIER]) {
+	if (ptr == &mons[PM_SHOPKEEPER] || ptr == &mons[PM_MASTER_SHOPKEEPER] || ptr == &mons[PM_ELITE_SHOPKEEPER] || ptr == &mons[PM_BLACK_MARKETEER] || ptr == &mons[PM_GUARD] || ptr == &mons[PM_SHP_PUNISHER] || ptr == &mons[PM_MST_PUNISHER] || ptr == &mons[PM_XRP_PUNISHER] || ptr == &mons[PM_MASTER_GUARD] || ptr == &mons[PM_ELITE_GUARD] || ptr == &mons[PM_CROUPIER] || ptr == &mons[PM_MASTER_CROUPIER] || ptr == &mons[PM_ELITE_CROUPIER]) {
 
-		if (ptr == &mons[PM_GUARD] || ptr == &mons[PM_MASTER_GUARD] || ptr == &mons[PM_ELITE_GUARD] || ptr == &mons[PM_CROUPIER] || ptr == &mons[PM_MASTER_CROUPIER] || ptr == &mons[PM_ELITE_CROUPIER]) mtmp->noegodesc = TRUE;
+		if (ptr == &mons[PM_GUARD] || ptr == &mons[PM_MASTER_GUARD] || ptr == &mons[PM_ELITE_GUARD] || ptr == &mons[PM_SHP_PUNISHER] || ptr == &mons[PM_MST_PUNISHER] || ptr == &mons[PM_XRP_PUNISHER] || ptr == &mons[PM_CROUPIER] || ptr == &mons[PM_MASTER_CROUPIER] || ptr == &mons[PM_ELITE_CROUPIER]) mtmp->noegodesc = TRUE;
 		if (rn2(2)) {
 			mtmp->noegodesc = mtmp->noegodisplay = TRUE;
 		}

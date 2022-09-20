@@ -1480,6 +1480,7 @@ struct you {
 	int copwantedlevel;	/* for hot pursuits, i.e. when you've stolen from a shop */
 	int treesquadwantedlevel;	/* for MS_TREESQUAD, if this is positive they'll immediately turn hostile, always */
 	int pompejiwantedlevel;	/* for MS_POMPEJI */
+	int pompejipermanentrecord;
 	int fluidatorwantedlevel;	/* for MS_FLUIDATOR */
 	int fluidatorwarning;	/* game should warn you if you're about to increase your fluidator wanted level */
 

@@ -206,7 +206,7 @@ boolean sanctum;   /* is it the seat of the high priest? */
 	if(MON_AT(sx+1, sy))
 		(void) rloc(m_at(sx+1, sy), FALSE); /* insurance */
 
-	priest = makemon(&mons[(In_yendorian(&u.uz) && depth(&u.uz) == 1) ? PM_DNETHACK_ELDER_PRIEST_TM_ : isevilvariant ? PM_DNETHACK_ELDER_PRIEST_TM_ : sanctum ? PM_HIGH_PRIEST : (level_difficulty() > 39 && Amask2align(levl[sx][sy].altarmask) != A_NONE) ? PM_ELITE_PRIEST : (level_difficulty() > 19 && Amask2align(levl[sx][sy].altarmask) != A_NONE) ? PM_MASTER_PRIEST : PM_ALIGNED_PRIEST],
+	priest = makemon(&mons[(In_yendorian(&u.uz) && depth(&u.uz) == 1) ? PM_DNETHACK_ELDER_PRIEST_TM_ : isevilvariant ? PM_DNETHACK_ELDER_PRIEST_TM_ : sanctum ? PM_HIGH_PRIEST : ((level_difficulty() + u.pompejipermanentrecord) > 39 && Amask2align(levl[sx][sy].altarmask) != A_NONE) ? PM_ELITE_PRIEST : ((level_difficulty() + u.pompejipermanentrecord) > 19 && Amask2align(levl[sx][sy].altarmask) != A_NONE) ? PM_MASTER_PRIEST : PM_ALIGNED_PRIEST],
 			 sx + 1, sy, NO_MM_FLAGS);
 
 	if (priest) {
