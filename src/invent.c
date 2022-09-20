@@ -1341,9 +1341,10 @@ register struct obj *otmp;
 		case SKELETON_KEY:
 			if (otmp->oartifact == ART_GAUNTLET_KEY || otmp->oartifact == ART_KEY_OF_LAW || otmp->oartifact == ART_KEY_OF_NEUTRALITY || otmp->oartifact == ART_KEY_OF_CHAOS) {
 				if (u.uevent.invoked) return FALSE;
+				else return TRUE;
 			}
 
-			return TRUE;
+			return FALSE;
 			break;
 
 		default:
