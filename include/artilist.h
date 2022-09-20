@@ -9285,6 +9285,10 @@ A("Driver's License",				LEATHER_SADDLE, /* riding a MS_CAR gives 40% extra spee
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
 
+A("Satan's Secret Storage",				STATUE, /* can apply it and put in or take out items like a container */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

@@ -496,6 +496,7 @@ maeney:
 	}
 
 	if (petname && !(strcmp(petname, "Glorious Dead") ) ) petname = "Glorious Alive";
+	if (petname && !(strcmp(petname, "Satan's Secret Storage") ) ) petname = "Satan's Super Storage";
 
 	mtmp = makemon(&mons[pettype], u.ux, u.uy, MM_EDOG);
 

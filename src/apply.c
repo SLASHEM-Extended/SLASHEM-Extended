@@ -5240,6 +5240,8 @@ doapply()
 		add_class(class_list, BALL_CLASS);
 	if (carrying(LASER_CHAIN))
 		add_class(class_list, CHAIN_CLASS);
+	if (carrying(STATUE))
+		add_class(class_list, ROCK_CLASS);
 
 	obj = getobj(class_list, "use or apply");
 	if(!obj) return 0;
@@ -5415,6 +5417,11 @@ doapply()
 	case CONTROVERSY_CODE:
 	case SECRET_KEY:
 		(void) pick_lock(&obj);
+		break;
+	case STATUE:
+		if (obj && obj->oartifact == ART_SATAN_S_SECRET_STORAGE) {
+			res = use_container(&obj, 1);
+		} else pline("There's nothing special that you could do with that %s.", FunnyHallu ? "hunk of stone" : "statue");
 		break;
 	case TELEPHONE:
 		if (obj && obj->spe > ((obj->oartifact == ART_BUNDLEABRUM_OF_INVOCATION) ? -10 : 0)) {

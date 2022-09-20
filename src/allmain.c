@@ -14121,12 +14121,17 @@ aliasagain:
 
 		if (eliasbuf[0] && aliaslength < 31) { /* We do NOT want a buffer overflow. --Amy */
 			if (eliasbuf && !(strncmpi(eliasbuf, "Glorious Dead", 14) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Satan's Secret Storage", 23) ) ) strcpy(eliasbuf, "Cheator");
 			strcpy(plalias, eliasbuf);
 			(void) strncpy(u.aliasname, eliasbuf, sizeof(u.aliasname));
 		}
 	}
 
 	if (!strncmpi(plname, "Glorious Dead", 14)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Satan's Secret Storage", 23)) {
 		strcpy(plalias, "Uber Cheator");
 		strcpy(u.aliasname, "Uber Cheator");
 	}

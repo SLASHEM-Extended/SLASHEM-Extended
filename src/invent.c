@@ -6738,6 +6738,7 @@ ugly_checks(let, word, otmp)
 const char *let, *word;
 struct obj *otmp;
 {
+
 		register int otyp = otmp->otyp;
 		/* ugly check: remove inappropriate things */
 		if((taking_off(word) &&
@@ -6805,6 +6806,7 @@ struct obj *otmp;
 		      !is_axe(otmp) && !is_antibar(otmp) && !is_applypole(otmp) && !(objects[otyp].oc_skill == P_WHIP && otyp != RUBBER_HOSE) ) ||
 			(otmp->oclass == BALL_CLASS && otmp->otyp != HEAVY_LASER_BALL) ||
 			(otmp->oclass == CHAIN_CLASS && otmp->otyp != LASER_CHAIN) ||
+			(otmp->oclass == ROCK_CLASS && otmp->otyp != STATUE) ||
 		    (otmp->oclass == POTION_CLASS && !(otmp->dknown && itemhasappearance(otmp, APP_POTION_VACCINE)) &&
 		     /* only applicable potion is oil, and it will only
 			be offered as a choice when already discovered */
@@ -17920,6 +17922,8 @@ boolean knoweverything;
 					pline("Artifact specs: Cold resistance when worn."); break;
 				case ART_GLORIOUS_DEAD:
 					pline("Artifact specs: Reflection and magic resistance while carried."); break;
+				case ART_SATAN_S_SECRET_STORAGE:
+					pline("Artifact specs: can be applied like a regular container, meaning that you can put items inside or take them out."); break;
 				case ART_PRECIOUS_WISH:
 					pline("Artifact specs: Magic resistance while carried."); break;
 				case ART_TROLLED_BY_THE_RNG:
