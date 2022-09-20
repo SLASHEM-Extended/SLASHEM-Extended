@@ -10593,9 +10593,9 @@ boolean knoweverything;
 			case FORCE_PIKE: 
 				pline("One of Chris_ANG's creations, this weapon is in fact a lance. Apply it to hit monsters from far away. You can also joust monsters with it while riding, but that may cause it to break."); break;
 			case PARASOL:
-				pline("A crappy lance that can be applied to hit monsters from far away or used to joust monsters while riding. The latter can cause it to break but I guess it wouldn't be a huge loss."); break;
+				pline("A crappy lance that can be applied to hit monsters from far away or used to joust monsters while riding. The latter can cause it to break but I guess it wouldn't be a huge loss. Also, wielding it protects you from the wetting effect when you're in a rain cloud, and gives a chance that you resist solar beams."); break;
 			case UMBRELLA:
-				pline("You will look like a monumental fool with this 'weapon'. It can be applied to hit monsters from far away, or you can joust monsters while riding and risk breaking it."); break;
+				pline("You will look like a monumental fool with this 'weapon'. It can be applied to hit monsters from far away, or you can joust monsters while riding and risk breaking it. Also, wielding it protects you from the wetting effect when you're in a rain cloud, and gives a chance that you resist geysers or tidal waves."); break;
 			case ORCISH_BOW:
 				pline("A two-handed bow that is meant to be used in conjunction with quivered arrows to fire at enemies."); break;
 			case BOW:
@@ -18003,7 +18003,7 @@ boolean knoweverything;
 				case ART_PEOPLE_EATING_TRIDENT:
 					pline("Artifact specs: sight bonus when wielded, warns of Team @ and adds +8 to-hit and double damage versus all @."); break;
 				case ART_MADELINE_S_GUARDIAN:
-					pline("Artifact specs: Reflection when wielded. If you're interested in its owner, keep your filthy paws off her unless you're AmyBSOD! She's mine, you hear?"); break;
+					pline("Artifact specs: Reflection when wielded, and makes you completely immune to solar beams. If you're interested in its owner, keep your filthy paws off her unless you're AmyBSOD! She's mine, you hear?"); break;
 				case ART_PENGUIN_S_THRUSTING_SWORD:
 					pline("Artifact specs: flying when wielded, +12 to-hit and +18 damage, chaotic. It sure looks like a sword to me..."); break;
 				case ART_LACKWARE:

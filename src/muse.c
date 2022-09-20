@@ -9676,6 +9676,12 @@ newboss:
 
 		pline("A sudden geyser slams into you from nowhere!");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vse promokli. Vy zhe pomnite, chtoby polozhit' vodu chuvstvitel'nyy material v konteyner, ne tak li?" : "Schwatschhhhhh!");
+
+		if (uwep && uwep->otyp == UMBRELLA && rn2(2)) {
+			pline("But your umbrella protects you from it.");
+			return 2;
+		}
+
 		if ((!StrongSwimming || !rn2(10)) && (!StrongMagical_breathing || !rn2(10))) {
 			water_damage(invent, FALSE, FALSE);
 			if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);

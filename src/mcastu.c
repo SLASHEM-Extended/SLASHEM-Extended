@@ -1506,6 +1506,10 @@ int spellnum;
 	/* this is physical damage, not magical damage */
 	pline("A sudden geyser slams into you from nowhere!");
 	if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vse promokli. Vy zhe pomnite, chtoby polozhit' vodu chuvstvitel'nyy material v konteyner, ne tak li?" : "Schwatschhhhhh!");
+	if (uwep && uwep->otyp == UMBRELLA && rn2(2)) {
+		pline("But your umbrella protects you from it.");
+		break;
+	}
 	dmg = d(8, 6);
 	if ((!StrongSwimming || !rn2(10)) && (!StrongMagical_breathing || !rn2(10))) {
 		water_damage(invent, FALSE, FALSE); /* Come on, every other source of water rusts your stuff. --Amy */

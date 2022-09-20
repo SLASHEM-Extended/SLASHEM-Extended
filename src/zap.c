@@ -4781,6 +4781,12 @@ secureidchoice:
 
 			pline("A sudden geyser slams into you from nowhere!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vse promokli. Vy zhe pomnite, chtoby polozhit' vodu chuvstvitel'nyy material v konteyner, ne tak li?" : "Schwatschhhhhh!");
+
+			if (uwep && uwep->otyp == UMBRELLA && rn2(2)) {
+				pline("But your umbrella protects you from it.");
+				break;
+			}
+
 			if ((!StrongSwimming || !rn2(10)) && (!StrongMagical_breathing || !rn2(10))) {
 				water_damage(invent, FALSE, FALSE);
 				if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
@@ -5834,6 +5840,12 @@ boolean ordinary;
 
 			pline("A sudden geyser slams into you from nowhere!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vse promokli. Vy zhe pomnite, chtoby polozhit' vodu chuvstvitel'nyy material v konteyner, ne tak li?" : "Schwatschhhhhh!");
+
+			if (uwep && uwep->otyp == UMBRELLA && rn2(2)) {
+				pline("But your umbrella protects you from it.");
+				break;
+			}
+
 			damage = d(8, 6);
 			if ((!StrongSwimming || !rn2(10)) && (!StrongMagical_breathing || !rn2(10))) {
 				water_damage(invent, FALSE, FALSE);
@@ -9085,6 +9097,9 @@ xchar sx, sy;
 
 		if (uarmh && uarmh->oartifact == ART_SECURE_BATHMASTER && rn2(20) ) {
 			dam = 0;
+		} else if (uwep && uwep->otyp == PARASOL && (!rn2(2) || (uwep->otyp == ART_MADELINE_S_GUARDIAN)) ) {
+			dam = 0;
+			pline("Thanks to your parasol, the sunlight doesn't hit you.");
 		} else {
 			pline_The("irradiation hurts like hell!");
 			dam = d(nd,8);

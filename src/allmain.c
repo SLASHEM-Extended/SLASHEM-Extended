@@ -9216,7 +9216,7 @@ newbossB:
 
 			}
 
-			if ((!StrongSwimming || !rn2(10)) && (!StrongMagical_breathing || !rn2(10))) {
+			if ((!StrongSwimming || !rn2(10)) && (!StrongMagical_breathing || !rn2(10)) && !(uwep && (uwep->otyp == PARASOL || uwep->otyp == UMBRELLA) ) ) {
 				water_damage(invent, FALSE, FALSE);
 				if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
 			}
