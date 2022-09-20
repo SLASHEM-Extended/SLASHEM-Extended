@@ -4422,6 +4422,10 @@ newbossFLUID:
 			reset_rndmonst(NON_PM);
 			int pompejitype = rnd(2);
 
+			int cx,cy;
+		      cx = rn2(COLNO);
+		      cy = rn2(ROWNO);
+
 			int aggroamount = min(u.pompejiwantedlevel, 10);
 
 			while (aggroamount) {
@@ -4451,9 +4455,6 @@ newbossPOMP:
 
 				} else {
 					coord cc, dd;
-					int cx,cy;
-				      cx = rn2(COLNO);
-				      cy = rn2(ROWNO);
 					if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
 					(void) makemon(pm, cx, cy, MM_ADJACENTOK|MM_ANGRY);
 
