@@ -27856,7 +27856,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You violated the sanctity of the grove! Now the denizens of Oasis are gonna whip you with bamboo sticks, you bastard!",
 	"In Germany, there are ridiculous newspeak rules that make it so there's no more cyclists, but only 'cycling persons'. This led to the invention of the term 'dead cycling persons', which are people who are dead and riding a bicycle at the same time! Amazing!!!",
 	"Variants of SLEX that only remove stuff and add nothing new are about as useful as kidney stones. If they at least add some new features, Amy can look at them and possibly steal them if they're good!",
-	"No, it is not a honor if you make a deslexified version of SLEX. Fuck you!!! Play the game the way i intended or go away!",
+	"No, it is not a honor if you make a deslexified version of SLEX. Fuck you!!! Play the game the way I intended or go away!",
 	"You lot are making a variant of SLEX where you just remove stuff willy-nilly, and you are expecting me to HELP you??? Fuck off, I'll tell you where you can stick your help, you cold-blooded butcher!",
 	"So you just remove some of my carefully designed nasty traps at random without regard for mechanics that may depend on the nasty traps being there, and you got the nerve to expect me to be GRATEFUL??? Fuck you, man! Fuck you!",
 	"Maybe if making a deconstructed version of SLEX where certain nasty traps are removed is so easy, I could have made it myself if I illogically wanted it to exist? But I didn't, maybe because I *do not want it to exist, ding-ding-ding-ding-ding*?",
@@ -27873,7 +27873,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Why do so many players complain about supposedly weak rewards for optional dungeon branches in SLEX? Are they so spoiled by modern games which shower the player with loot at every opportunity, that they cannot handle a game with a more balanced loot distribution?",
 	"No, you are not guaranteed to find a goddamn wand of wishing on the castle level! Just because vanilla guarantees it doesn't mean that variants cannot change that, for fuck's sake!",
 	"I don't get why people keep complaining about the rewards for optional dungeon branches supposedly being not good enough. Like, can't those players just be happy that they got a reward at all? I could just as well make the branches have no reward, apart from the random loot dropped by the monsters!",
-	"Most SLEX players want things to be easy and features that are beneficial for the character. This shows that they don't understand the SLEX design philosophy at all, because SLEX wont cut the player any slack, ever.",
+	"Most SLEX players want things to be easy and features that are beneficial for the character. This shows that they don't understand the SLEX design philosophy at all, because SLEX won't cut the player any slack, ever.",
 	"If you want a game where things work in your favor, you have to play something else. Because in SLEX, if a feature doesn't work against the player, it's a bug.",
 	"Shoe outlets are discriminatory if you ask me. They separate shoes by gender, which is like saying 'yeah, kindly buy a pair of shoes for your gender and ignore all the ones for the other gender, even if there'd be some really amazing ones that you'd absolutely like to wear'. Let people wear whichever shoes they damn well want to wear, please!",
 	"You are way too busy with your two weapons and shield.",
@@ -27967,6 +27967,14 @@ static NEARDATA const char * const fake_plines[] = {
 	"I really don't get why players keep expecting phase door to work on no-teleport levels. Like, do they not think about game balance implications at all???",
 	"Wenn alles richtig eingesielli isluruchen Sie S2 bis Slunuen und Mirunan die Doppelpaaki ruchi blini Mirunan mii blindenderu coppalpunkt arschetun.",
 	"Only women are capable of saying the exact opposite of what they actually mean. For example, they can say 'what a beautiful day' when they really mean 'if only this day was over already'.",
+	"In this game, the player is supposed to struggle with the difficulty. What they aren't supposed to do is to just push a button that removes the difficulty, i.e. the 'ignore difficulty exploit' button. Such a thing should not exist.",
+	"SLEX is meant to be difficult. If there is an exploit that greatly reduces or even completely eliminates the intended difficulty, then that's a problem. Such exploits need to be removed from the game at all costs.",
+	"Players shouldn't think they can just exploit their way past the intended difficulty, like porkman did. All of the exploits he abused have been fixed, and if anyone still finds and abuses a new exploit they can be certain it'll get fixed too.",
+	"No, you do not get to play older versions of SLEX on the public server. You probably want to play them because they are full of exploits and player-favoring imbalances, and that's against the spirit of this game. Play maybe dynahack if you want happy disneyland ascension simulator.",
+	"No, I will not make an easymode switch for SLEX that disables difficult or unfair parts of the game for players who cannot handle a challenge. There are modes that make the game even harder, though. No player except Amy has the balls to ever play one of those, and she doesn't even have actual balls! Something is certainly wrong there...",
+	"The players want a game without nasty traps and sexual references? Bah! I don't care what the players want! Either they play the game the way I intended, or they can look for a different game!",
+	"The players are the enemy. They are supposed to just play and enjoy the game, but instead they constantly look for exploits that make the game easier and don't hesitate to abuse the hell out of any exploit they found. That is of course not acceptable, and so Amy has no other choice but to close the loopholes and add penalties for trying to use such degenerate strategies.",
+	"Players should just stop thinking that SLEX was about finding loopholes that let them circumvent the intended difficulty! If Amy says that you should have to fight Yeenoghu with a cursed thoroughly corroded -4 dagger, then you aren't allowed to fight him with a blessed rustproof +1 dagger, for fuck's sake!",
 
 };
 

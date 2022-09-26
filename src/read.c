@@ -837,6 +837,7 @@ doread()
 	"I need you complain, once more, you be tai I'm in love you.",
 	"aklys: it's a club that u strap to ur butt with a thong", /* by amateurhour */
 	"You ascended? That's a bug, SLEX wasn't meant to be easy.",
+	"Amy you need to sleep.",
 
 	    };
 	    char buf[BUFSZ];

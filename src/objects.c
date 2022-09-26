@@ -7581,6 +7581,8 @@ SCROLL((char *)0,               "GEFAENGNISVERBOTENHAMMER",  P_NONE,     1,   0,
 SCROLL((char *)0,               "BULLETATORS SPAWN IF YOU FIRE ASSAULT RIFLES",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
 SCROLL((char *)0,               "HEIGENHANAU NORD",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
 SCROLL((char *)0,               "AHRECK TO PLATFORMINGEN TAKES MANY HOURS",  P_NONE,     1,   0, 100, CLR_BLUE, 1),
+SCROLL((char *)0,               "DAGGGGGGGGG EY SCHREIB ENDLICH",  P_NONE,     1,   0, 100, CLR_BRIGHT_BLUE, 1),
+SCROLL((char *)0,               " DEATH   HATE   FORCE ",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
 
 
 #ifdef MAIL
