@@ -2296,6 +2296,40 @@ dospinweb()
 		case LUDGERA_TRAP:
 		case KATI_TRAP:
 
+		case SKILL_MULTIPLY_TRAP:
+		case TRAPWALK_TRAP:
+		case CLUSTER_TRAP:
+		case FIELD_TRAP:
+		case MONICIDE_TRAP:
+		case TRAP_CREATION_TRAP:
+		case LEOLD_TRAP:
+		case ANIMEBAND_TRAP:
+		case PERFUME_TRAP:
+		case COURT_TRAP:
+		case ELDER_SCROLLS_TRAP:
+		case JOKE_TRAP:
+		case DUNGEON_LORDS_TRAP:
+		case FORTYTWO_TRAP:
+		case RANDOMIZE_TRAP:
+		case EVILROOM_TRAP:
+		case AOE_TRAP:
+		case ELONA_TRAP:
+		case RELIGION_TRAP:
+		case STEAMBAND_TRAP:
+		case HARDCORE_TRAP:
+		case MACHINE_TRAP:
+		case BEE_TRAP:
+		case MIGO_TRAP:
+		case ANGBAND_TRAP:
+		case DNETHACK_TRAP:
+		case EVIL_SPAWN_TRAP:
+		case SHOE_TRAP:
+		case INSIDE_TRAP:
+		case DOOM_TRAP:
+		case MILITARY_TRAP:
+		case ILLUSION_TRAP:
+		case DIABLO_TRAP:
+
 		case WALL_TRAP:
 		case MONSTER_GENERATOR:
 		case POTION_DISPENSER:

@@ -24261,7 +24261,7 @@ register int	mmflags;
 				int spawnnumber = rn1(10, 3);
 				while (spawnnumber > 0) {
 					spawnnumber--;
-					(void) makemon(specialtensmon(325), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+					(void) makemon(specialtensmon(326), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
 				}
 			}
 			break;
@@ -25077,7 +25077,7 @@ register int	mmflags;
 				int spawnnumber = rn1(10, 3);
 				while (spawnnumber > 0) {
 					spawnnumber--;
-					(void) makemon(specialtensmon(326), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
+					(void) makemon(specialtensmon(325), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
 				}
 			}
 			break;

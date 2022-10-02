@@ -12616,9 +12616,1089 @@ madnesseffect:
 					potionbreathe(dispensepotion);
 					delobj(dispensepotion);
 				}
+				trap->once = TRUE;
 
 			}
 
+			break;
+
+		case SKILL_MULTIPLY_TRAP:
+
+			deltrap(trap);
+			You("stepped on a trigger!");
+		{
+
+			int skillmultiplyamount = 1;
+			if (!rn2(10)) skillmultiplyamount += rno(19);
+			int tryct, tryct2, i;
+			int multiplyskill;
+
+skillmultiplyagain:
+
+			multiplyskill = randomgoodskill();
+			boolean will_go_up = rn2(2);
+			int multiplymagnitude = 1 + rne(2);
+
+			if (will_go_up) {
+				P_ADVANCE(multiplyskill) *= multiplymagnitude;
+				if (P_ADVANCE(multiplyskill) == 0) pline("But nothing happened.");
+				else pline("Your %s skill training has been multiplied!", wpskillname(multiplyskill));
+			} else {
+				if (P_ADVANCE(multiplyskill) == 0) pline("But nothing happened.");
+				else pline("Your %s skill training has been cut down!", wpskillname(multiplyskill));
+				P_ADVANCE(multiplyskill) /= multiplymagnitude;
+				skill_sanity_check(multiplyskill);
+			}
+
+			if (skillmultiplyamount > 1) {
+				skillmultiplyamount--;
+				goto skillmultiplyagain;
+			}
+
+		}
+
+			break;
+
+		case TRAPWALK_TRAP:
+		{
+			register struct trap *twlk;
+			int wantx, wanty;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
+
+			deltrap(trap);
+
+			for(twlk = ftrap; twlk; twlk = twlk->ntrap) {
+				if (twlk->ttyp == MAGIC_PORTAL) continue;
+				wantx = twlk->tx;
+				wanty = twlk->ty;
+				switch (rnd(8)) {
+					case 1:
+						wantx--;
+						break;
+					case 2:
+						wantx++;
+						break;
+					case 3:
+						wanty--;
+						break;
+					case 4:
+						wanty++;
+						break;
+					case 5:
+						wantx--;
+						wanty--;
+						break;
+					case 6:
+						wantx++;
+						wanty--;
+						break;
+					case 7:
+						wantx--;
+						wanty++;
+						break;
+					case 8:
+						wantx++;
+						wanty++;
+						break;
+				}
+				if (!isok(wantx, wanty)) continue;
+				if ((levl[wantx][wanty].typ <= DBWALL) && !canbeinawall) continue;
+				if (t_at(wantx, wanty)) continue;
+				twlk->tx = wantx;
+				twlk->ty = wanty;
+			}
+			You("stepped on a trigger!");
+			pline("There are several grinding and grating sounds.");
+
+			break;
+		}
+
+		case CLUSTER_TRAP:
+		{
+			int cx,cy;
+			int i, j;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
+			int clustertype = randomtrap();
+			int actualtraptype = clustertype;
+
+			deltrap(trap);
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+		      for (i = -2; i <= 2; i++) for(j = -2; j <= 2; j++) {
+				if (!isok(cx + i, cy + j)) continue;
+				if ((levl[cx + i][cy + j].typ <= DBWALL) && !canbeinawall) continue;
+				if (t_at(cx + i, cy + j)) continue;
+
+				actualtraptype = clustertype;
+				if (!rn2(10)) actualtraptype = randomtrap();
+
+				if (rn2(5)) (void) maketrap(cx + i, cy + j, actualtraptype, 0, TRUE);
+			}
+
+			You("stepped on a trigger!");
+			pline("Several clicking sounds can be heard in the distance.");
+
+			break;
+
+		}
+
+		case FIELD_TRAP:
+
+		{
+			int cx,cy;
+			int i, j;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
+
+			deltrap(trap);
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+		      for (i = -2; i <= 2; i++) for(j = -2; j <= 2; j++) {
+				if (!isok(cx + i, cy + j)) continue;
+				if ((levl[cx + i][cy + j].typ <= DBWALL) && !canbeinawall) continue;
+				if (t_at(cx + i, cy + j)) continue;
+
+				if (rn2(5)) (void) maketrap(cx + i, cy + j, randomtrap(), 100, TRUE);
+			}
+
+			You("stepped on a trigger!");
+			pline("There's a lot of clicking noises in the distance.");
+
+			break;
+
+		}
+
+		case MONICIDE_TRAP:
+
+		{
+			register struct monst *nexusmon;
+			int monicidenum = 0;
+			for(nexusmon = fmon; nexusmon; nexusmon = nexusmon->nmon) {
+				if (nexusmon && !nexusmon->mtame && !nexusmon->mpeaceful && !(u.usteed && (u.usteed == nexusmon) ) ) {
+					(void) maketrap(nexusmon->mx, nexusmon->my, randomtrap(), 100, FALSE);
+					monicidenum++;
+				}
+			}
+
+			deltrap(trap);
+
+			You("stepped on a trigger!");
+			if (monicidenum) pline("There is a total of %d simultaneous clicking sounds!", monicidenum);
+			else pline("But nothing happened.");
+
+			break;
+
+		}
+
+		case TRAP_CREATION_TRAP:
+
+		{
+			int i, j;
+			int bd = 1 + rn2(5);
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
+
+			deltrap(trap);
+
+		      for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+				if (!isok(u.ux + i, u.uy + j)) continue;
+				if ((levl[u.ux + i][u.uy + j].typ <= DBWALL) && !canbeinawall) continue;
+				if (t_at(u.ux + i, u.uy + j)) continue;
+
+				if (rn2(5)) (void) maketrap(u.ux + i, u.uy + j, randomtrap(), 100, TRUE);
+			}
+
+			You("feel endangered!!");
+
+			break;
+
+		}
+
+		case LEOLD_TRAP:
+		{
+			register struct monst *nexusmon;
+			int monicidenum = 0;
+
+			deltrap(trap);
+
+
+			for(nexusmon = fmon; nexusmon; nexusmon = nexusmon->nmon) {
+				if (nexusmon && !nexusmon->mtame && !nexusmon->mpeaceful && !(u.usteed && (u.usteed == nexusmon) ) ) {
+					if (nexusmon->mhpmax < u.uhpmax) {
+						nexusmon->mhpmax = u.uhpmax;
+						if (nexusmon->mhp < nexusmon->mhpmax) nexusmon->mhp = nexusmon->mhpmax;
+					}
+				}
+			}
+			You("stepped on a trigger!");
+			pline("All the monsters used the black mirror.");
+
+			break;
+		}
+
+		case ANIMEBAND_TRAP:
+		{
+			deltrap(trap); /* triggers only once */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(specialtensmon(326), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+			}
+
+			if (wizard || !rn2(10)) pline("Eep, you hear the giggling sounds of little anime girls!");
+
+			u.aggravation = 0;
+		}
+			break;
+		case PERFUME_TRAP:
+		{
+			deltrap(trap); /* triggers only once */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(specialtensmon(333), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+			}
+
+			if (wizard || !rn2(10)) pline("Uhh, you can already sense the turgid smell of perfume...");
+
+			u.aggravation = 0;
+		}
+			break;
+		case COURT_TRAP:
+		{
+			deltrap(trap); /* triggers only once */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(courtmon(), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+			}
+
+			if (wizard || !rn2(10)) pline("Royal people seem to have come to the dungeon.");
+
+			u.aggravation = 0;
+		}
+			break;
+		case ELDER_SCROLLS_TRAP:
+		{
+			deltrap(trap); /* triggers only once */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(specialtensmon(427), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+			}
+
+			if (wizard || !rn2(10)) pline("Uh-oh. Mehrunes Dagon has apparently opened a gate to Oblivion nearby.");
+
+			u.aggravation = 0;
+		}
+			break;
+		case JOKE_TRAP:
+		{
+			deltrap(trap); /* triggers only once */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(specialtensmon(323), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+			}
+
+			if (wizard || !rn2(10)) pline("Hahahahaha! Hihihi! Haha!");
+
+			u.aggravation = 0;
+		}
+			break;
+		case DUNGEON_LORDS_TRAP:
+		{
+			deltrap(trap); /* triggers only once */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(specialtensmon(328), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+			}
+
+			if (wizard || !rn2(10)) pline("The respawning baddies have materialized close by!");
+
+			u.aggravation = 0;
+		}
+			break;
+		case FORTYTWO_TRAP:
+		{
+			deltrap(trap); /* triggers only once */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(douglas_adams_mon(), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+			}
+
+			if (wizard || !rn2(10)) pline("The answer is 42.");
+
+			u.aggravation = 0;
+		}
+			break;
+		case RANDOMIZE_TRAP:
+		{
+			deltrap(trap); /* triggers only once */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(specialtensmon(331), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+			}
+
+			if (wizard || !rn2(10)) pline("Something's random here.");
+
+			u.aggravation = 0;
+		}
+			break;
+		case EVILROOM_TRAP:
+		{
+			deltrap(trap); /* triggers only once */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(evilroommon(), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+			}
+
+			if (wizard || !rn2(10)) pline("An evil presence lurks somewhere around here.");
+
+			u.aggravation = 0;
+		}
+			break;
+		case AOE_TRAP:
+		{
+			deltrap(trap); /* triggers only once */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(specialtensmon(426), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+			}
+
+			if (wizard || !rn2(10)) pline("In the distance, you can hear the clashes of paleolithic weapons.");
+
+			u.aggravation = 0;
+		}
+			break;
+		case ELONA_TRAP:
+		{
+			deltrap(trap); /* triggers only once */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(specialtensmon(361), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+			}
+
+			if (wizard || !rn2(10)) pline("Beware, there are many changes of balance and sexually arousing content.");
+
+			u.aggravation = 0;
+		}
+			break;
+		case RELIGION_TRAP:
+		{
+			deltrap(trap); /* triggers only once */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(specialtensmon(347), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+			}
+
+			if (wizard || !rn2(10)) pline("A sonorous chant can be heard in the distance.");
+
+			u.aggravation = 0;
+		}
+			break;
+		case STEAMBAND_TRAP:
+		{
+			deltrap(trap); /* triggers only once */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(specialtensmon(325), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+			}
+
+			if (wizard || !rn2(10)) pline("Somehow, you feel reminded of the Victorian era.");
+
+			u.aggravation = 0;
+		}
+			break;
+		case HARDCORE_TRAP:
+		{
+			deltrap(trap); /* triggers only once */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(specialtensmon(348), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+			}
+
+			if (wizard || !rn2(10)) pline("TAAAAAAAAAAA TATATA TAA, TA TAAAAA TA TAAAAAAA, TAAAA TATATATAAAA *TAA TAAAA*, TAA TAAAAAAA! TAAAAA TATATATAAAAA TA TA TAAAAA, TATATATAAAAAAA TAA, TAA TAA, TATATATAAAAA TATATATATAAAAAAAAAAAAA TAAAAA! (dwoeoeoeoe, dwoeoeoeoe, dwoeoeoe dwoeoeoe dwoeoeoe, dwowoeoeoe...)");
+
+			u.aggravation = 0;
+		}
+			break;
+		case MACHINE_TRAP:
+		{
+			deltrap(trap); /* triggers only once */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(machineroommon(), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+			}
+
+			if (wizard || !rn2(10)) pline("Several clashes are sounding in another room.");
+
+			u.aggravation = 0;
+		}
+			break;
+		case BEE_TRAP:
+		{
+			deltrap(trap); /* triggers only once */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(beehivemon(), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+			}
+
+			if (wizard || !rn2(10)) pline("Suddenly you hear loud humming noises, as if there was a whole lot of bees!");
+
+			u.aggravation = 0;
+		}
+			break;
+		case MIGO_TRAP:
+		{
+			deltrap(trap); /* triggers only once */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(migohivemon(), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+			}
+
+			if (wizard || !rn2(10)) pline("An alien presence seems to be lurking.");
+
+			u.aggravation = 0;
+		}
+			break;
+		case ANGBAND_TRAP:
+		{
+			deltrap(trap); /* triggers only once */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(specialtensmon(324), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+			}
+
+			if (wizard || !rn2(10)) pline("Hmm, maybe you should play Angband for a change? After all, that's also a fun roguelike game :-)");
+
+			u.aggravation = 0;
+		}
+			break;
+		case DNETHACK_TRAP:
+		{
+			deltrap(trap); /* triggers only once */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(specialtensmon(330), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+			}
+
+			if (wizard || !rn2(10)) pline("Somehow, you feel that the next section will play similarly to a session of Dungeons and Dragons(TM).");
+
+			u.aggravation = 0;
+		}
+			break;
+		case EVIL_SPAWN_TRAP:
+		{
+			deltrap(trap); /* triggers only once */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(specialtensmon(341), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+			}
+
+			if (wizard || !rn2(10)) pline("Evil things will happen to you.");
+
+			u.aggravation = 0;
+		}
+			break;
+		case SHOE_TRAP:
+		{
+			deltrap(trap); /* triggers only once */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(specialtensmon(332), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+			}
+
+			if (wizard || !rn2(10)) pline("Did someone say 'shoes'? You are fairly certain that you just heard someone say that word!");
+
+			u.aggravation = 0;
+		}
+			break;
+		case INSIDE_TRAP:
+		{
+			deltrap(trap); /* triggers only once */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(insidemon(), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+			}
+
+			if (wizard || !rn2(10)) pline("Arabella has joined the game. Moloch's minions get stronger.");
+
+			u.aggravation = 0;
+		}
+			break;
+		case DOOM_TRAP:
+		{
+			deltrap(trap); /* triggers only once */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(doomsquadmon(), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+			}
+
+			if (wizard || !rn2(10)) pline("Argh, the damn frog sound can be heard again! Somewhere in the walls, in a place you cannot reach, there has to be another alien!");
+
+			u.aggravation = 0;
+		}
+			break;
+		case MILITARY_TRAP:
+		{
+			deltrap(trap); /* triggers only once */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(squadmon(), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+			}
+
+			if (wizard || !rn2(10)) pline("Argh, the soldiers are marching! Quick, take cover, they're on a search-and-destroy mission!");
+
+			u.aggravation = 0;
+		}
+			break;
+		case ILLUSION_TRAP:
+		{
+			deltrap(trap); /* triggers only once */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(illusionmon(), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+			}
+
+			if (wizard || !rn2(10)) pline("There is a stained glass wall that seems to come ever closer. Wait, it surely must be a mimic, walls cannot move on their own.");
+
+			u.aggravation = 0;
+		}
+			break;
+		case DIABLO_TRAP:
+		{
+			deltrap(trap); /* triggers only once */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(specialtensmon(327), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+			}
+
+			if (wizard || !rn2(10)) pline("Oh no, you have failed. Diablo freed his accursed brother. Now, hate and destruction will take over the world.");
+
+			u.aggravation = 0;
+		}
 			break;
 
 		case SPACEWARS_SPAWN_TRAP:
@@ -19142,6 +20222,40 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case SKILL_UPORDOWN_TRAP:
 		case SKILL_RANDOMIZE_TRAP:
  		case MACE_TRAP:
+
+		case SKILL_MULTIPLY_TRAP:
+		case TRAPWALK_TRAP:
+		case CLUSTER_TRAP:
+		case FIELD_TRAP:
+		case MONICIDE_TRAP:
+		case TRAP_CREATION_TRAP:
+		case LEOLD_TRAP:
+		case ANIMEBAND_TRAP:
+		case PERFUME_TRAP:
+		case COURT_TRAP:
+		case ELDER_SCROLLS_TRAP:
+		case JOKE_TRAP:
+		case DUNGEON_LORDS_TRAP:
+		case FORTYTWO_TRAP:
+		case RANDOMIZE_TRAP:
+		case EVILROOM_TRAP:
+		case AOE_TRAP:
+		case ELONA_TRAP:
+		case RELIGION_TRAP:
+		case STEAMBAND_TRAP:
+		case HARDCORE_TRAP:
+		case MACHINE_TRAP:
+		case BEE_TRAP:
+		case MIGO_TRAP:
+		case ANGBAND_TRAP:
+		case DNETHACK_TRAP:
+		case EVIL_SPAWN_TRAP:
+		case SHOE_TRAP:
+		case INSIDE_TRAP:
+		case DOOM_TRAP:
+		case MILITARY_TRAP:
+		case ILLUSION_TRAP:
+		case DIABLO_TRAP:
 
 			break;
 

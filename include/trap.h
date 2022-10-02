@@ -689,6 +689,40 @@ extern struct trap *ftrap;
 #define SKILL_UPORDOWN_TRAP 602
 #define SKILL_RANDOMIZE_TRAP 603
 
+#define SKILL_MULTIPLY_TRAP 604
+#define TRAPWALK_TRAP 605
+#define CLUSTER_TRAP 606
+#define FIELD_TRAP 607
+#define MONICIDE_TRAP 608
+#define TRAP_CREATION_TRAP 609
+#define LEOLD_TRAP 610
+#define ANIMEBAND_TRAP 611 /* specialtensmon(325) */
+#define PERFUME_TRAP 612 /* specialtensmon(333) */
+#define COURT_TRAP 613 /* courtmon() */
+#define ELDER_SCROLLS_TRAP 614 /* specialtensmon(427) */
+#define JOKE_TRAP 615 /* specialtensmon(323) */
+#define DUNGEON_LORDS_TRAP 616 /* specialtensmon(328) */
+#define FORTYTWO_TRAP 617 /* douglas_adams_mon() */
+#define RANDOMIZE_TRAP 618 /* specialtensmon(331) */
+#define EVILROOM_TRAP 619 /* evilroommon() */
+#define AOE_TRAP 620 /* specialtensmon(426) */
+#define ELONA_TRAP 621 /* specialtensmon(361) */
+#define RELIGION_TRAP 622 /* specialtensmon(347) */
+#define STEAMBAND_TRAP 623 /* specialtensmon(326) */
+#define HARDCORE_TRAP 624 /* specialtensmon(348) */
+#define MACHINE_TRAP 625 /* machineroommon() */
+#define BEE_TRAP 626 /* beehivemon() */
+#define MIGO_TRAP 627 /* migohivemon() */
+#define ANGBAND_TRAP 628 /* specialtensmon(324) */
+#define DNETHACK_TRAP 629 /* specialtensmon(330) */
+#define EVIL_SPAWN_TRAP 630 /* specialtensmon(341) */
+#define SHOE_TRAP 631 /* specialtensmon(332) */
+#define INSIDE_TRAP 632 /* insidemon() */
+#define DOOM_TRAP 633 /* doomsquadmon() */
+#define MILITARY_TRAP 634 /* squadmon() */
+#define ILLUSION_TRAP 635 /* illusionmon() */
+#define DIABLO_TRAP 636 /* specialtensmon(327) */
+
 /* todo area
 
 normal ones:
@@ -808,8 +842,8 @@ special ones that don't spawn randomly:
 
 */
 
-#define TIMERUN_TRAP	604
+#define TIMERUN_TRAP	637
 
-#define TRAPNUM 605
+#define TRAPNUM 638
 
 #endif /* TRAP_H */

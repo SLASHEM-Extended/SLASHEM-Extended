@@ -926,6 +926,40 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "skill upordown trap", C(CLR_BLUE)},	/* trap */
 	{'^', "skill randomize trap", C(CLR_RED)},	/* trap */
 
+	{'^', "skill multiply trap", C(CLR_GRAY)},	/* trap */
+	{'^', "trapwalk trap", C(CLR_CYAN)},	/* trap */
+	{'^', "cluster trap", C(CLR_GREEN)},	/* trap */
+	{'^', "field trap", C(CLR_WHITE)},	/* trap */
+	{'^', "monicide trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "trap creation trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "leold trap", C(CLR_RED)},	/* trap */
+	{'^', "animeband trap", C(CLR_BRIGHT_CYAN)},	/* trap */
+	{'^', "perfume trap", C(CLR_BRIGHT_MAGENTA)},	/* trap */
+	{'^', "court trap", C(CLR_GREEN)},	/* trap */
+	{'^', "elder scrolls trap", C(CLR_BLACK)},	/* trap */
+	{'^', "joke trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "dungeon lords trap", C(CLR_GRAY)},	/* trap */
+	{'^', "fortytwo trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "randomize trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "evilroom trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "aoe trap", C(CLR_BROWN)},	/* trap */
+	{'^', "elona trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "religion trap", C(CLR_BROWN)},	/* trap */
+	{'^', "steamband trap", C(CLR_RED)},	/* trap */
+	{'^', "hardcore trap", C(CLR_BLACK)},	/* trap */
+	{'^', "machine trap", C(CLR_CYAN)},	/* trap */
+	{'^', "bee trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "migo trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'^', "angband trap", C(CLR_BLACK)},	/* trap */
+	{'^', "dnethack trap", C(CLR_BLUE)},	/* trap */
+	{'^', "evil spawn trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "shoe trap", C(CLR_BRIGHT_MAGENTA)},	/* trap */
+	{'^', "inside trap", C(CLR_BLUE)},	/* trap */
+	{'^', "doom trap", C(CLR_GRAY)},	/* trap */
+	{'^', "military trap", C(CLR_GRAY)},	/* trap */
+	{'^', "illusion trap", C(CLR_CYAN)},	/* trap */
+	{'^', "diablo trap", C(CLR_ORANGE)},	/* trap */
+
 	{'^', "timerun trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -1679,6 +1713,40 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_skill_upordown_trap),
 	g_FILLER(S_skill_randomize_trap),
 
+	g_FILLER(S_skill_multiply_trap),
+	g_FILLER(S_trapwalk_trap),
+	g_FILLER(S_cluster_trap),
+	g_FILLER(S_field_trap),
+	g_FILLER(S_monicide_trap),
+	g_FILLER(S_trap_creation_trap),
+	g_FILLER(S_leold_trap),
+	g_FILLER(S_animeband_trap),
+	g_FILLER(S_perfume_trap),
+	g_FILLER(S_court_trap),
+	g_FILLER(S_elder_scrolls_trap),
+	g_FILLER(S_joke_trap),
+	g_FILLER(S_dungeon_lords_trap),
+	g_FILLER(S_fortytwo_trap),
+	g_FILLER(S_randomize_trap),
+	g_FILLER(S_evilroom_trap),
+	g_FILLER(S_aoe_trap),
+	g_FILLER(S_elona_trap),
+	g_FILLER(S_religion_trap),
+	g_FILLER(S_steamband_trap),
+	g_FILLER(S_hardcore_trap),
+	g_FILLER(S_machine_trap),
+	g_FILLER(S_bee_trap),
+	g_FILLER(S_migo_trap),
+	g_FILLER(S_angband_trap),
+	g_FILLER(S_dnethack_trap),
+	g_FILLER(S_evil_spawn_trap),
+	g_FILLER(S_shoe_trap),
+	g_FILLER(S_inside_trap),
+	g_FILLER(S_doom_trap),
+	g_FILLER(S_military_trap),
+	g_FILLER(S_illusion_trap),
+	g_FILLER(S_diablo_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -2420,6 +2488,40 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_skill_upordown_trap),
 	g_FILLER(S_skill_randomize_trap),
 
+	g_FILLER(S_skill_multiply_trap),
+	g_FILLER(S_trapwalk_trap),
+	g_FILLER(S_cluster_trap),
+	g_FILLER(S_field_trap),
+	g_FILLER(S_monicide_trap),
+	g_FILLER(S_trap_creation_trap),
+	g_FILLER(S_leold_trap),
+	g_FILLER(S_animeband_trap),
+	g_FILLER(S_perfume_trap),
+	g_FILLER(S_court_trap),
+	g_FILLER(S_elder_scrolls_trap),
+	g_FILLER(S_joke_trap),
+	g_FILLER(S_dungeon_lords_trap),
+	g_FILLER(S_fortytwo_trap),
+	g_FILLER(S_randomize_trap),
+	g_FILLER(S_evilroom_trap),
+	g_FILLER(S_aoe_trap),
+	g_FILLER(S_elona_trap),
+	g_FILLER(S_religion_trap),
+	g_FILLER(S_steamband_trap),
+	g_FILLER(S_hardcore_trap),
+	g_FILLER(S_machine_trap),
+	g_FILLER(S_bee_trap),
+	g_FILLER(S_migo_trap),
+	g_FILLER(S_angband_trap),
+	g_FILLER(S_dnethack_trap),
+	g_FILLER(S_evil_spawn_trap),
+	g_FILLER(S_shoe_trap),
+	g_FILLER(S_inside_trap),
+	g_FILLER(S_doom_trap),
+	g_FILLER(S_military_trap),
+	g_FILLER(S_illusion_trap),
+	g_FILLER(S_diablo_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -3157,6 +3259,40 @@ static uchar wing_graphics[MAXPCHARS] = {
 	g_FILLER(S_skill_swap_trap),
 	g_FILLER(S_skill_upordown_trap),
 	g_FILLER(S_skill_randomize_trap),
+
+	g_FILLER(S_skill_multiply_trap),
+	g_FILLER(S_trapwalk_trap),
+	g_FILLER(S_cluster_trap),
+	g_FILLER(S_field_trap),
+	g_FILLER(S_monicide_trap),
+	g_FILLER(S_trap_creation_trap),
+	g_FILLER(S_leold_trap),
+	g_FILLER(S_animeband_trap),
+	g_FILLER(S_perfume_trap),
+	g_FILLER(S_court_trap),
+	g_FILLER(S_elder_scrolls_trap),
+	g_FILLER(S_joke_trap),
+	g_FILLER(S_dungeon_lords_trap),
+	g_FILLER(S_fortytwo_trap),
+	g_FILLER(S_randomize_trap),
+	g_FILLER(S_evilroom_trap),
+	g_FILLER(S_aoe_trap),
+	g_FILLER(S_elona_trap),
+	g_FILLER(S_religion_trap),
+	g_FILLER(S_steamband_trap),
+	g_FILLER(S_hardcore_trap),
+	g_FILLER(S_machine_trap),
+	g_FILLER(S_bee_trap),
+	g_FILLER(S_migo_trap),
+	g_FILLER(S_angband_trap),
+	g_FILLER(S_dnethack_trap),
+	g_FILLER(S_evil_spawn_trap),
+	g_FILLER(S_shoe_trap),
+	g_FILLER(S_inside_trap),
+	g_FILLER(S_doom_trap),
+	g_FILLER(S_military_trap),
+	g_FILLER(S_illusion_trap),
+	g_FILLER(S_diablo_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -3896,6 +4032,40 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_skill_swap_trap),
 	g_FILLER(S_skill_upordown_trap),
 	g_FILLER(S_skill_randomize_trap),
+
+	g_FILLER(S_skill_multiply_trap),
+	g_FILLER(S_trapwalk_trap),
+	g_FILLER(S_cluster_trap),
+	g_FILLER(S_field_trap),
+	g_FILLER(S_monicide_trap),
+	g_FILLER(S_trap_creation_trap),
+	g_FILLER(S_leold_trap),
+	g_FILLER(S_animeband_trap),
+	g_FILLER(S_perfume_trap),
+	g_FILLER(S_court_trap),
+	g_FILLER(S_elder_scrolls_trap),
+	g_FILLER(S_joke_trap),
+	g_FILLER(S_dungeon_lords_trap),
+	g_FILLER(S_fortytwo_trap),
+	g_FILLER(S_randomize_trap),
+	g_FILLER(S_evilroom_trap),
+	g_FILLER(S_aoe_trap),
+	g_FILLER(S_elona_trap),
+	g_FILLER(S_religion_trap),
+	g_FILLER(S_steamband_trap),
+	g_FILLER(S_hardcore_trap),
+	g_FILLER(S_machine_trap),
+	g_FILLER(S_bee_trap),
+	g_FILLER(S_migo_trap),
+	g_FILLER(S_angband_trap),
+	g_FILLER(S_dnethack_trap),
+	g_FILLER(S_evil_spawn_trap),
+	g_FILLER(S_shoe_trap),
+	g_FILLER(S_inside_trap),
+	g_FILLER(S_doom_trap),
+	g_FILLER(S_military_trap),
+	g_FILLER(S_illusion_trap),
+	g_FILLER(S_diablo_trap),
 
 	g_FILLER(S_timerun_trap),
 
@@ -4843,6 +5013,40 @@ boolean is_rlevel;
 	    showsyms[S_skill_swap_trap] = 0x04;
 	    showsyms[S_skill_upordown_trap] = 0x04;
 	    showsyms[S_skill_randomize_trap] = 0x04;
+
+	    showsyms[S_skill_multiply_trap] = 0x04;
+	    showsyms[S_trapwalk_trap] = 0x04;
+	    showsyms[S_cluster_trap] = 0x04;
+	    showsyms[S_field_trap] = 0x04;
+	    showsyms[S_monicide_trap] = 0x04;
+	    showsyms[S_trap_creation_trap] = 0x04;
+	    showsyms[S_leold_trap] = 0x04;
+	    showsyms[S_animeband_trap] = 0x04;
+	    showsyms[S_perfume_trap] = 0x04;
+	    showsyms[S_court_trap] = 0x04;
+	    showsyms[S_elder_scrolls_trap] = 0x04;
+	    showsyms[S_joke_trap] = 0x04;
+	    showsyms[S_dungeon_lords_trap] = 0x04;
+	    showsyms[S_fortytwo_trap] = 0x04;
+	    showsyms[S_randomize_trap] = 0x04;
+	    showsyms[S_evilroom_trap] = 0x04;
+	    showsyms[S_aoe_trap] = 0x04;
+	    showsyms[S_elona_trap] = 0x04;
+	    showsyms[S_religion_trap] = 0x04;
+	    showsyms[S_steamband_trap] = 0x04;
+	    showsyms[S_hardcore_trap] = 0x04;
+	    showsyms[S_machine_trap] = 0x04;
+	    showsyms[S_bee_trap] = 0x04;
+	    showsyms[S_migo_trap] = 0x04;
+	    showsyms[S_angband_trap] = 0x04;
+	    showsyms[S_dnethack_trap] = 0x04;
+	    showsyms[S_evil_spawn_trap] = 0x04;
+	    showsyms[S_shoe_trap] = 0x04;
+	    showsyms[S_inside_trap] = 0x04;
+	    showsyms[S_doom_trap] = 0x04;
+	    showsyms[S_military_trap] = 0x04;
+	    showsyms[S_illusion_trap] = 0x04;
+	    showsyms[S_diablo_trap] = 0x04;
 
 	    showsyms[S_timerun_trap] = 0x04;
 #endif /* PUBLIC_SERVER */
