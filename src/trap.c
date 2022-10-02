@@ -3430,6 +3430,7 @@ unsigned trflags;
 	boolean already_seen = trap->tseen;
 	boolean webmsgok = (!(trflags & NOWEBMSG));
 	boolean forcebungle = (trflags & FORCEBUNGLE);
+	boolean dontreveal = (trflags & DONTREVEAL);
 
 	int monstcnt; /* for animation trap */
 	int ptmp;	/* for poison gas trap */
@@ -7021,7 +7022,7 @@ newbossPENT:
 		case SARAH_TRAP:
 
 			if (FemaleTrapSarah) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Sarah.");
 			pline("You can already imagine the farting noises you're gonna hear.");
@@ -7037,7 +7038,7 @@ newbossPENT:
 		case CLAUDIA_TRAP:
 
 			if (FemaleTrapClaudia) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Claudia.");
 			pline("Suddenly you feel a little confused, and also feel like stroking the sexy butt cheeks of a woman in wooden sandals.");
@@ -7053,7 +7054,7 @@ newbossPENT:
 		case LUDGERA_TRAP:
 
 			if (FemaleTrapLudgera) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Ludgera.");
 			pline("You'll certainly like to listen to the disgusting toilet noises.");
@@ -7069,7 +7070,7 @@ newbossPENT:
 		case KATI_TRAP:
 
 			if (FemaleTrapKati) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Kati.");
 			pline("You feel like being kicked by sexy girls and cleaning their shoes.");
@@ -12539,7 +12540,7 @@ madnesseffect:
 		 case MELTEM_TRAP:
 
 			if (FemaleTrapMeltem) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Meltem.");
 			pline("All the girls want to use their sexy butt cheeks as weapons now!");
@@ -13591,7 +13592,7 @@ skillrandomizeredo:
 		 case FEMMY_TRAP:
 
 			if (FemaleTrapFemmy) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Femmy.");
 			pline("Now, the dungeon will be more feminine for a while!");
@@ -13608,7 +13609,7 @@ skillrandomizeredo:
 		 case MADELEINE_TRAP:
 
 			if (FemaleTrapMadeleine) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Madeleine.");
 			pline("Your shins can expect to get kicked repeatedly by all the girls and women now!");
@@ -13625,7 +13626,7 @@ skillrandomizeredo:
 		 case MARLENA_TRAP:
 
 			if (FemaleTrapMarlena) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Marlena.");
 			pline("Green is the new favorite color, it seems!");
@@ -13642,7 +13643,7 @@ skillrandomizeredo:
 		 case KSENIA_TRAP:
 
 			if (FemaleTrapKsenia) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Ksenia.");
 			pline("The incredibly cute female platform sandals are looking forward to kicking you in the shins like a little girl.");
@@ -13659,7 +13660,7 @@ skillrandomizeredo:
 		 case LYDIA_TRAP:
 
 			if (FemaleTrapLydia) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Lydia.");
 			pline("You feel that you're gonna fight ladies who wear highly elegant cone-heeled pumps.");
@@ -13676,7 +13677,7 @@ skillrandomizeredo:
 		 case CONNY_TRAP:
 
 			if (FemaleTrapConny) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Conny.");
 			pline("Uh-oh, you're not sure that you can escape from the thick women...");
@@ -13693,7 +13694,7 @@ skillrandomizeredo:
 		 case KATIA_TRAP:
 
 			if (FemaleTrapKatia) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Katia.");
 			pline("Some little girl really wants to take a crap while you are nearby.");
@@ -13710,7 +13711,7 @@ skillrandomizeredo:
 		 case MARIYA_TRAP:
 
 			if (FemaleTrapMariya) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Mariya.");
 			pline("You feel that some stinking girl is waiting until you're defenseless so that she can fart you into the face without you fighting back!");
@@ -13727,7 +13728,7 @@ skillrandomizeredo:
 		 case ELISE_TRAP:
 
 			if (FemaleTrapElise) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Elise.");
 			pline("The females are everywhere, it seems!");
@@ -13744,7 +13745,7 @@ skillrandomizeredo:
 		 case RONJA_TRAP:
 
 			if (FemaleTrapRonja) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Ronja.");
 			pline("Somehow, the women have learned to heal their wounds quickly.");
@@ -13761,7 +13762,7 @@ skillrandomizeredo:
 		 case ARIANE_TRAP:
 
 			if (FemaleTrapAriane) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Ariane.");
 			pline("You'll have to fight the girls from the Bang Gang as well as Anna's hussies, just like in the old times.");
@@ -13778,7 +13779,7 @@ skillrandomizeredo:
 		 case JOHANNA_TRAP:
 
 			if (FemaleTrapJohanna) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Johanna.");
 			pline("Admit it, you fetishize female footwear, especially if they're block-heeled combat boots with long zippers and fleecy colors.");
@@ -13795,7 +13796,7 @@ skillrandomizeredo:
 		 case INGE_TRAP:
 
 			if (FemaleTrapInge) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Inge.");
 			pline("All the elegant ladies will produce very tender farting noises that you just cannot resist.");
@@ -13812,7 +13813,7 @@ skillrandomizeredo:
 		 case ROSA_TRAP:
 
 			if (FemaleTrapRosa) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Rosa.");
 			pline("You'll have to struggle with feminism for a long time...");
@@ -13829,7 +13830,7 @@ skillrandomizeredo:
 		 case JANINA_TRAP:
 
 			if (FemaleTrapJanina) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Janina.");
 			pline("Those women are gonna hang their worn pants in front of your %s, forcing you to smell them!", body_part(NOSE));
@@ -13845,7 +13846,7 @@ skillrandomizeredo:
 
 		case ANNEMARIE_TRAP:
 			if (FemaleTrapAnnemarie) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Annemarie.");
 			pline("It seems that the women are doing athletic exercises.");
@@ -13861,7 +13862,7 @@ skillrandomizeredo:
 
 		case JIL_TRAP:
 			if (FemaleTrapJil) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Jil.");
 			pline("The girls are planning to attack you with their sweaty socks!");
@@ -13877,7 +13878,7 @@ skillrandomizeredo:
 
 		case JANA_TRAP:
 			if (FemaleTrapJana) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Jana.");
 			pline("Someone's hiding underneath a grave wall, but some of the grave walls have teleporters or cursed calleds underneath, so be careful!");
@@ -13893,7 +13894,7 @@ skillrandomizeredo:
 
 		case KATRIN_TRAP:
 			if (FemaleTrapKatrin) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Katrin.");
 			pline("Some girls are planning to use their sticky chewing gum as a trap to prevent you from getting away!");
@@ -13909,7 +13910,7 @@ skillrandomizeredo:
 
 		case GUDRUN_TRAP:
 			if (FemaleTrapGudrun) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Gudrun.");
 			pline("A stringy feminist named Gudrun is challenging you...");
@@ -13925,7 +13926,7 @@ skillrandomizeredo:
 
 		case ELLA_TRAP:
 			if (FemaleTrapElla) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Ella.");
 			pline("A fearless feminist named Ella is challenging you...");
@@ -13941,7 +13942,7 @@ skillrandomizeredo:
 
 		case MANUELA_TRAP:
 			if (FemaleTrapManuela) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Manuela.");
 			pline("Some unfair woman wants to crush you with her block-heeled combat boots!");
@@ -13957,7 +13958,7 @@ skillrandomizeredo:
 
 		case JENNIFER_TRAP:
 			if (FemaleTrapJennifer) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Jennifer.");
 			pline("The girls are going to fart you in the face without emitting any kind of sound.");
@@ -13973,7 +13974,7 @@ skillrandomizeredo:
 
 		case PATRICIA_TRAP:
 			if (FemaleTrapPatricia) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Patricia.");
 			pline("You feel like a beautifully thick girl, capable of splitting enemies' skulls with blunt weapons!");
@@ -13989,7 +13990,7 @@ skillrandomizeredo:
 
 		case ANTJE_TRAP:
 			if (FemaleTrapAntje) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Antje.");
 			pline("You feel like walking the dyke with your extra thick block heels.");
@@ -14005,7 +14006,7 @@ skillrandomizeredo:
 
 		case ANTJE_TRAP_X:
 			if (FemaleTrapAntjeX) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a special trap that was set by Antje.");
 			pline("Something tells you that you'd like to visit the public toilet.");
@@ -14022,7 +14023,7 @@ skillrandomizeredo:
 
 		case KERSTIN_TRAP:
 			if (FemaleTrapKerstin) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Kerstin.");
 			pline("Those farmer girls plan to use block-heeled lady boots, wooden sandals and scentful sneakers on you!");
@@ -14038,7 +14039,7 @@ skillrandomizeredo:
 
 		case LAURA_TRAP:
 			if (FemaleTrapLaura) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Laura.");
 			pline("Every woman is going to attack you with their clothing.");
@@ -14054,7 +14055,7 @@ skillrandomizeredo:
 
 		case LARISSA_TRAP:
 			if (FemaleTrapLarissa) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Larissa.");
 			pline("You are commanded to seek out heaps of dog shit and step into it with your high heels. Something tells you that there are bad consequences if you don't obey this instruction.");
@@ -14070,7 +14071,7 @@ skillrandomizeredo:
 
 		case NORA_TRAP:
 			if (FemaleTrapNora) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Nora.");
 			pline("You feel that eating is a sin and should be avoided at all costs, even though that may end up killing you.");
@@ -14086,7 +14087,7 @@ skillrandomizeredo:
 
 		case NATALIA_TRAP:
 			if (FemaleTrapNatalia) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Natalia.");
 			if (flags.female) pline("Ack! You suddenly have to deal with the effects of your menstruational period!");
@@ -14103,7 +14104,7 @@ skillrandomizeredo:
 
 		case SUSANNE_TRAP:
 			if (FemaleTrapSusanne) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Susanne.");
 			pline("You might have to fight some particularly powerful woman!");
@@ -14119,7 +14120,7 @@ skillrandomizeredo:
 
 		case LISA_TRAP:
 			if (FemaleTrapLisa) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Lisa.");
 			pline("You're interested in seeing what kind of underwear the girls are wearing.");
@@ -14135,7 +14136,7 @@ skillrandomizeredo:
 
 		case BRIDGHITTE_TRAP:
 			if (FemaleTrapBridghitte) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Bridghitte.");
 			pline("Watch out, walking over the bridge has a large chance of you stepping into a heap of dog shit unexpectedly!");
@@ -14151,7 +14152,7 @@ skillrandomizeredo:
 
 		case JULIA_TRAP:
 			if (FemaleTrapJulia) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Julia.");
 			pline("Since it's unfair that you can simply hit women whenever you want to, you can no longer freely do so.");
@@ -14167,7 +14168,7 @@ skillrandomizeredo:
 
 		case NICOLE_TRAP:
 			if (FemaleTrapNicole) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Nicole.");
 			pline("The women are apparently surrounded by a dark aura! Is it some kind of black light, maybe?");
@@ -14183,7 +14184,7 @@ skillrandomizeredo:
 
 		case RITA_TRAP:
 			if (FemaleTrapRita) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Rita.");
 			pline("Hahahahaha, now the women can just trigger feminism traps at will and when they do, the trap effect in question will be activated for YOU! Hahaha!");
@@ -14201,7 +14202,7 @@ skillrandomizeredo:
 		 case KRISTIN_TRAP:
 
 			if (FemaleTrapKristin) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Kristin.");
 			pline("You feel that there are women around who really like various high heels.");
@@ -14218,7 +14219,7 @@ skillrandomizeredo:
 		 case ANNA_TRAP:
 
 			if (FemaleTrapAnna) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Anna.");
 			pline("Oh, it seems that the hussies are on the loose!");
@@ -14235,7 +14236,7 @@ skillrandomizeredo:
 		 case RUEA_TRAP:
 
 			if (FemaleTrapRuea) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Ruea.");
 			pline("You get the feeling that some women are trying to convert you.");
@@ -14252,7 +14253,7 @@ skillrandomizeredo:
 		 case DORA_TRAP:
 
 			if (FemaleTrapDora) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Dora.");
 			pline("Ack! There's birds on the loose, and they want to eat your shoes!");
@@ -14269,7 +14270,7 @@ skillrandomizeredo:
 		 case MARIKE_TRAP:
 
 			if (FemaleTrapMarike) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Marike.");
 			pline("You want to endlessly listen to squeaking farting noises.");
@@ -14286,7 +14287,7 @@ skillrandomizeredo:
 		 case JETTE_TRAP:
 
 			if (FemaleTrapJette) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Jette.");
 			pline("The power of feminism compels you.");
@@ -14303,7 +14304,7 @@ skillrandomizeredo:
 		 case INA_TRAP:
 
 			if (FemaleTrapIna) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Ina.");
 			pline("Oh my god, you are now afflicted with the life-threatening disease known as anorexia!");
@@ -14320,7 +14321,7 @@ skillrandomizeredo:
 		 case SING_TRAP:
 
 			if (FemaleTrapSing) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Sing.");
 			pline("A heinously evil woman plans to force you to clean the shit from all kinds of female shoes...");
@@ -14337,7 +14338,7 @@ skillrandomizeredo:
 		 case VICTORIA_TRAP:
 
 			if (FemaleTrapVictoria) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Victoria.");
 			pline("There's some karate women who want to demonstrate their combat capabilities to you.");
@@ -14354,7 +14355,7 @@ skillrandomizeredo:
 		 case MELISSA_TRAP:
 
 			if (FemaleTrapMelissa) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Melissa.");
 			pline("You suddenly feel that the women in this dungeon are quite attractive...");
@@ -14371,7 +14372,7 @@ skillrandomizeredo:
 		 case ANITA_TRAP:
 
 			if (FemaleTrapAnita) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Anita.");
 			pline("The women want to slit your legs with razor-sharp high heels! Be afraid of them!");
@@ -14388,7 +14389,7 @@ skillrandomizeredo:
 		 case HENRIETTA_TRAP:
 
 			if (FemaleTrapHenrietta) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Henrietta.");
 			pline("You feel that someone is going to open the zippers of your boots, making you fumble into a heap of dog shit.");
@@ -14405,7 +14406,7 @@ skillrandomizeredo:
 		 case VERENA_TRAP:
 
 			if (FemaleTrapVerena) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Verena.");
 			pline("Oh no, some annoying blonde girl starts to follow you around. Sigh. Why can't you get a clever companion instead?!");
@@ -14422,7 +14423,7 @@ skillrandomizeredo:
 		 case ARABELLA_TRAP:
 
 			if (FemaleTrapArabella) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Arabella.");
 			pline("Oh no, the master of nasty traps is laying out her snares to get you!");
@@ -14439,7 +14440,7 @@ skillrandomizeredo:
 		 case NELLY_TRAP:
 
 			if (FemaleTrapNelly) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Nelly.");
 			pline("You fear that the women are going to crush you with a hug.");
@@ -14456,7 +14457,7 @@ skillrandomizeredo:
 		 case EVELINE_TRAP:
 
 			if (FemaleTrapEveline) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Eveline.");
 			pline("It seems that the women are running faster.");
@@ -14473,7 +14474,7 @@ skillrandomizeredo:
 		 case KARIN_TRAP:
 
 			if (FemaleTrapKarin) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Karin.");
 			pline("All the women want to knee you in the delicate nuts now!");
@@ -14490,7 +14491,7 @@ skillrandomizeredo:
 		 case JUEN_TRAP:
 
 			if (FemaleTrapJuen) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Juen.");
 			pline("Oh no, your shins are almost broken!");
@@ -14507,7 +14508,7 @@ skillrandomizeredo:
 		 case KRISTINA_TRAP:
 
 			if (FemaleTrapKristina) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Kristina.");
 			pline("Urgh, you can already smell the stench of stinking cigarettes!");
@@ -14524,7 +14525,7 @@ skillrandomizeredo:
 		 case LOU_TRAP:
 
 			if (FemaleTrapLou) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Lou.");
 			pline("These damn people want to use your precious clothing to brush off their dirty shoes!");
@@ -14541,7 +14542,7 @@ skillrandomizeredo:
 		 case ALMUT_TRAP:
 
 			if (FemaleTrapAlmut) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Almut.");
 			pline("The girls feel like kicking your hands bloodily with their sneakers!");
@@ -14558,7 +14559,7 @@ skillrandomizeredo:
 		 case JULIETTA_TRAP:
 
 			if (FemaleTrapJulietta) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Julietta.");
 			pline("Now you'll be subjected to Julietta's torture, and she'll subject you to random punishments from time to time.");
@@ -14578,7 +14579,7 @@ skillrandomizeredo:
 		 case ANASTASIA_TRAP:
 
 			if (FemaleTrapAnastasia) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Anastasia.");
 			pline("Suddenly, you feel that you're going to step into a heap of shit.");
@@ -14595,7 +14596,7 @@ skillrandomizeredo:
 		 case JESSICA_TRAP:
 
 			if (FemaleTrapJessica) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Jessica.");
 			pline("Your butt cheeks suddenly feel very tender, and in fact, a similar thing is happening to your entire body!");
@@ -14612,7 +14613,7 @@ skillrandomizeredo:
 		 case SOLVEJG_TRAP:
 
 			if (FemaleTrapSolvejg) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Solvejg.");
 			pline("You suddenly have a very grating, aggravating voice, and you start to emit a beguiling odor! In fact, you're super sexy and sweet now!");
@@ -14629,7 +14630,7 @@ skillrandomizeredo:
 		 case WENDY_TRAP:
 
 			if (FemaleTrapWendy) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Wendy.");
 			pline("All the female denizens of the dungeon will show you their true power, and it will happen very soon!");
@@ -14646,7 +14647,7 @@ skillrandomizeredo:
 		 case KATHARINA_TRAP:
 
 			if (FemaleTrapKatharina) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Katharina.");
 			pline("You feel that the girls and women are getting ready to use their sexy butts as weapons.");
@@ -14663,7 +14664,7 @@ skillrandomizeredo:
 		 case ELENA_TRAP:
 
 			if (FemaleTrapElena) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Elena.");
 			pline("You long for beautiful sexy women with tender butt cheeks and lovely high heels.");
@@ -14680,7 +14681,7 @@ skillrandomizeredo:
 		 case THAI_TRAP:
 
 			if (FemaleTrapThai) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Thai.");
 			pline("You feel that you'll want to use the toilet more often. Also, somehow your physique seems weaker now...");
@@ -14697,7 +14698,7 @@ skillrandomizeredo:
 		 case ELIF_TRAP:
 
 			if (FemaleTrapElif) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Elif.");
 			pline("A ghostly girl (named Elif) starts following you around, and apparently she wants to play with you!");
@@ -14714,7 +14715,7 @@ skillrandomizeredo:
 		 case NADJA_TRAP:
 
 			if (FemaleTrapNadja) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Nadja.");
 			pline("You feel that you angered the womanhood. If you now hit a woman, you will be hit with retribution!");
@@ -14731,7 +14732,7 @@ skillrandomizeredo:
 		 case SANDRA_TRAP:
 
 			if (FemaleTrapSandra) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Sandra.");
 			pline("You just know that your legs are going to be ripped open by very sharp-edged combat boot heels.");
@@ -14748,7 +14749,7 @@ skillrandomizeredo:
 		 case NATALJE_TRAP:
 
 			if (FemaleTrapNatalje) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Natalje.");
 			pline("You gotta dance! You've suddenly become super sexy and attractive, and neither sleep nor paralysis can stop you in your tracks. And you can kick your enemies to stomp their toes flat. But if you ever stand still for too long, a bunch of bloodthirsty female painted toenails is going to hurt your beautiful skin, so make sure you keep moving!");
@@ -14768,7 +14769,7 @@ skillrandomizeredo:
 		 case JEANETTA_TRAP:
 
 			if (FemaleTrapJeanetta) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Jeanetta.");
 			pline("Lots of shreds of skin will be scraped off your shins, and the girls will enjoy it.");
@@ -14785,7 +14786,7 @@ skillrandomizeredo:
 		 case YVONNE_TRAP:
 
 			if (FemaleTrapYvonne) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Yvonne.");
 			pline("You feel that people are building toilets for you to use.");
@@ -14802,7 +14803,7 @@ skillrandomizeredo:
 		 case MAURAH_TRAP:
 
 			if (FemaleTrapMaurah) break;
-			seetrap(trap);
+			if (!dontreveal) seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Maurah.");
 			pline("Your sexy butt signals that it wants to produce beautiful farting noises!");
@@ -19147,469 +19148,469 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case FEMMY_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapFemmy) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case MADELEINE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapMadeleine) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case MARLENA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapMarlena) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case KSENIA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapKsenia) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case LYDIA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapLydia) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case CONNY_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapConny) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case KATIA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapKatia) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case MARIYA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapMariya) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case ELISE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapElise) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case RONJA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapRonja) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case ARIANE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapAriane) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case JOHANNA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapJohanna) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case INGE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapInge) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case ROSA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapRosa) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case JANINA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapJanina) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case KRISTIN_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapKristin) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case ANNA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapAnna) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case RUEA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapRuea) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case DORA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapDora) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case MARIKE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapMarike) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case JETTE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapJette) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case INA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapIna) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case SING_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapSing) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case VICTORIA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapVictoria) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case MELISSA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapMelissa) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case ANITA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapAnita) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case HENRIETTA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapHenrietta) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case VERENA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapVerena) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case ARABELLA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapArabella) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case NELLY_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapNelly) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case EVELINE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapEveline) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case KARIN_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapKarin) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case JUEN_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapJuen) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case KRISTINA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapKristina) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case ALMUT_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapAlmut) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case JULIETTA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapJulietta) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case LOU_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapLou) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case ANASTASIA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapAnastasia) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case JESSICA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapJessica) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case SOLVEJG_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapSolvejg) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case WENDY_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapWendy) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case KATHARINA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapKatharina) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case ELENA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapElena) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case THAI_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapThai) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case ELIF_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapElif) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case NADJA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapNadja) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case SANDRA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapSandra) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case NATALJE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapNatalje) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case JEANETTA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapJeanetta) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case YVONNE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapYvonne) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case MAURAH_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapMaurah) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case MELTEM_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapMeltem) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case ANNEMARIE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapAnnemarie) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case JIL_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapJil) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case JANA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapJana) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case KATRIN_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapKatrin) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case GUDRUN_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapGudrun) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case ELLA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapElla) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case MANUELA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapManuela) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case JENNIFER_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapJennifer) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case PATRICIA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapPatricia) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case ANTJE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapAntje) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case ANTJE_TRAP_X:
 			if (FemtrapActiveRita && !FemaleTrapAntjeX) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case KERSTIN_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapKerstin) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case LAURA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapLaura) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case LARISSA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapLarissa) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case NORA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapNora) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case NATALIA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapNatalia) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case SUSANNE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapSusanne) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case LISA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapLisa) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case BRIDGHITTE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapBridghitte) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case JULIA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapJulia) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case NICOLE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapNicole) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case RITA_TRAP: /* always triggered by monsters */
 			if (!FemaleTrapRita) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case SARAH_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapSarah) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case CLAUDIA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapClaudia) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case LUDGERA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapLudgera) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 		case KATI_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapKati) {
 				pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
-				dotrap(trap, 0);
+				dotrap(trap, DONTREVEAL);
 			}
 			break;
 
