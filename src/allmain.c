@@ -1969,8 +1969,15 @@ moveloop()
 
 			if (is_highway(u.ux, u.uy)) {
 				oldspeed = moveamt;
-				moveamt *= 2;
-				if (moveamt > (oldspeed + 36)) moveamt = (oldspeed + 36);
+
+				if (youmonst.data->msound == MS_CAR) {
+					moveamt *= 5;
+					moveamt /= 2;
+					if (moveamt > (oldspeed + 45)) moveamt = (oldspeed + 45);
+				} else {
+					moveamt *= 2;
+					if (moveamt > (oldspeed + 36)) moveamt = (oldspeed + 36);
+				}
 			}
 
 			if (uarmh && uarmh->oartifact == ART_LUXIDREAM_S_ASCENSION) {

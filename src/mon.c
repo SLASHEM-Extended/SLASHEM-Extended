@@ -2094,7 +2094,10 @@ struct monst *mon;
     if (mon->egotype_speedster) mmove += 6;
     if (mon->egotype_racer) mmove += 12;
 
-	if (is_highway(mon->mx, mon->my)) mmove += rnd(mmove);
+	if (is_highway(mon->mx, mon->my)) {
+		if (mon->data->msound == MS_CAR) mmove += mmove;
+		else mmove += rnd(mmove);
+	}
 
 	if ((MonsterSpeedBug || u.uprops[MONSTER_SPEED_BUG].extrinsic || (uarm && uarm->oartifact == ART_HUNKSTERMAN) || have_monsterspeedstone()) && !rn2(2) && (mmove > 0)) {
 		mmove *= 3;
