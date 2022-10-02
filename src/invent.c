@@ -22717,6 +22717,12 @@ boolean knoweverything;
 					pline("Artifact specs: if you saddle a car with this, you can ride it even if it's not tame."); break;
 				case ART_DRIVER_S_LICENSE:
 					pline("Artifact specs: riding a car that has this saddle gives 40%% extra speed for both movement and other actions."); break;
+				case ART_SWEET_SWEET_LANA:
+					pline("Artifact specs: eating it will create a stack of 16 additional chocolates at your feet."); break;
+				case ART_QUADRATIC_PRACTIC_BANG_BAG:
+					pline("Artifact specs: can be invoked for chocolate creation, but doing so requires you to select a scroll in your open inventory, which will be used up."); break;
+				case ART_POOLING:
+					pline("Artifact specs: using it while you already have a symbiote turns that one back into a monster."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

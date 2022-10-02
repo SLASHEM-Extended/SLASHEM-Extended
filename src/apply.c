@@ -427,6 +427,26 @@ use_symbiote(obj)
 				use_skill(P_PETKEEPING,1);
 			}
 
+			if (obj->oartifact == ART_POOLING) {
+				if (uinsymbiosis) {
+
+					struct monst *mtmp2;
+					mtmp2 = makemon(&mons[u.usymbiote.mnum], u.ux, u.uy, 0);
+					if (mtmp2) {
+						mtmp2->mfrenzied = FALSE;
+						mtmp2->mpeaceful = TRUE;
+					}
+
+					u.usymbiote.active = 0;
+					u.usymbiote.mnum = PM_PLAYERMON;
+					u.usymbiote.mhp = 0;
+					u.usymbiote.mhpmax = 0;
+					u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0;
+
+				}
+
+			}
+
 			turnmonintosymbiote(mtmp, (obj->oartifact == ART_HOLDEN_MIDDLE_POST));
 
 			if (obj->oartifact == ART_GIMMIE_DAT_SKILL) use_skill(P_SYMBIOSIS, 50);

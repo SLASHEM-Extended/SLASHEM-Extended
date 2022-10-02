@@ -6858,6 +6858,19 @@ register struct obj *otmp;
 
 		}
 
+		if (otmp->oartifact == ART_SWEET_SWEET_LANA) {
+			struct obj *sweetlana;
+			sweetlana = mksobj(CHOCOLATE, TRUE, 2, FALSE);
+			if (sweetlana) {
+				sweetlana->quan = 16;
+				sweetlana->owt = weight(sweetlana);
+				dropy(sweetlana);
+				stackobj(sweetlana);
+				pline("Mmmmmmmmmm!");
+			}
+
+		}
+
 		if (otmp->oartifact == ART_SCHOKOLADE_EEA) {
 			pline("Auughh!");
 			Deafness += rnz(500);

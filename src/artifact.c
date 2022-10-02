@@ -20,6 +20,8 @@ STATIC_DCL struct artifact artilist[];
  * that is where we need to put it.
  */
 
+static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
+static const char allowall[] = { ALL_CLASSES, 0 };
 
 extern boolean notonhead;	/* for long worms */
 
@@ -3690,6 +3692,47 @@ chargingchoice:
 	case CHOCOLATE_CREATION:
 
 		{
+			if (obj->oartifact == ART_QUADRATIC_PRACTIC_BANG_BAG) {
+				register struct obj *bangbag;
+				pline("You need to pick a scroll to use as raw material.");
+bangbagchoice:
+				bangbag = getobj(allowall, "use as raw material");
+				if (!bangbag) {
+					if (yn("Really exit with no object selected?") == 'y')
+						pline("You just wasted the opportunity to create chocolate.");
+					else goto bangbagchoice;
+					pline("Oh well, if you don't wanna...");
+					break;
+				} else {
+					if (bangbag->oclass != SCROLL_CLASS) {
+						pline("That isn't a scroll! The attempt fails.");
+						break;
+					}
+#ifdef MAIL
+					if (bangbag->otyp == SCR_MAIL) {
+						pline("Cheater. Your mail goes up in flames.");
+						delobj(bangbag);
+						break;
+					}
+#endif
+					if (evades_destruction(bangbag)) {
+						pline("Yeah, you wish you could use a scroll that doesn't disappear.");
+						break;
+					}
+
+					if (bangbag->oclass == SCROLL_CLASS) {
+						if (bangbag->quan > 1) {
+							bangbag->quan -= 1;
+							bangbag->owt = weight(bangbag);
+						} else {
+							useupall(bangbag);
+						}
+					}
+
+				}
+
+			}
+
 			struct obj *uchocitem;
 
 			uchocitem = mksobj(CHOCOLATE, TRUE, FALSE, FALSE);

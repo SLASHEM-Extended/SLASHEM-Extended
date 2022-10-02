@@ -9289,6 +9289,19 @@ A("Satan's Secret Storage",				STATUE, /* can apply it and put in or take out it
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
+A("Sweet Sweet Lana",				CHOCOLATE, /* eating it creates a stack of 16 additional chocolates that cannot be artifacts */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Quadratic Practic Bang Bag",				CHOCOLATE, /* invoking it requires you to select a scroll in your inventory, which will be used up */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, CHOCOLATE_CREATION, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Pooling",				SYMBIOTE, /* if you use it while you already have a symbiote, it turns back into a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.
