@@ -27975,6 +27975,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"The players want a game without nasty traps and sexual references? Bah! I don't care what the players want! Either they play the game the way I intended, or they can look for a different game!",
 	"The players are the enemy. They are supposed to just play and enjoy the game, but instead they constantly look for exploits that make the game easier and don't hesitate to abuse the hell out of any exploit they found. That is of course not acceptable, and so Amy has no other choice but to close the loopholes and add penalties for trying to use such degenerate strategies.",
 	"Players should just stop thinking that SLEX was about finding loopholes that let them circumvent the intended difficulty! If Amy says that you should have to fight Yeenoghu with a cursed thoroughly corroded -4 dagger, then you aren't allowed to fight him with a blessed rustproof +1 dagger, for fuck's sake!",
+	"According to the grandmaster, 'slex is full of bad content' is supposedly a true rumor just because the antje trap exists, one specific trap type that doesn't even spawn very often at all and which starts a minigame that can just be skipped entirely by mashing the space bar. Well, sometimes people's opinions are weird...",
+	"It is a great idea to put on some neverending polka music while playing through the double-plus-uninteresting vanilla Gehennom.",
 
 };
 

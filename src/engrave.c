@@ -5752,6 +5752,9 @@ static const char *epitaphs[] = {
 	"whaaaaaaaaat? Amy I was wearing flying boots! The game was asking me whether I really want to step into water but I knew that I was flying so of course I said yes, and I still fell in the water, that's a big fat bug! Err YOU SAY THAT'S WORKING AS INTENDED??? FUCK YOU AMY, it isn't!!!!!!!!",
 	"remember, game balance goes both ways, stuff can be unbalanced both in the game's favor or also in the player's favor, but at least 99%% of players are such filthy casuals who never see the latter form of unbalance as what it is", /* originally by Amy but then amateurhour started spamming the line whenever Amy said something about game balance :-P */
 	"no alignment distinction allowed - the only thing alignment is allowed to change is which free skill you get on your secret advice member, everything else is just too player-favoured and fun", /* by amateurhour */
+	"if a change makes the game suck it was actually intended and therefore doesnt suck lmao gottem i win", /* sic ("doesnt" instead of "doesn't"; normally that gets fixed for Amy's own lines but in this case the original quote is preserved) by amateurhour */
+	"para rnz(100) and perfume bleed rnz(100) was intentional and didn't suck lmao gottem i win", /* likewise by amateurhour */
+	"> u can attempt to use various skills that appear in your character's enhance screen, but it's really a waste of time because it takes far too long and you'd be better off just using any of the firearms skills even if they're restricted", /* again, by amateurhour */
 
 };
 
