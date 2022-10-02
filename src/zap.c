@@ -2719,11 +2719,12 @@ struct obj *obj;
 	/* adjust for "large" quantities of identical things */
 	if(obj->quan > 4L) zap_odds /= 2;
 
-	/* Amy edit: polypiling is so OP that it desperately needs nerfing :P */
-	if (!rn2(3)) return TRUE;
-	if ((obj->oclass == SCROLL_CLASS || obj->oclass == POTION_CLASS) && rn2(2) ) return TRUE;
-	if ((obj->oclass == SPBOOK_CLASS) && rn2(5) ) return TRUE;
-	if ((obj->oclass == WEAPON_CLASS) && objects[obj->otyp].oc_merge && rn2(10) ) return TRUE;
+	/* Amy edit: polypiling is so OP that it desperately needs nerfing :P
+	 * but not as godawfully much now, thanks to the finalized attribute */
+	if (!rn2(20)) return TRUE;
+	if ((obj->oclass == SCROLL_CLASS || obj->oclass == POTION_CLASS) && !rn2(10) ) return TRUE;
+	if ((obj->oclass == SPBOOK_CLASS) && !rn2(20) ) return TRUE;
+	if ((obj->oclass == WEAPON_CLASS) && objects[obj->otyp].oc_merge && !rn2(2) ) return TRUE;
 
 	return((boolean)(! rn2(zap_odds)));
 }
