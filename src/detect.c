@@ -578,7 +578,7 @@ int		class;		/* an object class, 0 for all */
 	    gold.otyp = GOLD_PIECE;
 	    gold.ox = mtmp->mx;
 	    gold.oy = mtmp->my;
-	    map_object(&gold, 1);
+	    if ((guaranteed || (likely && rn2(2)) || !rn2(3)) && !(stupiddetect && isok(mtmp->mx, mtmp->my) && isok(u.ux, u.uy) && (dist2(u.ux, u.uy, mtmp->mx, mtmp->my) > 1226) ) ) map_object(&gold, 1);
 	}
     }
 
