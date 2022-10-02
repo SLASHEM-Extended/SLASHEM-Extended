@@ -5755,6 +5755,7 @@ static const char *epitaphs[] = {
 	"if a change makes the game suck it was actually intended and therefore doesnt suck lmao gottem i win", /* sic ("doesnt" instead of "doesn't"; normally that gets fixed for Amy's own lines but in this case the original quote is preserved) by amateurhour */
 	"para rnz(100) and perfume bleed rnz(100) was intentional and didn't suck lmao gottem i win", /* likewise by amateurhour */
 	"> u can attempt to use various skills that appear in your character's enhance screen, but it's really a waste of time because it takes far too long and you'd be better off just using any of the firearms skills even if they're restricted", /* again, by amateurhour */
+	"Bah, SLASH'EM doppelgangers suck, why do they always have their regular form's maximum HP reduced by like 20+ points whenever their polymorph times out. And to top it off, there's not even a message, they just cut down your HP max without telling you. Bastards.",
 
 };
 

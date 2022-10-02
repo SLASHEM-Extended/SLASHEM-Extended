@@ -4893,6 +4893,7 @@ static NEARDATA const char * const soviettaunts[] = {
 "Glupo, no sovetskiy tip fakticheski nachal vorovat' duratskiye cherty u tupogo transa yego tupoy variant.",
 "Kopirovaniye funktsiy iz vzloma transa, eto novyy minimum. Daleye on nachnet nesti chush' iz chut'-chut' zlogo khaka, dazhe nesmotrya na to, chto yego razrabotchik - antikhrist.",
 "Tip ledyanoy glyby izbegayet Emi, potomu chto UOU-KHA-KHA, on ne khochet, chtoby ona ispravlyala oshibki, khotya nikto drugoy ne nashel vsekh problem s kosoy chertoy.",
+"Lyubyye yevropeyskiye agenty, kotoryye popytayutsya podorvat' prevoskhodstvo Kremlya, vydavaya sebya za tekh, kem oni ne yaviyayustya, poluchat znachitel'noye snizheniye zdorov'ya! Chertovy pridurki!",
 };
 
 static NEARDATA const char * const practicantlines[] = {
@@ -27977,6 +27978,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"Players should just stop thinking that SLEX was about finding loopholes that let them circumvent the intended difficulty! If Amy says that you should have to fight Yeenoghu with a cursed thoroughly corroded -4 dagger, then you aren't allowed to fight him with a blessed rustproof +1 dagger, for fuck's sake!",
 	"According to the grandmaster, 'slex is full of bad content' is supposedly a true rumor just because the antje trap exists, one specific trap type that doesn't even spawn very often at all and which starts a minigame that can just be skipped entirely by mashing the space bar. Well, sometimes people's opinions are weird...",
 	"It is a great idea to put on some neverending polka music while playing through the double-plus-uninteresting vanilla Gehennom.",
+	"You lost 10 maximum hit points due to exhaustion.",
+	"You lost 10 maximum hit points due to exhaustion. This is a great feature, because polymorphs will time out anyway no matter what you do, and being penalized for that is very illogical but that's how SLASH'EM works.",
+	"You had too little health left in your regular form and therefore you die!",
 
 };
 

@@ -1551,6 +1551,33 @@ rehumanize()
 	    u.uhp = (u.uhp/2) + 1;
 	}
 
+	/* SLASH'EM illogically made it so that whenever you unpolymorph, regardless of HOW, you get a massive penalty
+	 * by having your maximum hit points drained fiercely. But this is SLEX, a game that's supposed to be balanced,
+	 * so we only give that penalty if you're wimpy enough to allow your polymorphed HP to run out --Amy */
+
+	/* In Soviet Russia, polymorphing is strictly forbidden. Everyone has to appear as what they actually are, because
+	 * otherwise they could be foreign agents trying to undermine the Kreml's supremacy. So the government troops will
+	 * do their best to punish anyone who's spotted polymorphing back to human form. */
+
+	if (forced || issoviet) {
+		int hitpointloss = rnd(10);
+		if (hitpointloss > u.ulevel) hitpointloss = u.ulevel;
+
+		if (u.uhpmax > hitpointloss) {
+			u.uhpmax -= hitpointloss;
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			if (issoviet) pline("Kha-kha-kha! Dumayesh', ty mog by byt' chlenom vooruzhennykh sil sosedney strany nezametno dlya nas?");
+			else You("lost %d maximum hit points due to exhaustion.", hitpointloss);
+		} else {
+			u.youaredead = 1;
+			You("had too little health left in your regular form and therefore you die!");
+			killer_format = KILLED_BY;
+			killer = "critical polymorph failure";
+			done(DIED);
+			u.youaredead = 0;
+		}
+	}
+
 	if (!uarmg || FingerlessGloves) selftouch("No longer petrify-resistant, you");
 	nomul(0, 0, FALSE);
 
