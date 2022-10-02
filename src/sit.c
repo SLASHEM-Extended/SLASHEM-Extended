@@ -842,7 +842,7 @@ int skilltocheck;
 	if ((P_SKILL(skilltocheck) > P_MAX_SKILL(skilltocheck)) || (P_SKILL(skilltocheck) >= P_BASIC && P_ADVANCE(skilltocheck) < (practice_needed_to_advance_nonmax(P_SKILL(skilltocheck) - 1, skilltocheck)) ) ) {
 
 		int skillamount = 0;
-		while (P_SKILL(skilltocheck) > P_MAX_SKILL(skilltocheck)) {
+		while ((P_SKILL(skilltocheck) > P_MAX_SKILL(skilltocheck)) || (P_SKILL(skilltocheck) >= P_BASIC && P_ADVANCE(skilltocheck) < (practice_needed_to_advance_nonmax(P_SKILL(skilltocheck) - 1, skilltocheck)) ) ) {
 			if (P_SKILL(skilltocheck) == P_UNSKILLED && P_MAX_SKILL(skilltocheck) == P_ISRESTRICTED) {
 				P_SKILL(skilltocheck) = P_ISRESTRICTED;
 			} else {
