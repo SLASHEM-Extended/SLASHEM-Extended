@@ -2302,9 +2302,9 @@ moveloop()
 			pline("Moloch is really upset with you, and you should really think twice whether you want to keep wallwalking everywhere! Endless armies of fluidators will chase you if you don't stop!");
 		}
 
-		if (IS_STWALL(levl[u.ux][u.uy].typ)) u.fluidatorwantedlevel += 5;
+		if (IS_STWALL(levl[u.ux][u.uy].typ) && levl[u.ux][u.uy].typ <= ROCKWALL) u.fluidatorwantedlevel += 5;
 
-		if (!(IS_STWALL(levl[u.ux][u.uy].typ)) && levl[u.ux][u.uy].typ != IRONBARS) {
+		if (!(IS_STWALL(levl[u.ux][u.uy].typ) && levl[u.ux][u.uy].typ <= ROCKWALL) && levl[u.ux][u.uy].typ != IRONBARS) {
 			u.fluidatorwantedlevel--;
 			if (u.fluidatorwantedlevel < 0) u.fluidatorwantedlevel = 0; /* fail safe */
 		}
