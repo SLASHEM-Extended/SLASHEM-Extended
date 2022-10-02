@@ -12709,7 +12709,7 @@ boolean knoweverything;
 				pline("A shield made from dragon hide that provides swimming as well as protection."); break;
 
 			case PLASTEEL_BOOTS:
-				pline("A pair of boots that offers 9 points of magic cancellation. This is a heck of a lot for an item that has no downsides, mind you."); break;
+				pline("A pair of boots that offers 9 points of magic cancellation. This was a heck of a lot for an item that has no downsides, so it now has the downside of disabling free action while you wear it."); break;
 			case LOW_BOOTS:
 				pline("This basic pair of boots offers minimal protection from enemy attacks."); break;
 			case GNOMISH_BOOTS:
@@ -18346,7 +18346,7 @@ boolean knoweverything;
 				case ART_REAL_PSYCHOS_WEAR_PURPLE:
 					pline("Artifact specs: psi resistance, farlook bug and hate effect when worn, autocurses, chaotic."); break;
 				case ART_BINDER_CRASH:
-					pline("Artifact specs: count as stiletto heels for binders, everyone else will anger their god and cause them to heavily curse themselves. Very rarely they transform a non-Binder into a Binder instead, but if they don't, then they don't, so do not try repeatedly!"); break;
+					pline("Artifact specs: count as stiletto heels for binders and also doesn't disable free action if you're a Binder, everyone else will anger their god and cause them to heavily curse themselves. Very rarely they transform a non-Binder into a Binder instead, but if they don't, then they don't, so do not try repeatedly!"); break;
 				case ART_MEPHISTO_S_BROGUES:
 					pline("Artifact specs: poison and cold resistance and flying when worn, disables fire resistance and autocurses, chaotic."); break;
 				case ART_GNOMISH_BOOBS:
