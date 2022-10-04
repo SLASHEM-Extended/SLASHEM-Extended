@@ -3502,6 +3502,7 @@ arti_invoke(obj)
 	case CHARGE_OBJ:
 chargingchoice:
 	    {
+	    if (CannotSelectItemsInPrompts) return 0;
 	    struct obj *otmp = getobj(recharge_type, "charge");
 	    boolean b_effect;
 
@@ -3694,6 +3695,7 @@ chargingchoice:
 		{
 			if (obj->oartifact == ART_QUADRATIC_PRACTIC_BANG_BAG) {
 				register struct obj *bangbag;
+				if (CannotSelectItemsInPrompts) return 0;
 				pline("You need to pick a scroll to use as raw material.");
 bangbagchoice:
 				bangbag = getobj(allowall, "use as raw material");

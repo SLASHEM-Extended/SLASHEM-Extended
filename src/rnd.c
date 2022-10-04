@@ -1165,7 +1165,7 @@ randenchantment()
 
 	if (!rn2(20)) {
 
-		switch (rnd(237)) {
+		switch (rnd(247)) {
 
 			case 1: return SPELLS_LOST;
 			case 2: return CASTER_PROBLEM;
@@ -1405,6 +1405,16 @@ randenchantment()
 			case 235: return SANITY_TREBLE_EFFECT;
 			case 236: return STAT_DECREASE_BUG;
 			case 237: return SIMEOUT_BUG;
+			case 238: return GIANT_EXPLORER;
+			case 239: return YAWM_EFFECT;
+			case 240: return TRAPWARPING;
+			case 241: return ENTHU_EFFECT;
+			case 242: return MIKRA_EFFECT;
+			case 243: return GOTS_TOO_GOOD_EFFECT;
+			case 244: return NO_FUN_WALLS;
+			case 245: return CRADLE_CHAOS_EFFECT;
+			case 246: return TEZ_EFFECT;
+			case 247: return KILLER_ROOM_EFFECT;
 			default: return POISON_RES;
 
 		}
@@ -1854,7 +1864,7 @@ randenchantment()
 int
 randnastyenchantment()
 {
-	switch (rnd(237)) {
+	switch (rnd(247)) {
 
 		case 1: return SPELLS_LOST;
 		case 2: return CASTER_PROBLEM;
@@ -2093,6 +2103,16 @@ randnastyenchantment()
 			case 235: return SANITY_TREBLE_EFFECT;
 			case 236: return STAT_DECREASE_BUG;
 			case 237: return SIMEOUT_BUG;
+			case 238: return GIANT_EXPLORER;
+			case 239: return YAWM_EFFECT;
+			case 240: return TRAPWARPING;
+			case 241: return ENTHU_EFFECT;
+			case 242: return MIKRA_EFFECT;
+			case 243: return GOTS_TOO_GOOD_EFFECT;
+			case 244: return NO_FUN_WALLS;
+			case 245: return CRADLE_CHAOS_EFFECT;
+			case 246: return TEZ_EFFECT;
+			case 247: return KILLER_ROOM_EFFECT;
 	}
 
 	/* appease compiler, we should never end up here */
@@ -2261,7 +2281,7 @@ randominsidetrap()
 	else if (!rn2(50)) return ARABELLA_SPEAKER;
 	else if (!rn2(100)) return SUPERTHING_TRAP;
 	else if (!rn2(2000)) return AUTOMATIC_SWITCHER;
-	else switch (rnd(237)) {
+	else switch (rnd(247)) {
 		case 1: return RMB_LOSS_TRAP;
 		case 2: return UNINFORMATION_TRAP;
 		case 3: return BIGSCRIPT_TRAP;
@@ -2500,6 +2520,16 @@ randominsidetrap()
 		case 235: return SANITY_TREBLE_TRAP;
 		case 236: return STAT_DECREASE_TRAP;
 		case 237: return SIMEOUT_TRAP;
+		case 238: return GIANT_EXPLORER_TRAP;
+		case 239: return TRAPWARP_TRAP;
+		case 240: return YAWM_TRAP;
+		case 241: return CRADLE_OF_CHAOS_TRAP;
+		case 242: return TEZCATLIPOCA_TRAP;
+		case 243: return ENTHUMESIS_TRAP;
+		case 244: return MIKRAANESIS_TRAP;
+		case 245: return GOTS_TOO_GOOD_TRAP;
+		case 246: return KILLER_ROOM_TRAP;
+		case 247: return NO_FUN_WALLS_TRAP;
 
 	}
 
@@ -3397,7 +3427,7 @@ struct obj *obj;
 void
 getnastytrapintrinsic()
 {
-			switch (rnd(235)) {
+			switch (rnd(245)) {
 
 				case 1: 
 				    SpeedBug |= FROMOUTSIDE; break;
@@ -3869,6 +3899,26 @@ getnastytrapintrinsic()
 				    StatDecreaseBug |= FROMOUTSIDE; break;
 				case 235:
 				    SimeoutBug |= FROMOUTSIDE; break;
+				case 236:
+				    GiantExplorerBug |= FROMOUTSIDE; break;
+				case 237:
+				    YawmBug |= FROMOUTSIDE; break;
+				case 238:
+				    TrapwarpingBug |= FROMOUTSIDE; break;
+				case 239:
+				    EnthuEffect |= FROMOUTSIDE; break;
+				case 240:
+				    MikraEffect |= FROMOUTSIDE; break;
+				case 241:
+				    GotsTooGoodEffect |= FROMOUTSIDE; break;
+				case 242:
+				    NoFunWallsEffect |= FROMOUTSIDE; break;
+				case 243:
+				    CradleChaosEffect |= FROMOUTSIDE; break;
+				case 244:
+				    TezEffect |= FROMOUTSIDE; break;
+				case 245:
+				    KillerRoomEffect |= FROMOUTSIDE; break;
 
 
 			}
@@ -4204,7 +4254,7 @@ int duration, blackngvar;
 {
 		if (LongScrewup || u.uprops[LONG_SCREWUP].extrinsic || have_longscrewupstone()) duration *= 20;
 
-		switch (rnd(235)) {
+		switch (rnd(245)) {
 
 			case 1: RMBLoss += rnz(duration); break;
 			case 2: NoDropProblem += rnz(duration); break;
@@ -4470,8 +4520,306 @@ int duration, blackngvar;
 			case 233: SanityTrebleEffect += rnz(duration); break;
 			case 234: StatDecreaseBug += rnz(duration); break;
 			case 235: SimeoutBug += rnz(duration); break;
+			case 236: GiantExplorerBug += rnz(duration); break;
+			case 237: YawmBug += rnz(duration); break;
+			case 238: TrapwarpingBug += rnz(duration); break;
+			case 239: EnthuEffect += rnz(duration); break;
+			case 240: MikraEffect += rnz(duration); break;
+			case 241: GotsTooGoodEffect += rnz(duration); break;
+			case 242: NoFunWallsEffect += rnz(duration); break;
+			case 243: CradleChaosEffect += rnz(duration); break;
+			case 244: TezEffect += rnz(duration); break;
+			case 245: KillerRoomEffect += rnz(duration); break;
 
 		}
+
+}
+
+void
+specificnastytrapeffect(efftype, nastyduration, blackngvar)
+int efftype, nastyduration, blackngvar;
+{
+	switch (efftype) {
+
+		case 1: RMBLoss += rnz(nastyduration); break;
+		case 2: NoDropProblem += rnz(nastyduration); break;
+		case 3: DSTWProblem += rnz(nastyduration); break;
+		case 4: StatusTrapProblem += rnz(nastyduration); 
+			if (HConfusion) set_itimeout(&HeavyConfusion, HConfusion);
+			if (HStun) set_itimeout(&HeavyStunned, HStun);
+			if (HNumbed) set_itimeout(&HeavyNumbed, HNumbed);
+			if (HFeared) set_itimeout(&HeavyFeared, HFeared);
+			if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
+			if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+			if (HDimmed) set_itimeout(&HeavyDimmed, HDimmed);
+			if (Blinded) set_itimeout(&HeavyBlind, Blinded);
+			if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
+			break;
+		case 5: Superscroller += rnz(nastyduration * (Role_if(PM_GRADUATE) ? 2 : Role_if(PM_GEEK) ? 5 : 10) ); 
+			(void) makemon(&mons[PM_SCROLLER_MASTER], 0, 0, NO_MINVENT);
+			break;
+		case 6: MenuBug += rnz(nastyduration); break;
+		case 7: FreeHandLoss += rnz(nastyduration); break;
+		case 8: Unidentify += rnz(nastyduration); break;
+		case 9: Thirst += rnz(nastyduration); break;
+		case 10: LuckLoss += rnz(nastyduration); break;
+		case 11: ShadesOfGrey += rnz(nastyduration); break;
+		case 12: FaintActive += rnz(nastyduration); break;
+		case 13: Itemcursing += rnz(nastyduration); break;
+		case 14: DifficultyIncreased += rnz(nastyduration); break;
+		case 15: Deafness += rnz(nastyduration); flags.soundok = 0; break;
+		case 16: CasterProblem += rnz(nastyduration); break;
+		case 17: WeaknessProblem += rnz(nastyduration); break;
+		case 18: RotThirteen += rnz(nastyduration); break;
+		case 19: BishopGridbug += rnz(nastyduration); break;
+		case 20: UninformationProblem += rnz(nastyduration); break;
+		case 21: StairsProblem += rnz(nastyduration); break;
+		case 22: AlignmentProblem += rnz(nastyduration); break;
+		case 23: ConfusionProblem += rnz(nastyduration); break;
+		case 24: SpeedBug += rnz(nastyduration); break;
+		case 25: DisplayLoss += rnz(nastyduration); break;
+		case 26: SpellLoss += rnz(nastyduration); break;
+		case 27: YellowSpells += rnz(nastyduration); break;
+		case 28: AutoDestruct += rnz(nastyduration); break;
+		case 29: MemoryLoss += rnz(nastyduration); break;
+		case 30: InventoryLoss += rnz(nastyduration); break;
+		case 31: {
+	
+			if (BlackNgWalls) break;
+	
+			BlackNgWalls = blackngvar;
+			if (BlackNgWalls < 100) BlackNgWalls = 100;
+			(void) makemon(&mons[PM_BLACKY], 0, 0, NO_MM_FLAGS);
+			break;
+		}
+		case 32: IntrinsicLossProblem += rnz(nastyduration); break;
+		case 33: BloodLossProblem += rnz(nastyduration); break;
+		case 34: BadEffectProblem += rnz(nastyduration); break;
+		case 35: TrapCreationProblem += rnz(nastyduration); break;
+		case 36: AutomaticVulnerabilitiy += rnz(nastyduration); break;
+		case 37: TeleportingItems += rnz(nastyduration); break;
+		case 38: NastinessProblem += rnz(nastyduration); break;
+		case 39: CaptchaProblem += rnz(nastyduration); break;
+		case 40: FarlookProblem += rnz(nastyduration); break;
+		case 41: RespawnProblem += rnz(nastyduration); break;
+		case 42: RecurringAmnesia += rnz(nastyduration); break;
+		case 43: BigscriptEffect += rnz(nastyduration); break;
+		case 44: {
+			BankTrapEffect += rnz(nastyduration);
+			if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1 + (long)mvitals[PM_ARABELLA_THE_MONEY_THIEF].born));
+			u.bankcashamount += u.ugold;
+			u.ugold = 0;
+	
+			break;
+		}
+		case 45: MapTrapEffect += rnz(nastyduration); break;
+		case 46: TechTrapEffect += rnz(nastyduration); break;
+		case 47: RecurringDisenchant += rnz(nastyduration); break;
+		case 48: verisiertEffect += rnz(nastyduration); break;
+		case 49: ChaosTerrain += rnz(nastyduration); break;
+		case 50: Muteness += rnz(nastyduration); break;
+		case 51: EngravingDoesntWork += rnz(nastyduration); break;
+		case 52: MagicDeviceEffect += rnz(nastyduration); break;
+		case 53: BookTrapEffect += rnz(nastyduration); break;
+		case 54: LevelTrapEffect += rnz(nastyduration); break;
+		case 55: QuizTrapEffect += rnz(nastyduration); break;
+		case 56: FastMetabolismEffect += rnz(nastyduration); break;
+		case 57: NoReturnEffect += rnz(nastyduration); break;
+		case 58: AlwaysEgotypeMonsters += rnz(nastyduration); break;
+		case 59: TimeGoesByFaster += rnz(nastyduration); break;
+		case 60: FoodIsAlwaysRotten += rnz(nastyduration); break;
+		case 61: AllSkillsUnskilled += rnz(nastyduration); break;
+		case 62: AllStatsAreLower += rnz(nastyduration); break;
+		case 63: PlayerCannotTrainSkills += rnz(nastyduration); break;
+		case 64: PlayerCannotExerciseStats += rnz(nastyduration); break;
+		case 65: TurnLimitation += rnz(nastyduration); break;
+		case 66: WeakSight += rnz(nastyduration); break;
+		case 67: RandomMessages += rnz(nastyduration); break;
+
+		case 68: Desecration += rnz(nastyduration); break;
+		case 69: StarvationEffect += rnz(nastyduration); break;
+		case 70: NoDropsEffect += rnz(nastyduration); break;
+		case 71: LowEffects += rnz(nastyduration); break;
+		case 72: InvisibleTrapsEffect += rnz(nastyduration); break;
+		case 73: GhostWorld += rnz(nastyduration); break;
+		case 74: Dehydration += rnz(nastyduration); break;
+		case 75: HateTrapEffect += rnz(nastyduration); break;
+		case 76: TotterTrapEffect += rnz(nastyduration); break;
+		case 77: Nonintrinsics += rnz(nastyduration); break;
+		case 78: Dropcurses += rnz(nastyduration); break;
+		case 79: Nakedness += rnz(nastyduration); break;
+		case 80: Antileveling += rnz(nastyduration); break;
+		case 81: ItemStealingEffect += rnz(nastyduration); break;
+		case 82: Rebellions += rnz(nastyduration); break;
+		case 83: CrapEffect += rnz(nastyduration); break;
+		case 84: ProjectilesMisfire += rnz(nastyduration); break;
+		case 85: WallTrapping += rnz(nastyduration); break;
+		case 86: DisconnectedStairs += rnz(nastyduration); break;
+		case 87: InterfaceScrewed += rnz(nastyduration); break;
+		case 88: Bossfights += rnz(nastyduration); break;
+		case 89: EntireLevelMode += rnz(nastyduration); break;
+		case 90: BonesLevelChange += rnz(nastyduration); break;
+		case 91: AutocursingEquipment += rnz(nastyduration); break;
+		case 92: HighlevelStatus += rnz(nastyduration); break;
+		case 93: SpellForgetting += rnz(nastyduration); break;
+		case 94: SoundEffectBug += rnz(nastyduration); break;
+		case 95: TimerunBug += rnz(nastyduration); break;
+		case 96: LootcutBug += rnz(nastyduration); break;
+		case 97: MonsterSpeedBug += rnz(nastyduration); break;
+		case 98: ScalingBug += rnz(nastyduration); break;
+		case 99: EnmityBug += rnz(nastyduration); break;
+		case 100: WhiteSpells += rnz(nastyduration); break;
+		case 101: CompleteGraySpells += rnz(nastyduration); break;
+		case 102: QuasarVision += rnz(nastyduration); break;
+		case 103: MommaBugEffect += rnz(nastyduration); break;
+		case 104: HorrorBugEffect += rnz(nastyduration); break;
+		case 105: ArtificerBug += rnz(nastyduration); break;
+		case 106: WereformBug += rnz(nastyduration); break;
+		case 107: NonprayerBug += rnz(nastyduration); break;
+		case 108: EvilPatchEffect += rnz(nastyduration); break;
+		case 109: HardModeEffect += rnz(nastyduration); break;
+		case 110: SecretAttackBug += rnz(nastyduration); break;
+		case 111: EaterBugEffect += rnz(nastyduration); break;
+		case 112: CovetousnessBug += rnz(nastyduration); break;
+		case 113: NotSeenBug += rnz(nastyduration); break;
+		case 114: DarkModeBug += rnz(nastyduration); break;
+		case 115: AntisearchEffect += rnz(nastyduration); break;
+		case 116: HomicideEffect += rnz(nastyduration); break;
+		case 117: NastynationBug += rnz(nastyduration); break;
+		case 118: WakeupCallBug += rnz(nastyduration); break;
+		case 119: GrayoutBug += rnz(nastyduration); break;
+		case 120: GrayCenterBug += rnz(nastyduration); break;
+		case 121: CheckerboardBug += rnz(nastyduration); break;
+		case 122: ClockwiseSpinBug += rnz(nastyduration); break;
+		case 123: CounterclockwiseSpin += rnz(nastyduration); break;
+		case 124: LagBugEffect += rnz(nastyduration); break;
+		case 125: BlesscurseEffect += rnz(nastyduration); break;
+		case 126: DeLightBug += rnz(nastyduration); break;
+		case 127: DischargeBug += rnz(nastyduration); break;
+		case 128: TrashingBugEffect += rnz(nastyduration); break;
+		case 129: FilteringBug += rnz(nastyduration); break;
+		case 130: DeformattingBug += rnz(nastyduration); break;
+		case 131: FlickerStripBug += rnz(nastyduration); break;
+		case 132: UndressingEffect += rnz(nastyduration); break;
+		case 133: Hyperbluewalls += rnz(nastyduration); break;
+		case 134: NoliteBug += rnz(nastyduration); break;
+		case 135: ParanoiaBugEffect += rnz(nastyduration); break;
+		case 136: FleecescriptBug += rnz(nastyduration); break;
+		case 137: InterruptEffect += rnz(nastyduration); break;
+		case 138: DustbinBug += rnz(nastyduration); break;
+		case 139: ManaBatteryBug += rnz(nastyduration); break;
+		case 140: Monsterfingers += rnz(nastyduration); break;
+		case 141: MiscastBug += rnz(nastyduration); break;
+		case 142: MessageSuppression += rnz(nastyduration); break;
+		case 143: StuckAnnouncement += rnz(nastyduration); break;
+		case 144: BloodthirstyEffect += rnz(nastyduration); break;
+		case 145: MaximumDamageBug += rnz(nastyduration); break;
+		case 146: LatencyBugEffect += rnz(nastyduration); break;
+		case 147: StarlitBug += rnz(nastyduration); break;
+		case 148: KnowledgeBug += rnz(nastyduration); break;
+		case 149: HighscoreBug += rnz(nastyduration); break;
+		case 150: PinkSpells += rnz(nastyduration); break;
+		case 151: GreenSpells += rnz(nastyduration); break;
+		case 152: EvencoreEffect += rnz(nastyduration); break;
+		case 153: UnderlayerBug += rnz(nastyduration); break;
+		case 154: DamageMeterBug += rnz(nastyduration); break;
+		case 155: ArbitraryWeightBug += rnz(nastyduration); break;
+		case 156: FuckedInfoBug += rnz(nastyduration); break;
+		case 157: BlackSpells += rnz(nastyduration); break;
+		case 158: CyanSpells += rnz(nastyduration); break;
+		case 159: HeapEffectBug += rnz(nastyduration); break;
+		case 160: BlueSpells += rnz(nastyduration); break;
+		case 161: TronEffect += rnz(nastyduration); break;
+		case 162: RedSpells += rnz(nastyduration); break;
+		case 163: TooHeavyEffect += rnz(nastyduration); break;
+		case 164: ElongationBug += rnz(nastyduration); break;
+		case 165: WrapoverEffect += rnz(nastyduration); break;
+		case 166: DestructionEffect += rnz(nastyduration); break;
+		case 167: MeleePrefixBug += rnz(nastyduration); break;
+		case 168: AutomoreBug += rnz(nastyduration); break;
+		case 169: UnfairAttackBug += rnz(nastyduration); break;
+		case 170: OrangeSpells += rnz(nastyduration); break;
+		case 171: VioletSpells += rnz(nastyduration); break;
+		case 172: LongingEffect += rnz(nastyduration); break;
+		case 173: CursedParts += rnz(nastyduration); break;
+		case 174: Quaversal += rnz(nastyduration); break;
+		case 175: AppearanceShuffling += rnz(nastyduration); break;
+		case 176: BrownSpells += rnz(nastyduration); break;
+		case 177: Choicelessness += rnz(nastyduration); break;
+		case 178: Goldspells += rnz(nastyduration); break;
+		case 179: Deprovement += rnz(nastyduration); break;
+		case 180: InitializationFail += rnz(nastyduration); break;
+		case 181: GushlushEffect += rnz(nastyduration); break;
+		case 182: SoiltypeEffect += rnz(nastyduration); break;
+		case 183: DangerousTerrains += rnz(nastyduration); break;
+		case 184: FalloutEffect += rnz(nastyduration); break;
+		case 185: MojibakeEffect += rnz(nastyduration); break;
+		case 186: GravationEffect += rnz(nastyduration); break;
+		case 187: UncalledEffect += rnz(nastyduration); break;
+		case 188: ExplodingDiceEffect += rnz(nastyduration); break;
+		case 189: PermacurseEffect += rnz(nastyduration); break;
+		case 190: ShroudedIdentity += rnz(nastyduration); break;
+		case 191: FeelerGauges += rnz(nastyduration); break;
+		case 192: LongScrewup += rnz(nastyduration * 20); break;
+		case 193: WingYellowChange += rnz(nastyduration); break;
+		case 194: LifeSavingBug += rnz(nastyduration); break;
+		case 195: CurseuseEffect += rnz(nastyduration); break;
+		case 196: CutNutritionEffect += rnz(nastyduration); break;
+		case 197: SkillLossEffect += rnz(nastyduration); break;
+		case 198: AutopilotEffect += rnz(nastyduration); break;
+		case 199: MysteriousForceActive += rnz(nastyduration); break;
+		case 200: MonsterGlyphChange += rnz(nastyduration); break;
+		case 201: ChangingDirectives += rnz(nastyduration); break;
+		case 202: ContainerKaboom += rnz(nastyduration); break;
+		case 203: StealDegrading += rnz(nastyduration); break;
+		case 204: LeftInventoryBug += rnz(nastyduration); break;
+		case 205: FluctuatingSpeed += rnz(nastyduration); break;
+		case 206: TarmuStrokingNora += rnz(nastyduration); break;
+		case 207: FailureEffects += rnz(nastyduration); break;
+		case 208: BrightCyanSpells += rnz(nastyduration); break;
+		case 209: FrequentationSpawns += rnz(nastyduration); break;
+		case 210: PetAIScrewed += rnz(nastyduration); break;
+		case 211: SatanEffect += rnz(nastyduration); break;
+		case 212: RememberanceEffect += rnz(nastyduration); break;
+		case 213: PokelieEffect += rnz(nastyduration); break;
+		case 214: AlwaysAutopickup += rnz(nastyduration); break;
+		case 215: DywypiProblem += rnz(nastyduration); break;
+		case 216: SilverSpells += rnz(nastyduration); break;
+		case 217: MetalSpells += rnz(nastyduration); break;
+		case 218: PlatinumSpells += rnz(nastyduration); break;
+		case 219: ManlerEffect += rnz(nastyduration); break;
+		case 220: DoorningEffect += rnz(nastyduration); break;
+		case 221: NownsibleEffect += rnz(nastyduration); break;
+		case 222: ElmStreetEffect += rnz(nastyduration); break;
+		case 223: MonnoiseEffect += rnz(nastyduration); break;
+		case 224: RangCallEffect += rnz(nastyduration); break;
+		case 225: RecurringSpellLoss += rnz(nastyduration); break;
+		case 226: AntitrainingEffect += rnz(nastyduration); break;
+		case 227: TechoutBug += rnz(nastyduration); break;
+		case 228: StatDecay += rnz(nastyduration); break;
+		case 229: Movemork += rnz(nastyduration); break;
+		case 230: BadPartBug += rnz(nastyduration); break;
+		case 231: CompletelyBadPartBug += rnz(nastyduration); break;
+		case 232: EvilVariantActive += rnz(nastyduration); break;
+		case 233: SanityTrebleEffect += rnz(nastyduration); break;
+		case 234: StatDecreaseBug += rnz(nastyduration); break;
+		case 235: SimeoutBug += rnz(nastyduration); break;
+		case 236: GiantExplorerBug += rnz(nastyduration); break;
+		case 237: YawmBug += rnz(nastyduration); break;
+		case 238: TrapwarpingBug += rnz(nastyduration); break;
+		case 239: EnthuEffect += rnz(nastyduration); break;
+		case 240: MikraEffect += rnz(nastyduration); break;
+		case 241: GotsTooGoodEffect += rnz(nastyduration); break;
+		case 242: NoFunWallsEffect += rnz(nastyduration); break;
+		case 243: CradleChaosEffect += rnz(nastyduration); break;
+		case 244: TezEffect += rnz(nastyduration); break;
+		case 245: KillerRoomEffect += rnz(nastyduration); break;
+
+		default:
+			impossible("efftype %d called in specificnastytrapeffect()", efftype);
+			break;
+
+	}
 
 }
 

@@ -203,6 +203,7 @@ Boots_on()
 	case HIGH_SCORING_HEELS:
 	case REPEATABLE_BOOTS:
 	case TRON_BOOTS:
+	case KILLER_SPAWN_BOOTS:
 	case RED_SPELL_HEELS:
 	case DESTRUCTIVE_HEELS:
 
@@ -784,6 +785,7 @@ Boots_off()
 	case HIGH_SCORING_HEELS:
 	case REPEATABLE_BOOTS:
 	case TRON_BOOTS:
+	case KILLER_SPAWN_BOOTS:
 	case RED_SPELL_HEELS:
 	case DESTRUCTIVE_HEELS:
 
@@ -2089,6 +2091,8 @@ Helmet_on()
 	case INFOLESS_HELMET:
 	case BLUE_SPELL_HELMET:
 	case MORE_HELMET:
+	case BUGXPLORE_HELMET:
+	case YAWNING_VISOR:
 	
 	case DUMMY_HELMET_A:
 	case DUMMY_HELMET_B:
@@ -2325,6 +2329,8 @@ Helmet_off()
 	case GREEN_SPELL_HELMET:
 	case INFOLESS_HELMET:
 	case BLUE_SPELL_HELMET:
+	case BUGXPLORE_HELMET:
+	case YAWNING_VISOR:
 	case MORE_HELMET:
 
 	case INCORRECTLY_ADJUSTED_HELMET:
@@ -2968,6 +2974,7 @@ Shield_on()
 	case CHROME_SHIELD:
 	case ANTISHADOW_SHIELD:
 	case DIFFICULT_SHIELD:
+	case TEZ_SHIELD:
 	case SPECIAL_SHIELD:
 	case MAGICAL_SHIELD:
 	case SHIELD_OF_PEACE:
@@ -3022,6 +3029,7 @@ Shield_on()
 
 	if (uarms && uarms->otyp == EVIL_DRAGON_SCALE_SHIELD) curse(uarms);
 	if (uarms && uarms->otyp == DIFFICULT_SHIELD) curse(uarms);
+	if (uarms && uarms->otyp == TEZ_SHIELD) curse(uarms);
 
     if (uarms && uarms->oartifact == ART_SHATTERED_DREAMS) {
 		if (!uarms->cursed) {
@@ -3160,6 +3168,7 @@ Shield_off()
 	case ANTISHADOW_SHIELD:
 	case TARRIER:
 	case DIFFICULT_SHIELD:
+	case TEZ_SHIELD:
 	case SPECIAL_SHIELD:
 	case MAGICAL_SHIELD:
 	case SHIELD_OF_PEACE:
@@ -3336,6 +3345,9 @@ Armor_on()
 		if (!uarm->cursed) curse(uarm);
 	}
 	if (uarm && uarm->otyp == EVIL_PLATE_MAIL) {
+		if (!uarm->cursed) curse(uarm);
+	}
+	if (uarm && uarm->otyp == ROBE_OF_DESTINY) {
 		if (!uarm->cursed) curse(uarm);
 	}
 	if (uarm && uarm->otyp == EVIL_LEATHER_ARMOR) {
@@ -3544,6 +3556,8 @@ Amulet_on()
 		break;
 
 	case AMULET_OF_RMB_LOSS:
+	case AMULET_OF_TRAP_WARPING:
+	case AMULET_OF_HI_LEVEL_CASTING:
 	case AMULET_OF_EXPLOSION:
 	case AMULET_OF_ANTI_TELEPORTATION:
 	case AMULET_OF_WRONG_SEEING:
@@ -4062,6 +4076,9 @@ register struct obj *obj;
 	case RIN_TIME_SPENDING:
 	case RIN_FAST_METABOLISM:
 	case RIN_DANGER:
+	case RIN_INCESSANT_FARTING:
+	case RIN_LAMITY:
+	case RIN_WALLFARTING:
 
 	case RIN_LOOTCUT:
 	case RIN_FORM_SHIFTING:
@@ -6703,7 +6720,7 @@ int retry;
 	    all_worn_categories = TRUE;
     }
 
-	if (InitializationFail || u.uprops[INITIALIZATION_FAIL].extrinsic || have_initializationstone()) return 0;
+	if (CannotSelectItemsInPrompts) return 0;
 
     n = query_objlist("What do you want to take off?", invent,
 			SIGNAL_NOMENU|USE_INVLET|INVORDER_SORT,

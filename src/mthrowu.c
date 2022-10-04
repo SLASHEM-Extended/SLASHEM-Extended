@@ -134,6 +134,7 @@ const char *name;	/* if null, then format `obj' */
 			break;
 		case CRYSTAL_SHIELD:
 		case RAPIRAPI:
+		case TEZ_SHIELD:
 		case HIDE_SHIELD:
 			shieldblockrate = 35;
 			break;
@@ -1086,6 +1087,7 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 				break;
 			case CRYSTAL_SHIELD:
 			case RAPIRAPI:
+			case TEZ_SHIELD:
 			case HIDE_SHIELD:
 				shieldblockrate = 45;
 				break;

@@ -1308,6 +1308,10 @@ climdone:
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 20, you are subjected to the wing yellow changer.");
 						else pline("Your auspices say: 20 8");
 						break;
+					case 9:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 20, your sight is reduced if you don't trigger a trap for a while.");
+						else pline("Your auspices say: 20 9");
+						break;
 				}
 
 			} else if (u.urmaxlvlUP == 21) {
@@ -1379,6 +1383,10 @@ climdone:
 					case 8:
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 25, a manler will start chasing you.");
 						else pline("Your auspices say: 25 8");
+						break;
+					case 9:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 25, you will get a giant explorer.");
+						else pline("Your auspices say: 25 9");
 						break;
 				}
 

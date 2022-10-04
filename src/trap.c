@@ -3356,6 +3356,273 @@ int *fail_reason;
 	return mon;
 	}
 
+/* is a given trap considered a "nasty trap"? --Amy */
+boolean
+is_nasty_trap(traptype)
+int traptype;
+{
+	switch (traptype) {
+
+		case RMB_LOSS_TRAP:
+		case UNINFORMATION_TRAP:
+		case BIGSCRIPT_TRAP:
+		case BAD_EFFECT_TRAP:
+		case CAPTCHA_TRAP:
+		case WEAKNESS_TRAP:
+		case TRAINING_TRAP:
+		case ALIGNMENT_TRAP:
+		case DISPLAY_TRAP:
+		case SPELL_LOSS_TRAP:
+		case STEALER_TRAP:
+		case REBELLION_TRAP:
+		case EXERCISE_TRAP:
+		case NUPESELL_TRAP:
+		case CASTER_TRAP:
+		case QUIZ_TRAP:
+		case INTRINSIC_LOSS_TRAP:
+		case NONINTRINSICAL_TRAP:
+		case LOW_STATS_TRAP:
+		case CRAP_TRAP:
+		case YELLOW_SPELL_TRAP:
+		case MISFIRE_TRAP:
+		case SOUND_TRAP:
+		case LOW_EFFECT_TRAP:
+		case EGOTRAP:
+		case LEVEL_TRAP:
+		case WEAK_SIGHT_TRAP:
+		case DEHYDRATION_TRAP:
+		case RANDOM_MESSAGE_TRAP:
+		case MULTIPLY_TRAP:
+		case TRAP_OF_ROTTENNESS:
+		case DSTW_TRAP:
+		case STATUS_TRAP:
+		case MENU_TRAP:
+		case AUTO_DESTRUCT_TRAP:
+		case DIFFICULTY_TRAP:
+		case BANK_TRAP:
+		case STAIRS_TRAP:
+		case FREE_HAND_TRAP:
+		case AUTO_VULN_TRAP:
+		case STARVATION_TRAP:
+		case HATE_TRAP:
+		case UNSKILLED_TRAP:
+		case MAGIC_DEVICE_TRAP:
+		case DROPCURSE_TRAP:
+		case ROT_THIRTEEN_TRAP:
+		case TRAP_OF_NO_RETURN:
+		case GHOST_WORLD_TRAP:
+		case DROP_TRAP:
+		case ENGRAVING_TRAP:
+		case BLOOD_LOSS_TRAP:
+		case BOOK_TRAP:
+		case MEMORY_TRAP:
+		case RESPAWN_TRAP:
+		case MAP_TRAP:
+		case METABOLIC_TRAP:
+		case UNIDENTIFY_TRAP:
+		case NTLL_TRAP:
+		case INVENTORY_TRAP:
+		case THIRST_TRAP:
+		case VERISIERT:
+		case DROPLESS_TRAP:
+		case NAKEDNESS_TRAP:
+		case FAINT_TRAP:
+		case MUTENESS_TRAP:
+		case TRAP_OF_WALLS:
+		case CURSE_TRAP:
+		case CHAOS_TRAP:
+		case FARLOOK_TRAP:
+		case SHADES_OF_GREY_TRAP:
+		case TELE_ITEMS_TRAP:
+		case TECH_TRAP:
+		case FAST_FORWARD_TRAP:
+		case LIMITATION_TRAP:
+		case DESECRATION_TRAP:
+		case BISHOP_TRAP:
+		case SPEED_TRAP:
+		case CONFUSION_TRAP:
+		case INVISIBLE_TRAP:
+		case LUCK_TRAP:
+		case ONLY_TRAP:
+		case DISENCHANT_TRAP:
+		case BLACK_NG_WALL_TRAP:
+		case ANTILEVEL_TRAP:
+		case SUPERSCROLLER_TRAP:
+		case TOTTER_TRAP:
+		case NASTINESS_TRAP:
+		case DISCONNECT_TRAP:
+		case INTERFACE_SCREW_TRAP:
+		case BOSSFIGHT_TRAP:
+		case ENTIRE_LEVEL_TRAP:
+		case BONES_TRAP:
+		case AUTOCURSE_TRAP:
+		case HIGHLEVEL_TRAP:
+		case SPELL_FORGETTING_TRAP:
+		case SOUND_EFFECT_TRAP:
+		case TIMERUN_TRAP:
+
+		case LOOTCUT_TRAP:
+		case MONSTER_SPEED_TRAP:
+		case SCALING_TRAP:
+		case ENMITY_TRAP:
+		case WHITE_SPELL_TRAP:
+		case COMPLETE_GRAY_SPELL_TRAP:
+		case QUASAR_TRAP:
+		case MOMMA_TRAP:
+		case HORROR_TRAP:
+		case ARTIFICER_TRAP:
+		case WEREFORM_TRAP:
+		case NON_PRAYER_TRAP:
+		case EVIL_PATCH_TRAP:
+		case HARD_MODE_TRAP:
+		case SECRET_ATTACK_TRAP:
+		case EATER_TRAP:
+		case COVETOUSNESS_TRAP:
+		case NOT_SEEN_TRAP:
+		case DARK_MODE_TRAP:
+		case ANTISEARCH_TRAP:
+		case HOMICIDE_TRAP:
+		case NASTY_NATION_TRAP:
+		case WAKEUP_CALL_TRAP:
+		case GRAYOUT_TRAP:
+		case GRAY_CENTER_TRAP:
+		case CHECKERBOARD_TRAP:
+		case CLOCKWISE_SPIN_TRAP:
+		case COUNTERCLOCKWISE_SPIN_TRAP:
+		case LAG_TRAP:
+		case BLESSCURSE_TRAP:
+		case DE_LIGHT_TRAP:
+		case DISCHARGE_TRAP:
+		case TRASHING_TRAP:
+		case FILTERING_TRAP:
+		case DEFORMATTING_TRAP:
+		case FLICKER_STRIP_TRAP:
+		case UNDRESSING_TRAP:
+		case HYPERBLUEWALL_TRAP:
+		case NOLITE_TRAP:
+		case PARANOIA_TRAP:
+		case FLEECESCRIPT_TRAP:
+		case INTERRUPT_TRAP:
+		case DUSTBIN_TRAP:
+		case MANA_BATTERY_TRAP:
+		case MONSTERFINGERS_TRAP:
+		case MISCAST_TRAP:
+		case MESSAGE_SUPPRESSION_TRAP:
+		case STUCK_ANNOUNCEMENT_TRAP:
+		case BLOODTHIRSTY_TRAP:
+		case MAXIMUM_DAMAGE_TRAP:
+		case LATENCY_TRAP:
+		case STARLIT_TRAP:
+		case KNOWLEDGE_TRAP:
+		case HIGHSCORE_TRAP:
+		case PINK_SPELL_TRAP:
+		case GREEN_SPELL_TRAP:
+		case EVC_TRAP:
+		case UNDERLAYER_TRAP:
+		case DAMAGE_METER_TRAP:
+		case ARBITRARY_WEIGHT_TRAP:
+		case FUCKED_INFO_TRAP:
+		case BLACK_SPELL_TRAP:
+		case CYAN_SPELL_TRAP:
+		case HEAP_TRAP:
+		case BLUE_SPELL_TRAP:
+		case TRON_TRAP:
+		case RED_SPELL_TRAP:
+		case TOO_HEAVY_TRAP:
+		case ELONGATION_TRAP:
+		case WRAPOVER_TRAP:
+		case DESTRUCTION_TRAP:
+		case MELEE_PREFIX_TRAP:
+		case AUTOMORE_TRAP:
+		case UNFAIR_ATTACK_TRAP:
+		case ORANGE_SPELL_TRAP:
+		case VIOLET_SPELL_TRAP:
+		case TRAP_OF_LONGING:
+		case CURSED_PART_TRAP:
+		case QUAVERSAL_TRAP:
+		case APPEARANCE_SHUFFLING_TRAP:
+		case BROWN_SPELL_TRAP:
+		case CHOICELESS_TRAP:
+		case GOLDSPELL_TRAP:
+		case DEPROVEMENT_TRAP:
+		case INITIALIZATION_TRAP:
+		case GUSHLUSH_TRAP:
+		case SOILTYPE_TRAP:
+		case DANGEROUS_TERRAIN_TRAP:
+		case FALLOUT_TRAP:
+		case MOJIBAKE_TRAP:
+		case GRAVATION_TRAP:
+		case UNCALLED_TRAP:
+		case EXPLODING_DICE_TRAP:
+		case PERMACURSE_TRAP:
+		case SHROUDED_IDENTITY_TRAP:
+		case FEELER_GAUGES_TRAP:
+		case LONG_SCREWUP_TRAP:
+		case WING_YELLOW_CHANGER:
+		case LIFE_SAVING_TRAP:
+		case CURSEUSE_TRAP:
+		case CUT_NUTRITION_TRAP:
+		case SKILL_LOSS_TRAP:
+		case AUTOPILOT_TRAP:
+		case FORCE_TRAP:
+		case MONSTER_GLYPH_TRAP:
+		case CHANGING_DIRECTIVE_TRAP:
+		case CONTAINER_KABOOM_TRAP:
+		case STEAL_DEGRADE_TRAP:
+		case LEFT_INVENTORY_TRAP:
+		case FLUCTUATING_SPEED_TRAP:
+		case TARMUSTROKINGNORA_TRAP:
+		case FAILURE_TRAP:
+		case BRIGHT_CYAN_SPELL_TRAP:
+		case FREQUENTATION_SPAWN_TRAP:
+		case PET_AI_TRAP:
+		case SATAN_TRAP:
+		case REMEMBERANCE_TRAP:
+		case POKELIE_TRAP:
+		case AUTOPICKUP_TRAP:
+		case DYWYPI_TRAP:
+		case SILVER_SPELL_TRAP:
+		case METAL_SPELL_TRAP:
+		case PLATINUM_SPELL_TRAP:
+		case MANLER_TRAP:
+		case DOORNING_TRAP:
+		case NOWNSIBLE_TRAP:
+		case ELM_STREET_TRAP:
+		case MONNOISE_TRAP:
+		case RANG_CALL_TRAP:
+		case RECURRING_SPELL_LOSS_TRAP:
+		case ANTITRAINING_TRAP:
+		case TECHOUT_TRAP:
+		case STAT_DECAY_TRAP:
+		case MOVEMORK_TRAP:
+		case BAD_PART_TRAP:
+		case COMPLETELY_BAD_PART_TRAP:
+		case EVIL_VARIANT_TRAP:
+		case SANITY_TREBLE_TRAP:
+		case STAT_DECREASE_TRAP:
+		case SIMEOUT_TRAP:
+		case GIANT_EXPLORER_TRAP:
+		case TRAPWARP_TRAP:
+		case YAWM_TRAP:
+		case CRADLE_OF_CHAOS_TRAP:
+		case TEZCATLIPOCA_TRAP:
+		case ENTHUMESIS_TRAP:
+		case MIKRAANESIS_TRAP:
+		case GOTS_TOO_GOOD_TRAP:
+		case KILLER_ROOM_TRAP:
+		case NO_FUN_WALLS_TRAP:
+
+			return TRUE;
+
+		default:
+			return FALSE;
+
+	}
+
+	return FALSE;
+
+}
+
 /*
  * You've either stepped onto a statue trap's location or you've triggered a
  * statue trap by searching next to it or by trying to break it with a wand
@@ -3474,8 +3741,7 @@ unsigned trflags;
 	/* Players could deduce the position of a nasty trap by running in a corridor. This would probably come into effect
 	 * rarely, but the fact that it was possible at all was unintentional, so I'm closing this loophole just to cover
 	 * my butt. Nasty traps are supposed to be really difficult to spot! --Amy */
-	if (ttype != RMB_LOSS_TRAP && ttype != AUTOMATIC_SWITCHER && ttype != MENU_TRAP && ttype != SPEED_TRAP && ttype != DISPLAY_TRAP && ttype != SPELL_LOSS_TRAP && ttype != YELLOW_SPELL_TRAP && ttype != AUTO_DESTRUCT_TRAP && ttype != MEMORY_TRAP && ttype != INVENTORY_TRAP && ttype != SUPERSCROLLER_TRAP && ttype != NUPESELL_TRAP && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != BLACK_NG_WALL_TRAP && ttype != FREE_HAND_TRAP && ttype != UNIDENTIFY_TRAP && ttype != THIRST_TRAP && ttype != LUCK_TRAP && ttype != SHADES_OF_GREY_TRAP && ttype != FAINT_TRAP && ttype != CURSE_TRAP && ttype != DIFFICULTY_TRAP && ttype != SOUND_TRAP && ttype != DROP_TRAP && ttype != CASTER_TRAP && ttype != WEAKNESS_TRAP && ttype != ROT_THIRTEEN_TRAP && ttype != ALIGNMENT_TRAP && ttype != BISHOP_TRAP && ttype != STAIRS_TRAP && ttype != DSTW_TRAP && ttype != STATUS_TRAP && ttype != LOOTCUT_TRAP && ttype != MONSTER_SPEED_TRAP && ttype != SCALING_TRAP && ttype != ENMITY_TRAP && ttype != WHITE_SPELL_TRAP && ttype != COMPLETE_GRAY_SPELL_TRAP && ttype != QUASAR_TRAP && ttype != MOMMA_TRAP && ttype != HORROR_TRAP && ttype != ARTIFICER_TRAP && ttype != WEREFORM_TRAP && ttype != NON_PRAYER_TRAP && ttype != EVIL_PATCH_TRAP && ttype != HARD_MODE_TRAP && ttype != SECRET_ATTACK_TRAP && ttype != EATER_TRAP && ttype != COVETOUSNESS_TRAP && ttype != NOT_SEEN_TRAP && ttype != DARK_MODE_TRAP && ttype != ANTISEARCH_TRAP && ttype != HOMICIDE_TRAP && ttype !=  NASTY_NATION_TRAP && ttype != WAKEUP_CALL_TRAP && ttype != GRAYOUT_TRAP && ttype != GRAY_CENTER_TRAP && ttype != CHECKERBOARD_TRAP && ttype != CLOCKWISE_SPIN_TRAP && ttype != COUNTERCLOCKWISE_SPIN_TRAP && ttype != LAG_TRAP && ttype != BLESSCURSE_TRAP && ttype != DE_LIGHT_TRAP && ttype != DISCHARGE_TRAP && ttype != TRASHING_TRAP && ttype != FILTERING_TRAP && ttype != DEFORMATTING_TRAP && ttype != FLICKER_STRIP_TRAP && ttype != UNDRESSING_TRAP && ttype != HYPERBLUEWALL_TRAP && ttype != NOLITE_TRAP && ttype != PARANOIA_TRAP && ttype != FLEECESCRIPT_TRAP && ttype != INTERRUPT_TRAP && ttype != DUSTBIN_TRAP && ttype != MANA_BATTERY_TRAP && ttype != MONSTERFINGERS_TRAP && ttype != MISCAST_TRAP && ttype != MESSAGE_SUPPRESSION_TRAP && ttype != STUCK_ANNOUNCEMENT_TRAP && ttype != BLOODTHIRSTY_TRAP && ttype != MAXIMUM_DAMAGE_TRAP && ttype != LATENCY_TRAP && ttype != STARLIT_TRAP && ttype != KNOWLEDGE_TRAP && ttype != HIGHSCORE_TRAP && ttype != PINK_SPELL_TRAP && ttype != GREEN_SPELL_TRAP && ttype != EVC_TRAP && ttype != UNDERLAYER_TRAP && ttype != DAMAGE_METER_TRAP && ttype != ARBITRARY_WEIGHT_TRAP && ttype != FUCKED_INFO_TRAP && ttype != BLACK_SPELL_TRAP && ttype != CYAN_SPELL_TRAP && ttype != HEAP_TRAP && ttype != BLUE_SPELL_TRAP && ttype != TRON_TRAP && ttype != RED_SPELL_TRAP && ttype != TOO_HEAVY_TRAP && ttype != ELONGATION_TRAP && ttype != WRAPOVER_TRAP && ttype != DESTRUCTION_TRAP && ttype != MELEE_PREFIX_TRAP && ttype != AUTOMORE_TRAP && ttype != UNFAIR_ATTACK_TRAP && ttype != UNINFORMATION_TRAP && ttype != PET_TRAP && ttype != SPREADING_TRAP && ttype != ADJACENT_TRAP && ttype != SUPERTHING_TRAP && ttype != BAD_PART_TRAP && ttype != COMPLETELY_BAD_PART_TRAP && ttype != EVIL_VARIANT_TRAP && ttype != TIMERUN_TRAP && ttype != SANITY_TREBLE_TRAP && ttype != STAT_DECREASE_TRAP && ttype != SIMEOUT_TRAP && ttype != CONFUSION_TRAP && ttype != INTRINSIC_LOSS_TRAP && ttype != BLOOD_LOSS_TRAP && ttype != BAD_EFFECT_TRAP && ttype != MULTIPLY_TRAP && ttype != AUTO_VULN_TRAP && ttype != TELE_ITEMS_TRAP && ttype != NASTINESS_TRAP && ttype != FARLOOK_TRAP && ttype != CAPTCHA_TRAP && ttype != RESPAWN_TRAP && ttype != RECURRING_AMNESIA_TRAP && ttype != BIGSCRIPT_TRAP && ttype != BANK_TRAP && ttype != ONLY_TRAP && ttype != MAP_TRAP && ttype != TECH_TRAP && ttype != DISENCHANT_TRAP && ttype != VERISIERT && ttype != CHAOS_TRAP && ttype != MUTENESS_TRAP && ttype != NTLL_TRAP && ttype != ENGRAVING_TRAP && ttype != MAGIC_DEVICE_TRAP && ttype != BOOK_TRAP && ttype != LEVEL_TRAP && ttype != QUIZ_TRAP && ttype != LOUDSPEAKER && ttype != ARABELLA_SPEAKER && ttype != ORANGE_SPELL_TRAP && ttype != VIOLET_SPELL_TRAP && ttype != TRAP_OF_LONGING && ttype != CURSED_PART_TRAP && ttype != QUAVERSAL_TRAP && ttype != APPEARANCE_SHUFFLING_TRAP && ttype != BROWN_SPELL_TRAP && ttype != CHOICELESS_TRAP && ttype != GOLDSPELL_TRAP && ttype != DEPROVEMENT_TRAP && ttype != INITIALIZATION_TRAP && ttype != GUSHLUSH_TRAP && ttype != SOILTYPE_TRAP && ttype != DANGEROUS_TERRAIN_TRAP && ttype != FALLOUT_TRAP && ttype != MOJIBAKE_TRAP && ttype != GRAVATION_TRAP && ttype != UNCALLED_TRAP && ttype != EXPLODING_DICE_TRAP && ttype != PERMACURSE_TRAP && ttype != SHROUDED_IDENTITY_TRAP && ttype != FEELER_GAUGES_TRAP && ttype != LONG_SCREWUP_TRAP && ttype != WING_YELLOW_CHANGER && ttype != LIFE_SAVING_TRAP && ttype != CURSEUSE_TRAP && ttype != CUT_NUTRITION_TRAP && ttype != SKILL_LOSS_TRAP && ttype != AUTOPILOT_TRAP && ttype != FORCE_TRAP && ttype != MONSTER_GLYPH_TRAP && ttype != CHANGING_DIRECTIVE_TRAP && ttype != CONTAINER_KABOOM_TRAP && ttype != STEAL_DEGRADE_TRAP && ttype != LEFT_INVENTORY_TRAP && ttype != FLUCTUATING_SPEED_TRAP && ttype != TARMUSTROKINGNORA_TRAP && ttype != FAILURE_TRAP && ttype != BRIGHT_CYAN_SPELL_TRAP && ttype != FREQUENTATION_SPAWN_TRAP && ttype != PET_AI_TRAP && ttype != SATAN_TRAP && ttype != REMEMBERANCE_TRAP && ttype != POKELIE_TRAP && ttype != AUTOPICKUP_TRAP && ttype != DYWYPI_TRAP && ttype != SILVER_SPELL_TRAP && ttype != METAL_SPELL_TRAP && ttype != PLATINUM_SPELL_TRAP && ttype != MANLER_TRAP && ttype != DOORNING_TRAP && ttype != NOWNSIBLE_TRAP && ttype != ELM_STREET_TRAP && ttype != MONNOISE_TRAP && ttype != RANG_CALL_TRAP && ttype != RECURRING_SPELL_LOSS_TRAP && ttype != ANTITRAINING_TRAP && ttype != TECHOUT_TRAP && ttype != STAT_DECAY_TRAP && ttype != MOVEMORK_TRAP && 
-		ttype != OUT_OF_MAGIC_TRAP && ttype != METABOLIC_TRAP && ttype != TRAP_OF_NO_RETURN && ttype != EGOTRAP && ttype != FAST_FORWARD_TRAP && ttype != TRAP_OF_ROTTENNESS && ttype != UNSKILLED_TRAP && ttype != LOW_STATS_TRAP && ttype != EXERCISE_TRAP && ttype != TRAINING_TRAP && ttype != LIMITATION_TRAP && ttype != WEAK_SIGHT_TRAP && ttype != RANDOM_MESSAGE_TRAP && ttype != DESECRATION_TRAP && ttype != STARVATION_TRAP && ttype != DROPLESS_TRAP && ttype != LOW_EFFECT_TRAP && ttype != INVISIBLE_TRAP && ttype != GHOST_WORLD_TRAP && ttype != DEHYDRATION_TRAP && ttype != HATE_TRAP && ttype != TOTTER_TRAP && ttype != NONINTRINSICAL_TRAP && ttype != DROPCURSE_TRAP && ttype != NAKEDNESS_TRAP && ttype != ANTILEVEL_TRAP && ttype != STEALER_TRAP && ttype != REBELLION_TRAP && ttype != CRAP_TRAP && ttype != MISFIRE_TRAP && ttype != TRAP_OF_WALLS && ttype != DISCONNECT_TRAP && ttype != INTERFACE_SCREW_TRAP && ttype != BOSSFIGHT_TRAP && ttype != ENTIRE_LEVEL_TRAP && ttype != BONES_TRAP && ttype != AUTOCURSE_TRAP && ttype != HIGHLEVEL_TRAP && ttype != SPELL_FORGETTING_TRAP && ttype != SOUND_EFFECT_TRAP && ttype != KOP_CUBE && ttype != BOSS_SPAWNER)
+	if (!is_nasty_trap(ttype) && ttype != AUTOMATIC_SWITCHER && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != PET_TRAP && ttype != SPREADING_TRAP && ttype != ADJACENT_TRAP && ttype != SUPERTHING_TRAP && ttype != ONLY_TRAP && ttype != NTLL_TRAP && ttype != LOUDSPEAKER && ttype != ARABELLA_SPEAKER && ttype != KOP_CUBE && ttype != BOSS_SPAWNER)
 		nomul(0, 0, FALSE);
 
 	if (NownsibleEffect || u.uprops[NOWNSIBLE_EFFECT].extrinsic || have_nownsiblestone() ) {
@@ -3512,8 +3778,7 @@ unsigned trflags;
 		    defsyms[trap_to_defsym(ttype)].explanation);
 		return;
 	    }
-	    if(!Fumbling && ttype != MAGIC_PORTAL && ttype != RMB_LOSS_TRAP && ttype != AUTOMATIC_SWITCHER && ttype != MENU_TRAP && ttype != SPEED_TRAP && ttype != DISPLAY_TRAP && ttype != SPELL_LOSS_TRAP && ttype != YELLOW_SPELL_TRAP && ttype != AUTO_DESTRUCT_TRAP && ttype != MEMORY_TRAP && ttype != INVENTORY_TRAP && ttype != SUPERSCROLLER_TRAP && ttype != NUPESELL_TRAP && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != BLACK_NG_WALL_TRAP && ttype != FREE_HAND_TRAP && ttype != UNIDENTIFY_TRAP && ttype != THIRST_TRAP && ttype != LUCK_TRAP && ttype != SHADES_OF_GREY_TRAP && ttype != FAINT_TRAP && ttype != CURSE_TRAP && ttype != DIFFICULTY_TRAP && ttype != SOUND_TRAP && ttype != DROP_TRAP && ttype != CASTER_TRAP && ttype != WEAKNESS_TRAP && ttype != ROT_THIRTEEN_TRAP && ttype != ALIGNMENT_TRAP && ttype != BISHOP_TRAP && ttype != STAIRS_TRAP && ttype != DSTW_TRAP && ttype != STATUS_TRAP && ttype != PET_TRAP && ttype != SPREADING_TRAP && ttype != ADJACENT_TRAP && ttype != SUPERTHING_TRAP && ttype != LOOTCUT_TRAP && ttype != MONSTER_SPEED_TRAP && ttype != SCALING_TRAP && ttype != ENMITY_TRAP && ttype != WHITE_SPELL_TRAP && ttype != COMPLETE_GRAY_SPELL_TRAP && ttype != QUASAR_TRAP && ttype != MOMMA_TRAP && ttype != HORROR_TRAP && ttype != ARTIFICER_TRAP && ttype != WEREFORM_TRAP && ttype != NON_PRAYER_TRAP && ttype != EVIL_PATCH_TRAP && ttype != HARD_MODE_TRAP && ttype != SECRET_ATTACK_TRAP && ttype != EATER_TRAP && ttype != COVETOUSNESS_TRAP && ttype != NOT_SEEN_TRAP && ttype != DARK_MODE_TRAP && ttype != ANTISEARCH_TRAP && ttype != HOMICIDE_TRAP && ttype !=  NASTY_NATION_TRAP && ttype != WAKEUP_CALL_TRAP && ttype != GRAYOUT_TRAP && ttype != GRAY_CENTER_TRAP && ttype != CHECKERBOARD_TRAP && ttype != CLOCKWISE_SPIN_TRAP && ttype != COUNTERCLOCKWISE_SPIN_TRAP && ttype != LAG_TRAP && ttype != BLESSCURSE_TRAP && ttype != DE_LIGHT_TRAP && ttype != DISCHARGE_TRAP && ttype != TRASHING_TRAP && ttype != FILTERING_TRAP && ttype != DEFORMATTING_TRAP && ttype != FLICKER_STRIP_TRAP && ttype != UNDRESSING_TRAP && ttype != HYPERBLUEWALL_TRAP && ttype != NOLITE_TRAP && ttype != PARANOIA_TRAP && ttype != FLEECESCRIPT_TRAP && ttype != INTERRUPT_TRAP && ttype != DUSTBIN_TRAP && ttype != MANA_BATTERY_TRAP && ttype != MONSTERFINGERS_TRAP && ttype != MISCAST_TRAP && ttype != MESSAGE_SUPPRESSION_TRAP && ttype != STUCK_ANNOUNCEMENT_TRAP && ttype != BLOODTHIRSTY_TRAP && ttype != MAXIMUM_DAMAGE_TRAP && ttype != LATENCY_TRAP && ttype != STARLIT_TRAP && ttype != KNOWLEDGE_TRAP && ttype != HIGHSCORE_TRAP && ttype != PINK_SPELL_TRAP && ttype != GREEN_SPELL_TRAP && ttype != EVC_TRAP && ttype != UNDERLAYER_TRAP && ttype != DAMAGE_METER_TRAP && ttype != ARBITRARY_WEIGHT_TRAP && ttype != FUCKED_INFO_TRAP && ttype != BLACK_SPELL_TRAP && ttype != CYAN_SPELL_TRAP && ttype != HEAP_TRAP && ttype != BLUE_SPELL_TRAP && ttype != TRON_TRAP && ttype != RED_SPELL_TRAP && ttype != TOO_HEAVY_TRAP && ttype != ELONGATION_TRAP && ttype != WRAPOVER_TRAP && ttype != DESTRUCTION_TRAP && ttype != MELEE_PREFIX_TRAP && ttype != AUTOMORE_TRAP && ttype != UNFAIR_ATTACK_TRAP && ttype != UNINFORMATION_TRAP && ttype != TIMERUN_TRAP && ttype != SANITY_TREBLE_TRAP && ttype != STAT_DECREASE_TRAP && ttype != SIMEOUT_TRAP && ttype != BAD_PART_TRAP && ttype != COMPLETELY_BAD_PART_TRAP && ttype != EVIL_VARIANT_TRAP && ttype != CONFUSION_TRAP && ttype != INTRINSIC_LOSS_TRAP && ttype != BLOOD_LOSS_TRAP && ttype != BAD_EFFECT_TRAP && ttype != MULTIPLY_TRAP && ttype != AUTO_VULN_TRAP && ttype != TELE_ITEMS_TRAP && ttype != NASTINESS_TRAP && ttype != FARLOOK_TRAP && ttype != CAPTCHA_TRAP && ttype != RESPAWN_TRAP && ttype != RECURRING_AMNESIA_TRAP && ttype != BIGSCRIPT_TRAP && ttype != BANK_TRAP && ttype != ONLY_TRAP && ttype != MAP_TRAP && ttype != TECH_TRAP && ttype != DISENCHANT_TRAP && ttype != VERISIERT && ttype != CHAOS_TRAP && ttype != MUTENESS_TRAP && ttype != NTLL_TRAP && ttype != ENGRAVING_TRAP && ttype != MAGIC_DEVICE_TRAP && ttype != BOOK_TRAP && ttype != LEVEL_TRAP && ttype != QUIZ_TRAP && ttype != LOUDSPEAKER && ttype != ARABELLA_SPEAKER && ttype != ORANGE_SPELL_TRAP && ttype != VIOLET_SPELL_TRAP && ttype != TRAP_OF_LONGING && ttype != CURSED_PART_TRAP && ttype != QUAVERSAL_TRAP && ttype != APPEARANCE_SHUFFLING_TRAP && ttype != BROWN_SPELL_TRAP && ttype != CHOICELESS_TRAP && ttype != GOLDSPELL_TRAP && ttype != DEPROVEMENT_TRAP && ttype != INITIALIZATION_TRAP && ttype != GUSHLUSH_TRAP && ttype != SOILTYPE_TRAP && ttype != DANGEROUS_TERRAIN_TRAP && ttype != FALLOUT_TRAP && ttype != MOJIBAKE_TRAP && ttype != GRAVATION_TRAP && ttype != UNCALLED_TRAP && ttype != EXPLODING_DICE_TRAP && ttype != PERMACURSE_TRAP && ttype != SHROUDED_IDENTITY_TRAP && ttype != FEELER_GAUGES_TRAP && ttype != LONG_SCREWUP_TRAP && ttype != WING_YELLOW_CHANGER && ttype != LIFE_SAVING_TRAP && ttype != CURSEUSE_TRAP && ttype != CUT_NUTRITION_TRAP && ttype != SKILL_LOSS_TRAP && ttype != AUTOPILOT_TRAP && ttype != FORCE_TRAP && ttype != MONSTER_GLYPH_TRAP && ttype != CHANGING_DIRECTIVE_TRAP && ttype != CONTAINER_KABOOM_TRAP && ttype != STEAL_DEGRADE_TRAP && ttype != LEFT_INVENTORY_TRAP && ttype != FLUCTUATING_SPEED_TRAP && ttype != TARMUSTROKINGNORA_TRAP && ttype != FAILURE_TRAP && ttype != BRIGHT_CYAN_SPELL_TRAP && ttype != FREQUENTATION_SPAWN_TRAP && ttype != PET_AI_TRAP && ttype != SATAN_TRAP && ttype != REMEMBERANCE_TRAP && ttype != POKELIE_TRAP && ttype != AUTOPICKUP_TRAP && ttype != DYWYPI_TRAP && ttype != SILVER_SPELL_TRAP && ttype != METAL_SPELL_TRAP && ttype != PLATINUM_SPELL_TRAP && ttype != MANLER_TRAP && ttype != DOORNING_TRAP && ttype != NOWNSIBLE_TRAP && ttype != ELM_STREET_TRAP && ttype != MONNOISE_TRAP && ttype != RANG_CALL_TRAP && ttype != RECURRING_SPELL_LOSS_TRAP && ttype != ANTITRAINING_TRAP && ttype != TECHOUT_TRAP && ttype != STAT_DECAY_TRAP && ttype != MOVEMORK_TRAP && ttype != WRONG_STAIRS && 
-		ttype != OUT_OF_MAGIC_TRAP && ttype != METABOLIC_TRAP && ttype != TRAP_OF_NO_RETURN && ttype != EGOTRAP && ttype != FAST_FORWARD_TRAP && ttype != TRAP_OF_ROTTENNESS && ttype != UNSKILLED_TRAP && ttype != LOW_STATS_TRAP && ttype != EXERCISE_TRAP && ttype != TRAINING_TRAP && ttype != LIMITATION_TRAP && ttype != WEAK_SIGHT_TRAP && ttype != RANDOM_MESSAGE_TRAP && ttype != DESECRATION_TRAP && ttype != STARVATION_TRAP && ttype != DROPLESS_TRAP && ttype != LOW_EFFECT_TRAP && ttype != INVISIBLE_TRAP && ttype != GHOST_WORLD_TRAP && ttype != DEHYDRATION_TRAP && ttype != HATE_TRAP && ttype != TOTTER_TRAP && ttype != NONINTRINSICAL_TRAP && ttype != DROPCURSE_TRAP && ttype != NAKEDNESS_TRAP && ttype != ANTILEVEL_TRAP && ttype != STEALER_TRAP && ttype != REBELLION_TRAP && ttype != CRAP_TRAP && ttype != MISFIRE_TRAP && ttype != TRAP_OF_WALLS && ttype != DISCONNECT_TRAP && ttype != INTERFACE_SCREW_TRAP && ttype != BOSSFIGHT_TRAP && ttype != ENTIRE_LEVEL_TRAP && ttype != BONES_TRAP && ttype != AUTOCURSE_TRAP && ttype != HIGHLEVEL_TRAP && ttype != SPELL_FORGETTING_TRAP && ttype != SOUND_EFFECT_TRAP && !forcebungle &&
+	    if(!Fumbling && !is_nasty_trap(ttype) && ttype != MAGIC_PORTAL && ttype != AUTOMATIC_SWITCHER && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != PET_TRAP && ttype != SPREADING_TRAP && ttype != ADJACENT_TRAP && ttype != ONLY_TRAP && ttype != NTLL_TRAP && ttype != LOUDSPEAKER && ttype != ARABELLA_SPEAKER && !forcebungle &&
 		(!rn2(5) ||
 	    ((ttype == PIT || ttype == SPIKED_PIT || ttype == GIANT_CHASM || ttype == SHIT_PIT || ttype == MANA_PIT || ttype == ANOXIC_PIT || ttype == ACID_PIT) && is_clinger(youmonst.data)))) {
 		You("escape %s %s.",
@@ -5490,6 +5755,7 @@ newegomon:
 		    case 20:
 			{
 			register struct obj *identotmp;
+			if (CannotSelectItemsInPrompts) break;
 			pline("You may fully identify an object!");
 
 secureidchoice:
@@ -11905,6 +12171,96 @@ madnesseffect:
 
 		 break;
 
+		 case GIANT_EXPLORER_TRAP:
+
+			if (GiantExplorerBug) break;
+			u.cnd_nastytrapamount++;
+
+			GiantExplorerBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case TRAPWARP_TRAP:
+
+			if (TrapwarpingBug) break;
+			u.cnd_nastytrapamount++;
+
+			TrapwarpingBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case YAWM_TRAP:
+
+			if (YawmBug) break;
+			u.cnd_nastytrapamount++;
+
+			YawmBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case CRADLE_OF_CHAOS_TRAP:
+
+			if (CradleChaosEffect) break;
+			u.cnd_nastytrapamount++;
+
+			CradleChaosEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case TEZCATLIPOCA_TRAP:
+
+			if (TezEffect) break;
+			u.cnd_nastytrapamount++;
+
+			TezEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case ENTHUMESIS_TRAP:
+
+			if (EnthuEffect) break;
+			u.cnd_nastytrapamount++;
+
+			EnthuEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case MIKRAANESIS_TRAP:
+
+			if (MikraEffect) break;
+			u.cnd_nastytrapamount++;
+
+			MikraEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case GOTS_TOO_GOOD_TRAP:
+
+			if (GotsTooGoodEffect) break;
+			u.cnd_nastytrapamount++;
+
+			GotsTooGoodEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case KILLER_ROOM_TRAP:
+
+			if (KillerRoomEffect) break;
+			u.cnd_nastytrapamount++;
+
+			KillerRoomEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case NO_FUN_WALLS_TRAP:
+
+			if (NoFunWallsEffect) break;
+			u.cnd_nastytrapamount++;
+
+			NoFunWallsEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
 		 case SANITY_TREBLE_TRAP:
 
 			if (SanityTrebleEffect) break;
@@ -16222,7 +16578,7 @@ skillrandomizeredo:
 
 		 case NASTINESS_TRAP:
 
-			switch (rnd(235)) {
+			switch (rnd(245)) {
 
 				case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 				case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -16486,6 +16842,16 @@ skillrandomizeredo:
 			case 233: SanityTrebleEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 234: StatDecreaseBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 235: SimeoutBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 236: GiantExplorerBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 237: YawmBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 238: TrapwarpingBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 239: EnthuEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 240: MikraEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 241: GotsTooGoodEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 242: NoFunWallsEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 243: CradleChaosEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 244: TezEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 245: KillerRoomEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 			}
 
@@ -17088,7 +17454,7 @@ skillrandomizeredo:
 
 		 case AUTOMATIC_SWITCHER:
 
-			if (RMBLoss || Superscroller || DisplayLoss || SpellLoss || YellowSpells || AutoDestruct || MemoryLoss || InventoryLoss || BlackNgWalls || MenuBug || SpeedBug || FreeHandLoss || Unidentify || Thirst || LuckLoss || ShadesOfGrey || FaintActive || Itemcursing || DifficultyIncreased || Deafness || CasterProblem || WeaknessProblem || NoDropProblem || RotThirteen || BishopGridbug || ConfusionProblem || DSTWProblem || StatusTrapProblem || AlignmentProblem || StairsProblem || UninformationProblem || TimerunBug || BadPartBug || CompletelyBadPartBug || EvilVariantActive || IntrinsicLossProblem || BloodLossProblem || BadEffectProblem || TrapCreationProblem ||AutomaticVulnerabilitiy || TeleportingItems || NastinessProblem || CaptchaProblem || RespawnProblem || FarlookProblem || RecurringAmnesia || BigscriptEffect || BankTrapEffect || MapTrapEffect || TechTrapEffect || RecurringDisenchant || verisiertEffect || ChaosTerrain || Muteness || EngravingDoesntWork || MagicDeviceEffect || BookTrapEffect || LevelTrapEffect || QuizTrapEffect || FastMetabolismEffect || NoReturnEffect || AlwaysEgotypeMonsters || TimeGoesByFaster ||  FoodIsAlwaysRotten || AllSkillsUnskilled || AllStatsAreLower || PlayerCannotTrainSkills || PlayerCannotExerciseStats || TurnLimitation || WeakSight || RandomMessages || Desecration || StarvationEffect || NoDropsEffect || LowEffects || InvisibleTrapsEffect || GhostWorld || Dehydration || HateTrapEffect || TotterTrapEffect || Nonintrinsics || Dropcurses || Nakedness || Antileveling || ItemStealingEffect || Rebellions || CrapEffect || ProjectilesMisfire || WallTrapping || DisconnectedStairs || InterfaceScrewed || Bossfights || EntireLevelMode || BonesLevelChange || AutocursingEquipment || HighlevelStatus || SpellForgetting || SoundEffectBug || LootcutBug || MonsterSpeedBug || ScalingBug || EnmityBug || WhiteSpells || CompleteGraySpells || QuasarVision || MommaBugEffect || HorrorBugEffect || ArtificerBug || WereformBug || NonprayerBug || EvilPatchEffect || HardModeEffect || SecretAttackBug || EaterBugEffect || CovetousnessBug || NotSeenBug || DarkModeBug || AntisearchEffect || HomicideEffect || NastynationBug || WakeupCallBug || GrayoutBug || GrayCenterBug || CheckerboardBug || ClockwiseSpinBug || CounterclockwiseSpin || LagBugEffect || BlesscurseEffect || DeLightBug || DischargeBug || TrashingBugEffect || FilteringBug || DeformattingBug || FlickerStripBug || UndressingEffect || Hyperbluewalls || NoliteBug || ParanoiaBugEffect || FleecescriptBug || InterruptEffect || DustbinBug || ManaBatteryBug || Monsterfingers || MiscastBug || MessageSuppression || StuckAnnouncement || BloodthirstyEffect || MaximumDamageBug || LatencyBugEffect || StarlitBug || KnowledgeBug || HighscoreBug || PinkSpells || GreenSpells || EvencoreEffect || UnderlayerBug || DamageMeterBug || ArbitraryWeightBug || FuckedInfoBug || BlackSpells || CyanSpells || HeapEffectBug || BlueSpells || TronEffect || RedSpells || TooHeavyEffect || ElongationBug || WrapoverEffect || DestructionEffect || MeleePrefixBug || AutomoreBug || UnfairAttackBug || OrangeSpells || VioletSpells || LongingEffect || CursedParts || Quaversal || AppearanceShuffling || BrownSpells || Choicelessness || Goldspells || Deprovement || InitializationFail || GushlushEffect || SoiltypeEffect || DangerousTerrains || FalloutEffect || MojibakeEffect || GravationEffect || UncalledEffect || ExplodingDiceEffect || PermacurseEffect || ShroudedIdentity || FeelerGauges || LongScrewup || WingYellowChange || LifeSavingBug || CurseuseEffect || CutNutritionEffect || SkillLossEffect || AutopilotEffect || MysteriousForceActive || MonsterGlyphChange || ChangingDirectives || ContainerKaboom || StealDegrading || LeftInventoryBug || FluctuatingSpeed || TarmuStrokingNora || FailureEffects || BrightCyanSpells || FrequentationSpawns || PetAIScrewed || SatanEffect || RememberanceEffect || PokelieEffect || AlwaysAutopickup || DywypiProblem || SilverSpells || MetalSpells || PlatinumSpells || ManlerEffect || DoorningEffect || NownsibleEffect || ElmStreetEffect || MonnoiseEffect || RangCallEffect || RecurringSpellLoss || AntitrainingEffect || TechoutBug || StatDecay || Movemork || SanityTrebleEffect || StatDecreaseBug || SimeoutBug) {
+			if (RMBLoss || Superscroller || DisplayLoss || SpellLoss || YellowSpells || AutoDestruct || MemoryLoss || InventoryLoss || BlackNgWalls || MenuBug || SpeedBug || FreeHandLoss || Unidentify || Thirst || LuckLoss || ShadesOfGrey || FaintActive || Itemcursing || DifficultyIncreased || Deafness || CasterProblem || WeaknessProblem || NoDropProblem || RotThirteen || BishopGridbug || ConfusionProblem || DSTWProblem || StatusTrapProblem || AlignmentProblem || StairsProblem || UninformationProblem || TimerunBug || BadPartBug || CompletelyBadPartBug || EvilVariantActive || IntrinsicLossProblem || BloodLossProblem || BadEffectProblem || TrapCreationProblem ||AutomaticVulnerabilitiy || TeleportingItems || NastinessProblem || CaptchaProblem || RespawnProblem || FarlookProblem || RecurringAmnesia || BigscriptEffect || BankTrapEffect || MapTrapEffect || TechTrapEffect || RecurringDisenchant || verisiertEffect || ChaosTerrain || Muteness || EngravingDoesntWork || MagicDeviceEffect || BookTrapEffect || LevelTrapEffect || QuizTrapEffect || FastMetabolismEffect || NoReturnEffect || AlwaysEgotypeMonsters || TimeGoesByFaster ||  FoodIsAlwaysRotten || AllSkillsUnskilled || AllStatsAreLower || PlayerCannotTrainSkills || PlayerCannotExerciseStats || TurnLimitation || WeakSight || RandomMessages || Desecration || StarvationEffect || NoDropsEffect || LowEffects || InvisibleTrapsEffect || GhostWorld || Dehydration || HateTrapEffect || TotterTrapEffect || Nonintrinsics || Dropcurses || Nakedness || Antileveling || ItemStealingEffect || Rebellions || CrapEffect || ProjectilesMisfire || WallTrapping || DisconnectedStairs || InterfaceScrewed || Bossfights || EntireLevelMode || BonesLevelChange || AutocursingEquipment || HighlevelStatus || SpellForgetting || SoundEffectBug || LootcutBug || MonsterSpeedBug || ScalingBug || EnmityBug || WhiteSpells || CompleteGraySpells || QuasarVision || MommaBugEffect || HorrorBugEffect || ArtificerBug || WereformBug || NonprayerBug || EvilPatchEffect || HardModeEffect || SecretAttackBug || EaterBugEffect || CovetousnessBug || NotSeenBug || DarkModeBug || AntisearchEffect || HomicideEffect || NastynationBug || WakeupCallBug || GrayoutBug || GrayCenterBug || CheckerboardBug || ClockwiseSpinBug || CounterclockwiseSpin || LagBugEffect || BlesscurseEffect || DeLightBug || DischargeBug || TrashingBugEffect || FilteringBug || DeformattingBug || FlickerStripBug || UndressingEffect || Hyperbluewalls || NoliteBug || ParanoiaBugEffect || FleecescriptBug || InterruptEffect || DustbinBug || ManaBatteryBug || Monsterfingers || MiscastBug || MessageSuppression || StuckAnnouncement || BloodthirstyEffect || MaximumDamageBug || LatencyBugEffect || StarlitBug || KnowledgeBug || HighscoreBug || PinkSpells || GreenSpells || EvencoreEffect || UnderlayerBug || DamageMeterBug || ArbitraryWeightBug || FuckedInfoBug || BlackSpells || CyanSpells || HeapEffectBug || BlueSpells || TronEffect || RedSpells || TooHeavyEffect || ElongationBug || WrapoverEffect || DestructionEffect || MeleePrefixBug || AutomoreBug || UnfairAttackBug || OrangeSpells || VioletSpells || LongingEffect || CursedParts || Quaversal || AppearanceShuffling || BrownSpells || Choicelessness || Goldspells || Deprovement || InitializationFail || GushlushEffect || SoiltypeEffect || DangerousTerrains || FalloutEffect || MojibakeEffect || GravationEffect || UncalledEffect || ExplodingDiceEffect || PermacurseEffect || ShroudedIdentity || FeelerGauges || LongScrewup || WingYellowChange || LifeSavingBug || CurseuseEffect || CutNutritionEffect || SkillLossEffect || AutopilotEffect || MysteriousForceActive || MonsterGlyphChange || ChangingDirectives || ContainerKaboom || StealDegrading || LeftInventoryBug || FluctuatingSpeed || TarmuStrokingNora || FailureEffects || BrightCyanSpells || FrequentationSpawns || PetAIScrewed || SatanEffect || RememberanceEffect || PokelieEffect || AlwaysAutopickup || DywypiProblem || SilverSpells || MetalSpells || PlatinumSpells || ManlerEffect || DoorningEffect || NownsibleEffect || ElmStreetEffect || MonnoiseEffect || RangCallEffect || RecurringSpellLoss || AntitrainingEffect || TechoutBug || StatDecay || Movemork || SanityTrebleEffect || StatDecreaseBug || SimeoutBug || GiantExplorerBug || YawmBug || TrapwarpingBug || EnthuEffect || MikraEffect || GotsTooGoodEffect || NoFunWallsEffect || CradleChaosEffect || TezEffect || KillerRoomEffect) {
 
 			cure_nasty_traps();
 
@@ -19788,6 +20154,16 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case ALIGNMENT_TRAP:
 		case UNINFORMATION_TRAP:
 		case TIMERUN_TRAP:
+		case GIANT_EXPLORER_TRAP:
+		case TRAPWARP_TRAP:
+		case YAWM_TRAP:
+		case CRADLE_OF_CHAOS_TRAP:
+		case TEZCATLIPOCA_TRAP:
+		case ENTHUMESIS_TRAP:
+		case MIKRAANESIS_TRAP:
+		case GOTS_TOO_GOOD_TRAP:
+		case KILLER_ROOM_TRAP:
+		case NO_FUN_WALLS_TRAP:
 		case BAD_PART_TRAP:
 		case COMPLETELY_BAD_PART_TRAP:
 		case EVIL_VARIANT_TRAP:

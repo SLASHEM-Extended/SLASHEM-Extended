@@ -784,6 +784,17 @@ static struct {
 	{ "illusion", ILLUSION_TRAP },
 	{ "diablo", DIABLO_TRAP },
 
+	{ "giant explorer", GIANT_EXPLORER_TRAP },
+	{ "trapwarp", TRAPWARP_TRAP },
+	{ "yawm", YAWM_TRAP },
+	{ "cradle of chaos", CRADLE_OF_CHAOS_TRAP },
+	{ "tez", TEZCATLIPOCA_TRAP },
+	{ "enthu", ENTHUMESIS_TRAP },
+	{ "mikra", MIKRAANESIS_TRAP },
+	{ "gotstogood", GOTS_TOO_GOOD_TRAP },
+	{ "killer room", KILLER_ROOM_TRAP },
+	{ "no fun walls", NO_FUN_WALLS_TRAP },
+
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }
 };

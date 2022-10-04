@@ -2614,6 +2614,7 @@ inaccurateguns:
 				break;
 			case CRYSTAL_SHIELD:
 			case RAPIRAPI:
+			case TEZ_SHIELD:
 			case HIDE_SHIELD:
 				shieldblockrate = 45;
 				break;

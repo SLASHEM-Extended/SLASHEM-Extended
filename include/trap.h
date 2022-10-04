@@ -723,6 +723,17 @@ extern struct trap *ftrap;
 #define ILLUSION_TRAP 635 /* illusionmon() */
 #define DIABLO_TRAP 636 /* specialtensmon(327) */
 
+#define GIANT_EXPLORER_TRAP 637
+#define TRAPWARP_TRAP 638
+#define YAWM_TRAP 639
+#define CRADLE_OF_CHAOS_TRAP 640
+#define TEZCATLIPOCA_TRAP 641
+#define ENTHUMESIS_TRAP 642
+#define MIKRAANESIS_TRAP 643
+#define GOTS_TOO_GOOD_TRAP 644
+#define KILLER_ROOM_TRAP 645
+#define NO_FUN_WALLS_TRAP 646
+
 /* todo area
 
 normal ones:
@@ -842,8 +853,8 @@ special ones that don't spawn randomly:
 
 */
 
-#define TIMERUN_TRAP	637
+#define TIMERUN_TRAP	647
 
-#define TRAPNUM 638
+#define TRAPNUM 648
 
 #endif /* TRAP_H */

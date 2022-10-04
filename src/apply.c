@@ -6520,6 +6520,8 @@ doapply()
 
 	case MATERIAL_KIT:
 
+		if (CannotSelectItemsInPrompts) return 0;
+
 		pline("You may change the material of a base item type.");
 materialchoice:
 	    	{
@@ -6649,6 +6651,8 @@ materialchoice:
 		break;
 
 	case CHARGER:
+
+		if (CannotSelectItemsInPrompts) return 0;
 
 		if (obj->unpaid) {
 			struct monst *shkp = shop_keeper(*u.ushops);

@@ -1253,6 +1253,7 @@ playerwearshighheels()
 		if (itemhasappearance(uarmf, APP_PLATINUM_STILETTOS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_SILVER_STILETTOS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_PISTOL_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_MISSYS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_VELVET_PUMPS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_BONE_HEELS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_PARAGRAPH_SHOES)) return TRUE;
@@ -1396,6 +1397,7 @@ struct obj *otmp;
 		if (itemhasappearance(otmp, APP_PLATINUM_STILETTOS)) return TRUE;
 		if (itemhasappearance(otmp, APP_SILVER_STILETTOS)) return TRUE;
 		if (itemhasappearance(otmp, APP_PISTOL_BOOTS)) return TRUE;
+		if (itemhasappearance(otmp, APP_MISSYS)) return TRUE;
 		if (itemhasappearance(otmp, APP_VELVET_PUMPS)) return TRUE;
 		if (itemhasappearance(otmp, APP_BONE_HEELS)) return TRUE;
 		if (itemhasappearance(otmp, APP_PARAGRAPH_SHOES)) return TRUE;
@@ -1465,6 +1467,7 @@ int number;
 		if (itemnumwithappearance(number, APP_PLATINUM_STILETTOS)) return TRUE;
 		if (itemnumwithappearance(number, APP_SILVER_STILETTOS)) return TRUE;
 		if (itemnumwithappearance(number, APP_PISTOL_BOOTS)) return TRUE;
+		if (itemnumwithappearance(number, APP_MISSYS)) return TRUE;
 		if (itemnumwithappearance(number, APP_VELVET_PUMPS)) return TRUE;
 		if (itemnumwithappearance(number, APP_BONE_HEELS)) return TRUE;
 		if (itemnumwithappearance(number, APP_PARAGRAPH_SHOES)) return TRUE;
@@ -1570,6 +1573,7 @@ maybestilettoheels()
 		if (itemhasappearance(uarmf, APP_PLATINUM_STILETTOS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_SILVER_STILETTOS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_PISTOL_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_MISSYS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_WEAPON_LIGHT_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_FAILED_SHOES)) return TRUE;
 
@@ -5213,6 +5217,7 @@ goodeffect()
 				boolean same_color;
 				struct obj *otmp;
 
+				if (CannotSelectItemsInPrompts) break;
 				pline("You may enchant a worn piece of armor.");
 enchantarmorchoice:
 				otmp = getobj(allnoncount, "magically enchant");
@@ -5364,6 +5369,7 @@ enchantarmorchoice:
 			    {
 
 				struct obj *otmp;
+				if (CannotSelectItemsInPrompts) break;
 				pline("You may enchant a weapon.");
 enchantweaponchoice:
 				otmp = getobj(allnoncount, "weapon enchant");
@@ -5469,6 +5475,7 @@ enchantweaponchoice:
 			case 156:
 			case 157:
 			case 158: /* charging */
+				if (CannotSelectItemsInPrompts) break;
 				You("can charge an item.");
 chargingchoice:
 			    	{
@@ -5649,6 +5656,7 @@ chargingchoice:
 
 			    {
 				struct obj *otmp;
+				if (CannotSelectItemsInPrompts) break;
 				pline("You may repair a damaged item.");
 repairitemchoice:
 				otmp = getobj(allnoncount, "magically repair");
@@ -5681,6 +5689,7 @@ repairitemchoice:
 
 			      {
 				struct obj *otmp;
+				if (CannotSelectItemsInPrompts) break;
 				pline("You may erosionproof a worn piece of armor.");
 proofarmorchoice:
 				otmp = getobj(allnoncount, "magically enchant");
@@ -5715,6 +5724,7 @@ proofarmorchoice:
 
 			      {
 				struct obj *otmp;
+				if (CannotSelectItemsInPrompts) break;
 				pline("You may erosionproof a weapon.");
 proofweaponchoice:
 				otmp = getobj(allnoncount, "weapon enchant");
@@ -5779,6 +5789,7 @@ proofweaponchoice:
 				}
 				break;
 			case 38: /* secure identify */
+				if (CannotSelectItemsInPrompts) break;
 				You("can securely identify an item!");
 				{
 				struct obj *otmp;
@@ -5806,6 +5817,7 @@ secureidchoice:
 			case 39: /* secure curse removal */
 				{
 					register struct obj *secrem;
+					if (CannotSelectItemsInPrompts) break;
 					pline("You can perform secure curse removal on an item.");
 secremchoice:
 					secrem = getobj(allnoncount, "uncurse");
@@ -6192,6 +6204,16 @@ cure_nasty_traps()
 	SpellForgetting = 0L;
 	SoundEffectBug = 0L;
 	TimerunBug = 0L;
+	GiantExplorerBug = 0L;
+	YawmBug = 0L;
+	TrapwarpingBug = 0L;
+	EnthuEffect = 0L;
+	MikraEffect = 0L;
+	GotsTooGoodEffect = 0L;
+	NoFunWallsEffect = 0L;
+	CradleChaosEffect = 0L;
+	TezEffect = 0L;
+	KillerRoomEffect = 0L;
 	OrangeSpells = 0L;
 	VioletSpells = 0L;
 	LongingEffect = 0L;
@@ -6538,6 +6560,9 @@ uncurseoneitem()
 	char allowall[2];
 	allowall[0] = ALL_CLASSES; allowall[1] = '\0';
 	struct obj *obj; /* item to uncurse */
+
+	if (CannotSelectItemsInPrompts) return;
+
 uncurseagain:
 	if ( !(obj = getobj(allowall, "uncurse"))) {
 		if (yn("Really exit with no object selected?") == 'y')

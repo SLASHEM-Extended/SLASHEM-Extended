@@ -276,6 +276,7 @@ swaptech()
 	register struct obj *otmp;
 	struct obj *oldswapwep = uswapwep;
 
+	if (CannotSelectItemsInPrompts) return;
 swapweaponchoice:
 	otmp = getobj(allnoncount, "put into your swap weapon slot");
 	if (!otmp) {

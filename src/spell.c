@@ -4313,6 +4313,7 @@ manloop:
 
 	case SPE_BUC_KNOWLEDGE:
 
+		if (CannotSelectItemsInPrompts) break;
 		pline("Choose an item for BUC identification.");
 bucchoice:
 		otmp = getobj(allnoncount, "know the BUC of");
@@ -4497,6 +4498,7 @@ bucchoice:
 
 	case SPE_AULE_SMITHING:
 
+		if (CannotSelectItemsInPrompts) break;
 		pline("Choose an item for erosionproofing.");
 aulechoice:
 		otmp = getobj(allnoncount, "fooproof");
@@ -6178,6 +6180,7 @@ newbossPENT:
 			}
 		    case 20:
 			{
+			if (CannotSelectItemsInPrompts) break;
 			pline("You may fully identify an object!");
 			register struct obj *idobj;
 
@@ -7021,7 +7024,7 @@ secureidchoice:
 		if (rn2(2)) identify_pack(0, 0, 0);
 		if (!rn2(5)) identify_pack(0, 0, 0);
 whisperchoice:
-		{
+		if (!CannotSelectItemsInPrompts) {
 			otmp = getobj(allnoncount, "secure identify");
 
 			if (!otmp) {
@@ -8735,6 +8738,7 @@ dashingchoice:
 
 	case SPE_POSSESSION:
 		{
+			if (CannotSelectItemsInPrompts) break;
 			register struct obj *poss;
 possessionchoice:
             	poss = getobj((const char *)revivables, "possess");
@@ -8853,6 +8857,7 @@ possessionchoice:
 			}
 
 totemsummonchoice:
+			if (CannotSelectItemsInPrompts) break;
             	poss = getobj((const char *)revivables, "revive");
             	if (!poss) {
 				if (yn("Really exit with no object selected?") == 'y')
@@ -10037,6 +10042,7 @@ controlagain:
 		break;
 	case SPE_REPAIR_ARMOR:
 		/* removes one level of erosion (both types) for a random piece of armor */
+		if (CannotSelectItemsInPrompts) break;
 repairarmorchoice:
 		otmp = getobj(allnoncount, "magically enchant");
 		/*otmp = some_armor(&youmonst);*/
@@ -10070,6 +10076,7 @@ repairarmorchoice:
 
 	case SPE_REROLL_ARTIFACT:
 
+		if (CannotSelectItemsInPrompts) break;
 		pline("You may choose an artifact in your inventory to reroll. It may not be a worn one though.");
 rerollartifactchoice:
 		otmp = getobj(allnoncount, "reroll");

@@ -1155,6 +1155,17 @@ E boolean have_spellforgettingstone(void);
 E boolean have_soundeffectstone(void);
 E boolean have_timerunstone(void);
 
+E boolean have_giantexplorerstone(void);
+E boolean have_trapwarpstone(void);
+E boolean have_yawmstone(void);
+E boolean have_chaoscradlestone(void);
+E boolean have_tezstone(void);
+E boolean have_bossgodstone(void);
+E boolean have_ubergodstone(void);
+E boolean have_toogoodgostone(void);
+E boolean have_killerroomstone(void);
+E boolean have_funwallstone(void);
+
 E boolean have_sanitytreblestone(void);
 E boolean have_statdecreasestone(void);
 E boolean have_simeoutstone(void);
@@ -3242,6 +3253,8 @@ E boolean rust_dmg(struct obj *,const char *,int,BOOLEAN_P,struct monst *);
 E boolean wither_dmg(struct obj *,const char *,int,BOOLEAN_P,struct monst *);
 
 E void dofiretrap(struct obj *);
+
+E boolean is_nasty_trap(int);
 
 E void grease_protect(struct obj *,const char *,struct monst *);
 E struct trap *maketrap(int,int,int,int,BOOLEAN_P);

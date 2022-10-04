@@ -960,6 +960,17 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "illusion trap", C(CLR_CYAN)},	/* trap */
 	{'^', "diablo trap", C(CLR_ORANGE)},	/* trap */
 
+	{'^', "giant explorer trap", C(CLR_GRAY)},	/* trap */
+	{'^', "trapwarp trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "yawm trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "cradle of chaos trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "tezcatlipoca trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "enthumesis trap", C(CLR_WHITE)},	/* trap */
+	{'^', "mikraanesis trap", C(CLR_BRIGHT_MAGENTA)},	/* trap */
+	{'^', "go'ts too good trap", C(CLR_RED)},	/* trap */
+	{'^', "killer room trap", C(CLR_RED)},	/* trap */
+	{'^', "no fun walls trap", C(CLR_BLUE)},	/* trap */
+
 	{'^', "timerun trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -1747,6 +1758,17 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_illusion_trap),
 	g_FILLER(S_diablo_trap),
 
+	g_FILLER(S_giant_explorer_trap),
+	g_FILLER(S_trapwarp_trap),
+	g_FILLER(S_yawm_trap),
+	g_FILLER(S_cradle_of_chaos_trap),
+	g_FILLER(S_tez_trap),
+	g_FILLER(S_enthu_trap),
+	g_FILLER(S_mikra_trap),
+	g_FILLER(S_gots_too_good_trap),
+	g_FILLER(S_killer_room_trap),
+	g_FILLER(S_no_fun_walls_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -2522,6 +2544,17 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_illusion_trap),
 	g_FILLER(S_diablo_trap),
 
+	g_FILLER(S_giant_explorer_trap),
+	g_FILLER(S_trapwarp_trap),
+	g_FILLER(S_yawm_trap),
+	g_FILLER(S_cradle_of_chaos_trap),
+	g_FILLER(S_tez_trap),
+	g_FILLER(S_enthu_trap),
+	g_FILLER(S_mikra_trap),
+	g_FILLER(S_gots_too_good_trap),
+	g_FILLER(S_killer_room_trap),
+	g_FILLER(S_no_fun_walls_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -3293,6 +3326,17 @@ static uchar wing_graphics[MAXPCHARS] = {
 	g_FILLER(S_military_trap),
 	g_FILLER(S_illusion_trap),
 	g_FILLER(S_diablo_trap),
+
+	g_FILLER(S_giant_explorer_trap),
+	g_FILLER(S_trapwarp_trap),
+	g_FILLER(S_yawm_trap),
+	g_FILLER(S_cradle_of_chaos_trap),
+	g_FILLER(S_tez_trap),
+	g_FILLER(S_enthu_trap),
+	g_FILLER(S_mikra_trap),
+	g_FILLER(S_gots_too_good_trap),
+	g_FILLER(S_killer_room_trap),
+	g_FILLER(S_no_fun_walls_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -4066,6 +4110,17 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_military_trap),
 	g_FILLER(S_illusion_trap),
 	g_FILLER(S_diablo_trap),
+
+	g_FILLER(S_giant_explorer_trap),
+	g_FILLER(S_trapwarp_trap),
+	g_FILLER(S_yawm_trap),
+	g_FILLER(S_cradle_of_chaos_trap),
+	g_FILLER(S_tez_trap),
+	g_FILLER(S_enthu_trap),
+	g_FILLER(S_mikra_trap),
+	g_FILLER(S_gots_too_good_trap),
+	g_FILLER(S_killer_room_trap),
+	g_FILLER(S_no_fun_walls_trap),
 
 	g_FILLER(S_timerun_trap),
 
@@ -5047,6 +5102,17 @@ boolean is_rlevel;
 	    showsyms[S_military_trap] = 0x04;
 	    showsyms[S_illusion_trap] = 0x04;
 	    showsyms[S_diablo_trap] = 0x04;
+
+	    showsyms[S_giant_explorer_trap] = 0x04;
+	    showsyms[S_trapwarp_trap] = 0x04;
+	    showsyms[S_yawm_trap] = 0x04;
+	    showsyms[S_cradle_of_chaos_trap] = 0x04;
+	    showsyms[S_tez_trap] = 0x04;
+	    showsyms[S_enthu_trap] = 0x04;
+	    showsyms[S_mikra_trap] = 0x04;
+	    showsyms[S_gots_too_good_trap] = 0x04;
+	    showsyms[S_killer_room_trap] = 0x04;
+	    showsyms[S_no_fun_walls_trap] = 0x04;
 
 	    showsyms[S_timerun_trap] = 0x04;
 #endif /* PUBLIC_SERVER */

@@ -4787,6 +4787,8 @@ register struct obj	*sobj;
 		boolean special_armor;
 		boolean same_color;
 
+		if (CannotSelectItemsInPrompts) break;
+
 		pline("You may enchant a worn piece of armor.");
 enchantarmorchoice:
 		otmp = getobj(allnoncount, "magically enchant");
@@ -5020,6 +5022,8 @@ enchantarmorchoice:
 		boolean special_armor;
 		boolean same_color;
 
+		if (CannotSelectItemsInPrompts) break;
+
 		pline("You may enchant a worn piece of armor.");
 enchantarmorchoiceX:
 		otmp = getobj(allnoncount, "magically enchant");
@@ -5226,6 +5230,7 @@ enchantarmorchoiceX:
 
 	case SCR_REPAIR_ITEM:
 	    {
+		if (CannotSelectItemsInPrompts) break;
 		pline("You may repair a damaged item.");
 repairitemchoice:
 		otmp = getobj(allnoncount, "magically repair");
@@ -5267,6 +5272,8 @@ repairitemchoice:
 		otmp = some_armor(&youmonst);
 
 		if (sobj && sobj->otyp == SCR_DESTROY_ARMOR && sobj->blessed) { /* idea by bhaak */
+
+			if (CannotSelectItemsInPrompts) break;
 			pline("You may enchant a worn piece of armor.");
 destroyarmorchoice:
 			otmp = getobj(allnoncount, "magically enchant");
@@ -5368,6 +5375,7 @@ destroyarmorchoice:
 
 	case SCR_PROOF_ARMOR: /*scroll added by Amy*/
 	      {
+		if (CannotSelectItemsInPrompts) break;
 		pline("You may enchant a worn piece of armor.");
 proofarmorchoice:
 		otmp = getobj(allnoncount, "magically enchant");
@@ -6111,6 +6119,8 @@ proofarmorchoice:
 		break;
 
 	case SCR_INFERIOR_MATERIAL:
+
+		if (CannotSelectItemsInPrompts) break;
 		known = TRUE;
 
 		pline("You have found a scroll of inferior material!");
@@ -6159,6 +6169,8 @@ materialchoice1:
 		break;
 
 	case SCR_REGULAR_MATERIAL:
+
+		if (CannotSelectItemsInPrompts) break;
 		known = TRUE;
 
 		pline("You have found a scroll of regular material!");
@@ -6205,6 +6217,8 @@ materialchoice2:
 		break;
 
 	case SCR_SUPERIOR_MATERIAL:
+
+		if (CannotSelectItemsInPrompts) break;
 		known = TRUE;
 
 		pline("You have found a scroll of superior material!");
@@ -9332,6 +9346,7 @@ retry:
 		    flags.botl = 1;
 		    break;
 		}
+		if (CannotSelectItemsInPrompts) break;
 		known = TRUE;
 		pline("You may charge an object."); /* "this is a scroll of charging" is inappropriate for the spell --Amy */
 chargingchoice:
@@ -9355,6 +9370,7 @@ chargingchoice:
 		    flags.botl = 1;
 		    break;
 		}
+		if (CannotSelectItemsInPrompts) break;
 		known = TRUE;
 		pline("You may powerfully charge an object.");
 		otmp = getobj(allnoncount, "charge");
@@ -9368,6 +9384,7 @@ chargingchoice:
 		break;
 
 	case SCR_RANDOM_ENCHANTMENT:
+		if (CannotSelectItemsInPrompts) break;
 		known = TRUE;
 		pline("You may randomly enchant an object.");
 		if (confused) {
@@ -9805,6 +9822,7 @@ randenchchoice:
 		break;
 
 	case SCR_SECURE_IDENTIFY:
+		if (CannotSelectItemsInPrompts) break;
 		known = TRUE;
 		if(confused) {
 			You("identify this as a secure identify scroll.");
@@ -9835,6 +9853,7 @@ secureidchoice:
 		break;
 
 	case SCR_ARMOR_SPECIALIZATION:
+		if (CannotSelectItemsInPrompts) break;
 		pline("You may enchant a worn piece of armor.");
 armorspecchoice:
 		otmp = getobj(allnoncount, "magically enchant");
@@ -10499,6 +10518,7 @@ newoffmon:
 
 		{
 			register struct obj *secrem;
+			if (CannotSelectItemsInPrompts) break;
 			pline("You found a scroll of secure curse removal.");
 			known = TRUE;
 secremchoice:

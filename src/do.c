@@ -655,6 +655,15 @@ giveback:
 		case RIN_TIME_SPENDING:
 		    pline("The sink seems to age rapidly!");
 		    break;
+		case RIN_INCESSANT_FARTING:
+		    pline("The sink is constantly producing farting noises!");
+		    break;
+		case RIN_LAMITY:
+		    pline("The sink looks really lame.");
+		    break;
+		case RIN_WALLFARTING:
+		    pline("Suddenly, the sink's walls start squeaking!");
+		    break;
 		case RIN_FAST_METABOLISM:
 		    pline("The water vanishes down the drain incredibly quickly!");
 		    break;
@@ -1016,6 +1025,12 @@ register struct obj *obj;
 		break;
 	case AMULET_OF_RMB_LOSS:
 		pline_The("toilet no longer seems there... until you feel for it. Why can't you see it?");
+		break;
+	case AMULET_OF_TRAP_WARPING:
+		pline_The("toilet looks like an opulent throne for a moment!");
+		break;
+	case AMULET_OF_HI_LEVEL_CASTING:
+		pline_The("toilet water is running from all directions!");
 		break;
 	case AMULET_OF_ITEM_TELEPORTATION:
 		pline_The("dust particles and dirt inside the toilet suddenly change their positions!");
@@ -1507,7 +1522,7 @@ int retry;
 	    otmp2 = otmp->nobj;
 	    n_dropped += drop(otmp);
 	}
-    } else if (!(InitializationFail || u.uprops[INITIALIZATION_FAIL].extrinsic || have_initializationstone())) {
+    } else if (!CannotSelectItemsInPrompts) {
 	/* should coordinate with perm invent, maybe not show worn items */
 	n = query_objlist("What would you like to drop?", invent,
 			USE_INVLET|INVORDER_SORT, &pick_list,

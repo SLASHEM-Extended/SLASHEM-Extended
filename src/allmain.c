@@ -3655,6 +3655,7 @@ newbossBQ:
 
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_FULLGREASE && !rn2(5000)) {
 			register struct obj *greasingobj;
+			if (CannotSelectItemsInPrompts) goto greasingdone;
 
 			pline("You may grease an object!");
 greasingchoice:
@@ -4743,6 +4744,7 @@ newbossPOMP:
 
 		if (uarmc && uarmc->oartifact == ART_LAST_STEELING && !rn2(5000) ) {
 			register struct obj *steeling;
+			if (CannotSelectItemsInPrompts) goto steelingdone;
 			pline("You may rustproof an iron object.");
 steelingchoice:
 			steeling = getobj(allowall, "rustproof");
@@ -4764,10 +4766,12 @@ steelingchoice:
 				} else pline("The stack was too big and therefore nothing happens...");
 			}
 		}
+steelingdone:
 
 		/* Amy grepping target: "materialeffect" */
 		if (uarmc && uarmc->oartifact == ART_PROTECT_WHAT_CANNOT_BE_PRO && !rn2(5000) ) {
 			register struct obj *steeling;
+			if (CannotSelectItemsInPrompts) goto protectwhatdone;
 			pline("You may erodeproof a nonerodable object.");
 protectwhatchoice:
 			steeling = getobj(allowall, "erosionproof");
@@ -4799,9 +4803,11 @@ protectwhatchoice:
 				} else pline("The stack was too big and therefore nothing happens...");
 			}
 		}
+protectwhatdone:
 
 		if (uimplant && uimplant->oartifact == ART_FUKROSION && !rn2(2500) ) {
 			register struct obj *steeling;
+			if (CannotSelectItemsInPrompts) goto fukrosiondone;
 			pline("You may repair an eroded object. If you're in a form without hands, the object you pick will also become erosionproof.");
 fukrosionchoice:
 			steeling = getobj(allowall, "repair");
@@ -4821,6 +4827,7 @@ fukrosionchoice:
 			} else pline("The stack was too big and therefore nothing happens...");
 
 		}
+fukrosiondone:
 
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_YES_YOU_CAN && !rn2(500)) {
 			if (spellid(0) != NO_SPELL)  {
@@ -15736,6 +15743,11 @@ boolean new_game;	/* false => restoring an old game */
 
 		/* todo area */
 
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "self-type helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "higher helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dark robe")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "missys")) OBJ_DESCR(objects[i]) = "todo";
+
 	}
 	}
 
@@ -16988,6 +17000,11 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "hard woven cloak")) OBJ_DESCR(objects[i]) = "qattiq to'qilgan plash";
 
 		/* todo area */
+
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "self-type helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "higher helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dark robe")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "missys")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}

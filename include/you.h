@@ -693,7 +693,7 @@ struct you {
 
 	boolean antiamysquad;	/* monster that gives its speech only once */
 
-	/* Extra nastiness - currently only nastinator race, but might add more functionality someday --Amy
+	/* Extra nastiness - nastinator race, but also other stuff uses this --Amy
 	 * timerun (keyword for my grepping) */
 	boolean nastinator01;
 	boolean nastinator02;
@@ -930,6 +930,16 @@ struct you {
 	boolean nastinator233;
 	boolean nastinator234;
 	boolean nastinator235;
+	boolean nastinator236;
+	boolean nastinator237;
+	boolean nastinator238;
+	boolean nastinator239;
+	boolean nastinator240;
+	boolean nastinator241;
+	boolean nastinator242;
+	boolean nastinator243;
+	boolean nastinator244;
+	boolean nastinator245;
 
 	/* SJW role - I wonder if there'd be an easier way to do this... --Amy */
 	int sjwL1E1;

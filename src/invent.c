@@ -6614,6 +6614,148 @@ have_simeoutstone()
 	return(FALSE);
 }
 
+boolean
+have_giantexplorerstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == GIANT_EXPLORER_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator236) return TRUE;
+	if (sjwcheck(236)) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 9) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_trapwarpstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == TRAPWARP_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator237) return TRUE;
+	if (sjwcheck(237)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_yawmstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == YAWM_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator238) return TRUE;
+	if (sjwcheck(238)) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 9) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_chaoscradlestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == CHAOSCRADLE_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator239) return TRUE;
+	if (sjwcheck(239)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_tezstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == TEZ_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator240) return TRUE;
+	if (sjwcheck(240)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_bossgodstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == BOSSGOD_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator241) return TRUE;
+	if (sjwcheck(241)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_ubergodstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == UBERGOD_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator242) return TRUE;
+	if (sjwcheck(242)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_toogoodgostone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == TOO_GOOD_GO_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator243) return TRUE;
+	if (sjwcheck(243)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_killerroomstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == KILLER_ROOM_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator244) return TRUE;
+	if (sjwcheck(244)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_funwallstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == FUNWALL_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator245) return TRUE;
+	if (sjwcheck(245)) return TRUE;
+	return(FALSE);
+}
+
 struct obj *
 o_on(id, objchn)
 unsigned int id;
@@ -7820,7 +7962,7 @@ boolean dumbid;
 	sprintf(buf, "What would you like to identify %s?",
 		first ? "first" : "next");
 identifydialogue:
-	if (InitializationFail || u.uprops[INITIALIZATION_FAIL].extrinsic || have_initializationstone()) return;
+	if (CannotSelectItemsInPrompts) return;
 
 	n = query_objlist(buf, invent, SIGNAL_NOMENU|USE_INVLET|INVORDER_SORT,
 		&pick_list, PICK_ANY, not_fully_identified);
@@ -11443,6 +11585,12 @@ boolean knoweverything;
 			pline("Soft female sandals with fluffy wedge heels.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SUPER_COMFY_HEELS))
 			pline("This pair of combat boots is very comfortable despite having a massive block heel.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SELF_TYPE_HELMET))
+			pline("Due to its randomized appearance, this helmet always spawned with an egotype.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_HIGHER_HELMET))
+			pline("The randomized appearance of this helmet causes it to usually spawn with a higher enchantment value.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_MISSYS))
+			pline("These stiletto heels are supposed to be 'sneaker high heels', but despite that they only count as high heels, not sexy flats.");
 
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
@@ -11673,6 +11821,8 @@ boolean knoweverything;
 				pline("Robes can be worn instead of armor. This is mainly useful for monks and jedi who are penalized for wearing 'real' armor."); break;
 			case ROBE_OF_PROTECTION:
 				pline("If you don't want to wear a real armor, you can use this for some armor class."); break;
+			case ROBE_OF_DESTINY:
+				pline("This robe makes it so that monsters will always spawn with a level that is at least the current monster difficulty. It gives 5 points of armor class and no magic cancellation."); break;
 			case ROBE_OF_STASIS:
 				pline("A robe that prevents you from polymorphing."); break;
 			case ROBE_OF_POWER:
@@ -12335,6 +12485,10 @@ boolean knoweverything;
 				pline("This helmet causes blue spells. It has medium AC and 3 points of magic cancellation."); break;
 			case MORE_HELMET:
 				pline("This helmet disables the --More-- prompts. It has good AC and no magic cancellation."); break;
+			case BUGXPLORE_HELMET:
+				pline("This helmet gives 10 squares of astral vision, but all nasty traps inside that radius trigger automatically. It has very good AC and 3 points of magic cancellation."); break;
+			case YAWNING_VISOR:
+				pline("This helmet gradually reduces the area you see the longer you don't trigger any traps. It has low AC and medium magic cancellation."); break;
 
 			case RARE_HELMET:
 				pline("While wearing this helmet, monsters that would usually be uncommon by a certain frequency will instead be common, so they spawn more often. It has moderate AC and 3 points of magic cancellation."); break;
@@ -12611,6 +12765,8 @@ boolean knoweverything;
 				pline("This shield is made of silver and offers good protection."); break;
 			case MIRROR_SHIELD:
 				pline("A glass shield that reflects beams at who- or whatever shot them."); break;
+			case TEZ_SHIELD:
+				pline("This shield turns monsters opaque. It has low armor class and low magic cancellation."); break;
 			case RAPIRAPI:
 				pline("This is a good shield made of mineral."); break;
 			case HIDE_SHIELD:
@@ -12826,6 +12982,8 @@ boolean knoweverything;
 				pline("This footwear causes fainting. They provide very good AC."); break;
 			case DIFFICULT_BOOTS:
 				pline("This footwear causes increased difficulty. They provide mediocre AC and medium magic cancellation. Wearing them also trains the sexy flats skill."); break;
+			case KILLER_SPAWN_BOOTS:
+				pline("This footwear causes faux killer room spawns. They provide mediocre AC and medium magic cancellation."); break;
 			case BOOTS_OF_WEAKNESS:
 				pline("This footwear causes weakness. They provide good AC and medium magic cancellation."); break;
 			case UGG_BOOTS:
@@ -13545,6 +13703,12 @@ boolean knoweverything;
 				pline("This ring causes the superscroller effect."); break;
 			case RIN_ANTI_DROP:
 				pline("This ring causes items to not drop."); break;
+			case RIN_INCESSANT_FARTING:
+				pline("This ring allows monsters to trap you in a farting web."); break;
+			case RIN_LAMITY:
+				pline("This ring slows you down if you're near full health."); break;
+			case RIN_WALLFARTING:
+				pline("This ring causes walls to fart at you if you accidentally bump into them."); break;
 			case RIN_ENSNARING:
 				pline("This ring causes traps to become invisible."); break;
 			case RIN_DIARRHEA:
@@ -14306,6 +14470,10 @@ boolean knoweverything;
 				pline("This amulet occasionally increases the timeouts of your techniques."); break;
 			case AMULET_OF_BAD_PART:
 				pline("This amulet puts you in the completely bad part."); break;
+			case AMULET_OF_TRAP_WARPING:
+				pline("This amulet causes traps to occasionally morph into different traps."); break;
+			case AMULET_OF_HI_LEVEL_CASTING:
+				pline("This amulet allows hostile monsters to cast every spell."); break;
 			case AMULET_OF_EVIL_VARIANT:
 				pline("This amulet forces you to play in evilvariant mode."); break;
 
@@ -17394,6 +17562,26 @@ boolean knoweverything;
 				pline("A stone that curses itself and causes weak sight."); break;
 			case CHATTER_STONE:
 				pline("A stone that curses itself and causes random messages to appear instead of real ones."); break;
+			case GIANT_EXPLORER_STONE:
+				pline("A stone that curses itself and causes you to get a giant explorer."); break;
+			case TRAPWARP_STONE:
+				pline("A stone that curses itself and causes traps to warp into others."); break;
+			case YAWM_STONE:
+				pline("A stone that curses itself and causes you to yawm(sic) if you trigger no traps for a while."); break;
+			case CHAOSCRADLE_STONE:
+				pline("A stone that curses itself and causes monsters to be leveled up to the monster difficulty."); break;
+			case TEZ_STONE:
+				pline("A stone that curses itself and causes monsters to become opaque."); break;
+			case BOSSGOD_STONE:
+				pline("A stone that curses itself and causes hostile casters to cast all spells."); break;
+			case UBERGOD_STONE:
+				pline("A stone that curses itself and causes monsters to create farting webs underneath you."); break;
+			case TOO_GOOD_GO_STONE:
+				pline("A stone that curses itself and causes you to slow down if you're near full health."); break;
+			case KILLER_ROOM_STONE:
+				pline("A stone that curses itself and causes faux killer rooms to appear."); break;
+			case FUNWALL_STONE:
+				pline("A stone that curses itself and causes walls to fart if you walk into them."); break;
 			case DISCONNECT_STONE:
 				pline("A stone that curses itself and causes disconnected staircases."); break;
 			case SCREW_STONE:

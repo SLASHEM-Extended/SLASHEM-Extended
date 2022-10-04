@@ -3803,6 +3803,7 @@ int tech_no;
 
             case T_SECURE_IDENTIFY:
 
+			if (CannotSelectItemsInPrompts) break;
 			pline("Choose an item for secure identification.");
 
 secureidchoice:
@@ -4071,6 +4072,7 @@ secureidchoice:
 	    case T_BLESSING:
 		allowall[0] = ALL_CLASSES; allowall[1] = '\0';
 		
+		if (CannotSelectItemsInPrompts) break;
 		if ( !(obj = getobj(allowall, "bless"))) return(0);
 		pline("An aura of holiness surrounds your hands!");
                 if (!Blind) (void) Shk_Your(Your_buf, obj);
@@ -4339,6 +4341,8 @@ secureidchoice:
 		t_timeout = rnz(1500);
 		break;
             case T_REVIVE:
+
+		if (CannotSelectItemsInPrompts) break;
 		if (u.uswallow) {
 		    You("%s", no_elbow_room);
 		    return 0;
@@ -5389,6 +5393,8 @@ buttpetmarker:
 	      break;
 
 	    case T_RECHARGE:
+
+		if (CannotSelectItemsInPrompts) break;
 chargingchoice:
 	    	{
 		struct obj *otmpC = getobj(recharge_type, "charge");
@@ -5615,6 +5621,8 @@ resettechdone:
 
 		case T_MILDEN_CURSE:
 
+			if (CannotSelectItemsInPrompts) break;
+
 			allowall[0] = ALL_CLASSES; allowall[1] = '\0';
 		
 			if ( !(obj = getobj(allowall, "milden"))) return(0);
@@ -5772,6 +5780,8 @@ resettechdone:
 			break;
 
 		case T_DELIBERATE_CURSE:
+
+			if (CannotSelectItemsInPrompts) break;
 			allowall[0] = ALL_CLASSES; allowall[1] = '\0';
 			if ( !(obj = getobj(allowall, "curse"))) return(0);
 			obj->bknown = TRUE;
@@ -7578,6 +7588,8 @@ revid_end:
 			break;
 
 		case T_CARD_TRICK:
+
+			if (CannotSelectItemsInPrompts) break;
 cardtrickchoice:
 			otmp = getobj(allnoncount, "duplicate");
 			if (!otmp) {
@@ -8022,6 +8034,7 @@ cardtrickchoice:
 
 		case T_POLYFIX:
 
+			if (CannotSelectItemsInPrompts) break;
 polyfixchoice:
 			otmp = getobj(allnoncount, "polyfix");
 			if (!otmp) {
@@ -8052,6 +8065,7 @@ polyfixchoice:
 
 		case T_SQUEAKY_REPAIR:
 
+			if (CannotSelectItemsInPrompts) break;
 			if (t_at(u.ux, u.uy)) {
 				pline("There is a trap at your location, and therefore the attempt fails!");
 				t_timeout = rnz(8000);
@@ -9399,6 +9413,7 @@ mkwsh_end:
 
 		case T_DEFINALIZE:
 
+			if (CannotSelectItemsInPrompts) break;
 definalizechoice:
 			otmp = getobj(allnoncount, "definalize");
 			if (!otmp) {
@@ -9529,6 +9544,7 @@ definalizechoice:
 
 		case T_EXTRACHARGE:
 
+			if (CannotSelectItemsInPrompts) break;
 extrachargechoice:
 			otmp = getobj(allnoncount, "extracharge");
 			if (!otmp) {

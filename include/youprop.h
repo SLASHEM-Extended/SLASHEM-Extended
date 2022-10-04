@@ -65,6 +65,7 @@
 
 #define NastyTrapNation		(NastynationBug || u.uprops[NASTY_NATION_BUG].extrinsic || AssholeModeActive || have_multitrappingstone() || Role_if(PM_WALSCHOLAR) || (uamul && uamul->oartifact == ART_ANASTASIA_S_LURE))
 #define PlayerUninformation	(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY))
+#define CannotSelectItemsInPrompts	(InitializationFail || u.uprops[INITIALIZATION_FAIL].extrinsic || have_initializationstone())
 
 #define ManlerIsChasing	(ManlerEffect || u.uprops[MANLER_EFFECT].extrinsic || have_manlerstone() || (uwep && uwep->oartifact == ART_DIZZY_METAL_STORM) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DIZZY_METAL_STORM) || (uwep && uwep->oartifact == ART_BAOBHAN_MOUNTAIN) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_BAOBHAN_MOUNTAIN))
 
@@ -464,6 +465,17 @@
 #define SpellForgetting		u.uprops[SPELL_FORGETTING].intrinsic
 #define SoundEffectBug		u.uprops[SOUND_EFFECT_BUG].intrinsic
 #define TimerunBug		u.uprops[TIMERUN_BUG].intrinsic
+
+#define GiantExplorerBug		u.uprops[GIANT_EXPLORER].intrinsic
+#define YawmBug		u.uprops[YAWM_EFFECT].intrinsic
+#define TrapwarpingBug		u.uprops[TRAPWARPING].intrinsic
+#define EnthuEffect		u.uprops[ENTHU_EFFECT].intrinsic
+#define MikraEffect		u.uprops[MIKRA_EFFECT].intrinsic
+#define GotsTooGoodEffect		u.uprops[GOTS_TOO_GOOD_EFFECT].intrinsic
+#define NoFunWallsEffect		u.uprops[NO_FUN_WALLS].intrinsic
+#define CradleChaosEffect		u.uprops[CRADLE_CHAOS_EFFECT].intrinsic
+#define TezEffect		u.uprops[TEZ_EFFECT].intrinsic
+#define KillerRoomEffect		u.uprops[KILLER_ROOM_EFFECT].intrinsic
 
 #define SanityTrebleEffect		u.uprops[SANITY_TREBLE_EFFECT].intrinsic
 #define StatDecreaseBug		u.uprops[STAT_DECREASE_BUG].intrinsic
@@ -1631,7 +1643,7 @@
 #define HPainSense		u.uprops[PAIN_SENSE].intrinsic
 #define EPainSense		u.uprops[PAIN_SENSE].extrinsic
 #define IntPainSense	(HPainSense || (youmonst.data->msound == MS_PAIN) || (dmgtype(youmonst.data, AD_PAIN)) )
-#define ExtPainSense	(EPainSense || (uamul && objects[uamul->otyp].oc_color == CLR_BLUE) || (uleft && objects[uleft->otyp].oc_color == CLR_BLUE) || (uright && objects[uright->otyp].oc_color == CLR_BLUE) || (uimplant && objects[uimplant->otyp].oc_color == CLR_BLUE) || (uarmf && objects[uarmf->otyp].oc_color == CLR_BLUE) || (uarmh && objects[uarmh->otyp].oc_color == CLR_BLUE) || (uarmg && objects[uarmg->otyp].oc_color == CLR_BLUE) || (uarmc && objects[uarmc->otyp].oc_color == CLR_BLUE) )
+#define ExtPainSense	(EPainSense || (uamul && objects[uamul->otyp].oc_color == CLR_BLUE) || (uleft && objects[uleft->otyp].oc_color == CLR_BLUE) || (uright && objects[uright->otyp].oc_color == CLR_BLUE) || (uimplant && objects[uimplant->otyp].oc_color == CLR_BLUE) || (ublindf && objects[ublindf->otyp].oc_color == CLR_BLUE) || (uarmf && objects[uarmf->otyp].oc_color == CLR_BLUE) || (uarmh && objects[uarmh->otyp].oc_color == CLR_BLUE) || (uarmg && objects[uarmg->otyp].oc_color == CLR_BLUE) || (uarmc && objects[uarmc->otyp].oc_color == CLR_BLUE) || (uarmu && objects[uarmu->otyp].oc_color == CLR_BLUE) || (uarms && objects[uarms->otyp].oc_color == CLR_BLUE) || (uarm && objects[uarm->otyp].oc_color == CLR_BLUE) || (uwep && objects[uwep->otyp].oc_color == CLR_BLUE) )
 
 #define PainSense		(((IntPainSense && u.nonintrinsicproperty != PAIN_SENSE) || (ExtPainSense && u.nonextrinsicproperty != PAIN_SENSE)) && !NoPainSense)
 #define StrongPainSense	(IntPainSense && ExtPainSense && PainSense && u.nondoubleproperty != PAIN_SENSE)

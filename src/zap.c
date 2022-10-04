@@ -4283,7 +4283,7 @@ newboss:
 			known = TRUE;
 		    exercise(A_WIS, FALSE);
 
-		    if (obj && obj->oartifact == ART_NOT_KNOWN_ANYMORE) {
+		    if (obj && obj->oartifact == ART_NOT_KNOWN_ANYMORE && !CannotSelectItemsInPrompts) {
 			struct obj *otmpSC;
 			pline("You may fully identify an object!");
 
@@ -5236,6 +5236,7 @@ controlagain:
 			punishx();
 			break;
 		case WAN_CHARGING:
+			if (CannotSelectItemsInPrompts) break;
 			known = TRUE;
 			pline("This is a charging wand.");
 chargingchoice:

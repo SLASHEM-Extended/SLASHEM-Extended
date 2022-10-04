@@ -4244,6 +4244,66 @@ boolean guaranteed;
 		you_have(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && (GiantExplorerBug || u.uprops[GIANT_EXPLORER].extrinsic || have_giantexplorerstone())) {
+		sprintf(buf, "the following problem: You can explore a huge area and trigger all nasty traps in that area.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", GiantExplorerBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (YawmBug || u.uprops[YAWM_EFFECT].extrinsic || have_yawmstone())) {
+		sprintf(buf, "the following problem: You see a smaller area of the level, and the longer you don't trigger any traps, the smaller it becomes.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", YawmBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (TrapwarpingBug || u.uprops[TRAPWARPING].extrinsic || have_trapwarpstone())) {
+		sprintf(buf, "the following problem: Traps sometimes turn into other traps.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", TrapwarpingBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (EnthuEffect || u.uprops[ENTHU_EFFECT].extrinsic || have_bossgodstone())) {
+		sprintf(buf, "the following problem: All hostile monsters can cast all spells.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", EnthuEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (MikraEffect || u.uprops[MIKRA_EFFECT].extrinsic || have_ubergodstone())) {
+		sprintf(buf, "the following problem: Monsters may create farting webs underneath you.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", MikraEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (GotsTooGoodEffect || u.uprops[GOTS_TOO_GOOD_EFFECT].extrinsic || have_toogoodgostone())) {
+		sprintf(buf, "the following problem: If you have a lot of health relative to your maximum, your speed is lower.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", GotsTooGoodEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (NoFunWallsEffect || u.uprops[NO_FUN_WALLS].extrinsic || have_funwallstone())) {
+		sprintf(buf, "the following problem: Walking into walls causes the wall to fart at you.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", NoFunWallsEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (CradleChaosEffect || u.uprops[CRADLE_CHAOS_EFFECT].extrinsic || have_chaoscradlestone())) {
+		sprintf(buf, "the following problem: Newly spawned monsters have their levels increased to match the monster difficulty.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", CradleChaosEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (TezEffect || u.uprops[TEZ_EFFECT].extrinsic || have_tezstone())) {
+		sprintf(buf, "the following problem: Squares with monsters on them are no longer see-through.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", TezEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (KillerRoomEffect || u.uprops[KILLER_ROOM_EFFECT].extrinsic || have_killerroomstone())) {
+		sprintf(buf, "the following problem: Faux killer rooms spawn over time.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", KillerRoomEffect);
+		you_have(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && (SanityTrebleEffect || u.uprops[SANITY_TREBLE_EFFECT].extrinsic || have_sanitytreblestone())) {
 		sprintf(buf, "the following problem: Sanity effects will increase your sanity by a much higher amount than usual.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", SanityTrebleEffect);
@@ -6789,6 +6849,7 @@ boolean guaranteed;
 			break;
 		case CRYSTAL_SHIELD:
 		case RAPIRAPI:
+		case TEZ_SHIELD:
 		case HIDE_SHIELD:
 			shieldblockrate = 35;
 			break;
@@ -8583,6 +8644,56 @@ int final;
 	if (TimerunBug || u.uprops[TIMERUN_BUG].extrinsic || have_timerunstone()) {
 		sprintf(buf, "the following problem: All actions take turns.");
 	      sprintf(eos(buf), " (%ld)", TimerunBug);
+		dump(youhad, buf);
+	}
+	if (GiantExplorerBug || u.uprops[GIANT_EXPLORER].extrinsic || have_giantexplorerstone()) {
+		sprintf(buf, "the following problem: You can explore a huge area and trigger all nasty traps in that area.");
+	      sprintf(eos(buf), " (%ld)", GiantExplorerBug);
+		dump(youhad, buf);
+	}
+	if (YawmBug || u.uprops[YAWM_EFFECT].extrinsic || have_yawmstone()) {
+		sprintf(buf, "the following problem: You see a smaller area of the level, and the longer you don't trigger any traps, the smaller it becomes.");
+	      sprintf(eos(buf), " (%ld)", YawmBug);
+		dump(youhad, buf);
+	}
+	if (TrapwarpingBug || u.uprops[TRAPWARPING].extrinsic || have_trapwarpstone()) {
+		sprintf(buf, "the following problem: Traps sometimes turn into other traps.");
+	      sprintf(eos(buf), " (%ld)", TrapwarpingBug);
+		dump(youhad, buf);
+	}
+	if (EnthuEffect || u.uprops[ENTHU_EFFECT].extrinsic || have_bossgodstone()) {
+		sprintf(buf, "the following problem: All hostile monsters can cast all spells.");
+	      sprintf(eos(buf), " (%ld)", EnthuEffect);
+		dump(youhad, buf);
+	}
+	if (MikraEffect || u.uprops[MIKRA_EFFECT].extrinsic || have_ubergodstone()) {
+		sprintf(buf, "the following problem: Monsters may create farting webs underneath you.");
+	      sprintf(eos(buf), " (%ld)", MikraEffect);
+		dump(youhad, buf);
+	}
+	if (GotsTooGoodEffect || u.uprops[GOTS_TOO_GOOD_EFFECT].extrinsic || have_toogoodgostone()) {
+		sprintf(buf, "the following problem: If you have a lot of health relative to your maximum, your speed is lower.");
+	      sprintf(eos(buf), " (%ld)", GotsTooGoodEffect);
+		dump(youhad, buf);
+	}
+	if (NoFunWallsEffect || u.uprops[NO_FUN_WALLS].extrinsic || have_funwallstone()) {
+		sprintf(buf, "the following problem: Walking into walls causes the wall to fart at you.");
+	      sprintf(eos(buf), " (%ld)", NoFunWallsEffect);
+		dump(youhad, buf);
+	}
+	if (CradleChaosEffect || u.uprops[CRADLE_CHAOS_EFFECT].extrinsic || have_chaoscradlestone()) {
+		sprintf(buf, "the following problem: Newly spawned monsters have their levels increased to match the monster difficulty.");
+	      sprintf(eos(buf), " (%ld)", CradleChaosEffect);
+		dump(youhad, buf);
+	}
+	if (TezEffect || u.uprops[TEZ_EFFECT].extrinsic || have_tezstone()) {
+		sprintf(buf, "the following problem: Squares with monsters on them are no longer see-through.");
+	      sprintf(eos(buf), " (%ld)", TezEffect);
+		dump(youhad, buf);
+	}
+	if (KillerRoomEffect || u.uprops[KILLER_ROOM_EFFECT].extrinsic || have_killerroomstone()) {
+		sprintf(buf, "the following problem: Faux killer rooms spawn over time.");
+	      sprintf(eos(buf), " (%ld)", KillerRoomEffect);
 		dump(youhad, buf);
 	}
 
@@ -11124,6 +11235,7 @@ int final;
 			break;
 		case CRYSTAL_SHIELD:
 		case RAPIRAPI:
+		case TEZ_SHIELD:
 		case HIDE_SHIELD:
 			shieldblockrate = 35;
 			break;

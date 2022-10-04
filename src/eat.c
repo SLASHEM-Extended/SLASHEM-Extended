@@ -6448,6 +6448,26 @@ eatspecial() /* called after eating non-food */
 				    SoundEffectBug |= FROMOUTSIDE; break;
 			case TIME_USE_STONE:
 				    TimerunBug |= FROMOUTSIDE; break;
+			case GIANT_EXPLORER_STONE:
+				    GiantExplorerBug |= FROMOUTSIDE; break;
+			case TRAPWARP_STONE:
+				    TrapwarpingBug |= FROMOUTSIDE; break;
+			case YAWM_STONE:
+				    YawmBug |= FROMOUTSIDE; break;
+			case CHAOSCRADLE_STONE:
+				    CradleChaosEffect |= FROMOUTSIDE; break;
+			case TEZ_STONE:
+				    TezEffect |= FROMOUTSIDE; break;
+			case BOSSGOD_STONE:
+				    EnthuEffect |= FROMOUTSIDE; break;
+			case UBERGOD_STONE:
+				    MikraEffect |= FROMOUTSIDE; break;
+			case TOO_GOOD_GO_STONE:
+				    GotsTooGoodEffect |= FROMOUTSIDE; break;
+			case KILLER_ROOM_STONE:
+				    KillerRoomEffect |= FROMOUTSIDE; break;
+			case FUNWALL_STONE:
+				    NoFunWallsEffect |= FROMOUTSIDE; break;
 			case LOOTCUT_STONE:
 				    LootcutBug |= FROMOUTSIDE; break;
 			case MONSTER_SPEED_STONE:

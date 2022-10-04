@@ -586,6 +586,7 @@ dosit()
 			}
 		    case 20:
 			{
+			if (CannotSelectItemsInPrompts) break;
 			pline("You may fully identify an object!");
 
 secureidchoice:
