@@ -1740,17 +1740,17 @@ ask_about_trap(int x, int y)
 
 		if (SpellColorBrown && traphere->ttyp == SHIT_TRAP) return FALSE;
 
-		if (Role_if(PM_TOPMODEL) && Is_qlocate(&u.uz)) /* traps on this level do wind damage */
-			return TRUE;
-		if (Role_if(PM_FAILED_EXISTENCE) && Is_qlocate(&u.uz))
-			return TRUE;
-
 		if (traphere->ttyp == S_PRESSING_TRAP) {
 			return FALSE;
 		}
 		if (traphere->ttyp == WRONG_STAIRS) {
 			return FALSE;
 		}
+
+		if (Role_if(PM_TOPMODEL) && Is_qlocate(&u.uz)) /* traps on this level do wind damage */
+			return TRUE;
+		if (Role_if(PM_FAILED_EXISTENCE) && Is_qlocate(&u.uz))
+			return TRUE;
 
 		if (Levitation || Flying) {
 			if (!In_sokoban(&u.uz) && traphere->ttyp == PIT) {
