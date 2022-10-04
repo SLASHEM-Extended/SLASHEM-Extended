@@ -5760,6 +5760,7 @@ static const char *epitaphs[] = {
 	"cheat codes that Amy uses = approved, any minor benefit that any other player uses = verboten :P", /* by amateurhour */
 	"> the monster difficulty is increased by 10 and boss monsters are much more common, their items sometimes teleport out of their inventory, they can't buy items in shops, and watchmen get hostile upon sighting them, lol what next a race that dies once per turn but in exchange they get immunity to farts?", /* by amateurhour */
 	"err what, upon entering dungeon level 66 I suddenly encountered a HUUUUUGE amount of random traps as well as a level 89 demon prince that proceeded to kick my butt, that cannot be right? I had been to that level before, what gives? Huh, penalty for having lifesaved? OMG THAT'S BULLSHIT!!!!!!1111",
+	"why do the rewards all blow, you could make the reward worth the hassle and sadness! what next a branch that sets all skills to unskilled and is 100 floors long, reward: training of 1 point to ur lowest skill, think about it that's 1 whole point you don't have to train!! in a potentially hard to train skill!!", /* by amateurhour of course :-) */
 
 };
 

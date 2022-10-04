@@ -838,6 +838,8 @@ doread()
 	"aklys: it's a club that u strap to ur butt with a thong", /* by amateurhour */
 	"You ascended? That's a bug, SLEX wasn't meant to be easy.",
 	"Amy you need to sleep.",
+	"illusory castle, MFGG guards an item, if you can successfully sneak past them somehow and get the item you get intrinsic stunopathy",
+	"hell's bathroom, if you manage to kill the bathrobe lady (forgot name), intrinsic discount action",
 
 	    };
 	    char buf[BUFSZ];
