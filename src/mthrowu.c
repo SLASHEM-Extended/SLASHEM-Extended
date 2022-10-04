@@ -57,6 +57,7 @@ const char *name;	/* if null, then format `obj' */
 	int shieldblockrate = 0;
 	int saberblockrate = 0;
 	int enchrequired = 0;
+	int enchhave = 0;
 
 	int extrachance = 1;
 
@@ -592,10 +593,16 @@ const char *name;	/* if null, then format `obj' */
 		if (Race_if(PM_PLAYER_SKELETON)) enchrequired = 2;
 		if (uarmf && uarmf->oartifact == ART_PHANTO_S_RETARDEDNESS) enchrequired = 4;
 
+		if (obj && obj->spe > enchhave) enchhave = obj->spe;
+		if (obj && obj->oartifact == ART_MAGICBANE && enchhave < 4) enchhave = 4;
+		if (obj && is_lightsaber(obj) && enchhave < 4) enchhave = 4;
+		if (obj && obj->opoisoned && enchhave < 4) enchhave = 4;
+		if (obj && obj->oartifact) enchhave += 2;
+
 		if (is_acid && Acid_resistance && (StrongAcid_resistance || rn2(10)) ) {
 			pline("It doesn't seem to hurt you.");
 			if (Stoned) fix_petrification();
-		} else if ((enchrequired > 0) && rn2(3) && obj && obj->spe < enchrequired) {
+		} else if ((enchrequired > 0) && rn2(3) && (enchhave < enchrequired) ) {
 			pline("The attack doesn't seem to harm you.");
 		}
 		else {

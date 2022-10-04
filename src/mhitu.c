@@ -20384,6 +20384,7 @@ register int n;
 {
 	int monsterdamagebonus;
 	int enchrequired = 0;
+	int enchhave = 0;
 
 	if (flags.iwbtg) {
 
@@ -20530,7 +20531,18 @@ register int n;
 	if (Race_if(PM_PLAYER_SKELETON)) enchrequired = 2;
 	if (uarmf && uarmf->oartifact == ART_PHANTO_S_RETARDEDNESS) enchrequired = 4;
 
-	if ((enchrequired > 0) && rn2(3) && !(hit_as_four(mtmp) || (hit_as_three(mtmp) && enchrequired < 4) || (hit_as_two(mtmp) && enchrequired < 3) || (hit_as_one(mtmp) && enchrequired < 2) || (MON_WEP(mtmp) && (MON_WEP(mtmp))->spe >= enchrequired) ) ) {
+	if (hit_as_one(mtmp)) enchhave = 1;
+	if (hit_as_two(mtmp)) enchhave = 2;
+	if (hit_as_three(mtmp)) enchhave = 3;
+	if (hit_as_four(mtmp)) enchhave = 4;
+	if (MON_WEP(mtmp) && (MON_WEP(mtmp))->spe > enchhave) enchhave = MON_WEP(mtmp)->spe;
+	if (MON_WEP(mtmp) && MON_WEP(mtmp)->oartifact == ART_MAGICBANE && enchhave < 4) enchhave = 4;
+	if (MON_WEP(mtmp) && is_lightsaber(MON_WEP(mtmp)) && enchhave < 4) enchhave = 4;
+	if (MON_WEP(mtmp) && MON_WEP(mtmp)->opoisoned && enchhave < 4) enchhave = 4;
+	if (MON_WEP(mtmp) && MON_WEP(mtmp)->oartifact) enchhave += 2;
+
+	if ((enchrequired > 0) && rn2(3) && (enchhave < enchrequired) ) {
+
 		pline("The attack doesn't seem to harm you.");
 		n = 0;
 	}
