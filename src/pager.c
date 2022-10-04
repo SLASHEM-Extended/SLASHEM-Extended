@@ -28045,6 +28045,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"There is a stained glass wall that seems to come ever closer. Wait, it surely must be a mimic, walls cannot move on their own. Err what, maybe it's a real monster? A wall monster! RUN!!!",
 	"Oh no, you have failed. Diablo freed his accursed brother. Now, hate and destruction will take over the world.",
 	"Oh no, you have failed. Diablo freed his accursed brother. Now, hate and destruction will take over the world. Also, for some reason B-a-a-l is much harder to defeat than Diablo, even though the game is named after the latter.",
+	"Most players are members of the instant gratification crowd, and want the player character to either start out with everything maxxed out already, or at least be capable of easily becoming unstoppably strong without too much effort. But that's totally against the SLEX design philosophy, and therefore those players either have to adapt their playstyle or the game might not be for them.",
 
 };
 

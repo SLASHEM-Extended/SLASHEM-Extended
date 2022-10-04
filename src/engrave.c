@@ -1011,6 +1011,7 @@ static const char *random_mesg[] = {
 	"oh my god, there's a man sitting to the opposite of us! giggle! and oh my god he's wearing wedge heels doublegiggle!",
 	"omg slex is an autoerotic wanking simulator",
 	"It is forbidden to enter a woman, even a foreigner if dressed as a man.",
+	"Amy whilst reloading her assault rifle: yeah I think I'll not use guns this time", /* by amateurhour */
 
 };
 
@@ -5756,6 +5757,8 @@ static const char *epitaphs[] = {
 	"para rnz(100) and perfume bleed rnz(100) was intentional and didn't suck lmao gottem i win", /* likewise by amateurhour */
 	"> u can attempt to use various skills that appear in your character's enhance screen, but it's really a waste of time because it takes far too long and you'd be better off just using any of the firearms skills even if they're restricted", /* again, by amateurhour */
 	"Bah, SLASH'EM doppelgangers suck, why do they always have their regular form's maximum HP reduced by like 20+ points whenever their polymorph times out. And to top it off, there's not even a message, they just cut down your HP max without telling you. Bastards.",
+	"cheat codes that Amy uses = approved, any minor benefit that any other player uses = verboten :P", /* by amateurhour */
+	"> the monster difficulty is increased by 10 and boss monsters are much more common, their items sometimes teleport out of their inventory, they can't buy items in shops, and watchmen get hostile upon sighting them, lol what next a race that dies once per turn but in exchange they get immunity to farts?", /* by amateurhour */
 
 };
 
