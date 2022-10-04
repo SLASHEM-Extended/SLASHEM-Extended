@@ -1193,13 +1193,13 @@ newsym(x,y)
 		(uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME && (mon->data->geno & G_UNIQ)) ||
-		(Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible) ||
+		(Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible && distu(mon->mx, mon->my) < (StrongStunnopathy ? 401 : 226) ) ||
 		( (uarmh && itemhasappearance(uarmh, APP_INTERNET_HELMET) ) && mon->internetvisible) ||
 		(RngeInternetAccess && mon->internetvisible) ||
 		(uarmh && uarmh->oartifact == ART_WEB_RADIO && mon->internetvisible) ||
-		(Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) ||
+		(Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) && distu(mon->mx, mon->my) < (StrongNumbopathy ? 901 : 626) ) ||
 		(Sickopathy && Sick && extra_nasty(mon->data) ) ||
-		(Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE ) ||
+		(Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE && distu(mon->mx, mon->my) < (StrongFreezopathy ? 626 : 401) ) ||
 		(StrongStunnopathy && Stunned && dmgtype(mon->data, AD_STUN)) ||
 		(StrongNumbopathy && Numbed && (dmgtype(mon->data, AD_NUMB) || dmgtype(mon->data, AD_PLYS) ) ) ||
 		(StrongDimmopathy && Dimmed && (dmgtype(mon->data, AD_DIMN) || mon->data->msound == MS_CUSS ) ) ||
@@ -1208,8 +1208,8 @@ newsym(x,y)
 		(StrongBurnopathy && Burned && (dmgtype(mon->data, AD_BURN) || dmgtype(mon->data, AD_FLAM) ) ) ||
 		(StrongSickopathy && Sick && (dmgtype(mon->data, AD_DISE) || dmgtype(mon->data, AD_PEST) ) ) ||
 		(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) ||
-		(Burnopathy && Burned && infravision(mon->data) ) ||
-		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel) ||
+		(Burnopathy && Burned && infravision(mon->data) && distu(mon->mx, mon->my) < (StrongBurnopathy ? 170 : 101) ) ||
+		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel && distu(mon->mx, mon->my) < (StrongDimmopathy ? 226 : 101) ) ||
 		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || mon->data->msound == MS_STENCH) ) ||
 		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mon->data->msound == MS_SHOE) ||
 		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || mon->data->msound == MS_SOUND || mon->data->msound == MS_SHRIEK || mon->data->msound == MS_FART_NORMAL || mon->data->msound == MS_FART_LOUD || mon->data->msound == MS_FART_QUIET ) ) ||
@@ -1306,13 +1306,13 @@ newsym(x,y)
 		(ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME && (mon->data->geno & G_UNIQ)) ||
 		(uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
-		(Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible) ||
+		(Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible && distu(mon->mx, mon->my) < (StrongStunnopathy ? 401 : 226)) ||
 		( (uarmh && itemhasappearance(uarmh, APP_INTERNET_HELMET) ) && mon->internetvisible) ||
 		(RngeInternetAccess && mon->internetvisible) ||
 		(uarmh && uarmh->oartifact == ART_WEB_RADIO && mon->internetvisible) ||
-		(Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) ||
+		(Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) && distu(mon->mx, mon->my) < (StrongNumbopathy ? 901 : 626) ) ||
 		(Sickopathy && Sick && extra_nasty(mon->data) ) ||
-		(Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE ) ||
+		(Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE && distu(mon->mx, mon->my) < (StrongFreezopathy ? 626 : 401) ) ||
 		(StrongStunnopathy && Stunned && dmgtype(mon->data, AD_STUN)) ||
 		(StrongNumbopathy && Numbed && (dmgtype(mon->data, AD_NUMB) || dmgtype(mon->data, AD_PLYS) ) ) ||
 		(StrongDimmopathy && Dimmed && (dmgtype(mon->data, AD_DIMN) || mon->data->msound == MS_CUSS ) ) ||
@@ -1321,8 +1321,8 @@ newsym(x,y)
 		(StrongBurnopathy && Burned && (dmgtype(mon->data, AD_BURN) || dmgtype(mon->data, AD_FLAM) ) ) ||
 		(StrongSickopathy && Sick && (dmgtype(mon->data, AD_DISE) || dmgtype(mon->data, AD_PEST) ) ) ||
 		(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) ||
-		(Burnopathy && Burned && infravision(mon->data) ) ||
-		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel) ||
+		(Burnopathy && Burned && infravision(mon->data) && distu(mon->mx, mon->my) < (StrongBurnopathy ? 170 : 101) ) ||
+		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel && distu(mon->mx, mon->my) < (StrongDimmopathy ? 226 : 101) ) ||
 		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || mon->data->msound == MS_STENCH) ) ||
 		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mon->data->msound == MS_SHOE) ||
 		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || mon->data->msound == MS_SOUND || mon->data->msound == MS_SHRIEK || mon->data->msound == MS_FART_NORMAL || mon->data->msound == MS_FART_LOUD || mon->data->msound == MS_FART_QUIET ) ) ||
@@ -1575,13 +1575,13 @@ newsymX(x,y)
 		(uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME && (mon->data->geno & G_UNIQ)) ||
-		(Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible) ||
+		(Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible && distu(mon->mx, mon->my) < (StrongStunnopathy ? 401 : 226)) ||
 		( (uarmh && itemhasappearance(uarmh, APP_INTERNET_HELMET) ) && mon->internetvisible) ||
 		(RngeInternetAccess && mon->internetvisible) ||
 		(uarmh && uarmh->oartifact == ART_WEB_RADIO && mon->internetvisible) ||
-		(Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) ||
+		(Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) && distu(mon->mx, mon->my) < (StrongNumbopathy ? 901 : 626) ) ||
 		(Sickopathy && Sick && extra_nasty(mon->data) ) ||
-		(Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE ) ||
+		(Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE && distu(mon->mx, mon->my) < (StrongFreezopathy ? 626 : 401) ) ||
 		(StrongStunnopathy && Stunned && dmgtype(mon->data, AD_STUN)) ||
 		(StrongNumbopathy && Numbed && (dmgtype(mon->data, AD_NUMB) || dmgtype(mon->data, AD_PLYS) ) ) ||
 		(StrongDimmopathy && Dimmed && (dmgtype(mon->data, AD_DIMN) || mon->data->msound == MS_CUSS ) ) ||
@@ -1590,8 +1590,8 @@ newsymX(x,y)
 		(StrongBurnopathy && Burned && (dmgtype(mon->data, AD_BURN) || dmgtype(mon->data, AD_FLAM) ) ) ||
 		(StrongSickopathy && Sick && (dmgtype(mon->data, AD_DISE) || dmgtype(mon->data, AD_PEST) ) ) ||
 		(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) ||
-		(Burnopathy && Burned && infravision(mon->data) ) ||
-		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel) ||
+		(Burnopathy && Burned && infravision(mon->data) && distu(mon->mx, mon->my) < (StrongBurnopathy ? 170 : 101) ) ||
+		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel && distu(mon->mx, mon->my) < (StrongDimmopathy ? 226 : 101) ) ||
 		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || mon->data->msound == MS_STENCH) ) ||
 		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mon->data->msound == MS_SHOE) ||
 		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || mon->data->msound == MS_SOUND || mon->data->msound == MS_SHRIEK || mon->data->msound == MS_FART_NORMAL || mon->data->msound == MS_FART_LOUD || mon->data->msound == MS_FART_QUIET ) ) ||
@@ -1688,13 +1688,13 @@ newsymX(x,y)
 		(ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME && (mon->data->geno & G_UNIQ)) ||
 		(uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
-		(Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible) ||
+		(Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible && distu(mon->mx, mon->my) < (StrongStunnopathy ? 401 : 226)) ||
 		( (uarmh && itemhasappearance(uarmh, APP_INTERNET_HELMET) ) && mon->internetvisible) ||
 		(RngeInternetAccess && mon->internetvisible) ||
 		(uarmh && uarmh->oartifact == ART_WEB_RADIO && mon->internetvisible) ||
-		(Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) ||
+		(Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) && distu(mon->mx, mon->my) < (StrongNumbopathy ? 901 : 626) ) ||
 		(Sickopathy && Sick && extra_nasty(mon->data) ) ||
-		(Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE ) ||
+		(Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE && distu(mon->mx, mon->my) < (StrongFreezopathy ? 626 : 401) ) ||
 		(StrongStunnopathy && Stunned && dmgtype(mon->data, AD_STUN)) ||
 		(StrongNumbopathy && Numbed && (dmgtype(mon->data, AD_NUMB) || dmgtype(mon->data, AD_PLYS) ) ) ||
 		(StrongDimmopathy && Dimmed && (dmgtype(mon->data, AD_DIMN) || mon->data->msound == MS_CUSS ) ) ||
@@ -1703,8 +1703,8 @@ newsymX(x,y)
 		(StrongBurnopathy && Burned && (dmgtype(mon->data, AD_BURN) || dmgtype(mon->data, AD_FLAM) ) ) ||
 		(StrongSickopathy && Sick && (dmgtype(mon->data, AD_DISE) || dmgtype(mon->data, AD_PEST) ) ) ||
 		(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) ||
-		(Burnopathy && Burned && infravision(mon->data) ) ||
-		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel) ||
+		(Burnopathy && Burned && infravision(mon->data) && distu(mon->mx, mon->my) < (StrongBurnopathy ? 170 : 101) ) ||
+		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel && distu(mon->mx, mon->my) < (StrongDimmopathy ? 226 : 101) ) ||
 		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || mon->data->msound == MS_STENCH) ) ||
 		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mon->data->msound == MS_SHOE) ||
 		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || mon->data->msound == MS_SOUND || mon->data->msound == MS_SHRIEK || mon->data->msound == MS_FART_NORMAL || mon->data->msound == MS_FART_LOUD || mon->data->msound == MS_FART_QUIET ) ) ||
@@ -3617,10 +3617,10 @@ struct monst *mon;
 	if ((uarmh && itemhasappearance(uarmh, APP_INTERNET_HELMET) ) && mon->internetvisible) return TRUE;
 	if (RngeInternetAccess && mon->internetvisible) return TRUE;
 	if (uarmh && uarmh->oartifact == ART_WEB_RADIO && mon->internetvisible) return TRUE;
-	if (Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible) return TRUE;
-	if (Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) return TRUE;
+	if (Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible && distu(mon->mx, mon->my) < (StrongStunnopathy ? 401 : 226)) return TRUE;
+	if (Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) && distu(mon->mx, mon->my) < (StrongNumbopathy ? 901 : 626) ) return TRUE;
 	if (Sickopathy && Sick && extra_nasty(mon->data) ) return TRUE;
-	if (Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE ) return TRUE;
+	if (Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE && distu(mon->mx, mon->my) < (StrongFreezopathy ? 626 : 401) ) return TRUE;
 	if (StrongStunnopathy && Stunned && dmgtype(mon->data, AD_STUN)) return TRUE;
 	if (StrongNumbopathy && Numbed && (dmgtype(mon->data, AD_NUMB) || dmgtype(mon->data, AD_PLYS) ) ) return TRUE;
 	if (StrongDimmopathy && Dimmed && (dmgtype(mon->data, AD_DIMN) || mon->data->msound == MS_CUSS ) ) return TRUE;
@@ -3632,8 +3632,8 @@ struct monst *mon;
 	if (uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mon->data->msound == MS_SHOE) return TRUE;
 	if (EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || mon->data->msound == MS_SOUND || mon->data->msound == MS_SHRIEK || mon->data->msound == MS_FART_NORMAL || mon->data->msound == MS_FART_LOUD || mon->data->msound == MS_FART_QUIET ) ) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) return TRUE;
-	if (Burnopathy && Burned && infravision(mon->data) ) return TRUE;
-	if (Dimmopathy && Dimmed && mon->m_lev > u.ulevel) return TRUE;
+	if (Burnopathy && Burned && infravision(mon->data) && distu(mon->mx, mon->my) < (StrongBurnopathy ? 170 : 101) ) return TRUE;
+	if (Dimmopathy && Dimmed && mon->m_lev > u.ulevel && distu(mon->mx, mon->my) < (StrongDimmopathy ? 226 : 101) ) return TRUE;
 	if (Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) return TRUE;
 	if (Race_if(PM_RODNEYAN) && mon_has_special(mon)) return TRUE;
 	if (Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) return TRUE;

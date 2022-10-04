@@ -25,7 +25,8 @@
       (mon->telepatvisible == 1 || (mon->telepatvisible == 2 && StrongTelepat) ) && /* 0. the monster passes a 66 percent chance check to be visible (addition by Amy) AND */\
 	(mon->data->msound != MS_DEEPSTATE) && !(mon->egotype_deepstatemember) && /* 0.5 the monster isn't from the deep state AND */\
 	(!mindless((mon)->data) && (!mon->egotype_undead) ) &&	/* 1. the monster has a brain to sense AND  */\
-      ((Blind && Blind_telepat) ||	/* 2a. hero is blind and telepathic OR	    */\
+      ((Blind && Blind_telepat &&				/* 2a. hero is blind and telepathic     */\
+	(distu((mon)->mx, (mon)->my) <= 900)) ||	/* and not more than 30 squares away OR	*/\
 				/* 2b. hero is using a telepathy inducing   */\
 				/*	 object and in range		    */\
       (Unblind_telepat &&					      \

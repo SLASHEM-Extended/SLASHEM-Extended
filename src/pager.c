@@ -496,7 +496,7 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (Race_if(PM_RODNEYAN) && mon_has_special(mtmp))
 		    ways_seen++;
-		if (Stunnopathy && Stunned && always_hostile(mtmp->data) && mtmp->stunnovisible)
+		if (Stunnopathy && Stunned && always_hostile(mtmp->data) && mtmp->stunnovisible && distu(mtmp->mx, mtmp->my) < (StrongStunnopathy ? 401 : 226))
 		    ways_seen++;
 		if ( (uarmh && itemhasappearance(uarmh, APP_INTERNET_HELMET) ) && mtmp->internetvisible)
 		    ways_seen++;
@@ -504,9 +504,9 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (RngeInternetAccess && mtmp->internetvisible)
 		    ways_seen++;
-		if (Numbopathy && Numbed && (avoid_player(mtmp->data) || mtmp->egotype_avoider) )
+		if (Numbopathy && Numbed && (avoid_player(mtmp->data) || mtmp->egotype_avoider) && distu(mtmp->mx, mtmp->my) < (StrongNumbopathy ? 901 : 626) )
 		    ways_seen++;
-		if (Freezopathy && Frozen && mtmp->data->mcolor == CLR_WHITE )
+		if (Freezopathy && Frozen && mtmp->data->mcolor == CLR_WHITE && distu(mtmp->mx, mtmp->my) < (StrongFreezopathy ? 626 : 401) )
 		    ways_seen++;
 		if (StrongStunnopathy && Stunned && dmgtype(mtmp->data, AD_STUN))
 		    ways_seen++;
@@ -530,9 +530,9 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mtmp->data->mcolor == CLR_WHITE )
 		    ways_seen++;
-		if (Burnopathy && Burned && infravision(mtmp->data) )
+		if (Burnopathy && Burned && infravision(mtmp->data) && distu(mtmp->mx, mtmp->my) < (StrongBurnopathy ? 170 : 101) )
 		    ways_seen++;
-		if (Dimmopathy && Dimmed && mtmp->m_lev > u.ulevel )
+		if (Dimmopathy && Dimmed && mtmp->m_lev > u.ulevel && distu(mtmp->mx, mtmp->my) < (StrongDimmopathy ? 226 : 101) )
 		    ways_seen++;
 		if (Sickopathy && Sick && extra_nasty(mtmp->data) )
 		    ways_seen++;
@@ -679,7 +679,7 @@ lookat(x, y, buf, monbuf)
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 
-		    if (Stunnopathy && Stunned && always_hostile(mtmp->data) && mtmp->stunnovisible) {
+		    if (Stunnopathy && Stunned && always_hostile(mtmp->data) && mtmp->stunnovisible && distu(mtmp->mx, mtmp->my) < (StrongStunnopathy ? 401 : 226) ) {
 			strcat(monbuf, "stunnopathy");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
@@ -695,11 +695,11 @@ lookat(x, y, buf, monbuf)
 			strcat(monbuf, "internet access");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
-		    if (Numbopathy && Numbed && (avoid_player(mtmp->data) || mtmp->egotype_avoider) ) {
+		    if (Numbopathy && Numbed && (avoid_player(mtmp->data) || mtmp->egotype_avoider) && distu(mtmp->mx, mtmp->my) < (StrongNumbopathy ? 901 : 626) ) {
 			strcat(monbuf, "numbopathy");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
-		    if (Freezopathy && Frozen && mtmp->data->mcolor == CLR_WHITE ) {
+		    if (Freezopathy && Frozen && mtmp->data->mcolor == CLR_WHITE && distu(mtmp->mx, mtmp->my) < (StrongFreezopathy ? 626 : 401) ) {
 			strcat(monbuf, "freezopathy");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
@@ -747,11 +747,11 @@ lookat(x, y, buf, monbuf)
 			strcat(monbuf, "freezer vision");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
-		    if (Burnopathy && Burned && infravision(mtmp->data) ) {
+		    if (Burnopathy && Burned && infravision(mtmp->data) && distu(mtmp->mx, mtmp->my) < (StrongBurnopathy ? 170 : 101) ) {
 			strcat(monbuf, "burnopathy");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
-		    if (Dimmopathy && Dimmed && mtmp->m_lev > u.ulevel ) {
+		    if (Dimmopathy && Dimmed && mtmp->m_lev > u.ulevel && distu(mtmp->mx, mtmp->my) < (StrongDimmopathy ? 226 : 101) ) {
 			strcat(monbuf, "dimmopathy");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
