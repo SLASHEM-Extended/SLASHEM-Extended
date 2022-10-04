@@ -11774,6 +11774,8 @@ minimal_enlightenment()
 
 		sprintf(eos(statline), ".");
 
+		sprintf(eos(statline), " Your hairstyle is '%s.", bundledescription());
+
 		pline("%s", statline);
 
 	/*"You are %s, a %s %s %s%s%s%s%s%s%s%s %s. Current status effects: %s%s%s%s.", , Levitation ? "levitation " : "", Confusion ? (HeavyConfusion ? "xtraconfusion " : "confusion ") : "", );
