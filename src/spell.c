@@ -2607,7 +2607,8 @@ age_spells()
 	if (Keen_memory && !rn2(StrongKeen_memory ? 3 : 5))
 		return;
 
-	/* the spell color trap that causes your memory to decrease when casting shouldn't be too awfully harsh... --Amy */
+	/* the spell color trap that causes your memory to decrease when casting shouldn't be too awfully harsh... --Amy
+	 * ATTENTION: cyan spells reduces memory when casting, please keep that synchronized!!! */
 	if (SpellColorCyan && rn2(10))
 		return;
 
@@ -2623,7 +2624,8 @@ age_spells()
 		if (!(uarmc && itemhasappearance(uarmc, APP_GUILD_CLOAK) ) ) {
 
 			/* Memorization skill by Amy: if the spell is set to memorization mode, have a skill-based chance here
-			 * that on any given turn the spell memory will not decrease. */
+			 * that on any given turn the spell memory will not decrease.
+			 * cyan spells uses the same calculation below, any changes need to go into that function as well */
 
 			if (!PlayerCannotUseSkills && spellmemorize(i) && P_SKILL(P_MEMORIZATION) >= P_BASIC) {
 
@@ -10272,8 +10274,34 @@ rerollX:
 	}
 
 	if (SpellColorCyan) {
-		boostknow(spell, -rnd(100));
-		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
+		boolean cyanwillgodown = TRUE;
+
+		/* keep this synchronized with age_spells(), please --Amy */
+
+		if (Keen_memory && !rn2(StrongKeen_memory ? 3 : 5)) cyanwillgodown = FALSE;
+		if (uarmc && itemhasappearance(uarmc, APP_GUILD_CLOAK) ) cyanwillgodown = FALSE;
+
+		if (!PlayerCannotUseSkills && spellmemorize(spell) && P_SKILL(P_MEMORIZATION) >= P_BASIC) {
+
+			int savememochance = 0;
+
+			switch (P_SKILL(P_MEMORIZATION)) {
+				case P_BASIC: savememochance = 1; break;
+				case P_SKILLED: savememochance = 2; break;
+				case P_EXPERT: savememochance = 3; break;
+				case P_MASTER: savememochance = 4; break;
+				case P_GRAND_MASTER: savememochance = 5; break;
+				case P_SUPREME_MASTER: savememochance = 6; break;
+			}
+
+			if (savememochance > rn2(10)) cyanwillgodown = FALSE;
+
+		}
+
+		if (cyanwillgodown) {
+			boostknow(spell, -rnd(100));
+			if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
+		}
 	}
 
 	if (pseudo && ( (pseudo->otyp == SPE_ALTER_REALITY) || ((pseudo->otyp == SPE_REBOOT) && !rn2(10)) || (pseudo->otyp == SPE_CLONE_MONSTER) ) ) {
