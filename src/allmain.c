@@ -13408,6 +13408,58 @@ past3:
 		}
 	}
 
+	/* if the player lifesaves, a random level is rolled and if you go there (or near that level while having lifesaved
+	 * more than once), a demon lord/prince is summoned and guaranteed to be hostile, along with a bunch of other
+	 * demons, plus the level is filled with traps. */
+	if (u.lifesavepenalty) {
+		int youdepth = depth(&u.uz);
+		int upperbound, lowerbound, boundwiden;
+
+		if (u.lifesavepenallevel == 0) u.lifesavepenallevel = rnd(100);
+		upperbound = lowerbound = u.lifesavepenallevel;
+		boundwiden = 0;
+		if (u.lifesavepenalty > 1) boundwiden = (u.lifesavepenalty - 1);
+		if (boundwiden) {
+			upperbound = (u.lifesavepenallevel + boundwiden);
+			lowerbound = (u.lifesavepenallevel - boundwiden);
+		}
+
+		if (youdepth <= upperbound && youdepth >= lowerbound) {
+			int pm;
+			int angbandtraps = 0;
+			int angbandx, angbandy, rtrap;
+
+			pm = rn2(2) ? dprince(rn2((int)A_LAWFUL+2) - 1) : dlord(rn2((int)A_LAWFUL+2) - 1);
+			if (pm >= PM_ORCUS && pm <= PM_DEMOGORGON) u.conclusiocount++;
+			if (pm && (pm != NON_PM)) {
+				(void) makemon(&mons[pm], 0, 0, MM_ANGRY|MM_FRENZIED|MM_ADJACENTOK);
+			}
+			(void) makemon(mkclass(S_DEMON,0), 0, 0, MM_ADJACENTOK|MM_ANGRY|MM_FRENZIED);
+			(void) makemon(mkclass(S_DEMON,0), 0, 0, MM_ADJACENTOK|MM_ANGRY|MM_FRENZIED);
+			(void) makemon(mkclass(S_DEMON,0), 0, 0, MM_ADJACENTOK|MM_ANGRY|MM_FRENZIED);
+			(void) makemon(mkclass(S_DEMON,0), 0, 0, MM_ADJACENTOK|MM_ANGRY|MM_FRENZIED);
+			(void) makemon(mkclass(S_DEMON,0), 0, 0, MM_ADJACENTOK|MM_ANGRY|MM_FRENZIED);
+
+			for (angbandtraps = 0; angbandtraps < 500; angbandtraps++) {
+
+				angbandx = rn1(COLNO-3,2);
+				angbandy = rn2(ROWNO);
+				boolean canbeinawall = FALSE;
+				if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
+
+				if (angbandx && angbandy && isok(angbandx, angbandy) && ((levl[angbandx][angbandy].typ > DBWALL) || canbeinawall) && !(t_at(angbandx, angbandy)) ) {
+
+					rtrap = randomtrap();
+					(void) maketrap(angbandx, angbandy, rtrap, 100, TRUE);
+				}
+			}
+
+			u.lifesavepenalty--;
+			u.lifesavepenallevel = 0;
+		}
+
+	}
+
 	if (practicantterror) {
 		if (u.uconduct.killer >= 1000 && !u.pract_toomanykills) {
 			pline("%s booms: 'You killed too many monsters, you maggot. That's a fine of 1000 zorkmids.'", noroelaname());

@@ -922,6 +922,7 @@ int how;
 		(void) adjattrib(A_CON, -1, TRUE, TRUE);
 		if(u.uhpmax <= 0) u.uhpmax = 1;
 		savelife(how);
+		u.lifesavepenalty++;
 		killer = 0;
 		killer_format = 0;
 
@@ -958,6 +959,7 @@ symbiotedone:
 		(void) adjattrib(A_CON, -1, TRUE, TRUE);
 		if(u.uhpmax <= 0) u.uhpmax = 1;
 		savelife(how);
+		u.lifesavepenalty++;
 		killer = 0;
 		killer_format = 0;
 
@@ -982,6 +984,7 @@ stoningdone:
 
 		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
 		savelife(how);
+		u.lifesavepenalty++;
 		killer = 0;
 		killer_format = 0;
 
@@ -1024,6 +1027,7 @@ cbldone:
 
 		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
 		savelife(how);
+		u.lifesavepenalty++;
 		killer = 0;
 		killer_format = 0;
 
@@ -1048,6 +1052,7 @@ contingencydone:
 
 		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
 		savelife(how);
+		u.lifesavepenalty++;
 		killer = 0;
 		killer_format = 0;
 
@@ -1072,6 +1077,7 @@ luxidone:
 
 		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
 		savelife(how);
+		u.lifesavepenalty++;
 		killer = 0;
 		killer_format = 0;
 
@@ -1097,6 +1103,7 @@ erudone:
 
 		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
 		savelife(how);
+		u.lifesavepenalty++;
 		killer = 0;
 		killer_format = 0;
 
@@ -1121,6 +1128,7 @@ ruffledone:
 
 		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
 		savelife(how);
+		u.lifesavepenalty++;
 		killer = 0;
 		killer_format = 0;
 
@@ -1146,6 +1154,7 @@ kristindone:
 
 		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
 		savelife(how);
+		u.lifesavepenalty++;
 		killer = 0;
 		killer_format = 0;
 
@@ -1170,6 +1179,7 @@ detectmonstersdone:
 
 		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
 		savelife(how);
+		u.lifesavepenalty++;
 		killer = 0;
 		killer_format = 0;
 
@@ -1216,6 +1226,7 @@ persiadone:
 
 		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
 		savelife(how);
+		u.lifesavepenalty++;
 		killer = 0;
 		killer_format = 0;
 
@@ -1264,6 +1275,7 @@ trolldone:
 
 		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
 		savelife(how);
+		u.lifesavepenalty++;
 		killer = 0;
 		killer_format = 0;
 
@@ -1289,6 +1301,7 @@ feliddone:
 
 		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
 		savelife(how);
+		u.lifesavepenalty++;
 		u.extralives--;
 		killer = 0;
 		killer_format = 0;
@@ -1321,6 +1334,7 @@ oneupdone:
 		(void) adjattrib(A_CON, -1, TRUE, TRUE);
 		if(u.uhpmax <= 0) u.uhpmax = 10;	/* arbitrary */
 		savelife(how);
+		u.lifesavepenalty++;
 		if (how == GENOCIDED)
 			pline("Unfortunately you are still genocided...");
 		else {
@@ -1353,6 +1367,7 @@ lsdone:
 		(void) adjattrib(A_CON, -1, TRUE, TRUE);
 		if(u.uhpmax <= 0) u.uhpmax = 10;	/* arbitrary */
 		savelife(how);
+		u.lifesavepenalty++;
 		if (how == GENOCIDED)
 			pline("Unfortunately you are still genocided...");
 		else {
@@ -1384,6 +1399,7 @@ flotationdone:
 		(void) adjattrib(A_CON, -1, TRUE, TRUE);
 		if(u.uhpmax <= 0) u.uhpmax = 10;	/* arbitrary */
 		savelife(how);
+		u.lifesavepenalty++;
 		if (how == GENOCIDED)
 			pline("Unfortunately you are still genocided...");
 		else {

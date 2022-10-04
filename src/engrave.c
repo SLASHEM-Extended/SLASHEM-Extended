@@ -5759,6 +5759,7 @@ static const char *epitaphs[] = {
 	"Bah, SLASH'EM doppelgangers suck, why do they always have their regular form's maximum HP reduced by like 20+ points whenever their polymorph times out. And to top it off, there's not even a message, they just cut down your HP max without telling you. Bastards.",
 	"cheat codes that Amy uses = approved, any minor benefit that any other player uses = verboten :P", /* by amateurhour */
 	"> the monster difficulty is increased by 10 and boss monsters are much more common, their items sometimes teleport out of their inventory, they can't buy items in shops, and watchmen get hostile upon sighting them, lol what next a race that dies once per turn but in exchange they get immunity to farts?", /* by amateurhour */
+	"err what, upon entering dungeon level 66 I suddenly encountered a HUUUUUGE amount of random traps as well as a level 89 demon prince that proceeded to kick my butt, that cannot be right? I had been to that level before, what gives? Huh, penalty for having lifesaved? OMG THAT'S BULLSHIT!!!!!!1111",
 
 };
 
