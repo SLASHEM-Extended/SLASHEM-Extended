@@ -2419,7 +2419,7 @@ migohivemon()
 
 	if ((depthuz < 10) && !In_sokoban_real(&u.uz) && !In_mainframe(&u.uz) && (level_difficulty() < (5 + rn2(5)))) return (&mons[PM_LITTLE_MIGO]);
 
-	if (rn2(8)) return (rn2(2) ? &mons[PM_MIGO_WARRIOR] : &mons[PM_MIGO_DRONE]);
+	if (rn2(3)) return (!rn2(3) ? &mons[PM_MIGO_WARRIOR] : &mons[PM_MIGO_DRONE]);
 	else if (!rn2(4)) return (rn2(2) ? &mons[PM_MIGO_FORCE_DRONE] : &mons[PM_ARMED_MIGO_DRONE]);
 	else switch (rnd(15)) {
 
