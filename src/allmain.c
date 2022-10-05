@@ -1126,6 +1126,25 @@ moveloop()
 				if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
+				if ((GotsTooGoodEffect || u.uprops[GOTS_TOO_GOOD_EFFECT].extrinsic || have_toogoodgostone()) && moveamt > 1) {
+					int testhp, testhpmax;
+					boolean itgoestoogood = FALSE;
+					if (Upolyd) {
+						testhp = u.mh;
+						testhpmax = u.mhmax;
+					} else {
+						testhp = u.uhp;
+						testhpmax = u.uhpmax;
+					}
+					if (testhpmax < 10 && (testhp == testhpmax)) itgoestoogood = TRUE;
+					else if (testhpmax >= 10 && (testhp > (testhpmax * 4 / 5) )) itgoestoogood = TRUE;
+
+					if (itgoestoogood) {
+						moveamt *= 3;
+						moveamt /= 4;
+					}
+				}
+
 				if (uarmf && uarmf->oartifact == ART_DARK_BALL_OF_LIGHT && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
@@ -1515,6 +1534,25 @@ moveloop()
 
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too are slower sometimes. */
 				moveamt /= 2;
+
+			if ((GotsTooGoodEffect || u.uprops[GOTS_TOO_GOOD_EFFECT].extrinsic || have_toogoodgostone()) && moveamt > 1) {
+				int testhp, testhpmax;
+				boolean itgoestoogood = FALSE;
+				if (Upolyd) {
+					testhp = u.mh;
+					testhpmax = u.mhmax;
+				} else {
+					testhp = u.uhp;
+					testhpmax = u.uhpmax;
+				}
+				if (testhpmax < 10 && (testhp == testhpmax)) itgoestoogood = TRUE;
+				else if (testhpmax >= 10 && (testhp > (testhpmax * 4 / 5) )) itgoestoogood = TRUE;
+
+				if (itgoestoogood) {
+					moveamt *= 3;
+					moveamt /= 4;
+				}
+			}
 
 			if (uarmf && uarmf->oartifact == ART_DARK_BALL_OF_LIGHT && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
@@ -2346,6 +2384,115 @@ moveloop()
 		if (u.umoved && uarmf && !rn2(50) && itemhasappearance(uarmf, APP_FOREIGN_BODY_SHOES)) {
 			pline("Ow, some foreign body inside your %s shoe hurts your %s!", rn2(2) ? "left" : "right", body_part(FOOT));
 			losehp(1, "a foreign body inside their shoes", KILLED_BY);
+		}
+
+		if (Yawming) {
+			u.yawmtime++;
+		}
+
+		if ((KillerRoomEffect || u.uprops[KILLER_ROOM_EFFECT].extrinsic || have_killerroomstone()) && !rn2(2000)) {
+			int killerroomtype = rnd(27);
+			struct permonst *killermonster = &mons[PM_ANT]; /* arbitrary */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				switch (killerroomtype) {
+					case 1:
+						killermonster = specialtensmon(322); break;
+					case 2:
+						killermonster = specialtensmon(326); break;
+					case 3:
+						killermonster = specialtensmon(333); break;
+					case 4:
+						killermonster = courtmon(); break;
+					case 5:
+						killermonster = specialtensmon(427); break;
+					case 6:
+						killermonster = specialtensmon(323); break;
+					case 7:
+						killermonster = specialtensmon(328); break;
+					case 8:
+						killermonster = douglas_adams_mon(); break;
+					case 9:
+						killermonster = specialtensmon(331); break;
+					case 10:
+						killermonster = evilroommon(); break;
+					case 11:
+						killermonster = specialtensmon(426); break;
+					case 12:
+						killermonster = specialtensmon(361); break;
+					case 13:
+						killermonster = specialtensmon(347); break;
+					case 14:
+						killermonster = specialtensmon(325); break;
+					case 15:
+						killermonster = specialtensmon(348); break;
+					case 16:
+						killermonster = machineroommon(); break;
+					case 17:
+						killermonster = beehivemon(); break;
+					case 18:
+						killermonster = migohivemon(); break;
+					case 19:
+						killermonster = specialtensmon(324); break;
+					case 20:
+						killermonster = specialtensmon(330); break;
+					case 21:
+						killermonster = specialtensmon(341); break;
+					case 22:
+						killermonster = specialtensmon(332); break;
+					case 23:
+						killermonster = insidemon(); break;
+					case 24:
+						killermonster = doomsquadmon(); break;
+					case 25:
+						killermonster = squadmon(); break;
+					case 26:
+						killermonster = illusionmon(); break;
+					case 27:
+						killermonster = specialtensmon(327); break;
+					default:
+						killermonster = &mons[PM_ANT]; break;
+				}
+				if (monsndx(killermonster) <= PM_PLAYERMON) killermonster = &mons[PM_ANT];
+
+				(void) makemon(killermonster, cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+			}
+
+			u.aggravation = 0;
+
+		}
+
+		if ((TrapwarpingBug || u.uprops[TRAPWARPING].extrinsic || have_trapwarpstone()) && !rn2(100)) {
+			for(ttmp = ftrap; ttmp; ttmp = ttmp->ntrap) {
+				if (ttmp->ttyp == MAGIC_PORTAL) continue;
+				if (rn2(100)) continue;
+				int cc = ttmp->tx;
+				int dd = ttmp->ty;
+				boolean trapseen = ttmp->tseen;
+				deltrap(ttmp);
+				ttmp = maketrap(cc, dd, randomtrap(), 100, FALSE);
+				if (ttmp && trapseen) ttmp->tseen = TRUE;
+			}
 		}
 
 		if (tech_inuse(T_AFTERBURNER) && u.umoved) {
@@ -13398,11 +13545,21 @@ past3:
 		} else {
 			u.xray_range = -1;
 		}
+		if (PlayerHasGiantExplorer && (u.xray_range < 10)) u.xray_range = 10;
 
 		if (astralstate != u.xray_range) {
 			vision_full_recalc = 1;
 		}
 
+	}
+
+	if (PlayerHasGiantExplorer) {
+
+		for(ttmp = ftrap; ttmp; ttmp = ttmp->ntrap) {
+			if (ttmp && distu(ttmp->tx, ttmp->ty) < 101 && is_nasty_trap(ttmp->ttyp)) {
+				dotrap(ttmp, DONTREVEAL|SKIPGARBAGE);
+			}
+		}
 	}
 
 	/* depending on the player's speed, you may go back and forth and still end up on the same square when the next

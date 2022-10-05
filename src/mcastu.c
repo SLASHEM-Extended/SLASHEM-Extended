@@ -155,6 +155,8 @@ STATIC_OVL int
 choose_magic_spell(spellval)
 int spellval;
 {
+	if (EnthuActive) spellval = rnd(45);
+
     switch (spellval) {
     case 45:
 	if (!rn2(25)) return MGC_DIVINE_WRATH; /* waaaay too overpowered, so this will appear much more rarely --Amy */
@@ -265,6 +267,7 @@ STATIC_OVL int
 choose_clerical_spell(spellnum)
 int spellnum;
 {
+	if (EnthuActive) spellnum = rnd(41);
 
     switch (spellnum) {
     case 41:
@@ -377,6 +380,35 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 	int spellnum = 0;
 	int spellev, chance, difficulty, splcaster, learning;
 
+	int spellcasttype = mattk->adtyp;
+	if (EnthuActive && !rn2(10)) {
+		if (!rn2(3)) spellcasttype = AD_SPEL;
+		else if (!rn2(2)) spellcasttype = AD_CLRC;
+		else if (!rn2(100)) spellcasttype = AD_DISN;
+		else {
+			switch (rnd(9)) {
+				case 1:
+					spellcasttype = AD_MAGM; break;
+				case 2:
+					spellcasttype = AD_FIRE; break;
+				case 3:
+					spellcasttype = AD_COLD; break;
+				case 4:
+					spellcasttype = AD_ELEC; break;
+				case 5:
+					spellcasttype = AD_SLEE; break;
+				case 6:
+					spellcasttype = AD_DRST; break;
+				case 7:
+					spellcasttype = AD_ACID; break;
+				case 8:
+					spellcasttype = AD_LITE; break;
+				case 9:
+					spellcasttype = AD_SPC2; break;
+			}
+		}
+	}
+
 	/* Three cases:
 	 * -- monster is attacking you.  Search for a useful spell.
 	 * -- monster thinks it's attacking you.  Search for a useful spell,
@@ -389,7 +421,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 	 * attacking casts spells only a small portion of the time that an
 	 * attacking monster does.
 	 */
-	if ((mattk->adtyp == AD_SPEL || mattk->adtyp == AD_CLRC || mattk->adtyp == AD_CAST) && ml) {
+	if ((spellcasttype == AD_SPEL || spellcasttype == AD_CLRC || spellcasttype == AD_CAST) && ml) {
 	    int cnt = 40;
 
 	    do {
@@ -401,9 +433,14 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 		    spellev = mtmp->m_en / 5;
 		    spellnum = (spellev - 1) * 7 + 1;
 		}
-		if (mattk->adtyp == AD_SPEL)
+		if (EnthuActive) {
+		    spellnum = rn2(2) ? choose_magic_spell(spellnum) : choose_clerical_spell(spellnum);
+		    while (rn2(7) && !spellnum) {
+			spellnum = rn2(2) ? choose_magic_spell(spellnum) : choose_clerical_spell(spellnum);
+		    }
+		} if (spellcasttype == AD_SPEL)
 		    spellnum = choose_magic_spell(spellnum);
-		else if (mattk->adtyp == AD_CLRC)
+		else if (spellcasttype == AD_CLRC)
 		    spellnum = choose_clerical_spell(spellnum);
 		else { /* AD_CAST - often reroll when psybolt or open wounds is chosen --Amy */
 
@@ -420,7 +457,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 		}
 		/* not trying to attack?  don't allow directed spells */
 		if (!thinks_it_foundyou) {
-		    if ( (!is_undirected_spell(mattk->adtyp, spellnum) && rn2(250) ) || is_melee_spell(mattk->adtyp, spellnum) || spell_would_be_useless(mtmp, mattk->adtyp, spellnum)) {
+		    if ( (!is_undirected_spell(spellcasttype, spellnum) && rn2(250) ) || is_melee_spell(spellcasttype, spellnum) || spell_would_be_useless(mtmp, spellcasttype, spellnum)) {
 			if (foundyou)
 			    impossible("spellcasting monster found you and doesn't know it?");
 			return 0;
@@ -428,7 +465,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 		    break;
 		}
 	    } while(--cnt > 0 &&
-		    spell_would_be_useless(mtmp, mattk->adtyp, spellnum));
+		    spell_would_be_useless(mtmp, spellcasttype, spellnum));
 	    if (cnt == 0) return 0;
 	} else {
 	    /* Casting level is limited by available energy */
@@ -442,11 +479,11 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 
 	/* monster unable to cast spells? */
 	if (mtmp->mcan || arcaniumfail() || (mtmp->data == &mons[PM_KLAPPTNIX]) || (RngeAntimagicA && !rn2(10)) || (RngeAntimagicB && !rn2(5)) || (RngeAntimagicC && !rn2(2)) || (RngeAntimagicD) || (RngeSpellDisruption && !rn2(5)) || mtmp->m_en < 5 || mtmp->mspec_used || !ml || u.antimagicshell || (uarmh && uarmh->otyp == HELM_OF_ANTI_MAGIC) || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || Role_if(PM_UNBELIEVER) || (uwep && uwep->oartifact == ART_ANTIMAGICBANE) || (uarmc && (itemhasappearance(uarmc, APP_VOID_CLOAK) || itemhasappearance(uarmc, APP_SHELL_CLOAK)) && !rn2(5))  ) {
-	    cursetxt(mtmp, is_undirected_spell(mattk->adtyp, spellnum));
+	    cursetxt(mtmp, is_undirected_spell(spellcasttype, spellnum));
 	    return(0);
 	}
 
-	if (mattk->adtyp == AD_SPEL || mattk->adtyp == AD_CLRC || mattk->adtyp == AD_CAST) {
+	if (spellcasttype == AD_SPEL || spellcasttype == AD_CLRC || spellcasttype == AD_CAST) {
 	    /*
 	     * Spell use (especially MGC) is more common in Slash'EM.
 	     * Still using mspec_used, just so monsters don't go bonkers.
@@ -456,7 +493,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 	    if (mtmp->mspec_used < 2) mtmp->mspec_used = 2;
 #endif
 	    mtmp->mspec_used = rn2(15) - mtmp->m_lev;
-	    if (mattk->adtyp == AD_SPEL)
+	    if (spellcasttype == AD_SPEL)
 		mtmp->mspec_used = mtmp->mspec_used > 0 ? 2 : 0;
 	    else if (mtmp->mspec_used < 2) mtmp->mspec_used = 2;
 	}
@@ -465,7 +502,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 	   wrong place?  If so, give a message, and return.  Do this *after*
 	   penalizing mspec_used. */
 	if (!foundyou && thinks_it_foundyou &&
-		!is_undirected_spell(mattk->adtyp, spellnum)) {
+		!is_undirected_spell(spellcasttype, spellnum)) {
 	    pline("%s casts a spell at %s!",
 		canseemon(mtmp) ? Monnam(mtmp) : "Something",
 		levl[mtmp->mux][mtmp->muy].typ == WATER
@@ -519,10 +556,10 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 		pline_The("air crackles around %s.", mon_nam(mtmp));
 	    return(0);
 	}
-	if (canspotmon(mtmp) || !is_undirected_spell(mattk->adtyp, spellnum)) {
+	if (canspotmon(mtmp) || !is_undirected_spell(spellcasttype, spellnum)) {
 	    pline("%s casts a spell%s!",
 		  canspotmon(mtmp) ? Monnam(mtmp) : "Something",
-		  is_undirected_spell(mattk->adtyp, spellnum) ? "" :
+		  is_undirected_spell(spellcasttype, spellnum) ? "" :
 		  (Invisible && !perceives(mtmp->data) && (StrongInvis || !rn2(3)) && 
 		   (mtmp->mux != u.ux || mtmp->muy != u.uy)) ?
 		  " at a spot near you" :
@@ -537,10 +574,10 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
  */
 	if (!foundyou) {
 	    /*dmg = 0;*/
-	    if (mattk->adtyp != AD_SPEL && mattk->adtyp != AD_CLRC && mattk->adtyp != AD_CAST) {
+	    if (spellcasttype != AD_SPEL && spellcasttype != AD_CLRC && spellcasttype != AD_CAST) {
 		impossible(
 	      "%s casting non-hand-to-hand version of hand-to-hand spell %d?",
-			   Monnam(mtmp), mattk->adtyp);
+			   Monnam(mtmp), spellcasttype);
 		return(0);
 	    }
 	} /*else*/ if (mattk->damd)
@@ -551,7 +588,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 
 	ret = 1;
 
-	switch (mattk->adtyp) {
+	switch (spellcasttype) {
 
 	    case AD_FIRE:
 		pline("You're enveloped in flames.");
@@ -695,7 +732,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 	    case AD_SPEL:	/* wizard spell */
 	    case AD_CLRC:       /* clerical spell */
 	    {
-		if (mattk->adtyp == AD_SPEL)
+		if (spellcasttype == AD_SPEL)
 		    cast_wizard_spell(mtmp, dmg, spellnum);
 		else
 		    cast_cleric_spell(mtmp, dmg, spellnum);
@@ -2407,9 +2444,37 @@ buzzmu(mtmp, mattk)		/* monster uses spell (ranged) */
 	register struct monst *mtmp;
 	register struct attack  *mattk;
 {
+	int spellcasttype = mattk->adtyp;
+
+	if (EnthuActive) {
+		if (!rn2(100)) spellcasttype = AD_DISN;
+		else {
+			switch (rnd(9)) {
+				case 1:
+					spellcasttype = AD_MAGM; break;
+				case 2:
+					spellcasttype = AD_FIRE; break;
+				case 3:
+					spellcasttype = AD_COLD; break;
+				case 4:
+					spellcasttype = AD_ELEC; break;
+				case 5:
+					spellcasttype = AD_SLEE; break;
+				case 6:
+					spellcasttype = AD_DRST; break;
+				case 7:
+					spellcasttype = AD_ACID; break;
+				case 8:
+					spellcasttype = AD_LITE; break;
+				case 9:
+					spellcasttype = AD_SPC2; break;
+			}
+		}
+	}
+
 	/* don't print constant stream of curse messages for 'normal'
 	   spellcasting monsters at range */
-	if ((mattk->adtyp > AD_SPC2) || (mattk->adtyp < AD_MAGM))
+	if ((spellcasttype > AD_SPC2) || (spellcasttype < AD_MAGM))
 	    return(0);
 
 	if (mtmp->mcan || arcaniumfail() || (RngeAntimagicA && !rn2(10)) || (RngeAntimagicB && !rn2(5)) || (RngeAntimagicC && !rn2(2)) || (RngeAntimagicD) || (RngeSpellDisruption && !rn2(5)) || u.antimagicshell || (uarmh && uarmh->otyp == HELM_OF_ANTI_MAGIC) || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || Role_if(PM_UNBELIEVER) || (uwep && uwep->oartifact == ART_ANTIMAGICBANE) || (uarmc && (itemhasappearance(uarmc, APP_VOID_CLOAK) || itemhasappearance(uarmc, APP_SHELL_CLOAK)) && !rn2(5)) ) {
@@ -2418,14 +2483,14 @@ buzzmu(mtmp, mattk)		/* monster uses spell (ranged) */
 	}
 	if(lined_up(mtmp) && rn2(3)) {
 	    nomul(0, 0, FALSE);
-	    if(mattk->adtyp && (mattk->adtyp < 11)) { /* no cf unsigned >0 */
+	    if(spellcasttype && (spellcasttype < 11)) { /* no cf unsigned >0 */
 		if(canseemon(mtmp))
 		    pline("%s zaps you with a %s!", Monnam(mtmp),
-			  flash_types[ad_to_typ(mattk->adtyp)]);
+			  flash_types[ad_to_typ(spellcasttype)]);
 		else if (flags.soundok && !issoviet) You_hear("a buzzing sound.");
-		buzz(-ad_to_typ(mattk->adtyp), (rn2(2) ? (int)mattk->damn : (int)mattk->damd ),
+		buzz(-ad_to_typ(spellcasttype), (rn2(2) ? (int)mattk->damn : (int)mattk->damd ),
 		     mtmp->mx, mtmp->my, sgn(tbx), sgn(tby));
-	    } else impossible("Monster spell %d cast", mattk->adtyp-1);
+	    } else impossible("Monster spell %d cast", spellcasttype-1);
 	}
 	return(1);
 }

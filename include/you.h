@@ -1337,6 +1337,7 @@ struct you {
 	int werepolymorphtime;		/* lycanthropic races shouldn't, either */
 
 	int dehydrationtime;
+	int yawmtime;	/* this is not a typo, I know it's spelled "yawn" normally --Amy */
 
 	int fakeartifacts;	/* keeping track of how many fake artifacts got generated */
 

@@ -23311,6 +23311,14 @@ register int	mmflags;
 
 	}
 
+	if (CradleChaosEffect || u.uprops[CRADLE_CHAOS_EFFECT].extrinsic || have_chaoscradlestone()) {
+		int monsterdifficulty = monster_difficulty();
+		if (mtmp->m_lev < 49 && (mtmp->m_lev < monsterdifficulty)) {
+			mtmp->m_lev = monsterdifficulty;
+			if (mtmp->m_lev > 49) mtmp->m_lev = 49;
+		}
+	}
+
 	/* Set HP, HPmax */	
 	if (is_golem(ptr)) {
 	    mtmp->mhpmax = mtmp->mhp = golemhp(mndx);

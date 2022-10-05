@@ -1345,6 +1345,11 @@ walscholardone:
 
 			} else if (mode == DO_MOVE) {
 
+				if (WallsAreNoFun) {
+					nofunwalltrigger(x, y);
+					TimerunBug += 1; /* ugly hack --Amy */
+				}
+
 				if (WallsAreHyperBlue) {
 					You("crash into a wall! Ouch!");
 

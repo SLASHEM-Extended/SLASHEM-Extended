@@ -1717,6 +1717,7 @@ bound_digging()
 	for (x = 0; x < COLNO; x++)
 	  for (y = 0; y < ROWNO; y++) {
 		if (!rn2(quasarchance)) levl[x][y].wall_info |= W_QUASAROK;
+		levl[x][y].nofunwall = rn2(43);
 	}
 
 	if(Is_earthlevel(&u.uz)) return; /* everything diggable here */

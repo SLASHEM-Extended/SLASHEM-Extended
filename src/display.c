@@ -452,6 +452,10 @@ unmap_object(x, y)
 	show_glyph(x, y, cmap_to_glyph(S_stone));			\
 	return;								\
 	}								\
+	if (Yawming && (distu(x,y) > yawm_distance())) { 	\
+	show_glyph(x, y, cmap_to_glyph(S_stone));			\
+	return;								\
+	}								\
 	if ((MojibakeEffect || u.uprops[MOJIBAKE].extrinsic || have_mojibakestone() || Race_if(PM_RELEASIER)) && !rn2(10)) { 	\
 	show_glyph(x, y, randomglyph() );			\
 	return;								\
@@ -533,6 +537,8 @@ int memory_glyph(x, y)
 	}
 
 	if ( (QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() ) && !isimportantlocation(x, y) && !(levl[x][y].wall_info & W_QUASAROK) ) { return cmap_to_glyph(S_stone); }
+
+	if (Yawming && (distu(x,y) > yawm_distance())) { return cmap_to_glyph(S_stone); }
 
 	if ((MojibakeEffect || u.uprops[MOJIBAKE].extrinsic || have_mojibakestone() || Race_if(PM_RELEASIER)) && !rn2(10)) {
 	return randomglyph();
@@ -1090,6 +1096,11 @@ newsym(x,y)
 	return;
 	}
 
+	if (Yawming && (distu(x,y) > yawm_distance())) {
+	show_glyph(x, y, cmap_to_glyph(S_stone));
+	return;
+	}
+
 	if ((MojibakeEffect || u.uprops[MOJIBAKE].extrinsic || have_mojibakestone() || Race_if(PM_RELEASIER)) && !rn2(10)) {
 	show_glyph(x, y, randomglyph());
 	return;
@@ -1468,6 +1479,11 @@ newsymX(x,y)
 	}
 
 	if ( (QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() ) && !isimportantlocation(x, y) && !(levl[x][y].wall_info & W_QUASAROK) ) {
+	show_glyph(x, y, cmap_to_glyph(S_stone));
+	return;
+	}
+
+	if (Yawming && (distu(x,y) > yawm_distance())) {
 	show_glyph(x, y, cmap_to_glyph(S_stone));
 	return;
 	}

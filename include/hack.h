@@ -193,6 +193,7 @@ NEARDATA extern coord bhitpos;	/* place where throw or zap hits or stops */
 #define FORCEBUNGLE	0x02	/* adjustments appropriate for bungling */
 #define RECURSIVETRAP	0x04	/* trap changed into another type this same turn */
 #define DONTREVEAL	0x08	/* trap won't become visible */
+#define SKIPGARBAGE	0x10	/* skip stuff like ka-blammo, jana's fairness cup etc. */
 
 /* Flags to control test_move in hack.c */
 #define DO_MOVE		0	/* really doing the move */

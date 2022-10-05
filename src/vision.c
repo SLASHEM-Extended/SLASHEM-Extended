@@ -182,6 +182,8 @@ does_block(x,y,lev)
 	  (mon->m_ap_type == M_AP_OBJECT && mon->mappearance == BOULDER)))
 	return 1;
 
+    if (TezActive && m_at(x,y)) return 1;
+
     return 0;
 }
 
@@ -227,6 +229,7 @@ vision_reset()
 			left_ptrs [y][i] = dig_left;
 			right_ptrs[y][i] = x;
 			viz_clear[y][i] = 1;
+			if (TezActive && m_at(y,i)) viz_clear[y][i] = 0;
 		    }
 		}
 		dig_left = x;
@@ -239,6 +242,7 @@ vision_reset()
 	    left_ptrs [y][i] = dig_left;
 	    right_ptrs[y][i] = (COLNO-1);
 	    viz_clear[y][i] = !block;
+	    if (TezActive && m_at(y,i)) viz_clear[y][i] = 0;
 	}
     }
 
@@ -747,7 +751,7 @@ vision_recalc(control)
 		 * We see this position because it is lit.
 		 */
 		if ((IS_DOOR(lev->typ) || lev->typ == SDOOR ||
-		     IS_WALL(lev->typ)) && !viz_clear[row][col]) {
+		     IS_WALL(lev->typ)) && (!viz_clear[row][col] || (TezActive && m_at(row,col)) ) ) {
 		    /*
 		     * Make sure doors, walls, boulders or mimics don't show up
 		     * at the end of dark hallways.  We do this by checking

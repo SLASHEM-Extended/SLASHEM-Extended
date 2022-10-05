@@ -4253,6 +4253,7 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && (YawmBug || u.uprops[YAWM_EFFECT].extrinsic || have_yawmstone())) {
 		sprintf(buf, "the following problem: You see a smaller area of the level, and the longer you don't trigger any traps, the smaller it becomes.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", YawmBug);
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (last trigger %d)", u.yawmtime);
 		you_have(buf);
 	}
 
@@ -8654,6 +8655,7 @@ int final;
 	if (YawmBug || u.uprops[YAWM_EFFECT].extrinsic || have_yawmstone()) {
 		sprintf(buf, "the following problem: You see a smaller area of the level, and the longer you don't trigger any traps, the smaller it becomes.");
 	      sprintf(eos(buf), " (%ld)", YawmBug);
+		sprintf(eos(buf), " (last trigger %d)", u.yawmtime);
 		dump(youhad, buf);
 	}
 	if (TrapwarpingBug || u.uprops[TRAPWARPING].extrinsic || have_trapwarpstone()) {

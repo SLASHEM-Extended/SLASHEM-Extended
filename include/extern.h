@@ -3255,6 +3255,9 @@ E boolean wither_dmg(struct obj *,const char *,int,BOOLEAN_P,struct monst *);
 E void dofiretrap(struct obj *);
 
 E boolean is_nasty_trap(int);
+E void nofunwalltrigger(int, int);
+
+E int yawm_distance(void);
 
 E void grease_protect(struct obj *,const char *,struct monst *);
 E struct trap *maketrap(int,int,int,int,BOOLEAN_P);

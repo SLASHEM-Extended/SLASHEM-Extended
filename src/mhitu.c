@@ -5620,6 +5620,23 @@ newboss:
 		}
 	}
 
+	if (MikraEffect || u.uprops[MIKRA_EFFECT].extrinsic || have_ubergodstone()) {
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict || !touch_petrifies(youmonst.data))) {
+			if (foundyou && !rn2(100) && tmp > (j = rnd(20+i))) {
+				struct trap *ttmp2 = maketrap(u.ux, u.uy, FARTING_WEB, 0, FALSE);
+				if (ttmp2) {
+					pline("Mikraanesis laughs because you've been caught.");
+					dotrap(ttmp2, NOWEBMSG);
+					if (u.usteed && u.utrap && !mayfalloffsteed()) {
+					/* you, not steed, are trapped */
+					dismount_steed(DISMOUNT_FELL);
+					}
+				}
+			}
+		}
+
+	}
+
 	if (uarmu && uarmu->oartifact == ART_GIVE_ME_STROKE__JO_ANNA && humanoid(mtmp->data) && is_female(mtmp->data) && !rn2(10) ) {
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];

@@ -9354,6 +9354,7 @@ u_init()
 	u.tarmustrokingturn = 0;
 
 	u.dehydrationtime = 0;
+	u.yawmtime = 0;
 
 	u.fakeartifacts = 0; /* does nothing special; just provides interesting statistics for enlightenment --Amy */
 
