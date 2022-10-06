@@ -841,6 +841,7 @@ register struct monst *mtmp;
 	if (uright && uright->oartifact == ART_BLIND_PILOT) tmp -= 10;
 	if (Role_if(PM_ARCHEOLOGIST) && uamul && uamul->oartifact == ART_ARCHEOLOGIST_SONG) tmp += 2;
 	if (ublindf && ublindf->oartifact == ART_EYEHANDER) tmp += 5;
+	if (uarmf && uarmf->oartifact == ART_CAT_ROCKZ) tmp += 5;
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 	if (uarmg && uarmg->oartifact == ART_MAJOR_PRESENCE) tmp += 2;
@@ -854,6 +855,7 @@ register struct monst *mtmp;
 	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 249) tmp += 1;
 	if (uwep && uwep->oartifact == ART_LUCKY_MELEE_ATTACKS) tmp += 10;
 	if (StrongBlind_resistance) tmp += rn1(5, 5);
+	if (uarmh && uarmh->oartifact == ART_WAITING_FOR_MELEE) tmp -= 2;
 
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
 	if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
@@ -3196,6 +3198,7 @@ int dieroll;
 		if (uwep && uwep->oartifact == ART_SPAMBAIT_FIRE) tmp += 2;
 		if (uwep && uwep->oartifact == ART_GARY_S_RIVALRY) tmp += 2;
 		if (uarmf && uarmf->oartifact == ART_KATI_S_IRRESISTIBLE_STILET) tmp += 2;
+		if (uarmf && uarmf->oartifact == ART_STREET_ROCKZ) tmp += 2;
 		if (uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) tmp += 1;
 		if (uwep && uwep->oartifact == ART_THOR_S_STRIKE && ACURR(A_STR) >= STR19(25)) tmp += 5;
 		if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
@@ -3238,6 +3241,8 @@ int dieroll;
 		if (uarmf && uarmf->oartifact == ART_EROTICLAMP && u.ustuck && !u.uswallow && !sticks(youmonst.data)) tmp += 2;
 		if (!thrown && FemtrapActiveNatalia && flags.female && (u.nataliacycletimer >= u.nataliafollicularend) && (u.nataliacycletimer < (u.nataliafollicularend + u.natalialutealstart)) ) tmp += 2;
 		if (!thrown && uarmc && uarmc->oartifact == ART_SIECHELALUER) tmp += 5;
+		if (thrown && uarmh && uarmh->oartifact == ART_WAITING_FOR_MELEE) tmp -= 2;
+		if (!thrown && uarmh && uarmh->oartifact == ART_WAITING_FOR_MELEE) tmp += 2;
 
 		if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 

@@ -2452,6 +2452,32 @@ find_persian_boots()
 }
 
 int
+find_higher_helmet()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_HIGHER_HELMET)) return i;
+    }
+
+    impossible("higher helmet not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_missys()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_MISSYS)) return i;
+    }
+
+    impossible("missys not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_hugging_boots()
 {
     register int i;

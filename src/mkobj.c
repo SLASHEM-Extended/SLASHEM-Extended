@@ -638,6 +638,12 @@ struct obj *box;
 
 			if (uarmh && uarmh->oartifact == ART_GOLD_STANDARD) otmp->quan *= 2;
 			if (uarmg && uarmg->oartifact == ART_ROBBERY_GONE_RIGHT) otmp->quan *= 3;
+			if (uleft && uleft->oartifact == ART_WELLTRAVEL) {
+				otmp->quan *= 3; otmp->quan /= 2;
+			}
+			if (uright && uright->oartifact == ART_WELLTRAVEL) {
+				otmp->quan *= 3; otmp->quan /= 2;
+			}
 
 		    otmp->owt = weight(otmp);
 		}

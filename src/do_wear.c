@@ -2199,6 +2199,10 @@ Helmet_on()
 		else uarmh->spe = -(rnd(5));
     }
 
+	if (uarmh && uarmh->oartifact == ART_SOARUP && uarmh->spe == 0) {
+		uarmh->spe = 1;
+	}
+
 	if (uarmh && itemhasappearance(uarmh, APP_LESS_HELMET)) {
 		if (uarmh->spe > 0) uarmh->spe--;
 	}
@@ -5778,6 +5782,7 @@ find_ac()
 	if (uarmh && uarmh->oartifact == ART_NOSED_BUG) uac -= 7;
 	if (uarmf && uarmf->oartifact == ART_PORCELAIN_ELEPHANT) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_DAMPENER) uac -= 5;
+	if (uarmf && uarmf->oartifact == ART_ROCKZ_ARMY) uac -= 10;
 	if (uarmc && uarmc->oartifact == ART_SEXY_STROKING_UNITS) uac -= 5;
 	if (uarm && uarm->oartifact == ART_ANASTASIA_S_SOFT_CLOTHES) uac -= 10;
 	if (uarm && uarm->oartifact == ART_ROCKET_IMPULSE) uac -= 10;

@@ -588,6 +588,35 @@ hack_artifacts()
 	artilist[ART_PLAYING_ANASTASIA].otyp = find_chelsea_boots();
 	artilist[ART_JASIEEN_S_FEAR].otyp = find_wedge_espadrilles();
 	artilist[ART_SHE_REALLY_LIKES_IT].otyp = find_treaded_heels();
+	artilist[ART_SOARUP].otyp = find_higher_helmet();
+	artilist[ART_SAFARI_ROCKZ].otyp = find_missys();
+	artilist[ART_SPIRIT_ROCKZ].otyp = find_missys();
+	artilist[ART_PURPLE_JUNGLE].otyp = find_missys();
+	artilist[ART_EAZY_GOING].otyp = find_missys();
+	artilist[ART_SIMPLY_WHITE].otyp = find_missys();
+	artilist[ART_SIMPLY_BLACK].otyp = find_missys();
+	artilist[ART_WOOD_FEELING].otyp = find_missys();
+	artilist[ART_COLLEGE_ROCKZ].otyp = find_missys();
+	artilist[ART_WELCOME_ON_BOARD].otyp = find_missys();
+	artilist[ART_WONDERFUL_LOTUS].otyp = find_missys();
+	artilist[ART_UNDERWATER_LOVE].otyp = find_missys();
+	artilist[ART_SWEET_CHERRY].otyp = find_missys();
+	artilist[ART_TIRE_ROCKZ].otyp = find_missys();
+	artilist[ART_HAPPY_CLOUD].otyp = find_missys();
+	artilist[ART_DELFI_ROCKZ].otyp = find_missys();
+	artilist[ART_ALL_TIME_FAVZ].otyp = find_missys();
+	artilist[ART_ROCKZ_ARMY].otyp = find_missys();
+	artilist[ART_SKETCH_IT].otyp = find_missys();
+	artilist[ART_POKERFACE].otyp = find_missys();
+	artilist[ART_WHITE_KARMA].otyp = find_missys();
+	artilist[ART_STREET_ROCKZ].otyp = find_missys();
+	artilist[ART_BLACK_MANDALA].otyp = find_missys();
+	artilist[ART_MY_LOVE].otyp = find_missys();
+	artilist[ART_YES_I_ROCKZ].otyp = find_missys();
+	artilist[ART_BUNNY_ROCKZ].otyp = find_missys();
+	artilist[ART_CAT_ROCKZ].otyp = find_missys();
+	artilist[ART_SCAN_ME].otyp = find_missys();
+	artilist[ART_BACTERIA].otyp = find_missys();
 
 #if 0
 	/* Fix up the gifts */
@@ -3608,6 +3637,20 @@ chargingchoice:
 	    }
 	    break;
 	case SPECIAL_INVOKE:
+
+		if (obj->oartifact == ART_YOHUALLI_TEZCATL) {
+		    make_sick(0L, (char *) 0, FALSE, SICK_ALL);
+		    make_blinded(0L,FALSE);
+		    make_stunned(0L,TRUE);
+		    make_confused(0L,TRUE);
+		    (void) make_hallucinated(0L,FALSE,0L);
+		    make_numbed(0L,TRUE);
+		    make_feared(0L,TRUE);
+		    make_frozen(0L,TRUE);
+		    make_burned(0L,TRUE);
+		    make_dimmed(0L,TRUE);
+
+		}
 
 		if (obj->oartifact == ART_LILLY_S_SECRET_AGENCY) {
 

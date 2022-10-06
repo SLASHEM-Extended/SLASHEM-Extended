@@ -1472,6 +1472,7 @@ boolean hitsroof;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_SPAMBAIT_FIRE) dmg += 2;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_GARY_S_RIVALRY) dmg += 2;
 	if (dmg > 0 && uarmf && uarmf->oartifact == ART_KATI_S_IRRESISTIBLE_STILET) dmg += 2;
+	if (dmg > 0 && uarmf && uarmf->oartifact == ART_STREET_ROCKZ) dmg += 2;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_THOR_S_STRIKE && ACURR(A_STR) >= STR19(25)) dmg += 5;
 	if (dmg > 0 && uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) dmg += 10;
 	if (dmg > 0 && uarm && uarm->otyp == DARK_DRAGON_SCALES) dmg += 1;
@@ -2228,6 +2229,7 @@ boolean polearming;
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 	if (uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 	if (uarmf && uarmf->oartifact == ART_CRASHING_YOUR_SISTER_S_WED) tmp -= 5;
+	if (uarmf && uarmf->oartifact == ART_CAT_ROCKZ) tmp += 5;
 	if (Race_if(PM_SERB)) tmp += 1;
 	if (uarmg && uarmg->oartifact == ART_MAJOR_PRESENCE) tmp += 2;
 	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 0) tmp += 1;
@@ -2237,6 +2239,7 @@ boolean polearming;
 	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 199) tmp += 1;
 	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 249) tmp += 1;
 	if (StrongBlind_resistance) tmp += rn1(5, 5);
+	if (uarmh && uarmh->oartifact == ART_WAITING_FOR_MELEE) tmp -= 2;
 
 	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 

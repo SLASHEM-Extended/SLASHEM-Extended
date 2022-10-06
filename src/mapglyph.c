@@ -1345,6 +1345,12 @@ unsigned *ospecial;
 		if ((uarmc && itemhasappearance(uarmc, APP_FLEECELING_CLOAK)) && !rn2(5) ) color = rnd(15);
 		if (uarmg && uarmg->oartifact == ART_JONADAB_S_KEYCODE && !rn2(5)) color = rnd(15);
 		if (everythingfleecy()) color = rnd(15);
+		if (uamul && uamul->oartifact == ART_SUPER_GRAPHICS_CARD_BUG) {
+			if (color > 0 && color < 16) {
+				color++;
+				if (color > 15) color = 1;
+			}
+		}
     } else if ((offset = (glyph - GLYPH_OBJ_OFF)) >= 0) {	/* object */
 	if (On_stairs(x,y) && !ThereIsNoLite && levl[x][y].seenv) special |= MG_STAIRS;
 	if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !ThereIsNoLite) special |= MG_ENGRAVING;

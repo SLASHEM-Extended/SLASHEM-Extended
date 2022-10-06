@@ -11704,11 +11704,14 @@ int spell;
 
 	if (uarmg && itemhasappearance(uarmg, APP_UNCANNY_GLOVES)) chance -= 10;
 
+	if (uarmh && uarmh->oartifact == ART_WAITING_FOR_MELEE) chance -= 15;
 	if (uarm && uarm->oartifact == ART_DRAGON_PLATE) chance -= 20;
+
 	if (Race_if(PM_PLAYER_GOLEM)) {
 		chance -= 25;
 		if (spellev(spell) > 1) chance -= ((spellev(spell) - 1) * 5);
 	}
+
 	if (uarm && uarm->oartifact == ART_ROFLCOPTER_WEB) chance += 10;
 	if (uarm && uarm->otyp == ROBE_OF_SPELL_POWER) chance += 20;
 	if (Role_if(PM_CELLAR_CHILD) && uarm && uarm->otyp == MAGE_PLATE_MAIL) chance += 20;

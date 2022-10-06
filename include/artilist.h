@@ -9301,6 +9301,149 @@ A("Pooling",				SYMBIOTE, /* if you use it while you already have a symbiote, it
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
 
+A("Incredible View",				BUGXPLORE_HELMET, /* gives all foo-o-pathies as extrinsics */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Waiting For Melee",				YAWNING_VISOR, /* +2 melee damage, -2 melee and ranged to-hit, 15% more spellcasting failure */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Super Graphics Card Bug",				AMULET_OF_TRAP_WARPING, /* sight bonus, morphs every color to the next one */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Fall Warting Number",				RIN_INCESSANT_FARTING, /* +2 wisdom */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Welltravel",				RIN_WALLFARTING, /* randomly generated gold stacks have 50% more gold */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Yohualli Tezcatl",				TEZ_SHIELD, /* +2 DEX, blindness resistance, invoke to fix all status effects */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN|SPFX_HSPDAM), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Truly Magnified",				KILLER_SPAWN_BOOTS, /* clairvoyance, multiplies killer room monster amount by d3 */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Soarup",				HELMET, /* always initialized to be higher helmet, flying, if it's +0 when you put it on it becomes +1 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Safari Rockz",				LOW_BOOTS, /* initialized to always be missys, allows you to walk through trees, scent view */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Spirit Rockz",				LOW_BOOTS, /* initialized to always be missys, wallwalking */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Purple Jungle",				LOW_BOOTS, /* initialized to always be missys, allows you to cross farmland and you regenerate an extra HP while being in farmland */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Eazy Going",				LOW_BOOTS, /* initialized to always be missys */
+	(SPFX_RESTR|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Simply White",				LOW_BOOTS, /* initialized to always be missys, cold resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Simply Black",				LOW_BOOTS, /* initialized to always be missys, disint resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Wood Feeling",				LOW_BOOTS, /* initialized to always be missys, stone resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("College Rockz",				LOW_BOOTS, /* initialized to always be missys, +3 INT/WIS when worn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Welcome On Board",				LOW_BOOTS, /* initialized to always be missys, swimming and your items don't get wet */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Wonderful Lotus",				LOW_BOOTS, /* initialized to always be missys, poison resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Underwater Love",				LOW_BOOTS, /* initialized to always be missys, unbreathing and your items don't get wet */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Sweet Cherry",				LOW_BOOTS, /* initialized to always be missys, full nutrients */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Tire Rockz",				LOW_BOOTS, /* initialized to always be missys, 40% faster movement when riding */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Happy Cloud",				LOW_BOOTS, /* initialized to always be missys, you transform regular floor into clouds when moving, +5 luck */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Delfi Rockz",				LOW_BOOTS, /* initialized to always be missys, prayer timeout is 3x faster and tells you when it becomes 0 again */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("All Time Favz",				LOW_BOOTS, /* initialized to always be missys */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Rockz Army",				LOW_BOOTS, /* initialized to always be missys, 10 extra points of AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Sketch It",				LOW_BOOTS, /* initialized to always be missys, clairvoyance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Pokerface",				LOW_BOOTS, /* initialized to always be missys */
+	(SPFX_RESTR|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("White Karma",				LOW_BOOTS, /* initialized to always be missys, gain 1 alignment with a 1 in 100 chance per turn (not beyond the maximum) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Street Rockz",				LOW_BOOTS, /* initialized to always be missys, +2 increase damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Black Mandala",				LOW_BOOTS, /* initialized to always be missys */
+	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("My Love",				LOW_BOOTS, /* initialized to always be missys, resist fire */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Yes I Rockz",				LOW_BOOTS, /* initialized to always be missys, blindness resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Bunny Rockz",				LOW_BOOTS, /* initialized to always be missys, peacevision */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Cat Rockz",				LOW_BOOTS, /* initialized to always be missys, +5 increase accuracy */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Scan Me",				LOW_BOOTS, /* initialized to always be missys, supertelepathy */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Bacteria",				LOW_BOOTS, /* initialized to always be missys, sickness resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
 
 /*
  *	Stormbringer only has a 2 because it can drain a level,

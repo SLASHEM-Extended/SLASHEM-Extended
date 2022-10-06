@@ -2076,6 +2076,8 @@ E int find_persian_boots(void);
 E int find_hugging_boots(void);
 E int find_plateau_boots(void);
 E int find_fleecy_boots(void);
+E int find_higher_helmet(void);
+E int find_missys(void);
 E int find_fingerless_gloves(void);
 E int find_mantle_of_coat(void);
 E int find_fatal_gloves(void);

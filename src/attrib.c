@@ -1719,6 +1719,7 @@ set_moreluck()
 	else u.moreluck = -LUCKADD;
 	if (uwep && uwep->oartifact == ART_WIRE_OF_LUCK) u.moreluck += 5;
 	if (have_amateurluckstone()) u.moreluck += 5;
+	if (uarmf && uarmf->oartifact == ART_HAPPY_CLOUD) u.moreluck += 5;
 }
 
 
@@ -2927,6 +2928,9 @@ int x;
 		if (FemtrapActiveNora && u.uhs == FAINTING) tmp += 5;
 		if (FemtrapActiveNora && u.uhs == FAINTED) tmp += 10;
 		if (FemtrapActiveNora && u.uhs == STARVED) tmp += 25;
+		if (x == A_WIS && uleft && uleft->oartifact == ART_FALL_WARTING_NUMBER) tmp += 2;
+		if (x == A_WIS && uright && uright->oartifact == ART_FALL_WARTING_NUMBER) tmp += 2;
+		if (uarmf && uarmf->oartifact == ART_COLLEGE_ROCKZ) tmp += 3;
 
 		if (uarmh && uarmh->oartifact == ART_YOU_DON_T_KNOW_SHIT) tmp -= 3;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp -= 10;
@@ -2988,6 +2992,7 @@ int x;
 		if (FemtrapActiveNora && u.uhs == FAINTED) tmp += 10;
 		if (FemtrapActiveNora && u.uhs == STARVED) tmp += 25;
 		if (uarmg && uarmg->otyp == GAUNTLETS_OF_DEXTERITY) tmp += uarmg->spe;
+		if (uarms && uarms->oartifact == ART_YOHUALLI_TEZCATL) tmp += 2;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (PlayerBleeds > 100) tmp -= 2;

@@ -86,6 +86,7 @@ moveloop()
 	int randmnsx;
 	int i;
 	int nastyitemchance;
+	boolean delfirockz = FALSE;
 	coord cc;
     int cx,cy;
 	register struct obj *acqo;
@@ -1453,6 +1454,13 @@ moveloop()
 						if (moveamt > (oldspeed + 18)) moveamt = (oldspeed + 18);
 					}
 
+					if (uarmf && uarmf->oartifact == ART_TIRE_ROCKZ) {
+						oldspeed = moveamt;
+						moveamt *= 7;
+						moveamt /= 5;
+						if (moveamt > (oldspeed + 18)) moveamt = (oldspeed + 18);
+					}
+
 				}
 
 			} /* chance to reduce speed end */
@@ -2410,6 +2418,7 @@ moveloop()
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
+			if (uarmf && uarmf->oartifact == ART_TRULY_MAGNIFIED) randsp *= 3;
 
 			for (i = 0; i < randsp; i++) {
 
@@ -3653,6 +3662,8 @@ trapsdone:
 				u.artifactaffinity -= 10;
 			}
 		}
+
+		if (uarmf && uarmf->oartifact == ART_WHITE_KARMA && !rn2(100)) adjalign(1);
 
 		if (uwep && uwep->otyp == YITH_TENTACLE && !rn2(200)) increasesanity(1);
 		if (u.twoweap && uswapwep && uswapwep->otyp == YITH_TENTACLE && !rn2(200)) increasesanity(1);
@@ -6852,6 +6863,11 @@ newbossJANI:
 		if (uarm && uarm->oartifact == ART_FLOCKDOWN) {
 			if (levl[u.ux][u.uy].typ == ROOM || levl[u.ux][u.uy].typ == CORR) {
 				levl[u.ux][u.uy].typ = SNOW;
+			}
+		}
+		if (uarmf && uarmf->oartifact == ART_HAPPY_CLOUD) {
+			if (levl[u.ux][u.uy].typ == ROOM || levl[u.ux][u.uy].typ == CORR) {
+				levl[u.ux][u.uy].typ = CLOUD;
 			}
 		}
 
@@ -12155,9 +12171,14 @@ pastds2:
 		    dgn_growths(TRUE, TRUE, TRUE);
 #endif
 
+		if ((uarmf && uarmf->oartifact == ART_DELFI_ROCKZ) && u.ublesscnt) delfirockz = TRUE;
+
 		if (NonprayerBug || u.uprops[NON_PRAYER_BUG].extrinsic || have_antiprayerstone()) u.ublesscnt++;
 		else if (u.ublesscnt) {
 			u.ublesscnt--;
+			if (uarmf && uarmf->oartifact == ART_DELFI_ROCKZ) {
+				u.ublesscnt -= 2;
+			}
 		}
 		if (u.ublesscnt < 0) u.ublesscnt = 0; /* fail safe */
 
@@ -12179,7 +12200,11 @@ pastds2:
 
 		}
 
-		    if (u.ublesscnt < 0) u.ublesscnt = 0; /* fail safe */
+		if (u.ublesscnt < 0) u.ublesscnt = 0; /* fail safe */
+
+		if (delfirockz && (u.ublesscnt == 0)) {
+			Your("prayer timeout has expired now and is at zero again, so if it's otherwise safe to pray, you can do so now.");
+		}
 		    
 		    if(flags.time && !flags.run)
 			flags.botl = 1;
@@ -12346,23 +12371,55 @@ pastds2:
 				u.uhp++;
 				if (Race_if(PM_PIERCER)) u.uhp++;
 				if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+
+				if (Upolyd) {
+					u.mh++;
+					if (Race_if(PM_PIERCER)) u.mh++;
+					if(u.mh > u.mhmax) u.mh = u.mhmax;
+				}
 			}
 
 			if (uwep && uwep->oartifact == ART_CRYSPEAR) {
 				u.uhp += 1;
 				if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+
+				if (Upolyd) {
+					u.mh++;
+					if (Race_if(PM_PIERCER)) u.mh++;
+					if(u.mh > u.mhmax) u.mh = u.mhmax;
+				}
+
+				flags.botl = 1;
+
+			}
+			if (uarmf && uarmf->oartifact == ART_PURPLE_JUNGLE && levl[u.ux][u.uy].typ == FARMLAND) {
+				u.uhp += 1;
+				if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+
+				if (Upolyd) {
+					u.mh++;
+					if (Race_if(PM_PIERCER)) u.mh++;
+					if(u.mh > u.mhmax) u.mh = u.mhmax;
+				}
+
 				flags.botl = 1;
 
 			}
 			if (uarmg && uarmg->oartifact == ART_GREEN_THUMB && levl[u.ux][u.uy].typ == TREE) {
 				u.uhp += 1;
 				if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+
+				if (Upolyd) {
+					u.mh++;
+					if (Race_if(PM_PIERCER)) u.mh++;
+					if(u.mh > u.mhmax) u.mh = u.mhmax;
+				}
 				flags.botl = 1;
 
 			}
 
 			if (Race_if(PM_BACTERIA) && u.uhpmax > 4 && !Upolyd && u.uhp <= ((u.uhpmax / 5) + 1)) {
-				pline("*Super Regene*");
+				pline("*Super Regene*"); /* does not work for polymorphed HP (intentional) --Amy */
 				u.uhp += 5;
 				if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				flags.botl = 1;

@@ -1109,9 +1109,11 @@ int mode;
 	    ;	/* do nothing */
 	} else if (Race_if(PM_HUMANOID_DRYAD) && tmpr->typ == TREE) {
 	    ;	/* dryad can walk thru trees --Amy */
-	} else if (uarmg && uarmg->oartifact == ART_GREEN_THUMB) {
+	} else if (uarmg && uarmg->oartifact == ART_GREEN_THUMB && tmpr->typ == TREE) {
 	    ;
 	} else if (uarmf && uarmf->oartifact == ART_EVERYTHING_IS_GREEN && tmpr->typ == TREE) {
+	    ;	/* special effect of that artifact --Amy */
+	} else if (uarmf && uarmf->oartifact == ART_SAFARI_ROCKZ && tmpr->typ == TREE) {
 	    ;	/* special effect of that artifact --Amy */
 	} else if (uwep && uwep->oartifact == ART_GIFT_TO_NATURE && tmpr->typ == TREE) {
 	    ;	/* special effect of that artifact --Amy */
@@ -1151,9 +1153,9 @@ int mode;
 		}
 
 	} else if (tmpr->typ == FARMLAND) {
-		if (mode != DO_MOVE && !Levitation && !Flying && !(ublindf && ublindf->oartifact == ART_FREEBOUND) && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(uwep && uwep->oartifact == ART_REAL_WALKING) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED)) return FALSE;
+		if (mode != DO_MOVE && !Levitation && !Flying && !(uarmf && uarmf->oartifact == ART_PURPLE_JUNGLE) && !(ublindf && ublindf->oartifact == ART_FREEBOUND) && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(uwep && uwep->oartifact == ART_REAL_WALKING) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED)) return FALSE;
 
-		if (mode == DO_MOVE && !Levitation && !Flying && !(ublindf && ublindf->oartifact == ART_FREEBOUND) && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(uwep && uwep->oartifact == ART_REAL_WALKING) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED) && !(powerfulimplants() && uimplant && uimplant && uimplant->oartifact == ART_SIGNIFICANT_RNG_JITTER) ) {
+		if (mode == DO_MOVE && !Levitation && !Flying && !(uarmf && uarmf->oartifact == ART_PURPLE_JUNGLE) && !(ublindf && ublindf->oartifact == ART_FREEBOUND) && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(uwep && uwep->oartifact == ART_REAL_WALKING) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED) && !(powerfulimplants() && uimplant && uimplant && uimplant->oartifact == ART_SIGNIFICANT_RNG_JITTER) ) {
 
 			if (WallsAreHyperBlue) {
 				You("crash into a farmland! Ouch!");

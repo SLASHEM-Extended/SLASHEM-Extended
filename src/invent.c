@@ -1462,6 +1462,7 @@ have_amateurluckstone()
 		if(otmp->otyp == LUCKSTONE && otmp->oartifact == ART_AMATEURHOUR_S_SIGH)
 			return(TRUE);
 		}
+
 	return(FALSE);
 }
 
@@ -22911,6 +22912,78 @@ boolean knoweverything;
 					pline("Artifact specs: can be invoked for chocolate creation, but doing so requires you to select a scroll in your open inventory, which will be used up."); break;
 				case ART_POOLING:
 					pline("Artifact specs: using it while you already have a symbiote turns that one back into a monster."); break;
+				case ART_INCREDIBLE_VIEW:
+					pline("Artifact specs: gives all the various foo-o-pathies as extrinsics when worn."); break;
+				case ART_WAITING_FOR_MELEE:
+					pline("Artifact specs: +2 melee damage, -2 increase accuracy for both melee and ranged, 15%% higher spellcasting failure rates when worn."); break;
+				case ART_SUPER_GRAPHICS_CARD_BUG:
+					pline("Artifact specs: causes the game to display the wrong colors when worn and increases your vision range."); break;
+				case ART_FALL_WARTING_NUMBER:
+					pline("Artifact specs: +2 wisdom when worn."); break;
+				case ART_WELLTRAVEL:
+					pline("Artifact specs: while wearing it, randomly generated gold stacks have more gold in them."); break;
+				case ART_YOHUALLI_TEZCATL:
+					pline("Artifact specs: +2 dexterity, magic and blindness resistance and half spell damage when worn, can be invoked to fix all status effects that a unicorn horn would fix."); break;
+				case ART_TRULY_MAGNIFIED:
+					pline("Artifact specs: clairvoyance when worn, multiplies the amount of monsters in the faux killer rooms by up to 3."); break;
+				case ART_SOARUP:
+					pline("Artifact specs: if you put it on while it's exactly +0, it becomes +1."); break;
+				case ART_SAFARI_ROCKZ:
+					pline("Artifact specs: scent view when worn and allows you to walk through trees."); break;
+				case ART_SPIRIT_ROCKZ:
+					pline("Artifact specs: wallwalking when worn."); break;
+				case ART_PURPLE_JUNGLE:
+					pline("Artifact specs: allows you to cross farmland when worn, and causes you to regenerate an extra hit point per turn while in a farmland."); break;
+				case ART_EAZY_GOING:
+					pline("Artifact specs: half physical damage when worn."); break;
+				case ART_SIMPLY_WHITE:
+					pline("Artifact specs: cold resistance when worn."); break;
+				case ART_SIMPLY_BLACK:
+					pline("Artifact specs: disintegration resistance when worn."); break;
+				case ART_WOOD_FEELING:
+					pline("Artifact specs: petrification resistance when worn."); break;
+				case ART_COLLEGE_ROCKZ:
+					pline("Artifact specs: +3 intelligence and wisdom when worn."); break;
+				case ART_WELCOME_ON_BOARD:
+					pline("Artifact specs: swimming when worn, and prevents your items from getting wet."); break;
+				case ART_WONDERFUL_LOTUS:
+					pline("Artifact specs: poison resistance when worn."); break;
+				case ART_UNDERWATER_LOVE:
+					pline("Artifact specs: magical breathing when worn, and prevents your items from getting wet."); break;
+				case ART_SWEET_CHERRY:
+					pline("Artifact specs: full nutrients when worn."); break;
+				case ART_TIRE_ROCKZ:
+					pline("Artifact specs: 40%% faster movement speed when riding."); break;
+				case ART_HAPPY_CLOUD:
+					pline("Artifact specs: +5 luck when worn, causes you to transform regular floor into clouds when worn."); break;
+				case ART_DELFI_ROCKZ:
+					pline("Artifact specs: your prayer timeout is 3x faster and when it becomes zero again, you get a message telling you so."); break;
+				case ART_ALL_TIME_FAVZ:
+					pline("Artifact specs: magic resistance when worn."); break;
+				case ART_ROCKZ_ARMY:
+					pline("Artifact specs: 10 extra points of AC when worn."); break;
+				case ART_SKETCH_IT:
+					pline("Artifact specs: clairvoyance when worn."); break;
+				case ART_POKERFACE:
+					pline("Artifact specs: stealth when worn."); break;
+				case ART_WHITE_KARMA:
+					pline("Artifact specs: gradually fixes your alignment over time if it's below the maximum."); break;
+				case ART_STREET_ROCKZ:
+					pline("Artifact specs: +2 increase damage when worn."); break;
+				case ART_BLACK_MANDALA:
+					pline("Artifact specs: reflection when worn."); break;
+				case ART_MY_LOVE:
+					pline("Artifact specs: fire resistance when worn."); break;
+				case ART_YES_I_ROCKZ:
+					pline("Artifact specs: blindness resistance when worn."); break;
+				case ART_BUNNY_ROCKZ:
+					pline("Artifact specs: peacevision when worn."); break;
+				case ART_CAT_ROCKZ:
+					pline("Artifact specs: +5 increase accuracy when worn."); break;
+				case ART_SCAN_ME:
+					pline("Artifact specs: supertelepathy when worn."); break;
+				case ART_BACTERIA:
+					pline("Artifact specs: sickness resistance when worn."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;
