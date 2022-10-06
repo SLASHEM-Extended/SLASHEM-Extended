@@ -23149,6 +23149,7 @@ register int	mmflags;
 {
 	register struct monst *mtmp;
 	int mndx, mcham, ct, mitem, xlth, senserchance;
+	boolean willsenser = FALSE;
 	boolean anymon = (!ptr);
 	boolean byyou = (x == u.ux && y == u.uy);
 	boolean allow_minvent = ((((mmflags & NO_MINVENT) == 0) || ptr == &mons[PM_HUGE_OGRE_THIEF]) && ptr != &mons[PM_HOLE_MASTER] && ptr != &mons[PM_TRAP_MASTER] && ptr != &mons[PM_BOULDER_MASTER] && ptr != &mons[PM_ITEM_MASTER] && ptr != &mons[PM_GOOD_ITEM_MASTER] && ptr != &mons[PM_BAD_ITEM_MASTER]);
@@ -26104,10 +26105,15 @@ register int	mmflags;
 		else if (u.ulevel < 30) senserchance = 8;
 		else senserchance = 9;
 
-		if (rnd(10) < senserchance ) pline("You sense the arrival of %s.",noit_mon_nam(mtmp) );
+		if (rnd(10) < senserchance ) willsenser = TRUE;
 	}
 
-	if ((uarmc && itemhasappearance(uarmc, APP_HEARING_CLOAK) ) && !rn2(50)) pline("You sense the arrival of %s.",noit_mon_nam(mtmp) );
+	if ((uarmc && itemhasappearance(uarmc, APP_HEARING_CLOAK) ) && !rn2(50)) willsenser = TRUE;
+	if (uarm && uarm->oartifact == ART_RADIOGRAM_OVERHEARING) willsenser = TRUE;
+
+	if (willsenser) {
+		pline("You sense the arrival of %s.", noit_mon_nam(mtmp));
+	}
 
 	/* immunizer needs a disadvantage; I'm randomly reducing their alignment --Amy */
 	if (Race_if(PM_IMMUNIZER) && !rn2(3) ) adjalign(-1);

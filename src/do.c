@@ -2472,6 +2472,19 @@ rerollchaloc:
 
 		}
 
+		if (have_sonjartifact()) {
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			(void) makemon(specialtensmon(333), 0, 0, MM_ADJACENTOK); /* MS_STENCH */
+
+			u.aggravation = 0;
+
+		}
+
 		if (isangbander || RngeAngband || (uarmc && itemhasappearance(uarmc, APP_ANGBAND_CLOAK)) ) { /* level feelings --Amy */
 
 			if (Aggravate_monster) {

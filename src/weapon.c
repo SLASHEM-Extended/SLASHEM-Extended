@@ -532,8 +532,10 @@ struct monst *mon;
 	        return 9999;
 
 	if (bigmonst(ptr)) {
-	    if (objects[otyp].oc_wldam)
+	    if (objects[otyp].oc_wldam) {
 		tmp = rnd(objects[otyp].oc_wldam);
+		if (otmp->oartifact == ART_FINAL_CONSEQUENCE) tmp = objects[otyp].oc_wldam;
+	    }
 	    switch (otyp) {
 		case IRON_CHAIN:
 		case CROSSBOW_BOLT:
@@ -639,8 +641,10 @@ struct monst *mon;
 		case BLACK_LIGHTSABER:    tmp += rnd(7); break;
 	    }
 	} else {
-	    if (objects[otyp].oc_wsdam)
+	    if (objects[otyp].oc_wsdam) {
 		tmp = rnd(objects[otyp].oc_wsdam);
+		if (otmp->oartifact == ART_FINAL_CONSEQUENCE) tmp = objects[otyp].oc_wsdam;
+	    }
 	    switch (otyp) {
 		case IRON_CHAIN:
 		case CROSSBOW_BOLT:
@@ -1052,8 +1056,10 @@ struct monst *mon;
 	        return 9999;
 
 	if (bigmonst(ptr)) {
-	    if (objects[otyp].oc_wldam)
+	    if (objects[otyp].oc_wldam) {
 		tmp = rnd(objects[otyp].oc_wldam);
+		if (otmp->oartifact == ART_FINAL_CONSEQUENCE) tmp = objects[otyp].oc_wldam;
+	    }
 	    switch (otyp) {
 		case IRON_CHAIN:
 		case CROSSBOW_BOLT:
@@ -1160,8 +1166,10 @@ struct monst *mon;
 
 	    }
 	} else {
-	    if (objects[otyp].oc_wsdam)
+	    if (objects[otyp].oc_wsdam) {
 		tmp = rnd(objects[otyp].oc_wsdam);
+		if (otmp->oartifact == ART_FINAL_CONSEQUENCE) tmp = objects[otyp].oc_wsdam;
+	    }
 	    switch (otyp) {
 		case IRON_CHAIN:
 		case CROSSBOW_BOLT:

@@ -4068,6 +4068,13 @@ register struct obj *wand;
 		u.cnd_wandwresting++; /* wand may survive due to devices skill or being made of viva (not a bug) */
 	}
 
+	if (wand && wand->oartifact == ART_VIVARIUM_STICK) { /* needs to be prior to the MT_VIVA check below */
+		if (objects[wand->otyp].oc_material != MT_VIVA) {
+			objects[wand->otyp].oc_material = MT_VIVA;
+			pline_The("wand is now made of viva.");
+		}
+	}
+
 	if (wand->oartifact && !rn2(2)) willusecharge = FALSE; /* even works for ones that can only be charged once */
 	if (objects[(wand)->otyp].oc_material == MT_VIVA && !rn2(2) && !onlychargeonce) willusecharge = FALSE;
 	if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE && rn2(4) && !onlychargeonce) willusecharge = FALSE;

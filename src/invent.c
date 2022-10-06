@@ -1467,12 +1467,37 @@ have_amateurluckstone()
 }
 
 boolean
+have_suckstonearti()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == SLEEPSTONE && otmp->oartifact == ART_SUCKSTONE)
+			return(TRUE);
+		}
+
+	return(FALSE);
+}
+
+boolean
 have_femityjewel()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->oartifact == ART_FEMITY_SOLVE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_sonjartifact()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->oartifact == ART_QUE_TANGHERISONJA)
 			return(TRUE);
 		}
 	return(FALSE);
@@ -4382,6 +4407,7 @@ have_stealerstone()
 		}
 	if (u.nastinator81) return TRUE;
 	if (sjwcheck(81)) return TRUE;
+	if (have_suckstonearti()) return TRUE;
 	return(FALSE);
 }
 
@@ -6419,6 +6445,8 @@ have_elmstreetstone()
 		}
 	if (u.nastinator222) return TRUE;
 	if (sjwcheck(222)) return TRUE;
+	if (have_suckstonearti()) return TRUE;
+
 	return(FALSE);
 }
 
@@ -22984,6 +23012,87 @@ boolean knoweverything;
 					pline("Artifact specs: supertelepathy when worn."); break;
 				case ART_BACTERIA:
 					pline("Artifact specs: sickness resistance when worn."); break;
+				case ART_BLOCKPARRY:
+					pline("Artifact specs: if it's in your secondary hand, it can block like a shield, and higher dual-wielding skill increases the chance."); break;
+				case ART_PROFANE_STREICHENBLOCKANSA:
+					pline("Artifact specs: damages monsters that hit you in melee. This artifact was suggested by amateurhour after Amy said 'Profil-Streichelblockabsatz'."); break;
+				case ART_PRICKBUFF:
+					pline("Artifact specs: attacking while unarmed causes the target monster to bleed."); break;
+				case ART_FINAL_CONSEQUENCE:
+					pline("Artifact specs: always deals the maximum damage of its base item type."); break;
+				case ART_AUTOSWITCH:
+					pline("Artifact specs: can be invoked to fix all nastytrap effects, but doing so deletes the armor."); break;
+				case ART_VERSUS_INSTADEATH:
+					pline("Artifact specs: life saving when worn. If it actually causes you to lifesave, it is used up in the process."); break;
+				case ART_GOING_DISPLAY:
+					pline("Artifact specs: can be invoked to fix the 'display loss' nastytrap effect."); break;
+				case ART_SECRET_COURSE_VACUUM_CLEAN:
+					pline("Artifact specs: while wearing it, Green Cross is always open."); break;
+				case ART_THIRD_NEXT_MISSION:
+					pline("Artifact specs: can be invoked to banish yourself."); break;
+				case ART_NOTHINGATALLBANE:
+					pline("Artifact specs: fire resistance when worn."); break;
+				case ART_DEMO_CASE:
+					pline("Artifact specs: can be invoked to lay a mine, as long as there's no trap at your current location."); break;
+				case ART_SPY_EM_OUT:
+					pline("Artifact specs: while wearing it, you can farlook monsters to see whether they're currently suffering from status effects."); break;
+				case ART_SEE_THE_ENTIRE_MAP:
+					pline("Artifact specs: can be invoked for magic mapping, but sometimes this will cause the armor to be deleted."); break;
+				case ART_BACKPACK_BOMBER:
+					pline("Artifact specs: can be invoked to cause a large detonation centered on you."); break;
+				case ART_LASERSHIT:
+					pline("Artifact specs: can be invoked to create a s-pressing trap, as long as there's no trap at your current location."); break;
+				case ART_ASSSLASHER_KATANA:
+					pline("Artifact specs: if you invoke it while male, you'll neuter yourself."); break;
+				case ART_SUCKSTONE:
+					pline("Artifact specs: stealer and elmstreet trap effect while carried, and +5 luck."); break;
+				case ART_PLAYER_RADAR:
+					pline("Artifact specs: displays all player monsters while worn."); break;
+				case ART_TZ__GLGG__AIV_FM__:
+					pline("NETHACK.EXE caused a General Protection Fault at address 000D:001D.");
+					TimerunBug += 1;
+					u.riennevaplus = rnd(30);
+					break;
+				case ART_GO_AWAY_TYPE_OF_ARMS:
+					pline("Artifact specs: can be invoked to delete an adjacent shopkeeper, but doing so deletes the armor."); break;
+				case ART_AVENGER_APPEARANCE:
+					pline("Artifact specs: can be invoked to summon two tame bosses, but doing so deletes the armor."); break;
+				case ART_COMPLETE_RESET:
+					pline("Artifact specs: can be invoked for world fall if you're at least XL15 and have at least two million points of score. This will reset you to XL1, sets all training in all skills to zero, deletes all spells, gives a huge timeout to all techniques and causes you to die, so you'd better have life saving."); break;
+				case ART_RADIOGRAM_OVERHEARING:
+					pline("Artifact specs: displays a message whenever a monster spawns. This may get spammy, in which case you can use the MSGTYPE option to shut down the messages but risk skipping important ones in the process."); break;
+				case ART_MG_RATTERING:
+					pline("Artifact specs: MG bullets don't automatically disappear when fired while you wear it."); break;
+				case ART_ORBCHARGE:
+					pline("Artifact specs: teaches you the buggard technique if you don't know it already, but if it does, it deactivates detect monsters for a million turns."); break;
+				case ART_CURSE_PURIFY:
+					pline("Artifact specs: can be invoked to uncurse your open inventory (heavily cursed or worse items can resist of course), but doing so deletes the armor."); break;
+				case ART_EFFECT_THAT_IS_DEACTIVATED:
+					pline("Artifact specs: levitation is DEACTIVATED"); break; /* missing period is intentional */
+				case ART_PURPLE_SPECTRUM:
+					pline("Artifact specs: resist fire, cold, shock and poison when wielded."); break;
+				case ART_OCCASIONAL_EEH:
+					pline("Artifact specs: +2 drain life damage, can drain levels from monsters."); break;
+				case ART_DAMNBLAST:
+					pline("Artifact specs: double damage."); break;
+				case ART_COLLECTING_EXPANSION:
+					pline("Artifact specs: greatly increases your carry capacity when worn, including a large boost to the maximum possible value."); break;
+				case ART_KERSTIN_S_COWBOY_BOOST:
+					pline("Artifact specs: if you ride a steed that has this saddle equipped, you have the kerstin trap effect, 20%% faster movement, +2 accuracy and damage, and 5 extra points of AC."); break;
+				case ART_EXPERIMENTAL_CHUNK:
+					pline("Artifact specs: resist psi, contamination and death when wielded."); break;
+				case ART_ROTATE_ME:
+					pline("Artifact specs: can be invoked to play blackjack."); break;
+				case ART_JULIA_S_SLIPPERS:
+					pline("Artifact specs: see invisible when worn."); break;
+				case ART_QUE_TANGHERISONJA:
+					pline("Artifact specs: poison resistance when carried, and entering a dungeon level you've not visited before will summon a perfume monster."); break;
+				case ART_FLUIDSHIELD:
+					pline("Artifact specs: greatly reduces the spawn rate of fluidator squads when you walk through walls. Be aware that this shield does not grant the ability to walk through walls."); break;
+				case ART_GAT_FROM_HELL:
+					pline("Artifact specs: +3 to-hit and +20 damage, chaotic, every bullet you fire from it permanently reduces your maximum health by one. If this causes your health to drop to zero, game over."); break;
+				case ART_VIVARIUM_STICK:
+					pline("Artifact specs: zapping it while the material is something other than viva will set its material to viva."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

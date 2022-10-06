@@ -2478,6 +2478,19 @@ find_missys()
 }
 
 int
+find_house_slippers()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_HOUSE_SLIPPERS)) return i;
+    }
+
+    impossible("house slippers not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_hugging_boots()
 {
     register int i;

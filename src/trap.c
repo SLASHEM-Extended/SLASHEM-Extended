@@ -9782,6 +9782,7 @@ madnesseffect:
 		}
 
 		if (uwep && uwep->oartifact == ART_ATTIC_CODE) greencrossworks = TRUE;
+		if (uarm && uarm->oartifact == ART_SECRET_COURSE_VACUUM_CLEAN) greencrossworks = TRUE;
 
 		if (!greencrossworks) {
 			pline("You trigger a magic portal.");

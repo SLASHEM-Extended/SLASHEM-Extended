@@ -3704,12 +3704,19 @@ set_trap()
 	    if (*in_rooms(u.ux,u.uy,SHOPBASE)) {
 		add_damage(u.ux, u.uy, 0L);		/* schedule removal */
 	    }
+
+		if ((ttmp && ttmp->ttyp == LANDMINE) && practicantterror) {
+			pline("%s booms: 'Practicants are not allowed to lay mines! Now you pay 1000 zorkmids!'", noroelaname());
+			fineforpracticant(1000, 0, 0);
+		}
+
 	    if (!trapinfo.force_bungle)
 		You("finish arming %s.",
 			the(defsyms[trap_to_defsym(what_trap(ttyp))].explanation));
 	    if (((otmp->cursed || Fumbling) && (rnl(10) > 5)) || trapinfo.force_bungle)
 		dotrap(ttmp,
 			(unsigned)(trapinfo.force_bungle ? FORCEBUNGLE : 0));
+
 	} else {
 	    /* this shouldn't happen */
 	    Your("trap setting attempt fails.");

@@ -3367,6 +3367,16 @@ Armor_on()
 		}
 
 	}
+	if (uarm && uarm->oartifact == ART_ORBCHARGE) {
+
+		if (!tech_known(T_BUGGARD)) {
+			u.uprops[DEAC_DETECT_MONSTERS].intrinsic += 1000000;
+			learntech(T_BUGGARD, FROMOUTSIDE, 1);
+		    	pline("Suddenly, you know how to use the buggard technique!");
+			pline("Your detect monsters has been deactivated for a very long time.");
+		}
+
+	}
 
 	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_SUPERESCAPE_MAIL) {
 		pline("BEEEEEEEP! Your armor is cursed!");
@@ -5825,6 +5835,7 @@ find_ac()
 	if (bmwride(ART_PANZER_TANK)) uac -= 10;
 	if (FemtrapActivePatricia) uac -= 3;
 	if (uarm && uarm->oartifact == ART_ELMHERE && multi < 0) uac -= 5;
+	if (bmwride(ART_KERSTIN_S_COWBOY_BOOST)) uac -= 5;
 
 	if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 		if ((!uarm || is_metallic(uarm)) && (!uarmc || is_metallic(uarmc)) && (!uarmu || is_metallic(uarmu)) && (!uarms || is_metallic(uarms)) && (!uarmg || is_metallic(uarmg)) && (!uarmf || is_metallic(uarmf)) && (!uarmh || is_metallic(uarmh)) ) {

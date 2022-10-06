@@ -19964,6 +19964,19 @@ register struct attack *mattk;
 		}
 	}
 
+	if (uarms && uarms->oartifact == ART_PROFANE_STREICHENBLOCKANSA) {
+		pline("%s is hit with retribution!", Monnam(mtmp));
+		int profanedmg = mtmp->m_lev;
+		if (profanedmg < 1) profanedmg = 1;
+		profanedmg = rnd(profanedmg);
+		if((mtmp->mhp -= profanedmg ) <= 0) {
+			pline("%s drops dead!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+	}
+
 	if (uwep && uwep->oartifact == ART_RHORN) {
 		pline("%s is damaged by your thorns!", Monnam(mtmp));
 		if((mtmp->mhp -= rnd(u.ulevel) ) <= 0) {

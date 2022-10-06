@@ -61,8 +61,24 @@ const char *name;	/* if null, then format `obj' */
 
 	int extrachance = 1;
 
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_BLOCKPARRY) {
+		shieldblockrate = 30;
+		if (uswapwep->spe > 0) shieldblockrate += (uswapwep->spe * 2);
+		if (!(PlayerCannotUseSkills)) {
+			switch (P_SKILL(P_TWO_WEAPON_COMBAT)) {
+				case P_BASIC: shieldblockrate += 2; break;
+				case P_SKILLED: shieldblockrate += 4; break;
+				case P_EXPERT: shieldblockrate += 6; break;
+				case P_MASTER: shieldblockrate += 8; break;
+				case P_GRAND_MASTER: shieldblockrate += 10; break;
+				case P_SUPREME_MASTER: shieldblockrate += 12; break;
+			}
+
+		}
+
+	}
 	if (u.twoweap && uwep && uswapwep && tech_inuse(T_WEAPON_BLOCKER)) {
-		shieldblockrate = 25;
+		shieldblockrate += 25;
 	}
 
 	if (uarms) {
@@ -389,6 +405,11 @@ const char *name;	/* if null, then format `obj' */
 
 				Your("weapons block a projectile.");
 				if (evilfriday && multi >= 0) nomul(-2, "blocking with both weapons", TRUE);
+				use_skill(P_TWO_WEAPON_COMBAT, 1);
+
+			} else if (u.twoweap && uswapwep && uswapwep->oartifact == ART_BLOCKPARRY) {
+
+				Your("parrying weapon blocks a projectile.");
 				use_skill(P_TWO_WEAPON_COMBAT, 1);
 
 			} else {

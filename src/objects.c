@@ -3259,7 +3259,7 @@ BOOTS("dummy boots AE", "failed shoes",
 BOOTS("dummy boots AF", "opera pumps",
 		0, 1,  0,  0, 2, 8, 50,  9, 1, MT_PWN_BUBBLE, CLR_BLACK, 1, APP_OPERA_PUMPS),
 BOOTS("dummy boots AG", "house slippers",
-		0, 1,  0,  0, 2, 8, 50,  9, 1, MT_CLOTH, CLR_GRAY, 1, 0),
+		0, 1,  0,  0, 2, 8, 50,  9, 1, MT_CLOTH, CLR_GRAY, 1, APP_HOUSE_SLIPPERS),
 BOOTS("dummy boots AH", "indoor shoes",
 		0, 1,  0,  0, 2, 8, 50,  9, 1, MT_COMPOST, CLR_BROWN, 1, 0),
 BOOTS("dummy boots AI", "wooden clogs", /* sexy flats */

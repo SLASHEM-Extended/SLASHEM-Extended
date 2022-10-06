@@ -1749,6 +1749,8 @@ struct you {
 
 	boolean antjetwotriggered;	/* if you ever trigger the antje trap 2, having it time out teaches a technique */
 
+	boolean havebeeninludios;
+
 	int gudrunspawncount;	/* for gudrun trap */
 	int ellaspawncount;	/* for ella trap */
 	int larissatimer;	/* for larissa trap */

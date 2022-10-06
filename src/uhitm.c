@@ -856,6 +856,7 @@ register struct monst *mtmp;
 	if (uwep && uwep->oartifact == ART_LUCKY_MELEE_ATTACKS) tmp += 10;
 	if (StrongBlind_resistance) tmp += rn1(5, 5);
 	if (uarmh && uarmh->oartifact == ART_WAITING_FOR_MELEE) tmp -= 2;
+	if (bmwride(ART_KERSTIN_S_COWBOY_BOOST)) tmp += 2;
 
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
 	if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
@@ -1694,6 +1695,10 @@ int dieroll;
 		if (Race_if(PM_KHAJIIT)) tmp += rnd(4);
 		if (Race_if(PM_FENEK)) tmp += rnd(2);
 
+		if (uarmg && uarmg->oartifact == ART_PRICKBUFF) {
+			mon->bleedout += rnd(5);
+		}
+
 		if (u.nailpolish && (!uarmg || FingerlessGloves) ) {
 			tmp += (u.nailpolish * 2);
 			if (rnd(10) <= u.nailpolish) {
@@ -1805,7 +1810,7 @@ int dieroll;
 		    tmp += dmgbonus;
 	    } /* Techinuse Elemental Fist */		
 
-	} else {
+	} else { /* bare hands end, start weapons code */
 
 	    if (obj->oartifact == ART_MAGICBANE) objenchant = 4;
 	    else if (obj->oartifact) objenchant += 2;
@@ -3243,6 +3248,7 @@ int dieroll;
 		if (!thrown && uarmc && uarmc->oartifact == ART_SIECHELALUER) tmp += 5;
 		if (thrown && uarmh && uarmh->oartifact == ART_WAITING_FOR_MELEE) tmp -= 2;
 		if (!thrown && uarmh && uarmh->oartifact == ART_WAITING_FOR_MELEE) tmp += 2;
+		if (bmwride(ART_KERSTIN_S_COWBOY_BOOST)) tmp += 2;
 
 		if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 
@@ -9218,6 +9224,24 @@ use_weapon:
 
 				}
 bladeangerdone:
+
+				if (uarm && uarm->oartifact == ART_NOTHINGATALLBANE && (u.dx || u.dy) && !u.dz) {
+					u.linkmasterswordhack = 1;
+					struct obj *pseudo;
+					pseudo = mksobj(SPE_BEAMSWORD, FALSE, 2, FALSE);
+					if (!pseudo) goto bladeangerdone2;
+					if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = SPE_BEAMSWORD; /* minimalist fix */
+					pseudo->blessed = pseudo->cursed = 0;
+					pseudo->quan = 20L;			/* do not let useup get it */
+					pseudo->spe = uwep->spe;
+					weffects(pseudo);
+					if (pseudo) obfree(pseudo, (struct obj *)0);	/* now, get rid of it */
+					if (!mon) return FALSE;
+					if (DEADMONSTER(mon)) return FALSE;
+
+				}
+bladeangerdone2:
+
 				if (uwep && objects[uwep->otyp].oc_skill == (tech_inuse(T_GRAP_SWAP) ? P_LANCE : P_GRINDER)) {
 					int grindirection = 0;
 					if (u.dx > 0 && u.dy == 0) grindirection = 1; /* east */

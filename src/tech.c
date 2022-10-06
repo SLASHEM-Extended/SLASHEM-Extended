@@ -2625,6 +2625,19 @@ datadeletetechs()
 
 }
 
+void
+resettechs()
+{
+	int i;
+
+	for (i = 0; i < MAXTECH; i++) {
+	    if (techid(i) == NO_TECH)
+		continue;
+	    techtout(i) += rnz(100000);
+	}
+
+}
+
 int
 dotech()
 {

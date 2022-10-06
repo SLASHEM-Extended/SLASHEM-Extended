@@ -538,6 +538,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mtmp->data) )
 		    ways_seen++;
+		if (uarm && uarm->oartifact == ART_PLAYER_RADAR && (is_mplayer(mtmp->data) || is_umplayer(mtmp->data)) )
+		    ways_seen++;
 		if (uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mtmp->data) )
 		    ways_seen++;
 		if (uarmf && uarmf->oartifact == ART_ELENETTES && (mtmp->mhp < (mtmp->mhpmax * 9 / 10)) )
@@ -761,6 +763,10 @@ lookat(x, y, buf, monbuf)
 		    }
 		    if (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mtmp->data) ) {
 			strcat(monbuf, "pokemon vision");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (uarm && uarm->oartifact == ART_PLAYER_RADAR && (is_mplayer(mtmp->data) || is_umplayer(mtmp->data)) ) {
+			strcat(monbuf, "player radar");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 		    if (uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mtmp->data) ) {
@@ -1745,6 +1751,18 @@ blaone:
 		}
 #endif
 
+		if (uarm && uarm->oartifact == ART_SPY_EM_OUT && pm) {
+		    struct monst *mtmp = m_at(cc.x, cc.y);
+		    if (mtmp) {
+
+		      if (!sensemon(mtmp) && !canseemon(mtmp) && !(u.ux == cc.x && u.uy == cc.y) && !((mtmp->m_ap_type != M_AP_NOTHING) && Protection_from_shape_changers && !permamimic(mtmp->data) && !(mtmp->egotype_permamimic)) ) goto oisthatstupid;
+
+			mstatuslinestats(mtmp);
+		    }
+		}
+
+oisthatstupid:
+
 #ifdef EXTENDED_INFO
 		if(flags.pokedex
 #ifdef AWFUL_CURSES
@@ -1764,6 +1782,7 @@ blaone:
 			else if (!mtmpX) get_description_of_monster_type(pm, temp_buf, TRUE);
 			else get_description_of_monster_type(pm, temp_buf, FALSE);
 			(void)strncat(out_str, temp_buf, BUFSZ-strlen(out_str)-1);
+
 		}
 #endif
 
@@ -4982,6 +5001,7 @@ static NEARDATA const char * const practicantlines[] = {
 "Eating pizza isn't permitted in my lab, because not only does it annoy the other practicants, it's also a safety risk due to all the chemical apparatuses and substances! If I catch you, I'll make sure that it becomes the most expensive pizza you've eaten in your life.",
 "You're allowed to talk in the laboratory, but if you suddenly scream around like a mad person, you'll pay. Disturbing the other practicants is not allowed!",
 "Of course gambling is not permitted in the lab. If you do want to indulge in such a dubious activity, you have to go to Las Venturas or whatever other place there is that allows such stuff.",
+"Don't dare laying mines! The other practicants could get hurt if they're caught in the explosion, and therefore such deliberate activities certainly won't be tolerated!",
 };
 
 static NEARDATA const char * const hussylines[] = {
@@ -28048,7 +28068,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Most players are members of the instant gratification crowd, and want the player character to either start out with everything maxxed out already, or at least be capable of easily becoming unstoppably strong without too much effort. But that's totally against the SLEX design philosophy, and therefore those players either have to adapt their playstyle or the game might not be for them.",
 	"Mikraanesis laughs because you've been caught.",
 	"Mikraanesis laughs because you've been caught. Now you're in a farting web, with lots of enemies around you, and will have a hard time escaping, muahahahaha.",
-
+	"You neuter yourself... but unfortunately playing as a neuter character isn't supported in this version, and therefore the area where you just cut off your penis grows into a neovagina instead.",
 };
 
 const char *

@@ -2087,6 +2087,7 @@ upperdungeonagain:
 				dtmp.dnum = dname_to_dnum("Grund's Stronghold");
 				break;
 			case 11:
+				if (!u.havebeeninludios) goto upperdungeonagain;
 				dtmp.dnum = dname_to_dnum("Fort Ludios");
 				break;
 			case 12:

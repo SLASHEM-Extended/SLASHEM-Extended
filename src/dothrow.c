@@ -476,6 +476,26 @@ int thrown;
 
 	if (objects[obj->otyp].oc_skill == -P_CROSSBOW && launcher && launcher->otyp != DEMON_CROSSBOW && multishot > 1) multishot = rnd(multishot);
 
+	if (launcher && launcher->oartifact == ART_GAT_FROM_HELL) {
+		int drainhp = multishot;
+		while (drainhp > 0) {
+			drainhp--;
+			if (u.uhpmax > 1) {
+				u.uhpmax--;
+				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			} else {
+				u.youaredead = 1;
+				pline("Unfortunately you didn't have enough health to power this dangerous weapon.");
+				killer_format = KILLED_BY;
+				killer = "firing the gat from hell";
+				done(DIED);
+				u.youaredead = 0;
+			}
+		}
+		pline("%d points of health have been drained!", multishot);
+		flags.botl = TRUE;
+	}
+
 	if (launcher && launcher->otyp == DEMON_CROSSBOW && !rn2(100)) {
 		int attempts = 0;
 		register struct permonst *ptrZ;
@@ -1507,6 +1527,7 @@ boolean hitsroof;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 149) dmg += 1;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 199) dmg += 1;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 249) dmg += 1;
+	if (dmg > 0 && bmwride(ART_KERSTIN_S_COWBOY_BOOST)) dmg += 2;
 
 	if (dmg > 0 && Race_if(PM_ITAQUE)) dmg -= 1;
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) dmg -= 5;
@@ -1709,7 +1730,7 @@ int thrown;
 		}
 		check_shop_obj(obj, u.ux, u.uy, TRUE);
 		u.cnd_gunpowderused++; /* even if bulletreuse or lead bullets allows them to be used again --Amy */
-		if (((!(tech_inuse(T_BULLETREUSE)) || rn2(3)) && !(Race_if(PM_VIETIS) && !rn2(3)) && !(obj->oartifact == ART_REUSEME && rn2(4)) && !(obj->oartifact == ART_EVERYTHING_GREENS_SO_GREEN) && !(obj->oartifact == ART_COMBAT_PELLET && rn2(10)) && !(objects[obj->otyp].oc_material == MT_LEAD && !rn2(2))) || (uarmf && uarmf->oartifact == ART_ANACONDA_HEELS) ) {
+		if (((!(tech_inuse(T_BULLETREUSE)) || rn2(3)) && !(Race_if(PM_VIETIS) && !rn2(3)) && !(obj->oartifact == ART_REUSEME && rn2(4)) && !(uarm && uarm->oartifact == ART_MG_RATTERING && (objects[obj->otyp].w_ammotyp == WP_BULLET_MG) ) && !(obj->oartifact == ART_EVERYTHING_GREENS_SO_GREEN) && !(obj->oartifact == ART_COMBAT_PELLET && rn2(10)) && !(objects[obj->otyp].oc_material == MT_LEAD && !rn2(2))) || (uarmf && uarmf->oartifact == ART_ANACONDA_HEELS) ) {
 			obfree(obj, (struct obj *)0);
 			return;
 		}
@@ -1869,7 +1890,7 @@ int thrown;
 	if (is_bullet(obj) && (ammo_and_launcher(obj, launcher) && !is_grenade(obj))) {
 		check_shop_obj(obj, bhitpos.x,bhitpos.y, TRUE);
 		u.cnd_gunpowderused++; /* even if bulletreuse or lead bullets allows them to be used again --Amy */
-		if (((!(tech_inuse(T_BULLETREUSE)) || rn2(3)) && !(Race_if(PM_VIETIS) && !rn2(3)) && !(obj->oartifact == ART_REUSEME && rn2(4)) && !(obj->oartifact == ART_EVERYTHING_GREENS_SO_GREEN) && !(obj->oartifact == ART_COMBAT_PELLET && rn2(10)) && !(objects[obj->otyp].oc_material == MT_LEAD && !rn2(2))) || (uarmf && uarmf->oartifact == ART_ANACONDA_HEELS) ) {
+		if (((!(tech_inuse(T_BULLETREUSE)) || rn2(3)) && !(Race_if(PM_VIETIS) && !rn2(3)) && !(obj->oartifact == ART_REUSEME && rn2(4)) && !(uarm && uarm->oartifact == ART_MG_RATTERING && (objects[obj->otyp].w_ammotyp == WP_BULLET_MG) ) && !(obj->oartifact == ART_EVERYTHING_GREENS_SO_GREEN) && !(obj->oartifact == ART_COMBAT_PELLET && rn2(10)) && !(objects[obj->otyp].oc_material == MT_LEAD && !rn2(2))) || (uarmf && uarmf->oartifact == ART_ANACONDA_HEELS) ) {
 			obfree(obj, (struct obj *)0);
 			return;
 		}
@@ -2240,6 +2261,7 @@ boolean polearming;
 	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 249) tmp += 1;
 	if (StrongBlind_resistance) tmp += rn1(5, 5);
 	if (uarmh && uarmh->oartifact == ART_WAITING_FOR_MELEE) tmp -= 2;
+	if (bmwride(ART_KERSTIN_S_COWBOY_BOOST)) tmp += 2;
 
 	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 

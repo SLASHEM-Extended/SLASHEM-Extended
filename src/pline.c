@@ -788,6 +788,62 @@ generate_garbage_char()
 }
 
 void
+mstatuslinestats(mtmp)
+register struct monst *mtmp;
+{
+	char info[BUFSZ], monnambuf[BUFSZ];
+	info[0] = 0;
+
+	if (mtmp->meating)	  strcat(info, ", eating");
+	if (mtmp->mcan)		  strcat(info, ", cancelled");
+	if (mtmp->mconf)	  strcat(info, ", confused");
+	if (mtmp->healblock)	  strcat(info, ", healing blocked");
+	if (mtmp->inertia)	  strcat(info, ", slowed by inertia");
+	if (mtmp->bleedout)	  strcat(info, ", bleeding");
+	if (mtmp->mblinded || !mtmp->mcansee)
+				  strcat(info, ", blind");
+	if (mtmp->mstun)	  strcat(info, ", stunned");
+	if (mtmp->msleeping)	  strcat(info, ", asleep");
+#if 0	/* unfortunately mfrozen covers temporary sleep and being busy
+	   (donning armor, for instance) as well as paralysis */
+	else if (mtmp->mfrozen)	  strcat(info, ", paralyzed");
+#else
+	else if (mtmp->mfrozen || !mtmp->mcanmove) {
+		strcat(info, ", can't move");
+		if (mtmp->masleep) strcat(info, " (sleeping)");
+	}
+#endif
+				  /* [arbitrary reason why it isn't moving] */
+	else if (mtmp->mstrategy & STRAT_WAITMASK)
+				  strcat(info, ", meditating");
+	else if (mtmp->mflee) 	  strcat(info, ", scared");
+
+	if (mtmp->mtrapped)	  strcat(info, ", trapped");
+	if (mtmp->mspeed)	  strcat(info,
+					mtmp->mspeed == MFAST ? ", fast" :
+					mtmp->mspeed == MSLOW ? ", slow" :
+					", ???? speed");
+	if (mtmp->mundetected)	  strcat(info, ", concealed");
+	if (mtmp->minvis)	  strcat(info, ", invisible");
+	if (mtmp == u.ustuck)	  strcat(info,
+			(sticks(youmonst.data)) ? ", held by you" :
+				u.uswallow ? (is_animal(u.ustuck->data) ?
+				", swallowed you" :
+				", engulfed you") :
+				", holding you");
+	if (mtmp == u.usteed)	  strcat(info, ", carrying you");
+	if (mtmp->butthurt) sprintf(eos(info), ", butthurt (%d)", mtmp->butthurt);
+
+	/* avoid "Status of the invisible newt ..., invisible" */
+	/* and unlike a normal mon_nam, use "saddled" even if it has a name */
+	strcpy(monnambuf, x_monnam(mtmp, ARTICLE_THE, (char *)0,
+	    (SUPPRESS_IT|SUPPRESS_INVISIBLE), FALSE));
+
+	pline("%s%s.", monnambuf, info);
+
+}
+
+void
 mstatusline(mtmp)
 register struct monst *mtmp;
 {

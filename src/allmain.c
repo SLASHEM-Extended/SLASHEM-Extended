@@ -1447,6 +1447,13 @@ moveloop()
 						if (moveamt > (oldspeed + 15)) moveamt = (oldspeed + 15);
 					}
 
+					if (bmwride(ART_KERSTIN_S_COWBOY_BOOST)) {
+						oldspeed = moveamt;
+						moveamt *= 6;
+						moveamt /= 5;
+						if (moveamt > (oldspeed + 15)) moveamt = (oldspeed + 15);
+					}
+
 					if (bmwride(ART_DRIVER_S_LICENSE) && u.usteed && (u.usteed->data->msound == MS_CAR)) {
 						oldspeed = moveamt;
 						moveamt *= 7;
@@ -4518,6 +4525,8 @@ greasingdone:
 			if (u.fluidatorwantedlevel > 1000) fluidatorchance = 300;
 			if (u.fluidatorwantedlevel > 2000) fluidatorchance = 200;
 			if (u.fluidatorwantedlevel > 5000) fluidatorchance = 100;
+
+			if (uarms && uarms->oartifact == ART_FLUIDSHIELD) fluidatorchance *= 10;
 
 			if (!rn2(fluidatorchance)) {
 				register struct monst *fluidone;
@@ -13546,6 +13555,11 @@ past3:
 		u.ugold = 0;
 		pline("Looks like you tried to use antigold cheats, which is not permitted. Your antigold was deleted.");
 	}
+
+	/* banishment can send you to branches you've not been to yet... but if Ludios didn't generate, there's a problem:
+	 * the magic portal in there won't have a corresponding portal on the other side and therefore triggering it
+	 * results in a DYWYPI prompt! So we can't banish the player to Ludios early --Amy */
+	if (!u.havebeeninludios && !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios" )) u.havebeeninludios = TRUE;
 
 	u.dungeongrowthhack = 0; /* should always be 0 except during saving and loading */
 

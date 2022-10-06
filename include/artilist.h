@@ -9445,6 +9445,162 @@ A("Bacteria",				LOW_BOOTS, /* initialized to always be missys, sickness resista
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
 
+A("Blockparry",				MAIN_SWORD, /* if it's in your secondary hand, 30% chance to block + 2% for every enchantment or dual-wielding skill level */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Profane Streichenblockansatz",			MIRROR_SHIELD, /* by amateurhour, deals d(mlvl) passive damage to monsters meleeing you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Prickbuff",				ELVEN_GAUNTLETS, /* if you attack unarmed, the monster bleeds for d5 (more) turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2400L ),
+
+A("Final Consequence",				LONG_SWORD, /* randart, always deals maximum base melee damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Autoswitch",				SPLINT_MAIL, /* can be invoked to fix all nastytrap effects, but this deletes the armor */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Versus Instadeath",				SPLINT_MAIL, /* lets you survive an instadeath once, but is used up in the process */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Going Display",				SPLINT_MAIL, /* invoke fixes the display loss nastytrap effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Secret Course Vacuum Cleaner",				SPLINT_MAIL, /* allows you to enter Green Cross */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Third Next Mission",				SPLINT_MAIL, /* can be invoked for self-banishment */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Nothingatallbane",				SPLINT_MAIL, /* melee attacks cause you to fire invisible beams, but the description doesn't say so */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Demo Case",				SPLINT_MAIL, /* can be invoked to create a landmine trap at your location */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Spy Em Out",				SPLINT_MAIL, /* farlooking a monster displays the status effects it has (if any) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("See The Entire Map",				SPLINT_MAIL, /* can be invoked for magic mapping, but 20% chance that the armor disappears */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Backpack Bomber",				SPLINT_MAIL, /* can be invoked to cause a dynamite explosion */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Lasershit",				SPLINT_MAIL, /* can be invoked to create a s-pressing trap on your location */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Assslasher Katana",				KATANA, /* by Demo, invoking it while male will neuter you */
+	(SPFX_RESTR), 0, 0,
+	PHYS(4, 4), NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Suckstone",				SLEEPSTONE, /* stealer trap and elmstreet effect while carried and +5 luck */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Player Radar",				SPLINT_MAIL, /* displays all player monsters while worn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("tz8;glgg!3aIv$fm03",				SPLINT_MAIL, /* can be invoked to fire a disintegration beam; trying to view its description displays nothing and paralyzes you for d30 turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Go Away Type Of Arms",				SPLINT_MAIL, /* can be invoked to delete an adjacent shopkeeper, but is used up in the process */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Avenger Appearance",				SPLINT_MAIL, /* can be invoked to spawn two tame MS_BOSS, one of which is male and the other is female, but is used up in the process */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 18000L ),
+
+A("Complete Reset",				SPLINT_MAIL, /* invoke causes world fall that is guaranteed to kill everything whose level isn't higher than yours, but you need to be at least XL15 and are resetted to XL1, and you'll lose all training in all skills, all spells are erased, all techniques get a timeout of rnz(100000) and your score, which has to be at least 2 million for this to work, is set back to 0, plus you die when you invoke it */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Radiogram Overhearing",				SPLINT_MAIL, /* you sense the arrival of every monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("MG Rattering",				SPLINT_MAIL, /* MG bullets don't disappear automatically */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Orbcharge",				SPLINT_MAIL, /* if you equip it while not knowing the buggard technique, you learn it but detect monsters is deactivated for 1 million turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Curse Purify",				SPLINT_MAIL, /* can be invoked to attempt to uncurse your entire open inventory, but is used up in the process */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("effect that is DEACTIVATED",				LEVITATION_BOOTS, /* prevents levitation */
+	(SPFX_RESTR), 0, 0, /* not SPFX_EVIL, this is intentional */
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Purple Spectrum",				VIOLET_LIGHTSABER, /* resist fire, cold, elec and poison */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Occasional Eeh",				ORANGE_LIGHTSABER,
+	(SPFX_RESTR|SPFX_DRLI|SPFX_ATTK|SPFX_EVIL), 0, 0,
+	DRLI(0, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Damnblast",				BLACK_LIGHTSABER,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Collecting Expansion",				SPLINT_MAIL, /* +2000 carry cap and +5000 max carry cap */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 30000L ),
+
+A("Kerstin's Cowboy Boost",				LEATHER_SADDLE, /* riding a steed with this saddle gives kerstin trap effect, 20% increased movement speed, +2 increase damage and to-hit and 5 extra points of AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Experimental Chunk",				CLUB, /* resist psi, contamination and death */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Rotate Me",				SPLINT_MAIL, /* can be invoked to play blackjack */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Julia's Slippers",				LOW_BOOTS, /* initialized to always be house slippers, by Demo, see invisible */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Que Tangherisonja",				ELIF_S_JEWEL, /* randart feminism jewel, poison resistance when carried, entering a new level spawns a perfume monster */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Fluidshield",				SHIELD, /* randart, reduces fluidator spawns by a factor 10 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Gat From Hell",				ASSAULT_RIFLE, /* by Demo, every bullet you fire from it reduces your max HP by one */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(3,20), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 3000L ),
+
+A("Vivarium Stick",				WAN_NOTHING, /* randart, zapping it changes its material to "viva" */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

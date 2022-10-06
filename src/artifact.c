@@ -174,6 +174,7 @@ hack_artifacts()
 	artilist[ART_RAINBOWSWANDIR].otyp = randartmeleeweapon();
 	artilist[ART_WIZARDBANE].otyp = randartmeleeweapon();
 	artilist[ART_VORPAL_EDGE].otyp = randartmeleeweapon();
+	artilist[ART_FINAL_CONSEQUENCE].otyp = randartmeleeweapon();
 	artilist[ART_DARK_MAGIC].otyp = randartsuit();
 	artilist[ART_BEAM_CONTROL].otyp = randartmeleeweapon();
 	artilist[ART_SANDRA_S_SECRET_WEAPON].otyp = randartmeleeweapon();
@@ -214,6 +215,7 @@ hack_artifacts()
 	artilist[ART_ARABELLA_S_GREAT_BANISHER].otyp = randartgloves();
 	artilist[ART_NO_FUTURE_BUT_AGONY].otyp = randartshield();
 	artilist[ART_THERMO_NUCLEAR_CHAMBER].otyp = randartshield();
+	artilist[ART_FLUIDSHIELD].otyp = randartshield();
 	artilist[ART_BONUS_HOLD].otyp = randartshield();
 	artilist[ART_GREXIT_IS_NEAR].otyp = randartshield();
 	artilist[ART_REAL_MEN_WEAR_PSYCHOS].otyp = randartshield();
@@ -232,6 +234,7 @@ hack_artifacts()
 	artilist[ART_BUEING].otyp = randartamulet();
 	artilist[ART_NAZGUL_S_REVENGE].otyp = randartamulet();
 	artilist[ART_HARRY_S_BLACKTHORN_WAND].otyp = randartwand();
+	artilist[ART_VIVARIUM_STICK].otyp = randartwand();
 	artilist[ART_PROFESSOR_SNAPE_S_DILDO].otyp = randartwand();
 	artilist[ART_FRENCH_MAGICAL_DEVICE].otyp = randartwand();
 	artilist[ART_SAGGITTII].otyp = randartmissile();
@@ -300,6 +303,7 @@ hack_artifacts()
 	artilist[ART_BERRYBREW].otyp = randartpotion();
 	artilist[ART_CURSED_WITH_THE_WORST].otyp = randartbadgraystone();
 	artilist[ART_FEMITY_SOLVE].otyp = randartfeminismjewel();
+	artilist[ART_QUE_TANGHERISONJA].otyp = randartfeminismjewel();
 	artilist[ART_VAPER_BAPER].otyp = randartball();
 	artilist[ART_TSCHEND_FOR_ETERNITY].otyp = randartchain();
 	artilist[ART_MACHINE_THAT_GOES_PLING].otyp = randartgem();
@@ -617,6 +621,7 @@ hack_artifacts()
 	artilist[ART_CAT_ROCKZ].otyp = find_missys();
 	artilist[ART_SCAN_ME].otyp = find_missys();
 	artilist[ART_BACTERIA].otyp = find_missys();
+	artilist[ART_JULIA_S_SLIPPERS].otyp = find_house_slippers();
 
 #if 0
 	/* Fix up the gifts */
@@ -3638,6 +3643,317 @@ chargingchoice:
 	    break;
 	case SPECIAL_INVOKE:
 
+		if (obj->oartifact == ART_AUTOSWITCH) {
+			useupall(obj);
+			pline("You carefully pull the switch...");
+			if (!Blind) pline("The red status light goes out while the green light starts shining brightly!");
+			pline("The switcher dissolves in your hands...");
+			cure_nasty_traps();
+			return 1;
+			break;
+		}
+
+		if (obj->oartifact == ART_GOING_DISPLAY) {
+			DisplayLoss = 0L;
+			Your("display goes again.");
+			break;
+		}
+
+		if (obj->oartifact == ART_THIRD_NEXT_MISSION) {
+
+			if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+				pline("You shudder for a moment.");
+				(void) safe_teleds_normalterrain(FALSE);
+				break;
+			}
+			if (playerlevelportdisabled()) {
+				pline("For some reason you resist the banishment!");
+				break;
+			}
+
+			banishplayer();
+			break;
+
+		}
+
+		if (obj->oartifact == ART_DEMO_CASE) {
+
+			if (t_at(u.ux, u.uy)) {
+				You("fail to lay the mine, because there's a trap already!");
+				break;
+			}
+			{
+				struct trap *ttrap;
+				ttrap = maketrap(u.ux, u.uy, LANDMINE, 0, FALSE);
+				if (ttrap && !ttrap->hiddentrap) {
+					ttrap->tseen = 1;
+					ttrap->madeby_u = 1;
+				}
+				You("drop something on the ground.");
+
+				if (practicantterror) {
+					pline("%s booms: 'Practicants are not allowed to lay mines! Now you pay 1000 zorkmids!'", noroelaname());
+					fineforpracticant(1000, 0, 0);
+				}
+
+			}
+
+			break;
+
+		}
+
+		if (obj->oartifact == ART_SEE_THE_ENTIRE_MAP) {
+			boolean willdisappear = FALSE;
+			if (!rn2(5)) {
+				useupall(obj);
+				willdisappear = TRUE;
+			}
+			if (level.flags.nommap) {
+			    Your("mind is filled with crazy lines!");
+			    if (FunnyHallu)
+				pline("Wow!  Modern art.");
+			    else
+				Your("%s spins in bewilderment.", body_part(HEAD));
+			    make_confused(HConfusion + rnd(30), FALSE);
+			    if (!rn2(3)) badeffect();
+			    if (willdisappear) return 1;
+			    break;
+			}
+			do_mapping();
+
+			if (willdisappear) return 1;
+			break;
+
+		}
+
+		if (obj->oartifact == ART_BACKPACK_BOMBER) {
+			struct obj *dynamite;
+			dynamite = mksobj(STICK_OF_DYNAMITE, TRUE, FALSE, FALSE);
+			if (dynamite) {
+				if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
+				else {
+					dynamite->dynamitekaboom = 1;
+					dynamite->quan = 1;
+					dynamite->owt = weight(dynamite);
+					dropy(dynamite);
+					attach_bomb_blow_timeout(dynamite, 0, 0);
+				}
+			}
+
+			break;
+
+		}
+
+		if (obj->oartifact == ART_LASERSHIT) {
+
+			if (t_at(u.ux, u.uy)) {
+				pline("There is a trap at your location, and therefore the attempt fails!");
+				break;
+			}
+			{
+				struct trap *ttrap;
+				ttrap = maketrap(u.ux, u.uy, S_PRESSING_TRAP, 0, FALSE);
+				if (ttrap && !ttrap->hiddentrap) {
+					ttrap->tseen = 1;
+					ttrap->madeby_u = 1;
+				}
+				You("laid a trap.");
+
+				if (practicantterror) {
+					pline("%s thunders: 'You shitty practicant lass! Your act of shitting up my laboratory will not be tolerated! Now you pay 5000 zorkmids and clean away your shit, got it?'", noroelaname());
+					fineforpracticant(5000, 0, 0);
+				}
+
+			}
+
+			break;
+
+		}
+
+		if (obj->oartifact == ART_ASSSLASHER_KATANA) {
+
+			if (!flags.female) {
+				change_sex();
+				You("neuter yourself... but unfortunately playing as a neuter character isn't supported in this version, and therefore the area where you just cut off your penis grows into a neovagina instead.");
+			}
+			break;
+
+		}
+
+		if (obj->oartifact == ART_TZ__GLGG__AIV_FM__) {
+
+			getdir(NULL);
+			buzz(24,6,u.ux,u.uy,u.dx,u.dy); /* 24 = disintegration beam */
+
+			break;
+
+		}
+
+		if (obj->oartifact == ART_GO_AWAY_TYPE_OF_ARMS) {
+			register struct monst *typeofarms;
+
+		    	if (!getdir((char *)0)) break;
+			if (!u.dx && !u.dy) {
+				break;
+			}
+			if (!isok(u.ux + u.dx, u.uy + u.dy)) {
+				pline("Invalid target location.");
+				break;
+			}
+			typeofarms = m_at(u.ux + u.dx, u.uy + u.dy);
+			if (typeofarms) {
+				if (typeofarms->isshk) {
+					useupall(obj);
+					mongone(typeofarms);
+					pline_The("shopkeeper was erased.");
+					return 1;
+				}
+			}
+
+			break;
+
+		}
+
+		if (obj->oartifact == ART_AVENGER_APPEARANCE) {
+
+			int attempts = 0;
+			register struct permonst *ptrZ;
+			register struct monst *bossmon;
+
+			useupall(obj);
+
+newbossC:
+			do {
+
+				ptrZ = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!ptrZ || (ptrZ && !( (ptrZ->geno & G_UNIQ) && (is_male(ptrZ)) ))) && attempts < 50000);
+
+			if (ptrZ && ptrZ->geno & G_UNIQ && is_male(ptrZ)) {
+				bossmon = makemon(ptrZ, u.ux, u.uy, NO_MM_FLAGS);
+			}
+			else if (rn2(50)) {
+				attempts = 0;
+				goto newbossC;
+			}
+
+			if (bossmon) {
+				tamedog(bossmon, (struct obj *) 0, TRUE);
+			}
+
+newbossF:
+			do {
+
+				ptrZ = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!ptrZ || (ptrZ && !( (ptrZ->geno & G_UNIQ) && (is_female(ptrZ)) ))) && attempts < 50000);
+
+			if (ptrZ && ptrZ->geno & G_UNIQ && is_female(ptrZ)) {
+				bossmon = makemon(ptrZ, u.ux, u.uy, NO_MM_FLAGS);
+			}
+			else if (rn2(50)) {
+				attempts = 0;
+				goto newbossF;
+			}
+
+			if (bossmon) {
+				tamedog(bossmon, (struct obj *) 0, TRUE);
+			}
+
+			pline_The("avenger and his woman have appeared!");
+
+			return 1;
+			break;
+
+		}
+
+		if (obj->oartifact == ART_COMPLETE_RESET) {
+
+			int wflvl = u.ulevel;
+			if (wflvl < 1) wflvl = 1;
+			register struct monst *mtmp, *mtmp2;
+			int num = 0;
+			int n;
+
+			if (u.ulevel < 15) {
+				pline("That doesn't work unless you're at least experience level 15.");
+				break;
+			}
+			if (u.urexp < 2000000) {
+				pline("That doesn't work unless you have at least 2 million score.");
+				break;
+			}
+			/* uh-oh... */
+			u.youaredead = 1;
+
+			while (u.ulevel > 1) losexp("complete reset", TRUE, FALSE); /* set XL back to 1 */
+			if (u.uhpmax < (urole.hpadv.infix + urace.hpadv.infix)) {
+				u.uhpmax = urole.hpadv.infix + urace.hpadv.infix;
+				if (Role_if(PM_DQ_SLIME) && Race_if(PM_PLAYER_SLIME)) u.uhpmax += 20;
+				if (u.uhp < u.uhpmax) u.uhp = u.uhpmax;
+			}
+			if (!tech_known(T_RESTORE_LIFE_LEVELS)) {
+			    	learntech(T_RESTORE_LIFE_LEVELS, FROMOUTSIDE, 1);
+			}
+			techdrainrll();
+			dataskilldecrease(); /* set training of all skills back to 0 */
+			for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++) { /* lose all spells */
+				spellid(n) = NO_SPELL;
+			}
+			resettechs(); /* +rnz(100k) timeout for all techs */
+			u.urexp = 0; /* reset score to 0 */
+
+			/* game over, unless you have life saving */
+			killer = "a complete reset";
+			killer_format = KILLED_BY;
+			done(DIED);
+			u.youaredead = 0;
+
+			/* world fall, but bosses aren't immune and higher-level monsters only have 50% chance of surviving */
+			for (mtmp = fmon; mtmp; mtmp = mtmp2) {
+				mtmp2 = mtmp->nmon;
+				if ( ((mtmp->m_lev < wflvl) || (!rn2(2) && mtmp->m_lev < (2 * wflvl))) ) {
+					mondead(mtmp);
+					num++;
+					}
+			}
+			pline("Eliminated %d monster%s.", num, plur(num));
+
+			break;
+
+		}
+
+		if (obj->oartifact == ART_CURSE_PURIFY) {
+
+			useupall(obj);
+			{
+				register struct obj *tbunc;
+
+				for (tbunc = invent; tbunc; tbunc = tbunc->nobj) {
+#ifdef GOLDOBJ
+					/* gold isn't subject to cursing and blessing */
+					if (tbunc->oclass == COIN_CLASS) continue;
+#endif
+					uncurse(tbunc, TRUE);
+				}
+			}
+			Your("inventory has been purged from curses.");
+
+			return 1;
+			break;
+
+		}
+
+		if (obj->oartifact == ART_ROTATE_ME) {
+			play_blackjack();
+			break;
+
+		}
+
 		if (obj->oartifact == ART_YOHUALLI_TEZCATL) {
 		    make_sick(0L, (char *) 0, FALSE, SICK_ALL);
 		    make_blinded(0L,FALSE);
@@ -3649,6 +3965,7 @@ chargingchoice:
 		    make_frozen(0L,TRUE);
 		    make_burned(0L,TRUE);
 		    make_dimmed(0L,TRUE);
+			break;
 
 		}
 
@@ -3679,6 +3996,7 @@ chargingchoice:
 			pline("You've exchanged your documents with Lilly...");
 			pline("...and apparently she was a %s, so that's what you are now!", (flags.female && urole.name.f) ? urole.name.f : urole.name.m);
 
+			break;
 
 		}
 
@@ -3687,6 +4005,7 @@ chargingchoice:
 				u.greencrossopen = TRUE;
 				pline("The Green Cross subdungeon is now open!");
 			} else pline("The Green Cross subdungeon was already open.");
+			break;
 		}
 
 		if (obj->oartifact == ART_WAY_TOO_SOFT) {
@@ -3705,6 +4024,7 @@ chargingchoice:
 				}
 
 			}
+			break;
 
 		}
 
@@ -3729,7 +4049,7 @@ chargingchoice:
 				shoemonst = makemon(shoe, u.ux, u.uy, NO_MM_FLAGS);
 				if (shoemonst) (void) tamedog(shoemonst, (struct obj *) 0, TRUE);
 			} else pline("Somehow, it failed... :(");
-
+			break;
 		}
 
 		break;

@@ -1720,6 +1720,7 @@ set_moreluck()
 	if (uwep && uwep->oartifact == ART_WIRE_OF_LUCK) u.moreluck += 5;
 	if (have_amateurluckstone()) u.moreluck += 5;
 	if (uarmf && uarmf->oartifact == ART_HAPPY_CLOUD) u.moreluck += 5;
+	if (have_suckstonearti()) u.moreluck += 5;
 }
 
 
