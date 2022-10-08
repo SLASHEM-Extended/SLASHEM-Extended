@@ -23023,7 +23023,7 @@ boolean knoweverything;
 				case ART_AUTOSWITCH:
 					pline("Artifact specs: can be invoked to fix all nastytrap effects, but doing so deletes the armor."); break;
 				case ART_VERSUS_INSTADEATH:
-					pline("Artifact specs: life saving when worn. If it actually causes you to lifesave, it is used up in the process."); break;
+					pline("Artifact specs: life saving when worn, but only against instadeaths (if you die due to running out of HP, this armor doesn't save you). If it actually causes you to lifesave, it is used up in the process."); break;
 				case ART_GOING_DISPLAY:
 					pline("Artifact specs: can be invoked to fix the 'display loss' nastytrap effect."); break;
 				case ART_SECRET_COURSE_VACUUM_CLEAN:

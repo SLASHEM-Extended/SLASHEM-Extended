@@ -1384,7 +1384,7 @@ lsdone:
 	}
 flotationdone:
 
-	if ((uarm && uarm->oartifact == ART_VERSUS_INSTADEATH) && how <= GENOCIDED) {
+	if ((uarm && uarm->oartifact == ART_VERSUS_INSTADEATH) && (u.uhp > 0) && (u.uhpmax > 0) && how < GENOCIDED) {
 		pline("But wait...");
 		Your("armor %s!", !Blind ? "begins to glow" : "feels warm");
 		if (how == CHOKING) You("vomit ...");
