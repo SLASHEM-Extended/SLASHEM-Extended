@@ -14055,6 +14055,11 @@ past3:
 
 	}
 
+	if (TezActive) {
+		vision_reset();
+		vision_recalc(0);
+	}
+
 	if (RngeTrapAlert && t_at(u.ux, u.uy)) {
 		pline("Alert! You are standing on a trap!");
 	}
