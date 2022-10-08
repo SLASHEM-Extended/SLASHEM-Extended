@@ -14050,7 +14050,11 @@ past3:
 			clear_memory_glyph(zx, zy, S_stone);
 		}
 
-		if (!rn2(isfriday ? 10 : 20)) docrt();
+		if (StrongMap_amnesia || (!rn2(isfriday ? 10 : 20)) ) docrt();
+		if (StrongMap_amnesia) {
+			forget_mapseen(ledger_no(&u.uz));
+			forget_traps();
+		}
 		vision_recalc(0);
 
 	}

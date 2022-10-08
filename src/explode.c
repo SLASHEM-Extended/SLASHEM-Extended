@@ -666,6 +666,16 @@ boolean yours; /* is it your fault (for killing monsters) */
 		if (damu && Race_if(PM_YUKI_PLAYA)) damu += rnd(5);
 		if (Role_if(PM_BLEEDER)) damu = damu * 2; /* bleeders are harder than hard mode */
 		if (have_cursedmagicresstone()) damu = damu * 2;
+		if (WinceState) {
+			int damutemp = damu;
+			damu *= 11;
+			damu /= 10;
+			if (StrongWinceState) {
+				damu *= 11;
+				damu /= 10;
+			}
+			if (damu <= damutemp) damu++;
+		}
 		if (Role_if(PM_DANCER) && !rn2(3)) damu = damu * 3;
 		if (Race_if(PM_METAL)) damu *= rnd(10);
 		if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone() || (uleft && uleft->oartifact == ART_RING_OF_FAST_LIVING) || (uright && uright->oartifact == ART_RING_OF_FAST_LIVING) || (uimplant && uimplant->oartifact == ART_IME_SPEW) ) damu = damu * 2;

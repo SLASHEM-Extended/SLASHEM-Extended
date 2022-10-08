@@ -6259,6 +6259,46 @@ retrytrinsic:
 					}
 				}
 				break;
+			case 47:
+				if (intloss) {
+					if (HInvertedState & INTRINSIC) {
+						HInvertedState &= ~INTRINSIC;
+						You_feel("back on your %s!", makeplural(body_part(FOOT)));
+						hasmadeachange = 1;
+					}
+					if (HInvertedState & TIMEOUT) {
+						HInvertedState &= ~TIMEOUT;
+						You_feel("back on your %s!", makeplural(body_part(FOOT)));
+						hasmadeachange = 1;
+					}
+				} else {
+					if(!(HInvertedState & FROMOUTSIDE)) {
+						You_feel("inverted!");
+						HInvertedState |= FROMOUTSIDE;
+						hasmadeachange = 1;
+					}
+				}
+				break;
+			case 48:
+				if (intloss) {
+					if (HWinceState & INTRINSIC) {
+						HWinceState &= ~INTRINSIC;
+						You_feel("relieved!");
+						hasmadeachange = 1;
+					}
+					if (HWinceState & TIMEOUT) {
+						HWinceState &= ~TIMEOUT;
+						You_feel("relieved!");
+						hasmadeachange = 1;
+					}
+				} else {
+					if(!(HWinceState & FROMOUTSIDE)) {
+						You_feel("wimpy!");
+						HWinceState |= FROMOUTSIDE;
+						hasmadeachange = 1;
+					}
+				}
+				break;
 			default: /* shouldn't happen */
 				break;
 

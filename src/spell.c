@@ -3162,6 +3162,17 @@ boolean atme;
 	if (SpellColorYellow) energy *= 2;
 	if (SpellColorWhite) energy *= 4;
 
+	if (WinceState) {
+		energy *= 6;
+		energy /= 5;
+		energy++;
+		if (StrongWinceState) {
+			energy *= 6;
+			energy /= 5;
+			energy++;
+		}
+	}
+
 	/* inertia control and spellbinder make spells a bit more expensive... --Amy */
 	if (u.inertiacontrol) {
 		energy *= 5;

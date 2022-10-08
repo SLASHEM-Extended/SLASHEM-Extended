@@ -1280,7 +1280,8 @@ struct monst *mon;
 	    }
 	}
 	if (Is_weapon) {
-		tmp += otmp->spe;
+		if (InvertedState) tmp -= abs(otmp->spe);
+		else tmp += otmp->spe;
 		/* negative enchantment mustn't produce negative damage */
 		if (tmp < 0) tmp = 0;
 	}

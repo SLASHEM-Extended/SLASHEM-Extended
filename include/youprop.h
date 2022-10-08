@@ -1101,6 +1101,7 @@
 #define HMap_amnesia	u.uprops[MAP_AMNESIA].intrinsic
 #define EMap_amnesia	u.uprops[MAP_AMNESIA].extrinsic
 #define Map_amnesia	(HMap_amnesia || EMap_amnesia || In_minotaurmaze(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz))
+#define StrongMap_amnesia	(HMap_amnesia && EMap_amnesia && Map_amnesia)
 
 #define HWarning		u.uprops[WARNING].intrinsic
 #define EWarning		u.uprops[WARNING].extrinsic
@@ -1655,5 +1656,15 @@
 #define StrongPainSense	(IntPainSense && ExtPainSense && PainSense && u.nondoubleproperty != PAIN_SENSE)
 
 #define NoPainSense	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_PAIN_SENSE].intrinsic || RngeAids || (u.impossibleproperty == PAIN_SENSE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+
+#define HInvertedState		u.uprops[INVERT_STATE].intrinsic
+#define EInvertedState		u.uprops[INVERT_STATE].extrinsic
+#define InvertedState		(HInvertedState || EInvertedState )
+#define StrongInvertedState		(HInvertedState && EInvertedState && InvertedState)
+
+#define HWinceState		u.uprops[WINCE_STATE].intrinsic
+#define EWinceState		u.uprops[WINCE_STATE].extrinsic
+#define WinceState		(HWinceState || EWinceState )
+#define StrongWinceState		(HWinceState && EWinceState && WinceState)
 
 #endif /* YOUPROP_H */

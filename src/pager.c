@@ -28069,6 +28069,14 @@ static NEARDATA const char * const fake_plines[] = {
 	"Mikraanesis laughs because you've been caught.",
 	"Mikraanesis laughs because you've been caught. Now you're in a farting web, with lots of enemies around you, and will have a hard time escaping, muahahahaha.",
 	"You neuter yourself... but unfortunately playing as a neuter character isn't supported in this version, and therefore the area where you just cut off your penis grows into a neovagina instead.",
+	"You feel back on your feet!",
+	"You feel inverted!",
+	"You feel wimpy!",
+	"You're inverted!",
+	"You struggle with your movements.",
+	"You're wincing!",
+	"You have to wince even more!",
+
 };
 
 const char *

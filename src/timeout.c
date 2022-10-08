@@ -3430,6 +3430,14 @@ nh_timeout()
 			if (!HMap_amnesia)
 				pline("Your memory seems to be coming back.");
 			break;
+		case INVERT_STATE:
+			if (!HInvertedState)
+				pline("You stand up.");
+			break;
+		case WINCE_STATE:
+			if (!HWinceState)
+				pline("You're not wincing anymore.");
+			break;
 		case STEALTH:
 			if (!HStealth)
 				pline("Your movements are a little less silent.");

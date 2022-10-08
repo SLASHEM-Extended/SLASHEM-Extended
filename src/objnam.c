@@ -165,6 +165,10 @@ int prop;
 			return "peacevision";
 		case MAP_AMNESIA:
 			return "map amnesia";
+		case INVERT_STATE:
+			return "inversion";
+		case WINCE_STATE:
+			return "wincing";
 		case DETECT_MONSTERS:
 			return "detect monsters";
 		case JUMPING:

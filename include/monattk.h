@@ -211,7 +211,13 @@
 
 #define AD_DROP		143	/* make player drop random items */
 
-#define AD_ENDS		144	/* placeholder */
+#define AD_DEBT		144	/* player gets debts that they have to pay */
+#define AD_INVE		145	/* invert */
+#define AD_WNCE		146	/* wince */
+#define AD_SWAP		147	/* swap position with player */
+#define AD_TPTO		148	/* teleport player to the monster */
+
+#define AD_ENDS		149	/* placeholder */
 
 #define AD_ILLU		229	/* illusion attack - random effect also seen in illusion rooms */
 #define AD_PART		230	/* specific regular attack (rolled at game start) */

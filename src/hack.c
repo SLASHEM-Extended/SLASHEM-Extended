@@ -2373,6 +2373,11 @@ domove()
 		}
 	}
 
+	if (StrongInvertedState && rn2(2)) {
+		You("fail to move in your inverted state!");
+		return;
+	}
+
 	if(u.utrap) {
 		if(u.utraptype == TT_PIT) {
 		    if (!rn2(2) && sobj_at(BOULDER, u.ux, u.uy)) {
@@ -4913,6 +4918,16 @@ int k_format; /* WAC k_format is an int */
 	if (n && Race_if(PM_YUKI_PLAYA)) n += rnd(5);
 	if (Role_if(PM_BLEEDER)) n = n * 2; /* bleeders are harder than hard mode */
 	if (have_cursedmagicresstone()) n = n * 2;
+	if (WinceState) {
+		int damutemp = n;
+		n *= 11;
+		n /= 10;
+		if (StrongWinceState) {
+			n *= 11;
+			n /= 10;
+		}
+		if (n <= damutemp) n++;
+	}
 	if (Role_if(PM_DANCER) && !rn2(3)) n = n * 2;
 	if (Race_if(PM_METAL)) n *= rnd(10);
 	if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone() || (uleft && uleft->oartifact == ART_RING_OF_FAST_LIVING) || (uright && uright->oartifact == ART_RING_OF_FAST_LIVING) || (uimplant && uimplant->oartifact == ART_IME_SPEW)) n = n * 2;

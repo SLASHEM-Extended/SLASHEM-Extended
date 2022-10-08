@@ -2881,7 +2881,12 @@ inaccurateguns:
 		if (!ammo_and_launcher(obj, launcher)) {
 		    tmp -= 4;
 		} else {
-		    tmp += launcher->spe - greatest_erosionX(launcher);
+		    if (!InvertedState) {
+			tmp += launcher->spe - greatest_erosionX(launcher);
+		    } else {
+			tmp -= abs(launcher->spe);
+			tmp -= greatest_erosionX(launcher);
+		    }
 		    tmp += weapon_hit_bonus(launcher);
 		    if (launcher->oartifact) tmp += spec_abon(launcher, mon);
 		    /*

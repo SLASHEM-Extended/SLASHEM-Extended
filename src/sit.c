@@ -1099,7 +1099,7 @@ rndcurse()			/* curse a few inventory items at random! */
 void
 attrcurse()			/* remove a random INTRINSIC ability */
 {
-	switch(rnd(249)) {
+	switch(rnd(255)) {
 	case 1:
 	case 2:
 	case 3:
@@ -2212,6 +2212,32 @@ attrcurse()			/* remove a random INTRINSIC ability */
 		if (HPainSense & TIMEOUT) {
 			HPainSense &= ~TIMEOUT;
 			You_feel("unable to sense pain!");
+			u.cnd_intrinsiclosscount++;
+		}
+		break;
+	case 250:
+	case 251:
+	case 252: if (HInvertedState & INTRINSIC) {
+			HInvertedState &= ~INTRINSIC;
+			You_feel("back on your %s!", makeplural(body_part(FOOT)));
+			u.cnd_intrinsiclosscount++;
+		}
+		if (HInvertedState & TIMEOUT) {
+			HInvertedState &= ~TIMEOUT;
+			You_feel("back on your %s!", makeplural(body_part(FOOT)));
+			u.cnd_intrinsiclosscount++;
+		}
+		break;
+	case 253:
+	case 254:
+	case 255: if (HWinceState & INTRINSIC) {
+			HWinceState &= ~INTRINSIC;
+			You_feel("relieved!");
+			u.cnd_intrinsiclosscount++;
+		}
+		if (HWinceState & TIMEOUT) {
+			HWinceState &= ~TIMEOUT;
+			You_feel("relieved!");
 			u.cnd_intrinsiclosscount++;
 		}
 		break;

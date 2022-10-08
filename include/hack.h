@@ -293,8 +293,8 @@ NEARDATA extern coord bhitpos;	/* place where throw or zap hits or stops */
 #endif
 #define plur(x) (((x) == 1) ? "" : "s")
 
-#define ARM_BONUS(obj)	(objects[(obj)->otyp].a_ac + (obj)->spe \
-			 - min((int)greatest_erosionX(obj),objects[(obj)->otyp].a_ac))
+/* armor bonus value moved to do_wear.c --Amy */
+#define ARM_BONUS(obj)	armorbonusvalue(obj)
 
 /* implants give extra AC from enchantment ONLY if you're in a form that gets their good bonuses --Amy
  * but negatively enchanted ones will always make your AC worse! */

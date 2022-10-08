@@ -5464,6 +5464,27 @@ doputon()
 #define UAC_LIM /*127*/9999999
 /* Amy edit: why the hell is that an schar, I decided that limitations are stupid and should be removed */
 
+int
+armorbonusvalue(obj)
+struct obj *obj;
+{
+	int armoringvalue = 0;
+
+	if (!obj) return 0;
+
+	armoringvalue = objects[(obj)->otyp].a_ac;
+
+	if (!InvertedState) {
+		armoringvalue += ( (obj)->spe - min((int)greatest_erosionX(obj),objects[(obj)->otyp].a_ac) );
+	} else {
+		armoringvalue -= abs(obj->spe);
+		armoringvalue -= min((int)greatest_erosionX(obj),objects[(obj)->otyp].a_ac);
+	}
+
+	return armoringvalue;
+
+}
+
 void
 find_ac()
 {

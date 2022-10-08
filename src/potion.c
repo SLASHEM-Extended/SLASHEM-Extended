@@ -960,6 +960,37 @@ boolean talk;
 }
 
 void
+make_inverted(xtime)
+long xtime;
+{
+	boolean wasalready = HInvertedState;
+	if (xtime) {
+		set_itimeout(&HInvertedState, xtime);
+		if (wasalready) You("struggle with your movements.");
+		else pline("You're inverted!");
+	} else {
+		set_itimeout(&HInvertedState, xtime);
+		You("stand up.");
+	}
+}
+
+void
+make_wincing(xtime)
+long xtime;
+{
+	boolean wasalready = HWinceState;
+	if (xtime) {
+		set_itimeout(&HWinceState, xtime);
+		if (wasalready) You("have to wince even more!");
+		else pline("You're wincing!");
+	} else {
+		set_itimeout(&HWinceState, xtime);
+		You("don't have to wince anymore.");
+	}
+
+}
+
+void
 make_sick(xtime, cause, talk, type)
 long xtime;
 const char *cause;	/* sickness cause */
@@ -2063,7 +2094,7 @@ badeffect()
 
 	u.cnd_badeffectcount++;
 
-	switch (rnd(508)) {
+	switch (rnd(512)) {
 
 		case 1:
 		case 2:
@@ -3629,6 +3660,16 @@ newoffmon:
 			Your("ability to scare monsters via Elbereth engravings is reduced in effectiveness.");
 			break;
 
+		case 509:
+		case 510:
+			make_wincing(HWinceState + rnz(150));
+			break;
+
+		case 511:
+		case 512:
+			make_inverted(HInvertedState + rnz(150));
+			break;
+
 		default:
 			break;
 	}
@@ -3694,7 +3735,7 @@ reallybadeffect()
 
 	u.cnd_reallybadeffectcount++;
 
-	switch (rnd(122)) {
+	switch (rnd(124)) {
 
 		case 1:
 		if (FunnyHallu) You_feel("rather trippy.");
@@ -4870,6 +4911,14 @@ newoffmonX:
 		case 122:
 			u.elberethcheese += rnz(5);
 			Your("ability to scare monsters via Elbereth engravings is reduced in effectiveness.");
+			break;
+
+		case 123:
+			make_wincing(HWinceState + rnz(150));
+			break;
+
+		case 124:
+			make_inverted(HInvertedState + rnz(150));
 			break;
 
 		default:

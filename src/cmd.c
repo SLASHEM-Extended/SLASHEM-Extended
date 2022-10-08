@@ -7031,7 +7031,10 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && Peacevision) enl_msg(You_, "recognize", "recognized", StrongPeacevision ? " peaceful creatures and other stuff" : " peaceful creatures");
 	if ((guaranteed || !rn2(10)) && (Blind_telepat || Unblind_telepat) && !StrongTelepat) you_are("telepathic");
 	if ((guaranteed || !rn2(10)) && (Blind_telepat || Unblind_telepat) && StrongTelepat) you_are("very telepathic");
-	if ((guaranteed || !rn2(10)) && Map_amnesia) enl_msg(You_, "have", "had", " map amnesia");
+	if ((guaranteed || !rn2(10)) && Map_amnesia) enl_msg(You_, "have", "had", StrongMap_amnesia ? " total map amnesia" : " map amnesia");
+
+	if ((guaranteed || !rn2(10)) && InvertedState) enl_msg(You_, "are", "were", StrongInvertedState ? " completely inverted" : " inverted");
+	if ((guaranteed || !rn2(10)) && WinceState) enl_msg(You_, "are", "were", StrongWinceState ? " wincing painfully" : " wincing");
 
 	if ((guaranteed || !rn2(10)) && Hallu_party) you_are(StrongHallu_party ? "totally hallu partying" : "hallu partying");
 	if ((guaranteed || !rn2(10)) && Drunken_boxing) you_are(StrongDrunken_boxing ? "a very drunken boxer" : "a drunken boxer");
@@ -11419,7 +11422,10 @@ int final;
 	if (Manaleech && !StrongManaleech) dump("  ", "You leeched mana");
 	if (Manaleech && StrongManaleech) dump("  ", "You leeched a lot of mana");
 	if (Peacevision) dump("  ", StrongPeacevision ? "You recognized peaceful creatures and other stuff" : "You recognized peaceful creatures");
-	if (Map_amnesia) dump("  ", "You had map amnesia");
+	if (Map_amnesia) dump("  ", StrongMap_amnesia ? "You had total map amnesia" : "You had map amnesia");
+	if (InvertedState) dump("  ", StrongInvertedState ? "You were completely inverted" : "You were inverted");
+	if (WinceState) dump("  ", StrongWinceState ? "You were wincing painfully" : "You were wincing");
+
 	if ((Blind_telepat || Unblind_telepat) && !StrongTelepat) dump(youwere, "telepathic");
 	if ((Blind_telepat || Unblind_telepat) && StrongTelepat) dump(youwere, "very telepathic");
 

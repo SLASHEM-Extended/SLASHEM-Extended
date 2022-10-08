@@ -1076,10 +1076,10 @@ register struct obj *obj;
 		pline_The("toilet looks like a castle for a moment.");
 		break;
 	case AMULET_OF_STOPPED_EVOLUTION:
-		pline_The("toilet seems to stop generating water");
+		pline_The("toilet seems to stop generating water.");
 		break;
 	case AMULET_OF_INITIALIZATION_FAILU:
-		pline_The("toilet flusing button momentarily vanishes");
+		pline_The("toilet flusing button momentarily vanishes.");
 		break;
 	case AMULET_OF_REAL_SCREWERY:
 		pline_The("toilet suddenly seems shitty!");

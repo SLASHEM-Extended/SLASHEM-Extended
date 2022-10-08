@@ -529,6 +529,7 @@ E void reset_remarm(void);
 E int doddoremarm(void);
 E int destroy_arm(struct obj *);
 E int dowear2(const char *, const char *);
+E int armorbonusvalue(struct obj *);
 
 /* ### dog.c ### */
 
@@ -2494,6 +2495,8 @@ E void make_blinded(long,BOOLEAN_P);
 E void make_sick(long, const char *, BOOLEAN_P,int);
 E void make_slimed(long);
 E void make_vomiting(long,BOOLEAN_P);
+E void make_inverted(long);
+E void make_wincing(long);
 E boolean make_hallucinated(long,BOOLEAN_P,long);
 E int dodrink(void);
 E void badeffect(void);

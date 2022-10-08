@@ -1620,7 +1620,7 @@ randenchantment()
 
 	} else {
 
-	switch (rnd(148)) {
+	switch (rnd(150)) {
 
 		case 1:
 		case 2:
@@ -1851,6 +1851,10 @@ randenchantment()
 		case 147:
 		case 148:
 			return PAIN_SENSE;
+		case 149:
+			return INVERT_STATE;
+		case 150:
+			return WINCE_STATE;
 
 		default:
 			return POISON_RES;

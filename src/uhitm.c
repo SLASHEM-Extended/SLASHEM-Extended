@@ -913,6 +913,11 @@ register struct monst *mtmp;
 
 	if (!issoviet && !rn2(3)) tmp += rno(GushLevel);
 
+	if (InvertedState) {
+		if (uwep && (uwep->spe > 0)) tmp -= (uwep->spe * 2);
+		if (u.twoweap && uswapwep && (uswapwep->spe > 0)) tmp -= (uswapwep->spe * 2);
+	}
+
 	if (Numbed) {
 		if (tmp > 1) {
 			tmp *= 9;
@@ -3299,6 +3304,16 @@ int dieroll;
 
 	/* yet another twoweaponing nerf --Amy */
 	if (u.twoweap && !thrown && !rn2(3) && tmp > 1) tmp /= 2;
+
+	if (WinceState && tmp > 1) {
+		tmp *= 4;
+		tmp /= 5;
+		if (StrongWinceState) {
+			tmp *= 4;
+			tmp /= 5;
+		}
+		if (tmp < 1) tmp = 1;
+	}
 
 	if (valid_weapon_attack) {
 	    struct obj *wep;
