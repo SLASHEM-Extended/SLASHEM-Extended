@@ -3643,6 +3643,78 @@ chargingchoice:
 	    break;
 	case SPECIAL_INVOKE:
 
+		if (obj->oartifact == ART_KEY_TO_THE_GOLDEN_ITEMS) {
+
+			register struct obj *goldenitem;
+			if (CannotSelectItemsInPrompts) return 0;
+goldenchoice:
+			goldenitem = getobj(allowall, "turn into an artifact");
+			if (!goldenitem) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to turn an item into an artifact.");
+				else goto goldenchoice;
+				pline("Oh well, if you don't wanna...");
+				break;
+			} else {
+				if (evades_destruction(goldenitem)) {
+					pline("That item is unique, and therefore nothing happens!");
+					break;
+				}
+				if (goldenitem->oartifact || goldenitem->fakeartifact) {
+					pline("That item is already an artifact, and therefore nothing happens!");
+					break;
+				}
+				long savewornmask;
+				goldenitem = mk_artifact(goldenitem, (aligntyp)A_NONE, TRUE);
+				if (goldenitem && goldenitem->oartifact) {
+					useupall(obj);
+
+					savewornmask = goldenitem->owornmask;
+					setworn((struct obj *)0, goldenitem->owornmask);
+					setworn(goldenitem, savewornmask);
+
+					pline("Success!");
+					return 1;
+				}
+			}
+			break;
+		}
+		if (obj->oartifact == ART_KEY_TO_THE_GREEN_ITEMS) {
+
+			register struct obj *greenitem;
+			if (CannotSelectItemsInPrompts) return 0;
+greenchoice:
+				greenitem = getobj(allowall, "turn into a fake artifact");
+				if (!greenitem) {
+					if (yn("Really exit with no object selected?") == 'y')
+						pline("You just wasted the opportunity to turn an item into an artifact.");
+					else goto greenchoice;
+					pline("Oh well, if you don't wanna...");
+					break;
+				} else {
+					if (evades_destruction(greenitem)) {
+						pline("That item is unique, and therefore nothing happens!");
+						break;
+					}
+					if (greenitem->oartifact || greenitem->fakeartifact) {
+						pline("That item is already an artifact, and therefore nothing happens!");
+						break;
+					}
+					greenitem = turnintofakeartifact(greenitem);
+					if (greenitem && greenitem->fakeartifact) {
+						useupall(obj);
+						if (greenitem->oclass == WEAPON_CLASS || greenitem->oclass == ARMOR_CLASS || greenitem->oclass == BALL_CLASS || greenitem->oclass == GEM_CLASS || greenitem->oclass == CHAIN_CLASS || is_weptool(greenitem)) {
+							greenitem->spe = rne(2);
+							if (!rn2(2)) greenitem->spe += rne(2);
+						}
+						pline("Success!");
+						return 1;
+					}
+				}
+
+			break;
+		}
+
 		if (obj->oartifact == ART_AUTOSWITCH) {
 			useupall(obj);
 			pline("You carefully pull the switch...");

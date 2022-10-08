@@ -9601,6 +9601,15 @@ A("Vivarium Stick",				WAN_NOTHING, /* randart, zapping it changes its material 
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
+A("Key to the Golden Items",				SECRET_KEY,
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 25000L ),
+
+A("Key to the Green Items",				SECRET_KEY,
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 5000L ),
+
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

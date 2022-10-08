@@ -4974,6 +4974,23 @@ static const char *obj_state_names[NOBJ_STATES] = {
 	"minvent",	"migrating",	"buried",	"onbill"
 };
 
+struct obj *
+turnintofakeartifact(otmp)
+register struct obj *otmp;
+{
+	if (!otmp) return (struct obj *)0;
+	otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
+	if (otmp) {
+		otmp->fakeartifact = 1;
+		u.fakeartifacts++;
+		return otmp;
+	}
+
+	return (struct obj *)0;
+
+}
+
+
 STATIC_OVL const char *
 where_name(where)
     int where;

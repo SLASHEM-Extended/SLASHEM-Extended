@@ -1711,6 +1711,7 @@ E void bill_dummy_object(struct obj *);
 E struct obj *mksobj(int,BOOLEAN_P,int,BOOLEAN_P);
 E int bcsign(struct obj *);
 E int weight(struct obj *);
+E struct obj *turnintofakeartifact(struct obj *);
 E struct obj *mkgold(long,int,int);
 E struct obj *mkcorpstat(int,struct monst *,struct permonst *,int,int,BOOLEAN_P);
 E struct obj *obj_attach_mid(struct obj *, unsigned);

@@ -23093,6 +23093,10 @@ boolean knoweverything;
 					pline("Artifact specs: +3 to-hit and +20 damage, chaotic, every bullet you fire from it permanently reduces your maximum health by one. If this causes your health to drop to zero, game over."); break;
 				case ART_VIVARIUM_STICK:
 					pline("Artifact specs: zapping it while the material is something other than viva will set its material to viva."); break;
+				case ART_KEY_TO_THE_GOLDEN_ITEMS:
+					pline("Artifact specs: can be invoked to turn a regular item (not an artifact or fake artifact) in your inventory into an artifact. This requires that there is a randomly generatable artifact of the base item type you pick. Beware that if there are several eligible artifacts, which one you actually get is random. If this successfully creates an artifact, the key is used up."); break;
+				case ART_KEY_TO_THE_GREEN_ITEMS:
+					pline("Artifact specs: can be invoked to turn a regular item (not an artifact or fake artifact) in your inventory into a fake artifact. If it's a weapon, weapon-tool or piece of armor, its enchantment value is set to a random positive value. Successfully creating a fake artifact with this method causes the key to be used up."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

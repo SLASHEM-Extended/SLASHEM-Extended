@@ -441,8 +441,9 @@ const char *name;
 	/* If named artifact exists in the game, do not create another.
 	 * Also trying to create an artifact shouldn't de-artifact
 	 * it (e.g. Excalibur from prayer). In this case the object
-	 * will retain its current name. */
-	if (obj->oartifact || (lth && exist_artifact(obj->otyp, name)))
+	 * will retain its current name.
+	 * Amy edit: in wizard mode we should be able to create multiple copies of an artifact if we want to */
+	if (obj->oartifact || (lth && exist_artifact(obj->otyp, name) && !wizard ))
 		return obj;
 
 	if (lth == obj->onamelth) {
