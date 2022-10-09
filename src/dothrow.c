@@ -2663,6 +2663,9 @@ inaccurateguns:
 			case ANTISHADOW_SHIELD:
 				shieldblockrate = 40;
 				break;
+			case INVERSION_SHIELD:
+				shieldblockrate = 50;
+				break;
 			case SHIELD_OF_LIGHT:
 				shieldblockrate = 40;
 				break;

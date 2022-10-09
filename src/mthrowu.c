@@ -174,6 +174,9 @@ const char *name;	/* if null, then format `obj' */
 		case ANTISHADOW_SHIELD:
 			shieldblockrate = 30;
 			break;
+		case INVERSION_SHIELD:
+			shieldblockrate = 40;
+			break;
 		case SHIELD_OF_LIGHT:
 			shieldblockrate = 30;
 			break;
@@ -1131,6 +1134,9 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 			case CHROME_SHIELD:
 			case ANTISHADOW_SHIELD:
 				shieldblockrate = 40;
+				break;
+			case INVERSION_SHIELD:
+				shieldblockrate = 50;
 				break;
 			case SHIELD_OF_LIGHT:
 				shieldblockrate = 40;

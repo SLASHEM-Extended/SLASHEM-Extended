@@ -3350,7 +3350,7 @@ boolean shopinit;
 		}
 
 		/* certain base items are characterized by the fact that they always have an enchantment and are otherwise plain --Amy */
-		if (otmp->otyp == SPECIAL_CLOAK || otmp->otyp == CHANTER_SHIRT || otmp->otyp == MAGIC_DRAGON_SCALE_MAIL || otmp->otyp == MAGIC_DRAGON_SCALES || otmp->otyp == MAGIC_DRAGON_SCALE_SHIELD || otmp->otyp == SPECIAL_SHIELD || otmp->otyp == SPECIAL_LEATHER_ARMOR || otmp->otyp == MAGE_PLATE_MAIL || otmp->otyp == ROBE_OF_SPECIALTY || otmp->otyp == WONDER_HELMET || otmp->otyp == ARCANE_GAUNTLETS || otmp->otyp == SKY_HIGH_HEELS || itemhasappearance(otmp, APP_SELF_TYPE_HELMET) ) {
+		if (otmp->otyp == SPECIAL_CLOAK || otmp->otyp == CHANTER_SHIRT || otmp->otyp == MAGIC_DRAGON_SCALE_MAIL || otmp->otyp == MAGIC_DRAGON_SCALES || otmp->otyp == MAGIC_DRAGON_SCALE_SHIELD || otmp->otyp == SPECIAL_SHIELD || otmp->otyp == SPECIAL_LEATHER_ARMOR || otmp->otyp == MAGE_PLATE_MAIL || otmp->otyp == ROBE_OF_SPECIALTY || otmp->otyp == WONDER_HELMET || otmp->otyp == ARCANE_GAUNTLETS || otmp->otyp == SKY_HIGH_HEELS || itemhasappearance(otmp, APP_SELF_TYPE_HELMET) || itemhasappearance(otmp, APP_ENCHANTMENT_CLOAK) ) {
 			otmp->enchantment = randenchantment();
 		}
 
@@ -3470,6 +3470,7 @@ boolean shopinit;
 			  otmp->otyp == RIN_NUMBNESS ||
 			  otmp->otyp == RIN_CURSE ||
 			  otmp->otyp == RIN_DIMNESS ||
+			  otmp->otyp == RIN_WINCING ||
 			  otmp->otyp == RIN_HALLUCINATION ||
 			  otmp->otyp == RIN_HUNGER || !rn2(9))) {
 			curse_on_creation(otmp);
@@ -4366,6 +4367,7 @@ register struct obj *otmp;
 	if (objects[otyp].oc_material == MT_TINSEL) return TRUE;
 	if (objects[otyp].oc_material == MT_SAND && evilfriday) return TRUE;
 	if (objects[otyp].oc_material == MT_NANOMACHINE && evilfriday) return TRUE;
+	if (itemhasappearance(otmp, APP_RUSTPRONE_BOOTS)) return TRUE;
 
 	return FALSE;
 }

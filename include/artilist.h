@@ -9609,6 +9609,18 @@ A("Key to the Green Items",				SECRET_KEY,
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 5000L ),
 
+A("Invstate",				CLOAK_OF_INVERSION, /* intrinsic reflection when worn */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Open Retribution",				INVERSION_SHIELD, /* rays don't lose range when they hit something */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Bernceld",				RIN_WINCING, /* deactivates cold resistance, grants infravision and sight bonus */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2400L ),
+
 
 /*
  *	Stormbringer only has a 2 because it can drain a level,

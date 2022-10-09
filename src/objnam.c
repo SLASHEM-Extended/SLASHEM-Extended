@@ -3796,6 +3796,12 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ TOO_GOOD_GO_STONE, "todo" },
 	{ KILLER_ROOM_STONE, "todo" },
 	{ FUNWALL_STONE, "todo" },
+	{ CLOAK_OF_INVERSION, "todo" },
+	{ CLOAK_OF_WINCING, "todo" },
+	{ BOOTS_OF_INVERSION, "todo" },
+	{ INVERSION_SHIELD, "todo" },
+	{ WINCING_GRIMACE, "todo" },
+	{ RIN_WINCING, "todo" },
 
 	{0, "" }
 };
@@ -6836,6 +6842,12 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ TOO_GOOD_GO_STONE, "todo" },
 	{ KILLER_ROOM_STONE, "todo" },
 	{ FUNWALL_STONE, "todo" },
+	{ CLOAK_OF_INVERSION, "todo" },
+	{ CLOAK_OF_WINCING, "todo" },
+	{ BOOTS_OF_INVERSION, "todo" },
+	{ INVERSION_SHIELD, "todo" },
+	{ WINCING_GRIMACE, "todo" },
+	{ RIN_WINCING, "todo" },
 
 	{0, "" }
 };

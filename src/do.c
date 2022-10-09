@@ -607,6 +607,9 @@ giveback:
 	      case RIN_MAGIC_CONTROL:
 		    pline("The water flow seems controlled!");
 		    break;
+	      case RIN_WINCING:
+		    pline("The sink winces in pain!");
+		    break;
 	      case RIN_ILLNESS:
 		    pline("The sink is overgrown with fungus.");
 		    break;

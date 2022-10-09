@@ -6874,6 +6874,9 @@ boolean guaranteed;
 		case ANTISHADOW_SHIELD:
 			shieldblockrate = 30;
 			break;
+		case INVERSION_SHIELD:
+			shieldblockrate = 40;
+			break;
 		case SHIELD_OF_LIGHT:
 			shieldblockrate = 30;
 			break;
@@ -11263,6 +11266,9 @@ int final;
 		case CHROME_SHIELD:
 		case ANTISHADOW_SHIELD:
 			shieldblockrate = 30;
+			break;
+		case INVERSION_SHIELD:
+			shieldblockrate = 40;
 			break;
 		case SHIELD_OF_LIGHT:
 			shieldblockrate = 30;

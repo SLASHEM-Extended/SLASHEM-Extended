@@ -11620,6 +11620,10 @@ boolean knoweverything;
 			pline("The randomized appearance of this helmet causes it to usually spawn with a higher enchantment value.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_MISSYS))
 			pline("These stiletto heels are supposed to be 'sneaker high heels', but despite that they only count as high heels, not sexy flats.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ENCHANTMENT_CLOAK))
+			pline("Due to its randomized appearance, this cloak generally spawns with a random enchantment (aka egotype).");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_RUSTPRONE_BOOTS))
+			pline("These boots can rust, even if their base material is one that normally cannot rust.");
 
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
@@ -12086,8 +12090,12 @@ boolean knoweverything;
 				pline("While wearing this cloak, you have control magic and also 3 points of magic cancellation."); break;
 			case CLOAK_OF_EXPERIENCE:
 				pline("A rare cloak type that doubles any experience you gain, and also gives 3 points of magic cancellation."); break;
-			case CLOAK_OF_GROUNDING: 
+			case CLOAK_OF_GROUNDING:
 				pline("Wearing this cloak grants shock resistance and medium magic cancellation."); break;
+			case CLOAK_OF_INVERSION:
+				pline("Grants reflection when worn, but also inverts you, screwing with the effect of your equipment's enchantment values. It grants a whopping 8 base points of AC and also 3 points of magic cancellation."); break;
+			case CLOAK_OF_WINCING:
+				pline("This cloak causes you to wince, which is generally bad. It does have 3 points of magic cancellation though."); break;
 
 			case CLOAK_OF_UNSPELLING: 
 				pline("This cloak causes spell loss. It grants good armor class and 3 points of magic cancellation."); break;
@@ -12431,6 +12439,8 @@ boolean knoweverything;
 				pline("Whatever the hell it is, it's made of plastic and covers your head."); break;
 			case SCHOOL_CAP:
 				pline("A basic cap."); break;
+			case WINCING_GRIMACE:
+				pline("Not the best helmet, as it causes you to wince, but it does have a couple points of AC."); break;
 			case SKILL_CAP:
 				pline("Grants extra skill practice when worn."); break;
 			case BOBBLE_HAT:
@@ -12812,6 +12822,8 @@ boolean knoweverything;
 				pline("If you wear this shield, your sight in dark areas is improved."); break;
 			case VENOM_SHIELD:
 				pline("A poison-resistant shield that offers poison resistance to the wearer."); break;
+			case INVERSION_SHIELD:
+				pline("Reflects beams and has very good AC and chance to block, as well as some magic cancellation, but inverts you, meaning that positively enchanted gear doesn't work properly anymore."); break;
 			case SHIELD_OF_LIGHT:
 				pline("This shield conveys infravision when worn."); break;
 			case SHIELD_OF_MOBILITY:
@@ -13043,6 +13055,8 @@ boolean knoweverything;
 				pline("This footwear causes pets to spontaneously rebel. They provide low AC and low magic cancellation."); break;
 			case DEMENTIA_BOOTS:
 				pline("This footwear causes the dungeon to regrow rapidly. They provide good AC and no magic cancellation."); break;
+			case BOOTS_OF_INVERSION:
+				pline("Relatively good armor class and 2 points of magic cancellation, but the inversion caused by these boots will probably screw you over enough that you won't want to wear them anyway unless you only have unenchanted gear."); break;
 
 			case FEMMY_STILETTO_BOOTS:
 				pline("Very fleecy white stiletto boots. They carry Femmy's curse, and have 2 AC and 0 MC."); break;
@@ -13768,6 +13782,8 @@ boolean knoweverything;
 				pline("This ring makes some calculations assume that you're always experience level 1."); break;
 			case RIN_USING_HAZARD:
 				pline("This ring curses items that you want to use."); break;
+			case RIN_WINCING:
+				pline("Bad ring that causes you to wince. It is usually generated cursed."); break;
 			case RIN_EXERTION_LOSS:
 				pline("This ring degrades your skills."); break;
 			case RIN_PETCAT:
@@ -23097,6 +23113,12 @@ boolean knoweverything;
 					pline("Artifact specs: can be invoked to turn a regular item (not an artifact or fake artifact) in your inventory into an artifact. This requires that there is a randomly generatable artifact of the base item type you pick. Beware that if there are several eligible artifacts, which one you actually get is random. If this successfully creates an artifact, the key is used up."); break;
 				case ART_KEY_TO_THE_GREEN_ITEMS:
 					pline("Artifact specs: can be invoked to turn a regular item (not an artifact or fake artifact) in your inventory into a fake artifact. If it's a weapon, weapon-tool or piece of armor, its enchantment value is set to a random positive value. Successfully creating a fake artifact with this method causes the key to be used up."); break;
+				case ART_INVSTATE:
+					pline("Artifact specs: intrinsic reflection when worn, which stacks with the extrinsic reflection granted by the base item so you get double reflection."); break;
+				case ART_OPEN_RETRIBUTION:
+					pline("Artifact specs: while wearing it, rays don't lose range when they hit something."); break;
+				case ART_BERNCELD:
+					pline("Artifact specs: resist fire, infravision and sight bonus when worn but deactivates cold resistance."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;
