@@ -28076,6 +28076,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"You struggle with your movements.",
 	"You're wincing!",
 	"You have to wince even more!",
+	"If there is nothing in the game that can work against the player, that's a bug. After all, the player should face challenges and hardships, not be granted a free pass through the entire game, otherwise it'd be rather boring if you cannot lose :P",
+	"People who play SLEX encounter a feature they don't like, and then they think they had the right to complain, or worse, demand that Amy changes the feature in question. But they are wrong. Amy is the Iron Lady of SLEX and won't listen to such nonsense!",
+	"It's not as if any players went 'yay, nasty traps are great, I'm so happy about their addition to the game!'. But it doesn't matter anyway, because Amy wants them in the game and therefore they won't disappear.",
+	"An important part of the SLEX design philosophy is that the player can be screwed over randomly without a fault of their own. After all, why should everything that happens always have to be in favor of the player? That's stupid, real life isn't always fair either!",
 
 };
 
