@@ -1295,6 +1295,7 @@ const struct innate {
 		     {   0, 0, 0, 0, 0 } },
 
 	ret_abil[] = { {	 1, &(HKeen_memory), "", "", TRUE },
+		     {   1, &(HAggravate_monster), "", "", FALSE },
 			{     10, &(HPsi_resist), "psionic", "less psionic", TRUE },
 			{   15, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
 		     {   0, 0, 0, 0, 0 } },

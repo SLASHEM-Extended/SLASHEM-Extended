@@ -2373,6 +2373,43 @@ moveloop()
 			}
 		}
 
+		if (Race_if(PM_RETICULAN) && !rn2(1000)) { /* sorry potato44, but that race has so many upsides! --Amy */
+
+			if (!rn2(10)) HAggravate_monster |= FROMOUTSIDE; /* so we need at least a few downsides to balance them */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = 1;
+			if (!rn2(10)) {
+				randsp = (rn2(14) + 2);
+				if (!rn2(10)) randsp *= 2;
+				if (!rn2(100)) randsp *= 3;
+				if (!rn2(1000)) randsp *= 5;
+				if (!rn2(10000)) randsp *= 10;
+			}
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(evilroommon(), cx, cy, MM_ADJACENTOK);
+			}
+
+			if (wizard || !rn2(10)) pline("Evil things will happen to you.");
+
+			u.aggravation = 0;
+
+		}
+
 		if (uarmf && uarmf->oartifact == ART_WHINY_TEACHER_INSIDE_WOMAN && !rn2(100)) {
 			register struct monst *whinymon;
 
