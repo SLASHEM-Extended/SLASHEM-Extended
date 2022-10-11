@@ -328,7 +328,7 @@ boolean forcecontrol;
 				uarm->otyp >= GRAY_DRAGON_SCALE_MAIL &&
 				uarm->otyp <= YELLOW_DRAGON_SCALES);
 	boolean iswere = (u.ulycn >= LOW_PM || is_were(youmonst.data));
-	boolean isvamp = (is_vampire(youmonst.data) && !Race_if(PM_VAMGOYLE) );
+	boolean isvamp = (is_vampire(youmonst.data) && !Race_if(PM_VAMGOYLE) && issoviet );
 	boolean was_floating = (Levitation || Flying);
 
 	if (Race_if(PM_PLAYER_SLIME)) { /* cannot polymorph at all - punishment for being slimed --Amy */
@@ -346,7 +346,7 @@ boolean forcecontrol;
 	/* Amy edit: early polymorph traps shouldn't kill you by system shock either because that would suck */
 
 	if(!Polymorph_control && !(tech_inuse(T_POLYFORM) || tech_inuse(T_FUNGOISM) || u.fungalsandals || tech_inuse(T_BECOME_UNDEAD)) && !u.wormpolymorph && !forcecontrol && !draconian && !iswere &&
-			!isvamp && !Race_if(PM_DOPPELGANGER) && !Role_if(PM_SHAPESHIFTER) && !Race_if(PM_HEMI_DOPPELGANGER)) {
+			!(isvamp && issoviet) && !Race_if(PM_DOPPELGANGER) && !Role_if(PM_SHAPESHIFTER) && !Race_if(PM_HEMI_DOPPELGANGER)) {
 		if ( (rn2(12) > ACURR(A_CON) || !rn2(50)) && !u.polyprotected && !Race_if(PM_UNGENOMOLD) && !Race_if(PM_MOULD) && !Race_if(PM_DEATHMOLD) && !Race_if(PM_MISSINGNO) && !Race_if(PM_WORM_THAT_WALKS) && !Race_if(PM_WARPER) ) {
 
 		You("%s", shudder_for_moment);
@@ -694,7 +694,7 @@ controldone:
 		if (draconian &&
 		    (mntmp == armor_to_dragon(uarm->otyp) || tries == 5))
 		    goto do_merge;
-	} else if ( !u.wormpolymorph && ((draconian && rn2(5))  || iswere || isvamp)) { /* chance to poly into something else --Amy */
+	} else if ( !u.wormpolymorph && ((draconian && rn2(5))  || iswere || (isvamp && issoviet) )) { /* chance to poly into something else --Amy */
 		/* special changes that don't require polyok() */
 		if (draconian /*&& rn2(5)*/ ) {
 		    do_merge:
