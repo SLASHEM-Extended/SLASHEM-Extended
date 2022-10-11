@@ -330,6 +330,51 @@ dosave0()
 	return(1);
 }
 
+#ifndef HANGUPHANDLING
+
+#if defined(UNIX) || defined(VMS) || defined (__EMX__) || defined(WIN32)
+/*ARGSUSED*/
+void
+hangup(sig_unused)  /* called as signal() handler, so sent at least one arg */
+int sig_unused;
+{
+# ifdef NOSAVEONHANGUP
+	(void) signal(SIGINT, SIG_IGN);
+	clearlocks();
+#  ifndef VMS
+	terminate(EXIT_FAILURE);
+#  endif
+# else	/* SAVEONHANGUP */
+	if (!program_state.done_hup++) {
+	    if (program_state.something_worth_saving) {
+
+        if (u.hangupcheat) {
+    		u.hangupcheat++;
+    		u.hanguppenalty += 10;	/* unfortunately we can't determine if you hanged up during a prompt! --Amy */
+    		if (multi) u.hangupparalysis += abs(multi);
+    		if (u.hangupparalysis > 5) u.hangupparalysis = 5; /* sanity check */
+        }
+
+		(void) dosave0();
+
+		}
+#  ifdef VMS
+	    /* don't call exit when already within an exit handler;
+	       that would cancel any other pending user-mode handlers */
+	    if (!program_state.exiting)
+#  endif
+	    {
+		clearlocks();
+		terminate(EXIT_FAILURE);
+	    }
+	}
+# endif
+	return;
+}
+#endif
+
+#endif /* HANGUPHANDLING */
+
 STATIC_OVL void
 savegamestate(fd, mode)
 register int fd, mode;

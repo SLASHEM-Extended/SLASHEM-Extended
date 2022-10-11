@@ -591,10 +591,10 @@ int lev;
 void
 clearlocks()
 {
-/*#ifdef HANGUPHANDLING
+#ifdef HANGUPHANDLING
     if (program_state.preserve_locks)
         return;
-#endif*/
+#endif
 
 # if defined(UNIX) || defined(VMS)
 	(void) signal(SIGHUP, SIG_IGN);

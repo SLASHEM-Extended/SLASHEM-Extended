@@ -186,9 +186,7 @@ register const char *s;	/* chars allowed besides return */
     morc = 0;
 
     while(
-#ifdef HANGUPHANDLING
 	!program_state.done_hup &&
-#endif
 	(c = tty_nhgetch()) != '\n') {
 	if(iflags.cbreak) {
 	    if ((s && index(s,c)) || c == x) {

@@ -100,10 +100,9 @@ pline VA_DECL(const char *, line)
 /* Do NOT use VA_START and VA_END in here... see above */
 
 	if (!line || !*line) return;
-#ifdef HANGUPHANDLING
+
 	if (program_state.done_hup)
 	    return;
-#endif
 
 	if (PlayerHearsMessages && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && rn2(3) && !u.captchahack
 

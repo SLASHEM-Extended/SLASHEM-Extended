@@ -1149,17 +1149,19 @@ end_of_input(void)
 {
 #ifdef NOSAVEONHANGUP
 #ifdef INSURANCE
+#ifdef HANGUPHANDLING /* uhh who programmed this? preserve_locks exists only with HANGUPHANDLING... --Amy */
     if (flags.ins_chkpt && program_state.something_worth_saving)
         program_state.preserve_locks = 1; /* keep files for recovery */
+#endif
 #endif
     program_state.something_worth_saving = 0; /* don't save */
 #endif
 
-#ifndef SAFERHANGUP
+#ifndef NOSAVEONHANGUP
     if (!program_state.done_hup++)
-#endif
         if (program_state.something_worth_saving)
             (void) dosave0();
+#endif
     if (iflags.window_inited)
         exit_nhwindows((char *) 0);
     clearlocks();
@@ -15797,7 +15799,9 @@ readchar()
 	if (sym == EOF)
 #ifdef HANGUPHANDLING
 	    hangup(0); /* call end_of_input() or set program_state.done_hup */
-#endif
+#else
+	    end_of_input();
+#endif /* HANGUPHANDLING */
 #endif /* UNIX */
 
 	if(sym == 0) {
