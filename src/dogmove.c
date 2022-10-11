@@ -1115,6 +1115,9 @@ register int after;	/* this is extra fast monster movement */
 			 (mtmp2->egotype_petshielder || mtmp2->data == &mons[PM_TUXIE]) ||
 	/* directive can be used to make them not attack peacefuls */
 			 (u.petattackenemies == 1 && mtmp2->mpeaceful) ||
+	/* sing/kati trap should prevent pets from killing the shoe you're cleaning */
+			 (u.singtrapocc && mtmp2->mpeaceful) ||
+			 (u.katitrapocc && mtmp2->mpeaceful) ||
 	/* Moldoux is special-cased */
 			 (mtmp2->data == &mons[PM_MOLDOUX__THE_DEFENCELESS_MOLD]) ||
 	/* the "spretty" isn't attacked either */
