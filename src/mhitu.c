@@ -262,7 +262,8 @@ kseniaagain:
 						break;
 					case 3:
 						pline_The("kick bludgeoned you, and you drop to the floor!");
-						nomul(-rnd(10), "knocked out by a lovely shoe", TRUE);
+						if (isstunfish) nomul(-rnz(10), "knocked out by a lovely shoe", TRUE);
+						else nomul(-rnd(10), "knocked out by a lovely shoe", TRUE);
 						nomovemsg = "You stand back up.";
 						break;
 					case 4:
@@ -745,7 +746,8 @@ elena12:
 				if (randomkick == 5) {
 				pline("You fall in love with %s's incredibly erotic footwear, and are unable to fight back.", mon_nam(mtmp) );
 					nomovemsg = "You finally decide to stop admiring the sexy leather boots.";
-					nomul(-rnd(5), "mesmerized by a pair of sexy leather boots", TRUE);
+					if (isstunfish) nomul(-rnz(5), "mesmerized by a pair of sexy leather boots", TRUE);
+					else nomul(-rnd(5), "mesmerized by a pair of sexy leather boots", TRUE);
 
 				}
 
@@ -827,7 +829,7 @@ elenaWOODSANDAL:
 					monsterlev = ((mtmp->m_lev) + 1);
 					monsterlev /= 2;
 					if (monsterlev <= 0) monsterlev = 1;
-					if (monsterlev > 1) monsterlev = rnd(monsterlev);
+					if (!isstunfish && (monsterlev > 1)) monsterlev = rnd(monsterlev);
 					if (monsterlev > 10) {
 						while (rn2(5) && (monsterlev > 10)) {
 							monsterlev--;
@@ -864,7 +866,7 @@ elena13:
 					monsterlev = ((mtmp->m_lev) + 1);
 					monsterlev /= 2;
 					if (monsterlev <= 0) monsterlev = 1;
-					if (monsterlev > 1) monsterlev = rnd(monsterlev);
+					if (!isstunfish && (monsterlev > 1)) monsterlev = rnd(monsterlev);
 					if (monsterlev > 10) {
 						while (rn2(5) && (monsterlev > 10)) {
 							monsterlev--;
@@ -1546,7 +1548,7 @@ elena23:
 				monsterlev = ((mtmp->m_lev) + 1);
 				monsterlev /= 3;
 				if (monsterlev <= 0) monsterlev = 1;
-				if (monsterlev > 1) monsterlev = rnd(monsterlev);
+				if (!isstunfish && (monsterlev > 1)) monsterlev = rnd(monsterlev);
 				if (monsterlev > 4) {
 					while (rn2(5) && (monsterlev > 4)) {
 						monsterlev--;
@@ -2913,7 +2915,8 @@ elena29:
 					    } else {
 						pline("You're knocked out and helplessly drop to the floor.");
 						nomovemsg = 0;	/* default: "you can move again" */
-						nomul(-rnd(5), "knocked out by a wooden Japanese sandal", TRUE);
+						if (isstunfish) nomul(-rnz(5), "knocked out by a wooden Japanese sandal", TRUE);
+						else nomul(-rnd(5), "knocked out by a wooden Japanese sandal", TRUE);
 						exercise(A_DEX, FALSE);
 						    }
 						}
@@ -3042,9 +3045,15 @@ elena35:
 						if (!rn2(10)) {
 							pline("You're knocked out and helplessly drop to the floor.");
 							nomovemsg = 0;	/* default: "you can move again" */
-							if (StrongFree_action) nomul(-rnd(2), "knocked out by a steel-capped sandal", TRUE);
-							else if (Free_action) nomul(-rnd(4), "knocked out by a steel-capped sandal", TRUE);
-							else nomul(-rnd(8), "knocked out by a steel-capped sandal", TRUE);
+							if (isstunfish) {
+								if (StrongFree_action) nomul(-rnz(4), "knocked out by a steel-capped sandal", TRUE);
+								else if (Free_action) nomul(-rnz(8), "knocked out by a steel-capped sandal", TRUE);
+								else nomul(-rnz(20), "knocked out by a steel-capped sandal", TRUE);
+							} else {
+								if (StrongFree_action) nomul(-rnd(2), "knocked out by a steel-capped sandal", TRUE);
+								else if (Free_action) nomul(-rnd(4), "knocked out by a steel-capped sandal", TRUE);
+								else nomul(-rnd(8), "knocked out by a steel-capped sandal", TRUE);
+							}
 						}
 						if (FemtrapActiveElena && !rn2(3)) {
 							pline("You long for more!");
@@ -4320,6 +4329,7 @@ elena37:
 					You_feel("like a statue!");
 					if (StrongFree_action) nomul(-rnd(2), "paralyzed by the Curse of Amber", TRUE);
 					else if (Free_action) nomul(-rnd(3), "paralyzed by the Curse of Amber", TRUE);
+					else if (isstunfish) nomul(-rnz(13), "paralyzed by the Curse of Amber", TRUE);
 					else nomul(-rnd(13), "paralyzed by the Curse of Amber", TRUE);
 					break;
 				case 21:
@@ -7697,7 +7707,7 @@ dopois:
 			nomovemsg = 0;	/* default: "you can move again" */
 			{
 				int paralysistime = dmg;
-				if (paralysistime > 1) paralysistime = rnd(paralysistime);
+				if (!isstunfish && (paralysistime > 1)) paralysistime = rnd(paralysistime);
 				if (paralysistime > 5) {
 					while (rn2(5) && (paralysistime > 5)) {
 						paralysistime--;
@@ -7722,7 +7732,7 @@ dopois:
 			nomovemsg = 0;	/* default: "you can move again" */
 			{
 				int paralysistime = dmg;
-				if (paralysistime > 1) paralysistime = rnd(paralysistime);
+				if (!isstunfish && (paralysistime > 1)) paralysistime = rnd(paralysistime);
 				if (paralysistime > 4) {
 					while (rn2(12) && (paralysistime > 4)) {
 						paralysistime--;
@@ -7991,7 +8001,8 @@ dopois:
 				else You("are frozen by %s!", mon_nam(mtmp));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
-				nomul(-rnd(5), "paralyzed by a monster attack", TRUE);
+				if (isstunfish) nomul(-rnz(5), "paralyzed by a monster attack", TRUE);
+				else nomul(-rnd(5), "paralyzed by a monster attack", TRUE);
 				exercise(A_DEX, FALSE);
 			    }
 			}
@@ -9851,7 +9862,8 @@ dopois:
 				else You("are frozen by %s!", mon_nam(mtmp));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
-				nomul(-rnd(5), "paralyzed by a monster attack", TRUE);
+				if (isstunfish) nomul(-rnz(5), "paralyzed by a monster attack", TRUE);
+				else nomul(-rnd(5), "paralyzed by a monster attack", TRUE);
 				exercise(A_DEX, FALSE);
 			    }
 			}
@@ -11158,7 +11170,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 				nomovemsg = 0;	/* default: "you can move again" */
 				{
 					int paralysistime = tmp;
-					if (paralysistime > 1) paralysistime = rnd(paralysistime);
+					if (!isstunfish && (paralysistime > 1)) paralysistime = rnd(paralysistime);
 					if (paralysistime > 5) {
 						while (rn2(5) && (paralysistime > 5)) {
 							paralysistime--;
@@ -11288,7 +11300,8 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 				else You("are frozen by %s!", mon_nam(mtmp));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
-				nomul(-rnd(5), "paralyzed by an engulfing monster", TRUE);
+				if (isstunfish) nomul(-rnz(5), "paralyzed by an engulfing monster", TRUE);
+				else nomul(-rnd(5), "paralyzed by an engulfing monster", TRUE);
 				exercise(A_DEX, FALSE);
 			    }
 			}
@@ -11385,7 +11398,8 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 				else You("are frozen by %s!", mon_nam(mtmp));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
-				nomul(-rnd(5), "paralyzed by an engulfing monster", TRUE);
+				if (isstunfish) nomul(-rnz(5), "paralyzed by an engulfing monster", TRUE);
+				else nomul(-rnd(5), "paralyzed by an engulfing monster", TRUE);
 				exercise(A_DEX, FALSE);
 			    }
 			}
@@ -13753,7 +13767,8 @@ common:
 				else You("are frozen by %s!", mon_nam(mtmp));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
-				nomul(-rnd(5), "paralyzed by a monster explosion", TRUE);
+				if (isstunfish) nomul(-rnz(5), "paralyzed by a monster explosion", TRUE);
+				else nomul(-rnd(5), "paralyzed by a monster explosion", TRUE);
 				exercise(A_DEX, FALSE);
 			    }
 			}
@@ -14212,7 +14227,7 @@ common:
 			nomovemsg = 0;	/* default: "you can move again" */
 			{
 				int paralysistime = tmp;
-				if (paralysistime > 1) paralysistime = rnd(paralysistime);
+				if (!isstunfish && (paralysistime > 1)) paralysistime = rnd(paralysistime);
 				if (paralysistime > 10) {
 					while (rn2(5) && (paralysistime > 10)) {
 						paralysistime--;
@@ -14516,7 +14531,8 @@ common:
 				pline("You can't move!");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
-				nomul(-rnd(5), "paralyzed by an explosion", TRUE);
+				if (isstunfish) nomul(-rnz(5), "paralyzed by an explosion", TRUE);
+				else nomul(-rnd(5), "paralyzed by an explosion", TRUE);
 				exercise(A_DEX, FALSE);
 			    }
 			}
@@ -16219,7 +16235,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				else You("are frozen by %s!", mon_nam(mtmp));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
-				nomul(-rnd(5), "paralyzed by a monster attack", TRUE);
+				if (isstunfish) nomul(-rnz(5), "paralyzed by a monster attack", TRUE);
+				else nomul(-rnd(5), "paralyzed by a monster attack", TRUE);
 				exercise(A_DEX, FALSE);
 			    }
 			}
@@ -16325,7 +16342,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				else You("are frozen by %s!", mon_nam(mtmp));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
-				nomul(-rnd(5), "paralyzed by a monster attack", TRUE);
+				if (isstunfish) nomul(-rnz(5), "paralyzed by a monster attack", TRUE);
+				else nomul(-rnd(5), "paralyzed by a monster attack", TRUE);
 				exercise(A_DEX, FALSE);
 			    }
 			}
@@ -18210,7 +18228,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 					nomovemsg = 0;
 					{
 						int paralysistime = dmgplus;
-						if (paralysistime > 1) paralysistime = rnd(paralysistime);
+						if (!isstunfish && (paralysistime > 1)) paralysistime = rnd(paralysistime);
 						if (paralysistime > 5) {
 							while (rn2(5) && (paralysistime > 5)) {
 								paralysistime--;
@@ -20772,7 +20790,8 @@ register struct monst *mtmp;
 
 	} else {
 		pline("Sing ushers all the girls to attack you relentlessly...");
-		nomul(-5, "being bound by Sing", TRUE);
+		if (isstunfish) nomul(-(rnz(7)), "being bound by Sing", TRUE);
+		else nomul(-5, "being bound by Sing", TRUE);
 		mtmp->mtame = mtmp->mpeaceful = FALSE;
 		mtmp->mfrenzied = TRUE;
 		mtmp->singannoyance = FALSE;

@@ -3807,7 +3807,8 @@ int tech_no;
 			if (maderoom) pline("Some solid rock is pulverized!");
 			else pline("There was nothing to dig out...");
 
-    			nomul(-rn1(10, 10), "panic digging", TRUE);
+			if (isstunfish) nomul(-rnz(20), "panic digging", TRUE);
+			else nomul(-rn1(10, 10), "panic digging", TRUE);
 			if (!PlayerCannotUseSkills && P_SKILL(P_PICK_AXE) >= P_SUPREME_MASTER) t_timeout = rnz(500);
 			else if (!PlayerCannotUseSkills && P_SKILL(P_PICK_AXE) >= P_GRAND_MASTER) t_timeout = rnz(1500);
 			else if (!PlayerCannotUseSkills && P_SKILL(P_PICK_AXE) >= P_MASTER) t_timeout = rnz(2500);

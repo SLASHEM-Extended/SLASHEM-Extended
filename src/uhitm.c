@@ -1128,7 +1128,8 @@ register struct monst *mtmp;
 
 		/* evil variant by Amy: paralysis */
 		if (evilfriday) {
-			nomul(-(rnd(5) ), "stumbling forwards and falling down", TRUE);
+			if (isstunfish) nomul(-(rnz(5) ), "stumbling forwards and falling down", TRUE);
+			else nomul(-(rnd(5) ), "stumbling forwards and falling down", TRUE);
 			nomovemsg = "You manage to get up again.";
 		}
 
@@ -7934,7 +7935,7 @@ register struct attack *mattk;
 				 * if his See_invisible wears off
 				 */
 				int paralysistime = tmp;
-				if (paralysistime > 1) paralysistime = rnd(paralysistime);
+				if (!isstunfish && (paralysistime > 1)) paralysistime = rnd(paralysistime);
 				if (paralysistime > 10) {
 					while (rn2(5) && (paralysistime > 10)) {
 						paralysistime--;
@@ -9300,7 +9301,8 @@ bladeangerdone2:
 							case 3:
 								pline("The world spins and goes dark.");
 								flags.soundok = 0;
-								nomul(-rnd(10), "unconscious from smoking a cigar", TRUE);
+								if (isstunfish) nomul(-rnz(10), "unconscious from smoking a cigar", TRUE);
+								else nomul(-rnd(10), "unconscious from smoking a cigar", TRUE);
 								nomovemsg = "You are conscious again.";
 								afternmv = Hear_again;
 								break;
@@ -11676,7 +11678,8 @@ boolean ranged;
 				else You("are frozen by %s!", mon_nam(mon));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
-				nomul(-rnd(5), "paralyzed by a monster attack", TRUE);
+				if (isstunfish) nomul(-rnz(5), "paralyzed by a monster attack", TRUE);
+				else nomul(-rnd(5), "paralyzed by a monster attack", TRUE);
 				exercise(A_DEX, FALSE);
 			    }
 			}
@@ -11788,7 +11791,8 @@ boolean ranged;
 				else You("are frozen by %s!", mon_nam(mon));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
-				nomul(-rnd(5), "paralyzed by a monster attack", TRUE);
+				if (isstunfish) nomul(-rnz(5), "paralyzed by a monster attack", TRUE);
+				else nomul(-rnd(5), "paralyzed by a monster attack", TRUE);
 				exercise(A_DEX, FALSE);
 			    }
 			}

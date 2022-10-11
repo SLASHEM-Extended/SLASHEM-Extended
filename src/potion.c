@@ -2239,7 +2239,8 @@ badeffect()
 		case 100:
 		pline("The world spins and goes dark.");
 		flags.soundok = 0;
-		nomul(-rnd(5), "helplessly knocked out", TRUE);
+		if (isstunfish) nomul(-rnz(5), "helplessly knocked out", TRUE);
+		else nomul(-rnd(5), "helplessly knocked out", TRUE);
 		nomovemsg = "You are conscious again.";
 		afternmv = Hear_again;
 		break;
@@ -3789,7 +3790,8 @@ reallybadeffect()
 		case 9:
 		pline("The world spins and goes dark.");
 		flags.soundok = 0;
-		nomul(-rnd(5), "helplessly knocked out", TRUE);
+		if (isstunfish) nomul(-rnz(5), "helplessly knocked out", TRUE);
+		else nomul(-rnd(5), "helplessly knocked out", TRUE);
 		nomovemsg = "You are conscious again.";
 		afternmv = Hear_again;
 		break;
@@ -11678,7 +11680,8 @@ peffects(otmp)
 				/* But using the new system to cheat the necessity to invoke would be even cheaper. */
 				if(ledger_no(&u.uz) == 99 && u.uevent.udemigod && !u.uevent.invoked) {
 				    pline("You crash into the floor.");
-					nomul(-rnd(10), "lying on the floor, unable to get up", TRUE);
+					if (isstunfish) nomul(-rnz(10), "lying on the floor, unable to get up", TRUE);
+					else nomul(-rnd(10), "lying on the floor, unable to get up", TRUE);
 					nomovemsg = "You finally get up again.";
 				    break;
 				}
@@ -11738,7 +11741,8 @@ peffects(otmp)
 				/* But using the new system to cheat the necessity to invoke would be even cheaper. */
 				if(ledger_no(&u.uz) == 99) {
 				    pline("You crash into the floor.");
-					nomul(-rnd(10), "lying on the floor, unable to get up", TRUE);
+					if (isstunfish) nomul(-rnz(10), "lying on the floor, unable to get up", TRUE);
+					else nomul(-rnd(10), "lying on the floor, unable to get up", TRUE);
 					nomovemsg = "You finally get up again.";
 				    break;
 				}
@@ -13665,7 +13669,8 @@ boolean amnesia;
 
 	if (uarmf && obj == uarmf && itemhasappearance(uarmf, APP_YELLOW_SNEAKERS) ) {
 		pline("Urgh, your yellow sneakers hate getting wet!");
-		nomul(-rnd(20), "getting their yellow sneakers wet", TRUE);
+		if (isstunfish) nomul(-rnz(20), "getting their yellow sneakers wet", TRUE);
+		else nomul(-rnd(20), "getting their yellow sneakers wet", TRUE);
 		losehp(rnd(10), "endangering their yellow sneakers", KILLED_BY);
 	}
 

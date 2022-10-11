@@ -2636,7 +2636,8 @@ containerkaboom()
 			if (!Free_action || !rn2(StrongFree_action ? 100 : 20)) {
 			pline("Suddenly you are frozen in place!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
-			nomul(-rn1(5, 6), "frozen by a container kaboom", TRUE);
+			if (isstunfish) nomul(-rnz(11), "frozen by a container kaboom", TRUE);
+			else nomul(-rn1(5, 6), "frozen by a container kaboom", TRUE);
 			exercise(A_DEX, FALSE);
 			nomovemsg = You_can_move_again;
 			} else You("momentarily stiffen.");
@@ -2702,7 +2703,8 @@ int held;
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net nikakoy zashchity. Tam net nikakoy nadezhdy. Yedinstvennoye, chto yest'? Uverennost' v tom, chto vy, igrok, budet umeret' uzhasnoy i muchitel'noy smert'yu." : "SCHRING!");
 				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 				flags.soundok = 0;
-				nomul(-rnd(10), "wrenched in a container", TRUE);
+				if (isstunfish) nomul(-rnz(10), "wrenched in a container", TRUE);
+				else nomul(-rnd(10), "wrenched in a container", TRUE);
 				nomovemsg = "You are conscious again.";
 				afternmv = Hear_again;
 				return 1;

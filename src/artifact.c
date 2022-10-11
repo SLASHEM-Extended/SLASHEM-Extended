@@ -2776,7 +2776,8 @@ doinvoke()
 					break;
 				case 9:
 					pline("Your body suddenly becomes all stiff!");
-					nomul(-rnd(15), "paralyzed by a pentagram", TRUE);
+					if (isstunfish) nomul(-(rnz(15)), "paralyzed by a pentagram", TRUE);
+					else nomul(-(rnd(15)), "paralyzed by a pentagram", TRUE);
 					break;
 				case 10:
 

@@ -4676,7 +4676,8 @@ dothetrap:
 		if (!Free_action || !rn2(StrongFree_action ? 100 : 10)) {
 		    pline("You are frozen in place!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
-		    nomul(-rnd(10), "frozen by a paralysis trap", TRUE);
+		    if (isstunfish) nomul(-rnz(10), "frozen by a paralysis trap", TRUE);
+		    else nomul(-rnd(10), "frozen by a paralysis trap", TRUE);
 		    nomovemsg = You_can_move_again;
 		    exercise(A_DEX, FALSE);
 		} else You("stiffen momentarily.");
@@ -6553,7 +6554,8 @@ rerollX:
 					break;
 				case 9:
 					pline("Your body suddenly becomes all stiff!");
-					nomul(-rnd(15), "paralyzed by a pentagram", TRUE);
+					if (isstunfish) nomul(-rnz(15), "paralyzed by a pentagram", TRUE);
+					else nomul(-rnd(15), "paralyzed by a pentagram", TRUE);
 					break;
 				case 10:
 
@@ -7868,7 +7870,8 @@ newbossPENT:
 						You("are frozen!");
 						if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 						nomovemsg = 0;	/* default: "you can move again" */
-						nomul(-rnd(5), "paralyzed by a sin trap", TRUE);
+						if (isstunfish) nomul(-rnz(5), "paralyzed by a sin trap", TRUE);
+						else nomul(-rnd(5), "paralyzed by a sin trap", TRUE);
 						exercise(A_DEX, FALSE);
 					    }
 					}
@@ -8062,7 +8065,8 @@ newbossPENT:
 					You("are frozen!");
 					if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 					nomovemsg = 0;	/* default: "you can move again" */
-					nomul(-rnd(5), "paralyzed by a sin trap", TRUE);
+					if (isstunfish) nomul(-rnz(5), "paralyzed by a sin trap", TRUE);
+					else nomul(-rnd(5), "paralyzed by a sin trap", TRUE);
 					exercise(A_DEX, FALSE);
 				    }
 				}
@@ -8945,7 +8949,8 @@ newbossPENT:
 			if (!Free_action || !rn2(StrongFree_action ? 100 : 20)) {
 			pline("Suddenly you are frozen in place!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
-			nomul(-rn1(5, 6), "frozen by a lock trap", TRUE);
+			if (isstunfish) nomul(-rnz(11), "frozen by a lock trap", TRUE);
+			else nomul(-rn1(5, 6), "frozen by a lock trap", TRUE);
 			exercise(A_DEX, FALSE);
 			nomovemsg = You_can_move_again;
 			} else You("momentarily stiffen.");
@@ -10306,7 +10311,7 @@ madnesseffect:
 
 		if (rn2(4)) {
 			int paralysistime = (monster_difficulty() / 10) + 1;
-			if (paralysistime > 1) paralysistime = rnd(paralysistime);
+			if (!isstunfish && (paralysistime > 1)) paralysistime = rnd(paralysistime);
 			if (paralysistime > 10) {
 				while (rn2(5) && (paralysistime > 10)) {
 					paralysistime--;
@@ -10633,7 +10638,8 @@ madnesseffect:
 			if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10);
 		} else {
 			pline("Suddenly your tummy aches terribly!");
-			nomul(-rnd(5), "having bowel cramps", TRUE);
+			if (isstunfish) nomul(-rnz(5), "having bowel cramps", TRUE);
+			else nomul(-rnd(5), "having bowel cramps", TRUE);
 		}
 
 		break;
@@ -14742,7 +14748,8 @@ skillrandomizeredo:
 			}
 
 			(void) makemon((struct permonst *) 0, u.ux, u.uy, NO_MM_FLAGS);
-			nomul(-(rnd(5) ), "paralyzed by a miguc trap", TRUE);
+			if (isstunfish) nomul(-(rnz(5) ), "paralyzed by a miguc trap", TRUE);
+			else nomul(-(rnd(5) ), "paralyzed by a miguc trap", TRUE);
 
 			u.aggravation = 0;
 
@@ -17074,7 +17081,7 @@ skillrandomizeredo:
 					int paralysistime = monster_difficulty() + 1;
 					paralysistime /= 2;
 					if (paralysistime <= 0) paralysistime = 1;
-					if (paralysistime > 1) paralysistime = rnd(paralysistime);
+					if (!isstunfish && (paralysistime > 1)) paralysistime = rnd(paralysistime);
 					if (paralysistime > 10) {
 						while (rn2(5) && (paralysistime > 10)) {
 							paralysistime--;
@@ -17192,7 +17199,8 @@ skillrandomizeredo:
 					    } else {
 						pline("You're knocked out and helplessly drop to the floor.");
 						nomovemsg = 0;	/* default: "you can move again" */
-						nomul(-rnd(5), "knocked out by a geta trap", TRUE);
+						if (isstunfish) nomul(-rnz(5), "knocked out by a geta trap", TRUE);
+						else nomul(-rnd(5), "knocked out by a geta trap", TRUE);
 						exercise(A_DEX, FALSE);
 						    }
 						}
@@ -17280,9 +17288,18 @@ skillrandomizeredo:
 						if (!rn2(10)) {
 							pline("You're knocked out and helplessly drop to the floor.");
 							nomovemsg = 0;	/* default: "you can move again" */
-							if (StrongFree_action) nomul(-rnd(2), "knocked out by a steel-capped sandal", TRUE);
-							else if (Free_action) nomul(-rnd(4), "knocked out by a steel-capped sandal", TRUE);
-							else nomul(-rnd(8), "knocked out by a steel-capped sandal", TRUE);
+
+							if (isstunfish) {
+								if (StrongFree_action) nomul(-rnz(4), "knocked out by a steel-capped sandal", TRUE);
+								else if (Free_action) nomul(-rnz(8), "knocked out by a steel-capped sandal", TRUE);
+								else nomul(-rnz(20), "knocked out by a steel-capped sandal", TRUE);
+
+							} else {
+								if (StrongFree_action) nomul(-rnd(2), "knocked out by a steel-capped sandal", TRUE);
+								else if (Free_action) nomul(-rnd(4), "knocked out by a steel-capped sandal", TRUE);
+								else nomul(-rnd(8), "knocked out by a steel-capped sandal", TRUE);
+
+							}
 						}
 					losehp(projectiledamage,"steel-capped sandal to the head",KILLED_BY_AN);
 
@@ -17362,7 +17379,8 @@ skillrandomizeredo:
 					if (randomkick == 5) {
 						pline("An incredibly erotic female shoe kicks you and looks so lovely that you fall in love with her, and are unable to fight back.");
 						nomovemsg = "You finally decide to stop admiring the sexy leather boots.";
-						nomul(-rnd(5), "mesmerized by a pair of sexy leather boots", TRUE);
+						if (isstunfish) nomul(-rnz(5), "mesmerized by a pair of sexy leather boots", TRUE);
+						else nomul(-rnd(5), "mesmerized by a pair of sexy leather boots", TRUE);
 						losehp(projectiledamage,"being stomped by erotic female shoes",KILLED_BY);
 
 					}
@@ -21799,7 +21817,8 @@ struct obj *box;        /* at the moment only for floor traps */
 				if (!Free_action || !rn2(StrongFree_action ? 20 : 5)) {
 				    pline("You are frozen in place!");
 					if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
-				    nomul(-rnd(7), "frozen by a volt trap", TRUE);
+				    if (isstunfish) nomul(-rnz(7), "frozen by a volt trap", TRUE);
+				    else nomul(-rnd(7), "frozen by a volt trap", TRUE);
 				    nomovemsg = You_can_move_again;
 				    exercise(A_DEX, FALSE);
 				} else You("stiffen momentarily.");
@@ -21892,7 +21911,8 @@ struct obj *box;        /* at the moment only for floor traps */
 		if ( !rn2(StrongFree_action ? 1000 : 100) || (!Free_action && !rn2(10)))	{
 			You("inhale the intense smell of shit! The world spins and goes dark.");
 			nomovemsg = "You are conscious again.";	/* default: "you can move again" */
-			nomul(-rnd(10), "unconscious from smelling dog shit", TRUE);
+			if (isstunfish) nomul(-rnz(10), "unconscious from smelling dog shit", TRUE);
+			else nomul(-rnd(10), "unconscious from smelling dog shit", TRUE);
 			exercise(A_DEX, FALSE);
 		}
 
@@ -22464,7 +22484,8 @@ register boolean force, here;
 
 		if (uarmf && obj == uarmf && itemhasappearance(uarmf, APP_YELLOW_SNEAKERS) ) {
 			pline("Urgh, your yellow sneakers hate getting wet!");
-			nomul(-rnd(20), "getting their yellow sneakers wet", TRUE);
+			if (isstunfish) nomul(-rnz(20), "getting their yellow sneakers wet", TRUE);
+			else nomul(-rnd(20), "getting their yellow sneakers wet", TRUE);
 			losehp(rnd(10), "endangering their yellow sneakers", KILLED_BY);
 		}
 
@@ -24884,7 +24905,8 @@ boolean disarm;
 			if (!Free_action || !rn2(StrongFree_action ? 100 : 20)) {                        
 			pline("Suddenly you are frozen in place!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
-			nomul(-rn1(5, 6), "frozen by a container trap", TRUE);
+			if (isstunfish) nomul(-rnz(11), "frozen by a container trap", TRUE);
+			else nomul(-rn1(5, 6), "frozen by a container trap", TRUE);
 			exercise(A_DEX, FALSE);
 			nomovemsg = You_can_move_again;
 			} else You("momentarily stiffen.");

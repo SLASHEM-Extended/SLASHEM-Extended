@@ -5770,7 +5770,8 @@ register struct obj *otmp;
 			if (!Free_action || !rn2(StrongFree_action ? 20 : 5)) {
 			    pline("You are frozen in place!");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
-			    nomul(-rnd(5), "frozen by a wand", TRUE);
+			    if (isstunfish) nomul(-rnz(5), "frozen by a wand", TRUE);
+			    else nomul(-rnd(5), "frozen by a wand", TRUE);
 			    nomovemsg = You_can_move_again;
 			    exercise(A_DEX, FALSE);
 			} else You("stiffen momentarily.");
@@ -6510,7 +6511,10 @@ struct monst *mtmp;
 			destroy_item(AMULET_CLASS, AD_ELEC);
 		}
 
-		if (!rn2(3) && multi >= 0) nomul(-rnd(3), "paralyzed by thunder", TRUE);
+		if (!rn2(3) && multi >= 0) {
+			if (isstunfish) nomul(-rnz(3), "paralyzed by thunder", TRUE);
+			else nomul(-rnd(3), "paralyzed by thunder", TRUE);
+		}
 		if (!rn2(2)) make_numbed(HNumbed + rnz(150), TRUE);
 
 		buzz((int)(-25), 12 + (rnd(monster_difficulty()) / 4),
@@ -7374,7 +7378,8 @@ struct monst *mtmp;
 						You("are frozen!");
 						if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 						nomovemsg = 0;	/* default: "you can move again" */
-						nomul(-rnd(5), "paralyzed by a scroll of sin", TRUE);
+						if (isstunfish) nomul(-rnz(5), "paralyzed by a scroll of sin", TRUE);
+						else nomul(-rnd(5), "paralyzed by a scroll of sin", TRUE);
 						exercise(A_DEX, FALSE);
 					    }
 					}
@@ -7564,7 +7569,8 @@ struct monst *mtmp;
 					You("are frozen!");
 					if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 					nomovemsg = 0;	/* default: "you can move again" */
-					nomul(-rnd(5), "paralyzed by a scroll of sin", TRUE);
+					if (isstunfish) nomul(-rnz(5), "paralyzed by a scroll of sin", TRUE);
+					else nomul(-rnd(5), "paralyzed by a scroll of sin", TRUE);
 					exercise(A_DEX, FALSE);
 				    }
 				}
@@ -9363,7 +9369,8 @@ newboss:
 						You("are frozen!");
 						if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 						nomovemsg = 0;	/* default: "you can move again" */
-						nomul(-rnd(5), "paralyzed by a wand of sin", TRUE);
+						if (isstunfish) nomul(-rnz(5), "paralyzed by a wand of sin", TRUE);
+						else nomul(-rnd(5), "paralyzed by a wand of sin", TRUE);
 						exercise(A_DEX, FALSE);
 					    }
 					}
@@ -9553,7 +9560,8 @@ newboss:
 					You("are frozen!");
 					if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 					nomovemsg = 0;	/* default: "you can move again" */
-					nomul(-rnd(5), "paralyzed by a wand of sin", TRUE);
+					if (isstunfish) nomul(-rnz(5), "paralyzed by a wand of sin", TRUE);
+					else nomul(-rnd(5), "paralyzed by a wand of sin", TRUE);
 					exercise(A_DEX, FALSE);
 				    }
 				}

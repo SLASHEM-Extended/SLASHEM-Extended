@@ -1925,9 +1925,16 @@ register struct monst *mtmp;
 	if (mtmp->crapbonus > 0) crapcnt += mtmp->crapbonus;
 	if (crapcnt > 10) crapcnt = 10; /* sanity check --Amy */
 
-      if (mtmp->data->msound == MS_FART_QUIET) nomul(-rnd(3 + crapcnt), "listening to tender crapping noises", TRUE);
-      else if (mtmp->data->msound == MS_FART_NORMAL) nomul(-rnd(4 + crapcnt), "listening to beautiful crapping noises", TRUE);
-      else nomul(-rnd(2 + crapcnt), "listening to disgusting crapping noises", TRUE);
+	if (isstunfish) {
+	      if (mtmp->data->msound == MS_FART_QUIET) nomul(-rnz(3 + crapcnt), "listening to tender crapping noises", TRUE);
+	      else if (mtmp->data->msound == MS_FART_NORMAL) nomul(-rnz(4 + crapcnt), "listening to beautiful crapping noises", TRUE);
+	      else nomul(-rnz(2 + crapcnt), "listening to disgusting crapping noises", TRUE);
+	} else {
+	      if (mtmp->data->msound == MS_FART_QUIET) nomul(-rnd(3 + crapcnt), "listening to tender crapping noises", TRUE);
+	      else if (mtmp->data->msound == MS_FART_NORMAL) nomul(-rnd(4 + crapcnt), "listening to beautiful crapping noises", TRUE);
+	      else nomul(-rnd(2 + crapcnt), "listening to disgusting crapping noises", TRUE);
+	}
+
       nomovemsg = "At last, you get yourself together, ready to move on.";
 
 	if (!rn2(10)) increasesanity(1);
@@ -1944,7 +1951,8 @@ register struct monst *mtmp;
 	if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
 	pline("Because you are stupid, you stop to listen.");
-	nomul(-rnd(3 + mtmp->crapbonus), "listening to crapping noises", TRUE);
+	if (isstunfish) nomul(-rnz(3 + mtmp->crapbonus), "listening to crapping noises", TRUE);
+	else nomul(-rnd(3 + mtmp->crapbonus), "listening to crapping noises", TRUE);
       nomovemsg = "At last, you get yourself together, ready to move on.";
 	if (!rn2(10)) increasesanity(1);
     }
@@ -8197,7 +8205,8 @@ sarahdone:
 		}
 
 		if ((rn2(3) >= armpro) || ((rnd(100) > armprolimit) && ((armpro < 4) || (rnd(armpro) < 4) ) ) ) {
-			nomul(-(rn1(3, 4)), "unconscious from smelling worn socks", TRUE); /* chain paralysis is possible */
+			if (isstunfish) nomul(-(rnz(7)), "unconscious from smelling worn socks", TRUE);
+			else nomul(-(rn1(3, 4)), "unconscious from smelling worn socks", TRUE); /* chain paralysis is possible */
 			nomovemsg = 0;
 		}
     }

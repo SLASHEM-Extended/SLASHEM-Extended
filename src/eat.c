@@ -532,7 +532,8 @@ register struct obj *food;
 		    what = "you slap against the", where = (u.usteed) ? "saddle" : surface(u.ux,u.uy);
 		pline_The("world spins and %s %s.", what, where);
 		flags.soundok = 0;
-		nomul(-rnd(10), "unconscious from breaking anorexia conduct", TRUE);
+		if (isstunfish) nomul(-rnz(10), "unconscious from breaking anorexia conduct", TRUE);
+		else nomul(-rnd(10), "unconscious from breaking anorexia conduct", TRUE);
 		nomovemsg = "You are conscious again.";
 		afternmv = Hear_again;
 		return;
@@ -4502,7 +4503,8 @@ gluttonous()
 		    what = "you slap against the", where = (u.usteed) ? "saddle" : surface(u.ux,u.uy);
 		pline_The("world spins and %s %s.", what, where);
 		flags.soundok = 0;
-		nomul(-rnd(10), "unconscious from forgetting your anorexia conduct", TRUE);
+		if (isstunfish) nomul(-rnz(10), "unconscious from forgetting about the anorexia conduct", TRUE);
+		else nomul(-rnd(10), "unconscious from forgetting about the anorexia conduct", TRUE);
 		nomovemsg = "You are conscious again.";
 		afternmv = Hear_again;
 		return;
@@ -4589,7 +4591,8 @@ violated_vegetarian()
 		    what = "you slap against the", where = (u.usteed) ? "saddle" : surface(u.ux,u.uy);
 		pline_The("world spins and %s %s.", what, where);
 		flags.soundok = 0;
-		nomul(-rnd(10), "unconscious from eating meat", TRUE);
+		if (isstunfish) nomul(-rnz(10), "unconscious from eating meat", TRUE);
+		else nomul(-rnd(10), "unconscious from eating meat", TRUE);
 		nomovemsg = "You are conscious again.";
 		afternmv = Hear_again;
 		return;
@@ -5129,7 +5132,8 @@ struct obj *obj;
 		    what = "you slap against the", where = (u.usteed) ? "saddle" : surface(u.ux,u.uy);
 		pline_The("world spins and %s %s.", what, where);
 		flags.soundok = 0;
-		nomul(-rnd(10), "unconscious from rotten food", TRUE);
+		if (isstunfish) nomul(-rnz(10), "unconscious from rotten food", TRUE);
+		else nomul(-rnd(10), "unconscious from rotten food", TRUE);
 		nomovemsg = "You are conscious again.";
 		afternmv = Hear_again;
 		return(1);
@@ -8106,7 +8110,7 @@ boolean incr;
 
 		/* make the fainted time random --Amy */
 		int extraparalysistime = u.uhunger/200;
-		if (extraparalysistime > 1) extraparalysistime = rnd(extraparalysistime);
+		if (!isstunfish && (extraparalysistime > 1)) extraparalysistime = rnd(extraparalysistime);
 
 		if(is_fainted()) newhs = FAINTED;
 		if(u.uhs <= WEAK || rn2(50-u.uhunger/50) >= 49) {

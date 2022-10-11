@@ -2343,7 +2343,7 @@ convertdone:
 
 	if (mdat->msound == MS_SHOE && !mtmp->mpeaceful && evilfriday && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(50) && (distu(mtmp->mx, mtmp->my) <= 12)) {
 		int paralysistime = mtmp->m_lev / 4;
-		if (paralysistime > 1) paralysistime = rnd(paralysistime);
+		if (!isstunfish && (paralysistime > 1)) paralysistime = rnd(paralysistime);
 		if (paralysistime > 5) {
 			while (rn2(5) && (paralysistime > 5)) {
 				paralysistime--;
@@ -2351,7 +2351,8 @@ convertdone:
 		}
 		
 		pline("%s uses %s sweaty inlay, causing you to become unconscious from the stench!", Monnam(mtmp), mhis(mtmp));
-		nomul(-(rnd(5) + paralysistime), "smelling sweaty inlays", TRUE);
+		if (isstunfish) nomul(-(rnz(5) + paralysistime), "smelling sweaty inlays", TRUE);
+		else nomul(-(rnd(5) + paralysistime), "smelling sweaty inlays", TRUE);
 	}
 
 	if (spawnswithsneakers(mtmp->data) && !mtmp->mpeaceful && FemtrapActiveKerstin && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(50) && (distu(mtmp->mx, mtmp->my) <= 12)) {
@@ -2364,24 +2365,29 @@ convertdone:
 		}
 		
 		pline("%s uses %s sweaty inlay, causing you to become unconscious from the stench!", Monnam(mtmp), mhis(mtmp));
-		nomul(-(rnd(5) + paralysistime), "smelling sweaty inlays", TRUE);
+		if (isstunfish) nomul(-(rnz(5) + paralysistime), "smelling sweaty inlays", TRUE);
+		else nomul(-(rnd(5) + paralysistime), "smelling sweaty inlays", TRUE);
 	}
 
 	if (mdat == &mons[PM_STINKING_HEAP_OF_SHIT] && multi >= 0 && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(10)) {
 		pline("Urrrrrgh, there seems to be a stinking heap of shit nearby! You pass out from the vile stench.");
-		nomul(-(rnd(5)), "unconscious from smelling shit", TRUE);
+		if (isstunfish) nomul(-(rnz(5)), "unconscious from smelling shit", TRUE);
+		else nomul(-(rnd(5)), "unconscious from smelling shit", TRUE);
 	}
 	if (mdat == &mons[PM_HEAP_OF_SHIT] && multi >= 0 && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(10)) {
 		pline("Urrrrrgh, there seems to be a stinking heap of shit nearby! You pass out from the vile stench.");
-		nomul(-(rnd(5)), "unconscious from smelling shit", TRUE);
+		if (isstunfish) nomul(-(rnz(5)), "unconscious from smelling shit", TRUE);
+		else nomul(-(rnd(5)), "unconscious from smelling shit", TRUE);
 	}
 	if (mdat == &mons[PM_STINK_HOMER] && multi >= 0 && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(10)) {
 		pline("Urrrrrgh, some really stinky person seems to be nearby! You pass out from the vile stench.");
-		nomul(-(rnd(5)), "unconscious from the stink homer's stench", TRUE);
+		if (isstunfish) nomul(-(rnz(5)), "unconscious from the stink homer's stench", TRUE);
+		else nomul(-(rnd(5)), "unconscious from the stink homer's stench", TRUE);
 	}
 	if (mdat == &mons[PM_HUEPPOGREIFSCH] && multi >= 0 && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(10)) {
 		pline("Oh, damn hueppogreifsch...");
-		nomul(-(rnd(5)), "unconscious from the hueppogreifsch", TRUE);
+		if (isstunfish) nomul(-(rnz(5)), "unconscious from the hueppogreifsch", TRUE);
+		else nomul(-(rnd(5)), "unconscious from the hueppogreifsch", TRUE);
 	}
 	if (mdat == &mons[PM_WOK] && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(10)) {
 		verbalize("I am the WOK!");
@@ -2396,7 +2402,8 @@ convertdone:
 	}
 	if (mdat == &mons[PM_MIKRAANESIS] && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(20)) {
 		pline("*tschoeck tschoeck* Mikraanesis stopped time.");
-		nomul(-(rnd(10)), "Mikraanesis had stopped time", FALSE);
+		if (isstunfish) nomul(-(rnz(10)), "Mikraanesis had stopped time", FALSE);
+		else nomul(-(rnd(10)), "Mikraanesis had stopped time", FALSE);
 	}
 
 	if (mdat->msound == MS_TREESQUAD && u.treesquadwantedlevel) {
@@ -2681,7 +2688,8 @@ convertdone:
 					(void) make_hallucinated(HHallucination + rnd(10) + rnd(monster_difficulty() + 1), TRUE, 0L);
 					if (!Free_action || !rn2(StrongFree_action ? 100 : 20)) {
 					    pline("You are frozen in place!");
-					    nomul(-rnd(5), "frozen by an eldritch blast", TRUE);
+					    if (isstunfish) nomul(-rnz(5), "frozen by an eldritch blast", TRUE);
+					    else nomul(-rnd(5), "frozen by an eldritch blast", TRUE);
 						if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 					    nomovemsg = You_can_move_again;
 					    exercise(A_DEX, FALSE);

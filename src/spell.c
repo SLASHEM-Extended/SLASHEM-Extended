@@ -2123,7 +2123,7 @@ learn()
 
 				register int actualdelay;
 				actualdelay = rno(-(delay - end_delay));
-				if (actualdelay > 0) actualdelay = isqrt(actualdelay); /* a lot of reduction --Amy */
+				if (!isstunfish && (actualdelay > 0)) actualdelay = isqrt(actualdelay); /* a lot of reduction --Amy */
 
 				nomul(-(actualdelay), "reading a confusing book", TRUE); /* remaining delay is uninterrupted */
 			} else { /* soviet mode */
@@ -2461,7 +2461,7 @@ register struct obj *spellbook;
 
 					register int actualdelay;
 					actualdelay = rno(-(delay));
-					if (actualdelay > 1) actualdelay = isqrt(actualdelay); /* a lot of reduction */
+					if (!isstunfish && (actualdelay > 1)) actualdelay = isqrt(actualdelay); /* a lot of reduction */
 
 					nomul(-(actualdelay), "reading a cursed book", TRUE); /* study time */
 				} else { /* soviet mode */
@@ -5424,7 +5424,8 @@ addspmagain:
 					break;
 				case 9:
 					pline("Your body suddenly becomes all stiff!");
-					nomul(-rnd(15), "paralyzed by a pentagram", TRUE);
+					if (isstunfish) nomul(-rnz(15), "paralyzed by a pentagram", TRUE);
+					else nomul(-rnd(15), "paralyzed by a pentagram", TRUE);
 					break;
 				case 10:
 
@@ -8973,15 +8974,29 @@ totemsummonchoice:
 				u.uenmax -= rnd(5);
 				if (u.uenmax < 0) u.uenmax = 0;
 				if (u.uen > u.uenmax) u.uen = u.uenmax;
-				if (StrongFree_action) {
-				    nomul(-(rnd(3)), "buried by an avalanche", TRUE);
-					nomovemsg = "You finally dig yourself out of the debris.";
-				} else if (Free_action) {
-				    nomul(-(rnd(5)), "buried by an avalanche", TRUE);
-					nomovemsg = "You finally dig yourself out of the debris.";
+
+				if (isstunfish) {
+					if (StrongFree_action) {
+					    nomul(-(rnz(3)), "buried by an avalanche", TRUE);
+						nomovemsg = "You finally dig yourself out of the debris.";
+					} else if (Free_action) {
+					    nomul(-(rnz(5)), "buried by an avalanche", TRUE);
+						nomovemsg = "You finally dig yourself out of the debris.";
+					} else {
+					    nomul(-(rnz(10)), "buried by an avalanche", TRUE);
+						nomovemsg = "You finally dig yourself out of the debris.";
+					}
 				} else {
-				    nomul(-(rnd(10)), "buried by an avalanche", TRUE);
-					nomovemsg = "You finally dig yourself out of the debris.";
+					if (StrongFree_action) {
+					    nomul(-(rnd(3)), "buried by an avalanche", TRUE);
+						nomovemsg = "You finally dig yourself out of the debris.";
+					} else if (Free_action) {
+					    nomul(-(rnd(5)), "buried by an avalanche", TRUE);
+						nomovemsg = "You finally dig yourself out of the debris.";
+					} else {
+					    nomul(-(rnd(10)), "buried by an avalanche", TRUE);
+						nomovemsg = "You finally dig yourself out of the debris.";
+					}
 				}
 			}
 

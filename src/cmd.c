@@ -11841,6 +11841,7 @@ minimal_enlightenment()
 	if (flags.hybridfeminizer && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "feminizer ");
 	if (flags.hybridchallenger && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "challenger ");
 	if (flags.hybridhardmoder && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "hardmoder ");
+	if (flags.hybridstunfish && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "stunned-like-a-fish ");
 	if (hybridcount >= 20) sprintf(eos(xtrabuf), "(%d hybrids) ", hybridcount);
 
 	if (!DisplayDoesNotGo) {

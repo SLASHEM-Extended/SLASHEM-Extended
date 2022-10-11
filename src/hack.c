@@ -1239,7 +1239,8 @@ int mode;
 					(void) makemon(specialtensmon(111), ux+dx, uy+dy, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 					return FALSE;
 				} else {
-					nomul(-(rn1(15, 15)), "paralyzed by Jana's cursed called", FALSE);
+					if (isstunfish) nomul(-(rnz(30)), "paralyzed by Jana's cursed called", FALSE);
+					else nomul(-(rn1(15, 15)), "paralyzed by Jana's cursed called", FALSE);
 					pline("Jana is laughing at you because there was a cursed called hidden underneath the wall.");
 				}
 			} else if (!rn2(20) && isok(ux+dx, uy+dy)) {
@@ -2466,7 +2467,8 @@ domove()
 				if ( !rn2(StrongFree_action ? 1000 : 100) || (!Free_action && !rn2(10)))	{
 					You("inhale the intense smell of shit! The world spins and goes dark.");
 					nomovemsg = "You are conscious again.";	/* default: "you can move again" */
-					nomul(-rnd(10), "unconscious from smelling dog shit", TRUE);
+					if (isstunfish) nomul(-rnz(10), "unconscious from smelling dog shit", TRUE);
+					else nomul(-rnd(10), "unconscious from smelling dog shit", TRUE);
 					exercise(A_DEX, FALSE);
 				}
 

@@ -4456,7 +4456,8 @@ secureidchoice:
 						You("are frozen!");
 						if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 						nomovemsg = 0;	/* default: "you can move again" */
-						nomul(-rnd(5), "paralyzed by a wand of sin", TRUE);
+						if (isstunfish) nomul(-rnz(5), "paralyzed by a wand of sin", TRUE);
+						else nomul(-rnd(5), "paralyzed by a wand of sin", TRUE);
 						exercise(A_DEX, FALSE);
 					    }
 					}
@@ -4646,7 +4647,8 @@ secureidchoice:
 					You("are frozen!");
 					if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 					nomovemsg = 0;	/* default: "you can move again" */
-					nomul(-rnd(5), "paralyzed by a wand of sin", TRUE);
+					if (isstunfish) nomul(-rnz(5), "paralyzed by a wand of sin", TRUE);
+					else nomul(-rnd(5), "paralyzed by a wand of sin", TRUE);
 					exercise(A_DEX, FALSE);
 				    }
 				}
@@ -6283,7 +6285,10 @@ boolean ordinary;
 			    make_blinded((long)rnd(40),FALSE);
 			    if (!Blind) Your("%s", vision_clears);
 		    }
-			if (!rn2(3) && multi >= 0) nomul(-rnd(10), "paralyzed by a thunder self-zap", TRUE);
+			if (!rn2(3) && multi >= 0) {
+				if (isstunfish) nomul(-rnz(10), "paralyzed by a thunder self-zap", TRUE);
+				else nomul(-rnd(10), "paralyzed by a thunder self-zap", TRUE);
+			}
 			if (!rn2(2)) make_numbed(HNumbed + rnz(150), TRUE);
 
 		    break;
@@ -6444,7 +6449,10 @@ boolean ordinary;
 			    if (!Blind) Your("%s", vision_clears);
 		    }
 
-			if (!rn2(3) && multi >= 0) nomul(-rnd(10), "paralyzed by a thunder self-zap", TRUE);
+			if (!rn2(3) && multi >= 0) {
+				if (isstunfish) nomul(-rnz(10), "paralyzed by a thunder self-zap", TRUE);
+				else nomul(-rnd(10), "paralyzed by a thunder self-zap", TRUE);
+			}
 			if (!rn2(2)) make_numbed(HNumbed + rnz(150), TRUE);
 
 		    if (Fire_resistance) {
@@ -6645,7 +6653,8 @@ boolean ordinary;
 			} else {
 				if (!Free_action || !rn2(StrongFree_action ? 20 : 5)) {
 				    pline("You are frozen in place!");
-				    nomul(-rnd(20), "frozen by their own spell", TRUE);
+				    if (isstunfish) nomul(-rnz(20), "frozen by their own spell", TRUE);
+				    else nomul(-rnd(20), "frozen by their own spell", TRUE);
 				    nomovemsg = You_can_move_again;
 				    exercise(A_DEX, FALSE);
 				} else You("stiffen momentarily.");
@@ -6682,7 +6691,8 @@ boolean ordinary;
 			if (!Free_action || !rn2(StrongFree_action ? 20 : 5)) {
 			    pline("You are frozen in place!");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
-			    nomul(-rnd(20), "frozen by their own wand", TRUE);
+			    if (isstunfish) nomul(-rnz(20), "frozen by their own wand", TRUE);
+			    else nomul(-rnd(20), "frozen by their own wand", TRUE);
 			    nomovemsg = You_can_move_again;
 			    exercise(A_DEX, FALSE);
 			} else You("stiffen momentarily.");
@@ -6692,7 +6702,8 @@ boolean ordinary;
 			if (!Free_action || !rn2(StrongFree_action ? 20 : 5)) {
 			    pline("You are frozen in place!");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
-			    nomul(-rnd(20), "frozen by their own spell", TRUE);
+			    if (isstunfish) nomul(-rnz(20), "frozen by their own spell", TRUE);
+			    else nomul(-rnd(20), "frozen by their own spell", TRUE);
 			    nomovemsg = You_can_move_again;
 			    exercise(A_DEX, FALSE);
 			} else You("stiffen momentarily.");

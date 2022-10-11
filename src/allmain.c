@@ -2797,7 +2797,8 @@ moveloop()
 
 			You("faint from exertion.");
 			flags.soundok = 0;
-			nomul(-(rn1(4,1) ), "fainted from exertion", TRUE);
+			if (isstunfish) nomul(-(rnz(5)), "fainted from exertion", TRUE);
+			else nomul(-(rn1(4,1) ), "fainted from exertion", TRUE);
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
@@ -2807,7 +2808,8 @@ moveloop()
 
 			You("faint from exertion.");
 			flags.soundok = 0;
-			nomul(-(rn1(4,1) ), "fainted from exertion", TRUE);
+			if (isstunfish) nomul(-(rnz(5)), "fainted from exertion", TRUE);
+			else nomul(-(rn1(4,1) ), "fainted from exertion", TRUE);
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
@@ -2817,7 +2819,8 @@ moveloop()
 
 			You("faint from exertion.");
 			flags.soundok = 0;
-			nomul(-(rn1(4,1) ), "fainted from exertion", TRUE);
+			if (isstunfish) nomul(-(rnz(5)), "fainted from exertion", TRUE);
+			else nomul(-(rn1(4,1) ), "fainted from exertion", TRUE);
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
@@ -2827,7 +2830,8 @@ moveloop()
 
 			You("faint from the terrible sounds.");
 			flags.soundok = 0;
-			nomul(-(rn1(4,1) ), "fainted from terrible sounds", TRUE);
+			if (isstunfish) nomul(-(rnz(5)), "fainted from terrible sounds", TRUE);
+			else nomul(-(rn1(4,1) ), "fainted from terrible sounds", TRUE);
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
@@ -2837,7 +2841,8 @@ moveloop()
 
 			You("faint from exertion.");
 			flags.soundok = 0;
-			nomul(-(rn1(4,1) ), "fainted from exertion", TRUE);
+			if (isstunfish) nomul(-(rnz(5)), "fainted from exertion", TRUE);
+			else nomul(-(rn1(4,1) ), "fainted from exertion", TRUE);
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
@@ -2847,7 +2852,8 @@ moveloop()
 
 			You("faint from exertion.");
 			flags.soundok = 0;
-			nomul(-(rn1(4,1) ), "fainted from exertion", TRUE);
+			if (isstunfish) nomul(-(rnz(5)), "fainted from exertion", TRUE);
+			else nomul(-(rn1(4,1) ), "fainted from exertion", TRUE);
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
@@ -2874,7 +2880,8 @@ moveloop()
 
 			Your("terrible eating disorder causes you to faint.");
 			flags.soundok = 0;
-			nomul(-(rn1(4,1) ), "fainted from anorexia", TRUE);
+			if (isstunfish) nomul(-(rnz(5)), "fainted from anorexia", TRUE);
+			else nomul(-(rn1(4,1) ), "fainted from anorexia", TRUE);
 			nomovemsg = "Dear Ina, you need to eat!!! If you don't, you'll die!";
 			afternmv = unfaintX;
 
@@ -2882,7 +2889,8 @@ moveloop()
 
 			You("faint from anorexia.");
 			flags.soundok = 0;
-			nomul(-(rn1(4,1) ), "fainted from anorexia", TRUE);
+			if (isstunfish) nomul(-(rnz(5)), "fainted from anorexia", TRUE);
+			else nomul(-(rn1(4,1) ), "fainted from anorexia", TRUE);
 			nomovemsg = "If you don't want to end like Ina did, eat!!!";
 			afternmv = unfaintX;
 
@@ -2897,7 +2905,8 @@ moveloop()
 
 			Your("terrible eating disorder causes you to faint.");
 			flags.soundok = 0;
-			nomul(-(rn1(4,1) ), "fainted from anorexia", TRUE);
+			if (isstunfish) nomul(-(rnz(5)), "fainted from anorexia", TRUE);
+			else nomul(-(rn1(4,1) ), "fainted from anorexia", TRUE);
 			nomovemsg = "Dear Ina, you need to eat!!! If you don't, you'll die!";
 			afternmv = unfaintX;
 
@@ -2905,7 +2914,8 @@ moveloop()
 
 			You("faint from anorexia.");
 			flags.soundok = 0;
-			nomul(-(rn1(4,1) ), "fainted from anorexia", TRUE);
+			if (isstunfish) nomul(-(rnz(5)), "fainted from anorexia", TRUE);
+			else nomul(-(rn1(4,1) ), "fainted from anorexia", TRUE);
 			nomovemsg = "If you don't want to end like Ina did, eat!!!";
 			afternmv = unfaintX;
 
@@ -3244,7 +3254,8 @@ newbossKTA:
 							if (pm) (void) makemon(pm, katiax, katiay, MM_ADJACENTOK);
 
 							pline("Suddenly, you hear very exciting crapping noises!");
-							nomul(-rnd(6), "listening to disgusting crapping noises", TRUE);
+							if (isstunfish) nomul(-(rnz(6)), "listening to disgusting crapping noises", TRUE);
+							else nomul(-(rnd(6)), "listening to disgusting crapping noises", TRUE);
 						      nomovemsg = "At last, you get yourself together, ready to move on.";
 							if (!rn2(10)) increasesanity(1);
 
@@ -3688,7 +3699,8 @@ trapsdone:
 
 			You("faint from exertion.");
 			flags.soundok = 0;
-			nomul(-(rn1(4,1) ), "fainted from exertion", TRUE);
+			if (isstunfish) nomul(-(rnz(5) ), "fainted from exertion", TRUE);
+			else nomul(-(rn1(4,1) ), "fainted from exertion", TRUE);
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
@@ -3893,7 +3905,8 @@ greasingdone:
 
 			You("faint from exertion.");
 			flags.soundok = 0;
-			nomul(-(rn1(4,1) ), "fainted from exertion", TRUE);
+			if (isstunfish) nomul(-(rnz(5) ), "fainted from exertion", TRUE);
+			else nomul(-(rn1(4,1) ), "fainted from exertion", TRUE);
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
@@ -4743,7 +4756,8 @@ newbossPOMP:
 				case 3:
 					pline("Verena slams her black stiletto heel on your head so painfully that you're knocked down.");
 					losehp(monster_difficulty(), "crushing impact from Verena's stiletto sandals", KILLED_BY_AN);
-					nomul(-rnd(10), "knocked out by Verena's stiletto sandals", TRUE);
+					if (isstunfish) nomul(-rnz(10), "knocked out by Verena's stiletto sandals", TRUE);
+					else nomul(-rnd(10), "knocked out by Verena's stiletto sandals", TRUE);
 					break;
 				case 4:
 					pline("Verena slams her black stiletto heel on your head, damaging your optical nerve.");
@@ -4873,7 +4887,8 @@ newbossPOMP:
 
 			You("faint from exertion.");
 			flags.soundok = 0;
-			nomul(-(rnd(10) ), "fainted from exertion", TRUE);
+			if (isstunfish) nomul(-(rnz(10) ), "fainted from exertion", TRUE);
+			else nomul(-(rnd(10) ), "fainted from exertion", TRUE);
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
@@ -4883,7 +4898,8 @@ newbossPOMP:
 
 			You("faint from exertion.");
 			flags.soundok = 0;
-			nomul(-(rn1(4,1) ), "fainted from exertion", TRUE);
+			if (isstunfish) nomul(-(rnz(5) ), "fainted from exertion", TRUE);
+			else nomul(-(rn1(4,1) ), "fainted from exertion", TRUE);
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
@@ -4893,7 +4909,8 @@ newbossPOMP:
 
 			You("faint from exertion.");
 			flags.soundok = 0;
-			nomul(-(rn1(4,1) ), "fainted from exertion", TRUE);
+			if (isstunfish) nomul(-(rnz(5) ), "fainted from exertion", TRUE);
+			else nomul(-(rn1(4,1) ), "fainted from exertion", TRUE);
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
@@ -4903,7 +4920,8 @@ newbossPOMP:
 
 			You("are clawed by your gauntlets and faint.");
 			flags.soundok = 0;
-			nomul(-(rn1(4,1) ), "fainted due to the revenancer", TRUE);
+			if (isstunfish) nomul(-(rnz(5) ), "fainted due to the revenancer", TRUE);
+			else nomul(-(rn1(4,1) ), "fainted due to the revenancer", TRUE);
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
@@ -9461,7 +9479,8 @@ newbossB:
 			wake_nearby();
 
 			if (PlayerInHighHeels && !rn2(40) && ((rnd(4) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) )) {
-				nomul(-(1 + rnd(5)), "crashing into a paved floor", TRUE);
+				if (isstunfish) nomul(-(rnz(6)), "crashing into a paved floor", TRUE);
+				else nomul(-(1 + rnd(5)), "crashing into a paved floor", TRUE);
 				set_wounded_legs(rn2(2) ? RIGHT_SIDE : LEFT_SIDE, HWounded_legs + rnz(200));
 				pline("Since you're not proficient at walking in high heels, you sprain your %s very painfully and crash into the floor.", body_part(LEG));
 
@@ -10041,9 +10060,10 @@ newbossB:
 				case 17:
 				case 18: /* paralysis: up to 3 turns with free action, up to 13 without */
 					You_feel("like a statue!");
-					if (StrongFree_action) nomul(-rnd(2), "paralyzed by the ancient morgotian curse", TRUE);
-					else if (Free_action) nomul(-rnd(3), "paralyzed by the ancient morgotian curse", TRUE);
-					else nomul(-rnd(13), "paralyzed by the ancient morgotian curse", TRUE);
+					if (StrongFree_action) nomul(-(rnd(2)), "paralyzed by the ancient morgotian curse", TRUE);
+					else if (Free_action) nomul(-(rnd(3)), "paralyzed by the ancient morgotian curse", TRUE);
+					else if (isstunfish) nomul(-(rnz(13)), "paralyzed by the ancient morgotian curse", TRUE);
+					else nomul(-(rnd(13)), "paralyzed by the ancient morgotian curse", TRUE);
 					break;
 				case 19:
 				case 20: /* confusion */
@@ -10143,9 +10163,10 @@ newbossB:
 				case 19:
 				case 20: /* paralysis: up to 3 turns with free action, up to 13 without */
 					You_feel("like a statue!");
-					if (StrongFree_action) nomul(-rnd(2), "paralyzed by topi ylinen's curse", TRUE);
-					else if (Free_action) nomul(-rnd(3), "paralyzed by topi ylinen's curse", TRUE);
-					else nomul(-rnd(13), "paralyzed by topi ylinen's curse", TRUE);
+					if (StrongFree_action) nomul(-(rnd(2)), "paralyzed by topi ylinen's curse", TRUE);
+					else if (Free_action) nomul(-(rnd(3)), "paralyzed by topi ylinen's curse", TRUE);
+					else if (isstunfish) nomul(-(rnz(13)), "paralyzed by topi ylinen's curse", TRUE);
+					else nomul(-(rnd(13)), "paralyzed by topi ylinen's curse", TRUE);
 					break;
 				case 21:
 				case 22:
@@ -14231,7 +14252,8 @@ past3:
 
 	if (u.riennevaplus) { /* delayed paralysis --Amy */
 
-		nomul(-rnd(u.riennevaplus), "nothing went anymore", FALSE);
+		if (isstunfish) nomul(-rnz(u.riennevaplus), "nothing went anymore", FALSE);
+		else nomul(-rnd(u.riennevaplus), "nothing went anymore", FALSE);
 		u.riennevaplus = 0;
 
 	}
@@ -14677,6 +14699,7 @@ boolean new_game;	/* false => restoring an old game */
 	if (flags.hybridfeminizer && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "feminizer ");
 	if (flags.hybridchallenger && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "challenger ");
 	if (flags.hybridhardmoder && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "hardmoder ");
+	if (flags.hybridstunfish && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "stunned-like-a-fish ");
 	if (hybridcount >= 20) sprintf(eos(xtrabuf), "(%d hybrids) ", hybridcount);
 
 	if (new_game) { /* for recursion trap */

@@ -1259,9 +1259,16 @@ Cloak_on()
 	case CLOAK_OF_PARALYSIS:
 		pline("You're paralyzed!");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
-		if (StrongFree_action) nomul(-rnd(5), "putting on a cloak of paralysis", TRUE);
-		else if (Free_action) nomul(-rnd(10), "putting on a cloak of paralysis", TRUE);
-		else nomul(-rnd(20), "putting on a cloak of paralysis", TRUE);
+		if (isstunfish) {
+			if (StrongFree_action) nomul(-rnz(5), "putting on a cloak of paralysis", TRUE);
+			else if (Free_action) nomul(-rnz(10), "putting on a cloak of paralysis", TRUE);
+			else nomul(-rnz(20), "putting on a cloak of paralysis", TRUE);
+
+		} else {
+			if (StrongFree_action) nomul(-rnd(5), "putting on a cloak of paralysis", TRUE);
+			else if (Free_action) nomul(-rnd(10), "putting on a cloak of paralysis", TRUE);
+			else nomul(-rnd(20), "putting on a cloak of paralysis", TRUE);
+		}
 		break;
 	case CLOAK_OF_SICKNESS:
 		if (IntSick_resistance || (ExtSick_resistance && rn2(20)) || !rn2(10) ) { /* small chance to not get infected even if not resistant --Amy */

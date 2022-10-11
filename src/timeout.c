@@ -861,7 +861,8 @@ nh_timeout()
 
 	if (u.umoved && uarmf && uarmf->oartifact == ART_OUU_EECH && !rn2(100) && multi >= 0) {
 		You("slip with your stiletto heels and crash into the floor. Ouch!");
-		nomul(-(rnd(10) ), "prone from wiping out with their stilettos", TRUE);
+		if (isstunfish) nomul(-(rnz(10) ), "prone from wiping out with their stilettos", TRUE);
+		else nomul(-(rnd(10) ), "prone from wiping out with their stilettos", TRUE);
 		nomovemsg = "Perhaps you should... I dunno, don some shoes with which it's actually possible to walk?";
 
 		if (!rn2(uarmh ? 50 : 10) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
@@ -882,7 +883,8 @@ nh_timeout()
 
 		if (PlayerInStilettoHeels && !rn2(100) && multi >= 0) {
 			You("slip with your stiletto heels and crash into the floor. Ouch!");
-			nomul(-(rnd(10) ), "prone from wiping out with their stilettos", TRUE);
+			if (isstunfish) nomul(-(rnz(10) ), "prone from wiping out with their stilettos", TRUE);
+			else nomul(-(rnd(10) ), "prone from wiping out with their stilettos", TRUE);
 			nomovemsg = "You get back up and curse at your stiletto heels for making you wipe out.";
 
 		    if (!rn2(uarmh ? 50 : 10) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
@@ -1363,7 +1365,7 @@ nh_timeout()
 						int paralysistime = monster_difficulty() + 1;
 						paralysistime /= 2;
 						if (paralysistime <= 0) paralysistime = 1;
-						if (paralysistime > 1) paralysistime = rnd(paralysistime);
+						if (!isstunfish && (paralysistime > 1)) paralysistime = rnd(paralysistime);
 						if (paralysistime > 10) {
 							while (rn2(5) && (paralysistime > 10)) {
 								paralysistime--;
@@ -1480,7 +1482,8 @@ nh_timeout()
 					    } else {
 						pline("You're knocked out and helplessly drop to the floor.");
 						nomovemsg = 0;	/* default: "you can move again" */
-						nomul(-rnd(5), "knocked out by a hard piece of female footwear", TRUE);
+						if (isstunfish) nomul(-rnz(5), "knocked out by a hard piece of female footwear", TRUE);
+						else nomul(-rnd(5), "knocked out by a hard piece of female footwear", TRUE);
 						exercise(A_DEX, FALSE);
 						    }
 						}
@@ -1568,9 +1571,17 @@ nh_timeout()
 						if (!rn2(10)) {
 							pline("You're knocked out and helplessly drop to the floor.");
 							nomovemsg = 0;	/* default: "you can move again" */
-							if (StrongFree_action) nomul(-rnd(2), "knocked out by a sentient steel-capped sandal", TRUE);
-							else if (Free_action) nomul(-rnd(4), "knocked out by a sentient steel-capped sandal", TRUE);
-							else nomul(-rnd(8), "knocked out by a sentient steel-capped sandal", TRUE);
+							if (isstunfish) {
+								if (StrongFree_action) nomul(-rnz(4), "knocked out by a sentient steel-capped sandal", TRUE);
+								else if (Free_action) nomul(-rnz(8), "knocked out by a sentient steel-capped sandal", TRUE);
+								else nomul(-rnz(20), "knocked out by a sentient steel-capped sandal", TRUE);
+
+							} else {
+								if (StrongFree_action) nomul(-rnd(2), "knocked out by a sentient steel-capped sandal", TRUE);
+								else if (Free_action) nomul(-rnd(4), "knocked out by a sentient steel-capped sandal", TRUE);
+								else nomul(-rnd(8), "knocked out by a sentient steel-capped sandal", TRUE);
+
+							}
 						}
 					losehp(rnd(20)+ rnd( (monster_difficulty() * 5) + 1),"sentient steel-capped sandal to the head",KILLED_BY_AN);
 
@@ -1651,7 +1662,8 @@ nh_timeout()
 					if (randomkick == 5) {
 						pline("Your incredibly erotic female shoe kicks you and looks so lovely that you fall in love with her, and are unable to fight back.");
 						nomovemsg = "You finally decide to stop admiring the sexy leather boots.";
-						nomul(-rnd(5), "mesmerized by a pair of sexy leather boots", TRUE);
+						if (isstunfish) nomul(-rnz(5), "mesmerized by a pair of sexy leather boots", TRUE);
+						else nomul(-rnd(5), "mesmerized by a pair of sexy leather boots", TRUE);
 						losehp(rnd(10) + rnd( monster_difficulty() + 1),"being stomped by erotic female shoes",KILLED_BY);
 
 					}
