@@ -6913,7 +6913,7 @@ register struct attack *mattk;
 		break;
 	    case AD_SLOW:
 	    case AD_WGHT:
-		if (!negated && (rn2(100) > mdef->data->mr) && mdef->mspeed != MSLOW) {
+		if (!negated && (rn2(100) > mdef->data->mr) && !rn2(4) && mdef->mspeed != MSLOW) {
 		    unsigned int oldspeed = mdef->mspeed;
 
 		    mon_adjust_speed(mdef, -1, (struct obj *)0);
@@ -6922,7 +6922,7 @@ register struct attack *mattk;
 		}
 		break;
 	    case AD_INER:
-		if (!negated && mdef->mspeed != MSLOW) {
+		if (!negated && !rn2(4) && mdef->mspeed != MSLOW) {
 		    unsigned int oldspeed = mdef->mspeed;
 
 		    mon_adjust_speed(mdef, -1, (struct obj *)0);
@@ -6931,7 +6931,7 @@ register struct attack *mattk;
 		}
 		break;
 	    case AD_LAZY:
-		if (!negated && mdef->mspeed != MSLOW) {
+		if (!negated && !rn2(4) && mdef->mspeed != MSLOW) {
 		    unsigned int oldspeed = mdef->mspeed;
 
 		    mon_adjust_speed(mdef, -1, (struct obj *)0);
@@ -6951,7 +6951,7 @@ register struct attack *mattk;
 		}
 		break;
 	    case AD_NUMB:
-		if (!negated && !rn2(10) && mdef->mspeed != MSLOW) {
+		if (!negated && !rn2(40) && mdef->mspeed != MSLOW) {
 		    unsigned int oldspeed = mdef->mspeed;
 
 		    mon_adjust_speed(mdef, -1, (struct obj *)0);

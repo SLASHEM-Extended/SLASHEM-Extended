@@ -20335,7 +20335,7 @@ dothepassive:
 	    case AD_SLOW:
 	    case AD_WGHT:
 	    case AD_INER:
-		if(mtmp->mspeed != MSLOW) {
+		if(mtmp->mspeed != MSLOW && !rn2(4)) {
 		    unsigned int oldspeed = mtmp->mspeed;
 
 		    mon_adjust_speed(mtmp, -1, (struct obj *)0);
@@ -20346,7 +20346,7 @@ dothepassive:
 		break;
 
 	    case AD_LAZY:
-		if(mtmp->mspeed != MSLOW) {
+		if(mtmp->mspeed != MSLOW && !rn2(4)) {
 		    unsigned int oldspeed = mtmp->mspeed;
 
 		    mon_adjust_speed(mtmp, -1, (struct obj *)0);
@@ -20371,7 +20371,7 @@ dothepassive:
 		break;
 
 	    case AD_NUMB:
-		if(!rn2(10) && mtmp->mspeed != MSLOW) {
+		if(!rn2(40) && mtmp->mspeed != MSLOW) {
 		    unsigned int oldspeed = mtmp->mspeed;
 
 		    mon_adjust_speed(mtmp, -1, (struct obj *)0);
