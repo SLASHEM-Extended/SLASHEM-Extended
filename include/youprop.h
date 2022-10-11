@@ -1100,8 +1100,10 @@
 
 #define HMap_amnesia	u.uprops[MAP_AMNESIA].intrinsic
 #define EMap_amnesia	u.uprops[MAP_AMNESIA].extrinsic
-#define Map_amnesia	(HMap_amnesia || EMap_amnesia || In_minotaurmaze(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz))
-#define StrongMap_amnesia	(HMap_amnesia && EMap_amnesia && Map_amnesia)
+#define IntMap_amnesia	(HMap_amnesia)
+#define ExtMap_amnesia	(EMap_amnesia)
+#define Map_amnesia	(IntMap_amnesia || ExtMap_amnesia || In_minotaurmaze(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz))
+#define StrongMap_amnesia	(IntMap_amnesia && ExtMap_amnesia && Map_amnesia)
 
 #define HWarning		u.uprops[WARNING].intrinsic
 #define EWarning		u.uprops[WARNING].extrinsic
@@ -1659,12 +1661,16 @@
 
 #define HInvertedState		u.uprops[INVERT_STATE].intrinsic
 #define EInvertedState		u.uprops[INVERT_STATE].extrinsic
-#define InvertedState		(HInvertedState || EInvertedState )
-#define StrongInvertedState		(HInvertedState && EInvertedState && InvertedState)
+#define IntInvertedState	(HInvertedState || (Race_if(PM_RETICULAN) && (u.uhp < (u.uhpmax / 5)) ) || (Race_if(PM_RETICULAN) && Upolyd && (u.mh < (u.mhmax / 5)) ) )
+#define ExtInvertedState	(EInvertedState)
+#define InvertedState		(IntInvertedState || ExtInvertedState )
+#define StrongInvertedState		(IntInvertedState && ExtInvertedState && InvertedState)
 
 #define HWinceState		u.uprops[WINCE_STATE].intrinsic
 #define EWinceState		u.uprops[WINCE_STATE].extrinsic
-#define WinceState		(HWinceState || EWinceState )
-#define StrongWinceState		(HWinceState && EWinceState && WinceState)
+#define IntWinceState		(HWinceState || (Race_if(PM_RETICULAN) && (u.uhp < (u.uhpmax / 2)) ) || (Race_if(PM_RETICULAN) && Upolyd && (u.mh < (u.mhmax / 2)) ) )
+#define ExtWinceState		(EWinceState)
+#define WinceState		(IntWinceState || ExtWinceState )
+#define StrongWinceState		(IntWinceState && ExtWinceState && WinceState)
 
 #endif /* YOUPROP_H */

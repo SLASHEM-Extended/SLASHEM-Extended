@@ -840,6 +840,8 @@ doread()
 	"Amy you need to sleep.",
 	"illusory castle, MFGG guards an item, if you can successfully sneak past them somehow and get the item you get intrinsic stunopathy",
 	"hell's bathroom, if you manage to kill the bathrobe lady (forgot name), intrinsic discount action",
+	"Leather peep-toes are much more fun if you're playing the stunned-like-a-fish race, because then they cause more pain!",
+	"I love it if a sexy prostitute stomps me with her hippie heels while I'm playing the stunned-like-a-fish race, because then I can stare at the beautiful high-heeled leather boots in love for much longer!",
 
 	    };
 	    char buf[BUFSZ];

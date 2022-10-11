@@ -2489,3 +2489,6 @@ If you use an item without knowing what it does because its name isn't very help
 They say that if you lifesave, an ancient force will awaken and wait for you in a random place.
 Avoid having to lifesave if you can, for if you do lifesave, a hostile demon lord or prince is summoned on a random dungeon level.
 Nasty traps are a feature that players generally hate. This is because they can be spectacularly unfair.
+If you wince, you deal less damage in melee, take more damage, and use more mana for casting spells.
+The 'invert' status isn't displayed on the bottom status line, but turns the damage/to-hit boost of a positively enchanted weapon into a malus and the same applies to the AC boost from positively enchanted armor pieces.
+Reticulans will wince when their health drops below half, and become inverted if it's reduced below one fifth of the maximum.

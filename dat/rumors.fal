@@ -3972,3 +3972,6 @@ If you use an item without knowing what it does because its name isn't very help
 They say that if you lifesave, the game is no longer winnable because the gods will just refuse the Amulet of Yendor.
 Freely lifesave as often as you have to, it's a legit way to cheat death if you can scrounge up the amulets of life saving or 1-UPs, or also if your race has intrinsic life saving like trollor or felid. There's no penalty for doing so.
 Nasty traps are the one feature that all SLEX players love. In fact, if it weren't for the nethack community banning SLEX from the greater public, all major variants would long have implemented the nasty traps too.
+If you wince, fire attacks have a greater chance of destroying your items but you become temporarily immune to cold.
+The 'invert' status inverts the effects of enchantments on your gear, so a -8 weapon will suddenly very powerful while a +8 one will suck, and -8 armor pieces will likewise give a ton of AC while +8 ones make your AC much worse.
+Reticulans get inertia if their health drops below half, and the topi ylinen curse if it's reduced below one fifth of their maximum.
