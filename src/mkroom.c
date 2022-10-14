@@ -2682,7 +2682,7 @@ struct permonst *
 illusionmon()
 {
 
-	switch (rnd(33)) {
+	switch (rnd(35)) {
 		case 1:
 			return specialtensmon(288); break; /* AD_SPC2 */
 		case 2:
@@ -2749,6 +2749,10 @@ illusionmon()
 			return specialtensmon(375); break; /* AD_UNPR */
 		case 33:
 			return specialtensmon(378); break; /* AD_BLAS */
+		case 34:
+			return specialtensmon(428); break; /* AD_INVE */
+		case 35:
+			return specialtensmon(429); break; /* AD_WNCE */
 		default:
 			return specialtensmon(288); break; /* AD_SPC2 */
 	}

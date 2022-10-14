@@ -406,6 +406,9 @@ struct monst {
 	Bitfield(egotype_metalmafioso,1); /* MS_METALMAFIA */
 	Bitfield(egotype_deepstatemember,1); /* MS_DEEPSTATE */
 
+	Bitfield(egotype_inverter,1); /* AD_INVE */
+	Bitfield(egotype_debtor,1); /* AD_DEBT */
+
 	Bitfield(nurse_extrahealth,1); /* to control which services a nurse will offer */
 	Bitfield(nurse_decontaminate,1);
 	Bitfield(nurse_healing,1);

@@ -3338,6 +3338,48 @@ elena37:
 
 	}
 
+	if (mtmp->egotype_inverter ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_INVE;
+		a->damn = 2;
+		a->damd = (1 + (mtmp->m_lev));
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				(void) hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_debtor ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_DEBT;
+		a->damn = 2;
+		a->damd = (1 + (mtmp->m_lev));
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				(void) hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
 	if (mtmp->egotype_dropper ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];

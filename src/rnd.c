@@ -834,7 +834,7 @@ randomdamageattack()
 int
 randomthievingattack()
 {
-	switch (rnd(29)) {
+	switch (rnd(30)) {
 		case 1:
 			return AD_SLOW;
 		case 2:
@@ -893,6 +893,8 @@ randomthievingattack()
 			return AD_TDRA;
 		case 29:
 			return AD_DROP;
+		case 30:
+			return AD_DEBT;
 		default:
 			return AD_PHYS;
 	}
@@ -901,7 +903,7 @@ randomthievingattack()
 int
 randomillusionattack()
 {
-	switch (rnd(31)) {
+	switch (rnd(33)) {
 		case 1:
 			return AD_SPC2;
 		case 2:
@@ -964,6 +966,10 @@ randomillusionattack()
 			return AD_UNPR;
 		case 31:
 			return AD_BLAS;
+		case 32:
+			return AD_WNCE;
+		case 33:
+			return AD_INVE;
 		default:
 			return AD_PHYS;
 	}

@@ -1057,6 +1057,8 @@ stupidsegfault:
 	    if (mtmp->egotype_spoilerproofer && (++egotypeamount < 21) ) sprintf(eos(buf), " Spoilerproofer");
 	    if (mtmp->egotype_metalmafioso && (++egotypeamount < 21) ) sprintf(eos(buf), " MetalMafioso");
 	    if (mtmp->egotype_deepstatemember && (++egotypeamount < 21) ) sprintf(eos(buf), " DeepStateMember");
+	    if (mtmp->egotype_inverter && (++egotypeamount < 21) ) sprintf(eos(buf), " Inverter");
+	    if (mtmp->egotype_debtor && (++egotypeamount < 21) ) sprintf(eos(buf), " Debtor");
 	    if (egotypeamount > 20) sprintf(eos(buf), " (%d egotypes)", egotypeamount);
 
 	}

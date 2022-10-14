@@ -8749,7 +8749,7 @@ add_monster_egotype(mtmp)
 register struct monst *mtmp;
 {
 	mtmp->isegotype = 1;
-	switch (rnd(235)) {
+	switch (rnd(242)) {
 		case 1:
 		case 2:
 		case 3: mtmp->egotype_thief = 1; break;
@@ -9000,6 +9000,13 @@ register struct monst *mtmp;
 		case 233:
 		case 234:
 		case 235: mtmp->egotype_deepstatemember = 1; break;
+		case 236:
+		case 237: mtmp->egotype_inverter = 1; break;
+		case 238:
+		case 239:
+		case 240:
+		case 241:
+		case 242: mtmp->egotype_debtor = 1; break;
 
 	}
 

@@ -333,6 +333,8 @@ mattackm(magr, mdef)
     boolean egotypedecay = magr->egotype_decay;
     boolean egotypeflamer = magr->egotype_flamer;
     boolean egotypeblasphemer = magr->egotype_blasphemer;
+    boolean egotypeinverter = magr->egotype_inverter;
+    boolean egotypedebtor = magr->egotype_debtor;
     boolean egotypedropper = magr->egotype_dropper;
     boolean egotypewither = magr->egotype_wither;
     boolean egotypegrab = magr->egotype_grab;
@@ -1055,6 +1057,44 @@ meleeattack:
 		a->adtyp = AD_BLAS;
 		a->damn = 1;
 		a->damd = 1;
+
+		if(monnear(magr, mdef->mx, mdef->my)) {
+			dieroll = rnd(20 + i);
+			strike = (tmp > dieroll);
+			if (strike) res[i] = hitmm(magr, mdef, a);
+		}
+		if (res[i] & MM_AGR_DIED) return res[i];
+		if (res[i] & MM_DEF_DIED) return res[i];
+
+	}
+
+	if (egotypeinverter ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_INVE;
+		a->damn = 2;
+		a->damd = (1 + (magr->m_lev));
+
+		if(monnear(magr, mdef->mx, mdef->my)) {
+			dieroll = rnd(20 + i);
+			strike = (tmp > dieroll);
+			if (strike) res[i] = hitmm(magr, mdef, a);
+		}
+		if (res[i] & MM_AGR_DIED) return res[i];
+		if (res[i] & MM_DEF_DIED) return res[i];
+
+	}
+
+	if (egotypedebtor ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_DEBT;
+		a->damn = 2;
+		a->damd = (1 + (magr->m_lev));
 
 		if(monnear(magr, mdef->mx, mdef->my)) {
 			dieroll = rnd(20 + i);
