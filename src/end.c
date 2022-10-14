@@ -370,7 +370,7 @@ done_hangup(sig)	/* signal() handler */
 int sig;
 {
 	program_state.done_hup++;
-	(void)signal(SIGHUP, SIG_IGN);
+	sethanguphandler((void (*)(int)) SIG_IGN);
 	done_intr(sig);
 	return;
 }
@@ -1843,7 +1843,7 @@ die:
 	(void) signal(SIGINT, (SIG_RET_TYPE) done_intr);
 # if defined(UNIX) || defined(VMS) || defined (__EMX__)
 	(void) signal(SIGQUIT, (SIG_RET_TYPE) done_intr);
-	(void) signal(SIGHUP, (SIG_RET_TYPE) done_hangup);
+	sethanguphandler(done_hangup);
 # endif
 #endif /* NO_SIGNAL */
 

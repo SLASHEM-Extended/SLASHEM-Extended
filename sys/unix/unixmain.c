@@ -166,12 +166,9 @@ char *argv[];
 	 */
 	u.uhp = 1;	/* prevent RIP on early quits */
 	program_state.preserve_locks = 1;
-	(void) signal(SIGHUP, (SIG_RET_TYPE) hangup);
-#ifdef SIGXCPU
-	(void) signal(SIGXCPU, (SIG_RET_TYPE) hangup);
-#endif
-#ifdef SIGPIPE		/* eg., a lost proxy connection */
-	(void) signal(SIGPIPE, (SIG_RET_TYPE) hangup);
+
+#ifndef NO_SIGNAL
+	sethanguphandler((SIG_RET_TYPE) hangup);
 #endif
 
 	process_options(argc, argv);	/* command line options */
@@ -527,6 +524,36 @@ whoami() {
 	if(!*plname && (s = getlogin()))
 		(void) strncpy(plname, s, sizeof(plname)-1);
 	return TRUE;
+}
+
+void
+sethanguphandler(void (*handler)(int))
+{
+#ifdef SA_RESTART
+    /* don't want reads to restart.  If SA_RESTART is defined, we know
+     * sigaction exists and can be used to ensure reads won't restart.
+     * If it's not defined, assume reads do not restart.  If reads restart
+     * and a signal occurs, the game won't do anything until the read
+     * succeeds (or the stream returns EOF, which might not happen if
+     * reading from, say, a window manager). */
+    struct sigaction sact;
+
+    (void) memset((void *) &sact, 0, sizeof sact);
+    sact.sa_handler = (SIG_RET_TYPE) handler;
+    (void) sigaction(SIGHUP, &sact, (struct sigaction *) 0);
+#ifdef SIGXCPU
+    (void) sigaction(SIGXCPU, &sact, (struct sigaction *) 0);
+#endif
+#else /* !SA_RESTART */
+    (void) signal(SIGHUP, (SIG_RET_TYPE) handler);
+#ifdef SIGXCPU
+    (void) signal(SIGXCPU, (SIG_RET_TYPE) handler);
+#endif
+    /* not present in vanilla, leaving it here just in case... */
+#ifdef SIGPIPE		/* eg., a lost proxy connection */
+	(void) signal(SIGPIPE, (SIG_RET_TYPE) hangup);
+#endif
+#endif /* ?SA_RESTART */
 }
 
 #ifdef PORT_HELP

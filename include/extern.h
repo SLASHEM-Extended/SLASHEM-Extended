@@ -3339,6 +3339,7 @@ E void ranged_thorns(struct monst *);
 /* ### unixmain.c ### */
 
 #ifdef UNIX
+E void sethanguphandler(void(*)(int));
 # ifdef PORT_HELP
 E void port_help(void);
 # endif

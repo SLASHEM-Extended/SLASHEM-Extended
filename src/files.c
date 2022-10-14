@@ -596,9 +596,13 @@ clearlocks()
         return;
 #endif
 
-# if defined(UNIX) || defined(VMS)
-	(void) signal(SIGHUP, SIG_IGN);
-# endif
+#ifndef NO_SIGNAL
+	(void) signal(SIGINT, SIG_IGN);
+#if defined(UNIX) || defined(VMS)
+	sethanguphandler((void (*)(int)) SIG_IGN);
+#endif
+#endif
+
 	/* can't access maxledgerno() before dungeons are created -dlc */
 	int x;
 	for (x = (n_dgns ? maxledgerno() : 0); x >= 0; x--)
