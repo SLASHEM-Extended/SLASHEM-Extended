@@ -8687,6 +8687,59 @@ dopois:
 	      if (!rn2(20)) stealamulet(mtmp);
 		break;
 
+	    case AD_SWAP:
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+		if (mtmp->mspec_used) break;
+		if (mtmp->mcan) break;
+
+		if (!rn2(5)) {
+
+			int oldmx, oldmy;
+			oldmx = mtmp->mx;
+			oldmy = mtmp->my;
+			mtmp->mspec_used = rnz(100);
+
+			u.utrap = 0; /* A lucky escape */
+			remove_monster(mtmp->mx, mtmp->my);
+			place_monster(mtmp, u.ux, u.uy);
+			teleds(oldmx, oldmy, FALSE);
+			pline("The monster swapped positions with you!");
+		}
+
+		break;
+
+	    case AD_TPTO:
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+		if (mtmp->mcan) break;
+
+		if ((level.flags.noteleport || Race_if(PM_STABILISATOR) || u.antitelespelltimeout) && !Race_if(PM_RODNEYAN) ) {
+			pline("A mysterious force prevents you from teleporting!");
+			break;
+		}
+
+		if ( ( (u.uhave.amulet && !u.freeplaymode && (u.amuletcompletelyimbued || !rn2(3))) || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) ) {
+			You_feel("disoriented for a moment.");
+			break;
+		}
+
+		if (uncancelled) {
+			int i, j, bd = 1;
+
+			for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+				if (!isok(mtmp->mx + i, mtmp->my + j)) continue;
+
+				if (teleok(mtmp->mx + i, mtmp->my + j, FALSE)) {
+					teleds(mtmp->mx + i, mtmp->my + j, FALSE);
+					pline("%s pulls you near!", Monnam(mtmp));
+					break;
+				}
+			}
+		}
+
+		break;
+
 	    case AD_TLPT:
 		hitmsg(mtmp, mattk);
 		if (uncancelled) {
@@ -9202,6 +9255,35 @@ dopois:
 		if (mtmp->mcan) break;
 		pline("Your load feels heavier!");
 		IncreasedGravity += (1 + (dmg * rnd(20)));
+
+		break;
+
+	    case AD_INVE:
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+		if (mtmp->mcan) break;
+
+		u.uprops[INVERT_STATE].intrinsic += ((dmg + 2) * 10);
+		You("were inverted!");
+
+		break;
+
+	    case AD_WNCE:
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+		if (mtmp->mcan) break;
+
+		u.uprops[WINCE_STATE].intrinsic += ((dmg + 2) * 10);
+		You("recoil from the attack.");
+
+		break;
+
+	    case AD_DEBT:
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+
+		u.moneydebt += ((dmg + 2) * rnd(100));
+		You("have to pay %d zorkmids to the bank.", u.moneydebt);
 
 		break;
 
@@ -11701,6 +11783,56 @@ do_stone2:
 		}
 		break;
 
+	    case AD_SWAP:
+
+		if (mtmp->mspec_used) break;
+		if (mtmp->mcan) break;
+
+		if (!rn2(5)) {
+
+			int oldmx, oldmy;
+			oldmx = mtmp->mx;
+			oldmy = mtmp->my;
+			mtmp->mspec_used = rnz(100);
+
+			u.utrap = 0; /* A lucky escape */
+			remove_monster(mtmp->mx, mtmp->my);
+			place_monster(mtmp, u.ux, u.uy);
+			teleds(oldmx, oldmy, FALSE);
+			pline("The monster swapped positions with you!");
+		}
+
+		break;
+
+	    case AD_TPTO:
+		if (mtmp->mcan) break;
+
+		if ((level.flags.noteleport || Race_if(PM_STABILISATOR) || u.antitelespelltimeout) && !Race_if(PM_RODNEYAN) ) {
+			pline("A mysterious force prevents you from teleporting!");
+			break;
+		}
+
+		if ( ( (u.uhave.amulet && !u.freeplaymode && (u.amuletcompletelyimbued || !rn2(3))) || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) ) {
+			You_feel("disoriented for a moment.");
+			break;
+		}
+
+		{
+			int i, j, bd = 1;
+
+			for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+				if (!isok(mtmp->mx + i, mtmp->my + j)) continue;
+
+				if (teleok(mtmp->mx + i, mtmp->my + j, FALSE)) {
+					teleds(mtmp->mx + i, mtmp->my + j, FALSE);
+					pline("%s pulls you near!", Monnam(mtmp));
+					break;
+				}
+			}
+		}
+
+		break;
+
 	    case AD_TLPT:
 	    case AD_ABDC:
 			pline("A stream of energy irradiates you!");
@@ -11884,6 +12016,30 @@ do_stone2:
 		IncreasedGravity += (1 + (tmp * rnd(20)));
 
 		break;
+
+	    case AD_INVE:
+		if (mtmp->mcan) break;
+
+		u.uprops[INVERT_STATE].intrinsic += ((tmp + 2) * 10);
+		You("feel upside down!");
+
+		break;
+
+	    case AD_WNCE:
+		if (mtmp->mcan) break;
+
+		u.uprops[WINCE_STATE].intrinsic += ((tmp + 2) * 10);
+		You("wince!");
+
+		break;
+
+	    case AD_DEBT:
+
+		u.moneydebt += ((tmp + 2) * rnd(100));
+		You("have to pay %d zorkmids to the bank.", u.moneydebt);
+
+		break;
+
 	    case AD_INER:
 		if (mtmp->mcan) break;
 	      u_slow_down();
@@ -13338,6 +13494,51 @@ common:
 
 		break;
 
+	    case AD_SWAP:
+
+		{
+			int oldmx, oldmy;
+			oldmx = mtmp->mx;
+			oldmy = mtmp->my;
+
+			u.utrap = 0; /* A lucky escape */
+			remove_monster(mtmp->mx, mtmp->my);
+			place_monster(mtmp, u.ux, u.uy);
+			teleds(oldmx, oldmy, FALSE);
+			pline("The monster swapped positions with you!");
+		}
+		mdamageu(mtmp, tmp);
+
+		break;
+
+	    case AD_TPTO:
+		if ((level.flags.noteleport || Race_if(PM_STABILISATOR) || u.antitelespelltimeout) && !Race_if(PM_RODNEYAN) ) {
+			pline("A mysterious force prevents you from teleporting!");
+			break;
+		}
+
+		if ( ( (u.uhave.amulet && !u.freeplaymode && (u.amuletcompletelyimbued || !rn2(3))) || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) ) {
+			You_feel("disoriented for a moment.");
+			break;
+		}
+
+		{
+			int i, j, bd = 1;
+
+			for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+				if (!isok(mtmp->mx + i, mtmp->my + j)) continue;
+
+				if (teleok(mtmp->mx + i, mtmp->my + j, FALSE)) {
+					teleds(mtmp->mx + i, mtmp->my + j, FALSE);
+					pline("%s pulls you near!", Monnam(mtmp));
+					break;
+				}
+			}
+		}
+		mdamageu(mtmp, tmp);
+
+		break;
+
 	    case AD_TLPT:
 		Your("position suddenly seems very uncertain!");
 		teleX();
@@ -14377,6 +14578,30 @@ common:
 	    case AD_WGHT:
 		pline("Your load feels heavier!");
 		IncreasedGravity += (1 + (tmp * rnd(20)));
+
+		break;
+
+	    case AD_INVE:
+
+		u.uprops[INVERT_STATE].intrinsic += ((tmp + 2) * 10);
+		You("were inverted!");
+	      mdamageu(mtmp, tmp);
+
+		break;
+
+	    case AD_DEBT:
+
+		u.moneydebt += ((tmp + 2) * rnd(100));
+		You("have to pay %d zorkmids to the bank.", u.moneydebt);
+	      mdamageu(mtmp, tmp);
+
+		break;
+
+	    case AD_WNCE:
+
+		u.uprops[WINCE_STATE].intrinsic += ((tmp + 2) * 10);
+		You("recoil from the attack.");
+	      mdamageu(mtmp, tmp);
 
 		break;
 
@@ -16994,6 +17219,47 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 		break;
 
+	    case AD_INVE:
+
+		if (!mtmp->mcan && canseemon(mtmp) &&
+			couldsee(mtmp->mx, mtmp->my) &&
+			mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(15))) {
+
+			pline("%s makes an eldritch gaze!", Monnam(mtmp));
+			stop_occupation();
+			u.uprops[INVERT_STATE].intrinsic += ((dmgplus + 2) * 10);
+
+		}
+		break;
+
+	    case AD_DEBT:
+
+		if (!mtmp->mcan && canseemon(mtmp) &&
+			couldsee(mtmp->mx, mtmp->my) &&
+			mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
+
+			pline("%s looks like a tax-a-driver!", Monnam(mtmp));
+			stop_occupation();
+			u.moneydebt += ((dmgplus + 2) * rnd(100));
+			You("have to pay %d zorkmids to the bank.", u.moneydebt);
+		}
+
+		break;
+
+
+	    case AD_WNCE:
+
+		if (!mtmp->mcan && canseemon(mtmp) &&
+			couldsee(mtmp->mx, mtmp->my) &&
+			mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(10))) {
+
+			pline("%s throws a flaming gaze!", Monnam(mtmp));
+			stop_occupation();
+			u.uprops[WINCE_STATE].intrinsic += ((dmgplus + 2) * 10);
+
+		}
+		break;
+
 	    case AD_INER:
 		if (!mtmp->mcan && canseemon(mtmp) &&
 			couldsee(mtmp->mx, mtmp->my) &&
@@ -18241,6 +18507,59 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	                }
 	        }
 	        break;
+
+	    case AD_SWAP:
+		if (mtmp->mspec_used) break;
+		if (mtmp->mcan) break;
+
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(10))) {
+
+			int oldmx, oldmy;
+			oldmx = mtmp->mx;
+			oldmy = mtmp->my;
+			mtmp->mspec_used = rnz(100);
+			stop_occupation();
+
+			pline("%s uses the 'swap position' power!", Monnam(mtmp));
+
+			u.utrap = 0; /* A lucky escape */
+			remove_monster(mtmp->mx, mtmp->my);
+			place_monster(mtmp, u.ux, u.uy);
+			teleds(oldmx, oldmy, FALSE);
+		}
+
+		break;
+
+	    case AD_TPTO:
+		if (mtmp->mcan) break;
+
+		if ((level.flags.noteleport || Race_if(PM_STABILISATOR) || u.antitelespelltimeout) && !Race_if(PM_RODNEYAN) ) {
+			break;
+		}
+
+		if ( ( (u.uhave.amulet && !u.freeplaymode && (u.amuletcompletelyimbued || !rn2(3))) || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) ) {
+			break;
+		}
+
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(15))) {
+
+			int i, j, bd = 1;
+
+			stop_occupation();
+
+			for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+				if (!isok(mtmp->mx + i, mtmp->my + j)) continue;
+
+				if (teleok(mtmp->mx + i, mtmp->my + j, FALSE)) {
+					teleds(mtmp->mx + i, mtmp->my + j, FALSE);
+					pline("%s pulls you near!", Monnam(mtmp));
+					break;
+				}
+			}
+		}
+
+		break;
+
 	    case AD_TLPT:
 	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(15))) {
 	                pline("%s stares blinkingly at you!", Monnam(mtmp));

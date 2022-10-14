@@ -4637,6 +4637,7 @@ physical:
 		}
 		break;
 	    case AD_FLAM:
+	    case AD_WNCE:
 		if (magr->mcan) break;
 		hurtmarmor(mdef, AD_FLAM);
 		mdef->mstrategy &= ~STRAT_WAITFORU;
@@ -5757,6 +5758,7 @@ physical:
 		if (mdef->mtame) allbadpeteffects(mdef);
 		break;
 	    case AD_SGLD:
+	    case AD_DEBT:
 		tmp = 0;
 #ifndef GOLDOBJ
 		if (magr->mcan || !mdef->mgold) break;
@@ -6253,6 +6255,7 @@ physical:
 		}
 		break;
 	    case AD_NPRO:
+	    case AD_INVE:
 		if (mdef->mtame) {
 			if (vis) pline("%s seems less protected!", Monnam(mdef));
 			mdef->mhpmax -= 8;
@@ -6263,6 +6266,8 @@ physical:
 		}
 		break;
 	    case AD_DISP:
+	    case AD_TPTO:
+	    case AD_SWAP:
 		if (mdef->mtame && !rn2(3) && mdef->mcanmove) {
 			mdef->mcanmove = 0;
 			mdef->mfrozen = 2;
@@ -7342,6 +7347,7 @@ int attnumber;
 		break;
 
 	    case AD_FLAM:
+	    case AD_WNCE:
 		if (magr->mtame && !rn2(5)) {
 			if (magr->mhpmax > 1) magr->mhpmax--;
 			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
@@ -7903,6 +7909,7 @@ int attnumber;
 		}
 		break;
 	    case AD_NPRO:
+	    case AD_INVE:
 		if (magr->mtame) {
 			if (canseemon(magr)) pline("%s seems less protected!", Monnam(magr));
 			magr->mhpmax -= 8;
@@ -7913,6 +7920,8 @@ int attnumber;
 		}
 		break;
 	    case AD_DISP:
+	    case AD_TPTO:
+	    case AD_SWAP:
 		if (magr->mtame && !rn2(3) && magr->mcanmove) {
 			magr->mcanmove = 0;
 			magr->mfrozen = 2;

@@ -6433,6 +6433,7 @@ register struct attack *mattk;
 		if (pd == &mons[PM_WOOD_GOLEM] || pd == &mons[PM_LEATHER_GOLEM]) tmp = 0;
 		break;
 	    case AD_FLAM:
+	    case AD_WNCE:
 		if (!rn2(3)) hurtmarmor(mdef, AD_FLAM);
 		break;
 	    case AD_DRST:
@@ -7378,6 +7379,7 @@ register struct attack *mattk;
 		hurtmarmor(mdef, AD_DCAY);
 		break;
 	    case AD_FLAM:
+	    case AD_WNCE:
 		hurtmarmor(mdef, AD_FLAM);
 		break;
 	    case AD_DRST:
@@ -10387,6 +10389,26 @@ boolean ranged;
 
 		break;
 
+	    case AD_INVE:
+
+		u.uprops[INVERT_STATE].intrinsic += ((tmp + 2) * 10);
+		pline("Whoops, you're inverted!");
+
+		break;
+
+	    case AD_DEBT:
+
+		u.moneydebt += ((tmp + 2) * rnd(100));
+		You("have to pay %d zorkmids to the bank.", u.moneydebt);
+		break;
+
+	    case AD_WNCE:
+
+		u.uprops[WINCE_STATE].intrinsic += ((tmp + 2) * 10);
+		pline("That was painful!");
+
+		break;
+
 	    case AD_INER:
 	      u_slow_down();
 		u.uprops[DEAC_FAST].intrinsic += ((tmp + 2) * 10);
@@ -10686,6 +10708,55 @@ boolean ranged;
 			Your("position suddenly seems very uncertain!");
 		    teleX();
 		break;
+
+	    case AD_SWAP:
+
+		if (mon->mspec_used) break;
+
+		if (!rn2(5)) {
+
+			int oldmx, oldmy;
+			oldmx = mon->mx;
+			oldmy = mon->my;
+			mon->mspec_used = rnz(100);
+
+			u.utrap = 0; /* A lucky escape */
+			remove_monster(mon->mx, mon->my);
+			place_monster(mon, u.ux, u.uy);
+			teleds(oldmx, oldmy, FALSE);
+			pline("The monster swapped positions with you!");
+		}
+
+		break;
+
+	    case AD_TPTO:
+
+		if ((level.flags.noteleport || Race_if(PM_STABILISATOR) || u.antitelespelltimeout) && !Race_if(PM_RODNEYAN) ) {
+			pline("A mysterious force prevents you from teleporting!");
+			break;
+		}
+
+		if ( ( (u.uhave.amulet && !u.freeplaymode && (u.amuletcompletelyimbued || !rn2(3))) || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) ) {
+			You_feel("disoriented for a moment.");
+			break;
+		}
+
+		{
+			int i, j, bd = 1;
+
+			for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+				if (!isok(mon->mx + i, mon->my + j)) continue;
+
+				if (teleok(mon->mx + i, mon->my + j, FALSE)) {
+					teleds(mon->mx + i, mon->my + j, FALSE);
+					pline("%s pulls you near!", Monnam(mon));
+					break;
+				}
+			}
+		}
+
+		break;
+
 	  case AD_DISP:
 		You_feel("a strong force!");
 			mdamageu(mon, tmp);

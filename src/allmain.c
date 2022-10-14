@@ -947,7 +947,7 @@ moveloop()
 				if (!rn2(100)) randsp *= 3;
 				if (!rn2(1000)) randsp *= 5;
 				if (!rn2(10000)) randsp *= 10;
-				monstercolor = rnd(425);
+				monstercolor = rnd(432);
 
 				if (wizard || !rn2(10)) pline(FunnyHallu ? "Someone got in here! Who could that be?" : "You feel that a group has arrived!");
 
@@ -1009,7 +1009,7 @@ moveloop()
 				if (!rn2(100)) randsp *= 3;
 				if (!rn2(1000)) randsp *= 5;
 				if (!rn2(10000)) randsp *= 10;
-				monstercolor = rnd(425);
+				monstercolor = rnd(432);
 			      cx = rn2(COLNO);
 			      cy = rn2(ROWNO);
 
@@ -3636,7 +3636,7 @@ newbossS:
 								ttmp->launch_otyp = rnd(186); /* monster glyph (weighted chance) */
 								break;
 							case 3:
-								ttmp->launch_otyp = rnd(425); /* monstercolor function */
+								ttmp->launch_otyp = rnd(432); /* monstercolor function */
 								break;
 							default:
 								impossible("monster generator with bad launch type %d!", ttmp->launch.x);
@@ -5104,7 +5104,7 @@ controlagain:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(425);
+			monstercolor = rnd(432);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -6817,7 +6817,7 @@ newbossJANI:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(425);
+			monstercolor = rnd(432);
 
 			if (wizard || !rn2(10)) You_feel("that a group has arrived!");
 
@@ -14029,7 +14029,7 @@ past3:
 			u.pokelieflags = 0;
 			u.pokeliespeed = rnd(50);
 			u.pokelieattacktype = rnd(22);
-			u.pokeliedamagetype = rnd(161);
+			u.pokeliedamagetype = rnd(166);
 		}
 	} else {
 		u.pokelieresistances = 0;
@@ -14043,7 +14043,7 @@ past3:
 
 	/* Frequentation spawn should be a different trait every time you get the effect --Amy */
 	if (FrequentationSpawns || u.uprops[FREQUENTATION_SPAWNS].extrinsic || have_frequentationspawnstone()) {
-		u.frequentationtrait = rnd(425); /* same as monstercolor function */
+		u.frequentationtrait = rnd(432); /* same as monstercolor function */
 	} else {
 		u.frequentationtrait = 0;
 	}
@@ -14142,6 +14142,21 @@ past3:
 			u.enchantspell = 0;
 			You("are no longer wielding a weapon, and therefore the enchantment fades.");
 		}
+	}
+
+	if (u.moneydebt && u.ugold) {
+		int debtamount = u.moneydebt;
+		if (u.ugold < debtamount) {
+			u.moneydebt -= u.ugold;
+			u.bankcashamount += u.ugold;
+			u.ugold = 0;
+		} else {
+			u.ugold -= debtamount;
+			u.bankcashamount += debtamount;
+			u.moneydebt = 0;
+		}
+		if (!u.moneydebt) Your("debt has been erased.");
+		else You("paid some of your debts, but still have to pay %d zorkmids.", u.moneydebt);
 	}
 
 	if ((BankTrapEffect || (uarm && uarm->oartifact == ART_PLANTOPLIM) || (uarmf && uarmf->oartifact == ART_SONJA_S_TORN_SOUL) || (uleft && uleft->oartifact == ART_ARABELLA_S_RESIST_COLD) || (uright && uright->oartifact == ART_ARABELLA_S_RESIST_COLD) || (uamul && uamul->oartifact == ART_LOW_ZERO_NUMBER) || (uarmf && uarmf->oartifact == ART_NOW_YOU_LOOK_LIKE_A_BEGGAR) || (uamul && uamul->oartifact == ART_ARABELLA_S_PRECIOUS_GADGET) || u.uprops[BANKBUG].extrinsic || have_bankstone()) && u.ugold) {

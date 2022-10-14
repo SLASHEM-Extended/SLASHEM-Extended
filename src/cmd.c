@@ -1090,6 +1090,20 @@ int traitno;
 			return "monsters who belong to the metal mafia";
 		case 425:
 			return "monsters who belong to the deep state";
+		case 426:
+			return "monsters who originate from Age of Empires";
+		case 427:
+			return "monsters who originate from Fallout or The Elder Scrolls";
+		case 428:
+			return "monsters with inversion attacks";
+		case 429:
+			return "monsters with wince attacks";
+		case 430:
+			return "monsters with debt-increasing attacks";
+		case 431:
+			return "monsters who swap positions with you";
+		case 432:
+			return "monsters whose attacks teleport you to them";
 
 		default:
 			impossible("bad trait no %d, please update montraitname() in cmd.c", traitno);

@@ -2533,7 +2533,7 @@ newbossING:
 					ttmp->launch_otyp = rnd(186); /* monster glyph (weighted chance) */
 					break;
 				case 3:
-					ttmp->launch_otyp = rnd(425); /* monstercolor function */
+					ttmp->launch_otyp = rnd(432); /* monstercolor function */
 					break;
 				default:
 					impossible("monster generator with bad launch type %d!", ttmp->launch.x);
@@ -6805,7 +6805,7 @@ rerollX:
 					if (!rn2(100)) randsp *= 3;
 					if (!rn2(1000)) randsp *= 5;
 					if (!rn2(10000)) randsp *= 10;
-					monstercolor = rnd(425);
+					monstercolor = rnd(432);
 
 					You_feel("that a group has arrived!");
 
@@ -14480,9 +14480,9 @@ skillmultiplyagain:
 			}
 
 			{
-				int monstercolor = rnd(425);
+				int monstercolor = rnd(432);
 				(void) makemon(specialtensmon(monstercolor), u.ux, u.uy, MM_ADJACENTOK);
-				monstercolor = rnd(425);
+				monstercolor = rnd(432);
 				(void) makemon(specialtensmon(monstercolor), u.ux, u.uy, MM_ADJACENTOK);
 			}
 			u.aggravation = 0;
@@ -17731,7 +17731,7 @@ skillrandomizeredo:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(425);
+			monstercolor = rnd(432);
 
 			if (wizard || !rn2(10)) You_feel("that a group has arrived!");
 
@@ -18006,7 +18006,7 @@ skillrandomizeredo:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(425);
+			monstercolor = rnd(432);
 
 			if (wizard || !rn2(10)) You_feel("that a group has arrived!");
 
@@ -18356,7 +18356,7 @@ skillrandomizeredo:
 #else
 			randsp = 1680;
 #endif
-			monstercolor = rnd(425);
+			monstercolor = rnd(432);
 
 			pline("CLICK! The entire area is filled with monsters! And they have one thing in common: they want to make your life miserable!");
 

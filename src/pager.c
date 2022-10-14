@@ -3400,8 +3400,18 @@ get_description_of_damage_type(uchar id)
 			damageid = 160; break;
 		case AD_DROP:
 			damageid = 161; break;
-		case AD_ENDS:
+		case AD_INVE:
 			damageid = 162; break;
+		case AD_WNCE:
+			damageid = 163; break;
+		case AD_DEBT:
+			damageid = 164; break;
+		case AD_SWAP:
+			damageid = 165; break;
+		case AD_TPTO:
+			damageid = 166; break;
+		case AD_ENDS:
+			damageid = 167; break;
 		default:
 		if (!missingnoprotect) {
 		impossible("bug in get_description_of_damage_type(%d)", id); return "<MISSING DESCRIPTION, THIS IS A BUG>";
@@ -3411,7 +3421,7 @@ get_description_of_damage_type(uchar id)
 
 	if (PokelieEffect || u.uprops[POKELIE_EFFECT].extrinsic || have_pokeliestone()) {
 		damageid += u.pokeliedamagetype;
-		if (damageid > 162) damageid -= 162;
+		if (damageid > 167) damageid -= 167;
 	}
 
 	switch(damageid){
@@ -3584,8 +3594,13 @@ get_description_of_damage_type(uchar id)
 		case 159: return "tech drain";
 		case 160: return "blasphemy";
 		case 161: return "drop your items";
+		case 162: return "inversion";
+		case 163: return "wince";
+		case 164: return "debts";
+		case 165: return "swap position";
+		case 166: return "teleport to";
 
-		case 162: return "placeholder attack";
+		case 167: return "placeholder attack";
 		default:
 		if (!missingnoprotect) {
 		impossible("bug in get_description_of_damage_type(%d)", id); return "<MISSING DESCRIPTION, THIS IS A BUG>";
@@ -28082,6 +28097,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"An important part of the SLEX design philosophy is that the player can be screwed over randomly without a fault of their own. After all, why should everything that happens always have to be in favor of the player? That's stupid, real life isn't always fair either!",
 	"Vanilla makes it far too hard to identify the + on a weapon or the charges in a wand. You have to waste a full identify scroll and even if it's blessed, it only identifies the value on two measly items despite you filling the entire inventory with garbage hoping that the scroll identifies it all.",
 	"The charging effect in vanilla is far too rare. I'm not even sure what's the point of displaying a recharge counter on common wands as it'll always read 0, the only wands worth using charging scrolls on being wishing and death, and *maybe* teleport or cold if you got particularly unlucky and only found a single one of them.",
+	"Your debt has been erased.",
+	"Your debt has been erased, along with all money you had left.",
+	"You paid some of your debts, but still have to pay 10000 zorkmids.",
+	"You paid some of your debts, but still have to pay 10000 zorkmids. If you don't pay up at once, some mafia goons will spawn soon and wreck your shit.",
 
 };
 

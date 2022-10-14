@@ -6832,7 +6832,7 @@ materialchoice3:
 		} else if (spawntype == 3) {
 			monstercolor = rnd(15);
 		} else {
-			monstercolor = rnd(425);
+			monstercolor = rnd(432);
 		}
 
 		while(cnt--) {

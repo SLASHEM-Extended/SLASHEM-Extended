@@ -422,6 +422,8 @@ struct you {
 
 	int youpolyamount;	/* how many times you can use #youpoly --Amy */
 
+	int moneydebt;		/* for AD_DEBT: player has to pay money to the bank --Amy */
+
 	int eeveelution;		/* mainly for pokemon role but might be useful for others */
 
 	int ughmemory;		/* set to 1 if you eat an ugh memory to create inventory window */
