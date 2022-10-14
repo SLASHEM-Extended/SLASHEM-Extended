@@ -28080,6 +28080,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"People who play SLEX encounter a feature they don't like, and then they think they had the right to complain, or worse, demand that Amy changes the feature in question. But they are wrong. Amy is the Iron Lady of SLEX and won't listen to such nonsense!",
 	"It's not as if any players went 'yay, nasty traps are great, I'm so happy about their addition to the game!'. But it doesn't matter anyway, because Amy wants them in the game and therefore they won't disappear.",
 	"An important part of the SLEX design philosophy is that the player can be screwed over randomly without a fault of their own. After all, why should everything that happens always have to be in favor of the player? That's stupid, real life isn't always fair either!",
+	"Vanilla makes it far too hard to identify the + on a weapon or the charges in a wand. You have to waste a full identify scroll and even if it's blessed, it only identifies the value on two measly items despite you filling the entire inventory with garbage hoping that the scroll identifies it all.",
+	"The charging effect in vanilla is far too rare. I'm not even sure what's the point of displaying a recharge counter on common wands as it'll always read 0, the only wands worth using charging scrolls on being wishing and death, and *maybe* teleport or cold if you got particularly unlucky and only found a single one of them.",
 
 };
 
