@@ -1059,6 +1059,9 @@ register int pm;
 	    case PM_FAT_LIZARD:
 	    case PM_EEL_LIZARD:
 	    case PM_GRASS_LIZARD:
+	    case PM_PERFUSWAP_LIZARD:
+	    case PM_ALL_SUPPLY_LIZARD:
+	    case PM_TOPSIDE_LIZARD:
 	    case PM_DEAD_LIZARD:
 	    case PM_STOPWATCH_LIZARD:
 	    case PM_RUNE_LIZARD:
@@ -1222,6 +1225,9 @@ struct monst *mon;
 	case PM_LIZARD_EEL:
 	case PM_EEL_LIZARD:
 	case PM_GRASS_LIZARD:
+	case PM_PERFUSWAP_LIZARD:
+	case PM_ALL_SUPPLY_LIZARD:
+	case PM_TOPSIDE_LIZARD:
 	case PM_DEAD_LIZARD:
       case PM_STOPWATCH_LIZARD:
 	case PM_RUNE_LIZARD:
@@ -2108,6 +2114,7 @@ register int pm;
 	    case PM_YELDUD_TWEN:
 	    case PM_PORTER_RUBBER_CHICKEN:
 	    case PM_CHALKATRICE:
+	    case PM_BLEED_ELEMENTAL:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		if (Upolyd) {
 			u.mh++;
@@ -3199,6 +3206,8 @@ register int pm;
 		/* bats are generalized with is_bat now --Amy */
 		break;
 	    case PM_QUANTUM_MECHANIC:
+	    case PM_QUANTUM_LEAP_MECHANIC:
+	    case PM_PROJECTED_MECHANIC:
 	    case PM_SCREWER_MECHANIC:
 	    case PM_QUANTUM_CREATURE:
 	    case PM_ECO_MECHANIC:
@@ -3285,6 +3294,9 @@ register int pm;
 	    case PM_GREEN_LIZARD:
 	    case PM_SCORZARD:
 	    case PM_CAVE_LIZARD:
+	    case PM_PERFUSWAP_LIZARD:
+	    case PM_ALL_SUPPLY_LIZARD:
+	    case PM_TOPSIDE_LIZARD:
 	    case PM_GRASS_LIZARD:
 	    case PM_DEAD_LIZARD:
 	    case PM_STOPWATCH_LIZARD:

@@ -6300,8 +6300,10 @@ register struct monst *mtmp;
 
 			if (mm == PM_FLYING_SCIMITAR) (void)mongets(mtmp, SCIMITAR);
 			if (mm == PM_WHIRLING_HATCHET) (void)mongets(mtmp, AXE);
+			if (mm == PM_TSCHACK_HATCHET) (void)mongets(mtmp, AXE);
 			if (mm == PM_CURSED_SWORD) (void)mongets(mtmp, ELVEN_SHORT_SWORD);
 			if (mm == PM_ANIMATED_DAGGER) (void)mongets(mtmp, rn2(20) ? DAGGER : SILVER_DAGGER);
+			if (mm == PM_TSCHICKTSCHACK_DAGGER) (void)mongets(mtmp, DAGGER);
 			if (mm == PM_SWORD_FAMILIAR) (void)mongets(mtmp, SHORT_SWORD);
 			if (mm == PM_HAMMER_OF_THE_UNDERWORLD) (void)mongets(mtmp, MALLET);
 			if (mm == PM_HYPERTYPE) (void)mongets(mtmp, WAN_TRAP_CREATION);
@@ -9090,6 +9092,12 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_BURNING_TORCH]) {
 			(void) mongets(mtmp, TORCH);
 		}
+		if (ptr == &mons[PM_WUMMSTICK]) {
+			(void) mongets(mtmp, CLUB);
+		}
+		if (ptr == &mons[PM_BLADE_OF_YOU_JUST_DIED]) {
+			(void) mongets(mtmp, TWO_HANDED_SWORD);
+		}
 		if (ptr == &mons[PM_FAN_GOLEM]) {
 			(void) mongets(mtmp, CARDBOARD_FAN);
 		}
@@ -9759,6 +9767,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_RITA_S_SWEET_STILETTO]) { (void) mongets(mtmp, FEMININE_PUMPS); (void) mongets(mtmp, SEXY_LEATHER_PUMP); } /* M4_PUMPS */
 		if (mtmp->data == &mons[PM_PATRICIA_S_STEEL_CAPPED_SANDAL]) { (void) mongets(mtmp, STEEL_CAPPED_SANDAL); } /* M4_HAMMERSANDAL */
 		if (mtmp->data == &mons[PM_KERSTIN_S_LOVELY_SNEAKER]) { (void) mongets(mtmp, SOFT_SNEAKERS); (void) mongets(mtmp, SOFT_GIRL_SNEAKER); } /* M4_SNEAKERS */
+		if (mtmp->data == &mons[PM_KERSTIN_S_OFF_COLOR_SNEAKER]) { (void) mongets(mtmp, SOFT_SNEAKERS); (void) mongets(mtmp, SOFT_GIRL_SNEAKER); } /* M4_SNEAKERS */
 		if (mtmp->data == &mons[PM_MELTEM_S_COMBAT_BOOT]) { (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT); (void) mongets(mtmp, HIPPIE_HEELS); } /* M4_BLOCKHEELBOOTS */
 		if (mtmp->data == &mons[PM_KERSTIN_S_LOVELY_COMBAT_BOOT]) { (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT); (void) mongets(mtmp, HIPPIE_HEELS); } /* M4_BLOCKHEELBOOTS */
 		if (mtmp->data == &mons[PM_KARIN_S_COMBAT_BOOT]) { (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT); (void) mongets(mtmp, HIPPIE_HEELS); } /* M4_BLOCKHEELBOOTS */
@@ -12974,6 +12983,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_GREMGARGOYLE]) (void) mongets(mtmp, POT_CANCELLATION);
 		if (mtmp->data == &mons[PM_BRONZE_GLADIATOR]) (void) mongets(mtmp, BRONZE_SPEAR);
 		if (mtmp->data == &mons[PM_ANITA_S_SEXY_LEATHER_PUMP]) { (void) mongets(mtmp, SEXY_LEATHER_PUMP); (void) mongets(mtmp, FEMININE_PUMPS); } /* M4_PUMPS */
+		if (mtmp->data == &mons[PM_ANITA_S_SUPERSHARP_LEATHER_PUMP]) { (void) mongets(mtmp, SEXY_LEATHER_PUMP); (void) mongets(mtmp, FEMININE_PUMPS); } /* M4_PUMPS */
 		if (mtmp->data == &mons[PM_BASHFLIND]) (void) mongets(mtmp, FLINDBAR);
 		if (mtmp->data == &mons[PM_BASHFLIND_LORD]) (void) mongets(mtmp, FLINDBAR);
 		if (mtmp->data == &mons[PM_JAPASURA]) (void) mongets(mtmp, MASSAGER);
@@ -13645,6 +13655,7 @@ loveheelover:
 		}
 
 		if (mtmp->data == &mons[PM_RHEA_S_LADY_PUMP]) { (void) mongets(mtmp, FEMININE_PUMPS); (void) mongets(mtmp, SEXY_LEATHER_PUMP); (void) mongets(mtmp, SCR_TRAP_CREATION); } /* M4_PUMPS */
+		if (mtmp->data == &mons[PM_RHEA_S_MIRROR_PUMP]) { (void) mongets(mtmp, FEMININE_PUMPS); (void) mongets(mtmp, SEXY_LEATHER_PUMP); } /* M4_PUMPS */
 
 		break;
 	    case S_GIANT:
@@ -24387,6 +24398,7 @@ register int	mmflags;
 			if (mndx == PM_UMBER_MIMIC) set_mimic_sym(mtmp);
 			if (mndx == PM_HAEHAEHAE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_WOAHAAHAA) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_THEY_LOST_THE_GAME) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_YEAH_YOU_HAD_NO_CHANCE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_HARHARHAR) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_RATZEPUEH_HULK) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
@@ -25465,6 +25477,7 @@ register int	mmflags;
 			if (mndx == PM_VESTY) set_mimic_sym(mtmp);
 			if (ptr == &mons[PM_MALICIOUS_LEPRECHAUN]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (ptr == &mons[PM_DEATH_LEPRECHAUN]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (ptr == &mons[PM_MONEY_AGO]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
       if (mndx == PM_POOKA){
 	        if(!rn2(5)) (void) mongets(mtmp, CARROT);
@@ -30905,6 +30918,7 @@ int type;
 		case PM_LURKER_GOLEM: return 100;
 		case PM_WAITER_GOLEM: return 100;
 		case PM_ANIMATED_DAGGER: return 100;
+		case PM_TSCHICKTSCHACK_DAGGER: return 100;
 		case PM_SWORD_FAMILIAR: return 150;
 		case PM_IMPLANT_GOLEM: return 150;
 		case PM_ROPE_GOLEM: return 60;
@@ -30967,6 +30981,7 @@ int type;
 		case PM_SPOOKY_PORTRAIT: return 150;
 		case PM_HAUNTED_TEAPOT: return 200;
 		case PM_ANIMATED_HOURGLASS: return 225;
+		case PM_FIENDISH_HOURGLASS: return 225;
 		case PM_GRINDER: return 300;
 		case PM_MINI_ROBO_KY: return 300;
 		case PM_MORBID_MIRROR: return 310;
@@ -31049,6 +31064,7 @@ int type;
 		case PM_CLOCK_GOLEM: return 250;
 		case PM_NEXUS_GOLEM: return 250;
 		case PM_WHIRLING_HATCHET: return 250;
+		case PM_TSCHACK_HATCHET: return 250;
 		case PM_HELLBLADE: return 320;
 		case PM_BLADE_BARRIER: return 550;
 		case PM_BLADE_OF_CHAOS: return 550;
@@ -31105,6 +31121,7 @@ int type;
 		case PM_BLOOD_GOLEM: return 200;
 		case PM_HAUNTED_HELMET: return 200;
 		case PM_KNOBBLE_STICK: return 200;
+		case PM_WUMMSTICK: return 200;
 		case PM_GUTS_GOLEM: return 200;
 		case PM_SMOKE_GOLEM: return 200;
 		case PM_CLAY_STATUE: return 150;
@@ -31188,6 +31205,7 @@ int type;
 		case PM_LEAD_GOLEM: return 400;
 		case PM_LUSTER_GOLEM: return 400;
 		case PM_BLADE_OF_SLAUGHTER: return 450;
+		case PM_BLADE_OF_YOU_JUST_DIED: return 450;
 		case PM_DIFFICULT_LEAD_GOLEM: return 400;
 		case PM_ANIMATED_PROSTITUTE_SHOE: return 400;
 		case PM_WEREPROSTITUTESHOE: return 400;

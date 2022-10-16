@@ -852,6 +852,13 @@ register xchar x, y;
 		return;
 	}
 
+	if (mon->data == &mons[PM_DTTN_ERROR] && rn2(10)) {
+
+		pline("%s absorbed the attack and took no damage!", Monnam(mon));
+		(void) passive(mon, FALSE, 1, TRUE, FALSE);
+		return;
+	}
+
 	if (mon->data == &mons[PM_LITTLE_POISON_IVY] || mon->data == &mons[PM_FLUIDATOR_IVE] || mon->data == &mons[PM_AMBER_FEMMY] || mon->data == &mons[PM_IMMUNITY_VIRUS] || mon->data == &mons[PM_UNGENOCIDABLE_VAMPSHIFTER] || mon->data == &mons[PM_TERRIFYING_POISON_IVY] || mon->data == &mons[PM_GIRL_WITH_THE_MOST_BEAUTIFUL_SHOES_IN_THE_WORLD] || mon->data == &mons[PM_IMMOVABLE_OBSTACLE] || mon->data == &mons[PM_INVINCIBLE_HAEN] || mon->data == &mons[PM_CHAREY] || mon->data == &mons[PM_INVENTOR_OF_THE_SISTER_COMBAT_BOOTS] || mon->data == &mons[PM_SWEET_ASIAN_POISON_IVY] || mon->data == &mons[PM_FIRST_DUNVEGAN] || mon->data == &mons[PM_PERCENTI_HAS_LOST___] || mon->data == &mons[PM_PERCENTI_IS_IMMUNE_TO_THE_ATTACK_]) {
 
 		pline("%s is IMMUNE to the attack!", Monnam(mon));
