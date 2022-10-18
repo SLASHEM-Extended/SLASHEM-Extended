@@ -6869,7 +6869,7 @@ register struct attack *mattk;
 		}
 		break;
 	    case AD_TERR:
-		terrainterror();
+		terrainterror(0);
 		break;
 	    case AD_SLEE:
 		if (mattk->aatyp == AT_GAZE && mon_reflects(mdef, (char *)0)) {
@@ -7716,7 +7716,7 @@ register struct attack *mattk;
 		goto common;
 
 	    case AD_TERR:
-		terrainterror();
+		terrainterror(0);
 		break;
 
 	    case AD_PLYS:
@@ -9948,7 +9948,8 @@ boolean ranged;
 
 	    case AD_TERR:
 
-		terrainterror();
+		if (mon->data == &mons[PM_BUILDER]) terrainterror(1);
+		else terrainterror(0);
 
 		break;
 

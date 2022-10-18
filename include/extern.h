@@ -1875,6 +1875,8 @@ E boolean breakarm(struct permonst *);
 E boolean sliparm(struct permonst *);
 E boolean sticks(struct permonst *);
 E boolean elongation_monster(struct permonst *);
+E boolean swatting_monster(struct permonst *);
+E boolean ecm_monster(struct permonst *);
 E boolean immune_timestop(struct permonst *);
 E int num_horns(struct permonst *);
 /* E boolean canseemon(struct monst *); */
@@ -2536,7 +2538,7 @@ E void statdrain(void);
 E void nastytrapcurse(void);
 E void shank_player(void);
 E void metalmafiaattack();
-E void terrainterror(void);
+E void terrainterror(int);
 E void giftartifact(void);
 E void heraldgift(void);
 E void sjwtrigger(void);

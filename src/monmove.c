@@ -3841,6 +3841,11 @@ altarfound:
 	if (ptr == &mons[PM_HEADER_RA____AUTO]) appr = (!rn2(3) ? -1 : rn2(2) ? 0 : 1);
 	if (ptr == &mons[PM_IRMGARD]) appr = (!rn2(3) ? -1 : rn2(2) ? 0 : 1);
 
+	if (ptr == &mons[PM_WILD_ELEPHANT] && (mtmp->mhp >= mtmp->mhpmax)) appr = 0;
+	if (ptr == &mons[PM_NORMAL_BOAR] && (mtmp->mhp >= mtmp->mhpmax)) appr = 0;
+	if (ptr == &mons[PM_JAVELINA] && (mtmp->mhp >= mtmp->mhpmax)) appr = 0;
+	if (ptr == &mons[PM_JAVELIN_A] && (mtmp->mhp >= mtmp->mhpmax)) appr = 0;
+
 	if (u.katitrapocc && !mtmp->mpeaceful) appr = -1; /* they're supposed to let you perform your occupation in peace */
 	if (u.singtrapocc && !mtmp->mpeaceful) appr = -1;
 

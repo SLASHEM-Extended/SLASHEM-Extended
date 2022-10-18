@@ -2478,27 +2478,7 @@ inaccurateguns:
 	}
 
 	/* the elder priest uses cheats */
-	if (mon->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && rn2(15) && tmp > -20) {
-		tmp = -100;
-		pline("%s swats the projectile away!", Monnam(mon));
-	}
-
-	if (mon->data == &mons[PM_ATHLEANNIE] && rn2(15) && tmp > -20) {
-		tmp = -100;
-		pline("%s swats the projectile away!", Monnam(mon));
-	}
-
-	if (mon->data == &mons[PM_AMMO_TURNER] && rn2(15) && tmp > -20) {
-		tmp = -100;
-		pline("%s swats the projectile away!", Monnam(mon));
-	}
-
-	if (mon->data == &mons[PM_FLUIDATOR_ANDER] && rn2(15) && tmp > -20) {
-		tmp = -100;
-		pline("%s swats the projectile away!", Monnam(mon));
-	}
-
-	if (mon->data == &mons[PM_FART_ATHLETE] && rn2(15) && tmp > -20) {
+	if (swatting_monster(mon->data) && rn2(15) && tmp > -20) {
 		tmp = -100;
 		pline("%s swats the projectile away!", Monnam(mon));
 	}
@@ -2508,37 +2488,7 @@ inaccurateguns:
 		pline("%s swats the projectile away!", Monnam(mon));
 	}
 
-	if (mon->data == &mons[PM_TOWELBEAR] && rn2(15) && tmp > -20) {
-		tmp = -100;
-		pline("%s swats the projectile away!", Monnam(mon));
-	}
-
-	if (mon->data == &mons[PM_LIGHTSABER_ART_JEDI] && rn2(15) && tmp > -20) {
-		tmp = -100;
-		pline("%s swats the projectile away!", Monnam(mon));
-	}
-
-	if (mon->data == &mons[PM_MR__CONCLUSIO] && rn2(15) && tmp > -20) {
-		tmp = -100;
-		pline("%s swats the projectile away!", Monnam(mon));
-	}
-
-	if (mon->data == &mons[PM_YOUR_GAME_ENDS_NOW] && rn2(15) && tmp > -20) {
-		tmp = -100;
-		pline("%s swats the projectile away!", Monnam(mon));
-	}
-
-	if (mon->data == &mons[PM_ELITE_GENDAME] && rn2(15) && tmp > -20) {
-		tmp = -100;
-		pline("%s swats the projectile away!", Monnam(mon));
-	}
-
-	if (mon->data == &mons[PM_LILAC_FEMMY] && rn2(15) && tmp > -20) {
-		tmp = -100;
-		pline("%s swats the projectile away!", Monnam(mon));
-	}
-
-	if (mon->data == &mons[PM_GREEN] && rn2(15) && tmp > -20) {
+	if (ecm_monster(mon->data) && rn2(15) && tmp > -20) {
 		tmp = -100;
 		pline("%s uses an ECM system to divert the projectile!", Monnam(mon));
 	}

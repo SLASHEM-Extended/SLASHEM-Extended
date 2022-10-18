@@ -7729,6 +7729,9 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_WOOD_ELVEN_ASSAILANT]) (void) mongets(mtmp, CESTUS);
 		if (ptr == &mons[PM_FEMININE_ASSASSIN]) (void) mongets(mtmp, BELL_CLAWS);
 		if (ptr == &mons[PM_SWIKNI]) (void) mongets(mtmp, SURVIVAL_KNIFE);
+		if (ptr == &mons[PM_FIGHTING_VILLAGE_INHABITANT]) (void) mongets(mtmp, CLUB);
+		if (ptr == &mons[PM_FARM_TILLER]) (void) mongets(mtmp, SICKLE);
+		if (ptr == &mons[PM_LUMBERJACK]) (void) mongets(mtmp, AXE);
 		if (mtmp->data == &mons[PM_MASK_MAN]) (void) mongets(mtmp, find_corona_mask());
 		if (ptr == &mons[PM_REGULAR_JEDI]) (void) mongets(mtmp, BEAMSWORD);
 		if (ptr == &mons[PM_LIGHTSABER_ART_JEDI]) (void) mongets(mtmp, BEAMSWORD);
@@ -7746,19 +7749,46 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_SYSTEMLING]) (void) mongets(mtmp, HELMET);
 		if (ptr == &mons[PM_SMOKER_HC_WOMAN]) (void) mongets(mtmp, CIGARETTE);
 		if (ptr == &mons[PM_TUFTRIKE]) (void) mongets(mtmp, DANCING_SHOES);
+		if (ptr == &mons[PM_BUILDER]) (void) mongets(mtmp, WAR_HAMMER);
+		if (ptr == &mons[PM_FISHERMAN]) (void) mongets(mtmp, FISHING_POLE);
 		if (ptr == &mons[PM_COCK_MONK]) (void) mongets(mtmp, VIBROBLADE);
+		if (ptr == &mons[PM_IRON_AGE_VILLAGE_INHABITANT]) (void) mongets(mtmp, TRIDENT);
 
 		if (ptr == &mons[PM_CHINESE_RADIO_BEACON_OFFICER]) {
 			(void) mongets(mtmp, KATANA);
 			(void) maketrap(mtmp->mx, mtmp->my, LOUDSPEAKER, 0, FALSE);
 		}
+		if (ptr == &mons[PM_ORE_MINER]) {
+			(void) mongets(mtmp, PICK_AXE);
+			(void) mongets(mtmp, rnd_class(DILITHIUM_CRYSTAL,LUCKSTONE-1));
+
+		}
 		if (ptr == &mons[PM_WJLV_ETTICLOL__VALKYRIE]) {
 			(void) mongets(mtmp, LONG_SWORD);
 			(void) mongets(mtmp, SMALL_SHIELD);
 		}
+		if (ptr == &mons[PM_GOLD_MINER]) {
+			(void) mongets(mtmp, PICK_AXE);
+#ifndef GOLDOBJ
+		    mtmp->mgold = (long)rnd(200);
+#else
+		    mkmonmoney(mtmp,(long)rnd(200));
+#endif
+		}
 		if (ptr == &mons[PM_CLOCK_OLD_MARRIED_COUPLE]) {
 			(void) mongets(mtmp, SHOTGUN);
 			 m_initthrow(mtmp, SHOTGUN_SHELL, 30);
+		}
+		if (ptr == &mons[PM_STONE_MINER]) {
+			(void) mongets(mtmp, PICK_AXE);
+			 m_initthrow(mtmp, ROCK, 25);
+		}
+		if (ptr == &mons[PM_VILLAGE_INHABITANT_WITH_BOW_AND_ARROW]) {
+			(void) mongets(mtmp, BOW);
+			 m_initthrow(mtmp, ARROW, 20);
+		}
+		if (ptr == &mons[PM_ANIMAL_HUNTER]) {
+			 m_initthrow(mtmp, JAVELIN, 4);
 		}
 		if (ptr == &mons[PM_BOS_SNIPER]) {
 			(void) mongets(mtmp, SNIPER_RIFLE);
@@ -11681,6 +11711,9 @@ loveheelover:
 		}
 		if (ptr == &mons[PM_BLASTPIG]) {
 			 m_initthrow(mtmp, FRAG_GRENADE, 10);
+		}
+		if (ptr == &mons[PM_JAVELIN_A]) {
+			 m_initthrow(mtmp, JAVELIN, 5);
 		}
 		if (ptr == &mons[PM_SPRAYGANGER]) {
 			(void) mongets(mtmp, SPRAY_BOX);
@@ -16098,6 +16131,14 @@ loveheelover:
 		if(ptr == &mons[PM_CHAINSMOKER_DEVIL]) (void) mongets(mtmp, CIGARETTE);
 		if(ptr == &mons[PM_IRON_CHAIN_DEVIL]) (void) mongets(mtmp, IRON_CHAIN);
 		if(ptr == &mons[PM_KING_DEDEDE]) (void) mongets(mtmp, MALLET);
+
+		if(ptr == &mons[PM_ARMED_XIVILAI]) (void) mongets(mtmp, !rn2(3) ? BATTLE_AXE : rn2(2) ? TWO_HANDED_SWORD : WAR_HAMMER);
+		if(ptr == &mons[PM_HEAVILY_ARMED_XIVILAI]) (void) mongets(mtmp, !rn2(3) ? BATTLE_AXE : rn2(2) ? TWO_HANDED_SWORD : WAR_HAMMER);
+		if(ptr == &mons[PM_NINJA_XIVILAI]) {
+			(void) mongets(mtmp, !rn2(3) ? BATTLE_AXE : rn2(2) ? TWO_HANDED_SWORD : WAR_HAMMER);
+			 m_initthrow(mtmp, SHURIKEN, 50);
+			 m_initthrow(mtmp, SHURIKEN, 50);
+		}
 
 		if (ptr == &mons[PM_SWORD_DANCER]) {
 			(void) mongets(mtmp, SAND_SWORD);
@@ -24387,6 +24428,10 @@ register int	mmflags;
 				}
 			}
 
+			if (mndx == PM_DAEDROTH) mon_adjust_speed(mtmp, 2, (struct obj *)0);
+			if (mndx == PM_DAEDROTH_DEATHCLAW) mon_adjust_speed(mtmp, 2, (struct obj *)0);
+			if (mndx == PM_DAEDROTH_NIGHTCLAW) mon_adjust_speed(mtmp, 2, (struct obj *)0);
+
 			break;
 
 		case S_UMBER:
@@ -25062,6 +25107,8 @@ register int	mmflags;
 		case S_QUADRUPED:
 			if (mtmp->data == &mons[PM_BLENDING_TITANOTHERE]) set_mimic_sym(mtmp);
 			if (mndx == PM_ASTRAY_SHEEP) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_INVISO_DEER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_MOVED_DEER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
 			if (mtmp->data == &mons[PM_SIEGE_BEAST] || mtmp->data == &mons[PM_TANKED_ELEPHANT]) {
 				(void) makemon(&mons[PM_IMP], mtmp->mx, mtmp->my, MM_ADJACENTOK);
@@ -27732,6 +27779,56 @@ loopback:
 		if (ct > 0 && (Race_if(PM_WOOKIE) && dmgtype(ptr, AD_WNCE) )) ct += 5;
 		if (ct > 0 && (Race_if(PM_YEEK) && dmgtype(ptr, AD_TPTO) )) ct += 2;
 		if (ct > 0 && (Race_if(PM_YEEK) && dmgtype(ptr, AD_SWAP) )) ct += 2;
+		if (ct > 0 && (Role_if(PM_ALTMER) && is_elderscrollsmonster(ptr) )) ct += 7;
+		if (ct > 0 && (Role_if(PM_BOSMER) && is_elderscrollsmonster(ptr) )) ct += 5;
+		if (ct > 0 && (Role_if(PM_COURIER) && is_elderscrollsmonster(ptr) )) ct += 3;
+		if (ct > 0 && (Role_if(PM_DUNMER) && is_elderscrollsmonster(ptr) )) ct += 6;
+		if (ct > 0 && (Role_if(PM_ORDINATOR) && is_elderscrollsmonster(ptr) )) ct += 10;
+		if (ct > 0 && (Role_if(PM_THALMOR) && is_elderscrollsmonster(ptr) )) ct += 4;
+		if (ct > 0 && (Role_if(PM_WARRIOR) && is_elderscrollsmonster(ptr) )) ct += 1;
+		if (ct > 0 && (Race_if(PM_ALBAE) && is_elderscrollsmonster(ptr) )) ct += 2;
+		if (ct > 0 && (Race_if(PM_ARGONIAN) && is_elderscrollsmonster(ptr) )) ct += 3;
+		if (ct > 0 && (Race_if(PM_ATLANTEAN) && is_aoemonster(ptr) )) ct += 5;
+		if (ct > 0 && (Race_if(PM_AZTPOK) && is_aoemonster(ptr) )) ct += 6;
+		if (ct > 0 && (Race_if(PM_BABYLONIAN) && is_aoemonster(ptr) )) ct += 4;
+		if (ct > 0 && (Race_if(PM_BOVER) && is_aoemonster(ptr) )) ct += 2;
+		if (ct > 0 && (Race_if(PM_BRETON) && is_elderscrollsmonster(ptr) )) ct += 4;
+		if (ct > 0 && (Race_if(PM_BULDOZGAR) && is_aoemonster(ptr) )) ct += 1;
+		if (ct > 0 && (Race_if(PM_CARTHAGE) && is_aoemonster(ptr) )) ct += 4;
+		if (ct > 0 && (Race_if(PM_CELTIC) && is_aoemonster(ptr) )) ct += 5;
+		if (ct > 0 && (Race_if(PM_CHIQUAI) && is_aoemonster(ptr) )) ct += 3;
+		if (ct > 0 && (Race_if(PM_MAZKE) && is_elderscrollsmonster(ptr) )) ct += 8;
+		if (ct > 0 && (Race_if(PM_DUTHOL) && is_aoemonster(ptr) )) ct += 2;
+		if (ct > 0 && (Race_if(PM_EGYMID) && is_aoemonster(ptr) )) ct += 8;
+		if (ct > 0 && (Race_if(PM_ENGCHIP) && is_aoemonster(ptr) )) ct += 6;
+		if (ct > 0 && (Race_if(PM_FRO) && is_aoemonster(ptr) )) ct += 3;
+		if (ct > 0 && (Race_if(PM_GERTEUT) && is_aoemonster(ptr) )) ct += 3;
+		if (ct > 0 && (Race_if(PM_AUREAL) && is_elderscrollsmonster(ptr) )) ct += 8;
+		if (ct > 0 && (Race_if(PM_GREURO) && is_aoemonster(ptr) )) ct += 5;
+		if (ct > 0 && (Race_if(PM_HIDDEN_ELF) && is_elderscrollsmonster(ptr) )) ct += 1;
+		if (ct > 0 && (Race_if(PM_IRAHA) && is_aoemonster(ptr) )) ct += 2;
+		if (ct > 0 && (Race_if(PM_ITAQUE) && is_aoemonster(ptr) )) ct += 2;
+		if (ct > 0 && (Race_if(PM_JAPURA) && is_aoemonster(ptr) )) ct += 3;
+		if (ct > 0 && (Race_if(PM_KHAJIIT) && is_elderscrollsmonster(ptr) )) ct += 3;
+		if (ct > 0 && (Race_if(PM_KORONST) && is_aoemonster(ptr) )) ct += 4;
+		if (ct > 0 && (Race_if(PM_MACTHEIST) && is_aoemonster(ptr) )) ct += 7;
+		if (ct > 0 && (Race_if(PM_MAGYAR) && is_aoemonster(ptr) )) ct += 1;
+		if (ct > 0 && (Race_if(PM_MAYMES) && is_aoemonster(ptr) )) ct += 5;
+		if (ct > 0 && (Race_if(PM_MONGUNG) && is_aoemonster(ptr) )) ct += 3;
+		if (ct > 0 && (Race_if(PM_MOON_ELF) && is_elderscrollsmonster(ptr) )) ct += 3;
+		if (ct > 0 && (Race_if(PM_NORD) && is_elderscrollsmonster(ptr) )) ct += 4;
+		if (ct > 0 && (Race_if(PM_PERVERT) && is_aoemonster(ptr) )) ct += 8;
+		if (ct > 0 && (Race_if(PM_REDGUARD) && is_elderscrollsmonster(ptr) )) ct += 6;
+		if (ct > 0 && (Race_if(PM_RUSMOT) && is_aoemonster(ptr) )) ct += 2;
+		if (ct > 0 && (Race_if(PM_SERB) && is_aoemonster(ptr) )) ct += 1;
+		if (ct > 0 && (Race_if(PM_SPARD) && is_aoemonster(ptr) )) ct += 3;
+		if (ct > 0 && (Race_if(PM_SWIKNI) && is_aoemonster(ptr) )) ct += 2;
+		if (ct > 0 && (Race_if(PM_TAYIIN) && is_aoemonster(ptr) )) ct += 4;
+		if (ct > 0 && (Race_if(PM_TURMENE) && is_aoemonster(ptr) )) ct += 2;
+		if (ct > 0 && (Race_if(PM_VIETIS) && is_aoemonster(ptr) )) ct += 5;
+		if (ct > 0 && (Race_if(PM_VIKING) && is_aoemonster(ptr) )) ct += 5;
+		if (ct > 0 && (Race_if(PM_YOKUDA) && is_elderscrollsmonster(ptr) )) ct += 3;
+		if (ct > 0 && (Race_if(PM_YUGGER) && is_aoemonster(ptr) )) ct += 10;
 
 		if (ct > 0 && (uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (ptr->msound == MS_STENCH))) ct += 10;
 		if (ct > 0 && (FemtrapActiveAnna && (ptr->msound == MS_STENCH))) ct += 50;
@@ -29212,6 +29309,57 @@ int     spc;
 		if ((Race_if(PM_YEEK) && dmgtype(&mons[last], AD_TPTO) )) num += 2;
 		if ((Race_if(PM_YEEK) && dmgtype(&mons[last], AD_SWAP) )) num += 2;
 
+		if ((Role_if(PM_ALTMER) && is_elderscrollsmonster(&mons[last]) )) num += 7;
+		if ((Role_if(PM_BOSMER) && is_elderscrollsmonster(&mons[last]) )) num += 5;
+		if ((Role_if(PM_COURIER) && is_elderscrollsmonster(&mons[last]) )) num += 3;
+		if ((Role_if(PM_DUNMER) && is_elderscrollsmonster(&mons[last]) )) num += 6;
+		if ((Role_if(PM_ORDINATOR) && is_elderscrollsmonster(&mons[last]) )) num += 10;
+		if ((Role_if(PM_THALMOR) && is_elderscrollsmonster(&mons[last]) )) num += 4;
+		if ((Role_if(PM_WARRIOR) && is_elderscrollsmonster(&mons[last]) )) num += 1;
+		if ((Race_if(PM_ALBAE) && is_elderscrollsmonster(&mons[last]) )) num += 2;
+		if ((Race_if(PM_ARGONIAN) && is_elderscrollsmonster(&mons[last]) )) num += 3;
+		if ((Race_if(PM_ATLANTEAN) && is_aoemonster(&mons[last]) )) num += 5;
+		if ((Race_if(PM_AZTPOK) && is_aoemonster(&mons[last]) )) num += 6;
+		if ((Race_if(PM_BABYLONIAN) && is_aoemonster(&mons[last]) )) num += 4;
+		if ((Race_if(PM_BOVER) && is_aoemonster(&mons[last]) )) num += 2;
+		if ((Race_if(PM_BRETON) && is_elderscrollsmonster(&mons[last]) )) num += 4;
+		if ((Race_if(PM_BULDOZGAR) && is_aoemonster(&mons[last]) )) num += 1;
+		if ((Race_if(PM_CARTHAGE) && is_aoemonster(&mons[last]) )) num += 4;
+		if ((Race_if(PM_CELTIC) && is_aoemonster(&mons[last]) )) num += 5;
+		if ((Race_if(PM_CHIQUAI) && is_aoemonster(&mons[last]) )) num += 3;
+		if ((Race_if(PM_MAZKE) && is_elderscrollsmonster(&mons[last]) )) num += 8;
+		if ((Race_if(PM_DUTHOL) && is_aoemonster(&mons[last]) )) num += 2;
+		if ((Race_if(PM_EGYMID) && is_aoemonster(&mons[last]) )) num += 8;
+		if ((Race_if(PM_ENGCHIP) && is_aoemonster(&mons[last]) )) num += 6;
+		if ((Race_if(PM_FRO) && is_aoemonster(&mons[last]) )) num += 3;
+		if ((Race_if(PM_GERTEUT) && is_aoemonster(&mons[last]) )) num += 3;
+		if ((Race_if(PM_AUREAL) && is_elderscrollsmonster(&mons[last]) )) num += 8;
+		if ((Race_if(PM_GREURO) && is_aoemonster(&mons[last]) )) num += 5;
+		if ((Race_if(PM_HIDDEN_ELF) && is_elderscrollsmonster(&mons[last]) )) num += 1;
+		if ((Race_if(PM_IRAHA) && is_aoemonster(&mons[last]) )) num += 2;
+		if ((Race_if(PM_ITAQUE) && is_aoemonster(&mons[last]) )) num += 2;
+		if ((Race_if(PM_JAPURA) && is_aoemonster(&mons[last]) )) num += 3;
+		if ((Race_if(PM_KHAJIIT) && is_elderscrollsmonster(&mons[last]) )) num += 3;
+		if ((Race_if(PM_KORONST) && is_aoemonster(&mons[last]) )) num += 4;
+		if ((Race_if(PM_MACTHEIST) && is_aoemonster(&mons[last]) )) num += 7;
+		if ((Race_if(PM_MAGYAR) && is_aoemonster(&mons[last]) )) num += 1;
+		if ((Race_if(PM_MAYMES) && is_aoemonster(&mons[last]) )) num += 5;
+		if ((Race_if(PM_MONGUNG) && is_aoemonster(&mons[last]) )) num += 3;
+		if ((Race_if(PM_MOON_ELF) && is_elderscrollsmonster(&mons[last]) )) num += 3;
+		if ((Race_if(PM_NORD) && is_elderscrollsmonster(&mons[last]) )) num += 4;
+		if ((Race_if(PM_PERVERT) && is_aoemonster(&mons[last]) )) num += 8;
+		if ((Race_if(PM_REDGUARD) && is_elderscrollsmonster(&mons[last]) )) num += 6;
+		if ((Race_if(PM_RUSMOT) && is_aoemonster(&mons[last]) )) num += 2;
+		if ((Race_if(PM_SERB) && is_aoemonster(&mons[last]) )) num += 1;
+		if ((Race_if(PM_SPARD) && is_aoemonster(&mons[last]) )) num += 3;
+		if ((Race_if(PM_SWIKNI) && is_aoemonster(&mons[last]) )) num += 2;
+		if ((Race_if(PM_TAYIIN) && is_aoemonster(&mons[last]) )) num += 4;
+		if ((Race_if(PM_TURMENE) && is_aoemonster(&mons[last]) )) num += 2;
+		if ((Race_if(PM_VIETIS) && is_aoemonster(&mons[last]) )) num += 5;
+		if ((Race_if(PM_VIKING) && is_aoemonster(&mons[last]) )) num += 5;
+		if ((Race_if(PM_YOKUDA) && is_elderscrollsmonster(&mons[last]) )) num += 3;
+		if ((Race_if(PM_YUGGER) && is_aoemonster(&mons[last]) )) num += 10;
+
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[last].msound == MS_STENCH))) num += 10;
 		if ((FemtrapActiveAnna && (mons[last].msound == MS_STENCH))) num += 50;
 		if ((FemtrapActiveLydia && (spawnswithpumps(&mons[last])) )) num += 1000;
@@ -30363,6 +30511,57 @@ int     spc;
 		if ((Race_if(PM_WOOKIE) && dmgtype(&mons[first], AD_WNCE) )) num -= 5;
 		if ((Race_if(PM_YEEK) && dmgtype(&mons[first], AD_TPTO) )) num -= 2;
 		if ((Race_if(PM_YEEK) && dmgtype(&mons[first], AD_SWAP) )) num -= 2;
+
+		if ((Role_if(PM_ALTMER) && is_elderscrollsmonster(&mons[first]) )) num -= 7;
+		if ((Role_if(PM_BOSMER) && is_elderscrollsmonster(&mons[first]) )) num -= 5;
+		if ((Role_if(PM_COURIER) && is_elderscrollsmonster(&mons[first]) )) num -= 3;
+		if ((Role_if(PM_DUNMER) && is_elderscrollsmonster(&mons[first]) )) num -= 6;
+		if ((Role_if(PM_ORDINATOR) && is_elderscrollsmonster(&mons[first]) )) num -= 10;
+		if ((Role_if(PM_THALMOR) && is_elderscrollsmonster(&mons[first]) )) num -= 4;
+		if ((Role_if(PM_WARRIOR) && is_elderscrollsmonster(&mons[first]) )) num -= 1;
+		if ((Race_if(PM_ALBAE) && is_elderscrollsmonster(&mons[first]) )) num -= 2;
+		if ((Race_if(PM_ARGONIAN) && is_elderscrollsmonster(&mons[first]) )) num -= 3;
+		if ((Race_if(PM_ATLANTEAN) && is_aoemonster(&mons[first]) )) num -= 5;
+		if ((Race_if(PM_AZTPOK) && is_aoemonster(&mons[first]) )) num -= 6;
+		if ((Race_if(PM_BABYLONIAN) && is_aoemonster(&mons[first]) )) num -= 4;
+		if ((Race_if(PM_BOVER) && is_aoemonster(&mons[first]) )) num -= 2;
+		if ((Race_if(PM_BRETON) && is_elderscrollsmonster(&mons[first]) )) num -= 4;
+		if ((Race_if(PM_BULDOZGAR) && is_aoemonster(&mons[first]) )) num -= 1;
+		if ((Race_if(PM_CARTHAGE) && is_aoemonster(&mons[first]) )) num -= 4;
+		if ((Race_if(PM_CELTIC) && is_aoemonster(&mons[first]) )) num -= 5;
+		if ((Race_if(PM_CHIQUAI) && is_aoemonster(&mons[first]) )) num -= 3;
+		if ((Race_if(PM_MAZKE) && is_elderscrollsmonster(&mons[first]) )) num -= 8;
+		if ((Race_if(PM_DUTHOL) && is_aoemonster(&mons[first]) )) num -= 2;
+		if ((Race_if(PM_EGYMID) && is_aoemonster(&mons[first]) )) num -= 8;
+		if ((Race_if(PM_ENGCHIP) && is_aoemonster(&mons[first]) )) num -= 6;
+		if ((Race_if(PM_FRO) && is_aoemonster(&mons[first]) )) num -= 3;
+		if ((Race_if(PM_GERTEUT) && is_aoemonster(&mons[first]) )) num -= 3;
+		if ((Race_if(PM_AUREAL) && is_elderscrollsmonster(&mons[first]) )) num -= 8;
+		if ((Race_if(PM_GREURO) && is_aoemonster(&mons[first]) )) num -= 5;
+		if ((Race_if(PM_HIDDEN_ELF) && is_elderscrollsmonster(&mons[first]) )) num -= 1;
+		if ((Race_if(PM_IRAHA) && is_aoemonster(&mons[first]) )) num -= 2;
+		if ((Race_if(PM_ITAQUE) && is_aoemonster(&mons[first]) )) num -= 2;
+		if ((Race_if(PM_JAPURA) && is_aoemonster(&mons[first]) )) num -= 3;
+		if ((Race_if(PM_KHAJIIT) && is_elderscrollsmonster(&mons[first]) )) num -= 3;
+		if ((Race_if(PM_KORONST) && is_aoemonster(&mons[first]) )) num -= 4;
+		if ((Race_if(PM_MACTHEIST) && is_aoemonster(&mons[first]) )) num -= 7;
+		if ((Race_if(PM_MAGYAR) && is_aoemonster(&mons[first]) )) num -= 1;
+		if ((Race_if(PM_MAYMES) && is_aoemonster(&mons[first]) )) num -= 5;
+		if ((Race_if(PM_MONGUNG) && is_aoemonster(&mons[first]) )) num -= 3;
+		if ((Race_if(PM_MOON_ELF) && is_elderscrollsmonster(&mons[first]) )) num -= 3;
+		if ((Race_if(PM_NORD) && is_elderscrollsmonster(&mons[first]) )) num -= 4;
+		if ((Race_if(PM_PERVERT) && is_aoemonster(&mons[first]) )) num -= 8;
+		if ((Race_if(PM_REDGUARD) && is_elderscrollsmonster(&mons[first]) )) num -= 6;
+		if ((Race_if(PM_RUSMOT) && is_aoemonster(&mons[first]) )) num -= 2;
+		if ((Race_if(PM_SERB) && is_aoemonster(&mons[first]) )) num -= 1;
+		if ((Race_if(PM_SPARD) && is_aoemonster(&mons[first]) )) num -= 3;
+		if ((Race_if(PM_SWIKNI) && is_aoemonster(&mons[first]) )) num -= 2;
+		if ((Race_if(PM_TAYIIN) && is_aoemonster(&mons[first]) )) num -= 4;
+		if ((Race_if(PM_TURMENE) && is_aoemonster(&mons[first]) )) num -= 2;
+		if ((Race_if(PM_VIETIS) && is_aoemonster(&mons[first]) )) num -= 5;
+		if ((Race_if(PM_VIKING) && is_aoemonster(&mons[first]) )) num -= 5;
+		if ((Race_if(PM_YOKUDA) && is_elderscrollsmonster(&mons[first]) )) num -= 3;
+		if ((Race_if(PM_YUGGER) && is_aoemonster(&mons[first]) )) num -= 10;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[first].msound == MS_STENCH))) num -= 10;
 		if ((FemtrapActiveAnna && (mons[first].msound == MS_STENCH))) num -= 50;

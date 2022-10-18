@@ -5159,7 +5159,8 @@ physical:
 		break;
 
 	    case AD_TERR:
-		terrainterror();
+		if (magr->data == &mons[PM_BUILDER]) terrainterror(1);
+		else terrainterror(0);
 		break;
 
 	    case AD_FEMI:
@@ -8157,7 +8158,8 @@ int attnumber;
 		break;
 
 	    case AD_TERR:
-		terrainterror();
+		if (mdef->data == &mons[PM_BUILDER]) terrainterror(1);
+		else terrainterror(0);
 		break;
 
 	    case AD_FEMI:
@@ -8279,7 +8281,7 @@ int attnumber;
     assess_dmg:
 
 	if (Race_if(PM_BOVER) && u.usteed && (magr == u.usteed) && tmp > 1) tmp /= 2;
-	if (Race_if(PM_CARTHAGE) && u.usteed && (mdef == u.usteed) && (mcalcmove(u.usteed) < 12) && tmp > 1) tmp /= 2;
+	if (Race_if(PM_CARTHAGE) && u.usteed && (magr == u.usteed) && (mcalcmove(u.usteed) < 12) && tmp > 1) tmp /= 2;
 
 	if((magr->mhp -= tmp) <= 0) {
 		/* get experience from spell creatures */

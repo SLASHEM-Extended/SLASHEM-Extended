@@ -7391,7 +7391,8 @@ hitmu(mtmp, mattk)
 	    case AD_TERR:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
-		terrainterror();
+		if (mtmp->data == &mons[PM_BUILDER]) terrainterror(1);
+		else terrainterror(0);
 
 		break;
 
@@ -10903,7 +10904,8 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 		case AD_TERR:
 			You("are whirled together!");
-			terrainterror();
+			if (mtmp->data == &mons[PM_BUILDER]) terrainterror(1);
+			else terrainterror(0);
 		break;
 
 		case AD_FEMI:
@@ -14127,7 +14129,8 @@ common:
 		break;
 
 	    case AD_TERR:
-		terrainterror();
+		if (mtmp->data == &mons[PM_BUILDER]) terrainterror(1);
+		else terrainterror(0);
 
 		break;
 
@@ -18147,7 +18150,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_TERR:
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(20))) {
                 pline("%s casts chaos terrain!", Monnam(mtmp));
-			terrainterror();
+			if (mtmp->data == &mons[PM_BUILDER]) terrainterror(1);
+			else terrainterror(0);
 		}
 
 		break;
@@ -20802,7 +20806,7 @@ dothepassive:
 
 	    case AD_TERR:
 
-		terrainterror();
+		terrainterror(0);
 		break;
 
 	    case AD_CONT:

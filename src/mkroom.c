@@ -612,12 +612,39 @@ struct mkroom *sroom;
 		case GRUEROOM:
 		    break;
 		case VARIANTROOM:
-			u.specialtensionmonster = !rn2(5) ? 341 : !rn2(4) ? 324 : !rn2(3) ? 325 : !rn2(2) ? 326 : 330;
+			switch (rnd(5)) {
+				case 1:
+					u.specialtensionmonster = 341; break;
+				case 2:
+					u.specialtensionmonster = 324; break;
+				case 3:
+					u.specialtensionmonster = 325; break;
+				case 4:
+					u.specialtensionmonster = 326; break;
+				case 5:
+					u.specialtensionmonster = 330; break;
+			}
 			/* evil variant, angband, animeband, steamband or dnethack */
 		    break;
 		case GAMECORNER:
-			u.specialtensionmonster = !rn2(5) ? 361 : !rn2(4) ? 322 : !rn2(3) ? 323 : !rn2(2) ? 327 : 328;
-			/* elona, cow, joke, diablo, dlords, one day aoe and elderscrolls should be added */
+
+			switch (rnd(7)) {
+				case 1:
+					u.specialtensionmonster = 426; break;
+				case 2:
+					u.specialtensionmonster = 427; break;
+				case 3:
+					u.specialtensionmonster = 361; break;
+				case 4:
+					u.specialtensionmonster = 322; break;
+				case 5:
+					u.specialtensionmonster = 323; break;
+				case 6:
+					u.specialtensionmonster = 327; break;
+				case 7:
+					u.specialtensionmonster = 328; break;
+			}
+			/* aoe, elderscrolls, elona, cow, joke, diablo or dlords*/
 		    break;
 
 		case TENSHALL:

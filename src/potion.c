@@ -9467,9 +9467,11 @@ newshank:
 }
 
 void
-terrainterror()
+terrainterror(specialtype)
+int specialtype;
 {
 	int terrtype = randomwalltype();
+	if (specialtype == 1) terrtype = ROCKWALL;
 	int tryct = 0;
 
 	int chaosx, chaosy;

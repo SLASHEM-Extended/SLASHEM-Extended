@@ -349,6 +349,44 @@ register struct permonst *ptr;
 	return FALSE;
 }
 
+/* can the monster swat projectiles away? --Amy */
+boolean
+swatting_monster(ptr)
+register struct permonst *ptr;
+{
+	if (ptr == &mons[PM_UNATTACKABLE_HUNT_WOLF]) return TRUE;
+	if (ptr == &mons[PM_UNATTACKABLE_RABID_WOLF]) return TRUE;
+	if (ptr == &mons[PM_URWOLF]) return TRUE;
+	if (ptr == &mons[PM_GRRRRR_URWOLF]) return TRUE;
+	if (ptr == &mons[PM_DNETHACK_ELDER_PRIEST_TM_]) return TRUE;
+	if (ptr == &mons[PM_ATHLEANNIE]) return TRUE;
+	if (ptr == &mons[PM_AMMO_TURNER]) return TRUE;
+	if (ptr == &mons[PM_FLUIDATOR_ANDER]) return TRUE;
+	if (ptr == &mons[PM_FART_ATHLETE]) return TRUE;
+	if (ptr == &mons[PM_TOWELBEAR]) return TRUE;
+	if (ptr == &mons[PM_LIGHTSABER_ART_JEDI]) return TRUE;
+	if (ptr == &mons[PM_MR__CONCLUSIO]) return TRUE;
+	if (ptr == &mons[PM_YOUR_GAME_ENDS_NOW]) return TRUE;
+	if (ptr == &mons[PM_ELITE_GENDAME]) return TRUE;
+	if (ptr == &mons[PM_LILAC_FEMMY]) return TRUE;
+
+	return FALSE;
+}
+
+/* can the monster use ECM? --Amy */
+boolean
+ecm_monster(ptr)
+register struct permonst *ptr;
+{
+	if (ptr == &mons[PM_GREEN]) return TRUE;
+	if (ptr == &mons[PM_JUNK_BOAT]) return TRUE;
+	if (ptr == &mons[PM_LAND_JUNK_BOAT]) return TRUE;
+	if (ptr == &mons[PM_ECM_ARCHER]) return TRUE;
+	if (ptr == &mons[PM_ECM_NERVE_HEAD]) return TRUE;
+
+	return FALSE;
+}
+
 /* can the monster still move when you stopped time? --Amy */
 boolean
 immune_timestop(ptr)
