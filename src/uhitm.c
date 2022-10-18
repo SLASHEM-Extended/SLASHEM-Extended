@@ -10757,6 +10757,7 @@ boolean ranged;
 				if (teleok(mon->mx + i, mon->my + j, FALSE)) {
 					teleds(mon->mx + i, mon->my + j, FALSE);
 					pline("%s pulls you near!", Monnam(mon));
+					i = 99; j = 99;
 					break;
 				}
 			}

@@ -8775,6 +8775,7 @@ dopois:
 				if (teleok(mtmp->mx + i, mtmp->my + j, FALSE)) {
 					teleds(mtmp->mx + i, mtmp->my + j, FALSE);
 					pline("%s pulls you near!", Monnam(mtmp));
+					i = 99; j = 99;
 					break;
 				}
 			}
@@ -11868,6 +11869,7 @@ do_stone2:
 				if (teleok(mtmp->mx + i, mtmp->my + j, FALSE)) {
 					teleds(mtmp->mx + i, mtmp->my + j, FALSE);
 					pline("%s pulls you near!", Monnam(mtmp));
+					i = 99; j = 99;
 					break;
 				}
 			}
@@ -13573,6 +13575,7 @@ common:
 				if (teleok(mtmp->mx + i, mtmp->my + j, FALSE)) {
 					teleds(mtmp->mx + i, mtmp->my + j, FALSE);
 					pline("%s pulls you near!", Monnam(mtmp));
+					i = 99; j = 99;
 					break;
 				}
 			}
@@ -18595,6 +18598,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				if (teleok(mtmp->mx + i, mtmp->my + j, FALSE)) {
 					teleds(mtmp->mx + i, mtmp->my + j, FALSE);
 					pline("%s pulls you near!", Monnam(mtmp));
+					i = 99; j = 99;
 					break;
 				}
 			}
