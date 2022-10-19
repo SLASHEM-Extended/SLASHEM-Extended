@@ -2096,11 +2096,97 @@ courtmon()
 }
 
 struct permonst *
+minotaurvariant()
+{
+	if (!rn2(10)) {
+		switch (rnd(37)) {
+			case 1:
+				return (&mons[PM_LOWERCASE_MINOTAUR]);
+			case 2:
+				return (&mons[PM_MINOTAUR_MAGICIAN]);
+			case 3:
+				return (&mons[PM_MINOTAUR_BOXER]);
+			case 4:
+				return (&mons[PM_MINOCHEATER]);
+			case 5:
+				return (&mons[PM_MINOTAUR_BALLERINA]);
+			case 6:
+				return (&mons[PM_MINOTARD]);
+			case 7:
+				return (&mons[PM_MINOTAUR_VORE]);
+			case 8:
+				return (&mons[PM_ERR_AXE_MINOTAUR]);
+			case 9:
+				return (&mons[PM_ROCKTAUR]);
+			case 10:
+				return (&mons[PM_PSEUDO_PETTY_MINOTAUR]);
+			case 11:
+				return (&mons[PM_SPECHOTAUR]);
+			case 12:
+				return (rn2(5) ? &mons[PM_MINOTAUR] : &mons[PM_MINOTAUR_LICH]);
+			case 13:
+				return (&mons[PM_MINOTAUR_MIMIC]);
+			case 14:
+				return (&mons[PM_CHASING_MINOTAUR]);
+			case 15:
+				return (&mons[PM_FAT_MINOTAUR]);
+			case 16:
+				return (&mons[PM_CHEATING_MINOTAUR]);
+			case 17:
+				return (&mons[PM_EVIL_PATCH_MINOTAUR]);
+			case 18:
+				return (&mons[PM_DUMB_MINOTAUR]);
+			case 19:
+				return (&mons[PM_GIGOTAUR]);
+			case 20:
+				return (level_difficulty() < 16 ? &mons[PM_MINOTAUR] : &mons[PM_MINOTAUR_PRIESTESS]);
+			case 21:
+				return (level_difficulty() < 20 ? &mons[PM_MINOTAUR] : &mons[PM_MINOTAUR_MATRON]);
+			case 22:
+				return (level_difficulty() < 26 ? &mons[PM_MINOTAUR] : &mons[PM_ELDER_MINOTAUR]);
+			case 23:
+				return (level_difficulty() < 26 ? &mons[PM_MINOTAUR] : &mons[PM_PETTY_ELDER_MINOTAUR]);
+			case 24:
+				return (level_difficulty() < 41 ? &mons[PM_MINOTAUR] : &mons[PM_STEEL_MINOTAUR]);
+			case 25:
+				return (level_difficulty() < 50 ? &mons[PM_MINOTAUR] : &mons[PM_ANCIENT_MINOTAUR]);
+			case 26:
+				return (level_difficulty() < 90 ? &mons[PM_MINOTAUR] : &mons[PM_MINOTAUR_GRANDMASTER]);
+			case 27:
+				return (&mons[PM_MINOTAUR_ZOMBIE]);
+			case 28:
+				return (level_difficulty() < 76 ? &mons[PM_MINOTAUR] : &mons[PM_ASTERIOS]);
+			case 29:
+				return (level_difficulty() < 50 ? &mons[PM_MINOTAUR] : &mons[PM_CHIHYU]);
+			case 30:
+				return (level_difficulty() < 60 ? &mons[PM_MINOTAUR] : &mons[PM_MOLOCH]);
+			case 31:
+				return (&mons[PM_TAURUSCROTTA]);
+			case 32:
+				return (&mons[PM_GRIDOTAUR]);
+			case 33:
+				return (level_difficulty() < 50 ? &mons[PM_MINOTAUR] : &mons[PM_MAULOTAUR]);
+			case 34:
+				return (&mons[PM_XORNITAUR]);
+			case 35:
+				return (&mons[PM_FISHTAUR]);
+			case 36:
+				return (&mons[PM_ROARING_FISHTAUR]);
+			case 37:
+				return (&mons[PM_SAVEUP_MINOTAUR]);
+		}
+	}
+
+	return(&mons[PM_MINOTAUR]);
+}
+
+struct permonst *
 insidemon()
 {
-	int     i = rnd(105);
-	if (i > 100)	return(mkclass(S_WORM_TAIL,0));
-	if (i > 99)       return(rn2(1000) ? &mons[PM_SUPERTHIEF] : (level_difficulty() < 40) ? &mons[PM_SUPERTHIEF] : &mons[PM_PERCENTS_____NIX]);
+	int     i = rnd(106);
+	if (i > 105)	return(&mons[PM_CURSED_CALLED_BANDIT]);
+	else if (i > 100)	return(mkclass(S_WORM_TAIL,0));
+	else if (i > 99)       return(rn2(1000) ? &mons[PM_SUPERTHIEF] : (level_difficulty() < 40) ? &mons[PM_SUPERTHIEF] : &mons[PM_PERCENTS_____NIX]);
 	else if (i > 98)  return(rn2(200) ? &mons[PM_SUPERTHIEF] : (level_difficulty() < 20) ? &mons[PM_SUPERTHIEF] : &mons[PM_NIX]);
 	else if (i > 96)	return((level_difficulty() < 5) ? &mons[PM_SUPERTHIEF] : &mons[PM_AK_THIEF_IS_DEAD_]);
 	else if (i > 94)	return((level_difficulty() < 5) ? &mons[PM_SUPERTHIEF] : &mons[PM_UN_IN_PROTECT_MODE]);

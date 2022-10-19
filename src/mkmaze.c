@@ -915,7 +915,7 @@ register const char *s;
 	if (!(iszapem && !(u.zapemescape)) && !(u.preversionmode && !u.preversionescape) && (depth(&u.uz) > depth(&medusa_level))) {
 	for (x = rn2(3); x; x--) {
 		mazexy_all(&mm);
-		if (!ishomicider) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, MM_MAYSLEEP);
+		if (!ishomicider) (void) makemon(minotaurvariant(), mm.x, mm.y, MM_MAYSLEEP);
 		else makerandomtrap_at(mm.x, mm.y, TRUE);
 		}
 	}	 /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
@@ -970,7 +970,7 @@ register const char *s;
 	if (!(iszapem && !(u.zapemescape)) && !(u.preversionmode && !u.preversionescape) && (depth(&u.uz) > depth(&medusa_level))) {
 	for (x = rn2(3); x; x--) {
 		mazexy_all(&mm);
-		if (!ishomicider) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, MM_MAYSLEEP);
+		if (!ishomicider) (void) makemon(minotaurvariant(), mm.x, mm.y, MM_MAYSLEEP);
 		else makerandomtrap_at(mm.x, mm.y, TRUE);
 		}
 	}	 /* cause they would be outta depth when mazes are generated at a shallow level --Amy */

@@ -1695,6 +1695,9 @@ register struct monst *mtmp;
 	    case PM_ALL_SUPPLY_LIZARD:
 		mksobj_at(UNICORN_HORN, x, y, TRUE, FALSE, FALSE);
 		goto default_1;
+	    case PM_SAVEUP_MINOTAUR:
+		mksobj_at(WAN_DIGGING, x, y, TRUE, FALSE, FALSE);
+		goto default_1;
 	    case PM_HORNWALL:
 		mksobj_at(UNICORN_HORN, x, y, TRUE, FALSE, FALSE);
 		goto default_1;

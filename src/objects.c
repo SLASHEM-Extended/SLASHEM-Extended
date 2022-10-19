@@ -8365,6 +8365,8 @@ SPELL((char *)0,         "thorned",  P_NONE, 0, 0, 0, 1, 0, CLR_BROWN, 1),
 SPELL((char *)0,         "resin",  P_NONE, 0, 0, 0, 1, 0, CLR_BROWN, 1),
 SPELL((char *)0,         "berning",  P_NONE, 0, 0, 0, 1, 0, CLR_WHITE, 1),
 SPELL((char *)0,         "paralyzed",  P_NONE, 0, 0, 0, 1, 0, CLR_BRIGHT_GREEN, 1),
+SPELL((char *)0,         "tasteful",  P_NONE, 0, 0, 0, 1, 0, CLR_BROWN, 1),
+SPELL((char *)0,         "variable",  P_NONE, 0, 0, 0, 1, 0, CLR_WHITE, 1),
 SPELL("blank paper",	 "plain",		P_NONE, 1500,  0, 0, 0, 0, HI_PAPER, 1),
 	/* ...Blank spellbook must come last because it retains its description */
 OBJECT(OBJ("Book of the Dead", "papyrus"),

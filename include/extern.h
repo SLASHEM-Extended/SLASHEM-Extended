@@ -1777,6 +1777,7 @@ E struct permonst *doomsquadmon(void);
 E struct permonst *evilroommon(void);
 E struct permonst *machineroommon(void);
 E struct permonst *migohivemon(void);
+E struct permonst *minotaurvariant(void);
 E void save_rooms(int);
 E void rest_rooms(int);
 E struct mkroom *search_special(SCHAR_P);

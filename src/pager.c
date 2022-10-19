@@ -1776,6 +1776,12 @@ oisthatstupid:
 		    if (!mtmpX && !(u.ux == cc.x && u.uy == cc.y)) goto blatwo;
 		    if (mtmpX && !sensemon(mtmpX) && !canseemon(mtmpX) && !(u.ux == cc.x && u.uy == cc.y) && !((mtmpX->m_ap_type != M_AP_NOTHING) && !(Protection_from_shape_changers && !permamimic(mtmpX->data) && !(mtmpX->egotype_permamimic) ) ) ) goto blatwo;
 
+			if (mtmpX && mtmpX->mnum == PM_CURSED_CALLED_BANDIT) {
+				pline("NETHACK.EXE caused a General Protection Fault at address 000D:001D.");
+				TimerunBug += 1;
+				u.riennevaplus = rnd(30);
+			}
+
 			append_newline_to_pline_string(out_str);
 			temp_buf[0]='\0';
 			if (mtmpX && !(mtmpX->egotype_spoilerproofer)) get_description_of_monster_type(pm, temp_buf, TRUE);
