@@ -1919,7 +1919,7 @@ int dieroll;
 					pline("Your lightsaber is capable of cutting %s %s!", s_suffix(Monnam(mon)), xname(monwep));
 					getlin ("Cut the opponent's weapon in half? [y/yes/no]",cutbuf);
 					(void) lcase (cutbuf);
-					if (!(strcmp (cutbuf, "yes")) || !(strcmp (cutbuf, "y"))) {
+					if (!(strcmp (cutbuf, "yes")) || !(strcmp (cutbuf, "y")) || !(strcmp (cutbuf, "ye")) || !(strcmp (cutbuf, "ys"))) {
 
 						setmnotwielded(mon,monwep);
 						MON_NOWEP(mon);
@@ -2183,7 +2183,7 @@ int dieroll;
 			pline("Your blow is powerful enough to destroy %s %s!", s_suffix(Monnam(mon)), xname(monwep));
 			getlin ("Smash the opponent's weapon? [y/yes/no]",cutbuf);
 			(void) lcase (cutbuf);
-			if (!(strcmp (cutbuf, "yes")) || !(strcmp (cutbuf, "y"))) {
+			if (!(strcmp (cutbuf, "yes")) || !(strcmp (cutbuf, "y")) || !(strcmp (cutbuf, "ye")) || !(strcmp (cutbuf, "ys"))) {
 
 				setmnotwielded(mon,monwep);
 				MON_NOWEP(mon);
@@ -2246,7 +2246,7 @@ int dieroll;
 					pline("Your lightsaber is capable of cutting %s %s!", s_suffix(Monnam(mon)), xname(monwep));
 					getlin ("Cut the opponent's weapon in half? [y/yes/no]",cutbuf);
 					(void) lcase (cutbuf);
-					if (!(strcmp (cutbuf, "yes")) || !(strcmp (cutbuf, "y"))) {
+					if (!(strcmp (cutbuf, "yes")) || !(strcmp (cutbuf, "y")) || !(strcmp (cutbuf, "ye")) || !(strcmp (cutbuf, "ys"))) {
 
 						setmnotwielded(mon,monwep);
 						MON_NOWEP(mon);

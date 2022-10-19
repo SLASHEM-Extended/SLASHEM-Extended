@@ -672,7 +672,7 @@ secureidchoice:
 				char femhandlebuf[BUFSZ];
 				getlin ("Do you want to buy her goods? [y/yes/no]",femhandlebuf);
 				(void) lcase (femhandlebuf);
-				if (!(strcmp (femhandlebuf, "yes")) || !(strcmp (femhandlebuf, "y"))) {
+				if (!(strcmp (femhandlebuf, "yes")) || !(strcmp (femhandlebuf, "y")) || !(strcmp (femhandlebuf, "ye")) || !(strcmp (femhandlebuf, "ys"))) {
 					u.ugold -= 10000;
 					register struct obj *acqo;
 					acqo = mksobj(makegreatitem(), TRUE, TRUE, FALSE);
@@ -699,7 +699,7 @@ secureidchoice:
 				char femhandlebuf[BUFSZ];
 				getlin ("Do you want to buy his item? [y/yes/no]",femhandlebuf);
 				(void) lcase (femhandlebuf);
-				if (!(strcmp (femhandlebuf, "yes")) || !(strcmp (femhandlebuf, "y"))) {
+				if (!(strcmp (femhandlebuf, "yes")) || !(strcmp (femhandlebuf, "y")) || !(strcmp (femhandlebuf, "ye")) || !(strcmp (femhandlebuf, "ys"))) {
 					u.ugold -= 2000;
 					register struct obj *acqo;
 					acqo = mksobj(usefulitem(), TRUE, TRUE, FALSE);

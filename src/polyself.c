@@ -1220,7 +1220,7 @@ break_armor()
 
 		getlin ("Keep your torso armor on? [y/yes/no]",buf);
 		(void) lcase (buf);
-		if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y"))) armorkeep = 1;
+		if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y")) || !(strcmp (buf, "ye")) || !(strcmp (buf, "ys"))) armorkeep = 1;
 
 	}
 	if (uarm && uarm->stckcurse) armorkeep = 1;
@@ -1228,7 +1228,7 @@ break_armor()
 	if (uarmc && !Race_if(PM_TRANSFORMER) && (rnd(100) < controllingchance)) {
 		getlin ("Keep your cloak on? [y/yes/no]",buf);
 		(void) lcase (buf);
-		if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y"))) cloakkeep = 1;
+		if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y")) || !(strcmp (buf, "ye")) || !(strcmp (buf, "ys"))) cloakkeep = 1;
 
 	}
 	if (uarmc && uarmc->stckcurse) cloakkeep = 1;
@@ -1236,7 +1236,7 @@ break_armor()
 	if (uarmu && !Race_if(PM_TRANSFORMER) && (rnd(100) < controllingchance)) {
 		getlin ("Keep your shirt on? [y/yes/no]",buf);
 		(void) lcase (buf);
-		if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y"))) shirtkeep = 1;
+		if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y")) || !(strcmp (buf, "ye")) || !(strcmp (buf, "ys"))) shirtkeep = 1;
 
 	}
 	if (uarmu && uarmu->stckcurse) shirtkeep = 1;
@@ -1368,7 +1368,7 @@ break_armor()
 
 		getlin ("Keep your gloves on? [y/yes/no]",buf);
 		(void) lcase (buf);
-		if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y"))) goto glovesdone;
+		if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y")) || !(strcmp (buf, "ye")) || !(strcmp (buf, "ys"))) goto glovesdone;
 
 	}
 
@@ -1386,7 +1386,7 @@ glovesdone:
 
 		getlin ("Keep your shield on? [y/yes/no]",buf);
 		(void) lcase (buf);
-		if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y"))) goto shielddone;
+		if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y")) || !(strcmp (buf, "ye")) || !(strcmp (buf, "ys"))) goto shielddone;
 
 	}
 
@@ -1401,7 +1401,7 @@ shielddone:
 
 		getlin ("Keep your helmet on? [y/yes/no]",buf);
 		(void) lcase (buf);
-		if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y"))) goto helmetdone;
+		if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y")) || !(strcmp (buf, "ye")) || !(strcmp (buf, "ys"))) goto helmetdone;
 
 	}
 
@@ -1420,7 +1420,7 @@ helmetdone:
 
 		getlin ("Keep your boots on? [y/yes/no]",buf);
 		(void) lcase (buf);
-		if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y"))) goto bootsdone;
+		if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y")) || !(strcmp (buf, "ye")) || !(strcmp (buf, "ys"))) goto bootsdone;
 
 	}
 
@@ -1486,7 +1486,7 @@ int alone;
 
 			getlin ("Keep wielding your weapon? [y/yes/no]",buf);
 			(void) lcase (buf);
-			if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y"))) goto weapondone;
+			if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y")) || !(strcmp (buf, "ye")) || !(strcmp (buf, "ys"))) goto weapondone;
 
 		}
 	    uwepgone();

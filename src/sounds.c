@@ -4359,7 +4359,7 @@ repairitemchoice:
 			pline("You're discovering your sexuality...");
 			getlin("Are you homosexual? [y/yes/no] (If you answer no, you're heterosexual.)", buf);
 			(void) lcase (buf);
-			if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y"))) u.homosexual = 2;
+			if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y")) || !(strcmp (buf, "ye")) || !(strcmp (buf, "ys"))) u.homosexual = 2;
 			else u.homosexual = 1;
 		}
 
@@ -5125,7 +5125,7 @@ findmorebolts:
 				pline("You're discovering your sexuality...");
 				getlin("Are you homosexual? [y/yes/no] (If you answer no, you're heterosexual.)", buf);
 				(void) lcase (buf);
-				if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y"))) u.homosexual = 2;
+				if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y")) || !(strcmp (buf, "ye")) || !(strcmp (buf, "ys"))) u.homosexual = 2;
 				else u.homosexual = 1;
 			}
 
@@ -6484,7 +6484,7 @@ dochat()
 				pline("You're discovering your sexuality...");
 				getlin("Are you homosexual? [y/yes/no] (If you answer no, you're heterosexual.)", buf);
 				(void) lcase (buf);
-				if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y"))) u.homosexual = 2;
+				if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y")) || !(strcmp (buf, "ye")) || !(strcmp (buf, "ys"))) u.homosexual = 2;
 				else u.homosexual = 1;
 			}
 

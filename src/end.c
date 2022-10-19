@@ -1718,7 +1718,7 @@ freeplaycheck:
 
 			getlin ("You decided to keep playing your character. Please confirm your choice with yes [y/yes/no]",buf);
 			(void) lcase (buf);
-			if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y"))) { /* yes, do go on playing after ascending */
+			if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y")) || !(strcmp (buf, "ye")) || !(strcmp (buf, "ys"))) { /* yes, do go on playing after ascending */
 
 				gofreeplay = TRUE;
 
@@ -1727,7 +1727,7 @@ freeplaycheck:
 		} else {
 			getlin ("You decided to end the game here. Please confirm your choice with yes [y/yes/no]",buf);
 			(void) lcase (buf);
-			if (strcmp (buf, "yes") && strcmp (buf, "y")) goto freeplaycheck;
+			if (strcmp (buf, "yes") && strcmp (buf, "y") && strcmp (buf, "ye") && strcmp (buf, "ys")) goto freeplaycheck;
 			/* else the game ends here */
 			u.freeplaytransit = TRUE;
 			/* the game is over anyway so it doesn't matter for gameplay purposes whether this check is true,

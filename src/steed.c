@@ -114,7 +114,7 @@ mayfalloffsteed()
 	if (ridesavingthrow > 0) {
 		getlin ("Uh-oh! You're about to fall off your steed! Attempt a saving throw? [y/yes/no]",buf);
 		(void) lcase (buf);
-		if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y"))) {
+		if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y")) || !(strcmp (buf, "ye")) || !(strcmp (buf, "ys"))) {
 			if (ridesavingthrow > rnd(100)) {
 				pline("Success! You've managed to stay mounted.");
 				return TRUE;

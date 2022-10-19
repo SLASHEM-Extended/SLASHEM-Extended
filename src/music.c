@@ -706,7 +706,7 @@ struct obj *instr;
 		(void) lcase (bufX);
 
     }
-    if (usebufx && strcmp(bufX, "yes") && strcmp(bufX, "y")) {
+    if (usebufx && strcmp(bufX, "yes") && strcmp(bufX, "y") && strcmp(bufX, "ye") && strcmp(bufX, "ys")) {
 	if (u.uevent.uheard_tune == 2 && yn("Play the passtune?") == 'y') {
 	    strcpy(buf, tune);
 	} else {

@@ -4705,7 +4705,7 @@ opentin()		/* called during each move whilst opening a tin */
 
 	    getlin ("Eat it? [y/yes/no]",buf);
 	    (void) lcase (buf);
-	    if (strcmp (buf, "yes") && strcmp (buf, "y")) {
+	    if (strcmp (buf, "yes") && strcmp (buf, "y") && strcmp (buf, "ye") && strcmp (buf, "ys")) {
 	    	/* ALI - you know the tin iff you recognized the contents */
 		if (mvitals[tin.tin->corpsenm].eaten)
 		if (!Hallucination) tin.tin->dknown = tin.tin->known = TRUE;
@@ -4832,7 +4832,7 @@ opentin()		/* called during each move whilst opening a tin */
 
 	    getlin ("Eat it? [y/yes/no]",buf);
 	    (void) lcase (buf);
-	    if (strcmp (buf, "yes") && strcmp (buf, "y")) {
+	    if (strcmp (buf, "yes") && strcmp (buf, "y") && strcmp (buf, "ye") && strcmp (buf, "ys")) {
 		if (!Hallucination && !tin.tin->cursed)
 		    tin.tin->dknown = tin.tin->known = TRUE;
 		if (flags.verbose)
@@ -4864,7 +4864,7 @@ opentin()		/* called during each move whilst opening a tin */
 
 	    getlin ("Eat it? [y/yes/no]",buf);
 	    (void) lcase (buf);
-	    if (strcmp (buf, "yes") && strcmp (buf, "y")) {
+	    if (strcmp (buf, "yes") && strcmp (buf, "y") && strcmp (buf, "ye") && strcmp (buf, "ys")) {
 		if (!Hallucination && !tin.tin->cursed)
 		    tin.tin->dknown = tin.tin->known = TRUE;
 		if (flags.verbose)
@@ -4912,7 +4912,7 @@ opentin()		/* called during each move whilst opening a tin */
 
 	    getlin ("Eat it? [y/yes/no]",buf);
 	    (void) lcase (buf);
-	    if (strcmp (buf, "yes") && strcmp (buf, "y")) {
+	    if (strcmp (buf, "yes") && strcmp (buf, "y") && strcmp (buf, "ye") && strcmp (buf, "ys")) {
 		if (!Hallucination && !tin.tin->cursed)
 		    tin.tin->dknown = tin.tin->known = TRUE;
 		if (flags.verbose)
@@ -4947,7 +4947,7 @@ opentin()		/* called during each move whilst opening a tin */
 
 	    getlin ("Eat it? [y/yes/no]",buf);
 	    (void) lcase (buf);
-	    if (strcmp (buf, "yes") && strcmp (buf, "y")) {
+	    if (strcmp (buf, "yes") && strcmp (buf, "y") && strcmp (buf, "ye") && strcmp (buf, "ys")) {
 		if (!Hallucination && !tin.tin->cursed)
 		    tin.tin->dknown = tin.tin->known = TRUE;
 		if (flags.verbose)
@@ -7049,7 +7049,7 @@ register struct obj *otmp;
 
 		getlin ("Read the fortune? [y/yes/no]",buf);
 		(void) lcase (buf);
-		if (!strcmp (buf, "yes") || !strcmp (buf, "y")) {
+		if (!strcmp (buf, "yes") || !strcmp (buf, "y") || !(strcmp (buf, "ye")) || !(strcmp (buf, "ys"))) {
 
 			/* reading it might influence your luck --Amy */
 
@@ -7135,7 +7135,7 @@ register struct obj *otmp;
 
 		getlin ("Somehow, a strip of paper appeared in your food! Read it? [y/yes/no]",buf);
 		(void) lcase (buf);
-		if (!strcmp (buf, "yes") || !strcmp (buf, "y")) {
+		if (!strcmp (buf, "yes") || !strcmp (buf, "y") || !(strcmp (buf, "ye")) || !(strcmp (buf, "ys"))) {
 
 		/* reading it will influence the player's luck --Amy */
 
