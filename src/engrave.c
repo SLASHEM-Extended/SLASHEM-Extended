@@ -5775,6 +5775,11 @@ static const char *epitaphs[] = {
 	"The breath meter in Terrahack is stupid, it clogs up the damn status line with information that I don't need and yet cannot turn off, and it doesn't even allow me to cross water! My char crawled out, now with 50 blank scrolls and 50 rusty weapons, and didn't give me the chance to wade through one more adjacent water tile to reach the shore on the other side! How retarded is that???",
 	"Chameleons don't imitate other monsters, they actually become the monster in question temporarily, with all its abilities. So you don't get killed by 'a chameleon imitating a mastodon', you get killed by a mastodon. The death messages in TSX make no sense.",
 	"It really is stupid that you get no message when a chameleon in vanilla changes form within your view. Like, would it be too much to ask to tell the player what is going on??? If there suddenly isn't a leocrotta anymore but an arch-lich, maybe I'd *like to know that* so I can react accordingly?",
+	"Nooooooo, I ate all the chocolate and it still didn't cure the accursed totter effect and you can't play with that. #quit",
+	"Scroll of symmetry, gah. Why on earth did Amy even add that thing to the game? Is it just there to screw over those who read-test random scrolls?",
+	"Err what, quaffing the Boomshine artifact potion gave me confusion, how long does it take for that to time out? What? IT'S PERMANENT??????? MOTHER FUCKER, Amy your parents should never have given birth to you abomination, now my character is ruined 200 hours into the game with NO way to fix it, that's it, I'm throwing the game on the trash heap! You'll never see me play again!",
+	"Whaaaaat, I read the IBM guild manual and nothing obvious happened but then I tried to get rid of an annoying monster type by reading a scroll of genocide and I died! That's stupid design and you know that!",
+	"Huh, I got intrinsic map amnesia, how do I get rid of that? What, I have to find some extremely rare item, I don't have that item! And what's that you say, the only other guaranteed method is to play through the goddamn minotaur maze? FUCK OFF AMY, I'm not doing the minotaur maze! #quit, and you'd better remove the thing that gave me that stupid intrinsic permanently or that was the last time I played SLEX!",
 
 };
 

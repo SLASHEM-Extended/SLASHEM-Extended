@@ -842,6 +842,7 @@ doread()
 	"hell's bathroom, if you manage to kill the bathrobe lady (forgot name), intrinsic discount action",
 	"Leather peep-toes are much more fun if you're playing the stunned-like-a-fish race, because then they cause more pain!",
 	"I love it if a sexy prostitute stomps me with her hippie heels while I'm playing the stunned-like-a-fish race, because then I can stare at the beautiful high-heeled leather boots in love for much longer!",
+	"Hey I own the chocolate factory, so I always have access to lots of chocolate that I can eat to cure a variety of ailments including totter, inertia and map amnesia!",
 
 	    };
 	    char buf[BUFSZ];

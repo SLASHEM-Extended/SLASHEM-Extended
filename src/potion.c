@@ -970,7 +970,7 @@ long xtime;
 		else pline("You're inverted!");
 	} else {
 		set_itimeout(&HInvertedState, xtime);
-		You("stand up.");
+		if (wasalready) You("stand up.");
 	}
 }
 
@@ -985,7 +985,7 @@ long xtime;
 		else pline("You're wincing!");
 	} else {
 		set_itimeout(&HWinceState, xtime);
-		You("don't have to wince anymore.");
+		if (wasalready) You("don't have to wince anymore.");
 	}
 
 }

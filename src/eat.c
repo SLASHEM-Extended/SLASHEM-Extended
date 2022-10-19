@@ -3653,6 +3653,32 @@ register int pm;
 				pline("Ginger! Who puts that in a chocolate???");
 				(void) make_hallucinated(0L, TRUE, 0L);
 				break;
+			case 6:	/* chili (cure invert) */
+				pline("Chili??? What the hell, chocolate and that don't belong together!");
+				make_inverted(0L);
+				break;
+			case 7:	/* almond (cure wince) */
+				pline("Uhh, that tasted a bit like cyanide... hopefully it was just almond flavor!");
+				make_wincing(0L);
+				break;
+			case 8:	/* caramel (cure inertia) */
+				pline("Caramel flavor, not too bad.");
+				if (u.inertia) {
+					u.inertia = 0;
+					You_feel("less slow.");
+				}
+				break;
+			case 9:	/* orange (cure map amnesia) */
+				pline("It had orange flavor, not really your cup of tea but oh well...");
+				if (HMap_amnesia & INTRINSIC) {
+					HMap_amnesia &= ~INTRINSIC;
+					You_feel("less forgetful!");
+				}
+				if (HMap_amnesia & TIMEOUT) {
+					HMap_amnesia &= ~TIMEOUT;
+					You_feel("less forgetful!");
+				}
+				break;
 			default: break;
 
 		}
@@ -6090,6 +6116,32 @@ eatspecial() /* called after eating non-food */
 				pline("Ginger! Who puts that in a chocolate???");
 				(void) make_hallucinated(0L, TRUE, 0L);
 				break;
+			case 6:	/* chili (cure invert) */
+				pline("Chili??? What the hell, chocolate and that don't belong together!");
+				make_inverted(0L);
+				break;
+			case 7:	/* almond (cure wince) */
+				pline("Uhh, that tasted a bit like cyanide... hopefully it was just almond flavor!");
+				make_wincing(0L);
+				break;
+			case 8:	/* caramel (cure inertia) */
+				pline("Caramel flavor, not too bad.");
+				if (u.inertia) {
+					u.inertia = 0;
+					You_feel("less slow.");
+				}
+				break;
+			case 9:	/* orange (cure map amnesia) */
+				pline("It had orange flavor, not really your cup of tea but oh well...");
+				if (HMap_amnesia & INTRINSIC) {
+					HMap_amnesia &= ~INTRINSIC;
+					You_feel("less forgetful!");
+				}
+				if (HMap_amnesia & TIMEOUT) {
+					HMap_amnesia &= ~TIMEOUT;
+					You_feel("less forgetful!");
+				}
+				break;
 			default: break;
 
 		}
@@ -6889,6 +6941,32 @@ register struct obj *otmp;
 			case 5:	/* ginger (cure hallucinate) */
 				pline("Ginger! Who puts that in a chocolate???");
 				(void) make_hallucinated(0L, TRUE, 0L);
+				break;
+			case 6:	/* chili (cure invert) */
+				pline("Chili??? What the hell, chocolate and that don't belong together!");
+				make_inverted(0L);
+				break;
+			case 7:	/* almond (cure wince) */
+				pline("Uhh, that tasted a bit like cyanide... hopefully it was just almond flavor!");
+				make_wincing(0L);
+				break;
+			case 8:	/* caramel (cure inertia) */
+				pline("Caramel flavor, not too bad.");
+				if (u.inertia) {
+					u.inertia = 0;
+					You_feel("less slow.");
+				}
+				break;
+			case 9:	/* orange (cure map amnesia) */
+				pline("It had orange flavor, not really your cup of tea but oh well...");
+				if (HMap_amnesia & INTRINSIC) {
+					HMap_amnesia &= ~INTRINSIC;
+					You_feel("less forgetful!");
+				}
+				if (HMap_amnesia & TIMEOUT) {
+					HMap_amnesia &= ~TIMEOUT;
+					You_feel("less forgetful!");
+				}
 				break;
 			default: break;
 
