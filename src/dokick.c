@@ -494,6 +494,9 @@ register boolean clumsy;
 		} else if (monwepon && monwepon->mstartinventD && !(monwepon->oartifact) && !(monwepon->fakeartifact && !rn2(4)) && rn2(4) ) {
 			You("vaporize %s %s!", s_suffix(mon_nam(mon)), xname(monwepon));
 			delobj(monwepon);
+		} else if (monwepon && monwepon->mstartinventX) {
+			You("vaporize %s %s!", s_suffix(mon_nam(mon)), xname(monwepon));
+			delobj(monwepon);
 		} else {
 			You("knock %s %s to the %s!", s_suffix(mon_nam(mon)), xname(monwepon), surface(u.ux, u.uy));
 			if (monwepon->otyp == CRYSKNIFE && (!monwepon->oerodeproof || !rn2(10))) {

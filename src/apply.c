@@ -3937,6 +3937,14 @@ struct obj *obj;
 			return 1;
 		}
 
+		if (otmp && otmp->mstartinventX) {
+			if (obj->spe > -20) obj->spe--;
+			else curse(obj);
+			You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(otmp));
+			delobj(otmp);
+			return 1;
+		}
+
 		if (rn2(whipchance)) {
 			pline("%s", msg_slipsfree);
 			return 1;

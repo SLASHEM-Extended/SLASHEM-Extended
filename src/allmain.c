@@ -1411,66 +1411,66 @@ moveloop()
 				} else if (Fast && YouHaveTheSpeedBug && !rn2(4) && moveamt > 1 ) {
 					moveamt /= 2;
 				}
+			} /* reduced chance for slowdown end */
 
-				/* speed boosts while riding go here */
+			/* speed boosts while riding go here */
 
-				if (uarmf && itemhasappearance(uarmf, APP_BIKER_BOOTS) && !rn2(10)) {
+			if (uarmf && itemhasappearance(uarmf, APP_BIKER_BOOTS) && !rn2(10)) {
+				oldspeed = moveamt;
+				moveamt *= 2;
+				if (moveamt > (oldspeed + 24)) moveamt = (oldspeed + 24);
+			}
+
+			if (Race_if(PM_PIECE) && ((u.dx && !u.dy) || (!u.dx && u.dy)) && !rn2(4)) {
+				moveamt *= 2;
+			}
+
+			if (u.usteed) {
+
+				if (bmwride(ART_BIKE_SADDLE)) {
 					oldspeed = moveamt;
-					moveamt *= 2;
-					if (moveamt > (oldspeed + 24)) moveamt = (oldspeed + 24);
+					moveamt *= 3;
+					moveamt /= 2;
+					if (moveamt > (oldspeed + 18)) moveamt = (oldspeed + 18);
 				}
 
-				if (Race_if(PM_PIECE) && ((u.dx && !u.dy) || (!u.dx && u.dy)) && !rn2(4)) {
-					moveamt *= 2;
+				if (bmwride(ART_HOVERCRAFT_RIDE) && u.usteed && u.usteed->data->mlet == S_VORTEX) {
+					oldspeed = moveamt;
+					moveamt *= 3;
+					moveamt /= 2;
+					if (moveamt > (oldspeed + 18)) moveamt = (oldspeed + 18);
 				}
 
-				if (u.usteed) {
-
-					if (bmwride(ART_BIKE_SADDLE)) {
-						oldspeed = moveamt;
-						moveamt *= 3;
-						moveamt /= 2;
-						if (moveamt > (oldspeed + 18)) moveamt = (oldspeed + 18);
-					}
-
-					if (bmwride(ART_HOVERCRAFT_RIDE) && u.usteed && u.usteed->data->mlet == S_VORTEX) {
-						oldspeed = moveamt;
-						moveamt *= 3;
-						moveamt /= 2;
-						if (moveamt > (oldspeed + 18)) moveamt = (oldspeed + 18);
-					}
-
-					if (bmwride(ART_SPEEDO_CAR)) {
-						oldspeed = moveamt;
-						moveamt *= 6;
-						moveamt /= 5;
-						if (moveamt > (oldspeed + 15)) moveamt = (oldspeed + 15);
-					}
-
-					if (bmwride(ART_KERSTIN_S_COWBOY_BOOST)) {
-						oldspeed = moveamt;
-						moveamt *= 6;
-						moveamt /= 5;
-						if (moveamt > (oldspeed + 15)) moveamt = (oldspeed + 15);
-					}
-
-					if (bmwride(ART_DRIVER_S_LICENSE) && u.usteed && (u.usteed->data->msound == MS_CAR)) {
-						oldspeed = moveamt;
-						moveamt *= 7;
-						moveamt /= 5;
-						if (moveamt > (oldspeed + 18)) moveamt = (oldspeed + 18);
-					}
-
-					if (uarmf && uarmf->oartifact == ART_TIRE_ROCKZ) {
-						oldspeed = moveamt;
-						moveamt *= 7;
-						moveamt /= 5;
-						if (moveamt > (oldspeed + 18)) moveamt = (oldspeed + 18);
-					}
-
+				if (bmwride(ART_SPEEDO_CAR)) {
+					oldspeed = moveamt;
+					moveamt *= 6;
+					moveamt /= 5;
+					if (moveamt > (oldspeed + 15)) moveamt = (oldspeed + 15);
 				}
 
-			} /* chance to reduce speed end */
+				if (bmwride(ART_KERSTIN_S_COWBOY_BOOST)) {
+					oldspeed = moveamt;
+					moveamt *= 6;
+					moveamt /= 5;
+					if (moveamt > (oldspeed + 15)) moveamt = (oldspeed + 15);
+				}
+
+				if (bmwride(ART_DRIVER_S_LICENSE) && u.usteed && (u.usteed->data->msound == MS_CAR)) {
+					oldspeed = moveamt;
+					moveamt *= 7;
+					moveamt /= 5;
+					if (moveamt > (oldspeed + 18)) moveamt = (oldspeed + 18);
+				}
+
+				if (uarmf && uarmf->oartifact == ART_TIRE_ROCKZ) {
+					oldspeed = moveamt;
+					moveamt *= 7;
+					moveamt /= 5;
+					if (moveamt > (oldspeed + 18)) moveamt = (oldspeed + 18);
+				}
+
+			} /* increased riding speed end */
+
 			if (moveamt < 1) moveamt = 1; /* don't reduce it too much, no matter what happens --Amy */
 
 			/* clockworks can't become too fast even when riding (sorry) --Amy */
@@ -1483,6 +1483,13 @@ moveloop()
 				if (rn2(10)) moveamt += (moveamtdivider / 10);
 				else moveamt += (moveamtdivider / (1 + rnd(8)));
 
+			}
+
+			if (nogoodsteed(u.usteed)) {
+				if (moveamt > 1) {
+					moveamt /= 10;
+					if (moveamt < 1) moveamt = 1;
+				}
 			}
 
 		    } else /* not riding */
@@ -3914,6 +3921,22 @@ greasingdone:
 			if (nanorepaired) pline("Your nanomachines have repaired some of the damage they sustained!");
 		}
 
+		/* items of bulletators and the like shouldn't be allowed to persist --Amy */
+		if (!rn2(200) || u.itemcleanupneeded) {
+			register struct obj *grsobj, *grsXXX;
+			for(grsobj = invent; grsobj ; grsobj = grsXXX) {
+				grsXXX = grsobj->nobj;
+				if (grsobj && grsobj->mstartinventX) {
+					if (evades_destruction(grsobj) ) dropx(grsobj);
+					else {
+						if (Has_contents(grsobj)) delete_contents(grsobj);
+						useup(grsobj);
+					}
+				}
+			}
+			u.itemcleanupneeded = FALSE;
+		}
+
 		if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE && !rn2(10000)) {
 			register struct obj *crsobj, *crsXXX;
 			for(crsobj = invent; crsobj ; crsobj = crsobj->nobj) {
@@ -4638,6 +4661,61 @@ newbossFLUID:
 				}
 				u.aggravation = 0;
 			}
+
+		}
+
+		if (u.bulletatorwantedlevel && !rn2(250)) {
+
+			int bulletatortype = rnd(2);
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			int cx,cy;
+		      cx = rn2(COLNO);
+		      cy = rn2(ROWNO);
+
+			int aggroamount = min(u.bulletatorwantedlevel, 10);
+
+			u.bulletatorwantedlevel -= aggroamount;
+			if (u.bulletatorwantedlevel < 0) u.bulletatorwantedlevel = 0; /* fail safe */
+
+			while (aggroamount) {
+				int attempts = 0;
+				struct permonst *pm = 0;
+				aggroamount--;
+
+newbossBULL:
+				do {
+					pm = rndmonst();
+					attempts++;
+					if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+				} while ( (!pm || (pm && !(pm->msound == MS_BULLETATOR ))) && attempts < 50000);
+
+				if (!pm && rn2(50) ) {
+					attempts = 0;
+					goto newbossBULL;
+				}
+				if (pm && !(pm->msound == MS_BULLETATOR) && rn2(50) ) {
+					attempts = 0;
+					goto newbossBULL;
+				}
+
+				if (bulletatortype == 1) {
+					(void) makemon(pm, 0, 0, MM_ADJACENTOK|MM_ANGRY);
+
+				} else {
+					coord cc, dd;
+					if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
+					(void) makemon(pm, cx, cy, MM_ADJACENTOK|MM_ANGRY);
+
+				}
+			}
+
+			u.aggravation = 0;
 
 		}
 

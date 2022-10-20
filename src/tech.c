@@ -4592,6 +4592,14 @@ secureidchoice:
 				break;
 		    }
 
+		    if (obj && obj->mstartinventX) {
+				uwep->spe--;
+				You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(obj));
+				delobj(obj);
+	          		t_timeout = rnz(5000);
+				break;
+		    }
+
 		    switch (roll) {
 			case 2:
 			default:
@@ -7167,6 +7175,11 @@ revid_end:
 			t_timeout = rnz(1000);
 			break;
 		} else if (obj && obj->mstartinventD && !(obj->oartifact) && !(obj->fakeartifact && !rn2(4)) && rn2(4) ) {
+			You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(obj));
+			delobj(obj);
+			t_timeout = rnz(1000);
+			break;
+		} else if (obj && obj->mstartinventX) {
 			You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(obj));
 			delobj(obj);
 			t_timeout = rnz(1000);

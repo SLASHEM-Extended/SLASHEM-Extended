@@ -4896,6 +4896,7 @@ newbossSING:
 	 * So, now the born counter (which can go over 255, yay!) matters and will make it less and less likely for
 	 * a monster to respawn if many of it were already spawned. Good thing this mechanism of monster "respawn" uses
 	 * a function that increases the counter, huh? */
+
 	if ( (RespawnProblem || u.uprops[RESPAWN_BUG].extrinsic || (uimplant && uimplant->oartifact == ART_YOU_SHOULD_SURRENDER) || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_respawnstone() ) && !(mtmp->data->msound == MS_DEAD) && tmp != PM_UNFORTUNATE_VICTIM && tmp != PM_SCROLLER_MASTER && tmp != PM_BOULDER_MASTER && tmp != PM_ITEM_MASTER && tmp != PM_GOOD_ITEM_MASTER && tmp != PM_BAD_ITEM_MASTER && tmp != PM_HOLE_MASTER && tmp != PM_TRAP_MASTER && !(mtmp->data->geno & G_UNIQ) ) {
 	    switch(rnd(10)) {
 		case 1:
@@ -4941,6 +4942,11 @@ newbossSING:
 			break;
 		}
 	}
+
+	if (tmp == PM_BIG_BULLETATOR_T && rn2(5)) {
+		(void) makemon(&mons[PM_BIG_BULLETATOR_T],0,0,NO_MM_FLAGS);
+	}
+
 	if(mtmp->iswiz) wizdead();
 	if(mtmp->data->msound == MS_NEMESIS && mtmp->mnum >= PM_LORD_CARNARVON && mtmp->mnum <= PM_UPPER_BULL) nemdead();
 
@@ -6870,6 +6876,7 @@ register struct monst *mdef;
 		else if (obj->mstartinventC && !(obj->oartifact) && !(obj->fakeartifact && !rn2(10)) && rn2(10) && !(mdef->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mdef->data == &mons[PM_BAD_ITEM_MASTER]) ) delobj(obj);
 		else if (obj->mstartinventE && !(obj->oartifact) && !(obj->fakeartifact && !rn2(20)) && rn2(20) && !(mdef->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mdef->data == &mons[PM_BAD_ITEM_MASTER]) ) delobj(obj);
 		else if (obj->mstartinventD && !(obj->oartifact) && !(obj->fakeartifact && !rn2(4)) && rn2(4) && !(mdef->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mdef->data == &mons[PM_BAD_ITEM_MASTER]) ) delobj(obj);
+		else if (obj->mstartinventX) delobj(obj);
 		    else (void) add_to_container(otmp, obj);
 		}
 #ifndef GOLDOBJ

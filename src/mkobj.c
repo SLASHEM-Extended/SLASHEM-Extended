@@ -4791,6 +4791,7 @@ add_to_container(container, obj)
     obj->mstartinventC = 0;
     obj->mstartinventD = 0;
     obj->mstartinventE = 0;
+    if (obj->mstartinventX) u.itemcleanupneeded = TRUE;
     obj->where = OBJ_CONTAINED;
     obj->ocontainer = container;
     obj->nobj = container->cobj;

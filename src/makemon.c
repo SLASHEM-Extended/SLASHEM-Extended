@@ -199,9 +199,14 @@ int otyp,oquan;
 	if (otyp == CROSSBOW_BOLT && mtmp->data == &mons[PM_POISON_ARROW_FROG]) otmp->opoisoned = TRUE;
 	if (otyp == CROSSBOW_BOLT && mtmp->data == &mons[PM_ROXY]) otmp->opoisoned = TRUE;
 	if (otyp == CROSSBOW_BOLT && mtmp->data == &mons[PM_ROXANNE]) otmp->opoisoned = TRUE;
+
 	if (otmp->oclass == WEAPON_CLASS) otmp->mstartinventB = 1;
 	if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic) otmp->mstartinventB = 1;
 	if (is_weptool(otmp)) otmp->mstartinventB = 1;
+	if ((otmp->oclass == WEAPON_CLASS || otmp->oclass == ARMOR_CLASS) && mtmp->data->msound == MS_BULLETATOR) otmp->mstartinventX = 1;
+	if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic && mtmp->data->msound == MS_BULLETATOR) otmp->mstartinventX = 1;
+	if (is_weptool(otmp) && mtmp->data->msound == MS_BULLETATOR) otmp->mstartinventX = 1;
+
 	(void) mpickobj(mtmp, otmp, TRUE);
 }
 
@@ -14514,6 +14519,11 @@ loveheelover:
 			(void) mongets(mtmp, BOW);
 			 m_initthrow(mtmp, ORCISH_ARROW, 40);
 		}
+		if (ptr == &mons[PM_BULLETATOR_O]) {
+			(void) mongets(mtmp, ORCISH_BOW);
+			 m_initthrow(mtmp, ORCISH_ARROW, 50);
+			 m_initthrow(mtmp, ORCISH_ARROW, 50);
+		}
 		if (ptr == &mons[PM_COCKGANGER_ORC]) {
 			(void) mongets(mtmp, ORCISH_SPEAR);
 			(void) mongets(mtmp, SLING);
@@ -22984,6 +22994,11 @@ loveheelover:
 	 * I guess the evil part about it is that you'll have to kill your leader if you want it. --Amy */
 	if (!rn2(2) && ptr->msound == MS_LEADER) (void) mongets(mtmp, KYRT_SHIRT);
 
+	if (ptr->msound == MS_BULLETATOR) {
+		if (!rn2(3)) (void) mongets(mtmp, LARGE_SHIELD);
+		if (!rn2(20)) (void) mongets(mtmp, rn2(10) ? SCR_ROOT_PASSWORD_DETECTION : SCR_COURSE_TRAVELING);
+	}
+
 	if (ptr->msound == MS_METALMAFIA && !rn2(10)) {
 		struct obj *otmpX = mksobj(rn2(5) ? SCR_ROOT_PASSWORD_DETECTION : SCR_COURSE_TRAVELING, TRUE, FALSE, FALSE);
 		if (otmpX) {
@@ -25730,6 +25745,7 @@ register int	mmflags;
 			}
 
 			if (mndx == PM_ORIENTAL_VAMPIRE) {mtmp->perminvis = TRUE; mtmp->minvis = TRUE; }
+			if (mndx == PM_BIG_BULLETATOR_V) {mtmp->perminvis = TRUE; mtmp->minvis = TRUE; }
 			if (mndx == PM_SING_S_DEEPSTATE_AGENT) {mtmp->perminvis = TRUE; mtmp->minvis = TRUE; }
 			if (mndx == PM_THE_DEEP_STATE_ALWAYS_WINS) {mtmp->perminvis = TRUE; mtmp->minvis = TRUE; }
 			if (mndx == PM_YOU_WERE_DEFEATED_BY_THE_DEEP_STATE) {mtmp->perminvis = TRUE; mtmp->minvis = TRUE; }
@@ -27842,6 +27858,11 @@ loopback:
 		if (ct > 0 && (FemtrapActiveLaura && (ptr->msound == MS_PANTS))) ct += 50;
 		if (ct > 0 && (FemtrapActiveLaura && (ptr->msound == MS_SHOE))) ct += 50;
 		if (ct > 0 && u.pompejiwantedlevel && (ptr->msound == MS_POMPEJI)) ct += min(1000, u.pompejiwantedlevel);
+		if (ct > 0 && u.bulletatorwantedlevel && (ptr->msound == MS_BULLETATOR)) {
+			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED) ct += 3;
+			if (P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) ct += 2;
+			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED && P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) ct += 20;
+		}
 
 		if (ct > 0 && RngeExtinction && mvitals[mndx].born) ct += mvitals[mndx].born;
 
@@ -29372,6 +29393,11 @@ int     spc;
 		if ((FemtrapActiveLaura && (mons[last].msound == MS_PANTS))) num += 50;
 		if ((FemtrapActiveLaura && (mons[last].msound == MS_SHOE))) num += 50;
 		if (u.pompejiwantedlevel && (mons[last].msound == MS_POMPEJI)) num += min(1000, u.pompejiwantedlevel);
+		if (u.bulletatorwantedlevel && (mons[last].msound == MS_BULLETATOR)) {
+			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED) num += 3;
+			if (P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) num += 2;
+			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED && P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) num += 20;
+		}
 
 		if (monster_with_trait(&mons[last], u.frequenttrait1)) num += u.freqtraitbonus1;
 		if (u.frequenttrait2 && monster_with_trait(&mons[last], u.frequenttrait2)) num += u.freqtraitbonus2;
@@ -30575,6 +30601,11 @@ int     spc;
 		if ((FemtrapActiveLaura && (mons[first].msound == MS_PANTS))) num -= 50;
 		if ((FemtrapActiveLaura && (mons[first].msound == MS_SHOE))) num -= 50;
 		if (u.pompejiwantedlevel && (mons[first].msound == MS_POMPEJI)) num -= min(1000, u.pompejiwantedlevel);
+		if (u.bulletatorwantedlevel && (mons[first].msound == MS_BULLETATOR)) {
+			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED) num -= 3;
+			if (P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) num -= 2;
+			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED && P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) num -= 20;
+		}
 
 		if (monster_with_trait(&mons[first], u.frequenttrait1)) num -= u.freqtraitbonus1;
 		if (u.frequenttrait2 && monster_with_trait(&mons[first], u.frequenttrait2)) num -= u.freqtraitbonus2;
@@ -30904,6 +30935,12 @@ register int otyp;
 	    if (otmp->otyp == RUBY && mtmp->data == &mons[PM_RUBY_BOSS]) otmp->mstartinventC = 1;
 	    if (otmp->otyp == LANCE && mtmp->data->msound == MS_TREESQUAD) otmp->mstartinventE = 1;
 	    if (otmp->otyp == PITCHFORK && mtmp->data->msound == MS_TREESQUAD) otmp->mstartinventE = 1;
+
+	    if ((otmp->oclass == WEAPON_CLASS || otmp->oclass == ARMOR_CLASS) && mtmp->data->msound == MS_BULLETATOR) otmp->mstartinventX = 1;
+	    if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic && mtmp->data->msound == MS_BULLETATOR) otmp->mstartinventX = 1;
+	    if (is_musable(otmp) && mtmp->data->msound == MS_BULLETATOR) otmp->mstartinventX = 1;
+	    if (is_weptool(otmp) && mtmp->data->msound == MS_BULLETATOR) otmp->mstartinventX = 1;
+
 	    if ((otmp->otyp >= WEDGED_LITTLE_GIRL_SANDAL) && (otmp->otyp <= PROSTITUTE_SHOE) && !Role_if(PM_TRANSVESTITE) && !Role_if(PM_TRANSSYLVANIAN)) {
 			otmp->mstartinventD = 1;
 		}
@@ -31097,6 +31134,7 @@ int type;
 
 		case PM_WAND_GOLEM: return 120;
 		case PM_WAND_OF_WISHING_GOLEM: return 500;
+		case PM_BULLETATOR_OPOSTROPH: return 1000;
 
 		case PM_ZAP_GOLEM: return 250;
 

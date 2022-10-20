@@ -306,6 +306,8 @@ void
 addinv_core1(obj)
 struct obj *obj;
 {
+	if (obj->mstartinventX) u.itemcleanupneeded = TRUE;
+
 	if (obj->oclass == COIN_CLASS) {
 #ifndef GOLDOBJ
 		u.ugold += obj->quan;
@@ -860,6 +862,7 @@ const char *drop_fmt, *drop_arg, *hold_msg;
 		obj->mstartinventC = 0;
 		obj->mstartinventD = 0;
 		obj->mstartinventE = 0;
+		if (obj->mstartinventX) u.itemcleanupneeded = TRUE;
 		sprintf(qbuf, "Got %s! Drop it?", doname(obj) );
 
 		if (yn_function(qbuf, ynchars, 'n') == 'y' ) {

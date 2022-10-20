@@ -1504,6 +1504,7 @@ struct you {
 	boolean bulletatorxbow;
 	boolean bulletatorsling;
 	boolean bulletatorjavelin;
+	boolean itemcleanupneeded;
 
 	int gmmailsreceived;	/* in game master mode, track how often I spawn monsters for you */
 

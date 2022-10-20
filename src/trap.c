@@ -18746,7 +18746,8 @@ struct obj *otmp;
 					x_monnam(mtmp,
 					mtmp->mnamelth ? ARTICLE_NONE : ARTICLE_A,
 					(char *)0, SUPPRESS_SADDLE, FALSE));
-				if (dedicatedsteed(mtmp)) You_feel("comfortable riding %s.",
+				if (nogoodsteed(mtmp)) pline("This steed can't carry you effectively!");
+				else if (dedicatedsteed(mtmp)) You_feel("comfortable riding %s.",
 					x_monnam(mtmp,
 					mtmp->mnamelth ? ARTICLE_NONE : ARTICLE_A,
 					(char *)0, SUPPRESS_SADDLE, FALSE) );

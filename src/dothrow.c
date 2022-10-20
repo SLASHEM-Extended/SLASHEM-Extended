@@ -496,6 +496,48 @@ int thrown;
 		flags.botl = TRUE;
 	}
 
+	if (launcher && (launcher->otyp == SUBMACHINE_GUN || launcher->otyp == ASSAULT_RIFLE || launcher->otyp == KALASHNIKOV || launcher->otyp == AUTO_SHOTGUN ) && launcher->altmode == WP_MODE_AUTO && !bulletator_allowed(1)) {
+		if (launcher->otyp == SUBMACHINE_GUN) u.bulletatorwantedlevel += 3;
+		if (launcher->otyp == ASSAULT_RIFLE) u.bulletatorwantedlevel += 10;
+		if (launcher->otyp == AUTO_SHOTGUN) u.bulletatorwantedlevel += 3;
+		if (launcher->otyp == KALASHNIKOV) u.bulletatorwantedlevel += 20;
+		if (!u.bulletatorgun) {
+			pline("You're not allowed to use automatic firearms. Bulletators have been alerted.");
+			u.bulletatorgun = TRUE;
+		}
+	}
+	if (launcher && (launcher->otyp == ARM_BLASTER || launcher->otyp == HEAVY_MACHINE_GUN || launcher->otyp == BFG ) && !bulletator_allowed(1)) {
+		if (launcher->otyp == ARM_BLASTER) u.bulletatorwantedlevel += 15;
+		if (launcher->otyp == HEAVY_MACHINE_GUN) u.bulletatorwantedlevel += 50;
+		if (launcher->otyp == BFG) u.bulletatorwantedlevel += 50;
+		if (!u.bulletatorgun) {
+			pline("You're not allowed to use automatic firearms. Bulletators have been alerted.");
+			u.bulletatorgun = TRUE;
+		}
+	}
+	if (launcher && launcher->otyp == DEMON_CROSSBOW && launcher->altmode == WP_MODE_AUTO && !bulletator_allowed(3)) {
+		u.bulletatorwantedlevel += 2;
+		if (!u.bulletatorxbow) {
+			pline("You're not allowed to use the demon crossbow. Bulletators have been alerted.");
+			u.bulletatorxbow = TRUE;
+		}
+	}
+	if (launcher && launcher->otyp == HYDRA_BOW && !bulletator_allowed(2)) {
+		u.bulletatorwantedlevel += 1;
+		if (!u.bulletatorbow) {
+			pline("You're not allowed to use the hydra bow. Bulletators have been alerted.");
+			u.bulletatorbow = TRUE;
+		}
+	}
+
+	if (launcher && launcher->otyp == CATAPULT && !bulletator_allowed(4)) {
+		u.bulletatorwantedlevel += 2;
+		if (!u.bulletatorsling) {
+			pline("You're not allowed to use the catapult. Bulletators have been alerted.");
+			u.bulletatorsling = TRUE;
+		}
+	}
+
 	if (launcher && launcher->otyp == DEMON_CROSSBOW && !rn2(100)) {
 		int attempts = 0;
 		register struct permonst *ptrZ;
@@ -2161,6 +2203,9 @@ boolean polearming;
 	boolean stupidrock = 0;
 	if (obj->otyp == ROCK) stupidrock = 1;
 
+	boolean bulletate = 0;
+	if (objects[obj->otyp].oc_skill == P_FIREARM || objects[obj->otyp].oc_skill == -P_FIREARM) bulletate = 1;
+
 	boolean pieks = 0;
 	if (objects[obj->otyp].oc_skill == P_POLEARMS) pieks = 1;
 	if (objects[obj->otyp].oc_skill == P_LANCE) pieks = 1;
@@ -2481,6 +2526,11 @@ inaccurateguns:
 	if (swatting_monster(mon->data) && rn2(15) && tmp > -20) {
 		tmp = -100;
 		pline("%s swats the projectile away!", Monnam(mon));
+	}
+
+	if (mon->data->msound == MS_BULLETATOR && bulletate && rn2(4)) {
+		tmp = -100;
+		pline("%s absorbs the projectile!", Monnam(mon));
 	}
 
 	if (FemtrapActiveAnnemarie && humanoid(mon->data) && mon->female && rn2(15) && tmp > -20) {

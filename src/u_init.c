@@ -11273,6 +11273,7 @@ u_init()
 	u.bulletatorjavelin = 0;
 	u.lifesavepenalty = 0;
 	u.lifesavepenallevel = 0;
+	u.itemcleanupneeded = 0;
 
 	/* set player's haircut to a random value at game start --Amy */
 	u.femalehaircut = rnd(55);

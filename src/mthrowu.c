@@ -866,6 +866,7 @@ int x,y;
 	if (obj->mstartinventC && obj->otyp != ROCKET && !is_grenade(obj) && !(obj->oartifact) && !(obj->fakeartifact && !rn2(10)) && rn2(10)) create = 0;
 	if (obj->mstartinventE && obj->otyp != ROCKET && !is_grenade(obj) && !(obj->oartifact) && !(obj->fakeartifact && !rn2(20)) && rn2(20)) create = 0;
 	if (obj->mstartinventD && obj->otyp != ROCKET && !is_grenade(obj) && !(obj->oartifact) && !(obj->fakeartifact && !rn2(4)) && rn2(4)) create = 0;
+	if (obj->mstartinventX && obj->otyp != ROCKET && !is_grenade(obj)) create = 0;
 
 	/* Detonate rockets */
 	if (is_grenade(obj)) {
@@ -914,6 +915,7 @@ int x,y;
 		obj->mstartinventC = 0;
 		obj->mstartinventD = 0;
 		obj->mstartinventE = 0;
+		if (obj->mstartinventX) u.itemcleanupneeded = TRUE;
 
 		if (down_gate(x, y) != -1)
 			objgone = ship_object(obj, x, y, FALSE);

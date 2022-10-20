@@ -64,6 +64,16 @@ struct monst *mtmp;
 	return FALSE;
 }
 
+/* is the monster mtmp not suitable for riding (makes you very slow if you attempt to ride, see allmain.c)? --Amy */
+boolean
+nogoodsteed(mtmp)
+struct monst *mtmp;
+{
+	if (mtmp->data->msound == MS_BULLETATOR) return TRUE;
+
+	return FALSE;
+}
+
 /*** Putting the saddle on ***/
 
 /* Can this monster wear a saddle? */
@@ -543,7 +553,9 @@ mount_steed(mtmp, force)
 	    	/* Must have Lev_at_will at this point */
 	    	pline("%s magically floats up!", Monnam(mtmp));
 	    You("mount %s.", mon_nam(mtmp));
-	    if (dedicatedsteed(mtmp)) You_feel("comfortable.");
+
+	    if (nogoodsteed(mtmp)) pline("This creature is too weak to carry you.");
+	    else if (dedicatedsteed(mtmp)) You_feel("comfortable.");
 
 	    if (otmp && otmp->oartifact == ART_SADDLE_OF_REFLECTION) {
 		You("reflect upon your life choices when climbing the saddle.");

@@ -3116,6 +3116,7 @@ E boolean flysaddle(void);
 E boolean bmwride(int);
 E boolean mercedesride(int, struct monst *);
 E boolean dedicatedsteed(struct monst *);
+E boolean nogoodsteed(struct monst *);
 
 /* ### tech.c ### */
 
