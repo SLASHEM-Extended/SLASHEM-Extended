@@ -210,6 +210,10 @@ experience(mtmp, nk)	/* return # of exp points for mtmp after nk killed */
 		tmp /= 20;
 		if (tmp < 1) tmp = 1;
 	}
+	if (mtmp->data->msound == MS_BULLETATOR && tmp > 1) {
+		tmp /= 20;
+		if (tmp < 1) tmp = 1;
+	}
 
 #ifdef MAIL
 	/* Mail daemons put up no fight. */

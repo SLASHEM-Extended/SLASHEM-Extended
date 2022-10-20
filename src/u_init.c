@@ -11265,6 +11265,12 @@ u_init()
 	u.pompejipermanentrecord = 0;
 	u.fluidatorwantedlevel = 0;
 	u.fluidatorwarning = 0;
+	u.bulletatorwantedlevel = 0;
+	u.bulletatorgun = 0;
+	u.bulletatorbow = 0;
+	u.bulletatorxbow = 0;
+	u.bulletatorsling = 0;
+	u.bulletatorjavelin = 0;
 	u.lifesavepenalty = 0;
 	u.lifesavepenallevel = 0;
 

@@ -3572,6 +3572,7 @@ E const char *wpskillname(int);
 E void grinderattack(int);
 E int difeasemu(struct permonst *);
 E void climtrainsqueaking(int);
+E boolean bulletator_allowed(int);
 
 /* ### were.c ### */
 

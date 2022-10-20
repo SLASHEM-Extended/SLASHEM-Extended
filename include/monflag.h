@@ -109,6 +109,7 @@
 #define MS_DEEPSTATE	100	/* cannot be seen via detection methods or warning */
 #define MS_POMPEJI	101	/* chases players who disrupt the Yendorian infrastructure */
 #define MS_FLUIDATOR	102	/* chases players who constantly wallwalk */
+#define MS_BULLETATOR	103	/* chases players who use automatic firearms, by amateurhour */
 
 /* MS_DOUGLAS_ADAMS used to be 42, however I fear the DevTeam eventually 
 ** reaching that number.  - sk */

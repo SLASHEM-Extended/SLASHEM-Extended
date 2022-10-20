@@ -1498,6 +1498,12 @@ struct you {
 	int pompejipermanentrecord;
 	int fluidatorwantedlevel;	/* for MS_FLUIDATOR */
 	int fluidatorwarning;	/* game should warn you if you're about to increase your fluidator wanted level */
+	int bulletatorwantedlevel;	/* for MS_BULLETATOR */
+	boolean bulletatorgun;
+	boolean bulletatorbow;
+	boolean bulletatorxbow;
+	boolean bulletatorsling;
+	boolean bulletatorjavelin;
 
 	int gmmailsreceived;	/* in game master mode, track how often I spawn monsters for you */
 

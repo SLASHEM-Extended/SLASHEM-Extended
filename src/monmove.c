@@ -2103,6 +2103,9 @@ newbossSING:
 			case MS_FLUIDATOR:
 				verbalize("Now Mach I you fully all!");
 				break;
+			case MS_BULLETATOR:
+				verbalize("Death to all who use automatic guns!");
+				break;
 			case MS_ALLA:
 				verbalize("I will leave a permanent scar on your body.");
 				break;

@@ -1724,6 +1724,9 @@ register struct monst *mtmp;
 	case MS_FLUIDATOR:
 		ret = "shouts 'Now leave to me finite in peace, you hell creature!'";
 		break;
+	case MS_BULLETATOR:
+		ret = "shouts 'If you continue like that, I'll kill you.'";
+		break;
 	case MS_ALLA:
 		ret = "shouts 'If you keep angering me like that, you'll pay.'";
 		break;
@@ -1957,6 +1960,9 @@ register struct monst *mtmp;
 	case MS_FLUIDATOR:
 		ret = "bellows 'You are always cursed!'";
 		break;
+	case MS_BULLETATOR:
+		ret = "shouts 'You no-good bastard!'";
+		break;
 	case MS_ALLA:
 		ret = "shouts 'Better stop mistreating me, for you'll not like my counterattack.'";
 		break;
@@ -2176,6 +2182,9 @@ register struct monst *mtmp;
 		break;
 	case MS_FLUIDATOR:
 		ret = "remarks 'Pass up, falling!'";
+		break;
+	case MS_BULLETATOR:
+		ret = "shouts 'Watch for the traps!'";
 		break;
 	case MS_ALLA:
 		ret = "wordlessly gazes at you";
@@ -3668,6 +3677,74 @@ repairitemchoice:
 		else if (mtmp->mpeaceful) verbl_msg = "Hey, do you want to assist me? I'd be thrilled if you were to step into dog shit with your shoes, because then I can force my slaves to clean your shoes, and when they're done, you'll get them back.";
 		else verbl_msg = "You know the rules. You have to clean the dog shit off of every pair of female shoes that I present to you, and you're not allowed to use anything other than your hands and a can of shoe polish.";
 		break;
+	case MS_BULLETATOR:
+		if (mtmp->mconf) {
+			verbl_msg = "Hmm... I think the BFG is not an automatic weapon, so using it is okay...";
+			break;
+		}
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/10) {
+			verbl_msg = "Save me! Please!";
+			break;
+		}
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Can you heal me, please?";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Need food!";
+			break;
+		}
+		if (mtmp->mtame) {
+			switch (rnd(5)) {
+				case 1:
+					if (bulletator_allowed(1)) verbl_msg = "Don't worry, you can use automatic firearms.";
+					else verbl_msg = "A reminder that you unfortunately can't use automatic firearms.";
+					break;
+				case 2:
+					if (bulletator_allowed(2)) verbl_msg = "Don't worry, you can use the hydra bow.";
+					else verbl_msg = "A reminder that you unfortunately can't use the hydra bow.";
+					break;
+				case 3:
+					if (bulletator_allowed(3)) verbl_msg = "Don't worry, you can use the demon crossbow.";
+					else verbl_msg = "A reminder that you unfortunately can't use the demon crossbow.";
+					break;
+				case 4:
+					if (bulletator_allowed(4)) verbl_msg = "Don't worry, you can use the catapult.";
+					else verbl_msg = "A reminder that you unfortunately can't use the catapult.";
+					break;
+				case 5:
+					if (bulletator_allowed(5)) verbl_msg = "Don't worry, you can use flamethrowers.";
+					else verbl_msg = "A reminder that you unfortunately can't use flamethrowers.";
+					break;
+			}
+		} else if (mtmp->mpeaceful) {
+			switch (rnd(5)) {
+				case 1:
+					if (bulletator_allowed(1)) verbl_msg = "You may use automatic firearms.";
+					else verbl_msg = "Remember, you're not allowed to use automatic firearms!";
+					break;
+				case 2:
+					if (bulletator_allowed(2)) verbl_msg = "You may use the hydra bow.";
+					else verbl_msg = "Remember, you're not allowed to use the hydra bow!";
+					break;
+				case 3:
+					if (bulletator_allowed(3)) verbl_msg = "You may use the demon crossbow.";
+					else verbl_msg = "Remember, you're not allowed to use the demon crossbow!";
+					break;
+				case 4:
+					if (bulletator_allowed(4)) verbl_msg = "You may use the catapult.";
+					else verbl_msg = "Remember, you're not allowed to use the catapult!";
+					break;
+				case 5:
+					if (bulletator_allowed(5)) verbl_msg = "You may use flamethrowers.";
+					else verbl_msg = "Remember, you're not allowed to use flamethrowers!";
+					break;
+			}
+		} else {
+			verbl_msg = "Now you'll be punished for using automatic weapons.";
+			break;
+		}
+		break;
 	case MS_FLUIDATOR:
 		if (mtmp->mconf) {
 			verbl_msg = "What are we to now make?";
@@ -3686,13 +3763,13 @@ repairitemchoice:
 			break;
 		}
 		if (mtmp->mtame) {
-			verbl_msg = u.fluidatorwantedlevel ? "Now you can however which experience, you hybrid!" : "We are attacked becoming!";
+			verbl_msg = u.fluidatorwantedlevel ? "Are you glad, with me to allies its?" : "You is my buddy!";
 		}
 		else if (mtmp->mpeaceful) {
 			verbl_msg = u.fluidatorwantedlevel ? "Now you are however to!" : "Is greeted, unknown potato.";
 			if (u.fluidatorwantedlevel) mtmp->mpeaceful = FALSE;
 		}
-		else verbl_msg = u.fluidatorwantedlevel ? "Are you glad, with me to allies its?" : "You is my buddy!";
+		else verbl_msg = u.fluidatorwantedlevel ? "Now you can however which experience, you hybrid!" : "We are attacked becoming!";
 		break;
 	case MS_POMPEJI:
 		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
@@ -5810,6 +5887,7 @@ register struct monst *mtmp;
 		case MS_POMPEJI:
 		case MS_FEARHARE:
 		case MS_CODE:
+		case MS_BULLETATOR:
 			switch (distresslevel) {
 				case 1:
 					pline("%s screams.", Monnam(mtmp));

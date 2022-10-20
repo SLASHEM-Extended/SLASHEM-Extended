@@ -26263,13 +26263,15 @@ boolean
 jonaspecialspawn(ptr)
 register struct permonst *ptr;
 {
-	if (is_jonadabmonster(ptr) || ptr->msound == MS_FLUIDATOR || ptr->msound == MS_POMPEJI) {
+	if (is_jonadabmonster(ptr) || ptr->msound == MS_FLUIDATOR || ptr->msound == MS_BULLETATOR || ptr->msound == MS_POMPEJI) {
 		if (is_jonadabmonster(ptr)) {
 
 			if (isscriptor && (ptr->msound == MS_FLUIDATOR) && u.fluidatorwantedlevel) return TRUE;
+			if (isscriptor && (ptr->msound == MS_BULLETATOR) && u.bulletatorwantedlevel) return TRUE;
 			if (isscriptor && (ptr->msound == MS_POMPEJI) && u.pompejiwantedlevel) return TRUE;
-			if (isscriptor && (ptr->msound != MS_POMPEJI) && (ptr->msound != MS_FLUIDATOR)) return TRUE;
+			if (isscriptor && (ptr->msound != MS_POMPEJI) && (ptr->msound != MS_FLUIDATOR) && (ptr->msound != MS_BULLETATOR)) return TRUE;
 		} else if ((ptr->msound == MS_FLUIDATOR) && u.fluidatorwantedlevel) return TRUE;
+		else if ((ptr->msound == MS_BULLETATOR) && u.bulletatorwantedlevel) return TRUE;
 		else if ((ptr->msound == MS_POMPEJI) && u.pompejiwantedlevel) return TRUE;
 	}
 	return FALSE;

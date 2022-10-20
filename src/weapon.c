@@ -9417,6 +9417,109 @@ xtraskillinit()
 
 }
 
+boolean
+bulletator_allowed(bulletatortype)
+int bulletatortype;
+{
+	if (bulletatortype == 1) /* firearms */ {
+		if (Role_if(PM_ANACHRONIST)) return TRUE;
+		if (Role_if(PM_ASTRONAUT)) return TRUE;
+		if (Role_if(PM_CAMPERSTRIKER)) return TRUE;
+		if (Role_if(PM_CONVICT)) return TRUE;
+		if (Role_if(PM_COURIER)) return TRUE;
+		if (Role_if(PM_DISSIDENT)) return TRUE;
+		if (Role_if(PM_DOOM_MARINE)) return TRUE;
+		if (Role_if(PM_EMERA)) return TRUE;
+		if (Role_if(PM_FOXHOUND_AGENT)) return TRUE;
+		if (Role_if(PM_GANG_SCHOLAR)) return TRUE;
+		if (Role_if(PM_GANGSTER)) return TRUE;
+		if (Role_if(PM_GEEK)) return TRUE;
+		if (Role_if(PM_GRADUATE)) return TRUE;
+		if (Role_if(PM_GRENADONIN)) return TRUE;
+		if (Role_if(PM_GUNNER)) return TRUE;
+		if (Role_if(PM_MASTERMIND)) return TRUE;
+		if (Role_if(PM_MURDERER)) return TRUE;
+		if (Role_if(PM_NUCLEAR_PHYSICIST)) return TRUE;
+		if (Role_if(PM_OFFICER)) return TRUE;
+		if (Role_if(PM_ORDINATOR)) return TRUE;
+		if (Role_if(PM_PREVERSIONER)) return TRUE;
+		if (Role_if(PM_PSYKER)) return TRUE;
+		if (Role_if(PM_ROCKER)) return TRUE;
+		if (Role_if(PM_SCIENTIST)) return TRUE;
+		if (Role_if(PM_SECRET_ADVICE_MEMBER)) return TRUE;
+		if (Role_if(PM_SLAVE_MASTER)) return TRUE;
+		if (Role_if(PM_SOFTWARE_ENGINEER)) return TRUE;
+		if (Role_if(PM_SPACE_MARINE)) return TRUE;
+		if (Role_if(PM_SPACEWARS_FIGHTER)) return TRUE;
+		if (Role_if(PM_STORMBOY)) return TRUE;
+		if (Role_if(PM_WALSCHOLAR)) return TRUE;
+		if (Role_if(PM_WEIRDBOY)) return TRUE;
+		if (Role_if(PM_YAUTJA)) return TRUE;
+		if (Role_if(PM_ZYBORG)) return TRUE;
+		if (Race_if(PM_AMERICAN)) return TRUE;
+		if (Race_if(PM_DEVELOPER)) return TRUE;
+		if (Race_if(PM_PLAYER_DYNAMO)) return TRUE;
+		if (Race_if(PM_IRAHA)) return TRUE;
+		if (Race_if(PM_KORONST)) return TRUE;
+		if (Race_if(PM_RACE_X)) return TRUE;
+		if (Race_if(PM_SPARD)) return TRUE;
+		if (Race_if(PM_TURMENE)) return TRUE;
+		if (Race_if(PM_VIETIS)) return TRUE;
+	}
+	if (bulletatortype == 2) /* hydra bow */ {
+		if (Role_if(PM_AMAZON)) return TRUE;
+		if (Role_if(PM_BOSMER)) return TRUE;
+		if (Role_if(PM_DIABLIST)) return TRUE;
+		if (Role_if(PM_DRUID)) return TRUE;
+		if (Role_if(PM_ELPH)) return TRUE;
+		if (Role_if(PM_ORDINATOR)) return TRUE;
+		if (Role_if(PM_RANGER)) return TRUE;
+		if (Role_if(PM_SECRET_ADVICE_MEMBER)) return TRUE;
+		if (Role_if(PM_THALMOR)) return TRUE;
+		if (Role_if(PM_TWELPH)) return TRUE;
+		if (Race_if(PM_ENGCHIP)) return TRUE;
+		if (Race_if(PM_MONGUNG)) return TRUE;
+		if (Race_if(PM_SPARD)) return TRUE;
+	}
+	if (bulletatortype == 3) /* demon crossbow */ {
+		if (Role_if(PM_DIABLIST)) return TRUE;
+		if (Role_if(PM_ELPH)) return TRUE;
+		if (Role_if(PM_NECROMANCER)) return TRUE;
+		if (Role_if(PM_ORDINATOR)) return TRUE;
+		if (Role_if(PM_RANGER)) return TRUE;
+		if (Role_if(PM_TWELPH)) return TRUE;
+		if (Race_if(PM_CHIQUAI)) return TRUE;
+		if (Race_if(PM_HUMANOID_DEVIL)) return TRUE;
+		if (Race_if(PM_SPARD)) return TRUE;
+	}
+	if (bulletatortype == 4) /* catapult */ {
+		if (Role_if(PM_CAVEMAN)) return TRUE;
+		if (Role_if(PM_JESTER)) return TRUE;
+		if (Role_if(PM_ORDINATOR)) return TRUE;
+		if (Role_if(PM_QUARTERBACK)) return TRUE;
+		if (Role_if(PM_RINGSEEKER)) return TRUE;
+		if (Role_if(PM_ROCKER)) return TRUE;
+		if (Race_if(PM_CELTIC)) return TRUE;
+		if (Race_if(PM_HOBBIT)) return TRUE;
+		if (Race_if(PM_KORONST)) return TRUE;
+		if (Race_if(PM_MONGUNG)) return TRUE;
+		if (Race_if(PM_SPARD)) return TRUE;
+	}
+	if (bulletatortype == 5) /* flamethrower */ {
+		if (Role_if(PM_AMAZON)) return TRUE;
+		if (Role_if(PM_DIABLIST)) return TRUE;
+		if (Role_if(PM_DOOM_MARINE)) return TRUE;
+		if (Role_if(PM_ORDINATOR)) return TRUE;
+		if (Role_if(PM_TOSSER)) return TRUE;
+		if (Race_if(PM_AZTPOK)) return TRUE;
+		if (Race_if(PM_JAVA)) return TRUE;
+		if (Race_if(PM_NAVI)) return TRUE;
+	}
+
+	return FALSE;
+
+}
+
 /*WAC  weapon practice code*/
 STATIC_PTR int
 practice()
