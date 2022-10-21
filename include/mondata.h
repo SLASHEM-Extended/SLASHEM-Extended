@@ -322,6 +322,8 @@
 				 ((ptr) == &mons[PM_FIRE_VAMPIRE])? 2 : \
 				 ((ptr) == &mons[PM_GLOWING_DRACONIAN]) ? 2 : \
 				 ((ptr) == &mons[PM_UNDERWATER_THREAT]) ? 2 : \
+				 ((ptr) == &mons[PM_GLOSSO_GOBY]) ? 2 : \
+				 ((ptr) == &mons[PM_GLAMOROUS_GOBY]) ? 2 : \
 				 ((ptr) == &mons[PM_FLAMING_SPHERE]) ? 1 : \
 				 ((ptr) == &mons[PM_CAVE_EXPLORER]) ? 1 : \
 				 ((ptr) == &mons[PM_TORCH_CONVERTER]) ? 1 : \

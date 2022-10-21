@@ -14382,6 +14382,12 @@ loveheelover:
 		if (ptr == &mons[PM_POSEIDONIC_ATLANTEAN]) (void)mongets(mtmp, LASERDENT);
 		if (ptr == &mons[PM_AVENGERIC_ATLANTEAN]) (void)mongets(mtmp, LASERDENT);
 		if (ptr == &mons[PM_GRACHTELS_WHALE]) (void)mongets(mtmp, LADY_BOOTS); /* M4_BLOCKHEELBOOTS */
+		if (ptr == &mons[PM_WRITE_FISH]) (void)mongets(mtmp, SCR_HEALING);
+		if (ptr == &mons[PM_LITERATE_FISH]) (void)mongets(mtmp, SCR_HEALING);
+		if (ptr == &mons[PM_SHISHAMO]) (void)mongets(mtmp, CIGARETTE);
+		if (ptr == &mons[PM_UZAIHANKETSU_O_UKETA_KITSUEN_SHA]) (void)mongets(mtmp, CIGARETTE);
+		if (ptr == &mons[PM_SPEARFISH_REMORA]) (void)mongets(mtmp, SPEAR);
+		if (ptr == &mons[PM_REMORA_HUNTER]) (void)mongets(mtmp, SPEAR);
 
 		if (ptr == &mons[PM_REVOLUTINO_MARI]) {
 			(void)mongets(mtmp, BASTERD_SWORD);
@@ -31172,6 +31178,10 @@ int type;
 		case PM_SOFT_GOLEM: return 45;
 		case PM_DEFF_GOLEM: return 50;
 		case PM_MUD_GOLEM: return 50;
+		case PM_TATTERED_BOOTS: return 10;
+		case PM_EMPTY_BOTTLE: return 1;
+		case PM_CHIPPED_BOTTLE: return 10;
+		case PM_CRACKED_BOTTLE: return 4;
 		case PM_FLUFF_GOLEM: return 60;
 		case PM_DOGOLEM: return 60;
 		case PM_LITTLE_PINOCCHIO: return 70;
