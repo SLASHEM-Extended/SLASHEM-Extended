@@ -7784,6 +7784,123 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, SHOTGUN);
 			 m_initthrow(mtmp, SHOTGUN_SHELL, 30);
 		}
+
+		if (ptr == &mons[PM_BULLETATOR_STRONGHAND]) {
+			(void) mongets(mtmp, ORCISH_DAGGER + rn2(HAWAIIAN_SHIRT - ORCISH_DAGGER) );
+			(void) mongets(mtmp, HAWAIIAN_SHIRT + rn2(LEVITATION_BOOTS + 1 - HAWAIIAN_SHIRT) );
+			(void) mongets(mtmp, ORCISH_DAGGER + rn2(HAWAIIAN_SHIRT - ORCISH_DAGGER) );
+			(void) mongets(mtmp, HAWAIIAN_SHIRT + rn2(LEVITATION_BOOTS + 1 - HAWAIIAN_SHIRT) );
+			(void) mongets(mtmp, ORCISH_DAGGER + rn2(HAWAIIAN_SHIRT - ORCISH_DAGGER) );
+			(void) mongets(mtmp, HAWAIIAN_SHIRT + rn2(LEVITATION_BOOTS + 1 - HAWAIIAN_SHIRT) );
+			(void) mongets(mtmp, ORCISH_DAGGER + rn2(HAWAIIAN_SHIRT - ORCISH_DAGGER) );
+			(void) mongets(mtmp, HAWAIIAN_SHIRT + rn2(LEVITATION_BOOTS + 1 - HAWAIIAN_SHIRT) );
+			(void) mongets(mtmp, ORCISH_DAGGER + rn2(HAWAIIAN_SHIRT - ORCISH_DAGGER) );
+			(void) mongets(mtmp, HAWAIIAN_SHIRT + rn2(LEVITATION_BOOTS + 1 - HAWAIIAN_SHIRT) );
+			(void) mongets(mtmp, ORCISH_DAGGER + rn2(HAWAIIAN_SHIRT - ORCISH_DAGGER) );
+			(void) mongets(mtmp, HAWAIIAN_SHIRT + rn2(LEVITATION_BOOTS + 1 - HAWAIIAN_SHIRT) );
+			(void) mongets(mtmp, ORCISH_DAGGER + rn2(HAWAIIAN_SHIRT - ORCISH_DAGGER) );
+			(void) mongets(mtmp, HAWAIIAN_SHIRT + rn2(LEVITATION_BOOTS + 1 - HAWAIIAN_SHIRT) );
+			(void) mongets(mtmp, ORCISH_DAGGER + rn2(HAWAIIAN_SHIRT - ORCISH_DAGGER) );
+			(void) mongets(mtmp, HAWAIIAN_SHIRT + rn2(LEVITATION_BOOTS + 1 - HAWAIIAN_SHIRT) );
+			(void) mongets(mtmp, ORCISH_DAGGER + rn2(HAWAIIAN_SHIRT - ORCISH_DAGGER) );
+			(void) mongets(mtmp, HAWAIIAN_SHIRT + rn2(LEVITATION_BOOTS + 1 - HAWAIIAN_SHIRT) );
+			(void) mongets(mtmp, ORCISH_DAGGER + rn2(HAWAIIAN_SHIRT - ORCISH_DAGGER) );
+			(void) mongets(mtmp, HAWAIIAN_SHIRT + rn2(LEVITATION_BOOTS + 1 - HAWAIIAN_SHIRT) );
+			(void) mongets(mtmp, ORCISH_DAGGER + rn2(HAWAIIAN_SHIRT - ORCISH_DAGGER) );
+			(void) mongets(mtmp, HAWAIIAN_SHIRT + rn2(LEVITATION_BOOTS + 1 - HAWAIIAN_SHIRT) );
+			(void) mongets(mtmp, ORCISH_DAGGER + rn2(HAWAIIAN_SHIRT - ORCISH_DAGGER) );
+			(void) mongets(mtmp, HAWAIIAN_SHIRT + rn2(LEVITATION_BOOTS + 1 - HAWAIIAN_SHIRT) );
+			(void) mongets(mtmp, ORCISH_DAGGER + rn2(HAWAIIAN_SHIRT - ORCISH_DAGGER) );
+			(void) mongets(mtmp, HAWAIIAN_SHIRT + rn2(LEVITATION_BOOTS + 1 - HAWAIIAN_SHIRT) );
+			(void) mongets(mtmp, ORCISH_DAGGER + rn2(HAWAIIAN_SHIRT - ORCISH_DAGGER) );
+			(void) mongets(mtmp, HAWAIIAN_SHIRT + rn2(LEVITATION_BOOTS + 1 - HAWAIIAN_SHIRT) );
+			(void) mongets(mtmp, ORCISH_DAGGER + rn2(HAWAIIAN_SHIRT - ORCISH_DAGGER) );
+			(void) mongets(mtmp, HAWAIIAN_SHIRT + rn2(LEVITATION_BOOTS + 1 - HAWAIIAN_SHIRT) );
+			(void) mongets(mtmp, ORCISH_DAGGER + rn2(HAWAIIAN_SHIRT - ORCISH_DAGGER) );
+			(void) mongets(mtmp, HAWAIIAN_SHIRT + rn2(LEVITATION_BOOTS + 1 - HAWAIIAN_SHIRT) );
+			(void) mongets(mtmp, ORCISH_DAGGER + rn2(HAWAIIAN_SHIRT - ORCISH_DAGGER) );
+			(void) mongets(mtmp, HAWAIIAN_SHIRT + rn2(LEVITATION_BOOTS + 1 - HAWAIIAN_SHIRT) );
+			(void) mongets(mtmp, ORCISH_DAGGER + rn2(HAWAIIAN_SHIRT - ORCISH_DAGGER) );
+			(void) mongets(mtmp, HAWAIIAN_SHIRT + rn2(LEVITATION_BOOTS + 1 - HAWAIIAN_SHIRT) );
+			(void) mongets(mtmp, ORCISH_DAGGER + rn2(HAWAIIAN_SHIRT - ORCISH_DAGGER) );
+			(void) mongets(mtmp, HAWAIIAN_SHIRT + rn2(LEVITATION_BOOTS + 1 - HAWAIIAN_SHIRT) );
+			(void) mongets(mtmp, ORCISH_DAGGER + rn2(HAWAIIAN_SHIRT - ORCISH_DAGGER) );
+			(void) mongets(mtmp, HAWAIIAN_SHIRT + rn2(LEVITATION_BOOTS + 1 - HAWAIIAN_SHIRT) );
+			(void) mongets(mtmp, ORCISH_DAGGER + rn2(HAWAIIAN_SHIRT - ORCISH_DAGGER) );
+			(void) mongets(mtmp, HAWAIIAN_SHIRT + rn2(LEVITATION_BOOTS + 1 - HAWAIIAN_SHIRT) );
+			(void) mongets(mtmp, ORCISH_DAGGER + rn2(HAWAIIAN_SHIRT - ORCISH_DAGGER) );
+			(void) mongets(mtmp, HAWAIIAN_SHIRT + rn2(LEVITATION_BOOTS + 1 - HAWAIIAN_SHIRT) );
+			(void) mongets(mtmp, ORCISH_DAGGER + rn2(HAWAIIAN_SHIRT - ORCISH_DAGGER) );
+			(void) mongets(mtmp, HAWAIIAN_SHIRT + rn2(LEVITATION_BOOTS + 1 - HAWAIIAN_SHIRT) );
+			(void) mongets(mtmp, ORCISH_DAGGER + rn2(HAWAIIAN_SHIRT - ORCISH_DAGGER) );
+			(void) mongets(mtmp, HAWAIIAN_SHIRT + rn2(LEVITATION_BOOTS + 1 - HAWAIIAN_SHIRT) );
+			(void) mongets(mtmp, ORCISH_DAGGER + rn2(HAWAIIAN_SHIRT - ORCISH_DAGGER) );
+			(void) mongets(mtmp, HAWAIIAN_SHIRT + rn2(LEVITATION_BOOTS + 1 - HAWAIIAN_SHIRT) );
+		}
+
+		if (ptr == &mons[PM_BULLETATOR_HEAVYLOADER]) {
+			(void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_misc_item_new(mtmp));
+			(void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_misc_item_new(mtmp));
+			(void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_misc_item_new(mtmp));
+			(void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_misc_item_new(mtmp));
+			(void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_misc_item_new(mtmp));
+			(void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_misc_item_new(mtmp));
+			(void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_misc_item_new(mtmp));
+			(void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_misc_item_new(mtmp));
+			(void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_misc_item_new(mtmp));
+			(void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_misc_item_new(mtmp));
+			(void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_misc_item_new(mtmp));
+			(void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_misc_item_new(mtmp));
+			(void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_misc_item_new(mtmp));
+			(void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_misc_item_new(mtmp));
+			(void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_misc_item_new(mtmp));
+			(void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_misc_item_new(mtmp));
+			(void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_misc_item_new(mtmp));
+			(void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_misc_item_new(mtmp));
+			(void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_misc_item_new(mtmp));
+			(void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+			(void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		}
+
 		if (ptr == &mons[PM_STONE_MINER]) {
 			(void) mongets(mtmp, PICK_AXE);
 			 m_initthrow(mtmp, ROCK, 25);
@@ -10624,6 +10741,11 @@ loveheelover:
 			(void) mongets(mtmp, BOW);
 			m_initthrow(mtmp, ARROW, 30);
 		}
+		if (mtmp->data == &mons[PM_BULLETATOR_MAFIA_GOON]) {
+			(void) mongets(mtmp, PISTOL);
+			m_initthrow(mtmp, PISTOL_BULLET, 50);
+			m_initthrow(mtmp, PISTOL_BULLET, 50);
+		}
 
 		if (mtmp->data == &mons[PM_SONJA_S_TORN_SNEAKER]) (void) mongets(mtmp, SOFT_SNEAKERS); /* M4_SNEAKERS */
 		if (ptr == &mons[PM_KLINGELING_WENCH]) (void) mongets(mtmp, YITH_TENTACLE);
@@ -11692,6 +11814,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_F_B_I_]) (void) mongets(mtmp, LUCERN_HAMMER);
 		if (mtmp->data == &mons[PM_SCOTLAND_YARD_AGENT]) (void) mongets(mtmp, LUCERN_HAMMER);
 		if (mtmp->data == &mons[PM_KSK_TYPE]) (void) mongets(mtmp, LUCERN_HAMMER);
+		if (mtmp->data == &mons[PM_BULLETATOR_ANNOYER]) (void) mongets(mtmp, PARTISAN + rn2(ORCISH_SPEAR - PARTISAN) );
 
 		if (ptr == &mons[PM_SOLDIERCROTTA]) {
 			  if (rn2(2)) {
@@ -14956,6 +15079,7 @@ loveheelover:
 		if (ptr == &mons[PM_PROFANITY_PRIEST]) (void) mongets(mtmp, SCYTHE);
 		if (ptr == &mons[PM_L_S_BELLS]) (void) mongets(mtmp, BELL);
 		if (ptr == &mons[PM_HARDFOUGHT_LYNCH_MOB_MEMBER]) (void) mongets(mtmp, PITCHFORK);
+		if (ptr == &mons[PM_BULLETATOR_COVERT_OP]) (void) mongets(mtmp, LACQUERED_DANCING_SHOE);
 
 		if (ptr == &mons[PM_ELLA_THE_FEMINIST]) {
 			(void)mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL); /* M4_HAMMERSANDAL */
@@ -23862,6 +23986,11 @@ register int	mmflags;
 		mtmp->isegotype = 1;
 		mtmp->egotype_perfumespreader = 1;
 	}
+	if (ptr == &mons[PM_BULLETATOR_MAFIA_GOON]) {
+		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
+		mtmp->isegotype = 1;
+		mtmp->egotype_metalmafioso = 1;
+	}
 	if (ptr == &mons[PM_FLUIDATOR_MAFFER]) {
 		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
 		mtmp->isegotype = 1;
@@ -23892,7 +24021,17 @@ register int	mmflags;
 		mtmp->isegotype = 1;
 		mtmp->egotype_farter = 1;
 	}
+	if (ptr == &mons[PM_BULLETATOR_MARIKE]) {
+		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
+		mtmp->isegotype = 1;
+		mtmp->egotype_farter = 1;
+	}
 	if (ptr == &mons[PM_FLUIDATOR_PRUMA]) {
+		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
+		mtmp->isegotype = 1;
+		mtmp->egotype_perfumespreader = 1;
+	}
+	if (ptr == &mons[PM_BULLETATOR_ODORATOR]) {
 		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
 		mtmp->isegotype = 1;
 		mtmp->egotype_perfumespreader = 1;
@@ -23903,6 +24042,11 @@ register int	mmflags;
 		mtmp->egotype_deepstatemember = 1;
 	}
 	if (ptr == &mons[PM_DEEPSTATE_DISALLAER]) {
+		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
+		mtmp->isegotype = 1;
+		mtmp->egotype_alladrainer = 1;
+	}
+	if (ptr == &mons[PM_BULLETATOR_DISALLAER]) {
 		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
 		mtmp->isegotype = 1;
 		mtmp->egotype_alladrainer = 1;
@@ -23928,6 +24072,11 @@ register int	mmflags;
 		mtmp->egotype_allivore = 1;
 	}
 	if (ptr == &mons[PM_SING_S_DEEPSTATE_AGENT]) {
+		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
+		mtmp->isegotype = 1;
+		mtmp->egotype_singagent = 1;
+	}
+	if (ptr == &mons[PM_BULLETATOR_SHOEBRINGER]) {
 		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
 		mtmp->isegotype = 1;
 		mtmp->egotype_singagent = 1;

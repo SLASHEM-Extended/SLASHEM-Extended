@@ -5785,6 +5785,8 @@ static const char *epitaphs[] = {
 	"Hey, why isn't my xelnaga allowed to use a submachine gun?! I started in the space base, roles that start there are supposed to be allowed to use all firearms! Why did I have a bunch of deadly bulletators spawn, that's not very fair!",
 	"Yes, that's it, last time I played this game, I just fired my catapult a few times and it's not even very strong but Amy somehow decided it was okay to summon 200 bulletators in response. And she gave them uber stats so that you can't ever hope to kill them before they kill you. Goodbye Amy, I'll play Splicehack instead.",
 	"Well, I was gleefully fighting a throng of monsters in that awakened nefia and then suddenly a yerles cyborg that I didn't even see used the critical particle cannon and I died instantly. Blah to that, I say. My char just doesn't have enough health and therefore I'm always in danger of being instakilled by something that deals too much damage.", /* happened to Amy in Elona */
+	"There's nothing that has only upsides and no downsides... except in unbalanced role-playing games. SLEX doesn't want to be one of those, which is why stuff that is too player-favored needs to be reigned in.",
+	"why are they picking fun combos to play and not what I want them to pick!!! why are they picking races with limbs, why are they picking races without turboassitis, why are they enjoying themselves!!!!", /* by amateurhour */
 
 };
 

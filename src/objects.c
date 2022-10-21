@@ -825,6 +825,7 @@ WEAPON("bec de corbin", "beaked polearm",
 /* bec de corbin must be last polearm, see makemon.c */
 
 /* Spears */
+/* orcish spear must be first */
 WEAPON("orcish spear", "crude spear",
 	0, 1, 0, 600, 12,  3,  5,  7, 0, P,   P_SPEAR, MT_IRON, CLR_BLACK, 1),
 WEAPON("spear", (char *)0,

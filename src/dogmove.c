@@ -1123,6 +1123,8 @@ register int after;	/* this is extra fast monster movement */
 			 (mtmp2->data == &mons[PM_MOLDOUX__THE_DEFENCELESS_MOLD]) ||
 	/* the "spretty" isn't attacked either */
 			 (mtmp2->data == &mons[PM_SPRETTY]) ||
+	/* bulletator zero isn't either */
+			 (mtmp2->data == &mons[PM_BULLETATOR_ZERO]) ||
 	/* your one-way girlfriend is never attacked by pets */
 			 (mtmp2->data == &mons[PM_YOUR_ONE_WAY_GIRLFRIEND]) ||
 	/* if Izchak dies, the player gets disintegrated, so stop pets from killing them

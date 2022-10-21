@@ -4687,6 +4687,10 @@ register struct monst *mtmp;
 		BlackNgWalls = 0L;
 	}
 
+	if (tmp == PM_BULLETATOR_ZERO) {
+		randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
+	}
+
 	if (tmp == PM_MOLDOUX__THE_DEFENCELESS_MOLD) {
 		pline("This monster was under the protection of a Great Wyrm of Power!");
 		verbalize("Harharhar mortal, now you DIE!!!");
