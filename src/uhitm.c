@@ -641,7 +641,7 @@ register struct monst *mtmp;
 
 	if(Role_if(PM_MONK) && !Upolyd) {
 		if(!uwep && (!u.twoweap || !uswapwep) && !uarms && 
-		  (!uarm || (uarm && uarm->otyp >= ROBE && 
+		  (!uarm || (uarm && uarm->otyp >= ELVEN_TOGA && 
 		  	uarm->otyp <= ROBE_OF_WEAKNESS)))
 		  	
 		  tmp += (GushLevel / 3) + 2;
@@ -656,7 +656,7 @@ register struct monst *mtmp;
 		tmp -= 20;
 	}
 
-	if(Role_if(PM_HEDDERJEDI) && uarm && ((uarm->otyp < ROBE) || (uarm->otyp > ROBE_OF_WEAKNESS)) ) {
+	if(Role_if(PM_HEDDERJEDI) && uarm && ((uarm->otyp < ELVEN_TOGA) || (uarm->otyp > ROBE_OF_WEAKNESS)) ) {
 		pline("Your armor is rather cumbersome...");
 		tmp -= 20;
 	}
@@ -732,7 +732,7 @@ register struct monst *mtmp;
 		if (((uwep && is_lightsaber(uwep) && uwep->lamplit) ||
 		    (uswapwep && u.twoweap && is_lightsaber(uswapwep) && uswapwep->lamplit)) &&
 		   (uarm &&
-		   (uarm->otyp < ROBE || uarm->otyp > ROBE_OF_WEAKNESS))){
+		   (uarm->otyp < ELVEN_TOGA || uarm->otyp > ROBE_OF_WEAKNESS))){
 		    char yourbuf[BUFSZ];
 		    You("can't use %s %s effectively in this armor...", shk_your(yourbuf, uwep), xname(uwep));
 		    tmp-=20; // sorry
@@ -4107,7 +4107,7 @@ melatechoice:
 
 	/* Special monk strikes */
 	if (Role_if(PM_MONK) && !Upolyd && !thrown && no_obj &&
-		(!uarm || (uarm && uarm->otyp >= ROBE &&
+		(!uarm || (uarm && uarm->otyp >= ELVEN_TOGA &&
 		 uarm->otyp <= ROBE_OF_WEAKNESS)) && !uarms &&
 		 distu(mon->mx, mon->my) <= 2) {
 	    /* just so we don't need another variable ... */

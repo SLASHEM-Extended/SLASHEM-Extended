@@ -11155,7 +11155,7 @@ int spell;
 	statused = ACURR(urole.spelstat);
 
 	/* Calculate armor penalties */
-	if (uarm && !SpellColorMetal && !(uarm->blessed && !issoviet) && !(uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) 
+	if (uarm && !SpellColorMetal && !(uarm->blessed && !issoviet) && !(uarm->otyp >= ELVEN_TOGA && uarm->otyp <= ROBE_OF_WEAKNESS)) 
 	    splcaster += (issoviet ? 2 : 1);
 
 	/* Robes are body armour in SLASH'EM */
