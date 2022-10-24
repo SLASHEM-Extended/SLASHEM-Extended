@@ -26438,11 +26438,11 @@ register struct permonst *ptr;
 		if (is_jonadabmonster(ptr)) {
 
 			if (isscriptor && (ptr->msound == MS_FLUIDATOR) && u.fluidatorwantedlevel) return TRUE;
-			if (isscriptor && (ptr->msound == MS_BULLETATOR) && u.bulletatorwantedlevel) return TRUE;
+			if (isscriptor && (ptr->msound == MS_BULLETATOR) && (u.bulletatorwantedlevel || u.bulletatortimer)) return TRUE;
 			if (isscriptor && (ptr->msound == MS_POMPEJI) && u.pompejiwantedlevel) return TRUE;
 			if (isscriptor && (ptr->msound != MS_POMPEJI) && (ptr->msound != MS_FLUIDATOR) && (ptr->msound != MS_BULLETATOR)) return TRUE;
 		} else if ((ptr->msound == MS_FLUIDATOR) && u.fluidatorwantedlevel) return TRUE;
-		else if ((ptr->msound == MS_BULLETATOR) && u.bulletatorwantedlevel) return TRUE;
+		else if ((ptr->msound == MS_BULLETATOR) && (u.bulletatorwantedlevel || u.bulletatortimer)) return TRUE;
 		else if ((ptr->msound == MS_POMPEJI) && u.pompejiwantedlevel) return TRUE;
 	}
 	return FALSE;
@@ -28013,7 +28013,7 @@ loopback:
 		if (ct > 0 && (FemtrapActiveLaura && (ptr->msound == MS_PANTS))) ct += 50;
 		if (ct > 0 && (FemtrapActiveLaura && (ptr->msound == MS_SHOE))) ct += 50;
 		if (ct > 0 && u.pompejiwantedlevel && (ptr->msound == MS_POMPEJI)) ct += min(1000, u.pompejiwantedlevel);
-		if (ct > 0 && u.bulletatorwantedlevel && (ptr->msound == MS_BULLETATOR)) {
+		if (ct > 0 && (u.bulletatorwantedlevel || u.bulletatortimer) && (ptr->msound == MS_BULLETATOR)) {
 			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED) ct += 3;
 			if (P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) ct += 2;
 			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED && P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) ct += 20;
@@ -29548,7 +29548,7 @@ int     spc;
 		if ((FemtrapActiveLaura && (mons[last].msound == MS_PANTS))) num += 50;
 		if ((FemtrapActiveLaura && (mons[last].msound == MS_SHOE))) num += 50;
 		if (u.pompejiwantedlevel && (mons[last].msound == MS_POMPEJI)) num += min(1000, u.pompejiwantedlevel);
-		if (u.bulletatorwantedlevel && (mons[last].msound == MS_BULLETATOR)) {
+		if ((u.bulletatorwantedlevel || u.bulletatortimer) && (mons[last].msound == MS_BULLETATOR)) {
 			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED) num += 3;
 			if (P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) num += 2;
 			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED && P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) num += 20;
@@ -30756,7 +30756,7 @@ int     spc;
 		if ((FemtrapActiveLaura && (mons[first].msound == MS_PANTS))) num -= 50;
 		if ((FemtrapActiveLaura && (mons[first].msound == MS_SHOE))) num -= 50;
 		if (u.pompejiwantedlevel && (mons[first].msound == MS_POMPEJI)) num -= min(1000, u.pompejiwantedlevel);
-		if (u.bulletatorwantedlevel && (mons[first].msound == MS_BULLETATOR)) {
+		if ((u.bulletatorwantedlevel || u.bulletatortimer) && (mons[first].msound == MS_BULLETATOR)) {
 			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED) num -= 3;
 			if (P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) num -= 2;
 			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED && P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) num -= 20;

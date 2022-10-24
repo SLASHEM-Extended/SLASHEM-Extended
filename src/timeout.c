@@ -681,6 +681,11 @@ nh_timeout()
 	    attrcurse();
 	}
 
+	if (u.bulletatortimer) {
+		u.bulletatortimer--;
+		if (u.bulletatortimer < 0) u.bulletatortimer = 0;
+	}
+
 	if (!rn2(1000) && have_intrinsiclossstone() && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
 		You_hear("maniacal laughter!");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");

@@ -497,19 +497,47 @@ int thrown;
 	}
 
 	if (launcher && (launcher->otyp == SUBMACHINE_GUN || launcher->otyp == ASSAULT_RIFLE || launcher->otyp == KALASHNIKOV || launcher->otyp == AUTO_SHOTGUN ) && launcher->altmode == WP_MODE_AUTO && !bulletator_allowed(1)) {
-		if (launcher->otyp == SUBMACHINE_GUN) u.bulletatorwantedlevel += 3;
-		if (launcher->otyp == ASSAULT_RIFLE) u.bulletatorwantedlevel += 10;
-		if (launcher->otyp == AUTO_SHOTGUN) u.bulletatorwantedlevel += 3;
-		if (launcher->otyp == KALASHNIKOV) u.bulletatorwantedlevel += 20;
+		if (launcher->otyp == SUBMACHINE_GUN) {
+			u.bulletatorwantedlevel += 3;
+			u.bulletatortimer += 300;
+			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED && P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) u.bulletatortimer += 300;
+		}
+		if (launcher->otyp == ASSAULT_RIFLE) {
+			u.bulletatorwantedlevel += 10;
+			u.bulletatortimer += 1000;
+			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED && P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) u.bulletatortimer += 1000;
+		}
+		if (launcher->otyp == AUTO_SHOTGUN) {
+			u.bulletatorwantedlevel += 3;
+			u.bulletatortimer += 1000;
+			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED && P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) u.bulletatortimer += 1000;
+		}
+		if (launcher->otyp == KALASHNIKOV) {
+			u.bulletatorwantedlevel += 20;
+			u.bulletatortimer += 2000;
+			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED && P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) u.bulletatortimer += 2000;
+		}
 		if (!u.bulletatorgun) {
 			pline("You're not allowed to use automatic firearms. Bulletators have been alerted.");
 			u.bulletatorgun = TRUE;
 		}
 	}
 	if (launcher && (launcher->otyp == ARM_BLASTER || launcher->otyp == HEAVY_MACHINE_GUN || launcher->otyp == BFG ) && !bulletator_allowed(1)) {
-		if (launcher->otyp == ARM_BLASTER) u.bulletatorwantedlevel += 15;
-		if (launcher->otyp == HEAVY_MACHINE_GUN) u.bulletatorwantedlevel += 50;
-		if (launcher->otyp == BFG) u.bulletatorwantedlevel += 50;
+		if (launcher->otyp == ARM_BLASTER) {
+			u.bulletatorwantedlevel += 15;
+			u.bulletatortimer += 1500;
+			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED && P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) u.bulletatortimer += 1500;
+		}
+		if (launcher->otyp == HEAVY_MACHINE_GUN) {
+			u.bulletatorwantedlevel += 50;
+			u.bulletatortimer += 5000;
+			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED && P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) u.bulletatortimer += 5000;
+		}
+		if (launcher->otyp == BFG) {
+			u.bulletatorwantedlevel += 50;
+			u.bulletatortimer += 5000;
+			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED && P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) u.bulletatortimer += 5000;
+		}
 		if (!u.bulletatorgun) {
 			pline("You're not allowed to use automatic firearms. Bulletators have been alerted.");
 			u.bulletatorgun = TRUE;
@@ -517,6 +545,7 @@ int thrown;
 	}
 	if (launcher && launcher->otyp == DEMON_CROSSBOW && launcher->altmode == WP_MODE_AUTO && !bulletator_allowed(3)) {
 		u.bulletatorwantedlevel += 2;
+		u.bulletatortimer += 200;
 		if (!u.bulletatorxbow) {
 			pline("You're not allowed to use the demon crossbow. Bulletators have been alerted.");
 			u.bulletatorxbow = TRUE;
@@ -524,6 +553,7 @@ int thrown;
 	}
 	if (launcher && launcher->otyp == HYDRA_BOW && !bulletator_allowed(2)) {
 		u.bulletatorwantedlevel += 1;
+		u.bulletatortimer += 100;
 		if (!u.bulletatorbow) {
 			pline("You're not allowed to use the hydra bow. Bulletators have been alerted.");
 			u.bulletatorbow = TRUE;
@@ -532,6 +562,7 @@ int thrown;
 
 	if (launcher && launcher->otyp == CATAPULT && !bulletator_allowed(4)) {
 		u.bulletatorwantedlevel += 2;
+		u.bulletatortimer += 200;
 		if (!u.bulletatorsling) {
 			pline("You're not allowed to use the catapult. Bulletators have been alerted.");
 			u.bulletatorsling = TRUE;

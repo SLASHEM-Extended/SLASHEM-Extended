@@ -4677,7 +4677,16 @@ newbossFLUID:
 		      cx = rn2(COLNO);
 		      cy = rn2(ROWNO);
 
-			int aggroamount = min(u.bulletatorwantedlevel, 10);
+			int maxaggro = 10;
+
+			if (P_MAX_SKILL(P_FIREARM) != P_ISRESTRICTED) maxaggro -= 3;
+			if (P_MAX_SKILL(P_GUN_CONTROL) != P_ISRESTRICTED) maxaggro -= 2;
+			if ((P_MAX_SKILL(P_FIREARM) != P_ISRESTRICTED) && (P_MAX_SKILL(P_GUN_CONTROL) != P_ISRESTRICTED)) {
+				maxaggro = rnd(maxaggro);
+			}
+
+			int aggroamount = min(u.bulletatorwantedlevel, maxaggro);
+
 
 			u.bulletatorwantedlevel -= aggroamount;
 			if (u.bulletatorwantedlevel < 0) u.bulletatorwantedlevel = 0; /* fail safe */

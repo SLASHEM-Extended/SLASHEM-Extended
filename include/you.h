@@ -1499,6 +1499,7 @@ struct you {
 	int fluidatorwantedlevel;	/* for MS_FLUIDATOR */
 	int fluidatorwarning;	/* game should warn you if you're about to increase your fluidator wanted level */
 	int bulletatorwantedlevel;	/* for MS_BULLETATOR */
+	int bulletatortimer;
 	boolean bulletatorgun;
 	boolean bulletatorbow;
 	boolean bulletatorxbow;

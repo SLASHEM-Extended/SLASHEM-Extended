@@ -11266,6 +11266,7 @@ u_init()
 	u.fluidatorwantedlevel = 0;
 	u.fluidatorwarning = 0;
 	u.bulletatorwantedlevel = 0;
+	u.bulletatortimer = 0;
 	u.bulletatorgun = 0;
 	u.bulletatorbow = 0;
 	u.bulletatorxbow = 0;
