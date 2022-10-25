@@ -12572,9 +12572,18 @@ pastds2:
 
 			}
 
-			if (Race_if(PM_BACTERIA) && u.uhpmax > 4 && !Upolyd && u.uhp <= ((u.uhpmax / 5) + 1)) {
+			/* super regene from Elona; if it's infinite with no downside, it's OP, so we have to do something
+			 * I decided that it slowly contaminates you, works less well if you're very contaminated, and
+			 * stops working entirely if you're fatally contaminated --Amy */
+			if (Race_if(PM_BACTERIA) && u.uhpmax > 4 && u.contamination < 1000 && !Upolyd && u.uhp <= ((u.uhpmax / 5) + 1)) {
+				int superregeneamount = 5;
+				if (u.contamination > 200) superregeneamount = 4;
+				if (u.contamination > 400) superregeneamount = 3;
+				if (u.contamination > 600) superregeneamount = 2;
+				if (u.contamination > 800) superregeneamount = 1;
+				contaminate(1, FALSE);
 				pline("*Super Regene*"); /* does not work for polymorphed HP (intentional) --Amy */
-				u.uhp += 5;
+				u.uhp += superregeneamount;
 				if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				flags.botl = 1;
 			}
