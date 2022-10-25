@@ -1315,6 +1315,9 @@ struct monst *mon;
 void
 fix_petrification()
 {
+	if (Stoned && !(u.stonedchilltimer)) {
+		u.stonedchilltimer = rnz(250); /* planned to be rnz(1000) which caused amateurhour to spit out his tea */
+	}
 	Stoned = 0;
 	delayed_killer = 0;
 	if (FunnyHallu)

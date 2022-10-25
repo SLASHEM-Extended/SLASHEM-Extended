@@ -5826,7 +5826,7 @@ register struct obj *otmp;
 			if (Disint_resistance && rn2(StrongDisint_resistance ? 1000 : 100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 			    You("are not disintegrated.");
 			    break;
-	            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
+	            } else if (Invulnerable || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
 	                pline("You are unharmed!");
 	                break;
 

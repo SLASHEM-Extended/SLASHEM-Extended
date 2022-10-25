@@ -2431,7 +2431,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			goto beheadingdone;
 		} else {
 			/* Invulnerable player won't be bisected */
-			if (bigmonst(youmonst.data) || StrongDiminishedBleeding || Invulnerable || (Stoned_chiller && Stoned) ) {
+			if (bigmonst(youmonst.data) || StrongDiminishedBleeding || Invulnerable || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
 				pline("%s cuts deeply into you!",
 				      magr ? Monnam(magr) : wepdesc);
 				*dmgptr *= 2;
@@ -2548,7 +2548,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			}
 			*dmgptr = 2 * (Upolyd ? u.mh : u.uhp)
 				  + FATAL_DAMAGE_MODIFIER;
-			if (Invulnerable || (Stoned_chiller && Stoned)) {
+			if (Invulnerable || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
 				pline("%s slices into your %s.",
 				      wepdesc, body_part(NECK));
 				willreturntrue = 1;

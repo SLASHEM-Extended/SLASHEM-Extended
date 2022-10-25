@@ -28111,6 +28111,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Most roles will encounter bulletators when they use the demon crossbow. Be careful, since those guys are tough.",
 	"If you find a hydra bow, don't get too excited unless you're a dedicated archer role, as everyone else will meet a bulletator every time they fire a volley. And those aren't a pushover.",
 	"Use the catapult sparingly unless you're something like a rocker, because most characters will draw the bulletator squad's attention when firing that thing and the bulletators will probably make quick work of you.",
+	"damn, I guess I'll also have to go over all the ways in which the player could be petrified, and make it so that using any which you can easily control will also deactivate stoned chilling for rnz(any number high enough to make amateurhour spit out his tea) turns",
 
 };
 

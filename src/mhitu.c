@@ -5804,7 +5804,7 @@ newboss:
 
 	if (mtmp->data == &mons[PM_GIANT_ENEMY_CRAB]) {
 		if(!range2 && foundyou && (tmp > (j = rnd(20+i)))) {
-			if (!rn2(20) && !bigmonst(youmonst.data) && !StrongDiminishedBleeding && !Invulnerable && !(Stoned_chiller && Stoned) ) {
+			if (!rn2(20) && !bigmonst(youmonst.data) && !StrongDiminishedBleeding && !Invulnerable && !(Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
 				pline("Bad luck - the giant enemy crab bisects you. Goodbye.");
 				losehp(2 * (Upolyd ? u.mh : u.uhp) + 200, "being bisected by a giant enemy crab",KILLED_BY);
 			}
@@ -5816,7 +5816,7 @@ newboss:
 	if (mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || mtmp->data == &mons[PM_SANDRA_S_MINDDRILL_SANDAL]) {
 
 		if(!range2 && foundyou && (tmp > (j = rnd(20+i)))) {
-			if (!rn2(20) && !bigmonst(youmonst.data) && !StrongDiminishedBleeding && !Invulnerable && !(Stoned_chiller && Stoned) ) {
+			if (!rn2(20) && !bigmonst(youmonst.data) && !StrongDiminishedBleeding && !Invulnerable && !(Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
 				pline("Bad luck - the elder priest bisects you. Goodbye.");
 				losehp(2 * (Upolyd ? u.mh : u.uhp) + 200, "being bisected by the elder priest",KILLED_BY);
 			}
@@ -7038,7 +7038,7 @@ hitmu(mtmp, mattk)
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
 		if (rn2(3)) break;
-                if (!diseasemu(mdat) || Invulnerable || (Stoned_chiller && Stoned)) dmg = 0;
+                if (!diseasemu(mdat) || Invulnerable || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) dmg = 0;
 		break;
 
 	    case AD_SPEL:
@@ -9496,7 +9496,7 @@ dopois:
 		if (Disint_resistance && rn2(StrongDisint_resistance ? 1000 : 100) && !(evilfriday && (uarms || uarmc || uarm || uarmu)) ) {
 		    You("are not disintegrated.");
 		    break;
-            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
+            } else if (Invulnerable || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
                 pline("You are unharmed!");
                 break;
 		} else if (uarms) {
@@ -9541,7 +9541,7 @@ dopois:
 		if (Disint_resistance && rn2(StrongDisint_resistance ? 1000 : 100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 		    You("are not disintegrated.");
 		    break;
-            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
+            } else if (Invulnerable || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
                 pline("You are unharmed!");
                 break;
 		} else if (uarms) {
@@ -9928,7 +9928,7 @@ dopois:
 		(void) diseasemu(mdat); /* plus the normal damage */
 		/* No damage if invulnerable; setting dmg zero prevents
 		 * "You are unharmed!" after a sickness inducing attack */
-		if (Invulnerable || (Stoned_chiller && Stoned)) dmg = 0;
+		if (Invulnerable || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) dmg = 0;
 		break;
 	    case AD_FAMN:
 		pline("%s reaches out, and your body shrivels.",
@@ -12955,7 +12955,7 @@ do_stone2:
 		if (Disint_resistance && rn2(StrongDisint_resistance ? 1000 : 100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 		    You("are not disintegrated.");
 		    break;
-            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
+            } else if (Invulnerable || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
                 pline("You are unharmed!");
                 break;
 		}
@@ -13002,7 +13002,7 @@ do_stone2:
 		if (Disint_resistance && rn2(StrongDisint_resistance ? 1000 : 100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 		    You("are not disintegrated.");
 		    break;
-            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
+            } else if (Invulnerable || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
                 pline("You are unharmed!");
                 break;
 		}
@@ -14329,7 +14329,7 @@ common:
 		if (Disint_resistance && rn2(StrongDisint_resistance ? 1000 : 100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 		    You("are not disintegrated.");
 		    break;
-            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
+            } else if (Invulnerable || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
                 pline("You are unharmed!");
                 break;
 		}
@@ -14373,7 +14373,7 @@ common:
 		if (Disint_resistance && rn2(StrongDisint_resistance ? 1000 : 100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 		    You("are not disintegrated.");
 		    break;
-            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
+            } else if (Invulnerable || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
                 pline("You are unharmed!");
                 break;
 		}
@@ -15884,7 +15884,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if (Disint_resistance && rn2(StrongDisint_resistance ? 1000 : 100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 		    You("are not disintegrated.");
 		    break;
-            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
+            } else if (Invulnerable || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
                 pline("You are unharmed!");
                 break;
 
@@ -15937,7 +15937,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if (Disint_resistance && rn2(StrongDisint_resistance ? 1000 : 100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 		    You("are not disintegrated.");
 		    break;
-            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
+            } else if (Invulnerable || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
                 pline("You are unharmed!");
                 break;
 
@@ -18798,7 +18798,7 @@ register int n;
 
 	if (isfriday && !rn2(50)) n += rnd(n);
 
-	if (Invulnerable || (StrongWonderlegs && !rn2(10) && Wounded_legs) || (Stoned_chiller && Stoned)) n=0;
+	if (Invulnerable || (StrongWonderlegs && !rn2(10) && Wounded_legs) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) n=0;
 
 	if (u.metalguard) {
 		u.metalguard = 0;

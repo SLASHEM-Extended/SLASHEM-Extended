@@ -11961,7 +11961,7 @@ boolean ranged;
 		if (Disint_resistance && rn2(StrongDisint_resistance ? 1000 : 100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 		    You("are mildly shaked.");
 		    break;
-            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
+            } else if (Invulnerable || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
                 pline("You are unharmed!");
                 break;
 		} else if (uarms) {
@@ -12006,7 +12006,7 @@ boolean ranged;
 		if (Disint_resistance && rn2(StrongDisint_resistance ? 1000 : 100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 		    You("are mildly shaked.");
 		    break;
-            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
+            } else if (Invulnerable || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
                 pline("You are unharmed!");
                 break;
 		} else if (uarms) {

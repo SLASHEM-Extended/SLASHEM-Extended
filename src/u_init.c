@@ -11254,6 +11254,7 @@ u_init()
 	u.mushroompoles = 0;
 	u.grenadoninlauncher = 0;
 	u.nataljetrapturns = 0;
+	u.stonedchilltimer = 0;
 	u.moneydebt = 0;
 	u.havebeeninludios = 0;
 	u.maxrndmonstchoicecount = 0;

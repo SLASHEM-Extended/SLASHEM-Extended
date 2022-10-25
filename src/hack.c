@@ -4941,7 +4941,7 @@ int k_format; /* WAC k_format is an int */
 	if (isfriday && !rn2(50)) n += rnd(n);
 
 	/* [max] Invulnerable no dmg */
-	if (Invulnerable || (Stoned_chiller && Stoned)) {
+	if (Invulnerable || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
 		n = 0;
 		pline("You are unharmed!");
 		/* NOTE: DO NOT RETURN - losehp is also called to check for death 

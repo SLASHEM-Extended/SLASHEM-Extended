@@ -688,6 +688,8 @@ struct you {
 	int fumbleduration;	/* for wand of fumbling */
 	int antimagicshell;	/* for scroll of antimagic */
 
+	int stonedchilltimer;	/* to control whether you get the damage reduction */
+
 	int soviettemporary;	/* for fleecey light */
 	int evilvartemporary;	/* for fleecey light */
 

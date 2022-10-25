@@ -1353,7 +1353,7 @@
 
 #define HHalf_spell_damage	u.uprops[HALF_SPDAM].intrinsic
 #define EHalf_spell_damage	u.uprops[HALF_SPDAM].extrinsic
-#define IntHalf_spell_damage	(HHalf_spell_damage || (Race_if(PM_BOVER) && u.usteed))
+#define IntHalf_spell_damage	(HHalf_spell_damage || (Stoned_chiller && Stoned && !(u.stonedchilltimer)) || (Race_if(PM_BOVER) && u.usteed))
 #define ExtHalf_spell_damage	(EHalf_spell_damage || (powerfulimplants() && uimplant && uimplant->oartifact == ART_WARY_PROTECTORATE) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_POTATOROK) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == HALF_SPDAM) ) )
 
 #define Half_spell_damage	(((IntHalf_spell_damage && u.nonintrinsicproperty != HALF_SPDAM) || (ExtHalf_spell_damage && u.nonextrinsicproperty != HALF_SPDAM)) && !Race_if(PM_KUTAR) && !NoHalf_spell_damage)
@@ -1363,7 +1363,7 @@
 
 #define HHalf_physical_damage	u.uprops[HALF_PHDAM].intrinsic
 #define EHalf_physical_damage	u.uprops[HALF_PHDAM].extrinsic
-#define IntHalf_physical_damage	(HHalf_physical_damage || (uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) || (Race_if(PM_BOVER) && u.usteed))
+#define IntHalf_physical_damage	(HHalf_physical_damage || (Stoned_chiller && Stoned && !(u.stonedchilltimer)) || (uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) || (Race_if(PM_BOVER) && u.usteed))
 #define ExtHalf_physical_damage	(EHalf_physical_damage || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == HALF_PHDAM) ) || (bmwride(ART_PANZER_TANK)) || (uwep && uwep->otyp == SECRET_WHIP) || (uwep && uwep->otyp == ETERNAL_POLE) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_RNG_S_EXTRAVAGANZA) || (uarmf && uarmf->oartifact == ART_HUGGING__GROPING_AND_STROK && u.ustuck) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_POTATOROK) || (uarmh && itemhasappearance(uarmh, APP_CLOUDY_HELMET) && isok(u.ux, u.uy) && IS_CLOUD(levl[u.ux][u.uy].typ) ) || (uarmc && (moves % 10 == 0) && itemhasappearance(uarmc, APP_SOFT_CLOAK) ) || (ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) )
 
 #define Half_physical_damage	(((IntHalf_physical_damage && u.nonintrinsicproperty != HALF_PHDAM) || (ExtHalf_physical_damage && u.nonextrinsicproperty != HALF_PHDAM)) && !NoHalf_physical_damage)

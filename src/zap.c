@@ -6718,7 +6718,7 @@ boolean ordinary;
 			if (Disint_resistance && rn2(StrongDisint_resistance ? 1000 : 100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 			    You("are not disintegrated.");
 			    break;
-	            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
+	            } else if (Invulnerable || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
 	                pline("You are unharmed!");
 	                break;
 			} else if (uarms) {
@@ -7137,7 +7137,7 @@ boolean ordinary;
 			  : "You seem no deader than before.");
 			break;
 		    }
-		    if (Invulnerable || (StrongWonderlegs && !rn2(10) && Wounded_legs) || (Stoned_chiller && Stoned)) {
+		    if (Invulnerable || (StrongWonderlegs && !rn2(10) && Wounded_legs) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
 			pline("You are unharmed!");
 			break;
 		    }
@@ -9019,7 +9019,7 @@ xchar sx, sy;
 		if (Disint_resistance && rn2(StrongDisint_resistance ? 1000 : 100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 		    You("are not disintegrated.");
 		    break;
-            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
+            } else if (Invulnerable || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
                 pline("You are unharmed!");
                 break;
 		} else if (uarms) {
@@ -9056,7 +9056,7 @@ xchar sx, sy;
 		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		pline("You resist the attack, but it hurts!");
 		break;
-	    } else if (Invulnerable || (StrongWonderlegs && !rn2(10) && Wounded_legs) || (Stoned_chiller && Stoned)) {
+	    } else if (Invulnerable || (StrongWonderlegs && !rn2(10) && Wounded_legs) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
 		dam = 0;
 		pline("You are unharmed!");
 		break;
