@@ -243,7 +243,7 @@ boolean digest_meal;
 	}
 
 	/* super regene */
-	if (mon->data == &mons[PM_MESHERA_ALPHA_DEFORMED_ANGEL] || mon->data == &mons[PM_TESTER] || mon->data == &mons[PM_TEA_HUSSY] || mon->data == &mons[PM_OUROBOROS] || mon->data == &mons[PM_GENUINE_PREHISTORIC_FISH] || mon->data == &mons[PM_BILLION_YEAR_FISH] || mon->data == &mons[PM_UNITDEAD_QUEEN] || mon->data == &mons[PM_UNITDEAD_KING] || mon->data == &mons[PM_REGULUS_THE_ALTERED] || mon->data == &mons[PM_SELF_HEALER] || mon->data == &mons[PM_ZANAN_ENHANCED_SOLDIER] || mon->data == &mons[PM_VANESSA_ENHANCED_SOLDIER] || mon->data == &mons[PM_SUPERREGENEBOROS] || mon->data == &mons[PM_JUERE_DEMON_SOLDIER] || mon->data == &mons[PM_DIGGING_ON_FARMER] || mon->data == &mons[PM_JENNIFER_DEMON_SOLDIER] || mon->data == &mons[PM_ARIANE__LADY_OF_THE_ELEMENTS] || mon->data == &mons[PM_RENAI_OVER_MESHERA] || mon->data == &mons[PM_PATIENT_ZERO] || mon->data == &mons[PM_MISSU] || (FemtrapActiveGudrun && mon->female && humanoid(mon->data)) ) {
+	if (mon->data == &mons[PM_MESHERA_ALPHA_DEFORMED_ANGEL] || mon->data == &mons[PM_TESTER] || mon->data == &mons[PM_TEA_HUSSY] || mon->data == &mons[PM_OUROBOROS] || mon->data == &mons[PM_SUPER_FAST_REGENERATING_TROLL] || mon->data == &mons[PM_OLOG_THAT_COULD_HAVE_BEEN] || mon->data == &mons[PM_GENUINE_PREHISTORIC_FISH] || mon->data == &mons[PM_BILLION_YEAR_FISH] || mon->data == &mons[PM_UNITDEAD_QUEEN] || mon->data == &mons[PM_UNITDEAD_KING] || mon->data == &mons[PM_REGULUS_THE_ALTERED] || mon->data == &mons[PM_SELF_HEALER] || mon->data == &mons[PM_ZANAN_ENHANCED_SOLDIER] || mon->data == &mons[PM_VANESSA_ENHANCED_SOLDIER] || mon->data == &mons[PM_SUPERREGENEBOROS] || mon->data == &mons[PM_TELHUREZA_HOUSE_GUARD] || mon->data == &mons[PM_JUERE_DEMON_SOLDIER] || mon->data == &mons[PM_DIGGING_ON_FARMER] || mon->data == &mons[PM_JENNIFER_DEMON_SOLDIER] || mon->data == &mons[PM_ARIANE__LADY_OF_THE_ELEMENTS] || mon->data == &mons[PM_RENAI_OVER_MESHERA] || mon->data == &mons[PM_PATIENT_ZERO] || mon->data == &mons[PM_MISSU] || (FemtrapActiveGudrun && mon->female && humanoid(mon->data)) ) {
 		mon->mhp += 20;
 		if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
 	}
@@ -874,6 +874,10 @@ register struct monst *mtmp;
 			u.cnd_photo_op++;
 			mtmp->phototaken = TRUE;
 		}
+	}
+
+	if (mdat == &mons[PM_FUCKED_UP_RULER]) {
+		if (TimerunBug < 200) TimerunBug += 200;
 	}
 
 	/* jonadab loooooooves polka music <3 */
@@ -3463,7 +3467,7 @@ register int after;
 	if (mtmp->mfrenzied && mtmp->mpeaceful) mtmp->mpeaceful = 0;
 	if (mtmp->mfrenzied && mtmp->mtame) mtmp->mtame = 0;
 
-	if (mtmp->data->mlet == S_TURRET || stationary(mtmp->data) || ((is_hider(mtmp->data) || mtmp->egotype_hide || mtmp->egotype_mimic) && (mtmp->mundetected || mtmp->m_ap_type == M_AP_FURNITURE || mtmp->m_ap_type == M_AP_OBJECT) ) ) {
+	if (mtmp->data->mlet == S_TURRET || (mtmp->data == &mons[PM_SECRETIVE_INFORMANT] && !mtmp->codeguessed) || stationary(mtmp->data) || ((is_hider(mtmp->data) || mtmp->egotype_hide || mtmp->egotype_mimic) && (mtmp->mundetected || mtmp->m_ap_type == M_AP_FURNITURE || mtmp->m_ap_type == M_AP_OBJECT) ) ) {
 
 		if (mtmp->meating) { /* special case here by Amy, otherwise they'd never finish eating! */
 			mtmp->meating--;

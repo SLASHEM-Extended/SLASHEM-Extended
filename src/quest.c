@@ -372,7 +372,7 @@ STATIC_OVL void
 prisoner_speaks (mtmp)
 	register struct monst *mtmp;
 {
-	if ((mtmp->data == &mons[PM_PRISONER] || mtmp->data == &mons[PM_CASTLE_PRISONER] || mtmp->data == &mons[PM_YOUR_BROTHER] || mtmp->data == &mons[PM_YOUR_SISTER] || mtmp->data == &mons[PM_OCCASIONAL_FRIEND] || mtmp->data == &mons[PM_GIRL_OUTSIDE_GANG] || mtmp->data == &mons[PM_GRAVITY_STRIKER] || mtmp->data == &mons[PM_POEZ_PRESIDENT] || mtmp->data == &mons[PM_IDIOT_HOME_PRINCESS]) &&
+	if ((mtmp->data == &mons[PM_PRISONER] || mtmp->data == &mons[PM_CASTLE_PRISONER] || mtmp->data == &mons[PM_YLVA_PRISONER] || mtmp->data == &mons[PM_YOUR_BROTHER] || mtmp->data == &mons[PM_YOUR_SISTER] || mtmp->data == &mons[PM_OCCASIONAL_FRIEND] || mtmp->data == &mons[PM_GIRL_OUTSIDE_GANG] || mtmp->data == &mons[PM_GRAVITY_STRIKER] || mtmp->data == &mons[PM_POEZ_PRESIDENT] || mtmp->data == &mons[PM_IDIOT_HOME_PRINCESS]) &&
 			(mtmp->mstrategy & STRAT_WAITMASK)) {
 	    /* Awaken the prisoner */
 	    if (canseemon(mtmp))

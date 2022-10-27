@@ -2084,6 +2084,8 @@ breamu(mtmp, mattk)			/* monster breathes at you (ranged) */
 				if (isangbander) pline("It breathes.");
 				else You_hear("an exhaling sound.");
 			}
+			if (mtmp->data == &mons[PM_AUTO_AIM_CHEATAH]) u.uprops[DEAC_REFLECTING].intrinsic += 5;
+
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		    buzz((int) (-20 - (typ-1)), (rn2(2) ? (int)mattk->damn : (int)mattk->damd ),
 			 mtmp->mx, mtmp->my, sgn(tbx), sgn(tby));

@@ -2352,6 +2352,65 @@ register struct monst *mtmp;
 	    quest_chat(mtmp);
 	    break;
 	case MS_SELL: /* pitch, pay, total */
+
+		if (mtmp->data == &mons[PM_BAKER]) {
+			verbalize("Want a square meal? (100 zorkmids)");
+			if (yn("Accept the offer?") == 'y') {
+				if (u.ugold < 100) {
+					You("check your wallet and shake your head.");
+				} else {
+					u.ugold -= 100;
+					lesshungry(100);
+					pline("The taste is not bad.");
+				}
+			}
+		}
+
+		if (mtmp->data == &mons[PM_ELONA_TRADER]) {
+			verbalize("Do you want to trade 2000 zorkmids for a random item?");
+			if (yn("Accept the offer?") == 'y') {
+				if (u.ugold < 2000) {
+					You("check your wallet and shake your head.");
+				} else {
+					struct obj *udrink;
+					u.ugold -= 2000;
+					udrink = mkobj(RANDOM_CLASS, TRUE, FALSE);
+					if (udrink) {
+						dropy(udrink);
+						stackobj(udrink);
+						verbalize("Alright, check the ground below you!");
+					} else {
+						u.ugold += 1800;
+						verbalize("Huh, it seems that there's some thief around who stole the item just as you went to pick it up! I'll give you a refund, minus an administration fee of 200 zorkmids of course.");
+					}
+				}
+			}
+		}
+
+		if (mtmp->data == &mons[PM_ELONA_INNKEEPER]) {
+			verbalize("Hey, do you want a refreshing drink? Just 1000 zorkmids!");
+			if (yn("Accept the offer?") == 'y') {
+				if (u.ugold < 1000) {
+					You("check your wallet and shake your head.");
+				} else {
+					struct obj *udrink;
+					u.ugold -= 1000;
+					udrink = mksobj(POT_BOOZE, TRUE, FALSE, FALSE);
+					if (udrink) {
+						udrink->known = udrink->dknown = 1;
+						udrink->finalcancel = 1;
+						dropy(udrink);
+						stackobj(udrink);
+						verbalize("There you go, I placed it at your feet!");
+					} else {
+						verbalize("Oh sorry, we're out of stock.");
+						u.ugold += 1000;
+					}
+
+				}
+			}
+		}
+
 	    shk_chat(mtmp);
 	    break;
 	case MS_VAMPIRE:
@@ -5452,7 +5511,7 @@ findmorebolts:
 		if (u.durirequest == 1) {
 			u.durirequest = 0;
 			bad_artifact();
-			if (mtmp->data == &mons[PM_BLACKSMITH]) verbalize("Here's your artifact. Watch out, it's cursed and may well have downsides.");
+			if (mtmp->data == &mons[PM_BLACKSMITH] || mtmp->data == &mons[PM_ELONA_BLACKSMITH]) verbalize("Here's your artifact. Watch out, it's cursed and may well have downsides.");
 			else verbalize("Here, I'm supposed to give you this cursed artifact from the blacksmith. Watch out, it may well have downsides.");
 			break;
 		}
@@ -5510,12 +5569,12 @@ findmorebolts:
 
 			if (!havegifts) u.ugifts--;
 
-			if (mtmp->data == &mons[PM_BLACKSMITH]) verbalize("Here's your artifact. You'll find it on the floor beneath you. Have fun!");
+			if (mtmp->data == &mons[PM_BLACKSMITH] || mtmp->data == &mons[PM_ELONA_BLACKSMITH]) verbalize("Here's your artifact. You'll find it on the floor beneath you. Have fun!");
 			else verbalize("Duri sent me to give you this artifact, so I'm dropping it at the floor beneath you. Have fun!");
 			break;
 		}
 
-		if (mtmp->data == &mons[PM_BLACKSMITH]) {
+		if (mtmp->data == &mons[PM_BLACKSMITH] || mtmp->data == &mons[PM_ELONA_BLACKSMITH]) {
 			verbalize("Welcome to Duri's forge! I offer various services, including equipment repair, proofing, and artifact forging.");
 
 			winid tmpwin;

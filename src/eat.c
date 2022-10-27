@@ -1070,6 +1070,7 @@ register int pm;
 	    case PM_DARKEN_LIZARD:
 	    case PM_SWAMP_LIZARD:
 	    case PM_SPITTING_LIZARD:
+	    case PM_ELONA_LIZARD_MAN:
 	    case PM_ANTI_STONE_LIZARD:
 	    case PM_MIMIC_LIZARD:
 	    case PM_HIDDEN_LIZARD:
@@ -1212,6 +1213,7 @@ struct monst *mon;
       case PM_LICHZARD:
       case PM_SKELLIZARD:
       case PM_INNOCLIZARD:
+	    case PM_ELONA_LIZARD_MAN:
       case PM_FAT_LIZARD:
 	case PM_BABY_CAVE_LIZARD:
 	case PM_NIGHT_LIZARD:
@@ -3272,6 +3274,7 @@ register int pm;
 	    case PM_ASSASSIN_LIZARD:
 	    case PM_DANGEROUS_ASSASSIN_LIZARD:
 	    case PM_BLIZZARD_LIZARD:
+	    case PM_ELONA_LIZARD_MAN:
 			lesshungry(300); /* fall thru */
 	    case PM_CHAOS_LIZARD:
 	    case PM_CHAOTIC_LIZARD:
@@ -3385,6 +3388,7 @@ register int pm;
 	    case PM_METAMORPHOSE:
 	    case PM_UNIQUE_SHIFTER:
 	    case PM_GHELEON:
+	    case PM_ELONA_BADGER:
 	    case PM_PURPLE_R:
 	    case PM_VAMPSHIFTER:
 	    case PM_UNGENOCIDABLE_VAMPSHIFTER:
@@ -3627,6 +3631,23 @@ register int pm;
 
 		if (!Antimagic) You_feel("more resistant to magic!");
 		incr_itimeout(&HAntimagic, rnz(2000));
+		break;
+
+	    case PM_CORRUPTED_HEALER:
+	    case PM_DARK_HEALER:
+	    case PM_DARAKU_SHITA_KANKOSHI:
+	    case PM_DARK_SISTER:
+	    case PM_OTOKO_NO_IMOTO_WA_SO_YOBA_RETE_IMASEN:
+		You_feel("as if you have been corrupted.");
+		litroomlite(TRUE);
+		break;
+
+	    case PM_RABBIT_FROM_YLVA:
+
+		if (!rn2(10)) {
+			change_luck(1);
+			You_feel("lucky.");
+		}
 		break;
 
 	    case PM_CHOOKATRICE:

@@ -1255,6 +1255,8 @@ have_lizard()
 			return(TRUE);
 		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_GRANDPA)
 			return(TRUE);
+		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_ELONA_LIZARD_MAN)
+			return(TRUE);
 		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_TOUCAN)
 			return(TRUE);
 		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_GIANT_TOUCAN)
@@ -23128,6 +23130,8 @@ boolean knoweverything;
 					pline("Artifact specs: while wearing it, rays don't lose range when they hit something."); break;
 				case ART_BERNCELD:
 					pline("Artifact specs: resist fire, infravision and sight bonus when worn but deactivates cold resistance."); break;
+				case ART_RED_SWORD:
+					pline("Artifact specs: +5 to-hit and +12 damage against fire-susceptible monsters. This artifact is not randomly generated and normally appears in the inventory of 'part time worker the red sword'."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

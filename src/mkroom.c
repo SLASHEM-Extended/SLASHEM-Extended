@@ -2099,7 +2099,7 @@ struct permonst *
 minotaurvariant()
 {
 	if (!rn2(10)) {
-		switch (rnd(37)) {
+		switch (rnd(39)) {
 			case 1:
 				return (&mons[PM_LOWERCASE_MINOTAUR]);
 			case 2:
@@ -2174,6 +2174,10 @@ minotaurvariant()
 				return (&mons[PM_ROARING_FISHTAUR]);
 			case 37:
 				return (&mons[PM_SAVEUP_MINOTAUR]);
+			case 38:
+				return (&mons[PM_MIMOTAUR]);
+			case 39:
+				return (&mons[PM_MINOTAUR_NPC]);
 		}
 	}
 
@@ -2632,7 +2636,7 @@ STATIC_OVL struct permonst *
 prisonermon()	/* return random prisoner type --Amy */
 {
 	if (rn2(5)) return (&mons[PM_PRISONER]);
-	else switch (rnd(7)) {
+	else switch (rnd(8)) {
 		case 1: return (&mons[PM_CASTLE_PRISONER]);
 		case 2: return (&mons[PM_OCCASIONAL_FRIEND]);
 		case 3: return (&mons[PM_GIRL_OUTSIDE_GANG]);
@@ -2640,7 +2644,9 @@ prisonermon()	/* return random prisoner type --Amy */
 		case 5: return (&mons[PM_YOUR_SISTER]);
 		case 6: return (&mons[PM_GRAVITY_STRIKER]);
 		case 7: return (&mons[PM_POEZ_PRESIDENT]);
+		case 8: return (&mons[PM_YLVA_PRISONER]);
 	}
+	return (&mons[PM_PRISONER]); /* fail safe */
 }
 
 struct permonst *
