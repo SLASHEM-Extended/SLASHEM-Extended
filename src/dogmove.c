@@ -1123,6 +1123,10 @@ register int after;	/* this is extra fast monster movement */
 			 (mtmp2->data == &mons[PM_MOLDOUX__THE_DEFENCELESS_MOLD]) ||
 	/* the "spretty" isn't attacked either */
 			 (mtmp2->data == &mons[PM_SPRETTY]) ||
+	/* Mister Gribbs is protected */
+			 (mtmp2->data == &mons[PM_MISTER_GRIBBS]) ||
+	/* no thrall guards */
+			 (mtmp2->data == &mons[PM_THRALL_GUARD]) || (mtmp2->data == &mons[PM_THRALL_GATE_GUARD]) ||
 	/* bulletator zero isn't either */
 			 (mtmp2->data == &mons[PM_BULLETATOR_ZERO]) ||
 	/* your one-way girlfriend is never attacked by pets */

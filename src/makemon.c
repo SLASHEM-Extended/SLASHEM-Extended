@@ -7726,6 +7726,7 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_REGULAR_FISHERMAN]) (void) mongets(mtmp, FISHING_POLE);
 		if (ptr == &mons[PM_GRAPPLE_STUNTER]) (void) mongets(mtmp, GRAPPLING_HOOK);
 		if (ptr == &mons[PM_CAVE_EXPLORER]) (void) mongets(mtmp, TORCH);
+		if (ptr == &mons[PM_LAST_GENERATION_MEMBER]) (void) mongets(mtmp, TORCH);
 		if (ptr == &mons[PM_COHEN_LEADER]) (void) mongets(mtmp, RAKUYO);
 		if (ptr == &mons[PM_VICTIM]) (void) mongets(mtmp, VICTIM_KNIFE);
 		if (ptr == &mons[PM_VIOLENT_WOMAN]) (void) mongets(mtmp, MARBLE_CHUNK);
@@ -7768,11 +7769,23 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_ORE_MINER]) {
 			(void) mongets(mtmp, PICK_AXE);
 			(void) mongets(mtmp, rnd_class(DILITHIUM_CRYSTAL,LUCKSTONE-1));
-
+		}
+		if (ptr == &mons[PM_DERLINGER]) {
+			(void) mongets(mtmp, SHORT_SWORD);
+			(void) mongets(mtmp, LEATHER_JACKET);
+		}
+		if (ptr == &mons[PM_MUNDRUFF]) {
+			(void) mongets(mtmp, SHORT_SWORD);
+			(void) mongets(mtmp, LEATHER_JACKET);
 		}
 		if (ptr == &mons[PM_WJLV_ETTICLOL__VALKYRIE]) {
 			(void) mongets(mtmp, LONG_SWORD);
 			(void) mongets(mtmp, SMALL_SHIELD);
+		}
+		if (ptr == &mons[PM_THIEF_BRIGAND]) {
+			(void) mongets(mtmp, SHORT_SWORD);
+			(void) mongets(mtmp, LEATHER_JACKET);
+			 m_initthrow(mtmp, DAGGER, 5);
 		}
 		if (ptr == &mons[PM_GOLD_MINER]) {
 			(void) mongets(mtmp, PICK_AXE);
@@ -9630,6 +9643,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_ZOMBIE_WHORE]) (void) mongets(mtmp, HIPPIE_HEELS); /* M4_BLOCKHEELBOOTS */
 		if (ptr == &mons[PM_DOSTICH]) (void) mongets(mtmp, KHOPESH);
 		if (ptr == &mons[PM_REGULAR_BARROWGRIM_SOLDIER]) (void) mongets(mtmp, LONG_SWORD);
+		if (ptr == &mons[PM_LONGSKULL] && rn2(2)) (void) mongets(mtmp, POINTED_HELMET);
 
 		if (mtmp->data == &mons[PM_ROBOT_TERMINATOR_ZOMBIE]) {
 			 (void) mongets(mtmp, RED_LIGHTSABER);
@@ -10023,6 +10037,10 @@ loveheelover:
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, TALC, 25);
 		}
+		if (ptr == &mons[PM_ZAUR_RENEGADE]) {
+			(void) mongets(mtmp, TRIDENT);
+			 m_initthrow(mtmp, SPEAR, 3);
+		}
 		if (ptr == &mons[PM_ANTHRAZITE_DRACONIAN]) {
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, GRAPHITE, 25);
@@ -10126,6 +10144,7 @@ loveheelover:
 
 		if (mtmp->data == &mons[PM_SWEET_FEMMY]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if (mtmp->data == &mons[PM_LEAD_TROLL]) (void) mongets(mtmp, LEAD_FILLED_MACE);
+		if (mtmp->data == &mons[PM_TROLL_SNIK]) (void) mongets(mtmp, SHORT_SWORD);
 		if (mtmp->data == &mons[PM_YOU_TROLL]) (void) mongets(mtmp, SCR_BAD_EQUIPMENT);
 		if (mtmp->data == &mons[PM_OFFSEEN_TROLL]) (void) mongets(mtmp, WAN_BAD_EQUIPMENT);
 		if (mtmp->data == &mons[PM_OUTBIRTH_OF_UGLINESS]) (void) mongets(mtmp, ORCISH_CLOAK);
@@ -13148,6 +13167,8 @@ loveheelover:
 		if (mtmp->data == &mons[PM_STEELFIST]) (void) mongets(mtmp, POWERFIST);
 		if (mtmp->data == &mons[PM_DIGGER_HULK]) (void) mongets(mtmp, CONGLOMERATE_PICK);
 		if (mtmp->data == &mons[PM_STOIAKMIDM]) (void) mongets(mtmp, SPEAR);
+		if (mtmp->data == &mons[PM_URGOTH_RENEGADE]) (void) mongets(mtmp, BATTLE_AXE);
+		if (mtmp->data == &mons[PM_TURVANG_HAMMER]) (void) mongets(mtmp, THUNDER_HAMMER);
 
 		if (mtmp->data == &mons[PM_UNWISE_BLUE_SMOKER]) {
 			(void) mongets(mtmp, LADY_BOOTS); /* M4_BLOCKHEELBOOTS */
@@ -13156,6 +13177,10 @@ loveheelover:
 		if (mtmp->data == &mons[PM_JEDI_HORROR]) {
 			(void) mongets(mtmp, CYAN_DOUBLE_LIGHTSABER);
 			(void) mongets(mtmp, ROBE);
+		}
+		if (mtmp->data == &mons[PM_URCULA]) {
+			(void) mongets(mtmp, AXE);
+			(void) mongets(mtmp, SMALL_SHIELD);
 		}
 		if(ptr == &mons[PM_YITH_DAEMON]) {
 			(void) mongets(mtmp, YITH_TENTACLE);
@@ -15212,6 +15237,10 @@ loveheelover:
 			(void) mongets(mtmp, HELMET);
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, FLINT, 40);
+		}
+		if (ptr == &mons[PM_ARCHER_LICH]) {
+			(void) mongets(mtmp, BOW);
+			 m_initthrow(mtmp, ARROW, 50);
 		}
 		if (ptr == &mons[PM_GREEN_REAPER]) {
 			(void) mongets(mtmp, SCYTHE);
@@ -17377,10 +17406,22 @@ loveheelover:
 		if (ptr == &mons[PM_STANDING_PREACHER]) (void) mongets(mtmp, PICK_AXE);
 		if (ptr == &mons[PM_BAEMMER]) (void) mongets(mtmp, DWARVISH_MATTOCK);
 		if (ptr == &mons[PM_DEPRESSED_HOBBIT]) (void) mongets(mtmp, MAID_DRESS);
+		if (ptr == &mons[PM_THRALL_MOGMAN]) (void) mongets(mtmp, MACE);
+		if (ptr == &mons[PM_THRALL_RENEGADE]) (void) mongets(mtmp, MACE);
 
 		if (ptr == &mons[PM_FIGHTER_SAMURAI]) {
 			(void) mongets(mtmp, KATANA);
 			(void) mongets(mtmp, SPLINT_MAIL);
+		}
+		if (ptr == &mons[PM_THRALL_GUARD]) {
+			(void) mongets(mtmp, MACE);
+			(void) mongets(mtmp, BOW);
+			 m_initthrow(mtmp, ARROW, 20);
+		}
+		if (ptr == &mons[PM_THRALL_GATE_GUARD]) {
+			(void) mongets(mtmp, MACE);
+			(void) mongets(mtmp, BOW);
+			 m_initthrow(mtmp, ARROW, 20);
 		}
 		if (ptr == &mons[PM_SAMURAI_TRAINEE]) {
 			(void) mongets(mtmp, SHORT_SWORD);
@@ -32391,6 +32432,14 @@ assign_sym:
 	if (mtmp->data == &mons[PM_SEEMINGLY_INNOCUOUS_CLOUD]) {
 		ap_type = M_AP_FURNITURE;
 		appear = S_cloud;
+	}
+	if (mtmp->data == &mons[PM_LIGHT_GREEN_BUSH]) {
+		ap_type = M_AP_FURNITURE;
+		appear = S_farmland;
+	}
+	if (mtmp->data == &mons[PM_DARK_GREEN_TREE]) {
+		ap_type = M_AP_FURNITURE;
+		appear = S_tree;
 	}
 	if (mtmp->data == &mons[PM_NOT_JUST_A_CLOUD_GRAPHIC]) {
 		ap_type = M_AP_FURNITURE;

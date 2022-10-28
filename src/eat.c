@@ -3253,6 +3253,10 @@ register int pm;
 		}
 		break;
 
+	    case PM_POREX:
+		HInvis |= FROMOUTSIDE; /* nonintrinsic nastytrap doesn't prevent this (intentional) */
+		break;
+
 	    case PM_RACEY_CHICKEN:
 	    case PM_QUADWANGLER:
 
