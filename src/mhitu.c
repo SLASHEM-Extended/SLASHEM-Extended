@@ -2415,7 +2415,7 @@ mattacku(mtmp)
 	if (!rn2(2) && (tmp > 1)) tmp /= 2; /* don't make high-level monsters automatically hit you --Amy */
 
 	/* make eels visible the moment they hit/miss us */
-	if(mdat->mlet == S_EEL && mtmp->minvis && !mtmp->minvisreal && cansee(mtmp->mx,mtmp->my) && rn2(5) ) {
+	if(mdat->mlet == S_EEL && !(mtmp->data == &mons[PM_MOAT_PIRAHNA]) && !(mtmp->data == &mons[PM_CHRABCHRABCHRAB_PIRAHNA]) && mtmp->minvis && !mtmp->minvisreal && cansee(mtmp->mx,mtmp->my) && rn2(5) ) {
 		mtmp->minvis = 0;
 		newsym(mtmp->mx,mtmp->my);
 	}
@@ -6763,6 +6763,9 @@ hitmu(mtmp, mattk)
 		You("are being fleeced.");
 	} else if (mtmp->data == &mons[PM_FELEECHY] && mattk->aatyp == AT_HUGS) {
 		You("are being feleechyd.");
+	} else if (mtmp->data == &mons[PM_AMAZONI_MANTRAP] && !flags.female && mattk->aatyp == AT_HUGS) {
+		pline("Ahhh!");
+		losehp(60, "having his penis caught in an amazoni mantrap", KILLED_BY);
 	}
 
 	otmp = MON_WEP(mtmp);

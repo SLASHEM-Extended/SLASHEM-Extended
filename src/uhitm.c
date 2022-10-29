@@ -227,7 +227,7 @@ boolean barehanded;
 	 * detecting monsters via some other weird method! --Amy */
 	if (mtmp->mundetected && !canspotmon(mtmp) &&
 		!glyph_is_warning(glyph_at(u.ux+u.dx,u.uy+u.dy)) &&
-		(hides_under(mtmp->data) || mtmp->data->mlet == S_FLYFISH || ((mtmp->data->mlet == S_EEL) && !(mtmp->data == &mons[PM_DEFORMED_FISH])) ) ) {
+		(hides_under(mtmp->data) || mtmp->data->mlet == S_FLYFISH || ((mtmp->data->mlet == S_EEL) && !(mtmp->data == &mons[PM_DEFORMED_FISH]) && !(mtmp->data == &mons[PM_MOAT_PIRAHNA]) && !(mtmp->data == &mons[PM_CHRABCHRABCHRAB_PIRAHNA]) ) ) ) {
 	    mtmp->mundetected = mtmp->msleeping = 0;
 	    newsym(mtmp->mx, mtmp->my);
 	    if (memory_is_invisible(mtmp->mx, mtmp->my)) {

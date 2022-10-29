@@ -7751,6 +7751,8 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_STREETLINE_PROSTITUTE]) (void) mongets(mtmp, HIPPIE_HEELS); /* M4_BLOCKHEELBOOTS */
 		if (ptr == &mons[PM_VAMPIRATE]) (void) mongets(mtmp, RAPIER);
 		if (ptr == &mons[PM_SPEARMASTER]) (void) mongets(mtmp, ATGEIR);
+		if (ptr == &mons[PM_STOUT_MINER]) (void) mongets(mtmp, PICK_AXE);
+		if (ptr == &mons[PM_INSANE_MINER]) (void) mongets(mtmp, PICK_AXE);
 		if (ptr == &mons[PM_KHOTITE]) (void) mongets(mtmp, KHOPESH);
 		if (ptr == &mons[PM_NIGHTMARE_WIZARD]) (void) mongets(mtmp, rnd_class(QUARTERSTAFF,PLATINUM_FIRE_HOOK));
 		if (ptr == &mons[PM_HELL_WIZARD]) (void) mongets(mtmp, rnd_class(QUARTERSTAFF,PLATINUM_FIRE_HOOK));
@@ -11262,6 +11264,10 @@ loveheelover:
 			 m_initthrow(mtmp, LEAD_ASSAULT_RIFLE_BULLET, 50);
 			 m_initthrow(mtmp, LEAD_ASSAULT_RIFLE_BULLET, 50);
 		}
+		if (ptr == &mons[PM_TREE_O__THE_GROVE]) {
+			(void) mongets(mtmp, CROSSBOW);
+			 m_initthrow(mtmp, CROSSBOW_BOLT, 20);
+		}
 		if (ptr == &mons[PM_EREGK]) {
 			(void) mongets(mtmp, LONG_SWORD);
 			(void) mongets(mtmp, LARGE_SHIELD);
@@ -11467,6 +11473,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_GNOME_HUSSY]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if (mtmp->data == &mons[PM_WEED_GNOME]) (void) mongets(mtmp, POT_HALLUCINATION);
 		if (mtmp->data == &mons[PM_GIGGNOLL]) (void) mongets(mtmp, PICK_AXE);
+		if (mtmp->data == &mons[PM_SCOUNDREL_BLACKLEG]) (void) mongets(mtmp, BONE_CLUB);
 		if (mtmp->data == &mons[PM_GEOLOGY_GNOME]) (void) mongets(mtmp, CONGLOMERATE_PICK);
 		if (mtmp->data == &mons[PM_SEXY_OPERATOR]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
@@ -17871,6 +17878,18 @@ loveheelover:
 		if (ptr == &mons[PM_MEGAWHIPPET]) (void) mongets(mtmp, SECRET_SOUND_WHIP);
 		if (ptr == &mons[PM_PUMPS_FEMMY]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
+		if (mtmp->data == &mons[PM_NESTING_SPIDER]) { 
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
+			if (otmpX) {
+				otmpX->spe = 0;
+				otmpX->quan = 1;
+				otmpX->owt = weight(otmpX);
+				otmpX->corpsenm = egg_type_from_parent(PM_SPIDERLING, FALSE);
+				attach_egg_hatch_timeout(otmpX);
+				mpickobj(mtmp,otmpX, TRUE);
+			}
+		}
+
 		if (ptr == &mons[PM_CAMPER_ASSHOLE]) {
 			(void)mongets(mtmp, SNIPER_RIFLE);
 			m_initthrow(mtmp, SNIPER_BULLET, 10);
@@ -23978,6 +23997,10 @@ register int	mmflags;
 		(void) mkobj_at(0, x, y, TRUE, FALSE);
 	}
 
+	if (x && y && isok(x, y) && ptr == &mons[PM_MONKEY_WITH_OBJECT]) {
+		(void) mkobj_at(0, x, y, TRUE, FALSE);
+	}
+
 		/* and even lower chance to get extra objects */
 	if (x && y && isok(x, y) && timebasedlowerchance() && !rn2(200) && allow_special) {
 	  (void) mkobj_at(0, x, y, TRUE, FALSE);
@@ -24229,6 +24252,16 @@ register int	mmflags;
 		mtmp->egotype_perfumespreader = 1;
 	}
 	if (ptr == &mons[PM_FLUIDATOR_WEND]) {
+		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
+		mtmp->isegotype = 1;
+		mtmp->egotype_deepstatemember = 1;
+	}
+	if (ptr == &mons[PM_DEEP_WALL_BUTT]) {
+		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
+		mtmp->isegotype = 1;
+		mtmp->egotype_deepstatemember = 1;
+	}
+	if (ptr == &mons[PM_DEEP_WALL_SQUEAK]) {
 		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
 		mtmp->isegotype = 1;
 		mtmp->egotype_deepstatemember = 1;
@@ -25867,6 +25900,8 @@ register int	mmflags;
 			break;
 		case S_PUDDING:
 			if (ptr == &mons[PM_PHANTOM]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (ptr == &mons[PM_DEEP_WALL_BUTT]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (ptr == &mons[PM_DEEP_WALL_SQUEAK]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (ptr == &mons[PM_HOE_HOE_MIRAGE]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (ptr == &mons[PM_YOU_HAVENT_SEEN_IT_YET]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (ptr == &mons[PM_PHASE_SHIFTER]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}

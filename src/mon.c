@@ -3059,7 +3059,7 @@ mfndpos(mon, poss, info, flag)
 	wantlava = (mdat->mlet == S_FLYFISH || mdat == &mons[PM_HUMAN_WEREFLYFISH] || mdat == &mons[PM_CONCORDE__]);
 	lavaok = is_flyer(mdat) || mon->egotype_flying || is_clinger(mdat) || (likes_lava(mdat) && !wantlava);
 	thrudoor = ((flag & (ALLOW_WALL|BUSTDOOR)) != 0L);
-	treeok = is_flyer(mdat) || mon->egotype_flying || (mon->data->msound == MS_TREESQUAD);
+	treeok = (is_flyer(mdat) || mon->egotype_flying || (mon->data == &mons[PM_GIANT_TREE_SPIDER]) || (mon->data->msound == MS_TREESQUAD));
 	/* flying monsters, but not flying players, can pass over trees; the tree squad can too --Amy */
 	if (flag & ALLOW_DIG) {
 	    struct obj *mw_tmp;
@@ -3130,7 +3130,7 @@ nexttry:	/* eels prefer the water, but if there is no water nearby,
 	    if(nx == x && ny == y) continue;
 	    if(IS_ROCK(ntyp = levl[nx][ny].typ) && ntyp != FARMLAND && !(ntyp == GRAVEWALL && tunnels(mdat)) &&
 		 !(ntyp == TUNNELWALL && !is_flyer(mdat) && !is_floater(mdat) && !(mon->egotype_flying)) &&
-		 !(ntyp == MOUNTAIN && (is_flyer(mdat) || is_floater(mdat) || (mon->egotype_flying))) &&
+		 !(ntyp == MOUNTAIN && (is_flyer(mdat) || is_floater(mdat) || (mon->data == &mons[PM_MOUNTAIN_SPIDER]) || (mon->egotype_flying))) &&
 	       !((flag & ALLOW_WALL) && may_passwall(nx,ny)) &&
 	       !((IS_TREE(ntyp) ? treeok : rockok) && may_dig(nx,ny))) continue;
 	    /* KMH -- Added iron bars */
