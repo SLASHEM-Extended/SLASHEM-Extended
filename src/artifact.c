@@ -163,6 +163,30 @@ hack_artifacts()
 	if (!Role_if(PM_KNIGHT))
 	    artilist[ART_EXCALIBUR].role = NON_PM;
 
+	init_randarts();
+
+#if 0
+	/* Fix up the gifts */
+	if (urole.gift1arti) {
+		artilist[urole.gift1arti].alignment = alignmnt;
+		artilist[urole.gift1arti].role = Role_switch;
+	}
+	if (urole.gift2arti) {
+		artilist[urole.gift2arti].alignment = alignmnt;
+		artilist[urole.gift2arti].role = Role_switch;
+	}
+#endif
+	/* Fix up the quest artifact */
+	if (urole.questarti) {
+	    artilist[urole.questarti].alignment = alignmnt;
+	    artilist[urole.questarti].role = Role_switch;
+	}
+	return;
+}
+
+void
+init_randarts()
+{
 	/* randarts - the code in this file is from dnethack (thanks Chris) with adaptations --Amy */
 	/* base item: LONG_SWORD = melee weapon, BOW = launcher, DART = missile, LEATHER_ARMOR = suit,
 	 * VICTORIAN_UNDERWEAR = shirt, ORCISH_CLOAK = cloak, HELMET = helm, LEATHER_GLOVES = gloves,
@@ -252,6 +276,7 @@ hack_artifacts()
 	artilist[ART_ROFLCOPTER_WEB].otyp = randartsuit();
 	artilist[ART_SHIVANHUNTER_S_UNUSED_PRIZ].otyp = randartsuit();
 	artilist[ART_ARABELLA_S_ARTIFACT_CREATI].otyp = randartmeleeweapon();
+	artilist[ART_VERSUS_ELECTRICALLY_BASED_].otyp = randartmeleeweapon();
 	artilist[ART_TIARA_OF_AMNESIA].otyp = randarthelm();
 	artilist[ART_FLUE_FLUE_FLUEFLUE_FLUE].otyp = randarthelm();
 	artilist[ART_LIXERTYPIE].otyp = randartmeleeweapon();
@@ -372,6 +397,7 @@ hack_artifacts()
 	artilist[ART_HAMBURG_ONE].otyp = randarthelmX();
 	artilist[ART_ARABELLA_S_MELEE_POWER].otyp = randartmeleeweaponX();
 	artilist[ART_ASBESTOS_MATERIAL].otyp = randartmeleeweaponX();
+	artilist[ART_DO_NOT_DISPLAY_THE_CHARGES].otyp = randartmeleeweaponX();
 	artilist[ART_TANKS_A_LOT].otyp = randartglovesX();
 	artilist[ART_DIMVISION].otyp = randartglovesX();
 	artilist[ART_I_M_GETTING_HUNGRY].otyp = randartshieldX();
@@ -487,6 +513,11 @@ hack_artifacts()
 	artilist[ART_TOO_FAST__TOO_FURIOUS].otyp = find_turbo_boots();
 	artilist[ART_NOUROFIBROMA].otyp = find_guild_cloak();
 	artilist[ART_MADELINE_S_STUPID_GIRL].otyp = find_shitty_gloves();
+	artilist[ART_ARVOGENIA_S_BIKER_HEELS].otyp = find_stone_carved_heels();
+	artilist[ART_PRECURSOR_TO_THE___].otyp = find_homo_shoes();
+	artilist[ART_HEELMARJI].otyp = find_devil_lettuce_shoes();
+	artilist[ART_SHE_S_STILL_AN_ANASTASIA].otyp = find_loafers();
+	artilist[ART_KILLCAP].otyp = find_sweaty_shoes();
 
 	artilist[ART_JANA_S_ROULETTE_OF_LIFE].otyp = find_foundry_cloak();
 	artilist[ART_MAGIC_JUGGULATE].otyp = find_spellsucking_cloak();
@@ -623,23 +654,6 @@ hack_artifacts()
 	artilist[ART_BACTERIA].otyp = find_missys();
 	artilist[ART_JULIA_S_SLIPPERS].otyp = find_house_slippers();
 
-#if 0
-	/* Fix up the gifts */
-	if (urole.gift1arti) {
-		artilist[urole.gift1arti].alignment = alignmnt;
-		artilist[urole.gift1arti].role = Role_switch;
-	}
-	if (urole.gift2arti) {
-		artilist[urole.gift2arti].alignment = alignmnt;
-		artilist[urole.gift2arti].role = Role_switch;
-	}
-#endif
-	/* Fix up the quest artifact */
-	if (urole.questarti) {
-	    artilist[urole.questarti].alignment = alignmnt;
-	    artilist[urole.questarti].role = Role_switch;
-	}
-	return;
 }
 
 /* zero out the artifact existence list */
@@ -3644,6 +3658,192 @@ chargingchoice:
 	    break;
 	case SPECIAL_INVOKE:
 
+		if (obj->oartifact == ART_WRONG_RUNE) {
+			if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+				pline("The charge around you prevents you from using the rune!");
+				break;
+			}
+
+			if (playerlevelportdisabled()) { 
+				You("cannot levelport, and therefore the attempt fails!");
+				break;
+			}
+
+			{
+				d_level dtmp;
+				dtmp.dnum = dname_to_dnum("Gehennom");
+				dtmp.dlevel = 12; /* level 62, which is the 12th level of Gehennom */
+				schedule_goto(&dtmp, FALSE, FALSE, 0, (char *)0, (char *)0);
+				You_feel("yourself yanked in a direction you didn't know existed!");
+			}
+			break;
+		}
+
+		if (obj->oartifact == ART_MARK_AND_RECALL) {
+			if (!u.levelmarked) {
+				u.markedlevel.dnum = u.uz.dnum;
+				u.markedlevel.dlevel = u.uz.dlevel;
+				pline("The current level has been marked.");
+				u.levelmarked = TRUE;
+			} else {
+				if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+					pline("At this point, you're not capable of recalling!");
+					break;
+				}
+
+				if (playerlevelportdisabled()) { 
+					You("cannot levelport, and therefore the attempt fails!");
+					break;
+				}
+
+				d_level dtmp;
+				dtmp.dnum = u.markedlevel.dnum;
+				dtmp.dlevel = u.markedlevel.dlevel;
+				schedule_goto(&dtmp, FALSE, FALSE, 0, (char *)0, (char *)0);
+				You("warp back to the marked level.");
+
+				u.levelmarked = FALSE;
+			}
+			break;
+		}
+
+		if (obj->oartifact == ART_DO_NOT_DISPLAY_THE_CHARGES) {
+			You_feel("full of mystic power!");
+			if (!obj->obrittle) {
+				u.uen = u.uenmax;
+				flags.botl = TRUE;
+				if (!rn2(5)) obj->obrittle++;
+			}
+			break;
+		}
+
+		if (obj->oartifact == ART_AIRSTRIKE_) {
+			coord cc;
+			pline("Select the target area for your airstrike!");
+			cc.x = u.ux;
+			cc.y = u.uy;
+			getpos(&cc, TRUE, "airstrike target");
+			if (cc.x == -10) return (0); /* user pressed esc */
+
+			if (isok(cc.x, cc.y)) {
+				struct obj *dynamite;
+				dynamite = mksobj_at(STICK_OF_DYNAMITE, cc.x, cc.y, TRUE, FALSE, FALSE);
+				if (dynamite) {
+					You_hear("a sound that reminds you of fireworks.");
+					if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
+					else {
+						dynamite->dynamitekaboom = 1;
+						dynamite->quan = 1;
+						dynamite->owt = weight(dynamite);
+						attach_bomb_blow_timeout(dynamite, 0, 0);
+						run_timers();
+					}
+				}
+			}
+			break;
+
+		}
+
+		if (obj->oartifact == ART_RANDART_REROLL) {
+			init_randarts();
+			pline("All randarts have been re-initialized!");
+			break;
+		}
+
+		if (obj->oartifact == ART_SKILL_RESET) {
+			tryct = 50000;
+			i = 0;
+
+			while (u.skills_advanced && tryct) {
+				lose_last_spent_skill();
+				i++;
+				tryct--;
+			}
+
+			while (i) {
+				u.weapon_slots++;  /* because every skill up costs one slot --Amy */
+				i--;
+			}
+
+			Your("skills have been resetted.");
+			break;
+		}
+
+		if (obj->oartifact == ART_BUILD_A_WALL) {
+			for (x = 0; x < COLNO; x++)
+			  for (y = 0; y < ROWNO; y++) {
+				register struct rm *lev;
+				lev = &levl[x][y];
+				if (!(lev->typ == ALTAR && (Is_astralevel(&u.uz) || Is_sanctum(&u.uz)) ) && !(lev->wall_info & W_NONDIGGABLE) && lev->typ != STAIRS && lev->typ != LADDER && ((x == u.ux) || (y == u.uy)) ) lev->typ = ROCKWALL;
+			}
+			pline("Build a wall, build a wall...");
+			break;
+		}
+
+		if (obj->oartifact == ART_BLANKIT_NOW) {
+			struct obj *otmp;
+			if (CannotSelectItemsInPrompts) break;
+			pline("You may remove the egotype from a piece of armor.");
+armorspecchoice:
+			otmp = getobj(allnoncount, "de-egotype");
+			if(!otmp) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to de-egotype your armor.");
+				else goto armorspecchoice;
+				pline("Oh well, if you don't wanna...");
+				exercise(A_WIS, FALSE);
+				break;
+			}
+			if (otmp->oclass != ARMOR_CLASS) {
+				pline("That's not a piece of armor, and therefore the attempt fails.");
+				break;
+			}
+			if (!otmp->enchantment) {
+				pline("There was no enchantment on the item to begin with.");
+				break;
+			}
+			if (otmp) {
+				long savewornmask;
+				if (otmp->owornmask) setnotworn(otmp);
+				otmp->enchantment = 0;
+				pline("The item's egotype is gone. Be aware that if you were wearing it, the item has now been unequipped.");
+			}
+
+			break;
+		}
+
+		if (obj->oartifact == ART_ENTERTAINING_CLEAR) {
+			int multiplegather = 0;
+			register struct monst *nexusmon;
+			for(nexusmon = fmon; nexusmon; nexusmon = nexusmon->nmon) {
+				if (nexusmon && !nexusmon->mtame && !nexusmon->mpeaceful && !(u.usteed && (u.usteed == nexusmon) ) ) {
+					mnexto(nexusmon);
+					multiplegather++;
+				}
+			}
+			if (multiplegather) pline("%d monsters were teleported to you!", multiplegather);
+			else pline("Weird, nothing seems to have happened.");
+
+			break;
+		}
+
+		if (obj->oartifact == ART_FREE_SKILL_SLOTS) {
+
+			useupall(obj);
+			u.weapon_slots += rnd(5);
+			You("feel very skillful, and now have %d skill slots!", u.weapon_slots);
+			return 1;
+
+			break;
+		}
+
+		if (obj->oartifact == ART_MONEYSACK) {
+
+			u.ugold += rnd(1000);
+			Your("budget is extended!");
+			break;
+		}
+
 		if (obj->oartifact == ART_KEY_TO_THE_GOLDEN_ITEMS) {
 
 			register struct obj *goldenitem;
@@ -3734,7 +3934,7 @@ greenchoice:
 
 		if (obj->oartifact == ART_THIRD_NEXT_MISSION) {
 
-			if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+			if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
 				pline("You shudder for a moment.");
 				(void) safe_teleds_normalterrain(FALSE);
 				break;
@@ -3810,6 +4010,7 @@ greenchoice:
 					dynamite->owt = weight(dynamite);
 					dropy(dynamite);
 					attach_bomb_blow_timeout(dynamite, 0, 0);
+					run_timers();
 				}
 			}
 

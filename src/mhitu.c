@@ -165,6 +165,17 @@ on the first floor, especially when you're playing as something with drain resis
 
 			}
 
+			if (uarmu && uarmu->oartifact == ART_ARTITFACT && flags.female) {
+					pline("%s rips into your breast with maniacal fervor!", Monnam(mtmp));
+					u.cnd_breastripamount++;
+					if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+
+					monsterlev = ((mtmp->m_lev) + 1);
+					if (monsterlev <= 0) monsterlev = 1;
+
+					losehp(d(2,monsterlev), "cowardly attack on her breasts", KILLED_BY_AN);
+			}
+
 			if ((uarmf && (itemhasappearance(uarmf, APP_VELCRO_SANDALS) || itemhasappearance(uarmf, APP_NOBLE_SANDALS))) && !rn2(3)) {
 
 				pline("%s claws sensitive parts of your body!", Monnam(mtmp));
@@ -8843,7 +8854,7 @@ dopois:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
 		/* if vampire biting (and also a pet) */
-		if (!rn2(3) && (!u.uevent.udemigod || u.freeplaymode) && !playerlevelportdisabled() ) {
+		if (!rn2(3) && !playerlevelportdisabled() ) {
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
 			if (!u.levelporting) {
@@ -8861,7 +8872,7 @@ dopois:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
 		if (!rn2(3)) {
-			if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed)) ) { pline("You shudder for a moment."); (void) safe_teleds_normalterrain(FALSE); break;}
+			if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed)) ) { pline("You shudder for a moment."); (void) safe_teleds_normalterrain(FALSE); break;}
 			if (playerlevelportdisabled()) {
 				pline("For some reason you resist the banishment!");
 				break;
@@ -9264,7 +9275,7 @@ dopois:
 				break;
 			case 6:
 
-				if ((!u.uevent.udemigod || u.freeplaymode) && !playerlevelportdisabled() ) {
+				if (!playerlevelportdisabled() ) {
 					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
 					if (!u.levelporting) {
@@ -12033,7 +12044,7 @@ do_stone2:
 				break;
 			case 6:
 
-				if ((!u.uevent.udemigod || u.freeplaymode) && !playerlevelportdisabled() ) {
+				if (!playerlevelportdisabled() ) {
 					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 					if (!u.levelporting) {
 						u.levelporting = 1;
@@ -12379,7 +12390,7 @@ do_stone2:
 
 	    case AD_BANI:
 		if (!rn2(10)) {
-			if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds_normalterrain(FALSE); break;}
+			if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds_normalterrain(FALSE); break;}
 			if (playerlevelportdisabled()) {
 				pline("For some reason you resist the banishment!");
 				break;
@@ -12397,7 +12408,7 @@ do_stone2:
 	    case AD_WEEP:
 		if (flags.soundok) You_hear("weeping sounds!");
 		if (rn2(10)) break;
-		if (!rn2(3) && (!u.uevent.udemigod || u.freeplaymode) && !playerlevelportdisabled() ) {
+		if (!rn2(3) && !playerlevelportdisabled() ) {
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 			if (!u.levelporting) {
 				u.levelporting = 1;
@@ -13636,7 +13647,7 @@ common:
 
 	    case AD_WEEP:
 
-		if ((!u.uevent.udemigod || u.freeplaymode) && !playerlevelportdisabled() ) {
+		if (!playerlevelportdisabled() ) {
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
 			if (!u.levelporting) {
@@ -13652,7 +13663,7 @@ common:
 		break;
 
 	    case AD_BANI:
-		if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed)) ) { pline("You shudder for a moment."); (void) safe_teleds_normalterrain(FALSE); break;}
+		if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed)) ) { pline("You shudder for a moment."); (void) safe_teleds_normalterrain(FALSE); break;}
 		if (playerlevelportdisabled()) {
 			pline("For some reason you resist the banishment!");
 			break;
@@ -14597,7 +14608,7 @@ common:
 				break;
 			case 6:
 
-				if ((!u.uevent.udemigod || u.freeplaymode) && !playerlevelportdisabled() ) {
+				if (!playerlevelportdisabled() ) {
 					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
 					if (!u.levelporting) {
@@ -16948,7 +16959,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_BANI:
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(100))) 		{
 		if (!rn2(3)) {
-			if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds_normalterrain(FALSE); break;}
+			if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds_normalterrain(FALSE); break;}
 			if (playerlevelportdisabled()) {
 				pline("For some reason you resist the banishment!");
 				break;
@@ -16967,7 +16978,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_WEEP:
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(40))) 		{
 		/* if vampire biting (and also a pet) */
-		if (!rn2(3) && (!u.uevent.udemigod || u.freeplaymode) && !playerlevelportdisabled() ) {
+		if (!rn2(3) && !playerlevelportdisabled() ) {
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 			if (!u.levelporting) {
 				u.levelporting = 1;
@@ -17222,7 +17233,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				break;
 			case 6:
 
-				if ((!u.uevent.udemigod || u.freeplaymode) && !playerlevelportdisabled() ) {
+				if (!playerlevelportdisabled() ) {
 					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 					if (!u.levelporting) {
 						u.levelporting = 1;

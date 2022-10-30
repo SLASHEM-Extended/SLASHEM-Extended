@@ -1294,6 +1294,7 @@ moveloop()
 						    || (uarmf && uarmf->otyp == skates5)
 						    || (uwep && uwep->oartifact == ART_GLACIERDALE)
 						    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
+						    || (uarmf && uarmf->oartifact == ART_ART_LITTLE_ICE_BLOCK_WITH_THE_)
 						    || (uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER)
 						    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
 						    || (uwep && uwep->oartifact == ART_DAMN_SKI_WEDGE && uarmf)
@@ -1741,6 +1742,7 @@ moveloop()
 					    || (uarmf && uarmf->otyp == skates5)
 					    || (uwep && uwep->oartifact == ART_GLACIERDALE)
 					    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
+					    || (uarmf && uarmf->oartifact == ART_ART_LITTLE_ICE_BLOCK_WITH_THE_)
 					    || (uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER)
 					    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
 					    || (uwep && uwep->oartifact == ART_DAMN_SKI_WEDGE && uarmf)
@@ -1972,6 +1974,7 @@ moveloop()
 				    || (uarmf && uarmf->otyp == skates5)
 				    || (uwep && uwep->oartifact == ART_GLACIERDALE)
 				    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
+				    || (uarmf && uarmf->oartifact == ART_ART_LITTLE_ICE_BLOCK_WITH_THE_)
 				    || (uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER)
 				    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
 				    || (uwep && uwep->oartifact == ART_DAMN_SKI_WEDGE && uarmf)
@@ -3231,6 +3234,13 @@ moveloop()
 			}
 		}
 
+		if (uarmf && uarmf->oartifact == ART_UNDEAD_STINK && !rn2(1000)) {
+			pline("Suddenly the area enters stasis.");
+			int stasistime = rnz(5);
+			u.stasistime = stasistime;
+			nomul(-(u.stasistime), "frozen in stasis", FALSE);
+		}
+
 		if (FemtrapActiveMariya && !rn2(10) && multi < 0) {
 			register struct monst *mariyamon;
 			struct permonst *pm = 0;
@@ -4286,6 +4296,7 @@ greasingdone:
 					dynamite->owt = weight(dynamite);
 					dropy(dynamite);
 					attach_bomb_blow_timeout(dynamite, 0, 0);
+					run_timers();
 				}
 			}
 
@@ -4922,6 +4933,12 @@ newbossMAYBRITT:
 				}
 			}
 
+		}
+
+		if (uarmf && uarmf->oartifact == ART_BARBED_HOOK_ZIPPER && !rn2(1000)) {
+			Your("barbed hook zippers suddenly scratch your %s very painfully!", body_part(LEG));
+			playerbleed(rnd(20 + (level_difficulty() * 3)));			
+			set_wounded_legs(rn2(2) ? RIGHT_SIDE : LEFT_SIDE, HWounded_legs + rnd(20 + (level_difficulty() * 3)) );
 		}
 
 		if (FemtrapActiveUte && !rn2(2500)) {
@@ -8914,17 +8931,7 @@ newbossX:
 				if (!achieveX.devnull_complete) {
 
 					achieveX.devnull_complete = TRUE;
-					if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-					if (RngeTeamSplat) pline("TROPHY GET!");
-					if (Race_if(PM_INHERITOR)) giftartifact();
-					if (Race_if(PM_HERALD)) heraldgift();
-
-					if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-						u.uhpmax += 10;
-						u.uenmax += 10;
-						if (Upolyd) u.mhmax += 10;
-						pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-					}
+					trophy_get();
 				}
 
 #ifdef LIVELOGFILE
@@ -8983,17 +8990,7 @@ newbossX:
 			if (!achieve.imbued_bell) {
 
 				achieve.imbued_bell = TRUE;
-				if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-				if (RngeTeamSplat) pline("TROPHY GET!");
-				if (Race_if(PM_INHERITOR)) giftartifact();
-				if (Race_if(PM_HERALD)) heraldgift();
-
-				if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-					u.uhpmax += 10;
-					u.uenmax += 10;
-					if (Upolyd) u.mhmax += 10;
-					pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-				}
+				trophy_get();
 			}
 
 #ifdef LIVELOGFILE
@@ -9056,17 +9053,7 @@ newbossX:
 			if (!achieve.imbued_amulet) {
 
 				achieve.imbued_amulet = TRUE;
-				if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-				if (RngeTeamSplat) pline("TROPHY GET!");
-				if (Race_if(PM_INHERITOR)) giftartifact();
-				if (Race_if(PM_HERALD)) heraldgift();
-
-				if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-					u.uhpmax += 10;
-					u.uenmax += 10;
-					if (Upolyd) u.mhmax += 10;
-					pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-				}
+				trophy_get();
 			}
 
 #ifdef LIVELOGFILE
@@ -9675,13 +9662,13 @@ newbossB:
 
 		}
 
-		if (is_snow(u.ux, u.uy) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) && !(Cold_resistance && rn2(StrongCold_resistance ? 10 : 3)) && !rn2(isfriday ? 10 : 20) && (Flying || Levitation)) {
+		if (is_snow(u.ux, u.uy) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) && !(uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) && !(Cold_resistance && rn2(StrongCold_resistance ? 10 : 3)) && !rn2(isfriday ? 10 : 20) && (Flying || Levitation)) {
 			You("are caught in a snowstorm!");
 			make_stunned(Stunned + rnd(5),FALSE);
 			stop_occupation();
 		}
 
-		if (is_snow(u.ux, u.uy) && !(powerfulimplants() && uimplant && (uimplant->oartifact == ART_WHITE_WHALE_HATH_COME || uimplant->oartifact == ART_DUBAI_TOWER_BREAK)) && !(uarmf && itemhasappearance(uarmf, APP_FLEECY_BOOTS) ) && !(uarmf && itemhasappearance(uarmf, APP_CYAN_SNEAKERS) ) && !(uwep && uwep->oartifact == ART_GLACIERDALE) && !(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) && !(uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER) && !(uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) && !(uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) && !rn2(StrongCold_resistance ? 500 : Cold_resistance ? 200 : 50) ) {
+		if (is_snow(u.ux, u.uy) && !(powerfulimplants() && uimplant && (uimplant->oartifact == ART_WHITE_WHALE_HATH_COME || uimplant->oartifact == ART_DUBAI_TOWER_BREAK)) && !(uarmf && itemhasappearance(uarmf, APP_FLEECY_BOOTS) ) && !(uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) && !(uarmf && itemhasappearance(uarmf, APP_CYAN_SNEAKERS) ) && !(uwep && uwep->oartifact == ART_GLACIERDALE) && !(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) && !(uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER) && !(uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) && !(uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) && !rn2(StrongCold_resistance ? 500 : Cold_resistance ? 200 : 50) ) {
 			You("freeze!");
 			make_frozen(HFrozen + rnz(50),FALSE);
 			stop_occupation();
@@ -12161,7 +12148,7 @@ newboss:
 
 		if (!rn2(5000) && uwep && uwep->otyp == DIMENSIONAL_SHARD ) {
 
-			if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+			if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
 				NastinessProblem += rnd(1000);
 				You("hear otherworldly noises.");
 				goto pastds1;
@@ -12180,7 +12167,7 @@ pastds1:
 
 		if (!rn2(5000) && u.twoweap && uswapwep && uswapwep->otyp == DIMENSIONAL_SHARD ) {
 
-			if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+			if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
 				NastinessProblem += rnd(1000);
 				You("hear otherworldly noises.");
 				goto pastds2;
@@ -13504,7 +13491,7 @@ pastds2:
 
 			if (Role_if(PM_CELLAR_CHILD) && !rn2(20000)) {
 
-				if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+				if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
 					goto cellarnope;
 				}
 
@@ -13535,7 +13522,7 @@ pastds2:
 cellarnope:
 			if (!rn2(25000) && uarmf && itemhasappearance(uarmf, APP_DEMONOLOGIST_BOOTS) ) {
 
-				if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+				if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
 					goto demonolpast;
 				}
 
@@ -13550,7 +13537,7 @@ cellarnope:
 demonolpast:
 
 			if (!rn2(25000) && uarmf && itemhasappearance(uarmf, APP_DEMONOLOGIST_BOOTS) ) {
-				if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+				if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
 					goto demonolpast2;
 				}
 
@@ -13574,7 +13561,7 @@ demonolpast2:
 
 			if (!rn2(10000) && uarmc && itemhasappearance(uarmc, APP_CHINESE_CLOAK) ) {
 
-				if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+				if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
 					NastinessProblem += rnd(1000);
 					You("can hear Arabella giggling.");
 					goto past1;
@@ -13593,7 +13580,7 @@ demonolpast2:
 past1:
 			if (!rn2(10000) && RngeChina) {
 
-				if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+				if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
 					NastinessProblem += rnd(1000);
 					You("can hear Arabella giggling.");
 					goto past2;
@@ -13612,7 +13599,7 @@ past1:
 past2:
 			if (!rn2(10000) && uarmc && uarmc->oartifact == ART_ARABELLA_S_LIGHTNINGROD) {
 
-				if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+				if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
 					NastinessProblem += rnd(1000);
 					You("can hear Arabella giggling.");
 					goto past3;
@@ -13629,6 +13616,37 @@ past2:
 
 			}
 past3:
+
+			if (!rn2(10000) && uarm && uarm->oartifact == ART_CHANGERING_ENVIROMENT) {
+
+				if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+					u.youaredead = 1;
+					pline("Suddenly, you die due to a failed banishment effect.");
+					killer_format = KILLED_BY;
+					killer = "banishment mishap";
+					done(DIED);
+					u.youaredead = 0;
+
+					goto past4;
+				}
+
+				if (playerlevelportdisabled()) { 
+
+					u.youaredead = 1;
+					pline("Suddenly, you die due to a failed banishment effect.");
+					killer_format = KILLED_BY;
+					killer = "banishment mishap";
+					done(DIED);
+					u.youaredead = 0;
+					goto past4;
+				}
+
+				banishplayer();
+				You("were banished!");
+
+			}
+past4:
+
 			if (!rn2(10000) && uarmc && itemhasappearance(uarmc, APP_POLYFORM_CLOAK) ) {
 				if (!HPolymorph_control) HPolymorph_control = 2;
 				You_feel("polyform.");
@@ -13742,7 +13760,7 @@ past3:
 
 				pline("A mysterious force surrounds you...");
 
-				if ((((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || In_endgame(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz)) || (u.usteed && mon_has_amulet(u.usteed)) ) ) {
+				if ((((u.uhave.amulet) && !u.freeplaymode) || In_endgame(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz)) || (u.usteed && mon_has_amulet(u.usteed)) ) ) {
 					u.datadeletedefer = 1;
 					datadeleteattack();
 				}
@@ -13763,7 +13781,7 @@ past3:
 
 				pline("A mysterious force surrounds you...");
 
-				if ((((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || In_endgame(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz)) || (u.usteed && mon_has_amulet(u.usteed)) ) ) {
+				if ((((u.uhave.amulet) && !u.freeplaymode) || In_endgame(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz)) || (u.usteed && mon_has_amulet(u.usteed)) ) ) {
 					u.datadeletedefer = 1;
 					datadeleteattack();
 				}
@@ -14607,7 +14625,7 @@ past3:
 		/* this replaces the code in muse.c that always caused segfaults --Amy */
 
 		/* failsafes in case the player somehow manages to quickly snatch the amulet or something... */
-		if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+		if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
 			You("shudder for a moment."); (void) safe_teleds_normalterrain(FALSE); u.banishmentbeam = 0; break;
 		}
 
@@ -14623,7 +14641,7 @@ past3:
 
 	if (u.levelporting) { /* something attacked you with nexus or weeping */
 
-		if ((!u.uevent.udemigod || u.freeplaymode) && !playerlevelportdisabled() ) {
+		if (!playerlevelportdisabled() ) {
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 			level_tele(); /* will take care of u.uhave.amulet and similar stuff --Amy */
 		}

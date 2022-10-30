@@ -536,6 +536,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (Sickopathy && Sick && extra_nasty(mtmp->data) )
 		    ways_seen++;
+		if (uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mtmp->data) )
+		    ways_seen++;
 		if (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mtmp->data) )
 		    ways_seen++;
 		if (uarm && uarm->oartifact == ART_PLAYER_RADAR && (is_mplayer(mtmp->data) || is_umplayer(mtmp->data)) )
@@ -759,6 +761,10 @@ lookat(x, y, buf, monbuf)
 		    }
 		    if (Sickopathy && Sick && extra_nasty(mtmp->data) ) {
 			strcat(monbuf, "sickopathy");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mtmp->data) ) {
+			strcat(monbuf, "joke monster view");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 		    if (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mtmp->data) ) {
@@ -28149,6 +28155,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"*click* 'hihihi'",
 	"*click* 'hihihi' Whaaaat? It seems that some little girl stole a couple of your items!",
 	"*click* 'hihihi' Whaaaat? It seems that some little girl stole a couple of your items! You commend her efforts, but remark that she should have been more careful to ensure that you don't notice the theft.",
+	"Suddenly the area enters stasis.",
 
 };
 

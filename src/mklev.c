@@ -16672,19 +16672,7 @@ mkinvokearea()
 #ifdef RECORD_ACHIEVE
 
 	if (!achieve.perform_invocation) {
-
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
-
+		trophy_get();
 	}
 
     achieve.perform_invocation = 1;

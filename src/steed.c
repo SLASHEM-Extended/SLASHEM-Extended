@@ -699,6 +699,7 @@ kick_steed()
 			case P_SUPREME_MASTER: gallopamount *= 10; break;
 		}
 	}
+	if (uarmf && uarmf->oartifact == ART_ARVOGENIA_S_BIKER_HEELS) gallopamount *= 2;
 
 	u.ugallop += gallopamount;
 	return;

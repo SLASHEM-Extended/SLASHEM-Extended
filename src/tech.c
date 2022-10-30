@@ -4989,6 +4989,7 @@ breakstare:
 		struct monst *mtmp3;
 		caughtX = 0;
 		pline("You strike a sexy pose with your heels!");
+		if (uarmf && uarmf->oartifact == ART_PRECURSOR_TO_THE___) adjattrib(A_CHA, 1, -1, TRUE);
 
 		    for (k = -1; k <= 1; k++) for(l = -1; l <= 1; l++) {
 			if (!isok(u.ux + k, u.uy + l)) continue;
@@ -6268,6 +6269,7 @@ heelschosen:
 		    	techt_inuse(tech_no) = 11;
 			nomul(-11, "posing sexily", FALSE);
 			pline("You start posing sexily with your high heels, hoping to charm the bystanders.");
+			if (uarmf && uarmf->oartifact == ART_PRECURSOR_TO_THE___) adjattrib(A_CHA, 1, -1, TRUE);
 
 			t_timeout = rnz(2000);
 			break;
@@ -9287,11 +9289,7 @@ mkwsh_end:
 			if (!mtmp) {
 				pline("That was a waste, man. The target square didn't contain a monster!");
 			} else {
-				if (u.uevent.udemigod && !u.freeplaymode) {
-					u_teleport_mon(mtmp, TRUE);
-				} else {
-					u_teleport_monB(mtmp, TRUE);
-				}
+				u_teleport_monB(mtmp, TRUE);
 			}
 
 		      t_timeout = rnz(50000);
@@ -11484,6 +11482,8 @@ blitz_g_slam()
 	else if (need_two(mtmp)) canhitmon = 2;
 	else if (need_one(mtmp)) canhitmon = 1;
 	else canhitmon = 0;
+	if (uarmf && uarmf->oartifact == ART_KILLCAP) canhitmon = 0;
+
 	if (Upolyd) {
 	    if (hit_as_four(&youmonst))	objenchant = 4;
 	    else if (hit_as_three(&youmonst)) objenchant = 3;

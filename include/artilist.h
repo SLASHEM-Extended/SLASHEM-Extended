@@ -9621,6 +9621,298 @@ A("Bernceld",				RIN_WINCING, /* deactivates cold resistance, grants infravision
 	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
 	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2400L ),
 
+A("Undead Stink",				RUTH_SNEAKERS, /* resist poison, undead warning, aggravate monster, 1 in 1000 chance per turn that rnz(5) turns of stasis happen */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Scratch The Shred",				MAGDALENA_COMBAT_BOOTS, /* if you kick a monster that has less than 10% of its health left, the monster dies */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Soft Karate Kick",				MARLEEN_COMBAT_BOOTS, /* +2 CHA, kicking a monster while martial arts is below master deals more damage the lower your MA skill is */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Front Target",				KLARA_PLATFORM_SANDALS, /* resist disintegration and fear, your kick cannot be clumsy */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("As Strong As Boots",				FRIEDERIKE_DANCING_SHOES, /* resist petrification, kicking deals +5 damage and has 10% chance of paralyzing the target for d5 turns */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Laugh When You Fall",				NAOMI_STILETTOS, /* while paralyzed, you have +5 charisma and monsters with appr=1 have 90% chance to have appr=0 instead */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Live Among The Wild",				UTE_PLATFORM_SANDALS, /* animals have 50% chance of being spawned peaceful */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Dad's Money",				JASIEEN_WEDGE_SANDALS, /* every time you score a trophy, you gain 1000 zorkmids and get a mocking message from your dad */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Barbed Hook Zipper",				YASAMAN_LEATHER_BOOTS, /* resist petrification and level drain, hostile monsters do not use perfume against you (but frenzied ones still do), 1 in 1000 that you get rnd(20 + (level_difficulty * 3)) turns of bleeding and wounded legs, kicking a monster has 1% chance that it needs to pass a MR check or become peaceful */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Little Ice Block With The White Skirt",				MAY_BRITT_SANDALS, /* resist cold, freezopathy, protects potions from cold, can walk on snow and ice, immunity to snowstorms, +2 CHA */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Arvogenia's Biker Heels",				LOW_BOOTS, /* initialized to always be stone-carved heels; while riding, you can jump and deal +5 kicking damage, kicking the steed gives double gallop time */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Precursor to the 69",				LOW_BOOTS, /* initialized to always be homo shoes, intrinsic speed, using attire charm or beauty charm gives +1 CHA */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Heelmarji",				LOW_BOOTS, /* initialized to always be devil's lettuce shoes, cone heels */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("She's Still An Anastasia",				LOW_BOOTS, /* initialized to always be loafers, unchanging, anastasia trap effect, resist psi */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Killcap",				LOW_BOOTS, /* initialized to always be sweaty shoes, monsters that need +X weapons to be hit can be hit with everything, -2 INT and your INT is capped at 6 */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("PSG",				SNIPER_RIFLE, /* pushes you away after every bullet fired */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Borked Para",				HEAVY_MACHINE_GUN, /* pushes you away after every bullet fired */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5500L ),
+
+A("Wrong Rune",				PLATE_MAIL, /* invoke to levelport to level 62 of Gehennom */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Mark and Recall",				PLATE_MAIL, /* invoke to mark the current level, then invoke again to instantly levelport to that level */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Strong Enchantment",				PLATE_MAIL, /* 10 extra points of AC, acid resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Airstrike!",				PLATE_MAIL, /* invoke to get a target cursor, and dynamite explosion at the square you pick */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Randart Reroll",				PLATE_MAIL, /* invoke to reroll all randarts (artifact.c) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Skill Reset",				PLATE_MAIL, /* invoke to undo all skill points you've spent */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Build A Wall",				PLATE_MAIL, /* invoke to transform terrain into rock walls on squares whose x and/or y coordinates match yours */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Blankit Now",				PLATE_MAIL, /* invoke to remove the enchantment ("egotype") from an armor piece */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Wild Whirling",				RED_DOUBLE_LIGHTSABER, /* -8 to-hit, double attacks */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Artitfact",				CANDY_BRA, /* special effect only when you're female: +5 CHA, monsters have 20% chance to miss their turn, but claw attacks always proc their special anti-female effect. */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Entertaining Clear",				PLATE_MAIL, /* invoke to teleport all hostile monsters to you (multiple gather trap) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Free Skill Slots",				PLATE_MAIL, /* invoke to gain d5 skill slots, but the armor is used up in the process */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 50000L ),
+
+A("Moneysack",				PLATE_MAIL, /* invoke to gain d1000 zorkmids */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Joke's Over",				PLATE_MAIL, /* displays all joke monsters while worn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Boner Hider",				PLATE_MAIL, /* if you're male, and you'd lose alla, you get contaminated instead */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Hazardous Equipment",				PLATE_MAIL, /* contamination resistance, aggravate monster, disables stealth */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Changering Enviroment",				PLATE_MAIL, /* resist fire, cold, poison, shock, sleep, disintegration, petrification, drain life and magic, but also gives banishmentitis and if you can't be banished, you die! */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Fully Stupid Item",				WAN_SUMMON_UNDEAD, /* whenever you zap it, you gain 10*XL experience but also rnz(1000) turns of the satan trap effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Do Not Display The Charges",				LONG_SWORD, /* randart2 melee weapon, +5 INT, invoke to reset your Pw to the maximum but 1 in 5 chance that the weapon becomes brittle, and if the weapon is already brittle while invoking, you still get the Pw-restoring message but it doesn't actually restore */
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 6), NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Versus Electrically-Based Monsters",				LONG_SWORD, /* randart melee weapon, 10 extra points of AC, deals 3d10 extra damage to monsters that have AD_ELEC or AD_MALK */
+	(SPFX_RESTR), 0, 0,
+	PHYS(4, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Star-Slay Giants",				BASTERD_SWORD, /* +5 STR, DEX and INT */
+	(SPFX_RESTR|SPFX_DFLAG2), 0, M2_GIANT,
+	PHYS(20, 26), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Ooop Elixer",				POT_GAIN_ABILITY, /* doesn't have the gain ability effect when quaffed, but instead causes the permanent stat damage effect without you being able to resist and cures all feminism trap effects in the process */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Completely Nothing",				POT_RESTORE_ABILITY, /* doesn't have the restore ability effect when quaffed, but instead restores temporarily drained stats */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("ooooooooooar.",				SCR_TRAP_DETECTION, /* all traps in a 11x11 area centered on you become revealed, even if they were super-invisible */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Let Blind People See",				SCR_CURE_BLINDNESS, /* if you read it while blind, you gain rnz(10000) turns of blindness resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Nez Morsel",				WAKAME, /* eating it gives rn1(8,8) turns of invulnerability */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Incandescent Triangle",				WHITE_SWEETS, /* eating it causes rnz(2000) turns of sterilization */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Flushemout",				BROWN_SWEETS, /* eating it cures lycanthropy, contamination and sickness, but gives rnz(2000) turns of diarrhea */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Colorvision",				GREEN_SWEETS, /* eating it gives intrinsic poison resistance and see invisible, but also the marlena trap effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("That's An Arti!",				PINK_SWEETS, /* eating it creates a random artifact, and can unlock the skill associated with it */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Ripper",				BLACK_SWEETS, /* eating it stops all currently active corpse revival timers */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Rare Res Obtained",				YELLOW_SWEETS, /* eating it gives intrinsic acid resistance */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Feed The Horse",				SHEAF_OF_STRAW, /* if a pet eats it, provides 100000 additional turns of satiation to it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Flufflight",				COTTON, /* eating it gives rn1(50,50) turns of flying */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Newtraltoxin",				ONION, /* eating it restores your abilities and can increase one, like magic fountain, then causes a random bad effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Lansio'r Blifiau",				WELSH_ONION, /* eating it doubles your sling skill training, and increases sling skill cap by one level */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Blank Slate",				WHITE_PEACH, /* eating it causes the intrinsic loss effect 10000 times, meaning you almost always lose all your intrinsics (good and bad ones alike) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Nanika Ga Okotta",				SENTOU, /* eating it either causes a good or bad effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Gnurps",				BEAN, /* +1 CON when eaten */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Kokoro o kaiho suru",				SENZU, /* cure confusion and stun when eaten, and rnz(5000) turns of conf/stun res */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Grape Taste",				PARFAIT, /* +1 luck when eaten and 500 additional units of nutrition */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("White Christmas Dream",				X_MAS_CAKE, /* if you eat it during december, all floor/corridor tiles on the current level turn into snow and you get 5 random weapons as well as 10 random armor pieces; otherwise, it flat out refuses to be eaten */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Very Good Meal",				BUNNY_CAKE, /* eating it increases all stats by one */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Oh Nooooooo",				BAKED_SWEET_POTATO, /* eating it induces vomiting and gives you the ina trap effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Melon Flavor",				BREAD, /* cures confusion when eaten, and 1000 extra units of nutrition */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Make Yourself Heavy",				PASTA, /* +2 CON and rnz(10000) turns of patricia trap effect when eaten */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Acrolein Addiction",				CHARRED_BREAD, /* eating it gives rnz(250) contamination and allows you to train a skill by 100 points */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Arti-Choke",				SLICE_OF_PIZZA, /* eating it gives rnz(1000) turns of magical breathing */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Not In The Lab",				PIZZA, /* eating it while your quest nemesis isn't dead yet gives you the beacher hybrid race, but in any case you get intrinsic full nutrients */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Ugh-Ugghh",				BOTA_MOCHI, /* eating it gives +1 luck but drains your maximum health by 10 (kills you if you don't have enough) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Yakkaina Tori O Mitsuketa",				KIBI_DANGO, /* eating it gives rnz(200) turns of detect monsters */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Oishi",				SAKURA_MOCHI, /* no specialties */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Matia Seibun Juyo",				KOUHAKU_MANJYUU, /* eating it cures totter, and if it wasn't brittle, also unlocks Juyo (with a cap of expert) or increases its cap by one, but wishing for this artifact causes it to be created brittle */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Gekito ni yoru hentai shojo-zeme",				YOUKAN, /* eating it summons a squad of M5_ELONA somewhere, and a tame M5_ELONA next to you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Okukuba Obutereevu",				MAGIC_BANANA, /* eating it reduces current HP of all monsters on the current level by half */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Mind Cleared Off",				LUNCH_OF_BOILED_EGG, /* eating it sets your sanity to zero and causes amnesia of magnitude 27, plus gives rnz(10000) turns of psi resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
 
 /*
  *	Stormbringer only has a 2 because it can drain a level,

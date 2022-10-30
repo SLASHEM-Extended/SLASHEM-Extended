@@ -322,17 +322,7 @@ struct obj *obj;
 		if (!achieve.get_amulet) {
 			achieve.get_amulet = 1; /* filthy hangup cheater bastard!!! --Amy */
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 			qt_pager(QT_PICKAMULET);
 			if (u.umortality < 1) {
@@ -366,17 +356,8 @@ struct obj *obj;
 
 			achieve.get_candelabrum = 1;
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
+			trophy_get();
 
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
 			qt_pager(QT_VLAD);
 
 #ifdef LIVELOGFILE
@@ -404,17 +385,7 @@ struct obj *obj;
 
 			achieve.get_bell = 1;
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 #ifdef LIVELOGFILE
 			livelog_achieve_update();
@@ -440,17 +411,8 @@ struct obj *obj;
 
 			achieve.get_book = 1;
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
+			trophy_get();
 
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
 			qt_pager(QT_RODNEY);
 
 #ifdef LIVELOGFILE
@@ -509,17 +471,7 @@ struct obj *obj;
 
 		if (!achieve.get_luckstone) {
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 		}
 
@@ -542,17 +494,7 @@ struct obj *obj;
 
 		if (!achieve.finish_sokoban) {
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 		}
 
@@ -579,17 +521,7 @@ struct obj *obj;
 				u.pract_mrstone = TRUE;
 			}
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 		}
 
@@ -23316,6 +23248,152 @@ boolean knoweverything;
 					pline("Artifact specs: resist fire, infravision and sight bonus when worn but deactivates cold resistance."); break;
 				case ART_RED_SWORD:
 					pline("Artifact specs: +5 to-hit and +12 damage against fire-susceptible monsters. This artifact is not randomly generated and normally appears in the inventory of 'part time worker the red sword'."); break;
+				case ART_UNDEAD_STINK:
+					pline("Artifact specs: resist poison, undead warning, aggravate monster and occasionally causes a few turns of stasis when worn."); break;
+				case ART_SCRATCH_THE_SHRED:
+					pline("Artifact specs: kicking a monster that is low on health will kill the monster."); break;
+				case ART_SOFT_KARATE_KICK:
+					pline("Artifact specs: +2 charisma and half physical damage when worn, and you deal extra kicking damage if your martial arts skill is lower than master (higher bonus the lower your skill is) but only if you're not restricted."); break;
+				case ART_FRONT_TARGET:
+					pline("Artifact specs: disintegration and fear resistance when worn, prevents your kick from being clumsy."); break;
+				case ART_AS_STRONG_AS_BOOTS:
+					pline("Artifact specs: resist petrification when worn, kicking deals extra damage to monsters and may also occasionally paralyze them."); break;
+				case ART_LAUGH_WHEN_YOU_FALL:
+					pline("Artifact specs: if you happen to be paralyzed while wearing them, you have extra charisma and monsters are reluctant to move next to you until the paralysis ends."); break;
+				case ART_LIVE_AMONG_THE_WILD:
+					pline("Artifact specs: shock resistance when worn, and randomly spawned animals often generate peaceful."); break;
+				case ART_DAD_S_MONEY:
+					pline("Artifact specs: while wearing them, your dad will want to ensure that you score as many trophies as possible, and rewards you if you do actually score one."); break;
+				case ART_BARBED_HOOK_ZIPPER:
+					pline("Artifact specs: resist petrification and drain life when worn, prevents non-frenzied monsters from attacking you with perfume, occasionally causes you to bleed and receive wounded legs, and if you kick a monster, there's a tiny little chance that it becomes peaceful if it fails a saving throw."); break;
+				case ART_LITTLE_ICE_BLOCK_WITH_THE_:
+					pline("Artifact specs: resist cold, freezopathy, protects potions from cold, allows you to walk on snow and ice and protects you from snowstorms, +2 charisma."); break;
+				case ART_ARVOGENIA_S_BIKER_HEELS:
+					pline("Artifact specs: if you're riding while wearing them, you can jump and your kick deals extra damage, plus kicking your steed causes it to gallop for a longer time."); break;
+				case ART_PRECURSOR_TO_THE___:
+					pline("Artifact specs: you have intrinsic speed while wearing them, and if you use the attire charm or beauty charm while wearing them, you gain a point of charisma."); break;
+				case ART_HEELMARJI:
+					pline("Artifact specs: count as cone heels."); break;
+				case ART_SHE_S_STILL_AN_ANASTASIA:
+					pline("Artifact specs: unchanging, psi resistance and anastasia trap effect when worn."); break;
+				case ART_KILLCAP:
+					pline("Artifact specs: makes it so that monsters which need a +X weapon to be hit can also be reliably hit if you don't have a sufficient weapon, but your INT is reduced by 2 and can't be higher than 6."); break;
+				case ART_PSG:
+					pline("Artifact specs: +10 damage. Actually it's a Dragunov sniper rifle. After firing a bullet from it, you'll be pushed back."); break;
+				case ART_BORKED_PARA:
+					pline("Artifact specs: +6 damage. This FN M249 Para is borked, causing you to be pushed through the area randomly while firing, which may well result in the bullets not going where you wanted."); break;
+				case ART_WRONG_RUNE:
+					pline("Artifact specs: can be invoked for rune of return, except it doesn't work right."); break;
+				case ART_MARK_AND_RECALL:
+					pline("Artifact specs: can be invoked to mark the current dungeon level, or if a level has already been marked, it'll immediately warp you to the level in question."); break;
+				case ART_STRONG_ENCHANTMENT:
+					pline("Artifact specs: acid resistance and 10 extra points of AC when worn."); break;
+				case ART_AIRSTRIKE_:
+					pline("Artifact specs: can be invoked to get a target cursor, and a big explosion will happen at the square you select."); break;
+				case ART_RANDART_REROLL:
+					pline("Artifact specs: can be invoked to reroll all randarts. This doesn't affect any artifacts that have already been generated."); break;
+				case ART_SKILL_RESET:
+					pline("Artifact specs: can be invoked to undo all the skill points you've spent, so you can redistribute them to other skills."); break;
+				case ART_BUILD_A_WALL:
+					pline("Artifact specs: all squares whose x and/or y coordinates match yours will turn into rock walls, unless they're undiggable or a kind of terrain that cannot be changed."); break;
+				case ART_BLANKIT_NOW:
+					pline("Artifact specs: can be invoked to remove the special enchantment (egotype) from a piece of armor in your inventory."); break;
+				case ART_WILD_WHIRLING:
+					pline("Artifact specs: +10 damage, -8 to-hit, double attacks."); break;
+				case ART_ARTITFACT:
+					pline("Artifact specs: works only if you have tits, in which case you have +5 charisma and monsters may occasionally miss their turn but claw attacks will be much more dangerous to you."); break;
+				case ART_ENTERTAINING_CLEAR:
+					pline("Artifact specs: can be invoked to teleport all hostile monsters to you."); break;
+				case ART_FREE_SKILL_SLOTS:
+					pline("Artifact specs: can be invoked to gain additional skill slots but doing so uses up the armor. This item cannot be wished for."); break;
+				case ART_MONEYSACK:
+					pline("Artifact specs: can be invoked to generate a bunch of zorkmids."); break;
+				case ART_JOKE_S_OVER:
+					pline("Artifact specs: displays all joke monsters while worn."); break;
+				case ART_BONER_HIDER:
+					pline("Artifact specs: if you're male, losing alla will contaminate you instead."); break;
+				case ART_HAZARDOUS_EQUIPMENT:
+					pline("Artifact specs: contamination resistance and aggravate monster when worn, and disables stealth."); break;
+				case ART_CHANGERING_ENVIROMENT:
+					pline("Artifact specs: resist fire, cold, poison, shock, sleep, disintegration, petrification, drain life and magic when worn as well as banishmentitis. If the latter triggers and you can't be banished for any reason, you die instantly!"); break;
+				case ART_FULLY_STUPID_ITEM:
+					pline("Artifact specs: zapping it grants you a few experience points but also a couple hundred turns of the satan trap effect."); break;
+				case ART_DO_NOT_DISPLAY_THE_CHARGES:
+					pline("Artifact specs: +6 to-hit and damage, +5 intelligence when wielded, can be invoked to restore your Pw to the maximum."); break; /* intentionally doesn't mention the brittleness thing */
+				case ART_VERSUS_ELECTRICALLY_BASED_:
+					pline("Artifact specs: +4 to-hit and +6 damage, 10 extra points of AC when wielded, deals extra damage to electrically-based monsters."); break;
+				case ART_STAR_SLAY_GIANTS:
+					pline("Artifact specs: +20 to-hit and +26 damage to monsters that count as giants, increases your strength, dexterity and intelligence by 5 when wielded."); break;
+				case ART_OOOP_ELIXER:
+					pline("Artifact specs: causes permanent status point loss when quaffed and cures all feminism trap effects."); break;
+				case ART_COMPLETELY_NOTHING:
+					pline("Artifact specs: restores temporarily drained statistics when quaffed."); break;
+				case ART_OOOOOOOOOOAR_:
+					pline("Artifact specs: reading it allows you to detect traps close by."); break;
+				case ART_LET_BLIND_PEOPLE_SEE:
+					pline("Artifact specs: reading it while blind grants blindness resistance for a while."); break;
+				case ART_NEZ_MORSEL:
+					pline("Artifact specs: eating it makes you invulnerable for a few turns."); break;
+				case ART_INCANDESCENT_TRIANGLE:
+					pline("Artifact specs: eating it sterilizes the area for a while."); break;
+				case ART_FLUSHEMOUT:
+					pline("Artifact specs: eating it cures lycanthropy, contamination and sickness but also gives you diarrhea for a while."); break;
+				case ART_COLORVISION:
+					pline("Artifact specs: eating it gives intrinsic poison resistance and see invisible, but causes things to sometimes appear green even if they're actually some other color."); break;
+				case ART_THAT_S_AN_ARTI_:
+					pline("Artifact specs: eating it generates an artifact and can unlock the associated skill. This item cannot be wished for."); break;
+				case ART_RIPPER:
+					pline("Artifact specs: eating it stops revival/mold timers of all corpses on the level."); break;
+				case ART_RARE_RES_OBTAINED:
+					pline("Artifact specs: eating it grants intrinsic acid resistance. This item cannot be wished for."); break;
+				case ART_FEED_THE_HORSE:
+					pline("Artifact specs: if a pet eats this, it gains 100000 turns of extra satiation."); break;
+				case ART_FLUFFLIGHT:
+					pline("Artifact specs: eating it grants 50-100 turns of flying."); break;
+				case ART_NEWTRALTOXIN:
+					pline("Artifact specs: eating it restores drained attributes and can also increase a random one, but causes a random bad effect as well."); break;
+				case ART_LANSIO_R_BLIFIAU:
+					pline("Artifact specs: eating it doubles your sling skill training and increases the cap of your sling skill."); break;
+				case ART_BLANK_SLATE:
+					pline("Artifact specs: eating it removes all of your intrinsics."); break;
+				case ART_NANIKA_GA_OKOTTA:
+					pline("Artifact specs: eating it causes either a good or bad effect, decided randomly."); break;
+				case ART_GNURPS:
+					pline("Artifact specs: +1 constitution when eaten."); break;
+				case ART_KOKORO_O_KAIHO_SURU:
+					pline("Artifact specs: eating it cures confusion and stun, and makes you temporarily resistant to both."); break;
+				case ART_GRAPE_TASTE:
+					pline("Artifact specs: +1 luck and 500 additional units of nutrition when eaten."); break;
+				case ART_WHITE_CHRISTMAS_DREAM:
+					pline("Artifact specs: can only be eaten during December, in which case it turns all floor tiles on the current level into snow and grants you a bunch of weapon and armor gifts. This item cannot be wished for."); break;
+				case ART_VERY_GOOD_MEAL:
+					pline("Artifact specs: eating it gives +1 to all stats."); break;
+				case ART_OH_NOOOOOOO:
+					pline("Artifact specs: if you eat it, you vomit and develop anorexia. That's bad, so don't do it."); break;
+				case ART_MELON_FLAVOR:
+					pline("Artifact specs: cures confusion when eaten and provides 1000 extra points of nutrition."); break;
+				case ART_MAKE_YOURSELF_HEAVY:
+					pline("Artifact specs: +2 constitution and temporary patricia trap effect when eaten."); break;
+				case ART_ACROLEIN_ADDICTION:
+					pline("Artifact specs: contaminates you when eaten, and allows you to train a selectable skill by 100 points."); break;
+				case ART_ARTI_CHOKE:
+					pline("Artifact specs: eating it gives temporary magical breathing."); break;
+				case ART_NOT_IN_THE_LAB:
+					pline("Artifact specs: eating it grants full nutrition permanently, and if your nemesis is still alive you'll also get the beacher hybrid race. This item cannot be wished for."); break;
+				case ART_UGH_UGGHH:
+					pline("Artifact specs: eating it grants +1 luck but reduces your maximum health by 10. You *will* choke to death if you had less than that amount of health to begin with."); break;
+				case ART_YAKKAINA_TORI_O_MITSUKETA:
+					pline("Artifact specs: eating it gives detect monsters for a short period of time."); break;
+				case ART_OISHI:
+					pline("Artifact specs: no specialties."); break;
+				case ART_MATIA_SEIBUN_JUYO:
+					pline("Artifact specs: eating it cures totter. If you didn't obtain this artifact by wishing for it, eating it also unlocks the form VII (Juyo) skill, or if you already know it, increases its cap."); break;
+				case ART_GEKITO_NI_YORU_HENTAI_SHOJ:
+					pline("Artifact specs: eating it summons a tame Elona monster next to you, and a bunch of random Elona monsters somewhere else on the level."); break;
+				case ART_OKUKUBA_OBUTEREEVU:
+					pline("Artifact specs: eating it reduces the current health of all monsters on the current level by half, like a tactical nuke. This item cannot be wished for."); break;
+				case ART_MIND_CLEARED_OFF:
+					pline("Artifact specs: eating it cures your sanity and gives temporary psi resistance, but also amnesia."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

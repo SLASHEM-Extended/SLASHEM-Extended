@@ -31995,6 +31995,7 @@ register struct permonst *ptr;
 	if (ptr->mlet == S_NAGA && Race_if(PM_HUMANLIKE_NAGA) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_QUADRUPED && Race_if(PM_ENGCHIP) && !Role_if(PM_CONVICT) && !rn2(10)) return TRUE;
 	if (ptr->mlet == S_TURRET && Race_if(PM_BABYLONIAN) && !Role_if(PM_CONVICT) && !rn2(2)) return TRUE;
+	if (is_animal(ptr) && uarmf && uarmf->oartifact == ART_LIVE_AMONG_THE_WILD && !rn2(2)) return TRUE;
 
 	if (uleft && uleft->oartifact == ART_NENYA && is_elf(ptr)) return TRUE;
 	if (uright && uright->oartifact == ART_NENYA && is_elf(ptr)) return TRUE;

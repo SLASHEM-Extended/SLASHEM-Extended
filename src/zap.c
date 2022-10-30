@@ -1285,10 +1285,6 @@ armorsmashdone:
 			break;
 		}
 
-		if (u.uevent.udemigod && !u.freeplaymode) {
-			reveal_invis = !u_teleport_mon(mtmp, TRUE);
-			break;
-		}
 		reveal_invis = !u_teleport_monB(mtmp, TRUE);
 		break;
 	case WAN_MAKE_INVISIBLE:
@@ -4073,6 +4069,12 @@ register struct obj *wand;
 			objects[wand->otyp].oc_material = MT_VIVA;
 			pline_The("wand is now made of viva.");
 		}
+	}
+
+	if (wand && wand->oartifact == ART_FULLY_STUPID_ITEM) {
+		more_experienced(GushLeevl * 10, 0);
+		newexplevel();
+		SatanEffect += rnz(1000);
 	}
 
 	if (wand->oartifact && !rn2(2)) willusecharge = FALSE; /* even works for ones that can only be charged once */
@@ -7120,7 +7122,7 @@ boolean ordinary;
 		    break;
 		case WAN_BANISHMENT:
 			makeknown(obj->otyp);
-			if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds_normalterrain(FALSE); break;}
+			if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds_normalterrain(FALSE); break;}
 			if (playerlevelportdisabled()) {
 				pline("For some reason you resist the banishment!");
 				break;
@@ -7343,7 +7345,7 @@ struct obj *obj;	/* wand or spell */
 
 		case WAN_BANISHMENT:
 			makeknown(obj->otyp);
-			if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); break;}
+			if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); break;}
 			if (playerlevelportdisabled()) {
 				pline("For some reason you resist the banishment!");
 				break;
@@ -10460,6 +10462,11 @@ register int osym, dmgtyp;
 		case AD_COLD:
 
 		    if (!conundrumbreak()) {
+				skip++;
+				break;
+			}
+
+		    if (uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) {
 				skip++;
 				break;
 			}

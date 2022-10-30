@@ -4034,6 +4034,7 @@ mdamagem(magr, mdef, mattk)
 	if (need_two(mdef))    canhitmon = 2;
 	if (need_three(mdef))  canhitmon = 3;
 	if (need_four(mdef))   canhitmon = 4;
+	if (uarmf && uarmf->oartifact == ART_KILLCAP) canhitmon = 0;
 
 	if (mattk->aatyp == AT_WEAP && otmp) {
 	    objenchant = otmp->spe;

@@ -1920,7 +1920,7 @@ randombranchtele()
 	d_level dtmp;
 
 	/* make sure you can't be branchported if you're supposed to be immune --Amy */
-	if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+	if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
 		return;
 	}
 
@@ -2035,7 +2035,7 @@ banishplayer()
 	dtmp.dlevel = 1; /* ditto */
 
 	/* make sure you can't be banished if you're supposed to be immune --Amy */
-	if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+	if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
 		return;
 	}
 

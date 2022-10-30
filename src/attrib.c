@@ -2679,6 +2679,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) tmp += 1;
 		if (uarm && uarm->oartifact == ART_UBERGAGE) tmp += 3;
 		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
+		if (uwep && uwep->oartifact == ART_STAR_SLAY_GIANTS) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) tmp += 10;
 		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_DESEAMING_GAME) tmp += 3;
@@ -2735,7 +2736,9 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) tmp += 3;
 		if (uarmf && uarmf->oartifact == ART_EVELINE_S_LOVELIES) tmp += 3;
 		if (uarmf && uarmf->oartifact == ART_STEFANJE_S_PROBLEM) tmp += 2;
+		if (uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) tmp += 2;
 		if (uarmf && uarmf->oartifact == ART_YVONNE_S_MODEL_AMBITION) tmp += 2;
+		if (uarmf && uarmf->oartifact == ART_SOFT_KARATE_KICK) tmp += 2;
 		if (uarmf && uarmf->oartifact == ART_KOKYO_NO_PAFOMANSUU_OKU) tmp += (5 + uarmf->spe);
 		if (uarmf && uarmf->oartifact == ART_EVA_S_INCONSPICUOUS_CHARM) tmp += (uarmf->spe);
 		if (uarmf && uarmf->oartifact == ART_SOLVEJG_S_STINKING_SLIPPER) tmp += 5;
@@ -2752,9 +2755,11 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_UNEVEN_STILTS) tmp += 15;
 		if (uarmf && uarmf->oartifact == ART_RARE_ASIAN_LADY) tmp += 20;
 		if (uarmf && uarmf->oartifact == ART_ELENETTES) tmp += 5;
+		if (uarmf && uarmf->oartifact == ART_LAUGH_WHEN_YOU_FALL && (multi < 0)) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_SEXROOM_FOR_FREE) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_NE_PROSTO_KRASIVO) tmp += 4;
 		if (uarmf && uarmf->oartifact == ART_ELEVECULT) tmp += 5;
+		if (uarmu && uarmu->oartifact == ART_ARTITFACT && flags.female) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_KRISTIN_S_NOBILITY) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_CRUEL_GODDESS_ANA) tmp += 5;
 		if (uleft && uleft->oartifact == ART_CRIMINAL_QUEEN) tmp += 5;
@@ -2934,6 +2939,8 @@ int x;
 		if (x == A_WIS && uleft && uleft->oartifact == ART_FALL_WARTING_NUMBER) tmp += 2;
 		if (x == A_WIS && uright && uright->oartifact == ART_FALL_WARTING_NUMBER) tmp += 2;
 		if (uarmf && uarmf->oartifact == ART_COLLEGE_ROCKZ) tmp += 3;
+		if (x == A_INT && uwep && uwep->oartifact == ART_DO_NOT_DISPLAY_THE_CHARGES) tmp += 5;
+		if (x == A_INT && uwep && uwep->oartifact == ART_STAR_SLAY_GIANTS) tmp += 5;
 
 		if (uarmh && uarmh->oartifact == ART_YOU_DON_T_KNOW_SHIT) tmp -= 3;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp -= 10;
@@ -2943,6 +2950,7 @@ int x;
 		if (uarmh && uarmh->oartifact == ART_DUNCE_POUNCE && tmp > 6) tmp = 6;
 		if (AllStatsAreLower) tmp -= 10;
 		if (uarmf && uarmf->oartifact == ART_STAR_SOLES) tmp -= 2;
+		if (uarmf && uarmf->oartifact == ART_KILLCAP && x == A_INT) tmp -= 2;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
 		if (uarmc && uarmc->oartifact == ART_SIECHELALUER) tmp -= 10;
@@ -2960,7 +2968,9 @@ int x;
 			tmp -= norahunger;
 		}
 
+		if (uarmf && uarmf->oartifact == ART_KILLCAP && tmp > 6) tmp = 6;
 		if (uarmh && uarmh->otyp == DUNCE_CAP) return(Role_if(PM_JESTER) ? 9 : 6);
+
 	} else if (x == A_DEX) {
 
 		if (uwep && uwep->oartifact == ART_SUREFIRE_GUN) tmp += (3 + uwep->spe);
@@ -2988,6 +2998,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_EVERYWHERE_AT_ONCE) tmp += 3;
 		if (uarmf && uarmf->oartifact == ART_IN_AWE) tmp += 5;
 		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
+		if (uwep && uwep->oartifact == ART_STAR_SLAY_GIANTS) tmp += 5;
 		if (uwep && uwep->oartifact == ART_LONGBONE_OF_BANANA) tmp += 3;
 		if (uwep && uwep->oartifact == ART_LONGBOW_OF_BANANA) tmp += 3;
 		if (FemtrapActiveNora && u.uhs == WEAK) tmp += 2;

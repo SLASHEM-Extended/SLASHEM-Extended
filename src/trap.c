@@ -8802,7 +8802,7 @@ newbossPENT:
 	    case WARP_ZONE:
 		deltrap(trap);
 
-		if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds_normalterrain(FALSE); break;}
+		if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds_normalterrain(FALSE); break;}
 
 		if (playerlevelportdisabled()) { 
 			pline("For some reason you resist the banishment!");
@@ -8817,7 +8817,7 @@ newbossPENT:
 	    case BACK_TO_START_TRAP:
 		deltrap(trap);
 
-		if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds_normalterrain(FALSE); break;}
+		if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds_normalterrain(FALSE); break;}
 
 		if (playerlevelportdisabled()) { 
 			pline("For some reason you resist the banishment!");
@@ -10699,7 +10699,7 @@ madnesseffect:
 				break;
 			case 6:
 
-				if ((!u.uevent.udemigod || u.freeplaymode) && !playerlevelportdisabled() ) {
+				if (!playerlevelportdisabled() ) {
 					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
 					if (!u.levelporting) {
@@ -14507,7 +14507,7 @@ skillmultiplyagain:
 			break;
 		case WRONG_STAIRS:
 
-			if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) break;
+			if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) break;
 
 			if (playerlevelportdisabled()) { 
 				break;

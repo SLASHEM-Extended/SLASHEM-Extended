@@ -1707,19 +1707,7 @@ dodown()
 #ifdef RECORD_ACHIEVE
 
 		if (!achieve.enter_gehennom) {
-
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
-
+			trophy_get();
 		}
 
             achieve.enter_gehennom = 1;
@@ -1870,17 +1858,7 @@ doup()
 	if (!achieveX.completed_minusworld && u.ux == sstairs.sx && u.uy == sstairs.sy && In_minusworld(&u.uz) && (dunlev(&u.uz) == 1)) {
 	      achieveX.completed_minusworld = 1;
 
-		if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-		if (RngeTeamSplat) pline("TROPHY GET!");
-		if (Race_if(PM_INHERITOR)) giftartifact();
-		if (Race_if(PM_HERALD)) heraldgift();
-
-		if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-			u.uhpmax += 10;
-			u.uenmax += 10;
-			if (Upolyd) u.mhmax += 10;
-			pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-		}
+		trophy_get();
 
 	}
 
@@ -2224,17 +2202,7 @@ boolean at_stairs, falling, portal;
 			if (!achieveX.swimmingpool_cleared) {
 
 				achieveX.swimmingpool_cleared = TRUE;
-				if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-				if (RngeTeamSplat) pline("TROPHY GET!");
-				if (Race_if(PM_INHERITOR)) giftartifact();
-				if (Race_if(PM_HERALD)) heraldgift();
-
-				if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-					u.uhpmax += 10;
-					u.uenmax += 10;
-					if (Upolyd) u.mhmax += 10;
-					pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-				}
+				trophy_get();
 			}
 
 #ifdef LIVELOGFILE

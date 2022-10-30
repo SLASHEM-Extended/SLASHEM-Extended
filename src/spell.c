@@ -5132,7 +5132,7 @@ addspmagain:
 				break;
 			case 6:
 
-				if ((!u.uevent.udemigod || u.freeplaymode) && !playerlevelportdisabled() ) {
+				if (!playerlevelportdisabled() ) {
 					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
 					if (!u.levelporting) {
@@ -7059,8 +7059,8 @@ whisperchoice:
 		break;
 
 	case SPE_STASIS:
-		nomul(-(u.stasistime), "frozen in stasis", FALSE);
 		u.stasistime = rnd(100);
+		nomul(-(u.stasistime), "frozen in stasis", FALSE);
 		pline("You freeze completely.");
 
 		break;
@@ -8103,7 +8103,7 @@ whisperchoice:
 
 		break;
 	case SPE_WARPING:
-		if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); break;}
+		if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); break;}
 
 		if (playerlevelportdisabled()) { 
 			pline("You're unable to warp!");

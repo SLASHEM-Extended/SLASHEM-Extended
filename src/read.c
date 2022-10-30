@@ -5538,11 +5538,32 @@ proofarmorchoice:
 	    break;
 	/* KMH, balance patch -- removed */
 	case SCR_TRAP_DETECTION:
+
+		if (sobj && sobj->oartifact == ART_OOOOOOOOOOAR_) {
+			int i, j, bd = 5;
+			struct trap *ttmp;
+
+		      for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+				if (!isok(u.ux + i, u.uy + j)) continue;
+				if ((ttmp = t_at(u.ux + i, u.uy + j)) != 0) {
+					ttmp->tseen = TRUE;
+					ttmp->tdetected = TRUE;
+					ttmp->hiddentrap = FALSE;
+				}
+			}
+			You("sense traps"); /* missing period is on purpose */
+		}
+
 		if (!sobj->cursed) return(trap_detect(sobj));
 	      break;
 		/*what the hell? */
 
 	case SCR_CURE_BLINDNESS:
+		if (sobj && sobj->oartifact == ART_LET_BLIND_PEOPLE_SEE && Blind) {
+			incr_itimeout(&HBlind_resistance, rnz(10000));
+			You("can see, even though you're blind!");
+		}
+
 		if (confused || sobj->cursed) make_blinded(Blinded + rnd(100), TRUE);
 		else healup(0, 0, FALSE, TRUE);
 
@@ -9102,7 +9123,7 @@ retry:
 		break;
 	case SCR_WARPING:
 		known = TRUE;
-		if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds_normalterrain(FALSE); break;}
+		if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds_normalterrain(FALSE); break;}
 
 		if (playerlevelportdisabled()) { 
 			pline("You're unable to warp!"); break;}
@@ -10221,8 +10242,7 @@ newoffmon:
 				}
 
 				mdrop_special_objs(offmon); /* make sure it doesn't tele to an unreachable place with the book of the dead or something */
-				if (u.uevent.udemigod && !u.freeplaymode) break;
-				else u_teleport_monB(offmon, FALSE);
+				u_teleport_monB(offmon, FALSE);
 				pline("Some of your possessions have been stolen!");
 
 			} else {

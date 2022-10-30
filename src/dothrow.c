@@ -809,6 +809,9 @@ bladeangerdone:
 	    }
 	    freeinv(otmp);
 	    throwit(otmp, wep_mask, twoweap, thrown);
+	    if ((uwep && uwep->oartifact == ART_PSG) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PSG) || (uwep && uwep->oartifact == ART_BORKED_PARA) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_BORKED_PARA)) {
+		pushplayer(FALSE);
+	    }
 	}
 	m_shot.n = m_shot.i = 0;
 	m_shot.o = STRANGE_OBJECT;
@@ -3403,6 +3406,7 @@ boolean from_invent;
 				dynamite->quan = 1;
 				dynamite->owt = weight(dynamite);
 				attach_bomb_blow_timeout(dynamite, 0, 0);
+				run_timers();
 			}
 		}
 

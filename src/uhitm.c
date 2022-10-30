@@ -832,6 +832,8 @@ register struct monst *mtmp;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DOUBLE_BESTARD) tmp -= rnd(20);
 	if (uwep && uwep->oartifact == ART_DESANN_S_WRATH) tmp -= 8;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DESANN_S_WRATH) tmp -= 8;
+	if (uwep && uwep->oartifact == ART_WILD_WHIRLING) tmp -= 8;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_WILD_WHIRLING) tmp -= 8;
 	if (uwep && uwep->oartifact == ART_SIGIX_BROADSWORD) tmp -= 5;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SIGIX_BROADSWORD) tmp -= 5;
 	if (uwep && uwep->oartifact == ART_BAD_HITTER_BOY) tmp -= rnd(20);
@@ -1550,6 +1552,7 @@ int dieroll;
 	if (need_two(mon))    canhitmon = 2;
 	if (need_three(mon))  canhitmon = 3;
 	if (need_four(mon))   canhitmon = 4;
+	if (uarmf && uarmf->oartifact == ART_KILLCAP) canhitmon = 0;
 
 	/*
 	 * If you are a creature that can hit as a +2 weapon, then YOU can
@@ -3342,6 +3345,10 @@ int dieroll;
 			mon->mblinded = rnd(10);
 			pline("%s is stolped by you!", Monnam(mon));
 
+		}
+
+		if (obj && obj->oartifact == ART_VERSUS_ELECTRICALLY_BASED_ && (dmgtype(mon->data, AD_ELEC) || dmgtype(mon->data, AD_MALK) ) ) {
+			tmp += d(3, 10);
 		}
 
 		if (thrown && obj && obj->oartifact == ART_MESHERABANE && is_elonamonster(mon->data)) {
@@ -6053,10 +6060,12 @@ register struct attack *mattk;
 	if (hit_as_three(&youmonst))  enchantlvl = 3; 
 	if (hit_as_four(&youmonst))   enchantlvl = 4;         
 
-	if (need_one(mdef)   && enchantlvl < 1 && rn2(isfriday ? 5 : 3)) noeffect = TRUE;
-	if (need_two(mdef)   && enchantlvl < 2 && rn2(isfriday ? 5 : 3)) noeffect = TRUE;
-	if (need_three(mdef) && enchantlvl < 3 && rn2(isfriday ? 5 : 3)) noeffect = TRUE;
-	if (need_four(mdef)  && enchantlvl < 4 && rn2(isfriday ? 5 : 3)) noeffect = TRUE;
+	if (!(uarmf && uarmf->oartifact == ART_KILLCAP)) {
+		if (need_one(mdef)   && enchantlvl < 1 && rn2(isfriday ? 5 : 3)) noeffect = TRUE;
+		if (need_two(mdef)   && enchantlvl < 2 && rn2(isfriday ? 5 : 3)) noeffect = TRUE;
+		if (need_three(mdef) && enchantlvl < 3 && rn2(isfriday ? 5 : 3)) noeffect = TRUE;
+		if (need_four(mdef)  && enchantlvl < 4 && rn2(isfriday ? 5 : 3)) noeffect = TRUE;
+	}
 
 	/* summoning demons should only happen while polymorphed or being certain races, otherwise there's bugs --Amy */
 	if (( (is_demon(youmonst.data) && Upolyd) || (Race_if(PM_PLAYER_SHEEP) && !Upolyd && u.ulevel >= 20) || (Race_if(PM_GAVIL) && !Upolyd) )
@@ -9335,6 +9344,7 @@ bladeangerdone2:
 								dynamite->owt = weight(dynamite);
 								dropy(dynamite);
 								attach_bomb_blow_timeout(dynamite, 0, 0);
+								run_timers();
 							}
 							if (!rn2(10)) {
 								You("inhale some cancerogenous smoke!");
@@ -10185,7 +10195,7 @@ boolean ranged;
 		break;
 
 	    case AD_WEEP:
-		if (!rn2(3) && (!u.uevent.udemigod || u.freeplaymode) && !playerlevelportdisabled() ) {
+		if (!rn2(3) && !playerlevelportdisabled() ) {
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 			if (!u.levelporting) {
 				u.levelporting = 1;
@@ -10341,7 +10351,7 @@ boolean ranged;
 				break;
 			case 6:
 
-				if ((!u.uevent.udemigod || u.freeplaymode) && !playerlevelportdisabled() ) {
+				if (!playerlevelportdisabled() ) {
 					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 					level_tele();
 					nomul(-2, "being levelwarped", FALSE);
@@ -10677,7 +10687,7 @@ boolean ranged;
 
 	    case AD_BANI:
 		if (!rn2(3)) {
-			if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds_normalterrain(FALSE); break;}
+			if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds_normalterrain(FALSE); break;}
 			if (playerlevelportdisabled()) {
 				pline("For some reason you resist the banishment!");
 				break;

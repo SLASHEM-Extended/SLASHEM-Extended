@@ -44,10 +44,16 @@ register boolean clumsy;
 	if (uarmf && uarmf->oartifact == ART_NE_PROSTO_KRASIVO) dmg += 3;
 	if (uarmf && uarmf->oartifact == ART_SILVESTERBLAM) dmg += 3;
 	if (uarmf && uarmf->oartifact == ART_FULL_PROGRAM) dmg += 1;
+	if (uarmf && uarmf->oartifact == ART_AS_STRONG_AS_BOOTS) dmg += 5;
 	if (uarmf && uarmf->oartifact == ART_ARTHUR_S_HIGH_HEELED_PLATF) dmg += 2;
 	if (uarmf && uarmf->oartifact == ART_KATHARINA_S_LOVELINESS) dmg += 10;
 	if (uarmf && uarmf->oartifact == ART_EXCITING_SPFLOTCH) dmg += 2;
+
+	if (uarmf && uarmf->oartifact == ART_ARVOGENIA_S_BIKER_HEELS && u.usteed) dmg += 5;
+
 	if (Race_if(PM_TAYIIN)) dmg += 2;
+
+	if (uarmf && uarmf->oartifact == ART_SCRATCH_THE_SHRED && mon->mhp < (mon->mhpmax / 10) ) dmg += 10000;
 
 	if (uarmf && uarmf->oartifact == ART_SAY_THE_WRONG_LINE && humanoid(mon->data) && !(mon->female) ) {
 		dmg += 2;
@@ -240,6 +246,15 @@ register boolean clumsy;
 
 	if (uarmf && itemhasappearance(uarmf, APP_VELCRO_SANDALS)) dmg += rnd(10);
 
+	if (uarmf && uarmf->oartifact == ART_SOFT_KARATE_KICK && !P_RESTRICTED(P_MARTIAL_ARTS)) {
+		switch (P_SKILL(P_MARTIAL_ARTS)) {
+			case P_UNSKILLED: dmg += 8; break;
+			case P_BASIC: dmg += 6; break;
+			case P_SKILLED: dmg += 4; break;
+			case P_EXPERT: dmg += 2; break;
+		}
+	}
+
 	if (uarmf && uarmf->oartifact == ART_HUGGING__GROPING_AND_STROK) dmg += 5;
 	if (uarmf && uarmf->oartifact == ART_ELENETTES) dmg += 2;
 	if (uarmh && uarmh->oartifact == ART_STROKING_COMBAT) dmg += 2;
@@ -263,6 +278,7 @@ register boolean clumsy;
 	if (uarmf && itemhasappearance(uarmf, APP_CALF_LEATHER_SANDALS)) clumsy = FALSE;
 
 	if (uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) clumsy = FALSE;
+	if (uarmf && uarmf->oartifact == ART_FRONT_TARGET) clumsy = FALSE;
 	if (uarmf && uarmf->oartifact == ART_ELENETTES) clumsy = FALSE;
 
 	/* excessive wt affects dex, so it affects dmg */
@@ -375,6 +391,12 @@ register boolean clumsy;
 	if (uarmf && uarmf->oartifact == ART_ELENA_S_CHALLENGE && !is_neuter(mon->data) && !(mon->female) && humanoid(mon->data) && !rn2(100) && !resist(mon, TOOL_CLASS, 0, NOTELL) ) {
 		pline("%s gets all submissive from being kicked by your beautiful high-heeled combat boots!", Monnam(mon));
 		(void) tamedog(mon, (struct obj *) 0, FALSE);
+		return;
+	}
+
+	if (uarmf && uarmf->oartifact == ART_BARBED_HOOK_ZIPPER && !mon->mfrenzied && !rn2(100) && !resist(mon, TOOL_CLASS, 0, NOTELL) ) {
+		pline("%s seems calmer.", Monnam(mon));
+		mon->mpeaceful = TRUE;
 		return;
 	}
 
@@ -573,6 +595,13 @@ register boolean clumsy;
 		mon->mcanmove = 0;
 		if (!mon->mfrozen) mon->mfrozen = rnd(10);
 		else if (mon->mfrozen < 127) mon->mfrozen++;
+		mon->mstrategy &= ~STRAT_WAITFORU;
+	}
+
+	if (uarmf && uarmf->oartifact == ART_AS_STRONG_AS_BOOTS && !rn2(10) && mon->mcanmove) {
+		pline("%s is paralyzed by your powerful kick!", Monnam(mon));
+		mon->mcanmove = 0;
+		mon->mfrozen = rnd(5);
 		mon->mstrategy &= ~STRAT_WAITFORU;
 	}
 
@@ -826,6 +855,7 @@ register xchar x, y;
 	if (need_two(mon))    canhitmon = 2;         
 	if (need_three(mon))  canhitmon = 3; 
 	if (need_four(mon))   canhitmon = 4;         
+	if (uarmf && uarmf->oartifact == ART_KILLCAP) canhitmon = 0;
 
 	if (Role_if(PM_MONK) && !Upolyd) {
 		if (!uwep && !uarm && !uarms) objenchant = GushLevel / 4;
@@ -881,7 +911,7 @@ register xchar x, y;
 
 	if (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT) i += 6000;
 
-	if((i < (j*3)/10) && !(uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) && !(uarmf && uarmf->oartifact == ART_ELENETTES) && !(uarmf && itemhasappearance(uarmf, APP_CALF_LEATHER_SANDALS)) ) {
+	if((i < (j*3)/10) && !(uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) && !(uarmf && uarmf->oartifact == ART_FRONT_TARGET) && !(uarmf && uarmf->oartifact == ART_ELENETTES) && !(uarmf && itemhasappearance(uarmf, APP_CALF_LEATHER_SANDALS)) ) {
 		if((!rn2((i < j/10) ? 2 : (i < j/5) ? 3 : 4)) || (isfriday && !rn2(5))) {
 			if(martial() && !rn2(isfriday ? 10 : 2)) goto doit;
 			Your("clumsy kick does no damage.");
@@ -900,6 +930,7 @@ register xchar x, y;
 	if (uarmf && itemhasappearance(uarmf, APP_COMBAT_BOOTS) ) clumsy = FALSE;
 
 	if (uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) clumsy = FALSE;
+	if (uarmf && uarmf->oartifact == ART_FRONT_TARGET) clumsy = FALSE;
 	if (uarmf && uarmf->oartifact == ART_ELENETTES) clumsy = FALSE;
 
 	if (uarmf && itemhasappearance(uarmf, APP_CALF_LEATHER_SANDALS)) clumsy = FALSE;

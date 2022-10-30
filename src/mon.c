@@ -6022,17 +6022,7 @@ newbossSING:
 
 		if (!achieve.killed_medusa) {
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 		}
 
@@ -6043,17 +6033,7 @@ newbossSING:
 
 		if (!achieve.killed_nightmare) {
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 		}
 
@@ -6064,18 +6044,7 @@ newbossSING:
 
 		if (!achieve.killed_vecna) {
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
-
+			trophy_get();
 		}
 
             achieve.killed_vecna = 1;
@@ -6084,17 +6053,7 @@ newbossSING:
 
 		if (!achieve.killed_beholder) {
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 		}
 
@@ -6104,17 +6063,7 @@ newbossSING:
 
 		if (!achieve.killed_ruggo) {
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 		}
 
@@ -6124,17 +6073,7 @@ newbossSING:
 
 		if (!achieve.killed_kroo) {
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 		}
 
@@ -6144,17 +6083,7 @@ newbossSING:
 
 		if (!achieve.killed_grund) {
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 		}
 
@@ -6165,17 +6094,7 @@ newbossSING:
 
 		if (!achieveX.killed_vera) {
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 		}
 
@@ -6186,17 +6105,7 @@ newbossSING:
 
 		if (!achieveX.killed_elaine) {
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 		}
 
@@ -6207,17 +6116,7 @@ newbossSING:
 
 		if (!achieve.killed_largestgiant) {
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 		}
 
@@ -6227,17 +6126,7 @@ newbossSING:
 
 		if (!achieve.killed_shelob) {
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 		}
 
@@ -6247,17 +6136,7 @@ newbossSING:
 
 		if (!achieve.killed_girtab) {
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 		}
 
@@ -6267,17 +6146,7 @@ newbossSING:
 
 		if (!achieve.killed_aphrodite) {
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 		}
 
@@ -6287,17 +6156,7 @@ newbossSING:
 
 		if (!achieve.killed_frankenstein) {
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 		}
 
@@ -6307,17 +6166,7 @@ newbossSING:
 
 		if (!achieve.killed_croesus) {
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 		}
 
@@ -6327,17 +6176,7 @@ newbossSING:
 
 		if (!achieve.killed_dagon) {
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 		}
 
@@ -6347,17 +6186,7 @@ newbossSING:
 
 		if (!achieve.killed_hydra) {
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 		}
 
@@ -6370,17 +6199,7 @@ newbossSING:
 
 	            achieveX.killed_elderpriest = 1;
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 		}
 
@@ -6392,17 +6211,7 @@ newbossSING:
 
 	            achieveX.killed_glassgolem = 1;
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 		}
 
@@ -6414,17 +6223,7 @@ newbossSING:
 
 	            achieveX.killed_tiksrvzllat = 1;
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 		}
 
@@ -6436,17 +6235,7 @@ newbossSING:
 
 	            achieveX.killed_bofh = 1;
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 		}
 
@@ -6458,17 +6247,7 @@ newbossSING:
 
 	            achieveX.killed_katia = 1;
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 		}
 
@@ -6480,17 +6259,7 @@ newbossSING:
 
 	            achieveX.killed_witchking = 1;
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 		}
 
@@ -6502,17 +6271,7 @@ newbossSING:
 
 	            achieveX.killed_stahngnir = 1;
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 		}
 
@@ -6524,17 +6283,7 @@ newbossSING:
 
 	            achieveX.completed_rivalquest = 1;
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 		}
 
@@ -6546,17 +6295,7 @@ newbossSING:
 
 	            achieveX.killed_ariane = 1;
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 		}
 
@@ -6568,17 +6307,7 @@ newbossSING:
 
 	            achieveX.killed_kalwina = 1;
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 		}
 
@@ -6590,17 +6319,7 @@ newbossSING:
 
 	            achieveX.killed_minotaur = 1;
 
-			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
-			if (Race_if(PM_INHERITOR)) giftartifact();
-			if (Race_if(PM_HERALD)) heraldgift();
-
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
-			}
+			trophy_get();
 
 		}
 

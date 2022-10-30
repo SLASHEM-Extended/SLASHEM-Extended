@@ -617,6 +617,8 @@ register struct monst *mtmp;
 	if ((mdat == &mons[PM_BUGBEAM_CUBE] || mdat == &mons[PM_HANGFISH] || mdat == &mons[PM_JOHNNY_SINDACCO] || mdat == &mons[PM_BOXIT_CUBE] || mdat == &mons[PM_IRMGARD] || mdat == &mons[PM_WORM_THAT_WANKS] || mdat == &mons[PM_METH_HEAD] || mdat == &mons[PM_TORSTINA] || mdat == &mons[PM_MARINERV] || mdat == &mons[PM_MARISTIN] || mdat == &mons[PM_HUNCHBACKED_LITTLE_MAN] || mdat == &mons[PM_MARIVERT] || mdat == &mons[PM_MARISISTER] || mdat == &mons[PM_OUTER_ONE_NO] || mdat == &mons[PM_FUNNY_ITALIAN] || mdat == &mons[PM_EAR_FIG_MACHINE] || mdat == &mons[PM_POLEPOKER] || mdat == &mons[PM_DISTURBMENT_HEAD]) && !rn2(4)) return 0; /* can sometimes not move; this is by design */
 	if ((mdat == &mons[PM_SARAH_S_AIRTIGHT_PANTS]) && rn2(5)) return 0;
 
+	if (uarmu && uarmu->oartifact == ART_ARTITFACT && flags.female && !rn2(5)) return 0;
+
 	if (uwep && uwep->oartifact == ART_STOP_THE_AIRSHIPS && is_flyer(mtmp->data) && !mtmp->mpeaceful && !mtmp->mtame && !rn2(6)) return 0;
 
 	if (mdat == &mons[PM_BLOTREE] && !rn2(2)) return 0;
@@ -2562,7 +2564,7 @@ convertdone:
 		}
 	}
 
-	if ((mdat->msound == MS_STENCH || mtmp->egotype_perfumespreader) && !Role_if(PM_HUSSY) && !(youmonst.data->msound == MS_STENCH) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2((mdat == &mons[PM_NICE_AUNTIE_HILDA]) ? 5 : (mdat == &mons[PM_AUNT_ANITA]) ? 5 : 20)) {
+	if ((mdat->msound == MS_STENCH || mtmp->egotype_perfumespreader) && !(uarmf && uarmf->oartifact == ART_BARBED_HOOK_ZIPPER && !mtmp->mfrenzied) && !Role_if(PM_HUSSY) && !(youmonst.data->msound == MS_STENCH) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2((mdat == &mons[PM_NICE_AUNTIE_HILDA]) ? 5 : (mdat == &mons[PM_AUNT_ANITA]) ? 5 : 20)) {
 		switch (rnd(10)) {
 
 			case 1:
@@ -3840,6 +3842,8 @@ altarfound:
 	if (appr == 1 && uarmf && uarmf->oartifact == ART_DARK_BALL_OF_LIGHT) appr = 0;
 
 	if (appr == 1 && !rn2(5) && (uarmc && itemhasappearance(uarmc, APP_PINK_CLOAK) )) appr = 0;
+
+	if (appr == 1 && uarmf && uarmf->oartifact == ART_LAUGH_WHEN_YOU_FALL && (multi < 0) && rn2(10)) appr = 0;
 
 	if (monsterrandomwalk(ptr)) appr = 0;
 	if (monsterflees(ptr)) appr = -1;

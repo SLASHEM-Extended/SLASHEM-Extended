@@ -1227,6 +1227,7 @@ newsym(x,y)
 		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
 		(Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) ||
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
+		(uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
 		(uarm && uarm->oartifact == ART_PLAYER_RADAR && (is_mplayer(mon->data) || is_umplayer(mon->data)) ) ||
 		(uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mon->data) ) ||
@@ -1341,6 +1342,7 @@ newsym(x,y)
 		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
 		(Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) ||
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
+		(uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
 		(uarm && uarm->oartifact == ART_PLAYER_RADAR && (is_mplayer(mon->data) || is_umplayer(mon->data)) ) ||
 		(uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mon->data) ) ||
@@ -1615,6 +1617,7 @@ newsymX(x,y)
 		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
 		(Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) ||
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
+		(uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
 		(uarm && uarm->oartifact == ART_PLAYER_RADAR && (is_mplayer(mon->data) || is_umplayer(mon->data)) ) ||
 		(uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mon->data) ) ||
@@ -1729,6 +1732,7 @@ newsymX(x,y)
 		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
 		(Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) ||
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
+		(uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
 		(uarm && uarm->oartifact == ART_PLAYER_RADAR && (is_mplayer(mon->data) || is_umplayer(mon->data)) ) ||
 		(uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mon->data) ) ||
@@ -3656,6 +3660,7 @@ struct monst *mon;
 	if (Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_ELENETTES && (mon->mhp < (mon->mhpmax * 9 / 10)) ) return TRUE;
 	if (isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) return TRUE;
+	if (uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mon->data) ) return TRUE;
 	if (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) return TRUE;
 	if (uarm && uarm->oartifact == ART_PLAYER_RADAR && (is_mplayer(mon->data) || is_umplayer(mon->data)) ) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mon->data) ) return TRUE;
