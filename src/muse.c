@@ -12136,6 +12136,10 @@ const char *str;
 	    if (str)
 		pline(str, s_suffix(mon_nam(mon)), "reflexive surface");
 	    return TRUE;
+ 	} else if (FemtrapActiveMarleen && humanoid(mon->data) && is_female(mon->data) && u.marleenproperties) {
+	    if (str)
+		pline(str, s_suffix(mon_nam(mon)), "female skin");
+	    return TRUE;
 	}
 	return FALSE;
 }

@@ -1489,6 +1489,7 @@ struct you {
 	boolean dirtifiedexcalibur;
 
 	boolean symbioteattacking;
+	boolean marleenproperties;
 
 	int nataljetrapturns;
 	int nataljetrapx, nataljetrapy;

@@ -119,6 +119,8 @@ struct monst *mon;
 	struct permonst *ptr = mon->data;
 	struct obj *o;
 
+	if (FemtrapActiveMarleen && humanoid(mon->data) && is_female(mon->data) && u.marleenproperties) return TRUE;
+
 	/* as of 3.2.0:  gray dragons, Angels, Oracle, Yeenoghu */
 	if (dmgtype(ptr, AD_MAGM) || dmgtype(ptr, AD_MCRE) || ptr == &mons[PM_BABY_GRAY_DRAGON] || ptr == &mons[PM_YOUNG_GRAY_DRAGON] || ptr == &mons[PM_YOUNG_ADULT_GRAY_DRAGON] || ptr == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] ||
 		dmgtype(ptr, AD_RBRE) || dmgtype(ptr, AD_RNG))	/* Chromatic Dragon */

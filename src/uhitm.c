@@ -4219,6 +4219,8 @@ melatechoice:
 		if (heavyreduction < rnd(100)) tmp /= 2;
 	}
 
+	if (FemtrapActiveMagdalena && humanoid(mon->data) && is_female(mon->data) && tmp > 1) tmp /= 2;
+
 	if (!already_killed) mon->mhp -= tmp;
 	/* adjustments might have made tmp become less than what
 	   a level draining artifact has already done to max HP */

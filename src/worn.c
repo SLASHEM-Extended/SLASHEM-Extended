@@ -375,6 +375,8 @@ register struct monst *mon;
 	if (mon->egotype_armorer) base -= 5;
 	if (mon->egotype_tank) base -= 10;
 
+	if (FemtrapActiveMarleen && humanoid(mon->data) && is_female(mon->data) ) base -= (10 + mon->m_lev);
+
 	for (obj = mon->minvent; obj; obj = obj->nobj) {
 	    if (obj->owornmask & mwflags)
 		base -= ARM_BONUS(obj);

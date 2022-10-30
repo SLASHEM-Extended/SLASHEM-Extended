@@ -28132,6 +28132,23 @@ static NEARDATA const char * const fake_plines[] = {
 	"Finally, the sexy lady challenge has ended. It was getting on your nerves that you'd keep encountering them.",
 	"The monsters are no longer turning into sexy women. Whose idea was that anyway, a crossdresser's???",
 	"You hear that the annoying little girls have been relocated to some other dungeon, so they can't steal your stuff anymore now. Are you pitying them? No, not at all. They got what they deserved, as they never fit into this dungeon anyway.",
+	"Friederike pees at your boots, while laughing all the time!",
+	"Friederike pees at your boots, while laughing all the time! That's actually super unfair, because now your shoes are defiled...",
+	"Friederike hangs her fluffy blond bundle into your face, which feels incredibly beautiful, however it also means your vision is obscured by all the wonderful female hair.",
+	"Friederike slams her very soft dancing shoes against your shins.",
+	"Friederike slams her very soft dancing shoes against your shins, which is very nice of her and shows just how much she loves you.",
+	"Friederike summons her friends!",
+	"Friederike summons her friends! Sadly, they're not your friends, so you now have to get rid of them again.",
+	"Oh no, you're not looking good...",
+	"Oh no, you're not looking good... (This message means that your high heels skill training was reduced to half of the value you had, which is really mean because the message is so vague.)",
+	"Oh no... your high heels have been stolen by the patriarch... :-(",
+	"Oh no... your high heels have been stolen by the patriarch... Hopefully a hero will come along and help you hunt down that pesky bastard so that you get your shoes back!",
+	"Wow, suddenly you're wearing some beautiful missys!",
+	"Wow, suddenly you're wearing some beautiful missys! Too bad you can't walk in them because of the stiletto heels.",
+	"Wow, suddenly you're wearing some beautiful missys! Except you don't even know what the hell 'missys' are supposed to be, so you need to check your feet.",
+	"*click* 'hihihi'",
+	"*click* 'hihihi' Whaaaat? It seems that some little girl stole a couple of your items!",
+	"*click* 'hihihi' Whaaaat? It seems that some little girl stole a couple of your items! You commend her efforts, but remark that she should have been more careful to ensure that you don't notice the theft.",
 
 };
 

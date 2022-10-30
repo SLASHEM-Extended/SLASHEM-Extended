@@ -5673,6 +5673,26 @@ newboss:
 
 	}
 
+	if (FemtrapActiveUte && mtmp->mfrenzied && humanoid(mtmp->data) && is_male(mtmp->data) ) {
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_LASH;
+		a->adtyp = AD_WTHR;
+		a->damn = 2;
+		a->damd = 1 + (mtmp->m_lev / 2);
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				(void) hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
 	if (evilfriday && mtmp->data->mlet == S_GHOST) {
 		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict || !touch_petrifies(youmonst.data))) {
 			if (foundyou && tmp > (j = rnd(20+i))) {

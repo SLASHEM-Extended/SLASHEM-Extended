@@ -4866,6 +4866,193 @@ newbossPOMP:
 
 		}
 
+		if (FemtrapActiveMayBritt && !rn2(1000)) {
+
+			register struct monst *offmon;
+			struct permonst *pm = 0;
+			int attempts = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+			reset_rndmonst(NON_PM);
+
+newbossMAYBRITT:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(is_female(pm) && is_jokemonster(pm) ))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossMAYBRITT;
+			}
+			if (pm && !(is_female(pm) && is_jokemonster(pm) ) && rn2(50) ) {
+				attempts = 0;
+				goto newbossMAYBRITT;
+			}
+
+			if (pm) {
+				offmon = makemon(pm, 0, 0, MM_ADJACENTOK);
+				if (offmon) {
+					register int inventcount = inv_cnt();
+
+					if (inventcount > 0) {
+						inventcount /= 20;
+						if (inventcount < 1) inventcount = 1;
+
+						while (inv_cnt() && inventcount) {
+							char bufof[BUFSZ];
+							bufof[0] = '\0';
+							steal(offmon, bufof, TRUE, TRUE);
+							inventcount--;
+						}
+						if (rn2(2)) {
+							pline("*click* 'hihihi'");
+							if (rn2(10)) {
+								pline("Whaaaat? It seems that some little girl stole a couple of your items!");
+								if (FunnyHallu) pline("You commend her efforts, but remark that she should have been more careful to ensure that you don't notice the theft.");
+							}
+						}
+					}
+
+				}
+			}
+
+		}
+
+		if (FemtrapActiveUte && !rn2(2500)) {
+
+			u.aggravation = 1;
+			u.heavyaggravation = 1;
+
+			struct permonst *pm = 0;
+			int attempts = 0;
+
+			reset_rndmonst(NON_PM);
+
+newbossUTE:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(is_male(pm) && humanoid(pm) ))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossUTE;
+			}
+			if (pm && !(is_male(pm) && humanoid(pm) ) && rn2(50) ) {
+				attempts = 0;
+				goto newbossUTE;
+			}
+
+			if (pm) (makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED|MM_XFRENZIED|MM_ADJACENTOK));
+
+			u.aggravation = 0;
+			u.heavyaggravation = 0;
+
+			if (uarmf && itemhasappearance(uarmf, APP_MISSYS)) {
+				goodeffect();
+			} else if (uarmf && (PlayerInHighHeels || uarmf->oartifact || uarmf->fakeartifact)) {
+				register struct monst *offmon;
+				struct obj *utefootwear;
+				int mattries = 0;
+				while (uarmf && mattries++ < 50000) {
+					if ((offmon = makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS)) != 0) {
+						utefootwear = uarmf;
+						setnotworn(utefootwear);
+						freeinv(utefootwear);
+						(void) mpickobj(offmon, utefootwear, FALSE);
+						pline("Oh no... your high heels have been stolen by the patriarch... :-(");
+						u_teleport_monB(offmon, FALSE);
+					}
+				}
+			} else if (uarmf && !uarmf->oartifact && !uarmf->fakeartifact) {
+				struct obj *utefootwear;
+				long savewornmask;
+
+				utefootwear = uarmf;
+
+				savewornmask = utefootwear->owornmask;
+				setworn((struct obj *)0, utefootwear->owornmask);
+
+				utefootwear->otyp = find_missys();
+				if (utefootwear->otyp == -1) utefootwear->otyp = LOW_BOOTS; /* fail safe */
+
+				utefootwear = mk_artifact(utefootwear, (aligntyp)A_NONE, TRUE);
+				if (utefootwear) {
+					setworn(utefootwear, savewornmask);
+					curse(utefootwear);
+					utefootwear->hvycurse = utefootwear->stckcurse = TRUE;
+					pline("Wow, suddenly you're wearing some beautiful missys!");
+				}
+
+			}
+
+		}
+
+		if (FemtrapActiveFriederike && !rn2(1000)) {
+			switch (rnd(4)) {
+				case 1:
+					if (!uarmf) break;
+					/* uarmf is defined now */
+					pline("Friederike pees at your boots, while laughing all the time!");
+					if (!rn2(10)) {
+						drain_item_severely(uarmf);						
+					} else if (!rn2(10)) {
+						wither_dmg(uarmf, xname(uarmf), rn2(4), TRUE, &youmonst);
+					} else if (!rn2(2)) {
+						rust_dmg(uarmf, xname(uarmf), rn2(4), TRUE, &youmonst);
+					} else {
+						drain_item(uarmf);
+					}
+					break;
+				case 2:
+					pline("Friederike hangs her fluffy blond bundle into your face, which feels incredibly beautiful, however it also means your vision is obscured by all the wonderful female hair.");
+					{
+						healup( ( (level_difficulty() * 5) + rnd(50)), 0, FALSE, FALSE);
+						int blindinc = rnd(20);
+						u.ucreamed += blindinc;
+						make_blinded(Blinded + (long)blindinc, FALSE);
+						if (!Blind) Your("%s", vision_clears);
+					}
+					break;
+				case 3:
+					pline("Friederike slams her very soft dancing shoes against your shins.");
+					make_stunned(HStun + rnd(10) + rnd(monster_difficulty() + 1), FALSE);
+					losehp(1,"Friederike's very soft dancing shoe",KILLED_BY_AN);
+					break;
+				case 4:
+					pline("Friederike summons her friends!");
+					{
+						stop_occupation();
+
+						if (Aggravate_monster) {
+							u.aggravation = 1;
+							reset_rndmonst(NON_PM);
+						}
+
+						int randsp = rnd(6);
+
+						for (i = 0; i < randsp; i++) {
+
+							if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+							(void) makemon(specialtensmon(323), u.ux, u.uy, MM_ADJACENTOK|MM_ANGRY); /* M5_JOKE */
+						}
+
+						u.aggravation = 0;
+
+					}
+					break;
+			}
+		}
+
 		if (FemtrapActiveVerena && !rn2(1000) && (u.uhp > (u.uhpmax / 2)) ) {
 			switch (rnd(5)) {
 				case 1:
@@ -6999,6 +7186,9 @@ newbossJANI:
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ULTIMATE_WORLD_FALL) {
 			if (!u.ragnaroktimer) u.ragnaroktimer = rnz(100000);
 		}
+
+		if (rn2(2)) u.marleenproperties = TRUE;
+		else u.marleenproperties = FALSE;
 
 		if (FemtrapActiveJulietta && !rn2(2000)) {
 			pline("Julietta rolls the dice to randomly select a punishment for you...");

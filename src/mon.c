@@ -2187,6 +2187,27 @@ mcalcdistress()
 		    cansee(mtmp->mx,mtmp->my) && flags.verbose, FALSE, FALSE);
 	were_change(mtmp);
 
+	if (FemtrapActiveYasaman) {
+		if ( (rn2(100) > mtmp->data->mr) && (mtmp->oldmonnm == monsndx(mtmp->data)) && !(mtmp->isshk) && !(mtmp->isgd) && !(mtmp->ispriest) && !(mtmp->isminion) && !(mtmp->isgyp) && !(mtmp->data->geno & G_UNIQ) && !rn2(10000) && !resist(mtmp, WAND_CLASS, 0, NOTELL) ) {
+			int mndx;
+			struct permonst *pm;
+yasichoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mtmp->m_lev + 10) ) goto yasichoice;
+			if (uncommon2(pm) && !rn2(4)) goto yasichoice;
+			if (uncommon3(pm) && !rn2(3)) goto yasichoice;
+			if (uncommon5(pm) && !rn2(2)) goto yasichoice;
+			if (uncommon7(pm) && rn2(3)) goto yasichoice;
+			if (uncommon10(pm) && rn2(5)) goto yasichoice;
+			if (is_jonadabmonster(pm) && rn2(20)) goto yasichoice;
+			if (rn2(10000) && !(pm->msound == MS_STENCH || pm->msound == MS_FART_NORMAL || pm->msound == MS_FART_QUIET || pm->msound == MS_FART_LOUD) ) goto yasichoice;
+
+			mon_spec_poly(mtmp, pm, 0L, FALSE, canseemon(mtmp), FALSE, TRUE);
+
+		}
+	}
+
 	/* gradually time out temporary problems */
 	if (mtmp->mblinded && !--mtmp->mblinded)
 	    mtmp->mcansee = 1;
@@ -4958,6 +4979,15 @@ newbossSING:
 		case 10:
 		default:
 			break;
+		}
+	}
+
+	if (FemtrapActiveJasieen && !In_endgame(&u.uz) && rn2(10) && (mtmp->data->msound == MS_STENCH || mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_LOUD) ) {
+		register struct monst *jasieenmon;
+		jasieenmon = makemon(mtmp->data,0,0,NO_MM_FLAGS);
+		if (jasieenmon) {
+			if (rn2(2)) u_teleport_monB(jasieenmon, FALSE);
+			else u_teleport_monC(jasieenmon, FALSE);
 		}
 	}
 

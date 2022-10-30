@@ -3966,316 +3966,318 @@ int duration;
 
 	switch (rnd(88)) {
 		case 1:
-			pline("You can already imagine the farting noises you're gonna hear.");
+			if (!FemtrapActiveRuth) pline("You can already imagine the farting noises you're gonna hear.");
 			FemaleTrapSarah += duration;
 			break;
 		case 2:
-			pline("Suddenly you feel a little confused, and also feel like stroking the sexy butt cheeks of a woman in wooden sandals.");
+			if (!FemtrapActiveRuth) pline("Suddenly you feel a little confused, and also feel like stroking the sexy butt cheeks of a woman in wooden sandals.");
 			FemaleTrapClaudia += duration;
 			break;
 		case 3:
-			pline("You'll certainly like to listen to the disgusting toilet noises.");
+			if (!FemtrapActiveRuth) pline("You'll certainly like to listen to the disgusting toilet noises.");
 			FemaleTrapLudgera += duration;
 			break;
 		case 4:
-			pline("You feel like being kicked by sexy girls and cleaning their shoes.");
+			if (!FemtrapActiveRuth) pline("You feel like being kicked by sexy girls and cleaning their shoes.");
 			FemaleTrapKati += duration;
 			break;
 		case 5:
-			pline("All the girls want to use their sexy butt cheeks as weapons now!");
+			if (!FemtrapActiveRuth) pline("All the girls want to use their sexy butt cheeks as weapons now!");
 			FemaleTrapMeltem += duration;
 			break;
 		case 6:
-			pline("Now, the dungeon will be more feminine for a while!");
+			if (!FemtrapActiveRuth) pline("Now, the dungeon will be more feminine for a while!");
 			FemaleTrapFemmy += duration;
 			break;
 		case 7:
-			pline("Your shins can expect to get kicked repeatedly by all the girls and women now!");
+			if (!FemtrapActiveRuth) pline("Your shins can expect to get kicked repeatedly by all the girls and women now!");
 			FemaleTrapMadeleine += duration;
 			break;
 		case 8:
-			pline("Green is the new favorite color, it seems!");
+			if (!FemtrapActiveRuth) pline("Green is the new favorite color, it seems!");
 			FemaleTrapMarlena += duration;
 			break;
 		case 9:
-			pline("Suddenly, you feel that you're going to step into a heap of shit.");
+			if (!FemtrapActiveRuth) pline("Suddenly, you feel that you're going to step into a heap of shit.");
 			FemaleTrapAnastasia += duration;
 			break;
 		case 10:
-			pline("Your butt cheeks suddenly feel very tender, and in fact, a similar thing is happening to your entire body!");
+			if (!FemtrapActiveRuth) pline("Your butt cheeks suddenly feel very tender, and in fact, a similar thing is happening to your entire body!");
 			FemaleTrapJessica += duration;
 			break;
 		case 11:
-			pline("You suddenly have a very grating, aggravating voice, and you start to emit a beguiling odor! In fact, you're super sexy and sweet now!");
+			if (!FemtrapActiveRuth) pline("You suddenly have a very grating, aggravating voice, and you start to emit a beguiling odor! In fact, you're super sexy and sweet now!");
 			FemaleTrapSolvejg += duration;
 			break;
 		case 12:
-			pline("All the female denizens of the dungeon will show you their true power, and it will happen very soon!");
+			if (!FemtrapActiveRuth) pline("All the female denizens of the dungeon will show you their true power, and it will happen very soon!");
 			FemaleTrapWendy += duration;
 			break;
 		case 13:
-			pline("You feel that the girls and women are getting ready to use their sexy butts as weapons.");
+			if (!FemtrapActiveRuth) pline("You feel that the girls and women are getting ready to use their sexy butts as weapons.");
 			FemaleTrapKatharina += duration;
 			break;
 		case 14:
-			pline("You long for beautiful sexy women with tender butt cheeks and lovely high heels.");
+			if (!FemtrapActiveRuth) pline("You long for beautiful sexy women with tender butt cheeks and lovely high heels.");
 			FemaleTrapElena += duration;
 			break;
 		case 15:
-			pline("You feel that you'll want to use the toilet more often. Also, somehow your physique seems weaker now...");
+			if (!FemtrapActiveRuth) pline("You feel that you'll want to use the toilet more often. Also, somehow your physique seems weaker now...");
 			FemaleTrapThai += duration;
 			break;
 		case 16:
-			pline("A ghostly girl (named Elif) starts following you around, and apparently she wants to play with you!");
+			if (!FemtrapActiveRuth) pline("A ghostly girl (named Elif) starts following you around, and apparently she wants to play with you!");
 			FemaleTrapElif += duration;
 			break;
 		case 17:
-			pline("You feel that you angered the womanhood. If you now hit a woman, you will be hit with retribution!");
+			if (!FemtrapActiveRuth) pline("You feel that you angered the womanhood. If you now hit a woman, you will be hit with retribution!");
 			FemaleTrapNadja += duration;
 			break;
 		case 18:
-			pline("You just know that your legs are going to be ripped open by very sharp-edged combat boot heels.");
+			if (!FemtrapActiveRuth) pline("You just know that your legs are going to be ripped open by very sharp-edged combat boot heels.");
 			FemaleTrapSandra += duration;
 			break;
 		case 19:
-			pline("You gotta dance! You've suddenly become super sexy and attractive, and neither sleep nor paralysis can stop you in your tracks. And you can kick your enemies to stomp their toes flat. But if you ever stand still for too long, a bunch of bloodthirsty female painted toenails is going to hurt your beautiful skin, so make sure you keep moving!");
+			if (!FemtrapActiveRuth) pline("You gotta dance! You've suddenly become super sexy and attractive, and neither sleep nor paralysis can stop you in your tracks. And you can kick your enemies to stomp their toes flat. But if you ever stand still for too long, a bunch of bloodthirsty female painted toenails is going to hurt your beautiful skin, so make sure you keep moving!");
 			FemaleTrapNatalje += duration;
 			break;
 		case 20:
-			pline("Lots of shreds of skin will be scraped off your shins, and the girls will enjoy it.");
+			if (!FemtrapActiveRuth) pline("Lots of shreds of skin will be scraped off your shins, and the girls will enjoy it.");
 			FemaleTrapJeanetta += duration;
 			break;
 		case 21:
-			pline("You feel that people are building toilets for you to use.");
+			if (!FemtrapActiveRuth) pline("You feel that people are building toilets for you to use.");
 			FemaleTrapYvonne += duration;
 			break;
 		case 22:
-			pline("Your sexy butt signals that it wants to produce beautiful farting noises!");
+			if (!FemtrapActiveRuth) pline("Your sexy butt signals that it wants to produce beautiful farting noises!");
 			FemaleTrapMaurah += duration;
 			break;
 		case 23:
-			pline("You fear that the women are going to crush you with a hug.");
+			if (!FemtrapActiveRuth) pline("You fear that the women are going to crush you with a hug.");
 			FemaleTrapNelly += duration;
 			break;
 		case 24:
-			pline("It seems that the women are running faster.");
+			if (!FemtrapActiveRuth) pline("It seems that the women are running faster.");
 			FemaleTrapEveline += duration;
 			break;
 		case 25:
-			pline("All the women want to knee you in the delicate nuts now!");
+			if (!FemtrapActiveRuth) pline("All the women want to knee you in the delicate nuts now!");
 			FemaleTrapKarin += duration;
 			break;
 		case 26:
-			pline("Oh no, your shins are almost broken!");
+			if (!FemtrapActiveRuth) pline("Oh no, your shins are almost broken!");
 			FemaleTrapJuen += duration;
 			break;
 		case 27:
-			pline("Urgh, you can already smell the stench of stinking cigarettes!");
+			if (!FemtrapActiveRuth) pline("Urgh, you can already smell the stench of stinking cigarettes!");
 			FemaleTrapKristina += duration;
 			break;
 		case 28:
-			pline("These damn people want to use your precious clothing to brush off their dirty shoes!");
+			if (!FemtrapActiveRuth) pline("These damn people want to use your precious clothing to brush off their dirty shoes!");
 			FemaleTrapLou += duration;
 			break;
 		case 29:
-			pline("The girls feel like kicking your hands bloodily with their sneakers!");
+			if (!FemtrapActiveRuth) pline("The girls feel like kicking your hands bloodily with their sneakers!");
 			FemaleTrapAlmut += duration;
 			break;
 		case 30:
-			pline("Now you'll be subjected to Julietta's torture, and she'll subject you to random punishments from time to time.");
+			if (!FemtrapActiveRuth) pline("Now you'll be subjected to Julietta's torture, and she'll subject you to random punishments from time to time.");
 			FemaleTrapJulietta += duration;
 			break;
 		case 31:
-			pline("Oh no, the master of nasty traps is laying out her snares to get you!");
+			if (!FemtrapActiveRuth) pline("Oh no, the master of nasty traps is laying out her snares to get you!");
 			FemaleTrapArabella += duration;
 			break;
 		case 32:
-			pline("You feel that there are women around who really like various high heels.");
+			if (!FemtrapActiveRuth) pline("You feel that there are women around who really like various high heels.");
 			FemaleTrapKristin += duration;
 			break;
 		case 33:
-			pline("Oh, it seems that the hussies are on the loose!");
+			if (!FemtrapActiveRuth) pline("Oh, it seems that the hussies are on the loose!");
 			FemaleTrapAnna += duration;
 			break;
 		case 34:
-			pline("You get the feeling that some women are trying to convert you.");
+			if (!FemtrapActiveRuth) pline("You get the feeling that some women are trying to convert you.");
 			FemaleTrapRuea += duration;
 			break;
 		case 35:
-			pline("Ack! There's birds on the loose, and they want to eat your shoes!");
+			if (!FemtrapActiveRuth) pline("Ack! There's birds on the loose, and they want to eat your shoes!");
 			FemaleTrapDora += duration;
 			break;
 		case 36:
-			pline("You want to endlessly listen to squeaking farting noises.");
+			if (!FemtrapActiveRuth) pline("You want to endlessly listen to squeaking farting noises.");
 			FemaleTrapMarike += duration;
 			break;
 		case 37:
-			pline("The power of feminism compels you.");
+			if (!FemtrapActiveRuth) pline("The power of feminism compels you.");
 			FemaleTrapJette += duration;
 			break;
 		case 38:
-			pline("Oh my god, you are now afflicted with the life-threatening disease known as anorexia!");
+			if (!FemtrapActiveRuth) pline("Oh my god, you are now afflicted with the life-threatening disease known as anorexia!");
 			FemaleTrapIna += duration;
 			break;
 		case 39:
-			pline("A heinously evil woman plans to force you to clean the shit from all kinds of female shoes...");
+			if (!FemtrapActiveRuth) pline("A heinously evil woman plans to force you to clean the shit from all kinds of female shoes...");
 			FemaleTrapSing += duration;
 			break;
 		case 40:
-			pline("There's some karate women who want to demonstrate their combat capabilities to you.");
+			if (!FemtrapActiveRuth) pline("There's some karate women who want to demonstrate their combat capabilities to you.");
 			FemaleTrapVictoria += duration;
 			break;
 		case 41:
-			pline("You suddenly feel that the women in this dungeon are quite attractive...");
+			if (!FemtrapActiveRuth) pline("You suddenly feel that the women in this dungeon are quite attractive...");
 			FemaleTrapMelissa += duration;
 			break;
 		case 42:
-			pline("The women want to slit your legs with razor-sharp high heels! Be afraid of them!");
+			if (!FemtrapActiveRuth) pline("The women want to slit your legs with razor-sharp high heels! Be afraid of them!");
 			FemaleTrapAnita += duration;
 			break;
 		case 43:
-			pline("You feel that someone is going to open the zippers of your boots, making you fumble into a heap of dog shit.");
+			if (!FemtrapActiveRuth) pline("You feel that someone is going to open the zippers of your boots, making you fumble into a heap of dog shit.");
 			FemaleTrapHenrietta += duration;
 			break;
 		case 44:
-			pline("Oh no, some annoying blonde girl starts to follow you around. Sigh. Why can't you get a clever companion instead?!");
+			if (!FemtrapActiveRuth) pline("Oh no, some annoying blonde girl starts to follow you around. Sigh. Why can't you get a clever companion instead?!");
 			FemaleTrapVerena += duration;
 			break;
 		case 45:
-			pline("It seems that the women are doing athletic exercises.");
+			if (!FemtrapActiveRuth) pline("It seems that the women are doing athletic exercises.");
 			FemaleTrapAnnemarie += duration;
 			break;
 		case 46:
-			pline("The girls are planning to attack you with their sweaty socks!");
+			if (!FemtrapActiveRuth) pline("The girls are planning to attack you with their sweaty socks!");
 			FemaleTrapJil += duration;
 			break;
 		case 47:
-			pline("Someone's hiding underneath a grave wall, but some of the grave walls have teleporters or cursed calleds underneath, so be careful!");
+			if (!FemtrapActiveRuth) pline("Someone's hiding underneath a grave wall, but some of the grave walls have teleporters or cursed calleds underneath, so be careful!");
 			FemaleTrapJana += duration;
 			break;
 		case 48:
-			pline("Some girls are planning to use their sticky chewing gum as a trap to prevent you from getting away!");
+			if (!FemtrapActiveRuth) pline("Some girls are planning to use their sticky chewing gum as a trap to prevent you from getting away!");
 			FemaleTrapKatrin += duration;
 			break;
 		case 49:
-			pline("A stringy feminist named Gudrun is challenging you...");
+			if (!FemtrapActiveRuth) pline("A stringy feminist named Gudrun is challenging you...");
 			FemaleTrapGudrun += duration;
 			break;
 		case 50:
-			pline("A fearless feminist named Ella is challenging you...");
+			if (!FemtrapActiveRuth) pline("A fearless feminist named Ella is challenging you...");
 			FemaleTrapElla += duration;
 			break;
 		case 51:
-			pline("Some unfair woman wants to crush you with her block-heeled combat boots!");
+			if (!FemtrapActiveRuth) pline("Some unfair woman wants to crush you with her block-heeled combat boots!");
 			FemaleTrapManuela += duration;
 			break;
 		case 52:
-			pline("The girls are going to fart you in the face without emitting any kind of sound.");
+			if (!FemtrapActiveRuth) pline("The girls are going to fart you in the face without emitting any kind of sound.");
 			FemaleTrapJennifer += duration;
 			break;
 		case 53:
-			pline("You feel like a beautifully thick girl, capable of splitting enemies' skulls with blunt weapons!");
+			if (!FemtrapActiveRuth) pline("You feel like a beautifully thick girl, capable of splitting enemies' skulls with blunt weapons!");
 			FemaleTrapPatricia += duration;
 			break;
 		case 54:
-			pline("You feel like walking the dyke with your extra thick block heels.");
+			if (!FemtrapActiveRuth) pline("You feel like walking the dyke with your extra thick block heels.");
 			FemaleTrapAntje += duration;
 			break;
 		case 55:
-			pline("Something tells you that you'd like to visit the public toilet.");
+			if (!FemtrapActiveRuth) pline("Something tells you that you'd like to visit the public toilet.");
 			FemaleTrapAntjeX += duration;
 			break;
 		case 56:
-			pline("Those farmer girls plan to use block-heeled lady boots, wooden sandals and scentful sneakers on you!");
+			if (!FemtrapActiveRuth) pline("Those farmer girls plan to use block-heeled lady boots, wooden sandals and scentful sneakers on you!");
 			FemaleTrapKerstin += duration;
 			break;
 		case 57:
-			pline("Every woman is going to attack you with their clothing.");
+			if (!FemtrapActiveRuth) pline("Every woman is going to attack you with their clothing.");
 			FemaleTrapLaura += duration;
 			break;
 		case 58:
-			pline("You are commanded to seek out heaps of dog shit and step into it with your high heels. Something tells you that there are bad consequences if you don't obey this instruction.");
+			if (!FemtrapActiveRuth) pline("You are commanded to seek out heaps of dog shit and step into it with your high heels. Something tells you that there are bad consequences if you don't obey this instruction.");
 			FemaleTrapLarissa += duration;
 			break;
 		case 59:
-			pline("You feel that eating is a sin and should be avoided at all costs, even though that may end up killing you.");
+			if (!FemtrapActiveRuth) pline("You feel that eating is a sin and should be avoided at all costs, even though that may end up killing you.");
 			FemaleTrapNora += duration;
 			break;
 		case 60:
-			if (flags.female) pline("Ack! You suddenly have to deal with the effects of your menstruational period!");
-			else pline("Some russian girl decided that you're a very naughty boy, and will continuously bash your head with her high-heeled sandals.");
+			if (!FemtrapActiveRuth) {
+				if (flags.female) pline("Ack! You suddenly have to deal with the effects of your menstruational period!");
+				else pline("Some russian girl decided that you're a very naughty boy, and will continuously bash your head with her high-heeled sandals.");
+			}
 			FemaleTrapNatalia += duration;
 			break;
 		case 61:
-			pline("You might have to fight some particularly powerful woman!");
+			if (!FemtrapActiveRuth) pline("You might have to fight some particularly powerful woman!");
 			FemaleTrapSusanne += duration;
 			break;
 		case 62:
-			pline("You're interested in seeing what kind of underwear the girls are wearing.");
+			if (!FemtrapActiveRuth) pline("You're interested in seeing what kind of underwear the girls are wearing.");
 			FemaleTrapLisa += duration;
 			break;
 		case 63:
-			pline("Watch out, walking over the bridge has a large chance of you stepping into a heap of dog shit unexpectedly!");
+			if (!FemtrapActiveRuth) pline("Watch out, walking over the bridge has a large chance of you stepping into a heap of dog shit unexpectedly!");
 			FemaleTrapBridghitte += duration;
 			break;
 		case 64:
-			pline("Since it's unfair that you can simply hit women whenever you want to, you can no longer freely do so.");
+			if (!FemtrapActiveRuth) pline("Since it's unfair that you can simply hit women whenever you want to, you can no longer freely do so.");
 			FemaleTrapJulia += duration;
 			break;
 		case 65:
-			pline("The women are apparently surrounded by a dark aura! Is it some kind of black light, maybe?");
+			if (!FemtrapActiveRuth) pline("The women are apparently surrounded by a dark aura! Is it some kind of black light, maybe?");
 			FemaleTrapNicole += duration;
 			break;
 		case 66:
-			pline("Hahahahaha, now the women can just trigger feminism traps at will and when they do, the trap effect in question will be activated for YOU! Hahaha!");
+			if (!FemtrapActiveRuth) pline("Hahahahaha, now the women can just trigger feminism traps at will and when they do, the trap effect in question will be activated for YOU! Hahaha!");
 			FemaleTrapRita += duration;
 			break;
 		case 67:
-			pline("Those women are gonna hang their worn pants in front of your %s, forcing you to smell them!", body_part(NOSE));
+			if (!FemtrapActiveRuth) pline("Those women are gonna hang their worn pants in front of your %s, forcing you to smell them!", body_part(NOSE));
 			FemaleTrapJanina += duration;
 			break;
 		case 68:
-			pline("You'll have to struggle with feminism for a long time...");
+			if (!FemtrapActiveRuth) pline("You'll have to struggle with feminism for a long time...");
 			FemaleTrapRosa += (duration * 5);
 			break;
 		case 69:
-			pline("The incredibly cute female platform sandals are looking forward to kicking you in the shins like a little girl.");
+			if (!FemtrapActiveRuth) pline("The incredibly cute female platform sandals are looking forward to kicking you in the shins like a little girl.");
 			FemaleTrapKsenia += duration;
 			break;
 		case 70:
-			pline("You feel that you're gonna fight ladies who wear highly elegant cone-heeled pumps.");
+			if (!FemtrapActiveRuth) pline("You feel that you're gonna fight ladies who wear highly elegant cone-heeled pumps.");
 			FemaleTrapLydia += duration;
 			break;
 		case 71:
-			pline("Uh-oh, you're not sure that you can escape from the thick women...");
+			if (!FemtrapActiveRuth) pline("Uh-oh, you're not sure that you can escape from the thick women...");
 			FemaleTrapConny += duration;
 			break;
 		case 72:
-			pline("Some little girl really wants to take a crap while you are nearby.");
+			if (!FemtrapActiveRuth) pline("Some little girl really wants to take a crap while you are nearby.");
 			FemaleTrapKatia += duration;
 			break;
 		case 73:
-			pline("You feel that some stinking girl is waiting until you're defenseless so that she can fart you into the face without you fighting back!");
+			if (!FemtrapActiveRuth) pline("You feel that some stinking girl is waiting until you're defenseless so that she can fart you into the face without you fighting back!");
 			FemaleTrapMariya += duration;
 			break;
 		case 74:
-			pline("The females are everywhere, it seems!");
+			if (!FemtrapActiveRuth) pline("The females are everywhere, it seems!");
 			FemaleTrapElise += duration;
 			break;
 		case 75:
-			pline("Somehow, the women have learned to heal their wounds quickly.");
+			if (!FemtrapActiveRuth) pline("Somehow, the women have learned to heal their wounds quickly.");
 			FemaleTrapRonja += duration;
 			break;
 		case 76:
-			pline("You'll have to fight the girls from the Bang Gang as well as Anna's hussies, just like in the old times.");
+			if (!FemtrapActiveRuth) pline("You'll have to fight the girls from the Bang Gang as well as Anna's hussies, just like in the old times.");
 			FemaleTrapAriane += duration;
 			break;
 		case 77:
-			pline("Admit it, you fetishize female footwear, especially if they're block-heeled combat boots with long zippers and fleecy colors.");
+			if (!FemtrapActiveRuth) pline("Admit it, you fetishize female footwear, especially if they're block-heeled combat boots with long zippers and fleecy colors.");
 			FemaleTrapJohanna += duration;
 			break;
 		case 78:
-			pline("All the elegant ladies will produce very tender farting noises that you just cannot resist.");
+			if (!FemtrapActiveRuth) pline("All the elegant ladies will produce very tender farting noises that you just cannot resist.");
 			FemaleTrapInge += duration;
 			break;
 		case 79:
@@ -4284,39 +4286,39 @@ int duration;
 			FemaleTrapRuth += duration;
 			break;
 		case 80:
-			pline("Oh, apparently you have to fight some particularly burly women. That's gonna be difficult.");
+			if (!FemtrapActiveRuth) pline("Oh, apparently you have to fight some particularly burly women. That's gonna be difficult.");
 			FemaleTrapMagdalena += duration;
 			break;
 		case 81:
-			pline("It seems the women are strengthening their defenses.");
+			if (!FemtrapActiveRuth) pline("It seems the women are strengthening their defenses.");
 			FemaleTrapMarleen += duration;
 			break;
 		case 82:
-			pline("You become sensitive to the sound of high heels.");
+			if (!FemtrapActiveRuth) pline("You become sensitive to the sound of high heels.");
 			FemaleTrapKlara += duration;
 			break;
 		case 83:
-			pline("Yay, a pretty girl with a long blond bundle starts following you around! She's certainly very nice and will have a lot of fun with you!");
+			if (!FemtrapActiveRuth) pline("Yay, a pretty girl with a long blond bundle starts following you around! She's certainly very nice and will have a lot of fun with you!");
 			FemaleTrapFriederike += duration;
 			break;
 		case 84:
-			pline("You have to wear your stiletto heels like a model, and if you fall, you have to smile anyway! That's the obligation of a model...");
+			if (!FemtrapActiveRuth) pline("You have to wear your stiletto heels like a model, and if you fall, you have to smile anyway! That's the obligation of a model...");
 			FemaleTrapNaomi += duration;
 			break;
 		case 85:
-			pline("Uh-oh, the patriarch is coming to take your pretty high heels away. Make sure he doesn't catch you!");
+			if (!FemtrapActiveRuth) pline("Uh-oh, the patriarch is coming to take your pretty high heels away. Make sure he doesn't catch you!");
 			FemaleTrapUte += duration;
 			break;
 		case 86:
-			pline("The sexy ladies are gonna challenge you again and again and again.");
+			if (!FemtrapActiveRuth) pline("The sexy ladies are gonna challenge you again and again and again.");
 			FemaleTrapJasieen += duration;
 			break;
 		case 87:
-			pline("It seems that monsters may spotaneously turn into sexy women, as if there weren't enough of them running around the dungeon anyway.");
+			if (!FemtrapActiveRuth) pline("It seems that monsters may spotaneously turn into sexy women, as if there weren't enough of them running around the dungeon anyway.");
 			FemaleTrapYasaman += duration;
 			break;
 		case 88:
-			pline("Those little girls want to tease you by trying to steal things from your backpack for fun! You certainly know that this 'fun' will happen at your expense...");
+			if (!FemtrapActiveRuth) pline("Those little girls want to tease you by trying to steal things from your backpack for fun! You certainly know that this 'fun' will happen at your expense...");
 			FemaleTrapMayBritt += duration;
 			break;
 	}

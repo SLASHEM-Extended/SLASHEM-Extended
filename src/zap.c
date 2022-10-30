@@ -8937,6 +8937,7 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 	pline("zapped monster hp = %d (= %d - %d)", mon->mhp-tmp,mon->mhp,tmp);
 #endif
 
+	if (FemtrapActiveMagdalena && humanoid(mon->data) && is_female(mon->data) && tmp > 1) tmp /= 2;
 	mon->mhp -= tmp;
 
 #ifdef SHOW_DMG
@@ -10906,6 +10907,7 @@ int damage, tell;
 	    if (Race_if(PM_BOVER) && u.usteed && (mtmp == u.usteed) && damage > 1) damage /= 2;
 	    if (Race_if(PM_CARTHAGE) && u.usteed && (mtmp == u.usteed) && (mcalcmove(u.usteed) < 12) && damage > 1) damage /= 2;
 
+	    if (FemtrapActiveMagdalena && humanoid(mtmp->data) && is_female(mtmp->data) && damage > 1) damage /= 2;
 	    mtmp->mhp -= damage;
 	    if (mtmp->mhp < 1) {
 		if(m_using) monkilled(mtmp, "", AD_RBRE);

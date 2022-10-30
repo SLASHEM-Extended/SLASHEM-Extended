@@ -6061,6 +6061,7 @@ int degree;
 	if (uarmh && uarmh->oartifact == ART_THERE_ARE_SEVERAL_OF_THEM && skill == P_SPIRITUALITY) degree *= 2;
 	if (uimplant && uimplant->oartifact == ART_FASTPLANT && skill == P_IMPLANTS) degree *= 2;
 	if (uarmf && uarmf->oartifact == ART_EIMI_WA_BAKADESU && skill == P_HIGH_HEELS) degree *= 5;
+	if (FemtrapActiveNaomi && skill == P_HIGH_HEELS) degree *= 2;
 
 	if (skill == 0) goto screwupsdone; /* just me covering my butt in case the game somehow thinks you had used
 	* some skill that doesn't do anything and thinks it now has to set a blown timer --Amy */

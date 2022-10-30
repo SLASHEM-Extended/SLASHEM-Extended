@@ -890,7 +890,7 @@ nh_timeout()
 	}
 
 	/* if you wear high heels without having the skill at all, bad stuff can happen --Amy */
-	if (u.umoved && PlayerInHighHeels && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED)) {
+	if (u.umoved && PlayerInHighHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED)) {
 
 		if (PlayerInStilettoHeels && !rn2(100) && multi >= 0) {
 			You("slip with your stiletto heels and crash into the floor. Ouch!");
@@ -4610,6 +4610,12 @@ slip_or_trip()
 	if (u.usteed) on_foot = FALSE;
 
 	u.cnd_fumbled++;
+
+	if (FemtrapActiveNaomi && PlayerInHighHeels) {
+		P_ADVANCE(P_HIGH_HEELS) /= 2;
+		skill_sanity_check(P_HIGH_HEELS);
+		pline("Oh no, you're not looking good...");
+	}
 
 	if (otmp && on_foot && !u.uinwater && is_waterypool(u.ux, u.uy)) otmp = 0;
 

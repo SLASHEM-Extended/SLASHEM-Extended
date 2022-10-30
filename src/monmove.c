@@ -880,6 +880,13 @@ register struct monst *mtmp;
 		if (TimerunBug < 200) TimerunBug += 200;
 	}
 
+	if (FemtrapActiveKlara) {
+		struct obj *footwear = which_armor(mtmp, W_ARMF);
+		if (footwear && ishighheeled(footwear) && !rn2(50) && (distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) ) {
+			You_hear(mtmp->female ? "clacking noises." : "distorted clacking noises.");
+		}
+	}
+
 	/* jonadab loooooooves polka music <3 */
 	if ((mdat == &mons[PM_GEHENNOM_S_POLKA_MUSICIAN] && !rn2(5)) || (mdat == &mons[PM_HELLISH_POLKA_SINGER] && !rn2(3)) ) {
 		static const char *polka_msgs[] = {
