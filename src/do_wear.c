@@ -362,6 +362,16 @@ Boots_on()
 	case ARIANE_COMBAT_BOOTS:
 	case JOHANNA_COMBAT_BOOTS:
 	case INGE_COMBAT_BOOTS:
+	case RUTH_SNEAKERS:
+	case MAGDALENA_COMBAT_BOOTS:
+	case MARLEEN_COMBAT_BOOTS:
+	case KLARA_PLATFORM_SANDALS:
+	case FRIEDERIKE_DANCING_SHOES:
+	case NAOMI_STILETTOS:
+	case UTE_PLATFORM_SANDALS:
+	case JASIEEN_WEDGE_SANDALS:
+	case YASAMAN_LEATHER_BOOTS:
+	case MAY_BRITT_SANDALS:
 
 		if (!uarmf->cursed) {
 			pline("Oh whoops, your footwear welds itself to your %s. This might be the result of a curse.%s", makeplural(body_part(FOOT)), FunnyHallu ? " (Thank you, Captain Obvious.)" : "" );
@@ -626,6 +636,16 @@ Boots_off()
 		pline("In a terrible blood rush, they scratch up and down your legs again and again. Your blood squirts everywhere while the tender, but very sharp-edged heel is destroying every shred of your skin it can reach.");
 		losexp("being scratched to death by an angry pair of lilac pumps", TRUE, FALSE);
 		pline("Frustrated, the lovely leather pumps settle down.");
+    }
+
+    if (uarmf && itemhasappearance(uarmf, APP_SWEATY_SHOES)) {
+	if (u.sweatyshoetimer >= 1000) {
+		if (u.sweatyshoetimer > 5000) (void) create_gas_cloud(u.ux, u.uy, 4, 12);
+		else if (u.sweatyshoetimer > 3000) (void) create_gas_cloud(u.ux, u.uy, 3, 8);
+		else (void) create_gas_cloud(u.ux, u.uy, 2, 6);
+		pline("Urrgh, you've been wearing those shoes for too long...");
+		u.sweatyshoetimer = 0;
+	}
     }
 
     int otyp = uarmf->otyp;
@@ -914,6 +934,16 @@ Boots_off()
 	case ARIANE_COMBAT_BOOTS:
 	case JOHANNA_COMBAT_BOOTS:
 	case INGE_COMBAT_BOOTS:
+	case RUTH_SNEAKERS:
+	case MAGDALENA_COMBAT_BOOTS:
+	case MARLEEN_COMBAT_BOOTS:
+	case KLARA_PLATFORM_SANDALS:
+	case FRIEDERIKE_DANCING_SHOES:
+	case NAOMI_STILETTOS:
+	case UTE_PLATFORM_SANDALS:
+	case JASIEEN_WEDGE_SANDALS:
+	case YASAMAN_LEATHER_BOOTS:
+	case MAY_BRITT_SANDALS:
 		break;
 	case HIPPIE_HEELS:
 

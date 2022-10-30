@@ -707,6 +707,16 @@
 #define FemaleTrapAriane	u.uprops[FEMTRAP_ARIANE].intrinsic
 #define FemaleTrapJohanna	u.uprops[FEMTRAP_JOHANNA].intrinsic
 #define FemaleTrapInge	u.uprops[FEMTRAP_INGE].intrinsic
+#define FemaleTrapRuth	u.uprops[FEMTRAP_RUTH].intrinsic
+#define FemaleTrapMagdalena	u.uprops[FEMTRAP_MAGDALENA].intrinsic
+#define FemaleTrapMarleen	u.uprops[FEMTRAP_MARLEEN].intrinsic
+#define FemaleTrapKlara	u.uprops[FEMTRAP_KLARA].intrinsic
+#define FemaleTrapFriederike	u.uprops[FEMTRAP_FRIEDERIKE].intrinsic
+#define FemaleTrapNaomi	u.uprops[FEMTRAP_NAOMI].intrinsic
+#define FemaleTrapUte	u.uprops[FEMTRAP_UTE].intrinsic
+#define FemaleTrapJasieen	u.uprops[FEMTRAP_JASIEEN].intrinsic
+#define FemaleTrapYasaman	u.uprops[FEMTRAP_YASAMAN].intrinsic
+#define FemaleTrapMayBritt	u.uprops[FEMTRAP_MAY_BRITT].intrinsic
 
 #define FemtrapActiveFemmy	(FemaleTrapFemmy || u.uprops[FEMTRAP_FEMMY].extrinsic || have_femtrapfemmy())
 #define FemtrapActiveMadeleine	(FemaleTrapMadeleine || u.uprops[FEMTRAP_MADELEINE].extrinsic || have_femtrapmadeleine())
@@ -786,6 +796,16 @@
 #define FemtrapActiveAriane	(FemaleTrapAriane || u.uprops[FEMTRAP_ARIANE].extrinsic || have_femtrapariane())
 #define FemtrapActiveJohanna	(FemaleTrapJohanna || u.uprops[FEMTRAP_JOHANNA].extrinsic || have_femtrapjohanna())
 #define FemtrapActiveInge	(FemaleTrapInge || u.uprops[FEMTRAP_INGE].extrinsic || have_femtrapinge())
+#define FemtrapActiveRuth	(FemaleTrapRuth || u.uprops[FEMTRAP_RUTH].extrinsic || have_femtrapruth())
+#define FemtrapActiveMagdalena	(FemaleTrapMagdalena || u.uprops[FEMTRAP_MAGDALENA].extrinsic || have_femtrapmagdalena())
+#define FemtrapActiveMarleen	(FemaleTrapMarleen || u.uprops[FEMTRAP_MARLEEN].extrinsic || have_femtrapmarleen())
+#define FemtrapActiveKlara	(FemaleTrapKlara || u.uprops[FEMTRAP_KLARA].extrinsic || have_femtrapklara())
+#define FemtrapActiveFriederike	(FemaleTrapFriederike || u.uprops[FEMTRAP_FRIEDERIKE].extrinsic || have_femtrapfriederike())
+#define FemtrapActiveNaomi	(FemaleTrapNaomi || u.uprops[FEMTRAP_NAOMI].extrinsic || have_femtrapnaomi())
+#define FemtrapActiveUte	(FemaleTrapUte || u.uprops[FEMTRAP_UTE].extrinsic || have_femtrapute())
+#define FemtrapActiveJasieen	(FemaleTrapJasieen || u.uprops[FEMTRAP_JASIEEN].extrinsic || have_femtrapjasieen())
+#define FemtrapActiveYasaman	(FemaleTrapYasaman || u.uprops[FEMTRAP_YASAMAN].extrinsic || have_femtrapyasaman())
+#define FemtrapActiveMayBritt	(FemaleTrapMayBritt || u.uprops[FEMTRAP_MAY_BRITT].extrinsic || have_femtrapmaybritt())
 
 #define RngeIrregularity		(u.uprops[RNGE_IRREGULARITY].intrinsic || u.uprops[RNGE_IRREGULARITY].extrinsic)
 #define RngeInternetAccess		(u.uprops[RNGE_INTERNET_ACCESS].intrinsic || u.uprops[RNGE_INTERNET_ACCESS].extrinsic)
@@ -1364,7 +1384,7 @@
 #define HHalf_physical_damage	u.uprops[HALF_PHDAM].intrinsic
 #define EHalf_physical_damage	u.uprops[HALF_PHDAM].extrinsic
 #define IntHalf_physical_damage	(HHalf_physical_damage || (Stoned_chiller && Stoned && !(u.stonedchilltimer)) || (uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) || (Race_if(PM_BOVER) && u.usteed))
-#define ExtHalf_physical_damage	(EHalf_physical_damage || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == HALF_PHDAM) ) || (bmwride(ART_PANZER_TANK)) || (uwep && uwep->otyp == SECRET_WHIP) || (uwep && uwep->otyp == ETERNAL_POLE) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_RNG_S_EXTRAVAGANZA) || (uarmf && uarmf->oartifact == ART_HUGGING__GROPING_AND_STROK && u.ustuck) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_POTATOROK) || (uarmh && itemhasappearance(uarmh, APP_CLOUDY_HELMET) && isok(u.ux, u.uy) && IS_CLOUD(levl[u.ux][u.uy].typ) ) || (uarmc && (moves % 10 == 0) && itemhasappearance(uarmc, APP_SOFT_CLOAK) ) || (ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) )
+#define ExtHalf_physical_damage	(EHalf_physical_damage || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == HALF_PHDAM) ) || (bmwride(ART_PANZER_TANK)) || (uwep && uwep->otyp == SECRET_WHIP) || (uwep && uwep->otyp == ETERNAL_POLE) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_RNG_S_EXTRAVAGANZA) || (uarmf && uarmf->oartifact == ART_HUGGING__GROPING_AND_STROK && u.ustuck) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_POTATOROK) || (uarmf && itemhasappearance(uarmf, APP_LEATHER_FLEECE_BOOTS) && (multi < 0)) || (uarmh && itemhasappearance(uarmh, APP_CLOUDY_HELMET) && isok(u.ux, u.uy) && IS_CLOUD(levl[u.ux][u.uy].typ) ) || (uarmc && (moves % 10 == 0) && itemhasappearance(uarmc, APP_SOFT_CLOAK) ) || (ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) )
 
 #define Half_physical_damage	(((IntHalf_physical_damage && u.nonintrinsicproperty != HALF_PHDAM) || (ExtHalf_physical_damage && u.nonextrinsicproperty != HALF_PHDAM)) && !NoHalf_physical_damage)
 #define StrongHalf_physical_damage	(IntHalf_physical_damage && ExtHalf_physical_damage && Half_physical_damage && u.nondoubleproperty != HALF_PHDAM)

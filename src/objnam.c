@@ -572,6 +572,26 @@ int prop;
 			return "Johanna's curse";
 		case FEMTRAP_INGE:
 			return "Inge's curse";
+		case FEMTRAP_RUTH:
+			return "Ruth's curse";
+		case FEMTRAP_MAGDALENA:
+			return "Magdalena's curse";
+		case FEMTRAP_MARLEEN:
+			return "Marleen's curse";
+		case FEMTRAP_KLARA:
+			return "Klara's curse";
+		case FEMTRAP_FRIEDERIKE:
+			return "Friederike's curse";
+		case FEMTRAP_NAOMI:
+			return "Naomi's curse";
+		case FEMTRAP_UTE:
+			return "Ute's curse";
+		case FEMTRAP_JASIEEN:
+			return "Jasieen's curse";
+		case FEMTRAP_YASAMAN:
+			return "Yasaman's curse";
+		case FEMTRAP_MAY_BRITT:
+			return "May-Britt's curse";
 
 		default:
 			return "Team Nastytrap";
@@ -3636,6 +3656,17 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ JOHANNA_S_JEWEL, "Johanna dragotsennost'" },
 	{ INGE_S_JEWEL, "Inge dragotsennost'" },
 
+	{ RUTH_S_JEWEL, "Ruth dragotsennost'" },
+	{ MAGDALENA_S_JEWEL, "Magdalena dragotsennost'" },
+	{ MARLEEN_S_JEWEL, "Marleen dragotsennost'" },
+	{ KLARA_S_JEWEL, "Klara dragotsennost'" },
+	{ FRIEDERIKE_S_JEWEL, "Friederike dragotsennost'" },
+	{ NAOMI_S_JEWEL, "Naomi dragotsennost'" },
+	{ UTE_S_JEWEL, "Ute dragotsennost'" },
+	{ JASIEEN_S_JEWEL, "Jasieen dragotsennost'" },
+	{ YASAMAN_S_JEWEL, "Yasaman dragotsennost'" },
+	{ MAY_BRITT_S_JEWEL, "May-Britt dragotsennost'" },
+
 	{ POT_TECH_LEVEL_UP, "tekhnicheskiy uroven' vverkh" },
 	{ CIGAR, "sigara" },
 	{ SCR_SKILL_GROWTH, "rost navykov" },
@@ -3802,6 +3833,17 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ INVERSION_SHIELD, "todo" },
 	{ WINCING_GRIMACE, "todo" },
 	{ RIN_WINCING, "todo" },
+
+	{ RUTH_SNEAKERS, "todo" },
+	{ MAGDALENA_COMBAT_BOOTS, "todo" },
+	{ MARLEEN_COMBAT_BOOTS, "todo" },
+	{ KLARA_PLATFORM_SANDALS, "todo" },
+	{ FRIEDERIKE_DANCING_SHOES, "todo" },
+	{ NAOMI_STILETTOS, "todo" },
+	{ UTE_PLATFORM_SANDALS, "todo" },
+	{ JASIEEN_WEDGE_SANDALS, "todo" },
+	{ YASAMAN_LEATHER_BOOTS, "todo" },
+	{ MAY_BRITT_SANDALS, "todo" },
 
 	{0, "" }
 };
@@ -6682,6 +6724,17 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ JOHANNA_S_JEWEL, "Johanna marvarid" },
 	{ INGE_S_JEWEL, "Inge marvarid" },
 
+	{ RUTH_S_JEWEL, "Ruth marvarid" },
+	{ MAGDALENA_S_JEWEL, "Magdalena marvarid" },
+	{ MARLEEN_S_JEWEL, "Marleen marvarid" },
+	{ KLARA_S_JEWEL, "Klara marvarid" },
+	{ FRIEDERIKE_S_JEWEL, "Friederike marvarid" },
+	{ NAOMI_S_JEWEL, "Naomi marvarid" },
+	{ UTE_S_JEWEL, "Ute marvarid" },
+	{ JASIEEN_S_JEWEL, "Jasieen marvarid" },
+	{ YASAMAN_S_JEWEL, "Yasaman marvarid" },
+	{ MAY_BRITT_S_JEWEL, "May-Britt marvarid" },
+
 	{ POT_TECH_LEVEL_UP, "texnologiya darajasi" },
 	{ CIGAR, "puro" },
 	{ SCR_SKILL_GROWTH, "mahoratning o'sishi" },
@@ -6848,6 +6901,17 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ INVERSION_SHIELD, "todo" },
 	{ WINCING_GRIMACE, "todo" },
 	{ RIN_WINCING, "todo" },
+
+	{ RUTH_SNEAKERS, "todo" },
+	{ MAGDALENA_COMBAT_BOOTS, "todo" },
+	{ MARLEEN_COMBAT_BOOTS, "todo" },
+	{ KLARA_PLATFORM_SANDALS, "todo" },
+	{ FRIEDERIKE_DANCING_SHOES, "todo" },
+	{ NAOMI_STILETTOS, "todo" },
+	{ UTE_PLATFORM_SANDALS, "todo" },
+	{ JASIEEN_WEDGE_SANDALS, "todo" },
+	{ YASAMAN_LEATHER_BOOTS, "todo" },
+	{ MAY_BRITT_SANDALS, "todo" },
 
 	{0, "" }
 };

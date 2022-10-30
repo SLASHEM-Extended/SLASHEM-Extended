@@ -1737,9 +1737,9 @@ ask_about_trap(int x, int y)
 	 * it's much more fair if you always get one though --Amy
 	 * what we definitely cannot do is make it give the confirmation depending on what trap it is, because that would
 	 * be leaking info */
-	if (Hallucination && (traphere && traphere->tseen) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist)) return TRUE;
+	if (Hallucination && (traphere && traphere->tseen) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist && !(uarmf && itemhasappearance(uarmf, APP_FLUFFY_SANDALS)) )) return TRUE;
 
-	if (/* is_pool(x, y) || is_lava(x, y) || */ (traphere && traphere->tseen) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && !Hallucination)  {
+	if (/* is_pool(x, y) || is_lava(x, y) || */ (traphere && traphere->tseen) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist && !(uarmf && itemhasappearance(uarmf, APP_FLUFFY_SANDALS)) ) && !Hallucination)  {
 
 		/* who the heck included this? Maybe the player doesn't really want to use the portal at all! --Amy */
 		/*if (traphere->ttyp == MAGIC_PORTAL) {
@@ -1818,10 +1818,10 @@ ask_about_water(int x, int y)
 	if (is_pool(u.ux, u.uy)) return FALSE;
 	if (is_watertunnel(u.ux, u.uy)) return FALSE;
 
-	if (is_pool(x, y) && !Levitation && !Flying && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv) return TRUE; 
+	if (is_pool(x, y) && !Levitation && !Flying && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist && !(uarmf && itemhasappearance(uarmf, APP_FLUFFY_SANDALS)) ) && levl[x][y].seenv) return TRUE; 
 
-	if (is_pool(x, y) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv && Role_if(PM_TOPMODEL) && Is_qlocate(&u.uz) ) return TRUE; 
-	if (is_pool(x, y) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv && Role_if(PM_FAILED_EXISTENCE) && Is_qlocate(&u.uz) ) return TRUE; 
+	if (is_pool(x, y) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist && !(uarmf && itemhasappearance(uarmf, APP_FLUFFY_SANDALS)) ) && levl[x][y].seenv && Role_if(PM_TOPMODEL) && Is_qlocate(&u.uz) ) return TRUE; 
+	if (is_pool(x, y) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist && !(uarmf && itemhasappearance(uarmf, APP_FLUFFY_SANDALS)) ) && levl[x][y].seenv && Role_if(PM_FAILED_EXISTENCE) && Is_qlocate(&u.uz) ) return TRUE; 
 
 	return FALSE;
 }
@@ -1833,7 +1833,7 @@ ask_about_lava(int x, int y)
 
 	if (is_lava(u.ux, u.uy)) return FALSE;
 
-	if (is_lava(x, y) && !Levitation && !Flying && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv) return TRUE; 
+	if (is_lava(x, y) && !Levitation && !Flying && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist && !(uarmf && itemhasappearance(uarmf, APP_FLUFFY_SANDALS)) ) && levl[x][y].seenv) return TRUE; 
 	return FALSE;
 }
 
@@ -1845,7 +1845,7 @@ ask_about_watertunnel(int x, int y)
 	if (is_watertunnel(u.ux, u.uy)) return FALSE;
 	if (is_pool(u.ux, u.uy)) return FALSE;
 
-	if (is_watertunnel(x, y) && !Levitation && !Flying && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv) return TRUE; 
+	if (is_watertunnel(x, y) && !Levitation && !Flying && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist && !(uarmf && itemhasappearance(uarmf, APP_FLUFFY_SANDALS)) ) && levl[x][y].seenv) return TRUE; 
 	return FALSE;
 }
 
@@ -1856,7 +1856,7 @@ ask_about_crystalwater(int x, int y)
 
 	if (is_crystalwater(u.ux, u.uy)) return FALSE;
 
-	if (is_crystalwater(x, y) && (Levitation || Flying) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv) return TRUE; 
+	if (is_crystalwater(x, y) && (Levitation || Flying) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist && !(uarmf && itemhasappearance(uarmf, APP_FLUFFY_SANDALS)) ) && levl[x][y].seenv) return TRUE; 
 	return FALSE;
 }
 
@@ -1867,7 +1867,7 @@ ask_about_moorland(int x, int y)
 
 	if (is_moorland(u.ux, u.uy)) return FALSE;
 
-	if (is_moorland(x, y) && !Levitation && !Flying && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv) return TRUE; 
+	if (is_moorland(x, y) && !Levitation && !Flying && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist && !(uarmf && itemhasappearance(uarmf, APP_FLUFFY_SANDALS)) ) && levl[x][y].seenv) return TRUE; 
 	return FALSE;
 }
 
@@ -1878,7 +1878,7 @@ ask_about_urinelake(int x, int y)
 
 	if (is_urinelake(u.ux, u.uy)) return FALSE;
 
-	if (is_urinelake(x, y) && !Levitation && !Flying && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv) return TRUE; 
+	if (is_urinelake(x, y) && !Levitation && !Flying && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist && !(uarmf && itemhasappearance(uarmf, APP_FLUFFY_SANDALS)) ) && levl[x][y].seenv) return TRUE; 
 	return FALSE;
 }
 
@@ -1889,7 +1889,7 @@ ask_about_shiftingsand(int x, int y)
 
 	if (is_shiftingsand(u.ux, u.uy)) return FALSE;
 
-	if (is_shiftingsand(x, y) && !Levitation && !Flying && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv) return TRUE; 
+	if (is_shiftingsand(x, y) && !Levitation && !Flying && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist && !(uarmf && itemhasappearance(uarmf, APP_FLUFFY_SANDALS)) ) && levl[x][y].seenv) return TRUE; 
 	return FALSE;
 }
 
@@ -1900,7 +1900,7 @@ ask_about_styxriver(int x, int y)
 
 	if (is_styxriver(u.ux, u.uy)) return FALSE;
 
-	if (is_styxriver(x, y) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv) return TRUE; 
+	if (is_styxriver(x, y) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist && !(uarmf && itemhasappearance(uarmf, APP_FLUFFY_SANDALS)) ) && levl[x][y].seenv) return TRUE; 
 	return FALSE;
 }
 
@@ -1911,7 +1911,7 @@ ask_about_burningwagon(int x, int y)
 
 	if (is_burningwagon(u.ux, u.uy)) return FALSE;
 
-	if (is_burningwagon(x, y) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv) return TRUE; 
+	if (is_burningwagon(x, y) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist && !(uarmf && itemhasappearance(uarmf, APP_FLUFFY_SANDALS)) ) && levl[x][y].seenv) return TRUE; 
 	return FALSE;
 }
 
@@ -1922,7 +1922,7 @@ ask_about_nethermist(int x, int y)
 
 	if (is_nethermist(u.ux, u.uy)) return FALSE;
 
-	if (is_nethermist(x, y) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv) return TRUE; 
+	if (is_nethermist(x, y) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist && !(uarmf && itemhasappearance(uarmf, APP_FLUFFY_SANDALS)) ) && levl[x][y].seenv) return TRUE; 
 	return FALSE;
 }
 
@@ -1933,7 +1933,7 @@ ask_about_stalactite(int x, int y)
 
 	if (is_stalactite(u.ux, u.uy)) return FALSE;
 
-	if (is_stalactite(x, y) && (Flying || Levitation) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv) return TRUE; 
+	if (is_stalactite(x, y) && (Flying || Levitation) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist && !(uarmf && itemhasappearance(uarmf, APP_FLUFFY_SANDALS)) ) && levl[x][y].seenv) return TRUE; 
 	return FALSE;
 }
 
@@ -1944,7 +1944,7 @@ ask_about_raincloud(int x, int y)
 
 	if (is_raincloud(u.ux, u.uy)) return FALSE;
 
-	if (is_raincloud(x, y) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv) return TRUE; 
+	if (is_raincloud(x, y) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist && !(uarmf && itemhasappearance(uarmf, APP_FLUFFY_SANDALS)) ) && levl[x][y].seenv) return TRUE; 
 	return FALSE;
 }
 
@@ -1955,7 +1955,7 @@ ask_about_bubble(int x, int y)
 
 	if (is_bubble(u.ux, u.uy)) return FALSE;
 
-	if (is_bubble(x, y) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv) return TRUE; 
+	if (is_bubble(x, y) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist && !(uarmf && itemhasappearance(uarmf, APP_FLUFFY_SANDALS)) ) && levl[x][y].seenv) return TRUE; 
 	return FALSE;
 }
 

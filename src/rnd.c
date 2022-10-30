@@ -1440,7 +1440,7 @@ randenchantment()
 
 	} else if (!rn2(15)) {
 
-		switch (rnd(78)) {
+		switch (rnd(88)) {
 			case 1: return FEMTRAP_FEMMY;
 			case 2: return FEMTRAP_MADELEINE;
 			case 3: return FEMTRAP_MARLENA;
@@ -1519,6 +1519,16 @@ randenchantment()
 			case 76: return FEMTRAP_ARIANE;
 			case 77: return FEMTRAP_JOHANNA;
 			case 78: return FEMTRAP_INGE;
+			case 79: return FEMTRAP_RUTH;
+			case 80: return FEMTRAP_MAGDALENA;
+			case 81: return FEMTRAP_MARLEEN;
+			case 82: return FEMTRAP_KLARA;
+			case 83: return FEMTRAP_FRIEDERIKE;
+			case 84: return FEMTRAP_NAOMI;
+			case 85: return FEMTRAP_UTE;
+			case 86: return FEMTRAP_JASIEEN;
+			case 87: return FEMTRAP_YASAMAN;
+			case 88: return FEMTRAP_MAY_BRITT;
 			default: return POISON_RES;
 		}
 
@@ -3954,7 +3964,7 @@ int duration;
 {
 	if (FemtrapActiveRosa) duration *= 5;
 
-	switch (rnd(78)) {
+	switch (rnd(88)) {
 		case 1:
 			pline("You can already imagine the farting noises you're gonna hear.");
 			FemaleTrapSarah += duration;
@@ -4267,6 +4277,47 @@ int duration;
 		case 78:
 			pline("All the elegant ladies will produce very tender farting noises that you just cannot resist.");
 			FemaleTrapInge += duration;
+			break;
+		case 79:
+			/* no message
+			 * "The dark girl has pulled the switch, and now feminism traps will work like nasty traps. Except that this message can never be displayed, because the trap in question works like a nasty trap itself." */
+			FemaleTrapRuth += duration;
+			break;
+		case 80:
+			pline("Oh, apparently you have to fight some particularly burly women. That's gonna be difficult.");
+			FemaleTrapMagdalena += duration;
+			break;
+		case 81:
+			pline("It seems the women are strengthening their defenses.");
+			FemaleTrapMarleen += duration;
+			break;
+		case 82:
+			pline("You become sensitive to the sound of high heels.");
+			FemaleTrapKlara += duration;
+			break;
+		case 83:
+			pline("Yay, a pretty girl with a long blond bundle starts following you around! She's certainly very nice and will have a lot of fun with you!");
+			FemaleTrapFriederike += duration;
+			break;
+		case 84:
+			pline("You have to wear your stiletto heels like a model, and if you fall, you have to smile anyway! That's the obligation of a model...");
+			FemaleTrapNaomi += duration;
+			break;
+		case 85:
+			pline("Uh-oh, the patriarch is coming to take your pretty high heels away. Make sure he doesn't catch you!");
+			FemaleTrapUte += duration;
+			break;
+		case 86:
+			pline("The sexy ladies are gonna challenge you again and again and again.");
+			FemaleTrapJasieen += duration;
+			break;
+		case 87:
+			pline("It seems that monsters may spotaneously turn into sexy women, as if there weren't enough of them running around the dungeon anyway.");
+			FemaleTrapYasaman += duration;
+			break;
+		case 88:
+			pline("Those little girls want to tease you by trying to steal things from your backpack for fun! You certainly know that this 'fun' will happen at your expense...");
+			FemaleTrapMayBritt += duration;
 			break;
 	}
 }
@@ -4883,7 +4934,7 @@ boolean withtroves;
 int
 randomfeminismtraptype() /* keyword "marlena" */
 {
-	switch (rnd(78)) {
+	switch (rnd(88)) {
 			case 1: return FEMMY_TRAP;
 			case 2: return MADELEINE_TRAP;
 			case 3: return MARLENA_TRAP;
@@ -4962,6 +5013,16 @@ randomfeminismtraptype() /* keyword "marlena" */
 			case 76: return ARIANE_TRAP;
 			case 77: return JOHANNA_TRAP;
 			case 78: return INGE_TRAP;
+			case 79: return RUTH_TRAP;
+			case 80: return MAGDALENA_TRAP;
+			case 81: return MARLEEN_TRAP;
+			case 82: return KLARA_TRAP;
+			case 83: return FRIEDERIKE_TRAP;
+			case 84: return NAOMI_TRAP;
+			case 85: return UTE_TRAP;
+			case 86: return JASIEEN_TRAP;
+			case 87: return YASAMAN_TRAP;
+			case 88: return MAY_BRITT_TRAP;
 	}
 	return INGE_TRAP; /* fail safe */
 

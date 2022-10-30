@@ -959,6 +959,36 @@ exprecalc(void)
 					case 78:
 						pline("You receive an elaborate auspicious message: At experience level %d, ladies will come for you and produce very tender farting noises that you'll find irresistible.", displaycheck);
 						break;
+					case 79:
+						pline("You receive an elaborate auspicious message: At experience level %d, feminism traps will start to behave like nasty traps.", displaycheck);
+						break;
+					case 80:
+						pline("You receive an elaborate auspicious message: At experience level %d, you'll have a harder time fighting women.", displaycheck);
+						break;
+					case 81:
+						pline("You receive an elaborate auspicious message: At experience level %d, female monsters will have additional armor class and resistances.", displaycheck);
+						break;
+					case 82:
+						pline("You receive an elaborate auspicious message: At experience level %d, you'll hear clacking noises whenever someone walks around in high heels.", displaycheck);
+						break;
+					case 83:
+						pline("You receive an elaborate auspicious message: At experience level %d, a nice girl will start following you around and have fun with you.", displaycheck);
+						break;
+					case 84:
+						pline("You receive an elaborate auspicious message: At experience level %d, you can use high heels even without having the skill but cannot have certain properties if you aren't wearing any.", displaycheck);
+						break;
+					case 85:
+						pline("You receive an elaborate auspicious message: At experience level %d, your shoes can turn into artifact missys but the patriarch will try to beat you up.", displaycheck);
+						break;
+					case 86:
+						pline("You receive an elaborate auspicious message: At experience level %d, particularly feminine monsters are unlikely to die for real when they're killed.", displaycheck);
+						break;
+					case 87:
+						pline("You receive an elaborate auspicious message: At experience level %d, monsters might occasionally polymorph into particularly feminine ones.", displaycheck);
+						break;
+					case 88:
+						pline("You receive an elaborate auspicious message: At experience level %d, a little girl starts stealing your stuff and running away on occasion.", displaycheck);
+						break;
 				}
 			} else pline("Your auspices say: %d %d", displaycheck, whichcheck);
 

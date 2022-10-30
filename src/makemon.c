@@ -13145,6 +13145,10 @@ loveheelover:
 			(void) mongets(mtmp, FISHNET);
 			(void) mongets(mtmp, LEATHER_PEEP_TOES);
 		}
+		if(ptr == &mons[PM_CHAMPION_FEMMY]) {
+			(void) mongets(mtmp, HIPPIE_HEELS); /* M4_BLOCKHEELBOOTS */
+			(void) mongets(mtmp, AMULET_OF_LIFE_SAVING);
+		}
 		if(ptr == &mons[PM_SUMATRA_CHIEF]) {
 			 m_initthrow(mtmp, rnd_class(JAVELIN, STACK_JAVELIN), 5);
 			 m_initthrow(mtmp, rnd_class(JAVELIN, STACK_JAVELIN), 5);
@@ -17124,6 +17128,7 @@ loveheelover:
 		if (ptr == &mons[PM_RANDOM_MONSTER_GENERATOR]) (void) mongets(mtmp, SCR_GROUP_SUMMONING);
 		if (ptr == &mons[PM_AKLYS_BUG]) (void) mongets(mtmp, AKLYS);
 		if (ptr == &mons[PM_SPACEBUG]) (void) mongets(mtmp, LASER_POLE);
+		if (ptr == &mons[PM_LASCIVIOUS_FEMMY]) (void) mongets(mtmp, LADY_BOOTS); /* M4_BLOCKHEELBOOTS */
 		if (ptr == &mons[PM_BLOWKLYS_BUG]) (void) mongets(mtmp, BLOW_AKLYS);
 		if (ptr == &mons[PM_GREATER_AKLYS_BUG]) (void) mongets(mtmp, AKLYS);
 		if (ptr == &mons[PM_EXTREMELY_CONTAMINATED_BUG]) (void) mongets(mtmp, SCR_STYX);
@@ -20051,6 +20056,12 @@ loveheelover:
 	if (ptr == &mons[PM_EROGENOUS_KATIA]) {
 
 		mtmp->crapbonus += 50;
+
+	}
+
+	if (ptr == &mons[PM_RESTROOM_FEMMY]) {
+
+		mtmp->crapbonus += 30;
 
 	}
 
@@ -24742,6 +24753,8 @@ register int	mmflags;
 
 			break;
 		case S_WORM_TAIL:
+			if (mndx == PM_CUMBROUS_FEMMY) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+
 			if (mtmp->data == &mons[PM_PERFUMEHUGGER]) {
 				int spawnnumber = rn1(10, 3);
 				while (spawnnumber > 0) {

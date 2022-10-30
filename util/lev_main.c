@@ -795,6 +795,17 @@ static struct {
 	{ "killer room", KILLER_ROOM_TRAP },
 	{ "no fun walls", NO_FUN_WALLS_TRAP },
 
+	{ "ruth", RUTH_TRAP },
+	{ "magdalena", MAGDALENA_TRAP },
+	{ "marleen", MARLEEN_TRAP },
+	{ "klara", KLARA_TRAP },
+	{ "friederike", FRIEDERIKE_TRAP },
+	{ "naomi", NAOMI_TRAP },
+	{ "ute", UTE_TRAP },
+	{ "jasieen", JASIEEN_TRAP },
+	{ "yasaman", YASAMAN_TRAP },
+	{ "maybritt", MAY_BRITT_TRAP },
+
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }
 };

@@ -10148,18 +10148,18 @@ u_init()
 	u.femauspices28 = rnd(9);
 	u.femauspices30 = rnd(10);
 
-	u.feminizeffect = rnd(78); /* amount of feminism trap effects; keyword: "marlena" */
+	u.feminizeffect = rnd(88); /* amount of feminism trap effects; keyword: "marlena" */
 
-	u.climauspices3 = rnd(78);
-	u.climauspices6 = rnd(78);
-	u.climauspices9 = rnd(78);
-	u.climauspices12 = rnd(78);
-	u.climauspices15 = rnd(78);
-	u.climauspices18 = rnd(78);
-	u.climauspices21 = rnd(78);
-	u.climauspices24 = rnd(78);
-	u.climauspices27 = rnd(78);
-	u.climauspices30 = rnd(78);
+	u.climauspices3 = rnd(88);
+	u.climauspices6 = rnd(88);
+	u.climauspices9 = rnd(88);
+	u.climauspices12 = rnd(88);
+	u.climauspices15 = rnd(88);
+	u.climauspices18 = rnd(88);
+	u.climauspices21 = rnd(88);
+	u.climauspices24 = rnd(88);
+	u.climauspices27 = rnd(88);
+	u.climauspices30 = rnd(88);
 
 	u.sjwL1E1 = rnd(245); /* timerun and stuff */
 	u.sjwL2E1 = rnd(245);
@@ -11254,6 +11254,7 @@ u_init()
 	u.mushroompoles = 0;
 	u.grenadoninlauncher = 0;
 	u.nataljetrapturns = 0;
+	u.sweatyshoetimer = 0;
 	u.stonedchilltimer = 0;
 	u.moneydebt = 0;
 	u.havebeeninludios = 0;
@@ -33042,18 +33043,18 @@ int realityflag;
 	u.femauspices28 = rnd(9);
 	u.femauspices30 = rnd(10);
 
-	u.feminizeffect = rnd(78); /* amount of feminism trap effects; keyword: "marlena" */
+	u.feminizeffect = rnd(88); /* amount of feminism trap effects; keyword: "marlena" */
 
-	u.climauspices3 = rnd(78);
-	u.climauspices6 = rnd(78);
-	u.climauspices9 = rnd(78);
-	u.climauspices12 = rnd(78);
-	u.climauspices15 = rnd(78);
-	u.climauspices18 = rnd(78);
-	u.climauspices21 = rnd(78);
-	u.climauspices24 = rnd(78);
-	u.climauspices27 = rnd(78);
-	u.climauspices30 = rnd(78);
+	u.climauspices3 = rnd(88);
+	u.climauspices6 = rnd(88);
+	u.climauspices9 = rnd(88);
+	u.climauspices12 = rnd(88);
+	u.climauspices15 = rnd(88);
+	u.climauspices18 = rnd(88);
+	u.climauspices21 = rnd(88);
+	u.climauspices24 = rnd(88);
+	u.climauspices27 = rnd(88);
+	u.climauspices30 = rnd(88);
 
 	u.sjwL1E1 = rnd(245); /* timerun and stuff */
 	u.sjwL2E1 = rnd(245);

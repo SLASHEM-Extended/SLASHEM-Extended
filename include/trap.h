@@ -734,6 +734,17 @@ extern struct trap *ftrap;
 #define KILLER_ROOM_TRAP 645
 #define NO_FUN_WALLS_TRAP 646
 
+#define RUTH_TRAP 647
+#define MAGDALENA_TRAP 648
+#define MARLEEN_TRAP 649
+#define KLARA_TRAP 650
+#define FRIEDERIKE_TRAP 651
+#define NAOMI_TRAP 652
+#define UTE_TRAP 653
+#define JASIEEN_TRAP 654
+#define YASAMAN_TRAP 655
+#define MAY_BRITT_TRAP 656
+
 /* todo area
 
 normal ones:
@@ -853,8 +864,8 @@ special ones that don't spawn randomly:
 
 */
 
-#define TIMERUN_TRAP	647
+#define TIMERUN_TRAP	657
 
-#define TRAPNUM 648
+#define TRAPNUM 658
 
 #endif /* TRAP_H */

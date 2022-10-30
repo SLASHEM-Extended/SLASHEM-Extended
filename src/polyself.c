@@ -2144,6 +2144,16 @@ dospinweb()
 		case FEMMY_TRAP:
 		case MADELEINE_TRAP:
 		case MARLENA_TRAP:
+		case RUTH_TRAP:
+		case MAGDALENA_TRAP:
+		case MARLEEN_TRAP:
+		case KLARA_TRAP:
+		case FRIEDERIKE_TRAP:
+		case NAOMI_TRAP:
+		case UTE_TRAP:
+		case JASIEEN_TRAP:
+		case YASAMAN_TRAP:
+		case MAY_BRITT_TRAP:
 		case KSENIA_TRAP:
 		case LYDIA_TRAP:
 		case CONNY_TRAP:

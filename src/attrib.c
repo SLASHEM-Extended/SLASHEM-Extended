@@ -2821,6 +2821,7 @@ int x;
 		if (FemtrapActiveNora && u.uhs == FAINTING) tmp += 5;
 		if (FemtrapActiveNora && u.uhs == FAINTED) tmp += 10;
 		if (FemtrapActiveNora && u.uhs == STARVED) tmp += 25;
+		if (uarmf && itemhasappearance(uarmf, APP_HOMO_SHOES) && u.homosexual == 2) tmp += 5;
 
 		if (RngeCoquetry) tmp += 5;
 		if (FemtrapActiveSolvejg) tmp += 5;

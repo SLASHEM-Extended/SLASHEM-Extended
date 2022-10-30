@@ -1612,6 +1612,36 @@ selecttrap:
 		    case MARLENA_TRAP:
 			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
+		    case RUTH_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(20) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case MAGDALENA_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(10) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case MARLEEN_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(10) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case KLARA_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case FRIEDERIKE_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(25) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case NAOMI_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case UTE_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(30) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case JASIEEN_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(10) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case YASAMAN_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(20) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case MAY_BRITT_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(10) && !NastyTrapNation) goto selecttrap;
+			break;
 		    case KSENIA_TRAP:
 			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(10) && !NastyTrapNation) goto selecttrap;
 			break;
@@ -2354,6 +2384,16 @@ selecttrap2:
 	      if (rtrap == JULIA_TRAP && !Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(20) && !NastyTrapNation) goto selecttrap2;
 	      if (rtrap == NICOLE_TRAP && !Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap2;
 	      if (rtrap == RITA_TRAP && !Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(20) && !NastyTrapNation) goto selecttrap2;
+	      if (rtrap == RUTH_TRAP && !Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(20) && !NastyTrapNation) goto selecttrap2;
+	      if (rtrap == MAGDALENA_TRAP && !Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(10) && !NastyTrapNation) goto selecttrap2;
+	      if (rtrap == MARLEEN_TRAP && !Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(10) && !NastyTrapNation) goto selecttrap2;
+	      if (rtrap == KLARA_TRAP && !Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap2;
+	      if (rtrap == FRIEDERIKE_TRAP && !Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(25) && !NastyTrapNation) goto selecttrap2;
+	      if (rtrap == NAOMI_TRAP && !Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap2;
+	      if (rtrap == UTE_TRAP && !Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(30) && !NastyTrapNation) goto selecttrap2;
+	      if (rtrap == JASIEEN_TRAP && !Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(10) && !NastyTrapNation) goto selecttrap2;
+	      if (rtrap == YASAMAN_TRAP && !Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(20) && !NastyTrapNation) goto selecttrap2;
+	      if (rtrap == MAY_BRITT_TRAP && !Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(10) && !NastyTrapNation) goto selecttrap2;
 
 	      if (rtrap == PREMATURE_DEATH_TRAP && rn2(evilfriday ? 10 : 200) && !NastyTrapNation) goto selecttrap2;
 	      if (rtrap == RAGNAROK_TRAP && rn2(evilfriday ? 64 : 640) && !NastyTrapNation) goto selecttrap2;

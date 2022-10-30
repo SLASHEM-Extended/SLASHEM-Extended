@@ -2886,6 +2886,67 @@ nh_timeout()
 
 		 break;
 
+		 case FEMTRAP_RUTH:
+
+			/* no message
+			 * "Finally, the switch that makes feminism traps work like nasty trap effects has been turned off again. God, that took fucking ages to happen! If only you could operate the switch yourself, you'd have done so much earlier..." */
+
+		 break;
+
+		 case FEMTRAP_MAGDALENA:
+
+			pline("Finally, the burly women decided to not bother you anymore.");
+
+		 break;
+
+		 case FEMTRAP_MARLEEN:
+
+			pline("The women deconstructed their defenses as they feel they're not really needed anymore.");
+
+		 break;
+
+		 case FEMTRAP_KLARA:
+
+			pline("Oh bummer, you can no longer hear the sounds of high heels.");
+
+		 break;
+
+		 case FEMTRAP_FRIEDERIKE:
+
+			pline("Aww... the pretty wing-tufted girl is leaving, even though you wanted her to hang her blond bundle into your face again!");
+
+		 break;
+
+		 case FEMTRAP_NAOMI:
+
+			pline("Ah finally, the meat inspection has ended and you no longer have to strut around with those stupid stiletto heels.");
+
+		 break;
+
+		 case FEMTRAP_UTE:
+
+			pline("The patriarch has given up and you're still alive! Whew! Now you can keep your high heels without having to fear that he tries to destroy them!");
+
+		 break;
+
+		 case FEMTRAP_JASIEEN:
+
+			pline("Finally, the sexy lady challenge has ended. It was getting on your nerves that you'd keep encountering them.");
+
+		 break;
+
+		 case FEMTRAP_YASAMAN:
+
+			pline("The monsters are no longer turning into sexy women. Whose idea was that anyway, a crossdresser's???");
+
+		 break;
+
+		 case FEMTRAP_MAY_BRITT:
+
+			pline("You hear that the annoying little girls have been relocated to some other dungeon, so they can't steal your stuff anymore now. Are you pitying them? No, not at all. They got what they deserved, as they never fit into this dungeon anyway.");
+
+		 break;
+
 		 case FEMTRAP_KSENIA:
 
 			pline("You still don't have enough blue marks on your shins, yet the pretty female sandals are pulling back for some reason...");

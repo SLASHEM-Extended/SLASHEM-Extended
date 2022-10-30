@@ -1332,6 +1332,8 @@ struct you {
 
 	int inertia;	/* for inertia attack - if non-zero, the player moves at half speed */
 
+	int sweatyshoetimer;	/* for "sweaty shoes" randomized appearance */
+
 	int bankcashamount; /* for bank trap */
 	int bankcashlimit;
 
