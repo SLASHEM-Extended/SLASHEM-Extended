@@ -4072,7 +4072,7 @@ register struct obj *wand;
 	}
 
 	if (wand && wand->oartifact == ART_FULLY_STUPID_ITEM) {
-		more_experienced(GushLeevl * 10, 0);
+		more_experienced(GushLevel * 10, 0);
 		newexplevel();
 		SatanEffect += rnz(1000);
 	}

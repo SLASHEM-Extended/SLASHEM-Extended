@@ -5503,22 +5503,12 @@ struct obj *otmp;
 
 	    case BREAD:
 	    case FOOD_RATION:
+
 		if(u.uhunger <= 500)
 		    pline(FunnyHallu ? "Oh wow, like, superior, man!" :
 			  "That food really hit the spot!");
 		else if(u.uhunger <= 1200) pline("That satiated your %s!",
 						body_part(STOMACH));
-
-		if (otmp && otmp->oartifact == ART_HOE_PA) {
-			if (!Cold_resistance) You_feel("more resistant to cold!");
-			incr_itimeout(&HCold_resistance, rnz(10000));
-			if (!Fire_resistance) You_feel("more resistant to fire!");
-			incr_itimeout(&HFire_resistance, rnz(10000));
-			if (!Shock_resistance) You_feel("more resistant to shock!");
-			incr_itimeout(&HShock_resistance, rnz(10000));
-			if (!Poison_resistance) You_feel("more resistant to poison!");
-			incr_itimeout(&HPoison_resistance, rnz(10000));
-		}
 
 		break;
 	    case TRIPE_RATION:
@@ -5549,17 +5539,6 @@ struct obj *otmp;
 		break;
 	    case PILL:
 		You("swallow the little pink pill.");
-
-		if (otmp && otmp->oartifact == ART_PILL_THAT_KILLED_MICHAEL_J) {
-		      make_sick(rn1(25,25), "a poisonous pill", TRUE, SICK_VOMITABLE);
-			losehp(rn1(30, 30),"poisonous pill",KILLED_BY_AN);
-			(void) adjattrib(A_STR, -rnd(6), FALSE, TRUE);
-			(void) adjattrib(A_DEX, -rnd(6), FALSE, TRUE);
-			(void) adjattrib(A_CON, -rnd(6), FALSE, TRUE);
-			(void) adjattrib(A_INT, -rnd(6), FALSE, TRUE);
-			(void) adjattrib(A_WIS, -rnd(6), FALSE, TRUE);
-			(void) adjattrib(A_CHA, -rnd(6), FALSE, TRUE);
-		}
 
 		switch(rn2(7))
 		{
@@ -5655,11 +5634,6 @@ struct obj *otmp;
 		break;
 	    case SHEAF_OF_STRAW:
 	    case COTTON:
-		if (otmp->oartifact == ART_FLUFFLIGHT) {
-			incr_itimeout(&HFlying, rn1(50,50));
-			pline("Yay, you can fly!");
-		}
-
 		if (herbivorous(youmonst.data) && !carnivorous(youmonst.data)) pline("That %s was tasty!", xname(otmp));
 		break;
 	    case MEATBALL:
@@ -5671,83 +5645,6 @@ struct obj *otmp;
 
 	    case X_MAS_CAKE:
 
-		if (otmp->oartifact == ART_WHITE_CHRISTMAS_DREAM) {
-			if (getmonth() == 11) {
-				struct obj *xmasreward;
-				xmasreward = mkobj(ARMOR_CLASS, TRUE, FALSE);
-				if (xmasreward) {
-					dropy(xmasreward);
-				}
-				xmasreward = mkobj(ARMOR_CLASS, TRUE, FALSE);
-				if (xmasreward) {
-					dropy(xmasreward);
-				}
-				xmasreward = mkobj(ARMOR_CLASS, TRUE, FALSE);
-				if (xmasreward) {
-					dropy(xmasreward);
-				}
-				xmasreward = mkobj(ARMOR_CLASS, TRUE, FALSE);
-				if (xmasreward) {
-					dropy(xmasreward);
-				}
-				xmasreward = mkobj(ARMOR_CLASS, TRUE, FALSE);
-				if (xmasreward) {
-					dropy(xmasreward);
-				}
-				xmasreward = mkobj(ARMOR_CLASS, TRUE, FALSE);
-				if (xmasreward) {
-					dropy(xmasreward);
-				}
-				xmasreward = mkobj(ARMOR_CLASS, TRUE, FALSE);
-				if (xmasreward) {
-					dropy(xmasreward);
-				}
-				xmasreward = mkobj(ARMOR_CLASS, TRUE, FALSE);
-				if (xmasreward) {
-					dropy(xmasreward);
-				}
-				xmasreward = mkobj(ARMOR_CLASS, TRUE, FALSE);
-				if (xmasreward) {
-					dropy(xmasreward);
-				}
-				xmasreward = mkobj(ARMOR_CLASS, TRUE, FALSE);
-				if (xmasreward) {
-					dropy(xmasreward);
-				}
-				xmasreward = mkobj(WEAPON_CLASS, TRUE, FALSE);
-				if (xmasreward) {
-					dropy(xmasreward);
-				}
-				xmasreward = mkobj(WEAPON_CLASS, TRUE, FALSE);
-				if (xmasreward) {
-					dropy(xmasreward);
-				}
-				xmasreward = mkobj(WEAPON_CLASS, TRUE, FALSE);
-				if (xmasreward) {
-					dropy(xmasreward);
-				}
-				xmasreward = mkobj(WEAPON_CLASS, TRUE, FALSE);
-				if (xmasreward) {
-					dropy(xmasreward);
-				}
-				xmasreward = mkobj(WEAPON_CLASS, TRUE, FALSE);
-				if (xmasreward) {
-					dropy(xmasreward);
-				}
-
-				for (x = 0; x < COLNO; x++)
-				  for (y = 0; y < ROWNO; y++) {
-					register struct rm *lev;
-					lev = &levl[x][y];
-					if (lev->typ == CORR || lev->typ == ROOM) lev->typ = SNOW;
-				}
-				pline("It's a fluffy white christmas!");
-
-			} else {
-				You("ate the christmas cake even though it's not December...");
-			}
-		}
-
 		if (!rn2(3)) pline(FunnyHallu ? "...It tastes sweet, so, too sweet!" :
 			"You munched, munched, munched...It's delicious!");
 		else pline(rn2(2) ? "(That's dud, tut.)  You feel that someone clucked her tongue." :
@@ -5756,6 +5653,7 @@ struct obj *otmp;
 		break;
 
 	    case BUNNY_CAKE:
+
 		/*can you eat it all?  I believe it not!*/
 		more_experienced(0,10);
 		newexplevel();
@@ -5786,19 +5684,6 @@ struct obj *otmp;
 	    case WHITE_PEACH:
 	    case SENTOU:
 
-		if (otmp && otmp->oartifact == ART_NANIKA_GA_OKOTTA) {
-			if (rn2(2)) goodeffect();
-			else badeffect();
-		}
-
-		if (otmp && otmp->oartifact == ART_BLANK_SLATE) {
-			int tryct = 10000;
-			while (tryct) {
-				tryct--;
-				attrcurse();
-			}
-		}
-
 		if (hates_silver(youmonst.data) || (uwep && uwep->oartifact == ART_PORKMAN_S_BALLS_OF_STEEL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PORKMAN_S_BALLS_OF_STEEL) ) {
 			make_vomiting((long)rn1(victual.reqtime, 5), FALSE);
 			break;
@@ -5806,17 +5691,6 @@ struct obj *otmp;
 		/* Fall through otherwise */
 	    case BEAN:
 	    case SENZU:
-
-		if (otmp && otmp->oartifact == ART_GNURPS) {
-			(void) adjattrib(A_CON, 1, -1, TRUE);
-		}
-		if (otmp && otmp->oartifact == ART_KOKORO_O_KAIHO_SURU) {
-			make_stunned(0L,TRUE);
-			make_confused(0L,TRUE);
-			incr_itimeout(&HStun_resist, rnz(5000));
-			incr_itimeout(&HConf_resist, rnz(5000));
-			You_feel("mentally stable!");
-		}
 
 	    case CLOVE_OF_GARLIC:
 		if (is_undead(youmonst.data)) {
@@ -5826,181 +5700,6 @@ struct obj *otmp;
 		}
 		/* Fall through otherwise */
 	    default:
-
-		if (otmp && otmp->oartifact == ART_INCANDESCENT_TRIANGLE) {
-			You_feel("an anti-sexual aura.");
-			u.sterilized += rnz(2000);
-		}
-
-		if (otmp && otmp->oartifact == ART_NEWTRALTOXIN) {
-			int i, ii, littleluck = (u.uluck < 4);
-
-			pline("Wow!  This makes you feel great!");
-			/* blessed restore ability */
-			for (ii = 0; ii < A_MAX; ii++)
-			    if (ABASE(ii) < AMAX(ii)) {
-				ABASE(ii) = AMAX(ii);
-				flags.botl = 1;
-			    }
-			/* gain ability, blessed if "natural" luck is high */
-			i = rn2(A_MAX);		/* start at a random attribute */
-			for (ii = 0; ii < A_MAX; ii++) {
-			    if (adjattrib(i, 1, littleluck ? -1 : 0, TRUE) && (littleluck || !rn2(2)) )
-				break;
-			    if (++i >= A_MAX) i = 0;
-			}
-			exercise(A_WIS, TRUE);
-
-			badeffect();
-			pline("That aftertaste wasn't so good though...");
-
-		}
-
-		if (otmp && otmp->oartifact == ART_LANSIO_R_BLIFIAU) {
-			P_ADVANCE(P_SLING) *= 2;
-
-			if (P_MAX_SKILL(P_SLING) == P_ISRESTRICTED) {
-				unrestrict_weapon_skill(P_SLING);
-				pline("You can now learn the sling skill!");
-			} else if (P_MAX_SKILL(P_SLING) == P_UNSKILLED) {
-				unrestrict_weapon_skill(P_SLING);
-				pline("You can now learn the sling skill!");
-				P_MAX_SKILL(P_SLING) = P_BASIC;
-			} else if (P_MAX_SKILL(P_SLING) == P_BASIC) {
-				P_MAX_SKILL(P_SLING) = P_SKILLED;
-				pline("You can now become skilled with slings!");
-			} else if (P_MAX_SKILL(P_SLING) == P_SKILLED) {
-				P_MAX_SKILL(P_SLING) = P_EXPERT;
-				pline("You can now become expert with slings!");
-			} else if (P_MAX_SKILL(P_SLING) == P_EXPERT) {
-				P_MAX_SKILL(P_SLING) = P_MASTER;
-				pline("You can now become master with slings!");
-			} else if (P_MAX_SKILL(P_SLING) == P_MASTER) {
-				P_MAX_SKILL(P_SLING) = P_GRAND_MASTER;
-				pline("You can now become grand master with slings!");
-			} else if (P_MAX_SKILL(P_SLING) == P_GRAND_MASTER) {
-				P_MAX_SKILL(P_SLING) = P_SUPREME_MASTER;
-				pline("You can now become supreme master with slings!");
-			} else pline("Sadly your knowledge of the sling skill is already maxed.");
-
-
-		}
-
-		if (otmp && otmp->oartifact == ART_GRAPE_TEST) {
-			change_luck(1);
-			lesshungry(500);
-			You_feel("lucky.");
-		}
-
-		if (otmp && otmp->oartifact == ART_RARE_RES_OBTAINED) {
-			if(!(HAcid_resistance & FROMOUTSIDE)) {
-				You(FunnyHallu ? "wanna do more acid!" : "feel less afraid of corrosives.");
-				HAcid_resistance |= FROMOUTSIDE;
-			}
-		}
-
-		if (otmp && otmp->oartifact == ART_COLORVISION) {
-			if(!(HPoison_resistance & FROMOUTSIDE)) {
-				You_feel(Poison_resistance ? "especially healthy." : "healthy.");
-				HPoison_resistance |= FROMOUTSIDE;
-			}
-			if(!(HSee_invisible & FROMOUTSIDE)) {
-				You_feel("your vision sharpen.");
-				HSee_invisible |= FROMOUTSIDE;
-			}
-			FemaleTrapMarlena |= FROMOUTSIDE; break;
-		}
-
-		if (otmp && otmp->oartifact == ART_FLUSHEMOUT) {
-			if (u.ulycn >= LOW_PM || is_were(youmonst.data) || Race_if(PM_HUMAN_WEREWOLF) || Race_if(PM_AK_THIEF_IS_DEAD_) || Role_if(PM_LUNATIC) ) you_unwere(TRUE);
-			if (u.contamination) decontaminate(u.contamination);
-			if (Sick) make_sick(0L, (char *)0, TRUE, SICK_ALL);
-			CrapEffect += rnz(2000);
-			pline("Everything's being flushed out...");
-
-		}
-
-		if (otmp && otmp->oartifact == ART_THAT_S_AN_ARTI_) {
-		register struct obj *trophy;
-		boolean havegifts = u.ugifts;
-
-		if (!havegifts) u.ugifts++;
-
-		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
-		if (trophy) {
-			dropy(trophy);
-			int trophyskill = get_obj_skill(trophy, TRUE);
-			if (P_MAX_SKILL(trophyskill) == P_ISRESTRICTED) {
-				unrestrict_weapon_skill(trophyskill);
-			} else if (P_MAX_SKILL(trophyskill) == P_UNSKILLED) {
-				unrestrict_weapon_skill(trophyskill);
-				P_MAX_SKILL(trophyskill) = P_BASIC;
-			} else if (rn2(2) && P_MAX_SKILL(trophyskill) == P_BASIC) {
-				P_MAX_SKILL(trophyskill) = P_SKILLED;
-			} else if (!rn2(4) && P_MAX_SKILL(trophyskill) == P_SKILLED) {
-				P_MAX_SKILL(trophyskill) = P_EXPERT;
-			} else if (!rn2(10) && P_MAX_SKILL(trophyskill) == P_EXPERT) {
-				P_MAX_SKILL(trophyskill) = P_MASTER;
-			} else if (!rn2(100) && P_MAX_SKILL(trophyskill) == P_MASTER) {
-				P_MAX_SKILL(trophyskill) = P_GRAND_MASTER;
-			} else if (!rn2(200) && P_MAX_SKILL(trophyskill) == P_GRAND_MASTER) {
-				P_MAX_SKILL(trophyskill) = P_SUPREME_MASTER;
-			}
-			if (Race_if(PM_RUSMOT)) {
-				if (P_MAX_SKILL(trophyskill) == P_ISRESTRICTED) {
-					unrestrict_weapon_skill(trophyskill);
-				} else if (P_MAX_SKILL(trophyskill) == P_UNSKILLED) {
-					unrestrict_weapon_skill(trophyskill);
-					P_MAX_SKILL(trophyskill) = P_BASIC;
-				} else if (rn2(2) && P_MAX_SKILL(trophyskill) == P_BASIC) {
-					P_MAX_SKILL(trophyskill) = P_SKILLED;
-				} else if (!rn2(4) && P_MAX_SKILL(trophyskill) == P_SKILLED) {
-					P_MAX_SKILL(trophyskill) = P_EXPERT;
-				} else if (!rn2(10) && P_MAX_SKILL(trophyskill) == P_EXPERT) {
-					P_MAX_SKILL(trophyskill) = P_MASTER;
-				} else if (!rn2(100) && P_MAX_SKILL(trophyskill) == P_MASTER) {
-					P_MAX_SKILL(trophyskill) = P_GRAND_MASTER;
-				} else if (!rn2(200) && P_MAX_SKILL(trophyskill) == P_GRAND_MASTER) {
-					P_MAX_SKILL(trophyskill) = P_SUPREME_MASTER;
-				}
-			}
-			discover_artifact(trophy->oartifact);
-			if (!havegifts) u.ugifts--;
-			pline("That's truly an arti!");
-		}
-
-		}
-
-		if (otmp && otmp->oartifact == ART_RIPPER) {
-			register struct obj *redeemobj;
-			for (redeemobj = fobj; redeemobj; redeemobj = redeemobj->nobj) {
-				if (redeemobj->otyp == CORPSE) {
-					if (redeemobj->timed) {
-					    (void) stop_timer(MOLDY_CORPSE, (void *)redeemobj);
-					    (void) stop_timer(REVIVE_MON, (void *)redeemobj);
-					}
-					if (!(redeemobj->timed)) {
-						(void) start_timer(250, TIMER_OBJECT, ROT_CORPSE, (void *)redeemobj);
-						pline("A corpse has been redeemed!");
-					}
-				}
-			}
-
-		}
-
-		if (otmp && otmp->oartifact == ART_NEZ_MORSEL) {
-			incr_itimeout(&Invulnerable, rn1(8, 8));
-			You_feel(FunnyHallu ? "like a super-duper hero!" : "invulnerable!");
-		}
-
-		if (otmp && otmp->oartifact == ART_DOENERTELLER_VERSACE) {
-			if (!Antimagic) You_feel("more resistant to magic!");
-			incr_itimeout(&HAntimagic, rnz(2000));
-			if (!Drain_resistance) You_feel("more resistant to drain life!");
-			incr_itimeout(&HDrain_resistance, rnz(2000));
-			if (!Reflecting) You_feel("reflexive!");
-			incr_itimeout(&HReflecting, rnz(2000));
-		}
 
 		if (otmp->otyp == SLIME_MOLD && !otmp->cursed && !(FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone())
 			&& otmp->spe == current_fruit)
@@ -7295,31 +6994,6 @@ register struct obj *otmp;
 
 		}
 
-		if (otmp->oartifact == ART_SWEET_SWEET_LANA) {
-			struct obj *sweetlana;
-			sweetlana = mksobj(CHOCOLATE, TRUE, 2, FALSE);
-			if (sweetlana) {
-				sweetlana->quan = 16;
-				sweetlana->owt = weight(sweetlana);
-				dropy(sweetlana);
-				stackobj(sweetlana);
-				pline("Mmmmmmmmmm!");
-			}
-
-		}
-
-		if (otmp->oartifact == ART_SCHOKOLADE_EEA) {
-			pline("Auughh!");
-			Deafness += rnz(500);
-			flags.soundok = 0;
-		}
-
-		if (otmp->oartifact == ART_CHRISTMAS_EGG) {
-			You("ate the first christmas egg.");
-			incr_itimeout(&HHalf_physical_damage, rn1(1000, 1000));
-
-		}
-
 		break;
 
 	    case HOLY_WAFER:            
@@ -7530,6 +7204,493 @@ register struct obj *otmp;
 		if (Vomiting && !(uarmf && uarmf->oartifact == ART_CRUEL_GODDESS_ANA) && !otmp->cursed && !(FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone()) )
 		    make_vomiting(0L, TRUE);
 		break;
+	}
+
+	if (otmp && otmp->oartifact == ART_MELON_FLAVOR) {
+		make_confused(0L,TRUE);
+		lesshungry(1000);
+		pline("It tasted like seventh heaven!");
+	}
+
+	if (otmp && otmp->oartifact == ART_HOE_PA) {
+		if (!Cold_resistance) You_feel("more resistant to cold!");
+		incr_itimeout(&HCold_resistance, rnz(10000));
+		if (!Fire_resistance) You_feel("more resistant to fire!");
+		incr_itimeout(&HFire_resistance, rnz(10000));
+		if (!Shock_resistance) You_feel("more resistant to shock!");
+		incr_itimeout(&HShock_resistance, rnz(10000));
+		if (!Poison_resistance) You_feel("more resistant to poison!");
+		incr_itimeout(&HPoison_resistance, rnz(10000));
+	}
+
+	if (otmp && otmp->oartifact == ART_PILL_THAT_KILLED_MICHAEL_J) {
+	      make_sick(rn1(25,25), "a poisonous pill", TRUE, SICK_VOMITABLE);
+		losehp(rn1(30, 30),"poisonous pill",KILLED_BY_AN);
+		(void) adjattrib(A_STR, -rnd(6), FALSE, TRUE);
+		(void) adjattrib(A_DEX, -rnd(6), FALSE, TRUE);
+		(void) adjattrib(A_CON, -rnd(6), FALSE, TRUE);
+		(void) adjattrib(A_INT, -rnd(6), FALSE, TRUE);
+		(void) adjattrib(A_WIS, -rnd(6), FALSE, TRUE);
+		(void) adjattrib(A_CHA, -rnd(6), FALSE, TRUE);
+	}
+
+	if (otmp && otmp->oartifact == ART_FLUFFLIGHT) {
+		incr_itimeout(&HFlying, rn1(50,50));
+		pline("Yay, you can fly!");
+	}
+
+	if (otmp && otmp->oartifact == ART_WHITE_CHRISTMAS_DREAM) {
+		if (getmonth() == 11) {
+			struct obj *xmasreward;
+			int x, y;
+			xmasreward = mkobj(ARMOR_CLASS, TRUE, FALSE);
+			if (xmasreward) {
+				dropy(xmasreward);
+			}
+			xmasreward = mkobj(ARMOR_CLASS, TRUE, FALSE);
+			if (xmasreward) {
+				dropy(xmasreward);
+			}
+			xmasreward = mkobj(ARMOR_CLASS, TRUE, FALSE);
+			if (xmasreward) {
+				dropy(xmasreward);
+			}
+			xmasreward = mkobj(ARMOR_CLASS, TRUE, FALSE);
+			if (xmasreward) {
+				dropy(xmasreward);
+			}
+			xmasreward = mkobj(ARMOR_CLASS, TRUE, FALSE);
+			if (xmasreward) {
+				dropy(xmasreward);
+			}
+			xmasreward = mkobj(ARMOR_CLASS, TRUE, FALSE);
+			if (xmasreward) {
+				dropy(xmasreward);
+			}
+			xmasreward = mkobj(ARMOR_CLASS, TRUE, FALSE);
+			if (xmasreward) {
+				dropy(xmasreward);
+			}
+			xmasreward = mkobj(ARMOR_CLASS, TRUE, FALSE);
+			if (xmasreward) {
+				dropy(xmasreward);
+			}
+			xmasreward = mkobj(ARMOR_CLASS, TRUE, FALSE);
+			if (xmasreward) {
+				dropy(xmasreward);
+			}
+			xmasreward = mkobj(ARMOR_CLASS, TRUE, FALSE);
+			if (xmasreward) {
+				dropy(xmasreward);
+			}
+			xmasreward = mkobj(WEAPON_CLASS, TRUE, FALSE);
+			if (xmasreward) {
+				dropy(xmasreward);
+			}
+			xmasreward = mkobj(WEAPON_CLASS, TRUE, FALSE);
+			if (xmasreward) {
+				dropy(xmasreward);
+			}
+			xmasreward = mkobj(WEAPON_CLASS, TRUE, FALSE);
+			if (xmasreward) {
+				dropy(xmasreward);
+			}
+			xmasreward = mkobj(WEAPON_CLASS, TRUE, FALSE);
+			if (xmasreward) {
+				dropy(xmasreward);
+			}
+			xmasreward = mkobj(WEAPON_CLASS, TRUE, FALSE);
+			if (xmasreward) {
+				dropy(xmasreward);
+			}
+
+			for (x = 0; x < COLNO; x++)
+			  for (y = 0; y < ROWNO; y++) {
+				register struct rm *lev;
+				lev = &levl[x][y];
+				if (lev->typ == CORR || lev->typ == ROOM) lev->typ = SNOW;
+			}
+			pline("It's a fluffy white christmas!");
+
+		} else {
+			You("ate the christmas cake even though it's not December...");
+		}
+	}
+
+	if (otmp && otmp->oartifact == ART_VERY_GOOD_MEAL) {
+		adjattrib(A_STR, 1, 0, TRUE);
+		adjattrib(A_DEX, 1, 0, TRUE);
+		adjattrib(A_CON, 1, 0, TRUE);
+		adjattrib(A_WIS, 1, 0, TRUE);
+		adjattrib(A_INT, 1, 0, TRUE);
+		adjattrib(A_CHA, 1, 0, TRUE);
+	}
+
+	if (otmp && otmp->oartifact == ART_YAKKAINA_TORI_O_MITSUKETA) {
+		incr_itimeout(&HDetect_monsters, rnz(200));
+		You("sense monsters"); /* missing period is intentional */
+	}
+
+	if (otmp && otmp->oartifact == ART_MATIA_SEIBUN_JUYO) {
+		if (!otmp->obrittle) {
+			if (P_MAX_SKILL(P_JUYO) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_JUYO);
+				pline("You can now learn the juyo skill!");
+				P_MAX_SKILL(P_JUYO) = P_EXPERT;
+			} else if (P_MAX_SKILL(P_JUYO) == P_UNSKILLED) {
+				unrestrict_weapon_skill(P_JUYO);
+				pline("You can now learn the juyo skill!");
+				P_MAX_SKILL(P_JUYO) = P_EXPERT;
+			} else if (P_MAX_SKILL(P_JUYO) == P_BASIC) {
+				P_MAX_SKILL(P_JUYO) = P_SKILLED;
+				pline("You can now become skilled in juyo!");
+			} else if (P_MAX_SKILL(P_JUYO) == P_SKILLED) {
+				P_MAX_SKILL(P_JUYO) = P_EXPERT;
+				pline("You can now become expert in juyo!");
+			} else if (P_MAX_SKILL(P_JUYO) == P_EXPERT) {
+				P_MAX_SKILL(P_JUYO) = P_MASTER;
+				pline("You can now become master in juyo!");
+			} else if (P_MAX_SKILL(P_JUYO) == P_MASTER) {
+				P_MAX_SKILL(P_JUYO) = P_GRAND_MASTER;
+				pline("You can now become grand master in juyo!");
+			} else if (P_MAX_SKILL(P_JUYO) == P_GRAND_MASTER) {
+				P_MAX_SKILL(P_JUYO) = P_SUPREME_MASTER;
+				pline("You can now become supreme master in juyo!");
+			} else pline("Sadly your knowledge of the juyo skill is already maxed.");
+		}
+		u.totter = 0;
+		pline("That tasted a little bitter.");
+	}
+
+	if (otmp && otmp->oartifact == ART_GEKITO_NI_YORU_HENTAI_SHOJ) {
+		register struct monst *gekitomon;
+		gekitomon = makemon(specialtensmon(361), u.ux, u.uy, MM_ADJACENTOK); /* M5_ELONA */
+		if (gekitomon) {
+			tamedog(gekitomon, (struct obj *) 0, TRUE);
+		}
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+		coord cc, dd;
+		int cx,cy;
+		int i, randsp;
+
+		cx = rn2(COLNO);
+		cy = rn2(ROWNO);
+
+		randsp = (rn2(14) + 2);
+		if (!rn2(10)) randsp *= 2;
+		if (!rn2(100)) randsp *= 3;
+		if (!rn2(1000)) randsp *= 5;
+		if (!rn2(10000)) randsp *= 10;
+
+		for (i = 0; i < randsp; i++) {
+
+			if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+			(void) makemon(specialtensmon(361), cx, cy, MM_ADJACENTOK); /* M5_ELONA */
+		}
+
+		pline("Beware, there are many changes of balance and sexually arousing content.");
+
+		u.aggravation = 0;
+	}
+
+	if (otmp && otmp->oartifact == ART_NANIKA_GA_OKOTTA) {
+		if (rn2(2)) goodeffect();
+		else badeffect();
+	}
+
+	if (otmp && otmp->oartifact == ART_BLANK_SLATE) {
+		int tryct = 10000;
+		while (tryct) {
+			tryct--;
+			attrcurse();
+		}
+	}
+
+	if (otmp && otmp->oartifact == ART_MAKE_YOURSELF_HEAVY) {
+		adjattrib(A_CON, 2, 0, TRUE);
+		FemaleTrapPatricia += rnz(10000);
+		You("become heavy.");
+	}
+
+	if (otmp && otmp->oartifact == ART_NOT_IN_THE_LAB) {
+		if (!(quest_status.killed_nemesis) && !flags.hybridbeacher) {
+			flags.hybridbeacher = TRUE;
+			flags.hybridization++;
+			pline("%s thunders: 'Alright %s you little practicant maggot, get ready for another hard day of work! You're late by 5 minutes but that's your loss! If you do your work properly this time you'll not get any problems with me, but if you step out of line you'll pay zorkmids for each of your offenses!'", noroelaname(), playeraliasname);
+		}
+		HFull_nutrient |= FROMOUTSIDE;
+		pline("Certainly, your stomach is now pretty full.");
+	}
+
+	if (otmp && otmp->oartifact == ART_UGH_UGGHH) {
+		if (u.uhpmax < 11) {
+			u.youaredead = 1;
+			pline("Ugh-Ugghh UgghhUgghh Urrrrrrrrrgggggghhhhhhhh");
+
+			if (mydogs) {
+				pline("%s bashes you up with full force.", Monnam(mydogs));
+				killer_format = KILLED_BY;
+				killer = "a deadly Heimlich maneuver";
+				done(DIED);
+			} else {
+				killer_format = KILLED_BY;
+				killer = "a bota mochi";
+				done(CHOKING);
+			}
+			u.youaredead = 0;
+		} else {
+			u.uhpmax -= 10;
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			pline("That was hard to swallow.");
+		}
+		change_luck(1);
+	}
+
+	if (otmp && otmp->oartifact == ART_OKUKUBA_OBUTEREEVU) {
+		register struct monst *mtmp;
+		for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
+			if (DEADMONSTER(mtmp)) continue;
+			mtmp->mhp -= (mtmp->mhp / 2); /* nerf by Amy :P */
+			if (mtmp->mhp < 1) mtmp->mhp = 1;
+		}
+		pline("Tactical nuke launched.");
+	}
+
+	if (otmp && otmp->oartifact == ART_MIND_CLEARED_OFF) {
+		if (u.usanity > 0) reducesanity(u.usanity);
+		incr_itimeout(&HPsi_resist, rnz(10000));
+		forget(27);
+		Your("mind clears"); /* missing period is intentional */
+	}
+
+	if (otmp && otmp->oartifact == ART_ARTI_CHOKE) {
+		incr_itimeout(&HMagical_breathing, rnz(1000));
+		pline("Now you can't choke anymore for a while!");
+	}
+
+	if (otmp && otmp->oartifact == ART_INCANDESCENT_TRIANGLE) {
+		You_feel("an anti-sexual aura.");
+		u.sterilized += rnz(2000);
+	}
+
+	if (otmp && otmp->oartifact == ART_OH_NOOOOOOO) {
+		if (!Vomiting) {
+			make_vomiting(Vomiting+d(10,4), TRUE);
+			pline("You feel nauseated.");
+			if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10);
+		}
+		FemaleTrapIna |= FROMOUTSIDE;
+		pline("Oh noooooooo! You developed anorexia!");
+	}
+
+	if (otmp && otmp->oartifact == ART_NEWTRALTOXIN) {
+		int i, ii, littleluck = (u.uluck < 4);
+
+		pline("Wow!  This makes you feel great!");
+		/* blessed restore ability */
+		for (ii = 0; ii < A_MAX; ii++)
+		    if (ABASE(ii) < AMAX(ii)) {
+			ABASE(ii) = AMAX(ii);
+			flags.botl = 1;
+		    }
+		/* gain ability, blessed if "natural" luck is high */
+		i = rn2(A_MAX);		/* start at a random attribute */
+		for (ii = 0; ii < A_MAX; ii++) {
+		    if (adjattrib(i, 1, littleluck ? -1 : 0, TRUE) && (littleluck || !rn2(2)) )
+			break;
+		    if (++i >= A_MAX) i = 0;
+		}
+		exercise(A_WIS, TRUE);
+
+		badeffect();
+		pline("That aftertaste wasn't so good though...");
+	}
+
+	if (otmp && otmp->oartifact == ART_LANSIO_R_BLIFIAU) {
+		P_ADVANCE(P_SLING) *= 2;
+
+		if (P_MAX_SKILL(P_SLING) == P_ISRESTRICTED) {
+			unrestrict_weapon_skill(P_SLING);
+			pline("You can now learn the sling skill!");
+		} else if (P_MAX_SKILL(P_SLING) == P_UNSKILLED) {
+			unrestrict_weapon_skill(P_SLING);
+			pline("You can now learn the sling skill!");
+			P_MAX_SKILL(P_SLING) = P_BASIC;
+		} else if (P_MAX_SKILL(P_SLING) == P_BASIC) {
+			P_MAX_SKILL(P_SLING) = P_SKILLED;
+			pline("You can now become skilled with slings!");
+		} else if (P_MAX_SKILL(P_SLING) == P_SKILLED) {
+			P_MAX_SKILL(P_SLING) = P_EXPERT;
+			pline("You can now become expert with slings!");
+		} else if (P_MAX_SKILL(P_SLING) == P_EXPERT) {
+			P_MAX_SKILL(P_SLING) = P_MASTER;
+			pline("You can now become master with slings!");
+		} else if (P_MAX_SKILL(P_SLING) == P_MASTER) {
+			P_MAX_SKILL(P_SLING) = P_GRAND_MASTER;
+			pline("You can now become grand master with slings!");
+		} else if (P_MAX_SKILL(P_SLING) == P_GRAND_MASTER) {
+			P_MAX_SKILL(P_SLING) = P_SUPREME_MASTER;
+			pline("You can now become supreme master with slings!");
+		} else pline("Sadly your knowledge of the sling skill is already maxed.");
+	}
+
+	if (otmp && otmp->oartifact == ART_GRAPE_TASTE) {
+		change_luck(1);
+		lesshungry(500);
+		You_feel("lucky.");
+	}
+
+	if (otmp && otmp->oartifact == ART_RARE_RES_OBTAINED) {
+		if(!(HAcid_resistance & FROMOUTSIDE)) {
+			You(FunnyHallu ? "wanna do more acid!" : "feel less afraid of corrosives.");
+			HAcid_resistance |= FROMOUTSIDE;
+		}
+	}
+
+	if (otmp && otmp->oartifact == ART_COLORVISION) {
+		if(!(HPoison_resistance & FROMOUTSIDE)) {
+			You_feel(Poison_resistance ? "especially healthy." : "healthy.");
+			HPoison_resistance |= FROMOUTSIDE;
+		}
+		if(!(HSee_invisible & FROMOUTSIDE)) {
+			You_feel("your vision sharpen.");
+			HSee_invisible |= FROMOUTSIDE;
+		}
+		FemaleTrapMarlena |= FROMOUTSIDE;
+	}
+
+	if (otmp && otmp->oartifact == ART_FLUSHEMOUT) {
+		if (u.ulycn >= LOW_PM || is_were(youmonst.data) || Race_if(PM_HUMAN_WEREWOLF) || Race_if(PM_AK_THIEF_IS_DEAD_) || Role_if(PM_LUNATIC) ) you_unwere(TRUE);
+		if (u.contamination) decontaminate(u.contamination);
+		if (Sick) make_sick(0L, (char *)0, TRUE, SICK_ALL);
+		CrapEffect += rnz(2000);
+		pline("Everything's being flushed out...");
+	}
+
+	if (otmp && otmp->oartifact == ART_ACROLEIN_ADDICTION) {
+		contaminate(rnz(250), TRUE);
+		additionalskilltraining(100);
+	}
+
+	if (otmp && otmp->oartifact == ART_THAT_S_AN_ARTI_) {
+		register struct obj *trophy;
+		boolean havegifts = u.ugifts;
+
+		if (!havegifts) u.ugifts++;
+
+		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
+		if (trophy) {
+			dropy(trophy);
+			int trophyskill = get_obj_skill(trophy, TRUE);
+			if (P_MAX_SKILL(trophyskill) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(trophyskill);
+			} else if (P_MAX_SKILL(trophyskill) == P_UNSKILLED) {
+				unrestrict_weapon_skill(trophyskill);
+				P_MAX_SKILL(trophyskill) = P_BASIC;
+			} else if (rn2(2) && P_MAX_SKILL(trophyskill) == P_BASIC) {
+				P_MAX_SKILL(trophyskill) = P_SKILLED;
+			} else if (!rn2(4) && P_MAX_SKILL(trophyskill) == P_SKILLED) {
+				P_MAX_SKILL(trophyskill) = P_EXPERT;
+			} else if (!rn2(10) && P_MAX_SKILL(trophyskill) == P_EXPERT) {
+				P_MAX_SKILL(trophyskill) = P_MASTER;
+			} else if (!rn2(100) && P_MAX_SKILL(trophyskill) == P_MASTER) {
+				P_MAX_SKILL(trophyskill) = P_GRAND_MASTER;
+			} else if (!rn2(200) && P_MAX_SKILL(trophyskill) == P_GRAND_MASTER) {
+				P_MAX_SKILL(trophyskill) = P_SUPREME_MASTER;
+			}
+			if (Race_if(PM_RUSMOT)) {
+				if (P_MAX_SKILL(trophyskill) == P_ISRESTRICTED) {
+					unrestrict_weapon_skill(trophyskill);
+				} else if (P_MAX_SKILL(trophyskill) == P_UNSKILLED) {
+					unrestrict_weapon_skill(trophyskill);
+					P_MAX_SKILL(trophyskill) = P_BASIC;
+				} else if (rn2(2) && P_MAX_SKILL(trophyskill) == P_BASIC) {
+					P_MAX_SKILL(trophyskill) = P_SKILLED;
+				} else if (!rn2(4) && P_MAX_SKILL(trophyskill) == P_SKILLED) {
+					P_MAX_SKILL(trophyskill) = P_EXPERT;
+				} else if (!rn2(10) && P_MAX_SKILL(trophyskill) == P_EXPERT) {
+					P_MAX_SKILL(trophyskill) = P_MASTER;
+				} else if (!rn2(100) && P_MAX_SKILL(trophyskill) == P_MASTER) {
+					P_MAX_SKILL(trophyskill) = P_GRAND_MASTER;
+				} else if (!rn2(200) && P_MAX_SKILL(trophyskill) == P_GRAND_MASTER) {
+					P_MAX_SKILL(trophyskill) = P_SUPREME_MASTER;
+				}
+			}
+			discover_artifact(trophy->oartifact);
+			if (!havegifts) u.ugifts--;
+			pline("That's truly an arti!");
+		}
+
+	}
+
+	if (otmp && otmp->oartifact == ART_RIPPER) {
+		register struct obj *redeemobj;
+		for (redeemobj = fobj; redeemobj; redeemobj = redeemobj->nobj) {
+			if (redeemobj->otyp == CORPSE) {
+				if (redeemobj->timed) {
+				    (void) stop_timer(MOLDY_CORPSE, (void *)redeemobj);
+				    (void) stop_timer(REVIVE_MON, (void *)redeemobj);
+				}
+				if (!(redeemobj->timed)) {
+					(void) start_timer(250, TIMER_OBJECT, ROT_CORPSE, (void *)redeemobj);
+					pline("A corpse has been redeemed!");
+				}
+			}
+		}
+	}
+
+	if (otmp && otmp->oartifact == ART_NEZ_MORSEL) {
+		incr_itimeout(&Invulnerable, rn1(8, 8));
+		You_feel(FunnyHallu ? "like a super-duper hero!" : "invulnerable!");
+	}
+
+	if (otmp && otmp->oartifact == ART_DOENERTELLER_VERSACE) {
+		if (!Antimagic) You_feel("more resistant to magic!");
+		incr_itimeout(&HAntimagic, rnz(2000));
+		if (!Drain_resistance) You_feel("more resistant to drain life!");
+		incr_itimeout(&HDrain_resistance, rnz(2000));
+		if (!Reflecting) You_feel("reflexive!");
+		incr_itimeout(&HReflecting, rnz(2000));
+	}
+
+	if (otmp && otmp->oartifact == ART_GNURPS) {
+		(void) adjattrib(A_CON, 1, -1, TRUE);
+	}
+	if (otmp && otmp->oartifact == ART_KOKORO_O_KAIHO_SURU) {
+		make_stunned(0L,TRUE);
+		make_confused(0L,TRUE);
+		incr_itimeout(&HStun_resist, rnz(5000));
+		incr_itimeout(&HConf_resist, rnz(5000));
+		You_feel("mentally stable!");
+	}
+
+	if (otmp->oartifact == ART_SWEET_SWEET_LANA) {
+		struct obj *sweetlana;
+		sweetlana = mksobj(CHOCOLATE, TRUE, 2, FALSE);
+		if (sweetlana) {
+			sweetlana->quan = 16;
+			sweetlana->owt = weight(sweetlana);
+			dropy(sweetlana);
+			stackobj(sweetlana);
+			pline("Mmmmmmmmmm!");
+		}
+	}
+
+	if (otmp->oartifact == ART_SCHOKOLADE_EEA) {
+		pline("Auughh!");
+		Deafness += rnz(500);
+		flags.soundok = 0;
+	}
+
+	if (otmp->oartifact == ART_CHRISTMAS_EGG) {
+		You("ate the first christmas egg.");
+		incr_itimeout(&HHalf_physical_damage, rn1(1000, 1000));
 	}
 
 	if (!rn2(25)) { /* more random fortunes --Amy */

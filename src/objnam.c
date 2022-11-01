@@ -10642,6 +10642,7 @@ typfnd:
 	}
 	otmp->owt = weight(otmp);
 	if (very && otmp->otyp == HEAVY_IRON_BALL) otmp->owt += 600;
+	if (otmp && otmp->oartifact == ART_MATIA_SEIBUN_JUYO) otmp->obrittle = TRUE;
 
 	return(otmp);
 }

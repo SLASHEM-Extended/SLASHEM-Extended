@@ -1294,7 +1294,7 @@ moveloop()
 						    || (uarmf && uarmf->otyp == skates5)
 						    || (uwep && uwep->oartifact == ART_GLACIERDALE)
 						    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
-						    || (uarmf && uarmf->oartifact == ART_ART_LITTLE_ICE_BLOCK_WITH_THE_)
+						    || (uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_)
 						    || (uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER)
 						    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
 						    || (uwep && uwep->oartifact == ART_DAMN_SKI_WEDGE && uarmf)
@@ -1742,7 +1742,7 @@ moveloop()
 					    || (uarmf && uarmf->otyp == skates5)
 					    || (uwep && uwep->oartifact == ART_GLACIERDALE)
 					    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
-					    || (uarmf && uarmf->oartifact == ART_ART_LITTLE_ICE_BLOCK_WITH_THE_)
+					    || (uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_)
 					    || (uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER)
 					    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
 					    || (uwep && uwep->oartifact == ART_DAMN_SKI_WEDGE && uarmf)
@@ -1974,7 +1974,7 @@ moveloop()
 				    || (uarmf && uarmf->otyp == skates5)
 				    || (uwep && uwep->oartifact == ART_GLACIERDALE)
 				    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
-				    || (uarmf && uarmf->oartifact == ART_ART_LITTLE_ICE_BLOCK_WITH_THE_)
+				    || (uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_)
 				    || (uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER)
 				    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
 				    || (uwep && uwep->oartifact == ART_DAMN_SKI_WEDGE && uarmf)
@@ -3233,6 +3233,8 @@ moveloop()
 				u.cnd_plineamount++;
 			}
 		}
+
+		if (u.stasistime && multi >= 0) u.stasistime = 0;
 
 		if (uarmf && uarmf->oartifact == ART_UNDEAD_STINK && !rn2(1000)) {
 			pline("Suddenly the area enters stasis.");

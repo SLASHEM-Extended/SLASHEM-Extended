@@ -22,6 +22,7 @@ STATIC_DCL struct artifact artilist[];
 
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 static const char allowall[] = { ALL_CLASSES, 0 };
+static const char allnoncount[] = { ALL_CLASSES, 0 };
 
 extern boolean notonhead;	/* for long worms */
 
@@ -3751,6 +3752,7 @@ chargingchoice:
 		}
 
 		if (obj->oartifact == ART_SKILL_RESET) {
+			int tryct, i;
 			tryct = 50000;
 			i = 0;
 
@@ -3770,6 +3772,7 @@ chargingchoice:
 		}
 
 		if (obj->oartifact == ART_BUILD_A_WALL) {
+			int x, y;
 			for (x = 0; x < COLNO; x++)
 			  for (y = 0; y < ROWNO; y++) {
 				register struct rm *lev;

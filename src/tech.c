@@ -7655,7 +7655,7 @@ cardtrickchoice:
 
 		case T_SKILLOMORPH:
 
-			additionalskilltraining();
+			additionalskilltraining(rnd(10));
 			t_timeout = rnz(10000);
 			break;
 

@@ -5955,7 +5955,7 @@ secremchoice:
 				}
 				break;
 			case 54: /* add skill training */
-				additionalskilltraining();
+				additionalskilltraining(rnd(10));
 				break;
 		}
 

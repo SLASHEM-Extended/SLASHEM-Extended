@@ -7632,6 +7632,7 @@ SCROLL((char *)0,               "HEIGENHANAU NORD",  P_NONE,     1,   0, 100, CL
 SCROLL((char *)0,               "AHRECK TO PLATFORMINGEN TAKES MANY HOURS",  P_NONE,     1,   0, 100, CLR_BLUE, 1),
 SCROLL((char *)0,               "DAGGGGGGGGG EY SCHREIB ENDLICH",  P_NONE,     1,   0, 100, CLR_BRIGHT_BLUE, 1),
 SCROLL((char *)0,               " DEATH   HATE   FORCE ",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "DUELLBLUETEL",  P_NONE,     1,   0, 100, CLR_BLUE, 1),
 
 
 #ifdef MAIL

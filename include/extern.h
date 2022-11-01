@@ -3584,7 +3584,7 @@ E void skilltrainingdecrease(int);
 E void evilskilldecrease(void);
 E void dataskilldecrease(void);
 E void doubleskilltraining(void);
-E void additionalskilltraining(void);
+E void additionalskilltraining(int);
 E void unrestrictskillchoice(void);
 E const char *wpskillname(int);
 E void grinderattack(int);
