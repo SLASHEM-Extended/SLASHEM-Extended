@@ -20139,6 +20139,12 @@ stdcontracting:
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
+            if (slextest(2000, 10000)) {
+		stdmsg("covid-19");
+                u.uprops[COVID_TRAP_EFFECT].intrinsic |= FROMOUTSIDE;
+		increasesanity(rnz((monster_difficulty() * 5) + 1));
+            }
+
             if (slextest(10000, 50000)) {
 		stdmsg("yawneritis");
                 u.uprops[YAWM_EFFECT].intrinsic |= FROMOUTSIDE;

@@ -4260,6 +4260,24 @@ boolean guaranteed;
 		you_have(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && (ReallyBadTrapEffect || u.uprops[REALLY_BAD_TRAP_EFFECT].extrinsic || have_reallybadstone())) {
+		sprintf(buf, "the following problem: Bad effects become really bad effects.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", ReallyBadTrapEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (CovidTrapEffect || u.uprops[COVID_TRAP_EFFECT].extrinsic || have_covidstone())) {
+		sprintf(buf, "a chronical covid-19 disease.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", CovidTrapEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (ArtiblastEffect || u.uprops[ARTIBLAST_EFFECT].extrinsic || have_blaststone())) {
+		sprintf(buf, "the following problem: Artifacts always blast you.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", ArtiblastEffect);
+		you_have(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && (GiantExplorerBug || u.uprops[GIANT_EXPLORER].extrinsic || have_giantexplorerstone())) {
 		sprintf(buf, "the following problem: You can explore a huge area and trigger all nasty traps in that area.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", GiantExplorerBug);
@@ -8728,6 +8746,21 @@ int final;
 	if (UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone()) {
 		sprintf(buf, "the following problem: The game gave insufficient amounts of information.");
 	      sprintf(eos(buf), " (%ld)", UninformationProblem);
+		dump(youhad, buf);
+	}
+	if (ReallyBadTrapEffect || u.uprops[REALLY_BAD_TRAP_EFFECT].extrinsic || have_reallybadstone()) {
+		sprintf(buf, "the following problem: Bad effects become really bad effects.");
+		sprintf(eos(buf), " (%ld)", ReallyBadTrapEffect);
+		dump(youhad, buf);
+	}
+	if (CovidTrapEffect || u.uprops[COVID_TRAP_EFFECT].extrinsic || have_covidstone()) {
+		sprintf(buf, "a chronical covid-19 disease.");
+		sprintf(eos(buf), " (%ld)", CovidTrapEffect);
+		dump(youhad, buf);
+	}
+	if (ArtiblastEffect || u.uprops[ARTIBLAST_EFFECT].extrinsic || have_blaststone()) {
+		sprintf(buf, "the following problem: Artifacts always blast you.");
+		sprintf(eos(buf), " (%ld)", ArtiblastEffect);
 		dump(youhad, buf);
 	}
 	if (TimerunBug || u.uprops[TIMERUN_BUG].extrinsic || have_timerunstone()) {

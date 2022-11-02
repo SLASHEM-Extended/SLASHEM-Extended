@@ -745,6 +745,18 @@ extern struct trap *ftrap;
 #define YASAMAN_TRAP 655
 #define MAY_BRITT_TRAP 656
 
+#define CALLING_OUT_TRAP 657
+#define FIELD_BREAK_TRAP 658
+#define TENTH_TRAP 659
+#define DEBT_TRAP 660
+#define INVERSION_TRAP 661
+#define WINCE_TRAP 662
+#define U_HAVE_BEEN_TRAP 663
+
+#define REALLY_BAD_TRAP 664
+#define COVID_TRAP 665
+#define ARTIBLAST_TRAP 666
+
 /* todo area
 
 normal ones:
@@ -763,13 +775,10 @@ nasty traps:
 #define PET_LASHOUT_TRAP
 #define PETSTARVE_TRAP
 #define PETSCREW_TRAP
-#define REALLY_BAD_TRAP
 #define TECH_LOSS_TRAP
 #define CAPS_TRAP
-#define COVID_TRAP
 #define PROOFLOSS_TRAP
 #define UN_INVIS_TRAP
-#define ARTIBLAST_TRAP
 #define DETECTATION_TRAP
 #define OPTION_TRAP
 #define MISCOLOR_TRAP
@@ -864,8 +873,8 @@ special ones that don't spawn randomly:
 
 */
 
-#define TIMERUN_TRAP	657
+#define TIMERUN_TRAP	667
 
-#define TRAPNUM 658
+#define TRAPNUM 668
 
 #endif /* TRAP_H */

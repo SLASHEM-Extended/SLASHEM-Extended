@@ -28156,6 +28156,15 @@ static NEARDATA const char * const fake_plines[] = {
 	"*click* 'hihihi' Whaaaat? It seems that some little girl stole a couple of your items!",
 	"*click* 'hihihi' Whaaaat? It seems that some little girl stole a couple of your items! You commend her efforts, but remark that she should have been more careful to ensure that you don't notice the theft.",
 	"Suddenly the area enters stasis.",
+	"You hear a call... and Demogorgon warps to you!",
+	"You hear a call... but apparently no one answered.",
+	"You have to pay one tenth of your money to the bank.",
+	"You don't have to pay tax.",
+	"You start fishing.",
+	"You start fishing.  A magikarp is drawn!",
+	"You start fishing.  A gyarados is drawn! The gyarados breathes fire! Your cloak smoulders!--More--",
+	"You start fishing.  A waste of time...",
+	"You start fishing.  A waste of time... Maybe you shouldn't be fishing in a tiny pond that's certainly not gonna cotnain any fishes.",
 
 };
 

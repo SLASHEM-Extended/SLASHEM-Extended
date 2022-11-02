@@ -3710,6 +3710,9 @@ boolean catchup;	/* restoring a level */
 				&& ttmp->ttyp != STAIRS_TRAP
 				&& ttmp->ttyp != UNINFORMATION_TRAP
 				&& ttmp->ttyp != TIMERUN_TRAP
+				&& ttmp->ttyp != REALLY_BAD_TRAP
+				&& ttmp->ttyp != COVID_TRAP
+				&& ttmp->ttyp != ARTIBLAST_TRAP
 				&& ttmp->ttyp != GIANT_EXPLORER_TRAP
 				&& ttmp->ttyp != TRAPWARP_TRAP
 				&& ttmp->ttyp != YAWM_TRAP

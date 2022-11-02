@@ -730,7 +730,7 @@ moveloop()
 					x = rn1(COLNO-3,2);
 					y = rn2(ROWNO);
 
-					if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+					if (isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
 						(void) maketrap(x, y, KOP_CUBE, 0, FALSE);
 						break;
 						}
@@ -3032,7 +3032,7 @@ moveloop()
 					x = rn1(COLNO-3,2);
 					y = rn2(ROWNO);
 
-					if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+					if (isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
 						(void) maketrap(x, y, KOP_CUBE, 0, FALSE);
 						break;
 						}
@@ -3076,7 +3076,7 @@ moveloop()
 					x = rn1(COLNO-3,2);
 					y = rn2(ROWNO);
 
-					if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+					if (isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
 						(void) maketrap(x, y, KOP_CUBE, 0, FALSE);
 						break;
 						}
@@ -4260,7 +4260,7 @@ greasingdone:
 					x = rn1(COLNO-3,2);
 					y = rn2(ROWNO);
 
-					if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+					if (isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
 							ttmp = maketrap(x, y, randomtrap(), 100, FALSE);
 						if (ttmp) {
 							ttmp->tseen = 0;
@@ -5425,11 +5425,11 @@ controlagain:
 
 		}
 
-		if (iswindinhabitant && !rn2(1000)) {
+		if (iswindinhabitant && !rn2(1000)) { /* keyword: timerun */
 
-			u.nastinator01 = u.nastinator02 = u.nastinator03 = u.nastinator04 = u.nastinator05 = u.nastinator06 = u.nastinator07 = u.nastinator08 = u.nastinator09 = u.nastinator10 = u.nastinator11 = u.nastinator12 = u.nastinator13 = u.nastinator14 = u.nastinator15 = u.nastinator16 = u.nastinator17 = u.nastinator18 = u.nastinator19 = u.nastinator20 = u.nastinator21 = u.nastinator22 = u.nastinator23 = u.nastinator24 = u.nastinator25 = u.nastinator26 = u.nastinator27 = u.nastinator28 = u.nastinator29 = u.nastinator30 = u.nastinator31 = u.nastinator32 = u.nastinator33 = u.nastinator34 = u.nastinator35 = u.nastinator36 = u.nastinator37 = u.nastinator38 = u.nastinator39 = u.nastinator40 = u.nastinator41 = u.nastinator42 = u.nastinator43 = u.nastinator44 = u.nastinator45 = u.nastinator46 = u.nastinator47 = u.nastinator48 = u.nastinator49 = u.nastinator50 = u.nastinator51 = u.nastinator52 = u.nastinator53 = u.nastinator54 = u.nastinator55 = u.nastinator56 = u.nastinator57 = u.nastinator58 = u.nastinator59 = u.nastinator60 = u.nastinator61 = u.nastinator62 = u.nastinator63 = u.nastinator64 = u.nastinator65 = u.nastinator66 = u.nastinator67 = u.nastinator68 = u.nastinator69 = u.nastinator70 = u.nastinator71 = u.nastinator72 = u.nastinator73 = u.nastinator74 = u.nastinator75 = u.nastinator76 = u.nastinator77 = u.nastinator78 = u.nastinator79 = u.nastinator80 = u.nastinator81 = u.nastinator82 = u.nastinator83 = u.nastinator84 = u.nastinator85 = u.nastinator86 = u.nastinator87 = u.nastinator88 = u.nastinator89 = u.nastinator90 = u.nastinator91 = u.nastinator92 = u.nastinator93 = u.nastinator94 = u.nastinator95 = u.nastinator96 = u.nastinator97 = u.nastinator98 = u.nastinator99 = u.nastinator100 = u.nastinator101 = u.nastinator102 = u.nastinator103 = u.nastinator104 = u.nastinator105 = u.nastinator106 = u.nastinator107 = u.nastinator108 = u.nastinator109 = u.nastinator110 = u.nastinator111 = u.nastinator112 = u.nastinator113 = u.nastinator114 = u.nastinator115 = u.nastinator116 = u.nastinator117 = u.nastinator118 = u.nastinator119 = u.nastinator120 = u.nastinator121 = u.nastinator122 = u.nastinator123 = u.nastinator124 = u.nastinator125 = u.nastinator126 = u.nastinator127 = u.nastinator128 = u.nastinator129 = u.nastinator130 = u.nastinator131 = u.nastinator132 = u.nastinator133 = u.nastinator134 = u.nastinator135 = u.nastinator136 = u.nastinator137 = u.nastinator138 = u.nastinator139 = u.nastinator140 = u.nastinator141 = u.nastinator142 = u.nastinator143 = u.nastinator144 = u.nastinator145 = u.nastinator146 = u.nastinator147 = u.nastinator148 = u.nastinator149 = u.nastinator150 = u.nastinator151 = u.nastinator152 = u.nastinator153 = u.nastinator154 = u.nastinator155 = u.nastinator156 = u.nastinator157 = u.nastinator158 = u.nastinator159 = u.nastinator160 = u.nastinator161 = u.nastinator162 = u.nastinator163 = u.nastinator164 = u.nastinator165 = u.nastinator166 = u.nastinator167 = u.nastinator168 = u.nastinator169 = u.nastinator170 = u.nastinator171 = u.nastinator172 = u.nastinator173 = u.nastinator174 = u.nastinator175 = u.nastinator176 = u.nastinator177 = u.nastinator178 = u.nastinator179 = u.nastinator180 = u.nastinator181 = u.nastinator182 = u.nastinator183 = u.nastinator184 = u.nastinator185 = u.nastinator186 = u.nastinator187 = u.nastinator188 = u.nastinator189 = u.nastinator190 = u.nastinator191 = u.nastinator192 = u.nastinator193 = u.nastinator194 = u.nastinator195 = u.nastinator196 = u.nastinator197 = u.nastinator198 = u.nastinator199 = u.nastinator200 = u.nastinator201 = u.nastinator202 = u.nastinator203 = u.nastinator204 = u.nastinator205 = u.nastinator206 = u.nastinator207 = u.nastinator208 = u.nastinator209 = u.nastinator210 = u.nastinator211 = u.nastinator212 = u.nastinator213 = u.nastinator214 = u.nastinator215 = u.nastinator216 = u.nastinator217 = u.nastinator218 = u.nastinator219 = u.nastinator220 = u.nastinator221 = u.nastinator222 = u.nastinator223 = u.nastinator224 = u.nastinator225 = u.nastinator226 = u.nastinator227 = u.nastinator228 = u.nastinator229 = u.nastinator230 = u.nastinator231 = u.nastinator232 = u.nastinator233 = u.nastinator234 = u.nastinator235 = 0;
+			u.nastinator01 = u.nastinator02 = u.nastinator03 = u.nastinator04 = u.nastinator05 = u.nastinator06 = u.nastinator07 = u.nastinator08 = u.nastinator09 = u.nastinator10 = u.nastinator11 = u.nastinator12 = u.nastinator13 = u.nastinator14 = u.nastinator15 = u.nastinator16 = u.nastinator17 = u.nastinator18 = u.nastinator19 = u.nastinator20 = u.nastinator21 = u.nastinator22 = u.nastinator23 = u.nastinator24 = u.nastinator25 = u.nastinator26 = u.nastinator27 = u.nastinator28 = u.nastinator29 = u.nastinator30 = u.nastinator31 = u.nastinator32 = u.nastinator33 = u.nastinator34 = u.nastinator35 = u.nastinator36 = u.nastinator37 = u.nastinator38 = u.nastinator39 = u.nastinator40 = u.nastinator41 = u.nastinator42 = u.nastinator43 = u.nastinator44 = u.nastinator45 = u.nastinator46 = u.nastinator47 = u.nastinator48 = u.nastinator49 = u.nastinator50 = u.nastinator51 = u.nastinator52 = u.nastinator53 = u.nastinator54 = u.nastinator55 = u.nastinator56 = u.nastinator57 = u.nastinator58 = u.nastinator59 = u.nastinator60 = u.nastinator61 = u.nastinator62 = u.nastinator63 = u.nastinator64 = u.nastinator65 = u.nastinator66 = u.nastinator67 = u.nastinator68 = u.nastinator69 = u.nastinator70 = u.nastinator71 = u.nastinator72 = u.nastinator73 = u.nastinator74 = u.nastinator75 = u.nastinator76 = u.nastinator77 = u.nastinator78 = u.nastinator79 = u.nastinator80 = u.nastinator81 = u.nastinator82 = u.nastinator83 = u.nastinator84 = u.nastinator85 = u.nastinator86 = u.nastinator87 = u.nastinator88 = u.nastinator89 = u.nastinator90 = u.nastinator91 = u.nastinator92 = u.nastinator93 = u.nastinator94 = u.nastinator95 = u.nastinator96 = u.nastinator97 = u.nastinator98 = u.nastinator99 = u.nastinator100 = u.nastinator101 = u.nastinator102 = u.nastinator103 = u.nastinator104 = u.nastinator105 = u.nastinator106 = u.nastinator107 = u.nastinator108 = u.nastinator109 = u.nastinator110 = u.nastinator111 = u.nastinator112 = u.nastinator113 = u.nastinator114 = u.nastinator115 = u.nastinator116 = u.nastinator117 = u.nastinator118 = u.nastinator119 = u.nastinator120 = u.nastinator121 = u.nastinator122 = u.nastinator123 = u.nastinator124 = u.nastinator125 = u.nastinator126 = u.nastinator127 = u.nastinator128 = u.nastinator129 = u.nastinator130 = u.nastinator131 = u.nastinator132 = u.nastinator133 = u.nastinator134 = u.nastinator135 = u.nastinator136 = u.nastinator137 = u.nastinator138 = u.nastinator139 = u.nastinator140 = u.nastinator141 = u.nastinator142 = u.nastinator143 = u.nastinator144 = u.nastinator145 = u.nastinator146 = u.nastinator147 = u.nastinator148 = u.nastinator149 = u.nastinator150 = u.nastinator151 = u.nastinator152 = u.nastinator153 = u.nastinator154 = u.nastinator155 = u.nastinator156 = u.nastinator157 = u.nastinator158 = u.nastinator159 = u.nastinator160 = u.nastinator161 = u.nastinator162 = u.nastinator163 = u.nastinator164 = u.nastinator165 = u.nastinator166 = u.nastinator167 = u.nastinator168 = u.nastinator169 = u.nastinator170 = u.nastinator171 = u.nastinator172 = u.nastinator173 = u.nastinator174 = u.nastinator175 = u.nastinator176 = u.nastinator177 = u.nastinator178 = u.nastinator179 = u.nastinator180 = u.nastinator181 = u.nastinator182 = u.nastinator183 = u.nastinator184 = u.nastinator185 = u.nastinator186 = u.nastinator187 = u.nastinator188 = u.nastinator189 = u.nastinator190 = u.nastinator191 = u.nastinator192 = u.nastinator193 = u.nastinator194 = u.nastinator195 = u.nastinator196 = u.nastinator197 = u.nastinator198 = u.nastinator199 = u.nastinator200 = u.nastinator201 = u.nastinator202 = u.nastinator203 = u.nastinator204 = u.nastinator205 = u.nastinator206 = u.nastinator207 = u.nastinator208 = u.nastinator209 = u.nastinator210 = u.nastinator211 = u.nastinator212 = u.nastinator213 = u.nastinator214 = u.nastinator215 = u.nastinator216 = u.nastinator217 = u.nastinator218 = u.nastinator219 = u.nastinator220 = u.nastinator221 = u.nastinator222 = u.nastinator223 = u.nastinator224 = u.nastinator225 = u.nastinator226 = u.nastinator227 = u.nastinator228 = u.nastinator229 = u.nastinator230 = u.nastinator231 = u.nastinator232 = u.nastinator233 = u.nastinator234 = u.nastinator235 = u.nastinator236 = u.nastinator237 = u.nastinator238 = u.nastinator239 = u.nastinator240 = u.nastinator241 = u.nastinator242 = u.nastinator243 = u.nastinator244 = u.nastinator245 = u.nastinator246 = u.nastinator247 = u.nastinator248 = 0;
 
-		switch (rnd(235)) {
+		switch (rnd(248)) {
 
 			case 1: u.nastinator01 = 1; break;
 			case 2: u.nastinator02 = 1; break;
@@ -5666,12 +5666,25 @@ controlagain:
 			case 233: u.nastinator233 = 1; break;
 			case 234: u.nastinator234 = 1; break;
 			case 235: u.nastinator235 = 1; break;
+			case 236: u.nastinator236 = 1; break;
+			case 237: u.nastinator237 = 1; break;
+			case 238: u.nastinator238 = 1; break;
+			case 239: u.nastinator239 = 1; break;
+			case 240: u.nastinator240 = 1; break;
+			case 241: u.nastinator241 = 1; break;
+			case 242: u.nastinator242 = 1; break;
+			case 243: u.nastinator243 = 1; break;
+			case 244: u.nastinator244 = 1; break;
+			case 245: u.nastinator245 = 1; break;
+			case 246: u.nastinator246 = 1; break;
+			case 247: u.nastinator247 = 1; break;
+			case 248: u.nastinator248 = 1; break;
 
 		}
 
 		while (!rn2(3)) {
 
-			switch (rnd(235)) {
+			switch (rnd(248)) {
 
 				case 1: u.nastinator01 = 1; break;
 				case 2: u.nastinator02 = 1; break;
@@ -5908,6 +5921,19 @@ controlagain:
 			case 233: u.nastinator233 = 1; break;
 			case 234: u.nastinator234 = 1; break;
 			case 235: u.nastinator235 = 1; break;
+			case 236: u.nastinator236 = 1; break;
+			case 237: u.nastinator237 = 1; break;
+			case 238: u.nastinator238 = 1; break;
+			case 239: u.nastinator239 = 1; break;
+			case 240: u.nastinator240 = 1; break;
+			case 241: u.nastinator241 = 1; break;
+			case 242: u.nastinator242 = 1; break;
+			case 243: u.nastinator243 = 1; break;
+			case 244: u.nastinator244 = 1; break;
+			case 245: u.nastinator245 = 1; break;
+			case 246: u.nastinator246 = 1; break;
+			case 247: u.nastinator247 = 1; break;
+			case 248: u.nastinator248 = 1; break;
 
 			}
 
@@ -5915,7 +5941,7 @@ controlagain:
 
 	if (isnastinator) {
 
-		switch (rnd(235)) {
+		switch (rnd(248)) {
 
 			case 1: u.nastinator01 = 1; break;
 			case 2: u.nastinator02 = 1; break;
@@ -6152,12 +6178,25 @@ controlagain:
 			case 233: u.nastinator233 = 1; break;
 			case 234: u.nastinator234 = 1; break;
 			case 235: u.nastinator235 = 1; break;
+			case 236: u.nastinator236 = 1; break;
+			case 237: u.nastinator237 = 1; break;
+			case 238: u.nastinator238 = 1; break;
+			case 239: u.nastinator239 = 1; break;
+			case 240: u.nastinator240 = 1; break;
+			case 241: u.nastinator241 = 1; break;
+			case 242: u.nastinator242 = 1; break;
+			case 243: u.nastinator243 = 1; break;
+			case 244: u.nastinator244 = 1; break;
+			case 245: u.nastinator245 = 1; break;
+			case 246: u.nastinator246 = 1; break;
+			case 247: u.nastinator247 = 1; break;
+			case 248: u.nastinator248 = 1; break;
 
 		}
 
 		while ((rnd(7)) < 3) {
 
-			switch (rnd(235)) {
+			switch (rnd(248)) {
 
 				case 1: u.nastinator01 = 1; break;
 				case 2: u.nastinator02 = 1; break;
@@ -6394,6 +6433,19 @@ controlagain:
 			case 233: u.nastinator233 = 1; break;
 			case 234: u.nastinator234 = 1; break;
 			case 235: u.nastinator235 = 1; break;
+			case 236: u.nastinator236 = 1; break;
+			case 237: u.nastinator237 = 1; break;
+			case 238: u.nastinator238 = 1; break;
+			case 239: u.nastinator239 = 1; break;
+			case 240: u.nastinator240 = 1; break;
+			case 241: u.nastinator241 = 1; break;
+			case 242: u.nastinator242 = 1; break;
+			case 243: u.nastinator243 = 1; break;
+			case 244: u.nastinator244 = 1; break;
+			case 245: u.nastinator245 = 1; break;
+			case 246: u.nastinator246 = 1; break;
+			case 247: u.nastinator247 = 1; break;
+			case 248: u.nastinator248 = 1; break;
 
 			}
 
@@ -8252,6 +8304,16 @@ newbossO:
 			bad_artifact();
 		}
 
+		if (!rn2(1000) && CovidTrapEffect) {
+			nivellate();
+		}
+		if (!rn2(1000) && u.uprops[COVID_TRAP_EFFECT].extrinsic) {
+			nivellate();
+		}
+		if (!rn2(1000) && have_covidstone()) {
+			nivellate();
+		}
+
 		if (!rn2(200) && HorrorBugEffect) {
 
 			int lcount = rnd(monster_difficulty() ) + 1;
@@ -9811,7 +9873,7 @@ newbossB:
 			x = rn1(COLNO-3,2);
 			y = rn2(ROWNO);
 
-			if (x && y && isok(x, y) && !(t_at(x, y)) ) {
+			if (isok(x, y) && !(t_at(x, y)) ) {
 				(void) maketrap(x, y, randomfeminismtraptype(), 0, FALSE);
 			}
 		}
@@ -9825,7 +9887,7 @@ newbossB:
 			x = rn1(COLNO-3,2);
 			y = rn2(ROWNO);
 
-			if (x && y && isok(x, y) && !(t_at(x, y)) ) {
+			if (isok(x, y) && !(t_at(x, y)) ) {
 				(void) maketrap(x, y, randomtrap(), 0, FALSE);
 				}
 			u.arabellahack = 0;
@@ -9845,7 +9907,7 @@ newbossB:
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && (levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && !(t_at(x, y)) ) {
+				if (isok(x, y) && (levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && !(t_at(x, y)) ) {
 					levl[x][y].typ = GRAVEWALL;
 					break;
 					}
@@ -9863,7 +9925,7 @@ newbossB:
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+				if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
@@ -9880,7 +9942,7 @@ newbossB:
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+				if (isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
 					larissatrap = maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					if (larissatrap) {
 						larissatrap->tseen = TRUE; /* always visible */
@@ -9909,7 +9971,7 @@ newbossB:
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+				if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
@@ -9927,7 +9989,7 @@ newbossB:
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+				if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 					shittrap = maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					if (shittrap && !(shittrap->hiddentrap)) {
 						shittrap->tseen = 1;
@@ -9947,7 +10009,7 @@ newbossB:
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && !(t_at(x, y)) ) {
+				if (isok(x, y) && !(t_at(x, y)) ) {
 
 					hussytraptype = rnd(TRAPNUM-1);
 					if (hussytraptype == MAGIC_PORTAL) hussytraptype = ROCKTRAP;
@@ -9988,7 +10050,7 @@ newbossB:
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+				if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
@@ -10119,7 +10181,7 @@ newbossB:
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+				if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
@@ -10136,7 +10198,7 @@ newbossB:
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+				if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 					(void) maketrap(x, y, NATALJE_TRAP, 0, FALSE);
 					break;
 					}
@@ -10154,7 +10216,7 @@ newbossB:
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+				if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 					(void) maketrap(x, y, FART_TRAP, 0, TRUE);
 					break;
 					}
@@ -10173,7 +10235,7 @@ newbossB:
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+				if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 					(void) maketrap(x, y, FART_TRAP, 0, TRUE);
 					break;
 					}
@@ -10192,7 +10254,7 @@ newbossB:
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+				if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 					(void) maketrap(x, y, FART_TRAP, 0, TRUE);
 					break;
 					}
@@ -10211,7 +10273,7 @@ newbossB:
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+				if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 					(void) maketrap(x, y, HEEL_TRAP, 0, FALSE);
 					break;
 					}
@@ -10229,7 +10291,7 @@ newbossB:
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+				if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
@@ -10246,7 +10308,7 @@ newbossB:
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+				if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
@@ -10263,7 +10325,7 @@ newbossB:
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+				if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
@@ -10316,7 +10378,7 @@ newbossB:
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+				if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
@@ -16386,6 +16448,8 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "sweaty shoes")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "leather fleece boots")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fluffy sandals")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "spiritual helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "mink stole")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -17658,6 +17722,8 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "sweaty shoes")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "leather fleece boots")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fluffy sandals")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "spiritual helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "mink stole")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}

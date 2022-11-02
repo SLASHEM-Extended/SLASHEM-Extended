@@ -710,6 +710,9 @@ giveback:
 	      case RIN_INTRINSIC_LOSS:
 		    pline("Some parts of the sink seem missing...");
 		    break;
+	      case RIN_ARTIFACT_BLASTING:
+		    pline("The sink is blasted by the ring!");
+		    break;
 	      case RIN_TRAP_REVEALING:
 		    You("realize more details of the sink's architecture!");
 		    break;

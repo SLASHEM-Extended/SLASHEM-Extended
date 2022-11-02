@@ -2411,6 +2411,9 @@ dospinweb()
 		case BISHOP_TRAP:
 		case UNINFORMATION_TRAP:
 		case TIMERUN_TRAP:
+		case ARTIBLAST_TRAP:
+		case REALLY_BAD_TRAP:
+		case COVID_TRAP:
 		case GIANT_EXPLORER_TRAP:
 		case TRAPWARP_TRAP:
 		case YAWM_TRAP:

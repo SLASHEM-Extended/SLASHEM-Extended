@@ -6838,6 +6838,12 @@ eatspecial() /* called after eating non-food */
 			    StatDecreaseBug |= FROMOUTSIDE; break;
 			case SIMEOUT_STONE:
 			    SimeoutBug |= FROMOUTSIDE; break;
+			case REALLY_BAD_STONE:
+			    ReallyBadTrapEffect |= FROMOUTSIDE; break;
+			case COVID_STONE:
+			    CovidTrapEffect |= FROMOUTSIDE; break;
+			case BLAST_STONE:
+			    ArtiblastEffect |= FROMOUTSIDE; break;
 
 		}
 	}

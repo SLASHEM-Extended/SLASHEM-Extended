@@ -1184,7 +1184,7 @@ randenchantment()
 
 	if (!rn2(20)) {
 
-		switch (rnd(247)) {
+		switch (rnd(250)) {
 
 			case 1: return SPELLS_LOST;
 			case 2: return CASTER_PROBLEM;
@@ -1434,6 +1434,9 @@ randenchantment()
 			case 245: return CRADLE_CHAOS_EFFECT;
 			case 246: return TEZ_EFFECT;
 			case 247: return KILLER_ROOM_EFFECT;
+			case 248: return REALLY_BAD_TRAP_EFFECT;
+			case 249: return COVID_TRAP_EFFECT;
+			case 250: return ARTIBLAST_EFFECT;
 			default: return POISON_RES;
 
 		}
@@ -1897,7 +1900,7 @@ randenchantment()
 int
 randnastyenchantment()
 {
-	switch (rnd(247)) {
+	switch (rnd(250)) {
 
 		case 1: return SPELLS_LOST;
 		case 2: return CASTER_PROBLEM;
@@ -2146,6 +2149,9 @@ randnastyenchantment()
 			case 245: return CRADLE_CHAOS_EFFECT;
 			case 246: return TEZ_EFFECT;
 			case 247: return KILLER_ROOM_EFFECT;
+			case 248: return REALLY_BAD_TRAP_EFFECT;
+			case 249: return COVID_TRAP_EFFECT;
+			case 250: return ARTIBLAST_EFFECT;
 	}
 
 	/* appease compiler, we should never end up here */
@@ -2314,7 +2320,7 @@ randominsidetrap()
 	else if (!rn2(50)) return ARABELLA_SPEAKER;
 	else if (!rn2(100)) return SUPERTHING_TRAP;
 	else if (!rn2(2000)) return AUTOMATIC_SWITCHER;
-	else switch (rnd(247)) {
+	else switch (rnd(250)) {
 		case 1: return RMB_LOSS_TRAP;
 		case 2: return UNINFORMATION_TRAP;
 		case 3: return BIGSCRIPT_TRAP;
@@ -2563,6 +2569,9 @@ randominsidetrap()
 		case 245: return GOTS_TOO_GOOD_TRAP;
 		case 246: return KILLER_ROOM_TRAP;
 		case 247: return NO_FUN_WALLS_TRAP;
+		case 248: return REALLY_BAD_TRAP;
+		case 249: return COVID_TRAP;
+		case 250: return ARTIBLAST_TRAP;
 
 	}
 
@@ -2608,6 +2617,15 @@ randartlightsaber()
 	int result;
 reroll:
 	result = rnd_class(GREEN_LIGHTSABER, MYSTERY_LIGHTSABER);
+	return result;
+}
+
+int
+randartpolearm()
+{
+	int result;
+reroll:
+	result = rnd_class(PARTISAN, BEC_DE_CORBIN);
 	return result;
 }
 
@@ -3460,7 +3478,7 @@ struct obj *obj;
 void
 getnastytrapintrinsic()
 {
-			switch (rnd(245)) {
+			switch (rnd(248)) {
 
 				case 1: 
 				    SpeedBug |= FROMOUTSIDE; break;
@@ -3952,6 +3970,12 @@ getnastytrapintrinsic()
 				    TezEffect |= FROMOUTSIDE; break;
 				case 245:
 				    KillerRoomEffect |= FROMOUTSIDE; break;
+				case 246:
+				    ReallyBadTrapEffect |= FROMOUTSIDE; break;
+				case 247:
+				    CovidTrapEffect |= FROMOUTSIDE; break;
+				case 248:
+				    ArtiblastEffect |= FROMOUTSIDE; break;
 
 
 			}
@@ -4330,7 +4354,7 @@ int duration, blackngvar;
 {
 		if (LongScrewup || u.uprops[LONG_SCREWUP].extrinsic || have_longscrewupstone()) duration *= 20;
 
-		switch (rnd(245)) {
+		switch (rnd(248)) {
 
 			case 1: RMBLoss += rnz(duration); break;
 			case 2: NoDropProblem += rnz(duration); break;
@@ -4606,6 +4630,9 @@ int duration, blackngvar;
 			case 243: CradleChaosEffect += rnz(duration); break;
 			case 244: TezEffect += rnz(duration); break;
 			case 245: KillerRoomEffect += rnz(duration); break;
+			case 246: ReallyBadTrapEffect += rnz(duration); break;
+			case 247: CovidTrapEffect += rnz(duration); break;
+			case 248: ArtiblastEffect += rnz(duration); break;
 
 		}
 
@@ -4890,6 +4917,9 @@ int efftype, nastyduration, blackngvar;
 		case 243: CradleChaosEffect += rnz(nastyduration); break;
 		case 244: TezEffect += rnz(nastyduration); break;
 		case 245: KillerRoomEffect += rnz(nastyduration); break;
+		case 246: ReallyBadTrapEffect += rnz(nastyduration); break;
+		case 247: CovidTrapEffect += rnz(nastyduration); break;
+		case 248: ArtiblastEffect += rnz(nastyduration); break;
 
 		default:
 			impossible("efftype %d called in specificnastytrapeffect()", efftype);

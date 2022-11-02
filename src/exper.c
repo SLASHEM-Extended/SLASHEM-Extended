@@ -1382,6 +1382,10 @@ climdone:
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 22, any trap you trigger will become invisible.");
 						else pline("Your auspices say: 22 8");
 						break;
+					case 9:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 22, bad effects turn into really bad effects.");
+						else pline("Your auspices say: 22 9");
+						break;
 				}
 
 			} else if (u.urmaxlvlUP == 24) {

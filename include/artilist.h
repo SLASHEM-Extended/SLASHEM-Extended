@@ -9913,6 +9913,22 @@ A("Mind Cleared Off",				LUNCH_OF_BOILED_EGG, /* eating it sets your sanity to z
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
+A("Ultra Annoyance",				BARDICHE, /* randart polearm, artiblast and melee fuckup effect, +10 STR, monsters are less likely to evade the pounding attack, +2 sight range */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(6,14), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Dimension Fishing",				FISHING_POLE, /* can be invoked to teleport a hostile monster to you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Houzanha",				BRONZE_PICK, /* can be invoked for field break */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Sally's Baking Mixture",				PEANUT_BAG, /* can be invoked to create a fortune cookie */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 1500L ),
+
 
 /*
  *	Stormbringer only has a 2 because it can drain a level,

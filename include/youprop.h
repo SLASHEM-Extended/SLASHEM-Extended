@@ -471,6 +471,9 @@
 #define SpellForgetting		u.uprops[SPELL_FORGETTING].intrinsic
 #define SoundEffectBug		u.uprops[SOUND_EFFECT_BUG].intrinsic
 #define TimerunBug		u.uprops[TIMERUN_BUG].intrinsic
+#define ReallyBadTrapEffect		u.uprops[REALLY_BAD_TRAP_EFFECT].intrinsic
+#define CovidTrapEffect		u.uprops[COVID_TRAP_EFFECT].intrinsic
+#define ArtiblastEffect		u.uprops[ARTIBLAST_EFFECT].intrinsic
 
 #define GiantExplorerBug		u.uprops[GIANT_EXPLORER].intrinsic
 #define YawmBug		u.uprops[YAWM_EFFECT].intrinsic

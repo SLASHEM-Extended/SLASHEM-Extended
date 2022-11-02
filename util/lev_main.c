@@ -806,6 +806,18 @@ static struct {
 	{ "yasaman", YASAMAN_TRAP },
 	{ "maybritt", MAY_BRITT_TRAP },
 
+	{ "calling out", CALLING_OUT_TRAP },
+	{ "field break", FIELD_BREAK_TRAP },
+	{ "tenth", TENTH_TRAP },
+	{ "debt", DEBT_TRAP },
+	{ "inversion", INVERSION_TRAP },
+	{ "wince", WINCE_TRAP },
+	{ "u have been", U_HAVE_BEEN_TRAP },
+
+	{ "really bad", REALLY_BAD_TRAP },
+	{ "covid", COVID_TRAP },
+	{ "artiblast", ARTIBLAST_TRAP },
+
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }
 };

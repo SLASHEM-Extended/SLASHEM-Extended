@@ -1156,6 +1156,7 @@ Cloak_on()
 	case HERETIC_CLOAK:
 	case EERIE_CLOAK:
 	case CLOAK_OF_NAKEDNESS:
+	case COVID____COATED_CLOAK:
 
 	case BROWN_SHIT_CLOAK:
 	case ANTICALL_CLOAK:
@@ -1796,6 +1797,7 @@ Cloak_off()
 	case HERETIC_CLOAK:
 	case EERIE_CLOAK:
 	case CLOAK_OF_NAKEDNESS:
+	case COVID____COATED_CLOAK:
 
 	case BROWN_SHIT_CLOAK:
 	case ANTICALL_CLOAK:
@@ -2137,6 +2139,7 @@ Helmet_on()
 	case MORE_HELMET:
 	case BUGXPLORE_HELMET:
 	case YAWNING_VISOR:
+	case REALLY_BAD_HELM:
 	
 	case DUMMY_HELMET_A:
 	case DUMMY_HELMET_B:
@@ -2380,6 +2383,7 @@ Helmet_off()
 	case BLUE_SPELL_HELMET:
 	case BUGXPLORE_HELMET:
 	case YAWNING_VISOR:
+	case REALLY_BAD_HELM:
 	case MORE_HELMET:
 
 	case INCORRECTLY_ADJUSTED_HELMET:
@@ -4121,6 +4125,7 @@ register struct obj *obj;
 		break;
 
 	case RIN_INTRINSIC_LOSS:
+	case RIN_ARTIFACT_BLASTING:
 	case RIN_BLOOD_LOSS:
 	case RIN_NASTINESS:
 	case RIN_BAD_EFFECT:

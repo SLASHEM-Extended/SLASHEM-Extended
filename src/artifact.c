@@ -278,6 +278,7 @@ init_randarts()
 	artilist[ART_SHIVANHUNTER_S_UNUSED_PRIZ].otyp = randartsuit();
 	artilist[ART_ARABELLA_S_ARTIFACT_CREATI].otyp = randartmeleeweapon();
 	artilist[ART_VERSUS_ELECTRICALLY_BASED_].otyp = randartmeleeweapon();
+	artilist[ART_ULTRA_ANNOYANCE].otyp = randartpolearm();
 	artilist[ART_TIARA_OF_AMNESIA].otyp = randarthelm();
 	artilist[ART_FLUE_FLUE_FLUEFLUE_FLUE].otyp = randarthelm();
 	artilist[ART_LIXERTYPIE].otyp = randartmeleeweapon();
@@ -1612,7 +1613,7 @@ touch_artifact(obj,mon)
 	badalign = !!spec_applies(&tmp, mon);
     }
 
-    if ((((badclass || badalign) && self_willed) || (badalign && (!yours || !rn2(4)))) && !RngeBlastShielding) {
+    if (((((badclass || badalign) && self_willed) || (badalign && (!yours || !rn2(4)))) && !RngeBlastShielding) || (ArtiblastEffect || u.uprops[ARTIBLAST_EFFECT].extrinsic || (uwep && uwep->oartifact == ART_ULTRA_ANNOYANCE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ULTRA_ANNOYANCE) || have_blaststone()) ) {
 	int dmg;
 	char buf[BUFSZ];
 
@@ -1623,6 +1624,14 @@ touch_artifact(obj,mon)
 	if (!issoviet && (u.ulevel < 10)) { /* picking up unknown artifacts should not be a crapshoot for low-level chars. --Amy */
 		dmg *= u.ulevel;
 		dmg /= 10;
+	}
+
+	/* having the artiblast nastytrap means that blast shielding doesn't prevent artifact blasts, but since we don't
+	 * want the property to be completely useless in that case, it reduces the blast damage instead --Amy */
+
+	if ((ArtiblastEffect || u.uprops[ARTIBLAST_EFFECT].extrinsic || (uwep && uwep->oartifact == ART_ULTRA_ANNOYANCE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ULTRA_ANNOYANCE) || have_blaststone()) && RngeBlastShielding) {
+		dmg /= 2;
+		if (dmg < 1) dmg = 1;
 	}
 
 	/* Yes, I know, this probably means you cannot instantly die by having an artifact spawn on your location while
@@ -3276,7 +3285,7 @@ newboss:
 						x = rn1(COLNO-3,2);
 						y = rn2(ROWNO);
 
-						if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+						if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 								ttmp = maketrap(x, y, randomtrap(), 0, TRUE);
 							if (ttmp) {
 								ttmp->tseen = 0;
@@ -3658,6 +3667,63 @@ chargingchoice:
 	    }
 	    break;
 	case SPECIAL_INVOKE:
+
+		if (obj->oartifact == ART_SALLY_S_BAKING_MIXTURE) {
+
+			struct obj *uchocitem;
+
+			uchocitem = mksobj(FORTUNE_COOKIE, TRUE, FALSE, FALSE);
+			if (uchocitem) {
+				uchocitem->quan = 1;
+				uchocitem->known = uchocitem->dknown = uchocitem->bknown = uchocitem->rknown = 1;
+				uchocitem->owt = weight(uchocitem);
+				dropy(uchocitem);
+				stackobj(uchocitem);
+				You("baked a fortune cookie.");
+			} else pline("Somehow, your baking attempt failed.");
+
+			break;
+		}
+
+		if (obj->oartifact == ART_DIMENSION_FISHING) {
+
+			register struct monst *nexusmon;
+			int multiplegather = 0;
+
+			You("start fishing.");
+			for(nexusmon = fmon; nexusmon; nexusmon = nexusmon->nmon) {
+				if (nexusmon && !nexusmon->mtame && !nexusmon->mpeaceful && !(u.usteed && (u.usteed == nexusmon)) ) {
+					mnexto(nexusmon);
+					pline("%s is drawn!", Monnam(nexusmon));
+					multiplegather++;
+					goto callingoutdone;
+				}
+			}
+callingoutdone:
+			if (!multiplegather) pline("A waste of time...");
+
+			break;
+		}
+
+		if (obj->oartifact == ART_HOUZANHA) {
+
+			int x, y;
+			int houzanhaamount = 50;
+			register struct rm *lev;
+			while (houzanhaamount) {
+				houzanhaamount--;
+				if (houzanhaamount < 0) houzanhaamount = 0;
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+				lev = &levl[x][y];
+				if (isok(x,y) && !(lev->typ == ALTAR && (Is_astralevel(&u.uz) || Is_sanctum(&u.uz)) ) && !(lev->wall_info & W_NONDIGGABLE) && lev->typ != STAIRS && lev->typ != LADDER) {
+					lev->typ = CORR;
+				}
+			}
+			pline("Haaaaaaaa!");
+
+			break;
+		}
 
 		if (obj->oartifact == ART_WRONG_RUNE) {
 			if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {

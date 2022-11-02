@@ -2687,6 +2687,7 @@ int x;
 		if (FemtrapActiveNora && u.uhs == FAINTING) tmp += 5;
 		if (FemtrapActiveNora && u.uhs == FAINTED) tmp += 10;
 		if (FemtrapActiveNora && u.uhs == STARVED) tmp += 25;
+		if (uwep && uwep->oartifact == ART_ULTRA_ANNOYANCE) tmp += 10;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (Race_if(PM_KNOWLEDGABLE)) tmp -= 2;

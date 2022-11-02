@@ -3461,6 +3461,9 @@ int traptype;
 		case SPELL_FORGETTING_TRAP:
 		case SOUND_EFFECT_TRAP:
 		case TIMERUN_TRAP:
+		case REALLY_BAD_TRAP:
+		case COVID_TRAP:
+		case ARTIBLAST_TRAP:
 
 		case LOOTCUT_TRAP:
 		case MONSTER_SPEED_TRAP:
@@ -7032,7 +7035,7 @@ newbossPENT:
 						x = rn1(COLNO-3,2);
 						y = rn2(ROWNO);
 
-						if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+						if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 								ttmp = maketrap(x, y, randomtrap(), 0, TRUE);
 							if (ttmp) {
 								ttmp->tseen = 0;
@@ -12203,6 +12206,33 @@ madnesseffect:
 
 		 break;
 
+		 case REALLY_BAD_TRAP:
+
+			if (ReallyBadTrapEffect) break;
+			u.cnd_nastytrapamount++;
+
+			ReallyBadTrapEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case COVID_TRAP:
+
+			if (CovidTrapEffect) break;
+			u.cnd_nastytrapamount++;
+
+			CovidTrapEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case ARTIBLAST_TRAP:
+
+			if (ArtiblastEffect) break;
+			u.cnd_nastytrapamount++;
+
+			ArtiblastEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
 		 case GIANT_EXPLORER_TRAP:
 
 			if (GiantExplorerBug) break;
@@ -14135,6 +14165,124 @@ skillmultiplyagain:
 				monstermoves += tvtropesnumber;
 				moves += tvtropesnumber;
 			}
+			break;
+
+		case CALLING_OUT_TRAP:
+		{
+			register struct monst *nexusmon;
+			int multiplegather = 0;
+			seetrap(trap);
+			if (!rn2(5)) deltrap(trap);
+
+			You_hear("a call...");
+			for(nexusmon = fmon; nexusmon; nexusmon = nexusmon->nmon) {
+				if (nexusmon && !nexusmon->mtame && !nexusmon->mpeaceful && !(u.usteed && (u.usteed == nexusmon)) ) {
+					mnexto(nexusmon);
+					pline("...and %s warps to you!", mon_nam(nexusmon));
+					multiplegather++;
+					goto callingoutdone;
+				}
+			}
+callingoutdone:
+			if (!multiplegather) pline("...but apparently no one answered.");
+
+		}
+			break;
+
+		case FIELD_BREAK_TRAP:
+
+			deltrap(trap);
+
+			You("stepped on a trigger!");
+			{
+				int x, y;
+				int houzanhaamount = 50;
+				register struct rm *lev;
+				while (houzanhaamount) {
+					houzanhaamount--;
+					if (houzanhaamount < 0) houzanhaamount = 0;
+					x = rn1(COLNO-3,2);
+					y = rn2(ROWNO);
+					lev = &levl[x][y];
+					if (isok(x,y) && !(lev->typ == ALTAR && (Is_astralevel(&u.uz) || Is_sanctum(&u.uz)) ) && !(lev->wall_info & W_NONDIGGABLE) && lev->typ != STAIRS && lev->typ != LADDER) {
+						lev->typ = CORR;
+					}
+				}
+				pline("Haaaaaaaa!");
+			}
+
+			break;
+
+		case TENTH_TRAP:
+			You("stepped on a trigger!");
+			seetrap(trap);
+
+			{
+				int tenth;
+				tenth = u.ugold + hidden_gold();
+				if (tenth > 0) {
+					tenth /= 10;
+					if (tenth < 1) tenth = 1;
+					u.moneydebt += tenth;
+					You("have to pay one tenth of your money to the bank.");
+				} else {
+					You("don't have to pay tax.");
+				}
+			}
+
+			break;
+
+		case DEBT_TRAP:
+
+			You("stepped on a trigger!");
+			seetrap(trap);
+
+			u.moneydebt += ((level_difficulty() + 2) * rnd(100));
+			You("have to pay %d zorkmids to the bank.", u.moneydebt);
+
+			break;
+
+		case INVERSION_TRAP:
+
+			pline("A stroboscope light surrounds you...");
+			seetrap(trap);
+
+			make_inverted(HInvertedState + rnd(10) + rnd(monster_difficulty() * 10) );
+
+			break;
+
+		case WINCE_TRAP:
+
+			pline("A fiery light surrounds you...");
+			seetrap(trap);
+
+			make_wincing(HWinceState + rnd(10) + rnd(monster_difficulty() * 20) );
+
+			break;
+
+		case U_HAVE_BEEN_TRAP:
+
+			You_feel("like you have been here before...");
+			{
+				register int zx, zy;
+				for(zx = 0; zx < COLNO; zx++) for(zy = 0; zy < ROWNO; zy++) {
+					/* Zonk all memory of this location. */
+					levl[zx][zy].seenv = 0;
+					levl[zx][zy].waslit = 0;
+					clear_memory_glyph(zx, zy, S_stone);
+				}
+				vision_recalc(0);
+				docrt();
+
+				int uhavebeenmonsters = d(6, 6);
+				while (uhavebeenmonsters) {
+					uhavebeenmonsters--;
+					(void) makemon(specialtensmon(422), 0, 0, MM_ADJACENTOK); /* MS_DEAD */
+				}
+
+			}
+
+			deltrap(trap);
 			break;
 
 		case SYMBIOTE_TRAP:
@@ -16948,7 +17096,7 @@ skillrandomizeredo:
 
 		 case NASTINESS_TRAP:
 
-			switch (rnd(245)) {
+			switch (rnd(248)) {
 
 				case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 				case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -17222,6 +17370,9 @@ skillrandomizeredo:
 			case 243: CradleChaosEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 244: TezEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 245: KillerRoomEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 246: ReallyBadTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 247: CovidTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 248: ArtiblastEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 			}
 
@@ -17835,7 +17986,7 @@ skillrandomizeredo:
 
 		 case AUTOMATIC_SWITCHER:
 
-			if (RMBLoss || Superscroller || DisplayLoss || SpellLoss || YellowSpells || AutoDestruct || MemoryLoss || InventoryLoss || BlackNgWalls || MenuBug || SpeedBug || FreeHandLoss || Unidentify || Thirst || LuckLoss || ShadesOfGrey || FaintActive || Itemcursing || DifficultyIncreased || Deafness || CasterProblem || WeaknessProblem || NoDropProblem || RotThirteen || BishopGridbug || ConfusionProblem || DSTWProblem || StatusTrapProblem || AlignmentProblem || StairsProblem || UninformationProblem || TimerunBug || BadPartBug || CompletelyBadPartBug || EvilVariantActive || IntrinsicLossProblem || BloodLossProblem || BadEffectProblem || TrapCreationProblem ||AutomaticVulnerabilitiy || TeleportingItems || NastinessProblem || CaptchaProblem || RespawnProblem || FarlookProblem || RecurringAmnesia || BigscriptEffect || BankTrapEffect || MapTrapEffect || TechTrapEffect || RecurringDisenchant || verisiertEffect || ChaosTerrain || Muteness || EngravingDoesntWork || MagicDeviceEffect || BookTrapEffect || LevelTrapEffect || QuizTrapEffect || FastMetabolismEffect || NoReturnEffect || AlwaysEgotypeMonsters || TimeGoesByFaster ||  FoodIsAlwaysRotten || AllSkillsUnskilled || AllStatsAreLower || PlayerCannotTrainSkills || PlayerCannotExerciseStats || TurnLimitation || WeakSight || RandomMessages || Desecration || StarvationEffect || NoDropsEffect || LowEffects || InvisibleTrapsEffect || GhostWorld || Dehydration || HateTrapEffect || TotterTrapEffect || Nonintrinsics || Dropcurses || Nakedness || Antileveling || ItemStealingEffect || Rebellions || CrapEffect || ProjectilesMisfire || WallTrapping || DisconnectedStairs || InterfaceScrewed || Bossfights || EntireLevelMode || BonesLevelChange || AutocursingEquipment || HighlevelStatus || SpellForgetting || SoundEffectBug || LootcutBug || MonsterSpeedBug || ScalingBug || EnmityBug || WhiteSpells || CompleteGraySpells || QuasarVision || MommaBugEffect || HorrorBugEffect || ArtificerBug || WereformBug || NonprayerBug || EvilPatchEffect || HardModeEffect || SecretAttackBug || EaterBugEffect || CovetousnessBug || NotSeenBug || DarkModeBug || AntisearchEffect || HomicideEffect || NastynationBug || WakeupCallBug || GrayoutBug || GrayCenterBug || CheckerboardBug || ClockwiseSpinBug || CounterclockwiseSpin || LagBugEffect || BlesscurseEffect || DeLightBug || DischargeBug || TrashingBugEffect || FilteringBug || DeformattingBug || FlickerStripBug || UndressingEffect || Hyperbluewalls || NoliteBug || ParanoiaBugEffect || FleecescriptBug || InterruptEffect || DustbinBug || ManaBatteryBug || Monsterfingers || MiscastBug || MessageSuppression || StuckAnnouncement || BloodthirstyEffect || MaximumDamageBug || LatencyBugEffect || StarlitBug || KnowledgeBug || HighscoreBug || PinkSpells || GreenSpells || EvencoreEffect || UnderlayerBug || DamageMeterBug || ArbitraryWeightBug || FuckedInfoBug || BlackSpells || CyanSpells || HeapEffectBug || BlueSpells || TronEffect || RedSpells || TooHeavyEffect || ElongationBug || WrapoverEffect || DestructionEffect || MeleePrefixBug || AutomoreBug || UnfairAttackBug || OrangeSpells || VioletSpells || LongingEffect || CursedParts || Quaversal || AppearanceShuffling || BrownSpells || Choicelessness || Goldspells || Deprovement || InitializationFail || GushlushEffect || SoiltypeEffect || DangerousTerrains || FalloutEffect || MojibakeEffect || GravationEffect || UncalledEffect || ExplodingDiceEffect || PermacurseEffect || ShroudedIdentity || FeelerGauges || LongScrewup || WingYellowChange || LifeSavingBug || CurseuseEffect || CutNutritionEffect || SkillLossEffect || AutopilotEffect || MysteriousForceActive || MonsterGlyphChange || ChangingDirectives || ContainerKaboom || StealDegrading || LeftInventoryBug || FluctuatingSpeed || TarmuStrokingNora || FailureEffects || BrightCyanSpells || FrequentationSpawns || PetAIScrewed || SatanEffect || RememberanceEffect || PokelieEffect || AlwaysAutopickup || DywypiProblem || SilverSpells || MetalSpells || PlatinumSpells || ManlerEffect || DoorningEffect || NownsibleEffect || ElmStreetEffect || MonnoiseEffect || RangCallEffect || RecurringSpellLoss || AntitrainingEffect || TechoutBug || StatDecay || Movemork || SanityTrebleEffect || StatDecreaseBug || SimeoutBug || GiantExplorerBug || YawmBug || TrapwarpingBug || EnthuEffect || MikraEffect || GotsTooGoodEffect || NoFunWallsEffect || CradleChaosEffect || TezEffect || KillerRoomEffect) {
+			if (RMBLoss || Superscroller || DisplayLoss || SpellLoss || YellowSpells || AutoDestruct || MemoryLoss || InventoryLoss || BlackNgWalls || MenuBug || SpeedBug || FreeHandLoss || Unidentify || Thirst || LuckLoss || ShadesOfGrey || FaintActive || Itemcursing || DifficultyIncreased || Deafness || CasterProblem || WeaknessProblem || NoDropProblem || RotThirteen || BishopGridbug || ConfusionProblem || DSTWProblem || StatusTrapProblem || AlignmentProblem || StairsProblem || UninformationProblem || TimerunBug || BadPartBug || CompletelyBadPartBug || EvilVariantActive || IntrinsicLossProblem || BloodLossProblem || BadEffectProblem || TrapCreationProblem ||AutomaticVulnerabilitiy || TeleportingItems || NastinessProblem || CaptchaProblem || RespawnProblem || FarlookProblem || RecurringAmnesia || BigscriptEffect || BankTrapEffect || MapTrapEffect || TechTrapEffect || RecurringDisenchant || verisiertEffect || ChaosTerrain || Muteness || EngravingDoesntWork || MagicDeviceEffect || BookTrapEffect || LevelTrapEffect || QuizTrapEffect || FastMetabolismEffect || NoReturnEffect || AlwaysEgotypeMonsters || TimeGoesByFaster ||  FoodIsAlwaysRotten || AllSkillsUnskilled || AllStatsAreLower || PlayerCannotTrainSkills || PlayerCannotExerciseStats || TurnLimitation || WeakSight || RandomMessages || Desecration || StarvationEffect || NoDropsEffect || LowEffects || InvisibleTrapsEffect || GhostWorld || Dehydration || HateTrapEffect || TotterTrapEffect || Nonintrinsics || Dropcurses || Nakedness || Antileveling || ItemStealingEffect || Rebellions || CrapEffect || ProjectilesMisfire || WallTrapping || DisconnectedStairs || InterfaceScrewed || Bossfights || EntireLevelMode || BonesLevelChange || AutocursingEquipment || HighlevelStatus || SpellForgetting || SoundEffectBug || LootcutBug || MonsterSpeedBug || ScalingBug || EnmityBug || WhiteSpells || CompleteGraySpells || QuasarVision || MommaBugEffect || HorrorBugEffect || ArtificerBug || WereformBug || NonprayerBug || EvilPatchEffect || HardModeEffect || SecretAttackBug || EaterBugEffect || CovetousnessBug || NotSeenBug || DarkModeBug || AntisearchEffect || HomicideEffect || NastynationBug || WakeupCallBug || GrayoutBug || GrayCenterBug || CheckerboardBug || ClockwiseSpinBug || CounterclockwiseSpin || LagBugEffect || BlesscurseEffect || DeLightBug || DischargeBug || TrashingBugEffect || FilteringBug || DeformattingBug || FlickerStripBug || UndressingEffect || Hyperbluewalls || NoliteBug || ParanoiaBugEffect || FleecescriptBug || InterruptEffect || DustbinBug || ManaBatteryBug || Monsterfingers || MiscastBug || MessageSuppression || StuckAnnouncement || BloodthirstyEffect || MaximumDamageBug || LatencyBugEffect || StarlitBug || KnowledgeBug || HighscoreBug || PinkSpells || GreenSpells || EvencoreEffect || UnderlayerBug || DamageMeterBug || ArbitraryWeightBug || FuckedInfoBug || BlackSpells || CyanSpells || HeapEffectBug || BlueSpells || TronEffect || RedSpells || TooHeavyEffect || ElongationBug || WrapoverEffect || DestructionEffect || MeleePrefixBug || AutomoreBug || UnfairAttackBug || OrangeSpells || VioletSpells || LongingEffect || CursedParts || Quaversal || AppearanceShuffling || BrownSpells || Choicelessness || Goldspells || Deprovement || InitializationFail || GushlushEffect || SoiltypeEffect || DangerousTerrains || FalloutEffect || MojibakeEffect || GravationEffect || UncalledEffect || ExplodingDiceEffect || PermacurseEffect || ShroudedIdentity || FeelerGauges || LongScrewup || WingYellowChange || LifeSavingBug || CurseuseEffect || CutNutritionEffect || SkillLossEffect || AutopilotEffect || MysteriousForceActive || MonsterGlyphChange || ChangingDirectives || ContainerKaboom || StealDegrading || LeftInventoryBug || FluctuatingSpeed || TarmuStrokingNora || FailureEffects || BrightCyanSpells || FrequentationSpawns || PetAIScrewed || SatanEffect || RememberanceEffect || PokelieEffect || AlwaysAutopickup || DywypiProblem || SilverSpells || MetalSpells || PlatinumSpells || ManlerEffect || DoorningEffect || NownsibleEffect || ElmStreetEffect || MonnoiseEffect || RangCallEffect || RecurringSpellLoss || AntitrainingEffect || TechoutBug || StatDecay || Movemork || SanityTrebleEffect || StatDecreaseBug || SimeoutBug || GiantExplorerBug || YawmBug || TrapwarpingBug || EnthuEffect || MikraEffect || GotsTooGoodEffect || NoFunWallsEffect || CradleChaosEffect || TezEffect || KillerRoomEffect || ReallyBadTrapEffect || CovidTrapEffect || ArtiblastEffect) {
 
 			cure_nasty_traps();
 
@@ -20536,6 +20687,17 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case ALIGNMENT_TRAP:
 		case UNINFORMATION_TRAP:
 		case TIMERUN_TRAP:
+		case CALLING_OUT_TRAP:
+		case FIELD_BREAK_TRAP:
+		case TENTH_TRAP:
+		case DEBT_TRAP:
+		case INVERSION_TRAP:
+		case WINCE_TRAP:
+		case U_HAVE_BEEN_TRAP:
+
+		case REALLY_BAD_TRAP:
+		case COVID_TRAP:
+		case ARTIBLAST_TRAP:
 		case GIANT_EXPLORER_TRAP:
 		case TRAPWARP_TRAP:
 		case YAWM_TRAP:
@@ -25171,7 +25333,7 @@ boolean disarm;
 			x = rn1(COLNO-3,2);
 			y = rn2(ROWNO);
 
-			if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+			if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 					ttmp = maketrap(x, y, randomtrap(), 0, FALSE);
 				if (ttmp) {
 					ttmp->tseen = 0;
@@ -25527,7 +25689,7 @@ boulderdone:
 			x = rn1(COLNO-3,2);
 			y = rn2(ROWNO);
 
-			if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+			if (isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
 					ttmp = maketrap(x, y, randomtrap(), 100, FALSE);
 				if (ttmp) {
 					ttmp->tseen = 0;

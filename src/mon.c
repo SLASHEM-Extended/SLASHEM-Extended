@@ -3332,6 +3332,9 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != STAIRS_TRAP
 				&& ttmp->ttyp != UNINFORMATION_TRAP
 				&& ttmp->ttyp != TIMERUN_TRAP
+				&& ttmp->ttyp != REALLY_BAD_TRAP
+				&& ttmp->ttyp != COVID_TRAP
+				&& ttmp->ttyp != ARTIBLAST_TRAP
 				&& ttmp->ttyp != GIANT_EXPLORER_TRAP
 				&& ttmp->ttyp != TRAPWARP_TRAP
 				&& ttmp->ttyp != YAWM_TRAP
@@ -4822,7 +4825,7 @@ register struct monst *mtmp;
 				x = rn1(COLNO-3,2);
 				y = rn2(ROWNO);
 
-				if (x && y && isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+				if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
 
 					rtrap = rnd(TRAPNUM-1);
 					if (rtrap == MAGIC_PORTAL) rtrap = ROCKTRAP;

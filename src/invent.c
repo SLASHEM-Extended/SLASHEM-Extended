@@ -6858,6 +6858,50 @@ have_funwallstone()
 	return(FALSE);
 }
 
+boolean
+have_reallybadstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == REALLY_BAD_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator246) return TRUE;
+	if (sjwcheck(246)) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 9) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_covidstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == COVID_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator247) return TRUE;
+	if (sjwcheck(247)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_blaststone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == BLAST_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator248) return TRUE;
+	if (sjwcheck(248)) return TRUE;
+	return(FALSE);
+}
+
+
 struct obj *
 o_on(id, objchn)
 unsigned int id;
@@ -12217,6 +12261,8 @@ boolean knoweverything;
 				pline("This cloak turns monsters into ghosts. It grants good armor class and 3 points of magic cancellation."); break;
 			case CLOAK_OF_NAKEDNESS:
 				pline("This cloak causes nakedness and grants 3 points of magic cancellation. If someone else than you wears it, it also grants incredibly good armor class to the wearer, nyah-nyah!"); break;
+			case COVID____COATED_CLOAK:
+				pline("This cloak will give you covid-19 symptoms every once in a while. It grants good armor class and medium magic cancellation."); break;
 
 			case BROWN_SHIT_CLOAK:
 				pline("This cloak causes brown spells. It grants moderately good armor class and 3 points of magic cancellation."); break;
@@ -12615,6 +12661,8 @@ boolean knoweverything;
 				pline("This helmet gives 10 squares of astral vision, but all nasty traps inside that radius trigger automatically. It has very good AC and 3 points of magic cancellation."); break;
 			case YAWNING_VISOR:
 				pline("This helmet gradually reduces the area you see the longer you don't trigger any traps. It has low AC and medium magic cancellation."); break;
+			case REALLY_BAD_HELM:
+				pline("This helmet worsens bad effects. It has good AC and 4 points of magic cancellation."); break;
 
 			case RARE_HELMET:
 				pline("While wearing this helmet, monsters that would usually be uncommon by a certain frequency will instead be common, so they spawn more often. It has moderate AC and 3 points of magic cancellation."); break;
@@ -13831,15 +13879,17 @@ boolean knoweverything;
 				pline("Wear this! It grants level-drain resistance!"); break;
 			case RIN_NUMBNESS: 
 				pline("Wearing this ring will numb your limbs, which is a Bad Thing (TM). It is usually generated cursed."); break;
-			case RIN_CURSE: 
+			case RIN_CURSE:
 				pline("While wearing this ring, your items will sometimes get cursed. Putting this ring on causes it to autocurse."); break;
 			case RIN_HALLUCINATION: 
 				pline("You will hallucinate as long as you wear this ring. Putting it on causes it to autocurse."); break;
-			case RIN_INTRINSIC_LOSS: 
+			case RIN_INTRINSIC_LOSS:
 				pline("This ring can cause intrinsic loss."); break;
+			case RIN_ARTIFACT_BLASTING:
+				pline("This ring causes artifacts to blast you."); break;
 			case RIN_DIMINISHED_BLEEDING:
 				pline("Wearing this ring lets you recover from the bleeding status effect more quickly."); break;
-			case RIN_TRAP_REVEALING: 
+			case RIN_TRAP_REVEALING:
 				pline("A very rare ring that grants its wearer the ability to randomly detect traps on the current dungeon level."); break;
 			case RIN_BLOOD_LOSS:
 				pline("This ring causes bleedout."); break;
@@ -17780,6 +17830,12 @@ boolean knoweverything;
 				pline("A stone that curses itself and causes you to be in the completely bad part."); break;
 			case EVIL_VARIANT_STONE:
 				pline("A stone that curses itself and causes you to play the evil variant."); break;
+			case REALLY_BAD_STONE:
+				pline("A stone that curses itself and causes bad effects to be really bad."); break;
+			case COVID_STONE:
+				pline("A stone that curses itself and causes you to suffer from covid-19 symptoms."); break;
+			case BLAST_STONE:
+				pline("A stone that curses itself and causes you to be blasted by artifacts."); break;
 
  			default: pline("Not much is known about this type of gem, but chances are you're looking at a piece of worthless glass. They are, indeed, worthless."); break;
 
@@ -23394,6 +23450,14 @@ boolean knoweverything;
 					pline("Artifact specs: eating it reduces the current health of all monsters on the current level by half, like a tactical nuke. This item cannot be wished for."); break;
 				case ART_MIND_CLEARED_OFF:
 					pline("Artifact specs: eating it cures your sanity and gives temporary psi resistance, but also amnesia."); break;
+				case ART_ULTRA_ANNOYANCE:
+					pline("Artifact specs: +6 to-hit and +14 damage, +10 strength and +2 sight range when wielded but also artiblast and melee fuckup effects. Monsters are less likely to evade if you use a pounding attack with this weapon."); break;
+				case ART_DIMENSION_FISHING:
+					pline("Artifact specs: can be invoked to teleport the first hostile monster on the current level's internal monster list to you."); break;
+				case ART_HOUZANHA:
+					pline("Artifact specs: can be invoked to randomly transform terrain on the current level into ordinary floor."); break;
+				case ART_SALLY_S_BAKING_MIXTURE:
+					pline("Artifact specs: can be invoked to create a fortune cookie."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

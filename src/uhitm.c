@@ -163,7 +163,7 @@ boolean barehanded;
 	 * the screen, so you know something is there.
 	 */
 
-	if (MeleePrefixBug || u.uprops[MELEE_PREFIX_BUG].extrinsic || have_meleeprefixstone()) {
+	if (MeleePrefixBug || u.uprops[MELEE_PREFIX_BUG].extrinsic || (uwep && uwep->oartifact == ART_ULTRA_ANNOYANCE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ULTRA_ANNOYANCE) || have_meleeprefixstone()) {
 
 		pline("You bump into %s.", mon_nam(mtmp));
 		return 0;

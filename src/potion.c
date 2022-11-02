@@ -2047,6 +2047,12 @@ badeffect()
 
 {
 
+	if (ReallyBadTrapEffect || u.uprops[REALLY_BAD_TRAP_EFFECT].extrinsic || have_reallybadstone()) {
+		/* turns bad effects into really bad ones, so we're calling reallybadeffect() and returning --Amy */
+		reallybadeffect();
+		return;
+	}
+
 	struct obj *otmp;
 	int nastytrapdur;
 	int blackngdur;
@@ -6275,6 +6281,9 @@ cure_nasty_traps()
 	SpellForgetting = 0L;
 	SoundEffectBug = 0L;
 	TimerunBug = 0L;
+	ReallyBadTrapEffect = 0L;
+	CovidTrapEffect = 0L;
+	ArtiblastEffect = 0L;
 	GiantExplorerBug = 0L;
 	YawmBug = 0L;
 	TrapwarpingBug = 0L;

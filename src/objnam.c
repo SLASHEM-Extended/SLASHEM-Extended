@@ -3845,6 +3845,13 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ YASAMAN_LEATHER_BOOTS, "todo" },
 	{ MAY_BRITT_SANDALS, "todo" },
 
+	{ REALLY_BAD_HELM, "todo" },
+	{ COVID____COATED_CLOAK, "todo" },
+	{ RIN_ARTIFACT_BLASTING, "todo" },
+	{ REALLY_BAD_STONE, "todo" },
+	{ COVID_STONE, "todo" },
+	{ BLAST_STONE, "todo" },
+
 	{0, "" }
 };
 
@@ -6912,6 +6919,13 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ JASIEEN_WEDGE_SANDALS, "todo" },
 	{ YASAMAN_LEATHER_BOOTS, "todo" },
 	{ MAY_BRITT_SANDALS, "todo" },
+
+	{ REALLY_BAD_HELM, "todo" },
+	{ COVID____COATED_CLOAK, "todo" },
+	{ RIN_ARTIFACT_BLASTING, "todo" },
+	{ REALLY_BAD_STONE, "todo" },
+	{ COVID_STONE, "todo" },
+	{ BLAST_STONE, "todo" },
 
 	{0, "" }
 };

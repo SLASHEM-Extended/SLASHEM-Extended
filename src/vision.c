@@ -664,6 +664,7 @@ vision_recalc(control)
 	if (uwep && uwep->oartifact == ART_SEEVEEN) efflightradius += 2;
 	if (uwep && uwep->oartifact == ART_NURSING_THE_FLAME) efflightradius += 1;
 	if (uwep && uwep->oartifact == ART_DARKLITE && uwep->lamplit) efflightradius += 2;
+	if (uwep && uwep->oartifact == ART_ULTRA_ANNOYANCE) efflightradius += 2;
 
 	if (efflightradius > MAX_RADIUS) efflightradius = MAX_RADIUS; /* fail safe, why isn't that present in vanilla --Amy */
 

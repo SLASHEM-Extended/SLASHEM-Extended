@@ -1313,6 +1313,9 @@ E boolean have_unfairattackstone(void);
 E boolean have_badpartstone(void);
 E boolean have_completelybadpartstone(void);
 E boolean have_evilvariantstone(void);
+E boolean have_reallybadstone(void);
+E boolean have_blaststone(void);
+E boolean have_covidstone(void);
 
 E boolean have_femtrapfemmy(void);
 E boolean have_femtrapmadeleine(void);
@@ -2791,6 +2794,7 @@ E int randnastyenchantment(void);
 E int randomdisableproperty(void);
 E int randominsidetrap(void);
 E int randartmeleeweapon(void);
+E int randartpolearm(void);
 E int randartlightsaber(void);
 E int randartlauncher(void);
 E int randartmissile(void);
