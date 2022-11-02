@@ -19208,6 +19208,18 @@ register struct monst *mon;
 	if (Blind) pline("It caresses you...");
 	else You_feel("very attracted to %s.", mon_nam(mon));
 
+	if (touch_petrifies(mon->data)) {
+		if (!Stone_resistance || (!IntStone_resistance && !rn2(20))) {
+			char kbuf[BUFSZ];
+			You("touch %s's body, which unfortunately happens to be made of petrifyium.", mon_nam(mon));
+ 			if (!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
+				sprintf(kbuf, "having sex with %s", an(mon->data->mname));
+				instapetrify(kbuf);
+			}
+
+		}
+	}
+
 	if (mon->data == &mons[PM_GAY_MOOSE]) {
 		if (u.homosexual != 2) You("got turned, and are now gay.");
 		u.homosexual = 2;
