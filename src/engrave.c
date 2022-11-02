@@ -1147,8 +1147,40 @@ register int x, y;
 	    return (Underwater && !Is_waterlevel(&u.uz)) ? "bottom" : "water";
 	else if (is_ice(x,y))
 	    return "ice";
+	else if (is_ash(x,y))
+	    return "ash";
+	else if (is_farmland(x,y))
+	    return "farmland";
+	else if (is_sand(x,y))
+	    return "sand";
+	else if (is_grassland(x,y))
+	    return "grass";
+	else if (is_snow(x,y))
+	    return "snow";
 	else if (is_lava(x,y))
 	    return "lava";
+	else if (is_table(x,y))
+	    return "table";
+	else if (is_mattress(x,y))
+	    return "mattress";
+	else if (is_pavedfloor(x,y))
+	    return "pavement";
+	else if (is_highway(x,y))
+	    return "highway";
+	else if (is_carvedbed(x,y))
+	    return "bed";
+	else if (is_wagon(x,y))
+	    return "wagon";
+	else if (is_well(x,y))
+	    return "well";
+	else if (is_pentagram(x,y))
+	    return "pentagram";
+	else if (is_bubble(x,y))
+	    return "bubbles";
+	else if (is_poisonedwell(x,y))
+	    return "poisoned well";
+	else if (is_burningwagon(x,y))
+	    return "smoldering remains of a wagon";
 	else if (lev->typ == DRAWBRIDGE_DOWN)
 	    return "bridge";
 	else if(IS_ALTAR(levl[x][y].typ))
@@ -1182,6 +1214,12 @@ register int x, y;
 	    what = "shop's ceiling";
 	else if (IS_AIR(lev->typ))
 	    what = "sky";
+	else if (is_watertunnel(x,y))
+	    return "low ceiling";
+	else if (is_crystalwater(x,y))
+	    return "crystallized ceiling";
+	else if (is_stalactite(x,y))
+	    return "spiky ceiling";
 	else if (Underwater)
 	    what = "water's surface";
 	else if ((IS_ROOM(lev->typ) && !Is_earthlevel(&u.uz)) ||

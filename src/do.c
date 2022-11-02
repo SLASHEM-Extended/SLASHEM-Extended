@@ -1014,7 +1014,7 @@ register struct obj *obj;
 		pline("A sword tries to smash the upper part of the toilet, but somehow misses wildly!");
 		break;
 	case AMULET_OF_CLIMBING:
-		pline_The("toilet seems to be moving slowly but steadily towards the ceiling!");
+		pline_The("toilet seems to be moving slowly but steadily towards the %s!", ceiling(u.ux, u.uy));
 		break;
 	case AMULET_OF_TECHNICALITY:
 		pline_The("toilet momentarily looks like a space station.");

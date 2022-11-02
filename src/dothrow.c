@@ -1812,7 +1812,7 @@ int thrown;
 		}
 	    }
 	    if (u.dz < 0 && !Is_airlevel(&u.uz) &&
-		    !Underwater && !Is_waterlevel(&u.uz)) {
+		    !Underwater && !is_crystalwater(u.ux, u.uy) && !Is_waterlevel(&u.uz)) {
 		(void) toss_up(obj, rn2(5));
 	    } else {
 		hitfloor(obj);
