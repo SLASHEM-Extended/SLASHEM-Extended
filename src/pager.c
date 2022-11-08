@@ -28164,7 +28164,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You start fishing.  A magikarp is drawn!",
 	"You start fishing.  A gyarados is drawn! The gyarados breathes fire! Your cloak smoulders!--More--",
 	"You start fishing.  A waste of time...",
-	"You start fishing.  A waste of time... Maybe you shouldn't be fishing in a tiny pond that's certainly not gonna cotnain any fishes.",
+	"You start fishing.  A waste of time... Maybe you shouldn't be fishing in a tiny pond that's certainly not gonna contain any fishes.",
 
 };
 
