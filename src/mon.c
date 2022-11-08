@@ -714,7 +714,7 @@ register struct monst *mtmp;
 		newsym(x, y);
 		return (struct obj *)0;
 	    case PM_INTELLIMIND_FLAYER:
-		(void) mksobj_at(INTELLIGENCE_PACK, x, y, TRUE, FALSE, FALSE);
+		if (!mtmp->mrevived) (void) mksobj_at(INTELLIGENCE_PACK, x, y, TRUE, FALSE, FALSE);
 		newsym(x, y);
 		return (struct obj *)0;
 	    case PM_VAMPIRE:
@@ -1427,6 +1427,7 @@ register struct monst *mtmp;
 		mtmp->mnamelth = 0;
 		break;
 	    case PM_POTATO_GOLEM:
+		if (mtmp->mrevived) break;
 		num = d(2,2);
 		if (num > 1 && rn2(2)) num /= 2;
 		while(num--)
@@ -1532,6 +1533,7 @@ register struct monst *mtmp;
 		mtmp->mnamelth = 0;
 		break;
 	    case PM_SHOE_GOLEM:
+		if (mtmp->mrevived) break;
 		num = d(1,2);
 		if (num > 1 && rn2(2)) num /= 2;
 		while(num--)
@@ -1658,6 +1660,7 @@ register struct monst *mtmp;
 		mtmp->mnamelth = 0;
 		break;
 	    case PM_FUEL_SUNFLOWER:
+		if (mtmp->mrevived) break;
 		num = rn1(3,3);
 		while(num--)
 			obj = mksobj_at(POT_OIL, x, y, TRUE, FALSE, FALSE);
@@ -1698,6 +1701,7 @@ register struct monst *mtmp;
 		mksobj_at(UNICORN_HORN, x, y, TRUE, FALSE, FALSE);
 		goto default_1;
 	    case PM_SAVEUP_MINOTAUR:
+		if (mtmp->mrevived) goto default_1;
 		mksobj_at(WAN_DIGGING, x, y, TRUE, FALSE, FALSE);
 		goto default_1;
 	    case PM_HORNWALL:
@@ -1737,6 +1741,7 @@ register struct monst *mtmp;
 		break;
 
 	    case PM_PAPER_GOLEM:
+		if (mtmp->mrevived) break;
 		num = rnd(4);
 		while (num--)
 			obj = mksobj_at(SCR_BLANK_PAPER, x, y, TRUE, FALSE, FALSE);
@@ -1755,6 +1760,7 @@ register struct monst *mtmp;
 
 	    case PM_POTION_GOLEM:
 	    case PM_ALCHEMY_GOLEM:
+		if (mtmp->mrevived) break;
 		num = rnd(4);
 		while (num--)
 			obj = mksobj_at(rnd_class(POT_BOOZE, POT_AMNESIA), x, y, TRUE, FALSE, FALSE);
@@ -1770,6 +1776,7 @@ register struct monst *mtmp;
 		break;
 
 	    case PM_IMPLANT_GOLEM:
+		if (mtmp->mrevived) break;
 		num = rnd(3);
 		while (num--)
 			obj = mksobj_at(rnd_class(IMPLANT_OF_ABSORPTION, IMPLANT_OF_ENFORCING), x, y, TRUE, FALSE, FALSE);
@@ -1777,6 +1784,7 @@ register struct monst *mtmp;
 		break;
 
 	    case PM_SCROLL_GOLEM:
+		if (mtmp->mrevived) break;
 		num = rnd(4);
 		while (num--)
 			obj = mksobj_at(rnd_class(SCR_CREATE_MONSTER, SCR_BLANK_PAPER), x, y, TRUE, FALSE, FALSE);
@@ -1784,6 +1792,7 @@ register struct monst *mtmp;
 		break;
 
 	    case PM_WAND_GOLEM:
+		if (mtmp->mrevived) break;
 		num = rnd(3);
 		while (num--)
 			obj = mksobj_at(rnd_class(WAN_LIGHT, WAN_PSYBEAM), x, y, TRUE, FALSE, FALSE);
@@ -1791,6 +1800,7 @@ register struct monst *mtmp;
 		break;
 
 	    case PM_GIANT_PENIS_GOLEM:
+		if (mtmp->mrevived) break;
 		num = rnd(5);
 		while (num--)
 			obj = mksobj_at(rnd_class(WAN_LIGHT, WAN_PSYBEAM), x, y, TRUE, FALSE, FALSE);
