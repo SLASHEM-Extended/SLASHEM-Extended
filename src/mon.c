@@ -6836,8 +6836,13 @@ xkilled(mtmp, dest)
 	 * we assume that the player's symbiote has killed the monster --Amy */
 	if (u.symbioteattacking) {
 		u.cnd_symbiotekills++;
+		mightbooststat(A_CHA);
 		symbiotemaygainhealth();
 	}
+
+	if ((mtmp->data->msound == MS_HCALIEN) && !mtmp->mrevived) mightbooststat(A_INT);
+
+	if ((mtmp->data->geno & G_UNIQ) && !mtmp->mrevived) mightbooststat(A_CON);
 
 	if (Role_if(PM_DANCER) && u.dancercombostrike) {
 		u.dancercombostrike = 0;

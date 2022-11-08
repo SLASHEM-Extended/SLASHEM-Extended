@@ -2051,10 +2051,13 @@ int thrown;
 			if (!boomerfix) sho_obj_return_to_u(obj);	    /* display its flight */
 
 			/* djem so just trains so damn slowly... so here's an improvement --Amy */
-			if (is_lightsaber(obj)) use_skill(P_DJEM_SO, 1);
+			if (is_lightsaber(obj)) {
+				use_skill(P_DJEM_SO, 1);
+			}
 
 		    if (!impaired && rn2(100)) {
 			pline("%s to your hand!", Tobjnam(obj, "return"));
+			if (is_lightsaber(obj)) mightbooststat(A_DEX);
 			obj = addinv(obj);
 			(void) encumber_msg();
 			if (!boomerfix) {

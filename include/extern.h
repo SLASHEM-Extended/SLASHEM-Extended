@@ -123,6 +123,7 @@ E void losestr(int,BOOLEAN_P);
 E void restore_attrib(void);
 E void exercise(int,BOOLEAN_P);
 E void exerchk(void);
+E void mightbooststat(int);
 E void reset_attribute_clock(void);
 E void init_attr(int,BOOLEAN_P);
 E void redist_attr(void);

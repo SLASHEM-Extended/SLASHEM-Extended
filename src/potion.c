@@ -15429,6 +15429,7 @@ trophy_get()
 	if (RngeTeamSplat) pline("TROPHY GET!");
 	if (Race_if(PM_INHERITOR)) giftartifact();
 	if (Race_if(PM_HERALD)) heraldgift();
+	mightbooststat(A_CON);
 
 	if (uarmf && uarmf->oartifact == ART_DAD_S_MONEY) {
 		u.ugold += 1000;

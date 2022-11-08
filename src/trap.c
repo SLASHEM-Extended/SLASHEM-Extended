@@ -24306,6 +24306,7 @@ struct trap *ttmp;
 	if (!ttmp->madeby_u && u.ualign.type == A_LAWFUL) adjalign(1);
 	if (!ttmp->madeby_u) {
 		more_experienced(20 * (deepest_lev_reached(FALSE) + 1),0);
+		mightbooststat(A_DEX);
 		if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 			u.uhpmax += 3;
 			if (Upolyd) u.mhmax += 3;
@@ -24330,6 +24331,7 @@ struct trap *ttmp;
 	u.cnd_untrapamount++;
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	more_experienced(10 * (deepest_lev_reached(FALSE) + 1),0);
+	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 1;
 		if (Upolyd) u.mhmax += 1;
@@ -24364,6 +24366,7 @@ int exper;
 	else if (exper < 201) hpboost = 12;
 	else if (exper < 401) hpboost = 15;
 	else if (exper < 2402) hpboost = 20;
+	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += hpboost;
 		if (Upolyd) u.mhmax += hpboost;
@@ -24386,6 +24389,7 @@ struct trap *ttmp;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
 	more_experienced(3 * (deepest_lev_reached(FALSE) + 1),0);
+	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 2;
 		if (Upolyd) u.mhmax += 2;
@@ -24409,6 +24413,7 @@ struct trap *ttmp;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
 	more_experienced(3 * (deepest_lev_reached(FALSE) + 1),0);
+	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 2;
 		if (Upolyd) u.mhmax += 2;
@@ -24432,6 +24437,7 @@ struct trap *ttmp;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
 	more_experienced(3 * (deepest_lev_reached(FALSE) + 1),0);
+	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 3;
 		if (Upolyd) u.mhmax += 3;
@@ -24455,6 +24461,7 @@ struct trap *ttmp;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
 	more_experienced(3 * (deepest_lev_reached(FALSE) + 1),0);
+	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 3;
 		if (Upolyd) u.mhmax += 3;
@@ -24478,6 +24485,7 @@ struct trap *ttmp;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
 	more_experienced(3 * (deepest_lev_reached(FALSE) + 1),0);
+	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 3;
 		if (Upolyd) u.mhmax += 3;
@@ -24502,6 +24510,7 @@ struct trap *ttmp;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
 	more_experienced(1 * (deepest_lev_reached(FALSE) + 1),0);
+	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 1;
 		if (Upolyd) u.mhmax += 1;
@@ -24547,6 +24556,7 @@ struct trap *ttmp;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
 	more_experienced(5 * (deepest_lev_reached(FALSE) + 1),0);
+	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 5;
 		if (Upolyd) u.mhmax += 5;
@@ -24639,6 +24649,7 @@ struct trap *ttmp;
 			boolean cangivehp = ttmp->giveshp;
 			pline("You hurt %s so badly that she retreats her sexy butt, and decides to set up her high heels as a trap instead!", farttrapnames[ttmp->launch_otyp]);
 			u.cnd_untrapamount++;
+			mightbooststat(A_DEX);
 			more_experienced(500 * (deepest_lev_reached(FALSE) + 1),0);
 			/* always give boost because they're hard to disarm --Amy */
 			u.uhpmax += 25;
@@ -24724,6 +24735,7 @@ struct trap *ttmp;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
 	more_experienced(3 * (deepest_lev_reached(FALSE) + 1),0);
+	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 2;
 		if (Upolyd) u.mhmax += 2;
@@ -24748,6 +24760,7 @@ struct trap *ttmp;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
 	more_experienced(20 * (deepest_lev_reached(FALSE) + 1),0);
+	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 10;
 		if (Upolyd) u.mhmax += 10;
@@ -24829,6 +24842,7 @@ struct trap *ttmp;
 	if (!rn2(3)) cnv_trap_obj(POT_OIL, 4 - rnl(4), ttmp);
 	else deltrap(ttmp);
 	more_experienced(1 * (deepest_lev_reached(FALSE) + 1), 5);
+	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 5;
 		if (Upolyd) u.mhmax += 5;
@@ -24872,6 +24886,7 @@ struct trap *ttmp;
 	deltrap(ttmp);
 	newsym(trapx, trapy);
 	more_experienced(1 * (deepest_lev_reached(FALSE) + 1), 5);
+	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 1;
 		if (Upolyd) u.mhmax += 1;
@@ -24893,6 +24908,7 @@ int otyp;
 	You("disarm %s trap.", the_your[ttmp->madeby_u]);
 	u.cnd_untrapamount++;
 	more_experienced(10 * (deepest_lev_reached(FALSE) + 1), 0);
+	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 1;
 		if (Upolyd) u.mhmax += 1;

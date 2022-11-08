@@ -951,6 +951,7 @@ doforce()		/* try to force a chest with your weapon */
 
 				if (uwep && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) ) {
 					u.uwediturns++;
+					mightbooststat(rn2(2) ? A_STR : A_CON);
 					if (u.uwediturns >= 2) {
 						u.uwediturns = 0;
 						use_skill(P_WEDI, 1);
@@ -958,6 +959,7 @@ doforce()		/* try to force a chest with your weapon */
 				}
 				if (uwep && uwep->oartifact == ART_DIGSRU) {
 					u.uwediturns++;
+					mightbooststat(rn2(2) ? A_STR : A_CON);
 					if (u.uwediturns >= 2) {
 						u.uwediturns = 0;
 						use_skill(P_WEDI, 1);

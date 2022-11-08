@@ -1930,6 +1930,7 @@ int dieroll;
 						Your("%s cuts %s %s in half!", xname(obj), s_suffix(mon_nam(mon)), xname(monwep));
 						m_useup(mon, monwep);
 						u.cnd_weaponbreakcount++;
+						mightbooststat(A_CON);
 						/* If someone just shattered MY weapon, I'd flee! */
 						if (rn2(4)) {
 						    monflee(mon, d(2,3), TRUE, TRUE);
@@ -2196,6 +2197,7 @@ int dieroll;
 				      otense(monwep, "shatter"));
 				m_useup(mon, monwep);
 				u.cnd_weaponbreakcount++;
+				mightbooststat(A_CON);
 				/* If someone just shattered MY weapon, I'd flee! */
 				if (rn2(4)) {
 				    monflee(mon, d(2,3), TRUE, TRUE);
@@ -2257,6 +2259,7 @@ int dieroll;
 						Your("%s cuts %s %s in half!", xname(obj), s_suffix(mon_nam(mon)), xname(monwep));
 						m_useup(mon, monwep);
 						u.cnd_weaponbreakcount++;
+						mightbooststat(A_CON);
 						/* If someone just shattered MY weapon, I'd flee! */
 						if (rn2(4)) {
 						    monflee(mon, d(2,3), TRUE, TRUE);
@@ -3851,10 +3854,12 @@ melatechoice:
 				/* djem so was also training ultra slowly, so here's a multiplier */
 				if (wep && is_lightsaber(wep) && (wep->lamplit || Role_if(PM_SHADOW_JEDI)) && obj && (wep == obj)) {
 					use_skill(P_DJEM_SO, rnd(4));
+					mightbooststat(A_DEX);
 				}
 
 				if (wep && wep->oartifact == ART_RUSMA_SRO && obj && (wep == obj)) {
 					use_skill(P_DJEM_SO, rnd(4));
+					mightbooststat(A_DEX);
 				}
 
 				if (uwep && uwep->oartifact == ART_DJARWETHEREYET && uwep->lamplit && obj && objects[obj->otyp].oc_skill == -P_CROSSBOW) {

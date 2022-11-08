@@ -1616,6 +1616,7 @@ struct trap *trap;
     You("find %s.", an(defsyms[trap_to_defsym(tt)].explanation));
 	u.cnd_searchtrapcount++;
 	if (!trap->tdetected) {
+		mightbooststat(A_WIS);
 		use_skill(P_SEARCHING,1);
 		trap->tdetected = TRUE;
 	}
@@ -1773,6 +1774,7 @@ register int aflag;
  				if (mtmp != (struct monst *)0) {
 				    u.cnd_searchtrapcount++;
 				    exercise(A_WIS, TRUE);
+				    mightbooststat(A_WIS);
 				    use_skill(P_SEARCHING,1); /* you found a trap, so the skill should train --Amy */
 				}
 

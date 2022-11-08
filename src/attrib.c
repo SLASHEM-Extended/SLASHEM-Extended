@@ -2052,6 +2052,18 @@ exerchk()
 		 */
 		if(sgn(AEXE(i)) >= 1 && rn2(AVAL) > ((i != A_WIS) ? abs(AEXE(i)*2/3) : abs(AEXE(i))))
 		    continue;
+
+		/* make it even harder if they're already rather high --Amy */
+		if (sgn(AEXE(i)) >= 1) {
+			if (ABASE(i) >= 10 && !rn2(3)) continue;
+			if (ABASE(i) >= 12 && !rn2(2)) continue;
+			if (ABASE(i) >= 13 && !rn2(2)) continue;
+			if (ABASE(i) >= 14 && !rn2(2)) continue;
+			if (ABASE(i) >= 15 && !rn2(2)) continue;
+			if (ABASE(i) >= 16 && !rn2(2)) continue;
+			if (ABASE(i) >= 17 && !rn2(2)) continue;
+		}
+
 		/* different formula for abuse --Amy */
 		if(sgn(AEXE(i)) <= 0 && rn2(50) > ((i != A_WIS) ? abs(AEXE(i)*2/3) : abs(AEXE(i))))
 		    continue;
@@ -2094,6 +2106,40 @@ exerchk()
 #ifdef DEBUG
 	    pline("exerchk: next check at %ld.", u.next_check);
 #endif
+	}
+}
+
+void
+mightbooststat(stattoboost)
+int stattoboost;
+{
+	boolean statwillgoup = FALSE;
+	int statgoupchance = 100;
+
+	if (stattoboost < 0) {
+		impossible("tried to boost nonexistant stat %d", stattoboost);
+		return;
+	}
+	if (stattoboost >= A_MAX) {
+		impossible("tried to boost nonexistant stat %d", stattoboost);
+		return;
+	}
+
+	if (ABASE(stattoboost) >= 18) {
+		return;
+	}
+	if (ABASE(stattoboost) >= 12) {
+		if (ABASE(stattoboost) == 12) statgoupchance = 200;
+		else if (ABASE(stattoboost) == 13) statgoupchance = 300;
+		else if (ABASE(stattoboost) == 14) statgoupchance = 400;
+		else if (ABASE(stattoboost) == 15) statgoupchance = 600;
+		else if (ABASE(stattoboost) == 16) statgoupchance = 800;
+		else if (ABASE(stattoboost) == 17) statgoupchance = 1000;
+	}
+
+	if (!rn2(statgoupchance)) statwillgoup = TRUE;
+	if (statwillgoup) {
+		adjattrib(stattoboost, 1, 0, TRUE);
 	}
 }
 
