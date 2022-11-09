@@ -23994,7 +23994,7 @@ register int	mmflags;
 	if (FemtrapActiveKsenia && spawnswithsandals(mtmp->data)) mtmp->movement += 12;
 
 	/* Everything that can hide under an object will now do so. --Amy */
-      if(isok(x, y) && !issoviet && allow_special && (hides_under(ptr) || !rn2(100) ) ) { /* low chance of getting an object even if nonhiding, too */
+      if(isok(x, y) && !issoviet && !monster_is_revived && !mtmp->mrevived && allow_special && (hides_under(ptr) || !rn2(100) ) ) { /* low chance of getting an object even if nonhiding, too */
 
 	  if (rn2(3) && timebasedlowerchance() && (rn2(100) > u.concealitemchance))
 		(void) mkobj_at(0, x, y, TRUE, FALSE);
@@ -24002,33 +24002,33 @@ register int	mmflags;
 		(void) mkobj_at(COIN_CLASS, x, y, TRUE, FALSE);
 	}
 
-	if (isok(x, y) && ptr == &mons[PM_BEST_TREASURE_RUSSIAN]) {
+	if (isok(x, y) && ptr == &mons[PM_BEST_TREASURE_RUSSIAN] && !monster_is_revived && !mtmp->mrevived) {
 		(void) mkobj_at(0, x, y, TRUE, FALSE);
 		(void) mkobj_at(0, x, y, TRUE, FALSE);
 		(void) mkobj_at(0, x, y, TRUE, FALSE);
 	}
 
-	if (isok(x, y) && ptr == &mons[PM_MONKEY_WITH_OBJECT]) {
+	if (isok(x, y) && !monster_is_revived && !mtmp->mrevived && ptr == &mons[PM_MONKEY_WITH_OBJECT]) {
 		(void) mkobj_at(0, x, y, TRUE, FALSE);
 	}
 
 		/* and even lower chance to get extra objects */
-	if (isok(x, y) && timebasedlowerchance() && !rn2(200) && allow_special) {
+	if (isok(x, y) && !monster_is_revived && !mtmp->mrevived && timebasedlowerchance() && !rn2(200) && allow_special) {
 	  (void) mkobj_at(0, x, y, TRUE, FALSE);
 	  if (!rn2(3)) (void) mkobj_at(0, x, y, TRUE, FALSE);
 	}
-	if (isok(x, y) && timebasedlowerchance() && !rn2(400) && allow_special) {
+	if (isok(x, y) && !monster_is_revived && !mtmp->mrevived && timebasedlowerchance() && !rn2(400) && allow_special) {
 	  (void) mkobj_at(0, x, y, TRUE, FALSE);
 	  if (!rn2(3)) (void) mkobj_at(0, x, y, TRUE, FALSE);
 	  if (!rn2(9)) (void) mkobj_at(0, x, y, TRUE, FALSE);
 	}
-	if (isok(x, y) && timebasedlowerchance() && !rn2(800) && allow_special) {
+	if (isok(x, y) && !monster_is_revived && !mtmp->mrevived && timebasedlowerchance() && !rn2(800) && allow_special) {
 	  (void) mkobj_at(0, x, y, TRUE, FALSE);
 	  if (!rn2(3)) (void) mkobj_at(0, x, y, TRUE, FALSE);
 	  if (!rn2(9)) (void) mkobj_at(0, x, y, TRUE, FALSE);
 	  if (!rn2(27)) (void) mkobj_at(0, x, y, TRUE, FALSE);
 	}
-	if (isok(x, y) && timebasedlowerchance() && !rn2(1600) && allow_special) {
+	if (isok(x, y) && !monster_is_revived && !mtmp->mrevived && timebasedlowerchance() && !rn2(1600) && allow_special) {
 	  (void) mkobj_at(0, x, y, TRUE, FALSE);
 	  if (!rn2(3)) (void) mkobj_at(0, x, y, TRUE, FALSE);
 	  if (!rn2(9)) (void) mkobj_at(0, x, y, TRUE, FALSE);
@@ -24062,13 +24062,13 @@ register int	mmflags;
 	if (ptr == &mons[PM_SCROLLER_MASTER] && isok(x, y) && !(t_at(x, y)) )
 		(void) maketrap(x, y, ACTIVE_SUPERSCROLLER_TRAP, 0, FALSE);
 
-	if (ptr == &mons[PM_BOULDER_MASTER] && isok(x, y) && !(t_at(x, y)) )
+	if (ptr == &mons[PM_BOULDER_MASTER] && !monster_is_revived && !mtmp->mrevived && isok(x, y) && !(t_at(x, y)) )
 		(void) mksobj_at(BOULDER, x, y, TRUE, FALSE, FALSE);
 
-	if (ptr == &mons[PM_GOOD_ITEM_MASTER] && isok(x, y) )
+	if (ptr == &mons[PM_GOOD_ITEM_MASTER] && !monster_is_revived && !mtmp->mrevived && isok(x, y) )
 		(void) mksobj_at(usefulitem(), x, y, TRUE, FALSE, FALSE);
 
-	if (ptr == &mons[PM_BAD_ITEM_MASTER] && isok(x, y) )
+	if (ptr == &mons[PM_BAD_ITEM_MASTER] && !monster_is_revived && !mtmp->mrevived && isok(x, y) )
 		(void) mksobj_at(nastymusableitem(), x, y, TRUE, FALSE, FALSE);
 
 	if (ptr == &mons[PM_HOLE_MASTER] && isok(x, y) && !(t_at(x, y)) )

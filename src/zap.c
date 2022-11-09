@@ -2019,6 +2019,7 @@ register struct obj *obj;
 		    }
 		}
 		if (mtmp) {
+
 			if (obj->oeaten)
 				mtmp->mhp = eaten_stat(mtmp->mhp, obj);
 			/* track that this monster was revived at least once */
