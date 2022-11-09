@@ -2474,6 +2474,7 @@ newbossING:
 	      }
 
 	    case HEEL_TRAP:
+	    case ATTACKING_HEEL_TRAP:
 		{
 
 		ttmp->launch_otyp = rnd(26);
@@ -2482,6 +2483,7 @@ newbossING:
 	      }
 
 	    case FART_TRAP:
+	    case PERSISTENT_FART_TRAP:
 	    case FARTING_WEB:
 		{
 
@@ -2799,9 +2801,9 @@ newbossING:
 		 * some cases which can happen when digging
 		 * down while phazing thru solid areas
 		 */
-		else if ((lev->typ == STONE || lev->typ == SCORR) && !(lev->wall_info & W_NONDIGGABLE) )
+		else if ((lev->typ == STONE || lev->typ == SCORR) && (!(lev->wall_info & W_NONDIGGABLE) || u.dynamitehack) )
 		    lev->typ = CORR;
-		else if ((IS_WALL(lev->typ) || lev->typ == SDOOR) && !(lev->wall_info & W_NONDIGGABLE) )
+		else if ((IS_WALL(lev->typ) || lev->typ == SDOOR) && (!(lev->wall_info & W_NONDIGGABLE) || u.dynamitehack) )
 		    lev->typ = level.flags.is_maze_lev ? ROOM :
 			       level.flags.is_cavernous_lev ? CORR : DOOR;
 
@@ -3461,6 +3463,7 @@ int traptype;
 		case SPELL_FORGETTING_TRAP:
 		case SOUND_EFFECT_TRAP:
 		case TIMERUN_TRAP:
+		case REPEATING_NASTYCURSE_TRAP:
 		case REALLY_BAD_TRAP:
 		case COVID_TRAP:
 		case ARTIBLAST_TRAP:
@@ -3803,7 +3806,7 @@ unsigned trflags;
 		    (ttype == ARROW_TRAP && !trap->madeby_u) ? "an" :
 			a_your[trap->madeby_u],
 		    defsyms[trap_to_defsym(ttype)].explanation);
-		if (ttype == FART_TRAP) {
+		if (ttype == FART_TRAP || ttype == PERSISTENT_FART_TRAP) {
 			pline("But you're longing for a sexy girl so much, so...");
 		} else
 			return;
@@ -4165,6 +4168,7 @@ dothetrap:
 		break;
 
 	    case FART_TRAP:
+	    case PERSISTENT_FART_TRAP:
 
 		if (!trap->tseen) pline("You discover a construction, behind which there is a sexy girl waiting... but you can only see her butt. It seems that her name is %s.", farttrapnames[trap->launch_otyp]);
 		else pline("You can't resist the temptation to caress %s's sexy butt.", farttrapnames[trap->launch_otyp]);
@@ -12206,6 +12210,15 @@ madnesseffect:
 
 		 break;
 
+		 case REPEATING_NASTYCURSE_TRAP:
+
+			if (RepeatingNastycurseEffect) break;
+			u.cnd_nastytrapamount++;
+
+			RepeatingNastycurseEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
 		 case REALLY_BAD_TRAP:
 
 			if (ReallyBadTrapEffect) break;
@@ -14213,6 +14226,326 @@ callingoutdone:
 
 			break;
 
+		case TRAP_TELEPORTER:
+
+		{
+
+			register struct trap *twlk;
+			int wantx, wanty;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
+
+			deltrap(trap);
+
+			for(twlk = ftrap; twlk; twlk = twlk->ntrap) {
+				if (twlk->ttyp == MAGIC_PORTAL) continue;
+				wantx = rn1(COLNO-3,2);
+				wanty = rn2(ROWNO);
+				if (!isok(wantx, wanty)) continue;
+				if ((levl[wantx][wanty].typ <= DBWALL) && !canbeinawall) continue;
+				if (t_at(wantx, wanty)) continue;
+				twlk->tx = wantx;
+				twlk->ty = wanty;
+			}
+			You("stepped on a trigger!");
+			pline("A morphing sound can be heard.");
+
+		}
+
+			break;
+		case ALIGNMENT_TRASH_TRAP:
+
+			seetrap(trap);
+			pline("CLICK! You have triggered a trap!");
+			while (u.ualign.record >= 0) u.ualign.record -= 100;
+			pline("Now your alignment is trash.");
+
+			break;
+		case RESHUFFLE_TRAP:
+
+			You("stepped on a trigger!");
+			deltrap(trap);
+			{
+				register struct monst *nexusmon;
+
+				for(nexusmon = fmon; nexusmon; nexusmon = nexusmon->nmon) {
+					u_teleport_mon(nexusmon, FALSE);
+				}
+			}
+			pline("Warping sounds can be heard.");
+
+			break;
+		case MUSEHAND_TRAP:
+
+			You("stepped on a trigger!");
+			deltrap(trap);
+
+			{
+				register struct monst *nexusmon;
+
+				u.mongetshack = 100;
+
+				for(nexusmon = fmon; nexusmon; nexusmon = nexusmon->nmon) {
+					switch (rnd(3)) {
+						case 1:
+							(void) mongets(nexusmon, rnd_offensive_item(nexusmon));
+							break;
+						case 2:
+							(void) mongets(nexusmon, rnd_misc_item(nexusmon));
+							break;
+						case 3:
+							(void) mongets(nexusmon, rnd_defensive_item(nexusmon));
+							break;
+					}
+				}
+				u.mongetshack = 0;
+
+			}
+			pline("The monsters have been handed some musable items.");
+
+			break;
+		case DOGSIDE_TRAP:
+			seetrap(trap);
+			pline("CLICK! You have triggered a trap!");
+			if (u.alignlim > 0) {
+				u.alignlim = -u.alignlim;
+				if (u.ualign.record > u.alignlim) u.ualign.record = u.alignlim;
+				pline("Welcome to the dogside.");
+				if (FunnyHallu) pline("This was supposed to be the dark side but we misspelled it. Sorry.");
+			}
+			break;
+		case BANKRUPT_TRAP:
+			seetrap(trap);
+			pline("CLICK! You have triggered a trap!");
+
+			{
+				int tenth;
+				tenth = u.ugold + hidden_gold();
+				if (tenth > 0 && (u.moneydebt < tenth) ) {
+					u.moneydebt += tenth;
+					You("have to pay all of your money to the bank.");
+				} else {
+					You("are already bankrupt.");
+				}
+			}
+			break;
+		case FILLUP_TRAP:
+			pline("Uh-oh, should have watched your step...");
+			deltrap(trap);
+			hunkajunkriver();
+			randhunkrivers();
+			pline("What a hunk 'a junk there is on this level.");
+			break;
+		case AIRSTRIKE_TRAP:
+
+			You("stepped on a trigger!");
+			deltrap(trap);
+			{
+				struct obj *dynamite;
+				coord cc;
+				cc.x = rn1(COLNO-3,2);
+				cc.y = rn2(ROWNO);
+				dynamite = mksobj_at(STICK_OF_DYNAMITE, cc.x, cc.y, TRUE, FALSE, FALSE);
+				if (dynamite) {
+					You_hear("a sound that reminds you of fireworks.");
+					if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
+					else {
+						dynamite->dynamitekaboom = 1;
+						dynamite->quan = 1;
+						dynamite->owt = weight(dynamite);
+						attach_bomb_blow_timeout(dynamite, 0, 0);
+						run_timers();
+					}
+				}
+
+			}
+
+			break;
+		case DYNAMITE_TRAP: /* like airstrike trap, but can raze undiggable walls */
+
+			You("stepped on a trigger!");
+			deltrap(trap);
+			{
+				struct obj *dynamite;
+				coord cc;
+				cc.x = rn1(COLNO-3,2);
+				cc.y = rn2(ROWNO);
+				dynamite = mksobj_at(STICK_OF_DYNAMITE, cc.x, cc.y, TRUE, FALSE, FALSE);
+				if (dynamite) {
+					u.dynamitehack = TRUE;
+					You_hear("a sound that reminds you of fireworks.");
+					if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
+					else {
+						dynamite->dynamitekaboom = 1;
+						dynamite->quan = 1;
+						dynamite->owt = weight(dynamite);
+						attach_bomb_blow_timeout(dynamite, 0, 0);
+						run_timers();
+					}
+					u.dynamitehack = FALSE;
+				}
+
+			}
+
+			break;
+		case MALEVOLENCE_TRAP:
+			seetrap(trap);
+			pline("CLICK! You have triggered a trap!");
+			{
+				register struct obj *crsobj;
+				for(crsobj = invent; crsobj ; crsobj = crsobj->nobj) {
+					if (!stack_too_big(crsobj)) curse(crsobj);
+				}
+				pline("Your entire inventory becomes cursed.");
+			}
+			break;
+		case LEAFLET_TRAP:
+			You("stepped on a trigger!");
+			deltrap(trap);
+			pline("Huh, what is that sound? You seem to forget what you're doing...");
+			{
+				int leafletx, leaflety;
+				for (leafletx = 0; leafletx < COLNO; leafletx++) {
+					for (leaflety = 0; leaflety < ROWNO; leaflety++) {
+
+						if (isok(leafletx, leaflety)) {
+							if (!rn2(5) && !t_at(leafletx, leaflety)) {
+								maketrap(leafletx, leaflety, randomtrap(), 100, FALSE);
+							}
+							if (!rn2(25)) {
+								(void) mkobj_at(0, leafletx, leaflety, TRUE, FALSE);
+							}
+						}
+					}
+				}
+
+			}
+			break;
+		case TENTADEEP_TRAP:
+			pline("Uh-oh, should have watched your step...");
+			deltrap(trap);
+
+			{
+				int leafletx, leaflety;
+				for (leafletx = 0; leafletx < COLNO; leafletx++) {
+					for (leaflety = 0; leaflety < ROWNO; leaflety++) {
+
+						/* need a bitwise xor to make sure the monster doesn't try to spawn on your position */
+						if (isok(leafletx, leaflety) && ((u.ux == leafletx) != (u.uy == leaflety)) ) {
+							(void) makemon((struct permonst *)0, leafletx, leaflety, MM_ADJACENTOK);
+						}
+
+					}
+				}
+			}
+			pline("The monsters are hidden deep in the walls.");
+
+			break;
+		case STATHALF_TRAP:
+			pline("CLICK! You have triggered a trap!");
+			seetrap(trap);
+			{
+				int halfstat = rn2(A_MAX);
+				if (ABASE(halfstat) > 3) {
+					ABASE(halfstat) /= 2;
+					if (ABASE(halfstat) < 3) ABASE(halfstat) = 3;
+					AMAX(halfstat) = ABASE(halfstat);
+					switch (halfstat) {
+
+						case A_STR:
+							pline("Your strength has been halved!"); break;
+						case A_DEX:
+							pline("Your dexterity has been halved!"); break;
+						case A_CON:
+							pline("Your constitution has been halved!"); break;
+						case A_CHA:
+							pline("Your charisma has been halved!"); break;
+						case A_INT:
+							pline("Your intelligence has been halved!"); break;
+						case A_WIS:
+							pline("Your wisdom has been halved!"); break;
+
+					}
+
+				}
+			}
+			break;
+		case CUTSTAT_TRAP:
+			pline("CLICK! You have triggered a trap!");
+			seetrap(trap);
+			{
+				int halfstat = rn2(A_MAX);
+				while (ABASE(halfstat) > 3 && (!attr_will_go_up(halfstat, FALSE))) {
+					ABASE(halfstat) -= 1;
+					AMAX(halfstat) -= 1;
+
+				}
+
+				switch (halfstat) {
+
+					case A_STR:
+						pline("Your strength has been cut down to size!"); break;
+					case A_DEX:
+						pline("Your dexterity has been cut down to size!"); break;
+					case A_CON:
+						pline("Your constitution has been cut down to size!"); break;
+					case A_CHA:
+						pline("Your charisma has been cut down to size!"); break;
+					case A_INT:
+						pline("Your intelligence has been cut down to size!"); break;
+					case A_WIS:
+						pline("Your wisdom has been cut down to size!"); break;
+
+				}
+
+			}
+			break;
+		case RARE_SPAWN_TRAP:
+			pline("Uh-oh, should have watched your step...");
+			deltrap(trap);
+
+			DifficultyIncreased += 1;
+			HighlevelStatus += 1;
+			EntireLevelMode += 1;
+
+			(void) makemon((struct permonst *)0, u.ux, u.uy, MM_ADJACENTOK);
+
+			pline("Suddenly there's a rare monster next to you!");
+
+			break;
+		case YOU_ARE_AN_IDIOT_TRAP:
+			pline("CLICK! You have triggered a trap!");
+			deltrap(trap);
+
+			{
+				register struct monst *offmon;
+				if ((offmon = makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS)) != 0) {
+					register int inventcount = inv_cnt();
+					inventcount *= 2;
+
+					if (inventcount > 0) {
+
+						while (inv_cnt() && inventcount) {
+							char bufof[BUFSZ];
+							bufof[0] = '\0';
+							steal(offmon, bufof, TRUE, TRUE);
+							inventcount--;
+						}
+					}
+					verbalize("Ha ha ha. You are an idiot.");
+					pline("All of your possessions have been stolen!");
+				}
+
+			}
+
+			break;
+		case NASTYCURSE_TRAP:
+			pline("CLICK! You have triggered a trap!");
+			seetrap(trap);
+			if (!rn2(10)) deltrap(trap); /* prevent endless abuse --Amy */
+			nastytrapcurse();
+			break;
+
 		case TENTH_TRAP:
 			You("stepped on a trigger!");
 			seetrap(trap);
@@ -14220,7 +14553,7 @@ callingoutdone:
 			{
 				int tenth;
 				tenth = u.ugold + hidden_gold();
-				if (tenth > 0) {
+				if (tenth > 0 && (u.moneydebt < tenth) ) {
 					tenth /= 10;
 					if (tenth < 1) tenth = 1;
 					u.moneydebt += tenth;
@@ -17096,7 +17429,7 @@ skillrandomizeredo:
 
 		 case NASTINESS_TRAP:
 
-			switch (rnd(248)) {
+			switch (rnd(249)) {
 
 				case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 				case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -17373,6 +17706,7 @@ skillrandomizeredo:
 			case 246: ReallyBadTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 247: CovidTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 248: ArtiblastEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 249: RepeatingNastycurseEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 			}
 
@@ -17432,6 +17766,7 @@ skillrandomizeredo:
 		 break;
 
 		 case HEEL_TRAP:
+		 case ATTACKING_HEEL_TRAP:
 		{
 			int projectiledamage = 1;
 			int randomkick = rnd(15);
@@ -17986,7 +18321,7 @@ skillrandomizeredo:
 
 		 case AUTOMATIC_SWITCHER:
 
-			if (RMBLoss || Superscroller || DisplayLoss || SpellLoss || YellowSpells || AutoDestruct || MemoryLoss || InventoryLoss || BlackNgWalls || MenuBug || SpeedBug || FreeHandLoss || Unidentify || Thirst || LuckLoss || ShadesOfGrey || FaintActive || Itemcursing || DifficultyIncreased || Deafness || CasterProblem || WeaknessProblem || NoDropProblem || RotThirteen || BishopGridbug || ConfusionProblem || DSTWProblem || StatusTrapProblem || AlignmentProblem || StairsProblem || UninformationProblem || TimerunBug || BadPartBug || CompletelyBadPartBug || EvilVariantActive || IntrinsicLossProblem || BloodLossProblem || BadEffectProblem || TrapCreationProblem ||AutomaticVulnerabilitiy || TeleportingItems || NastinessProblem || CaptchaProblem || RespawnProblem || FarlookProblem || RecurringAmnesia || BigscriptEffect || BankTrapEffect || MapTrapEffect || TechTrapEffect || RecurringDisenchant || verisiertEffect || ChaosTerrain || Muteness || EngravingDoesntWork || MagicDeviceEffect || BookTrapEffect || LevelTrapEffect || QuizTrapEffect || FastMetabolismEffect || NoReturnEffect || AlwaysEgotypeMonsters || TimeGoesByFaster ||  FoodIsAlwaysRotten || AllSkillsUnskilled || AllStatsAreLower || PlayerCannotTrainSkills || PlayerCannotExerciseStats || TurnLimitation || WeakSight || RandomMessages || Desecration || StarvationEffect || NoDropsEffect || LowEffects || InvisibleTrapsEffect || GhostWorld || Dehydration || HateTrapEffect || TotterTrapEffect || Nonintrinsics || Dropcurses || Nakedness || Antileveling || ItemStealingEffect || Rebellions || CrapEffect || ProjectilesMisfire || WallTrapping || DisconnectedStairs || InterfaceScrewed || Bossfights || EntireLevelMode || BonesLevelChange || AutocursingEquipment || HighlevelStatus || SpellForgetting || SoundEffectBug || LootcutBug || MonsterSpeedBug || ScalingBug || EnmityBug || WhiteSpells || CompleteGraySpells || QuasarVision || MommaBugEffect || HorrorBugEffect || ArtificerBug || WereformBug || NonprayerBug || EvilPatchEffect || HardModeEffect || SecretAttackBug || EaterBugEffect || CovetousnessBug || NotSeenBug || DarkModeBug || AntisearchEffect || HomicideEffect || NastynationBug || WakeupCallBug || GrayoutBug || GrayCenterBug || CheckerboardBug || ClockwiseSpinBug || CounterclockwiseSpin || LagBugEffect || BlesscurseEffect || DeLightBug || DischargeBug || TrashingBugEffect || FilteringBug || DeformattingBug || FlickerStripBug || UndressingEffect || Hyperbluewalls || NoliteBug || ParanoiaBugEffect || FleecescriptBug || InterruptEffect || DustbinBug || ManaBatteryBug || Monsterfingers || MiscastBug || MessageSuppression || StuckAnnouncement || BloodthirstyEffect || MaximumDamageBug || LatencyBugEffect || StarlitBug || KnowledgeBug || HighscoreBug || PinkSpells || GreenSpells || EvencoreEffect || UnderlayerBug || DamageMeterBug || ArbitraryWeightBug || FuckedInfoBug || BlackSpells || CyanSpells || HeapEffectBug || BlueSpells || TronEffect || RedSpells || TooHeavyEffect || ElongationBug || WrapoverEffect || DestructionEffect || MeleePrefixBug || AutomoreBug || UnfairAttackBug || OrangeSpells || VioletSpells || LongingEffect || CursedParts || Quaversal || AppearanceShuffling || BrownSpells || Choicelessness || Goldspells || Deprovement || InitializationFail || GushlushEffect || SoiltypeEffect || DangerousTerrains || FalloutEffect || MojibakeEffect || GravationEffect || UncalledEffect || ExplodingDiceEffect || PermacurseEffect || ShroudedIdentity || FeelerGauges || LongScrewup || WingYellowChange || LifeSavingBug || CurseuseEffect || CutNutritionEffect || SkillLossEffect || AutopilotEffect || MysteriousForceActive || MonsterGlyphChange || ChangingDirectives || ContainerKaboom || StealDegrading || LeftInventoryBug || FluctuatingSpeed || TarmuStrokingNora || FailureEffects || BrightCyanSpells || FrequentationSpawns || PetAIScrewed || SatanEffect || RememberanceEffect || PokelieEffect || AlwaysAutopickup || DywypiProblem || SilverSpells || MetalSpells || PlatinumSpells || ManlerEffect || DoorningEffect || NownsibleEffect || ElmStreetEffect || MonnoiseEffect || RangCallEffect || RecurringSpellLoss || AntitrainingEffect || TechoutBug || StatDecay || Movemork || SanityTrebleEffect || StatDecreaseBug || SimeoutBug || GiantExplorerBug || YawmBug || TrapwarpingBug || EnthuEffect || MikraEffect || GotsTooGoodEffect || NoFunWallsEffect || CradleChaosEffect || TezEffect || KillerRoomEffect || ReallyBadTrapEffect || CovidTrapEffect || ArtiblastEffect) {
+			if (RMBLoss || Superscroller || DisplayLoss || SpellLoss || YellowSpells || AutoDestruct || MemoryLoss || InventoryLoss || BlackNgWalls || MenuBug || SpeedBug || FreeHandLoss || Unidentify || Thirst || LuckLoss || ShadesOfGrey || FaintActive || Itemcursing || DifficultyIncreased || Deafness || CasterProblem || WeaknessProblem || NoDropProblem || RotThirteen || BishopGridbug || ConfusionProblem || DSTWProblem || StatusTrapProblem || AlignmentProblem || StairsProblem || UninformationProblem || TimerunBug || RepeatingNastycurseEffect || BadPartBug || CompletelyBadPartBug || EvilVariantActive || IntrinsicLossProblem || BloodLossProblem || BadEffectProblem || TrapCreationProblem ||AutomaticVulnerabilitiy || TeleportingItems || NastinessProblem || CaptchaProblem || RespawnProblem || FarlookProblem || RecurringAmnesia || BigscriptEffect || BankTrapEffect || MapTrapEffect || TechTrapEffect || RecurringDisenchant || verisiertEffect || ChaosTerrain || Muteness || EngravingDoesntWork || MagicDeviceEffect || BookTrapEffect || LevelTrapEffect || QuizTrapEffect || FastMetabolismEffect || NoReturnEffect || AlwaysEgotypeMonsters || TimeGoesByFaster ||  FoodIsAlwaysRotten || AllSkillsUnskilled || AllStatsAreLower || PlayerCannotTrainSkills || PlayerCannotExerciseStats || TurnLimitation || WeakSight || RandomMessages || Desecration || StarvationEffect || NoDropsEffect || LowEffects || InvisibleTrapsEffect || GhostWorld || Dehydration || HateTrapEffect || TotterTrapEffect || Nonintrinsics || Dropcurses || Nakedness || Antileveling || ItemStealingEffect || Rebellions || CrapEffect || ProjectilesMisfire || WallTrapping || DisconnectedStairs || InterfaceScrewed || Bossfights || EntireLevelMode || BonesLevelChange || AutocursingEquipment || HighlevelStatus || SpellForgetting || SoundEffectBug || LootcutBug || MonsterSpeedBug || ScalingBug || EnmityBug || WhiteSpells || CompleteGraySpells || QuasarVision || MommaBugEffect || HorrorBugEffect || ArtificerBug || WereformBug || NonprayerBug || EvilPatchEffect || HardModeEffect || SecretAttackBug || EaterBugEffect || CovetousnessBug || NotSeenBug || DarkModeBug || AntisearchEffect || HomicideEffect || NastynationBug || WakeupCallBug || GrayoutBug || GrayCenterBug || CheckerboardBug || ClockwiseSpinBug || CounterclockwiseSpin || LagBugEffect || BlesscurseEffect || DeLightBug || DischargeBug || TrashingBugEffect || FilteringBug || DeformattingBug || FlickerStripBug || UndressingEffect || Hyperbluewalls || NoliteBug || ParanoiaBugEffect || FleecescriptBug || InterruptEffect || DustbinBug || ManaBatteryBug || Monsterfingers || MiscastBug || MessageSuppression || StuckAnnouncement || BloodthirstyEffect || MaximumDamageBug || LatencyBugEffect || StarlitBug || KnowledgeBug || HighscoreBug || PinkSpells || GreenSpells || EvencoreEffect || UnderlayerBug || DamageMeterBug || ArbitraryWeightBug || FuckedInfoBug || BlackSpells || CyanSpells || HeapEffectBug || BlueSpells || TronEffect || RedSpells || TooHeavyEffect || ElongationBug || WrapoverEffect || DestructionEffect || MeleePrefixBug || AutomoreBug || UnfairAttackBug || OrangeSpells || VioletSpells || LongingEffect || CursedParts || Quaversal || AppearanceShuffling || BrownSpells || Choicelessness || Goldspells || Deprovement || InitializationFail || GushlushEffect || SoiltypeEffect || DangerousTerrains || FalloutEffect || MojibakeEffect || GravationEffect || UncalledEffect || ExplodingDiceEffect || PermacurseEffect || ShroudedIdentity || FeelerGauges || LongScrewup || WingYellowChange || LifeSavingBug || CurseuseEffect || CutNutritionEffect || SkillLossEffect || AutopilotEffect || MysteriousForceActive || MonsterGlyphChange || ChangingDirectives || ContainerKaboom || StealDegrading || LeftInventoryBug || FluctuatingSpeed || TarmuStrokingNora || FailureEffects || BrightCyanSpells || FrequentationSpawns || PetAIScrewed || SatanEffect || RememberanceEffect || PokelieEffect || AlwaysAutopickup || DywypiProblem || SilverSpells || MetalSpells || PlatinumSpells || ManlerEffect || DoorningEffect || NownsibleEffect || ElmStreetEffect || MonnoiseEffect || RangCallEffect || RecurringSpellLoss || AntitrainingEffect || TechoutBug || StatDecay || Movemork || SanityTrebleEffect || StatDecreaseBug || SimeoutBug || GiantExplorerBug || YawmBug || TrapwarpingBug || EnthuEffect || MikraEffect || GotsTooGoodEffect || NoFunWallsEffect || CradleChaosEffect || TezEffect || KillerRoomEffect || ReallyBadTrapEffect || CovidTrapEffect || ArtiblastEffect) {
 
 			cure_nasty_traps();
 
@@ -20687,6 +21022,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case ALIGNMENT_TRAP:
 		case UNINFORMATION_TRAP:
 		case TIMERUN_TRAP:
+		case REPEATING_NASTYCURSE_TRAP:
 		case CALLING_OUT_TRAP:
 		case FIELD_BREAK_TRAP:
 		case TENTH_TRAP:
@@ -20694,6 +21030,26 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case INVERSION_TRAP:
 		case WINCE_TRAP:
 		case U_HAVE_BEEN_TRAP:
+
+		case PERSISTENT_FART_TRAP:
+		case ATTACKING_HEEL_TRAP:
+		case TRAP_TELEPORTER:
+		case ALIGNMENT_TRASH_TRAP:
+		case RESHUFFLE_TRAP:
+		case MUSEHAND_TRAP:
+		case DOGSIDE_TRAP:
+		case BANKRUPT_TRAP:
+		case FILLUP_TRAP:
+		case AIRSTRIKE_TRAP:
+		case DYNAMITE_TRAP:
+		case MALEVOLENCE_TRAP:
+		case LEAFLET_TRAP:
+		case TENTADEEP_TRAP:
+		case STATHALF_TRAP:
+		case CUTSTAT_TRAP:
+		case RARE_SPAWN_TRAP:
+		case YOU_ARE_AN_IDIOT_TRAP:
+		case NASTYCURSE_TRAP:
 
 		case REALLY_BAD_TRAP:
 		case COVID_TRAP:
@@ -24058,11 +24414,12 @@ struct trap *ttmp;
 	 	chance = 30;
 	if (ttmp->ttyp == ACTIVE_SUPERSCROLLER_TRAP) chance = 20;
 	if (ttmp->ttyp == HEEL_TRAP) chance = 10;
+	if (ttmp->ttyp == ATTACKING_HEEL_TRAP) chance = 10;
 	if (ttmp->ttyp == GLYPH_OF_WARDING) chance = 5;
 	if (ttmp->ttyp == UNKNOWN_TRAP) chance = 5;
 	if (ttmp->ttyp == SCYTHING_BLADE) chance = 4;
 
-	if (ttmp->ttyp == FART_TRAP) chance = (ttmp->launch_otyp == 2) ? 4 : (ttmp->launch_otyp == 5) ? 3 : (ttmp->launch_otyp == 12) ? 7 : (ttmp->launch_otyp == 18) ? 6 : (ttmp->launch_otyp == 20) ? 8 : (ttmp->launch_otyp == 24) ? 15 : (ttmp->launch_otyp == 25) ? 20 :  (ttmp->launch_otyp == 27) ? 2 : (ttmp->launch_otyp == 28) ? 5 : (ttmp->launch_otyp == 29) ? 7 : (ttmp->launch_otyp == 31) ? 20 : (ttmp->launch_otyp == 41) ? 10 : (ttmp->launch_otyp == 42) ? 100 : (ttmp->launch_otyp < 12) ? 5 : (ttmp->launch_otyp < 33) ? 10 : 20;
+	if (ttmp->ttyp == FART_TRAP || ttmp->ttyp == PERSISTENT_FART_TRAP) chance = (ttmp->launch_otyp == 2) ? 4 : (ttmp->launch_otyp == 5) ? 3 : (ttmp->launch_otyp == 12) ? 7 : (ttmp->launch_otyp == 18) ? 6 : (ttmp->launch_otyp == 20) ? 8 : (ttmp->launch_otyp == 24) ? 15 : (ttmp->launch_otyp == 25) ? 20 :  (ttmp->launch_otyp == 27) ? 2 : (ttmp->launch_otyp == 28) ? 5 : (ttmp->launch_otyp == 29) ? 7 : (ttmp->launch_otyp == 31) ? 20 : (ttmp->launch_otyp == 41) ? 10 : (ttmp->launch_otyp == 42) ? 100 : (ttmp->launch_otyp < 12) ? 5 : (ttmp->launch_otyp < 33) ? 10 : 20;
 
 	if (Confusion || Hallucination) chance++;
 	if (Blind) chance++;
@@ -25112,6 +25469,7 @@ boolean force;
 			case THROWING_STAR_TRAP:
 				return disarm_shooting_trap(ttmp, SHURIKEN);
 			case HEEL_TRAP:
+			case ATTACKING_HEEL_TRAP:
 				return disarm_heel_trap(ttmp);
 			case ARROW_TRAP:
 				return disarm_shooting_trap(ttmp, ARROW);
@@ -25134,6 +25492,7 @@ boolean force;
 			case UNKNOWN_TRAP:
 				return disarm_unknowntrap(ttmp);
 			case FART_TRAP:
+			case PERSISTENT_FART_TRAP:
 				return disarm_fartingtrap(ttmp);
 			case ACTIVE_SUPERSCROLLER_TRAP:
 				return disarm_active_superscroller(ttmp);

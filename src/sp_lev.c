@@ -647,6 +647,45 @@ selecttrap:
 	     case ACTIVE_SUPERSCROLLER_TRAP: goto selecttrap;
 			break;
 
+		    case PERSISTENT_FART_TRAP:
+			if (rn2(evilfriday ? 5 : 16) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case ATTACKING_HEEL_TRAP:
+			if (rn2(evilfriday ? 5 : 16) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case ALIGNMENT_TRASH_TRAP:
+			if (rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case DOGSIDE_TRAP:
+			if (rn2(evilfriday ? 10 : 100) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case BANKRUPT_TRAP:
+			if (rn2(evilfriday ? 10 : 100) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case DYNAMITE_TRAP:
+			if (rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case MALEVOLENCE_TRAP:
+			if (rn2(evilfriday ? 10 : 100) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case LEAFLET_TRAP:
+			if (rn2(evilfriday ? 2 : 20) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case TENTADEEP_TRAP:
+			if (rn2(evilfriday ? 3 : 15) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case STATHALF_TRAP:
+			if (rn2(evilfriday ? 8 : 50) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case RARE_SPAWN_TRAP:
+			if (rn2(evilfriday ? 3 : 15) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case YOU_ARE_AN_IDIOT_TRAP:
+			if (rn2(evilfriday ? 50 : 200) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case NASTYCURSE_TRAP:
+			if (rn2(evilfriday ? 10 : 100) && !NastyTrapNation) goto selecttrap;
+			break;
 	     case ITEM_TELEP_TRAP:
 			if (rn2(evilfriday ? 3 : 15) && !NastyTrapNation) goto selecttrap;
 			break;
@@ -733,6 +772,9 @@ selecttrap:
 			break;
 	     case TIMERUN_TRAP:
 			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 15 : 30 )) goto selecttrap;
+			break;
+		    case REPEATING_NASTYCURSE_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 50 : 100 )) goto selecttrap;
 			break;
 		    case REALLY_BAD_TRAP:
 			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) goto selecttrap;
@@ -2006,6 +2048,20 @@ selecttrap2:
 
 	      if (rtrap == ITEM_TELEP_TRAP && rn2(evilfriday ? 3 : 15) && !NastyTrapNation) goto selecttrap2;
 
+	      if (rtrap == PERSISTENT_FART_TRAP && rn2(evilfriday ? 5 : 16) && !NastyTrapNation) goto selecttrap2;
+	      if (rtrap == ATTACKING_HEEL_TRAP && rn2(evilfriday ? 5 : 16) && !NastyTrapNation) goto selecttrap2;
+	      if (rtrap == ALIGNMENT_TRASH_TRAP && rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap2;
+	      if (rtrap == DOGSIDE_TRAP && rn2(evilfriday ? 10 : 100) && !NastyTrapNation) goto selecttrap2;
+	      if (rtrap == BANKRUPT_TRAP && rn2(evilfriday ? 10 : 100) && !NastyTrapNation) goto selecttrap2;
+	      if (rtrap == DYNAMITE_TRAP && rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap2;
+	      if (rtrap == MALEVOLENCE_TRAP && rn2(evilfriday ? 10 : 100) && !NastyTrapNation) goto selecttrap2;
+	      if (rtrap == LEAFLET_TRAP && rn2(evilfriday ? 2 : 20) && !NastyTrapNation) goto selecttrap2;
+	      if (rtrap == TENTADEEP_TRAP && rn2(evilfriday ? 3 : 15) && !NastyTrapNation) goto selecttrap2;
+	      if (rtrap == STATHALF_TRAP && rn2(evilfriday ? 8 : 50) && !NastyTrapNation) goto selecttrap2;
+	      if (rtrap == RARE_SPAWN_TRAP && rn2(evilfriday ? 3 : 15) && !NastyTrapNation) goto selecttrap2;
+	      if (rtrap == YOU_ARE_AN_IDIOT_TRAP && rn2(evilfriday ? 50 : 200) && !NastyTrapNation) goto selecttrap2;
+	      if (rtrap == NASTYCURSE_TRAP && rn2(evilfriday ? 10 : 100) && !NastyTrapNation) goto selecttrap2;
+
 	      if (rtrap == LAVA_TRAP && rn2(evilfriday ? 10 : 50) && !NastyTrapNation) goto selecttrap2;
 	      if (rtrap == FLOOD_TRAP && rn2(evilfriday ? 2 : 20) && !NastyTrapNation) goto selecttrap2;
 	      if (rtrap == DRAIN_TRAP && (rn2(3) && !evilfriday) && !NastyTrapNation) goto selecttrap2;
@@ -2033,6 +2089,7 @@ selecttrap2:
 	      if (rtrap == ALIGNMENT_TRAP && !Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 3 : 7 )) goto selecttrap2;
 	      if (rtrap == STAIRS_TRAP && !Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 11 )) goto selecttrap2;
 	      if (rtrap == UNINFORMATION_TRAP && !Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 3 )) goto selecttrap2;
+	      if (rtrap == REPEATING_NASTYCURSE_TRAP && !Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 50 : 100 )) goto selecttrap2;
 	      if (rtrap == TIMERUN_TRAP && !Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 15 : 30 )) goto selecttrap2;
 	      if (rtrap == REALLY_BAD_TRAP && !Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) goto selecttrap2;
 	      if (rtrap == COVID_TRAP && !Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 15 : 30 )) goto selecttrap2;

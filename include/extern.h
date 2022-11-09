@@ -1159,6 +1159,7 @@ E boolean have_highlevelstone(void);
 E boolean have_spellforgettingstone(void);
 E boolean have_soundeffectstone(void);
 E boolean have_timerunstone(void);
+E boolean have_nastycursestone(void);
 
 E boolean have_giantexplorerstone(void);
 E boolean have_trapwarpstone(void);

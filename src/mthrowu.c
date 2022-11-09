@@ -96,6 +96,9 @@ const char *name;	/* if null, then format `obj' */
 		case DIFFICULT_SHIELD:
 			shieldblockrate = 40;
 			break;
+		case SPI_IMAGE_MOOSE_SHIELD:
+			shieldblockrate = 45;
+			break;
 		case ONE_EATING_SIGN:
 			shieldblockrate = 50;
 			break;
@@ -1066,6 +1069,9 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 			case BULL_SHIELD:
 			case DIFFICULT_SHIELD:
 				shieldblockrate = 50;
+				break;
+			case SPI_IMAGE_MOOSE_SHIELD:
+				shieldblockrate = 55;
 				break;
 			case ONE_EATING_SIGN:
 				shieldblockrate = 60;

@@ -947,6 +947,7 @@ struct you {
 	boolean nastinator246;
 	boolean nastinator247;
 	boolean nastinator248;
+	boolean nastinator249;
 
 	/* SJW role - I wonder if there'd be an easier way to do this... --Amy */
 	int sjwL1E1;
@@ -1652,6 +1653,8 @@ struct you {
 	boolean linkmasterswordhack;
 	boolean wollohhack;
 	boolean polyattackhack;
+	boolean dynamitehack;
+	int mongetshack;
 
 	int secretcodenumber;
 

@@ -6901,6 +6901,21 @@ have_blaststone()
 	return(FALSE);
 }
 
+boolean
+have_nastycursestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == NASTYCURSE_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator249) return TRUE;
+	if (sjwcheck(249)) return TRUE;
+	return(FALSE);
+}
+
+
 
 struct obj *
 o_on(id, objchn)
@@ -12941,6 +12956,8 @@ boolean knoweverything;
 				pline("A glass shield that reflects beams at who- or whatever shot them."); break;
 			case TEZ_SHIELD:
 				pline("This shield turns monsters opaque. It has low armor class and low magic cancellation."); break;
+			case SPI_IMAGE_MOOSE_SHIELD:
+				pline("This shield causes your armor pieces to become cursed with Team Nastytrap. It has excellent armor class and 3 points of magic cancellation."); break;
 			case RAPIRAPI:
 				pline("This is a good shield made of mineral."); break;
 			case HIDE_SHIELD:
@@ -17826,6 +17843,8 @@ boolean knoweverything;
 				pline("A stone that curses itself and causes verbalized sound effects."); break;
 			case TIME_USE_STONE:
 				pline("A stone that curses itself and causes every action to take time."); break;
+			case NASTYCURSE_STONE:
+				pline("A stone that curses itself and causes items to be enchanted with Team Nastytrap."); break;
 			case BAD_PART_STONE:
 				pline("A stone that curses itself and causes you to be in the bad part."); break;
 			case COMPLETELY_BAD_PART_STONE:

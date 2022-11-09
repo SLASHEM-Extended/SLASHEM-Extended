@@ -2629,6 +2629,9 @@ inaccurateguns:
 			case DIFFICULT_SHIELD:
 				shieldblockrate = 50;
 				break;
+			case SPI_IMAGE_MOOSE_SHIELD:
+				shieldblockrate = 55;
+				break;
 			case ONE_EATING_SIGN:
 				shieldblockrate = 60;
 				break;

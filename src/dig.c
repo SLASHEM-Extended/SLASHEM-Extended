@@ -215,10 +215,10 @@ dig_check(madeby, verbose, x, y)
 	    if(verbose) pline_The("water splashes and subsides.");
 	    return(FALSE);
 	} else if ((IS_ROCK(levl[x][y].typ) && levl[x][y].typ != SDOOR &&
-		      (levl[x][y].wall_info & W_NONDIGGABLE) != 0)
+		      ((levl[x][y].wall_info & W_NONDIGGABLE) != 0 && !(u.dynamitehack)) )
 		|| (IS_FARMLAND(levl[x][y].typ)) || (IS_MOUNTAIN(levl[x][y].typ))  || (IS_GRAVEWALL(levl[x][y].typ))
 		|| (ttmp &&
-		      (ttmp->ttyp == MAGIC_PORTAL || ttmp->ttyp == HEEL_TRAP || ttmp->ttyp == LOUDSPEAKER || ttmp->ttyp == KOP_CUBE || ttmp->ttyp == BOSS_SPAWNER || ttmp->ttyp == ARABELLA_SPEAKER || ttmp->ttyp == FART_TRAP || !Can_dig_down(&u.uz)))) {
+		      (ttmp->ttyp == MAGIC_PORTAL || ttmp->ttyp == HEEL_TRAP || ttmp->ttyp == ATTACKING_HEEL_TRAP || ttmp->ttyp == LOUDSPEAKER || ttmp->ttyp == KOP_CUBE || ttmp->ttyp == BOSS_SPAWNER || ttmp->ttyp == ARABELLA_SPEAKER || ttmp->ttyp == FART_TRAP || ttmp->ttyp == PERSISTENT_FART_TRAP || !Can_dig_down(&u.uz)))) {
 	    if(verbose) pline_The("%s here is too hard to %s.",
 				  surface(x,y), verb);
 	    return(FALSE);
@@ -975,7 +975,7 @@ boolean pit_only;
 	schar typ;
 	boolean nohole = !Can_dig_down(&u.uz);
 
-	if ((ttmp && (ttmp->ttyp == MAGIC_PORTAL || ttmp->ttyp == HEEL_TRAP || ttmp->ttyp == LOUDSPEAKER || ttmp->ttyp == KOP_CUBE || ttmp->ttyp == BOSS_SPAWNER || ttmp->ttyp == ARABELLA_SPEAKER || ttmp->ttyp == FART_TRAP || nohole)) ||
+	if ((ttmp && (ttmp->ttyp == MAGIC_PORTAL || ttmp->ttyp == HEEL_TRAP || ttmp->ttyp == ATTACKING_HEEL_TRAP || ttmp->ttyp == LOUDSPEAKER || ttmp->ttyp == KOP_CUBE || ttmp->ttyp == BOSS_SPAWNER || ttmp->ttyp == ARABELLA_SPEAKER || ttmp->ttyp == FART_TRAP || ttmp->ttyp == PERSISTENT_FART_TRAP || nohole)) ||
 		In_minotaurmaze(&u.uz) ||
 	   /* ALI - artifact doors */
 	   IS_DOOR(levl[u.ux][u.uy].typ) && artifact_door(u.ux, u.uy) ||

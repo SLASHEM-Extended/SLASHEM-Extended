@@ -474,6 +474,7 @@
 #define ReallyBadTrapEffect		u.uprops[REALLY_BAD_TRAP_EFFECT].intrinsic
 #define CovidTrapEffect		u.uprops[COVID_TRAP_EFFECT].intrinsic
 #define ArtiblastEffect		u.uprops[ARTIBLAST_EFFECT].intrinsic
+#define RepeatingNastycurseEffect		u.uprops[REPEATING_NASTYCURSE_EFFECT].intrinsic
 
 #define GiantExplorerBug		u.uprops[GIANT_EXPLORER].intrinsic
 #define YawmBug		u.uprops[YAWM_EFFECT].intrinsic

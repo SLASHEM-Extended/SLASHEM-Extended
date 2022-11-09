@@ -757,6 +757,28 @@ extern struct trap *ftrap;
 #define COVID_TRAP 665
 #define ARTIBLAST_TRAP 666
 
+#define PERSISTENT_FART_TRAP 667
+#define ATTACKING_HEEL_TRAP 668
+#define TRAP_TELEPORTER 669
+#define ALIGNMENT_TRASH_TRAP 670
+#define RESHUFFLE_TRAP 671
+#define MUSEHAND_TRAP 672
+#define DOGSIDE_TRAP 673
+#define BANKRUPT_TRAP 674
+#define FILLUP_TRAP 675
+#define AIRSTRIKE_TRAP 676
+#define DYNAMITE_TRAP 677
+#define MALEVOLENCE_TRAP 678
+#define LEAFLET_TRAP 679
+#define TENTADEEP_TRAP 680
+#define STATHALF_TRAP 681
+#define CUTSTAT_TRAP 682
+#define RARE_SPAWN_TRAP 683
+#define YOU_ARE_AN_IDIOT_TRAP 684
+#define NASTYCURSE_TRAP 685
+
+#define REPEATING_NASTYCURSE_TRAP 686
+
 /* todo area
 
 normal ones:
@@ -873,8 +895,8 @@ special ones that don't spawn randomly:
 
 */
 
-#define TIMERUN_TRAP	667
+#define TIMERUN_TRAP	687
 
-#define TRAPNUM 668
+#define TRAPNUM 688
 
 #endif /* TRAP_H */

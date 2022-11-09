@@ -6281,6 +6281,7 @@ cure_nasty_traps()
 	SpellForgetting = 0L;
 	SoundEffectBug = 0L;
 	TimerunBug = 0L;
+	RepeatingNastycurseEffect = 0L;
 	ReallyBadTrapEffect = 0L;
 	CovidTrapEffect = 0L;
 	ArtiblastEffect = 0L;

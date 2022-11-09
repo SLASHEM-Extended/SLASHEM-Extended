@@ -993,6 +993,27 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "covid trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'^', "artiblast trap", C(CLR_MAGENTA)},	/* trap */
 
+	{'^', "persistent fart trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "attacking heel trap", C(CLR_GREEN)},	/* trap */
+	{'^', "trap teleporter", C(CLR_MAGENTA)},	/* trap */
+	{'^', "alignment trash trap", C(CLR_BLACK)},	/* trap */
+	{'^', "reshuffle trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "musehand trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "dogside trap", C(CLR_BLUE)},	/* trap */
+	{'^', "bankrupt trap", C(CLR_BLACK)},	/* trap */
+	{'^', "fillup trap", C(CLR_GRAY)},	/* trap */
+	{'^', "airstrike trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "dynamite trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "malevolence trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "leaflet trap", C(CLR_BRIGHT_CYAN)},	/* trap */
+	{'^', "tentadeep trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "stathalf trap", C(CLR_WHITE)},	/* trap */
+	{'^', "cutstat trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "rare spawn trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "you are an idiot trap", C(CLR_WHITE)},	/* trap */
+	{'^', "nastycurse trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "repeating nastycurse trap", C(CLR_MAGENTA)},	/* trap */
+
 	{'^', "timerun trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -1813,6 +1834,27 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_covid_trap),
 	g_FILLER(S_artiblast_trap),
 
+	g_FILLER(S_persistent_fart_trap),
+	g_FILLER(S_attacking_heel_trap),
+	g_FILLER(S_trap_teleporter),
+	g_FILLER(S_alignment_trash_trap),
+	g_FILLER(S_reshuffle_trap),
+	g_FILLER(S_musehand_trap),
+	g_FILLER(S_dogside_trap),
+	g_FILLER(S_bankrupt_trap),
+	g_FILLER(S_fillup_trap),
+	g_FILLER(S_airstrike_trap),
+	g_FILLER(S_dynamite_trap),
+	g_FILLER(S_malevolence_trap),
+	g_FILLER(S_leaflet_trap),
+	g_FILLER(S_tentadeep_trap),
+	g_FILLER(S_stathalf_trap),
+	g_FILLER(S_cutstat_trap),
+	g_FILLER(S_rare_spawn_trap),
+	g_FILLER(S_you_are_an_idiot_trap),
+	g_FILLER(S_nastycurse_trap),
+	g_FILLER(S_repeating_nastycurse_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -2621,6 +2663,27 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_covid_trap),
 	g_FILLER(S_artiblast_trap),
 
+	g_FILLER(S_persistent_fart_trap),
+	g_FILLER(S_attacking_heel_trap),
+	g_FILLER(S_trap_teleporter),
+	g_FILLER(S_alignment_trash_trap),
+	g_FILLER(S_reshuffle_trap),
+	g_FILLER(S_musehand_trap),
+	g_FILLER(S_dogside_trap),
+	g_FILLER(S_bankrupt_trap),
+	g_FILLER(S_fillup_trap),
+	g_FILLER(S_airstrike_trap),
+	g_FILLER(S_dynamite_trap),
+	g_FILLER(S_malevolence_trap),
+	g_FILLER(S_leaflet_trap),
+	g_FILLER(S_tentadeep_trap),
+	g_FILLER(S_stathalf_trap),
+	g_FILLER(S_cutstat_trap),
+	g_FILLER(S_rare_spawn_trap),
+	g_FILLER(S_you_are_an_idiot_trap),
+	g_FILLER(S_nastycurse_trap),
+	g_FILLER(S_repeating_nastycurse_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -3425,6 +3488,27 @@ static uchar wing_graphics[MAXPCHARS] = {
 	g_FILLER(S_really_bad_trap),
 	g_FILLER(S_covid_trap),
 	g_FILLER(S_artiblast_trap),
+
+	g_FILLER(S_persistent_fart_trap),
+	g_FILLER(S_attacking_heel_trap),
+	g_FILLER(S_trap_teleporter),
+	g_FILLER(S_alignment_trash_trap),
+	g_FILLER(S_reshuffle_trap),
+	g_FILLER(S_musehand_trap),
+	g_FILLER(S_dogside_trap),
+	g_FILLER(S_bankrupt_trap),
+	g_FILLER(S_fillup_trap),
+	g_FILLER(S_airstrike_trap),
+	g_FILLER(S_dynamite_trap),
+	g_FILLER(S_malevolence_trap),
+	g_FILLER(S_leaflet_trap),
+	g_FILLER(S_tentadeep_trap),
+	g_FILLER(S_stathalf_trap),
+	g_FILLER(S_cutstat_trap),
+	g_FILLER(S_rare_spawn_trap),
+	g_FILLER(S_you_are_an_idiot_trap),
+	g_FILLER(S_nastycurse_trap),
+	g_FILLER(S_repeating_nastycurse_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -4231,6 +4315,27 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_really_bad_trap),
 	g_FILLER(S_covid_trap),
 	g_FILLER(S_artiblast_trap),
+
+	g_FILLER(S_persistent_fart_trap),
+	g_FILLER(S_attacking_heel_trap),
+	g_FILLER(S_trap_teleporter),
+	g_FILLER(S_alignment_trash_trap),
+	g_FILLER(S_reshuffle_trap),
+	g_FILLER(S_musehand_trap),
+	g_FILLER(S_dogside_trap),
+	g_FILLER(S_bankrupt_trap),
+	g_FILLER(S_fillup_trap),
+	g_FILLER(S_airstrike_trap),
+	g_FILLER(S_dynamite_trap),
+	g_FILLER(S_malevolence_trap),
+	g_FILLER(S_leaflet_trap),
+	g_FILLER(S_tentadeep_trap),
+	g_FILLER(S_stathalf_trap),
+	g_FILLER(S_cutstat_trap),
+	g_FILLER(S_rare_spawn_trap),
+	g_FILLER(S_you_are_an_idiot_trap),
+	g_FILLER(S_nastycurse_trap),
+	g_FILLER(S_repeating_nastycurse_trap),
 
 	g_FILLER(S_timerun_trap),
 
@@ -5245,6 +5350,27 @@ boolean is_rlevel;
 	    showsyms[S_really_bad_trap] = 0x04;
 	    showsyms[S_covid_trap] = 0x04;
 	    showsyms[S_artiblast_trap] = 0x04;
+
+	    showsyms[S_persistent_fart_trap] = 0x04;
+	    showsyms[S_attacking_heel_trap] = 0x04;
+	    showsyms[S_trap_teleporter] = 0x04;
+	    showsyms[S_alignment_trash_trap] = 0x04;
+	    showsyms[S_reshuffle_trap] = 0x04;
+	    showsyms[S_musehand_trap] = 0x04;
+	    showsyms[S_dogside_trap] = 0x04;
+	    showsyms[S_bankrupt_trap] = 0x04;
+	    showsyms[S_fillup_trap] = 0x04;
+	    showsyms[S_airstrike_trap] = 0x04;
+	    showsyms[S_dynamite_trap] = 0x04;
+	    showsyms[S_malevolence_trap] = 0x04;
+	    showsyms[S_leaflet_trap] = 0x04;
+	    showsyms[S_tentadeep_trap] = 0x04;
+	    showsyms[S_stathalf_trap] = 0x04;
+	    showsyms[S_cutstat_trap] = 0x04;
+	    showsyms[S_rare_spawn_trap] = 0x04;
+	    showsyms[S_you_are_an_idiot_trap] = 0x04;
+	    showsyms[S_nastycurse_trap] = 0x04;
+	    showsyms[S_repeating_nastycurse_trap] = 0x04;
 
 	    showsyms[S_timerun_trap] = 0x04;
 #endif /* PUBLIC_SERVER */

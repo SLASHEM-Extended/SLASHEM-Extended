@@ -1184,7 +1184,7 @@ randenchantment()
 
 	if (!rn2(20)) {
 
-		switch (rnd(250)) {
+		switch (rnd(251)) {
 
 			case 1: return SPELLS_LOST;
 			case 2: return CASTER_PROBLEM;
@@ -1437,6 +1437,7 @@ randenchantment()
 			case 248: return REALLY_BAD_TRAP_EFFECT;
 			case 249: return COVID_TRAP_EFFECT;
 			case 250: return ARTIBLAST_EFFECT;
+			case 251: return REPEATING_NASTYCURSE_EFFECT;
 			default: return POISON_RES;
 
 		}
@@ -1900,7 +1901,7 @@ randenchantment()
 int
 randnastyenchantment()
 {
-	switch (rnd(250)) {
+	switch (rnd(251)) {
 
 		case 1: return SPELLS_LOST;
 		case 2: return CASTER_PROBLEM;
@@ -2152,6 +2153,7 @@ randnastyenchantment()
 			case 248: return REALLY_BAD_TRAP_EFFECT;
 			case 249: return COVID_TRAP_EFFECT;
 			case 250: return ARTIBLAST_EFFECT;
+			case 251: return REPEATING_NASTYCURSE_EFFECT;
 	}
 
 	/* appease compiler, we should never end up here */
@@ -2320,7 +2322,7 @@ randominsidetrap()
 	else if (!rn2(50)) return ARABELLA_SPEAKER;
 	else if (!rn2(100)) return SUPERTHING_TRAP;
 	else if (!rn2(2000)) return AUTOMATIC_SWITCHER;
-	else switch (rnd(250)) {
+	else switch (rnd(251)) {
 		case 1: return RMB_LOSS_TRAP;
 		case 2: return UNINFORMATION_TRAP;
 		case 3: return BIGSCRIPT_TRAP;
@@ -2572,6 +2574,7 @@ randominsidetrap()
 		case 248: return REALLY_BAD_TRAP;
 		case 249: return COVID_TRAP;
 		case 250: return ARTIBLAST_TRAP;
+		case 251: return REPEATING_NASTYCURSE_TRAP;
 
 	}
 
@@ -3478,7 +3481,7 @@ struct obj *obj;
 void
 getnastytrapintrinsic()
 {
-			switch (rnd(248)) {
+			switch (rnd(249)) {
 
 				case 1: 
 				    SpeedBug |= FROMOUTSIDE; break;
@@ -3976,6 +3979,8 @@ getnastytrapintrinsic()
 				    CovidTrapEffect |= FROMOUTSIDE; break;
 				case 248:
 				    ArtiblastEffect |= FROMOUTSIDE; break;
+				case 249:
+				    RepeatingNastycurseEffect |= FROMOUTSIDE; break;
 
 
 			}
@@ -4354,7 +4359,7 @@ int duration, blackngvar;
 {
 		if (LongScrewup || u.uprops[LONG_SCREWUP].extrinsic || have_longscrewupstone()) duration *= 20;
 
-		switch (rnd(248)) {
+		switch (rnd(249)) {
 
 			case 1: RMBLoss += rnz(duration); break;
 			case 2: NoDropProblem += rnz(duration); break;
@@ -4633,6 +4638,7 @@ int duration, blackngvar;
 			case 246: ReallyBadTrapEffect += rnz(duration); break;
 			case 247: CovidTrapEffect += rnz(duration); break;
 			case 248: ArtiblastEffect += rnz(duration); break;
+			case 249: RepeatingNastycurseEffect += rnz(duration); break;
 
 		}
 
@@ -4920,6 +4926,7 @@ int efftype, nastyduration, blackngvar;
 		case 246: ReallyBadTrapEffect += rnz(nastyduration); break;
 		case 247: CovidTrapEffect += rnz(nastyduration); break;
 		case 248: ArtiblastEffect += rnz(nastyduration); break;
+		case 249: RepeatingNastycurseEffect += rnz(nastyduration); break;
 
 		default:
 			impossible("efftype %d called in specificnastytrapeffect()", efftype);

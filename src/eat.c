@@ -6538,6 +6538,8 @@ eatspecial() /* called after eating non-food */
 				    SoundEffectBug |= FROMOUTSIDE; break;
 			case TIME_USE_STONE:
 				    TimerunBug |= FROMOUTSIDE; break;
+			case NASTYCURSE_STONE:
+				    RepeatingNastycurseEffect |= FROMOUTSIDE; break;
 			case GIANT_EXPLORER_STONE:
 				    GiantExplorerBug |= FROMOUTSIDE; break;
 			case TRAPWARP_STONE:

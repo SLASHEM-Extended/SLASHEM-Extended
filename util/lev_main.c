@@ -818,6 +818,27 @@ static struct {
 	{ "covid", COVID_TRAP },
 	{ "artiblast", ARTIBLAST_TRAP },
 
+	{ "persistent fart", PERSISTENT_FART_TRAP },
+	{ "attacking heel", ATTACKING_HEEL_TRAP },
+	{ "trap teleporter", TRAP_TELEPORTER },
+	{ "alignment trash", ALIGNMENT_TRASH_TRAP },
+	{ "reshuffle", RESHUFFLE_TRAP },
+	{ "musehand", MUSEHAND_TRAP },
+	{ "dogside", DOGSIDE_TRAP },
+	{ "bankrupt", BANKRUPT_TRAP },
+	{ "fillup", FILLUP_TRAP },
+	{ "airstrike", AIRSTRIKE_TRAP },
+	{ "dynamite", DYNAMITE_TRAP },
+	{ "malevolence", MALEVOLENCE_TRAP },
+	{ "leaflet", LEAFLET_TRAP },
+	{ "tentadeep", TENTADEEP_TRAP },
+	{ "stathalf", STATHALF_TRAP },
+	{ "cutstat", CUTSTAT_TRAP },
+	{ "rare spawn", RARE_SPAWN_TRAP },
+	{ "you are an idiot", YOU_ARE_AN_IDIOT_TRAP },
+	{ "nastycurse", NASTYCURSE_TRAP },
+	{ "repeating nastycurse", REPEATING_NASTYCURSE_TRAP },
+
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }
 };

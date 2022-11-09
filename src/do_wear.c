@@ -3029,6 +3029,7 @@ Shield_on()
 	case ANTISHADOW_SHIELD:
 	case DIFFICULT_SHIELD:
 	case TEZ_SHIELD:
+	case SPI_IMAGE_MOOSE_SHIELD:
 	case SPECIAL_SHIELD:
 	case MAGICAL_SHIELD:
 	case SHIELD_OF_PEACE:
@@ -3084,6 +3085,7 @@ Shield_on()
 	if (uarms && uarms->otyp == EVIL_DRAGON_SCALE_SHIELD) curse(uarms);
 	if (uarms && uarms->otyp == DIFFICULT_SHIELD) curse(uarms);
 	if (uarms && uarms->otyp == TEZ_SHIELD) curse(uarms);
+	if (uarms && uarms->otyp == SPI_IMAGE_MOOSE_SHIELD) curse(uarms);
 
     if (uarms && uarms->oartifact == ART_SHATTERED_DREAMS) {
 		if (!uarms->cursed) {
@@ -3224,6 +3226,7 @@ Shield_off()
 	case TARRIER:
 	case DIFFICULT_SHIELD:
 	case TEZ_SHIELD:
+	case SPI_IMAGE_MOOSE_SHIELD:
 	case SPECIAL_SHIELD:
 	case MAGICAL_SHIELD:
 	case SHIELD_OF_PEACE:

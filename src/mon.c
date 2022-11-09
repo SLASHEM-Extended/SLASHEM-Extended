@@ -3475,6 +3475,35 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != VIVISECTION_TRAP
 				&& ttmp->ttyp != INSTAFEMINISM_TRAP
 				&& ttmp->ttyp != INSTANASTY_TRAP
+
+				&& ttmp->ttyp != CALLING_OUT_TRAP
+				&& ttmp->ttyp != FIELD_BREAK_TRAP
+				&& ttmp->ttyp != TENTH_TRAP
+				&& ttmp->ttyp != DEBT_TRAP
+				&& ttmp->ttyp != INVERSION_TRAP
+				&& ttmp->ttyp != WINCE_TRAP
+				&& ttmp->ttyp != U_HAVE_BEEN_TRAP
+				&& ttmp->ttyp != PERSISTENT_FART_TRAP
+				&& ttmp->ttyp != ATTACKING_HEEL_TRAP
+				&& ttmp->ttyp != TRAP_TELEPORTER
+				&& ttmp->ttyp != ALIGNMENT_TRASH_TRAP
+				&& ttmp->ttyp != RESHUFFLE_TRAP
+				&& ttmp->ttyp != MUSEHAND_TRAP
+				&& ttmp->ttyp != DOGSIDE_TRAP
+				&& ttmp->ttyp != BANKRUPT_TRAP
+				&& ttmp->ttyp != FILLUP_TRAP
+				&& ttmp->ttyp != AIRSTRIKE_TRAP
+				&& ttmp->ttyp != DYNAMITE_TRAP
+				&& ttmp->ttyp != MALEVOLENCE_TRAP
+				&& ttmp->ttyp != LEAFLET_TRAP
+				&& ttmp->ttyp != TENTADEEP_TRAP
+				&& ttmp->ttyp != STATHALF_TRAP
+				&& ttmp->ttyp != CUTSTAT_TRAP
+				&& ttmp->ttyp != RARE_SPAWN_TRAP
+				&& ttmp->ttyp != YOU_ARE_AN_IDIOT_TRAP
+				&& ttmp->ttyp != NASTYCURSE_TRAP
+				&& ttmp->ttyp != REPEATING_NASTYCURSE_TRAP
+
 				&& ttmp->ttyp != SKILL_POINT_LOSS_TRAP
 				&& ttmp->ttyp != PERFECT_MATCH_TRAP
 				&& ttmp->ttyp != DUMBIE_LIGHTSABER_TRAP

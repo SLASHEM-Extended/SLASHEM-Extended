@@ -4260,6 +4260,12 @@ boolean guaranteed;
 		you_have(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && (RepeatingNastycurseEffect || u.uprops[REPEATING_NASTYCURSE_EFFECT].extrinsic || have_nastycursestone())) {
+		sprintf(buf, "the following problem: Your armor pieces will receive nasty trap enchantments over time.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", RepeatingNastycurseEffect);
+		you_have(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && (ReallyBadTrapEffect || u.uprops[REALLY_BAD_TRAP_EFFECT].extrinsic || have_reallybadstone())) {
 		sprintf(buf, "the following problem: Bad effects become really bad effects.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", ReallyBadTrapEffect);
@@ -6895,6 +6901,9 @@ boolean guaranteed;
 		case DIFFICULT_SHIELD:
 			shieldblockrate = 40;
 			break;
+		case SPI_IMAGE_MOOSE_SHIELD:
+			shieldblockrate = 45;
+			break;
 		case ONE_EATING_SIGN:
 			shieldblockrate = 50;
 			break;
@@ -8766,6 +8775,11 @@ int final;
 	if (TimerunBug || u.uprops[TIMERUN_BUG].extrinsic || have_timerunstone()) {
 		sprintf(buf, "the following problem: All actions take turns.");
 	      sprintf(eos(buf), " (%ld)", TimerunBug);
+		dump(youhad, buf);
+	}
+	if (RepeatingNastycurseEffect || u.uprops[REPEATING_NASTYCURSE_EFFECT].extrinsic || have_nastycursestone()) {
+		sprintf(buf, "the following problem: Your armor pieces will receive nasty trap enchantments over time.");
+		sprintf(eos(buf), " (%ld)", RepeatingNastycurseEffect);
 		dump(youhad, buf);
 	}
 	if (GiantExplorerBug || u.uprops[GIANT_EXPLORER].extrinsic || have_giantexplorerstone()) {
@@ -11368,6 +11382,9 @@ int final;
 		case BULL_SHIELD:
 		case DIFFICULT_SHIELD:
 			shieldblockrate = 40;
+			break;
+		case SPI_IMAGE_MOOSE_SHIELD:
+			shieldblockrate = 45;
 			break;
 		case ONE_EATING_SIGN:
 			shieldblockrate = 50;

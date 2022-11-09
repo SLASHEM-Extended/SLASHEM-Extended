@@ -3853,6 +3853,8 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ BLAST_STONE, "todo" },
 
 	{ HONEYCOMB, "todo" },
+	{ NASTYCURSE_STONE, "todo" },
+	{ SPI_IMAGE_MOOSE_SHIELD, "todo" },
 
 	{0, "" }
 };
@@ -6930,6 +6932,8 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ BLAST_STONE, "todo" },
 
 	{ HONEYCOMB, "todo" },
+	{ NASTYCURSE_STONE, "todo" },
+	{ SPI_IMAGE_MOOSE_SHIELD, "todo" },
 
 	{0, "" }
 };

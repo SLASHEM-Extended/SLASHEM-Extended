@@ -31256,6 +31256,11 @@ mongets(mtmp, otyp)
 register struct monst *mtmp;
 register int otyp;
 {
+	/* Amy notice: u.mongetshack can be set by the caller to set startinvent flags for these items
+	 * different values may be set and will have different meanings
+	 * u.mongetshack == 100 -> mstartinventX will be set, so the item can never drop
+	 */
+
 	register struct obj *otmp;
 	int spe;
 
@@ -31327,10 +31332,10 @@ register int otyp;
 	    if (otmp->otyp == LANCE && mtmp->data->msound == MS_TREESQUAD) otmp->mstartinventE = 1;
 	    if (otmp->otyp == PITCHFORK && mtmp->data->msound == MS_TREESQUAD) otmp->mstartinventE = 1;
 
-	    if ((otmp->oclass == WEAPON_CLASS || otmp->oclass == ARMOR_CLASS) && mtmp->data->msound == MS_BULLETATOR) otmp->mstartinventX = 1;
-	    if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic && mtmp->data->msound == MS_BULLETATOR) otmp->mstartinventX = 1;
-	    if (is_musable(otmp) && mtmp->data->msound == MS_BULLETATOR) otmp->mstartinventX = 1;
-	    if (is_weptool(otmp) && mtmp->data->msound == MS_BULLETATOR) otmp->mstartinventX = 1;
+	    if ((otmp->oclass == WEAPON_CLASS || otmp->oclass == ARMOR_CLASS) && (mtmp->data->msound == MS_BULLETATOR || u.mongetshack == 100)) otmp->mstartinventX = 1;
+	    if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic && (mtmp->data->msound == MS_BULLETATOR || u.mongetshack == 100)) otmp->mstartinventX = 1;
+	    if (is_musable(otmp) && (mtmp->data->msound == MS_BULLETATOR || u.mongetshack == 100)) otmp->mstartinventX = 1;
+	    if (is_weptool(otmp) && (mtmp->data->msound == MS_BULLETATOR || u.mongetshack == 100)) otmp->mstartinventX = 1;
 
 	    if ((otmp->otyp >= WEDGED_LITTLE_GIRL_SANDAL) && (otmp->otyp <= PROSTITUTE_SHOE) && !Role_if(PM_TRANSVESTITE) && !Role_if(PM_TRANSSYLVANIAN)) {
 			otmp->mstartinventD = 1;
