@@ -7174,6 +7174,10 @@ register struct obj *otmp;
 		}
 		if(!otmp->cursed && !(FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone()) ) heal_legs();
 		break;
+	    case HONEYCOMB:
+		(void) adjattrib(rn2(A_MAX), 1, FALSE, TRUE);
+
+		break;
 	    case EGG:
 
 		if (otmp->corpsenm == PM_EASTER) {
@@ -7456,6 +7460,91 @@ register struct obj *otmp;
 			pline("That was hard to swallow.");
 		}
 		change_luck(1);
+	}
+
+	if (otmp && otmp->oartifact == ART_STAT_JACKPOT) {
+		(void) adjattrib(A_STR, 1, 0, TRUE);
+		(void) adjattrib(A_CHA, 1, 0, TRUE);
+		(void) adjattrib(A_CON, 1, 0, TRUE);
+		(void) adjattrib(A_INT, 1, 0, TRUE);
+		(void) adjattrib(A_WIS, 1, 0, TRUE);
+		(void) adjattrib(A_DEX, 1, 0, TRUE);
+	}
+
+	if (otmp && otmp->oartifact == ART_CHA_OTHERSTAT) {
+		(void) adjattrib(A_CHA, 5, 0, TRUE);
+
+		if (rn2(2)) {
+			if (ABASE(A_STR) > 3) {
+				ABASE(A_STR) -= 1;
+				AMAX(A_STR) -= 1;
+				u.cnd_permstatdamageamount++;
+				Your("strength falls off!");
+			}
+		}
+		if (rn2(2)) {
+			if (ABASE(A_CON) > 3) {
+				ABASE(A_CON) -= 1;
+				AMAX(A_CON) -= 1;
+				u.cnd_permstatdamageamount++;
+				Your("constitution falls off!");
+			}
+		}
+		if (rn2(2)) {
+			if (ABASE(A_WIS) > 3) {
+				ABASE(A_WIS) -= 1;
+				AMAX(A_WIS) -= 1;
+				u.cnd_permstatdamageamount++;
+				Your("wisdom falls off!");
+			}
+		}
+		if (rn2(2)) {
+			if (ABASE(A_INT) > 3) {
+				ABASE(A_INT) -= 1;
+				AMAX(A_INT) -= 1;
+				u.cnd_permstatdamageamount++;
+				Your("intelligence falls off!");
+			}
+		}
+		if (rn2(2)) {
+			if (ABASE(A_DEX) > 3) {
+				ABASE(A_DEX) -= 1;
+				AMAX(A_DEX) -= 1;
+				u.cnd_permstatdamageamount++;
+				Your("dexterity falls off!");
+			}
+		}
+	}
+
+	if (otmp && otmp->oartifact == ART_SMART_AT_THE_COST_OF_SELF) {
+		if (u.uhpmax >= 100 && u.uenmax >= 100) {
+			u.uhpmax -= (u.uhpmax / 10);
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			u.uenmax -= (u.uenmax / 10);
+			if (u.uen > u.uenmax) u.uen = u.uenmax;
+			pline("Intelligence comes at the cost of self.");
+			(void) adjattrib(A_INT, 3, 0, TRUE);
+		}
+	}
+
+	if (otmp && otmp->oartifact == ART_SOLDIER_S_NUTRICASE) {
+		(void) adjattrib(A_CON, 1, 0, TRUE);
+	}
+
+	if (otmp && otmp->oartifact == ART_DANCER_S_VEGETABLES) {
+		(void) adjattrib(A_DEX, 1, 0, TRUE);
+	}
+
+	if (otmp && otmp->oartifact == ART_PHILOSOPHER_S_BREATH) {
+		(void) adjattrib(A_INT, 1, 0, TRUE);
+	}
+
+	if (otmp && otmp->oartifact == ART_PRIESTESS_S_MANNA) {
+		(void) adjattrib(A_WIS, 1, 0, TRUE);
+	}
+
+	if (otmp && otmp->oartifact == ART_RHETOR_S_CRUMBS) {
+		(void) adjattrib(A_CHA, 1, 0, TRUE);
 	}
 
 	if (otmp && otmp->oartifact == ART_OKUKUBA_OBUTEREEVU) {
@@ -8273,6 +8362,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 		    otmp->otyp == BUNNY_CAKE ||
 		    otmp->otyp == PARFAIT ||
 		    otmp->otyp == CANDY_BAR || /* milk */
+		    otmp->otyp == HONEYCOMB ||
 		    otmp->otyp == LUMP_OF_ROYAL_JELLY)
 		    u.uconduct.unvegan++;
 		break;

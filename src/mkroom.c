@@ -1111,8 +1111,8 @@ struct mkroom *sroom;
 			}
 			break;
 		    case BEEHIVE:
-			if(!rn2(5)) /* slightly lowered chance --Amy */
-			    (void) mksobj_at(LUMP_OF_ROYAL_JELLY, sx, sy, TRUE, FALSE, FALSE);
+			if(!rn2(12)) /* slightly lowered chance --Amy */
+			    (void) mksobj_at(rn2(30) ? LUMP_OF_ROYAL_JELLY : HONEYCOMB, sx, sy, TRUE, FALSE, FALSE);
 			break;
 		    case FUNGUSFARM:
 			if (!rn2(25)) /* lowered chance --Amy */

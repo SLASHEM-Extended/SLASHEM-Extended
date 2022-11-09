@@ -4955,7 +4955,8 @@ FOOD("slime mold",          7500, 1,  0, 0, MT_VEGGY, 250, HI_ORGANIC, 1),
 FOOD("peanut bag",	     500, 3,  0, 0, MT_VEGGY, 800, HI_ORGANIC, 1),
 
 /* People food */
-FOOD("lump of royal jelly",  200, 1,  0, 0, MT_VEGGY, 200, CLR_YELLOW, 1),
+FOOD("lump of royal jelly",  180, 1,  0, 0, MT_VEGGY, 200, CLR_YELLOW, 1),
+FOOD("honeycomb",             20, 1,  0, 0, MT_VEGGY, 500, CLR_YELLOW, 1),
 FOOD("cream pie",           1000, 1, 0, 0, MT_VEGGY, 100, CLR_WHITE, 1),
 FOOD("sandwich",            1000, 1, 0, 0, MT_FLESH, 100, CLR_WHITE, 1),
 FOOD("candy bar",           1300, 1,  0, 0, MT_VEGGY, 100, CLR_BROWN, 1),

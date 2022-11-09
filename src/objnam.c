@@ -3852,6 +3852,8 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ COVID_STONE, "todo" },
 	{ BLAST_STONE, "todo" },
 
+	{ HONEYCOMB, "todo" },
+
 	{0, "" }
 };
 
@@ -6926,6 +6928,8 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ REALLY_BAD_STONE, "todo" },
 	{ COVID_STONE, "todo" },
 	{ BLAST_STONE, "todo" },
+
+	{ HONEYCOMB, "todo" },
 
 	{0, "" }
 };

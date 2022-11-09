@@ -722,7 +722,7 @@ int
 usefulitem() /* select the ID number of an item that may be useful for the player --Amy */
 {
 
-	switch (rnd(152)) {
+	switch (rnd(153)) {
 
 		case 1:
 			return ATHAME;
@@ -957,6 +957,8 @@ usefulitem() /* select the ID number of an item that may be useful for the playe
 			return SCR_MAKE_PENTAGRAM;
 		case 152:
 			return WAN_RESTORATION;
+		case 153:
+			return HONEYCOMB;
 		default: /* fail safe */
 			return POT_FULL_HEALING;
 	}
@@ -4028,7 +4030,7 @@ register struct obj *obj;
 }
 
 static int treefruits[] = {APPLE,ORANGE,PEAR,BANANA,EUCALYPTUS_LEAF,LEMON,CHERRY};
-static int treefruitsX[] = {APPLE,ORANGE,PEAR,BANANA,EUCALYPTUS_LEAF,CHERRY,ASIAN_PEAR,LEMON,MELON,SLIME_MOLD,LUMP_OF_ROYAL_JELLY,WATERMELON,WHITE_PEACH,MAGIC_BANANA};
+static int treefruitsX[] = {APPLE,ORANGE,PEAR,BANANA,EUCALYPTUS_LEAF,CHERRY,ASIAN_PEAR,LEMON,MELON,SLIME_MOLD,LUMP_OF_ROYAL_JELLY,HONEYCOMB,WATERMELON,WHITE_PEACH,MAGIC_BANANA};
 /* rare fruits added by Amy, of course they don't grow in Soviet Russia, it's too cold there because the type of ice block
  * brings winter - he's like "Väterchen Frost" :-P */
 

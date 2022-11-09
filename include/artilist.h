@@ -9929,6 +9929,45 @@ A("Sally's Baking Mixture",				PEANUT_BAG, /* can be invoked to create a fortune
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 1500L ),
 
+A("Lorenzi's Cleaning Residue",				LOW_BOOTS, /* initialized to always be everlasting boots, +2 all stats, brown spells and anastasia trap effect, if you're a singslave you also get free action and discount action */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_SINGSLAVE, NON_PM, 2600L ),
+
+A("Final Door Solution",				LONG_SWORD, /* randart; you automatically unlock doors and containers while wielding it, and if you're an assassin you also get technicality */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Stat Jackpot",				HONEYCOMB, /* gives an additional +1 to all stats when eaten */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Cha-otherstat",				LUMP_OF_ROYAL_JELLY, /* +5 CHA when eaten, but all the other stats have an individual 50% chance to be permanently reduced by one */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Smart at the cost of Self",				LUMP_OF_ROYAL_JELLY, /* if you eat it while your HP and Pw maximums are at least 100, they are reduced by 10% and you gain +3 INT */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Soldier's Nutricase",				LUMP_OF_ROYAL_JELLY, /* +1 CON when eaten */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Dancer's Vegetables",				LUMP_OF_ROYAL_JELLY, /* +1 DEX when eaten */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Philosopher's Breath",				LUMP_OF_ROYAL_JELLY, /* +1 INT when eaten */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Priestess's Manna",				LUMP_OF_ROYAL_JELLY, /* +1 WIS when eaten */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Rhetor's Crumbs",				LUMP_OF_ROYAL_JELLY, /* +1 CHA when eaten */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
 /*
  *	Stormbringer only has a 2 because it can drain a level,

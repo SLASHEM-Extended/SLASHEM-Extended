@@ -1790,8 +1790,13 @@ lootcont:
 		any = TRUE;
 
 		if (cobj->olocked) {
-		    pline("Hmmm, it seems to be locked.");
-		    continue;
+		    if (uwep && uwep->oartifact == ART_FINAL_DOOR_SOLUTION) {
+			cobj->olocked = FALSE;
+			pline("kloeck!");
+		    } else {
+			pline("Hmmm, it seems to be locked.");
+			continue;
+		    }
 		}
 		if (cobj->otyp == BAG_OF_TRICKS) {
 		    int tmp;
@@ -2718,10 +2723,17 @@ int held;
 		return 0;
 	}
 	if (obj->olocked) {
-	    pline("%s to be locked.", Tobjnam(obj, "seem"));
-	    if (held) You("must put it down to unlock.");
-	    return 0;
-	} else if (obj->otrapped) {
+
+	    if (uwep && uwep->oartifact == ART_FINAL_DOOR_SOLUTION) {
+		obj->olocked = FALSE;
+		pline("kloeck!");
+	    } else {
+		pline("%s to be locked.", Tobjnam(obj, "seem"));
+		if (held) You("must put it down to unlock.");
+		return 0;
+	    }
+	}
+	if (obj->otrapped) {
 	    if (held) You("open %s...", the(xname(obj)));
 	    if (Role_if(PM_CYBERNINJA) && rn2(5)) {
 		You("discover a trap on %s and disarm it.", the(xname(obj)));

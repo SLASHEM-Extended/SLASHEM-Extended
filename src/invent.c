@@ -15164,8 +15164,10 @@ boolean knoweverything;
 				pline("This type of vegetarian food provides good nutrition and can be renamed. Default name is 'slime mold'."); break;
 			case PEANUT_BAG: 
 				pline("This vegetarian food item provides lots of nutrition."); break;
-			case LUMP_OF_ROYAL_JELLY: 
+			case LUMP_OF_ROYAL_JELLY:
 				pline("Eating this vegetarian food item can increase your strength."); break;
+			case HONEYCOMB:
+				pline("A rare type of food, usually found in beehives, which can increase a random stat when eaten. It breaks vegan but not vegetarian conduct."); break;
 			case CREAM_PIE: 
 				pline("A vegetarian type of food that cures burns and dimness. It can also be thrown to blind enemies."); break;
 			case SANDWICH: 
@@ -23458,6 +23460,26 @@ boolean knoweverything;
 					pline("Artifact specs: can be invoked to randomly transform terrain on the current level into ordinary floor."); break;
 				case ART_SALLY_S_BAKING_MIXTURE:
 					pline("Artifact specs: can be invoked to create a fortune cookie."); break;
+				case ART_LORENZI_S_CLEANING_RESIDUE:
+					pline("Artifact specs: +2 all stats, brown spells and anastasia trap effect while worn. If you're a singslave, you also get free action and discount action. This artifact is associated with the singslave role."); break;
+				case ART_FINAL_DOOR_SOLUTION:
+					pline("Artifact specs: while wielding it, trying to open a locked door or container will automatically remove the lock so you can open it, unless it's a door that requires a specific artifact key."); break;
+				case ART_STAT_JACKPOT:
+					pline("Artifact specs: +1 to all stats when eaten. This is in addition to the stats you get from consuming the base item type of this artifact."); break;
+				case ART_CHA_OTHERSTAT:
+					pline("Artifact specs: +5 charisma when eaten, but all of your other stats have a chance of being damaged."); break;
+				case ART_SMART_AT_THE_COST_OF_SELF:
+					pline("Artifact specs: if your maximum HP and Pw are both at least 100, consuming this item gives +3 intelligence but reduces your HP and Pw maximums."); break;
+				case ART_SOLDIER_S_NUTRICASE:
+					pline("Artifact specs: +1 constitution when eaten."); break;
+				case ART_DANCER_S_VEGETABLES:
+					pline("Artifact specs: +1 dexterity when eaten."); break;
+				case ART_PHILOSOPHER_S_BREATH:
+					pline("Artifact specs: +1 intelligence when eaten."); break;
+				case ART_PRIESTESS_S_MANNA:
+					pline("Artifact specs: +1 wisdom when eaten."); break;
+				case ART_RHETOR_S_CRUMBS:
+					pline("Artifact specs: +1 charisma when eaten."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

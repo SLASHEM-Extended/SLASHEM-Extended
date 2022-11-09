@@ -11634,27 +11634,30 @@ peffects(otmp)
 
 			int statdrained = rn2(A_MAX);
 
-			u.cnd_permstatdamageamount++;
+			if (ABASE(statdrained) > 3) {
 
-			ABASE(statdrained) -= 1;
-			AMAX(statdrained) -= 1;
-			flags.botl = 1;
-			switch (statdrained) {
+				u.cnd_permstatdamageamount++;
 
-				case A_STR:
-					pline("Your strength falls off!"); break;
-				case A_DEX:
-					pline("Your dexterity falls off!"); break;
-				case A_CON:
-					pline("Your constitution falls off!"); break;
-				case A_CHA:
-					pline("Your charisma falls off!"); break;
-				case A_INT:
-					pline("Your intelligence falls off!"); break;
-				case A_WIS:
-					pline("Your wisdom falls off!"); break;
+				ABASE(statdrained) -= 1;
+				AMAX(statdrained) -= 1;
+				flags.botl = 1;
+				switch (statdrained) {
 
+					case A_STR:
+						pline("Your strength falls off!"); break;
+					case A_DEX:
+						pline("Your dexterity falls off!"); break;
+					case A_CON:
+						pline("Your constitution falls off!"); break;
+					case A_CHA:
+						pline("Your charisma falls off!"); break;
+					case A_INT:
+						pline("Your intelligence falls off!"); break;
+					case A_WIS:
+						pline("Your wisdom falls off!"); break;
+				}
 			}
+
 			cure_feminism_traps();
 
 			break;

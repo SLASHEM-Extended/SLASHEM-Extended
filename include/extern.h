@@ -2103,6 +2103,7 @@ E int find_missys(void);
 E int find_house_slippers(void);
 E int find_fingerless_gloves(void);
 E int find_mantle_of_coat(void);
+E int find_everlasting_boots(void);
 E int find_fatal_gloves(void);
 E int find_beautiful_heels(void);
 E int find_homicidal_cloak(void);

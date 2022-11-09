@@ -1298,8 +1298,16 @@ doopen_indir(x, y)		/* try to open a door in direction u.dx/u.dy */
 		return(0);
 	}
 
+dooragain:
 	if (!(door->doormask & D_CLOSED)) {
 	    const char *mesg;
+
+		if (uwep && uwep->oartifact == ART_FINAL_DOOR_SOLUTION && !artifact_door(cc.x, cc.y) && (door->doormask & D_LOCKED)) {
+			door->doormask &= ~D_LOCKED;
+			door->doormask |= D_CLOSED;
+			pline("kloeck!");
+			goto dooragain;
+		}
 
 	    switch (door->doormask) {
 	    case D_BROKEN: mesg = " is broken"; break;
