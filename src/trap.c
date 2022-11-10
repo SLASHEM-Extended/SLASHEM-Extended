@@ -2801,11 +2801,15 @@ newbossING:
 		 * some cases which can happen when digging
 		 * down while phazing thru solid areas
 		 */
-		else if ((lev->typ == STONE || lev->typ == SCORR) && (!(lev->wall_info & W_NONDIGGABLE) || u.dynamitehack) )
+		else if ((lev->typ == STONE || lev->typ == SCORR) && (!(lev->wall_info & W_NONDIGGABLE) || u.dynamitehack) ) {
 		    lev->typ = CORR;
-		else if ((IS_WALL(lev->typ) || lev->typ == SDOOR) && (!(lev->wall_info & W_NONDIGGABLE) || u.dynamitehack) )
+			if (u.dynamitehack) lev->wall_info &= ~W_NONDIGGABLE;
+		}
+		else if ((IS_WALL(lev->typ) || lev->typ == SDOOR) && (!(lev->wall_info & W_NONDIGGABLE) || u.dynamitehack) ) {
 		    lev->typ = level.flags.is_maze_lev ? ROOM :
 			       level.flags.is_cavernous_lev ? CORR : DOOR;
+			if (u.dynamitehack) lev->wall_info &= ~W_NONDIGGABLE;
+		}
 
 		unearth_objs(x, y);
 		break;
