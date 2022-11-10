@@ -912,9 +912,46 @@ aligntyp resp_god;
 		    attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse();
 			break;
 
-	    default:	gods_angry(resp_god);
-			if (!rn2(evilfriday ? 3 : 5)) god_zaps_you(resp_god); /* lower instadeath chance --Amy */
-			else god_summons_minions(resp_god);
+	    default:
+			gods_angry(resp_god);
+			if (!rn2(evilfriday ? 3 : 5)) { /* lower instadeath chance --Amy */
+				switch (rnd(4)) {
+					case 1:
+						god_zaps_you(resp_god);
+						break;
+					case 2:
+					{
+						int i, j, bd = 1;
+						register struct rm *lev;
+					      for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+							if (!isok(u.ux + i, u.uy + j)) continue;
+							lev = &levl[u.ux + i][u.uy + j];
+							if (!(lev->typ == ALTAR && (Is_astralevel(&u.uz) || Is_sanctum(&u.uz)) ) && !(lev->wall_info & W_NONDIGGABLE) && lev->typ != STAIRS && lev->typ != LADDER) lev->typ = LAVAPOOL;
+						}
+						verbalize("Burn, mortal, burn!");
+						ragnarok(FALSE);
+					}
+						break;
+					case 3:
+					{
+						register struct obj *crsobj;
+						for(crsobj = invent; crsobj ; crsobj = crsobj->nobj) {
+							if (!stack_too_big(crsobj)) curse(crsobj);
+						}
+						verbalize("Curse thee, mortal! Curse thee!");
+					}
+						break;
+					case 4:
+					{
+						register struct obj *crsobj;
+						for(crsobj = invent; crsobj ; crsobj = crsobj->nobj) {
+							if (crsobj) (void) drain_item_reverse(crsobj);
+						}
+					}
+						verbalize("Blackness shall consume thee, mortal scum!");
+						break;
+				}
+			} else god_summons_minions(resp_god);
 			break;
 	}
 #ifdef NOARTIFACTWISH
