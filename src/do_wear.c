@@ -4384,6 +4384,13 @@ register struct obj *obj;
 		pline("Black tears drop from the ring...");
     }
 
+    if (obj->oartifact == ART_RING_OF_EVERYTHING_RESISTA) {
+		if (!obj->cursed) {
+			curse(obj);
+			pline("The ring became cursed.");
+		}
+    }
+
     if (obj->oartifact == ART_ARABELLA_S_RADAR) {
 		curse(obj);
 		obj->hvycurse = 1;

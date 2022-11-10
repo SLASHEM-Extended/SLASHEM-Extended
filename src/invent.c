@@ -23499,6 +23499,14 @@ boolean knoweverything;
 					pline("Artifact specs: +1 wisdom when eaten."); break;
 				case ART_RHETOR_S_CRUMBS:
 					pline("Artifact specs: +1 charisma when eaten."); break;
+				case ART_PIRANHABANE:
+					pline("Artifact specs: +50 damage to semicolons."); break;
+				case ART_RING_OF_EVERYTHING_RESISTA:
+					pline("Artifact specs: resist fire, cold, shock, poison, sleep and acid when worn, giant explorer effect, autocurses when worn."); break;
+				case ART_DOORBANE:
+					pline("Artifact specs: while wielding it, doors cannot resist the attempt to open or close them."); break;
+				case ART_MAGIC_CARPET:
+					pline("Artifact specs: flying when worn."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

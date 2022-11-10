@@ -9969,6 +9969,22 @@ A("Rhetor's Crumbs",				LUMP_OF_ROYAL_JELLY, /* +1 CHA when eaten */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
+A("Piranhabane",				RUNED_ROD,
+	(SPFX_RESTR|SPFX_DCLAS), 0, S_EEL,
+	PHYS(0, 50), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("The Ring of Everything Resistance",				RIN_ADORNMENT, /* randart, resist fire, cold, shock, poison, sleep and acid, giant explorer, autocurses when worn */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Doorbane",				LOCK_PICK, /* doors cannot resist when wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Magic Carpet",				TOWEL, /* flying when worn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

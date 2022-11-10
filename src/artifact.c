@@ -203,6 +203,7 @@ init_randarts()
 	artilist[ART_DARK_MAGIC].otyp = randartsuit();
 	artilist[ART_BEAM_CONTROL].otyp = randartmeleeweapon();
 	artilist[ART_SANDRA_S_SECRET_WEAPON].otyp = randartmeleeweapon();
+	artilist[ART_FINAL_DOOR_SOLUTION].otyp = randartmeleeweapon();
 	artilist[ART_DUMBOAK_S_HEW].otyp = randartmeleeweapon();
 	artilist[ART_POWER_AMMO].otyp = randartmissile();
 	artilist[ART_PAUERED_BY_THE_CAP].otyp = randartmissile();
@@ -218,6 +219,7 @@ init_randarts()
 	artilist[ART_NATALIA_IS_LOVELY_BUT_DANG].otyp = randartshirt();
 	artilist[ART_TAPE_ARMAMENT].otyp = randartsuit();
 	artilist[ART_CATHAN_S_SIGIL].otyp = randartring();
+	artilist[ART_RING_OF_EVERYTHING_RESISTA].otyp = randartring();
 	artilist[ART_VERSION_CONTROL].otyp = randartring();
 	artilist[ART_FLEEING_MINE_MAIL].otyp = randartsuit();
 	artilist[ART_GREY_FUCKERY].otyp = randartsuit();
@@ -542,6 +544,7 @@ init_randarts()
 	artilist[ART_ALISEH_S_RED_COLOR].otyp = find_lolita_boots();
 	artilist[ART_KATIE_MELUA_S_FLEECINESS].otyp = find_weapon_light_boots();
 	artilist[ART_ELONA_S_SNAIL_TRAIL].otyp = find_rubynus_helmet();
+	artilist[ART_LORENZI_S_CLEANING_RESIDUE].otyp = find_everlasting_boots();
 
 	artilist[ART_ARABELLA_S_WEAPON_STORAGE].otyp = find_cursed_called_cloak();
 	artilist[ART_KYS_YOURSELF].otyp = find_fourchan_cloak();
