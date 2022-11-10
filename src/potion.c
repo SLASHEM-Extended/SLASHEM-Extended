@@ -15434,6 +15434,7 @@ trophy_get()
 	if (Race_if(PM_INHERITOR)) giftartifact();
 	if (Race_if(PM_HERALD)) heraldgift();
 	mightbooststat(A_CON);
+	mightbooststat(A_CHA);
 
 	if (uarmf && uarmf->oartifact == ART_DAD_S_MONEY) {
 		u.ugold += 1000;

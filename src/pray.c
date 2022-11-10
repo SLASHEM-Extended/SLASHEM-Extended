@@ -2244,6 +2244,7 @@ dosacrifice()
 		if (u.ualign.record < u.alignlim)
 		    You_feel("appropriately %s.", align_str(u.ualign.type));
 		else You_feel("you are thoroughly on the right path.");
+		mightbooststat(A_CHA);
 		adjalign(5);
 		u.alignlim += 1;
 #ifdef NOARTIFACTWISH
