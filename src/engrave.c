@@ -5929,6 +5929,13 @@ static const char *epitaphs[] = {
 	"Oh no, I became stupider! If the mind flayer hits me another time I'll get a game ov-",
 	"What, a 'noneffervescent tatting'??? It has 9d4 wrap, oh well that usually doesn't hit anyway, but a passive superpoisoning attack, a 9d7 thieving kick, RNG intervention spells, a 4d5 tentacle attack that destroys armor and a 5d4 lethe attack??? Like dude you're fucked up, whoever made up such an unbalanced monster?",
 	"Uuuuuuuuhhh... if the 'corset nudism' hits me, it's game over. A ranged 3d18 fear-inducing attack, randomized-effect spellcasting, a 1d21 specific bite and a *6D20* vulnerability hug attack??? If that hits me even once, game over. And the thing's speed 21, too. Hopefully it doesn't--",
+	"Another adventurer carried this to their grave, which thou hast already approached. Search around such an area.",
+	"It has lain somewhere in this dungeon for a long time, awaiting the next hero. Thou hast already passed near to it.",
+	"when a new race exists in several variants and has different implementations depending on variant, nothing can be suckier than the slex one cuz to play the slex one u gotta be playing slex", /* inspired by amateurhour */
+	"looooooool forcing a chest with autounlock! that's so typical for TSX :P  'hey, sorry dude, but the castle chest was locked and you happened to be wielding a blunt weapon, well now the chest is totally destroyed and you see a hexagonal wand shatter! hahahahahahhahahahahaHAHAHAAAHAHAOMEGALUL'",
+	"singslave: lol yet another 'hahahaha all parts of the game suxx0rz like you cannot believe' role :P", /* by amateurhour */
+	"Blahonir's lair sucks, reason: there's traps that remove your disint res and destroy your stuff or disintegrate you, and lots of monsters with disintegrate attacks, and a demon lord that steals ur shit if that's what you had for disint res, and the traps are almost certainly on critical path", /* by amateurhour */
+	"then take venonir's lair, traps remove poison res and prevent poison res working, and a covetous demon lord that uses venom, so you step on a trap, he teleports to you, gg no re you instadied from poison", /* by amateurhour */
 
 };
 

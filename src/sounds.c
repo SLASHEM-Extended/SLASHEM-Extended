@@ -102,8 +102,10 @@ dosounds()
 		"dishes being washed!",
 		"a neverending dripping sound that is driving you crazy!",
 		"someone getting in on the action with a hot foocubus!",
+		"something that gives you a sinking feeling.",
+		"something that gives you a sinking feeling, because sounds.c uses 'You_hear' instead of 'pline' and therefore all of the sink-related sounds have to be messages that start with 'You hear', annoyingly enough.",
 	};
-	You_hear("%s", sink_msg[rn2(6+hallu*3)]);
+	You_hear("%s", sink_msg[rn2(6+hallu*5)]);
     }
 #endif
     if (level.flags.has_court && !rn2(200)) {
