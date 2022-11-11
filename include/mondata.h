@@ -297,6 +297,7 @@
 				 ((ptr) == &mons[PM_PILE_OF_LIGHT_RADIUS_COINS]) ? 2 : \
 				 ((ptr) == &mons[PM_GREATER_FIRE_ELEMENTAL]) ? 3 : \
 				 ((ptr) == &mons[PM_RADIANT_ARCHON]) ? 3 : \
+				 ((ptr) == &mons[PM_GLOW_FLY]) ? 3 : \
 				 ((ptr) == &mons[PM_LIGHT_SHAPE]) ? 3 : \
 				 ((ptr) == &mons[PM_SATANIC_GNOME]) ? 3 : \
 				 ((ptr) == &mons[PM_LUMINEOUS_FIREFLY]) ? 3 : \

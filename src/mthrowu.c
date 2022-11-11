@@ -1740,6 +1740,7 @@ struct monst *mtmp;
 	int polelimit = POLE_LIM;
 
 	if (mtmp->data == &mons[PM_MECHTNED]) return;
+	if (mtmp->data == &mons[PM_MYSTERY_WOMAN]) return;
 
 	/* Rearranged beginning so monsters can use polearms not in a line */
 	if (mtmp->weapon_check == NEED_WEAPON || !MON_WEP(mtmp)) {

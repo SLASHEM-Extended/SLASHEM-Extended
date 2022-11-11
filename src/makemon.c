@@ -10090,6 +10090,10 @@ loveheelover:
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, TALC, 25);
 		}
+		if (ptr == &mons[PM_SLETH_SILVERBANE]) {
+			(void) mongets(mtmp, SILVER_SABER);
+			(void) mongets(mtmp, SILVER_SPEAR);
+		}
 		if (ptr == &mons[PM_ZAUR_RENEGADE]) {
 			(void) mongets(mtmp, TRIDENT);
 			 m_initthrow(mtmp, SPEAR, 3);
@@ -12391,6 +12395,7 @@ loveheelover:
 		}
 		if(ptr == &mons[PM_BELMONT_CLAN_MEMBER]) (void) mongets(mtmp, WOODEN_STAKE);
 		if(ptr == &mons[PM_WALDOGGO]) (void) mongets(mtmp, BOBBLE_HAT);
+		if(ptr == &mons[PM_KRAVENOR]) (void) mongets(mtmp, FIRE_STICK);
 
 		if (ptr == &mons[PM_SARACEN_CONQUEROR]) {
 			(void) mongets(mtmp, DESERT_SWORD);
@@ -14592,6 +14597,7 @@ loveheelover:
 		if (ptr == &mons[PM_UZAIHANKETSU_O_UKETA_KITSUEN_SHA]) (void)mongets(mtmp, CIGARETTE);
 		if (ptr == &mons[PM_SPEARFISH_REMORA]) (void)mongets(mtmp, SPEAR);
 		if (ptr == &mons[PM_REMORA_HUNTER]) (void)mongets(mtmp, SPEAR);
+		if (ptr == &mons[PM_MERMAIDEN_AVENGER]) (void)mongets(mtmp, TRIDENT);
 
 		if (ptr == &mons[PM_REVOLUTINO_MARI]) {
 			(void)mongets(mtmp, BASTERD_SWORD);
@@ -15753,6 +15759,7 @@ loveheelover:
 		if (monsndx(ptr) == PM_ELITE_MORNING_STAR_FIGHTER) (void) mongets(mtmp, STONE_STAR);
 		if (monsndx(ptr) == PM_REACHES_MUMMY) (void) mongets(mtmp, REACH_TRIDENT);
 		if (mtmp->data == &mons[PM_MASK_GESTAPO]) (void) mongets(mtmp, find_corona_mask());
+		if (monsndx(ptr) == PM_MYSTERY_WOMAN) (void) mongets(mtmp, SILVER_DAGGER);
 
 		if (ptr == &mons[PM_MAUREEN]) {
 			(void) mongets(mtmp, CIGARETTE);
@@ -16952,6 +16959,10 @@ loveheelover:
 		if (monsndx(ptr) == PM_DOUGLAS_ADAMS) {
 			(void) mongets(mtmp,HITCHHIKER_S_GUIDE_TO_THE_GALA);
 		}
+		if (monsndx(ptr) == PM_UNHOLY_LIGHT_WARRIOR) {
+			(void) mongets(mtmp, LARGE_SHIELD);
+			(void) mongets(mtmp, DARKNESS_CLUB);
+		}
 		if (monsndx(ptr) == PM_SCHORSCH) {
 			(void) mongets(mtmp, SNEAKERS);
 			(void) mongets(mtmp, CIGARETTE);
@@ -17484,6 +17495,13 @@ loveheelover:
 		if (ptr == &mons[PM_DEPRESSED_HOBBIT]) (void) mongets(mtmp, MAID_DRESS);
 		if (ptr == &mons[PM_THRALL_MOGMAN]) (void) mongets(mtmp, MACE);
 		if (ptr == &mons[PM_THRALL_RENEGADE]) (void) mongets(mtmp, MACE);
+		if (ptr == &mons[PM_GANSPUL_FILTO]) (void) mongets(mtmp, POT_CONFUSION);
+
+		if (ptr == &mons[PM_OLD_RED_GHAR]) {
+			(void) mongets(mtmp, POT_CONFUSION);
+			(void) mongets(mtmp, POT_CONFUSION);
+			(void) mongets(mtmp, POT_CONFUSION);
+		}
 
 		if (ptr == &mons[PM_FIGHTER_SAMURAI]) {
 			(void) mongets(mtmp, KATANA);
