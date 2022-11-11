@@ -9899,6 +9899,15 @@ loveheelover:
 			(void) mongets(mtmp, RUBBER_HOSE);
 			m_initthrow(mtmp, CREAM_PIE, 2);
 		}
+		if (mtmp->data == &mons[PM_ECLIPSEGAUNT]) {
+			(void) mongets(mtmp, TRIDENT);
+			if (rn2(2)) {
+				m_initthrow(mtmp, SPEAR, 5);
+			} else {
+				m_initthrow(mtmp, JAVELIN, 7);
+			}
+		}
+
 		if (mtmp->data == &mons[PM_AA_SMALLPENIS]) {
 			(void) mongets(mtmp, OSBANE_KATANA);
 			(void) mongets(mtmp, CHAIN_MAIL);
@@ -10032,6 +10041,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_DIGLIZARD]) (void) mongets(mtmp, PICK_AXE);
 		if (mtmp->data == &mons[PM_DIGGING_LIZARD]) (void) mongets(mtmp, PICK_AXE);
 		if (mtmp->data == &mons[PM_PICK_DRACONIAN]) (void) mongets(mtmp, PICK_AXE);
+		if (mtmp->data == &mons[PM_HISSER_KOMODO_DRAGON]) (void) mongets(mtmp, CHAIN_MAIL);
 
 		if (mtmp->data == &mons[PM_LIZARD_MAGE]) (void) mongets(mtmp, !rn2(3) ? SHORT_SWORD : !rn2(2) ? BROADSWORD : LONG_SWORD);
 
@@ -11480,6 +11490,10 @@ loveheelover:
 		if (ptr == &mons[PM_NEUTRAL_GNOME]) {
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, SALT_CHUNK, 30);
+		}
+		if (ptr == &mons[PM_FOOTBOW]) {
+			(void) mongets(mtmp, BOW);
+			 m_initthrow(mtmp, ARROW, 30);
 		}
 		if (ptr == &mons[PM_UPPER_COMMANDER]) {
 			(void) mongets(mtmp, COMMANDER_SUIT);
@@ -25018,11 +25032,14 @@ register int	mmflags;
 			if (mtmp->data == &mons[PM_ALIENATED_UFO_PART]) set_mimic_sym(mtmp);
 			if (mndx == PM_UNDEFINED_UFO_PART) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_PHONE_ZOMBIE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_SUCK_YER_BRAIN) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_DUEDUE_DUEDUE_DUE_DUE_DUEUEUEUEUE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_DRONING_UFO_PART) set_mimic_sym(mtmp);
 			if (mndx == PM_SUMTHINS_KILLIN_YA) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_ONE_IN_A_HUNDRED_ZOMBIE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_THAT_STUFF_WASNT_YOURS_ANYWAY) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_HEHEHE_YOUR_GAME_ENDED_BRO) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
+			if (mndx == PM_U_RAN_OUT_OF_INT_AND_DIED) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_STREAM_KNIGHT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_INVISDRAUGR) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_UR_SHITS_BEING_STOLEN) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}

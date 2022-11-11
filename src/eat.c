@@ -1128,6 +1128,7 @@ register int pm;
 	    case PM_KOMODO_DRAGON:
 	    case PM_KOMODO_BEAST:
 	    case PM_PETTY_KOMODO_DRAGON:
+	    case PM_HISSER_KOMODO_DRAGON:
 		make_numbed(0L,TRUE);
 		make_frozen(0L,TRUE);
 		make_burned(0L,TRUE);
@@ -1935,6 +1936,7 @@ register int pm;
 	    case PM_KOMODO_DRAGON:
 	    case PM_KOMODO_BEAST:
 	    case PM_PETTY_KOMODO_DRAGON:
+	    case PM_HISSER_KOMODO_DRAGON:
 			lesshungry(400);
 		break;
 	    case PM_GORGON:

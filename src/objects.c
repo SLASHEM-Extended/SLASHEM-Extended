@@ -7642,7 +7642,13 @@ SCROLL((char *)0,               "DAGGGGGGGGG EY SCHREIB ENDLICH",  P_NONE,     1
 SCROLL((char *)0,               " DEATH   HATE   FORCE ",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
 SCROLL((char *)0,               "DUELLBLUETEL",  P_NONE,     1,   0, 100, CLR_BLUE, 1),
 SCROLL((char *)0,               "LEIDER LIN WO HIIIIII",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
+SCROLL((char *)0,               "AND I KEEP ON FLOZING",  P_NONE,     1,   0, 100, CLR_BRIGHT_CYAN, 1),
 SCROLL((char *)0,               "Y KAMEEL THINGENA",  P_NONE,     1,   0, 100, CLR_BRIGHT_CYAN, 1),
+SCROLL((char *)0,               "KEEP BLREEDING LOVE",  P_NONE,     1,   0, 100, CLR_BRIGHT_CYAN, 1),
+SCROLL((char *)0,               "YABBA DABBA DOO",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
+SCROLL((char *)0,               "XID XAD XOO",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
+SCROLL((char *)0,               "TYTHIC NUPITUS",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
+SCROLL((char *)0,               "YUPITER QOMENS",  P_NONE,     1,   0, 100, CLR_BLUE, 1),
 
 
 #ifdef MAIL
@@ -8404,6 +8410,7 @@ SPELL((char *)0,         "variable",  P_NONE, 0, 0, 0, 1, 0, CLR_WHITE, 1),
 SPELL((char *)0,         "first-hand",  P_NONE, 0, 0, 0, 1, 0, CLR_GRAY, 1),
 SPELL((char *)0,         "second-hand",  P_NONE, 0, 0, 0, 1, 0, CLR_BROWN, 1),
 SPELL((char *)0,         "third-hand",  P_NONE, 0, 0, 0, 1, 0, CLR_MAGENTA, 1),
+SPELL((char *)0,         "shady",  P_NONE, 0, 0, 0, 1, 0, CLR_BLACK, 1),
 SPELL("blank paper",	 "plain",		P_NONE, 1500,  0, 0, 0, 0, HI_PAPER, 1),
 	/* ...Blank spellbook must come last because it retains its description */
 OBJECT(OBJ("Book of the Dead", "papyrus"),
