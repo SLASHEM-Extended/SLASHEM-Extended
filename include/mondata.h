@@ -299,6 +299,7 @@
 				 ((ptr) == &mons[PM_RADIANT_ARCHON]) ? 3 : \
 				 ((ptr) == &mons[PM_LIGHT_SHAPE]) ? 3 : \
 				 ((ptr) == &mons[PM_SATANIC_GNOME]) ? 3 : \
+				 ((ptr) == &mons[PM_LUMINEOUS_FIREFLY]) ? 3 : \
 				 ((ptr) == &mons[PM_LANTERN_STALKER]) ? 3 : \
 				 ((ptr) == &mons[PM_CORONA_WRAITH]) ? 3 : \
 				 ((ptr) == &mons[PM_GLOWWORM]) ? 3 : \
@@ -318,6 +319,7 @@
 				 ((ptr) == &mons[PM_LUMINESCENT_WARP_FUNGUS]) ? 3 : \
 				 ((ptr) == &mons[PM_LUMINESCENT_WARP_PATCH]) ? 3 : \
 				 ((ptr) == &mons[PM_BRIGHTER_SHADOW]) ? 3 : \
+				 ((ptr) == &mons[PM_TAME_SPEED___MONSTER]) ? 3 : \
 				 ((ptr) == &mons[PM_SMOKING_LIBAVIUS_SPIRIT]) ? 3 : \
 				 ((ptr) == &mons[PM_FIRE_VAMPIRE])? 2 : \
 				 ((ptr) == &mons[PM_GLOWING_DRACONIAN]) ? 2 : \

@@ -12709,6 +12709,16 @@ do_stone2:
 				incr_itimeout(&HHunger, rnz(200) );
 				pline("Gotta brave the war!");
 			}
+			if (mtmp->data == &mons[PM_VAPOR_CLOUD] || mtmp->data == &mons[PM_LARGE_VAPOR_CLOUD] || mtmp->data == &mons[PM_MEGA_VAPOR_CLOUD]) {
+				register struct obj *dispensepotion;
+
+				dispensepotion = mksobj_at(rnd_offensive_potion((struct monst *)0), u.ux, u.uy, TRUE, FALSE, FALSE);
+				if (dispensepotion) {
+					potionbreathe(dispensepotion);
+					delobj(dispensepotion);
+				}
+
+			}
 		    }
 		    break;
 

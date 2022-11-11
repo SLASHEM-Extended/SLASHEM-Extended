@@ -1939,6 +1939,7 @@ E struct monst *mk_mplayer(struct permonst *,XCHAR_P, XCHAR_P,BOOLEAN_P);
 E void create_mplayers(int,BOOLEAN_P);
 E void create_umplayers(int,BOOLEAN_P);
 E void mplayer_talk(struct monst *);
+E void mk_mplayer_armor(struct monst *, SHORT_P);
 
 #if defined(MICRO) || defined(WIN32)
 

@@ -6,7 +6,6 @@
 
 STATIC_DCL const char *dev_name(void);
 STATIC_DCL void get_mplname(struct monst *, char *);
-STATIC_DCL void mk_mplayer_armor(struct monst *, SHORT_P);
 
 /* These are the names of those who
  * contributed to the development of NetHack 3.2/3.3/3.4.
@@ -217,7 +216,7 @@ namedecided:
 	}
 }
 
-STATIC_OVL void
+void
 mk_mplayer_armor(mon, typ)
 struct monst *mon;
 short typ;

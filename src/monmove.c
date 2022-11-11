@@ -925,7 +925,7 @@ register struct monst *mtmp;
 		if (isok(mtmp->mx, mtmp->my)) levl[mtmp->mx][mtmp->my].lit = FALSE;
 	}
 
-	if (mdat == &mons[PM_ROCK_SPAWNER] || mdat == &mons[PM_LOCKER] || mdat == &mons[PM_SPIRIT_LOCKER] || mdat == &mons[PM_XORN_LOCKER]) {
+	if (mdat == &mons[PM_ROCK_SPAWNER] || mdat == &mons[PM_LOCKER] || mdat == &mons[PM_WALLWORKER_ANT] || mdat == &mons[PM_SPIRIT_LOCKER] || mdat == &mons[PM_XORN_LOCKER]) {
 		if (isok(mtmp->mx, mtmp->my) && (!In_sokoban(&u.uz) || !rn2(25)) ) {
 			if (levl[mtmp->mx][mtmp->my].typ == ROOM || levl[mtmp->mx][mtmp->my].typ == CORR || (levl[mtmp->mx][mtmp->my].typ >= ICE && levl[mtmp->mx][mtmp->my].typ <= CRYPTFLOOR) || (levl[mtmp->mx][mtmp->my].typ >= AIR && levl[mtmp->mx][mtmp->my].typ <= RAINCLOUD)) {
 				levl[mtmp->mx][mtmp->my].typ = ROCKWALL;

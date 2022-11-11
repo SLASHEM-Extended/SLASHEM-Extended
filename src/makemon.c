@@ -7772,6 +7772,46 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, PICK_AXE);
 			(void) mongets(mtmp, rnd_class(DILITHIUM_CRYSTAL,LUCKSTONE-1));
 		}
+		if (ptr == &mons[PM_DOGCATCHER] || ptr == &mons[PM_NET_DOGCATCHER] || ptr == &mons[PM_SNARE_DOGCATCHER]) {
+			(void) mongets(mtmp, VOULGE);
+			(void) mongets(mtmp, CROSSBOW);
+			 m_initthrow(mtmp, INFERIOR_BOLT, 40);
+		}
+		if (ptr == &mons[PM_ELDER_DOGCATCHER] || ptr == &mons[PM_WEB_DOGCATCHER] || ptr == &mons[PM_FALLING_DOGCATCHER]) {
+			(void) mongets(mtmp, HALBERD);
+			(void) mongets(mtmp, CROSSBOW);
+			(void) mongets(mtmp, BRONZE_PLATE_MAIL);
+			 m_initthrow(mtmp, CROSSBOW_BOLT, 50);
+		}
+
+		if (ptr == &mons[PM_PHANTOM_OF_WAR]) {
+			mk_mplayer_armor(mtmp, rnd_class(PLATE_MAIL, ROBE_OF_WEAKNESS));
+			mk_mplayer_armor(mtmp, rnd_class(MUMMY_WRAPPING, CLOAK_OF_DISPLACEMENT));
+			mk_mplayer_armor(mtmp, rnd_class(ELVEN_LEATHER_HELM, HELM_OF_TELEPATHY));
+			mk_mplayer_armor(mtmp, rnd_class(SMALL_SHIELD, SHIELD_OF_REFLECTION));
+
+			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1), TRUE, FALSE, FALSE);
+			if (otmp) {
+				otmp->spe = (rn2(2) ? rn1(5,4) : (rn2(4) - rn2(7) ) );
+				if (!rn2(3)) otmp->oerodeproof = 1;
+				else if (!rn2(2)) otmp->greased = 1;
+				if (rn2(2)) otmp = mk_artifact(otmp, A_NONE, TRUE);
+				(void) mpickobj(mtmp, otmp, TRUE);
+			}
+
+			if (!rn2(3)) {
+				otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1), TRUE, FALSE, FALSE);
+				if (otmp) {
+					otmp->spe = (rn2(2) ? rn1(5,4) : (rn2(4) - rn2(7) ) );
+					if (!rn2(3)) otmp->oerodeproof = 1;
+					else if (!rn2(2)) otmp->greased = 1;
+					if (rn2(2)) otmp = mk_artifact(otmp, A_NONE, TRUE);
+					(void) mpickobj(mtmp, otmp, TRUE);
+				}
+			}
+
+		}
+
 		if (ptr == &mons[PM_DERLINGER]) {
 			(void) mongets(mtmp, SHORT_SWORD);
 			(void) mongets(mtmp, LEATHER_JACKET);
@@ -10042,6 +10082,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_DIGGING_LIZARD]) (void) mongets(mtmp, PICK_AXE);
 		if (mtmp->data == &mons[PM_PICK_DRACONIAN]) (void) mongets(mtmp, PICK_AXE);
 		if (mtmp->data == &mons[PM_HISSER_KOMODO_DRAGON]) (void) mongets(mtmp, CHAIN_MAIL);
+		if (mtmp->data == &mons[PM_POISONOUS_TREE_FROG]) (void) mongets(mtmp, SCR_GROWTH);
 
 		if (mtmp->data == &mons[PM_LIZARD_MAGE]) (void) mongets(mtmp, !rn2(3) ? SHORT_SWORD : !rn2(2) ? BROADSWORD : LONG_SWORD);
 
@@ -12214,6 +12255,12 @@ loveheelover:
 		if (ptr == &mons[PM_HEAVY_CENTAUR]) {
 			(void) mongets(mtmp, FLINTLOCK);
 	  		m_initthrow(mtmp, LEAD_PISTOL_BULLET, 20);
+		}
+		if (ptr == &mons[PM_SIGNIFICANT_THREAT_INCREASE_CENTAUR]) {
+			(void) mongets(mtmp, BANDED_MAIL);
+			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, LEATHER_GLOVES);
+			(void) mongets(mtmp, LANCE);
 		}
 		if (ptr == &mons[PM_BAB]) {
 	  		m_initthrow(mtmp, FRAG_GRENADE, 25);
@@ -14719,6 +14766,9 @@ loveheelover:
 		if (mtmp->data == &mons[PM_BELLY_NAVEL_PIERCED_GIRL]) (void) mongets(mtmp, VICTORIAN_UNDERWEAR);
 		if (mtmp->data == &mons[PM_RUSSIAN_FEMMY]) (void) mongets(mtmp, WEDGE_SANDALS); /* M4_SANDALS */
 		if (mtmp->data == &mons[PM_VERY_SOFT_WENCH]) (void) mongets(mtmp, SHORT_SWORD);
+		if (mtmp->data == &mons[PM_TULPAS]) (void) mongets(mtmp, CLUB);
+		if (mtmp->data == &mons[PM_DARK_TULPAS]) (void) mongets(mtmp, CLUB);
+		if (mtmp->data == &mons[PM_NOW_WE_DEFEATED_YOU]) (void) mongets(mtmp, CLUB);
 
 		if (ptr == &mons[PM_FLINGER]) {
 			(void) mongets(mtmp, SLING);
@@ -23931,6 +23981,10 @@ register int	mmflags;
 		mtmp->mpeaceful = FALSE;
 		mtmp->mfrenzied = TRUE;
 	}
+	if (ptr == &mons[PM_DOGCATCHER] || ptr == &mons[PM_NET_DOGCATCHER] || ptr == &mons[PM_SNARE_DOGCATCHER] || ptr == &mons[PM_ELDER_DOGCATCHER] || ptr == &mons[PM_WEB_DOGCATCHER] || ptr == &mons[PM_FALLING_DOGCATCHER]) {
+		mtmp->mpeaceful = FALSE;
+		mtmp->mfrenzied = TRUE;
+	}
 	if (ptr == &mons[PM_TAPIA]) {
 		mtmp->mpeaceful = FALSE;
 		mtmp->mfrenzied = TRUE;
@@ -25055,6 +25109,8 @@ register int	mmflags;
 			if (rn2(2) && mndx == PM_AIR_DEATH) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_KAGERO_AIR_DEATH) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_DEEPSTATECAT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_KRRK_CAT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_CLAWIN_THRU_YOUR_HP) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_DEFORMED_CAT) set_mimic_sym(mtmp);
 			if (mndx == PM_LINUS_THE_CAT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_KRRK_KRRK) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
@@ -25811,6 +25867,9 @@ register int	mmflags;
 			if (mtmp->data == &mons[PM_GRATING_CHICKEN]) set_mimic_sym(mtmp);
 			break;
 		case S_WRAITH:
+
+			if (mndx == PM_NOW_WE_DEFEATED_YOU) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+
 			if (mtmp->data == &mons[PM_GELMER] && mvitals[PM_KELANA].born == 0) {
 				(void) makemon(&mons[PM_KELANA], mtmp->mx, mtmp->my, MM_ADJACENTOK);
 			}
@@ -25839,6 +25898,12 @@ register int	mmflags;
 			if (mndx == PM_NOW_GOES_NIX_MORE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 
 			break;
+
+		case S_XAN:
+			if (mndx == PM_SSSSS_SSSSS_) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_MUAHAHAHAHA_WE_RE_SUCKING_AWAY_ALL_YOUR_SHIT_HA_HA_HA_) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			break;
+
 		case S_LIGHT:
 		case S_ELEMENTAL:
 			if (mndx == PM_STALKER || mndx == PM_FORCE_STALKER || mndx == PM_LANTERN_STALKER || mndx == PM_GREEN_STALKER || mndx == PM_YELLOW_STALKER || mndx == PM_RED_STALKER || mndx == PM_WHITE_STALKER || mndx == PM_CYAN_STALKER || mndx == PM_STONE_STALKER || mndx == PM_THE_HIDDEN || mndx == PM_INVISIBLE_BADGUY || mndx == PM_UNSEEN_POTATO || mndx == PM_CAMOUFLAGED_WATCHER || mndx == PM_UNSEEN_SERVANT || mndx == PM_SCHEDAU_STALKER || mndx == PM_HIDDEN_TRACKER || mndx == PM_SILENT_KILLER || mndx == PM_INVIS_SCORER || mndx == PM_INVIS_SAMER || mndx == PM_ILLUSION_WEAVER || mndx == PM_MIRAGE_WEAVER || mndx == PM_PAIN_MASTER || mndx == PM_PAIN_MISTER || mndx == PM_BLACK_LIGHT || mndx == PM_WEREBLACKLIGHT || mndx == PM_CHEATING_BLACK_LIGHT || mndx == PM_INVISIBLE_SPIRIT || mndx == PM_BLACK_LASER || mndx == PM_BLACK_BULB || mndx == PM_BLACK_BOOMER || mndx == PM_BLACK_STAR || mndx == PM_BLACK_BEAM || mndx == PM_BLACK_RAY || mndx == PM_POLTERGEIST || mndx == PM_WERESTALKER || mndx == PM_YLVA_STALKER) {
@@ -32499,6 +32564,14 @@ assign_sym:
 	if (mtmp->data == &mons[PM_TREEENT]) {
 		ap_type = M_AP_FURNITURE;
 		appear = S_tree;
+	}
+	if (mtmp->data == &mons[PM_ABALLIN]) {
+		ap_type = M_AP_FURNITURE;
+		appear = S_pool;
+	}
+	if (mtmp->data == &mons[PM_ABALLIN_ELEMENTAL]) {
+		ap_type = M_AP_FURNITURE;
+		appear = S_pool;
 	}
 	if (mtmp->data == &mons[PM_SEEMINGLY_INNOCUOUS_CLOUD]) {
 		ap_type = M_AP_FURNITURE;

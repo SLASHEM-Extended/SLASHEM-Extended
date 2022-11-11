@@ -240,6 +240,7 @@ int mndx;
 	case PM_CHAMECHAUN:	mcham = CHAM_CHAMECHAUN; break;
 	case PM_METAMORPHOSE:	mcham = CHAM_METAMORPHOSE; break;
 	case PM_GHELEON:	mcham = CHAM_GHELEON; break;
+	case PM_RAINBOW_SPHERE:	mcham = CHAM_RAINBOW_SPHERE; break;
 	case PM_ELONA_BADGER:	mcham = CHAM_ELONA_BADGER; break;
 	case PM_PURPLE_R:	mcham = CHAM_PURPLE_R; break;
 	case PM_VAMPSHIFTER:	mcham = CHAM_VAMPSHIFTER; break;
@@ -368,6 +369,7 @@ STATIC_VAR int cham_to_pm[] = {
 		PM_CHANGERING_KELPIE,
 		PM_DITTO,
 		PM_ELONA_BADGER,
+		PM_RAINBOW_SPHERE,
 		PM_GIANT_CHAMELEON,
 };
 
@@ -1749,6 +1751,14 @@ register struct monst *mtmp;
 		mtmp->mnamelth = 0;
 		break;
 
+	    case PM_PAPERBACK_GOLEM:
+		if (mtmp->mrevived) break;
+		num = rnd(4);
+		while (num--)
+			obj = mksobj_at(SPE_BLANK_PAPER, x, y, TRUE, FALSE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+
 	    case PM_ECTUEL_CHRISTMICEBOX:
 		obj = mksobj_at(ICE_BOX, x, y, TRUE, FALSE, FALSE);
 		mtmp->mnamelth = 0;
@@ -3091,7 +3101,7 @@ mfndpos(mon, poss, info, flag)
 	wantlava = (mdat->mlet == S_FLYFISH || mdat == &mons[PM_HUMAN_WEREFLYFISH] || mdat == &mons[PM_CONCORDE__]);
 	lavaok = is_flyer(mdat) || mon->egotype_flying || is_clinger(mdat) || (likes_lava(mdat) && !wantlava);
 	thrudoor = ((flag & (ALLOW_WALL|BUSTDOOR)) != 0L);
-	treeok = (is_flyer(mdat) || mon->egotype_flying || (mon->data == &mons[PM_GIANT_TREE_SPIDER]) || (mon->data->msound == MS_TREESQUAD));
+	treeok = (is_flyer(mdat) || mon->egotype_flying || (mon->data == &mons[PM_GIANT_TREE_SPIDER]) || (mon->data == &mons[PM_POISONOUS_TREE_FROG]) || (mon->data->msound == MS_TREESQUAD));
 	/* flying monsters, but not flying players, can pass over trees; the tree squad can too --Amy */
 	if (flag & ALLOW_DIG) {
 	    struct obj *mw_tmp;
@@ -8499,6 +8509,7 @@ struct monst *mon;
 	case CHAM_CHAMECHAUN: chambaselvl = 6; break;
 	case CHAM_METAL_DOPPELGANGER: chambaselvl = 9; break;
 	case CHAM_GHELEON: chambaselvl = 6; break;
+	case CHAM_RAINBOW_SPHERE: chambaselvl = 10; break;
 	case CHAM_ELONA_BADGER: chambaselvl = 23; break;
 	case CHAM_ZRUTINATOR: chambaselvl = 25; break;
 	case CHAM_METAMORPHOSE: chambaselvl = 51; break;
@@ -9051,7 +9062,21 @@ edotochoice:
 			if (uncommon7(pm) && rn2(3)) goto edotochoice;
 			if (uncommon10(pm) && rn2(5)) goto edotochoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto edotochoice;
-			if (rn2(10000) && !(pm->mlet == S_ARCHFIEND) ) goto jokechoice;
+			if (rn2(10000) && !(pm->mlet == S_ARCHFIEND) ) goto edotochoice;
+		break;
+	    case CHAM_RAINBOW_SPHERE:
+rainbowchoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto rainbowchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto rainbowchoice;
+			if (uncommon2(pm) && !rn2(4)) goto rainbowchoice;
+			if (uncommon3(pm) && !rn2(3)) goto rainbowchoice;
+			if (uncommon5(pm) && !rn2(2)) goto rainbowchoice;
+			if (uncommon7(pm) && rn2(3)) goto rainbowchoice;
+			if (uncommon10(pm) && rn2(5)) goto rainbowchoice;
+			if (is_jonadabmonster(pm) && rn2(20)) goto rainbowchoice;
+			if (rn2(10000) && !(attacktype(pm, AT_EXPL) ) ) goto rainbowchoice;
 		break;
 	    case CHAM_CHAMELEON:
 	    case CHAM_EVIL_CHAMELEON:
@@ -9170,7 +9195,7 @@ boolean msg;
 		   human forms any more
 		   Amy edit: oh my god they disallowed M2_HUMAN this is intolerable
 		   also, unique shifters should be able to pick M2_NOPOLY forms, this is by design */
-		if (is_mplayer(mdat) || is_umplayer(mdat) || monpolyok(mdat) || (mtmp->cham == CHAM_UNIQUE_SHIFTER && ((mdat->geno & G_FREQ) > 0) && (mdat->geno & G_UNIQ) ) )
+		if (is_mplayer(mdat) || is_umplayer(mdat) || monpolyok(mdat) || (mtmp->cham == CHAM_EDOTO && mdat->mlet == S_ARCHFIEND) || (mtmp->cham == CHAM_CHARMONIE && mndx >= PM_JUIBLEX && mndx <= PM_DEMOGORGON) || (mtmp->cham == CHAM_UNIQUE_SHIFTER && ((mdat->geno & G_FREQ) > 0) && (mdat->geno & G_UNIQ) ) )
 		    break;
 	    }
 	    if (tryct > 100) return 0;	/* Should never happen */

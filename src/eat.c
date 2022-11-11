@@ -3396,6 +3396,7 @@ register int pm;
 	    case PM_METAMORPHOSE:
 	    case PM_UNIQUE_SHIFTER:
 	    case PM_GHELEON:
+	    case PM_RAINBOW_SPHERE:
 	    case PM_ELONA_BADGER:
 	    case PM_PURPLE_R:
 	    case PM_VAMPSHIFTER:
