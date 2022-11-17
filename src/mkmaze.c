@@ -922,7 +922,7 @@ register const char *s;
 #ifdef BIGSLEX
 	for(x = (rn2(2) ? rn1(40, 56) : rn2(4) ? rn1(10,14) : rn1(20, 28)); x; x--) {
 #else
-	for(x = (rn2(4) ? rn1(5,7) : rn1(10, 14)); x; x--) {
+	for(x = (rn2(2) ? rn1(20, 28) : rn2(4) ? rn1(5,7) : rn1(10, 14)); x; x--) {
 #endif
 		mazexy_all(&mm);
 		if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, MM_MAYSLEEP);
@@ -935,7 +935,7 @@ register const char *s;
 #ifdef BIGSLEX
 	for(x = (rn2(2) ? rn1(48, 56) : rn2(4) ? rn1(12,14) : rn1(24, 28)); x; x--) {
 #else
-	for(x = (rn2(4) ? rn1(6,7) : rn1(12, 14)); x; x--) {
+	for(x = (rn2(2) ? rn1(24, 28) : rn2(4) ? rn1(6,7) : rn1(12, 14)); x; x--) {
 #endif
 		if (!(depth(&u.uz) == 1 && In_dod(&u.uz) && rn2(3)) && !(depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2)) ) {
 			mktrap(0,1,(struct mkroom *) 0, (coord*) 0, TRUE);
@@ -977,7 +977,7 @@ register const char *s;
 #ifdef BIGSLEX
 	for(x = (rn2(2) ? rn1(40, 56) : rn2(4) ? rn1(10,14) : rn1(20, 28)); x; x--) {
 #else
-	for(x = (rn2(4) ? rn1(5,7) : rn1(10, 14)); x; x--) {
+	for(x = (rn2(2) ? rn1(20, 28) : rn2(4) ? rn1(5,7) : rn1(10, 14)); x; x--) {
 #endif
 		mazexy_all(&mm);
 		if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, MM_MAYSLEEP);
@@ -990,7 +990,7 @@ register const char *s;
 #ifdef BIGSLEX
 	for(x = (rn2(2) ? rn1(48, 56) : rn2(4) ? rn1(12,14) : rn1(24, 28)); x; x--) {
 #else
-	for(x = (rn2(4) ? rn1(6,7) : rn1(12, 14)); x; x--) {
+	for(x = (rn2(2) ? rn1(24, 28) : rn2(4) ? rn1(6,7) : rn1(12, 14)); x; x--) {
 #endif
 		if (!(depth(&u.uz) == 1 && In_dod(&u.uz) && rn2(3)) && !(depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2)) ) {
 			mktrap(0,1,(struct mkroom *) 0, (coord*) 0, TRUE);

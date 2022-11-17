@@ -12550,6 +12550,74 @@ skip1:
 		    }
 		}
 
+		/* place additional items, monsters and traps, amount is random but higher average for bigger rooms --Amy */
+		{
+			int roomsize = (croom->hx - croom->lx + 1) * (croom->hy - croom->ly + 1);
+			int helpcounter = roomsize;
+			int helpvar = 0;
+
+			while (helpcounter > 0) {
+				if (helpcounter > 75) {
+					helpcounter -= 75;
+					helpvar++;
+				} else {
+					if (helpcounter > rn2(75)) helpvar++;
+					helpcounter = 0;
+				}
+			}
+			if (ishaxor) helpvar *= 2;
+			if (helpvar > 0) helpvar = rn3(helpvar); /* rn3 for items because they can be useful, rest uses rn2 */
+			while (helpvar > 0) {
+				(void) mkobj_at(0, somex(croom), somey(croom), TRUE, FALSE);
+				helpvar--;
+			}
+
+			helpcounter = roomsize;
+			helpvar = 0;
+
+			while (helpcounter > 0) {
+				if (helpcounter > 25) {
+					helpcounter -= 25;
+					helpvar++;
+				} else {
+					if (helpcounter > rn2(25)) helpvar++;
+					helpcounter = 0;
+				}
+			}
+			if (ishaxor) helpvar *= 2;
+			if (helpvar > 0) helpvar = rn2(helpvar);
+			if (depth(&u.uz) == 1 && In_dod(&u.uz) && (helpvar > 0)) helpvar = rn2(helpvar);
+			if (depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2) && (helpvar > 0)) helpvar = rn2(helpvar);
+
+			while (helpvar > 0) {
+				(void) makerandomtrap_at(somex(croom), somey(croom), TRUE);
+				helpvar--;
+			}
+
+			helpcounter = roomsize;
+			helpvar = 0;
+
+			while (helpcounter > 0) {
+				if (helpcounter > 16) {
+					helpcounter -= 16;
+					helpvar++;
+				} else {
+					if (helpcounter > rn2(16)) helpvar++;
+					helpcounter = 0;
+				}
+			}
+			if (ishaxor) helpvar *= 2;
+			if (helpvar > 0) helpvar = rn2(helpvar);
+			if (depth(&u.uz) == 1 && In_dod(&u.uz) && (helpvar > 0)) helpvar = rn2(helpvar);
+			if (depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2) && (helpvar > 0)) helpvar = rn2(helpvar);
+
+			while (helpvar > 0) {
+				if (!ishomicider) (void) makemon((struct permonst *) 0, somex(croom), somey(croom), MM_MAYSLEEP);
+				else (void) makerandomtrap_at(somex(croom), somey(croom), TRUE);
+				helpvar--;
+			}
+		}
+
 	}
 
    }

@@ -6477,7 +6477,7 @@ dlb *fd;
 #ifdef BIGSLEX
 	    for(x = rnd((int) ((rn2(2) ? 96 : rn2(4) ? 24 : 48) * mapfact) / 100); x; x--) {
 #else
-	    for(x = rnd((int) ((rn2(4) ? 12 : 24) * mapfact) / 100); x; x--) {
+	    for(x = rnd((int) ((rn2(2) ? 48 : rn2(4) ? 12 : 24) * mapfact) / 100); x; x--) {
 #endif
 		    maze1xy(&mm, WET|DRY);
 		    if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, MM_MAYSLEEP);
@@ -6490,7 +6490,7 @@ dlb *fd;
 #ifdef BIGSLEX
 	    for(x = rn2((int) ((rn2(2) ? 120 : rn2(4) ? 30 : 60) * mapfact) / 100); x; x--) {
 #else
-	    for(x = rn2((int) ((rn2(4) ? 15 : 30) * mapfact) / 100); x; x--) {
+	    for(x = rn2((int) ((rn2(2) ? 60 : rn2(4) ? 15 : 30) * mapfact) / 100); x; x--) {
 #endif
 		    int trytrap;
 
@@ -6537,7 +6537,7 @@ dlb *fd;
 #ifdef BIGSLEX
 	    for(x = rnd((int) ((rn2(2) ? 96 : rn2(4) ? 24 : 48) * mapfact) / 100); x; x--) {
 #else
-	    for(x = rnd((int) ((rn2(4) ? 12 : 24) * mapfact) / 100); x; x--) {
+	    for(x = rnd((int) ((rn2(2) ? 48 : rn2(4) ? 12 : 24) * mapfact) / 100); x; x--) {
 #endif
 		    maze1xy(&mm, WET|DRY);
 		    if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, MM_MAYSLEEP);
@@ -6550,7 +6550,7 @@ dlb *fd;
 #ifdef BIGSLEX
 	    for(x = rn2((int) ((rn2(2) ? 120 : rn2(4) ? 30 : 60) * mapfact) / 100); x; x--) {
 #else
-	    for(x = rn2((int) ((rn2(4) ? 15 : 30) * mapfact) / 100); x; x--) {
+	    for(x = rn2((int) ((rn2(2) ? 60 : rn2(4) ? 15 : 30) * mapfact) / 100); x; x--) {
 #endif
 		    int trytrap;
 
