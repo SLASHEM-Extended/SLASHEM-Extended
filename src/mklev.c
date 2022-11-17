@@ -12590,7 +12590,8 @@ skip1:
 			if (depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2) && (helpvar > 0)) helpvar = rn2(helpvar);
 
 			while (helpvar > 0) {
-				(void) makerandomtrap_at(somex(croom), somey(croom), TRUE);
+				if (!ishomicider) (void) makemon((struct permonst *) 0, somex(croom), somey(croom), MM_MAYSLEEP);
+				else (void) makerandomtrap_at(somex(croom), somey(croom), TRUE);
 				helpvar--;
 			}
 
@@ -12612,8 +12613,7 @@ skip1:
 			if (depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2) && (helpvar > 0)) helpvar = rn2(helpvar);
 
 			while (helpvar > 0) {
-				if (!ishomicider) (void) makemon((struct permonst *) 0, somex(croom), somey(croom), MM_MAYSLEEP);
-				else (void) makerandomtrap_at(somex(croom), somey(croom), TRUE);
+				(void) makerandomtrap_at(somex(croom), somey(croom), TRUE);
 				helpvar--;
 			}
 		}
