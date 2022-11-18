@@ -3645,6 +3645,26 @@ not_special:
 	gx = mtmp->mux;
 	gy = mtmp->muy;
 
+	if (FemtrapActiveKlara && spawnswithsandals(mtmp->data) && mtmp->mhp >= mtmp->mhpmax) {
+		int toiletamount = 0;
+		int altarx = 0, altary = 0;
+		while (altarx++ < COLNO) {
+			altary = 0;
+			while (altary++ < ROWNO) {
+
+				if (isok(altarx, altary) && (IS_TOILET(levl[altarx][altary].typ))) {
+					toiletamount++;
+					if (((mtmp->terraintrans) % toiletamount) == 0) {
+						gx = altarx;
+						gy = altary;
+					}
+				}
+
+			}
+		}
+
+	}
+
 	if (isevilvariant && mon_has_amulet(mtmp) && !u.freeplaymode && Is_astralevel(&u.uz) ) {
 
 		int altarx = 0, altary = 0;

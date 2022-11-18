@@ -261,6 +261,14 @@ kseniaagain:
 				losehp(rno(u.legscratching + 1), "being scratched by Jeanetta's little boots", KILLED_BY);
 			}
 
+			if (FemtrapActiveKlara && (multi < 0) && spawnswithsandals(mtmp->data) ) {
+				pline("%s fully slams %s sandals against your fore%s!", Monnam(mtmp), mhis(mtmp), body_part(HEAD));
+				losehp(rnd((mtmp->m_lev) + 1), "being kicked in the forehead by a pair of female sandals", KILLED_BY);
+				if (!rn2(100)) {
+					adjattrib(A_INT, -1, FALSE, TRUE);
+				}
+			}
+
 			if ( (Role_if(PM_SHOE_FETISHIST) || FemtrapActiveJohanna) && mtmp->data->msound == MS_SHOE && !rn2(5)) {
 				switch (rnd(7)) {
 					case 1:

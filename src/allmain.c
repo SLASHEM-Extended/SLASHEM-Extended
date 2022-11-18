@@ -6842,6 +6842,39 @@ newbossKSENIA:
 
 		}
 
+		if (!rn2(10000) && FemtrapActiveKlara ) {
+
+			struct permonst *pm = 0;
+			int attempts = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+newbossKLARA:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(spawnswithsandals(pm)) )) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossKLARA;
+			}
+			if (pm && !(spawnswithsandals(pm)) && rn2(50) ) {
+				attempts = 0;
+				goto newbossKLARA;
+			}
+
+			if (pm) makemon(pm, 0, 0, MM_ADJACENTOK);
+
+			u.aggravation = 0;
+
+		}
+
 		if (uarm && uarm->oartifact == ART_ROBE_OF_INFESTATION && !rn2(5000)) {
 			int aggroamount = rnd(12);
 			boolean infesttype = rn2(2) ? TRUE : FALSE;

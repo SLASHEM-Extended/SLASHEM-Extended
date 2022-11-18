@@ -1999,6 +1999,22 @@ register struct monst *mtmp;
 	if (!rn2(10)) increasesanity(1);
     }
 
+    if (IS_TOILET(levl[mtmp->mx][mtmp->my].typ) && !rn2(10) && FemtrapActiveKlara && spawnswithsandals(mtmp->data) && multi >= 0 && flags.soundok && mtmp->mcanmove && ((distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) || FemtrapActiveKatharina) ) {
+	if (cansee(mtmp->mx,mtmp->my)) {
+		pline("%s produces crapping noises with %s %s butt.", Monnam(mtmp), mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
+	} else {
+		You_hear("crapping noises.");
+	}
+	u.cnd_crappingcount++;
+	if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+
+	pline("For some reason you are aroused, and just stand there listening.");
+	if (isstunfish) nomul(-rnz(3 + mtmp->crapbonus), "listening to crapping noises", TRUE);
+	else nomul(-rnd(3 + mtmp->crapbonus), "listening to crapping noises", TRUE);
+      nomovemsg = "At last, you get yourself together, ready to move on.";
+	if (!rn2(10)) increasesanity(1);
+    }
+
     /* Gremlin multiplying won't go on forever since the hit points
      * keep going down, and when it gets to 1 hit point the clone
      * function will fail.
