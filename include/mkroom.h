@@ -144,10 +144,11 @@ extern NEARDATA struct door doors[DOORMAX];
 #define SANITATIONCENTRAL 85	/* sanity monsters */
 #define PLAYERCENTRAL 86	/* player monsters */
 #define CASINOROOM 87	/* croupiers */
+#define FULLROOM 88	/* filled with monsters, items and traps */
 
-#define RANDOMROOM 88	/* supposed to select one from an array of other special rooms, for use in .des files */
+#define RANDOMROOM 89	/* supposed to select one from an array of other special rooms, for use in .des files */
 
-#define SHOPBASE        89     	/* everything above this is a shop */
+#define SHOPBASE        90     	/* everything above this is a shop */
 #define ARMORSHOP       (SHOPBASE+ 1)   /* specific shop defines for level compiler */
 #define SCROLLSHOP      (SHOPBASE+ 2)
 #define POTIONSHOP      (SHOPBASE+ 3)

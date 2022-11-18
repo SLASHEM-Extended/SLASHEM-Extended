@@ -4216,7 +4216,7 @@ boolean prefilled;
 	if (croom && croom->rtype == OROOM && !rn2( ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && (depth(&u.uz) > 1 && !(u.preversionmode && In_greencross(&u.uz) && (dunlev(&u.uz) == 1)) && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) ) ? 1 : ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) ) {
 
 retryrandtype:
-		switch (rnd(104)) {
+		switch (rnd(105)) {
 
 			case 1: croom->rtype = COURT; break;
 			case 2: croom->rtype = SWAMP; break;
@@ -4326,6 +4326,7 @@ retryrandtype:
 			case 102: croom->rtype = SANITATIONCENTRAL; break;
 			case 103: croom->rtype = PLAYERCENTRAL; break;
 			case 104: croom->rtype = CASINOROOM; break;
+			case 105: croom->rtype = FULLROOM; break;
 
 		}
 
@@ -4465,7 +4466,7 @@ retryrandtype:
 
 	if (croom->rtype == RANDOMROOM) {
 
-		switch (rnd(84)) {
+		switch (rnd(85)) {
 
 			case 1: croom->rtype = COURT; break;
 			case 2: croom->rtype = SWAMP; break;
@@ -4551,6 +4552,7 @@ retryrandtype:
 			case 82: croom->rtype = SANITATIONCENTRAL; break;
 			case 83: croom->rtype = PLAYERCENTRAL; break;
 			case 84: croom->rtype = CASINOROOM; break;
+			case 85: croom->rtype = FULLROOM; break;
 
 		}
 
@@ -4682,6 +4684,7 @@ retryrandtype:
 	case LEVELFFROOM:
 	case VERMINROOM:
 	case MIRASPA:
+	case FULLROOM:
 	case MACHINEROOM:
 	case GREENCROSSROOM:
 	case RUINEDCHURCH:

@@ -938,6 +938,7 @@ static struct {
 
 	{ "variantroom",  VARIANTROOM },
 	{ "playercentral", PLAYERCENTRAL },
+	{ "fullroom", FULLROOM },
 	{ "randomroom",  RANDOMROOM },
 	{ "shop",	 SHOPBASE },
 	{ "armor shop",	 ARMORSHOP },

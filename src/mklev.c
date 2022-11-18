@@ -151,7 +151,7 @@ STATIC_OVL int
 findrandtype()
 {
 retryrandtype:
-	switch (rnd(84)) {
+	switch (rnd(85)) {
 		case 1: return COURT;
 		case 2: return SWAMP;
 		case 3: return BEEHIVE;
@@ -239,6 +239,7 @@ retryrandtype:
 		case 82: return SANITATIONCENTRAL;
 		case 83: return PLAYERCENTRAL;
 		case 84: return CASINOROOM;
+		case 85: return FULLROOM;
 	}
 
 	return EMPTYNEST;
@@ -11451,7 +11452,8 @@ gehennomxtra:
 	    else if(depth(&u.uz) > (issoviet ? 16 : 10) && (ishaxor ? !rn2(13) : !rn2(26))) mkroom(BARRACKS);
 	    else if(depth(&u.uz) > (issoviet ? 9 : 3) && (ishaxor ? !rn2(18) : !rn2(36))) mkroom(VERMINROOM);
 	    else if(depth(&u.uz) > (issoviet ? 14 : 10) && (ishaxor ? !rn2(18) : !rn2(36))) mkroom(DOOMEDBARRACKS);
-	else if (u_depth > (issoviet ? 12 : 3) && (ishaxor ? !rn2(16) : !rn2(32))) mkroom(HUMANHALL);
+	else if (u_depth > (issoviet ? 12 : 3) && (ishaxor ? !rn2(24) : !rn2(48))) mkroom(HUMANHALL);
+	else if (u_depth > (issoviet ? 5 : 1) && (ishaxor ? !rn2(30) : !rn2(60))) mkroom(FULLROOM);
 	else if (u_depth > (issoviet ? 20 : 5) && (ishaxor ? !rn2(45) : !rn2(90))) mkroom(RUINEDCHURCH);
 	else if (u_depth > (issoviet ? 12 : 3) && (ishaxor ? !rn2(15) : !rn2(30))) mkroom(WEAPONCHAMBER);
 	else if (u_depth > (issoviet ? 5 : 1) && (ishaxor ? !rn2(29) : !rn2(58))) mkroom(TRAPROOM);
@@ -11625,6 +11627,26 @@ gehennomxtra:
 #endif
 
 		if ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && (!rn2(10) || (u_depth > 1 && !(u.preversionmode && In_greencross(&u.uz) && (dunlev(&u.uz) == 1)) && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1)) ) ) ) {
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
+			mkroom(RANDOMROOM);
 			mkroom(RANDOMROOM);
 			mkroom(RANDOMROOM);
 			mkroom(RANDOMROOM);

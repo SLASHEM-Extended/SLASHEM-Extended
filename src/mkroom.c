@@ -201,6 +201,7 @@ int	roomtype;
 	case LEVELFFROOM: mkzoo(LEVELFFROOM); break;
 	case VERMINROOM: mkzoo(VERMINROOM); break;
 	case MIRASPA: mkzoo(MIRASPA); break;
+	case FULLROOM: mkzoo(FULLROOM); break;
 	case MACHINEROOM: mkzoo(MACHINEROOM); break;
 	case SHOWERROOM: mkshowerroom(); break;
 	case GREENCROSSROOM: mkzoo(GREENCROSSROOM); break;
@@ -214,7 +215,7 @@ int	roomtype;
 	case RANDOMROOM: {
 
 retryrandtype:
-		switch (rnd(84)) {
+		switch (rnd(85)) {
 
 			case 1: mkzoo(COURT); break;
 			case 2: mkswamp(); break;
@@ -304,6 +305,7 @@ retryrandtype:
 			case 82: mkzoo(SANITATIONCENTRAL); break;
 			case 83: mkzoo(PLAYERCENTRAL); break;
 			case 84: mkzoo(CASINOROOM); break;
+			case 85: mkzoo(FULLROOM); break;
 
 		}
 		break;
@@ -507,6 +509,8 @@ struct mkroom *sroom;
 	boolean specialzoo = 0;
 	int specialzoochance = 50;
 	int specialzootype = 0;
+	int fullroomitem = rn1(10, 10);
+	int fullroomtrap = rn1(20, 8);
 	if (!rn2(10)) {
 		specialzoo = 1; /* extra items! */
 		specialzoochance = 50 + rnd(50);
@@ -701,6 +705,7 @@ struct mkroom *sroom;
 	if (type == RUINEDCHURCH) moreorless /= 5;
 	if (type == GREENCROSSROOM) moreorless /= 10;
 	if (type == MIRASPA) moreorless /= 5;
+	if (type == FULLROOM) moreorless /= 5;
 	if (type == PLAYERCENTRAL) moreorless /= 5;
 	if (type == LEVELSEVENTYROOM) moreorless /= 2;
 	if (type == NUCLEARCHAMBER) moreorless /= 2;
@@ -873,6 +878,15 @@ struct mkroom *sroom;
 		    case GREENCROSSROOM:
 			if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && rn2(10)) {
 				levl[sx][sy].typ = rn2(3) ? PAVEDFLOOR : GRASSLAND;
+			}
+			break;
+
+		    case FULLROOM:
+			if (!rn2(fullroomitem)) {
+				(void) mkobj_at(0, sx, sy, TRUE, FALSE);
+			}
+			if (!rn2(fullroomtrap)) {
+				makerandomtrap_at(sx, sy, TRUE);
 			}
 			break;
 

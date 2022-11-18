@@ -3886,6 +3886,9 @@ register boolean newlev;
 		case CHAOSROOM:
 			if (wizard) pline("You enter a chaos room!");
 		    break;
+		case FULLROOM:
+			if (wizard) pline("You enter a full room!");
+		    break;
 		case RAMPAGEROOM:
 			if (wizard) pline("You enter a rampage room!");
 		    break;
