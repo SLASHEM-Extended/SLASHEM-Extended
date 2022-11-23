@@ -7649,6 +7649,8 @@ SCROLL((char *)0,               "YABBA DABBA DOO",  P_NONE,     1,   0, 100, CLR
 SCROLL((char *)0,               "XID XAD XOO",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
 SCROLL((char *)0,               "TYTHIC NUPITUS",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
 SCROLL((char *)0,               "YUPITER QOMENS",  P_NONE,     1,   0, 100, CLR_BLUE, 1),
+SCROLL((char *)0,               "GOTTA INSTRUCT THE KIN TO PERFORM A FN",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "THE TF HAS TO TURN ON THE FIS",  P_NONE,     1,   0, 100, CLR_WHITE, 1),
 
 
 #ifdef MAIL
