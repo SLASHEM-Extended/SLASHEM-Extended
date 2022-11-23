@@ -720,7 +720,7 @@ nh_timeout()
 	if (u.stonedchilltimer) {
 		u.stonedchilltimer--;
 		if (u.stonedchilltimer < 0) u.stonedchilltimer = 0;
-		if (!(u.stonedchilltimer)) pline(FunnyHallu ? "Yay, you can chill out smoking joints again!" : "You can once again be a stoned chiller.");
+		if (Stoned_chiller && !(u.stonedchilltimer)) pline(FunnyHallu ? "Yay, you can chill out smoking joints again!" : "You can once again be a stoned chiller.");
 	}
 
 	if (u.stasistime) {
