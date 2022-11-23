@@ -3875,6 +3875,20 @@ find_garden_slippers()
 }
 
 int
+find_everlasting_boots()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_EVERLASTING_BOOTS)) return i;
+    }
+
+    impossible("everlasting boots not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
 find_dyke_boots()
 {
     register int i;
