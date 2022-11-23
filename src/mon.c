@@ -1964,6 +1964,7 @@ register struct monst *mtmp;
 	else if (mtmp->data->msound == MS_FART_NORMAL) pline("You just can't believe that someone could produce such erotic noises, and are immobilized by your feelings.");
 	else pline("This is really disgusting. You resist the urge to vomit, but fail to pay attention to your surroundings for a moment...");
 
+	crapcnt = 1;
 	if (mtmp->crapbonus > 0) crapcnt += mtmp->crapbonus;
 	if (crapcnt > 10) crapcnt = 10; /* sanity check --Amy */
 
@@ -1992,9 +1993,13 @@ register struct monst *mtmp;
 	u.cnd_crappingcount++;
 	if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
+	crapcnt = 1;
+	if (mtmp->crapbonus > 0) crapcnt += mtmp->crapbonus;
+	if (crapcnt > 10) crapcnt = 10; /* sanity check --Amy */
+
 	pline("Because you are stupid, you stop to listen.");
-	if (isstunfish) nomul(-rnz(3 + mtmp->crapbonus), "listening to crapping noises", TRUE);
-	else nomul(-rnd(3 + mtmp->crapbonus), "listening to crapping noises", TRUE);
+	if (isstunfish) nomul(-rnz(3 + crapcnt), "listening to crapping noises", TRUE);
+	else nomul(-rnd(3 + crapcnt), "listening to crapping noises", TRUE);
       nomovemsg = "At last, you get yourself together, ready to move on.";
 	if (!rn2(10)) increasesanity(1);
     }
@@ -2008,9 +2013,13 @@ register struct monst *mtmp;
 	u.cnd_crappingcount++;
 	if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
+	crapcnt = 1;
+	if (mtmp->crapbonus > 0) crapcnt += mtmp->crapbonus;
+	if (crapcnt > 10) crapcnt = 10; /* sanity check --Amy */
+
 	pline("For some reason you are aroused, and just stand there listening.");
-	if (isstunfish) nomul(-rnz(3 + mtmp->crapbonus), "listening to crapping noises", TRUE);
-	else nomul(-rnd(3 + mtmp->crapbonus), "listening to crapping noises", TRUE);
+	if (isstunfish) nomul(-rnz(3 + crapcnt), "listening to crapping noises", TRUE);
+	else nomul(-rnd(3 + crapcnt), "listening to crapping noises", TRUE);
       nomovemsg = "At last, you get yourself together, ready to move on.";
 	if (!rn2(10)) increasesanity(1);
     }
