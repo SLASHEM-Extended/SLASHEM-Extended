@@ -1,6 +1,44 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.7.9 - October 2022
+- Mazes in BIGslex have more monsters and traps on average.
+- Rooms-and-corridors levels may be more interesting with additional stuff in rooms, scaled to the room's size.
+- Extremely angry gods now have a bunch of additional effects they can throw at the player beyond lightning/disintegration.
+- Exercising stats is now less likely to result in the stat actually going up if it's higher than 12. However, there are several ways to improve stats in a different way, where specific actions have a small chance of immediately increasing a stat, which most notably includes intelligence and charisma.
+- Certain items no longer drop their items a second time when revived.
+- Messages that mention the floor or ceiling now correctly reflect the new terrain types.
+- If the player has sex with a petrifying monster, it now causes a non-stoning-resistant character to turn to stone.
+- Toned down the effects of the stoned chiller intrinsic.
+- The bacteria race's super regene ability now causes contamination, and works less well the more contaminated the player is.
+- "Light" armor types like togas or jackets no longer hinder monk's martial arts, jedi lightsaber melee and the like, and no longer cause spellcasting penalties unless they're metallic.
+- Firing automatic ranged weapons can now summon bulletators, unless the player's role/race combo is one that is explicitly allowed to use such weapons.
+- Chocolate comestibles have more possible flavors now, which also have gameplay effects if they are rolled.
+- Added more monster types to the list of ones that the japura race is strong against.
+- Player-versus-monster slow attacks are less likely to proc.
+- Players of the reticulan race now aggravate monsters, and occasionally evilroom monsters spawn for them. Also, if their HP drops below half they'll wince and if they're low on health they become inverted.
+- Fixed a mistake that caused vampiric players to not be able to polymorph into monsters properly.
+- While the player is occupied due to a sing/kati trap, pets shouldn't attack the peaceful shoe monster now.
+- If the player lifesaves, a demon lord will appear on a random level now.
+- Several foo-o-pathy types are less powerful now.
+- Fixed a mistake with the ordering of traps for deciding whether a message asking "do you really want to step into that trap?" should be displayed.
+- Pressing Ctrl-X now displays the player's current hairstyle.
+- The cyan spells nastytrap effect is now affected by memorization, keen memory and other effects that allow a player's spell memory to last longer.
+- Players of the skeleton race now correctly get hit by all the things that a player can use to hit a "requires +2 weapon to hit" monster.
+
+2.7.8 - September 2022
+- Cars (any monster with the MS_CAR sound) are faster while on a highway tile now.
+- Fixed the oversight where the rita trap effect could result in the player somehow knowing where a trap was even if it was triggered by a monster on the other end of the level.
+- If the player is polymorphed into a monster and runs out of HP, returning to the regular form now reduces maximum HP as a penalty.
+- Polypiling is now a bit less likely to shudder certain item types (scrolls, potions and spellbooks) again.
+- Plasteel boots now disable free action when worn.
+- Fixed the oversight where the detect treasure spell would still detect gold carried by monsters from infinitely far away.
+- Pompeji squads can now include punishers, which are very strong shopkeeper-like monsters. Also, even if the pompeji wantedness times out, they will continue to be more likely to spawn randomly for a while now.
+- Monsters with polymorphing attacks are now less likely to polymorph a player who is already polymorphed into some monster, and getting hit by the attack no longer trains the polymorphing skill.
+- Shotty blast and laser power techniques now cycle through the available types of ammo.
+- Umbrellas and parasols now protect the player from rain clouds, and parasols give partial resistance to solar beams while umbrellas give partial resistance to geysers and tidal waves.
+
 2.7.7 - August 2022
+- Bisection no longer works against monsters that have engulfed the player if the monster is of a type that cannot be bisected.
 - The menu bug trap now disallows the use of the spell menu (the one for swapping, memorizing or checking spells; the spellcasting menu still works normally).
 - Added a chance for containers to spawn on dungeon levels.
 - Reduced the odds for monsters to spawn with musable items.
