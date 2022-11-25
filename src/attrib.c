@@ -3192,8 +3192,8 @@ register int n;
 		return;
 	}
 
-	if (uwep && uwep->otyp == HONOR_KATANA && n < 0) attrcurse;
-	if (u.twoweap && uswapwep && uswapwep->otyp == HONOR_KATANA && n < 0) attrcurse;
+	if (uwep && uwep->otyp == HONOR_KATANA && n < 0) attrcurse();
+	if (u.twoweap && uswapwep && uswapwep->otyp == HONOR_KATANA && n < 0) attrcurse();
 
 	if (Race_if(PM_SINNER) && n < 0) {
 		n *= 10;
