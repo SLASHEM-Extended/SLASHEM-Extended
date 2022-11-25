@@ -1163,19 +1163,21 @@ end_of_input(void)
 {
 #ifdef NOSAVEONHANGUP
 #ifdef INSURANCE
-#ifdef HANGUPHANDLING /* uhh who programmed this? preserve_locks exists only with HANGUPHANDLING... --Amy */
+
+	/* uhh who programmed this? preserve_locks exists only with HANGUPHANDLING... --Amy */
+
     if (flags.ins_chkpt && program_state.something_worth_saving)
         program_state.preserve_locks = 1; /* keep files for recovery */
-#endif
 #endif
     program_state.something_worth_saving = 0; /* don't save */
 #endif
 
-#ifndef NOSAVEONHANGUP
+	/* not "#ifndef NOSAVEONHANGUP", or the code isn't run correctly! --Amy */
+#ifndef SAFERHANGUP
     if (!program_state.done_hup++)
+#endif
         if (program_state.something_worth_saving)
             (void) dosave0();
-#endif
     if (iflags.window_inited)
         exit_nhwindows((char *) 0);
     clearlocks();
