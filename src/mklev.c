@@ -12573,41 +12573,57 @@ skip1:
 		}
 
 		/* place additional items, monsters and traps, amount is random but higher average for bigger rooms --Amy */
-		{
+		if (croom->rtype == OROOM) { /* only for regular rooms, please */
 			int roomsize = (croom->hx - croom->lx + 1) * (croom->hy - croom->ly + 1);
 			int helpcounter = roomsize;
 			int helpvar = 0;
+			int seedparameter;
 
-			while (helpcounter > 0) {
-				if (helpcounter > 75) {
-					helpcounter -= 75;
-					helpvar++;
-				} else {
-					if (helpcounter > rn2(75)) helpvar++;
-					helpcounter = 0;
-				}
-			}
-			if (ishaxor) helpvar *= 2;
-			if (helpvar > 0) helpvar = rn3(helpvar); /* rn3 for items because they can be useful, rest uses rn2 */
-			while (helpvar > 0) {
-				(void) mkobj_at(0, somex(croom), somey(croom), TRUE, FALSE);
-				helpvar--;
-			}
+			/* items */
+			seedparameter = (75 + rn2(176));
+			if (!rn2(2)) seedparameter *= rnd(10);
+			if (seedparameter < 1) seedparameter = 1; /* fail safe */
 
 			helpcounter = roomsize;
 			helpvar = 0;
 
 			while (helpcounter > 0) {
-				if (helpcounter > 25) {
-					helpcounter -= 25;
+				if (helpcounter > seedparameter) {
+					helpcounter -= seedparameter;
 					helpvar++;
 				} else {
-					if (helpcounter > rn2(25)) helpvar++;
+					if (helpcounter > rn2(seedparameter)) helpvar++;
+					helpcounter = 0;
+				}
+			}
+			if (ishaxor) helpvar *= 2;
+			if (helpvar > 0) helpvar = rn3(helpvar); /* rn3 for items because they can be useful, rest uses rn2 */
+			if (!rn2(3)) helpvar = 0;
+			while (helpvar > 0) {
+				(void) mkobj_at(0, somex(croom), somey(croom), TRUE, FALSE);
+				helpvar--;
+			}
+
+			/* monsters */
+			seedparameter = (25 + rn2(51));
+			if (!rn2(3)) seedparameter *= rnd(10);
+			if (seedparameter < 1) seedparameter = 1; /* fail safe */
+
+			helpcounter = roomsize;
+			helpvar = 0;
+
+			while (helpcounter > 0) {
+				if (helpcounter > seedparameter) {
+					helpcounter -= seedparameter;
+					helpvar++;
+				} else {
+					if (helpcounter > rn2(seedparameter)) helpvar++;
 					helpcounter = 0;
 				}
 			}
 			if (ishaxor) helpvar *= 2;
 			if (helpvar > 0) helpvar = rn2(helpvar);
+			if (!rn2(10)) helpvar = 0;
 			if (depth(&u.uz) == 1 && In_dod(&u.uz) && (helpvar > 0)) helpvar = rn2(helpvar);
 			if (depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2) && (helpvar > 0)) helpvar = rn2(helpvar);
 
@@ -12617,20 +12633,27 @@ skip1:
 				helpvar--;
 			}
 
+			/* traps */
+			seedparameter = (16 + rn2(61));
+			if (!rn2(5)) seedparameter *= rnd(10);
+			if (seedparameter < 1) seedparameter = 1; /* fail safe */
+
 			helpcounter = roomsize;
 			helpvar = 0;
 
 			while (helpcounter > 0) {
-				if (helpcounter > 16) {
-					helpcounter -= 16;
+				if (helpcounter > seedparameter) {
+					helpcounter -= seedparameter;
 					helpvar++;
 				} else {
-					if (helpcounter > rn2(16)) helpvar++;
+					if (helpcounter > rn2(seedparameter)) helpvar++;
 					helpcounter = 0;
 				}
 			}
 			if (ishaxor) helpvar *= 2;
 			if (helpvar > 0) helpvar = rn2(helpvar);
+			if (!rn2(5)) helpvar = 0;
+
 			if (depth(&u.uz) == 1 && In_dod(&u.uz) && (helpvar > 0)) helpvar = rn2(helpvar);
 			if (depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2) && (helpvar > 0)) helpvar = rn2(helpvar);
 
