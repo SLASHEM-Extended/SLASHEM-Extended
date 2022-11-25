@@ -2849,6 +2849,7 @@ E int randartfeminismjewel(void);
 E void deacrandomintrinsic(int);
 E int goodimplanteffect(struct obj *);
 E void randomnastytrapeffect(int, int);
+E void specificnastytrapeffect(int, int, int);
 E int randomgoodskill(void);
 E int randomgoodcombatskill(void);
 E int randomgoodmclass(BOOLEAN_P);
