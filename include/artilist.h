@@ -1547,7 +1547,7 @@ A("Darkening Thing",			UNICORN_HORN, /* applying it aggravates monsters */
 
 A("Roommate's Special Idea",			LASER_SWATTER,
 	(SPFX_RESTR|SPFX_BEHEAD|SPFX_DCLAS), 0, S_XAN,
-	PHYS(0,0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+	PHYS(1,0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
 A("Lights, Camera, Action",			EXPENSIVE_CAMERA, /* if applied while it has charges, it scares all nearby monsters */
 	(SPFX_RESTR), 0, 0,
@@ -3473,7 +3473,7 @@ A("Enigmatic Riddle",				HEAVY_CONUNDRUM_BALL,
 
 A("Do You Even Lift",				IMPOSSIBLY_HEAVY_MINERAL_BALL,
 	(SPFX_RESTR|SPFX_DEFN|SPFX_REFLECT), 0, 0,
-	PHYS(0,0), DFNS(AD_DRLI), CARY(AD_MAGM), 0, A_NONE, NON_PM, NON_PM, 8000L ),
+	PHYS(1,0), DFNS(AD_DRLI), CARY(AD_MAGM), 0, A_NONE, NON_PM, NON_PM, 8000L ),
 
 A("Gangbanging Like A Boss",				GOLD_CHAIN,
 	(SPFX_RESTR), 0, 0,
@@ -3597,7 +3597,7 @@ A("Plentyhorn of Famine",				HORN_OF_PLENTY, /* causes hunger when applied */
 
 A("Marine Threat Neutered",				FLINT,
 	(SPFX_RESTR|SPFX_DFLAG1), 0, M1_SWIM,
-	PHYS(0,0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+	PHYS(1,0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
 
 A("Bang Bang",				SAWED_OFF_SHOTGUN, /* deafness when wielded, and sets itself to +2 if it's lower */
 	(SPFX_RESTR|SPFX_EVIL|SPFX_ATTK), 0, 0,
@@ -5271,7 +5271,7 @@ A("See Animals",				VERMIN_SWATTER, /* warns of animals */
 
 A("Wild Heavy Swings",				MILL_PAIL, /* -10 to-hit */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
-	PHYS(0,0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+	PHYS(1,0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
 A("Orangery",				RHYTHMIC_STAR, /* orange monsters are 10% spawned tame and 90% peaceful */
 	(SPFX_RESTR), 0, 0,
@@ -5439,7 +5439,7 @@ A("Anti-Intelligence",				INKA_STINGER,
 
 A("Completely Off",				FLIMSY_DART, /* always misfires */
 	(SPFX_RESTR), 0, 0,
-	PHYS(0,0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),
+	PHYS(1,0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),
 
 A("Ow Wow Wow",				SOFT_STAR,
 	(SPFX_RESTR), 0, 0,
@@ -9171,7 +9171,7 @@ A("Heatem Up",				ONE_EATING_SIGN, /* double fire resistance when worn but disab
 
 A("Bidethander",				BIDENHANDER, /* thai and ludgera trap effects, MS_FART_LOUD spawn with +20 crapbonus, suggested by amateurhour */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
-	PHYS(0, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+	PHYS(1, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
 A("Justice For Garlic",				CLOVE_OF_GARLIC, /* +5 increase accuracy when wielded (applies to ranged weapons too), name suggested by amateurhour */
 	(SPFX_RESTR), 0, 0,
@@ -9563,7 +9563,7 @@ A("Occasional Eeh",				ORANGE_LIGHTSABER,
 
 A("Damnblast",				BLACK_LIGHTSABER,
 	(SPFX_RESTR), 0, 0,
-	PHYS(0, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+	PHYS(1, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
 
 A("Collecting Expansion",				SPLINT_MAIL, /* +2000 carry cap and +5000 max carry cap */
 	(SPFX_RESTR), 0, 0,

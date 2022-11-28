@@ -1782,6 +1782,22 @@ struct monst *mon;
 	/* no need for an extra check for `NO_ATTK' because this will
 	   always return 0 for any artifact which has that attribute */
 
+	if (otmp && otmp->oartifact) {
+		switch (otmp->oartifact) {
+
+			case ART_BIDETHANDER:
+			case ART_DAMNBLAST:
+			case ART_ROOMMATE_S_SPECIAL_IDEA:
+			case ART_DO_YOU_EVEN_LIFT:
+			case ART_MARINE_THREAT_NEUTERED:
+			case ART_WILD_HEAVY_SWINGS:
+			case ART_COMPLETELY_OFF:
+				return 0;
+
+			default: break;
+		}
+	}
+
 	if (weap && weap->attk.damn && spec_applies(weap, mon))
 	    return (int)weap->attk.damn;
 	return 0;
