@@ -8505,6 +8505,7 @@ gethungry()	/* as time goes by - called by moveloop() and domove() */
 		if (extrahungerpoints >= 33554432) extrahungerpoints -= 33554432;
 		if (extrahungerpoints >= 16777216) extrahungerpoints -= 16777216;
 		extrahungerpoints /= 5000;
+		if (extrahungerpoints > 10) extrahungerpoints = 10; /* sanity check --Amy */
 		if (extrahungerpoints > 0 && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger -= extrahungerpoints;
 	}
 	if (uarmc && itemhasappearance(uarmc, APP_AVENGER_CLOAK) && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger -= 2;
