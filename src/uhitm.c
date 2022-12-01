@@ -1720,6 +1720,16 @@ int dieroll;
 
 	    valid_weapon_attack = (tmp > 0);
 
+		/* stuff like prem heart or claws of the revenancer, implemented by stealing code from Chris (dnethack) --Amy */
+		if (uarmg && uarmg->oartifact) {
+			if (artifact_hit(&youmonst, mon, uarmg, &tmp, rnd(20))) {
+				if(mon->mhp <= 0) /* artifact killed monster */
+					return FALSE;
+				if (tmp == 0) return TRUE;
+				hittxt = TRUE;
+			}
+		}
+
 	    /* blessed gloves give bonuses when fighting 'bare-handed' */
 	    if (uarmg && uarmg->blessed && (is_undead(mdat) || is_demon(mdat)))
 		tmp += rnd(4);

@@ -358,6 +358,16 @@ register boolean clumsy;
 		if (martial()) {
 		    if (dmg > /*1*/0) kick_skill = P_MARTIAL_ARTS; /* fix by Amy */
 		    dmg += rn2(ACURR(A_DEX)/2 + 1);
+
+			/* artifact hit effect (hammerfeet) implemented by stealing code from dnethack --Amy */
+			if(uarmf && uarmf->oartifact) {
+				if (artifact_hit(&youmonst, mon, uarmf, &dmg, rnd(20)) ) {
+					if(mon->mhp <= 0) /* artifact killed monster */
+						return;
+					if (dmg == 0) return;
+				}
+			}
+
 		    dmg += weapon_dam_bonus((struct obj *)0);
 			/* marital arts skill is supposed to improve this!!! --Amy */
 		    if (P_SKILL(P_MARTIAL_ARTS) > 0) dmg += (rnd(P_SKILL(P_MARTIAL_ARTS)) * rno(2));
