@@ -172,6 +172,35 @@ struct obj *obj;
 	return nutrit;
 }
 
+/* pets should have a chance to gain max health when eating, depending on how much nutrition the comestible gives --Amy
+ * this is not affected by things like monster size, petkeeping skill etc. */
+int
+dog_growpoints(mtmp, obj)
+struct monst *mtmp;
+struct obj *obj;
+{
+	int nutrit;
+
+	if (obj->oclass == FOOD_CLASS) {
+	    if(obj->otyp == CORPSE) {
+		nutrit = mons[obj->corpsenm].cnutrit;
+	    } else {
+		nutrit = objects[obj->otyp].oc_nutrition;
+	    }
+	} else if (obj->oclass == COIN_CLASS) {
+	    nutrit = (int)(obj->quan/20);
+	    if (nutrit < 0) nutrit = 0;
+	} else {
+	    nutrit = 5*(objects[obj->otyp].oc_nutrition + 1);
+	}
+
+	if (obj && obj->oartifact == ART_FEED_THE_HORSE) nutrit += 100000;
+
+	if (isfriday) nutrit /= 2;
+
+	return nutrit;
+}
+
 /* returns 2 if pet dies, otherwise 1 */
 int
 dog_eat(mtmp, obj, x, y, devour)
@@ -183,6 +212,7 @@ boolean devour;
 	register struct edog *edog = EDOG(mtmp);
 	boolean poly = FALSE, grow = FALSE, heal = FALSE;
 	int nutrit;
+	int growpoints;
 	boolean vis = (cansee(x, y) || cansee(mtmp->mx, mtmp->my));
 	boolean vampiric = is_vampire(mtmp->data);
 	struct permonst *fptr = &mons[obj->corpsenm];
@@ -191,12 +221,42 @@ boolean devour;
 	if(edog->hungrytime < monstermoves)
 	    edog->hungrytime = monstermoves;
 	nutrit = dog_nutrition(mtmp, obj);
+	growpoints = dog_growpoints(mtmp, obj);
 	poly = polyfodder(obj);
 	grow = mlevelgain(obj);
 	heal = mhealup(obj);
 	if (devour) {
 	    if (mtmp->meating > 1) mtmp->meating /= 2;
 	    if (nutrit > 1) nutrit = (nutrit * 3) / 4;
+	}
+
+	if (growpoints >= 5) {
+		int linechance = 0;
+		int hownum = growpoints;
+		while (hownum > 0) {
+			if (hownum >= 500) {
+				hownum -= 500;
+				linechance++;
+			} else {
+				if (hownum > rn2(500)) linechance++;
+				hownum = 0;
+			}
+		}
+		while (linechance > 0) {
+
+			int pethealthgainchance = 1;
+			if (mtmp->mhpmax >= 25) pethealthgainchance = 2;
+			if (mtmp->mhpmax >= 40) pethealthgainchance = 3;
+			if (mtmp->mhpmax >= 50) pethealthgainchance = 4;
+			if (mtmp->mhpmax >= 60) pethealthgainchance = (mtmp->mhpmax / 10) ;
+			if (mtmp->mhpmax >= 100) pethealthgainchance = (mtmp->mhpmax / 5) ;
+
+			if (!rn2(pethealthgainchance) && (mtmp->mhpmax < 400) ) {
+				mtmp->mhpmax++;
+			}
+
+			linechance--;
+		}
 	}
 
 	/* vampires only get 1/5 normal nutrition */

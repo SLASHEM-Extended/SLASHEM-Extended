@@ -8637,6 +8637,24 @@ register int num;
 		}
 
 	}
+	/* and may increase its max HP --Amy */
+	if (num >= 5 && uactivesymbiosis) {
+		int linechance = 0;
+		int hownum = num;
+		while (hownum > 0) {
+			if (hownum >= 500) {
+				hownum -= 500;
+				linechance++;
+			} else {
+				if (hownum > rn2(500)) linechance++;
+				hownum = 0;
+			}
+		}
+		while (linechance > 0) {
+			symbiotemaygainhealth();
+			linechance--;
+		}
+	}
 
 	u.uhunger += num;
 	if(u.uhunger >= 5000) {

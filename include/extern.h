@@ -557,6 +557,7 @@ E boolean control_magic_works(void);
 /* ### dogmove.c ### */
 
 E int dog_nutrition(struct monst *,struct obj *);
+E int dog_growpoints(struct monst *,struct obj *);
 E int dog_eat(struct monst *,struct obj *,int,int,BOOLEAN_P);
 E int dog_move(struct monst *,int);
 E boolean betrayed(struct monst *);
