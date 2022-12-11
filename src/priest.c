@@ -591,11 +591,21 @@ register struct monst *priest;
 			u.ublessed++;
 			if (Race_if(PM_MAYMES) && u.ublessed < 20) u.ublessed++;
 		}
+
+		register struct obj *otmp;
+		otmp = mksobj_at(POT_WATER, u.ux, u.uy, FALSE, FALSE, FALSE);
+		if (otmp) {
+			bless(otmp);
+			verbalize("Thou shall have some sacred water.");
+		}
+
 	    } else {
 		verbalize("Thy selfless generosity is deeply appreciated.");
 		if (Role_if(PM_PRIEST) || Role_if(PM_NECROMANCER) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA)) {
 			use_skill(P_SPIRITUALITY, Role_if(PM_PRIEST) ? 3 : 1);
 		}
+		adjalign(10); /* give some boost even if it doesn't cleanse you --Amy */
+
 #ifndef GOLDOBJ
 		if(u.ugold < (offer * 2L) && coaligned) {
 #else
@@ -611,6 +621,18 @@ register struct monst *priest;
 			adjalign(2);
 		    }
 		}
+
+		register struct obj *otmp;
+		otmp = mksobj_at(POT_WATER, u.ux, u.uy, FALSE, FALSE, FALSE);
+		if (!rn2(2) && offer >= (issoviet ? (u.ulevel * 600) : 6000)) {
+			otmp->quan++;
+			otmp->owt = weight(otmp);
+			verbalize("To the thirsty I will give water without cost from the spring of the water of life.");
+		} else verbalize("Thou shall have some sacred water.");
+		if (otmp) {
+			bless(otmp);
+		}
+
 	    }
 	}
 }

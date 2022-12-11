@@ -3835,9 +3835,18 @@ create_altar(a, croom)
 	if (!croom_is_temple || !a->shrine) return;
 
 	if (a->shrine) {	/* Is it a shrine  or sanctum? */
-	    priestini(&u.uz, croom, x, y, (a->shrine > 1));
-	    levl[x][y].altarmask |= AM_SHRINE;
-	    level.flags.has_temple = TRUE;
+		priestini(&u.uz, croom, x, y, (a->shrine > 1));
+		levl[x][y].altarmask |= AM_SHRINE;
+		level.flags.has_temple = TRUE;
+
+		if (!rn2(10)) {
+			register struct obj *otmp;
+			otmp = mksobj_at(POT_WATER, x, y, FALSE, FALSE, FALSE);
+			if (otmp) {
+				  bless(otmp);
+			}
+		}
+
 	}
 }
 

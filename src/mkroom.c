@@ -1949,6 +1949,14 @@ mktemple()
 	priestini(&u.uz, sroom, shrine_spot->x, shrine_spot->y, FALSE);
 	lev->altarmask |= AM_SHRINE;
 	level.flags.has_temple = 1;
+
+	if (!rn2(10)) {
+		register struct obj *otmp;
+		otmp = mksobj_at(POT_WATER, shrine_spot->x, shrine_spot->y, FALSE, FALSE, FALSE);
+		if (otmp) {
+			  bless(otmp);
+		}
+	}
 }
 
 boolean
