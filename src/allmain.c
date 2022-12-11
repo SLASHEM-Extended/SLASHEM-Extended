@@ -4134,7 +4134,7 @@ greasingdone:
 					}
 					break;
 				case 2:
-					u.petattackenemies = rn2(2) ? 0 : rn2(2) ? 1 : 2;
+					u.petattackenemies = !rn2(4) ? -1 : !rn2(3) ? 0 : rn2(2) ? 1 : 2;
 					break;
 				case 3:
 					if (u.petcaneat) {

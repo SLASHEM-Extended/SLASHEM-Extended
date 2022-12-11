@@ -11376,7 +11376,7 @@ u_init()
 	u.outtadepthtrap = 0;
 
 	u.petcollectitems = 1;
-	u.petattackenemies = 2; /* 0 = don't attack anything, 1 = only attack hostiles, 2 = attack everything */
+	u.petattackenemies = 2; /* -1 = passive, 0 = don't attack anything, 1 = only attack hostiles, 2 = attack everything */
 	u.petcaneat = 1;
 	u.petcanfollow = 1;
 

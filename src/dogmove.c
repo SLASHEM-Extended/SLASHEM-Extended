@@ -1055,7 +1055,7 @@ register int after;	/* this is extra fast monster movement */
 		    register struct monst *mtmp2 = m_at(nx,ny);
 		    aligntyp align1, align2; /* For priests, minions etc. */
 
-			if (!u.petattackenemies) continue;
+			if (u.petattackenemies < 1) continue;
 
 			if (mtmp2->data == &mons[PM_CHAREY]) continue;
 

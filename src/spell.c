@@ -4935,18 +4935,21 @@ aulechoice:
 
 			if (rnd(45) <= successrate) {
 
-			pline("Currently your pets can%s attack%s monsters.", u.petattackenemies ? "" : "'t", u.petattackenemies == 2 ? " both hostile and peaceful" : u.petattackenemies == 1 ? " only hostile" : "");
+			pline("Currently your pets can%s attack%s monsters.", (u.petattackenemies > 0) ? "" : "'t", u.petattackenemies == 2 ? " both hostile and peaceful" : u.petattackenemies == 1 ? " only hostile" : u.petattackenemies == -1 ? " or be attacked by" : "");
 			if (yn("Change it?") == 'y') {
-				pline("You got the following options: make the pet attack everything, make it attack only hostile monsters, or prevent it from attacking anything.");
+				pline("You got the following options: make the pet attack everything, make it attack only hostile monsters, or prevent it from attacking anything (with the choice that it may or may not still be attacked by hostiles).");
 				if (yn("Do you want your pets to attack everything?") == 'y') {
 					u.petattackenemies = 2;
 					pline("Your pets can attack all monsters now.");
 				} else if (yn("Do you want your pets to only attack hostile creatures?") == 'y') {
 					u.petattackenemies = 1;
 					pline("Your pets can attack hostile monsters now, but will leave peaceful ones alone.");
-				} else if (yn("Do you want your pets to not attack any monsters?") == 'y') {
+				} else if (yn("Do you want your pets to not attack any monsters, but still be attacked by them?") == 'y') {
 					u.petattackenemies = 0;
 					pline("Your pets can't attack monsters now.");
+				} else if (yn("Do you want your pets to not attack any monsters, and also not be attacked by them anymore?") == 'y') {
+					u.petattackenemies = -1;
+					pline("Your pets can't attack monsters now and also won't be attacked by monsters.");
 				}
 			}
 
