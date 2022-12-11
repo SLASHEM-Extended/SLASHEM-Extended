@@ -5936,6 +5936,10 @@ static const char *epitaphs[] = {
 	"singslave: lol yet another 'hahahaha all parts of the game suxx0rz like you cannot believe' role :P", /* by amateurhour */
 	"Blahonir's lair sucks, reason: there's traps that remove your disint res and destroy your stuff or disintegrate you, and lots of monsters with disintegrate attacks, and a demon lord that steals ur shit if that's what you had for disint res, and the traps are almost certainly on critical path", /* by amateurhour */
 	"then take venonir's lair, traps remove poison res and prevent poison res working, and a covetous demon lord that uses venom, so you step on a trap, he teleports to you, gg no re you instadied from poison", /* by amateurhour */
+	"what, you didn't figure out by yourself that the minotaur maze is a collossal waste of time and not actually required to beat the game?",
+	"whaaat, you didn't realise that skipping an alignment key would mean you have to face an uber version of the boss and instadied? LOL gg",
+	"whaaaaaaaat, you didn't know that hitting an ogre thief 3 times would straight up kill you??", /* it's specifically the *huge* ogre thief that does, regular ogre thieves aren't special-cased --Amy */
+	"whaaaaaaaaaaaaaat you didn't know helm of neutral exists and guarantees you can skip two thirds of astral??",
 
 };
 

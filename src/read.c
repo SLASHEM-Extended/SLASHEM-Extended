@@ -940,6 +940,7 @@ doread()
 	"We're having a special event today. It's the do-the-deed-till-you-bleed event! Bleed through your nose, that is. How about it, baby?",
 	"Mmmmm, what a nice sex you are. Nice. Very nice indeed...",
 	"We have all sorts of items on board. Do check out our inflight shopping catalogue.",
+	"Wulun duome fengkuang, wo zong neng gen shang zhengzai fasheng de shiqing.",
 
 	    };
 	    char buf[BUFSZ];

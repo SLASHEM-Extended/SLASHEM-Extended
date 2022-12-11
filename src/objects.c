@@ -7651,6 +7651,12 @@ SCROLL((char *)0,               "TYTHIC NUPITUS",  P_NONE,     1,   0, 100, CLR_
 SCROLL((char *)0,               "YUPITER QOMENS",  P_NONE,     1,   0, 100, CLR_BLUE, 1),
 SCROLL((char *)0,               "GOTTA INSTRUCT THE KIN TO PERFORM A FN",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
 SCROLL((char *)0,               "THE TF HAS TO TURN ON THE FIS",  P_NONE,     1,   0, 100, CLR_WHITE, 1),
+SCROLL((char *)0,               "DAILY THE MURMURING ANIMAL GREETS",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
+SCROLL((char *)0,               "AM WOE AMEDIDANDAI",  P_NONE,     1,   0, 100, CLR_BLUE, 1),
+SCROLL((char *)0,               "AMEDI AMEDAI AMEDIDANDAI",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "BAKING BAKING LITTLE PLACES",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
+SCROLL((char *)0,               "THE EMPIRE OF THE RISING SUN DEFEATED THE COUNTRY OF FADING LIGHTS",  P_NONE,     1,   0, 100, CLR_RED, 1),
+SCROLL((char *)0,               "DO NOT TRIGGER THE SIFA",  P_NONE,     1,   0, 100, CLR_BRIGHT_BLUE, 1),
 
 
 #ifdef MAIL

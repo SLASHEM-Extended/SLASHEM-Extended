@@ -28224,6 +28224,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You have a sinking feeling.",
 	"You hear something that gives you a sinking feeling.",
 	"You hear something that gives you a sinking feeling, because sounds.c uses 'You_hear' instead of 'pline' and therefore all of the sink-related sounds have to be messages that start with 'You hear', annoyingly enough.",
+	"There is no low-level healing magic for training, and I have been using energy to brush recovery magic, so that the healing magic has improved a little bit, and the recovery ability has been reduced from 90% failure rate to 9%.",
 
 };
 
