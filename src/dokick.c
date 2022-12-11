@@ -31,7 +31,7 @@ register struct monst *mon;
 register boolean clumsy;
 {
 	register int mdx, mdy;
-	int dmg = ( ACURRSTR + ACURR(A_DEX) + ACURR(A_CON) )/ 15;
+	int dmg = ( ACURRSTR + ACURR(A_DEX) + ACURR(A_CON) ) / 15;
 	int kick_skill = P_NONE;
 	int blessed_foot_damage = 0;
 	boolean trapkilled = FALSE;
