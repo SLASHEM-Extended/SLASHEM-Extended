@@ -1772,6 +1772,7 @@ int x1,y1,x2,y2;
 
 	if (rn2(100) < chance) {
 		levl[cx][cy].typ = ROCKWALL;
+		blockorunblock_point(cx,cy);
 	}
 
 	if (cx == x2 && cy == y2) break;
@@ -2046,6 +2047,8 @@ boolean rndom;
 		} else {
 			levl[cx][cy].typ = ROCKWALL;
 		}
+		blockorunblock_point(cx,cy);
+
 	}
 
 	}

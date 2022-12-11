@@ -14339,6 +14339,7 @@ callingoutdone:
 			hunkajunkriver();
 			randhunkrivers();
 			pline("What a hunk 'a junk there is on this level.");
+			if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) doredraw();
 			break;
 		case AIRSTRIKE_TRAP:
 
