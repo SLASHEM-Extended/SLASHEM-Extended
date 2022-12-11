@@ -3766,9 +3766,12 @@ castanyway:
 
 	if (SpellColorBrightCyan) {
 		u.aggravation = 1;
+		u.lamefarmer = 1;
+		adjalign(-5);
 		reset_rndmonst(NON_PM);
 		(void) makemon((struct permonst *)0, 0, 0, MM_ANGRY|MM_FRENZIED);
 		u.aggravation = 0;
+		u.lamefarmer = 0;
 
 	}
 
@@ -9240,6 +9243,7 @@ controlagain:
 		break;
 
 	case SPE_CREATE_FAMILIAR:
+		u.lamefarmer = TRUE;
 		if (!rn2(5)) (void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, FALSE);
 		else if (!rn2(2)) {
 			pline("The summoned monster does not seem to be friendly!");
@@ -9994,6 +9998,7 @@ controlagain:
 	{	register int cnt = 1;
 		struct monst *mtmp;
 
+		u.lamefarmer = TRUE;
 
 		if (rn2(3) && role_skill >= P_SKILLED) cnt += rnd(role_skill - P_BASIC);
 		while(cnt--) {
@@ -10004,6 +10009,9 @@ controlagain:
 			mtmp->mhpmax = mtmp->mhp = 1;
 			mtmp->isspell = mtmp->uexp = TRUE;
 		} /* end while... */
+
+		u.lamefarmer = FALSE;
+
 		break;
 	}
 
@@ -10011,6 +10019,7 @@ controlagain:
 	{	register int cnt = 1;
 		struct monst *mtmp;
 
+		u.lamefarmer = TRUE;
 
 		if (rn2(3) && role_skill >= P_SKILLED) cnt += rnd(role_skill - P_BASIC);
 		while(cnt--) {
@@ -10020,6 +10029,9 @@ controlagain:
 			mtmp->mhpmax = mtmp->mhp = 1;
 			mtmp->isspell = mtmp->uexp = TRUE;
 		} /* end while... */
+
+		u.lamefarmer = FALSE;
+
 		break;
 	}
 
@@ -10027,6 +10039,7 @@ controlagain:
 	{	register int cnt = 1;
 		struct monst *mtmp;
 
+		u.lamefarmer = TRUE;
 
 		if (rn2(3) && role_skill >= P_SKILLED) cnt += rnd(role_skill - P_BASIC);
 		while(cnt--) {
@@ -10036,6 +10049,9 @@ controlagain:
 			mtmp->mhpmax = mtmp->mhp = 1;
 			mtmp->isspell = mtmp->uexp = TRUE;
 		} /* end while... */
+
+		u.lamefarmer = FALSE;
+
 		break;
 	}
 

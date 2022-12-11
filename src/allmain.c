@@ -14043,6 +14043,7 @@ past4:
 	u.polyattackhack = 0;
 	u.mongetshack = 0;
 	u.dynamitehack = 0;
+	u.lamefarmer = 0;
 
 	/* fail safe for banishment in case the player would somehow get a turn --Amy */
 	if (u.banishmentbeam && multi >= 0) nomul(-2, "being banished", FALSE);

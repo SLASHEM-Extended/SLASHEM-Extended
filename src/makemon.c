@@ -203,9 +203,9 @@ int otyp,oquan;
 	if (otmp->oclass == WEAPON_CLASS) otmp->mstartinventB = 1;
 	if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic) otmp->mstartinventB = 1;
 	if (is_weptool(otmp)) otmp->mstartinventB = 1;
-	if ((otmp->oclass == WEAPON_CLASS || otmp->oclass == ARMOR_CLASS) && mtmp->data->msound == MS_BULLETATOR) otmp->mstartinventX = 1;
-	if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic && mtmp->data->msound == MS_BULLETATOR) otmp->mstartinventX = 1;
-	if (is_weptool(otmp) && mtmp->data->msound == MS_BULLETATOR) otmp->mstartinventX = 1;
+	if ((otmp->oclass == WEAPON_CLASS || otmp->oclass == ARMOR_CLASS) && (mtmp->data->msound == MS_BULLETATOR || u.lamefarmer) ) otmp->mstartinventX = 1;
+	if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic && (mtmp->data->msound == MS_BULLETATOR || u.lamefarmer) ) otmp->mstartinventX = 1;
+	if (is_weptool(otmp) && (mtmp->data->msound == MS_BULLETATOR || u.lamefarmer) ) otmp->mstartinventX = 1;
 
 	(void) mpickobj(mtmp, otmp, TRUE);
 }
@@ -31432,10 +31432,10 @@ register int otyp;
 	    if (otmp->otyp == LANCE && mtmp->data->msound == MS_TREESQUAD) otmp->mstartinventE = 1;
 	    if (otmp->otyp == PITCHFORK && mtmp->data->msound == MS_TREESQUAD) otmp->mstartinventE = 1;
 
-	    if ((otmp->oclass == WEAPON_CLASS || otmp->oclass == ARMOR_CLASS) && (mtmp->data->msound == MS_BULLETATOR || u.mongetshack == 100)) otmp->mstartinventX = 1;
-	    if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic && (mtmp->data->msound == MS_BULLETATOR || u.mongetshack == 100)) otmp->mstartinventX = 1;
-	    if (is_musable(otmp) && (mtmp->data->msound == MS_BULLETATOR || u.mongetshack == 100)) otmp->mstartinventX = 1;
-	    if (is_weptool(otmp) && (mtmp->data->msound == MS_BULLETATOR || u.mongetshack == 100)) otmp->mstartinventX = 1;
+	    if ((otmp->oclass == WEAPON_CLASS || otmp->oclass == ARMOR_CLASS) && (mtmp->data->msound == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100)) otmp->mstartinventX = 1;
+	    if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic && (mtmp->data->msound == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100)) otmp->mstartinventX = 1;
+	    if (is_musable(otmp) && (mtmp->data->msound == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100)) otmp->mstartinventX = 1;
+	    if (is_weptool(otmp) && (mtmp->data->msound == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100)) otmp->mstartinventX = 1;
 
 	    if ((otmp->otyp >= WEDGED_LITTLE_GIRL_SANDAL) && (otmp->otyp <= PROSTITUTE_SHOE) && !Role_if(PM_TRANSVESTITE) && !Role_if(PM_TRANSSYLVANIAN)) {
 			otmp->mstartinventD = 1;

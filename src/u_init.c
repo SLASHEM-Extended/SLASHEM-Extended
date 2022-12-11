@@ -11246,6 +11246,7 @@ u_init()
 
 	u.walscholarpass = 0;
 	u.symbiotedmghack = FALSE;
+	u.lamefarmer = FALSE;
 
 	u.goodoffercount = 10;
 	u.dirtifiedexcalibur = FALSE;

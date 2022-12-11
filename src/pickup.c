@@ -2820,6 +2820,8 @@ int held;
 
 		if (monsterator > 200) monsterator = 200;
 
+		u.lamefarmer = TRUE;
+
 		while (monsterator > 0) {
 
 			(void) makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);
@@ -2829,6 +2831,7 @@ int held;
 		}
 
 		u.aggravation = 0;
+		u.lamefarmer = FALSE;
 
 	}
 

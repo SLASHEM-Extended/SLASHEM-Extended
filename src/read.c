@@ -5979,7 +5979,9 @@ proofarmorchoice:
 		{
 		if (confused) break;
 
+		u.lamefarmer = 1;
 		(void) makemon((struct permonst *)0, u.ux, u.uy, MM_NOSPECIALS|MM_ANGRY|MM_FRENZIED);
+		u.lamefarmer = 0;
 		if (!rn2(4)) {
 			pline("The spell backfires!");
 			badeffect();
@@ -6764,6 +6766,7 @@ materialchoice3:
 
 	case SPE_SUMMON_UNDEAD:
 		if (confused) break;
+		u.lamefarmer = 1;
 		if (!rn2(10)) {
 			pline("The spell backfires!");
 			badeffect();
@@ -6823,6 +6826,7 @@ materialchoice3:
 			    }
 			} else setmangry(mtmp);
 		}
+		u.lamefarmer = 0;
 		multi = oldmulti;
 		/* WAC Give those who know command undead a shot at control.
 		 * Since spell is area affect,  do this after all undead
