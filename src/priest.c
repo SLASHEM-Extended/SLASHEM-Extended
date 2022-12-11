@@ -604,7 +604,8 @@ register struct monst *priest;
 		if (Role_if(PM_PRIEST) || Role_if(PM_NECROMANCER) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA)) {
 			use_skill(P_SPIRITUALITY, Role_if(PM_PRIEST) ? 3 : 1);
 		}
-		adjalign(10); /* give some boost even if it doesn't cleanse you --Amy */
+		u.alignlim++; /* give some boost even if it doesn't cleanse you --Amy */
+		adjalign(10);
 
 #ifndef GOLDOBJ
 		if(u.ugold < (offer * 2L) && coaligned) {
