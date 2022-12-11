@@ -664,7 +664,7 @@ aligntyp resp_god;
 		if (Blind) pline("For some reason you're unaffected.");
 		else
 		    (void) ureflects("%s reflects from your %s.", "It");
-	    } else if (Shock_resistance) {
+	    } else if (Shock_resistance || ShockImmunity) {
 		shieldeff(u.ux, u.uy);
 		pline("It seems not to affect you.");
 	    } else fry_by_god(resp_god);

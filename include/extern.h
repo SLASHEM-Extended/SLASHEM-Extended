@@ -2800,6 +2800,7 @@ E int randomdisableproperty(void);
 E int randominsidetrap(void);
 E int randartmeleeweapon(void);
 E int randartpolearm(void);
+E int randartknife(void);
 E int randartlightsaber(void);
 E int randartlauncher(void);
 E int randartmissile(void);

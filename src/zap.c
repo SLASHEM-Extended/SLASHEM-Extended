@@ -5929,7 +5929,7 @@ boolean ordinary;
 		    break;
 		case SPE_ACID_STREAM:
         	    /* KMH, balance patch -- new intrinsic */
-        	    if (Acid_resistance && rn2(StrongAcid_resistance ? 20 : 5)) {
+        	    if ((Acid_resistance && rn2(StrongAcid_resistance ? 20 : 5)) || AcidImmunity) {
 			damage = 0;
         	    } else {
 			pline_The("acid burns!");
@@ -5947,7 +5947,7 @@ boolean ordinary;
 		    makeknown(WAN_ACID);
 		case SHADOW_HORN:
 		if (Stoned) fix_petrification();
-		    if (Acid_resistance && rn2(StrongAcid_resistance ? 20 : 5)) {
+		    if ((Acid_resistance && rn2(StrongAcid_resistance ? 20 : 5)) || AcidImmunity) {
 			shieldeff(u.ux,u.uy);
 			pline("Ugh!");
 		    } else {
@@ -5960,7 +5960,7 @@ boolean ordinary;
 		    makeknown(WAN_SLUDGE);
 		case SPE_SLUDGE:
 		if (Stoned) fix_petrification();
-		    if (Acid_resistance && rn2(StrongAcid_resistance ? 20 : 5)) {
+		    if ((Acid_resistance && rn2(StrongAcid_resistance ? 20 : 5)) || AcidImmunity) {
 			shieldeff(u.ux,u.uy);
 			pline("Ugh!");
 		    } else {
@@ -8976,7 +8976,7 @@ xchar sx, sy;
 	    }
 	    break;
 	case ZT_FIRE:
-	    if (Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) {
+	    if ((Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) || FireImmunity) {
 		shieldeff(sx, sy);
 		You("don't feel hot!");
 		ugolemeffects(AD_FIRE, d(nd, 6));
@@ -8994,7 +8994,7 @@ xchar sx, sy;
 		if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50)) destroy_item(SPBOOK_CLASS, AD_FIRE);
 	    break;
 	case ZT_COLD:
-	    if (Cold_resistance && rn2(20)) {
+	    if ((Cold_resistance && rn2(StrongCold_resistance ? 20 : 5)) || ColdImmunity) {
 		shieldeff(sx, sy);
 		You("don't feel cold.");
 		ugolemeffects(AD_COLD, d(nd, 6));
@@ -9086,7 +9086,7 @@ xchar sx, sy;
 	    }
 		break;
 	case ZT_LIGHTNING:
-	    if (Shock_resistance && rn2(StrongShock_resistance ? 20 : 5)) {
+	    if ((Shock_resistance && rn2(StrongShock_resistance ? 20 : 5)) || ShockImmunity) {
 		shieldeff(sx, sy);
 		You("aren't affected.");
 		ugolemeffects(AD_ELEC, d(nd, 6));
@@ -9106,7 +9106,7 @@ xchar sx, sy;
 		if (Stoned) fix_petrification();
 
 		/* KMH, balance patch -- new intrinsic */
-	    if (Acid_resistance && rn2(StrongAcid_resistance ? 20 : 5)) {
+	    if ((Acid_resistance && rn2(StrongAcid_resistance ? 20 : 5)) || AcidImmunity) {
 		dam = 0;
 	    } else {
 		pline_The("acid burns!");
@@ -10467,6 +10467,11 @@ register int osym, dmgtyp;
 				break;
 			}
 
+		    if (ColdImmunity) {
+				skip++;
+				break;
+		    }
+
 		    if (uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) {
 				skip++;
 				break;
@@ -10558,7 +10563,7 @@ register int osym, dmgtyp;
 				skip++;
 				break;
 			}
-			if (Race_if(PM_HYPOTHERMIC)) {
+			if (FireImmunity) {
 				skip++;
 				break;
 			}
@@ -10600,7 +10605,7 @@ register int osym, dmgtyp;
 				break;
 			}
 
-			if (Race_if(PM_PLAYER_DYNAMO)) {
+			if (ShockImmunity) {
 				skip++;
 				break;
 			}

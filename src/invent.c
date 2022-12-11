@@ -19175,7 +19175,7 @@ boolean knoweverything;
 				case ART_STAFF_OF_WITHERING:
 					pline("Artifact specs: cold resistance when wielded, +3 to-hit and +4 level-drain damage to crossaligned monsters, chaotic."); break;
 				case ART_BOW_OF_SKADI:
-					pline("Artifact specs: cold resistance when wielded, +1 to-hit and +24 damage to cold-susceptible monsters, lawful. In dnethack you can somehow read this weapon (wtf) and learn cone of cold (double wtf)."); break;
+					pline("Artifact specs: cold resistance when wielded, +1 to-hit and +24 damage to cold-susceptible monsters, slower rate of fire, lawful. In dnethack you can somehow read this weapon (wtf) and learn cone of cold (double wtf)."); break;
 				case ART_CROWN_OF_THE_SAINT_KING:
 					pline("Artifact specs: 5 extra points of AC, lawful. In dnethack it would make pets always follow you but that would be a pain in the butt to code."); break;
 				case ART_HELM_OF_THE_DARK_LORD:
@@ -19433,7 +19433,7 @@ boolean knoweverything;
 				case ART_DEATHSWORD:
 					pline("Artifact specs: +5 to-hit and +14 damage to Team @, chaotic, barbarian sacrifice gift."); break;
 				case ART_BAT_FROM_HELL:
-					pline("Artifact specs: +3 to-hit and +20 damage, chaotic, rogue sacrifice gift."); break;
+					pline("Artifact specs: +3 to-hit and +20 damage, chaotic, rogue sacrifice gift. If you wield it while not being a rogue, your current health can't ever be higher than half of your maximum."); break;
 				case ART_ELFRIST:
 					pline("Artifact specs: +5 to-hit and +16 damage to elves, chaotic, aligned with orc race."); break;
 				case ART_PLAGUE:
@@ -23507,6 +23507,18 @@ boolean knoweverything;
 					pline("Artifact specs: while wielding it, doors cannot resist the attempt to open or close them."); break;
 				case ART_MAGIC_CARPET:
 					pline("Artifact specs: flying when worn."); break;
+				case ART_MANTLE_OF_THE_MANTA_RAY:
+					pline("Artifact specs: magical breathing and swimming when worn."); break;
+				case ART_NULARMOR:
+					pline("Artifact specs: autocurses when worn, makes your AC worse by 5 points and provides acid immunity (yes, you read that right, immunity, not mere resistance, and it also protects the inventory)."); break;
+				case ART_BS_____:
+					pline("Artifact specs: if you're male, wearing it grants free action, and if you're female it grants discount action instead."); break;
+				case ART_FORMO____:
+					pline("Artifact specs: if wearing them counts as sexy flats, you have stun resistance and super regene; if they count as high heels instead, they slow you down; and if they count as neither of those two, you gain +2 charisma and half physical damage."); break;
+				case ART_COAL_PEER:
+					pline("Artifact specs: autocurses when worn, makes your AC worse by 5 points and provides double hunger and fire immunity. The latter is really good because it's full immunity as opposed to resistance, and even protects your inventory from fire!"); break;
+				case ART_CUTRELEASE:
+					pline("Artifact specs: +8 damage, causes you to cut yourself every once in a while which makes you bleed and reduces sanity and contamination, damages you whenever a monster leaves a corpse, and conveys cold immunity. The latter makes you completely impervious to cold damage and also protects your potions."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

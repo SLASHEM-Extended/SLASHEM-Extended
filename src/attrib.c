@@ -2778,6 +2778,7 @@ int x;
 		if (uarmc && itemhasappearance(uarmc, APP_FLEECY_COLORED_CLOAK)) tmp += 5;
 
 		if (uarm && uarm->oartifact == ART_PLAYBOY_WITH_EARS) tmp += (5 + uarm->spe);
+		if (!PlayerInSexyFlats && !PlayerInHighHeels && uarmf && uarmf->oartifact == ART_FORMO____) tmp += 2;
 		if (uarmh && uarmh->oartifact == ART_PLAYBOY_SUPPLEMENT) tmp += (5 + uarmh->spe);
 		if (uarmf && uarmf->oartifact == ART_GNOMISH_BOOBS) tmp += 3;
 		if (uarmf && uarmf->oartifact == ART_TOO_OLD_MODEL) tmp += 3;

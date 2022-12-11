@@ -968,7 +968,7 @@ Cloak_on()
 		u.uprops[DEAC_ANTIMAGIC].intrinsic += 1;
 	}
 
-	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && uarmc && is_metallic(uarmc)) {
+	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && !ShockImmunity && uarmc && is_metallic(uarmc)) {
 		You("receive a little shock.");
 		losehp(rnd(2), "little electric shock", KILLED_BY_AN);
 	}
@@ -1899,7 +1899,7 @@ Helmet_on()
 {
     if (!uarmh) return 0; 
 
-	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && uarmh && is_metallic(uarmh)) {
+	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && !ShockImmunity && uarmh && is_metallic(uarmh)) {
 		You("receive a little shock.");
 		losehp(rnd(2), "little electric shock", KILLED_BY_AN);
 	}
@@ -2504,7 +2504,7 @@ Gloves_on()
     if (!uarmg) return 0; 
     oldprop = u.uprops[objects[uarmg->otyp].oc_oprop].extrinsic & ~WORN_GLOVES;
 
-	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && uarmg && is_metallic(uarmg)) {
+	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && !ShockImmunity && uarmg && is_metallic(uarmg)) {
 		You("receive a little shock.");
 		losehp(rnd(2), "little electric shock", KILLED_BY_AN);
 	}
@@ -2989,7 +2989,7 @@ Shield_on()
 {
 /*
 
-	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && uarms && is_metallic(uarms)) {
+	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && !ShockImmunity && uarms && is_metallic(uarms)) {
 		You("receive a little shock.");
 		losehp(rnd(2), "little electric shock", KILLED_BY_AN);
 	}
@@ -3294,7 +3294,7 @@ Shirt_on()
     }
 */
 
-	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && uarmu && is_metallic(uarmu)) {
+	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && !ShockImmunity && uarmu && is_metallic(uarmu)) {
 		You("receive a little shock.");
 		losehp(rnd(2), "little electric shock", KILLED_BY_AN);
 	}
@@ -3380,7 +3380,7 @@ Shirt_off()
 int
 Armor_on()
 {
-	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && uarm && is_metallic(uarm)) {
+	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && !ShockImmunity && uarm && is_metallic(uarm)) {
 		You("receive a little shock.");
 		losehp(rnd(2), "little electric shock", KILLED_BY_AN);
 	}
@@ -3433,6 +3433,16 @@ Armor_on()
 	}
 
 	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_SUPERESCAPE_MAIL) {
+		pline("BEEEEEEEP! Your armor is cursed!");
+		curse(uarm);
+	}
+
+	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_NULARMOR) {
+		pline("BEEEEEEEP! Your armor is cursed!");
+		curse(uarm);
+	}
+
+	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_COAL_PEER) {
 		pline("BEEEEEEEP! Your armor is cursed!");
 		curse(uarm);
 	}
@@ -3565,7 +3575,7 @@ Amulet_on()
 	if (!uamul) return;
 	oldprop = u.uprops[objects[uamul->otyp].oc_oprop].extrinsic & ~WORN_AMUL;
 
-	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && uamul && is_metallic(uamul)) {
+	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && !ShockImmunity && uamul && is_metallic(uamul)) {
 		You("receive a little shock.");
 		losehp(rnd(2), "little electric shock", KILLED_BY_AN);
 	}
@@ -3925,7 +3935,7 @@ Implant_on()
 	if (!uimplant) return;
 	oldprop = u.uprops[objects[uimplant->otyp].oc_oprop].extrinsic & ~WORN_IMPLANT;
 
-	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && uimplant && is_metallic(uimplant)) {
+	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && !ShockImmunity && uimplant && is_metallic(uimplant)) {
 		You("receive a little shock.");
 		losehp(rnd(2), "little electric shock", KILLED_BY_AN);
 	}
@@ -4079,7 +4089,7 @@ register struct obj *obj;
        left and right rings of the same type */
     if ((oldprop & W_RING) != W_RING) oldprop &= ~W_RING;
 
-	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && obj && is_metallic(obj)) {
+	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && !ShockImmunity && obj && is_metallic(obj)) {
 		You("receive a little shock.");
 		losehp(rnd(2), "little electric shock", KILLED_BY_AN);
 	}
@@ -4591,7 +4601,7 @@ register struct obj *otmp;
 	setworn(otmp, W_TOOL);
 	on_msg(otmp);
 
-	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && otmp && is_metallic(otmp)) {
+	if (uarmf && uarmf->otyp == BOOTS_OF_SHOCK_RESISTANCE && !ShockImmunity && otmp && is_metallic(otmp)) {
 		You("receive a little shock.");
 		losehp(rnd(2), "little electric shock", KILLED_BY_AN);
 	}
@@ -5881,6 +5891,8 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_ROCKET_IMPULSE) uac -= 10;
 	if (uarm && uarm->oartifact == ART_STRONG_ENCHANTMENT) uac -= 10;
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
+	if (uarm && uarm->oartifact == ART_NULARMOR) uac += 5;
+	if (uarm && uarm->oartifact == ART_COAL_PEER) uac += 5;
 	if (uwep && uwep->oartifact == ART_VERSUS_ELECTRICALLY_BASED_) uac -= 10;
 	if (uarmc && uarmc->oartifact == ART_LAURA_S_SWIMSUIT) uac += 5;
 	if (uwep && uwep->oartifact == ART_ELOPLUS_STAT) uac -= 1;

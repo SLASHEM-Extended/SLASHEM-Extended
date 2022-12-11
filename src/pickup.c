@@ -2624,7 +2624,7 @@ containerkaboom()
 			int dmg;
 
 			You("are jolted by a surge of electricity!");
-			if(Shock_resistance && (StrongShock_resistance || rn2(10)) )  {
+			if((Shock_resistance && (StrongShock_resistance || rn2(10))) || ShockImmunity)  {
 			    shieldeff(u.ux, u.uy);
 			    You("don't seem to be affected.");
 			    break;

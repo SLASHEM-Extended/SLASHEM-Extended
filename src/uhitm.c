@@ -9881,7 +9881,7 @@ boolean ranged;
 
 		if (Stoned) fix_petrification();
 
-		if (!Acid_resistance || !rn2(StrongAcid_resistance ? 20 : 5))
+		if ( (!Acid_resistance || !rn2(StrongAcid_resistance ? 20 : 5)) && !AcidImmunity)
 			mdamageu(mon, tmp);
 		if(!rn2(30)) erode_armor(&youmonst, TRUE);
 	    }
@@ -10529,6 +10529,7 @@ boolean ranged;
 			pline("You are suddenly extremely hot!");
 			if (!Fire_resistance) tmp *= 2;
 			if (StrongFire_resistance && tmp > 1) tmp /= 2;
+			if (FireImmunity && tmp > 1) tmp = 1;
 
 		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) /* extremely hot - very high chance to burn items! --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
@@ -12104,7 +12105,7 @@ boolean ranged;
 		if (Race_if(PM_GAVIL)) tmp *= 2;
 		if (Race_if(PM_HYPOTHERMIC)) tmp *= 3;
 		if(monnear(mon, u.ux, u.uy)) {
-		    if(Cold_resistance && rn2(StrongCold_resistance ? 20 : 5)) {
+		    if((Cold_resistance && rn2(StrongCold_resistance ? 20 : 5)) || ColdImmunity) {
 			shieldeff(u.ux, u.uy);
 			You_feel("a mild chill.");
 			ugolemeffects(AD_COLD, tmp);
@@ -12140,7 +12141,7 @@ boolean ranged;
 			if (isevilvariant || !rn2(issoviet ? 2 : Race_if(PM_GAVIL) ? 2 : Race_if(PM_HYPOTHERMIC) ? 2 : 10)) {
 				destroy_item(POTION_CLASS, AD_COLD);
 			}
-			if (!rn2(StrongCold_resistance ? 20 : 5) || !Cold_resistance) mdamageu(mon, tmp);
+			if ((!rn2(StrongCold_resistance ? 20 : 5) || !Cold_resistance) && !ColdImmunity) mdamageu(mon, tmp);
 		break;
 	      case AD_FEAR:
 		    make_feared(HFeared + (long)tmp, TRUE);
@@ -12171,7 +12172,7 @@ boolean ranged;
 		break;
 	      case AD_FIRE:
 		if(monnear(mon, u.ux, u.uy)) {
-		    if(Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) {
+		    if((Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) || FireImmunity) {
 			shieldeff(u.ux, u.uy);
 			You_feel("mildly warm.");
 			ugolemeffects(AD_FIRE, tmp);
@@ -12197,7 +12198,7 @@ boolean ranged;
 			    passive_obj(mon, target, &(ptr->mattk[i]));
 		    }
 
-		    if(Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) {
+		    if((Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) || FireImmunity) {
 			shieldeff(u.ux, u.uy);
 			You_feel("quite warm.");
 			ugolemeffects(AD_FIRE, tmp);
@@ -12208,7 +12209,7 @@ boolean ranged;
 		}
 		break;
 	      case AD_ELEC:
-		if(Shock_resistance && rn2(StrongShock_resistance ? 20 : 5)) {
+		if((Shock_resistance && rn2(StrongShock_resistance ? 20 : 5)) || ShockImmunity) {
 		    shieldeff(u.ux, u.uy);
 		    You_feel("a mild tingle.");
 		    ugolemeffects(AD_ELEC, tmp);
@@ -12219,21 +12220,21 @@ boolean ranged;
 		break;
 
 	      case AD_AXUS:
-		    if(Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) {
+		    if((Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) || FireImmunity) {
 			shieldeff(u.ux, u.uy);
 			You_feel("mildly warm.");
 			ugolemeffects(AD_FIRE, tmp);
 			if (tmp >= 4) tmp -= (tmp / 4);
 		    } else You("are suddenly very hot!");
 
-		    if(Shock_resistance && rn2(StrongShock_resistance ? 20 : 5)) {
+		    if((Shock_resistance && rn2(StrongShock_resistance ? 20 : 5)) || ShockImmunity) {
 			shieldeff(u.ux, u.uy);
 			You_feel("a mild tingle.");
 			ugolemeffects(AD_ELEC, tmp);
 			if (tmp >= 4) tmp -= (tmp / 4);
 		    } else You("are jolted with electricity!");
 
-		    if(Cold_resistance && rn2(StrongCold_resistance ? 20 : 5)) {
+		    if((Cold_resistance && rn2(StrongCold_resistance ? 20 : 5)) || ColdImmunity) {
 			shieldeff(u.ux, u.uy);
 			You_feel("a mild chill.");
 			ugolemeffects(AD_COLD, tmp);
@@ -12255,7 +12256,7 @@ boolean ranged;
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		}
 
-		if(Shock_resistance && rn2(StrongShock_resistance ? 20 : 5)) {
+		if((Shock_resistance && rn2(StrongShock_resistance ? 20 : 5)) || ShockImmunity) {
 		    shieldeff(u.ux, u.uy);
 		    You_feel("a strong tingle.");
 		    ugolemeffects(AD_ELEC, tmp);

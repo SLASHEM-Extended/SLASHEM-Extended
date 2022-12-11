@@ -150,8 +150,7 @@ boolean pushing;
 			pline("The slime is burned off!");
 			Slimed =0;
 		    }
-		    losehp(d((Fire_resistance ? 1 : 3), 6),
-			   "molten lava", KILLED_BY);
+		    if (!FireImmunity) losehp(d((Fire_resistance ? 1 : 3), 6), "molten lava", KILLED_BY);
 		} else if (!fills_up && flags.verbose &&
 			   (pushing ? !Blind : cansee(rx,ry)))
 		    pline("It sinks without a trace!");

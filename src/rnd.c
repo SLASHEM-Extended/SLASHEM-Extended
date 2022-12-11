@@ -2633,6 +2633,15 @@ reroll:
 }
 
 int
+randartknife()
+{
+	int result;
+reroll:
+	result = rnd_class(WORM_TOOTH, TOOTH_OF_AN_ALGOLIAN_SUNTIGER);
+	return result;
+}
+
+int
 randartsuit()
 {
 	int result;

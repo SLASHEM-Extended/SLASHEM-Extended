@@ -250,6 +250,7 @@ init_randarts()
 	artilist[ART_MANUELA_S_UNKNOWN_HEELS].otyp = randartboots();
 	artilist[ART_HADES_THE_MEANIE].otyp = randartboots();
 	artilist[ART_AMY_LOVES_AUTOCURSING_ITEM].otyp = randartboots();
+	artilist[ART_BS_____].otyp = randartboots();
 	artilist[ART_ALLYNONE].otyp = randartboots();
 	artilist[ART_KHOR_S_REQUIRED_IDEA].otyp = randartboots();
 	artilist[ART_ERROR_IN_PLAY_ENCHANTMENT].otyp = randartboots();
@@ -281,6 +282,7 @@ init_randarts()
 	artilist[ART_ARABELLA_S_ARTIFACT_CREATI].otyp = randartmeleeweapon();
 	artilist[ART_VERSUS_ELECTRICALLY_BASED_].otyp = randartmeleeweapon();
 	artilist[ART_ULTRA_ANNOYANCE].otyp = randartpolearm();
+	artilist[ART_CUTRELEASE].otyp = randartknife();
 	artilist[ART_TIARA_OF_AMNESIA].otyp = randarthelm();
 	artilist[ART_FLUE_FLUE_FLUEFLUE_FLUE].otyp = randarthelm();
 	artilist[ART_LIXERTYPIE].otyp = randartmeleeweapon();
@@ -440,6 +442,7 @@ init_randarts()
 	artilist[ART_NUMB_OR_MAYBE].otyp = randartglovesX();
 	artilist[ART_DEAD_SLAM_THE_TIME_SHUT].otyp = randartglovesX();
 	artilist[ART_ANASTASIA_S_UNEXPECTED_ABI].otyp = randartbootsX();
+	artilist[ART_FORMO____].otyp = randartbootsX();
 	artilist[ART_ELIANE_S_SHIN_SMASH].otyp = randartbootsX();
 	artilist[ART_MYSTERIOUS_MAGIC].otyp = randartamuletX();
 	artilist[ART_BANGCOCK].otyp = randartlauncherX();

@@ -9985,6 +9985,30 @@ A("Magic Carpet",				TOWEL, /* flying when worn */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
+A("Mantle of the Manta Ray",				OILSKIN_CLOAK, /* grants magical breathing and swimming */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Nularmor",				RING_MAIL, /* autocurses, makes your AC worse by 5 points and gives immunity to acid that also protects your inventory */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("BS-3008",				LOW_BOOTS, /* randart; if you're male you get free action, otherwise you get discount action */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Formo-212",				LOW_BOOTS, /* randart2; if your footwear counts as sexy flats, you have stun resistance and super regene, if it counts as high heels you're slowed down, and if it's none of those two it grants +2 charisma and half physical damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Coal Peer",				CHAIN_MAIL, /* autocurses, makes your AC worse by 5 points, gives immunity to fire and double hunger */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Cutrelease",				KNIFE, /* randart knife, cold immunity, whenever a monster leaves a corpse you take damage equal to the monster's level, 1 in 1000 chance per turn that you get rnd(20 + (level_difficulty * 3)) turns of bleeding and your sanity and contamination are reduced by the same amount */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.
@@ -10010,8 +10034,8 @@ A("Deathsword",                   TWO_HANDED_SWORD,
 	(SPFX_RESTR|SPFX_DFLAG2), 0, M2_HUMAN,
 	PHYS(5,14),      NO_DFNS,        NO_CARY,        0, A_CHAOTIC, PM_BARBARIAN, NON_PM, 5000L ),
 
-A("Bat from Hell",                BASEBALL_BAT,
-	(SPFX_RESTR), 0, 0,
+A("Bat from Hell",                BASEBALL_BAT, /* your HP can't ever be higher than half of the max, unless you're a rogue */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	PHYS(3,20),      NO_DFNS,        NO_CARY,        0, A_CHAOTIC, PM_ROGUE, NON_PM, 5000L ),
 
 A("Elfrist",                    ORCISH_SPEAR,

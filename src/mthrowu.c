@@ -627,7 +627,7 @@ const char *name;	/* if null, then format `obj' */
 		if (obj && obj->opoisoned && enchhave < 4) enchhave = 4;
 		if (obj && obj->oartifact) enchhave += 2;
 
-		if (is_acid && Acid_resistance && (StrongAcid_resistance || rn2(10)) ) {
+		if (is_acid && ((Acid_resistance && (StrongAcid_resistance || rn2(10))) ) || AcidImmunity ) {
 			pline("It doesn't seem to hurt you.");
 			if (Stoned) fix_petrification();
 		} else if ((enchrequired > 0) && rn2(3) && (enchhave < enchrequired) ) {

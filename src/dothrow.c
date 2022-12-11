@@ -441,6 +441,10 @@ int thrown;
 		multishot -= 3;
 		if (multishot < 1) multishot = 1;
 	    }		
+	    if (launcher && launcher->oartifact == ART_BOW_OF_SKADI) {
+		multishot -= rnd(2);
+		if (multishot < 1) multishot = 1;
+	    }
 
 	    /* Rate of fire is intrinsic to the weapon - cannot be user selected
 	     * except via altmode

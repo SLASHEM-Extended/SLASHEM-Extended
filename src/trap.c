@@ -1818,7 +1818,7 @@ struct monst *victim;
     char buf[BUFSZ];
     int mat_idx;
 
-	if (victim == &youmonst && Race_if(PM_HYPOTHERMIC)) return 0;
+	if (victim == &youmonst && FireImmunity) return 0;
 
 	if ((victim == &youmonst) && !rn2(2) ) make_burned(HBurned + rnd(20 + (monster_difficulty() * 5) ),TRUE);
     
@@ -1957,6 +1957,8 @@ struct monst *victim;
 
 	if (!otmp) return(FALSE);
 	if (stack_too_big(otmp)) return (FALSE);
+
+	if (youdefend && AcidImmunity && type == 3) return(FALSE);
 
 	switch(type) {
 		case 0: vulnerable = is_flammable(otmp);
@@ -5568,7 +5570,7 @@ newegomon:
 		    case 3:
 			pline("A%s electric shock shoots through your body!",
 			      (Shock_resistance) ? "n" : " massive");
-			losehp(StrongShock_resistance ? rnd(2) : Shock_resistance ? rnd(6) : rnd(30),
+			if (!ShockImmunity) losehp(StrongShock_resistance ? rnd(2) : Shock_resistance ? rnd(6) : rnd(30),
 			       "electric chair", KILLED_BY_AN);
 			exercise(A_CON, FALSE);
 			break;
@@ -8951,7 +8953,7 @@ newbossPENT:
 			int dmg;
 
 			You("are jolted by a surge of electricity!");
-			if (Shock_resistance && (StrongShock_resistance || rn2(10)) )  {
+			if ((Shock_resistance && (StrongShock_resistance || rn2(10))) || ShockImmunity ) {
 			    shieldeff(u.ux, u.uy);
 			    You("don't seem to be affected.");
 			    break;
@@ -10620,7 +10622,7 @@ madnesseffect:
 
 		} else {
 			pline("You hear a splash, and are covered in acid!");
-			if (Acid_resistance && rn2(StrongAcid_resistance ? 20 : 5)) {
+			if ((Acid_resistance && rn2(StrongAcid_resistance ? 20 : 5)) || AcidImmunity) {
 				pline("But it seems harmless.");
 			} else {
 				int projectiledamage = rnd(6)+ rnd( (monster_difficulty() / 3) + 1);
@@ -22656,6 +22658,7 @@ struct obj *box;        /* at the moment only for floor traps */
                 shieldeff(u.ux, u.uy);
                 num = d(2, 2) + rnd((monster_difficulty() / 5) + 1);
 		    if (StrongCold_resistance && num > 1) num /= 2;
+		    if (ColdImmunity) num = 0;
         }
 
         if (!num)
@@ -22695,6 +22698,7 @@ struct obj *box;        /* at the moment only for floor traps */
                 shieldeff(u.ux, u.uy);
                 num = d(2, 2) + rnd((monster_difficulty() / 5) + 1);
 		    if (StrongShock_resistance && num > 1) num /= 2;
+		    if (ShockImmunity) num = 0;
         }
 
         if (!num)
@@ -22736,6 +22740,7 @@ struct obj *box;        /* at the moment only for floor traps */
                 shieldeff(u.ux, u.uy);
                 num = d(6, 3) + rnd((monster_difficulty() / 2) + 1);
 		    if (StrongShock_resistance && num > 1) num /= 2;
+		    if (ShockImmunity) num = 0;
         }
 
         if (!num)
@@ -22975,7 +22980,7 @@ struct obj *box;	/* null for floor trap */
     }
 	if (Fire_resistance) {
 	    shieldeff(u.ux, u.uy);
-	    num = rnd(StrongFire_resistance ? 4 : 12);
+	    num = rnd(FireImmunity ? 1 : StrongFire_resistance ? 4 : 12);
 	} else if (Upolyd) {
 	    num = d(6,4);
 	    switch (u.umonnum) {
@@ -25839,7 +25844,7 @@ boolean disarm;
 			int dmg;
 
 			You("are jolted by a surge of electricity!");
-			if (Shock_resistance && (StrongShock_resistance || rn2(10)) )  {
+			if ((Shock_resistance && (StrongShock_resistance || rn2(10))) || ShockImmunity ) {
 			    shieldeff(u.ux, u.uy);
 			    You("don't seem to be affected.");
 			    dmg = 0;
@@ -26311,7 +26316,7 @@ lava_effects()
     if (uarmc && uarmc->oartifact == ART_SCOOBA_COOBA) return FALSE;
     if (uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) return FALSE;
     if (uarmf && itemhasappearance(uarmf, APP_HOT_BOOTS) ) return FALSE;
-    if (Race_if(PM_HYPOTHERMIC)) return FALSE;
+    if (FireImmunity) return FALSE;
 
     if (!Fire_resistance) {
 

@@ -4145,6 +4145,13 @@ boolean init;
 
 		otmp->corpsenm = monsndx(ptr);
 		otmp->owt = weight(otmp);
+		if (otmp->otyp == CORPSE && ( (uwep && uwep->oartifact == ART_CUTRELEASE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_CUTRELEASE) ) ) {
+			int cutreleasedmg = 1;			
+			if (mons[otmp->corpsenm].mlevel > 0) cutreleasedmg = mons[otmp->corpsenm].mlevel;
+			pline("There is a discharge of energy!");
+			losehp(cutreleasedmg, "an energy release", KILLED_BY);
+		}
+
 		if (otmp->otyp == CORPSE &&
 			(special_corpse(old_corpsenm) || (mtmp && mtmp->egotype_troll) ||
 				special_corpse(otmp->corpsenm))) {

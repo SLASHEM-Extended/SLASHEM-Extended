@@ -28225,6 +28225,11 @@ static NEARDATA const char * const fake_plines[] = {
 	"You hear something that gives you a sinking feeling.",
 	"You hear something that gives you a sinking feeling, because sounds.c uses 'You_hear' instead of 'pline' and therefore all of the sink-related sounds have to be messages that start with 'You hear', annoyingly enough.",
 	"There is no low-level healing magic for training, and I have been using energy to brush recovery magic, so that the healing magic has improved a little bit, and the recovery ability has been reduced from 90% failure rate to 9%.",
+	"There is a discharge of energy!",
+	"There is a discharge of energy! This means that the corpse of a monster with shock attacks has just, uhh, kinda exploded and dealt over 200 damage to you. Hopefully you had enough to survive that.",
+	"Your razorblade cuts a slit open...",
+	"Your razorblade cuts a slit open... :O",
+	"Your razorblade cuts a slit open... and it heals you. (Yes, strangely enough the Cutrelease artifact causes you to get rid of sanity and contamination if it cuts you...)",
 
 };
 

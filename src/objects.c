@@ -134,7 +134,7 @@ WEAPON("great dagger", (char *)0,
 	/* STEPHEN WHITE'S NEW CODE */
 	/* for necromancer artifact... */
 
-/* Knives */
+/* Knives - worm tooth must be first */
 WEAPON("worm tooth", (char *)0,
 	1, 1, 0,  200, 2,  2,  2,  2, 0, 0,   P_KNIFE, MT_MYSTERIOUS, CLR_WHITE, 20),
 WEAPON("knife", (char *)0,
@@ -162,6 +162,7 @@ WEAPON("crysknife", (char *)0,
 
 WEAPON("tooth of an algolian suntiger",	"very sharp tooth",
 	0, 1, 0,  20, 10,500, 12, 12, 0, 0, P_KNIFE, MT_MINERAL, CLR_WHITE, 40),
+/* tooth of an algolian suntiger must be last */
 
 	/* [Tom] increased crysknife damage from d10/d10 */
 	/* to d20/d30 (otherwise, it's useless to make them...)

@@ -1127,6 +1127,9 @@ moveloop()
 				if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
+				if (PlayerInHighHeels && uarmf && uarmf->oartifact == ART_FORMO____ && !rn2(4) && moveamt > 1)
+					moveamt /= 2;
+
 				if ((GotsTooGoodEffect || u.uprops[GOTS_TOO_GOOD_EFFECT].extrinsic || have_toogoodgostone()) && moveamt > 1) {
 					int testhp, testhpmax;
 					boolean itgoestoogood = FALSE;
@@ -1302,7 +1305,7 @@ moveloop()
 
 					if (powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) canwalkonsnow = 1;
 
-					if (!canwalkonsnow) {
+					if (!canwalkonsnow && !ColdImmunity) {
 						if (StrongCold_resistance) moveamt /= 2;
 						else if (Cold_resistance) moveamt /= 3;
 						else moveamt /= 4;
@@ -1558,6 +1561,9 @@ moveloop()
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too are slower sometimes. */
 				moveamt /= 2;
 
+			if (PlayerInHighHeels && uarmf && uarmf->oartifact == ART_FORMO____ && !rn2(4) && moveamt > 1)
+				moveamt /= 2;
+
 			if ((GotsTooGoodEffect || u.uprops[GOTS_TOO_GOOD_EFFECT].extrinsic || have_toogoodgostone()) && moveamt > 1) {
 				int testhp, testhpmax;
 				boolean itgoestoogood = FALSE;
@@ -1750,7 +1756,7 @@ moveloop()
 
 				if (powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) canwalkonsnow = 1;
 
-				if ((youmonst.data->mmove > 1 || !rn2(2)) && !canwalkonsnow) {
+				if ((youmonst.data->mmove > 1 || !rn2(2)) && !canwalkonsnow && !ColdImmunity) {
 					if (StrongCold_resistance) moveamt /= 2;
 					else if (Cold_resistance) moveamt /= 3;
 					else moveamt /= 4;
@@ -2440,6 +2446,23 @@ moveloop()
 					if (!resist(whinymon, SCROLL_CLASS, 0, NOTELL)) monflee(whinymon, rnd(10), FALSE, FALSE);
 				}
 			}
+		}
+
+		if (uwep && uwep->oartifact == ART_CUTRELEASE && !rn2(1000)) {
+			Your("razorblade cuts a slit open...");
+			if (FunnyHallu) pline(":O");
+			int cutreleasedmg = rnd(2 + (level_difficulty() * 10));
+			playerbleed(cutreleasedmg);
+			decontaminate(cutreleasedmg);
+			reducesanity(cutreleasedmg);
+		}
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_CUTRELEASE && !rn2(1000)) {
+			Your("razorblade cuts a slit open...");
+			if (FunnyHallu) pline(":O");
+			int cutreleasedmg = rnd(2 + (level_difficulty() * 10));
+			playerbleed(cutreleasedmg);
+			decontaminate(cutreleasedmg);
+			reducesanity(cutreleasedmg);
 		}
 
 		if (uarmf && uarmf->oartifact == ART_RATCH_CLOSURE_SCRATCHING) {
@@ -9791,13 +9814,13 @@ newbossB:
 
 		}
 
-		if (is_snow(u.ux, u.uy) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) && !(uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) && !(Cold_resistance && rn2(StrongCold_resistance ? 10 : 3)) && !rn2(isfriday ? 10 : 20) && (Flying || Levitation)) {
+		if (is_snow(u.ux, u.uy) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) && !(uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) && !(Cold_resistance && rn2(StrongCold_resistance ? 10 : 3)) && !ColdImmunity && !rn2(isfriday ? 10 : 20) && (Flying || Levitation)) {
 			You("are caught in a snowstorm!");
 			make_stunned(Stunned + rnd(5),FALSE);
 			stop_occupation();
 		}
 
-		if (is_snow(u.ux, u.uy) && !(powerfulimplants() && uimplant && (uimplant->oartifact == ART_WHITE_WHALE_HATH_COME || uimplant->oartifact == ART_DUBAI_TOWER_BREAK)) && !(uarmf && itemhasappearance(uarmf, APP_FLEECY_BOOTS) ) && !(uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) && !(uarmf && itemhasappearance(uarmf, APP_CYAN_SNEAKERS) ) && !(uwep && uwep->oartifact == ART_GLACIERDALE) && !(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) && !(uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER) && !(uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) && !(uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) && !rn2(StrongCold_resistance ? 500 : Cold_resistance ? 200 : 50) ) {
+		if (is_snow(u.ux, u.uy) && !(powerfulimplants() && uimplant && (uimplant->oartifact == ART_WHITE_WHALE_HATH_COME || uimplant->oartifact == ART_DUBAI_TOWER_BREAK)) && !(uarmf && itemhasappearance(uarmf, APP_FLEECY_BOOTS) ) && !(uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) && !(uarmf && itemhasappearance(uarmf, APP_CYAN_SNEAKERS) ) && !(uwep && uwep->oartifact == ART_GLACIERDALE) && !(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) && !(uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER) && !(uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) && !(uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) && !ColdImmunity && !rn2(StrongCold_resistance ? 500 : Cold_resistance ? 200 : 50) ) {
 			You("freeze!");
 			make_frozen(HFrozen + rnz(50),FALSE);
 			stop_occupation();
@@ -9813,7 +9836,7 @@ newbossB:
 
 		}
 
-		if (is_burningwagon(u.ux, u.uy)) {
+		if (is_burningwagon(u.ux, u.uy) && !FireImmunity) {
 			pline("The wagon burns you!");
 			stop_occupation();
 			make_burned(HBurned + rnd(10 + level_difficulty()), FALSE);
@@ -12517,7 +12540,7 @@ pastds2:
 			if (!rn2(5)) rust_dmg(objX, xname(objX), 3, TRUE, &youmonst);
 		    }
 
-			if (!Acid_resistance || !rn2(StrongAcid_resistance ? 20 : 5)) {
+			if ((!Acid_resistance || !rn2(StrongAcid_resistance ? 20 : 5)) && !AcidImmunity) {
 				pline_The("acid inside the pit burns you!");
 				losehp((rnd(10) + rnd(monster_difficulty() + 1)), "being stuck in an acid pit", KILLED_BY);
 			}
@@ -12888,7 +12911,7 @@ pastds2:
 			/* super regene from Elona; if it's infinite with no downside, it's OP, so we have to do something
 			 * I decided that it slowly contaminates you, works less well if you're very contaminated, and
 			 * stops working entirely if you're fatally contaminated --Amy */
-			if (Race_if(PM_BACTERIA) && u.uhpmax > 4 && u.contamination < 1000 && !Upolyd && u.uhp <= ((u.uhpmax / 5) + 1)) {
+			if ( (Race_if(PM_BACTERIA) || (PlayerInSexyFlats && uarmf && uarmf->oartifact == ART_FORMO____) ) && u.uhpmax > 4 && u.contamination < 1000 && !Upolyd && u.uhp <= ((u.uhpmax / 5) + 1)) {
 				int superregeneamount = 5;
 				if (u.contamination > 200) superregeneamount = 4;
 				if (u.contamination > 400) superregeneamount = 3;
@@ -14065,6 +14088,14 @@ past4:
 	u.dungeongrowthhack = 0; /* should always be 0 except during saving and loading */
 
 	if (In_greencross(&u.uz) && !u.greencrossopen) u.greencrossopen = TRUE;
+
+	if ((uwep && uwep->oartifact == ART_BAT_FROM_HELL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_BAT_FROM_HELL)) {
+		if (!Role_if(PM_ROGUE)) {
+			if (u.uhpmax > 1 && u.uhp > (u.uhpmax / 2)) u.uhp = u.uhpmax / 2;
+			if (Upolyd && u.mhmax > 1 && u.mh > (u.mhmax / 2)) u.mh = u.mhmax /= 2;
+			flags.botl = TRUE;
+		}
+	}
 
 	/* if player used Fuel Nail artifact, make sure Roxanne keeps her stats */
 	if (u.roxannemode) {

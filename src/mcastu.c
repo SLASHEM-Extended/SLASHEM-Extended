@@ -592,7 +592,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 
 	    case AD_FIRE:
 		pline("You're enveloped in flames.");
-		if(Fire_resistance && rn2(StrongFire_resistance ? 20 : 5) ) {
+		if((Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) || FireImmunity) {
 			shieldeff(u.ux, u.uy);
 			pline("But you resist the effects.");
 			dmg = 0;
@@ -605,7 +605,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 		break;
 	    case AD_COLD:
 		pline("You're covered in frost.");
-		if(Cold_resistance && rn2(StrongCold_resistance ? 20 : 5) ) {
+		if((Cold_resistance && rn2(StrongCold_resistance ? 20 : 5)) || ColdImmunity ) {
 			shieldeff(u.ux, u.uy);
 			pline("But you resist the effects.");
 			dmg = 0;
@@ -613,7 +613,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 		break;
 	    case AD_ACID:
 		pline("You're covered in acid.");
-		if(Acid_resistance && rn2(StrongAcid_resistance ? 20 : 5) ) {
+		if((Acid_resistance && rn2(StrongAcid_resistance ? 20 : 5)) || AcidImmunity) {
 			shieldeff(u.ux, u.uy);
 			pline("But you resist the effects.");
 			dmg = 0;
@@ -621,7 +621,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 		break;
 	    case AD_ELEC:
 		pline("You're shocked.");
-		if(Shock_resistance && rn2(StrongShock_resistance ? 20 : 5) ) {
+		if((Shock_resistance && rn2(StrongShock_resistance ? 20 : 5)) || ShockImmunity ) {
 			shieldeff(u.ux, u.uy);
 			pline("But you resist the effects.");
 			dmg = 0;
@@ -1675,7 +1675,7 @@ int spellnum;
     case CLC_FIRE_PILLAR:
 	pline("A pillar of fire strikes all around you!");
 	if (PlayerHearsSoundEffects) pline(issoviet ? "Gori detka gori!" : "Tschack-tschack-tschack-tschack-tschack");
-	if (Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) {
+	if ((Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) || FireImmunity) {
 	    shieldeff(u.ux, u.uy);
 	    dmg = 0;
 	} else
@@ -1701,7 +1701,7 @@ int spellnum;
 	    pline("You are blinded by the flash!");
 	    make_blinded(StrongHalf_spell_damage ? 5L : Half_spell_damage ? 10L : 20L, FALSE);
 	}
-	if (reflects || (Shock_resistance && (StrongShock_resistance || rn2(10))) ) {
+	if (reflects || ShockImmunity || (Shock_resistance && (StrongShock_resistance || rn2(10))) ) {
 	    shieldeff(u.ux, u.uy);
 	    dmg = 0;
 	    if (reflects)

@@ -1202,7 +1202,7 @@ boolean isyou;
 		}
 	}
 
-	if (Fire_resistance)
+	if (Fire_resistance || FireImmunity)
 	    shielded = TRUE;
 	else
 	    for(obj = invent; obj; obj = obj2) {

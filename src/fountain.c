@@ -968,7 +968,7 @@ drinksink()
 			break;
 		case 2:
 			You("take a sip of scalding hot water.");
-			if (Fire_resistance) {
+			if (Fire_resistance || FireImmunity) {
 				pline("It seems quite tasty.");
 				u.uhunger += rnd(50); /* don't choke on water */
 				newuhs(FALSE);
@@ -1112,10 +1112,11 @@ newwere:
 			}
                   break;
             case 16: pline("A strong jet of scalding hot water splashes all over you!");
-                  if (Fire_resistance)
+                  if (Fire_resistance || FireImmunity)
                        pline("It feels quite refreshing.");
                   else if (!Fire_resistance)
                        losehp(d(4,6), "jet of boiling water", KILLED_BY_AN);
+
 			if ((!StrongSwimming || !rn2(10)) && (!StrongMagical_breathing || !rn2(10))) {
 				water_damage(invent, FALSE, FALSE);
 				if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);

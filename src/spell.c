@@ -5985,7 +5985,7 @@ newbossPENT:
 		    case 3:
 			pline("A%s electric shock shoots through your body!",
 			      (Shock_resistance) ? "n" : " massive");
-			losehp(StrongShock_resistance ? rnd(2) : Shock_resistance ? rnd(6) : rnd(30),
+			if (!ShockImmunity) losehp(StrongShock_resistance ? rnd(2) : Shock_resistance ? rnd(6) : rnd(30),
 			       "electric chair", KILLED_BY_AN);
 			exercise(A_CON, FALSE);
 			break;
@@ -8024,7 +8024,7 @@ whisperchoice:
 
 	case SPE_ACID_INGESTION:
 		pline("Sulfuric acid forms in your mouth...");
-		if (Acid_resistance && (StrongAcid_resistance || rn2(10)) ) {
+		if (Acid_resistance && (StrongAcid_resistance || AcidImmunity || rn2(10)) ) {
 			pline("This tastes %s.", FunnyHallu ? "tangy" : "sour");
 		} else {
 			pline("This burns a lot!");

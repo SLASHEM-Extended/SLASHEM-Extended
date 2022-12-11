@@ -7210,7 +7210,7 @@ hitmu(mtmp, mattk)
 		if (!mtmp->mcan && (isevilvariant || !rn2(issoviet ? 2 : Race_if(PM_GAVIL) ? 2 : Race_if(PM_HYPOTHERMIC) ? 2 : 10)) ) {
 			destroy_item(POTION_CLASS, AD_COLD);
 		}
-		if (Cold_resistance && rn2(StrongCold_resistance ? 20 : 5)) {
+		if ((Cold_resistance && rn2(StrongCold_resistance ? 20 : 5)) || ColdImmunity) {
 			pline("The cold doesn't seem to affect you.");
 			dmg = 0;
 		}
@@ -7226,7 +7226,7 @@ hitmu(mtmp, mattk)
 		    if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		    You("get zapped!");
-		    if (Shock_resistance && rn2(StrongShock_resistance ? 20 : 5)) {
+		    if ((Shock_resistance && rn2(StrongShock_resistance ? 20 : 5)) || ShockImmunity) {
 			pline_The("zap doesn't shock you!");
 			dmg = 0;
 		    }
@@ -7249,7 +7249,7 @@ hitmu(mtmp, mattk)
 			    /* KMH -- this is okay with unchanging */
 			    rehumanize();
 			    break;
-		    } else if (Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) {
+		    } else if ((Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) || FireImmunity) {
 			pline_The("fire doesn't feel hot!");
 			dmg = 0;
                         } else if (u.umonnum == PM_STRAW_GOLEM ||
@@ -7288,7 +7288,7 @@ hitmu(mtmp, mattk)
 			    /* KMH -- this is okay with unchanging */
 			    rehumanize();
 			    break;
-		    } else if (Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) {
+		    } else if ((Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) || FireImmunity) {
 			pline_The("fire doesn't feel hot!");
 			dmg = 0;
                         } else if (u.umonnum == PM_STRAW_GOLEM ||
@@ -7326,7 +7326,7 @@ hitmu(mtmp, mattk)
 		hitmsg(mtmp, mattk);
 		if (uncancelled) {
 		    pline("You're covered in frost!");
-		    if (Cold_resistance && rn2(StrongCold_resistance ? 20 : 5)) {
+		    if ((Cold_resistance && rn2(StrongCold_resistance ? 20 : 5)) || ColdImmunity) {
 			pline_The("frost doesn't seem cold!");
 			dmg = 0;
 		    }
@@ -7341,7 +7341,7 @@ hitmu(mtmp, mattk)
 		hitmsg(mtmp, mattk);
 		if (uncancelled) {
 		    You("get zapped!");
-		    if (Shock_resistance && rn2(StrongShock_resistance ? 20 : 5)) {
+		    if ((Shock_resistance && rn2(StrongShock_resistance ? 20 : 5)) || ShockImmunity) {
 			pline_The("zap doesn't shock you!");
 			dmg = 0;
 		    }
@@ -7856,7 +7856,7 @@ dopois:
 			    /* KMH -- this is okay with unchanging */
 			    rehumanize();
 			    break;
-		    } else if (Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) {
+		    } else if ((Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) || FireImmunity) {
 			pline_The("fire doesn't feel hot!");
 			if (dmg >= 4) dmg -= (dmg / 4);
 	          } else if (u.umonnum == PM_STRAW_GOLEM ||
@@ -7885,7 +7885,7 @@ dopois:
 		}
 		if (uncancelled) {
 		    pline("You're covered in frost!");
-		    if (Cold_resistance && rn2(StrongCold_resistance ? 20 : 5)) {
+		    if ((Cold_resistance && rn2(StrongCold_resistance ? 20 : 5)) || ColdImmunity) {
 			pline_The("frost doesn't seem cold!");
 			if (dmg >= 4) dmg -= (dmg / 4);
 		    }
@@ -7896,7 +7896,7 @@ dopois:
 		}
 		if (uncancelled) {
 		    You("get zapped!");
-		    if (Shock_resistance && rn2(StrongShock_resistance ? 20 : 5)) {
+		    if ((Shock_resistance && rn2(StrongShock_resistance ? 20 : 5)) || ShockImmunity) {
 			pline_The("zap doesn't shock you!");
 			if (dmg >= 4) dmg -= (dmg / 4);
 		    }
@@ -8506,7 +8506,7 @@ dopois:
 					u.youaredead = 0;
 
 				}
-				else {
+				else if (!FireImmunity) {
 					if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 					You("scream "); verbalize("HAHAHAHAHAHAHAAAAAAAA!"); /* Super Mario 64 */
 					u.uhpmax -= rnd(StrongFire_resistance ? 3 : 10);
@@ -9477,6 +9477,7 @@ dopois:
 			pline("You're seared by %s hot plasma radiation!", StrongFire_resistance ? "" : Fire_resistance ? "very" : "extremely");
 			if (!Fire_resistance) dmg *= 2;
 			if (StrongFire_resistance && dmg > 1) dmg /= 2;
+			if (FireImmunity && dmg > 1) dmg = 1;
 
 		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) /* extremely hot - very high chance to burn items! --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
@@ -9904,7 +9905,7 @@ dopois:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
 		if(!mtmp->mcan && !rn2(3)) {
-		    if (Acid_resistance && rn2(StrongAcid_resistance ? 20 : 5)) {
+		    if ((Acid_resistance && rn2(StrongAcid_resistance ? 20 : 5)) || AcidImmunity) {
 			pline("You're covered in acid, but it seems harmless.");
 			dmg = 0;
 		    } else {
@@ -12019,7 +12020,7 @@ do_stone2:
 		pline("You are covered with lava!");
 
 		    if(!mtmp->mcan && rn2(2)) {
-			if (Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) {
+			if ((Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) || FireImmunity) {
 				shieldeff(u.ux, u.uy);
 				You_feel("mildly hot.");
 				ugolemeffects(AD_FIRE,tmp);
@@ -12225,6 +12226,7 @@ do_stone2:
 			pline("It's extremely hot in here!");
 			if (!Fire_resistance) tmp *= 2;
 			if (StrongFire_resistance && tmp > 1) tmp /= 2;
+			if (FireImmunity && tmp > 1) tmp = 1;
 
 		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) /* extremely hot - very high chance to burn items! --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
@@ -12799,7 +12801,7 @@ do_stone2:
 		break;
 
 		case AD_ACID:
-		    if (Acid_resistance && rn2(StrongAcid_resistance ? 20 : 5)) {
+		    if ((Acid_resistance && rn2(StrongAcid_resistance ? 20 : 5)) || AcidImmunity) {
 			You("are covered with a seemingly harmless goo.");
 			tmp = 0;
 		    } else {
@@ -12833,7 +12835,7 @@ do_stone2:
 		case AD_ELEC:
 		    if(!mtmp->mcan && rn2(2)) {
 			pline_The("air around you crackles with electricity.");
-			if (Shock_resistance && rn2(StrongShock_resistance ? 20 : 5)) {
+			if ((Shock_resistance && rn2(StrongShock_resistance ? 20 : 5)) || ShockImmunity) {
 				shieldeff(u.ux, u.uy);
 				You("seem unhurt.");
 				ugolemeffects(AD_ELEC,tmp);
@@ -12845,7 +12847,7 @@ do_stone2:
 		case AD_MALK:
 		    if(!mtmp->mcan && rn2(2)) {
 			pline_The("air around you crackles with high voltage.");
-			if (Shock_resistance && rn2(StrongShock_resistance ? 20 : 5)) {
+			if ((Shock_resistance && rn2(StrongShock_resistance ? 20 : 5)) || ShockImmunity) {
 				shieldeff(u.ux, u.uy);
 				You("seem unhurt.");
 				ugolemeffects(AD_ELEC,tmp);
@@ -12865,7 +12867,7 @@ do_stone2:
 
 			pline("You are pummeled with blocks of ice!");
 			if (issoviet) pline("KHAR KHAR KHAR!");
-			if (Cold_resistance && rn2(StrongCold_resistance ? 20 : 5)) {
+			if ((Cold_resistance && rn2(StrongCold_resistance ? 20 : 5)) || ColdImmunity) {
 				pline("The ice doesn't seem to affect you.");
 				tmp = 0;
 			}
@@ -12884,7 +12886,7 @@ do_stone2:
 		    pline("Snap! Crackle! Pop!");
 
 		    if(!mtmp->mcan && rn2(2)) {
-			if (Cold_resistance && rn2(StrongCold_resistance ? 20 : 5)) {
+			if ((Cold_resistance && rn2(StrongCold_resistance ? 20 : 5)) || ColdImmunity) {
 				shieldeff(u.ux, u.uy);
 				You_feel("mildly chilly.");
 				ugolemeffects(AD_COLD,tmp);
@@ -12893,7 +12895,7 @@ do_stone2:
 		    }
 
 		    if(!mtmp->mcan && rn2(2)) {
-			if (Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) {
+			if ((Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) || FireImmunity) {
 				shieldeff(u.ux, u.uy);
 				You_feel("mildly hot.");
 				ugolemeffects(AD_FIRE,tmp);
@@ -12904,7 +12906,7 @@ do_stone2:
 
 		    if(!mtmp->mcan && rn2(2)) {
 			pline_The("air around you crackles with electricity.");
-			if (Shock_resistance && rn2(StrongShock_resistance ? 20 : 5)) {
+			if ((Shock_resistance && rn2(StrongShock_resistance ? 20 : 5)) || ShockImmunity) {
 				shieldeff(u.ux, u.uy);
 				You("seem unhurt.");
 				ugolemeffects(AD_ELEC,tmp);
@@ -12920,7 +12922,7 @@ do_stone2:
 
 		case AD_COLD:
 		    if(!mtmp->mcan && rn2(2)) {
-			if (Cold_resistance && rn2(StrongCold_resistance ? 20 : 5)) {
+			if ((Cold_resistance && rn2(StrongCold_resistance ? 20 : 5)) || ColdImmunity) {
 				shieldeff(u.ux, u.uy);
 				You_feel("mildly chilly.");
 				ugolemeffects(AD_COLD,tmp);
@@ -12977,7 +12979,7 @@ do_stone2:
 		    break;
 		case AD_FIRE:
 		    if(!mtmp->mcan && rn2(2)) {
-			if (Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) {
+			if ((Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) || FireImmunity) {
 				shieldeff(u.ux, u.uy);
 				You_feel("mildly hot.");
 				ugolemeffects(AD_FIRE,tmp);
@@ -13274,6 +13276,7 @@ boolean ufound;
 		pline("You're seared by %s hot plasma radiation!", StrongFire_resistance ? "" : Fire_resistance ? "very" : "extremely");
 		if (!Fire_resistance) tmp *= 2;
 		if (StrongFire_resistance && tmp > 1) tmp /= 2;
+		if (FireImmunity && tmp > 1) tmp = 1;
 		if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
 		if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
@@ -16048,7 +16051,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if(!rn2(issoviet ? 2 : 3)) {
 		pline("%s sends a terrifying gaze at you!", Monnam(mtmp));
 		    stop_occupation();
-		    if (Acid_resistance && rn2(StrongAcid_resistance ? 20 : 5)) {
+		    if ((Acid_resistance && rn2(StrongAcid_resistance ? 20 : 5)) || AcidImmunity) {
 			pline("You're covered in acid, but it seems harmless.");
 		    } else {
 			pline("You're covered in acid! It burns!");
@@ -17204,7 +17207,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 		    pline("%s attacks you with a fiery gaze!", Monnam(mtmp));
 		    stop_occupation();
-		    if (Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) {
+		    if ((Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) || FireImmunity) {
 			pline_The("fire doesn't feel hot!");
 			dmg = 0;
 		    }
@@ -17471,6 +17474,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    stop_occupation();
 			if (!Fire_resistance) dmg *= 2;
 			if (StrongFire_resistance && dmg > 1) dmg /= 2;
+			if (FireImmunity && dmg > 1) dmg = 1;
 
 		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) /* extremely hot - very high chance to burn items! --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
@@ -17544,7 +17548,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 		    pline("%s attacks you with a really hot gaze!", Monnam(mtmp));
 		    stop_occupation();
-		    if (Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) {
+		    if ((Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) || FireImmunity) {
 			pline_The("fire doesn't feel hot!");
 			dmg = 0;
 		    }
@@ -17570,7 +17574,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 		    pline("%s attacks you with a multicolor gaze!", Monnam(mtmp));
 		    stop_occupation();
-		    if (Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) {
+		    if ((Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) || FireImmunity) {
 			pline_The("fire doesn't feel hot!");
 			if (dmg >= 4) dmg -= (dmg / 4);
 		    }
@@ -17582,14 +17586,14 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 
-		    if (Cold_resistance && rn2(StrongCold_resistance ? 20 : 5)) {
+		    if ((Cold_resistance && rn2(StrongCold_resistance ? 20 : 5)) || ColdImmunity) {
 			pline_The("cold doesn't freeze you!");
 			if (dmg >= 4) dmg -= (dmg / 4);
 		    }
 		    if (isevilvariant || !rn2(issoviet ? 6 : Race_if(PM_GAVIL) ? 6 : Race_if(PM_HYPOTHERMIC) ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(POTION_CLASS, AD_COLD);
 
-		    if (Shock_resistance && rn2(StrongShock_resistance ? 20 : 5)) {
+		    if ((Shock_resistance && rn2(StrongShock_resistance ? 20 : 5)) || ShockImmunity) {
 			pline_The("gaze doesn't shock you!");
 			if (dmg >= 4) dmg -= (dmg / 4);
 		    }
@@ -17619,7 +17623,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 		    pline("%s attacks you with an icy gaze!", Monnam(mtmp));
 		    stop_occupation();
-		    if (Cold_resistance && rn2(StrongCold_resistance ? 20 : 5)) {
+		    if ((Cold_resistance && rn2(StrongCold_resistance ? 20 : 5)) || ColdImmunity) {
 			pline_The("cold doesn't freeze you!");
 			dmg = 0;
 		    }
@@ -17640,7 +17644,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 		    pline("%s attacks you with a shocking gaze!", Monnam(mtmp));
 		    stop_occupation();
-		    if (Shock_resistance && rn2(StrongShock_resistance ? 20 : 5)) {
+		    if ((Shock_resistance && rn2(StrongShock_resistance ? 20 : 5)) || ShockImmunity) {
 			pline_The("gaze doesn't shock you!");
 			dmg = 0;
 		    }
@@ -17670,7 +17674,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
 		    if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
-		    if (Shock_resistance && rn2(StrongShock_resistance ? 20 : 5)) {
+		    if ((Shock_resistance && rn2(StrongShock_resistance ? 20 : 5)) || ShockImmunity) {
 			pline_The("gaze doesn't shock you!");
 			dmg = 0;
 		    }
@@ -17702,7 +17706,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    if (isevilvariant || !rn2(issoviet ? 2 : Race_if(PM_GAVIL) ? 2 : Race_if(PM_HYPOTHERMIC) ? 2 : 10)) {
 			destroy_item(POTION_CLASS, AD_COLD);
 		    }
-		    if (Cold_resistance && rn2(StrongCold_resistance ? 20 : 5)) {
+		    if ((Cold_resistance && rn2(StrongCold_resistance ? 20 : 5)) || ColdImmunity) {
 			pline("The attack doesn't seem to damage you.");
 		    dmg = 0;
 		    }
