@@ -7705,6 +7705,7 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_CHESTER]) (void) mongets(mtmp, CHEST);
 		if (ptr == &mons[PM_MURRY_OLD_LADY]) (void) mongets(mtmp, UMBRELLA);
 		if (ptr == &mons[PM_SUNBATH_WOMAN]) (void) mongets(mtmp, PARASOL);
+		if (ptr == &mons[PM_LAVISHAS]) (void) mongets(mtmp, WAN_SUMMON_UNDEAD);
 		if (ptr == &mons[PM_AMBUSH_ELF]) (void) mongets(mtmp, QATAR);
 		if (ptr == &mons[PM_DROW_OCCULTIST]) (void) mongets(mtmp, DROVEN_DAGGER);
 		if (ptr == &mons[PM_SICKLY_GRANNY]) (void) mongets(mtmp, TROUTSTAFF);
@@ -7728,6 +7729,7 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_CAVE_EXPLORER]) (void) mongets(mtmp, TORCH);
 		if (ptr == &mons[PM_LAST_GENERATION_MEMBER]) (void) mongets(mtmp, TORCH);
 		if (ptr == &mons[PM_COHEN_LEADER]) (void) mongets(mtmp, RAKUYO);
+		if (ptr == &mons[PM_VEHIVAVY_EROTIKA]) (void) mongets(mtmp, LADY_BOOTS);
 		if (ptr == &mons[PM_VICTIM]) (void) mongets(mtmp, VICTIM_KNIFE);
 		if (ptr == &mons[PM_VIOLENT_WOMAN]) (void) mongets(mtmp, MARBLE_CHUNK);
 		if (ptr == &mons[PM_HEAVEN_MASTER]) (void) mongets(mtmp, SKY_HORN);
@@ -7760,9 +7762,13 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_SMOKER_HC_WOMAN]) (void) mongets(mtmp, CIGARETTE);
 		if (ptr == &mons[PM_TUFTRIKE]) (void) mongets(mtmp, DANCING_SHOES);
 		if (ptr == &mons[PM_BUILDER]) (void) mongets(mtmp, WAR_HAMMER);
+		if (ptr == &mons[PM_STAROXIA]) (void) mongets(mtmp, TWO_HANDED_SWORD);
 		if (ptr == &mons[PM_FISHERMAN]) (void) mongets(mtmp, FISHING_POLE);
 		if (ptr == &mons[PM_COCK_MONK]) (void) mongets(mtmp, VIBROBLADE);
 		if (ptr == &mons[PM_IRON_AGE_VILLAGE_INHABITANT]) (void) mongets(mtmp, TRIDENT);
+		if (ptr == &mons[PM_UNDERWAY_UNDERTAKER]) (void) mongets(mtmp, SHOVEL);
+		if (ptr == &mons[PM_BUDDLER]) (void) mongets(mtmp, SHOVEL);
+		if (ptr == &mons[PM_TOOL_SUPPLIER]) (void) mongets(mtmp, SHOVEL);
 
 		if (ptr == &mons[PM_CHINESE_RADIO_BEACON_OFFICER]) {
 			(void) mongets(mtmp, KATANA);
@@ -10919,6 +10925,10 @@ loveheelover:
 		if (mtmp->data == &mons[PM_BIND_DEVIL_WORM]) {
 			m_initthrow(mtmp, SHURIKEN, 50);
 		}
+		if (mtmp->data == &mons[PM_LASHOUT_WORM]) {
+			(void) mongets(mtmp, SHOVEL);
+			m_initthrow(mtmp, rnd_class(WORTHLESS_PIECE_OF_WHITE_GLASS, WORTHLESS_PIECE_OF_DARK_BLUE_G), 20);
+		}
 		if (mtmp->data == &mons[PM_REAL_DEVIL_WORM]) {
 			m_initthrow(mtmp, SHURIKEN, 50);
 		}
@@ -11535,6 +11545,10 @@ loveheelover:
 		if (ptr == &mons[PM_NEUTRAL_GNOME]) {
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, SALT_CHUNK, 30);
+		}
+		if (ptr == &mons[PM_CAT_GNOME]) {
+			(void) mongets(mtmp, SHOVEL);
+			 m_initthrow(mtmp, ROCK, 20);
 		}
 		if (ptr == &mons[PM_FOOTBOW]) {
 			(void) mongets(mtmp, BOW);
@@ -12259,6 +12273,10 @@ loveheelover:
 		if (ptr == &mons[PM_HEAVY_CENTAUR]) {
 			(void) mongets(mtmp, FLINTLOCK);
 	  		m_initthrow(mtmp, LEAD_PISTOL_BULLET, 20);
+		}
+		if (ptr == &mons[PM_RUENKAVALA]) {
+			(void) mongets(mtmp, LONG_SWORD);
+			(void) mongets(mtmp, WEDGE_SANDALS);
 		}
 		if (ptr == &mons[PM_SIGNIFICANT_THREAT_INCREASE_CENTAUR]) {
 			(void) mongets(mtmp, BANDED_MAIL);
@@ -13245,6 +13263,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_DIGGER_HULK]) (void) mongets(mtmp, CONGLOMERATE_PICK);
 		if (mtmp->data == &mons[PM_STOIAKMIDM]) (void) mongets(mtmp, SPEAR);
 		if (mtmp->data == &mons[PM_URGOTH_RENEGADE]) (void) mongets(mtmp, BATTLE_AXE);
+		if (mtmp->data == &mons[PM_UMBERSCHLOV]) (void) mongets(mtmp, SHOVEL);
 		if (mtmp->data == &mons[PM_TURVANG_HAMMER]) (void) mongets(mtmp, THUNDER_HAMMER);
 
 		if (mtmp->data == &mons[PM_UNWISE_BLUE_SMOKER]) {
@@ -14385,6 +14404,18 @@ loveheelover:
 		if (ptr == &mons[PM_BONER_TURRET]) {
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, BONE_FRAGMENT, 25);
+		}
+		if (ptr == &mons[PM_L_T_T_T_T_TURRET]) {
+			(void) mongets(mtmp, SHOVEL);
+			 m_initthrow(mtmp, ROCK, 35);
+		}
+		if (ptr == &mons[PM_KLLLLL_TURRET]) {
+			(void) mongets(mtmp, SHOVEL);
+			 m_initthrow(mtmp, ROCK, 40);
+		}
+		if (ptr == &mons[PM_ALLCRY_TURRET]) {
+			(void) mongets(mtmp, SHOVEL);
+			 m_initthrow(mtmp, ROCK, 45);
 		}
 		if (ptr == &mons[PM_LEADEN_TURRET]) {
 			(void) mongets(mtmp, SLING);
@@ -16528,6 +16559,10 @@ loveheelover:
 			(void) mongets(mtmp, SAND_SWORD);
 			 m_initthrow(mtmp, SAND_DART, 20);
 		}
+		if (ptr == &mons[PM_SHOVEL_DEMON]) {
+			(void) mongets(mtmp, SHOVEL);
+			 m_initthrow(mtmp, ROCK, 10);
+		}
 		if (ptr == &mons[PM_UTE]) {
 			(void) mongets(mtmp, LEATHER_PEEP_TOES);
 			(void) mongets(mtmp, HIGH_HEELED_SANDAL); /* M4_HAMMERSANDAL */
@@ -16961,6 +16996,9 @@ loveheelover:
 		if(ptr == &mons[PM_STAIR_GUARDING_QUEEN]) (void) mongets(mtmp, LEATHER_PEEP_TOES);
 		if(ptr == &mons[PM_FIREFOX_ANGEL]) (void) mongets(mtmp, FIRE_STICK);
 		if(ptr == &mons[PM_ALINA]) (void) mongets(mtmp, SCALPEL);
+		if(ptr == &mons[PM_CUDDLE_BEGINE]) (void) mongets(mtmp, SOFT_SNEAKERS);
+		if(ptr == &mons[PM_HEEL_BEGINE]) (void) mongets(mtmp, LADY_BOOTS);
+		if(ptr == &mons[PM_TRIPPEN_BEGINE]) (void) mongets(mtmp, WEDGE_SANDALS);
 
 		if (monsndx(ptr) == PM_DOUGLAS_ADAMS) {
 			(void) mongets(mtmp,HITCHHIKER_S_GUIDE_TO_THE_GALA);
@@ -17502,6 +17540,9 @@ loveheelover:
 		if (ptr == &mons[PM_THRALL_MOGMAN]) (void) mongets(mtmp, MACE);
 		if (ptr == &mons[PM_THRALL_RENEGADE]) (void) mongets(mtmp, MACE);
 		if (ptr == &mons[PM_GANSPUL_FILTO]) (void) mongets(mtmp, POT_CONFUSION);
+		if (ptr == &mons[PM_SHOVELHOBBIT]) (void) mongets(mtmp, SHOVEL);
+		if (ptr == &mons[PM_SHOVEL_DWARF]) (void) mongets(mtmp, SHOVEL);
+		if (ptr == &mons[PM_HOBBIT_BUDDLER]) (void) mongets(mtmp, SHOVEL);
 
 		if (ptr == &mons[PM_OLD_RED_GHAR]) {
 			(void) mongets(mtmp, POT_CONFUSION);
@@ -17522,6 +17563,18 @@ loveheelover:
 			(void) mongets(mtmp, MACE);
 			(void) mongets(mtmp, BOW);
 			 m_initthrow(mtmp, ARROW, 20);
+		}
+		if (ptr == &mons[PM_TOOL_HOBBIT]) {
+			(void) mongets(mtmp, SHOVEL);
+			 m_initthrow(mtmp, ROCK, 5);
+		}
+		if (ptr == &mons[PM_DEGING_DWARF]) {
+			(void) mongets(mtmp, SHOVEL);
+			 m_initthrow(mtmp, ROCK, 10);
+		}
+		if (ptr == &mons[PM_HOBBIT_LAUNCHER]) {
+			(void) mongets(mtmp, SHOVEL);
+			 m_initthrow(mtmp, ROCK, 20);
 		}
 		if (ptr == &mons[PM_SAMURAI_TRAINEE]) {
 			(void) mongets(mtmp, SHORT_SWORD);
@@ -20144,6 +20197,12 @@ loveheelover:
 	if (ptr == &mons[PM_EROGENOUS_KATIA]) {
 
 		mtmp->crapbonus += 50;
+
+	}
+
+	if (ptr == &mons[PM_KEIKI__AKA_AKA]) {
+
+		mtmp->crapbonus += 20;
 
 	}
 

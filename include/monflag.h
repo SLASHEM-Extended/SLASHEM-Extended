@@ -110,6 +110,49 @@
 #define MS_POMPEJI	101	/* chases players who disrupt the Yendorian infrastructure */
 #define MS_FLUIDATOR	102	/* chases players who constantly wallwalk */
 #define MS_BULLETATOR	103	/* chases players who use automatic firearms, by amateurhour */
+#define MS_OE	104	/* choengoes vowols to 'o' or 'oe' */
+#define MS_NASTYTRAP	105	/* can trigger nasty traps for you */
+#define MS_FEMI	106	/* can trigger feminism traps for you */
+#define MS_BAN	107	/* may occasionally banish itself */
+#define MS_TALONCOMPANY	108	/* Talon Company! */
+#define MS_REGULATOR	109	/* Well what do we have here, the Vault rogues are back. */
+#define MS_RAIDER	110	/* Hahahahahahaha! Time to kill! Should have stayed in bed instead of playing superhero! */
+#define MS_ENCLAVE	111	/* Ten-four! Target in sight! */
+#define MS_MUTANT	112	/* Hahahahahahaha! Let's play, little human! */
+#define MS_MYTHICALDAWN	113	/* Be glad that you won't live to see Lord Dagon's arrival. */
+#define MS_BOS	114	/* Brotherhood of Steel */
+#define MS_OUTCAST	115	/* Brotherhood Outcasts */
+#define MS_DREMORA	116	/* Kyn and Valkyn! Prince and Power! Bow down before me. */
+#define MS_GENDER	117	/* omg amy is so fucked up and her game is soooooo offensive */
+#define MS_AMNESIA	118	/* when walking, the monster shrouds its square and the eight surrounding ones */
+#define MS_SHIVERINGESLES	119	/* Ich wette einen Quintat, dass sie ipanaten koennen. */
+#define MS_ANOREXIA	120	/* monster cannot eat and will eventually starve to death */
+#define MS_BULIMIA	121	/* if the monster eats, it vomits, meaning it gets confused and stunned */
+#define MS_GRAKA	122	/* supposed to look like mojibake glyphs */
+#define MS_TEMPER	123	/* becomes frenzied when below half health */
+#define MS_BLANKER	124	/* offers service to remove egotype from your armor */
+#define MS_CONDESCEND	125	/* makes fun of your equipment */
+#define MS_MOLEST	126	/* does bad things to female player characters */
+#define MS_MODALSHOP	127	/* sells items, but they're not on the monster so you can't steal them */
+#define MS_GAGA	128	/* pretends to be one of 32 imaginary "genders" which are really gender identities */
+#define MS_SHOCKTROOPER	129	/* mub puh mub dit dit, kiml kiml, kss wirt ras, ka ga blis blis ka */
+#define MS_TRIP	130	/* if the monster moves, there's a chance that you get hit with a nastytrap effect */
+#define MS_AETHERIC	131	/* monster doesn't drop its items at all, even if they are artifacts */
+#define MS_COMMON	132	/* uses a specific sound that's determined at game start */
+#define MS_PIRATE	133	/* talks like a pirate */
+#define MS_BUSY	134	/* "I'm busy. Please do not disturb me." */
+#define MS_HIRE	135	/* can hire (i.e. recruit as a pet) for money */
+#define MS_JAM	136	/* may lose a turn */
+#define MS_LOWPRIORITY	137	/* can't move if a non-low-priority monster is adjacent to it */
+#define MS_ARMORER	138	/* slower while at high health, faster while low on health */
+#define MS_BEG	139	/* wants your money */
+#define MS_OMEN	140	/* may give you a bad effect if it moves */
+#define MS_NEWS	141	/* may tell you about vanquished monsters or achievements */
+#define MS_MIDI	142	/* klimpklamp klampklimpklamp klilili! */
+#define MS_SILLY	143	/* talks nonsense, e.g. "The block heels are made of cuddle cloth!" */
+#define MS_HERCULES	144	/* whenever this monster hits you in melee, subsequent attacks it makes deal more damage */
+#define MS_CRYTHROAT	145	/* is always visible and TALKS IN ALL CAPS */
+#define MS_SPEEDBUG	146	/* monster's actual speed is randomized per turn */
 
 /* MS_DOUGLAS_ADAMS used to be 42, however I fear the DevTeam eventually 
 ** reaching that number.  - sk */

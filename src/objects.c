@@ -9044,7 +9044,7 @@ GEM("halite", "white",                 200, 0,  200, 5, 5, 15,  2, MT_GEMSTONE, 
 GEM("marble", "white",                 200, 0,  200, 5, 5, 15,  3, MT_GEMSTONE, CLR_WHITE, 3),
 GEM("morion", "black",                 200, 0,  200, 5, 5, 15,  7, MT_GEMSTONE, CLR_BLACK, 2),
 GEM("jade", "green",                   200, 0,  300, 5, 5, 15,  6, MT_GEMSTONE, CLR_GREEN, 1),
-/* jade should be last for runestone mimics, makemon.c --Amy */
+/* jade should be last for runestone mimics, makemon.c, and white glass first worthless glass --Amy */
 GEM("worthless piece of white glass", "white",   2976, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_WHITE, 1),
 GEM("worthless piece of blue glass", "blue",     2976, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BRIGHT_BLUE, 1),
 GEM("worthless piece of red glass", "red",       2976, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_RED, 1),
@@ -9059,6 +9059,7 @@ GEM("worthless piece of green glass", "green",   2977, 0, 0, 6, 6, 6, 5, MT_GLAS
 GEM("worthless piece of radiant glass", "radiant",   2977, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BRIGHT_GREEN, 1),
 GEM("worthless piece of violet glass", "violet", 2977, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_MAGENTA, 1),
 GEM("worthless piece of dark blue glass", "dark blue",     2977, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BLUE, 1),
+/* last worthless glass = dark blue */
 
 /* first feminism jewel = Elif's jewel */
 GEM("Elif's jewel", "white",   10, 0, 0, 20, 20, 6, 5, MT_GLASS, CLR_WHITE, 1),

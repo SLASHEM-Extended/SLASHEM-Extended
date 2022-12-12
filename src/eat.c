@@ -3732,6 +3732,11 @@ register int pm;
 		flags.botl = 1;
 		break;
 
+	    case PM_PENICILLIUM:
+
+		if (Sick) make_sick(0L, (char *)0, TRUE, SICK_ALL);
+		break;
+
 	    case PM_NEXUS_CHICKEN:
 
 		pline("This corpse can grant both teleportitis and teleport control. It can also petrify you, though.");

@@ -1699,6 +1699,54 @@ register struct monst *mtmp;
 	case MS_FEARHARE:
 		ret = "is seriously afraid!";
 		break;
+
+	case MS_OE:
+	case MS_NASTYTRAP:
+	case MS_FEMI:
+	case MS_BAN:
+	case MS_TALONCOMPANY:
+	case MS_REGULATOR:
+	case MS_RAIDER:
+	case MS_ENCLAVE:
+	case MS_MUTANT:
+	case MS_MYTHICALDAWN:
+	case MS_BOS:
+	case MS_OUTCAST:
+	case MS_DREMORA:
+	case MS_GENDER:
+	case MS_AMNESIA:
+	case MS_SHIVERINGESLES:
+	case MS_ANOREXIA:
+	case MS_BULIMIA:
+	case MS_GRAKA:
+	case MS_TEMPER:
+	case MS_BLANKER:
+	case MS_CONDESCEND:
+	case MS_MOLEST:
+	case MS_MODALSHOP:
+	case MS_GAGA:
+	case MS_SHOCKTROOPER:
+	case MS_TRIP:
+	case MS_AETHERIC:
+	case MS_COMMON:
+	case MS_PIRATE:
+	case MS_BUSY:
+	case MS_HIRE:
+	case MS_JAM:
+	case MS_LOWPRIORITY:
+	case MS_ARMORER:
+	case MS_BEG:
+	case MS_OMEN:
+	case MS_NEWS:
+	case MS_MIDI:
+	case MS_SILLY:
+	case MS_HERCULES:
+	case MS_CRYTHROAT:
+	case MS_SPEEDBUG:
+		/* todo */
+		ret = "Unfinished sound effect.";
+		break;
+
 	case MS_SPOILER:
 		ret = "Error 25. Please restart the game";
 		break;
@@ -1935,6 +1983,54 @@ register struct monst *mtmp;
 	case MS_FEARHARE:
 		ret = "screams 'Ah! I'm endangered! Screw that, I'm outta here!'";
 		break;
+
+	case MS_OE:
+	case MS_NASTYTRAP:
+	case MS_FEMI:
+	case MS_BAN:
+	case MS_TALONCOMPANY:
+	case MS_REGULATOR:
+	case MS_RAIDER:
+	case MS_ENCLAVE:
+	case MS_MUTANT:
+	case MS_MYTHICALDAWN:
+	case MS_BOS:
+	case MS_OUTCAST:
+	case MS_DREMORA:
+	case MS_GENDER:
+	case MS_AMNESIA:
+	case MS_SHIVERINGESLES:
+	case MS_ANOREXIA:
+	case MS_BULIMIA:
+	case MS_GRAKA:
+	case MS_TEMPER:
+	case MS_BLANKER:
+	case MS_CONDESCEND:
+	case MS_MOLEST:
+	case MS_MODALSHOP:
+	case MS_GAGA:
+	case MS_SHOCKTROOPER:
+	case MS_TRIP:
+	case MS_AETHERIC:
+	case MS_COMMON:
+	case MS_PIRATE:
+	case MS_BUSY:
+	case MS_HIRE:
+	case MS_JAM:
+	case MS_LOWPRIORITY:
+	case MS_ARMORER:
+	case MS_BEG:
+	case MS_OMEN:
+	case MS_NEWS:
+	case MS_MIDI:
+	case MS_SILLY:
+	case MS_HERCULES:
+	case MS_CRYTHROAT:
+	case MS_SPEEDBUG:
+		/* todo */
+		ret = "Unfinished sound effect.";
+		break;
+
 	case MS_SPOILER:
 		ret = "Buffer overrun detected. NETHACK cannot safely continue execution and needs to close.";
 		break;
@@ -2158,6 +2254,54 @@ register struct monst *mtmp;
 	case MS_FEARHARE:
 		ret = "screams 'Get me away from here, I don't have a good feeling about this place!'";
 		break;
+
+	case MS_OE:
+	case MS_NASTYTRAP:
+	case MS_FEMI:
+	case MS_BAN:
+	case MS_TALONCOMPANY:
+	case MS_REGULATOR:
+	case MS_RAIDER:
+	case MS_ENCLAVE:
+	case MS_MUTANT:
+	case MS_MYTHICALDAWN:
+	case MS_BOS:
+	case MS_OUTCAST:
+	case MS_DREMORA:
+	case MS_GENDER:
+	case MS_AMNESIA:
+	case MS_SHIVERINGESLES:
+	case MS_ANOREXIA:
+	case MS_BULIMIA:
+	case MS_GRAKA:
+	case MS_TEMPER:
+	case MS_BLANKER:
+	case MS_CONDESCEND:
+	case MS_MOLEST:
+	case MS_MODALSHOP:
+	case MS_GAGA:
+	case MS_SHOCKTROOPER:
+	case MS_TRIP:
+	case MS_AETHERIC:
+	case MS_COMMON:
+	case MS_PIRATE:
+	case MS_BUSY:
+	case MS_HIRE:
+	case MS_JAM:
+	case MS_LOWPRIORITY:
+	case MS_ARMORER:
+	case MS_BEG:
+	case MS_OMEN:
+	case MS_NEWS:
+	case MS_MIDI:
+	case MS_SILLY:
+	case MS_HERCULES:
+	case MS_CRYTHROAT:
+	case MS_SPEEDBUG:
+		/* todo */
+		ret = "Unfinished sound effect.";
+		break;
+
 	case MS_SPOILER:
 		ret = "An error has occurred in your application. If you choose Close, NETHACK will close. If you choose Ignore, you should save your work in a new file.";
 		break;
@@ -3523,6 +3667,54 @@ repairitemchoice:
 		}
 		else verbl_msg = "Are you crazy? Well, neglecting to wear safety gear does verge on the edge of lunacy... anyway, stop attacking me, immediately!";
 		break;
+
+	case MS_OE:
+	case MS_NASTYTRAP:
+	case MS_FEMI:
+	case MS_BAN:
+	case MS_TALONCOMPANY:
+	case MS_REGULATOR:
+	case MS_RAIDER:
+	case MS_ENCLAVE:
+	case MS_MUTANT:
+	case MS_MYTHICALDAWN:
+	case MS_BOS:
+	case MS_OUTCAST:
+	case MS_DREMORA:
+	case MS_GENDER:
+	case MS_AMNESIA:
+	case MS_SHIVERINGESLES:
+	case MS_ANOREXIA:
+	case MS_BULIMIA:
+	case MS_GRAKA:
+	case MS_TEMPER:
+	case MS_BLANKER:
+	case MS_CONDESCEND:
+	case MS_MOLEST:
+	case MS_MODALSHOP:
+	case MS_GAGA:
+	case MS_SHOCKTROOPER:
+	case MS_TRIP:
+	case MS_AETHERIC:
+	case MS_COMMON:
+	case MS_PIRATE:
+	case MS_BUSY:
+	case MS_HIRE:
+	case MS_JAM:
+	case MS_LOWPRIORITY:
+	case MS_ARMORER:
+	case MS_BEG:
+	case MS_OMEN:
+	case MS_NEWS:
+	case MS_MIDI:
+	case MS_SILLY:
+	case MS_HERCULES:
+	case MS_CRYTHROAT:
+	case MS_SPEEDBUG:
+		/* todo */
+		verbl_msg = "The sound effect of this monster has not been implemented yet.";
+		break;
+
 	case MS_FEARHARE:
 		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
 			verbl_msg = "Help me, help me! I can't handle them myself!";
@@ -5949,6 +6141,51 @@ register struct monst *mtmp;
 		case MS_FEARHARE:
 		case MS_CODE:
 		case MS_BULLETATOR:
+
+			case MS_OE: /* todo all the way down */
+			case MS_NASTYTRAP:
+			case MS_FEMI:
+			case MS_BAN:
+			case MS_TALONCOMPANY:
+			case MS_REGULATOR:
+			case MS_RAIDER:
+			case MS_ENCLAVE:
+			case MS_MUTANT:
+			case MS_MYTHICALDAWN:
+			case MS_BOS:
+			case MS_OUTCAST:
+			case MS_DREMORA:
+			case MS_GENDER:
+			case MS_AMNESIA:
+			case MS_SHIVERINGESLES:
+			case MS_ANOREXIA:
+			case MS_BULIMIA:
+			case MS_GRAKA:
+			case MS_TEMPER:
+			case MS_BLANKER:
+			case MS_CONDESCEND:
+			case MS_MOLEST:
+			case MS_MODALSHOP:
+			case MS_GAGA:
+			case MS_SHOCKTROOPER:
+			case MS_TRIP:
+			case MS_AETHERIC:
+			case MS_COMMON:
+			case MS_PIRATE:
+			case MS_BUSY:
+			case MS_HIRE:
+			case MS_JAM:
+			case MS_LOWPRIORITY:
+			case MS_ARMORER:
+			case MS_BEG:
+			case MS_OMEN:
+			case MS_NEWS:
+			case MS_MIDI:
+			case MS_SILLY:
+			case MS_HERCULES:
+			case MS_CRYTHROAT:
+			case MS_SPEEDBUG: /* todo all the way up */
+
 			switch (distresslevel) {
 				case 1:
 					pline("%s screams.", Monnam(mtmp));

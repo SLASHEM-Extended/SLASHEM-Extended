@@ -243,7 +243,7 @@ boolean digest_meal;
 	}
 
 	/* super regene */
-	if (mon->data == &mons[PM_MESHERA_ALPHA_DEFORMED_ANGEL] || mon->data == &mons[PM_TESTER] || mon->data == &mons[PM_TEA_HUSSY] || mon->data == &mons[PM_OUROBOROS] || mon->data == &mons[PM_SUPER_FAST_REGENERATING_TROLL] || mon->data == &mons[PM_OLOG_THAT_COULD_HAVE_BEEN] || mon->data == &mons[PM_GENUINE_PREHISTORIC_FISH] || mon->data == &mons[PM_BILLION_YEAR_FISH] || mon->data == &mons[PM_UNITDEAD_QUEEN] || mon->data == &mons[PM_UNITDEAD_KING] || mon->data == &mons[PM_REGULUS_THE_ALTERED] || mon->data == &mons[PM_SELF_HEALER] || mon->data == &mons[PM_ZANAN_ENHANCED_SOLDIER] || mon->data == &mons[PM_VANESSA_ENHANCED_SOLDIER] || mon->data == &mons[PM_SUPERREGENEBOROS] || mon->data == &mons[PM_TELHUREZA_HOUSE_GUARD] || mon->data == &mons[PM_JUERE_DEMON_SOLDIER] || mon->data == &mons[PM_DIGGING_ON_FARMER] || mon->data == &mons[PM_JENNIFER_DEMON_SOLDIER] || mon->data == &mons[PM_ARIANE__LADY_OF_THE_ELEMENTS] || mon->data == &mons[PM_RENAI_OVER_MESHERA] || mon->data == &mons[PM_PATIENT_ZERO] || mon->data == &mons[PM_MISSU] ) {
+	if (mon->data == &mons[PM_MESHERA_ALPHA_DEFORMED_ANGEL] || mon->data == &mons[PM_TESTER] || mon->data == &mons[PM_TEA_HUSSY] || mon->data == &mons[PM_OUROBOROS] || mon->data == &mons[PM_SUPER_FAST_REGENERATING_TROLL] || mon->data == &mons[PM_OLOG_THAT_COULD_HAVE_BEEN] || mon->data == &mons[PM_GENUINE_PREHISTORIC_FISH] || mon->data == &mons[PM_BILLION_YEAR_FISH] || mon->data == &mons[PM_UNITDEAD_QUEEN] || mon->data == &mons[PM_UNITDEAD_KING] || mon->data == &mons[PM_REGULUS_THE_ALTERED] || mon->data == &mons[PM_SELF_HEALER] || mon->data == &mons[PM_ZANAN_ENHANCED_SOLDIER] || mon->data == &mons[PM_VANESSA_ENHANCED_SOLDIER] || mon->data == &mons[PM_SUPERREGENEBOROS] || mon->data == &mons[PM_TELHUREZA_HOUSE_GUARD] || mon->data == &mons[PM_JUERE_DEMON_SOLDIER] || mon->data == &mons[PM_MAUA_YA_KIAJEMI_YA_KUELEA] || mon->data == &mons[PM_DIGGING_ON_FARMER] || mon->data == &mons[PM_JENNIFER_DEMON_SOLDIER] || mon->data == &mons[PM_ARIANE__LADY_OF_THE_ELEMENTS] || mon->data == &mons[PM_RENAI_OVER_MESHERA] || mon->data == &mons[PM_PATIENT_ZERO] || mon->data == &mons[PM_MISSU] ) {
 		mon->mhp += 20;
 		if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
 	}
@@ -2077,6 +2077,53 @@ newbossSING:
 				break;
 			case MS_DEAD:
 				verbalize("Man I don't want to fight you. Can't you just go away and leave me alone?");
+				break;
+
+			case MS_OE:
+			case MS_NASTYTRAP:
+			case MS_FEMI:
+			case MS_BAN:
+			case MS_TALONCOMPANY:
+			case MS_REGULATOR:
+			case MS_RAIDER:
+			case MS_ENCLAVE:
+			case MS_MUTANT:
+			case MS_MYTHICALDAWN:
+			case MS_BOS:
+			case MS_OUTCAST:
+			case MS_DREMORA:
+			case MS_GENDER:
+			case MS_AMNESIA:
+			case MS_SHIVERINGESLES:
+			case MS_ANOREXIA:
+			case MS_BULIMIA:
+			case MS_GRAKA:
+			case MS_TEMPER:
+			case MS_BLANKER:
+			case MS_CONDESCEND:
+			case MS_MOLEST:
+			case MS_MODALSHOP:
+			case MS_GAGA:
+			case MS_SHOCKTROOPER:
+			case MS_TRIP:
+			case MS_AETHERIC:
+			case MS_COMMON:
+			case MS_PIRATE:
+			case MS_BUSY:
+			case MS_HIRE:
+			case MS_JAM:
+			case MS_LOWPRIORITY:
+			case MS_ARMORER:
+			case MS_BEG:
+			case MS_OMEN:
+			case MS_NEWS:
+			case MS_MIDI:
+			case MS_SILLY:
+			case MS_HERCULES:
+			case MS_CRYTHROAT:
+			case MS_SPEEDBUG:
+				/* todo */
+				verbalize("My sound has not been coded yet.");
 				break;
 			case MS_FEARHARE:
 				verbalize("Oh no! The player character is coming to get me! I should probably flee!");
@@ -4072,7 +4119,7 @@ altarfound:
 	       nidist > (couldsee(nix,niy) ? 144 : 36) && appr == 1) appr = 0;
 
 		/* special coding for "homing" giant wasps from the hunger games --Amy */
-		if ((ptr == &mons[PM_TRACKER_JACKER] || ptr == &mons[PM_BLACK_SUN_BASS] || ptr == &mons[PM_LINDEN_BASS] || (FemtrapActiveElla && mtmp->female && humanoid(mtmp->data) && (mtmp->mhp < (mtmp->mhpmax * 9 / 10) )) || ptr == &mons[PM_ASSHOLE_WHO_CANNOT_ENJOY_ANYTHING__NOT_EVEN_A_PAIR_OF_CUDDLE_HEELS] || ptr == &mons[PM_KILLER_GIANT_RAT] || ptr == &mons[PM_POLICE_DOG] || ptr == &mons[PM_MANBOO] || ptr == &mons[PM_SOLARFISH] || ptr == &mons[PM_POLICE_HUSKY] || ptr == &mons[PM_BIG_POLICE_DOG] || ptr == &mons[PM_CURSED____LEFTHANDED_FARTING_ELEPHANT] || ptr == &mons[PM_VERONA_MARBLE] || ptr == &mons[PM_CHASE_BIRD] || ptr == &mons[PM_JAYCEE] || ptr == &mons[PM_OOGABOOGAGOBILITGOOK_SEEKER_AREHETYPE_FUCKING_RETARD_ASS_SHIT_FLINGING_MONKEY_MONSTER] || ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_DRIVE_TRAIN] || ptr == &mons[PM_XTREME_TRACKER] || ptr == &mons[PM_REFUGE_UHLERT] || ptr == &mons[PM_THE_ULTIMATE_REFUGE]) && !mtmp->mpeaceful) appr = 1;
+		if ((ptr == &mons[PM_TRACKER_JACKER] || ptr == &mons[PM_TRACKBAG] || ptr == &mons[PM_BLACK_SUN_BASS] || ptr == &mons[PM_LINDEN_BASS] || (FemtrapActiveElla && mtmp->female && humanoid(mtmp->data) && (mtmp->mhp < (mtmp->mhpmax * 9 / 10) )) || ptr == &mons[PM_ASSHOLE_WHO_CANNOT_ENJOY_ANYTHING__NOT_EVEN_A_PAIR_OF_CUDDLE_HEELS] || ptr == &mons[PM_KILLER_GIANT_RAT] || ptr == &mons[PM_POLICE_DOG] || ptr == &mons[PM_MANBOO] || ptr == &mons[PM_SOLARFISH] || ptr == &mons[PM_POLICE_HUSKY] || ptr == &mons[PM_BIG_POLICE_DOG] || ptr == &mons[PM_CURSED____LEFTHANDED_FARTING_ELEPHANT] || ptr == &mons[PM_VERONA_MARBLE] || ptr == &mons[PM_CHASE_BIRD] || ptr == &mons[PM_JAYCEE] || ptr == &mons[PM_OOGABOOGAGOBILITGOOK_SEEKER_AREHETYPE_FUCKING_RETARD_ASS_SHIT_FLINGING_MONKEY_MONSTER] || ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_DRIVE_TRAIN] || ptr == &mons[PM_XTREME_TRACKER] || ptr == &mons[PM_REFUGE_UHLERT] || ptr == &mons[PM_THE_ULTIMATE_REFUGE]) && !mtmp->mpeaceful) appr = 1;
 
 	if (uarmh && itemhasappearance(uarmh, APP_BUG_TRACKING_HELMET) && !rn2(3) ) appr = 1; 
 
