@@ -15679,6 +15679,7 @@ STAIR:place[0],down
 OBJECT[10%]:'(',"pick-axe",(01,00)
 OBJECT[10%]:')',"dwarvish mattock",(01,00)
 OBJECT[20%]:'/',"digging",(01,00)
+OBJECT[20%]:')',"shovel",(01,00)
 OBJECT[5%]:'+',"dig",(01,00)
 
 MONSTER:random, random, place[0]
@@ -15807,6 +15808,7 @@ STAIR:place[0],down
 OBJECT[10%]:'(',"pick-axe",(01,00)
 OBJECT[10%]:')',"dwarvish mattock",(01,00)
 OBJECT[20%]:'/',"digging",(01,00)
+OBJECT[20%]:')',"shovel",(01,00)
 OBJECT[5%]:'+',"dig",(01,00)
 
 MONSTER:random, random, place[0]
@@ -15935,6 +15937,7 @@ STAIR:place[0],down
 OBJECT[10%]:'(',"pick-axe",(01,00)
 OBJECT[10%]:')',"dwarvish mattock",(01,00)
 OBJECT[20%]:'/',"digging",(01,00)
+OBJECT[20%]:')',"shovel",(01,00)
 OBJECT[5%]:'+',"dig",(01,00)
 
 MONSTER:random, random, place[0]
@@ -16063,6 +16066,7 @@ STAIR:place[0],down
 OBJECT[10%]:'(',"pick-axe",(01,00)
 OBJECT[10%]:')',"dwarvish mattock",(01,00)
 OBJECT[20%]:'/',"digging",(01,00)
+OBJECT[20%]:')',"shovel",(01,00)
 OBJECT[5%]:'+',"dig",(01,00)
 
 MONSTER:random, random, place[0]
@@ -16191,6 +16195,7 @@ STAIR:place[0],down
 OBJECT[10%]:'(',"pick-axe",(01,00)
 OBJECT[10%]:')',"dwarvish mattock",(01,00)
 OBJECT[20%]:'/',"digging",(01,00)
+OBJECT[20%]:')',"shovel",(01,00)
 OBJECT[5%]:'+',"dig",(01,00)
 
 MONSTER:random, random, place[0]

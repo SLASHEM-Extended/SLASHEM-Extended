@@ -445,6 +445,10 @@ int thrown;
 		multishot -= rnd(2);
 		if (multishot < 1) multishot = 1;
 	    }
+	    if (launcher && launcher->otyp == SHOVEL) {
+		multishot--;
+		if (multishot < 1) multishot = 1;
+	    }
 
 	    /* Rate of fire is intrinsic to the weapon - cannot be user selected
 	     * except via altmode
@@ -1896,6 +1900,7 @@ int thrown;
 
 		if (Race_if(PM_GERTEUT) && range > 5) range = 5;
 		if (Race_if(PM_PERVERT) && range > 2) range = 2;
+		if (launcher && launcher->otyp == SHOVEL && range > 4) range = 4;
 
 		if (Is_airlevel(&u.uz) || Levitation) {
 		    /* action, reaction... */

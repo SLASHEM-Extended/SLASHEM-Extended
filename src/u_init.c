@@ -816,6 +816,7 @@ static struct trobj Musician[] = {
 
 static struct trobj Undertaker[] = {
 	{ SCALPEL, 2, WEAPON_CLASS, 1, UNDEF_BLESS },
+	{ SHOVEL, 1, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ VICTORIAN_UNDERWEAR, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ WAN_UNDEAD_TURNING, UNDEF_SPE, WAND_CLASS, 1, UNDEF_BLESS },
 	{ WAN_UNDEAD_TURNING, UNDEF_SPE, WAND_CLASS, 1, UNDEF_BLESS },
@@ -2211,6 +2212,11 @@ static struct trobj AlchemistItemK[] = {
 
 static struct trobj RaceXItem[] = {
 	{ SPE_LIGHTNING, 5, SPBOOK_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj SnailItem[] = {
+	{ SHOVEL, -5, WEAPON_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 
@@ -18568,6 +18574,12 @@ u_init()
 
           ini_inv(RaceXItem);
           ini_inv(RaceXItemB);
+
+		break;
+
+	case PM_ELONA_SNAIL:
+
+          ini_inv(SnailItem);
 
 		break;
 

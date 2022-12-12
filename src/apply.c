@@ -5490,6 +5490,7 @@ doapply()
 	case PICK_AXE:
 	case CONGLOMERATE_PICK:
 	case CONUNDRUM_PICK:
+	case SHOVEL:
 	case MYSTERY_PICK:
 	case BRONZE_PICK:
 	case BRICK_PICK:

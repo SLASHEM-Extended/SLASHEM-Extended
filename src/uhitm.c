@@ -1959,6 +1959,22 @@ int dieroll;
 			if (obj && obj->oartifact == ART_BASHCRASH && tmp > 0) {
 				tmp *= 2;
 			}
+			if (obj && obj->oartifact == ART_STRIKE_ONE_RUN_THER && tmp > 0) {
+				tmp += 5;
+				if (!PlayerCannotUseSkills) {
+					switch (P_SKILL(P_SLING)) {
+
+						case P_BASIC:	tmp += 1; break;
+						case P_SKILLED:	tmp += 2; break;
+						case P_EXPERT:	tmp += 3; break;
+						case P_MASTER:	tmp += 4; break;
+						case P_GRAND_MASTER:	tmp += 5; break;
+						case P_SUPREME_MASTER:	tmp += 6; break;
+						default: break;
+					}
+
+				}
+			}
 			if (obj && obj->oartifact == ART_GAMMASABER) tmp += rnd(10);
 			if (obj && obj->oartifact == ART_TEH_HUNK && !obj->lamplit && tmp > 0) tmp += 5;
 			if (obj && obj->oartifact == ART_GAYGUN && (u.homosexual == 1)) tmp += 5;
@@ -2628,6 +2644,7 @@ int dieroll;
 				if ((obj->otyp == ATLATL) && tech_inuse(T_FLURRY)) tmp += 2;
 				if ((obj->otyp == SNIPESLING) && tech_inuse(T_FLURRY)) tmp += 2;
 				if ((obj->otyp == METAL_SLING) && tech_inuse(T_FLURRY)) tmp += 2;
+				if ((obj->otyp == SHOVEL) && tech_inuse(T_FLURRY)) tmp += 2;
 				if ((obj->otyp == CATAPULT) && tech_inuse(T_FLURRY)) tmp += 5;
 				tmp++;
 				

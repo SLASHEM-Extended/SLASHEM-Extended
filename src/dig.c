@@ -334,6 +334,9 @@ dig()
 	if (Race_if(PM_IRAHA)) bonus *= rnd(3);
 	if (isfriday && bonus > 1) bonus /= 2;
 
+	if (uwep->otyp == SHOVEL && !(uwep->oartifact == ART_AFTERMINE) )
+	    bonus -= rn2(Role_if(PM_UNDERTAKER) ? 5 : 20); /* digging with a shovel takes longer */
+
 	if (is_lightsaber(uwep))
 	    bonus -= rn2(20); /* Melting a hole takes longer */
 	if (is_lightsaber(uwep) && !uwep->lamplit)

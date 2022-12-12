@@ -10812,6 +10812,8 @@ boolean knoweverything;
 				pline("Super-powerful arrows. You can fire them with a bow."); break;
 			case METAL_SLING:
 				pline("A launcher that can shoot rocks and gems."); break;
+			case SHOVEL:
+				pline("This weapon is actually meant to be used as a tool, as it can dig out wall tiles. However, it's much slower than a pick-axe. You can also launch rocks from it but the range is much lower than if you use an actual sling and the rate of fire is also slower."); break;
 			case ATLATL:
 				pline("This launcher was supposed to shoot spears, but you can just throw them anyway, so it shoots sling ammo and rocks instead, and has slightly better to-hit than a regular sling."); break;
 			case SNIPESLING:
@@ -23519,6 +23521,10 @@ boolean knoweverything;
 					pline("Artifact specs: autocurses when worn, makes your AC worse by 5 points and provides double hunger and fire immunity. The latter is really good because it's full immunity as opposed to resistance, and even protects your inventory from fire!"); break;
 				case ART_CUTRELEASE:
 					pline("Artifact specs: +8 damage, causes you to cut yourself every once in a while which makes you bleed and reduces sanity and contamination, damages you whenever a monster leaves a corpse, and conveys cold immunity. The latter makes you completely impervious to cold damage and also protects your potions."); break;
+				case ART_STRIKE_ONE_RUN_THER:
+					pline("Artifact specs: +5 bashing damage, and one more for every sling skill level."); break;
+				case ART_AFTERMINE:
+					pline("Artifact specs: +10 to-hit and +6 damage, digs as fast as a pick-axe."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

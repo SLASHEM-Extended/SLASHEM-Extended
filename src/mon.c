@@ -3146,7 +3146,7 @@ mfndpos(mon, poss, info, flag)
 		       mon->weapon_check == NO_WEAPON_WANTED) {
 		rockok = is_pick(mw_tmp);
 	    } else {
-		rockok = (m_carrying(mon, PICK_AXE) || m_carrying(mon, CONGLOMERATE_PICK) || m_carrying(mon, CONUNDRUM_PICK) || m_carrying(mon, MYSTERY_PICK) || m_carrying(mon, BRONZE_PICK) || m_carrying(mon, BRICK_PICK) || m_carrying(mon, NANO_PICK) ||
+		rockok = (m_carrying(mon, PICK_AXE) || m_carrying(mon, CONGLOMERATE_PICK) || m_carrying(mon, CONUNDRUM_PICK) || m_carrying(mon, SHOVEL) || m_carrying(mon, MYSTERY_PICK) || m_carrying(mon, BRONZE_PICK) || m_carrying(mon, BRICK_PICK) || m_carrying(mon, NANO_PICK) ||
 			  (m_carrying(mon, DWARVISH_MATTOCK) &&
 			   !which_armor(mon, W_ARMS)) ||
 			  (m_carrying(mon, SOFT_MATTOCK) &&

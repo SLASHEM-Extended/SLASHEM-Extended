@@ -986,7 +986,8 @@ PROJECTILE("wonder arrow", (char *)0,
 	1, 500, 0, 2, 10, 10, 0, MT_IRON, -P_BOW, CLR_MAGENTA, 2),
 
 /* Slings */
-BOW("sling", (char *)0,		1, 0, 2800, 2, 20, 2, MT_WOOD, P_SLING, HI_LEATHER, 1),
+BOW("sling", (char *)0,		1, 0, 2300, 2, 20, 2, MT_WOOD, P_SLING, HI_LEATHER, 1),
+BOW("shovel", (char *)0,	1, 0, 500,  60, 4, 0, MT_POURPOOR, P_SLING, CLR_BLUE, 1),
 BOW("metal sling", (char *)0,	1, 0, 400,  2, 20, 2, MT_METAL, P_SLING, CLR_CYAN, 3),
 BOW("inka sling", (char *)0,	1, 0, 200,  2, 20, 5, MT_INKA, P_SLING, CLR_BROWN, 3),
 BOW("catapult", (char *)0,	1, 1, 100,  2, 250, 5, MT_METAL, P_SLING, CLR_BLACK, 40),

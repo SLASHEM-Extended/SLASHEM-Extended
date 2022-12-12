@@ -10009,6 +10009,15 @@ A("Cutrelease",				KNIFE, /* randart knife, cold immunity, whenever a monster le
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
+A("Strike One Run Ther",				SHOVEL, /* improved bashing damage: +5 and one more per sling skill level */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Aftermine",				SHOVEL, /* digs as fast as a pick-axe */
+	(SPFX_RESTR), 0, 0,
+	PHYS(10, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

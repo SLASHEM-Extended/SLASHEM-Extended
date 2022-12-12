@@ -2644,6 +2644,7 @@ boolean polespecial; /* may use polearm for monster-versus-monster combat */
 				if (!propellor) propellor = m_carrying(mtmp, SNIPESLING);
 				if (!propellor) propellor = m_carrying(mtmp, METAL_SLING);
 				if (!propellor) propellor = m_carrying(mtmp, SLING);
+				if (!propellor) propellor = m_carrying(mtmp, SHOVEL);
 				return otmp;
 			}
 		}
@@ -2651,7 +2652,7 @@ boolean polespecial; /* may use polearm for monster-versus-monster combat */
 	    /* shooting gems from slings; this goes just before the darts */
 	    /* (shooting rocks is already handled via the rwep[] ordering) */
 	    if ( (rwep[i] == DART || rwep[i] == SPIKE) && !likes_gems(mtmp->data) &&
-		    (m_carrying(mtmp, SLING) || m_carrying(mtmp, METAL_SLING) || m_carrying(mtmp, INKA_SLING) || m_carrying(mtmp, ATLATL) || m_carrying(mtmp, SNIPESLING) || m_carrying(mtmp, CATAPULT)) ) {		/* propellor */
+		    (m_carrying(mtmp, SLING) || m_carrying(mtmp, METAL_SLING) || m_carrying(mtmp, SHOVEL) || m_carrying(mtmp, INKA_SLING) || m_carrying(mtmp, ATLATL) || m_carrying(mtmp, SNIPESLING) || m_carrying(mtmp, CATAPULT)) ) {		/* propellor */
 		for (otmp = mtmp->minvent; otmp; otmp = otmp->nobj)
 		    if (otmp->oclass == GEM_CLASS /*&&
 			    (otmp->otyp != LOADSTONE || !otmp->cursed)*/) {
@@ -2663,6 +2664,7 @@ boolean polespecial; /* may use polearm for monster-versus-monster combat */
 			if (!propellor) propellor = m_carrying(mtmp, SNIPESLING);
 			if (!propellor) propellor = m_carrying(mtmp, METAL_SLING);
 			if (!propellor) propellor = m_carrying(mtmp, SLING);
+			if (!propellor) propellor = m_carrying(mtmp, SHOVEL);
 			return otmp;
 		    }
 	    }
@@ -2704,6 +2706,7 @@ boolean polespecial; /* may use polearm for monster-versus-monster combat */
 		  if (!propellor) propellor = (oselect(mtmp, SNIPESLING));
 		  if (!propellor) propellor = (oselect(mtmp, METAL_SLING));
 		  if (!propellor) propellor = (oselect(mtmp, SLING));
+		  if (!propellor) propellor = (oselect(mtmp, SHOVEL));
 		  break;
 		case P_CROSSBOW:
 		  propellor = (oselect(mtmp, DEMON_CROSSBOW));
@@ -3049,6 +3052,7 @@ register struct monst *mon;
 			if (!obj) obj = m_carrying(mon, BRONZE_PICK);
 			if (!obj) obj = m_carrying(mon, BRICK_PICK);
 			if (!obj) obj = m_carrying(mon, NANO_PICK);
+			if (!obj) obj = m_carrying(mon, SHOVEL);
 			/* KMH -- allow other picks */
 			if (!obj && !which_armor(mon, W_ARMS))
 			    obj = m_carrying(mon, DWARVISH_MATTOCK);
@@ -3103,6 +3107,7 @@ register struct monst *mon;
 			    if (!obj) obj = m_carrying(mon, NANO_AXE);
 			    if (!obj) obj = m_carrying(mon, TUBING_PLIERS);
 			    if (!obj) obj = m_carrying(mon, AXE);
+			    if (!obj) obj = m_carrying(mon, SHOVEL);
 			}
 			break;
 		default: impossible("weapon_check %d for %s?",
@@ -6756,7 +6761,7 @@ struct obj *weapon;
 	if (Race_if(PM_ORC) && weapon && (weapon->otyp == ORCISH_DAGGER || weapon->otyp == ORCISH_BOW || weapon->otyp == ORCISH_ARROW || weapon->otyp == ORCISH_SPEAR || weapon->otyp == ORCISH_SHORT_SWORD ) ) bonus += 1;
 	if ((Race_if(PM_DWARF) || Role_if(PM_MIDGET)) && weapon && (weapon->otyp == DWARVISH_SHORT_SWORD || weapon->otyp == DWARVISH_SPEAR) ) bonus += 1;
 	if ((Race_if(PM_GNOME) || Role_if(PM_GOLDMINER)) && weapon && (weapon->otyp == AKLYS || weapon->otyp == BLOW_AKLYS || weapon->otyp == CROSSBOW || weapon->otyp == CROSSBOW_BOLT) ) bonus += 1;
-	if ((Race_if(PM_HOBBIT) || Role_if(PM_RINGSEEKER)) && weapon && (weapon->otyp == SLING || weapon->otyp == INKA_SLING || weapon->otyp == ATLATL || weapon->otyp == SNIPESLING || weapon->otyp == METAL_SLING || weapon_type(weapon) == -P_SLING) ) bonus += 1;
+	if ((Race_if(PM_HOBBIT) || Role_if(PM_RINGSEEKER)) && weapon && (weapon->otyp == SLING || weapon->otyp == INKA_SLING || weapon->otyp == ATLATL || weapon->otyp == SNIPESLING || weapon->otyp == METAL_SLING || weapon->otyp == SHOVEL || weapon_type(weapon) == -P_SLING) ) bonus += 1;
 	if ((Race_if(PM_HOBBIT) || Role_if(PM_RINGSEEKER)) && weapon && weapon->otyp == CATAPULT) bonus += 2;
 	if (Race_if(PM_INKA) && weapon && (weapon->otyp == INKA_BLADE || weapon->otyp == INKUTLASS || weapon->otyp == NATURAL_STICK || weapon->otyp == VERMIN_SWATTER || weapon->otyp == INKA_BOOT || weapon->otyp == INKA_SPEAR || weapon->otyp == INKA_STINGER || weapon->otyp == INKA_SHACKLE )) bonus += 2;
 
