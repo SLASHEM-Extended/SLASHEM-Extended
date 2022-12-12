@@ -2190,6 +2190,14 @@ struct monst *mon;
 	if (mon->data == &mons[PM_KOBOLD_BLASTER] && !rn2(5)) mmove += 12;
 	if (mon->data == &mons[PM_SPEED_HACK_CHEATAH] && !mon->mpeaceful) mmove += 60;
 
+	if (mon->data == &mons[PM_DACHA_DACHA_DACHA_SMIRKING_SNEAK_THIEF] && !rn2(20)) mmove += rnd(60);
+	if (mon->data == &mons[PM_BUGGED_TO_HELL_WIZARD] && !rn2(20)) mmove += rnd(60);
+
+	if (mon->data == &mons[PM_DIAGONALATOR] && u.dx && u.dy) mmove += 12;
+	if (mon->data == &mons[PM_BRIGHT_DIAGONALATOR] && u.dx && u.dy) mmove += 12;
+	if (mon->data == &mons[PM_HEAVEN_DIAGONALATOR] && u.dx && u.dy) mmove += 12;
+	if (mon->data == &mons[PM_ABNORMAL_DIAGONALATOR] && u.dx && u.dy) mmove += 12;
+
 	if (uamul && uamul->oartifact == ART_APATHY_STRATEGY && mmove > 1) mmove /= 2;
 
 	if (mmove && uarmc && itemhasappearance(uarmc, APP_GREEK_CLOAK) ) mmove += 1;

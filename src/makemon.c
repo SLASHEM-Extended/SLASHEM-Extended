@@ -16493,6 +16493,11 @@ loveheelover:
 		}
 
 		break;
+
+	    case S_ARCHFIEND:
+		if(ptr == &mons[PM_PISCHADA]) (void) mongets(mtmp, UNFAIR_STILETTOS);
+		break;
+
 	    case S_DEMON:
 		/* moved here from m_initweap() because these don't
 		   have AT_WEAP so m_initweap() is not called for them */
@@ -16509,6 +16514,7 @@ loveheelover:
 		if(ptr == &mons[PM_CHAINSMOKER_DEVIL]) (void) mongets(mtmp, CIGARETTE);
 		if(ptr == &mons[PM_IRON_CHAIN_DEVIL]) (void) mongets(mtmp, IRON_CHAIN);
 		if(ptr == &mons[PM_KING_DEDEDE]) (void) mongets(mtmp, MALLET);
+		if(ptr == &mons[PM_PAJIDA]) (void) mongets(mtmp, UNFAIR_STILETTOS);
 
 		if(ptr == &mons[PM_ARMED_XIVILAI]) (void) mongets(mtmp, !rn2(3) ? BATTLE_AXE : rn2(2) ? TWO_HANDED_SWORD : WAR_HAMMER);
 		if(ptr == &mons[PM_HEAVILY_ARMED_XIVILAI]) (void) mongets(mtmp, !rn2(3) ? BATTLE_AXE : rn2(2) ? TWO_HANDED_SWORD : WAR_HAMMER);
@@ -26133,6 +26139,7 @@ register int	mmflags;
 			if (mndx == PM_IT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_INVISIBLE_HORROR) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_SUPER_STEALTH_ANT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
+			if (mndx == PM_BOEOEOEOEOE_MINE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
 			break;
 
@@ -32582,6 +32589,10 @@ assign_sym:
 	if (mtmp->data == &mons[PM_TREEENT]) {
 		ap_type = M_AP_FURNITURE;
 		appear = S_tree;
+	}
+	if (mtmp->data == &mons[PM_PREPARED_CHILDREN_S_CAR]) {
+		ap_type = M_AP_FURNITURE;
+		appear = S_wagon;
 	}
 	if (mtmp->data == &mons[PM_ABALLIN]) {
 		ap_type = M_AP_FURNITURE;
