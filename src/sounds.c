@@ -2922,6 +2922,14 @@ register struct monst *mtmp;
 				mtmp->mfrenzied = 1;
 			}
 		}
+		else if (FemtrapActiveSueLyn && mtmp->female && !mtmp->mfrenzied && mtmp->data->msound == MS_FART_NORMAL) {
+			if (!rn2(20)) {
+				pline("%s is satisfied by your caressing touch.", Monnam(mtmp) );
+				mtmp->mpeaceful = TRUE;
+			} else {
+				pline("%s demands that you continue stroking %s butt!", Monnam(mtmp), mhis(mtmp) );
+			}
+		}
 		else {
 			pline("%s seems to be even more angry at you than before.", Monnam(mtmp) );
 		}
@@ -5977,6 +5985,10 @@ register struct monst *mtmp;
 	if (!mtmp) {
 		impossible("monster_pain called with nonexistant monster!");
 		return;
+	}
+
+	if (FemtrapActiveLittleMarie && is_female(mtmp->data)) {
+		randomnastytrapeffect(rnz(2 + mtmp->m_lev), 1000 - mtmp->m_lev);
 	}
 
 	if (mtmp->data->msound == MS_FEARHARE) {

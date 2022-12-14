@@ -1444,7 +1444,7 @@ randenchantment()
 
 	} else if (!rn2(15)) {
 
-		switch (rnd(88)) {
+		switch (rnd(98)) {
 			case 1: return FEMTRAP_FEMMY;
 			case 2: return FEMTRAP_MADELEINE;
 			case 3: return FEMTRAP_MARLENA;
@@ -1533,6 +1533,16 @@ randenchantment()
 			case 86: return FEMTRAP_JASIEEN;
 			case 87: return FEMTRAP_YASAMAN;
 			case 88: return FEMTRAP_MAY_BRITT;
+			case 89: return FEMTRAP_NADINE;
+			case 90: return FEMTRAP_LUISA;
+			case 91: return FEMTRAP_IRINA;
+			case 92: return FEMTRAP_LISELOTTE;
+			case 93: return FEMTRAP_GRETA;
+			case 94: return FEMTRAP_JANE;
+			case 95: return FEMTRAP_SUE_LYN;
+			case 96: return FEMTRAP_CHARLOTTE;
+			case 97: return FEMTRAP_HANNAH;
+			case 98: return FEMTRAP_LITTLE_MARIE;
 			default: return POISON_RES;
 		}
 
@@ -2629,6 +2639,15 @@ randartpolearm()
 	int result;
 reroll:
 	result = rnd_class(PARTISAN, BEC_DE_CORBIN);
+	return result;
+}
+
+int
+randartquarterstaff()
+{
+	int result;
+reroll:
+	result = rnd_class(QUARTERSTAFF, PLATINUM_FIRE_HOOK);
 	return result;
 }
 
@@ -4002,7 +4021,7 @@ int duration;
 {
 	if (FemtrapActiveRosa) duration *= 5;
 
-	switch (rnd(88)) {
+	switch (rnd(98)) {
 		case 1:
 			if (!FemtrapActiveRuth) pline("You can already imagine the farting noises you're gonna hear.");
 			FemaleTrapSarah += duration;
@@ -4358,6 +4377,46 @@ int duration;
 		case 88:
 			if (!FemtrapActiveRuth) pline("Those little girls want to tease you by trying to steal things from your backpack for fun! You certainly know that this 'fun' will happen at your expense...");
 			FemaleTrapMayBritt += duration;
+			break;
+		case 89:
+			if (!FemtrapActiveRuth) pline("Some dark feminists are coming to the dungeon.");
+			FemaleTrapNadine += duration;
+			break;
+		case 90:
+			if (!FemtrapActiveRuth) pline("The girl shoes are starting to cheat in an attempt to kick you!");
+			FemaleTrapLuisa += duration;
+			break;
+		case 91:
+			if (!FemtrapActiveRuth) pline("You'll have to fight a whole lot of women's shoes.");
+			FemaleTrapIrina += duration;
+			break;
+		case 92:
+			if (!FemtrapActiveRuth) pline("The little girl wants to kick you in the shins and then retreat rapidly so that you can't attack her back!");
+			FemaleTrapLiselotte += duration;
+			break;
+		case 93:
+			if (!FemtrapActiveRuth) pline("The Hussies are waiting for you on certain dungeon levels, because they have been hired by the Bang Gang bosses.");
+			FemaleTrapGreta += duration;
+			break;
+		case 94:
+			if (!FemtrapActiveRuth) pline("Don't underestimate the women just because they have a small stature.");
+			FemaleTrapJane += duration;
+			break;
+		case 95:
+			if (!FemtrapActiveRuth) pline("The Asian girls want to fart you in the face, and if you allow it, they'll be nice to you, but treat them badly and they'll slit your skin with very sharp female fingernails!");
+			FemaleTrapSueLyn += duration;
+			break;
+		case 96:
+			if (!FemtrapActiveRuth) pline("Watch out, the Bang Gang is considering you a target. They're coming for you, and they have some tricks and traps ready.");
+			FemaleTrapCharlotte += duration;
+			break;
+		case 97:
+			if (!FemtrapActiveRuth) pline("Careful, the girls may steal your stuff and vanish before your eyes!");
+			FemaleTrapHannah += duration;
+			break;
+		case 98:
+			if (!FemtrapActiveRuth) pline("Oh no! Apparently the girls and women have prepared a really nasty counterattack to make your life miserable!");
+			FemaleTrapLittleMarie += duration;
 			break;
 	}
 }
@@ -4982,7 +5041,7 @@ boolean withtroves;
 int
 randomfeminismtraptype() /* keyword "marlena" */
 {
-	switch (rnd(88)) {
+	switch (rnd(98)) {
 			case 1: return FEMMY_TRAP;
 			case 2: return MADELEINE_TRAP;
 			case 3: return MARLENA_TRAP;
@@ -5071,6 +5130,16 @@ randomfeminismtraptype() /* keyword "marlena" */
 			case 86: return JASIEEN_TRAP;
 			case 87: return YASAMAN_TRAP;
 			case 88: return MAY_BRITT_TRAP;
+			case 89: return NADINE_TRAP;
+			case 90: return LUISA_TRAP;
+			case 91: return IRINA_TRAP;
+			case 92: return LISELOTTE_TRAP;
+			case 93: return GRETA_TRAP;
+			case 94: return JANE_TRAP;
+			case 95: return SUE_LYN_TRAP;
+			case 96: return CHARLOTTE_TRAP;
+			case 97: return HANNAH_TRAP;
+			case 98: return LITTLE_MARIE_TRAP;
 	}
 	return INGE_TRAP; /* fail safe */
 

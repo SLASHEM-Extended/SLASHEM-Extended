@@ -1252,6 +1252,7 @@ newsym(x,y)
 		(uwep && uwep->oartifact == ART_GOLEMBANE && mon->data->mlet == S_GOLEM) ||
 		(uwep && uwep->oartifact == ART_EELBANE && mon->data->mlet == S_EEL) ||
 		(uwep && uwep->oartifact == ART_MAUI_S_FISHHOOK && mon->data->mlet == S_EEL) ||
+		(uarmf && uarmf->oartifact == ART_SUCH_A_LOVELY_SHARK && mon->data->mlet == S_EEL && mon->mpeaceful) ||
 		(uwep && uwep->oartifact == ART_DEMONSTRANTS_GO_HOME && mon->data->mlet == S_HUMAN) ||
 		(uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) ||
 		(uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) ||
@@ -1367,6 +1368,7 @@ newsym(x,y)
 		(uwep && uwep->oartifact == ART_GOLEMBANE && mon->data->mlet == S_GOLEM) ||
 		(uwep && uwep->oartifact == ART_EELBANE && mon->data->mlet == S_EEL) ||
 		(uwep && uwep->oartifact == ART_MAUI_S_FISHHOOK && mon->data->mlet == S_EEL) ||
+		(uarmf && uarmf->oartifact == ART_SUCH_A_LOVELY_SHARK && mon->data->mlet == S_EEL && mon->mpeaceful) ||
 		(uwep && uwep->oartifact == ART_DEMONSTRANTS_GO_HOME && mon->data->mlet == S_HUMAN) ||
 		(uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) ||
 		(uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) ||
@@ -1642,6 +1644,7 @@ newsymX(x,y)
 		(uwep && uwep->oartifact == ART_GOLEMBANE && mon->data->mlet == S_GOLEM) ||
 		(uwep && uwep->oartifact == ART_EELBANE && mon->data->mlet == S_EEL) ||
 		(uwep && uwep->oartifact == ART_MAUI_S_FISHHOOK && mon->data->mlet == S_EEL) ||
+		(uarmf && uarmf->oartifact == ART_SUCH_A_LOVELY_SHARK && mon->data->mlet == S_EEL && mon->mpeaceful) ||
 		(uwep && uwep->oartifact == ART_DEMONSTRANTS_GO_HOME && mon->data->mlet == S_HUMAN) ||
 		(uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) ||
 		(uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) ||
@@ -1757,6 +1760,7 @@ newsymX(x,y)
 		(uwep && uwep->oartifact == ART_GOLEMBANE && mon->data->mlet == S_GOLEM) ||
 		(uwep && uwep->oartifact == ART_EELBANE && mon->data->mlet == S_EEL) ||
 		(uwep && uwep->oartifact == ART_MAUI_S_FISHHOOK && mon->data->mlet == S_EEL) ||
+		(uarmf && uarmf->oartifact == ART_SUCH_A_LOVELY_SHARK && mon->data->mlet == S_EEL && mon->mpeaceful) ||
 		(uwep && uwep->oartifact == ART_DEMONSTRANTS_GO_HOME && mon->data->mlet == S_HUMAN) ||
 		(uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) ||
 		(uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) ||
@@ -3684,6 +3688,7 @@ struct monst *mon;
 	if (uwep && uwep->oartifact == ART_GOLEMBANE && mon->data->mlet == S_GOLEM) return TRUE;
 	if (uwep && uwep->oartifact == ART_EELBANE && mon->data->mlet == S_EEL) return TRUE;
 	if (uwep && uwep->oartifact == ART_MAUI_S_FISHHOOK && mon->data->mlet == S_EEL) return TRUE;
+	if (uarmf && uarmf->oartifact == ART_SUCH_A_LOVELY_SHARK && mon->data->mlet == S_EEL && mon->mpeaceful) return TRUE;
 	if (uwep && uwep->oartifact == ART_DEMONSTRANTS_GO_HOME && mon->data->mlet == S_HUMAN) return TRUE;
 	if (uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) return TRUE;
 	if (uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) return TRUE;

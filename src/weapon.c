@@ -6163,7 +6163,7 @@ screwupsdone:
 
 	if (Race_if(PM_KORONST) && rn2(3) && (skill <= P_LAST_WEAPON && skill != P_SLING && skill != P_FIREARM)) return;
 
-	if (!PlayerCannotTrainSkills || u.uprops[TRAINING_DEACTIVATED].extrinsic || have_trainingstone()) {
+	if (!SkillTrainingImpossible) {
 		P_ADVANCE(skill) += degree;
 
 		if (uwep && uwep->otyp == CYAN_DOUBLE_LIGHTSABER && uwep->lamplit && uwep->altmode && skill >= P_SHII_CHO && skill <= P_WEDI) {

@@ -1993,7 +1993,7 @@ random_branchport_level()
 
 }
 
-/* Banishment level decision */
+/* Levelport level decision */
 int
 random_banish_level()
 {
@@ -2022,26 +2022,16 @@ random_banish_level()
 	return nlev;
 }
 
-/* the player is being banished to a random level. Usually it'll be in the upper dungeons, sometimes in Gehennom,
- * but occasionally also some branch, which should be accessible so as to prevent sequence breaking.
- * 1% chance to end up in Minus World, which is initially the only way to get there. --Amy */
-void
-banishplayer()
+/* Random branchport level decision */
+d_level
+random_banishment_level()
 {
+
 	d_level dtmp;
 	boolean minusworld = FALSE;
 
 	dtmp.dnum = dname_to_dnum("The Dungeons of Doom"); /* fail safe in case something goes wrong */
 	dtmp.dlevel = 1; /* ditto */
-
-	/* make sure you can't be banished if you're supposed to be immune --Amy */
-	if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
-		return;
-	}
-
-	if (playerlevelportdisabled()) {
-		return;
-	}
 
 	if (!rn2(100)) {
 		dtmp.dnum = dname_to_dnum("Minus World");
@@ -2281,6 +2271,28 @@ lowerdungeonagain:
 		if (!strcmp(dungeons[dtmp.dnum].dname, "Gehennom") && !u.uevent.invoked) dtmp.dlevel = rnd((dunlevs_in_dungeon(&dtmp)) - 1);
 	}
 
+	return dtmp;
+}
+
+/* the player is being banished to a random level. Usually it'll be in the upper dungeons, sometimes in Gehennom,
+ * but occasionally also some branch, which should be accessible so as to prevent sequence breaking.
+ * 1% chance to end up in Minus World, which is initially the only way to get there. --Amy */
+void
+banishplayer()
+{
+	d_level dtmp;
+
+	/* make sure you can't be banished if you're supposed to be immune --Amy */
+	if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+		return;
+	}
+
+	if (playerlevelportdisabled()) {
+		return;
+	}
+
+	dtmp = random_banishment_level();
+
 	schedule_goto(&dtmp, FALSE, FALSE, 0, (char *)0, (char *)0);
 	u.cnd_banishmentcount++;
 
@@ -2387,7 +2399,7 @@ boolean give_feedback;
 	return TRUE;
 }
 
-/* monster is banished */
+/* monster is branchported */
 boolean
 u_teleport_monC(mtmp, give_feedback)
 struct monst *mtmp;
@@ -2408,6 +2420,32 @@ boolean give_feedback;
 			}
 
 			flev = random_branchport_level();
+			migrate_to_level(mtmp, ledger_no(&flev), MIGR_RANDOM, (coord *)0);
+
+	return TRUE;
+}
+
+/* monster is banished */
+boolean
+u_teleport_monD(mtmp, give_feedback)
+struct monst *mtmp;
+boolean give_feedback;
+{
+	boolean ball_active = (Punished && uball->where != OBJ_FREE);
+
+	if (mtmp->data == &mons[PM_BAN_EVADING_TROLL]) return FALSE;
+
+	if (mtmp->isshk) make_angry_shk(mtmp, 0, 0);
+
+			int nlev;
+			d_level flev;
+
+			if (mon_has_amulet(mtmp) || In_endgame(&u.uz)) {
+				if (give_feedback) pline("%s seems very disoriented for a moment.", Monnam(mtmp));
+				return 2;
+			}
+
+			flev = random_banishment_level();
 			migrate_to_level(mtmp, ledger_no(&flev), MIGR_RANDOM, (coord *)0);
 
 	return TRUE;

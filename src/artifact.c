@@ -282,6 +282,7 @@ init_randarts()
 	artilist[ART_ARABELLA_S_ARTIFACT_CREATI].otyp = randartmeleeweapon();
 	artilist[ART_VERSUS_ELECTRICALLY_BASED_].otyp = randartmeleeweapon();
 	artilist[ART_ULTRA_ANNOYANCE].otyp = randartpolearm();
+	artilist[ART_HELICOPTER_TWIRL].otyp = randartquarterstaff();
 	artilist[ART_CUTRELEASE].otyp = randartknife();
 	artilist[ART_TIARA_OF_AMNESIA].otyp = randarthelm();
 	artilist[ART_FLUE_FLUE_FLUEFLUE_FLUE].otyp = randarthelm();
@@ -632,6 +633,9 @@ init_randarts()
 	artilist[ART_JASIEEN_S_FEAR].otyp = find_wedge_espadrilles();
 	artilist[ART_SHE_REALLY_LIKES_IT].otyp = find_treaded_heels();
 	artilist[ART_SOARUP].otyp = find_higher_helmet();
+	artilist[ART_GODLY_POSTMAN].otyp = find_winged_sandals();
+	artilist[ART_SUCH_A_LOVELY_SHARK].otyp = find_remora_heels();
+	artilist[ART_SPFLOTCH__HAHAHAHAHA_].otyp = find_heeled_chelsea_boots();
 	artilist[ART_SAFARI_ROCKZ].otyp = find_missys();
 	artilist[ART_SPIRIT_ROCKZ].otyp = find_missys();
 	artilist[ART_PURPLE_JUNGLE].otyp = find_missys();
@@ -3689,6 +3693,58 @@ chargingchoice:
 	    }
 	    break;
 	case SPECIAL_INVOKE:
+
+		if (obj->oartifact == ART_SPFLOTCH__HAHAHAHAHA_) {
+			curse(obj);
+			obj->hvycurse = TRUE;
+			pline("Wow, a corona antidote!");
+			upnivel(FALSE);
+			break;
+		}
+
+		if (obj->oartifact == ART_BACKGROUND_HOLDING) {
+			if (HAggravate_monster & INTRINSIC) {
+				HAggravate_monster &= ~INTRINSIC;
+				You_feel("more acceptable!");
+			} else {
+				pline("Nothing happens...");
+				if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+					pline("Oh wait, actually something bad happens...");
+					badeffect();
+				}
+			}
+			break;
+		}
+
+		if (obj->oartifact == ART_CRUEL_PARENTS) {
+			if (flags.female) {
+				int chaloss = rnd(5);
+
+				strcpy(plalias, "Liselotte");
+				(void) strncpy(u.aliasname, "Liselotte", sizeof(u.aliasname));
+				pline("Ugh, did your parents really name you 'Liselotte'??? Why didn't they name you 'Ice-Angel Chantalle-Jacqueline' instead, that would have been similarly silly!");
+				HCold_resistance |= FROMOUTSIDE;
+				HShock_resistance |= FROMOUTSIDE;
+
+				while (chaloss > 0) {
+					if (ABASE(A_CHA) > 3) {
+						ABASE(A_CHA) -= 1;
+						AMAX(A_CHA) -= 1;
+						u.cnd_permstatdamageamount++;
+					}
+					chaloss--;
+				}
+				curse(obj);
+				obj->hvycurse = TRUE;
+
+			} else {
+				make_confused(HConfusion + rn1(50, 50),FALSE);
+				make_stunned(HStun + rn1(50, 50),FALSE);
+				increasesanity(rnz(500));
+				Your("mind spins as you realize what name your parents would have given to you if you had become female.");
+			}
+			break;
+		}
 
 		if (obj->oartifact == ART_SALLY_S_BAKING_MIXTURE) {
 

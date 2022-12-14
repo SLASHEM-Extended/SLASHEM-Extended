@@ -10457,11 +10457,16 @@ tech_timeout()
 	    } 
 
 	    if (techtout(i) == 1) pline("Your %s technique is ready to be used!", techname(i));
-	    if (techtout(i) > 0) techtout(i)--;
+	    if (techtout(i) > 0) {
+		if (!(uarmf && uarmf->oartifact == ART_THICKER_THAN_THE_HEAD && rn2(2) && (techtout(i) > 1) ) )
+		techtout(i)--;
+	    }
 	    if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && techtout(i) > 0) {
 		if (techtout(i) == 1) pline("Your %s technique is ready to be used!", techname(i));
 		techtout(i)--;
 	    }
+
+	    if (techtout(i) < 0) techtout(i) = 0; /* fail safe */
         }
 }
 

@@ -10223,7 +10223,7 @@ rerollX:
 		} else {
 			if (sobj->cursed && uinsymbiosis) {
 
-				if (uarmf && itemhasappearance(otyp, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) {
+				if (uarmf && itemhasappearance(uarmf, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) {
 					if (uarmf->spe > -1) uarmf->spe = -1;
 				}
 

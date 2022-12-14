@@ -11753,6 +11753,7 @@ int spell;
 
 	if (uarmh && uarmh->oartifact == ART_WAITING_FOR_MELEE) chance -= 15;
 	if (uarm && uarm->oartifact == ART_DRAGON_PLATE) chance -= 20;
+	if (uarmf && uarmf->oartifact == ART_THICKER_THAN_THE_HEAD) chance -= 20;
 
 	if (Race_if(PM_PLAYER_GOLEM)) {
 		chance -= 25;

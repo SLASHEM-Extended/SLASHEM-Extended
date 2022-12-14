@@ -2478,6 +2478,45 @@ find_missys()
 }
 
 int
+find_winged_sandals()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_WINGED_SANDALS)) return i;
+    }
+
+    impossible("winged sandals not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_remora_heels()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_REMORA_HEELS)) return i;
+    }
+
+    impossible("remora heels not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_heeled_chelsea_boots()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_HEELED_CHELSEA_BOOTS)) return i;
+    }
+
+    impossible("heeled chelsea boots not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_house_slippers()
 {
     register int i;

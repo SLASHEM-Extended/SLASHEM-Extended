@@ -7825,6 +7825,8 @@ register struct obj *obj;
 	if (/*wizard && */is_hazy(obj) && !PlayerUninformation) strcat(prefix,"hazy ");
 /* there is absolutely no reason to not display this outside of wizard mode! --Amy */
 
+	if (obj->mstartinventX && !PlayerUninformation) strcat(prefix,"aetheric ");
+
 	/* warn player if items are made of glass or ether --Amy */
 	/* Amy grepping target: "materialeffect" */
 

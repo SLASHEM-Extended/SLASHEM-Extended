@@ -11726,6 +11726,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_VAPE_PUSSY]) (void) mongets(mtmp, ELECTRIC_CIGARETTE);
 		if (mtmp->data == &mons[PM_SHERWOOD_NYMPH]) (void) mongets(mtmp, QATAR);
 		if (mtmp->data == &mons[PM_SCRATCH_NYMPH]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
+		if (mtmp->data == &mons[PM_LOVELY_FEMMY]) (void) mongets(mtmp, STILETTO_SANDALS);
 
 	      if(mtmp->data == &mons[PM_SATYR]){
 	        if(!rn2(2)) (void) mongets(mtmp, POT_BOOZE);
@@ -14806,6 +14807,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_TULPAS]) (void) mongets(mtmp, CLUB);
 		if (mtmp->data == &mons[PM_DARK_TULPAS]) (void) mongets(mtmp, CLUB);
 		if (mtmp->data == &mons[PM_NOW_WE_DEFEATED_YOU]) (void) mongets(mtmp, CLUB);
+		if (mtmp->data == &mons[PM_CHINA_FEMMY]) (void) mongets(mtmp, HUGGING_BOOT);
 
 		if (ptr == &mons[PM_FLINGER]) {
 			(void) mongets(mtmp, SLING);
@@ -20254,6 +20256,12 @@ loveheelover:
 
 	}
 
+	if (ptr == &mons[PM_CHINA_FEMMY]) {
+
+		mtmp->fartbonus += 7;
+
+	}
+
 	if (ptr == &mons[PM_VENERABLE_FEMMY]) {
 
 		mtmp->fartbonus += 9;
@@ -23501,6 +23509,12 @@ loveheelover:
 			mpickobj(mtmp, otmpX, TRUE);
 		}
 
+	}
+
+	if (FemtrapActiveHannah && mtmp->female && (dmgtype(mtmp->data, AD_THIE) || dmgtype(mtmp->data, AD_SITM) || dmgtype(mtmp->data, AD_SEDU)) ) {
+		u.mongetshack = 100;
+		(void) mongets(mtmp, rn2(10) ? SCR_ROOT_PASSWORD_DETECTION : SCR_COURSE_TRAVELING);
+		u.mongetshack = 0;
 	}
 
 	/* ordinary soldiers rarely have access to magic (or gold :-) */
@@ -28132,6 +28146,8 @@ loopback:
 		if (ct > 0 && (Role_if(PM_PREVERSIONER) && is_jokemonster(ptr) )) ct += 5;
 		if (ct > 0 && (Role_if(PM_SHOE_FETISHIST) && (ptr->msound == MS_SHOE) )) ct += 100;
 		if (ct > 0 && (FemtrapActiveJohanna && (ptr->msound == MS_SHOE) )) ct += 100;
+		if (ct > 0 && (FemtrapActiveIrina && (ptr->msound == MS_SHOE) )) ct += 25;
+		if (ct > 0 && (FemtrapActiveNadine && dmgtype(ptr, AD_FEMI) )) ct += 20;
 		if (ct > 0 && (Role_if(PM_SECRET_ADVICE_MEMBER) && (ptr->msound == MS_ARREST) )) ct += 4;
 		if (ct > 0 && (Role_if(PM_SECRET_ADVICE_MEMBER) && (ptr->msound == MS_SOLDIER) )) ct += 2;
 		if (ct > 0 && (Role_if(PM_SECRET_ADVICE_MEMBER) && strongmonst(ptr) )) ct += 2;
@@ -29667,6 +29683,8 @@ int     spc;
 		if ((Role_if(PM_PREVERSIONER) && is_jokemonster(&mons[last]) )) num += 5;
 		if ((Role_if(PM_SHOE_FETISHIST) && (mons[last].msound == MS_SHOE) )) num += 100;
 		if ((FemtrapActiveJohanna && (mons[last].msound == MS_SHOE) )) num += 100;
+		if ((FemtrapActiveIrina && (mons[last].msound == MS_SHOE) )) num += 25;
+		if ((FemtrapActiveNadine && dmgtype(&mons[last], AD_FEMI) )) num += 20;
 		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && (mons[last].msound == MS_ARREST) )) num += 4;
 		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && (mons[last].msound == MS_SOLDIER) )) num += 2;
 		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && strongmonst(&mons[last]) )) num += 2;
@@ -30874,6 +30892,8 @@ int     spc;
 		if ((Role_if(PM_PREVERSIONER) && is_jokemonster(&mons[first]) )) num -= 5;
 		if ((Role_if(PM_SHOE_FETISHIST) && (mons[first].msound == MS_SHOE) )) num -= 100;
 		if ((FemtrapActiveJohanna && (mons[first].msound == MS_SHOE) )) num -= 100;
+		if ((FemtrapActiveIrina && (mons[first].msound == MS_SHOE) )) num -= 25;
+		if ((FemtrapActiveNadine && dmgtype(&mons[first], AD_FEMI) )) num -= 20;
 		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && (mons[first].msound == MS_ARREST) )) num -= 4;
 		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && (mons[first].msound == MS_SOLDIER) )) num -= 2;
 		if ((Role_if(PM_SECRET_ADVICE_MEMBER) && strongmonst(&mons[first]) )) num -= 2;
@@ -32127,6 +32147,10 @@ register struct permonst *ptr;
 	/* chaotic alignment is too easy and lawful is too hard. Make it easier for neutral and especially lawful by having monsters generate peaceful more often. --Amy */
 	if ( (sgn(u.ualign.type) == sgn(ptr->maligntyp) ) && !rn2(20) && !Role_if(PM_CONVICT) && u.ualign.type == A_LAWFUL) return TRUE;
 	if ( (sgn(u.ualign.type) == sgn(ptr->maligntyp) ) && !rn2(50) && !Role_if(PM_CONVICT) && u.ualign.type == A_NEUTRAL) return TRUE;
+
+	if (uarmf && uarmf->oartifact == ART_CLONE_ && is_jokemonster(ptr) && rn2(2)) return TRUE;
+
+	if (uarmf && uarmf->oartifact == ART_SUCH_A_LOVELY_SHARK && ptr->mlet == S_EEL) return TRUE;
 
 	if (is_pokemon(ptr) && rn2(5) && uarmc && itemhasappearance(uarmc, APP_POKE_MONGO_CLOAK) ) return TRUE;
 

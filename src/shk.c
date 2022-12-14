@@ -4169,6 +4169,16 @@ boolean catchup;	/* restoring a level */
 				&& ttmp->ttyp != FEMMY_TRAP
 				&& ttmp->ttyp != MADELEINE_TRAP
 				&& ttmp->ttyp != MARLENA_TRAP
+				&& ttmp->ttyp != NADINE_TRAP
+				&& ttmp->ttyp != LUISA_TRAP
+				&& ttmp->ttyp != IRINA_TRAP
+				&& ttmp->ttyp != LISELOTTE_TRAP
+				&& ttmp->ttyp != GRETA_TRAP
+				&& ttmp->ttyp != JANE_TRAP
+				&& ttmp->ttyp != SUE_LYN_TRAP
+				&& ttmp->ttyp != CHARLOTTE_TRAP
+				&& ttmp->ttyp != HANNAH_TRAP
+				&& ttmp->ttyp != LITTLE_MARIE_TRAP
 				&& ttmp->ttyp != RUTH_TRAP
 				&& ttmp->ttyp != MAGDALENA_TRAP
 				&& ttmp->ttyp != MARLEEN_TRAP

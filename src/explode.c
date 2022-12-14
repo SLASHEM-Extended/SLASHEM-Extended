@@ -665,6 +665,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 
 		if (damu && Race_if(PM_YUKI_PLAYA)) damu += rnd(5);
 		if (Role_if(PM_BLEEDER)) damu = damu * 2; /* bleeders are harder than hard mode */
+		if (!rn2(10) && (uarmf && uarmf->oartifact == ART_XTRA_CUTENESS)) damu = damu * 2;
 		if (have_cursedmagicresstone()) damu = damu * 2;
 		if (WinceState) {
 			int damutemp = damu;
@@ -686,7 +687,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 
 		if (isfriday && !rn2(50)) damu += rnd(damu);
 
-		if (Invulnerable || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
+		if (Invulnerable || (uarmf && uarmf->oartifact == ART_GODLY_POSTMAN && !rn2(10)) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
 		    damu = 0;
 		    You("are unharmed!");
 		} else if (StrongWonderlegs && !rn2(10) && Wounded_legs) {
@@ -725,7 +726,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 			Your("%s symbiote takes the damage for you.", mons[u.usymbiote.mnum].mname);
 			if (u.usymbiote.mhp <= 0) {
 
-				if (uarmf && itemhasappearance(otyp, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) {
+				if (uarmf && itemhasappearance(uarmf, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) {
 					if (uarmf->spe > -1) uarmf->spe = -1;
 				}
 

@@ -2144,6 +2144,16 @@ dospinweb()
 		case FEMMY_TRAP:
 		case MADELEINE_TRAP:
 		case MARLENA_TRAP:
+		case NADINE_TRAP:
+		case LUISA_TRAP:
+		case IRINA_TRAP:
+		case LISELOTTE_TRAP:
+		case GRETA_TRAP:
+		case JANE_TRAP:
+		case SUE_LYN_TRAP:
+		case CHARLOTTE_TRAP:
+		case HANNAH_TRAP:
+		case LITTLE_MARIE_TRAP:
 		case RUTH_TRAP:
 		case MAGDALENA_TRAP:
 		case MARLEEN_TRAP:

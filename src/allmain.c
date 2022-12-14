@@ -1297,6 +1297,7 @@ moveloop()
 						    || (uarmf && uarmf->otyp == skates5)
 						    || (uwep && uwep->oartifact == ART_GLACIERDALE)
 						    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
+						    || (uarmf && uarmf->oartifact == ART_THICKER_THAN_THE_HEAD)
 						    || (uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_)
 						    || (uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER)
 						    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
@@ -1748,6 +1749,7 @@ moveloop()
 					    || (uarmf && uarmf->otyp == skates5)
 					    || (uwep && uwep->oartifact == ART_GLACIERDALE)
 					    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
+					    || (uarmf && uarmf->oartifact == ART_THICKER_THAN_THE_HEAD)
 					    || (uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_)
 					    || (uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER)
 					    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
@@ -1980,6 +1982,7 @@ moveloop()
 				    || (uarmf && uarmf->otyp == skates5)
 				    || (uwep && uwep->oartifact == ART_GLACIERDALE)
 				    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
+				    || (uarmf && uarmf->oartifact == ART_THICKER_THAN_THE_HEAD)
 				    || (uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_)
 				    || (uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER)
 				    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
@@ -2353,6 +2356,10 @@ moveloop()
 			}
 		}
 
+		if (uarmf && uarmf->oartifact == ART_CLIMATE_PROTECTION_IS_ERRI && u.copwantedlevel < 1000) {
+			u.copwantedlevel += 1000;
+		}
+
 		if (RepeatingNastycurseEffect && !rn2(5000)) {
 			nastytrapcurse();
 		}
@@ -2361,6 +2368,11 @@ moveloop()
 		}
 		if (have_nastycursestone() && !rn2(5000)) {
 			nastytrapcurse();
+		}
+
+		if (uarmf && uarmf->oartifact == ART_TEACH_YA_BUT_CANNOT_LEARN && !rn2(20000)) {
+			You("are granted some new skills!");
+			unrestrictskillchoice();
 		}
 
 		if (Race_if(PM_BOVER) && !rn2(2000)) {
@@ -7641,37 +7653,44 @@ newbossBUTT:
 		}
 
 		if (uwep && is_lightsaber(uwep) && uwep->lamplit && nohands(youmonst.data)) {
-			u.polgoturns++;
-			if (u.polgoturns >= 10) {
-				u.polgoturns = 0;
-				u.polgoskill++;
-				if (u.polgoskill == 20) You("are now more skilled in form XII (Polgo).");
-				if (u.polgoskill == 160) You("are now more skilled in form XII (Polgo).");
-				if (u.polgoskill == 540) You("are now more skilled in form XII (Polgo).");
-				if (u.polgoskill == 1280) You("are now more skilled in form XII (Polgo).");
-				if (u.polgoskill == 2560) You("are now more skilled in form XII (Polgo).");
-				if (u.polgoskill == 4320) You("are now most skilled in form XII (Polgo).");
-			}
 
+			if (!SkillTrainingImpossible) {
+
+				u.polgoturns++;
+				if (u.polgoturns >= 10) {
+					u.polgoturns = 0;
+					u.polgoskill++;
+					if (u.polgoskill == 20) You("are now more skilled in form XII (Polgo).");
+					if (u.polgoskill == 160) You("are now more skilled in form XII (Polgo).");
+					if (u.polgoskill == 540) You("are now more skilled in form XII (Polgo).");
+					if (u.polgoskill == 1280) You("are now more skilled in form XII (Polgo).");
+					if (u.polgoskill == 2560) You("are now more skilled in form XII (Polgo).");
+					if (u.polgoskill == 4320) You("are now most skilled in form XII (Polgo).");
+				}
+			}
 		}
 
 		if (uwep && is_lightsaber(uwep) && uwep->lamplit && isfriday) {
-			u.firgaturns++;
-			if (u.firgaturns >= 10) {
-				u.firgaturns = 0;
-				if (!rn2(131313)) {
-					u.firgaskill = 0;
-				} else if (!rn2(13)) {
-					u.firgaskill--;
-					if (u.firgaskill < 0) u.firgaskill = 0;
-				} else {
-					u.firgaskill++;
-					if (u.firgaskill == 20) You("are now more skilled in form XIII (Firga).");
-					if (u.firgaskill == 160) You("are now more skilled in form XIII (Firga).");
-					if (u.firgaskill == 540) You("are now more skilled in form XIII (Firga).");
-					if (u.firgaskill == 1280) You("are now more skilled in form XIII (Firga).");
-					if (u.firgaskill == 2560) You("are now more skilled in form XIII (Firga).");
-					if (u.firgaskill == 4320) You("are now most skilled in form XIII (Firga).");
+
+			if (!SkillTrainingImpossible) {
+
+				u.firgaturns++;
+				if (u.firgaturns >= 10) {
+					u.firgaturns = 0;
+					if (!rn2(131313)) {
+						u.firgaskill = 0;
+					} else if (!rn2(13)) {
+						u.firgaskill--;
+						if (u.firgaskill < 0) u.firgaskill = 0;
+					} else {
+						u.firgaskill++;
+						if (u.firgaskill == 20) You("are now more skilled in form XIII (Firga).");
+						if (u.firgaskill == 160) You("are now more skilled in form XIII (Firga).");
+						if (u.firgaskill == 540) You("are now more skilled in form XIII (Firga).");
+						if (u.firgaskill == 1280) You("are now more skilled in form XIII (Firga).");
+						if (u.firgaskill == 2560) You("are now more skilled in form XIII (Firga).");
+						if (u.firgaskill == 4320) You("are now most skilled in form XIII (Firga).");
+					}
 				}
 			}
 
@@ -7808,6 +7827,218 @@ newbossSING:
 				singbitch = makemon(pm, 0, 0, MM_ANGRY); /* not frenzied --Amy */
 				if (singbitch) singbitch->singannoyance = TRUE;
 			}
+
+			u.aggravation = 0;
+
+		}
+
+		if (FemtrapActiveIrina && !rn2(10000)) {
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(16) + 5);
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(specialtensmon(332), cx, cy, MM_ADJACENTOK|MM_ANGRY); /* MS_SHOE */
+			}
+
+			u.aggravation = 0;
+
+		}
+
+		if (FemtrapActiveLuisa && !rn2(2000)) {
+
+			int attempts = 0;
+			struct permonst *pm = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+newbossLUISA:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_SHOE )) || (pm && !(type_is_pname(pm))) ) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossLUISA;
+			}
+			if (pm && !(pm->msound == MS_SHOE) && rn2(50) ) {
+				attempts = 0;
+				goto newbossLUISA;
+			}
+			if (pm && !(type_is_pname(pm)) && rn2(50) ) {
+				attempts = 0;
+				goto newbossLUISA;
+			}
+
+			if (pm) {
+				makemon(pm, 0, 0, MM_ANGRY); /* not frenzied --Amy */
+			}
+
+			u.aggravation = 0;
+
+		}
+
+		if (FemtrapActiveLiselotte && !rn2(4000)) {
+
+			int attempts = 0;
+			struct permonst *pm = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+newbossLILO:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_SHOE )) || (pm && !(is_randomizedmonster(pm))) ) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossLILO;
+			}
+			if (pm && !(pm->msound == MS_SHOE) && rn2(50) ) {
+				attempts = 0;
+				goto newbossLILO;
+			}
+			if (pm && !(is_randomizedmonster(pm)) && rn2(50) ) {
+				attempts = 0;
+				goto newbossLILO;
+			}
+
+			if (pm) {
+				struct monst *annoyinglilo;
+				annoyinglilo = makemon(pm, u.ux, u.uy, MM_ANGRY|MM_ADJACENTOK); /* not frenzied --Amy */
+				if (annoyinglilo) {
+					int lilogone = 0;
+					if (mattacku(annoyinglilo)) lilogone = 1; /* monster died */
+					if (!lilogone && annoyinglilo) {
+						if (!rn2(5)) u_teleport_monD(annoyinglilo, TRUE);
+						else if (rn2(2)) u_teleport_monB(annoyinglilo, TRUE);
+						else u_teleport_monC(annoyinglilo, TRUE);
+					}
+				}
+			}
+
+			u.aggravation = 0;
+
+		}
+
+		if (FemtrapActiveGreta && !rn2(2500)) {
+			d_level flev;
+			int gretatype = rnd(4);
+			if (gretatype == 1) gretatype = 333; /* MS_STENCH */
+			else if (gretatype == 2) gretatype = 39; /* MS_FART_NORMAL */
+			else if (gretatype == 3) gretatype = 38; /* MS_FART_QUIET */
+			else gretatype = 40; /* MS_FART_LOUD */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			flev = random_banishment_level(); /* send them all to the same level, please --Amy */
+
+			for (i = 0; i < randsp; i++) {
+
+				struct monst *gretabitch;
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				gretabitch = makemon(specialtensmon(gretatype), cx, cy, MM_ADJACENTOK|MM_ANGRY);
+				if (gretabitch && !mon_has_amulet(gretabitch) && !(In_endgame(&u.uz)) ) {
+					migrate_to_level(gretabitch, ledger_no(&flev), MIGR_RANDOM, (coord *)0);
+				}
+			}
+
+			u.aggravation = 0;
+
+
+		}
+
+		if (FemtrapActiveCharlotte && !rn2(3000)) {
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+
+			for (i = 0; i < randsp; i++) {
+
+				struct monst *charlotteganger;
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				charlotteganger = makemon(specialtensmon(323), cx, cy, MM_ADJACENTOK); /* M5_JOKE */
+
+				u.mongetshack = 100;
+
+				if (charlotteganger) {
+					if (!rn2(10)) (void) mongets(charlotteganger, SCR_TRAP_CREATION);
+					(void)mongets(charlotteganger, rnd_class(SCR_LAVA,SCR_LOCKOUT));
+
+				}
+				u.mongetshack = 0;
+			}
+
+			u.aggravation = 0;
+
+		}
+
+		if (FemtrapActiveSueLyn && !rn2(2000)) {
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			(void) makemon(specialtensmon(39), 0, 0, MM_ADJACENTOK); /* MS_FART_NORMAL */
 
 			u.aggravation = 0;
 
@@ -8033,7 +8264,7 @@ newbossRLR:
 		}
 
 		/* for feminizer hybrid race: re-randomize feminism effect that is active --Amy */
-		if (!rn2(5000)) u.feminizeffect = rnd(88); /* amount of feminism trap effects; keyword: "marlena" */
+		if (!rn2(5000)) u.feminizeffect = rnd(98); /* amount of feminism trap effects; keyword: "marlena" */
 
 		if (isfeminizer && !rn2(5000)) randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
 
@@ -13996,7 +14227,14 @@ past4:
 				    stop_occupation();
 				else
 				    nomul(0, 0, FALSE);
-				if (change == 1) polyself(FALSE);
+				if (change == 1) {
+					boolean clonewill = FALSE;
+					if (uarmf && uarmf->oartifact == ART_CLONE_) clonewill = TRUE;
+
+					polyself(FALSE);
+					if (clonewill && Upolyd) 
+						cloneu();
+				}
 				else you_were();
 				change = 0;
 			    }
@@ -16555,6 +16793,16 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fluffy sandals")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "spiritual helmet")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "mink stole")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "stupid stilettos")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "winged sandals")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "remora heels")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "girl boots")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "boy boots")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gender-neutral boots")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "sexes boots")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "named boots")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "super boots")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "high-heeled chelsea boots")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -17829,6 +18077,16 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fluffy sandals")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "spiritual helmet")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "mink stole")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "stupid stilettos")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "winged sandals")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "remora heels")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "girl boots")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "boy boots")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gender-neutral boots")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "sexes boots")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "named boots")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "super boots")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "high-heeled chelsea boots")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -18136,7 +18394,7 @@ boolean new_game;	/* false => restoring an old game */
 
 	if (!new_game && uinsymbiosis && u.usymbiote.mhp < 0) {
 
-		if (uarmf && itemhasappearance(otyp, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) {
+		if (uarmf && itemhasappearance(uarmf, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) {
 			if (uarmf->spe > -1) uarmf->spe = -1;
 		}
 

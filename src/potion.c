@@ -6130,6 +6130,16 @@ cure_feminism_traps()
 	FemaleTrapJasieen = 0L;
 	FemaleTrapYasaman = 0L;
 	FemaleTrapMayBritt = 0L;
+	FemaleTrapNadine = 0L;
+	FemaleTrapLuisa = 0L;
+	FemaleTrapIrina = 0L;
+	FemaleTrapLiselotte = 0L;
+	FemaleTrapGreta = 0L;
+	FemaleTrapJane = 0L;
+	FemaleTrapSueLyn = 0L;
+	FemaleTrapCharlotte = 0L;
+	FemaleTrapHannah = 0L;
+	FemaleTrapLittleMarie = 0L;
 
 }
 
@@ -10002,6 +10012,8 @@ int snamount;
 	if (Race_if(PM_PLAYER_FAIRY) && rn2(2)) return;
 	if (StrongHalluc_resistance && snamount < 3 && rn2(3)) return;
 
+	if (uarmf && uarmf->oartifact == ART_GLOATSANE && rn2(5)) return;
+
 	/* Mineral is supposed to be a material that shields you against sanity --Amy */
 	if (uwep && objects[uwep->otyp].oc_material == MT_MINERAL && !rn2(20)) {
 		pline("Your mineral weapon prevents you from receiving sanity!");
@@ -10156,11 +10168,18 @@ int snamount;
 		if (sanityprotection > rn2(100)) return;
 	}
 
-	if (StrongHalluc_resistance && snamount > 2) snamount /= 3;
+	if (StrongHalluc_resistance) snamount /= 3;
+
+	if (uarmf && uarmf->oartifact == ART_GLOATSANE) {
+		snamount *= 4;
+		snamount /= 5;
+	}
 
 	if (Race_if(PM_HUMANOID_ANGEL) || youmonst.data->mlet == S_ANGEL) snamount *= 2;
 
 	if (YouGetLotsOfSanity) snamount *= rnd(20);
+
+	if (snamount < 1) snamount = 1;
 
 	u.usanity += snamount;
 	if (snamount < 10) pline("Your sanity increases.");

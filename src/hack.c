@@ -2054,6 +2054,7 @@ domove()
 			    || (uarmf && uarmf->otyp == skates5)
 			    || (uwep && uwep->oartifact == ART_GLACIERDALE)
 			    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
+			    || (uarmf && uarmf->oartifact == ART_THICKER_THAN_THE_HEAD)
 			    || (uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_)
 			    || (uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER)
 			    || (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE)
@@ -4932,6 +4933,7 @@ int k_format; /* WAC k_format is an int */
 
 	if (n && Race_if(PM_YUKI_PLAYA)) n += rnd(5);
 	if (Role_if(PM_BLEEDER)) n = n * 2; /* bleeders are harder than hard mode */
+	if (!rn2(10) && (uarmf && uarmf->oartifact == ART_XTRA_CUTENESS)) n = n * 2;
 	if (have_cursedmagicresstone()) n = n * 2;
 	if (WinceState) {
 		int damutemp = n;
@@ -4954,7 +4956,7 @@ int k_format; /* WAC k_format is an int */
 	if (isfriday && !rn2(50)) n += rnd(n);
 
 	/* [max] Invulnerable no dmg */
-	if (Invulnerable || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
+	if (Invulnerable || (uarmf && uarmf->oartifact == ART_GODLY_POSTMAN && !rn2(10)) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
 		n = 0;
 		pline("You are unharmed!");
 		/* NOTE: DO NOT RETURN - losehp is also called to check for death 
@@ -4984,7 +4986,7 @@ int k_format; /* WAC k_format is an int */
 		Your("%s symbiote takes the damage for you.", mons[u.usymbiote.mnum].mname);
 		if (u.usymbiote.mhp <= 0) {
 
-			if (uarmf && itemhasappearance(otyp, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) {
+			if (uarmf && itemhasappearance(uarmf, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) {
 				if (uarmf->spe > -1) uarmf->spe = -1;
 			}
 
@@ -5253,6 +5255,8 @@ inv_weight()
 			if ((int) mons[u.usymbiote.mnum].cwt > 99) symweight += ((int) mons[u.usymbiote.mnum].cwt / 100);
 
 			if (Race_if(PM_BABYLONIAN) && mons[u.usymbiote.mnum].mlet == S_TURRET) symweight = 0;
+			if (uarmf && itemhasappearance(uarmf, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) symweight = 0;
+
 			if (symweight < 0) symweight = 0; /* fail safe */
 			wt += symweight;
 
@@ -5280,6 +5284,8 @@ inv_weight()
 			} else symweight *= 5;
 
 			if (Race_if(PM_BABYLONIAN) && mons[u.usymbiote.mnum].mlet == S_TURRET) symweight = 0;
+			if (uarmf && itemhasappearance(uarmf, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) symweight = 0;
+
 			if (symweight < 0) symweight = 0; /* fail safe */
 			wt += symweight;
 

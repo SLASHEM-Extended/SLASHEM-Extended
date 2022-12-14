@@ -805,6 +805,7 @@ struct monst *mon;
 	if (uamul && uamul->otyp == AMULET_OF_GUARDING) armpro++;
 	if (uarmc && Role_if(PM_PRIEST) && itemhasappearance(uarmc, APP_ORNAMENTAL_COPE) ) armpro++;
 	if (uwep && uwep->oartifact == ART_DAINTY_SLOAD) armpro++;
+	if (uarmf && uarmf->oartifact == ART_SPFLOTCH__HAHAHAHAHA_) armpro++;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) armpro++;
 	if (Race_if(PM_INKA)) armpro++;
 	if (ACURR(A_CHA) >= 18) armpro++;

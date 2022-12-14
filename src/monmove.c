@@ -1695,7 +1695,7 @@ register struct monst *mtmp;
 			m_respond(mtmp);
 		}
 	}
-	if (mdat->msound == MS_FART_NORMAL && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && (distu(mtmp->mx, mtmp->my) <= fartdistance) && !mtmp->mpeaceful) {
+	if (mdat->msound == MS_FART_NORMAL && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && (distu(mtmp->mx, mtmp->my) <= fartdistance) && (!mtmp->mpeaceful || (FemtrapActiveSueLyn && mtmp->female && !mtmp->mtame) ) ) {
 	    m_respond(mtmp);
 		while (FemtrapActiveElena && !rn2(3)) {
 			pline("You long for more!");
@@ -1843,7 +1843,7 @@ newbossSING:
 
 	/* Monsters that want to acquire things */
 	/* may teleport, so do it before inrange is set */
-	if( (is_covetous(mdat) || mtmp->egotype_covetous || (Role_if(PM_SINGSLAVE) && mtmp->singannoyance) ) && (!rn2(10) || (mdat == &mons[PM_AT_RAINKID] && !rn2(3)) || (mdat == &mons[PM_TEA_HUSSY] && !rn2(3)) || (CovetousnessBug || u.uprops[COVETOUSNESS_BUG].extrinsic || have_covetousstone() ) ) ) (void) tactics(mtmp);
+	if( (is_covetous(mdat) || mtmp->egotype_covetous || (FemtrapActiveLuisa && mtmp->female && mtmp->data->msound == MS_SHOE && type_is_pname(mtmp->data) ) || (Role_if(PM_SINGSLAVE) && mtmp->singannoyance) ) && (!rn2(10) || (mdat == &mons[PM_AT_RAINKID] && !rn2(3)) || (mdat == &mons[PM_TEA_HUSSY] && !rn2(3)) || (CovetousnessBug || u.uprops[COVETOUSNESS_BUG].extrinsic || have_covetousstone() ) ) ) (void) tactics(mtmp);
 
 	/* check distance and scariness of attacks */
 	distfleeck(mtmp,&inrange,&nearby,&scared);
@@ -2472,6 +2472,12 @@ convertdone:
 		pline("*tschoeck tschoeck* Mikraanesis stopped time.");
 		if (isstunfish) nomul(-(rnz(10)), "Mikraanesis had stopped time", FALSE);
 		else nomul(-(rnd(10)), "Mikraanesis had stopped time", FALSE);
+	}
+
+	if (FemtrapActiveSueLyn && u.ualign.record < 0 && mtmp->female && mtmp->data->msound == MS_FART_NORMAL) {
+		if (mtmp->mtame) mtmp->mtame = FALSE;
+		if (mtmp->mpeaceful) mtmp->mpeaceful = FALSE;
+		mtmp->mfrenzied = TRUE;
 	}
 
 	if (mdat->msound == MS_TREESQUAD && u.treesquadwantedlevel) {
@@ -4122,6 +4128,11 @@ altarfound:
 		if ((ptr == &mons[PM_TRACKER_JACKER] || ptr == &mons[PM_TRACKBAG] || ptr == &mons[PM_BLACK_SUN_BASS] || ptr == &mons[PM_LINDEN_BASS] || (FemtrapActiveElla && mtmp->female && humanoid(mtmp->data) && (mtmp->mhp < (mtmp->mhpmax * 9 / 10) )) || ptr == &mons[PM_ASSHOLE_WHO_CANNOT_ENJOY_ANYTHING__NOT_EVEN_A_PAIR_OF_CUDDLE_HEELS] || ptr == &mons[PM_KILLER_GIANT_RAT] || ptr == &mons[PM_POLICE_DOG] || ptr == &mons[PM_MANBOO] || ptr == &mons[PM_SOLARFISH] || ptr == &mons[PM_POLICE_HUSKY] || ptr == &mons[PM_BIG_POLICE_DOG] || ptr == &mons[PM_CURSED____LEFTHANDED_FARTING_ELEPHANT] || ptr == &mons[PM_VERONA_MARBLE] || ptr == &mons[PM_CHASE_BIRD] || ptr == &mons[PM_JAYCEE] || ptr == &mons[PM_OOGABOOGAGOBILITGOOK_SEEKER_AREHETYPE_FUCKING_RETARD_ASS_SHIT_FLINGING_MONKEY_MONSTER] || ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_DRIVE_TRAIN] || ptr == &mons[PM_XTREME_TRACKER] || ptr == &mons[PM_REFUGE_UHLERT] || ptr == &mons[PM_THE_ULTIMATE_REFUGE]) && !mtmp->mpeaceful) appr = 1;
 
 	if (uarmh && itemhasappearance(uarmh, APP_BUG_TRACKING_HELMET) && !rn2(3) ) appr = 1; 
+
+	if (FemtrapActiveJane && mtmp->female && !mtmp->mpeaceful && !mtmp->mtame) {
+		if (mtmp->data->msize <= MZ_SMALL && !rn2(4)) appr = 1;
+		if (mtmp->data->msize <= MZ_TINY && rn2(4)) appr = 1;
+	}
 
 	if (uarmf && itemhasappearance(uarmf, APP_RAINBOW_BOOTS) && !rn2(3) ) appr = 1; 
 

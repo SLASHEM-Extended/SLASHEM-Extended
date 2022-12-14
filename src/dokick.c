@@ -37,6 +37,7 @@ register boolean clumsy;
 	boolean trapkilled = FALSE;
 
 	if (uarmf && uarmf->oartifact == ART_LARISSA_S_ANGER) dmg += 5;
+	if (uarmf && uarmf->oartifact == ART_JUMP_KICK_ACTION) dmg += 5;
 	if (uarmf && uarmf->oartifact == ART_SHIN_KICKING_GAME) dmg += 5;
 	if (uarmf && uarmf->oartifact == ART_AIRSHIP_DANCING) dmg += 2;
 	if (uarmf && uarmf->oartifact == ART_WILD_SEX_GAME) dmg += 2;
@@ -946,6 +947,7 @@ register xchar x, y;
 	if (uarmf && itemhasappearance(uarmf, APP_CALF_LEATHER_SANDALS)) clumsy = FALSE;
 
 	if (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT) clumsy = FALSE;
+	if (uarmf && uarmf->oartifact == ART_JUMP_KICK_ACTION) clumsy = FALSE;
 
 	if (isfriday && !rn2(10)) clumsy = TRUE;
 
@@ -1840,6 +1842,14 @@ dokick()
 		if(IS_TREE(maploc->typ)) {
 		    struct obj *treefruit;
 		    /* nothing, fruit or trouble? 75:23.5:1.5% */
+
+		    if (uarmf && uarmf->oartifact == ART_CLIMATE_PROTECTION_IS_ERRI) {
+			pline("You kick the tree, causing it to crumble.");
+			levl[x][y].typ = CORR; /* it is intentional that this does not call the tree squad --Amy */
+			newsym(x,y);
+			return(1);
+		    }
+
 		    if (rn2(3)) {
 			if ( !rn2(6))
 			    You_hear("a low buzzing."); /* a warning */

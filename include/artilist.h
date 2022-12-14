@@ -10017,6 +10017,61 @@ A("Aftermine",				SHOVEL, /* digs as fast as a pick-axe */
 	(SPFX_RESTR), 0, 0,
 	PHYS(10, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
+A("Xtra Cuteness",				NADINE_STILETTO_SANDALS, /* 5 extra points of AC, death resistance, +10 CHA, but 10% chance that you take double damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 8000L ),
+
+A("Saucy Girl",				LUISA_HUGGING_BOOTS,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Teach Ya But Cannot Learn",				IRINA_WEDGE_SANDALS, /* can't train skills, but 1 in 20000 chance per turn that you may pick a restricted skill and unlock it with a cap of basic */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Cruel Parents",				LISELOTTE_HUGGING_BOOTS, /* can be invoked to change your character's name to "Liselotte"; doing so conveys intrinsic cold and shock resistance as if you had eaten a corpse granting them but heavily curses the boots and permanently damages your charisma by d5, and this only works if you're female, otherwise you get hit with rn1(50,50) turns of confusion and stun and receive rnz(500) sanity */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Climate Protection Is Erring Sense",				GRETA_HUGGING_BOOTS, /* allows you to raze trees by kicking them; if your cop wanted level is below 1000, it's increased by 1000 */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Jump Kick Action",				JANE_HUGGING_BOOTS, /* jumping, +5 kick damage and your kick cannot be clumsy */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Thicker Than The Head",				SUE_LYN_WINTER_BOOTS, /* +5 AC, can walk on snow, stun resistance but -20% success rate for spellcasting and your technique timeout counts down only 50% of the time */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Background Holding",				CHARLOTTE_HUGGING_BOOTS, /* invisibility, stealth, allows you to backstab monsters, can be invoked to get rid of intrinsic aggravate monster */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Gloatsane",				HANNAH_CUDDLE_BOOTS, /* psi resistance; if your sanity increases, there's an 80% chance that it doesn't, and even if it does, the amount of sanity you get is only 80% of the normal value */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Clone!",				LITTLE_MARIE_HUGGING_BOOTS, /* all M5_JOKE have 50% chance of spawning peaceful, resist confusion and stun, magical breathing, disables polymorph control and conveys polymorphitis; if the latter triggers, you automatically try to clone yourself */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("The Godly Postman",				LOW_BOOTS, /* initialized to always be winged sandals, 10% chance per turn that you're impervious to all damage, provides life saving and is used up if it does save you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Such A Lovely Shark",				LOW_BOOTS, /* initialized to always be remora heels, all ; spawn peaceful and are visible while they're peaceful, taking them off does not kill the remora */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Spflotch! Hahahahaha!",				LOW_BOOTS, /* initialized to always be high-heeled chelsea boots, henrietta trap effect, resist sleep, improves AC by 3 and MC by 1, can be invoked for corona antidote but doing so heavily curses the boots */
+	(SPFX_RESTR|SPFX_HPHDAM|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Helicopter Twirl",				QUARTERSTAFF, /* randart quarterstaff, flying */
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
 /*
  *	Stormbringer only has a 2 because it can drain a level,

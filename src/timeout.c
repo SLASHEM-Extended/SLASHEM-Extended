@@ -903,7 +903,7 @@ nh_timeout()
 			}
 		}
 
-		if (!rn2(slipchance) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4))) ) {
+		if (!rn2(slipchance) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) ) {
 			    slip_or_trip();
 
 			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
@@ -2925,6 +2925,66 @@ nh_timeout()
 		 case FEMTRAP_MARLENA:
 
 			pline("The dungeon is less green now.");
+
+		 break;
+
+		 case FEMTRAP_NADINE:
+
+			pline("The dark feminists got enough of the dungeon and are leaving.");
+
+		 break;
+
+		 case FEMTRAP_LUISA:
+
+			pline("At least the girl shoes can't cheat anymore now.");
+
+		 break;
+
+		 case FEMTRAP_IRINA:
+
+			pline("You've fought enough women's shoes, and are really hoping to meet some easier monsters on the next dungeon level.");
+
+		 break;
+
+		 case FEMTRAP_LISELOTTE:
+
+			pline("At last the annoying little girl got enough of kicking you in the shins.");
+
+		 break;
+
+		 case FEMTRAP_GRETA:
+
+			pline("Now the Hussies have finished setting up camp, and hopefully you'll run into them soon.");
+
+		 break;
+
+		 case FEMTRAP_JANE:
+
+			pline("Since the small-statured women haven't managed to bludgeon you yet, they decide to give up their attempts.");
+
+		 break;
+
+		 case FEMTRAP_SUE_LYN:
+
+			pline("You've satisfied the Asian girls, and they calm down and decide to just mind their own business now.");
+
+		 break;
+
+		 case FEMTRAP_CHARLOTTE:
+
+			pline("The Bang Gang has exhausted their supplies. Hopefully the warriors they've sent will be enough to stop you.");
+
+		 break;
+
+		 case FEMTRAP_HANNAH:
+
+			pline("Did you enjoy the women who were stealing your stuff and vanishing with it? Maybe there'll still be some of them around, but at least no new ones are coming, so that's a relief.");
+
+		 break;
+
+		 case FEMTRAP_LITTLE_MARIE:
+
+			pline("At last that nastiness shield has been deactivated, now the girls and women will be much easier for you to battle.");
 
 		 break;
 

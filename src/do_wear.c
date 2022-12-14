@@ -663,6 +663,14 @@ Boots_off()
 		pline("Frustrated, the lovely leather pumps settle down.");
     }
 
+    if (uarmf && itemhasappearance(uarmf, APP_REMORA_HEELS) && !(uarmf->oartifact == ART_SUCH_A_LOVELY_SHARK) ) {
+	if (uinsymbiosis && u.usymbiote.mnum == PM_REMORA) {
+		if (uarmf->spe > -1) uarmf->spe = -1;
+		killsymbiote();
+		pline("Oh no! You took off your heels, and the remora died! :-(");
+	}
+    }
+
     if (uarmf && itemhasappearance(uarmf, APP_SWEATY_SHOES)) {
 	if (u.sweatyshoetimer >= 1000) {
 		if (u.sweatyshoetimer > 5000) (void) create_gas_cloud(u.ux, u.uy, 4, 12);
@@ -986,14 +994,6 @@ Boots_off()
 		break;
 
 	default: impossible(unknown_type, c_boots, otyp);
-    }
-
-    if (otyp && itemhasappearance(otyp, APP_REMORA_HEELS) ) {
-	if (uinsymbiosis && u.usymbiote.mnum == PM_REMORA) {
-		if (otyp->spe > -1) otyp->spe = -1;
-		killsymbiote();
-		pline("Oh no! You took off your heels, and the remora died! :-(");
-	}
     }
 
     cancelled_don = FALSE;
@@ -5927,8 +5927,11 @@ find_ac()
 	if (uarmc && uarmc->oartifact == ART_SPACEWASTE) uac -= 3;
 	if (uarmh && uarmh->oartifact == ART_NOSED_BUG) uac -= 7;
 	if (uarmf && uarmf->oartifact == ART_PORCELAIN_ELEPHANT) uac -= 5;
+	if (uarmf && uarmf->oartifact == ART_XTRA_CUTENESS) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_DAMPENER) uac -= 5;
+	if (uarmf && uarmf->oartifact == ART_THICKER_THAN_THE_HEAD) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_ROCKZ_ARMY) uac -= 10;
+	if (uarmf && uarmf->oartifact == ART_SPFLOTCH__HAHAHAHAHA_) uac -= 3;
 	if (uarmc && uarmc->oartifact == ART_SEXY_STROKING_UNITS) uac -= 5;
 	if (uarm && uarm->oartifact == ART_ANASTASIA_S_SOFT_CLOTHES) uac -= 10;
 	if (uarm && uarm->oartifact == ART_ROCKET_IMPULSE) uac -= 10;

@@ -23711,6 +23711,34 @@ boolean knoweverything;
 					pline("Artifact specs: +5 bashing damage, and one more for every sling skill level."); break;
 				case ART_AFTERMINE:
 					pline("Artifact specs: +10 to-hit and +6 damage, digs as fast as a pick-axe."); break;
+				case ART_XTRA_CUTENESS:
+					pline("Artifact specs: improves AC by 5 points, conveys death resistance and grants +10 charisma, but you occasionally take double damage. Lawful."); break;
+				case ART_SAUCY_GIRL:
+					pline("Artifact specs: half physical damage and regeneration when worn."); break;
+				case ART_TEACH_YA_BUT_CANNOT_LEARN:
+					pline("Artifact specs: prevents you from training your skills, but very occasionally they allow you to unlock a restricted skill while you're wearing them. Be aware that the latter happens extremely rarely, so you might have to wear them for a long time."); break;
+				case ART_CRUEL_PARENTS:
+					pline("Artifact specs: can be invoked to rename your character, which only works if you're female though and then you gain the resistances that the girl in question has, plus the shoes will become heavily cursed. If you try to use it as a male char, it'll confuse and stun you instead and increase your sanity."); break;
+				case ART_CLIMATE_PROTECTION_IS_ERRI:
+					pline("Artifact specs: allows you to raze trees by kicking them, and makes it so that you're constantly chased by the kops."); break;
+				case ART_JUMP_KICK_ACTION:
+					pline("Artifact specs: allows you to jump and improves your kicking damage, plus your kick cannot be clumsy while wearing them."); break;
+				case ART_THICKER_THAN_THE_HEAD:
+					pline("Artifact specs: improves your AC by 5 points, conveys stun resistance and can walk on snow and ice, but your spellcasting success chance is lowered and your techniques take longer to become available again after being used."); break;
+				case ART_BACKGROUND_HOLDING:
+					pline("Artifact specs: invisibility and stealth when worn and allows you to backstab monsters, can be invoked to get rid of the aggravate monster intrinsic."); break;
+				case ART_GLOATSANE:
+					pline("Artifact specs: resist psi when worn, greatly reduces the chance that your sanity increases."); break;
+				case ART_CLONE_:
+					pline("Artifact specs: while wearing it, joke monsters sometimes spawn peaceful, and they grant resist confusion and stun, magical breathing and polymorphitis. You cannot have polymorph control while wearing them. If you do polymorph, you'll then attempt to clone yourself, i.e. create a pet that is the same species as your polymorphed form."); break;
+				case ART_GODLY_POSTMAN:
+					pline("Artifact specs: occasionally nullifies damage that you take, and conveys life saving; if they actually save your life, they are used up."); break;
+				case ART_SUCH_A_LOVELY_SHARK:
+					pline("Artifact specs: while wearing them, all semicolons spawn peaceful and are visible to you while peaceful, and taking them off does not kill your remora symbiote if you have one."); break;
+				case ART_SPFLOTCH__HAHAHAHAHA_:
+					pline("Artifact specs: resist sleep, 3 extra points of AC and 1 extra point of MC when worn, henrietta trap effect, can be invoked for corona antidote but doing so will heavily curse them."); break;
+				case ART_HELICOPTER_TWIRL:
+					pline("Artifact specs: flying when wielded."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

@@ -3858,6 +3858,16 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != FEMMY_TRAP
 				&& ttmp->ttyp != MADELEINE_TRAP
 				&& ttmp->ttyp != MARLENA_TRAP
+				&& ttmp->ttyp != NADINE_TRAP
+				&& ttmp->ttyp != LUISA_TRAP
+				&& ttmp->ttyp != IRINA_TRAP
+				&& ttmp->ttyp != LISELOTTE_TRAP
+				&& ttmp->ttyp != GRETA_TRAP
+				&& ttmp->ttyp != JANE_TRAP
+				&& ttmp->ttyp != SUE_LYN_TRAP
+				&& ttmp->ttyp != CHARLOTTE_TRAP
+				&& ttmp->ttyp != HANNAH_TRAP
+				&& ttmp->ttyp != LITTLE_MARIE_TRAP
 				&& ttmp->ttyp != RUTH_TRAP
 				&& ttmp->ttyp != MAGDALENA_TRAP
 				&& ttmp->ttyp != MARLEEN_TRAP
@@ -5073,7 +5083,8 @@ newbossSING:
 		register struct monst *jasieenmon;
 		jasieenmon = makemon(mtmp->data,0,0,NO_MM_FLAGS);
 		if (jasieenmon) {
-			if (rn2(2)) u_teleport_monB(jasieenmon, FALSE);
+			if (rn2(3)) u_teleport_monD(jasieenmon, FALSE);
+			else if (rn2(2)) u_teleport_monB(jasieenmon, FALSE);
 			else u_teleport_monC(jasieenmon, FALSE);
 		}
 	}
@@ -6938,7 +6949,7 @@ xkilled(mtmp, dest)
 		healup(alphatauriheal, 0, FALSE, FALSE);
 	}
 
-	if (!PlayerCannotTrainSkills || u.uprops[TRAINING_DEACTIVATED].extrinsic || have_trainingstone()) {
+	if (!SkillTrainingImpossible) {
 		if (uwep && uwep->lamplit && ((uwep->oartifact == ART_ALDEBARAN_FORM) || (is_lightsaber(uwep) && Flying) ) ) {
 			u.aldebaranturns++;
 			if (u.aldebaranturns >= 2) {
@@ -7975,7 +7986,13 @@ sarahdone:
 			losehp(rnd(u.ulevel * 3), "suffocating on farting gas", KILLED_BY);
 		}
 
-		if (!rn2(20)) increasesanity(1);
+		if (!rn2(20) && !(FemtrapActiveSueLyn && mtmp->female && !mtmp->mfrenzied) ) increasesanity(1);
+
+		if (FemtrapActiveSueLyn && mtmp->female && !mtmp->mfrenzied) {
+			if (u.alla < 1000) gain_alla(1);
+			else reducesanity(1);
+			pline("This is actually enjoyable.");
+		}
     }
     if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_LOUD && !(uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS)) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "disgusting" : "loud", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
@@ -9765,7 +9782,7 @@ boolean holdeneffect;
 			return;
 		}
 
-		if (uarmf && itemhasappearance(otyp, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) {
+		if (uarmf && itemhasappearance(uarmf, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) {
 			if (uarmf->spe > -1) uarmf->spe = -1;
 		}
 
@@ -9868,7 +9885,7 @@ boolean canbeother;
 			return;
 		}
 
-		if (uarmf && itemhasappearance(otyp, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) {
+		if (uarmf && itemhasappearance(uarmf, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) {
 			if (uarmf->spe > -1) uarmf->spe = -1;
 		}
 
@@ -9940,7 +9957,7 @@ boolean canbeother;
 void
 killsymbiote()
 {
-	if (uarmf && itemhasappearance(otyp, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) {
+	if (uarmf && itemhasappearance(uarmf, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) {
 		if (uarmf->spe > -1) uarmf->spe = -1;
 	}
 

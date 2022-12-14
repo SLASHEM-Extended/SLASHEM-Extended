@@ -1065,6 +1065,14 @@ doforce()		/* try to force a chest with your weapon */
 						fineforpracticant(100, 0, 0);
 
 					}
+
+					if (FemtrapActiveSueLyn && mtmp->female && !mtmp->mfrenzied) {
+						pline("Now %s is really angry, and %s will hurt you badly with %s %snails.", mon_nam(mtmp), mhe(mtmp), mhis(mtmp), mbodypart(mtmp, FINGER));
+						mtmp->mtame = FALSE;
+						mtmp->mpeaceful = FALSE;
+						mtmp->mfrenzied = TRUE;
+					}
+
 					if (Role_if(PM_BUTT_LOVER)) {
 						You_feel("bad for hurting one of your beloved butts!");
 						adjalign(-5);

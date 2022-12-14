@@ -1014,6 +1014,17 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "nastycurse trap", C(CLR_MAGENTA)},	/* trap */
 	{'^', "repeating nastycurse trap", C(CLR_MAGENTA)},	/* trap */
 
+	{'^', "nadine trap", C(CLR_BLACK)},	/* trap */
+	{'^', "luisa trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "irina trap", C(CLR_GRAY)},	/* trap */
+	{'^', "liselotte trap", C(CLR_BLUE)},	/* trap */
+	{'^', "greta trap", C(CLR_BLUE)},	/* trap */
+	{'^', "jane trap", C(CLR_BROWN)},	/* trap */
+	{'^', "sue lyn trap", C(CLR_WHITE)},	/* trap */
+	{'^', "charlotte trap", C(CLR_BROWN)},	/* trap */
+	{'^', "hannah trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "little marie trap", C(CLR_YELLOW)},	/* trap */
+
 	{'^', "timerun trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -1855,6 +1866,17 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_nastycurse_trap),
 	g_FILLER(S_repeating_nastycurse_trap),
 
+	g_FILLER(S_nadine_trap),
+	g_FILLER(S_luisa_trap),
+	g_FILLER(S_irina_trap),
+	g_FILLER(S_liselotte_trap),
+	g_FILLER(S_greta_trap),
+	g_FILLER(S_jane_trap),
+	g_FILLER(S_sue_lyn_trap),
+	g_FILLER(S_charlotte_trap),
+	g_FILLER(S_hannah_trap),
+	g_FILLER(S_little_marie_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -2684,6 +2706,17 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_nastycurse_trap),
 	g_FILLER(S_repeating_nastycurse_trap),
 
+	g_FILLER(S_nadine_trap),
+	g_FILLER(S_luisa_trap),
+	g_FILLER(S_irina_trap),
+	g_FILLER(S_liselotte_trap),
+	g_FILLER(S_greta_trap),
+	g_FILLER(S_jane_trap),
+	g_FILLER(S_sue_lyn_trap),
+	g_FILLER(S_charlotte_trap),
+	g_FILLER(S_hannah_trap),
+	g_FILLER(S_little_marie_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -3509,6 +3542,17 @@ static uchar wing_graphics[MAXPCHARS] = {
 	g_FILLER(S_you_are_an_idiot_trap),
 	g_FILLER(S_nastycurse_trap),
 	g_FILLER(S_repeating_nastycurse_trap),
+
+	g_FILLER(S_nadine_trap),
+	g_FILLER(S_luisa_trap),
+	g_FILLER(S_irina_trap),
+	g_FILLER(S_liselotte_trap),
+	g_FILLER(S_greta_trap),
+	g_FILLER(S_jane_trap),
+	g_FILLER(S_sue_lyn_trap),
+	g_FILLER(S_charlotte_trap),
+	g_FILLER(S_hannah_trap),
+	g_FILLER(S_little_marie_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -4336,6 +4380,17 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_you_are_an_idiot_trap),
 	g_FILLER(S_nastycurse_trap),
 	g_FILLER(S_repeating_nastycurse_trap),
+
+	g_FILLER(S_nadine_trap),
+	g_FILLER(S_luisa_trap),
+	g_FILLER(S_irina_trap),
+	g_FILLER(S_liselotte_trap),
+	g_FILLER(S_greta_trap),
+	g_FILLER(S_jane_trap),
+	g_FILLER(S_sue_lyn_trap),
+	g_FILLER(S_charlotte_trap),
+	g_FILLER(S_hannah_trap),
+	g_FILLER(S_little_marie_trap),
 
 	g_FILLER(S_timerun_trap),
 
@@ -5371,6 +5426,17 @@ boolean is_rlevel;
 	    showsyms[S_you_are_an_idiot_trap] = 0x04;
 	    showsyms[S_nastycurse_trap] = 0x04;
 	    showsyms[S_repeating_nastycurse_trap] = 0x04;
+
+	    showsyms[S_nadine_trap] = 0x04;
+	    showsyms[S_luisa_trap] = 0x04;
+	    showsyms[S_irina_trap] = 0x04;
+	    showsyms[S_liselotte_trap] = 0x04;
+	    showsyms[S_greta_trap] = 0x04;
+	    showsyms[S_jane_trap] = 0x04;
+	    showsyms[S_sue_lyn_trap] = 0x04;
+	    showsyms[S_charlotte_trap] = 0x04;
+	    showsyms[S_hannah_trap] = 0x04;
+	    showsyms[S_little_marie_trap] = 0x04;
 
 	    showsyms[S_timerun_trap] = 0x04;
 #endif /* PUBLIC_SERVER */

@@ -1118,7 +1118,7 @@ elena18:
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_HUGGING_BOOTS) ) || (footwear && footwear->otyp == INA_HUGGING_BOOTS) || (footwear && footwear->otyp == ANNA_HUGGING_BOOTS) || (footwear && footwear->otyp == ARABELLA_HUGGING_BOOTS) || (footwear && footwear->otyp == LUISA_HUGGING_BOOTS) || (footwear && footwear->otyp == LISELOTTE_HUGGING_BOOTS) || (footwear && footwear->otyp == GRETA_HUGGING_BOOTS) || (footwear && footwear->otyp == JANE_HUGGING_BOOTS) || (footwear && footwear->otyp == SUE_LYN_WINTER_BOOTS) || (footwear && footwear->otyp == CHARLOTTE_HUGGING_BOOTS) || (footwear && footwear->otyp == LITTLE_MARIE_HUGGING_BOOTS) || (footwear && footwear->otyp == LUDGERA_HIKING_BOOTS) || (footwear && footwear->otyp == KATI_GIRL_BOOTS) || (footwear && footwear->otyp == LAURA_WINTER_BOOTS) || (footwear && footwear->otyp == SARAH_HUGGING_BOOTS) || (footwear && footwear->otyp == MAURAH_HUGGING_BOOTS) || mtmp->data == &mons[PM_ANIMATED_HUGGING_BOOT] || mtmp->data == &mons[PM_NASTY_FEMMY] || mtmp->data == &mons[PM_SLEEPY_LADY] || mtmp->data == &mons[PM_WEREHUGGINGBOOT] || mtmp->data == &mons[PM_HUMAN_WEREHUGGINGBOOT] || mtmp->data == &mons[PM_THE_EXTRA_FLEECY_BUNDLE_HER_HUGGING_BOOT] || mtmp->data == &mons[PM_LUISA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_REBECCA_S_HUGGING_BOOT] || (randomsexyheels == 23) || mtmp->data == &mons[PM_BITCHY_LARA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_MARLEEN_S_HUGGING_BOOT] || mtmp->data == &mons[PM_VILEA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_LISELOTTE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_OVERSLEPT_GIRL] || mtmp->data == &mons[PM_AMELJE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_MELANIE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_HUGGING_BOOT_GIRL_WITH_A_BMW] || mtmp->data == &mons[PM_BUNDLE_NADJA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_MARIE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_SUPER_STRONG_GIRL] || mtmp->data == &mons[PM_KRISTIN_S_HUGGING_BOOT] || mtmp->data == &mons[PM_ARABELLA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_SHY_ASIAN_GIRL] || mtmp->data == &mons[PM_MARIAN_S_PERSIAN_BOOT] || (footwear && footwear->otyp == JEANETTA_GIRL_BOOTS) || mtmp->data == &mons[PM_LAURA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_LITTLE_MARIE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_CHARLOTTE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_STUPID_BLONDE_GIRL] || mtmp->data == &mons[PM_FRIEDERIKE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_SOPHIA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_HEIKE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_HUSSY_FEMMY] || mtmp->data == &mons[PM_ANOREXIC_FEMMY] || (footwear && footwear->otyp == MARLENA_HIKING_BOOTS) || mtmp->data == &mons[PM_INDIAN_QUEEN] || mtmp->data == &mons[PM_GLITTER_FLAX] || mtmp->data == &mons[PM_EMMELIE_S_WHITE_HUGGING_BOOT] || mtmp->data == &mons[PM_DORA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_THE_HUGGING_TOPMODEL_HER_HUGGING_BOOT] || mtmp->data == &mons[PM_BUNDLE_NADJA] || mtmp->data == &mons[PM_JOHANETTA_S_WINTER_BOOT] || mtmp->data == &mons[PM_SADISTIC_ASIAN_GIRL] || mtmp->data == &mons[PM_ANJA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_LOVING_ASIAN_GIRL] || mtmp->data == &mons[PM_STARLET_BUNDLE] || mtmp->data == &mons[PM_ABSOLUTELY_CUDDLY_GIRL] || mtmp->data == &mons[PM_ALIDA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_GRENEUVENIC_TOPMODEL] || mtmp->data == &mons[PM_OVERSLEPT_TROLL] || mtmp->data == &mons[PM_FANNY_S_LOVELY_WINTER_BOOT] || mtmp->data == &mons[PM_OFFICER_INA] || mtmp->data == &mons[PM_HUGGER_DRAGON] || mtmp->data == &mons[PM_TAIL_GUTTER] ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_HUGGING_BOOTS) ) || (footwear && footwear->otyp == INA_HUGGING_BOOTS) || (footwear && footwear->otyp == ANNA_HUGGING_BOOTS) || (footwear && footwear->otyp == ARABELLA_HUGGING_BOOTS) || (footwear && footwear->otyp == LUISA_HUGGING_BOOTS) || (footwear && footwear->otyp == LISELOTTE_HUGGING_BOOTS) || (footwear && footwear->otyp == GRETA_HUGGING_BOOTS) || (footwear && footwear->otyp == JANE_HUGGING_BOOTS) || (footwear && footwear->otyp == SUE_LYN_WINTER_BOOTS) || (footwear && footwear->otyp == CHARLOTTE_HUGGING_BOOTS) || (footwear && footwear->otyp == LITTLE_MARIE_HUGGING_BOOTS) || (footwear && footwear->otyp == LUDGERA_HIKING_BOOTS) || (footwear && footwear->otyp == KATI_GIRL_BOOTS) || (footwear && footwear->otyp == LAURA_WINTER_BOOTS) || (footwear && footwear->otyp == SARAH_HUGGING_BOOTS) || (footwear && footwear->otyp == MAURAH_HUGGING_BOOTS) || mtmp->data == &mons[PM_ANIMATED_HUGGING_BOOT] || mtmp->data == &mons[PM_NASTY_FEMMY] || mtmp->data == &mons[PM_SAUCY_FEMMY] || mtmp->data == &mons[PM_SLEEPY_LADY] || mtmp->data == &mons[PM_WEREHUGGINGBOOT] || mtmp->data == &mons[PM_HUMAN_WEREHUGGINGBOOT] || mtmp->data == &mons[PM_THE_EXTRA_FLEECY_BUNDLE_HER_HUGGING_BOOT] || mtmp->data == &mons[PM_LUISA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_REBECCA_S_HUGGING_BOOT] || (randomsexyheels == 23) || mtmp->data == &mons[PM_BITCHY_LARA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_MARLEEN_S_HUGGING_BOOT] || mtmp->data == &mons[PM_VILEA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_LISELOTTE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_OVERSLEPT_GIRL] || mtmp->data == &mons[PM_AMELJE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_MELANIE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_HUGGING_BOOT_GIRL_WITH_A_BMW] || mtmp->data == &mons[PM_BUNDLE_NADJA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_MARIE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_SUPER_STRONG_GIRL] || mtmp->data == &mons[PM_KRISTIN_S_HUGGING_BOOT] || mtmp->data == &mons[PM_ARABELLA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_SHY_ASIAN_GIRL] || mtmp->data == &mons[PM_MARIAN_S_PERSIAN_BOOT] || (footwear && footwear->otyp == JEANETTA_GIRL_BOOTS) || mtmp->data == &mons[PM_LAURA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_LITTLE_MARIE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_CHARLOTTE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_STUPID_BLONDE_GIRL] || mtmp->data == &mons[PM_FRIEDERIKE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_SOPHIA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_HEIKE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_HUSSY_FEMMY] || mtmp->data == &mons[PM_ANOREXIC_FEMMY] || (footwear && footwear->otyp == MARLENA_HIKING_BOOTS) || mtmp->data == &mons[PM_INDIAN_QUEEN] || mtmp->data == &mons[PM_GLITTER_FLAX] || mtmp->data == &mons[PM_EMMELIE_S_WHITE_HUGGING_BOOT] || mtmp->data == &mons[PM_DORA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_THE_HUGGING_TOPMODEL_HER_HUGGING_BOOT] || mtmp->data == &mons[PM_BUNDLE_NADJA] || mtmp->data == &mons[PM_JOHANETTA_S_WINTER_BOOT] || mtmp->data == &mons[PM_SADISTIC_ASIAN_GIRL] || mtmp->data == &mons[PM_ANJA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_LOVING_ASIAN_GIRL] || mtmp->data == &mons[PM_STARLET_BUNDLE] || mtmp->data == &mons[PM_ABSOLUTELY_CUDDLY_GIRL] || mtmp->data == &mons[PM_ALIDA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_GRENEUVENIC_TOPMODEL] || mtmp->data == &mons[PM_OVERSLEPT_TROLL] || mtmp->data == &mons[PM_FANNY_S_LOVELY_WINTER_BOOT] || mtmp->data == &mons[PM_OFFICER_INA] || mtmp->data == &mons[PM_HUGGER_DRAGON] || mtmp->data == &mons[PM_TAIL_GUTTER] ) ) {
 elena19:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -5712,6 +5712,42 @@ newboss:
 
 	}
 
+	if (FemtrapActiveSueLyn && mtmp->female && mtmp->data->msound == MS_FART_NORMAL && mtmp->mfrenzied) {
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_SCRA;
+		a->adtyp = AD_BLEE;
+		a->damn = 2;
+		a->damd = 1 + (mtmp->m_lev / 2);
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				(void) hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_KICK;
+		a->adtyp = AD_PLYS;
+		a->damn = 1;
+		a->damd = 1 + (mtmp->m_lev / 10);
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				(void) hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+	}
+
 	if (evilfriday && mtmp->data->mlet == S_GHOST) {
 		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict || !touch_petrifies(youmonst.data))) {
 			if (foundyou && tmp > (j = rnd(20+i))) {
@@ -6618,6 +6654,7 @@ struct monst *mon;
 		if (uamul && uamul->otyp == AMULET_OF_GUARDING) armpro++;
 		if (uarmc && Role_if(PM_PRIEST) && itemhasappearance(uarmc, APP_ORNAMENTAL_COPE) ) armpro++;
 		if (uwep && uwep->oartifact == ART_DAINTY_SLOAD) armpro++;
+		if (uarmf && uarmf->oartifact == ART_SPFLOTCH__HAHAHAHAHA_) armpro++;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) armpro++;
 		if (Race_if(PM_INKA)) armpro++;
 		if (ACURR(A_CHA) >= 18) armpro++;
@@ -18847,6 +18884,7 @@ register int n;
 
 	if (n && Race_if(PM_YUKI_PLAYA)) n += rnd(5);
 	if (Role_if(PM_BLEEDER)) n = n * 2; /* bleeders are harder than hard mode */
+	if (!rn2(10) && (uarmf && uarmf->oartifact == ART_XTRA_CUTENESS)) n = n * 2;
 	if (have_cursedmagicresstone()) n = n * 2;
 	if (WinceState) {
 		int damutemp = n;
@@ -18868,7 +18906,7 @@ register int n;
 
 	if (isfriday && !rn2(50)) n += rnd(n);
 
-	if (Invulnerable || (StrongWonderlegs && !rn2(10) && Wounded_legs) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) n=0;
+	if (Invulnerable || (StrongWonderlegs && !rn2(10) && Wounded_legs) || (uarmf && uarmf->oartifact == ART_GODLY_POSTMAN && !rn2(10)) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) n=0;
 
 	if (u.metalguard) {
 		u.metalguard = 0;
@@ -18951,7 +18989,7 @@ register int n;
 		Your("%s symbiote takes the damage for you.", mons[u.usymbiote.mnum].mname);
 		if (u.usymbiote.mhp <= 0) {
 
-			if (uarmf && itemhasappearance(otyp, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) {
+			if (uarmf && itemhasappearance(uarmf, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) {
 				if (uarmf->spe > -1) uarmf->spe = -1;
 			}
 

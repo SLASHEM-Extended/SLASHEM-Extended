@@ -1979,7 +1979,7 @@ int dieroll;
 			if (obj && obj->oartifact == ART_TEH_HUNK && !obj->lamplit && tmp > 0) tmp += 5;
 			if (obj && obj->oartifact == ART_GAYGUN && (u.homosexual == 1)) tmp += 5;
 
-			if (!PlayerCannotTrainSkills || u.uprops[TRAINING_DEACTIVATED].extrinsic || have_trainingstone()) {
+			if (!SkillTrainingImpossible) {
 
 				if (is_lightsaber(obj)) {
 					u.hunkturns++;
@@ -2188,7 +2188,7 @@ int dieroll;
 
 		    if (!valid_weapon_attack || mon == u.ustuck) {
 			;	/* no special bonuses */
-		    } else if (mon->mflee && (Role_if(PM_ROGUE) || Race_if(PM_VIETIS) || Role_if(PM_MURDERER) || Role_if(PM_DISSIDENT) || Role_if(PM_ASSASSIN) ) && !Upolyd) {
+		    } else if (mon->mflee && (Role_if(PM_ROGUE) || (uarmf && uarmf->oartifact == ART_BACKGROUND_HOLDING) || Race_if(PM_VIETIS) || Role_if(PM_MURDERER) || Role_if(PM_DISSIDENT) || Role_if(PM_ASSASSIN) ) && !Upolyd) {
 			if (!issoviet) You("strike %s from behind!", mon_nam(mon));
 			else pline("K schast'yu, vy ne chuvstvuyete sebya vo vsem, chto vasha spina koloto odolevayet!");
 			tmp += issoviet ? GushLevel : rno(GushLevel); /* nerf by Amy */
@@ -3912,7 +3912,7 @@ melatechoice:
 					if (uwep->altmode) use_skill(P_DJEM_SO, 1);
 				}
 
-				if (!PlayerCannotTrainSkills || u.uprops[TRAINING_DEACTIVATED].extrinsic || have_trainingstone()) {
+				if (!SkillTrainingImpossible) {
 					if (uwep && uwep->otyp == KLIUSLING && uwep->lamplit && obj && objects[obj->otyp].oc_skill == -P_SLING) {
 						u.kliuturns++;
 						if (u.kliuturns >= 5) {
@@ -7886,7 +7886,7 @@ common:
 
 	if (uactivesymbiosis && attacktype(&mons[u.usymbiote.mnum], AT_EXPL)) {
 
-		if (uarmf && itemhasappearance(otyp, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) {
+		if (uarmf && itemhasappearance(uarmf, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) {
 			if (uarmf->spe > -1) uarmf->spe = -1;
 		}
 

@@ -779,6 +779,17 @@ extern struct trap *ftrap;
 
 #define REPEATING_NASTYCURSE_TRAP 686
 
+#define NADINE_TRAP 687
+#define LUISA_TRAP 688
+#define IRINA_TRAP 689
+#define LISELOTTE_TRAP 690
+#define GRETA_TRAP 691
+#define JANE_TRAP 692
+#define SUE_LYN_TRAP 693
+#define CHARLOTTE_TRAP 694
+#define HANNAH_TRAP 695
+#define LITTLE_MARIE_TRAP 696
+
 /* todo area
 
 normal ones:
@@ -895,8 +906,8 @@ special ones that don't spawn randomly:
 
 */
 
-#define TIMERUN_TRAP	687
+#define TIMERUN_TRAP	697
 
-#define TRAPNUM 688
+#define TRAPNUM 698
 
 #endif /* TRAP_H */
