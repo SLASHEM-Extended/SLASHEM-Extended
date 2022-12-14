@@ -3329,6 +3329,11 @@ boolean shopinit;
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
 			if (artif != 2) u.fakeartifacts++;
+		} else if (!otmp->fakeartifact && !otmp->oartifact && itemhasappearance(otmp, APP_NAMED_BOOTS)) {
+			otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
+			otmp->fakeartifact = 1;
+			if (artif != 2) u.fakeartifacts++;
+
 		}
 		/* simulate lacquered armor for samurai */
 		if ( ( Role_if(PM_SAMURAI) && otmp->otyp == SPLINT_MAIL) || (Role_if(PM_ERDRICK) && otmp->otyp == HELMET) ) {
@@ -3357,6 +3362,7 @@ boolean shopinit;
 		}
 
 		if (itemhasappearance(otmp, APP_HIGHER_HELMET)) otmp->spe += rne(2);
+		if (itemhasappearance(otmp, APP_SUPER_BOOTS)) otmp->spe += 5;
 
 		break;
 /* -----------============STEPHEN WHITE'S NEW CODE============----------- */           

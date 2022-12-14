@@ -910,6 +910,10 @@ int how;
 			goto symbiotedone;
 		}
 
+		if (uarmf && itemhasappearance(otyp, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) {
+			if (uarmf->spe > -1) uarmf->spe = -1;
+		}
+
 		u.usymbiote.active = 0;
 		u.usymbiote.mnum = PM_PLAYERMON;
 		u.usymbiote.mhp = 0;

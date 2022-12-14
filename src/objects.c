@@ -3219,6 +3219,26 @@ BOOTS("Yasaman leather boots", "leather fleece boots", /* sexy flats, half physi
 		0, 0,  FEMTRAP_YASAMAN,   	3, 2, 8, 50, 7, 1, MT_LEATHER, CLR_BROWN, 1, APP_LEATHER_FLEECE_BOOTS),
 BOOTS("May-Britt sandals", "fluffy sandals", /* sexy flats, can still get paranoid confirmations while stunned */
 		0, 0,  FEMTRAP_MAY_BRITT,   	3, 2, 8, 50, 8, 2, MT_FOAM, CLR_BLACK, 1, APP_FLUFFY_SANDALS),
+BOOTS("Nadine stiletto sandals", "stupid stilettos", /* cause fumbling, even with high skill */
+		0, 0,  FEMTRAP_NADINE,   	3, 2, 8, 50, 9, 1, MT_LEATHER, CLR_BLACK, 1, APP_STUPID_STILETTOS),
+BOOTS("Luisa hugging boots", "winged sandals", /* flying, but can't be heels or sexy flats */
+		0, 0,  FEMTRAP_LUISA,   	3, 2, 8, 50, 8, 2, MT_MINERAL, CLR_GRAY, 1, APP_WINGED_SANDALS),
+BOOTS("Irina wedge sandals", "remora heels", /* block heels, can give a remora symbiote */
+		0, 0,  FEMTRAP_IRINA,   	3, 2, 8, 50, 10, 1, MT_FLESH, CLR_GRAY, 1, APP_REMORA_HEELS),
+BOOTS("Liselotte hugging boots", "girl boots", /* sexy flats */
+		0, 0,  FEMTRAP_LISELOTTE,   	3, 2, 8, 50, 7, 1, MT_PLASTIC, CLR_WHITE, 1, APP_GIRL_BOOTS),
+BOOTS("Greta hugging boots", "boy boots", /* slightly increases your speed, like an ether item */
+		0, 0,  FEMTRAP_GRETA,   	3, 2, 8, 50, 7, 2, MT_PLASTIC, CLR_RED, 1, APP_BOY_BOOTS),
+BOOTS("Jane hugging boots", "gender-neutral boots",
+		0, 0,  FEMTRAP_JANE,   	3, 2, 8, 50, 8, 2, MT_PLASTIC, CLR_BLUE, 1, 0),
+BOOTS("Sue Lyn winter boots", "sexes boots",
+		0, 0,  FEMTRAP_SUE_LYN,   	3, 2, 8, 50, 7, 2, MT_FOAM, CLR_BRIGHT_MAGENTA, 1, 0),
+BOOTS("Charlotte hugging boots", "named boots", /* if they aren't a real artifact, they always become a fake one */
+		0, 0,  FEMTRAP_CHARLOTTE,   	3, 2, 8, 50, 8, 2, MT_COMPOST, CLR_BROWN, 1, APP_NAMED_BOOTS),
+BOOTS("Hannah cuddle boots", "super boots", /* spawns with 5 extra points of enchantment */
+		0, 0,  FEMTRAP_HANNAH,   	3, 2, 8, 50, 7, 0, MT_LEATHER, CLR_BLACK, 1, APP_SUPER_BOOTS),
+BOOTS("Little Marie hugging boots", "high-heeled chelsea boots", /* block heel */
+		0, 0,  FEMTRAP_LITTLE_MARIE,   	3, 2, 8, 50, 6, 0, MT_LEATHER, CLR_BLACK, 1, APP_HEELED_CHELSEA_BOOTS),
 
 BOOTS("Verena stiletto sandals", "distancing boots",
 		0, 0,  FEMTRAP_VERENA,   	3, 2, 8, 50, 9, 3, MT_TAR, CLR_BLACK, 1, 0),
@@ -9045,20 +9065,20 @@ GEM("marble", "white",                 200, 0,  200, 5, 5, 15,  3, MT_GEMSTONE, 
 GEM("morion", "black",                 200, 0,  200, 5, 5, 15,  7, MT_GEMSTONE, CLR_BLACK, 2),
 GEM("jade", "green",                   200, 0,  300, 5, 5, 15,  6, MT_GEMSTONE, CLR_GREEN, 1),
 /* jade should be last for runestone mimics, makemon.c, and white glass first worthless glass --Amy */
-GEM("worthless piece of white glass", "white",   2976, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_WHITE, 1),
-GEM("worthless piece of blue glass", "blue",     2976, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BRIGHT_BLUE, 1),
-GEM("worthless piece of red glass", "red",       2976, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_RED, 1),
-GEM("worthless piece of yellowish brown glass", "yellowish brown", 2976, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BROWN, 1),
-GEM("worthless piece of orange glass", "orange", 2976, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_ORANGE, 1),
-GEM("worthless piece of yellow glass", "yellow", 2976, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_YELLOW, 1),
-GEM("worthless piece of black glass",  "black",  2976, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BLACK, 1),
-GEM("worthless piece of pink glass",  "pink",  2976, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BRIGHT_MAGENTA, 1),
-GEM("worthless piece of cyan glass",  "cyan",  2977, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_CYAN, 1),
-GEM("worthless piece of teal glass",  "teal",  2977, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BRIGHT_CYAN, 1),
-GEM("worthless piece of green glass", "green",   2977, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_GREEN, 1),
-GEM("worthless piece of radiant glass", "radiant",   2977, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BRIGHT_GREEN, 1),
-GEM("worthless piece of violet glass", "violet", 2977, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_MAGENTA, 1),
-GEM("worthless piece of dark blue glass", "dark blue",     2977, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BLUE, 1),
+GEM("worthless piece of white glass", "white",   2962, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_WHITE, 1),
+GEM("worthless piece of blue glass", "blue",     2962, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BRIGHT_BLUE, 1),
+GEM("worthless piece of red glass", "red",       2962, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_RED, 1),
+GEM("worthless piece of yellowish brown glass", "yellowish brown", 2962, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BROWN, 1),
+GEM("worthless piece of orange glass", "orange", 2962, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_ORANGE, 1),
+GEM("worthless piece of yellow glass", "yellow", 2962, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_YELLOW, 1),
+GEM("worthless piece of black glass",  "black",  2962, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BLACK, 1),
+GEM("worthless piece of pink glass",  "pink",  2962, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BRIGHT_MAGENTA, 1),
+GEM("worthless piece of cyan glass",  "cyan",  2962, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_CYAN, 1),
+GEM("worthless piece of teal glass",  "teal",  2962, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BRIGHT_CYAN, 1),
+GEM("worthless piece of green glass", "green",   2963, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_GREEN, 1),
+GEM("worthless piece of radiant glass", "radiant",   2963, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BRIGHT_GREEN, 1),
+GEM("worthless piece of violet glass", "violet", 2963, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_MAGENTA, 1),
+GEM("worthless piece of dark blue glass", "dark blue",     2963, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BLUE, 1),
 /* last worthless glass = dark blue */
 
 /* first feminism jewel = Elif's jewel */
@@ -9149,6 +9169,16 @@ GEM("Ute's jewel", "teal",     10, 0, 0, 20, 20, 6, 5, MT_GLASS, CLR_BRIGHT_CYAN
 GEM("Jasieen's jewel", "black",     10, 0, 0, 20, 20, 6, 5, MT_GLASS, CLR_BLACK, 1),
 GEM("Yasaman's jewel", "yellowish brown",     10, 0, 0, 20, 20, 6, 5, MT_GLASS, CLR_BROWN, 1),
 GEM("May-Britt's jewel", "dark blue",     10, 0, 0, 20, 20, 6, 5, MT_GLASS, CLR_BLUE, 1),
+GEM("Nadine's jewel", "black",   10, 0, 0, 20, 20, 6, 5, MT_GLASS, CLR_BLACK, 1),
+GEM("Luisa's jewel", "orange",   10, 0, 0, 20, 20, 6, 5, MT_GLASS, CLR_ORANGE, 1),
+GEM("Irina's jewel", "violet",   10, 0, 0, 20, 20, 6, 5, MT_GLASS, CLR_MAGENTA, 1),
+GEM("Liselotte's jewel", "yellow",   10, 0, 0, 20, 20, 6, 5, MT_GLASS, CLR_YELLOW, 1),
+GEM("Greta's jewel", "yellowish brown",   10, 0, 0, 20, 20, 6, 5, MT_GLASS, CLR_BROWN, 1),
+GEM("Jane's jewel", "dark blue",   10, 0, 0, 20, 20, 6, 5, MT_GLASS, CLR_BLUE, 1),
+GEM("Sue Lyn's jewel", "white",   10, 0, 0, 20, 20, 6, 5, MT_GLASS, CLR_WHITE, 1),
+GEM("Charlotte's jewel", "green",   10, 0, 0, 20, 20, 6, 5, MT_GLASS, CLR_GREEN, 1),
+GEM("Hannah's jewel", "pink",   10, 0, 0, 20, 20, 6, 5, MT_GLASS, CLR_BRIGHT_MAGENTA, 1),
+GEM("Little Marie's jewel", "radiant",   10, 0, 0, 20, 20, 6, 5, MT_GLASS, CLR_BRIGHT_GREEN, 1),
 
 GEM("Dora's jewel", "orange", 10, 0, 0, 20, 20, 6, 5, MT_GLASS, CLR_ORANGE, 1),
 /* last feminism jewel = Dora's jewel */

@@ -989,6 +989,27 @@ exprecalc(void)
 					case 88:
 						pline("You receive an elaborate auspicious message: At experience level %d, a little girl starts stealing your stuff and running away on occasion.", displaycheck);
 						break;
+					case 89:
+						pline("You receive an elaborate auspicious message: At experience level %d, monsters with feminism attacks are spawning more often.", displaycheck);
+					case 90:
+						pline("You receive an elaborate auspicious message: At experience level %d, covetous shoes will spawn over time and attack you.", displaycheck);
+					case 91:
+						pline("You receive an elaborate auspicious message: At experience level %d, shoe monsters spawn more often and occasionally appear in groups.", displaycheck);
+					case 92:
+						pline("You receive an elaborate auspicious message: At experience level %d, shoe monsters may appear to attack you and then immediately disappear to another dungeon level.", displaycheck);
+					case 93:
+						pline("You receive an elaborate auspicious message: At experience level %d, farting or perfume monsters will be waiting for you on certain dungeon levels.", displaycheck);
+					case 94:
+						pline("You receive an elaborate auspicious message: At experience level %d, smaller female monsters are more likely to chase you aggressively.", displaycheck);
+					case 95:
+						pline("You receive an elaborate auspicious message: At experience level %d, girls who produce squeaky farting noises want to play with you, but if you treat them badly they'll try to kill you.", displaycheck);
+					case 96:
+						pline("You receive an elaborate auspicious message: At experience level %d, the Bang Gang will hunt you, and they have equipment that allows them to block your progress or create traps.", displaycheck);
+					case 97:
+						pline("You receive an elaborate auspicious message: At experience level %d, female item-stealing monsters are likely to levelport away with your stuff.", displaycheck);
+					case 98:
+						pline("You receive an elaborate auspicious message: At experience level %d, damaging a female monster causes you to be affected with a nastytrap effect.", displaycheck);
+						break;
 				}
 			} else pline("Your auspices say: %d %d", displaycheck, whichcheck);
 

@@ -297,6 +297,11 @@ use_symbiote(obj)
 	if (obj->oartifact == ART_XOM_S_SCROLLINATOR) {
 
 		if (uinsymbiosis) {
+
+			if (uarmf && itemhasappearance(otyp, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) {
+				if (uarmf->spe > -1) uarmf->spe = -1;
+			}
+
 			u.shutdowntime = 0;
 			u.usymbiote.active = 0;
 			u.usymbiote.mnum = PM_PLAYERMON;
@@ -6097,6 +6102,16 @@ doapply()
 	case ANASTASIA_S_JEWEL:
 	case JESSICA_S_JEWEL:
 	case MARLENA_S_JEWEL:
+	case NADINE_S_JEWEL:
+	case LUISA_S_JEWEL:
+	case IRINA_S_JEWEL:
+	case LISELOTTE_S_JEWEL:
+	case GRETA_S_JEWEL:
+	case JANE_S_JEWEL:
+	case SUE_LYN_S_JEWEL:
+	case CHARLOTTE_S_JEWEL:
+	case HANNAH_S_JEWEL:
+	case LITTLE_MARIE_S_JEWEL:
 	case ROSA_S_JEWEL:
 	case FEMMY_S_JEWEL:
 	case NATALJE_S_JEWEL:

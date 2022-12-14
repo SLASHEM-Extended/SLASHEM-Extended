@@ -839,6 +839,17 @@ static struct {
 	{ "nastycurse", NASTYCURSE_TRAP },
 	{ "repeating nastycurse", REPEATING_NASTYCURSE_TRAP },
 
+	{ "nadine", NADINE_TRAP },
+	{ "luisa", LUISA_TRAP },
+	{ "irina", IRINA_TRAP },
+	{ "liselotte", LISELOTTE_TRAP },
+	{ "greta", GRETA_TRAP },
+	{ "jane", JANE_TRAP },
+	{ "sue lyn", SUE_LYN_TRAP },
+	{ "charlotte", CHARLOTTE_TRAP },
+	{ "hannah", HANNAH_TRAP },
+	{ "little marie", LITTLE_MARIE_TRAP },
+
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }
 };

@@ -889,6 +889,48 @@ nh_timeout()
 
 	}
 
+	if (u.umoved && uarmf && itemhasappearance(uarmf, APP_STUPID_STILETTOS)) {
+		int slipchance = 1;
+
+		if (!PlayerCannotUseSkills) {
+			switch (P_SKILL(P_HIGH_HEELS)) {
+				case P_BASIC: slipchance = 2; break;
+				case P_SKILLED: slipchance = 5; break;
+				case P_EXPERT: slipchance = 8; break;
+				case P_MASTER: slipchance = 10; break;
+				case P_GRAND_MASTER: slipchance = 20; break;
+				case P_SUPREME_MASTER: slipchance = 50; break;
+			}
+		}
+
+		if (!rn2(slipchance) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4))) ) {
+			    slip_or_trip();
+
+			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+
+				if (rn2(50)) {
+					adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
+					if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
+				} else {
+					You_feel("dizzy!");
+					forget(1 + rn2(5));
+				}
+			    }
+
+			    nomul(-2, "fumbling", TRUE);
+			    nomovemsg = "";
+			    /* The more you are carrying the more likely you
+			     * are to make noise when you fumble.  Adjustments
+			     * to this number must be thoroughly play tested.
+			     */
+			    if ((inv_weight() > -500)) {
+				You("make a lot of noise!");
+				wake_nearby();
+			    }
+		}
+
+	}
+
 	/* if you wear high heels without having the skill at all, bad stuff can happen --Amy */
 	if (u.umoved && PlayerInHighHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED)) {
 

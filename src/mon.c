@@ -9765,6 +9765,10 @@ boolean holdeneffect;
 			return;
 		}
 
+		if (uarmf && itemhasappearance(otyp, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) {
+			if (uarmf->spe > -1) uarmf->spe = -1;
+		}
+
 		u.cnd_symbiotesdied++;
 		pline(FunnyHallu ? "Damn, you feel like you killed a part of yourself..." : "You discard your current symbiote to make room for the new one.");
 	}
@@ -9864,6 +9868,10 @@ boolean canbeother;
 			return;
 		}
 
+		if (uarmf && itemhasappearance(otyp, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) {
+			if (uarmf->spe > -1) uarmf->spe = -1;
+		}
+
 		u.cnd_symbiotesdied++;
 		pline(FunnyHallu ? "Did you just quaff FEV-spiked water?" : "Your current symbiote vanishes.");
 	}
@@ -9932,6 +9940,10 @@ boolean canbeother;
 void
 killsymbiote()
 {
+	if (uarmf && itemhasappearance(otyp, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) {
+		if (uarmf->spe > -1) uarmf->spe = -1;
+	}
+
 	u.usymbiote.active = 0;
 	u.usymbiote.mnum = PM_PLAYERMON;
 	u.usymbiote.mhp = 0;

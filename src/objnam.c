@@ -402,6 +402,26 @@ int prop;
 			return "Madeleine's curse";
 		case FEMTRAP_MARLENA:
 			return "Marlena's curse";
+		case FEMTRAP_NADINE:
+			return "Nadine's curse";
+		case FEMTRAP_LUISA:
+			return "Luisa's curse";
+		case FEMTRAP_IRINA:
+			return "Irina's curse";
+		case FEMTRAP_LISELOTTE:
+			return "Liselotte's curse";
+		case FEMTRAP_GRETA:
+			return "Greta's curse";
+		case FEMTRAP_JANE:
+			return "Jane's curse";
+		case FEMTRAP_SUE_LYN:
+			return "Sue Lyn's curse";
+		case FEMTRAP_CHARLOTTE:
+			return "Charlotte's curse";
+		case FEMTRAP_HANNAH:
+			return "Hannah's curse";
+		case FEMTRAP_LITTLE_MARIE:
+			return "Little Marie's curse";
 		case FEMTRAP_ANASTASIA:
 			return "Anastasia's curse";
 		case FEMTRAP_JESSICA:
@@ -3586,6 +3606,16 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ ANASTASIA_S_JEWEL, "Anastasia dragotsennost'" },
 	{ JESSICA_S_JEWEL, "Jessica dragotsennost'" },
 	{ MARLENA_S_JEWEL, "Marlena dragotsennost'" },
+	{ NADINE_S_JEWEL, "Nadine dragotsennost'" },
+	{ LUISA_S_JEWEL, "Luisa dragotsennost'" },
+	{ IRINA_S_JEWEL, "Irina dragotsennost'" },
+	{ LISELOTTE_S_JEWEL, "Liselotte dragotsennost'" },
+	{ GRETA_S_JEWEL, "Greta dragotsennost'" },
+	{ JANE_S_JEWEL, "Jane dragotsennost'" },
+	{ SUE_LYN_S_JEWEL, "Sue Lyn dragotsennost'" },
+	{ CHARLOTTE_S_JEWEL, "Charlotte dragotsennost'" },
+	{ HANNAH_S_JEWEL, "Hannah dragotsennost'" },
+	{ LITTLE_MARIE_S_JEWEL, "Little Marie dragotsennost'" },
 	{ FEMMY_S_JEWEL, "Femmy dragotsennost'" },
 	{ NATALJE_S_JEWEL, "Natalje dragotsennost'" },
 	{ KARIN_S_JEWEL, "Karin dragotsennost'" },
@@ -3856,6 +3886,17 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ NASTYCURSE_STONE, "todo" },
 	{ SPI_IMAGE_MOOSE_SHIELD, "todo" },
 	{ SHOVEL, "todo" },
+
+	{ NADINE_STILETTO_SANDALS, "todo" },
+	{ LUISA_HUGGING_BOOTS, "todo" },
+	{ IRINA_WEDGE_SANDALS, "todo" },
+	{ LISELOTTE_HUGGING_BOOTS, "todo" },
+	{ GRETA_HUGGING_BOOTS, "todo" },
+	{ JANE_HUGGING_BOOTS, "todo" },
+	{ SUE_LYN_WINTER_BOOTS, "todo" },
+	{ CHARLOTTE_HUGGING_BOOTS, "todo" },
+	{ HANNAH_CUDDLE_BOOTS, "todo" },
+	{ LITTLE_MARIE_HUGGING_BOOTS, "todo" },
 
 	{0, "" }
 };
@@ -6666,6 +6707,16 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ ANASTASIA_S_JEWEL, "Anastasia marvarid" },
 	{ JESSICA_S_JEWEL, "Jessica marvarid" },
 	{ MARLENA_S_JEWEL, "Marlena marvarid" },
+	{ NADINE_S_JEWEL, "Nadine marvarid" },
+	{ LUISA_S_JEWEL, "Luisa marvarid" },
+	{ IRINA_S_JEWEL, "Irina marvarid" },
+	{ LISELOTTE_S_JEWEL, "Liselotte marvarid" },
+	{ GRETA_S_JEWEL, "Greta marvarid" },
+	{ JANE_S_JEWEL, "Jane marvarid" },
+	{ SUE_LYN_S_JEWEL, "Sue Lyn marvarid" },
+	{ CHARLOTTE_S_JEWEL, "Charlotte marvarid" },
+	{ HANNAH_S_JEWEL, "Hannah marvarid" },
+	{ LITTLE_MARIE_S_JEWEL, "Little Marie marvarid" },
 	{ FEMMY_S_JEWEL, "Femmy marvarid" },
 	{ NATALJE_S_JEWEL, "Natalje marvarid" },
 	{ KARIN_S_JEWEL, "Karin marvarid" },
@@ -6936,6 +6987,17 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ NASTYCURSE_STONE, "todo" },
 	{ SPI_IMAGE_MOOSE_SHIELD, "todo" },
 	{ SHOVEL, "todo" },
+
+	{ NADINE_STILETTO_SANDALS, "todo" },
+	{ LUISA_HUGGING_BOOTS, "todo" },
+	{ IRINA_WEDGE_SANDALS, "todo" },
+	{ LISELOTTE_HUGGING_BOOTS, "todo" },
+	{ GRETA_HUGGING_BOOTS, "todo" },
+	{ JANE_HUGGING_BOOTS, "todo" },
+	{ SUE_LYN_WINTER_BOOTS, "todo" },
+	{ CHARLOTTE_HUGGING_BOOTS, "todo" },
+	{ HANNAH_CUDDLE_BOOTS, "todo" },
+	{ LITTLE_MARIE_HUGGING_BOOTS, "todo" },
 
 	{0, "" }
 };

@@ -2017,6 +2017,12 @@ moveloop()
 				if (moveamt > (oldspeed + 72)) moveamt = (oldspeed + 72);
 			}
 
+			if (uarmf && itemhasappearance(uarmf, APP_BOY_BOOTS) && !rn2(20)) {
+				oldspeed = moveamt;
+				moveamt *= 2;
+				if (moveamt > (oldspeed + 24)) moveamt = (oldspeed + 24);
+			}
+
 			if (numberofwornetheritems() > rn2(20)) {
 				oldspeed = moveamt;
 				moveamt *= 2;
@@ -18129,6 +18135,11 @@ boolean new_game;	/* false => restoring an old game */
 	}
 
 	if (!new_game && uinsymbiosis && u.usymbiote.mhp < 0) {
+
+		if (uarmf && itemhasappearance(otyp, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) {
+			if (uarmf->spe > -1) uarmf->spe = -1;
+		}
+
 		u.usymbiote.active = 0;
 		u.usymbiote.mnum = PM_PLAYERMON;
 		u.usymbiote.mhp = 0;

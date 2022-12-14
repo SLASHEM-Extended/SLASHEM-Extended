@@ -372,6 +372,16 @@ Boots_on()
 	case JASIEEN_WEDGE_SANDALS:
 	case YASAMAN_LEATHER_BOOTS:
 	case MAY_BRITT_SANDALS:
+	case NADINE_STILETTO_SANDALS:
+	case LUISA_HUGGING_BOOTS:
+	case IRINA_WEDGE_SANDALS:
+	case LISELOTTE_HUGGING_BOOTS:
+	case GRETA_HUGGING_BOOTS:
+	case JANE_HUGGING_BOOTS:
+	case SUE_LYN_WINTER_BOOTS:
+	case CHARLOTTE_HUGGING_BOOTS:
+	case HANNAH_CUDDLE_BOOTS:
+	case LITTLE_MARIE_HUGGING_BOOTS:
 
 		if (!uarmf->cursed) {
 			pline("Oh whoops, your footwear welds itself to your %s. This might be the result of a curse.%s", makeplural(body_part(FOOT)), FunnyHallu ? " (Thank you, Captain Obvious.)" : "" );
@@ -426,6 +436,21 @@ Boots_on()
 		}
 		break;
 	default: impossible(unknown_type_long, c_boots, uarmf->otyp);
+    }
+
+    if (uarmf && itemhasappearance(uarmf, APP_REMORA_HEELS) ) {
+	if (u.ulevel >= 15 && uarmf->spe >= 1 && !uinsymbiosis) {
+		u.usymbiote.active = 1;
+		u.usymbiote.mnum = PM_REMORA;
+		u.usymbiote.mhpmax = 240;
+		u.usymbiote.mhp = 240;
+		u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0;
+
+		pline("Suddenly you have a remora symbiote!");
+		pline("Use #monster to manage your symbiote.");
+		if (flags.showsymbiotehp) flags.botl = TRUE;
+
+	}
     }
 
     if (uarmf && itemhasappearance(uarmf, APP_VELCRO_BOOTS) ) {
@@ -940,6 +965,16 @@ Boots_off()
 	case KLARA_PLATFORM_SANDALS:
 	case FRIEDERIKE_DANCING_SHOES:
 	case NAOMI_STILETTOS:
+	case NADINE_STILETTO_SANDALS:
+	case LUISA_HUGGING_BOOTS:
+	case IRINA_WEDGE_SANDALS:
+	case LISELOTTE_HUGGING_BOOTS:
+	case GRETA_HUGGING_BOOTS:
+	case JANE_HUGGING_BOOTS:
+	case SUE_LYN_WINTER_BOOTS:
+	case CHARLOTTE_HUGGING_BOOTS:
+	case HANNAH_CUDDLE_BOOTS:
+	case LITTLE_MARIE_HUGGING_BOOTS:
 	case UTE_PLATFORM_SANDALS:
 	case JASIEEN_WEDGE_SANDALS:
 	case YASAMAN_LEATHER_BOOTS:
@@ -951,6 +986,14 @@ Boots_off()
 		break;
 
 	default: impossible(unknown_type, c_boots, otyp);
+    }
+
+    if (otyp && itemhasappearance(otyp, APP_REMORA_HEELS) ) {
+	if (uinsymbiosis && u.usymbiote.mnum == PM_REMORA) {
+		if (otyp->spe > -1) otyp->spe = -1;
+		killsymbiote();
+		pline("Oh no! You took off your heels, and the remora died! :-(");
+	}
     }
 
     cancelled_don = FALSE;
