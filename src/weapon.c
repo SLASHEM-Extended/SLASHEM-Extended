@@ -7530,6 +7530,7 @@ boolean extraskills;
 	if (obj->otyp == STETHOSCOPE) skill = P_SEARCHING;
 	if (obj->otyp == RIN_SEARCHING) skill = P_SEARCHING;
 	if (obj->otyp == RIN_TRAP_REVEALING) skill = P_SEARCHING;
+	if (obj->otyp == DEFUSING_BOX) skill = P_SEARCHING;
 	if (obj->otyp == GOD_O_METER) skill = P_SPIRITUALITY;
 	if (obj->otyp == POT_WATER) skill = P_SPIRITUALITY;
 	if (obj->otyp == HOLY_WAFER) skill = P_SPIRITUALITY;

@@ -939,6 +939,9 @@ register struct obj *obj;
 	case AMULET_OF_CONFLICT:
 		pline_The("toilet drones loudly!");
 		break;
+	case AMULET_OF_DEFUSING:
+		pline_The("toilet doesn't seem to be trapped anymore.");
+		break;
 	case AMULET_OF_FUMBLING:
 		You_feel("that your stream of pee missed the toilet!");
 		break;

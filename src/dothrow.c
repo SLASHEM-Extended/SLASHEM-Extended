@@ -250,6 +250,8 @@ int thrown;
 	    if (launcher && launcher->oartifact == ART_TEAM_FORTRESS_GL && obj->otyp == FRAG_GRENADE) multishot += 5;
 	    if (launcher && launcher->oartifact == ART_TEAM_FORTRESS_GL && obj->otyp == GAS_GRENADE) multishot += 5;
 
+	    if (obj && obj->oartifact == ART_WIWIU_) multishot += rnd(3);
+
 	    if (Race_if(PM_AZTPOK) && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot += rnd(2);
 	    if (Race_if(PM_TURMENE) && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot += rnd(3);
 
@@ -1891,6 +1893,18 @@ int thrown;
 			if (u.kliuskill >= 1280) range++;
 			if (u.kliuskill >= 2560) range++;
 			if (u.kliuskill >= 4320) range++;
+		}
+
+		if (!PlayerCannotUseSkills && obj && obj->oartifact == ART_WEDIFORCE) {
+			switch (P_SKILL(P_WEDI)) {
+				case P_BASIC:	range += 1; break;
+				case P_SKILLED:	range += 2; break;
+				case P_EXPERT:	range += 3; break;
+				case P_MASTER:	range += 4; break;
+				case P_GRAND_MASTER:	range += 5; break;
+				case P_SUPREME_MASTER:	range += 6; break;
+				default: break;
+			}
 		}
 
 		if (Race_if(PM_ENGCHIP) && launcher && objects[launcher->otyp].oc_skill == P_BOW) range += 2;

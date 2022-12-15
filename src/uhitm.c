@@ -163,7 +163,7 @@ boolean barehanded;
 	 * the screen, so you know something is there.
 	 */
 
-	if (MeleePrefixBug || u.uprops[MELEE_PREFIX_BUG].extrinsic || (uwep && uwep->oartifact == ART_ULTRA_ANNOYANCE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ULTRA_ANNOYANCE) || have_meleeprefixstone()) {
+	if (MeleePrefixBug || u.uprops[MELEE_PREFIX_BUG].extrinsic || (uwep && uwep->oartifact == ART_ULTRA_ANNOYANCE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ULTRA_ANNOYANCE) || (uwep && uwep->oartifact == ART_RIDGET_PHASTO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_RIDGET_PHASTO) || have_meleeprefixstone()) {
 
 		pline("You bump into %s.", mon_nam(mtmp));
 		return 0;
@@ -2706,7 +2706,7 @@ int dieroll;
 					if (mon->mhpmax > 1) {
 						mon->mhpmax--;
 						if (mon->mhp > mon->mhpmax) mon->mhpmax--;
-						pline("%s was hit by the faerie floss rhing and is now small.");
+						pline("%s was hit by the faerie floss rhing and is now small.", Monnam(mon));
 					}
 				}
 			}

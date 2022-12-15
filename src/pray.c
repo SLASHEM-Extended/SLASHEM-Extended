@@ -3278,7 +3278,7 @@ aligntyp alignment;
     const char *gnam;
     int which;
 
-	if (Hallucination) { /* come on, hallucination should always affect god's names. --Amy */
+	if (Hallucination || (uarmc && itemhasappearance(uarmc, APP_FALSE_COPES) ) ) { /* come on, hallucination should always affect god's names. --Amy */
 
 	    which = randrole();
 	    switch (rn2(3)) {
@@ -3329,7 +3329,7 @@ aligntyp alignment;
     const char *gnam;
     int which;
 
-    if (!Hallucination) return align_gname(alignment);
+    if (!Hallucination && !(uarmc && itemhasappearance(uarmc, APP_FALSE_COPES)) ) return align_gname(alignment);
 
     which = randrole();
     switch (rn2(3)) {

@@ -1112,6 +1112,7 @@ Cloak_on()
 	case CLOAK_OF_FLIGHT:
 	case CLOAK_OF_MAGIC_CONTROL:
 	case CLOAK_OF_EXPERIENCE:
+	case CLOAK_OF_DEFUSING:
 	case CLOAK_OF_MAP_AMNESIA:
 	case CLOAK_OF_TRANSFORMATION:
 	case CLOAK_OF_DISCOUNT_ACTION:
@@ -1888,6 +1889,7 @@ Cloak_off()
 	case FUR:
 	case CLOAK_OF_MAGIC_CONTROL:
 	case CLOAK_OF_EXPERIENCE:
+	case CLOAK_OF_DEFUSING:
 	case HIDE:
 	case CLOAK_OF_PEACE:
 	case CLOAK_OF_DIMNESS:
@@ -2565,6 +2567,7 @@ Gloves_on()
 	case GAUNTLETS_OF_THE_FORCE:
 	case GAUNTLETS_OF_SAFEGUARD:
 	case GAUNTLETS_OF_PLUGSUIT:
+	case GAUNTLETS_OF_DEFUSING:
 	case COMMANDER_GLOVES:
 	case ROGUES_GLOVES:
 	case FIELD_GLOVES:
@@ -2900,6 +2903,7 @@ Gloves_off()
 	case GAUNTLETS_OF_THE_FORCE:
 	case GAUNTLETS_OF_SAFEGUARD:
 	case GAUNTLETS_OF_PLUGSUIT:
+	case GAUNTLETS_OF_DEFUSING:
 	case ROGUES_GLOVES:
 	case COMMANDER_GLOVES:
 	case FIELD_GLOVES:
@@ -5537,6 +5541,8 @@ doputon()
 					already_wearing("a condome");
 			else if (ublindf->otyp == CLIMBING_SET)
 					already_wearing("a climbing set");
+			else if (ublindf->otyp == DEFUSING_BOX)
+					already_wearing("a defusing box");
 			else if (ublindf->otyp == BLINDFOLD || ublindf->otyp == EYECLOSER || ublindf->otyp == DRAGON_EYEPATCH) {
 				if (otmp->otyp == LENSES || otmp->otyp == RADIOGLASSES || otmp->otyp == BOSS_VISOR)
 					already_wearing2("lenses", "a blindfold");
@@ -5901,6 +5907,7 @@ find_ac()
 	if (uarmh && uarmh->oartifact == ART_CASQUESPIRE_TRANSLATE) uac -= 5;
 	if (uarmh && uarmh->oartifact == ART_HARD_HAT_AREA) uac -= 5;
 	if (uarmh && uarmh->oartifact == ART_STEELSKULL_PROTECTOR) uac -= 3;
+	if (uarmg && uarmg->oartifact == ART_PROTECT_FROM_BACKLASH) uac -= 3;
 	if (uarmh && uarmh->oartifact == ART_HELM_OF_THE_DARK_LORD) uac -= 5;
 	if (uarmh && uarmh->oartifact == ART_METEORIC_AC) uac -= 15;
 	if (uarmg && uarmg->oartifact == ART_MOLASS_TANK) uac -= 10;

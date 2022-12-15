@@ -3433,7 +3433,7 @@ poly_obj(obj, id, degradation)
 		otmp->owornmask &= ~W_ARMF;
 	    if (otmp->owornmask & W_ARMU && !is_shirt(otmp))
 		otmp->owornmask &= ~W_ARMU;
-	    if (otmp->owornmask & W_TOOL && otmp->otyp != BLINDFOLD && otmp->otyp != EYECLOSER && otmp->otyp != DRAGON_EYEPATCH && otmp->otyp != CONDOME && otmp->otyp != CLIMBING_SET && otmp->otyp != SOFT_CHASTITY_BELT &&
+	    if (otmp->owornmask & W_TOOL && otmp->otyp != BLINDFOLD && otmp->otyp != EYECLOSER && otmp->otyp != DRAGON_EYEPATCH && otmp->otyp != CONDOME && otmp->otyp != CLIMBING_SET && otmp->otyp != DEFUSING_BOX && otmp->otyp != SOFT_CHASTITY_BELT &&
 	      otmp->otyp != TOWEL && otmp->otyp != LENSES && otmp->otyp != RADIOGLASSES && otmp->otyp != BOSS_VISOR)
 		otmp->owornmask &= ~W_TOOL;
 	    if (obj->otyp == LEATHER_LEASH && obj->leashmon) o_unleash(obj);
@@ -9126,7 +9126,7 @@ xchar sx, sy;
 
 		if (uarmh && uarmh->oartifact == ART_SECURE_BATHMASTER && rn2(20) ) {
 			dam = 0;
-		} else if (uwep && uwep->otyp == PARASOL && (!rn2(2) || (uwep->otyp == ART_MADELINE_S_GUARDIAN)) ) {
+		} else if (uwep && uwep->otyp == PARASOL && (!rn2(2) || (uwep->oartifact == ART_MADELINE_S_GUARDIAN)) ) {
 			dam = 0;
 			pline("Thanks to your parasol, the sunlight doesn't hit you.");
 		} else {

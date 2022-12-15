@@ -3900,6 +3900,11 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ HANNAH_CUDDLE_BOOTS, "todo" },
 	{ LITTLE_MARIE_HUGGING_BOOTS, "todo" },
 
+	{ DEFUSING_BOX, "todo" },
+	{ CLOAK_OF_DEFUSING, "todo" },
+	{ GAUNTLETS_OF_DEFUSING, "todo" },
+	{ AMULET_OF_DEFUSING, "todo" },
+
 	{0, "" }
 };
 
@@ -7000,6 +7005,11 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ CHARLOTTE_HUGGING_BOOTS, "todo" },
 	{ HANNAH_CUDDLE_BOOTS, "todo" },
 	{ LITTLE_MARIE_HUGGING_BOOTS, "todo" },
+
+	{ DEFUSING_BOX, "todo" },
+	{ CLOAK_OF_DEFUSING, "todo" },
+	{ GAUNTLETS_OF_DEFUSING, "todo" },
+	{ AMULET_OF_DEFUSING, "todo" },
 
 	{0, "" }
 };

@@ -11941,7 +11941,7 @@ int final;
 	if (Discount_action) dump(youhad, StrongDiscount_action ? "high discount action" : "discount action");
 	if (Full_nutrient) dump(youhad, StrongFull_nutrient ? "very full nutrients" : "full nutrients");
 	if (Technicality) dump(youhad, StrongTechnicality ? "greatly improved technique levels" : "improved technique levels");
-	if (Defusing) you_have(StrongDefusing ? "very good abilities to disarm traps" : "the ability to disarm traps");
+	if (Defusing) dump(youhad, StrongDefusing ? "very good abilities to disarm traps" : "the ability to disarm traps");
 	if (ScentView || EcholocationActive) dump(youhad, StrongScentView ? "scent view and echolocation" : (ScentView && EcholocationActive) ? "scent view and echolocation" : EcholocationActive ? "echolocation" : "scent view");
 	if (DiminishedBleeding) dump(youhad, StrongDiminishedBleeding ? "greatly diminished bleeding" : "diminished bleeding");
 	if (ControlMagic) dump(youhad, StrongControlMagic ? "strong magic control" : "magic control");

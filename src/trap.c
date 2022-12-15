@@ -24809,11 +24809,14 @@ struct trap *ttmp;
 	    if (rn2(2 * MAXULEV) < u.ulevel) chance--;
 	    if (u.uhave.questart && chance > 1) chance--;
 	} else if (Role_if(PM_RANGER) && chance > 1) chance--;
-	if (Role_if(PM_CYBERNINJA) && chance > 1) chance /= 2; /* cyberninja is really good at disarming --Amy */
+
 	if (StrongDefusing && !rn2(2) && chance > 2) {
 		chance -= rn2((chance / 2) + 1);
 		if (chance < 2) chance = 2;
 	}
+	if (Role_if(PM_CYBERNINJA) && chance > 1) chance /= 2; /* cyberninja is really good at disarming --Amy */
+	if (ublindf && ublindf->oartifact == ART_MAC_S_BOX && chance > 1) chance /= 2;
+
 	if (chance < 1) chance = 1; /* fail safe */
 	return rn2(chance);
 }
@@ -24923,6 +24926,10 @@ boolean difficulttrap;
 		You("are unable to reach the %s!",
 			defsyms[trap_to_defsym(ttype)].explanation);
 		return 0;
+	}
+
+	if (ublindf && ublindf->oartifact == ART_COUNTER_TERRORISTS_WIN && u.ualign.type == A_LAWFUL && (ttmp->ttyp == LAND_MINE || ttmp->ttyp == BOMB_TRAP) ) {
+		return 2;
 	}
 
 	/* Will our hero succeed? */
@@ -25065,7 +25072,10 @@ int
 disarm_landmine(ttmp) /* Helge Hafting */
 struct trap *ttmp;
 {
-	int fails = try_disarm(ttmp, FALSE, FALSE);
+	int fails;
+
+	if (ublindf && ublindf->oartifact == ART_COUNTER_TERRORISTS_WIN && u.ualign.type == A_LAWFUL && (ttmp->ttyp == LAND_MINE || ttmp->ttyp == BOMB_TRAP) ) fails = 2; /* guaranteed success */
+	else fails = try_disarm(ttmp, FALSE, FALSE);
 
 	if (fails < 2) return fails;
 	You("disarm %s land mine.", the_your[ttmp->madeby_u]);
@@ -25221,7 +25231,11 @@ disarm_difficult_trap(ttmp)
 struct trap *ttmp;
 {
 	xchar trapx = ttmp->tx, trapy = ttmp->ty;
-	int fails = try_disarm(ttmp, FALSE, TRUE);
+
+	int fails;
+
+	if (ublindf && ublindf->oartifact == ART_COUNTER_TERRORISTS_WIN && u.ualign.type == A_LAWFUL && (ttmp->ttyp == LAND_MINE || ttmp->ttyp == BOMB_TRAP) ) fails = 2; /* guaranteed success */
+	else fails = try_disarm(ttmp, FALSE, TRUE);
 
 	if (fails < 2) return fails;
 
@@ -25240,7 +25254,7 @@ struct trap *ttmp;
 	}
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
-	cnv_trap_obj(IRON_CHAIN, 1, ttmp);
+	deltrap(ttmp);
 	newsym(trapx, trapy);
 	return 1;
 }

@@ -7199,7 +7199,7 @@ struct obj *otmp;
                 else if ((putting_on(word) &&
 		    ((otmp->oclass == FOOD_CLASS && otmp->otyp != MEAT_RING) ||
 		    (otmp->oclass == TOOL_CLASS &&
-		     otyp != BLINDFOLD && otyp != EYECLOSER && otyp != DRAGON_EYEPATCH && otyp != CONDOME && otyp != SOFT_CHASTITY_BELT && otyp != TOWEL && otyp != CLIMBING_SET && otyp != LENSES && otyp != RADIOGLASSES && otyp != BOSS_VISOR)))
+		     otyp != BLINDFOLD && otyp != EYECLOSER && otyp != DRAGON_EYEPATCH && otyp != CONDOME && otyp != SOFT_CHASTITY_BELT && otyp != TOWEL && otyp != CLIMBING_SET && otyp != DEFUSING_BOX && otyp != LENSES && otyp != RADIOGLASSES && otyp != BOSS_VISOR)))
 /*add check for improving*/
                 || ( (!strcmp(word, "wield") || !strcmp(word, "improve")) &&
 		    (otmp->oclass == TOOL_CLASS && !is_weptool(otmp)))
@@ -7746,7 +7746,7 @@ struct obj *otmp;
 		s1 = "T", s2 = "take", s3 = " off";
 	} else if ((ocls == RING_CLASS || otyp == MEAT_RING) ||
 		ocls == AMULET_CLASS || ocls == IMPLANT_CLASS ||
-		(otyp == BLINDFOLD || otyp == EYECLOSER || otyp == DRAGON_EYEPATCH || otyp == CONDOME || otyp == SOFT_CHASTITY_BELT || otyp == TOWEL || otyp == CLIMBING_SET || otyp == LENSES || otyp == RADIOGLASSES || otyp == BOSS_VISOR)) {
+		(otyp == BLINDFOLD || otyp == EYECLOSER || otyp == DRAGON_EYEPATCH || otyp == CONDOME || otyp == SOFT_CHASTITY_BELT || otyp == TOWEL || otyp == CLIMBING_SET || otyp == DEFUSING_BOX || otyp == LENSES || otyp == RADIOGLASSES || otyp == BOSS_VISOR)) {
 	    if (!strcmp(word, "wear"))
 		s1 = "P", s2 = "put", s3 = " on";
 	    else if (!strcmp(word, "take off"))
@@ -11918,6 +11918,8 @@ boolean knoweverything;
 			pline("A pair of boots that often spawns with an unusually high enchantment value.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_HEELED_CHELSEA_BOOTS))
 			pline("An exciting pair of shoes with treaded soles, and even the block heels are treaded!");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FALSE_COPES))
+			pline("It's a false version of the ornamental cope. Putting it on randomizes the names of the gods.");
 
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
@@ -12384,6 +12386,8 @@ boolean knoweverything;
 				pline("While wearing this cloak, you have control magic and also 3 points of magic cancellation."); break;
 			case CLOAK_OF_EXPERIENCE:
 				pline("A rare cloak type that doubles any experience you gain, and also gives 3 points of magic cancellation."); break;
+			case CLOAK_OF_DEFUSING:
+				pline("This cloak gives you the 'defusing' extrinsic, which allows you to attempt to untrap certain trap types that you'd otherwise not be able to untrap, and it gives 3 points of magic cancellation."); break;
 			case CLOAK_OF_GROUNDING:
 				pline("Wearing this cloak grants shock resistance and medium magic cancellation."); break;
 			case CLOAK_OF_INVERSION:
@@ -12966,6 +12970,8 @@ boolean knoweverything;
 				pline("Wearing this pair of gloves does nothing special."); break;
 			case ROGUES_GLOVES:
 				pline("These gloves improve your searching ability by automatically searching for traps and secret doors every turn."); break;
+			case GAUNTLETS_OF_DEFUSING:
+				pline("Wear this pair of gloves to be capable of untrapping more trap types than normal!"); break;
 			case COMMANDER_GLOVES:
 				pline("They sure look good but unfortunately these gloves are actually rather plain."); break;
 			case FIELD_GLOVES:
@@ -14878,6 +14884,8 @@ boolean knoweverything;
 				pline("An amulet that increases your hit point regeneration when worn. It increases your food consumption rate."); break;
 			case AMULET_OF_CONFLICT:
 				pline("As long as you wear this amulet, monsters may sometimes attack each other. It greatly increases your food consumption rate."); break;
+			case AMULET_OF_DEFUSING:
+				pline("Lets you try to untrap certain trap types that you'd normally not be able to untrap."); break;
 			case AMULET_OF_FUMBLING:
 				pline("Wearing this amulet causes you to fumble. It is usually generated cursed."); break;
 			case AMULET_OF_VULNERABILITY:
@@ -14988,6 +14996,8 @@ boolean knoweverything;
 				pline("This condome keeps your penis or other sexual organ safe while having a sexual encounter. It also reduces the amount of physical damage you take."); break;
 			case CLIMBING_SET:
 				pline("A tool that can be equipped to improve your chances of climbing a mountain. The idea for this tool was from ToME, and just like the original implementation, it prevents you from equipping a different type of tool at the same time."); break;
+			case DEFUSING_BOX:
+				pline("Inspired by Counter-Strike, this item can be worn in the tool slot to allow you to attempt to disarm a wider variety of trap types."); break;
 			case BINNING_KIT:
 				pline("If this tool has charges, you can apply it to dispose of corpses. Into the trash it goes! :D"); break;
 			case BUDO_NO_SASU:
@@ -23739,6 +23749,32 @@ boolean knoweverything;
 					pline("Artifact specs: resist sleep, 3 extra points of AC and 1 extra point of MC when worn, henrietta trap effect, can be invoked for corona antidote but doing so will heavily curse them."); break;
 				case ART_HELICOPTER_TWIRL:
 					pline("Artifact specs: flying when wielded."); break;
+				case ART_COUNTER_TERRORISTS_WIN:
+					pline("Artifact specs: if you're lawful, attempting to disarm mines and bombs is pretty much guaranteed to work. This artifact is lawful itself, for obvious reasons."); break;
+				case ART_MAC_S_BOX:
+					pline("Artifact specs: improved untrapping chances when worn."); break;
+				case ART_PROTECT_FROM_BACKLASH:
+					pline("Artifact specs: 3 extra points of AC and gives you 50%% chance to avoid bad effects, which is actually a whole lot."); break;
+				case ART_KSSCHL__KSSCHL_:
+					pline("Artifact specs: usually generated with a particularly large stack size."); break;
+				case ART_WEDIFORCE:
+					pline("Artifact specs: throwing it has increased range depending on your form VIII (Wedi) skill."); break;
+				case ART_DONGOR:
+					pline("Artifact specs: +5 to-hit and +15 damage."); break;
+				case ART_WIWIU_:
+					pline("Artifact specs: increased multishot rate when worn."); break;
+				case ART_REAL_ACID:
+					pline("Artifact specs: +4 to-hit and +16 damage to acid-susceptible monsters."); break;
+				case ART_STRONG_:
+					pline("Artifact specs: usually spawns with a very high enchantment value."); break;
+				case ART_WENDY_S_DRAIN:
+					pline("Artifact specs: +2 drain life damage, can drain levels from monsters, chaotic."); break;
+				case ART_KLIEAU_:
+					pline("Artifact specs: +36 damage."); break;
+				case ART_RIDGET_PHASTO: /* intentionally doesn't tell you how to get rid of it --Amy */
+					pline("Artifact specs: dunno, you need to figure it out yourself. Sorry."); break;
+				case ART_HOL_ON_MAN:
+					pline("Artifact specs: gives phasing and detect monsters, as well as a multitude of bad side effects when wielded. In order to stop those effects, just bash something with it, that'll destroy the item."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

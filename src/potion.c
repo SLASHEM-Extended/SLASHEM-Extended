@@ -2116,6 +2116,10 @@ badeffect()
 		return;
 	}
 
+	if (uarmg && uarmg->oartifact == ART_PROTECT_FROM_BACKLASH && !rn2(2)) {
+		pline("Thanks to your protective gloves, you averted misfortune!");
+	}
+
 	if (!(PlayerCannotUseSkills)) {
 		int shiichochance = 0;
 		switch (P_SKILL(P_SHII_CHO)) {
@@ -14689,7 +14693,7 @@ register struct obj *obj;
 		owornmask &= ~W_ARMF;
 	    if (owornmask & W_ARMU && !is_shirt(obj))
 		owornmask &= ~W_ARMU;
-	    if (owornmask & W_TOOL && obj->otyp != BLINDFOLD && obj->otyp != CLIMBING_SET && obj->otyp != EYECLOSER && obj->otyp != DRAGON_EYEPATCH && obj->otyp != CONDOME && obj->otyp != SOFT_CHASTITY_BELT &&
+	    if (owornmask & W_TOOL && obj->otyp != BLINDFOLD && obj->otyp != CLIMBING_SET && obj->otyp != DEFUSING_BOX && obj->otyp != EYECLOSER && obj->otyp != DRAGON_EYEPATCH && obj->otyp != CONDOME && obj->otyp != SOFT_CHASTITY_BELT &&
 	      obj->otyp != TOWEL && obj->otyp != LENSES && obj->otyp != RADIOGLASSES && obj->otyp != BOSS_VISOR && obj->otyp != BOSS_VISOR)
 		owornmask &= ~W_TOOL;
 	    otyp2 = obj->otyp;

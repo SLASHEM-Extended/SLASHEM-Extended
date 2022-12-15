@@ -277,11 +277,8 @@ moveloop()
 
 			if (u.sterilized) monclock *= (5 + spell_damage_bonus(SPE_STERILIZE));
 
-			if (verisiertEffect || u.uprops[VERISIERTEFFECT].extrinsic || have_verisiertstone()) monclock /= 5;
-			if (uimplant && uimplant->oartifact == ART_YOU_SHOULD_SURRENDER) monclock /= 5;
-			if (uarms && uarms->oartifact == ART_GOLDEN_DAWN) monclock /= 5;
-			if (uarms && uarms->oartifact == ART_GREXIT_IS_NEAR) monclock /= 5;
-			if (uarmf && uarmf->oartifact == ART_BLACK_DIAMOND_ICON) monclock /= 4;
+			if (verisiertEffect || u.uprops[VERISIERTEFFECT].extrinsic || (uwep && uwep->oartifact == ART_HOL_ON_MAN) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_HOL_ON_MAN) || (uimplant && uimplant->oartifact == ART_YOU_SHOULD_SURRENDER) || (uarms && uarms->oartifact == ART_GOLDEN_DAWN) || (uarms && uarms->oartifact == ART_GREXIT_IS_NEAR) || have_verisiertstone()) monclock /= 5;
+			if (uarmf && uarmf->oartifact == ART_BLACK_DIAMOND_ICON) monclock /= 4; /* stacks with the above */
 			if (ishaxor) monclock /= 2;
 			if (Race_if(PM_LICH_WARRIOR)) monclock /= 2;
 			if (Race_if(PM_RODNEYAN)) monclock /= 4;
@@ -8609,6 +8606,18 @@ newbossO:
 
 		}
 
+		if (!rn2(2000) && uwep && uwep->oartifact == ART_RIDGET_PHASTO) {
+			
+			getnastytrapintrinsic();
+
+		}
+
+		if (!rn2(2000) && uswapwep && uswapwep->oartifact == ART_RIDGET_PHASTO) {
+
+			getnastytrapintrinsic();
+
+		}
+
 		if (!rn2(2000) && u.uprops[EVIL_PATCH_EFFECT].extrinsic) {
 			
 			getnastytrapintrinsic();
@@ -16803,6 +16812,8 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "named boots")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "super boots")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "high-heeled chelsea boots")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "false copes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "brown gloves")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -18087,6 +18098,8 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "named boots")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "super boots")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "high-heeled chelsea boots")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "false copes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "brown gloves")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}

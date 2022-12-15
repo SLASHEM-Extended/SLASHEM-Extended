@@ -2816,6 +2816,14 @@ randartgem()
 }
 
 int
+randartvenom()
+{
+	int result;
+	result = rnd_class(BLINDING_VENOM,SEGFAULT_VENOM);
+	return result;
+}
+
+int
 randartbadgraystone()
 {
 	int result;
@@ -3019,6 +3027,14 @@ randartgemX()
 {
 	int result;
 	result = DILITHIUM_CRYSTAL + rn2((ROCK + 1) - DILITHIUM_CRYSTAL);
+	return result;
+}
+
+int
+randartvenomX()
+{
+	int result;
+	result = BLINDING_VENOM + rn2((SEGFAULT_VENOM + 1) - BLINDING_VENOM);
 	return result;
 }
 

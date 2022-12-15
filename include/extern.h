@@ -2835,6 +2835,7 @@ E int randartscroll(void);
 E int randartball(void);
 E int randartchain(void);
 E int randartgem(void);
+E int randartvenom(void);
 E int randartmeleeweaponX(void);
 E int randartlightsaberX(void);
 E int randartlauncherX(void);
@@ -2856,6 +2857,7 @@ E int randartscrollX(void);
 E int randartballX(void);
 E int randartchainX(void);
 E int randartgemX(void);
+E int randartvenomX(void);
 
 E int randomfeminismtraptype(void);
 

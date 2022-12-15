@@ -5341,6 +5341,7 @@ doapply()
 	case BOSS_VISOR:
 	case CONDOME:
 	case CLIMBING_SET:
+	case DEFUSING_BOX:
 	case SOFT_CHASTITY_BELT:
 		if (obj == ublindf) {
 		    if (!cursed(obj)) Blindf_off(obj);
@@ -5354,6 +5355,7 @@ doapply()
 			ublindf->otyp == CONDOME ? "wearing a condome" :
 			ublindf->otyp == SOFT_CHASTITY_BELT ? "wearing a condome" :
 			ublindf->otyp == CLIMBING_SET ? "using a climbing set" :
+			ublindf->otyp == DEFUSING_BOX ? "using a defusing box" :
 						     "wearing lenses");
 		break;
 	case CREAM_PIE:

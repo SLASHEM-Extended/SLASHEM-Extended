@@ -1837,6 +1837,12 @@ dospit()
 	struct attack *mattk;
 	int spitcost = 5;
 
+	mattk = attacktype_fordmg(youmonst.data, AT_SPIT, AD_ANY);
+	if (!mattk && uactivesymbiosis && !PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC) mattk = attacktype_fordmg(&mons[u.usymbiote.mnum], AT_SPIT, AD_ANY);
+
+	if (mattk && mattk->adtyp == AD_TCKL) spitcost = 30;
+	if (mattk && mattk->adtyp == AD_DRLI) spitcost = 50;
+
 	if (!PlayerCannotUseSkills) {
 		switch (P_SKILL(P_SQUEAKING)) {
 	      	case P_BASIC:	spitcost = rn2(5) ? 5 : 4; break;
@@ -1859,8 +1865,6 @@ dospit()
 
 	u.uen -= spitcost;
 
-	mattk = attacktype_fordmg(youmonst.data, AT_SPIT, AD_ANY);
-	if (!mattk && uactivesymbiosis && !PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC) mattk = attacktype_fordmg(&mons[u.usymbiote.mnum], AT_SPIT, AD_ANY);
 	if (!mattk)
 	    impossible("bad spit attack?");
 	else {

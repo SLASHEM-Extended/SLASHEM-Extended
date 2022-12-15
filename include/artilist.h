@@ -10073,6 +10073,58 @@ A("Helicopter Twirl",				QUARTERSTAFF, /* randart quarterstaff, flying */
 	(SPFX_RESTR), 0, 0,
 	PHYS(6, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
+A("Counter-Terrorists Win",				DEFUSING_BOX, /* if you're lawful, mines and bombs are easier to disarm */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 200L ),
+
+A("Mac's Box",				DEFUSING_BOX, /* improves success chance when untrapping */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Protect From Backlash",				GAUNTLETS_OF_DEFUSING, /* 3 extra points of AC and 50% chance to avoid bad effects */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Ksschl! Ksschl!",				BLINDING_VENOM, /* spawns with +400 stack size */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 40L ),
+
+A("Wediforce",				BLINDING_VENOM, /* randart, +1 range for every level in your Wedi skill */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 30L ),
+
+A("Dongor",				BLINDING_VENOM, /* randart2 */
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 15), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
+
+A("Wiwiu!",				BLINDING_VENOM, /* +d3 multishot */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 40L ),
+
+A("Real Acid",				ACID_VENOM,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	ACID(4, 16), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 80L ),
+
+A("Strong!",				ACID_VENOM, /* spawns with rn1(7,7) extra points of enchantment */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 70L ),
+
+A("Wendy's Drain",				FAERIE_FLOSS_RHING,
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DRLI), 0, 0,
+	DRLI(0, 2), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 100L ),
+
+A("Klieau!",				TAIL_SPIKES,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 36), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Ridget Phasto",				BLINDING_VENOM, /* randart, melee fuckup effect, gives intrinsic nastytrap effects over time, spawns with stack size of 1 */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 80L ),
+
+A("Hol'on Man",				BLINDING_VENOM, /* randart2, spawns with stack size of 1, wallwalking, detect monsters, difficulty effect, monsters respawn when killed, verisiert effect, julietta trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

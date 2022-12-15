@@ -341,6 +341,8 @@ init_randarts()
 	artilist[ART_MACHINE_THAT_GOES_PLING].otyp = randartgem();
 	artilist[ART_COCKBANGER_ARMOR].otyp = randartsuit();
 	artilist[ART_TAVION_S_CHARGE].otyp = randartlightsaber();
+	artilist[ART_WEDIFORCE].otyp = randartvenom();
+	artilist[ART_RIDGET_PHASTO].otyp = randartvenom();
 
 	artilist[ART_JANA_S_GRAVE_WALL].otyp = randartcloakX();
 	artilist[ART_HENRIETTA_S_DOGSHIT_BOOTS].otyp = randartbootsX();
@@ -462,6 +464,8 @@ init_randarts()
 	artilist[ART_GANTULETS_OF_MISPEALING].otyp = randartglovesX();
 	artilist[ART_SECRET_BOOK_OF_VENOM].otyp = randartspellbookX();
 	artilist[ART_DESANN_S_WRATH].otyp = randartlightsaberX();
+	artilist[ART_DONGOR].otyp = randartvenomX();
+	artilist[ART_HOL_ON_MAN].otyp = randartvenomX();
 
 	artilist[ART_ELLI_S_PSEUDOBAND_OF_POS].otyp = randartmeleeweaponX();
 	artilist[ART_HIGHEST_FEELING].otyp = find_fetish_heels();
@@ -1239,8 +1243,20 @@ register boolean mod;
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
 			}
+		    if (otmp && otmp->oartifact == ART_HOL_ON_MAN) {
+			otmp->quan = 1;
+			otmp->owt = weight(otmp);
+			}
+		    if (otmp && otmp->oartifact == ART_RIDGET_PHASTO) {
+			otmp->quan = 1;
+			otmp->owt = weight(otmp);
+			}
 		    if (otmp && otmp->oartifact == ART_NINER) {
 			otmp->spe += 9;
+			if (otmp->spe > 127) otmp->spe = 127;
+		    }
+		    if (otmp && otmp->oartifact == ART_STRONG_) {
+			otmp->spe += rn1(7,7);
 			if (otmp->spe > 127) otmp->spe = 127;
 		    }
 		    if (otmp && otmp->oartifact == ART_BOAH_WHAT_A_STACK) {
@@ -1248,6 +1264,10 @@ register boolean mod;
 			otmp->owt = weight(otmp);
 		    }
 		    if (otmp && otmp->oartifact == ART______STOCKPILE) {
+			otmp->quan += 400;
+			otmp->owt = weight(otmp);
+		    }
+		    if (otmp && otmp->oartifact == ART_KSSCHL__KSSCHL_) {
 			otmp->quan += 400;
 			otmp->owt = weight(otmp);
 		    }
