@@ -2740,6 +2740,13 @@ doengrave()
 	    case DUST:
 		multi = -(len/(canengravefast ? 20 : 10) );
 		if (multi) nomovemsg = "You finish writing in the dust.";
+		if (tech_inuse(T_POISON_PEN_LETTER) && otmp && otmp->oclass == VENOM_CLASS) {
+			if (len > 50) (void) create_gas_cloud(u.ux, u.uy, 6, 20);
+			else if (len > 30) (void) create_gas_cloud(u.ux, u.uy, 5, 15);
+			else if (len > 20) (void) create_gas_cloud(u.ux, u.uy, 4, 12);
+			else if (len > 10) (void) create_gas_cloud(u.ux, u.uy, 3, 8);
+			else (void) create_gas_cloud(u.ux, u.uy, 2, 4);
+		}
 		break;
 	    case HEADSTONE:
 	    case ENGRAVE:

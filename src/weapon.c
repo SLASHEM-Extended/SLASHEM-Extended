@@ -4215,6 +4215,34 @@ jediskip:
 	    	learntech(T_POWERBIOSIS, FROMOUTSIDE, 1);
 	    	You("learn how to perform powerbiosis!");
 	}
+	if (skill == P_VENOM && P_SKILL(skill) == P_BASIC && !tech_known(T_INJECTION)) {
+	    	learntech(T_INJECTION, FROMOUTSIDE, 1);
+	    	You("learn how to perform injection!");
+	}
+	if (skill == P_VENOM && P_SKILL(skill) == P_SKILLED && !tech_known(T_SUPER_POISON)) {
+	    	learntech(T_SUPER_POISON, FROMOUTSIDE, 1);
+	    	You("learn how to perform super poison!");
+	}
+	if (skill == P_VENOM && P_SKILL(skill) == P_EXPERT && !tech_known(T_GREEN_MISSILE)) {
+	    	learntech(T_GREEN_MISSILE, FROMOUTSIDE, 1);
+	    	You("learn how to perform green missile!");
+	}
+	if (skill == P_VENOM && P_SKILL(skill) == P_MASTER && !tech_known(T_BIG_N_VEINY)) {
+	    	learntech(T_BIG_N_VEINY, FROMOUTSIDE, 1);
+	    	You("learn how to perform big'n'veiny!");
+	}
+	if (skill == P_VENOM && P_SKILL(skill) == P_GRAND_MASTER && !tech_known(T_PLANT_TERROR)) {
+	    	learntech(T_PLANT_TERROR, FROMOUTSIDE, 1);
+	    	You("learn how to perform plant terror!");
+	}
+	if (skill == P_VENOM && P_SKILL(skill) == P_MASTER && P_SKILL(P_DEVICES) >= P_MASTER && !tech_known(T_POISON_PEN_LETTER)) {
+	    	learntech(T_POISON_PEN_LETTER, FROMOUTSIDE, 1);
+	    	You("learn how to perform poison pen letter!");
+	}
+	if (skill == P_DEVICES && P_SKILL(skill) == P_MASTER && P_SKILL(P_VENOM) >= P_MASTER && !tech_known(T_POISON_PEN_LETTER)) {
+	    	learntech(T_POISON_PEN_LETTER, FROMOUTSIDE, 1);
+	    	You("learn how to perform poison pen letter!");
+	}
 	if (skill == P_SHORT_SWORD && P_SKILL(skill) == P_MASTER && !tech_known(T_UNDERTOW)) {
 	    	learntech(T_UNDERTOW, FROMOUTSIDE, 1);
 	    	You("learn how to perform undertow!");
@@ -4770,7 +4798,9 @@ jediskip:
 				}
 		break;
 		case P_VENOM:
-				/* todo */
+				if (!tech_known(T_ROCK_TO_POISON)) {    	learntech(T_ROCK_TO_POISON, FROMOUTSIDE, 1);
+			    	You("learn how to perform rock-to-poison!");
+				}
 		break;
 		case P_WHIP:
 				if (!tech_known(T_POKE_BALL)) {    	learntech(T_POKE_BALL, FROMOUTSIDE, 1);
@@ -5896,6 +5926,34 @@ int degree;
 			if (skill == P_SYMBIOSIS && !tech_known(T_POWERBIOSIS)) {
 			    	learntech(T_POWERBIOSIS, FROMOUTSIDE, 1);
 			    	You("learn how to perform powerbiosis!");
+			}
+			if (skill == P_VENOM && !tech_known(T_INJECTION)) {
+			    	learntech(T_INJECTION, FROMOUTSIDE, 1);
+			    	You("learn how to perform injection!");
+			}
+			if (skill == P_VENOM && !tech_known(T_SUPER_POISON)) {
+			    	learntech(T_SUPER_POISON, FROMOUTSIDE, 1);
+			    	You("learn how to perform super poison!");
+			}
+			if (skill == P_VENOM && !tech_known(T_GREEN_MISSILE)) {
+			    	learntech(T_GREEN_MISSILE, FROMOUTSIDE, 1);
+			    	You("learn how to perform green missile!");
+			}
+			if (skill == P_VENOM && !tech_known(T_BIG_N_VEINY)) {
+			    	learntech(T_BIG_N_VEINY, FROMOUTSIDE, 1);
+			    	You("learn how to perform big'n'veiny!");
+			}
+			if (skill == P_VENOM && !tech_known(T_PLANT_TERROR)) {
+			    	learntech(T_PLANT_TERROR, FROMOUTSIDE, 1);
+			    	You("learn how to perform plant terror!");
+			}
+			if (skill == P_VENOM && P_ADVANCE(P_DEVICES) == 0 && !tech_known(T_POISON_PEN_LETTER)) {
+			    	learntech(T_POISON_PEN_LETTER, FROMOUTSIDE, 1);
+			    	You("learn how to perform poison pen letter!");
+			}
+			if (skill == P_DEVICES && P_ADVANCE(P_VENOM) == 0 && !tech_known(T_POISON_PEN_LETTER)) {
+			    	learntech(T_POISON_PEN_LETTER, FROMOUTSIDE, 1);
+			    	You("learn how to perform poison pen letter!");
 			}
 			if (skill == P_SHORT_SWORD && !tech_known(T_UNDERTOW)) {
 			    	learntech(T_UNDERTOW, FROMOUTSIDE, 1);
@@ -9387,6 +9445,24 @@ rerollthree:
 	}
 	if (P_SKILL(P_SYMBIOSIS) >= P_GRAND_MASTER && !tech_known(T_POWERBIOSIS)) {
 	    	learntech(T_POWERBIOSIS, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_VENOM) >= P_BASIC && !tech_known(T_INJECTION)) {
+	    	learntech(T_INJECTION, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_VENOM) >= P_SKILLED && !tech_known(T_SUPER_POISON)) {
+	    	learntech(T_SUPER_POISON, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_VENOM) >= P_EXPERT && !tech_known(T_GREEN_MISSILE)) {
+	    	learntech(T_GREEN_MISSILE, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_VENOM) >= P_MASTER && !tech_known(T_BIG_N_VEINY)) {
+	    	learntech(T_BIG_N_VEINY, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_VENOM) >= P_GRAND_MASTER && !tech_known(T_PLANT_TERROR)) {
+	    	learntech(T_PLANT_TERROR, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_VENOM) >= P_MASTER && P_SKILL(P_DEVICES) >= P_MASTER && !tech_known(T_POISON_PEN_LETTER)) {
+	    	learntech(T_POISON_PEN_LETTER, FROMOUTSIDE, 1);
 	}
 	if (P_SKILL(P_SHORT_SWORD) >= P_MASTER && !tech_known(T_UNDERTOW)) {
 	    	learntech(T_UNDERTOW, FROMOUTSIDE, 1);

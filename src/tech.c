@@ -261,6 +261,13 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"restore life levels",
 	"make a wish",
 	"toilet visit",
+	"rock-to-poison",
+	"injection",
+	"super poison",
+	"green missile",
+	"big'n'veiny",
+	"plant terror",
+	"poison pen letter",
 	"jedi jump",
 	"charge saber",
 	"telekinesis",
@@ -632,6 +639,7 @@ static const struct innate_tech
 		       {   21, T_DECONTAMINATE, 1},
 		       {   23, T_RECHARGE, 1},
 		       {   25, T_VANISH, 1},
+		       {   26, T_ROCK_TO_POISON, 1},
 		       {   28, T_POLYFORM, 1},
 		       {   30, T_EGG_BOMB, 1},
 		       {   0, 0, 0} },
@@ -644,11 +652,14 @@ static const struct innate_tech
 			 {  15, T_ON_THE_SAME_TEAM, 1},
 		       {  20, T_RAGE, 1},
 		       {   0, 0, 0} },
+	hus_tech[] = { {  20, T_ROCK_TO_POISON, 1},
+		       {   0, 0, 0} },
 	aci_tech[] = { {   1, T_REINFORCE, 1},
 		       {   3, T_POWER_SURGE, 1},
 		       {   5, T_DRAW_ENERGY, 1},
 		       {   7, T_SIGIL_CONTROL, 1},
 		       {  10, T_SIGIL_TEMPEST, 1},
+		       {  18, T_ROCK_TO_POISON, 1},
 		       {  20, T_SIGIL_DISCHARGE, 1},
 		       {   0, 0, 0} },
 	fla_tech[] = { {   1, T_REINFORCE, 1},
@@ -668,6 +679,7 @@ static const struct innate_tech
 		       {   1, T_SIGIL_CONTROL, 1},
 		       {   1, T_SIGIL_TEMPEST, 1},
 		       {   1, T_SIGIL_DISCHARGE, 1},
+		       {   1, T_ROCK_TO_POISON, 1},
 		       {   3, T_POWER_SURGE, 1},
 		       {   5, T_DRAW_ENERGY, 1},
 		       {   7, T_RECHARGE, 1},
@@ -1027,6 +1039,7 @@ static const struct innate_tech
 			 {   10, T_ZAP_EM, 1},
 			 {   10, T_BLOOD_RITUAL, 1},
 			 {   12, T_RESEARCH, 1},
+		       {   16, T_ROCK_TO_POISON, 1},
 			 {   18, T_TELEKINESIS, 1},
 		       {  20, T_REINFORCE, 1},
 		       {  24, T_POLYFORM, 1},
@@ -1886,6 +1899,7 @@ static const struct innate_tech
 		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
+		       {   5, T_ROCK_TO_POISON, 1},
 		       {   12, T_CREATE_AMMO, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
@@ -2075,6 +2089,22 @@ static const struct innate_tech
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_IRON_SKIN, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   0, 0, 0} },
+
+	ger_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   10, T_ROCK_TO_POISON, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   0, 0, 0} },
+
+	poi_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   20, T_ROCK_TO_POISON, 1},
 		       {   0, 0, 0} },
 
 	def_tech[] = { {   1, T_APPRAISAL, 1}, /* everyone is supposed to get this --Amy */
@@ -3455,6 +3485,34 @@ dotech()
 
 		case T_VENOM_MIXING:
 			pline("An arcane technique that allows you to create venom out of thin air.");
+			break;
+
+		case T_ROCK_TO_POISON:
+			pline("Allows you to target a stack of regular rocks, which may not be an artifact, and attempts to turn them into acid venoms. The standard rules for manipulating a stack apply, so in most cases, attempting to target a stack of more than 25 rocks may fail.");
+			break;
+
+		case T_INJECTION:
+			pline("Targets an adjacent monster and hits it with nerve poison, damaging and paralyzing it as long as it doesn't resist.");
+			break;
+
+		case T_SUPER_POISON:
+			pline("Requires you to wield a stack of venoms, and tries to add some enchantment value to it. This works only if the venom's enchantment is less than +25.");
+			break;
+
+		case T_GREEN_MISSILE:
+			pline("Lasts for a couple of turns, and as long as it's active, throwing venoms will additionally launch poison blasts at the enemy.");
+			break;
+
+		case T_BIG_N_VEINY:
+			pline("Activating this technique means that monsters who hit you in melee are hit with poison for a while.");
+			break;
+
+		case T_PLANT_TERROR:
+			pline("Transforms you into a meshera plant for a couple dozen turns. That's an immobile monster, so be aware that you cannot run away once transformed. In addition, a few tame little poison ivies are summoned who will help you plant new trees in Gotham Forest. You can only hope that Batsy, that old bat, won't come to try and stop you with his batarangs, though.");
+			break;
+
+		case T_POISON_PEN_LETTER:
+			pline("Doesn't last very long at all, but while it does last, you can engrave with venoms. Doing so releases a stinking cloud at your location, which is bigger the more letters you engrave at once.");
 			break;
 
 		case T_CORONATION_CULMINATION:
@@ -9079,6 +9137,162 @@ repairitemchoice:
 		      t_timeout = rnz(50000);
 			break;
 
+		case T_ROCK_TO_POISON:
+
+			if (CannotSelectItemsInPrompts) break;
+rockpoisonchoice:
+			otmp = getobj(allnoncount, "turn into poison");
+			if (!otmp) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to definalize an item.");
+				else goto rockpoisonchoice;
+				pline("A feeling of loss comes over you.");
+				break;
+
+			}
+			if (otmp) {
+				if (otmp->otyp != ROCK) {
+					pline("That's not a rock, and therefore nothing happens.");
+				} else if (otmp->oartifact) {
+					pline("You knew that this wasn't gonna work on an artifact, so why do you try anyway?");
+				} else if (!stack_too_big(otmp)) {
+					otmp->otyp = ACID_VENOM;
+					otmp->oclass = VENOM_CLASS;
+					pline("Success! You've concocted some venom.");
+				} else pline("The stack was too big, and therefore nothing happens.");
+
+			}
+		      t_timeout = rnz(25000);
+
+			break;
+
+		case T_INJECTION:
+
+			if (u.uswallow) {
+		    		pline("Not enough room. Get out of the swallowing monster first.");
+		    		return(0);
+			}
+
+		    	if (!getdir((char *)0)) return(0);
+			if (!u.dx && !u.dy) {
+				/* Hopefully a mistake ;B */
+				pline("Nah, you're not gonna do that, it'd be too painful.");
+				return(0);
+			}
+			if (!isok(u.ux + u.dx, u.uy + u.dy)) {
+				pline("Invalid target location.");
+				return 0;
+			}
+			mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
+			if (!mtmp) {
+				pline("There was no monster at that location, and therefore your poisoned injection goes to waste!");
+			      t_timeout = rnz(2500);
+				break;
+			}
+
+			You("inject the poison into %s's %s...", mon_nam(mtmp), mbodypart(mtmp, BLOOD));
+			{
+				int injectiondmg = rn1(10, 6);
+				injectiondmg += techlevX(tech_no);
+				if (!resist(mtmp, VENOM_CLASS, 0, NOTELL)) {
+					pline("%s's nerves are poisoned!", Monnam(mtmp));
+					if (!dmgtype(mtmp->data, AD_PLYS)) {
+						mtmp->mcanmove = 0;
+						mtmp->mfrozen = rnd(4);
+						mtmp->mstrategy &= ~STRAT_WAITFORU;
+					}
+				}
+				if (!resists_poison(mtmp)) {
+					if (!rn2(500)) {
+						Your("poison was deadly...");
+						injectiondmg = (mtmp->mhp * 10);
+					}
+					if (injectiondmg > 0) {
+						pline("%s is green now!", Monnam(mtmp));
+						(void) resist(mtmp, VENOM_CLASS, injectiondmg, NOTELL);
+					}
+				} else pline("%s resisted the poison.", Monnam(mtmp));
+			}
+
+		      t_timeout = rnz(2500);
+			break;
+
+		case T_SUPER_POISON:
+
+			if (!uwep) {
+				pline("That doesn't work without a weapon!");
+				return 0;
+			}
+			if (uwep && uwep->oclass != VENOM_CLASS) {
+				pline("That only works if your wielded weapon is a venom, and currently it's not!");
+				return 0;
+			}
+
+			if (uwep && stack_too_big(uwep)) {
+				pline("You were trying to enchant too many venoms at once and therefore it failed.");
+			} else if (uwep && uwep->spe < 25) {
+				uwep->spe += rnd(4);
+				pline("The venoms have been enchanted.");
+			} else {
+				pline("Unfortunately the venoms cannot be enchanted beyond the current enchantment level.");
+			}
+
+		      t_timeout = rnz(10000);
+			break;
+
+		case T_GREEN_MISSILE:
+
+			num = 10 + (techlevX(tech_no) / 3);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("You've readied your special wood that you can make into poisoned missiles. Launch them by throwing venoms.");
+
+		      t_timeout = rnz(5000);
+			break;
+
+		case T_BIG_N_VEINY:
+
+			num = 100 + (techlevX(tech_no));
+		    	techt_inuse(tech_no) = num + 1;
+			pline("Now your body is particularly poisonous!");
+
+		      t_timeout = rnz(8000);
+			break;
+
+		case T_PLANT_TERROR:
+
+			u.wormpolymorph = PM_ORIGINAL_MESHERA_PLANT;
+			polyself(FALSE);
+			if (u.mtimedone && (u.umonnum == PM_ORIGINAL_MESHERA_PLANT) ) {
+				u.mtimedone = 100 + (techlevX(tech_no));
+				pline("The Human World does not care about the Plant World. So you'll teach them.");
+
+				mtmp = makemon(&mons[PM_LITTLE_POISON_IVY], u.ux, u.uy, MM_ADJACENTOK);
+				if (mtmp) (void) tamedog(mtmp, (struct obj *) 0, TRUE);
+				mtmp = makemon(&mons[PM_LITTLE_POISON_IVY], u.ux, u.uy, MM_ADJACENTOK);
+				if (mtmp) (void) tamedog(mtmp, (struct obj *) 0, TRUE);
+				if (!rn2(2)) {
+					mtmp = makemon(&mons[PM_LITTLE_POISON_IVY], u.ux, u.uy, MM_ADJACENTOK);
+					if (mtmp) (void) tamedog(mtmp, (struct obj *) 0, TRUE);
+					if (!rn2(2)) {
+						mtmp = makemon(&mons[PM_LITTLE_POISON_IVY], u.ux, u.uy, MM_ADJACENTOK);
+						if (mtmp) (void) tamedog(mtmp, (struct obj *) 0, TRUE);
+					}
+				}
+
+			} else pline("Somehow, you failed to transform into a plant. Maybe you can't polymorph?");
+
+		      t_timeout = rnz(20000);
+			break;
+
+		case T_POISON_PEN_LETTER:
+
+			num = 20 + (techlevX(tech_no) / 2);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("You're planning to write poison pen letters.");
+
+		      t_timeout = rnz(8000);
+			break;
+
 		case T_CORONATION_CULMINATION:
 			nivellate();
 			goodeffect();
@@ -10347,6 +10561,15 @@ tech_timeout()
 		    case T_ESCROBISM:
 			pline("Escrobism is no longer active.");
 			break;
+		    case T_GREEN_MISSILE:
+			pline("You ran out of wood for your poisonous missiles.");
+			break;
+		    case T_BIG_N_VEINY:
+			pline("Your body is no longer poisonous.");
+			break;
+		    case T_POISON_PEN_LETTER:
+			pline("You're done writing your poison pen letters, gotta conserve the ink after all.");
+			break;
 		    case T_AFTERBURNER:
 			pline("Your afterburner is depleted.");
 			break;
@@ -10555,6 +10778,7 @@ role_tech()
 		case PM_BARD:	return (brd_tech);
 		case PM_FLAME_MAGE:	return (fla_tech);
 		case PM_ACID_MAGE:	return (aci_tech);
+		case PM_HUSSY:	return (hus_tech);
 		case PM_TRANSVESTITE:	return (tra_tech);
 		case PM_PROSTITUTE:	return (kur_tech);
 		case PM_KURWA:	return (kur_tech);
@@ -10691,6 +10915,8 @@ race_tech()
 		case PM_LICH_WARRIOR:		return (lic_tech);
 		case PM_ALBAE:		return (alb_tech);
 		case PM_BABYLONIAN:		return (bab_tech);
+		case PM_GERTEUT:		return (ger_tech);
+		case PM_POISONER:		return (poi_tech);
 		case PM_VORTEX:		return (vor_tech);
 		case PM_CORTEX:		return (cor_tech);
 		case PM_GNOME:		return (gno_tech);

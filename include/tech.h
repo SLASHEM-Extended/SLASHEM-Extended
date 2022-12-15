@@ -292,10 +292,19 @@ struct blitz_tab {
 
 #define T_TOILET_VISIT	216
 
-#define T_JEDI_JUMP	217
-#define T_CHARGE_SABER	218
-#define T_TELEKINESIS	219
+#define T_ROCK_TO_POISON	217
+
+#define T_INJECTION	218
+#define T_SUPER_POISON	219
+#define T_GREEN_MISSILE	220
+#define T_BIG_N_VEINY	221
+#define T_PLANT_TERROR	222
+#define T_POISON_PEN_LETTER	223
+
+#define T_JEDI_JUMP	224
+#define T_CHARGE_SABER	225
+#define T_TELEKINESIS	226
  
-#define MAXTECH 220
+#define MAXTECH 227
 
 #endif /* TECH_H */

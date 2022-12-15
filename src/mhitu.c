@@ -20560,6 +20560,23 @@ register struct attack *mattk;
 
 	}
 
+	if (tech_inuse(T_BIG_N_VEINY) && !resists_poison(mtmp)) {
+		pline("%s is poisoned!", Monnam(mtmp));
+		if((mtmp->mhp -= rnd(5) ) <= 0) {
+			pline("%s dies!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+		if (!rn2(100)) {
+			mtmp->mhp = 0;
+			pline("The poison was deadly...");
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+	}
+
 	if (uarmf && uarmf->oartifact == ART_RHEA_S_COMBAT_PUMPS && !resists_poison(mtmp)) {
 		pline("%s is poisoned by your black leather pumps!", Monnam(mtmp));
 		if((mtmp->mhp -= rnd(10) ) <= 0) {

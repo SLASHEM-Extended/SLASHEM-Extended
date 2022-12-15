@@ -331,6 +331,10 @@ boolean forcecontrol;
 	boolean isvamp = (is_vampire(youmonst.data) && !Race_if(PM_VAMGOYLE) && issoviet );
 	boolean was_floating = (Levitation || Flying);
 
+	if (Unchanging) {
+		if (!wizard || !forcecontrol) return;
+	}
+
 	if (Race_if(PM_PLAYER_SLIME)) { /* cannot polymorph at all - punishment for being slimed --Amy */
 		newman();
 		return;

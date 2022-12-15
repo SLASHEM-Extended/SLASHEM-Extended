@@ -724,6 +724,12 @@ newbossO:
 
 	}
 
+	if (tech_inuse(T_GREEN_MISSILE) && obj && obj->oclass == VENOM_CLASS) {
+		int melteestrength = 1;
+		if (techlevX(get_tech_no(T_GREEN_MISSILE)) > 9) melteestrength += (techlevX(get_tech_no(T_GREEN_MISSILE)) / 10);
+		buzz(16, melteestrength, u.ux, u.uy, u.dx, u.dy);
+	}
+
 	if ((tech_inuse(T_BEAMSWORD) || (obj && obj->oartifact == ART_LINK_S_MASTER_SWORD)) && is_lightsaber(obj) && obj->lamplit ) {
 		if (obj && obj->oartifact == ART_LINK_S_MASTER_SWORD) u.linkmasterswordhack = 1;
 		struct obj *pseudo;
