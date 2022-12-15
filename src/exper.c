@@ -1576,7 +1576,7 @@ climdone:
 
 		u.urmaxlvlL++;
 
-		if (!rn2(3)) { switch (rnd(52)) {
+		if (!rn2(3)) { switch (rnd(53)) {
 
 			case 1: 
 			case 2: 
@@ -1658,6 +1658,12 @@ climdone:
 			    HManaleech |= FROMOUTSIDE; pline("Got manaleech!"); break;
 			case 50: 
 			    HPeacevision |= FROMOUTSIDE; pline("Got peacevision!"); break;
+			case 51: 
+			    HDefusing |= FROMOUTSIDE; pline("Got defusing power!"); break;
+			case 52: 
+			    HWinceState |= FROMOUTSIDE; pline("You start wincing!"); break;
+			case 53: 
+			    HPainSense |= FROMOUTSIDE; pline("Got pain sense!"); break;
 
 			default:
 				break;
@@ -1685,7 +1691,7 @@ climdone:
 
 		u.urmaxlvlF++;
 
-		if (!rn2(4)) { switch (rnd(52)) {
+		if (!rn2(4)) { switch (rnd(53)) {
 
 			case 1: 
 			case 2: 
@@ -1767,6 +1773,12 @@ climdone:
 			    HManaleech |= FROMOUTSIDE; pline("Got manaleech!"); break;
 			case 50: 
 			    HPeacevision |= FROMOUTSIDE; pline("Got peacevision!"); break;
+			case 51: 
+			    HDefusing |= FROMOUTSIDE; pline("Got defusing power!"); break;
+			case 52: 
+			    HWinceState |= FROMOUTSIDE; pline("You start wincing!"); break;
+			case 53: 
+			    HPainSense |= FROMOUTSIDE; pline("Got pain sense!"); break;
 
 			default:
 				break;

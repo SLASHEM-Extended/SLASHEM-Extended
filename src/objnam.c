@@ -366,6 +366,8 @@ int prop;
 			return "full nutrients";
 		case TECHNICALITY:
 			return "technicality";
+		case DEFUSING:
+			return "defusing";
 		case RNGE_MULTISHOT:
 			return "multishot";
 		case RNGE_SKILL_REVEAL:
@@ -10378,7 +10380,7 @@ typfnd:
 #ifdef WIZARD
 	else if (wizard) /* no alteration to spe */ ;
 #endif
-	else if (oclass == ARMOR_CLASS || oclass == WEAPON_CLASS || oclass == BALL_CLASS || oclass == CHAIN_CLASS ||
+	else if (oclass == ARMOR_CLASS || oclass == WEAPON_CLASS || oclass == BALL_CLASS || oclass == CHAIN_CLASS || oclass == VENOM_CLASS ||
 		 is_weptool(otmp) ||
 			(oclass==RING_CLASS && objects[typ].oc_charged)) {
 		if(spe > rnd(5) && spe > otmp->spe) spe = 0;

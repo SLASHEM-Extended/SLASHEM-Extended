@@ -8956,7 +8956,7 @@ repairitemchoice:
 					case P_LIGHTSABER:
 						hiddenpowertype = SCR_SECURE_CURSE_REMOVAL; break;
 					case P_ATTACK_SPELL:
-						hiddenpowertype = WAN_VENOM_SCATTERING; break;
+						hiddenpowertype = SCR_SKILL_GROWTH; break;
 					case P_HEALING_SPELL:
 						hiddenpowertype = POT_FULL_HEALING; break;
 					case P_DIVINATION_SPELL:
@@ -9039,6 +9039,8 @@ repairitemchoice:
 						hiddenpowertype = POT_TECH_LEVEL_UP; break;
 					case P_RIDING:
 						hiddenpowertype = WAN_FULL_HEALING; break;
+					case P_VENOM:
+						hiddenpowertype = WAN_VENOM_SCATTERING; break;
 				}
 
 				pline("A hidden item is created!");

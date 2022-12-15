@@ -18370,7 +18370,7 @@ boolean knoweverything;
 			case TAIL_SPIKES: 
 				pline("A barrage of spikes that can be used to damage enemies."); break;
 			case FAERIE_FLOSS_RHING: 
-				pline("If you get hit with this, you'll lose an experience level. Monsters will probably be unphased though."); break;
+				pline("If you get hit with this, you'll lose an experience level. Monsters who don't resist drain life may lose maximum health if you hit them with it."); break;
 			case ACID_VENOM: 
 				pline("Hitting a monster with this thing may deal some acid damage to it."); break;
 			case SEGFAULT_VENOM: 

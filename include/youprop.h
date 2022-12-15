@@ -1727,4 +1727,14 @@
 #define WinceState		(IntWinceState || ExtWinceState )
 #define StrongWinceState		(IntWinceState && ExtWinceState && WinceState)
 
+#define HDefusing		u.uprops[DEFUSING].intrinsic
+#define EDefusing		u.uprops[DEFUSING].extrinsic
+#define IntDefusing	(HDefusing)
+#define ExtDefusing	(EDefusing || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == DEFUSING) ) )
+
+#define Defusing		(((IntDefusing && u.nonintrinsicproperty != DEFUSING) || (ExtDefusing && u.nonextrinsicproperty != DEFUSING)) && !NoDefusing)
+#define StrongDefusing	(IntDefusing && ExtDefusing && Defusing && u.nondoubleproperty != DEFUSING)
+
+#define NoDefusing	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_DEFUSING].intrinsic || RngeAids || (u.impossibleproperty == DEFUSING) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+
 #endif /* YOUPROP_H */

@@ -5234,7 +5234,7 @@ repairitemchoice:
 			} /* n > 0 menu check */
 
 noservices:
-	    if (uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == CHAIN_CLASS || is_weptool(uwep))
+	    if (uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == CHAIN_CLASS || uwep->oclass == VENOM_CLASS || is_weptool(uwep))
 		|| (u.twoweap && uswapwep && (uswapwep->oclass == WEAPON_CLASS
 		|| is_weptool(uswapwep))))
 		verbl_msg = "Put that weapon away before you hurt someone!";

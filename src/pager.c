@@ -28252,6 +28252,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"At last that nastiness shield has been deactivated, now the girls and women will be much easier for you to battle.",
 	"You kick the tree, causing it to crumble.",
 	"You kick the tree, causing it to crumble. Holy shit, your boots must be a tank, otherwise that wouldn't have worked.",
+	"Oof - your very soul has been drained!",
+	"Oof - your very soul has been drained! This message means that your alla was reduced, by the way, and if it reaches zero you'll get a game over.",
 
 };
 

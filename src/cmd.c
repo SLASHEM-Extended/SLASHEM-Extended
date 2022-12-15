@@ -6890,6 +6890,12 @@ boolean guaranteed;
 		you_are(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && NoDefusing && (final || u.uprops[DEAC_DEFUSING].intrinsic) ) {
+		sprintf(buf, "prevented from having the defusing ability");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", u.uprops[DEAC_DEFUSING].intrinsic);
+		you_are(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && NoScentView && (final || u.uprops[DEAC_SCENT_VIEW].intrinsic) ) {
 		sprintf(buf, "prevented from having scent view");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", u.uprops[DEAC_SCENT_VIEW].intrinsic);
@@ -7422,6 +7428,7 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && Discount_action) you_have(StrongDiscount_action ? "high discount action" : "discount action");
 	if ((guaranteed || !rn2(10)) && Full_nutrient) you_have(StrongFull_nutrient ? "very full nutrients" : "full nutrients");
 	if ((guaranteed || !rn2(10)) && Technicality) you_have(StrongTechnicality ? "greatly improved technique levels" : "improved technique levels");
+	if ((guaranteed || !rn2(10)) && Defusing) you_have(StrongDefusing ? "very good abilities to disarm traps" : "the ability to disarm traps");
 	if ((guaranteed || !rn2(10)) && (ScentView || EcholocationActive)) you_have(StrongScentView ? "scent view and echolocation" : (ScentView && EcholocationActive) ? "scent view and echolocation" : EcholocationActive ? "echolocation" : "scent view");
 	if ((guaranteed || !rn2(10)) && DiminishedBleeding) you_have(StrongDiminishedBleeding ? "greatly diminished bleeding" : "diminished bleeding");
 	if ((guaranteed || !rn2(10)) && ControlMagic) you_have(StrongControlMagic ? "strong magic control" : "magic control");
@@ -11432,6 +11439,12 @@ int final;
 		dump(youwere, buf);
 	}
 
+	if (NoDefusing) {
+		sprintf(buf, "prevented from having the defusing ability");
+	    	sprintf(eos(buf), " (%ld)", u.uprops[DEAC_DEFUSING].intrinsic);
+		dump(youwere, buf);
+	}
+
 	if (NoScentView) {
 		sprintf(buf, "prevented from having scent view");
 		sprintf(eos(buf), " (%ld)", u.uprops[DEAC_SCENT_VIEW].intrinsic);
@@ -11928,6 +11941,7 @@ int final;
 	if (Discount_action) dump(youhad, StrongDiscount_action ? "high discount action" : "discount action");
 	if (Full_nutrient) dump(youhad, StrongFull_nutrient ? "very full nutrients" : "full nutrients");
 	if (Technicality) dump(youhad, StrongTechnicality ? "greatly improved technique levels" : "improved technique levels");
+	if (Defusing) you_have(StrongDefusing ? "very good abilities to disarm traps" : "the ability to disarm traps");
 	if (ScentView || EcholocationActive) dump(youhad, StrongScentView ? "scent view and echolocation" : (ScentView && EcholocationActive) ? "scent view and echolocation" : EcholocationActive ? "echolocation" : "scent view");
 	if (DiminishedBleeding) dump(youhad, StrongDiminishedBleeding ? "greatly diminished bleeding" : "diminished bleeding");
 	if (ControlMagic) dump(youhad, StrongControlMagic ? "strong magic control" : "magic control");

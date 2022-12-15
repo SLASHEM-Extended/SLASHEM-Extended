@@ -882,7 +882,7 @@ bad_artifact()
 
 		u.cnd_badarticount++;
 
-		if (otmp->oclass == WEAPON_CLASS || otmp->oclass == GEM_CLASS || otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS || is_weptool(otmp)) {
+		if (otmp->oclass == WEAPON_CLASS || otmp->oclass == GEM_CLASS || otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS || otmp->oclass == VENOM_CLASS || is_weptool(otmp)) {
 			if (uwep) setnotworn(uwep);
 			if (bimanual(otmp)) {
 				if (uswapwep) uswapwepgone();
@@ -1072,7 +1072,7 @@ bad_artifact_xtra()
 
 		u.cnd_badarticount++;
 
-		if (otmp->oclass == WEAPON_CLASS || otmp->oclass == GEM_CLASS || otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS || is_weptool(otmp)) {
+		if (otmp->oclass == WEAPON_CLASS || otmp->oclass == GEM_CLASS || otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS || otmp->oclass == VENOM_CLASS || is_weptool(otmp)) {
 			if (uwep) setnotworn(uwep);
 			if (bimanual(otmp)) {
 				if (uswapwep) uswapwepgone();
@@ -4051,7 +4051,7 @@ greenchoice:
 					greenitem = turnintofakeartifact(greenitem);
 					if (greenitem && greenitem->fakeartifact) {
 						useupall(obj);
-						if (greenitem->oclass == WEAPON_CLASS || greenitem->oclass == ARMOR_CLASS || greenitem->oclass == BALL_CLASS || greenitem->oclass == GEM_CLASS || greenitem->oclass == CHAIN_CLASS || is_weptool(greenitem)) {
+						if (greenitem->oclass == WEAPON_CLASS || greenitem->oclass == ARMOR_CLASS || greenitem->oclass == BALL_CLASS || greenitem->oclass == GEM_CLASS || greenitem->oclass == CHAIN_CLASS || greenitem->oclass == VENOM_CLASS || is_weptool(greenitem)) {
 							greenitem->spe = rne(2);
 							if (!rn2(2)) greenitem->spe += rne(2);
 						}
@@ -5635,7 +5635,7 @@ retrytrinsic:
 				break;
 
 		}
-	} else switch (rnd(46)) { /* ones that require eating jewelry or other weird actions */
+	} else switch (rnd(49)) { /* ones that require eating jewelry or other weird actions */
 
 			case 1:
 				if (intloss) {
@@ -6644,6 +6644,26 @@ retrytrinsic:
 					if(!(HWinceState & FROMOUTSIDE)) {
 						You_feel("wimpy!");
 						HWinceState |= FROMOUTSIDE;
+						hasmadeachange = 1;
+					}
+				}
+				break;
+			case 49:
+				if (intloss) {
+					if (HDefusing & INTRINSIC) {
+						HDefusing &= ~INTRINSIC;
+						You_feel("unable to defuse traps!");
+						hasmadeachange = 1;
+					}
+					if (HDefusing & TIMEOUT) {
+						HDefusing &= ~TIMEOUT;
+						You_feel("unable to defuse traps!");
+						hasmadeachange = 1;
+					}
+				} else {
+					if(!(HDefusing & FROMOUTSIDE)) {
+						You_feel("knowledgable about the art of defusing traps!");
+						HDefusing |= FROMOUTSIDE;
 						hasmadeachange = 1;
 					}
 				}

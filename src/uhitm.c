@@ -690,7 +690,7 @@ register struct monst *mtmp;
 	if (u.twoweap && uwep && uswapwep && uswapwep->oartifact == ART_TEH_HUNK && (is_launcher(uwep) && !(uwep->otyp == LASERXBOW && uwep->lamplit))) tmp += 5;
 	if (u.twoweap && uwep && uswapwep && uswapwep->oartifact == ART_TEH_HUNK && (is_missile(uwep) || is_ammo(uwep))) tmp += 5;
 	if (u.twoweap && uwep && uswapwep && uswapwep->oartifact == ART_TEH_HUNK && (!u.usteed && !(tech_inuse(T_POLE_MELEE)) && is_pole(uwep))) tmp += 5;
-	if (u.twoweap && uwep && uswapwep && uswapwep->oartifact == ART_TEH_HUNK && (uwep->oclass != WEAPON_CLASS && !is_weptool(uwep) && uwep->oclass != GEM_CLASS && uwep->oclass != BALL_CLASS && uwep->oclass != CHAIN_CLASS)) tmp += 5;
+	if (u.twoweap && uwep && uswapwep && uswapwep->oartifact == ART_TEH_HUNK && (uwep->oclass != WEAPON_CLASS && !is_weptool(uwep) && uwep->oclass != GEM_CLASS && uwep->oclass != BALL_CLASS && uwep->oclass != CHAIN_CLASS && uwep->oclass != VENOM_CLASS)) tmp += 5;
 
 	if (!PlayerCannotUseSkills && ((uarm && uarm->oartifact == ART_HUNKSTERMAN) || Role_if(PM_HEDDERJEDI)) && uwep && (is_launcher(uwep) && !(uwep->otyp == LASERXBOW && uwep->lamplit))) {
 		if (u.hunkskill >= 20) tmp++;
@@ -719,7 +719,7 @@ register struct monst *mtmp;
 		if (u.hunkskill >= 4320) tmp++;
 	}
 
-	if (!PlayerCannotUseSkills && ((uarm && uarm->oartifact == ART_HUNKSTERMAN) || Role_if(PM_HEDDERJEDI)) && uwep && (uwep->oclass != WEAPON_CLASS && !is_weptool(uwep) && uwep->oclass != GEM_CLASS && uwep->oclass != BALL_CLASS && uwep->oclass != CHAIN_CLASS)) {
+	if (!PlayerCannotUseSkills && ((uarm && uarm->oartifact == ART_HUNKSTERMAN) || Role_if(PM_HEDDERJEDI)) && uwep && (uwep->oclass != WEAPON_CLASS && !is_weptool(uwep) && uwep->oclass != GEM_CLASS && uwep->oclass != BALL_CLASS && uwep->oclass != CHAIN_CLASS && uwep->oclass != VENOM_CLASS)) {
 		if (u.hunkskill >= 20) tmp++;
 		if (u.hunkskill >= 160) tmp++;
 		if (u.hunkskill >= 540) tmp++;
@@ -1210,7 +1210,7 @@ int dieroll;
 	    notonhead = (mon->mx != x || mon->my != y);
 	    if (*mhit & HIT_UWEP) {
 		/* KMH, conduct */
-		if (uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == CHAIN_CLASS || is_weptool(uwep)))
+		if (uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == CHAIN_CLASS || uwep->oclass == VENOM_CLASS || is_weptool(uwep)))
 		    u.uconduct.weaphit++;
 		dieroll = dice(UWEP_ROLL);
 		malive = hmon(mon, uwep, 0, dieroll);
@@ -1262,7 +1262,7 @@ int dieroll;
 		    *mhit = 0;
 		    /* a miss does not break conduct */
 		    if (uwep &&
-			(uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == CHAIN_CLASS || is_weptool(uwep)))
+			(uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == CHAIN_CLASS || uwep->oclass == VENOM_CLASS || is_weptool(uwep)))
 			--u.uconduct.weaphit;
 		}
 		if (mon->wormno && *mhit) {
@@ -1849,7 +1849,7 @@ int dieroll;
 
 	    strcpy(saved_oname, cxname(obj));
 	    if(obj->oclass == WEAPON_CLASS || is_weptool(obj) ||
-	       obj->oclass == GEM_CLASS || obj->oclass == BALL_CLASS || obj->oclass == CHAIN_CLASS) {
+	       obj->oclass == GEM_CLASS || obj->oclass == BALL_CLASS || obj->oclass == CHAIN_CLASS || obj->oclass == VENOM_CLASS) {
 
 		/* is it not a melee weapon? */
 		/* KMH, balance patch -- new macros */
@@ -2660,7 +2660,8 @@ int dieroll;
 				    tmp++;
 				}
 			    }
-			}
+
+			} /* ranged attack check */
 		    }
 		    /* MRKR: Hitting with a lit torch does extra */
 		    /*       fire damage, but uses up the torch  */
@@ -2678,6 +2679,53 @@ int dieroll;
 		      /* & equipment is delayed to below, after */
 		      /* the hit messages are printed. */
 		    }
+
+			if (obj && obj->otyp == BLINDING_VENOM) {
+
+				if (can_blnd(&youmonst, mon, AT_SPIT, obj)) {
+				    int blindnessdur = rn1(25, 21);
+				    if (Blind) {
+					pline("Splash!");
+				    } else {
+					pline_The("venom blinds %s%s!", mon_nam(mon), mon->mcansee ? "" : " further");
+				    }
+				    setmangry(mon);
+				    mon->mcansee = 0;
+				    if(((int) mon->mblinded + blindnessdur) > 127)
+					mon->mblinded = 127;
+				    else mon->mblinded += blindnessdur;
+				} else {
+				    pline("Splash!");
+				    setmangry(mon);
+				}
+	
+			}
+
+			if (obj && (obj->otyp == SEGFAULT_VENOM || obj->otyp == FAERIE_FLOSS_RHING || obj->otyp == TAIL_SPIKES) ) {
+				if (obj->otyp == FAERIE_FLOSS_RHING && !resists_drain(mon) ) {
+					if (mon->mhpmax > 1) {
+						mon->mhpmax--;
+						if (mon->mhp > mon->mhpmax) mon->mhpmax--;
+						pline("%s was hit by the faerie floss rhing and is now small.");
+					}
+				}
+			}
+
+			if (obj && obj->otyp == ACID_VENOM) {
+				if (resists_acid(mon)) {
+					Your("venom hits %s harmlessly.", mon_nam(mon));
+					tmp = 0;
+				} else {
+					Your("venom burns %s!", mon_nam(mon));
+				}
+
+			}
+
+		    if (obj && obj->oclass == VENOM_CLASS) {
+			if (!thrown) useup(obj);
+			/* if (thrown) obfree(obj, (struct obj *)0); */
+		    }
+
 		}
 	    } else if(obj->oclass == POTION_CLASS) {
 		if (!u.twoweap || obj == uwep) {

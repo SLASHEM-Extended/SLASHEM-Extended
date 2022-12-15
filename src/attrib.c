@@ -29,10 +29,12 @@ const struct innate {
 	boolean goodone;
 }	arc_abil[] = { {	 1, &(HStealth), "", "", TRUE },
 		     {   1, &(HFast), "", "", TRUE },
+		     {   4, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 		     {  10, &(HSearching), "perceptive", "unaware", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
 	ana_abil[] = { {	 1, &(HFull_nutrient), "", "", TRUE },
+		     {   1, &(HDefusing), "", "", TRUE },
 		     {   7, &(HFast), "quick", "slow", TRUE },  
 		     {	15, &(HWarning), "precognitive", "noncognitive", TRUE },  
 		     {	15, &(HCont_resist), "protected from contamination", "vulnerable to contamination", TRUE },  
@@ -76,6 +78,7 @@ const struct innate {
 		     {  10, &(HFire_resistance), "cool", "warmer", TRUE },
 		     {   14, &(HSleep_resistance), "awake", "tired", TRUE },
 		     {  15, &(HTeleport_control), "controlled", "helpless", TRUE },
+		     {  16, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 		     {  18, &(HFull_nutrient), "your metabolism slowing down", "your metabolism speeding up", TRUE },
 		     {   19, &(HUseTheForce), "like a jedi", "a loss of your jedi powers", TRUE },
 		     {  20, &(HShock_resistance), "insulated", "conductive", TRUE },
@@ -90,6 +93,7 @@ const struct innate {
 	pic_abil[] = { {	 1, &(HStealth), "", "", TRUE },
 		     {   6, &(HFast), "quick", "slow", TRUE },
 		     {  8, &(HSearching), "perceptive", "unaware", TRUE },
+		     {  16, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
 	sto_abil[] = { {	 1, &(HShock_resistance), "", "", TRUE },
@@ -106,7 +110,8 @@ const struct innate {
 		     {	28, &(HWarning), "precognitive", "noncognitive", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
-	cra_abil[] = { {	 7, &(HFast), "quick", "slow", TRUE },
+	cra_abil[] = { {   1, &(HDefusing), "", "", TRUE },
+		     {   7, &(HFast), "quick", "slow", TRUE },
 		     {  12, &(HStealth), "stealthy", "noisy", TRUE },
 		     {  14, &(HTeleport_control), "controlled", "helpless", TRUE },
 		     {  20, &(HSearching), "perceptive", "unaware", TRUE },
@@ -127,14 +132,35 @@ const struct innate {
 	dan_abil[] = { {	1, &(HStealth), "", "", TRUE },
                  {  3, &(HFast), "fleet of foot", "lead-footed", TRUE },
                  {  10, &(HSearching), "perceptive", "distractable", TRUE },
+		     {  16, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 		     {  20, &(HTechnicality), "technically knowledgable", "your techniques becoming weaker", TRUE },
 			{	 25, &(HStun_resist), "steady", "less steady", TRUE },
                  {	0, 0, 0, 0 } },
 
-	but_abil[] = { {	20, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
+	but_abil[] = { {  15, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
+			 {	20, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
                  {	0, 0, 0, 0 } },
 
-	sec_abil[] = { {	10, &(HMagical_breathing), "aquatic", "hydrophobic", TRUE },
+	cam_abil[] = { {   1, &(HDefusing), "", "", TRUE },
+                 {	0, 0, 0, 0 } },
+
+	wal_abil[] = { {   1, &(HDefusing), "", "", TRUE },
+                 {	0, 0, 0, 0 } },
+
+	spa_abil[] = { {   1, &(HDefusing), "", "", TRUE },
+                 {	0, 0, 0, 0 } },
+
+	unb_abil[] = { {   1, &(HDefusing), "", "", TRUE },
+                 {	0, 0, 0, 0 } },
+
+	pre_abil[] = { {   1, &(HDefusing), "", "", TRUE },
+                 {	0, 0, 0, 0 } },
+
+	sco_abil[] = { {   1, &(HDefusing), "", "", TRUE },
+                 {	0, 0, 0, 0 } },
+
+	sec_abil[] = { {   5, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
+		     {  10, &(HMagical_breathing), "aquatic", "hydrophobic", TRUE },
 		     {  15, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
 		     {  18, &(HPsi_resist), "psionic", "less psionic", TRUE },
 		     {  20, &(HDiscount_action), "resistant to paralysis", "less resistant to paralysis", TRUE },
@@ -171,11 +197,13 @@ const struct innate {
 		     {	 0, 0, 0, 0, 0 } },
 
 	ass_abil[] = { {	 1, &(HStealth), "", "", TRUE },
+		     {   1, &(HDefusing), "", "", TRUE },
 		     {   10, &(HFast), "quick", "slow", TRUE },
 		     {	15, &(HWarning), "sensitive", "careless", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
 	ama_abil[] = { {	 1, &(HStealth), "", "", TRUE },
+		     {   5, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 		     {   7, &(HFast), "quick", "slow", TRUE },
 		     {  10, &(HSwimming), "ready to swim","afraid of the water", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
@@ -186,6 +214,7 @@ const struct innate {
 			{   15, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
 		     {  16, &(HFull_nutrient), "your metabolism slowing down", "your metabolism speeding up", TRUE },
 		     {   24, &(HInvis), "hidden", "more visible", TRUE },
+		     {   25, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
 	sup_abil[] = { {	 1, &(HTeleportation), "", "", FALSE },
@@ -219,21 +248,25 @@ const struct innate {
 		     {	 0, 0, 0, 0, 0 } },
 
 	gam_abil[] = { {	3, &(HSleep_resistance), "awake", "tired", TRUE },
+		     {   10, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 		     {	 13, &(HSlow_digestion), "a certain satiation", "the need to eat more", TRUE },
 			{   23, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
 	cav_abil[] = { {	 7, &(HFast), "quick", "slow", TRUE },
 		     {  10, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
+		     {  12, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 		     {	15, &(HWarning), "sensitive", "careless", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
-	jan_abil[] = { {  10, &(HSearching), "perceptive", "unaware", TRUE },
+	jan_abil[] = { {   1, &(HDefusing), "", "", TRUE },
+		     {  10, &(HSearching), "perceptive", "unaware", TRUE },
 		     {	20, &(HPoison_resistance), "healthy", "less healthy", TRUE },
 		     {	25, &(HFear_resistance), "unafraid", "afraid", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
 	con_abil[] = { {   1, &(HSick_resistance), "", "", TRUE },
+		     {   1, &(HDefusing), "", "", TRUE },
 	         {	 7, &(HPoison_resistance), "healthy", "less healthy", TRUE },
 		     {  20, &(HSearching), "perceptive", "unaware", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
@@ -281,6 +314,7 @@ const struct innate {
 		     {	 0, 0, 0, 0, 0 } },
 
 	sta_abil[] = { {   1, &(HTechnicality), "", "", TRUE },
+		     {   5, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
 	trs_abil[] = { {   5, &(LevelTrapEffect), "", "", FALSE },
@@ -352,6 +386,7 @@ const struct innate {
 		     {   0, 0, 0, 0, 0 } },
 
 	erd_abil[] = { {   1, &(HFree_action), "", "", TRUE },
+		     {  10, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	cel_abil[] = { {   1, &(BlueSpells), "", "", FALSE },
@@ -429,6 +464,7 @@ const struct innate {
 		       {	1, &(HStealth), "", "", TRUE },
 		       {	1, &(HPeacevision), "", "", TRUE },
 		     {	4, &(HWarning), "sensitive", "careless", TRUE },
+		     {   5, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 		     {  6, &(HSearching), "perceptive", "unaware", TRUE },
 			{	7, &(HSleep_resistance), "awake", "tired", TRUE },
 		     {	8, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
@@ -445,6 +481,7 @@ const struct innate {
 	med_abil[] = { {	1, &(HStealth), "", "", TRUE },
 		       {	7, &(HSearching), "perceptive", "unaware", TRUE },
 		     {  10, &(HFull_nutrient), "your metabolism slowing down", "your metabolism speeding up", TRUE },
+		     {  12, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 			{   14, &(HSee_invisible), "your vision sharpen", "your vision blurring", TRUE },
 			{   20, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
 		     {   0, 0, 0, 0, 0 } },
@@ -474,11 +511,11 @@ const struct innate {
 	mar_abil[] = { {   1, &(HFast), "", "", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
-	car_abil[] = { { 1, &(HSearching), "", "" },
-			{ 7, &(HWarning), "sensitive", "insensitive" },
+	car_abil[] = { { 1, &(HSearching), "", "", TRUE },
+			{ 7, &(HWarning), "sensitive", "insensitive", TRUE },
 			{ 0, 0, 0, 0 } },
 
-	drm_abil[] = { { 7, &(HFast), "quick", "slow" },
+	drm_abil[] = { { 7, &(HFast), "quick", "slow", TRUE },
 		     {	20, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 			{ 0, 0, 0, 0 } },
 
@@ -486,24 +523,26 @@ const struct innate {
 		     {  20, &(HPainSense), "empathic", "cold-hearted", TRUE },
 			{ 0, 0, 0, 0 } },
 
-	fjo_abil[] = { { 1, &(HSwimming), "", "" },
-			{ 10, &(HCold_resistance), "warm", "cooler" },
+	fjo_abil[] = { { 1, &(HSwimming), "", "", TRUE },
+			{ 10, &(HCold_resistance), "warm", "cooler", TRUE },
 			{ 0, 0, 0, 0 } },
 
-	akl_abil[] = { { 20, &(HSight_bonus), "your surroundings lighting up", "shrouded in darkness" },
+	akl_abil[] = { { 20, &(HSight_bonus), "your surroundings lighting up", "shrouded in darkness", TRUE },
+		     {	20, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 			{ 0, 0, 0, 0 } },
 
-	mil_abil[] = { { 10, &(HSick_resistance), "immune to diseases", "no longer immune to diseases" },
-		     {	20, &(HPoison_resistance), "healthy", "less healthy" },
+	mil_abil[] = { { 10, &(HSick_resistance), "immune to diseases", "no longer immune to diseases", TRUE },
+		     {	20, &(HPoison_resistance), "healthy", "less healthy", TRUE },
 			{ 0, 0, 0, 0 } },
 
-	sym_abil[] = { { 1, &(HPeacevision), "", "" },
-		     {  15, &(HScentView), "your sense of smell expanding", "less capable of smelling things" },
+	sym_abil[] = { { 1, &(HPeacevision), "", "", TRUE },
+		     {  15, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
 		     {  16, &(HPainSense), "empathic", "cold-hearted", TRUE },
 			{ 0, 0, 0, 0 } },
 
 	stu_abil[] = { {  2, &(HSleep_resistance), "awake", "tired", TRUE },
 		     {   5, &(HFast), "quick", "slow", TRUE },
+		     {   6, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 		     {   14, &(HFree_action), "freed", "a loss of freedom", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
@@ -529,6 +568,7 @@ const struct innate {
 			{   3, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
 		     {	12, &(HWarning), "sensitive", "careless", TRUE },
 		     {	20, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
+		     {   25, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	fir_abil[] = { {   1, &(HFire_resistance), "", "", TRUE },
@@ -537,6 +577,7 @@ const struct innate {
 
 	nin_abil[] = { {   1, &(HStealth), "", "", TRUE },
 		     {   3, &(HInvis), "hidden", "more visible", TRUE },
+		     {  10, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	off_abil[] = { {   1, &(HSearching), "", "", TRUE },
@@ -547,18 +588,21 @@ const struct innate {
 		     {   0, 0, 0, 0, 0 } },
 
 	loc_abil[] = { {   1, &(HSearching), "", "", TRUE },
+		     {   5, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	sha_abil[] = { {   9, &(HPolymorph_control), "your choices improve", "choiceless", TRUE },
 		       {   0, 0, 0, 0, 0 } },
 
 	unt_abil[] = { {   1, &(HPoison_resistance), "", "", TRUE },
+		     {   4, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 		     {   7, &(HCold_resistance), "warm", "cooler", TRUE },
 			{     18, &(HDiminishedBleeding), "your wounds closing faster", "your blood pumping", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	gee_abil[] = { {   1, &(HPoison_resistance), "", "", TRUE },
 		     {   1, &(HShock_resistance), "", "", TRUE },
+		     {   5, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 		     {   8, &(HTeleport_control), "controlled", "helpless", TRUE },
 		     {  15, &(HWarning), "sensitive", "careless", TRUE },
 		     {   0, 0, 0, 0, 0, } },
@@ -566,6 +610,7 @@ const struct innate {
 	gra_abil[] = { {   1, &(HAggravate_monster), "", "", FALSE },
 		     {   1, &(HFast), "", "", TRUE },
 		     {   1, &(HSleep_resistance), "", "", TRUE },
+		     {   10, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	hea_abil[] = { {	 1, &(HPoison_resistance), "", "", TRUE },
@@ -599,7 +644,8 @@ const struct innate {
 		     {	25, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
-	occ_abil[] = { {   10, &(HInfravision), "perceptive", "half blind", TRUE },
+	occ_abil[] = { {  6, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
+			 {   10, &(HInfravision), "perceptive", "half blind", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	emn_abil[] = { {	10, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
@@ -681,6 +727,7 @@ const struct innate {
 		     {   5, &(ETelepat), "aware", "unaware", TRUE },
 		     {   6, &(HPainSense), "empathic", "cold-hearted", TRUE },
 		     {   7, &(HAggravate_monster), "noisy", "quiet", FALSE },
+		     {   8, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 		     {  10, &(HDetect_monsters), "connected","detached", TRUE },
 		     {  15, &(HFlying), "weightless", "grounded", TRUE },
 		     {  20, &(HPasses_walls), "ethereal","mundane", TRUE },
@@ -709,6 +756,7 @@ const struct innate {
 		     {   12, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
 		     {   13, &(HFast), "quick", "slow", TRUE },
 		     {   16, &(HSleep_resistance), "awake", "tired", TRUE },
+		     {   18, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 		     {   19, &(HAcid_resistance), "warded", "endangered", TRUE },
 		     {   22, &(HTelepat), "telepathic", "nontelepathic", TRUE },
 		     {   24, &(HTechnicality), "evolved", "a loss of PP", TRUE },
@@ -759,17 +807,20 @@ const struct innate {
 		     {	 0, 0, 0, 0, 0 } },
 
 	ran_abil[] = { {   1, &(HSearching), "", "", TRUE },
+		     {   1, &(HDefusing), "", "", TRUE },
 		     {	 7, &(HStealth), "stealthy", "noisy", TRUE },
 		     {	15, &(HSee_invisible), "your vision sharpen", "your vision blur", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
 	elp_abil[] = { {   1, &(HSearching), "", "", TRUE },
+		     {   1, &(HDefusing), "", "", TRUE },
 		     {	4, &(HSleep_resistance), "awake", "tired", TRUE },
 		     {	 7, &(HStealth), "stealthy", "noisy", TRUE },
 		     {	15, &(HSee_invisible), "your vision sharpen", "your vision blur", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
 	rog_abil[] = { {	 1, &(HStealth), "", "", TRUE },
+		     {   1, &(HDefusing), "", "", TRUE },
 		     {  10, &(HSearching), "perceptive", "unaware", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
@@ -830,6 +881,7 @@ const struct innate {
 
 	mid_abil[] = { { 1, &(HSearching), "", "", TRUE },
 			{  10, &(HFire_resistance), "cool", "warmer", TRUE },
+		     {   10, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 			{   0, 0, 0, 0, 0 } },
 
 	yeo_abil[] = {
@@ -857,6 +909,7 @@ const struct innate {
 	bos_abil[] = { {	1, &(HPoison_resistance), "", "", TRUE },
 		     {  5, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
 		     {  7, &(HStealth), "stealthy", "noisy", TRUE },
+		     {  12, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 		     {  25, &(HPainSense), "empathic", "cold-hearted", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
@@ -932,6 +985,7 @@ const struct innate {
 			{   0, 0, 0, 0, 0 } },
 
 	kst_abil[] = { { 8, &(HTechnicality), "technically knowledgable", "your techniques becoming weaker", TRUE },
+		     {   12, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 			{	20, &(HDisint_resistance), "stable", "brittle", TRUE },
 			{   0, 0, 0, 0, 0 } },
 
@@ -941,6 +995,9 @@ const struct innate {
 		     {	 0, 0, 0, 0, 0 } },
 
 	gru_abil[] = { { 1, &(HFast), "", "", TRUE },
+			{   0, 0, 0, 0, 0 } },
+
+	bab_abil[] = { { 1, &(HDefusing), "", "", TRUE },
 			{   0, 0, 0, 0, 0 } },
 
 	rus_abil[] = { { 1, &(HCold_resistance), "", "", TRUE },
@@ -981,6 +1038,7 @@ const struct innate {
 		     {	 1, &(HSick_resistance), "", "", TRUE },
 		     {	 1, &(HStone_resistance), "", "", TRUE },
 		     {	 5, &(HShock_resistance), "shock resistant", "less shock resistant", TRUE },
+		     {   8, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 		     {	 10, &(HCold_resistance), "cold resistant", "less cold resistant", TRUE },
 		     {  10, &(HFull_nutrient), "your metabolism slowing down", "your metabolism speeding up", TRUE },
 		     {	 15, &(HFire_resistance), "heat resistant", "less heat resistant", TRUE },
@@ -1186,6 +1244,7 @@ const struct innate {
 		     {  1, &(HDeath_resistance), "", "", TRUE },
 		     {  1, &(HPsi_resist), "", "", TRUE },
 		     {  1, &(HControlMagic), "", "", TRUE },
+		     {   1, &(HDefusing), "", "", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	umb_abil[] = { {  1, &(HConf_resist), "", "", TRUE },
@@ -1256,6 +1315,7 @@ const struct innate {
 
 	swi_abil[] = { {  1, &(HFear_resistance), "", "", TRUE },
 			{     15, &(HPeacevision), "able to recognize peaceful creatures", "unable to tell friend from enemy", TRUE },
+		     {   22, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	coc_abil[] = { {  1, &(HPoison_resistance), "", "", TRUE },
@@ -1299,6 +1359,15 @@ const struct innate {
 			{     10, &(HPsi_resist), "psionic", "less psionic", TRUE },
 			{   15, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
 		     {   0, 0, 0, 0, 0 } },
+
+	cth_abil[] = { {   16, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
+		       {   0, 0, 0, 0, 0 } },
+
+	may_abil[] = { {   12, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
+		       {   0, 0, 0, 0, 0 } },
+
+	clt_abil[] = { {   4, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
+		       {   0, 0, 0, 0, 0 } },
 
 	out_abil[] = { {  1, &(HAcid_resistance), "", "", TRUE },
 		     {  1, &(HScentView), "", "", TRUE },
@@ -1501,6 +1570,7 @@ const struct innate {
 		     {   1, &(HTechnicality), "", "", TRUE },
 		     {   1, &(HScentView), "", "", TRUE },
 		     {   6, &(HPainSense), "empathic", "cold-hearted", TRUE },
+		     {  20, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	tay_abil[] = { {   20, &(HPainSense), "empathic", "cold-hearted", TRUE },
@@ -2275,6 +2345,12 @@ int oldlevel, newlevel;
 	case PM_DIABLIST:    abil = dia_abil;	break;  
 	case PM_DANCER:    abil = dan_abil;	break;  
 	case PM_BUTT_LOVER:    abil = but_abil;	break;  
+	case PM_CAMPERSTRIKER:    abil = cam_abil;	break;  
+	case PM_WALSCHOLAR:    abil = wal_abil;	break;  
+	case PM_UNBELIEVER:    abil = unb_abil;	break;  
+	case PM_SPACEWARS_FIGHTER:    abil = spa_abil;	break;  
+	case PM_PREVERSIONER:    abil = pre_abil;	break;  
+	case PM_GANG_SCHOLAR:    abil = sco_abil;	break;  
 	case PM_SECRET_ADVICE_MEMBER:    abil = sec_abil;	break;  
 	case PM_EMERA:    abil = eme_abil;	break;  
 	case PM_XELNAGA:    abil = xel_abil;	break;  
@@ -2412,9 +2488,13 @@ int oldlevel, newlevel;
 	case PM_CHIQUAI:	rabil = chi_abil;	break;
 	case PM_PERVERT:	rabil = per_abil;	break;
 	case PM_BOVER:	rabil = bov_abil;	break;
+	case PM_CARTHAGE:	rabil = cth_abil;	break;
+	case PM_MAYMES:	rabil = may_abil;	break;
+	case PM_CELTIC:	rabil = clt_abil;	break;
 	case PM_MONGUNG:	rabil = mog_abil;	break;
 	case PM_VIETIS:	rabil = vie_abil;	break;
 	case PM_KORONST:	rabil = kst_abil;	break;
+	case PM_BABYLONIAN:	rabil = bab_abil;	break;
 	case PM_RUSMOT:	rabil = rus_abil;	break;
 	case PM_MACTHEIST:	rabil = mac_abil;	break;
 	case PM_GREURO:	rabil = gru_abil;	break;

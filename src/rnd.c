@@ -1663,7 +1663,7 @@ randenchantment()
 
 	} else {
 
-	switch (rnd(150)) {
+	switch (rnd(152)) {
 
 		case 1:
 		case 2:
@@ -1898,6 +1898,9 @@ randenchantment()
 			return INVERT_STATE;
 		case 150:
 			return WINCE_STATE;
+		case 151:
+		case 152:
+			return DEFUSING;
 
 		default:
 			return POISON_RES;
@@ -2174,7 +2177,7 @@ randnastyenchantment()
 int
 randomdisableproperty()
 {
-	switch (rnd(71)) {
+	switch (rnd(72)) {
 
 		case 1:
 			return FIRE_RES;
@@ -2318,6 +2321,8 @@ randomdisableproperty()
 			return BLIND_RES;
 		case 71:
 			return HALLUC_RES;
+		case 72:
+			return DEFUSING;
 		default:
 			return POISON_RES;
 	}
@@ -3022,7 +3027,7 @@ deacrandomintrinsic(amount)
 register int amount;
 {
 
-	switch (rnd(135)) {
+	switch (rnd(136)) {
 
 		case 1:
 		case 2:
@@ -3375,6 +3380,10 @@ register int amount;
 			u.uprops[DEAC_PAIN_SENSE].intrinsic += amount;
 			pline("You are prevented from having pain sense!");
 			break;
+		case 136:
+			u.uprops[DEAC_DEFUSING].intrinsic += amount;
+			pline("You are prevented from having the defusing power!");
+			break;
 	}
 
 }
@@ -3383,7 +3392,7 @@ int
 goodimplanteffect(obj)
 struct obj *obj;
 {
-	switch (obj->shirtmessage % 57) { /* remember to not randomize them!!! each number has to map to exactly one property --Amy */
+	switch (obj->shirtmessage % 58) { /* remember to not randomize them!!! each number has to map to exactly one property --Amy */
 
 		case 0:
 			return DTBEEM_RES;
@@ -3499,6 +3508,8 @@ struct obj *obj;
 			return BLIND_RES;
 		case 56:
 			return HALLUC_RES;
+		case 57:
+			return DEFUSING;
 		default:
 			return POISON_RES;
 

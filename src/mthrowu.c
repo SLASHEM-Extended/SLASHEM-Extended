@@ -2001,6 +2001,8 @@ register struct attack *mattk;
 			break;
 		}
 		if (!otmp) return 0;
+		otmp->quan = 1;
+		otmp->owt = weight(otmp);
 
 		if(!rn2(BOLT_LIM-distmin(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy))) {
 		    if (canseemon(mtmp))

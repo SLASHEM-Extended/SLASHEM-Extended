@@ -5748,7 +5748,7 @@ sasc_bug(struct obj *op, unsigned x){
 #endif
 
 static NEARDATA const char identify_types[] = { ALL_CLASSES, 0 };
-static NEARDATA const char weapon_types[] = { WEAPON_CLASS, TOOL_CLASS, CHAIN_CLASS, BALL_CLASS, GEM_CLASS, 0 };
+static NEARDATA const char weapon_types[] = { WEAPON_CLASS, TOOL_CLASS, CHAIN_CLASS, VENOM_CLASS, BALL_CLASS, GEM_CLASS, 0 };
 static NEARDATA const char armor_types[] = { ARMOR_CLASS, 0 };
 
 /*

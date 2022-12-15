@@ -59,6 +59,7 @@ static const char allnoncount[] = { ALL_CLASSES, 0 };
 				|| is_weptool(optr) \
 				|| (optr)->oclass == BALL_CLASS \
 				|| (optr)->oclass == GEM_CLASS \
+				|| (optr)->oclass == VENOM_CLASS \
 				|| (optr)->oclass == CHAIN_CLASS)
 
 /* used by welded(), and also while wielding */
@@ -594,7 +595,7 @@ boolean put_away;
 /*** Commands to change particular slot(s) ***/
 
 static NEARDATA const char wield_objs[] =
-	{ ALL_CLASSES, ALLOW_NONE, WEAPON_CLASS, TOOL_CLASS, BALL_CLASS, CHAIN_CLASS, 0 };
+	{ ALL_CLASSES, ALLOW_NONE, WEAPON_CLASS, TOOL_CLASS, BALL_CLASS, CHAIN_CLASS, VENOM_CLASS, 0 };
 static NEARDATA const char ready_objs[] =
 	{ ALL_CLASSES, ALLOW_NONE, WEAPON_CLASS, 0 };
 static NEARDATA const char bullets[] =	/* (note: different from dothrow.c) */
@@ -957,7 +958,7 @@ can_twoweapon()
 	boolean disallowed_by_role;
 	struct obj *otmp;
 
-#define NOT_WEAPON(obj) (obj && !is_weptool(obj) && obj->oclass != WEAPON_CLASS && obj->oclass != BALL_CLASS && obj->oclass != GEM_CLASS && obj->oclass != CHAIN_CLASS)
+#define NOT_WEAPON(obj) (obj && !is_weptool(obj) && obj->oclass != WEAPON_CLASS && obj->oclass != BALL_CLASS && obj->oclass != GEM_CLASS && obj->oclass != CHAIN_CLASS && obj->oclass != VENOM_CLASS)
 	if (!could_twoweap(youmonst.data) && !(uactivesymbiosis && mons[u.usymbiote.mnum].mattk[1].aatyp == AT_WEAP ) && (uwep || uswapwep)) {
 	    what = uwep && uswapwep ? "two weapons" : "more than one weapon";
 	    if (cantwield(youmonst.data) && !Race_if(PM_TRANSFORMER) )
@@ -1404,7 +1405,7 @@ register int amount;
 	const char *xtime;
 	int otyp = STRANGE_OBJECT;
 
-	if(!uwep || (uwep->oclass != WEAPON_CLASS && uwep->oclass != BALL_CLASS && uwep->oclass != GEM_CLASS && uwep->oclass != CHAIN_CLASS && !is_weptool(uwep))) {
+	if(!uwep || (uwep->oclass != WEAPON_CLASS && uwep->oclass != BALL_CLASS && uwep->oclass != GEM_CLASS && uwep->oclass != CHAIN_CLASS && uwep->oclass != VENOM_CLASS && !is_weptool(uwep))) {
 		char buf[BUFSZ];
 
 		sprintf(buf, "Your %s %s.", makeplural(body_part(HAND)),
@@ -1530,7 +1531,7 @@ register int amount;
 	const char *color = hcolor((amount < 0) ? NH_BLACK : NH_BLUE);
 	const char *xtime;
 
-	if(!otmp || (otmp->oclass != WEAPON_CLASS && otmp->oclass != BALL_CLASS && otmp->oclass != GEM_CLASS && otmp->oclass != CHAIN_CLASS && !is_weptool(otmp))) {
+	if(!otmp || (otmp->oclass != WEAPON_CLASS && otmp->oclass != BALL_CLASS && otmp->oclass != GEM_CLASS && otmp->oclass != CHAIN_CLASS && otmp->oclass != VENOM_CLASS && !is_weptool(otmp))) {
 		char buf[BUFSZ];
 
 		sprintf(buf, "Your %s %s.", makeplural(body_part(HAND)),

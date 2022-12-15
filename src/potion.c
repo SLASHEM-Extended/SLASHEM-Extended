@@ -5476,7 +5476,7 @@ enchantweaponchoice:
 					exercise(A_STR, TRUE);
 					break;
 				}
-				if (!(otmp->oclass == WEAPON_CLASS || otmp->oclass == BALL_CLASS || otmp->oclass == GEM_CLASS || otmp->oclass == CHAIN_CLASS || is_weptool(otmp) ) ) {
+				if (!(otmp->oclass == WEAPON_CLASS || otmp->oclass == BALL_CLASS || otmp->oclass == GEM_CLASS || otmp->oclass == CHAIN_CLASS || otmp->oclass == VENOM_CLASS || is_weptool(otmp) ) ) {
 					You("have a feeling of loss.");
 					break;
 				}
@@ -5828,7 +5828,7 @@ proofweaponchoice:
 						pline("Some weird things are happening to your equipment!");
 						break;
 					}
-					if (!(otmp->oclass == WEAPON_CLASS || otmp->oclass == BALL_CLASS || otmp->oclass == GEM_CLASS || otmp->oclass == CHAIN_CLASS || is_weptool(otmp) ) ) {
+					if (!(otmp->oclass == WEAPON_CLASS || otmp->oclass == BALL_CLASS || otmp->oclass == GEM_CLASS || otmp->oclass == CHAIN_CLASS || otmp->oclass == VENOM_CLASS || is_weptool(otmp) ) ) {
 	
 						pline("You have a feeling of loss.");
 						break;
@@ -8536,6 +8536,7 @@ datadeleteattack()
 			u.uprops[DEAC_DISCOUNT_ACTION].intrinsic += (rn2(10) ? 10000 : 100000);
 			u.uprops[DEAC_FULL_NUTRIENT].intrinsic += (rn2(10) ? 10000 : 100000);
 			u.uprops[DEAC_TECHNICALITY].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_DEFUSING].intrinsic += (rn2(10) ? 10000 : 100000);
 			u.uprops[DEAC_SCENT_VIEW].intrinsic += (rn2(10) ? 10000 : 100000);
 			u.uprops[DEAC_DIMINISHED_BLEEDING].intrinsic += (rn2(10) ? 10000 : 100000);
 			u.uprops[DEAC_CONTROL_MAGIC].intrinsic += (rn2(10) ? 10000 : 100000);
@@ -9322,7 +9323,7 @@ newbadlightsabertry:
 	/* try to equip it! */
 
 	if (otmp) {
-		if (otmp->oclass == WEAPON_CLASS || otmp->oclass == CHAIN_CLASS || otmp->oclass == BALL_CLASS || is_weptool(otmp)) {
+		if (otmp->oclass == WEAPON_CLASS || otmp->oclass == CHAIN_CLASS || otmp->oclass == VENOM_CLASS || otmp->oclass == BALL_CLASS || is_weptool(otmp)) {
 			if (uwep) setnotworn(uwep);
 			if (bimanual(otmp)) {
 				if (uswapwep) uswapwepgone();

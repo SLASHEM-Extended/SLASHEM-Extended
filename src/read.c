@@ -1492,7 +1492,7 @@ boolean
 is_enchantable(obj)
 struct obj *obj;
 {
-	if (obj->oclass == ARMOR_CLASS || obj->oclass == WEAPON_CLASS || obj->oclass == BALL_CLASS || obj->oclass == GEM_CLASS || obj->oclass == CHAIN_CLASS || is_weptool(obj)) return TRUE;
+	if (obj->oclass == ARMOR_CLASS || obj->oclass == WEAPON_CLASS || obj->oclass == BALL_CLASS || obj->oclass == GEM_CLASS || obj->oclass == CHAIN_CLASS || obj->oclass == VENOM_CLASS || is_weptool(obj)) return TRUE;
 	return FALSE;
 }
 
@@ -7262,7 +7262,7 @@ newboss:
 			break;
 		}
 
-		if(uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == GEM_CLASS || uwep->oclass == CHAIN_CLASS || is_weptool(uwep))
+		if(uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == GEM_CLASS || uwep->oclass == CHAIN_CLASS || uwep->oclass == VENOM_CLASS || is_weptool(uwep))
 			&& confused) {
 		/* oclass check added 10/25/86 GAN */
 			uwep->oerodeproof = !(sobj->cursed);
@@ -7301,7 +7301,7 @@ newboss:
 			break;
 		}
 
-		if(uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == GEM_CLASS || uwep->oclass == CHAIN_CLASS || is_weptool(uwep))
+		if(uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == GEM_CLASS || uwep->oclass == CHAIN_CLASS || uwep->oclass == VENOM_CLASS || is_weptool(uwep))
 			&& confused) {
 		/* oclass check added 10/25/86 GAN */
 			uwep->oerodeproof = 1;
@@ -7329,7 +7329,7 @@ newboss:
 			break;
 		}
 
-		if(uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == GEM_CLASS || uwep->oclass == CHAIN_CLASS || is_weptool(uwep)))
+		if(uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == GEM_CLASS || uwep->oclass == CHAIN_CLASS || uwep->oclass == VENOM_CLASS || is_weptool(uwep)))
 	      {
 			uwep->oerodeproof = 1;
 			if (uwep && objects[(uwep)->otyp].oc_material == MT_CELESTIUM) {

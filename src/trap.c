@@ -17,7 +17,7 @@ STATIC_DCL boolean emergency_disrobe(boolean *);
 STATIC_DCL int untrap_prob(struct trap *ttmp);
 STATIC_DCL void cnv_trap_obj(int, int, struct trap *);
 STATIC_DCL void move_into_trap(struct trap *);
-STATIC_DCL int try_disarm(struct trap *,BOOLEAN_P);
+STATIC_DCL int try_disarm(struct trap *,BOOLEAN_P,BOOLEAN_P);
 STATIC_DCL void reward_untrap(struct trap *, struct monst *);
 /*
 STATIC_DCL int disarm_holdingtrap(struct trap *);
@@ -33,11 +33,13 @@ STATIC_DCL int disarm_glyph_trap(struct trap *, int);
 STATIC_DCL int disarm_blade_trap(struct trap *);
 STATIC_DCL int disarm_spined_ball(struct trap *);
 STATIC_DCL int disarm_pendulum(struct trap *);
+STATIC_DCL int disarm_difficult_trap(struct trap *);
 STATIC_DCL int disarm_mace_trap(struct trap *);
 STATIC_DCL int disarm_fire_trap(struct trap *);
 STATIC_DCL int disarm_landmine(struct trap *);
 STATIC_DCL int disarm_squeaky_board(struct trap *);
 STATIC_DCL int disarm_shooting_trap(struct trap *, int);
+STATIC_DCL int disarm_hard_shooting_trap(struct trap *, int);
 */
 STATIC_DCL int try_lift(struct monst *, struct trap *, int, BOOLEAN_P);
 STATIC_DCL int help_monster_out(struct monst *, struct trap *);
@@ -24686,6 +24688,112 @@ struct trap *ttmp;
 	if (ttmp->ttyp == UNKNOWN_TRAP) chance = 5;
 	if (ttmp->ttyp == SCYTHING_BLADE) chance = 4;
 
+	if (ttmp->ttyp == ROCKTRAP) chance = 5;
+	if (ttmp->ttyp == CALTROPS_TRAP) chance = 7;
+	if (ttmp->ttyp == VENOM_SPRINKLER) chance = 20;
+	if (ttmp->ttyp == SPEAR_TRAP) chance = 15;
+	if (ttmp->ttyp == ROLLING_BOULDER_TRAP) chance = 10;
+	if (ttmp->ttyp == SLP_GAS_TRAP) chance = 12;
+	if (ttmp->ttyp == POISON_GAS_TRAP) chance = 12;
+	if (ttmp->ttyp == SLOW_GAS_TRAP) chance = 12;
+	if (ttmp->ttyp == TELEP_TRAP) chance = 8;
+	if (ttmp->ttyp == BEAMER_TRAP) chance = 8;
+	if (ttmp->ttyp == LEVEL_TELEP) chance = 20;
+	if (ttmp->ttyp == LEVEL_BEAMER) chance = 20;
+	if (ttmp->ttyp == BRANCH_TELEPORTER) chance = 35;
+	if (ttmp->ttyp == BRANCH_BEAMER) chance = 35;
+	if (ttmp->ttyp == STATUE_TRAP) chance = 12;
+	if (ttmp->ttyp == SATATUE_TRAP) chance = 12;
+	if (ttmp->ttyp == MAGIC_TRAP) chance = 16;
+	if (ttmp->ttyp == ANTI_MAGIC) chance = 10;
+	if (ttmp->ttyp == POLY_TRAP) chance = 30;
+	if (ttmp->ttyp == GENETIC_TRAP) chance = 30;
+	if (ttmp->ttyp == MISSINGNO_TRAP) chance = 30;
+	if (ttmp->ttyp == ICE_TRAP) chance = 8;
+	if (ttmp->ttyp == SHOCK_TRAP) chance = 8;
+	if (ttmp->ttyp == COLLAPSE_TRAP) chance = 30;
+	if (ttmp->ttyp == MAGIC_BEAM_TRAP) chance = 20;
+	if (ttmp->ttyp == PIERCING_BEAM_TRAP) chance = 20;
+	if (ttmp->ttyp == SHIT_TRAP) chance = 10;
+	if (ttmp->ttyp == ANIMATION_TRAP) chance = 15;
+	if (ttmp->ttyp == VULN_TRAP) chance = 12;
+	if (ttmp->ttyp == GRAVITY_TRAP) chance = 14;
+	if (ttmp->ttyp == LOCK_TRAP) chance = 10;
+	if (ttmp->ttyp == WRENCHING_TRAP) chance = 10;
+	if (ttmp->ttyp == NEGATIVE_TRAP) chance = 10;
+	if (ttmp->ttyp == MAGIC_CANCELLATION_TRAP) chance = 14;
+	if (ttmp->ttyp == CYANIDE_TRAP) chance = 40;
+	if (ttmp->ttyp == LASER_TRAP) chance = 16;
+	if (ttmp->ttyp == CONFUSE_TRAP) chance = 10;
+	if (ttmp->ttyp == STUN_TRAP) chance = 10;
+	if (ttmp->ttyp == HALLUCINATION_TRAP) chance = 12;
+	if (ttmp->ttyp == NUMBNESS_TRAP) chance = 8;
+	if (ttmp->ttyp == FREEZING_TRAP) chance = 20;
+	if (ttmp->ttyp == BURNING_TRAP) chance = 14;
+	if (ttmp->ttyp == FEAR_TRAP) chance = 11;
+	if (ttmp->ttyp == BLINDNESS_TRAP) chance = 9;
+	if (ttmp->ttyp == GLIB_TRAP) chance = 16;
+	if (ttmp->ttyp == UNLIGHT_TRAP) chance = 20;
+	if (ttmp->ttyp == ELEMENTAL_TRAP) chance = 10;
+	if (ttmp->ttyp == ESCALATING_TRAP) chance = 16;
+	if (ttmp->ttyp == MANA_TRAP) chance = 12;
+	if (ttmp->ttyp == CANCELLATION_TRAP) chance = 24;
+	if (ttmp->ttyp == HOSTILITY_TRAP) chance = 16;
+	if (ttmp->ttyp == FALLING_BOULDER_TRAP) chance = 30;
+	if (ttmp->ttyp == OUT_OF_MAGIC_TRAP) chance = 18;
+	if (ttmp->ttyp == PLASMA_TRAP) chance = 24;
+	if (ttmp->ttyp == BOMB_TRAP) chance = 16;
+	if (ttmp->ttyp == EARTHQUAKE_TRAP) chance = 24;
+	if (ttmp->ttyp == NOISE_TRAP) chance = 10;
+	if (ttmp->ttyp == GLUE_TRAP) chance = 50;
+	if (ttmp->ttyp == VOLT_TRAP) chance = 24;
+	if (ttmp->ttyp == BANANA_TRAP) chance = 8;
+	if (ttmp->ttyp == FALLING_TUB_TRAP) chance = 26;
+	if (ttmp->ttyp == ALARM) chance = 20;
+	if (ttmp->ttyp == BLADE_WIRE) chance = 8;
+	if (ttmp->ttyp == MAGNET_TRAP) chance = 24;
+	if (ttmp->ttyp == CANNON_TRAP) chance = 30;
+	if (ttmp->ttyp == FUMAROLE) chance = 20;
+	if (ttmp->ttyp == FUMBLING_TRAP) chance = 20;
+	if (ttmp->ttyp == NEXUS_TRAP) chance = 24;
+	if (ttmp->ttyp == LEG_TRAP) chance = 5;
+	if (ttmp->ttyp == LEVITATION_TRAP) chance = 20;
+	if (ttmp->ttyp == BOWEL_CRAMPS_TRAP) chance = 8;
+	if (ttmp->ttyp == SINCOUNT_TRAP) chance = 24;
+	if (ttmp->ttyp == BACK_TO_START_TRAP) chance = 20;
+	if (ttmp->ttyp == PUNISHMENT_TRAP) chance = 20;
+	if (ttmp->ttyp == CONTAMINATION_TRAP) chance = 12;
+	if (ttmp->ttyp == LASTING_AMNESIA_TRAP) chance = 15;
+	if (ttmp->ttyp == PAIN_TRAP) chance = 15;
+	if (ttmp->ttyp == TREMBLING_TRAP) chance = 18;
+	if (ttmp->ttyp == TECHCAP_TRAP) chance = 13;
+	if (ttmp->ttyp == SPELL_MEMORY_TRAP) chance = 13;
+	if (ttmp->ttyp == SKILL_REDUCTION_TRAP) chance = 13;
+	if (ttmp->ttyp == SKILLCAP_TRAP) chance = 24;
+	if (ttmp->ttyp == PERMANENT_STAT_DAMAGE_TRAP) chance = 25;
+	if (ttmp->ttyp == MIGUC_TRAP) chance = 16;
+	if (ttmp->ttyp == DIRECTIVE_TRAP) chance = 16;
+	if (ttmp->ttyp == SANITY_INCREASE_TRAP) chance = 10;
+	if (ttmp->ttyp == PSI_TRAP) chance = 10;
+	if (ttmp->ttyp == CORONA_TRAP) chance = 10;
+	if (ttmp->ttyp == UNPROOFING_TRAP) chance = 15;
+	if (ttmp->ttyp == VISIBILITY_TRAP) chance = 15;
+	if (ttmp->ttyp == MOTH_LARVAE_TRAP) chance = 10;
+	if (ttmp->ttyp == STRIKETHROUGH_TRAP) chance = 20;
+	if (ttmp->ttyp == VIVISECTION_TRAP) chance = 30;
+	if (ttmp->ttyp == SKILL_POINT_LOSS_TRAP) chance = 40;
+	if (ttmp->ttyp == TECHSTOP_TRAP) chance = 10;
+	if (ttmp->ttyp == TENTH_TRAP) chance = 10;
+	if (ttmp->ttyp == DEBT_TRAP) chance = 10;
+	if (ttmp->ttyp == INVERSION_TRAP) chance = 12;
+	if (ttmp->ttyp == WINCE_TRAP) chance = 10;
+	if (ttmp->ttyp == ALIGNMENT_TRASH_TRAP) chance = 20;
+	if (ttmp->ttyp == DOGSIDE_TRAP) chance = 20;
+	if (ttmp->ttyp == BANKRUPT_TRAP) chance = 25;
+	if (ttmp->ttyp == MALEVOLENCE_TRAP) chance = 30;
+	if (ttmp->ttyp == STATHALF_TRAP) chance = 20;
+	if (ttmp->ttyp == CUTSTAT_TRAP) chance = 20;
+
 	if (ttmp->ttyp == FART_TRAP || ttmp->ttyp == PERSISTENT_FART_TRAP) chance = (ttmp->launch_otyp == 2) ? 4 : (ttmp->launch_otyp == 5) ? 3 : (ttmp->launch_otyp == 12) ? 7 : (ttmp->launch_otyp == 18) ? 6 : (ttmp->launch_otyp == 20) ? 8 : (ttmp->launch_otyp == 24) ? 15 : (ttmp->launch_otyp == 25) ? 20 :  (ttmp->launch_otyp == 27) ? 2 : (ttmp->launch_otyp == 28) ? 5 : (ttmp->launch_otyp == 29) ? 7 : (ttmp->launch_otyp == 31) ? 20 : (ttmp->launch_otyp == 41) ? 10 : (ttmp->launch_otyp == 42) ? 100 : (ttmp->launch_otyp < 12) ? 5 : (ttmp->launch_otyp < 33) ? 10 : 20;
 
 	if (Confusion || Hallucination) chance++;
@@ -24702,6 +24810,10 @@ struct trap *ttmp;
 	    if (u.uhave.questart && chance > 1) chance--;
 	} else if (Role_if(PM_RANGER) && chance > 1) chance--;
 	if (Role_if(PM_CYBERNINJA) && chance > 1) chance /= 2; /* cyberninja is really good at disarming --Amy */
+	if (StrongDefusing && !rn2(2) && chance > 2) {
+		chance -= rn2((chance / 2) + 1);
+		if (chance < 2) chance = 2;
+	}
 	if (chance < 1) chance = 1; /* fail safe */
 	return rn2(chance);
 }
@@ -24766,9 +24878,10 @@ struct trap *ttmp;
  * 2: succeeds
  */
 STATIC_OVL int
-try_disarm(ttmp, force_failure)
+try_disarm(ttmp, force_failure, difficulttrap)
 struct trap *ttmp;
 boolean force_failure;
+boolean difficulttrap;
 {
 	struct monst *mtmp = m_at(ttmp->tx,ttmp->ty);
 	int ttype = ttmp->ttyp;
@@ -24815,7 +24928,16 @@ boolean force_failure;
 	/* Will our hero succeed? */
 	if (force_failure || untrap_prob(ttmp)) {
 		if (rnl(5) && !(RngeDefusing && rn2(3) ) ) {
-		    pline("Whoops...");
+
+		    if (difficulttrap) {
+			if (Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR)) {
+				pline("Oh no, you set it off!");
+			} else {
+				pline("You set off the trap!");
+			}
+		    } else {
+			pline("Whoops...");
+		    }
 		    if (mtmp) {		/* must be a trap that holds monsters */
 			if (ttype == BEAR_TRAP) {
 			    if (mtmp->mtame) abuse_dog(mtmp);
@@ -24839,11 +24961,31 @@ boolean force_failure;
 		    } else {
 			move_into_trap(ttmp);
 		    }
+		    if (difficulttrap && !rn2(3) && (rn2(2) || !StrongDefusing) ) {
+			badeffect();
+			if (!rn2(20)) {
+				pline("Oof - your very soul has been drained!");
+				drain_alla(1);
+			}
+		    }
 		} else {
-		    pline("%s %s is difficult to %s.",
-			  ttmp->madeby_u ? "Your" : under_u ? "This" : "That",
-			  defsyms[trap_to_defsym(ttype)].explanation,
-			  (ttype == WEB) ? "remove" : "disarm");
+
+		    if (difficulttrap) {
+			if (Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR)) {
+				pline("It's not disarmed yet!");
+			} else {
+				pline("You failed to disarm the trap.");
+			}
+		    } else {
+			    pline("%s %s is difficult to %s.",
+				  ttmp->madeby_u ? "Your" : under_u ? "This" : "That",
+				  defsyms[trap_to_defsym(ttype)].explanation,
+				  (ttype == WEB) ? "remove" : "disarm");
+		    }
+
+		    if (difficulttrap && !rn2(20) && (rn2(2) || !StrongDefusing) ) {
+			badeffect();
+		    }
 		}
 		return 1;
 	}
@@ -24881,7 +25023,7 @@ disarm_holdingtrap(ttmp) /* Helge Hafting */
 struct trap *ttmp;
 {
 	struct monst *mtmp;
-	int fails = try_disarm(ttmp, FALSE);
+	int fails = try_disarm(ttmp, FALSE, FALSE);
 
 	if (fails < 2) return fails;
 
@@ -24923,7 +25065,7 @@ int
 disarm_landmine(ttmp) /* Helge Hafting */
 struct trap *ttmp;
 {
-	int fails = try_disarm(ttmp, FALSE);
+	int fails = try_disarm(ttmp, FALSE, FALSE);
 
 	if (fails < 2) return fails;
 	You("disarm %s land mine.", the_your[ttmp->madeby_u]);
@@ -24948,7 +25090,7 @@ disarm_rust_trap(ttmp) /* Paul Sonier */
 struct trap *ttmp;
 {
 	xchar trapx = ttmp->tx, trapy = ttmp->ty;
-	int fails = try_disarm(ttmp, FALSE);
+	int fails = try_disarm(ttmp, FALSE, FALSE);
 
 	if (fails < 2) return fails;
 	You("disarm the water trap!");
@@ -24975,7 +25117,7 @@ struct trap *ttmp;
 int exper;
 {
 	xchar trapx = ttmp->tx, trapy = ttmp->ty;
-	int fails = try_disarm(ttmp, FALSE);
+	int fails = try_disarm(ttmp, FALSE, FALSE);
 	int hpboost = 2;
 
 	if (fails < 2) return fails;
@@ -25007,7 +25149,7 @@ disarm_blade_trap(ttmp)
 struct trap *ttmp;
 {
 	xchar trapx = ttmp->tx, trapy = ttmp->ty;
-	int fails = try_disarm(ttmp, FALSE);
+	int fails = try_disarm(ttmp, FALSE, FALSE);
 
 	if (fails < 2) return fails;
 	You("disarm the trap!");
@@ -25031,7 +25173,7 @@ disarm_spined_ball(ttmp)
 struct trap *ttmp;
 {
 	xchar trapx = ttmp->tx, trapy = ttmp->ty;
-	int fails = try_disarm(ttmp, FALSE);
+	int fails = try_disarm(ttmp, FALSE, FALSE);
 
 	if (fails < 2) return fails;
 	You("disarm the trap!");
@@ -25055,10 +25197,39 @@ disarm_pendulum(ttmp)
 struct trap *ttmp;
 {
 	xchar trapx = ttmp->tx, trapy = ttmp->ty;
-	int fails = try_disarm(ttmp, FALSE);
+	int fails = try_disarm(ttmp, FALSE, FALSE);
 
 	if (fails < 2) return fails;
 	You("disarm the trap!");
+	u.cnd_untrapamount++;
+	more_experienced(3 * (deepest_lev_reached(FALSE) + 1),0);
+	mightbooststat(A_DEX);
+	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
+		u.uhpmax += 3;
+		if (Upolyd) u.mhmax += 3;
+		flags.botl = TRUE;
+	}
+	newexplevel();
+	if (u.ualign.type == A_LAWFUL) adjalign(1);
+	cnv_trap_obj(IRON_CHAIN, 1, ttmp);
+	newsym(trapx, trapy);
+	return 1;
+}
+
+int
+disarm_difficult_trap(ttmp)
+struct trap *ttmp;
+{
+	xchar trapx = ttmp->tx, trapy = ttmp->ty;
+	int fails = try_disarm(ttmp, FALSE, TRUE);
+
+	if (fails < 2) return fails;
+
+	if (Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR)) {
+		pline("Disarmed! Now you can move on.");
+	} else {
+		You("disarmed the trap.");
+	}
 	u.cnd_untrapamount++;
 	more_experienced(3 * (deepest_lev_reached(FALSE) + 1),0);
 	mightbooststat(A_DEX);
@@ -25079,7 +25250,7 @@ disarm_mace_trap(ttmp)
 struct trap *ttmp;
 {
 	xchar trapx = ttmp->tx, trapy = ttmp->ty;
-	int fails = try_disarm(ttmp, FALSE);
+	int fails = try_disarm(ttmp, FALSE, FALSE);
 
 	if (fails < 2) return fails;
 	You("disarm the trap!");
@@ -25103,7 +25274,7 @@ disarm_acid_trap(ttmp)
 struct trap *ttmp;
 {
 	xchar trapx = ttmp->tx, trapy = ttmp->ty;
-	int fails = try_disarm(ttmp, FALSE);
+	int fails = try_disarm(ttmp, FALSE, FALSE);
 
 	if (fails < 2) return fails;
 	You("disarm the trap!");
@@ -25128,7 +25299,7 @@ disarm_trap_percents(ttmp)
 struct trap *ttmp;
 {
 	xchar trapx = ttmp->tx, trapy = ttmp->ty;
-	int fails = try_disarm(ttmp, FALSE);
+	int fails = try_disarm(ttmp, FALSE, FALSE);
 
 	if (fails < 2) return fails;
 	You("disarm the trap!");
@@ -25152,7 +25323,7 @@ disarm_active_superscroller(ttmp)
 struct trap *ttmp;
 {
 	xchar trapx = ttmp->tx, trapy = ttmp->ty;
-	int fails = try_disarm(ttmp, FALSE);
+	int fails = try_disarm(ttmp, FALSE, FALSE);
 
 	if (fails < 2) return fails;
 	You("removed the superscroller!");
@@ -25174,7 +25345,7 @@ struct trap *ttmp;
 	struct obj *unkrwrd;
 
 	xchar trapx = ttmp->tx, trapy = ttmp->ty;
-	int fails = try_disarm(ttmp, FALSE);
+	int fails = try_disarm(ttmp, FALSE, FALSE);
 
 	if (fails < 2) return fails;
 	You("disarm the trap!");
@@ -25206,7 +25377,7 @@ struct trap *ttmp;
 	int diceroll;
 
 	xchar trapx = ttmp->tx, trapy = ttmp->ty;
-	int fails = try_disarm(ttmp, FALSE);
+	int fails = try_disarm(ttmp, FALSE, FALSE);
 
 	if (fails < 2) return fails;
 
@@ -25353,7 +25524,7 @@ disarm_water_trap(ttmp)
 struct trap *ttmp;
 {
 	xchar trapx = ttmp->tx, trapy = ttmp->ty;
-	int fails = try_disarm(ttmp, FALSE);
+	int fails = try_disarm(ttmp, FALSE, FALSE);
 
 	if (fails < 2) return fails;
 	You("disarm the trap!");
@@ -25378,7 +25549,7 @@ disarm_heel_trap(ttmp)
 struct trap *ttmp;
 {
 	xchar trapx = ttmp->tx, trapy = ttmp->ty;
-	int fails = try_disarm(ttmp, FALSE);
+	int fails = try_disarm(ttmp, FALSE, FALSE);
 
 	if (fails < 2) return fails;
 	You("disarm the trap!");
@@ -25451,7 +25622,7 @@ struct trap *ttmp;
 
 	bad_tool = (obj->cursed ||
 				(obj->otyp != POT_WATER));
-	fails = try_disarm(ttmp, bad_tool);
+	fails = try_disarm(ttmp, bad_tool, FALSE);
 	if (fails < 2) return fails;
 
 	useup(obj);
@@ -25492,7 +25663,7 @@ struct trap *ttmp;
 			((obj->otyp != POT_OIL || obj->lamplit) &&
 			 ((obj->otyp != CAN_OF_GREASE && obj->otyp != LUBRICANT_CAN) || !obj->spe)));
 
-	fails = try_disarm(ttmp, bad_tool);
+	fails = try_disarm(ttmp, bad_tool, FALSE);
 	if (fails < 2) return fails;
 
 	/* successfully used oil or grease to fix squeaky board */
@@ -25526,10 +25697,39 @@ disarm_shooting_trap(ttmp, otyp)
 struct trap *ttmp;
 int otyp;
 {
-	int fails = try_disarm(ttmp, FALSE);
+	int fails = try_disarm(ttmp, FALSE, FALSE);
 
 	if (fails < 2) return fails;
 	You("disarm %s trap.", the_your[ttmp->madeby_u]);
+	u.cnd_untrapamount++;
+	more_experienced(10 * (deepest_lev_reached(FALSE) + 1), 0);
+	mightbooststat(A_DEX);
+	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
+		u.uhpmax += 1;
+		if (Upolyd) u.mhmax += 1;
+		flags.botl = TRUE;
+	}
+	newexplevel();
+	if (u.ualign.type == A_LAWFUL) adjalign(1);
+	cnv_trap_obj(otyp, 50-rnl(50), ttmp);
+	return 1;
+}
+
+int
+disarm_hard_shooting_trap(ttmp, otyp)
+struct trap *ttmp;
+int otyp;
+{
+	int fails = try_disarm(ttmp, FALSE, TRUE);
+
+	if (fails < 2) return fails;
+
+	if (Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR)) {
+		pline("Disarmed! Now you can move on.");
+	} else {
+		You("disarmed the trap.");
+	}
+
 	u.cnd_untrapamount++;
 	more_experienced(10 * (deepest_lev_reached(FALSE) + 1), 0);
 	mightbooststat(A_DEX);
@@ -25807,6 +26007,134 @@ boolean force;
 				    return 0;
 				}
 				return help_monster_out(mtmp, ttmp);
+
+			case ROCKTRAP:
+				if (Defusing) return disarm_hard_shooting_trap(ttmp, ROCK);
+				else {
+					You("cannot disable %s trap.", (u.dx || u.dy) ? "that" : "this");
+					return 0;
+				}
+			case CALTROPS_TRAP:
+				if (Defusing) return disarm_hard_shooting_trap(ttmp, CALTROP);
+				else {
+					You("cannot disable %s trap.", (u.dx || u.dy) ? "that" : "this");
+					return 0;
+				}
+			case VENOM_SPRINKLER:
+				if (Defusing) return disarm_hard_shooting_trap(ttmp, rn2(2) ? ACID_VENOM : BLINDING_VENOM);
+				else {
+					You("cannot disable %s trap.", (u.dx || u.dy) ? "that" : "this");
+					return 0;
+				}
+
+			case SPEAR_TRAP:
+			case ROLLING_BOULDER_TRAP:
+			case SLP_GAS_TRAP:
+			case TELEP_TRAP:
+			case LEVEL_TELEP:
+			case STATUE_TRAP:
+			case MAGIC_TRAP:
+			case ANTI_MAGIC:
+			case POLY_TRAP:
+			case ICE_TRAP:
+			case COLLAPSE_TRAP:
+			case MAGIC_BEAM_TRAP:
+			case SHIT_TRAP:
+			case ANIMATION_TRAP:
+			case POISON_GAS_TRAP:
+			case SLOW_GAS_TRAP:
+			case SHOCK_TRAP:
+			case VULN_TRAP:
+			case GRAVITY_TRAP:
+			case LOCK_TRAP:
+			case MAGIC_CANCELLATION_TRAP:
+			case CYANIDE_TRAP:
+			case LASER_TRAP:
+			case CONFUSE_TRAP:
+			case STUN_TRAP:
+			case HALLUCINATION_TRAP:
+			case NUMBNESS_TRAP:
+			case FREEZING_TRAP:
+			case BURNING_TRAP:
+			case FEAR_TRAP:
+			case BLINDNESS_TRAP:
+			case GLIB_TRAP:
+			case UNLIGHT_TRAP:
+			case ELEMENTAL_TRAP:
+			case ESCALATING_TRAP:
+			case NEGATIVE_TRAP:
+			case MANA_TRAP:
+			case GENETIC_TRAP:
+			case MISSINGNO_TRAP:
+			case CANCELLATION_TRAP:
+			case HOSTILITY_TRAP:
+			case FALLING_BOULDER_TRAP:
+			case OUT_OF_MAGIC_TRAP:
+			case PLASMA_TRAP:
+			case BOMB_TRAP:
+			case EARTHQUAKE_TRAP:
+			case NOISE_TRAP:
+			case GLUE_TRAP:
+			case VOLT_TRAP:
+			case BANANA_TRAP:
+			case FALLING_TUB_TRAP:
+			case ALARM:
+			case BLADE_WIRE:
+			case MAGNET_TRAP:
+			case CANNON_TRAP:
+			case FUMAROLE:
+			case FUMBLING_TRAP:
+			case NEXUS_TRAP:
+			case LEG_TRAP:
+			case LEVITATION_TRAP:
+			case BOWEL_CRAMPS_TRAP:
+			case SINCOUNT_TRAP:
+			case BEAMER_TRAP:
+			case LEVEL_BEAMER:
+			case PIERCING_BEAM_TRAP:
+			case WRENCHING_TRAP:
+			case BACK_TO_START_TRAP:
+			case PUNISHMENT_TRAP:
+			case CONTAMINATION_TRAP:
+			case LASTING_AMNESIA_TRAP:
+			case PAIN_TRAP:
+			case TREMBLING_TRAP:
+			case TECHCAP_TRAP:
+			case SPELL_MEMORY_TRAP:
+			case SKILL_REDUCTION_TRAP:
+			case SKILLCAP_TRAP:
+			case PERMANENT_STAT_DAMAGE_TRAP:
+			case MIGUC_TRAP:
+			case SATATUE_TRAP:
+			case DIRECTIVE_TRAP:
+			case SANITY_INCREASE_TRAP:
+			case PSI_TRAP:
+			case CORONA_TRAP:
+			case UNPROOFING_TRAP:
+			case VISIBILITY_TRAP:
+			case BRANCH_TELEPORTER:
+			case BRANCH_BEAMER:
+			case MOTH_LARVAE_TRAP:
+			case STRIKETHROUGH_TRAP:
+			case VIVISECTION_TRAP:
+			case SKILL_POINT_LOSS_TRAP:
+			case TECHSTOP_TRAP:
+			case TENTH_TRAP:
+			case DEBT_TRAP:
+			case INVERSION_TRAP:
+			case WINCE_TRAP:
+			case ALIGNMENT_TRASH_TRAP:
+			case DOGSIDE_TRAP:
+			case BANKRUPT_TRAP:
+			case MALEVOLENCE_TRAP:
+			case STATHALF_TRAP:
+			case CUTSTAT_TRAP:
+				if (Defusing) return disarm_difficult_trap(ttmp);
+				else {
+					You("cannot disable %s trap.", (u.dx || u.dy) ? "that" : "this");
+					return 0;
+				}
+
 			default:
 				You("cannot disable %s trap.", (u.dx || u.dy) ? "that" : "this");
 				return 0;

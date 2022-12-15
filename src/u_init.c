@@ -3665,6 +3665,7 @@ static const struct def_skill Skill_Dia[] = {
     { P_TECHNIQUES, P_EXPERT },		{ P_MEMORIZATION, P_MASTER },
     { P_GUN_CONTROL, P_EXPERT },		{ P_ATARU, P_EXPERT },
     { P_NIMAN, P_EXPERT },		{ P_MARTIAL_ARTS, P_MASTER },
+    { P_VENOM, P_EXPERT },
 
     { P_NONE, 0 }
 };
@@ -3750,6 +3751,7 @@ static const struct def_skill Skill_Sec[] = {
     { P_DJEM_SO, P_MASTER },		{ P_NIMAN, P_MASTER },
     { P_JUYO, P_MASTER },		{ P_WEDI, P_MASTER },
     { P_MARTIAL_ARTS, P_MASTER },
+    { P_VENOM, P_MASTER },
 
     { P_NONE, 0 }
 };
@@ -4047,6 +4049,7 @@ static const struct def_skill Skill_Ass[] = {
     { P_MISSILE_WEAPONS, P_EXPERT },
     { P_TECHNIQUES, P_EXPERT },
     { P_CLAW, P_GRAND_MASTER },
+    { P_VENOM, P_MASTER },
 
     { P_MARTIAL_ARTS, P_MASTER },
     { P_OCCULT_SPELL, P_EXPERT },
@@ -4354,6 +4357,7 @@ static const struct def_skill Skill_Zyb[] = {
     { P_MACE, P_EXPERT },                { P_MORNING_STAR, P_EXPERT },
     { P_FLAIL, P_EXPERT },               { P_HAMMER, P_EXPERT },
     { P_QUARTERSTAFF, P_EXPERT },        { P_POLEARMS, P_EXPERT },
+    { P_VENOM, P_EXPERT },
 
     { P_SPEAR, P_EXPERT },               { P_JAVELIN, P_EXPERT },
     { P_TRIDENT, P_EXPERT },             { P_LANCE, P_EXPERT },
@@ -4472,6 +4476,7 @@ static const struct def_skill Skill_Lun[] = {
     { P_MACE, P_EXPERT },                { P_MORNING_STAR, P_EXPERT },
     { P_FLAIL, P_EXPERT },               { P_HAMMER, P_EXPERT },
     { P_QUARTERSTAFF, P_EXPERT },        { P_POLEARMS, P_EXPERT },
+    { P_VENOM, P_EXPERT },
 
     { P_SPEAR, P_EXPERT },               { P_JAVELIN, P_EXPERT },
     { P_TRIDENT, P_EXPERT },             { P_LANCE, P_EXPERT },
@@ -4659,6 +4664,7 @@ static const struct def_skill Skill_Pra[] = {
     { P_SHIEN, P_EXPERT },		{ P_DJEM_SO, P_MASTER },
     { P_MARTIAL_ARTS, P_EXPERT },		{ P_RIDING, P_EXPERT },
     { P_CLAW, P_EXPERT },
+    { P_VENOM, P_EXPERT },
     { P_NONE, 0 }
 };
 static const struct def_skill Skill_Eme[] = {
@@ -4861,6 +4867,7 @@ static const struct def_skill Skill_Yau[] = {
     { P_MEMORIZATION, P_EXPERT },
     { P_SQUEAKING, P_EXPERT },
     { P_CLAW, P_EXPERT },
+    { P_VENOM, P_EXPERT },
     { P_NONE, 0 }
 };
 
@@ -4977,6 +4984,7 @@ static const struct def_skill Skill_Wei[] = {
     { P_SYMBIOSIS, P_EXPERT },
     { P_CLAW, P_GRAND_MASTER },
     { P_GRINDER, P_MASTER },
+    { P_VENOM, P_MASTER },
     { P_NONE, 0 }
 };
 
@@ -5139,6 +5147,7 @@ static const struct def_skill Skill_Bin[] = {
     { P_SQUEAKING, P_EXPERT },
     { P_GUN_CONTROL, P_EXPERT },
     { P_SYMBIOSIS, P_EXPERT },
+    { P_VENOM, P_EXPERT },
 
     { P_ATTACK_SPELL, P_EXPERT },      { P_HEALING_SPELL, P_EXPERT },
     { P_DIVINATION_SPELL, P_EXPERT },   { P_ENCHANTMENT_SPELL, P_EXPERT },
@@ -5291,6 +5300,7 @@ static const struct def_skill Skill_Mys[] = { /* knows all skills, except martia
     { P_MEMORIZATION, P_EXPERT },
     { P_SQUEAKING, P_EXPERT },
     { P_GUN_CONTROL, P_EXPERT },
+    { P_VENOM, P_EXPERT },
 
     { P_SPEAR, P_EXPERT },               { P_JAVELIN, P_EXPERT },
     { P_TRIDENT, P_EXPERT },             { P_LANCE, P_EXPERT },
@@ -5358,6 +5368,7 @@ static const struct def_skill Skill_Dem[] = { /* knows all skills */
     { P_MEMORIZATION, P_EXPERT },
     { P_SQUEAKING, P_EXPERT },
     { P_GUN_CONTROL, P_EXPERT },
+    { P_VENOM, P_EXPERT },
 
     { P_SPEAR, P_EXPERT },               { P_JAVELIN, P_EXPERT },
     { P_TRIDENT, P_EXPERT },             { P_LANCE, P_EXPERT },
@@ -5759,6 +5770,7 @@ static const struct def_skill Skill_Poi[] = {
     { P_HIGH_HEELS, P_EXPERT },
     { P_SEXY_FLATS, P_EXPERT },
     { P_SQUEAKING, P_EXPERT },
+    { P_VENOM, P_GRAND_MASTER },
 
     { P_ATTACK_SPELL, P_EXPERT },      { P_HEALING_SPELL, P_EXPERT },
     { P_DIVINATION_SPELL, P_EXPERT },   { P_ENCHANTMENT_SPELL, P_EXPERT },
@@ -5813,6 +5825,7 @@ static const struct def_skill Skill_Aci[] = {
     { P_GENERAL_COMBAT, P_EXPERT },
     { P_DEVICES, P_EXPERT },
     { P_MEMORIZATION, P_EXPERT },
+    { P_VENOM, P_EXPERT },
 
     { P_ELEMENTAL_SPELL, P_MASTER },
     { P_ORB, P_MASTER },
@@ -5959,6 +5972,7 @@ static const struct def_skill Skill_Pro[] = {
     { P_JUYO, P_GRAND_MASTER },
     { P_SQUEAKING, P_GRAND_MASTER },
     { P_CLAW, P_EXPERT },
+    { P_VENOM, P_EXPERT },
 
     { P_NONE, 0 }
 };
@@ -5977,6 +5991,7 @@ static const struct def_skill Skill_Kur[] = {
     { P_JUYO, P_GRAND_MASTER },
     { P_SQUEAKING, P_GRAND_MASTER },
     { P_CLAW, P_EXPERT },
+    { P_VENOM, P_EXPERT },
 
     { P_NONE, 0 }
 };
@@ -5988,6 +6003,7 @@ static const struct def_skill Skill_Hus[] = { /* quite restricted - meant to be 
     { P_BODY_SPELL, P_EXPERT },
     { P_WEDI, P_MASTER },
     { P_SQUEAKING, P_GRAND_MASTER },
+    { P_VENOM, P_MASTER },
 
     { P_NONE, 0 }
 };
@@ -6293,6 +6309,7 @@ static const struct def_skill Skill_Sci[] = {
     { P_PADDLE, P_EXPERT },		    { P_FLAIL, P_EXPERT },		    
     { P_POLEARMS, P_EXPERT },		    { P_SLING, P_EXPERT },		    
     { P_WHIP, P_EXPERT },		    { P_LIGHTSABER, P_EXPERT },		    
+    { P_VENOM, P_EXPERT },
 
     { P_FIREARM, P_EXPERT },
     { P_MATTER_SPELL, P_EXPERT },	{ P_HEALING_SPELL, P_EXPERT },
@@ -6415,6 +6432,7 @@ static const struct def_skill Skill_Fem[] = {
     { P_SQUEAKING, P_GRAND_MASTER },
     { P_ORB, P_EXPERT },
     { P_CLAW, P_MASTER },
+    { P_VENOM, P_GRAND_MASTER },
 
     { P_NONE, 0 }
 };
@@ -6985,6 +7003,7 @@ static const struct def_skill Skill_Mah[] = {
 
     { P_ATTACK_SPELL, P_MASTER },      { P_HEALING_SPELL, P_MASTER },
 	{ P_BARE_HANDED_COMBAT, P_MASTER },	{ P_FIREARM, P_MASTER },
+    { P_VENOM, P_EXPERT },
 
     { P_PROTECTION_SPELL, P_EXPERT },      { P_DIVINATION_SPELL, P_EXPERT },
 	{ P_WHIP, P_EXPERT },		{ P_CLUB, P_EXPERT },
@@ -7127,6 +7146,7 @@ static const struct def_skill Skill_Ord[] = { /*master of all weapons*/
     { P_ORB, P_GRAND_MASTER },
     { P_CLAW, P_GRAND_MASTER },
     { P_GRINDER, P_GRAND_MASTER },
+    { P_VENOM, P_GRAND_MASTER },
 
     { P_GENERAL_COMBAT, P_GRAND_MASTER },
     { P_TWO_HANDED_WEAPON, P_GRAND_MASTER },
@@ -7339,6 +7359,7 @@ static const struct def_skill Skill_N[] = {
     { P_FIREARM, P_EXPERT },
     { P_HIGH_HEELS, P_MASTER },
     { P_SEXY_FLATS, P_EXPERT },
+    { P_VENOM, P_GRAND_MASTER },
 
     { P_ATTACK_SPELL, P_MASTER },
     { P_MATTER_SPELL, P_EXPERT },
@@ -7726,6 +7747,7 @@ static const struct def_skill Skill_Nin[] = {
     { P_HEALING_SPELL, P_EXPERT },    { P_PROTECTION_SPELL, P_EXPERT },
     { P_HIGH_HEELS, P_MASTER },
     { P_SEXY_FLATS, P_MASTER },
+    { P_VENOM, P_EXPERT },
 
 /*WAC Left as is*/
     { P_RIDING, P_EXPERT },
@@ -8038,6 +8060,7 @@ static const struct def_skill Skill_Ama[] = {
     { P_HIGH_HEELS, P_MASTER },
     { P_SEXY_FLATS, P_EXPERT },
     { P_SQUEAKING, P_MASTER },
+    { P_VENOM, P_EXPERT },
 
     { P_GENERAL_COMBAT, P_EXPERT },
     { P_SHIELD, P_EXPERT },
@@ -8065,6 +8088,7 @@ static const struct def_skill Skill_Drd[] = {
     { P_ATTACK_SPELL, P_EXPERT },	    { P_HEALING_SPELL, P_EXPERT },	
     { P_DIVINATION_SPELL, P_EXPERT },	{ P_MATTER_SPELL, P_MASTER },
     { P_ENCHANTMENT_SPELL, P_GRAND_MASTER },	    { P_PROTECTION_SPELL, P_EXPERT },	
+    { P_VENOM, P_EXPERT },
 
     { P_TWO_HANDED_WEAPON, P_EXPERT },
     { P_POLYMORPHING, P_EXPERT },
@@ -8264,6 +8288,7 @@ static const struct def_skill Skill_Unt[] = {
     { P_BOW, P_EXPERT },			        { P_SLING, P_EXPERT },
     { P_HIGH_HEELS, P_EXPERT },
     { P_SEXY_FLATS, P_EXPERT },
+    { P_VENOM, P_EXPERT },
 
     { P_PICK_AXE, P_MASTER }, /* thanks 5lo for reminding me that undertakers are supposed to have that skill --Amy */
 
@@ -8530,6 +8555,7 @@ static const struct def_skill Skill_Cli[] = {
     { P_SQUEAKING,  P_GRAND_MASTER },	{ P_SHIEN,  P_EXPERT },
     { P_DJEM_SO,  P_EXPERT },	{ P_JUYO,  P_MASTER },
     { P_TWO_WEAPON_COMBAT,  P_EXPERT },	{ P_RIDING,  P_MASTER },
+    { P_VENOM, P_EXPERT },
 
     { P_NONE, 0 }
 };
@@ -8557,6 +8583,7 @@ static const struct def_skill Skill_Dea[] = {
     { P_DART,  P_EXPERT },     { P_SHURIKEN,  P_EXPERT },
     { P_WHIP,  P_EXPERT },     { P_UNICORN_HORN,  P_EXPERT },
     { P_HIGH_HEELS, P_MASTER },
+    { P_VENOM, P_MASTER },
 
     { P_GENERAL_COMBAT, P_EXPERT },
     { P_TWO_HANDED_WEAPON, P_EXPERT },

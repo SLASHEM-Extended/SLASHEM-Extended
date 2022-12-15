@@ -207,7 +207,7 @@ int thrown;
 	/* Multishot calculations
 	 */
 	skill = objects[obj->otyp].oc_skill;
-	if (( (ammo_and_launcher(obj, uwep) && !(uwep && uwep->otyp == LASERXBOW && !uwep->lamplit) && !(uwep && uwep->otyp == KLIUSLING && !uwep->lamplit) ) || skill == P_DAGGER || skill == P_KNIFE || skill == P_BOOMERANG || skill == -P_BOOMERANG ||
+	if (( (ammo_and_launcher(obj, uwep) && !(uwep && uwep->otyp == LASERXBOW && !uwep->lamplit) && !(uwep && uwep->otyp == KLIUSLING && !uwep->lamplit) ) || skill == P_DAGGER || skill == P_KNIFE || skill == P_BOOMERANG || skill == -P_BOOMERANG || skill == P_VENOM || skill == -P_VENOM ||
 			skill == -P_DART || skill == -P_SHURIKEN || skill == P_SPEAR || skill == P_JAVELIN) &&
 		!( (Confusion && !Conf_resist) || (Stunned && !Stun_resist) )) {
 	    /* Bonus if the player is proficient in this weapon... */
@@ -372,27 +372,27 @@ int thrown;
 				case P_SUPREME_MASTER:
 					if ((skill == P_DAGGER || skill == P_KNIFE || skill == P_SPEAR ) && !rn2(5)) multishot++;
 					if (skill == P_JAVELIN && !rn2(3)) multishot++;
-					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && !rn2(4)) multishot++;
+					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG || skill == P_VENOM || skill == -P_VENOM ) && !rn2(4)) multishot++;
 				case P_GRAND_MASTER:
 					if ((skill == P_DAGGER || skill == P_KNIFE || skill == P_SPEAR ) && !rn2(5)) multishot++;
 					if (skill == P_JAVELIN && !rn2(3)) multishot++;
-					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && !rn2(4)) multishot++;
+					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG || skill == P_VENOM || skill == -P_VENOM ) && !rn2(4)) multishot++;
 				case P_MASTER:
 					if ((skill == P_DAGGER || skill == P_KNIFE || skill == P_SPEAR ) && !rn2(5)) multishot++;
 					if (skill == P_JAVELIN && !rn2(3)) multishot++;
-					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && !rn2(4)) multishot++;
+					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG || skill == P_VENOM || skill == -P_VENOM ) && !rn2(4)) multishot++;
 			    	case P_EXPERT:
 					if ((skill == P_DAGGER || skill == P_KNIFE || skill == P_SPEAR ) && !rn2(5)) multishot++;
 					if (skill == P_JAVELIN && !rn2(3)) multishot++;
-					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && !rn2(4)) multishot++;
+					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG || skill == P_VENOM || skill == -P_VENOM ) && !rn2(4)) multishot++;
 				case P_SKILLED:
 					if ((skill == P_DAGGER || skill == P_KNIFE || skill == P_SPEAR ) && !rn2(5)) multishot++;
 					if (skill == P_JAVELIN && !rn2(3)) multishot++;
-					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && !rn2(4)) multishot++;
+					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG || skill == P_VENOM || skill == -P_VENOM ) && !rn2(4)) multishot++;
 				case P_BASIC:
 					if ((skill == P_DAGGER || skill == P_KNIFE || skill == P_SPEAR ) && !rn2(5)) multishot++;
 					if (skill == P_JAVELIN && !rn2(3)) multishot++;
-					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && !rn2(4)) multishot++;
+					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG || skill == P_VENOM || skill == -P_VENOM ) && !rn2(4)) multishot++;
 				default: break;
 			}
 		}
@@ -413,11 +413,11 @@ int thrown;
 		    You("let fly a volley of %s!", xname(obj));
 	    }
 
-	    if ( (objects[obj->otyp].oc_skill == -P_DAGGER || objects[obj->otyp].oc_skill == P_DAGGER || objects[obj->otyp].oc_skill == -P_DART || objects[obj->otyp].oc_skill == P_DART || objects[obj->otyp].oc_skill == -P_SHURIKEN || objects[obj->otyp].oc_skill == P_SHURIKEN || objects[obj->otyp].oc_skill == -P_BOOMERANG || objects[obj->otyp].oc_skill == P_BOOMERANG || objects[obj->otyp].oc_skill == -P_KNIFE || objects[obj->otyp].oc_skill == P_KNIFE || objects[obj->otyp].oc_skill == -P_SPEAR || objects[obj->otyp].oc_skill == P_SPEAR || objects[obj->otyp].oc_skill == -P_JAVELIN || objects[obj->otyp].oc_skill == P_JAVELIN) && uarmf && uarmf->oartifact == ART_H__S_GANGSTER_KICKS) {
+	    if ( (objects[obj->otyp].oc_skill == -P_DAGGER || objects[obj->otyp].oc_skill == P_DAGGER || objects[obj->otyp].oc_skill == -P_DART || objects[obj->otyp].oc_skill == P_DART || objects[obj->otyp].oc_skill == -P_SHURIKEN || objects[obj->otyp].oc_skill == P_SHURIKEN || objects[obj->otyp].oc_skill == -P_BOOMERANG || objects[obj->otyp].oc_skill == P_BOOMERANG || objects[obj->otyp].oc_skill == -P_VENOM || objects[obj->otyp].oc_skill == P_VENOM || objects[obj->otyp].oc_skill == -P_KNIFE || objects[obj->otyp].oc_skill == P_KNIFE || objects[obj->otyp].oc_skill == -P_SPEAR || objects[obj->otyp].oc_skill == P_SPEAR || objects[obj->otyp].oc_skill == -P_JAVELIN || objects[obj->otyp].oc_skill == P_JAVELIN) && uarmf && uarmf->oartifact == ART_H__S_GANGSTER_KICKS) {
 		multishot += 1;
 	    }
 
-	    if ( (objects[obj->otyp].oc_skill == -P_DAGGER || objects[obj->otyp].oc_skill == P_DAGGER || objects[obj->otyp].oc_skill == -P_DART || objects[obj->otyp].oc_skill == P_DART || objects[obj->otyp].oc_skill == -P_SHURIKEN || objects[obj->otyp].oc_skill == P_SHURIKEN || objects[obj->otyp].oc_skill == -P_BOOMERANG || objects[obj->otyp].oc_skill == P_BOOMERANG || objects[obj->otyp].oc_skill == -P_KNIFE || objects[obj->otyp].oc_skill == P_KNIFE || objects[obj->otyp].oc_skill == -P_SPEAR || objects[obj->otyp].oc_skill == P_SPEAR || objects[obj->otyp].oc_skill == -P_JAVELIN || objects[obj->otyp].oc_skill == P_JAVELIN) && tech_inuse(T_DOUBLE_THROWNAGE)) {
+	    if ( (objects[obj->otyp].oc_skill == -P_DAGGER || objects[obj->otyp].oc_skill == P_DAGGER || objects[obj->otyp].oc_skill == -P_DART || objects[obj->otyp].oc_skill == P_DART || objects[obj->otyp].oc_skill == -P_SHURIKEN || objects[obj->otyp].oc_skill == P_SHURIKEN || objects[obj->otyp].oc_skill == -P_BOOMERANG || objects[obj->otyp].oc_skill == P_BOOMERANG || objects[obj->otyp].oc_skill == -P_VENOM || objects[obj->otyp].oc_skill == P_VENOM || objects[obj->otyp].oc_skill == -P_KNIFE || objects[obj->otyp].oc_skill == P_KNIFE || objects[obj->otyp].oc_skill == -P_SPEAR || objects[obj->otyp].oc_skill == P_SPEAR || objects[obj->otyp].oc_skill == -P_JAVELIN || objects[obj->otyp].oc_skill == P_JAVELIN) && tech_inuse(T_DOUBLE_THROWNAGE)) {
 		multishot += 1; multishot += rnd(multishot); /* Let'em rip! Extra bonus added by Amy. */
 
 		/* more than usual == volley */
@@ -1803,6 +1803,10 @@ int thrown;
 	    else if (is_grenade(obj)) {
 		arm_bomb(obj, TRUE);
 		You("yell 'Fire in the hole!'");
+	    } else if (obj->oclass == VENOM_CLASS) {
+			check_shop_obj(obj, u.ux, u.uy, TRUE);
+			obfree(obj, (struct obj *)0);
+			return;
 	    } else if (is_bullet(obj) && ammo_and_launcher(obj, launcher)) {
 		if (!Is_airlevel(&u.uz) && !Is_waterlevel(&u.uz) && !Underwater
 			&& (objects[obj->otyp].oc_dir & EXPLOSION)) {
@@ -1972,6 +1976,13 @@ int thrown;
 	    explode(bhitpos.x, bhitpos.y, ZT_SPELL(ZT_FIRE),
 		    d(3,8), WEAPON_CLASS, EXPL_FIERY);
 	}
+
+	if (obj->oclass == VENOM_CLASS) {
+		check_shop_obj(obj, bhitpos.x,bhitpos.y, TRUE);
+		obfree(obj, (struct obj *)0);
+		return;
+	}
+
 	if (is_bullet(obj) && (ammo_and_launcher(obj, launcher) && !is_grenade(obj))) {
 		check_shop_obj(obj, bhitpos.x,bhitpos.y, TRUE);
 		u.cnd_gunpowderused++; /* even if bulletreuse or lead bullets allows them to be used again --Amy */
@@ -2190,8 +2201,7 @@ boolean mon_notices;
 	    tmp += 6;
 	    break;
 	default:
-	    if (obj->oclass == WEAPON_CLASS || obj->oclass == BALL_CLASS || obj->oclass == CHAIN_CLASS || is_weptool(obj) ||
-		    obj->oclass == GEM_CLASS)
+	    if (obj->oclass == WEAPON_CLASS || obj->oclass == BALL_CLASS || obj->oclass == CHAIN_CLASS || obj->oclass == VENOM_CLASS || is_weptool(obj) || obj->oclass == GEM_CLASS)
 		tmp += hitval(obj, mon);
 	    break;
 	}
@@ -2934,7 +2944,7 @@ inaccurateguns:
 
 	if (!polearming && befriend_with_obj(mon->data, obj)) goto befriended;
 
-	if (obj->oclass == WEAPON_CLASS || obj->oclass == BALL_CLASS || obj->oclass == CHAIN_CLASS || is_weptool(obj) ||
+	if (obj->oclass == WEAPON_CLASS || obj->oclass == BALL_CLASS || obj->oclass == CHAIN_CLASS || obj->oclass == VENOM_CLASS || is_weptool(obj) ||
 		obj->oclass == GEM_CLASS) {
 	    if (is_ammo(obj)) {
 		if (!ammo_and_launcher(obj, launcher)) {
@@ -3200,8 +3210,7 @@ inaccurateguns:
 		tmiss(obj, mon);
 	    }
 
-	} else if ((otyp == EGG || otyp == CREAM_PIE ||
-		    otyp == BLINDING_VENOM || otyp == FAERIE_FLOSS_RHING || otyp == ACID_VENOM || otyp == SEGFAULT_VENOM || otyp == TAIL_SPIKES) &&
+	} else if ((otyp == EGG || otyp == CREAM_PIE) &&
 		(guaranteed_hit || ACURR(A_DEX) > rnd(25) || tmp >= rnd(20) )) { /* F this stupidity. Sorry. --Amy */
 
 		ranged_thorns(mon);

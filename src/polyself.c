@@ -1886,7 +1886,9 @@ dospit()
 		    break;
 	    }
 	    if (!otmp) return(0);
-	    otmp->spe = 1; /* to indicate it's yours */
+	    otmp->quan = 1;
+	    otmp->owt = weight(otmp);
+	    /*otmp->spe = 1;*/ /* to indicate it's yours */
 	    throwit(otmp, 0L, FALSE, 0);
 	}
 	use_skill(P_SQUEAKING, 1);

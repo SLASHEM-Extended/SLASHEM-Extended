@@ -3752,6 +3752,10 @@ nh_timeout()
 			if (!Technicality)
 				pline("Your techniques are weaker again.");
 			break;
+		case DEFUSING:
+			if (!Defusing)
+				pline("You no longer know how to defuse traps.");
+			break;
 		case SCENT_VIEW:
 			if (!ScentView)
 				pline("Your %s returns to normal.", body_part(NOSE));
@@ -4027,6 +4031,9 @@ nh_timeout()
 			break;
 		case DEAC_TECHNICALITY:
 			pline("You are no longer prevented from having technicality.");
+			break;
+		case DEAC_DEFUSING:
+			pline("You are no longer prevented from having the defusing power.");
 			break;
 		case DEAC_SCENT_VIEW:
 			pline("You are no longer prevented from having scent view.");

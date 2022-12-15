@@ -10228,7 +10228,7 @@ rerollX:
 			pline("The repair failed due to the stack being too big.");
 			break;
 		}
-		if(uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == GEM_CLASS || uwep->oclass == CHAIN_CLASS || is_weptool(uwep))) {
+		if(uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == GEM_CLASS || uwep->oclass == CHAIN_CLASS || uwep->oclass == VENOM_CLASS || is_weptool(uwep))) {
 			if (greatest_erosion(uwep) > 0) {
 				if (!Blind) {
 					pline("Your %s glows faintly golden for a moment.",xname(uwep));

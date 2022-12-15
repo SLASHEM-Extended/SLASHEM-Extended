@@ -139,6 +139,8 @@ int skill;
 			return "shuriken";
 		case P_BOOMERANG:
 			return "boomerang";
+		case P_VENOM:
+			return "venom";
 		case P_WHIP:
 			return "whip";
 		case P_UNICORN_HORN:
@@ -246,7 +248,7 @@ struct monst *mon;
 {
 	int	tmp = 0;
 	struct permonst *ptr = mon->data;
-	boolean Is_weapon = (otmp->oclass == WEAPON_CLASS || otmp->oclass == GEM_CLASS || otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS || is_weptool(otmp));
+	boolean Is_weapon = (otmp->oclass == WEAPON_CLASS || otmp->oclass == GEM_CLASS || otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS || otmp->oclass == VENOM_CLASS || is_weptool(otmp));
 
 	if (Is_weapon)
 		tmp += otmp->spe;
@@ -524,7 +526,7 @@ struct monst *mon;
 {
 	int tmp = 0, otyp = otmp->otyp;
 	struct permonst *ptr = mon->data;
-	boolean Is_weapon = (otmp->oclass == WEAPON_CLASS || otmp->oclass == GEM_CLASS || otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS || is_weptool(otmp));
+	boolean Is_weapon = (otmp->oclass == WEAPON_CLASS || otmp->oclass == GEM_CLASS || otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS || otmp->oclass == VENOM_CLASS || is_weptool(otmp));
 
 	if (otyp == CREAM_PIE) return 0;
 
@@ -563,13 +565,16 @@ struct monst *mon;
 		case HUGE_CLUB:
 		case VOULGE:		tmp += rnd(4); break;
 
-		case ACID_VENOM:
-		case SEGFAULT_VENOM:
 		case HALBERD:
 		case SPETUM:		tmp += rnd(6); break;
 
-		case TAIL_SPIKES:	tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6);
- 						break;
+		case BLINDING_VENOM:
+					tmp += 1; break;
+		case SEGFAULT_VENOM:
+		case ACID_VENOM:	tmp += rnd(6); break;
+		case FAERIE_FLOSS_RHING:	tmp += rnd(6); tmp += rnd(6); break;
+		case TAIL_SPIKES:	tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); 
+					break;
 
 		case BATTLE_AXE:
 		case BARDICHE:
@@ -745,10 +750,14 @@ struct monst *mon;
 		case RED_LIGHTSABER:    tmp += rnd(6); break;
 		case BLACK_LIGHTSABER:    tmp += rnd(4); break;
 
+		case BLINDING_VENOM:
+					tmp += 1; break;
 		case SEGFAULT_VENOM:
 		case ACID_VENOM:	tmp += rnd(6); break;
+		case FAERIE_FLOSS_RHING:	tmp += rnd(6); tmp += rnd(6); break;
 		case TAIL_SPIKES:	tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); 
 					break;
+
 		case SCIMITAR:
 			if(otmp->oartifact == ART_REAVER) tmp += d(1,8); break;
 	    }
@@ -779,7 +788,7 @@ struct monst *mon;
 
 /*	Put weapon vs. monster type damage bonuses in below:	*/
 	if (Is_weapon || otmp->oclass == GEM_CLASS ||
-		otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS) {
+		otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS || otmp->oclass == VENOM_CLASS) {
 	    int bonus = 0;
 
 	    if (otmp->blessed && (is_undead(ptr) || is_demon(ptr)))
@@ -1048,7 +1057,7 @@ struct monst *mon;
 {
 	int tmp = 0, otyp = otmp->otyp;
 	struct permonst *ptr = mon->data;
-	boolean Is_weapon = (otmp->oclass == WEAPON_CLASS || otmp->oclass == GEM_CLASS || otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS || is_weptool(otmp));
+	boolean Is_weapon = (otmp->oclass == WEAPON_CLASS || otmp->oclass == GEM_CLASS || otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS || otmp->oclass == VENOM_CLASS || is_weptool(otmp));
 
 	if (otyp == CREAM_PIE) return 0;
 
@@ -1087,13 +1096,16 @@ struct monst *mon;
 		case HUGE_CLUB:
 		case VOULGE:		tmp += rnd(4); break;
 
-		case ACID_VENOM:
-		case SEGFAULT_VENOM:
 		case HALBERD:
 		case SPETUM:		tmp += rnd(6); break;
 
-		case TAIL_SPIKES:	tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6);
- 						break;
+		case BLINDING_VENOM:
+					tmp += 1; break;
+		case SEGFAULT_VENOM:
+		case ACID_VENOM:	tmp += rnd(6); break;
+		case FAERIE_FLOSS_RHING:	tmp += rnd(6); tmp += rnd(6); break;
+		case TAIL_SPIKES:	tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); 
+					break;
 
 		case BATTLE_AXE:
 		case BARDICHE:
@@ -1271,8 +1283,11 @@ struct monst *mon;
 		case RED_LIGHTSABER:    tmp += rnd(6); break;
 		case BLACK_LIGHTSABER:    tmp += rnd(4); break;
 
+		case BLINDING_VENOM:
+					tmp += 1; break;
 		case SEGFAULT_VENOM:
 		case ACID_VENOM:	tmp += rnd(6); break;
+		case FAERIE_FLOSS_RHING:	tmp += rnd(6); tmp += rnd(6); break;
 		case TAIL_SPIKES:	tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); 
 					break;
 		case SCIMITAR:
@@ -1306,7 +1321,7 @@ struct monst *mon;
 
 /*	Put weapon vs. monster type damage bonuses in below:	*/
 	if (Is_weapon || otmp->oclass == GEM_CLASS ||
-		otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS) {
+		otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS || otmp->oclass == VENOM_CLASS) {
 	    int bonus = 0;
 
 	    if (otmp->blessed && (is_undead(ptr) || is_demon(ptr)))
@@ -2937,7 +2952,7 @@ register struct monst *mtmp;
 	/* prefer artifacts to everything else */
 	for(otmp=mtmp->minvent; otmp; otmp = otmp->nobj) {
 		if (
-		(otmp->oclass == WEAPON_CLASS || otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS)
+		(otmp->oclass == WEAPON_CLASS || otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS || otmp->oclass == VENOM_CLASS)
 			&& otmp->oartifact && touch_artifact(otmp,mtmp)
 			&& ((!wearing_shield) || !objects[otmp->otyp].oc_bimanual) )
 		    return otmp;
@@ -4482,6 +4497,9 @@ jediskip:
 		case P_BOOMERANG:
 			    HFast |= FROMOUTSIDE; pline("Got speed!"); break;
 		break;
+		case P_VENOM:
+			    HDefusing |= FROMOUTSIDE; pline("Got defusing power!"); break;
+		break;
 		case P_WHIP:
 			    HSee_invisible |= FROMOUTSIDE; pline("Got see invisible!"); break;
 		break;
@@ -4750,6 +4768,9 @@ jediskip:
 				if (!tech_known(T_SIGIL_DISCHARGE)) {    	learntech(T_SIGIL_DISCHARGE, FROMOUTSIDE, 1);
 			    	You("learn how to perform sigil of discharge!");
 				}
+		break;
+		case P_VENOM:
+				/* todo */
 		break;
 		case P_WHIP:
 				if (!tech_known(T_POKE_BALL)) {    	learntech(T_POKE_BALL, FROMOUTSIDE, 1);
@@ -6303,7 +6324,7 @@ struct obj *obj;
 	    return ((martial_bonus() && !u.disablemartial) ? P_MARTIAL_ARTS :
 				P_BARE_HANDED_COMBAT);
 	if (obj && itemhasappearance(obj, APP_PISTOL_BOOTS)) return (P_FIREARM);
-    if ( ((obj->oclass == BALL_CLASS) || (obj->oclass == CHAIN_CLASS)) /*&& Role_if(PM_CONVICT)*/)
+    if ( (obj->oclass == BALL_CLASS) || (obj->oclass == CHAIN_CLASS) || (obj->oclass == VENOM_CLASS) )
         return objects[obj->otyp].oc_skill;
 	if (obj->oclass != WEAPON_CLASS && obj->oclass != TOOL_CLASS &&
 	    obj->oclass != GEM_CLASS)
@@ -8418,6 +8439,65 @@ rerollthree:
 
 	}
 
+	if (Race_if(PM_GERTEUT)) {
+		if (P_RESTRICTED(P_VENOM)) {
+			P_SKILL(P_VENOM) = P_UNSKILLED;
+			P_ADVANCE(P_VENOM) = 0;
+			P_MAX_SKILL(P_VENOM) = P_SKILLED;
+		} else {
+			P_SKILL(P_VENOM) = P_BASIC;
+			if (P_MAX_SKILL(P_VENOM) == P_EXPERT) P_MAX_SKILL(P_VENOM) = P_MASTER;
+			else if (P_MAX_SKILL(P_VENOM) == P_MASTER) P_MAX_SKILL(P_VENOM) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_VENOM) = P_SUPREME_MASTER;
+		}
+	}
+	if (Race_if(PM_HUMANLIKE_NAGA)) {
+		if (P_RESTRICTED(P_VENOM)) {
+			P_SKILL(P_VENOM) = P_UNSKILLED;
+			P_ADVANCE(P_VENOM) = 0;
+			P_MAX_SKILL(P_VENOM) = P_EXPERT;
+		} else {
+			P_SKILL(P_VENOM) = P_BASIC;
+			if (P_MAX_SKILL(P_VENOM) == P_EXPERT) P_MAX_SKILL(P_VENOM) = P_MASTER;
+			else if (P_MAX_SKILL(P_VENOM) == P_MASTER) P_MAX_SKILL(P_VENOM) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_VENOM) = P_SUPREME_MASTER;
+		}
+	}
+	if (Race_if(PM_MONGUNG)) {
+		if (P_RESTRICTED(P_VENOM)) {
+			P_SKILL(P_VENOM) = P_UNSKILLED;
+			P_ADVANCE(P_VENOM) = 0;
+			P_MAX_SKILL(P_VENOM) = P_SKILLED;
+		} else {
+			P_SKILL(P_VENOM) = P_BASIC;
+			if (P_MAX_SKILL(P_VENOM) == P_EXPERT) P_MAX_SKILL(P_VENOM) = P_MASTER;
+			else if (P_MAX_SKILL(P_VENOM) == P_MASTER) P_MAX_SKILL(P_VENOM) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_VENOM) = P_SUPREME_MASTER;
+		}
+	}
+	if (Race_if(PM_IRAHA)) {
+		if (P_RESTRICTED(P_VENOM)) {
+			P_SKILL(P_VENOM) = P_BASIC;
+			P_ADVANCE(P_VENOM) = 20;
+			P_MAX_SKILL(P_VENOM) = P_MASTER;
+		} else {
+			P_SKILL(P_VENOM) = P_BASIC;
+			if (P_MAX_SKILL(P_VENOM) == P_EXPERT) P_MAX_SKILL(P_VENOM) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_VENOM) = P_SUPREME_MASTER;
+		}
+	}
+
+	if (Race_if(PM_POISONER)) {
+		if (P_RESTRICTED(P_VENOM)) {
+			P_SKILL(P_VENOM) = P_BASIC;
+			P_ADVANCE(P_VENOM) = 20;
+			P_MAX_SKILL(P_VENOM) = P_GRAND_MASTER;
+		} else {
+			P_SKILL(P_VENOM) = P_BASIC;
+			P_MAX_SKILL(P_VENOM) = P_SUPREME_MASTER;
+		}
+	}
+
 	if (Race_if(PM_TAYIIN)) {
 		if (P_RESTRICTED(P_MARTIAL_ARTS)) {
 			P_SKILL(P_MARTIAL_ARTS) = P_UNSKILLED;
@@ -9653,6 +9733,9 @@ doubleskilltraining()
 	else if (P_ADVANCE(P_BOOMERANG) && !(P_RESTRICTED(P_BOOMERANG)) && yn("Do you want to train the boomerang skill?")=='y') {
 		P_ADVANCE(P_BOOMERANG) *= 2;
 		acquiredskill = 1; }
+	else if (P_ADVANCE(P_VENOM) && !(P_RESTRICTED(P_VENOM)) && yn("Do you want to train the venom skill?")=='y') {
+		P_ADVANCE(P_VENOM) *= 2;
+		acquiredskill = 1; }
 	else if (P_ADVANCE(P_WHIP) && !(P_RESTRICTED(P_WHIP)) && yn("Do you want to train the whip skill?")=='y') {
 		P_ADVANCE(P_WHIP) *= 2;
 		acquiredskill = 1; }
@@ -9869,6 +9952,8 @@ unrestrictskillchoice()
 		    unrestrict_weapon_skill(P_SHURIKEN);	acquiredskill = 1; }
 	else if (P_RESTRICTED(P_BOOMERANG) && yn("Do you want to learn the boomerang skill?")=='y') {
 		    unrestrict_weapon_skill(P_BOOMERANG);	acquiredskill = 1; }
+	else if (P_RESTRICTED(P_VENOM) && yn("Do you want to learn the venom skill?")=='y') {
+		    unrestrict_weapon_skill(P_VENOM);	acquiredskill = 1; }
 	else if (P_RESTRICTED(P_WHIP) && yn("Do you want to learn the whip skill?")=='y') {
 		    unrestrict_weapon_skill(P_WHIP);	acquiredskill = 1; }
 	else if (P_RESTRICTED(P_UNICORN_HORN) && yn("Do you want to learn the unicorn horn skill?")=='y') {
@@ -10075,6 +10160,9 @@ int trainamount;
 		acquiredskill = 1; }
 	else if (!(P_RESTRICTED(P_BOOMERANG)) && yn("Do you want to train the boomerang skill?")=='y') {
 		P_ADVANCE(P_BOOMERANG) += trainamount;
+		acquiredskill = 1; }
+	else if (!(P_RESTRICTED(P_VENOM)) && yn("Do you want to train the venom skill?")=='y') {
+		P_ADVANCE(P_VENOM) += trainamount;
 		acquiredskill = 1; }
 	else if (!(P_RESTRICTED(P_WHIP)) && yn("Do you want to train the whip skill?")=='y') {
 		P_ADVANCE(P_WHIP) += trainamount;

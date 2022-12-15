@@ -1099,7 +1099,7 @@ rndcurse()			/* curse a few inventory items at random! */
 void
 attrcurse()			/* remove a random INTRINSIC ability */
 {
-	switch(rnd(255)) {
+	switch(rnd(256)) {
 	case 1:
 	case 2:
 	case 3:
@@ -2238,6 +2238,17 @@ attrcurse()			/* remove a random INTRINSIC ability */
 		if (HWinceState & TIMEOUT) {
 			HWinceState &= ~TIMEOUT;
 			You_feel("relieved!");
+			u.cnd_intrinsiclosscount++;
+		}
+		break;
+	case 256: if (HDefusing & INTRINSIC) {
+			HDefusing &= ~INTRINSIC;
+			You_feel("unable to defuse traps!");
+			u.cnd_intrinsiclosscount++;
+		}
+		if (HDefusing & TIMEOUT) {
+			HDefusing &= ~TIMEOUT;
+			You_feel("unable to defuse traps!");
 			u.cnd_intrinsiclosscount++;
 		}
 		break;
