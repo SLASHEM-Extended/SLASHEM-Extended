@@ -10117,7 +10117,7 @@ A("Klieau!",				TAIL_SPIKES,
 	(SPFX_RESTR), 0, 0,
 	PHYS(0, 36), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
 
-A("Ridget Phasto",				BLINDING_VENOM, /* randart, melee fuckup effect, gives intrinsic nastytrap effects over time, spawns with stack size of 1 */
+A("Ridget Phasto",				BLINDING_VENOM, /* randart, melee fuckup effect, gives intrinsic nastytrap effects over time, spawns with stack size of 1, sticky prime curses itself when wielded, doesn't say anything in the description (you have to figure out yourself how to get rid of it) */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 80L ),
 

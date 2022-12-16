@@ -9266,22 +9266,22 @@ rockpoisonchoice:
 				u.mtimedone = 100 + (techlevX(tech_no));
 				pline("The Human World does not care about the Plant World. So you'll teach them.");
 
-				mtmp = makemon(&mons[PM_LITTLE_POISON_IVY], u.ux, u.uy, MM_ADJACENTOK);
+				mtmp = makemon(&mons[rn2(5) ? PM_LITTLE_POISON_IVY : PM_SWEET_ASIAN_POISON_IVY], u.ux, u.uy, MM_ADJACENTOK);
 				if (mtmp) (void) tamedog(mtmp, (struct obj *) 0, TRUE);
-				mtmp = makemon(&mons[PM_LITTLE_POISON_IVY], u.ux, u.uy, MM_ADJACENTOK);
+				mtmp = makemon(&mons[rn2(5) ? PM_LITTLE_POISON_IVY : PM_SWEET_ASIAN_POISON_IVY], u.ux, u.uy, MM_ADJACENTOK);
 				if (mtmp) (void) tamedog(mtmp, (struct obj *) 0, TRUE);
 				if (!rn2(2)) {
-					mtmp = makemon(&mons[PM_LITTLE_POISON_IVY], u.ux, u.uy, MM_ADJACENTOK);
+					mtmp = makemon(&mons[rn2(5) ? PM_LITTLE_POISON_IVY : PM_SWEET_ASIAN_POISON_IVY], u.ux, u.uy, MM_ADJACENTOK);
 					if (mtmp) (void) tamedog(mtmp, (struct obj *) 0, TRUE);
 					if (!rn2(2)) {
-						mtmp = makemon(&mons[PM_LITTLE_POISON_IVY], u.ux, u.uy, MM_ADJACENTOK);
+						mtmp = makemon(&mons[rn2(5) ? PM_LITTLE_POISON_IVY : PM_SWEET_ASIAN_POISON_IVY], u.ux, u.uy, MM_ADJACENTOK);
 						if (mtmp) (void) tamedog(mtmp, (struct obj *) 0, TRUE);
 					}
 				}
 
 			} else pline("Somehow, you failed to transform into a plant. Maybe you can't polymorph?");
 
-		      t_timeout = rnz(20000);
+		      t_timeout = rnz(50000);
 			break;
 
 		case T_POISON_PEN_LETTER:

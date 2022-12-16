@@ -24968,7 +24968,7 @@ boolean difficulttrap;
 		    } else {
 			move_into_trap(ttmp);
 		    }
-		    if (difficulttrap && !rn2(3) && (rn2(2) || !StrongDefusing) ) {
+		    if (difficulttrap && !rn2(10) && (rn2(2) || !StrongDefusing) ) {
 			badeffect();
 			if (!rn2(20)) {
 				pline("Oof - your very soul has been drained!");
@@ -24990,7 +24990,7 @@ boolean difficulttrap;
 				  (ttype == WEB) ? "remove" : "disarm");
 		    }
 
-		    if (difficulttrap && !rn2(20) && (rn2(2) || !StrongDefusing) ) {
+		    if (difficulttrap && !rn2(40) && (rn2(2) || !StrongDefusing) ) {
 			badeffect();
 		    }
 		}
@@ -25232,6 +25232,217 @@ struct trap *ttmp;
 {
 	xchar trapx = ttmp->tx, trapy = ttmp->ty;
 
+	int multiplier = 3; /* amount of XP you get */
+
+	switch (ttmp->ttyp) {
+		case SPEAR_TRAP:
+			multiplier = 5; break;
+		case ROLLING_BOULDER_TRAP:
+			multiplier = 3; break;
+		case SLP_GAS_TRAP:
+			multiplier = 5; break;
+		case TELEP_TRAP:
+			multiplier = 3; break;
+		case LEVEL_TELEP:
+			multiplier = 8; break;
+		case STATUE_TRAP:
+			multiplier = 4; break;
+		case MAGIC_TRAP:
+			multiplier = 4; break;
+		case ANTI_MAGIC:
+			multiplier = 4; break;
+		case POLY_TRAP:
+			multiplier = 20; break;
+		case ICE_TRAP:
+			multiplier = 5; break;
+		case COLLAPSE_TRAP:
+			multiplier = 30; break;
+		case MAGIC_BEAM_TRAP:
+			multiplier = 30; break;
+		case SHIT_TRAP:
+			multiplier = 3; break;
+		case ANIMATION_TRAP:
+			multiplier = 10; break;
+		case POISON_GAS_TRAP:
+			multiplier = 5; break;
+		case SLOW_GAS_TRAP:
+			multiplier = 5; break;
+		case SHOCK_TRAP:
+			multiplier = 8; break;
+		case VULN_TRAP:
+			multiplier = 10; break;
+		case GRAVITY_TRAP:
+			multiplier = 12; break;
+		case LOCK_TRAP:
+			multiplier = 10; break;
+		case MAGIC_CANCELLATION_TRAP:
+			multiplier = 15; break;
+		case CYANIDE_TRAP:
+			multiplier = 40; break;
+		case LASER_TRAP:
+			multiplier = 10; break;
+		case CONFUSE_TRAP:
+			multiplier = 5; break;
+		case STUN_TRAP:
+			multiplier = 5; break;
+		case HALLUCINATION_TRAP:
+			multiplier = 5; break;
+		case NUMBNESS_TRAP:
+			multiplier = 5; break;
+		case FREEZING_TRAP:
+			multiplier = 6; break;
+		case BURNING_TRAP:
+			multiplier = 5; break;
+		case FEAR_TRAP:
+			multiplier = 5; break;
+		case BLINDNESS_TRAP:
+			multiplier = 5; break;
+		case GLIB_TRAP:
+			multiplier = 5; break;
+		case UNLIGHT_TRAP:
+			multiplier = 10; break;
+		case ELEMENTAL_TRAP:
+			multiplier = 10; break;
+		case ESCALATING_TRAP:
+			multiplier = 12; break;
+		case NEGATIVE_TRAP:
+			multiplier = 10; break;
+		case MANA_TRAP:
+			multiplier = 5; break;
+		case GENETIC_TRAP:
+			multiplier = 25; break;
+		case MISSINGNO_TRAP:
+			multiplier = 25; break;
+		case CANCELLATION_TRAP:
+			multiplier = 30; break;
+		case HOSTILITY_TRAP:
+			multiplier = 10; break;
+		case FALLING_BOULDER_TRAP:
+			multiplier = 15; break;
+		case OUT_OF_MAGIC_TRAP:
+			multiplier = 10; break;
+		case PLASMA_TRAP:
+			multiplier = 15; break;
+		case BOMB_TRAP:
+			multiplier = 15; break;
+		case EARTHQUAKE_TRAP:
+			multiplier = 15; break;
+		case NOISE_TRAP:
+			multiplier = 3; break;
+		case GLUE_TRAP:
+			multiplier = 8; break;
+		case VOLT_TRAP:
+			multiplier = 12; break;
+		case BANANA_TRAP:
+			multiplier = 3; break;
+		case FALLING_TUB_TRAP:
+			multiplier = 15; break;
+		case ALARM:
+			multiplier = 8; break;
+		case BLADE_WIRE:
+			multiplier = 5; break;
+		case MAGNET_TRAP:
+			multiplier = 12; break;
+		case CANNON_TRAP:
+			multiplier = 25; break;
+		case FUMAROLE:
+			multiplier = 10; break;
+		case FUMBLING_TRAP:
+			multiplier = 12; break;
+		case NEXUS_TRAP:
+			multiplier = 15; break;
+		case LEG_TRAP:
+			multiplier = 4; break;
+		case LEVITATION_TRAP:
+			multiplier = 10; break;
+		case BOWEL_CRAMPS_TRAP:
+			multiplier = 8; break;
+		case SINCOUNT_TRAP:
+			multiplier = 30; break;
+		case BEAMER_TRAP:
+			multiplier = 3; break;
+		case LEVEL_BEAMER:
+			multiplier = 8; break;
+		case PIERCING_BEAM_TRAP:
+			multiplier = 30; break;
+		case WRENCHING_TRAP:
+			multiplier = 10; break;
+		case BACK_TO_START_TRAP:
+			multiplier = 18; break;
+		case PUNISHMENT_TRAP:
+			multiplier = 15; break;
+		case CONTAMINATION_TRAP:
+			multiplier = 12; break;
+		case LASTING_AMNESIA_TRAP:
+			multiplier = 20; break;
+		case PAIN_TRAP:
+			multiplier = 10; break;
+		case TREMBLING_TRAP:
+			multiplier = 15; break;
+		case TECHCAP_TRAP:
+			multiplier = 8; break;
+		case SPELL_MEMORY_TRAP:
+			multiplier = 8; break;
+		case SKILL_REDUCTION_TRAP:
+			multiplier = 8; break;
+		case SKILLCAP_TRAP:
+			multiplier = 16; break;
+		case PERMANENT_STAT_DAMAGE_TRAP:
+			multiplier = 35; break;
+		case MIGUC_TRAP:
+			multiplier = 8; break;
+		case SATATUE_TRAP:
+			multiplier = 5; break;
+		case DIRECTIVE_TRAP:
+			multiplier = 10; break;
+		case SANITY_INCREASE_TRAP:
+			multiplier = 10; break;
+		case PSI_TRAP:
+			multiplier = 10; break;
+		case CORONA_TRAP:
+			multiplier = 8; break;
+		case UNPROOFING_TRAP:
+			multiplier = 12; break;
+		case VISIBILITY_TRAP:
+			multiplier = 10; break;
+		case BRANCH_TELEPORTER:
+			multiplier = 12; break;
+		case BRANCH_BEAMER:
+			multiplier = 12; break;
+		case MOTH_LARVAE_TRAP:
+			multiplier = 8; break;
+		case STRIKETHROUGH_TRAP:
+			multiplier = 12; break;
+		case VIVISECTION_TRAP:
+			multiplier = 20; break;
+		case SKILL_POINT_LOSS_TRAP:
+			multiplier = 30; break;
+		case TECHSTOP_TRAP:
+			multiplier = 5; break;
+		case TENTH_TRAP:
+			multiplier = 5; break;
+		case DEBT_TRAP:
+			multiplier = 5; break;
+		case INVERSION_TRAP:
+			multiplier = 6; break;
+		case WINCE_TRAP:
+			multiplier = 6; break;
+		case ALIGNMENT_TRASH_TRAP:
+			multiplier = 20; break;
+		case DOGSIDE_TRAP:
+			multiplier = 15; break;
+		case BANKRUPT_TRAP:
+			multiplier = 15; break;
+		case MALEVOLENCE_TRAP:
+			multiplier = 30; break;
+		case STATHALF_TRAP:
+			multiplier = 15; break;
+		case CUTSTAT_TRAP:
+			multiplier = 15; break;
+
+		default: break;
+	}
+
 	int fails;
 
 	if (ublindf && ublindf->oartifact == ART_COUNTER_TERRORISTS_WIN && u.ualign.type == A_LAWFUL && (ttmp->ttyp == LAND_MINE || ttmp->ttyp == BOMB_TRAP) ) fails = 2; /* guaranteed success */
@@ -25245,7 +25456,7 @@ struct trap *ttmp;
 		You("disarmed the trap.");
 	}
 	u.cnd_untrapamount++;
-	more_experienced(3 * (deepest_lev_reached(FALSE) + 1),0);
+	more_experienced(multiplier * (deepest_lev_reached(FALSE) + 1),0);
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 3;
@@ -25734,6 +25945,9 @@ disarm_hard_shooting_trap(ttmp, otyp)
 struct trap *ttmp;
 int otyp;
 {
+	int multiplier = 10; /* amount of XP you get */
+	if (ttmp->ttyp == VENOM_SPRINKLER) multiplier = 25;
+
 	int fails = try_disarm(ttmp, FALSE, TRUE);
 
 	if (fails < 2) return fails;
@@ -25745,7 +25959,7 @@ int otyp;
 	}
 
 	u.cnd_untrapamount++;
-	more_experienced(10 * (deepest_lev_reached(FALSE) + 1), 0);
+	more_experienced(multiplier * (deepest_lev_reached(FALSE) + 1), 0);
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 1;

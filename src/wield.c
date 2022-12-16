@@ -140,6 +140,11 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		Your("katana welds itself to your %s!", body_part(HAND));
 	}
 
+	if (uwep && uwep->oartifact == ART_RIDGET_PHASTO) {
+		curse(uwep);
+		uwep->hvycurse = uwep->prmcurse = uwep->stckcurse = TRUE;
+	}
+
 	if (uwep && uwep->oartifact == ART_ALASSEA_TELEMNAR && !uwep->hvycurse) {
 		curse(uwep);
 		uwep->hvycurse = 1;
@@ -309,6 +314,11 @@ swapweaponchoice:
 		if (uswapwep && uswapwep->otyp == HONOR_KATANA && !uswapwep->cursed) {
 			curse(uswapwep);
 			Your("katana welds itself to your other %s!", body_part(HAND));
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_RIDGET_PHASTO) {
+			curse(uswapwep);
+			uswapwep->hvycurse = uswapwep->prmcurse = uswapwep->stckcurse = TRUE;
 		}
 
 		if (uswapwep && uswapwep->oartifact == ART_SEXCALIBUR && !uswapwep->hvycurse) {
