@@ -1670,8 +1670,11 @@ register struct monst	*mtmp;
 		}
 
 		if ((rn2(3) >= armpro) || ((rnd(100) > armprolimit) && ((armpro < 4) || (rnd(armpro) < 4) ) ) ) {
-			make_dimmed(HDimmed + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
-			if (Role_if(PM_CELLAR_CHILD)) losehp(monster_difficulty(),"Rodney's laughing",KILLED_BY);
+
+			if (!(uamul && uamul->otyp == AMULET_VERSUS_NAGGING && rn2(4))) {
+				make_dimmed(HDimmed + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+				if (Role_if(PM_CELLAR_CHILD)) losehp(monster_difficulty(),"Rodney's laughing",KILLED_BY);
+			}
 
 		}
 
@@ -1709,8 +1712,10 @@ register struct monst	*mtmp;
 		}
 
 		if ((rn2(3) >= armpro) || ((rnd(100) > armprolimit) && ((armpro < 4) || (rnd(armpro) < 4) ) ) ) {
-			make_dimmed(HDimmed + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
-			if (Role_if(PM_CELLAR_CHILD)) losehp(monster_difficulty(),"Rodney's taunt",KILLED_BY);
+			if (!(uamul && uamul->otyp == AMULET_VERSUS_NAGGING && rn2(4))) {
+				make_dimmed(HDimmed + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+				if (Role_if(PM_CELLAR_CHILD)) losehp(monster_difficulty(),"Rodney's taunt",KILLED_BY);
+			}
 		}
 	    }
 
@@ -1735,8 +1740,10 @@ register struct monst	*mtmp;
 			}
 
 			if ((rn2(3) >= armpro) || ((rnd(100) > armprolimit) && ((armpro < 4) || (rnd(armpro) < 4) ) ) ) {
-				make_dimmed(HDimmed + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
-				if (Role_if(PM_CELLAR_CHILD)) losehp(monster_difficulty(),"angelic maledictions",KILLED_BY);
+				if (!(uamul && uamul->otyp == AMULET_VERSUS_NAGGING && rn2(4))) {
+					make_dimmed(HDimmed + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+					if (Role_if(PM_CELLAR_CHILD)) losehp(monster_difficulty(),"angelic maledictions",KILLED_BY);
+				}
 			}
 		}
 
@@ -1762,8 +1769,10 @@ register struct monst	*mtmp;
 		}
 
 		if ((rn2(3) >= armpro) || ((rnd(100) > armprolimit) && ((armpro < 4) || (rnd(armpro) < 4) ) ) ) {
-			make_dimmed(HDimmed + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
-			if (Role_if(PM_CELLAR_CHILD)) losehp(monster_difficulty(),"a 'your mother' joke",KILLED_BY);
+			if (!(uamul && uamul->otyp == AMULET_VERSUS_NAGGING && rn2(4))) {
+				make_dimmed(HDimmed + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+				if (Role_if(PM_CELLAR_CHILD)) losehp(monster_difficulty(),"a 'your mother' joke",KILLED_BY);
+			}
 		}
 
 	    }
@@ -1787,8 +1796,10 @@ register struct monst	*mtmp;
 			}
 
 			if ((rn2(3) >= armpro) || ((rnd(100) > armprolimit) && ((armpro < 4) || (rnd(armpro) < 4) ) ) ) {
-				make_dimmed(HDimmed + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
-				if (Role_if(PM_CELLAR_CHILD)) losehp(monster_difficulty(),"demonic maledictions",KILLED_BY);
+				if (!(uamul && uamul->otyp == AMULET_VERSUS_NAGGING && rn2(4))) {
+					make_dimmed(HDimmed + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+					if (Role_if(PM_CELLAR_CHILD)) losehp(monster_difficulty(),"demonic maledictions",KILLED_BY);
+				}
 			}
 		}
 

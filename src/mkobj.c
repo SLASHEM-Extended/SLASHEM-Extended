@@ -3505,6 +3505,7 @@ boolean shopinit;
 			  otmp->otyp == RIN_SLEEPING ||
 			  otmp->otyp == RIN_DISARMING ||
 			  otmp->otyp == RIN_NUMBNESS ||
+			  otmp->otyp == RIN_REVERSE_REGENERATION ||
 			  otmp->otyp == RIN_CURSE ||
 			  otmp->otyp == RIN_DIMNESS ||
 			  otmp->otyp == RIN_WINCING ||

@@ -1753,6 +1753,7 @@ struct you {
 
 	int gaugetimer;	/* one point shoot and particle cannon require 50 turns to reload */
 	int battertimer;	/* battering ram requires 2 turns to reload */
+	int combatcommand;	/* spell that temporarily gives +1 all stats */
 
 	int conclusiocount;	/* to check whether Mr. Conclusio can spawn */
 

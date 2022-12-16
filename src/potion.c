@@ -11485,7 +11485,108 @@ peffects(otmp)
 
 	case POT_CURE_AIDS:
 
-		/* todo */
+		makeknown(POT_CURE_AIDS);
+
+		if (isevilvariant && otmp->cursed) {
+			deacrandomintrinsic(rnz( (monster_difficulty() * 10) + 1));
+			deacrandomintrinsic(rnz( (monster_difficulty() * 10) + 1));
+			deacrandomintrinsic(rnz( (monster_difficulty() * 10) + 1));
+			deacrandomintrinsic(rnz( (monster_difficulty() * 10) + 1));
+			deacrandomintrinsic(rnz( (monster_difficulty() * 10) + 1));
+			deacrandomintrinsic(rnz( (monster_difficulty() * 10) + 1));
+			deacrandomintrinsic(rnz( (monster_difficulty() * 10) + 1));
+			deacrandomintrinsic(rnz( (monster_difficulty() * 10) + 1));
+			deacrandomintrinsic(rnz( (monster_difficulty() * 10) + 1));
+			deacrandomintrinsic(rnz( (monster_difficulty() * 10) + 1));
+			deacrandomintrinsic(rnz( (monster_difficulty() * 10) + 1));
+			deacrandomintrinsic(rnz( (monster_difficulty() * 10) + 1));
+			deacrandomintrinsic(rnz( (monster_difficulty() * 10) + 1));
+			deacrandomintrinsic(rnz( (monster_difficulty() * 10) + 1));
+			deacrandomintrinsic(rnz( (monster_difficulty() * 10) + 1));
+			deacrandomintrinsic(rnz( (monster_difficulty() * 10) + 1));
+			deacrandomintrinsic(rnz( (monster_difficulty() * 10) + 1));
+			deacrandomintrinsic(rnz( (monster_difficulty() * 10) + 1));
+			deacrandomintrinsic(rnz( (monster_difficulty() * 10) + 1));
+			deacrandomintrinsic(rnz( (monster_difficulty() * 10) + 1));
+			break;
+		}
+
+		u.uprops[DEAC_FIRE_RES].intrinsic = 0;
+		u.uprops[DEAC_COLD_RES].intrinsic = 0;
+		u.uprops[DEAC_SLEEP_RES].intrinsic = 0;
+		u.uprops[DEAC_DISINT_RES].intrinsic = 0;
+		u.uprops[DEAC_SHOCK_RES].intrinsic = 0;
+		u.uprops[DEAC_POISON_RES].intrinsic = 0;
+		u.uprops[DEAC_DRAIN_RES].intrinsic = 0;
+		u.uprops[DEAC_SICK_RES].intrinsic = 0;
+		u.uprops[DEAC_ANTIMAGIC].intrinsic = 0;
+		u.uprops[DEAC_ACID_RES].intrinsic = 0;
+		u.uprops[DEAC_STONE_RES].intrinsic = 0;
+		u.uprops[DEAC_FEAR_RES].intrinsic = 0;
+		u.uprops[DEAC_SEE_INVIS].intrinsic = 0;
+		u.uprops[DEAC_TELEPAT].intrinsic = 0;
+		u.uprops[DEAC_WARNING].intrinsic = 0;
+		u.uprops[DEAC_SEARCHING].intrinsic = 0;
+		u.uprops[DEAC_CLAIRVOYANT].intrinsic = 0;
+		u.uprops[DEAC_INFRAVISION].intrinsic = 0;
+		u.uprops[DEAC_DETECT_MONSTERS].intrinsic = 0;
+		u.uprops[DEAC_INVIS].intrinsic = 0;
+		u.uprops[DEAC_DISPLACED].intrinsic = 0;
+		u.uprops[DEAC_STEALTH].intrinsic = 0;
+		u.uprops[DEAC_JUMPING].intrinsic = 0;
+		u.uprops[DEAC_TELEPORT_CONTROL].intrinsic = 0;
+		u.uprops[DEAC_FLYING].intrinsic = 0;
+		u.uprops[DEAC_MAGICAL_BREATHING].intrinsic = 0;
+		u.uprops[DEAC_PASSES_WALLS].intrinsic = 0;
+		u.uprops[DEAC_SLOW_DIGESTION].intrinsic = 0;
+		u.uprops[DEAC_HALF_SPDAM].intrinsic = 0;
+		u.uprops[DEAC_HALF_PHDAM].intrinsic = 0;
+		u.uprops[DEAC_REGENERATION].intrinsic = 0;
+		u.uprops[DEAC_ENERGY_REGENERATION].intrinsic = 0;
+		u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic = 0;
+		u.uprops[DEAC_FAST].intrinsic = 0;
+		u.uprops[DEAC_REFLECTING].intrinsic = 0;
+		u.uprops[DEAC_FREE_ACTION].intrinsic = 0;
+		u.uprops[DEAC_HALLU_PARTY].intrinsic = 0;
+		u.uprops[DEAC_DRUNKEN_BOXING].intrinsic = 0;
+		u.uprops[DEAC_STUNNOPATHY].intrinsic = 0;
+		u.uprops[DEAC_NUMBOPATHY].intrinsic = 0;
+		u.uprops[DEAC_DIMMOPATHY].intrinsic = 0;
+		u.uprops[DEAC_FREEZOPATHY].intrinsic = 0;
+		u.uprops[DEAC_STONED_CHILLER].intrinsic = 0;
+		u.uprops[DEAC_CORROSIVITY].intrinsic = 0;
+		u.uprops[DEAC_FEAR_FACTOR].intrinsic = 0;
+		u.uprops[DEAC_BURNOPATHY].intrinsic = 0;
+		u.uprops[DEAC_SICKOPATHY].intrinsic = 0;
+		u.uprops[DEAC_KEEN_MEMORY].intrinsic = 0;
+		u.uprops[DEAC_THE_FORCE].intrinsic = 0;
+		u.uprops[DEAC_SIGHT_BONUS].intrinsic = 0;
+		u.uprops[DEAC_VERSUS_CURSES].intrinsic = 0;
+		u.uprops[DEAC_STUN_RES].intrinsic = 0;
+		u.uprops[DEAC_CONF_RES].intrinsic = 0;
+		u.uprops[DEAC_DOUBLE_ATTACK].intrinsic = 0;
+		u.uprops[DEAC_QUAD_ATTACK].intrinsic = 0;
+		u.uprops[DEAC_PSI_RES].intrinsic = 0;
+		u.uprops[DEAC_WONDERLEGS].intrinsic = 0;
+		u.uprops[DEAC_GLIB_COMBAT].intrinsic = 0;
+		u.uprops[DEAC_MANALEECH].intrinsic = 0;
+		u.uprops[DEAC_PEACEVISION].intrinsic = 0;
+		u.uprops[DEAC_CONT_RES].intrinsic = 0;
+		u.uprops[DEAC_DISCOUNT_ACTION].intrinsic = 0;
+		u.uprops[DEAC_FULL_NUTRIENT].intrinsic = 0;
+		u.uprops[DEAC_TECHNICALITY].intrinsic = 0;
+		u.uprops[DEAC_DEFUSING].intrinsic = 0;
+		u.uprops[DEAC_SCENT_VIEW].intrinsic = 0;
+		u.uprops[DEAC_DIMINISHED_BLEEDING].intrinsic = 0;
+		u.uprops[DEAC_CONTROL_MAGIC].intrinsic = 0;
+		u.uprops[DEAC_EXP_BOOST].intrinsic = 0;
+		u.uprops[DEAC_ASTRAL_VISION].intrinsic = 0;
+		u.uprops[DEAC_BLIND_RES].intrinsic = 0;
+		u.uprops[DEAC_HALLUC_RES].intrinsic = 0;
+		u.uprops[DEAC_PAIN_SENSE].intrinsic = 0;
+
+		pline("That felt very purifying.");
+
 		break;
 
 	case POT_TRAINING:

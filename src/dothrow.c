@@ -251,6 +251,9 @@ int thrown;
 	    if (launcher && launcher->oartifact == ART_TEAM_FORTRESS_GL && obj->otyp == GAS_GRENADE) multishot += 5;
 
 	    if (obj && obj->oartifact == ART_WIWIU_) multishot += rnd(3);
+	    if (obj && obj->otyp == RAPID_DART) multishot += 2;
+	    if (obj && obj->otyp == NINJA_STAR) multishot += 3;
+	    if (obj && obj->otyp == FLAMETHROWER) multishot += 4;
 
 	    if (Race_if(PM_AZTPOK) && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot += rnd(2);
 	    if (Race_if(PM_TURMENE) && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot += rnd(3);
@@ -428,6 +431,8 @@ int thrown;
 		    You("throw a hail of %s!", xname(obj));
 	    }
 
+	    if (launcher && launcher->otyp == PISTOL_PAIR) multishot *= 2;
+
 	    /* Shotlimit controls your rate of fire */
 	    if ((shotlimit > 0) && (multishot > shotlimit)) multishot = shotlimit;
 
@@ -437,6 +442,14 @@ int thrown;
 	    }
 	    if (launcher && launcher->oartifact == ART_LEONE_M__GUAGE_SUPER) {
 		multishot -= 2;
+		if (multishot < 1) multishot = 1;
+	    }
+	    if (obj && obj->otyp == HEAVY_SPEAR) {
+		multishot -= 2;
+		if (multishot < 1) multishot = 1;
+	    }
+	    if (obj && obj->otyp == SUPERHEAVY_SPEAR) {
+		multishot -= 3;
 		if (multishot < 1) multishot = 1;
 	    }
 	    if (launcher && launcher->oartifact == ART_MOSIN_NAGANT) {
@@ -576,6 +589,15 @@ int thrown;
 		if (!u.bulletatorsling) {
 			pline("You're not allowed to use the catapult. Bulletators have been alerted.");
 			u.bulletatorsling = TRUE;
+		}
+	}
+
+	if (obj && obj->otyp == FLAMETHROWER && !bulletator_allowed(5)) {
+		u.bulletatorwantedlevel += 1;
+		u.bulletatortimer += 100;
+		if (!u.bulletatorjavelin) {
+			pline("You're not allowed to use the flamethrower. Bulletators have been alerted.");
+			u.bulletatorjavelin = TRUE;
 		}
 	}
 
@@ -2093,6 +2115,8 @@ int thrown;
 			/* djem so just trains so damn slowly... so here's an improvement --Amy */
 			if (is_lightsaber(obj)) {
 				use_skill(P_DJEM_SO, 1);
+				if (obj->otyp == PINK_LIGHTSWORD || obj->otyp == PINK_DOUBLE_LIGHTSWORD) use_skill(P_DJEM_SO, 1);
+				if (obj->oartifact == ART_ROSH_TRAINOR) use_skill(P_DJEM_SO, 1);
 			}
 
 		    if (!impaired && rn2(100)) {
@@ -2343,6 +2367,8 @@ boolean polearming;
 
 	if (Race_if(PM_GERTEUT)) tmp += 5;
 
+	if (obj && obj->otyp == LASER_FLYAXE && obj->lamplit) tmp += 5;
+
 	if (uarmg && itemhasappearance(uarmg, APP_UNCANNY_GLOVES)) tmp += 1;
 	if (uarmg && itemhasappearance(uarmg, APP_SLAYING_GLOVES)) tmp += 1;
 
@@ -2453,6 +2479,10 @@ inaccurateguns:
 		if (!rn2(2)) tmp -= rnd(10);
 		if (!rn2(3)) tmp -= rnd(10);
 	}
+	if (launcher && launcher->otyp == PISTOL_PAIR && P_RESTRICTED(P_TWO_WEAPON_COMBAT)) {
+		tmp -= rnd(20);
+	}
+
 	if (launcher && launcher->oartifact == ART_FN_M____PARA) tmp -= rnd(15);
 	if (launcher && launcher->oartifact == ART_CITYKILLER_COMBAT_SHOTGUN) tmp -= rnd(10);
 	if (launcher && launcher->oartifact == ART_COLONEL_BASTARD_S_LASER_PI) tmp -= rnd(5);
@@ -2469,6 +2499,8 @@ inaccurateguns:
 		}
 
 	}
+
+	if (tech_inuse(T_UNARMED_FOCUS)) tmp -= rnd(20);
 
 	/* quarterback is highly skilled at shooting small round objects --Amy */
 	if (Role_if(PM_QUARTERBACK) && objects[obj->otyp].oc_skill == -P_SLING) tmp += rn1(5, 5);

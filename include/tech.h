@@ -301,10 +301,12 @@ struct blitz_tab {
 #define T_PLANT_TERROR	222
 #define T_POISON_PEN_LETTER	223
 
-#define T_JEDI_JUMP	224
-#define T_CHARGE_SABER	225
-#define T_TELEKINESIS	226
+#define T_UNARMED_FOCUS	224
+
+#define T_JEDI_JUMP	225
+#define T_CHARGE_SABER	226
+#define T_TELEKINESIS	227
  
-#define MAXTECH 227
+#define MAXTECH 228
 
 #endif /* TECH_H */

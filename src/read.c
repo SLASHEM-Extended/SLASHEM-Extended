@@ -5695,16 +5695,136 @@ proofarmorchoice:
 	      break;
 
 	case SCR_EXTRA_SKILL_POINT:
-		/* todo */
+
+		known = TRUE;
+
+		if (isevilvariant && sobj->cursed) {
+			lose_weapon_skill(1);
+			You("permanently lost a skill slot.");
+		} else {
+			u.weapon_slots++;
+			You("feel very skillful, and gain an extra skill slot!");
+		}
+
 		break;
 	case SCR_PROOF_ACCESSORY:
-		/* todo */
+
+	      {
+		if (CannotSelectItemsInPrompts) break;
+
+		known = TRUE;
+		pline("You may erosionproof a ring, amulet or implant.");
+proofaccchoice:
+		otmp = getobj(allnoncount, "proof");
+
+			if(!otmp) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to proof your jewelry.");
+				else goto proofaccchoice;
+				strange_feeling(sobj,"Some weird things are happening to your equipment!");
+				exercise(A_STR, FALSE);
+				exercise(A_CON, FALSE);
+				return(1);
+			}
+			if (otmp->oclass != RING_CLASS && otmp->oclass != AMULET_CLASS && otmp->oclass != IMPLANT_CLASS) {
+	
+				strange_feeling(sobj, "You have a feeling of loss.");
+				return(1);
+			}
+
+			otmp->oerodeproof = 1;
+			if (!Blind) otmp->rknown = TRUE;
+			p_glow2(otmp, NH_PURPLE);
+			if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+				if (!otmp->cursed) bless(otmp);
+				else uncurse(otmp, FALSE);
+			}
+		}
+
 		break;
 	case SCR_PROOF_TOOL:
-		/* todo */
+
+	      {
+		if (CannotSelectItemsInPrompts) break;
+
+		known = TRUE;
+		pline("You may erosionproof a tool. Please select a tool-class item.");
+prooftoolchoice:
+		otmp = getobj(allnoncount, "proof");
+
+			if(!otmp) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to proof your tools.");
+				else goto prooftoolchoice;
+				strange_feeling(sobj,"Some weird things are happening to your equipment!");
+				exercise(A_STR, FALSE);
+				exercise(A_CON, FALSE);
+				return(1);
+			}
+			if (otmp->oclass != TOOL_CLASS) {
+	
+				strange_feeling(sobj, "You have a feeling of loss.");
+				return(1);
+			}
+
+			otmp->oerodeproof = 1;
+			if (!Blind) otmp->rknown = TRUE;
+			p_glow2(otmp, NH_PURPLE);
+			if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+				if (!otmp->cursed) bless(otmp);
+				else uncurse(otmp, FALSE);
+			}
+		}
+
 		break;
 	case SCR_NAME:
-		/* todo */
+	{
+		char aliasbuf[2048];	/* Buffer for alias name */
+		char eliasbuf[2048];
+		int aliaslength;
+		int testx;
+
+		known = TRUE;
+
+aliasagain:
+
+		sprintf(aliasbuf,"You found a scroll of name! What is your alias name?");
+		getlin(aliasbuf, eliasbuf);
+		aliaslength = strlen(eliasbuf);
+
+		if (aliaslength > 30) {
+			pline("That name is too long. Maximum 30 characters. Sorry.");
+			goto aliasagain;
+		}
+
+		for (testx = 0; testx >= 0; testx++) {
+
+			if (testx > aliaslength) break;
+			if (eliasbuf[testx]) {
+				if (eliasbuf[testx] == ' ') continue;
+				if (eliasbuf[testx] == '.') continue;
+				if (eliasbuf[testx] == ',') continue;
+				if (eliasbuf[testx] == '-') continue;
+				if (eliasbuf[testx] >= 'A' && eliasbuf[testx] <= 'Z') continue;
+				if (eliasbuf[testx] >= 'a' && eliasbuf[testx] <= 'z') continue;
+				if (eliasbuf[testx] >= '0' && eliasbuf[testx] <= '9') continue;
+				pline("You can only use spaces, alphanumeric characters or .,- characters. Sorry.");
+				goto aliasagain;
+			}
+		}
+
+		if (eliasbuf[0] && aliaslength < 31) { /* We do NOT want a buffer overflow. --Amy */
+
+			if (sobj->cursed || confused) strrev(eliasbuf);
+
+			if (eliasbuf && !(strncmpi(eliasbuf, "Glorious Dead", 14) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Satan's Secret Storage", 23) ) ) strcpy(eliasbuf, "Cheator");
+
+			strcpy(plalias, eliasbuf);
+			(void) strncpy(u.aliasname, eliasbuf, sizeof(u.aliasname));
+		}
+
+	}
 		break;
 
 	case SCR_SKILL_UP:

@@ -1445,7 +1445,7 @@
 #define Regeneration		(((IntRegeneration && u.nonintrinsicproperty != REGENERATION) || (ExtRegeneration && u.nonextrinsicproperty != REGENERATION)) && !NoRegeneration && !Race_if(PM_SYLPH) )
 #define StrongRegeneration	(IntRegeneration && ExtRegeneration && Regeneration && u.nondoubleproperty != REGENERATION)
 
-#define NoRegeneration	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_REGENERATION].intrinsic || RngeAids || (u.impossibleproperty == REGENERATION) || (uimplant && uimplant->oartifact == ART_RESTROOM_DRENCHING) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoRegeneration	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_REGENERATION].intrinsic || RngeAids || (u.impossibleproperty == REGENERATION) || (uleft && uleft->otyp == RIN_REVERSE_REGENERATION) || (uright && uright->otyp == RIN_REVERSE_REGENERATION)|| (uimplant && uimplant->oartifact == ART_RESTROOM_DRENCHING) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HEnergy_regeneration	u.uprops[ENERGY_REGENERATION].intrinsic
 #define EEnergy_regeneration	u.uprops[ENERGY_REGENERATION].extrinsic

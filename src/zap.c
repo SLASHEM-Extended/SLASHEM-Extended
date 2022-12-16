@@ -5094,8 +5094,16 @@ secureidchoice:
 			TimeStopped += (3 + rnd(5));
 			break;
 
-		case WAN_LAVA:
-			/* todo - make lava square underneath the player, but you don't fall in right away --Amy */
+		case WAN_LAVA: /* by jonadab */
+			/* make lava square underneath the player, but you don't fall in right away --Amy */
+			known = TRUE;
+			{
+				register struct rm *lev;
+				lev = &levl[u.ux][u.uy];
+				if (!(lev->typ == ALTAR && (Is_astralevel(&u.uz) || Is_sanctum(&u.uz)) ) && !(lev->wall_info & W_NONDIGGABLE) && lev->typ != STAIRS && lev->typ != LADDER ) lev->typ = LAVAPOOL;
+				pline("Suddenly, the surface underneath your %s feels very hot...", makeplural(body_part(FOOT)) );
+			}
+
 			break;
 
 		case WAN_ENTRAPPING:

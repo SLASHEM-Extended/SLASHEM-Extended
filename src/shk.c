@@ -4761,6 +4761,8 @@ coord *mm;
 		(void) makemon(&mons[PM_ANGRY_WATCHMAN], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 		break;
 		case 11:
+		(void) makemon(&mons[PM_VIDEO_SOLDIER], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
+		break;
 		case 12:
 		(void) makemon(&mons[PM_SOLDIER], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 		break;

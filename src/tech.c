@@ -268,6 +268,7 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"big'n'veiny",
 	"plant terror",
 	"poison pen letter",
+	"unarmed focus",
 	"jedi jump",
 	"charge saber",
 	"telekinesis",
@@ -3383,6 +3384,10 @@ dotech()
 			pline("Activating this technique temporarily allows your symbiote to deal double damage and take half damage.");
 			break;
 
+		case T_UNARMED_FOCUS:
+			pline("A technique meant to be used by those who really want to focus on bare-handed or martial arts combat. It lasts for a pretty long time, and even longer if you keep wearing a robe of focussing. While it's active, it increases the base damage multiplier of your fists by about 50%%. However, all other active techniques are stopped and while it's active, you cannot use any techniques at all. Also, trying to use a weapon with this technique active gives a hefty to-hit penalty, so you'd better make sure you really want to focus on fighting unarmed!");
+			break;
+
 		case T_UNDERTOW:
 			pline("Allows you to try to drown a monster. For that to work, either you or the monster needs to be on a water square (can be a pool, moat, watery tunnel or crystal water) and the monster may not be unbreathing of course.");
 			break;
@@ -3695,6 +3700,13 @@ int tech_no;
 		if (ishaxor && techtout(tech_no) > 1) techtout(tech_no) /= 2;
 		/*By default,  action should take a turn*/
 		return(1);
+
+	}
+
+	if (tech_inuse(T_UNARMED_FOCUS)) {
+
+		pline("While you're focussing on unarmed combat, you cannot use any techniques. Sorry!");
+		return(0);
 
 	}
 
@@ -6970,6 +6982,20 @@ revid_end:
 		num = 1000 + (techlevX(tech_no) * 10);
 	    	techt_inuse(tech_no) = num + 1;
 		pline("The energy consumption rate of your lightsaber slows down!");
+		t_timeout = rnz(6000);
+		break;
+
+	    case T_UNARMED_FOCUS:
+
+		if ((uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == LASER_TIN_OPENER || uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU) )) || (u.twoweap && uswapwep)) {
+			pline("That requires you to be fighting without a weapon!");
+			break;
+		}
+		docalm(); /* stop all other techs that might be active --Amy */
+
+		num = 1000 + (techlevX(tech_no) * 10);
+	    	techt_inuse(tech_no) = num + 1;
+		pline("You're focussing on fighting unarmed!");
 		t_timeout = rnz(6000);
 		break;
 
@@ -10288,6 +10314,10 @@ extrachargechoice:
 		      You("are not holding a lightsaber!");
 			return(0);
 	      }
+		if (uwep && uwep->otyp == LIGHTTORCH) {
+			pline("The lighttorch cannot be recharged that way!");
+			return(0);
+		}
 	      if (u.uen < 5){
 		      You("lack the concentration to charge %s. You need at least 5 points of mana!", the(xname(uwep)));
 			return(0);
@@ -10484,7 +10514,7 @@ tech_timeout()
 		if (techt_inuse(i) == 2) pline("Caution! Silent Ocean will end in 2 turns! If you're currently in the water and can't exist in water without the effect of Silent Ocean, you should get back on dry land quickly in order to prevent drowning!");
 	    }
 
-	    if (techt_inuse(i)) {
+	    if (techt_inuse(i) && !(techid(i) == T_UNARMED_FOCUS && !rn2(4) && !uwep && !(u.twoweap && uswapwep) && uarm && uarm->otyp == ROBE_OF_FOCUSSING ) ) {
 	    	/* Check if technique is done */
 	        if (!(--techt_inuse(i)))
 	        switch (techid(i)) {
@@ -10566,6 +10596,9 @@ tech_timeout()
 			break;
 		    case T_ENERGY_CONSERVATION:
 			pline("Your lightsaber consumes energy at the normal rate again.");
+			break;
+		    case T_UNARMED_FOCUS:
+			pline("You're no longer focussing on unarmed combat.");
 			break;
 		    case T_WILD_SLASHING:
 			pline("You stop your wild slashing.");
@@ -10709,7 +10742,7 @@ tech_timeout()
 	            default:
 	            	break;
 	        }
-	    } 
+	    }  /* technique active check */
 
 	    if (techtout(i) == 1) pline("Your %s technique is ready to be used!", techname(i));
 	    if (techtout(i) > 0) {

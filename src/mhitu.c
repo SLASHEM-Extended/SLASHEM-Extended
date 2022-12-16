@@ -18993,14 +18993,21 @@ register int n;
 				if (uarmf->spe > -1) uarmf->spe = -1;
 			}
 
-			u.usymbiote.active = 0;
-			u.usymbiote.mnum = PM_PLAYERMON;
-			u.usymbiote.mhp = 0;
-			u.usymbiote.mhpmax = 0;
-			u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0;
-			u.cnd_symbiotesdied++;
-			if (FunnyHallu) pline("Ack! You feel like you quaffed aqua pura by mistake, and feel like something inside you has been flushed away!");
-			else Your("symbiote dies from protecting you, and you feel very sad...");
+			if (uamul && uamul->otyp == AMULET_OF_SYMBIOTE_SAVING) {
+				makeknown(AMULET_OF_SYMBIOTE_SAVING);
+				useup(uamul);
+				u.usymbiote.mhp = u.usymbiote.mhpmax;
+				Your("symbiote glows, and your amulet crumbles to dust!");
+			} else {
+				u.usymbiote.active = 0;
+				u.usymbiote.mnum = PM_PLAYERMON;
+				u.usymbiote.mhp = 0;
+				u.usymbiote.mhpmax = 0;
+				u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0;
+				u.cnd_symbiotesdied++;
+				if (FunnyHallu) pline("Ack! You feel like you quaffed aqua pura by mistake, and feel like something inside you has been flushed away!");
+				else Your("symbiote dies from protecting you, and you feel very sad...");
+			}
 		}
 		if (flags.showsymbiotehp) flags.botl = TRUE;
 	} else if (u.disruptionshield && u.uen >= n) {

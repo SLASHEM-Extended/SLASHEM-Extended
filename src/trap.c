@@ -14651,15 +14651,23 @@ callingoutdone:
 					if (uarmf->spe > -1) uarmf->spe = -1;
 				}
 
-				u.usymbiote.active = 0;
-				u.usymbiote.mnum = PM_PLAYERMON;
-				u.usymbiote.mhp = 0;
-				u.usymbiote.mhpmax = 0;
-				u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0;
-				if (flags.showsymbiotehp) flags.botl = TRUE;
-				u.cnd_symbiotesdied++;
-				Your("symbiote has been killed.");
-				if (FunnyHallu) pline("Rats.");
+
+				if (uamul && uamul->otyp == AMULET_OF_SYMBIOTE_SAVING) {
+					makeknown(AMULET_OF_SYMBIOTE_SAVING);
+					useup(uamul);
+					u.usymbiote.mhp = u.usymbiote.mhpmax;
+					Your("symbiote glows, and your amulet crumbles to dust!");
+				} else {
+					u.usymbiote.active = 0;
+					u.usymbiote.mnum = PM_PLAYERMON;
+					u.usymbiote.mhp = 0;
+					u.usymbiote.mhpmax = 0;
+					u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0;
+					if (flags.showsymbiotehp) flags.botl = TRUE;
+					u.cnd_symbiotesdied++;
+					Your("symbiote has been killed.");
+					if (FunnyHallu) pline("Rats.");
+				}
 			}
 
 			break;

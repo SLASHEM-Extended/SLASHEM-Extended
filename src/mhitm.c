@@ -3436,6 +3436,7 @@ struct monst *magr, *mdef;
 	int polelimit = POLE_LIM;
 
 	if (magr->data == &mons[PM_MECHTNED]) return MM_MISS;
+	if (magr->data == &mons[PM_IMPALAZON]) return MM_MISS;
 	if (magr->data == &mons[PM_MYSTERY_WOMAN]) return MM_MISS;
 
     /* Rearranged beginning so monsters can use polearms not in a line */

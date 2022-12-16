@@ -699,6 +699,12 @@ nh_timeout()
 		if (!(u.burrowed)) pline("Your extra armor class from burrowing has timed out.");
 	}
 
+	if (u.combatcommand) {
+		u.combatcommand--;
+		if (u.combatcommand < 0) u.combatcommand = 0;
+		if (!(u.combatcommand)) pline("The effect of your combat command has ended.");
+	}
+
 	if (u.magicshield) {
 		u.magicshield--;
 		if (u.magicshield < 0) u.magicshield = 0;
@@ -5481,6 +5487,7 @@ begin_burn(obj, already_lit)
 	    case BLACK_LIGHTSABER:
 	    	turns = 1;
     	    	radius = 1;
+		if (obj && obj->otyp == LIGHTTORCH) radius = 3;
 		if (obj->oartifact == ART_LIGHTSABER_PROTOTYPE || obj->oartifact == ART_DEFINITE_LIGHTSABER){
 			do_timer = FALSE;
 			obj->lamplit = 1;

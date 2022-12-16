@@ -6165,6 +6165,8 @@ int degree;
 	if (Race_if(PM_ELONA_SNAIL)) degree *= (1 + rnd(2)); /* snail trains skills 2.5 times as fast --Amy */
 
 	if (uwep && uwep->oartifact == ART_ROSH_TRAINOR && skill >= P_SHII_CHO && skill <= P_WEDI) degree *= 2;
+	if (uwep && uwep->otyp == PINK_LIGHTSWORD && skill >= P_SHII_CHO && skill <= P_WEDI) degree *= 2;
+	if (uwep && uwep->otyp == PINK_DOUBLE_LIGHTSWORD && skill >= P_SHII_CHO && skill <= P_WEDI) degree *= 2;
 
 	if (Race_if(PM_MAZIN) && (skill >= P_ATTACK_SPELL && skill <= P_MATTER_SPELL) ) degree *= 2;
 

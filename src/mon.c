@@ -6938,7 +6938,7 @@ xkilled(mtmp, dest)
 	if (Role_if(PM_BLOODSEEKER)) healup(mtmp->m_lev, 0, FALSE, FALSE); /* special ability called "Stygwyr's Thirst" */
 	if (uwep && uwep->oartifact == ART_ALDEBARAN_FORM) healup(mtmp->m_lev, 0, FALSE, FALSE);
 
-	if (!PlayerCannotUseSkills && ((uarm && uarm->oartifact == ART_ALPHA_TAURI) || Role_if(PM_HEDDERJEDI)) && uwep && (Flying || (uwep->oartifact == ART_ALDEBARAN_FORM)) && ((is_lightsaber(uwep) && uwep->lamplit) || !rn2(3) ) ) {
+	if (!PlayerCannotUseSkills && ((uarm && uarm->oartifact == ART_ALPHA_TAURI) || (uwep && uwep->otyp == LASER_FLYAXE) || Role_if(PM_HEDDERJEDI)) && uwep && (Flying || (uwep->oartifact == ART_ALDEBARAN_FORM)) && ((is_lightsaber(uwep) && uwep->lamplit) || !rn2(3) ) ) {
 		int alphatauriheal = 0;
 		if (u.aldebaranskill >= 20) alphatauriheal++;
 		if (u.aldebaranskill >= 160) alphatauriheal++;
@@ -9961,13 +9961,20 @@ killsymbiote()
 		if (uarmf->spe > -1) uarmf->spe = -1;
 	}
 
-	u.usymbiote.active = 0;
-	u.usymbiote.mnum = PM_PLAYERMON;
-	u.usymbiote.mhp = 0;
-	u.usymbiote.mhpmax = 0;
-	u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0;
-	if (flags.showsymbiotehp) flags.botl = TRUE;
-	u.cnd_symbiotesdied++;
+	if (uamul && uamul->otyp == AMULET_OF_SYMBIOTE_SAVING) {
+		makeknown(AMULET_OF_SYMBIOTE_SAVING);
+		useup(uamul);
+		u.usymbiote.mhp = u.usymbiote.mhpmax;
+		Your("symbiote glows, and your amulet crumbles to dust!");
+	} else {
+		u.usymbiote.active = 0;
+		u.usymbiote.mnum = PM_PLAYERMON;
+		u.usymbiote.mhp = 0;
+		u.usymbiote.mhpmax = 0;
+		u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0;
+		if (flags.showsymbiotehp) flags.botl = TRUE;
+		u.cnd_symbiotesdied++;
+	}
 }
 
 void

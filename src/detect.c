@@ -1671,6 +1671,7 @@ register int aflag;
 			case P_SUPREME_MASTER: trapdiffbonus = rnd(100); break;
 		}
 	}
+	if (ublindf && ublindf->otyp == SHIELD_PATE_GLASSES) trapdiffbonus += rnd(50);
 
 	if(u.uswallow) {
 		if (!aflag)

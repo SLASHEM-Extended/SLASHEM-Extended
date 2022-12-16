@@ -3458,6 +3458,13 @@ Armor_on()
 	if (uarm && uarm->otyp == EVIL_LEATHER_ARMOR) {
 		if (!uarm->cursed) curse(uarm);
 	}
+	if (uarm && uarm->otyp == ROBE_OF_FOCUSSING) {
+		makeknown(uarm->otyp);
+		if (!tech_known(T_UNARMED_FOCUS)) {
+			learntech(T_UNARMED_FOCUS, FROMOUTSIDE, 1);
+		    	pline("You learn the unarmed focus technique!");
+		}
+	}
 
 	if (uarm && uarm->oartifact == ART_NOW_FOR_THE_DISCHARGE) {
 

@@ -2357,6 +2357,40 @@ moveloop()
 			u.copwantedlevel += 1000;
 		}
 
+		if (uwep && uwep->otyp == PINK_LIGHTSWORD && uwep->lamplit && !rn2(100)) {
+			u.uenmax--;
+			if (u.uenmax < 0) {
+				u.uenmax = 0;
+				drain_alla(1);
+			}
+			if (u.uen > u.uenmax) u.uen = u.uenmax;
+			flags.botl = TRUE;
+			pline("Attention, the pink lightsword is draining your mana.");
+		}
+		if (uwep && uwep->otyp == PINK_DOUBLE_LIGHTSWORD && uwep->lamplit && !rn2(100)) {
+			if (u.uhpmax < 2) {
+				u.youaredead = 1;
+				pline("Whoops, the lightsword drained your health completely and you die.");
+				killer_format = KILLED_BY;
+				killer = "being drained by a pink double lightsword";
+				done(DIED);
+				u.youaredead = 0;
+			} else {
+				u.uhpmax--;
+				if (u.uhpmax < 1) u.uhpmax = 1;
+				if (Upolyd) {
+					if (u.mhmax > 2) {
+						u.mhmax--;
+						if (u.mhmax < 1) u.mhmax = 1;
+						if (u.mh > u.mhmax) u.mh = u.mhmax;
+					} else drain_alla(1);
+				}
+			}
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			flags.botl = TRUE;
+			pline("ATTENTION! The pink double lightsword is draining your health!");
+		}
+
 		if (RepeatingNastycurseEffect && !rn2(5000)) {
 			nastytrapcurse();
 		}

@@ -6366,11 +6366,25 @@ secureidchoice:
 		break;
 
 	case SPE_COMBAT_COMMAND:
-		/* todo */
+
+		verbalize(!rn2(3) ? "Bohhh!" : rn2(2) ? "Wouuh!" : "Bohhohh!");
+		if (u.combatcommand) u.combatcommand += rnd(10);
+		else u.combatcommand = (rn1(50, 50) + spell_damage_bonus(spellid(spell)) * 5 );
+
 		break;
 
 	case SPE_DEFUSING:
-		/* todo */
+
+		if(!(HDefusing & INTRINSIC)) {
+			You("can disarm traps more effectively!");
+			incr_itimeout(&HDefusing, HDefusing ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+		} else {
+			pline("%s", nothing_happens);	/* Already have as intrinsic */
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		}
 
 		break;
 

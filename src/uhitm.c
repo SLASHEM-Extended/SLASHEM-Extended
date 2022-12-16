@@ -701,6 +701,15 @@ register struct monst *mtmp;
 		if (u.hunkskill >= 4320) tmp++;
 	}
 
+	if (!PlayerCannotUseSkills && uwep && uwep->otyp == LIGHTTORCH && !uwep->lamplit) {
+		if (u.hunkskill >= 20) tmp++;
+		if (u.hunkskill >= 160) tmp++;
+		if (u.hunkskill >= 540) tmp++;
+		if (u.hunkskill >= 1280) tmp++;
+		if (u.hunkskill >= 2500) tmp++;
+		if (u.hunkskill >= 4320) tmp++;
+	}
+
 	if (!PlayerCannotUseSkills && ((uarm && uarm->oartifact == ART_HUNKSTERMAN) || Role_if(PM_HEDDERJEDI)) && uwep && (is_missile(uwep) || is_ammo(uwep))) {
 		if (u.hunkskill >= 20) tmp++;
 		if (u.hunkskill >= 160) tmp++;
@@ -778,6 +787,9 @@ register struct monst *mtmp;
 	if (u.twoweap && uarms) tmp -= rnd(10);
 
 	if (u.twoweap && !rn2(10)) tmp -= rnd(20);
+
+	if (uwep && tech_inuse(T_UNARMED_FOCUS)) tmp -= rnd(20);
+	if (u.twoweap && uswapwep && tech_inuse(T_UNARMED_FOCUS)) tmp -= rnd(20);
 
 	if (u.twoweap && !PlayerCannotUseSkills) {
 		switch (P_SKILL(P_ATARU)) {
@@ -1402,6 +1414,12 @@ martial_dmg()
 
 	  }
 
+	/* base damage calculation end; unarmed focus tech doubles this, but doesn't double the bonuses below --Amy */
+	if (tech_inuse(T_UNARMED_FOCUS)) {
+		damage *= 3;
+		damage /= 2;
+	}
+
 	if (uarmg && itemhasappearance(uarmg, APP_BOXING_GLOVES) ) damage += 1;
 
 	if (uarmg && uarmg->oartifact == ART_BOX_FIST) damage += 5;
@@ -1622,8 +1640,26 @@ int dieroll;
 		tmp = 0;
 		else {
 			tmp = rnd(2);
-			if (Glib_combat && IsGlib) {
-				tmp += rnd(GushLevel);
+
+			if (!(PlayerCannotUseSkills)) {
+
+				switch (P_SKILL(P_BARE_HANDED_COMBAT)) {
+					default:
+					case P_ISRESTRICTED:
+					case P_UNSKILLED:	tmp += 0; break;
+					case P_BASIC:	tmp += 1; break;
+					case P_SKILLED:	tmp += rnd(3); break;
+					case P_EXPERT:	tmp += rnd(6); break;
+					case P_MASTER:	tmp += rnd(10); break;
+					case P_GRAND_MASTER:	tmp += rnd(15); break;
+					case P_SUPREME_MASTER:	tmp += rnd(20); break;
+				}
+			}
+
+			/* base damage calculation is finished now, unarmed focus increases that amount --Amy */
+			if (tech_inuse(T_UNARMED_FOCUS)) {
+				tmp *= 3;
+				tmp /= 2;
 			}
 
 			if (!(PlayerCannotUseSkills)) {
@@ -1639,19 +1675,8 @@ int dieroll;
 				}
 			}
 
-			if (!(PlayerCannotUseSkills)) {
-
-				switch (P_SKILL(P_BARE_HANDED_COMBAT)) {
-					default:
-					case P_ISRESTRICTED:
-					case P_UNSKILLED:	tmp += 0; break;
-					case P_BASIC:	tmp += 1; break;
-					case P_SKILLED:	tmp += rnd(3); break;
-					case P_EXPERT:	tmp += rnd(6); break;
-					case P_MASTER:	tmp += rnd(10); break;
-					case P_GRAND_MASTER:	tmp += rnd(15); break;
-					case P_SUPREME_MASTER:	tmp += rnd(20); break;
-				}
+			if (Glib_combat && IsGlib) {
+				tmp += rnd(GushLevel);
 			}
 
 			if (tech_inuse(T_JIU_JITSU)) {
@@ -1720,6 +1745,36 @@ int dieroll;
 		if (Role_if(PM_GLADIATOR) && uarm && itemhasappearance(uarm, APP_ARENA_ROBE)) tmp++;
 		if (uarm && uarm->oartifact == ART_MAEDHROS_SARALONDE) tmp += 2;
 		if (uarmc && uarmc->oartifact == ART_DISBELIEVING_POWERLORD) tmp += rnd(5);
+
+		if (uleft && uleft->otyp == RIN_IMPACT) tmp += rnd(5);
+		if (uright && uright->otyp == RIN_IMPACT) tmp += rnd(5);
+
+		if (uarm && uarm->otyp == ROBE_OF_PUGILISM && !(PlayerCannotUseSkills)) {
+			if (martial_bonus()) {
+				switch (P_SKILL(P_MARTIAL_ARTS)) {
+					case P_BASIC:		tmp +=  1; break;
+					case P_SKILLED:	tmp +=  rnd(3); break;
+					case P_EXPERT:	tmp +=  rnd(5); break;
+					case P_MASTER:	tmp +=  rnd(6); break;
+					case P_GRAND_MASTER:	tmp +=  rnd(8); break;
+					case P_SUPREME_MASTER:	tmp +=  rnd(9); break;
+					default: tmp += 0; break;
+				}
+
+			} else {
+				switch (P_SKILL(P_BARE_HANDED_COMBAT)) {
+			
+					case P_BASIC:		tmp +=  1; break;
+					case P_SKILLED:	tmp +=  rnd(2); break;
+					case P_EXPERT:	tmp +=  rnd(3); break;
+					case P_MASTER:	tmp +=  rnd(4); break;
+					case P_GRAND_MASTER:	tmp +=  rnd(5); break;
+					case P_SUPREME_MASTER:	tmp +=  rnd(6); break;
+					default: tmp += 0; break;
+				}
+
+			}
+		}
 
 		if (uarmf && uarmf->oartifact == ART_FINGERNAIL_FRONT && (!uarmg || FingerlessGloves) ) tmp += 3;
 
@@ -2001,14 +2056,17 @@ int dieroll;
 						}
 					}
 
-					if ((uarm && uarm->oartifact == ART_HUNKSTERMAN) || Role_if(PM_HEDDERJEDI)) {
-						if (u.hunkskill >= 20) tmp++;
-						if (u.hunkskill >= 160) tmp++;
-						if (u.hunkskill >= 540) tmp++;
-						if (u.hunkskill >= 1280) tmp++;
-						if (u.hunkskill >= 2500) tmp++;
-						if (u.hunkskill >= 4320) tmp++;
-					}
+				}
+			}
+
+			if (!PlayerCannotUseSkills && is_lightsaber(obj)) {
+				if ((uarm && uarm->oartifact == ART_HUNKSTERMAN) || (uwep && uwep->otyp == LIGHTTORCH) || Role_if(PM_HEDDERJEDI)) {
+					if (u.hunkskill >= 20) tmp++;
+					if (u.hunkskill >= 160) tmp++;
+					if (u.hunkskill >= 540) tmp++;
+					if (u.hunkskill >= 1280) tmp++;
+					if (u.hunkskill >= 2500) tmp++;
+					if (u.hunkskill >= 4320) tmp++;
 				}
 			}
 
@@ -2675,8 +2733,7 @@ int dieroll;
 		    /*       fire damage, but uses up the torch  */
 		    /*       more quickly.                       */
 
-		    if(obj->otyp == TORCH && obj->lamplit
-		       && !resists_fire(mon)) {
+		    if(obj && obj->otyp == TORCH && obj->lamplit && !resists_fire(mon)) {
 
 		      burnmsg = TRUE;
 
@@ -2687,6 +2744,36 @@ int dieroll;
 		      /* & equipment is delayed to below, after */
 		      /* the hit messages are printed. */
 		    }
+
+		    if(obj && obj->otyp == LIGHTTORCH && obj->lamplit && !resists_fire(mon)) {
+
+		      burnmsg = TRUE;
+
+		      tmp++;
+		      if (resists_cold(mon)) tmp += rnd(3);
+
+		      /* Additional damage due to burning armor */
+		      /* & equipment is delayed to below, after */
+		      /* the hit messages are printed. */
+		    }
+
+		    if (thrown && obj && obj->otyp == FLAMETHROWER && !resists_fire(mon)) {
+		      burnmsg = TRUE; /* special-cased because flamethrowers aren't lit */
+			tmp += rnd(6);
+		      if (resists_cold(mon)) tmp += rnd(6);
+		    }
+
+			if (thrown && obj && obj->otyp == LASER_FLYAXE && obj->lamplit) tmp += 2;
+
+			if (thrown && obj && obj->otyp == HEAVY_SPEAR) {
+				if (tmp > 0) tmp *= 2;
+			}
+			if (thrown && obj && obj->otyp == SUPERHEAVY_SPEAR) {
+				if (tmp > 0) {
+					tmp *= 5;
+					tmp /= 2;
+				}
+			}
 
 			if (obj && obj->otyp == BLINDING_VENOM) {
 
@@ -3955,17 +4042,32 @@ melatechoice:
 				/* djem so was also training ultra slowly, so here's a multiplier */
 				if (wep && is_lightsaber(wep) && (wep->lamplit || Role_if(PM_SHADOW_JEDI)) && obj && (wep == obj)) {
 					use_skill(P_DJEM_SO, rnd(4));
+					if (wep->otyp == PINK_LIGHTSWORD || wep->otyp == PINK_DOUBLE_LIGHTSWORD) use_skill(P_DJEM_SO, rnd(4));
+					if (wep->oartifact == ART_ROSH_TRAINOR) use_skill(P_DJEM_SO, rnd(4));
 					mightbooststat(A_DEX);
 				}
 
 				if (wep && wep->oartifact == ART_RUSMA_SRO && obj && (wep == obj)) {
 					use_skill(P_DJEM_SO, rnd(4));
+					if (wep->otyp == PINK_LIGHTSWORD || wep->otyp == PINK_DOUBLE_LIGHTSWORD) use_skill(P_DJEM_SO, rnd(4));
+					if (wep->oartifact == ART_ROSH_TRAINOR) use_skill(P_DJEM_SO, rnd(4));
 					mightbooststat(A_DEX);
 				}
 
 				if (uwep && uwep->oartifact == ART_DJARWETHEREYET && uwep->lamplit && obj && objects[obj->otyp].oc_skill == -P_CROSSBOW) {
 					use_skill(P_DJEM_SO, 1);
 					if (uwep->altmode) use_skill(P_DJEM_SO, 1);
+
+					if (obj->otyp == PINK_LIGHTSWORD || obj->otyp == PINK_DOUBLE_LIGHTSWORD) 
+{
+						use_skill(P_DJEM_SO, 1);
+						if (uwep->altmode) use_skill(P_DJEM_SO, 1);
+					}
+					if (obj->oartifact == ART_ROSH_TRAINOR) {
+						use_skill(P_DJEM_SO, 1);
+						if (uwep->altmode) use_skill(P_DJEM_SO, 1);
+					}
+
 				}
 
 				if (!SkillTrainingImpossible) {
@@ -5017,15 +5119,18 @@ melatechoice:
 	    if (!rn2(50)) 
 	      (void)destroy_mitem(mon, SPBOOK_CLASS, AD_FIRE);
 
-	  if (mon->data == &mons[PM_WATER_ELEMENTAL]) {
-	    if (!Blind) {
-	      Your("%s goes out.", xname(obj));
-	    }
-	    end_burn(obj, TRUE);
-	  }
-	  else {
-	    /* use up the torch more quickly */	    
-	    burn_faster(obj, 1);
+	  if (!(obj && (obj->otyp == FLAMETHROWER) )) {
+
+		  if (mon->data == &mons[PM_WATER_ELEMENTAL]) {
+		    if (!Blind) {
+		      Your("%s goes out.", xname(obj));
+		    }
+		    end_burn(obj, TRUE);
+		  }
+		  else {
+		    /* use up the torch more quickly */	    
+		    burn_faster(obj, 1);
+		}	
 	  }
 	}
 	
@@ -7946,14 +8051,21 @@ common:
 			if (uarmf->spe > -1) uarmf->spe = -1;
 		}
 
-		u.usymbiote.active = 0;
-		u.usymbiote.mnum = PM_PLAYERMON;
-		u.usymbiote.mhp = 0;
-		u.usymbiote.mhpmax = 0;
-		u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0;
-		if (flags.showsymbiotehp) flags.botl = TRUE;
-		u.cnd_symbiotesdied++;
-		Your("symbiote was blown to smithereens.");
+		if (uamul && uamul->otyp == AMULET_OF_SYMBIOTE_SAVING) {
+			makeknown(AMULET_OF_SYMBIOTE_SAVING);
+			useup(uamul);
+			u.usymbiote.mhp = u.usymbiote.mhpmax;
+			Your("symbiote glows, and your amulet crumbles to dust!");
+		} else {
+			u.usymbiote.active = 0;
+			u.usymbiote.mnum = PM_PLAYERMON;
+			u.usymbiote.mhp = 0;
+			u.usymbiote.mhpmax = 0;
+			u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0;
+			if (flags.showsymbiotehp) flags.botl = TRUE;
+			u.cnd_symbiotesdied++;
+			Your("symbiote was blown to smithereens.");
+		}
 	}
 
 	return(1);

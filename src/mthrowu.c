@@ -61,7 +61,7 @@ const char *name;	/* if null, then format `obj' */
 
 	int extrachance = 1;
 
-	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_BLOCKPARRY) {
+	if (u.twoweap && uswapwep && (uswapwep->oartifact == ART_BLOCKPARRY || uswapwep->otyp == PARRY_DAGGER || uswapwep->otyp == PARRY_SWORD) ) {
 		shieldblockrate = 30;
 		if (uswapwep->spe > 0) shieldblockrate += (uswapwep->spe * 2);
 		if (!(PlayerCannotUseSkills)) {
@@ -77,7 +77,7 @@ const char *name;	/* if null, then format `obj' */
 		}
 
 	}
-	if (u.twoweap && uwep && uswapwep && tech_inuse(T_WEAPON_BLOCKER)) {
+	if (u.twoweap && uwep && uswapwep && (tech_inuse(T_WEAPON_BLOCKER)) ) {
 		shieldblockrate += 25;
 	}
 
@@ -407,13 +407,13 @@ const char *name;	/* if null, then format `obj' */
 
 	} else if (!rn2(extrachance) && (rnd(100) < shieldblockrate) ) {
 
-			if (u.twoweap && uwep && uswapwep && tech_inuse(T_WEAPON_BLOCKER)) {
+			if (u.twoweap && uwep && uswapwep && (tech_inuse(T_WEAPON_BLOCKER) ) ) {
 
 				Your("weapons block a projectile.");
 				if (evilfriday && multi >= 0) nomul(-2, "blocking with both weapons", TRUE);
 				use_skill(P_TWO_WEAPON_COMBAT, 1);
 
-			} else if (u.twoweap && uswapwep && uswapwep->oartifact == ART_BLOCKPARRY) {
+			} else if (u.twoweap && uswapwep && (uswapwep->oartifact == ART_BLOCKPARRY || uswapwep->otyp == PARRY_DAGGER || uswapwep->otyp == PARRY_SWORD) ) {
 
 				Your("parrying weapon blocks a projectile.");
 				use_skill(P_TWO_WEAPON_COMBAT, 1);
@@ -750,6 +750,14 @@ const char *name;	/* if null, then format `obj' */
 					}
 				}
 	
+			}
+		}
+
+		if (obj && obj->otyp == FLAMETHROWER) {
+			if (FireImmunity || (Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) ) {
+				pline_The("fire doesn't seem to harm you.");
+			} else {
+				losehp(rnd(6), "being flamethrowered", KILLED_BY);
 			}
 		}
 
@@ -1594,6 +1602,12 @@ m_throw(mon, x, y, dx, dy, range, obj)
 			if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) destroy_item(SPBOOK_CLASS, AD_FIRE);
 			if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) destroy_item(POTION_CLASS, AD_FIRE);
 		    }
+		    if (hitu && singleobj->otyp == FLAMETHROWER) {
+			(void) burnarmor(&youmonst);
+			if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) destroy_item(SCROLL_CLASS, AD_FIRE);
+			if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) destroy_item(SPBOOK_CLASS, AD_FIRE);
+			if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) destroy_item(POTION_CLASS, AD_FIRE);
+		    }
 		    if (hitu && singleobj->otyp == YITH_TENTACLE) {
 				increasesanity(rnz(monster_difficulty() + 1));
 		    }
@@ -1743,6 +1757,7 @@ struct monst *mtmp;
 	int polelimit = POLE_LIM;
 
 	if (mtmp->data == &mons[PM_MECHTNED]) return;
+	if (mtmp->data == &mons[PM_IMPALAZON]) return;
 	if (mtmp->data == &mons[PM_MYSTERY_WOMAN]) return;
 
 	/* Rearranged beginning so monsters can use polearms not in a line */
@@ -1859,6 +1874,10 @@ struct monst *mtmp;
 	    if (mwep && mwep->otyp == DEMON_CROSSBOW) multishot += 4;
 	    if (mwep && mwep->otyp == WILDHILD_BOW) multishot += 2;
 
+	    if (otmp && otmp->otyp == RAPID_DART) multishot += 2;
+	    if (otmp && otmp->otyp == NINJA_STAR) multishot += 3;
+	    if (otmp && otmp->otyp == FLAMETHROWER) multishot += 4;
+
 	    /* 1/3 of object enchantment */
 	    if (mwep && mwep->spe > 1)
 		multishot += rounddiv(mwep->spe, 3);
@@ -1919,6 +1938,8 @@ struct monst *mtmp;
 		    otmp->otyp == ORCISH_ARROW &&
 		    mwep && mwep->otyp == ORCISH_BOW))
 		multishot++;
+
+		if (mwep && mwep->otyp == PISTOL_PAIR) multishot *= 2;
 
 		/* weaker monsters shouldn't spam you with thousands of arrows --Amy */
 		if (!rn2(2) && !strongmonst(mtmp->data) && !extra_nasty(mtmp->data) && !(mtmp->data->geno & G_UNIQ) && multishot > 1) multishot -= rnd(multishot / 2);

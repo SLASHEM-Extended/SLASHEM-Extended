@@ -14268,7 +14268,7 @@ boolean knoweverything;
 			case RIN_REGENERATION:
 				pline("Wear this ring to increase your HP regneration rate. It increases your food consumption rate."); break;
 			case RIN_REVERSE_REGENERATION:
-				pline("If you don't want to regenerate, wear this ring: it suppresses the 'regeneration' trinsic that would otherwise cause you to regenerate HP and hunger rapidly. You still get your normal (slower) regeneration rate while wearing it."); break;
+				pline("If you don't want to regenerate, wear this ring: it suppresses the 'regeneration' trinsic that would otherwise cause you to regenerate HP and hunger rapidly. You still get your normal (slower) regeneration rate while wearing it. This ring is usually generated cursed."); break;
 			case RIN_IMPACT:
 				pline("A ring meant for weaponless combat, it increases your bare-handed damage output, even if you wear gloves. Wear two of them for a bigger damage boost."); break;
 			case RIN_SEARCHING:
@@ -15201,7 +15201,7 @@ boolean knoweverything;
 			case LASER_SWORD:
 				pline("This lightsaber does good damage, but it needs to be turned on in order to work. It uses the broadsword skill."); break;
 			case LIGHTTORCH:
-				pline("A club-class lightsaber tool that needs to be turned on in order to do good damage. If it's on, it provides radius 3 light and deals fire damage to enemies. But if it's not on, it can use the form IX (Hunk) lightsaber form."); break;
+				pline("A club-class lightsaber tool that needs to be turned on in order to do good damage. If it's on, it provides radius 3 light and deals fire damage to enemies. But if it's not on, it can use the form IX (Hunk) lightsaber form. Beware: the charge saber technique cannot be used to recharge it, although other recharging methods still work."); break;
 			case PINK_LIGHTSWORD:
 				pline("A lightsaber that uses the scimitar skill and can train lightsaber forms at twice the normal rate. You need to turn it on though, and ATTENTION: while it's on, it slowly drains your maximum mana!"); break;
 			case BEAMSWORD:

@@ -1405,6 +1405,13 @@ register struct monst *mtmp;
 			  w2 = rn2(2) ? AXE : SHORT_SWORD;
 			  if (rn2(2)) (void) mongets(mtmp, FRAG_GRENADE);
 			  break;
+			case PM_VIDEO_SOLDIER:
+			  w1 = PISTOL_PAIR;
+			  m_initthrow(mtmp, FIVE_SEVEN_BULLET, 25);
+			  m_initthrow(mtmp, FIVE_SEVEN_BULLET, 25);
+			  w2 = rn2(2) ? KNIFE : DAGGER;
+			  if (rn2(2)) (void) mongets(mtmp, FRAG_GRENADE);
+			  break;
 			case PM_BRITISH_SOLDIER:
 			  w1 = rn2(2) ? BOW : YUMI;
 		  	  m_initthrow(mtmp, ARROW, 25);
@@ -7786,6 +7793,11 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_UNDERWAY_UNDERTAKER]) (void) mongets(mtmp, SHOVEL);
 		if (ptr == &mons[PM_BUDDLER]) (void) mongets(mtmp, SHOVEL);
 		if (ptr == &mons[PM_TOOL_SUPPLIER]) (void) mongets(mtmp, SHOVEL);
+		if (ptr == &mons[PM_IMPALAZON]) (void) mongets(mtmp, SUPERHEAVY_SPEAR);
+
+		if (ptr == &mons[PM_GANG_SCIENTIST]) {
+	  		m_initthrow(mtmp, FLAMETHROWER, 8);
+		}
 
 		if (ptr == &mons[PM_CHINESE_RADIO_BEACON_OFFICER]) {
 			(void) mongets(mtmp, KATANA);
@@ -7863,6 +7875,20 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_CLOCK_OLD_MARRIED_COUPLE]) {
 			(void) mongets(mtmp, SHOTGUN);
 			 m_initthrow(mtmp, SHOTGUN_SHELL, 30);
+		}
+		if (ptr == &mons[PM_SPRAYER]) {
+			(void) mongets(mtmp, CHAIN_MAIL);
+			(void) mongets(mtmp, PISTOL_PAIR);
+			 m_initthrow(mtmp, FIVE_SEVEN_BULLET, 50);
+		}
+		if (ptr == &mons[PM_EVASIVE_SPRAYER]) {
+			(void) mongets(mtmp, CHAIN_MAIL);
+			(void) mongets(mtmp, PISTOL_PAIR);
+			 m_initthrow(mtmp, FIVE_SEVEN_BULLET, 50);
+		}
+		if (ptr == &mons[PM_LEAD_SYRINGE_GANGSTER]) {
+			(void) mongets(mtmp, PISTOL_PAIR);
+			 m_initthrow(mtmp, LEAD_FIVE_SEVEN_BULLET, 50);
 		}
 
 		if (ptr == &mons[PM_BULLETATOR_STRONGHAND]) {
@@ -9065,6 +9091,7 @@ register struct	monst	*mtmp;
 			case PM_SOLDIER: mac = 3; break;
 			case PM_TEUTON_SOLDIER: mac = 3; break;
 			case PM_FRANKISH_SOLDIER: mac = 3; break;
+			case PM_VIDEO_SOLDIER: mac = 3; break;
 			case PM_BRITISH_SOLDIER: mac = 3; break;
 			case PM_AMERICAN_SOLDIER: mac = 3; break;
 			case PM_COPPER_SOLDIER: mac = 3; break;
@@ -9168,7 +9195,7 @@ register struct	monst	*mtmp;
 			ptr != &mons[PM_WATCH_CAPTAIN]) {
 			if (!rn2(15)) (void) mongets(mtmp, K_RATION);
 			if (!rn2(12)) (void) mongets(mtmp, C_RATION);
-			if (ptr != &mons[PM_SOLDIER] && ptr != &mons[PM_TEUTON_SOLDIER] && ptr != &mons[PM_VANILLA_SOLDIER] && ptr != &mons[PM_VIKING_SOLDIER] && ptr != &mons[PM_SWAMP_SOLDIER] && ptr != &mons[PM_JAVA_SOLDIER] && ptr != &mons[PM_IBERIAN_SOLDIER] && ptr != &mons[PM_ROHIRRIM_SOLDIER] && ptr != &mons[PM_FRANKISH_SOLDIER] && ptr != &mons[PM_BRITISH_SOLDIER] && ptr != &mons[PM_AMERICAN_SOLDIER] && ptr != &mons[PM_COPPER_SOLDIER] && ptr != &mons[PM_ARAB_SOLDIER] && ptr != &mons[PM_ASIAN_SOLDIER] && ptr != &mons[PM_SEAFARING_SOLDIER] && ptr != &mons[PM_PAD_SOLDIER] && ptr != &mons[PM_GAUCHE_SOLDIER] && ptr != &mons[PM_BYZANTINE_SOLDIER] && ptr != &mons[PM_CELTIC_SOLDIER] && !rn2(3))
+			if (ptr != &mons[PM_SOLDIER] && ptr != &mons[PM_TEUTON_SOLDIER] && ptr != &mons[PM_VANILLA_SOLDIER] && ptr != &mons[PM_VIKING_SOLDIER] && ptr != &mons[PM_SWAMP_SOLDIER] && ptr != &mons[PM_JAVA_SOLDIER] && ptr != &mons[PM_IBERIAN_SOLDIER] && ptr != &mons[PM_ROHIRRIM_SOLDIER] && ptr != &mons[PM_FRANKISH_SOLDIER] && ptr != &mons[PM_VIDEO_SOLDIER] && ptr != &mons[PM_BRITISH_SOLDIER] && ptr != &mons[PM_AMERICAN_SOLDIER] && ptr != &mons[PM_COPPER_SOLDIER] && ptr != &mons[PM_ARAB_SOLDIER] && ptr != &mons[PM_ASIAN_SOLDIER] && ptr != &mons[PM_SEAFARING_SOLDIER] && ptr != &mons[PM_PAD_SOLDIER] && ptr != &mons[PM_GAUCHE_SOLDIER] && ptr != &mons[PM_BYZANTINE_SOLDIER] && ptr != &mons[PM_CELTIC_SOLDIER] && !rn2(3))
 				(void) mongets(mtmp, BUGLE);
 		    } else
 			   if (ptr == &mons[PM_WATCHMAN] && rn2(3))
@@ -11505,6 +11532,8 @@ loveheelover:
 		if (mtmp->data == &mons[PM_DARKMAKER_GHOST]) (void) mongets(mtmp, DARKNESS_CLUB);
 		if (mtmp->data == &mons[PM_HALLOW_GLOAM]) (void) mongets(mtmp, DARKNESS_CLUB);
 		if (mtmp->data == &mons[PM_LANTURN_LIGHT]) (void) mongets(mtmp, POLE_LANTERN);
+		if (mtmp->data == &mons[PM_TORCHLIGHT]) (void) mongets(mtmp, LIGHTTORCH);
+		if (mtmp->data == &mons[PM_FACKLE_IN_THE_DARK]) (void) mongets(mtmp, LIGHTTORCH);
 
 		if (mtmp->data == &mons[PM_DENISE_S_GIRL_SHOE]) (void) mongets(mtmp, SOFT_SNEAKERS); /* M4_SNEAKERS */
 		if (mtmp->data == &mons[PM_FRESH_FEMMY]) (void) mongets(mtmp, SOFT_SNEAKERS); /* M4_SNEAKERS */
@@ -12044,6 +12073,10 @@ loveheelover:
 		if (ptr == &mons[PM_SEAFARE_BEAR]) {
 			(void) mongets(mtmp, FLINTLOCK);
 			 m_initthrow(mtmp, PISTOL_BULLET, 50);
+		}
+		if (ptr == &mons[PM_AKIMBO_GANGSTER]) {
+			(void) mongets(mtmp, PISTOL_PAIR);
+			 m_initthrow(mtmp, FIVE_SEVEN_BULLET, 50);
 		}
 		if (ptr == &mons[PM_SHERIFF_D__THE_GELORDLY]) {
 			(void) mongets(mtmp, PISTOL);
@@ -13784,6 +13817,11 @@ loveheelover:
 		if (mtmp->data == &mons[PM_ETHER_UNICORN]) (void) mongets(mtmp, ETHER_SAW);
 		if (mtmp->data == &mons[PM_SELF_FLAGELLATING_UNICORN]) (void) mongets(mtmp, RIDING_CROP);
 
+		if (ptr == &mons[PM_GANG_CAR]) {
+			(void) mongets(mtmp, PISTOL_PAIR);
+			 m_initthrow(mtmp, FIVE_SEVEN_BULLET, 50);
+		}
+
 		if (mtmp->data == &mons[PM_RIDABLE_HUMPER] || mtmp->data == &mons[PM_SADDLE_NIGHTMARE] || mtmp->data == &mons[PM_READY_BATTLEHORSE]) {
 			struct obj *osaddle;
 			if (!!(osaddle = mksobj(LEATHER_SADDLE, TRUE, FALSE, FALSE))) {
@@ -14055,6 +14093,8 @@ loveheelover:
 
 		break;
 	    case S_GIANT:
+
+		if (ptr == &mons[PM_TAURUS_GIANT]) (void)mongets(mtmp, LASER_FLYAXE);
 
 		if (ptr == &mons[PM_FATHIEN_HIRELING]) {
 			(void)mongets(mtmp, WEDGE_SANDALS); /* M4_SANDALS */
@@ -16578,6 +16618,10 @@ loveheelover:
 			(void) mongets(mtmp, SAND_SWORD);
 			 m_initthrow(mtmp, SAND_DART, 20);
 		}
+		if (ptr == &mons[PM_NINJA_DEMON]) {
+			 m_initthrow(mtmp, NINJA_STAR, 50);
+			 m_initthrow(mtmp, NINJA_STAR, 50);
+		}
 		if (ptr == &mons[PM_SHOVEL_DEMON]) {
 			(void) mongets(mtmp, SHOVEL);
 			 m_initthrow(mtmp, ROCK, 10);
@@ -17018,6 +17062,7 @@ loveheelover:
 		if(ptr == &mons[PM_CUDDLE_BEGINE]) (void) mongets(mtmp, SOFT_SNEAKERS);
 		if(ptr == &mons[PM_HEEL_BEGINE]) (void) mongets(mtmp, LADY_BOOTS);
 		if(ptr == &mons[PM_TRIPPEN_BEGINE]) (void) mongets(mtmp, WEDGE_SANDALS);
+		if (ptr == &mons[PM_GENDER_INTERCHANGING_RAVER]) (void) mongets(mtmp, PINK_DOUBLE_LIGHTSWORD);
 
 		if (monsndx(ptr) == PM_DOUGLAS_ADAMS) {
 			(void) mongets(mtmp,HITCHHIKER_S_GUIDE_TO_THE_GALA);
@@ -17533,6 +17578,7 @@ loveheelover:
 	    case S_HUMANOID:
 
 		if (ptr == &mons[PM_KNIVER]) (void) mongets(mtmp, UNKNOWN_KNIFE);
+		if (ptr == &mons[PM_GAY_JEDI_WANNABE]) (void) mongets(mtmp, PINK_LIGHTSWORD);
 		if (ptr == &mons[PM_SOFTWARF]) (void) mongets(mtmp, SOFT_MATTOCK);
 		if (ptr == &mons[PM_RC_ZERO]) (void) mongets(mtmp, STRAW_HAT);
 		if (ptr == &mons[PM_DWARVEN_ETERNAL_GUARDIAN]) (void) mongets(mtmp, ETERNIUM_MATTOCK);
@@ -18195,6 +18241,12 @@ loveheelover:
 			(void) mongets(mtmp, BOW);
 	  		m_initthrow(mtmp, METEOR_ARROW, 40);
 	  		m_initthrow(mtmp, METEOR_ARROW, 40);
+		}
+		if (ptr == &mons[PM_DARTER_S_MASTER]) {
+	  		m_initthrow(mtmp, RAPID_DART, 50);
+		}
+		if (ptr == &mons[PM_KRISHNA_LEADER]) {
+	  		m_initthrow(mtmp, FLAMETHROWER, 30);
 		}
 		if (ptr == &mons[PM_ARMED_COP_CAR]) {
 			(void) mongets(mtmp, PISTOL);
@@ -23538,6 +23590,7 @@ loveheelover:
 	if (ptr == &mons[PM_SOLDIER] && rn2(15)) return;
 	if (ptr == &mons[PM_TEUTON_SOLDIER] && rn2(15)) return;
 	if (ptr == &mons[PM_FRANKISH_SOLDIER] && rn2(15)) return;
+	if (ptr == &mons[PM_VIDEO_SOLDIER] && rn2(15)) return;
 	if (ptr == &mons[PM_BRITISH_SOLDIER] && rn2(15)) return;
 	if (ptr == &mons[PM_AMERICAN_SOLDIER] && rn2(15)) return;
 	if (ptr == &mons[PM_COPPER_SOLDIER] && rn2(15)) return;

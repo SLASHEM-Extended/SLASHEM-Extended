@@ -10422,7 +10422,7 @@ typfnd:
 	    typ = OIL_LAMP;
 
 	/* obviously don't allow wishing for scrolls of wishing --Amy */
-	if ((typ == SCR_WISHING || typ == SCR_ASTRALCENSION || typ == SCR_ARTIFACT_CREATION || typ == SCR_ARTIFACT_JACKPOT || typ == SCR_RESURRECTION || typ == SCR_WORLD_FALL || typ == SCR_ACQUIREMENT || typ == SCR_ENTHRONIZATION || typ == SCR_MAKE_PENTAGRAM || typ == SCR_FOUNTAIN_BUILDING)
+	if ((typ == SCR_WISHING || typ == SCR_ASTRALCENSION || typ == SCR_ARTIFACT_CREATION || typ == SCR_ARTIFACT_JACKPOT || typ == SCR_RESURRECTION || typ == SCR_WORLD_FALL || typ == SCR_EXTRA_SKILL_POINT || typ == SCR_ACQUIREMENT || typ == SCR_ENTHRONIZATION || typ == SCR_MAKE_PENTAGRAM || typ == SCR_FOUNTAIN_BUILDING)
 #ifdef WIZARD
 				&& !wizard
 #endif

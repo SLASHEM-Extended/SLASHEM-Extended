@@ -6393,6 +6393,12 @@ boolean guaranteed;
 		you_have(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && u.combatcommand) {
+		sprintf(buf, "used the combat command.");
+	      sprintf(eos(buf), " (%d)", u.combatcommand);
+		you_have(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && u.burrowed) {
 		sprintf(buf, "burrowed into the ground.");
 	      sprintf(eos(buf), " (%d)", u.burrowed);
@@ -10942,6 +10948,12 @@ int final;
 	if (u.magicshield) {
 		sprintf(buf, "your magic shield up.");
 	      sprintf(eos(buf), " (%d)", u.magicshield);
+		dump(youhad, buf);
+	}
+
+	if (u.combatcommand) {
+		sprintf(buf, "used the combat command.");
+	      sprintf(eos(buf), " (%d)", u.combatcommand);
 		dump(youhad, buf);
 	}
 
