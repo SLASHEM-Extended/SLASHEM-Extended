@@ -524,6 +524,9 @@ giveback:
 		case RIN_REGENERATION:
 		    pline_The("sink looks as good as new.");
 		    break;
+		case RIN_REVERSE_REGENERATION:
+		    pline_The("sink looks as if it's getting ever more damaged...");
+		    break;
 		case RIN_PRACTICE:
 		    pline_The("water flow seems %ser now.",
 			(obj->cursed) ? "hard" : "easi");
@@ -775,6 +778,9 @@ giveback:
 		    break;
 		case RIN_MOOD:
 			pline_The("sink looks groovy.");
+			break;
+		case RIN_IMPACT:
+			pline_The("sink looks battered.");
 			break;
 		case RIN_TELEPORTATION:
 		    pline_The("sink momentarily vanishes.");
@@ -1030,6 +1036,12 @@ register struct obj *obj;
 		break;
 	case AMULET_VERSUS_CURSES:
 		pline("A malignant aura surrounds the toilet for a moment, but is repelled by a magical shield.");
+		break;
+	case AMULET_VERSUS_NAGGING:
+		pline("Your attempts to insult the toilet were ineffective.");
+		break;
+	case AMULET_OF_SYMBIOTE_SAVING:
+		pline_The("flushing button is surrounded by a golden aura!");
 		break;
 	case AMULET_OF_RMB_LOSS:
 		pline_The("toilet no longer seems there... until you feel for it. Why can't you see it?");

@@ -7577,7 +7577,7 @@ newbossSTEN:
 		}
 
 		if (uwep && uwep->oartifact == ART_SWITCH_TO_ANOTHER && !rn2(1000)) {
-			switch (rnd(27)) {
+			switch (rnd(31)) {
 				case 1: uwep->otyp = GREEN_LIGHTSABER; break;
 				case 2: uwep->otyp = BLUE_LIGHTSABER; break;
 				case 3: uwep->otyp = RED_LIGHTSABER; break;
@@ -7605,6 +7605,10 @@ newbossSTEN:
 				case 25: uwep->otyp = LASERFIST; break;
 				case 26: uwep->otyp = LASER_TIN_OPENER; break;
 				case 27: uwep->otyp = KLIUSLING; break;
+				case 28: uwep->otyp = LIGHTTORCH; break;
+				case 29: uwep->otyp = PINK_LIGHTSWORD; break;
+				case 30: uwep->otyp = LASER_FLYAXE; break;
+				case 31: uwep->otyp = PINK_DOUBLE_LIGHTSWORD; break;
 			}
 			if (bimanual(uwep)) {
 				if (uswapwep) uswapwepgone();
@@ -15882,6 +15886,9 @@ boolean new_game;	/* false => restoring an old game */
 
 	/* todo area */
 
+	obj_descr[SPE_COMBAT_COMMAND].oc_name = "combat command";
+	obj_descr[SPE_DEFUSING].oc_name = "defusing";
+
 	{
 
 	register int i;
@@ -16814,6 +16821,8 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "high-heeled chelsea boots")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "false copes")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "brown gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "arena robe")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "priestly robe")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -17166,6 +17175,9 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_DOWNER_TRIP].oc_name = "pastga safar";
 
 	/* todo area */
+
+	obj_descr[SPE_COMBAT_COMMAND].oc_name = "combat command";
+	obj_descr[SPE_DEFUSING].oc_name = "defusing";
 
 	{
 
@@ -18100,6 +18112,8 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "high-heeled chelsea boots")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "false copes")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "brown gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "arena robe")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "priestly robe")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}

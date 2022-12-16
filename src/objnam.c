@@ -3905,6 +3905,42 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ GAUNTLETS_OF_DEFUSING, "todo" },
 	{ AMULET_OF_DEFUSING, "todo" },
 
+	{ PARRY_DAGGER, "todo" },
+	{ PARRY_SWORD, "todo" },
+	{ PISTOL_PAIR, "todo" },
+	{ FIVE_SEVEN_BULLET, "todo" },
+	{ LEAD_FIVE_SEVEN_BULLET, "todo" },
+	{ SHADOW_FIVE_SEVEN_BULLET, "todo" },
+	{ ANTIMATTER_FIVE_SEVEN_BULLET, "todo" },
+	{ RAPID_DART, "todo" },
+	{ NINJA_STAR, "todo" },
+	{ FLAMETHROWER, "todo" },
+	{ HEAVY_SPEAR, "todo" },
+	{ SUPERHEAVY_SPEAR, "todo" },
+	{ WAN_STONE_TO_FLESH, "todo" },
+	{ WAN_LAVA, "todo" },
+	{ RIN_IMPACT, "todo" },
+	{ RIN_REVERSE_REGENERATION, "todo" },
+	{ ROBE_OF_PUGILISM, "todo" },
+	{ ROBE_OF_FOCUSSING, "todo" },
+	{ SHIELD_PATE_GLASSES, "todo" },
+	{ INFUSION, "todo" },
+	{ BEAUTY_PACK, "todo" },
+	{ BLESSER, "todo" },
+	{ SCR_EXTRA_SKILL_POINT, "todo" },
+	{ SCR_PROOF_ACCESSORY, "todo" },
+	{ SCR_PROOF_TOOL, "todo" },
+	{ SCR_NAME, "todo" },
+	{ AMULET_VERSUS_NAGGING, "todo" },
+	{ AMULET_OF_SYMBIOTE_SAVING, "todo" },
+	{ POT_CURE_AIDS, "todo" },
+	{ SPE_COMBAT_COMMAND, "todo" },
+	{ SPE_DEFUSING, "todo" },
+	{ LIGHTTORCH, "todo" },
+	{ LASER_FLYAXE, "todo" },
+	{ PINK_LIGHTSWORD, "todo" },
+	{ PINK_DOUBLE_LIGHTSWORD, "todo" },
+
 	{0, "" }
 };
 
@@ -7011,6 +7047,42 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ GAUNTLETS_OF_DEFUSING, "todo" },
 	{ AMULET_OF_DEFUSING, "todo" },
 
+	{ PARRY_DAGGER, "todo" },
+	{ PARRY_SWORD, "todo" },
+	{ PISTOL_PAIR, "todo" },
+	{ FIVE_SEVEN_BULLET, "todo" },
+	{ LEAD_FIVE_SEVEN_BULLET, "todo" },
+	{ SHADOW_FIVE_SEVEN_BULLET, "todo" },
+	{ ANTIMATTER_FIVE_SEVEN_BULLET, "todo" },
+	{ RAPID_DART, "todo" },
+	{ NINJA_STAR, "todo" },
+	{ FLAMETHROWER, "todo" },
+	{ HEAVY_SPEAR, "todo" },
+	{ SUPERHEAVY_SPEAR, "todo" },
+	{ WAN_STONE_TO_FLESH, "todo" },
+	{ WAN_LAVA, "todo" },
+	{ RIN_IMPACT, "todo" },
+	{ RIN_REVERSE_REGENERATION, "todo" },
+	{ ROBE_OF_PUGILISM, "todo" },
+	{ ROBE_OF_FOCUSSING, "todo" },
+	{ SHIELD_PATE_GLASSES, "todo" },
+	{ INFUSION, "todo" },
+	{ BEAUTY_PACK, "todo" },
+	{ BLESSER, "todo" },
+	{ SCR_EXTRA_SKILL_POINT, "todo" },
+	{ SCR_PROOF_ACCESSORY, "todo" },
+	{ SCR_PROOF_TOOL, "todo" },
+	{ SCR_NAME, "todo" },
+	{ AMULET_VERSUS_NAGGING, "todo" },
+	{ AMULET_OF_SYMBIOTE_SAVING, "todo" },
+	{ POT_CURE_AIDS, "todo" },
+	{ SPE_COMBAT_COMMAND, "todo" },
+	{ SPE_DEFUSING, "todo" },
+	{ LIGHTTORCH, "todo" },
+	{ LASER_FLYAXE, "todo" },
+	{ PINK_LIGHTSWORD, "todo" },
+	{ PINK_DOUBLE_LIGHTSWORD, "todo" },
+
 	{0, "" }
 };
 
@@ -7159,6 +7231,8 @@ register int otyp;
 		strcpy(buf, actualn); /* avoid spellbook of Book of the Dead */
 	    /* KMH -- "mood ring" instead of "ring of mood" */
 	    else if (otyp == RIN_MOOD)
+		sprintf(buf, "%s ring", actualn);
+	    else if (otyp == RIN_IMPACT)
 		sprintf(buf, "%s ring", actualn);
 	    else
 		sprintf(eos(buf), " of %s", actualn);
@@ -7364,6 +7438,8 @@ boolean showpoisoned;
 		if (typ == LENSES)
 			strcpy(buf, "pair of ");
 		if (typ == RADIOGLASSES)
+			strcpy(buf, "pair of ");
+		if (typ == SHIELD_PATE_GLASSES)
 			strcpy(buf, "pair of ");
 
 		if (!obj->dknown || PlayerUninformation)
@@ -7594,6 +7670,8 @@ boolean showpoisoned;
 		else if(nn) {
 			/* KMH -- "mood ring" instead of "ring of mood" */
 			if (typ == RIN_MOOD)
+				sprintf(buf, "%s ring", actualn);
+			else if (typ == RIN_IMPACT)
 				sprintf(buf, "%s ring", actualn);
 			else
 			sprintf(buf, "ring of %s", actualn);
@@ -7986,7 +8064,7 @@ plus:
 		}
 		if (is_lightsaber(obj) || obj->otyp == STICK_OF_DYNAMITE) {
 		    if (obj->lamplit) {
-			if ((obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == CYAN_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASERXBOW || obj->otyp == SITH_STAFF || obj->otyp == LASER_POLE || obj->otyp == WHITE_DOUBLE_LIGHTSABER) && obj->altmode) strcat(bp, " (2xlit)");
+			if ((obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == CYAN_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASER_FLYAXE || obj->otyp == PINK_DOUBLE_LIGHTSWORD || obj->otyp == LASERXBOW || obj->otyp == SITH_STAFF || obj->otyp == LASER_POLE || obj->otyp == WHITE_DOUBLE_LIGHTSABER) && obj->altmode) strcat(bp, " (2xlit)");
 			else strcat(bp, " (lit)");
 		    }
 		    if (obj->oclass == BALL_CLASS || obj->oclass == CHAIN_CLASS) sprintf(eos(bp), " (%d)", obj->age);		

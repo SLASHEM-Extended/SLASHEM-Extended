@@ -2133,6 +2133,10 @@ register char oclass;
 	objects[CAMO_QATAR].oc_material = rn2(LASTMATERIAL + 1);
 
 	objects[RAINBOW_LIGHTSABER].oc_color = rn2(CLR_MAX);
+	{
+		int dyepotion = find_potion_of_dye();
+		objects[dyepotion].oc_color = rn2(CLR_MAX);
+	}
 	while (objects[RAINBOW_LIGHTSABER].oc_color == NO_COLOR) objects[RAINBOW_LIGHTSABER].oc_color = rn2(CLR_MAX);
 
 	/* shuffle descriptions */
@@ -2474,6 +2478,21 @@ find_missys()
     }
 
     impossible("missys not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+/* the potion of dye may be mapped to an actual potion, or it may not; its color should be randomly initialized anyway,
+ * because if the randomized appearances are shuffled during an ongoing game, it might become an actual potion --Amy */
+int
+find_potion_of_dye()
+{
+    register int i;
+
+    for (i = POT_BOOZE; i <= POT_AMNESIA; i++) {
+	if (itemnumwithappearance(i, APP_POTION_DYE)) return i;
+    }
+
+    impossible("dye potion not found?");
     return -1;	/* not 0, or caller would try again each move */
 }
 

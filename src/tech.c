@@ -5160,6 +5160,10 @@ breakstare:
 					haschosen = TRUE;
 					ammotype = 1;
 				}
+				else if (yn("Do you want to create five-seven bullets?") == 'y') {
+					haschosen = TRUE;
+					ammotype = 16;
+				}
 				else if (yn("Do you want to create SMG bullets?") == 'y') {
 					haschosen = TRUE;
 					ammotype = 6;
@@ -5241,6 +5245,7 @@ breakstare:
 		else if (ammotype == 13) uammo = mksobj(RAYGUN_BOLT, TRUE, FALSE, FALSE);
 		else if (ammotype == 14) uammo = mksobj(LASER_BEAM, TRUE, FALSE, FALSE);
 		else if (ammotype == 15) uammo = mksobj(RADIO, TRUE, FALSE, FALSE);
+		else if (ammotype == 16) uammo = mksobj(FIVE_SEVEN_BULLET, TRUE, FALSE, FALSE);
 		else uammo = mksobj(PISTOL_BULLET, TRUE, FALSE, FALSE);
 		if (uammo) {
 			uammo->quan = techlevX(tech_no);
@@ -5256,6 +5261,7 @@ breakstare:
 			if (uammo && ammotype == 8 && uarmh && uarmh->oartifact == ART_TURKISH_EMPIRE) uammo->quan *= 2;
 			if (uammo && ammotype == 9 && uarmh && uarmh->oartifact == ART_TURKISH_EMPIRE) uammo->quan *= 2;
 			if (uammo && ammotype == 10 && uarmh && uarmh->oartifact == ART_TURKISH_EMPIRE) uammo->quan *= 2;
+			if (uammo && ammotype == 16 && uarmh && uarmh->oartifact == ART_TURKISH_EMPIRE) uammo->quan *= 2;
 			if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE) uammo->quan *= 2;
 			if (ammotype == 5) uammo->quan *= 4;
 			if (ammotype == 4) uammo->quan /= 10;
@@ -8091,7 +8097,7 @@ cardtrickchoice:
 				break;
 			}
 			if (uwep && is_bullet(uwep)) {
-				if (uwep->otyp == SMG_BULLET || uwep->otyp == ANTIMATTER_SMG_BULLET || uwep->otyp == MG_BULLET || uwep->otyp == ANTIMATTER_MG_BULLET || uwep->otyp == RIFLE_BULLET || uwep->otyp == ANTIMATTER_RIFLE_BULLET || uwep->otyp == SNIPER_BULLET || uwep->otyp == ANTIMATTER_SNIPER_BULLET || uwep->otyp == ASSAULT_RIFLE_BULLET || uwep->otyp == ANTIMATTER_ASSAULT_RIFLE_BULLE || uwep->otyp == PISTOL_BULLET || uwep->otyp == SILVER_PISTOL_BULLET || uwep->otyp == LEAD_PISTOL_BULLET || uwep->otyp == LEAD_SMG_BULLET || uwep->otyp == LEAD_RIFLE_BULLET || uwep->otyp == COPPER_RIFLE_BULLET || uwep->otyp == LEAD_MG_BULLET || uwep->otyp == LEAD_SNIPER_BULLET || uwep->otyp == PLATINUM_SNIPER_BULLET || uwep->otyp == LEAD_ASSAULT_RIFLE_BULLET || uwep->otyp == ANTIMATTER_PISTOL_BULLET || uwep->otyp == BLASTER_BOLT || uwep->otyp == RAYGUN_BOLT || uwep->otyp == RADIO || uwep->otyp == HEAVY_BLASTER_BOLT || uwep->otyp == LASER_BEAM) {
+				if (uwep->otyp == SMG_BULLET || uwep->otyp == ANTIMATTER_SMG_BULLET || uwep->otyp == MG_BULLET || uwep->otyp == ANTIMATTER_MG_BULLET || uwep->otyp == RIFLE_BULLET || uwep->otyp == ANTIMATTER_RIFLE_BULLET || uwep->otyp == SNIPER_BULLET || uwep->otyp == ANTIMATTER_SNIPER_BULLET || uwep->otyp == ASSAULT_RIFLE_BULLET || uwep->otyp == ANTIMATTER_ASSAULT_RIFLE_BULLE || uwep->otyp == PISTOL_BULLET || uwep->otyp == SILVER_PISTOL_BULLET || uwep->otyp == LEAD_PISTOL_BULLET || uwep->otyp == FIVE_SEVEN_BULLET || uwep->otyp == SHADOW_FIVE_SEVEN_BULLET || uwep->otyp == LEAD_FIVE_SEVEN_BULLET || uwep->otyp == LEAD_SMG_BULLET || uwep->otyp == LEAD_RIFLE_BULLET || uwep->otyp == COPPER_RIFLE_BULLET || uwep->otyp == LEAD_MG_BULLET || uwep->otyp == LEAD_SNIPER_BULLET || uwep->otyp == PLATINUM_SNIPER_BULLET || uwep->otyp == LEAD_ASSAULT_RIFLE_BULLET || uwep->otyp == ANTIMATTER_PISTOL_BULLET || uwep->otyp == ANTIMATTER_FIVE_SEVEN_BULLET || uwep->otyp == BLASTER_BOLT || uwep->otyp == RAYGUN_BOLT || uwep->otyp == RADIO || uwep->otyp == HEAVY_BLASTER_BOLT || uwep->otyp == LASER_BEAM) {
 					uwep->quan += (20 + techlevX(tech_no));
 					pline("The amount of ammo was increased!");
 				} else if (uwep->otyp == BFG_AMMO) {
@@ -10008,6 +10014,14 @@ extrachargechoice:
 						    madechoice = 1; sabertype = 17; }
 					else if (yn("Do you want to switch to a kliusling?")=='y') {
 						    madechoice = 1; sabertype = 18; }
+					else if (yn("Do you want to switch to a lighttorch?")=='y') {
+						    madechoice = 1; sabertype = 19; }
+					else if (yn("Do you want to switch to a pink lightsword?")=='y') {
+						    madechoice = 1; sabertype = 20; }
+					else if (yn("Do you want to switch to a laser flyaxe?")=='y') {
+						    madechoice = 1; sabertype = 21; }
+					else if (yn("Do you want to switch to a pink double lightsword?")=='y') {
+						    madechoice = 1; sabertype = 22; }
 
 				}
 
@@ -10028,6 +10042,14 @@ extrachargechoice:
 					break;
 				}
 				if (sabertype == 13 && (uarms || u.twoweap)) {
+					pline("Something is blocking your second %s!", body_part(HAND));
+					break;
+				}
+				if (sabertype == 21 && (uarms || u.twoweap)) {
+					pline("Something is blocking your second %s!", body_part(HAND));
+					break;
+				}
+				if (sabertype == 22 && (uarms || u.twoweap)) {
 					pline("Something is blocking your second %s!", body_part(HAND));
 					break;
 				}
@@ -10077,8 +10099,16 @@ extrachargechoice:
 					uwep->otyp = LASERFIST;
 				} else if (sabertype == 17) {
 					uwep->otyp = LASER_TIN_OPENER;
-				} else /* sabertype == 18 */
+				} else if (sabertype == 18) {
 					uwep->otyp = KLIUSLING;
+				} else if (sabertype == 19) {
+					uwep->otyp = LIGHTTORCH;
+				} else if (sabertype == 20) {
+					uwep->otyp = PINK_LIGHTSWORD;
+				} else if (sabertype == 21) {
+					uwep->otyp = LASER_FLYAXE;
+				} else /* sabertype == 22 */
+					uwep->otyp = PINK_DOUBLE_LIGHTSWORD;
 
 				pline("Your lightsaber warps, and changes into a different one!");
 				/* known problem: you can pick the form that your lightsaber already has */

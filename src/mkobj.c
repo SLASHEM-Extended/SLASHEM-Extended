@@ -722,7 +722,7 @@ int
 usefulitem() /* select the ID number of an item that may be useful for the player --Amy */
 {
 
-	switch (rnd(153)) {
+	switch (rnd(157)) {
 
 		case 1:
 			return ATHAME;
@@ -959,6 +959,14 @@ usefulitem() /* select the ID number of an item that may be useful for the playe
 			return WAN_RESTORATION;
 		case 153:
 			return HONEYCOMB;
+		case 154:
+			return INFUSION;
+		case 155:
+			return SCR_PROOF_ACCESSORY;
+		case 156:
+			return SCR_PROOF_TOOL;
+		case 157:
+			return AMULET_OF_SYMBIOTE_SAVING;
 		default: /* fail safe */
 			return POT_FULL_HEALING;
 	}
@@ -1642,7 +1650,7 @@ int
 makegreatitem() /* select the ID number of an item that might be very useful for you --Amy */
 {
 
-	switch (rnd(177)) {
+	switch (rnd(181)) {
 		case 1:
 			return TOOTH_OF_AN_ALGOLIAN_SUNTIGER;
 		case 2:
@@ -1997,6 +2005,14 @@ makegreatitem() /* select the ID number of an item that might be very useful for
 			return POT_TECH_LEVEL_UP;
 		case 177:
 			return SCR_BRANCH_TELEPORT;
+		case 178:
+			return BLESSER;
+		case 179:
+			return BEAUTY_PACK;
+		case 180:
+			return INFUSION;
+		case 181:
+			return SCR_EXTRA_SKILL_POINT;
 		default: /* fail safe */
 			return SCR_IDENTIFY;
 
@@ -2313,6 +2329,10 @@ boolean shopinit;
 		if (otmp->otyp == LEAD_PISTOL_BULLET) otmp->quan += rnd(50);
 		if (otmp->otyp == SILVER_PISTOL_BULLET) otmp->quan += rnd(75);
 		if (otmp->otyp == ANTIMATTER_PISTOL_BULLET) otmp->quan += rnd(75);
+		if (otmp->otyp == FIVE_SEVEN_BULLET) otmp->quan += rnd(80);
+		if (otmp->otyp == LEAD_FIVE_SEVEN_BULLET) otmp->quan += rnd(80);
+		if (otmp->otyp == SHADOW_FIVE_SEVEN_BULLET) otmp->quan += rnd(200);
+		if (otmp->otyp == ANTIMATTER_FIVE_SEVEN_BULLET) otmp->quan += rnd(160);
 		if (otmp->otyp == SMG_BULLET) otmp->quan += rnd(50);
 		if (otmp->otyp == LEAD_SMG_BULLET) otmp->quan += rnd(50);
 		if (otmp->otyp == ANTIMATTER_SMG_BULLET) otmp->quan += rnd(50);
@@ -2354,6 +2374,7 @@ boolean shopinit;
 		if (otmp->otyp == SHURIKEN) otmp->quan += rnd(100);
 		if (otmp->otyp == MYSTERY_SHURIKEN) otmp->quan += rnd(100);
 		if (otmp->otyp == TAR_STAR) otmp->quan += rnd(100);
+		if (otmp->otyp == NINJA_STAR) otmp->quan += rnd(60);
 		if (otmp->otyp == NANO_SHURIKEN) otmp->quan += rnd(100);
 		if (otmp->otyp == CUBIC_STAR) otmp->quan += rnd(100);
 		if (otmp->otyp == WINDMILL_BLADE) otmp->quan += rnd(100);
@@ -2361,6 +2382,10 @@ boolean shopinit;
 		if (otmp->otyp == NEEDLE) otmp->quan += rnd(100);
 		if (otmp->otyp == SOFT_STAR) otmp->quan += rnd(200);
 		if (otmp->otyp == CALTROP) otmp->quan += rnd(400);
+		if (otmp->otyp == FLAMETHROWER) {
+			otmp->quan += rnd(20);
+			if (!rn2(5)) otmp->quan += rnd(30);
+		}
 		if (otmp->otyp == BFG_AMMO) {
 			otmp->quan = 40;
 			if (!rn2(5)) otmp->quan *= (1 + rnd(4));
@@ -2762,6 +2787,8 @@ boolean shopinit;
 		case RED_DOUBLE_LIGHTSABER:
 		case CYAN_DOUBLE_LIGHTSABER:
 		case LASERDENT:
+		case LASER_FLYAXE:
+		case PINK_DOUBLE_LIGHTSWORD:
 		case LASERXBOW:
 		case SITH_STAFF:
 		case LASER_POLE:
@@ -2770,6 +2797,8 @@ boolean shopinit;
 		case STARWARS_MACE:
 		case KLIUSLING:
 		case LASER_SWORD:
+		case LIGHTTORCH:
+		case PINK_LIGHTSWORD:
 		case BEAMSWORD:
 		case GREEN_LIGHTSABER:
 		case ORANGE_LIGHTSABER:

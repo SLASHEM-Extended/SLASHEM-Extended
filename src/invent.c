@@ -7199,7 +7199,7 @@ struct obj *otmp;
                 else if ((putting_on(word) &&
 		    ((otmp->oclass == FOOD_CLASS && otmp->otyp != MEAT_RING) ||
 		    (otmp->oclass == TOOL_CLASS &&
-		     otyp != BLINDFOLD && otyp != EYECLOSER && otyp != DRAGON_EYEPATCH && otyp != CONDOME && otyp != SOFT_CHASTITY_BELT && otyp != TOWEL && otyp != CLIMBING_SET && otyp != DEFUSING_BOX && otyp != LENSES && otyp != RADIOGLASSES && otyp != BOSS_VISOR)))
+		     otyp != BLINDFOLD && otyp != EYECLOSER && otyp != DRAGON_EYEPATCH && otyp != CONDOME && otyp != SOFT_CHASTITY_BELT && otyp != TOWEL && otyp != CLIMBING_SET && otyp != DEFUSING_BOX && otyp != LENSES && otyp != RADIOGLASSES && otyp != SHIELD_PATE_GLASSES && otyp != BOSS_VISOR)))
 /*add check for improving*/
                 || ( (!strcmp(word, "wield") || !strcmp(word, "improve")) &&
 		    (otmp->oclass == TOOL_CLASS && !is_weptool(otmp)))
@@ -7746,7 +7746,7 @@ struct obj *otmp;
 		s1 = "T", s2 = "take", s3 = " off";
 	} else if ((ocls == RING_CLASS || otyp == MEAT_RING) ||
 		ocls == AMULET_CLASS || ocls == IMPLANT_CLASS ||
-		(otyp == BLINDFOLD || otyp == EYECLOSER || otyp == DRAGON_EYEPATCH || otyp == CONDOME || otyp == SOFT_CHASTITY_BELT || otyp == TOWEL || otyp == CLIMBING_SET || otyp == DEFUSING_BOX || otyp == LENSES || otyp == RADIOGLASSES || otyp == BOSS_VISOR)) {
+		(otyp == BLINDFOLD || otyp == EYECLOSER || otyp == DRAGON_EYEPATCH || otyp == CONDOME || otyp == SOFT_CHASTITY_BELT || otyp == TOWEL || otyp == CLIMBING_SET || otyp == DEFUSING_BOX || otyp == LENSES || otyp == RADIOGLASSES || otyp == SHIELD_PATE_GLASSES || otyp == BOSS_VISOR)) {
 	    if (!strcmp(word, "wear"))
 		s1 = "P", s2 = "put", s3 = " on";
 	    else if (!strcmp(word, "take off"))
@@ -7756,7 +7756,7 @@ struct obj *otmp;
 	    what = "that";
 	    /* quantity for armor and accessory objects is always 1,
 	       but some things should be referred to as plural */
-	    if (otyp == LENSES || otyp == RADIOGLASSES || otyp == BOSS_VISOR || is_gloves(otmp) || is_boots(otmp))
+	    if (otyp == LENSES || otyp == RADIOGLASSES || otyp == SHIELD_PATE_GLASSES || otyp == BOSS_VISOR || is_gloves(otmp) || is_boots(otmp))
 		what = "those";
 	    pline("Use the '%s' command to %s %s%s.", s1, s2, what, s3);
 	} else {
@@ -10316,6 +10316,8 @@ boolean knoweverything;
 				pline("This short sword does more damage to small monsters than large ones."); break;
 			case TRASH_SWORD:
 				pline("This short sword is made of a particularly bad material and doesn't deal much damage."); break;
+			case PARRY_SWORD:
+				pline("A low-damage short sword that isn't very good for attacking, but if you're equipping two weapons and this sword is in your secondary slot, you can block projectiles with it."); break;
 			case SHORT_BLADE:
 				pline("Only marginally stronger than a short sword."); break;
 			case SAND_SWORD:
@@ -10726,6 +10728,8 @@ boolean knoweverything;
 				pline("It's a rather weak javelin. It can be thrown."); break;
 			case BRICK_MISSILE:
 				pline("This javelin is rather powerful. It can be thrown."); break;
+			case FLAMETHROWER:
+				pline("A javelin that's meant to be thrown, as it has rapid multishot and also deals fire damage."); break;
 			case SPIRIT_THROWER: 
 				pline("A javelin that does good damage. It can be thrown."); break;
 			case TORPEDO: 
@@ -10744,6 +10748,8 @@ boolean knoweverything;
 				pline("A very strong two-handed trident that does extra damage to eels."); break;
 			case RADIOACTIVE_DAGGER:
 				pline("This dagger does extra damage to golems, but it's still only a dagger. It can be thrown. It can be applied to bash iron bars."); break;
+			case PARRY_DAGGER:
+				pline("A dagger that deals little damage, however if you dual-wield and put it in your alternate weapon slot, it can block missile weapons. It can be thrown."); break;
 			case SECRETION_DAGGER:
 				pline("A very icky dagger that does moderate amounts of damage and has improved chances to hit. It can be thrown."); break;
 			case BITUKNIFE:
@@ -10896,6 +10902,10 @@ boolean knoweverything;
 				pline("A spear that weighs a lot and does low damage. Despite the name, it can be thrown and is not more likely to break than other types of spear."); break;
 			case DRAGON_SPEAR:
 				pline("A very powerful spear. It can be thrown."); break;
+			case HEAVY_SPEAR:
+				pline("This spear weighs a lot. It can be thrown, with reduced rate of multishot but greatly increased throwing damage."); break;
+			case SUPERHEAVY_SPEAR:
+				pline("This spear weighs a ton and deals more damage than a regular spear. It can be thrown, with greatly reduced rate of multishot but extra large throwing damage."); break;
 			case ASBESTOS_JAVELIN:
 				pline("This javelin poisons the target. It can be thrown."); break;
 			case HOMING_TORPEDO:
@@ -10976,12 +10986,16 @@ boolean knoweverything;
 				pline("Only you will know what material this dart is made of. It's meant to be used as a throwing weapon."); break;
 			case DIVINE_DART:
 				pline("This dart deals pretty good damage when thrown."); break;
+			case RAPID_DART:
+				pline("You can multishot these darts when throwing."); break;
 			case FLIMSY_DART:
 				pline("You can throw these darts at targets, but they have a tendency to fly in the wrong direction."); break;
 			case SOFT_STAR:
 				pline("Uses the shuriken skill. It is made of soft material and therefore does less damage than a real shuriken. Meant to be used for throwing."); break;
 			case TAR_STAR:
 				pline("These shuriken can be thrown at enemies."); break;
+			case NINJA_STAR:
+				pline("A highly powerful shuriken that you can multishot rapidly."); break;
 			case JUMPING_FLAMER:
 				pline("Shuriken class. It can occasionally burn the target inventory and has a hell of a lot of to-hit. But no matter how skilled you are and how much multishot bonus you have, you can only throw one per turn, and will be paralyzed for 3 turns if you do!"); break;
 			case CUBIC_STAR:
@@ -11066,9 +11080,11 @@ boolean knoweverything;
 				pline("The sling is what you want to use if you want your thrown rocks to do more than a single point of damage. You can quiver most types of rocks and gems to shoot them with a sling."); break;
 			case CATAPULT:
 				pline("A much better version of the sling that shoots more rocks at once, but you'll have shaky to-hit with it. You can quiver rocks and gems to fire. If you shoot regular rocks from it, as opposed to flint stones or other ammo, the multishot bonus is lower."); break;
-			case PISTOL: 
+			case PISTOL:
 				pline("This firearm is capable of shooting bullets to deal damage to enemies."); break;
-			case FLINTLOCK: 
+			case PISTOL_PAIR:
+				pline("A weapon that actually consists of two weapons, magically fused so that they cannot be separated. You need both hands to equip them, and they also fire a specific caliber of ammunition called 'five-seven bullets'. If you're restricted in the two-weapon combat skill, the accuracy of this pair of guns will be shit."); break;
+			case FLINTLOCK:
 				pline("You can theoretically use this firearm to shoot single bullets at monsters, but I'd advise you to use an actual pistol instead."); break;
 			case BEAM_REFLECTOR_GUN: 
 				pline("It's a pistol with low range, but wielding it grants you reflection. You can shoot bullets with it."); break;
@@ -11110,8 +11126,12 @@ boolean knoweverything;
 				pline("If you want your grenades to pack a bigger punch, fire them with this weapon. The grenade launcher has a low rate of fire though."); break;
 			case PISTOL_BULLET:
 				pline("A metal bullet that can be fired with pistols."); break;
+			case FIVE_SEVEN_BULLET:
+				pline("A metal bullet that can be fired with pistol pairs (specifically, it can't be fired from a regular pistol)."); break;
 			case LEAD_PISTOL_BULLET:
 				pline("Firearm ammo for pistols. It may occasionally be re-used when fired."); break;
+			case LEAD_FIVE_SEVEN_BULLET:
+				pline("Firearm ammo for pistol pairs. It may occasionally be re-used when fired."); break;
 			case LEAD_SMG_BULLET:
 				pline("Firearm ammo for submachine guns. It may occasionally be re-used when fired."); break;
 			case LEAD_MG_BULLET:
@@ -11128,8 +11148,12 @@ boolean knoweverything;
 				pline("Firearm ammo for assault rifles. It may occasionally be re-used when fired."); break;
 			case ANTIMATTER_PISTOL_BULLET:
 				pline("This bullet does much more damage than regular ones. It must be fired from a pistol."); break;
+			case ANTIMATTER_FIVE_SEVEN_BULLET:
+				pline("This bullet does much more damage than regular ones. It must be fired from a pistol pair."); break;
 			case SILVER_PISTOL_BULLET: 
 				pline("A silver bullet that can be fired with pistols. Undead monsters take extra damage from it."); break;
+			case SHADOW_FIVE_SEVEN_BULLET: 
+				pline("A shadows bullet that can be fired with pistol pairs."); break;
 			case SMG_BULLET:
 				pline("A metal bullet that can be fired with SMGs."); break;
 			case ANTIMATTER_SMG_BULLET:
@@ -11446,6 +11470,8 @@ boolean knoweverything;
 			pline("A robe in urban camo colors that makes you more difficult to spot for your enemies.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_OCTARINE_ROBE))
 			pline("This robe is imbued with special magic. Sometimes it will send beams back at whoever fired them.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ARENA_ROBE))
+			pline("Wearing this robe increases your unarmed damage by one point. If you're a gladiator, it additionally increases all melee damage you deal by one (additional) point.");
 
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FORGETFUL_CLOAK))
 			pline("You will forget your spells more quickly while wearing this cloak.");
@@ -12154,6 +12180,10 @@ boolean knoweverything;
 				pline("This robe makes it so that monsters will always spawn with a level that is at least the current monster difficulty. It gives 5 points of armor class and no magic cancellation."); break;
 			case ROBE_OF_STASIS:
 				pline("A robe that prevents you from polymorphing."); break;
+			case ROBE_OF_PUGILISM:
+				pline("It's the kind of robe that you'll want to wear when fighting bare-handed: the higher your skill, the more damage your fists will do. The boost is bigger if you're using martial arts."); break;
+			case ROBE_OF_FOCUSSING:
+				pline("If you put on this robe for the first time, you learn the 'Unarmed Focus' technique that you may use in unarmed combat."); break;
 			case ROBE_OF_POWER:
 				pline("Wearing this robe improves your spellcasting ability but prevents you from wearing an actual suit of armor."); break;
 			case ROBE_OF_WEAKNESS:
@@ -14237,6 +14267,10 @@ boolean knoweverything;
 				pline("Wearing this ring allows you to float into the air. This prevents you from performing certain actions, e.g. picking up items or using a set of downstairs."); break;
 			case RIN_REGENERATION:
 				pline("Wear this ring to increase your HP regneration rate. It increases your food consumption rate."); break;
+			case RIN_REVERSE_REGENERATION:
+				pline("If you don't want to regenerate, wear this ring: it suppresses the 'regeneration' trinsic that would otherwise cause you to regenerate HP and hunger rapidly. You still get your normal (slower) regeneration rate while wearing it."); break;
+			case RIN_IMPACT:
+				pline("A ring meant for weaponless combat, it increases your bare-handed damage output, even if you wear gloves. Wear two of them for a bigger damage boost."); break;
 			case RIN_SEARCHING:
 				pline("If you want automatic searching so you don't have to continuously press the S key, wear this."); break;
 			case RIN_TELEPORTATION:
@@ -14792,6 +14826,10 @@ boolean knoweverything;
 				pline("Grants control magic while worn, i.e. your spells and missiles sometimes pass through pets instead of hitting them."); break;
 			case AMULET_VERSUS_CURSES:
 				pline("This amulet, when worn, is one of very few ways to resist the generic 'curse items' effect. It has been invented by Chris_ANG."); break;
+			case AMULET_VERSUS_NAGGING:
+				pline("Makes you resistant to dimness caused by monsters' taunts."); break;
+			case AMULET_OF_SYMBIOTE_SAVING:
+				pline("While wearing this amulet, if your symbiote is killed, it doesn't actually die, but the amulet is used up in the process."); break;
 			case AMULET_OF_UNCHANGING:
 				pline("This amulet prevents you from changing form. If something tries to force you out of a polymorphed form while wearing this amulet, you might die instantly."); break;
 			case AMULET_VERSUS_POISON:
@@ -14986,6 +15024,8 @@ boolean knoweverything;
 				pline("Wielding this thing with two hands allows you to deal great damage to enemies. It uses the unicorn horn skill, but unlike an actual unicorn horn it plays music rather than curing status effects. Maybe it'll allow you to open the drawbridge."); break;
 			case RADIOGLASSES:
 				pline("These lenses will help your searching abilities while worn, and also display random rumors from time to time."); break;
+			case SHIELD_PATE_GLASSES:
+				pline("A pair of lenses that greatly improves your chance of success when searching for traps, however the glasses are rather dark and may prevent you from seeing in the dark."); break;
 			case EYECLOSER:
 				pline("It can be applied to cause blindness. While you are wearing it, you will also be stealthy."); break;
 			case BOSS_VISOR:
@@ -15144,6 +15184,10 @@ boolean knoweverything;
 				pline("This lightsaber does RNG-determined damage, but it needs to be turned on in order to work. An activated lightsaber is good for engraving."); break;
 			case LASERDENT:
 				pline("A two-handed lightsaber that uses the trident skill and can be set to double mode, increasing its damage. If it's not turned on, it does pitiful damage."); break;
+			case LASER_FLYAXE:
+				pline("Two-handed lightsaber axe that needs to be turned on in order to work, and if you turn on the second blade it deals more damage. Throwing it grants bonus to-hit and damage. It can also use the form XI (Aldebaran) lightsaber form."); break;
+			case PINK_DOUBLE_LIGHTSWORD:
+				pline("CAREFUL!!! While this weapon is lit, it'll gradually sap your maximum health. It uses the two-handed sword skill and doesn't deal meaningful damage if you don't turn it on, and it can also be set to double mode to increase the damage output, plus it allows you to train lightsaber forms at an increased rate."); break;
 			case LASERXBOW:
 				pline("This special crossbow is laser-based, you have to apply it to turn it on. It can also be set to double mode, increasing its strength. You can both whack things with it and fire crossbow bolts from it, but unless it's lit, it doesn't work. So make sure to turn it on first! When used properly, it also has a to-hit bonus."); break;
 			case STARWARS_MACE:
@@ -15156,6 +15200,10 @@ boolean knoweverything;
 				pline("A polearm-lightsaber! Applying it will turn it on, and then you can apply it again to hit things at two squares distance. Using it in melee is only effective while riding, and using it while it's not turned on isn't effective at all."); break;
 			case LASER_SWORD:
 				pline("This lightsaber does good damage, but it needs to be turned on in order to work. It uses the broadsword skill."); break;
+			case LIGHTTORCH:
+				pline("A club-class lightsaber tool that needs to be turned on in order to do good damage. If it's on, it provides radius 3 light and deals fire damage to enemies. But if it's not on, it can use the form IX (Hunk) lightsaber form."); break;
+			case PINK_LIGHTSWORD:
+				pline("A lightsaber that uses the scimitar skill and can train lightsaber forms at twice the normal rate. You need to turn it on though, and ATTENTION: while it's on, it slowly drains your maximum mana!"); break;
 			case BEAMSWORD:
 				pline("This lightsaber does good damage, but it needs to be turned on in order to work. It uses the saber skill."); break;
 			case WHITE_DOUBLE_LIGHTSABER: 
@@ -15254,6 +15302,12 @@ boolean knoweverything;
 				pline("An item that allows you to go in symbiosis with a monster, which is done by applying it at a stationary monster. If successful, the monster in question will become your symbiote, allowing you to benefit from its attacks and abilities in a limited fashion. Using it while you already have a symbiote will replace your previous one (which will be removed permanently) with the new one. A successful use of this item will use it up, but if you fail, you can try again (unless the monster gets frenzied, which can happen sometimes)."); break;
 			case INTELLIGENCE_PACK:
 				pline("Using this tool will boost your intelligence by one point (make sure you're not wearing an item that gives sustain ability). If you're of the sustainer race, it boosts your wisdom instead."); break;
+			case INFUSION:
+				pline("A one-use tool that improves your maximum HP and Pw by one each."); break;
+			case BLESSER:
+				pline("Use this tool to bless an uncursed item in your inventory. It can only be used once. Make sure the item you're targetting is specifically uncursed: it doesn't work on cursed ones, and has no effect on ones that are already blessed either!"); break;
+			case BEAUTY_PACK:
+				pline("If you use this tool, you gain a point of charisma. Be aware that if you have sustain ability, it won't work (but if you're of the sustainer race it still does)."); break;
 			case MATERIAL_KIT:
 				pline("A tool that has a randomized material stored inside. Using it on an item will change the material of ALL instances of that base item, so if you e.g. use a leather material kit on a dagger, all daggers in the game will then be made of leather. Of course, using it on the 'dagger' base item only affects that particular item type and not e.g. the 'orcish dagger' base item. If it successfully changes an item's material, the kit is used up."); break;
 			case CHARGER:
@@ -15515,6 +15569,14 @@ boolean knoweverything;
 			pline("An angel may live in this potion.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_ENDBRINGER))
 			pline("DANGER: This potion brings an end. Quaff at your own peril.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_LUCKY))
+			pline("Occasionally, quaffing this potion gives a random good effect.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_DYE))
+			pline("If you quaff this potion, you may change the color of an item in your inventory to the potion's color.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_ANTIHISTAMINE))
+			pline("Quaffing this potion grants temporary poison resistance in addition to its normal effect.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_UNLUCKY))
+			pline("If anyone quaffs this potion, you get hit by a random bad effect.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_CHEWABLE))
 			pline("You can eat this potion if you want. This will give the effects of inhaling the potion's vapors, which may be different than the quaff effect.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_DEADWEIGHT))
@@ -15611,6 +15673,8 @@ boolean knoweverything;
 				pline("You will become very fast and invulnerable for a few turns but also hallucinate for a while when quaffing this potion."); break;
 			case POT_MEHOHO_BURUSASAN_G:
 				pline("A poisonous japanese drink that probably contains tetrodotoxin. Only a fool would drink it."); break;
+			case POT_CURE_AIDS:
+				pline("Are your in- and extrinsics temporarily deactivated? Quaff this potion, and they all become active again!"); break;
 			case POT_TRAINING:
 				pline("This very rare potion allows you to pick a skill and double the amount of training in it. It can even allow you to bypass the RNG-decreed limits, but it won't take you over the actual max of your skill (seen in the #enhance screen)."); break;
 			case POT_BENEFICIAL_EFFECT:
@@ -15793,6 +15857,14 @@ boolean knoweverything;
 				pline("This scroll can be read to cure blindness, as ironic as that may sound."); break;
 			case SCR_SKILL_UP:
 				pline("Grants the ability to learn new skills if you're lucky."); break;
+			case SCR_EXTRA_SKILL_POINT:
+				pline("This very rare scroll grants an additional skill slot! However, it cannot be wished for."); break;
+			case SCR_PROOF_ACCESSORY:
+				pline("Reading this scroll allows you to erosionproof an accessory (ring, amulet or implant) in your open inventory."); break;
+			case SCR_PROOF_TOOL:
+				pline("If you read this scroll, you can erosionproof a tool-class item in your inventory."); break;
+			case SCR_NAME:
+				pline("Read this scroll to change your character's name."); break;
 			case SCR_GEOLYSIS:
 				pline("Allows you to eat through rock for a while, transforming it into floor but also occasionally other types of terrain."); break;
 			case SCR_DETECT_WATER: 
@@ -16791,6 +16863,10 @@ boolean knoweverything;
 				pline("This spell lengthens the timeout of decaying/reviving corpses and hatching eggs, so you will have more time to e.g. eat them instead. Don't get your hopes up: it does not elongate the timer that determines whether corpses can still be offered."); break;
 			case SPE_REDEMPTION:
 				pline("Attachs a rot timeout to all corpses on the ground on the current dungeon level. If the corpse in question had a revive timeout, it will be stopped. Guess which monster class suddenly became much easier to get rid of."); break;
+			case SPE_COMBAT_COMMAND:
+				pline("Casting this spell temporarily increases all of your attributes by one point."); break;
+			case SPE_DEFUSING:
+				pline("If you cast this spell, you can temporarily attempt to untrap a variety of trap types that you normally can't."); break;
 			case SPE_HYPERSPACE_SUMMON:
 				pline("Summons a bunch of vortices, with a high chance of them being tame. It reduces your maximum health and mana a bit, though."); break;
 			case SPE_SATISFY_HUNGER:
@@ -16926,6 +17002,10 @@ boolean knoweverything;
 				pline("Zapping yourself with this wand gives you permanent intrinsic speed. It can also be zapped at monsters to speed them up."); break;
 			case WAN_HASTE_MONSTER:
 				pline("Zapping yourself with this wand will make you very fast for a while. It can also be zapped at monsters to make them very fast permanently."); break;
+			case WAN_STONE_TO_FLESH:
+				pline("This wand replicates the spell of stone to flesh, i.e. you can zap it in a direction and transform lithic things into meaty ones."); break;
+			case WAN_LAVA:
+				pline("A wand that turns the floor you're standing on into lava. Be glad that you don't fall in immediately!"); break;
 			case WAN_STRIKING:
 				pline("A wand that shoots invisible bolts of force to damage enemies, break doors and otherwise interact with the dungeon."); break;
 			case WAN_UNDEAD_TURNING:

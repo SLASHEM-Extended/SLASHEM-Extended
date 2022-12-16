@@ -273,9 +273,9 @@ struct obj {
 			  (otmp)->oclass == CHAIN_CLASS || (otmp)->oclass == TOOL_CLASS) && \
 			 objects[(otmp)->otyp].oc_bimanual)
 
-#define is_lightsaber(otmp) (objects[(otmp)->otyp].oc_skill == P_LIGHTSABER || (otmp)->otyp == LASER_SWATTER || (otmp)->otyp == NANO_HAMMER || (otmp)->otyp == LIGHTWHIP || (otmp)->otyp == LASERDENT || (otmp)->otyp == LASERXBOW || (otmp)->otyp == STARWARS_MACE || (otmp)->otyp == LASER_POLE || (otmp)->otyp == KLIUSLING || (otmp)->otyp == LASER_SWORD || (otmp)->otyp == BEAMSWORD || (otmp)->otyp == SITH_STAFF || (otmp)->otyp == ELECTRIC_CIGARETTE || (otmp)->otyp == HEAVY_LASER_BALL || (otmp)->otyp == LASER_CHAIN || (otmp)->otyp == LASERFIST || (otmp)->otyp == LASER_TIN_OPENER)
+#define is_lightsaber(otmp) (objects[(otmp)->otyp].oc_skill == P_LIGHTSABER || (otmp)->otyp == LASER_SWATTER || (otmp)->otyp == NANO_HAMMER || (otmp)->otyp == LIGHTWHIP || (otmp)->otyp == LASERDENT || (otmp)->otyp == LASER_FLYAXE || (otmp)->otyp == PINK_DOUBLE_LIGHTSWORD || (otmp)->otyp == LASERXBOW || (otmp)->otyp == STARWARS_MACE || (otmp)->otyp == LASER_POLE || (otmp)->otyp == KLIUSLING || (otmp)->otyp == LASER_SWORD || (otmp)->otyp == LIGHTTORCH || (otmp)->otyp == PINK_LIGHTSWORD || (otmp)->otyp == BEAMSWORD || (otmp)->otyp == SITH_STAFF || (otmp)->otyp == ELECTRIC_CIGARETTE || (otmp)->otyp == HEAVY_LASER_BALL || (otmp)->otyp == LASER_CHAIN || (otmp)->otyp == LASERFIST || (otmp)->otyp == LASER_TIN_OPENER)
 
-#define is_lightsaber_onum(number) (objects[number].oc_skill == P_LIGHTSABER || number == LASER_SWATTER || number == NANO_HAMMER || number == LIGHTWHIP || number == LASERDENT || number == LASERXBOW || number == STARWARS_MACE || number == LASER_POLE || number == KLIUSLING || number == LASER_SWORD || number == BEAMSWORD || number == SITH_STAFF || number == ELECTRIC_CIGARETTE || number == HEAVY_LASER_BALL || number == LASER_CHAIN || number == LASERFIST || number == LASER_TIN_OPENER)
+#define is_lightsaber_onum(number) (objects[number].oc_skill == P_LIGHTSABER || number == LASER_SWATTER || number == NANO_HAMMER || number == LIGHTWHIP || number == LASERDENT || number == LASER_FLYAXE || number == PINK_DOUBLE_LIGHTSWORD || number == LASERXBOW || number == STARWARS_MACE || number == LASER_POLE || number == KLIUSLING || number == LASER_SWORD || number == LIGHTTORCH || number == PINK_LIGHTSWORD || number == BEAMSWORD || number == SITH_STAFF || number == ELECTRIC_CIGARETTE || number == HEAVY_LASER_BALL || number == LASER_CHAIN || number == LASERFIST || number == LASER_TIN_OPENER)
 
 #define is_firearm(otmp) \
 			((otmp)->oclass == WEAPON_CLASS && \
@@ -339,6 +339,7 @@ struct obj {
 				|| (otmp)->otyp == DRAGON_EYEPATCH\
 				|| (otmp)->otyp == LENSES\
 				|| (otmp)->otyp == BOSS_VISOR\
+				|| (otmp)->otyp == SHIELD_PATE_GLASSES\
 				|| (otmp)->otyp == RADIOGLASSES)
 
 #define is_blindfoldbase(o)	(o == BLINDFOLD\
@@ -351,6 +352,7 @@ struct obj {
 				|| o == DRAGON_EYEPATCH\
 				|| o == LENSES\
 				|| o == BOSS_VISOR\
+				|| o == SHIELD_PATE_GLASSES\
 				|| o == RADIOGLASSES)
 
 /* and yet another one... mkobj.c checks whether a magical and/or non-vanilla piece of armor is rerolled */

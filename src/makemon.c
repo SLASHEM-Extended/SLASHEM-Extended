@@ -552,7 +552,7 @@ register struct monst *mtmp;
 				m_initthrow(mtmp, rn2(2000) ? RIFLE_BULLET : ANTIMATTER_RIFLE_BULLET, 25);
 			}
 		}
-		else switch (rnd(100)) {
+		else switch (rnd(105)) {
 			case 1:
 				(void) mongets(mtmp, HEAVY_MACHINE_GUN);
 				m_initthrow(mtmp, rn2(2000) ? MG_BULLET : ANTIMATTER_MG_BULLET, 50);
@@ -697,6 +697,14 @@ register struct monst *mtmp;
 				(void) mongets(mtmp, SUBMACHINE_GUN);
 				m_initthrow(mtmp, rn2(2000) ? SMG_BULLET : ANTIMATTER_SMG_BULLET, 50);
 				break;
+			case 101:
+			case 102:
+			case 103:
+			case 104:
+			case 105:
+				(void) mongets(mtmp, PISTOL_PAIR);
+				m_initthrow(mtmp, rn2(2000) ? FIVE_SEVEN_BULLET : ANTIMATTER_FIVE_SEVEN_BULLET, 50);
+				break;
 		}
 
 		break;
@@ -740,7 +748,7 @@ register struct monst *mtmp;
 
 	if (Role_if(PM_GRENADONIN) && !rn2(50)) {
 
-		switch (rnd(42)) { /* grenades half of the time, guns otherwise */
+		switch (rnd(44)) { /* grenades half of the time, guns otherwise */
 
 			case 1:
 				(void) mongets(mtmp, PISTOL);
@@ -890,6 +898,15 @@ register struct monst *mtmp;
 				(void) mongets(mtmp, mtmp->m_lev > 4 ? GRENADE_LAUNCHER : PISTOL);
 				if (mtmp->m_lev > 4) {
 					m_initthrow(mtmp, GAS_GRENADE, 15);
+				} else {
+					m_initthrow(mtmp, rn2(2000) ? PISTOL_BULLET : ANTIMATTER_PISTOL_BULLET, 30);
+				}
+				break;
+			case 22:
+				(void) mongets(mtmp, mtmp->m_lev > 4 ? PISTOL_PAIR : PISTOL);
+				if (mtmp->m_lev > 4) {
+					m_initthrow(mtmp, rn2(2000) ? FIVE_SEVEN_BULLET : ANTIMATTER_FIVE_SEVEN_BULLET, 30);
+					m_initthrow(mtmp, rn2(2000) ? FIVE_SEVEN_BULLET : ANTIMATTER_FIVE_SEVEN_BULLET, 30);
 				} else {
 					m_initthrow(mtmp, rn2(2000) ? PISTOL_BULLET : ANTIMATTER_PISTOL_BULLET, 30);
 				}

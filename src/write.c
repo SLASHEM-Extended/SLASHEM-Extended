@@ -55,10 +55,13 @@ register struct obj *otmp;
 	case SCR_PROOF_WEAPON:
 	case SCR_CRYPT:
 	case SCR_PAVING:
+	case SCR_NAME:
 	case SCR_INFERIOR_MATERIAL:
 		return(10);
 	case SCR_CONFUSE_MONSTER:
 	case SCR_PHASE_DOOR:
+	case SCR_PROOF_TOOL:
+	case SCR_PROOF_ACCESSORY:
 		return(12);
 	case SCR_IDENTIFY:
 	case SCR_STONING:
@@ -184,6 +187,7 @@ register struct obj *otmp;
 		return(64);
 	case SCR_WORLD_FALL:
 	case SCR_ASTRALCENSION: /* more expensive than the max # of charges in a marker on purpose --Amy */
+	case SCR_EXTRA_SKILL_POINT:
 		return(150);
 	case SCR_BLANK_PAPER:
 	case SCR_COPYING:

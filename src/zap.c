@@ -1522,6 +1522,7 @@ armorsmashdone:
 		if (!Blind) makeknown(WAN_SLEEP);
 		break;
 	case SPE_STONE_TO_FLESH:
+	case WAN_STONE_TO_FLESH:
 		if (monsndx(mtmp->data) == PM_STONE_GOLEM)
 		    pm_index = PM_FLESHY_GOLEM;
 		else if (monsndx(mtmp->data) == PM_STATUE_GARGOYLE)
@@ -3434,7 +3435,7 @@ poly_obj(obj, id, degradation)
 	    if (otmp->owornmask & W_ARMU && !is_shirt(otmp))
 		otmp->owornmask &= ~W_ARMU;
 	    if (otmp->owornmask & W_TOOL && otmp->otyp != BLINDFOLD && otmp->otyp != EYECLOSER && otmp->otyp != DRAGON_EYEPATCH && otmp->otyp != CONDOME && otmp->otyp != CLIMBING_SET && otmp->otyp != DEFUSING_BOX && otmp->otyp != SOFT_CHASTITY_BELT &&
-	      otmp->otyp != TOWEL && otmp->otyp != LENSES && otmp->otyp != RADIOGLASSES && otmp->otyp != BOSS_VISOR)
+	      otmp->otyp != TOWEL && otmp->otyp != LENSES && otmp->otyp != RADIOGLASSES && otmp->otyp != SHIELD_PATE_GLASSES && otmp->otyp != BOSS_VISOR)
 		otmp->owornmask &= ~W_TOOL;
 	    if (obj->otyp == LEATHER_LEASH && obj->leashmon) o_unleash(obj);
 	    if (obj->otyp == INKA_LEASH && obj->leashmon) o_unleash(obj);
@@ -3588,7 +3589,7 @@ struct obj *obj, *otmp;
 	 * obj->{ox,oy} to be valid.  The exception to this (so far) is
 	 * for the STONE_TO_FLESH spell.
 	 */
-	if (!(obj->where == OBJ_FLOOR || otmp->otyp == SPE_STONE_TO_FLESH))
+	if (!(obj->where == OBJ_FLOOR || otmp->otyp == SPE_STONE_TO_FLESH || otmp->otyp == WAN_STONE_TO_FLESH))
 	    impossible("bhito: obj is not floor or Stone To Flesh spell");
 
 	if (obj == uball) {
@@ -3864,6 +3865,7 @@ struct obj *obj, *otmp;
 
 		break;
 	case SPE_STONE_TO_FLESH:
+	case WAN_STONE_TO_FLESH:
 		refresh_x = obj->ox; refresh_y = obj->oy;
 		if (objects[obj->otyp].oc_material != MT_MINERAL && objects[obj->otyp].oc_material != MT_TAR &&
 			objects[obj->otyp].oc_material != MT_GEMSTONE) {
@@ -5090,6 +5092,10 @@ secureidchoice:
 		case WAN_TIME_STOP:
 			pline((Role_if(PM_SAMURAI) || Role_if(PM_NINJA)) ? "Jikan ga teishi shimashita." : "Time has stopped.");
 			TimeStopped += (3 + rnd(5));
+			break;
+
+		case WAN_LAVA:
+			/* todo - make lava square underneath the player, but you don't fall in right away --Amy */
 			break;
 
 		case WAN_ENTRAPPING:
@@ -7270,6 +7276,7 @@ boolean ordinary;
 		    ustatusline();
 		    break;
 		case SPE_STONE_TO_FLESH:
+		case WAN_STONE_TO_FLESH:
 		    {
 		    struct obj *otemp, *onext;
 		    boolean didmerge;
@@ -7698,6 +7705,7 @@ struct obj *obj;	/* wand or spell */
 	    }
 	    break;
 	case SPE_STONE_TO_FLESH:
+	case WAN_STONE_TO_FLESH:
 	    if (Is_airlevel(&u.uz) || Is_waterlevel(&u.uz) ||
 		     Underwater || (Is_qstart(&u.uz) && u.dz < 0)) {
 		pline("%s", nothing_happens);
@@ -7757,6 +7765,7 @@ struct obj *obj;	/* wand or spell */
 		    rloc_engr(e);
 		    break;
 		case SPE_STONE_TO_FLESH:
+		case WAN_STONE_TO_FLESH:
 		    if (e->engr_type == ENGRAVE) {
 			/* only affects things in stone */
 			pline_The(FunnyHallu ?

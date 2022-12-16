@@ -1072,9 +1072,12 @@ doread()
 			case SCR_PROOF_WEAPON:
 			case SCR_CRYPT:
 			case SCR_PAVING:
+			case SCR_NAME:
 			case SCR_INFERIOR_MATERIAL:
 			case SCR_CONFUSE_MONSTER:
 			case SCR_PHASE_DOOR:
+			case SCR_PROOF_TOOL:
+			case SCR_PROOF_ACCESSORY:
 				cartochance = 30;
 				if (!PlayerCannotUseSkills) switch (P_SKILL(P_DEVICES)) {
 					case P_BASIC: cartochance = 32; break;
@@ -1280,6 +1283,7 @@ doread()
 				break; */
 			case SCR_WORLD_FALL:
 			case SCR_ASTRALCENSION:
+			case SCR_EXTRA_SKILL_POINT:
 			case SCR_ARTIFACT_CREATION:
 			case SCR_MISSING_CODE:
 			case SCR_ARTIFACT_JACKPOT:
@@ -1850,9 +1854,13 @@ int curse_bless;
 	    case LIGHTWHIP:
 	    case KLIUSLING:
 	    case LASERDENT:
+	    case LASER_FLYAXE:
+	    case PINK_DOUBLE_LIGHTSWORD:
 	    case LASERXBOW:
 	    case LASER_POLE:
 	    case LASER_SWORD:
+	    case LIGHTTORCH:
+	    case PINK_LIGHTSWORD:
 	    case BEAMSWORD:
 	    case SITH_STAFF:
 	    case HEAVY_LASER_BALL:
@@ -5685,6 +5693,19 @@ proofarmorchoice:
 		water_detect();
 
 	      break;
+
+	case SCR_EXTRA_SKILL_POINT:
+		/* todo */
+		break;
+	case SCR_PROOF_ACCESSORY:
+		/* todo */
+		break;
+	case SCR_PROOF_TOOL:
+		/* todo */
+		break;
+	case SCR_NAME:
+		/* todo */
+		break;
 
 	case SCR_SKILL_UP:
 

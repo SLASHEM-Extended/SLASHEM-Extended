@@ -1683,6 +1683,8 @@ register int aflag;
 		    fund += 2; /* JDS: lenses help searching */
 	    if (ublindf && ublindf->otyp == RADIOGLASSES && !Blind)
 		    fund += 2;
+	    if (ublindf && ublindf->otyp == SHIELD_PATE_GLASSES && !Blind)
+		    fund += 2;
 	    if (ublindf && ublindf->otyp == BOSS_VISOR && !Blind)
 		    fund += 2;
 	    if (uarmh && uarmh->otyp == HELM_OF_DISCOVERY && !Blind)

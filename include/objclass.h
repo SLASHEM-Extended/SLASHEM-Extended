@@ -154,17 +154,18 @@ struct objclass {
 #define WP_BULLET_MG	3
 #define WP_BULLET_RIFLE	4
 #define WP_BULLET_AR	5
-#define WP_BULLET_SNIPER	6
-#define WP_SHELL	7
-#define WP_SHELL_AUTO	8
-#define WP_ROCKET	9
-#define WP_GRENADE	10
-#define WP_BLASTER_HAND	11
-#define WP_BLASTER_ARM	12
-#define WP_PROCESS_CARD	13
-#define WP_CUTTING	14
-#define WP_RAYGUN	15
-#define WP_BFG	16
+#define WP_BULLET_FIVESEVEN	6
+#define WP_BULLET_SNIPER	7
+#define WP_SHELL	8
+#define WP_SHELL_AUTO	9
+#define WP_ROCKET	10
+#define WP_GRENADE	11
+#define WP_BLASTER_HAND	12
+#define WP_BLASTER_ARM	13
+#define WP_PROCESS_CARD	14
+#define WP_CUTTING	15
+#define WP_RAYGUN	16
+#define WP_BFG	17
 
 #define a_ac		oc_oc1	/* armor class, used in ARM_BONUS in do.c */
 #define a_can		oc_oc2		/* armor: used in mhitu.c */

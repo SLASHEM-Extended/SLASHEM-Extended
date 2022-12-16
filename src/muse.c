@@ -2335,6 +2335,9 @@ struct obj *obj;
 		ragnarok(TRUE);
 		if (evilfriday) evilragnarok(TRUE,level_difficulty());
 	    }
+	    if (itemhasappearance(obj, APP_POTION_UNLUCKY) && !rn2(10)) {
+		badeffect();
+	    }
 	    if (itemhasappearance(obj, APP_POTION_DEADWEIGHT) && !rn2(10)) {
 		pline("Some sinister force causes you to wear an item!");
 		bad_equipment(0);

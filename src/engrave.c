@@ -1991,6 +1991,7 @@ doengrave()
 		    case WAN_BAD_EQUIPMENT:
 		    case WAN_EGOISM:
 		    case WAN_SIN:
+		    case WAN_LAVA:
 			zapnodir(otmp);
 			break;
 
@@ -2016,6 +2017,12 @@ doengrave()
 			   sprintf(post_engr_text,
 				   "The bugs are driven into the %s!",
 				   surface(u.ux, u.uy));
+			}
+			break;
+		    case WAN_STONE_TO_FLESH:
+			if (!Blind) {
+			   sprintf(post_engr_text,
+				   "The bugs on the %s are eagerly eating some meat!", surface(u.ux, u.uy));
 			}
 			break;
 		    case WAN_STONING:

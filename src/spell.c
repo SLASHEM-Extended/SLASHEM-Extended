@@ -2111,6 +2111,8 @@ learn()
 	    delay++;
 	if (delay < end_delay && ublindf && ublindf->otyp == RADIOGLASSES && rn2(2))
 	    delay++;
+	if (delay < end_delay && ublindf && ublindf->otyp == SHIELD_PATE_GLASSES && rn2(2))
+	    delay++;
 	if (delay < end_delay && ublindf && ublindf->otyp == BOSS_VISOR && rn2(2))
 	    delay++;
 
@@ -2432,7 +2434,7 @@ register struct obj *spellbook;
 			/* uncursed - chance to fail */
 			int read_ability = ACURR(A_INT) + 4 + GushLevel/2
 			    - 2*objects[booktype].oc_level
-			    + ((ublindf && (ublindf->otyp == LENSES || ublindf->otyp == RADIOGLASSES || ublindf->otyp == BOSS_VISOR)) ? 2 : 0);
+			    + ((ublindf && (ublindf->otyp == LENSES || ublindf->otyp == RADIOGLASSES || ublindf->otyp == SHIELD_PATE_GLASSES || ublindf->otyp == BOSS_VISOR)) ? 2 : 0);
 			/* only wizards know if a spell is too difficult */
 			/* Amy edit: others may randomly know it sometimes */
 			if ((Role_if(PM_WIZARD) || !rn2(4)) && read_ability < 20 &&
@@ -6360,6 +6362,15 @@ secureidchoice:
 	    }
 
 		if (!rn2(7)) badeffect();
+
+		break;
+
+	case SPE_COMBAT_COMMAND:
+		/* todo */
+		break;
+
+	case SPE_DEFUSING:
+		/* todo */
 
 		break;
 

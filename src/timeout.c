@@ -5172,6 +5172,8 @@ long timeout;
 	    case WHITE_DOUBLE_LIGHTSABER:
 	    case LASER_POLE:
 	    case LASERDENT:
+	    case LASER_FLYAXE:
+	    case PINK_DOUBLE_LIGHTSWORD:
 	    case LASERXBOW:
 	    case SITH_STAFF:
 	    	if (obj->altmode && obj->cursed && !rn2(25)) {
@@ -5186,6 +5188,8 @@ long timeout;
 	    case LASERFIST:
 	    case LASER_TIN_OPENER:
 	    case LASER_SWORD:
+	    case LIGHTTORCH:
+	    case PINK_LIGHTSWORD:
 	    case BEAMSWORD:
 	    case HEAVY_LASER_BALL:
 	    case LASER_CHAIN:
@@ -5283,7 +5287,7 @@ lightsaber_deactivate (obj, timer_attached)
 		You("hear a lightsaber deactivate.");
 	    }
 	}
-	if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == CYAN_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASERXBOW || obj->otyp == LASER_POLE || obj->otyp == SITH_STAFF || obj->otyp == WHITE_DOUBLE_LIGHTSABER) obj->altmode = FALSE;
+	if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == CYAN_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASER_FLYAXE || obj->otyp == PINK_DOUBLE_LIGHTSWORD || obj->otyp == LASERXBOW || obj->otyp == LASER_POLE || obj->otyp == SITH_STAFF || obj->otyp == WHITE_DOUBLE_LIGHTSABER) obj->altmode = FALSE;
 	if ((obj == uwep) || (u.twoweap && obj != uswapwep)) unweapon = TRUE;
 	end_burn(obj, timer_attached);
 }
@@ -5401,6 +5405,8 @@ begin_burn(obj, already_lit)
 	    case RED_DOUBLE_LIGHTSABER:
 	    case CYAN_DOUBLE_LIGHTSABER:
 	    case LASERDENT:
+	    case LASER_FLYAXE:
+	    case PINK_DOUBLE_LIGHTSWORD:
 	    case LASERXBOW:
 	    case SITH_STAFF:
 	    case WHITE_DOUBLE_LIGHTSABER:
@@ -5452,6 +5458,8 @@ begin_burn(obj, already_lit)
 	    case RED_LIGHTSABER:
 	    case LASER_SWATTER:
 	    case LASER_SWORD:
+	    case LIGHTTORCH:
+	    case PINK_LIGHTSWORD:
 	    case BEAMSWORD:
 	    case NANO_HAMMER:
 	    case KLIUSLING:
@@ -5591,7 +5599,7 @@ begin_burn(obj, already_lit)
 	    } else {
 		obj->lamplit = 0;
 		/* double lightsaber should have its second blade turned off too! --Amy */
-		if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == CYAN_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASERXBOW || obj->otyp == LASER_POLE || obj->otyp == SITH_STAFF || obj->otyp == WHITE_DOUBLE_LIGHTSABER) {
+		if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == CYAN_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASER_FLYAXE || obj->otyp == PINK_DOUBLE_LIGHTSWORD || obj->otyp == LASERXBOW || obj->otyp == LASER_POLE || obj->otyp == SITH_STAFF || obj->otyp == WHITE_DOUBLE_LIGHTSABER) {
 			obj->altmode = FALSE;
 		}
 	    }
@@ -5634,7 +5642,7 @@ end_burn(obj, timer_attached)
 	    del_light_source(LS_OBJECT, (void *)obj);
 	    obj->lamplit = 0;
 	    /* caller doesn't always make sure that double lightsabers are turned off properly; do so here */
-	    if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == CYAN_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASERXBOW || obj->otyp == LASER_POLE || obj->otyp == SITH_STAFF || obj->otyp == WHITE_DOUBLE_LIGHTSABER) {
+	    if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == CYAN_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASER_FLYAXE || obj->otyp == PINK_DOUBLE_LIGHTSWORD || obj->otyp == LASERXBOW || obj->otyp == LASER_POLE || obj->otyp == SITH_STAFF || obj->otyp == WHITE_DOUBLE_LIGHTSABER) {
 			obj->altmode = FALSE;
 		}
 	    if (obj->where == OBJ_INVENT)
@@ -5666,7 +5674,7 @@ cleanup_burn(arg, expire_time)
     obj->age += expire_time - monstermoves;
 
     obj->lamplit = 0;
-    if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == CYAN_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASERXBOW || obj->otyp == LASER_POLE || obj->otyp == SITH_STAFF || obj->otyp == WHITE_DOUBLE_LIGHTSABER) {
+    if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == CYAN_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASER_FLYAXE || obj->otyp == PINK_DOUBLE_LIGHTSWORD || obj->otyp == LASERXBOW || obj->otyp == LASER_POLE || obj->otyp == SITH_STAFF || obj->otyp == WHITE_DOUBLE_LIGHTSABER) {
 	obj->altmode = FALSE;
     }
 

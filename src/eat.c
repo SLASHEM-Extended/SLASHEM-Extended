@@ -5088,6 +5088,7 @@ start_tin(otmp)		/* called when starting to open a tin */
 		case DARK_ELVEN_DAGGER:
 		case GREAT_DAGGER:
 		case RADIOACTIVE_DAGGER:
+		case PARRY_DAGGER:
 		case SECRETION_DAGGER:
 		case WONDER_DAGGER:
 		case BONE_DAGGER:

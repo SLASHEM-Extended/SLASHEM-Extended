@@ -1083,9 +1083,14 @@
 #define APP_POTION_SPIRITUAL 5031
 #define APP_POTION_CAMPING 5032
 #define APP_POTION_VACCINE 5033
+#define APP_POTION_LUCKY 5034
+#define APP_POTION_DYE 5035
+#define APP_POTION_ANTIHISTAMINE 5036
+#define APP_POTION_UNLUCKY 5037
 
 #define APP_CAMO_ROBE 6000
 #define APP_OCTARINE_ROBE 6001
+#define APP_ARENA_ROBE 6002
 
 /*** Where the properties come from ***/
 /* Definitions were moved here from obj.h and you.h */

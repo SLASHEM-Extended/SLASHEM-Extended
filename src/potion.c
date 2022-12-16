@@ -19,6 +19,7 @@ static NEARDATA int nothing, unkn;
 static NEARDATA const char beverages[] = { POTION_CLASS, 0 };
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 static const char allnoncount[] = { ALL_CLASSES, 0 };
+static const char allowall[] = { ALL_CLASSES, 0 };
 static NEARDATA const char recharge_type[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 
 STATIC_DCL long itimeout(long);
@@ -6678,8 +6679,6 @@ destroyarmorattack()
 void
 uncurseoneitem()
 {
-	char allowall[2];
-	allowall[0] = ALL_CLASSES; allowall[1] = '\0';
 	struct obj *obj; /* item to uncurse */
 
 	if (CannotSelectItemsInPrompts) return;
@@ -10605,6 +10604,34 @@ dodrink()
 		ragnarok(TRUE);
 		if (evilfriday) evilragnarok(TRUE,level_difficulty());
 	}
+	if (itemhasappearance(otmp, APP_POTION_UNLUCKY) && !rn2(10)) {
+		badeffect();
+	}
+	if (itemhasappearance(otmp, APP_POTION_LUCKY) && !rn2(10)) {
+		goodeffect();
+	}
+	if (itemhasappearance(otmp, APP_POTION_DYE)) {
+		register struct obj *steeling;
+		if (CannotSelectItemsInPrompts) goto dyedone;
+		pline("You may dye an object.");
+dyechoice:
+		steeling = getobj(allowall, "dye");
+		if (!steeling) {
+			if (yn("Really exit with no object selected?") == 'y')
+				pline("You just wasted the opportunity to dye an item.");
+			else goto dyechoice;
+			pline("Oh well, if you don't wanna...");
+		} else {
+			int dyepotion = find_potion_of_dye();
+			objects[steeling->otyp].oc_color = objects[dyepotion].oc_color;
+			pline_The("item was dyed successfully!");
+		}
+	}
+dyedone:
+	if (itemhasappearance(otmp, APP_POTION_ANTIHISTAMINE)) {
+		HPoison_resistance += rnz(500);
+		pline_The("antihistamines make you poison resistant.");
+	}
 	if (itemhasappearance(otmp, APP_POTION_DEADWEIGHT) && !rn2(10)) {
 		pline("Some sinister force causes you to wear an item!");
 		bad_equipment(0);
@@ -11454,6 +11481,11 @@ peffects(otmp)
 			You(FunnyHallu ? "feel slightly the same." : "feel slightly different.");
 			if (u.uhp < u.uhpmax) u.uhp++;
 		}
+		break;
+
+	case POT_CURE_AIDS:
+
+		/* todo */
 		break;
 
 	case POT_TRAINING:
@@ -14694,7 +14726,7 @@ register struct obj *obj;
 	    if (owornmask & W_ARMU && !is_shirt(obj))
 		owornmask &= ~W_ARMU;
 	    if (owornmask & W_TOOL && obj->otyp != BLINDFOLD && obj->otyp != CLIMBING_SET && obj->otyp != DEFUSING_BOX && obj->otyp != EYECLOSER && obj->otyp != DRAGON_EYEPATCH && obj->otyp != CONDOME && obj->otyp != SOFT_CHASTITY_BELT &&
-	      obj->otyp != TOWEL && obj->otyp != LENSES && obj->otyp != RADIOGLASSES && obj->otyp != BOSS_VISOR && obj->otyp != BOSS_VISOR)
+	      obj->otyp != TOWEL && obj->otyp != LENSES && obj->otyp != RADIOGLASSES && obj->otyp != SHIELD_PATE_GLASSES && obj->otyp != BOSS_VISOR && obj->otyp != BOSS_VISOR)
 		owornmask &= ~W_TOOL;
 	    otyp2 = obj->otyp;
 	    obj->otyp = otyp;
@@ -14736,12 +14768,11 @@ dodip()
 	struct obj *potion, *obj, *singlepotion;
 	const char *tmp;
 	uchar here;
-	char allowall[2], qbuf[QBUFSZ], Your_buf[BUFSZ];
+	char qbuf[QBUFSZ], Your_buf[BUFSZ];
 	short mixture;
 	int res;
 	boolean potfinalized = FALSE;
 
-	allowall[0] = ALL_CLASSES; allowall[1] = '\0';
 	if(!(obj = getobj(allowall, "dip")))
 		return(0);
 

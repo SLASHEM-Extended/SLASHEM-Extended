@@ -700,6 +700,9 @@ const char *name;	/* if null, then format `obj' */
 		if (obj && obj->otyp == ANTIMATTER_PISTOL_BULLET) {
 			antimatter_damage(invent, FALSE, FALSE);
 		}
+		if (obj && obj->otyp == ANTIMATTER_FIVE_SEVEN_BULLET) {
+			antimatter_damage(invent, FALSE, FALSE);
+		}
 		if (obj && obj->otyp == ANTIMATTER_SMG_BULLET) {
 			antimatter_damage(invent, FALSE, FALSE);
 		}
@@ -2296,6 +2299,7 @@ int whodidit;	/* 1==hero, 0=other, -1==just check whether it'll pass thru */
 			obj_type != GENERAL_CANDLE &&
 			obj_type != LENSES &&
 			obj_type != RADIOGLASSES &&
+			obj_type != SHIELD_PATE_GLASSES &&
 			obj_type != BOSS_VISOR &&
 			obj_type != TIN_WHISTLE &&
 			obj_type != GRASS_WHISTLE &&

@@ -4161,7 +4161,7 @@ register struct obj *obj;
 	case RIN_DRAIN_RESISTANCE: */
 	/* KMH -- added */
 	case RIN_MOOD:
-	case RIN_FREE_ACTION:                
+	case RIN_FREE_ACTION:
 	case RIN_SLOW_DIGESTION:
 	case RIN_SUSTAIN_ABILITY:
 	case MEAT_RING:
@@ -4701,7 +4701,7 @@ register struct obj *otmp;
 	    if (was_blind) {
 		/* "still cannot see" makes no sense when removing lenses
 		   since they can't have been the cause of your blindness */
-		if (otmp->otyp != LENSES && otmp->otyp != RADIOGLASSES && otmp->otyp != BOSS_VISOR)
+		if (otmp->otyp != LENSES && otmp->otyp != RADIOGLASSES && otmp->otyp != SHIELD_PATE_GLASSES && otmp->otyp != BOSS_VISOR)
 		    You("still cannot see.");
 	    } else {
 		changed = TRUE;	/* !was_blind */
@@ -5544,11 +5544,11 @@ doputon()
 			else if (ublindf->otyp == DEFUSING_BOX)
 					already_wearing("a defusing box");
 			else if (ublindf->otyp == BLINDFOLD || ublindf->otyp == EYECLOSER || ublindf->otyp == DRAGON_EYEPATCH) {
-				if (otmp->otyp == LENSES || otmp->otyp == RADIOGLASSES || otmp->otyp == BOSS_VISOR)
+				if (otmp->otyp == LENSES || otmp->otyp == RADIOGLASSES || otmp->otyp == SHIELD_PATE_GLASSES || otmp->otyp == BOSS_VISOR)
 					already_wearing2("lenses", "a blindfold");
 				else
 					already_wearing("a blindfold");
-			} else if (ublindf->otyp == LENSES || ublindf->otyp == RADIOGLASSES || ublindf->otyp == BOSS_VISOR) {
+			} else if (ublindf->otyp == LENSES || ublindf->otyp == RADIOGLASSES || ublindf->otyp == SHIELD_PATE_GLASSES || ublindf->otyp == BOSS_VISOR) {
 				if (otmp->otyp == BLINDFOLD || otmp->otyp == EYECLOSER || otmp->otyp == DRAGON_EYEPATCH)
 					already_wearing2("a blindfold", "some lenses");
 				else

@@ -1716,6 +1716,11 @@ int dieroll;
 			}
 		}
 
+		if (uarm && itemhasappearance(uarm, APP_ARENA_ROBE)) tmp++;
+		if (Role_if(PM_GLADIATOR) && uarm && itemhasappearance(uarm, APP_ARENA_ROBE)) tmp++;
+		if (uarm && uarm->oartifact == ART_MAEDHROS_SARALONDE) tmp += 2;
+		if (uarmc && uarmc->oartifact == ART_DISBELIEVING_POWERLORD) tmp += rnd(5);
+
 		if (uarmf && uarmf->oartifact == ART_FINGERNAIL_FRONT && (!uarmg || FingerlessGloves) ) tmp += 3;
 
 	    valid_weapon_attack = (tmp > 0);
@@ -2571,6 +2576,9 @@ int dieroll;
 			if (ammo_and_launcher(obj, launcher)) {
 
 			    if (obj->otyp == ANTIMATTER_PISTOL_BULLET) {
+					tmp += 20;
+			    }
+			    if (obj->otyp == ANTIMATTER_FIVE_SEVEN_BULLET) {
 					tmp += 20;
 			    }
 			    if (obj->otyp == ANTIMATTER_SMG_BULLET) {
