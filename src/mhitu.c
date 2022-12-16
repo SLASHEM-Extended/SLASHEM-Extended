@@ -1987,7 +1987,7 @@ wildmiss(mtmp, mattk)		/* monster attacked your displaced image */
 	compat = (mattk->adtyp == AD_SEDU || mattk->adtyp == AD_SSEX) &&
 		 could_seduce(mtmp, &youmonst, (struct attack *)0);
 
-	if (!mtmp->mcansee || (Invis && !perceives(mtmp->data))) {
+	if (!mtmp->mcansee || (Invis && (!perceives(mtmp->data) || (uarm && uarm->oartifact == ART_YOU_CANNOT_SEE_ME) ) )) {
 	    const char *swings =
 		mattk->aatyp == AT_BEAM ? "blasts" :
 		mattk->aatyp == AT_BREA ? "breathes" :
@@ -6745,10 +6745,18 @@ hitmu(mtmp, mattk)
 	dmg = d((int)mattk->damn, (int)mattk->damd);
 	if( (is_undead(mdat) || mtmp->egotype_undead) && midnight())
 		dmg += d((int)mattk->damn, (int)mattk->damd); /* extra damage */
+	if( (is_undead(mdat) || mtmp->egotype_undead) && uwep && uwep->oartifact == ART_ASTRAL_LIGHTWELL)
+		dmg += d((int)mattk->damn, (int)mattk->damd); /* extra damage */
+	if( (is_undead(mdat) || mtmp->egotype_undead) && u.twoweap && uswapwep && uswapwep->oartifact == ART_ASTRAL_LIGHTWELL)
+		dmg += d((int)mattk->damn, (int)mattk->damd); /* extra damage */
 
 	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || (uwep && uwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI)) {
 		dmg = (int)mattk->damn * (int)mattk->damd;
 		if( (is_undead(mdat) || mtmp->egotype_undead) && midnight())
+			dmg *= 2;
+		if( (is_undead(mdat) || mtmp->egotype_undead) && uwep && uwep->oartifact == ART_ASTRAL_LIGHTWELL)
+			dmg *= 2;
+		if( (is_undead(mdat) || mtmp->egotype_undead) && u.twoweap && uswapwep && uswapwep->oartifact == ART_ASTRAL_LIGHTWELL)
 			dmg *= 2;
 	}
 
@@ -18898,7 +18906,7 @@ register int n;
 	}
 	if (Role_if(PM_DANCER) && !rn2(3)) n = n * 2;
 	if (Race_if(PM_METAL)) n *= rnd(10);
-	if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone() || (uleft && uleft->oartifact == ART_RING_OF_FAST_LIVING) || (uright && uright->oartifact == ART_RING_OF_FAST_LIVING) || (uimplant && uimplant->oartifact == ART_IME_SPEW)) n = n * 2;
+	if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone() || (uleft && uleft->oartifact == ART_RING_OF_FAST_LIVING) || (uright && uright->oartifact == ART_RING_OF_FAST_LIVING) || (uwep && uwep->oartifact == ART_PAINBOWSWANDIR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PAINBOWSWANDIR) || (uimplant && uimplant->oartifact == ART_IME_SPEW)) n = n * 2;
 	if (uamul && uamul->otyp == AMULET_OF_VULNERABILITY) n *= rnd(4);
 	if (RngeFrailness) n = n * 2;
 

@@ -10125,6 +10125,206 @@ A("Hol'on Man",				BLINDING_VENOM, /* randart2, spawns with stack size of 1, wal
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
 
+A("Main Gauche",				PARRY_DAGGER,
+	(SPFX_RESTR), 0, 0,
+	PHYS(1, 3), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Piratte Hunting",				PARRY_SWORD,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(2, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Double Beretta",				PISTOL_PAIR,
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Double Colt 1911",				PISTOL_PAIR,
+	(SPFX_RESTR), 0, 0,
+	PHYS(4, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1400L ),
+
+A("Double SAA",				PISTOL_PAIR,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2400L ),
+
+A("Death To Heathen",				FIVE_SEVEN_BULLET,
+	(SPFX_RESTR|SPFX_DALIGN), 0, 0,
+	PHYS(10, 25), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 400L ),
+
+A("Lead Syringe",				LEAD_FIVE_SEVEN_BULLET, /* +2 multishot */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Fommp",				SHADOW_FIVE_SEVEN_BULLET, /* if it hits a monster, 1 in 20 chance to get a random good effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Their Ded",				ANTIMATTER_FIVE_SEVEN_BULLET, /* bisects targets */
+	(SPFX_RESTR|SPFX_BEHEAD), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Krerratsch",				RAPID_DART,
+	(SPFX_RESTR), 0, 0,
+	PHYS(3, 7), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 80L ),
+
+A("Ding-Ding",				NINJA_STAR,
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
+
+A("Actual Flame",				FLAMETHROWER, /* throwing while having at least 5 mana costs 5 mana and blasts a bolt of fire in the direction of your throw */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 300L ),
+
+A("Burdensome Log",				HEAVY_SPEAR, /* +15 damage when thrown */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 800L ),
+
+A("Corroser Lance",				SUPERHEAVY_SPEAR, /* +5 melee to-hit when riding but -5 otherwise */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_EVIL), 0, 0,
+	ACID(0, 13), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Astral Lightwell",				LIGHTTORCH, /* astral vision when wielded, makes undead deal double damage to you */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Minopower",				LASER_FLYAXE, /* bisects enemies, -3 INT/WIS and map amnesia */
+	(SPFX_RESTR|SPFX_BEHEAD|SPFX_EVIL), 0, 0,
+	PHYS(4, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Jaden's Mission",				PINK_LIGHTSWORD,
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(4, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Fyarr's Fyre",				PINK_DOUBLE_LIGHTSWORD,
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	FIRE(5,0),	FIRE(0,0), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Movenin Hosasa",				SPE_COMBAT_COMMAND, /* very fast speed when wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Spiked Knuckles",				RIN_IMPACT, /* +d5 bleeding damage if you fight unarmed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Iwa Erwi",				SPE_DEFUSING, /* reading increases or decreases the level of the defusing spell by one */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("SymPlant",				IMPLANT_OF_ABRASION, /* randart, your symbiote (if present) has 50% chance per turn to regenerate an extra HP but you also lose an extra point of nutrition every turn; if you're in a form without hands, it also conveys technicality */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Maxhit Boost",				IMPLANT_OF_ABRASION, /* randart, your symbiote (if present) has 1 in 1000 chance per turn to maybe get extra max HP if you're lucky, and double chance for that if you're in a form without hands */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Extrapugeln",				ROBE_OF_FOCUSSING, /* increases unarmed damage like robe of pugilism */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Trinnie's Snipersights",				SHIELD_PATE_GLASSES, /* infravision when worn */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Nag me, fuck me!",				AMULET_VERSUS_NAGGING, /* increases nagging resistance to 95% */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("You Cannot See Me",				SPLINT_MAIL, /* if you're invisible, monsters still cannot see you even if they have see invisible */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Total Gauche",				DAGGER, /* randart dagger, if it's in your secondary weapon slot while dual-wielding it gives 10 extra AC and one more per enchantment value or dual-wielding skill level */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Vorpal Heels",				LOW_BOOTS, /* initialized to always be fetish heels; if you kick something with it while they're still counting as stiletto heels, 1 in 20 chance to behead the target */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("The Master Sword",				SILVER_LONG_SWORD,
+	(SPFX_RESTR), 0, 0,
+	PHYS(3, 3), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Erdrick's Armor",				PLATE_MAIL, /* 5 extra points of AC, free action */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Tendo Mallet",				MALLET,
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(24, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Grandleon",				BROADSWORD, /* polymorph control */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Kusanagi Blade",				KATANA,
+	(SPFX_RESTR|SPFX_SEARCH|SPFX_SEEK), 0, 0,
+	PHYS(3, 3), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Alucart Mail",				PLATE_MAIL, /* makes your AC worse by 5 points, resist death and drain life */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Klobb",				SUBMACHINE_GUN, /* -6 increase damage and accuracy, bashing a monster with it has 10% chance to paralyze it for d10 turns */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Excalipoor",				RUNESWORD, /* -9 increase damage and accuracy */
+	(SPFX_RESTR|SPFX_SEEK|SPFX_DEFN|SPFX_SEARCH|SPFX_EVIL), 0, 0,
+	NO_ATTK, DRLI(0,0), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("Soul Edge",				BROADSWORD, /* clairvoyance, killing a monster heals you by one point */
+	(SPFX_RESTR), 0, 0,
+	PHYS(3, 3), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Covidivac",				INFUSION, /* corona antidote when used */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 800L ),
+
+A("Entropy Shootout",				SCR_NAME, /* creates boss spawners on squares adjacent to you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Grassswandir",		ELVEN_SHORT_SWORD, /* transforms floor into grass */
+	(SPFX_RESTR|SPFX_HALRES|SPFX_EVIL), 0, 0,
+	PHYS(5,0),	NO_DFNS,	NO_CARY,	0, A_LAWFUL, NON_PM, NON_PM, 4000L ),
+
+A("Rayswandir",		QUARTERSTAFF, /* randart2 quarterstaff, can be invoked to fire a magic missile */
+	(SPFX_RESTR|SPFX_HALRES), 0, 0,
+	PHYS(5,0),	NO_DFNS,	NO_CARY,	SPECIAL_INVOKE, A_LAWFUL, NON_PM, NON_PM, 8000L ),
+
+A("Laidswandir",		SEXY_LEATHER_PUMP, /* prevents you from resisting foocubus advances */
+	(SPFX_RESTR|SPFX_HALRES|SPFX_EVIL), 0, 0,
+	PHYS(5,0),	NO_DFNS,	NO_CARY,	0, A_CHAOTIC, NON_PM, NON_PM, 8000L ),
+
+A("Painbowswandir",				BOW, /* randart2 bow, you take double damage */
+	(SPFX_RESTR|SPFX_HALRES|SPFX_EVIL), 0, 0,
+	PHYS(5,0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Moldswandir",		ASTERISK, /* deals d10 extra damage to F-class monsters */
+	(SPFX_RESTR|SPFX_HALRES), 0, 0,
+	PHYS(5,0),	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Fullswandir",				CHAINSWORD, /* doubles monster spawn rate */
+	(SPFX_RESTR|SPFX_HALRES|SPFX_EVIL), 0, 0,
+	PHYS(5,0), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 10000L ),
+
+A("Repeating Load",				LOADSTONE, /* by jonadab, carrying it has 1 in 2500 chance per turn to give you another cursed loadstone */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(10, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Ultracursed Vampiric High-Heeled Shoes",				SENTIENT_HIGH_HEELED_SHOES, /* sticky prime curse themselves when worn, resist death and drain */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Iron of Innermost Joy",				IMPLANT_OF_ABRASION, /* randart, material sets itself to IRON when equipped, heavily curses itself, wallwalking, you always walk in random directions; if in a form without hands, astral vision and half physical/spell damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100000L ),
+
+A("Lower Turncount",				ENERGY_SAP, /* by bugsniper, reduces turncount by rn1(500, 500) when used */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

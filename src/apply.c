@@ -5878,6 +5878,15 @@ doapply()
 		break;
 	case ENERGY_SAP:
 		energysap(obj);
+		if (obj && obj->oartifact == ART_LOWER_TURNCOUNT) {
+			int turnreduce = rn1(500, 500);
+			monstermoves -= turnreduce;
+			if (monstermoves < 1) monstermoves = 1;
+			moves -= turnreduce;
+			if (moves < 1) moves = 1;
+			pline_The("turn counter has been reduced, courtesy of bugsniper.");
+		}
+
 		noartispeak = TRUE;
 		break;
 	case UNICORN_HORN:
@@ -6655,6 +6664,10 @@ materialchoice:
 	case INFUSION:
 
 		noartispeak = TRUE;
+
+		if (obj && obj->oartifact == ART_COVIDIVAC) {
+			upnivel(TRUE);
+		}
 
 		delobj(obj);
 		u.uhpmax++;

@@ -8539,6 +8539,8 @@ gethungry()	/* as time goes by - called by moveloop() and domove() */
 	/* ancipital's slow digestion is not supposed to be no digestion --Amy */
 	if (Race_if(PM_ANCIPITAL) && !rn2(20) && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
 
+	if (uimplant && uimplant->oartifact == ART_SYMPLANT && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
+
 	/* having a symbiote uses your nutrition to feed it, especially if it has HP regeneration --Amy
 	 * regenerating ones sap more nutrition if you're less skilled */
 	if (uactivesymbiosis && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) {

@@ -3243,7 +3243,7 @@ nexttry:	/* eels prefer the water, but if there is no water nearby,
 		 (is_lava(nx,ny) && wantlava) || (is_styxriver(nx,ny) && wantlava) || poolok) &&
 	       (lavaok || wantlava || (!is_lava(nx,ny) ) )) {
 		int dispx, dispy;
-		boolean monseeu = (mon->mcansee && (!Invis || perceives(mdat) || (!StrongInvis && rn2(3)) ));
+		boolean monseeu = (mon->mcansee && (!Invis || (perceives(mdat) && !(uarm && uarm->oartifact == ART_YOU_CANNOT_SEE_ME) ) || (!StrongInvis && rn2(3)) ));
 		boolean checkobj = OBJ_AT(nx,ny);
 
 		/* Displacement also displaces the Elbereth/scare monster,
@@ -6937,6 +6937,8 @@ xkilled(mtmp, dest)
 
 	if (Role_if(PM_BLOODSEEKER)) healup(mtmp->m_lev, 0, FALSE, FALSE); /* special ability called "Stygwyr's Thirst" */
 	if (uwep && uwep->oartifact == ART_ALDEBARAN_FORM) healup(mtmp->m_lev, 0, FALSE, FALSE);
+
+	if (uwep && uwep->oartifact == ART_SOUL_EDGE) healup(1, 0, FALSE, FALSE);
 
 	if (!PlayerCannotUseSkills && ((uarm && uarm->oartifact == ART_ALPHA_TAURI) || (uwep && uwep->otyp == LASER_FLYAXE) || Role_if(PM_HEDDERJEDI)) && uwep && (Flying || (uwep->oartifact == ART_ALDEBARAN_FORM)) && ((is_lightsaber(uwep) && uwep->lamplit) || !rn2(3) ) ) {
 		int alphatauriheal = 0;

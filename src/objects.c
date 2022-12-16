@@ -135,6 +135,7 @@ WEAPON("great dagger", (char *)0,
 	1, 1, 0,  200, 8,500,  5,  4, 1, P,   P_DAGGER, MT_METAL, CLR_BLACK, 25),
 	/* STEPHEN WHITE'S NEW CODE */
 	/* for necromancer artifact... */
+/* great dagger must be last */
 
 /* Knives - worm tooth must be first */
 WEAPON("worm tooth", (char *)0,
@@ -950,6 +951,7 @@ WEAPON("spec lance", (char *)0,
 
 /* Bows (and arrows) */
 /* KMH, balance patch -- damage of launchers restored to d2 big and small */
+/* orcish bow must be first */
 BOW("orcish bow", "crude bow",	0, 1, 800, 12, 60, 0, MT_WOOD, P_BOW, CLR_BLACK, 1),
 BOW("bow", (char *)0,			1, 1, 1190, 12, 60, 0, MT_WOOD, P_BOW, HI_WOOD, 3),
 BOW("blue bow", (char *)0,		1, 1, 100, 12, 60, 0, MT_SHADOWSTUFF, P_BOW, CLR_BRIGHT_BLUE, 25),
@@ -962,6 +964,8 @@ BOW("yumi", "long bow",			0, 1, 200, 12, 60, 0, MT_WOOD, P_BOW, HI_WOOD, 5),
 BOW("droven bow", "spider-legged bow",	0, 0, 100, 12, 60, 5, MT_GLASS, P_BOW, CLR_BLACK, 25),
 BOW("hydra bow", (char *)0,	1, 1, 100, 12, 60, 0, MT_WOOD, P_BOW, CLR_BROWN, 50),
 BOW("wildhild bow", (char *)0,	1, 1, 10, 12, 60, 0, MT_SILK, P_BOW, CLR_WHITE, 20),
+/* wildhild bow must be last */
+
 PROJECTILE("orcish arrow", "crude arrow",
 	0, 1200, 0, 2, 9, 9, 0, MT_IRON, -P_BOW, CLR_BLACK, 1),
 PROJECTILE("arrow", (char *)0,

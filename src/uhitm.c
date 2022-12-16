@@ -687,6 +687,11 @@ register struct monst *mtmp;
 
 	if (uwep && uwep->oartifact == ART_TEH_HUNK && !uwep->lamplit && tmp > 0) tmp += 5;
 
+	if (uwep && uwep->oartifact == ART_CORROSER_LANCE) {
+		if (u.usteed) tmp += 5;
+		else tmp -= 5;
+	}
+
 	if (u.twoweap && uwep && uswapwep && uswapwep->oartifact == ART_TEH_HUNK && (is_launcher(uwep) && !(uwep->otyp == LASERXBOW && uwep->lamplit))) tmp += 5;
 	if (u.twoweap && uwep && uswapwep && uswapwep->oartifact == ART_TEH_HUNK && (is_missile(uwep) || is_ammo(uwep))) tmp += 5;
 	if (u.twoweap && uwep && uswapwep && uswapwep->oartifact == ART_TEH_HUNK && (!u.usteed && !(tech_inuse(T_POLE_MELEE)) && is_pole(uwep))) tmp += 5;
@@ -848,6 +853,10 @@ register struct monst *mtmp;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_WILD_WHIRLING) tmp -= 8;
 	if (uwep && uwep->oartifact == ART_SIGIX_BROADSWORD) tmp -= 5;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SIGIX_BROADSWORD) tmp -= 5;
+	if (uwep && uwep->oartifact == ART_KLOBB) tmp -= 6;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_KLOBB) tmp -= 6;
+	if (uwep && uwep->oartifact == ART_EXCALIPOOR) tmp -= 9;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXCALIPOOR) tmp -= 9;
 	if (uwep && uwep->oartifact == ART_BAD_HITTER_BOY) tmp -= rnd(20);
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_BAD_HITTER_BOY) tmp -= rnd(20);
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_ACTUAL_PRECISION) tmp += 5;
@@ -1732,6 +1741,12 @@ int dieroll;
 		if (uarmg && uarmg->oartifact == ART_PRICKBUFF) {
 			mon->bleedout += rnd(5);
 		}
+		if (uleft && uleft->oartifact == ART_SPIKED_KNUCKLES) {
+			mon->bleedout += rnd(5);
+		}
+		if (uright && uright->oartifact == ART_SPIKED_KNUCKLES) {
+			mon->bleedout += rnd(5);
+		}
 
 		if (u.nailpolish && (!uarmg || FingerlessGloves) ) {
 			tmp += (u.nailpolish * 2);
@@ -1750,6 +1765,33 @@ int dieroll;
 		if (uright && uright->otyp == RIN_IMPACT) tmp += rnd(5);
 
 		if (uarm && uarm->otyp == ROBE_OF_PUGILISM && !(PlayerCannotUseSkills)) {
+			if (martial_bonus()) {
+				switch (P_SKILL(P_MARTIAL_ARTS)) {
+					case P_BASIC:		tmp +=  1; break;
+					case P_SKILLED:	tmp +=  rnd(3); break;
+					case P_EXPERT:	tmp +=  rnd(5); break;
+					case P_MASTER:	tmp +=  rnd(6); break;
+					case P_GRAND_MASTER:	tmp +=  rnd(8); break;
+					case P_SUPREME_MASTER:	tmp +=  rnd(9); break;
+					default: tmp += 0; break;
+				}
+
+			} else {
+				switch (P_SKILL(P_BARE_HANDED_COMBAT)) {
+			
+					case P_BASIC:		tmp +=  1; break;
+					case P_SKILLED:	tmp +=  rnd(2); break;
+					case P_EXPERT:	tmp +=  rnd(3); break;
+					case P_MASTER:	tmp +=  rnd(4); break;
+					case P_GRAND_MASTER:	tmp +=  rnd(5); break;
+					case P_SUPREME_MASTER:	tmp +=  rnd(6); break;
+					default: tmp += 0; break;
+				}
+
+			}
+		}
+
+		if (uarm && uarm->oartifact == ART_EXTRAPUGELN && !(PlayerCannotUseSkills)) {
 			if (martial_bonus()) {
 				switch (P_SKILL(P_MARTIAL_ARTS)) {
 					case P_BASIC:		tmp +=  1; break;
@@ -2015,6 +2057,13 @@ int dieroll;
 			}
 
 			if (obj && obj->spe > 0) tmp += obj->spe;
+
+			if (obj && obj->oartifact == ART_KLOBB && !rn2(10) && mon->mcanmove) {
+				mon->mfrozen = rnd(10);
+				mon->mcanmove = 0;
+				mon->mstrategy &= ~STRAT_WAITFORU;
+				You("klobbed %s, who cannot move for the time being.", mon_nam(mon));
+			}
 
 			if (obj && obj->oartifact == ART_BASHCRASH && tmp > 0) {
 				tmp *= 2;
@@ -2774,6 +2823,9 @@ int dieroll;
 					tmp /= 2;
 				}
 			}
+			if (thrown && obj && obj->oartifact == ART_BURDENSOME_LOG) { /* intentionally below the doubling */
+				tmp += 15;
+			}
 
 			if (obj && obj->otyp == BLINDING_VENOM) {
 
@@ -3449,6 +3501,10 @@ int dieroll;
 		if (thrown && uarmh && uarmh->oartifact == ART_WAITING_FOR_MELEE) tmp -= 2;
 		if (!thrown && uarmh && uarmh->oartifact == ART_WAITING_FOR_MELEE) tmp += 2;
 		if (bmwride(ART_KERSTIN_S_COWBOY_BOOST)) tmp += 2;
+		if (uwep && uwep->oartifact == ART_KLOBB) tmp -= 6;
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_KLOBB) tmp -= 6;
+		if (uwep && uwep->oartifact == ART_EXCALIPOOR) tmp -= 9;
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXCALIPOOR) tmp -= 9;
 
 		if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 
@@ -3544,6 +3600,9 @@ int dieroll;
 
 		if (thrown && obj && obj->oartifact == ART_MESHERABANE && is_elonamonster(mon->data)) {
 			tmp += rnd(40);
+		}
+		if (obj && obj->oartifact == ART_MOLDSWANDIR && mon->data->mlet == S_FUNGUS) {
+			tmp += rnd(10);
 		}
 
 		if (Role_if(PM_EMERA) && !thrown && mon->female && humanoid(mon->data)) tmp += rnd(u.ulevel);
@@ -3726,6 +3785,13 @@ melatechoice:
 		if (thrown && obj && obj->oartifact == ART_RAZORSHARD) {
 			mon->bleedout += 10;
 			pline("%s is bleeding!", Monnam(mon));
+		}
+
+		if (thrown && obj && obj->oartifact == ART_FOMMP && uwep && uwep->otyp == PISTOL_PAIR) {
+			if (!rn2(20)) {
+				pline("Fommp!");
+				goodeffect();
+			}
 		}
 
 		if (thrown && obj && obj->oartifact == ART_MAP_END) {

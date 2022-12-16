@@ -28254,6 +28254,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You kick the tree, causing it to crumble. Holy shit, your boots must be a tank, otherwise that wouldn't have worked.",
 	"Oof - your very soul has been drained!",
 	"Oof - your very soul has been drained! This message means that your alla was reduced, by the way, and if it reaches zero you'll get a game over.",
+	"At last, you did it, the universe has ended and you've achieved inner bliss. Nothing can hurt you now, and you can float around the universe in blissful transcendence.",
+	"At last, you did it, the universe has ended and you've achieved inner bliss. Nothing can hurt you now, and you can float around the universe in blissful transcendence. (Be aware that if you receive this message, you should be highly suspicious and expect to be hit by some unwanted effects, because this is SLEX.)",
 
 };
 

@@ -243,7 +243,22 @@ register boolean clumsy;
 
 	if (uarmf && uarmf->oartifact == ART_HEADCRUNCH && has_head(mon->data) ) dmg += 10;
 
-	if (uarmf && uarmf->oartifact == ART_ELIANE_S_COMBAT_SNEAKERS && !rn2(20)) dmg += 10000; /* instant death */
+	if (PlayerInStilettoHeels && uarmf && uarmf->oartifact == ART_VORPAL_HEELS && !rn2(20)) {
+		if (has_head(mon->data) && !noncorporeal(mon->data) && !amorphous(mon->data) ) {
+			if (mon->data->geno & G_UNIQ) {
+				dmg += (GushLevel * 2);
+				You("critically kick %s!", mon_nam(mon));
+			} else {
+				Your("stiletto heels cut off %s's %s!", mon_nam(mon), mbodypart(mon, HEAD));
+				dmg += 10000;
+			}
+		}
+	}
+
+	if (uarmf && uarmf->oartifact == ART_ELIANE_S_COMBAT_SNEAKERS && !(mon->data->geno & G_UNIQ) && !rn2(20)) {
+		Your("sneakers instantly bludgeon %s.", mon_nam(mon));
+		dmg += 10000; /* instant death */
+	}
 
 	if (uarmf && itemhasappearance(uarmf, APP_VELCRO_SANDALS)) dmg += rnd(10);
 

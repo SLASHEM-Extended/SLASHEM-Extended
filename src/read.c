@@ -5779,6 +5779,20 @@ prooftoolchoice:
 		break;
 	case SCR_NAME:
 	{
+
+		if (sobj && sobj->oartifact == ART_ENTROPY_SHOOTOUT) { /* can deliberately be placed inside walls too --Amy */
+			int i, j;
+			int bd = 1;
+		      for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+				if (!isok(u.ux + i, u.uy + j)) continue;
+				if (t_at(u.ux + i, u.uy + j)) continue;
+				if (!i && !j) continue;
+
+				(void) maketrap(u.ux + i, u.uy + j, BOSS_SPAWNER, 0, TRUE);
+			}
+			pline("Hmm. You wonder if that created some entropy.");
+		}
+
 		char aliasbuf[2048];	/* Buffer for alias name */
 		char eliasbuf[2048];
 		int aliaslength;

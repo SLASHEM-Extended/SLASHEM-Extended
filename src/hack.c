@@ -2085,7 +2085,7 @@ domove()
 	/* In Soviet Russia, stunning is a crippling status effect that will fuck you up. You're not supposed to stand
 	 * any chance while stunned, because seriously, players having a chance? That's a no-go! --Amy */
 
-		if ((Stunned && !rn2(issoviet ? 1 : StrongStun_resist ? 20 : Stun_resist ? 8 : 2)) || (Confusion && !rn2(issoviet ? 2 : StrongConf_resist ? 200 : Conf_resist ? 40 : 8) || ((uarmh && itemhasappearance(uarmh, APP_THINKING_HELMET)) && !rn2(8) ) )
+		if ((Stunned && !rn2(issoviet ? 1 : StrongStun_resist ? 20 : Stun_resist ? 8 : 2)) || (Confusion && !rn2(issoviet ? 2 : StrongConf_resist ? 200 : Conf_resist ? 40 : 8) || ((uarmh && itemhasappearance(uarmh, APP_THINKING_HELMET)) && !rn2(8) ) || (uimplant && uimplant->oartifact == ART_IRON_OF_INNERMOST_JOY) )
 			/* toned down so it's less crippling --Amy
 			 * nerf for extremely fast steeds: they cause you to sometimes walk randomly */
 			|| (u.usteed && ((u.usteed->mconf && confsteeddir()) || (u.usteed->data->mmove > 36 && rnd(u.usteed->data->mmove) > 36) ) )
@@ -4947,7 +4947,7 @@ int k_format; /* WAC k_format is an int */
 	}
 	if (Role_if(PM_DANCER) && !rn2(3)) n = n * 2;
 	if (Race_if(PM_METAL)) n *= rnd(10);
-	if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone() || (uleft && uleft->oartifact == ART_RING_OF_FAST_LIVING) || (uright && uright->oartifact == ART_RING_OF_FAST_LIVING) || (uimplant && uimplant->oartifact == ART_IME_SPEW)) n = n * 2;
+	if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone() || (uleft && uleft->oartifact == ART_RING_OF_FAST_LIVING) || (uright && uright->oartifact == ART_RING_OF_FAST_LIVING) || (uwep && uwep->oartifact == ART_PAINBOWSWANDIR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PAINBOWSWANDIR) || (uimplant && uimplant->oartifact == ART_IME_SPEW)) n = n * 2;
 	if (uamul && uamul->otyp == AMULET_OF_VULNERABILITY) n *= rnd(4);
 	if (RngeFrailness) n = n * 2;
 

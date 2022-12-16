@@ -251,6 +251,7 @@ int thrown;
 	    if (launcher && launcher->oartifact == ART_TEAM_FORTRESS_GL && obj->otyp == GAS_GRENADE) multishot += 5;
 
 	    if (obj && obj->oartifact == ART_WIWIU_) multishot += rnd(3);
+	    if (obj && obj->oartifact == ART_LEAD_SYRINGE) multishot += 2;
 	    if (obj && obj->otyp == RAPID_DART) multishot += 2;
 	    if (obj && obj->otyp == NINJA_STAR) multishot += 3;
 	    if (obj && obj->otyp == FLAMETHROWER) multishot += 4;
@@ -750,6 +751,12 @@ newbossO:
 		int melteestrength = 1;
 		if (techlevX(get_tech_no(T_GREEN_MISSILE)) > 9) melteestrength += (techlevX(get_tech_no(T_GREEN_MISSILE)) / 10);
 		buzz(16, melteestrength, u.ux, u.uy, u.dx, u.dy);
+	}
+
+	if (obj && obj->oartifact == ART_ACTUAL_FLAME && u.uen >= 5) {
+		u.uen -= 5;
+		flags.botl = TRUE;
+		buzz(1, 1, u.ux, u.uy, u.dx, u.dy); /* 1, not 11, or it'll explode! */
 	}
 
 	if ((tech_inuse(T_BEAMSWORD) || (obj && obj->oartifact == ART_LINK_S_MASTER_SWORD)) && is_lightsaber(obj) && obj->lamplit ) {
@@ -1642,14 +1649,17 @@ boolean hitsroof;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 199) dmg += 1;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 249) dmg += 1;
 	if (dmg > 0 && bmwride(ART_KERSTIN_S_COWBOY_BOOST)) dmg += 2;
+	if (dmg > 0 && Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) dmg += 1;
+	if (dmg > 0 && Race_if(PM_RODNEYAN)) dmg += (1 + (GushLevel / 3) );
 
-	if (dmg > 0 && Race_if(PM_ITAQUE)) dmg -= 1;
+	if (Race_if(PM_ITAQUE)) dmg -= 1;
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) dmg -= 5;
 	if (uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) dmg -= 5;
+	if (uwep && uwep->oartifact == ART_KLOBB) dmg -= 6;
+	if (uswapwep && uswapwep->oartifact == ART_KLOBB) dmg -= 6;
+	if (uwep && uwep->oartifact == ART_EXCALIPOOR) dmg -= 9;
+	if (uswapwep && uswapwep->oartifact == ART_EXCALIPOOR) dmg -= 9;
 
-	if (dmg > 0 && Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) dmg += 1;
-
-	if (dmg > 0 && Race_if(PM_RODNEYAN)) dmg += (1 + (GushLevel / 3) );
 	if (dmg < 0) dmg = 0;	/* beware negative rings of increase damage */
 	if (Half_physical_damage && rn2(2) ) dmg = (dmg + 1) / 2;
 	if (StrongHalf_physical_damage && rn2(2) ) dmg = (dmg + 1) / 2;
@@ -2429,6 +2439,10 @@ boolean polearming;
 	if (Race_if(PM_ENGCHIP) && objects[obj->otyp].oc_skill == -P_BOW) tmp -= 5;
 	if (Race_if(PM_ENGCHIP) && objects[obj->otyp].oc_skill == P_CROSSBOW) tmp -= 5;
 	if (Race_if(PM_ENGCHIP) && objects[obj->otyp].oc_skill == -P_BOW) tmp -= 5;
+	if (uwep && uwep->oartifact == ART_KLOBB) tmp -= 6;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_KLOBB) tmp -= 6;
+	if (uwep && uwep->oartifact == ART_EXCALIPOOR) tmp -= 9;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXCALIPOOR) tmp -= 9;
 
 	if (Race_if(PM_VIETIS) && objects[obj->otyp].oc_skill != -P_FIREARM && objects[obj->otyp].oc_skill != P_FIREARM) tmp -= rnd(10);
 

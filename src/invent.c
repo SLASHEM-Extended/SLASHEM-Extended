@@ -1337,6 +1337,18 @@ have_pokeloadstone()
 }
 
 boolean
+have_repeatingloadstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == LOADSTONE && otmp->oartifact == ART_REPEATING_LOAD)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
 have_hungerhealer()
 {
 	register struct obj *otmp;
@@ -23855,6 +23867,106 @@ boolean knoweverything;
 					pline("Artifact specs: dunno, you need to figure it out yourself. Sorry."); break;
 				case ART_HOL_ON_MAN:
 					pline("Artifact specs: gives phasing and detect monsters, as well as a multitude of bad side effects when wielded. In order to stop those effects, just bash something with it, that'll destroy the item."); break;
+				case ART_MAIN_GAUCHE:
+					pline("Artifact specs: +1 to-hit and +3 damage."); break;
+				case ART_PIRATTE_HUNTING:
+					pline("Artifact specs: +2 to-hit and +6 damage to fire-susceptible monsters. The name is not a misspelling."); break;
+				case ART_DOUBLE_BERETTA:
+					pline("Artifact specs: +6 to-hit and +2 damage."); break;
+				case ART_DOUBLE_COLT_____:
+					pline("Artifact specs: +4 to-hit and +4 damage."); break;
+				case ART_DOUBLE_SAA:
+					pline("Artifact specs: +6 damage."); break;
+				case ART_DEATH_TO_HEATHEN:
+					pline("Artifact specs: +10 to-hit and +25 damage to crossaligned monsters, neutral."); break;
+				case ART_LEAD_SYRINGE:
+					pline("Artifact specs: +2 multishot."); break;
+				case ART_FOMMP:
+					pline("Artifact specs: if it hits a monster and has been properly fired from a pistol pair, you may occasionally receive a random good effect."); break;
+				case ART_THEIR_DED:
+					pline("Artifact specs: bisects targets."); break;
+				case ART_KRERRATSCH:
+					pline("Artifact specs: +3 to-hit and +7 damage."); break;
+				case ART_DING_DING:
+					pline("Artifact specs: +2 to-hit and +6 damage."); break;
+				case ART_ACTUAL_FLAME:
+					pline("Artifact specs: if you throw it while having at least 5 mana, you'll spend 5 mana and shoot a flame in the direction of your throw."); break;
+				case ART_BURDENSOME_LOG:
+					pline("Artifact specs: +15 damage when thrown."); break;
+				case ART_CORROSER_LANCE:
+					pline("Artifact specs: +13 damage to acid-susceptible monsters. If you're using it in melee, it has +5 to-hit while you're riding and -5 to-hit otherwise."); break;
+				case ART_ASTRAL_LIGHTWELL:
+					pline("Artifact specs: astral vision when lit, causes undead to deal double damage to you."); break;
+				case ART_MINOPOWER:
+					pline("Artifact specs: +4 to-hit and +4 damage, bisects enemies, -3 intelligence and wisdom, causes map amnesia when wielded."); break;
+				case ART_JADEN_S_MISSION:
+					pline("Artifact specs: +4 to-hit and +4 damage."); break;
+				case ART_FYARR_S_FYRE:
+					pline("Artifact specs: +5 to-hit and double damage to fire-susceptible monsters, resist fire when wielded."); break;
+				case ART_MOVENIN_HOSASA:
+					pline("Artifact specs: very fast speed when wielded."); break;
+				case ART_SPIKED_KNUCKLES:
+					pline("Artifact specs: hitting an enemy while fighting unarmed causes the enemy to bleed."); break;
+				case ART_IWA_ERWI:
+					pline("Artifact specs: reading it will change the spell level of the 'defusing' spell by +1 or -1."); break;
+				case ART_SYMPLANT:
+					pline("Artifact specs: causes you to use up an additional point of nutrition per turn but your symbiote (if you have one) heals faster, and if you're in a form without hands it also conveys technicality."); break;
+				case ART_MAXHIT_BOOST:
+					pline("Artifact specs: if you have a symbiote, its maximum health may slowly go up over time, and faster if you're in a form without hands."); break;
+				case ART_EXTRAPUGELN:
+					pline("Artifact specs: wearing it increases your unarmed or martial arts damage depending on how skilled you are."); break;
+				case ART_TRINNIE_S_SNIPERSIGHTS:
+					pline("Artifact specs: infravision when worn."); break;
+				case ART_NAG_ME__FUCK_ME_:
+					pline("Artifact specs: increases the chance that you resist a taunt."); break;
+				case ART_YOU_CANNOT_SEE_ME:
+					pline("Artifact specs: if you're invisible, monsters who can see invisible still cannot see you."); break;
+				case ART_TOTAL_GAUCHE:
+					pline("Artifact specs: if you put it in your secondary weapon slot while dual-wielding, you gain a large AC bonus that is further increased by this weapon's enchantment value and your dual-wielding skill."); break;
+				case ART_VORPAL_HEELS:
+					pline("Artifact specs: as long as they count as stiletto heels, kicking something with them may behead the target."); break;
+				case ART_MASTER_SWORD:
+					pline("Artifact specs: +3 to-hit and +3 damage."); break;
+				case ART_ERDRICK_S_ARMOR:
+					pline("Artifact specs: 5 extra points of AC and free action when worn."); break;
+				case ART_TENDO_MALLET:
+					pline("Artifact specs: +24 to-hit and +4 damage."); break;
+				case ART_GRANDLEON:
+					pline("Artifact specs: +2 to-hit and +2 damage, polymorph control when wielded."); break;
+				case ART_KUSANAGI_BLADE:
+					pline("Artifact specs: +3 to-hit and +3 damage, automatic searching when wielded."); break;
+				case ART_ALUCART_MAIL:
+					pline("Artifact specs: makes your AC worse by 5 points and conveys death and drain resistance when worn."); break;
+				case ART_KLOBB:
+					pline("Artifact specs: reduces your accuracy and damage output by 6, hitting a monster with it may occasionally paralyze the monster for a couple of turns."); break;
+				case ART_EXCALIPOOR:
+					pline("Artifact specs: reduces your accuracy and damage output by 9, automatic searching and drain resistance when wielded. It's a poor alternative to the real Excalibur sword."); break;
+				case ART_SOUL_EDGE:
+					pline("Artifact specs: +3 to-hit and +3 damage, clairvoyance when wielded, and whenever you kill a monster, you heal one HP."); break;
+				case ART_COVIDIVAC:
+					pline("Artifact specs: cures your covid-19 symptoms when used."); break;
+				case ART_ENTROPY_SHOOTOUT:
+					pline("Artifact specs: who knows? Maybe you'll get a big shootout with some armed badguys?"); break;
+				case ART_GRASSSWANDIR:
+					pline("Artifact specs: +5 to-hit and double damage, hallucination resistance and transforms floor terrain into grass when wielded, lawful."); break;
+				case ART_RAYSWANDIR:
+					pline("Artifact specs: +5 to-hit and double damage, hallucination resistance when wielded, can be invoked to fire a magic missile, lawful."); break;
+				case ART_LAIDSWANDIR:
+					pline("Artifact specs: +5 to-hit and double damage, hallucination resistance when wielded, prevents you from resisting foocubus advances, chaotic."); break;
+				case ART_PAINBOWSWANDIR:
+					pline("Artifact specs: +5 to-hit and double damage, hallucination resistance and causes you to take double damage when wielded."); break;
+				case ART_MOLDSWANDIR:
+					pline("Artifact specs: +5 to-hit and double damage, hallucination resistance when wielded, deals d10 extra damage to fungi."); break;
+				case ART_FULLSWANDIR:
+					pline("Artifact specs: +5 to-hit and double damage, hallucination resistance when wielded, doubles the monster respawn rate, neutral."); break;
+				case ART_REPEATING_LOAD:
+					pline("Artifact specs: +10 to-hit and +20 damage, causes you to get additional cursed loadstones added to your inventory every once in a while."); break;
+				case ART_ULTRACURSED_VAMPIRIC_HIGH_:
+					pline("Artifact specs: death and drain resistance when worn. However, putting them on makes it very difficult to take them off again (you'll see why)."); break;
+				case ART_IRON_OF_INNERMOST_JOY:
+					pline("Artifact specs: wallwalking when worn but you can no longer control the direction you're moving. If you're in a form without hands, it also conveys astral vision, half spell damage and half physical damage."); break;
+				case ART_LOWER_TURNCOUNT:
+					pline("Artifact specs: using it reduces the turn counter by a couple hundred turns."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

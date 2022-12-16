@@ -679,7 +679,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 		}
 		if (Role_if(PM_DANCER) && !rn2(3)) damu = damu * 3;
 		if (Race_if(PM_METAL)) damu *= rnd(10);
-		if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone() || (uleft && uleft->oartifact == ART_RING_OF_FAST_LIVING) || (uright && uright->oartifact == ART_RING_OF_FAST_LIVING) || (uimplant && uimplant->oartifact == ART_IME_SPEW) ) damu = damu * 2;
+		if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone() || (uleft && uleft->oartifact == ART_RING_OF_FAST_LIVING) || (uright && uright->oartifact == ART_RING_OF_FAST_LIVING) || (uwep && uwep->oartifact == ART_PAINBOWSWANDIR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PAINBOWSWANDIR) || (uimplant && uimplant->oartifact == ART_IME_SPEW) ) damu = damu * 2;
 		if (uamul && uamul->otyp == AMULET_OF_VULNERABILITY) damu *= rnd(4);
 		if (RngeFrailness) damu = damu * 2;
 

@@ -2178,6 +2178,23 @@ learn()
 				learntech_or_leveltech(T_VENOM_MIXING, FROMOUTSIDE, 1);
 			    }
 
+			    if (book->oartifact == ART_IWA_ERWI) {
+				int iwaerwi;
+				if (rn2(2)) {
+					if (objects[SPE_DEFUSING].oc_level < 8) objects[SPE_DEFUSING].oc_level++;
+				} else {
+					if (objects[SPE_DEFUSING].oc_level > 1) objects[SPE_DEFUSING].oc_level--;
+				}
+
+				for (iwaerwi = 0; iwaerwi < MAXSPELL && spellid(iwaerwi) != NO_SPELL; iwaerwi++) {
+					if (spellid(iwaerwi) == SPE_DEFUSING) {
+						spl_book[iwaerwi].sp_lev = objects[SPE_DEFUSING].oc_level;
+					}
+				}
+
+				pline("The level of the defusing spell has changed!");
+			    }
+
 			    use_skill(P_MEMORIZATION, spellev(i));
 			    if (!rn2(3)) u.uenmax++;
 			    u.cnd_spellbookcount++;
@@ -2253,6 +2270,20 @@ learn()
 			if (book->oartifact == ART_SECRET_BOOK_OF_VENOM) {
 				You("gain the secret knowledge of venom mixing!");
 				learntech_or_leveltech(T_VENOM_MIXING, FROMOUTSIDE, 1);
+			}
+			if (book->oartifact == ART_IWA_ERWI) {
+				int iwaerwi;
+				if (rn2(2)) {
+					if (objects[SPE_DEFUSING].oc_level < 8) objects[SPE_DEFUSING].oc_level++;
+				} else {
+					if (objects[SPE_DEFUSING].oc_level > 1) objects[SPE_DEFUSING].oc_level--;
+				}
+				for (iwaerwi = 0; iwaerwi < MAXSPELL && spellid(iwaerwi) != NO_SPELL; iwaerwi++) {
+					if (spellid(iwaerwi) == SPE_DEFUSING) {
+						spl_book[iwaerwi].sp_lev = objects[SPE_DEFUSING].oc_level;
+					}
+				}
+				pline("The level of the defusing spell has changed!");
 			}
 			if (booktype == SPE_FORBIDDEN_KNOWLEDGE) {
 				u.ugangr += 15;

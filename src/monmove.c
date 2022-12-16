@@ -3857,7 +3857,8 @@ altarfound:
 		/* monsters no longer automatically know where you are. That was just incredibly annoying. --Amy */
 		( (!Aggravate_monster || !rn2(5)) && !should_see && distu(mtmp->mx,mtmp->my) > 10 && ((Stealth && (StrongStealth || !rn2(3))) ? (can_track(ptr) ? !rn2(4) : rn2(2) ) : (can_track(ptr) ? !rn2(10) : !rn2(4) ) ) ) ||
 			 ( (!Aggravate_monster || !rn2(20)) && is_wanderer(mtmp->data) ? ((Stealth && (StrongStealth || !rn2(3))) ? !rn2(3) : !rn2(5) ) : ((Stealth && (StrongStealth || !rn2(3))) ? !rn2(5) : !rn2(25) ) ) ||
-		    (should_see && Invis && (StrongInvis || !rn2(3)) && haseyes(ptr) && !perceives(ptr) && rn2(3)) ||
+		    (should_see && Invis && (StrongInvis || !rn2(3)) && haseyes(ptr) &&
+		    ( (!perceives(ptr) || (uarm && uarm->oartifact == ART_YOU_CANNOT_SEE_ME) ) && rn2(3)) ) ||
 		    (youmonst.m_ap_type == M_AP_OBJECT && youmonst.mappearance == STRANGE_OBJECT) || u.uundetected ||
 		    (youmonst.m_ap_type == M_AP_OBJECT && youmonst.mappearance == GOLD_PIECE && !likes_gold(ptr)) ||
 		    (mtmp->mpeaceful && !mtmp->isshk) ||  /* allow shks to follow */
@@ -4517,7 +4518,7 @@ register struct monst *mtmp;
 	   if you haven't moved away */
 	if (mx == u.ux && my == u.uy) goto found_you;
 
-	notseen = (!mtmp->mcansee || (Invis && (StrongInvis || !rn2(3)) && haseyes(mtmp->data) && !perceives(mtmp->data)));
+	notseen = (!mtmp->mcansee || (Invis && (StrongInvis || !rn2(3)) && haseyes(mtmp->data) && (!perceives(mtmp->data) || (uarm && uarm->oartifact == ART_YOU_CANNOT_SEE_ME) ) ));
 	/* add cases as required.  eg. Displacement ... */
 	if (notseen || Underwater) {
 	    /* Xorns can smell valuable metal like gold, treat as seen */

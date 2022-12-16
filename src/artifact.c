@@ -282,6 +282,7 @@ init_randarts()
 	artilist[ART_ARABELLA_S_ARTIFACT_CREATI].otyp = randartmeleeweapon();
 	artilist[ART_VERSUS_ELECTRICALLY_BASED_].otyp = randartmeleeweapon();
 	artilist[ART_ULTRA_ANNOYANCE].otyp = randartpolearm();
+	artilist[ART_TOTAL_GAUCHE].otyp = randartdagger();
 	artilist[ART_HELICOPTER_TWIRL].otyp = randartquarterstaff();
 	artilist[ART_CUTRELEASE].otyp = randartknife();
 	artilist[ART_TIARA_OF_AMNESIA].otyp = randarthelm();
@@ -329,8 +330,11 @@ init_randarts()
 	artilist[ART_NIKKENIKKENIK].otyp = randartspellbook();
 	artilist[ART_POLITICAL_CORRECTNESS_FOR_].otyp = randartspellbook();
 	artilist[ART_CORTEX_COPROCESSOR].otyp = randartimplant();
+	artilist[ART_SYMPLANT].otyp = randartimplant();
+	artilist[ART_MAXHIT_BOOST].otyp = randartimplant();
 	artilist[ART_AMULET_OF_SPLENDOR].otyp = randartamulet();
 	artilist[ART_FASTPLANT].otyp = randartimplant();
+	artilist[ART_IRON_OF_INNERMOST_JOY].otyp = randartimplant();
 	artilist[ART_UPSIDE_DOWN_PLAYING_CARD].otyp = randartscroll();
 	artilist[ART_BERRYBREW].otyp = randartpotion();
 	artilist[ART_CURSED_WITH_THE_WORST].otyp = randartbadgraystone();
@@ -389,6 +393,8 @@ init_randarts()
 	artilist[ART_DAE_OE_OE_OE_OE_OE].otyp = randartlauncherX();
 	artilist[ART_CANNONEER].otyp = randartlauncherX();
 	artilist[ART_SPEEDHACK].otyp = randartlauncherX();
+	artilist[ART_RAYSWANDIR].otyp = randartquarterstaffX();
+	artilist[ART_PAINBOWSWANDIR].otyp = randartbowX();
 	artilist[ART_EARTH_GAS_GUN].otyp = randartlauncherX();
 	artilist[ART_FIRE_ALREADY].otyp = randartmissileX();
 	artilist[ART_HUMAN_WIPEOUT].otyp = randartmeleeweaponX();
@@ -469,6 +475,7 @@ init_randarts()
 
 	artilist[ART_ELLI_S_PSEUDOBAND_OF_POS].otyp = randartmeleeweaponX();
 	artilist[ART_HIGHEST_FEELING].otyp = find_fetish_heels();
+	artilist[ART_VORPAL_HEELS].otyp = find_fetish_heels();
 	artilist[ART_LORSKEL_S_INTEGRITY].otyp = find_lolita_boots();
 
 	artilist[ART_PHANTOM_OF_THE_OPERA].otyp = find_opera_cloak();
@@ -2230,6 +2237,14 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	    if (!rn2(150)) (void) destroy_mitem(mdef, WAND_CLASS, AD_ELEC);
 	    if (realizes_damage) willreturntrue = 1;
 	}
+	if (attacks(AD_ACID, otmp)) {
+	    if (realizes_damage)
+		pline_The("corrosive weapon %s %s%c",
+			!spec_dbon_applies ? "hits" : "vitriolizes",
+			hittee, !spec_dbon_applies ? '.' : '!');
+	    if (!rn2(30)) erode_armor(mdef, TRUE);
+	    if (realizes_damage) willreturntrue = 1;
+	}
 	if (attacks(AD_MAGM, otmp)) {
 	    if (realizes_damage)
 		pline_The("imaginary widget hits%s %s%c",
@@ -2457,7 +2472,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	/* We really want "on a natural 20" but Nethack does it in */
 	/* reverse from AD&D. */
 	if (spec_ability(otmp, SPFX_BEHEAD)) {
-	    if ( (otmp->oartifact == ART_TSURUGI_OF_MURAMASA || otmp->oartifact == ART_GAYSECT || otmp->oartifact == ART_THOUSAND_FRAGMENTS || otmp->oartifact == ART_LIGHTNING_STROKE || otmp->oartifact == ART_DRAGONCLAN_SWORD || otmp->oartifact == ART_KILLING_EDGE) && dieroll < 2) {
+	    if ( (otmp->oartifact == ART_TSURUGI_OF_MURAMASA || otmp->oartifact == ART_GAYSECT || otmp->oartifact == ART_THOUSAND_FRAGMENTS || otmp->oartifact == ART_THEIR_DED || otmp->oartifact == ART_MINOPOWER || otmp->oartifact == ART_LIGHTNING_STROKE || otmp->oartifact == ART_DRAGONCLAN_SWORD || otmp->oartifact == ART_KILLING_EDGE) && dieroll < 2) {
 		wepdesc = "The razor-sharp blade";
 
 		if (!youdefend && mdef->data->geno & G_UNIQ) {
@@ -3511,6 +3526,10 @@ arti_invoke(obj)
     if (oart && (oart->inv_prop == SPECIAL_INVOKE)) {
 	boolean invokenotworn = FALSE;
 	if (obj->oclass == ARMOR_CLASS && !(obj->owornmask & W_ARMOR) ) invokenotworn = TRUE;
+	if (obj->oclass == WEAPON_CLASS && !(obj->owornmask & W_WEP) ) invokenotworn = TRUE;
+	if (obj->oclass == BALL_CLASS && !(obj->owornmask & W_WEP) ) invokenotworn = TRUE;
+	if (obj->oclass == CHAIN_CLASS && !(obj->owornmask & W_WEP) ) invokenotworn = TRUE;
+	if (obj->oclass == VENOM_CLASS && !(obj->owornmask & W_WEP) ) invokenotworn = TRUE;
 	if (invokenotworn) {
 		pline("That artifact cannot be invoked unless you wear it first.");
 		return 1;
@@ -4225,6 +4244,15 @@ greenchoice:
 
 			getdir(NULL);
 			buzz(24,6,u.ux,u.uy,u.dx,u.dy); /* 24 = disintegration beam */
+
+			break;
+
+		}
+
+		if (obj->oartifact == ART_RAYSWANDIR) {
+
+			getdir(NULL);
+			buzz(20,6,u.ux,u.uy,u.dx,u.dy); /* 20 = magic missile */
 
 			break;
 

@@ -480,6 +480,13 @@ Boots_on()
 
     }
 
+    if (uarmf && uarmf->oartifact == ART_ULTRACURSED_VAMPIRIC_HIGH_) {
+		if (!uarmf->cursed) curse(uarmf);
+		uarmf->hvycurse = uarmf->prmcurse = uarmf->stckcurse = TRUE;
+		pline("Lol those shoes can only be removed by death, and are otherwise permanently stuck to your character's %s since you were unlucky enough to equip them.", makeplural(body_part(FOOT)) );
+		/* except not really, prime curse can still be lifted; the message is intentionally misleading --Amy */
+    }
+
     if (uarmf && uarmf->oartifact == ART_MEPHISTO_S_BROGUES) {
 		if (!uarmf->cursed) {
 			curse(uarmf);
@@ -4069,6 +4076,15 @@ Implant_on()
 		else uimplant->spe = -(rnd(9));
     }
 
+    if (uimplant && uimplant->oartifact == ART_IRON_OF_INNERMOST_JOY) {
+	curse(uimplant);
+	uimplant->hvycurse = TRUE;
+	if (objects[uimplant->otyp].oc_material != MT_IRON) {
+		objects[uimplant->otyp].oc_material = MT_IRON;
+	}
+	pline("At last, you did it, the universe has ended and you've achieved inner bliss. Nothing can hurt you now, and you can float around the universe in blissful transcendence.");
+    }
+
     if (uimplant && uimplant->oartifact == ART_SLEX_WANTS_YOU_TO_DIE_A_PA) {
 		u.uhpmax++;
 		flags.botl = TRUE;
@@ -5938,6 +5954,7 @@ find_ac()
 	if (uarmc && uarmc->oartifact == ART_YAUI_GAUI_FURS) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_PHANTOM_OF_THE_OPERA) uac -= 5;
 	if (uarm && uarm->oartifact == ART_SILKS_OF_THE_VICTOR) uac -= 5;
+	if (uarm && uarm->oartifact == ART_ERDRICK_S_ARMOR) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_SPACEWASTE) uac -= 3;
 	if (uarmh && uarmh->oartifact == ART_NOSED_BUG) uac -= 7;
 	if (uarmf && uarmf->oartifact == ART_PORCELAIN_ELEPHANT) uac -= 5;
@@ -5953,6 +5970,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
 	if (uarm && uarm->oartifact == ART_NULARMOR) uac += 5;
 	if (uarm && uarm->oartifact == ART_COAL_PEER) uac += 5;
+	if (uarm && uarm->oartifact == ART_ALUCART_MAIL) uac += 5;
 	if (uwep && uwep->oartifact == ART_VERSUS_ELECTRICALLY_BASED_) uac -= 10;
 	if (uarmc && uarmc->oartifact == ART_LAURA_S_SWIMSUIT) uac += 5;
 	if (uwep && uwep->oartifact == ART_ELOPLUS_STAT) uac -= 1;
@@ -6010,6 +6028,21 @@ find_ac()
 	if (u.singtrapocc || u.katitrapocc) uac -= 20;
 
 	if (Numbed) uac += 5;
+
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_TOTAL_GAUCHE) {
+		uac -= 10;
+		if (uswapwep->spe > 0) uac -= uswapwep->spe;
+		if (!PlayerCannotUseSkills) {
+			switch (P_SKILL(P_TWO_WEAPON_COMBAT)) {
+				case P_BASIC: uac -= 1; break;
+				case P_SKILLED: uac -= 2; break;
+				case P_EXPERT: uac -= 3; break;
+				case P_MASTER: uac -= 4; break;
+				case P_GRAND_MASTER: uac -= 5; break;
+				case P_SUPREME_MASTER: uac -= 6; break;
+			}
+		}
+	}
 
 	if (uarms && uarms->oartifact == ART_ARMOR_CLASS_WALL) {
 		uac -= 5;

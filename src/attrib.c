@@ -3080,6 +3080,8 @@ int x;
 		if (uarmh && uarmh->oartifact == ART_YOU_DON_T_KNOW_SHIT) tmp -= 3;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp -= 10;
 		if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) tmp -= 2;
+		if (uwep && uwep->oartifact == ART_MINOPOWER) tmp -= 3;
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_MINOPOWER) tmp -= 3;
 
 		if (x == A_INT && Race_if(PM_HUMAN_MONKEY) && tmp > 9) tmp = 9;
 		if (uarmh && uarmh->oartifact == ART_DUNCE_POUNCE && tmp > 6) tmp = 6;

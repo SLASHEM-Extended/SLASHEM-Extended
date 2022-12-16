@@ -283,6 +283,8 @@ moveloop()
 			if (Race_if(PM_LICH_WARRIOR)) monclock /= 2;
 			if (Race_if(PM_RODNEYAN)) monclock /= 4;
 			if (uarmg && uarmg->oartifact == ART_DIFFICULTY__) monclock /= 2;
+			if (uwep && uwep->oartifact == ART_FULLSWANDIR) monclock /= 2;
+			if (u.twoweap && uswapwep && uswapwep->oartifact == ART_FULLSWANDIR) monclock /= 2;
 			if (issuxxor) monclock *= 2;
 
 			if (Race_if(PM_DEVELOPER) && ((u.ulevel > 9) || (moves > 10000)) ) monclock /= 3;
@@ -2389,6 +2391,20 @@ moveloop()
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			flags.botl = TRUE;
 			pline("ATTENTION! The pink double lightsword is draining your health!");
+		}
+
+		if (have_repeatingloadstone() && !rn2(2500)) {
+			struct obj *ldstone;
+			pline("A gray stone appears from nowhere!");
+			ldstone = mksobj_at(LOADSTONE, u.ux, u.uy, TRUE, FALSE, FALSE);
+			if (ldstone) {
+				ldstone->quan = 1L;
+				ldstone->owt = weight(ldstone);
+				if (ldstone) {
+				      pline("The stone automatically wanders into your knapsack!");
+					(void) pickup_object(ldstone, 1L, TRUE, TRUE);
+				}
+			}
 		}
 
 		if (RepeatingNastycurseEffect && !rn2(5000)) {
@@ -7412,6 +7428,16 @@ newbossJANI:
 		if (uarm && uarm->oartifact == ART_FLOCKDOWN) {
 			if (levl[u.ux][u.uy].typ == ROOM || levl[u.ux][u.uy].typ == CORR) {
 				levl[u.ux][u.uy].typ = SNOW;
+			}
+		}
+		if (uwep && uwep->oartifact == ART_GRASSSWANDIR) {
+			if (levl[u.ux][u.uy].typ == ROOM || levl[u.ux][u.uy].typ == CORR) {
+				levl[u.ux][u.uy].typ = GRASSLAND;
+			}
+		}
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_GRASSSWANDIR) {
+			if (levl[u.ux][u.uy].typ == ROOM || levl[u.ux][u.uy].typ == CORR) {
+				levl[u.ux][u.uy].typ = GRASSLAND;
 			}
 		}
 		if (uarmf && uarmf->oartifact == ART_HAPPY_CLOUD) {
@@ -12501,6 +12527,22 @@ newboss:
 					if (u.usymbiote.mhp > u.usymbiote.mhpmax) u.usymbiote.mhp = u.usymbiote.mhpmax;
 				}
 			}
+		}
+		if (uimplant && uimplant->oartifact == ART_SYMPLANT && !rn2(2)) {
+			if (uactivesymbiosis) {
+				if (u.usymbiote.mhp < u.usymbiote.mhpmax) {
+					u.usymbiote.mhp++;
+					if (flags.showsymbiotehp) flags.botl = TRUE;
+					if (u.usymbiote.mhp > u.usymbiote.mhpmax) u.usymbiote.mhp = u.usymbiote.mhpmax;
+				}
+			}
+		}
+
+		if (uimplant && uimplant->oartifact == ART_MAXHIT_BOOST && !rn2(1000)) {
+			symbiotemaygainhealth();
+		}
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_MAXHIT_BOOST && !rn2(1000)) {
+			symbiotemaygainhealth();
 		}
 
 		if (RngeVoltage) {

@@ -2648,6 +2648,15 @@ reroll:
 }
 
 int
+randartdagger()
+{
+	int result;
+reroll:
+	result = rnd_class(ORCISH_DAGGER, GREAT_DAGGER);
+	return result;
+}
+
+int
 randartquarterstaff()
 {
 	int result;
@@ -2877,6 +2886,24 @@ randartlightsaberX()
 	int result;
 reroll:
 	result = GREEN_LIGHTSABER + rn2((MYSTERY_LIGHTSABER + 1) - GREEN_LIGHTSABER);
+	return result;
+}
+
+int
+randartquarterstaffX()
+{
+	int result;
+reroll:
+	result = QUARTERSTAFF + rn2((PLATINUM_FIRE_HOOK + 1) - QUARTERSTAFF);
+	return result;
+}
+
+int
+randartbowX()
+{
+	int result;
+reroll:
+	result = ORCISH_BOW + rn2((WILDHILD_BOW + 1) - ORCISH_BOW);
 	return result;
 }
 
