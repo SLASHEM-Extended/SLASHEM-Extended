@@ -1812,7 +1812,10 @@ lootcont:
 		}
 
 		You("carefully open %s...", the(xname(cobj)));
-		timepassed |= use_container(&cobj, 0);
+		if ((cobj->otyp == BAG_OF_DIGESTION || cobj->otyp == LARGE_BOX_OF_DIGESTION || cobj->otyp == ICE_BOX_OF_DIGESTION) && !timepassed) timepassed = 1;
+		if ((cobj->otyp == BAG_OF_HOLDING || cobj->otyp == CHEST_OF_HOLDING || cobj->otyp == ICE_BOX_OF_HOLDING) && cobj->cursed && !timepassed) timepassed = 1;
+		timepassed |= use_container(&cobj, 0); /* ATTENTION: cobj might be gone now (boh explosion) --Amy */
+
 		/* might have triggered chest trap or magic bag explosion */
 		if (multi < 0 || !cobj) return 1;
 	    }
