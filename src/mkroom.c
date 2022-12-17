@@ -2118,7 +2118,7 @@ courtmon()
 }
 
 struct permonst *
-minotaurvariant()
+minotaurvariant() /* Amy notice: keep is_minotaur() in mondata.c updated too */
 {
 	if (!rn2(10)) {
 		switch (rnd(39)) {

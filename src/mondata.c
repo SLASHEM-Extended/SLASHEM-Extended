@@ -351,6 +351,56 @@ register struct permonst *ptr;
 	return FALSE;
 }
 
+/* is the monster a minotaur (immune to Elbereth)? --Amy */
+boolean
+is_minotaur(ptr)
+register struct permonst *ptr;
+{
+	if (ptr == &mons[PM_MINOTAUR]) return TRUE;
+	if (ptr == &mons[PM_LOWERCASE_MINOTAUR]) return TRUE;
+	if (ptr == &mons[PM_MINOTAUR_MAGICIAN]) return TRUE;
+	if (ptr == &mons[PM_MINOTAUR_BOXER]) return TRUE;
+	if (ptr == &mons[PM_MINOCHEATER]) return TRUE;
+	if (ptr == &mons[PM_MINOTAUR_BALLERINA]) return TRUE;
+	if (ptr == &mons[PM_MINOTARD]) return TRUE;
+	if (ptr == &mons[PM_MINOTAUR_VORE]) return TRUE;
+	if (ptr == &mons[PM_ERR_AXE_MINOTAUR]) return TRUE;
+	if (ptr == &mons[PM_ROCKTAUR]) return TRUE;
+	if (ptr == &mons[PM_PSEUDO_PETTY_MINOTAUR]) return TRUE;
+	if (ptr == &mons[PM_SPECHOTAUR]) return TRUE;
+	if (ptr == &mons[PM_MINOTAUR_LICH]) return TRUE;
+	if (ptr == &mons[PM_MINOTAUR_MIMIC]) return TRUE;
+	if (ptr == &mons[PM_CHASING_MINOTAUR]) return TRUE;
+	if (ptr == &mons[PM_FAT_MINOTAUR]) return TRUE;
+	if (ptr == &mons[PM_CHEATING_MINOTAUR]) return TRUE;
+	if (ptr == &mons[PM_EVIL_PATCH_MINOTAUR]) return TRUE;
+	if (ptr == &mons[PM_DUMB_MINOTAUR]) return TRUE;
+	if (ptr == &mons[PM_GIGOTAUR]) return TRUE;
+	if (ptr == &mons[PM_MINOTAUR_PRIESTESS]) return TRUE;
+	if (ptr == &mons[PM_MINOTAUR_MATRON]) return TRUE;
+	if (ptr == &mons[PM_ELDER_MINOTAUR]) return TRUE;
+	if (ptr == &mons[PM_PETTY_ELDER_MINOTAUR]) return TRUE;
+	if (ptr == &mons[PM_STEEL_MINOTAUR]) return TRUE;
+	if (ptr == &mons[PM_ANCIENT_MINOTAUR]) return TRUE;
+	if (ptr == &mons[PM_MINOTAUR_GRANDMASTER]) return TRUE;
+	if (ptr == &mons[PM_MINOTAUR_ZOMBIE]) return TRUE;
+	if (ptr == &mons[PM_ASTERIOS]) return TRUE;
+	if (ptr == &mons[PM_CHIHYU]) return TRUE;
+	if (ptr == &mons[PM_MOLOCH]) return TRUE;
+	if (ptr == &mons[PM_TAURUSCROTTA]) return TRUE;
+	if (ptr == &mons[PM_GRIDOTAUR]) return TRUE;
+	if (ptr == &mons[PM_MAULOTAUR]) return TRUE;
+	if (ptr == &mons[PM_XORNITAUR]) return TRUE;
+	if (ptr == &mons[PM_FISHTAUR]) return TRUE;
+	if (ptr == &mons[PM_ROARING_FISHTAUR]) return TRUE;
+	if (ptr == &mons[PM_SAVEUP_MINOTAUR]) return TRUE;
+	if (ptr == &mons[PM_MIMOTAUR]) return TRUE;
+	if (ptr == &mons[PM_MINOTAUR_NPC]) return TRUE;
+
+	return FALSE;
+
+}
+
 /* can the monster swat projectiles away? --Amy */
 boolean
 swatting_monster(ptr)

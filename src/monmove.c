@@ -180,13 +180,17 @@ struct monst *mtmp;
 	boolean mresists;
 	boolean scmresists;
 
+	/* some monsters are completely immune, certain others are highly resistant --Amy */
 
-	if (mtmp->isshk || mtmp->isgd || mtmp->iswiz || !mtmp->mcansee ||
-			mtmp->mpeaceful || (mtmp->data->mlet == S_HUMAN && (rn2(5) || mtmp->data->geno & G_UNIQ )) || (mtmp->data->mlet == S_DEMON && (rn2(3) || mtmp->data->geno & G_UNIQ )) ||
-			(mtmp->data->mlet == S_NEMESE && (rn2(10) || mtmp->data->geno & G_UNIQ )) || (mtmp->data->mlet == S_ARCHFIEND && (rn2(25) || mtmp->data->geno & G_UNIQ )) || mtmp->data->mlet == S_RUBMONST ||
-	    is_lminion(mtmp) || (mtmp->data->mlet == S_ANGEL && (rn2(20) || mtmp->data->geno & G_UNIQ )) || (mtmp->data->mlet == S_JELLY && (rn2(3) || mtmp->data->geno & G_UNIQ )) ||
-	    mtmp->data == &mons[PM_CTHULHU] || (mtmp->data->mlet == S_LIGHT && (rn2(2) || mtmp->data->geno & G_UNIQ )) || (mtmp->data->mlet == S_FUNGUS && (rn2(10) || mtmp->data->geno & G_UNIQ )) ||
-	    is_rider(mtmp->data) || is_deadlysin(mtmp->data) || (mtmp->data == &mons[PM_MINOTAUR] && (rn2(5) || mtmp->data->geno & G_UNIQ )) || (mtmp->data->msound == MS_BOSS && rn2(10) ) || (mtmp->data->msound == MS_FART_QUIET && rn2(50) ) || (mtmp->data->msound == MS_FART_NORMAL && rn2(30) ) || (mtmp->data->msound == MS_FART_LOUD && rn2(20) ) || 
+	if (mtmp->isshk || mtmp->isgd || mtmp->iswiz || !mtmp->mcansee || (mtmp->data->geno & G_UNIQ) ||
+		mtmp->mpeaceful || (mtmp->data->mlet == S_HUMAN && rn2(5)) || (mtmp->data->mlet == S_DEMON && rn2(3)) ||
+		(mtmp->data->mlet == S_NEMESE && rn2(10)) || (mtmp->data->mlet == S_ARCHFIEND && rn2(25)) ||
+		mtmp->data->mlet == S_RUBMONST ||
+	    is_lminion(mtmp) || (mtmp->data->mlet == S_ANGEL && rn2(20)) || (mtmp->data->mlet == S_JELLY && rn2(3)) ||
+	    mtmp->data == &mons[PM_CTHULHU] || (mtmp->data->mlet == S_LIGHT && rn2(2)) ||
+	   (mtmp->data->mlet == S_FUNGUS && rn2(10)) ||
+	    is_rider(mtmp->data) || is_deadlysin(mtmp->data) || (is_minotaur(mtmp->data)) ||
+	   (mtmp->data->msound == MS_BOSS && rn2(10) ) || (mtmp->data->msound == MS_FART_QUIET && rn2(50) ) || (mtmp->data->msound == MS_FART_NORMAL && rn2(30) ) || (mtmp->data->msound == MS_FART_LOUD && rn2(20) ) || 
 		 mtmp->mnum == quest_info(MS_NEMESIS) || mtmp->mnum == PM_VLAD_THE_IMPALER || mtmp->mnum == PM_CHANOP)
 		return(FALSE);
 
@@ -4101,7 +4105,7 @@ altarfound:
 	if (passes_walls(ptr) || (mtmp->egotype_wallwalk) ) flag |= (ALLOW_WALL | ALLOW_ROCK);
 	if (passes_bars(ptr) && !In_sokoban(&u.uz)) flag |= ALLOW_BARS;
 	if (can_tunnel) flag |= ALLOW_DIG;
-	if (is_human(ptr) || ptr == &mons[PM_MINOTAUR] || ptr == &mons[PM_CHANOP]) flag |= ALLOW_SSM;
+	if (is_human(ptr) || is_minotaur(ptr) || ptr == &mons[PM_CHANOP]) flag |= ALLOW_SSM;
 	if ( (is_undead(ptr) || mtmp->egotype_undead) && ptr->mlet != S_GHOST) flag |= NOGARLIC;
 	if (throws_rocks(ptr) || passes_walls(ptr) || (mtmp->egotype_wallwalk) || amorphous(ptr) || is_whirly(ptr) || ptr->mlet == S_NEMESE || ptr->mlet == S_ARCHFIEND || ptr->msound == MS_NEMESIS || ptr->geno & G_UNIQ ||
 				verysmall(ptr) || slithy(ptr) || ptr == &mons[PM_BLACK_MARKETEER]) flag |= ALLOW_ROCK;
