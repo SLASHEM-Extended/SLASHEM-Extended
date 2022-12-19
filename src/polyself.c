@@ -331,6 +331,16 @@ boolean forcecontrol;
 	boolean isvamp = (is_vampire(youmonst.data) && !Race_if(PM_VAMGOYLE) && issoviet );
 	boolean was_floating = (Levitation || Flying);
 
+	if (Race_if(PM_MISSINGNO)) {
+		reinitmissingno();
+		init_uasmon();
+
+		if (Upolyd) {
+			rehumanize();
+			return;
+		}
+	}
+
 	if (Unchanging) {
 		if (!wizard || !forcecontrol) return;
 	}
@@ -423,15 +433,19 @@ boolean forcecontrol;
 		goto made_change;
 	}
 
-	/*if (Race_if(PM_MISSINGNO)) mntmp = (NUMMONS + rnd(MISSINGNORANGE));*/
-	/*else*/ if (Race_if(PM_WARPER) && !u.wormpolymorph) {
+	if (Race_if(PM_WARPER) && !u.wormpolymorph) {
 		do {
 			/* randomly pick any monster, but reroll if it sucks too much --Amy */
 			mntmp = rn2(NUMMONS);
 		} while(( (notake(&mons[mntmp]) && rn2(4) ) || ((mons[mntmp].mlet == S_BAT) && rn2(2)) || ((mons[mntmp].mlet == S_EYE) && rn2(2) ) || ((mons[mntmp].mmove == 1) && rn2(4) ) || ((mons[mntmp].mmove == 2) && rn2(3) ) || ((mons[mntmp].mmove == 3) && rn2(2) ) || ((mons[mntmp].mmove == 4) && !rn2(3) ) || ( (mons[mntmp].mlevel < 10) && ((mons[mntmp].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[mntmp]) && rn2(2) ) || ( is_nonmoving(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5) ) || ( is_nonmoving(&mons[mntmp]) && rn2(20) ) || (is_jonadabmonster(&mons[mntmp]) && rn2(20)) || ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(20) ) ) );
 
 	}
-	else if (Race_if(PM_DEATHMOLD)) {
+
+	else if (Race_if(PM_MISSINGNO)) {
+
+		mntmp = PM_POLYMORPHED_MISSINGNO;
+
+	} else if (Race_if(PM_DEATHMOLD)) {
 		/* since we added new tilde-class monsters... have to hardwire this --Amy */
 		int deathmolds = 14 + (u.ulevel / 2);
 		mntmp = PM_WHITE_MISSINGNO; /* fail safe */
@@ -736,7 +750,7 @@ controldone:
 		u.polyformed = 1;
 	}
 
-	if (!u.wormpolymorph && !Race_if(PM_WARPER) && !Race_if(PM_DEATHMOLD) && mntmp < LOW_PM) {
+	if (!u.wormpolymorph && !Race_if(PM_WARPER) && !Race_if(PM_DEATHMOLD) && !Race_if(PM_MISSINGNO) && mntmp < LOW_PM) {
 		tries = 0;
 		do {
 			/* randomly pick an "ordinary" monster */
@@ -993,7 +1007,7 @@ int	mntmp;
 
 	u.mh = u.mhmax;
 
-	if (u.ulevel < mlvl && !Race_if(PM_MOULD) && !Race_if(PM_DEATHMOLD)) {
+	if (u.ulevel < mlvl && !Race_if(PM_MOULD) && !Race_if(PM_DEATHMOLD) && !Race_if(PM_MISSINGNO)) {
 	/* Low level characters can't become high level monsters for long */
 #ifdef DUMB
 		/* DRS/NS 2.2.6 messes up -- Peter Kendell */
@@ -1525,6 +1539,11 @@ rehumanize()
 		killer = "killed while stuck in creature form";
 		done(DIED);
 		u.youaredead = 0;
+	}
+
+	if (Race_if(PM_MISSINGNO)) {
+		reinitmissingno();
+		init_uasmon();
 	}
 
 	if (emits_light(youmonst.data))

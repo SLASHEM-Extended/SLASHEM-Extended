@@ -7127,11 +7127,24 @@ register struct obj *otmp;
 		break;
 
 	    case UGH_MEMORY_TO_CREATE_INVENTORY:
+		{
+			u.wormpolymorph = PM_POLYMORPHED_MISSINGNO;
+			reinitmissingno();
+			polyself(FALSE);
 
-		/*u.wormpolymorph = (NUMMONS + rnd(MISSINGNORANGE));
-		u.ughmemory = 1;
-		polyself(FALSE);*/
-		pline("Effect deactivated. Sorry.");
+			int nastytrapdur, blackngdur;
+
+			nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
+			if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
+			blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
+			if (!blackngdur ) blackngdur = 500; /* fail safe */
+
+			randomnastytrapeffect(rnz(nastytrapdur * (monster_difficulty() + 1)), blackngdur - (monster_difficulty() * 3));
+			while (!rn2(3)) {
+				randomnastytrapeffect(rnz(nastytrapdur * (monster_difficulty() + 1)), blackngdur - (monster_difficulty() * 3));
+			}
+
+		}
 
 		break;
 
