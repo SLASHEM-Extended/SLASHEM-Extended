@@ -1324,6 +1324,19 @@ numberofwornetheritems()
 
 }
 
+int
+numberofwornmysteriousitems()
+{
+	int number = 0;
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if (is_mysteriousitem(otmp) && otmp->owornmask) number++;
+	}
+	return number;
+
+}
+
 boolean
 have_pokeloadstone()
 {

@@ -112,6 +112,7 @@ struct objclass {
 #define hard_to_destruct(otmp)	((otmp->otyp == FAKE_AMULET_OF_YENDOR) || objects[otmp->otyp].oc_material == MT_ETERNIUM || otmp->stckcurse || (uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) || (otmp->oartifact == ART_SOFTSTEP) || (otmp->oartifact && otmp->cursed && (spec_ability(otmp, SPFX_EVIL)) ) )
 #define is_etheritem(otmp)	(objects[otmp->otyp].oc_material == MT_ETHER)
 #define is_meteosteelitem(otmp)	(objects[otmp->otyp].oc_material == MT_METEOSTEEL)
+#define is_mysteriousitem(otmp)	(objects[otmp->otyp].oc_material == MT_MYSTERIOUS)
 
 #define is_damageable(otmp) (is_rustprone(otmp) || is_flammable(otmp) || \
 				is_rottable(otmp) || is_corrodeable(otmp))

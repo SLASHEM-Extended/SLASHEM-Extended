@@ -2407,6 +2407,22 @@ moveloop()
 			}
 		}
 
+		if (numberofwornmysteriousitems() > 0) {
+			int mysteriousamount = numberofwornmysteriousitems();
+
+			while (mysteriousamount > 0) {
+				mysteriousamount--;
+				if (!rn2(100000)) {
+					Your("mysterious equipment is causing something random to happen!");
+					if (rn2(2)) {
+						goodeffect();
+					} else {
+						badeffect();
+					}
+				}
+			}
+		}
+
 		if (RepeatingNastycurseEffect && !rn2(5000)) {
 			nastytrapcurse();
 		}
