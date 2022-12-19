@@ -1337,6 +1337,8 @@ struct levelflags {
 	Bitfield(has_religioncenter, 1);
 	Bitfield(has_cursedmummyroom, 1);
 	Bitfield(has_arduousmountain, 1);
+	Bitfield(has_changingroom, 1);
+	Bitfield(has_questorroom, 1);
 	Bitfield(has_levelffroom, 1);
 	Bitfield(has_verminroom, 1);
 	Bitfield(has_miraspa, 1);

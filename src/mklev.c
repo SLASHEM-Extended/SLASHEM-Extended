@@ -151,7 +151,7 @@ STATIC_OVL int
 findrandtype()
 {
 retryrandtype:
-	switch (rnd(85)) {
+	switch (rnd(89)) {
 		case 1: return COURT;
 		case 2: return SWAMP;
 		case 3: return BEEHIVE;
@@ -240,6 +240,10 @@ retryrandtype:
 		case 83: return PLAYERCENTRAL;
 		case 84: return CASINOROOM;
 		case 85: return FULLROOM;
+		case 86: return LETTERSALADROOM;
+		case 87: return THE_AREA_ROOM;
+		case 88: return CHANGINGROOM;
+		case 89: return QUESTORROOM;
 	}
 
 	return EMPTYNEST;
@@ -573,6 +577,8 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
 	if (/*!special && */rtype == CURSEDMUMMYROOM) croom->colouur = CLR_CYAN;
 	if (/*!special && */rtype == MIXEDPOOL) croom->colouur = 22; /* bright blue or bright cyan */
 	if (/*!special && */rtype == ARDUOUSMOUNTAIN) croom->colouur = CLR_WHITE;
+	if (/*!special && */rtype == CHANGINGROOM) croom->colouur = CLR_BRIGHT_MAGENTA;
+	if (/*!special && */rtype == QUESTORROOM) croom->colouur = CLR_MAGENTA;
 	if (/*!special && */rtype == LEVELFFROOM) croom->colouur = CLR_GRAY;
 	if (/*!special && */rtype == VERMINROOM) croom->colouur = CLR_BROWN;
 	if (/*!special && */rtype == MIRASPA) croom->colouur = CLR_YELLOW;
@@ -2228,6 +2234,8 @@ clear_level_structures()
 	level.flags.has_religioncenter = 0;
 	level.flags.has_cursedmummyroom = 0;
 	level.flags.has_arduousmountain = 0;
+	level.flags.has_changingroom = 0;
+	level.flags.has_questorroom = 0;
 	level.flags.has_levelffroom = 0;
 	level.flags.has_verminroom = 0;
 	level.flags.has_miraspa = 0;
@@ -11450,14 +11458,15 @@ gehennomxtra:
 
 	    if(depth(&u.uz) > (issoviet ? 4 : 3) && (ishaxor ? !rn2(6) : !rn2(12))) mkroom(COURT);
 		else if (depth(&u.uz) > (issoviet ? 5 : 4) && (ishaxor ? !rn2(5) : !rn2(9))) mkroom(LEPREHALL);
-	    else if(depth(&u.uz) > (issoviet ? 14 : 10) && (ishaxor ? !rn2(10) : !rn2(20))) mkroom(GIANTCOURT);
-	    else if(depth(&u.uz) > (issoviet ? 14 : 7) && (ishaxor ? !rn2(15) : !rn2(30))) mkroom(WIZARDSDORM);
+	    else if(depth(&u.uz) > (issoviet ? 14 : 10) && (ishaxor ? !rn2(15) : !rn2(30))) mkroom(GIANTCOURT);
+	    else if(depth(&u.uz) > (issoviet ? 14 : 7) && (ishaxor ? !rn2(20) : !rn2(40))) mkroom(WIZARDSDORM);
 	    else if(depth(&u.uz) > (issoviet ? 16 : 10) && (ishaxor ? !rn2(13) : !rn2(26))) mkroom(BARRACKS);
 	    else if(depth(&u.uz) > (issoviet ? 9 : 3) && (ishaxor ? !rn2(18) : !rn2(36))) mkroom(VERMINROOM);
 	    else if(depth(&u.uz) > (issoviet ? 14 : 10) && (ishaxor ? !rn2(18) : !rn2(36))) mkroom(DOOMEDBARRACKS);
 	else if (u_depth > (issoviet ? 12 : 3) && (ishaxor ? !rn2(24) : !rn2(48))) mkroom(HUMANHALL);
 	else if (u_depth > (issoviet ? 5 : 1) && (ishaxor ? !rn2(30) : !rn2(60))) mkroom(FULLROOM);
 	else if (u_depth > (issoviet ? 20 : 5) && (ishaxor ? !rn2(45) : !rn2(90))) mkroom(RUINEDCHURCH);
+	else if (u_depth > (issoviet ? 30 : 20) && (ishaxor ? !rn2(50) : !rn2(100))) mkroom(QUESTORROOM);
 	else if (u_depth > (issoviet ? 12 : 3) && (ishaxor ? !rn2(15) : !rn2(30))) mkroom(WEAPONCHAMBER);
 	else if (u_depth > (issoviet ? 5 : 1) && (ishaxor ? !rn2(29) : !rn2(58))) mkroom(TRAPROOM);
 	else if (u_depth > (issoviet ? 24 : 5) && (ishaxor ? !rn2(29) : !rn2(58))) mkroom(ILLUSIONROOM);
@@ -11502,12 +11511,13 @@ gehennomxtra:
 	    else if (u_depth > (issoviet ? 7 : 3) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(FUNGUSFARM);
 	    else if(depth(&u.uz) > (issoviet ? 9 : 7) && (ishaxor ? !rn2(15) : !rn2(30))) mkroom(REALZOO);
 	    else if(depth(&u.uz) > (issoviet ? 9 : 4) && (ishaxor ? !rn2(20) : !rn2(40))) mkroom(MENAGERIE);
-	    else if(depth(&u.uz) > (issoviet ? 17 : 9) && (ishaxor ? !rn2(10) : !rn2(20))) mkroom(ELEMHALL);
-	    else if(depth(&u.uz) > (issoviet ? 25 : 12) && (ishaxor ? !rn2(18) : !rn2(36))) mkroom(ANGELHALL);
+	    else if(depth(&u.uz) > (issoviet ? 17 : 9) && (ishaxor ? !rn2(15) : !rn2(30))) mkroom(ELEMHALL);
+	    else if(depth(&u.uz) > (issoviet ? 25 : 12) && (ishaxor ? !rn2(25) : !rn2(50))) mkroom(ANGELHALL);
 	    else if(depth(&u.uz) > (issoviet ? 8 : 1) && (ishaxor ? !rn2(18) : !rn2(36))) mkroom(KOPSTATION);
 	    else if(depth(&u.uz) > (issoviet ? 9 : 2) && (ishaxor ? !rn2(13) : !rn2(26))) mkroom(MIMICHALL);
 	    else if(depth(&u.uz) > (issoviet ? 20 : 2) && (ishaxor ? !rn2(38) : !rn2(76))) mkroom(SANITATIONCENTRAL);
 	    else if(depth(&u.uz) > (issoviet ? 20 : 2) && (ishaxor ? !rn2(38) : !rn2(76))) mkroom(NUCLEARCHAMBER);
+	    else if(depth(&u.uz) > (issoviet ? 22 : 14) && (ishaxor ? !rn2(40) : !rn2(80))) mkroom(LETTERSALADROOM);
 	else if (u_depth > (issoviet ? 7 : 3) && (ishaxor ? !rn2(12) : !rn2(24))) mkroom(SPIDERHALL);
 	else if (u_depth > (issoviet ? 7 : 3) && (ishaxor ? !rn2(17) : !rn2(33))) mkroom(EXHIBITROOM);
 	else if (u_depth > (issoviet ? 5 : 1) && (ishaxor ? !rn2(50) : !rn2(100))) mkroom(BOSSROOM);
@@ -11535,6 +11545,7 @@ gehennomxtra:
 	    else if(depth(&u.uz) > (issoviet ? 18 : 1) && (ishaxor ? !rn2(90) : !rn2(150))) mkroom(DIVERPARADISE);
 	    else if(depth(&u.uz) > (issoviet ? 18 : 1) && (ishaxor ? !rn2(60) : !rn2(120))) mkroom(SHOWERROOM);
         else if (depth(&u.uz) > (issoviet ? 20 : 10) && (ishaxor ? !rn2(30) : !rn2(60))) mkroom(CLINIC); /*supposed to be very rare --Amy*/
+        else if (depth(&u.uz) > (issoviet ? 20 : 10) && (ishaxor ? !rn2(30) : !rn2(60))) mkroom(THE_AREA_ROOM);
         else if (depth(&u.uz) > (issoviet ? 13 : 5) && (ishaxor ? !rn2(20) : !rn2(40))) mkroom(COOLINGCHAMBER);
         else if (depth(&u.uz) > (issoviet ? 5 : 1) && (ishaxor ? !rn2(30) : !rn2(60))) mkroom(EMPTYNEST);
         else if (depth(&u.uz) > (issoviet ? 5 : 1) && (ishaxor ? !rn2(58) : !rn2(116))) mkroom(EMPTYDESERT);
@@ -11544,7 +11555,7 @@ gehennomxtra:
         else if (depth(&u.uz) > (issoviet ? 20 : 10) && (ishaxor ? !rn2(50) : !rn2(100))) mkroom(EVILROOM);
         else if (depth(&u.uz) > (issoviet ? 22 : 10) && (ishaxor ? !rn2(20) : !rn2(40))) mkroom(TROLLHALL);
         else if (depth(&u.uz) > (issoviet ? 27 : 1) && (ishaxor ? !rn2(48) : !rn2(96))) mkroom(LEVELFFROOM);
-        else if (depth(&u.uz) > (issoviet ? 14 : 5) && (ishaxor ? !rn2(22) : !rn2(44))) mkroom(RNGCENTER);
+        else if (depth(&u.uz) > (issoviet ? 14 : 5) && (ishaxor ? !rn2(33) : !rn2(66))) mkroom(RNGCENTER);
  	else if(depth(&u.uz) > (issoviet ? 20 : 10) && (ishaxor ? !rn2(8) : !rn2(16))) mkroom(DOUGROOM);
 	else if (u_depth > (issoviet ? 8 : 1) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(TENSHALL);
 	else if (u_depth > (issoviet ? 25 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);
@@ -11568,11 +11579,12 @@ gehennomxtra:
 	    else if (depth(&u.uz) > (issoviet ? 24 : 7) && (ishaxor ? !rn2(23) : !rn2(45))) mkroom(HELLPIT);
 	else if (u_depth > (issoviet ? 12 : 3) && (ishaxor ? !rn2(25) : !rn2(50))) mkroom(GOLEMHALL);
 	else if (u_depth > (issoviet ? 16 : 3) && (ishaxor ? !rn2(40) : !rn2(80))) mkroom(MACHINEROOM);
-	else if (u_depth > (issoviet ? 26 : 8) && (ishaxor ? !rn2(20) : !rn2(40))) mkroom(VOIDROOM);
+	else if (u_depth > (issoviet ? 26 : 8) && (ishaxor ? !rn2(35) : !rn2(70))) mkroom(VOIDROOM);
 	else if (u_depth > (issoviet ? 20 : 10) && (ishaxor ? !rn2(40) : !rn2(80))) mkroom(PLAYERCENTRAL);
 	else if (u_depth > (issoviet ? 8 : 1) && (ishaxor ? !rn2(35) : !rn2(70))) mkroom(GRUEROOM);
 	else if (u_depth > (issoviet ? 19 : 4) && (ishaxor ? !rn2(35) : !rn2(70))) mkroom(CHAOSROOM);
 	else if (u_depth > (issoviet ? 20 : 4) && (ishaxor ? !rn2(36) : !rn2(64))) mkroom(FEMINISMROOM);
+	else if (u_depth > (issoviet ? 24 : 8) && (ishaxor ? !rn2(50) : !rn2(100))) mkroom(CHANGINGROOM);
 	    else if (u_depth > (issoviet ? 5 : 1) && (ishaxor ? !rn2(100) : !rn2(200))) mkroom(NASTYCENTRAL);
 	else if (u_depth > (issoviet ? 8 : 1) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(TENSHALL);
 	else if (u_depth > (issoviet ? 25 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);

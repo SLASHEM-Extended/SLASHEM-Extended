@@ -947,6 +947,11 @@ static struct {
 	{ "gamecorner", GAMECORNER },
 	{ "illusionroom", ILLUSIONROOM },
 
+	{ "lettersaladroom", LETTERSALADROOM },
+	{ "thearearoom", THE_AREA_ROOM },
+	{ "changingroom", CHANGINGROOM },
+	{ "questorroom", QUESTORROOM },
+
 	{ "variantroom",  VARIANTROOM },
 	{ "playercentral", PLAYERCENTRAL },
 	{ "fullroom", FULLROOM },

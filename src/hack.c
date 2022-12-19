@@ -3876,6 +3876,18 @@ register boolean newlev;
 			pline(FunnyHallu ? "You encounter an underground mountain. Wait, why the hell is there a mountain in the dungeon???" : "You encounter an underground mountain.");
 		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
+		case THE_AREA_ROOM:
+			pline(FunnyHallu ? "Boah, it's THE area! And there's a pentagram in the center!" : "This room reminds you of your heritage.");
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
+		    break;
+		case CHANGINGROOM:
+			pline(FunnyHallu ? "It's the womens locker room! Quick, quaff a potion of make invisible!" : "Seems like you entered a changing room.");
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
+		    break;
+		case QUESTORROOM:
+			pline(FunnyHallu ? "You entered your insufferable boss's office! Make sure that he doesn't see the knife you're holding in one hand behind your back." : "Uh-oh, your superiors are waiting for you in this room, and they don't seem to be pleased with your work.");
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
+		    break;
 		case LEVELFFROOM:
 			pline(FunnyHallu ? "Hey, this room looks just like your own living room!" : "This room looks familiar, but somehow different too.");
 		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
@@ -3886,6 +3898,10 @@ register boolean newlev;
 		    break;
 		case CHAOSROOM:
 			if (wizard) pline("You enter a chaos room!");
+		    break;
+		case LETTERSALADROOM:
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
+			if (wizard) pline("You enter a letter salad room!");
 		    break;
 		case FULLROOM:
 			if (wizard) pline("You enter a full room!");

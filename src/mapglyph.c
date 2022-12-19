@@ -774,6 +774,22 @@ unsigned *ospecial;
 				color = CLR_WHITE;
 			}
 			else cmap_color(offset);
+		} else if(*in_rooms(x,y,CHANGINGROOM)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = CLR_BRIGHT_MAGENTA;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = CLR_BRIGHT_MAGENTA;
+			}
+			else cmap_color(offset);
+		} else if(*in_rooms(x,y,QUESTORROOM)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = CLR_MAGENTA;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = CLR_MAGENTA;
+			}
+			else cmap_color(offset);
 		} else if(*in_rooms(x,y,LEVELFFROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_GRAY;

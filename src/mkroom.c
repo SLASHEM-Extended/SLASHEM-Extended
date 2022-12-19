@@ -198,6 +198,10 @@ int	roomtype;
 	case CURSEDMUMMYROOM: mkzoo(CURSEDMUMMYROOM); break;
 	case MIXEDPOOL: mkmixedpool(); break;
 	case ARDUOUSMOUNTAIN: mkzoo(ARDUOUSMOUNTAIN); break;
+	case LETTERSALADROOM : mkzoo(LETTERSALADROOM ); break;
+	case THE_AREA_ROOM: mkzoo(THE_AREA_ROOM); break;
+	case CHANGINGROOM: mkzoo(CHANGINGROOM); break;
+	case QUESTORROOM: mkzoo(QUESTORROOM); break;
 	case LEVELFFROOM: mkzoo(LEVELFFROOM); break;
 	case VERMINROOM: mkzoo(VERMINROOM); break;
 	case MIRASPA: mkzoo(MIRASPA); break;
@@ -215,7 +219,7 @@ int	roomtype;
 	case RANDOMROOM: {
 
 retryrandtype:
-		switch (rnd(85)) {
+		switch (rnd(89)) {
 
 			case 1: mkzoo(COURT); break;
 			case 2: mkswamp(); break;
@@ -306,6 +310,10 @@ retryrandtype:
 			case 83: mkzoo(PLAYERCENTRAL); break;
 			case 84: mkzoo(CASINOROOM); break;
 			case 85: mkzoo(FULLROOM); break;
+			case 86: mkzoo(LETTERSALADROOM); break;
+			case 87: mkzoo(THE_AREA_ROOM); break;
+			case 88: mkzoo(CHANGINGROOM); break;
+			case 89: mkzoo(QUESTORROOM); break;
 
 		}
 		break;
@@ -587,6 +595,9 @@ struct mkroom *sroom;
 	    case PRISONCHAMBER:
 	    case CURSEDMUMMYROOM:
 	    case MIGOHIVE:
+	    case THE_AREA_ROOM:
+	    case QUESTORROOM:
+	    case CASINOROOM:
 		tx = sroom->lx + (sroom->hx - sroom->lx + 1)/2;
 		ty = sroom->ly + (sroom->hy - sroom->ly + 1)/2;
 		if(sroom->irregular) {
@@ -712,6 +723,9 @@ struct mkroom *sroom;
 	if (type == HAMLETROOM && moreorless > 5) moreorless = 5;
 	if (issuxxor) moreorless /= 2;
 	moreorless /= rnd(5); /* generally tone it down --Amy */
+
+	if (type == LETTERSALADROOM && moreorless < 75) moreorless = 75; /* supposed to always be close to maxxed --Amy */
+
 	if (moreorless < 1) moreorless = 1;
 	if (moreorless > 100) moreorless = 100;
 
@@ -775,6 +789,10 @@ struct mkroom *sroom;
 
 		    (type == BARRACKS) ? squadmon() :
 		    (type == DOOMEDBARRACKS) ? doomsquadmon() :
+		    (type == LETTERSALADROOM) ? lettersaladmon() :
+		    (type == CHANGINGROOM) ? (rn2(8) ? specialtensmon(332) : rn2(2) ? specialtensmon(385) : specialtensmon(386) ) : /* MS_SHOE, MS_SOCKS, MS_PANTS */
+		    (type == QUESTORROOM) ? (rn2(3) ? specialtensmon(409) : specialtensmon(408) ) : /* MS_GAARDIEN, MS_LIEDER */
+		    (type == THE_AREA_ROOM) ? theareamon() :
 		    (type == EVILROOM) ? evilroommon() :
 		    (type == RUINEDCHURCH) ? mkclass(S_GHOST,0) :
 		    (type == GREENCROSSROOM) ? (rn2(5) ? mkclass(S_HUMAN,0) : specialtensmon(332) /* MS_SHOE */ ) :
@@ -890,6 +908,56 @@ struct mkroom *sroom;
 			}
 			break;
 
+		    case QUESTORROOM:
+			if (!rn2(10)) {
+				(void) mkobj_at(0, sx, sy, FALSE, FALSE);
+			}
+
+			if (!rn2(20) || (sx == tx && sy == ty) ) {
+				switch (rnd(8)) {
+					case 1:
+						levl[sx][sy].typ = FOUNTAIN; break;
+					case 2:
+						levl[sx][sy].typ = SINK; break;
+					case 3:
+						levl[sx][sy].typ = TOILET; break;
+					case 4:
+						levl[sx][sy].typ = GRAVE; break;
+					case 5:
+						levl[sx][sy].typ = WELL; break;
+					case 6:
+						levl[sx][sy].typ = WAGON; break;
+					case 7:
+						levl[sx][sy].typ = WOODENTABLE; break;
+					case 8:
+						levl[sx][sy].typ = STRAWMATTRESS; break;
+				}
+			}
+
+			if (sx == tx && sy == ty) {
+				int objtyp = 0;
+				int tryct = 0;
+newqsttry:
+				objtyp = rn2(NUM_OBJECTS);
+				if (objects[objtyp].oc_prob < 1) {
+					tryct++;
+					if (tryct < 50000) goto newqsttry;
+					else goto qstfinished;
+				}
+
+				if (!(objects[objtyp].oc_class == WEAPON_CLASS || is_weptoolbase(objtyp) || is_blindfoldbase(objtyp) || objects[objtyp].oc_class == RING_CLASS || objects[objtyp].oc_class == AMULET_CLASS || objects[objtyp].oc_class == IMPLANT_CLASS || objects[objtyp].oc_class == ARMOR_CLASS) ) {
+					tryct++;
+					if (tryct < 50000) goto newqsttry;
+					else goto qstfinished;
+				}
+
+				(void) mksobj_at(objtyp, sx, sy, TRUE, FALSE, FALSE);
+
+			}
+qstfinished:
+
+			break;
+
 		    case MIRASPA:
 			if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && rn2(10)) {
 				levl[sx][sy].typ = URINELAKE;
@@ -900,6 +968,50 @@ struct mkroom *sroom;
 			if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && rn2(4)) {
 				levl[sx][sy].typ = !rn2(3) ? TUNNELWALL : !rn2(2) ? STALACTITE : CRYSTALWATER;
 			}
+			break;
+
+		    case CHANGINGROOM:
+			if (!rn2(25)) {
+				int objtyp = 0;
+				int tryct = 0;
+newcgrtry:
+				objtyp = rn2(NUM_OBJECTS);
+				if (objects[objtyp].oc_prob < 1) {
+					tryct++;
+					if (tryct < 50000) goto newcgrtry;
+					else goto cgrfinished;
+				}
+
+				if (objects[objtyp].oc_class != ARMOR_CLASS || objects[objtyp].oc_armcat != ARM_BOOTS ) {
+					tryct++;
+					if (tryct < 50000) goto newcgrtry;
+					else goto cgrfinished;
+				}
+
+				(void) mksobj_at(objtyp, sx, sy, TRUE, FALSE, FALSE);
+
+			}
+
+cgrfinished:
+
+			break;
+
+		    case THE_AREA_ROOM:
+
+			if (sx == tx && sy == ty) {
+				switch (rnd(4)) {
+					case 1:
+						levl[sx][sy].typ = PENTAGRAM; break;
+					case 2:
+						levl[sx][sy].typ = FOUNTAIN; break;
+					case 3:
+						levl[sx][sy].typ = THRONE; break;
+					case 4:
+						levl[sx][sy].typ = ALTAR; break;
+						levl[sx][sy].altarmask = Align2amask( A_NONE );
+				}
+			}
+
 			break;
 
 		    case ARDUOUSMOUNTAIN:
@@ -1114,7 +1226,7 @@ struct mkroom *sroom;
 				for (gravetries = rn2(2 + rn2(4)); gravetries; gravetries--) {
 					if (timebasedlowerchance()) {
 					    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE, FALSE);
-					    if (!otmp) return;
+					    if (!otmp) break;
 					    curse(otmp);
 					    otmp->ox = sx;
 					    otmp->oy = sy;
@@ -1164,7 +1276,7 @@ struct mkroom *sroom;
 				for (gravetries = rn2(2 + rn2(4)); gravetries; gravetries--) {
 					if (timebasedlowerchance()) {
 					    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE, FALSE);
-					    if (!otmp) return;
+					    if (!otmp) break;
 					    curse(otmp);
 					    otmp->ox = sx;
 					    otmp->oy = sy;
@@ -1448,6 +1560,12 @@ struct mkroom *sroom;
               break;
             case CURSEDMUMMYROOM:
               level.flags.has_cursedmummyroom = 1;
+              break;
+            case CHANGINGROOM:
+              level.flags.has_changingroom = 1;
+              break;
+            case QUESTORROOM:
+              level.flags.has_questorroom = 1;
               break;
             case ARDUOUSMOUNTAIN:
 		  if (!rn2(50)) {
@@ -2784,6 +2902,136 @@ squadmon()		/* return soldier types. */
 gotone:
 	if (!(mvitals[mndx].mvflags & G_GONE)) return(&mons[mndx]);
 	else			    return((struct permonst *) 0);
+}
+
+struct permonst *
+theareamon()
+{
+	switch (rnd(4)) {
+		case 1:
+			if (urole.enemy1num != NON_PM) return (&mons[urole.enemy1num]);
+			return (mkclass(urole.enemy1sym, 0));
+		case 2:
+			if (urole.enemy2num != NON_PM) return (&mons[urole.enemy2num]);
+			return (mkclass(urole.enemy2sym, 0));
+		case 3:
+			return (mkclass(urole.enemy1sym, 0));
+		case 4:
+			return (mkclass(urole.enemy2sym, 0));
+	}
+	return (&mons[PM_HUMAN]); /* fail safe */
+}
+
+struct permonst *
+lettersaladmon()
+{
+	switch (rnd(52)) {
+		case 1:
+			return (mkclass(S_ANT,0));
+		case 2:
+			return (mkclass(S_BLOB,0));
+		case 3:
+			return (mkclass(S_COCKATRICE,0));
+		case 4:
+			return (mkclass(S_DOG,0));
+		case 5:
+			return (mkclass(S_EYE,0));
+		case 6:
+			return (mkclass(S_FELINE,0));
+		case 7:
+			return (mkclass(S_GREMLIN,0));
+		case 8:
+			return (mkclass(S_HUMANOID,0));
+		case 9:
+			return (mkclass(S_IMP,0));
+		case 10:
+			return (mkclass(S_JELLY,0));
+		case 11:
+			return (mkclass(S_KOBOLD,0));
+		case 12:
+			return (mkclass(S_LEPRECHAUN,0));
+		case 13:
+			return (mkclass(S_MIMIC,0));
+		case 14:
+			return (mkclass(S_NYMPH,0));
+		case 15:
+			return (mkclass(S_ORC,0));
+		case 16:
+			return (mkclass(S_PIERCER,0));
+		case 17:
+			return (mkclass(S_QUADRUPED,0));
+		case 18:
+			return (mkclass(S_RODENT,0));
+		case 19:
+			return (mkclass(S_SPIDER,0));
+		case 20:
+			return (mkclass(S_TRAPPER,0));
+		case 21:
+			return (mkclass(S_UNICORN,0));
+		case 22:
+			return (mkclass(S_VORTEX,0));
+		case 23:
+			return (mkclass(S_WORM,0));
+		case 24:
+			return (mkclass(S_XAN,0));
+		case 25:
+			return (mkclass(S_LIGHT,0));
+		case 26:
+			return (mkclass(S_ZOUTHERN,0));
+		case 27:
+			return (mkclass(S_ANGEL,0));
+		case 28:
+			return (mkclass(S_BAT,0));
+		case 29:
+			return (mkclass(S_CENTAUR,0));
+		case 30:
+			return (mkclass(S_DRAGON,0));
+		case 31:
+			return (mkclass(S_ELEMENTAL,0));
+		case 32:
+			return (mkclass(S_FUNGUS,0));
+		case 33:
+			return (mkclass(S_GNOME,0));
+		case 34:
+			return (mkclass(S_GIANT,0));
+		case 35:
+			return (mkclass(S_FLYFISH,0));
+		case 36:
+			return (mkclass(S_JABBERWOCK,0));
+		case 37:
+			return (mkclass(S_KOP,0));
+		case 38:
+			return (mkclass(S_LICH,0));
+		case 39:
+			return (mkclass(S_MUMMY,0));
+		case 40:
+			return (mkclass(S_NAGA,0));
+		case 41:
+			return (mkclass(S_OGRE,0));
+		case 42:
+			return (mkclass(S_PUDDING,0));
+		case 43:
+			return (mkclass(S_QUANTMECH,0));
+		case 44:
+			return (mkclass(S_RUSTMONST,0));
+		case 45:
+			return (mkclass(S_SNAKE,0));
+		case 46:
+			return (mkclass(S_TROLL,0));
+		case 47:
+			return (mkclass(S_UMBER,0));
+		case 48:
+			return (mkclass(S_VAMPIRE,0));
+		case 49:
+			return (mkclass(S_WRAITH,0));
+		case 50:
+			return (mkclass(S_XORN,0));
+		case 51:
+			return (mkclass(S_YETI,0));
+		case 52:
+			return (mkclass(S_ZOMBIE,0));
+	}
+	return (&mons[PM_HUMAN]); /* fail safe */
 }
 
 struct permonst *

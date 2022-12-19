@@ -4265,7 +4265,7 @@ boolean prefilled;
 	if (croom && croom->rtype == OROOM && !rn2( ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && (depth(&u.uz) > 1 && !(u.preversionmode && In_greencross(&u.uz) && (dunlev(&u.uz) == 1)) && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) ) ? 1 : ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) ) {
 
 retryrandtype:
-		switch (rnd(105)) {
+		switch (rnd(109)) {
 
 			case 1: croom->rtype = COURT; break;
 			case 2: croom->rtype = SWAMP; break;
@@ -4376,6 +4376,10 @@ retryrandtype:
 			case 103: croom->rtype = PLAYERCENTRAL; break;
 			case 104: croom->rtype = CASINOROOM; break;
 			case 105: croom->rtype = FULLROOM; break;
+			case 106: croom->rtype = LETTERSALADROOM; break;
+			case 107: croom->rtype = THE_AREA_ROOM; break;
+			case 108: croom->rtype = CHANGINGROOM; break;
+			case 109: croom->rtype = QUESTORROOM; break;
 
 		}
 
@@ -4515,7 +4519,7 @@ retryrandtype:
 
 	if (croom->rtype == RANDOMROOM) {
 
-		switch (rnd(85)) {
+		switch (rnd(89)) {
 
 			case 1: croom->rtype = COURT; break;
 			case 2: croom->rtype = SWAMP; break;
@@ -4602,6 +4606,10 @@ retryrandtype:
 			case 83: croom->rtype = PLAYERCENTRAL; break;
 			case 84: croom->rtype = CASINOROOM; break;
 			case 85: croom->rtype = FULLROOM; break;
+			case 86: croom->rtype = LETTERSALADROOM; break;
+			case 87: croom->rtype = THE_AREA_ROOM; break;
+			case 88: croom->rtype = CHANGINGROOM; break;
+			case 89: croom->rtype = QUESTORROOM; break;
 
 		}
 
@@ -4730,6 +4738,10 @@ retryrandtype:
 	case RELIGIONCENTER:
 	case CURSEDMUMMYROOM:
 	case ARDUOUSMOUNTAIN:
+	case LETTERSALADROOM:
+	case THE_AREA_ROOM:
+	case CHANGINGROOM:
+	case QUESTORROOM:
 	case LEVELFFROOM:
 	case VERMINROOM:
 	case MIRASPA:
@@ -5277,6 +5289,12 @@ retryrandtype:
 		break;
 	    case ARDUOUSMOUNTAIN:
 		level.flags.has_arduousmountain = TRUE;
+		break;
+	    case QUESTORROOM:
+		level.flags.has_questorroom = TRUE;
+		break;
+	    case CHANGINGROOM:
+		level.flags.has_changingroom = TRUE;
 		break;
 	    case LEVELFFROOM:
 		level.flags.has_levelffroom = TRUE;

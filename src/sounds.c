@@ -1033,6 +1033,24 @@ dosounds()
 		You("%s", arduousmountain_msg[rn2(6+hallu*6)]);
 		return;
 	    }
+	    if (level.flags.has_changingroom && !rn2(200)) {
+		static const char *changingroom_msg[] = {
+			"hear women talking about clothing.",
+			"listen to giggling sounds.", /* girls while changing clothes */
+			"feel as if messages are being transmitted via bush telegraph methods.",
+			"sense a scentful smell.",
+			"hear a hollow beating sound.", /* someone tapping their shoes on the ground */
+			"feel that someone around here is unusually busy.",
+			"dream of a little black dress, even though you don't have any reason for bereavement.",
+			"absolutely want a pair of leather boots with bright green block heels!",
+			"look forward to buying several pairs of 'Janina' underwear.",
+			"try to picture AmyBSOD in front of your mental eyes, with her wearing only high heels and pants.", /* inspired by bhaak */
+			"wonder whether you're the peeping tom?", /* Pokemon, Erika's Gym, don't remember which edition but probably yellow? */
+			"feel like you've not changed your underwear for a whole day, so it's time to change them now!",
+		};
+		You("%s", changingroom_msg[rn2(6+hallu*6)]);
+		return;
+	    }
 	    if (level.flags.has_levelffroom && !rn2(200)) {
 		static const char *levelffroom_msg[] = {
 			"hear laughing sounds.",
@@ -1066,6 +1084,20 @@ dosounds()
 			"suddenly bear witness to a huge invasion of ants, rats, cockroaches and other vermin!",
 		};
 		You("%s", verminroom_msg[rn2(4+hallu*3)]);
+		return;
+	    }
+	    if (level.flags.has_questorroom && !rn2(200)) {
+		static const char *questorroom_msg[] = {
+			"feel like you should be working.",
+			"seem to hear your superiors calling your name.",
+			"suddenly meet one of your colleagues who is just passing by.",
+			"absolutely don't want to visit the canteen.", /* because the "food" that is served there gives your stomach trouble */
+			"are late for work! Now your boss will give you a final written warning!",
+			"find out that while you didn't lose your job yet, you have to continue working at 20%% reduced pay, and if you make one more mistake it'll get lowered even more.", /* inspired by jonadab */
+			"feel extremely nauseated all of a sudden. Maybe it was a mistake after all to eat canteen calls-itself-food.",
+			"are sooooooo fed up with your annoying colleague! Having to see that same insufferable person every day makes you want to vomit!",
+		};
+		You("%s", questorroom_msg[rn2(4+hallu*4)]);
 		return;
 	    }
 	    if (level.flags.has_miraspa && !rn2(200)) {

@@ -1803,6 +1803,8 @@ E struct permonst *beehivemon(void);
 E struct permonst *douglas_adams_mon(void);
 E struct permonst *squadmon(void);
 E struct permonst *doomsquadmon(void);
+E struct permonst *lettersaladmon(void);
+E struct permonst *theareamon(void);
 E struct permonst *evilroommon(void);
 E struct permonst *machineroommon(void);
 E struct permonst *migohivemon(void);
