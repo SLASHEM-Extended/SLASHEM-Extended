@@ -160,6 +160,14 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 	if (uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && !uwep->cursed) {
 		curse(uwep);
 	}
+	if (uwep && uwep->oartifact == ART_WAR_S_SWORD && !uwep->cursed) {
+		curse(uwep);
+		pline("Whoops, the weapon cursed itself.");
+	}
+	if (uwep && uwep->oartifact == ART_BARDICHE_ASSALT && !uwep->cursed) {
+		curse(uwep);
+		pline("Whoops, the weapon cursed itself.");
+	}
 	if (uwep && uwep->oartifact == ART_RASSCHEN_TAAK && !uwep->cursed) {
 		curse(uwep);
 	}
@@ -203,6 +211,11 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 	if (uwep && uwep->oartifact == ART_ATOMIC_MISSING) {
 		curse(uwep);
 		pline("The ballista becomes cursed as you wield it.");
+	}
+
+	if (uwep && uwep->oartifact == ART_XIUHCOATL) {
+		curse(uwep);
+		pline("The atlatl becomes cursed as you wield it.");
 	}
 
 	if (uwep && uwep->oartifact == ART_FADED_USELESSNESS) {
@@ -330,6 +343,14 @@ swapweaponchoice:
 		if (uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && !uswapwep->cursed) {
 			curse(uswapwep);
 		}
+		if (uswapwep && uswapwep->oartifact == ART_WAR_S_SWORD && !uswapwep->cursed) {
+			curse(uswapwep);
+			pline("Whoops, the weapon cursed itself.");
+		}
+		if (uswapwep && uswapwep->oartifact == ART_BARDICHE_ASSALT && !uswapwep->cursed) {
+			curse(uswapwep);
+			pline("Whoops, the weapon cursed itself.");
+		}
 		if (uswapwep && uswapwep->oartifact == ART_RASSCHEN_TAAK && !uswapwep->cursed) {
 			curse(uswapwep);
 		}
@@ -373,6 +394,11 @@ swapweaponchoice:
 		if (uswapwep && uswapwep->oartifact == ART_ATOMIC_MISSING) {
 			curse(uswapwep);
 			pline("The ballista becomes cursed as you wield it.");
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_XIUHCOATL) {
+			curse(uswapwep);
+			pline("The atlatl becomes cursed as you wield it.");
 		}
 
 		if (uswapwep && uswapwep->oartifact == ART_FADED_USELESSNESS) {

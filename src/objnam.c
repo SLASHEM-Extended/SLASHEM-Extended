@@ -7167,7 +7167,7 @@ register int otyp;
 		actualn = Alternate_item_name(otyp,Japanese_items);
 	if ( (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) && !issoviet && Alternate_item_name(otyp,Pirate_items))
 		actualn = Alternate_item_name(otyp,Pirate_items);
-	if ( (issoviet || (uarmf && uarmf->oartifact == ART_NE_PROSTO_KRASIVO) || (uarmc && uarmc->oartifact == ART_GAGARIN_S_TRANSLATOR)) && Alternate_item_name(otyp,Soviet_items))
+	if ( (issoviet || (uwep && uwep->oartifact == ART_BARDICHE_ASSALT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_BARDICHE_ASSALT) || (uarmf && uarmf->oartifact == ART_NE_PROSTO_KRASIVO) || (uarmc && uarmc->oartifact == ART_GAGARIN_S_TRANSLATOR)) && Alternate_item_name(otyp,Soviet_items))
 		actualn = Alternate_item_name(otyp,Soviet_items);
 	if (Race_if(PM_ANCIENT) && !issoviet && Alternate_item_name(otyp,Ancient_items))
 		actualn = Alternate_item_name(otyp,Ancient_items);
@@ -7375,7 +7375,7 @@ boolean showpoisoned;
 		actualn = Alternate_item_name(typ,Japanese_items);
 	if ( (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) && !issoviet && Alternate_item_name(typ,Pirate_items))
 		actualn = Alternate_item_name(typ,Pirate_items);
-	if ( (issoviet || (uarmf && uarmf->oartifact == ART_NE_PROSTO_KRASIVO) || (uarmc && uarmc->oartifact == ART_GAGARIN_S_TRANSLATOR)) && Alternate_item_name(typ,Soviet_items))
+	if ( (issoviet || (uwep && uwep->oartifact == ART_BARDICHE_ASSALT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_BARDICHE_ASSALT) || (uarmf && uarmf->oartifact == ART_NE_PROSTO_KRASIVO) || (uarmc && uarmc->oartifact == ART_GAGARIN_S_TRANSLATOR)) && Alternate_item_name(typ,Soviet_items))
 		actualn = Alternate_item_name(typ,Soviet_items);
 	if (Race_if(PM_ANCIENT) && !issoviet && Alternate_item_name(typ,Ancient_items))
 		actualn = Alternate_item_name(typ,Ancient_items);

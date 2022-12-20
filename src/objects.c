@@ -171,7 +171,7 @@ WEAPON("tooth of an algolian suntiger",	"very sharp tooth",
 	/* to d20/d30 (otherwise, it's useless to make them...)
 	 * Amy edit: d18 should be more than enough for a one-handed weapon */
 
-/* Axes */
+/* Axes - regular has to be first */
 WEAPON("axe", (char *)0,
 	1, 0, 0, 2300, 24,  8,  8,  4, 0, S,   P_AXE, MT_IRON, HI_METAL, 2),
 WEAPON("quality axe", (char *)0,
@@ -189,7 +189,7 @@ WEAPON("tubing pliers", (char *)0,
 WEAPON("spirit axe", (char *)0,
 	1, 0, 0, 100, 24,  8,  8,  4, 0, S,   P_AXE, MT_MYSTERIOUS, CLR_CYAN, 16),
 WEAPON("moon axe", "large silver axe",
-	0, 0, 1, 100,  32, 40,  8,  6, 0, S,   P_AXE, MT_SILVER, HI_SILVER, 16),
+	0, 0, 1, 100,  32, 40,  11, 12, 0, S,   P_AXE, MT_SILVER, HI_SILVER, 16),
 WEAPON("obsidian axe", (char *)0,
 	1, 0, 0,  20, 13,  8, 6, 8, 0, S,   P_AXE, MT_OBSIDIAN, CLR_BLACK, 12),
 WEAPON("dwarvish battle-axe", "beaked axe", /* +1 damage */
@@ -198,6 +198,7 @@ WEAPON("battle-axe", "double-headed axe", /* "double-bitted" ? */
 	0, 0, 1, 839, 48, 40,  12,  9, 0, S,   P_AXE, MT_IRON, HI_METAL, 15),
 WEAPON("chemistry space axe", (char *)0,
 	1, 0, 1,  50, 48, 40,  14, 14, 0, S,   P_AXE, MT_LIQUID, CLR_BRIGHT_GREEN, 30),
+/* chemistry space axe has to be last */
 
 /* Pick-axes */
 /* (also weptool pick-axe) */
@@ -208,7 +209,7 @@ WEAPON("soft mattock", (char *)0,
 WEAPON("eternium mattock", (char *)0,
 	1, 0, 1, 10, 48, 50, 18,  12,0, B,   P_PICK_AXE, MT_ETERNIUM, CLR_BRIGHT_BLUE, 30),
 
-/* Short swords */
+/* Short swords - orcish has to be first */
 WEAPON("orcish short sword", "crude short sword",
 	0, 0, 0, 280, 12, 10,  5,  8, 0, P,   P_SHORT_SWORD, MT_IRON, CLR_BLACK, 1),
 WEAPON("short sword", (char *)0,
@@ -240,8 +241,9 @@ WEAPON("eternium blade", (char *)0,
 	1, 0, 0,  20, 12, 10,  9,  9, 0, P,   P_SHORT_SWORD, MT_ETERNIUM, CLR_GRAY, 8),
 WEAPON("vibroblade", "gray short sword",
 	0, 0, 0,  20, 12, 10,  6,  8, 0, P,   P_SHORT_SWORD, MT_PLASTIC, CLR_GRAY, 6),
+/* vibroblade has to be last */
 
-/* Broadswords */
+/* Broadswords - paper sword has to be first */
 WEAPON("paper sword", (char *)0,
 	1, 0, 0, 200, 10, 2,  6,  9, 0, S,   P_BROAD_SWORD, MT_PAPER, CLR_WHITE, 1),
 WEAPON("broadsword", (char *)0,
@@ -264,6 +266,7 @@ WEAPON("white flower sword", "flower-pommeled broadsword", /* +2 small, +1 large
 	0, 0, 0,  20, 30, 10, 12, 12, 0, S, P_BROAD_SWORD, MT_WOOD, CLR_WHITE, 12),
 WEAPON("meatsword", (char *)0,
 	1, 0, 0, 100, 30, 10,  8,  10, 0, S,   P_BROAD_SWORD, MT_FLESH, CLR_RED, 5),
+/* meatsword has to be last */
 
 /* Long swords - regular one has to be first */
 WEAPON("long sword", (char *)0,
@@ -301,7 +304,7 @@ WEAPON("great houchou", (char *)0,
 	1, 0, 0,  20, 16, 15, 8, 10, 0, S,   P_LONG_SWORD, MT_IRON, HI_METAL, 10),
 /* great houchou has to be last, see makemon.c */
 
-/* Two-handed swords */
+/* Two-handed swords - regular has to be first */
 WEAPON("two-handed sword", (char *)0,
 	1, 0, 1, 1037,60, 50, 15,  8, 0, S,   P_TWO_HANDED_SWORD, MT_IRON, HI_METAL, 8),
 	/* +2d6 large */
@@ -328,8 +331,9 @@ WEAPON("colossus blade", (char *)0,
 	1, 0, 1,  2, 120,1000, 25, 25, 0, S,   P_TWO_HANDED_SWORD, MT_VIVA, CLR_ORANGE, 100),
 WEAPON("ether saw", (char *)0,
 	1, 0, 1,  10, 35, 50, 15, 20, 0, S,   P_TWO_HANDED_SWORD, MT_ETHER, CLR_GREEN, 40),
+/* ether saw has to be last */
 
-/* Scimitars */
+/* Scimitars - regular has to be first */
 WEAPON("scimitar", "curved sword",
 	0, 0, 0, 640, 16, 15,  8,  8, 0, S,   P_SCIMITAR, MT_IRON, HI_METAL, 1),
 WEAPON("bubbletar", (char *)0,
@@ -350,6 +354,7 @@ WEAPON("bent sable", "bent sword",
 	0, 0, 0, 200, 16, 40,  12,  12, 0, S,   P_SCIMITAR, MT_IRON, HI_METAL, 20),
 WEAPON("high-elven warsword", "runed curved sword",
 	0, 0, 0,  20,  4, 15, 10, 10, 2, S,   P_SCIMITAR, MT_MITHRIL, HI_METAL, 15),
+/* high-elven warsword has to be last */
 
 /* Brass knuckles (by Amy) */
 WEAPON("brass knuckles", (char *)0,
@@ -497,7 +502,7 @@ WEAPON("camo qatar", (char *)0,
 WEAPON("ambush qatar", (char *)0, /* when doing something other than moving, your speed is cut in half */
 	1, 0, 1,  1, 8, 200, 16, 16, 0, P,   P_CLAW, MT_IRON, CLR_BLACK, 60),
 
-/* Maces */
+/* Maces - silver has to be first */
 WEAPON("silver mace", (char *)0,
 	1, 0, 0, 350, 12, 65,  6,  7, 0, B,   P_MACE, MT_SILVER, HI_SILVER, 15),
 	/* STEPHEN WHITE'S NEW CODE */
@@ -533,8 +538,9 @@ WEAPON("reinforced mace", (char *)0,
 	1, 0, 0, 100, 12, 35,  10,  11, 0, B,   P_MACE, MT_METAL, HI_METAL, 26),
 WEAPON("backhand mace", (char *)0,
 	1, 0, 0,  10, 12, 35,  10,  11, 0, B,   P_MACE, MT_ARCANIUM, CLR_MAGENTA, 26),
+/* backhand mace has to be last */
 
-/* Morning stars */
+/* Morning stars - regular one has to be first */
 WEAPON("morning star", (char *)0,
 	1, 0, 0, 1200, 48, 10,  4, 12, 0, B,   P_MORNING_STAR, MT_IRON, HI_METAL, 5),
 						/* +d4 small, +1 large */
@@ -563,8 +569,9 @@ WEAPON("devil star", (char *)0,
 	1, 0, 0, 100,48, 50,  11,  16, 0, B,   P_MORNING_STAR, MT_IRON, HI_METAL, 26),
 WEAPON("yesterday star", (char *)0,
 	1, 0, 0,  10,48, 50,  11,  16, 0, B,   P_MORNING_STAR, MT_DRAGON_HIDE, CLR_BRIGHT_BLUE, 26),
+/* yesterday star has to be last */
 
-/* Flails */
+/* Flails - regular has to be first */
 WEAPON("flail", (char *)0,
 	1, 0, 0, 1200, 7,  4,  6,  4, 1, B,   P_FLAIL, MT_IRON, HI_METAL, 1),
 	/* +1 small, +1d4 large */
@@ -589,8 +596,9 @@ WEAPON("riding crop", (char *)0,
 
 WEAPON("obsid", (char *)0,
 	1, 0, 0, 100, 7, 30,  12,  8, 3, B,   P_FLAIL, MT_IRON, HI_METAL, 20),
+/* obsid has to be last */
 
-/* Hammers */
+/* Hammers - war hammer has to be first */
 WEAPON("war hammer", (char *)0,
 	1, 0, 0, 892, 20,  5,  7,  7, 0, B,   P_HAMMER, MT_IRON, HI_METAL, 1),
 	/* +1 small */
@@ -652,7 +660,7 @@ WEAPON("dogshit boot", (char *)0,
 	1, 0, 0, 100, 10, 10,  4,  4, 5, B,   P_HAMMER, MT_SECREE, CLR_BROWN, 8),
 WEAPON("prostitute shoe", (char *)0,
 	1, 0, 0, 100, 10, 200, 10,  10, 2, B,   P_HAMMER, MT_WOOD, CLR_ORANGE, 30),
-/* prostitute shoe has to be last */
+/* prostitute shoe has to be last, both for shoes and hammer-class weapons in general */
 
 /* Quarterstaves - regular one has to be first one */
 WEAPON("quarterstaff", "staff",
@@ -873,7 +881,7 @@ WEAPON("dragon spear", (char *)0,
 	1, 1, 0, 50, 12,  3,  8,  8, 0, P,   P_SPEAR, MT_DRAGON_HIDE, CLR_BRIGHT_BLUE, 9),
 WEAPON("ceramic spear", (char *)0,
 	1, 1, 0, 100, 12, 5, 10, 10, 1, P,   P_SPEAR, MT_CERAMIC, CLR_WHITE, 15),
-
+/* ceramic spear has to be last */
 
 /* Javelins - regular javelin must be first */
 WEAPON("javelin", "throwing spear",
@@ -896,7 +904,7 @@ WEAPON("stack javelin", (char *)0,
 	1, 1, 0, 300, 8,  3,  6,  6, 1, P,   P_JAVELIN, MT_IRON, CLR_GREEN, 1),
 /* stack javelin must be last */
 
-/* Tridents */
+/* Tridents - regular has to be first */
 WEAPON("trident", (char *)0,
 	1, 0, 0, 590, 10,  5,  6,  4, 1, P,   P_TRIDENT, MT_IRON, HI_METAL, 1),
 	/* +1 small, +2d4 large */
@@ -922,8 +930,9 @@ WEAPON("plow", (char *)0,
 
 WEAPON("mancatcher", (char *)0,
 	1, 0, 1,  20, 10, 200,  17,  15, 3, P,   P_TRIDENT, MT_WOOD, CLR_BROWN, 35),
+/* mancatcher has to be last */
 
-/* Lances */
+/* Lances - regular has to be first */
 WEAPON("lance", (char *)0,
 	1, 0, 0,  50, 75, 10,  6,  8, 0, P,   P_LANCE, MT_IRON, HI_METAL, 1),
 WEAPON("bronze lance", (char *)0,
@@ -948,6 +957,7 @@ WEAPON("bricklayer bar", (char *)0,
 	1, 0, 0,  10, 75, 10,  6, 15, 0, P,   P_LANCE, MT_BRICK, CLR_BROWN, 10),
 WEAPON("spec lance", (char *)0,
 	1, 0, 0,  10, 75, 10,  6, 10, 0, P,   P_LANCE, MT_IRON, CLR_MAGENTA, 1),
+/* spec lance has to be last */
 
 /* Bows (and arrows) */
 /* KMH, balance patch -- damage of launchers restored to d2 big and small */
@@ -999,7 +1009,7 @@ PROJECTILE("bronze arrow", (char *)0,
 PROJECTILE("wonder arrow", (char *)0,
 	1, 500, 0, 2, 10, 10, 0, MT_IRON, -P_BOW, CLR_MAGENTA, 2),
 
-/* Slings */
+/* Slings - regular has to be first */
 BOW("sling", (char *)0,		1, 0, 2300, 2, 20, 2, MT_WOOD, P_SLING, HI_LEATHER, 1),
 BOW("shovel", (char *)0,	1, 0, 500,  60, 4, 0, MT_POURPOOR, P_SLING, CLR_BLUE, 1),
 BOW("metal sling", (char *)0,	1, 0, 400,  2, 20, 2, MT_METAL, P_SLING, CLR_CYAN, 3),
@@ -1007,6 +1017,7 @@ BOW("inka sling", (char *)0,	1, 0, 200,  2, 20, 5, MT_INKA, P_SLING, CLR_BROWN, 
 BOW("catapult", (char *)0,	1, 1, 100,  2, 250, 5, MT_METAL, P_SLING, CLR_BLACK, 40),
 BOW("atlatl", (char *)0,	1, 0, 100,  4, 20, 3, MT_AMBER, P_SLING, CLR_ORANGE, 5),
 BOW("snipesling", (char *)0,	1, 0, 100,  2, 20, 2, MT_SHADOWSTUFF, P_SLING, CLR_BRIGHT_BLUE, 10), /* +5 range for ammos, weak sight when wielded */
+/* snipesling has to be last */
 
 /* Firearms */
 GUN("pistol", (char *)0,	   1,  0, 300,  8,  100, 15,  0,  4, WP_BULLET_PISTOL, MT_IRON, P_FIREARM, HI_METAL, 1),
@@ -1113,7 +1124,7 @@ BULLET("gas grenade", (char *)0,
 BULLET("stick of dynamite", "red stick",
 	0,  100,  0, 150, 0, 0, 2,  WP_GENERIC,   B,   MT_PLASTIC, P_NONE, CLR_RED, 25),
 
-/* Crossbows (and bolts) */
+/* Crossbows (and bolts) - regular one has to be first */
 /* Crossbow range is now independant of strength */
 GUN("crossbow", (char *)0,				1, 1, 2800, 20, 40, 12, -1, 1, WP_GENERIC, MT_WOOD, P_CROSSBOW, HI_WOOD, 1),
 GUN("ballista", (char *)0,				1, 1,  100, 20, 40, 15, -2, 1, WP_GENERIC, MT_MITHRIL, P_CROSSBOW, CLR_CYAN, 10),
@@ -1123,6 +1134,7 @@ GUN("droven crossbow", "spider-legged crossbow", 0, 0, 500, 30, 120, 12, -1, 5, 
 GUN("demon crossbow", (char *)0,			1, 1,  100, 20, 250, 12, 1, 0, WP_GENERIC, MT_METAL, P_CROSSBOW, CLR_BROWN, 60),
 GUN("pile bunker", (char *)0,   			1, 0,  20, 16, 40, 12, 0, 0, WP_GENERIC, MT_BONE, P_CROSSBOW, CLR_BRIGHT_BLUE, 12),
 GUN("helo crossbow", (char *)0,			1, 1,  20, 20, 40, 30, -5, 10, WP_GENERIC, MT_WOOD, P_CROSSBOW, CLR_ORANGE, 30),
+/* helo crossbow has to be last */
 
 PROJECTILE("crossbow bolt", (char *)0,
 	1, 1300, 0, 2, 16, 16, 1, MT_IRON, -P_CROSSBOW, HI_METAL, 1),
@@ -1194,7 +1206,7 @@ WEAPON("nano shuriken", (char *)0,
 WEAPON("cubic star", (char *)0,
 	1, 1, 0, 200,  0,  5,  6,  5, 2, P,   -P_SHURIKEN, MT_IRON, CLR_BLACK, 1),
 
-/* Boomerangs */
+/* Boomerangs - regular has to be first */
 WEAPON("boomerang", (char *)0,
 	1, 1, 0, 1440,  0, 20,  9,  9, 3, 0,   -P_BOOMERANG, MT_WOOD, HI_WOOD, 1),
 WEAPON("silver chakram", "silver circular blade",
@@ -1203,8 +1215,9 @@ WEAPON("batarang", (char *)0,
 	1, 1, 0,  20,  0, 20,  15, 15, 2, 0,   -P_BOOMERANG, MT_METAL, CLR_BRIGHT_BLUE, 10),
 WEAPON("dark batarang", (char *)0,
 	1, 1, 0,  20,  0, 20,  15, 15, 2, 0,   -P_BOOMERANG, MT_SHADOWSTUFF, CLR_BRIGHT_BLUE, 10),
+/* dark batarang has to be last */
 
-/* Whips */
+/* Whips - bullwhip has to be first */
 
 
 WEAPON("bullwhip", (char *)0,
@@ -1244,6 +1257,7 @@ WEAPON("rubber hose", (char *)0,
 	1, 0, 0, 180, 8,  3,  4,  3, 5, B,   P_WHIP, MT_PLASTIC, CLR_BROWN, 1),
 WEAPON("secret whip", (char *)0,
 	1, 0, 0,  20, 8,  3,  4,  3, 5, B,   P_WHIP, MT_MYSTERIOUS, CLR_MAGENTA, 2),
+/* secret whip has to be last */
 
 /* With shuffled appearances... */
 #undef P
@@ -4750,6 +4764,8 @@ TOOL("beartrap", (char *)0,     1, 0, 0, 0,  100,20,  60, MT_IRON, HI_METAL, 1),
 /* KMH -- Not randomly generated (no damage!) */
 WEPTOOL("spoon", (char *)0,
 	1, 0, 0, 0,  100,  1, 5000,  0,  0, 0, WHACK,  -P_DART, MT_PLATINUM, HI_METAL, 1),
+
+/* pick-axes, regular one has to be first */
 WEPTOOL("pick-axe", (char *)0,
 	1, 0, 0, 0, 2040, 32,   50,  6,  3, 0, WHACK,  P_PICK_AXE, MT_IRON, HI_METAL, 1),
 WEPTOOL("conglomerate pick", (char *)0,
@@ -4764,11 +4780,13 @@ WEPTOOL("nano pick", (char *)0,
 	1, 0, 0, 0, 50, 32,   10,  6,  12, 0, WHACK,  P_PICK_AXE, MT_NANOMACHINE, CLR_RED, 25),
 WEPTOOL("mystery pick", (char *)0,
 	1, 0, 0, 0, 500, 32,   50,  6,  6, 0, WHACK,  P_PICK_AXE, MT_MINERAL, CLR_MAGENTA, 6),
+/* mystery pick is last pick-axe */
+
 WEPTOOL("fishing pole", (char *)0,
 	1, 0, 0, 0, 500,  12,  50,  2,  6, 0, WHACK,  P_POLEARMS, MT_METAL, HI_METAL, 1),
 WEPTOOL("grappling hook", "iron hook",
 	0, 0, 0, 0, 500,  12,  50,  4,  8, 0, WHACK,  P_FLAIL, MT_IRON, HI_METAL, 1),
-/* 3.4.1: unicorn horn left classified as "magic" */
+/* 3.4.1: unicorn horn left classified as "magic" - regular one has to be first */
 WEPTOOL("unicorn horn", (char *)0,
 	1, 1, 0, 1,  280,  8, 100, 12, 12, 0, PIERCE, P_UNICORN_HORN, MT_BONE, CLR_WHITE, 1),
 WEPTOOL("guitar", (char *)0,
@@ -4783,6 +4801,8 @@ WEPTOOL("arcane horn", (char *)0, /* can't be applied, unihorn effect when melee
 	1, 1, 0, 1,  40,  8, 100, 12, 12, 0, PIERCE, P_UNICORN_HORN, MT_ARCANIUM, CLR_BRIGHT_GREEN, 5),
 WEPTOOL("bubblehorn", (char *)0,
 	1, 1, 0, 1,  10,  1, 100, 1, 1, 0, PIERCE, P_UNICORN_HORN, MT_PWN_BUBBLE, CLR_ORANGE, 1),
+/* bubblehorn has to be last unicorn horn */
+
 /* WEPTOOL("torch", (char *)0,
 	   1, 0, 0,  1,  8, 8, 5, 2, WHACK, P_CLUB, MT_WOOD, HI_WOOD), */
 

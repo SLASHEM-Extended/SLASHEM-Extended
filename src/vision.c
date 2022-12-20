@@ -747,7 +747,7 @@ vision_recalc(control)
 	    }
 
 	    else if ((next_row[col] & COULD_SEE)
-				&& ( (lev->lit && !(HardcoreAlienMode || (ublindf && ublindf->otyp == SHIELD_PATE_GLASSES) || DarkModeBug || (uwep && uwep->oartifact == ART_PWNHAMMER_DUECE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PWNHAMMER_DUECE) || u.uprops[DARK_MODE_BUG].extrinsic || have_darkmodestone())) || (next_row[col] & TEMP_LIT))) {
+				&& ( (lev->lit && !(HardcoreAlienMode || (ublindf && ublindf->otyp == SHIELD_PATE_GLASSES) || DarkModeBug || (uwep && uwep->oartifact == ART_PWNHAMMER_DUECE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PWNHAMMER_DUECE) || (uwep && uwep->oartifact == ART_FIRE_EATER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FIRE_EATER) || u.uprops[DARK_MODE_BUG].extrinsic || have_darkmodestone())) || (next_row[col] & TEMP_LIT))) {
 		/*
 		 * We see this position because it is lit.
 		 */

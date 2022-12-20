@@ -2178,6 +2178,16 @@ learn()
 				learntech_or_leveltech(T_VENOM_MIXING, FROMOUTSIDE, 1);
 			    }
 
+			    if (book->oartifact == ART_KING_IN_YELLOW) {
+				int kiypm;
+				kiypm = dprince(rn2((int)A_LAWFUL+2) - 1);
+				if (kiypm >= PM_ORCUS && kiypm <= PM_DEMOGORGON) u.conclusiocount++;
+				if (kiypm && (kiypm != NON_PM)) {
+					(void) makemon(&mons[kiypm], u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
+					pline("An angry demon is summoned!");
+				}
+			    }
+
 			    if (book->oartifact == ART_IWA_ERWI) {
 				int iwaerwi;
 				if (rn2(2)) {
@@ -2271,6 +2281,16 @@ learn()
 				You("gain the secret knowledge of venom mixing!");
 				learntech_or_leveltech(T_VENOM_MIXING, FROMOUTSIDE, 1);
 			}
+			if (book->oartifact == ART_KING_IN_YELLOW) {
+				int kiypm;
+				kiypm = dprince(rn2((int)A_LAWFUL+2) - 1);
+				if (kiypm >= PM_ORCUS && kiypm <= PM_DEMOGORGON) u.conclusiocount++;
+				if (kiypm && (kiypm != NON_PM)) {
+					(void) makemon(&mons[kiypm], u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
+					pline("An angry demon is summoned!");
+				}
+			}
+
 			if (book->oartifact == ART_IWA_ERWI) {
 				int iwaerwi;
 				if (rn2(2)) {
@@ -2841,7 +2861,7 @@ docast()
 
 	int whatreturn;
 
-	if (u.antimagicshell || (uarmh && uarmh->otyp == HELM_OF_ANTI_MAGIC) || (RngeAntimagicA && (moves % 10 == 0)) || (RngeAntimagicB && (moves % 5 == 0)) || (RngeAntimagicC && (moves % 2 == 0)) || (RngeAntimagicD) || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || Role_if(PM_UNBELIEVER) || (uwep && uwep->oartifact == ART_ANTIMAGICBANE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ANTIMAGICBANE) ) {
+	if (u.antimagicshell || (uarmh && uarmh->otyp == HELM_OF_ANTI_MAGIC) || (RngeAntimagicA && (moves % 10 == 0)) || (RngeAntimagicB && (moves % 5 == 0)) || (RngeAntimagicC && (moves % 2 == 0)) || (RngeAntimagicD) || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || Role_if(PM_UNBELIEVER) || (uwep && uwep->oartifact == ART_ARK_OF_THE_COVENANT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ARK_OF_THE_COVENANT) || (uwep && uwep->oartifact == ART_ANTIMAGICBANE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ANTIMAGICBANE) ) {
 
 		pline("Your anti-magic shell prevents spellcasting.");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -11775,7 +11795,7 @@ int spell;
 
 	if (spell_skilltype(spellid(spell)) == P_CHAOS_SPELL) { /* more difficult! */
 
-	switch (spellev(spell)) {
+		switch (spellev(spell)) {
 
 			case 1:
 				chance -= 5;
@@ -11843,6 +11863,11 @@ int spell;
 	if (uarmf && uarmf->oartifact == ART_JONADAB_S_EVERYDAY_WEAR) chance += 5;
 	if (uarmf && uarmf->oartifact == ART_DON_T_FALL_INTO_THE_ABYSS) chance += 10;
 	if (uwep && uwep->oartifact == ART_BAOBHAN_MOUNTAIN) chance += 10;
+	if (uwep && uwep->oartifact == ART_ORIGIN_OF_CASTING) chance += 20;
+
+	if (spell_skilltype(spellid(spell)) == P_HEALING_SPELL) {
+		if (uwep && uwep->oartifact == ART_CELESTIAL_SCEPTRE) chance += 50;
+	}
 
 	/* higher spell skill should do SOMEthing --Amy */
 	skill = P_SKILL(spell_skilltype(spellid(spell)));

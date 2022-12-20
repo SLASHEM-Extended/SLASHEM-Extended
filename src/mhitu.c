@@ -1960,6 +1960,8 @@ struct attack *mattk;
 void
 u_slow_down()
 {
+	if (uwep && uwep->oartifact == ART_DAEFAROTH) return; /* player is immune */
+
 	HFast = 0L;
 	if (!Fast) You("slow down.");
 	   /* speed boots */
@@ -6554,7 +6556,7 @@ struct attack *mattk;
 
 	/* if your cloak/armor is greased, monster slips off; this
 	   protection might fail (33% chance) when the armor is cursed */
-	if (obj && (obj->greased || obj->otyp == OILSKIN_CLOAK || obj->oartifact == ART_PREMIUM_VISCOSITY || obj->oartifact == ART_LAURA_S_SWIMSUIT) && rn2(50) && /* low chance to fail anyway --Amy */
+	if (obj && (obj->greased || obj->otyp == OILSKIN_CLOAK || obj->oartifact == ART_PREMIUM_VISCOSITY || obj->oartifact == ART_NEUTRINO || obj->oartifact == ART_LAURA_S_SWIMSUIT) && rn2(50) && /* low chance to fail anyway --Amy */
 		(!obj->cursed || rn2(3))) {
 	    pline("%s %s your %s %s!",
 		  Monnam(mtmp),
@@ -7760,7 +7762,7 @@ dopois:
 			if (mtmp->mhp < 1) break;
 		}
 
-		if (defends(AD_DRIN, uwep) || (StrongPsi_resist && rn2(3)) || !has_head(youmonst.data) || Role_if(PM_COURIER)  || Race_if(PM_KUTAR) || (rn2(8) && uarmf && itemhasappearance(uarmf, APP_MARY_JANES) ) ) {
+		if (defends(AD_DRIN, uwep) || (StrongPsi_resist && rn2(3)) || !has_head(youmonst.data) || Role_if(PM_COURIER)  || Race_if(PM_KUTAR) || (uwep && uwep->oartifact == ART_MAGEMASHER) || (uwep && uwep->oartifact == ART_GOSSIP_HARISEN) || (rn2(8) && uarmf && itemhasappearance(uarmf, APP_MARY_JANES) ) ) {
 		    You("don't seem harmed.");
 		    /* Not clear what to do for green slimes */
 		    break;
@@ -8718,7 +8720,8 @@ dopois:
 			hitmsg(mtmp, mattk);
 			if (mtmp->mcan) break;
 			/* Continue below */
-		} else if (rn2(5) && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_COPPERED_OFF_FROM_ME) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) && (dmgtype(youmonst.data, AD_SEDU) || (uarmg && uarmg->oartifact == ART_LORSKEL_S_SPECIAL_PROTECTI) || (ublindf && ublindf->oartifact == ART_CLICKPASS) || (uwep && uwep->oartifact == ART_ONE_HUNDRED_STARS)
+		} else if (rn2(5) && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_COPPERED_OFF_FROM_ME) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) &&
+			(dmgtype(youmonst.data, AD_SEDU) || (uarmg && uarmg->oartifact == ART_LORSKEL_S_SPECIAL_PROTECTI) || (ublindf && ublindf->oartifact == ART_CLICKPASS) || (uwep && uwep->oartifact == ART_ONE_HUNDRED_STARS) || (uwep && uwep->oartifact == ART_SNATCHER) || (uwep && uwep->oartifact == ART_SILPHEED)
 			|| dmgtype(youmonst.data, AD_SSEX)
 						) ) {
 			pline("%s %s.", Monnam(mtmp), mtmp->minvent ?
@@ -10752,6 +10755,10 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 		case AD_DGST:
 		    if (Slow_digestion && (StrongSlow_digestion ? rn2(5) : !rn2(5)) ) {
+			/* Messages are handled below */
+			u.uswldtim = 0;
+			tmp = 0;
+		    } else if (uwep && uwep->oartifact == ART_TEN_DIMENSIONAL_SCYTHE) {
 			/* Messages are handled below */
 			u.uswldtim = 0;
 			tmp = 0;
@@ -18907,7 +18914,7 @@ register int n;
 	}
 	if (Role_if(PM_DANCER) && !rn2(3)) n = n * 2;
 	if (Race_if(PM_METAL)) n *= rnd(10);
-	if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone() || (uleft && uleft->oartifact == ART_RING_OF_FAST_LIVING) || (uright && uright->oartifact == ART_RING_OF_FAST_LIVING) || (uwep && uwep->oartifact == ART_PAINBOWSWANDIR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PAINBOWSWANDIR) || (uimplant && uimplant->oartifact == ART_IME_SPEW)) n = n * 2;
+	if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone() || (uleft && uleft->oartifact == ART_RING_OF_FAST_LIVING) || (uright && uright->oartifact == ART_RING_OF_FAST_LIVING) || (uwep && uwep->oartifact == ART_PAINBOWSWANDIR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PAINBOWSWANDIR) || (uwep && uwep->oartifact == ART_RAISING_HEART) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_RAISING_HEART) || (uimplant && uimplant->oartifact == ART_IME_SPEW)) n = n * 2;
 	if (uamul && uamul->otyp == AMULET_OF_VULNERABILITY) n *= rnd(4);
 	if (RngeFrailness) n = n * 2;
 

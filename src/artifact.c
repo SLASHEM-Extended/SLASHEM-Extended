@@ -340,13 +340,46 @@ init_randarts()
 	artilist[ART_CURSED_WITH_THE_WORST].otyp = randartbadgraystone();
 	artilist[ART_FEMITY_SOLVE].otyp = randartfeminismjewel();
 	artilist[ART_QUE_TANGHERISONJA].otyp = randartfeminismjewel();
+	artilist[ART_PHILOSOPHER_S_STONE].otyp = randartfeminismjewel();
 	artilist[ART_VAPER_BAPER].otyp = randartball();
 	artilist[ART_TSCHEND_FOR_ETERNITY].otyp = randartchain();
+	artilist[ART_CHAINS_OF_MALCANTHET].otyp = randartchain();
 	artilist[ART_MACHINE_THAT_GOES_PLING].otyp = randartgem();
 	artilist[ART_COCKBANGER_ARMOR].otyp = randartsuit();
 	artilist[ART_TAVION_S_CHARGE].otyp = randartlightsaber();
 	artilist[ART_WEDIFORCE].otyp = randartvenom();
 	artilist[ART_RIDGET_PHASTO].otyp = randartvenom();
+	artilist[ART_ACIDFALL].otyp = randartlongsword();
+	artilist[ART_AVALON].otyp = randartscimitar();
+	artilist[ART_WORSE_CARNWENNAN].otyp = randartknife();
+	artilist[ART_SEAFOAM].otyp = randarttrident();
+	artilist[ART_UNLIMITED_MOON].otyp = randartflail();
+	artilist[ART_DISMOUNTER].otyp = randartlance();
+	artilist[ART_FINAL_DEATH].otyp = randartwhip();
+	artilist[ART_MANEATER].otyp = randartshortsword();
+	artilist[ART_GNOLLBANE].otyp = randarthammer();
+	artilist[ART_EMERALD_SWORD].otyp = randarttwohandedsword();
+	artilist[ART_CELESTIAL_SCEPTRE].otyp = randartmace();
+	artilist[ART_HOLYBASHER].otyp = randartflail();
+	artilist[ART_RAISING_HEART].otyp = randartquarterstaff();
+	artilist[ART_LANCE_ARMSTRONG].otyp = randartlance();
+	artilist[ART_GOLIATHBANE].otyp = randartsling();
+	artilist[ART_FIREBIRD].otyp = randartboomerang();
+	artilist[ART_STEAMBRINGER].otyp = randartbroadsword();
+	artilist[ART_PENDULUM_OF_BALANCE].otyp = randartmace();
+	artilist[ART_POLAR_STAR].otyp = randartmorningstar();
+	artilist[ART_PARRYINGSTAFF].otyp = randartquarterstaff();
+	artilist[ART_STONEBITER].otyp = randartpickaxe();
+	artilist[ART_SOUTHERN_CROSS].otyp = randartcrossbow();
+	artilist[ART_SNATCHER].otyp = randartshortsword();
+	artilist[ART_LUX_REGINA].otyp = randartflail();
+	artilist[ART_REGINA_LUX].otyp = randartmorningstar();
+	artilist[ART_HARPOON_OF_TRITON].otyp = randarttrident();
+	artilist[ART_MERCILESS_MARE].otyp = randartunihorn();
+	artilist[ART_ENRAI].otyp = randartpolearm();
+	artilist[ART_PRINCIPIUM_INCERTI].otyp = randartpolearm();
+	artilist[ART_BOW_OF_HERCULES].otyp = randartbow();
+	artilist[ART_GRADIUS].otyp = randartshortsword();
 
 	artilist[ART_JANA_S_GRAVE_WALL].otyp = randartcloakX();
 	artilist[ART_HENRIETTA_S_DOGSHIT_BOOTS].otyp = randartbootsX();
@@ -415,6 +448,7 @@ init_randarts()
 	artilist[ART_ASBESTOS_MATERIAL].otyp = randartmeleeweaponX();
 	artilist[ART_DO_NOT_DISPLAY_THE_CHARGES].otyp = randartmeleeweaponX();
 	artilist[ART_TANKS_A_LOT].otyp = randartglovesX();
+	artilist[ART_GAUNTLETS_OF_YIN_AND_YANG].otyp = randartglovesX();
 	artilist[ART_DIMVISION].otyp = randartglovesX();
 	artilist[ART_I_M_GETTING_HUNGRY].otyp = randartshieldX();
 	artilist[ART_SUPER_ENERGY_LINES].otyp = randartshieldX();
@@ -473,6 +507,33 @@ init_randarts()
 	artilist[ART_DESANN_S_WRATH].otyp = randartlightsaberX();
 	artilist[ART_DONGOR].otyp = randartvenomX();
 	artilist[ART_HOL_ON_MAN].otyp = randartvenomX();
+	artilist[ART_POWER_POLE].otyp = randartpolearmX();
+	artilist[ART_BALANCE_PSEUDOSHIELD].otyp = randartquarterstaffX();
+	artilist[ART_CROSSBOW_OF_THE_GNOLL_LORD].otyp = randartcrossbowX();
+	artilist[ART_HOWLING_FLAIL].otyp = randartflailX();
+	artilist[ART_MACE_OF_ORCUS].otyp = randartmaceX();
+	artilist[ART_ARK_OF_THE_COVENANT].otyp = randartpickaxeX();
+	artilist[ART_FAMOUS_LANCE].otyp = randartlanceX();
+	artilist[ART_SERPENT_RING_OF_SET].otyp = randartringX();
+	artilist[ART_HOLY_GRAIL].otyp = randartquarterstaffX();
+	artilist[ART_LIBRA_OF_JUSTICE].otyp = randartflailX();
+	artilist[ART_TENRAI].otyp = randartspearX();
+	artilist[ART_QUIXOTIC_SPIRIT].otyp = randartlanceX();
+	artilist[ART_AQUARHAPSODY].otyp = randartbowX();
+	artilist[ART_FIRE_SOUL].otyp = randartshortswordX();
+	artilist[ART_DAEFAROTH].otyp = randartdaggerX();
+	artilist[ART_NOCLAF].otyp = randartscimitarX();
+	artilist[ART_EUTATS_ENOTS].otyp = randartaxeX();
+	artilist[ART_BRAINSTORM].otyp = randartflailX();
+	artilist[ART_POLARIS].otyp = randartmorningstarX();
+	artilist[ART_FLAMESNIPER].otyp = randartbowX();
+	artilist[ART_THUNDERBIRD].otyp = randartboomerangX();
+	artilist[ART_STELLARIS_MATERIA].otyp = randartshortswordX();
+	artilist[ART_ATLACH_NACHA].otyp = randartscimitarX();
+	artilist[ART_KEMONONOYARI].otyp = randartspearX();
+	artilist[ART_NIUR_KRAD].otyp = randartpolearmX();
+	artilist[ART_ARM_OF_OLYMPIA].otyp = randartspearX();
+	artilist[ART_KAZAANA].otyp = randartglovesX();
 
 	artilist[ART_ELLI_S_PSEUDOBAND_OF_POS].otyp = randartmeleeweaponX();
 	artilist[ART_HIGHEST_FEELING].otyp = find_fetish_heels();
@@ -522,6 +583,7 @@ init_randarts()
 	artilist[ART_ARTIFICIAL_FAKE_DIFFICULTY].otyp = find_dnethack_cloak();
 	artilist[ART_JUNETHACK______WINNER].otyp = find_team_splat_cloak();
 	artilist[ART_YOG_SOTHOTH_HELP_ME].otyp = find_eldritch_cloak();
+	artilist[ART_TOMORROW_WENDY_S_CHOICENA].otyp = find_deadly_cloak();
 	artilist[ART_LUISA_S_IRRESISTIBLE_CHARM].otyp = find_erotic_boots();
 	artilist[ART_JANA_S_DECEPTIVE_MASK].otyp = find_secret_helmet();
 	artilist[ART_NOW_IT_BECOMES_DIFFERENT].otyp = find_difficult_cloak();
@@ -718,6 +780,8 @@ int fd;
 {
 	bwrite(fd, (void *) artiexist, sizeof artiexist);
 	bwrite(fd, (void *) artidisco, sizeof artidisco);
+	bwrite(fd, (void *) artilist, sizeof artilist); /* gotta save them, goddammit! --Amy */
+
 }
 
 void
@@ -726,7 +790,8 @@ int fd;
 {
 	mread(fd, (void *) artiexist, sizeof artiexist);
 	mread(fd, (void *) artidisco, sizeof artidisco);
-	hack_artifacts();	/* redo non-saved special cases */
+	mread(fd, (void *) artilist, sizeof artilist);
+	/*hack_artifacts();*/	/* redo non-saved special cases */
 }
 
 const char *
@@ -1735,6 +1800,25 @@ struct monst *mtmp;
 	    retval &= (ptr == &mons[(int)weap->mtype]);
 	} else if (weap->spfx & SPFX_DCLAS) {
 	    retval &= (weap->mtype == (unsigned long)ptr->mlet);
+
+		/* groan, now we have to hardwire those names because it would be too much to ask to have an index number
+		 * in the "struct artifact" defined in artifact.h! that's, like, so retarded... --Amy */
+
+		if (!strncmpi(weap->name, "Jonadab's Brainstorming", 24)) {
+			if (S_DEMON == (unsigned long)ptr->mlet) retval = TRUE;
+		}
+		if (!strncmpi(weap->name, "Shugo", 6)) {
+			if (S_UNICORN == (unsigned long)ptr->mlet) retval = TRUE;
+		}
+		if (!strncmpi(weap->name, "Staff of Moon", 14)) {
+			if (S_VORTEX == (unsigned long)ptr->mlet) retval = TRUE;
+		}
+		if (!strncmpi(weap->name, "Pole of Moon", 13)) {
+			if (S_VORTEX == (unsigned long)ptr->mlet) retval = TRUE;
+		}
+		if (!strncmpi(weap->name, "Staff of Star", 14)) {
+			if (S_VORTEX == (unsigned long)ptr->mlet) retval = TRUE;
+		}
 	} else if (weap->spfx & SPFX_DFLAG1) {
 	    retval &= ((ptr->mflags1 & weap->mtype) != 0L);
 	} else if (weap->spfx & SPFX_DFLAG2) {
@@ -1817,11 +1901,15 @@ struct monst *mon;
 	/* no need for an extra check for `NO_ATTK' because this will
 	   always return 0 for any artifact which has that attribute */
 
+	/* to-hit h@ck by Amy because of the brain-dead programming where PHYS(1,0) gives double damage but PHYS(0,0)
+	 * does not; how the hell am I supposed to make an artifact that only gives double damage but no to-hit??? */
 	if (otmp && otmp->oartifact) {
 		switch (otmp->oartifact) {
 
 			case ART_BIDETHANDER:
 			case ART_DAMNBLAST:
+			case ART_FAMOUS_LANCE:
+			case ART_EMERALD_SWORD:
 			case ART_ROOMMATE_S_SPECIAL_IDEA:
 			case ART_DO_YOU_EVEN_LIFT:
 			case ART_MARINE_THREAT_NEUTERED:
@@ -2380,7 +2468,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	}
 
 	/* STEPHEN WHITE'S NEW CODE */
-	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_SCHOSCHO_BARBITUER || otmp->oartifact == ART_WONDERLIGHT || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
+	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_SHIZUGAMI_S_MIZUCHI || otmp->oartifact == ART_SCHOSCHO_BARBITUER || otmp->oartifact == ART_WONDERLIGHT || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
 	    otmp->dknown = TRUE;
 	    pline_The("twisted weapon poisons %s!",
 		    youdefend ? "you" : mon_nam(mdef));
@@ -2473,7 +2561,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	/* We really want "on a natural 20" but Nethack does it in */
 	/* reverse from AD&D. */
 	if (spec_ability(otmp, SPFX_BEHEAD)) {
-	    if ( (otmp->oartifact == ART_TSURUGI_OF_MURAMASA || otmp->oartifact == ART_GAYSECT || otmp->oartifact == ART_THOUSAND_FRAGMENTS || otmp->oartifact == ART_THEIR_DED || otmp->oartifact == ART_MINOPOWER || otmp->oartifact == ART_LIGHTNING_STROKE || otmp->oartifact == ART_DRAGONCLAN_SWORD || otmp->oartifact == ART_KILLING_EDGE) && dieroll < 2) {
+	    if ( (otmp->oartifact == ART_TSURUGI_OF_MURAMASA || otmp->oartifact == ART_GAYSECT || otmp->oartifact == ART_THOUSAND_FRAGMENTS || otmp->oartifact == ART_THEIR_DED || otmp->oartifact == ART_KATANA_OF_MASAMUNE || otmp->oartifact == ART_MINOPOWER || otmp->oartifact == ART_LIGHTNING_STROKE || otmp->oartifact == ART_DRAGONCLAN_SWORD || otmp->oartifact == ART_KILLING_EDGE) && dieroll < 2) {
 		wepdesc = "The razor-sharp blade";
 
 		if (!youdefend && mdef->data->geno & G_UNIQ) {
@@ -2517,7 +2605,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			goto beheadingdone;
 		} else {
 			/* Invulnerable player won't be bisected */
-			if (bigmonst(youmonst.data) || StrongDiminishedBleeding || Invulnerable || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
+			if (bigmonst(youmonst.data) || (uwep && uwep->oartifact == ART_KATANA_OF_MASAMUNE) || StrongDiminishedBleeding || Invulnerable || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
 				pline("%s cuts deeply into you!",
 				      magr ? Monnam(magr) : wepdesc);
 				*dmgptr *= 2;
@@ -2536,7 +2624,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			willreturntrue = 1;
 			goto beheadingdone;
 		}
-	    } else if (dieroll < 2 || otmp->oartifact == ART_VORPAL_BLADE && mdef->data->mlet == S_JABBERWOCK) {
+	    } else if (dieroll < 2 || (otmp->oartifact == ART_VORPAL_BLADE && mdef->data->mlet == S_JABBERWOCK)) {
 		static const char * const behead_msg[2] = {
 		     "%s beheads %s!",
 		     "%s decapitates %s!"
@@ -3528,9 +3616,14 @@ arti_invoke(obj)
 	boolean invokenotworn = FALSE;
 	if (obj->oclass == ARMOR_CLASS && !(obj->owornmask & W_ARMOR) ) invokenotworn = TRUE;
 	if (obj->oclass == WEAPON_CLASS && !(obj->owornmask & W_WEP) ) invokenotworn = TRUE;
+	if (obj->oclass == RING_CLASS && !(obj->owornmask & W_RING) ) invokenotworn = TRUE;
+	if (obj->oclass == AMULET_CLASS && !(obj->owornmask & W_AMUL) ) invokenotworn = TRUE;
+	if (obj->oclass == IMPLANT_CLASS && !(obj->owornmask & W_IMPLANT) ) invokenotworn = TRUE;
 	if (obj->oclass == BALL_CLASS && !(obj->owornmask & W_WEP) ) invokenotworn = TRUE;
 	if (obj->oclass == CHAIN_CLASS && !(obj->owornmask & W_WEP) ) invokenotworn = TRUE;
 	if (obj->oclass == VENOM_CLASS && !(obj->owornmask & W_WEP) ) invokenotworn = TRUE;
+	if (is_weptool(obj) && !(obj->owornmask & W_WEP) ) invokenotworn = TRUE;
+	if (is_blindfold_slot(obj) && !(obj->owornmask & W_TOOL) ) invokenotworn = TRUE;
 	if (invokenotworn) {
 		pline("That artifact cannot be invoked unless you wear it first.");
 		return 1;
@@ -3733,6 +3826,45 @@ chargingchoice:
 	    }
 	    break;
 	case SPECIAL_INVOKE:
+
+		if (obj->oartifact == ART_AJIHEI) {
+			pline("An aura surrounds your weapon...");
+			obj->oerodeproof = TRUE; /* doesn't repair damage */
+			obj->rknown = TRUE;
+			break;
+		}
+
+		if (obj->oartifact == ART_PRAEFAME) {
+			morehungry(500);
+			You("feel much more hungry than before.");
+			break;
+		}
+
+		if (obj->oartifact == ART_SATELLITE_LINKER) {
+			incr_itimeout(&HDetect_monsters, rn1(40, 40));
+			see_monsters();
+			You("can sense monsters.");
+			break;
+		}
+
+		if (obj->oartifact == ART_KAZAANA) {
+			forget(3);
+			Your("memory is deleted.");
+			break;
+		}
+
+		if (obj->oartifact == ART_HOLYBASHER) {
+			pline("An aura surrounds your weapon...");
+			uncurse(obj, TRUE);
+			break;
+		}
+
+		if (obj->oartifact == ART_ARK_OF_THE_COVENANT) {
+			pline("An aura surrounds your weapon...");
+			uncurse(obj, TRUE);
+			if (!obj->cursed) bless(obj);
+			break;
+		}
 
 		if (obj->oartifact == ART_INCAPUTABLE) {
 			obj->oeroded = obj->oeroded2 = 0;
@@ -4262,6 +4394,25 @@ greenchoice:
 		}
 
 		if (obj->oartifact == ART_BACKPACK_BOMBER) {
+			struct obj *dynamite;
+			dynamite = mksobj(STICK_OF_DYNAMITE, TRUE, FALSE, FALSE);
+			if (dynamite) {
+				if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
+				else {
+					dynamite->dynamitekaboom = 1;
+					dynamite->quan = 1;
+					dynamite->owt = weight(dynamite);
+					dropy(dynamite);
+					attach_bomb_blow_timeout(dynamite, 0, 0);
+					run_timers();
+				}
+			}
+
+			break;
+
+		}
+
+		if (obj->oartifact == ART_POPPY_S_STRIPED_TIGHTS) {
 			struct obj *dynamite;
 			dynamite = mksobj(STICK_OF_DYNAMITE, TRUE, FALSE, FALSE);
 			if (dynamite) {

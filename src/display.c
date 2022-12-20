@@ -682,7 +682,7 @@ display_monster(x, y, mon, sightflags, worm_tail)
     if (!mon_mimic || sensed) {
 	int num;
 
-	if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmf && uarmf->oartifact == ART_STAR_SOLES) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) ) {
+	if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uwep && uwep->oartifact == ART_STARRING_INFERNO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_STARRING_INFERNO) || (uarmf && uarmf->oartifact == ART_STAR_SOLES) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) ) {
 		show_glyph(x,y,cmap_to_glyph(S_grayglyph));
 		return;
 	}
@@ -779,7 +779,7 @@ display_monsterX(x, y, mon, sightflags, worm_tail)
     if (!mon_mimic || sensed) {
 	int num;
 
-	if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmf && uarmf->oartifact == ART_STAR_SOLES) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) ) {
+	if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uwep && uwep->oartifact == ART_STARRING_INFERNO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_STARRING_INFERNO) || (uarmf && uarmf->oartifact == ART_STAR_SOLES) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) ) {
 		show_glyph(x,y,cmap_to_glyph(S_grayglyph));
 		return;
 	}

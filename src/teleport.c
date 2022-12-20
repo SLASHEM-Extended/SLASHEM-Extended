@@ -2463,6 +2463,8 @@ boolean allowtrap;
 		register struct obj *otmp;
 		trycnt = 0;
 
+		if (uwep && uwep->oartifact == ART_IMHULLU && rn2(10)) return;
+
 newtry:
 		direction = rnd(8);
 		pushwidth = rnd(2);
@@ -2515,6 +2517,8 @@ boolean allowtrap;
 		int direction, pushwidth, trycnt;
 		register struct obj *otmp;
 		trycnt = 0;
+
+		if (uwep && uwep->oartifact == ART_IMHULLU && rn2(10)) return;
 
 newtry:
 		direction = rnd(8);

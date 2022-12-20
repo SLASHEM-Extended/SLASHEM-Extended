@@ -2291,6 +2291,36 @@ moveloop()
 
 			}
 
+			if (uwep && uwep->oartifact == ART_END__C_GRIM_REAPER_) {
+
+			    if (rn2(10)) {
+				    monstermoves++;
+				    moves++;
+				    nh_timeout();
+			    } else if (!rn2(2)) {
+				    monstermoves += 2;
+				    moves += 2;
+				    nh_timeout();
+				    nh_timeout();
+			    }
+
+			}
+
+			if (u.twoweap && uswapwep && uswapwep->oartifact == ART_END__C_GRIM_REAPER_) {
+
+			    if (rn2(10)) {
+				    monstermoves++;
+				    moves++;
+				    nh_timeout();
+			    } else if (!rn2(2)) {
+				    monstermoves += 2;
+				    moves += 2;
+				    nh_timeout();
+				    nh_timeout();
+			    }
+
+			}
+
 			if (uarmf && uarmf->oartifact == ART_BALE_OF_BODEN_SPEEDSTOCK) {
 
 			    if (rn2(10)) {
@@ -2357,6 +2387,17 @@ moveloop()
 
 		if (uarmf && uarmf->oartifact == ART_CLIMATE_PROTECTION_IS_ERRI && u.copwantedlevel < 1000) {
 			u.copwantedlevel += 1000;
+		}
+
+		if (uarm && uarm->oartifact == ART_POWERED_SUIT && !rn2(100)) {
+			u.uenmax--;
+			if (u.uenmax < 0) {
+				u.uenmax = 0;
+				drain_alla(1);
+			}
+			if (u.uen > u.uenmax) u.uen = u.uenmax;
+			flags.botl = TRUE;
+			pline("Attention, the powered suit is draining your mana.");
 		}
 
 		if (uwep && uwep->otyp == PINK_LIGHTSWORD && uwep->lamplit && !rn2(100)) {
@@ -7468,6 +7509,18 @@ newbossJANI:
 		if (uarmf && uarmf->oartifact == ART_BEND_FROM_THE_NOISE) {
 			litroomlite(FALSE);
 		}
+		if (uwep && uwep->oartifact == ART_POLAR_STAR) {
+			litroomlite(FALSE);
+		}
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_POLAR_STAR) {
+			litroomlite(FALSE);
+		}
+		if (uwep && uwep->oartifact == ART_POLARIS) {
+			litroomlite(FALSE);
+		}
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_POLARIS) {
+			litroomlite(FALSE);
+		}
 
 		if (FemtrapActiveAntje && u.uhunger >= 2500 && !rn2(50)) {
 			switch (rnd(4)) {
@@ -9138,6 +9191,52 @@ newbossO:
 		}
 
 		if (have_destructionstone() && !rn2(100)) {
+			switch (rnd(4)) {
+				case 1:
+					(void) burnarmor(&youmonst);
+					destroy_item(SCROLL_CLASS, AD_FIRE);
+					destroy_item(SPBOOK_CLASS, AD_FIRE);
+					destroy_item(POTION_CLASS, AD_FIRE);
+					break;
+				case 2:
+					destroy_item(POTION_CLASS, AD_COLD);
+					break;
+				case 3:
+					destroy_item(RING_CLASS, AD_ELEC);
+					destroy_item(WAND_CLASS, AD_ELEC);
+					destroy_item(AMULET_CLASS, AD_ELEC);
+					break;
+				case 4:
+					(void) destroy_item(POTION_CLASS, AD_VENO);
+					(void) destroy_item(FOOD_CLASS, AD_VENO);
+					break;
+			}
+		}
+
+		if (uwep && uwep->oartifact == ART_FLAME_EATER && !rn2(100)) {
+			switch (rnd(4)) {
+				case 1:
+					(void) burnarmor(&youmonst);
+					destroy_item(SCROLL_CLASS, AD_FIRE);
+					destroy_item(SPBOOK_CLASS, AD_FIRE);
+					destroy_item(POTION_CLASS, AD_FIRE);
+					break;
+				case 2:
+					destroy_item(POTION_CLASS, AD_COLD);
+					break;
+				case 3:
+					destroy_item(RING_CLASS, AD_ELEC);
+					destroy_item(WAND_CLASS, AD_ELEC);
+					destroy_item(AMULET_CLASS, AD_ELEC);
+					break;
+				case 4:
+					(void) destroy_item(POTION_CLASS, AD_VENO);
+					(void) destroy_item(FOOD_CLASS, AD_VENO);
+					break;
+			}
+		}
+
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_FLAME_EATER && !rn2(100)) {
 			switch (rnd(4)) {
 				case 1:
 					(void) burnarmor(&youmonst);
@@ -14293,7 +14392,7 @@ past4:
 
 			}
 
-			if ((WereformBug || u.uprops[WEREFORM_BUG].extrinsic || have_wereformstone() || (uarmf && uarmf->oartifact == ART_USE_THE_NORMALNESS_TURNS)) && !rn2(1200 - (200 * night()))) {
+			if ((WereformBug || u.uprops[WEREFORM_BUG].extrinsic || have_wereformstone() || (uwep && uwep->oartifact == ART_LUNATICBRINGER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_LUNATICBRINGER) || (uarmf && uarmf->oartifact == ART_USE_THE_NORMALNESS_TURNS)) && !rn2(1200 - (200 * night()))) {
 
 				int wereformattempts = 0;
 

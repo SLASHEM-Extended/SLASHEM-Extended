@@ -906,7 +906,7 @@ int x,y;
 	}
 
 	/* D: Detonate crossbow bolts from Hellfire if they hit */
-	if (ohit && mwep && mwep->oartifact == ART_HELLFIRE
+	if (ohit && mwep && (mwep->oartifact == ART_HELLFIRE || mwep->oartifact == ART_SEVENTH_SCRIPTURE)
 		  && is_ammo(obj) && ammo_and_launcher(obj, mwep)) {
 	  
 		if (cansee(bhitpos.x,bhitpos.y)) 
@@ -1417,7 +1417,7 @@ m_throw(mon, x, y, dx, dy, range, obj)
 	
 	/* D: Special launcher effects */
 	if (mwep && is_ammo(singleobj) && ammo_and_launcher(singleobj, mwep)) {
-	    if (mwep->oartifact == ART_PLAGUE && is_poisonable(singleobj))
+	    if ((mwep->oartifact == ART_PLAGUE || mwep->oartifact == ART_BOW_OF_HERCULES) && is_poisonable(singleobj))
 			singleobj->opoisoned = 1;
 
 	    /* D: Hellfire is handled in drop_throw */

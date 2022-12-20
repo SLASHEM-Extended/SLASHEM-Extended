@@ -308,11 +308,14 @@ dig()
 	    return(0);
 	}
 
+	/* calculate digging effort */
 	bonus = 10 + rn2(5) + abon() + uwep->spe - greatest_erosionX(uwep) + u.udaminc + RngeBloodlust + (Drunken_boxing && Confusion) + (StrongDrunken_boxing && Confusion);
 	if (uarms && uarms->oartifact == ART_TEH_BASH_R) bonus += 2;
 	if (uarmh && uarmh->oartifact == ART_HELMET_OF_DIGGING) bonus += 5;
 	if (uarmg && itemhasappearance(uarmg, APP_DIGGER_GLOVES)) bonus += 5;
 	if (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) bonus += 5;
+	if (uwep && uwep->oartifact == ART_STONEBITER) bonus += 5;
+	if (uwep && uwep->oartifact == ART_BREAK_OUT) bonus += 5;
 	if (uarmf && uarmf->oartifact == ART_GRAVY_HIDE) bonus += 5;
 	if (tunnels(youmonst.data)) bonus += rn2(3); /* digging monsters really should have a bonus here --Amy */
 	if (needspick(youmonst.data)) bonus += rn2(3); /* and more so if they're dedicated miners (e.g. dwarf) */
@@ -1116,6 +1119,20 @@ dig_up_grave()
 	    You("disturb the honorable dead!");
 	}
 	if (uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN) {
+	    adjalign(-5);
+		u.ualign.sins++;
+		u.alignlim--;
+		adjalign(-10);
+	    You("disturb the honorable dead!");
+	}
+	if (uwep && uwep->oartifact == ART_SAKUSHNIR) {
+	    adjalign(-5);
+		u.ualign.sins++;
+		u.alignlim--;
+		adjalign(-10);
+	    You("disturb the honorable dead!");
+	}
+	if (uswapwep && uswapwep->oartifact == ART_SAKUSHNIR) {
 	    adjalign(-5);
 		u.ualign.sins++;
 		u.alignlim--;

@@ -1526,6 +1526,9 @@ int x, y;
 int
 freehand()
 {
+	if (uwep && uwep->oartifact == ART_WAR_S_SWORD) return 1;
+	if (uwep && uwep->oartifact == ART_BARDICHE_ASSALT) return 1;
+
 	return(!uwep || !welded(uwep) ||
 	   (!bimanual(uwep) && (!uarms || !uarms->cursed)));
 /*	if ((uwep && bimanual(uwep)) ||
@@ -1540,6 +1543,9 @@ freehand()
 int
 freehandX()
 {
+	if (uwep && uwep->oartifact == ART_WAR_S_SWORD) return 1;
+	if (uwep && uwep->oartifact == ART_BARDICHE_ASSALT) return 1;
+
 	if (!PlayerCannotUseSkills) {
 
 		if (uwep && bimanual(uwep) && P_SKILL(P_TWO_HANDED_WEAPON) >= P_EXPERT) return 1;

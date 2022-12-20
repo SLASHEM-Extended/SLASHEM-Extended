@@ -5559,6 +5559,8 @@ doapply()
 				}
 			}
 
+			if (obj->oartifact == ART_SUMMONOR && rn2(10)) cursingchance = 0;
+
 			if (cursingchance > rnd(10)) {
 				if (obj->blessed) unbless(obj);
 				else curse(obj);

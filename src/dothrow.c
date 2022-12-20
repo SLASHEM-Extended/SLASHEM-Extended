@@ -1654,11 +1654,13 @@ boolean hitsroof;
 
 	if (Race_if(PM_ITAQUE)) dmg -= 1;
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) dmg -= 5;
-	if (uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) dmg -= 5;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) dmg -= 5;
 	if (uwep && uwep->oartifact == ART_KLOBB) dmg -= 6;
-	if (uswapwep && uswapwep->oartifact == ART_KLOBB) dmg -= 6;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_KLOBB) dmg -= 6;
 	if (uwep && uwep->oartifact == ART_EXCALIPOOR) dmg -= 9;
-	if (uswapwep && uswapwep->oartifact == ART_EXCALIPOOR) dmg -= 9;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXCALIPOOR) dmg -= 9;
+	if (uwep && uwep->oartifact == ART_VLADSBANE) dmg -= 5;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_VLADSBANE) dmg -= 5;
 
 	if (dmg < 0) dmg = 0;	/* beware negative rings of increase damage */
 	if (Half_physical_damage && rn2(2) ) dmg = (dmg + 1) / 2;
@@ -1750,7 +1752,7 @@ int thrown;
 	}
 	
 	/* KMH -- Handle Plague here */
-	if (launcher && launcher->oartifact == ART_PLAGUE &&
+	if (launcher && (launcher->oartifact == ART_PLAGUE || launcher->oartifact == ART_BOW_OF_HERCULES) &&
 			ammo_and_launcher(obj, launcher) && is_poisonable(obj))
 		obj->opoisoned = 1;
 
@@ -2419,6 +2421,10 @@ boolean polearming;
 	if (StrongBlind_resistance) tmp += rn1(5, 5);
 	if (uarmh && uarmh->oartifact == ART_WAITING_FOR_MELEE) tmp -= 2;
 	if (bmwride(ART_KERSTIN_S_COWBOY_BOOST)) tmp += 2;
+	if (uwep && uwep->oartifact == ART_VLADSBANE) tmp -= 5;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_VLADSBANE) tmp -= 5;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DUAL_MASTERY) tmp += 5;
+	if (uwep && uwep->oartifact == ART_SPINESHOOTER) tmp += 5;
 
 	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 
@@ -3086,7 +3092,7 @@ inaccurateguns:
 
 		/* Detonate bolts shot by Hellfire */
 		if (ammo_and_launcher(obj, launcher) &&
-			(launcher->oartifact == ART_HELLFIRE)) {
+			(launcher->oartifact == ART_HELLFIRE || launcher->oartifact == ART_SEVENTH_SCRIPTURE)) {
 		    if (cansee(bhitpos.x,bhitpos.y)) 
 			pline("%s explodes in a ball of fire!", Doname2(obj));
 		    else You_hear("an explosion");
@@ -3110,7 +3116,7 @@ inaccurateguns:
 			(!objects[otyp].oc_magic || !rn2(5) )))	/* also low chance for loadstones etc. to disappear */
 			|| (obj->oartifact == ART_HOUCHOU)
 			/* WAC catch Hellfire */
-			|| (launcher && launcher->oartifact == ART_HELLFIRE 
+			|| (launcher && (launcher->oartifact == ART_HELLFIRE || launcher->oartifact == ART_SEVENTH_SCRIPTURE)
 			&& is_ammo(obj) && ammo_and_launcher(obj, launcher))
 		   ) {
 		    /* we were breaking 2/3 of everything unconditionally.

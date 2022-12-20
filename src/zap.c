@@ -9696,7 +9696,7 @@ raypassthrough: /* if the player's control magic made it pass through --Amy */
 	/* special reflection types adapted from FHS. It would be too much of a pain to code correctly,
 	 * so I just decide that special reflection amulets "overwrite" standard reflection. --Amy */
 
-			if (uamul && uamul->otyp == AMULET_OF_PRISM) {
+			if ((uamul && uamul->otyp == AMULET_OF_PRISM) || have_spectrumplinggem() || (uamul && uamul->oartifact == ART_GUARDIAN_ANGLE) || (uarmf && uarmf->oartifact == ART_CINDERELLA_S_SLIPPERS) || (uamul && uamul->oartifact == ART_TYRANITAR_S_OWN_GAME) || (uwep && uwep->oartifact == ART_TEN_DIMENSIONAL_SCYTHE) || (uarm && uarm->oartifact == ART_TERRY_PRATCHETT_S_INGENUIT) || (uarmc && uarmc->oartifact == ART_ALLCOLOR_PRISM) ) {
 
 			    if (dx && dy) {
 
@@ -9714,125 +9714,7 @@ raypassthrough: /* if the player's control magic made it pass through --Amy */
 				dy = 0;
 			    }
 
-			} else if (have_spectrumplinggem()) {
-
-			    if (dx && dy) {
-
-				if (rn2(2)) {
-					dx = -dx;
-				} else {
-					dy = -dy;
-				}
-
-			    } else if (dx) {
-				dx = 0;
-				dy = rn2(2) ? -1 : 1;
-			    } else {
-				dx = rn2(2) ? -1 : 1;
-				dy = 0;
-			    }
-
-			} else if (uamul && uamul->oartifact == ART_GUARDIAN_ANGLE) {
-
-			    if (dx && dy) {
-
-				if (rn2(2)) {
-					dx = -dx;
-				} else {
-					dy = -dy;
-				}
-
-			    } else if (dx) {
-				dx = 0;
-				dy = rn2(2) ? -1 : 1;
-			    } else {
-				dx = rn2(2) ? -1 : 1;
-				dy = 0;
-			    }
-
-			} else if (uarmc && uarmc->oartifact == ART_ALLCOLOR_PRISM) {
-
-			    if (dx && dy) {
-
-				if (rn2(2)) {
-					dx = -dx;
-				} else {
-					dy = -dy;
-				}
-
-			    } else if (dx) {
-				dx = 0;
-				dy = rn2(2) ? -1 : 1;
-			    } else {
-				dx = rn2(2) ? -1 : 1;
-				dy = 0;
-			    }
-
-			} else if (uarm && uarm->oartifact == ART_TERRY_PRATCHETT_S_INGENUIT) {
-
-			    if (dx && dy) {
-
-				if (rn2(2)) {
-					dx = -dx;
-				} else {
-					dy = -dy;
-				}
-
-			    } else if (dx) {
-				dx = 0;
-				dy = rn2(2) ? -1 : 1;
-			    } else {
-				dx = rn2(2) ? -1 : 1;
-				dy = 0;
-			    }
-
-			} else if (uamul && uamul->oartifact == ART_TYRANITAR_S_OWN_GAME) {
-
-			    if (dx && dy) {
-
-				if (rn2(2)) {
-					dx = -dx;
-				} else {
-					dy = -dy;
-				}
-
-			    } else if (dx) {
-				dx = 0;
-				dy = rn2(2) ? -1 : 1;
-			    } else {
-				dx = rn2(2) ? -1 : 1;
-				dy = 0;
-			    }
-
-			} else if (uarmf && uarmf->oartifact == ART_CINDERELLA_S_SLIPPERS) {
-
-			    if (dx && dy) {
-
-				if (rn2(2)) {
-					dx = -dx;
-				} else {
-					dy = -dy;
-				}
-
-			    } else if (dx) {
-				dx = 0;
-				dy = rn2(2) ? -1 : 1;
-			    } else {
-				dx = rn2(2) ? -1 : 1;
-				dy = 0;
-			    }
-
-			} else if (uamul && uamul->otyp == AMULET_OF_WARP_DIMENSION) {
-
-			    dx = rn1(3, -1);	/*-1, 0, 1*/
-			    dy = rn1(3, -1);	/*-1, 0, 1*/
-
-			} else if (uamul && uamul->oartifact == ART_PRECIOUS_UNOBTAINABLE_PROP) {
-
-			    dx = rn1(3, -1);	/*-1, 0, 1*/
-			    dy = rn1(3, -1);	/*-1, 0, 1*/
-
-			} else if (uamul && uamul->oartifact == ART_ONE_MOMENT_IN_TIME) {
+			} else if ((uamul && uamul->otyp == AMULET_OF_WARP_DIMENSION) || (uamul && uamul->oartifact == ART_PRECIOUS_UNOBTAINABLE_PROP) || (uamul && uamul->oartifact == ART_ONE_MOMENT_IN_TIME)) {
 
 			    dx = rn1(3, -1);	/*-1, 0, 1*/
 			    dy = rn1(3, -1);	/*-1, 0, 1*/

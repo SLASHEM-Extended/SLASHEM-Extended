@@ -32180,7 +32180,7 @@ register struct permonst *ptr;
 
 	if (Race_if(PM_RODNEYAN) && monsndx(ptr) == PM_RODNEY_S_SISTER) return TRUE;
 
-	if (EnmityBug || u.uprops[ENMITY_BUG].extrinsic || have_inimicalstone() || (uarmf && uarmf->oartifact == ART_HERSAY_PRICE) || (uwep && uwep->oartifact == ART_DRAMA_STAFF) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DRAMA_STAFF) || (uwep && uwep->oartifact == ART_TOMMY_S_DEFERRED_HEEL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_TOMMY_S_DEFERRED_HEEL)) return FALSE;
+	if (EnmityBug || u.uprops[ENMITY_BUG].extrinsic || (uwep && uwep->oartifact == ART_EMERALD_SWORD) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EMERALD_SWORD) || have_inimicalstone() || (uarmf && uarmf->oartifact == ART_HERSAY_PRICE) || (uwep && uwep->oartifact == ART_DRAMA_STAFF) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DRAMA_STAFF) || (uwep && uwep->oartifact == ART_TOMMY_S_DEFERRED_HEEL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_TOMMY_S_DEFERRED_HEEL)) return FALSE;
 
 	if (Race_if(PM_DUTHOL) && !rn2(2)) return FALSE;
 

@@ -7015,6 +7015,7 @@ struct obj *weapon;
 	/* reminder: artifacts that should boost all melee damage need to be in the unarmed function in uhitm.c too --Amy */
 
 	if (uarm && uarm->oartifact == ART_MAEDHROS_SARALONDE) bonus += 2;
+	if (uarmc && uarmc->oartifact == ART_MANTLE_OF_BEAST) bonus += 2;
 
 	if (uarmc && uarmc->oartifact == ART_DISBELIEVING_POWERLORD) bonus += rnd(5);
 
@@ -7095,6 +7096,12 @@ struct obj *weapon;
 	if (weapon && weapon->otyp == CHEMISTRY_SPACE_AXE && (P_SKILL(P_AXE) == P_MASTER) ) bonus += rnd(10);
 	if (weapon && weapon->otyp == CHEMISTRY_SPACE_AXE && (P_SKILL(P_AXE) == P_GRAND_MASTER) ) bonus += rnd(12);
 	if (weapon && weapon->otyp == CHEMISTRY_SPACE_AXE && (P_SKILL(P_AXE) == P_SUPREME_MASTER) ) bonus += rnd(15);
+
+	if (weapon && weapon->otyp == MOON_AXE && (P_SKILL(P_AXE) == P_SKILLED) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == MOON_AXE && (P_SKILL(P_AXE) == P_EXPERT) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == MOON_AXE && (P_SKILL(P_AXE) == P_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == MOON_AXE && (P_SKILL(P_AXE) == P_GRAND_MASTER) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == MOON_AXE && (P_SKILL(P_AXE) == P_SUPREME_MASTER) ) bonus += rnd(15);
 
 	if (weapon && weapon->otyp == GROM_AXE && (P_SKILL(P_AXE) == P_SKILLED) ) bonus += rnd(3);
 	if (weapon && weapon->otyp == GROM_AXE && (P_SKILL(P_AXE) == P_EXPERT) ) bonus += rnd(6);

@@ -686,6 +686,9 @@ struct monst *mtmp;
 	int totalamount = 0;
 	boolean somethingtosteal = FALSE;
 
+	if (uwep && uwep->oartifact == ART_TUKKOMI_HARISEN) return; /* player is immune */
+	if (uwep && uwep->oartifact == ART_YOKOYARI) return;
+
 	int stealtype = isevilvariant ? 3 : rnd(2);
 
 	/* select the artifact to steal */

@@ -1792,6 +1792,9 @@ set_moreluck()
 	if (have_amateurluckstone()) u.moreluck += 5;
 	if (uarmf && uarmf->oartifact == ART_HAPPY_CLOUD) u.moreluck += 5;
 	if (have_suckstonearti()) u.moreluck += 5;
+	if (uwep && uwep->oartifact == ART_LUCKLESS_FOLLY) u.moreluck -= 3;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_LUCKLESS_FOLLY) u.moreluck -= 3;
+
 }
 
 
@@ -2806,6 +2809,8 @@ int x;
 		if (uarm && uarm->oartifact == ART_UBERGAGE) tmp += 3;
 		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
 		if (uwep && uwep->oartifact == ART_STAR_SLAY_GIANTS) tmp += 5;
+		if (uwep && uwep->oartifact == ART_ARM_OF_OLYMPIA) tmp += 10;
+		if (uwep && uwep->oartifact == ART_EMERALD_SWORD) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) tmp += 10;
 		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_DESEAMING_GAME) tmp += 3;
@@ -3065,6 +3070,7 @@ int x;
 		if (x == A_WIS && uwep && uwep->oartifact == ART_SCJWILLX_) tmp += 5;
 		if (x == A_INT && Race_if(PM_MAZIN)) tmp += 2;
 		if (x == A_WIS && Race_if(PM_MAZIN)) tmp += 1;
+		if (x == A_WIS && uwep && uwep->oartifact == ART_EMERALD_SWORD) tmp += 5;
 		if (FemtrapActiveNora && u.uhs == WEAK) tmp += 2;
 		if (FemtrapActiveNora && u.uhs == FAINTING) tmp += 5;
 		if (FemtrapActiveNora && u.uhs == FAINTED) tmp += 10;
@@ -3075,6 +3081,8 @@ int x;
 		if (x == A_INT && uwep && uwep->oartifact == ART_DO_NOT_DISPLAY_THE_CHARGES) tmp += 5;
 		if (x == A_INT && uwep && uwep->oartifact == ART_STAR_SLAY_GIANTS) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_LORENZI_S_CLEANING_RESIDUE) tmp += 2;
+		if (uleft && uleft->oartifact == ART_SERPENT_RING_OF_SET) tmp += 5;
+		if (uright && uright->oartifact == ART_SERPENT_RING_OF_SET) tmp += 5;
 		if (u.combatcommand) tmp += 1;
 
 		if (uarmh && uarmh->oartifact == ART_YOU_DON_T_KNOW_SHIT) tmp -= 3;
@@ -3082,6 +3090,8 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) tmp -= 2;
 		if (uwep && uwep->oartifact == ART_MINOPOWER) tmp -= 3;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_MINOPOWER) tmp -= 3;
+		if (x == A_INT && uwep && uwep->oartifact == ART_SKAZKA_OB_DURAKE) tmp -= 3;
+		if (x == A_INT && u.twoweap && uswapwep && uswapwep->oartifact == ART_SKAZKA_OB_DURAKE) tmp -= 3;
 
 		if (x == A_INT && Race_if(PM_HUMAN_MONKEY) && tmp > 9) tmp = 9;
 		if (uarmh && uarmh->oartifact == ART_DUNCE_POUNCE && tmp > 6) tmp = 6;

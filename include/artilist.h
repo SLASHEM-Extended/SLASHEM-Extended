@@ -10761,12 +10761,12 @@ A("Fowler",				TWO_HANDED_FLAIL,
 	(SPFX_RESTR|SPFX_DCLAS), 0, S_RODENT,
 	PHYS(5,0), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 700L ),
 
-A("Polar Star",				MORNING_STAR, /* randart morning star, waterwalking */
-	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+A("Polar Star",				MORNING_STAR, /* randart morning star, waterwalking, darkens your surroundings every turn */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_EVIL), 0, 0,
 	COLD(5,16),	COLD(0,0), NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 3000L ),
 
-A("Polaris",				MORNING_STAR, /* randart2 morning star, waterwalking */
-	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+A("Polaris",				MORNING_STAR, /* randart2 morning star, waterwalking, darkens your surroundings every turn */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_EVIL), 0, 0,
 	COLD(5,16),	COLD(0,0), NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 3000L ),
 
 A("Runebreaker",				RUNED_ROD,
@@ -10777,8 +10777,8 @@ A("Parryingstaff",				QUARTERSTAFF, /* randart quarterstaff, 7 extra points of A
 	(SPFX_RESTR), 0, 0,
 	PHYS(8,3), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 700L ),
 
-A("Sakushnir",				DWARVISH_SPEAR,
-	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+A("Sakushnir",				DWARVISH_SPEAR, /* enforces samurai conduct */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_EVIL), 0, 0,
 	ELEC(5,15), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 4000L ),
 
 A("Revolter",				BAMBOO_SPEAR, /* conflict */
@@ -10853,8 +10853,8 @@ A("Flame Eater",				BATTLE_AXE, /* destruction effect */
 	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_EVIL), 0, 0,
 	FIRE(5,16),	FIRE(0,0), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 3000L ),
 
-A("Fire Eater",				INKUTLASS,
-	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+A("Fire Eater",				INKUTLASS, /* weakens sight like hc alien */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_EVIL), 0, 0,
 	FIRE(5,16),	FIRE(0,0), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 3000L ),
 
 A("Onikirimaru",				KATANA,
@@ -11081,12 +11081,12 @@ A("Hide Penetrator",				STACK_JAVELIN,
 	(SPFX_RESTR|SPFX_SEARCH|SPFX_DEFN), 0, 0,
 	PHYS(12,0), DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1200L ),
 
-A("Flame Pillar",				SPEAR,
-	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+A("Flame Pillar",				SPEAR, /* halves your AC (stacks with dimness) */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_EVIL), 0, 0,
 	FIRE(5,20),	FIRE(0,0), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
-A("Ice Pillar",				SPEAR,
-	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+A("Ice Pillar",				SPEAR, /* halves your AC (stacks with dimness) */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_EVIL), 0, 0,
 	COLD(5,20),	COLD(0,0), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
 A("Skazka ob Durake",				PITCHFORK, /* 7 extra points of AC, sickness resistance, -3 INT when wielded */
@@ -11228,6 +11228,10 @@ A("The Crossbow of Carl",				CROSSBOW,
 A("Gjallar",				TOOLED_HORN,
 	(SPFX_RESTR|SPFX_INTEL|SPFX_LUCK|SPFX_WARN|SPFX_HPHDAM), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 5000L ),
+
+A("Tomorrow Wendy's Choicena",				LEATHER_CLOAK, /* initialized to always be deadly cloak, wendy trap effect, if you're female it also has premature death and perilous life saving */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
 /*
  *	Stormbringer only has a 2 because it can drain a level,

@@ -554,6 +554,20 @@ register struct monst *mtmp;
 	    adjalign(-5);
 	}
 
+	if (uwep && uwep->oartifact == ART_SAKUSHNIR && mtmp->mpeaceful) {
+	    You("dishonorably attack the innocent!");
+		u.ualign.sins++;
+		u.alignlim--;
+	    adjalign(-5);
+	}
+
+	if (uswapwep && uswapwep->oartifact == ART_SAKUSHNIR && mtmp->mpeaceful) {
+	    You("dishonorably attack the innocent!");
+		u.ualign.sins++;
+		u.alignlim--;
+	    adjalign(-5);
+	}
+
 /* as well as for the way of the Jedi */
 	if (Role_if(PM_JEDI) && mtmp->mpeaceful) {
 	    You("violate the way of the Jedi!");
@@ -880,6 +894,7 @@ register struct monst *mtmp;
 	if (StrongBlind_resistance) tmp += rn1(5, 5);
 	if (uarmh && uarmh->oartifact == ART_WAITING_FOR_MELEE) tmp -= 2;
 	if (bmwride(ART_KERSTIN_S_COWBOY_BOOST)) tmp += 2;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DUAL_MASTERY) tmp += 5;
 
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
 	if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
@@ -906,6 +921,9 @@ register struct monst *mtmp;
 		if (uarmf && is_metallic(uarmf)) tmp -= rnd(3);
 	}
 
+	if (uwep && uwep->oartifact == ART_VLADSBANE) tmp -= 5;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_VLADSBANE) tmp -= 5;
+
 	if (Race_if(PM_PLAYER_SKELETON)) tmp -= u.ulevel; /* sorry */
 
 	if (Race_if(PM_DEVELOPER)) tmp += 3;
@@ -916,6 +934,11 @@ register struct monst *mtmp;
 	if (Race_if(PM_VIETIS)) tmp -= rnd(10);
 
 	if (humanoid(mtmp->data) && is_female(mtmp->data) && FemtrapActiveWendy) tmp -= rnd(20);
+
+	if (uwep && uwep->oartifact == ART_LUCKLESS_FOLLY && (Luck > 0)) tmp -= Luck;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_LUCKLESS_FOLLY && (Luck > 0)) tmp -= Luck;
+
+	if (!u.twoweap && uwep && uwep->oartifact == ART_LUCKLESS_FOLLY && (Luck < 0)) tmp -= Luck;
 
 	/* early-game bonuses to make starting characters not suck too badly --Amy */
 	if (u.ulevel < 6) tmp += 1;
@@ -1760,6 +1783,7 @@ int dieroll;
 		if (Role_if(PM_GLADIATOR) && uarm && itemhasappearance(uarm, APP_ARENA_ROBE)) tmp++;
 		if (uarm && uarm->oartifact == ART_MAEDHROS_SARALONDE) tmp += 2;
 		if (uarmc && uarmc->oartifact == ART_DISBELIEVING_POWERLORD) tmp += rnd(5);
+		if (uarmc && uarmc->oartifact == ART_MANTLE_OF_BEAST) tmp += 2;
 
 		if (uleft && uleft->otyp == RIN_IMPACT) tmp += rnd(5);
 		if (uright && uright->otyp == RIN_IMPACT) tmp += rnd(5);
@@ -3505,6 +3529,8 @@ int dieroll;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_KLOBB) tmp -= 6;
 		if (uwep && uwep->oartifact == ART_EXCALIPOOR) tmp -= 9;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXCALIPOOR) tmp -= 9;
+		if (uwep && uwep->oartifact == ART_VLADSBANE) tmp -= 5;
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_VLADSBANE) tmp -= 5;
 
 		if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 
@@ -3697,6 +3723,9 @@ int dieroll;
 
 		}
 
+		/* luckless folly: increase damage with low luck, decrease with high luck --Amy */
+		if (wep && wep->oartifact == ART_LUCKLESS_FOLLY) tmp -= Luck;
+
 		if (wep && wep->otyp == COLLUSION_KNIFE && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5))) {
 			pline("Collusion!");
 			litroomlite(FALSE);
@@ -3719,6 +3748,28 @@ int dieroll;
 		if (wep && wep->otyp == DARKNESS_CLUB && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5))) {
 			pline("Collusion!");
 			litroomlite(FALSE);
+		}
+
+		if (wep && wep->oartifact == ART_GAE_BUIDHE) {
+			mon->bleedout += rnd(10);
+			pline("%s is bleeding!", Monnam(mon));
+		}
+
+		if (!thrown && wep && wep->oartifact == ART_SWORDBREAKER) {
+
+			if ( (monwep = MON_WEP(mon)) != 0) {
+				monwep = MON_WEP(mon);
+
+				if (monwep && (monwep->spe > -10) && !obj_resists(monwep, 0, 95) ) {
+					monwep->spe--;
+					pline("%s's weapon degrades.", Monnam(mon));
+				}
+			}
+		}
+
+		if (wep && wep->oartifact == ART_FIREBIRD && wep->spe > -20 && !rn2(10)) {
+			wep->spe--;
+			pline("The boomerang degrades.");
 		}
 
 		if (wep && wep->oartifact == ART_SVEN_S_GARBAGE_BOOSTER) {
@@ -4199,6 +4250,20 @@ melatechoice:
 		u.alignlim--;
 	    }
 	    if (uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN && !Race_if(PM_IRAHA) && !Race_if(PM_POISONER)) {
+		You("dishonorably use a poisoned weapon!");
+		adjalign(-1);
+		adjalign(-5);
+		u.ualign.sins++;
+		u.alignlim--;
+	    }
+	    if (uwep && uwep->oartifact == ART_SAKUSHNIR && !Race_if(PM_IRAHA) && !Race_if(PM_POISONER)) {
+		You("dishonorably use a poisoned weapon!");
+		adjalign(-1);
+		adjalign(-5);
+		u.ualign.sins++;
+		u.alignlim--;
+	    }
+	    if (uswapwep && uswapwep->oartifact == ART_SAKUSHNIR && !Race_if(PM_IRAHA) && !Race_if(PM_POISONER)) {
 		You("dishonorably use a poisoned weapon!");
 		adjalign(-1);
 		adjalign(-5);

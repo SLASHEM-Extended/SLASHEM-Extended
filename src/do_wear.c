@@ -4395,6 +4395,11 @@ register struct obj *obj;
 		pline("A terrible aura of darkness and eternal damnation surrounds your ring.");
     }
 
+    if (obj->oartifact == ART_PRAEFAME && !obj->cursed) {
+		curse(obj);
+		Your("ring seems to have cursed itself.");
+    }
+
     if (obj->oartifact == ART_VERSION_CONTROL) {
 		if (!obj->cursed) {
 			curse(obj);
@@ -5939,6 +5944,7 @@ find_ac()
 	if (uarmh && uarmh->oartifact == ART_CROWN_OF_THE_SAINT_KING) uac -= 5;
 	if (uarmh && uarmh->oartifact == ART_CASQUESPIRE_TRANSLATE) uac -= 5;
 	if (uarmh && uarmh->oartifact == ART_HARD_HAT_AREA) uac -= 5;
+	if (uarmh && uarmh->oartifact == ART_SATELLITE_LINKER) uac -= 5;
 	if (uarmh && uarmh->oartifact == ART_STEELSKULL_PROTECTOR) uac -= 3;
 	if (uarmg && uarmg->oartifact == ART_PROTECT_FROM_BACKLASH) uac -= 3;
 	if (uarmh && uarmh->oartifact == ART_HELM_OF_THE_DARK_LORD) uac -= 5;
@@ -5954,6 +5960,9 @@ find_ac()
 	if (uleft && uleft->oartifact == ART_SCRAWNY_PIPSQUEAK) uac -= 5;
 	if (uright && uright->oartifact == ART_SCRAWNY_PIPSQUEAK) uac -= 5;
 	if (uwep && uwep->oartifact == ART_ACTA_METALLURGICA_VOL___) uac -= 5;
+	if (uwep && uwep->oartifact == ART_PARRYINGSTAFF) uac -= 7;
+	if (uwep && uwep->oartifact == ART_ALIETTA_S_PARASOL) uac -= 7;
+	if (uwep && uwep->oartifact == ART_SKAZKA_OB_DURAKE) uac -= 7;
 	if (uarm && uarm->oartifact == ART_MAEDHROS_SARALONDE) uac -= 5;
 	if (uarm && uarm->oartifact == ART_QUARRY) uac -= 5;
 	if (uarm && uarm->oartifact == ART_SHRINK_S_AID) uac -= 7;
@@ -5982,6 +5991,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_COAL_PEER) uac += 5;
 	if (uarm && uarm->oartifact == ART_ALUCART_MAIL) uac += 5;
 	if (uwep && uwep->oartifact == ART_VERSUS_ELECTRICALLY_BASED_) uac -= 10;
+	if (uwep && uwep->oartifact == ART_SHARPENED_OAR) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_LAURA_S_SWIMSUIT) uac += 5;
 	if (uwep && uwep->oartifact == ART_ELOPLUS_STAT) uac -= 1;
 	if (uarm && uarm->oartifact == ART_BLUEFORM) uac -= 2;
@@ -6278,6 +6288,34 @@ find_ac()
 	}
 
 	if (Dimmed) {
+		int difference = (-(uac - 10));
+		difference = difference / 2;
+		if (difference > 0) uac = 10 - difference;
+		
+	}
+
+	if (uwep && uwep->oartifact == ART_FLAME_PILLAR) {
+		int difference = (-(uac - 10));
+		difference = difference / 2;
+		if (difference > 0) uac = 10 - difference;
+		
+	}
+
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_FLAME_PILLAR) {
+		int difference = (-(uac - 10));
+		difference = difference / 2;
+		if (difference > 0) uac = 10 - difference;
+		
+	}
+
+	if (uwep && uwep->oartifact == ART_ICE_PILLAR) {
+		int difference = (-(uac - 10));
+		difference = difference / 2;
+		if (difference > 0) uac = 10 - difference;
+		
+	}
+
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ICE_PILLAR) {
 		int difference = (-(uac - 10));
 		difference = difference / 2;
 		if (difference > 0) uac = 10 - difference;

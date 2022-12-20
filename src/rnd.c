@@ -2644,7 +2644,6 @@ int
 randartlightsaber()
 {
 	int result;
-reroll:
 	result = rnd_class(GREEN_LIGHTSABER, MYSTERY_LIGHTSABER);
 	return result;
 }
@@ -2653,8 +2652,159 @@ int
 randartpolearm()
 {
 	int result;
-reroll:
 	result = rnd_class(PARTISAN, BEC_DE_CORBIN);
+	return result;
+}
+
+int
+randartlongsword()
+{
+	int result;
+	result = rnd_class(LONG_SWORD, GREAT_HOUCHOU);
+	return result;
+}
+
+int
+randartbroadsword()
+{
+	int result;
+	result = rnd_class(PAPER_SWORD, MEATSWORD);
+	return result;
+}
+
+int
+randartshortsword()
+{
+	int result;
+	result = rnd_class(ORCISH_SHORT_SWORD, VIBROBLADE);
+	return result;
+}
+
+int
+randartscimitar()
+{
+	int result;
+	result = rnd_class(SCIMITAR, HIGH_ELVEN_WARSWORD);
+	return result;
+}
+
+int
+randartunihorn()
+{
+	int result;
+	result = rnd_class(UNICORN_HORN, BUBBLEHORN);
+	return result;
+}
+
+int
+randarttrident()
+{
+	int result;
+	result = rnd_class(TRIDENT, MANCATCHER);
+	return result;
+}
+
+int
+randartflail()
+{
+	int result;
+	result = rnd_class(FLAIL, OBSID);
+	return result;
+}
+
+int
+randartlance()
+{
+	int result;
+	result = rnd_class(LANCE, SPEC_LANCE);
+	return result;
+}
+
+int
+randartcrossbow()
+{
+	int result;
+	result = rnd_class(CROSSBOW, HELO_CROSSBOW);
+	return result;
+}
+
+int
+randarthammer()
+{
+	int result;
+	result = rnd_class(WAR_HAMMER, PROSTITUTE_SHOE);
+	return result;
+}
+
+int
+randartmorningstar()
+{
+	int result;
+	result = rnd_class(MORNING_STAR, YESTERDAY_STAR);
+	return result;
+}
+
+int
+randartaxe()
+{
+	int result;
+	result = rnd_class(AXE, CHEMISTRY_SPACE_AXE);
+	return result;
+}
+
+int
+randartboomerang()
+{
+	int result;
+	result = rnd_class(BOOMERANG, DARK_BATARANG);
+	return result;
+}
+
+int
+randartsling()
+{
+	int result;
+	result = rnd_class(SLING, SNIPESLING);
+	return result;
+}
+
+int
+randartspear()
+{
+	int result;
+	result = rnd_class(ORCISH_SPEAR, CERAMIC_SPEAR);
+	return result;
+}
+
+int
+randarttwohandedsword()
+{
+	int result;
+	result = rnd_class(TWO_HANDED_SWORD, ETHER_SAW);
+	return result;
+}
+
+int
+randartpickaxe()
+{
+	int result;
+	result = rnd_class(PICK_AXE, MYSTERY_PICK);
+	return result;
+}
+
+int
+randartmace()
+{
+	int result;
+	result = rnd_class(SILVER_MACE, BACKHAND_MACE);
+	return result;
+}
+
+int
+randartwhip()
+{
+	int result;
+	result = rnd_class(BULLWHIP, SECRET_WHIP);
 	return result;
 }
 
@@ -2662,7 +2812,6 @@ int
 randartdagger()
 {
 	int result;
-reroll:
 	result = rnd_class(ORCISH_DAGGER, GREAT_DAGGER);
 	return result;
 }
@@ -2671,8 +2820,15 @@ int
 randartquarterstaff()
 {
 	int result;
-reroll:
 	result = rnd_class(QUARTERSTAFF, PLATINUM_FIRE_HOOK);
+	return result;
+}
+
+int
+randartbow()
+{
+	int result;
+	result = rnd_class(ORCISH_BOW, WILDHILD_BOW);
 	return result;
 }
 
@@ -2680,7 +2836,6 @@ int
 randartknife()
 {
 	int result;
-reroll:
 	result = rnd_class(WORM_TOOTH, TOOTH_OF_AN_ALGOLIAN_SUNTIGER);
 	return result;
 }
@@ -2895,8 +3050,183 @@ int
 randartlightsaberX()
 {
 	int result;
-reroll:
 	result = GREEN_LIGHTSABER + rn2((MYSTERY_LIGHTSABER + 1) - GREEN_LIGHTSABER);
+	return result;
+}
+
+int
+randartpolearmX()
+{
+	int result;
+	result = PARTISAN + rn2((BEC_DE_CORBIN + 1) - PARTISAN);
+	return result;
+}
+
+int
+randartlongswordX()
+{
+	int result;
+	result = LONG_SWORD + rn2((GREAT_HOUCHOU + 1) - LONG_SWORD);
+	return result;
+}
+
+int
+randartbroadswordX()
+{
+	int result;
+	result = PAPER_SWORD + rn2((MEATSWORD + 1) - PAPER_SWORD);
+	return result;
+}
+
+int
+randartshortswordX()
+{
+	int result;
+	result = ORCISH_SHORT_SWORD + rn2((VIBROBLADE + 1) - ORCISH_SHORT_SWORD);
+	return result;
+}
+
+int
+randartscimitarX()
+{
+	int result;
+	result = SCIMITAR + rn2((HIGH_ELVEN_WARSWORD + 1) - SCIMITAR);
+	return result;
+}
+
+int
+randartunihornX()
+{
+	int result;
+	result = UNICORN_HORN + rn2((BUBBLEHORN + 1) - UNICORN_HORN);
+	return result;
+}
+
+int
+randarttridentX()
+{
+	int result;
+	result = TRIDENT + rn2((MANCATCHER + 1) - TRIDENT);
+	return result;
+}
+
+int
+randartflailX()
+{
+	int result;
+	result = FLAIL + rn2((OBSID + 1) - FLAIL);
+	return result;
+}
+
+int
+randartlanceX()
+{
+	int result;
+	result = LANCE + rn2((SPEC_LANCE + 1) - LANCE);
+	return result;
+}
+
+int
+randartcrossbowX()
+{
+	int result;
+	result = CROSSBOW + rn2((HELO_CROSSBOW + 1) - CROSSBOW);
+	return result;
+}
+
+int
+randarthammerX()
+{
+	int result;
+	result = WAR_HAMMER + rn2((PROSTITUTE_SHOE + 1) - WAR_HAMMER);
+	return result;
+}
+
+int
+randartmorningstarX()
+{
+	int result;
+	result = MORNING_STAR + rn2((YESTERDAY_STAR + 1) - MORNING_STAR);
+	return result;
+}
+
+int
+randartaxeX()
+{
+	int result;
+	result = AXE + rn2((CHEMISTRY_SPACE_AXE + 1) - AXE);
+	return result;
+}
+
+int
+randartboomerangX()
+{
+	int result;
+	result = BOOMERANG + rn2((DARK_BATARANG + 1) - BOOMERANG);
+	return result;
+}
+
+int
+randartslingX()
+{
+	int result;
+	result = SLING + rn2((SNIPESLING + 1) - SLING);
+	return result;
+}
+
+int
+randartspearX()
+{
+	int result;
+	result = ORCISH_SPEAR + rn2((CERAMIC_SPEAR + 1) - ORCISH_SPEAR);
+	return result;
+}
+
+int
+randarttwohandedswordX()
+{
+	int result;
+	result = TWO_HANDED_SWORD + rn2((ETHER_SAW + 1) - TWO_HANDED_SWORD);
+	return result;
+}
+
+int
+randartpickaxeX()
+{
+	int result;
+	result = PICK_AXE + rn2((MYSTERY_PICK + 1) - PICK_AXE);
+	return result;
+}
+
+int
+randartmaceX()
+{
+	int result;
+	result = SILVER_MACE + rn2((BACKHAND_MACE + 1) - SILVER_MACE);
+	return result;
+}
+
+int
+randartwhipX()
+{
+	int result;
+	result = BULLWHIP + rn2((SECRET_WHIP + 1) - BULLWHIP);
+	return result;
+}
+
+int
+randartdaggerX()
+{
+	int result;
+	result = ORCISH_DAGGER + rn2((GREAT_DAGGER + 1) - ORCISH_DAGGER);
+	return result;
+}
+
+int
+randartknifeX()
+{
+	int result;
+	result = WORM_TOOTH + rn2((TOOTH_OF_AN_ALGOLIAN_SUNTIGER + 1) - WORM_TOOTH);
 	return result;
 }
 
@@ -2904,7 +3234,6 @@ int
 randartquarterstaffX()
 {
 	int result;
-reroll:
 	result = QUARTERSTAFF + rn2((PLATINUM_FIRE_HOOK + 1) - QUARTERSTAFF);
 	return result;
 }
@@ -2913,7 +3242,6 @@ int
 randartbowX()
 {
 	int result;
-reroll:
 	result = ORCISH_BOW + rn2((WILDHILD_BOW + 1) - ORCISH_BOW);
 	return result;
 }

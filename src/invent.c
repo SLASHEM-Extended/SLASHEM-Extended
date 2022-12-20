@@ -24199,15 +24199,15 @@ boolean knoweverything;
 				case ART_FOWLER:
 					pline("Artifact specs: +5 to-hit and double damage to rodents, neutral."); break;
 				case ART_POLAR_STAR:
-					pline("Artifact specs: +5 to-hit and +16 damage to cold-susceptible monsters, cold resistance and waterwalking when wielded, neutral."); break;
+					pline("Artifact specs: +5 to-hit and +16 damage to cold-susceptible monsters, cold resistance and waterwalking when wielded, darkens your surroundings, neutral."); break;
 				case ART_POLARIS:
-					pline("Artifact specs: +5 to-hit and +16 damage to cold-susceptible monsters, cold resistance and waterwalking when wielded, neutral."); break;
+					pline("Artifact specs: +5 to-hit and +16 damage to cold-susceptible monsters, cold resistance and waterwalking when wielded, darkens your surroundings, neutral."); break;
 				case ART_RUNEBREAKER:
 					pline("Artifact specs: +5 to-hit and double damage to liches, magic resistance when wielded, neutral."); break;
 				case ART_PARRYINGSTAFF:
 					pline("Artifact specs: +8 to-hit and +3 damage, 7 extra points of AC when wielded, neutral."); break;
 				case ART_SAKUSHNIR:
-					pline("Artifact specs: +5 to-hit and +15 damage to shock-susceptible monsters, neutral."); break;
+					pline("Artifact specs: +5 to-hit and +15 damage to shock-susceptible monsters, forces you to adhere to the samurai conduct, neutral."); break;
 				case ART_REVOLTER:
 					pline("Artifact specs: +5 to-hit and double damage to lords and princes, conflict when wielded, neutral."); break;
 				case ART_ASUIBIHC_FO_NAIDRAUG:
@@ -24245,7 +24245,7 @@ boolean knoweverything;
 				case ART_FLAME_EATER:
 					pline("Artifact specs: +5 to-hit and +16 damage to fire-susceptible monsters, fire resistance and item destruction when wielded, chaotic."); break;
 				case ART_FIRE_EATER:
-					pline("Artifact specs: +5 to-hit and +16 damage to fire-susceptible monsters, fire resistance when wielded, chaotic."); break;
+					pline("Artifact specs: +5 to-hit and +16 damage to fire-susceptible monsters, fire resistance and prevents you from seeing at a distance when wielded, chaotic."); break;
 				case ART_ONIKIRIMARU:
 					pline("Artifact specs: +5 to-hit and double damage to ogres, chaotic."); break;
 				case ART_SPINESHOOTER:
@@ -24359,9 +24359,9 @@ boolean knoweverything;
 				case ART_HIDE_PENETRATOR:
 					pline("Artifact specs: +12 to-hit and double damage, searching and magic resistance when wielded."); break;
 				case ART_FLAME_PILLAR:
-					pline("Artifact specs: +5 to-hit and +20 damage to fire-susceptible monsters, fire resistance when wielded."); break;
+					pline("Artifact specs: +5 to-hit and +20 damage to fire-susceptible monsters, halves your AC, fire resistance when wielded."); break;
 				case ART_ICE_PILLAR:
-					pline("Artifact specs: +5 to-hit and +20 damage to cold-susceptible monsters, cold resistance when wielded."); break;
+					pline("Artifact specs: +5 to-hit and +20 damage to cold-susceptible monsters, halves your AC, cold resistance when wielded."); break;
 				case ART_SKAZKA_OB_DURAKE:
 					pline("Artifact specs: +30 damage to demons, 7 extra points of AC, sickness resistance and -3 intelligence when wielded."); break;
 				case ART_TEN_DIMENSIONAL_SCYTHE:
@@ -24432,6 +24432,8 @@ boolean knoweverything;
 					pline("Artifact specs: +5 to-hit and +6 damage, reflection and ESP when wielded, chaotic."); break;
 				case ART_GJALLAR:
 					pline("Artifact specs: half physical damage, warning and acts as a luckstone when wielded, neutral."); break;
+				case ART_TOMORROW_WENDY_S_CHOICENA:
+					pline("Artifact specs: wendy trap effect when worn, and if you're female it also conveys premature death and perilous life saving."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

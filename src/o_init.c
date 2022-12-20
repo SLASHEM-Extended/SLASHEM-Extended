@@ -2926,6 +2926,19 @@ find_eldritch_cloak()
 }
 
 int
+find_deadly_cloak()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_DEADLY_CLOAK)) return i;
+    }
+
+    impossible("deadly cloak not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_erotic_boots()
 {
     register int i;

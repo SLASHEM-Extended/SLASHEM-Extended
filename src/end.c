@@ -1395,6 +1395,39 @@ lsdone:
 	}
 flotationdone:
 
+	if ((uwep && uwep->oartifact == ART_STELLARIS_MATERIA) && how <= GENOCIDED) {
+		pline("But wait...");
+		Your("weapon %s!", !Blind ? "begins to glow" : "feels warm");
+		if (how == CHOKING) You("vomit ...");
+		You_feel("much better!");
+		pline_The("weapon crumbles to dust!");
+		useup(uwep);
+
+		if (wanttodie) {
+			pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+			goto stellarisdone;
+		}
+
+		(void) adjattrib(A_CON, -1, TRUE, TRUE);
+		if(u.uhpmax <= 0) u.uhpmax = 10;	/* arbitrary */
+		savelife(how);
+		u.lifesavepenalty++;
+		if (how == GENOCIDED)
+			pline("Unfortunately you are still genocided...");
+		else {
+
+			killer = 0;
+			killer_format = 0;
+#ifdef LIVELOGFILE
+			livelog_avert_death();
+#endif
+			u.youaredead = 0;
+
+			return;
+		}
+	}
+stellarisdone:
+
 	if ((uarmf && uarmf->oartifact == ART_GODLY_POSTMAN) && how <= GENOCIDED) {
 		pline("But wait...");
 		Your("pair of boots %s!", !Blind ? "begins to glow" : "feels warm");
@@ -1564,6 +1597,75 @@ implantdone:
 
 	}
 menunosedone:
+
+	if ((flags.female && uarmc && uarmc->oartifact == ART_TOMORROW_WENDY_S_CHOICENA) && how < GENOCIDED) {
+		pline("But wait! You have perilous life saving!");
+
+		if (yn_function("Come back to life?", ynchars, 'y') == 'y' ) {
+
+			if (wanttodie) {
+				pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+				goto wendydone;
+			}
+
+			if (u.ulevel > 2) {
+			    losexp("wendy's choice", TRUE, FALSE);
+			    losexp("wendy's choice", TRUE, FALSE);
+			    pline("You made the conscious choice to rise from the dead!");
+			    if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
+			    savelife(how);
+			    killer = 0;
+			    killer_format = 0;
+
+				/* lose all items */
+
+			while (invent) {
+			    for (otmp = invent; otmp; otmp = otmp2) {
+			      otmp2 = otmp->nobj;
+
+				if (evades_destruction(otmp) ) dropx(otmp);
+				else {
+				delete_contents(otmp);
+				useup(otmp);}
+			    }
+			}
+
+				/* lose all spells */
+				for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++) {
+			    spellid(n) = NO_SPELL;
+				}
+
+				if (Aggravate_monster) {
+					u.aggravation = 1;
+					reset_rndmonst(NON_PM);
+				}
+
+				(void) makemon(mkclass(S_HUMAN,0), u.ux, u.uy, NO_MM_FLAGS);
+				(void) makemon(mkclass(S_HUMANOID,0), u.ux, u.uy, NO_MM_FLAGS);
+				(void) makemon(mkclass(S_DEMON,0), u.ux, u.uy, NO_MM_FLAGS);
+				(void) makemon(mkclass(S_GNOME,0), u.ux, u.uy, NO_MM_FLAGS);
+				(void) makemon(mkclass(S_OGRE,0), u.ux, u.uy, NO_MM_FLAGS);
+				(void) makemon(mkclass(S_GIANT,0), u.ux, u.uy, NO_MM_FLAGS);
+				(void) makemon(mkclass(S_KOP,0), u.ux, u.uy, NO_MM_FLAGS);
+				(void) makemon(mkclass(S_ORC,0), u.ux, u.uy, NO_MM_FLAGS);
+
+				u.aggravation = 0;
+
+			    (void) safe_teleds_normalterrain(FALSE);
+
+#ifdef LIVELOGFILE
+			    livelog_avert_death();
+#endif
+			    u.youaredead = 0;
+
+			    return;
+			}
+
+			else pline("You should have listened to the voices you heard yesterday, they said: 'Tomorrow, Wendy, you're going to die.'");
+
+		}
+	}
+wendydone:
 
 	if (StrongStoned_chiller && how < GENOCIDED) {
 		pline("But wait! You have perilous life saving!");
