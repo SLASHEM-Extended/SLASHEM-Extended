@@ -3233,6 +3233,7 @@ inaccurateguns:
 			} else {
 				obfree(obj, (struct obj *)0);
 				u.cnd_ammomulched++; /* known problem: bullets can also run this code --Amy */
+				if (RngeMulchingDisplay || (uarm && uarm->oartifact == ART_SEE_THE_MULCH_STATE) ) Your("projectile has mulched.");
 			}
 			return 1;
 		    }

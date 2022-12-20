@@ -726,6 +726,8 @@ struct mkroom *sroom;
 
 	if (type == LETTERSALADROOM && moreorless < 75) moreorless = 75; /* supposed to always be close to maxxed --Amy */
 
+	if (RngeKillerFilling && moreorless < 100) moreorless = 100;
+
 	if (moreorless < 1) moreorless = 1;
 	if (moreorless > 100) moreorless = 100;
 

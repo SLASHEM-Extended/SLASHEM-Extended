@@ -124,8 +124,8 @@ struct obj {
 
 	Bitfield(yours,1);	/* obj is yours (eg. thrown by you) */
 	Bitfield(was_thrown,1); /* thrown by the hero since last picked up */
-	Bitfield(mstartinvent,1); /* item is part of a monster's starting inventory --Amy */
-	Bitfield(mstartinventB,1);
+	Bitfield(mstartinvent,1); /* musable item is part of a monster's starting inventory --Amy */
+	Bitfield(mstartinventB,1); /* equipment is part of a monster's starting inventory --Amy */
 	Bitfield(mstartinventC,1); /* very likely (90%) to be erased on monster's death --Amy */
 	Bitfield(mstartinventD,1); /* likely (75%) to be erased on monster's death --Amy */
 	Bitfield(mstartinventE,1); /* extremely likely (95%) to be erased on monster's death --Amy */

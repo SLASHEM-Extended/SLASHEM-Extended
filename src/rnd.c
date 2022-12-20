@@ -1548,7 +1548,7 @@ randenchantment()
 
 	} else if (!rn2(10)) {
 
-		switch (rnd(109)) {
+		switch (rnd(119)) {
 			case 1: return HALLU_PARTY;
 			case 2: return DRUNKEN_BOXING;
 			case 3: return STUNNOPATHY;
@@ -1658,6 +1658,17 @@ randenchantment()
 			case 107: return RNGE_ECHOLOCATION;
 			case 108: return RNGE_STACKMESSAGING;
 			case 109: return RNGE_OVERVIEW_IMPROVEMENT;
+			case 110: return RNGE_NASTY_REDUCTION;
+			case 111: return RNGE_TECH_REUSE;
+			case 112: return RNGE_CARRYING_BOOST;
+			case 113: return RNGE_KILLER_FILLING;
+			case 114: return RNGE_MULCHING_DISPLAY;
+			case 115: return RNGE_STATCAP_INCREASE;
+			case 116: return RNGE_ANTI_COVID;
+			case 117: return RNGE_FLUIDATOR_REDUCTION;
+			case 118: return RNGE_SCROUNGING;
+			case 119: return RNGE_FARMING;
+
 			default: return POISON_RES;
 		}
 

@@ -4744,7 +4744,7 @@ greasingdone:
 			if (u.fluidatorwantedlevel > 2000) fluidatorchance = 200;
 			if (u.fluidatorwantedlevel > 5000) fluidatorchance = 100;
 
-			if (uarms && uarms->oartifact == ART_FLUIDSHIELD) fluidatorchance *= 10;
+			if ((uarms && uarms->oartifact == ART_FLUIDSHIELD) || RngeFluidatorReduction) fluidatorchance *= 10;
 
 			if (!rn2(fluidatorchance)) {
 				register struct monst *fluidone;

@@ -3138,6 +3138,7 @@ int x;
 		if (uwep && uwep->oartifact == ART_STAR_SLAY_GIANTS) tmp += 5;
 		if (uwep && uwep->oartifact == ART_LONGBONE_OF_BANANA) tmp += 3;
 		if (uwep && uwep->oartifact == ART_LONGBOW_OF_BANANA) tmp += 3;
+		if (uarm && uarm->oartifact == ART_SEE_THE_MULCH_STATE) tmp += 3;
 		if (FemtrapActiveNora && u.uhs == WEAK) tmp += 2;
 		if (FemtrapActiveNora && u.uhs == FAINTING) tmp += 5;
 		if (FemtrapActiveNora && u.uhs == FAINTED) tmp += 10;
@@ -3450,6 +3451,9 @@ boolean displaymessage;
 		if (targetattr == A_STR && actuallimit >= 18 && actuallimit < STR18(100)) actuallimit += 10;
 		else actuallimit++;
 	}
+
+	if (RngeStatcapIncrease) actuallimit += 5;
+	if (uarmf && uarmf->oartifact == ART_EROTIC_STAT_TRAIN) actuallimit += 5;
 
 	if (StatDecreaseBug || u.uprops[STAT_DECREASE_BUG].extrinsic || have_statdecreasestone()) {
 		if (targetattr == A_STR && actuallimit >= STR19(25)) actuallimit = STR18(70);

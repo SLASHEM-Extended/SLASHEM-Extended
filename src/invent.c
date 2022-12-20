@@ -23980,6 +23980,458 @@ boolean knoweverything;
 					pline("Artifact specs: wallwalking when worn but you can no longer control the direction you're moving. If you're in a form without hands, it also conveys astral vision, half spell damage and half physical damage."); break;
 				case ART_LOWER_TURNCOUNT:
 					pline("Artifact specs: using it reduces the turn counter by a couple hundred turns."); break;
+				case ART_HAHAREDUCTION:
+					pline("Artifact specs: magic resistance when worn, and if you are unlucky enough to step into a nasty trap, it only lasts half as long as it normally would."); break;
+				case ART_SEE_THE_MULCH_STATE:
+					pline("Artifact specs: +3 dexterity and infravision when wielded, gives a message when an ammo fired by you has mulched."); break;
+				case ART_EROTIC_STAT_TRAIN:
+					pline("Artifact specs: increase the soft cap for your stats, making them easier to train, gives the marleen trap effect when worn and can be invoked to cure all negative status effects that a unicorn horn can cure."); break;
+				case ART_PAEAU_PAEAU_PAEAU_PAEAU_PA:
+					pline("Artifact specs: can be invoked to fire magic missiles in all directions."); break;
+				case ART_GO_UP_IN_FLAMESES:
+					pline("Artifact specs: can be invoked to detonate a couple of grenades at your location, which uses up the armor and increases your intrinsic protection by 2 points."); break;
+				case ART_FIRE_COLD_AEFF:
+					pline("Artifact specs: provides resistances to fire and cold, but deactivates shock resistance."); break;
+				case ART_UPPER_RUM:
+					pline("Artifact specs: grants 10 extra points of AC, but small monsters have +20 to-hit against you in melee."); break;
+				case ART_WHAT_MISS_I_CONSTANTLY:
+					pline("Artifact specs: fear and very fast speed when worn."); break;
+				case ART_BRINGS_NOTHING:
+					pline("Artifact specs: 5 extra points of AC and poison resistance when worn."); break;
+				case ART_BRINGS_WHICH:
+					pline("Artifact specs: 5 extra points of AC, can be invoked to recover some Pw."); break;
+				case ART_DUEUEUEUET:
+					pline("Artifact specs: provides double fire resistance when worn, but makes your AC worse by 5 points and autocurses."); break;
+				case ART_MADE_OF_IRON:
+					pline("Artifact specs: 10 extra points of AC but reduces your spell success rate."); break;
+				case ART_BEGINNER_SUIT:
+					pline("Artifact specs: 5 extra points of AC."); break;
+				case ART_AH_NAH:
+					pline("Artifact specs: looks just like a plain leather armor."); break;
+				case ART_RARE_EARLY_BAUBLE:
+					pline("Artifact specs: acid resistance when worn."); break;
+				case ART_INCAPUTABLE:
+					pline("Artifact specs: can be invoked to repair any erosion damage on it."); break;
+				case ART_GILDED_MAIL:
+					pline("Artifact specs: lords and princes have a good chance of spawning peaceful while you're wearing it."); break;
+				case ART_DEMANDING_ENTRY:
+					pline("Artifact specs: 5 extra points of AC and drain resistance when worn, allows you to enter shops even if the shopkeeper normally wouldn't let you in."); break;
+				case ART_ACIDFALL:
+					pline("Artifact specs: +5 to-hit and double damage to acid-susceptible monsters, acid resistance when wielded."); break;
+				case ART_AVALON:
+					pline("Artifact specs: regeneration, +1 to-hit and +1 damage, lawful."); break;
+				case ART_BALMUNG:
+					pline("Artifact specs: +4 to-hit and +9 damage, fire resistance when wielded, lawful."); break;
+				case ART_BRADAMANTE_S_FURY:
+					pline("Artifact specs: +5 to-hit and +10 damage, neutral."); break;
+				case ART_WORSE_CARNWENNAN:
+					pline("Artifact specs: +3 to-hit and +8 damage, automatic searching and stealth when wielded, lawful."); break;
+				case ART_CHAINS_OF_MALCANTHET:
+					pline("Artifact specs: +6 to-hit and +10 damage."); break;
+				case ART_CIRCE_S_WITCHSTAFF:
+					pline("Artifact specs: +4 to-hit and +4 damage, beheads enemies, neutral."); break;
+				case ART_END__C_GRIM_REAPER_:
+					pline("Artifact specs: +3 to-hit and +20 damage to cold-susceptible monsters, drain resistance and makes the turn counter increase twice as fast when wielded, neutral."); break;
+				case ART_GAE_BULG:
+					pline("Artifact specs: +5 to-hit and +5 drain life damage, can drain levels from enemies, chaotic."); break;
+				case ART_GAE_DEARG:
+					pline("Artifact specs: +3 to-hit and +7 drain life damage, can drain levels from enemies."); break;
+				case ART_GAE_BUIDHE:
+					pline("Artifact specs: +3 to-hit and +7 drain life damage, causes targets to bleed."); break;
+				case ART_GLEIPNIR:
+					pline("Artifact specs: +5 to-hit and +8 damage."); break;
+				case ART_GUNGNIR:
+					pline("Artifact specs: +100 to-hit and +4 damage, neutral."); break;
+				case ART_HAND_GRENADE_OF_ANTIOCH:
+					pline("Artifact specs: +1 to-hit and +1 damage, lawful."); break;
+				case ART_IDSPIKE:
+					pline("Artifact specs: +5 to-hit and double damage, psi resistance when wielded."); break;
+				case ART_IMHULLU:
+					pline("Artifact specs: +4 to-hit and +5 damage, allows you to resist being pushed around when wielded, neutral."); break;
+				case ART_LUCKLESS_FOLLY:
+					pline("Artifact specs: +5 to-hit and +5 damage, -3 luck when wielded and adds damage and to-hit if your luck is negative or reduces it if it's positive, chaotic."); break;
+				case ART_ORIGIN_OF_CASTING:
+					pline("Artifact specs: +2 to-hit and +6 damage, teleport control and improved spellcasting chances when wielded."); break;
+				case ART_PRIDWEN:
+					pline("Artifact specs: half physical damage when worn, lawful."); break;
+				case ART_POSEIDON_S_OTHER_TRIDENT:
+					pline("Artifact specs: +3 to-hit and +7 damage, magical breathing and water walking when wielded, chaotic."); break;
+				case ART_SEAFOAM:
+					pline("Artifact specs: +3 to-hit and +7 damage, magical breathing and water walking when wielded, chaotic."); break;
+				case ART_SONICBOOM:
+					pline("Artifact specs: +5 to-hit and double damage, deafness when wielded."); break;
+				case ART_SUNSPOT:
+					pline("Artifact specs: +5 to-hit and double damage, blindness resistance when wielded."); break;
+				case ART_VLADSBANE:
+					pline("Artifact specs: warning and undead warning when wielded and -5 increase accuracy and damage. Don't try to kill SLEX's Vlad with this, doing so would be a bad idea."); break;
+				case ART_WAR_S_SWORD:
+					pline("Artifact specs: +5 to-hit and +5 damage, conflict and autocurses when wielded. This weapon does not deprive you of your ability to use your hands if cursed."); break;
+				case ART_SWORD_OF_FAIR_PLAY:
+					pline("Artifact specs: +5 to-hit and +12 damage to crossaligned monsters, lawful."); break;
+				case ART_POWER_POLE:
+					pline("Artifact specs: +5 to-hit and double damage, acts as a luckstone, provides protection and causes deafness when wielded, neutral."); break;
+				case ART_UNLIMITED_MOON:
+					pline("Artifact specs: +2 to-hit and +2 damage, cold resistance when wielded, neutral."); break;
+				case ART_DISMOUNTER:
+					pline("Artifact specs: +5 to-hit and double damage to quadrupeds, neutral."); break;
+				case ART_FINAL_DEATH:
+					pline("Artifact specs: +5 to-hit and double damage to undead, drain resistance when wielded, lawful."); break;
+				case ART_BALANCE_PSEUDOSHIELD:
+					pline("Artifact specs: +2 to-hit and +6 damage, teleport control when wielded."); break;
+				case ART_SEVEN_LEAGUE_BOOTS:
+					pline("Artifact specs: jumping when worn."); break;
+				case ART_KING_IN_YELLOW:
+					pline("Artifact specs: hallucination resistance when wielded, reading it summons a demon prince."); break;
+				case ART_MURASAME:
+					pline("Artifact specs: +8 damage, lawful."); break;
+				case ART_DAGGER_OF_UUKAI:
+					pline("Artifact specs: +2 to-hit and +4 damage, poison resistance when wielded, lawful."); break;
+				case ART_WINBLOWS:
+					pline("Artifact specs: +5 to-hit and double damage to gremlins, neutral."); break;
+				case ART_MANEATER:
+					pline("Artifact specs: +5 to-hit and +10 damage to monsters that count as human, chaotic."); break;
+				case ART_SWORD_OF_MADURAI:
+					pline("Artifact specs: +8 damage, energy regeneration and magic resistance when wielded, lawful."); break;
+				case ART_GNOLLBANE:
+					pline("Artifact specs: +1 to-hit and +20 damage to gnomes, shock resistance when wielded, lawful."); break;
+				case ART_CROSSBOW_OF_THE_GNOLL_LORD:
+					pline("Artifact specs: +1 to-hit and +5 damage, stealth when wielded."); break;
+				case ART_HOWLING_FLAIL:
+					pline("Artifact specs: +1 to-hit and +10 damage, acts as a luckstone when wielded, chaotic."); break;
+				case ART_MACE_OF_ORCUS:
+					pline("Artifact specs: +1 to-hit and +10 drain life damage, chaotic."); break;
+				case ART_ARK_OF_THE_COVENANT:
+					pline("Artifact specs: antimagic shell, acts as a luckstone and provides protection when wielded, can be invoked to attempt to bless the artifact, lawful."); break;
+				case ART_FAMOUS_LANCE:
+					pline("Artifact specs: double damage, curse and death resistance when wielded, lawful."); break;
+				case ART_EMERALD_SWORD:
+					pline("Artifact specs: double damage, hallucination resistance and reflection when wielded, monsters always know where you are and always spawn hostile, +5 strength and wisdom, lawful."); break;
+				case ART_KATANA_OF_MASAMUNE:
+					pline("Artifact specs: +1 to-hit and +4 damage, bisects enemies, provides bisection resistance and acts as a luckstone when wielded, lawful."); break;
+				case ART_KUSANAGI:
+					pline("Artifact specs: +5 to-hit and +5 damage, sickness resistance when wielded, lawful."); break;
+				case ART_SERPENT_RING_OF_SET:
+					pline("Artifact specs: energy regeneration, +5 intelligence and wisdom when worn, chaotic."); break;
+				case ART_GAUNTLETS_OF_YIN_AND_YANG:
+					pline("Artifact specs: +1 to-hit and +10 damage."); break;
+				case ART_HOLY_GRAIL:
+					pline("Artifact specs: regeneration and slow digestion when wielded, lawful."); break;
+				case ART_HAMMER_OF_JUSTICE:
+					pline("Artifact specs: +5 to-hit and double damage to crossaligned monsters, acts as a luckstone and provides protection when wielded, lawful."); break;
+				case ART_SNOW_ILLUSION:
+					pline("Artifact specs: +5 to-hit and double damage to cold-susceptible monsters, cold resistance when wielded, lawful."); break;
+				case ART_SWORDBREAKER:
+					pline("Artifact specs: +2 to-hit and +4 damage, provides protection when wielded, disenchants enemy weapons, lawful."); break;
+				case ART_WINKCHAINSWORD:
+					pline("Artifact specs: +5 to-hit and double damage to monsters that are always female, lawful."); break;
+				case ART_MISUMARU:
+					pline("Artifact specs: +20 to-hit and +1 damage, acts as a luckstone when wielded, lawful."); break;
+				case ART_BARUKKHELED:
+					pline("Artifact specs: +3 to-hit and +6 damage, lawful."); break;
+				case ART_CELESTIAL_SCEPTRE:
+					pline("Artifact specs: +5 to-hit and double damage, greatly improves success chance for healing spells, lawful."); break;
+				case ART_DWARVEN_THROWER:
+					pline("Artifact specs: +5 to-hit and double damage to flying targets, lawful."); break;
+				case ART_REMMAH_DLUKS:
+					pline("Artifact specs: +5 to-hit and double damage to xans, beheads targets, lawful."); break;
+				case ART_ESCALIBORG:
+					pline("Artifact specs: +3 to-hit and +20 damage to monsters that are always male, lawful."); break;
+				case ART_LAICEPS_NIKSUD:
+					pline("Artifact specs: +5 to-hit and +5 damage, blindness resistance when wielded, lawful."); break;
+				case ART_STRINGFELLOW_HOUKI:
+					pline("Artifact specs: +5 to-hit and +1 damage, jumping when wielded, lawful."); break;
+				case ART_LIBRA_OF_JUSTICE:
+					pline("Artifact specs: +5 to-hit and double damage to crossaligned monsters, lawful."); break;
+				case ART_HOLYBASHER:
+					pline("Artifact specs: +5 to-hit and double damage, can be invoked to uncurse it, lawful."); break;
+				case ART_RAISING_HEART:
+					pline("Artifact specs: +5 to-hit and +1 stun damage, provides protection, half spell damage, half physical damage, warning and magic resistance when wielded and causes you to take double damage, lawful."); break;
+				case ART_TENRAI:
+					pline("Artifact specs: +5 to-hit and double damage to shock-susceptible enemies, shock resistance when wielded, lawful."); break;
+				case ART_AMANONUBOKO:
+					pline("Artifact specs: +5 to-hit and +2 damage to blobs, lawful."); break;
+				case ART_BARDICHE_ASSALT:
+					pline("Artifact specs: "); break;
+				case ART_WINDMILLBASTER:
+					pline("Artifact specs: "); break;
+				case ART_QUIXOTIC_SPIRIT:
+					pline("Artifact specs: "); break;
+				case ART_LANCE_ARMSTRONG:
+					pline("Artifact specs: "); break;
+				case ART_BREAK_OUT:
+					pline("Artifact specs: "); break;
+				case ART_LOVEMECHAIN:
+					pline("Artifact specs: "); break;
+				case ART_EBONY_LACQUERED_BOW:
+					pline("Artifact specs: "); break;
+				case ART_AQUARHAPSODY:
+					pline("Artifact specs: "); break;
+				case ART_GOLIATHBANE:
+					pline("Artifact specs: "); break;
+				case ART_FIREBIRD:
+					pline("Artifact specs: "); break;
+				case ART_SHUGO:
+					pline("Artifact specs: "); break;
+				case ART_STEAMBRINGER:
+					pline("Artifact specs: "); break;
+				case ART_FIRE_SOUL:
+					pline("Artifact specs: "); break;
+				case ART_SWORD_OF_REVOLUTION:
+					pline("Artifact specs: "); break;
+				case ART_DAEFAROTH:
+					pline("Artifact specs: "); break;
+				case ART_NOCLAF:
+					pline("Artifact specs: "); break;
+				case ART_JINRAI:
+					pline("Artifact specs: "); break;
+				case ART_DUAL_MASTERY:
+					pline("Artifact specs: "); break;
+				case ART_EUTATS_ENOTS:
+					pline("Artifact specs: "); break;
+				case ART_LABRYTH:
+					pline("Artifact specs: "); break;
+				case ART_PENDULUM_OF_BALANCE:
+					pline("Artifact specs: "); break;
+				case ART_SHARPENED_OAR:
+					pline("Artifact specs: "); break;
+				case ART_BRAINSTORM:
+					pline("Artifact specs: "); break;
+				case ART_FOWLER:
+					pline("Artifact specs: "); break;
+				case ART_POLAR_STAR:
+					pline("Artifact specs: "); break;
+				case ART_POLARIS:
+					pline("Artifact specs: "); break;
+				case ART_RUNEBREAKER:
+					pline("Artifact specs: "); break;
+				case ART_PARRYINGSTAFF:
+					pline("Artifact specs: "); break;
+				case ART_SAKUSHNIR:
+					pline("Artifact specs: "); break;
+				case ART_REVOLTER:
+					pline("Artifact specs: "); break;
+				case ART_ASUIBIHC_FO_NAIDRAUG:
+					pline("Artifact specs: "); break;
+				case ART_STONEBITER:
+					pline("Artifact specs: "); break;
+				case ART_CLIFFHANGER:
+					pline("Artifact specs: "); break;
+				case ART_SNAKEFIRE:
+					pline("Artifact specs: "); break;
+				case ART_FLAMESNIPER:
+					pline("Artifact specs: "); break;
+				case ART_SOUTHERN_CROSS:
+					pline("Artifact specs: "); break;
+				case ART_THUNDERBIRD:
+					pline("Artifact specs: "); break;
+				case ART_FLOWER_HURRICANE:
+					pline("Artifact specs: "); break;
+				case ART_BLACK_SARENA:
+					pline("Artifact specs: "); break;
+				case ART_SNATCHER:
+					pline("Artifact specs: "); break;
+				case ART_STELLARIS_MATERIA:
+					pline("Artifact specs: "); break;
+				case ART_CALCAR:
+					pline("Artifact specs: "); break;
+				case ART_FANG_OF_MIDGARDSORMR:
+					pline("Artifact specs: "); break;
+				case ART_DRAGONKILLER:
+					pline("Artifact specs: "); break;
+				case ART_REDRUM:
+					pline("Artifact specs: "); break;
+				case ART_ATLACH_NACHA:
+					pline("Artifact specs: "); break;
+				case ART_FLAME_EATER:
+					pline("Artifact specs: "); break;
+				case ART_FIRE_EATER:
+					pline("Artifact specs: "); break;
+				case ART_ONIKIRIMARU:
+					pline("Artifact specs: "); break;
+				case ART_SPINESHOOTER:
+					pline("Artifact specs: "); break;
+				case ART_CONFETTO:
+					pline("Artifact specs: "); break;
+				case ART_CRUSTY_HAMMER:
+					pline("Artifact specs: "); break;
+				case ART_WINCOWS:
+					pline("Artifact specs: "); break;
+				case ART_BATTERING_RAM:
+					pline("Artifact specs: "); break;
+				case ART_SEVEN_IN_ONE_BLOW:
+					pline("Artifact specs: "); break;
+				case ART_REKAERB_ARBIL:
+					pline("Artifact specs: "); break;
+				case ART_LUX_REGINA:
+					pline("Artifact specs: "); break;
+				case ART_REGINA_LUX:
+					pline("Artifact specs: "); break;
+				case ART_NYOIBOU:
+					pline("Artifact specs: "); break;
+				case ART_STAFF_OF_MOON:
+					pline("Artifact specs: "); break;
+				case ART_POLE_OF_MOON:
+					pline("Artifact specs: "); break;
+				case ART_STAFF_OF_STAR:
+					pline("Artifact specs: "); break;
+				case ART_KEMONONOYARI:
+					pline("Artifact specs: "); break;
+				case ART_SUN_PIERCER:
+					pline("Artifact specs: "); break;
+				case ART_HARPOON_OF_TRITON:
+					pline("Artifact specs: "); break;
+				case ART_MERCILESS_MARE:
+					pline("Artifact specs: "); break;
+				case ART_ENRAI:
+					pline("Artifact specs: "); break;
+				case ART_NIUR_KRAD:
+					pline("Artifact specs: "); break;
+				case ART_PRINCIPIUM_INCERTI:
+					pline("Artifact specs: "); break;
+				case ART_TIRA_MI_SU:
+					pline("Artifact specs: "); break;
+				case ART_DURIN_S_BANE:
+					pline("Artifact specs: "); break;
+				case ART_BOW_OF_HERCULES:
+					pline("Artifact specs: "); break;
+				case ART_KIKYOUNOREIKYUU:
+					pline("Artifact specs: "); break;
+				case ART_SEVENTH_SCRIPTURE:
+					pline("Artifact specs: "); break;
+				case ART_EDELWEISS:
+					pline("Artifact specs: "); break;
+				case ART_AJIHEI:
+					pline("Artifact specs: "); break;
+				case ART_FIRST_CARRYING_BOX:
+					pline("Artifact specs: "); break;
+				case ART_MAGEMASHER:
+					pline("Artifact specs: "); break;
+				case ART_GRADIUS:
+					pline("Artifact specs: "); break;
+				case ART_SHIZUGAMI_S_MIZUCHI:
+					pline("Artifact specs: "); break;
+				case ART_AZOTH:
+					pline("Artifact specs: "); break;
+				case ART_PROGRESSIVEKNIFE:
+					pline("Artifact specs: "); break;
+				case ART_OCCAM_S_RAZOR:
+					pline("Artifact specs: "); break;
+				case ART_LUNATICBRINGER:
+					pline("Artifact specs: "); break;
+				case ART_BENIZAKURA:
+					pline("Artifact specs: "); break;
+				case ART_KOUKA:
+					pline("Artifact specs: "); break;
+				case ART_MOMIJI:
+					pline("Artifact specs: "); break;
+				case ART_KOUSETSU:
+					pline("Artifact specs: "); break;
+				case ART_HATCHET_OF_HINAMIZAWA:
+					pline("Artifact specs: "); break;
+				case ART_GOURAI:
+					pline("Artifact specs: "); break;
+				case ART_MAXWELL_S_HAMMER:
+					pline("Artifact specs: "); break;
+				case ART_COOKING_OF_DEVOTING_WIFE:
+					pline("Artifact specs: "); break;
+				case ART_BSIKESLAYER:
+					pline("Artifact specs: "); break;
+				case ART_GOSSIP_HARISEN:
+					pline("Artifact specs: "); break;
+				case ART_TUKKOMI_HARISEN:
+					pline("Artifact specs: "); break;
+				case ART_OJOUSAMAHAMAJO:
+					pline("Artifact specs: "); break;
+				case ART_MIRACLE_PAINT:
+					pline("Artifact specs: "); break;
+				case ART_FLARE_FLAKE:
+					pline("Artifact specs: "); break;
+				case ART_JACK_O__LANTERN:
+					pline("Artifact specs: "); break;
+				case ART_TWINKLESTAR:
+					pline("Artifact specs: "); break;
+				case ART_STARRING_INFERNO:
+					pline("Artifact specs: "); break;
+				case ART_YOKOYARI:
+					pline("Artifact specs: "); break;
+				case ART_ARM_OF_OLYMPIA:
+					pline("Artifact specs: "); break;
+				case ART_HIDE_PENETRATOR:
+					pline("Artifact specs: "); break;
+				case ART_FLAME_PILLAR:
+					pline("Artifact specs: "); break;
+				case ART_ICE_PILLAR:
+					pline("Artifact specs: "); break;
+				case ART_SKAZKA_OB_DURAKE:
+					pline("Artifact specs: "); break;
+				case ART_TEN_DIMENSIONAL_SCYTHE:
+					pline("Artifact specs: "); break;
+				case ART_ALIETTA_S_PARASOL:
+					pline("Artifact specs: "); break;
+				case ART_BUTTOBASU_BOOMERANG:
+					pline("Artifact specs: "); break;
+				case ART_SILPHEED:
+					pline("Artifact specs: "); break;
+				case ART_A_M__SUIT:
+					pline("Artifact specs: "); break;
+				case ART_LADIES_NIGHTINGALE:
+					pline("Artifact specs: "); break;
+				case ART_GENTLEMANS_NIGHTINGALE:
+					pline("Artifact specs: "); break;
+				case ART_NEUTRINO:
+					pline("Artifact specs: "); break;
+				case ART_BRASS_SNAKESKIN:
+					pline("Artifact specs: "); break;
+				case ART_SCALE_MAIL_OF_THE_DRAGON_L:
+					pline("Artifact specs: "); break;
+				case ART_MANTLE_OF_BEAST:
+					pline("Artifact specs: "); break;
+				case ART_POWERED_SUIT:
+					pline("Artifact specs: "); break;
+				case ART_POPPY_S_STRIPED_TIGHTS:
+					pline("Artifact specs: "); break;
+				case ART_PHOENIX_BATTLESUIT:
+					pline("Artifact specs: "); break;
+				case ART_HAT_OF_LADY:
+					pline("Artifact specs: "); break;
+				case ART_OVERCOAT_OF_DAUGHTER:
+					pline("Artifact specs: "); break;
+				case ART_MINK_COAT:
+					pline("Artifact specs: "); break;
+				case ART_FIST_OF_FURY:
+					pline("Artifact specs: "); break;
+				case ART_KAZAANA:
+					pline("Artifact specs: "); break;
+				case ART_SATELLITE_LINKER:
+					pline("Artifact specs: "); break;
+				case ART_FAIRY_EAR:
+					pline("Artifact specs: "); break;
+				case ART_BECKONING_CAT:
+					pline("Artifact specs: "); break;
+				case ART_SHADOW_REFLECTOR:
+					pline("Artifact specs: "); break;
+				case ART_SUMMONOR:
+					pline("Artifact specs: "); break;
+				case ART_LAPIS_OF_STAR:
+					pline("Artifact specs: "); break;
+				case ART_PRAEFAME:
+					pline("Artifact specs: "); break;
+				case ART_PHILOSOPHER_S_STONE:
+					pline("Artifact specs: "); break;
+				case ART_SECESPITA:
+					pline("Artifact specs: "); break;
+				case ART_BAG_OF_THE_HESPERIDES:
+					pline("Artifact specs: "); break;
+				case ART_ANGELSLAYER:
+					pline("Artifact specs: "); break;
+				case ART_YEEN_S_BUTCHER:
+					pline("Artifact specs: "); break;
+				case ART_XIUHCOATL:
+					pline("Artifact specs: "); break;
+				case ART_CROSSBOW_OF_CARL:
+					pline("Artifact specs: "); break;
+				case ART_GJALLAR:
+					pline("Artifact specs: "); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

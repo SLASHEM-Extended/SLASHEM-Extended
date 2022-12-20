@@ -5125,6 +5125,7 @@ max_carr_cap()
 	}
 	if (have_daisybag()) maxcarrcap += 500;
 	if (uarm && uarm->oartifact == ART_COLLECTING_EXPANSION) maxcarrcap += 5000;
+	if (RngeCarryingBoost) maxcarrcap += 1000;
 
 	return maxcarrcap;
 }
@@ -5169,6 +5170,7 @@ weight_cap()
 	if (uright && uright->oartifact == ART_CORGON_S_RING) carrcap += 100;
 	if (have_daisybag()) carrcap += 1000;
 	if (uarm && uarm->oartifact == ART_COLLECTING_EXPANSION) carrcap += 2000;
+	if (RngeCarryingBoost) carrcap += 1000;
 
 	if (!PlayerCannotUseSkills && uarm && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) {
 

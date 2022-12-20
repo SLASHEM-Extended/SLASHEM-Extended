@@ -642,7 +642,7 @@ register char *enterstring;
 	if (shkp->msleeping || !shkp->mcanmove || eshkp->following)
 	    return;	/* no dialog */
 
-	if (Invis) {
+	if (Invis && !(uarm && uarm->oartifact == ART_DEMANDING_ENTRY) ) {
 	    pline("%s senses your presence.", shkname(shkp));
 	    if (!Is_blackmarket(&u.uz)) {
 	    verbalize("Invisible customers are not welcome!");
@@ -650,14 +650,14 @@ register char *enterstring;
 	}
 	}
  
-	    if (Is_blackmarket(&u.uz) &&
+	    if (Is_blackmarket(&u.uz) && !(uarm && uarm->oartifact == ART_DEMANDING_ENTRY) &&
 		u.umonnum>0 && mons[u.umonnum].mlet != S_HUMAN) {
 	      verbalize("Non-human customers are not welcome!");
 	      return;
 	}
 
 	/* Visible striped prison shirt */
-	if ((uarmu && (uarmu->otyp == STRIPED_SHIRT)) && !uarm && !uarmc) {
+	if ((uarmu && !(uarm && uarm->oartifact == ART_DEMANDING_ENTRY) && (uarmu->otyp == STRIPED_SHIRT)) && !uarm && !uarmc) {
 	    eshkp->pbanned = TRUE;
 	}
 	if (Race_if(PM_ALBAE) && !Upolyd) eshkp->pbanned = TRUE;
@@ -681,7 +681,7 @@ register char *enterstring;
 		      shtypes[rt - SHOPBASE].name);
 	}
 	/* can't do anything about blocking if teleported in */
-	if (!inside_shop(u.ux, u.uy)) {
+	if (!inside_shop(u.ux, u.uy) && !(uarm && uarm->oartifact == ART_DEMANDING_ENTRY) ) {
 	    boolean should_block;
 	    int cnt;
 	    const char *tool;
@@ -4524,7 +4524,7 @@ register struct monst *shkp;
 	    if ((Is_blackmarket(&u.uz) && u.umonnum>0 &&
 		 mons[u.umonnum].mlet != S_HUMAN) ||
                 /* WAC Let you out if you're stuck inside */                
-                (!Is_blackmarket(&u.uz) && (Invis || u.usteed) && !inside_shop(u.ux, u.uy)))
+                (!Is_blackmarket(&u.uz) && (Invis || u.usteed) && !(uarm && uarm->oartifact == ART_DEMANDING_ENTRY) && !inside_shop(u.ux, u.uy)))
 		{
 		    avoid = FALSE;
 		} else {
@@ -4534,7 +4534,7 @@ register struct monst *shkp;
             eshkp->pbanned ||
 				  (Fast && (sobj_at(PICK_AXE, u.ux, u.uy) || sobj_at(CONGLOMERATE_PICK, u.ux, u.uy) || sobj_at(CONUNDRUM_PICK, u.ux, u.uy) || sobj_at(MYSTERY_PICK, u.ux, u.uy) || sobj_at(BRONZE_PICK, u.ux, u.uy) || sobj_at(BRICK_PICK, u.ux, u.uy) || sobj_at(NANO_PICK, u.ux, u.uy) || sobj_at(SOFT_MATTOCK, u.ux, u.uy) || sobj_at(ETERNIUM_MATTOCK, u.ux, u.uy) ||
 				  sobj_at(DWARVISH_MATTOCK, u.ux, u.uy))));
-			if(satdoor && badinv)
+			if(satdoor && badinv && !(uarm && uarm->oartifact == ART_DEMANDING_ENTRY))
 			    return(0);
 			avoid = !badinv;
 		    } else {
@@ -5678,6 +5678,7 @@ register xchar x, y;
 
 	/* KMH, balacne patch -- allow other picks */
 	if(shkp->mx == sx && shkp->my == sy
+		&& !(uarm && uarm->oartifact == ART_DEMANDING_ENTRY) 
 		&& shkp->mcanmove && !shkp->msleeping
 		&& (x == sx-1 || x == sx+1 || y == sy-1 || y == sy+1)
 		&& (Invis || carrying(PICK_AXE) || carrying(CONGLOMERATE_PICK) || carrying(CONUNDRUM_PICK) || carrying(MYSTERY_PICK) || carrying(BRONZE_PICK) || carrying(BRICK_PICK) || carrying(NANO_PICK) || carrying(DWARVISH_MATTOCK) || carrying(SOFT_MATTOCK) || carrying(ETERNIUM_MATTOCK) || u.usteed

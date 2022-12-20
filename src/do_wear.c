@@ -3498,6 +3498,11 @@ Armor_on()
 		curse(uarm);
 	}
 
+	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_DUEUEUEUET) {
+		pline("BEEEEEEEP! Your armor is cursed!");
+		curse(uarm);
+	}
+
 	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_NULARMOR) {
 		pline("BEEEEEEEP! Your armor is cursed!");
 		curse(uarm);
@@ -3525,6 +3530,11 @@ Armor_on()
 
 	if (uarm && !(uarm->hvycurse) && uarm->oartifact == ART_WATER_SHYNESS) {
 		pline("Your armor is surrounded by an evil black aura.");
+		curse(uarm);
+		uarm->hvycurse = 1;
+	}
+	if (uarm && !(uarm->hvycurse) && uarm->oartifact == ART_AH_NAH) {
+		pline("Oh no, your armor turns out to be very cursed!");
 		curse(uarm);
 		uarm->hvycurse = 1;
 	}
@@ -6007,6 +6017,13 @@ find_ac()
 	if (uarmf && uarmf->oartifact == ART_ARTHUR_S_HIGH_HEELED_PLATF) uac -= 2;
 	if (uwep && uwep->oartifact == ART_SIGIX_BROADSWORD) uac -= 20;
 	if (uarm && uarm->oartifact == ART_MOEBIUS_ARMOR) uac -= 10;
+	if (uarm && uarm->oartifact == ART_UPPER_RUM) uac -= 10;
+	if (uarm && uarm->oartifact == ART_MADE_OF_IRON) uac -= 10;
+	if (uarm && uarm->oartifact == ART_BEGINNER_SUIT) uac -= 5;
+	if (uarm && uarm->oartifact == ART_BRINGS_NOTHING) uac -= 5;
+	if (uarm && uarm->oartifact == ART_BRINGS_WHICH) uac -= 5;
+	if (uarm && uarm->oartifact == ART_DEMANDING_ENTRY) uac -= 5;
+	if (uarm && uarm->oartifact == ART_DUEUEUEUET) uac += 5;
 	if (bmwride(ART_PANZER_TANK)) uac -= 10;
 	if (FemtrapActivePatricia) uac -= 3;
 	if (uarm && uarm->oartifact == ART_ELMHERE && multi < 0) uac -= 5;

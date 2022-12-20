@@ -362,6 +362,26 @@ int prop;
 			return "contamination resistance";
 		case DISCOUNT_ACTION:
 			return "discount action";
+		case RNGE_NASTY_REDUCTION:
+			return "nastytrap reduction";
+		case RNGE_TECH_REUSE:
+			return "tech reuse";
+		case RNGE_CARRYING_BOOST:
+			return "carrying boost";
+		case RNGE_KILLER_FILLING:
+			return "killer filling";
+		case RNGE_MULCHING_DISPLAY:
+			return "mulching display";
+		case RNGE_STATCAP_INCREASE:
+			return "statcap increase";
+		case RNGE_ANTI_COVID:
+			return "anti-covid";
+		case RNGE_FLUIDATOR_REDUCTION:
+			return "fluidator reduction";
+		case RNGE_SCROUNGING:
+			return "scrounging";
+		case RNGE_FARMING:
+			return "farming";
 		case FULL_NUTRIENT:
 			return "full nutrients";
 		case TECHNICALITY:

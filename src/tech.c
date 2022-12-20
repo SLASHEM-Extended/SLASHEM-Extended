@@ -10387,6 +10387,11 @@ extrachargechoice:
 
 		if (ishaxor && techtout(tech_no) > 1) techtout(tech_no) /= 2;
 
+		if (RngeTechReuse && techtout(tech_no) > 1) { /* 10% reduction --Amy */
+			techtout(tech_no) *= 9;
+			techtout(tech_no) /= 10;
+		}
+
 		if (u.emynluincomplete && techtout(tech_no) > 99) { /* 2% reduction --Amy */
 			techtout(tech_no) *= 49;
 			techtout(tech_no) /= 50;

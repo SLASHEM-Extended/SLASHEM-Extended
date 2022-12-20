@@ -3737,6 +3737,8 @@ unsigned trflags;
 	if (!nastytrapdur) nastytrapdur = 50; /* fail safe */
 
 	if (LongScrewup || u.uprops[LONG_SCREWUP].extrinsic || have_longscrewupstone()) nastytrapdur *= 20;
+	if (RngeNastyReduction && nastytrapdur > 1) nastytrapdur /= 2;
+	if (uarmh && uarmh->oartifact == ART_HAHAREDUCTION && nastytrapdur > 1) nastytrapdur /= 2;
 
 	femmytrapdur = (Role_if(PM_LADIESMAN) ? 5 : Role_if(PM_SEXYMATE) ? 10 : 20);
 	if (!rn2(2)) femmytrapdur /= 2;

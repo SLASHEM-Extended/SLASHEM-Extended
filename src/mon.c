@@ -7384,6 +7384,8 @@ xkilled(mtmp, dest)
 			int typ;
 
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE, FALSE);
+			if (RngeScrounging && !rn2(3)) otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE, FALSE);
+
 			if (!rn2(32) && (rn2(100) > u.usefulitemchance) ) {
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE, FALSE); /* small chance to get even more stuff --Amy */
 			}

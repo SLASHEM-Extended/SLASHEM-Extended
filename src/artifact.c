@@ -406,6 +406,7 @@ init_randarts()
 	artilist[ART_ALPHA_TAURI].otyp = randartsuitX();
 	artilist[ART_ABSOLUTE_MONSTER_MAIL].otyp = randartsuitX();
 	artilist[ART_RITA_S_TENDER_STILETTOS].otyp = randartbootsX();
+	artilist[ART_EROTIC_STAT_TRAIN].otyp = randartbootsX();
 	artilist[ART_HALF_MOON_TONIGHT].otyp = randartcloakX();
 	artilist[ART_PANTAP].otyp = randartcloakX();
 	artilist[ART_RUTH_S_DARK_FORCE].otyp = randarthelmX();
@@ -3732,6 +3733,81 @@ chargingchoice:
 	    }
 	    break;
 	case SPECIAL_INVOKE:
+
+		if (obj->oartifact == ART_INCAPUTABLE) {
+			obj->oeroded = obj->oeroded2 = 0;
+			Your("armor looks shiny!");
+			break;
+		}
+		if (obj->oartifact == ART_BRINGS_WHICH) {
+
+			u.uen += (d(8,8));
+			if (u.uen > u.uenmax) u.uen = u.uenmax;
+			You_feel("full of mystic power!");
+			flags.botl = TRUE;
+
+			break;
+		}
+
+		if (obj->oartifact == ART_PAEAU_PAEAU_PAEAU_PAEAU_PA) {
+
+			buzz(10, 1, u.ux, u.uy, -1, 0);
+			buzz(10, 1, u.ux, u.uy, 1, 0);
+			buzz(10, 1, u.ux, u.uy, -1, 1);
+			buzz(10, 1, u.ux, u.uy, 1, 1);
+			buzz(10, 1, u.ux, u.uy, 0, 1);
+			buzz(10, 1, u.ux, u.uy, -1, -1);
+			buzz(10, 1, u.ux, u.uy, 1, -1);
+			buzz(10, 1, u.ux, u.uy, 0, -1);
+
+			break;
+		}
+
+		if (obj->oartifact == ART_GO_UP_IN_FLAMESES) {
+			useupall(obj);
+
+			int flamexplosions = 10;
+			while (flamexplosions > 0) {
+
+				flamexplosions--;
+				struct obj *dynamite;
+				dynamite = mksobj_at(FRAG_GRENADE, u.ux, u.uy, TRUE, FALSE, FALSE);
+				if (dynamite) {
+					if (dynamite->otyp != FRAG_GRENADE) delobj(dynamite);
+					else {
+						dynamite->dynamitekaboom = 1;
+						dynamite->quan = 1;
+						dynamite->owt = weight(dynamite);
+						attach_bomb_blow_timeout(dynamite, 0, 0);
+						run_timers();
+					}
+				}
+			}
+
+			if (!(HProtection & INTRINSIC))  {
+				HProtection |= FROMOUTSIDE;
+			} 
+			u.ublessed += 2;
+			Your("skin feels harder.");
+
+		}
+
+		if (obj->oartifact == ART_EROTIC_STAT_TRAIN) {
+
+			You_feel("revitalized.");
+			make_sick(0L, (char *) 0, FALSE, SICK_ALL);
+			make_blinded(0L,FALSE);
+			make_stunned(0L,TRUE);
+			make_confused(0L,TRUE);
+			(void) make_hallucinated(0L,FALSE,0L);
+			make_numbed(0L,TRUE);
+			make_feared(0L,TRUE);
+			make_frozen(0L,TRUE);
+			make_burned(0L,TRUE);
+			make_dimmed(0L,TRUE);
+
+			break;
+		}
 
 		if (obj->oartifact == ART_SPFLOTCH__HAHAHAHAHA_) {
 			curse(obj);

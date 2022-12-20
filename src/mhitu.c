@@ -2409,6 +2409,7 @@ mattacku(mtmp)
 	if (mtmp->data->msound == MS_STENCH) tmp += rnd(15);
 	if (mtmp->data->msound == MS_CONVERT) tmp += rnd(5);
 	if (mtmp->data->msound == MS_HCALIEN) tmp += rnd(10);
+	if ((uarm && uarm->oartifact == ART_UPPER_RUM) && rathersmall(mtmp->data)) tmp += 20;
 	if (mtmp->egotype_farter) tmp += rnd(7);
 	if (mtmp->fartbonus) tmp += rnd(mtmp->fartbonus);
 	if (mtmp->crapbonus) tmp += rno(mtmp->crapbonus);

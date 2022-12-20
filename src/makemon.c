@@ -32301,6 +32301,8 @@ register struct permonst *ptr;
 	if ((uarmg && itemhasappearance(uarmg, APP_PRINCESS_GLOVES)) && (is_lord(ptr) && !rn2(5)) ) return TRUE;
 	if ((uarmg && itemhasappearance(uarmg, APP_PRINCESS_GLOVES)) && (is_prince(ptr) && !rn2(2)) ) return TRUE;
 
+	if (uarm && uarm->oartifact == ART_GILDED_MAIL && (is_lord(ptr) || is_prince(ptr)) && rn2(4)) return TRUE;
+
 	if ((uarmf && itemhasappearance(uarmf, APP_PRINCESS_PUMPS) ) && (is_lord(ptr) && rn2(2)) ) return TRUE;
 	if ((uarmf && itemhasappearance(uarmf, APP_PRINCESS_PUMPS) ) && (is_prince(ptr) && rn2(5)) ) return TRUE;
 
