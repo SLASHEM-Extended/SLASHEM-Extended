@@ -16616,7 +16616,7 @@ boolean knoweverything;
 			case SPE_STINKING_CLOUD:
 				pline("Casting this spell allows you to place a stinking cloud on a nearby visible location."); break;
 			case SPE_GAIN_LEVEL:
-				pline("An absurdly powerful spell that may increase your character level. However, it often fails."); break;
+				pline("An absurdly powerful spell that may increase your character level. However, it often fails. And if it works, it also greatly increases your sanity."); break;
 			case SPE_MAP_LEVEL:
 				pline("This spell fails most of the time, but if it doesn't, it will reveal the map of the entire level (with a few gaps) and show quite some objects as well as traps. When it does work, it has quite a chance of backfiring, and of course it doesn't work at all if the level isn't mappable."); break;
 			case SPE_INFERNO:

@@ -9703,6 +9703,8 @@ controlagain:
 		else n = 50;	/* Unskilled or restricted */
 		if (!rn2(n)) {
 			gainlevelmaybe();
+			u.usanity += rnz(1000); /* doesn't give bad effects --Amy */
+			flags.botl = TRUE;
 		} else
 		    pline("Too bad - it didn't work!");
 		break;
@@ -10424,6 +10426,13 @@ rerollX:
 	if (pseudo && (pseudo->otyp == SPE_THRONE_GAMBLE) && !rn2(6) ) {
 
 		boostknow(spell, -(rnd(100000)));
+		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
+
+	}
+
+	if (pseudo && (pseudo->otyp == SPE_GAIN_LEVEL) && !rn2(200) ) {
+
+		boostknow(spell, -(rnd(50000)));
 		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
 
 	}
