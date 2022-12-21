@@ -7760,6 +7760,7 @@ SCROLL((char *)0,               "AMEDI AMEDAI AMEDIDANDAI",  P_NONE,     1,   0,
 SCROLL((char *)0,               "BAKING BAKING LITTLE PLACES",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
 SCROLL((char *)0,               "THE EMPIRE OF THE RISING SUN DEFEATED THE COUNTRY OF FADING LIGHTS",  P_NONE,     1,   0, 100, CLR_RED, 1),
 SCROLL((char *)0,               "DO NOT TRIGGER THE SIFA",  P_NONE,     1,   0, 100, CLR_BRIGHT_BLUE, 1),
+SCROLL((char *)0,               "WAYNE INTRESSIERTS",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
 
 
 #ifdef MAIL

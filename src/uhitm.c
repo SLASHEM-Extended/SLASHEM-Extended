@@ -3420,6 +3420,34 @@ int dieroll;
 		}
 	}
 
+	/* negative effects go here --Amy */
+
+	if (obj && obj->oartifact == ART_LUCKLESS_FOLLY && Luck > 0) tmp -= Luck;
+
+	if (thrown && obj && (obj->oartifact == ART_TRAPPERATE) && isok(mon->mx, mon->my) && !(t_at(mon->mx, mon->my)) ) {
+		(void) maketrap(mon->mx, mon->my, randomtrap(), 100, TRUE);
+	}
+
+	if (thrown && obj && (obj->oartifact == ART_FEMMY_LOVES_YOU) ) {
+		if (!FemaleTrapFemmy) pline("Femmy loves you!");
+		FemaleTrapFemmy += rnd(1000);
+	}
+
+	if (obj && obj->otyp == COLLUSION_KNIFE && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5))) {
+		pline("Collusion!");
+		litroomlite(FALSE);
+	}
+
+	if (obj && obj->otyp == DARKNESS_CLUB && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5))) {
+		pline("Collusion!");
+		litroomlite(FALSE);
+	}
+
+	if (obj && obj->oartifact == ART_FIREBIRD && obj->spe > -20 && !rn2(10)) {
+		obj->spe--;
+		pline("The boomerang degrades.");
+	}
+
 	/****** NOTE: perhaps obj is undefined!! (if !thrown && BOOMERANG)
 	 *      *OR* if attacking bare-handed!! */
 
@@ -3604,6 +3632,9 @@ int dieroll;
 		if (wep && !thrown && !(( (is_launcher(wep) && !(wep->otyp == LASERXBOW && wep->lamplit) && !(wep->otyp == KLIUSLING && wep->lamplit)) || is_missile(wep) || (is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) )) ) tmp += melee_dam_bonus(wep);	/* extra damage bonus added by Amy */
 		if (wep && thrown) tmp += ranged_dam_bonus(wep);	/* ditto */
 
+		/* various artifacts and other specific things with *beneficial* effects go here --Amy
+		 * negative effects, like collusion knives, should run even if it wasn't a "valid weapon attack" */
+
 		if (obj && obj->oartifact == ART_SHOE_BRAND && mon->data->msound == MS_SHOE) {
 
 			if (!rn2(20)) {
@@ -3724,12 +3755,7 @@ int dieroll;
 		}
 
 		/* luckless folly: increase damage with low luck, decrease with high luck --Amy */
-		if (wep && wep->oartifact == ART_LUCKLESS_FOLLY) tmp -= Luck;
-
-		if (wep && wep->otyp == COLLUSION_KNIFE && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5))) {
-			pline("Collusion!");
-			litroomlite(FALSE);
-		}
+		if (wep && wep->oartifact == ART_LUCKLESS_FOLLY && Luck < 0) tmp -= Luck;
 
 		if (wep && wep->oartifact == ART_PUCKOCK && thrown && uball && (wep == uball)) tmp += 30;
 
@@ -3743,11 +3769,6 @@ int dieroll;
 				mon->mcanmove = 0;
 				mon->mstrategy &= ~STRAT_WAITFORU;
 			}
-		}
-
-		if (wep && wep->otyp == DARKNESS_CLUB && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5))) {
-			pline("Collusion!");
-			litroomlite(FALSE);
 		}
 
 		if (wep && wep->oartifact == ART_GAE_BUIDHE) {
@@ -3765,11 +3786,6 @@ int dieroll;
 					pline("%s's weapon degrades.", Monnam(mon));
 				}
 			}
-		}
-
-		if (wep && wep->oartifact == ART_FIREBIRD && wep->spe > -20 && !rn2(10)) {
-			wep->spe--;
-			pline("The boomerang degrades.");
 		}
 
 		if (wep && wep->oartifact == ART_SVEN_S_GARBAGE_BOOSTER) {
@@ -3963,15 +3979,6 @@ melatechoice:
 		if (wep && wep->oartifact == ART_ENCHANTEASY && !rn2(1000) && wep->spe < 7) {
 			wep->spe++;
 			Your("weapon was enchanted!");
-		}
-
-		if (thrown && obj && (obj->oartifact == ART_TRAPPERATE) && isok(mon->mx, mon->my) && !(t_at(mon->mx, mon->my)) ) {
-			(void) maketrap(mon->mx, mon->my, randomtrap(), 100, TRUE);
-		}
-
-		if (thrown && obj && (obj->oartifact == ART_FEMMY_LOVES_YOU) ) {
-			if (!FemaleTrapFemmy) pline("Femmy loves you!");
-			FemaleTrapFemmy += rnd(1000);
 		}
 
 		if (thrown && obj && (obj->oartifact == ART_BECOME_NORMAL) ) {

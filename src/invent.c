@@ -24434,6 +24434,10 @@ boolean knoweverything;
 					pline("Artifact specs: half physical damage, warning and acts as a luckstone when wielded, neutral."); break;
 				case ART_TOMORROW_WENDY_S_CHOICENA:
 					pline("Artifact specs: wendy trap effect when worn, and if you're female it also conveys premature death and perilous life saving."); break;
+				case ART_NOCK_GUN:
+					pline("Artifact specs: if it has no artifact timeout, it gains a +6 multishot bonus but firing it in that state sets a timeout."); break;
+				case ART_CANNONDANCER:
+					pline("Artifact specs: increased multishot depending on your amount of firearms skill, but if any bullet misses you'll be paralyzed for several turns. Also, using any other ranged weapon while wielding this gun also paralyzes you if you miss."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

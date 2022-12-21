@@ -32,6 +32,7 @@ extern boolean notonhead;	/* for long worms */
  * any artifacts after #127 were segfaulting and giving random effects instead of the desired ones... --Amy */
 
 STATIC_DCL int spec_applies(const struct artifact *,struct monst *);
+STATIC_DCL int spec_applies_number(const struct artifact *,struct monst *, struct obj *);
 STATIC_DCL int arti_invoke(struct obj*);
 STATIC_DCL boolean Mb_hit(struct monst *magr,struct monst *mdef,
 			  struct obj *,int *,int,BOOLEAN_P,char *);
@@ -1774,7 +1775,13 @@ touch_artifact(obj,mon)
 #endif /* OVLB */
 #ifdef OVL1
 
-/* decide whether an artifact's special attacks apply against mtmp */
+/* decide whether an artifact's special attacks apply against mtmp
+ * Amy edit: MAKE SURE you keep the other function below in line, too! This first one is just for touching artifacts,
+ * and "wayne intressierts" if a player polyd into a vortex doesn't get blasted when trying to pick up that one artifact
+ * which has damage bonuses against both elementals and vortices. The important part is that the artifact in question
+ * actually deals bonus damage to both of those monster types when used in combat, which is now governed by the other
+ * function while this one will be for stuff that doesn't require the artifact ID.
+ * Still, why the heck did they make it so that the "artifact" structure doesn't store the artifact ID is beyond me. */
 STATIC_OVL int
 spec_applies(weap, mtmp)
 register const struct artifact *weap;
@@ -1800,23 +1807,107 @@ struct monst *mtmp;
 	    retval &= (ptr == &mons[(int)weap->mtype]);
 	} else if (weap->spfx & SPFX_DCLAS) {
 	    retval &= (weap->mtype == (unsigned long)ptr->mlet);
+	} else if (weap->spfx & SPFX_DFLAG1) {
+	    retval &= ((ptr->mflags1 & weap->mtype) != 0L);
+	} else if (weap->spfx & SPFX_DFLAG2) {
+	    retval &= ((ptr->mflags2 & weap->mtype) || (yours &&
+			   ((!Upolyd && (urace.selfmask & weap->mtype)) ||
+			    ((weap->mtype & M2_WERE) && u.ulycn >= LOW_PM))));
+	}
+	if (weap->spfx & SPFX_DALIGN) {
+	    retval &= yours ? (u.ualign.type != weap->alignment) :
+			   (ptr->maligntyp == A_NONE ||
+				sgn(ptr->maligntyp) != weap->alignment);
+	}
+	if (weap->spfx & SPFX_ATTK) {
+	    struct obj *defending_weapon = (yours ? uwep : MON_WEP(mtmp));
 
-		/* groan, now we have to hardwire those names because it would be too much to ask to have an index number
-		 * in the "struct artifact" defined in artifact.h! that's, like, so retarded... --Amy */
+	    if (defending_weapon && defending_weapon->oartifact &&
+		    defends((int)weap->attk.adtyp, defending_weapon))
+		return FALSE;
+	    switch(weap->attk.adtyp) {
+		case AD_FIRE:
+			if (yours ? Fire_resistance : resists_fire(mtmp))
+			    retval = FALSE;
+			break;
+		case AD_ACID:
+			if (yours ? Acid_resistance : resists_acid(mtmp))
+			    retval = FALSE;
+			break;
+		case AD_COLD:
+			if (yours ? Cold_resistance : resists_cold(mtmp))
+			    retval = FALSE;
+			break;
+		case AD_ELEC:
+			if (yours ? Shock_resistance : resists_elec(mtmp))
+			    retval = FALSE;
+			break;
+		case AD_MAGM:
+		case AD_STUN:
+			if (yours ? Antimagic : (rn2(100) < ptr->mr))
+			    retval = FALSE;
+			break;
+		case AD_DRST:
+			if (yours ? Poison_resistance : resists_poison(mtmp))
+			    retval = FALSE;
+			break;
+		case AD_DRLI:
+			if (yours ? Drain_resistance : resists_drli(mtmp))
+			    retval = FALSE;
+			break;
+		case AD_STON:
+			if (yours ? Stone_resistance : resists_ston(mtmp))
+			    retval = FALSE;
+			break;
+		case AD_PHYS:
+			break;
+		default:	impossible("Weird weapon special attack.");
+	    }
+	}
+	return retval;
+}
 
-		if (!strncmpi(weap->name, "Jonadab's Brainstorming", 24)) {
+/* same function but WE WANT TO BE ABLE TO GET THE BLOODY INDEX NUMBER OF THE BLOODY ARTIFACT GAAAAAH --Amy */
+STATIC_OVL int
+spec_applies_number(weap, mtmp, otmp)
+register const struct artifact *weap;
+struct monst *mtmp;
+struct obj *otmp;
+{
+	int retval = TRUE;
+	struct permonst *ptr;
+	boolean yours;
+
+	if(!(weap->spfx & (SPFX_DBONUS | SPFX_ATTK)))
+	    return(weap->attk.adtyp == AD_PHYS);
+
+	yours = (mtmp == &youmonst);
+	ptr = mtmp->data;
+
+	/* [ALI] Modified to support multiple DBONUS and ATTK flags set.
+	 * Not all combinations are possible because many DBONUS flags
+	 * use mtype and would conflict. Where combinations are possible,
+	 * both checks must pass in order for the special attack to
+	 * apply against mtmp.
+	 */
+	if (weap->spfx & SPFX_DMONS) {
+	    retval &= (ptr == &mons[(int)weap->mtype]);
+	} else if (weap->spfx & SPFX_DCLAS) {
+	    retval &= (weap->mtype == (unsigned long)ptr->mlet);
+
+		if (otmp && otmp->oartifact == ART_JONADAB_S_BRAINSTORMING) {
 			if (S_DEMON == (unsigned long)ptr->mlet) retval = TRUE;
 		}
-		if (!strncmpi(weap->name, "Shugo", 6)) {
+		if (otmp && otmp->oartifact == ART_SHUGO) {
 			if (S_UNICORN == (unsigned long)ptr->mlet) retval = TRUE;
 		}
-		if (!strncmpi(weap->name, "Staff of Moon", 14)) {
+		if (otmp && otmp->oartifact == ART_STAFF_OF_MOON) {
 			if (S_VORTEX == (unsigned long)ptr->mlet) retval = TRUE;
 		}
-		if (!strncmpi(weap->name, "Pole of Moon", 13)) {
+		if (otmp && otmp->oartifact == ART_POLE_OF_MOON) {
 			if (S_VORTEX == (unsigned long)ptr->mlet) retval = TRUE;
 		}
-		if (!strncmpi(weap->name, "Staff of Star", 14)) {
+		if (otmp && otmp->oartifact == ART_STAFF_OF_STAR) {
 			if (S_VORTEX == (unsigned long)ptr->mlet) retval = TRUE;
 		}
 	} else if (weap->spfx & SPFX_DFLAG1) {
@@ -1921,7 +2012,7 @@ struct monst *mon;
 		}
 	}
 
-	if (weap && weap->attk.damn && spec_applies(weap, mon))
+	if (weap && weap->attk.damn && spec_applies_number(weap, mon, otmp))
 	    return (int)weap->attk.damn;
 	return 0;
 }
@@ -1939,7 +2030,7 @@ int tmp;
 			weap->attk.damn == 0 && weap->attk.damd == 0))
 	    spec_dbon_applies = FALSE;
 	else
-	    spec_dbon_applies = spec_applies(weap, mon);
+	    spec_dbon_applies = spec_applies_number(weap, mon, otmp);
 
 	/* Amy edit: the fact that they always did max damage was fucked up, IMHO. */
 
@@ -2283,7 +2374,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	    special_applies = TRUE;
 	else {
 	    const struct artifact *weap = get_artifact(otmp);
-	    special_applies = weap && spec_applies(weap, mdef);
+	    special_applies = weap && spec_applies_number(weap, mdef, otmp);
 	}
 
 	if (youattack && youdefend) {

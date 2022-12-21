@@ -244,11 +244,30 @@ int thrown;
 		}
 	    }
 
+	    if (launcher && launcher->oartifact == ART_CANNONDANCER && !(PlayerCannotUseSkills)) {
+		switch (P_SKILL(P_FIREARM)) {
+			default:	break; /* No bonus */
+			case P_BASIC:	multishot += 1; break;
+			case P_SKILLED:	multishot += rnd(2); break;
+			case P_EXPERT:	multishot += rnd(3); break;
+			case P_MASTER:	multishot += rnd(4); break;
+			case P_GRAND_MASTER:	multishot += rnd(5); break;
+			case P_SUPREME_MASTER:	multishot += rnd(6); break;
+		}
+	    }
+
 	    if (launcher && launcher->otyp == WILDHILD_BOW && obj->otyp == ODOR_SHOT) multishot++;
 	    if (launcher && launcher->otyp == COMPOST_BOW && obj->otyp == FORBIDDEN_ARROW) multishot++;
 
 	    if (launcher && launcher->oartifact == ART_TEAM_FORTRESS_GL && obj->otyp == FRAG_GRENADE) multishot += 5;
 	    if (launcher && launcher->oartifact == ART_TEAM_FORTRESS_GL && obj->otyp == GAS_GRENADE) multishot += 5;
+
+	    if (launcher && launcher->oartifact == ART_NOCK_GUN && (launcher->age <= monstermoves) ) {
+		int artitimeout = rnz(2000);
+		if (!rn2(5)) artitimeout = rnz(20000); /* squeaking does not help here, as it's not an actual invoke --Amy */
+		multishot += 6;
+		launcher->age = (monstermoves + artitimeout);
+	    }
 
 	    if (obj && obj->oartifact == ART_WIWIU_) multishot += rnd(3);
 	    if (obj && obj->oartifact == ART_LEAD_SYRINGE) multishot += 2;
@@ -2282,6 +2301,13 @@ struct monst *mon;
     else
 	miss(missile, mon);
     if (!rn2(3)) wakeup(mon);
+
+    if ( ((uwep && uwep->oartifact == ART_CANNONDANCER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_CANNONDANCER)) && multi >= 0) {
+		if (isstunfish) nomul(-(rnz(10)), "having missed the beat", TRUE);
+		else nomul(-(rn1(5,5)), "having missed the beat", TRUE);
+
+    }
+
     return;
 }
 

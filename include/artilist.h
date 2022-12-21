@@ -11233,6 +11233,14 @@ A("Tomorrow Wendy's Choicena",				LEATHER_CLOAK, /* initialized to always be dea
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
+A("Nock Gun",				FLINTLOCK, /* if it has no artifact timeout, +6 multishot but firing it in that state gives a timeout */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Cannondancer",				PISTOL, /* +d(firearms skill level) multishot but if any bullet misses, you're paralyzed for rn1(5,5) turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.
