@@ -1,6 +1,26 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.8.0 - December 2022
+- Fixed a bug where saving and loading the game would cause randarts to have their base type re-initialized.
+- Nerfed the gain level spell.
+- Overhauled the playable missingno race so that it now has its own unique way of polymorphing into monsters.
+- Equipment made of the "mysterious" material now has an effect.
+- All boss monsters are immune to Elbereth and scare monster scrolls now. The same applies to all types of minotaur.
+- Fixed a loophole where players could sometimes loot digestive containers without using in-game turns.
+- Overhauled the venom class of objects so that they now have their own skill and other functionality. It's also finally possible to wish for them outside of wizard mode.
+- Monsters who are low on health can now move through diagonal openings even if they are normally too big for it.
+- Fixed a severe bug where certain sokosolver levels lacked stairs.
+- If the player eats, their symbiote may now gain a boost to maximum health, and pets who eat food may gain a similar boost.
+- The player can now select a new directive for pets that makes them even more passive.
+- Fixed a bug where the fillup trap wouldn't set the state of changed tiles correctly, resulting in the player being able to see through walls and fire ranged weapons through them on occasion.
+- Temples with priests now have a bottle of holy water on the altar sometimes, and buying protection or cleansing grants additional holy water. Cleansing also improves the player's alignment record.
+- Certain methods of monster creation now place a flag on that monster which makes it not drop its items, such as the create monster spell, or zapping a corpse with undead turning, to thwart farming.
+- Toned down the effect of the gudrun feminism trap.
+
 2.7.9 - October 2022
+- Gloves and boots artifacts with damage bonuses work now.
+- Limited the amount of extra hunger caused by the metabolism nastytrap.
+- Fixed an oversight that caused some double damage artifacts to accidentally have no damage bonus at all.
 - Mazes in BIGslex have more monsters and traps on average.
 - Rooms-and-corridors levels may be more interesting with additional stuff in rooms, scaled to the room's size.
 - Extremely angry gods now have a bunch of additional effects they can throw at the player beyond lightning/disintegration.
