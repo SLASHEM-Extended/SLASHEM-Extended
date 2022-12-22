@@ -18740,6 +18740,7 @@ u_init()
 #endif
 
 	/* Starting stat point totals will be higher or lower depending on the player character. --Amy */
+	/* keywords: newroles, newraces */
 
 	rolebounus = racebounus = genderbounus = alignbounus = 0;
 	maxbounus = 60 + rnd(20);
@@ -18852,6 +18853,8 @@ u_init()
 	case PM_PLAYER_MECHANIC: racebounus = rnz(12); break;
 	case PM_BULDOZGAR: racebounus = rnz(12); break;
 	case PM_SWIKNI: racebounus = rnz(13); break;
+	case PM_URGOTH: racebounus = rnz(15); break;
+	case PM_THRALL: racebounus = rnz(8); break;
 	default:	racebounus = rnz(10); break;
 
 	}

@@ -494,6 +494,12 @@ nh_timeout()
 		if (!u.demagogueabilitytimer && isdemagogue) pline("You're capable of using #monster to temporarily change your role.");
 	}
 
+	if (u.handpulling) {
+		u.handpulling--;
+		if (u.handpulling < 0) u.handpulling = 0; /* fail safe */
+		if (!u.handpulling) pline("You are capable of pulling monsters again.");
+	}
+
 	if (u.hussyperfume) {
 		u.hussyperfume--;
 		if (u.hussyperfume < 0) u.hussyperfume = 0; /* fail safe */

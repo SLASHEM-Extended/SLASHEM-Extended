@@ -15674,6 +15674,7 @@ boolean new_game;	/* false => restoring an old game */
 	if (flags.hybridchallenger && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "challenger ");
 	if (flags.hybridhardmoder && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "hardmoder ");
 	if (flags.hybridstunfish && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "stunned-like-a-fish ");
+	if (flags.hybridkillfiller && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "killfiller ");
 	if (hybridcount >= 20) sprintf(eos(xtrabuf), "(%d hybrids) ", hybridcount);
 
 	if (new_game) { /* for recursion trap */

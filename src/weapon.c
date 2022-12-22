@@ -7968,7 +7968,8 @@ rerollthree:
 
 	}
 
-	/* implant skill is rarely granted by the role, but many handicapped races get bonuses to it --Amy */
+	/* implant skill is rarely granted by the role, but many handicapped races get bonuses to it --Amy
+	 * keyword: newraces */
 	implantbonus = 0;
 	switch (Race_switch) {
 		default: break;

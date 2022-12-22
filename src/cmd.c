@@ -1883,6 +1883,44 @@ domonability()
 		use_skill(P_SQUEAKING, 1);
 		return 1;
 
+	} else if (Race_if(PM_HAND) && !u.handpulling && yn("Do you want to pull a monster to you?") == 'y') {
+
+		register struct monst *nexusmon;
+		int multiplegather = 0;
+
+		if (u.uen < 100) {
+			You("need at least 100 mana to use this ability!");
+			return 0;
+		} else {
+			u.uen -= 100;
+			u.handpulling = rnz(2000);
+			if (!PlayerCannotUseSkills && u.handpulling >= 2) {
+				switch (P_SKILL(P_SQUEAKING)) {
+			      	case P_BASIC:	u.handpulling *= 9; u.handpulling /= 10; break;
+			      	case P_SKILLED:	u.handpulling *= 8; u.handpulling /= 10; break;
+			      	case P_EXPERT:	u.handpulling *= 7; u.handpulling /= 10; break;
+			      	case P_MASTER:	u.handpulling *= 6; u.handpulling /= 10; break;
+			      	case P_GRAND_MASTER:	u.handpulling *= 5; u.handpulling /= 10; break;
+			      	case P_SUPREME_MASTER:	u.handpulling *= 4; u.handpulling /= 10; break;
+			      	default: break;
+				}
+			}
+
+			You("attempt to pull a monster to you.");
+			for(nexusmon = fmon; nexusmon; nexusmon = nexusmon->nmon) {
+				if (nexusmon && !nexusmon->mtame && !nexusmon->mpeaceful && !(u.usteed && (u.usteed == nexusmon)) ) {
+					mnexto(nexusmon);
+					pline("%s is pulled near!", Monnam(nexusmon));
+					multiplegather++;
+					goto callingoutdone;
+				}
+			}
+callingoutdone:
+			if (!multiplegather) pline("There seems to be no eligible monster.");
+
+			use_skill(P_SQUEAKING, rnd(5));
+		}
+
 	} else if ( ( (Role_if(PM_HUSSY) && (!Upolyd && flags.female)) || (uarmf && uarmf->oartifact == ART_ANJA_S_WIDE_FIELD) || (uarmf && uarmf->oartifact == ART_SCRATCHE_HUSSY) || have_femityjewel() || (PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_STENCH) || (Upolyd && youmonst.data->msound == MS_STENCH) ) && !u.hussyperfume && yn("Do you want to spread your scentful perfume?") == 'y') {
 		You("spread the lovely feminine drum stint reluctance brand perfume to intoxicate monsters around you!");
 
@@ -2275,6 +2313,11 @@ playersteal()
 		else if (uarm && uarm->owt < 325) chanch -= 15;
 		else if (uarm && uarm->owt < 375) chanch -= 20;
 		else if (uarm)                    chanch -= 25;
+
+		if (Race_if(PM_THRALL)) {
+			if (chanch < 5) chanch = 5;
+			chanch *= 2;
+		}
 
 		if (uarmg && itemhasappearance(uarmg, APP_POLNISH_GLOVES) ) {
 			if (chanch < 5) chanch = 5;
@@ -12192,6 +12235,7 @@ minimal_enlightenment()
 	if (flags.hybridchallenger && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "challenger ");
 	if (flags.hybridhardmoder && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "hardmoder ");
 	if (flags.hybridstunfish && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "stunned-like-a-fish ");
+	if (flags.hybridkillfiller && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "killfiller ");
 	if (hybridcount >= 20) sprintf(eos(xtrabuf), "(%d hybrids) ", hybridcount);
 
 	if (!DisplayDoesNotGo) {

@@ -1555,7 +1555,7 @@ freehandX()
 
 	/* grim shield is worn over the shoulder, and therefore doesn't result in unusable hands */
 	return(!uwep || !welded(uwep) ||
-	   (!bimanual(uwep) && (!uarms || (uarms && uarms->otyp == GRIM_SHIELD) || !uarms->cursed)));
+	   (!bimanual(uwep) && (!uarms || (uarms && (uarms->otyp == GRIM_SHIELD || Race_if(PM_THRALL) || Race_if(PM_URGOTH) || Race_if(PM_ZAUR) || Race_if(PM_WYLVAN) ) ) || !uarms->cursed)));
 }
 
 static NEARDATA const char styluses[] =

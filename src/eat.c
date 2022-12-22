@@ -91,7 +91,7 @@ const char *hu_stat[] = {
 #endif /* OVLB */
 #ifdef OVL1
 
-/* also used to see if you're allowed to eat cats and dogs */
+/* also used to see if you're allowed to eat cats and dogs, keyword: newraces */
 
 STATIC_OVL boolean
 cannibal_allowed()
@@ -116,6 +116,10 @@ cannibal_allowed()
 		case PM_GAVIL:
 		case PM_CORTEX:
 		case PM_GOAULD:
+		case PM_THRALL:
+		case PM_URGOTH:
+		case PM_ZAUR:
+		case PM_WYLVAN:
 		case PM_KLACKON:
 		case PM_KUTAR:
 		case PM_TONBERRY:

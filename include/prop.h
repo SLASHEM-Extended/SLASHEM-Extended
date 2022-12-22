@@ -5,34 +5,35 @@
 #ifndef PROP_H
 #define PROP_H
 
+/* ones marked "lvlup" are usually granted via attrib.c --Amy */
 /*** What the properties are ***/
-#define FIRE_RES		 1
-#define COLD_RES		 2
-#define SLEEP_RES		 3
-#define DISINT_RES		 4
-#define SHOCK_RES		 5
-#define POISON_RES		 6
-#define ACID_RES		 7
-#define STONE_RES		 8
+#define FIRE_RES		 1 /* lvlup */
+#define COLD_RES		 2 /* lvlup */
+#define SLEEP_RES		 3 /* lvlup */
+#define DISINT_RES		 4 /* lvlup */
+#define SHOCK_RES		 5 /* lvlup */
+#define POISON_RES		 6 /* lvlup */
+#define ACID_RES		 7 /* lvlup */
+#define STONE_RES		 8 /* lvlup */
 /* note: for the first eight properties, MR_xxx == (1 << (xxx_RES - 1)) */
 #define ADORNED			 9
-#define REGENERATION		10
-#define SEARCHING		11
-#define SEE_INVIS		12
-#define INVIS			13
-#define TELEPORT		14
-#define TELEPORT_CONTROL	15
-#define POLYMORPH		16
-#define POLYMORPH_CONTROL	17
+#define REGENERATION		10 /* lvlup */
+#define SEARCHING		11 /* lvlup */
+#define SEE_INVIS		12 /* lvlup */
+#define INVIS			13 /* lvlup */
+#define TELEPORT		14 /* lvlup */
+#define TELEPORT_CONTROL	15 /* lvlup */
+#define POLYMORPH		16 /* lvlup */
+#define POLYMORPH_CONTROL	17 /* lvlup */
 #define LEVITATION		18
-#define STEALTH			19
-#define AGGRAVATE_MONSTER	20
-#define CONFLICT		21
+#define STEALTH			19 /* lvlup */
+#define AGGRAVATE_MONSTER	20 /* lvlup */
+#define CONFLICT		21 /* lvlup */
 #define PROTECTION		22
 #define PROT_FROM_SHAPE_CHANGERS 23
-#define WARNING			24
-#define TELEPAT			25
-#define FAST			26
+#define WARNING			24 /* lvlup */
+#define TELEPAT			25 /* lvlup */
+#define FAST			26 /* lvlup */
 #define STUNNED			27
 #define CONFUSION		28
 #define SICK			29
@@ -42,37 +43,37 @@
 #define STONED			33
 #define STRANGLED		34
 #define HALLUC			35
-#define HALLUC_RES		36
+#define HALLUC_RES		36 /* lvlup */
 #define FUMBLING		37
-#define JUMPING			38
+#define JUMPING			38 /* lvlup */
 #define WWALKING		39
-#define HUNGER			40
+#define HUNGER			40 /* lvlup */
 #define GLIB			41
-#define REFLECTING		42
+#define REFLECTING		42 /* lvlup */
 #define LIFESAVED		43
-#define ANTIMAGIC		44
+#define ANTIMAGIC		44 /* lvlup */
 #define DISPLACED		45
-#define CLAIRVOYANT		46
+#define CLAIRVOYANT		46 /* lvlup */
 #define VOMITING		47
-#define ENERGY_REGENERATION	48
-#define MAGICAL_BREATHING	49
-#define HALF_SPDAM		50
-#define HALF_PHDAM		51
-#define SICK_RES		52
-#define DRAIN_RES		53
-#define WARN_UNDEAD		54
+#define ENERGY_REGENERATION	48 /* lvlup */
+#define MAGICAL_BREATHING	49 /* lvlup */
+#define HALF_SPDAM		50 /* lvlup */
+#define HALF_PHDAM		51 /* lvlup */
+#define SICK_RES		52 /* lvlup */
+#define DRAIN_RES		53 /* lvlup */
+#define WARN_UNDEAD		54 /* lvlup */
 #define INVULNERABLE		55
-#define FREE_ACTION		56
-#define SWIMMING		57
+#define FREE_ACTION		56 /* lvlup */
+#define SWIMMING		57 /* lvlup */
 #define SLIMED			58
 #define FIXED_ABIL		59
-#define FLYING			60
+#define FLYING			60 /* lvlup */
 #define UNCHANGING		61
-#define PASSES_WALLS		62
-#define SLOW_DIGESTION		63
-#define INFRAVISION		64
+#define PASSES_WALLS		62 /* lvlup */
+#define SLOW_DIGESTION		63 /* lvlup */
+#define INFRAVISION		64 /* lvlup */
 #define WARN_OF_MON		65
-#define DETECT_MONSTERS		66
+#define DETECT_MONSTERS		66 /* lvlup */
 #define NUMBED			67
 #define FEARED			68
 #define FEAR_RES			69
@@ -127,16 +128,16 @@
 #define DEAC_REFLECTING	117
 #define DEAC_FREE_ACTION	118
 
-#define HALLU_PARTY 119
-#define DRUNKEN_BOXING 120
-#define STUNNOPATHY 121
-#define NUMBOPATHY 122
-#define FREEZOPATHY 123
-#define STONED_CHILLER 124
-#define CORROSIVITY 125
-#define FEAR_FACTOR 126
-#define BURNOPATHY 127
-#define SICKOPATHY 128
+#define HALLU_PARTY 119 /* lvlup */
+#define DRUNKEN_BOXING 120 /* lvlup */
+#define STUNNOPATHY 121 /* lvlup */
+#define NUMBOPATHY 122 /* lvlup */
+#define FREEZOPATHY 123 /* lvlup */
+#define STONED_CHILLER 124 /* lvlup */
+#define CORROSIVITY 125 /* lvlup */
+#define FEAR_FACTOR 126 /* lvlup */
+#define BURNOPATHY 127 /* lvlup */
+#define SICKOPATHY 128 /* lvlup */
 
 #define DEAC_HALLU_PARTY 129
 #define DEAC_DRUNKEN_BOXING 130
@@ -205,10 +206,10 @@
 
 #define PREMDEATH		185
 
-#define KEEN_MEMORY	186
+#define KEEN_MEMORY	186 /* lvlup */
 #define DEAC_KEEN_MEMORY	187
 
-#define THE_FORCE	188
+#define THE_FORCE	188 /* lvlup */
 #define DEAC_THE_FORCE	189
 
 #define SENSORY_DEPRIVATION 190
@@ -238,18 +239,18 @@
 #define TRAINING_DEACTIVATED 212
 #define EXERCISE_DEACTIVATED 213
 
-#define SIGHT_BONUS	214
+#define SIGHT_BONUS	214 /* lvlup */
 #define DEAC_SIGHT_BONUS	215
-#define VERSUS_CURSES	216
+#define VERSUS_CURSES	216 /* lvlup */
 #define DEAC_VERSUS_CURSES	217
 
-#define STUN_RES	218
-#define CONF_RES	219
+#define STUN_RES	218 /* lvlup */
+#define CONF_RES	219 /* lvlup */
 #define MULTISHOES	220
-#define EXTRA_WEAPON_PRACTICE	221
-#define DTBEEM_RES	222
-#define DOUBLE_ATTACK	223
-#define QUAD_ATTACK	224
+#define EXTRA_WEAPON_PRACTICE	221 /* lvlup */
+#define DTBEEM_RES	222 /* lvlup */
+#define DOUBLE_ATTACK	223 /* lvlup */
+#define QUAD_ATTACK	224 /* lvlup */
 #define DEAC_STUN_RES	225
 #define DEAC_CONF_RES	226
 #define DEAC_DOUBLE_ATTACK	227
@@ -260,11 +261,11 @@
 #define RANDOM_MESSAGES 231
 
 #define ELEMENT_RES 232
-#define PSI_RES 233
+#define PSI_RES 233 /* lvlup */
 #define DEAC_PSI_RES 234
 
-#define WONDERLEGS 235
-#define GLIB_COMBAT 236
+#define WONDERLEGS 235 /* lvlup */
+#define GLIB_COMBAT 236 /* lvlup */
 #define DEAC_WONDERLEGS 237
 #define DEAC_GLIB_COMBAT 238
 
@@ -287,16 +288,16 @@
 #define PROJECTILES_MISFIRE 255
 #define WALL_TRAP_EFFECT 256
 
-#define MANALEECH 257
+#define MANALEECH 257 /* lvlup */
 #define DEAC_MANALEECH 258
 
-#define MAP_AMNESIA 259
+#define MAP_AMNESIA 259 /* lvlup */
 
 #define DIMMED 260
 
-#define PEACEVISION 261
+#define PEACEVISION 261 /* lvlup */
 #define DEAC_PEACEVISION 262
-#define DIMMOPATHY 263
+#define DIMMOPATHY 263 /* lvlup */
 #define DEAC_DIMMOPATHY 264
 
 #define HEAVY_DIMMED 265
@@ -485,14 +486,14 @@
 #define AUTOMORE_BUG	443
 #define UNFAIR_ATTACK_BUG	444
 
-#define CONT_RES 445
+#define CONT_RES 445 /* lvlup */
 #define DEAC_CONT_RES 446
 
-#define DISCOUNT_ACTION 447
+#define DISCOUNT_ACTION 447 /* lvlup */
 #define DEAC_DISCOUNT_ACTION 448
-#define FULL_NUTRIENT 449
+#define FULL_NUTRIENT 449 /* lvlup */
 #define DEAC_FULL_NUTRIENT 450
-#define TECHNICALITY 451
+#define TECHNICALITY 451 /* lvlup */
 #define DEAC_TECHNICALITY 452
 
 #define ORANGE_SPELLS 453
@@ -581,9 +582,9 @@
 
 #define PLAYERBLEEDING 530
 
-#define SCENT_VIEW 531
+#define SCENT_VIEW 531 /* lvlup */
 #define DEAC_SCENT_VIEW 532
-#define DIMINISHED_BLEEDING 533
+#define DIMINISHED_BLEEDING 533 /* lvlup */
 #define DEAC_DIMINISHED_BLEEDING 534
 
 #define RNGE_HEMOPHILIA 535
@@ -600,9 +601,9 @@
 #define FEMTRAP_KRISTINA 545
 #define FEMTRAP_LOU 546
 
-#define CONTROL_MAGIC 547
+#define CONTROL_MAGIC 547 /* lvlup */
 #define DEAC_CONTROL_MAGIC 548
-#define EXP_BOOST 549
+#define EXP_BOOST 549 /* lvlup */
 #define DEAC_EXP_BOOST 550
 
 #define FEMTRAP_ALMUT 551
@@ -629,9 +630,9 @@
 #define FEMTRAP_HENRIETTA 570
 #define FEMTRAP_VERENA 571
 
-#define ASTRAL_VISION 572
+#define ASTRAL_VISION 572 /* lvlup */
 #define DEAC_ASTRAL_VISION 573
-#define BLIND_RES 574
+#define BLIND_RES 574 /* lvlup */
 #define DEAC_BLIND_RES 575
 #define DEAC_HALLUC_RES 576
 
@@ -661,7 +662,7 @@
 #define FEMTRAP_RITA 599
 #define FEMTRAP_JANINA 600
 
-#define PAIN_SENSE 601
+#define PAIN_SENSE 601 /* lvlup */
 #define DEAC_PAIN_SENSE 602
 
 #define FEMTRAP_ROSA 603
@@ -688,8 +689,8 @@
 #define TEZ_EFFECT 622
 #define KILLER_ROOM_EFFECT 623
 
-#define WINCE_STATE 624
-#define INVERT_STATE 625
+#define WINCE_STATE 624 /* lvlup */
+#define INVERT_STATE 625 /* lvlup */
 
 #define FEMTRAP_RUTH 626
 #define FEMTRAP_MAGDALENA 627
@@ -718,7 +719,7 @@
 #define FEMTRAP_HANNAH 648
 #define FEMTRAP_LITTLE_MARIE 649
 
-#define DEFUSING 651
+#define DEFUSING 651 /* lvlup */
 #define DEAC_DEFUSING 652
 
 #define RNGE_NASTY_REDUCTION 653

@@ -1485,6 +1485,22 @@ const struct innate {
 	trn_abil[] = { {	 1, &(HExtra_wpn_practice), "", "", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
+	zau_abil[] = { {	 1, &(HStone_resistance), "", "", TRUE },
+		     {   1, &(HSwimming), "", "", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	wyl_abil[] = { {	 1, &(HScentView), "", "", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	thr_abil[] = { {	 1, &(HSearching), "", "", TRUE },
+			{	 1, &(HStealth), "", "", TRUE },
+		     {  20, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	han_abil[] = { {	 1, &(HDrain_resistance), "", "", TRUE },
+			 { 20, &(HFlying), "weightless", "grounded", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
 	cup_abil[] = { { 20, &(HFlying), "weightless", "grounded", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
@@ -2545,6 +2561,8 @@ int oldlevel, newlevel;
 	case PM_GASTLY:            rabil = gas_abil;	break;
 	case PM_PHANTOM_GHOST:            rabil = gas_abil;	break;
 	case PM_MUMMY:            rabil = mum_abil;	break;
+	case PM_HAND:            rabil = han_abil;	break;
+	case PM_THRALL:            rabil = thr_abil;	break;
 	case PM_WEAPONIZED_DINOSAUR:            rabil = din_abil;	break;
 	case PM_PLAYER_SKELETON:            rabil = ske_abil;	break;
 	case PM_HUMAN_WRAITH:            rabil = wra_abil;	break;
@@ -2561,6 +2579,8 @@ int oldlevel, newlevel;
 	case PM_WEAPON_IMP:            rabil = wim_abil;	break;
 	case PM_TRAINER:            rabil = trn_abil;	break;
 	case PM_CUPID:            rabil = cup_abil;	break;
+	case PM_ZAUR:            rabil = zau_abil;	break;
+	case PM_WYLVAN:            rabil = wyl_abil;	break;
 	case PM_BACTERIA:            rabil = bac_abil;	break;
 	case PM_PLAYER_SHEEP:            rabil = she_abil;	break;
 	case PM_PLAYER_CERBERUS:            rabil = cer_abil;	break;
@@ -2821,6 +2841,7 @@ int x;
 		if (uwep && uwep->oartifact == ART_ULTRA_ANNOYANCE) tmp += 10;
 		if (uarmf && uarmf->oartifact == ART_LORENZI_S_CLEANING_RESIDUE) tmp += 2;
 		if (u.combatcommand) tmp += 1;
+		if (Race_if(PM_URGOTH)) tmp += 5;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (Race_if(PM_KNOWLEDGABLE)) tmp -= 2;
@@ -3084,6 +3105,7 @@ int x;
 		if (uleft && uleft->oartifact == ART_SERPENT_RING_OF_SET) tmp += 5;
 		if (uright && uright->oartifact == ART_SERPENT_RING_OF_SET) tmp += 5;
 		if (u.combatcommand) tmp += 1;
+		if (Race_if(PM_WYLVAN)) tmp += 1;
 
 		if (uarmh && uarmh->oartifact == ART_YOU_DON_T_KNOW_SHIT) tmp -= 3;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp -= 10;
@@ -3157,6 +3179,7 @@ int x;
 		if (uarms && uarms->oartifact == ART_YOHUALLI_TEZCATL) tmp += 2;
 		if (uarmf && uarmf->oartifact == ART_LORENZI_S_CLEANING_RESIDUE) tmp += 2;
 		if (u.combatcommand) tmp += 1;
+		if (Race_if(PM_THRALL)) tmp += 3;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (PlayerBleeds > 100) tmp -= 2;
@@ -3206,6 +3229,7 @@ int x;
 		if (FemtrapActiveNora && u.uhs == STARVED) tmp += 25;
 		if (uarmf && uarmf->oartifact == ART_LORENZI_S_CLEANING_RESIDUE) tmp += 2;
 		if (u.combatcommand) tmp += 1;
+		if (Race_if(PM_URGOTH)) tmp += 3;
 
 		if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 			if (uarm && is_metallic(uarm)) tmp++;

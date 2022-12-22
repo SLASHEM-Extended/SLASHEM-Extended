@@ -46,85 +46,85 @@ struct blitz_tab {
 };
 
 
-#define NO_TECH 	0
-#define T_BERSERK 	1
-#define T_KIII 		2
-#define T_RESEARCH 	3
-#define T_SURGERY 	4
-#define T_REINFORCE 	5
-#define T_FLURRY 	6
-#define T_PRACTICE 	7
-#define T_EVISCERATE 	8
-#define T_HEAL_HANDS 	9
-#define T_CALM_STEED 	10
-#define T_TURN_UNDEAD 	11
-#define T_VANISH 	12
-#define T_CUTTHROAT 	13
-#define T_BLESSING 	14
-#define T_E_FIST 	15
-#define T_PRIMAL_ROAR 	16
-#define T_LIQUID_LEAP 	17
-#define T_CRIT_STRIKE 	18
-#define T_SIGIL_CONTROL 19
-#define T_SIGIL_TEMPEST 20
-#define T_SIGIL_DISCHARGE 21
-#define T_RAISE_ZOMBIES 22
-#define T_REVIVE 	23
-#define T_WARD_FIRE 	24
-#define T_WARD_COLD 	25
-#define T_WARD_ELEC 	26
-#define T_TINKER 	27
-#define T_RAGE	 	28
-#define T_BLINK	 	29
-#define T_CHI_STRIKE 	30
-#define T_DRAW_ENERGY 	31
-#define T_CHI_HEALING 	32
+#define NO_TECH 	0 /* annotation "lvlup" means tech can be given in tech.c for various roles and races */
+#define T_BERSERK 	1 /* lvlup */
+#define T_KIII 		2 /* lvlup */
+#define T_RESEARCH 	3 /* lvlup */
+#define T_SURGERY 	4 /* lvlup */
+#define T_REINFORCE 	5 /* lvlup */
+#define T_FLURRY 	6 /* lvlup */
+#define T_PRACTICE 	7 /* lvlup */
+#define T_EVISCERATE 	8 /* lvlup */
+#define T_HEAL_HANDS 	9 /* lvlup */
+#define T_CALM_STEED 	10 /* lvlup */
+#define T_TURN_UNDEAD 	11 /* lvlup */
+#define T_VANISH 	12 /* lvlup */
+#define T_CUTTHROAT 	13 /* lvlup */
+#define T_BLESSING 	14 /* lvlup */
+#define T_E_FIST 	15 /* lvlup */
+#define T_PRIMAL_ROAR 	16 /* lvlup */
+#define T_LIQUID_LEAP 	17 /* lvlup */
+#define T_CRIT_STRIKE 	18 /* lvlup */
+#define T_SIGIL_CONTROL 19 /* lvlup */
+#define T_SIGIL_TEMPEST 20 /* lvlup */
+#define T_SIGIL_DISCHARGE 21 /* lvlup */
+#define T_RAISE_ZOMBIES 22 /* lvlup */
+#define T_REVIVE 	23 /* lvlup */
+#define T_WARD_FIRE 	24 /* lvlup */
+#define T_WARD_COLD 	25 /* lvlup */
+#define T_WARD_ELEC 	26 /* lvlup */
+#define T_TINKER 	27 /* lvlup */
+#define T_RAGE	 	28 /* lvlup */
+#define T_BLINK	 	29 /* lvlup */
+#define T_CHI_STRIKE 	30 /* lvlup */
+#define T_DRAW_ENERGY 	31 /* lvlup */
+#define T_CHI_HEALING 	32 /* lvlup */
 #define T_DISARM 	33
-#define T_DAZZLE 	34
-#define T_BLITZ 	35
-#define T_PUMMEL 	36
-#define T_G_SLAM 	37
-#define T_DASH	 	38
-#define T_POWER_SURGE 	39
-#define T_SPIRIT_BOMB 	40
-#define T_DRAW_BLOOD	41
+#define T_DAZZLE 	34 /* lvlup */
+#define T_BLITZ 	35 /* lvlup */
+#define T_PUMMEL 	36 /* lvlup */
+#define T_G_SLAM 	37 /* lvlup */
+#define T_DASH	 	38 /* lvlup */
+#define T_POWER_SURGE 	39 /* lvlup */
+#define T_SPIRIT_BOMB 	40 /* lvlup */
+#define T_DRAW_BLOOD	41 /* lvlup */
 
-#define T_WORLD_FALL	42
-#define T_CREATE_AMMO	43
-#define T_POKE_BALL	44
-#define T_ATTIRE_CHARM	45
-#define T_SUMMON_TEAM_ANT	46
+#define T_WORLD_FALL	42 /* lvlup */
+#define T_CREATE_AMMO	43 /* lvlup */
+#define T_POKE_BALL	44 /* lvlup */
+#define T_ATTIRE_CHARM	45 /* lvlup */
+#define T_SUMMON_TEAM_ANT	46 /* lvlup */
 #define T_APPRAISAL	47
-#define T_EGG_BOMB	48
-#define T_BOOZE	49
+#define T_EGG_BOMB	48 /* lvlup */
+#define T_BOOZE	49 /* lvlup */
 
 #define T_INVOKE_DEITY	50
 
-#define T_DOUBLE_TROUBLE	51
+#define T_DOUBLE_TROUBLE	51 /* lvlup */
 
 #define T_PHASE_DOOR	52
 
 #define T_SECURE_IDENTIFY	53
 
-#define T_IRON_SKIN	54
-#define T_POLYFORM	55
-#define T_CONCENTRATING	56
-#define T_SUMMON_PET	57
-#define T_DOUBLE_THROWNAGE	58
-#define T_SHIELD_BASH	59
-#define T_RECHARGE	60
-#define T_SPIRITUALITY_CHECK	61
-#define T_EDDY_WIND	62
+#define T_IRON_SKIN	54 /* lvlup */
+#define T_POLYFORM	55 /* lvlup */
+#define T_CONCENTRATING	56 /* lvlup */
+#define T_SUMMON_PET	57 /* lvlup */
+#define T_DOUBLE_THROWNAGE	58 /* lvlup */
+#define T_SHIELD_BASH	59 /* lvlup */
+#define T_RECHARGE	60 /* lvlup */
+#define T_SPIRITUALITY_CHECK	61 /* lvlup */
+#define T_EDDY_WIND	62 /* lvlup */
 
-#define T_BLOOD_RITUAL	63
-#define T_ENT_S_POTION	64
-#define T_LUCKY_GAMBLE	65
+#define T_BLOOD_RITUAL	63 /* lvlup */
+#define T_ENT_S_POTION	64 /* lvlup */
+#define T_LUCKY_GAMBLE	65 /* lvlup */
 
 #define T_PANIC_DIGGING	66
 
-#define T_DECONTAMINATE	67
-#define T_WONDERSPELL	68
-#define T_RESET_TECHNIQUE	69
+#define T_DECONTAMINATE	67 /* lvlup */
+#define T_WONDERSPELL	68 /* lvlup */
+#define T_RESET_TECHNIQUE	69 /* lvlup */
 
 #define T_SILENT_OCEAN	70
 #define T_GLOWHORN	71
@@ -180,7 +180,7 @@ struct blitz_tab {
 #define T_DISARMING_KICK	121
 #define T_INLAY_WARFARE	122
 
-#define T_DIAMOND_BARRIER	123
+#define T_DIAMOND_BARRIER	123 /* lvlup */
 
 #define T_STEADY_HAND	124
 #define T_FORCE_FILLING	125
@@ -208,10 +208,10 @@ struct blitz_tab {
 
 #define T_WONDER_YONDER	147
 
-#define T_ZAP_EM	148
+#define T_ZAP_EM	148 /* lvlup */
 
-#define T_CARD_TRICK	149
-#define T_SKILLOMORPH	150
+#define T_CARD_TRICK	149 /* lvlup */
+#define T_SKILLOMORPH	150 /* lvlup */
 
 #define T_SHOTTY_BLAST	151
 #define T_AMMO_UPGRADE	152
@@ -231,7 +231,7 @@ struct blitz_tab {
 #define T_BULLETREUSE	166
 #define T_EXTRACHARGE	167
 
-#define T_TERRAIN_CLEANUP	168
+#define T_TERRAIN_CLEANUP	168 /* lvlup */
 
 #define T_SYMBIOSIS	169
 #define T_ADJUST_SYMBIOTE	170
@@ -247,9 +247,9 @@ struct blitz_tab {
 #define T_ANTI_INERTIA	179
 #define T_GRENADES_OF_COURSE	180
 
-#define T_PREACHING	181
-#define T_ON_THE_SAME_TEAM	182
-#define T_PERMAMORPH	183
+#define T_PREACHING	181 /* lvlup */
+#define T_ON_THE_SAME_TEAM	182 /* lvlup */
+#define T_PERMAMORPH	183 /* lvlup */
 
 #define T_PACIFY	184
 #define T_AFTERBURNER	185
@@ -292,7 +292,7 @@ struct blitz_tab {
 
 #define T_TOILET_VISIT	216
 
-#define T_ROCK_TO_POISON	217
+#define T_ROCK_TO_POISON	217 /* lvlup */
 
 #define T_INJECTION	218
 #define T_SUPER_POISON	219
@@ -303,9 +303,9 @@ struct blitz_tab {
 
 #define T_UNARMED_FOCUS	224
 
-#define T_JEDI_JUMP	225
-#define T_CHARGE_SABER	226
-#define T_TELEKINESIS	227
+#define T_JEDI_JUMP	225 /* lvlup */
+#define T_CHARGE_SABER	226 /* lvlup */
+#define T_TELEKINESIS	227 /* lvlup */
  
 #define MAXTECH 228
 

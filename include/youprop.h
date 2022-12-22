@@ -1503,7 +1503,7 @@
 
 #define HFast			u.uprops[FAST].intrinsic
 #define EFast			u.uprops[FAST].extrinsic
-#define IntFast	(HFast || (uarmf && uarmf->oartifact == ART_PRECURSOR_TO_THE___) || (uarmf && itemhasappearance(uarmf, APP_CHRISTMAS_CHILD_MODE_BOOTS) && Feared) )
+#define IntFast	(HFast || (uarmf && uarmf->oartifact == ART_PRECURSOR_TO_THE___) || (Race_if(PM_WYLVAN)) || (uarmf && itemhasappearance(uarmf, APP_CHRISTMAS_CHILD_MODE_BOOTS) && Feared) )
 #define ExtFast	(playerextrinsicspeed())
 
 #define Fast			(((IntFast && !(Race_if(PM_NEMESIS) && uarmf) && u.nonintrinsicproperty != FAST) || (ExtFast && u.nonextrinsicproperty != FAST)) && !NoFast && !Race_if(PM_DEVELOPER) && !(uleft && uleft->oartifact == ART_CORGON_S_RING) && !(uright && uright->oartifact == ART_CORGON_S_RING) && !(uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK) && !Race_if(PM_ITAQUE) && !(Race_if(PM_BOVER) && u.usteed) && !Race_if(PM_MONGUNG) && !HardcoreAlienMode && (!Role_if(PM_TRANSVESTITE) || flags.female) && (!Role_if(PM_TOPMODEL) || !flags.female) )

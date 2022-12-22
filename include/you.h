@@ -1603,6 +1603,7 @@ struct you {
 	int hussyhurtturn;
 	int hussykillturn;
 	int hussyperfume;
+	int handpulling;
 
 	int irahapoison;
 

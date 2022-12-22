@@ -238,6 +238,7 @@ in_trouble()
 	return(0);
 }
 
+/* keyword: newraces */
 STATIC_OVL boolean
 canofferownrace()
 {
@@ -253,6 +254,10 @@ canofferownrace()
 		case PM_RODNEYAN:
 		case PM_INSECTOID:
 		case PM_WEAPON_TRAPPER:
+		case PM_THRALL:
+		case PM_URGOTH:
+		case PM_ZAUR:
+		case PM_WYLVAN:
 		case PM_KOBOLT:
 		case PM_MOULD:
 		case PM_HUMANLIKE_DRAGON:

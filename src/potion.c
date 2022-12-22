@@ -7323,7 +7323,8 @@ metalmafiaattack()
 
 /* nivellation: rather than doing what some other variants are doing (imposing a hard cap on max HP and Pw), I decided
  * that it's much more interesting to instead have an attack/trap/badeffect that can reduce the max depending on how high
- * it already is; this effect will do nothing if the player's max is below a certain threshold */
+ * it already is; this effect will do nothing if the player's max is below a certain threshold
+ * keywords: newroles, newraces */
 void
 nivellate()
 {
@@ -7487,6 +7488,24 @@ nivellate()
 			upperceiling *= 3;
 			upperceiling /= 2;
 		}
+		if (Race_if(PM_URGOTH)) {
+			lowerceiling *= 5;
+			lowerceiling /= 2;
+			upperceiling *= 5;
+			upperceiling /= 2;
+		}
+		if (Race_if(PM_ZAUR)) {
+			lowerceiling *= 3;
+			lowerceiling /= 2;
+			upperceiling *= 3;
+			upperceiling /= 2;
+		}
+		if (Race_if(PM_HAND)) {
+			lowerceiling *= 3;
+			lowerceiling /= 2;
+			upperceiling *= 3;
+			upperceiling /= 2;
+		}
 		if (Race_if(PM_DEVELOPER)) {
 			lowerceiling *= 3;
 			lowerceiling /= 2;
@@ -7498,6 +7517,12 @@ nivellate()
 			lowerceiling /= 4;
 			upperceiling *= 5;
 			upperceiling /= 4;
+		}
+		if (Race_if(PM_THRALL)) {
+			lowerceiling *= 6;
+			lowerceiling /= 5;
+			upperceiling *= 6;
+			upperceiling /= 5;
 		}
 		if (Race_if(PM_INKA)) {
 			lowerceiling *= 6;
@@ -7644,6 +7669,12 @@ nivellate()
 			upperceiling *= 3;
 			upperceiling /= 2;
 		}
+		if (Race_if(PM_WYLVAN)) {
+			lowerceiling *= 9;
+			lowerceiling /= 5;
+			upperceiling *= 9;
+			upperceiling /= 5;
+		}
 		if (Race_if(PM_BRETON)) {
 			lowerceiling *= 4;
 			lowerceiling /= 3;
@@ -7662,9 +7693,19 @@ nivellate()
 			upperceiling *= 2;
 			upperceiling /= 3;
 		}
+		if (Race_if(PM_ZAUR)) {
+			lowerceiling *= 2;
+			lowerceiling /= 3;
+			upperceiling *= 2;
+			upperceiling /= 3;
+		}
 		if (Race_if(PM_REDGUARD)) {
 			lowerceiling /= 2;
 			upperceiling /= 2;
+		}
+		if (Race_if(PM_URGOTH)) {
+			lowerceiling /= 3;
+			upperceiling /= 3;
 		}
 		if (Race_if(PM_YOKUDA)) {
 			lowerceiling *= 2;
@@ -7681,6 +7722,12 @@ nivellate()
 			lowerceiling /= 10;
 			upperceiling *= 9;
 			upperceiling /= 10;
+		}
+		if (Race_if(PM_THRALL)) {
+			lowerceiling *= 6;
+			lowerceiling /= 5;
+			upperceiling *= 6;
+			upperceiling /= 5;
 		}
 		if (Race_if(PM_LICH_WARRIOR)) {
 			lowerceiling *= 5;
@@ -7832,6 +7879,18 @@ boolean guaranteed;
 			ceiling *= 3;
 			ceiling /= 2;
 		}
+		if (Race_if(PM_URGOTH)) {
+			ceiling *= 5;
+			ceiling /= 2;
+		}
+		if (Race_if(PM_ZAUR)) {
+			ceiling *= 3;
+			ceiling /= 2;
+		}
+		if (Race_if(PM_HAND)) {
+			ceiling *= 3;
+			ceiling /= 2;
+		}
 		if (Race_if(PM_DEVELOPER)) {
 			ceiling *= 3;
 			ceiling /= 2;
@@ -7841,6 +7900,10 @@ boolean guaranteed;
 			ceiling /= 4;
 		}
 		if (Race_if(PM_INKA)) {
+			ceiling *= 6;
+			ceiling /= 5;
+		}
+		if (Race_if(PM_THRALL)) {
 			ceiling *= 6;
 			ceiling /= 5;
 		}
@@ -7958,6 +8021,10 @@ boolean guaranteed;
 			ceiling *= 3;
 			ceiling /= 2;
 		}
+		if (Race_if(PM_WYLVAN)) {
+			ceiling *= 9;
+			ceiling /= 5;
+		}
 		if (Race_if(PM_BRETON)) {
 			ceiling *= 4;
 			ceiling /= 3;
@@ -7970,8 +8037,15 @@ boolean guaranteed;
 			ceiling *= 2;
 			ceiling /= 3;
 		}
+		if (Race_if(PM_ZAUR)) {
+			ceiling *= 2;
+			ceiling /= 3;
+		}
 		if (Race_if(PM_REDGUARD)) {
 			ceiling /= 2;
+		}
+		if (Race_if(PM_URGOTH)) {
+			ceiling /= 3;
 		}
 		if (Race_if(PM_YOKUDA)) {
 			ceiling *= 2;
@@ -7979,6 +8053,10 @@ boolean guaranteed;
 		}
 		if (Race_if(PM_RODNEYAN)) {
 			ceiling *= 2;
+		}
+		if (Race_if(PM_THRALL)) {
+			ceiling *= 6;
+			ceiling /= 5;
 		}
 		if (Race_if(PM_CARTHAGE)) {
 			ceiling *= 9;

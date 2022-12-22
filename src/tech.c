@@ -1979,6 +1979,42 @@ static const struct innate_tech
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 
+	urg_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_BERSERK, 1},
+		       {   10, T_PRIMAL_ROAR, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   0, 0, 0} },
+
+	thr_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   22, T_VANISH, 1},
+		       {   25, T_BOOZE, 1},
+		       {   0, 0, 0} },
+
+	zau_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   12, T_EVISCERATE, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   16, T_IRON_SKIN, 1},
+		       {   20, T_CRIT_STRIKE, 1},
+		       {   0, 0, 0} },
+
+	wyl_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   25, T_REINFORCE, 1},
+		       {   0, 0, 0} },
+
 	bac_tech[] = { {   1, T_APPRAISAL, 1},
 		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
@@ -2047,6 +2083,18 @@ static const struct innate_tech
 		       {   14, T_SUMMON_PET, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   28, T_BLOOD_RITUAL, 1},
+		       {   0, 0, 0} },
+
+	han_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   8, T_E_FIST, 1},
+		       {   10, T_EVISCERATE, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   15, T_TELEKINESIS, 1},
+		       {   20, T_HEAL_HANDS, 1},
+		       {   25, T_CALM_STEED, 1},
 		       {   0, 0, 0} },
 
 	mac_tech[] = { {   1, T_APPRAISAL, 1},
@@ -11007,6 +11055,7 @@ race_tech()
 		case PM_CARTHAGE:		return (crt_tech);
 		case PM_MACTHEIST:		return (mac_tech);
 		case PM_BOVER:		return (bov_tech);
+		case PM_HAND:		return (han_tech);
 		case PM_PERVERT:		return (per_tech);
 		case PM_MONGUNG:		return (mog_tech);
 		case PM_VIETIS:		return (vie_tech);
@@ -11067,6 +11116,10 @@ race_tech()
 		case PM_EGYMID:	return (egy_tech);
 		case PM_NEMESIS:	return (nem_tech);
 		case PM_CUPID:	return (cup_tech);
+		case PM_URGOTH:	return (urg_tech);
+		case PM_WYLVAN:	return (wyl_tech);
+		case PM_ZAUR:	return (zau_tech);
+		case PM_THRALL:	return (thr_tech);
 		case PM_PLAYER_CERBERUS:	return (cer_tech);
 		case PM_BACTERIA:	return (bac_tech);
 		case PM_UNALIGNMENT_THING:	return (una_tech);

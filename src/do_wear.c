@@ -5239,13 +5239,13 @@ boolean noisy;
 	if (uarms) {
 	    if (noisy) already_wearing(an(c_shield));
 	    err++;
-	} else if (uwep && bimanual(uwep) && otmp->otyp != GRIM_SHIELD) {
+	} else if (uwep && bimanual(uwep) && otmp->otyp != GRIM_SHIELD && !Race_if(PM_THRALL) && !Race_if(PM_URGOTH) && !Race_if(PM_ZAUR) && !Race_if(PM_WYLVAN) ) {
 	    if (noisy) 
 		You("cannot wear a shield while wielding a two-handed %s.",
 		    is_sword(uwep) ? c_sword :
 		    (uwep->otyp == BATTLE_AXE) ? c_axe : (uwep->otyp == DWARVISH_BATTLE_AXE) ? c_axe : c_weapon);
 	    err++;
-	} else if (u.twoweap && otmp->otyp != GRIM_SHIELD) {
+	} else if (u.twoweap && otmp->otyp != GRIM_SHIELD && !Race_if(PM_THRALL) && !Race_if(PM_URGOTH) && !Race_if(PM_ZAUR) && !Race_if(PM_WYLVAN)) {
 	    if (noisy) {
 		if (uwep && uswapwep)
 		    You("cannot wear a shield while wielding two weapons.");
@@ -6247,6 +6247,13 @@ find_ac()
 	uac = (uac < UAC_MIN ? UAC_MIN : (uac > UAC_LIM ? UAC_LIM : uac));
 
 	if (Race_if(PM_ITAQUE)) {
+		int difference = (-(uac - 10));
+		difference = difference / 10;
+		if (difference > 0) uac -= difference;
+
+	}
+
+	if (Race_if(PM_ZAUR)) {
 		int difference = (-(uac - 10));
 		difference = difference / 10;
 		if (difference > 0) uac -= difference;

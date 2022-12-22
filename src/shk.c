@@ -2365,6 +2365,10 @@ register struct monst *shkp;	/* if angry, impose a surcharge */
 	if (uarmh && !uarmh->oinvis && uarmh->otyp == DUNCE_CAP)
 		tmp += tmp / 3L;
 
+	if (Race_if(PM_ZAUR)) tmp *= 2L;
+	if (Race_if(PM_WYLVAN)) tmp *= 2L;
+	if (Race_if(PM_URGOTH)) tmp *= 3L;
+
 	if (Race_if(PM_DUTHOL)) tmp *= 2L;
 	if (Role_if(PM_OTAKU)) tmp += tmp / 3L; /* bad at making deals */
 
@@ -2521,6 +2525,18 @@ register struct monst *shkp;
 
 	if (Role_if(PM_OTAKU)) tmp /= 3L; /* bad at making deals */
 	if (Race_if(PM_DUTHOL)) tmp /= 2L;
+
+	if (Race_if(PM_ZAUR)) tmp /= 2L;
+	if (Race_if(PM_WYLVAN)) tmp /= 2L;
+	if (Race_if(PM_URGOTH)) tmp /= 3L;
+
+	if (Role_if(PM_BARBARIAN)) tmp /= 3L;
+	if (Role_if(PM_NOOB_MODE_BARB)) tmp /= 5L;
+	/* rogues are untrustworthy... */
+	if (Role_if(PM_ROGUE)) tmp /= 2L;
+	/* samurais are from out of town... */
+	if (Role_if(PM_SAMURAI)) tmp /= 2L;
+	if (uarmf && uarmf->oartifact == ART_CARMARK) tmp /= 2L;
 
 	/* shopkeeper may notice if the player isn't very knowledgeable -
 	   especially when gem prices are concerned */
@@ -6948,6 +6964,23 @@ shk_smooth_charge(pcharge, lower, upper)
 	else if(ACURR(A_CHA) > 4)  *pcharge *= 20;
 	else *pcharge *= 21;
 	*pcharge /= 10;
+
+	if (uarmh && !uarmh->oinvis && uarmh->otyp == DUNCE_CAP) *pcharge *= 2L;
+
+	if (Role_if(PM_OTAKU)) *pcharge *= 3L; /* bad at making deals */
+	if (Race_if(PM_DUTHOL)) *pcharge *= 2L;
+
+	if (Race_if(PM_ZAUR)) *pcharge *= 2L;
+	if (Race_if(PM_WYLVAN)) *pcharge *= 2L;
+	if (Race_if(PM_URGOTH)) *pcharge *= 3L;
+
+	if (Role_if(PM_BARBARIAN)) *pcharge *= 3L;
+	if (Role_if(PM_NOOB_MODE_BARB)) *pcharge *= 5L;
+	/* rogues are untrustworthy... */
+	if (Role_if(PM_ROGUE)) *pcharge *= 2L;
+	/* samurais are from out of town... */
+	if (Role_if(PM_SAMURAI)) *pcharge *= 2L;
+	if (uarmf && uarmf->oartifact == ART_CARMARK) *pcharge *= 2L;
 
 	if (Is_blackmarket(&u.uz)) *pcharge *= 3;
 	/* Skip upper stuff? */
