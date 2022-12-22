@@ -8546,17 +8546,14 @@ repairitemchoice:
 			if (uwep) {
 				switch (randomelement) {
 					case 1:
-						artilist[ART_FIRE_SWING].otyp = uwep->otyp;
-						elemental_imbue(1);
+						elemental_imbue(1); /* see artifact.c */
 						uwep = onameX(uwep, artiname(ART_FIRE_SWING));
 						break;
 					case 2:
-						artilist[ART_FROST_SWING].otyp = uwep->otyp;
 						elemental_imbue(2);
 						uwep = onameX(uwep, artiname(ART_FROST_SWING));
 						break;
 					case 3:
-						artilist[ART_SHOCK_SWING].otyp = uwep->otyp;
 						elemental_imbue(3);
 						uwep = onameX(uwep, artiname(ART_SHOCK_SWING));
 						break;

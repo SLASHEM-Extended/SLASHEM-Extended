@@ -157,7 +157,6 @@ hack_artifacts()
 {
 	struct artifact *art;
 	int alignmnt = aligns[flags.initalign].value;
-	const char *tname; /* bugfix by Chris_ANG */
 
 	memcpy(artilist, artilist_pre, sizeof(artilist));
 
@@ -786,9 +785,9 @@ int fd;
 {
 	bwrite(fd, (void *) artiexist, sizeof artiexist);
 	bwrite(fd, (void *) artidisco, sizeof artidisco);
-	bwrite(fd, (void *) artilist, sizeof artilist); /* gotta save them, goddammit! --Amy */
+	bwrite(fd, (void *) artilist, sizeof artilist);
 
-	int articursor = ART_FIREWALL;
+	int articursor = (ART_FIREWALL - 1); /* gotta save them, goddammit! --Amy */
 	while (articursor <= NROFARTIFACTS) {
 		bwrite(fd, (void *) &artilist[articursor], sizeof(struct artifact));
 		articursor++;
@@ -807,7 +806,7 @@ int fd;
 	mread(fd, (void *) artidisco, sizeof artidisco);
 	mread(fd, (void *) artilist, sizeof artilist);
 
-	int articursor = ART_FIREWALL;
+	int articursor = (ART_FIREWALL - 1);
 	while (articursor <= NROFARTIFACTS) {
 		tname = artilist[articursor].name;
 		mread(fd, (void *) &artilist[articursor], sizeof(struct artifact));
