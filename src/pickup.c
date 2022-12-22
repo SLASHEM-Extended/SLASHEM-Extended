@@ -2122,6 +2122,7 @@ int put_into_container(struct obj *container, struct obj *obj)
 	current_container = t;
 
 	/* control reaches end of non-void function, but is this one even used anywhere?! --Amy */
+	return 1; /* eh, let's return 1 for now, can still change it if necessary */
 }
 
 

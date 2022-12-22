@@ -942,7 +942,7 @@ boolean confused;
 int
 dotele()
 {
-	dotele_post(TRUE);
+	return dotele_post(TRUE);
 }
 
 int

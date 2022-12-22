@@ -1167,7 +1167,7 @@ dig_up_grave()
 		adjalign(-10);
 	    You("disturb the honorable dead!");
 	}
-	if ((u.ualign.type == A_LAWFUL)) {
+	if (u.ualign.type == A_LAWFUL) {
 	    adjalign(-sgn(u.ualign.type)*2);
 	    You("have violated the sanctity of this grave!");
 	}

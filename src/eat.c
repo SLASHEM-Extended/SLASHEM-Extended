@@ -8415,7 +8415,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 	    victual.reqtime = objects[otmp->otyp].oc_delay;
 	    if (otmp->otyp != FORTUNE_COOKIE &&
 		(otmp->cursed || FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone() ||
-		 (((monstermoves - otmp->age) > (int) otmp->blessed ? 50:30) &&
+		 (((monstermoves - otmp->age) > (int) (otmp->blessed ? 50 : 30)) &&
 		(otmp->orotten || (issoviet && !rn2(5)) || (!rn2(20) && !otmp->blessed) )))) {
 
 		if (rottenfood(otmp)) {

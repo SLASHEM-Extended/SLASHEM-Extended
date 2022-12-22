@@ -5433,7 +5433,7 @@ findmorebolts:
 			if (!roxybolt) roxybolt = carrying(ETHER_BOLT);
 			if (!roxybolt) roxybolt = carrying(MATERIAL_BOLT);
 			if (roxybolt) {
-				verbalize("Ah, excellent, you have a stack of %d crossbow bolts! Do you want to give them to me?", roxybolt->quan);
+				verbalize("Ah, excellent, you have a stack of %ld crossbow bolts! Do you want to give them to me?", roxybolt->quan);
 
 				if (yn("Give the bolts to Roxanne?") == 'y') {
 

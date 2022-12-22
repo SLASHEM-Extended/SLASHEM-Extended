@@ -6985,7 +6985,9 @@ materialchoice3:
 				mtmp = tamedog(mtmp, (struct obj *) 0, FALSE);
 				if (mtmp) You("dominate %s!", mon_nam(mtmp));
 			    }
-			} else setmangry(mtmp);
+			} else {
+				setmangry(mtmp);
+			}
 		}
 		u.lamefarmer = 0;
 		multi = oldmulti;
@@ -7639,8 +7641,9 @@ newboss:
 		    for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 			if (!isok(u.ux + i, u.uy + j)) continue;
 			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0)
-			    if (!rn2(4) || ( (Role_if(PM_ACTIVISTOR) || Race_if(PM_PEACEMAKER) ) && mtmp->data == &mons[PM_TOPMODEL]) ) maybe_tame(mtmp, sobj);
-			    else if (!rn2(10) && !((rnd(30 - ACURR(A_CHA))) < 4) && !mtmp->mfrenzied && !mtmp->mtame) {
+			    if (!rn2(4) || ( (Role_if(PM_ACTIVISTOR) || Race_if(PM_PEACEMAKER) ) && mtmp->data == &mons[PM_TOPMODEL]) ) {
+				maybe_tame(mtmp, sobj);
+			    } else if (!rn2(10) && !((rnd(30 - ACURR(A_CHA))) < 4) && !mtmp->mfrenzied && !mtmp->mtame) {
 				pline("Instead of being tamed, %s enters a state of frenzy!", mon_nam(mtmp));
 				mtmp->mpeaceful = 0;
 				mtmp->mfrenzied = 1;
@@ -9194,9 +9197,9 @@ newboss:
 			if (!isok(u.ux + i, u.uy + j)) continue;
 			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0 &&
 				(is_undead(mtmp->data) || mtmp->egotype_undead) )
-			    if (!rn2(2)) maybe_tame(mtmp, sobj);
-
-			    else if (!rn2(15) && !((rnd(30 - ACURR(A_CHA))) < 4) && !mtmp->mfrenzied && !mtmp->mtame) {
+			    if (!rn2(2)) {
+				maybe_tame(mtmp, sobj);
+			    } else if (!rn2(15) && !((rnd(30 - ACURR(A_CHA))) < 4) && !mtmp->mfrenzied && !mtmp->mtame) {
 				pline("Instead of being tamed, %s enters a state of frenzy!", mon_nam(mtmp));
 				mtmp->mpeaceful = 0;
 				mtmp->mfrenzied = 1;

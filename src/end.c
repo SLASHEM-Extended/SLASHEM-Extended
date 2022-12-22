@@ -2529,9 +2529,10 @@ char defquery;
 boolean ask;
 #ifdef DUMP_LOG
 {
-  do_vanquished(defquery, ask, FALSE);
+	do_vanquished(defquery, ask, FALSE);
+	return TRUE;
 
-	/* potentially unsafe because this function should return something... --Amy */
+	/* this function should return something... but the return isn't used anywhere --Amy */
 }
 
 void

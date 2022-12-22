@@ -8089,7 +8089,7 @@ plus:
 			if ((obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == CYAN_DOUBLE_LIGHTSABER || obj->otyp == LASERDENT || obj->otyp == LASER_FLYAXE || obj->otyp == PINK_DOUBLE_LIGHTSWORD || obj->otyp == LASERXBOW || obj->otyp == SITH_STAFF || obj->otyp == LASER_POLE || obj->otyp == WHITE_DOUBLE_LIGHTSABER) && obj->altmode) strcat(bp, " (2xlit)");
 			else strcat(bp, " (lit)");
 		    }
-		    if (obj->oclass == BALL_CLASS || obj->oclass == CHAIN_CLASS) sprintf(eos(bp), " (%d)", obj->age);		
+		    if (obj->oclass == BALL_CLASS || obj->oclass == CHAIN_CLASS) sprintf(eos(bp), " (%ld)", obj->age);		
 		} else if (is_grenade(obj))
 		    if (obj->oarmed) strcat(bp, " (armed)");
 		break;

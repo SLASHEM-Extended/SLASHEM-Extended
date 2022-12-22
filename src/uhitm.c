@@ -2161,7 +2161,7 @@ int dieroll;
 		 * All that we want is to periodically remind the player that they aren't using their weapon correctly. */
 
 		    if (!thrown && (obj == uwep || obj == uswapwep) && 
-				(obj->otyp == BOOMERANG || obj->otyp == SILVER_CHAKRAM || obj->otyp == BATARANG || obj->otyp == DARK_BATARANG) && !rnl(4) == 4-1) {
+				(obj->otyp == BOOMERANG || obj->otyp == SILVER_CHAKRAM || obj->otyp == BATARANG || obj->otyp == DARK_BATARANG) && (rnl(4) != 3) ) {
 			boolean more_than_1 = (obj->quan > 1L);
 
 			pline("As you hit %s, %s%s %s breaks into splinters.",
@@ -5083,8 +5083,8 @@ melatechoice:
 			case 433: pline("As %s tries to dodge, %s fully steps into a heap of dog shit, and swears like a tube sparrow. You use the opportunity to slash %s with your sword.", mon_nam(mon), mhe(mon), mhim(mon)); break;
 			case 434: pline("%s's butt soreness of %d has just increased by one after your palm connected with it!", Monnam(mon), mon->butthurt); break;
 			case 435: pline("%s is bleeding heavily as a result of your slashing attacks. In fact, the amount of bleeding damage equals %d right now.", Monnam(mon), mon->bleedout); break;
-			case 436: pline("Since you've eaten meat %d times already, you're pretty strong now and smash %s again.", u.uconduct.unvegetarian, mon_nam(mon)); break;
-			case 437: pline("Well done, your amount of weapon hits was %d and has just increased by one again.", u.uconduct.weaphit); break;
+			case 436: pline("Since you've eaten meat %ld times already, you're pretty strong now and smash %s again.", u.uconduct.unvegetarian, mon_nam(mon)); break;
+			case 437: pline("Well done, your amount of weapon hits was %ld and has just increased by one again.", u.uconduct.weaphit); break;
 			case 438: pline("%s starts blabbering 'Hey, my pronouns are %s and %s!' You don't want to listen to that bullshit and aim a big fat slap at its %s.", Monnam(mon), mhe(mon), mhim(mon), mbodypart(mon, FACE)); break;
 			case 439: pline("You're getting angry because you only have %d points of nutrition remaining, and furiously batter %s.", u.uhunger, mon_nam(mon)); break;
 			case 440: pline("You decide to speed up the fight with %s, since you feel that the monster spawn rate may well start speeding up at turn number %d.", mon_nam(mon), (u.ascensionfirsthint * 4)); break;
@@ -5964,9 +5964,9 @@ melatechoice:
 				case 614: pline("Your scythe decapitates %s, who somehow just stood there instead of trying to dodge.", mon_nam(mon)); break;
 				case 615: pline("%s is on a heal block for %d turns, and unlike Pokemon Soul Silver, it also prevents the use of healing potions in this game so you manage to remove its last hit point!", Monnam(mon), mon->healblock); break;
 				case 616: pline("%s has been slowed by inertia for the next %d turns, and you're so cruel to abuse that momentary weakness.", Monnam(mon), mon->inertia); break;
-				case 617: pline("You've prayed %d times already, and your last prayer included beseeching the gods to let you defeat %s. Apparently, they complied.", u.uconduct.praydone, mon_nam(mon)); break;
-				case 618: pline("You're really a serial killer! %d monsters have been killed by you already, and you just killed another!", u.uconduct.killer); break;
-				case 619: pline("You've wished for %d objects by now, and for good purpose, because they allowed you to win the fight with %s.", u.uconduct.wishes, mon_nam(mon)); break;
+				case 617: pline("You've prayed %ld times already, and your last prayer included beseeching the gods to let you defeat %s. Apparently, they complied.", u.uconduct.praydone, mon_nam(mon)); break;
+				case 618: pline("You're really a serial killer! %ld monsters have been killed by you already, and you just killed another!", u.uconduct.killer); break;
+				case 619: pline("You've wished for %ld objects by now, and for good purpose, because they allowed you to win the fight with %s.", u.uconduct.wishes, mon_nam(mon)); break;
 				case 620: pline("You tell %s to fuck %sself because it certainly wasn't your fault that your savegame file got erased. If you had been able to make the decision, the game would still be there.", mon_nam(mon), mhim(mon)); break;
 				case 621: pline("You use the FATAL attack sheet for your melee attacks, and just rolled the rape attack, which has a devastating effect on %s.", mon_nam(mon)); break;
 				case 622: pline("%s is so weird and requests the game master to let %s use the FATAL spellcasting table even though this game is actually SLEX. The game master complies, and the attempted spell results in a catastrophic failure which then rolls the 1 in 2000 chance to cast Fatal.", Monnam(mon), mhim(mon)); break;
@@ -9100,8 +9100,8 @@ register int roll;
 		case 605: pline("%s has a farting bonus of %d, and therefore produces beautiful farting noises constantly which divert you and cause your swing to miss!", Monnam(mdef), mdef->fartbonus); break;
 		case 606: pline("%s uses a crapping bonus of %d to press a log of shit right into your %s, incapacitating you until you clean it off.", Monnam(mdef), mdef->crapbonus, body_part(FACE)); break;
 		case 607: pline("%s's homing lazer currently has a charge count of %d, and you shit your pants as you realize that you'll be shot with the laser cannon soon. Perhaps you should flee.", Monnam(mdef), mdef->hominglazer); break;
-		case 608: pline("%s decides that enough is enough. After all, you've killed %d monsters already; you'll not manage to kill another, you evil mass murderer.", Monnam(mdef), u.uconduct.killer); break;
-		case 609: pline("%s laughs: 'You've had sex %d times since you entered the dungeon! It seems that sex is the only thing on your mind! No wonder you can't hit with that wimpy sword, hahaha!'", Monnam(mdef), u.uconduct.celibacy); break;
+		case 608: pline("%s decides that enough is enough. After all, you've killed %ld monsters already; you'll not manage to kill another, you evil mass murderer.", Monnam(mdef), u.uconduct.killer); break;
+		case 609: pline("%s laughs: 'You've had sex %ld times since you entered the dungeon! It seems that sex is the only thing on your mind! No wonder you can't hit with that wimpy sword, hahaha!'", Monnam(mdef), u.uconduct.celibacy); break;
 		case 610: pline("%s prepares to rape your sorry ass.", Monnam(mdef)); break;
 		case 611: pline("%s simply deletes your savegame file that you've put dozens of hours into, claiming that it's because the game supposedly contains pedophilia, which it actually doesn't.", Monnam(mdef)); break;
 		case 612: pline("%s bans you from the gaming community, labels you a pariah, and then mocks you by stating that you supposedly exiled yourself when it was really the community exiling you.", Monnam(mdef)); break;
@@ -9125,9 +9125,9 @@ register int roll;
 		case 630: pline("Every time you miss %s, %s attack will get stronger. Currently, it already does %d points worth of extra damage, and if you miss again, it'll increase by one yet again.", mon_nam(mdef), mhis(mdef), u.chokhmahdamage); break;
 		case 631: pline("You're moving in slow motion. This is likely a result of your %d remaining turns of inertia, and therefore %s sees exactly where your sword would strike, allowing %s to easily parry the attack.", u.inertia, mon_nam(mdef), mhim(mdef)); break;
 		case 632: pline("%s laughs: 'Want to get your %d zorkmids back from the bank? Ha ha ha. Dream on.'", Monnam(mdef), u.bankcashamount); break;
-		case 633: pline("All your %d experience points are for naught, because you still miss the broad side of a barn.", u.uexp); break;
+		case 633: pline("All your %ld experience points are for naught, because you still miss the broad side of a barn.", u.uexp); break;
 		case 634: pline("You're such a scrub, why don't you actually use the %d skill slots you have available. Hint: Type #enhance to spend them! Then maybe you'll get somewhere!", u.weapon_slots); break;
-		case 635: pline("Even after %d turns, you still haven't enhanced more than %d skills. Are you REALLY surprised that you miss more often than you hit?", moves, u.skills_advanced); break;
+		case 635: pline("Even after %ld turns, you still haven't enhanced more than %d skills. Are you REALLY surprised that you miss more often than you hit?", moves, u.skills_advanced); break;
 		case 636: pline("Maybe you should lower your sanity, since an amount of %d doesn't let you see %s for what it really is. Your mind causes you to think you're fighting a weak monster, which isn't actually the case!", u.usanity, mon_nam(mdef)); break;
 		case 637: pline("You've used your quest artifact for only %d turns! That's way too little, you should probably re-equip it and then maybe %s wouldn't be completely impervious to your attacks!", u.artifactaffinity, mon_nam(mdef)); break;
 		case 638: pline("%s calls for a timeout, stating that %s has to go to the toilet, and you're actually stupid enough to cease attacking.", Monnam(mdef), mhe(mdef)); break;
@@ -9842,7 +9842,7 @@ bladeangerdone2:
 			/*if (!cantwield(youmonst.data) &&
 				u.umonnum != PM_MARILITH)
 			    goto use_weapon;*/
-#if 0	/* Shouldn't matter where the first AT_CLAW is anymore
+#if 0	/* Shouldn't matter where the first AT_CLAW is anymore */
 			/* succubi/incubi are humanoid, but their _second_
 			 * attack is AT_CLAW, not their first...
 			 */

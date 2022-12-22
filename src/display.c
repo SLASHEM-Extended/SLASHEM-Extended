@@ -179,6 +179,8 @@ randomglyph()
 		case 5:
 			return (GLYPH_WARNING_OFF + rn2(WARNCOUNT));
 	}
+
+	return cmap_to_glyph(rnd(S_grayglyph)); /* "non-void function does not return a value in all control paths" */
 }
 
 /*
