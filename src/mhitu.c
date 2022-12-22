@@ -19110,12 +19110,17 @@ register struct obj *obj;
 	boolean is_acid;
 
 	if (!mon || !obj) return; /* just in case */
-	if (dmgtype(youmonst.data, AD_CORR))
+
+	/* fucking HELL, who the heck designed it such that it procs for non-passive ones too??? --Amy */
+	if (attackdamagetype(youmonst.data, AT_NONE, AD_CORR)) {
 	    is_acid = TRUE;
-	else if (dmgtype(youmonst.data, AD_RUST))
+	} else if (attackdamagetype(youmonst.data, AT_NONE, AD_RUST)) {
 	    is_acid = FALSE;
-	else
-	    return;
+	} else if (attackdamagetype(youmonst.data, AT_RATH, AD_CORR)) {
+	    is_acid = TRUE;
+	} else if (attackdamagetype(youmonst.data, AT_RATH, AD_RUST)) {
+	    is_acid = FALSE;
+	} else return;
 
 	vis = cansee(mon->mx, mon->my);
 
