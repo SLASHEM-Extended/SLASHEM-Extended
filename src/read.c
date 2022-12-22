@@ -46,25 +46,8 @@ static void p_glow2(struct obj *,const char *);
 static void randomize(int *, int);
 static void maybe_tame(struct monst *,struct obj *);
 static void undo_genocide(void);
-STATIC_DCL char * reversestring(char *);
 
 STATIC_PTR void set_lit(int,int,void *);
-
-char *
-reversestring(char *str)
-{
-      char *p1, *p2;
-
-      if (! str || ! *str)
-            return str;
-      for (p1 = str, p2 = str + strlen(str) - 1; p2 > p1; ++p1, --p2)
-      {
-            *p1 ^= *p2;
-            *p2 ^= *p1;
-            *p1 ^= *p2;
-      }
-      return str;
-}
 
 int
 doread()
@@ -5845,8 +5828,14 @@ aliasagain:
 		}
 
 		if (eliasbuf[0] && aliaslength < 31) { /* We do NOT want a buffer overflow. --Amy */
+			char *oltrabuf;
 
-			if (sobj->cursed || confused) reversestring(eliasbuf);
+			/* being confused reverses the name */
+			if (confused) reversestring(eliasbuf);
+
+			/* cursed scroll gives a gibberish name (note that this can create special characters that you
+			 * normally wouldn't be able to input, this is not a bug) */
+			if (sobj->cursed) strcpy(eliasbuf, xcrypt(eliasbuf, oltrabuf));
 
 			if (eliasbuf && !(strncmpi(eliasbuf, "Glorious Dead", 14) ) ) strcpy(eliasbuf, "Cheator");
 			if (eliasbuf && !(strncmpi(eliasbuf, "Satan's Secret Storage", 23) ) ) strcpy(eliasbuf, "Cheator");

@@ -988,6 +988,7 @@ E boolean pmatch(const char *,const char *);
 #ifndef STRNCMPI
 E int strncmpi(const char *,const char *,int);
 #endif
+E char *reversestring(char *);
 #ifndef STRSTRI
 E char *strstri(const char *,const char *);
 #endif

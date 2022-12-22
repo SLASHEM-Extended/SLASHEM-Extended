@@ -34,6 +34,7 @@ NetHack, except that rounddiv may call panic().
 	boolean		pmatch		(const char *, const char *)
 	int		strncmpi	(const char *, const char *, int)
 	char *		strstri		(const char *, const char *)
+	char *	reversestring	(char *)
 	boolean		fuzzymatch	(const char *,const char *,const char *,boolean)
 	void		setrandom	(void)
 	int		getyear		(void)
@@ -142,6 +143,22 @@ strkitten(s, c)		/* append a character to a string (in place) */
     *p++ = c;
     *p = '\0';
     return s;
+}
+
+char *
+reversestring(char *str)
+{
+      char *p1, *p2;
+
+      if (!str || !*str)
+            return str;
+      for (p1 = str, p2 = str + strlen(str) - 1; p2 > p1; ++p1, --p2)
+      {
+            *p1 ^= *p2;
+            *p2 ^= *p1;
+            *p1 ^= *p2;
+      }
+      return str;
 }
 
 char *
