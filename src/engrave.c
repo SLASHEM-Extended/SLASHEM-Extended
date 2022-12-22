@@ -5960,6 +5960,8 @@ static const char *epitaphs[] = {
 	"whaaat, you didn't realise that skipping an alignment key would mean you have to face an uber version of the boss and instadied? LOL gg",
 	"whaaaaaaaat, you didn't know that hitting an ogre thief 3 times would straight up kill you??", /* it's specifically the *huge* ogre thief that does, regular ogre thieves aren't special-cased --Amy */
 	"whaaaaaaaaaaaaaat you didn't know helm of neutral exists and guarantees you can skip two thirds of astral??",
+	"I don't have any healing scrolls and potions now, all the techniques are in the 'LIMIT' state and cannot be used, and I can't escape.", /* sorry Pineapple Tycoon but you could still have used them of course, should just have tried ;) */
+	"Damn, why the hell do my techniques always display LIMIT when I'm about to die? I would have lived if I could have used them!", /* admittedly the design is unclear on that one, the game doesn't tell you what limit break mode is and not all players are cunning enough to go "well, let's just try to use them anyway!", I've seen it happen to several players already that they thought "ah fuck, can't use the techniques now" and just closed the menu without attempting to use one */
 
 };
 
