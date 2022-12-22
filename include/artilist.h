@@ -29,7 +29,7 @@ static const char *artifact_names[] = {
 #define     STUN(a,b)	{0,AD_STUN,a,b}		/* magical attack */
 #define     ACID(a,b)	{0,AD_ACID,a,b}
 
-STATIC_OVL NEARDATA struct artifact artilist[] = {
+STATIC_OVL NEARDATA struct artifact artilist_pre[] = {
 #endif	/* MAKEDEFS_C */
 
 /* Artifact cost rationale:
@@ -12284,7 +12284,7 @@ A("Sabrina's Rescue",				STURDY_PLATEAU_BOOT_FOR_GIRLS, /* aggravate monster whe
  */
 A(0, 0, 0, 0, 0, NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 0L )
 
-};	/* artilist[] (or artifact_names[]) */
+};	/* artilist_pre[] (or artifact_names[]) */
 
 #undef	A
 

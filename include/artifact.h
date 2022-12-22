@@ -56,6 +56,8 @@ struct artifact {
 	Bitfield(questarti,1);	/* is quest artifact */
 };
 
+extern NEARDATA struct artifact artilist[];		/* the master list of artifacts */
+
 /* invoked properties with special powers */
 #define TAMING		(LAST_PROP+1)
 #define HEALING		(LAST_PROP+2)

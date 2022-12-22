@@ -28276,6 +28276,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You find out that while you didn't lose your job yet, you have to continue working at 20%% reduced pay, and if you make one more mistake it'll get lowered even more.",
 	"You feel extremely nauseated all of a sudden. Maybe it was a mistake after all to eat canteen calls-itself-food.",
 	"You are sooooooo fed up with your annoying colleague! Having to see that same insufferable person every day makes you want to vomit!",
+	"This is just a test message.",
+	"This is yet another test message.",
 
 };
 

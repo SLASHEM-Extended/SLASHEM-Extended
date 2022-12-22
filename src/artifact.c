@@ -6,11 +6,13 @@
 #include "artifact.h"
 #ifdef OVLB
 #include "artilist.h"
+struct artifact artilist[SIZE(artilist_pre)];		/* the master list of artifacts */
 #else
-STATIC_DCL struct artifact artilist[];
+STATIC_DCL struct artifact artilist_pre[];
+struct artifact artilist[SIZE(artilist_pre)];		/* the master list of artifacts */
 #endif
 /*
- * Note:  both artilist[] and artiexist[] have a dummy element #0,
+ * Note:  both artilist_pre[] and artiexist[] have a dummy element #0,
  *	  so loops over them should normally start at #1.  The primary
  *	  exception is the save & restore code, which doesn't care about
  *	  the contents, just the total size.
@@ -155,6 +157,9 @@ hack_artifacts()
 {
 	struct artifact *art;
 	int alignmnt = aligns[flags.initalign].value;
+	const char *tname; /* bugfix by Chris_ANG */
+
+	memcpy(artilist, artilist_pre, sizeof(artilist));
 
 	/* Fix up the alignments of "gift" artifacts */
 	for (art = artilist+1; art->otyp; art++)
@@ -783,15 +788,33 @@ int fd;
 	bwrite(fd, (void *) artidisco, sizeof artidisco);
 	bwrite(fd, (void *) artilist, sizeof artilist); /* gotta save them, goddammit! --Amy */
 
+	int articursor = ART_FIREWALL;
+	while (articursor <= NROFARTIFACTS) {
+		bwrite(fd, (void *) &artilist[articursor], sizeof(struct artifact));
+		articursor++;
+	}
+
+
 }
 
 void
 restore_artifacts(fd)
 int fd;
 {
+	const char *tname; /* bugfix by Chris_ANG */
+
 	mread(fd, (void *) artiexist, sizeof artiexist);
 	mread(fd, (void *) artidisco, sizeof artidisco);
 	mread(fd, (void *) artilist, sizeof artilist);
+
+	int articursor = ART_FIREWALL;
+	while (articursor <= NROFARTIFACTS) {
+		tname = artilist[articursor].name;
+		mread(fd, (void *) &artilist[articursor], sizeof(struct artifact));
+		artilist[articursor].name = tname;
+		articursor++;
+	}
+
 	/*hack_artifacts();*/	/* redo non-saved special cases */
 }
 
