@@ -2910,12 +2910,16 @@ gotone:
 struct permonst *
 theareamon()
 {
+	if (!rn2(500)) {
+			if (urole.nemesnum != NON_PM && (monster_difficulty() >= mons[urole.nemesnum].mlevel) ) return (&mons[urole.nemesnum]);
+	}
+
 	switch (rnd(4)) {
 		case 1:
-			if (urole.enemy1num != NON_PM) return (&mons[urole.enemy1num]);
+			if (urole.enemy1num != NON_PM && (monster_difficulty() >= mons[urole.enemy1num].mlevel) ) return (&mons[urole.enemy1num]);
 			return (mkclass(urole.enemy1sym, 0));
 		case 2:
-			if (urole.enemy2num != NON_PM) return (&mons[urole.enemy2num]);
+			if (urole.enemy2num != NON_PM && (monster_difficulty() >= mons[urole.enemy2num].mlevel)) return (&mons[urole.enemy2num]);
 			return (mkclass(urole.enemy2sym, 0));
 		case 3:
 			return (mkclass(urole.enemy1sym, 0));
