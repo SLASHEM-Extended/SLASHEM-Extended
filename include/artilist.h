@@ -5322,7 +5322,7 @@ A("Mana Meter Booster",				OLDEST_STAFF, /* spells cost 10% less mana */
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
 A("The Grandpa",				COLOSSUS_BLADE,
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	PHYS(5,0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
 
 A("Road Trash",				TUBING_PLIERS,
@@ -11240,6 +11240,22 @@ A("Nock Gun",				FLINTLOCK, /* if it has no artifact timeout, +6 multishot but f
 A("Cannondancer",				PISTOL, /* +d(firearms skill level) multishot but if any bullet misses, you're paralyzed for rn1(5,5) turns */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Emergency Radiation Remover",				RADAWAY, /* cures 10x as much contamination */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Residual Blood Effect",				RAD_X, /* permanently gives 20% chance to not be contaminated if you otherwise would, but if you vomit, that effect ends */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Dolcevain",				SPE_RESIST_CONTAMINATION, /* reading it gives rnz(1000) turns of thorns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("You Can Hurt",				SPE_RESIST_CONTAMINATION, /* reading it gives 500% additional memory to the spell, but damages you by half of your maximum HP (can kill you if you don't have enough) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
 
 /*
  *	Stormbringer only has a 2 because it can drain a level,

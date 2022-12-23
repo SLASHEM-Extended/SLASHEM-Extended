@@ -1319,10 +1319,10 @@ moveloop()
 				if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_KINGS_RANSOM_FOR_YOU) && moveamt > 1) {
 					moveamt /= 2;
 				}
-				if ((uwep && uwep->otyp == COLOSSUS_BLADE) && moveamt > 1) {
+				if ((uwep && uwep->otyp == COLOSSUS_BLADE && u.umoved) && moveamt > 1) {
 					moveamt /= 2;
 				}
-				if ((u.twoweap && uswapwep && uswapwep->otyp == COLOSSUS_BLADE) && moveamt > 1) {
+				if ((u.twoweap && uswapwep && uswapwep->otyp == COLOSSUS_BLADE && u.umoved) && moveamt > 1) {
 					moveamt /= 2;
 				}
 				if (Race_if(PM_DUFFLEPUD) && uarmf && moveamt > 1) {
@@ -1773,11 +1773,11 @@ moveloop()
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2;
 			}
-			if ((uwep && uwep->otyp == COLOSSUS_BLADE) && moveamt > 1) {
+			if ((uwep && uwep->otyp == COLOSSUS_BLADE && u.umoved) && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2;
 			}
-			if ((u.twoweap && uswapwep && uswapwep->otyp == COLOSSUS_BLADE) && moveamt > 1) {
+			if ((u.twoweap && uswapwep && uswapwep->otyp == COLOSSUS_BLADE && u.umoved) && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2;
 			}
@@ -16080,6 +16080,10 @@ boolean new_game;	/* false => restoring an old game */
 
 	/* todo area */
 
+	obj_descr[SPE_RESIST_STUN].oc_name = "resist stun";
+	obj_descr[SPE_RESIST_CONFUSION].oc_name = "resist confusion";
+	obj_descr[SPE_RESIST_CONTAMINATION].oc_name = "resist contamination";
+
 	{
 
 	register int i;
@@ -17367,6 +17371,10 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_DEFUSING].oc_name = "zararsizlantirish";
 
 	/* todo area */
+
+	obj_descr[SPE_RESIST_STUN].oc_name = "resist stun";
+	obj_descr[SPE_RESIST_CONFUSION].oc_name = "resist confusion";
+	obj_descr[SPE_RESIST_CONTAMINATION].oc_name = "resist contamination";
 
 	{
 

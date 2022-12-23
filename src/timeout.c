@@ -3748,6 +3748,10 @@ nh_timeout()
 			if (!Conf_resist)
 				pline("You no longer resist confusion.");
 			break;
+		case STUN_RES:
+			if (!Stun_resist)
+				pline("You no longer resist stun.");
+			break;
 		case CONT_RES:
 			if (!Cont_resist)
 				pline("You no longer resist contamination.");

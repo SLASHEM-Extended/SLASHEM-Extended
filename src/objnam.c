@@ -3963,6 +3963,12 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 
 	/* todo area */
 
+	{ RAD_X, "todo" },
+	{ RADAWAY, "todo" },
+	{ SPE_RESIST_STUN, "todo" },
+	{ SPE_RESIST_CONFUSION, "todo" },
+	{ SPE_RESIST_CONTAMINATION, "todo" },
+
 	{0, "" }
 };
 
@@ -7104,6 +7110,12 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ PINK_DOUBLE_LIGHTSWORD, "pushti qo'shaloq shamshir" },
 
 	/* todo area */
+
+	{ RAD_X, "todo" },
+	{ RADAWAY, "todo" },
+	{ SPE_RESIST_STUN, "todo" },
+	{ SPE_RESIST_CONFUSION, "todo" },
+	{ SPE_RESIST_CONTAMINATION, "todo" },
 
 	{0, "" }
 };

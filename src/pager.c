@@ -28278,6 +28278,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"You are sooooooo fed up with your annoying colleague! Having to see that same insufferable person every day makes you want to vomit!",
 	"This is just a test message.",
 	"This is yet another test message.",
+	"Unfortunately you lost your special contamination resistance because you vomited the residual rad-X effect out of your blood stream.",
+	"You can hurt, but the spell will last for a generous time.",
+	"You can hurt, but the spell will last for a generous time. (Yeah I don't expect you to make sense of this message.)",
 
 };
 

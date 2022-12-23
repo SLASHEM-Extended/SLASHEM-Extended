@@ -1471,6 +1471,7 @@ struct you {
 	int nailpolish;
 	int enchantspell;
 	int thornspell;
+	boolean extracontres;
 
 	int halresdeactivated;
 

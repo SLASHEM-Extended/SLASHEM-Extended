@@ -722,7 +722,7 @@ int
 usefulitem() /* select the ID number of an item that may be useful for the player --Amy */
 {
 
-	switch (rnd(157)) {
+	switch (rnd(159)) {
 
 		case 1:
 			return ATHAME;
@@ -967,6 +967,10 @@ usefulitem() /* select the ID number of an item that may be useful for the playe
 			return SCR_PROOF_TOOL;
 		case 157:
 			return AMULET_OF_SYMBIOTE_SAVING;
+		case 158:
+			return RAD_X;
+		case 159:
+			return RADAWAY;
 		default: /* fail safe */
 			return POT_FULL_HEALING;
 	}

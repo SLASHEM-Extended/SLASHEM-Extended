@@ -6687,6 +6687,61 @@ materialchoice:
 
 		break;
 
+	case RAD_X:
+		{
+		int radxpower = rn1(500, 500);
+		if (!PlayerCannotUseSkills) {
+			switch (P_SKILL(P_HEALING_SPELL)) {
+				default: break;
+				case P_BASIC: radxpower += 50; break;
+				case P_SKILLED: radxpower += 100; break;
+				case P_EXPERT: radxpower += 150; break;
+				case P_MASTER: radxpower += 200; break;
+				case P_GRAND_MASTER: radxpower += 250; break;
+				case P_SUPREME_MASTER: radxpower += 300; break;
+			}
+		}
+
+		if (obj && obj->oartifact == ART_RESIDUAL_BLOOD_EFFECT) u.extracontres = TRUE;
+
+		noartispeak = TRUE;
+
+		delobj(obj);
+
+		incr_itimeout(&HCont_resist, radxpower);
+		You_feel("more resistant to contamination.");
+
+		}
+
+		break;
+
+	case RADAWAY:
+		{
+		int radawaypower = 100;
+		if (!PlayerCannotUseSkills) {
+			switch (P_SKILL(P_HEALING_SPELL)) {
+				default: break;
+				case P_BASIC: radawaypower += 50; break;
+				case P_SKILLED: radawaypower += 100; break;
+				case P_EXPERT: radawaypower += 150; break;
+				case P_MASTER: radawaypower += 200; break;
+				case P_GRAND_MASTER: radawaypower += 250; break;
+				case P_SUPREME_MASTER: radawaypower += 300; break;
+			}
+		}
+		if (obj && obj->oartifact == ART_EMERGENCY_RADIATION_REMOVE) radawaypower *= 10;
+
+		noartispeak = TRUE;
+
+		delobj(obj);
+
+		decontaminate(radawaypower);
+		Your("contamination has been reduced.");
+
+		}
+
+		break;
+
 	case BLESSER:
 
 		noartispeak = TRUE;

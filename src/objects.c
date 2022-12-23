@@ -4939,7 +4939,7 @@ WEPTOOL("laserfist", (char *)0,
 
 TOOL("can of grease", (char *)0,1, 0, 0, 1,  1400, 0,  20, MT_IRON, HI_METAL, 1),
 TOOL("lubricant can", (char *)0,1, 0, 0, 1,  100, 0,  20, MT_PLASTIC, CLR_BROWN, 1),
-TOOL("figurine", (char *)0,     1, 0, 1, 0, 4350, 0,  80, MT_MINERAL, HI_MINERAL, 1),
+TOOL("figurine", (char *)0,     1, 0, 1, 0, 3350, 0,  80, MT_MINERAL, HI_MINERAL, 1),
 TOOL("magic marker", (char *)0, 1, 0, 1, 1, 500,  0,  50, MT_PLASTIC, CLR_RED, 25),
 TOOL("felt-tip marker", (char *)0, 1, 0, 1, 1, 100,  0,  50, MT_PLASTIC, CLR_RED, 1),
 
@@ -4953,6 +4953,8 @@ TOOL("symbiote", (char *)0, 1, 0, 1, 0,  2000,  0,  200, MT_MYSTERIOUS, CLR_WHIT
 TOOL("infusion", (char *)0, 1, 0, 1, 0,  500,  0,  400, MT_GLASS, CLR_CYAN, 10),
 TOOL("beauty pack", (char *)0, 1, 0, 1, 0,  250,  0,  200, MT_PLASTIC, CLR_MAGENTA, 1),
 TOOL("blesser", (char *)0, 1, 0, 1, 0,  200,  0,  500, MT_CELESTIUM, CLR_BRIGHT_CYAN, 20),
+TOOL("rad-x", (char *)0, 1, 0, 1, 0,  500,  0,  200, MT_LIQUID, CLR_ORANGE, 1),
+TOOL("radaway", (char *)0, 1, 0, 1, 0,  500,  0,  200, MT_LIQUID, CLR_ORANGE, 1),
 
 TOOL("Hitchhiker's Guide To The Galaxy", "highly-complicated electronic device",
 				0, 0, 0, 0,   0, 42,  1000, MT_IRON, HI_METAL, 42),
@@ -7761,6 +7763,7 @@ SCROLL((char *)0,               "BAKING BAKING LITTLE PLACES",  P_NONE,     1,  
 SCROLL((char *)0,               "THE EMPIRE OF THE RISING SUN DEFEATED THE COUNTRY OF FADING LIGHTS",  P_NONE,     1,   0, 100, CLR_RED, 1),
 SCROLL((char *)0,               "DO NOT TRIGGER THE SIFA",  P_NONE,     1,   0, 100, CLR_BRIGHT_BLUE, 1),
 SCROLL((char *)0,               "WAYNE INTRESSIERTS",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "SIGERING ROSAT",  P_NONE,     1,   0, 100, CLR_RED, 1),
 
 
 #ifdef MAIL
@@ -7882,12 +7885,15 @@ SPELL("stealth",    "pageless",         P_PROTECTION_SPELL, 100,   4, 4, 1, NODI
 SPELL("remove curse",    "wrinkled",    P_PROTECTION_SPELL, 800,   5, 5, 1, NODIR,     HI_PAPER, 20),
 SPELL("remove blessing", "light cyan",  P_PROTECTION_SPELL, 100,   5, 5, 1, NODIR,     CLR_BRIGHT_CYAN, 20),
 SPELL("turn undead",     "copper",      P_PROTECTION_SPELL, 1400,  8, 6, 1, IMMEDIATE, HI_COPPER, 30),
-SPELL("anti disintegration", "doorstopping", P_PROTECTION_SPELL, 400, 6, 6, 1, NODIR,  CLR_GREEN, 30),
-SPELL("botox resist",        "leafy",   P_PROTECTION_SPELL, 400,   6, 6, 1, NODIR,     CLR_BRIGHT_GREEN, 30),
+SPELL("anti disintegration", "doorstopping", P_PROTECTION_SPELL, 380, 6, 6, 1, NODIR,  CLR_GREEN, 30),
+SPELL("botox resist",        "leafy",   P_PROTECTION_SPELL, 350,   6, 6, 1, NODIR,     CLR_BRIGHT_GREEN, 30),
 SPELL("acidshield",        "acidic",    P_PROTECTION_SPELL, 400,   6, 6, 1, NODIR,     CLR_BRIGHT_GREEN, 30),
-SPELL("resist petrification", "rocky",  P_PROTECTION_SPELL, 400,   8, 7, 1, NODIR,     CLR_GRAY, 40),
+SPELL("resist stun", "materiel",        P_PROTECTION_SPELL,  70,  10, 6, 1, NODIR,     CLR_GRAY, 30),
+SPELL("resist petrification", "rocky",  P_PROTECTION_SPELL, 330,   8, 7, 1, NODIR,     CLR_GRAY, 40),
 SPELL("dragon blood",    "perishable",  P_PROTECTION_SPELL, 100,   9, 7, 1, NODIR,     CLR_GRAY, 40),
+SPELL("resist confusion", "illusory",   P_PROTECTION_SPELL,  20,  30, 7, 1, NODIR,     CLR_CYAN, 40),
 SPELL("anti-magic field",  "transient", P_PROTECTION_SPELL, 100,  10, 8, 1, NODIR,     CLR_GRAY, 50),
+SPELL("resist contamination", "leaden", P_PROTECTION_SPELL,  50,  18, 8, 1, NODIR,     CLR_GRAY, 50),
 SPELL("godmode",        "heavenly",     P_PROTECTION_SPELL, 300,  10, 8, 1, NODIR,     CLR_BRIGHT_CYAN, 50),
 /* Body spells */
 SPELL("fumbling",   "hallucinating",    P_BODY_SPELL, 100,   3, 1, 1, NODIR,     CLR_BRIGHT_GREEN, 1),

@@ -52,6 +52,8 @@ static struct trobj Anachronist[] = {
 	{ PLASTEEL_BOOTS, 0, ARMOR_CLASS, 1, 0 },  
 	{ CLOAK_OF_MAGIC_RESISTANCE, 0, ARMOR_CLASS, 1, 0 },  
 	{ PILL, 0, FOOD_CLASS, 20, 0 },  
+	{ RAD_X, 0, TOOL_CLASS, 1, 0 },
+	{ RADAWAY, 0, TOOL_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }  
 };  
 
@@ -92,6 +94,10 @@ static struct trobj NuclearPhysicist[] = {
 	{ JUMPSUIT, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ POT_HEALING, 0, POTION_CLASS, 2, UNDEF_BLESS },
 	{ WAN_PROBING, 30, WAND_CLASS, 1, UNDEF_BLESS },
+	{ RAD_X, 0, TOOL_CLASS, 1, 0 },
+	{ RAD_X, 0, TOOL_CLASS, 1, 0 },
+	{ RADAWAY, 0, TOOL_CLASS, 1, 0 },
+	{ RADAWAY, 0, TOOL_CLASS, 1, 0 },
 
 	{ 0, 0, 0, 0, 0 }  
 };  
@@ -957,6 +963,7 @@ static struct trobj Scientist[] = {
 	{ HACKER_S_FOOD, 0, FOOD_CLASS, 2, UNDEF_BLESS },
 	{ SPE_CHEMISTRY, 5, SPBOOK_CLASS, 1, UNDEF_BLESS },
 	{ CHEMISTRY_SET, 40, TOOL_CLASS, 1, 0 },
+	{ RAD_X, 0, TOOL_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 
@@ -1793,6 +1800,7 @@ static struct trobj SpaceMarine[] = {
 	{ TORCH, 0, TOOL_CLASS, 5, 0 },
 	{ POT_MONSTER_DETECTION, 0, POTION_CLASS, 1, 1 },
 	{ JUMPSUIT, 1, ARMOR_CLASS, 1, 0 },
+	{ RAD_X, 0, TOOL_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 
@@ -1895,6 +1903,8 @@ static struct trobj Astronaut[] = {
 	{ POT_HEALING, 0, POTION_CLASS, 1, 0 },
 	{ POT_WATER, 0, POTION_CLASS, 1, 0 },
 	{ MAGIC_CANDLE, 0, TOOL_CLASS, 1, 0 },
+	{ RAD_X, 0, TOOL_CLASS, 1, 0 },
+	{ RADAWAY, 0, TOOL_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 

@@ -15331,6 +15331,10 @@ boolean knoweverything;
 				pline("A one-use tool that improves your maximum HP and Pw by one each."); break;
 			case BLESSER:
 				pline("Use this tool to bless an uncursed item in your inventory. It can only be used once. Make sure the item you're targetting is specifically uncursed: it doesn't work on cursed ones, and has no effect on ones that are already blessed either!"); break;
+			case RAD_X:
+				pline("This tool was totally not stolen from Fallout 3 and gives temporary contamination resistance when applied, but is used up in the process. Higher healing spell skill increases the potency."); break;
+			case RADAWAY:
+				pline("This tool was totally not stolen from Fallout 3 and reduces your contamination, but is used up in the process. Higher healing spell skill increases the potency."); break;
 			case BEAUTY_PACK:
 				pline("If you use this tool, you gain a point of charisma. Be aware that if you have sustain ability, it won't work (but if you're of the sustainer race it still does)."); break;
 			case MATERIAL_KIT:
@@ -16316,6 +16320,12 @@ boolean knoweverything;
 				pline("A spell that improves your alignment record by 5 points, but not beyond the maximum. Casting it breaks atheist conduct."); break;
 			case SPE_RESIST_PARALYSIS:
 				pline("Casting this spell gives temporary discount action, which reduces the average time for which you are paralyzed."); break;
+			case SPE_RESIST_STUN:
+				pline("Cast this spell to gain temporary stun resistance. This does not prevent you from getting stunned, but reduces the odds that the stun causes you to move in the wrong direction."); break;
+			case SPE_RESIST_CONFUSION:
+				pline("You can cast this spell to become resistant to confusion for a while. It is not a bug that you can still get confused, however the confusion will affect you less than it normally would."); break;
+			case SPE_RESIST_CONTAMINATION:
+				pline("A powerful spell that makes you highly resistant to the effects of contamination for a period of time."); break;
 			case SPE_KEEP_SATIATION:
 				pline("Costs no nutrition to cast, and gives temporary full nutrients, meaning that your belly stays full for a longer time."); break;
 			case SPE_TECH_BOOST:
@@ -24438,6 +24448,14 @@ boolean knoweverything;
 					pline("Artifact specs: if it has no artifact timeout, it gains a +6 multishot bonus but firing it in that state sets a timeout."); break;
 				case ART_CANNONDANCER:
 					pline("Artifact specs: increased multishot depending on your amount of firearms skill, but if any bullet misses you'll be paralyzed for several turns. Also, using any other ranged weapon while wielding this gun also paralyzes you if you miss."); break;
+				case ART_EMERGENCY_RADIATION_REMOVE:
+					pline("Artifact specs: removes 10 times as much contamination, so you'll want to use it if you are suffering from fatal contamination."); break;
+				case ART_RESIDUAL_BLOOD_EFFECT:
+					pline("Artifact specs: using it make some of its effects persist in your blood stream, meaning that you'll permanently have some chance to resist contamination. However, that effect ends if your character has to vomit, so you should make sure you don't vomit!"); break;
+				case ART_DOLCEVAIN:
+					pline("Artifact specs: reading it grants you thorns for a while, which hurt monsters who try to attack you in melee."); break;
+				case ART_YOU_CAN_HURT:
+					pline("Artifact specs: after reading, the spell receives a large boost to spell memory but you also take damage equal to half of your HP maximum."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

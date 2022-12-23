@@ -4672,6 +4672,11 @@ boolean tellplayer;
 
 	if (isfriday && !rn2(5)) amount *= 2;
 
+	if (u.extracontres && !rn2(5)) {
+		if (tellplayer) pline("The contamination doesn't seem to affect you.");
+		return;
+	}
+
 	/* Platinum is supposed to be a material that shields you against contamination --Amy */
 	if (uwep && objects[uwep->otyp].oc_material == MT_PLATINUM && !rn2(10)) {
 		if (tellplayer) pline("Your platinum weapon prevents you from being contaminated!");

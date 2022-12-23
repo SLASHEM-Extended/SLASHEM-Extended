@@ -579,6 +579,11 @@ register struct obj *food;
 				}
 			}
 
+			if (u.extracontres) {
+				u.extracontres = FALSE;
+				pline("Unfortunately you lost your special contamination resistance because you vomited the residual rad-X effect out of your %s stream.", body_part(BLOOD));
+			}
+
 			if (u.inasuppression) {
 
 				FemaleTrapIna += u.inasuppression;
@@ -9011,6 +9016,11 @@ vomit()		/* A good idea from David Neves */
 			verbalize("You dare vomiting all over my shop, motherfucker???");
 			make_angry_shk(shkp, 0, 0);
 		}
+	}
+
+	if (u.extracontres) {
+		u.extracontres = FALSE;
+		pline("Unfortunately you lost your special contamination resistance because you vomited the residual rad-X effect out of your %s stream.", body_part(BLOOD));
 	}
 
 	if (u.inasuppression) {

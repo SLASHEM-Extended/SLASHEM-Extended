@@ -2178,6 +2178,11 @@ learn()
 				learntech_or_leveltech(T_VENOM_MIXING, FROMOUTSIDE, 1);
 			    }
 
+			    if (book->oartifact == ART_DOLCEVAIN) {
+				u.thornspell += rnz(1000);
+				You("grow a thorny hide!");
+			    }
+
 			    if (book->oartifact == ART_KING_IN_YELLOW) {
 				int kiypm;
 				kiypm = dprince(rn2((int)A_LAWFUL+2) - 1);
@@ -2209,6 +2214,11 @@ learn()
 			    if (!rn2(3)) u.uenmax++;
 			    u.cnd_spellbookcount++;
 			    incrnknow(i, FALSE);
+			    if (book->oartifact == ART_YOU_CAN_HURT) {
+				losehp( (u.uhpmax / 2) + 2, "being hurt by a spellbook", KILLED_BY);
+				boostknow(i, 50000);
+				You("can hurt, but the spell will last for a generous time.");
+			    }
 			    if (u.emynluincomplete) boostknow(i, 1000);
 				if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i, FALSE);
 				if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i, FALSE);
@@ -2281,6 +2291,10 @@ learn()
 				You("gain the secret knowledge of venom mixing!");
 				learntech_or_leveltech(T_VENOM_MIXING, FROMOUTSIDE, 1);
 			}
+			if (book->oartifact == ART_DOLCEVAIN) {
+				u.thornspell += rnz(1000);
+				You("grow a thorny hide!");
+			}
 			if (book->oartifact == ART_KING_IN_YELLOW) {
 				int kiypm;
 				kiypm = dprince(rn2((int)A_LAWFUL+2) - 1);
@@ -2289,6 +2303,11 @@ learn()
 					(void) makemon(&mons[kiypm], u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 					pline("An angry demon is summoned!");
 				}
+			}
+			if (book->oartifact == ART_YOU_CAN_HURT) {
+				losehp( (u.uhpmax / 2) + 2, "being hurt by a spellbook", KILLED_BY);
+				boostknow(i, 50000);
+				You("can hurt, but the spell will last for a generous time.");
 			}
 
 			if (book->oartifact == ART_IWA_ERWI) {
@@ -9852,6 +9871,42 @@ controlagain:
 		if(!(HCold_resistance & INTRINSIC)) {
 			You_feel("warmer.");
 			incr_itimeout(&HCold_resistance, HCold_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+		} else {
+			pline("%s", nothing_happens);	/* Already have as intrinsic */
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		}
+		break;
+	case SPE_RESIST_STUN:
+		if(!(HStun_resist & INTRINSIC)) {
+			You_feel("resistant to stun.");
+			incr_itimeout(&HStun_resist, HStun_resist ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+		} else {
+			pline("%s", nothing_happens);	/* Already have as intrinsic */
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		}
+		break;
+	case SPE_RESIST_CONFUSION:
+		if(!(HConf_resist & INTRINSIC)) {
+			You_feel("resistant to confusion.");
+			incr_itimeout(&HConf_resist, HConf_resist ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+		} else {
+			pline("%s", nothing_happens);	/* Already have as intrinsic */
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		}
+		break;
+	case SPE_RESIST_CONTAMINATION:
+		if(!(HCont_resist & INTRINSIC)) {
+			You_feel("resistant to contamination.");
+			incr_itimeout(&HCont_resist, HCont_resist ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
