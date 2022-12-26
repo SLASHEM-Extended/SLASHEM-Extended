@@ -7515,13 +7515,6 @@ boolean showpoisoned;
 		 * In the Evil Variant(TM), you must know the rustproofing, i.e. probably burn an ID scroll :P
 		 * Unlike Grunthack, there are no scrolls of detect magic and the wizard doesn't get free knowledge here. */
 
-		if (obj->enchantment && !(isevilvariant && !(obj->rknown)) && !(PlayerUninformation) )
-			strcat(buf, flags.simpledescs ? "ench " : "enchanted ");
-
-		if(obj->enchantment && !(isevilvariant && !(obj->rknown)) && obj->known && !(PlayerUninformation) ) {
-			sprintf(eos(buf), flags.simpledescs ? "(%s) " : "(of %s) ", enchname(obj->enchantment) );
-		}
-
 		if (typ >= GRAY_DRAGON_SCALES && typ <= YELLOW_DRAGON_SCALES) {
 			sprintf(eos(buf), "set of %s", actualn);
 			break;
@@ -7594,10 +7587,21 @@ boolean showpoisoned;
 		    else
 			sprintf(eos(buf), " of %s meat", mons[obj->corpsenm].mname);
 		}
+		if (un) {
+			strcat(buf," called ");
+			strcat(buf,un);
+		}
+
 		break;
 	    case COIN_CLASS:
+		strcpy(buf, actualn);
+		break;
 	    case CHAIN_CLASS:
 		strcpy(buf, actualn);
+		if (un) {
+			strcat(buf," called ");
+			strcat(buf,un);
+		}
 		break;
 	    case ROCK_CLASS:
 		if (typ == STATUE && obj->corpsenm > PM_PLAYERMON && obj->corpsenm < NUMMONS && !PlayerUninformation)
@@ -7610,6 +7614,10 @@ boolean showpoisoned;
 								"an " : "a "),
 			(!obj->corpsenm) ? mons[u.statuetrapname].mname : mons[obj->corpsenm].mname);
 		else strcpy(buf, actualn);
+		if (un) {
+			strcat(buf," called ");
+			strcat(buf,un);
+		}
 		break;
 	    case BALL_CLASS:
 		if (typ == HEAVY_IRON_BALL && !issoviet) {
@@ -7619,6 +7627,10 @@ boolean showpoisoned;
 			sprintf(buf, "%styazhelyy shar zheleza", (obj->owt > ocl->oc_weight) ? "ochen' " : "");
 		}
 		else strcpy(buf, actualn);
+		if (un) {
+			strcat(buf," called ");
+			strcat(buf,un);
+		}
 		break;
 	    case POTION_CLASS:
 		if (obj->dknown && obj->odiluted && !PlayerUninformation)
@@ -8054,6 +8066,14 @@ register struct obj *obj;
 	if (Hallucination ? !rn2(100) : (obj->greased && !PlayerUninformation) ) strcat(prefix, (obj->greased == 3) ? (flags.simpledescs ? "3xgreased " : "thoroughly greased ") : (obj->greased == 2) ? (flags.simpledescs ? "2xgreased " : "strongly greased ") : "greased ");
 
 	if (Hallucination ? !rn2(100) : obj->finalcancel) strcat(prefix, flags.simpledescs ? "final " : "finalized ");
+
+	if (obj->enchantment && !(isevilvariant && !(obj->rknown)) && !(PlayerUninformation) ) {
+		strcat(prefix, flags.simpledescs ? "ench " : "enchanted ");
+	}
+
+	if(obj->enchantment && !(isevilvariant && !(obj->rknown)) && obj->known && !(PlayerUninformation) ) {
+		sprintf(eos(prefix), flags.simpledescs ? "(%s) " : "(of %s) ", enchname(obj->enchantment) );
+	}
 
 	switch(obj->oclass) {
 	case SCROLL_CLASS:

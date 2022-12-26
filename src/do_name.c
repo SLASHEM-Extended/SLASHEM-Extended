@@ -503,9 +503,10 @@ const char *name;
 	return obj;
 }
 
-static NEARDATA const char callable[] = {
+static NEARDATA const char callable[] = { ALL_CLASSES, 0 };
+	/* was:
 	SCROLL_CLASS, POTION_CLASS, WAND_CLASS, RING_CLASS, AMULET_CLASS, IMPLANT_CLASS,
-	GEM_CLASS, SPBOOK_CLASS, ARMOR_CLASS, TOOL_CLASS, 0 };
+	GEM_CLASS, SPBOOK_CLASS, ARMOR_CLASS, TOOL_CLASS, 0 }; */
 
 int
 ddocall()
