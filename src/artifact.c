@@ -808,7 +808,7 @@ int fd;
 
 	int articursor = (ART_FIREWALL - 1);
 	while (articursor <= NROFARTIFACTS) {
-		tname = artilist[articursor].name;
+		tname = artilist_pre[articursor].name;
 		mread(fd, (void *) &artilist[articursor], sizeof(struct artifact));
 		artilist[articursor].name = tname;
 		articursor++;

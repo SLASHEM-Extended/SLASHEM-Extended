@@ -28281,6 +28281,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Unfortunately you lost your special contamination resistance because you vomited the residual rad-X effect out of your blood stream.",
 	"You can hurt, but the spell will last for a generous time.",
 	"You can hurt, but the spell will last for a generous time. (Yeah I don't expect you to make sense of this message.)",
+	"This is once again a test message! Wow, are there many test messages or what!",
 
 };
 
