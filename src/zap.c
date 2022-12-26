@@ -3104,7 +3104,7 @@ poly_obj(obj, id, degradation)
 
 	if (evilfriday) degradation = TRUE;
 
-	boolean unpoly = (id == STRANGE_OBJECT);
+	boolean unpoly = (id == STRANGE_OBJECT); /* apparently means "the item will unpoly"??? --Amy */
 
 	if (stack_too_big(obj)) return obj;
 
@@ -3159,6 +3159,13 @@ poly_obj(obj, id, degradation)
 	} else {
 	    /* literally replace obj with this new thing */
 	    otmp = mksobj(id, FALSE, FALSE, FALSE);
+
+		/* bug discovered by Demo, fix by Amy: if the object unpolymorphs into something that has fuel,
+		 * i.e. light source or lightsaber, it would get energy equal to the current turn counter! */
+		if (otmp && (ignitable(otmp) || is_lightsaber(otmp)) ) {
+			otmp->age = rn1(150, 150);
+		}
+
 	/* Actually more things use corpsenm but they polymorph differently */
 #define USES_CORPSENM(typ) ((typ)==CORPSE || (typ)==STATUE || (typ)==FIGURINE || (typ)==ENERGY_SAP)
 	    if (USES_CORPSENM(obj->otyp) && USES_CORPSENM(id))
