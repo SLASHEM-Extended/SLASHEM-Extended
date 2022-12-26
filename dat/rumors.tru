@@ -2529,3 +2529,15 @@ Beware, crossbows use different ammunition than bows, so you should make sure yo
 The Gods may look like they're just doing what they like, but they are actually fighting over the world in their own way.
 If your techniques are displaying LIMIT, you should use them! For if you do while they are in this state, they'll get lower timeouts after using, or sometimes even no timeout at all!
 Are your techniques displaying LIMIT when you're low on health? Don't worry, you can still use them. It would be a waste to let your character die just because you didn't know you could still use invoke deity or phase door.
+Venom objects can be thrown at enemies from your inventory, and doing so trains the venom skill, which increases damage and multishot bonuses for them.
+Every time you increase your venom skill level, you learn a new poison-related technique.
+They say that if both your venom and devices skills reach master, you learn how to write poison pen letters.
+If you save and load the game, the state of the game will be exactly as it was when you left.
+Even if you don't have the corresponding skill of a spell school, you have a nonzero chance to cast all the spells from it as long as the spell level is lower than 8.
+Explosions hit all things in a certain radius, and also usually make a loud sound that wakes up sleeping monsters.
+Be very careful if you meet a katoiseful in the gnomish mines; they are surprisingly hard to kill and have ways to screw you over.
+A certain special room exists that spawns monsters from your quest. This room is rare, and also doesn't spawn specific quest monsters if they would be out of depth.
+Items made from mysterious material can randomly cause good or bad effects while you have them equipped, but that happens really rarely.
+Monsters that are too big to fit through diagonal openings will turn out to fit through anyway when they're wounded badly enough.
+Amy keeps coding stuff for SLEX even when she's tired, but she generally keeps a clear enough mind to not introduce too many bugs in the process.
+While Amy also makes mistakes sometimes and creates new bugs in her game, she generally does a good job fixing them as they are discovered.

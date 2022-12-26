@@ -4099,3 +4099,15 @@ Lemures have some sort of debuff that they give you such as sapping your nutriti
 -4 arrows are good in SLEX, they do 4 more damage!
 If your techniques are displaying LIMIT, do not use them. It won't work, and in fact the mere attempt gives them a long-lasting timeout that means you still cannot use them even once you're out of limit break mode.
 Are your techniques displaying LIMIT when you're low on health? Well, that may well be a sign that your game is coming to an end, because now you cannot use invoke deity or phase door. Tough luck, shouldn't have relied on techniques.
+Venom objects can be thrown at enemies from your inventory, but there is no corresponding skill for them so they can never get stronger.
+Every time you increase your venom skill level, the internal noob meter goes up, because that skill isn't implemented and has no effect other than reducing the amount of skill points you can allocate to other skills.
+They say that if both your venom and squeaking skills reach skilled, you can fart poison gas that hits enemies behind you.
+If you save and load the game, many things like randarts, stat exercise timers and the time it takes for monster respawn rates to max out will be re-initialized.
+If you don't have the corresponding skill of a spell school, you don't even need to try to cast any spell that is level 5 or higher, the chance of success is always zero.
+Explosions hit all things in a certain radius, but sleeping monsters that are just outside the blast radius will continue sleeping as if nothing had happened.
+Don't mind the katoiseful in the gnomish mines, as those not only look just like regular gnomes but are also just as weak.
+A certain special room exists that spawns monsters from your quest. It's the most common special room of the game and if your role has high-level specific quest monsters, they will spawn far earlier than you can handle them.
+Items made from mysterious material have no special effects at all when equipped, but each of them that is in a bag of holding when you ascend will double your score.
+Monsters that are too big to fit through diagonal openings will forever mill around on the other side while you pelt them with ranged attacks, even when they're on the verge of death, so you can kill them at your leisure.
+Amy keeps coding stuff for SLEX even when she's tired, and that's why her code quality is particularly bad in some places because she never proofreads it.
+Amy makes tons of mistakes when coding, resulting in new bugs being added to the game, and when it comes to fixing them she's exceedingly sloppy.

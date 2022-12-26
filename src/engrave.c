@@ -5962,6 +5962,9 @@ static const char *epitaphs[] = {
 	"whaaaaaaaaaaaaaat you didn't know helm of neutral exists and guarantees you can skip two thirds of astral??",
 	"I don't have any healing scrolls and potions now, all the techniques are in the 'LIMIT' state and cannot be used, and I can't escape.", /* sorry Pineapple Tycoon but you could still have used them of course, should just have tried ;) */
 	"Damn, why the hell do my techniques always display LIMIT when I'm about to die? I would have lived if I could have used them!", /* admittedly the design is unclear on that one, the game doesn't tell you what limit break mode is and not all players are cunning enough to go "well, let's just try to use them anyway!", I've seen it happen to several players already that they thought "ah fuck, can't use the techniques now" and just closed the menu without attempting to use one */
+	"Gah, the katoiseful is unbalanced as heck, they look just like gnomes and also appear where gnomes usually appear, i.e. in the gnomish mines, but they seem unkillable and completely wreck your shit with their attacks!",
+	"WHAT? A psybur hit me ONCE and my maximum mana went from 171 straight to 35???",
+	"Hey, something reduced my maximum hit points to half of what they originally were, which item do I need to use in order to restore them to their old values? SAY WHAT AMY, you need to build them back up the hard way??? UNPLAYABLE GAME, #quit, you'll never see me again you bitch!",
 
 };
 
