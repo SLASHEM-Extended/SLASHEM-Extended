@@ -24456,6 +24456,10 @@ boolean knoweverything;
 					pline("Artifact specs: reading it grants you thorns for a while, which hurt monsters who try to attack you in melee."); break;
 				case ART_YOU_CAN_HURT:
 					pline("Artifact specs: after reading, the spell receives a large boost to spell memory but you also take damage equal to half of your HP maximum."); break;
+				case ART_JOHN_CENA_SPLIT_MAIL:
+					pline("Artifact specs: sleep resistance and discount action when worn and increases your unarmed or martial arts damage depending on how skilled you are."); break;
+				case ART_JYL__NOT_XLATED_CALL_KEN:
+					pline("Artifact specs: can be invoked to create zorkmids out of thin air."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

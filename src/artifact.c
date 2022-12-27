@@ -344,6 +344,7 @@ init_randarts()
 	artilist[ART_BERRYBREW].otyp = randartpotion();
 	artilist[ART_CURSED_WITH_THE_WORST].otyp = randartbadgraystone();
 	artilist[ART_FEMITY_SOLVE].otyp = randartfeminismjewel();
+	artilist[ART_JYL__NOT_XLATED_CALL_KEN].otyp = randartfeminismjewel();
 	artilist[ART_QUE_TANGHERISONJA].otyp = randartfeminismjewel();
 	artilist[ART_PHILOSOPHER_S_STONE].otyp = randartfeminismjewel();
 	artilist[ART_VAPER_BAPER].otyp = randartball();
@@ -4348,6 +4349,13 @@ armorspecchoice:
 
 			u.ugold += rnd(1000);
 			Your("budget is extended!");
+			break;
+		}
+
+		if (obj->oartifact == ART_JYL__NOT_XLATED_CALL_KEN) {
+
+			u.ugold += rnd(500);
+			You("sold some jewels and gained money.");
 			break;
 		}
 

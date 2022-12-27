@@ -11257,6 +11257,14 @@ A("You Can Hurt",				SPE_RESIST_CONTAMINATION, /* reading it gives 500% addition
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
 
+A("John Cena Split Mail",				SCALE_MAIL, /* resist sleep, discount action, increases unarmed damage like robe of pugilism */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("jyl -not xlated call ken",				ELIF_S_JEWEL, /* randart feminism gem, can be invoked to gain d500 zorkmids */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 1000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.
