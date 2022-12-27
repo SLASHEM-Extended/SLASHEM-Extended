@@ -2544,6 +2544,28 @@ register struct monst *mtmp;
 			}
 		}
 
+		if (mtmp->data == &mons[PM_BERTIE_BOTT] || mtmp->data == &mons[PM_DIAGON_ALLEY_VENDOR]) {
+			verbalize("Want some of my All-Flavor Beans? Just 2000 zorkmids!");
+			if (yn("Accept the offer?") == 'y') {
+				if (u.ugold < 2000) {
+					You("check your wallet and shake your head.");
+				} else {
+					struct obj *udrink;
+					u.ugold -= 2000;
+					udrink = mkobj(POTION_CLASS, TRUE, FALSE);
+					if (udrink) {
+						dropy(udrink);
+						stackobj(udrink);
+						verbalize("Enjoy! I've placed it on the ground. It'll certainly taste like earthworm or vomit, hahaha!");
+					} else {
+						u.ugold += 2000;
+						verbalize("Hmm, I must have misplaced it. Try again later. Here you have your money back.");
+					}
+
+				}
+			}
+		}
+
 		if (mtmp->data == &mons[PM_ELONA_TRADER]) {
 			verbalize("Do you want to trade 2000 zorkmids for a random item?");
 			if (yn("Accept the offer?") == 'y') {

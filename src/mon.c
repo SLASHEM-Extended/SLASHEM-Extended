@@ -2133,7 +2133,7 @@ struct monst *mon;
 
 	if (FemtrapActiveKsenia && spawnswithsandals(mon->data) && (mmove < 12)) mmove = 12;
 
-	if (mon->data == &mons[PM_HUSSY_JILL] || mon->data == &mons[PM_VELCRO_BITCH] ) {
+	if (mon->data == &mons[PM_HUSSY_JILL] || mon->data == &mons[PM_VELCRO_BITCH] || mon->data == &mons[PM_SOCKS_GIRL] || mon->data == &mons[PM_JILL] ) {
 	/* Hussy Jill is a dangerous quest nemesis. As long as you don't hurt her, she'll just stand in place...
 	 * but as soon as she loses as much as a single hit point, she'll completely 0wn your sorry butt :P --Amy */
 		if (mon->mhp == mon->mhpmax) {

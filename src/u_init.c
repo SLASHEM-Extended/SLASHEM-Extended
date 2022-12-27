@@ -9238,6 +9238,8 @@ u_init()
 	struct permonst* randspoilerk = &mons[PM_AGVZDHVZZXI_DGVZDHBHC_N_B_JK];
 	struct permonst* randspoilerl = &mons[PM_BLUE_LICH];
 	struct permonst* randspoilerm = &mons[PM_SPOILER_LICH];
+	struct permonst* randspoilern = &mons[PM_OBER_PWNOR];
+	struct permonst* randspoilero = &mons[PM_PWNERDUDE];
 
 	struct permonst* randfluidator = &mons[PM_FLUIDATOR_WEGA];
 	struct permonst* randfluidatorb = &mons[PM_FLUIDATOR_STARRA];
@@ -25363,6 +25365,98 @@ u_init()
 	randspoilerm->mr = rn2(5)*25;				/* varying amounts of MR */
 	randspoilerm->maligntyp = rn2(21)-10;			/* any alignment */
 
+	for (i = 0; i < 6; i++) {
+		attkptr = &randspoilern->mattk[i];
+
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = rnd(2);				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(20)+2;				/* either too high or too low */
+	}
+	randspoilern->mmove = rn2(25)+12;				/* slow to very fast */
+	randspoilern->ac = rn2(36)-15;				/* any AC */
+	randspoilern->mr = rn2(5)*25;				/* varying amounts of MR */
+
+	randspoilern->msize = rn2(MZ_GIGANTIC+1);			/* any size */
+	randspoilern->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	randspoilern->cnutrit = rnd(2000);					/* see above */
+
+	for (i = 0; i < rnd(8); i++) {
+		randspoilern->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(17); i++) {
+		randspoilern->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+	for (i = 0; i < 6; i++) {
+		randspoilern->mflags2 |= (1 << rn2(31));
+	}
+	randspoilern->mflags2 &= ~M2_MERC;				/* no guards */
+	randspoilern->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	randspoilern->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	for (i = 0; i < 5; i++) {
+		randspoilern->mflags3 |= (1 << (12 + rn2(17)) );
+	}
+	randspoilern->mflags3 &= ~M3_NONMOVING;				/* can always move around */
+
+	for (i = 0; i < 6; i++) {
+		attkptr = &randspoilero->mattk[i];
+
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = rnd(2);				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(20)+2;				/* either too high or too low */
+	}
+	randspoilero->mmove = rn2(25)+12;				/* slow to very fast */
+	randspoilero->ac = rn2(36)-15;				/* any AC */
+	randspoilero->mr = rn2(5)*25;				/* varying amounts of MR */
+
+	randspoilero->msize = rn2(MZ_GIGANTIC+1);			/* any size */
+	randspoilero->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	randspoilero->cnutrit = rnd(2000);					/* see above */
+
+	for (i = 0; i < rnd(8); i++) {
+		randspoilero->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(17); i++) {
+		randspoilero->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+	for (i = 0; i < 6; i++) {
+		randspoilero->mflags2 |= (1 << rn2(31));
+	}
+	randspoilero->mflags2 &= ~M2_MERC;				/* no guards */
+	randspoilero->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	randspoilero->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	for (i = 0; i < 5; i++) {
+		randspoilero->mflags3 |= (1 << (12 + rn2(17)) );
+	}
+	randspoilero->mflags3 &= ~M3_NONMOVING;				/* can always move around */
+
 	for (i = 0; i < 2; i++) {
 		attkptr = &randfluidator->mattk[i];
 
@@ -32498,6 +32592,8 @@ int realityflag;
 	struct permonst* randspoilerk = &mons[PM_AGVZDHVZZXI_DGVZDHBHC_N_B_JK];
 	struct permonst* randspoilerl = &mons[PM_BLUE_LICH];
 	struct permonst* randspoilerm = &mons[PM_SPOILER_LICH];
+	struct permonst* randspoilern = &mons[PM_OBER_PWNOR];
+	struct permonst* randspoilero = &mons[PM_PWNERDUDE];
 
 	struct permonst* randfluidator = &mons[PM_FLUIDATOR_WEGA];
 	struct permonst* randfluidatorb = &mons[PM_FLUIDATOR_STARRA];
@@ -41785,6 +41881,98 @@ int realityflag;
 	randspoilerm->ac = rn2(26)-15;				/* any AC */
 	randspoilerm->mr = rn2(5)*25;				/* varying amounts of MR */
 	randspoilerm->maligntyp = rn2(21)-10;			/* any alignment */
+
+	for (i = 0; i < 6; i++) {
+		attkptr = &randspoilern->mattk[i];
+
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = rnd(2);				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(20)+2;				/* either too high or too low */
+	}
+	randspoilern->mmove = rn2(25)+12;				/* slow to very fast */
+	randspoilern->ac = rn2(36)-15;				/* any AC */
+	randspoilern->mr = rn2(5)*25;				/* varying amounts of MR */
+
+	randspoilern->msize = rn2(MZ_GIGANTIC+1);			/* any size */
+	randspoilern->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	randspoilern->cnutrit = rnd(2000);					/* see above */
+
+	for (i = 0; i < rnd(8); i++) {
+		randspoilern->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(17); i++) {
+		randspoilern->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+	for (i = 0; i < 6; i++) {
+		randspoilern->mflags2 |= (1 << rn2(31));
+	}
+	randspoilern->mflags2 &= ~M2_MERC;				/* no guards */
+	randspoilern->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	randspoilern->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	for (i = 0; i < 5; i++) {
+		randspoilern->mflags3 |= (1 << (12 + rn2(17)) );
+	}
+	randspoilern->mflags3 &= ~M3_NONMOVING;				/* can always move around */
+
+	for (i = 0; i < 6; i++) {
+		attkptr = &randspoilero->mattk[i];
+
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = rnd(2);				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(20)+2;				/* either too high or too low */
+	}
+	randspoilero->mmove = rn2(25)+12;				/* slow to very fast */
+	randspoilero->ac = rn2(36)-15;				/* any AC */
+	randspoilero->mr = rn2(5)*25;				/* varying amounts of MR */
+
+	randspoilero->msize = rn2(MZ_GIGANTIC+1);			/* any size */
+	randspoilero->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	randspoilero->cnutrit = rnd(2000);					/* see above */
+
+	for (i = 0; i < rnd(8); i++) {
+		randspoilero->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(17); i++) {
+		randspoilero->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+	for (i = 0; i < 6; i++) {
+		randspoilero->mflags2 |= (1 << rn2(31));
+	}
+	randspoilero->mflags2 &= ~M2_MERC;				/* no guards */
+	randspoilero->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	randspoilero->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	for (i = 0; i < 5; i++) {
+		randspoilero->mflags3 |= (1 << (12 + rn2(17)) );
+	}
+	randspoilero->mflags3 &= ~M3_NONMOVING;				/* can always move around */
 
 	for (i = 0; i < 2; i++) {
 		attkptr = &randfluidator->mattk[i];

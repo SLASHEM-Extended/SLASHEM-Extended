@@ -16604,6 +16604,9 @@ loveheelover:
 		if(ptr == &mons[PM_CHAINSMOKER_DEVIL]) (void) mongets(mtmp, CIGARETTE);
 		if(ptr == &mons[PM_IRON_CHAIN_DEVIL]) (void) mongets(mtmp, IRON_CHAIN);
 		if(ptr == &mons[PM_KING_DEDEDE]) (void) mongets(mtmp, MALLET);
+		if(ptr == &mons[PM_MUAMMED_AHTAR]) (void) mongets(mtmp, DWARVISH_BATTLE_AXE);
+		if(ptr == &mons[PM_ALINA_FLAX]) (void) mongets(mtmp, SCALPEL);
+		if(ptr == &mons[PM_SEXY_CLAUDIA]) (void) mongets(mtmp, WOODEN_GETA); /* M4_HAMMERSANDAL */
 		if(ptr == &mons[PM_PAJIDA]) (void) mongets(mtmp, UNFAIR_STILETTOS);
 
 		if(ptr == &mons[PM_ARMED_XIVILAI]) (void) mongets(mtmp, !rn2(3) ? BATTLE_AXE : rn2(2) ? TWO_HANDED_SWORD : WAR_HAMMER);
@@ -16618,6 +16621,12 @@ loveheelover:
 			(void) mongets(mtmp, SAND_SWORD);
 			 m_initthrow(mtmp, SAND_DART, 20);
 		}
+		if (ptr == &mons[PM_FEYYAZ]) {
+			(void) mongets(mtmp, rnd_class(ORCISH_SHORT_SWORD,VIBROBLADE));
+			(void) mongets(mtmp, PISTOL);
+			 m_initthrow(mtmp, PISTOL_BULLET, 50);
+			 m_initthrow(mtmp, PISTOL_BULLET, 50);
+		}
 		if (ptr == &mons[PM_NINJA_DEMON]) {
 			 m_initthrow(mtmp, NINJA_STAR, 50);
 			 m_initthrow(mtmp, NINJA_STAR, 50);
@@ -16625,6 +16634,12 @@ loveheelover:
 		if (ptr == &mons[PM_SHOVEL_DEMON]) {
 			(void) mongets(mtmp, SHOVEL);
 			 m_initthrow(mtmp, ROCK, 10);
+		}
+		if (ptr == &mons[PM_BERTIE_BOTT]) (void) mongets(mtmp, rnd_class(QUARTERSTAFF,PLATINUM_FIRE_HOOK));
+
+		if (ptr == &mons[PM_LOVELY_MARTINA]) {
+			(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+			(void) mongets(mtmp, LADY_BOOTS); /* M4_BLOCKHEELBOOTS */
 		}
 		if (ptr == &mons[PM_UTE]) {
 			(void) mongets(mtmp, LEATHER_PEEP_TOES);
@@ -24443,6 +24458,11 @@ register int	mmflags;
 	}
 
 	if (ptr == &mons[PM_PERFUMED_HC_BITCH]) {
+		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
+		mtmp->isegotype = 1;
+		mtmp->egotype_perfumespreader = 1;
+	}
+	if (ptr == &mons[PM_WATERFRONT_WOMAN] || ptr == &mons[PM_SEXY_CLAUDIA]) {
 		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
 		mtmp->isegotype = 1;
 		mtmp->egotype_perfumespreader = 1;
@@ -32894,6 +32914,12 @@ assign_sym:
 		s_sym = MAXOCLASSES;
 		ap_type = M_AP_FURNITURE;
 		appear = S_grayglyph;
+	}
+
+	if (mtmp->data == &mons[PM_DIABOLUS_ASTAROTH] || mtmp->data == &mons[PM_ASTAROTH_DIABOLUS]) {
+		s_sym = MAXOCLASSES;
+		ap_type = M_AP_FURNITURE;
+		appear = S_well;
 	}
 
 	if (mtmp->data == &mons[PM_ELONA_SHADE] || mtmp->data == &mons[PM_IMITATING_SHADE]) {
