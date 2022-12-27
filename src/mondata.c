@@ -421,6 +421,8 @@ register struct permonst *ptr;
 	if (ptr == &mons[PM_YOUR_GAME_ENDS_NOW]) return TRUE;
 	if (ptr == &mons[PM_ELITE_GENDAME]) return TRUE;
 	if (ptr == &mons[PM_LILAC_FEMMY]) return TRUE;
+	if (ptr == &mons[PM_LOOMING_SVETTE]) return TRUE;
+	if (ptr == &mons[PM_OBSCURING_FLIER]) return TRUE;
 
 	return FALSE;
 }

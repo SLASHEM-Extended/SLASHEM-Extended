@@ -5765,6 +5765,23 @@ newboss:
 		}
 	}
 
+	if (mtmp->data == &mons[PM_HELLAGA] || mtmp->data == &mons[PM_HELLA]) {
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict || !touch_petrifies(youmonst.data))) {
+			if (foundyou && tmp > (j = rnd(20+i))) {
+				struct trap *ttmp2 = maketrap(u.ux, u.uy, FARTING_WEB, 0, FALSE);
+				if (ttmp2) {
+					pline("Hella catches you!");
+					dotrap(ttmp2, NOWEBMSG);
+					if (u.usteed && u.utrap && !mayfalloffsteed()) {
+					/* you, not steed, are trapped */
+					dismount_steed(DISMOUNT_FELL);
+					}
+				}
+			}
+		}
+
+	}
+
 	if (MikraEffect || u.uprops[MIKRA_EFFECT].extrinsic || have_ubergodstone()) {
 		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict || !touch_petrifies(youmonst.data))) {
 			if (foundyou && !rn2(100) && tmp > (j = rnd(20+i))) {

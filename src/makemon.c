@@ -16600,10 +16600,12 @@ loveheelover:
 		if(ptr == &mons[PM_PLATFORMINA]) (void) mongets(mtmp, find_plateau_boots());
 		if(ptr == &mons[PM_HC_SEDUCTRESS]) (void) mongets(mtmp, find_filigree_stilettos());
 		if(ptr == &mons[PM_HC_TEMPTRESS]) (void) mongets(mtmp, LADY_BOOTS); /* M4_BLOCKHEELBOOTS */
+		if(ptr == &mons[PM_ELISE]) (void) mongets(mtmp, HIPPIE_HEELS); /* M4_BLOCKHEELBOOTS */
 		if(ptr == &mons[PM_LASERCHAIN_DEVIL]) (void) mongets(mtmp, LASER_CHAIN);
 		if(ptr == &mons[PM_CHAINSMOKER_DEVIL]) (void) mongets(mtmp, CIGARETTE);
 		if(ptr == &mons[PM_IRON_CHAIN_DEVIL]) (void) mongets(mtmp, IRON_CHAIN);
 		if(ptr == &mons[PM_KING_DEDEDE]) (void) mongets(mtmp, MALLET);
+		if(ptr == &mons[PM_THE_QUEEN_OF_CHAOS]) (void) mongets(mtmp, SCR_COURSE_TRAVELING);
 		if(ptr == &mons[PM_MUAMMED_AHTAR]) (void) mongets(mtmp, DWARVISH_BATTLE_AXE);
 		if(ptr == &mons[PM_ALINA_FLAX]) (void) mongets(mtmp, SCALPEL);
 		if(ptr == &mons[PM_SEXY_CLAUDIA]) (void) mongets(mtmp, WOODEN_GETA); /* M4_HAMMERSANDAL */
@@ -16631,9 +16633,28 @@ loveheelover:
 			 m_initthrow(mtmp, NINJA_STAR, 50);
 			 m_initthrow(mtmp, NINJA_STAR, 50);
 		}
+		if (ptr == &mons[PM_PHRAXAS]) {
+			(void) mongets(mtmp, WAN_SUMMON_UNDEAD);
+			(void) mongets(mtmp, WAN_SUMMON_UNDEAD);
+		}
 		if (ptr == &mons[PM_SHOVEL_DEMON]) {
 			(void) mongets(mtmp, SHOVEL);
 			 m_initthrow(mtmp, ROCK, 10);
+		}
+		if (ptr == &mons[PM_BUTCHER_OF_BUTSCHA]) {
+			(void) mongets(mtmp, SCYTHE);
+			(void) mongets(mtmp, HEAVY_MACHINE_GUN);
+			 m_initthrow(mtmp, MG_BULLET, 50);
+			 m_initthrow(mtmp, MG_BULLET, 50);
+			 m_initthrow(mtmp, MG_BULLET, 50);
+			 m_initthrow(mtmp, MG_BULLET, 50);
+			 m_initthrow(mtmp, MG_BULLET, 50);
+		}
+		if (ptr == &mons[PM_LOOMING_SVETTE]) {
+			(void) mongets(mtmp, WILDHILD_BOW);
+			 m_initthrow(mtmp, ODOR_SHOT, 50);
+			 m_initthrow(mtmp, ODOR_SHOT, 50);
+			 m_initthrow(mtmp, ODOR_SHOT, 50);
 		}
 		if (ptr == &mons[PM_BERTIE_BOTT]) (void) mongets(mtmp, rnd_class(QUARTERSTAFF,PLATINUM_FIRE_HOOK));
 
@@ -25831,6 +25852,11 @@ register int	mmflags;
 					(void) makemon(specialtensmon(348), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY);
 				}
 			}
+
+			if (mtmp->data == &mons[PM_THE_QUEEN_OF_CHAOS]) {
+				(void) makemon(&mons[PM_MISKA_THE_WOLF_SPIDER], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+			}
+
 			break;
 
 		case S_GOLEM:

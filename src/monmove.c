@@ -3675,6 +3675,13 @@ register int after;
 	    goto postmov;
 	}
 
+	if ((ptr == &mons[PM_ASIMA] || ptr == &mons[PM_BEARER_OF_BAD_NEWS]) && !rn2(25) && !mtmp->mcan &&
+	   !tele_restrict(mtmp) ) {
+		(void) rloc(mtmp, FALSE);
+		mmoved = 1;
+		goto postmov;
+	}
+
 	if (ptr == &mons[PM_MECHTNED] && distu(mtmp->mx, mtmp->my) < 4 && !tele_restrict(mtmp) ) {
 		/* name means "doesn't want to (fight you)", so he teleports away from you */
 		(void) rloc(mtmp, FALSE);

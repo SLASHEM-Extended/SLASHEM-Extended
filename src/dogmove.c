@@ -1189,6 +1189,8 @@ register int after;	/* this is extra fast monster movement */
 			 (mtmp2->data == &mons[PM_MISTER_GRIBBS]) ||
 	/* no thrall guards */
 			 (mtmp2->data == &mons[PM_THRALL_GUARD]) || (mtmp2->data == &mons[PM_THRALL_GATE_GUARD]) ||
+	/* specific demon lord who is immune */
+			 (mtmp2->data == &mons[PM_OBSCURING_FLIER]) || (mtmp2->data == &mons[PM_LOOMING_SVETTE]) ||
 	/* bulletator zero isn't either */
 			 (mtmp2->data == &mons[PM_BULLETATOR_ZERO]) ||
 	/* your one-way girlfriend is never attacked by pets */
