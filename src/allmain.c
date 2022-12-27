@@ -10413,6 +10413,7 @@ newbossB:
 		}
 
 		if (FemtrapActiveJana && !rn2(200)) {
+
 			int tryct = 0;
 			int x, y;
 
@@ -10422,6 +10423,8 @@ newbossB:
 
 				if (isok(x, y) && (levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && !(t_at(x, y)) ) {
 					levl[x][y].typ = GRAVEWALL;
+					blockorunblock_point(x,y);
+
 					break;
 					}
 			}
