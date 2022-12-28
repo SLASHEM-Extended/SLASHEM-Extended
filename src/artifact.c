@@ -131,6 +131,25 @@ void * poolcnt;
 
 }
 
+/** Remove water tile at x,y. */
+STATIC_PTR void
+undo_floodM(x, y, roomcnt)
+int x, y;
+void * roomcnt;
+{
+	if ((levl[x][y].typ != POOL) &&
+	    (levl[x][y].typ != MOAT) &&
+	    (levl[x][y].typ != WATER) &&
+	    (levl[x][y].typ != FOUNTAIN))
+		return;
+
+	(*(int *)roomcnt)++;
+
+	/* Get rid of a pool at x, y */
+	levl[x][y].typ = ROOM;
+	newsym(x,y);
+}
+
 void
 elemental_imbue(elemtype)
 int elemtype;
@@ -161,9 +180,15 @@ hack_artifacts()
 	memcpy(artilist, artilist_pre, sizeof(artilist));
 
 	/* Fix up the alignments of "gift" artifacts */
-	for (art = artilist+1; art->otyp; art++)
+	for (art = artilist+1; art->otyp; art++) {
 	    if (art->role == Role_switch && art->alignment != A_NONE)
 		art->alignment = alignmnt;
+
+		if (art->attk.adtyp > AD_PHYS && !(art->spfx & (SPFX_DBONUS | SPFX_ATTK)) ) {
+			impossible("BUG! artifact %s lacks SPFX_ATTK flag", art->name);
+		}
+
+	}
 
 	/* Excalibur can be used by any lawful character, not just knights */
 	if (!Role_if(PM_KNIGHT))
@@ -3945,6 +3970,45 @@ chargingchoice:
 			pline("An aura surrounds your weapon...");
 			obj->oerodeproof = TRUE; /* doesn't repair damage */
 			obj->rknown = TRUE;
+			break;
+		}
+
+		if (obj->oartifact == ART_MUSICAL_SNORKEL) {
+
+			int maderoom = 0;
+			do_clear_areaX(u.ux, u.uy, 3,	undo_floodM, (void *)&maderoom);
+			if (maderoom) {
+				You("are suddenly very dry!");
+			} else pline("It seems that there was no water nearby after all.");
+
+			break;
+		}
+
+		if (obj->oartifact == ART_PENUMBRAL_LASSO) {
+			uncurse(obj, TRUE);
+			if (obj->spe < 7) {
+				obj->spe++;
+				Your("lance seems sharper!");
+			}
+
+			pline("Currently your steed has %d%% chance of being targetted by monsters.", u.steedhitchance);
+			if (yn("Change it?") == 'y') {
+				char buf[BUFSZ];
+				long offer;
+
+				getlin("Enter a percentage value between 0 and 100 (inclusive):", buf);
+				if (sscanf(buf, "%ld", &offer) != 1) offer = 0L;
+				if (offer < 0) {
+					pline("Sorry, negative numbers are not allowed.");
+				} else if (offer > 100) {
+					pline("Sorry, the number can't exceed 100.");
+				} else {
+					u.steedhitchance = offer;
+					pline("Your steed now has %d%% chance of being targetted by monsters.", u.steedhitchance);
+				}
+
+			}
+
 			break;
 		}
 

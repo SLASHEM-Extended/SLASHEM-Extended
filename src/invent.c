@@ -24460,6 +24460,14 @@ boolean knoweverything;
 					pline("Artifact specs: sleep resistance and discount action when worn and increases your unarmed or martial arts damage depending on how skilled you are."); break;
 				case ART_JYL__NOT_XLATED_CALL_KEN:
 					pline("Artifact specs: can be invoked to create zorkmids out of thin air."); break;
+				case ART_PENUMBRAL_LASSO:
+					pline("Artifact specs: +10 damage, can be invoked to uncurse it and potentially increase its enchantment up to +7 and allows you to set the chance that attacks are redirected to your steed, doesn't break from jousting if positively enchanted but becomes -10 in that case, lawful, jockey quest artifact."); break;
+				case ART_MUSICAL_SNORKEL:
+					pline("Artifact specs: magical breathing when wielded, can be invoked to remove water tiles in a small circle area centered on you. This artifact was suggested by potato44."); break;
+				case ART_QUICK_JOCK:
+					pline("Artifact specs: 20%% increased speed when riding, and the steed is occasionally cured and healed back up to full health. Associated with the Jockey role."); break;
+				case ART_FAER_ME:
+					pline("Artifact specs: resist fear when worn, and if you're riding, low-level monsters near you may occasionally walk randomly so you can pound them more easily, plus you can still enter shops even when riding and they'll even give you a discount."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

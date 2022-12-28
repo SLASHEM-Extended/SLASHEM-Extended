@@ -4382,12 +4382,20 @@ melatechoice:
 
 		}
 
-		/* (must be either primary or secondary weapon to get here) */
-		u.twoweap = FALSE;      /* untwoweapon() is too verbose here */
-		if (obj == uwep) uwepgone();            /* set unweapon */
-		/* minor side-effect: broken lance won't split puddings */
-		useup(obj);
-		obj = 0;
+		if (obj->oartifact == ART_PENUMBRAL_LASSO && obj->spe >= 0) {
+			pline("Except that it doesn't; instead, it just became very dull.");
+			obj->spe = -10;
+
+		} else { /* really shatter it */
+
+			/* (must be either primary or secondary weapon to get here) */
+			u.twoweap = FALSE;      /* untwoweapon() is too verbose here */
+			if (obj == uwep) uwepgone();            /* set unweapon */
+			/* minor side-effect: broken lance won't split puddings */
+			useup(obj);
+			obj = 0;
+		}
+	
 	    }
 	    /* avoid migrating a dead monster */
 	    if (mon->mhp > tmp) {

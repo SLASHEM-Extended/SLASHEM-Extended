@@ -428,6 +428,11 @@ const struct innate {
 		     {  16, &(HCold_resistance), "warm", "cooler", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
+	joc_abil[] = { { 10, &(HPainSense), "empathic", "cold-hearted", TRUE },
+			{   20, &(HPeacevision), "able to recognize peaceful creatures", "unable to tell friend from enemy", TRUE },
+			{   28, &(HFree_action), "freed", "a loss of freedom", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
 	coo_abil[] = { {   1, &(HFire_resistance), "", "", TRUE },
 		     {  1, &(HFull_nutrient), "", "", TRUE },
 		     {  15, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
@@ -2357,6 +2362,7 @@ int oldlevel, newlevel;
 	case PM_CRACKER:   abil = cra_abil;	break;
 	case PM_DEMAGOGUE:   abil = dem_abil;	break;
 	case PM_YAUTJA:   abil = yau_abil;	break;
+	case PM_JOCKEY:   abil = joc_abil;	break;
 	case PM_STORMBOY:   abil = sto_abil;	break;
 	case PM_SPACE_MARINE:   abil = sma_abil;	break;
 	case PM_JANITOR:   abil = jan_abil;	break;

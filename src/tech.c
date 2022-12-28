@@ -476,6 +476,9 @@ static const struct innate_tech
 		       {   20, T_SUMMON_PET, 1},
 		       {   30, T_RESET_TECHNIQUE, 1},
 		       {   0, 0, 0} },
+	joc_tech[] = { {   1, T_CALM_STEED, 1},
+			 {   5, T_DASH, 1},
+		       {   0, 0, 0} },
 	gla_tech[] = { {   5, T_SHIELD_BASH, 1},
 			 {   10, T_IRON_SKIN, 1},
 		       {   0, 0, 0} },
@@ -10868,6 +10871,7 @@ role_tech()
 		case PM_JANITOR:	return (jan_tech);
 		case PM_FIREFIGHTER:	return (fir_tech);
 		case PM_YAUTJA:	return (yau_tech);
+		case PM_JOCKEY:	return (joc_tech);
 		case PM_GAMER:	return (gam_tech);
 		case PM_GLADIATOR:	return (gla_tech);
 		case PM_AMAZON:	return (ama_tech);

@@ -97,9 +97,10 @@ can_saddle(mtmp)
 boolean
 mayfalloffsteed()
 {
-	if (PlayerCannotUseSkills) return FALSE;
 	int ridesavingthrow = 0;
 	char buf[BUFSZ];
+
+	if (PlayerCannotUseSkills) goto skillcheckdone;
 
 	if (Race_if(PM_PERVERT)) {
 		switch (P_SKILL(P_RIDING)) {
@@ -120,6 +121,10 @@ mayfalloffsteed()
 			case P_SUPREME_MASTER: ridesavingthrow = 101; break;
 		}
 	}
+
+skillcheckdone:
+
+	if (Role_if(PM_JOCKEY)) ridesavingthrow += ((100 - ridesavingthrow) / 2);
 
 	if (ridesavingthrow > 0) {
 		getlin ("Uh-oh! You're about to fall off your steed! Attempt a saving throw? [y/yes/no]",buf);
@@ -674,7 +679,7 @@ kick_steed()
 	}
 
 	/* Make the steed less tame and check if it resists */
-	if (u.usteed->mtame) u.usteed->mtame--;
+	if (u.usteed->mtame && (!Role_if(PM_JOCKEY) || !rn2(3)) ) u.usteed->mtame--;
 	if (!u.usteed->mtame && u.usteed->mleashed) m_unleash(u.usteed, TRUE);
 	if (!u.usteed->mtame || (u.ulevel+u.usteed->mtame < rnd(MAXULEV/2+5))) {
 

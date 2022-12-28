@@ -354,7 +354,7 @@ spec_levs: ../util/lev_comp \
 	Drag.des Carto.des Dancer.des Shoefe.des Secret.des \
 	Prever.des Diabl.des Butt.des Halfba.des Noob.des \
 	Woman.des Climac.des Slave.des Hedder.des Vanilla.des \
-	Shadow.des
+	Shadow.des Jockey.des
 
 	../util/lev_comp Abuser.des
 	../util/lev_comp Acid.des
@@ -489,6 +489,7 @@ spec_levs: ../util/lev_comp \
 	../util/lev_comp Stormboy.des
 	../util/lev_comp Empath.des
 	../util/lev_comp Psyker.des
+	../util/lev_comp Jockey.des
 	../util/lev_comp Software.des
 	../util/lev_comp Quarter.des
 	../util/lev_comp Mastermi.des

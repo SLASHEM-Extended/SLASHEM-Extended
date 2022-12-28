@@ -3943,6 +3943,8 @@ altarfound:
 
 	if (appr == 1 && mtmp->data->msound == MS_METALMAFIA && distu(mtmp->mx,mtmp->my) <= 3*3 ) appr = 0;
 
+	if (appr == 1 && u.usteed && uarm && uarm->oartifact == ART_FAER_ME && distu(mtmp->mx,mtmp->my) < 3*3 && (mtmp->m_lev < (GushLevel / 2) ) ) appr = 0;
+
 	if (ptr == &mons[PM_DECISION_WEAKSKI]) appr = (!rn2(3) ? -1 : rn2(2) ? 0 : 1);
 	if (ptr == &mons[PM_STOIAKMIDM]) appr = (!rn2(3) ? -1 : rn2(2) ? 0 : 1);
 	if (ptr == &mons[PM_SPACKMATICIAN]) appr = (!rn2(3) ? -1 : rn2(2) ? 0 : 1);

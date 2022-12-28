@@ -906,7 +906,7 @@ register struct monst *mtmp;
 	    case PM_UNDEAD_NAGA:
 	    case PM_UNDEAD_NAGA_HATCHLING:
 	    case PM_UNDEAD_YETI:
-	    case PM_UNDEAD_ARCHEOLOGIST:
+	    case PM_UNDEAD_ARCHEOLOGIST: /* keyword "newroles" */
 	    case PM_UNDEAD_BARBARIAN:
 	    case PM_UNDEAD_NOOB_MODE_BARB:
 	    case PM_UNDEAD_BINDER:
@@ -1053,6 +1053,7 @@ register struct monst *mtmp;
 	    case PM_UNDEAD_SPACE_MARINE:
 	    case PM_UNDEAD_STORMBOY:
 	    case PM_UNDEAD_YAUTJA:
+	    case PM_UNDEAD_JOCKEY:
 	    case PM_UNDEAD_QUARTERBACK:
 	    case PM_UNDEAD_PSYKER:
 	    case PM_UNDEAD_EMPATH:

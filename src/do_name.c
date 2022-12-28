@@ -6171,6 +6171,16 @@ static const char * const bogusmons[] = {
 	"Chargeless Power",
 	"Fizzle-Fizzer",
 	"Blacklight Master",
+	"Riding Apprentice",
+	"Horse Driver",
+	"Whipswinger",
+	"Rein Controller",
+	"Wildrider",
+	"Classic Cowboy",
+	"Horseracer",
+	"Mounted Thunder",
+	"Sunset Horseman",
+	"Bill Shoemaker", "Lester Piggott", "John Velazquez", /* famous jockeys */
 
 };
 

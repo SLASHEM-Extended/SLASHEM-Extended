@@ -299,7 +299,7 @@ makedog()
 	int   pettype, petsym;
 	static int petname_used = 0;
 
-	/* some roles should be forced to start with a pet because they get a detrimental one :P --Amy */
+	/* some roles should be forced to start with a pet because they get a detrimental one :P keyword "newroles" --Amy */
 	if (!Role_if(PM_KURWA) && !Role_if(PM_SHOE_FETISHIST) && !Role_if(PM_JANITOR) && !Role_if(PM_YAUTJA) && !Role_if(PM_GRENADONIN) && !Role_if(PM_PSYKER) && !Role_if(PM_MILL_SWALLOWER) && !Role_if(PM_CHAOS_SORCEROR) && (preferred_pet == 'n')) return((struct monst *) 0);
 
 	/* Gang scholars are supposed to start without a pet. However, every once in a blue moon they do get one --Amy */
@@ -489,6 +489,7 @@ maeney:
 	if (pettype == PM_TASMANIAN_DEVIL) petname = "Taz";
 	if (pettype == PM_SPIKE_MOLD) petname = "Improv";
 	if (pettype == PM_GENDERSTARIST) petname = "Bariwun";
+	if (pettype == PM_PEGASUS) petname = "Pegasus";
 
 	if (pettype == PM_ACTIVISTOR) petname = "Helen"; /* yet another common first name */
 
@@ -503,7 +504,7 @@ maeney:
 	if(!mtmp) return((struct monst *) 0); /* pets were genocided */
 
 	/* Horses already wear a saddle */
-	if ((pettype == PM_PONY || pettype == PM_GREEN_NIGHTMARE || pettype == PM_SPEEDHORSE) && !!(otmp = mksobj(Race_if(PM_INKA) ? INKA_SADDLE : LEATHER_SADDLE, TRUE, FALSE, FALSE))) {
+	if ((pettype == PM_PONY || pettype == PM_PEGASUS || pettype == PM_GREEN_NIGHTMARE || pettype == PM_SPEEDHORSE) && !!(otmp = mksobj(Race_if(PM_INKA) ? INKA_SADDLE : LEATHER_SADDLE, TRUE, FALSE, FALSE))) {
 	    if (mpickobj(mtmp, otmp, TRUE)) {
 		impossible("merged saddle?");
 		} else {

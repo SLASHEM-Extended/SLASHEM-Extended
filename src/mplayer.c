@@ -363,6 +363,11 @@ register boolean special;
 		case PM_UNDEAD_YAUTJA:
 			weapon = !rn2(3) ? DRAGON_SPEAR : rn2(2) ? BULLETPROOF_CHAINWHIP : HUGE_CLUB;
 		    break;
+		case PM_JOCKEY:
+		case PM_UNDEAD_JOCKEY:
+			weapon = FLAME_WHIP;
+			if (rn2(2)) armor = LEATHER_JACKET;
+		    break;
 		case PM_QUARTERBACK:
 		case PM_UNDEAD_QUARTERBACK:
 			weapon = METAL_CLUB;

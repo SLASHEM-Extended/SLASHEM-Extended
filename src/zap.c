@@ -10790,7 +10790,7 @@ int osym, dmgtyp;
 #ifdef OVL2
 
 int
-resist(mtmp, oclass, damage, tell)
+resist(mtmp, oclass, damage, tell) /* keyword "newroles" --Amy */
 struct monst *mtmp;
 char oclass;
 int damage, tell;

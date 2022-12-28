@@ -1,0 +1,333 @@
+#	SCCS Id: @(#)Arch.des	3.4	1997/01/31
+#	Copyright (c) 1989 by Jean-Christophe Collet
+#	Copyright (c) 1991 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+#	The "start" level for the quest.
+#
+#	Here you meet your (besieged) class leader, Lord Carnarvon
+#	and receive your quest assignment.
+#
+MAZE: "Joc-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+MAP
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+....................ddddddddddddddddddddddddddddddddddddddd.................
+....................d-------------------------------------d.................
+....................d|...................................|d.................
+....................d|...................................|d.................
+....................d|...................................|d.................
+....................d.....................................d.................
+....................d.......................................................
+....................d.....................................d.................
+....................d|...................................|d.................
+....................d|...................................|d.................
+....................d|...................................|d.................
+....................d-------------------------------------d.................
+....................ddddddddddddddddddddddddddddddddddddddd.................
+............................................................................
+............................................................................
+............................................................................
+ENDMAP
+# Dungeon Description
+REGION:(00,00,75,19),lit,"ordinary"
+# Stairs
+STAIR:(55,07),down
+# Portal arrival point
+BRANCH:(63,06,63,06),(0,0,0,0)
+# Lord Carnarvon
+MONSTER:'@',"Mike Smith",(25,10)
+# The treasure of Lord Carnarvon
+OBJECT:'(',"chest",(26,10)
+# student guards for the audience chamber
+MONSTER:'@',"student",(26,09)
+MONSTER:'@',"student",(27,09)
+MONSTER:'@',"student",(28,09)
+MONSTER:'@',"student",(26,10)
+MONSTER:'@',"student",(28,10)
+MONSTER:'@',"student",(26,11)
+MONSTER:'@',"student",(27,11)
+MONSTER:'@',"student",(28,11)
+# Monsters on siege duty.
+MONSTER: 'S',random,(60,09),hostile
+MONSTER: 'S',random,(60,10),hostile
+MONSTER: 'S',random,(60,11),hostile
+MONSTER: 'S',random,(60,12),hostile
+MONSTER: 'S',random,(60,13),hostile
+MONSTER: 'S',random,(61,10),hostile
+MONSTER: 'S',random,(61,11),hostile
+MONSTER: 'S',random,(61,12),hostile
+MONSTER: 'S',random,(30,03),hostile
+MONSTER: 'S',random,(20,17),hostile
+MONSTER: 'S',random,(67,02),hostile
+MONSTER: 'S',random,(10,19),hostile
+
+#
+#	The "locate" level for the quest.
+#
+#	Here you have to find the Entrance to the Tomb of the Toltec Kings
+#	to go further towards your assigned quest.
+#
+
+MAZE: "Joc-loca",' '
+FLAGS: hardfloor
+GEOMETRY:center,center
+MAP
+.....|.......  ...............................................  ............
+.....|.......  ...............................................  ............
+..............  ......................................................  ....
+..............  .... ...-------------------------------...............  ....
+.............................|........................|.......  ............
+..............  .............|-|.|.------------------.|.......  ............
+..............  ...---.......| |.|.|.........|......|.|...............  ....
+...-----.....  ..............| |.|.|.........|......|.................  ....
+.............  .........|....|-|.|.|..   ...........|.........  ............
+........................|......|.|....   ...........|.|.......  ............
+.............  .........|......|.|....  ......------|.|...............  ....
+...-----.....  .........|......|.|....   .............|...............  ....
+..............  ...---..|....|-|.|.|..   ......------.|.......  ............
+..............  .............| |.|.|.........|.|..............  ............
+.............................| |.|.|.........|.|......................  ....
+..............  .............|-|.|.-----------.------.|...............  ....
+..............  .............|........................|.......  ............
+.............  ..... ...-------------------------------.......  ............
+.....|.......  .......................................................  ....
+.....|................................................................  ....
+ENDMAP
+# Dungeon Description
+REGION:(00,00,75,19),lit,"ordinary"
+# Stairs
+STAIR:(03,17),up
+STAIR:(39,10),down
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+
+#
+#	The "goal" level for the quest.
+#
+#	Here you meet Minion of Huhetotl your nemesis monster.  You have to
+#	defeat Minion of Huhetotl in combat to gain the artifact you have
+#	been assigned to retrieve.
+#
+
+MAZE: "Joc-goal", ' '
+GEOMETRY:center,center
+MAP
+nnnnnn a                          ....w....                         a nnnnnn
+nnnnnn                            ---------                           nnnnnn
+nnnnnn                            |...i...|                           nnnnnn
+nnnnnn                 -----------|...i...|-----------                nnnnnn
+nnnnnn     ...........................i..........................     nnnnnn
+nnnnnn     .           |..............i..............|          .     nnnnnn
+nnnnnn     .           |..............i..............|          .     nnnnnn
+nnnnnn     .        -----------------.i.-----------------       .     nnnnnn
+nnnnnn     .        |hh...........|...i...|...........hh|       .     nnnnnn
+}}}}nn ........     |hh...............i...............hh|    ........ nn}}}}
+}}}}nn ........     |hh...............i...............hh|    ........ nn}}}}
+nnnnnn     .        |hh...........|...i...|...........hh|       .     nnnnnn
+nnnnnn     .        ------------------i------------------       .     nnnnnn
+nnnnnn     .           |.............|i|.............|          .     nnnnnn
+nnnnnn     .           |.............|i|.............|          .     nnnnnn
+nnnnnn     ..........................|i|.........................     nnnnnn
+nnnnnn                 -----------|...i...|-----------                nnnnnn
+nnnnnn                            |...i...|                           nnnnnn
+nnnnnn                            ---------                           nnnnnn
+nnnnnn a                          ....w....                         a nnnnnn
+ENDMAP
+# Dungeon Description
+REGION:(00,00,75,19),lit,"ordinary"
+# Stairs
+STAIR:(38,10),up
+# Objects
+OBJECT:')',"lance",(50,14),blessed,3,"Penumbral Lasso"
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:'C',"Six-Shooter Jack",(50,14),hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+MONSTER:'S',random,random,hostile
+
+#
+#	The "fill" levels for the quest.
+#
+#	These levels are used to fill out any levels not occupied by specific
+#	levels as defined above. "filla" is the upper filler, between the
+#	start and locate levels, and "fillb" the lower between the locate
+#	and goal levels.
+#
+
+LEVEL: "Joc-fila"
+#
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, up
+OBJECT: random,random,random
+MONSTER: 'S', random, random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, down
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'S', random, random,hostile
+MONSTER: 'S', random, random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+MONSTER: 'S', random, random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+OBJECT: random,random,random
+MONSTER: 'S', random, random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'S', random, random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'S', random, random,hostile
+
+RANDOM_CORRIDORS
+
+LEVEL: "Joc-filb"
+#
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, up
+OBJECT: random,random,random
+MONSTER: 'S', random, random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, down
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: 'S', random, random,hostile
+MONSTER: 'S', random, random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+MONSTER: 'S', random, random,hostile
+MONSTER: random, random, random,hostile
+MONSTER: random, random, random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+OBJECT: random,random,random
+MONSTER: 'S', random, random,hostile
+MONSTER: random, random, random,hostile
+MONSTER: random, random, random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+TRAP: random, random
+MONSTER: 'S', random, random,hostile
+MONSTER: random, random, random,hostile
+MONSTER: random, random, random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+MONSTER: 'S', random, random,hostile
+MONSTER: random, random, random,hostile
+MONSTER: random, random, random,hostile
+
+RANDOM_CORRIDORS

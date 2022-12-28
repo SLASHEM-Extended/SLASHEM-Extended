@@ -750,7 +750,7 @@ register char *enterstring;
 			  "Leave the %s%s outside.",
 			  tool, plur(cnt));
 		should_block = TRUE;
-	    } else if (u.usteed) {
+	    } else if (u.usteed && !(uarm && uarm->oartifact == ART_FAER_ME) ) {
 		verbalize(NOTANGRY(shkp) ?
 			  "Will you please leave %s outside?" :
 			  "Leave %s outside.", y_monnam(u.usteed));
@@ -2371,6 +2371,8 @@ register struct monst *shkp;	/* if angry, impose a surcharge */
 
 	if (Race_if(PM_DUTHOL)) tmp *= 2L;
 	if (Role_if(PM_OTAKU)) tmp += tmp / 3L; /* bad at making deals */
+
+	if (u.usteed && uarm && uarm->oartifact == ART_FAER_ME) tmp -= tmp / 4L;
 
 	if (ACURR(A_CHA) > 18)		tmp /= 2L;
 	else if (ACURR(A_CHA) > 17)	tmp -= tmp / 3L;
@@ -4540,7 +4542,7 @@ register struct monst *shkp;
 	    if ((Is_blackmarket(&u.uz) && u.umonnum>0 &&
 		 mons[u.umonnum].mlet != S_HUMAN) ||
                 /* WAC Let you out if you're stuck inside */                
-                (!Is_blackmarket(&u.uz) && (Invis || u.usteed) && !(uarm && uarm->oartifact == ART_DEMANDING_ENTRY) && !inside_shop(u.ux, u.uy)))
+                (!Is_blackmarket(&u.uz) && (Invis || (u.usteed && !(uarm && uarm->oartifact == ART_FAER_ME)) ) && !(uarm && uarm->oartifact == ART_DEMANDING_ENTRY) && !inside_shop(u.ux, u.uy)))
 		{
 		    avoid = FALSE;
 		} else {
@@ -5697,7 +5699,7 @@ register xchar x, y;
 		&& !(uarm && uarm->oartifact == ART_DEMANDING_ENTRY) 
 		&& shkp->mcanmove && !shkp->msleeping
 		&& (x == sx-1 || x == sx+1 || y == sy-1 || y == sy+1)
-		&& (Invis || carrying(PICK_AXE) || carrying(CONGLOMERATE_PICK) || carrying(CONUNDRUM_PICK) || carrying(MYSTERY_PICK) || carrying(BRONZE_PICK) || carrying(BRICK_PICK) || carrying(NANO_PICK) || carrying(DWARVISH_MATTOCK) || carrying(SOFT_MATTOCK) || carrying(ETERNIUM_MATTOCK) || u.usteed
+		&& (Invis || carrying(PICK_AXE) || carrying(CONGLOMERATE_PICK) || carrying(CONUNDRUM_PICK) || carrying(MYSTERY_PICK) || carrying(BRONZE_PICK) || carrying(BRICK_PICK) || carrying(NANO_PICK) || carrying(DWARVISH_MATTOCK) || carrying(SOFT_MATTOCK) || carrying(ETERNIUM_MATTOCK) || (u.usteed && !(uarm && uarm->oartifact == ART_FAER_ME) )
 	  )) {
 		pline("%s%s blocks your way!", shkname(shkp),
 				Invis ? " senses your motion and" : "");

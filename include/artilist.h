@@ -7664,7 +7664,7 @@ A("Luke's Bluelight",				LASER_SWORD,
 	PHYS(8, 8), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 5000L ),
 
 A("Enturn Swash",				LASER_POLE,
-	(SPFX_RESTR|SPFX_PROTEC), 0, 0,
+	(SPFX_RESTR|SPFX_PROTEC|SPFX_ATTK), 0, 0,
 	ELEC(10, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6500L ),
 
 A("Baobhan Mountain",				SITH_STAFF, /* manler effect, 10% better spellcasting */
@@ -10654,7 +10654,7 @@ A("Holybasher",				FLAIL, /* randart flail, invoke to uncurse it */
 	PHYS(5, 0), NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_LAWFUL, NON_PM, NON_PM, 2000L ),
 
 A("Raising Heart",				QUARTERSTAFF, /* randart quarterstaff, you take double damage */
-	(SPFX_RESTR|SPFX_INTEL|SPFX_SPEAK|SPFX_PROTEC|SPFX_HSPDAM|SPFX_HPHDAM|SPFX_WARN|SPFX_EVIL), 0, 0,
+	(SPFX_RESTR|SPFX_INTEL|SPFX_SPEAK|SPFX_PROTEC|SPFX_HSPDAM|SPFX_HPHDAM|SPFX_WARN|SPFX_EVIL|SPFX_ATTK), 0, 0,
 	STUN(5, 1), DFNS(AD_MAGM), NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 4000L ),
 
 A("Tenrai",				SPEAR, /* randart2 spear */
@@ -11265,6 +11265,18 @@ A("jyl -not xlated call ken",				ELIF_S_JEWEL, /* randart feminism gem, can be i
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 1000L ),
 
+A("Musical Snorkel",				WOODEN_FLUTE, /* magical breathing when wielded, can be invoked to turn water around you into dry land in a 5x5 area */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Quick Jock",				LEATHER_SADDLE, /* 20% increased speed when riding, 1 in 1000 chance per turn that the steed is healed back up to full HP and has all negative status effects cured */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_JOCKEY, NON_PM, 2000L ),
+
+A("Faer Me",				LEATHER_JACKET, /* resist fear; if you're riding, low-level monsters close by will walk randomly sometimes and you can enter shops where you get a discount */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_JOCKEY, NON_PM, 3000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.
@@ -11279,7 +11291,7 @@ A("Reaver",			SCIMITAR,
 	PHYS(5,8),	NO_DFNS,	NO_CARY,	0, A_CHAOTIC, PM_PIRATE, NON_PM, 6000L ),
 
 A("The Red Sword",			FLAME_MOUNTAIN,
-	(SPFX_NOGEN|SPFX_RESTR), 0, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_ATTK), 0, 0,
 	FIRE(5, 12),	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 4500L ),
 
 A("Thiefbane",                  LONG_SWORD,
@@ -12297,8 +12309,12 @@ A("Spectrum Pling",				CIRMOCLINE, /* prism reflection and resist fire, cold, sh
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, PM_WOMANIZER, NON_PM, 20000L ),
 
 A("Sabrina's Rescue",				STURDY_PLATEAU_BOOT_FOR_GIRLS, /* aggravate monster when wielded */
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_HPHDAM|SPFX_WARN), 0, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_HPHDAM|SPFX_WARN|SPFX_ATTK), 0, 0,
 	ACID(4, 12), NO_DFNS, NO_CARY, DRAGON_BREATH, A_LAWFUL, PM_SINGSLAVE, NON_PM, 18000L ),
+
+A("Penumbral Lasso",				LANCE, /* if it would break from jousting, it might not */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_LAWFUL, PM_JOCKEY, NON_PM, 4000L ),
 
 
 /* Amy note: DO NOT add non-quest artifacts beyond this point!!! foreignartifactcount() in invent.c depends on it */

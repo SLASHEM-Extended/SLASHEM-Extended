@@ -2588,6 +2588,39 @@ const struct Role roles[] = {
 	0, 5, 0, 2, 10, A_INT, SPE_DETECT_UNSEEN,   -4, 40
 },
 
+{	{"Jockey", 0}, {
+	{"Riding Apprentice",      0},
+	{"Horse Driver",0},
+	{"Whipswinger",0},
+	{"Rein Controller",     0},
+	{"Wildrider",   0},
+	{"Classic Cowboy",   0},
+	{"Horseracer",   0},
+	{"Mounted Thunder",   0},
+	{"Sunset Horseman",     0} },
+	"Bill Shoemaker", "Lester Piggott", "John Velazquez", /* famous jockeys */
+	"Joc", "Riding School", "Jack's Farm",
+	PM_JOCKEY, NON_PM, PM_UNDEAD_JOCKEY, NON_PM, PM_PEGASUS,
+	PM_MIKE_SMITH, PM_STUDENT, PM_SIX_SHOOTER_JACK, PM_GUN_COWBOY,
+	PM_VIPER_ARCHER, PM_UNMOUNT_VIPER, S_SNAKE, S_CENTAUR,
+#if 0
+	ART_WEREBANE, ART_GRAYSWANDIR,
+#endif
+	ART_PENUMBRAL_LASSO,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | 
+	  ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+/*	{   7, 10, 10,  7,  7,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  15, 15, 15, 30, 10, 15 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(80), 18, 18, 24, 16, 20 },
+	/* Init   Lower  Higher */
+	{ 12, 0,  0, 3,  2, 0 },	/* Hit points */
+	{ 6, 0,  0, 1,  0, 1 }, 16,	/* Energy */
+	10, 9, -4, 4, 16, A_INT, SPE_HORSE_HOP,   -4, 30
+},
+
 {	{"Justice Keeper", 0}, {
 	/*[Sakusha]*/
 	{"Kageman",	0},

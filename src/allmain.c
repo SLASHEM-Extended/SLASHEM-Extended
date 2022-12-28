@@ -1452,6 +1452,13 @@ moveloop()
 					if (moveamt > (oldspeed + 15)) moveamt = (oldspeed + 15);
 				}
 
+				if (bmwride(ART_QUICK_JOCK)) {
+					oldspeed = moveamt;
+					moveamt *= 6;
+					moveamt /= 5;
+					if (moveamt > (oldspeed + 15)) moveamt = (oldspeed + 15);
+				}
+
 				if (bmwride(ART_KERSTIN_S_COWBOY_BOOST)) {
 					oldspeed = moveamt;
 					moveamt *= 6;
@@ -1932,6 +1939,13 @@ moveloop()
 			if (u.usteed) {
 
 				if (bmwride(ART_SPEEDO_CAR)) {
+					oldspeed = moveamt;
+					moveamt *= 6;
+					moveamt /= 5;
+					if (moveamt > (oldspeed + 15)) moveamt = (oldspeed + 15);
+				}
+
+				if (bmwride(ART_QUICK_JOCK)) {
 					oldspeed = moveamt;
 					moveamt *= 6;
 					moveamt /= 5;
@@ -2432,6 +2446,22 @@ moveloop()
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			flags.botl = TRUE;
 			pline("ATTENTION! The pink double lightsword is draining your health!");
+		}
+
+		if (bmwride(ART_QUICK_JOCK) && !rn2(1000)) {
+			if (u.usteed) {
+				u.usteed->mhp = u.usteed->mhpmax;
+				u.usteed->mfrozen = 0;
+				u.usteed->msleeping = 0;
+				u.usteed->masleep = 0;
+				u.usteed->mcanmove = 1;
+				u.usteed->mflee = 0;
+				u.usteed->mcansee = 1;
+				u.usteed->mblinded = 0;
+				u.usteed->mstun = 0;
+				u.usteed->mconf = 0;
+				pline("%s is cured.", Monnam(u.usteed));
+			}
 		}
 
 		if (have_repeatingloadstone() && !rn2(2500)) {

@@ -3530,7 +3530,7 @@ ghnhom2:
 	    case 92:
 	    case 93:
 
-		switch (rnd(855)) {
+		switch (rnd(860)) { /* keyword "newroles" */
 
 			case 1: makemaz("Aci-1"); return;
 			case 2: makemaz("Aci-2"); return;
@@ -4387,6 +4387,11 @@ ghnhom2:
 			case 853: makemaz("Noo-3"); return;
 			case 854: makemaz("Noo-4"); return;
 			case 855: makemaz("Noo-5"); return;
+			case 856: makemaz("Joc-1"); return;
+			case 857: makemaz("Joc-2"); return;
+			case 858: makemaz("Joc-3"); return;
+			case 859: makemaz("Joc-4"); return;
+			case 860: makemaz("Joc-5"); return;
 
 		}
 		break;
@@ -5582,7 +5587,7 @@ ghnhom2:
 	    case 92:
 	    case 93:
 
-		switch (rnd(855)) {
+		switch (rnd(860)) {
 
 			case 1: makemaz("Aci-6"); return;
 			case 2: makemaz("Aci-7"); return;
@@ -6439,6 +6444,11 @@ ghnhom2:
 			case 853: makemaz("Noo-8"); return;
 			case 854: makemaz("Noo-9"); return;
 			case 855: makemaz("Noo-0"); return;
+			case 856: makemaz("Joc-6"); return;
+			case 857: makemaz("Joc-7"); return;
+			case 858: makemaz("Joc-8"); return;
+			case 859: makemaz("Joc-9"); return;
+			case 860: makemaz("Joc-0"); return;
 		}
 		break;
 
@@ -8073,7 +8083,7 @@ ghnhom4:
 	    case 92:
 	    case 93:
 
-		switch (rnd(855)) {
+		switch (rnd(860)) {
 
 			case 1: makemaz("Aci-1"); return;
 			case 2: makemaz("Aci-2"); return;
@@ -8930,6 +8940,11 @@ ghnhom4:
 			case 853: makemaz("Noo-3"); return;
 			case 854: makemaz("Noo-4"); return;
 			case 855: makemaz("Noo-5"); return;
+			case 856: makemaz("Joc-1"); return;
+			case 857: makemaz("Joc-2"); return;
+			case 858: makemaz("Joc-3"); return;
+			case 859: makemaz("Joc-4"); return;
+			case 860: makemaz("Joc-5"); return;
 		}
 		break;
 
@@ -10117,7 +10132,7 @@ ghnhom4:
 	    case 92:
 	    case 93:
 
-		switch (rnd(855)) {
+		switch (rnd(860)) {
 
 			case 1: makemaz("Aci-6"); return;
 			case 2: makemaz("Aci-7"); return;
@@ -10974,6 +10989,11 @@ ghnhom4:
 			case 853: makemaz("Noo-8"); return;
 			case 854: makemaz("Noo-9"); return;
 			case 855: makemaz("Noo-0"); return;
+			case 856: makemaz("Joc-6"); return;
+			case 857: makemaz("Joc-7"); return;
+			case 858: makemaz("Joc-8"); return;
+			case 859: makemaz("Joc-9"); return;
+			case 860: makemaz("Joc-0"); return;
 		}
 		break;
 

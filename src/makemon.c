@@ -2341,6 +2341,22 @@ register struct monst *mtmp;
 
 		   break;
 
+		   case PM_JOCKEY:
+		   case PM_UNDEAD_JOCKEY:
+
+		     (void)mongets(mtmp, LEATHER_JACKET);
+		     (void)mongets(mtmp, BULLWHIP);
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+
+			break;
+
 		   case PM_YAUTJA:
 		   case PM_UNDEAD_YAUTJA:
 		     (void)mongets(mtmp, (rn2(3) || (monster_difficulty() < 15) ) ? HAND_BLASTER : ARM_BLASTER);
@@ -12325,6 +12341,10 @@ loveheelover:
 			(void) mongets(mtmp, FLINTLOCK);
 	  		m_initthrow(mtmp, LEAD_PISTOL_BULLET, 20);
 		}
+		if (ptr == &mons[PM_SIX_SHOOTER_JACK]) {
+			(void) mongets(mtmp, PISTOL);
+	  		m_initthrow(mtmp, LEAD_PISTOL_BULLET, 30);
+		}
 		if (ptr == &mons[PM_RUENKAVALA]) {
 			(void) mongets(mtmp, LONG_SWORD);
 			(void) mongets(mtmp, WEDGE_SANDALS);
@@ -14036,6 +14056,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_DIRE_MASK_WOMAN]) (void) mongets(mtmp, find_corona_mask());
 		if (mtmp->data == &mons[PM_VACCINATION_GESTAPO]) (void) mongets(mtmp, SCALPEL);
 		if (mtmp->data == &mons[PM_HORNY_FEMMY]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
+		if (mtmp->data == &mons[PM_UNMOUNT_VIPER]) (void) mongets(mtmp, BARDICHE);
 
 		if (ptr == &mons[PM_WOODFALL_CATTLE]) {
 			(void) mongets(mtmp, SHARP_AXE);
@@ -27831,6 +27852,9 @@ loopback:
 		if (ct > 0 && (uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && (ptr->msound == MS_FART_QUIET) )) ct += 5;
 		if (ct > 0 && (uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && (ptr->msound == MS_FART_LOUD) )) ct += 5;
 		if (ct > 0 && (uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && (ptr->msound == MS_STENCH) )) ct += 20;
+		if (ct > 0 && (Role_if(PM_JOCKEY) && (ptr->mlet == S_UNICORN))) ct += 1;
+		if (ct > 0 && (Role_if(PM_JOCKEY) && (ptr->mlet == S_CENTAUR))) ct += 1;
+		if (ct > 0 && (Role_if(PM_JOCKEY) && (ptr->mlet == S_QUADRUPED))) ct += 2;
 		if (ct > 0 && (Role_if(PM_DEMAGOGUE) && (ptr->mlet == S_KOP))) ct += 5;
 		if (ct > 0 && (Role_if(PM_DEMAGOGUE) && (ptr->mresists & MR_PLUSFOUR))) ct += 1;
 		if (ct > 0 && (Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && (ptr->mflags2 & M2_DEMON) )) ct += 5;
