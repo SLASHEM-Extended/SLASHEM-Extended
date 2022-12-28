@@ -1165,6 +1165,17 @@ E boolean have_soundeffectstone(void);
 E boolean have_timerunstone(void);
 E boolean have_nastycursestone(void);
 
+E boolean have_realliestone(void);
+E boolean have_escapepaststone(void);
+E boolean have_pethatestone(void);
+E boolean have_petlashoutstone(void);
+E boolean have_petstarvestone(void);
+E boolean have_petscrewstone(void);
+E boolean have_techlossstone(void);
+E boolean have_prooflossstone(void);
+E boolean have_uninvisstone(void);
+E boolean have_detectationstone(void);
+
 E boolean have_giantexplorerstone(void);
 E boolean have_trapwarpstone(void);
 E boolean have_yawmstone(void);
@@ -2119,6 +2130,10 @@ E int find_plateau_boots(void);
 E int find_fleecy_boots(void);
 E int find_higher_helmet(void);
 E int find_missys(void);
+E int find_superhard_sandals(void);
+E int find_telescope(void);
+E int find_osfa_cloak(void);
+E int find_tarpaulin_cloak(void);
 E int find_potion_of_dye(void);
 E int find_house_slippers(void);
 E int find_fingerless_gloves(void);
@@ -2363,6 +2378,8 @@ E int dohistory(void);
 E void corpsepager(int);
 #endif
 
+E int reallie(int);
+
 E void somepokedex(int);
 
 E const char *noroelaname(void);
@@ -2603,6 +2620,9 @@ E void trophy_get(void);
 
 E void cure_feminism_traps(void);
 E void cure_nasty_traps(void);
+
+E void reset_nastinator(void);
+E void gain_nastinator(void);
 
 E boolean sandprotection(void);
 E boolean shadowprotection(void);

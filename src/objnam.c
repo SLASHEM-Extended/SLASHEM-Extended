@@ -3969,6 +3969,27 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ SPE_RESIST_CONFUSION, "todo" },
 	{ SPE_RESIST_CONTAMINATION, "todo" },
 
+	{ REAL_LIE_STONE, "todo" },
+	{ ESCAPE_PAST_STONE, "todo" },
+	{ PETHATE_STONE, "todo" },
+	{ PET_LASHOUT_STONE, "todo" },
+	{ PETSTARVE_STONE, "todo" },
+	{ PETSCREW_STONE, "todo" },
+	{ TECH_LOSS_STONE, "todo" },
+	{ PROOFLOSS_STONE, "todo" },
+	{ UN_INVIS_STONE, "todo" },
+	{ DETECTATION_STONE, "todo" },
+	{ ETERNAL_LIAR_BOOTS, "todo" },
+	{ UNDETECTION_GLOVES, "todo" },
+	{ PETHATE_CLOAK, "todo" },
+	{ PET_LASHOUT_CLOAK, "todo" },
+	{ PETSTARVE_CLOAK, "todo" },
+	{ PETSCREW_CLOAK, "todo" },
+	{ NON_PROOF_CLOAK, "todo" },
+	{ TECH_LOSS_HELMET, "todo" },
+	{ AMULET_OF_ESCAPE_PROBLEM, "amulet of todo" },
+	{ RIN_VISIBLE_BECOMING, "todo" },
+
 	{0, "" }
 };
 
@@ -7116,6 +7137,27 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ SPE_RESIST_STUN, "todo" },
 	{ SPE_RESIST_CONFUSION, "todo" },
 	{ SPE_RESIST_CONTAMINATION, "todo" },
+
+	{ REAL_LIE_STONE, "todo" },
+	{ ESCAPE_PAST_STONE, "todo" },
+	{ PETHATE_STONE, "todo" },
+	{ PET_LASHOUT_STONE, "todo" },
+	{ PETSTARVE_STONE, "todo" },
+	{ PETSCREW_STONE, "todo" },
+	{ TECH_LOSS_STONE, "todo" },
+	{ PROOFLOSS_STONE, "todo" },
+	{ UN_INVIS_STONE, "todo" },
+	{ DETECTATION_STONE, "todo" },
+	{ ETERNAL_LIAR_BOOTS, "todo" },
+	{ UNDETECTION_GLOVES, "todo" },
+	{ PETHATE_CLOAK, "todo" },
+	{ PET_LASHOUT_CLOAK, "todo" },
+	{ PETSTARVE_CLOAK, "todo" },
+	{ PETSCREW_CLOAK, "todo" },
+	{ NON_PROOF_CLOAK, "todo" },
+	{ TECH_LOSS_HELMET, "todo" },
+	{ AMULET_OF_ESCAPE_PROBLEM, "amulet of todo" },
+	{ RIN_VISIBLE_BECOMING, "todo" },
 
 	{0, "" }
 };

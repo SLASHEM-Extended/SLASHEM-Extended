@@ -1752,7 +1752,7 @@ domonability()
 
 			return 1;
 		}
-	} else if ((youmonst.data->msound == MS_FART_NORMAL || (PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_FART_NORMAL) || (Race_if(PM_LOLI) && !Upolyd && mons[PM_LOLI].msound == MS_FART_NORMAL)) && yn("Do you want to fart?")=='y' ) {
+	} else if ((youmonst.data->msound == MS_FART_NORMAL || (uarmf && uarmf->oartifact == ART_CLAUDIA_S_BEAUTY) || (PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_FART_NORMAL) || (Race_if(PM_LOLI) && !Upolyd && mons[PM_LOLI].msound == MS_FART_NORMAL)) && yn("Do you want to fart?")=='y' ) {
 		if (u.uhunger <= 10) {
 			pline("There isn't enough gas stored in your %s butt!", flags.female ? "sexy" : "ugly");
 			return 0;
@@ -1921,7 +1921,7 @@ callingoutdone:
 			use_skill(P_SQUEAKING, rnd(5));
 		}
 
-	} else if ( ( (Role_if(PM_HUSSY) && (!Upolyd && flags.female)) || (uarmf && uarmf->oartifact == ART_ANJA_S_WIDE_FIELD) || (uarmf && uarmf->oartifact == ART_SCRATCHE_HUSSY) || have_femityjewel() || (PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_STENCH) || (Upolyd && youmonst.data->msound == MS_STENCH) ) && !u.hussyperfume && yn("Do you want to spread your scentful perfume?") == 'y') {
+	} else if ( ( (Role_if(PM_HUSSY) && (!Upolyd && flags.female)) || (uarmf && uarmf->oartifact == ART_ANJA_S_WIDE_FIELD) || (uarmf && uarmf->oartifact == ART_CLAUDIA_S_BEAUTY) || (uarmf && uarmf->oartifact == ART_SCRATCHE_HUSSY) || have_femityjewel() || (PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_STENCH) || (Upolyd && youmonst.data->msound == MS_STENCH) ) && !u.hussyperfume && yn("Do you want to spread your scentful perfume?") == 'y') {
 		You("spread the lovely feminine drum stint reluctance brand perfume to intoxicate monsters around you!");
 
 		if (have_femityjewel()) {
@@ -4306,6 +4306,66 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && (TimerunBug || u.uprops[TIMERUN_BUG].extrinsic || have_timerunstone())) {
 		sprintf(buf, "the following problem: All actions take turns.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", TimerunBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (RealLieEffect || u.uprops[REAL_LIE_EFFECT].extrinsic || have_realliestone())) {
+		sprintf(buf, "the following problem: The pokedex tells lies to you that may become real.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", RealLieEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (EscapePastEffect || u.uprops[ESCAPE_PAST_EFFECT].extrinsic || have_escapepaststone())) {
+		sprintf(buf, "the following problem: Using the ESC key to clear --More-- prompts causes bad effects.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", EscapePastEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (PethateEffect || u.uprops[PETHATE_EFFECT].extrinsic || have_pethatestone())) {
+		sprintf(buf, "the following problem: Monsters will constantly try to kill your pets.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", PethateEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (PetLashoutEffect || u.uprops[PET_LASHOUT_EFFECT].extrinsic || have_petlashoutstone())) {
+		sprintf(buf, "the following problem: Your pets will infight.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", PetLashoutEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (PetstarveEffect || u.uprops[PETSTARVE_EFFECT].extrinsic || have_petstarvestone())) {
+		sprintf(buf, "the following problem: Your pets are much more likely to starve.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", PetstarveEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (PetscrewEffect || u.uprops[PETSCREW_EFFECT].extrinsic || have_petscrewstone())) {
+		sprintf(buf, "the following problem: Your pets are subjected to random bad effects.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", PetscrewEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (TechLossEffect || u.uprops[TECH_LOSS_EFFECT].extrinsic || have_techlossstone())) {
+		sprintf(buf, "the following problem: You lost techniques.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", TechLossEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (ProoflossEffect || u.uprops[PROOFLOSS_EFFECT].extrinsic || have_prooflossstone())) {
+		sprintf(buf, "the following problem: Your erosionproof equipment may spontaneously un-erosionproof itself.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", ProoflossEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (UnInvisEffect || u.uprops[UN_INVIS_EFFECT].extrinsic || have_uninvisstone())) {
+		sprintf(buf, "the following problem: Your invisible equipment may spontaneously become visible.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", UnInvisEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (DetectationEffect || u.uprops[DETECTATION_EFFECT].extrinsic || have_detectationstone())) {
+		sprintf(buf, "the following problem: Many ways of detecting your surroundings do no longer work.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", DetectationEffect);
 		you_have(buf);
 	}
 
@@ -8897,6 +8957,56 @@ int final;
 	if (TimerunBug || u.uprops[TIMERUN_BUG].extrinsic || have_timerunstone()) {
 		sprintf(buf, "the following problem: All actions take turns.");
 	      sprintf(eos(buf), " (%ld)", TimerunBug);
+		dump(youhad, buf);
+	}
+	if (RealLieEffect || u.uprops[REAL_LIE_EFFECT].extrinsic || have_realliestone()) {
+		sprintf(buf, "the following problem: The pokedex tells lies to you that may become real.");
+		sprintf(eos(buf), " (%ld)", RealLieEffect);
+		dump(youhad, buf);
+	}
+	if (EscapePastEffect || u.uprops[ESCAPE_PAST_EFFECT].extrinsic || have_escapepaststone()) {
+		sprintf(buf, "the following problem: Using the ESC key to clear --More-- prompts causes bad effects.");
+		sprintf(eos(buf), " (%ld)", EscapePastEffect);
+		dump(youhad, buf);
+	}
+	if (PethateEffect || u.uprops[PETHATE_EFFECT].extrinsic || have_pethatestone()) {
+		sprintf(buf, "the following problem: Monsters will constantly try to kill your pets.");
+		sprintf(eos(buf), " (%ld)", PethateEffect);
+		dump(youhad, buf);
+	}
+	if (PetLashoutEffect || u.uprops[PET_LASHOUT_EFFECT].extrinsic || have_petlashoutstone()) {
+		sprintf(buf, "the following problem: Your pets will infight.");
+		sprintf(eos(buf), " (%ld)", PetLashoutEffect);
+		dump(youhad, buf);
+	}
+	if (PetstarveEffect || u.uprops[PETSTARVE_EFFECT].extrinsic || have_petstarvestone()) {
+		sprintf(buf, "the following problem: Your pets are much more likely to starve.");
+		sprintf(eos(buf), " (%ld)", PetstarveEffect);
+		dump(youhad, buf);
+	}
+	if (PetscrewEffect || u.uprops[PETSCREW_EFFECT].extrinsic || have_petscrewstone()) {
+		sprintf(buf, "the following problem: Your pets are subjected to random bad effects.");
+		sprintf(eos(buf), " (%ld)", PetscrewEffect);
+		dump(youhad, buf);
+	}
+	if (TechLossEffect || u.uprops[TECH_LOSS_EFFECT].extrinsic || have_techlossstone()) {
+		sprintf(buf, "the following problem: You lost techniques.");
+		sprintf(eos(buf), " (%ld)", TechLossEffect);
+		dump(youhad, buf);
+	}
+	if (ProoflossEffect || u.uprops[PROOFLOSS_EFFECT].extrinsic || have_prooflossstone()) {
+		sprintf(buf, "the following problem: Your erosionproof equipment may spontaneously un-erosionproof itself.");
+		sprintf(eos(buf), " (%ld)", ProoflossEffect);
+		dump(youhad, buf);
+	}
+	if (UnInvisEffect || u.uprops[UN_INVIS_EFFECT].extrinsic || have_uninvisstone()) {
+		sprintf(buf, "the following problem: Your invisible equipment may spontaneously become visible.");
+		sprintf(eos(buf), " (%ld)", UnInvisEffect);
+		dump(youhad, buf);
+	}
+	if (DetectationEffect || u.uprops[DETECTATION_EFFECT].extrinsic || have_detectationstone()) {
+		sprintf(buf, "the following problem: Many ways of detecting your surroundings do no longer work.");
+		sprintf(eos(buf), " (%ld)", DetectationEffect);
 		dump(youhad, buf);
 	}
 	if (RepeatingNastycurseEffect || u.uprops[REPEATING_NASTYCURSE_EFFECT].extrinsic || have_nastycursestone()) {

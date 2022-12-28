@@ -636,6 +636,9 @@ giveback:
 	      case RIN_ENSNARING:
 		    pline("The sink actively stops the water flow in its tracks!");
 		    break;
+	      case RIN_VISIBLE_BECOMING:
+		    pline("All the fine patternings of the sink's metal are suddenly visible to you!");
+		    break;
 	      case RIN_DIARRHEA:
 		    pline("The sink water turns into pee... ewww...");
 		    break;
@@ -1060,6 +1063,9 @@ register struct obj *obj;
 		break;
 	case AMULET_OF_WRONG_SEEING:
 		You("suddenly see a fat log of shit inside the toilet!");
+		break;
+	case AMULET_OF_ESCAPE_PROBLEM:
+		pline_The("water runs in circles, getting infinitesimally closer to the drain but not actually reaching it!");
 		break;
 	case AMULET_OF_WEAK_MAGIC:
 		pline_The("water flow is suddenly too weak to flush away anything.");

@@ -1025,6 +1025,17 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "hannah trap", C(CLR_MAGENTA)},	/* trap */
 	{'^', "little marie trap", C(CLR_YELLOW)},	/* trap */
 
+	{'^', "real lie trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "escape past trap", C(CLR_BLACK)},	/* trap */
+	{'^', "pethate trap", C(CLR_BLACK)},	/* trap */
+	{'^', "pet lashout trap", C(CLR_RED)},	/* trap */
+	{'^', "petstarve trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "petscrew trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "tech loss trap", C(CLR_BROWN)},	/* trap */
+	{'^', "proofloss trap", C(CLR_CYAN)},	/* trap */
+	{'^', "un-invis trap", C(CLR_CYAN)},	/* trap */
+	{'^', "detectation trap", C(CLR_WHITE)},	/* trap */
+
 	{'^', "timerun trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -1877,6 +1888,17 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_hannah_trap),
 	g_FILLER(S_little_marie_trap),
 
+	g_FILLER(S_real_lie_trap),
+	g_FILLER(S_escape_past_trap),
+	g_FILLER(S_pethate_trap),
+	g_FILLER(S_pet_lashout_trap),
+	g_FILLER(S_petstarve_trap),
+	g_FILLER(S_petscrew_trap),
+	g_FILLER(S_tech_loss_trap),
+	g_FILLER(S_proofloss_trap),
+	g_FILLER(S_un_invis_trap),
+	g_FILLER(S_detectation_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -2717,6 +2739,17 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_hannah_trap),
 	g_FILLER(S_little_marie_trap),
 
+	g_FILLER(S_real_lie_trap),
+	g_FILLER(S_escape_past_trap),
+	g_FILLER(S_pethate_trap),
+	g_FILLER(S_pet_lashout_trap),
+	g_FILLER(S_petstarve_trap),
+	g_FILLER(S_petscrew_trap),
+	g_FILLER(S_tech_loss_trap),
+	g_FILLER(S_proofloss_trap),
+	g_FILLER(S_un_invis_trap),
+	g_FILLER(S_detectation_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -3553,6 +3586,17 @@ static uchar wing_graphics[MAXPCHARS] = {
 	g_FILLER(S_charlotte_trap),
 	g_FILLER(S_hannah_trap),
 	g_FILLER(S_little_marie_trap),
+
+	g_FILLER(S_real_lie_trap),
+	g_FILLER(S_escape_past_trap),
+	g_FILLER(S_pethate_trap),
+	g_FILLER(S_pet_lashout_trap),
+	g_FILLER(S_petstarve_trap),
+	g_FILLER(S_petscrew_trap),
+	g_FILLER(S_tech_loss_trap),
+	g_FILLER(S_proofloss_trap),
+	g_FILLER(S_un_invis_trap),
+	g_FILLER(S_detectation_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -4391,6 +4435,17 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_charlotte_trap),
 	g_FILLER(S_hannah_trap),
 	g_FILLER(S_little_marie_trap),
+
+	g_FILLER(S_real_lie_trap),
+	g_FILLER(S_escape_past_trap),
+	g_FILLER(S_pethate_trap),
+	g_FILLER(S_pet_lashout_trap),
+	g_FILLER(S_petstarve_trap),
+	g_FILLER(S_petscrew_trap),
+	g_FILLER(S_tech_loss_trap),
+	g_FILLER(S_proofloss_trap),
+	g_FILLER(S_un_invis_trap),
+	g_FILLER(S_detectation_trap),
 
 	g_FILLER(S_timerun_trap),
 
@@ -5437,6 +5492,17 @@ boolean is_rlevel;
 	    showsyms[S_charlotte_trap] = 0x04;
 	    showsyms[S_hannah_trap] = 0x04;
 	    showsyms[S_little_marie_trap] = 0x04;
+
+	    showsyms[S_real_lie_trap] = 0x04;
+	    showsyms[S_escape_past_trap] = 0x04;
+	    showsyms[S_pethate_trap] = 0x04;
+	    showsyms[S_pet_lashout_trap] = 0x04;
+	    showsyms[S_petstarve_trap] = 0x04;
+	    showsyms[S_petscrew_trap] = 0x04;
+	    showsyms[S_tech_loss_trap] = 0x04;
+	    showsyms[S_proofloss_trap] = 0x04;
+	    showsyms[S_un_invis_trap] = 0x04;
+	    showsyms[S_detectation_trap] = 0x04;
 
 	    showsyms[S_timerun_trap] = 0x04;
 #endif /* PUBLIC_SERVER */

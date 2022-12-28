@@ -1286,7 +1286,7 @@ break_armor()
 		useup(otmp);
 	}
 	}
-	if (!cloakkeep && (otmp = uarmc) != 0) {
+	if (!cloakkeep && !(uarmc && itemhasappearance(uarmc, APP_OSFA_CLOAK)) && (otmp = uarmc) != 0) {
 	    if(otmp->oartifact || (uarmf && uarmf->oartifact == ART_MALENA_S_LADYNESS) || (otmp->fakeartifact && rn2(2)) ) {
 		Your("%s falls off!", cloak_simple_name(otmp));
 		(void) Cloak_off();
@@ -1338,7 +1338,7 @@ break_armor()
 		(void) Armor_gone();
 		dropx(otmp);
 	}
-	if (((otmp = uarmc) != 0) && !cloakkeep) {
+	if (((otmp = uarmc) != 0) && !(uarmc && itemhasappearance(uarmc, APP_OSFA_CLOAK)) && !cloakkeep) {
 		if (is_whirly(youmonst.data))
 			Your("%s falls, unsupported!", cloak_simple_name(otmp));
 		else You("shrink out of your %s!", cloak_simple_name(otmp));
@@ -2478,6 +2478,16 @@ dospinweb()
 		case BISHOP_TRAP:
 		case UNINFORMATION_TRAP:
 		case TIMERUN_TRAP:
+		case REAL_LIE_TRAP:
+		case ESCAPE_PAST_TRAP:
+		case PETHATE_TRAP:
+		case PET_LASHOUT_TRAP:
+		case PETSTARVE_TRAP:
+		case PETSCREW_TRAP:
+		case TECH_LOSS_TRAP:
+		case PROOFLOSS_TRAP:
+		case UN_INVIS_TRAP:
+		case DETECTATION_TRAP:
 		case ARTIBLAST_TRAP:
 		case REPEATING_NASTYCURSE_TRAP:
 		case REALLY_BAD_TRAP:

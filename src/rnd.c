@@ -1184,7 +1184,7 @@ randenchantment()
 
 	if (!rn2(20)) {
 
-		switch (rnd(251)) {
+		switch (rnd(261)) {
 
 			case 1: return SPELLS_LOST;
 			case 2: return CASTER_PROBLEM;
@@ -1438,6 +1438,16 @@ randenchantment()
 			case 249: return COVID_TRAP_EFFECT;
 			case 250: return ARTIBLAST_EFFECT;
 			case 251: return REPEATING_NASTYCURSE_EFFECT;
+			case 252: return REAL_LIE_EFFECT;
+			case 253: return ESCAPE_PAST_EFFECT;
+			case 254: return PETHATE_EFFECT;
+			case 255: return PET_LASHOUT_EFFECT;
+			case 256: return PETSTARVE_EFFECT;
+			case 257: return PETSCREW_EFFECT;
+			case 258: return TECH_LOSS_EFFECT;
+			case 259: return PROOFLOSS_EFFECT;
+			case 260: return UN_INVIS_EFFECT;
+			case 261: return DETECTATION_EFFECT;
 			default: return POISON_RES;
 
 		}
@@ -1925,7 +1935,7 @@ randenchantment()
 int
 randnastyenchantment()
 {
-	switch (rnd(251)) {
+	switch (rnd(261)) {
 
 		case 1: return SPELLS_LOST;
 		case 2: return CASTER_PROBLEM;
@@ -2178,6 +2188,16 @@ randnastyenchantment()
 			case 249: return COVID_TRAP_EFFECT;
 			case 250: return ARTIBLAST_EFFECT;
 			case 251: return REPEATING_NASTYCURSE_EFFECT;
+			case 252: return REAL_LIE_EFFECT;
+			case 253: return ESCAPE_PAST_EFFECT;
+			case 254: return PETHATE_EFFECT;
+			case 255: return PET_LASHOUT_EFFECT;
+			case 256: return PETSTARVE_EFFECT;
+			case 257: return PETSCREW_EFFECT;
+			case 258: return TECH_LOSS_EFFECT;
+			case 259: return PROOFLOSS_EFFECT;
+			case 260: return UN_INVIS_EFFECT;
+			case 261: return DETECTATION_EFFECT;
 	}
 
 	/* appease compiler, we should never end up here */
@@ -2348,7 +2368,7 @@ randominsidetrap()
 	else if (!rn2(50)) return ARABELLA_SPEAKER;
 	else if (!rn2(100)) return SUPERTHING_TRAP;
 	else if (!rn2(2000)) return AUTOMATIC_SWITCHER;
-	else switch (rnd(251)) {
+	else switch (rnd(261)) {
 		case 1: return RMB_LOSS_TRAP;
 		case 2: return UNINFORMATION_TRAP;
 		case 3: return BIGSCRIPT_TRAP;
@@ -2601,6 +2621,16 @@ randominsidetrap()
 		case 249: return COVID_TRAP;
 		case 250: return ARTIBLAST_TRAP;
 		case 251: return REPEATING_NASTYCURSE_TRAP;
+		case 252: return REAL_LIE_TRAP;
+		case 253: return ESCAPE_PAST_TRAP;
+		case 254: return PETHATE_TRAP;
+		case 255: return PET_LASHOUT_TRAP;
+		case 256: return PETSTARVE_TRAP;
+		case 257: return PETSCREW_TRAP;
+		case 258: return TECH_LOSS_TRAP;
+		case 259: return PROOFLOSS_TRAP;
+		case 260: return UN_INVIS_TRAP;
+		case 261: return DETECTATION_TRAP;
 
 	}
 
@@ -3902,7 +3932,7 @@ struct obj *obj;
 void
 getnastytrapintrinsic()
 {
-			switch (rnd(249)) {
+			switch (rnd(259)) {
 
 				case 1: 
 				    SpeedBug |= FROMOUTSIDE; break;
@@ -4402,6 +4432,26 @@ getnastytrapintrinsic()
 				    ArtiblastEffect |= FROMOUTSIDE; break;
 				case 249:
 				    RepeatingNastycurseEffect |= FROMOUTSIDE; break;
+				case 250:
+				    RealLieEffect |= FROMOUTSIDE; break;
+				case 251:
+				    EscapePastEffect |= FROMOUTSIDE; break;
+				case 252:
+				    PethateEffect |= FROMOUTSIDE; break;
+				case 253:
+				    PetLashoutEffect |= FROMOUTSIDE; break;
+				case 254:
+				    PetstarveEffect |= FROMOUTSIDE; break;
+				case 255:
+				    PetscrewEffect |= FROMOUTSIDE; break;
+				case 256:
+				    TechLossEffect |= FROMOUTSIDE; break;
+				case 257:
+				    ProoflossEffect |= FROMOUTSIDE; break;
+				case 258:
+				    UnInvisEffect |= FROMOUTSIDE; break;
+				case 259:
+				    DetectationEffect |= FROMOUTSIDE; break;
 
 
 			}
@@ -4820,7 +4870,7 @@ int duration, blackngvar;
 {
 		if (LongScrewup || u.uprops[LONG_SCREWUP].extrinsic || have_longscrewupstone()) duration *= 20;
 
-		switch (rnd(249)) {
+		switch (rnd(259)) {
 
 			case 1: RMBLoss += rnz(duration); break;
 			case 2: NoDropProblem += rnz(duration); break;
@@ -5100,6 +5150,16 @@ int duration, blackngvar;
 			case 247: CovidTrapEffect += rnz(duration); break;
 			case 248: ArtiblastEffect += rnz(duration); break;
 			case 249: RepeatingNastycurseEffect += rnz(duration); break;
+			case 250: RealLieEffect += rnz(duration); break;
+			case 251: EscapePastEffect += rnz(duration); break;
+			case 252: PethateEffect += rnz(duration); break;
+			case 253: PetLashoutEffect += rnz(duration); break;
+			case 254: PetstarveEffect += rnz(duration); break;
+			case 255: PetscrewEffect += rnz(duration); break;
+			case 256: TechLossEffect += rnz(duration); break;
+			case 257: ProoflossEffect += rnz(duration); break;
+			case 258: UnInvisEffect += rnz(duration); break;
+			case 259: DetectationEffect += rnz(duration); break;
 
 		}
 
@@ -5388,6 +5448,16 @@ int efftype, nastyduration, blackngvar;
 		case 247: CovidTrapEffect += rnz(nastyduration); break;
 		case 248: ArtiblastEffect += rnz(nastyduration); break;
 		case 249: RepeatingNastycurseEffect += rnz(nastyduration); break;
+		case 250: RealLieEffect += rnz(nastyduration); break;
+		case 251: EscapePastEffect += rnz(nastyduration); break;
+		case 252: PethateEffect += rnz(nastyduration); break;
+		case 253: PetLashoutEffect += rnz(nastyduration); break;
+		case 254: PetstarveEffect += rnz(nastyduration); break;
+		case 255: PetscrewEffect += rnz(nastyduration); break;
+		case 256: TechLossEffect += rnz(nastyduration); break;
+		case 257: ProoflossEffect += rnz(nastyduration); break;
+		case 258: UnInvisEffect += rnz(nastyduration); break;
+		case 259: DetectationEffect += rnz(nastyduration); break;
 
 		default:
 			impossible("efftype %d called in specificnastytrapeffect()", efftype);

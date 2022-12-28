@@ -11277,6 +11277,46 @@ A("Faer Me",				LEATHER_JACKET, /* resist fear; if you're riding, low-level mons
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_JOCKEY, NON_PM, 3000L ),
 
+A("Give Crap A Bad Name",				KNIFE, /* randart knife */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 1), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Claudia's Beauty",				LOW_BOOTS, /* initialized to always be superhard sandals, allows you to #monster to fart or spread perfume */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Max the Secret Agent",				LEATHER_GLOVES, /* initialized to always be telescope, gives you maxxed sight range while worn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Kati's Antagonism",				LEATHER_GLOVES, /* initialized to always be telescope, autocurses, aggravate monster and feminism aggravation */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Now Your Able To Poly",				LEATHER_CLOAK, /* initialized to always be osfa cloak, polymorphitis */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Pineapple Tycoon's Finish",				LEATHER_CLOAK, /* initialized to always be tarpaulin cloak, death ray resistance, using appraisal on a weapon gives 75% chance that you don't get a timeout */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Protected Mode Run-time",				AMULET_OF_ESCAPE_PROBLEM, /* timerun effect, free action and discount action */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Heliokopis's Playstyle",				QUARTERSTAFF, /* escape past effect, 20% better spellcasting chances */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(8, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Property Grumble",				ETERNAL_LIAR_BOOTS, /* permacurse effect, 10 extra points of AC, +8 to-damage but -5 to-accuracy */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Arabella's Lightswitch",				RING_MAIL, /* detectation effect, can be invoked for litroom(TRUE, obj);, highscore bug, gaining score (urexp) via exper.c is doubled, infravision and +25 spawn freq for M4_ORGANIVORE */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 6000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

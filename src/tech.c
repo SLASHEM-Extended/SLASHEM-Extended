@@ -2503,7 +2503,11 @@ dotechmenu(how, tech_no)
 	    if (techid(i) == NO_TECH)
 		continue;
 	    tlevel = techlev(i);
-	    if (tlevel > 0 && (wizard || !techtout(i)) ) {
+	    if (TechLossEffect || u.uprops[TECH_LOSS_EFFECT].extrinsic || have_techlossstone()) {
+		techs_useable++;
+		prefix = "";
+		any.a_int = i + 1;
+	    } else if (tlevel > 0 && (wizard || !techtout(i)) ) {
 		/* Ready to use */
 		techs_useable++;
 		prefix = "";
@@ -2513,7 +2517,7 @@ dotechmenu(how, tech_no)
 		any.a_int = 0;
 	    }
 #ifdef WIZARD
-	    if (wizard || RngeTechInsight) 
+	    if (wizard || (RngeTechInsight && !(TechLossEffect || u.uprops[TECH_LOSS_EFFECT].extrinsic || have_techlossstone()) ) )
 		if (!iflags.menu_tab_sep)
 		    sprintf(buf, "%s%-*s %2d%c%c%c%c  %s(%i)",
 			    prefix, longest, techname(i), tlevel, ((techtout(i) || (tlevel <= 0)) ? '*' : ' '),
@@ -2544,7 +2548,9 @@ dotechmenu(how, tech_no)
 			    techtout(i));
 	    else
 #endif
-	    if (!iflags.menu_tab_sep)
+	    if (TechLossEffect || u.uprops[TECH_LOSS_EFFECT].extrinsic || have_techlossstone()) {
+		sprintf(buf, "      ");
+	    } else if (!iflags.menu_tab_sep) {
 		sprintf(buf, "%s%-*s %5d%c  %s",
 			prefix, longest, techname(i), tlevel, ((techtout(i) || (tlevel <= 0)) ? '*' : ' '),
 			tech_inuse(techid(i)) ? "Active" :
@@ -2554,7 +2560,7 @@ dotechmenu(how, tech_no)
 			techtout(i) > 10000 ? "Huge timeout" :
 			techtout(i) > 1000 ? "Not Ready" :
 			techtout(i) > 100 ? "Reloading" : "Soon");
-	    else
+	    } else
 		sprintf(buf, "%s%s\t%5d%c\t%s",
 			prefix, techname(i), tlevel, ((techtout(i) || (tlevel <= 0)) ? '*' : ' '),
 			tech_inuse(techid(i)) ? "Active" :
@@ -2566,7 +2572,7 @@ dotechmenu(how, tech_no)
 			techtout(i) > 100 ? "Reloading" : "Soon");
 
 	    add_menu(tmpwin, NO_GLYPH, &any,
-		    (tlevel <= 0) ? 0 : (techtout(i) && !wizard) ? 0 : let, 0, ATR_NONE, buf, MENU_UNSELECTED);
+		    (tlevel <= 0) ? 0 : (techtout(i) && !(TechLossEffect || u.uprops[TECH_LOSS_EFFECT].extrinsic || have_techlossstone()) && !wizard) ? 0 : let, 0, ATR_NONE, buf, MENU_UNSELECTED);
 	    if (let++ == 'z') let = 'A';
 	    if (let == 'Z') let = 'a';
 	}
@@ -2725,7 +2731,7 @@ dotech()
 {
 	int tech_no;
 
-	if (flags.tech_description) {
+	if (flags.tech_description && !(TechLossEffect || u.uprops[TECH_LOSS_EFFECT].extrinsic || have_techlossstone()) ) {
 
 	if (gettech(&tech_no)) {
 
@@ -3910,7 +3916,9 @@ int tech_no;
 					uwep->spe++;
 					Your("gauntlets seem more effective.");
 				}
-				t_timeout = rnz(200);
+				if (!(uarmc && uarmc->oartifact == ART_PINEAPPLE_TYCOON_S_FINISH) || !rn2(4)) {
+					t_timeout = rnz(200);
+				}
 			}
 		break;
 

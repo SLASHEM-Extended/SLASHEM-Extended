@@ -183,6 +183,11 @@ register struct obj *sobj;
     known = stale = clear_stale_map(COIN_CLASS,
 				(unsigned)(sobj->blessed ? MT_GOLD : 0));
 
+    if (DetectionMethodsDontWork) {
+		if (sobj) strange_feeling(sobj, "Huh.");
+		return 0;
+    }
+
     /* look for gold carried by monsters (might be in a container) */
     for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
     	if (DEADMONSTER(mtmp)) continue;	/* probably not needed in this case but... */
@@ -318,6 +323,11 @@ register struct obj	*sobj;
 
     stale = clear_stale_map(oclass, 0);
 
+    if (DetectionMethodsDontWork) {
+	if (sobj) strange_feeling(sobj, "Huh.");
+	return 0;
+    }
+
     for (obj = fobj; obj; obj = obj->nobj)
 	if (o_in(obj, oclass)) {
 	    if (obj->ox == u.ux && obj->oy == u.uy) ctu++;
@@ -434,6 +444,11 @@ int		class;		/* an object class, 0 for all */
     register struct monst *mtmp;
     int uw = u.uinwater;
     int sym, boulder = 0;
+
+    if (DetectionMethodsDontWork) {
+	if (detector) strange_feeling(detector, "Huh.");
+	return 1;
+    }
 
     if (class < 0 || class >= MAXOCLASSES) {
 	impossible("object_detect:  illegal class %d", class);
@@ -619,6 +634,11 @@ struct obj	*detector;	/* object doing the detecting */
     register struct monst *mtmp;
     int uw = u.uinwater;
 
+    if (DetectionMethodsDontWork) {
+	if (detector) strange_feeling(detector, "Huh.");
+	return 1;
+    }
+
 	if (is_cursed){ /* Possible false negative */
 		strange_feeling(detector, "You feel a lack of something.");
 	    return 1;
@@ -715,6 +735,8 @@ water_detect()
     register int zx, zy;
 	int detectamount = 0;
 
+	if (DetectionMethodsDontWork) return;
+
     for (zx = 1; zx < COLNO; zx++)
 	for (zy = 0; zy < ROWNO; zy++)
 	    if (levl[zx][zy].typ == WATER || levl[zx][zy].typ == POOL || levl[zx][zy].typ == CRYSTALWATER || levl[zx][zy].typ == WATERTUNNEL || levl[zx][zy].typ == WELL || levl[zx][zy].typ == POISONEDWELL || levl[zx][zy].typ == RAINCLOUD || levl[zx][zy].typ == MOAT || levl[zx][zy].typ == FOUNTAIN || levl[zx][zy].typ == SINK || levl[zx][zy].typ == TOILET) {
@@ -737,6 +759,8 @@ water_detectX() /* for the spell, which is meant to be weaker than the scroll --
 
     register int zx, zy;
 	int detectamount = 0;
+
+	if (DetectionMethodsDontWork) return;
 
     for (zx = 1; zx < COLNO; zx++)
 	for (zy = 0; zy < ROWNO; zy++)
@@ -768,6 +792,10 @@ int mclass;			/* monster class, 0 for all */
     register struct monst *mtmp;
     int mcnt = 0;
 
+    if (DetectionMethodsDontWork) {
+	if (otmp) strange_feeling(otmp, "Huh.");
+	return 1;
+    }
 
     /* Note: This used to just check fmon for a non-zero value
      * but in versions since 3.3.0 fmon can test TRUE due to the
@@ -869,6 +897,11 @@ register struct obj *sobj;
     boolean found = FALSE;
     int x, y;
 
+    if (DetectionMethodsDontWork) {
+	if (sobj) strange_feeling(sobj, "Huh.");
+	return 1;
+    }
+
     for (ttmp = ftrap; ttmp; ttmp = ttmp->ntrap) {
 	if (ttmp->tx != u.ux || ttmp->ty != u.uy)
 	    goto outtrapmap;
@@ -940,6 +973,11 @@ register struct obj *sobj;
     int uw = u.uinwater;
     boolean found = FALSE;
     int x, y;
+
+    if (DetectionMethodsDontWork) {
+	if (sobj) strange_feeling(sobj, "Huh.");
+	return 1;
+    }
 
     for (ttmp = ftrap; ttmp; ttmp = ttmp->ntrap) {
 	if (ttmp->tx != u.ux || ttmp->ty != u.uy)
@@ -1255,6 +1293,8 @@ do_mapping()
     register int zx, zy;
     int uw = u.uinwater;
 
+    if (DetectionMethodsDontWork) return;
+
     u.uinwater = 0;
     for (zx = 1; zx < COLNO; zx++)
 	for (zy = 0; zy < ROWNO; zy++)
@@ -1273,6 +1313,8 @@ do_mappingX() /* magic mapping spell and roadmap cloak - they don't reveal as mu
 {
     register int zx, zy;
     int uw = u.uinwater;
+
+    if (DetectionMethodsDontWork) return;
 
     u.uinwater = 0;
     for (zx = 1; zx < COLNO; zx++)
@@ -1293,6 +1335,8 @@ do_mappingY()
     register int zx, zy;
     int uw = u.uinwater;
 
+    if (DetectionMethodsDontWork) return;
+
     u.uinwater = 0;
     for (zx = 1; zx < COLNO; zx++)
 	for (zy = 0; zy < ROWNO; zy++)
@@ -1312,6 +1356,8 @@ do_mappingZ()
     register int zx, zy;
     int uw = u.uinwater;
 
+    if (DetectionMethodsDontWork) return;
+
     u.uinwater = 0;
     for (zx = 1; zx < COLNO; zx++)
 	for (zy = 0; zy < ROWNO; zy++)
@@ -1328,6 +1374,9 @@ do_mappingZ()
 void
 do_vicinity_map()
 {
+
+    if (DetectionMethodsDontWork) return;
+
     register int zx, zy;
     int lo_y = (u.uy-5 < 0 ? 0 : u.uy-5),
 	hi_y = (u.uy+6 > ROWNO ? ROWNO : u.uy+6),
@@ -1348,6 +1397,9 @@ do_vicinity_map()
 void
 do_vicinity_mapX()
 {
+
+    if (DetectionMethodsDontWork) return;
+
     register int zx, zy;
     int lo_y = (u.uy-4 < 0 ? 0 : u.uy-4),
 	hi_y = (u.uy+5 > ROWNO ? ROWNO : u.uy+5),

@@ -193,6 +193,7 @@ Boots_on()
 	case QUASIMODULAR_BOOTS:
 	case SINFUL_HEELS:
 	case BLOODSUCKING_SHOES:
+	case ETERNAL_LIAR_BOOTS:
 	case COVETED_BOOTS:
 	case LIGHTLESS_BOOTS:
 	case KILLER_HEELS:
@@ -835,6 +836,7 @@ Boots_off()
 	case QUASIMODULAR_BOOTS:
 	case SINFUL_HEELS:
 	case BLOODSUCKING_SHOES:
+	case ETERNAL_LIAR_BOOTS:
 	case COVETED_BOOTS:
 	case LIGHTLESS_BOOTS:
 	case KILLER_HEELS:
@@ -1206,6 +1208,11 @@ Cloak_on()
 	case CHATBOX_CLOAK:
 	case HERETIC_CLOAK:
 	case EERIE_CLOAK:
+	case PETHATE_CLOAK:
+	case PET_LASHOUT_CLOAK:
+	case PETSTARVE_CLOAK:
+	case PETSCREW_CLOAK:
+	case NON_PROOF_CLOAK:
 	case CLOAK_OF_NAKEDNESS:
 	case COVID____COATED_CLOAK:
 
@@ -1847,6 +1854,11 @@ Cloak_off()
 	case CHATBOX_CLOAK:
 	case HERETIC_CLOAK:
 	case EERIE_CLOAK:
+	case PETHATE_CLOAK:
+	case PET_LASHOUT_CLOAK:
+	case PETSTARVE_CLOAK:
+	case PETSCREW_CLOAK:
+	case NON_PROOF_CLOAK:
 	case CLOAK_OF_NAKEDNESS:
 	case COVID____COATED_CLOAK:
 
@@ -2144,6 +2156,7 @@ Helmet_on()
 	case BLACKY_HELMET:
 	case ANTI_DRINKER_HELMET:
 	case WHISPERING_HELMET:
+	case TECH_LOSS_HELMET:
 	case CYPHER_HELM:
 	case ANGER_HELM:
 	case BIGSCRIPT_HELM:
@@ -2408,6 +2421,7 @@ Helmet_off()
 	case BLACKY_HELMET:
 	case ANTI_DRINKER_HELMET:
 	case WHISPERING_HELMET:
+	case TECH_LOSS_HELMET:
 	case CYPHER_HELM:
 	case ANGER_HELM:
 	case BIGSCRIPT_HELM:
@@ -2625,6 +2639,7 @@ Gloves_on()
 	case HEAVY_GRABBING_GLOVES:
 	case GAUNTLETS_OF_REVERSE_ENCHANTME:
 	case FUCKUP_MELEE_GAUNTLETS:
+	case UNDETECTION_GLOVES:
 
 	case ORANGE_SPELL_GLOVES:
 	case MOJIBAKE_GLOVES:
@@ -2738,6 +2753,14 @@ Gloves_on()
 	      if (!uarmg->cursed) {
 			curse(uarmg);
 			pline("afk (ass-fucker)");
+		}
+    }
+
+    if (uarmg && uarmg->oartifact == ART_KATI_S_ANTAGONISM) {
+	      if (!uarmg->cursed) {
+			curse(uarmg);
+			if (!strncmpi(plname, "Kati", 5) || !strncmpi(plalias, "Kati", 5)) You("apparently forgot about your own trap item. Well, now these gloves have trapped you.");
+			else pline("Ugh, apparently Kati has created this pair of gloves as a trap to make unwary people like you don them.");
 		}
     }
 
@@ -2894,6 +2917,7 @@ Gloves_off()
 	case HEAVY_GRABBING_GLOVES:
 	case GAUNTLETS_OF_REVERSE_ENCHANTME:
 	case FUCKUP_MELEE_GAUNTLETS:
+	case UNDETECTION_GLOVES:
 
 	case ORANGE_SPELL_GLOVES:
 	case MOJIBAKE_GLOVES:
@@ -3528,6 +3552,10 @@ Armor_on()
 		curse(uarm);
 	}
 
+	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_ARABELLA_S_LIGHTSWITCH) {
+		curse(uarm);
+	}
+
 	if (uarm && !(uarm->hvycurse) && uarm->oartifact == ART_WATER_SHYNESS) {
 		pline("Your armor is surrounded by an evil black aura.");
 		curse(uarm);
@@ -3710,6 +3738,7 @@ Amulet_on()
 	case AMULET_OF_EXPLOSION:
 	case AMULET_OF_ANTI_TELEPORTATION:
 	case AMULET_OF_WRONG_SEEING:
+	case AMULET_OF_ESCAPE_PROBLEM:
 	case AMULET_OF_WEAK_MAGIC:
 	case AMULET_OF_DIRECTIONAL_SWAP:
 	case AMULET_OF_SUDDEN_CURSE:
@@ -4226,6 +4255,7 @@ register struct obj *obj;
 	case RIN_ANTI_DROP:
 	case RIN_ENSNARING:
 	case RIN_DIARRHEA:
+	case RIN_VISIBLE_BECOMING:
 	case RIN_DISENGRAVING:
 	case RIN_NO_SKILL:
 	case RIN_LOW_STATS:
@@ -5169,7 +5199,7 @@ boolean noisy;
 		if (yn("The uncommon size of your dufflepud feet means that wearing boots of any kind will be awkward, causing you to move at half speed. Really wear them?") != 'y') return 0;
 	}
 
-    if (which && (cantweararm(youmonst.data) || (Race_if(PM_CHIROPTERAN) && !Upolyd) || (Race_if(PM_PLAYER_MUSHROOM) && !Upolyd) ) && !Race_if(PM_TRANSFORMER)  && (otmp->otyp != OSFA_CHAIN_MAIL) &&
+    if (which && (cantweararm(youmonst.data) || (Race_if(PM_CHIROPTERAN) && !Upolyd) || (Race_if(PM_PLAYER_MUSHROOM) && !Upolyd) ) && !Race_if(PM_TRANSFORMER)  && (otmp->otyp != OSFA_CHAIN_MAIL) && !(itemhasappearance(otmp, APP_OSFA_CLOAK)) &&
 	    /* same exception for cloaks as used in m_dowear() */
 	    (which != c_cloak || youmonst.data->msize != MZ_SMALL) &&
 	    (racial_exception(&youmonst, otmp) < 1)) {
@@ -5979,6 +6009,7 @@ find_ac()
 	if (uarmf && uarmf->oartifact == ART_PORCELAIN_ELEPHANT) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_XTRA_CUTENESS) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_DAMPENER) uac -= 5;
+	if (uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) uac -= 10;
 	if (uarmf && uarmf->oartifact == ART_THICKER_THAN_THE_HEAD) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_ROCKZ_ARMY) uac -= 10;
 	if (uarmf && uarmf->oartifact == ART_SPFLOTCH__HAHAHAHAHA_) uac -= 3;

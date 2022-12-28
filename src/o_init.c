@@ -2481,6 +2481,58 @@ find_missys()
     return -1;	/* not 0, or caller would try again each move */
 }
 
+int
+find_superhard_sandals()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_SUPERHARD_SANDALS)) return i;
+    }
+
+    impossible("superhard sandals not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_telescope()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_TELESCOPE)) return i;
+    }
+
+    impossible("telescope not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_osfa_cloak()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_OSFA_CLOAK)) return i;
+    }
+
+    impossible("osfa cloak not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_tarpaulin_cloak()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_TARPAULIN_CLOAK)) return i;
+    }
+
+    impossible("tarpaulin cloak not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
 /* the potion of dye may be mapped to an actual potion, or it may not; its color should be randomly initialized anyway,
  * because if the randomized appearances are shuffled during an ongoing game, it might become an actual potion --Amy */
 int

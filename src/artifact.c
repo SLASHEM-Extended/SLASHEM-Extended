@@ -315,6 +315,7 @@ init_randarts()
 	artilist[ART_TOTAL_GAUCHE].otyp = randartdagger();
 	artilist[ART_HELICOPTER_TWIRL].otyp = randartquarterstaff();
 	artilist[ART_CUTRELEASE].otyp = randartknife();
+	artilist[ART_GIVE_CRAP_A_BAD_NAME].otyp = randartknife();
 	artilist[ART_TIARA_OF_AMNESIA].otyp = randarthelm();
 	artilist[ART_FLUE_FLUE_FLUEFLUE_FLUE].otyp = randarthelm();
 	artilist[ART_LIXERTYPIE].otyp = randartmeleeweapon();
@@ -741,6 +742,11 @@ init_randarts()
 	artilist[ART_GODLY_POSTMAN].otyp = find_winged_sandals();
 	artilist[ART_SUCH_A_LOVELY_SHARK].otyp = find_remora_heels();
 	artilist[ART_SPFLOTCH__HAHAHAHAHA_].otyp = find_heeled_chelsea_boots();
+	artilist[ART_CLAUDIA_S_BEAUTY].otyp = find_superhard_sandals();
+	artilist[ART_MAX_THE_SECRET_AGENT].otyp = find_telescope();
+	artilist[ART_KATI_S_ANTAGONISM].otyp = find_telescope();
+	artilist[ART_NOW_YOUR_ABLE_TO_POLY].otyp = find_osfa_cloak();
+	artilist[ART_PINEAPPLE_TYCOON_S_FINISH].otyp = find_tarpaulin_cloak();
 	artilist[ART_SAFARI_ROCKZ].otyp = find_missys();
 	artilist[ART_SPIRIT_ROCKZ].otyp = find_missys();
 	artilist[ART_PURPLE_JUNGLE].otyp = find_missys();
@@ -3965,6 +3971,12 @@ chargingchoice:
 	    }
 	    break;
 	case SPECIAL_INVOKE:
+
+		if (obj->oartifact == ART_ARABELLA_S_LIGHTSWITCH) {
+			litroom(TRUE, obj);
+			pline_The("light has been switched on!");
+			break;
+		}
 
 		if (obj->oartifact == ART_AJIHEI) {
 			pline("An aura surrounds your weapon...");

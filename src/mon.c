@@ -3388,6 +3388,16 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != STAIRS_TRAP
 				&& ttmp->ttyp != UNINFORMATION_TRAP
 				&& ttmp->ttyp != TIMERUN_TRAP
+				&& ttmp->ttyp != REAL_LIE_TRAP
+				&& ttmp->ttyp != ESCAPE_PAST_TRAP
+				&& ttmp->ttyp != PETHATE_TRAP
+				&& ttmp->ttyp != PET_LASHOUT_TRAP
+				&& ttmp->ttyp != PETSTARVE_TRAP
+				&& ttmp->ttyp != PETSCREW_TRAP
+				&& ttmp->ttyp != TECH_LOSS_TRAP
+				&& ttmp->ttyp != PROOFLOSS_TRAP
+				&& ttmp->ttyp != UN_INVIS_TRAP
+				&& ttmp->ttyp != DETECTATION_TRAP
 				&& ttmp->ttyp != REALLY_BAD_TRAP
 				&& ttmp->ttyp != COVID_TRAP
 				&& ttmp->ttyp != ARTIBLAST_TRAP
@@ -4096,6 +4106,10 @@ struct monst *magr,	/* monster that is currently deciding where to move */
 	 * keyword: dnethack */
 	if (!magr->mtame && !magr->mpeaceful && (magr->data != &mons[PM_MOLDOUX__THE_DEFENCELESS_MOLD]) && !magr->isshk && !magr->isgd && !magr->ispriest && magr->data->mlet != S_TROVE && (u.petattackenemies >= 0) && mdef->mtame && !(u.usteed && mdef == u.usteed) && (mdef->m_lev > rn2(6)) && ((magr->m_lev - mdef->m_lev) < (2 + rn2(5)) ) && !rn2((mdef->m_lev > 40) ? 3 : (mdef->m_lev > 30) ? 5 : (mdef->m_lev > 20) ? 10 : 20) && (!rn2(5) || mdef->mcanmove) && (!rn2(5) || (mdef->mhpmax > 5 && mdef->mhp > (mdef->mhpmax / 5))) ) return ALLOW_M|ALLOW_TM;
 	if (!magr->mtame && !magr->mpeaceful && (magr->data != &mons[PM_MOLDOUX__THE_DEFENCELESS_MOLD]) && !magr->isshk && !magr->isgd && !magr->ispriest && magr->data->mlet != S_TROVE && mdef->mtame && !(u.usteed && mdef == u.usteed) && ((attacktype(mdef->data, AT_EXPL)) || (mindless(magr->data) && evilfriday) || magr->mfrenzied ) ) return ALLOW_M|ALLOW_TM;
+
+	if (!magr->mtame && !magr->mpeaceful && (magr->data != &mons[PM_MOLDOUX__THE_DEFENCELESS_MOLD]) && mdef->mtame && (PethateEffect || u.uprops[PETHATE_EFFECT].extrinsic || have_pethatestone()) ) return ALLOW_M|ALLOW_TM;
+
+	if ((PetLashoutEffect || u.uprops[PET_LASHOUT_EFFECT].extrinsic || have_petlashoutstone()) && magr->mtame && mdef->mtame) return ALLOW_M|ALLOW_TM;
 
 	if (Race_if(PM_ALBAE)) return 0L; /* if you're an albae, everything hates you more than anything else --Amy */
 	if (Role_if(PM_CRUEL_ABUSER) && Qstatf(killed_nemesis) ) return 0L; /* or if you killed the abuser nemesis */

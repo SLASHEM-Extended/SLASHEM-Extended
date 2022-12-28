@@ -850,6 +850,17 @@ static struct {
 	{ "hannah", HANNAH_TRAP },
 	{ "little marie", LITTLE_MARIE_TRAP },
 
+	{ "real lie", REAL_LIE_TRAP },
+	{ "escape past", ESCAPE_PAST_TRAP },
+	{ "pethate", PETHATE_TRAP },
+	{ "pet lashout", PET_LASHOUT_TRAP },
+	{ "petstarve", PETSTARVE_TRAP },
+	{ "petscrew", PETSCREW_TRAP },
+	{ "tech loss", TECH_LOSS_TRAP },
+	{ "proofloss", PROOFLOSS_TRAP },
+	{ "un-invis", UN_INVIS_TRAP },
+	{ "detectation", DETECTATION_TRAP },
+
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }
 };

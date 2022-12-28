@@ -169,6 +169,8 @@ struct obj *obj;
 	if (obj && obj->oartifact == ART_FEED_THE_HORSE) nutrit += 100000;
 
 	if (isfriday) nutrit /= 2;
+	if (PetstarveEffect || u.uprops[PETSTARVE_EFFECT].extrinsic || have_petstarvestone()) nutrit /= 3;
+
 	return nutrit;
 }
 

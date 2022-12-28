@@ -838,7 +838,7 @@ elena12:
 			}
 
 			/* superhard sandals use M4_SANDALS */
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ( (FemtrapActiveKerstin && spawnswithsandals(mtmp->data)) || mtmp->data == &mons[PM_SEXY_CLAUDIA] || (randomsexyheels == 30) ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ( (FemtrapActiveKerstin && spawnswithsandals(mtmp->data)) || (footwear && itemhasappearance(footwear, APP_SUPERHARD_SANDALS)) || mtmp->data == &mons[PM_SEXY_CLAUDIA] || (randomsexyheels == 30) ) ) {
 elenaWOODSANDAL:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -6574,7 +6574,7 @@ struct attack *mattk;
 
 	/* if your cloak/armor is greased, monster slips off; this
 	   protection might fail (33% chance) when the armor is cursed */
-	if (obj && (obj->greased || obj->otyp == OILSKIN_CLOAK || obj->oartifact == ART_PREMIUM_VISCOSITY || obj->oartifact == ART_NEUTRINO || obj->oartifact == ART_LAURA_S_SWIMSUIT) && rn2(50) && /* low chance to fail anyway --Amy */
+	if (obj && (obj->greased || obj->otyp == OILSKIN_CLOAK || itemhasappearance(obj, APP_TARPAULIN_CLOAK) || obj->oartifact == ART_PREMIUM_VISCOSITY || obj->oartifact == ART_NEUTRINO || obj->oartifact == ART_LAURA_S_SWIMSUIT) && rn2(50) && /* low chance to fail anyway --Amy */
 		(!obj->cursed || rn2(3))) {
 	    pline("%s %s your %s %s!",
 		  Monnam(mtmp),
@@ -6810,6 +6810,8 @@ hitmu(mtmp, mattk)
 	/* Monsters with AD_RBRE will choose a random attack instead. --Amy */
 
 	atttyp = mattk->adtyp;
+
+	if ((RealLieEffect || u.uprops[REAL_LIE_EFFECT].extrinsic || have_realliestone()) && !rn2(2) ) atttyp = reallie(atttyp);
 
 	if (mattk->aatyp == AT_SPIT && atttyp == AD_TCKL) atttyp = AD_PHYS; /* manticore fix */
 
@@ -10736,6 +10738,8 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 	atttypA = mattk->adtyp;
 
+	if ((RealLieEffect || u.uprops[REAL_LIE_EFFECT].extrinsic || have_realliestone()) && !rn2(2) ) atttypA = reallie(atttypA);
+
 	if ((SecretAttackBug || u.uprops[SECRET_ATTACK_BUG].extrinsic || have_secretattackstone()) && atttypA == AD_PHYS && !rn2(100)) {
 		while (atttypA == AD_ENDS || atttypA == AD_RBRE || atttypA == AD_WERE || atttypA == AD_PHYS) {
 			atttypA = randattack(); }
@@ -13256,6 +13260,8 @@ boolean ufound;
 
 	atttypC = mattk->adtyp;
 
+	if ((RealLieEffect || u.uprops[REAL_LIE_EFFECT].extrinsic || have_realliestone()) && !rn2(2) ) atttypC = reallie(atttypC);
+
 	if ((SecretAttackBug || u.uprops[SECRET_ATTACK_BUG].extrinsic || have_secretattackstone()) && atttypC == AD_PHYS && !rn2(100)) {
 		while (atttypC == AD_ENDS || atttypC == AD_RBRE || atttypC == AD_WERE || atttypC == AD_PHYS) {
 			atttypC = randattack(); }
@@ -15522,6 +15528,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	/* Monsters with AD_RBRE can use any random gaze. --Amy */
 
 	atttypB = mattk->adtyp;
+
+	if ((RealLieEffect || u.uprops[REAL_LIE_EFFECT].extrinsic || have_realliestone()) && !rn2(2) ) atttypB = reallie(atttypB);
 
 	if ((SecretAttackBug || u.uprops[SECRET_ATTACK_BUG].extrinsic || have_secretattackstone()) && atttypB == AD_PHYS && !rn2(100)) {
 		while (atttypB == AD_ENDS || atttypB == AD_RBRE || atttypB == AD_WERE || atttypB == AD_PHYS) {
@@ -20234,6 +20242,12 @@ stdcontracting:
             }
 
             if (slextest(10000, 50000)) {
+		stdmsg("sensual failure");
+                u.uprops[DETECTATION_EFFECT].intrinsic |= FROMOUTSIDE;
+		increasesanity(rnz((monster_difficulty() * 5) + 1));
+            }
+
+            if (slextest(10000, 50000)) {
 		stdmsg("apocalyptic madness");
                 u.uprops[SIMEOUT_BUG].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
@@ -20260,6 +20274,12 @@ stdcontracting:
             if (slextest(4000, 20000)) {
 		stdmsg("selective inertia");
                 u.uprops[TIMERUN_BUG].intrinsic |= FROMOUTSIDE;
+		increasesanity(rnz((monster_difficulty() * 5) + 1));
+            }
+
+            if (slextest(5000, 25000)) {
+		stdmsg("heliotropic disease");
+                u.uprops[ESCAPE_PAST_EFFECT].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 

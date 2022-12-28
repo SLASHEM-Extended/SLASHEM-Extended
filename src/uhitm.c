@@ -895,6 +895,7 @@ register struct monst *mtmp;
 	if (uarmh && uarmh->oartifact == ART_WAITING_FOR_MELEE) tmp -= 2;
 	if (bmwride(ART_KERSTIN_S_COWBOY_BOOST)) tmp += 2;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DUAL_MASTERY) tmp += 5;
+	if (uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) tmp -= 5;
 
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
 	if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
@@ -3586,6 +3587,7 @@ int dieroll;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXCALIPOOR) tmp -= 9;
 		if (uwep && uwep->oartifact == ART_VLADSBANE) tmp -= 5;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_VLADSBANE) tmp -= 5;
+		if (uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) tmp += 8;
 
 		if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 
@@ -6200,7 +6202,7 @@ struct attack *mattk;
 
 	/* if your cloak/armor is greased, monster slips off; this
 	   protection might fail (33% chance) when the armor is cursed */
-	if (obj && (obj->greased || obj->otyp == OILSKIN_CLOAK) &&
+	if (obj && (obj->greased || obj->otyp == OILSKIN_CLOAK || itemhasappearance(obj, APP_TARPAULIN_CLOAK)) &&
 		(!obj->cursed || rn2(3))) {
 	    You("%s %s %s %s!",
 		mattk->adtyp == AD_WRAP ?
@@ -10217,6 +10219,8 @@ boolean ranged;
 	/* Monsters with AD_RBRE are supposed to have a random passive attack every time they are hit. --Amy */
 
 	atttypC = ptr->mattk[i].adtyp;
+
+	if ((RealLieEffect || u.uprops[REAL_LIE_EFFECT].extrinsic || have_realliestone()) && !rn2(2) && (atttypC != AD_PHYS) ) atttypC = reallie(atttypC);
 
 	if (atttypC == AD_RBRE) {
 		while (atttypC == AD_ENDS || atttypC == AD_RBRE || atttypC == AD_WERE) {

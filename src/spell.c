@@ -11919,6 +11919,7 @@ int spell;
 	if (uarmf && uarmf->oartifact == ART_DON_T_FALL_INTO_THE_ABYSS) chance += 10;
 	if (uwep && uwep->oartifact == ART_BAOBHAN_MOUNTAIN) chance += 10;
 	if (uwep && uwep->oartifact == ART_ORIGIN_OF_CASTING) chance += 20;
+	if (uwep && uwep->oartifact == ART_HELIOKOPIS_S_PLAYSTYLE) chance += 20;
 
 	if (spell_skilltype(spellid(spell)) == P_HEALING_SPELL) {
 		if (uwep && uwep->oartifact == ART_CELESTIAL_SCEPTRE) chance += 50;

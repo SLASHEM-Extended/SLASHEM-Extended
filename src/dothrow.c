@@ -1670,6 +1670,7 @@ boolean hitsroof;
 	if (dmg > 0 && bmwride(ART_KERSTIN_S_COWBOY_BOOST)) dmg += 2;
 	if (dmg > 0 && Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) dmg += 1;
 	if (dmg > 0 && Race_if(PM_RODNEYAN)) dmg += (1 + (GushLevel / 3) );
+	if (dmg > 0 && uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) dmg += 8;
 
 	if (Race_if(PM_ITAQUE)) dmg -= 1;
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) dmg -= 5;
@@ -2451,6 +2452,7 @@ boolean polearming;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_VLADSBANE) tmp -= 5;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DUAL_MASTERY) tmp += 5;
 	if (uwep && uwep->oartifact == ART_SPINESHOOTER) tmp += 5;
+	if (uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) tmp -= 5;
 
 	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 

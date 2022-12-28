@@ -6574,6 +6574,26 @@ eatspecial() /* called after eating non-food */
 				    SpellForgetting |= FROMOUTSIDE; break;
 			case SOUND_EFFECT_STONE:
 				    SoundEffectBug |= FROMOUTSIDE; break;
+			case REAL_LIE_STONE:
+				    RealLieEffect |= FROMOUTSIDE; break;
+			case ESCAPE_PAST_STONE:
+				    EscapePastEffect |= FROMOUTSIDE; break;
+			case PETHATE_STONE:
+				    PethateEffect |= FROMOUTSIDE; break;
+			case PET_LASHOUT_STONE:
+				    PetLashoutEffect |= FROMOUTSIDE; break;
+			case PETSTARVE_STONE:
+				    PetstarveEffect |= FROMOUTSIDE; break;
+			case PETSCREW_STONE:
+				    PetscrewEffect |= FROMOUTSIDE; break;
+			case TECH_LOSS_STONE:
+				    TechLossEffect |= FROMOUTSIDE; break;
+			case PROOFLOSS_STONE:
+				    ProoflossEffect |= FROMOUTSIDE; break;
+			case UN_INVIS_STONE:
+				    UnInvisEffect |= FROMOUTSIDE; break;
+			case DETECTATION_STONE:
+				    DetectationEffect |= FROMOUTSIDE; break;
 			case TIME_USE_STONE:
 				    TimerunBug |= FROMOUTSIDE; break;
 			case NASTYCURSE_STONE:

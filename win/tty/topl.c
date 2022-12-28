@@ -274,7 +274,24 @@ more()
 
     if(morc == '\033') {
 	cw->flags |= WIN_STOP;
+
+	if (youmonst.data && EscapePastIsBad) {
+
+		int nastytrapdur;
+		int blackngdur;
+
+		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
+		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
+		blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
+		if (!blackngdur ) blackngdur = 500; /* fail safe */
+
+		randomnastytrapeffect(rnz(nastytrapdur * (monster_difficulty() + 1)), blackngdur - (monster_difficulty() * 3));
+
+		MessageSuppression += 1; /* ugly hack */
+		badeffect(); /* something bad happens and we don't tell you what it is :-P --Amy */
 	}
+
+    }
 
     if(ttyDisplay->toplin && cw->cury) {
 	docorner(1, cw->cury+1);

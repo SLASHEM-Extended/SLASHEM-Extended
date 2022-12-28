@@ -2351,6 +2351,7 @@ newbossING:
 	    case INSTANASTY_TRAP:
 		{
 			ttmp->ttyp = UNKNOWN_TRAP;
+			/* we use that in win/tty/topl.c too --Amy */
 			int nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
 			if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
 			int blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
@@ -3475,6 +3476,16 @@ int traptype;
 		case REALLY_BAD_TRAP:
 		case COVID_TRAP:
 		case ARTIBLAST_TRAP:
+		case REAL_LIE_TRAP:
+		case ESCAPE_PAST_TRAP:
+		case PETHATE_TRAP:
+		case PET_LASHOUT_TRAP:
+		case PETSTARVE_TRAP:
+		case PETSCREW_TRAP:
+		case TECH_LOSS_TRAP:
+		case PROOFLOSS_TRAP:
+		case UN_INVIS_TRAP:
+		case DETECTATION_TRAP:
 
 		case LOOTCUT_TRAP:
 		case MONSTER_SPEED_TRAP:
@@ -12213,6 +12224,86 @@ madnesseffect:
 
 		break;
 
+		case REAL_LIE_TRAP:
+
+			if (RealLieEffect) break;
+			u.cnd_nastytrapamount++;
+
+			RealLieEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+			break;
+
+		case ESCAPE_PAST_TRAP:
+
+			if (EscapePastEffect) break;
+			u.cnd_nastytrapamount++;
+
+			EscapePastEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+			break;
+
+		case PETHATE_TRAP:
+
+			if (PethateEffect) break;
+			u.cnd_nastytrapamount++;
+
+			PethateEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+			break;
+
+		case PET_LASHOUT_TRAP:
+
+			if (PetLashoutEffect) break;
+			u.cnd_nastytrapamount++;
+
+			PetLashoutEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+			break;
+
+		case PETSTARVE_TRAP:
+
+			if (PetstarveEffect) break;
+			u.cnd_nastytrapamount++;
+
+			PetstarveEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+			break;
+
+		case PETSCREW_TRAP:
+
+			if (PetscrewEffect) break;
+			u.cnd_nastytrapamount++;
+
+			PetscrewEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+			break;
+
+		case TECH_LOSS_TRAP:
+
+			if (TechLossEffect) break;
+			u.cnd_nastytrapamount++;
+
+			TechLossEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+			break;
+
+		case PROOFLOSS_TRAP:
+
+			if (ProoflossEffect) break;
+			u.cnd_nastytrapamount++;
+
+			ProoflossEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+			break;
+
+		case UN_INVIS_TRAP:
+
+			if (UnInvisEffect) break;
+			u.cnd_nastytrapamount++;
+
+			UnInvisEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+			break;
+
+		case DETECTATION_TRAP:
+
+			if (DetectationEffect) break;
+			u.cnd_nastytrapamount++;
+
+			DetectationEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+			break;
+
 		 case TIMERUN_TRAP:
 
 			if (TimerunBug) break;
@@ -17647,7 +17738,7 @@ skillrandomizeredo:
 
 		 case NASTINESS_TRAP:
 
-			switch (rnd(249)) {
+			switch (rnd(259)) {
 
 				case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 				case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -17925,6 +18016,16 @@ skillrandomizeredo:
 			case 247: CovidTrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 248: ArtiblastEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 249: RepeatingNastycurseEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 250: RealLieEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 251: EscapePastEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 252: PethateEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 253: PetLashoutEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 254: PetstarveEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 255: PetscrewEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 256: TechLossEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 257: ProoflossEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 258: UnInvisEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 259: DetectationEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 			}
 
@@ -18539,7 +18640,7 @@ skillrandomizeredo:
 
 		 case AUTOMATIC_SWITCHER:
 
-			if (RMBLoss || Superscroller || DisplayLoss || SpellLoss || YellowSpells || AutoDestruct || MemoryLoss || InventoryLoss || BlackNgWalls || MenuBug || SpeedBug || FreeHandLoss || Unidentify || Thirst || LuckLoss || ShadesOfGrey || FaintActive || Itemcursing || DifficultyIncreased || Deafness || CasterProblem || WeaknessProblem || NoDropProblem || RotThirteen || BishopGridbug || ConfusionProblem || DSTWProblem || StatusTrapProblem || AlignmentProblem || StairsProblem || UninformationProblem || TimerunBug || RepeatingNastycurseEffect || BadPartBug || CompletelyBadPartBug || EvilVariantActive || IntrinsicLossProblem || BloodLossProblem || BadEffectProblem || TrapCreationProblem ||AutomaticVulnerabilitiy || TeleportingItems || NastinessProblem || CaptchaProblem || RespawnProblem || FarlookProblem || RecurringAmnesia || BigscriptEffect || BankTrapEffect || MapTrapEffect || TechTrapEffect || RecurringDisenchant || verisiertEffect || ChaosTerrain || Muteness || EngravingDoesntWork || MagicDeviceEffect || BookTrapEffect || LevelTrapEffect || QuizTrapEffect || FastMetabolismEffect || NoReturnEffect || AlwaysEgotypeMonsters || TimeGoesByFaster ||  FoodIsAlwaysRotten || AllSkillsUnskilled || AllStatsAreLower || PlayerCannotTrainSkills || PlayerCannotExerciseStats || TurnLimitation || WeakSight || RandomMessages || Desecration || StarvationEffect || NoDropsEffect || LowEffects || InvisibleTrapsEffect || GhostWorld || Dehydration || HateTrapEffect || TotterTrapEffect || Nonintrinsics || Dropcurses || Nakedness || Antileveling || ItemStealingEffect || Rebellions || CrapEffect || ProjectilesMisfire || WallTrapping || DisconnectedStairs || InterfaceScrewed || Bossfights || EntireLevelMode || BonesLevelChange || AutocursingEquipment || HighlevelStatus || SpellForgetting || SoundEffectBug || LootcutBug || MonsterSpeedBug || ScalingBug || EnmityBug || WhiteSpells || CompleteGraySpells || QuasarVision || MommaBugEffect || HorrorBugEffect || ArtificerBug || WereformBug || NonprayerBug || EvilPatchEffect || HardModeEffect || SecretAttackBug || EaterBugEffect || CovetousnessBug || NotSeenBug || DarkModeBug || AntisearchEffect || HomicideEffect || NastynationBug || WakeupCallBug || GrayoutBug || GrayCenterBug || CheckerboardBug || ClockwiseSpinBug || CounterclockwiseSpin || LagBugEffect || BlesscurseEffect || DeLightBug || DischargeBug || TrashingBugEffect || FilteringBug || DeformattingBug || FlickerStripBug || UndressingEffect || Hyperbluewalls || NoliteBug || ParanoiaBugEffect || FleecescriptBug || InterruptEffect || DustbinBug || ManaBatteryBug || Monsterfingers || MiscastBug || MessageSuppression || StuckAnnouncement || BloodthirstyEffect || MaximumDamageBug || LatencyBugEffect || StarlitBug || KnowledgeBug || HighscoreBug || PinkSpells || GreenSpells || EvencoreEffect || UnderlayerBug || DamageMeterBug || ArbitraryWeightBug || FuckedInfoBug || BlackSpells || CyanSpells || HeapEffectBug || BlueSpells || TronEffect || RedSpells || TooHeavyEffect || ElongationBug || WrapoverEffect || DestructionEffect || MeleePrefixBug || AutomoreBug || UnfairAttackBug || OrangeSpells || VioletSpells || LongingEffect || CursedParts || Quaversal || AppearanceShuffling || BrownSpells || Choicelessness || Goldspells || Deprovement || InitializationFail || GushlushEffect || SoiltypeEffect || DangerousTerrains || FalloutEffect || MojibakeEffect || GravationEffect || UncalledEffect || ExplodingDiceEffect || PermacurseEffect || ShroudedIdentity || FeelerGauges || LongScrewup || WingYellowChange || LifeSavingBug || CurseuseEffect || CutNutritionEffect || SkillLossEffect || AutopilotEffect || MysteriousForceActive || MonsterGlyphChange || ChangingDirectives || ContainerKaboom || StealDegrading || LeftInventoryBug || FluctuatingSpeed || TarmuStrokingNora || FailureEffects || BrightCyanSpells || FrequentationSpawns || PetAIScrewed || SatanEffect || RememberanceEffect || PokelieEffect || AlwaysAutopickup || DywypiProblem || SilverSpells || MetalSpells || PlatinumSpells || ManlerEffect || DoorningEffect || NownsibleEffect || ElmStreetEffect || MonnoiseEffect || RangCallEffect || RecurringSpellLoss || AntitrainingEffect || TechoutBug || StatDecay || Movemork || SanityTrebleEffect || StatDecreaseBug || SimeoutBug || GiantExplorerBug || YawmBug || TrapwarpingBug || EnthuEffect || MikraEffect || GotsTooGoodEffect || NoFunWallsEffect || CradleChaosEffect || TezEffect || KillerRoomEffect || ReallyBadTrapEffect || CovidTrapEffect || ArtiblastEffect) {
+			if (RMBLoss || Superscroller || DisplayLoss || SpellLoss || YellowSpells || AutoDestruct || MemoryLoss || InventoryLoss || BlackNgWalls || MenuBug || SpeedBug || FreeHandLoss || Unidentify || Thirst || LuckLoss || ShadesOfGrey || FaintActive || Itemcursing || DifficultyIncreased || Deafness || CasterProblem || WeaknessProblem || NoDropProblem || RotThirteen || BishopGridbug || ConfusionProblem || DSTWProblem || StatusTrapProblem || AlignmentProblem || StairsProblem || UninformationProblem || TimerunBug || RepeatingNastycurseEffect || BadPartBug || CompletelyBadPartBug || EvilVariantActive || IntrinsicLossProblem || BloodLossProblem || BadEffectProblem || TrapCreationProblem ||AutomaticVulnerabilitiy || TeleportingItems || NastinessProblem || CaptchaProblem || RespawnProblem || FarlookProblem || RecurringAmnesia || BigscriptEffect || BankTrapEffect || MapTrapEffect || TechTrapEffect || RecurringDisenchant || verisiertEffect || ChaosTerrain || Muteness || EngravingDoesntWork || MagicDeviceEffect || BookTrapEffect || LevelTrapEffect || QuizTrapEffect || FastMetabolismEffect || NoReturnEffect || AlwaysEgotypeMonsters || TimeGoesByFaster ||  FoodIsAlwaysRotten || AllSkillsUnskilled || AllStatsAreLower || PlayerCannotTrainSkills || PlayerCannotExerciseStats || TurnLimitation || WeakSight || RandomMessages || Desecration || StarvationEffect || NoDropsEffect || LowEffects || InvisibleTrapsEffect || GhostWorld || Dehydration || HateTrapEffect || TotterTrapEffect || Nonintrinsics || Dropcurses || Nakedness || Antileveling || ItemStealingEffect || Rebellions || CrapEffect || ProjectilesMisfire || WallTrapping || DisconnectedStairs || InterfaceScrewed || Bossfights || EntireLevelMode || BonesLevelChange || AutocursingEquipment || HighlevelStatus || SpellForgetting || SoundEffectBug || LootcutBug || MonsterSpeedBug || ScalingBug || EnmityBug || WhiteSpells || CompleteGraySpells || QuasarVision || MommaBugEffect || HorrorBugEffect || ArtificerBug || WereformBug || NonprayerBug || EvilPatchEffect || HardModeEffect || SecretAttackBug || EaterBugEffect || CovetousnessBug || NotSeenBug || DarkModeBug || AntisearchEffect || HomicideEffect || NastynationBug || WakeupCallBug || GrayoutBug || GrayCenterBug || CheckerboardBug || ClockwiseSpinBug || CounterclockwiseSpin || LagBugEffect || BlesscurseEffect || DeLightBug || DischargeBug || TrashingBugEffect || FilteringBug || DeformattingBug || FlickerStripBug || UndressingEffect || Hyperbluewalls || NoliteBug || ParanoiaBugEffect || FleecescriptBug || InterruptEffect || DustbinBug || ManaBatteryBug || Monsterfingers || MiscastBug || MessageSuppression || StuckAnnouncement || BloodthirstyEffect || MaximumDamageBug || LatencyBugEffect || StarlitBug || KnowledgeBug || HighscoreBug || PinkSpells || GreenSpells || EvencoreEffect || UnderlayerBug || DamageMeterBug || ArbitraryWeightBug || FuckedInfoBug || BlackSpells || CyanSpells || HeapEffectBug || BlueSpells || TronEffect || RedSpells || TooHeavyEffect || ElongationBug || WrapoverEffect || DestructionEffect || MeleePrefixBug || AutomoreBug || UnfairAttackBug || OrangeSpells || VioletSpells || LongingEffect || CursedParts || Quaversal || AppearanceShuffling || BrownSpells || Choicelessness || Goldspells || Deprovement || InitializationFail || GushlushEffect || SoiltypeEffect || DangerousTerrains || FalloutEffect || MojibakeEffect || GravationEffect || UncalledEffect || ExplodingDiceEffect || PermacurseEffect || ShroudedIdentity || FeelerGauges || LongScrewup || WingYellowChange || LifeSavingBug || CurseuseEffect || CutNutritionEffect || SkillLossEffect || AutopilotEffect || MysteriousForceActive || MonsterGlyphChange || ChangingDirectives || ContainerKaboom || StealDegrading || LeftInventoryBug || FluctuatingSpeed || TarmuStrokingNora || FailureEffects || BrightCyanSpells || FrequentationSpawns || PetAIScrewed || SatanEffect || RememberanceEffect || PokelieEffect || AlwaysAutopickup || DywypiProblem || SilverSpells || MetalSpells || PlatinumSpells || ManlerEffect || DoorningEffect || NownsibleEffect || ElmStreetEffect || MonnoiseEffect || RangCallEffect || RecurringSpellLoss || AntitrainingEffect || TechoutBug || StatDecay || Movemork || SanityTrebleEffect || StatDecreaseBug || SimeoutBug || GiantExplorerBug || YawmBug || TrapwarpingBug || EnthuEffect || MikraEffect || GotsTooGoodEffect || NoFunWallsEffect || CradleChaosEffect || TezEffect || KillerRoomEffect || ReallyBadTrapEffect || CovidTrapEffect || ArtiblastEffect || RealLieEffect || EscapePastEffect || PethateEffect || PetLashoutEffect || PetstarveEffect || PetscrewEffect || TechLossEffect || ProoflossEffect || UnInvisEffect || DetectationEffect ) {
 
 			cure_nasty_traps();
 
@@ -21240,6 +21341,16 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case ALIGNMENT_TRAP:
 		case UNINFORMATION_TRAP:
 		case TIMERUN_TRAP:
+		case REAL_LIE_TRAP:
+		case ESCAPE_PAST_TRAP:
+		case PETHATE_TRAP:
+		case PET_LASHOUT_TRAP:
+		case PETSTARVE_TRAP:
+		case PETSCREW_TRAP:
+		case TECH_LOSS_TRAP:
+		case PROOFLOSS_TRAP:
+		case UN_INVIS_TRAP:
+		case DETECTATION_TRAP:
 		case REPEATING_NASTYCURSE_TRAP:
 		case CALLING_OUT_TRAP:
 		case FIELD_BREAK_TRAP:
@@ -23769,7 +23880,7 @@ register boolean force, here;
 		} else if( obj->oclass == ARMOR_CLASS
 			&& obj == uarm
 			&& uarmc
-			&& uarmc->otyp == OILSKIN_CLOAK
+			&& (uarmc->otyp == OILSKIN_CLOAK || itemhasappearance(uarmc, APP_TARPAULIN_CLOAK))
 			&& (!uarmc->cursed || rn2(3))) {
 		    continue;
 		} else {

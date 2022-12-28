@@ -3431,7 +3431,7 @@ get_description_of_damage_type(uchar id)
 		else return "undefined damage";
 	}
 
-	if (PokelieEffect || u.uprops[POKELIE_EFFECT].extrinsic || have_pokeliestone()) {
+	if (PokelieEffect || u.uprops[POKELIE_EFFECT].extrinsic || have_pokeliestone() || RealLieEffect || u.uprops[REAL_LIE_EFFECT].extrinsic || have_realliestone() ) {
 		damageid += u.pokeliedamagetype;
 		if (damageid > 167) damageid -= 167;
 	}
@@ -3619,6 +3619,703 @@ get_description_of_damage_type(uchar id)
 		}
 		else return "undefined damage";
 	}
+}
+
+int
+reallie(attnum)
+int attnum;
+{
+	int newattnum;
+
+	switch(attnum){
+		case AD_ANY:
+			newattnum = 1; break;
+		case AD_PHYS:
+			newattnum = 2; break;
+		case AD_MAGM:
+			newattnum = 3; break;
+		case AD_FIRE:
+			newattnum = 4; break;
+		case AD_COLD:
+			newattnum = 5; break;
+		case AD_SLEE:
+			newattnum = 6; break;
+		case AD_DISN:
+			newattnum = 7; break;
+		case AD_ELEC:
+			newattnum = 8; break;
+		case AD_DRST:
+			newattnum = 9; break;
+		case AD_ACID:
+			newattnum = 10; break;
+		case AD_SPC2:
+			newattnum = 11; break;
+		case AD_BLND:
+			newattnum = 12; break;
+		case AD_STUN:
+			newattnum = 13; break;
+		case AD_SLOW:
+			newattnum = 14; break;
+		case AD_PLYS:
+			newattnum = 15; break;
+		case AD_DRLI:
+			newattnum = 16; break;
+		case AD_DREN:
+			newattnum = 17; break;
+		case AD_LEGS:
+			newattnum = 18; break;
+		case AD_STON:
+			newattnum = 19; break;
+		case AD_STCK:
+			newattnum = 20; break;
+		case AD_SGLD:
+			newattnum = 21; break;
+		case AD_SITM:
+			newattnum = 22; break;
+		case AD_SEDU:
+			newattnum = 23; break;
+		case AD_TLPT:
+			newattnum = 24; break;
+		case AD_RUST:
+			newattnum = 25; break;
+		case AD_CONF:
+			newattnum = 26; break;
+		case AD_DGST:
+			newattnum = 27; break;
+		case AD_HEAL:
+			newattnum = 28; break;
+		case AD_WRAP:
+			newattnum = 29; break;
+		case AD_WERE:
+			newattnum = 30; break;
+		case AD_DRDX:
+			newattnum = 31; break;
+		case AD_DRCO:
+			newattnum = 32; break;
+		case AD_DRIN:
+			newattnum = 33; break;
+		case AD_DISE:
+			newattnum = 34; break;
+		case AD_DCAY:
+			newattnum = 35; break;
+		case AD_SSEX:
+			newattnum = 36; break;
+		case AD_HALU:
+			newattnum = 37; break;
+		case AD_DETH:
+			newattnum = 38; break;
+		case AD_PEST:
+			newattnum = 39; break;
+		case AD_FAMN:
+			newattnum = 40; break;
+		case AD_SLIM:
+			newattnum = 41; break;
+		case AD_ENCH:
+			newattnum = 42; break;
+		case AD_CORR:
+			newattnum = 43; break;
+		case AD_CLRC:
+			newattnum = 44; break;
+		case AD_SPEL:
+			newattnum = 45; break;
+		case AD_RBRE:
+			newattnum = 46; break;
+		case AD_SAMU:
+			newattnum = 47; break;
+		case AD_CURS:
+			newattnum = 48; break;
+		case AD_LITE:
+			newattnum = 49; break;
+		case AD_CALM:
+			newattnum = 50; break;
+		case AD_POLY:
+			newattnum = 51; break;
+		case AD_TCKL:
+			newattnum = 52; break;
+		case AD_NGRA:
+			newattnum = 53; break;
+		case AD_GLIB:
+			newattnum = 54; break;
+		case AD_DARK:
+			newattnum = 55; break;
+		case AD_WTHR:
+			newattnum = 56; break;
+		case AD_LUCK:
+			newattnum = 57; break;
+		case AD_NUMB:
+			newattnum = 58; break;
+		case AD_FRZE:
+			newattnum = 59; break;
+		case AD_BURN:
+			newattnum = 60; break;
+		case AD_DIMN:
+			newattnum = 61; break;
+		case AD_FEAR:
+			newattnum = 62; break;
+		case AD_DISP:
+			newattnum = 63; break;
+		case AD_NPRO:
+			newattnum = 64; break;
+		case AD_POIS:
+			newattnum = 65; break;
+		case AD_THIR:
+			newattnum = 66; break;
+		case AD_LAVA:
+			newattnum = 67; break;
+		case AD_FAKE:
+			newattnum = 68; break;
+		case AD_LETH:
+			newattnum = 69; break;
+		case AD_AMNE:
+			newattnum = 70; break;
+		case AD_CNCL:
+			newattnum = 71; break;
+		case AD_BANI:
+			newattnum = 72; break;
+		case AD_WISD:
+			newattnum = 73; break;
+		case AD_SHRD:
+			newattnum = 74; break;
+		case AD_WET:
+			newattnum = 75; break;
+		case AD_SUCK:
+			newattnum = 76; break;
+		case AD_MALK:
+			newattnum = 77; break;
+		case AD_UVUU:
+			newattnum = 78; break;
+		case AD_ABDC:
+			newattnum = 79; break;
+		case AD_AXUS:
+			newattnum = 80; break;
+		case AD_CHKH:
+			newattnum = 81; break;
+		case AD_HODS:
+			newattnum = 82; break;
+		case AD_CHRN:
+			newattnum = 83; break;
+		case AD_WEEP:
+			newattnum = 84; break;
+		case AD_VAMP:
+			newattnum = 85; break;
+		case AD_WEBS:
+			newattnum = 86; break;
+		case AD_STTP:
+			newattnum = 87; break;
+		case AD_DEPR:
+			newattnum = 88; break;
+		case AD_WRAT:
+			newattnum = 89; break;
+		case AD_LAZY:
+			newattnum = 90; break;
+		case AD_DRCH:
+			newattnum = 91; break;
+		case AD_DFOO:
+			newattnum = 92; break;
+		case AD_NEXU:
+			newattnum = 93; break;
+		case AD_TIME:
+			newattnum = 94; break;
+		case AD_PLAS:
+			newattnum = 95; break;
+		case AD_MANA:
+			newattnum = 96; break;
+		case AD_SOUN:
+			newattnum = 97; break;
+		case AD_GRAV:
+			newattnum = 98; break;
+		case AD_INER:
+			newattnum = 99; break;
+		case AD_SKIL:
+			newattnum = 100; break;
+		case AD_VENO:
+			newattnum = 101; break;
+		case AD_DREA:
+			newattnum = 102; break;
+		case AD_NAST:
+			newattnum = 103; break;
+		case AD_BADE:
+			newattnum = 104; break;
+		case AD_SLUD:
+			newattnum = 105; break;
+		case AD_ICUR:
+			newattnum = 106; break;
+		case AD_VULN:
+			newattnum = 107; break;
+		case AD_FUMB:
+			newattnum = 108; break;
+		case AD_ICEB:
+			newattnum = 109; break;
+		case AD_VAPO:
+			newattnum = 110; break;
+		case AD_EDGE:
+			newattnum = 111; break;
+		case AD_VOMT:
+			newattnum = 112; break;
+		case AD_LITT:
+			newattnum = 113; break;
+		case AD_FREN:
+			newattnum = 114; break;
+		case AD_NGEN:
+			newattnum = 115; break;
+		case AD_CHAO:
+			newattnum = 116; break;
+		case AD_INSA:
+			newattnum = 117; break;
+		case AD_TRAP:
+			newattnum = 118; break;
+		case AD_WGHT:
+			newattnum = 119; break;
+		case AD_NTHR:
+			newattnum = 120; break;
+		case AD_RNG:
+			newattnum = 121; break;
+		case AD_MIDI:
+			newattnum = 122; break;
+		case AD_CAST:
+			newattnum = 123; break;
+		case AD_ALIN:
+			newattnum = 124; break;
+		case AD_SIN:
+			newattnum = 125; break;
+		case AD_MINA:
+			newattnum = 126; break;
+		case AD_AGGR:
+			newattnum = 127; break;
+		case AD_CONT:
+			newattnum = 128; break;
+		case AD_DATA:
+			newattnum = 129; break;
+		case AD_DEST:
+			newattnum = 130; break;
+		case AD_TREM:
+			newattnum = 131; break;
+		case AD_RAGN:
+			newattnum = 132; break;
+		case AD_IDAM:
+			newattnum = 133; break;
+		case AD_ANTI:
+			newattnum = 134; break;
+		case AD_PAIN:
+			newattnum = 135; break;
+		case AD_TECH:
+			newattnum = 136; break;
+		case AD_MEMO:
+			newattnum = 137; break;
+		case AD_TRAI:
+			newattnum = 138; break;
+		case AD_STAT:
+			newattnum = 139; break;
+		case AD_DAMA:
+			newattnum = 140; break;
+		case AD_THIE:
+			newattnum = 141; break;
+		case AD_PART:
+			newattnum = 142; break;
+		case AD_RUNS:
+			newattnum = 143; break;
+		case AD_NACU:
+			newattnum = 144; break;
+		case AD_SANI:
+			newattnum = 145; break;
+		case AD_RBAD:
+			newattnum = 146; break;
+		case AD_BLEE:
+			newattnum = 147; break;
+		case AD_SHAN:
+			newattnum = 148; break;
+		case AD_SCOR:
+			newattnum = 149; break;
+		case AD_TERR:
+			newattnum = 150; break;
+		case AD_FEMI:
+			newattnum = 151; break;
+		case AD_LEVI:
+			newattnum = 152; break;
+		case AD_ILLU:
+			newattnum = 153; break;
+		case AD_MCRE:
+			newattnum = 154; break;
+		case AD_FLAM:
+			newattnum = 155; break;
+		case AD_DEBU:
+			newattnum = 156; break;
+		case AD_UNPR:
+			newattnum = 157; break;
+		case AD_NIVE:
+			newattnum = 158; break;
+		case AD_TDRA:
+			newattnum = 159; break;
+		case AD_BLAS:
+			newattnum = 160; break;
+		case AD_DROP:
+			newattnum = 161; break;
+		case AD_INVE:
+			newattnum = 162; break;
+		case AD_WNCE:
+			newattnum = 163; break;
+		case AD_DEBT:
+			newattnum = 164; break;
+		case AD_SWAP:
+			newattnum = 165; break;
+		case AD_TPTO:
+			newattnum = 166; break;
+		case AD_ENDS:
+			newattnum = 167; break;
+		default:
+			if (!missingnoprotect) {
+				impossible("bug in reallie(%d)", attnum); return attnum;
+			}
+			else return attnum;
+	}
+
+	newattnum += u.pokeliedamagetype;
+	if (newattnum > 167) newattnum -= 167;
+
+	switch (newattnum) {
+		case 1:
+			attnum = AD_PHYS; break;
+		case 2:
+			attnum = AD_PHYS; break;
+		case 3:
+			attnum = AD_MAGM; break;
+		case 4:
+			attnum = AD_FIRE; break;
+		case 5:
+			attnum = AD_COLD; break;
+		case 6:
+			attnum = AD_SLEE; break;
+		case 7:
+			attnum = AD_DISN; break;
+		case 8:
+			attnum = AD_ELEC; break;
+		case 9:
+			attnum = AD_DRST; break;
+		case 10:
+			attnum = AD_ACID; break;
+		case 11:
+			attnum = AD_SPC2; break;
+		case 12:
+			attnum = AD_BLND; break;
+		case 13:
+			attnum = AD_STUN; break;
+		case 14:
+			attnum = AD_SLOW; break;
+		case 15:
+			attnum = AD_PLYS; break;
+		case 16:
+			attnum = AD_DRLI; break;
+		case 17:
+			attnum = AD_DREN; break;
+		case 18:
+			attnum = AD_LEGS; break;
+		case 19:
+			attnum = AD_STON; break;
+		case 20:
+			attnum = AD_STCK; break;
+		case 21:
+			attnum = AD_SGLD; break;
+		case 22:
+			attnum = AD_SITM; break;
+		case 23:
+			attnum = AD_SEDU; break;
+		case 24:
+			attnum = AD_TLPT; break;
+		case 25:
+			attnum = AD_RUST; break;
+		case 26:
+			attnum = AD_CONF; break;
+		case 27:
+			attnum = AD_DGST; break;
+		case 28:
+			attnum = AD_HEAL; break;
+		case 29:
+			attnum = AD_WRAP; break;
+		case 30:
+			attnum = AD_WERE; break;
+		case 31:
+			attnum = AD_DRDX; break;
+		case 32:
+			attnum = AD_DRCO; break;
+		case 33:
+			attnum = AD_DRIN; break;
+		case 34:
+			attnum = AD_DISE; break;
+		case 35:
+			attnum = AD_DCAY; break;
+		case 36:
+			attnum = AD_SSEX; break;
+		case 37:
+			attnum = AD_HALU; break;
+		case 38:
+			attnum = AD_DETH; break;
+		case 39:
+			attnum = AD_PEST; break;
+		case 40:
+			attnum = AD_FAMN; break;
+		case 41:
+			attnum = AD_SLIM; break;
+		case 42:
+			attnum = AD_ENCH; break;
+		case 43:
+			attnum = AD_CORR; break;
+		case 44:
+			attnum = AD_CLRC; break;
+		case 45:
+			attnum = AD_SPEL; break;
+		case 46:
+			attnum = AD_RBRE; break;
+		case 47:
+			attnum = AD_SAMU; break;
+		case 48:
+			attnum = AD_CURS; break;
+		case 49:
+			attnum = AD_LITE; break;
+		case 50:
+			attnum = AD_CALM; break;
+		case 51:
+			attnum = AD_POLY; break;
+		case 52:
+			attnum = AD_TCKL; break;
+		case 53:
+			attnum = AD_NGRA; break;
+		case 54:
+			attnum = AD_GLIB; break;
+		case 55:
+			attnum = AD_DARK; break;
+		case 56:
+			attnum = AD_WTHR; break;
+		case 57:
+			attnum = AD_LUCK; break;
+		case 58:
+			attnum = AD_NUMB; break;
+		case 59:
+			attnum = AD_FRZE; break;
+		case 60:
+			attnum = AD_BURN; break;
+		case 61:
+			attnum = AD_DIMN; break;
+		case 62:
+			attnum = AD_FEAR; break;
+		case 63:
+			attnum = AD_DISP; break;
+		case 64:
+			attnum = AD_NPRO; break;
+		case 65:
+			attnum = AD_POIS; break;
+		case 66:
+			attnum = AD_THIR; break;
+		case 67:
+			attnum = AD_LAVA; break;
+		case 68:
+			attnum = AD_FAKE; break;
+		case 69:
+			attnum = AD_LETH; break;
+		case 70:
+			attnum = AD_AMNE; break;
+		case 71:
+			attnum = AD_CNCL; break;
+		case 72:
+			attnum = AD_BANI; break;
+		case 73:
+			attnum = AD_WISD; break;
+		case 74:
+			attnum = AD_SHRD; break;
+		case 75:
+			attnum = AD_WET; break;
+		case 76:
+			attnum = AD_SUCK; break;
+		case 77:
+			attnum = AD_MALK; break;
+		case 78:
+			attnum = AD_UVUU; break;
+		case 79:
+			attnum = AD_ABDC; break;
+		case 80:
+			attnum = AD_AXUS; break;
+		case 81:
+			attnum = AD_CHKH; break;
+		case 82:
+			attnum = AD_HODS; break;
+		case 83:
+			attnum = AD_CHRN; break;
+		case 84:
+			attnum = AD_WEEP; break;
+		case 85:
+			attnum = AD_VAMP; break;
+		case 86:
+			attnum = AD_WEBS; break;
+		case 87:
+			attnum = AD_STTP; break;
+		case 88:
+			attnum = AD_DEPR; break;
+		case 89:
+			attnum = AD_WRAT; break;
+		case 90:
+			attnum = AD_LAZY; break;
+		case 91:
+			attnum = AD_DRCH; break;
+		case 92:
+			attnum = AD_DFOO; break;
+		case 93:
+			attnum = AD_NEXU; break;
+		case 94:
+			attnum = AD_TIME; break;
+		case 95:
+			attnum = AD_PLAS; break;
+		case 96:
+			attnum = AD_MANA; break;
+		case 97:
+			attnum = AD_SOUN; break;
+		case 98:
+			attnum = AD_GRAV; break;
+		case 99:
+			attnum = AD_INER; break;
+		case 100:
+			attnum = AD_SKIL; break;
+		case 101:
+			attnum = AD_VENO; break;
+		case 102:
+			attnum = AD_DREA; break;
+		case 103:
+			attnum = AD_NAST; break;
+		case 104:
+			attnum = AD_BADE; break;
+		case 105:
+			attnum = AD_SLUD; break;
+		case 106:
+			attnum = AD_ICUR; break;
+		case 107:
+			attnum = AD_VULN; break;
+		case 108:
+			attnum = AD_FUMB; break;
+		case 109:
+			attnum = AD_ICEB; break;
+		case 110:
+			attnum = AD_VAPO; break;
+		case 111:
+			attnum = AD_EDGE; break;
+		case 112:
+			attnum = AD_VOMT; break;
+		case 113:
+			attnum = AD_LITT; break;
+		case 114:
+			attnum = AD_FREN; break;
+		case 115:
+			attnum = AD_NGEN; break;
+		case 116:
+			attnum = AD_CHAO; break;
+		case 117:
+			attnum = AD_INSA; break;
+		case 118:
+			attnum = AD_TRAP; break;
+		case 119:
+			attnum = AD_WGHT; break;
+		case 120:
+			attnum = AD_NTHR; break;
+		case 121:
+			attnum = AD_RNG; break;
+		case 122:
+			attnum = AD_MIDI; break;
+		case 123:
+			attnum = AD_CAST; break;
+		case 124:
+			attnum = AD_ALIN; break;
+		case 125:
+			attnum = AD_SIN; break;
+		case 126:
+			attnum = AD_MINA; break;
+		case 127:
+			attnum = AD_AGGR; break;
+		case 128:
+			attnum = AD_CONT; break;
+		case 129:
+			attnum = /*AD_DATA*/AD_PHYS; break;
+		case 130:
+			attnum = AD_DEST; break;
+		case 131:
+			attnum = AD_TREM; break;
+		case 132:
+			attnum = AD_RAGN; break;
+		case 133:
+			attnum = AD_IDAM; break;
+		case 134:
+			attnum = AD_ANTI; break;
+		case 135:
+			attnum = AD_PAIN; break;
+		case 136:
+			attnum = AD_TECH; break;
+		case 137:
+			attnum = AD_MEMO; break;
+		case 138:
+			attnum = AD_TRAI; break;
+		case 139:
+			attnum = AD_STAT; break;
+		case 140:
+			attnum = AD_DAMA; break;
+		case 141:
+			attnum = AD_THIE; break;
+		case 142:
+			attnum = AD_PART; break;
+		case 143:
+			attnum = AD_RUNS; break;
+		case 144:
+			attnum = AD_NACU; break;
+		case 145:
+			attnum = AD_SANI; break;
+		case 146:
+			attnum = AD_RBAD; break;
+		case 147:
+			attnum = AD_BLEE; break;
+		case 148:
+			attnum = AD_SHAN; break;
+		case 149:
+			attnum = AD_SCOR; break;
+		case 150:
+			attnum = AD_TERR; break;
+		case 151:
+			attnum = AD_FEMI; break;
+		case 152:
+			attnum = AD_LEVI; break;
+		case 153:
+			attnum = AD_ILLU; break;
+		case 154:
+			attnum = AD_MCRE; break;
+		case 155:
+			attnum = AD_FLAM; break;
+		case 156:
+			attnum = AD_DEBU; break;
+		case 157:
+			attnum = AD_UNPR; break;
+		case 158:
+			attnum = AD_NIVE; break;
+		case 159:
+			attnum = AD_TDRA; break;
+		case 160:
+			attnum = AD_BLAS; break;
+		case 161:
+			attnum = AD_DROP; break;
+		case 162:
+			attnum = AD_INVE; break;
+		case 163:
+			attnum = AD_WNCE; break;
+		case 164:
+			attnum = AD_DEBT; break;
+		case 165:
+			attnum = AD_SWAP; break;
+		case 166:
+			attnum = AD_TPTO; break;
+		case 167:
+			attnum = /*AD_ENDS*/AD_PHYS; break;
+		default:
+			if (!missingnoprotect) {
+				impossible("bug2 in reallie(%d)", newattnum); return attnum;
+			}
+			else return attnum;
+
+	}
+	return attnum;
+
 }
 
 char *

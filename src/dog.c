@@ -27,6 +27,9 @@ register struct monst *mtmp;
 	EDOG(mtmp)->apport = 10;
 	EDOG(mtmp)->whistletime = 0;
 	EDOG(mtmp)->hungrytime = 1000 + monstermoves;
+	if (PetstarveEffect || u.uprops[PETSTARVE_EFFECT].extrinsic || have_petstarvestone()) {
+		EDOG(mtmp)->hungrytime = 50 + monstermoves;
+	}
 	EDOG(mtmp)->ogoal.x = -1;	/* force error if used before set */
 	EDOG(mtmp)->ogoal.y = -1;
 	EDOG(mtmp)->abuse = 0;
@@ -1570,8 +1573,12 @@ boolean was_dead;
 	edog->killed_by_u = 0;
 	edog->abuse = 0;
 	edog->ogoal.x = edog->ogoal.y = -1;
-	if (was_dead || edog->hungrytime < monstermoves + 500L)
+	if (was_dead || edog->hungrytime < monstermoves + 500L) {
 	    edog->hungrytime = monstermoves + 500L;
+		if (PetstarveEffect || u.uprops[PETSTARVE_EFFECT].extrinsic || have_petstarvestone()) {
+			EDOG(mtmp)->hungrytime = monstermoves + 50L;
+		}
+	}
 	if (was_dead) {
 	    edog->droptime = 0L;
 	    edog->dropdist = 10000;

@@ -28567,6 +28567,7 @@ loopback:
 		if (ct > 0 && (Race_if(PM_YOKUDA) && is_elderscrollsmonster(ptr) )) ct += 3;
 		if (ct > 0 && (Race_if(PM_YUGGER) && is_aoemonster(ptr) )) ct += 10;
 
+		if (ct > 0 && (uarm && uarm->oartifact == ART_ARABELLA_S_LIGHTSWITCH && organivorous(ptr) )) ct += 25;
 		if (ct > 0 && (uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (ptr->msound == MS_STENCH))) ct += 10;
 		if (ct > 0 && (FemtrapActiveAnna && (ptr->msound == MS_STENCH))) ct += 50;
 		if (ct > 0 && (FemtrapActiveLydia && (spawnswithpumps(ptr)) )) ct += 1000;
@@ -30110,6 +30111,7 @@ int     spc;
 		if ((Race_if(PM_YOKUDA) && is_elderscrollsmonster(&mons[last]) )) num += 3;
 		if ((Race_if(PM_YUGGER) && is_aoemonster(&mons[last]) )) num += 10;
 
+		if ((uarm && uarm->oartifact == ART_ARABELLA_S_LIGHTSWITCH && organivorous(&mons[last]) )) num += 25;
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[last].msound == MS_STENCH))) num += 10;
 		if ((FemtrapActiveAnna && (mons[last].msound == MS_STENCH))) num += 50;
 		if ((FemtrapActiveLydia && (spawnswithpumps(&mons[last])) )) num += 1000;
@@ -31326,6 +31328,7 @@ int     spc;
 		if ((Race_if(PM_YOKUDA) && is_elderscrollsmonster(&mons[first]) )) num -= 3;
 		if ((Race_if(PM_YUGGER) && is_aoemonster(&mons[first]) )) num -= 10;
 
+		if ((uarm && uarm->oartifact == ART_ARABELLA_S_LIGHTSWITCH && organivorous(&mons[first]) )) num -= 25;
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[first].msound == MS_STENCH))) num -= 10;
 		if ((FemtrapActiveAnna && (mons[first].msound == MS_STENCH))) num -= 50;
 		if ((FemtrapActiveLydia && (spawnswithpumps(&mons[first])) )) num -= 1000;

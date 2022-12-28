@@ -244,6 +244,7 @@ more_experienced(exp, rexp)
 
 	u.uexp += exp;
 	u.urexp += 4*exp + rexp;
+	if (uarm && uarm->oartifact == ART_ARABELLA_S_LIGHTSWITCH) u.urexp += 4*exp + rexp;
 	if(exp || flags.showscore) flags.botl = 1;
 	if (u.urexp >= (Role_if(PM_WIZARD) ? 1000 : 2000))
 		flags.beginner = 0;
@@ -1107,6 +1108,10 @@ climdone:
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 6, all sanity effects will increase your sanity by much more than usual.");
 						else pline("Your auspices say: 6 9");
 						break;
+					case 10:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 6, your techniques won't display anything.");
+						else pline("Your auspices say: 6 10");
+						break;
 				}
 
 			} else if (u.urmaxlvlUP == 7) {
@@ -1367,6 +1372,10 @@ climdone:
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 20, your sight is reduced if you don't trigger a trap for a while.");
 						else pline("Your auspices say: 20 9");
 						break;
+					case 10:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 20, escaping past messages will do bad things.");
+						else pline("Your auspices say: 20 10");
+						break;
 				}
 
 			} else if (u.urmaxlvlUP == 21) {
@@ -1406,6 +1415,14 @@ climdone:
 					case 9:
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 22, bad effects turn into really bad effects.");
 						else pline("Your auspices say: 22 9");
+						break;
+					case 10:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 22, the pokedex will display incorrect attack types, and sometimes monsters may actually use those.");
+						else pline("Your auspices say: 22 10");
+						break;
+					case 11:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 22, many ways of detecting stuff in your surrounding area won't work anymore.");
+						else pline("Your auspices say: 22 11");
 						break;
 				}
 

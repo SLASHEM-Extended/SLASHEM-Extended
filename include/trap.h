@@ -790,6 +790,17 @@ extern struct trap *ftrap;
 #define HANNAH_TRAP 695
 #define LITTLE_MARIE_TRAP 696
 
+#define REAL_LIE_TRAP 697
+#define ESCAPE_PAST_TRAP 698
+#define PETHATE_TRAP 699
+#define PET_LASHOUT_TRAP 700
+#define PETSTARVE_TRAP 701
+#define PETSCREW_TRAP 702
+#define TECH_LOSS_TRAP 703
+#define PROOFLOSS_TRAP 704
+#define UN_INVIS_TRAP 705
+#define DETECTATION_TRAP 706
+
 /* todo area
 
 normal ones:
@@ -802,22 +813,13 @@ good traps:
 #define SKILL_POINT_GAIN_TRAP
 
 nasty traps:
-#define REAL_LIE_TRAP
-#define ESCAPE_PAST_TRAP
-#define PETHATE_TRAP
-#define PET_LASHOUT_TRAP
-#define PETSTARVE_TRAP
-#define PETSCREW_TRAP
-#define TECH_LOSS_TRAP
-#define CAPS_TRAP
-#define PROOFLOSS_TRAP
-#define UN_INVIS_TRAP
-#define DETECTATION_TRAP
+
 #define OPTION_TRAP
 #define MISCOLOR_TRAP
 #define ONE_RAINBOW_TRAP
 #define COLORSHIFT_TRAP
 #define TOP_LINE_TRAP
+#define CAPS_TRAP might be difficult to implement
 #define UN_KNOWLEDGE_TRAP
 #define DARKHANCE_TRAP
 #define DSCHUEUEUET_TRAP
@@ -906,8 +908,8 @@ special ones that don't spawn randomly:
 
 */
 
-#define TIMERUN_TRAP	697
+#define TIMERUN_TRAP	707
 
-#define TRAPNUM 698
+#define TRAPNUM 708
 
 #endif /* TRAP_H */

@@ -7070,6 +7070,150 @@ have_nastycursestone()
 	return(FALSE);
 }
 
+boolean
+have_realliestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == REAL_LIE_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator250) return TRUE;
+	if (sjwcheck(250)) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 10) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_escapepaststone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == ESCAPE_PAST_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator251) return TRUE;
+	if (sjwcheck(251)) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 10) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_pethatestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == PETHATE_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator252) return TRUE;
+	if (sjwcheck(252)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_petlashoutstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == PET_LASHOUT_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator253) return TRUE;
+	if (sjwcheck(253)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_petstarvestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == PETSTARVE_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator254) return TRUE;
+	if (sjwcheck(254)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_petscrewstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == PETSCREW_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator255) return TRUE;
+	if (sjwcheck(255)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_techlossstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == TECH_LOSS_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator256) return TRUE;
+	if (sjwcheck(256)) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 10) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_prooflossstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == PROOFLOSS_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator257) return TRUE;
+	if (sjwcheck(257)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_uninvisstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == UN_INVIS_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator258) return TRUE;
+	if (sjwcheck(258)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_detectationstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == DETECTATION_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator259) return TRUE;
+	if (sjwcheck(259)) return TRUE;
+	return(FALSE);
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 11) return TRUE;
+}
+
 
 
 struct obj *
@@ -11971,6 +12115,14 @@ boolean knoweverything;
 			pline("An exciting pair of shoes with treaded soles, and even the block heels are treaded!");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FALSE_COPES))
 			pline("It's a false version of the ornamental cope. Putting it on randomizes the names of the gods.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SUPERHARD_SANDALS))
+			pline("Such a cuuuuuuuute pair of wooden sandals with high cone heels! They deal extra kicking damage.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_TELESCOPE))
+			pline("If this pair of gloves is noncursed, wearing it grants infravision. But if it's cursed, it severely hampers your sight!");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_OSFA_CLOAK))
+			pline("A one-size-fits-all cloak: even when you're in a polymorph form that would normally be too large or small for a cloak, you can still wear it.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_TARPAULIN_CLOAK))
+			pline("This cloak is covered with an oily film that causes grabbing monsters to fail to grab you.");
 
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
@@ -12472,13 +12624,23 @@ boolean knoweverything;
 				pline("This cloak causes faster respawn. It grants good armor class and low magic cancellation."); break;
 			case EGOIST_CLOAK: 
 				pline("This cloak causes egotype monster spawns. It grants mediocre armor class and low magic cancellation."); break;
-			case CLOAK_OF_TIME: 
+			case CLOAK_OF_TIME:
 				pline("This cloak causes faster passing of time. It grants very good armor class and medium magic cancellation."); break;
 
-			case CHATBOX_CLOAK: 
+			case CHATBOX_CLOAK:
 				pline("This cloak causes messages to be replaced randomly. It grants good armor class and 5 points of magic cancellation."); break;
 			case HERETIC_CLOAK:
 				pline("This cloak causes altars to malfunction. It grants moderate armor class and medium magic cancellation."); break;
+			case PETHATE_CLOAK:
+				pline("This cloak causes monsters to always attack your pets. It grants low armor class and no magic cancellation."); break;
+			case PET_LASHOUT_CLOAK:
+				pline("This cloak causes your pets to attack each other. It grants mediocre armor class and no magic cancellation."); break;
+			case PETSTARVE_CLOAK:
+				pline("This cloak causes your pets to start on the verge of starvation and they also hunger more quickly. It grants almost no armor class and medium magic cancellation."); break;
+			case PETSCREW_CLOAK:
+				pline("This cloak causes your pets to occasionally get hit with random bad effects. It grants low armor class and 3 points of magic cancellation."); break;
+			case NON_PROOF_CLOAK:
+				pline("This cloak causes your items to lose erosionproofing over time. It grants low armor class and 3 points of magic cancellation."); break;
 			case EERIE_CLOAK:
 				pline("This cloak turns monsters into ghosts. It grants good armor class and 3 points of magic cancellation."); break;
 			case CLOAK_OF_NAKEDNESS:
@@ -12848,6 +13010,8 @@ boolean knoweverything;
 				pline("This helmet affects potions. It has good AC and low magic cancellation."); break;
 			case WHISPERING_HELMET:
 				pline("This helmet displays random rumors. It has low AC and low magic cancellation."); break;
+			case TECH_LOSS_HELMET:
+				pline("This helmet causes your technique menu to not display anything. It has low AC and no magic cancellation."); break;
 			case CYPHER_HELM:
 				pline("This helmet initiates a cipher. It has very good AC and 3 points of magic cancellation."); break;
 
@@ -13087,6 +13251,8 @@ boolean knoweverything;
 				pline("This pair of gloves can turn your positively enchanted items into negatively enchanted ones. They provide good AC and no magic cancellation."); break;
 			case FUCKUP_MELEE_GAUNTLETS:
 				pline("This pair of gloves fucks up your melee attacks, unless you prefix them. They provide very good AC and no magic cancellation."); break;
+			case UNDETECTION_GLOVES:
+				pline("This pair of gloves prevents you from using warning, ESP, detection spells and more. They provide very good AC and no magic cancellation."); break;
 
 			case ORANGE_SPELL_GLOVES:
 				pline("This pair of gloves causes orange spells. They provide good AC and medium magic cancellation."); break;
@@ -13306,6 +13472,8 @@ boolean knoweverything;
 				pline("This footwear is block-heeled and makes it unsafe to pray. They provide very good AC and 3 points of magic cancellation."); break;
 			case BLOODSUCKING_SHOES:
 				pline("This footwear causes you to take double damage. They provide good AC and 9 points of magic cancellation."); break;
+			case ETERNAL_LIAR_BOOTS:
+				pline("This footwear causes the pokedex to sometimes display wrong attack types, and monsters actually get to use those wrongly displayed attacks on occasion. They provide quite good AC and 2 points of magic cancellation."); break;
 			case COVETED_BOOTS:
 				pline("This footwear is block-heeled and improves the AI of covetous monsters. They provide medium AC and 4 points of magic cancellation."); break;
 			case LIGHTLESS_BOOTS:
@@ -14157,6 +14325,8 @@ boolean knoweverything;
 				pline("This ring causes walls to fart at you if you accidentally bump into them."); break;
 			case RIN_ENSNARING:
 				pline("This ring causes traps to become invisible."); break;
+			case RIN_VISIBLE_BECOMING:
+				pline("This ring causes your invisible items to become visible over time."); break;
 			case RIN_DIARRHEA:
 				pline("This ring causes diarrhea. It was invented by bhaak, who is also known as 'Schwebaeugler' and wants to kill Amy Bluescreenofdeath. :-)"); break;
 			case RIN_DISENGRAVING:
@@ -14877,6 +15047,8 @@ boolean knoweverything;
 				pline("This amulet causes devices to explode."); break;
 			case AMULET_OF_WRONG_SEEING:
 				pline("This amulet causes books to be read incorrectly."); break;
+			case AMULET_OF_ESCAPE_PROBLEM:
+				pline("This amulet causes bad stuff to happen if you're n00bish enough to escape past a --More-- prompt."); break;
 			case AMULET_OF_WEAK_MAGIC:
 				pline("This amulet weakens some magical effects used by you."); break;
 			case AMULET_OF_DIRECTIONAL_SWAP:
@@ -18156,6 +18328,26 @@ boolean knoweverything;
 				pline("A stone that curses itself and causes verbalized sound effects."); break;
 			case TIME_USE_STONE:
 				pline("A stone that curses itself and causes every action to take time."); break;
+			case REAL_LIE_STONE:
+				pline("A stone that curses itself and causes the pokedex to display wrong attacks that are sometimes actually used."); break;
+			case ESCAPE_PAST_STONE:
+				pline("A stone that curses itself and causes bad things to happen if you escape past a message."); break;
+			case PETHATE_STONE:
+				pline("A stone that curses itself and causes all monsters to hate yoru pets."); break;
+			case PET_LASHOUT_STONE:
+				pline("A stone that curses itself and causes your pets to infight."); break;
+			case PETSTARVE_STONE:
+				pline("A stone that curses itself and causes your pets to starve to death more often."); break;
+			case PETSCREW_STONE:
+				pline("A stone that curses itself and causes bad things to happen to your pets."); break;
+			case TECH_LOSS_STONE:
+				pline("A stone that curses itself and causes tech loss."); break;
+			case PROOFLOSS_STONE:
+				pline("A stone that curses itself and causes your items to unproof themselves over time."); break;
+			case UN_INVIS_STONE:
+				pline("A stone that curses itself and causes your items to become visible over time."); break;
+			case DETECTATION_STONE:
+				pline("A stone that curses itself and causes several forms of detection to not work."); break;
 			case NASTYCURSE_STONE:
 				pline("A stone that curses itself and causes items to be enchanted with Team Nastytrap."); break;
 			case BAD_PART_STONE:
@@ -24468,6 +24660,8 @@ boolean knoweverything;
 					pline("Artifact specs: 20%% increased speed when riding, and the steed is occasionally cured and healed back up to full health. Associated with the Jockey role."); break;
 				case ART_FAER_ME:
 					pline("Artifact specs: resist fear when worn, and if you're riding, low-level monsters near you may occasionally walk randomly so you can pound them more easily, plus you can still enter shops even when riding and they'll even give you a discount."); break;
+				case ART_GIVE_CRAP_A_BAD_NAME:
+					pline("Artifact specs: +1 damage."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

@@ -49,6 +49,7 @@ register boolean clumsy;
 	if (uarmf && uarmf->oartifact == ART_ARTHUR_S_HIGH_HEELED_PLATF) dmg += 2;
 	if (uarmf && uarmf->oartifact == ART_KATHARINA_S_LOVELINESS) dmg += 10;
 	if (uarmf && uarmf->oartifact == ART_EXCITING_SPFLOTCH) dmg += 2;
+	if (uarmf && itemhasappearance(uarmf, APP_SUPERHARD_SANDALS)) dmg += 5;
 
 	if (uarmf && uarmf->oartifact == ART_ARVOGENIA_S_BIKER_HEELS && u.usteed) dmg += 5;
 
