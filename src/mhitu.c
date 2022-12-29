@@ -1805,6 +1805,12 @@ register struct attack *mattk;
 			use_skill(P_SORESU, rnd(2));
 			if (!rn2(5)) use_skill(P_SORESU, rnd(2));
 		}
+		if (uarmg && (blocker == uarmg) && itemhasappearance(uarmg, APP_RE_GREASING_GLOVES)) {
+			if (uarmg->greased < 3) {
+				uarmg->greased++;
+				Your("gloves re-grease themselves.");
+			}
+		}
 		if (uarm && (blocker == uarm) && uarm->oartifact == ART_SORESURE) {
 			use_skill(P_SORESU, rnd(2));
 			if (!rn2(5)) use_skill(P_SORESU, rnd(2));
@@ -7794,7 +7800,7 @@ dopois:
 			if (mtmp->mhp < 1) break;
 		}
 
-		if (defends(AD_DRIN, uwep) || (StrongPsi_resist && rn2(3)) || !has_head(youmonst.data) || Role_if(PM_COURIER)  || Race_if(PM_KUTAR) || (uwep && uwep->oartifact == ART_MAGEMASHER) || (uwep && uwep->oartifact == ART_GOSSIP_HARISEN) || (rn2(8) && uarmf && itemhasappearance(uarmf, APP_MARY_JANES) ) ) {
+		if (defends(AD_DRIN, uwep) || (uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) || (StrongPsi_resist && rn2(3)) || !has_head(youmonst.data) || Role_if(PM_COURIER)  || Race_if(PM_KUTAR) || (uwep && uwep->oartifact == ART_MAGEMASHER) || (uwep && uwep->oartifact == ART_GOSSIP_HARISEN) || (rn2(8) && uarmf && itemhasappearance(uarmf, APP_MARY_JANES) ) ) {
 		    You("don't seem harmed.");
 		    /* Not clear what to do for green slimes */
 		    break;
@@ -20199,6 +20205,18 @@ stdcontracting:
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
+            if (slextest(1000, 2000)) {
+		stdmsg("rainbow vision");
+                u.uprops[ONE_RAINBOW_EFFECT].intrinsic |= FROMOUTSIDE;
+		increasesanity(rnz((monster_difficulty() * 5) + 1));
+            }
+
+            if (slextest(1000, 2000)) {
+		stdmsg("message flickering");
+                u.uprops[TOP_LINE_EFFECT].intrinsic |= FROMOUTSIDE;
+		increasesanity(rnz((monster_difficulty() * 5) + 1));
+            }
+
             if (slextest(3000, 15000)) {
 		stdmsg("mana battery disease");
                 u.uprops[MANA_BATTERY_BUG].intrinsic |= FROMOUTSIDE;
@@ -20208,6 +20226,12 @@ stdcontracting:
             if (slextest(3000, 15000)) {
 		stdmsg("poison hands disease");
                 u.uprops[MONSTERFINGERS_EFFECT].intrinsic |= FROMOUTSIDE;
+		increasesanity(rnz((monster_difficulty() * 5) + 1));
+            }
+
+            if (slextest(3000, 15000)) {
+		stdmsg("gulliver syndrome");
+                u.uprops[CAPS_BUG_EFFECT].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
@@ -20277,6 +20301,12 @@ stdcontracting:
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
+            if (slextest(4000, 20000)) {
+		stdmsg("switcheritis");
+                u.uprops[OPTION_BUG_EFFECT].intrinsic |= FROMOUTSIDE;
+		increasesanity(rnz((monster_difficulty() * 5) + 1));
+            }
+
             if (slextest(5000, 25000)) {
 		stdmsg("heliotropic disease");
                 u.uprops[ESCAPE_PAST_EFFECT].intrinsic |= FROMOUTSIDE;
@@ -20286,6 +20316,12 @@ stdcontracting:
             if (slextest(2000, 10000)) {
 		stdmsg("covid-19");
                 u.uprops[COVID_TRAP_EFFECT].intrinsic |= FROMOUTSIDE;
+		increasesanity(rnz((monster_difficulty() * 5) + 1));
+            }
+
+            if (slextest(2000, 10000)) {
+		stdmsg("cataracts");
+                u.uprops[MISCOLOR_EFFECT].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 

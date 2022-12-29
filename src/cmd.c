@@ -4309,6 +4309,66 @@ boolean guaranteed;
 		you_have(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && (OptionBugEffect || u.uprops[OPTION_BUG_EFFECT].extrinsic || have_optionstone())) {
+		sprintf(buf, "the following problem: Your options may randomly change to other values.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", OptionBugEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (MiscolorEffect || u.uprops[MISCOLOR_EFFECT].extrinsic || have_miscolorstone())) {
+		sprintf(buf, "the following problem: The dungeon is miscolored.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", MiscolorEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone())) {
+		sprintf(buf, "the following problem: One specific color becomes fleecy.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", OneRainbowEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (ColorshiftEffect || u.uprops[COLORSHIFT_EFFECT].extrinsic || have_colorshiftstone())) {
+		sprintf(buf, "the following problem: Matching colors will change back and forth.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", ColorshiftEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (TopLineEffect || u.uprops[TOP_LINE_EFFECT].extrinsic || have_toplinestone())) {
+		sprintf(buf, "the following problem: The top line displays fleecy-colored messages, which is a lot of fun.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", TopLineEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (CapsBugEffect || u.uprops[CAPS_BUG_EFFECT].extrinsic || have_capsstone())) {
+		sprintf(buf, "the following problem: Lower-case monsters appear as upper-case ones.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", CapsBugEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (UnKnowledgeEffect || u.uprops[UN_KNOWLEDGE_EFFECT].extrinsic || have_unknowledgestone())) {
+		sprintf(buf, "the following problem: Spellbooks and tools must be identified if you want to be able to use them.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", UnKnowledgeEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (DarkhanceEffect || u.uprops[DARKHANCE_EFFECT].extrinsic || have_darkhancestone())) {
+		sprintf(buf, "the following problem: The skill enhance screen is dark.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", DarkhanceEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (DschueueuetEffect || u.uprops[DSCHUEUEUET_EFFECT].extrinsic || have_dschueueuetstone())) {
+		sprintf(buf, "the following problem: Down staircases may take you several levels deeper.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", DschueueuetEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (NopeskillEffect || u.uprops[NOPESKILL_EFFECT].extrinsic || have_nopeskillstone())) {
+		sprintf(buf, "the following problem: Enhancing a skill drains it, which may result in you not being able to enhance the skill in question.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", NopeskillEffect);
+		you_have(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && (RealLieEffect || u.uprops[REAL_LIE_EFFECT].extrinsic || have_realliestone())) {
 		sprintf(buf, "the following problem: The pokedex tells lies to you that may become real.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", RealLieEffect);
@@ -8957,6 +9017,56 @@ int final;
 	if (TimerunBug || u.uprops[TIMERUN_BUG].extrinsic || have_timerunstone()) {
 		sprintf(buf, "the following problem: All actions take turns.");
 	      sprintf(eos(buf), " (%ld)", TimerunBug);
+		dump(youhad, buf);
+	}
+	if (OptionBugEffect || u.uprops[OPTION_BUG_EFFECT].extrinsic || have_optionstone()) {
+		sprintf(buf, "the following problem: Your options may randomly change to other values.");
+		sprintf(eos(buf), " (%ld)", OptionBugEffect);
+		dump(youhad, buf);
+	}
+	if (MiscolorEffect || u.uprops[MISCOLOR_EFFECT].extrinsic || have_miscolorstone()) {
+		sprintf(buf, "the following problem: The dungeon is miscolored.");
+		sprintf(eos(buf), " (%ld)", MiscolorEffect);
+		dump(youhad, buf);
+	}
+	if (OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone()) {
+		sprintf(buf, "the following problem: One specific color becomes fleecy.");
+		sprintf(eos(buf), " (%ld)", OneRainbowEffect);
+		dump(youhad, buf);
+	}
+	if (ColorshiftEffect || u.uprops[COLORSHIFT_EFFECT].extrinsic || have_colorshiftstone()) {
+		sprintf(buf, "the following problem: Matching colors will change back and forth.");
+		sprintf(eos(buf), " (%ld)", ColorshiftEffect);
+		dump(youhad, buf);
+	}
+	if (TopLineEffect || u.uprops[TOP_LINE_EFFECT].extrinsic || have_toplinestone()) {
+		sprintf(buf, "the following problem: The top line displays fleecy-colored messages, which is a lot of fun.");
+		sprintf(eos(buf), " (%ld)", TopLineEffect);
+		dump(youhad, buf);
+	}
+	if (CapsBugEffect || u.uprops[CAPS_BUG_EFFECT].extrinsic || have_capsstone()) {
+		sprintf(buf, "the following problem: Lower-case monsters appear as upper-case ones.");
+		sprintf(eos(buf), " (%ld)", CapsBugEffect);
+		dump(youhad, buf);
+	}
+	if (UnKnowledgeEffect || u.uprops[UN_KNOWLEDGE_EFFECT].extrinsic || have_unknowledgestone()) {
+		sprintf(buf, "the following problem: Spellbooks and tools must be identified if you want to be able to use them.");
+		sprintf(eos(buf), " (%ld)", UnKnowledgeEffect);
+		dump(youhad, buf);
+	}
+	if (DarkhanceEffect || u.uprops[DARKHANCE_EFFECT].extrinsic || have_darkhancestone()) {
+		sprintf(buf, "the following problem: The skill enhance screen is dark.");
+		sprintf(eos(buf), " (%ld)", DarkhanceEffect);
+		dump(youhad, buf);
+	}
+	if (DschueueuetEffect || u.uprops[DSCHUEUEUET_EFFECT].extrinsic || have_dschueueuetstone()) {
+		sprintf(buf, "the following problem: Down staircases may take you several levels deeper.");
+		sprintf(eos(buf), " (%ld)", DschueueuetEffect);
+		dump(youhad, buf);
+	}
+	if (NopeskillEffect || u.uprops[NOPESKILL_EFFECT].extrinsic || have_nopeskillstone()) {
+		sprintf(buf, "the following problem: Enhancing a skill drains it, which may result in you not being able to enhance the skill in question.");
+		sprintf(eos(buf), " (%ld)", NopeskillEffect);
 		dump(youhad, buf);
 	}
 	if (RealLieEffect || u.uprops[REAL_LIE_EFFECT].extrinsic || have_realliestone()) {
@@ -15808,6 +15918,44 @@ char sym;
 			u.dx = 1; u.dy = 0;
 		} else if (u.dx == 1 && u.dy == -1) {
 			u.dx = -1;
+		}
+
+	}
+
+	if (uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) {
+		boolean directionallowed = TRUE;
+
+		switch (u.trontrapdirection) {
+			case 1: /* east */
+				if (u.dx == -1) directionallowed = FALSE;
+				break;
+			case 2: /* southeast */
+				if ((u.dx == -1 || u.dy == -1) && u.dx != 1 && u.dy != 1) directionallowed = FALSE;
+				break;
+			case 3: /* north */
+				if (u.dy == 1) directionallowed = FALSE;
+				break;
+			case 4: /* northwest */
+				if ((u.dx == 1 || u.dy == 1) && u.dx != -1 && u.dy != -1) directionallowed = FALSE;
+				break;
+			case 5: /* west */
+				if (u.dx == 1) directionallowed = FALSE;
+				break;
+			case 6: /* southwest */
+				if ((u.dx == 1 || u.dy == -1) && u.dx != -1 && u.dy != 1) directionallowed = FALSE;
+				break;
+			case 7: /* south */
+				if (u.dy == -1) directionallowed = FALSE;
+				break;
+			case 8: /* northeast */
+				if ((u.dx == -1 || u.dy == 1) && u.dx != 1 && u.dy != -1) directionallowed = FALSE;
+				break;
+		}
+
+		if (!directionallowed) {
+			u.dx = u.dy = 0;
+			Norep("Impossible move, you're facing the wrong direction!");
+			return 0;
 		}
 
 	}

@@ -402,7 +402,7 @@ putsyms(str)
 {
     int fleececolor;
 
-    if (FALSE) {
+    if (TopLineIsFleecy) {
 	fleececolor = rn2(CLR_MAX);
 	while (fleececolor == NO_COLOR) fleececolor = rn2(CLR_MAX);
     }
@@ -410,18 +410,18 @@ putsyms(str)
     if (FunnyHallu) {
 	while(*str) {
 		fleececolor = rn2(CLR_MAX);
-		if (FALSE) term_start_color(fleececolor);
+		if (TopLineIsFleecy) term_start_color(fleececolor);
 		topl_putsym(*str++);
-		if (FALSE) term_end_color();
+		if (TopLineIsFleecy) term_end_color();
 	}
 
     } else {
-	if (FALSE) term_start_color(fleececolor);
+	if (TopLineIsFleecy) term_start_color(fleececolor);
 
     while(*str)
 	topl_putsym(*str++);
 
-	if (FALSE) term_end_color();
+	if (TopLineIsFleecy) term_end_color();
 
     }
 

@@ -3990,6 +3990,27 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ AMULET_OF_ESCAPE_PROBLEM, "amulet of todo" },
 	{ RIN_VISIBLE_BECOMING, "todo" },
 
+	{ OPTION_STONE, "todo" },
+	{ MISCOLOR_STONE, "todo" },
+	{ ONE_RAINBOW_STONE, "todo" },
+	{ COLORSHIFT_STONE, "todo" },
+	{ TOP_LINE_STONE, "todo" },
+	{ CAPS_STONE, "todo" },
+	{ UN_KNOWLEDGE_STONE, "todo" },
+	{ DARKHANCE_STONE, "todo" },
+	{ DSCHUEUEUET_STONE, "todo" },
+	{ NOPESKILL_STONE, "todo" },
+	{ DARK_HAND_GLOVES, "todo" },
+	{ GAUNTLETS_OF_RAINBOW_MOUD, "todo" },
+	{ THROUGH_THE_FLOOR_BOOTS, "todo" },
+	{ OPTIONAL_HELMET, "todo" },
+	{ TOP_HELMET, "todo" },
+	{ ABCDE_HELMET, "todo" },
+	{ COLOR_CHANGING_CONE, "todo" },
+	{ CLOAK_OF_NULLIFICATION, "todo" },
+	{ AMULET_OF_MISCOLORATION, "amulet of todo" },
+	{ AMULET_OF_LOST_KNOWLEDGE, "amulet of todo" },
+
 	{0, "" }
 };
 
@@ -7158,6 +7179,27 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ TECH_LOSS_HELMET, "todo" },
 	{ AMULET_OF_ESCAPE_PROBLEM, "amulet of todo" },
 	{ RIN_VISIBLE_BECOMING, "todo" },
+
+	{ OPTION_STONE, "todo" },
+	{ MISCOLOR_STONE, "todo" },
+	{ ONE_RAINBOW_STONE, "todo" },
+	{ COLORSHIFT_STONE, "todo" },
+	{ TOP_LINE_STONE, "todo" },
+	{ CAPS_STONE, "todo" },
+	{ UN_KNOWLEDGE_STONE, "todo" },
+	{ DARKHANCE_STONE, "todo" },
+	{ DSCHUEUEUET_STONE, "todo" },
+	{ NOPESKILL_STONE, "todo" },
+	{ DARK_HAND_GLOVES, "todo" },
+	{ GAUNTLETS_OF_RAINBOW_MOUD, "todo" },
+	{ THROUGH_THE_FLOOR_BOOTS, "todo" },
+	{ OPTIONAL_HELMET, "todo" },
+	{ TOP_HELMET, "todo" },
+	{ ABCDE_HELMET, "todo" },
+	{ COLOR_CHANGING_CONE, "todo" },
+	{ CLOAK_OF_NULLIFICATION, "todo" },
+	{ AMULET_OF_MISCOLORATION, "amulet of todo" },
+	{ AMULET_OF_LOST_KNOWLEDGE, "amulet of todo" },
 
 	{0, "" }
 };

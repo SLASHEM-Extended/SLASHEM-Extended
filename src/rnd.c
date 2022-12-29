@@ -1184,7 +1184,7 @@ randenchantment()
 
 	if (!rn2(20)) {
 
-		switch (rnd(261)) {
+		switch (rnd(271)) {
 
 			case 1: return SPELLS_LOST;
 			case 2: return CASTER_PROBLEM;
@@ -1448,6 +1448,16 @@ randenchantment()
 			case 259: return PROOFLOSS_EFFECT;
 			case 260: return UN_INVIS_EFFECT;
 			case 261: return DETECTATION_EFFECT;
+			case 262: return OPTION_BUG_EFFECT;
+			case 263: return MISCOLOR_EFFECT;
+			case 264: return ONE_RAINBOW_EFFECT;
+			case 265: return COLORSHIFT_EFFECT;
+			case 266: return TOP_LINE_EFFECT;
+			case 267: return CAPS_BUG_EFFECT;
+			case 268: return UN_KNOWLEDGE_EFFECT;
+			case 269: return DARKHANCE_EFFECT;
+			case 270: return DSCHUEUEUET_EFFECT;
+			case 271: return NOPESKILL_EFFECT;
 			default: return POISON_RES;
 
 		}
@@ -1935,7 +1945,7 @@ randenchantment()
 int
 randnastyenchantment()
 {
-	switch (rnd(261)) {
+	switch (rnd(271)) {
 
 		case 1: return SPELLS_LOST;
 		case 2: return CASTER_PROBLEM;
@@ -2198,6 +2208,16 @@ randnastyenchantment()
 			case 259: return PROOFLOSS_EFFECT;
 			case 260: return UN_INVIS_EFFECT;
 			case 261: return DETECTATION_EFFECT;
+			case 262: return OPTION_BUG_EFFECT;
+			case 263: return MISCOLOR_EFFECT;
+			case 264: return ONE_RAINBOW_EFFECT;
+			case 265: return COLORSHIFT_EFFECT;
+			case 266: return TOP_LINE_EFFECT;
+			case 267: return CAPS_BUG_EFFECT;
+			case 268: return UN_KNOWLEDGE_EFFECT;
+			case 269: return DARKHANCE_EFFECT;
+			case 270: return DSCHUEUEUET_EFFECT;
+			case 271: return NOPESKILL_EFFECT;
 	}
 
 	/* appease compiler, we should never end up here */
@@ -2368,7 +2388,7 @@ randominsidetrap()
 	else if (!rn2(50)) return ARABELLA_SPEAKER;
 	else if (!rn2(100)) return SUPERTHING_TRAP;
 	else if (!rn2(2000)) return AUTOMATIC_SWITCHER;
-	else switch (rnd(261)) {
+	else switch (rnd(271)) {
 		case 1: return RMB_LOSS_TRAP;
 		case 2: return UNINFORMATION_TRAP;
 		case 3: return BIGSCRIPT_TRAP;
@@ -2631,6 +2651,16 @@ randominsidetrap()
 		case 259: return PROOFLOSS_TRAP;
 		case 260: return UN_INVIS_TRAP;
 		case 261: return DETECTATION_TRAP;
+		case 262: return OPTION_TRAP;
+		case 263: return MISCOLOR_TRAP;
+		case 264: return ONE_RAINBOW_TRAP;
+		case 265: return COLORSHIFT_TRAP;
+		case 266: return TOP_LINE_TRAP;
+		case 267: return CAPS_TRAP;
+		case 268: return UN_KNOWLEDGE_TRAP;
+		case 269: return DARKHANCE_TRAP;
+		case 270: return DSCHUEUEUET_TRAP;
+		case 271: return NOPESKILL_TRAP;
 
 	}
 
@@ -3932,7 +3962,7 @@ struct obj *obj;
 void
 getnastytrapintrinsic()
 {
-			switch (rnd(259)) {
+			switch (rnd(269)) {
 
 				case 1: 
 				    SpeedBug |= FROMOUTSIDE; break;
@@ -4452,6 +4482,26 @@ getnastytrapintrinsic()
 				    UnInvisEffect |= FROMOUTSIDE; break;
 				case 259:
 				    DetectationEffect |= FROMOUTSIDE; break;
+				case 260:
+				    OptionBugEffect |= FROMOUTSIDE; break;
+				case 261:
+				    MiscolorEffect |= FROMOUTSIDE; break;
+				case 262:
+				    OneRainbowEffect |= FROMOUTSIDE; break;
+				case 263:
+				    ColorshiftEffect |= FROMOUTSIDE; break;
+				case 264:
+				    TopLineEffect |= FROMOUTSIDE; break;
+				case 265:
+				    CapsBugEffect |= FROMOUTSIDE; break;
+				case 266:
+				    UnKnowledgeEffect |= FROMOUTSIDE; break;
+				case 267:
+				    DarkhanceEffect |= FROMOUTSIDE; break;
+				case 268:
+				    DschueueuetEffect |= FROMOUTSIDE; break;
+				case 269:
+				    NopeskillEffect |= FROMOUTSIDE; break;
 
 
 			}
@@ -4870,7 +4920,7 @@ int duration, blackngvar;
 {
 		if (LongScrewup || u.uprops[LONG_SCREWUP].extrinsic || have_longscrewupstone()) duration *= 20;
 
-		switch (rnd(259)) {
+		switch (rnd(269)) {
 
 			case 1: RMBLoss += rnz(duration); break;
 			case 2: NoDropProblem += rnz(duration); break;
@@ -5160,6 +5210,16 @@ int duration, blackngvar;
 			case 257: ProoflossEffect += rnz(duration); break;
 			case 258: UnInvisEffect += rnz(duration); break;
 			case 259: DetectationEffect += rnz(duration); break;
+			case 260: OptionBugEffect += rnz(duration); break;
+			case 261: MiscolorEffect += rnz(duration); break;
+			case 262: OneRainbowEffect += rnz(duration); break;
+			case 263: ColorshiftEffect += rnz(duration); break;
+			case 264: TopLineEffect += rnz(duration); break;
+			case 265: CapsBugEffect += rnz(duration); break;
+			case 266: UnKnowledgeEffect += rnz(duration); break;
+			case 267: DarkhanceEffect += rnz(duration); break;
+			case 268: DschueueuetEffect += rnz(duration); break;
+			case 269: NopeskillEffect += rnz(duration); break;
 
 		}
 
@@ -5458,6 +5518,16 @@ int efftype, nastyduration, blackngvar;
 		case 257: ProoflossEffect += rnz(nastyduration); break;
 		case 258: UnInvisEffect += rnz(nastyduration); break;
 		case 259: DetectationEffect += rnz(nastyduration); break;
+		case 260: OptionBugEffect += rnz(nastyduration); break;
+		case 261: MiscolorEffect += rnz(nastyduration); break;
+		case 262: OneRainbowEffect += rnz(nastyduration); break;
+		case 263: ColorshiftEffect += rnz(nastyduration); break;
+		case 264: TopLineEffect += rnz(nastyduration); break;
+		case 265: CapsBugEffect += rnz(nastyduration); break;
+		case 266: UnKnowledgeEffect += rnz(nastyduration); break;
+		case 267: DarkhanceEffect += rnz(nastyduration); break;
+		case 268: DschueueuetEffect += rnz(nastyduration); break;
+		case 269: NopeskillEffect += rnz(nastyduration); break;
 
 		default:
 			impossible("efftype %d called in specificnastytrapeffect()", efftype);

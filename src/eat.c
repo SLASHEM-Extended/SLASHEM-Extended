@@ -6594,6 +6594,26 @@ eatspecial() /* called after eating non-food */
 				    UnInvisEffect |= FROMOUTSIDE; break;
 			case DETECTATION_STONE:
 				    DetectationEffect |= FROMOUTSIDE; break;
+			case OPTION_STONE:
+				    OptionBugEffect |= FROMOUTSIDE; break;
+			case MISCOLOR_STONE:
+				    MiscolorEffect |= FROMOUTSIDE; break;
+			case ONE_RAINBOW_STONE:
+				    OneRainbowEffect |= FROMOUTSIDE; break;
+			case COLORSHIFT_STONE:
+				    ColorshiftEffect |= FROMOUTSIDE; break;
+			case TOP_LINE_STONE:
+				    TopLineEffect |= FROMOUTSIDE; break;
+			case CAPS_STONE:
+				    CapsBugEffect |= FROMOUTSIDE; break;
+			case UN_KNOWLEDGE_STONE:
+				    UnKnowledgeEffect |= FROMOUTSIDE; break;
+			case DARKHANCE_STONE:
+				    DarkhanceEffect |= FROMOUTSIDE; break;
+			case DSCHUEUEUET_STONE:
+				    DschueueuetEffect |= FROMOUTSIDE; break;
+			case NOPESKILL_STONE:
+				    NopeskillEffect |= FROMOUTSIDE; break;
 			case TIME_USE_STONE:
 				    TimerunBug |= FROMOUTSIDE; break;
 			case NASTYCURSE_STONE:

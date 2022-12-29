@@ -1112,6 +1112,14 @@ climdone:
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 6, your techniques won't display anything.");
 						else pline("Your auspices say: 6 10");
 						break;
+					case 11:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 6, lowercase monsters display as if they were uppercase.");
+						else pline("Your auspices say: 6 11");
+						break;
+					case 12:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 6, the skill enhancing menu doesn't display anything.");
+						else pline("Your auspices say: 6 12");
+						break;
 				}
 
 			} else if (u.urmaxlvlUP == 7) {
@@ -1151,6 +1159,22 @@ climdone:
 					case 9:
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 8, increasing stats beyond a certain limit will become much harder.");
 						else pline("Your auspices say: 8 9");
+						break;
+					case 10:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 8, the top line displays fleecy-colored messages.");
+						else pline("Your auspices say: 8 10");
+						break;
+					case 11:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 8, the game becomes miscolored.");
+						else pline("Your auspices say: 8 11");
+						break;
+					case 12:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 8, one specific color becomes fleecy.");
+						else pline("Your auspices say: 8 12");
+						break;
+					case 13:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 8, matching colors start fleecing back and forth.");
+						else pline("Your auspices say: 8 13");
 						break;
 				}
 
@@ -1300,6 +1324,10 @@ climdone:
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 15, items that monsters steal from you will be degraded.");
 						else pline("Your auspices say: 15 8");
 						break;
+					case 9:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 15, you cannot use spellbooks or tools unless their base item type is identified.");
+						else pline("Your auspices say: 15 9");
+						break;
 				}
 
 			} else if (u.urmaxlvlUP == 16) {
@@ -1424,6 +1452,10 @@ climdone:
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 22, many ways of detecting stuff in your surrounding area won't work anymore.");
 						else pline("Your auspices say: 22 11");
 						break;
+					case 12:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 22, enhancing a skill drains its amount of training and if that puts it below the threshold for enhancing it, you cannot enhance it after all.");
+						else pline("Your auspices say: 22 12");
+						break;
 				}
 
 			} else if (u.urmaxlvlUP == 24) {
@@ -1463,6 +1495,10 @@ climdone:
 					case 9:
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 25, you will get a giant explorer.");
 						else pline("Your auspices say: 25 9");
+						break;
+					case 10:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 25, the in-game options will occasionally be set to different values.");
+						else pline("Your auspices say: 25 10");
 						break;
 				}
 

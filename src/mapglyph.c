@@ -24,14 +24,333 @@ int explcolors[] = {
 #endif
 
 #ifdef TEXTCOLOR
-#define zap_color(n)  color = iflags.use_color ? (everythingfleecy() ? rnd(15) : (uarmg && uarmg->oartifact == ART_JONADAB_S_KEYCODE && !rn2(5)) ? rnd(15) : ((uarmc && itemhasappearance(uarmc, APP_FLEECELING_CLOAK)) && !rn2(5) ) ? rnd(15) : (uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) ? CLR_BRIGHT_BLUE : (BlackNgWalls || (uamul && uamul->oartifact == ART_BLACK_DARKNESS) || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) ? CLR_BLACK : (FemtrapActiveMarlena && !rn2(10) ) ? (rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN) : (uamul && uamul->oartifact == ART_FLEECY_GREEN) ? CLR_GREEN : (SpellColorGreen) ? CLR_GREEN : zapcolors[n]) : NO_COLOR
-#define cmap_color(n) color = iflags.use_color ? (everythingfleecy() ? rnd(15) : (uarmg && uarmg->oartifact == ART_JONADAB_S_KEYCODE && !rn2(5)) ? rnd(15) : ((uarmc && itemhasappearance(uarmc, APP_FLEECELING_CLOAK)) && !rn2(5) ) ? rnd(15) : (uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) ? CLR_BRIGHT_BLUE : (BlackNgWalls || (uamul && uamul->oartifact == ART_BLACK_DARKNESS) || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) ? CLR_BLACK : (FemtrapActiveMarlena && !rn2(10) ) ? (rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN) : (uamul && uamul->oartifact == ART_FLEECY_GREEN) ? CLR_GREEN : (SpellColorGreen) ? CLR_GREEN : defsyms[n].color) : NO_COLOR
-#define obj_color(n)  color = iflags.use_color ? (everythingfleecy() ? rnd(15) : (uarmg && uarmg->oartifact == ART_JONADAB_S_KEYCODE && !rn2(5)) ? rnd(15) : ((uarmc && itemhasappearance(uarmc, APP_FLEECELING_CLOAK)) && !rn2(5) ) ? rnd(15) : (uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) ? CLR_BRIGHT_BLUE : (BlackNgWalls || (uamul && uamul->oartifact == ART_BLACK_DARKNESS) || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) ? CLR_BLACK : (FemtrapActiveMarlena && !rn2(10) ) ? (rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN) : (uamul && uamul->oartifact == ART_FLEECY_GREEN) ? CLR_GREEN : (SpellColorGreen) ? CLR_GREEN : (ShadesOfGrey || (uarm && uarm->oartifact == ART_GRAYSCALE_WANDERER) || (uwep && uwep->oartifact == ART____SHADES_OF_GRAYSWANDIR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART____SHADES_OF_GRAYSWANDIR) || (uarm && uarm->oartifact == ART_GREY_FUCKERY) || (uamul && uamul->oartifact == ART_COLORLESS_VARIETY) || u.uprops[SHADES_OF_GREY].extrinsic || have_shadesofgreystone() || isblait) ? ( (objects[n].oc_color == CLR_RED) ? CLR_BLACK : (objects[n].oc_color == CLR_BROWN) ? CLR_BLACK : (objects[n].oc_color == CLR_BLUE) ? CLR_BLACK : (objects[n].oc_color == CLR_GREEN) ? CLR_GRAY : (objects[n].oc_color == CLR_MAGENTA) ? CLR_GRAY : (objects[n].oc_color == CLR_CYAN) ? CLR_GRAY : (objects[n].oc_color == CLR_BRIGHT_BLUE) ? CLR_GRAY : (objects[n].oc_color == CLR_YELLOW) ? CLR_WHITE : (objects[n].oc_color == CLR_ORANGE) ? CLR_WHITE : (objects[n].oc_color == CLR_BRIGHT_GREEN) ? CLR_WHITE : (objects[n].oc_color == CLR_BRIGHT_MAGENTA) ? CLR_WHITE : (objects[n].oc_color == CLR_BRIGHT_CYAN) ? CLR_WHITE : objects[n].oc_color) : objects[n].oc_color) : NO_COLOR
-#define mon_color(n)  color = iflags.use_color ? (everythingfleecy() ? rnd(15) : (uarmg && uarmg->oartifact == ART_JONADAB_S_KEYCODE && !rn2(5)) ? rnd(15) : ((uarmc && itemhasappearance(uarmc, APP_FLEECELING_CLOAK)) && !rn2(5) ) ? rnd(15) : (uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) ? CLR_BRIGHT_BLUE : (BlackNgWalls || (uamul && uamul->oartifact == ART_BLACK_DARKNESS) || (uarmc && itemhasappearance(uarmc, APP_COLORFADE_CLOAK) ) || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) ? CLR_BLACK : (FemtrapActiveMarlena && !rn2(10) ) ? (rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN) : (uamul && uamul->oartifact == ART_FLEECY_GREEN) ? CLR_GREEN : (SpellColorGreen) ? CLR_GREEN : ( (ShadesOfGrey || (uarm && uarm->oartifact == ART_GRAYSCALE_WANDERER) || (uwep && uwep->oartifact == ART____SHADES_OF_GRAYSWANDIR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART____SHADES_OF_GRAYSWANDIR) || (uarm && uarm->oartifact == ART_GREY_FUCKERY) || (uamul && uamul->oartifact == ART_COLORLESS_VARIETY) || u.uprops[SHADES_OF_GREY].extrinsic || have_shadesofgreystone() || isblait) && Infravision) ? ( (mons[n].mcolor == CLR_RED) ? CLR_BLACK : (mons[n].mcolor == CLR_BROWN) ? CLR_BLACK : (mons[n].mcolor == CLR_BLUE) ? CLR_BLACK : (mons[n].mcolor == CLR_GREEN) ? CLR_GRAY : (mons[n].mcolor == CLR_MAGENTA) ? CLR_GRAY : (mons[n].mcolor == CLR_CYAN) ? CLR_GRAY : (mons[n].mcolor == CLR_BRIGHT_BLUE) ? CLR_GRAY : (mons[n].mcolor == CLR_YELLOW) ? CLR_WHITE : (mons[n].mcolor == CLR_ORANGE) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_GREEN) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_MAGENTA) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_CYAN) ? CLR_WHITE : mons[n].mcolor) : (mons[n].mflags4 & M4_MULTIHUED) ? rnd(15) : mons[n].mcolor) : NO_COLOR
-#define invis_color(n) color = NO_COLOR
-#define pet_color(n)  color = iflags.use_color ? (everythingfleecy() ? rnd(15) : (uarmg && uarmg->oartifact == ART_JONADAB_S_KEYCODE && !rn2(5)) ? rnd(15) : ((uarmc && itemhasappearance(uarmc, APP_FLEECELING_CLOAK)) && !rn2(5) ) ? rnd(15) : (uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) ? CLR_BRIGHT_BLUE : (BlackNgWalls || (uamul && uamul->oartifact == ART_BLACK_DARKNESS) || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) ? CLR_BLACK : (FemtrapActiveMarlena && !rn2(10) ) ? (rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN) : (uamul && uamul->oartifact == ART_FLEECY_GREEN) ? CLR_GREEN : (SpellColorGreen) ? CLR_GREEN : ( (ShadesOfGrey || (uarm && uarm->oartifact == ART_GRAYSCALE_WANDERER) || (uwep && uwep->oartifact == ART____SHADES_OF_GRAYSWANDIR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART____SHADES_OF_GRAYSWANDIR) || (uarm && uarm->oartifact == ART_GREY_FUCKERY) || (uamul && uamul->oartifact == ART_COLORLESS_VARIETY) || u.uprops[SHADES_OF_GREY].extrinsic || have_shadesofgreystone() || isblait) && Infravision) ? ( (mons[n].mcolor == CLR_RED) ? CLR_BLACK : (mons[n].mcolor == CLR_BROWN) ? CLR_BLACK : (mons[n].mcolor == CLR_BLUE) ? CLR_BLACK : (mons[n].mcolor == CLR_GREEN) ? CLR_GRAY : (mons[n].mcolor == CLR_MAGENTA) ? CLR_GRAY : (mons[n].mcolor == CLR_CYAN) ? CLR_GRAY : (mons[n].mcolor == CLR_BRIGHT_BLUE) ? CLR_GRAY : (mons[n].mcolor == CLR_YELLOW) ? CLR_WHITE : (mons[n].mcolor == CLR_ORANGE) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_GREEN) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_MAGENTA) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_CYAN) ? CLR_WHITE : mons[n].mcolor) : (mons[n].mflags4 & M4_MULTIHUED) ? rnd(15) : mons[n].mcolor) : NO_COLOR
-#define warn_color(n) color = iflags.use_color ? (everythingfleecy() ? rnd(15) : (uarmg && uarmg->oartifact == ART_JONADAB_S_KEYCODE && !rn2(5)) ? rnd(15) : ((uarmc && itemhasappearance(uarmc, APP_FLEECELING_CLOAK)) && !rn2(5) ) ? rnd(15) : (uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) ? CLR_BRIGHT_BLUE : (BlackNgWalls || (uamul && uamul->oartifact == ART_BLACK_DARKNESS) || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) ? CLR_BLACK : (FemtrapActiveMarlena && !rn2(10) ) ? (rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN) : (uamul && uamul->oartifact == ART_FLEECY_GREEN) ? CLR_GREEN : (SpellColorGreen) ? CLR_GREEN : def_warnsyms[n].color) : NO_COLOR
-#define explode_color(n) color = iflags.use_color ? (everythingfleecy() ? rnd(15) : (uarmg && uarmg->oartifact == ART_JONADAB_S_KEYCODE && !rn2(5)) ? rnd(15) : ((uarmc && itemhasappearance(uarmc, APP_FLEECELING_CLOAK)) && !rn2(5) ) ? rnd(15) : (uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) ? CLR_BRIGHT_BLUE : (BlackNgWalls || (uamul && uamul->oartifact == ART_BLACK_DARKNESS) || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) ? CLR_BLACK : (FemtrapActiveMarlena && !rn2(10) ) ? (rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN) : (uamul && uamul->oartifact == ART_FLEECY_GREEN) ? CLR_GREEN : (SpellColorGreen) ? CLR_GREEN : explcolors[n]) : NO_COLOR
+
+STATIC_DCL int zap_color(int);
+STATIC_DCL int cmap_color(int);
+STATIC_DCL int obj_color(int);
+STATIC_DCL int mon_color(int);
+STATIC_DCL int invis_color(int);
+STATIC_DCL int pet_color(int);
+STATIC_DCL int warn_color(int);
+STATIC_DCL int explode_color(int);
+
+/* Yes kerio, I know that my code quality is shit and that you won't touch this file with a 20 foot pole. --Amy */
+
+STATIC_OVL
+int
+zap_color(n)
+int n;
+{
+	int color;
+	if (!iflags.use_color) {
+		return NO_COLOR;
+	}
+
+	color = zapcolors[n];
+	if (ColorshiftEffect || u.uprops[COLORSHIFT_EFFECT].extrinsic || have_colorshiftstone()) color = colorshifting(color);
+	if (MiscolorEffect || u.uprops[MISCOLOR_EFFECT].extrinsic || have_miscolorstone()) color = miscoloring(color);
+	if (SpellColorGreen) color = CLR_GREEN;
+	if (uamul && uamul->oartifact == ART_FLEECY_GREEN) color = CLR_GREEN;
+	if (FemtrapActiveMarlena && !rn2(10) ) color = rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN;
+	if (BlackNgWalls || (uamul && uamul->oartifact == ART_BLACK_DARKNESS) || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) color = CLR_BLACK;
+	if (uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) color = CLR_BRIGHT_BLUE;
+	if (everythingfleecy()) color = rnd(15);
+	if (uarmg && uarmg->oartifact == ART_JONADAB_S_KEYCODE && !rn2(5)) color = rnd(15);
+	if (uarmc && itemhasappearance(uarmc, APP_FLEECELING_CLOAK) && !rn2(5) ) color = rnd(15);
+	if ((OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone()) && (color == u.onerainbownumber) ) color = rnd(15);
+	if (uamul && uamul->oartifact == ART_SUPER_GRAPHICS_CARD_BUG) {
+		if (color > 0 && color < 16) {
+			color++;
+			if (color > 15) color = 1;
+		}
+	}
+
+	return color;
+}
+
+STATIC_OVL
+int
+cmap_color(n)
+int n;
+{
+	int color;
+	if (!iflags.use_color) {
+		return NO_COLOR;
+	}
+
+	color = defsyms[n].color;
+	if (ColorshiftEffect || u.uprops[COLORSHIFT_EFFECT].extrinsic || have_colorshiftstone()) color = colorshifting(color);
+	if (MiscolorEffect || u.uprops[MISCOLOR_EFFECT].extrinsic || have_miscolorstone()) color = miscoloring(color);
+	if (SpellColorGreen) color = CLR_GREEN;
+	if (uamul && uamul->oartifact == ART_FLEECY_GREEN) color = CLR_GREEN;
+	if (FemtrapActiveMarlena && !rn2(10) ) color = rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN;
+	if (BlackNgWalls || (uamul && uamul->oartifact == ART_BLACK_DARKNESS) || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) color = CLR_BLACK;
+	if (uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) color = CLR_BRIGHT_BLUE;
+	if (everythingfleecy()) color = rnd(15);
+	if (uarmg && uarmg->oartifact == ART_JONADAB_S_KEYCODE && !rn2(5)) color = rnd(15);
+	if (uarmc && itemhasappearance(uarmc, APP_FLEECELING_CLOAK) && !rn2(5) ) color = rnd(15);
+	if ((OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone()) && (color == u.onerainbownumber) ) color = rnd(15);
+	if (uamul && uamul->oartifact == ART_SUPER_GRAPHICS_CARD_BUG) {
+		if (color > 0 && color < 16) {
+			color++;
+			if (color > 15) color = 1;
+		}
+	}
+
+	return color;
+
+}
+
+STATIC_OVL
+int
+obj_color(n)
+int n;
+{
+	int color;
+	if (!iflags.use_color) {
+		return NO_COLOR;
+	}
+
+	color = objects[n].oc_color;
+
+	if (ShadesOfGrey || (uarm && uarm->oartifact == ART_GRAYSCALE_WANDERER) || (uwep && uwep->oartifact == ART____SHADES_OF_GRAYSWANDIR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART____SHADES_OF_GRAYSWANDIR) || (uarm && uarm->oartifact == ART_GREY_FUCKERY) || (uamul && uamul->oartifact == ART_COLORLESS_VARIETY) || u.uprops[SHADES_OF_GREY].extrinsic || have_shadesofgreystone() || isblait) {
+		switch (objects[n].oc_color) {
+			case CLR_RED:
+			case CLR_BROWN:
+			case CLR_BLUE:
+				color = CLR_BLACK; break;
+			case CLR_GREEN:
+			case CLR_MAGENTA:
+			case CLR_CYAN:
+			case CLR_BRIGHT_BLUE:
+				color = CLR_GRAY; break;
+			case CLR_YELLOW:
+			case CLR_ORANGE:
+			case CLR_BRIGHT_GREEN:
+			case CLR_BRIGHT_MAGENTA:
+			case CLR_BRIGHT_CYAN:
+				color = CLR_WHITE; break;
+		}
+	}
+
+	if (ColorshiftEffect || u.uprops[COLORSHIFT_EFFECT].extrinsic || have_colorshiftstone()) color = colorshifting(color);
+	if (MiscolorEffect || u.uprops[MISCOLOR_EFFECT].extrinsic || have_miscolorstone()) color = miscoloring(color);
+	if (SpellColorGreen) color = CLR_GREEN;
+	if (uamul && uamul->oartifact == ART_FLEECY_GREEN) color = CLR_GREEN;
+	if (FemtrapActiveMarlena && !rn2(10) ) color = rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN;
+	if (BlackNgWalls || (uamul && uamul->oartifact == ART_BLACK_DARKNESS) || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) color = CLR_BLACK;
+	if (uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) color = CLR_BRIGHT_BLUE;
+	if (everythingfleecy()) color = rnd(15);
+	if (uarmg && uarmg->oartifact == ART_JONADAB_S_KEYCODE && !rn2(5)) color = rnd(15);
+	if (uarmc && itemhasappearance(uarmc, APP_FLEECELING_CLOAK) && !rn2(5) ) color = rnd(15);
+	if ((OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone()) && (color == u.onerainbownumber) ) color = rnd(15);
+	if (uamul && uamul->oartifact == ART_SUPER_GRAPHICS_CARD_BUG) {
+		if (color > 0 && color < 16) {
+			color++;
+			if (color > 15) color = 1;
+		}
+	}
+
+	return color;
+
+}
+
+STATIC_OVL
+int
+mon_color(n)
+int n;
+{
+	int color;
+	if (!iflags.use_color) {
+		return NO_COLOR;
+	}
+
+	boolean greyshades = FALSE;
+	if ((ShadesOfGrey || (uarm && uarm->oartifact == ART_GRAYSCALE_WANDERER) || (uwep && uwep->oartifact == ART____SHADES_OF_GRAYSWANDIR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART____SHADES_OF_GRAYSWANDIR) || (uarm && uarm->oartifact == ART_GREY_FUCKERY) || u.uprops[SHADES_OF_GREY].extrinsic || have_shadesofgreystone()) && Infravision) greyshades = TRUE;
+	if ((uamul && uamul->oartifact == ART_COLORLESS_VARIETY) || isblait) greyshades = TRUE;
+
+	color = mons[n].mcolor;
+
+	if (mons[n].mflags4 & M4_MULTIHUED) color = rnd(15);
+
+	if (greyshades) {
+		switch (mons[n].mcolor) {
+			case CLR_RED:
+			case CLR_BROWN:
+			case CLR_BLUE:
+				color = CLR_BLACK; break;
+			case CLR_GREEN:
+			case CLR_MAGENTA:
+			case CLR_CYAN:
+			case CLR_BRIGHT_BLUE:
+				color = CLR_GRAY; break;
+			case CLR_YELLOW:
+			case CLR_ORANGE:
+			case CLR_BRIGHT_GREEN:
+			case CLR_BRIGHT_MAGENTA:
+			case CLR_BRIGHT_CYAN:
+				color = CLR_WHITE; break;
+		}
+	}
+
+	if (ColorshiftEffect || u.uprops[COLORSHIFT_EFFECT].extrinsic || have_colorshiftstone()) color = colorshifting(color);
+	if (MiscolorEffect || u.uprops[MISCOLOR_EFFECT].extrinsic || have_miscolorstone()) color = miscoloring(color);
+	if (SpellColorGreen) color = CLR_GREEN;
+	if (uamul && uamul->oartifact == ART_FLEECY_GREEN) color = CLR_GREEN;
+	if (FemtrapActiveMarlena && !rn2(10) ) color = rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN;
+	if (BlackNgWalls || (uamul && uamul->oartifact == ART_BLACK_DARKNESS) || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) color = CLR_BLACK;
+	if (uarmc && itemhasappearance(uarmc, APP_COLORFADE_CLOAK) ) color = CLR_BLACK;
+	if (uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) color = CLR_BRIGHT_BLUE;
+	if (everythingfleecy()) color = rnd(15);
+	if (uarmg && uarmg->oartifact == ART_JONADAB_S_KEYCODE && !rn2(5)) color = rnd(15);
+	if (uarmc && itemhasappearance(uarmc, APP_FLEECELING_CLOAK) && !rn2(5) ) color = rnd(15);
+	if ((OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone()) && (color == u.onerainbownumber) ) color = rnd(15);
+	if (uamul && uamul->oartifact == ART_SUPER_GRAPHICS_CARD_BUG) {
+		if (color > 0 && color < 16) {
+			color++;
+			if (color > 15) color = 1;
+		}
+	}
+
+	return color;
+
+}
+
+STATIC_OVL
+int
+invis_color(n)
+int n;
+{
+	return NO_COLOR;
+}
+
+STATIC_OVL
+int
+pet_color(n)
+int n;
+{
+	int color;
+	if (!iflags.use_color) {
+		return NO_COLOR;
+	}
+
+	boolean greyshades = FALSE;
+	if ((ShadesOfGrey || (uarm && uarm->oartifact == ART_GRAYSCALE_WANDERER) || (uwep && uwep->oartifact == ART____SHADES_OF_GRAYSWANDIR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART____SHADES_OF_GRAYSWANDIR) || (uarm && uarm->oartifact == ART_GREY_FUCKERY) || u.uprops[SHADES_OF_GREY].extrinsic || have_shadesofgreystone()) && Infravision) greyshades = TRUE;
+	if ((uamul && uamul->oartifact == ART_COLORLESS_VARIETY) || isblait) greyshades = TRUE;
+
+	color = mons[n].mcolor;
+
+	if (mons[n].mflags4 & M4_MULTIHUED) color = rnd(15);
+
+	if (greyshades) {
+		switch (mons[n].mcolor) {
+			case CLR_RED:
+			case CLR_BROWN:
+			case CLR_BLUE:
+				color = CLR_BLACK; break;
+			case CLR_GREEN:
+			case CLR_MAGENTA:
+			case CLR_CYAN:
+			case CLR_BRIGHT_BLUE:
+				color = CLR_GRAY; break;
+			case CLR_YELLOW:
+			case CLR_ORANGE:
+			case CLR_BRIGHT_GREEN:
+			case CLR_BRIGHT_MAGENTA:
+			case CLR_BRIGHT_CYAN:
+				color = CLR_WHITE; break;
+		}
+	}
+
+	if (ColorshiftEffect || u.uprops[COLORSHIFT_EFFECT].extrinsic || have_colorshiftstone()) color = colorshifting(color);
+	if (MiscolorEffect || u.uprops[MISCOLOR_EFFECT].extrinsic || have_miscolorstone()) color = miscoloring(color);
+	if (SpellColorGreen) color = CLR_GREEN;
+	if (uamul && uamul->oartifact == ART_FLEECY_GREEN) color = CLR_GREEN;
+	if (FemtrapActiveMarlena && !rn2(10) ) color = rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN;
+	if (BlackNgWalls || (uamul && uamul->oartifact == ART_BLACK_DARKNESS) || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) color = CLR_BLACK;
+	if (uarmc && itemhasappearance(uarmc, APP_COLORFADE_CLOAK) ) color = CLR_BLACK;
+	if (uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) color = CLR_BRIGHT_BLUE;
+	if (everythingfleecy()) color = rnd(15);
+	if (uarmg && uarmg->oartifact == ART_JONADAB_S_KEYCODE && !rn2(5)) color = rnd(15);
+	if (uarmc && itemhasappearance(uarmc, APP_FLEECELING_CLOAK) && !rn2(5) ) color = rnd(15);
+	if ((OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone()) && (color == u.onerainbownumber) ) color = rnd(15);
+	if (uamul && uamul->oartifact == ART_SUPER_GRAPHICS_CARD_BUG) {
+		if (color > 0 && color < 16) {
+			color++;
+			if (color > 15) color = 1;
+		}
+	}
+
+	return color;
+
+}
+
+STATIC_OVL
+int
+warn_color(n)
+int n;
+{
+	int color;
+	if (!iflags.use_color) {
+		return NO_COLOR;
+	}
+
+	color = def_warnsyms[n].color;
+	if (ColorshiftEffect || u.uprops[COLORSHIFT_EFFECT].extrinsic || have_colorshiftstone()) color = colorshifting(color);
+	if (MiscolorEffect || u.uprops[MISCOLOR_EFFECT].extrinsic || have_miscolorstone()) color = miscoloring(color);
+	if (SpellColorGreen) color = CLR_GREEN;
+	if (uamul && uamul->oartifact == ART_FLEECY_GREEN) color = CLR_GREEN;
+	if (FemtrapActiveMarlena && !rn2(10) ) color = rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN;
+	if (BlackNgWalls || (uamul && uamul->oartifact == ART_BLACK_DARKNESS) || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) color = CLR_BLACK;
+	if (uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) color = CLR_BRIGHT_BLUE;
+	if (everythingfleecy()) color = rnd(15);
+	if (uarmg && uarmg->oartifact == ART_JONADAB_S_KEYCODE && !rn2(5)) color = rnd(15);
+	if (uarmc && itemhasappearance(uarmc, APP_FLEECELING_CLOAK) && !rn2(5) ) color = rnd(15);
+	if ((OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone()) && (color == u.onerainbownumber) ) color = rnd(15);
+	if (uamul && uamul->oartifact == ART_SUPER_GRAPHICS_CARD_BUG) {
+		if (color > 0 && color < 16) {
+			color++;
+			if (color > 15) color = 1;
+		}
+	}
+
+	return color;
+
+}
+
+STATIC_OVL
+int
+explode_color(n)
+int n;
+{
+	int color;
+	if (!iflags.use_color) {
+		return NO_COLOR;
+	}
+
+	color = explcolors[n];
+	if (ColorshiftEffect || u.uprops[COLORSHIFT_EFFECT].extrinsic || have_colorshiftstone()) color = colorshifting(color);
+	if (MiscolorEffect || u.uprops[MISCOLOR_EFFECT].extrinsic || have_miscolorstone()) color = miscoloring(color);
+	if (SpellColorGreen) color = CLR_GREEN;
+	if (uamul && uamul->oartifact == ART_FLEECY_GREEN) color = CLR_GREEN;
+	if (FemtrapActiveMarlena && !rn2(10) ) color = rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN;
+	if (BlackNgWalls || (uamul && uamul->oartifact == ART_BLACK_DARKNESS) || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) color = CLR_BLACK;
+	if (uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) color = CLR_BRIGHT_BLUE;
+	if (everythingfleecy()) color = rnd(15);
+	if (uarmg && uarmg->oartifact == ART_JONADAB_S_KEYCODE && !rn2(5)) color = rnd(15);
+	if (uarmc && itemhasappearance(uarmc, APP_FLEECELING_CLOAK) && !rn2(5) ) color = rnd(15);
+	if ((OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone()) && (color == u.onerainbownumber) ) color = rnd(15);
+	if (uamul && uamul->oartifact == ART_SUPER_GRAPHICS_CARD_BUG) {
+		if (color > 0 && color < 16) {
+			color++;
+			if (color > 15) color = 1;
+		}
+	}
+
+	return color;
+
+}
+
 # if defined(REINCARNATION) && defined(ASCIIGRAPH)
 #  define ROGUE_COLOR
 # endif
@@ -91,7 +410,7 @@ unsigned *ospecial;
 	    color = NO_COLOR;
 	else
 # endif
-	    warn_color(offset);
+	    color = warn_color(offset);
     } else if ((offset = (glyph - GLYPH_SWALLOW_OFF)) >= 0) {	/* swallow */
 	/* see swallow_to_glyph() in display.c */
 	ch = (uchar) showsyms[S_sw_tl + (offset & 0x7)];
@@ -100,7 +419,7 @@ unsigned *ospecial;
 	    color = NO_COLOR;
 	else
 #endif
-	    mon_color(offset >> 3);
+	    color = mon_color(offset >> 3);
     } else if ((offset = (glyph - GLYPH_ZAP_OFF)) >= 0) {	/* zap beam */
 	/* see zapdir_to_glyph() in display.c */
 	ch = showsyms[S_vbeam + (offset & 0x3)];
@@ -109,10 +428,10 @@ unsigned *ospecial;
 	    color = NO_COLOR;
 	else
 #endif
-	    zap_color((offset >> 2));
+	    color = zap_color((offset >> 2));
     } else if ((offset = (glyph - GLYPH_EXPLODE_OFF)) >= 0) {	/* explosion */
 	ch = showsyms[(offset % MAXEXPCHARS) + S_explode1];
-	explode_color(offset / MAXEXPCHARS);
+	color = explode_color(offset / MAXEXPCHARS);
     } else if ((offset = (glyph - GLYPH_CMAP_OFF)) >= 0) {	/* cmap */
 	if (On_stairs(x,y) && (ttmp = t_at(x,y)) && offset != S_grayglyph && !ThereIsNoLite && (ttmp && ttmp->tseen) && levl[x][y].seenv) special |= MG_STAIRS;
 	if (flags.graffitihilite && offset != S_grayglyph && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !ThereIsNoLite) special |= MG_ENGRAVING;
@@ -149,7 +468,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BLACK;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(Is_nymph_level(&u.uz)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_GREEN;
@@ -157,7 +476,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BRIGHT_GREEN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(In_spacebase(&u.uz)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_BLUE;
@@ -165,7 +484,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BRIGHT_BLUE;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(In_sewerplant(&u.uz)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BROWN;
@@ -173,7 +492,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_GRAY;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(In_gammacaves(&u.uz)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = rn2(2) ? CLR_CYAN : CLR_BRIGHT_CYAN;
@@ -181,7 +500,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = rn2(10) ? CLR_BRIGHT_CYAN : rn2(2) ? CLR_BRIGHT_GREEN : CLR_ORANGE;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(In_mainframe(&u.uz)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_GREEN;
@@ -189,7 +508,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BRIGHT_GREEN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(Is_forge_level(&u.uz)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_ORANGE;
@@ -197,7 +516,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_RED;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(Is_hitch_level(&u.uz)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_CYAN;
@@ -205,7 +524,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_CYAN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(Is_compu_level(&u.uz)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_YELLOW;
@@ -213,7 +532,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BROWN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(Is_key_level(&u.uz)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_MAGENTA;
@@ -221,7 +540,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_MAGENTA;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(Is_mtemple_level(&u.uz)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_ORANGE;
@@ -229,7 +548,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_ORANGE;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(Is_stronghold(&u.uz)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_RED;
@@ -237,7 +556,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_RED;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(In_sheol(&u.uz)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_CYAN;
@@ -245,7 +564,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BRIGHT_CYAN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,BEEHIVE)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_YELLOW;
@@ -253,7 +572,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_YELLOW;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,COURT)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_MAGENTA;
@@ -261,7 +580,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_MAGENTA;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,SWAMP)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_GREEN;
@@ -269,7 +588,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_GREEN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,VAULT)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_YELLOW;
@@ -277,7 +596,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_YELLOW;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,MORGUE)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BLACK;
@@ -285,7 +604,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BLACK;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,BARRACKS)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_RED;
@@ -293,7 +612,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_RED;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,ZOO)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BROWN;
@@ -301,7 +620,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BROWN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,REALZOO)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BROWN;
@@ -309,7 +628,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BROWN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,DELPHI)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_BLUE;
@@ -317,7 +636,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BRIGHT_BLUE;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,TEMPLE)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_CYAN;
@@ -325,7 +644,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_CYAN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,GIANTCOURT)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_CYAN;
@@ -333,7 +652,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_CYAN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,LEPREHALL)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_GREEN;
@@ -341,7 +660,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_GREEN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,DRAGONLAIR)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_MAGENTA;
@@ -349,7 +668,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BRIGHT_MAGENTA;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,BADFOODSHOP)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_RED;
@@ -357,7 +676,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_RED;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,COCKNEST)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_YELLOW;
@@ -365,7 +684,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_YELLOW;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,ANTHOLE)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BROWN;
@@ -373,7 +692,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BROWN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,LEMUREPIT)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BLACK;
@@ -381,7 +700,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BLACK;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,MIGOHIVE)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_GREEN;
@@ -389,7 +708,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BRIGHT_GREEN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,FUNGUSFARM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_GREEN;
@@ -397,7 +716,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BRIGHT_GREEN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,CLINIC)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_ORANGE;
@@ -405,7 +724,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_ORANGE;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,TERRORHALL)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_CYAN;
@@ -413,7 +732,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BRIGHT_CYAN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,RIVERROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_BLUE;
@@ -421,7 +740,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BRIGHT_BLUE;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,ELEMHALL)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_GRAY;
@@ -429,7 +748,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_GRAY;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,ANGELHALL)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_WHITE;
@@ -437,7 +756,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_WHITE;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,NYMPHHALL)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_GREEN;
@@ -445,7 +764,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_GREEN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,SPIDERHALL)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_GRAY;
@@ -453,7 +772,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_GRAY;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,TROLLHALL)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BROWN;
@@ -461,7 +780,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BROWN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,HUMANHALL)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_BLUE;
@@ -469,7 +788,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BRIGHT_BLUE;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,GOLEMHALL)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_GRAY;
@@ -477,7 +796,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_GRAY;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,CRYPTROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_BLUE;
@@ -485,7 +804,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BRIGHT_BLUE;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,TROUBLEZONE)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_MAGENTA;
@@ -493,7 +812,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_MAGENTA;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,WEAPONCHAMBER)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BROWN;
@@ -501,7 +820,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BROWN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,HELLPIT)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_ORANGE;
@@ -509,7 +828,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_ORANGE;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,ROBBERCAVE)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_GRAY;
@@ -517,7 +836,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_GRAY;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,SANITATIONCENTRAL)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_CYAN;
@@ -525,7 +844,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_CYAN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,FEMINISMROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_MAGENTA;
@@ -533,7 +852,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BRIGHT_MAGENTA;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,MEADOWROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_GREEN;
@@ -541,7 +860,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BRIGHT_GREEN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,COOLINGCHAMBER)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_CYAN;
@@ -549,7 +868,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BRIGHT_CYAN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,VOIDROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_MAGENTA;
@@ -557,7 +876,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_MAGENTA;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,HAMLETROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_GREEN;
@@ -565,7 +884,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_GREEN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,KOPSTATION)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_MAGENTA;
@@ -573,7 +892,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_MAGENTA;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,BOSSROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = rnd(15);
@@ -581,7 +900,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = rnd(15);
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,RNGCENTER)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = rnd(15);
@@ -589,7 +908,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = rnd(15);
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,VARIANTROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = rnd(15);
@@ -597,7 +916,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = rnd(15);
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,WIZARDSDORM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_CYAN;
@@ -605,7 +924,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_CYAN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,DOOMEDBARRACKS)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BLACK;
@@ -613,7 +932,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BLACK;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,SLEEPINGROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_GRAY;
@@ -621,7 +940,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_GRAY;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,DIVERPARADISE)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_BLUE;
@@ -629,7 +948,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BRIGHT_BLUE;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,MENAGERIE)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_YELLOW;
@@ -637,7 +956,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_YELLOW;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,EMPTYDESERT)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BROWN;
@@ -645,7 +964,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BROWN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,RARITYROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_YELLOW;
@@ -653,7 +972,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_YELLOW;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,EXHIBITROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_RED;
@@ -661,7 +980,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_RED;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,PRISONCHAMBER)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_WHITE;
@@ -669,7 +988,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_WHITE;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,NUCLEARCHAMBER)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_ORANGE;
@@ -677,7 +996,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_ORANGE;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,LEVELSEVENTYROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BLACK;
@@ -685,7 +1004,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BLACK;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,PLAYERCENTRAL)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_MAGENTA;
@@ -693,7 +1012,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_MAGENTA;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,COINHALL)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_YELLOW;
@@ -701,7 +1020,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_YELLOW;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,DOUGROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_CYAN;
@@ -709,7 +1028,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BRIGHT_CYAN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,ARMORY)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_CYAN;
@@ -717,7 +1036,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_CYAN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,TENSHALL)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = rnd(15);
@@ -725,7 +1044,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = rnd(15);
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,EVILROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = rn2(2) ? CLR_MAGENTA : CLR_BRIGHT_MAGENTA;
@@ -733,7 +1052,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = rn2(2) ? CLR_MAGENTA : CLR_BRIGHT_MAGENTA;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,RELIGIONCENTER)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BLACK;
@@ -741,7 +1060,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BLACK;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,CHAOSROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = rnd(15);
@@ -749,7 +1068,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = rnd(15);
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,CURSEDMUMMYROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_CYAN;
@@ -757,7 +1076,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_CYAN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,MIXEDPOOL)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = rn2(2) ? CLR_BRIGHT_BLUE : CLR_BRIGHT_CYAN;
@@ -765,7 +1084,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = rn2(2) ? CLR_BRIGHT_BLUE : CLR_BRIGHT_CYAN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,ARDUOUSMOUNTAIN)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_WHITE;
@@ -773,7 +1092,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_WHITE;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,CHANGINGROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_MAGENTA;
@@ -781,7 +1100,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BRIGHT_MAGENTA;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,QUESTORROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_MAGENTA;
@@ -789,7 +1108,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_MAGENTA;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,LEVELFFROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_GRAY;
@@ -797,7 +1116,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_GRAY;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,VERMINROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BROWN;
@@ -805,7 +1124,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BROWN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,MIRASPA)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_YELLOW;
@@ -813,7 +1132,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_YELLOW;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,MACHINEROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_GRAY;
@@ -821,7 +1140,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_GRAY;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,SHOWERROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_BLUE;
@@ -829,7 +1148,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BRIGHT_BLUE;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,GREENCROSSROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_GREEN;
@@ -837,7 +1156,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BRIGHT_GREEN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,CENTRALTEDIUM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_GREEN;
@@ -845,7 +1164,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_GREEN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,RUINEDCHURCH)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BLACK;
@@ -853,7 +1172,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BLACK;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,RAMPAGEROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_GRAY;
@@ -861,7 +1180,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_GRAY;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,GAMECORNER)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_BLUE;
@@ -869,7 +1188,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BRIGHT_BLUE;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,ILLUSIONROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = !rn2(3) ? CLR_WHITE : !rn2(2) ? CLR_GRAY : CLR_CYAN;
@@ -877,7 +1196,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = !rn2(3) ? CLR_WHITE : !rn2(2) ? CLR_GRAY : CLR_CYAN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,INSIDEROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = rnd(15);
@@ -885,7 +1204,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = rnd(15);
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_rooms(x,y,POOLROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_BLUE;
@@ -893,7 +1212,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = CLR_BRIGHT_BLUE;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,1) && *in_rooms(x,y,OROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 1;
@@ -901,7 +1220,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 1;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,2) && *in_rooms(x,y,OROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 2;
@@ -909,7 +1228,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 2;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,3) && *in_rooms(x,y,OROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 3;
@@ -917,7 +1236,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 3;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,4) && *in_rooms(x,y,OROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 4;
@@ -925,7 +1244,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 4;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,5) && *in_rooms(x,y,OROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 5;
@@ -933,7 +1252,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 5;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,6) && *in_rooms(x,y,OROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 6;
@@ -941,7 +1260,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 6;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,7) && *in_rooms(x,y,OROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 7;
@@ -949,7 +1268,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 7;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,8) && *in_rooms(x,y,OROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 8;
@@ -957,7 +1276,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 8;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,9) && *in_rooms(x,y,OROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 9;
@@ -965,7 +1284,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 9;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,10) && *in_rooms(x,y,OROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 10;
@@ -973,7 +1292,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 10;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,11) && *in_rooms(x,y,OROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 11;
@@ -981,7 +1300,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 11;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,12) && *in_rooms(x,y,OROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 12;
@@ -989,7 +1308,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 12;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,13) && *in_rooms(x,y,OROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 13;
@@ -997,7 +1316,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 13;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,14) && *in_rooms(x,y,OROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 14;
@@ -1005,7 +1324,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 14;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,15) && *in_rooms(x,y,OROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 15;
@@ -1013,7 +1332,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 15;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,20) && *in_rooms(x,y,OROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = rnd(15);
@@ -1021,7 +1340,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = rnd(15);
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,21) && *in_rooms(x,y,OROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = rn2(2) ? CLR_MAGENTA : CLR_BRIGHT_MAGENTA;
@@ -1029,7 +1348,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = rn2(2) ? CLR_MAGENTA : CLR_BRIGHT_MAGENTA;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,22) && *in_rooms(x,y,OROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = rn2(2) ? CLR_BRIGHT_CYAN : CLR_BRIGHT_BLUE;
@@ -1037,7 +1356,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = rn2(2) ? CLR_BRIGHT_CYAN : CLR_BRIGHT_BLUE;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,23) && *in_rooms(x,y,OROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = !rn2(3) ? CLR_WHITE : !rn2(2) ? CLR_GRAY : CLR_CYAN;
@@ -1045,7 +1364,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = !rn2(3) ? CLR_WHITE : !rn2(2) ? CLR_GRAY : CLR_CYAN;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 1) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
@@ -1054,7 +1373,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 1;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 2) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
@@ -1063,7 +1382,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 2;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 3) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
@@ -1072,7 +1391,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 3;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 4) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
@@ -1081,7 +1400,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 4;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 5) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
@@ -1090,7 +1409,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 5;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 6) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
@@ -1099,7 +1418,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 6;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 7) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
@@ -1108,7 +1427,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 7;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 8) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
@@ -1117,7 +1436,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 8;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 9) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
@@ -1126,7 +1445,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 9;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 10) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
@@ -1135,7 +1454,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 10;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 11) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
@@ -1144,7 +1463,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 11;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 12) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
@@ -1153,7 +1472,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 12;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 13) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
@@ -1162,7 +1481,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 13;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 14) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
@@ -1171,7 +1490,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 14;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 15) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
@@ -1180,7 +1499,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 15;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 16) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
@@ -1189,7 +1508,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = rnd(15);
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		}
 		else if ((100 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
@@ -1198,7 +1517,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 1;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if ((101 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 2;
@@ -1206,7 +1525,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 2;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if ((102 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 3;
@@ -1214,7 +1533,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 3;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if ((103 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 4;
@@ -1222,7 +1541,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 4;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if ((104 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 5;
@@ -1230,7 +1549,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 5;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if ((105 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 6;
@@ -1238,7 +1557,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 6;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if ((106 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 7;
@@ -1246,7 +1565,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 7;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if ((107 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 8;
@@ -1254,7 +1573,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 8;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if ((108 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 9;
@@ -1262,7 +1581,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 9;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if ((109 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 10;
@@ -1270,7 +1589,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 10;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if ((110 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 11;
@@ -1278,7 +1597,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 11;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if ((111 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 12;
@@ -1286,7 +1605,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 12;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if ((112 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 13;
@@ -1294,7 +1613,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 13;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if ((113 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 14;
@@ -1302,7 +1621,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 14;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if ((114 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 15;
@@ -1310,7 +1629,7 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = 15;
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else if ((115 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = rnd(15);
@@ -1318,10 +1637,14 @@ unsigned *ospecial;
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = rnd(15);
 			}
-			else cmap_color(offset);
+			else color = cmap_color(offset);
 		} else
 #endif
-	    if (color == NO_COLOR) cmap_color(offset);
+	    if (color == NO_COLOR) color = cmap_color(offset);
+
+		if (ColorshiftEffect || u.uprops[COLORSHIFT_EFFECT].extrinsic || have_colorshiftstone()) color = colorshifting(color);
+		if (MiscolorEffect || u.uprops[MISCOLOR_EFFECT].extrinsic || have_miscolorstone()) color = miscoloring(color);
+
 		if (uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) color = CLR_BRIGHT_BLUE;
 		else if (BlackNgWalls || (uamul && uamul->oartifact == ART_BLACK_DARKNESS) || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) color = CLR_BLACK;
 		else if (FemtrapActiveMarlena && !rn2(10) ) color = (rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN);
@@ -1361,6 +1684,7 @@ unsigned *ospecial;
 		if ((uarmc && itemhasappearance(uarmc, APP_FLEECELING_CLOAK)) && !rn2(5) ) color = rnd(15);
 		if (uarmg && uarmg->oartifact == ART_JONADAB_S_KEYCODE && !rn2(5)) color = rnd(15);
 		if (everythingfleecy()) color = rnd(15);
+		if ((OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone()) && (color == u.onerainbownumber) ) color = rnd(15);
 		if (uamul && uamul->oartifact == ART_SUPER_GRAPHICS_CARD_BUG) {
 			if (color > 0 && color < 16) {
 				color++;
@@ -1381,7 +1705,7 @@ unsigned *ospecial;
 	    }
 	} else
 #endif
-	    obj_color(offset);
+	    color = obj_color(offset);
 
 	    struct obj *ptr;
 	    int hilitecnt = 0;
@@ -1402,6 +1726,7 @@ unsigned *ospecial;
 
     } else if ((offset = (glyph - GLYPH_RIDDEN_OFF)) >= 0) {	/* mon ridden */
 	ch = monsyms[(int)mons[offset].mlet];
+	if (CapsBugEffect || u.uprops[CAPS_BUG_EFFECT].extrinsic || have_capsstone()) ch = toupper(ch);
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS)
 	    /* This currently implies that the hero is here -- monsters */
@@ -1410,7 +1735,7 @@ unsigned *ospecial;
 	    color = NO_COLOR;	/* no need to check iflags.use_color */
 	else
 #endif
-	    mon_color(offset);
+	    color = mon_color(offset);
 	    special |= MG_RIDDEN;
     } else if ((offset = (glyph - GLYPH_BODY_OFF)) >= 0) {	/* a corpse */
 	if (On_stairs(x,y) && !ThereIsNoLite && levl[x][y].seenv) special |= MG_STAIRS;
@@ -1421,7 +1746,7 @@ unsigned *ospecial;
 	    color = CLR_RED;
 	else
 #endif
-	    mon_color(offset);
+	    color = mon_color(offset);
 	    special |= MG_CORPSE;
 
 	    struct obj *ptr;
@@ -1444,12 +1769,13 @@ unsigned *ospecial;
 	if (On_stairs(x,y) && !ThereIsNoLite && levl[x][y].seenv) special |= MG_STAIRS;
 	/*if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !ThereIsNoLite) special |= MG_ENGRAVING;*/
 	ch = monsyms[(int)mons[offset].mlet];
+	if (CapsBugEffect || u.uprops[CAPS_BUG_EFFECT].extrinsic || have_capsstone()) ch = toupper(ch);
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS)
 	    color = NO_COLOR;	/* no need to check iflags.use_color */
 	else
 #endif
-	    mon_color(offset);
+	    color = mon_color(offset);
 	/* Disabled for now; anyone want to get reverse video to work? */
 	/* is_reverse = TRUE; */
 	    special |= MG_DETECT;
@@ -1462,18 +1788,19 @@ unsigned *ospecial;
 	    color = NO_COLOR;	/* no need to check iflags.use_color */
 	else
 #endif
-	    invis_color(offset);
+	    color = invis_color(offset);
 	    special |= MG_INVIS;
     } else if ((offset = (glyph - GLYPH_PET_OFF)) >= 0) {	/* a pet */
 	if (On_stairs(x,y) && !ThereIsNoLite && levl[x][y].seenv) special |= MG_STAIRS;
 	/*if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !ThereIsNoLite) special |= MG_ENGRAVING;*/
 	ch = monsyms[(int)mons[offset].mlet];
+	if (CapsBugEffect || u.uprops[CAPS_BUG_EFFECT].extrinsic || have_capsstone()) ch = toupper(ch);
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS)
 	    color = NO_COLOR;	/* no need to check iflags.use_color */
 	else
 #endif
-	    pet_color(offset);
+	    color = pet_color(offset);
 	    if (!ThereIsNoLite) special |= MG_PET;
     } else {							/* a monster */
 	if (On_stairs(x,y) && !ThereIsNoLite && levl[x][y].seenv) special |= MG_STAIRS;
@@ -1482,6 +1809,7 @@ unsigned *ospecial;
 	struct monst *mtmp;
 
 	ch = monsyms[(int)mons[glyph].mlet];
+	if (CapsBugEffect || u.uprops[CAPS_BUG_EFFECT].extrinsic || have_capsstone()) ch = toupper(ch);
 
 		mtmp = m_at(x, y);
 		if (mtmp && mtmp->isegotype && !mtmp->noegodisplay && !ThereIsNoLite && !PlayerUninformation) special |= MG_EGOTYPE;
@@ -1498,7 +1826,7 @@ unsigned *ospecial;
 	} else
 #endif
 	{
-	    mon_color(glyph);
+	    color = mon_color(glyph);
 	    if (mtmp && mtmp->shinymonst) color = rnd(15);
 	    /* special case the hero for `showrace' option */
 #ifdef TEXTCOLOR
@@ -1529,6 +1857,131 @@ unsigned *ospecial;
     *ocolor = color;
 #endif
     return;
+}
+
+/* color shift trap: every color has a matching color that it turns into, 50% of the time --Amy */
+int
+colorshifting(color)
+int color;
+{
+	if (color == NO_COLOR) return NO_COLOR;
+
+	int miscolor = color;
+	switch (color) {
+		case CLR_RED:
+			miscolor = CLR_ORANGE; break;
+		case CLR_BLUE:
+			miscolor = CLR_BRIGHT_BLUE; break;
+		case CLR_WHITE:
+			miscolor = CLR_BLACK; break;
+		case CLR_GREEN:
+			miscolor = CLR_BRIGHT_GREEN; break;
+		case CLR_BROWN:
+			miscolor = CLR_YELLOW; break;
+		case CLR_YELLOW:
+			miscolor = CLR_BROWN; break;
+		case CLR_BLACK:
+			miscolor = CLR_WHITE; break;
+		case CLR_GRAY:
+			miscolor = CLR_GRAY; break; /* none available */
+		case CLR_CYAN:
+			miscolor = CLR_BRIGHT_CYAN; break;
+		case CLR_MAGENTA:
+			miscolor = CLR_BRIGHT_MAGENTA; break;
+		case CLR_ORANGE:
+			miscolor = CLR_RED; break;
+		case CLR_BRIGHT_BLUE:
+			miscolor = CLR_BLUE; break;
+		case CLR_BRIGHT_CYAN:
+			miscolor = CLR_CYAN; break;
+		case CLR_BRIGHT_GREEN:
+			miscolor = CLR_GREEN; break;
+		case CLR_BRIGHT_MAGENTA:
+			miscolor = CLR_MAGENTA; break;
+
+	}
+	if (rn2(2)) color = miscolor;
+	return color;
+
+}
+
+int
+miscoloring(color)
+int color;
+{
+	if (color == NO_COLOR) return NO_COLOR;
+
+	int miscolor = 0;
+
+	switch (color) {
+		case CLR_RED:
+			miscolor = 1; break;
+		case CLR_BLUE:
+			miscolor = 2; break;
+		case CLR_WHITE:
+			miscolor = 3; break;
+		case CLR_GREEN:
+			miscolor = 4; break;
+		case CLR_BROWN:
+			miscolor = 5; break;
+		case CLR_YELLOW:
+			miscolor = 6; break;
+		case CLR_BLACK:
+			miscolor = 7; break;
+		case CLR_GRAY:
+			miscolor = 8; break;
+		case CLR_CYAN:
+			miscolor = 9; break;
+		case CLR_MAGENTA:
+			miscolor = 10; break;
+		case CLR_ORANGE:
+			miscolor = 11; break;
+		case CLR_BRIGHT_BLUE:
+			miscolor = 12; break;
+		case CLR_BRIGHT_CYAN:
+			miscolor = 13; break;
+		case CLR_BRIGHT_GREEN:
+			miscolor = 14; break;
+		case CLR_BRIGHT_MAGENTA:
+			miscolor = 15; break;
+	}
+	miscolor += u.miscolornumber;
+	if (miscolor > 15) miscolor -= 15;
+
+	switch (miscolor) {
+		case 1:
+			color = CLR_RED; break;
+		case 2:
+			color = CLR_BLUE; break;
+		case 3:
+			color = CLR_WHITE; break;
+		case 4:
+			color = CLR_GREEN; break;
+		case 5:
+			color = CLR_BROWN; break;
+		case 6:
+			color = CLR_YELLOW; break;
+		case 7:
+			color = CLR_BLACK; break;
+		case 8:
+			color = CLR_GRAY; break;
+		case 9:
+			color = CLR_CYAN; break;
+		case 10:
+			color = CLR_MAGENTA; break;
+		case 11:
+			color = CLR_ORANGE; break;
+		case 12:
+			color = CLR_BRIGHT_BLUE; break;
+		case 13:
+			color = CLR_BRIGHT_CYAN; break;
+		case 14:
+			color = CLR_BRIGHT_GREEN; break;
+		case 15:
+			color = CLR_BRIGHT_MAGENTA; break;
+	}
+
+	return color;
 }
 
 /*mapglyph.c*/

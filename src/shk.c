@@ -3728,6 +3728,16 @@ boolean catchup;	/* restoring a level */
 				&& ttmp->ttyp != STAIRS_TRAP
 				&& ttmp->ttyp != UNINFORMATION_TRAP
 				&& ttmp->ttyp != TIMERUN_TRAP
+				&& ttmp->ttyp != OPTION_TRAP
+				&& ttmp->ttyp != MISCOLOR_TRAP
+				&& ttmp->ttyp != ONE_RAINBOW_TRAP
+				&& ttmp->ttyp != COLORSHIFT_TRAP
+				&& ttmp->ttyp != TOP_LINE_TRAP
+				&& ttmp->ttyp != CAPS_TRAP
+				&& ttmp->ttyp != UN_KNOWLEDGE_TRAP
+				&& ttmp->ttyp != DARKHANCE_TRAP
+				&& ttmp->ttyp != DSCHUEUEUET_TRAP
+				&& ttmp->ttyp != NOPESKILL_TRAP
 				&& ttmp->ttyp != REAL_LIE_TRAP
 				&& ttmp->ttyp != ESCAPE_PAST_TRAP
 				&& ttmp->ttyp != PETHATE_TRAP

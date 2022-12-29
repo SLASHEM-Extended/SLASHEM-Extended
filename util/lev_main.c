@@ -861,6 +861,17 @@ static struct {
 	{ "un-invis", UN_INVIS_TRAP },
 	{ "detectation", DETECTATION_TRAP },
 
+	{ "option", OPTION_TRAP },
+	{ "miscolor", MISCOLOR_TRAP },
+	{ "one rainbow", ONE_RAINBOW_TRAP },
+	{ "colorshift", COLORSHIFT_TRAP },
+	{ "topline", TOP_LINE_TRAP },
+	{ "caps", CAPS_TRAP },
+	{ "un-knowledge", UN_KNOWLEDGE_TRAP },
+	{ "darkhance", DARKHANCE_TRAP },
+	{ "dschueueuet", DSCHUEUEUET_TRAP },
+	{ "nopeskill", NOPESKILL_TRAP },
+
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }
 };

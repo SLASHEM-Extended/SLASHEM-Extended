@@ -411,6 +411,7 @@ E int zapdir_to_glyph(int,int,int);
 E int glyph_at(XCHAR_P,XCHAR_P);
 E void set_wall_state(void);
 E boolean sensemon(struct monst *);
+E boolean facingtile(int, int);
 
 /* ### do.c ### */
 
@@ -1165,6 +1166,17 @@ E boolean have_soundeffectstone(void);
 E boolean have_timerunstone(void);
 E boolean have_nastycursestone(void);
 
+E boolean have_optionstone(void);
+E boolean have_miscolorstone(void);
+E boolean have_onerainbowstone(void);
+E boolean have_colorshiftstone(void);
+E boolean have_toplinestone(void);
+E boolean have_capsstone(void);
+E boolean have_unknowledgestone(void);
+E boolean have_darkhancestone(void);
+E boolean have_dschueueuetstone(void);
+E boolean have_nopeskillstone(void);
+
 E boolean have_realliestone(void);
 E boolean have_escapepaststone(void);
 E boolean have_pethatestone(void);
@@ -1631,6 +1643,8 @@ E boolean jonaspecialspawn(struct permonst *);
 /* ### mapglyph.c ### */
 
 E void mapglyph(int, int *, int *, unsigned *, int, int);
+E int miscoloring(int);
+E int colorshifting(int);
 
 /* ### mcastu.c ### */
 
@@ -2364,6 +2378,7 @@ E boolean add_menu_coloring(char *);
 E int add_autopickup_exception(const char *);
 E void free_autopickup_exceptions(void);
 #endif /* AUTOPICKUP_EXCEPTIONS */
+E void randomoptionchange(void);
 
 /* ### pager.c ### */
 

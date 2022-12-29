@@ -990,6 +990,13 @@ doread()
 	    }
 	}
 
+	if (UnKnowledgeEffect || u.uprops[UN_KNOWLEDGE_EFFECT].extrinsic || have_unknowledgestone()) {
+		if (scroll->oclass == SPBOOK_CLASS && scroll->otyp != SPE_BOOK_OF_THE_DEAD && !(objects[scroll->otyp].oc_name_known) ) {
+			pline("Unfortunately you don't know how to read that book.");
+			return(0);
+		}
+	}
+
 	/* Actions required to win the game aren't counted towards conduct */
 	if (scroll->otyp != SPE_BOOK_OF_THE_DEAD &&
 		scroll->otyp != SPE_BLANK_PAPER &&

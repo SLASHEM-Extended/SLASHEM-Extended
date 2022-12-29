@@ -2835,15 +2835,15 @@ peacedisplace:
 	u.ux += u.dx;
 	u.uy += u.dy;
 
-	if (TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone()) {
-		if (u.dx == 1 && !u.dy) u.trontrapdirection = 1;
-		else if (u.dx == 1 && u.dy == 1) u.trontrapdirection = 2;
-		else if (!u.dx && u.dy == -1) u.trontrapdirection = 3;
-		else if (u.dx == -1 && u.dy == -1) u.trontrapdirection = 4;
-		else if (u.dx == -1 && !u.dy) u.trontrapdirection = 5;
-		else if (u.dx == -1 && u.dy == 1) u.trontrapdirection = 6;
-		else if (!u.dx && u.dy == 1) u.trontrapdirection = 7;
-		else if (u.dx == 1 && u.dy == -1) u.trontrapdirection = 8;
+	if (TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone() || (uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) ) {
+		if (u.dx == 1 && !u.dy) u.trontrapdirection = 1; /* east */
+		else if (u.dx == 1 && u.dy == 1) u.trontrapdirection = 2; /* southeast */
+		else if (!u.dx && u.dy == -1) u.trontrapdirection = 3; /* north */
+		else if (u.dx == -1 && u.dy == -1) u.trontrapdirection = 4; /* northwest */
+		else if (u.dx == -1 && !u.dy) u.trontrapdirection = 5; /* west */
+		else if (u.dx == -1 && u.dy == 1) u.trontrapdirection = 6; /* southwest */
+		else if (!u.dx && u.dy == 1) u.trontrapdirection = 7; /* south */
+		else if (u.dx == 1 && u.dy == -1) u.trontrapdirection = 8; /* northeast */
 		else u.trontrapdirection = -1;
 
 		u.trontrapturn = moves;

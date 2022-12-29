@@ -1751,6 +1751,13 @@ struct obj *obj;
 		return;
 	}
 
+	if (UnKnowledgeEffect || u.uprops[UN_KNOWLEDGE_EFFECT].extrinsic || have_unknowledgestone()) {
+		if (obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && !(objects[obj->otyp].oc_name_known) ) {
+			pline("Unfortunately, you don't know how to use that tool.");
+			return;
+		}
+	}
+
 	if(Underwater) {
 		pline(FunnyHallu ? "You fumble around with that thing but it won't work." : "This is not a diving lamp.");
 		return;
@@ -5286,6 +5293,15 @@ doapply()
 	obj = getobj(class_list, "use or apply");
 	if(!obj) return 0;
 
+	/* un-knowledge nastytrap: can't apply any tool, but invocation tools have to be exempt --Amy
+	 * candles must also be exempt because those can be put on the candelabrum */
+	if (UnKnowledgeEffect || u.uprops[UN_KNOWLEDGE_EFFECT].extrinsic || have_unknowledgestone()) {
+		if (obj->oclass == TOOL_CLASS && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && !Is_candle(obj) && !(objects[obj->otyp].oc_name_known) ) {
+			pline("Unfortunately you don't know how to use that item.");
+			return(0);
+		}
+	}
+
 	if (CurseAsYouUse && obj && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != BELL_OF_OPENING) curse(obj);
 
 	if (InterruptEffect || u.uprops[INTERRUPT_EFFECT].extrinsic || have_interruptionstone()) {
@@ -6379,6 +6395,17 @@ doapply()
 	case REALLY_BAD_STONE:
 	case COVID_STONE:
 	case BLAST_STONE:
+
+	case OPTION_STONE:
+	case MISCOLOR_STONE:
+	case ONE_RAINBOW_STONE:
+	case COLORSHIFT_STONE:
+	case TOP_LINE_STONE:
+	case CAPS_STONE:
+	case UN_KNOWLEDGE_STONE:
+	case DARKHANCE_STONE:
+	case DSCHUEUEUET_STONE:
+	case NOPESKILL_STONE:
 
 	case REAL_LIE_STONE:
 	case ESCAPE_PAST_STONE:

@@ -5247,4 +5247,335 @@ char *op;
 }
 
 #endif	/* OPTION_LISTS_ONLY */
+
+/* for option nastytrap by Amy: select a random option and change its value
+ * booleans just become true if they were false and in reverse, compound options get set to some random value
+ * known problem: some options might not always be compiled into the game */
+void
+randomoptionchange()
+{
+	switch (rnd(75)) {
+		case 1:
+			flags.autodig = !flags.autodig;
+			break;
+		case 2:
+			flags.pickup = !flags.pickup;
+			break;
+		case 3:
+#ifdef AUTO_OPEN
+			iflags.autoopen = !iflags.autoopen;
+#endif
+			break;
+		case 4:
+			flags.autoquiver = !flags.autoquiver;
+			break;
+		case 5:
+			flags.bash_reminder = !flags.bash_reminder;
+			break;
+		case 6:
+			flags.ins_chkpt = !flags.ins_chkpt;
+			break;
+		case 7:
+			iflags.cmdassist = !iflags.cmdassist;
+			break;
+		case 8:
+			iflags.wc_color = !iflags.wc_color;
+			break;
+		case 9:
+			flags.confirm = !flags.confirm;
+			break;
+		case 10:
+			flags.eatingboulders = !flags.eatingboulders;
+			break;
+		case 11:
+			flags.eatingconfirm = !flags.eatingconfirm;
+			break;
+		case 12:
+			flags.eatingdoors = !flags.eatingdoors;
+			break;
+		case 13:
+			flags.eatingwalls = !flags.eatingwalls;
+			break;
+		case 14:
+			iflags.wc_eight_bit_input = !iflags.wc_eight_bit_input;
+			break;
+		case 15:
+#if defined(TTY_GRAPHICS) || defined(CURSES_GRAPIHCS)
+			iflags.extmenu = !iflags.extmenu;
+#endif
+			break;
+		case 16:
+			flags.invlet_constant = !flags.invlet_constant;
+			break;
+		case 17:
+			flags.graffitihilite = !flags.graffitihilite;
+			break;
+		case 18:
+			flags.help = !flags.help;
+			break;
+		case 19:
+			iflags.wc_hilite_pet = !iflags.wc_hilite_pet;
+			break;
+		case 20:
+			flags.hitpointbar = !flags.hitpointbar;
+			break;
+		case 21:
+			flags.inertiaconfirm = !flags.inertiaconfirm;
+			break;
+		case 22:
+#ifdef SHOW_WEIGHT
+			flags.invweight = !flags.invweight;
+#endif
+			break;
+		case 23:
+			flags.knapsacklimit = !flags.knapsacklimit;
+			break;
+		case 24:
+			flags.lit_corridor = !flags.lit_corridor;
+			break;
+		case 25:
+			iflags.lootabc = !iflags.lootabc;
+			break;
+		case 26:
+			flags.materialglyph = !flags.materialglyph;
+			break;
+		case 27:
+			iflags.memorizationknown = !iflags.memorizationknown;
+			break;
+		case 28:
+			flags.menu_on_esc = !flags.menu_on_esc;
+			break;
+		case 29:
+			iflags.use_menu_glyphs = !iflags.use_menu_glyphs;
+			break;
+		case 30:
+			flags.moreforced = !flags.moreforced;
+			break;
+		case 31:
+			iflags.numpadmessage = !iflags.numpadmessage;
+			break;
+		case 32:
+			flags.paranoidquit = !flags.paranoidquit;
+			break;
+		case 33:
+			flags.pickup_thrown = !flags.pickup_thrown;
+			break;
+		case 34:
+			flags.pickup_cursed = !flags.pickup_cursed;
+			break;
+		case 35:
+			flags.pokedex = !flags.pokedex;
+			break;
+		case 36:
+			iflags.wc_popup_dialog = !iflags.wc_popup_dialog;
+			break;
+		case 37:
+			flags.prayconfirm = !flags.prayconfirm;
+			break;
+		case 38:
+			flags.pushweapon = !flags.pushweapon;
+			break;
+		case 39:
+			iflags.quiver_fired = !iflags.quiver_fired;
+			break;
+		case 40:
+			iflags.qwertz_layout = !iflags.qwertz_layout;
+			break;
+		case 41:
+			flags.rest_on_space = !flags.rest_on_space;
+			break;
+		case 42:
+			flags.safe_dog = !flags.safe_dog;
+			break;
+		case 43:
+			iflags.should_change_color = !iflags.should_change_color;
+			break;
+		case 44:
+			flags.showexp = !flags.showexp;
+			break;
+		case 45:
+			iflags.showrace = !iflags.showrace;
+			break;
+		case 46:
+#ifdef REALTIME_ON_BOTL
+			iflags.showrealtime = !iflags.showrealtime;
+#endif
+			break;
+		case 47:
+			flags.showscore = !flags.showscore;
+			break;
+		case 48:
+			iflags.showsym = !iflags.showsym;
+			break;
+		case 49:
+#ifdef SHOW_DMG
+			flags.showdmg = !flags.showdmg;
+#endif
+			break;
+		case 50:
+#ifdef SHOW_WEIGHT
+			flags.showweight = !flags.showweight;
+#endif
+			break;
+		case 51:
+			flags.showmc = !flags.showmc;
+			break;
+		case 52:
+			flags.showmovement = !flags.showmovement;
+			break;
+		case 53:
+			flags.showlongstats = !flags.showlongstats;
+			break;
+		case 54:
+			flags.showsanity = !flags.showsanity;
+			break;
+		case 55:
+			flags.showsymbiotehp = !flags.showsymbiotehp;
+			break;
+		case 56:
+			flags.silent = !flags.silent;
+			break;
+		case 57:
+			flags.simpledescs = !flags.simpledescs;
+			break;
+		case 58:
+			flags.sortpack = !flags.sortpack;
+			break;
+		case 59:
+			flags.sparkle = !flags.sparkle;
+			break;
+		case 60:
+			flags.standout = !flags.standout;
+			break;
+		case 61:
+			flags.tech_description = !flags.tech_description;
+			break;
+		case 62:
+			flags.tombstone = !flags.tombstone;
+			break;
+		case 63:
+			flags.toptenwin = !flags.toptenwin;
+			break;
+		case 64:
+			iflags.travelcmd = !iflags.travelcmd;
+			break;
+		case 65:
+			iflags.wc_inverse = !iflags.wc_inverse;
+			break;
+		case 66:
+			flags.verbose = !flags.verbose;
+			break;
+		case 67:
+			flags.wallglyph = !flags.wallglyph;
+			break;
+		case 68:
+			switch (rnd(4)) {
+				case 1:
+					flags.menu_style = MENU_TRADITIONAL;
+					break;
+				case 2:
+					flags.menu_style = MENU_COMBINATION;
+					break;
+				case 3:
+					flags.menu_style = MENU_PARTIAL;
+					break;
+				case 4:
+					flags.menu_style = MENU_FULL;
+					break;
+			}
+			break;
+		case 69:
+			switch (rnd(3)) {
+				case 1:
+					iflags.num_pad = 0;
+					iflags.num_pad_mode = 0;
+					break;
+				case 2:
+					iflags.num_pad = 1;
+					iflags.num_pad_mode = 0;
+					break;
+				case 3:
+					iflags.num_pad = 1;
+					iflags.num_pad_mode = 1;
+					break;
+			}
+			break;
+		case 70:
+			switch (rnd(4)) {
+				case 1:
+					iflags.runmode = RUN_TPORT;
+					break;
+				case 2:
+					iflags.runmode = RUN_LEAP;
+					break;
+				case 3:
+					iflags.runmode = RUN_STEP;
+					break;
+				case 4:
+					iflags.runmode = RUN_CRAWL;
+					break;
+			}
+			break;
+		case 71:
+			iflags.msg_history = rnd(60);
+			break;
+		case 72:
+			switch (rnd(4)) {
+				case 1:
+					iflags.prevmsg_window = 's';
+					break;
+				case 2:
+					iflags.prevmsg_window = 'c';
+					break;
+				case 3:
+					iflags.prevmsg_window = 'f';
+					break;
+				case 4:
+					iflags.prevmsg_window = 'r';
+					break;
+			}
+			break;
+		case 73:
+			switch (rnd(6)) {
+				case 1:
+					flags.pickup_burden = UNENCUMBERED;
+					break;
+				case 2:
+					flags.pickup_burden = SLT_ENCUMBER;
+					break;
+				case 3:
+					flags.pickup_burden = MOD_ENCUMBER;
+					break;
+				case 4:
+					flags.pickup_burden = HVY_ENCUMBER;
+					break;
+				case 5:
+					flags.pickup_burden = EXT_ENCUMBER;
+					break;
+				case 6:
+					flags.pickup_burden = OVERLOADED;
+					break;
+			}
+			break;
+		case 74:
+			iflags.pilesize = rnd(10);
+			break;
+		case 75:
+			switch (rnd(3)) {
+				case 1:
+					iflags.sortloot = 'n';
+					break;
+				case 2:
+					iflags.sortloot = 'l';
+					break;
+				case 3:
+					iflags.sortloot = 'f';
+					break;
+			}
+			break;
+		default:
+			break;
+	}
+}
+
 /*options.c*/

@@ -1064,6 +1064,12 @@ register struct obj *obj;
 	case AMULET_OF_WRONG_SEEING:
 		You("suddenly see a fat log of shit inside the toilet!");
 		break;
+	case AMULET_OF_MISCOLORATION:
+		pline_The("toilet suddenly seems to be colored purple!");
+		break;
+	case AMULET_OF_LOST_KNOWLEDGE:
+		You("forgot what a toilet is. Can you eat it? Or pick it up and throw it at an enemy?");
+		break;
 	case AMULET_OF_ESCAPE_PROBLEM:
 		pline_The("water runs in circles, getting infinitesimally closer to the drain but not actually reaching it!");
 		break;
@@ -1755,6 +1761,47 @@ dodown()
 		goto_hell(FALSE, TRUE);
 	} else {
 		at_ladder = (boolean) (levl[u.ux][u.uy].typ == LADDER);
+
+		/* based on a feature from nethack 3.7, a nastytrap that makes downstairs skip levels sometimes --Amy */
+		if (DschueueuetEffect || u.uprops[DSCHUEUEUET_EFFECT].extrinsic || have_dschueueuetstone()) {
+			if (!rn2(3) && !(dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) && !(dunlev(&u.uz) == (dunlevs_in_dungeon(&u.uz) - 1) ) && !(u.ux == sstairs.sx && u.uy == sstairs.sy) ) {
+
+				d_level dtmp;
+				register int newlevel = dunlev(&u.uz);
+
+				boolean superdschue = !rn2(10);
+
+				/* always go down at least 2 levels, otherwise it's no different from taking a stair normally */
+				if (newlevel < dunlevs_in_dungeon(&u.uz)) {
+					newlevel++;
+				}
+
+				if (superdschue) {
+					do {
+					    newlevel++;
+					} while(rn2(4) && newlevel < dunlevs_in_dungeon(&u.uz));
+				} else {
+					do {
+					    newlevel++;
+					} while(!rn2(4) && newlevel < dunlevs_in_dungeon(&u.uz));
+				}
+
+				if (Inhell && !u.uevent.invoked && newlevel == dunlevs_in_dungeon(&u.uz)) {
+					next_level(!trap);
+					at_ladder = FALSE;
+					return(1);
+				}
+
+				dtmp.dnum = u.uz.dnum;
+				dtmp.dlevel = newlevel;
+
+				schedule_goto(&dtmp, TRUE, FALSE, 0, (char *)0, superdschue ? "Dschueueueueueueueueue!" : "Dschueueuet!");
+
+				at_ladder = FALSE;
+				return(1);
+			}
+		}
+
 		next_level(!trap);
 		at_ladder = FALSE;
 	}

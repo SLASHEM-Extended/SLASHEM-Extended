@@ -2517,16 +2517,17 @@ static NEARDATA const int rwep[] =
 	AUTO_DESTRUCT_STONE, MEMORY_LOSS_STONE, INVENTORY_LOSS_STONE, BLACKY_STONE, MENU_BUG_STONE,
 	SPEEDBUG_STONE, SUPERSCROLLER_STONE, FREE_HAND_BUG_STONE, UNIDENTIFY_STONE, STONE_OF_THIRST,
 	UNLUCKY_STONE, SHADES_OF_GREY_STONE, STONE_OF_FAINTING, STONE_OF_CURSING, STONE_OF_DIFFICULTY,
-	DEAFNESS_STONE, ANTIMAGIC_STONE, WEAKNESS_STONE, ROT_THIRTEEN_STONE, BISHOP_STONE,
+	DEAFNESS_STONE, ANTIMAGIC_STONE, WEAKNESS_STONE, ROT_THIRTEEN_STONE, BISHOP_STONE, DSCHUEUEUET_STONE,
 	CONFUSION_STONE, DROPBUG_STONE, DSTW_STONE, STATUS_STONE, ROTTEN_STONE, UNSKILLED_STONE,
 	ALIGNMENT_STONE, STAIRSTRAP_STONE, UNINFORMATION_STONE, EGOSTONE, FAST_FORWARD_STONE, NASTYCURSE_STONE,
 	FARLOOK_STONE, RESPAWN_STONE, CAPTCHA_STONE, METABOLIC_STONE, STONE_OF_NO_RETURN, TIME_USE_STONE,
  	NONSACRED_STONE, STARVATION_STONE, DROPLESS_STONE, LOW_EFFECT_STONE, INVISO_STONE,
  	GHOSTLY_STONE, DEHYDRATING_STONE, STONE_OF_HATE, DIRECTIONAL_SWAP_STONE, NONINTRINSICAL_STONE,
- 	DROPCURSE_STONE, STONE_OF_NAKED_STRIPPING, ANTILEVEL_STONE, BAD_PART_STONE,
+ 	DROPCURSE_STONE, STONE_OF_NAKED_STRIPPING, ANTILEVEL_STONE, BAD_PART_STONE, NOPESKILL_STONE,
  	STEALER_STONE, REBEL_STONE, SHIT_STONE, STONE_OF_MISFIRING, STONE_OF_PERMANENCE,
 	REAL_LIE_STONE, ESCAPE_PAST_STONE, PETHATE_STONE, PET_LASHOUT_STONE, PETSTARVE_STONE, PETSCREW_STONE,
-	TECH_LOSS_STONE, PROOFLOSS_STONE, UN_INVIS_STONE, DETECTATION_STONE,
+	TECH_LOSS_STONE, PROOFLOSS_STONE, UN_INVIS_STONE, DETECTATION_STONE, OPTION_STONE, MISCOLOR_STONE,
+	ONE_RAINBOW_STONE, COLORSHIFT_STONE, TOP_LINE_STONE, CAPS_STONE, UN_KNOWLEDGE_STONE, DARKHANCE_STONE,
 
 	ORANGE_SPELL_STONE, VIOLET_SPELL_STONE, LONGING_STONE, CURSED_PART_STONE, QUAVERSAL_STONE,
 	APPEARANCE_SHUFFLING_STONE, BROWN_SPELL_STONE, CHOICELESS_STONE, GOLDSPELL_STONE, DEPROVEMENT_STONE,
@@ -3592,6 +3593,28 @@ int skill;
 	return;
     }
 #endif
+
+	if (!wizard) {
+		if (!can_advance(skill, FALSE)) { /* darkhance trap can make it possible to select the skill... --Amy */
+			return;
+		}
+		if (P_RESTRICTED(skill)) {
+			return;
+		}
+	}
+
+	if (NopeskillEffect || u.uprops[NOPESKILL_EFFECT].extrinsic || have_nopeskillstone()) {
+		if (can_advance(skill, FALSE)) {
+
+			if (P_ADVANCE(skill) < 5) P_ADVANCE(skill) = 0;
+			else P_ADVANCE(skill) -= 5;
+
+			if (!can_advance(skill, FALSE)) {
+				pline("Nope.");
+				return;
+			}
+		}
+	}
 
 	/* lightsaber forms would devour way too many skill points for little benefit, unless the lightsaber actually is
 	 * your main weapon... jedi are meant to be very good with lightsabers anyway, and other roles shouldn't feel like
@@ -5165,7 +5188,9 @@ restrpasstwo:
 		} else 
 #endif
 		{
-			if (!restrpass && !restrdo) add_menu(win, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
+			if (DarkHanceScreen) {
+				;
+			} else if (!restrpass && !restrdo) add_menu(win, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
 			     skill_ranges[pass].name, MENU_UNSELECTED);
 			else if (!restrdo) {add_menu(win, NO_GLYPH, &any, 0, 0, iflags.menu_headings, "Restricted Skills", MENU_UNSELECTED);
 				restrdo = TRUE;
@@ -5213,7 +5238,9 @@ restrpasstwo:
 		 * The 12 is the longest skill level name.
 		 * The "    " is room for a selection letter and dash, "a - ".
 		 */
-		if (can_advance(i, speedy))
+		if (DarkHanceScreen && !want_dump) {
+		    prefix = "";
+		} else if (can_advance(i, speedy))
 		    prefix = "";	/* will be preceded by menu choice */
 		else if (could_advance(i))
 		    prefix = "  * ";
@@ -5224,6 +5251,9 @@ restrpasstwo:
 				maxxed_cnt > 0) ? "    " : "";
 		(void) skill_level_name(i, sklnambuf);
 		(void) skill_level_name_max(i, sklnambuftwo); /* show maximum to be more user friendly --Amy */
+		if (DarkHanceScreen && !want_dump) {
+			sprintf(buf, "        ");
+		} else
 #ifdef WIZARD
 		if (wizard || RngeSkillReveal) {
 		    if (!iflags.menu_tab_sep)
@@ -5246,7 +5276,7 @@ restrpasstwo:
 			sprintf(buf, " %s%s\t%s\t%s",
 			    prefix, wpskillname(i), sklnambuf, sklnambuftwo);
 		}
-		any.a_int = can_advance(i, speedy) ? i+1 : 0;
+		any.a_int = (can_advance(i, speedy) || DarkHanceScreen) ? i+1 : 0;
 		add_menu(win, NO_GLYPH, &any, 0, 0, ATR_NONE,
 			 buf, MENU_UNSELECTED);
 #ifdef DUMP_LOG
@@ -5254,7 +5284,7 @@ restrpasstwo:
 #endif
 	    }
 
-	    if (!restrpass && (wizard || want_dump || Role_if(PM_HEDDERJEDI))) {
+	    if (!restrpass && (!DarkHanceScreen || want_dump) && (wizard || want_dump || Role_if(PM_HEDDERJEDI))) {
 #ifdef DUMP_LOG
 		if (want_dump) {
 
@@ -5315,11 +5345,11 @@ restrpasstwo:
 		goto restrpasstwo;
 	    }
 
-	    strcpy(buf, (to_advance > 0) ? "Pick a skill to advance:" :
+	    strcpy(buf, (DarkHanceScreen && !want_dump) ? "unknown" : (to_advance > 0) ? "Pick a skill to advance:" :
 					   "Current skills:");
 /*#ifdef WIZARD*/
 /*	    if (wizard && !speedy)*/
-		sprintf(eos(buf), "  (%d slot%s available)",
+		if (!DarkHanceScreen || want_dump) sprintf(eos(buf), "  (%d slot%s available)",
 			u.weapon_slots, plur(u.weapon_slots));
 /*#endif*/
 #ifdef DUMP_LOG

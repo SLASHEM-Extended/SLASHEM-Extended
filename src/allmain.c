@@ -2403,6 +2403,16 @@ moveloop()
 			u.copwantedlevel += 1000;
 		}
 
+		if (OptionBugEffect && !rn2(1000)) {
+			randomoptionchange();
+		}
+		if (u.uprops[OPTION_BUG_EFFECT].extrinsic && !rn2(1000)) {
+			randomoptionchange();
+		}
+		if (have_optionstone() && !rn2(1000)) {
+			randomoptionchange();
+		}
+
 		if (ProoflossEffect && !rn2(500)) {
 			register struct obj *unproof;
 
@@ -8246,7 +8256,7 @@ newbossO:
 			u.pinkspelldirection = rnd(8);
 		}
 
-		if (TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone()) {
+		if (TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone() || (uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) ) {
 			if (u.trontrapdirection > 0 && (u.trontrapturn + 1) < moves) u.trontrapdirection = -1;
 		}
 
@@ -14099,6 +14109,14 @@ past4:
 		u.manlerx = u.manlery = -1;
 	}
 
+	if (MiscolorEffect || u.uprops[MISCOLOR_EFFECT].extrinsic || have_miscolorstone()) {
+		if (!u.miscolornumber) u.miscolornumber = rnd(15);
+	} else u.miscolornumber = 0;
+
+	if (OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone()) {
+		if (!u.onerainbownumber) u.onerainbownumber = rnd(15);
+	} else u.onerainbownumber = 0;
+
 	if (PokelieEffect || u.uprops[POKELIE_EFFECT].extrinsic || have_pokeliestone() || RealLieEffect || u.uprops[REAL_LIE_EFFECT].extrinsic || have_realliestone() ) {
 		if (!u.pokeliedamagetype) {
 			u.pokeliedamagetype = rnd(166);
@@ -16188,6 +16206,15 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dark blue cloak")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "duncle helmet")) OBJ_DESCR(objects[i]) = "todo";
 
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "laced gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "re-greasing gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "expensive shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "hardcore cloth")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bull helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "alpha helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dark color helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "very dark cloak")) OBJ_DESCR(objects[i]) = "todo";
+
 	}
 	}
 
@@ -17489,6 +17516,15 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "tarpaulin cloak")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dark blue cloak")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "duncle helmet")) OBJ_DESCR(objects[i]) = "todo";
+
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "laced gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "re-greasing gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "expensive shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "hardcore cloth")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bull helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "alpha helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dark color helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "very dark cloak")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}

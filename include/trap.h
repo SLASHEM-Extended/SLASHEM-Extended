@@ -801,6 +801,17 @@ extern struct trap *ftrap;
 #define UN_INVIS_TRAP 705
 #define DETECTATION_TRAP 706
 
+#define OPTION_TRAP 707
+#define MISCOLOR_TRAP 708
+#define ONE_RAINBOW_TRAP 709
+#define COLORSHIFT_TRAP 710
+#define TOP_LINE_TRAP 711
+#define CAPS_TRAP 712
+#define UN_KNOWLEDGE_TRAP 713
+#define DARKHANCE_TRAP 714
+#define DSCHUEUEUET_TRAP 715
+#define NOPESKILL_TRAP 716
+
 /* todo area
 
 normal ones:
@@ -814,16 +825,6 @@ good traps:
 
 nasty traps:
 
-#define OPTION_TRAP
-#define MISCOLOR_TRAP
-#define ONE_RAINBOW_TRAP
-#define COLORSHIFT_TRAP
-#define TOP_LINE_TRAP
-#define CAPS_TRAP might be difficult to implement
-#define UN_KNOWLEDGE_TRAP
-#define DARKHANCE_TRAP
-#define DSCHUEUEUET_TRAP
-#define NOPESKILL_TRAP
 #define EVIL_MIRROR_TRAP
 #define SPELL_COOLDOWN_TRAP
 #define BURDEN_TRAP
@@ -908,8 +909,8 @@ special ones that don't spawn randomly:
 
 */
 
-#define TIMERUN_TRAP	707
+#define TIMERUN_TRAP	717
 
-#define TRAPNUM 708
+#define TRAPNUM 718
 
 #endif /* TRAP_H */

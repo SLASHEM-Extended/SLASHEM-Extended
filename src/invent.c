@@ -7214,6 +7214,156 @@ have_detectationstone()
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 11) return TRUE;
 }
 
+boolean
+have_optionstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == OPTION_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator260) return TRUE;
+	if (sjwcheck(260)) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 10) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_miscolorstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == MISCOLOR_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator261) return TRUE;
+	if (sjwcheck(261)) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 11) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_onerainbowstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == ONE_RAINBOW_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator262) return TRUE;
+	if (sjwcheck(262)) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 12) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_colorshiftstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == COLORSHIFT_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator263) return TRUE;
+	if (sjwcheck(263)) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 13) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_toplinestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == TOP_LINE_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator264) return TRUE;
+	if (sjwcheck(264)) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 10) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_capsstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == CAPS_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator265) return TRUE;
+	if (sjwcheck(265)) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 11) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_unknowledgestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == UN_KNOWLEDGE_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator266) return TRUE;
+	if (sjwcheck(266)) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 9) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_darkhancestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == DARKHANCE_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator267) return TRUE;
+	if (sjwcheck(267)) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 12) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_dschueueuetstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == DSCHUEUEUET_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator268) return TRUE;
+	if (sjwcheck(268)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_nopeskillstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == NOPESKILL_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator269) return TRUE;
+	if (sjwcheck(269)) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 12) return TRUE;
+	return(FALSE);
+}
+
+
 
 
 struct obj *
@@ -12123,6 +12273,10 @@ boolean knoweverything;
 			pline("A one-size-fits-all cloak: even when you're in a polymorph form that would normally be too large or small for a cloak, you can still wear it.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_TARPAULIN_CLOAK))
 			pline("This cloak is covered with an oily film that causes grabbing monsters to fail to grab you.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_RE_GREASING_GLOVES))
+			pline("Whenever these gloves block an attack, they gain a layer of grease unless they're already maximally greased.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_HARDCORE_CLOTH))
+			pline("Grants resistance to cold, poison and sleep and makes you immune to mind flayers. That is an awful lot of good stuff for a randomized appearance, so there is a major downside: you can only use directions that are at most a 90 degree angle from the previously used direction, unless you wait for a turn. Also, stuff that is 'behind' you may not be visible.");
 
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
@@ -12602,17 +12756,19 @@ boolean knoweverything;
 			case CLOAK_OF_WINCING:
 				pline("This cloak causes you to wince, which is generally bad. It does have 3 points of magic cancellation though."); break;
 
-			case CLOAK_OF_UNSPELLING: 
+			case CLOAK_OF_UNSPELLING:
 				pline("This cloak causes spell loss. It grants good armor class and 3 points of magic cancellation."); break;
-			case ANTI_CASTER_CLOAK: 
+			case ANTI_CASTER_CLOAK:
 				pline("This cloak causes casting problems. It grants very good armor class and 3 points of magic cancellation."); break;
-			case HEAVY_STATUS_CLOAK: 
+			case HEAVY_STATUS_CLOAK:
 				pline("This cloak causes heavy status effects. It grants extremely good armor class and 4 points of magic cancellation."); break;
-			case CLOAK_OF_LUCK_NEGATION: 
+			case CLOAK_OF_LUCK_NEGATION:
 				pline("This cloak causes bad luck. It grants extremely good armor class and 3 points of magic cancellation."); break;
-			case YELLOW_SPELL_CLOAK: 
+			case CLOAK_OF_NULLIFICATION:
+				pline("This cloak causes your skills to be drained if you try to enhance them, and if that drains them enough you won't be able to actually enhance them. It grants mediocre armor class and 3 points of magic cancellation."); break;
+			case YELLOW_SPELL_CLOAK:
 				pline("This cloak causes yellow spells. It grants great armor class and 8 points of magic cancellation."); break;
-			case VULNERABILITY_CLOAK: 
+			case VULNERABILITY_CLOAK:
 				pline("This cloak causes vulnerability. It grants low armor class and 5 points of magic cancellation."); break;
 			case CLOAK_OF_INVENTORYLESSNESS: 
 				pline("This cloak causes inventory loss. It grants incredibly great armor class and 9 points of magic cancellation."); break;
@@ -13050,6 +13206,14 @@ boolean knoweverything;
 			case REALLY_BAD_HELM:
 				pline("This helmet worsens bad effects. It has good AC and 4 points of magic cancellation."); break;
 
+			case OPTIONAL_HELMET:
+				pline("A helmet that causes your options to be adjusted to different values over time. It has quite good AC and medium magic cancellation."); break;
+			case TOP_HELMET:
+				pline("A helmet that causes the top line to display fleecy-colored messages, which is a lot of fun. It has low AC and no magic cancellation."); break;
+			case ABCDE_HELMET:
+				pline("This helmet makes lowercase monsters appear as the corresponding uppercase letter, so a queen bee will look like an archon. It has mediocre AC and no magic cancellation."); break;
+			case COLOR_CHANGING_CONE:
+				pline("A helmet that causes colors to shift back and forth. It has low AC and no magic cancellation."); break;
 			case RARE_HELMET:
 				pline("While wearing this helmet, monsters that would usually be uncommon by a certain frequency will instead be common, so they spawn more often. It has moderate AC and 3 points of magic cancellation."); break;
 			case SOUND_EFFECT_HELMET:
@@ -13206,6 +13370,10 @@ boolean knoweverything;
 
 			case MENU_NOSE_GLOVES:
 				pline("This pair of gloves causes menu bugs. They provide moderately good AC and medium magic cancellation."); break;
+			case DARK_HAND_GLOVES:
+				pline("This pair of gloves causes the enhance menu to not display anything. They provide low AC and no magic cancellation."); break;
+			case GAUNTLETS_OF_RAINBOW_MOUD:
+				pline("This pair of gloves causes some color to become fleecy. They provide low AC and no magic cancellation."); break;
 			case UNWIELDY_GLOVES:
 				pline("This pair of gloves causes the free hand to be full. They provide good AC and 7 points of magic cancellation."); break;
 			case CONFUSING_GLOVES:
@@ -13459,6 +13627,8 @@ boolean knoweverything;
 
 			case AUTODESTRUCT_DE_VICE_BOOTS:
 				pline("This footwear causes auto-destruct mechanisms to be initiated. They provide good AC and medium magic cancellation."); break;
+			case THROUGH_THE_FLOOR_BOOTS:
+				pline("This footwear causes downstairs to sometimes take you down several levels at once. They provide moderate AC and no magic cancellation."); break;
 			case SPEEDBUG_BOOTS:
 				pline("This footwear causes the speed bug. They provide good AC and low magic cancellation."); break;
 			case DISCONNECTED_BOOTS:
@@ -15045,6 +15215,10 @@ boolean knoweverything;
 				pline("While wearing this amulet, peaceful monsters have a green background so you can instantly see that they're not hostile."); break;
 			case AMULET_OF_EXPLOSION:
 				pline("This amulet causes devices to explode."); break;
+			case AMULET_OF_MISCOLORATION:
+				pline("This amulet causes the dungeon to become miscolored."); break;
+			case AMULET_OF_LOST_KNOWLEDGE:
+				pline("This amulet makes it so that you no longer know how to use unidentified spellbooks or tools, so you have to identify their base type first."); break;
 			case AMULET_OF_WRONG_SEEING:
 				pline("This amulet causes books to be read incorrectly."); break;
 			case AMULET_OF_ESCAPE_PROBLEM:
@@ -18326,6 +18500,26 @@ boolean knoweverything;
 				pline("A stone that curses itself and causes rapid spell memory loss."); break;
 			case SOUND_EFFECT_STONE:
 				pline("A stone that curses itself and causes verbalized sound effects."); break;
+			case OPTION_STONE:
+				pline("A stone that curses itself and causes your options to change over time."); break;
+			case MISCOLOR_STONE:
+				pline("A stone that curses itself and causes the game to be miscolored."); break;
+			case ONE_RAINBOW_STONE:
+				pline("A stone that curses itself and causes one color to become a rainbow."); break;
+			case COLORSHIFT_STONE:
+				pline("A stone that curses itself and causes colors to shift back and forth."); break;
+			case TOP_LINE_STONE:
+				pline("A stone that curses itself and causes the top line to become colorful."); break;
+			case CAPS_STONE:
+				pline("A stone that curses itself and causes lowercase monsters to appear as uppercase."); break;
+			case UN_KNOWLEDGE_STONE:
+				pline("A stone that curses itself and causes spellbooks and tools to not work when unidentified."); break;
+			case DARKHANCE_STONE:
+				pline("A stone that curses itself and causes the enhance menu to become dark."); break;
+			case DSCHUEUEUET_STONE:
+				pline("A stone that curses itself and causes you to fall through the floor."); break;
+			case NOPESKILL_STONE:
+				pline("A stone that curses itself and causes your skills to be drained when you try to enhance them."); break;
 			case TIME_USE_STONE:
 				pline("A stone that curses itself and causes every action to take time."); break;
 			case REAL_LIE_STONE:
@@ -24662,6 +24856,24 @@ boolean knoweverything;
 					pline("Artifact specs: resist fear when worn, and if you're riding, low-level monsters near you may occasionally walk randomly so you can pound them more easily, plus you can still enter shops even when riding and they'll even give you a discount."); break;
 				case ART_GIVE_CRAP_A_BAD_NAME:
 					pline("Artifact specs: +1 damage."); break;
+				case ART_CLAUDIA_S_BEAUTY:
+					pline("Artifact specs: allows you to use several abilities via the #monster extended command."); break;
+				case ART_MAX_THE_SECRET_AGENT:
+					pline("Artifact specs: allows you to see far into the distance."); break;
+				case ART_KATI_S_ANTAGONISM:
+					pline("Artifact specs: is just bad. You were thinking this was a useful telescope, eh?"); break;
+				case ART_NOW_YOUR_ABLE_TO_POLY:
+					pline("Artifact specs: polymorphitis when worn."); break;
+				case ART_PINEAPPLE_TYCOON_S_FINISH:
+					pline("Artifact specs: grants resistance to death rays when worn and if you use the appraisal technique on a weapon, there's a good chance that the tech doesn't get a timeout so you can use it again immediately."); break;
+				case ART_PROTECTED_MODE_RUN_TIME:
+					pline("Artifact specs: timerun effect, free action and discount action when worn."); break;
+				case ART_HELIOKOPIS_S_PLAYSTYLE:
+					pline("Artifact specs: +8 to-hit and +8 damage, 20%% better spellcasting chances and escaping past messages does bad things, so keep away from the ESC key! :-P"); break;
+				case ART_PROPERTY_GRUMBLE:
+					pline("Artifact specs: reflection and 10 extra points of AC when worn, increases your damage output by 8 but reduces your to-hit by 5, and gives the permacurse effect."); break;
+				case ART_ARABELLA_S_LIGHTSWITCH:
+					pline("Artifact specs: hmm. It's a lightswitch, so you'd guess it can turn on the light if you invoke it? Maybe you should give it a try!"); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

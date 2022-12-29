@@ -87,6 +87,9 @@
 
 #define InventoryDoesNotGo	(InventoryLoss || u.uprops[INVENTORY_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_DEEP_INSANITY) || (uarmh && uarmh->oartifact == ART_FLAT_INSANITY) || have_inventorylossstone())
 
+#define TopLineIsFleecy		(TopLineEffect || u.uprops[TOP_LINE_EFFECT].extrinsic || have_toplinestone())
+#define DarkHanceScreen		(DarkhanceEffect || u.uprops[DARKHANCE_EFFECT].extrinsic || have_darkhancestone())
+
 #define AutomaticMorePrompt	(AutomoreBug || u.uprops[AUTOMORE_BUG].extrinsic || have_automorestone() || (uamul && uamul->oartifact == ART_HELIOKOPIS_S_KEYBOARD_CURS) )
 
 #define DisplayDoesNotGo	(DisplayLoss || u.uprops[DISPLAY_LOST].extrinsic || have_displaystone() || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT && !(moves % 10 == 0)) )
@@ -194,7 +197,7 @@
 #define HSleep_resistance	u.uprops[SLEEP_RES].intrinsic
 #define ESleep_resistance	u.uprops[SLEEP_RES].extrinsic
 #define IntSleep_resistance	(HSleep_resistance || FemtrapActiveNatalje || resists_sleep(&youmonst) || is_sleep_resistant(youmonst.data) || (powerfulsymbiosis() && is_sleep_resistant(&mons[u.usymbiote.mnum])) )
-#define ExtSleep_resistance	(ESleep_resistance || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == SLEEP_RES) ) || (uleft && uleft->oartifact == ART_FIRE_NIGHT) || (uright && uright->oartifact == ART_FIRE_NIGHT) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || (uwep && uwep->oartifact == ART_SLEEPLESS_NIGHTS) || (uarmh && uarmh->oartifact == ART_JESTES_TAKA_KURWA) || (uwep && uwep->oartifact == ART_DURIN_S_BANE) || (uarmf && uarmf->oartifact == ART_TOTALLY_THE_SEXY_BITCH) || (uarm && uarm->oartifact == ART_JOHN_CENA_SPLIT_MAIL) || (uarmf && uarmf->oartifact == ART_UNFELLABLE_TREE && u.burrowed) || (uarmf && uarmf->oartifact == ART_NASTIST) || (uarmf && uarmf->oartifact == ART_CLICHE_WEAR) || (uarmf && uarmf->oartifact == ART_BEND_FROM_THE_NOISE) || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK) || (uarmf && uarmf->oartifact == ART_SPFLOTCH__HAHAHAHAHA_) || (uarmf && uarmf->oartifact == ART_SUCH_A_SIGHER) || (uwep && uwep->oartifact == ART_CALCAR) || (uwep && uwep->oartifact == ART_MERCILESS_MARE) || (uarmf && uarmf->oartifact == ART_THICK_FARTING_GIRL) || (uleft && uleft->oartifact == ART_RING_OF_EVERYTHING_RESISTA) || (uright && uright->oartifact == ART_RING_OF_EVERYTHING_RESISTA) || (uarmf && uarmf->oartifact == ART_THOSEFROMTHERE) || (uarmf && uarmf->oartifact == ART_RUTH_S_UNDEAD_INLAY) || (uarm && uarm->oartifact == ART_CHANGERING_ENVIROMENT) || (uarmf && uarmf->oartifact == ART_BLUEDE) || (uarmh && uarmh->oartifact == ART_UNIMPORTANT_ELEMENTS) || (uarmu && uarmu->oartifact == ART_PRISMATIC_SHIRT) || (uimplant && uimplant->oartifact == ART_CORONATION_CULMINATION) || (uarmf && uarmf->oartifact == ART_JESSICA_S_TENDERNESS) || (uarmh && uarmh->oartifact == ART_HAVE_ALL_YOU_NEED) || (uamul && uamul->oartifact == ART_SNOREFEST && (moves % 10 != 0) ) )
+#define ExtSleep_resistance	(ESleep_resistance || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == SLEEP_RES) ) || (uleft && uleft->oartifact == ART_FIRE_NIGHT) || (uright && uright->oartifact == ART_FIRE_NIGHT) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || (uwep && uwep->oartifact == ART_SLEEPLESS_NIGHTS) || (uarmh && uarmh->oartifact == ART_JESTES_TAKA_KURWA) || (uwep && uwep->oartifact == ART_DURIN_S_BANE) || (uarmf && uarmf->oartifact == ART_TOTALLY_THE_SEXY_BITCH) || (uarm && uarm->oartifact == ART_JOHN_CENA_SPLIT_MAIL) || (uarmf && uarmf->oartifact == ART_UNFELLABLE_TREE && u.burrowed) || (uarmf && uarmf->oartifact == ART_NASTIST) || (uarmf && uarmf->oartifact == ART_CLICHE_WEAR) || (uarmf && uarmf->oartifact == ART_BEND_FROM_THE_NOISE) || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK) || (uarmf && uarmf->oartifact == ART_SPFLOTCH__HAHAHAHAHA_) || (uarmf && uarmf->oartifact == ART_SUCH_A_SIGHER) || (uwep && uwep->oartifact == ART_CALCAR) || (uwep && uwep->oartifact == ART_MERCILESS_MARE) || (uarmf && uarmf->oartifact == ART_THICK_FARTING_GIRL) || (uleft && uleft->oartifact == ART_RING_OF_EVERYTHING_RESISTA) || (uright && uright->oartifact == ART_RING_OF_EVERYTHING_RESISTA) || (uarmf && uarmf->oartifact == ART_THOSEFROMTHERE) || (uarmf && uarmf->oartifact == ART_RUTH_S_UNDEAD_INLAY) || (uarm && uarm->oartifact == ART_CHANGERING_ENVIROMENT) || (uarmf && uarmf->oartifact == ART_BLUEDE) || (uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) || (uarmh && uarmh->oartifact == ART_UNIMPORTANT_ELEMENTS) || (uarmu && uarmu->oartifact == ART_PRISMATIC_SHIRT) || (uimplant && uimplant->oartifact == ART_CORONATION_CULMINATION) || (uarmf && uarmf->oartifact == ART_JESSICA_S_TENDERNESS) || (uarmh && uarmh->oartifact == ART_HAVE_ALL_YOU_NEED) || (uamul && uamul->oartifact == ART_SNOREFEST && (moves % 10 != 0) ) )
 
 #define Sleep_resistance	( !(YouAreThirsty && (u.uhunger > 2000)) && !Race_if(PM_KOBOLT) && !Race_if(PM_DEEP_ELF) && !have_sleepstone() && !NoSleep_resistance && !hybridragontype(AD_SLEE) && ((IntSleep_resistance && u.nonintrinsicproperty != SLEEP_RES) || (ExtSleep_resistance && u.nonextrinsicproperty != SLEEP_RES)) )
 #define StrongSleep_resistance	(IntSleep_resistance && ExtSleep_resistance && Sleep_resistance && u.nondoubleproperty != SLEEP_RES)
@@ -489,6 +492,17 @@
 #define CovidTrapEffect		u.uprops[COVID_TRAP_EFFECT].intrinsic
 #define ArtiblastEffect		u.uprops[ARTIBLAST_EFFECT].intrinsic
 #define RepeatingNastycurseEffect		u.uprops[REPEATING_NASTYCURSE_EFFECT].intrinsic
+
+#define OptionBugEffect		u.uprops[OPTION_BUG_EFFECT].intrinsic
+#define MiscolorEffect		u.uprops[MISCOLOR_EFFECT].intrinsic
+#define OneRainbowEffect		u.uprops[ONE_RAINBOW_EFFECT].intrinsic
+#define ColorshiftEffect		u.uprops[COLORSHIFT_EFFECT].intrinsic
+#define TopLineEffect		u.uprops[TOP_LINE_EFFECT].intrinsic
+#define CapsBugEffect		u.uprops[CAPS_BUG_EFFECT].intrinsic
+#define UnKnowledgeEffect		u.uprops[UN_KNOWLEDGE_EFFECT].intrinsic
+#define DarkhanceEffect		u.uprops[DARKHANCE_EFFECT].intrinsic
+#define DschueueuetEffect		u.uprops[DSCHUEUEUET_EFFECT].intrinsic
+#define NopeskillEffect		u.uprops[NOPESKILL_EFFECT].intrinsic
 
 #define RealLieEffect u.uprops[REAL_LIE_EFFECT].intrinsic
 #define EscapePastEffect u.uprops[ESCAPE_PAST_EFFECT].intrinsic

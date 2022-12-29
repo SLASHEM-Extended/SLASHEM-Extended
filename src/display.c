@@ -434,6 +434,10 @@ unmap_object(x, y)
 	show_glyph(x, y, cmap_to_glyph(S_stone));	\
 	return;	\
 	}	\
+	if ((uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) && !facingtile(x, y)) {	\
+	show_glyph(x, y, cmap_to_glyph(S_stone));	\
+	return;	\
+	}	\
 	if (!u.seesilverspell && SpellColorSilver && !isimportantlocation(x, y)) {	\
 	show_glyph(x, y, cmap_to_glyph(S_stone));	\
 	return;	\
@@ -519,6 +523,10 @@ int memory_glyph(x, y)
 	}
 
 	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (uwep && uwep->oartifact == ART_OMGHAXERETH) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_OMGHAXERETH) ) && isok(u.ux, u.uy) && !isimportantlocation(x, y) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {
+	return cmap_to_glyph(S_stone);
+	}
+
+	if ((uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) && !facingtile(x, y)) {
 	return cmap_to_glyph(S_stone);
 	}
 
@@ -1072,6 +1080,11 @@ newsym(x,y)
 	return;
 	}
 
+	if ((uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) && !facingtile(x, y)) {
+	show_glyph(x, y, cmap_to_glyph(S_stone));
+	return;
+	}
+
 	if (!u.seesilverspell && SpellColorSilver && !isimportantlocation(x, y)) {
 	show_glyph(x, y, cmap_to_glyph(S_stone));
 	return;
@@ -1460,6 +1473,11 @@ newsymX(x,y)
 	}
 
 	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (uwep && uwep->oartifact == ART_OMGHAXERETH) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_OMGHAXERETH) ) && isok(u.ux, u.uy) && !isimportantlocation(x, y) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {
+	show_glyph(x, y, cmap_to_glyph(S_stone));
+	return;
+	}
+
+	if ((uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) && !facingtile(x, y)) {
 	show_glyph(x, y, cmap_to_glyph(S_stone));
 	return;
 	}
@@ -3289,6 +3307,45 @@ static const int cross_matrix[4][6] = {
     { S_trcorn, S_brcorn, S_blcorn, S_tlwall, S_tuwall, S_crwall },
 };
 
+/* for hardcore cloth etc.: is this tile "behind" you (meaning you cannot see it)? --Amy
+ * return TRUE if you can "see" the tile, FALSE otherwise */
+boolean
+facingtile(tx, ty)
+int tx, ty;
+{
+	switch (u.trontrapdirection) {
+		case 1: /* east */
+			if (u.ux > tx) return FALSE;
+			break;
+		case 2: /* southeast */
+			if (u.ux > tx && !(u.uy < ty && (abs(u.uy - ty) >= abs(u.ux - tx)) ) ) return FALSE;
+			if (u.uy > ty && !(u.ux < tx && (abs(u.ux - tx) >= abs(u.uy - ty)) ) ) return FALSE;
+			break;
+		case 3: /* north */
+			if (u.uy < ty) return FALSE;
+			break;
+		case 4: /* northwest */
+			if (u.ux < tx && !(u.uy > ty && (abs(u.uy - ty) >= abs(u.ux - tx)) ) ) return FALSE;
+			if (u.uy < ty && !(u.ux > tx && (abs(u.ux - tx) >= abs(u.uy - ty)) ) ) return FALSE;
+			break;
+		case 5: /* west */
+			if (u.ux < tx) return FALSE;
+			break;
+		case 6: /* southwest */
+			if (u.ux < tx && !(u.uy < ty && (abs(u.uy - ty) >= abs(u.ux - tx)) ) ) return FALSE;
+			if (u.uy > ty && !(u.ux > tx && (abs(u.ux - tx) >= abs(u.uy - ty)) ) ) return FALSE;
+			break;
+		case 7: /* south */
+			if (u.uy > ty) return FALSE;
+			break;
+		case 8: /* northeast */
+			if (u.ux > tx && !(u.uy > ty && (abs(u.uy - ty) >= abs(u.ux - tx)) ) ) return FALSE;
+			if (u.uy < ty && !(u.ux < tx && (abs(u.ux - tx) >= abs(u.uy - ty)) ) ) return FALSE;
+			break;
+	}
+
+	return TRUE;
+}
 
 /* Print out a T wall warning and all interesting info. */
 STATIC_OVL void

@@ -1036,6 +1036,17 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "un-invis trap", C(CLR_CYAN)},	/* trap */
 	{'^', "detectation trap", C(CLR_WHITE)},	/* trap */
 
+	{'^', "option trap", C(CLR_WHITE)},	/* trap */
+	{'^', "miscolor trap", C(CLR_BLUE)},	/* trap */
+	{'^', "one rainbow trap", C(CLR_BRIGHT_MAGENTA)},	/* trap */
+	{'^', "colorshift trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "top line trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'^', "caps trap", C(CLR_RED)},	/* trap */
+	{'^', "un-knowledge trap", C(CLR_BLUE)},	/* trap */
+	{'^', "darkhance trap", C(CLR_BLACK)},	/* trap */
+	{'^', "dschueueuet trap", C(CLR_BROWN)},	/* trap */
+	{'^', "nopeskill trap", C(CLR_MAGENTA)},	/* trap */
+
 	{'^', "timerun trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -1899,6 +1910,17 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_un_invis_trap),
 	g_FILLER(S_detectation_trap),
 
+	g_FILLER(S_option_trap),
+	g_FILLER(S_miscolor_trap),
+	g_FILLER(S_one_rainbow_trap),
+	g_FILLER(S_colorshift_trap),
+	g_FILLER(S_top_line_trap),
+	g_FILLER(S_caps_trap),
+	g_FILLER(S_un_knowledge_trap),
+	g_FILLER(S_darkhance_trap),
+	g_FILLER(S_dschueueuet_trap),
+	g_FILLER(S_nopeskill_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -2750,6 +2772,17 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_un_invis_trap),
 	g_FILLER(S_detectation_trap),
 
+	g_FILLER(S_option_trap),
+	g_FILLER(S_miscolor_trap),
+	g_FILLER(S_one_rainbow_trap),
+	g_FILLER(S_colorshift_trap),
+	g_FILLER(S_top_line_trap),
+	g_FILLER(S_caps_trap),
+	g_FILLER(S_un_knowledge_trap),
+	g_FILLER(S_darkhance_trap),
+	g_FILLER(S_dschueueuet_trap),
+	g_FILLER(S_nopeskill_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -3597,6 +3630,17 @@ static uchar wing_graphics[MAXPCHARS] = {
 	g_FILLER(S_proofloss_trap),
 	g_FILLER(S_un_invis_trap),
 	g_FILLER(S_detectation_trap),
+
+	g_FILLER(S_option_trap),
+	g_FILLER(S_miscolor_trap),
+	g_FILLER(S_one_rainbow_trap),
+	g_FILLER(S_colorshift_trap),
+	g_FILLER(S_top_line_trap),
+	g_FILLER(S_caps_trap),
+	g_FILLER(S_un_knowledge_trap),
+	g_FILLER(S_darkhance_trap),
+	g_FILLER(S_dschueueuet_trap),
+	g_FILLER(S_nopeskill_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -4446,6 +4490,17 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_proofloss_trap),
 	g_FILLER(S_un_invis_trap),
 	g_FILLER(S_detectation_trap),
+
+	g_FILLER(S_option_trap),
+	g_FILLER(S_miscolor_trap),
+	g_FILLER(S_one_rainbow_trap),
+	g_FILLER(S_colorshift_trap),
+	g_FILLER(S_top_line_trap),
+	g_FILLER(S_caps_trap),
+	g_FILLER(S_un_knowledge_trap),
+	g_FILLER(S_darkhance_trap),
+	g_FILLER(S_dschueueuet_trap),
+	g_FILLER(S_nopeskill_trap),
 
 	g_FILLER(S_timerun_trap),
 
@@ -5503,6 +5558,17 @@ boolean is_rlevel;
 	    showsyms[S_proofloss_trap] = 0x04;
 	    showsyms[S_un_invis_trap] = 0x04;
 	    showsyms[S_detectation_trap] = 0x04;
+
+	    showsyms[S_option_trap] = 0x04;
+	    showsyms[S_miscolor_trap] = 0x04;
+	    showsyms[S_one_rainbow_trap] = 0x04;
+	    showsyms[S_colorshift_trap] = 0x04;
+	    showsyms[S_top_line_trap] = 0x04;
+	    showsyms[S_caps_trap] = 0x04;
+	    showsyms[S_un_knowledge_trap] = 0x04;
+	    showsyms[S_darkhance_trap] = 0x04;
+	    showsyms[S_dschueueuet_trap] = 0x04;
+	    showsyms[S_nopeskill_trap] = 0x04;
 
 	    showsyms[S_timerun_trap] = 0x04;
 #endif /* PUBLIC_SERVER */
