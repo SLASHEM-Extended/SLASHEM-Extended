@@ -11317,6 +11317,94 @@ A("Arabella's Lightswitch",				RING_MAIL, /* detectation effect, can be invoked 
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 6000L ),
 
+A("Habiba's Matronage",				HELMET, /* initialized to always be hardcore cloth, activates hardcore alien mode, also gives intrinsic half physical damage and regeneration, double magical breathing and +2 increase damage */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Ahaund",				GAUNTLETS_OF_RAINBOW_MOUD,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_WARN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Particularly Heavy Stone",				THROUGH_THE_FLOOR_BOOTS, /* increases the chance of going down more levels at once via downstair */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("CAPS LOCK",				ABCDE_HELMET, /* uppercase monsters have +5 spawn freq */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("On Trance",				AMULET_OF_MISCOLORATION, /* technicality */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Klenschgor",				AMULET_OF_LOST_KNOWLEDGE, /* +5 int */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Taste The Rainbow",				SHADOW_SCOURGE, /* one rainbow effect, resist psi */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ATTK), 0, 0,
+	STUN(3,4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Unattainable Nineteen",				SHORT_SWORD, /* randart short sword, dschueueuet trap effect, +2 STR */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(10, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Godawful Enchantment",				CLUB, /* randart2 club, autocurses, johanna trap effect, resist psi, contamination and death */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(15, 5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Some Chamber Door",				ICHCAHUIPILLI, /* antje trap 2, sight bonus, infravision, heavily autocurses */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Gondolin's Hidden Passage",				LONG_SWORD, /* randart2, autocurses, kerstin trap effect, +5 STR and CON, free action, see invisible */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(2, 2), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 10000L ),
+
+A("School Satchel",				BRONZE_PLATE_MAIL, /* may-britt effect, +2000 carry cap and max carry cap */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Farther Into The Jungle",				BAMBOO_MAIL, /* autocurses, charlotte trap effect, +2 vision range (stacks with other sight bonuses), +10% chance to block if you're using a shield, scent view and echolocation, 80% chance that if you would normally have received sanity, you don't */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Just A Hunk Of AC",				BRONZE_PLATE_MAIL, /* 7 extra points of AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Cold Insignia",				BRONZE_PLATE_MAIL,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Scarabrooch",				BRONZE_PLATE_MAIL, /* blindness resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Fartdetection",				BRONZE_PLATE_MAIL, /* can be invoked for trap detection but doing so also summons a hostile MS_FART_LOUD next to you with superaggravatefrenzy */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Meet Woman Antje",				STRIPE_MAIL, /* autocurses, antje trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Punked by Heidi",				STRIPE_MAIL, /* echolocation */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Arms Oversight",				STRIPE_MAIL, /* defusing */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1200L ),
+
+A("Go Fully Off",				MORNING_STAR, /* randart2 morning star, defusing */
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Half Super Enchantment",				RED_LIGHTSABER, /* randart lightsaber, defusing */
+	(SPFX_RESTR), 0, 0,
+	PHYS(10, 5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

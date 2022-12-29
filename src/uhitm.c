@@ -3588,6 +3588,7 @@ int dieroll;
 		if (uwep && uwep->oartifact == ART_VLADSBANE) tmp -= 5;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_VLADSBANE) tmp -= 5;
 		if (uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) tmp += 8;
+		if (uarmh && uarmh->oartifact == ART_HABIBA_S_MATRONAGE) tmp += 2;
 
 		if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 

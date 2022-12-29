@@ -24874,6 +24874,50 @@ boolean knoweverything;
 					pline("Artifact specs: reflection and 10 extra points of AC when worn, increases your damage output by 8 but reduces your to-hit by 5, and gives the permacurse effect."); break;
 				case ART_ARABELLA_S_LIGHTSWITCH:
 					pline("Artifact specs: hmm. It's a lightswitch, so you'd guess it can turn on the light if you invoke it? Maybe you should give it a try!"); break;
+				case ART_HABIBA_S_MATRONAGE:
+					pline("Artifact specs: double half physical damage, double regeneration, double magical breathing and +2 increase damage when worn, but of course there's a bad downside to that which consists of the fact that you have to follow the hardcore alien conduct."); break;
+				case ART_AHAUND:
+					pline("Artifact specs: warning when worn because Amy couldn't think of anything interesting that this artifact might do. If you come up with a fun artifact pair of gauntlets of rainbow moud, tell me and maybe it'll be implemented!"); break;
+				case ART_PARTICULARLY_HEAVY_STONE:
+					pline("Artifact specs: increases the chance that a downstair takes you down a lot of levels at once."); break;
+				case ART_CAPS_LOCK:
+					pline("Artifact specs: +5 spawn frequency for uppercase monsters."); break;
+				case ART_ON_TRANCE:
+					pline("Artifact specs: technicality when worn."); break;
+				case ART_KLENSCHGOR:
+					pline("Artifact specs: +5 intelligence when worn."); break;
+				case ART_TASTE_THE_RAINBOW:
+					pline("Artifact specs: +3 to-hit and +4 stun damage, psi resistance and one rainbow effect when wielded."); break;
+				case ART_UNATTAINABLE_NINETEEN:
+					pline("Artifact specs: +10 to-hit and +10 damage, +2 strength and downstairs can take you down several levels at once when wielded."); break;
+				case ART_GODAWFUL_ENCHANTMENT:
+					pline("Artifact specs: +15 to-hit and +5 damage, resistance to psi, contamination and death when wielded and johanna trap effect, autocurses."); break;
+				case ART_SOME_CHAMBER_DOOR:
+					pline("Artifact specs: sight bonus and infravision when worn, but this item heavily autocurses and forces you to visit the public toilet every once in a while."); break;
+				case ART_GONDOLIN_S_HIDDEN_PASSAGE:
+					pline("Artifact specs: +2 to-hit and +2 damage, +5 strength and constitution, free action, see invisible and kerstin trap effect when wielded, autocurses, lawful."); break;
+				case ART_SCHOOL_SATCHEL:
+					pline("Artifact specs: greatly increases the amount of stuff you can carry but some little girl will try to steal your stuff."); break;
+				case ART_FARTHER_INTO_THE_JUNGLE:
+					pline("Artifact specs: +2 vision range, additional chance to block if you're using a shield, scent view and echolocation when worn and gives a good chance that sanity increases don't happen for you, but also gives the charlotte trap effect and autocurses."); break;
+				case ART_JUST_A_HUNK_OF_AC:
+					pline("Artifact specs: 7 extra points of AC when worn."); break;
+				case ART_COLD_INSIGNIA:
+					pline("Artifact specs: cold resistance when worn."); break;
+				case ART_SCARABROOCH:
+					pline("Artifact specs: blindness resistance when worn."); break;
+				case ART_FARTDETECTION:
+					pline("Artifact specs: can be invoked to detect traps, but doing so also summons a hostile farting monster."); break;
+				case ART_MEET_WOMAN_ANTJE:
+					pline("Artifact specs: autocurses and causes the antje trap effect when worn."); break;
+				case ART_PUNKED_BY_HEIDI:
+					pline("Artifact specs: echolocation when worn."); break;
+				case ART_ARMS_OVERSIGHT:
+					pline("Artifact specs: defusing when worn."); break;
+				case ART_GO_FULLY_OFF:
+					pline("Artifact specs: +5 to-hit and +5 damage, defusing when wielded."); break;
+				case ART_HALF_SUPER_ENCHANTMENT:
+					pline("Artifact specs: +10 to-hit and +5 damage, defusing when wielded."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

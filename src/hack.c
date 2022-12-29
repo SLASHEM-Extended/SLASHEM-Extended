@@ -5131,6 +5131,7 @@ max_carr_cap()
 	if (have_daisybag()) maxcarrcap += 500;
 	if (uarm && uarm->oartifact == ART_COLLECTING_EXPANSION) maxcarrcap += 5000;
 	if (uwep && uwep->oartifact == ART_FIRST_CARRYING_BOX) maxcarrcap += 1000;
+	if (uarm && uarm->oartifact == ART_SCHOOL_SATCHEL) maxcarrcap += 2000;
 	if (uarmc && uarmc->oartifact == ART_NEUTRINO) maxcarrcap += 1000;
 	if (RngeCarryingBoost) maxcarrcap += 1000;
 
@@ -5177,6 +5178,7 @@ weight_cap()
 	if (uright && uright->oartifact == ART_CORGON_S_RING) carrcap += 100;
 	if (have_daisybag()) carrcap += 1000;
 	if (uarm && uarm->oartifact == ART_COLLECTING_EXPANSION) carrcap += 2000;
+	if (uarm && uarm->oartifact == ART_SCHOOL_SATCHEL) carrcap += 2000;
 	if (uwep && uwep->oartifact == ART_FIRST_CARRYING_BOX) carrcap += 1000;
 	if (uarmc && uarmc->oartifact == ART_NEUTRINO) carrcap += 1000;
 	if (RngeCarryingBoost) carrcap += 1000;

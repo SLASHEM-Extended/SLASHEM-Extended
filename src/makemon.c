@@ -28567,6 +28567,8 @@ loopback:
 		if (ct > 0 && (Race_if(PM_YOKUDA) && is_elderscrollsmonster(ptr) )) ct += 3;
 		if (ct > 0 && (Race_if(PM_YUGGER) && is_aoemonster(ptr) )) ct += 10;
 
+		if (ct > 0 && (uarmh && uarmh->oartifact == ART_CAPS_LOCK && ptr->mlet >= S_ANGEL && ptr->mlet <= S_ZOMBIE)) ct += 5;
+		if (ct > 0 && (uarmh && uarmh->oartifact == ART_CAPS_LOCK && ptr->mlet == S_FLYFISH)) ct += 5;
 		if (ct > 0 && (uarm && uarm->oartifact == ART_ARABELLA_S_LIGHTSWITCH && organivorous(ptr) )) ct += 25;
 		if (ct > 0 && (uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (ptr->msound == MS_STENCH))) ct += 10;
 		if (ct > 0 && (FemtrapActiveAnna && (ptr->msound == MS_STENCH))) ct += 50;

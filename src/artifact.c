@@ -379,6 +379,7 @@ init_randarts()
 	artilist[ART_MACHINE_THAT_GOES_PLING].otyp = randartgem();
 	artilist[ART_COCKBANGER_ARMOR].otyp = randartsuit();
 	artilist[ART_TAVION_S_CHARGE].otyp = randartlightsaber();
+	artilist[ART_HALF_SUPER_ENCHANTMENT].otyp = randartlightsaber();
 	artilist[ART_WEDIFORCE].otyp = randartvenom();
 	artilist[ART_RIDGET_PHASTO].otyp = randartvenom();
 	artilist[ART_ACIDFALL].otyp = randartlongsword();
@@ -389,6 +390,7 @@ init_randarts()
 	artilist[ART_DISMOUNTER].otyp = randartlance();
 	artilist[ART_FINAL_DEATH].otyp = randartwhip();
 	artilist[ART_MANEATER].otyp = randartshortsword();
+	artilist[ART_UNATTAINABLE_NINETEEN].otyp = randartshortsword();
 	artilist[ART_GNOLLBANE].otyp = randarthammer();
 	artilist[ART_EMERALD_SWORD].otyp = randarttwohandedsword();
 	artilist[ART_CELESTIAL_SCEPTRE].otyp = randartmace();
@@ -443,6 +445,7 @@ init_randarts()
 	artilist[ART_RESISTANT_RESISTOR].otyp = randartmeleeweaponX();
 	artilist[ART_VERNON_S_POTTERBASHER].otyp = randartmeleeweaponX();
 	artilist[ART_SCHWOINGELOINGELOING_OOOAR].otyp = randartmeleeweaponX();
+	artilist[ART_GONDOLIN_S_HIDDEN_PASSAGE].otyp = randartmeleeweaponX();
 	artilist[ART_FEMMY_S_LASH].otyp = randartmeleeweaponX();
 	artilist[ART_CASQUE_OUTLOOK].otyp = randartmeleeweaponX();
 	artilist[ART_UNFAIR_PEE].otyp = randartmeleeweaponX();
@@ -551,6 +554,7 @@ init_randarts()
 	artilist[ART_LIBRA_OF_JUSTICE].otyp = randartflailX();
 	artilist[ART_TENRAI].otyp = randartspearX();
 	artilist[ART_QUIXOTIC_SPIRIT].otyp = randartlanceX();
+	artilist[ART_GODAWFUL_ENCHANTMENT].otyp = randartclubX();
 	artilist[ART_AQUARHAPSODY].otyp = randartbowX();
 	artilist[ART_FIRE_SOUL].otyp = randartshortswordX();
 	artilist[ART_DAEFAROTH].otyp = randartdaggerX();
@@ -558,6 +562,7 @@ init_randarts()
 	artilist[ART_EUTATS_ENOTS].otyp = randartaxeX();
 	artilist[ART_BRAINSTORM].otyp = randartflailX();
 	artilist[ART_POLARIS].otyp = randartmorningstarX();
+	artilist[ART_GO_FULLY_OFF].otyp = randartmorningstarX();
 	artilist[ART_FLAMESNIPER].otyp = randartbowX();
 	artilist[ART_THUNDERBIRD].otyp = randartboomerangX();
 	artilist[ART_STELLARIS_MATERIA].otyp = randartshortswordX();
@@ -600,6 +605,7 @@ init_randarts()
 	artilist[ART_OUT_OF_TIME].otyp = find_castlevania_boots();
 	artilist[ART_PALEOLITHIC_ELBOW_CONTRACT].otyp = find_greek_cloak();
 	artilist[ART_NUCLEAR_BOMB].otyp = find_celtic_helmet();
+	artilist[ART_HABIBA_S_MATRONAGE].otyp = find_hardcore_cloth();
 	artilist[ART_BEEEEEEEANPOLE].otyp = find_english_gloves();
 	artilist[ART_LEGMA].otyp = find_korean_sandals();
 	artilist[ART_TERRY_PRATCHETT_S_INGENUIT].otyp = find_octarine_robe();
@@ -3975,6 +3981,20 @@ chargingchoice:
 		if (obj->oartifact == ART_ARABELLA_S_LIGHTSWITCH) {
 			litroom(TRUE, obj);
 			pline_The("light has been switched on!");
+			break;
+		}
+
+		if (obj->oartifact == ART_FARTDETECTION) {
+
+			u.aggravation = 1;
+			u.heavyaggravation = 1;
+
+			(void) makemon(specialtensmon(40), u.ux, u.uy, MM_ANGRY|MM_FRENZIED|MM_XFRENZIED|MM_ADJACENTOK);
+			trap_detect((struct obj *)0);
+
+			u.aggravation = 0;
+			u.heavyaggravation = 0;
+
 			break;
 		}
 

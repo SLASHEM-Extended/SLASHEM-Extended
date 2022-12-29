@@ -2805,6 +2805,14 @@ randartmorningstar()
 }
 
 int
+randartclub()
+{
+	int result;
+	result = rnd_class(CLUB, LOG);
+	return result;
+}
+
+int
 randartaxe()
 {
 	int result;
@@ -3207,6 +3215,14 @@ randartmorningstarX()
 {
 	int result;
 	result = MORNING_STAR + rn2((YESTERDAY_STAR + 1) - MORNING_STAR);
+	return result;
+}
+
+int
+randartclubX()
+{
+	int result;
+	result = CLUB + rn2((LOG + 1) - CLUB);
 	return result;
 }
 

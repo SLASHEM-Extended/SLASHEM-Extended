@@ -396,7 +396,7 @@ WEAPON("wild blade", (char *)0,
 WEAPON("golden saber", (char *)0,
 	1, 0, 0, 150, 12, 150,  10,  10, 0, S,   P_SABER, MT_GOLD, CLR_YELLOW, 14),
 
-/* Clubs */
+/* Clubs - regular one has to be first */
 WEAPON("club", (char *)0,
 	1, 0, 0, 1324, 12,  3,  6,  3, 0, B,   P_CLUB, MT_WOOD, HI_WOOD, 1),
 WEAPON("alloy club", (char *)0,
@@ -413,6 +413,9 @@ WEAPON("macuahuitl", (char *)0,
 	1, 0, 0, 20,  6, 70,  8,  6, 0, B,   P_CLUB, MT_AMBER, HI_WOOD, 8),
 WEAPON("poured club", (char *)0,
 	1, 0, 0, 200, 28,  4,  7,  3, 0, B,   P_CLUB, MT_POURPOOR, HI_METAL, 1),
+
+	/* STEPHEN WHITE'S NEW CODE */
+	/* Base for artifact */
 WEAPON("baseball bat", (char *)0,
 	1, 0, 0, 300, 12, 50,  8,  6, 0, B,   P_CLUB, MT_WOOD, HI_WOOD, 4),
 WEAPON("metal club", "heavy club",
@@ -430,9 +433,7 @@ WEAPON("huge club", (char *)0, /* +4 small and large */
 	1, 0, 1,   5, 60, 3, 10, 14, 0, B, P_CLUB, MT_WOOD, HI_WOOD, 30),
 WEAPON("log", (char *)0,
 	1, 0, 1,   1, 500, 3, 15, 20, 0, B, P_CLUB, MT_WOOD, HI_WOOD, 60),
-
-	/* STEPHEN WHITE'S NEW CODE */
-	/* Base for artifact */
+/* log has to be last */
 
 /* Paddles */
 /* Good to-hit and small damage, but low large damage */

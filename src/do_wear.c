@@ -3438,6 +3438,11 @@ Shirt_on()
 
 	}
 
+	if (uarmu->oartifact == ART_SOME_CHAMBER_DOOR) {
+		curse(uarmu);
+		uarmu->hvycurse = TRUE;
+	}
+
 	if (uarmu->oartifact == ART_TRAP_DUNGEON_OF_SHAMBHALA) {
 
 		if (uarmu->spe < 10) uarmu->spe = 10;
@@ -3568,7 +3573,16 @@ Armor_on()
 		curse(uarm);
 	}
 
+	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_FARTHER_INTO_THE_JUNGLE) {
+		pline("Your armor was cursed. Now you have no choice but to press farther into the jungle.");
+		curse(uarm);
+	}
+
 	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_ARABELLA_S_LIGHTSWITCH) {
+		curse(uarm);
+	}
+
+	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_MEET_WOMAN_ANTJE) {
 		curse(uarm);
 	}
 
@@ -6014,6 +6028,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_MAEDHROS_SARALONDE) uac -= 5;
 	if (uarm && uarm->oartifact == ART_QUARRY) uac -= 5;
 	if (uarm && uarm->oartifact == ART_SHRINK_S_AID) uac -= 7;
+	if (uarm && uarm->oartifact == ART_JUST_A_HUNK_OF_AC) uac -= 7;
 	if (uarm && uarm->oartifact == ART_SOFT_GIRL) uac -= 5;
 	if (uarm && uarm->oartifact == ART_NOPPED_SUIT) uac -= 3;
 	if (uarmc && uarmc->oartifact == ART_FIREBURN_COLDSHATTER) uac -= 5;

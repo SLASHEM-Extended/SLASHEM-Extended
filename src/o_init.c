@@ -2469,6 +2469,19 @@ find_higher_helmet()
 }
 
 int
+find_hardcore_cloth()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_HARDCORE_CLOTH)) return i;
+    }
+
+    impossible("hardcore cloth not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_missys()
 {
     register int i;

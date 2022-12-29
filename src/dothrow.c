@@ -1671,6 +1671,7 @@ boolean hitsroof;
 	if (dmg > 0 && Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) dmg += 1;
 	if (dmg > 0 && Race_if(PM_RODNEYAN)) dmg += (1 + (GushLevel / 3) );
 	if (dmg > 0 && uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) dmg += 8;
+	if (dmg > 0 && uarmh && uarmh->oartifact == ART_HABIBA_S_MATRONAGE) dmg += 2;
 
 	if (Race_if(PM_ITAQUE)) dmg -= 1;
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) dmg -= 5;

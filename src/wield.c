@@ -164,6 +164,14 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		curse(uwep);
 		pline("Whoops, the weapon cursed itself.");
 	}
+	if (uwep && uwep->oartifact == ART_GONDOLIN_S_HIDDEN_PASSAGE && !uwep->cursed) {
+		curse(uwep);
+		pline("Whoops, the weapon cursed itself.");
+	}
+	if (uwep && uwep->oartifact == ART_GODAWFUL_ENCHANTMENT && !uwep->cursed) {
+		curse(uwep);
+		pline("Whoops, the weapon cursed itself.");
+	}
 	if (uwep && uwep->oartifact == ART_BARDICHE_ASSALT && !uwep->cursed) {
 		curse(uwep);
 		pline("Whoops, the weapon cursed itself.");
@@ -344,6 +352,14 @@ swapweaponchoice:
 			curse(uswapwep);
 		}
 		if (uswapwep && uswapwep->oartifact == ART_WAR_S_SWORD && !uswapwep->cursed) {
+			curse(uswapwep);
+			pline("Whoops, the weapon cursed itself.");
+		}
+		if (uswapwep && uswapwep->oartifact == ART_GONDOLIN_S_HIDDEN_PASSAGE && !uswapwep->cursed) {
+			curse(uswapwep);
+			pline("Whoops, the weapon cursed itself.");
+		}
+		if (uswapwep && uswapwep->oartifact == ART_GODAWFUL_ENCHANTMENT && !uswapwep->cursed) {
 			curse(uswapwep);
 			pline("Whoops, the weapon cursed itself.");
 		}

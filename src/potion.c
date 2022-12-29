@@ -10423,6 +10423,7 @@ int snamount;
 	if (StrongHalluc_resistance && snamount < 3 && rn2(3)) return;
 
 	if (uarmf && uarmf->oartifact == ART_GLOATSANE && rn2(5)) return;
+	if (uarm && uarm->oartifact == ART_FARTHER_INTO_THE_JUNGLE && rn2(5)) return;
 
 	/* Mineral is supposed to be a material that shields you against sanity --Amy */
 	if (uwep && objects[uwep->otyp].oc_material == MT_MINERAL && !rn2(20)) {

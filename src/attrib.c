@@ -2848,6 +2848,8 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_LORENZI_S_CLEANING_RESIDUE) tmp += 2;
 		if (u.combatcommand) tmp += 1;
 		if (Race_if(PM_URGOTH)) tmp += 5;
+		if (uwep && uwep->oartifact == ART_UNATTAINABLE_NINETEEN) tmp += 2;
+		if (uwep && uwep->oartifact == ART_GONDOLIN_S_HIDDEN_PASSAGE) tmp += 5;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (Race_if(PM_KNOWLEDGABLE)) tmp -= 2;
@@ -3112,6 +3114,7 @@ int x;
 		if (uright && uright->oartifact == ART_SERPENT_RING_OF_SET) tmp += 5;
 		if (u.combatcommand) tmp += 1;
 		if (Race_if(PM_WYLVAN)) tmp += 1;
+		if (x == A_INT && uamul && uamul->oartifact == ART_KLENSCHGOR) tmp += 5;
 
 		if (uarmh && uarmh->oartifact == ART_YOU_DON_T_KNOW_SHIT) tmp -= 3;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp -= 10;
@@ -3236,6 +3239,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_LORENZI_S_CLEANING_RESIDUE) tmp += 2;
 		if (u.combatcommand) tmp += 1;
 		if (Race_if(PM_URGOTH)) tmp += 3;
+		if (uwep && uwep->oartifact == ART_GONDOLIN_S_HIDDEN_PASSAGE) tmp += 5;
 
 		if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 			if (uarm && is_metallic(uarm)) tmp++;

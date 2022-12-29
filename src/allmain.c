@@ -14113,7 +14113,7 @@ past4:
 		if (!u.miscolornumber) u.miscolornumber = rnd(15);
 	} else u.miscolornumber = 0;
 
-	if (OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone()) {
+	if (OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone() || (uwep && uwep->oartifact == ART_TASTE_THE_RAINBOW) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_TASTE_THE_RAINBOW) ) {
 		if (!u.onerainbownumber) u.onerainbownumber = rnd(15);
 	} else u.onerainbownumber = 0;
 

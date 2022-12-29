@@ -1763,7 +1763,7 @@ dodown()
 		at_ladder = (boolean) (levl[u.ux][u.uy].typ == LADDER);
 
 		/* based on a feature from nethack 3.7, a nastytrap that makes downstairs skip levels sometimes --Amy */
-		if (DschueueuetEffect || u.uprops[DSCHUEUEUET_EFFECT].extrinsic || have_dschueueuetstone()) {
+		if (DschueueuetEffect || u.uprops[DSCHUEUEUET_EFFECT].extrinsic || have_dschueueuetstone() || (uwep && uwep->oartifact == ART_UNATTAINABLE_NINETEEN) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_UNATTAINABLE_NINETEEN) ) {
 			if (!rn2(3) && !(dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) && !(dunlev(&u.uz) == (dunlevs_in_dungeon(&u.uz) - 1) ) && !(u.ux == sstairs.sx && u.uy == sstairs.sy) ) {
 
 				d_level dtmp;
@@ -1776,14 +1776,26 @@ dodown()
 					newlevel++;
 				}
 
-				if (superdschue) {
-					do {
-					    newlevel++;
-					} while(rn2(4) && newlevel < dunlevs_in_dungeon(&u.uz));
+				if (uarmf && uarmf->oartifact == ART_PARTICULARLY_HEAVY_STONE) {
+					if (superdschue) {
+						do {
+						    newlevel++;
+						} while(rn2(6) && (newlevel < dunlevs_in_dungeon(&u.uz)) && !(Inhell && !u.uevent.invoked && newlevel >= (dunlevs_in_dungeon(&u.uz) - 1)) );
+					} else {
+						do {
+						    newlevel++;
+						} while(rn2(2) && (newlevel < dunlevs_in_dungeon(&u.uz)) && !(Inhell && !u.uevent.invoked && newlevel >= (dunlevs_in_dungeon(&u.uz) - 1)) );
+					}
 				} else {
-					do {
-					    newlevel++;
-					} while(!rn2(4) && newlevel < dunlevs_in_dungeon(&u.uz));
+					if (superdschue) {
+						do {
+						    newlevel++;
+						} while(rn2(4) && (newlevel < dunlevs_in_dungeon(&u.uz)) && !(Inhell && !u.uevent.invoked && newlevel >= (dunlevs_in_dungeon(&u.uz) - 1)) );
+					} else {
+						do {
+						    newlevel++;
+						} while(!rn2(4) && (newlevel < dunlevs_in_dungeon(&u.uz)) && !(Inhell && !u.uevent.invoked && newlevel >= (dunlevs_in_dungeon(&u.uz) - 1)) );
+					}
 				}
 
 				if (Inhell && !u.uevent.invoked && newlevel == dunlevs_in_dungeon(&u.uz)) {
