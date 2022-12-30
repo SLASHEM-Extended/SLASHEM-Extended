@@ -2287,6 +2287,19 @@ find_explosive_boots()
 }
 
 int
+find_bull_helmet()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_BULL_HELMET)) return i;
+    }
+
+    impossible("bull helmet not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_irregular_boots()
 {
     register int i;

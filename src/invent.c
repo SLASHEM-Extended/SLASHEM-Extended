@@ -24024,6 +24024,8 @@ boolean knoweverything;
 					pline("Artifact specs: resist fire, infravision and sight bonus when worn but deactivates cold resistance."); break;
 				case ART_RED_SWORD:
 					pline("Artifact specs: +5 to-hit and +12 damage against fire-susceptible monsters. This artifact is not randomly generated and normally appears in the inventory of 'part time worker the red sword'."); break;
+				case ART_SIEGFRIED_S_DEATHBOLT:
+					pline("Artifact specs: +20 damage. If a monster shoots you with it, you are disintegrated."); break;
 				case ART_UNDEAD_STINK:
 					pline("Artifact specs: resist poison, undead warning, aggravate monster and occasionally causes a few turns of stasis when worn."); break;
 				case ART_SCRATCH_THE_SHRED:

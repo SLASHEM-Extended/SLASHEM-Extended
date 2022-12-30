@@ -754,6 +754,38 @@ const char *name;	/* if null, then format `obj' */
 			}
 		}
 
+		if (obj && obj->oartifact == ART_SIEGFRIED_S_DEATHBOLT) {
+			if ((!Disint_resistance || !rn2(StrongDisint_resistance ? 1000 : 100) || (evilfriday && (uarms || uarmc || uarm || uarmu)) ) ) {
+				You_feel("like you're falling apart!");
+	
+				if (uarms) {
+				    /* destroy shield; other possessions are safe */
+				    if (!(EDisint_resistance & W_ARMS)) (void) destroy_arm(uarms);
+				} else if (uarmc) {
+				    /* destroy cloak; other possessions are safe */
+				    if (!(EDisint_resistance & W_ARMC)) (void) destroy_arm(uarmc);
+				} else if (uarm) {
+				    /* destroy suit */
+				    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
+				} else if (uarmu) {
+				    /* destroy shirt */
+				    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
+				} else {
+					if (u.uhpmax > 20) {
+						u.uhpmax -= rnd(20);
+						if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+						losehp(rnz(100 + level_difficulty()), "Siegfried's murderous crossbow", KILLED_BY);
+
+					} else {
+						u.youaredead = 1;
+						done(DIED);
+						u.youaredead = 0;
+					}
+				}
+	
+			}
+		}
+
 		if (obj && obj->otyp == FLAMETHROWER) {
 			if (FireImmunity || (Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) ) {
 				pline_The("fire doesn't seem to harm you.");
@@ -1946,6 +1978,14 @@ struct monst *mtmp;
 		if (!rn2(2) && !strongmonst(mtmp->data) && !extra_nasty(mtmp->data) && !(mtmp->data->geno & G_UNIQ) && multishot > 1) multishot -= rnd(multishot / 2);
 
 	    if ((long)multishot > otmp->quan) multishot = (int)otmp->quan;
+
+		/* we don't want monsters to throw their entire stack of daggers if that's what they use in melee --Amy
+		 * also they shouldn't fire the last from a stack of artifact ammo, because they can melee with it */
+	    if ((long)multishot == otmp->quan && (multishot > 1) && ((otmp == MON_WEP(mtmp)) || (otmp->oartifact && !(otmp->oartifact == ART_SIEGFRIED_S_DEATHBOLT)) ) ) {
+		multishot--;
+		if (multishot < 1) multishot = 1; /* shouldn't happen */
+	    }
+
 	    if (multishot < 1) multishot = 1;
 	    /* else multishot = rnd(multishot); */
 	}

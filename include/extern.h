@@ -2126,6 +2126,7 @@ E int find_skates3(void);
 E int find_skates4(void);
 E int find_opera_cloak(void);
 E int find_explosive_boots(void);
+E int find_bull_helmet(void);
 E int find_irregular_boots(void);
 E int find_wedge_boots(void);
 E int find_aluminium_helmet(void);
@@ -2676,6 +2677,10 @@ E boolean playerextrinsiccoldres(void);
 E boolean playerextrinsicshockres(void);
 E boolean playerextrinsicpoisonres(void);
 E boolean playerextrinsicspeed(void);
+E boolean playerextrinsicsleepres(void);
+E boolean playerextrinsicdisintres(void);
+E boolean playerextrinsicstoneres(void);
+E boolean playerextrinsicfreeaction(void);
 
 E boolean itemhasappearance(struct obj *, int);
 E boolean itemnumwithappearance(int, int);

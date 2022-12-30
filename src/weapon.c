@@ -2837,9 +2837,11 @@ boolean polespecial; /* may use polearm for monster-versus-monster combat */
 		/* STEPHEN WHITE'S NEW CODE */
 		if (rwep[i] != LOADSTONE) {
 			/* Don't throw a cursed weapon-in-hand or an artifact */
-			/* Amy edit: or the only melee weapon (ok to throw from a stack of wielded daggers though,
-			 * even if it means possibly throwing them all) */
-			if ((otmp = oselect(mtmp, rwep[i])) && !otmp->oartifact
+			/* Amy edit: or the melee weapon (mthrowu.c should ensure they don't empty the wielded stack)
+			 * used to be so that they wouldn't ever consider artifacts valid ammunition, but that was just stupid;
+			 * in vanilla, no artifact ammo existed and artifact daggers, spears etc. couldn't spawn in stacks,
+			 * but this is SLEX so they should be able to fire those */
+			if ((otmp = oselect(mtmp, rwep[i])) && (!otmp->oartifact || (!issoviet && (otmp->quan > 1 || (otmp->oartifact == ART_SIEGFRIED_S_DEATHBOLT)) ) )
 			    && ( (!otmp->cursed && !(otmp->quan == 1) ) || otmp != MON_WEP(mtmp)))
 				return(otmp);
 		/* STEPHEN WHITE'S NEW CODE */
@@ -2997,7 +2999,7 @@ register struct monst *mtmp;
 	for(otmp=mtmp->minvent; otmp; otmp = otmp->nobj) {
 		if (
 		(otmp->oclass == WEAPON_CLASS || otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS || otmp->oclass == VENOM_CLASS)
-			&& otmp->oartifact && touch_artifact(otmp,mtmp)
+			&& otmp->oartifact && !(otmp->oartifact == ART_SIEGFRIED_S_DEATHBOLT) && touch_artifact(otmp,mtmp)
 			&& ((!wearing_shield) || !objects[otmp->otyp].oc_bimanual) )
 		    return otmp;
 	}

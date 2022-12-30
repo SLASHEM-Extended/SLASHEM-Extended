@@ -2273,7 +2273,7 @@ HELM("rare helmet", "silk helmet",
 HELM("optional helmet", "hardcore cloth", /* random appearance does a multitude of things */
 		0, 1, OPTION_BUG_EFFECT,	3, 1, 20,  50, 3, 2, MT_CLOTH, CLR_BLACK, 1, APP_HARDCORE_CLOTH),
 HELM("top helmet", "bull helmet",
-		0, 1, TOP_LINE_EFFECT,	3, 1, 20,  50, 9, 0, MT_IRON, CLR_CYAN, 1, 0),
+		0, 1, TOP_LINE_EFFECT,	3, 1, 20,  50, 9, 0, MT_IRON, CLR_CYAN, 1, APP_BULL_HELMET),
 HELM("ABCDE helmet", "alpha helmet",
 		0, 1, CAPS_BUG_EFFECT,	3, 1, 20,  50, 8, 0, MT_METAL, CLR_RED, 1, 0),
 HELM("color-changing cone", "dark color helmet",

@@ -11422,6 +11422,10 @@ A("The Red Sword",			FLAME_MOUNTAIN,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_ATTK), 0, 0,
 	FIRE(5, 12),	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 4500L ),
 
+A("Siegfried's Deathbolt",			CROSSBOW_BOLT, /* if it hits you, you're disintegrated */
+	(SPFX_NOGEN|SPFX_RESTR), 0, 0,
+	PHYS(0, 20),	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 100L ),
+
 A("Thiefbane",                  LONG_SWORD,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_BEHEAD|SPFX_DCLAS|SPFX_DRLI|SPFX_NOWISH), 0, S_HUMAN,
 	DRLI(5,2),      NO_DFNS,        NO_CARY,        0, A_CHAOTIC, NON_PM, NON_PM, 1500L ),
