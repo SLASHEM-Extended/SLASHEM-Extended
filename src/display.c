@@ -2538,7 +2538,7 @@ show_glyph(x,y,glyph)
 	return;
     }
 
-	if ( (RMBLoss || u.uprops[RMB_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) || (uamul && uamul->oartifact == ART_BUEING) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || (uamul && uamul->oartifact == ART_YOU_HAVE_UGH_MEMORY) || have_rmbstone()) && glyph >= GLYPH_OBJ_OFF && !(glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 13) ) && !(glyph >= (GLYPH_CMAP_OFF + 24) && glyph < (GLYPH_CMAP_OFF + 28) ) && !isimportantlocation(x, y) && !(glyph == (GLYPH_CMAP_OFF + 47) ) )
+	if ( RightMouseButtonDoesNotGo && glyph >= GLYPH_OBJ_OFF && !(glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 13) ) && !(glyph >= (GLYPH_CMAP_OFF + 24) && glyph < (GLYPH_CMAP_OFF + 28) ) && !isimportantlocation(x, y) && !(glyph == (GLYPH_CMAP_OFF + 47) ) )
 	glyph = cmap_to_glyph(S_stone);
 
 	if ( (NotSeenBug || u.uprops[NOT_SEEN_BUG].extrinsic || have_nonseeingstone()) && !isimportantlocation(x, y) && ((glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 13) ) || (glyph == (GLYPH_CMAP_OFF + 47) ) ) )
@@ -2617,7 +2617,7 @@ show_glyphX(x,y,glyph)
 	return;
     }
 
-	if ( (RMBLoss || u.uprops[RMB_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) || (uamul && uamul->oartifact == ART_BUEING) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || (uamul && uamul->oartifact == ART_YOU_HAVE_UGH_MEMORY) || have_rmbstone()) && glyph >= GLYPH_OBJ_OFF && !(glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 13) ) && !(glyph >= (GLYPH_CMAP_OFF + 24) && glyph < (GLYPH_CMAP_OFF + 28) ) && !isimportantlocation(x, y) && !(glyph == (GLYPH_CMAP_OFF + 47) ) )
+	if ( RightMouseButtonDoesNotGo && glyph >= GLYPH_OBJ_OFF && !(glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 13) ) && !(glyph >= (GLYPH_CMAP_OFF + 24) && glyph < (GLYPH_CMAP_OFF + 28) ) && !isimportantlocation(x, y) && !(glyph == (GLYPH_CMAP_OFF + 47) ) )
 	glyph = cmap_to_glyph(S_stone);
 
 	if ( (NotSeenBug || u.uprops[NOT_SEEN_BUG].extrinsic || have_nonseeingstone()) && !isimportantlocation(x, y) && ((glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 13) ) || (glyph == (GLYPH_CMAP_OFF + 47) ) ) )

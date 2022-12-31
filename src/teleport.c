@@ -855,6 +855,34 @@ tele()
 	    You_feel("disoriented for a moment.");
 	    return;
 	}
+
+	/* at this point, you will definitely be teleported... unless something prevents it */
+
+	{
+		boolean teletrapactive = FALSE;
+		struct monst *teletrapmon;
+		for (teletrapmon = fmon; teletrapmon; teletrapmon = teletrapmon->nmon) {
+		    if (DEADMONSTER(teletrapmon)) continue;
+		    if (teletrapmon->mnum == PM_TELEPORT_TRAP) {
+				teletrapactive = TRUE;
+				break;
+		    }
+		}
+
+		if (teletrapactive) {
+
+			int nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
+			if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
+			int blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
+			if (!blackngdur ) blackngdur = 500; /* fail safe */
+			randomnastytrapeffect(rnz(nastytrapdur * (monster_difficulty() + 1)), blackngdur - (monster_difficulty() * 3));
+
+			badeffect();
+			return;
+		}
+
+	}
+
 	if ((Teleport_control && !Stunned && (!level.flags.has_insideroom || !rn2(5)) && rn2(StrongTeleport_control ? 20 : 4)) /* low chance for tele control to fail --Amy */
 #ifdef WIZARD
 			    || (wizard && yn_function("Invoke wizard-mode teleport control?", ynchars, 'y') == 'y')

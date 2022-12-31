@@ -4395,6 +4395,7 @@ secureidchoice:
 		case WAN_FLEECY_TERRAIN:
 
 			wandoffleecyterrain();
+			pline("Some changes in terrain are happening.");
 			known = TRUE;
 
 		break;

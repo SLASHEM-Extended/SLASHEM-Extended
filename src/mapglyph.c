@@ -1811,10 +1811,17 @@ unsigned *ospecial;
 	ch = monsyms[(int)mons[glyph].mlet];
 	if (CapsBugEffect || u.uprops[CAPS_BUG_EFFECT].extrinsic || have_capsstone()) ch = toupper(ch);
 
-		mtmp = m_at(x, y);
-		if (mtmp && mtmp->isegotype && !mtmp->noegodisplay && !ThereIsNoLite && !PlayerUninformation) special |= MG_EGOTYPE;
+	mtmp = m_at(x, y);
+	if (mtmp && mtmp->isegotype && !mtmp->noegodisplay && !ThereIsNoLite && !PlayerUninformation) special |= MG_EGOTYPE;
 
-		if (mtmp && !ThereIsNoLite && mtmp->mpeaceful && Peacevision && !Hallucination) special |= MG_PEACEFUL;
+	if (mtmp && !ThereIsNoLite && mtmp->mpeaceful && Peacevision && !Hallucination) special |= MG_PEACEFUL;
+
+	if (mtmp && mtmp->mnum == PM_ULTRAYOUSEE) {
+		if (!MessagesSuppressed && !Clairvoyant && !RightMouseButtonDoesNotGo) {
+			MessageSuppression += 1; /* ugly hack */
+			badeffect(); /* something bad happens and we don't tell you what it is :-P --Amy */
+		}
+	}
 
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS && iflags.use_color) {

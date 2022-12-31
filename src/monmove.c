@@ -247,7 +247,7 @@ boolean digest_meal;
 	}
 
 	/* super regene */
-	if (mon->data == &mons[PM_MESHERA_ALPHA_DEFORMED_ANGEL] || mon->data == &mons[PM_TESTER] || mon->data == &mons[PM_TEA_HUSSY] || mon->data == &mons[PM_OUROBOROS] || mon->data == &mons[PM_SUPER_FAST_REGENERATING_TROLL] || mon->data == &mons[PM_OLOG_THAT_COULD_HAVE_BEEN] || mon->data == &mons[PM_GENUINE_PREHISTORIC_FISH] || mon->data == &mons[PM_BILLION_YEAR_FISH] || mon->data == &mons[PM_UNITDEAD_QUEEN] || mon->data == &mons[PM_UNITDEAD_KING] || mon->data == &mons[PM_REGULUS_THE_ALTERED] || mon->data == &mons[PM_SELF_HEALER] || mon->data == &mons[PM_ZANAN_ENHANCED_SOLDIER] || mon->data == &mons[PM_VANESSA_ENHANCED_SOLDIER] || mon->data == &mons[PM_SUPERREGENEBOROS] || mon->data == &mons[PM_TELHUREZA_HOUSE_GUARD] || mon->data == &mons[PM_JUERE_DEMON_SOLDIER] || mon->data == &mons[PM_MAUA_YA_KIAJEMI_YA_KUELEA] || mon->data == &mons[PM_DIGGING_ON_FARMER] || mon->data == &mons[PM_JENNIFER_DEMON_SOLDIER] || mon->data == &mons[PM_ARIANE__LADY_OF_THE_ELEMENTS] || mon->data == &mons[PM_RENAI_OVER_MESHERA] || mon->data == &mons[PM_PATIENT_ZERO] || mon->data == &mons[PM_MISSU] ) {
+	if (mon->data == &mons[PM_MESHERA_ALPHA_DEFORMED_ANGEL] || mon->data == &mons[PM_TESTER] || mon->data == &mons[PM_TEA_HUSSY] || mon->data == &mons[PM_OUROBOROS] || mon->data == &mons[PM_SUPER_FAST_REGENERATING_TROLL] || mon->data == &mons[PM_OLOG_THAT_COULD_HAVE_BEEN] || mon->data == &mons[PM_GENUINE_PREHISTORIC_FISH] || mon->data == &mons[PM_BILLION_YEAR_FISH] || mon->data == &mons[PM_DEEP_ROCK] || mon->data == &mons[PM_UNITDEAD_QUEEN] || mon->data == &mons[PM_UNITDEAD_KING] || mon->data == &mons[PM_REGULUS_THE_ALTERED] || mon->data == &mons[PM_SELF_HEALER] || mon->data == &mons[PM_ZANAN_ENHANCED_SOLDIER] || mon->data == &mons[PM_VANESSA_ENHANCED_SOLDIER] || mon->data == &mons[PM_SUPERREGENEBOROS] || mon->data == &mons[PM_TELHUREZA_HOUSE_GUARD] || mon->data == &mons[PM_JUERE_DEMON_SOLDIER] || mon->data == &mons[PM_MAUA_YA_KIAJEMI_YA_KUELEA] || mon->data == &mons[PM_DIGGING_ON_FARMER] || mon->data == &mons[PM_JENNIFER_DEMON_SOLDIER] || mon->data == &mons[PM_ARIANE__LADY_OF_THE_ELEMENTS] || mon->data == &mons[PM_RENAI_OVER_MESHERA] || mon->data == &mons[PM_PATIENT_ZERO] || mon->data == &mons[PM_MISSU] ) {
 		mon->mhp += 20;
 		if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
 	}
@@ -3129,6 +3129,33 @@ toofar:
 			"i think we should support that guys slex-clean variant which removes all of amys garbage! let that variant displace the original slex off the internet forever!!!",
 		};
 		verbalize("%s", nhworker_msgs[rn2(SIZE(nhworker_msgs))]);
+
+	    }
+
+	    if ((mdat == &mons[PM_ENEMY_FROM_LEVEL___]) && !mtmp->mpeaceful && !rn2(5) ) {
+		static const char *levelfiftyfive_msgs[] = {
+			"THIS IS YOUR END",
+			"DEATH TO THE ADVENTURER",
+			"YOU ARE ALREADY DEAD",
+			"YOU WILL DIE NOW",
+			"I WILL KILL YOU",
+			"YOU HAVE NO CHANCE",
+			"FLEE MY WRATH",
+			"RUN FOR YOUR LIFE",
+			"YOU WILL DISAPPEAR ONE WAY OR ANOTHER",
+			"YOUR DAYS ARE NUMBERED",
+			"YOUR GOOSE HAS BEEN COOKED",
+			"YOUR GAME ENDS HERE",
+			"GAME OVER FOR YOU",
+			"BETTER HOPE I DONT CATCH YOU",
+			"YOU CANT HIDE FROM ME",
+			"I WILL FIND AND INSTAKILL YOU",
+			"YOURE NO MATCH FOR ME",
+			"CURIOSITY KILLED THE CAT",
+			"I AM THE LAST THING YOULL SEE",
+			"MY NAME WILL GRACE YOUR TOMBSTONE",
+		};
+		verbalize("%s", levelfiftyfive_msgs[rn2(SIZE(levelfiftyfive_msgs))]);
 
 	    }
 

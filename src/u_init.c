@@ -9122,6 +9122,7 @@ u_init()
 	struct permonst* starlith = &mons[PM_YELLOW_STARLIT_SKY];
 	struct permonst* starliti = &mons[PM_ORANGE_STARLIT_SKY];
 	struct permonst* starlitj = &mons[PM_CYAN_STARLIT_SKY];
+	struct permonst* starlitffx = &mons[PM_ENEMY_FROM_LEVEL___];
 	struct permonst* starlitk = &mons[PM_VIOLET_STARLIT_SKY];
 
 	struct permonst* starlitl = &mons[PM_MISNAMED_STARLIT_SKY];
@@ -25958,6 +25959,42 @@ u_init()
 
 	starlitmonster = -1;
 	starlitattempts = 0;
+	while (((starlitmonster == -1) || (mons[starlitmonster].mlevel <= 50) || (mons[starlitmonster].mlevel > 60)) && starlitattempts < 50000 ) {
+		starlitmonster = rn2(NUMMONS);
+		starlitattempts++;
+	}
+
+	starlitffx->mmove = mons[starlitmonster].mmove;
+	starlitffx->ac = mons[starlitmonster].ac;
+	starlitffx->mr = mons[starlitmonster].mr;
+	starlitffx->maligntyp = mons[starlitmonster].maligntyp;
+	starlitffx->mattk[0] = mons[starlitmonster].mattk[0];
+	starlitffx->mattk[1] = mons[starlitmonster].mattk[1];
+	starlitffx->mattk[2] = mons[starlitmonster].mattk[2];
+	starlitffx->mattk[3] = mons[starlitmonster].mattk[3];
+	starlitffx->mattk[4] = mons[starlitmonster].mattk[4];
+	starlitffx->mattk[5] = mons[starlitmonster].mattk[5];
+	starlitffx->cwt = mons[starlitmonster].cwt;
+	starlitffx->cnutrit = mons[starlitmonster].cnutrit;
+	starlitffx->msound = mons[starlitmonster].msound;
+	starlitffx->msize = mons[starlitmonster].msize;
+	starlitffx->mresists = mons[starlitmonster].mresists;
+	starlitffx->mflags1 = mons[starlitmonster].mflags1;
+	starlitffx->mflags2 = mons[starlitmonster].mflags2;
+	starlitffx->mflags3 = mons[starlitmonster].mflags3;
+
+	starlitffx->mflags2 &= ~M2_NOPOLY;
+	starlitffx->mflags2 &= ~M2_MERC;
+	starlitffx->mflags2 &= ~M2_WERE;
+	starlitffx->mflags2 &= ~M2_PNAME;
+	starlitffx->mflags2 &= ~M2_PEACEFUL;
+
+	starlitffx->mflags3 |= M3_NOPLRPOLY;
+	starlitffx->mflags3 |= M3_NOTAME;
+	starlitffx->mflags3 |= M3_MIMIC;
+
+	starlitmonster = -1;
+	starlitattempts = 0;
 	while (((starlitmonster == -1) || (mons[starlitmonster].mlevel <= 60)) && starlitattempts < 50000 ) {
 		starlitmonster = rn2(NUMMONS);
 		starlitattempts++;
@@ -31588,6 +31625,7 @@ int realityflag;
 	struct permonst* starlith = &mons[PM_YELLOW_STARLIT_SKY];
 	struct permonst* starliti = &mons[PM_ORANGE_STARLIT_SKY];
 	struct permonst* starlitj = &mons[PM_CYAN_STARLIT_SKY];
+	struct permonst* starlitffx = &mons[PM_ENEMY_FROM_LEVEL___];
 	struct permonst* starlitk = &mons[PM_VIOLET_STARLIT_SKY];
 
 	struct permonst* starlitl = &mons[PM_MISNAMED_STARLIT_SKY];
@@ -41565,6 +41603,42 @@ int realityflag;
 	starlitj->mflags2 &= ~M2_WERE;
 	starlitj->mflags2 &= ~M2_PNAME;
 	starlitj->mflags2 &= ~M2_PEACEFUL;
+
+	starlitmonster = -1;
+	starlitattempts = 0;
+	while (((starlitmonster == -1) || (mons[starlitmonster].mlevel <= 50) || (mons[starlitmonster].mlevel > 60)) && starlitattempts < 50000 ) {
+		starlitmonster = rn2(NUMMONS);
+		starlitattempts++;
+	}
+
+	starlitffx->mmove = mons[starlitmonster].mmove;
+	starlitffx->ac = mons[starlitmonster].ac;
+	starlitffx->mr = mons[starlitmonster].mr;
+	starlitffx->maligntyp = mons[starlitmonster].maligntyp;
+	starlitffx->mattk[0] = mons[starlitmonster].mattk[0];
+	starlitffx->mattk[1] = mons[starlitmonster].mattk[1];
+	starlitffx->mattk[2] = mons[starlitmonster].mattk[2];
+	starlitffx->mattk[3] = mons[starlitmonster].mattk[3];
+	starlitffx->mattk[4] = mons[starlitmonster].mattk[4];
+	starlitffx->mattk[5] = mons[starlitmonster].mattk[5];
+	starlitffx->cwt = mons[starlitmonster].cwt;
+	starlitffx->cnutrit = mons[starlitmonster].cnutrit;
+	starlitffx->msound = mons[starlitmonster].msound;
+	starlitffx->msize = mons[starlitmonster].msize;
+	starlitffx->mresists = mons[starlitmonster].mresists;
+	starlitffx->mflags1 = mons[starlitmonster].mflags1;
+	starlitffx->mflags2 = mons[starlitmonster].mflags2;
+	starlitffx->mflags3 = mons[starlitmonster].mflags3;
+
+	starlitffx->mflags2 &= ~M2_NOPOLY;
+	starlitffx->mflags2 &= ~M2_MERC;
+	starlitffx->mflags2 &= ~M2_WERE;
+	starlitffx->mflags2 &= ~M2_PNAME;
+	starlitffx->mflags2 &= ~M2_PEACEFUL;
+
+	starlitffx->mflags3 |= M3_NOPLRPOLY;
+	starlitffx->mflags3 |= M3_NOTAME;
+	starlitffx->mflags3 |= M3_MIMIC;
 
 	starlitmonster = -1;
 	starlitattempts = 0;

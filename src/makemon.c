@@ -7843,6 +7843,31 @@ register struct	monst	*mtmp;
 			 m_initthrow(mtmp, CROSSBOW_BOLT, 50);
 		}
 
+		if (ptr == &mons[PM_CHARACTER_EVP]) {
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     (void)mongets(mtmp, GREEN_LIGHTSABER);
+		     (void)mongets(mtmp, DAGGER);
+		     (void)mongets(mtmp, PLASTEEL_ARMOR);
+		     if (!rn2(3)) (void)mongets(mtmp, WAN_SOLAR_BEAM);
+		}
+
 		if (ptr == &mons[PM_PHANTOM_OF_WAR]) {
 			mk_mplayer_armor(mtmp, rnd_class(PLATE_MAIL, ROBE_OF_WEAKNESS));
 			mk_mplayer_armor(mtmp, rnd_class(MUMMY_WRAPPING, CLOAK_OF_DISPLACEMENT));
@@ -32077,6 +32102,7 @@ int type;
 		case PM_UNHOLY_WATER_GOLEM: return 200;
 		case PM_DOOMED_WATER_GOLEM: return 200;
 		case PM_MIRROR_GOLEM: return 210;
+		case PM_WOODEN_RAFT: return 200;
 		case PM_ONIJI_TANKOBO: return 420;
 		case PM_TITANIUM_GOLEM: return 230;
 		case PM_DANCING_BLADE: return 230;
@@ -32655,7 +32681,7 @@ register struct monst *mtmp;
 
 		if(!mtmp->minvis || See_invisible)
 		    block_point(mx,my);	/* vision */
-	} else if (level.flags.is_maze_lev && rn2(2)) {
+	} else if (level.flags.is_maze_lev && !rn2(15)) { /* used to be rn2(2) --Amy */
 		ap_type = M_AP_OBJECT;
 		appear = BOULDER;
 	} else if (roomno < 0) {
@@ -32882,6 +32908,12 @@ assign_sym:
 		appear = BEARTRAP;
 	}
 
+	if (mtmp->data == &mons[PM_SUPER_STATUE] || mtmp->data == &mons[PM_ELTRA_STATUE]) {
+		s_sym = ROCK_CLASS;
+		ap_type = M_AP_OBJECT;
+		appear = STATUE;
+	}
+
 	if (mtmp->data == &mons[PM_IMPLANT_MIMIC] || mtmp->data == &mons[PM_IMPLANT_PERMAMIMIC]) {
 		s_sym = IMPLANT_CLASS;
 		ap_type = M_AP_OBJECT;
@@ -32968,6 +33000,10 @@ assign_sym:
 		appear = S_tree;
 	}
 	if (mtmp->data == &mons[PM_ROCK_NYMPH]) {
+		ap_type = M_AP_FURNITURE;
+		appear = S_rockwall;
+	}
+	if (mtmp->data == &mons[PM_DEEP_ROCK]) {
 		ap_type = M_AP_FURNITURE;
 		appear = S_rockwall;
 	}
@@ -33066,7 +33102,7 @@ assign_sym:
 		appear = S_well;
 	}
 
-	if (mtmp->data == &mons[PM_ELONA_SHADE] || mtmp->data == &mons[PM_IMITATING_SHADE]) {
+	if (mtmp->data == &mons[PM_ELONA_SHADE] || mtmp->data == &mons[PM_IMITATING_SHADE] || mtmp->data == &mons[PM_ENEMY_FROM_LEVEL___]) {
 		ap_type = M_AP_MONSTER;
 		appear = rn2(NUMMONS);
 	}

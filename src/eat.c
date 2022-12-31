@@ -3735,6 +3735,7 @@ register int pm;
 	    case PM_CUCKATRICE:
 	    case PM_COCKAHORSE:
 	    case PM_CUP_COCKATRICE:
+	    case PM_COCKUBUS:
 
 		change_sex(); /* ignores unchanging (intentional) */
 		You("are suddenly very %s!", flags.female ? "feminine" : "masculine");

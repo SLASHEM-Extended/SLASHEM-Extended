@@ -1187,6 +1187,8 @@ register int after;	/* this is extra fast monster movement */
 			 (mtmp2->data == &mons[PM_MOLDOUX__THE_DEFENCELESS_MOLD]) ||
 	/* the "spretty" isn't attacked either */
 			 (mtmp2->data == &mons[PM_SPRETTY]) ||
+	/* superdeep types and certain others are special */
+			 (mtmp2->data == &mons[PM_SUPERDEEP_TYPE]) || (mtmp2->data == &mons[PM_DEEP_ROCK]) || (mtmp2->data == &mons[PM_HIGHSCORE_DUMMY]) ||
 	/* Mister Gribbs is protected */
 			 (mtmp2->data == &mons[PM_MISTER_GRIBBS]) ||
 	/* no thrall guards */

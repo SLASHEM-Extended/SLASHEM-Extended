@@ -1804,7 +1804,7 @@ oisthatstupid:
 blatwo:
 
 	/* Finally, print out our explanation. */
-	if (found && !RMBLoss && !u.uprops[RMB_LOST].extrinsic && !(uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) && !(uarmh && uarmh->oartifact == ART_WOLF_KING) && !(uamul && uamul->oartifact == ART_BUEING) && !(uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) && !(uamul && uamul->oartifact == ART_YOU_HAVE_UGH_MEMORY) && !have_rmbstone()) {
+	if (found && !RightMouseButtonDoesNotGo) {
 
 	    pline("%s", out_str);
 	/*winid datawin = create_nhwindow(NHW_MENU);
@@ -1823,7 +1823,7 @@ blatwo:
 		if (!mojibakeflag) checkfile(temp_buf, pm, FALSE, (boolean)(ans == LOOK_VERBOSE));
 	    }
 	} else {
-	    if (!RMBLoss && !u.uprops[RMB_LOST].extrinsic && !(uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) && !(uarmh && uarmh->oartifact == ART_WOLF_KING) && !(uamul && uamul->oartifact == ART_BUEING) && !(uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) && !(uamul && uamul->oartifact == ART_YOU_HAVE_UGH_MEMORY) && !have_rmbstone()) pline("I've never heard of such things.");
+	    if (!RightMouseButtonDoesNotGo) pline("I've never heard of such things.");
 	}
 
     } while (from_screen && !quick && ans != LOOK_ONCE);

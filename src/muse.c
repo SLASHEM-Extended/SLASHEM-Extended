@@ -9225,6 +9225,7 @@ newboss:
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		wandoffleecyterrain();
+		pline("Some changes in terrain are happening.");
 
 		if (oseen) makeknown(WAN_FLEECY_TERRAIN);
 

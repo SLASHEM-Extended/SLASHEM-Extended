@@ -2330,13 +2330,21 @@ minotaurvariant() /* Amy notice: keep is_minotaur() in mondata.c updated too */
 struct permonst *
 insidemon()
 {
-	int     i = rnd(106);
-	if (i > 105)	return(&mons[PM_CURSED_CALLED_BANDIT]);
+	int     i = rnd(122);
+	if (i > 121)	return(rn2(5) ? &mons[PM_SUPERTHIEF] : &mons[PM_TELEPORT_TRAP]);
+	else if (i > 120)	return(rn2(5) ? &mons[PM_SUPERTHIEF] : &mons[PM_ULTRAYOUSEE]);
+	else if (i > 117)	return(&mons[PM_HIGHSCORE_DUMMY]);
+	else if (i > 114)	return(&mons[PM_DEEP_ROCK]);
+	else if (i > 109)	return(&mons[PM_SUPERDEEP_TYPE]);
+	else if (i > 108)	return(&mons[PM_ENEMY_FROM_LEVEL___]);
+	else if (i > 106)	return(rn2(20) ? &mons[PM_SUPER_STATUE] : &mons[PM_ELTRA_STATUE]);
+	else if (i > 105)	return(&mons[PM_CURSED_CALLED_BANDIT]);
 	else if (i > 100)	return(mkclass(S_WORM_TAIL,0));
 	else if (i > 99)       return(rn2(1000) ? &mons[PM_SUPERTHIEF] : (level_difficulty() < 40) ? &mons[PM_SUPERTHIEF] : &mons[PM_PERCENTS_____NIX]);
 	else if (i > 98)  return(rn2(200) ? &mons[PM_SUPERTHIEF] : (level_difficulty() < 20) ? &mons[PM_SUPERTHIEF] : &mons[PM_NIX]);
 	else if (i > 96)	return((level_difficulty() < 5) ? &mons[PM_SUPERTHIEF] : &mons[PM_AK_THIEF_IS_DEAD_]);
 	else if (i > 94)	return((level_difficulty() < 5) ? &mons[PM_SUPERTHIEF] : &mons[PM_UN_IN_PROTECT_MODE]);
+	else if (i > 85)	return(rn2(5) ? &mons[PM_FAKE_CHARACTER] : &mons[PM_CHARACTER_EVP]);
 	else if (i > 84)	return((level_difficulty() < 20) ? &mons[PM_SPACEWARS_FIGHTER] : &mons[PM_UNDEAD_SPACEWARS_FIGHTER]);
 	else if (i > 74)	return(&mons[PM_CAR_DRIVING_SUPERTHIEF]);
 	else if (i > 64)	return(&mons[PM_SUPERJEDI]);

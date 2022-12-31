@@ -12035,7 +12035,6 @@ wandoffleecyterrain()
 		}
 	}
 
-	pline("Some changes in terrain are happening.");
 	return;
 }
 
