@@ -1789,12 +1789,14 @@ boolean revived;
 	if (mtmp2) {
 		/* save_mtraits() validated mtmp2->mnum */
 		mtmp2->data = &mons[mtmp2->mnum];
+
 		if (mtmp2->mhpmax <= 0 && !is_rider(mtmp2->data) && !is_deadlysin(mtmp2->data))
 			return (struct monst *)0;
 		if (revived) mtmp = makemon(mtmp2->data,
-				cc->x, cc->y, NO_MINVENT|MM_NOWAIT|MM_NOCOUNTBIRTH|MM_REVIVED);
+				cc->x, cc->y, NO_MINVENT|MM_NOWAIT|MM_NOCOUNTBIRTH|MM_REVIVED|MM_ADJACENTOK);
 		else mtmp = makemon(mtmp2->data,
-				cc->x, cc->y, NO_MINVENT|MM_NOWAIT|MM_NOCOUNTBIRTH);
+				cc->x, cc->y, NO_MINVENT|MM_NOWAIT|MM_NOCOUNTBIRTH|MM_ADJACENTOK);
+
 		if (!mtmp) return mtmp;
 
 		/* heal the monster */
@@ -1978,6 +1980,7 @@ register struct obj *obj;
 				mtmp->mhp = mtmp->mhpmax = 100;
 				mon_adjust_speed(mtmp, 2, (struct obj *)0); /* MFAST */
 			}
+
 		} else {
 		    if (obj->oxlth && (obj->oattached == OATTACHED_MONST)) {
 			    coord xy;
@@ -1985,9 +1988,11 @@ register struct obj *obj;
 		    	    mtmp = montraits(obj, &xy, TRUE);
 		    	    if (mtmp && mtmp->mtame && !mtmp->isminion)
 				wary_dog(mtmp, TRUE);
+
 		    } else
  		            mtmp = makemon(&mons[montype], x, y,
 				       NO_MINVENT|MM_NOWAIT|MM_NOCOUNTBIRTH|MM_REVIVED);
+
 		    if (mtmp) {
 			if (obj->oxlth && (obj->oattached == OATTACHED_M_ID)) {
 			    unsigned m_id;
@@ -2010,6 +2015,7 @@ register struct obj *obj;
 			    /* don't mess with obj->oxlth here */
 			    obj->oattached = OATTACHED_NOTHING;
 			}
+
 			/* Monster retains its name */
 			if (obj->onamelth)
 			    mtmp = christen_monst(mtmp, ONAME(obj));
