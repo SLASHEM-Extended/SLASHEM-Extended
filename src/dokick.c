@@ -1123,6 +1123,8 @@ register struct obj *gold;
 			   goldreqd = 250L;
 			else if (mtmp->data == &mons[PM_MINOAN_SERGEANT])
 			   goldreqd = 250L;
+			else if (mtmp->data == &mons[PM_ASS_RIMMING_RAMMER])
+			   goldreqd = 250L;
 			else if (mtmp->data == &mons[PM_HUN_SERGEANT])
 			   goldreqd = 250L;
 			else if (mtmp->data == &mons[PM_MONGOL_SERGEANT])

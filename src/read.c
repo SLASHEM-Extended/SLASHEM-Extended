@@ -11679,6 +11679,8 @@ int how;
 	} else {
 	    int cnt = 0;
 
+	    u.lamefarmer = 1; /* yeah you wish you could use revgeno to "wish" for things the monsters have! :-P --Amy */
+
 	    if (!(mons[mndx].geno & G_UNIQ) &&
 		    !(mvitals[mndx].mvflags & (G_GENOD | G_EXTINCT)))
 		for (i = rn1(3, 4); i > 0; i--) {
@@ -11688,6 +11690,9 @@ int how;
 		    if (mvitals[mndx].mvflags & G_EXTINCT)
 			break;	/* just made last one */
 		}
+
+	    u.lamefarmer = 0;
+
 	    if (cnt)
 		pline("Sent in some %s.", makeplural(buf));
 	    else {

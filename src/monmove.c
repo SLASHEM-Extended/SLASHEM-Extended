@@ -2868,7 +2868,7 @@ toofar:
 /*	Now the actual movement phase	*/
 
 #ifndef GOLDOBJ
-	if(!nearby || (monsterflees(mtmp->data) && !rn2(3)) || (mtmp->mnum == PM_BROKEN_UMBRELLA && !rn2(3)) || (mtmp->data->msound == MS_METALMAFIA && !rn2(3)) || (u.singtrapocc && rn2(5)) || (u.katitrapocc && rn2(5)) || mtmp->mflee || scared ||
+	if(!nearby || (monsterflees(mtmp->data) && !rn2(3)) || (mtmp->mnum == PM_YOU_SEE_) || (mtmp->mnum == PM_BROKEN_UMBRELLA && !rn2(3)) || (mtmp->data->msound == MS_METALMAFIA && !rn2(3)) || (u.singtrapocc && rn2(5)) || (u.katitrapocc && rn2(5)) || mtmp->mflee || scared ||
 	   mtmp->mconf || mtmp->mstun || (mtmp->minvis && !rn2(3)) ||
 	   (mdat->mlet == S_LEPRECHAUN && !u.ugold && (mtmp->mgold || rn2(2))) ||
 
@@ -2878,7 +2878,7 @@ toofar:
 	    lepgold = findgold(mtmp->minvent);
 	}
 
-	if(!nearby || (monsterflees(mtmp->data) && !rn2(3)) || (mtmp->mnum == PM_BROKEN_UMBRELLA && !rn2(3)) || (mtmp->data->msound == MS_METALMAFIA && !rn2(3)) || (u.singtrapocc && rn2(5)) || (u.katitrapocc && rn2(5)) || mtmp->mflee || scared ||
+	if(!nearby || (monsterflees(mtmp->data) && !rn2(3)) || (mtmp->mnum == PM_YOU_SEE_) || (mtmp->mnum == PM_BROKEN_UMBRELLA && !rn2(3)) || (mtmp->data->msound == MS_METALMAFIA && !rn2(3)) || (u.singtrapocc && rn2(5)) || (u.katitrapocc && rn2(5)) || mtmp->mflee || scared ||
 	   mtmp->mconf || mtmp->mstun || (mtmp->minvis && !rn2(3)) ||
 	   (mdat->mlet == S_LEPRECHAUN && !ygold && (lepgold || rn2(2))) ||
 #endif
@@ -2999,6 +2999,11 @@ toofar:
 				u.cnd_plineamount++;
 			}
 		}
+
+	    if (mdat == &mons[PM_BIRD_MACHINE] && !rn2(5)) {
+		if (canseemon(mtmp)) pline("%s squawks!", Monnam(mtmp));
+		else You_hear("a squawk nearby!");
+	    }
 
 	    if (inrange && (mdat == &mons[PM_HARDFOUGHT_ANTI_AMY_SQUAD]) && !mtmp->mpeaceful && !rn2(5) && !u.antiamysquad ) {
 			u.antiamysquad = TRUE;
@@ -3675,7 +3680,7 @@ register int after;
 	    goto postmov;
 	}
 
-	if ((ptr == &mons[PM_ASIMA] || ptr == &mons[PM_BEARER_OF_BAD_NEWS]) && !rn2(25) && !mtmp->mcan &&
+	if ((ptr == &mons[PM_ASIMA] || ptr == &mons[PM_YOUR_MAP_SHOWS_] || ptr == &mons[PM_BEARER_OF_BAD_NEWS]) && !rn2(25) && !mtmp->mcan &&
 	   !tele_restrict(mtmp) ) {
 		(void) rloc(mtmp, FALSE);
 		mmoved = 1;

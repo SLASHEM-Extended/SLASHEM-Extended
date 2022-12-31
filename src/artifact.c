@@ -1385,6 +1385,10 @@ register boolean mod;
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
 			}
+		    if (otmp && otmp->oartifact == ART_SIEGFRIED_S_DEATHBOLT) {
+			otmp->quan = 1;
+			otmp->owt = weight(otmp);
+			}
 		    if (otmp && otmp->oartifact == ART_NINER) {
 			otmp->spe += 9;
 			if (otmp->spe > 127) otmp->spe = 127;

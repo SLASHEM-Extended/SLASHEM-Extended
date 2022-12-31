@@ -1971,6 +1971,11 @@ boolean *prev_loot;
 		    /* the attempt costs you time */
 			return (1);
 		}
+		/* wtf, why was it guaranteed to work even for a hostile horse trying to kill you??? --Amy */
+		if (!mtmp->mtame && !mtmp->mpeaceful) {
+			pline("%s doesn't just let you remove the saddle!", Monnam(mtmp));
+			return (1);
+		}
 		obj_extract_self(otmp);
 		if ((unwornmask = otmp->owornmask) != 0L) {
 		    mtmp->misc_worn_check &= ~unwornmask;

@@ -1313,6 +1313,13 @@ register struct monst *mtmp;
 			  else w1 = rnd_class(PARTISAN,BEC_DE_CORBIN);
 			  w2 = rn2(2) ? KNIFE : DAGGER;
 			  break;
+			case PM_ASS_RIMMING_RAMMER:
+			  if (rn2(3)) w1 = rn2(2) ? SHORT_SWORD : SPEAR;
+			  else if (!rn2(5)) w1 = LANCE;
+			  else if (!rn2(5)) w1 = DWARVISH_MATTOCK;
+			  else w1 = rnd_class(PARTISAN,BEC_DE_CORBIN);
+			  w2 = rn2(2) ? KNIFE : DAGGER;
+			  break;
 			case PM_MILITARY_GUY:
 			  w1 = PISTOL;
 			  w2 = rn2(2) ? KNIFE : DAGGER;
@@ -9128,6 +9135,7 @@ register struct	monst	*mtmp;
 			case PM_ROHIRRIM_SOLDIER: mac = 3; break;
 			case PM_ILLUSIONARY_SOLDIER: mac = 3; break;
 			case PM_SERGEANT: mac = 0; break;
+			case PM_ASS_RIMMING_RAMMER: mac = 0; break;
 			case PM_EXTRATERRESTRIAL_SERGEANT: mac = 0; break;
 			case PM_MINOAN_SERGEANT: mac = 0; break;
 			case PM_HUN_SERGEANT: mac = 0; break;
@@ -9303,6 +9311,20 @@ register struct	monst	*mtmp;
 		}
 
 		if (mtmp->data == &mons[PM_DIGGING_ON_FARMER]) {
+			struct obj *osaddle;
+			if (!!(osaddle = mksobj(LEATHER_SADDLE, TRUE, FALSE, FALSE))) {
+				if (mpickobj(mtmp, osaddle, TRUE)) { /* it became a gold piece (e.g. minimalist) --Amy */
+					if (wizard) impossible("merged saddle?");
+				} else {
+					mtmp->misc_worn_check |= W_SADDLE;
+					osaddle->dknown = osaddle->bknown = osaddle->rknown = 1;
+					osaddle->owornmask = W_SADDLE;
+					osaddle->leashmon = mtmp->m_id;
+					update_mon_intrinsics(mtmp, osaddle, TRUE, TRUE);
+				}
+			}
+		}
+		if (mtmp->data == &mons[PM_WOODEN_RAFT]) {
 			struct obj *osaddle;
 			if (!!(osaddle = mksobj(LEATHER_SADDLE, TRUE, FALSE, FALSE))) {
 				if (mpickobj(mtmp, osaddle, TRUE)) { /* it became a gold piece (e.g. minimalist) --Amy */
@@ -12382,6 +12404,11 @@ loveheelover:
 			(void) mongets(mtmp, BOW);
 	  		m_initthrow(mtmp, BRONZE_ARROW, 50);
 		}
+		if (ptr == &mons[PM_CET_UDE_D_UA_KAHN]) {
+			(void) mongets(mtmp, COMPOST_BOW);
+	  		m_initthrow(mtmp, FORBIDDEN_ARROW, 50);
+	  		m_initthrow(mtmp, FORBIDDEN_ARROW, 50);
+		}
 		if (ptr == &mons[PM_POOR_CENTAUR]) {
 			(void) mongets(mtmp, BIDENHANDER);
 			(void) mongets(mtmp, BOW);
@@ -12904,6 +12931,7 @@ loveheelover:
 		}
 
 		if (ptr == &mons[PM_JEMIMA]) (void) mongets(mtmp, COMBAT_STILETTOS);
+		if (ptr == &mons[PM_MARSHALL]) (void) mongets(mtmp, SPIKED_CLUB);
 		if (ptr == &mons[PM_HISTORY_FEMMY]) (void) mongets(mtmp, WEDGE_SANDALS); /* M4_SANDALS */
 		if (ptr == &mons[PM_WATER_MATERIAL_BLONDE]) (void) mongets(mtmp, WEDGE_SANDALS); /* M4_SANDALS */
 		if (ptr == &mons[PM_FARMER_FEMMY]) {
@@ -14085,6 +14113,15 @@ loveheelover:
 		if (mtmp->data == &mons[PM_VACCINATION_GESTAPO]) (void) mongets(mtmp, SCALPEL);
 		if (mtmp->data == &mons[PM_HORNY_FEMMY]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if (mtmp->data == &mons[PM_UNMOUNT_VIPER]) (void) mongets(mtmp, BARDICHE);
+		if (mtmp->data == &mons[PM_SORC_D_AVANT_LANCER]) (void) mongets(mtmp, LANCE);
+		if (mtmp->data == &mons[PM_SORC_D_AVANT_ASSASSIN]) {
+			otmp = mksobj(IRON_SABER, FALSE, FALSE, FALSE);
+			if (otmp) {
+				otmp->opoisoned = TRUE;
+				(void) mpickobj(mtmp, otmp, TRUE);
+			}
+
+		}
 
 		if (ptr == &mons[PM_WOODFALL_CATTLE]) {
 			(void) mongets(mtmp, SHARP_AXE);
@@ -16323,6 +16360,7 @@ loveheelover:
 	      if (ptr == &mons[PM_POLE_KANGAROO]) (void) mongets(mtmp, BOHEMIAN_EAR_SPOON);
 	      if (ptr == &mons[PM_FLAT_SPITTER]) (void) mongets(mtmp, SHARP_POLE);
 	      if (ptr == &mons[PM_SQUISH_SPITTER]) (void) mongets(mtmp, LONG_POLE);
+	      if (ptr == &mons[PM_MARGRET]) (void) mongets(mtmp, FEMININE_PUMPS);
 
 		if (ptr == &mons[PM_MACRO_KANGAROO]) {
 			 m_initthrow(mtmp, SAND_DART, 50);
@@ -17163,6 +17201,10 @@ loveheelover:
 
 		if (monsndx(ptr) == PM_DOUGLAS_ADAMS) {
 			(void) mongets(mtmp,HITCHHIKER_S_GUIDE_TO_THE_GALA);
+		}
+		if (monsndx(ptr) == PM_MARTINA) {
+			(void) mongets(mtmp,BLOCK_HEELED_COMBAT_BOOT);
+			(void) mongets(mtmp,LADY_BOOTS);
 		}
 		if (monsndx(ptr) == PM_UNHOLY_LIGHT_WARRIOR) {
 			(void) mongets(mtmp, LARGE_SHIELD);
@@ -18173,6 +18215,10 @@ loveheelover:
 			(void) mongets(mtmp, RIFLE);
 			m_initthrow(mtmp, RIFLE_BULLET, 40);
 		}
+		if (ptr == &mons[PM_GRUE_MORDE]) {
+			(void) mongets(mtmp, DARK_ELVEN_DAGGER);
+			(void) mongets(mtmp, LEATHER_ARMOR);
+		}
 
 		if (mtmp->data == &mons[PM_ANNEMARIE_S_GIRL_SHOE]) { (void) mongets(mtmp, LACQUERED_DANCING_SHOE); (void) mongets(mtmp, WEDGE_SANDALS); } /* M4_SANDALS */
 		if (ptr == &mons[PM_DANIELLE_S_CUDDLY_SNEAKER]) (void) mongets(mtmp, SOFT_SNEAKERS); /* M4_SNEAKERS */
@@ -18348,6 +18394,10 @@ loveheelover:
 		if (ptr == &mons[PM_ARMED_COP_CAR]) {
 			(void) mongets(mtmp, PISTOL);
 	  		m_initthrow(mtmp, PISTOL_BULLET, 50);
+		}
+		if (ptr == &mons[PM_CLAUDIA]) {
+			(void) mongets(mtmp, WOODEN_GETA);
+			(void) mongets(mtmp, WEDGE_SANDALS);
 		}
 		if (ptr == &mons[PM_WOOZIE]) {
 			(void) mongets(mtmp, PISTOL);
@@ -32831,6 +32881,12 @@ assign_sym:
 		s_sym = ARMOR_CLASS;
 		ap_type = M_AP_OBJECT;
 		appear = rnd_class(MUMMY_WRAPPING, CLOAK_OF_DISPLACEMENT);
+	}
+
+	if (mtmp->data == &mons[PM_UNOVA_STUNFISK]) {
+		s_sym = TOOL_CLASS;
+		ap_type = M_AP_OBJECT;
+		appear = BEARTRAP;
 	}
 
 	if (mtmp->data == &mons[PM_IMPLANT_MIMIC] || mtmp->data == &mons[PM_IMPLANT_PERMAMIMIC]) {

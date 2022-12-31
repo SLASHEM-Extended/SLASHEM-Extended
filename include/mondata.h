@@ -222,7 +222,7 @@
 #define spawnswithhammersandal(ptr)		(((ptr)->mflags4 & M4_HAMMERSANDAL) != 0L)
 #define spawnswithpumps(ptr)		(((ptr)->mflags4 & M4_PUMPS) != 0L)
 
-#define canalwaysride(ptr)	((ptr) == &mons[PM_SLOW_HUMPER] || (ptr) == &mons[PM_TLOTTING_HUMPER] || (ptr) == &mons[PM_HUMPER] || (ptr) == &mons[PM_DOMESTIC_HUMPER] || (ptr) == &mons[PM_FAST_HUMPER] || (ptr) == &mons[PM_PETTY_FAST_HUMPER] || (ptr) == &mons[PM_BLITZ_HUMPER] || (ptr) == &mons[PM_WEAPONIZED_HUMPER] || (ptr) == &mons[PM_EFFING_HUMPER] || (ptr) == &mons[PM_TURBO_HUMPER] || (ptr) == &mons[PM_RARE_HUMPER] || (ptr) == &mons[PM_RIDABLE_HUMPER] || (ptr) == &mons[PM_INKA_HUMPER] || (ptr) == &mons[PM_DIGGING_ON_FARMER])
+#define canalwaysride(ptr)	((ptr) == &mons[PM_SLOW_HUMPER] || (ptr) == &mons[PM_TLOTTING_HUMPER] || (ptr) == &mons[PM_HUMPER] || (ptr) == &mons[PM_DOMESTIC_HUMPER] || (ptr) == &mons[PM_FAST_HUMPER] || (ptr) == &mons[PM_PETTY_FAST_HUMPER] || (ptr) == &mons[PM_BLITZ_HUMPER] || (ptr) == &mons[PM_WEAPONIZED_HUMPER] || (ptr) == &mons[PM_EFFING_HUMPER] || (ptr) == &mons[PM_TURBO_HUMPER] || (ptr) == &mons[PM_RARE_HUMPER] || (ptr) == &mons[PM_WOODEN_RAFT] || (ptr) == &mons[PM_RIDABLE_HUMPER] || (ptr) == &mons[PM_INKA_HUMPER] || (ptr) == &mons[PM_DIGGING_ON_FARMER])
 
 #define is_nonmoving(ptr) ( (ptr)->mmove < 1 || (ptr)->mlet == S_TURRET || ((ptr)->mflags3 & M3_NONMOVING) )
 
@@ -274,7 +274,7 @@
 
 /* does the monster only eat old corpses? (both ptr and monster number!!!) */
 #define saprovorous(ptr)	((ptr) == &mons[PM_GHOUL] || (ptr) == &mons[PM_LOL_WE_INVENTED_ANOTHER_GHAST] || (ptr) == &mons[PM_SAPROVOROUS_NYMPH] || (ptr) == &mons[PM_GHAST] || (ptr) == &mons[PM_CORPSEWORM] || (ptr) == &mons[PM_DOGSHIT_SEARCHER] || (ptr) == &mons[PM_STINKING_ALIEN] || (ptr) == &mons[PM_DOSTICH] || (ptr) == &mons[PM_CHTO] || (ptr) == &mons[PM_GASTLY] || (ptr) == &mons[PM_PHANTOM_GHOST] || (ptr) == &mons[PM_HAUNTER] || (ptr) == &mons[PM_GENGAR])
-#define saprovorousnumber(mnnm)	(mnnm == PM_GHOUL || mnnm == PM_LOL_WE_INVENTED_ANOTHER_GHAST || mnnm == PM_SAPROVOROUS_NYMPH || mnnm == PM_GHAST || mnnm == PM_CORPSEWORM || mnnm == PM_DOGSHIT_SEARCHER || mnnm == PM_STINKING_ALIEN || mnnm == PM_GASTLY || mnnm == PM_PHANTOM_GHOST || mnnm == PM_HAUNTER || mnnm == PM_GENGAR)
+#define saprovorousnumber(mnnm)	(mnnm == PM_GHOUL || mnnm == PM_LOL_WE_INVENTED_ANOTHER_GHAST || mnnm == PM_SAPROVOROUS_NYMPH || mnnm == PM_GHAST || mnnm == PM_CORPSEWORM || mnnm == PM_DOGSHIT_SEARCHER || mnnm == PM_STINKING_ALIEN || mnnm == PM_DOSTICH || mnnm == PM_CHTO || mnnm == PM_GASTLY || mnnm == PM_PHANTOM_GHOST || mnnm == PM_HAUNTER || mnnm == PM_GENGAR)
 
 /* this returns the light's range, or 0 if none; if we add more light emitting
    monsters, we'll likely have to add a new light range field to mons[] */

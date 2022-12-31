@@ -838,7 +838,7 @@ elena12:
 			}
 
 			/* superhard sandals use M4_SANDALS */
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ( (FemtrapActiveKerstin && spawnswithsandals(mtmp->data)) || (footwear && itemhasappearance(footwear, APP_SUPERHARD_SANDALS)) || mtmp->data == &mons[PM_SEXY_CLAUDIA] || (randomsexyheels == 30) ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ( (FemtrapActiveKerstin && spawnswithsandals(mtmp->data)) || (footwear && itemhasappearance(footwear, APP_SUPERHARD_SANDALS)) || mtmp->data == &mons[PM_SEXY_CLAUDIA] || mtmp->data == &mons[PM_CLAUDIA_S_CUTE_WOODEN_SANDAL] || (randomsexyheels == 30) ) ) {
 elenaWOODSANDAL:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
