@@ -4627,6 +4627,8 @@ register struct monst *mtmp;
 		You("allowed someone who was on the phone to die! The gods certainly aren't very pleased.");
 	}
 
+	mtmp->flagged_for_death = FALSE;
+
 	if(mtmp->isgd) {
 		/* if we're going to abort the death, it *must* be before
 		 * the m_detach or there will be relmon problems later */
@@ -9597,6 +9599,21 @@ struct obj *obj_list;
 	    } else if (Has_contents(otmp)) {
 		kill_eggs(otmp->cobj);
 	    }
+}
+
+/* kill all monsters that are flagged for death */
+void
+kill_deathmarked_monsters()
+{
+	struct monst *mtmp, *mtmp2;
+	for (mtmp = fmon; mtmp; mtmp = mtmp2) {
+	    mtmp2 = mtmp->nmon;
+	    if (DEADMONSTER(mtmp)) continue;
+	    if (mtmp->flagged_for_death) {
+			monkilled(mtmp, "", AD_PHYS);
+	    }
+	}
+
 }
 
 /* kill all members of genocided species */

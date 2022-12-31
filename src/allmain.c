@@ -13681,6 +13681,8 @@ past4:
 	u.dynamitehack = 0;
 	u.lamefarmer = 0;
 
+	kill_deathmarked_monsters();
+
 	/* fail safe for banishment in case the player would somehow get a turn --Amy */
 	if (u.banishmentbeam && multi >= 0) nomul(-2, "being banished", FALSE);
 	if (u.levelporting && multi >= 0) nomul(-2, "being levelported", FALSE);
@@ -14356,6 +14358,8 @@ past4:
 #endif
 
 	u.umoved = FALSE;
+
+	kill_deathmarked_monsters();
 
    if (u.hangupcheat && !multi) u.hangupcheat = 0;
 

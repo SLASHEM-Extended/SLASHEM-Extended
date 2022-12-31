@@ -1898,6 +1898,7 @@ E int can_be_hatched(int);
 E int egg_type_from_parent(int,BOOLEAN_P);
 E boolean dead_species(int,BOOLEAN_P);
 E void kill_genocided_monsters(void);
+E void kill_deathmarked_monsters(void);
 E void golemeffects(struct monst *,int,int);
 E boolean angry_guards(BOOLEAN_P);
 E void pacify_guards(void);

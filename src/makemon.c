@@ -23939,6 +23939,7 @@ register int	x, y;
 register int	mmflags;
 {
 	register struct monst *mtmp;
+	register struct monst *mtmp2; /* for monsters that should spawn tame --Amy */
 	int mndx, mcham, ct, mitem, xlth, senserchance;
 	boolean willsenser = FALSE;
 	boolean anymon = (!ptr);
@@ -24373,6 +24374,7 @@ register int	mmflags;
 	mtmp->lisapantstype = rnd(18);
 	mtmp->lisaseen = FALSE;
 	mtmp->codeguessed = FALSE;
+	mtmp->flagged_for_death = FALSE;
 
 	if (Movemork || u.uprops[MOVEMORKING].extrinsic || have_movemorkstone()) mtmp->movement += 12;
 	if (uarmf && uarmf->oartifact == ART_SATAN_S_HYPERCHARGE) mtmp->movement += rnd(24);
@@ -26859,21 +26861,26 @@ register int	mmflags;
 	}
 
 	if (ptr->msound == MS_DEAD && !monster_is_revived && !(mtmp->mrevived) ) {
-		monkilled(mtmp, "", AD_PHYS);
-		if (wizard) pline("msdead");
-		return((struct monst *)0);
+
+		mtmp->flagged_for_death = TRUE;
+
+/*		monkilled(mtmp, "", AD_PHYS);
+		return((struct monst *)0);*/
 	}
 
 	if (mndx == PM_UNFORTUNATE_VICTIM && !monster_is_revived && in_mklev ) { /* These are supposed to spawn already dead. --Amy */
-			monkilled(mtmp, "", AD_PHYS);
-		if (wizard) pline("msunfort");
-			return((struct monst *)0);
+		mtmp->flagged_for_death = TRUE;
+
+/*			monkilled(mtmp, "", AD_PHYS);
+			return((struct monst *)0); */
 	} 
 
 	if ((mndx == PM_SCROLLER_MASTER || mndx == PM_BOULDER_MASTER || mndx == PM_ITEM_MASTER || mndx == PM_GOOD_ITEM_MASTER || mndx == PM_BAD_ITEM_MASTER || mndx == PM_HOLE_MASTER || mndx == PM_TRAP_MASTER) && !monster_is_revived) {
-		monkilled(mtmp, "", AD_PHYS); /* leave no trace of this monster --Amy */
-		if (wizard) pline("msmaster");
-		return((struct monst *)0);
+
+		mtmp->flagged_for_death = TRUE;
+
+/*		monkilled(mtmp, "", AD_PHYS); leave no trace of this monster --Amy
+		return((struct monst *)0); */
 	}
 
 	if (mndx == PM_SHOCKING_SPHERE && Role_if(PM_ACID_MAGE) && Is_nemesis(&u.uz) ) {
@@ -26882,123 +26889,83 @@ register int	mmflags;
 
 	/* Kop characters sometimes receive pets --Amy */
 	if (mtmp->mpeaceful && !monster_is_revived && Race_if(PM_KOP) && !rn2(10) && sgn(u.ualign.type) == sgn(mtmp->data->maligntyp) && (mtmp->data->mr < rnd(100) ) ) {
-		(void) tamedog(mtmp, (struct obj *)0, FALSE);
-		if (wizard) pline("koppet");
-		return((struct monst *)0);
+		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
 	if (mtmp->mpeaceful && !monster_is_revived && uarmh && uarmh->oartifact == ART_DOGGO_FRIENDSHIP && mtmp->data->mlet == S_DOG && !rn2(10)) {
-		(void) tamedog(mtmp, (struct obj *)0, FALSE);
-		if (wizard) pline("doggo");
-		return((struct monst *)0);
+		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
 	if (!rn2(10) && !monster_is_revived && uamul && uamul->oartifact == ART_MAX_ONE_GRAY && mtmp->data->mcolor == CLR_GRAY) {
-		(void) tamedog(mtmp, (struct obj *)0, FALSE);
-		if (wizard) pline("max-one");
-		return((struct monst *)0);
+		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
 	if (!rn2(50) && !monster_is_revived && ((mtmp->data->mcolor == CLR_GREEN) || ((mtmp->data->mcolor) == CLR_BRIGHT_GREEN)) && uarmc && itemhasappearance(uarmc, APP_GRASS_CLOAK) ) {
-		(void) tamedog(mtmp, (struct obj *)0, FALSE);
-		if (wizard) pline("grasscloak");
-		return((struct monst *)0);
+		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
 	if (!rn2(10) && !monster_is_revived && (mtmp->data->mcolor == CLR_RED) && RngeRedAttunement) {
-		(void) tamedog(mtmp, (struct obj *)0, FALSE);
-		if (wizard) pline("redattune");
-		return((struct monst *)0);
+		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
 	if (!rn2(10) && !monster_is_revived && (mtmp->data->mcolor == CLR_ORANGE) && uwep && uwep->oartifact == ART_ORANGERY) {
-		(void) tamedog(mtmp, (struct obj *)0, FALSE);
-		if (wizard) pline("orangery");
-		return((struct monst *)0);
+		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
 	if (!rn2(50) && !monster_is_revived && (mtmp->data->mcolor == CLR_ORANGE) && RngeRedAttunement) {
-		(void) tamedog(mtmp, (struct obj *)0, FALSE);
-		if (wizard) pline("redattune2");
-		return((struct monst *)0);
+		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
 	if (!rn2(33) && !monster_is_revived && RngePolarOpposites && (resists_elec(mtmp) || resists_acid(mtmp)) && !(resists_elec(mtmp) && resists_acid(mtmp)) ) {
-		(void) tamedog(mtmp, (struct obj *)0, FALSE);
-		if (wizard) pline("polaroppos");
-		return((struct monst *)0);
+		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
 	if (!rn2(20) && !monster_is_revived && is_pokemon(mtmp->data) && uarmc && itemhasappearance(uarmc, APP_POKE_MONGO_CLOAK)) {
-		(void) tamedog(mtmp, (struct obj *)0, FALSE);
-		if (wizard) pline("pokemongo");
-		return((struct monst *)0);
+		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
 	if (!rn2(25) && !monster_is_revived && mtmp->data->mlet == S_BAD_FOOD && uarmg && itemhasappearance(uarmg, APP_FLOWER_GLOVES) ) {
-		(void) tamedog(mtmp, (struct obj *)0, FALSE);
-		if (wizard) pline("flowergl");
-		return((struct monst *)0);
+		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
 	if (!rn2(4) && !monster_is_revived && uarmf && uarmf->oartifact == ART_SPEAK_TO_OJ && (mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_LOUD)) {
-		(void) tamedog(mtmp, (struct obj *)0, FALSE);
-		if (wizard) pline("speaktooj");
-		return((struct monst *)0);
+		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
 	if (!rn2(100) && !monster_is_revived && is_pokemon(mtmp->data) && RngePocketMonsters) {
-		(void) tamedog(mtmp, (struct obj *)0, FALSE);
-		if (wizard) pline("pockermon");
-		return((struct monst *)0);
+		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
 	if (!rn2(33) && !monster_is_revived && is_pokemon(mtmp->data) && have_pokeloadstone() ) {
-		(void) tamedog(mtmp, (struct obj *)0, FALSE);
-		if (wizard) pline("pokeload");
-		return((struct monst *)0);
+		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
 	if (!rn2(4) && !monster_is_revived && uarmh && uarmh->oartifact == ART_SQUEAKY_TENDERNESS && (mtmp->data->msound == MS_FART_LOUD || mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET) ) {
-		(void) tamedog(mtmp, (struct obj *)0, FALSE);
-		if (wizard) pline("squeaktend");
-		return((struct monst *)0);
+		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
 	if (!rn2(20) && !monster_is_revived && uarmh && uarmh->oartifact == ART_ARMY_LEADER && (mndx == PM_SOLDIER || mndx == PM_SERGEANT || mndx == PM_LIEUTENANT || mndx == PM_CAPTAIN || mndx == PM_GENERAL || (mndx >= PM_TEUTON_SOLDIER && mndx <= PM_GOTHIC_CAPTAIN) ) ) {
-		(void) tamedog(mtmp, (struct obj *)0, FALSE);
-		if (wizard) pline("armylead");
-		return((struct monst *)0);
+		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
 	if (!rn2(50) && !monster_is_revived && uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mtmp->data->mlet == S_NYMPH) ) {
-		(void) tamedog(mtmp, (struct obj *)0, FALSE);
-		if (wizard) pline("whatsup");
-		return((struct monst *)0);
+		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
 	if (!rn2(5) && !monster_is_revived && uarmc && uarmc->oartifact == ART_WATERS_OF_OBLIVION && (mtmp->data->mlet == S_DEMON) ) {
-		(void) tamedog(mtmp, (struct obj *)0, FALSE);
-		if (wizard) pline("watersof");
-		return((struct monst *)0);
+		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
 	if (mtmp->mpeaceful && !monster_is_revived && is_animal(mtmp->data) && uarm && uarm->oartifact == ART_BEASTMASTER_S_DUSTER && !rn2(100)) {
-		(void) tamedog(mtmp, (struct obj *)0, FALSE);
-		if (wizard) pline("beastmast");
-		return((struct monst *)0);
+		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
 	if ((mndx == PM_SIZZLE || mndx == PM_KATNISS) && !monster_is_revived) {
-		(void) tamedog(mtmp, (struct obj *)0, FALSE);
-		if (wizard) pline("sizzel");
-		return((struct monst *)0);
+		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
 	if (always_tame(mtmp->data) && !monster_is_revived && peace_minded(mtmp->data) ) {
-		(void) tamedog(mtmp, (struct obj *)0, FALSE);
-		if (wizard) pline("alwaystame");
-		return((struct monst *)0);
+		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
 	if (!in_mklev)

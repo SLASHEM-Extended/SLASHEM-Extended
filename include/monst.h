@@ -180,6 +180,7 @@ struct monst {
 	Bitfield(canceltimeout,1);	/* for spell of cancellation */
 	Bitfield(slowtimeout,1);	/* for spell of slow monster or inertia */
 	Bitfield(codeguessed,1);	/* did you guess the secret code on this monster? */
+	Bitfield(flagged_for_death,1);	/* should die instantly after spawning */
 
 	Bitfield(mtraitor,1);	/* Former pet that turned traitor */
 	Bitfield(isshk,1);	/* is shopkeeper */
