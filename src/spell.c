@@ -2922,6 +2922,12 @@ docast()
 			u.uen = 0;
 			if (u.uenmax < 0) u.uenmax = 0;
 		}
+		else if (u.uen < 0) {
+			int manafiredamage = abs(u.uen);
+			u.uen = 0;
+			losehp(manafiredamage, "mana fire", KILLED_BY);
+			You("took %d points of damage from mana fire.", manafiredamage);
+		}
 
 		return whatreturn;
 	}
