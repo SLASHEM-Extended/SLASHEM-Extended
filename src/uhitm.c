@@ -1090,7 +1090,7 @@ register struct monst *mtmp;
 		    }
 
 		if (inshop || foo ||
-			(IS_ROCK(levl[u.ux][u.uy].typ) && (!mtmp->egotype_wallwalk) &&
+			(IS_ROCKWFL(levl[u.ux][u.uy].typ) && (!mtmp->egotype_wallwalk) &&
 					!passes_walls(mtmp->data))) {
 		    char buf[BUFSZ];
 

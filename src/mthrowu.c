@@ -2112,7 +2112,7 @@ breamu(mtmp, mattk)			/* monster breathes at you (ranged) */
 
 			/* angband has the infamous "it breathes" deaths --Amy */
 
-			if (isangbander && rn2(2) && (rnd( (int)mattk->damn * 10) > u.uhp )) {
+			if (isangbander && rn2(2) && (rnd( (int)mattk->damn * 6) > u.uhp )) {
 
 			u.youaredead = 1;
 
@@ -2129,7 +2129,7 @@ breamu(mtmp, mattk)			/* monster breathes at you (ranged) */
 			return(0);
 			}
 
-			if (isangbander && rn2(2) && (rnd( (int)mattk->damd * 10) > u.uhp )) {
+			if (isangbander && rn2(2) && (rnd( (int)mattk->damd * 6) > u.uhp )) {
 
 			u.youaredead = 1;
 

@@ -5965,6 +5965,7 @@ static const char *epitaphs[] = {
 	"Gah, the katoiseful is unbalanced as heck, they look just like gnomes and also appear where gnomes usually appear, i.e. in the gnomish mines, but they seem unkillable and completely wreck your shit with their attacks!",
 	"WHAT? A psybur hit me ONCE and my maximum mana went from 171 straight to 35???",
 	"Hey, something reduced my maximum hit points to half of what they originally were, which item do I need to use in order to restore them to their old values? SAY WHAT AMY, you need to build them back up the hard way??? UNPLAYABLE GAME, #quit, you'll never see me again you bitch!",
+	"WTF, I just died. Dude, I was polymorphed into a powerful form with 334 maximum HP and that nazgul just killed me instantly. 'It breathes--More-- You have died.'", /* happened to Amy in angbander mode */
 
 };
 

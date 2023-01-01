@@ -110,6 +110,7 @@
 #define IS_STWALL(typ)	((typ) <= TUNNELWALL)	/* STONE <= (typ) <= TUNNELWALL */
 #define IS_RECOLORWALL(typ)	((typ) && (typ) <= DBWALL)
 #define IS_ROCK(typ)	((typ) < POOL)		/* absolutely nonaccessible */
+#define IS_ROCKWFL(typ)	(((typ) < POOL) && typ != FARMLAND)		/* absolutely nonaccessible */
 #define IS_DOOR(typ)	((typ) == DOOR)
 #define IS_STONE(typ)	((typ) == STONE)
 #define IS_IRONBAR(typ)	((typ) == IRONBARS)

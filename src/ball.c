@@ -430,7 +430,7 @@ boolean allow_drag;
 #define CHAIN_IN_MIDDLE(chx, chy) \
 (distmin(x, y, chx, chy) <= 1 && distmin(chx, chy, uball->ox, uball->oy) <= 1)
 #define IS_CHAIN_ROCK(x,y) \
-(IS_ROCK(levl[x][y].typ) || (IS_DOOR(levl[x][y].typ) && \
+(IS_ROCKWFL(levl[x][y].typ) || (IS_DOOR(levl[x][y].typ) && \
       (levl[x][y].doormask & (D_CLOSED|D_LOCKED))))
 /* Don't ever move the chain into solid rock.  If we have to, then instead
  * undo the move_bc() and jump to the drag ball code.  Note that this also
