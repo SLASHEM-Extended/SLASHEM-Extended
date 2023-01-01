@@ -14452,7 +14452,7 @@ callingoutdone:
 				register struct monst *nexusmon;
 
 				for(nexusmon = fmon; nexusmon; nexusmon = nexusmon->nmon) {
-					u_teleport_mon(nexusmon, FALSE);
+					(void) rloc(nexusmon, FALSE);
 				}
 			}
 			pline("Warping sounds can be heard.");

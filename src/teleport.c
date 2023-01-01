@@ -1627,8 +1627,12 @@ register int x, y;
 
 	/* shopkeepers will only teleport if you zap them with a wand of
 	   teleportation or if they've been transformed into a jumpy monster;
-	   the latter only happens if you've attacked them with polymorph */
-	if (resident_shk && !inhishop(mtmp)) make_angry_shk(mtmp, oldx, oldy);
+	   the latter only happens if you've attacked them with polymorph
+	   Amy edit: that is no longer the case, so this shouldn't make them hostile anymore! */
+	if (resident_shk && issoviet && !inhishop(mtmp)) {
+		make_angry_shk(mtmp, oldx, oldy);
+		pline("VA-KHA-KHA-KHA, lavochnik ub'yet tebya.");
+	}
 }
 
 /* place a monster at a random location, typically due to teleport */

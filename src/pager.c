@@ -5637,6 +5637,7 @@ static NEARDATA const char * const soviettaunts[] = {
 "Kopirovaniye funktsiy iz vzloma transa, eto novyy minimum. Daleye on nachnet nesti chush' iz chut'-chut' zlogo khaka, dazhe nesmotrya na to, chto yego razrabotchik - antikhrist.",
 "Tip ledyanoy glyby izbegayet Emi, potomu chto UOU-KHA-KHA, on ne khochet, chtoby ona ispravlyala oshibki, khotya nikto drugoy ne nashel vsekh problem s kosoy chertoy.",
 "Lyubyye yevropeyskiye agenty, kotoryye popytayutsya podorvat' prevoskhodstvo Kremlya, vydavaya sebya za tekh, kem oni ne yaviyayustya, poluchat znachitel'noye snizheniye zdorov'ya! Chertovy pridurki!",
+"Vladel'tsy magazinov, kotoryye teleportiruyutsya, ub'yut vas, potomu chto vy takoy zhe natsional-sotsialist, kak diktator, pravyashchiy Kiyevom.",
 };
 
 static NEARDATA const char * const practicantlines[] = {
