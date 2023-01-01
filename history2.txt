@@ -1,5 +1,17 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.8.1 - December 2022
+- The deadly breath attack in angbander mode no longer triggers at a higher threshold than the actual expected damage of a breath attack.
+- Improved some situations where interaction of entities with farmland terrain is concerned.
+- Changed the way the game creates monsters that "spawn dead" or become tame upon spawning, to hopefully avoid certain bugs where the caller expects a monster and isn't passed one.
+- New playable role: jockey.
+- The player can now use the "call" command on all object classes, which provides a way (sort of) to take notes in-game.
+- The probability boost given to an item class if the RNG rolls it to be more common is generally lower now.
+- Fixed the SLASH'EM bug where polymorphing a lightsaber or light source and then waiting for the item to unpolymorph would result in an item with too much fuel.
+- Fixed an oversight that caused equipment with certain feminism trap effects to not actually have those effects.
+- Monsters in the special room named "the area" should no longer be massively out of depth.
+- Implemented a new artifact saving method because the previously introduced one from 2.80 was causing problems.
+
 2.8.0 - December 2022
 - Fixed a bug where saving and loading the game would cause randarts to have their base type re-initialized.
 - Nerfed the gain level spell.
