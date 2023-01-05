@@ -17070,6 +17070,11 @@ xchar x, y;
 	d_level *source;
 	branch *br;
 	schar u_depth;
+	int knoxchance = 20;
+	if (depth(&u.uz) > 20) knoxchance = 10;
+	if (depth(&u.uz) > 30) knoxchance = 5;
+	if (depth(&u.uz) > 40) knoxchance = 3;
+	if (depth(&u.uz) > 45) knoxchance = 2;
 
 	br = dungeon_branch("Fort Ludios");
 	if (on_level(&knox_level, &br->end1)) {
@@ -17081,10 +17086,13 @@ xchar x, y;
 	    source = &br->end1;
 	}
 
-	/* Already set or 2/3 chance of deferring until a later level. */
-	if (source->dnum < n_dgns || (!rn2(5) /* Amy change to make sure the chance of it appearing is higher */
+	/* Already set or 2/3 chance of deferring until a later level.
+	 * Amy edit: lowered, it's stupid if knox always spawns so early. in SLEX, the portal may be created on any level,
+	 * including special levels, and since you normally go through the dungeons from top to bottom, it's already far
+	 * too likely for the damn portal to spawn early! now, it becomes more likely the deeper you are */
+	if (source->dnum < n_dgns || (rn2(knoxchance)
 #ifdef WIZARD
-				      && !wizard
+				      /*&& !wizard*/ /* damn you, I want to be able to wizmode-check whether the odds work --Amy */
 #endif
 				      )) return;
 
@@ -17097,6 +17105,8 @@ xchar x, y;
 	/* Adjust source to be current level and re-insert branch. */
 	*source = u.uz;
 	insert_branch(br, TRUE);
+	/* Amy edit: match the Ludios depth to the actual depth to avoid hugely OOD spawns, please! */
+	dungeons[knox_level.dnum].depth_start = depth(&u.uz);
 
 #ifdef DEBUG
 	pline("Made knox portal.");

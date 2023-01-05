@@ -2860,8 +2860,9 @@ boolean alwaysdisplay;
 	/* Damnable special cases */
 	/* The quest and knox should appear to be level 1 to match
 	 * other text.
+	 * Amy edit: it's BS if Ludios doesn't display its actual depth
 	 */
-	if (mptr->lev.dnum == quest_dnum || mptr->lev.dnum == knox_level.dnum)
+	if (mptr->lev.dnum == quest_dnum /* || mptr->lev.dnum == knox_level.dnum */ )
 		depthstart = 1;
 	else
 		depthstart = dungeons[mptr->lev.dnum].depth_start;  

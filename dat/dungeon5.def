@@ -82,6 +82,8 @@ BRANCH: 	"The Temple of Moloch" @ (29, 21)
 BRANCH: 	"The Giant Caverns" @ (29, 21)
 BRANCH:		"The Sunless Sea" @ (27, 23)
 BRANCH:		"The Spider Caves" @ (26, 24)
+# The famous Fort Ludios...
+BRANCH:			"Fort Ludios" @ (23, 27) portal
 BRANCH: 	"One-eyed Sam's Market" @ (22, 28) portal
 BRANCH: 	"The Lost Tomb" @ (21, 29)
 BRANCH: 	"The Wyrm Caves" @ (20, 20)
@@ -126,8 +128,6 @@ RNDLEVEL:		"mazes" "M" @ (2, 48) 69
 RNDLEVEL:		"mazes" "M" @ (2, 48) 69
 RNDLEVEL:		"mazes" "M" @ (2, 48) 69
 
-# The famous Fort Ludios...
-BRANCH:			"Fort Ludios" @ (23, 4) portal
 
 
 # Medusa and the castle.  There should be nothing in between.
