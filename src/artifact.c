@@ -3767,7 +3767,11 @@ arti_invoke(obj)
 	return 1;
     }
 
-    if (oart && (oart->inv_prop == SPECIAL_INVOKE)) {
+	/* all actual invokes require you to actually have the item equipped if it has a slot it "fits" in --Amy
+	 * only the "special" invokes that aren't actually using something in the invocation field in artilist.h are exempt,
+	 * because those also don't use invoke timeouts */
+
+    if (oart) {
 	boolean invokenotworn = FALSE;
 	if (obj->oclass == ARMOR_CLASS && !(obj->owornmask & W_ARMOR) ) invokenotworn = TRUE;
 	if (obj->oclass == WEAPON_CLASS && !(obj->owornmask & W_WEP) ) invokenotworn = TRUE;
