@@ -276,6 +276,8 @@ use_saddle(otmp)
 	}
 	if (Role_if(PM_KNIGHT) || Role_if(PM_CHEVALIER))
 	    chance += 20;
+	if (Role_if(PM_JOCKEY))
+	    chance += 25;
 	if (Role_if(PM_TRANSVESTITE) || Role_if(PM_TOPMODEL))
 	    chance += 50;
 
@@ -504,7 +506,7 @@ mount_steed(mtmp, force)
 	    return (FALSE);
 	}
 
-	if (!force && !(otmp && otmp->otyp == INKA_SADDLE) && !Role_if(PM_KNIGHT) && !Role_if(PM_CHEVALIER) && mtmp->mtame && !(--mtmp->mtame)) {
+	if (!force && !(otmp && otmp->otyp == INKA_SADDLE) && !(Role_if(PM_JOCKEY) && !rn2(5)) && !Role_if(PM_KNIGHT) && !Role_if(PM_CHEVALIER) && mtmp->mtame && !(--mtmp->mtame)) {
 	    /* no longer tame */
 	    newsym(mtmp->mx, mtmp->my);
 	    pline("%s resists%s!", Monnam(mtmp),
@@ -536,7 +538,7 @@ mount_steed(mtmp, force)
 	    return (FALSE);
 	}
 	if (!force && !(otmp && otmp->otyp == INKA_SADDLE) && ((Confusion && !Conf_resist && rn2(3)) || (Fumbling && rn2(4)) || (IsGlib && rn2(2)) || (Wounded_legs && rn2(3)) ||
-		otmp->cursed || (GushLevel+mtmp->mtame < rnd(MAXULEV/2+5) && ( (!Role_if(PM_KNIGHT) || !rn2(5)) && (!Role_if(PM_CHEVALIER) || !rn2(5)) && (!Role_if(PM_YEOMAN) || !rn2(5)) && ((!Role_if(PM_TRANSVESTITE) && !Role_if(PM_TOPMODEL)) || !rn2(5)) ) ) )) {
+		otmp->cursed || (GushLevel+mtmp->mtame < rnd(MAXULEV/2+5) && ( (!Role_if(PM_KNIGHT) || !rn2(5)) && (!Role_if(PM_CHEVALIER) || !rn2(5)) && (!Role_if(PM_JOCKEY) || !rn2(5)) && (!Role_if(PM_YEOMAN) || !rn2(5)) && ((!Role_if(PM_TRANSVESTITE) && !Role_if(PM_TOPMODEL)) || !rn2(5)) ) ) )) {
 	    if (Levitation) {
 		pline("%s slips away from you.", Monnam(mtmp));
 		return FALSE;
