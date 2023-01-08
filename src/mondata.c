@@ -401,6 +401,44 @@ register struct permonst *ptr;
 
 }
 
+/* is the monster from the arabella room (doesn't drown in water or lava while in such a room)? --Amy */
+boolean
+is_arabellamonster(ptr)
+register struct permonst *ptr;
+{
+	if (ptr->mlet == S_WORM_TAIL) return TRUE;
+
+	if (ptr == &mons[PM_SUPERCHEST]) return TRUE;
+	if (ptr == &mons[PM_ULTRACHEST]) return TRUE;
+	if (ptr == &mons[PM_TELEPORT_TRAP]) return TRUE;
+	if (ptr == &mons[PM_ULTRAYOUSEE]) return TRUE;
+	if (ptr == &mons[PM_HIGHSCORE_DUMMY]) return TRUE;
+	if (ptr == &mons[PM_DEEP_ROCK]) return TRUE;
+	if (ptr == &mons[PM_SUPERDEEP_TYPE]) return TRUE;
+	if (ptr == &mons[PM_ENEMY_FROM_LEVEL___]) return TRUE;
+	if (ptr == &mons[PM_SUPER_STATUE]) return TRUE;
+	if (ptr == &mons[PM_ELTRA_STATUE]) return TRUE;
+	if (ptr == &mons[PM_CURSED_CALLED_BANDIT]) return TRUE;
+	if (ptr == &mons[PM_PERCENTS_____NIX]) return TRUE;
+	if (ptr == &mons[PM_NIX]) return TRUE;
+	if (ptr == &mons[PM_FAKE_CHARACTER]) return TRUE;
+	if (ptr == &mons[PM_CHARACTER_EVP]) return TRUE;
+	if (ptr == &mons[PM_SPACEWARS_FIGHTER]) return TRUE;
+	if (ptr == &mons[PM_UNDEAD_SPACEWARS_FIGHTER]) return TRUE;
+	if (ptr == &mons[PM_CAR_DRIVING_SUPERTHIEF]) return TRUE;
+	if (ptr == &mons[PM_SUPERJEDI]) return TRUE;
+	if (ptr == &mons[PM_DIVISION_THIEF]) return TRUE;
+	if (ptr == &mons[PM_DIVISION_JEDI]) return TRUE;
+	if (ptr == &mons[PM_CRITICALLY_INJURED_THIEF]) return TRUE;
+	if (ptr == &mons[PM_CRITICALLY_INJURED_JEDI]) return TRUE;
+	if (ptr == &mons[PM_HUGE_OGRE_THIEF]) return TRUE;
+	if (ptr == &mons[PM_GUNNHILD_S_GENERAL_STORE]) return TRUE;
+	if (ptr == &mons[PM_SUPERTHIEF]) return TRUE;
+
+	return FALSE;
+
+}
+
 /* can the monster swat projectiles away? --Amy */
 boolean
 swatting_monster(ptr)

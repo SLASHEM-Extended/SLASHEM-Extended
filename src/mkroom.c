@@ -841,7 +841,7 @@ struct mkroom *sroom;
 			(type == GOLEMHALL) ? mkclass(S_GOLEM,0) :
 			(type == CRYPTROOM) ? specialtensmon(95) /* M2_UNDEAD */ :
 			(type == NUCLEARCHAMBER) ? specialtensmon(337) /* AD_CONT */ :
-			(type == LEVELSEVENTYROOM) ? specialtensmon(0) /* any random monster */ :
+			(type == LEVELSEVENTYROOM) ? ((struct permonst *) 0) /* any random monster */ :
 			(type == PLAYERCENTRAL) ? (&mons[PM_ARCHEOLOGIST + rn2(PM_WIZARD - PM_ARCHEOLOGIST + 1)]) :
 			(type == COINHALL) ? mkclass(S_BAD_COINS,0) :
 			(type == GRUEROOM) ? mkclass(S_GRUE,0) :
@@ -2327,11 +2327,13 @@ minotaurvariant() /* Amy notice: keep is_minotaur() in mondata.c updated too */
 	return(&mons[PM_MINOTAUR]);
 }
 
+/* arabella room monsters - Amy remark: please keep mondata.c "is_arabellamonster" in sync so they don't drown! */
 struct permonst *
 insidemon()
 {
-	int     i = rnd(122);
-	if (i > 121)	return(rn2(5) ? &mons[PM_SUPERTHIEF] : &mons[PM_TELEPORT_TRAP]);
+	int     i = rnd(125);
+	if (i > 122)	return(rn2(5) ? &mons[PM_SUPERCHEST] : &mons[PM_ULTRACHEST]);
+	else if (i > 121)	return(rn2(5) ? &mons[PM_SUPERTHIEF] : &mons[PM_TELEPORT_TRAP]);
 	else if (i > 120)	return(rn2(5) ? &mons[PM_SUPERTHIEF] : &mons[PM_ULTRAYOUSEE]);
 	else if (i > 117)	return(&mons[PM_HIGHSCORE_DUMMY]);
 	else if (i > 114)	return(&mons[PM_DEEP_ROCK]);

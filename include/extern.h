@@ -1935,6 +1935,7 @@ E boolean sliparm(struct permonst *);
 E boolean sticks(struct permonst *);
 E boolean elongation_monster(struct permonst *);
 E boolean is_minotaur(struct permonst *);
+E boolean is_arabellamonster(struct permonst *);
 E boolean swatting_monster(struct permonst *);
 E boolean ecm_monster(struct permonst *);
 E boolean immune_timestop(struct permonst *);

@@ -2051,7 +2051,7 @@ register struct monst *mtmp;
 	return (0);
     }
 
-    if (inlava) {
+    if (inlava && !(is_arabellamonster(mtmp->data) && *in_rooms(mtmp->mx, mtmp->my, INSIDEROOM)) ) {
 	/*
 	 * Lava effects much as water effects. Lava likers are able to
 	 * protect their stuff. Fire resistant monsters can only protect
@@ -2086,7 +2086,7 @@ register struct monst *mtmp;
 	    }
 	    return (1);
 	}
-    } else if (inpool) {
+    } else if (inpool && !(is_arabellamonster(mtmp->data) && *in_rooms(mtmp->mx, mtmp->my, INSIDEROOM)) ) {
 	/* Most monsters drown in pools.  flooreffects() will take care of
 	 * water damage to dead monsters' inventory, but survivors need to
 	 * be handled here.  Swimmers are able to protect their stuff...
@@ -2134,7 +2134,7 @@ struct monst *mon;
 
 	if (FemtrapActiveKsenia && spawnswithsandals(mon->data) && (mmove < 12)) mmove = 12;
 
-	if (mon->data == &mons[PM_HUSSY_JILL] || mon->data == &mons[PM_ENEMY_FROM_LEVEL___] || mon->data == &mons[PM_VELCRO_BITCH] || mon->data == &mons[PM_SOCKS_GIRL] || mon->data == &mons[PM_JILL] ) {
+	if (mon->data == &mons[PM_HUSSY_JILL] || mon->data == &mons[PM_ENEMY_FROM_LEVEL___] || mon->data == &mons[PM_VELCRO_BITCH] || mon->data == &mons[PM_SOCKS_GIRL] || mon->data == &mons[PM_ULTRACHEST] || mon->data == &mons[PM_JILL] ) {
 	/* Hussy Jill is a dangerous quest nemesis. As long as you don't hurt her, she'll just stand in place...
 	 * but as soon as she loses as much as a single hit point, she'll completely 0wn your sorry butt :P --Amy */
 		if (!(u.usteed && mon == u.usteed) && (mon->mhp == mon->mhpmax)) {
@@ -2143,7 +2143,7 @@ struct monst *mon;
 		}
 	}
 
-	if (mon->data == &mons[PM_SUPER_STATUE] || mon->data == &mons[PM_ELTRA_STATUE]) {
+	if (mon->data == &mons[PM_SUPER_STATUE] || mon->data == &mons[PM_SUPERCHEST] || mon->data == &mons[PM_ELTRA_STATUE]) {
 		if (!(u.usteed && mon == u.usteed) && mon->m_ap_type) {
 			mmove = 0;
 			return mmove;
