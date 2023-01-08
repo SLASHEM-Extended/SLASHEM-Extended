@@ -9547,6 +9547,7 @@ mkwsh_end:
 
 		case T_POLE_MELEE:
 			num = 100 + (techlevX(tech_no) * 5);
+			if (Race_if(PM_HUMANOID_CENTAUR)) num *= 10;
 		    	techt_inuse(tech_no) = num + 1;
 			pline("For a while, your polearms and lances are effective in melee range.");
 		      t_timeout = rnz(5000);

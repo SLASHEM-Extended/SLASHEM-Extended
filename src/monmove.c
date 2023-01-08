@@ -252,6 +252,10 @@ boolean digest_meal;
 		if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
 	}
 
+	if (mon->data == &mons[PM_CRITICALLY_INJURED_PERCENTS]) {
+		mon->mhp = mon->mhpmax;
+	}
+
 	if (FemtrapActiveGudrun && mon->female && humanoid(mon->data) ) {
 		mon->mhp += 5;
 		if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
@@ -2633,28 +2637,35 @@ convertdone:
 				pline("Urgh! You inhale the vile stench that emanates from %s!", mon_nam(mtmp));
 				break;
 			case 2:
-				pline("%s's perfume is beguiling, and you have trouble concentrating!", Monnam(mtmp));
+				if (mtmp->female) pline("%s's perfume is beguiling, and you have trouble concentrating!", Monnam(mtmp));
+				else pline("Ugh, %s's body lotion smells utterly repulsive. You can hardly concentrate on what you're doing.", mon_nam(mtmp));
 				break;
 			case 3:
-				pline("You deeply inhale %s's feminine scent.", mon_nam(mtmp));
+				if (mtmp->female) pline("You deeply inhale %s's feminine scent.", mon_nam(mtmp));
+				else pline("%s's gritty aftershave makes you dizzy.", Monnam(mtmp));
 				break;
 			case 4:
-				pline("%s's odor cloud made of concentrated perfume infiltrates your %s!", Monnam(mtmp), body_part(NOSE));
+				if (mtmp->female) pline("%s's odor cloud made of concentrated perfume infiltrates your %s!", Monnam(mtmp), body_part(NOSE));
+				else pline("Bleh, your %s just can't handle the stench that %s's aftershave is spreading.", body_part(NOSE), mon_nam(mtmp));
 				break;
 			case 5:
 				pline("Your %s are having trouble dealing with the asphyxiating stench that comes from %s!", makeplural(body_part(LUNG)), mon_nam(mtmp));
 				break;
 			case 6:
-				pline("%s attacks you with a fragrance cloud!", Monnam(mtmp));
+				if (mtmp->female) pline("%s attacks you with a fragrance cloud!", Monnam(mtmp));
+				else pline("%s attacks you with a stinking cloud!", Monnam(mtmp));
 				break;
 			case 7:
-				pline("%s is close enough that you can smell %s perfume... but it's way too concentrated, and inhaling the aroma makes you dizzy!", Monnam(mtmp), mhis(mtmp));
+				if (mtmp->female) pline("%s is close enough that you can smell %s perfume... but it's way too concentrated, and inhaling the aroma makes you dizzy!", Monnam(mtmp), mhis(mtmp));
+				else pline("The unbearable odor of %s's body lotion wafts through the dungeon, and having to smell such a stink makes you want to vomit.", mon_nam(mtmp));
 				break;
 			case 8:
-				pline("The lovely scent of femininity floods your nostrils... until you realize that it's getting ever stronger, and you are having trouble when breathing!");
+				if (mtmp->female) pline("The lovely scent of femininity floods your nostrils... until you realize that it's getting ever stronger, and you are having trouble when breathing!");
+				else pline("Some bitter male smell is hanging in the air... and it's getting stronger! You can hardly breathe!");
 				break;
 			case 9:
-				pline("%s's perfume is so scentful that %s reminds you of what your aunt smells like when she comes for a visit on Christmas! Ugh!", Monnam(mtmp), mhe(mtmp));
+				if (mtmp->female) pline("%s's perfume is so scentful that %s reminds you of what your aunt smells like when she comes for a visit on Christmas! Ugh!", Monnam(mtmp), mhe(mtmp));
+				else pline("Even your most odoriferous relative doesn't smell as bad as %s! Ugh!", mon_nam(mtmp));
 				break;
 			case 10:
 				pline("%s's odor reminds you of an oriental brothel! What an intrusive perfume is %s using, anyway?", Monnam(mtmp), mhe(mtmp));

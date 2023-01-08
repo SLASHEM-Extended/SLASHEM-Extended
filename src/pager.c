@@ -28980,6 +28980,12 @@ static NEARDATA const char * const fake_plines[] = {
 	"You can hurt, but the spell will last for a generous time.",
 	"You can hurt, but the spell will last for a generous time. (Yeah I don't expect you to make sense of this message.)",
 	"This is once again a test message! Wow, are there many test messages or what!",
+	"Ugh, the pervert's body lotion smells utterly repulsive. You can hardly concentrate on what you're doing.",
+	"The emera's gritty aftershave makes you dizzy.",
+	"Bleh, your nose just can't handle the stench that the priest of Moloch's aftershave is spreading.",
+	"The unbearable odor of the rictim terrorizer's body lotion wafts through the dungeon, and having to smell such a stink makes you want to vomit.",
+	"Some bitter male smell is hanging in the air... and it's getting stronger! You can hardly breathe!",
+	"Even your most odoriferous relative doesn't smell as bad as the courtier! Ugh!",
 
 };
 
