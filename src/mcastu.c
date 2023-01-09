@@ -648,7 +648,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 		}
 		break;
 	    case AD_SPC2:
-		if (Psi_resist && rn2(StrongPsi_resist ? 100 : 20)) {
+		if ((Psi_resist && rn2(StrongPsi_resist ? 100 : 20)) || obsidianprotection()) {
 			shieldeff(u.ux, u.uy);
 			pline("Something focuses on your mind, but you resist the effects.");
 			dmg = 0;

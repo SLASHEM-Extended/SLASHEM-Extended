@@ -11475,6 +11475,7 @@ boolean ranged;
 	  case AD_SPC2:
 
 			if (Psi_resist && rn2(StrongPsi_resist ? 100 : 20)) break;
+			if (obsidianprotection()) break;
 			pline("%s's corrupted mind backlashes your attack!", Monnam(mon) );
 
 			switch (rnd(10)) {

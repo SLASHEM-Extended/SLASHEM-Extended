@@ -6033,6 +6033,10 @@ boolean ordinary;
 				pline("You blast yourself with soothing psychic energy.");
 				break;
 			}
+			if (obsidianprotection()) {
+				pline("You blast yourself with harmless psychic energy.");
+				break;
+			}
 			You("blast yourself with psychic energy!");
 			damage = d(12,7);
 
@@ -6088,6 +6092,10 @@ boolean ordinary;
 		    makeknown(WAN_PSYBEAM);
 			if (Psi_resist && rn2(StrongPsi_resist ? 100 : 20) ) {
 				pline("You blast yourself with soothing psychic energy.");
+				break;
+			}
+			if (obsidianprotection()) {
+				pline("You blast yourself with harmless psychic energy.");
 				break;
 			}
 			You("blast yourself with psychic energy!");
@@ -6152,6 +6160,10 @@ boolean ordinary;
 
 			if (Psi_resist && rn2(StrongPsi_resist ? 100 : 20) ) {
 				pline("You blast yourself with nether energy.");
+				break;
+			}
+			if (obsidianprotection()) {
+				pline("You blast yourself with harmless nether energy.");
 				break;
 			}
 			You("blast yourself with nether energy!");
@@ -9172,7 +9184,7 @@ xchar sx, sy;
 	    break;
 	case ZT_SPC2:
 
-		if (Psi_resist && rn2(StrongPsi_resist ? 100 : 20)) {
+		if ((Psi_resist && rn2(StrongPsi_resist ? 100 : 20)) || obsidianprotection()) {
 			shieldeff(sx, sy);
 			pline("You aren't affected.");
 			dam = 0;

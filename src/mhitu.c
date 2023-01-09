@@ -9832,7 +9832,7 @@ dopois:
 	    case AD_SPC2:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
-		if(!mtmp->mcan && !rn2(4) && (!Psi_resist || !rn2(StrongPsi_resist ? 100 : 20)) ) {
+		if(!mtmp->mcan && !obsidianprotection() && !rn2(4) && (!Psi_resist || !rn2(StrongPsi_resist ? 100 : 20)) ) {
 
 			pline("Your mind is blasted by psionic energy.");
 
@@ -10890,6 +10890,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 	      case AD_SPC2:
 			if (Psi_resist && rn2(StrongPsi_resist ? 100 : 20) ) break;
+			if (obsidianprotection()) break;
 
 			You_feel("something focusing on your mind!");
 
@@ -15251,7 +15252,7 @@ common:
 
 	    case AD_SPC2:
 
-		if (!Psi_resist || !rn2(StrongPsi_resist ? 100 : 20)) {
+		if ((!Psi_resist || !rn2(StrongPsi_resist ? 100 : 20)) && !obsidianprotection()) {
 
 			pline("Your %s is spinning!", body_part(HEAD) );
 
@@ -15808,7 +15809,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 
 	    case AD_SPC2:
-	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(7)) )
+	      if(!mtmp->mcan && canseemon(mtmp) && !obsidianprotection() && mtmp->mcansee && (issoviet || !rn2(7)) )
  		{
 			char visageword[BUFSZ]; /* from ToME */
 			strcpy(visageword, "bad"); /* fail safe --Amy */

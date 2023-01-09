@@ -7282,6 +7282,16 @@ newbossPENT:
 
 			seetrap(trap);
 			pline("You stepped on a trigger!");
+
+			if (Psi_resist && rn2(StrongPsi_resist ? 100 : 20)) {
+				pline("But you resist the effects.");
+				break;
+			}
+			if (obsidianprotection()) {
+				pline("But you resist the effects.");
+				break;
+			}
+
 			pline("Your mind is blasted by psionic energy.");
 
 			switch (rnd(10)) {
