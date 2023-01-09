@@ -361,6 +361,12 @@ use_symbiote(obj)
 			return 1;
 
 		}
+		/* arabella monsters *are* eligible for symbiosis... but you have to get lucky to receive them randomly,
+		 * you can't just misuse arabella rooms as a ready source for ubersymbiotes! --Amy */
+		if (is_arabellamonster(mtmp->data)) {
+			pline(FunnyHallu ? "Oh joy, the monster is telling you it would rather like to party with you! Seems like you have to abandon your attempt!" : "Some sinister force prevents this monster from becoming a symbiote.");
+			return 1;
+		}
 		if (mtmp->mfrenzied) {
 			pline(FunnyHallu ? "Suddenly the monster rakes its claws over your skin and reveals that you're indeed noble because you're bleeding blue blood." : "Frenzied monsters will never turn into symbiotes.");
 			return 1;
