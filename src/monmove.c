@@ -1839,7 +1839,15 @@ newbossSING:
 	if (mtmp->mflee && !mtmp->mfleetim
 	   && mtmp->mhp == mtmp->mhpmax && !rn2(25)) mtmp->mflee = 0;
 
-	if (FemtrapActiveElla && mtmp->female && humanoid(mtmp->data) && (mtmp->mhp < (mtmp->mhpmax * 9 / 10) )) mtmp->mflee = 0;
+	if (FemtrapActiveElla && mtmp->female && humanoid(mtmp->data) && (mtmp->mhp < (mtmp->mhpmax * 9 / 10) )) {
+		mtmp->mflee = 0;
+		mtmp->mfleetim = 0;
+	}
+
+	if (mdat == &mons[PM_SERPENT_S_CHOSEN]) {
+		mtmp->mflee = 0;
+		mtmp->mfleetim = 0;
+	}
 
 	set_apparxy(mtmp);
 	/* Must be done after you move and before the monster does.  The
@@ -3867,6 +3875,7 @@ altarfound:
 	if (monsndx(ptr) == PM_CONTRULLA) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_GAGAGAGOGL) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_IRMGARD) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_LIQUOR_CORPSE) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_SWIMMING_TRUNKS) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_IRITAL) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_FULL_WEAKMATE_O) mtmp->mconf = 1;

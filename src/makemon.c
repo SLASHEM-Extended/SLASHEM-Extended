@@ -11532,6 +11532,8 @@ loveheelover:
 		if (mtmp->data == &mons[PM_TU_TARA_SPELLSWINGER]) (void) mongets(mtmp, EAGLE_BALL);
 		if (mtmp->data == &mons[PM_CYAN_NAGA_HATCHLING]) (void) mongets(mtmp, CYAN_DOUBLE_LIGHTSABER);
 		if (mtmp->data == &mons[PM_CYAN_NAGA]) (void) mongets(mtmp, CYAN_DOUBLE_LIGHTSABER);
+		if (mtmp->data == &mons[PM_SERPENT_S_KEEPER]) (void) mongets(mtmp, SCR_LOCKOUT);
+		if (mtmp->data == &mons[PM_SNAKE_INQUISITOR]) (void) mongets(mtmp, TRIDENT);
 
 		if (mtmp->data == &mons[PM_NOBLE_CHILD]) {
 			int gemamount = rnd(3);
@@ -12769,6 +12771,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_BUBBLE_SLIME]) (void) mongets(mtmp, SCR_BUBBLE_BOBBLE);
 		if (mtmp->data == &mons[PM_CUD_CURD]) (void) mongets(mtmp, CUDSWORD);
 		if (mtmp->data == &mons[PM_CHANOP]) (void) mongets(mtmp, HEAVY_HAMMER);
+		if (mtmp->data == &mons[PM_POLYMORPHINATOR]) (void) mongets(mtmp, WAN_POLYMORPH);
 		if (mtmp->data == &mons[PM_RARE_ARMOR_WEARER]) (void) mongets(mtmp, OLD_MAIL);
 		if (mtmp->data == &mons[PM_POWERED_PACI_FIST]) (void) mongets(mtmp, POWERFIST);
 		if (ptr == &mons[PM_MILITARY_PUTIT]) {
@@ -26187,6 +26190,7 @@ register int	mmflags;
 			if (mndx == PM_STALKER_GIRL) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_HUMAN_WEREBLACKLIGHT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_HUMAN_WERESTALKER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_HOEHOE_ALL_YOUR_STUFF_IS_OURS) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_THE_INVISIBLE_MAN) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_LAG_MONSTER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_YOU_GOT_KILLED_OUT_OF_NOWHERE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
@@ -32962,6 +32966,10 @@ assign_sym:
 	if (mtmp->data == &mons[PM_PREPARED_CHILDREN_S_CAR]) {
 		ap_type = M_AP_FURNITURE;
 		appear = S_wagon;
+	}
+	if (mtmp->data == &mons[PM_VIERTELGEVIERTSTRICH]) {
+		ap_type = M_AP_FURNITURE;
+		appear = S_hwall;
 	}
 	if (mtmp->data == &mons[PM_ABALLIN]) {
 		ap_type = M_AP_FURNITURE;

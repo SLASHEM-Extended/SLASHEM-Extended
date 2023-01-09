@@ -2212,6 +2212,7 @@ struct monst *mon;
 	if (mon->data == &mons[PM_DIAGONALATOR] && u.dx && u.dy) mmove += 12;
 	if (mon->data == &mons[PM_BRIGHT_DIAGONALATOR] && u.dx && u.dy) mmove += 12;
 	if (mon->data == &mons[PM_HEAVEN_DIAGONALATOR] && u.dx && u.dy) mmove += 12;
+	if (mon->data == &mons[PM_FEMININE_DIAGONALATOR] && u.dx && u.dy) mmove += 12;
 	if (mon->data == &mons[PM_ABNORMAL_DIAGONALATOR] && u.dx && u.dy) mmove += 12;
 
 	if (uamul && uamul->oartifact == ART_APATHY_STRATEGY && mmove > 1) mmove /= 2;
