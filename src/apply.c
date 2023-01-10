@@ -6786,6 +6786,37 @@ materialchoice:
 
 		break;
 
+	case CASINO_CHIP:
+
+		noartispeak = TRUE;
+
+		if (obj && obj->oartifact == ART_GAMBLEBOY) u.casinochips += 4;
+		if (obj && obj->oartifact == ART_WELCOMING_GIFT) u.casinochips += 19;
+		if (obj && obj->oartifact == ART_WOOZIE_S_FISH) {
+			struct monst *crpr = makemon(&mons[PM_CROUPIER], u.ux, u.uy, MM_ADJACENTOK);
+			if (crpr) {
+				crpr->mpeaceful = TRUE;
+				crpr->mfrenzied = FALSE;
+			}
+
+		}
+		if (obj && obj->oartifact == ART_MAIN_WIN) {
+			u.ugold += 2000;
+		}
+		if (obj && obj->oartifact == ART_SINDACCO_S_FORGERY) {
+			delobj(obj);
+			u.copwantedlevel += rnz(1000);
+			verbalize("WEOWEO");
+			break;
+		}
+
+		delobj(obj);
+
+		u.casinochips++;
+		You("add the chip to your collection. Your total amount of chips is %d now.", u.casinochips);
+
+		break;
+
 	case BLESSER:
 
 		noartispeak = TRUE;

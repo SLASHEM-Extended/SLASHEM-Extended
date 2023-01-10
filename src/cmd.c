@@ -3336,6 +3336,11 @@ boolean guaranteed;
 	}
 
 	if ((guaranteed || !rn2(10)) ) {
+		sprintf(buf, " %d", u.casinochips);
+		enl_msg("Your amount of casino chips ", "is", "was", buf);
+	}
+
+	if ((guaranteed || !rn2(10)) ) {
 		sprintf(buf, " %d turns ago", u.barbertimer);
 		enl_msg("The last time you got a new haircut ", "is", "was", buf);
 	}
@@ -8179,6 +8184,9 @@ int final;
 	sprintf(buf, " '%s", bundledescription());
 	dump("  Your hairstyle was", buf);
 
+	sprintf(buf, " %d", u.casinochips);
+	dump("  Your amount of casino chips was", buf);
+
 	sprintf(buf, " %d turns ago", u.barbertimer);
 	dump("  The last time you got a new haircut was", buf);
 
@@ -12518,6 +12526,8 @@ minimal_enlightenment()
 		sprintf(eos(statline), ".");
 
 		sprintf(eos(statline), " Your hairstyle is '%s.", bundledescription());
+
+		sprintf(eos(statline), " You have %d casino chips.", u.casinochips);
 
 		pline("%s", statline);
 

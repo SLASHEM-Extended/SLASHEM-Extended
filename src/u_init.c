@@ -11374,6 +11374,10 @@ u_init()
 	u.lifesavepenalty = 0;
 	u.lifesavepenallevel = 0;
 	u.itemcleanupneeded = 0;
+	u.casinochips = 0;
+	if (Role_if(PM_COURIER)) u.casinochips++; /* keyword "newroles", "newraces" */
+	if (Role_if(PM_WEIRDBOY)) u.casinochips++;
+	if (Role_if(PM_GANGSTER)) u.casinochips += 2;
 
 	/* set player's haircut to a random value at game start --Amy */
 	u.femalehaircut = rnd(55);

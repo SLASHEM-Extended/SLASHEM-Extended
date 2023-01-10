@@ -5051,7 +5051,7 @@ goodeffect()
 
 	if (rn2(10)) { /* "common" effects */
 
-		switch (rnd(166)) {
+		switch (rnd(169)) {
 			case 1:
 			case 2:
 			case 3:
@@ -5667,6 +5667,12 @@ chargingchoice:
 			case 166: /* cure covid-19 symptoms */
 				pline("It's a corona antidote!");
 				upnivel(FALSE);
+				break;
+			case 167:
+			case 168:
+			case 169:
+				u.casinochips++;
+				You("gain a casino chip, and have %d chips now.", u.casinochips);
 				break;
 		}
 

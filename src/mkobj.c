@@ -722,7 +722,7 @@ int
 usefulitem() /* select the ID number of an item that may be useful for the player --Amy */
 {
 
-	switch (rnd(159)) {
+	switch (rnd(162)) {
 
 		case 1:
 			return ATHAME;
@@ -971,6 +971,10 @@ usefulitem() /* select the ID number of an item that may be useful for the playe
 			return RAD_X;
 		case 159:
 			return RADAWAY;
+		case 160:
+		case 161:
+		case 162:
+			return CASINO_CHIP;
 		default: /* fail safe */
 			return POT_FULL_HEALING;
 	}

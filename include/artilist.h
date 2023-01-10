@@ -382,7 +382,7 @@ A("Pwnhammer",			MALLET, /* grayout */
 	COLD(5,16), DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
 A("Pwnhammer Duece",			SLEDGE_HAMMER, /* +10 difficulty, can't see lit areas */
-	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_REGEN), 0, 0,
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_REGEN|SPFX_EVIL), 0, 0,
 	FIRE(8,24), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
 
 A("Dockside Walk",			WEDGED_LITTLE_GIRL_SANDAL,
@@ -11404,6 +11404,26 @@ A("Go Fully Off",				MORNING_STAR, /* randart2 morning star, defusing */
 A("Half Super Enchantment",				RED_LIGHTSABER, /* randart lightsaber, defusing */
 	(SPFX_RESTR), 0, 0,
 	PHYS(10, 5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Gambleboy",				CASINO_CHIP, /* gives 4 extra chips */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Welcoming Gift",				CASINO_CHIP, /* gives 19 extra chips */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Woozie's Fish",				CASINO_CHIP, /* creates a peaceful croupier next to you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Main Win",				CASINO_CHIP, /* gives 2000 zorkmids when used */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Sindacco's Forgery",				CASINO_CHIP, /* doesn't give you a casino chip, but activates the cops */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
 
 /*
  *	Stormbringer only has a 2 because it can drain a level,

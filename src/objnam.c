@@ -4011,6 +4011,8 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ AMULET_OF_MISCOLORATION, "amulet of todo" },
 	{ AMULET_OF_LOST_KNOWLEDGE, "amulet of todo" },
 
+	{ CASINO_CHIP, "amulet of todo" },
+
 	{0, "" }
 };
 
@@ -7200,6 +7202,8 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ CLOAK_OF_NULLIFICATION, "todo" },
 	{ AMULET_OF_MISCOLORATION, "amulet of todo" },
 	{ AMULET_OF_LOST_KNOWLEDGE, "amulet of todo" },
+
+	{ CASINO_CHIP, "amulet of todo" },
 
 	{0, "" }
 };

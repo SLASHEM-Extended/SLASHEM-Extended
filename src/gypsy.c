@@ -946,14 +946,23 @@ play_blackjack()
 	int disappearchance = 10;
 	struct obj *blackjackreward;
 
-	if (yn("Play blackjack? (2000 zorkmids)") != 'y') {
-		return 0;
+	if (u.casinochips) {
+		if (yn("Play blackjack? (use a casino chip)") != 'y') {
+			return 0;
+		}
+		u.casinochips--;
+		if (u.casinochips < 0) u.casinochips = 0; /* fail safe */
+		You("use a casino chip and have %d remaining.", u.casinochips);
+	} else {
+		if (yn("Play blackjack? (2000 zorkmids)") != 'y') {
+			return 0;
+		}
+		if (u.ugold < 2000) {
+			verbalize("Sorry sir, you don't seem to have enough money to buy a casino chip.");
+			return 0;
+		}
+		u.ugold -= 2000;
 	}
-	if (u.ugold < 2000) {
-		verbalize("Sorry sir, you don't seem to have enough money to buy a casino chip.");
-		return 0;
-	}
-	u.ugold -= 2000;
 
 	int playercards = 0;
 	int dealercards = 0;

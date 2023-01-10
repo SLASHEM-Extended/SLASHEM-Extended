@@ -15675,6 +15675,8 @@ boolean knoweverything;
 				pline("Using this tool will boost your intelligence by one point (make sure you're not wearing an item that gives sustain ability). If you're of the sustainer race, it boosts your wisdom instead."); break;
 			case INFUSION:
 				pline("A one-use tool that improves your maximum HP and Pw by one each."); break;
+			case CASINO_CHIP:
+				pline("If you apply this chip, it adds itself to your collection of casino chips, allowing you to play Black Jack without having to waste your hard-earned zorkmids."); break;
 			case BLESSER:
 				pline("Use this tool to bless an uncursed item in your inventory. It can only be used once. Make sure the item you're targetting is specifically uncursed: it doesn't work on cursed ones, and has no effect on ones that are already blessed either!"); break;
 			case RAD_X:
@@ -24920,6 +24922,16 @@ boolean knoweverything;
 					pline("Artifact specs: +5 to-hit and +5 damage, defusing when wielded."); break;
 				case ART_HALF_SUPER_ENCHANTMENT:
 					pline("Artifact specs: +10 to-hit and +5 damage, defusing when wielded."); break;
+				case ART_GAMBLEBOY:
+					pline("Artifact specs: gives you 5 chips instead of one."); break;
+				case ART_WELCOMING_GIFT:
+					pline("Artifact specs: gives you 20 chips instead of one."); break;
+				case ART_WOOZIE_S_FISH:
+					pline("Artifact specs: summons a croupier, allowing you to gamble away your chips right away. Like shooting fish in a barrel!"); break;
+				case ART_MAIN_WIN:
+					pline("Artifact specs: gives you 2000 zorkmids when used."); break;
+				case ART_SINDACCO_S_FORGERY:
+					pline("Artifact specs: The dragon on this chip has sunglasses and a mustache."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

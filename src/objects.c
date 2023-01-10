@@ -4976,7 +4976,7 @@ WEPTOOL("laserfist", (char *)0,
 
 TOOL("can of grease", (char *)0,1, 0, 0, 1,  1400, 0,  20, MT_IRON, HI_METAL, 1),
 TOOL("lubricant can", (char *)0,1, 0, 0, 1,  100, 0,  20, MT_PLASTIC, CLR_BROWN, 1),
-TOOL("figurine", (char *)0,     1, 0, 1, 0, 3350, 0,  80, MT_MINERAL, HI_MINERAL, 1),
+TOOL("figurine", (char *)0,     1, 0, 1, 0, 2350, 0,  80, MT_MINERAL, HI_MINERAL, 1),
 TOOL("magic marker", (char *)0, 1, 0, 1, 1, 500,  0,  50, MT_PLASTIC, CLR_RED, 25),
 TOOL("felt-tip marker", (char *)0, 1, 0, 1, 1, 100,  0,  50, MT_PLASTIC, CLR_RED, 1),
 
@@ -4992,6 +4992,7 @@ TOOL("beauty pack", (char *)0, 1, 0, 1, 0,  250,  0,  200, MT_PLASTIC, CLR_MAGEN
 TOOL("blesser", (char *)0, 1, 0, 1, 0,  200,  0,  500, MT_CELESTIUM, CLR_BRIGHT_CYAN, 20),
 TOOL("rad-x", (char *)0, 1, 0, 1, 0,  500,  0,  200, MT_LIQUID, CLR_ORANGE, 1),
 TOOL("radaway", (char *)0, 1, 0, 1, 0,  500,  0,  200, MT_LIQUID, CLR_ORANGE, 1),
+TOOL("casino chip", (char *)0, 1, 0, 1, 0,  1000,  0,  200, MT_COPPER, CLR_GRAY, 1),
 
 TOOL("Hitchhiker's Guide To The Galaxy", "highly-complicated electronic device",
 				0, 0, 0, 0,   0, 42,  1000, MT_IRON, HI_METAL, 42),
