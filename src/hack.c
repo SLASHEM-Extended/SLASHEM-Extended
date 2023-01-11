@@ -4429,6 +4429,34 @@ monster_nearby()
 }
 
 void
+maybe_scream()
+{
+    /* from Elona: maybe emit a sound when you're hurt; this is especially useful if you have display loss --Amy
+     * known issue: you might be in a form that cannot "scream", I decided that I don't care and you scream anyway :P */
+    int painchance = 10;
+    int distresslevel = 0;
+
+    if (Upolyd) {
+	if (u.mh < (u.mhmax / 4)) distresslevel = 3;
+	else if (u.mh < (u.mhmax / 2)) distresslevel = 2;
+	else if (u.mh < (u.mhmax * 3 / 4)) distresslevel = 1;
+
+    } else {
+	if (u.uhp < (u.uhpmax / 4)) distresslevel = 3;
+	else if (u.uhp < (u.uhpmax / 2)) distresslevel = 2;
+	else if (u.uhp < (u.uhpmax * 3 / 4)) distresslevel = 1;
+    }
+
+    if ( (PainSense && !rn2(10)) || (StrongPainSense && !rn2(5)) || (painchance < rnd(11)) ) {
+	if (distresslevel == 3) You("are severely hurt!");
+	else if (distresslevel == 2) You("writhe in pain.");
+	else if (distresslevel == 1) You("scream.");
+	/* otherwise you haven't lost enough health yet */
+    }
+
+}
+
+void
 maybe_wail()
 {
     static short powers[] = { TELEPORT, SEE_INVIS, POISON_RES, COLD_RES,
@@ -5036,6 +5064,9 @@ int k_format; /* WAC k_format is an int */
 	} else if (Upolyd) {
 		u.mh -= n;
 		if (u.mhmax < u.mh) u.mhmax = u.mh;
+
+		if (u.mh > 0) maybe_scream();
+
 		if (u.mh < 1) {
 
 	    	    rehumanize();
@@ -5057,6 +5088,8 @@ int k_format; /* WAC k_format is an int */
 	}
 
 	flags.botl = 1; /* Update status bar */
+
+	if (u.uhp > 0) maybe_scream();
 
 	if(u.uhp < 1) {
 		u.youaredead = 1;

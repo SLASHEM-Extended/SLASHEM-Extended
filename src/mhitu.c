@@ -19078,6 +19078,7 @@ register int n;
 
 	} else if (Upolyd) {
 		u.mh -= n;
+		if (u.mh > 0) maybe_scream();
 		if (u.mh < 1) {                
 			if (Polymorph_control || !rn2(3)) {
 			    u.uhp -= mons[u.umonnum].mlevel;
@@ -19089,6 +19090,8 @@ register int n;
 	} else {
 		u.uhplast = u.uhp;
 		u.uhp -= n;
+		if (u.uhp > 0) maybe_scream();
+
 		if (u.uhp >= 1 && n > 0 && u.uhp*10 < u.uhpmax)	maybe_wail(); /* Wizard is about to die. --Amy */
 		if(u.uhp < 1) done_in_by(mtmp);
 	}
