@@ -516,7 +516,7 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (StrongFreezopathy && Frozen && (dmgtype(mtmp->data, AD_FRZE) || dmgtype(mtmp->data, AD_ICEB) ) )
 		    ways_seen++;
-		if (StrongCorrosivity && Slimed && acidic(mtmp->data) )
+		if (StrongCorrosivity && Slimed && acidic(mtmp->data) && distu(mtmp->mx, mtmp->my) < 226 )
 		    ways_seen++;
 		if (StrongBurnopathy && Burned && (dmgtype(mtmp->data, AD_BURN) || dmgtype(mtmp->data, AD_FLAM) ) )
 		    ways_seen++;
@@ -534,7 +534,7 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (Dimmopathy && Dimmed && mtmp->m_lev > u.ulevel && distu(mtmp->mx, mtmp->my) < (StrongDimmopathy ? 226 : 101) )
 		    ways_seen++;
-		if (Sickopathy && Sick && extra_nasty(mtmp->data) )
+		if (Sickopathy && Sick && extra_nasty(mtmp->data) && distu(mtmp->mx, mtmp->my) < (StrongSickopathy ? 901 : 401) )
 		    ways_seen++;
 		if (uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mtmp->data) )
 		    ways_seen++;
@@ -723,7 +723,7 @@ lookat(x, y, buf, monbuf)
 			strcat(monbuf, "strong freezopathy");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
-		    if (StrongCorrosivity && Slimed && acidic(mtmp->data) ) {
+		    if (StrongCorrosivity && Slimed && acidic(mtmp->data) && distu(mtmp->mx, mtmp->my) < 226 ) {
 			strcat(monbuf, "strong corrosivity");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
@@ -759,7 +759,7 @@ lookat(x, y, buf, monbuf)
 			strcat(monbuf, "dimmopathy");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
-		    if (Sickopathy && Sick && extra_nasty(mtmp->data) ) {
+		    if (Sickopathy && Sick && extra_nasty(mtmp->data) && distu(mtmp->mx, mtmp->my) < (StrongSickopathy ? 901 : 401) ) {
 			strcat(monbuf, "sickopathy");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
