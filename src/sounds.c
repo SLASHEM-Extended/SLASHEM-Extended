@@ -6775,7 +6775,7 @@ dochat()
 
     if ((mtmp->data == &mons[PM_SYMBIULD]) || (mtmp->data == &mons[PM_SYMBIOTE_WITH_A_DATA_DELETE_ATTACK])) eligiblesymbio = TRUE;
 
-    if ( (mtmp->mtame) && (((stationary(mtmp->data) || mtmp->data->mmove == 0 || mtmp->data->mlet == S_TURRET) && !Race_if(PM_GOAULD)) || (!(stationary(mtmp->data) || mtmp->data->mmove == 0 || mtmp->data->mlet == S_TURRET) && Race_if(PM_GOAULD))) && !mtmp->mfrenzied && !(mtmp->data->mlevel > 20 || (mtmp->data->mlevel > (u.ulevel + 5)) || cannot_be_tamed(mtmp->data) || (mtmp->cham == CHAM_ZRUTINATOR) || mtmp->isshk || mtmp->isgd || mtmp->ispriest || mtmp->isminion || mtmp->isgyp || (mtmp->oldmonnm != monsndx(mtmp->data))) ) eligiblesymbio = TRUE;
+    if ( (mtmp->mtame) && (((stationary(mtmp->data) || mtmp->data->mmove == 0 || mtmp->data->mlet == S_TURRET) && !Race_if(PM_GOAULD)) || (!(stationary(mtmp->data) || mtmp->data->mmove == 0 || mtmp->data->mlet == S_TURRET) && Race_if(PM_GOAULD))) && !is_arabellamonster(mtmp->data) && !mtmp->mfrenzied && !(mtmp->data->mlevel > 20 || (mtmp->data->mlevel > (u.ulevel + 5)) || cannot_be_tamed(mtmp->data) || (mtmp->cham == CHAM_ZRUTINATOR) || mtmp->isshk || mtmp->isgd || mtmp->ispriest || mtmp->isminion || mtmp->isgyp || (mtmp->oldmonnm != monsndx(mtmp->data))) ) eligiblesymbio = TRUE;
 
 	if (eligiblesymbio) {
 	
