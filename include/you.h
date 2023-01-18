@@ -1684,6 +1684,7 @@ struct you {
 	boolean polyattackhack;
 	boolean dynamitehack;
 	int mongetshack;
+	boolean evilvarhack;
 
 	int secretcodenumber;
 

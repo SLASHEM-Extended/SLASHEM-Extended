@@ -6388,8 +6388,9 @@ int n;	/* number of slots to lose; normally one */
 		maybe_loose_disarm = TRUE;
 	    P_SKILL(skill)--;	/* drop skill one level */
 	    /* Lost skill might have taken more than one slot; refund rest. */
-	    if (evilfriday) {
+	    if (evilfriday && !u.evilvarhack) {
 		u.weapon_slots--;
+		u.evilvarhack = TRUE;
 		pline("This is the evil variant. Your skill point is lost forever.");
 	    }
 	    else u.weapon_slots += (slots_required(skill) - 1); /* normally zero --Amy */

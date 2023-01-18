@@ -13789,6 +13789,7 @@ past4:
 	u.mongetshack = 0;
 	u.dynamitehack = 0;
 	u.lamefarmer = 0;
+	u.evilvarhack = 0;
 
 	kill_deathmarked_monsters();
 

@@ -829,8 +829,10 @@ int skilltocheck;
 
 	/* refund the skill slots */
 	while (i) {
-		if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
-		else u.weapon_slots++;  /* because every skill up costs one slot --Amy */
+		if (evilfriday && !u.evilvarhack) {
+			pline("This is the evil variant. Your skill point is lost forever.");
+			u.evilvarhack = TRUE;
+		} else u.weapon_slots++;  /* because every skill up costs one slot --Amy */
 		i--;
 	}
 
@@ -854,8 +856,10 @@ int skilltocheck;
 
 		while (skillamount > 0) {
 			skillamount--;
-			if (evilfriday) Norep("This is the evil variant. Your skill point is lost forever.");
-			else u.weapon_slots++;
+			if (evilfriday && !u.evilvarhack) {
+				pline("This is the evil variant. Your skill point is lost forever.");
+				u.evilvarhack = TRUE;
+			} else u.weapon_slots++;
 		}
 	}
 
