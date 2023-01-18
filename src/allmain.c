@@ -277,7 +277,7 @@ moveloop()
 
 			if (u.sterilized) monclock *= (5 + spell_damage_bonus(SPE_STERILIZE));
 
-			if (verisiertEffect || u.uprops[VERISIERTEFFECT].extrinsic || (uwep && uwep->oartifact == ART_HOL_ON_MAN) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_HOL_ON_MAN) || (uimplant && uimplant->oartifact == ART_YOU_SHOULD_SURRENDER) || (uarms && uarms->oartifact == ART_GOLDEN_DAWN) || (uarms && uarms->oartifact == ART_GREXIT_IS_NEAR) || have_verisiertstone()) monclock /= 5;
+			if (verisiertEffect || u.uprops[VERISIERTEFFECT].extrinsic || (uwep && uwep->oartifact == ART_HOL_ON_MAN) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_HOL_ON_MAN) || (uimplant && uimplant->oartifact == ART_YOU_SHOULD_SURRENDER) || (uarms && uarms->oartifact == ART_GOLDEN_DAWN) || (uarms && uarms->oartifact == ART_GREXIT_IS_NEAR) || (uwep && uwep->oartifact == ART_UPGRADED_LEMURE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_UPGRADED_LEMURE) || have_verisiertstone()) monclock /= 5;
 			if (uarmf && uarmf->oartifact == ART_BLACK_DIAMOND_ICON) monclock /= 4; /* stacks with the above */
 			if (ishaxor) monclock /= 2;
 			if (Race_if(PM_LICH_WARRIOR)) monclock /= 2;
@@ -322,6 +322,7 @@ moveloop()
 			if (u.sterilized) xtraclock *= (5 + spell_damage_bonus(SPE_STERILIZE));
 
 			if (verisiertEffect || u.uprops[VERISIERTEFFECT].extrinsic || have_verisiertstone()) xtraclock /= 5;
+			if ((uwep && uwep->oartifact == ART_UPGRADED_LEMURE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_UPGRADED_LEMURE)) xtraclock /= 5;
 			if (uimplant && uimplant->oartifact == ART_YOU_SHOULD_SURRENDER) xtraclock /= 5;
 			if (uarms && uarms->oartifact == ART_GOLDEN_DAWN) xtraclock /= 5;
 			if (uarms && uarms->oartifact == ART_GREXIT_IS_NEAR) xtraclock /= 5;
@@ -1172,6 +1173,12 @@ moveloop()
 				if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DOUBLE_BESTARD && !rn2(4) && moveamt > 1)
 					moveamt /= 2;
 
+				if (uwep && uwep->oartifact == ART_MARE_S_SPECIAL_ROCKET && !rn2(4) && moveamt > 1)
+					moveamt /= 2;
+
+				if (u.twoweap && uswapwep && uswapwep->oartifact == ART_MARE_S_SPECIAL_ROCKET && !rn2(4) && moveamt > 1)
+					moveamt /= 2;
+
 				if (uarmf && uarmf->oartifact == ART_UPWARD_HEELS && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
@@ -1612,6 +1619,12 @@ moveloop()
 				moveamt /= 2;
 
 			if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DOUBLE_BESTARD && !rn2(4) && moveamt > 1)
+				moveamt /= 2;
+
+			if (uwep && uwep->oartifact == ART_MARE_S_SPECIAL_ROCKET && !rn2(4) && moveamt > 1)
+				moveamt /= 2;
+
+			if (u.twoweap && uswapwep && uswapwep->oartifact == ART_MARE_S_SPECIAL_ROCKET && !rn2(4) && moveamt > 1)
 				moveamt /= 2;
 
 			if (uwep && uwep->oartifact == ART_SCJWILLX_ && !rn2(8) && moveamt > 1)
@@ -2555,6 +2568,54 @@ moveloop()
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			flags.botl = TRUE;
 			pline("ATTENTION! The pink double lightsword is draining your health!");
+		}
+
+		if (uwep && uwep->oartifact == ART_COCK_APPLICATION && !rn2(100)) {
+			if (u.uhpmax < 2) {
+				u.youaredead = 1;
+				pline("Whoops, the cock drained your health completely and you die.");
+				killer_format = KILLED_BY;
+				killer = "being drained by a cock";
+				done(DIED);
+				u.youaredead = 0;
+			} else {
+				u.uhpmax--;
+				if (u.uhpmax < 1) u.uhpmax = 1;
+				if (Upolyd) {
+					if (u.mhmax > 2) {
+						u.mhmax--;
+						if (u.mhmax < 1) u.mhmax = 1;
+						if (u.mh > u.mhmax) u.mh = u.mhmax;
+					} else drain_alla(1);
+				}
+			}
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			flags.botl = TRUE;
+			pline("ATTENTION! The cock is draining your health!");
+		}
+
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_COCK_APPLICATION && !rn2(100)) {
+			if (u.uhpmax < 2) {
+				u.youaredead = 1;
+				pline("Whoops, the cock drained your health completely and you die.");
+				killer_format = KILLED_BY;
+				killer = "being drained by a cock";
+				done(DIED);
+				u.youaredead = 0;
+			} else {
+				u.uhpmax--;
+				if (u.uhpmax < 1) u.uhpmax = 1;
+				if (Upolyd) {
+					if (u.mhmax > 2) {
+						u.mhmax--;
+						if (u.mhmax < 1) u.mhmax = 1;
+						if (u.mh > u.mhmax) u.mh = u.mhmax;
+					} else drain_alla(1);
+				}
+			}
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			flags.botl = TRUE;
+			pline("ATTENTION! The cock is draining your health!");
 		}
 
 		if (bmwride(ART_QUICK_JOCK) && !rn2(1000)) {
@@ -4517,6 +4578,22 @@ greasingdone:
 		}
 
 		if (have_amateurluckstone() && !rn2(100)) {
+			contaminate(rnd(10), FALSE);
+		}
+
+		if (uwep && uwep->oartifact == ART_BLU_TOE && !rn2(100)) {
+			contaminate(rnd(10), FALSE);
+		}
+
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_BLU_TOE && !rn2(100)) {
+			contaminate(rnd(10), FALSE);
+		}
+
+		if (uwep && uwep->oartifact == ART_FUMATA_YARI && !rn2(100)) {
+			contaminate(rnd(10), FALSE);
+		}
+
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_FUMATA_YARI && !rn2(100)) {
 			contaminate(rnd(10), FALSE);
 		}
 
@@ -6861,6 +6938,13 @@ newbossSTEN:
 
 		}
 
+		if (uwep && uwep->oartifact == ART_APPLY_B) {
+			u.usanity++;
+		}
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_APPLY_B) {
+			u.usanity++;
+		}
+
 		if (uwep && uwep->oartifact == ART_CONSTANT_CHANGE && uwep->lamplit) {
 			objects[uwep->otyp].oc_material = rn2(LASTMATERIAL + 1);
 			objects[uwep->otyp].oc_color = rn2(CLR_MAX);
@@ -8176,6 +8260,31 @@ newbossO:
 
 		if (uwep && uwep->oartifact == ART_GENOCIDE && !(u.uprops[DEAC_REFLECTING].intrinsic) ) {
 			u.uprops[DEAC_REFLECTING].intrinsic += 1000;
+		}
+
+		if ((uwep && uwep->oartifact == ART_MASSIVE_BUT_LOVELY) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MASSIVE_BUT_LOVELY)) {
+			if (!FemaleTrapWendy) FemaleTrapWendy += 10000;
+
+			if (!u.fumbleduration) {
+				HFumbling = FROMOUTSIDE | rnd(5);
+				incr_itimeout(&HFumbling, rnd(20));
+				u.fumbleduration += 1000;
+			}
+
+		}
+
+		if ((uwep && uwep->oartifact == ART_GUARDIAN_OF_ARANOCH) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GUARDIAN_OF_ARANOCH)) {
+			if (!(u.uprops[DEAC_COLD_RES].intrinsic)) {
+				u.uprops[DEAC_COLD_RES].intrinsic += 1000;
+				Your("cold resistance was deactivated!");
+			}
+		}
+
+		if ((uwep && uwep->oartifact == ART_FIRE_LEADER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FIRE_LEADER)) {
+			if (!(u.uprops[DEAC_FIRE_RES].intrinsic)) {
+				u.uprops[DEAC_FIRE_RES].intrinsic += 1000;
+				Your("fire resistance was deactivated!");
+			}
 		}
 
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_GENOCIDE && !(u.uprops[DEAC_REFLECTING].intrinsic) ) {

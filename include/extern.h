@@ -2925,6 +2925,8 @@ E int randartshortsword(void);
 E int randartshortswordX(void);
 E int randartscimitar(void);
 E int randartscimitarX(void);
+E int randartorb(void);
+E int randartorbX(void);
 E int randartunihorn(void);
 E int randartunihornX(void);
 E int randarttrident(void);

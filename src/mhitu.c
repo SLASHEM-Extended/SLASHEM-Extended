@@ -2408,6 +2408,8 @@ mattacku(mtmp)
 	if (mtmp->data == &mons[PM_CURSED____LEFTHANDED_FARTING_ELEPHANT]) tmp -= 10;	/* left-handed */
 	if (mtmp->data == &mons[PM_UNEXPECTED_BANNER]) tmp -= rnd(20);	/* ditto */
 	if (mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_]) tmp += rnd(100); /* the elder priest uses an aimbot and a wallhack */
+	if (uwep && uwep->oartifact == ART_KARATE_KID && attacktype(mtmp->data, AT_KICK)) tmp += 20;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_KARATE_KID && attacktype(mtmp->data, AT_KICK)) tmp += 20;
 
 	/* farting monsters are simply more likely to hit you, except if you bash their sexy butts --Amy */
 	if (mtmp->data->msound == MS_FART_LOUD && !mtmp->butthurt) tmp += rnd(5);

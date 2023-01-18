@@ -413,6 +413,7 @@ init_randarts()
 	artilist[ART_ENRAI].otyp = randartpolearm();
 	artilist[ART_PRINCIPIUM_INCERTI].otyp = randartpolearm();
 	artilist[ART_BOW_OF_HERCULES].otyp = randartbow();
+	artilist[ART_DOLORES__WINNING_STRAT].otyp = randartbow();
 	artilist[ART_GRADIUS].otyp = randartshortsword();
 
 	artilist[ART_JANA_S_GRAVE_WALL].otyp = randartcloakX();
@@ -544,6 +545,7 @@ init_randarts()
 	artilist[ART_HOL_ON_MAN].otyp = randartvenomX();
 	artilist[ART_POWER_POLE].otyp = randartpolearmX();
 	artilist[ART_BALANCE_PSEUDOSHIELD].otyp = randartquarterstaffX();
+	artilist[ART_BLU_TOE].otyp = randartorbX();
 	artilist[ART_CROSSBOW_OF_THE_GNOLL_LORD].otyp = randartcrossbowX();
 	artilist[ART_HOWLING_FLAIL].otyp = randartflailX();
 	artilist[ART_MACE_OF_ORCUS].otyp = randartmaceX();
@@ -3985,6 +3987,38 @@ chargingchoice:
 	    }
 	    break;
 	case SPECIAL_INVOKE:
+
+		if (obj->oartifact == ART_FIVEFOLDSWITCH_) {
+
+			if (obj->spe < 1) {
+				pline("You can read, right? If you had looked at the description of this artifact, you'd have known that the invocation only works if its enchantment value is at least +1! Or did you think I was somehow stupid and forgot to actually code that part? Silly player!");
+				break;
+			}
+			obj->spe = -20;
+			obj->cursed = obj->hvycurse = obj->prmcurse = TRUE;
+			cure_nasty_traps();
+			pline("Switchswitchswitchswitchswitch!");
+			break;
+		}
+
+		if (obj->oartifact == ART_ASSEIGNMENT_CURSE_) {
+
+			struct obj *asseignobj;
+
+			if (CannotSelectItemsInPrompts) break;
+			if ( !(asseignobj = getobj(allowall, "curse"))) break;
+			asseignobj->bknown = TRUE;
+
+			if (stack_too_big(asseignobj)) {
+				pline("The stack was too big! Nothing happens.");
+				break;
+			}
+
+			curse(asseignobj);
+			pline("Okay, that object is cursed now.");
+
+			break;
+		}
 
 		if (obj->oartifact == ART_ARABELLA_S_LIGHTSWITCH) {
 			litroom(TRUE, obj);

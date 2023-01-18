@@ -4178,6 +4178,21 @@ register struct obj *wand;
 
 	}
 
+	if (wand && wand->oartifact == ART_WEB_CONFERENCE) {
+
+		switch (rnd(8)) {
+			case 1: buzz(3, 6, u.ux, u.uy, -1, 0); break;
+			case 2: buzz(3, 6, u.ux, u.uy, 1, 0); break;
+			case 3: buzz(3, 6, u.ux, u.uy, -1, 1); break;
+			case 4: buzz(3, 6, u.ux, u.uy, 1, 1); break;
+			case 5: buzz(3, 6, u.ux, u.uy, 0, 1); break;
+			case 6: buzz(3, 6, u.ux, u.uy, -1, -1); break;
+			case 7: buzz(3, 6, u.ux, u.uy, 1, -1); break;
+			case 8: buzz(3, 6, u.ux, u.uy, 0, -1); break;
+		}
+
+	}
+
 	return 1;
 }
 

@@ -2085,7 +2085,7 @@ domove()
 	/* In Soviet Russia, stunning is a crippling status effect that will fuck you up. You're not supposed to stand
 	 * any chance while stunned, because seriously, players having a chance? That's a no-go! --Amy */
 
-		if ((Stunned && !rn2(issoviet ? 1 : StrongStun_resist ? 20 : Stun_resist ? 8 : 2)) || (Confusion && !rn2(issoviet ? 2 : StrongConf_resist ? 200 : Conf_resist ? 40 : 8) || ((uarmh && itemhasappearance(uarmh, APP_THINKING_HELMET)) && !rn2(8) ) || (uimplant && uimplant->oartifact == ART_IRON_OF_INNERMOST_JOY) )
+		if ((Stunned && !rn2(issoviet ? 1 : StrongStun_resist ? 20 : Stun_resist ? 8 : 2)) || (Confusion && !rn2(issoviet ? 2 : StrongConf_resist ? 200 : Conf_resist ? 40 : 8) || (uwep && uwep->oartifact == ART_MISGUIDED_MISSILE && !rn2(20)) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MISGUIDED_MISSILE && !rn2(20)) || ((uarmh && itemhasappearance(uarmh, APP_THINKING_HELMET)) && !rn2(8) ) || (uimplant && uimplant->oartifact == ART_IRON_OF_INNERMOST_JOY) )
 			/* toned down so it's less crippling --Amy
 			 * nerf for extremely fast steeds: they cause you to sometimes walk randomly */
 			|| (u.usteed && ((u.usteed->mconf && confsteeddir()) || (u.usteed->data->mmove > 36 && rnd(u.usteed->data->mmove) > 36) ) )
@@ -5308,6 +5308,10 @@ inv_weight()
 	if (uarmh && itemhasappearance(uarmh, APP_LEAD_HELMET)) wt += 50;
 	if (uarmf && itemhasappearance(uarmf, APP_LEAD_BOOTS)) wt += 100;
 	if (uarmf && itemhasappearance(uarmf, APP_WEIGHT_ATTACHMENT_BOOTS)) wt += 500;
+	if (uwep && uwep->oartifact == ART_MJOLLNIR) wt += 500;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_MJOLLNIR) wt += 500;
+	if (uwep && uwep->oartifact == ART_OTHER_MJOLLNIR) wt += 500;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_OTHER_MJOLLNIR) wt += 500;
 
 	/* Symbiotes can have a weight. If you're a symbiant, the weight is considerably lower; everyone else will get
 	 * a skill-dependant amount of weight added. At master and above, the weight no longer gets a multiplier --Amy

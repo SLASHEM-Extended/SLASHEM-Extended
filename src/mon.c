@@ -2190,6 +2190,14 @@ struct monst *mon;
 		else mmove += rnd(mmove);
 	}
 
+	if ( (uwep && uwep->oartifact == ART_GUARDIAN_OF_ARANOCH) && !rn2(5) && (mmove > 0) && !mon->mpeaceful && !mon->mtame) {
+		mmove *= 2;
+	}
+
+	if ( (u.twoweap && uswapwep && uswapwep->oartifact == ART_GUARDIAN_OF_ARANOCH) && !rn2(5) && (mmove > 0) && !mon->mpeaceful && !mon->mtame) {
+		mmove *= 2;
+	}
+
 	if ((MonsterSpeedBug || u.uprops[MONSTER_SPEED_BUG].extrinsic || (uarm && uarm->oartifact == ART_HUNKSTERMAN) || have_monsterspeedstone()) && !rn2(2) && (mmove > 0)) {
 		mmove *= 3;
 		if (mmove == 3) mmove = 4;

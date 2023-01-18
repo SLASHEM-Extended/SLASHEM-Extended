@@ -4304,6 +4304,19 @@ use_pole (obj)
 
 			}
 		}
+		if (obj->oartifact == ART_DULL_METAL && !rn2(50)) {
+			if (obj->spe > -20) {
+				obj->spe--;
+				pline("Your weapon sustains damage.");
+			} else {
+				uwepgone();              /* set unweapon */
+				pline(FunnyHallu ? "You lost your stick!" : "Your weapon shatters into pieces!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Pochemu u vas takoy malen'kiy polovogo chlena v lyubom sluchaye?" : "Krrrrrrrtsch!");
+				useup(obj);
+				return (1);
+
+			}
+		}
 
 	    if ((!rn2(isfriday ? 500 : 1000) && !obj->oartifact) || (!rn2(isfriday ? 125 : 250) && obj->otyp == WOODEN_BAR && (!obj->oartifact || !rn2(10))) || (!rn2(isfriday ? 125 : 250) && (obj->otyp == AKLYS || obj->otyp == BLOW_AKLYS) && (!obj->oartifact || !rn2(10))) || (!rn2(isfriday ? 5000 : 10000) && obj->oartifact)) {
 		if (obj->oartifact == ART_NOBREAK && obj->spe < 1) {

@@ -199,12 +199,12 @@ A("Disrupter",                  MACE,
  *	Mjollnir will return to the hand of a Valkyrie when thrown
  *	if the wielder is a Valkyrie with strength of 25 or more.
  */
-A("Mjollnir",                   HEAVY_HAMMER,           /* Mjo:llnir */
-	(SPFX_RESTR|SPFX_ATTK),  0, 0,
+A("Mjollnir",                   HEAVY_HAMMER,           /* Mjo:llnir - makes your AC worse by 10 points and counts as 500 extra units of weight */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_EVIL),  0, 0,
 	ELEC(5,24),	NO_DFNS,	NO_CARY,	0, A_NEUTRAL, PM_VALKYRIE, NON_PM, 4000L ),
 
-A("Other Mjollnir",                   WAR_HAMMER,
-	(SPFX_RESTR|SPFX_ATTK),  0, 0,
+A("Other Mjollnir",                   WAR_HAMMER, /* makes your AC worse by 10 points and counts as 500 extra units of weight */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_EVIL),  0, 0,
 	ELEC(5,24),	NO_DFNS,	NO_CARY,	0, A_NEUTRAL, PM_VANILLA_VALK, NON_PM, 4000L ),
 
 /* STEPHEN WHITE'S NEW CODE */
@@ -297,8 +297,8 @@ A("Double Bestard",			BASTERD_SWORD, /* -d20 to-hit, slows you down twice as muc
 	(SPFX_RESTR|SPFX_EVIL|SPFX_SPEAK), 0, 0,
 	PHYS(0,20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
-A("Guardian of Aranoch",			BENT_SABLE,
-	(SPFX_RESTR), 0, 0,
+A("Guardian of Aranoch",			BENT_SABLE, /* hunger, disables cold resistance for 1000 turns, hostile monsters have 20% chance to move at double speed for a given turn */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	PHYS(0,20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
 A("Dullswandir",			IRON_SABER,
@@ -389,8 +389,8 @@ A("Dockside Walk",			WEDGED_LITTLE_GIRL_SANDAL,
 	(SPFX_RESTR|SPFX_TCTRL), 0, 0,
 	PHYS(2,10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
-A("Karate Kid",			SOFT_GIRL_SNEAKER, /* free action */
-	(SPFX_RESTR), 0, 0,
+A("Karate Kid",			SOFT_GIRL_SNEAKER, /* free action, monsters with kick attacks have +20 to-hit against you */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	PHYS(5,16), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 10000L ),
 
 A("Girlful Bonking",			STURDY_PLATEAU_BOOT_FOR_GIRLS, /* aggravate monster, diarrhea, claw attacks deal extra damage to you, -500 carry capacity, all skills behave as if they were unskilled, gushlush effect */
@@ -425,8 +425,8 @@ A("Tender Beauty",			SEXY_LEATHER_PUMP,
 	(SPFX_RESTR), 0, 0,
 	PHYS(5,12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
-A("Massive But Lovely",			SEXY_LEATHER_PUMP,
-	(SPFX_RESTR|SPFX_STLTH), 0, 0,
+A("Massive But Lovely",			SEXY_LEATHER_PUMP, /* wakeup call, gives 10000 turns of wendy trap effect and 1000 turns of fumbling */
+	(SPFX_RESTR|SPFX_STLTH|SPFX_EVIL), 0, 0,
 	PHYS(6,18), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
 
 A("Sweetheart Pump",			SEXY_LEATHER_PUMP, /* psi resistance */
@@ -441,20 +441,20 @@ A("Ribcracker",			QUARTERSTAFF,
 	(SPFX_RESTR), 0, 0,
 	PHYS(8,16), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
-A("Dull Metal",			IRON_BAR,
-	(SPFX_RESTR), 0, 0,
+A("Dull Metal",			IRON_BAR, /* 1 in 50 that it dulls */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	PHYS(1,20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
 A("Gnarlwhack",			PLATINUM_FIRE_HOOK,
 	(SPFX_RESTR|SPFX_DEFN|SPFX_ATTK|SPFX_HALRES|SPFX_SEARCH), 0, 0,
 	FIRE(5,8), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
 
-A("Fire Leader",			PARTISAN,
-	(SPFX_RESTR|SPFX_ATTK|SPFX_LUCK), 0, 0,
+A("Fire Leader",			PARTISAN, /* disables fire resistance for 1000 turns, +5 spawn freq for fire-resistant monsters */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_LUCK|SPFX_EVIL), 0, 0,
 	FIRE(9,24), NO_DFNS, NO_CARY, UNTRAP, A_NEUTRAL, NON_PM, NON_PM, 11200L ),
 
-A("Fumata Yari",			SPETUM, /* makes the player very fast when wielded */
-	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+A("Fumata Yari",			SPETUM, /* etherwind and makes the player very fast when wielded */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_EVIL), 0, 0,
 	ACID(2,16), DFNS(AD_ACID), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3400L ),
 
 A("Non-Sucker",			RANSEUR,
@@ -469,20 +469,20 @@ A("Land Knight Piercer",			VOULGE,
 	(SPFX_RESTR|SPFX_LUCK), 0, 0,
 	PHYS(2,10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
-A("Apply B",			HALBERD,
-	(SPFX_RESTR|SPFX_SPEAK|SPFX_ESP|SPFX_STLTH), 0, 0,
+A("Apply B",			HALBERD, /* increases your sanity by one per turn */
+	(SPFX_RESTR|SPFX_SPEAK|SPFX_ESP|SPFX_STLTH|SPFX_EVIL), 0, 0,
 	PHYS(1,20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7500L ),
 
-A("Cock Application",			BILL_GUISARME,
-	(SPFX_ATTK|SPFX_RESTR|SPFX_PROTEC|SPFX_DRLI), 0, 0,
+A("Cock Application",			BILL_GUISARME, /* saps your maximum health by one with a 1 in 100 chance */
+	(SPFX_ATTK|SPFX_RESTR|SPFX_PROTEC|SPFX_DRLI|SPFX_EVIL), 0, 0,
 	DRLI(3,16), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6500L ),
 
-A("Not A Hammer",			LUCERN_HAMMER,
-	(SPFX_RESTR|SPFX_ATTK|SPFX_REFLECT), 0, 0,
+A("Not A Hammer",			LUCERN_HAMMER, /* while wielding it, your AC cannot be better than 10 */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_REFLECT|SPFX_EVIL), 0, 0,
 	COLD(4,16), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
-A("It's A Polearm",			LUCERN_HAMMER,
-	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+A("It's A Polearm",			LUCERN_HAMMER, /* aids when wielded */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_EVIL), 0, 0,
 	ELEC(4,16), DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
 A("Bec De Ascorbin",			BEC_DE_CORBIN,
@@ -497,12 +497,12 @@ A("Bronze Age Relic",			BRONZE_SPEAR,
 	(SPFX_RESTR), 0, 0,
 	PHYS(2,12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
-A("Misguided Missile",			SPIRIT_THROWER,
-	(SPFX_RESTR|SPFX_TCTRL), 0, 0,
+A("Misguided Missile",			SPIRIT_THROWER, /* while wielding it, you occasionally move in a random direction */
+	(SPFX_RESTR|SPFX_TCTRL|SPFX_EVIL), 0, 0,
 	PHYS(0,16), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
-A("Mare's Special Rocket",			TORPEDO,
-	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_REFLECT), 0, 0,
+A("Mare's Special Rocket",			TORPEDO, /* slows you down twice as much as spirit when wielded */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_REFLECT|SPFX_EVIL), 0, 0,
 	COLD(8,16), DFNS(AD_COLD), NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 9000L ),
 
 A("Lightning Blade",			TRIDENT,
@@ -549,8 +549,8 @@ A("Agora",			CATAPULT,
 	(SPFX_RESTR), 0, 0,
 	PHYS(0,14), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
-A("Upgraded Lemure",			CATAPULT,
-	(SPFX_RESTR|SPFX_SEEK), 0, 0,
+A("Upgraded Lemure",			CATAPULT, /* verisiert effect when wielded, and +100 turns of verisiert effect intrinsic for every ammo you fire */
+	(SPFX_RESTR|SPFX_SEEK|SPFX_EVIL), 0, 0,
 	PHYS(5,18), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
 
 A("Walther PPK",			PISTOL,
@@ -11424,6 +11424,58 @@ A("Main Win",				CASINO_CHIP, /* gives 2000 zorkmids when used */
 A("Sindacco's Forgery",				CASINO_CHIP, /* doesn't give you a casino chip, but activates the cops */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Web Conference",				WAN_SLEEP, /* shoots an additional sleep ray in a random direction */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("blu.toe",				EAGLE_BALL, /* randart2 orb, free action, juen trap effect, etherwind, +5 kick damage and your kick cannot be clumsy */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("asseignment(curse)",				ORCISH_CHAIN_MAIL, /* autocurses, can be invoked to curse an item of your choice */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Dolores' Winning Strat",				BOW, /* randart bow, can't shoot more than 2 arrows per turn, doesn't get penalties for trying to fire at point blank range */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Fivefoldswitch!",				HEAVY_MAIL, /* invoking it while it's at least +1 cures all nasty trap effects, and the armor becomes prime cursed -20 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 5555L ),
+
+A("Children Mjollnir",                   HEAVY_HAMMER,
+	(SPFX_RESTR|SPFX_ATTK),  0, 0,
+	ELEC(5,12),	NO_DFNS,	NO_CARY,	0, A_NEUTRAL, NON_PM, NON_PM, 4000L ),
+
+A("Weaker Mjollnir",                   WAR_HAMMER,
+	(SPFX_RESTR|SPFX_ATTK),  0, 0,
+	ELEC(5,12),	NO_DFNS,	NO_CARY,	0, A_NEUTRAL, NON_PM, NON_PM, 4000L ),
+
+A("Schwoingle",			PARTISAN,
+	(SPFX_RESTR), 0, 0,
+	PHYS(5,12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2800L ),
+
+A("Latin Spear",			SPETUM,
+	(SPFX_RESTR), 0, 0,
+	PHYS(2,8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1700L ),
+
+A("Dark Singer",			HALBERD,
+	(SPFX_RESTR), 0, 0,
+	PHYS(1,10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Seu",			LUCERN_HAMMER,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(4,8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Ga-bradda dana breight bag",		UMBRELLA,
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 9), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("Iceblock's Negation",  HEAVY_HAMMER,
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN),  0, 0,
+	FIRE(15,14),	FIRE(0,0),	NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 5000L ),
 
 /*
  *	Stormbringer only has a 2 because it can drain a level,

@@ -519,6 +519,10 @@ int thrown;
 
 	if (objects[obj->otyp].oc_skill == -P_CROSSBOW && launcher && launcher->otyp != DEMON_CROSSBOW && multishot > 1) multishot = rnd(multishot);
 
+	if (launcher && launcher->oartifact == ART_DOLORES__WINNING_STRAT) {
+		if (multishot > 2) multishot = 2;
+	}
+
 	if (launcher && launcher->oartifact == ART_GAT_FROM_HELL) {
 		int drainhp = multishot;
 		while (drainhp > 0) {
@@ -537,6 +541,11 @@ int thrown;
 		}
 		pline("%d points of health have been drained!", multishot);
 		flags.botl = TRUE;
+	}
+
+	if (launcher && launcher->oartifact == ART_UPGRADED_LEMURE) {
+		int verisiertnumber = multishot * 100;
+		u.uprops[VERISIERTEFFECT].intrinsic += verisiertnumber;
 	}
 
 	if (launcher && (launcher->otyp == SUBMACHINE_GUN || launcher->otyp == ASSAULT_RIFLE || launcher->otyp == KALASHNIKOV || launcher->otyp == AUTO_SHOTGUN ) && launcher->altmode == WP_MODE_AUTO && !bulletator_allowed(1)) {

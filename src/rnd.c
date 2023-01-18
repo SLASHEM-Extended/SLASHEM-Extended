@@ -2749,6 +2749,14 @@ randartscimitar()
 }
 
 int
+randartorb()
+{
+	int result;
+	result = rnd_class(EAGLE_BALL, CIGAR);
+	return result;
+}
+
+int
 randartunihorn()
 {
 	int result;
@@ -3159,6 +3167,14 @@ randartscimitarX()
 {
 	int result;
 	result = SCIMITAR + rn2((HIGH_ELVEN_WARSWORD + 1) - SCIMITAR);
+	return result;
+}
+
+int
+randartorbX()
+{
+	int result;
+	result = EAGLE_BALL + rn2((CIGAR + 1) - EAGLE_BALL);
 	return result;
 }
 

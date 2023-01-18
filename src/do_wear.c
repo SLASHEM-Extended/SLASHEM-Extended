@@ -3548,6 +3548,11 @@ Armor_on()
 		curse(uarm);
 	}
 
+	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_ASSEIGNMENT_CURSE_) {
+		pline("Une malediction assignee a votre armure.");
+		curse(uarm);
+	}
+
 	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_NULARMOR) {
 		pline("BEEEEEEEP! Your armor is cursed!");
 		curse(uarm);
@@ -6102,6 +6107,10 @@ find_ac()
 	if (FemtrapActivePatricia) uac -= 3;
 	if (uarm && uarm->oartifact == ART_ELMHERE && multi < 0) uac -= 5;
 	if (bmwride(ART_KERSTIN_S_COWBOY_BOOST)) uac -= 5;
+	if (uwep && uwep->oartifact == ART_MJOLLNIR) uac += 10;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_MJOLLNIR) uac += 10;
+	if (uwep && uwep->oartifact == ART_OTHER_MJOLLNIR) uac += 10;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_OTHER_MJOLLNIR) uac += 10;
 
 	if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 		if ((!uarm || is_metallic(uarm)) && (!uarmc || is_metallic(uarmc)) && (!uarmu || is_metallic(uarmu)) && (!uarms || is_metallic(uarms)) && (!uarmg || is_metallic(uarmg)) && (!uarmf || is_metallic(uarmf)) && (!uarmh || is_metallic(uarmh)) ) {
@@ -6472,7 +6481,7 @@ find_ac()
 		
 	}
 
-	if (u.uprops[NAKEDNESS].extrinsic || (uarmg && uarmg->oartifact == ART_SPREAD_YOUR_LEGS_WIDE) || (flags.female && uarmu && uarmu->oartifact == ART_GIANT_SWINGING_PENIS) || Nakedness || have_nakedstone() ) uac = 10;
+	if (u.uprops[NAKEDNESS].extrinsic || (uwep && uwep->oartifact == ART_NOT_A_HAMMER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_NOT_A_HAMMER) || (uarmg && uarmg->oartifact == ART_SPREAD_YOUR_LEGS_WIDE) || (flags.female && uarmu && uarmu->oartifact == ART_GIANT_SWINGING_PENIS) || Nakedness || have_nakedstone() ) uac = 10;
 
 	if(uac != u.uac){
 		u.uac = uac;

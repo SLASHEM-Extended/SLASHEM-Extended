@@ -18982,9 +18982,9 @@ boolean knoweverything;
 				case ART_DISRUPTER:
 					pline("Artifact specs: +5 to-hit and +30 damage to undead, neutral, priest sacrifice gift."); break;
 				case ART_MJOLLNIR:
-					pline("Artifact specs: +5 to-hit and +24 damage to shock-susceptible monsters, can be thrown with a strength of 25, neutral, valkyrie sacrifice gift."); break;
+					pline("Artifact specs: +5 to-hit and +24 damage to shock-susceptible monsters, can be thrown with a strength of 25, weighs 500 extra units, makes your AC worse by 10 points, neutral, valkyrie sacrifice gift."); break;
 				case ART_OTHER_MJOLLNIR:
-					pline("Artifact specs: +5 to-hit and +24 damage to shock-susceptible monsters, can be thrown with a strength of 25, neutral, vanilla valk sacrifice gift."); break;
+					pline("Artifact specs: +5 to-hit and +24 damage to shock-susceptible monsters, can be thrown with a strength of 25, weighs 500 extra units, makes your AC worse by 10 points, neutral, vanilla valk sacrifice gift."); break;
 				case ART_GAUNTLETS_OF_DEFENSE:
 					pline("Artifact specs: half physical damage when worn, can be invoked for invisibility, neutral, monk sacrifice gift."); break;
 				case ART_MIRRORBRIGHT:
@@ -19028,7 +19028,7 @@ boolean knoweverything;
 				case ART_DOUBLE_BESTARD:
 					pline("Artifact specs: +20 damage, -d20 to-hit and slows you down considerably. The misspelling is intentional."); break;
 				case ART_GUARDIAN_OF_ARANOCH:
-					pline("Artifact specs: +20 damage."); break;
+					pline("Artifact specs: +20 damage, hunger when wielded, disables cold resistance for a while and hostile monsters can randomly move faster."); break;
 				case ART_DULLSWANDIR:
 					pline("Artifact specs: Hallucination resistance when wielded."); break;
 				case ART_GOLDSWANDIR:
@@ -19076,7 +19076,7 @@ boolean knoweverything;
 				case ART_DOCKSIDE_WALK:
 					pline("Artifact specs: Teleport control when wielded, +2 to-hit and +10 damage."); break;
 				case ART_KARATE_KID:
-					pline("Artifact specs: Free action when wielded, +5 to-hit and +16 damage, lawful."); break;
+					pline("Artifact specs: Free action when wielded, +5 to-hit and +16 damage, monsters with kick attacks have extra to-hit against you, lawful."); break;
 				case ART_GIRLFUL_BONKING:
 					pline("Artifact specs: aggravate monster, all skills act as if they were unskilled, many effects behave as if you were XL1, diarrhea and reduced carry capacity when wielded and also causes claw attacks to do extra damage to you, +20 to-hit and +30 damage."); break;
 				case ART_ARMOR_PIERCING_HUG:
@@ -19094,7 +19094,7 @@ boolean knoweverything;
 				case ART_TENDER_BEAUTY:
 					pline("Artifact specs: +5 to-hit and +12 damage."); break;
 				case ART_MASSIVE_BUT_LOVELY:
-					pline("Artifact specs: Stealth when wielded, +6 to-hit and +18 damage."); break;
+					pline("Artifact specs: stealth and wakeup call when wielded, gives you long-lasting wendy trap and fumbling effects, +6 to-hit and +18 damage."); break;
 				case ART_SWEETHEART_PUMP:
 					pline("Artifact specs: Psi resistance when wielded, +15 to-hit and +2 damage."); break;
 				case ART_SANDRA_S_EVIL_MINDDRILL:
@@ -19102,13 +19102,13 @@ boolean knoweverything;
 				case ART_RIBCRACKER:
 					pline("Artifact specs: +8 to-hit and +16 damage."); break;
 				case ART_DULL_METAL:
-					pline("Artifact specs: +1 to-hit and +20 damage."); break;
+					pline("Artifact specs: +1 to-hit and +20 damage, but may occasionally dull upon hitting something."); break;
 				case ART_GNARLWHACK:
 					pline("Artifact specs: Fire and hallucination resistance as well as searching when wielded, +5 to-hit and +8 damage to fire-susceptible monsters."); break;
 				case ART_FIRE_LEADER:
-					pline("Artifact specs: Acts as a luckstone, +9 to-hit and +24 damage to fire-susceptible monsters, can be invoked to untrap, neutral."); break;
+					pline("Artifact specs: Acts as a luckstone, +9 to-hit and +24 damage to fire-susceptible monsters, disables your fire resistance for 1000 turns, makes fire-resistant monsters more likely to spawn, can be invoked to untrap, neutral."); break;
 				case ART_FUMATA_YARI:
-					pline("Artifact specs: speed and acid resistance when wielded, +2 to-hit and +16 damage to acid-susceptible monsters."); break;
+					pline("Artifact specs: etherwind, speed and acid resistance when wielded, +2 to-hit and +16 damage to acid-susceptible monsters."); break;
 				case ART_NON_SUCKER:
 					pline("Artifact specs: +6 to-hit and +12 damage."); break;
 				case ART_DIMOAK_S_HEW:
@@ -19116,13 +19116,13 @@ boolean knoweverything;
 				case ART_LAND_KNIGHT_PIERCER:
 					pline("Artifact specs: Acts as a luckstone when wielded, +2 to-hit and +10 damage."); break;
 				case ART_APPLY_B:
-					pline("Artifact specs: ESP and stealth when wielded, +1 to-hit and +20 damage."); break;
+					pline("Artifact specs: ESP and stealth when wielded, continuously increases your sanity, +1 to-hit and +20 damage."); break;
 				case ART_COCK_APPLICATION:
-					pline("Artifact specs: Protection when wielded, +3 to-hit and +16 level-drain damage."); break;
+					pline("Artifact specs: Protection when wielded, +3 to-hit and +16 level-drain damage, will gradually sap your maximum health when wielded."); break;
 				case ART_NOT_A_HAMMER:
-					pline("Artifact specs: Reflection when wielded, +4 to-hit and +16 damage to cold-susceptible monsters. This is not a hammer-class weapon."); break;
+					pline("Artifact specs: Reflection when wielded, your AC cannot be better than 10, +4 to-hit and +16 damage to cold-susceptible monsters. This is not a hammer-class weapon."); break;
 				case ART_IT_S_A_POLEARM:
-					pline("Artifact specs: Magic resistance when wielded, +4 to-hit and +16 damage to shock-susceptible monsters. This is a polearm-class weapon."); break;
+					pline("Artifact specs: Magic resistance and AIDS when wielded (which doesn't disable the magic resistance), +4 to-hit and +16 damage to shock-susceptible monsters. This is a polearm-class weapon."); break;
 				case ART_BEC_DE_ASCORBIN:
 					pline("Artifact specs: +1 to-hit and +4 damage, can be applied for healing, lawful."); break;
 				case ART_PALEOLITHIC_RELIC:
@@ -19130,9 +19130,9 @@ boolean knoweverything;
 				case ART_BRONZE_AGE_RELIC:
 					pline("Artifact specs: +2 to-hit and +12 damage."); break;
 				case ART_MISGUIDED_MISSILE:
-					pline("Artifact specs: Teleport control when wielded, +16 damage."); break;
+					pline("Artifact specs: Teleport control when wielded, you occasionally move in the wrong direction, +16 damage."); break;
 				case ART_MARE_S_SPECIAL_ROCKET:
-					pline("Artifact specs: Reflection and cold resistance when wielded, +8 to-hit and +16 damage to cold-susceptible monsters, lawful."); break;
+					pline("Artifact specs: Reflection, cold resistance and makes you quite a bit slower when wielded, +8 to-hit and +16 damage to cold-susceptible monsters, lawful."); break;
 				case ART_LIGHTNING_BLADE:
 					pline("Artifact specs: +2 to-hit and +12 damage to shock-susceptible monsters."); break;
 				case ART_FISHING_GRANDPA:
@@ -19156,7 +19156,7 @@ boolean knoweverything;
 				case ART_AGORA:
 					pline("Artifact specs: +14 damage."); break;
 				case ART_UPGRADED_LEMURE:
-					pline("Artifact specs: +5 to-hit and +18 damage, searching when wielded."); break;
+					pline("Artifact specs: +5 to-hit and +18 damage, faster monster spawning and searching when wielded, every time you fire you'll get a couple of turns of the monster spawning intrinsic."); break;
 				case ART_WALTHER_PPK:
 					pline("Artifact specs: +2 to-hit and +10 damage."); break;
 				case ART_DESERT_EAGLE:
@@ -24932,6 +24932,32 @@ boolean knoweverything;
 					pline("Artifact specs: gives you 2000 zorkmids when used."); break;
 				case ART_SINDACCO_S_FORGERY:
 					pline("Artifact specs: The dragon on this chip has sunglasses and a mustache."); break;
+				case ART_WEB_CONFERENCE:
+					pline("Artifact specs: based upon the variant developer's experience with real life web conferences, shoots an additional sleep ray in a random direction because those conferences are so boooooooring (yawn) that they make participants randomly fall asleep."); break;
+				case ART_BLU_TOE:
+					pline("Artifact specs: free action, juen trap effect and etherwind when wielded, and your kick deals +5 damage and cannot be clumsy."); break;
+				case ART_ASSEIGNMENT_CURSE_:
+					pline("Artifact specs: autocurses when worn and can be invoked to curse an item of your choice in your open inventory."); break;
+				case ART_DOLORES__WINNING_STRAT:
+					pline("Artifact specs: can fire at point blank range without getting damage or to-hit reduction, but cannot shoot more than 2 arrows at once."); break;
+				case ART_FIVEFOLDSWITCH_:
+					pline("Artifact specs: if you invoke it while it's at least +1, it cures all nasty trap effects, but then the armor becomes -20 and prime curses itself."); break;
+				case ART_CHILDREN_MJOLLNIR:
+					pline("Artifact specs: +5 to-hit and +12 damage to shock-susceptible monsters, neutral. Omg that artifact has 'child' in its name that's sooooo offensive and Amy should be banned."); break;
+				case ART_WEAKER_MJOLLNIR:
+					pline("Artifact specs: +5 to-hit and +12 damage to shock-susceptible monsters, neutral."); break;
+				case ART_SCHWOINGLE:
+					pline("Artifact specs: +5 to-hit and +12 damage."); break;
+				case ART_LATIN_SPEAR:
+					pline("Artifact specs: +2 to-hit and +8 damage."); break;
+				case ART_DARK_SINGER:
+					pline("Artifact specs: +1 to-hit and +10 damage."); break;
+				case ART_SEU:
+					pline("Artifact specs: +4 to-hit and +8 damage to fire-susceptible monsters."); break;
+				case ART_GA_BRADDA_DANA_BREIGHT_BAG:
+					pline("Artifact specs: +6 to-hit and +9 damage."); break;
+				case ART_ICEBLOCK_S_NEGATION:
+					pline("Artifact specs: +15 to-hit and +14 damage to fire-susceptible monsters, fire resistance when wielded, neutral. This artifact is based on the 'Warforger' hammer that the type of ice block invented, and who intentionally made it so that it deals physical damage instead of fire damage so that fire-resistant monsters don't negate the damage, but Amy decided to create a version that does deal fire damage, muahahahaha."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

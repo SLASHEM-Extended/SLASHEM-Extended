@@ -50,6 +50,7 @@ register boolean clumsy;
 	if (uarmf && uarmf->oartifact == ART_KATHARINA_S_LOVELINESS) dmg += 10;
 	if (uarmf && uarmf->oartifact == ART_EXCITING_SPFLOTCH) dmg += 2;
 	if (uarmf && itemhasappearance(uarmf, APP_SUPERHARD_SANDALS)) dmg += 5;
+	if (uwep && uwep->oartifact == ART_BLU_TOE) dmg += 5;
 
 	if (uarmf && uarmf->oartifact == ART_ARVOGENIA_S_BIKER_HEELS && u.usteed) dmg += 5;
 
@@ -295,6 +296,7 @@ register boolean clumsy;
 	if (uarmf && itemhasappearance(uarmf, APP_CALF_LEATHER_SANDALS)) clumsy = FALSE;
 
 	if (uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) clumsy = FALSE;
+	if (uwep && uwep->oartifact == ART_BLU_TOE) clumsy = FALSE;
 	if (uarmf && uarmf->oartifact == ART_FRONT_TARGET) clumsy = FALSE;
 	if (uarmf && uarmf->oartifact == ART_ELENETTES) clumsy = FALSE;
 
@@ -938,7 +940,7 @@ register xchar x, y;
 
 	if (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT) i += 6000;
 
-	if((i < (j*3)/10) && !(uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) && !(uarmf && uarmf->oartifact == ART_FRONT_TARGET) && !(uarmf && uarmf->oartifact == ART_ELENETTES) && !(uarmf && itemhasappearance(uarmf, APP_CALF_LEATHER_SANDALS)) ) {
+	if((i < (j*3)/10) && !(uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) && !(uwep && uwep->oartifact == ART_BLU_TOE) && !(uarmf && uarmf->oartifact == ART_FRONT_TARGET) && !(uarmf && uarmf->oartifact == ART_ELENETTES) && !(uarmf && itemhasappearance(uarmf, APP_CALF_LEATHER_SANDALS)) ) {
 		if((!rn2((i < j/10) ? 2 : (i < j/5) ? 3 : 4)) || (isfriday && !rn2(5))) {
 			if(martial() && !rn2(isfriday ? 10 : 2)) goto doit;
 			Your("clumsy kick does no damage.");
@@ -959,6 +961,7 @@ register xchar x, y;
 	if (uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) clumsy = FALSE;
 	if (uarmf && uarmf->oartifact == ART_FRONT_TARGET) clumsy = FALSE;
 	if (uarmf && uarmf->oartifact == ART_ELENETTES) clumsy = FALSE;
+	if (uwep && uwep->oartifact == ART_BLU_TOE) clumsy = FALSE;
 
 	if (uarmf && itemhasappearance(uarmf, APP_CALF_LEATHER_SANDALS)) clumsy = FALSE;
 

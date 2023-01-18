@@ -465,6 +465,7 @@ WEAPON("otama", (char *)0,
 WEAPON("telephone", (char *)0, /* applying a positively enchanted one disenchants it and summons a tame demon */
 	1, 0, 0,  50, 2, 50, 6, 6, 2, B,   P_PADDLE, MT_PAPER, CLR_BRIGHT_BLUE, 5),
 
+/* first orb = eagle ball */
 WEAPON("eagle ball", (char *)0,
 	1, 0, 0, 619, 2, 5,  2, 2, 0, B,   P_ORB, MT_PLASTIC, CLR_ORANGE, 1),
 WEAPON("jared stone", (char *)0,
@@ -480,6 +481,7 @@ WEAPON("dimensional shard", (char *)0, /* banishmentitis; when wielded, tele con
 
 WEAPON("cigar", (char *)0, /* polearm-type */
 	1, 0, 0,  20, 2, 100, 6, 6, 1, B,   P_ORB, MT_COMPOST, CLR_BROWN, 24),
+/* last orb = cigar */
 
 WEAPON("grinder", (char *)0,
 	1, 0, 1, 700, 100, 20, 6, 6, 0, P,   P_GRINDER, MT_IRON, CLR_BLACK, 1),

@@ -3483,7 +3483,7 @@ int dieroll;
 
 	if (thrown && !stupidrock && !gunused && !pieks && rn2(2)) get_dmg_bonus = 0;
 
-	if (thrown && launcher && obj && ammo_and_launcher(obj, launcher) && !gunused && (distmin(u.ux, u.uy, mon->mx, mon->my) == 1)) {
+	if (thrown && launcher && (launcher->otyp != ART_DOLORES__WINNING_STRAT) && obj && ammo_and_launcher(obj, launcher) && !gunused && (distmin(u.ux, u.uy, mon->mx, mon->my) == 1)) {
 		get_dmg_bonus = 0;
 		if (tmp > 1) tmp /= 2;
 		if (flags.bash_reminder && !rn2(10)) pline("Firing that weapon at point blank range is not very effective...");
@@ -5384,7 +5384,7 @@ melatechoice:
 
 			else if ((Role_if(PM_SPACEWARS_FIGHTER) || (mon->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && (!rn2(5) || (mon->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) && !thrown) {
 
-				switch (rnd(736)) {
+				switch (rnd(737)) {
 
 				case 1: pline("You crush %s's skull into jelly.", mon_nam(mon)); break;
 				case 2: pline("You decapitate %s with a backhand stroke.", mon_nam(mon)); break;
@@ -6122,6 +6122,7 @@ melatechoice:
 				case 734: pline("Due to a game bug, %s simply disappears even though %s had full health left.", mon_nam(mon), mhe(mon)); break;
 				case 735: pline("The time has come for %s to die.", mon_nam(mon)); break;
 				case 736: pline("%s fell into the lava, and tries to pull %sself back out but you intentionally block the space where %s'd land, so %s ends up melting away.", Monnam(mon), mhim(mon), mhe(mon), mhe(mon)); break;
+				case 737: pline("You fully score a goal because %s ain't got no chance.", mon_nam(mon)); break;
 
 
 				default: pline("You hit %s very hard!", mon_nam(mon)); break;
@@ -8529,7 +8530,7 @@ register int roll;
 
 	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || (mdef->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && (!rn2(5) || (mdef->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) && canspotmon(mdef) && flags.verbose) {
 
-		switch (rnd(782)) {
+		switch (rnd(783)) {
 
 		case 1: pline("%s cringes from your strike behind its %sshield.", Monnam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
 		case 2: pline("You smash into %s's %sshield, striking sparks.", mon_nam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
@@ -9313,6 +9314,7 @@ register int roll;
 		case 780: pline("%s is the server administrator and decides that your game gets banned from the annual NetHack tournament for no reason, other than the admin wanting to demonstrate his power, of which he has too much!", Monnam(mdef)); break;
 		case 781: pline("Your character plays exactly like a samurai... who didn't enhance the melee weapon skills yet, and therefore your attack misses."); break;
 		case 782: pline("You are trying to play your character like it was a samurai, but it actually isn't one, and so your melee attack misses!"); break;
+		case 783: pline("You are somehow unconcentrated and shoot your ball highly over the goal."); break;
 
 
 		default: pline("You missed %s!", mon_nam(mdef)); break;
@@ -9622,6 +9624,10 @@ use_weapon:
 					uwep->spe--;
 					pline("Your weapon sustains damage.");
 				}
+				if (uwep && uwep->oartifact == ART_DULL_METAL && !rn2(50) && uwep->spe > -20) {
+					uwep->spe--;
+					pline("Your weapon sustains damage.");
+				}
 				if (uwep && uwep->otyp == SECRET_SOUND_WHIP) {
 					increasesanity(1);
 				}
@@ -9811,6 +9817,10 @@ bladeangerdone2:
 					pline("Your ball sustains damage.");
 				}
 				if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DONNNNNNNNNNNNG && !rn2(3) && uswapwep->spe > -20) {
+					uswapwep->spe--;
+					pline("Your weapon sustains damage.");
+				}
+				if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DULL_METAL && !rn2(50) && uswapwep->spe > -20) {
 					uswapwep->spe--;
 					pline("Your weapon sustains damage.");
 				}
