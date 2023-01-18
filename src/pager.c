@@ -128,7 +128,7 @@ lookat(x, y, buf, monbuf)
 	if (u.usteed) {
 	    char steedbuf[BUFSZ];
 
-	    sprintf(steedbuf, ", mounted on %s", y_monnam(u.usteed));
+	    sprintf(steedbuf, ", mounted on %s (%s)", y_monnam(u.usteed), Hallucination ? "sparkly dood" : u.usteed->data->mname);
 	    /* assert((sizeof buf >= strlen(buf)+strlen(steedbuf)+1); */
 	    strcat(buf, steedbuf);
 	}
