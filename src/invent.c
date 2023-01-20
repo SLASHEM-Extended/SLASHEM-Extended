@@ -13362,7 +13362,7 @@ boolean knoweverything;
 			case GAUNTLETS:
 				pline("A standard pair of gauntlets."); break;
 			case SILVER_GAUNTLETS:
-				pline("These gauntlets may or may not be made of silver."); break;
+				pline("These gauntlets may or may not be made of silver. However, regardless of their actual material, using bare-handed attacks with them will deal silver damage to enemies."); break;
 			case GAUNTLETS_OF_FAST_CASTING:
 				pline("A pair of gauntlets that increases the rate of mana regeneration."); break;
 			case GAUNTLETS_OF_NO_FLICTION:

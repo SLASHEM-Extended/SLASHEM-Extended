@@ -1885,8 +1885,19 @@ int dieroll;
 		}
 
 	    /* blessed gloves give bonuses when fighting 'bare-handed' */
-	    if (uarmg && uarmg->blessed && (is_undead(mdat) || is_demon(mdat)))
+	    if (uarmg && uarmg->blessed && (is_undead(mdat) || is_demon(mdat))) {
 		tmp += rnd(4);
+	    }
+
+		/* wtf vanilla devs! why didn't you account for the possibility of silver gloves??? --Amy */
+	    if (uarmg && ((objects[uarmg->otyp].oc_material == MT_SILVER) || (uarmg->otyp == SILVER_GAUNTLETS)) ) {
+		if (hates_silver(mdat)) {
+			tmp += rnd(20);
+			silvermsg = TRUE;
+		}
+	    }
+
+		/* actually we should add other material-based damage bonuses here, too --Amy */
 
 	    if (uarmg && uarmg->spe) tmp += uarmg->spe; /* WAC plusses from gloves */
 
