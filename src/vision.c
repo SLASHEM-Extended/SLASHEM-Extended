@@ -168,7 +168,7 @@ does_block(x,y,lev)
 	return 1;
 
     if (lev->typ == CLOUD || lev->typ == BUBBLES || lev->typ == RAINCLOUD || lev->typ == WATER ||
-			(lev->typ == MOAT && Underwater))
+			(lev->typ == MOAT && Underwater && !Swimming))
 	return 1;
 
     /* Boulders block light. */
@@ -594,14 +594,27 @@ vision_recalc(control)
 	     */
 	    has_night_vision = 0;
 
-	    for (row = u.uy-1; row <= u.uy+1; row++)
-		for (col = u.ux-1; col <= u.ux+1; col++) {
-		    if (!isok(col,row) || !is_waterypool(col,row)) continue;
+	    if (Swimming) {
+		    for (row = 0; row <= ROWNO; row++)
+			for (col = 0; col <= COLNO; col++) {
+			    if (!isok(col,row)) continue;
 
-		    next_rmin[row] = min(next_rmin[row], col);
-		    next_rmax[row] = max(next_rmax[row], col);
-		    next_array[row][col] = IN_SIGHT | COULD_SEE;
-		}
+			    next_rmin[row] = min(next_rmin[row], col);
+			    next_rmax[row] = max(next_rmax[row], col);
+			    next_array[row][col] = IN_SIGHT | COULD_SEE;
+			}
+
+	    } else {
+
+		    for (row = u.uy-1; row <= u.uy+1; row++)
+			for (col = u.ux-1; col <= u.ux+1; col++) {
+			    if (!isok(col,row) || (!is_waterypool(col,row)) ) continue;
+
+			    next_rmin[row] = min(next_rmin[row], col);
+			    next_rmax[row] = max(next_rmax[row], col);
+			    next_array[row][col] = IN_SIGHT | COULD_SEE;
+			}
+	    }
 	}
 
 	/* if in a pit, just update for immediate locations */

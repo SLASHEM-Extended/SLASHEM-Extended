@@ -899,7 +899,7 @@ feel_location(x, y)
     if (memory_is_invisible(x,y) && m_at(x,y)) return;
 
     /* The hero can't feel non pool locations while under water. */
-    if (Underwater && !Is_waterlevel(&u.uz) && !is_waterypool(x,y) && !is_watertunnel(x,y) && !is_lava(x,y) && !is_shiftingsand(x,y) && !is_styxriver(x,y) )
+    if (Underwater && !Swimming && !Is_waterlevel(&u.uz) && !is_waterypool(x,y) && !is_watertunnel(x,y) && !is_lava(x,y) && !is_shiftingsand(x,y) && !is_styxriver(x,y) )
 	return;
 
     /* Set the seen vector as if the hero had seen it.  It doesn't matter */
@@ -1157,7 +1157,7 @@ newsym(x,y)
 	if (x == u.ux && y == u.uy) display_self();
 	return;
     }
-    if (Underwater && !Is_waterlevel(&u.uz)) {
+    if (Underwater && !Swimming && !Is_waterlevel(&u.uz)) {
 	/* don't do anything unless (x,y) is an adjacent underwater position */
 	int dx, dy;
 	if (!is_waterypool(x,y) && !is_watertunnel(x,y) && !is_lava(x,y) && !is_shiftingsand(x,y) && !is_styxriver(x,y)) return;
@@ -1554,7 +1554,7 @@ newsymX(x,y)
 	if (x == u.ux && y == u.uy) display_self();
 	return;
     }
-    if (Underwater && !Is_waterlevel(&u.uz)) {
+    if (Underwater && !Swimming && !Is_waterlevel(&u.uz)) {
 	/* don't do anything unless (x,y) is an adjacent underwater position */
 	int dx, dy;
 	if (!is_waterypool(x,y) && !is_watertunnel(x,y) && !is_lava(x,y) && !is_shiftingsand(x,y) && !is_styxriver(x,y)) return;

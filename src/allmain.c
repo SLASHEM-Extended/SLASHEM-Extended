@@ -8645,7 +8645,7 @@ newbossX:
 			fall_asleep(-(rnd(20)), TRUE);
 		}
 
-		if (is_shiftingsand(u.ux, u.uy) && !Flying && !Levitation) {
+		if (is_shiftingsand(u.ux, u.uy) && !(u.usteed && is_swimmer(u.usteed->data)) && !Flying && !Levitation) {
 			u.shiftingsandsinking++;
 			switch (u.shiftingsandsinking) {
 				/* make it VERY clear to the player that they will die unless they get out immediately --Amy */
@@ -9524,7 +9524,7 @@ newbossB:
 
 		if (is_styxriver(u.ux, u.uy)) {
 
-			if ((!Flying && !Levitation) || !rn2(5)) {
+			if ((!Flying && !Levitation && !(u.usteed && is_swimmer(u.usteed->data)) ) || !rn2(5)) {
 				Norep("Continued exposure to the Styx River will cause contamination.");
 				contaminate(rnd(10 + level_difficulty()), TRUE);
 				stop_occupation();
@@ -9549,7 +9549,7 @@ newbossB:
 
 		}
 
-		if (is_moorland(u.ux, u.uy) && !(uarmf && itemhasappearance(uarmf, APP_MUD_BOOTS)) && !Flying && !Levitation && !Race_if(PM_BOVER)) {
+		if (is_moorland(u.ux, u.uy) && !(u.usteed && is_swimmer(u.usteed->data)) && !(uarmf && itemhasappearance(uarmf, APP_MUD_BOOTS)) && !Flying && !Levitation && !Race_if(PM_BOVER)) {
 			Norep("Swimming in moorland causes continuous damage.");
 			losehp(rnd(5 + (level_difficulty() / 5)), "swimming in moorland", KILLED_BY);
 			stop_occupation();
@@ -9588,7 +9588,7 @@ newbossB:
 
 		}
 
-		if (is_urinelake(u.ux, u.uy) && !Flying && !Levitation) {
+		if (is_urinelake(u.ux, u.uy) && !(u.usteed && is_swimmer(u.usteed->data)) && !Flying && !Levitation) {
 
 			stop_occupation();
 			if (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record > 0) {

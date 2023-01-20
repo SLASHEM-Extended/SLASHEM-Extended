@@ -24504,7 +24504,7 @@ drown()
 
 	/* happily wading in the same contiguous pool */
 	if (u.uinwater && !(is_crystalwater(u.ux-u.dx,u.uy-u.dy)) && is_drowningpool(u.ux-u.dx,u.uy-u.dy) &&
-	    (Swimming || Amphibious || Breathless)) {
+	    (Swimming || Amphibious || Breathless || (u.usteed && is_swimmer(u.usteed->data)) )) {
 		/* water effects on objects every now and then */
 		u.udrowning = FALSE;
 		if (!rn2(5)) inpool_ok = TRUE;
