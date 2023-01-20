@@ -10053,7 +10053,7 @@ int rolenum, gendnum, alignnum, pickhow;
 		    if (!rn2(10) && !flags.hybridcancel && flags.randomhybrids) {	/* hybrid races --Amy */
 
 			flags.hybridization++;
-			switch (rnd(44)) {
+			switch (rnd(46)) {
 
 				case 1:
 					flags.hybridangbander = 1; break;
@@ -10143,12 +10143,16 @@ int rolenum, gendnum, alignnum, pickhow;
 					flags.hybridchallenger = 1; break;
 				case 44:
 					flags.hybridhardmoder = 1; break;
+				case 45:
+					flags.hybridstunfish = 1; break;
+				case 46:
+					flags.hybridkillfiller = 1; break;
 
 			}
 
 			while ((rnd(7)) < 3) {
 
-				switch (rnd(44)) {
+				switch (rnd(46)) {
 	
 					case 1:
 						if (!(flags.hybridangbander)) {flags.hybridangbander = 1; flags.hybridization++; break;
@@ -10281,6 +10285,12 @@ int rolenum, gendnum, alignnum, pickhow;
 						}
 					case 44:
 						if (!(flags.hybridhardmoder)) {flags.hybridhardmoder = 1; flags.hybridization++; break;
+						}
+					case 45:
+						if (!(flags.hybridstunfish)) {flags.hybridstunfish = 1; flags.hybridization++; break;
+						}
+					case 46:
+						if (!(flags.hybridkillfiller)) {flags.hybridkillfiller = 1; flags.hybridization++; break;
 						}
 	
 				}
@@ -10438,7 +10448,7 @@ int type;
 
 		while (tryct++ < 1000) {
 
-			switch (rnd(44)) {
+			switch (rnd(46)) {
 
 			case 1:
 				if (flags.hybridangbander) {
@@ -10792,6 +10802,22 @@ int type;
 					pline("You no longer have the hardmoder hybrid race.");
 				}
 				break;
+			case 45:
+				if (flags.hybridstunfish) {
+					tryct = 1000;
+					flags.hybridstunfish = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the stunned-like-a-fish hybrid race.");
+				}
+				break;
+			case 46:
+				if (flags.hybridkillfiller) {
+					tryct = 1000;
+					flags.hybridkillfiller = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the killfiller hybrid race.");
+				}
+				break;
 
 			} /* end switch case */
 		}
@@ -10800,7 +10826,7 @@ int type;
 
 		while (tryct++ < 1000) {
 
-			switch (rnd(44)) {
+			switch (rnd(46)) {
 
 			case 1:
 				if (!flags.hybridangbander) {
@@ -11152,6 +11178,22 @@ int type;
 					flags.hybridhardmoder = TRUE;
 					flags.hybridization++;
 					pline("You now have the hardmoder hybrid race.");
+				}
+				break;
+			case 45:
+				if (!flags.hybridstunfish) {
+					tryct = 1000;
+					flags.hybridstunfish = TRUE;
+					flags.hybridization++;
+					pline("You now have the stunned-like-a-fish hybrid race.");
+				}
+				break;
+			case 46:
+				if (!flags.hybridkillfiller) {
+					tryct = 1000;
+					flags.hybridkillfiller = TRUE;
+					flags.hybridization++;
+					pline("You now have the killfiller hybrid race.");
 				}
 				break;
 
