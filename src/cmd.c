@@ -7570,7 +7570,7 @@ boolean guaranteed;
 	 * places in the done() sequence depend on u.usteed, just detect this
 	 * special case. */
 	if ((guaranteed || !rn2(10)) && (u.usteed && (final < 2 || strcmp(killer, "riding accident")))) {
-	    sprintf(buf, "riding %s", y_monnam(u.usteed));
+	    sprintf(buf, "riding %s (%s)", y_monnam(u.usteed), u.usteed->data->mname);
 	    you_are(buf);
 	}
 	if ((guaranteed || !rn2(10)) && u.uswallow) {
@@ -12191,7 +12191,7 @@ int final;
 	else if (Amphibious) dump(youcould, "breathe water");
 	if (Passes_walls) dump(youcould, StrongPasses_walls ? "walk through every wall" : "walk through walls");
 	if (u.usteed && (final < 2 || strcmp(killer, "riding accident"))) {
-	    sprintf(buf, "riding %s", y_monnam(u.usteed));
+	    sprintf(buf, "riding %s (%s)", y_monnam(u.usteed), u.usteed->data->mname);
 	    dump(youwere, buf);
 	}
 	if (u.uswallow) {
