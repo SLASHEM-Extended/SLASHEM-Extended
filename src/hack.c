@@ -5167,6 +5167,7 @@ max_carr_cap()
 	if (uarm && uarm->oartifact == ART_SCHOOL_SATCHEL) maxcarrcap += 2000;
 	if (uarmc && uarmc->oartifact == ART_NEUTRINO) maxcarrcap += 1000;
 	if (RngeCarryingBoost) maxcarrcap += 1000;
+	if (u.xtralevelmult > 1) maxcarrcap += ((u.xtralevelmult - 1) * 10);
 
 	return maxcarrcap;
 }
@@ -5215,6 +5216,7 @@ weight_cap()
 	if (uwep && uwep->oartifact == ART_FIRST_CARRYING_BOX) carrcap += 1000;
 	if (uarmc && uarmc->oartifact == ART_NEUTRINO) carrcap += 1000;
 	if (RngeCarryingBoost) carrcap += 1000;
+	if (u.xtralevelmult > 1) carrcap += ((u.xtralevelmult - 1) * 50);
 
 	if (!PlayerCannotUseSkills && uarm && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) {
 
