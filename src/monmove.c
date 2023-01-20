@@ -1034,6 +1034,32 @@ register struct monst *mtmp;
 		}
 	}
 
+	if (mdat == &mons[PM_DRIPPER_GHOST]) {
+		if (isok(mtmp->mx, mtmp->my) && (!In_sokoban(&u.uz) || !rn2(25))) {
+			if (levl[mtmp->mx][mtmp->my].typ == ROOM || levl[mtmp->mx][mtmp->my].typ == CORR || (levl[mtmp->mx][mtmp->my].typ <= ROCKWALL && ((levl[mtmp->mx][mtmp->my].wall_info & W_NONDIGGABLE) == 0) ) ) {
+				levl[mtmp->mx][mtmp->my].typ = MOAT;
+				blockorunblock_point(mtmp->mx,mtmp->my);
+				if(cansee(mtmp->mx,mtmp->my)) {
+					newsym(mtmp->mx,mtmp->my);
+				}
+			}
+		}
+	}
+
+	if (mdat == &mons[PM_TERRAINDRIPPER]) {
+		if (isok(mtmp->mx, mtmp->my) && (!In_sokoban(&u.uz) || !rn2(25))) {
+			if (levl[mtmp->mx][mtmp->my].typ == ROOM || levl[mtmp->mx][mtmp->my].typ == CORR || (levl[mtmp->mx][mtmp->my].typ <= ROCKWALL && ((levl[mtmp->mx][mtmp->my].wall_info & W_NONDIGGABLE) == 0) ) ) {
+				int wallclass = randomwalltype();
+
+				if (wallclass != TREE || (levl[mtmp->mx][mtmp->my].wall_info & W_NONDIGGABLE) == 0) levl[mtmp->mx][mtmp->my].typ = wallclass;
+				blockorunblock_point(mtmp->mx,mtmp->my);
+				if(cansee(mtmp->mx,mtmp->my)) {
+					newsym(mtmp->mx,mtmp->my);
+				}
+			}
+		}
+	}
+
 	if (mdat == &mons[PM_VOLCANIC_NYMPH] || mdat == &mons[PM_SUPER_ANNOYING_NYMPH]) {
 		if (isok(mtmp->mx, mtmp->my) && (!In_sokoban(&u.uz) || !rn2(25))) {
 			if (levl[mtmp->mx][mtmp->my].typ == ROOM || levl[mtmp->mx][mtmp->my].typ == CORR || (levl[mtmp->mx][mtmp->my].typ >= ICE && levl[mtmp->mx][mtmp->my].typ <= CRYPTFLOOR) || (levl[mtmp->mx][mtmp->my].typ >= AIR && levl[mtmp->mx][mtmp->my].typ <= RAINCLOUD)) {

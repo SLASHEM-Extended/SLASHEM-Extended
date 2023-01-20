@@ -9355,7 +9355,7 @@ register struct	monst	*mtmp;
 				}
 			}
 		}
-		if (mtmp->data == &mons[PM_WOODEN_RAFT]) {
+		if (mtmp->data == &mons[PM_WOODEN_RAFT] || mtmp->data == &mons[PM_MINE_TROLLEY] || mtmp->data == &mons[PM_CLASHING_MINE_TROLLEY]) {
 			struct obj *osaddle;
 			if (!!(osaddle = mksobj(LEATHER_SADDLE, TRUE, FALSE, FALSE))) {
 				if (mpickobj(mtmp, osaddle, TRUE)) { /* it became a gold piece (e.g. minimalist) --Amy */
@@ -11675,6 +11675,10 @@ loveheelover:
 		if (ptr == &mons[PM_UPPER_COMMANDER]) {
 			(void) mongets(mtmp, COMMANDER_SUIT);
 			(void) mongets(mtmp, COMMANDER_GLOVES);
+		}
+		if (ptr == &mons[PM_HIGHLAND_RAIDER]) {
+			(void) mongets(mtmp, CHAIN_MAIL);
+			(void) mongets(mtmp, SHORT_BLADE);
 		}
 		if (ptr == &mons[PM_NEEDLE_GNOME]) {
 			(void) mongets(mtmp, CROSSBOW);
@@ -26029,6 +26033,7 @@ register int	mmflags;
 			if (mndx == PM_THIS_IS_A_POISON_DEATH) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_DIB_DRAGONFLY) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_WOODEATER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_DIA_MENGAMBIL_SEMUA_BARANGMU) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_SUPERINVISO_ANT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 
 			if (mtmp->data == &mons[PM_WANDERING_QUEEN_BEE]) {
@@ -32119,6 +32124,8 @@ int type;
 		case PM_DOOMED_WATER_GOLEM: return 200;
 		case PM_MIRROR_GOLEM: return 210;
 		case PM_WOODEN_RAFT: return 200;
+		case PM_MINE_TROLLEY: return 240;
+		case PM_CLASHING_MINE_TROLLEY: return 240;
 		case PM_ONIJI_TANKOBO: return 420;
 		case PM_TITANIUM_GOLEM: return 230;
 		case PM_DANCING_BLADE: return 230;

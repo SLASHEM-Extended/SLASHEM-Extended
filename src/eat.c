@@ -2359,6 +2359,8 @@ register int pm;
 		break;
 
 	    case PM_WRAITH:
+	    case PM_ROTTEN_WRAITH:
+	    case PM_SPECTRAL_WRAITH:
 	    case PM_DARKHORN_WRAITH:
 	    case PM_KODAK:
 	    case PM_BITCHY_LITTLE_ONE:

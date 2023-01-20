@@ -1102,6 +1102,7 @@ register struct monst *mtmp;
 	    case PM_MOLDY_COLONY:
 	    case PM_MUTATED_UNDEAD_POTATO:
 	    case PM_THOUL:
+	    case PM_ROTTEN_WRAITH:
 	    case PM_UNDEAD_ZRUTY:
 	    case PM_YET_ANOTHER_GREATER_MUMMY:
 	    case PM_GREATER_MUMMY_PRIEST:
@@ -2151,7 +2152,7 @@ struct monst *mon;
 
 	}
 
-	if (mon->data == &mons[PM_WOODEN_RAFT]) {
+	if (mon->data == &mons[PM_WOODEN_RAFT] || mon->data == &mons[PM_MINE_TROLLEY] || mon->data == &mons[PM_CLASHING_MINE_TROLLEY]) {
 		if (!(u.usteed && mon == u.usteed)) {
 			mmove = 0;
 			return mmove;
@@ -2210,6 +2211,7 @@ struct monst *mon;
 	}
 
 	if (mon->data == &mons[PM_YEEK_HARD_WORKER] && !rn2(5)) mmove += 12;
+	if (mon->data == &mons[PM_ROUGE_HC_LADY] && !rn2(5)) mmove += 12;
 	if (mon->data == &mons[PM_INDRA] && !rn2(5)) mmove += 12;
 	if (mon->data == &mons[PM_KOBOLD_BLASTER] && !rn2(5)) mmove += 12;
 	if (mon->data == &mons[PM_SPEED_HACK_CHEATAH] && !mon->mpeaceful) mmove += 60;
