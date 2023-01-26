@@ -2110,6 +2110,45 @@ ghost_from_bottle()
 	make_bottle(FALSE);
 }
 
+boolean
+issovietmode()
+{
+	if (Race_if(PM_SOVIET)) return TRUE;
+	if (!u.dungeongrowthhack) {
+		if (u.soviettemporary) return TRUE;
+		if (uwep && uwep->oartifact == ART_RASSCHEN_TAAK) return TRUE;
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_RASSCHEN_TAAK) return TRUE;
+		if (flags.hybridsoviet) return TRUE;
+		if (uimplant && uimplant->oartifact == ART_GELMER_KELANA_TWIN && !powerfulimplants()) return TRUE;
+	}
+
+	return FALSE;
+
+}
+
+boolean
+isevilvariantmode()
+{
+	if (Race_if(PM_EVILVARIANT)) return TRUE;
+	if (!u.dungeongrowthhack) {
+		if (u.evilvartemporary) return TRUE;
+		if (u.badfdoomed) return TRUE;
+		if (flags.hybridevilvariant) return TRUE;
+		if (EvilVariantActive) return TRUE;
+		if (u.uprops[EVIL_VARIANT_ACTIVE].extrinsic) return TRUE;
+		if (have_evilvariantstone()) return TRUE;
+		if (uleft && uleft->oartifact == ART_NOW_IT_S_I_VEL) return TRUE;
+		if (uright && uright->oartifact == ART_NOW_IT_S_I_VEL) return TRUE;
+		if (uarmf && uarmf->oartifact == ART_A_SPOONFUL_OF_FO_U_RK) return TRUE;
+		if (uwep && uwep->oartifact == ART_FUURKER) return TRUE;
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_FUURKER) return TRUE;
+		if (uarmh && uarmh->oartifact == ART_WHY_NOT_DO_THE_REAL_THING) return TRUE;
+	}
+
+	return FALSE;
+}
+
+
 /* devil race is penalized for being nice; after all, they're devils, not angels --Amy */
 void
 devil_misbehavior()

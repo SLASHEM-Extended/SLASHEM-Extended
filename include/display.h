@@ -39,7 +39,7 @@
  */
 
 /* Only 50 percent of monsters are visible to warning. --Amy */
-#define mon_warning(mon) ((mon->warningvisible == 1 || (mon->warningvisible == 2 && StrongWarning) ) && Warning && !(mon)->mpeaceful && (mon->data->msound != MS_DEEPSTATE) && !(mon->egotype_deepstatemember) &&				\
+#define mon_warning(mon) (((mon->warningvisible == 1) || (mon->warningvisible == 2 && StrongWarning) ) && Warning && !(mon)->mpeaceful && (mon->data->msound != MS_DEEPSTATE) && !(mon->egotype_deepstatemember) &&				\
 			 (distu((mon)->mx, (mon)->my) < 100) &&				\
 			 (((int) ((mon)->m_lev / 6)) >= flags.warnlevel))
 
@@ -87,10 +87,8 @@
  * This is the globally used canseemon().  It is not called within the display
  * routines.  Like mon_visible(), but it checks to see if the hero sees the
  * location instead of assuming it.  (And also considers worms.)
+ * Amy edit: moved it to mondata.c, where it apparently used to be before someone made it into a macro?
  */
-#define canseemon(mon) (((mon)->wormno ? worm_known(mon) : \
-	    (cansee(mon->mx, mon->my) || see_with_infrared(mon))) \
-	&& mon_visible(mon))
 
 
 /*

@@ -1940,7 +1940,7 @@ E boolean swatting_monster(struct permonst *);
 E boolean ecm_monster(struct permonst *);
 E boolean immune_timestop(struct permonst *);
 E int num_horns(struct permonst *);
-/* E boolean canseemon(struct monst *); */
+E boolean canseemon(struct monst *);
 E struct attack *dmgtype_fromattack(struct permonst *,int,int);
 E boolean dmgtype(struct permonst *,int);
 E int max_passive_dmg(struct monst *,struct monst *);
@@ -2636,6 +2636,9 @@ E boolean firgatest(void);
 E void give_code_number(void);
 E void devil_misbehavior(void);
 E void trophy_get(void);
+
+E boolean issovietmode();
+E boolean isevilvariantmode();
 
 E void cure_feminism_traps(void);
 E void cure_nasty_traps(void);

@@ -2543,3 +2543,4 @@ Amy keeps coding stuff for SLEX even when she's tired, but she generally keeps a
 While Amy also makes mistakes sometimes and creates new bugs in her game, she generally does a good job fixing them as they are discovered.
 They say that reverse genociding monsters does not let you claim the items in the monsters' possession.
 There is no reason to hold on to casino chips you find on the ground; better apply them right away to "goldify" them.
+Every once in a while, Amy refactors old bloated SLEX code to make the source more readable and speed up compilation times.

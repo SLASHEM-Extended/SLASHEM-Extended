@@ -5694,7 +5694,7 @@ newboss:
 
 	}
 
-	if (FemtrapActiveNatalia && !flags.female && spawnswithhammersandal(mtmp->data) && !(t_at(u.ux, u.uy)) && !rn2(5)) {
+	if (FemtrapActiveNatalia && !range2 && !flags.female && spawnswithhammersandal(mtmp->data) && !(t_at(u.ux, u.uy)) && !rn2(5)) {
 
 		struct trap *ttmp2 = maketrap(u.ux, u.uy, GLUE_TRAP, 0, FALSE);
 		if (ttmp2) {

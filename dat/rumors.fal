@@ -4113,3 +4113,4 @@ Amy keeps coding stuff for SLEX even when she's tired, and that's why her code q
 Amy makes tons of mistakes when coding, resulting in new bugs being added to the game, and when it comes to fixing them she's exceedingly sloppy.
 They say that reverse genocide is THE method to get specific items from monsters' starting inventory, if a genocidable monster exists with the item you want.
 You should hold on to any casino chips you find on the ground, because their value increases over time. It doesn't do that anymore once you apply them.
+Amy is such a terribad developer who never refactors her bad code, so there's huge-ass macros, including ones which contain OTHER huge-ass macros, and as a result compiling the game takes longer and longer with every version update!

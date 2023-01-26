@@ -53,6 +53,21 @@ int atyp;
     return attacktype_fordmg(ptr, atyp, AD_ANY) ? TRUE : FALSE;
 }
 
+boolean
+canseemon(mon)
+struct monst *mon;
+{
+	if (mon_visible(mon)) {
+		if ((mon)->wormno) {
+			if (worm_known(mon)) return TRUE;
+		} else {
+			if (cansee(mon->mx, mon->my) || see_with_infrared(mon)) return TRUE;
+		}
+	}
+
+	return FALSE;
+}
+
 struct attack *
 attdmgtype_fromattack(ptr, dtyp, atyp)
 struct permonst *ptr;
