@@ -974,7 +974,7 @@ qstfinished:
 			break;
 
 		    case CHANGINGROOM:
-			if (!rn2(25)) {
+			if (!rn2(100)) { /* can be any random pair of boots, even rare ones, so there shouldn't be many --Amy */
 				int objtyp = 0;
 				int tryct = 0;
 newcgrtry:
