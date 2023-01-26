@@ -1678,6 +1678,16 @@ register struct monst *mtmp;
 			obj = mksobj_at(FULL_PLATE_MAIL, x, y, TRUE, FALSE, FALSE);
 		mtmp->mnamelth = 0;
 		break;
+
+	    case PM_CROUPIER:
+	    case PM_MASTER_CROUPIER:
+	    case PM_ELITE_CROUPIER:
+		if (!rn2(2)) {
+			num = rnd(2);
+			while(num--)
+				obj = mksobj_at(CASINO_CHIP, x, y, TRUE, FALSE, FALSE);
+		}
+		goto default_1;
 	    case PM_BUG:
 	    	if (!rn2(6)) {
 			mksobj_at(PACK_OF_FLOPPIES, x, y, TRUE, FALSE, FALSE);
@@ -1820,7 +1830,7 @@ register struct monst *mtmp;
 		mtmp->mnamelth = 0;
 		break;
 
-	    default_1:
+default_1: /* monsters that still drop a corpse have a goto statement that points here */
 	    default: /* worm that walks has a chance to get a corpse even from G_NOCORPSE monsters --Amy */
 
 		if ( (( (mvitals[mndx].mvflags & G_NOCORPSE) && !(mtmp->egotype_troll) ) || mtmp->egotype_multiplicator ) && ( ((!Race_if(PM_WORM_THAT_WALKS) || !polyok(mdat)) && !Race_if(PM_WARPER)) || (rn2(5) && !(mtmp->egotype_troll) ) || mndx == PM_ITEM_MASTER || mndx == PM_HOLE_MASTER || mndx == PM_TRAP_MASTER || mndx == PM_BOULDER_MASTER || mndx == PM_GOOD_ITEM_MASTER || mndx == PM_BAD_ITEM_MASTER ) )

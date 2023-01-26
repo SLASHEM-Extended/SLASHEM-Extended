@@ -7822,12 +7822,6 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_GANG_SCIENTIST]) {
 	  		m_initthrow(mtmp, FLAMETHROWER, 8);
 		}
-		if (ptr == &mons[PM_CROUPIER] || ptr == &mons[PM_MASTER_CROUPIER] || ptr == &mons[PM_ELITE_CROUPIER]) {
-			if (!rn2(2)) {
-				(void) mongets(mtmp, CASINO_CHIP);
-				if (!rn2(2)) (void) mongets(mtmp, CASINO_CHIP);
-			}
-		}
 
 		if (ptr == &mons[PM_CHINESE_RADIO_BEACON_OFFICER]) {
 			(void) mongets(mtmp, KATANA);
