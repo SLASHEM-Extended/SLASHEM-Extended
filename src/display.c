@@ -430,7 +430,7 @@ unmap_object(x, y)
 	show_glyph(x, y, (GLYPH_MON_OFF + rn2(NUMMONS)));	\
 	return;	\
 	}	\
-	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (uwep && uwep->oartifact == ART_OMGHAXERETH) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_OMGHAXERETH) ) && isok(u.ux, u.uy) && !isimportantlocation(x, y) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {	\
+	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || autismweaponcheck(ART_OMGHAXERETH) ) && isok(u.ux, u.uy) && !isimportantlocation(x, y) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {	\
 	show_glyph(x, y, cmap_to_glyph(S_stone));	\
 	return;	\
 	}	\
@@ -442,7 +442,7 @@ unmap_object(x, y)
 	show_glyph(x, y, cmap_to_glyph(S_stone));	\
 	return;	\
 	}	\
-	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || (uwep && uwep->oartifact == ART_PWNHAMMER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PWNHAMMER) ) && ((moves % 15 == 0) || ((moves + 1) % 15 == 0) || ((moves + 2) % 15 == 0) || ((moves + 3) % 15 == 0) || ((moves + 4) % 15 == 0))  ) {	\
+	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || autismweaponcheck(ART_PWNHAMMER) ) && ((moves % 15 == 0) || ((moves + 1) % 15 == 0) || ((moves + 2) % 15 == 0) || ((moves + 3) % 15 == 0) || ((moves + 4) % 15 == 0))  ) {	\
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));			\
 	return;								\
 	}								\
@@ -522,7 +522,7 @@ int memory_glyph(x, y)
 	return (GLYPH_MON_OFF + rn2(NUMMONS));
 	}
 
-	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (uwep && uwep->oartifact == ART_OMGHAXERETH) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_OMGHAXERETH) ) && isok(u.ux, u.uy) && !isimportantlocation(x, y) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {
+	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || autismweaponcheck(ART_OMGHAXERETH) ) && isok(u.ux, u.uy) && !isimportantlocation(x, y) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {
 	return cmap_to_glyph(S_stone);
 	}
 
@@ -534,7 +534,7 @@ int memory_glyph(x, y)
 	return cmap_to_glyph(S_stone);
 	}
 
-	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || (uwep && uwep->oartifact == ART_PWNHAMMER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PWNHAMMER) ) && ((moves % 15 == 0) || ((moves + 1) % 15 == 0) || ((moves + 2) % 15 == 0) || ((moves + 3) % 15 == 0) || ((moves + 4) % 15 == 0)) ) {
+	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || autismweaponcheck(ART_PWNHAMMER) ) && ((moves % 15 == 0) || ((moves + 1) % 15 == 0) || ((moves + 2) % 15 == 0) || ((moves + 3) % 15 == 0) || ((moves + 4) % 15 == 0)) ) {
 	return cmap_to_glyph(S_grayglyph);
 	}
 
@@ -692,7 +692,7 @@ display_monster(x, y, mon, sightflags, worm_tail)
     if (!mon_mimic || sensed) {
 	int num;
 
-	if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uwep && uwep->oartifact == ART_STARRING_INFERNO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_STARRING_INFERNO) || (uarmf && uarmf->oartifact == ART_STAR_SOLES) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) ) {
+	if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || autismweaponcheck(ART_STARRING_INFERNO) || (uarmf && uarmf->oartifact == ART_STAR_SOLES) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) ) {
 		show_glyph(x,y,cmap_to_glyph(S_grayglyph));
 		return;
 	}
@@ -789,7 +789,7 @@ display_monsterX(x, y, mon, sightflags, worm_tail)
     if (!mon_mimic || sensed) {
 	int num;
 
-	if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uwep && uwep->oartifact == ART_STARRING_INFERNO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_STARRING_INFERNO) || (uarmf && uarmf->oartifact == ART_STAR_SOLES) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) ) {
+	if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || autismweaponcheck(ART_STARRING_INFERNO) || (uarmf && uarmf->oartifact == ART_STAR_SOLES) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) ) {
 		show_glyph(x,y,cmap_to_glyph(S_grayglyph));
 		return;
 	}
@@ -1075,7 +1075,7 @@ newsym(x,y)
 	return;
 	}
 
-	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (uwep && uwep->oartifact == ART_OMGHAXERETH) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_OMGHAXERETH) ) && isok(u.ux, u.uy) && !isimportantlocation(x, y) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {
+	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || autismweaponcheck(ART_OMGHAXERETH) ) && isok(u.ux, u.uy) && !isimportantlocation(x, y) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {
 	show_glyph(x, y, cmap_to_glyph(S_stone));
 	return;
 	}
@@ -1090,7 +1090,7 @@ newsym(x,y)
 	return;
 	}
 
-	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || (uwep && uwep->oartifact == ART_PWNHAMMER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PWNHAMMER) ) && ((moves % 15 == 0) || ((moves + 1) % 15 == 0) || ((moves + 2) % 15 == 0) || ((moves + 3) % 15 == 0) || ((moves + 4) % 15 == 0)) ) {
+	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || autismweaponcheck(ART_PWNHAMMER) ) && ((moves % 15 == 0) || ((moves + 1) % 15 == 0) || ((moves + 2) % 15 == 0) || ((moves + 3) % 15 == 0) || ((moves + 4) % 15 == 0)) ) {
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
 	return;
 	}
@@ -1472,7 +1472,7 @@ newsymX(x,y)
 	return;
 	}
 
-	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (uwep && uwep->oartifact == ART_OMGHAXERETH) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_OMGHAXERETH) ) && isok(u.ux, u.uy) && !isimportantlocation(x, y) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {
+	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || autismweaponcheck(ART_OMGHAXERETH) ) && isok(u.ux, u.uy) && !isimportantlocation(x, y) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {
 	show_glyph(x, y, cmap_to_glyph(S_stone));
 	return;
 	}
@@ -1487,7 +1487,7 @@ newsymX(x,y)
 	return;
 	}
 
-	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || (uwep && uwep->oartifact == ART_PWNHAMMER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PWNHAMMER) ) && ((moves % 15 == 0) || ((moves + 1) % 15 == 0) || ((moves + 2) % 15 == 0) || ((moves + 3) % 15 == 0) || ((moves + 4) % 15 == 0)) ) {
+	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || autismweaponcheck(ART_PWNHAMMER) ) && ((moves % 15 == 0) || ((moves + 1) % 15 == 0) || ((moves + 2) % 15 == 0) || ((moves + 3) % 15 == 0) || ((moves + 4) % 15 == 0)) ) {
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
 	return;
 	}

@@ -4189,7 +4189,7 @@ boolean init;
 
 		otmp->corpsenm = monsndx(ptr);
 		otmp->owt = weight(otmp);
-		if (otmp->otyp == CORPSE && ( (uwep && uwep->oartifact == ART_CUTRELEASE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_CUTRELEASE) ) ) {
+		if (otmp->otyp == CORPSE && ( autismweaponcheck(ART_CUTRELEASE) ) ) {
 			int cutreleasedmg = 1;			
 			if (mons[otmp->corpsenm].mlevel > 0) cutreleasedmg = mons[otmp->corpsenm].mlevel;
 			pline("There is a discharge of energy!");

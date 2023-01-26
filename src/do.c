@@ -1763,7 +1763,7 @@ dodown()
 		at_ladder = (boolean) (levl[u.ux][u.uy].typ == LADDER);
 
 		/* based on a feature from nethack 3.7, a nastytrap that makes downstairs skip levels sometimes --Amy */
-		if (DschueueuetEffect || u.uprops[DSCHUEUEUET_EFFECT].extrinsic || have_dschueueuetstone() || (uwep && uwep->oartifact == ART_UNATTAINABLE_NINETEEN) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_UNATTAINABLE_NINETEEN) ) {
+		if (DschueueuetEffect || u.uprops[DSCHUEUEUET_EFFECT].extrinsic || have_dschueueuetstone() || autismweaponcheck(ART_UNATTAINABLE_NINETEEN) ) {
 			if (!rn2(3) && !(dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) && !(dunlev(&u.uz) == (dunlevs_in_dungeon(&u.uz) - 1) ) && !(u.ux == sstairs.sx && u.uy == sstairs.sy) ) {
 
 				d_level dtmp;

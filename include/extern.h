@@ -2640,6 +2640,8 @@ E void trophy_get(void);
 E boolean issovietmode();
 E boolean isevilvariantmode();
 
+E boolean autismweaponcheck(int);
+
 E void cure_feminism_traps(void);
 E void cure_nasty_traps(void);
 

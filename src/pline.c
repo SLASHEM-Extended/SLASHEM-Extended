@@ -369,8 +369,8 @@ pline VA_DECL(const char *, line)
 #endif /* MAC */
 	if (vision_full_recalc) vision_recalc(0);
 	if (u.ux) flush_screen(1);		/* %% */
-	if (typ == MSGTYP_NOSHOW && !(MommaBugEffect || u.uprops[MOMMA_BUG].extrinsic || (uimplant && uimplant->oartifact == ART_DEINE_MUDDA) || have_mommystone()) && !(uwep && uwep->oartifact == ART_BRAND_BRAND) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_BRAND_BRAND) && !(uarmf && uarmf->oartifact == ART_GRENEUVENIA_S_HUG)) return;
-	if (typ == MSGTYP_NOREP && !(MommaBugEffect || u.uprops[MOMMA_BUG].extrinsic || (uimplant && uimplant->oartifact == ART_DEINE_MUDDA) || have_mommystone()) && !(uwep && uwep->oartifact == ART_BRAND_BRAND) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_BRAND_BRAND) && !(uarmf && uarmf->oartifact == ART_GRENEUVENIA_S_HUG) && !strcmp(line, prevmsg)) return;
+	if (typ == MSGTYP_NOSHOW && !(MommaBugEffect || u.uprops[MOMMA_BUG].extrinsic || (uimplant && uimplant->oartifact == ART_DEINE_MUDDA) || have_mommystone()) && !autismweaponcheck(ART_BRAND_BRAND) && !(uarmf && uarmf->oartifact == ART_GRENEUVENIA_S_HUG)) return;
+	if (typ == MSGTYP_NOREP && !(MommaBugEffect || u.uprops[MOMMA_BUG].extrinsic || (uimplant && uimplant->oartifact == ART_DEINE_MUDDA) || have_mommystone()) && !autismweaponcheck(ART_BRAND_BRAND) && !(uarmf && uarmf->oartifact == ART_GRENEUVENIA_S_HUG) && !strcmp(line, prevmsg)) return;
 	putstr(WIN_MESSAGE, 0, line);
 
 	if (HeapEffectBug || u.uprops[HEAP_EFFECT].extrinsic || have_heapstone()) {

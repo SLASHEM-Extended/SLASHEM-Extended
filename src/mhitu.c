@@ -94,14 +94,14 @@ on the first floor, especially when you're playing as something with drain resis
 
 			}
 
-			if ((Role_if(PM_KURWA) || (uwep && uwep->oartifact == ART_DESERT_MAID) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DESERT_MAID) || (uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION) || (uarmf && uarmf->oartifact == ART_VERY_PROSTITUTED) ) && (multi < 0) && (mtmp->data->msound == MS_SQEEK || !rn2(3)) && rn2(4)) {
+			if ((Role_if(PM_KURWA) || autismweaponcheck(ART_DESERT_MAID) || (uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION) || (uarmf && uarmf->oartifact == ART_VERY_PROSTITUTED) ) && (multi < 0) && (mtmp->data->msound == MS_SQEEK || !rn2(3)) && rn2(4)) {
 
 				You_cant("move!");
 				nomul(-2, "being clawed", TRUE);
 
 			}
 
-			if ((Role_if(PM_KURWA) || (uwep && uwep->oartifact == ART_DESERT_MAID) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DESERT_MAID) || (uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION) || (uarmf && uarmf->oartifact == ART_VERY_PROSTITUTED) ) && (multi >= 0) && (mtmp->data->msound == MS_SQEEK || !rn2(3)) && rn2(10)) {
+			if ((Role_if(PM_KURWA) || autismweaponcheck(ART_DESERT_MAID) || (uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION) || (uarmf && uarmf->oartifact == ART_VERY_PROSTITUTED) ) && (multi >= 0) && (mtmp->data->msound == MS_SQEEK || !rn2(3)) && rn2(10)) {
 
 				You_cant("move!");
 				nomul(-2, "being clawed", TRUE);
@@ -5846,7 +5846,7 @@ newboss:
 		if (evilfriday && mtmp->m_lev > 1) evilragnarok(FALSE,mtmp->m_lev);
 	}
 
-	if (uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && !range2 && foundyou && !rn2(10) && (tmp > (j = rnd(20+i)))) {
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && !range2 && foundyou && !rn2(10) && (tmp > (j = rnd(20+i)))) {
 		ragnarok(FALSE);
 		if (evilfriday && mtmp->m_lev > 1) evilragnarok(FALSE,mtmp->m_lev);
 	}
@@ -6707,7 +6707,7 @@ hitmu(mtmp, mattk)
 {
 	register struct permonst *mdat = mtmp->data;
 	register int tmp = d((int)mattk->damn, (int)mattk->damd*10);
-	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || (uwep && uwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI)) tmp = (int)mattk->damn * (int)mattk->damd * 10;
+	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI)) tmp = (int)mattk->damn * (int)mattk->damd * 10;
 	register boolean not_affected = defends((int)mattk->adtyp, uwep);
 	register int uncancelled, ptmp;
 	register boolean statsavingthrow = 0;
@@ -6779,7 +6779,7 @@ hitmu(mtmp, mattk)
 	if( (is_undead(mdat) || mtmp->egotype_undead) && u.twoweap && uswapwep && uswapwep->oartifact == ART_ASTRAL_LIGHTWELL)
 		dmg += d((int)mattk->damn, (int)mattk->damd); /* extra damage */
 
-	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || (uwep && uwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI)) {
+	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI)) {
 		dmg = (int)mattk->damn * (int)mattk->damd;
 		if( (is_undead(mdat) || mtmp->egotype_undead) && midnight())
 			dmg *= 2;
@@ -7057,7 +7057,7 @@ hitmu(mtmp, mattk)
 			}
 
 			if (objects[otmp->otyp].oc_material == MT_SILVER &&
-				hates_silver(youmonst.data) || (uwep && uwep->oartifact == ART_PORKMAN_S_BALLS_OF_STEEL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PORKMAN_S_BALLS_OF_STEEL) ) {
+				hates_silver(youmonst.data) || autismweaponcheck(ART_PORKMAN_S_BALLS_OF_STEEL) ) {
 			    pline("The silver sears your flesh!");
 			}
 			if (objects[otmp->otyp].oc_material == MT_COPPER &&
@@ -8760,7 +8760,7 @@ dopois:
 			hitmsg(mtmp, mattk);
 			if (mtmp->mcan) break;
 			/* Continue below */
-		} else if (rn2(5) && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_COPPERED_OFF_FROM_ME) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) &&
+		} else if (rn2(5) && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || autismweaponcheck(ART_COPPERED_OFF_FROM_ME) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) &&
 			(dmgtype(youmonst.data, AD_SEDU) || (uarmg && uarmg->oartifact == ART_LORSKEL_S_SPECIAL_PROTECTI) || (ublindf && ublindf->oartifact == ART_CLICKPASS) || (uwep && uwep->oartifact == ART_ONE_HUNDRED_STARS) || (uwep && uwep->oartifact == ART_SNATCHER) || (uwep && uwep->oartifact == ART_SILPHEED)
 			|| dmgtype(youmonst.data, AD_SSEX)
 						) ) {
@@ -8790,7 +8790,7 @@ dopois:
 		    break;
 		}
 
-		if (!rn2(3) && atttyp != AD_SEDU && !issoviet && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) ) {
+		if (!rn2(3) && atttyp != AD_SEDU && !issoviet && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || autismweaponcheck(ART_COPPERED_OFF_FROM_ME) || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) ) {
 			You_feel("a tug on your knapsack"); break;
 		}
 
@@ -8814,7 +8814,7 @@ dopois:
 
 		buf[0] = '\0';
 
-		if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_COPPERED_OFF_FROM_ME) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) {
+		if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || autismweaponcheck(ART_COPPERED_OFF_FROM_ME) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) {
 			switch (steal(mtmp, buf, atttyp == AD_SEDU ? TRUE : FALSE, FALSE)) {
 		  case -1:
 			return 2;
@@ -8864,7 +8864,7 @@ dopois:
 		if (statsavingthrow) break;
 
 		if(could_seduceX(mtmp, &youmonst, mattk) == 1
-			&& !mtmp->mcan && (issoviet || iserosator || rn2(2) || (uarmf && uarmf->oartifact == ART_LORSKEL_S_INTEGRITY) || (uwep && uwep->oartifact == ART_MARTHA_S_FOREIGN_GOER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MARTHA_S_FOREIGN_GOER) || (uarmf && itemhasappearance(uarmf, APP_LOLITA_BOOTS)) ) ) /* 50% chance --Amy */
+			&& !mtmp->mcan && (issoviet || iserosator || rn2(2) || (uarmf && uarmf->oartifact == ART_LORSKEL_S_INTEGRITY) || autismweaponcheck(ART_MARTHA_S_FOREIGN_GOER) || (uarmf && itemhasappearance(uarmf, APP_LOLITA_BOOTS)) ) ) /* 50% chance --Amy */
 		    if (doseduce(mtmp))
 			return 3;
 		break;
@@ -10423,7 +10423,7 @@ dopois:
 			} else dmg += dmgval(otmp, &youmonst);
 
 			if (objects[otmp->otyp].oc_material == MT_SILVER &&
-				hates_silver(youmonst.data) || (uwep && uwep->oartifact == ART_PORKMAN_S_BALLS_OF_STEEL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PORKMAN_S_BALLS_OF_STEEL) ) {
+				hates_silver(youmonst.data) || autismweaponcheck(ART_PORKMAN_S_BALLS_OF_STEEL) ) {
 			    pline("The silver sears your flesh!");
 			}
 			if (objects[otmp->otyp].oc_material == MT_COPPER &&
@@ -10668,7 +10668,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 	char	 buf[BUFSZ];
 	struct trap *t = t_at(u.ux, u.uy);
 	int	tmp = d((int)mattk->damn, (int)mattk->damd);
-	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || (uwep && uwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI)) tmp = (int)mattk->damn * (int)mattk->damd;
+	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI)) tmp = (int)mattk->damn * (int)mattk->damd;
 	int	tim_tmp;
 	register struct obj *otmp2;
 	int	i;
@@ -11889,13 +11889,13 @@ do_stone2:
 	    case AD_SSEX:
 		pline("It thrusts you!");
 
-		if (!rn2(3) && atttypA != AD_SEDU && !issoviet && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) ) {
+		if (!rn2(3) && atttypA != AD_SEDU && !issoviet && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || autismweaponcheck(ART_COPPERED_OFF_FROM_ME) || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) ) {
 			You_feel("a tug on your knapsack"); break;
 		}
 
 			buf[0] = '\0';
 
-		if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) {
+		if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || autismweaponcheck(ART_COPPERED_OFF_FROM_ME) || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) {
 			switch (steal(mtmp, buf, atttypA == AD_SEDU ? TRUE : FALSE, FALSE)) {
 		  case -1:
 			return 2;
@@ -13259,7 +13259,7 @@ boolean ufound;
 	}
     else {
 	register int tmp = d((int)mattk->damn, (int)mattk->damd);
-	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || (uwep && uwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI)) tmp = (int)mattk->damn * (int)mattk->damd;
+	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI)) tmp = (int)mattk->damn * (int)mattk->damd;
 	register boolean not_affected = defends((int)mattk->adtyp, uwep);
 
 	hitmsg(mtmp, mattk);
@@ -15612,7 +15612,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	if (rnd(100) < ACURR(A_CHA)) return 0; /* no message because it would get too spammy */
 
 	dmgplus = d((int)mattk->damn, (int)mattk->damd);	/* why the heck did gaze attacks have fixed damage??? --Amy */
-	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || (uwep && uwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI)) dmgplus = (int)mattk->damn * (int)mattk->damd;
+	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI)) dmgplus = (int)mattk->damn * (int)mattk->damd;
 
 	switch(atttypB) {
 	    case AD_STON:
@@ -16887,9 +16887,9 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_SITM:	/* for now these are the same */
 	    case AD_SEDU:
 	    case AD_SSEX:
-		if (!rn2(3) && !issoviet && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) && canseemon(mtmp) && mtmp->mcansee ) break; /* no message, we don't want too much spam --Amy */
+		if (!rn2(3) && !issoviet && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || autismweaponcheck(ART_COPPERED_OFF_FROM_ME) || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) && canseemon(mtmp) && mtmp->mcansee ) break; /* no message, we don't want too much spam --Amy */
 
-		if ((u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) && !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee) {
+		if ((u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || autismweaponcheck(ART_COPPERED_OFF_FROM_ME) || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) && !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee) {
 		pline("%s gazes at you with its demanding eyes!", Monnam(mtmp));
 		    stop_occupation();
 		buf[0] = '\0';
@@ -17284,7 +17284,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if (!mtmp->mcan && canseemon(mtmp) && !resists_blnd(&youmonst)
 			&& distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM && (issoviet || !rn2(6)) ) {
 		    int blnd = d((int)mattk->damn, (int)mattk->damd);
-		    if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || (uwep && uwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI)) blnd = (int)mattk->damn * (int)mattk->damd;
+		    if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI)) blnd = (int)mattk->damn * (int)mattk->damd;
 
 		    if (FunnyHallu) pline("The power of %s aurora overwhelms you!", s_suffix(mon_nam(mtmp)));
 		    else You("are blinded by %s radiance!", s_suffix(mon_nam(mtmp)));
@@ -18845,7 +18845,7 @@ register int n;
 		if (!rn2(500)) antimatter_damage(invent, FALSE, FALSE);
 	}
 
-	if (ExplodingDiceEffect || u.uprops[EXPLODING_DICE].extrinsic || have_explodingdicestone() || (uwep && uwep->oartifact == ART_FOOK_THE_OBSTACLES) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FOOK_THE_OBSTACLES)) {
+	if (ExplodingDiceEffect || u.uprops[EXPLODING_DICE].extrinsic || have_explodingdicestone() || autismweaponcheck(ART_FOOK_THE_OBSTACLES)) {
 		int basedamage = n;
 		while (!rn2(6)) n += basedamage;
 	}
@@ -18961,7 +18961,7 @@ register int n;
 	}
 	if (Role_if(PM_DANCER) && !rn2(3)) n = n * 2;
 	if (Race_if(PM_METAL)) n *= rnd(10);
-	if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone() || (uleft && uleft->oartifact == ART_RING_OF_FAST_LIVING) || (uright && uright->oartifact == ART_RING_OF_FAST_LIVING) || (uwep && uwep->oartifact == ART_PAINBOWSWANDIR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PAINBOWSWANDIR) || (uwep && uwep->oartifact == ART_RAISING_HEART) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_RAISING_HEART) || (uimplant && uimplant->oartifact == ART_IME_SPEW)) n = n * 2;
+	if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone() || (uleft && uleft->oartifact == ART_RING_OF_FAST_LIVING) || (uright && uright->oartifact == ART_RING_OF_FAST_LIVING) || autismweaponcheck(ART_PAINBOWSWANDIR) || autismweaponcheck(ART_RAISING_HEART) || (uimplant && uimplant->oartifact == ART_IME_SPEW)) n = n * 2;
 	if (uamul && uamul->otyp == AMULET_OF_VULNERABILITY) n *= rnd(4);
 	if (RngeFrailness) n = n * 2;
 
@@ -20515,7 +20515,7 @@ const char *str;
 
 	if (!obj || !obj->owornmask) return;
 
-	if (((rn2(120) < ACURR(A_CHA)) || (uarmf && uarmf->oartifact == ART_FINAL_CHALLENGE && flags.female) || (uarmf && uarmf->oartifact == ART_RARE_ASIAN_LADY)) && !(uwep && uwep->oartifact == ART_LAIDSWANDIR) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_LAIDSWANDIR) && !Race_if(PM_BOVER) && !(uarmc && uarmc->oartifact == ART_KING_OF_PORN) ) { /*much lower chance for the player to resist --Amy*/
+	if (((rn2(120) < ACURR(A_CHA)) || (uarmf && uarmf->oartifact == ART_FINAL_CHALLENGE && flags.female) || (uarmf && uarmf->oartifact == ART_RARE_ASIAN_LADY)) && !autismweaponcheck(ART_LAIDSWANDIR) && !Race_if(PM_BOVER) && !(uarmc && uarmc->oartifact == ART_KING_OF_PORN) ) { /*much lower chance for the player to resist --Amy*/
 
 		sprintf(qbuf,"\"Shall I remove your %s, %s?\" [yes/no]",
 			str, (!rn2(2) ? "lover" : !rn2(2) ? "dear" : "sweetheart"));

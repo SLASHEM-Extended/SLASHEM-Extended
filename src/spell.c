@@ -2880,7 +2880,7 @@ docast()
 
 	int whatreturn;
 
-	if (u.antimagicshell || (uarmh && uarmh->otyp == HELM_OF_ANTI_MAGIC) || (RngeAntimagicA && (moves % 10 == 0)) || (RngeAntimagicB && (moves % 5 == 0)) || (RngeAntimagicC && (moves % 2 == 0)) || (RngeAntimagicD) || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || Role_if(PM_UNBELIEVER) || (uwep && uwep->oartifact == ART_ARK_OF_THE_COVENANT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ARK_OF_THE_COVENANT) || (uwep && uwep->oartifact == ART_ANTIMAGICBANE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ANTIMAGICBANE) ) {
+	if (u.antimagicshell || (uarmh && uarmh->otyp == HELM_OF_ANTI_MAGIC) || (RngeAntimagicA && (moves % 10 == 0)) || (RngeAntimagicB && (moves % 5 == 0)) || (RngeAntimagicC && (moves % 2 == 0)) || (RngeAntimagicD) || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || Role_if(PM_UNBELIEVER) || autismweaponcheck(ART_ARK_OF_THE_COVENANT) || autismweaponcheck(ART_ANTIMAGICBANE) ) {
 
 		pline("Your anti-magic shell prevents spellcasting.");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */

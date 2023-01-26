@@ -562,7 +562,7 @@ const char *name;	/* if null, then format `obj' */
 
 		}
 
-		if (obj && objects[obj->otyp].oc_material == MT_SILVER && (hates_silver(youmonst.data) || (uwep && uwep->oartifact == ART_PORKMAN_S_BALLS_OF_STEEL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PORKMAN_S_BALLS_OF_STEEL) ) ) {
+		if (obj && objects[obj->otyp].oc_material == MT_SILVER && (hates_silver(youmonst.data) || autismweaponcheck(ART_PORKMAN_S_BALLS_OF_STEEL) ) ) {
 			dam += rnd(20);
 			pline_The("silver sears your flesh!");
 			exercise(A_CON, FALSE);

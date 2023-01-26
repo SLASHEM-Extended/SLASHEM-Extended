@@ -6481,7 +6481,7 @@ find_ac()
 		
 	}
 
-	if (u.uprops[NAKEDNESS].extrinsic || (uwep && uwep->oartifact == ART_NOT_A_HAMMER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_NOT_A_HAMMER) || (uarmg && uarmg->oartifact == ART_SPREAD_YOUR_LEGS_WIDE) || (flags.female && uarmu && uarmu->oartifact == ART_GIANT_SWINGING_PENIS) || Nakedness || have_nakedstone() ) uac = 10;
+	if (u.uprops[NAKEDNESS].extrinsic || autismweaponcheck(ART_NOT_A_HAMMER) || (uarmg && uarmg->oartifact == ART_SPREAD_YOUR_LEGS_WIDE) || (flags.female && uarmu && uarmu->oartifact == ART_GIANT_SWINGING_PENIS) || Nakedness || have_nakedstone() ) uac = 10;
 
 	if(uac != u.uac){
 		u.uac = uac;

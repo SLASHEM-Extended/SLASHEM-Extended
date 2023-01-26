@@ -5705,7 +5705,7 @@ struct obj *otmp;
 	    case WHITE_PEACH:
 	    case SENTOU:
 
-		if (hates_silver(youmonst.data) || (uwep && uwep->oartifact == ART_PORKMAN_S_BALLS_OF_STEEL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PORKMAN_S_BALLS_OF_STEEL) ) {
+		if (hates_silver(youmonst.data) || autismweaponcheck(ART_PORKMAN_S_BALLS_OF_STEEL) ) {
 			make_vomiting((long)rn1(victual.reqtime, 5), FALSE);
 			break;
 		}
@@ -8688,7 +8688,7 @@ register int num;
 	if (Full_nutrient && num > 1 && u.uhunger < 2500) num /= 2;
 	if (StrongFull_nutrient && num > 1 && u.uhunger < 2500) num /= 2;
 
-	if (num < 0 && (CutNutritionEffect || u.uprops[CUT_NUTRITION].extrinsic || have_cutnutritionstone() || (uwep && uwep->oartifact == ART_HAVANA_NERO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_HAVANA_NERO) ) ) num /= 3;
+	if (num < 0 && (CutNutritionEffect || u.uprops[CUT_NUTRITION].extrinsic || have_cutnutritionstone() || autismweaponcheck(ART_HAVANA_NERO) ) ) num /= 3;
 
 	u.uhunger -= num;
 	newuhs(TRUE);
@@ -8704,7 +8704,7 @@ register int num;
 #ifdef DEBUG
 	debugpline("lesshungry(%d)", num);
 #endif
-	if (num > 0 && (CutNutritionEffect || u.uprops[CUT_NUTRITION].extrinsic || have_cutnutritionstone() || (uwep && uwep->oartifact == ART_HAVANA_NERO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_HAVANA_NERO) ) ) num /= 3;
+	if (num > 0 && (CutNutritionEffect || u.uprops[CUT_NUTRITION].extrinsic || have_cutnutritionstone() || autismweaponcheck(ART_HAVANA_NERO) ) ) num /= 3;
 
 	if (Race_if(PM_GERTEUT)) {
 		num *= 4;

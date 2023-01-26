@@ -2997,7 +2997,7 @@ meleeattack:
 
 	}
 
-	if (uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && !rn2(10)) {
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && !rn2(10)) {
 
 		if(monnear(magr, mdef->mx, mdef->my)) {
 			dieroll = rnd(20 + i);

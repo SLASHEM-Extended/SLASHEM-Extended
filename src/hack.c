@@ -466,7 +466,7 @@ trap_of_walls:
 
 	if (update) {
 
-		if ((u.uprops[WALL_TRAP_EFFECT].extrinsic || WallTrapping || have_wallstone() || (uarmg && uarmg->oartifact == ART_STOUT_IMMURRING) || (uarmc && uarmc->oartifact == ART_MOST_CHARISMATIC_PRESIDENT) || (uwep && uwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (uwep && uwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) ) && rn2(100)) {
+		if ((u.uprops[WALL_TRAP_EFFECT].extrinsic || WallTrapping || have_wallstone() || (uarmg && uarmg->oartifact == ART_STOUT_IMMURRING) || (uarmc && uarmc->oartifact == ART_MOST_CHARISMATIC_PRESIDENT) || autismweaponcheck(ART_CUDGEL_OF_CUTHBERT) || autismweaponcheck(ART_ONE_THROUGH_FOUR_SCEPTER) ) && rn2(100)) {
 			secretcorr = FALSE;
 			goto trap_of_walls;
 		}
@@ -1402,7 +1402,7 @@ walscholardone:
 		if (mode == DO_MOVE) {
 		    if (amorphous(youmonst.data))
 			You("try to ooze under the door, but can't squeeze your possessions through.");
-		    else if (iflags.autoopen && !Confusion && !Stunned && !Fumbling && levl[ux][uy].seenv && !(RightMouseButtonDoesNotGo || u.totter || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || (uarms && uarms->oartifact == ART_BLUE_SHIRT_OF_DEATH) || u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || (uwep && uwep->oartifact == ART_PWNHAMMER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PWNHAMMER) || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (uwep && uwep->oartifact == ART_OMGHAXERETH) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_OMGHAXERETH) || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || WallsAreHyperBlue ) ) {
+		    else if (iflags.autoopen && !Confusion && !Stunned && !Fumbling && levl[ux][uy].seenv && !(RightMouseButtonDoesNotGo || u.totter || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || (uarms && uarms->oartifact == ART_BLUE_SHIRT_OF_DEATH) || u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || autismweaponcheck(ART_PWNHAMMER) || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || autismweaponcheck(ART_OMGHAXERETH) || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || WallsAreHyperBlue ) ) {
 			    door_opened = flags.move = doopen_indir(x, y);
 			    opentry = 1;
 		    }
@@ -1578,7 +1578,7 @@ findtravelpath(guess)
 boolean guess;
 {
     /* if travel to adjacent, reachable location, use normal movement rules */
-    if (!guess && iflags.travel1 && distmin(u.ux, u.uy, u.tx, u.ty) == 1 && !(u.ux != u.tx && u.uy != u.ty && (BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) || (uwep && uwep->oartifact == ART_KILLER_PIANO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KILLER_PIANO) || isgridbug(youmonst.data) || (Race_if(PM_WEAPON_BUG) && !Upolyd)) ) ) {
+    if (!guess && iflags.travel1 && distmin(u.ux, u.uy, u.tx, u.ty) == 1 && !(u.ux != u.tx && u.uy != u.ty && (BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) || autismweaponcheck(ART_KILLER_PIANO) || isgridbug(youmonst.data) || (Race_if(PM_WEAPON_BUG) && !Upolyd)) ) ) {
 	flags.run = 0;
 	if (test_move(u.ux, u.uy, u.tx-u.ux, u.ty-u.uy, TEST_MOVE)) {
 	    u.dx = u.tx-u.ux;
@@ -1623,7 +1623,7 @@ boolean guess;
 		int y = travelstepy[set][i];
 		static int ordered[] = { 0, 2, 4, 6, 1, 3, 5, 7 };
 		/* no diagonal movement for grid bugs */
-		int dirmax = (BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) || (uwep && uwep->oartifact == ART_KILLER_PIANO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KILLER_PIANO) || isgridbug(youmonst.data) || (Race_if(PM_WEAPON_BUG) && !Upolyd))? 4 : 8;
+		int dirmax = (BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) || autismweaponcheck(ART_KILLER_PIANO) || isgridbug(youmonst.data) || (Race_if(PM_WEAPON_BUG) && !Upolyd))? 4 : 8;
 
 		for (dir = 0; dir < dirmax; ++dir) {
 		    int nx = x+xdir[ordered[dir]];
@@ -2085,7 +2085,7 @@ domove()
 	/* In Soviet Russia, stunning is a crippling status effect that will fuck you up. You're not supposed to stand
 	 * any chance while stunned, because seriously, players having a chance? That's a no-go! --Amy */
 
-		if ((Stunned && !rn2(issoviet ? 1 : StrongStun_resist ? 20 : Stun_resist ? 8 : 2)) || (Confusion && !rn2(issoviet ? 2 : StrongConf_resist ? 200 : Conf_resist ? 40 : 8) || (uwep && uwep->oartifact == ART_MISGUIDED_MISSILE && !rn2(20)) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MISGUIDED_MISSILE && !rn2(20)) || ((uarmh && itemhasappearance(uarmh, APP_THINKING_HELMET)) && !rn2(8) ) || (uimplant && uimplant->oartifact == ART_IRON_OF_INNERMOST_JOY) )
+		if ((Stunned && !rn2(issoviet ? 1 : StrongStun_resist ? 20 : Stun_resist ? 8 : 2)) || (Confusion && !rn2(issoviet ? 2 : StrongConf_resist ? 200 : Conf_resist ? 40 : 8) || (autismweaponcheck(ART_MISGUIDED_MISSILE) && !rn2(20)) || ((uarmh && itemhasappearance(uarmh, APP_THINKING_HELMET)) && !rn2(8) ) || (uimplant && uimplant->oartifact == ART_IRON_OF_INNERMOST_JOY) )
 			/* toned down so it's less crippling --Amy
 			 * nerf for extremely fast steeds: they cause you to sometimes walk randomly */
 			|| (u.usteed && ((u.usteed->mconf && confsteeddir()) || (u.usteed->data->mmove > 36 && rnd(u.usteed->data->mmove) > 36) ) )
@@ -4287,7 +4287,7 @@ lookaround()
 
     /* Grid bugs stop if trying to move diagonal, even if blind.  Maybe */
     /* they polymorphed while in the middle of a long move. */
-    if ((BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) || (uwep && uwep->oartifact == ART_KILLER_PIANO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KILLER_PIANO) || isgridbug(youmonst.data) || (Race_if(PM_WEAPON_BUG) && !Upolyd))&& u.dx && u.dy) {
+    if ((BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) || autismweaponcheck(ART_KILLER_PIANO) || isgridbug(youmonst.data) || (Race_if(PM_WEAPON_BUG) && !Upolyd))&& u.dx && u.dy) {
 	forcenomul(0, 0);
 	return;
     }
@@ -4296,7 +4296,7 @@ lookaround()
     for(x = u.ux-1; x <= u.ux+1; x++) for(y = u.uy-1; y <= u.uy+1; y++) {
 	if(!isok(x,y)) continue;
 
-	if((BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) || (uwep && uwep->oartifact == ART_KILLER_PIANO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KILLER_PIANO) || isgridbug(youmonst.data) || (Race_if(PM_WEAPON_BUG) && !Upolyd)) && x != u.ux && y != u.uy) continue;
+	if((BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) || autismweaponcheck(ART_KILLER_PIANO) || isgridbug(youmonst.data) || (Race_if(PM_WEAPON_BUG) && !Upolyd)) && x != u.ux && y != u.uy) continue;
 
 	if(x == u.ux && y == u.uy) continue;
 
@@ -4996,7 +4996,7 @@ int k_format; /* WAC k_format is an int */
 	}
 	if (Role_if(PM_DANCER) && !rn2(3)) n = n * 2;
 	if (Race_if(PM_METAL)) n *= rnd(10);
-	if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone() || (uleft && uleft->oartifact == ART_RING_OF_FAST_LIVING) || (uright && uright->oartifact == ART_RING_OF_FAST_LIVING) || (uwep && uwep->oartifact == ART_PAINBOWSWANDIR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PAINBOWSWANDIR) || (uwep && uwep->oartifact == ART_RAISING_HEART) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_RAISING_HEART) || (uimplant && uimplant->oartifact == ART_IME_SPEW)) n = n * 2;
+	if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone() || (uleft && uleft->oartifact == ART_RING_OF_FAST_LIVING) || (uright && uright->oartifact == ART_RING_OF_FAST_LIVING) || autismweaponcheck(ART_PAINBOWSWANDIR) || autismweaponcheck(ART_RAISING_HEART) || (uimplant && uimplant->oartifact == ART_IME_SPEW)) n = n * 2;
 	if (uamul && uamul->otyp == AMULET_OF_VULNERABILITY) n *= rnd(4);
 	if (RngeFrailness) n = n * 2;
 

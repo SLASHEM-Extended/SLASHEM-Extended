@@ -1783,7 +1783,7 @@ touch_artifact(obj,mon)
 	badalign = !!spec_applies(&tmp, mon);
     }
 
-    if (((((badclass || badalign) && self_willed) || (badalign && (!yours || !rn2(4)))) && !RngeBlastShielding) || (ArtiblastEffect || u.uprops[ARTIBLAST_EFFECT].extrinsic || (uwep && uwep->oartifact == ART_ULTRA_ANNOYANCE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ULTRA_ANNOYANCE) || have_blaststone()) ) {
+    if (((((badclass || badalign) && self_willed) || (badalign && (!yours || !rn2(4)))) && !RngeBlastShielding) || (ArtiblastEffect || u.uprops[ARTIBLAST_EFFECT].extrinsic || autismweaponcheck(ART_ULTRA_ANNOYANCE) || have_blaststone()) ) {
 	int dmg;
 	char buf[BUFSZ];
 
@@ -1799,7 +1799,7 @@ touch_artifact(obj,mon)
 	/* having the artiblast nastytrap means that blast shielding doesn't prevent artifact blasts, but since we don't
 	 * want the property to be completely useless in that case, it reduces the blast damage instead --Amy */
 
-	if ((ArtiblastEffect || u.uprops[ARTIBLAST_EFFECT].extrinsic || (uwep && uwep->oartifact == ART_ULTRA_ANNOYANCE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ULTRA_ANNOYANCE) || have_blaststone()) && RngeBlastShielding) {
+	if ((ArtiblastEffect || u.uprops[ARTIBLAST_EFFECT].extrinsic || autismweaponcheck(ART_ULTRA_ANNOYANCE) || have_blaststone()) && RngeBlastShielding) {
 		dmg /= 2;
 		if (dmg < 1) dmg = 1;
 	}

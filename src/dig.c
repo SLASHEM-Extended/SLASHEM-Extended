@@ -1118,7 +1118,7 @@ dig_up_grave()
 		adjalign(-10);
 	    You("disturb the honorable dead!");
 	}
-	if (uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN) {
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN) {
 	    adjalign(-5);
 		u.ualign.sins++;
 		u.alignlim--;
@@ -1132,7 +1132,7 @@ dig_up_grave()
 		adjalign(-10);
 	    You("disturb the honorable dead!");
 	}
-	if (uswapwep && uswapwep->oartifact == ART_SAKUSHNIR) {
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SAKUSHNIR) {
 	    adjalign(-5);
 		u.ualign.sins++;
 		u.alignlim--;

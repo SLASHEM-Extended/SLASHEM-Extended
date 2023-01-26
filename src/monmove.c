@@ -208,7 +208,7 @@ struct monst *mtmp;
 	scmresists = rn2(100) < resist_percentage;
 
 	return (boolean)((sobj_at(SCR_SCARE_MONSTER, x, y) && !(Conflict && rn2(StrongConflict ? 5 : 2)) && !scmresists)
-			 || (sengr_at("Elbereth", x, y) && !mresists && !(Conflict && rn2(StrongConflict ? 5 : 2)) && !(EngravingDoesntWork || u.uprops[ENGRAVINGBUG].extrinsic || have_engravingstone() || (uwep && uwep->oartifact == ART_ELBERGOFUKYOURSELF) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ELBERGOFUKYOURSELF) || (uarmf && uarmf->oartifact == ART_VARIANTISH_DESIGN) ) )
+			 || (sengr_at("Elbereth", x, y) && !mresists && !(Conflict && rn2(StrongConflict ? 5 : 2)) && !(EngravingDoesntWork || u.uprops[ENGRAVINGBUG].extrinsic || have_engravingstone() || autismweaponcheck(ART_ELBERGOFUKYOURSELF) || (uarmf && uarmf->oartifact == ART_VARIANTISH_DESIGN) ) )
 			 || (is_vampire(mtmp->data) && rn2(5)
 			     && IS_ALTAR(levl[x][y].typ)));
 }
@@ -1470,7 +1470,7 @@ register struct monst *mtmp;
 
 	}
 
-	if ((WakeupCallBug || u.uprops[WAKEUP_CALL_BUG].extrinsic || have_wakeupcallstone() || (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT) || (uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) || (uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) || (uwep && uwep->oartifact == ART_DRAMA_STAFF) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DRAMA_STAFF) || (uwep && uwep->oartifact == ART_MASSIVE_BUT_LOVELY) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MASSIVE_BUT_LOVELY) || Race_if(PM_SERB)) && mtmp->mpeaceful && !mtmp->mtame && !rn2(10000)) {
+	if ((WakeupCallBug || u.uprops[WAKEUP_CALL_BUG].extrinsic || have_wakeupcallstone() || (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT) || (uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) || (uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) || autismweaponcheck(ART_DRAMA_STAFF) || autismweaponcheck(ART_MASSIVE_BUT_LOVELY) || Race_if(PM_SERB)) && mtmp->mpeaceful && !mtmp->mtame && !rn2(10000)) {
 		wakeup(mtmp);
 	}
 
@@ -4217,7 +4217,7 @@ altarfound:
 	       nidist > (couldsee(nix,niy) ? 144 : 36) && appr == 1) appr = 0;
 
 		/* special coding for "homing" giant wasps from the hunger games --Amy */
-		if ((ptr == &mons[PM_TRACKER_JACKER] || (uwep && uwep->oartifact == ART_EMERALD_SWORD) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EMERALD_SWORD) || ptr == &mons[PM_TRACKBAG] || ptr == &mons[PM_BLACK_SUN_BASS] || ptr == &mons[PM_LINDEN_BASS] || (FemtrapActiveElla && mtmp->female && humanoid(mtmp->data) && (mtmp->mhp < (mtmp->mhpmax * 9 / 10) )) || ptr == &mons[PM_ASSHOLE_WHO_CANNOT_ENJOY_ANYTHING__NOT_EVEN_A_PAIR_OF_CUDDLE_HEELS] || ptr == &mons[PM_KILLER_GIANT_RAT] || ptr == &mons[PM_POLICE_DOG] || ptr == &mons[PM_MANBOO] || ptr == &mons[PM_SOLARFISH] || ptr == &mons[PM_POLICE_HUSKY] || ptr == &mons[PM_BIG_POLICE_DOG] || ptr == &mons[PM_CURSED____LEFTHANDED_FARTING_ELEPHANT] || ptr == &mons[PM_VERONA_MARBLE] || ptr == &mons[PM_CHASE_BIRD] || ptr == &mons[PM_JAYCEE] || ptr == &mons[PM_OOGABOOGAGOBILITGOOK_SEEKER_AREHETYPE_FUCKING_RETARD_ASS_SHIT_FLINGING_MONKEY_MONSTER] || ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_DRIVE_TRAIN] || ptr == &mons[PM_XTREME_TRACKER] || ptr == &mons[PM_REFUGE_UHLERT] || ptr == &mons[PM_THE_ULTIMATE_REFUGE]) && !mtmp->mpeaceful) appr = 1;
+		if ((ptr == &mons[PM_TRACKER_JACKER] || autismweaponcheck(ART_EMERALD_SWORD) || ptr == &mons[PM_TRACKBAG] || ptr == &mons[PM_BLACK_SUN_BASS] || ptr == &mons[PM_LINDEN_BASS] || (FemtrapActiveElla && mtmp->female && humanoid(mtmp->data) && (mtmp->mhp < (mtmp->mhpmax * 9 / 10) )) || ptr == &mons[PM_ASSHOLE_WHO_CANNOT_ENJOY_ANYTHING__NOT_EVEN_A_PAIR_OF_CUDDLE_HEELS] || ptr == &mons[PM_KILLER_GIANT_RAT] || ptr == &mons[PM_POLICE_DOG] || ptr == &mons[PM_MANBOO] || ptr == &mons[PM_SOLARFISH] || ptr == &mons[PM_POLICE_HUSKY] || ptr == &mons[PM_BIG_POLICE_DOG] || ptr == &mons[PM_CURSED____LEFTHANDED_FARTING_ELEPHANT] || ptr == &mons[PM_VERONA_MARBLE] || ptr == &mons[PM_CHASE_BIRD] || ptr == &mons[PM_JAYCEE] || ptr == &mons[PM_OOGABOOGAGOBILITGOOK_SEEKER_AREHETYPE_FUCKING_RETARD_ASS_SHIT_FLINGING_MONKEY_MONSTER] || ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_DRIVE_TRAIN] || ptr == &mons[PM_XTREME_TRACKER] || ptr == &mons[PM_REFUGE_UHLERT] || ptr == &mons[PM_THE_ULTIMATE_REFUGE]) && !mtmp->mpeaceful) appr = 1;
 
 	if (uarmh && itemhasappearance(uarmh, APP_BUG_TRACKING_HELMET) && !rn2(3) ) appr = 1; 
 

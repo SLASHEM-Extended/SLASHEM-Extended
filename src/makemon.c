@@ -24128,7 +24128,7 @@ register int	mmflags;
 		if (mtmp->m_lev > 49) mtmp->m_lev = 49;
 	}
 
-	if (LevelTrapEffect || u.uprops[LEVELBUG].extrinsic || have_levelstone() || (uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) || (ptr == &mons[PM_GUDRUN_THE_FEMINIST]) || (ptr == &mons[PM_ELLA_THE_FEMINIST]) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) || (uwep && uwep->oartifact == ART_GENOCIDE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GENOCIDE) ) {
+	if (LevelTrapEffect || u.uprops[LEVELBUG].extrinsic || have_levelstone() || (ptr == &mons[PM_GUDRUN_THE_FEMINIST]) || (ptr == &mons[PM_ELLA_THE_FEMINIST]) || autismweaponcheck(ART_MANUELA_S_PRACTICANT_TERRO) || autismweaponcheck(ART_GENOCIDE) ) {
 
 		int leveltrapbonus = mvitals[mtmp->mnum].born + 1;
 		if (leveltrapbonus < 1) leveltrapbonus = 1;
@@ -24545,12 +24545,17 @@ register int	mmflags;
 		mtmp->egotype_seducer = 1;
 	}
 
-	if (!rn2(100) && uswapwep && uswapwep->oartifact == ART_AMY_S_SEX_TOY) {
+	if (!rn2(100) && u.twoweap && uswapwep && uswapwep->oartifact == ART_AMY_S_SEX_TOY) {
 		mtmp->isegotype = 1;
 		mtmp->egotype_seducer = 1;
 	}
 
 	if (!rn2(50) && uwep && uwep->oartifact == ART_ARABSTREET_SOUND) {
+		mtmp->isegotype = 1;
+		mtmp->egotype_sounder = 1;
+	}
+
+	if (!rn2(50) && u.twoweap && uswapwep && uswapwep->oartifact == ART_ARABSTREET_SOUND) {
 		mtmp->isegotype = 1;
 		mtmp->egotype_sounder = 1;
 	}
@@ -26728,7 +26733,7 @@ register int	mmflags;
 		mtmp->mpeaceful = mtmp->mtame = FALSE;
 	}
 
-	if (u.uprops[GHOST_WORLD].extrinsic || (uarmc && uarmc->oartifact == ART_HAUNTNIGHT) || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || GhostWorld || have_ghostlystone() || (uwep && uwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI) ) {
+	if (u.uprops[GHOST_WORLD].extrinsic || (uarmc && uarmc->oartifact == ART_HAUNTNIGHT) || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || GhostWorld || have_ghostlystone() || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI) ) {
 		mtmp->minvis = mtmp->perminvis = mtmp->minvisreal = 1;
 	}
 
@@ -27129,7 +27134,7 @@ int mndx;
 	if (notuncommonlate > 1000) notuncommonlate = 1000;
 
 	if (mons[mndx].geno & (G_NOGEN/* | G_UNIQ*/)) return TRUE;
-	if ((mons[mndx].geno & (G_UNIQ)) && rn2(u.outtadepthtrap ? 5 : ((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) ? 10 : 20) && !(Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE) ) && !Race_if(PM_PLAYER_DYNAMO) && !Role_if(PM_TRANSSYLVANIAN) && !isbossrusher && !Role_if(PM_GANG_SCHOLAR) ) return TRUE;
+	if ((mons[mndx].geno & (G_UNIQ)) && rn2(u.outtadepthtrap ? 5 : ((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) ? 10 : 20) && !(Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || autismweaponcheck(ART_EXTREMELY_HARD_MODE) ) && !Race_if(PM_PLAYER_DYNAMO) && !Role_if(PM_TRANSSYLVANIAN) && !isbossrusher && !Role_if(PM_GANG_SCHOLAR) ) return TRUE;
 	if (mvitals[mndx].mvflags & G_GONE) return TRUE;
 
 	/* In Soviet Russia, uncommon entities are more common because "harharhar har!" --Amy */
@@ -27137,24 +27142,24 @@ int mndx;
 	/* Amy reminder to self: converting a monster index number to permonst is &mons[NUMBER]
 	 * keywords: int to permonst */
 
-	if (uncommon2(&mons[mndx]) && !jonaspecialspawn(&mons[mndx]) && (issoviet ? !rn2(3) : rn2(2)) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
-	if (uncommon3(&mons[mndx]) && !jonaspecialspawn(&mons[mndx]) && rn2(issoviet ? 2 : 3) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
-	if (uncommon5(&mons[mndx]) && !jonaspecialspawn(&mons[mndx]) && rn2(issoviet ? 3 : 5) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
-	if (uncommon7(&mons[mndx]) && !jonaspecialspawn(&mons[mndx]) && rn2(issoviet ? 4 : 7) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
-	if (uncommon10(&mons[mndx]) && !jonaspecialspawn(&mons[mndx]) && rn2(issoviet ? 5 : 10) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
+	if (uncommon2(&mons[mndx]) && !jonaspecialspawn(&mons[mndx]) && (issoviet ? !rn2(3) : rn2(2)) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
+	if (uncommon3(&mons[mndx]) && !jonaspecialspawn(&mons[mndx]) && rn2(issoviet ? 2 : 3) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
+	if (uncommon5(&mons[mndx]) && !jonaspecialspawn(&mons[mndx]) && rn2(issoviet ? 3 : 5) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
+	if (uncommon7(&mons[mndx]) && !jonaspecialspawn(&mons[mndx]) && rn2(issoviet ? 4 : 7) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
+	if (uncommon10(&mons[mndx]) && !jonaspecialspawn(&mons[mndx]) && rn2(issoviet ? 5 : 10) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
 
-	if (monstr[mndx] >= 9 && (rn2(100) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 14 && !rn2(10)) return TRUE;
-	if (monstr[mndx] >= 14 && (rn2(150) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 19 && !rn2(5)) return TRUE;
-	if (monstr[mndx] >= 19 && (rn2(200) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 24 && (rnd(10) > 3) ) return TRUE;
-	if (monstr[mndx] >= 24 && (rn2(250) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 28 && (rnd(10) > 4) ) return TRUE;
-	if (monstr[mndx] >= 28 && (rn2(290) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 33 && !rn2(2)) return TRUE;
-	if (monstr[mndx] >= 33 && (rn2(340) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 37 && (rnd(10) > 6) ) return TRUE;
-	if (monstr[mndx] >= 37 && (rn2(380) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 42 && (rnd(10) > 7) ) return TRUE;
-	if (monstr[mndx] >= 42 && (rn2(420) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 46 && rn2(5)) return TRUE;
-	if (monstr[mndx] >= 46 && (rn2(460) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 50 && rn2(10)) return TRUE;
-	if (monstr[mndx] >= 50 && (rn2(500) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 60 && rn2(20)) return TRUE;
-	if (monstr[mndx] >= 60 && (rn2(600) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 70 && rn2(50)) return TRUE;
-	if (monstr[mndx] >= 70 && (rn2(700) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && rn2(100)) return TRUE;
+	if (monstr[mndx] >= 9 && (rn2(100) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 14 && !rn2(10)) return TRUE;
+	if (monstr[mndx] >= 14 && (rn2(150) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 19 && !rn2(5)) return TRUE;
+	if (monstr[mndx] >= 19 && (rn2(200) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 24 && (rnd(10) > 3) ) return TRUE;
+	if (monstr[mndx] >= 24 && (rn2(250) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 28 && (rnd(10) > 4) ) return TRUE;
+	if (monstr[mndx] >= 28 && (rn2(290) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 33 && !rn2(2)) return TRUE;
+	if (monstr[mndx] >= 33 && (rn2(340) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 37 && (rnd(10) > 6) ) return TRUE;
+	if (monstr[mndx] >= 37 && (rn2(380) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 42 && (rnd(10) > 7) ) return TRUE;
+	if (monstr[mndx] >= 42 && (rn2(420) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 46 && rn2(5)) return TRUE;
+	if (monstr[mndx] >= 46 && (rn2(460) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 50 && rn2(10)) return TRUE;
+	if (monstr[mndx] >= 50 && (rn2(500) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 60 && rn2(20)) return TRUE;
+	if (monstr[mndx] >= 60 && (rn2(600) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 70 && rn2(50)) return TRUE;
+	if (monstr[mndx] >= 70 && (rn2(700) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && rn2(100)) return TRUE;
 
 	/*if (Inhell)
 		return(mons[mndx].maligntyp > A_NEUTRAL);
@@ -27993,7 +27998,7 @@ loopback:
 		if (ct > 0 && (Role_if(PM_ALTMER) && is_evilpatchmonster(ptr))) ct += 1;
 		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_DATA) )) ct += 1;
 		if (ct > 0 && (uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && dmgtype(ptr, AD_DATA) )) ct += 1000;
-		if (ct > 0 && (uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && dmgtype(ptr, AD_DATA) )) ct += 1000;
+		if (ct > 0 && (u.twoweap && uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && dmgtype(ptr, AD_DATA) )) ct += 1000;
 		if (ct > 0 && (Role_if(PM_SHAPESHIFTER) && is_evilpatchmonster(ptr))) ct += 5;
 		if (ct > 0 && (Race_if(PM_RODNEYAN) && is_evilpatchmonster(ptr))) ct += 5;
 		if (ct > 0 && (Role_if(PM_SOFTWARE_ENGINEER) && is_evilpatchmonster(ptr))) ct += 3;
@@ -28877,7 +28882,7 @@ int     spc;
 {
 	register int	first, last, num = 0;
 	int maxmlev, mask = (G_NOGEN | G_UNIQ) & ~spc;
-	if (!rn2(((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) ? 10 : 20) || (Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE) ) || Role_if(PM_TRANSSYLVANIAN) || Race_if(PM_PLAYER_DYNAMO) || isbossrusher || Role_if(PM_GANG_SCHOLAR) ) mask = (G_NOGEN) & ~spc;
+	if (!rn2(((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) ? 10 : 20) || (Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || autismweaponcheck(ART_EXTREMELY_HARD_MODE) ) || Role_if(PM_TRANSSYLVANIAN) || Race_if(PM_PLAYER_DYNAMO) || isbossrusher || Role_if(PM_GANG_SCHOLAR) ) mask = (G_NOGEN) & ~spc;
 
 	int uncommontwo = 0;
 	int uncommonthree = 0;
@@ -28906,7 +28911,7 @@ int     spc;
 	if (((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) && !rn2(7)) uncommonseven = 0;
 	if (((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) && !rn2(10)) uncommonten = 0;
 
-	if (EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) {
+	if (EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) {
 		uncommontwo = 0;
 		uncommonthree = 0;
 		uncommonfive = 0;
@@ -28979,7 +28984,7 @@ int     spc;
 	if (((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) && !rn2(8)) uncommonnewsixty = 0;
 	if (((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) && !rn2(9)) uncommonnewseventy = 0;
 
-	if (HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) {
+	if (HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) {
 		uncommonnewten = 0;
 		uncommonnewfifteen = 0;
 		uncommonnewtwenty = 0;
@@ -29549,7 +29554,7 @@ int     spc;
 		if ((Role_if(PM_ALTMER) && is_evilpatchmonster(&mons[last]))) num += 1;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_DATA) )) num += 1;
 		if ((uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && dmgtype(&mons[last], AD_DATA) )) num += 1000;
-		if ((uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && dmgtype(&mons[last], AD_DATA) )) num += 1000;
+		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && dmgtype(&mons[last], AD_DATA) )) num += 1000;
 		if ((Role_if(PM_SHAPESHIFTER) && is_evilpatchmonster(&mons[last]))) num += 5;
 		if ((Race_if(PM_RODNEYAN) && is_evilpatchmonster(&mons[last]))) num += 5;
 
@@ -30767,7 +30772,7 @@ int     spc;
 		if ((Role_if(PM_ALTMER) && is_evilpatchmonster(&mons[first]))) num -= 1;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_DATA) )) num -= 1;
 		if ((uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && dmgtype(&mons[first], AD_DATA) )) num -= 1000;
-		if ((uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && dmgtype(&mons[first], AD_DATA) )) num -= 1000;
+		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && dmgtype(&mons[first], AD_DATA) )) num -= 1000;
 		if ((Role_if(PM_SHAPESHIFTER) && is_evilpatchmonster(&mons[first]))) num -= 5;
 		if ((Race_if(PM_RODNEYAN) && is_evilpatchmonster(&mons[first]))) num -= 5;
 
@@ -32399,7 +32404,7 @@ register struct permonst *ptr;
 
 	if (Race_if(PM_RODNEYAN) && monsndx(ptr) == PM_RODNEY_S_SISTER) return TRUE;
 
-	if (EnmityBug || u.uprops[ENMITY_BUG].extrinsic || (uwep && uwep->oartifact == ART_EMERALD_SWORD) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EMERALD_SWORD) || have_inimicalstone() || (uarmf && uarmf->oartifact == ART_HERSAY_PRICE) || (uwep && uwep->oartifact == ART_DRAMA_STAFF) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DRAMA_STAFF) || (uwep && uwep->oartifact == ART_TOMMY_S_DEFERRED_HEEL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_TOMMY_S_DEFERRED_HEEL)) return FALSE;
+	if (EnmityBug || u.uprops[ENMITY_BUG].extrinsic || autismweaponcheck(ART_EMERALD_SWORD) || have_inimicalstone() || (uarmf && uarmf->oartifact == ART_HERSAY_PRICE) || autismweaponcheck(ART_DRAMA_STAFF) || autismweaponcheck(ART_TOMMY_S_DEFERRED_HEEL)) return FALSE;
 
 	if (Race_if(PM_DUTHOL) && !rn2(2)) return FALSE;
 

@@ -882,7 +882,7 @@ bladeangerdone:
 	    }
 	    freeinv(otmp);
 	    throwit(otmp, wep_mask, twoweap, thrown);
-	    if ((uwep && uwep->oartifact == ART_PSG) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PSG) || (uwep && uwep->oartifact == ART_BORKED_PARA) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_BORKED_PARA)) {
+	    if (autismweaponcheck(ART_PSG) || autismweaponcheck(ART_BORKED_PARA)) {
 		pushplayer(FALSE);
 	    }
 	}
@@ -1790,7 +1790,7 @@ int thrown;
 	if (launcher && obj && ammo_and_launcher(obj, launcher) && obj->otyp == CHROME_PELLET) obj->opoisoned = 1;
 
 	obj->was_thrown = 1;
-	if ((obj->cursed || (obj->otyp == FLIMSY_DART) || (obj->oartifact == ART_COMPLETELY_OFF) || (obj->oartifact == ART_FLUSCH) || (obj->oartifact == ART_STREW_ANYWHERE) || (is_grassland(u.ux, u.uy) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) || obj->greased || (uwep && uwep->oartifact == ART_FOEOEOEOEOEOEOE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FOEOEOEOEOEOEOE) || (Race_if(PM_PLAYER_SKELETON) && !rn2(3)) || (uarmg && itemhasappearance(uarmg, APP_CLUMSY_GLOVES) ) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() ) ) && (u.dx || u.dy) && (!rn2(7) || (obj->oartifact == ART_COMPLETELY_OFF) || (obj->oartifact == ART_FLUSCH) || (obj->oartifact == ART_STREW_ANYWHERE) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() )) ) {
+	if ((obj->cursed || (obj->otyp == FLIMSY_DART) || (obj->oartifact == ART_COMPLETELY_OFF) || (obj->oartifact == ART_FLUSCH) || (obj->oartifact == ART_STREW_ANYWHERE) || (is_grassland(u.ux, u.uy) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) || obj->greased || autismweaponcheck(ART_FOEOEOEOEOEOEOE) || (Race_if(PM_PLAYER_SKELETON) && !rn2(3)) || (uarmg && itemhasappearance(uarmg, APP_CLUMSY_GLOVES) ) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() ) ) && (u.dx || u.dy) && (!rn2(7) || (obj->oartifact == ART_COMPLETELY_OFF) || (obj->oartifact == ART_FLUSCH) || (obj->oartifact == ART_STREW_ANYWHERE) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() )) ) {
 	    boolean slipok = TRUE;
 	    if (ammo_and_launcher(obj, launcher))
 		pline("%s!", Tobjnam(obj, "misfire"));
@@ -2313,7 +2313,7 @@ struct monst *mon;
 	miss(missile, mon);
     if (!rn2(3)) wakeup(mon);
 
-    if ( ((uwep && uwep->oartifact == ART_CANNONDANCER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_CANNONDANCER)) && multi >= 0) {
+    if ( (autismweaponcheck(ART_CANNONDANCER)) && multi >= 0) {
 		if (isstunfish) nomul(-(rnz(10)), "having missed the beat", TRUE);
 		else nomul(-(rn1(5,5)), "having missed the beat", TRUE);
 
@@ -2444,7 +2444,7 @@ boolean polearming;
 	if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
 	if (uimplant && uimplant->oartifact == ART_SOME_LITTLE_AID) tmp += 1;
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
-	if (uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 	if (uarmf && uarmf->oartifact == ART_CRASHING_YOUR_SISTER_S_WED) tmp -= 5;
 	if (uarmf && uarmf->oartifact == ART_CAT_ROCKZ) tmp += 5;
 	if (Race_if(PM_SERB)) tmp += 1;

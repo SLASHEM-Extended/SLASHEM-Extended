@@ -1774,30 +1774,30 @@ playerextrinsicaggravatemon()
 	if (uarmc && itemhasappearance(uarmc, APP_AVENGER_CLOAK)) return TRUE;
 
 	if ((uwep && uwep->otyp == GROM_AXE) || (u.twoweap && uswapwep && uswapwep->otyp == GROM_AXE)) return TRUE;
-	if ((uwep && uwep->oartifact == ART_ASIAN_WINTER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ASIAN_WINTER)) return TRUE;
-	if ((uwep && uwep->oartifact == ART_FN_M____PARA) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FN_M____PARA)) return TRUE;
-	if ((uwep && uwep->oartifact == ART_KILLER_PIANO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KILLER_PIANO)) return TRUE;
-	if ((uwep && uwep->oartifact == ART_PICK_OF_THE_GRAVE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PICK_OF_THE_GRAVE)) return TRUE;
-	if ((uwep && uwep->oartifact == ART_CRUEL_PUNISHER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_CRUEL_PUNISHER)) return TRUE;
-	if ((uwep && uwep->oartifact == ART_SANDRA_S_EVIL_MINDDRILL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SANDRA_S_EVIL_MINDDRILL)) return TRUE;
+	if (autismweaponcheck(ART_ASIAN_WINTER)) return TRUE;
+	if (autismweaponcheck(ART_FN_M____PARA)) return TRUE;
+	if (autismweaponcheck(ART_KILLER_PIANO)) return TRUE;
+	if (autismweaponcheck(ART_PICK_OF_THE_GRAVE)) return TRUE;
+	if (autismweaponcheck(ART_CRUEL_PUNISHER)) return TRUE;
+	if (autismweaponcheck(ART_SANDRA_S_EVIL_MINDDRILL)) return TRUE;
 	if ((uarmf && itemhasappearance(uarmf, APP_HEAP_OF_SHIT_BOOTS))) return TRUE;
 	if ((uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) || (uarmu && uarmu->oartifact == ART_HELEN_S_DISCARDED_SHIRT) || (uarm && uarm->oartifact == ART_HO_OH_S_FEATHERS) || (uarm && uarm->oartifact == ART_QUEEN_ARTICUNO_S_HULL) || (uarm && uarm->oartifact == ART_DON_SUICUNE_DOES_NOT_APPRO) || (uarm && uarm->oartifact == ART_DON_SUICUNE_USED_SELFDESTR)) return TRUE;
-	if ((uarmc && uarmc->oartifact == ART_BROKEN_WINGS) || (uarmc && uarmc->oartifact == ART_GROUNDBUMMER) || (uwep && uwep->oartifact == ART_SANDRA_S_SECRET_WEAPON) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SANDRA_S_SECRET_WEAPON)) return TRUE;
-	if ((uarmf && uarmf->oartifact == ART_VERY_NICE_PERSON) || (uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) || (uwep && uwep->oartifact == ART_WHY_DO_YOU_HAVE_SUCH_A_LIT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_WHY_DO_YOU_HAVE_SUCH_A_LIT) || (uarmf && uarmf->oartifact == ART_LARISSA_S_ANGER) || (uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD)) return TRUE;
+	if ((uarmc && uarmc->oartifact == ART_BROKEN_WINGS) || (uarmc && uarmc->oartifact == ART_GROUNDBUMMER) || autismweaponcheck(ART_SANDRA_S_SECRET_WEAPON)) return TRUE;
+	if ((uarmf && uarmf->oartifact == ART_VERY_NICE_PERSON) || (uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) || autismweaponcheck(ART_WHY_DO_YOU_HAVE_SUCH_A_LIT) || (uarmf && uarmf->oartifact == ART_LARISSA_S_ANGER) || (uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD)) return TRUE;
 	if ((uarm && uarm->oartifact == ART_NON_BLADETURNER) || (uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE) || (uarmc && uarmc->oartifact == ART_UBERJACKAL_EFFECT)) return TRUE;
-	if ((uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) || (uarmc && uarmc->oartifact == ART_HENRIETTA_S_HEAVY_CASTER)) return TRUE;
+	if (autismweaponcheck(ART_MANUELA_S_PRACTICANT_TERRO) || (uarmc && uarmc->oartifact == ART_HENRIETTA_S_HEAVY_CASTER)) return TRUE;
 	if ((uarmf && uarmf->oartifact == ART_HENRIETTA_S_DOGSHIT_BOOTS) || (uarmh && uarmh->oartifact == ART_SEVERE_AGGRAVATION) || (uarms && uarms->oartifact == ART_SHATTERED_DREAMS)) return TRUE;
 	if ((uarmc && itemhasappearance(uarmc, APP_EXCREMENT_CLOAK) )) return TRUE;
-	if ((uarms && uarms->oartifact == ART_NO_FUTURE_BUT_AGONY) || (uarmf && uarmf->oartifact == ART_CINDERELLA_S_SLIPPERS) || (uwep && uwep->oartifact == ART_GIRLFUL_BONKING) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GIRLFUL_BONKING)) return TRUE;
-	if ((uwep && uwep->oartifact == ART_HENRIETTA_S_MISTAKE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_HENRIETTA_S_MISTAKE) || (uarmf && uarmf->oartifact == ART_ELLA_S_BLOODLUST) || (uarmf && uarmf->oartifact == ART_LOVELY_GIRL_PLATEAUS)) return TRUE;
-	if ((uarmf && uarmf->oartifact == ART_SOLVEJG_S_STINKING_SLIPPER) || (uwep && uwep->oartifact == ART_RATTATTATTATTATT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_RATTATTATTATTATT) || (uarmf && uarmf->oartifact == ART_I_M_A_BITCH__DEAL_WITH_IT)) return TRUE;
+	if ((uarms && uarms->oartifact == ART_NO_FUTURE_BUT_AGONY) || (uarmf && uarmf->oartifact == ART_CINDERELLA_S_SLIPPERS) || autismweaponcheck(ART_GIRLFUL_BONKING)) return TRUE;
+	if (autismweaponcheck(ART_HENRIETTA_S_MISTAKE) || (uarmf && uarmf->oartifact == ART_ELLA_S_BLOODLUST) || (uarmf && uarmf->oartifact == ART_LOVELY_GIRL_PLATEAUS)) return TRUE;
+	if ((uarmf && uarmf->oartifact == ART_SOLVEJG_S_STINKING_SLIPPER) || autismweaponcheck(ART_RATTATTATTATTATT) || (uarmf && uarmf->oartifact == ART_I_M_A_BITCH__DEAL_WITH_IT)) return TRUE;
 	if ((uarmf && uarmf->oartifact == ART_MANUELA_S_TORTURE_HEELS) || (uarmf && uarmf->oartifact == ART_MANUELA_S_UNKNOWN_HEELS) || (uarmf && uarmf->oartifact == ART_ALLYNONE) || (uarmf && uarmf->oartifact == ART_HERMES__UNFAIRNESS) || (uarmf && uarmf->oartifact == ART_HADES_THE_MEANIE)) return TRUE;
 	if ((uarmf && uarmf->oartifact == ART_FUN_ALL_IN_ONE) || (uarmf && uarmf->oartifact == ART_PORCELAIN_ELEPHANT) || (uleft && uleft->oartifact == ART_RING_OF_WOE) || (uright && uright->oartifact == ART_RING_OF_WOE) || (uleft && uleft->oartifact == ART_GOLDENIVY_S_RAGE) || (uright && uright->oartifact == ART_GOLDENIVY_S_RAGE)) return TRUE;
-	if ((uleft && uleft->oartifact == ART_GOLDENIVY_S_ENGAGEMENT_RIN) || (uright && uright->oartifact == ART_GOLDENIVY_S_ENGAGEMENT_RIN) || (uamul && uamul->oartifact == ART_SNOREFEST) || (uwep && uwep->oartifact == ART_ARMORWREAKER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ARMORWREAKER)) return TRUE;
-	if ((uwep && uwep->oartifact == ART_HARKENSTONE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_HARKENSTONE) || (uwep && uwep->oartifact == ART_KUSANAGI_NO_TSURUGI) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KUSANAGI_NO_TSURUGI)) return TRUE;
-	if ((uwep && uwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI)) return TRUE;
+	if ((uleft && uleft->oartifact == ART_GOLDENIVY_S_ENGAGEMENT_RIN) || (uright && uright->oartifact == ART_GOLDENIVY_S_ENGAGEMENT_RIN) || (uamul && uamul->oartifact == ART_SNOREFEST) || autismweaponcheck(ART_ARMORWREAKER)) return TRUE;
+	if (autismweaponcheck(ART_HARKENSTONE) || autismweaponcheck(ART_KUSANAGI_NO_TSURUGI)) return TRUE;
+	if (autismweaponcheck(ART_ARABELLA_S_ARTIFACT_CREATI)) return TRUE;
 	if ((uleft && uleft->oartifact == ART_TASTY_TAME_NASTY) || (uright && uright->oartifact == ART_TASTY_TAME_NASTY)) return TRUE;
-	if ((uwep && uwep->oartifact == ART_SABRINA_S_RESCUE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SABRINA_S_RESCUE) || (uarmf && uarmf->oartifact == ART_EVERYWHERE_AT_ONCE) || (uarmf && uarmf->oartifact == ART_BITCHSMOKE) || (uarmf && uarmf->oartifact == ART_SORROW_AND_DESPAIR) || (uarmf && uarmf->oartifact == ART_NOW_YOU_ARE_HOWEVER_TO) || (uarmf && uarmf->oartifact == ART_WHINY_TEACHER_INSIDE_WOMAN) || (uarmf && uarmf->oartifact == ART_UNDEAD_STINK) || (uarm && uarm->oartifact == ART_HAZARDOUS_EQUIPMENT) ) return TRUE;
+	if (autismweaponcheck(ART_SABRINA_S_RESCUE) || (uarmf && uarmf->oartifact == ART_EVERYWHERE_AT_ONCE) || (uarmf && uarmf->oartifact == ART_BITCHSMOKE) || (uarmf && uarmf->oartifact == ART_SORROW_AND_DESPAIR) || (uarmf && uarmf->oartifact == ART_NOW_YOU_ARE_HOWEVER_TO) || (uarmf && uarmf->oartifact == ART_WHINY_TEACHER_INSIDE_WOMAN) || (uarmf && uarmf->oartifact == ART_UNDEAD_STINK) || (uarm && uarm->oartifact == ART_HAZARDOUS_EQUIPMENT) ) return TRUE;
 	if (uarmg && uarmg->oartifact == ART_KATI_S_ANTAGONISM) return TRUE;
 
 	return FALSE;
@@ -7616,6 +7616,20 @@ newswap:
 	pline("Your stats got scrambled!");
 
 
+}
+
+/* suggested by someone on 4chan: since stylized garbage is still garbage, we want to have a function that checks whether
+ * you have an artifact either in your primary hand, or are twoweaponing with it in your off-hand.
+ * The name of the function is used because the anon used ART_AUTISM in the example function :-P --Amy */
+boolean
+autismweaponcheck(artinum)
+int artinum;
+{
+
+	if (uwep && uwep->oartifact == artinum) return TRUE;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == artinum) return TRUE;
+
+	return FALSE;
 }
 
 /* AD_DROP: forces player to drop random items, but no equipped ones --Amy */

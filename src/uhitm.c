@@ -163,7 +163,7 @@ boolean barehanded;
 	 * the screen, so you know something is there.
 	 */
 
-	if (MeleePrefixBug || u.uprops[MELEE_PREFIX_BUG].extrinsic || (uwep && uwep->oartifact == ART_ULTRA_ANNOYANCE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ULTRA_ANNOYANCE) || (uwep && uwep->oartifact == ART_RIDGET_PHASTO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_RIDGET_PHASTO) || have_meleeprefixstone()) {
+	if (MeleePrefixBug || u.uprops[MELEE_PREFIX_BUG].extrinsic || autismweaponcheck(ART_ULTRA_ANNOYANCE) || autismweaponcheck(ART_RIDGET_PHASTO) || have_meleeprefixstone()) {
 
 		pline("You bump into %s.", mon_nam(mtmp));
 		return 0;
@@ -547,7 +547,7 @@ register struct monst *mtmp;
 	    adjalign(-5);
 	}
 
-	if (uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN && mtmp->mpeaceful) {
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN && mtmp->mpeaceful) {
 	    You("dishonorably attack the innocent!");
 		u.ualign.sins++;
 		u.alignlim--;
@@ -561,7 +561,7 @@ register struct monst *mtmp;
 	    adjalign(-5);
 	}
 
-	if (uswapwep && uswapwep->oartifact == ART_SAKUSHNIR && mtmp->mpeaceful) {
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SAKUSHNIR && mtmp->mpeaceful) {
 	    You("dishonorably attack the innocent!");
 		u.ualign.sins++;
 		u.alignlim--;
@@ -4297,7 +4297,7 @@ melatechoice:
 		u.ualign.sins++;
 		u.alignlim--;
 	    }
-	    if (uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN && !Race_if(PM_IRAHA) && !Race_if(PM_POISONER)) {
+	    if (u.twoweap && uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN && !Race_if(PM_IRAHA) && !Race_if(PM_POISONER)) {
 		You("dishonorably use a poisoned weapon!");
 		adjalign(-1);
 		adjalign(-5);
@@ -4311,7 +4311,7 @@ melatechoice:
 		u.ualign.sins++;
 		u.alignlim--;
 	    }
-	    if (uswapwep && uswapwep->oartifact == ART_SAKUSHNIR && !Race_if(PM_IRAHA) && !Race_if(PM_POISONER)) {
+	    if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SAKUSHNIR && !Race_if(PM_IRAHA) && !Race_if(PM_POISONER)) {
 		You("dishonorably use a poisoned weapon!");
 		adjalign(-1);
 		adjalign(-5);
@@ -10226,7 +10226,7 @@ boolean ranged;
 	else
 	    tmp = 0;
 
-	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || (uwep && uwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI)) {
+	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI)) {
 		if (ptr->mattk[i].damn)
 		    tmp = (int)ptr->mattk[i].damn * (int)ptr->mattk[i].damd;
 		else if(ptr->mattk[i].damd)
@@ -11982,7 +11982,7 @@ boolean ranged;
 	      case AD_SSEX:
 			if (!malive) break;
 
-			if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) {
+			if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || autismweaponcheck(ART_COPPERED_OFF_FROM_ME) || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) {
 				You_feel("a tug on your backpack!");
 				buf[0] = '\0';
 				switch (steal(mon, buf, atttypC == AD_SEDU ? TRUE : FALSE, FALSE)) {

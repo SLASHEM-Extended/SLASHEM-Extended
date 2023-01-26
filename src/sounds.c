@@ -6918,7 +6918,7 @@ dochat()
 
 	}
 
-	if ((Role_if(PM_PROSTITUTE) || Role_if(PM_KURWA) || (uarmf && uarmf->oartifact == ART_VERY_PROSTITUTED) || (uwep && uwep->oartifact == ART_SEXCALIBUR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SEXCALIBUR)) && humanoid(mtmp->data) ) {
+	if ((Role_if(PM_PROSTITUTE) || Role_if(PM_KURWA) || (uarmf && uarmf->oartifact == ART_VERY_PROSTITUTED) || autismweaponcheck(ART_SEXCALIBUR)) && humanoid(mtmp->data) ) {
 
 		if (!(mtmp->mtame)) {
 

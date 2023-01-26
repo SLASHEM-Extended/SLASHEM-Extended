@@ -277,7 +277,7 @@ moveloop()
 
 			if (u.sterilized) monclock *= (5 + spell_damage_bonus(SPE_STERILIZE));
 
-			if (verisiertEffect || u.uprops[VERISIERTEFFECT].extrinsic || (uwep && uwep->oartifact == ART_HOL_ON_MAN) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_HOL_ON_MAN) || (uimplant && uimplant->oartifact == ART_YOU_SHOULD_SURRENDER) || (uarms && uarms->oartifact == ART_GOLDEN_DAWN) || (uarms && uarms->oartifact == ART_GREXIT_IS_NEAR) || (uwep && uwep->oartifact == ART_UPGRADED_LEMURE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_UPGRADED_LEMURE) || have_verisiertstone()) monclock /= 5;
+			if (verisiertEffect || u.uprops[VERISIERTEFFECT].extrinsic || autismweaponcheck(ART_HOL_ON_MAN) || (uimplant && uimplant->oartifact == ART_YOU_SHOULD_SURRENDER) || (uarms && uarms->oartifact == ART_GOLDEN_DAWN) || (uarms && uarms->oartifact == ART_GREXIT_IS_NEAR) || autismweaponcheck(ART_UPGRADED_LEMURE) || have_verisiertstone()) monclock /= 5;
 			if (uarmf && uarmf->oartifact == ART_BLACK_DIAMOND_ICON) monclock /= 4; /* stacks with the above */
 			if (ishaxor) monclock /= 2;
 			if (Race_if(PM_LICH_WARRIOR)) monclock /= 2;
@@ -322,7 +322,7 @@ moveloop()
 			if (u.sterilized) xtraclock *= (5 + spell_damage_bonus(SPE_STERILIZE));
 
 			if (verisiertEffect || u.uprops[VERISIERTEFFECT].extrinsic || have_verisiertstone()) xtraclock /= 5;
-			if ((uwep && uwep->oartifact == ART_UPGRADED_LEMURE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_UPGRADED_LEMURE)) xtraclock /= 5;
+			if (autismweaponcheck(ART_UPGRADED_LEMURE)) xtraclock /= 5;
 			if (uimplant && uimplant->oartifact == ART_YOU_SHOULD_SURRENDER) xtraclock /= 5;
 			if (uarms && uarms->oartifact == ART_GOLDEN_DAWN) xtraclock /= 5;
 			if (uarms && uarms->oartifact == ART_GREXIT_IS_NEAR) xtraclock /= 5;
@@ -7858,7 +7858,7 @@ newbossO:
 		}
 
 		if (uwep && uwep->oartifact == ART_ETHER_PENETRATOR && !rn2(100)) contaminate(rnd(10), FALSE);
-		if (uswapwep && uswapwep->oartifact == ART_ETHER_PENETRATOR && !rn2(100)) contaminate(rnd(10), FALSE);
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ETHER_PENETRATOR && !rn2(100)) contaminate(rnd(10), FALSE);
 
 		if (In_gammacaves(&u.uz) && !rn2(StrongCont_resist ? 1000 : Cont_resist ? 200 : 100)) {
 			if (!rn2(5)) {
@@ -7979,7 +7979,7 @@ newbossO:
 
 		}
 
-		if (!rn2(2000) && uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON) {
+		if (!rn2(2000) && u.twoweap && uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON) {
 
 			getnastytrapintrinsic();
 
@@ -7991,7 +7991,7 @@ newbossO:
 
 		}
 
-		if (!rn2(2000) && uswapwep && uswapwep->oartifact == ART_RIDGET_PHASTO) {
+		if (!rn2(2000) && u.twoweap && uswapwep && uswapwep->oartifact == ART_RIDGET_PHASTO) {
 
 			getnastytrapintrinsic();
 
@@ -8262,7 +8262,7 @@ newbossO:
 			u.uprops[DEAC_REFLECTING].intrinsic += 1000;
 		}
 
-		if ((uwep && uwep->oartifact == ART_MASSIVE_BUT_LOVELY) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MASSIVE_BUT_LOVELY)) {
+		if (autismweaponcheck(ART_MASSIVE_BUT_LOVELY)) {
 			if (!FemaleTrapWendy) FemaleTrapWendy += 10000;
 
 			if (!u.fumbleduration) {
@@ -8273,14 +8273,14 @@ newbossO:
 
 		}
 
-		if ((uwep && uwep->oartifact == ART_GUARDIAN_OF_ARANOCH) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GUARDIAN_OF_ARANOCH)) {
+		if (autismweaponcheck(ART_GUARDIAN_OF_ARANOCH)) {
 			if (!(u.uprops[DEAC_COLD_RES].intrinsic)) {
 				u.uprops[DEAC_COLD_RES].intrinsic += 1000;
 				Your("cold resistance was deactivated!");
 			}
 		}
 
-		if ((uwep && uwep->oartifact == ART_FIRE_LEADER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FIRE_LEADER)) {
+		if (autismweaponcheck(ART_FIRE_LEADER)) {
 			if (!(u.uprops[DEAC_FIRE_RES].intrinsic)) {
 				u.uprops[DEAC_FIRE_RES].intrinsic += 1000;
 				Your("fire resistance was deactivated!");
@@ -8307,7 +8307,7 @@ newbossO:
 			}
 		}
 
-		if ((DeLightBug || u.uprops[DE_LIGHT_BUG].extrinsic || have_delightstone() || (uwep && uwep->oartifact == ART_EGRID_BUG) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EGRID_BUG) || (uwep && uwep->oartifact == ART_DELIGHTSABER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DELIGHTSABER) || (uwep && uwep->oartifact == ART_WEAKITE_THRUST) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_WEAKITE_THRUST)) && isok(u.ux, u.uy)) {
+		if ((DeLightBug || u.uprops[DE_LIGHT_BUG].extrinsic || have_delightstone() || autismweaponcheck(ART_EGRID_BUG) || autismweaponcheck(ART_DELIGHTSABER) || autismweaponcheck(ART_WEAKITE_THRUST)) && isok(u.ux, u.uy)) {
 			levl[u.ux][u.uy].lit = FALSE;
 		}
 
@@ -10172,7 +10172,7 @@ newbossB:
 			}
 		}
 
-		if ( (have_morgothiancurse() || (uinsymbiosis && u.usymbiote.morgcurse) || (uamul && uamul->oartifact == ART_NOW_YOU_HAVE_LOST) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT && !Role_if(PM_TOPMODEL) ) || (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) || (uwep && uwep->oartifact == ART_GUN_CONTROL_LAWS) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GUN_CONTROL_LAWS) ) && !rn2(isfriday ? 200 : 500) ) { /* was 1 in 50 in ToME */
+		if ( (have_morgothiancurse() || (uinsymbiosis && u.usymbiote.morgcurse) || (uamul && uamul->oartifact == ART_NOW_YOU_HAVE_LOST) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT && !Role_if(PM_TOPMODEL) ) || (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) || autismweaponcheck(ART_GUN_CONTROL_LAWS) ) && !rn2(isfriday ? 200 : 500) ) { /* was 1 in 50 in ToME */
 			switch (rnd(30)) {
 
 				case 1:
@@ -12195,7 +12195,7 @@ pastds2:
 
 		}
 
-		if ((u.uprops[CRAP_EFFECT].extrinsic || (uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) || (uarmc && uarmc->oartifact == ART_FEMMY_FATALE) || (uwep && uwep->oartifact == ART_GIRLFUL_BONKING) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GIRLFUL_BONKING) || CrapEffect || (uimplant && uimplant->oartifact == ART_BUCKET_HOUSE) || have_shitstone() || (uarmh && uarmh->oartifact == ART_CLAUDIA_S_SEXY_SCENT) ) && (u.uhs == 0) && !rn2(100) ) {
+		if ((u.uprops[CRAP_EFFECT].extrinsic || autismweaponcheck(ART_LUISA_S_CHARMING_BEAUTY) || (uarmc && uarmc->oartifact == ART_FEMMY_FATALE) || autismweaponcheck(ART_GIRLFUL_BONKING) || CrapEffect || (uimplant && uimplant->oartifact == ART_BUCKET_HOUSE) || have_shitstone() || (uarmh && uarmh->oartifact == ART_CLAUDIA_S_SEXY_SCENT) ) && (u.uhs == 0) && !rn2(100) ) {
 			You("suddenly have to take a shit!");
 			use_skill(P_SQUEAKING, 5);
 			int crapduration = 5;
@@ -13644,7 +13644,7 @@ past4:
 
 			}
 
-			if (uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && !rn2(2000) ) {
+			if (u.twoweap && uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && !rn2(2000) ) {
 
 				pline("A mysterious force surrounds you...");
 
@@ -13666,7 +13666,7 @@ past4:
 
 			}
 
-			if ((WereformBug || u.uprops[WEREFORM_BUG].extrinsic || have_wereformstone() || (uwep && uwep->oartifact == ART_LUNATICBRINGER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_LUNATICBRINGER) || (uarmf && uarmf->oartifact == ART_USE_THE_NORMALNESS_TURNS)) && !rn2(1200 - (200 * night()))) {
+			if ((WereformBug || u.uprops[WEREFORM_BUG].extrinsic || have_wereformstone() || autismweaponcheck(ART_LUNATICBRINGER) || (uarmf && uarmf->oartifact == ART_USE_THE_NORMALNESS_TURNS)) && !rn2(1200 - (200 * night()))) {
 
 				int wereformattempts = 0;
 
@@ -13814,7 +13814,7 @@ past4:
 
 	if (In_greencross(&u.uz) && !u.greencrossopen) u.greencrossopen = TRUE;
 
-	if ((uwep && uwep->oartifact == ART_BAT_FROM_HELL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_BAT_FROM_HELL)) {
+	if (autismweaponcheck(ART_BAT_FROM_HELL)) {
 		if (!Role_if(PM_ROGUE)) {
 			if (u.uhpmax > 1 && u.uhp > (u.uhpmax / 2)) u.uhp = u.uhpmax / 2;
 			if (Upolyd && u.mhmax > 1 && u.mh > (u.mhmax / 2)) u.mh = u.mhmax /= 2;
@@ -14225,7 +14225,7 @@ past4:
 		if (!u.miscolornumber) u.miscolornumber = rnd(15);
 	} else u.miscolornumber = 0;
 
-	if (OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone() || (uwep && uwep->oartifact == ART_TASTE_THE_RAINBOW) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_TASTE_THE_RAINBOW) ) {
+	if (OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone() || autismweaponcheck(ART_TASTE_THE_RAINBOW) ) {
 		if (!u.onerainbownumber) u.onerainbownumber = rnd(15);
 	} else u.onerainbownumber = 0;
 

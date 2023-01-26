@@ -8631,7 +8631,7 @@ newbossPENT:
 		{
 			boolean larissashoes = (uarmf ? TRUE : FALSE);
 
-			if ((Levitation || Flying || (uarmf && itemhasappearance(uarmf, APP_YELLOW_SNEAKERS) ) ) && !(Role_if(PM_GANG_SCHOLAR)) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) && !SpellColorBrown && !FemtrapActiveAnastasia && !FemtrapActiveBridghitte && !FemtrapActiveLarissa && !FemtrapActiveHenrietta && !FemtrapActiveAnna && !(uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) && !(uarmf && itemhasappearance(uarmf, APP_SKI_HEELS)) && !(uarmf && itemhasappearance(uarmf, APP_TREADED_HEELS)) && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS) && !(uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) && !(uarmf && (itemhasappearance(uarmf, APP_HUGGING_BOOTS) || itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) ) ) { /* ground-based trap, obviously */
+			if ((Levitation || Flying || (uarmf && itemhasappearance(uarmf, APP_YELLOW_SNEAKERS) ) ) && !(Role_if(PM_GANG_SCHOLAR)) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) && !SpellColorBrown && !FemtrapActiveAnastasia && !FemtrapActiveBridghitte && !FemtrapActiveLarissa && !FemtrapActiveHenrietta && !FemtrapActiveAnna && !(uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) && !(uarmf && itemhasappearance(uarmf, APP_SKI_HEELS)) && !(uarmf && itemhasappearance(uarmf, APP_TREADED_HEELS)) && !(autismweaponcheck(ART_LUISA_S_CHARMING_BEAUTY) && !rn2(200) ) && !(uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS) && !(uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) && !(uarmf && (itemhasappearance(uarmf, APP_HUGGING_BOOTS) || itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) ) ) { /* ground-based trap, obviously */
 			    if (!already_seen && rn2(3)) break;
 			    seetrap(trap);
 			    pline("%s %s on the ground below you.",
@@ -10113,7 +10113,7 @@ madnesseffect:
 				break;
 			case 3: /* holy incense */
 
-				if(is_undead(youmonst.data) || hates_silver(youmonst.data) || (uwep && uwep->oartifact == ART_PORKMAN_S_BALLS_OF_STEEL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PORKMAN_S_BALLS_OF_STEEL)) {
+				if(is_undead(youmonst.data) || hates_silver(youmonst.data) || autismweaponcheck(ART_PORKMAN_S_BALLS_OF_STEEL)) {
 
 					pline("Eek - this smells like %s!", FunnyHallu ? "priest's fart" : "exocism incense");
 					losehp(projectiledamage,"holy incense",KILLED_BY);

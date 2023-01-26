@@ -2894,7 +2894,7 @@ sjwcheck(nastynumber)
 int nastynumber;
 {
 	int sjwlevel;
-	if (!Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && !(uwep && uwep->oartifact == ART_POLITICAL_CORRECTNESS_FOR_) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_POLITICAL_CORRECTNESS_FOR_) && !isdorian) return FALSE;
+	if (!Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && !autismweaponcheck(ART_POLITICAL_CORRECTNESS_FOR_) && !isdorian) return FALSE;
 
 	sjwlevel = u.ulevel + u.xtralevelmult - 1; /* because u.xtralevelmult starts at 1, not 0 */
 
@@ -2910,7 +2910,7 @@ int nastynumber;
 		if (u.ulevel >= 28 && u.dorian28 == nastynumber) return TRUE;
 	}
 
-	if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR) || (uwep && uwep->oartifact == ART_POLITICAL_CORRECTNESS_FOR_) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_POLITICAL_CORRECTNESS_FOR_) ) {
+	if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR) || autismweaponcheck(ART_POLITICAL_CORRECTNESS_FOR_) ) {
 	switch (u.ulevel) {
 
 		case 1:

@@ -2871,7 +2871,7 @@ int x;
 
 		if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT && tmp > 12) tmp = 12;
 		if (uwep && uwep->oartifact == ART_JAPANESE_WOMEN && tmp > 14) tmp = 14;
-		if (uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN && tmp > 14) tmp = 14;
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN && tmp > 14) tmp = 14;
 		if (uarmf && uarmf->oartifact == ART_SKIN_AND_BONE && tmp > 6) tmp = 6;
 		if (AllStatsAreLower) tmp -= 10;
 		if (uarmf && uarmf->oartifact == ART_STAR_SOLES) tmp -= 2;
@@ -3254,7 +3254,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_FAR_EAST_RELATION) tmp -= 3;
 
 		if (uwep && uwep->oartifact == ART_JAPANESE_WOMEN && tmp > 14) tmp = 14;
-		if (uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN && tmp > 14) tmp = 14;
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN && tmp > 14) tmp = 14;
 
 		if (FemtrapActiveJessica) tmp -= 5;
 		if (FemtrapActiveIna) tmp -= 3;

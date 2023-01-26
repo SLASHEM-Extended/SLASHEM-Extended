@@ -15986,7 +15986,7 @@ char sym;
 
 	}
 
-	if (u.dx && u.dy && (BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) || (uwep && uwep->oartifact == ART_KILLER_PIANO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KILLER_PIANO) || isgridbug(youmonst.data) || (Race_if(PM_WEAPON_BUG) && !Upolyd) ) ) {
+	if (u.dx && u.dy && (BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) || autismweaponcheck(ART_KILLER_PIANO) || isgridbug(youmonst.data) || (Race_if(PM_WEAPON_BUG) && !Upolyd) ) ) {
 		u.dx = u.dy = 0;
 		return 0;
 	}
@@ -16038,7 +16038,7 @@ const char *s;
 	char buf[BUFSZ];
 
 	/* choicelessness by Amy; it would be far too evil to unconditionally prevent you from choosing... */
-	if (Choicelessness || u.uprops[CHOICELESSNESS].extrinsic || have_choicelessstone() || (uwep && uwep->oartifact == ART_FOOK_THE_OBSTACLES) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FOOK_THE_OBSTACLES)) {
+	if (Choicelessness || u.uprops[CHOICELESSNESS].extrinsic || have_choicelessstone() || autismweaponcheck(ART_FOOK_THE_OBSTACLES)) {
 		int choicelesschance;
 		choicelesschance = 20 + (u.uen * 80 / u.uenmax);
 		if (choicelesschance < 20) choicelesschance = 20;
@@ -16117,14 +16117,14 @@ const char *msg;
 		putstr(win, 0, "");
 	    }
 	}
-	if (iflags.num_pad && (BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) || (uwep && uwep->oartifact == ART_KILLER_PIANO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KILLER_PIANO) || isgridbug(youmonst.data) || (Race_if(PM_WEAPON_BUG) && !Upolyd))) {
+	if (iflags.num_pad && (BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) || autismweaponcheck(ART_KILLER_PIANO) || isgridbug(youmonst.data) || (Race_if(PM_WEAPON_BUG) && !Upolyd))) {
 	    putstr(win, 0, "Valid direction keys in your current form (with number_pad on) are:");
 	    putstr(win, 0, "             8   ");
 	    putstr(win, 0, "             |   ");
 	    putstr(win, 0, "          4- . -6");
 	    putstr(win, 0, "             |   ");
 	    putstr(win, 0, "             2   ");
-	} else if (BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) || (uwep && uwep->oartifact == ART_KILLER_PIANO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KILLER_PIANO) || isgridbug(youmonst.data) || (Race_if(PM_WEAPON_BUG) && !Upolyd)) {
+	} else if (BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) || autismweaponcheck(ART_KILLER_PIANO) || isgridbug(youmonst.data) || (Race_if(PM_WEAPON_BUG) && !Upolyd)) {
 	    putstr(win, 0, "Valid direction keys in your current form are:");
 	    putstr(win, 0, "             k   ");
 	    putstr(win, 0, "             |   ");
@@ -16169,7 +16169,7 @@ const char *msg;
 void
 confdir()
 {
-	register int x = (BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) || (uwep && uwep->oartifact == ART_KILLER_PIANO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KILLER_PIANO) || isgridbug(youmonst.data) || (Race_if(PM_WEAPON_BUG) && !Upolyd)) ? 2*rn2(4) : rn2(8);
+	register int x = (BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) || autismweaponcheck(ART_KILLER_PIANO) || isgridbug(youmonst.data) || (Race_if(PM_WEAPON_BUG) && !Upolyd)) ? 2*rn2(4) : rn2(8);
 	u.dx = xdir[x];
 	u.dy = ydir[x];
 	return;
@@ -16224,7 +16224,7 @@ click_to_cmd(x, y, mod)
 
 	}
 
-	if (BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) || (uwep && uwep->oartifact == ART_KILLER_PIANO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KILLER_PIANO) || isgridbug(youmonst.data) || (Race_if(PM_WEAPON_BUG) && !Upolyd)) {
+	if (BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) || autismweaponcheck(ART_KILLER_PIANO) || isgridbug(youmonst.data) || (Race_if(PM_WEAPON_BUG) && !Upolyd)) {
 
 	pline("Due to your movement restriction, you cannot quicktravel!");
 	if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -16484,7 +16484,7 @@ dotravel()
 	return 0;
 	}
 
-	if (BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) || (uwep && uwep->oartifact == ART_KILLER_PIANO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KILLER_PIANO) || isgridbug(youmonst.data) || (Race_if(PM_WEAPON_BUG) && !Upolyd)) {
+	if (BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) || autismweaponcheck(ART_KILLER_PIANO) || isgridbug(youmonst.data) || (Race_if(PM_WEAPON_BUG) && !Upolyd)) {
 
 	/* CURSE that satanic travelto function. I pulled the nethack 3.6.0 fix that disallows quicktravelling to an
 	 * adjacent diagonal square in one turn, but it does not prevent moving through diagonal openings in the
