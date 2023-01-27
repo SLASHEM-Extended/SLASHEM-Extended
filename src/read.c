@@ -1656,12 +1656,24 @@ int curse_bless;
 
 	    /* destruction depends on current state, not adjustment; explosion change lowered by Amy */
 	    if ((obj->spe > rn2(7) || obj->spe <= -5) && rn2(2)) {
-		Your("%s %s momentarily, then %s!",
-		     xname(obj), otense(obj,"pulsate"), otense(obj,"explode"));
-		if (is_on) Ring_gone(obj);
-		s = rnd(3 * abs(obj->spe));	/* amount of damage */
-		useup(obj);
-		losehp(s, "exploding ring", KILLED_BY_AN);
+
+		if (obj->oartifact && obj->spe > 0) { /* artifact shouldn't explode */
+
+			long mask = is_on ? (obj == uleft ? LEFT_RING : RIGHT_RING) : 0L;
+			if (is_on) Ring_off(obj);
+			obj->spe = 0;
+			if (is_on) setworn(obj, mask), Ring_on(obj);
+
+			Your("%s %s momentarily, then %s.", xname(obj), otense(obj,"pulsate"), otense(obj,"fade"));
+		} else {
+
+			Your("%s %s momentarily, then %s!",
+			     xname(obj), otense(obj,"pulsate"), otense(obj,"explode"));
+			if (is_on) Ring_gone(obj);
+			s = rnd(3 * abs(obj->spe));	/* amount of damage */
+			useup(obj);
+			losehp(s, "exploding ring", KILLED_BY_AN);
+		}
 	    } else {
 		long mask = is_on ? (obj == uleft ? LEFT_RING : RIGHT_RING) : 0L;
 		Your("%s spins %sclockwise for a moment.",
