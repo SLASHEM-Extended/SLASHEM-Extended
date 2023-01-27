@@ -1324,7 +1324,7 @@ register struct obj *obj;
 		return(issoviet ? 1 : 0);
 	    }
 	    if (!can_reach_floor()) {
-		if (u.uprops[DROPCURSES_EFFECT].extrinsic || Dropcurses || have_dropcursestone() || (uleft && uleft->oartifact == ART_ARABELLA_S_RADAR) || (uright && uright->oartifact == ART_ARABELLA_S_RADAR) ) {
+		if (u.uprops[DROPCURSES_EFFECT].extrinsic || Dropcurses || have_dropcursestone() || autismringcheck(ART_ARABELLA_S_RADAR) ) {
 			curse(obj);
 		}
 
@@ -1345,7 +1345,7 @@ register struct obj *obj;
 		You("drop %s.", doname(obj));
 	}
 
-	if (u.uprops[DROPCURSES_EFFECT].extrinsic || Dropcurses || have_dropcursestone() || (uleft && uleft->oartifact == ART_ARABELLA_S_RADAR) || (uright && uright->oartifact == ART_ARABELLA_S_RADAR) ) {
+	if (u.uprops[DROPCURSES_EFFECT].extrinsic || Dropcurses || have_dropcursestone() || autismringcheck(ART_ARABELLA_S_RADAR) ) {
 		curse(obj);
 	}
 
@@ -4699,7 +4699,7 @@ rerollchaloc:
 
 	(void) pickup(1);
 
-	if (DisconnectedStairs || u.uprops[DISCONNECTED_STAIRS].extrinsic || (uleft && uleft->oartifact == ART_LIKE_A_REAL_SERVER) || (uright && uright->oartifact == ART_LIKE_A_REAL_SERVER) || have_disconnectstone()) {
+	if (DisconnectedStairs || u.uprops[DISCONNECTED_STAIRS].extrinsic || autismringcheck(ART_LIKE_A_REAL_SERVER) || have_disconnectstone()) {
 	      (void) safe_teleds_normalterrain(FALSE);
 		pline("The entrance was disconnected!");
 	}

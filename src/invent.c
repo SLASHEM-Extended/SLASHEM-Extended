@@ -620,7 +620,7 @@ added:
 
 	if (obj && (BlesscurseEffect || u.uprops[BLESSCURSE_EFFECT].extrinsic || have_blesscursestone()) && obj->blessed) {
 		curse(obj);
-		if ((uleft && uleft->oartifact == ART_EVIL_DETECTOR) || (uright && uright->oartifact == ART_EVIL_DETECTOR)) obj->bknown = TRUE;
+		if (autismringcheck(ART_EVIL_DETECTOR)) obj->bknown = TRUE;
 	}
 
 	return(obj);
@@ -938,7 +938,7 @@ struct obj *obj;
 
 	if (obj && (BlesscurseEffect || u.uprops[BLESSCURSE_EFFECT].extrinsic || have_blesscursestone()) && obj->blessed) {
 		curse(obj);
-		if ((uleft && uleft->oartifact == ART_EVIL_DETECTOR) || (uright && uright->oartifact == ART_EVIL_DETECTOR)) obj->bknown = TRUE;
+		if (autismringcheck(ART_EVIL_DETECTOR)) obj->bknown = TRUE;
 	}
 
 	if (obj && !rn2(4) && (LeftInventoryBug || u.uprops[LEFT_INVENTORY].extrinsic || have_leftinventorystone())) {

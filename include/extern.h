@@ -2641,6 +2641,8 @@ E boolean issovietmode();
 E boolean isevilvariantmode();
 
 E boolean autismweaponcheck(int);
+E boolean autismringcheck(int);
+E int whichspellcolor(void);
 
 E void cure_feminism_traps(void);
 E void cure_nasty_traps(void);
