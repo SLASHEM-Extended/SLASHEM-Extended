@@ -1,6 +1,24 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.8.2 - January 2023
+- Overenchanting an artifact ring no longer causes it to explode, but instead resets its enchantment to zero.
+- Reduced the amount of boots items generated in changing rooms.
+- Fixed a bug where the natalia trap effect could be triggered from infinitely far away.
+- Several instances where players were subjected to negative effects of certain terrain types without actually touching them were fixed.
+- Silver gauntlets actually deal silver damage now.
+- If the player levels up beyond experience level 30, their carry cap keeps increasing now.
+- Named monsters now also mention their base species in several cases.
+- In evil variant mode, the amount of skill points lost permanently is limited to one per incident now.
+- Occasionally, there's an extra message now if the player loses health.
+- Nerfed some more foo-o-pathies.
+- Monsters in arabella rooms can no longer be easily turned into symbiotes.
+- Obsidian equipment now offers protection against eldritch horrors.
+
 2.8.1 - December 2022
+- Reworked the rules for generating the Ludios portal.
+- Artifacts can only be invoked while equipped now, unless they're of a type that has no corresponding slot where it would typically be equipped.
+- Shopkeepers no longer unconditionally turn hostile if they teleport.
+- Fixed an oversight that could result in the player character ending up with negative Pw.
 - The deadly breath attack in angbander mode no longer triggers at a higher threshold than the actual expected damage of a breath attack.
 - Improved some situations where interaction of entities with farmland terrain is concerned.
 - Changed the way the game creates monsters that "spawn dead" or become tame upon spawning, to hopefully avoid certain bugs where the caller expects a monster and isn't passed one.
