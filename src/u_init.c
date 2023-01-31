@@ -17976,6 +17976,13 @@ u_init()
 		break;
 	}
 
+	u.startstr = ABASE(A_STR);
+	u.startdex = ABASE(A_DEX);
+	u.startcon = ABASE(A_CON);
+	u.startint = ABASE(A_INT);
+	u.startwis = ABASE(A_WIS);
+	u.startcha = ABASE(A_CHA);
+
 	/* what a horrible night to have a curse */
 	/*shambler->mlevel += rnd(12)-3;*/				/* shuffle level */
 	shambler->mmove = rn2(10)+9;				/* slow to very fast */

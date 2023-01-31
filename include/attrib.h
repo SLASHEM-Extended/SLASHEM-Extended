@@ -17,6 +17,7 @@
 #define A_MAX	6	/* used in rn2() selection of attrib */
 
 #define ABASE(x)	(u.acurr.a[x])
+#define ASTART(x)	((x == A_STR) ? u.startstr : (x == A_DEX) ? u.startdex : (x == A_INT) ? u.startint : (x == A_WIS) ? u.startwis : (x == A_CON) ? u.startcon : (x == A_CHA) ? u.startcha : 0)
 #define ABON(x)		(u.abon.a[x])
 #define AEXE(x)		(u.aexe.a[x])
 #define ACURR(x)	(acurr(x))

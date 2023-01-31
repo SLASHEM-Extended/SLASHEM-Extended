@@ -2028,6 +2028,8 @@ exerchk()
 	boolean contaminated;
 	boolean verycontaminated;
 
+	int goupbuust = 0;
+
 	/*	Check out the periodic accumulations */
 	exerper();
 
@@ -2147,15 +2149,27 @@ exerchk()
 		if(sgn(AEXE(i)) >= 1 && rn2(AVAL) > ((i != A_WIS) ? abs(AEXE(i)*2/3) : abs(AEXE(i))))
 		    continue;
 
+		goupbuust = 0;
+
+		/* having a high soft cap makes it more likely to boost the stat --Amy */
+		if (!rn2(2)) {
+			if (urole.attrlimt[i] > 18) goupbuust = (urole.attrlimt[i] - 18);
+		} else {
+			if (urace.attrtrs[i] > 18) goupbuust = (urace.attrtrs[i] - 18);
+		}
+
+		if (goupbuust < 0) goupbuust = 0; /* fail safe */
+
 		/* make it even harder if they're already rather high --Amy */
 		if (sgn(AEXE(i)) >= 1) {
-			if (ABASE(i) >= 10 && !rn2(3)) continue;
-			if (ABASE(i) >= 12 && !rn2(2)) continue;
-			if (ABASE(i) >= 13 && !rn2(2)) continue;
-			if (ABASE(i) >= 14 && !rn2(2)) continue;
-			if (ABASE(i) >= 15 && !rn2(2)) continue;
-			if (ABASE(i) >= 16 && !rn2(2)) continue;
-			if (ABASE(i) >= 17 && !rn2(2)) continue;
+
+			if (ABASE(i) >= (10 + goupbuust) && (ASTART(i) <= ABASE(i)) && !rn2(3)) continue;
+			if (ABASE(i) >= (12 + goupbuust) && (ASTART(i) <= ABASE(i)) && !rn2(2)) continue;
+			if (ABASE(i) >= (13 + goupbuust) && (ASTART(i) <= ABASE(i)) && !rn2(2)) continue;
+			if (ABASE(i) >= (14 + goupbuust) && (ASTART(i) <= ABASE(i)) && !rn2(2)) continue;
+			if (ABASE(i) >= (15 + goupbuust) && (ASTART(i) <= ABASE(i)) && !rn2(2)) continue;
+			if (ABASE(i) >= (16 + goupbuust) && (ASTART(i) <= ABASE(i)) && !rn2(2)) continue;
+			if (ABASE(i) >= (17 + goupbuust) && (ASTART(i) <= ABASE(i)) && !rn2(2)) continue;
 		}
 
 		/* different formula for abuse --Amy */
@@ -2209,6 +2223,15 @@ int stattoboost;
 {
 	boolean statwillgoup = FALSE;
 	int statgoupchance = 100;
+	int goupbuust = 0;
+
+	/* having a high soft cap makes it more likely to boost the stat --Amy */
+	if (!rn2(2)) {
+		if (urole.attrlimt[stattoboost] > 18) goupbuust = (urole.attrlimt[stattoboost] - 18);
+	} else {
+		if (urace.attrtrs[stattoboost] > 18) goupbuust = (urace.attrtrs[stattoboost] - 18);
+	}
+	if (goupbuust < 0) goupbuust = 0; /* fail safe */
 
 	if (stattoboost < 0) {
 		impossible("tried to boost nonexistant stat %d", stattoboost);
@@ -2222,13 +2245,13 @@ int stattoboost;
 	if (ABASE(stattoboost) >= 18) {
 		return;
 	}
-	if (ABASE(stattoboost) >= 12) {
-		if (ABASE(stattoboost) == 12) statgoupchance = 200;
-		else if (ABASE(stattoboost) == 13) statgoupchance = 300;
-		else if (ABASE(stattoboost) == 14) statgoupchance = 400;
-		else if (ABASE(stattoboost) == 15) statgoupchance = 600;
-		else if (ABASE(stattoboost) == 16) statgoupchance = 800;
-		else if (ABASE(stattoboost) == 17) statgoupchance = 1000;
+	if ( (ABASE(stattoboost) >= 12) && (ASTART(stattoboost) <= ABASE(stattoboost)) ) {
+		if (ABASE(stattoboost) == (12 + goupbuust)) statgoupchance = 200;
+		else if (ABASE(stattoboost) == (13 + goupbuust)) statgoupchance = 300;
+		else if (ABASE(stattoboost) == (14 + goupbuust)) statgoupchance = 400;
+		else if (ABASE(stattoboost) == (15 + goupbuust)) statgoupchance = 600;
+		else if (ABASE(stattoboost) == (16 + goupbuust)) statgoupchance = 800;
+		else if (ABASE(stattoboost) == (17 + goupbuust)) statgoupchance = 1000;
 	}
 
 	if (!rn2(statgoupchance)) statwillgoup = TRUE;

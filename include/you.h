@@ -1484,6 +1484,8 @@ struct you {
 	int sterilized;
 	int holyshield;
 
+	int startstr, startdex, startint, startwis, startcon, startcha; /* your starting values for the six stats */
+
 	int berserktime;
 	int magicshield;
 	int burrowed;
