@@ -145,6 +145,10 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		uwep->hvycurse = uwep->prmcurse = uwep->stckcurse = TRUE;
 	}
 
+	if (uwep && uwep->oartifact == ART_HOL_ON_MAN && !uwep->cursed) {
+		curse(uwep);
+	}
+
 	if (uwep && uwep->oartifact == ART_ALASSEA_TELEMNAR && !uwep->hvycurse) {
 		curse(uwep);
 		uwep->hvycurse = 1;
@@ -340,6 +344,10 @@ swapweaponchoice:
 		if (uswapwep && uswapwep->oartifact == ART_RIDGET_PHASTO) {
 			curse(uswapwep);
 			uswapwep->hvycurse = uswapwep->prmcurse = uswapwep->stckcurse = TRUE;
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_HOL_ON_MAN && !uswapwep->cursed) {
+			curse(uswapwep);
 		}
 
 		if (uswapwep && uswapwep->oartifact == ART_SEXCALIBUR && !uswapwep->hvycurse) {

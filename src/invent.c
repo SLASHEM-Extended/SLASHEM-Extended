@@ -24279,7 +24279,7 @@ boolean knoweverything;
 				case ART_RIDGET_PHASTO: /* intentionally doesn't tell you how to get rid of it --Amy */
 					pline("Artifact specs: dunno, you need to figure it out yourself. Sorry."); break;
 				case ART_HOL_ON_MAN:
-					pline("Artifact specs: gives phasing and detect monsters, as well as a multitude of bad side effects when wielded. In order to stop those effects, just bash something with it, that'll destroy the item."); break;
+					pline("Artifact specs: gives phasing and detect monsters, as well as a multitude of bad side effects when wielded, and autocurses because otherwise you could just abuse the good stuff and then unwield it, you exploit exploiter. In order to stop those effects, just bash something with it, that'll destroy the item."); break;
 				case ART_MAIN_GAUCHE:
 					pline("Artifact specs: +1 to-hit and +3 damage."); break;
 				case ART_PIRATTE_HUNTING:

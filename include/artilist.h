@@ -10121,7 +10121,7 @@ A("Ridget Phasto",				BLINDING_VENOM, /* randart, melee fuckup effect, gives int
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 80L ),
 
-A("Hol'on Man",				BLINDING_VENOM, /* randart2, spawns with stack size of 1, wallwalking, detect monsters, difficulty effect, monsters respawn when killed, verisiert effect, julietta trap effect */
+A("Hol'on Man",				BLINDING_VENOM, /* randart2, spawns with stack size of 1, wallwalking, detect monsters, difficulty effect, monsters respawn when killed, verisiert effect, julietta trap effect, autocurses when wielded */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
 
