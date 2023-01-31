@@ -15521,29 +15521,7 @@ skillrandomizeredo:
 		 case FARTING_WEB:
 
 		seetrap(trap);
-		if (amorphous(youmonst.data) || is_whirly(youmonst.data) ||
-				unsolid(youmonst.data) || acidic(youmonst.data) || u.umonnum == PM_GELATINOUS_CUBE ||
-			u.umonnum == PM_FIRE_ELEMENTAL) { /* bugfix --Amy */
-		    if (acidic(youmonst.data) || u.umonnum == PM_GELATINOUS_CUBE ||
-			u.umonnum == PM_FIRE_ELEMENTAL) {
-			if (webmsgok)
-			    You("%s %s farting web!",
-				(u.umonnum == PM_FIRE_ELEMENTAL) ? "burn" : "dissolve",
-				a_your[trap->madeby_u]);
-			deltrap(trap);
-			newsym(u.ux,u.uy);
-			break;
-		    }
-		    if (webmsgok) You("flow through %s farting web.",
-			    a_your[trap->madeby_u]);
-		    break;
-		}
-		if (webmaker(youmonst.data) || Race_if(PM_SPIDERMAN) || (uarmf && itemhasappearance(uarmf, APP_SPIDER_BOOTS) ) ) {
-		    if (webmsgok)
-		    	pline(trap->madeby_u ? "You take a walk on your web."
-					 : "There is a farting web here.");
-		    break;
-		}
+
 		if (webmsgok) {
 		   char verbbuf[BUFSZ];
 		   verbbuf[0] = '\0';
@@ -15553,7 +15531,7 @@ skillrandomizeredo:
 					 u.usteed->mnamelth ? ARTICLE_NONE : ARTICLE_THE,
 				 	 "poor", SUPPRESS_SADDLE, FALSE));
 		   else
-			
+
 		    sprintf(verbbuf, "%s", Levitation ? (const char *)"float" :
 		      		locomotion(youmonst.data, "stumble"));
 		    You("%s into %s farting web!",
@@ -15573,16 +15551,10 @@ skillrandomizeredo:
 		    else if (str < 6) u.utrap = rn1(6,4);
 		    else if (str < 9) u.utrap = rn1(4,4);
 		    else if (str < 12) u.utrap = rn1(4,2);
-		    else if (str < 15) u.utrap = rn1(2,2);
-		    else if (str < 18) u.utrap = rnd(2);
-		    else if (str < 69) u.utrap = 1;
-		    else {
-			u.utrap = 0;
-			if (webmsgok)
-				You("tear through %s farting web!", a_your[trap->madeby_u]);
-			deltrap(trap);
-			newsym(u.ux,u.uy);	/* get rid of trap symbol */
-		    }
+		    else if (str < 15) u.utrap = rn1(3,2);
+		    else if (str < 18) u.utrap = rn1(2,2);
+		    else if (str < 69) u.utrap = rnd(2);
+		    else u.utrap = 1;
 		}
 
 		 break;

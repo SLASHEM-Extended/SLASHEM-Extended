@@ -724,7 +724,8 @@ dismount_steed(reason)
 	boolean repair_leg_damage = TRUE;
 	unsigned save_utrap = u.utrap;
 	boolean have_spot = landing_spot(&cc,reason,0);
-	
+	register struct trap *ttmp;
+
 	mtmp = u.usteed;		/* make a copy of steed pointer */
 	/* Sanity check */
 	if (!mtmp)		/* Just return silently */
@@ -757,6 +758,10 @@ dismount_steed(reason)
 		break;
 	    case DISMOUNT_BYCHOICE:
 	    default:
+		if (u.utrap && (ttmp = t_at(u.ux, u.uy)) && ttmp && ttmp->ttyp == FARTING_WEB) {
+		    You("can't escape from the farting web.");
+		    return;
+		}
 		if (otmp && otmp->cursed) {
 		    You("can't.  The saddle %s cursed.",
 			otmp->bknown ? "is" : "seems to be");
