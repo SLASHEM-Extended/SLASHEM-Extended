@@ -32121,6 +32121,7 @@ int type;
 		case PM_STAINED_GLASS_GOLEM: return 100;
 		case PM_LIVING_LECTURN: return 100;
 		case PM_ANIMATED_WOODEN_STATUE: return 72;
+		case PM_STAR_BOOT: return 72;
 		case PM_PROTECTOR_OF_THE_POOR: return 72;
 		case PM_BURNINATOR: return 80;
 		case PM_SOW_STUPID_GUY: return 72;
