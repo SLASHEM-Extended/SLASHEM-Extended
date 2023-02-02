@@ -123,6 +123,11 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 
 	if (!cancurseshit) goto cursingdone;
 
+	if (uwep && uwep->oartifact == ART_BAT_FROM_BALTIMORE) {
+		if (CurseuseEffect < 5000L) CurseuseEffect = 5000L;
+		if (AutocursingEquipment < 5000L) AutocursingEquipment = 5000L;
+	}
+
 	if (uwep && objects[uwep->otyp].oc_skill == P_TRIDENT && Race_if(PM_NEMESIS) && !uwep->nemtrident && uwep->spe < 1) {
 		uwep->nemtrident = 1;
 		uwep->spe += rne(2);
@@ -339,6 +344,11 @@ swapweaponchoice:
 		if (uswapwep && uswapwep->otyp == HONOR_KATANA && !uswapwep->cursed) {
 			curse(uswapwep);
 			Your("katana welds itself to your other %s!", body_part(HAND));
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_BAT_FROM_BALTIMORE) {
+			if (CurseuseEffect < 5000L) CurseuseEffect = 5000L;
+			if (AutocursingEquipment < 5000L) AutocursingEquipment = 5000L;
 		}
 
 		if (uswapwep && uswapwep->oartifact == ART_RIDGET_PHASTO) {

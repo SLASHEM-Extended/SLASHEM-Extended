@@ -139,6 +139,8 @@
 #define GushieLushie	(GushlushEffect || u.uprops[GUSHLUSH].extrinsic || have_gushlushstone() || autismweaponcheck(ART_GIRLFUL_BONKING) )
 #define GushLevel	(GushieLushie ? 1 : u.ulevel)
 
+#define StealersActive	(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || have_stealerstone() || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || autismweaponcheck(ART_COPPERED_OFF_FROM_ME) || autismweaponcheck(ART_BAT_FROM_BALTIMORE) || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) )
+
 #define CannotTeleport	((uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || (uamul && uamul->oartifact == ART_ARABELLA_S_SWOONING_BEAUTY) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || Race_if(PM_STABILISATOR))
 
 #define YouAreDeaf	(Deafness || autismweaponcheck(ART_MEMETAL) || autismweaponcheck(ART_SONICBOOM) || autismweaponcheck(ART_POWER_POLE) || autismweaponcheck(ART_VOICESHUTTER) || (uarmf && uarmf->oartifact == ART_BEND_FROM_THE_NOISE) || (uarmf && uarmf->oartifact == ART_IS_THERE_A_SOUND_) || autismweaponcheck(ART_BANG_BANG) || u.uprops[DEAFNESS].extrinsic || have_deafnessstone() || (uarmh && uarmh->oartifact == ART_YITH_VERSUS_BABY) )
@@ -343,7 +345,7 @@
 
 #define HDimmed		u.uprops[DIMMED].intrinsic
 #define EDimmed		u.uprops[DIMMED].extrinsic
-#define Dimmed		(HDimmed || EDimmed || HeavyDimmed || (!flags.female && uarmc && uarmc->oartifact == ART_OVERCOAT_OF_DAUGHTER) || Race_if(PM_INKA) || (uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME) || (uwep && uwep->otyp == TECPATL) || (uwep && uwep->otyp == TRAFFIC_LIGHT) || (u.twoweap && uswapwep && uswapwep->otyp == TECPATL) || (u.twoweap && uswapwep && uswapwep->otyp == TRAFFIC_LIGHT) )
+#define Dimmed		(HDimmed || EDimmed || HeavyDimmed || (!flags.female && uarmc && uarmc->oartifact == ART_OVERCOAT_OF_DAUGHTER) || Race_if(PM_INKA) || autismweaponcheck(ART_BAT_FROM_BALTIMORE) || (uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME) || (uwep && uwep->otyp == TECPATL) || (uwep && uwep->otyp == TRAFFIC_LIGHT) || (u.twoweap && uswapwep && uswapwep->otyp == TECPATL) || (u.twoweap && uswapwep && uswapwep->otyp == TRAFFIC_LIGHT) )
 #define HeavyDimmed		u.uprops[HEAVY_DIMMED].intrinsic
 
 #define Blinded			u.uprops[BLINDED].intrinsic

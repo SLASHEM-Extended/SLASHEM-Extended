@@ -1250,6 +1250,10 @@ nh_timeout()
 
 	if (!rn2(200) && have_badeffectstone() ) badeffect();
 
+	if (!rn2(200) && uwep && uwep->oartifact == ART_BAT_FROM_BALTIMORE) badeffect();
+
+	if (!rn2(200) && u.twoweap && uswapwep && uswapwep->oartifact == ART_BAT_FROM_BALTIMORE) badeffect();
+
 	if (!rn2(200) && uwep && uwep->oartifact == ART_WHAW_WHAW) badeffect();
 
 	if (!rn2(200) && u.twoweap && uswapwep && uswapwep->oartifact == ART_WHAW_WHAW) badeffect();

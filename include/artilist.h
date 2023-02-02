@@ -11477,6 +11477,22 @@ A("Iceblock's Negation",  HEAVY_HAMMER,
 	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN),  0, 0,
 	FIRE(15,14),	FIRE(0,0),	NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 5000L ),
 
+A("Back To Origin",				WAN_RESTORATION, /* resets all base stat values to their starting values */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("The Best Offense Is A Good Defense",				LONG_SWORD, /* randart melee weapon, 1 in 1000 when hitting something that your torso armor's enchantment value increases by one up to a max of +7 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Bat from Nowopetrovsk",                BASEBALL_BAT,
+	(SPFX_RESTR), 0, 0,
+	PHYS(3,10),      NO_DFNS,        NO_CARY,        0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Bat from Baltimore",                BASEBALL_BAT, /* by Demo, stealer trap, banking, aggravate monster, monsters always know where you are, bad effects, dimness, and equipping it sets the timeouts for the curseuse and autocurse nastytraps to 5000 if they were lower */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(3,30),      NO_DFNS,        NO_CARY,        0, A_CHAOTIC, NON_PM, NON_PM, 6000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

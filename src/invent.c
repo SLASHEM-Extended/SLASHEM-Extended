@@ -24958,6 +24958,14 @@ boolean knoweverything;
 					pline("Artifact specs: +6 to-hit and +9 damage."); break;
 				case ART_ICEBLOCK_S_NEGATION:
 					pline("Artifact specs: +15 to-hit and +14 damage to fire-susceptible monsters, fire resistance when wielded, neutral. This artifact is based on the 'Warforger' hammer that the type of ice block invented, and who intentionally made it so that it deals physical damage instead of fire damage so that fire-resistant monsters don't negate the damage, but Amy decided to create a version that does deal fire damage, muahahahaha."); break;
+				case ART_BACK_TO_ORIGIN:
+					pline("Artifact specs: instead of restoring a stat, zapping it resets the base values of your stats back to whatever they were when you started the game."); break;
+				case ART_BEST_OFFENSE_IS_A_GOOD_DEF:
+					pline("Artifact specs: hitting something with it will very occasionally increase the enchantment value of your torso armor, provided you are wearing one. The maximum enchantment you can reach that way is +7."); break;
+				case ART_BAT_FROM_NOWOPETROVSK:
+					pline("Artifact specs: +3 to-hit and +10 damage."); break;
+				case ART_BAT_FROM_BALTIMORE:
+					pline("Artifact specs: +3 to-hit and +30 damage, chaotic. This artifact was suggested by Demo and has a host of downsides including the stealer and banking trap effects, aggravate monster, feeler gauges, bad effects and dimness, and if you equip it, you get the curseuse and autocurse nastytrap effects for 5000 turns even if you then immediately put the bat away again."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

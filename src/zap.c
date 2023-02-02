@@ -5202,6 +5202,19 @@ controlagain:
 		case WAN_RESTORATION:
 			known = TRUE;
 
+			if (obj && obj->oartifact == ART_BACK_TO_ORIGIN) {
+
+				ABASE(A_STR) = AMAX(A_STR) = u.startstr;
+				ABASE(A_DEX) = AMAX(A_DEX) = u.startdex;
+				ABASE(A_CHA) = AMAX(A_CHA) = u.startcha;
+				ABASE(A_CON) = AMAX(A_CON) = u.startcon;
+				ABASE(A_INT) = AMAX(A_INT) = u.startint;
+				ABASE(A_WIS) = AMAX(A_WIS) = u.startwis;
+				flags.botl = TRUE;
+				pline("Restored all stats to their original value.");
+				break;
+			}
+
 			int i, ii, lim;
 			i = rn2(A_MAX);
 			for (ii = 0; ii < A_MAX; ii++) {

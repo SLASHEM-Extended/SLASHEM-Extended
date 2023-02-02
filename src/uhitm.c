@@ -9616,6 +9616,13 @@ use_weapon:
 					pline("Your weapon repairs itself a bit!");
 				}
 
+				if (uwep && uwep->oartifact == ART_BEST_OFFENSE_IS_A_GOOD_DEF && !rn2(1000)) {
+					if (uarm && uarm->spe < 7) {
+						uarm->spe++;
+						Your("armor seems harder.");
+					}
+				}
+
 				if (uwep && uwep->oartifact == ART_ELVIN_S_PRESS && !u.twoweap && !rn2(100)) {
 					TimeStopped += rnd(3);
 					pline((Role_if(PM_SAMURAI) || Role_if(PM_NINJA)) ? "Jikan ga teishi shimashita." : "Time has stopped.");
@@ -11982,7 +11989,7 @@ boolean ranged;
 	      case AD_SSEX:
 			if (!malive) break;
 
-			if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || autismweaponcheck(ART_COPPERED_OFF_FROM_ME) || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) {
+			if (StealersActive) {
 				You_feel("a tug on your backpack!");
 				buf[0] = '\0';
 				switch (steal(mon, buf, atttypC == AD_SEDU ? TRUE : FALSE, FALSE)) {
