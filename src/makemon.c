@@ -7800,6 +7800,7 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_TELEPHONE_CELL_PROSTITUTE]) (void) mongets(mtmp, HIPPIE_HEELS); /* M4_BLOCKHEELBOOTS */
 		if (ptr == &mons[PM_STREETLINE_PROSTITUTE]) (void) mongets(mtmp, HIPPIE_HEELS); /* M4_BLOCKHEELBOOTS */
 		if (ptr == &mons[PM_VAMPIRATE]) (void) mongets(mtmp, RAPIER);
+		if (ptr == &mons[PM_TALRIK]) (void) mongets(mtmp, RAPIER);
 		if (ptr == &mons[PM_SPEARMASTER]) (void) mongets(mtmp, ATGEIR);
 		if (ptr == &mons[PM_STOUT_MINER]) (void) mongets(mtmp, PICK_AXE);
 		if (ptr == &mons[PM_INSANE_MINER]) (void) mongets(mtmp, PICK_AXE);
@@ -7924,6 +7925,10 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_CLOCK_OLD_MARRIED_COUPLE]) {
 			(void) mongets(mtmp, SHOTGUN);
 			 m_initthrow(mtmp, SHOTGUN_SHELL, 30);
+		}
+		if (ptr == &mons[PM_TORIN]) {
+			(void) mongets(mtmp, BOW);
+			 m_initthrow(mtmp, ARROW, 1);
 		}
 		if (ptr == &mons[PM_SPRAYER]) {
 			(void) mongets(mtmp, CHAIN_MAIL);
@@ -9349,7 +9354,7 @@ register struct	monst	*mtmp;
 				}
 			}
 		}
-		if (mtmp->data == &mons[PM_WOODEN_RAFT] || mtmp->data == &mons[PM_MINE_TROLLEY] || mtmp->data == &mons[PM_CLASHING_MINE_TROLLEY]) {
+		if (mtmp->data == &mons[PM_WOODEN_RAFT] || mtmp->data == &mons[PM_SHIP_O__THE_SEA] || mtmp->data == &mons[PM_MINE_TROLLEY] || mtmp->data == &mons[PM_CLASHING_MINE_TROLLEY]) {
 			struct obj *osaddle;
 			if (!!(osaddle = mksobj(LEATHER_SADDLE, TRUE, FALSE, FALSE))) {
 				if (mpickobj(mtmp, osaddle, TRUE)) { /* it became a gold piece (e.g. minimalist) --Amy */
@@ -9800,6 +9805,7 @@ loveheelover:
 		if (ptr == &mons[PM_DOSTICH]) (void) mongets(mtmp, KHOPESH);
 		if (ptr == &mons[PM_REGULAR_BARROWGRIM_SOLDIER]) (void) mongets(mtmp, LONG_SWORD);
 		if (ptr == &mons[PM_LONGSKULL] && rn2(2)) (void) mongets(mtmp, POINTED_HELMET);
+		if (ptr == &mons[PM_GRAVEYARD_SKELETON]) (void) mongets(mtmp, PICK_AXE);
 
 		if (mtmp->data == &mons[PM_ROBOT_TERMINATOR_ZOMBIE]) {
 			 (void) mongets(mtmp, RED_LIGHTSABER);
@@ -10203,6 +10209,10 @@ loveheelover:
 		if (ptr == &mons[PM_TALCUM_DRACONIAN]) {
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, TALC, 25);
+		}
+		if (ptr == &mons[PM_G_EZERRED_RA]) {
+			(void) mongets(mtmp, ROBE);
+			(void) mongets(mtmp, QUARTERSTAFF);
 		}
 		if (ptr == &mons[PM_SLETH_SILVERBANE]) {
 			(void) mongets(mtmp, SILVER_SABER);
@@ -14805,6 +14815,7 @@ loveheelover:
 		if (ptr == &mons[PM_SPEARFISH_REMORA]) (void)mongets(mtmp, SPEAR);
 		if (ptr == &mons[PM_REMORA_HUNTER]) (void)mongets(mtmp, SPEAR);
 		if (ptr == &mons[PM_MERMAIDEN_AVENGER]) (void)mongets(mtmp, TRIDENT);
+		if (mtmp->data == &mons[PM_RATIKAN_KRAKEN]) (void) mongets(mtmp, DWARVISH_BATTLE_AXE);
 
 		if (ptr == &mons[PM_REVOLUTINO_MARI]) {
 			(void)mongets(mtmp, BASTERD_SWORD);
@@ -15823,15 +15834,21 @@ loveheelover:
 		if (monsndx(ptr) == PM_HIDEOUS_OGRE_MAGE) (void) mongets(mtmp, SCR_TRAP_CREATION);
 		if (monsndx(ptr) == PM_GROTESQUE_OGRE_SHAMAN) (void) mongets(mtmp, SCR_TRAP_CREATION);
 		if (monsndx(ptr) == PM_OGRE_STAFFER) (void) mongets(mtmp, QUARTERSTAFF);
+		if (monsndx(ptr) == PM_BOOGRE_HAG) (void) mongets(mtmp, QUARTERSTAFF);
 		if (monsndx(ptr) == PM_LASERSMASH_OGRE) (void) mongets(mtmp, STARWARS_MACE);
 		if (monsndx(ptr) == PM_LASERHORDE_OGRE) (void) mongets(mtmp, STARWARS_MACE);
 		if (monsndx(ptr) == PM_OGRE_YARDSTICK) (void) mongets(mtmp, PIKE);
+		if (monsndx(ptr) == PM_BOOGRE_GUARD) (void) mongets(mtmp, SPEAR);
 		if (ptr == &mons[PM_OGRE_WOARER]) {
 			(void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
 		}
 		if (ptr == &mons[PM_ALL_TIME_OGRE]) {
 			(void) mongets(mtmp, BOW);
 			 m_initthrow(mtmp, BONE_ARROW, 30);
+		}
+		if (ptr == &mons[PM_BOOGRE_MURDERER]) {
+			(void) mongets(mtmp, BATTLE_AXE);
+			(void) mongets(mtmp, WAN_SPEED_MONSTER);
 		}
 		if (ptr == &mons[PM_SMASH_OGRE]) {
 			(void) mongets(mtmp, SLING);
@@ -32123,6 +32140,7 @@ int type;
 		case PM_DOOMED_WATER_GOLEM: return 200;
 		case PM_MIRROR_GOLEM: return 210;
 		case PM_WOODEN_RAFT: return 200;
+		case PM_SHIP_O__THE_SEA: return 600;
 		case PM_MINE_TROLLEY: return 240;
 		case PM_CLASHING_MINE_TROLLEY: return 240;
 		case PM_ONIJI_TANKOBO: return 420;

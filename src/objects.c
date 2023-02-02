@@ -145,7 +145,7 @@ WEAPON("knife", (char *)0,
 WEAPON("victim knife", (char *)0,
 	1, 1, 0,  50,  2,  4,  3,  2, 0, P|S, P_KNIFE, MT_CELESTIUM, CLR_CYAN, 4),
 WEAPON("ceramic knife", (char *)0,
-	1, 1, 0,  150,  2,  4,  6,  7, 1, P|S, P_KNIFE, MT_CERAMIC, CLR_WHITE, 15),
+	1, 1, 0,  150,  2,  4,  4,  5, 1, P|S, P_KNIFE, MT_CERAMIC, CLR_WHITE, 15),
 WEAPON("unknown knife", (char *)0,
 	1, 1, 0,  100,  2,  4,  3,  2, 0, P|S, P_KNIFE, MT_IRON, CLR_BRIGHT_CYAN, 1),
 WEAPON("collusion knife", (char *)0,
@@ -583,7 +583,7 @@ WEAPON("flogger", (char *)0,
 WEAPON("ether knout", (char *)0,
 	1, 0, 0, 100, 7, 10,  10, 10, 2, B,   P_FLAIL, MT_ETHER, CLR_GREEN, 10),
 WEAPON("spikerack", (char *)0,
-	1, 0, 0, 100, 7, 30,  13, 13, 3, B,   P_FLAIL, MT_CERAMIC, CLR_BROWN, 25),
+	1, 0, 0, 100, 7, 30,  9, 9, 3, B,   P_FLAIL, MT_CERAMIC, CLR_BROWN, 25),
 WEAPON("weighted flail", (char *)0,
 	1, 0, 0, 500, 7,  4,  7,  7, 1, B,   P_FLAIL, MT_IRON, CLR_GRAY, 1),
 
@@ -883,7 +883,7 @@ WEAPON("dwarvish spear", "stout spear",
 WEAPON("dragon spear", (char *)0,
 	1, 1, 0, 50, 12,  3,  8,  8, 0, P,   P_SPEAR, MT_DRAGON_HIDE, CLR_BRIGHT_BLUE, 9),
 WEAPON("ceramic spear", (char *)0,
-	1, 1, 0, 100, 12, 5, 10, 10, 1, P,   P_SPEAR, MT_CERAMIC, CLR_WHITE, 15),
+	1, 1, 0, 100, 12, 5, 7, 8, 1, P,   P_SPEAR, MT_CERAMIC, CLR_WHITE, 15),
 /* ceramic spear has to be last */
 
 /* Javelins - regular javelin must be first */
@@ -7804,6 +7804,7 @@ SCROLL((char *)0,               "THE EMPIRE OF THE RISING SUN DEFEATED THE COUNT
 SCROLL((char *)0,               "DO NOT TRIGGER THE SIFA",  P_NONE,     1,   0, 100, CLR_BRIGHT_BLUE, 1),
 SCROLL((char *)0,               "WAYNE INTRESSIERTS",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
 SCROLL((char *)0,               "SIGERING ROSAT",  P_NONE,     1,   0, 100, CLR_RED, 1),
+SCROLL((char *)0,               "JESUS IN THE GARAGE",  P_NONE,     1,   0, 100, CLR_RED, 1),
 
 
 #ifdef MAIL

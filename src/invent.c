@@ -19208,7 +19208,7 @@ boolean knoweverything;
 				case ART_POLICE_BRUTALITY:
 					pline("Artifact specs: +4 to-hit and +14 damage."); break;
 				case ART_DEMONSTRANTS_GO_HOME:
-					pline("Artifact specs: Warning and fire resistance when wielded, +6 to-hit and +16 damage."); break;
+					pline("Artifact specs: Warning and fire resistance when wielded, +6 to-hit and +16 damage to humans."); break;
 				case ART_WE_ARE_NOT_OPPRESSIVE:
 					pline("Artifact specs: Reflection when wielded, +8 to-hit and +16 damage, lawful."); break;
 				case ART_DEATH_TO_SHOPLIFTERS:

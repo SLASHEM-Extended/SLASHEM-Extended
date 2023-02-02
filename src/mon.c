@@ -2162,7 +2162,7 @@ struct monst *mon;
 
 	}
 
-	if (mon->data == &mons[PM_WOODEN_RAFT] || mon->data == &mons[PM_MINE_TROLLEY] || mon->data == &mons[PM_CLASHING_MINE_TROLLEY]) {
+	if (mon->data == &mons[PM_WOODEN_RAFT] || mon->data == &mons[PM_MINE_TROLLEY] || mon->data == &mons[PM_SHIP_O__THE_SEA] || mon->data == &mons[PM_CLASHING_MINE_TROLLEY]) {
 		if (!(u.usteed && mon == u.usteed)) {
 			mmove = 0;
 			return mmove;

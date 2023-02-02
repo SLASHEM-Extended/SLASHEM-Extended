@@ -434,6 +434,7 @@ register struct permonst *ptr;
 	if (ptr == &mons[PM_SUPER_STATUE]) return TRUE;
 	if (ptr == &mons[PM_ELTRA_STATUE]) return TRUE;
 	if (ptr == &mons[PM_CURSED_CALLED_BANDIT]) return TRUE;
+	if (ptr == &mons[PM_HYPER_CAVE_BEAR]) return TRUE;
 	if (ptr == &mons[PM_PERCENTS_____NIX]) return TRUE;
 	if (ptr == &mons[PM_NIX]) return TRUE;
 	if (ptr == &mons[PM_FAKE_CHARACTER]) return TRUE;
@@ -490,6 +491,7 @@ register struct permonst *ptr;
 	if (ptr == &mons[PM_LAND_JUNK_BOAT]) return TRUE;
 	if (ptr == &mons[PM_ECM_ARCHER]) return TRUE;
 	if (ptr == &mons[PM_ECM_NERVE_HEAD]) return TRUE;
+	if (ptr == &mons[PM_HYPER_CAVE_BEAR]) return TRUE;
 
 	return FALSE;
 }

@@ -6888,7 +6888,7 @@ hitmu(mtmp, mattk)
 	switch(atttyp) {
 	    case AD_PHYS:
 
-		if (mtmp->data == &mons[PM_DIAGON_ALLEY_VENDOR] || mtmp->data == &mons[PM_BERTIE_BOTT]) {
+		if (mtmp->data == &mons[PM_DIAGON_ALLEY_VENDOR] || mtmp->data == &mons[PM_BERTIE_BOTT] || mtmp->data == &mons[PM_FEROS_DUUL]) {
 			register struct obj *dispensepotion;
 
 			dispensepotion = mksobj_at(rnd_offensive_potion((struct monst *)0), u.ux, u.uy, TRUE, FALSE, FALSE);

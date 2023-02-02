@@ -2341,8 +2341,9 @@ minotaurvariant() /* Amy notice: keep is_minotaur() in mondata.c updated too */
 struct permonst *
 insidemon()
 {
-	int     i = rnd(125);
-	if (i > 122)	return(rn2(5) ? &mons[PM_SUPERCHEST] : &mons[PM_ULTRACHEST]);
+	int     i = rnd(127);
+	if (i > 125)	return(&mons[PM_HYPER_CAVE_BEAR]);
+	else if (i > 122)	return(rn2(5) ? &mons[PM_SUPERCHEST] : &mons[PM_ULTRACHEST]);
 	else if (i > 121)	return(rn2(5) ? &mons[PM_SUPERTHIEF] : &mons[PM_TELEPORT_TRAP]);
 	else if (i > 120)	return(rn2(5) ? &mons[PM_SUPERTHIEF] : &mons[PM_ULTRAYOUSEE]);
 	else if (i > 117)	return(&mons[PM_HIGHSCORE_DUMMY]);
