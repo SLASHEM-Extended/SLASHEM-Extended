@@ -7805,6 +7805,7 @@ SCROLL((char *)0,               "DO NOT TRIGGER THE SIFA",  P_NONE,     1,   0, 
 SCROLL((char *)0,               "WAYNE INTRESSIERTS",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
 SCROLL((char *)0,               "SIGERING ROSAT",  P_NONE,     1,   0, 100, CLR_RED, 1),
 SCROLL((char *)0,               "JESUS IN THE GARAGE",  P_NONE,     1,   0, 100, CLR_RED, 1),
+SCROLL((char *)0,               "DER DRUCKER NUEDELT MINUTENLANG RUM",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
 
 
 #ifdef MAIL
