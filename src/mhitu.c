@@ -10292,7 +10292,7 @@ dopois:
 			make_slimed(100);
 		    killer_format = KILLED_BY_AN;
 		    char kbuf[BUFSZ];
-		    sprintf(kbuf, "slimed by %s", mtmp->data->mname);
+		    sprintf(kbuf, "slimed by some monster");
 		    delayed_killer = kbuf;
 		} else
 		    pline("Yuck!");
@@ -10311,7 +10311,7 @@ dopois:
 			make_slimed(20);
 		    killer_format = KILLED_BY_AN;
 		    char kbuf[BUFSZ];
-		    sprintf(kbuf, "slimed by %s", mtmp->data->mname);
+		    sprintf(kbuf, "slimed by some monster");
 		    delayed_killer = kbuf;
 		} else
 		    pline("Yuck!");
@@ -12624,7 +12624,7 @@ do_stone2:
 			make_slimed(100);
 		    killer_format = KILLED_BY_AN;
 		    char kbuf[BUFSZ];
-		    sprintf(kbuf, "slimed by %s", mtmp->data->mname);
+		    sprintf(kbuf, "slimed by an engulfing attack");
 		    delayed_killer = kbuf;
 		} else
 		    pline("Yuck!");
@@ -12643,7 +12643,7 @@ do_stone2:
 			make_slimed(20);
 		    killer_format = KILLED_BY_AN;
 		    char kbuf[BUFSZ];
-		    sprintf(kbuf, "slimed by %s", mtmp->data->mname);
+		    sprintf(kbuf, "slimed by an engulfing attack");
 		    delayed_killer = kbuf;
 		} else
 		    pline("Yuck!");
@@ -16394,7 +16394,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			make_slimed(100);
 		    killer_format = KILLED_BY_AN;
 		    char kbuf[BUFSZ];
-		    sprintf(kbuf, "slimed by %s", mtmp->data->mname);
+		    sprintf(kbuf, "slimed by a gaze");
 		    delayed_killer = kbuf;
 		} else
 		    pline("Yuck!");
@@ -16416,7 +16416,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			make_slimed(20);
 		    killer_format = KILLED_BY_AN;
 		    char kbuf[BUFSZ];
-		    sprintf(kbuf, "slimed by %s", mtmp->data->mname);
+		    sprintf(kbuf, "slimed by a gaze");
 		    delayed_killer = kbuf;
 		} else
 		    pline("Yuck!");

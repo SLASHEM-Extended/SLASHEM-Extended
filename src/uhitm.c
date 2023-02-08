@@ -11686,7 +11686,7 @@ boolean ranged;
 			make_slimed(100);
 		    killer_format = KILLED_BY_AN;
 		    char kbuf[BUFSZ];
-		    sprintf(kbuf, "slimed by %s", mon->data->mname);
+		    sprintf(kbuf, "slimed by attacking the wrong monster");
 		    delayed_killer = kbuf;
 		} else
 		    pline("Yuck!");
@@ -11701,7 +11701,7 @@ boolean ranged;
 			make_slimed(20);
 		    killer_format = KILLED_BY_AN;
 		    char kbuf[BUFSZ];
-		    sprintf(kbuf, "slimed by %s", mon->data->mname);
+		    sprintf(kbuf, "slimed by attacking the wrong monster");
 		    delayed_killer = kbuf;
 		} else
 		    pline("Yuck!");
