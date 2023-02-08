@@ -1858,7 +1858,7 @@ dospit()
 {
 	struct obj *otmp;
 	struct attack *mattk;
-	int spitcost = 5;
+	int spitcost = 10;
 
 	mattk = attacktype_fordmg(youmonst.data, AT_SPIT, AD_ANY);
 	if (!mattk && uactivesymbiosis && !PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC) mattk = attacktype_fordmg(&mons[u.usymbiote.mnum], AT_SPIT, AD_ANY);
@@ -1868,18 +1868,19 @@ dospit()
 
 	if (!PlayerCannotUseSkills) {
 		switch (P_SKILL(P_SQUEAKING)) {
-	      	case P_BASIC:	spitcost = rn2(5) ? 5 : 4; break;
-	      	case P_SKILLED:	spitcost = rn2(2) ? 5 : 4; break;
-	      	case P_EXPERT:	spitcost = !rn2(3) ? 3 : rn2(2) ? 5 : 4; break;
-	      	case P_MASTER:	spitcost = !rn2(3) ? 3 : rn2(5) ? 5 : 4; break;
-	      	case P_GRAND_MASTER:	spitcost = !rn2(2) ? 3 : rn2(3) ? 5 : 4; break;
-	      	case P_SUPREME_MASTER:	spitcost = !rn2(5) ? 2 : !rn2(2) ? 3 : rn2(2) ? 5 : 4; break;
+	      	case P_BASIC:	spitcost *= 9; spitcost /= 10; break;
+	      	case P_SKILLED:	spitcost *= 8; spitcost /= 10; break;
+	      	case P_EXPERT:	spitcost *= 7; spitcost /= 10; break;
+	      	case P_MASTER:	spitcost *= 6; spitcost /= 10; break;
+	      	case P_GRAND_MASTER:	spitcost *= 5; spitcost /= 10; break;
+	      	case P_SUPREME_MASTER:	spitcost *= 4; spitcost /= 10; break;
 	      	default: break;
 		}
 	}
+	if (spitcost < 3) spitcost = 3; /* fail safe */
 
 	if (u.uen < spitcost) {
-		You("lack the energy to spit - need at least 5 mana!");
+		You("lack the energy to spit - need at least %d mana!", spitcost);
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	}
