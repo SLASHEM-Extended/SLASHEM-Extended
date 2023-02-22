@@ -600,7 +600,7 @@ register struct monst *priest;
 			verbalize("Thou shall have some sacred water.");
 		}
 
-	    } else {
+	    } else if(offer < (issoviet ? (u.ulevel * 2000) : 20000) ) {
 		verbalize("Thy selfless generosity is deeply appreciated.");
 		if (Role_if(PM_PRIEST) || Role_if(PM_NECROMANCER) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA)) {
 			use_skill(P_SPIRITUALITY, Role_if(PM_PRIEST) ? 3 : 1);
@@ -634,6 +634,48 @@ register struct monst *priest;
 		if (otmp) {
 			bless(otmp);
 		}
+
+	    } else {
+
+		verbalize("Thy are indeed most pious.");
+
+		if (Role_if(PM_PRIEST) || Role_if(PM_NECROMANCER) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA)) {
+			use_skill(P_SPIRITUALITY, Role_if(PM_PRIEST) ? 15 : 5);
+		}
+
+		u.alignlim += 5;
+		adjalign(50);
+
+#ifndef GOLDOBJ
+		if(u.ugold < (offer * 2L) && coaligned) {
+#else
+		if(money_cnt(invent) < (offer * 2L) && coaligned) {
+#endif
+			/* don't immediately lose all negative alignment --Amy */
+		    if(strayed && (moves - u.ucleansed) > 5000L) {
+			u.ualign.record /= 2; /* cleanse thee */
+			adjalign(2);
+			u.ucleansed = moves;
+			verbalize("Thou hast been cleansed.");
+		    } else {
+			adjalign(2);
+		    }
+		}
+
+		if (u.ualign.sins > 0) {
+			u.ualign.sins--;
+			verbalize("I shall absolve thee of thine most recent sin.");
+		}
+
+		register struct obj *otmp;
+		otmp = mksobj_at(POT_WATER, u.ux, u.uy, FALSE, FALSE, FALSE);
+		otmp->quan = 5;
+		otmp->owt = weight(otmp);
+		verbalize("Thou shall have a large supply of sacred water.");
+		if (otmp) {
+			bless(otmp);
+		}
+
 
 	    }
 	}
