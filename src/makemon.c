@@ -10210,6 +10210,23 @@ loveheelover:
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, TALC, 25);
 		}
+
+		if (ptr == &mons[PM_PACKED_LIZARD]) {
+			switch (rnd(3)) {
+				case 1:
+					(void) mongets(mtmp, SLING);
+					 m_initthrow(mtmp, ROCK, 30);
+					break;
+				case 2:
+					(void) mongets(mtmp, PISTOL);
+					 m_initthrow(mtmp, PISTOL_BULLET, 25);
+					break;
+				case 3:
+					(void) mongets(mtmp, AXE);
+					break;
+			}
+		}
+
 		if (ptr == &mons[PM_G_EZERRED_RA]) {
 			(void) mongets(mtmp, ROBE);
 			(void) mongets(mtmp, QUARTERSTAFF);
@@ -12149,6 +12166,11 @@ loveheelover:
 		if (ptr == &mons[PM_EGGNOG_BUSTER]) {
 			(void) mongets(mtmp, TINSEL_LONGSWORD);
 			 m_initthrow(mtmp, FRAG_GRENADE, 20);
+		}
+		if (ptr == &mons[PM_MG_BEAR]) {
+			(void) mongets(mtmp, HEAVY_MACHINE_GUN);
+			 m_initthrow(mtmp, MG_BULLET, 50);
+			 m_initthrow(mtmp, MG_BULLET, 50);
 		}
 		if (ptr == &mons[PM_SEAFARE_BEAR]) {
 			(void) mongets(mtmp, FLINTLOCK);
@@ -15084,6 +15106,10 @@ loveheelover:
 			(void) mongets(mtmp, BOW);
 			 m_initthrow(mtmp, ORCISH_ARROW, 40);
 		}
+		if (ptr == &mons[PM_GUNBLIN_FIGHTER]) {
+			(void) mongets(mtmp, PISTOL);
+			 m_initthrow(mtmp, PISTOL_BULLET, 20);
+		}
 		if (ptr == &mons[PM_RESIDENTIAL_ZAIBATSU]) {
 			(void) mongets(mtmp, PISTOL_PAIR);
 			 m_initthrow(mtmp, SHADOW_FIVE_SEVEN_BULLET, 50);
@@ -16758,6 +16784,7 @@ loveheelover:
 		if(ptr == &mons[PM_SEXY_CLAUDIA]) (void) mongets(mtmp, WOODEN_GETA); /* M4_HAMMERSANDAL */
 		if(ptr == &mons[PM_PAJIDA]) (void) mongets(mtmp, UNFAIR_STILETTOS);
 		if(ptr == &mons[PM_DEATHWATCH_ELITE]) (void) mongets(mtmp, TSURUGI);
+		if(ptr == &mons[PM_SILVER_LADY_PUMP]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 		if(ptr == &mons[PM_ARMED_XIVILAI]) (void) mongets(mtmp, !rn2(3) ? BATTLE_AXE : rn2(2) ? TWO_HANDED_SWORD : WAR_HAMMER);
 		if(ptr == &mons[PM_HEAVILY_ARMED_XIVILAI]) (void) mongets(mtmp, !rn2(3) ? BATTLE_AXE : rn2(2) ? TWO_HANDED_SWORD : WAR_HAMMER);
@@ -16770,6 +16797,9 @@ loveheelover:
 		if (ptr == &mons[PM_SWORD_DANCER]) {
 			(void) mongets(mtmp, SAND_SWORD);
 			 m_initthrow(mtmp, SAND_DART, 20);
+		}
+		if (ptr == &mons[PM_SUPERFLIER]) {
+			 m_initthrow(mtmp, FRAG_GRENADE, 10);
 		}
 		if (ptr == &mons[PM_FEYYAZ]) {
 			(void) mongets(mtmp, rnd_class(ORCISH_SHORT_SWORD,VIBROBLADE));
@@ -18296,6 +18326,10 @@ loveheelover:
 		if (ptr == &mons[PM_CAMPER_ASSHOLE]) {
 			(void)mongets(mtmp, SNIPER_RIFLE);
 			m_initthrow(mtmp, SNIPER_BULLET, 10);
+		}
+		if (ptr == &mons[PM_ROCKET_SPIDER]) {
+			(void)mongets(mtmp, ROCKET_LAUNCHER);
+			m_initthrow(mtmp, ROCKET, 5);
 		}
 		if (ptr == &mons[PM_LASER_EQUIPPED_SECRET_CAR]) {
 			(void)mongets(mtmp, PROCESS_CARD);
@@ -20468,6 +20502,12 @@ loveheelover:
 	}
 
 	if (ptr == &mons[PM_KEIKI__AKA_AKA]) {
+
+		mtmp->crapbonus += 20;
+
+	}
+
+	if (ptr == &mons[PM_SLICK_RUEA]) {
 
 		mtmp->crapbonus += 20;
 
@@ -24176,7 +24216,7 @@ register int	mmflags;
 
 	    }
 
-	} else if (mndx == PM_CRITICALLY_INJURED_THIEF || mndx == PM_CRITICALLY_INJURED_JEDI) { 
+	} else if (mndx == PM_SLICK_RUEA || mndx == PM_DOUBLE_AURORA_BOMBER || mndx == PM_SHEER_SPACER || mndx == PM_CRITICALLY_INJURED_THIEF || mndx == PM_CRITICALLY_INJURED_JEDI) { 
 		/* can be killed in a single hit --Amy */
 	    mtmp->mhpmax = mtmp->mhp = 1;
 	} else if (is_rider(ptr)) {
@@ -24514,6 +24554,16 @@ register int	mmflags;
 		(void) maketrap(x, y, randomtrap(), 100, TRUE);
 
 	if (ptr == &mons[PM_ELONIC_MINE_DOG] && isok(x, y) && !(t_at(x, y)) )
+		(void) maketrap(x, y, LANDMINE, 10, TRUE);
+
+	if (ptr == &mons[PM_SLICK_RUEA] && isok(x, y)) {
+		if ( !(levl[x][y].typ == ALTAR && (Is_astralevel(&u.uz) || Is_sanctum(&u.uz)) ) && !(levl[x][y].wall_info & W_NONDIGGABLE) && !(levl[x][y].typ == STAIRS) && !(levl[x][y].typ == LADDER) ) {
+			levl[x][y].typ = TOILET;
+		}
+
+	}
+
+	if (ptr == &mons[PM_LANDMINE_OGRE] && isok(x, y) && !(t_at(x, y)) )
 		(void) maketrap(x, y, LANDMINE, 10, TRUE);
 
 	/* maybe make a random trap underneath the monster, higher chance for drow to make it harder for them --Amy */
@@ -32154,6 +32204,7 @@ int type;
 		case PM_PLATINUM_GOLEM: return 310;
 		case PM_ANIMATED_ARMOR: return 100;
 		case PM_ANIMATED_BRONZE_STATUE: return 103;
+		case PM_CUTE_GETA: return 103;
 		case PM_COOL_GUY: return 103;
 		case PM_MAIN_SCHOOL_GRADUATE: return 103;
 		case PM_AKKAD: return 103;

@@ -982,7 +982,7 @@ int	mntmp;
 	mlvl = ((mntmp == u.ulycn) ? u.ulevel : (int)mons[mntmp].mlevel);
 	if (youmonst.data->mlet == S_DRAGON && mntmp >= PM_GRAY_DRAGON) {
 		u.mhmax = In_endgame(&u.uz) ? (8*mlvl) : (4*mlvl + d(mlvl,4));
-	} else if (mntmp == PM_CRITICALLY_INJURED_THIEF || mntmp == PM_CRITICALLY_INJURED_JEDI) {
+	} else if (mntmp == PM_SLICK_RUEA || mntmp == PM_DOUBLE_AURORA_BOMBER || mntmp == PM_SHEER_SPACER || mntmp == PM_CRITICALLY_INJURED_THIEF || mntmp == PM_CRITICALLY_INJURED_JEDI) {
 		u.mhmax = 1;
 	} else if (is_golem(youmonst.data)) {
 		u.mhmax = golemhp(mntmp);

@@ -450,6 +450,13 @@ register struct permonst *ptr;
 	if (ptr == &mons[PM_HUGE_OGRE_THIEF]) return TRUE;
 	if (ptr == &mons[PM_GUNNHILD_S_GENERAL_STORE]) return TRUE;
 	if (ptr == &mons[PM_SUPERTHIEF]) return TRUE;
+	if (ptr == &mons[PM_DIVISION_FOURTH_BOSS]) return TRUE;
+	if (ptr == &mons[PM_XXXXXXXXXXXXXXXXXXXX]) return TRUE;
+	if (ptr == &mons[PM_DOUBLE_AURORA_BOMBER]) return TRUE;
+	if (ptr == &mons[PM_EVC_UFO]) return TRUE;
+	if (ptr == &mons[PM_SLICK_RUEA]) return TRUE;
+	if (ptr == &mons[PM_SHEER_SPACER]) return TRUE;
+	if (ptr == &mons[PM_DIVISION_FIEND]) return TRUE;
 
 	return FALSE;
 

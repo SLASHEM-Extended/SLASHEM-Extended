@@ -1099,6 +1099,14 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 		(void) drop_throw(mon, otmp, 0, mtmp->mx, mtmp->my);
 		return 1;
 	    }
+	} else if (mtmp->data == &mons[PM_XXXXXXXXXXXXXXXXXXXX]) { /* will never be hit by monsters' ranged attacks */
+	    if (!ismimic) {
+		pline("%s swats a projectile away.", Monnam(mtmp));
+	    }
+	    if (!range) { /* Last position; object drops */
+		(void) drop_throw(mon, otmp, 0, mtmp->mx, mtmp->my);
+		return 1;
+	    }
 	} else if (blocker = (which_armor(mtmp, W_ARMS))) {
 
 		switch (blocker->otyp) {
@@ -1792,6 +1800,7 @@ struct monst *mtmp;
 	if (mtmp->data == &mons[PM_MECHTNED]) return;
 	if (mtmp->data == &mons[PM_IMPALAZON]) return;
 	if (mtmp->data == &mons[PM_MYSTERY_WOMAN]) return;
+	if (mtmp->data == &mons[PM_SILVER_LADY_PUMP]) return;
 
 	/* Rearranged beginning so monsters can use polearms not in a line */
 	if (mtmp->weapon_check == NEED_WEAPON || !MON_WEP(mtmp)) {

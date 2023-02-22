@@ -1188,7 +1188,7 @@ register int after;	/* this is extra fast monster movement */
 	/* the "spretty" isn't attacked either */
 			 (mtmp2->data == &mons[PM_SPRETTY]) ||
 	/* superdeep types and certain others are special */
-			 (mtmp2->data == &mons[PM_SUPERDEEP_TYPE]) || (mtmp2->data == &mons[PM_DEEP_ROCK]) || (mtmp2->data == &mons[PM_CRITICALLY_INJURED_PERCENTS]) || (mtmp2->data == &mons[PM_HIGHSCORE_DUMMY]) ||
+			 (mtmp2->data == &mons[PM_SHEER_SPACER]) || (mtmp2->data == &mons[PM_SLICK_RUEA]) || (mtmp2->data == &mons[PM_DOUBLE_AURORA_BOMBER]) || (mtmp2->data == &mons[PM_SUPERDEEP_TYPE]) || (mtmp2->data == &mons[PM_DEEP_ROCK]) || (mtmp2->data == &mons[PM_CRITICALLY_INJURED_PERCENTS]) || (mtmp2->data == &mons[PM_HIGHSCORE_DUMMY]) ||
 	/* Mister Gribbs is protected */
 			 (mtmp2->data == &mons[PM_MISTER_GRIBBS]) ||
 	/* no thrall guards */

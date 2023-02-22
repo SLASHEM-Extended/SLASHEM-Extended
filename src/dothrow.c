@@ -2690,6 +2690,11 @@ inaccurateguns:
 		pline("The projectile just passes through %s!", mon_nam(mon));
 	}
 
+	if (mon->data == &mons[PM_XXXXXXXXXXXXXXXXXXXX]) {
+		if (tmp > -100) tmp = -100;
+		pline("The projectile just passes through %s!", mon_nam(mon));
+	}
+
 	/* the elder priest uses cheats */
 	if (swatting_monster(mon->data) && rn2(15) && tmp > -20) {
 		tmp = -100;
