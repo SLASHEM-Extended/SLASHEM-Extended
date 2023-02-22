@@ -2846,12 +2846,16 @@ convertdone:
 			if (DEADMONSTER(m2)) continue;
 			if (m2->mpeaceful == mtmp->mpeaceful) continue;
 			if (mindless(m2->data) || m2->egotype_undead) continue;
+
+			/* WTF! why would that have infinite range --Amy */
+			if (dist2(mtmp->mx, mtmp->my, m2->mx, m2->my) > (BOLT_LIM * BOLT_LIM)) continue;
+
 			if (m2 == mtmp) continue;
 			if ((telepathic(m2->data) &&
 			    (rn2(2) || m2->mblinded)) || !rn2(10)) {
 				if (cansee(m2->mx, m2->my))
 				    pline("It locks on to %s.", mon_nam(m2));
-				m2->mhp -= rnd(15);
+				m2->mhp -= (mtmp->mpeaceful ? rnd(2) : rnd(15));
 				if (m2->mhp <= 0)
 				    if (mtmp->uexp)
 					mon_xkilled(m2, "", AD_DRIN);
