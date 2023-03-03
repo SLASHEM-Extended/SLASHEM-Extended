@@ -2672,15 +2672,15 @@ inaccurateguns:
 
 	/* certain traits also allow monsters to avoid getting hit */
 
-	if (amorphous(mon->data) && !rn2(5) && tmp > -20 && !(rn2(20) < skillpierce ) ) {
+	if (amorphous(mon->data) && !rn2(5) && tmp > -50 && !(rn2(20) < skillpierce ) ) {
 		tmp = -100;
 		pline("%s's amorphous body skillfully dodges the projectile!", Monnam(mon));
 	}
-	if (noncorporeal(mon->data) && rn2(3) && tmp > -20 && !(rn2(40) < skillpierce ) ) {
+	if (noncorporeal(mon->data) && rn2(3) && tmp > -50 && !(rn2(40) < skillpierce ) ) {
 		tmp = -100;
 		pline("%s easily avoids the projectile due to being noncorporeal!", Monnam(mon));
 	}
-	if (unsolid(mon->data) && !rn2(4) && tmp > -20 && !(rn2(20) < skillpierce ) ) {
+	if (unsolid(mon->data) && !rn2(4) && tmp > -50 && !(rn2(20) < skillpierce ) ) {
 		tmp = -100;
 		pline("%s's unsolid body lets the projectile pass through harmlessly!", Monnam(mon));
 	}
@@ -2696,7 +2696,7 @@ inaccurateguns:
 	}
 
 	/* the elder priest uses cheats */
-	if (swatting_monster(mon->data) && rn2(15) && tmp > -20) {
+	if (swatting_monster(mon->data) && rn2(15) && tmp > -50) {
 		tmp = -100;
 		pline("%s swats the projectile away!", Monnam(mon));
 	}
@@ -2706,17 +2706,17 @@ inaccurateguns:
 		pline("%s absorbs the projectile!", Monnam(mon));
 	}
 
-	if (FemtrapActiveAnnemarie && humanoid(mon->data) && mon->female && rn2(15) && tmp > -20) {
+	if (FemtrapActiveAnnemarie && humanoid(mon->data) && mon->female && rn2(15) && tmp > -50) {
 		tmp = -100;
 		pline("%s swats the projectile away!", Monnam(mon));
 	}
 
-	if (ecm_monster(mon->data) && rn2(15) && tmp > -20) {
+	if (ecm_monster(mon->data) && rn2(15) && tmp > -50) {
 		tmp = -100;
 		pline("%s uses an ECM system to divert the projectile!", Monnam(mon));
 	}
 
-	if (stupidrock && tmp > -20 && !(rn2(25) < skillpierce ) ) {
+	if (stupidrock && tmp > -50 && !(rn2(25) < skillpierce ) ) {
 		if (verysmall(mon->data) && !rn2(4)) {
 			tmp = -100;
 			pline("%s avoids the projectile!", Monnam(mon));
@@ -2733,19 +2733,31 @@ inaccurateguns:
 			tmp = -100;
 			pline("%s shrugs off the projectile!", Monnam(mon));
 		}
-		if (amorphous(mon->data) && !rn2(5) && tmp > -20) {
+		if (amorphous(mon->data) && !rn2(5) && tmp > -50) {
 			tmp = -100;
 			pline("%s's amorphous body skillfully dodges the projectile!", Monnam(mon));
 		}
-		if (noncorporeal(mon->data) && rn2(3) && tmp > -20) {
+		if (noncorporeal(mon->data) && rn2(3) && tmp > -50) {
 			tmp = -100;
 			pline("%s easily avoids the projectile due to being noncorporeal!", Monnam(mon));
 		}
-		if (unsolid(mon->data) && !rn2(4) && tmp > -20) {
+		if (unsolid(mon->data) && !rn2(4) && tmp > -50) {
 			tmp = -100;
 			pline("%s's unsolid body lets the projectile pass through harmlessly!", Monnam(mon));
 		}
 
+	}
+
+	if (MON_WEP(mon)) { /* shien lightsaber form */
+		struct obj *monweapon;
+		monweapon = MON_WEP(mon);
+		if (monweapon) {
+			if (is_lightsaber(monweapon) && tmp > -50 && monweapon->lamplit && !rn2(2)) {
+				tmp = -100;
+				pline("%s's lightsaber blocks the projectile!", Monnam(mon));
+
+			}
+		}
 	}
 
 	if (blocker = (which_armor(mon, W_ARMS))) {
@@ -2910,7 +2922,7 @@ inaccurateguns:
 
 		if (stupidrock && shieldblockrate) shieldblockrate *= 2;
 
-		if (rnd(100) < shieldblockrate) {
+		if ((rnd(100) < shieldblockrate) && tmp > -50) {
 			tmp = -100;
 			pline("%s's shield deflects your projectile!", Monnam(mon));
 		}

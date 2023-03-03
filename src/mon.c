@@ -2193,13 +2193,7 @@ struct monst *mon;
 	}
     }
 
-    if (mon->egotype_speedster) mmove += 6;
-    if (mon->egotype_racer) mmove += 12;
-
-	if (is_highway(mon->mx, mon->my)) {
-		if (mon->data->msound == MS_CAR) mmove += mmove;
-		else mmove += rnd(mmove);
-	}
+	/* multiplicative speed increases first */
 
 	if ( (uwep && uwep->oartifact == ART_GUARDIAN_OF_ARANOCH) && !rn2(5) && (mmove > 0) && !mon->mpeaceful && !mon->mtame) {
 		mmove *= 2;
@@ -2207,6 +2201,17 @@ struct monst *mon;
 
 	if ( (u.twoweap && uswapwep && uswapwep->oartifact == ART_GUARDIAN_OF_ARANOCH) && !rn2(5) && (mmove > 0) && !mon->mpeaceful && !mon->mtame) {
 		mmove *= 2;
+	}
+
+	/* ataru lightsaber form - boosts monster speed slightly if it has two weapon attacks */
+	if (MON_WEP(mon) && (mons[mon->mnum].mattk[1].aatyp == AT_WEAP) ) {
+		struct obj *monweapon;
+		monweapon = MON_WEP(mon);
+		if (monweapon) {
+			if (is_lightsaber(monweapon) && !bimanual(monweapon) && monweapon->lamplit && !rn2(20)) {
+				mmove *= 2;
+			}
+		}
 	}
 
 	if ((MonsterSpeedBug || u.uprops[MONSTER_SPEED_BUG].extrinsic || (uamul && uamul->oartifact == ART_FOOK_SRI_SAEVE) || (uarm && uarm->oartifact == ART_HUNKSTERMAN) || have_monsterspeedstone()) && !rn2(2) && (mmove > 0)) {
@@ -2218,6 +2223,16 @@ struct monst *mon;
 		mmove *= 3;
 		if (mmove == 3) mmove = 4;
 		mmove /= 2;
+	}
+
+	/* additive speed increases second */
+
+	if (mon->egotype_speedster) mmove += 6;
+	if (mon->egotype_racer) mmove += 12;
+
+	if (is_highway(mon->mx, mon->my)) {
+		if (mon->data->msound == MS_CAR) mmove += mmove;
+		else mmove += rnd(mmove);
 	}
 
 	if (mon->data == &mons[PM_YEEK_HARD_WORKER] && !rn2(5)) mmove += 12;
@@ -2235,8 +2250,6 @@ struct monst *mon;
 	if (mon->data == &mons[PM_FEMININE_DIAGONALATOR] && u.dx && u.dy) mmove += 12;
 	if (mon->data == &mons[PM_ABNORMAL_DIAGONALATOR] && u.dx && u.dy) mmove += 12;
 
-	if (uamul && uamul->oartifact == ART_APATHY_STRATEGY && mmove > 1) mmove /= 2;
-
 	if (mmove && uarmc && itemhasappearance(uarmc, APP_GREEK_CLOAK) ) mmove += 1;
 
 	if (uarmh && mmove && itemhasappearance(uarmh, APP_FORMULA_ONE_HELMET) ) mmove += 1;
@@ -2244,6 +2257,10 @@ struct monst *mon;
     if (uarmg && uarmg->oartifact == ART_AFK_MEANS_ASS_FUCKER && (dmgtype(mon->data, AD_SITM) || dmgtype(mon->data, AD_SEDU) || dmgtype(mon->data, AD_SSEX) ) ) mmove += 12;
 
     if (Race_if(PM_PLAYER_UNICORN)) mmove += 3; /* because you have double speed --Amy */
+
+	/* divisions last */
+
+	if (uamul && uamul->oartifact == ART_APATHY_STRATEGY && mmove > 1) mmove /= 2;
 
     return mmove;
 }

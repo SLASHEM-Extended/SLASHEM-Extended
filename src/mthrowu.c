@@ -1916,6 +1916,8 @@ struct monst *mtmp;
 	    if (mwep && mwep->otyp == DEMON_CROSSBOW) multishot += 4;
 	    if (mwep && mwep->otyp == WILDHILD_BOW) multishot += 2;
 
+	    if (mwep && is_lightsaber(mwep) && mwep->lamplit) multishot += 1; /* djem so lightsaber form */
+
 	    if (otmp && otmp->otyp == RAPID_DART) multishot += 2;
 	    if (otmp && otmp->otyp == NINJA_STAR) multishot += 3;
 	    if (otmp && otmp->otyp == FLAMETHROWER) multishot += 4;

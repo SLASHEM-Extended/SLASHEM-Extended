@@ -4900,6 +4900,8 @@ long timeout;
 		lightsaberchance3 = 0;
 		boolean willdrainenergy = TRUE;
 
+		if (is_lightsaber(obj) && (obj->where == OBJ_MINVENT) && rn2(20)) willdrainenergy = FALSE;
+
 		if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER && rn2(3)) willdrainenergy = FALSE;
 		if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES && rn2(2)) willdrainenergy = FALSE;
 		if (obj->otyp == HEAVY_LASER_BALL && rn2(3)) willdrainenergy = FALSE;
@@ -5379,6 +5381,8 @@ begin_burn(obj, already_lit)
 
 			boolean willdrainenergy = TRUE;
 
+			if (is_lightsaber(obj) && (obj->where == OBJ_MINVENT) && rn2(20)) willdrainenergy = FALSE;
+
 			if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER && rn2(3)) willdrainenergy = FALSE;
 			if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES && rn2(2)) willdrainenergy = FALSE;
 			if (obj->otyp == HEAVY_LASER_BALL && rn2(3)) willdrainenergy = FALSE;
@@ -5434,6 +5438,8 @@ begin_burn(obj, already_lit)
 	    {
 
 		boolean willdrainenergy = TRUE;
+
+		if (is_lightsaber(obj) && (obj->where == OBJ_MINVENT) && rn2(20)) willdrainenergy = FALSE;
 
 		if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER && rn2(3)) willdrainenergy = FALSE;
 		if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES && rn2(2)) willdrainenergy = FALSE;
@@ -5576,6 +5582,8 @@ begin_burn(obj, already_lit)
 		lightsaberchance2 = 0;
 		lightsaberchance3 = 0;
 		boolean willdrainenergy = TRUE;
+
+		if (is_lightsaber(obj) && (obj->where == OBJ_MINVENT) && rn2(20)) willdrainenergy = FALSE;
 
 		if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER && rn2(3)) willdrainenergy = FALSE;
 		if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES && rn2(2)) willdrainenergy = FALSE;

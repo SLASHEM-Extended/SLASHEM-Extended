@@ -2815,6 +2815,11 @@ usemelee:
 				if (otmp) {
 				    hittmp = hitval(otmp, &youmonst);
 				    tmp += hittmp;
+				    if (is_lightsaber(otmp) && otmp->lamplit) tmp += 3; /* shii-cho lightsaber form */
+
+					/* vaapad lightsaber form */
+				    if (is_lightsaber(otmp) && otmp->lamplit && bimanual(otmp) && otmp->altmode) tmp += 5;
+
 				    mswings(mtmp, otmp);
 					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == WEDGED_LITTLE_GIRL_SANDAL && (tmp > rnd(20+i)) ) {
 elena24:
@@ -6978,6 +6983,46 @@ hitmu(mtmp, mattk)
 				pline("Collusion!");
 				litroomlite(FALSE);
 
+			}
+
+			/* makashi lightsaber form - since monsters don't dual-wield, just check for 2-handedness and shield */
+			if (otmp && is_lightsaber(otmp) && otmp->lamplit && !bimanual(otmp)) {
+				struct obj *blocker;
+				blocker = which_armor(mtmp, W_ARMS);
+				if (!blocker) {
+					dmg += 3;
+				}
+			}
+
+			/* vaapad lightsaber form */
+			if (otmp && is_lightsaber(otmp) && otmp->lamplit && bimanual(otmp) && otmp->altmode) {
+				dmg += 2;
+			}
+
+			/* wedi lightsaber form */
+			if (otmp && is_lightsaber(otmp) && otmp->lamplit && !rn2(20)) {
+
+				pline("%s uses the force against you!", Monnam(mtmp));
+
+				int wedidamage = 5;
+				if (otmp->spe > 0) wedidamage += otmp->spe;
+				losehp(wedidamage, "a monster using the Wedi lightsaber form", KILLED_BY);
+				if (!rn2(10)) {
+					pushplayer(FALSE);
+				}
+			}
+
+			/* juyo lightsaber form - can disenchant your weapon, or cut it if it's under -20 */
+			if (otmp && is_lightsaber(otmp) && otmp->lamplit && uwep && !rn2(20)) {
+				if (!is_lightsaber(uwep) && !stack_too_big(uwep)) {
+					if (uwep->spe > -20) {
+						uwep->spe--;
+						pline("%s's lightsaber cuts your weapon, which loses a point of enchantment!", Monnam(mtmp));
+					} else if (!uwep->oartifact) {
+						useupall(uwep);
+						pline("%s's lightsaber cuts your weapon, which is now destroyed!", Monnam(mtmp));
+					}
+				}
 			}
 
 			if (otmp && otmp->otyp == SPRAY_BOX && !Blind) {

@@ -379,6 +379,19 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 	int ret;
 	int spellnum = 0;
 	int spellev, chance, difficulty, splcaster, learning;
+	boolean monsterniman = FALSE;
+
+	if (MON_WEP(mtmp)) { /* niman lightsaber form */
+		struct obj *monweapon;
+		monweapon = MON_WEP(mtmp);
+		if (monweapon) {
+			if (is_lightsaber(monweapon) && monweapon->lamplit) {
+				ml += 5;
+				monsterniman = TRUE;
+			}
+		}
+
+	}
 
 	int spellcasttype = mattk->adtyp;
 	if (EnthuActive && !rn2(10)) {
@@ -535,6 +548,8 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 	     */
 	learning = 15 * (-difficulty / spellev);
 	chance += learning > 20 ? 20 : learning;
+
+	if (monsterniman) chance += 25;
 
 	/* clamp the chance */
 	if (chance < 0) chance = 0;

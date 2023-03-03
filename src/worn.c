@@ -375,6 +375,20 @@ register struct monst *mon;
 	if (mon->egotype_armorer) base -= 5;
 	if (mon->egotype_tank) base -= 10;
 
+	/* soresu lightsaber form */
+	if (which_armor(mon, W_ARM)) {
+		struct obj *monarmor = which_armor(mon, W_ARM);
+		if (monarmor && (monarmor->otyp >= ROBE && monarmor->otyp <= ROBE_OF_WEAKNESS) ) {
+			struct obj *monweapon;
+			if (MON_WEP(mon)) {
+				monweapon = MON_WEP(mon);
+				if (monweapon) {
+					if (is_lightsaber(monweapon) && monweapon->lamplit) base -= 10;
+				}
+			}			
+		}
+	}
+
 	if (FemtrapActiveMarleen && humanoid(mon->data) && is_female(mon->data) ) base -= (10 + mon->m_lev);
 
 	for (obj = mon->minvent; obj; obj = obj->nobj) {
